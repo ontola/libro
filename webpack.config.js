@@ -23,14 +23,12 @@ module.exports = {
         include: path.join(__dirname, 'app')
       },
       {
-        test: /\.scss$/,
-        loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader!sass-loader'
+        test: /\.css$/,
+        loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'
       }
     ]
   },
-  postcss: function () {
-      return [autoprefixer];
-  },
+  postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
   resolve: {
     modulesDirectories: ['node_modules', 'components'],
     extensions: ['', '.js', '.jsx']

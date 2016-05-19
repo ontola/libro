@@ -1,0 +1,5 @@
+.heading {
+  composes: txtDark from "../shared/styles/colors.css";
+  composes: large from "../shared/styles/typography.css";
+  composes: normalPadding from "../shared/styles/variables.css";
+}

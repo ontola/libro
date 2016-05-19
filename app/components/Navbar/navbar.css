@@ -1,0 +1,7 @@
+.navbar {
+  composes: bgBlue from "../shared/styles/colors.css";
+  composes: txtWhite from "../shared/styles/colors.css";
+  composes: normal from "../shared/styles/typography.css";
+
+  height: 50px;
+}
