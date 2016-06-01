@@ -1,39 +1,35 @@
 import './button.scss';
-import React, {Component} from 'react';
+import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
-export default class Button extends Component {
-  constructor(props) {
-    super(props);
-  }
+function Button({ weight, theme, children }) {
+  let btnClass = classNames({
+    btn: true,
+    weight,
+    [`${theme}`]: true,
+  });
 
-  render() {
-
-    let btnClass = classNames({
-      'btn': true,
-      'weight': this.props.weight,
-      [`${this.props.theme}`]: true
-    });
-
-    return (
-      <button {...this.props} className={btnClass}>{this.props.children}</button>
-    );
-  }
+  return (
+    <button className={btnClass}>{children}</button>
+  );
 }
 
 Button.propTypes = {
-  theme: React.PropTypes.oneOf([
+  theme: PropTypes.oneOf([
     'subtle',
     'pro',
     'con',
-    'default'
+    'default',
   ]),
-  weight: React.PropTypes.bool,
-  children: React.PropTypes.node.isRequired
+  weight: PropTypes.bool,
+  children: PropTypes.node.isRequired,
 };
+
 
 Button.defaultProps = {
   theme: 'default',
   weight: false,
-  children: 'Joep'
+  children: 'Joep',
 };
+
+export default Button;

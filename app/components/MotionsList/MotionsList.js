@@ -1,25 +1,24 @@
-//import styles from './motionsList.scss';
-import React from 'react';
+// import styles from './motionsList.scss';
+import React, { PropTypes } from 'react';
 import { MotionsListItem } from '../';
 import _ from 'lodash/core';
 
-export default class MotionsList extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <ul>
-        {_.map(this.props.data, m =>
-            <MotionsListItem key={m.identifier} motion={m} />
-        )}
-      </ul>
-    );
-  }
+function MotionsList({ data }) {
+  return (
+    <ul>
+      {_.map(data, m =>
+        <MotionsListItem key={m.identifier} motion={m} />
+      )}
+    </ul>
+  );
 }
 
 MotionsList.propTypes = {
-  motions: React.PropTypes.array
+  data: PropTypes.array,
 };
+
+MotionsList.defaultProps = {
+  data: [],
+};
+
+export default MotionsList;

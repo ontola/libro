@@ -1,18 +1,18 @@
 import './columns.scss';
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-export default class Columns extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div className="cols">{this.props.children}</div>
-    );
-  }
+function Columns({ children }) {
+  return (
+    <div className="cols">{children}</div>
+  );
 }
 
 Columns.propTypes = {
-  children: React.PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
+
+Columns.defaultProps = {
+  children: [],
+};
+
+export default Columns;

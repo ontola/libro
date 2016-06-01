@@ -1,27 +1,27 @@
-//import './motionsListItem.scss';
-import React from 'react';
+// import './motionsListItem.scss';
+import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-export default class MotionsListItem extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const { identifier, title } = this.props.motion;
-
-    return (
-      <li>
-        <Link to={`/motion/${identifier}`}>{title}</Link>
-      </li>
-    );
-  }
+function MotionsListItem({ motion }) {
+  return (
+    <li>
+      <Link to={`/motion/${motion.identifier}`}>{motion.title}</Link>
+    </li>
+  );
 }
 
 MotionsListItem.propTypes = {
-  motion: React.PropTypes.shape({
-    identifier: React.PropTypes.number,
-    title: React.PropTypes.string
-  })
+  motion: PropTypes.shape({
+    identifier: PropTypes.number,
+    title: PropTypes.string,
+  }),
 };
+
+MotionsListItem.defaultProps = {
+  motion: {
+    identifier: null,
+    title: 'Joe',
+  },
+};
+
+export default MotionsListItem;

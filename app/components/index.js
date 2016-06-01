@@ -7,7 +7,7 @@ export { default as MotionShow } from './MotionShow/MotionShow';
 export { default as MotionsList } from './MotionsList/MotionsList';
 export { default as MotionsListItem } from './MotionsListItem/MotionsListItem';
 export { default as PoliticiansList } from './PoliticiansList/PoliticiansList';
-export { default as Columns } from './Columns/Columns';
+export { default as Columns } from './Columns/columns';
 
 import * as Components from '.';
 export default Components;

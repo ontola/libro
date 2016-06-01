@@ -1,17 +1,14 @@
-import { MotionShow } from '../components';
 import { connect } from 'react-redux';
+import { MotionShow } from '../components';
 import { setActiveMotion } from '../actions';
 import { dataMotions } from '../data';
 
-const mapStateToProps = (state) => {
-  return {
-    motion: dataMotions[state.activeMotion]
-  };
-};
+const mapStateToProps = (state) => ({
+  motion: dataMotions[state.activeMotion],
+});
 
-const mapDispatchToProps = (dispatch, index) => {
-  return dispatch(setActiveMotion(index.params.motionId));
-};
+const mapDispatchToProps = (dispatch, index) =>
+  dispatch(setActiveMotion(index.params.motionId));
 
 const Motion = connect(
   mapStateToProps,

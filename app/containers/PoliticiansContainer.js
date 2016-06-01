@@ -3,15 +3,12 @@ import { PoliticiansList } from '../components';
 import { fetchPoliticians } from '../actions';
 import { dataPoliticians } from '../data';
 
-const mapStateToProps = (state) => {
-  return {
-    data: state.politicians
-  };
-};
+const mapStateToProps = (state) => ({
+  data: state.politicians,
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return dispatch(fetchPoliticians(dataPoliticians));
-};
+const mapDispatchToProps = (dispatch) =>
+  dispatch(fetchPoliticians(dataPoliticians));
 
 const PoliticiansContainer = connect(
   mapStateToProps,

@@ -1,14 +1,18 @@
 import './box.scss';
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-export default class Box extends React.Component {
-  render() {
-    return (
-      <div className="box">{this.props.children}</div>
-    );
-  }
+function Box({ children }) {
+  return (
+    <div className="box">{children}</div>
+  );
 }
 
 Box.propTypes = {
-  children: React.PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
+
+Box.defaultProps = {
+  children: [],
+};
+
+export default Box;

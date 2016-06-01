@@ -3,15 +3,12 @@ import { MotionsList } from '../components';
 import { fetchMotions } from '../actions';
 import { dataMotions } from '../data';
 
-const mapStateToProps = (state) => {
-  return {
-    motions: state.motions
-  };
-};
+const mapStateToProps = (state) => ({
+  motions: state.motions,
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return dispatch(fetchMotions(dataMotions));
-};
+const mapDispatchToProps = (dispatch) =>
+ dispatch(fetchMotions(dataMotions));
 
 const MotionsContainer = connect(
   mapStateToProps,

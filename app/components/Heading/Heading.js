@@ -1,25 +1,22 @@
 import './heading.scss';
-import React, {Component} from 'react';
+import React, { PropTypes } from 'react';
 
-export default class Heading extends Component {
-  constructor(props) {
-    super(props);
-  }
+function Heading({ children, size }) {
+  const Element = `h${size}`;
 
-  render() {
-    const Element = `h${this.props.size}`;
-    return (
-      <Element className="heading">{this.props.children}</Element>
-    );
-  }
+  return (
+    <Element className="heading">{children}</Element>
+  );
 }
 
 Heading.propTypes = {
-  children: React.PropTypes.node.isRequired,
-  size: React.PropTypes.oneOf(['1', '2', '3', '4', '5', '6'])
+  children: PropTypes.node.isRequired,
+  size: PropTypes.oneOf(['1', '2', '3', '4', '5', '6']),
 };
 
 Heading.defaultProps = {
   children: 'No title specified',
-  size: '2'
+  size: '2',
 };
+
+export default Heading;

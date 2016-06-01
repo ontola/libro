@@ -7,9 +7,9 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import { App } from './components';
 import { Home, Motions, Motion, Politicians, Profile } from './views';
 
-let initialState = {
+const initialState = {
   appData: [],
-  activeMotion: 0
+  activeMotion: 0,
 };
 
 const store = createStore(motionsApp, initialState,
@@ -20,7 +20,7 @@ render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <IndexRoute component={Home}/>
+        <IndexRoute component={Home} />
         <Route path="motions" component={Motions} />
         <Route path="motion/:motionId" component={Motion} />
         <Route path="politicians" component={Politicians} />
