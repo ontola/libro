@@ -1,0 +1,55 @@
+@import "mixins.scss";
+
+/*
+COLORS
+*/
+
+$blue: rgb(71, 86, 104);
+$lightergrey: rgb(238, 240, 242); // rgb(232, 232, 232);
+$lightestgrey: rgb(244, 244, 244);
+$dark: rgb(90, 90, 90);
+$white: rgb(255,255,255);
+$brown: rgb(104, 71, 71);
+$red: rgb(182, 49, 49);
+$green: rgb(84, 127, 75);
+
+/*
+FONTS
+*/
+$font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$line-height-base: 1.3;
+
+$font-size-h1: 2.6em;
+$font-size-h2: 2.15em;
+$font-size-h3: 1.7em;
+$font-size-h4: 1.25em;
+$font-size-h5: 1em;
+$font-size-h6: 0.85em;
+
+/*
+SPACING
+*/
+
+$padding-base: 10px 20px;
+$padding-small: 5px 10px;
+
+$margin-base: 10px 0;
+$margin-small: 5px 0;
+
+/*
+OTHERS
+*/
+
+$border-radius-base: 3px;
+$box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+
+/*
+Z-INDICES
+*/
+
+$zindex-1: 100;
+$zindex-2: 200;
+$zindex-3: 300;
+$zindex-4: 400;
+$zindex-5: 500;
+$zindex-6: 600;

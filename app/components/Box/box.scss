@@ -1,0 +1,14 @@
+@import "../shared/config.scss";
+
+.box {
+  padding: $padding-base;
+  margin: $margin-base;
+  background-color: $white;
+  border: 1px solid #D8DEE4;
+  border-width: 1px 0;
+
+  @include large() {
+    border-width: 1px;
+    border-radius: $border-radius-base;
+  }
+}

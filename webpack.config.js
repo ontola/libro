@@ -6,7 +6,7 @@ var autoprefixer = require('autoprefixer');
 module.exports = {
   entry: [
     'webpack-dev-server/client?http://localhost:5000',
-    'webpack/hot/dev-server',
+    'webpack/hot/only-dev-server',
     './app/index'
   ],
   output: {
@@ -23,8 +23,8 @@ module.exports = {
         include: path.join(__dirname, 'app')
       },
       {
-        test: /\.css$/,
-        loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'
+        test: /\.scss$/,
+        loader: 'style!css-loader!postcss-loader!sass-loader'
       }
     ]
   },

@@ -40,8 +40,8 @@ module.exports = {
         include: path.join(__dirname, 'app')
       },
       {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader')
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!sass-loader')
       }
     ]
   }

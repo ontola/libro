@@ -1,25 +1,33 @@
-import styles from './app.css';
+import './app.scss';
 import React, {Component} from 'react';
-import { Link } from 'react-router';
 import { Navbar } from '../';
-
+import { RouteTransition } from 'react-router-transition';
 
 export default class App extends Component {
+
   render() {
     return (
-      <div className={styles.wrapper}>
-        <Navbar>
-          <ul className={ styles.list }>
-            <li><Link className={ styles.link } to="/">Home</Link></li>
-            <li><Link className={ styles.link } to="/about">About</Link></li>
-          </ul>
-        </Navbar>
-        { this.props.children }
+      <div>
+        <Navbar location={this.props.location} />
+
+        <RouteTransition
+          pathname={this.props.location.pathname}
+          atEnter={{ opacity: 0 }}
+          atLeave={{ opacity: 0 }}
+          atActive={{ opacity: 1 }}
+        >
+          <div className="page">
+            {this.props.children}
+          </div>
+        </RouteTransition>
       </div>
     );
   }
 }
 
 App.propTypes = {
-  children: React.PropTypes.node
+  children: React.PropTypes.node,
+  location: React.PropTypes.shape({
+    pathname: React.PropTypes.string
+  })
 };

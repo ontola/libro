@@ -1,0 +1,8 @@
+@import "../shared/config.scss";
+
+.cols {
+  @include large() {
+    display: flex;
+    flex-direction: row;
+  }
+}

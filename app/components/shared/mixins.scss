@@ -1,0 +1,16 @@
+/*
+BREAKPOINTS
+*/
+$responsive-small-breakpoint: 900px;
+
+@mixin large {
+  @media (min-width: #{$responsive-small-breakpoint}) {
+    @content;
+  }
+}
+
+@mixin small-only {
+  @media (max-width: #{$responsive-small-breakpoint}) {
+    @content;
+  }
+}

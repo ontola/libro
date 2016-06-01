@@ -1,9 +1,0 @@
-.box {
-  composes: normalPadding from "../shared/styles/variables.css";
-  composes: bgWhite from "../shared/styles/colors.css";
-  composes: normalShadow from "../shared/styles/variables.css";
-}
-
-.p {
-  composes: normal from "../shared/styles/typography.css";
-}

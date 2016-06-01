@@ -1,8 +1,0 @@
-.thickPadding { padding: 20px; margin: 20px; }
-.normalPadding { padding: 10px 20px; margin: 20px; }
-.thinPadding { padding: 5px; margin: 20px; }
-
-.normalShadow {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  border-radius: 3px;
-}

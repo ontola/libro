@@ -1,14 +1,25 @@
-let styles = require('./heading.css');
+import './heading.scss';
 import React, {Component} from 'react';
 
 export default class Heading extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
+    const Element = `h${this.props.size}`;
     return (
-      <h2 className={styles.heading}>{this.props.children}</h2>
+      <Element className="heading">{this.props.children}</Element>
     );
   }
 }
 
 Heading.propTypes = {
-  children: React.PropTypes.string.isRequired
+  children: React.PropTypes.node.isRequired,
+  size: React.PropTypes.oneOf(['1', '2', '3', '4', '5', '6'])
+};
+
+Heading.defaultProps = {
+  children: 'No title specified',
+  size: '2'
 };

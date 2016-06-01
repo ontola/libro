@@ -1,14 +1,45 @@
-import styles from './navbar.css';
+import './navbar.scss';
 import React from 'react';
+import { Link } from 'react-router';
 
 export default class Navbar extends React.Component {
-  render() {
+  constructor(props) {
+    super(props);
+  }
+
+  renderNavBarItem(item) {
+    let path = this.props.location.pathname;
     return (
-      <div className={ styles.navbar }>{ this.props.children }</div>
+      <li key={item.id}>
+        <Link
+          className={path === item.url ? 'navbar__link navbar__link--active' : 'navbar__link'}
+          to={item.url}
+        >{item.title}</Link>
+      </li>
+    );
+  }
+
+  render() {
+    const items = [{
+      id: 0, url: '/', title: 'Home'
+    }, {
+      id: 1, url: '/motions', title: 'Motions'
+    }, {
+      id: 2, url: '/politicians', title: 'Politicians'
+    }];
+
+    return (
+      <div className="navbar">
+        <ul className="navbar__list">
+          { items.map(this.renderNavBarItem.bind(this)) }
+        </ul>
+      </div>
     );
   }
 }
 
 Navbar.propTypes = {
-  children: React.PropTypes.elements
+  location: React.PropTypes.shape({
+    pathname: React.PropTypes.string
+  })
 };

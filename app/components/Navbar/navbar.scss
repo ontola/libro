@@ -1,0 +1,26 @@
+@import "../shared/config.scss";
+
+.navbar {
+  background-color: $blue;
+  color: $white;
+  font-size: $font-size-h5;
+  height: 40px;
+}
+
+.navbar__list {
+  display: flex;
+  justify-content: center;
+}
+
+.navbar__link {
+  color: $white;
+  padding: $padding-base;
+  display: inline-flex;
+  align-self: center;
+  text-decoration: none;
+}
+
+.navbar__link--active {
+  background-color: $lightergrey;
+  color: $blue;
+}

@@ -1,16 +1,14 @@
-import styles from './box.css';
+import './box.scss';
 import React from 'react';
 
 export default class Box extends React.Component {
   render() {
     return (
-      <div className={ styles.box }>
-        <p className={ styles.p }>{this.props.children}</p>
-      </div>
+      <div className="box">{this.props.children}</div>
     );
   }
 }
 
 Box.propTypes = {
-  children: React.PropTypes.string.isRequired
+  children: React.PropTypes.node.isRequired
 };
