@@ -12,7 +12,7 @@ export default class MotionsList extends React.Component {
   render() {
     return (
       <ul>
-        {_.map(this.props.motions, m =>
+        {_.map(this.props.data, m =>
             <MotionsListItem key={m.identifier} motion={m} />
         )}
       </ul>
@@ -23,5 +23,3 @@ export default class MotionsList extends React.Component {
 MotionsList.propTypes = {
   motions: React.PropTypes.array
 };
-
-export default MotionsList;

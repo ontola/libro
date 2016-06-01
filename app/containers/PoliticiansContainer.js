@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
-import PoliticiansList from '../components';
-import fetchPoliticians from '../actions';
-import dataPoliticians from '../data';
+import { PoliticiansList } from '../components';
+import { fetchPoliticians } from '../actions';
+import { dataPoliticians } from '../data';
 
 const mapStateToProps = (state) => {
   return {
-    politicians: state.politicians
+    data: state.politicians
   };
 };
 

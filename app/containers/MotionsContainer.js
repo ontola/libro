@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-import MotionsList from '../components';
-import fetchMotions from '../actions';
-import dataMotions from '../data';
+import { MotionsList } from '../components';
+import { fetchMotions } from '../actions';
+import { dataMotions } from '../data';
 
 const mapStateToProps = (state) => {
   return {

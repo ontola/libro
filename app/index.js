@@ -5,10 +5,10 @@ import { createStore } from 'redux';
 import motionsApp from './reducers';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import { App } from './components';
-import * as Views from './views';
+import { Home, Motions, Motion, Politicians, Profile } from './views';
 
 let initialState = {
-  data: [],
+  appData: [],
   activeMotion: 0
 };
 
@@ -20,11 +20,11 @@ render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <IndexRoute component={Views.Home}/>
-        <Route path="motions" component={Views.Motions} />
-        <Route path="motion/:motionId" component={Views.Motion} />
-        <Route path="politicians" component={Views.Politicians} />
-        <Route path="profile/:userId" component={Views.Profile} />
+        <IndexRoute component={Home}/>
+        <Route path="motions" component={Motions} />
+        <Route path="motion/:motionId" component={Motion} />
+        <Route path="politicians" component={Politicians} />
+        <Route path="profile/:userId" component={Profile} />
       </Route>
     </Router>
   </Provider>,

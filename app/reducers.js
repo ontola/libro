@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
 import { FETCH_MOTIONS, FETCH_POLITICIANS, SET_ACTIVE_MOTION } from './actions';
 
-function data(state = [], action) {
+function appData(state = [], action) {
+
   switch(action.type) {
     case FETCH_MOTIONS:
       return Object.assign({}, state, {
@@ -26,7 +27,7 @@ function activeMotion(state = 0, action) {
 }
 
 const motionsApp = combineReducers({
-  data,
+  appData,
   activeMotion
 });
 
