@@ -4,11 +4,11 @@
   "description": "Een interface voor motiedata uit de gemeenteraad",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vasanthk/react-es6-webpack-boilerplate.git"
+    "url": "https://tom_dalenberg@bitbucket.org/arguweb/aod_demo.git"
   },
-  "author": "Tom Dalenberg",
-  "license": "MIT",
-  "homepage": "https://github.com/vasanthk/react-es6-webpack-boilerplate",
+  "author": "Tom Dalenberg <tomdalenberg@argu.co> (https://argu.co)",
+  "license": "UNLICENSED",
+  "private": true,
   "main": "index.html",
   "scripts": {
     "start": "node server.js",
