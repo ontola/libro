@@ -2,18 +2,17 @@
 var webpack = require('webpack');
 var path = require('path');
 var autoprefixer = require('autoprefixer');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: [
-    'webpack-dev-server/client?http://localhost:5000',
-    'webpack/hot/only-dev-server',
-    './app/index'
+    'webpack-hot-middleware/client?reload=true',
+    path.join(__dirname, 'app/index.js')
   ],
   output: {
-    filename: 'bundle.js',
-    path: __dirname,
-    publicPath: '/static/',
-    libraryTarget: 'umd'
+    path: path.join(__dirname, '/dist/'),
+    filename: '[name].js',
+    publicPath: '/'
   },
   module: {
     loaders: [
@@ -35,7 +34,16 @@ module.exports = {
   },
   devtool: ['eval-source-map'],
   plugins: [
+    new HtmlWebpackPlugin({
+      template: 'app/index.tpl.html',
+      inject: 'body',
+      filename: 'index.html'
+    }),
+    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development')
+    })
   ]
 };
