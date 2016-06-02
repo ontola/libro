@@ -3,4 +3,3 @@ node_modules
 *.iml
 dist
 .DS_Store
-jsx-test

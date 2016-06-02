@@ -29,7 +29,7 @@ module.exports = {
   },
   postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
   resolve: {
-    modulesDirectories: ['node_modules', 'components'],
+    modulesDirectories: ['node_modules'],
     extensions: ['', '.js', '.jsx']
   },
   devtool: ['eval-source-map'],
