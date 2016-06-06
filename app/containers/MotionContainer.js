@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { MotionShow } from '../components';
-import { setActiveMotion } from '../actions';
+import { setActiveMotion } from '../actions/activeMotion';
 import { dataMotions } from '../data';
 
 const mapStateToProps = (state) => ({
