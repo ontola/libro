@@ -7,16 +7,26 @@ function App({ location, children }) {
   return (
     <div>
       <Navbar location={location} />
-      <RouteTransition
-        pathname={location.pathname}
-        atEnter={{ opacity: 0 }}
-        atLeave={{ opacity: 0 }}
-        atActive={{ opacity: 1 }}
-      >
-        <div className="page">
+      {
+        /*
+        <RouteTransition
+          pathname={location.pathname}
+          atEnter={{ opacity: 0 }}
+          atLeave={{ opacity: 0 }}
+          atActive={{ opacity: 1 }}
+        >
+        */
+      }
+      <div className="page">
+        <div className="page__wrapper">
           {children}
         </div>
-      </RouteTransition>
+      </div>
+      {
+        /*
+        </RouteTransition>
+        */
+      }
     </div>
   );
 }

@@ -1,12 +1,13 @@
 // import './motionsListItem.scss';
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import { Box } from '../';
 
 function MotionsListItem({ motion }) {
   return (
-    <li>
+    <Box>
       <Link to={`/motion/${motion.identifier}`}>{motion.title}</Link>
-    </li>
+    </Box>
   );
 }
 

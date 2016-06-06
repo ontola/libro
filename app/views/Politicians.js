@@ -6,7 +6,9 @@ function Politicians() {
   return (
     <div>
       <Heading>Politicians</Heading>
-      <Box>Hier komt een lijst met alle leden van de raad.</Box>
+      <Box>
+        <p>Hier komt een lijst met alle leden van de raad.</p>
+      </Box>
       <PoliticiansContainer />
     </div>
   );

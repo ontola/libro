@@ -4,34 +4,41 @@
   font-family: $font-family;
   font-size: $font-size-h5;
   padding: $padding-base;
-  margin: 0 4px 0 0;
+  margin: 0;
   border: none;
   display: inline-block;
-  border-radius: $border-radius-base;
   cursor: pointer;
+
+  &:hover {
+    box-shadow: inset 0 0 0 999px rgba(0, 0, 0, .03);
+    transition: .2s box-shadow;
+  }
 }
 
-.default {
+.btn--default {
   color: $white;
   background-color: $green;
+  border-radius: $border-radius-base;
 }
 
-.subtle {
+.btn--subtle {
   background-color: $lightergrey;
   color: $dark;
+  border-radius: $border-radius-base;
 }
 
-.small {
+.btn--weight {
   font-size: $font-size-h6;
   padding: $padding-small;
 }
 
-.weight {
-  font-size: $font-size-h6;
-  padding: $padding-small;
-}
+.btn--box {
+  background-color: $white;
+  border-right: 1px solid $border-color;
+  color: $blue;
+  flex-grow: 1;
 
-.btn:hover {
-  box-shadow: inset 0 0 0 999px rgba(0, 0, 0, .2);
-  transition: .2s box-shadow;
+  &:last-child {
+    border-right: 0;
+  }
 }

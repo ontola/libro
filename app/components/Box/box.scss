@@ -1,14 +1,24 @@
 @import "../shared/config.scss";
 
 .box {
-  padding: $padding-base;
-  margin: $margin-base;
+  margin: 20px 10px;
   background-color: $white;
-  border: 1px solid #D8DEE4;
-  border-width: 1px 0;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-base;
 
   @include large() {
     border-width: 1px;
-    border-radius: $border-radius-base;
+    margin: $margin-base;
   }
+}
+
+.box__content {
+  padding: $padding-base;
+}
+
+.box__actions {
+  border-top: 1px solid $border-color;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }

@@ -5,8 +5,8 @@ import classNames from 'classnames';
 function Button({ weight, theme, children }) {
   let btnClass = classNames({
     btn: true,
-    weight,
-    [`${theme}`]: true,
+    'btn--weight': weight,
+    [`btn--${theme}`]: true,
   });
 
   return (
@@ -16,9 +16,8 @@ function Button({ weight, theme, children }) {
 
 Button.propTypes = {
   theme: PropTypes.oneOf([
+    'box',
     'subtle',
-    'pro',
-    'con',
     'default',
   ]),
   weight: PropTypes.bool,

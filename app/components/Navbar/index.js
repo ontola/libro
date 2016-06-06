@@ -15,21 +15,22 @@ function renderNavBarItem(item) {
   const path = location.pathname;
 
   return (
-    <li key={item.id}>
-      <Link
-        className={path === item.url ? 'navbar__link navbar__link--active' : 'navbar__link'}
-        to={item.url}
-      >{item.title}</Link>
-    </li>
+    <Link
+      key={item.id}
+      className={path === item.url ? 'navbar__link navbar__link--active' : 'navbar__link'}
+      to={item.url}
+    >
+      {item.title}
+    </Link>
   );
 }
 
 function NavBar() {
   return (
     <div className="navbar">
-      <ul className="navbar__list">
+      <div className="navbar__list">
         {items.map(renderNavBarItem)}
-      </ul>
+      </div>
     </div>
   );
 }

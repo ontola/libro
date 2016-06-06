@@ -6,9 +6,7 @@ function Motions() {
   return (
     <div>
       <Heading>Motions</Heading>
-      <Box>
-        <MotionsContainer />
-      </Box>
+      <MotionsContainer />
     </div>
   );
 }

@@ -5,11 +5,11 @@ import _ from 'lodash/core';
 
 function MotionsList({ data }) {
   return (
-    <ul>
+    <div>
       {_.map(data, m =>
         <MotionsListItem key={m.identifier} motion={m} />
       )}
-    </ul>
+    </div>
   );
 }
 

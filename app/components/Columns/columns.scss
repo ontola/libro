@@ -3,6 +3,16 @@
 .cols {
   @include large() {
     display: flex;
-    flex-direction: row;
+    width: 100%;
+
+    & > div {
+      width: 50%;
+      flex-grow: 1;
+      margin: $margin-base;
+    }
+
+    & > div:first-child {
+      margin-right: 20px;
+    }
   }
 }
