@@ -1,11 +1,11 @@
 import './app.scss';
 import React, { PropTypes } from 'react';
-import { Navbar } from '../';
+import NavbarContainer from '../../containers/NavbarContainer';
 
-function App({ location, children }) {
+function App({ children }) {
   return (
     <div>
-      <Navbar location={location} />
+      <NavbarContainer />
       <div className="page">
         <div className="page__wrapper">
           {children}
@@ -17,14 +17,10 @@ function App({ location, children }) {
 
 App.propTypes = {
   children: PropTypes.node,
-  location: PropTypes.shape({
-    pathname: PropTypes.string,
-  }),
 };
 
 App.defaultProps = {
   children: [],
-  location: [],
 };
 
 export default App;

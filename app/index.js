@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
-import configureStore from './configureStore'
+import configureStore from './configureStore';
 
 import { App } from './components';
 import { Home, Motions, Motion, Politicians, Profile } from './views';

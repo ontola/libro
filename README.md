@@ -6,7 +6,7 @@ Deze demo bevat een interface voor open data van de gemeenteraad.
 ```
 npm install
 npm start
-Open http://0.0.0.0:3000
+Open http://localhost:3000
 ```
 ### Build
 
@@ -22,4 +22,12 @@ ESLint with React linting options have been enabled.
 
 ```
 npm run lint
+```
+
+### Testing
+
+Tests are made using mocha, chai assert and enzyme (docs)[http://airbnb.io/enzyme/docs/api/index.html]
+
+```
+npm run test
 ```

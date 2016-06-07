@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Heading, Columns } from '../components';
+import { Box, Button, Heading } from '../components';
 
 function Home() {
   return (

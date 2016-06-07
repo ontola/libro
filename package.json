@@ -13,7 +13,7 @@
   "scripts": {
     "start": "node server",
     "build": "rimraf dist && NODE_ENV=production webpack --config ./webpack.config.production.js --progress",
-    "test": "mocha tools/testhelper.js ./app/components/**/test.js",
+    "test": "mocha tools/testhelper.js ./app/components/**/spec.js",
     "lint": "./node_modules/.bin/eslint ./app"
   },
   "dependencies": {
@@ -27,7 +27,6 @@
     "react-redux": "^4.4.5",
     "react-router": "^2.4.0",
     "react-router-redux": "^4.0.4",
-    "react-router-transition": "0.0.5",
     "redux": "^3.5.2"
   },
   "devDependencies": {

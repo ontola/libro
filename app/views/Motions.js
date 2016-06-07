@@ -1,6 +1,6 @@
 import React from 'react';
 import { MotionsContainer } from '../containers';
-import { Heading, Box } from '../components';
+import { Heading } from '../components';
 
 function Motions() {
   return (

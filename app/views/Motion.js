@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { MotionContainer } from '../containers';
-import { Link, browserHistory } from 'react-router';
 
 class Motion extends React.Component {
   constructor(props) {

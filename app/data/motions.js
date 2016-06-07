@@ -8,25 +8,25 @@ const data = [
         id: 1,
         side: 'pro',
         title: 'Losse discussies doen het erg goed - eerste indruk is belangrijk',
-        text: 'Dit zou een geweldig initiatief zijn zeker gezien het feit dat er een hoop mensen zijn die net buiten de regels van de voedselbank vallen die er wel heel erg bij gebaat zijn'
+        text: 'Dit zou een geweldig initiatief zijn zeker gezien het feit dat er een hoop mensen zijn die net buiten de regels van de voedselbank vallen die er wel heel erg bij gebaat zijn',
       },
       {
         id: 2,
         side: 'con',
         title: 'Lijkt \'actiever\', doordat het meer gefocust is',
-        text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+        text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       },
       {
         id: 3,
         side: 'pro',
         title: 'Niemand leest handleidingen',
-        text: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat'
+        text: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
       },
       {
         id: 4,
         side: 'pro',
         title: 'Je zit niet altijd in een forum',
-        text: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'
+        text: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
       }
     ]
   },

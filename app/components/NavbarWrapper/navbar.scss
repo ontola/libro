@@ -1,0 +1,157 @@
+@import "../shared/config.scss";
+
+
+.navbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 11;
+  height: 3em;
+  background-color: $blue;
+}
+
+.navbar-item {
+  color: white;
+  display: block;
+  padding: 0 0.7em;
+  font-size: 1em;
+  background-color: $blue;
+  height: 3em;
+
+  span {
+    line-height: 3em;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  > .fa {
+    line-height: 3.2em;
+    float: none;
+    padding: 0;
+  }
+
+  &:hover {
+    background-color: rgba(255,255,255,0.15);
+    text-decoration: none;
+  }
+}
+
+.navbar-item:active {
+  transition: none;
+}
+
+.navbar-links {
+  margin-left: 1em;
+  float: left;
+
+  > li {
+    float: left;
+  }
+
+  > div {
+    display: inline-block;
+    float: left;
+  }
+
+}
+
+.navbar-links-right {
+  float: right;
+  margin-right: 1em;
+  margin-left: 0;
+
+}
+
+.navbar-link-description {
+}
+
+.navbar-logo {
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  width: 5.8em;
+
+  img {
+    width: 82%;
+  }
+}
+
+input[type="text"].nav-search-text {
+  margin: 0;
+  width: 100%;
+  resize: none;
+}
+
+input[type="submit"].nav-search-button {
+  width: 5em;
+  display: inline;
+}
+
+.nav-container {
+  margin: auto;
+  position: relative;
+  height: 100%;
+}
+
+.nav-search {
+  width: 19em;
+}
+
+.profile-picture--navbar{
+  height: 2.2em;
+  width: 2.2em;
+  margin: .4em;
+  margin-left: 0;
+  margin-right: .4em;
+
+}
+
+.icon-left {
+  margin-left: .4em;
+}
+
+.profile-picture--navbar > a > .icon-left {
+  vertical-align: top;
+  margin-top: 1em;
+  display: inline-block;
+  margin-left: .4em;
+}
+
+.profile-name--navbar {
+  padding: 1em 0;
+  display: inline-block;
+  float: right;
+}
+
+.navbar-below {
+  position: fixed;
+  top: 3em;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 10;
+  > div {
+    padding: 0 1em;
+    margin: auto;
+    max-width: 1200px;
+  }
+
+}
+
+
+.navbar-item span {
+  @include small-only() {
+    display: none;
+
+    &.dont-hide{
+      display: inline-block;
+    }
+
+    &.fa {
+      display: inline-block;
+    }
+  }
+}
