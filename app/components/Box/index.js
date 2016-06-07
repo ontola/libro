@@ -20,7 +20,7 @@ Box.propTypes = {
   type: PropTypes.oneOf([
     'motion',
     'argument',
-    'default'
+    'default',
   ]),
 };
 

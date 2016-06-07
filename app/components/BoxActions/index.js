@@ -22,15 +22,14 @@ function argumentActions() {
   );
 }
 
-
 function BoxActions({ type }) {
-
   let buttons;
 
-  if(type == 'motion')
+  if (type === 'motion') {
     buttons = motionActions();
-  else if(type == 'argument')
+  } else if (type === 'argument') {
     buttons = argumentActions();
+  }
 
   return (
     <div>{buttons}</div>

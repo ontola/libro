@@ -1,12 +1,12 @@
 import './argument.scss';
 import React, { PropTypes } from 'react';
-import { Heading, Box, Button } from '../';
+import { Heading, Box } from '../';
 
 function Argument({ data }) {
   return (
     <Box type="argument">
-      <Heading size="3">{ data.title }</Heading>
-      <div>{ data.text }</div>
+      <Heading size="3">{data.title}</Heading>
+      <div>{data.text}</div>
     </Box>
   );
 }

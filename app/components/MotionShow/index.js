@@ -1,21 +1,20 @@
 // import './motionShow.scss';
 import React, { PropTypes } from 'react';
-import { Heading, Button, Box, Columns, Argument, VoteData } from '../';
+import { Heading, Box, Columns, Argument, VoteData } from '../';
 import _ from 'lodash/core';
 
 function MotionShow({ motion }) {
-
-  const pro = _.filter(motion.arguments, { 'side': 'pro' });
-  const con = _.filter(motion.arguments, { 'side': 'con' });
+  const pro = _.filter(motion.arguments, { side: 'pro' });
+  const con = _.filter(motion.arguments, { side: 'con' });
 
   return (
     <div>
       <Box type="motion">
         <Heading size="2">{motion.title}</Heading>
-        <div>{ motion.description }</div>
+        <div>{motion.description}</div>
       </Box>
 
-      <VoteData data={motion.votes} expanded  />
+      <VoteData data={motion.votes} expanded />
 
       <Columns>
         <div>
