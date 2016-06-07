@@ -26,7 +26,7 @@ npm run lint
 
 ### Testing
 
-Tests are made using mocha, chai assert and enzyme [docs](http://airbnb.io/enzyme/docs/api/index.html)
+Tests are made using mocha, chai assert and enzyme ([docs](http://airbnb.io/enzyme/docs/api/index.html))
 
 ```
 npm run test

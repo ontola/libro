@@ -1,33 +1,39 @@
 import './button.scss';
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import FontAwesome from 'react-fontawesome';
 
-function Button({ weight, theme, children }) {
-  let btnClass = classNames({
+const Button = ({ weight, theme, icon, children, ...props }) => {
+
+  const btnClass = classNames({
     btn: true,
     'btn--weight': weight,
     [`btn--${theme}`]: true,
   });
 
   return (
-    <button className={btnClass}>{children}</button>
+    <button {...props} className={btnClass}>
+      <FontAwesome name={icon} />{' '}
+      {children}
+    </button>
   );
 }
 
 Button.propTypes = {
+  weight: PropTypes.bool,
   theme: PropTypes.oneOf([
     'box',
     'subtle',
     'default',
   ]),
-  weight: PropTypes.bool,
+  icon: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
 
-
 Button.defaultProps = {
-  theme: 'default',
   weight: false,
+  theme: 'default',
+  icon: '',
   children: 'Joep',
 };
 

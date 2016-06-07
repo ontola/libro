@@ -1,7 +1,6 @@
 export { default as App } from './App';
 export { default as Argument } from './Argument';
 export { default as Box } from './Box';
-export { default as BoxActions } from './BoxActions';
 export { default as Button } from './Button';
 export { default as Columns } from './Columns';
 export { default as Heading } from './Heading';

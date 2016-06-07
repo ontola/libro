@@ -28,47 +28,130 @@ const data = [
         title: 'Je zit niet altijd in een forum',
         text: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
       }
-    ]
+    ],
+    votes: {
+      result: "fail",
+      result_aggs: {
+        pass: 0.19,
+        fail: 0.81
+      },
+      group_result: [
+        {
+          group: {
+            name: "VVD",
+          },
+          result: "fail",
+        },
+        {
+          group: {
+            name: "D66",
+          },
+          result: "fail",
+        },
+        {
+          group: {
+            name: "GroenLinks",
+          },
+          result: "fail",
+        },
+        {
+          group: {
+            name: "PvdA",
+          },
+          result: "pass",
+        },
+      ],
+      counts: [
+        {
+          "option": "yes",
+          "value": 15,
+          "group": {
+            "name": "VVD"
+          }
+        },
+        {
+          "option": "yes",
+          "value": 9,
+          "group": {
+            "name": "D66"
+          }
+        },
+        {
+          "option": "yes",
+          "value": 2,
+          "group": {
+            "name": "GroenLinks"
+          }
+        },
+        {
+          "option": "no",
+          "value": 3,
+          "group": {
+            "name": "PvdA"
+          }
+        },
+      ],
+    },
   },
   {
     identifier: 1,
     title: 'Banken mede de financiële risico\'s laten dragen bij geborgde leningen',
+    arguments: false,
+    votes: false,
   },
   {
     identifier: 2,
     title: 'Burgerparticipatie zonder bureaucratisering',
+    arguments: false,
+    votes: false,
   },
   {
     identifier: 3,
     title: 'Het aanwenden van vrijvallende middelen ten behoeve van de Marker Wadden',
+    arguments: false,
+    votes: false,
   },
   {
     identifier: 4,
     title: 'Uniformering van het lozingenbeleid voor mestverwerkingsinstallaties',
+    arguments: false,
+    votes: false,
   },
   {
     identifier: 5,
     title: 'De totstandkoming van drinkwatertarieven',
+    arguments: false,
+    votes: false,
   },
   {
     identifier: 6,
     title: 'Zelfcensuur als direct gevolg van bedreigingen',
+    arguments: false,
+    votes: false,
   },
   {
     identifier: 7,
     title: 'Alle vormen van voortgezet onderwijs opnemen als mogelijk resultaat van de eindtoets',
+    arguments: false,
+    votes: false,
   },
   {
     identifier: 8,
     title: 'Het weigeren van leerlingen vanwege een dubbel advies',
+    arguments: false,
+    votes: false,
   },
   {
     identifier: 9,
     title: 'Een verbod op islamitisch thuisonderwijs',
+    arguments: false,
+    votes: false,
   },
   {
     identifier: 10,
     title: 'Evaluatie van de klankbordgroep bij vervanging van onderzeeboten',
+    arguments: false,
+    votes: false,
   },
 ];
 

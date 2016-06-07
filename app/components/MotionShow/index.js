@@ -1,15 +1,34 @@
-// import './motionShow.scss';
+import './motionShow.scss';
 import React, { PropTypes } from 'react';
 import { Heading, Box, Columns, Argument, VoteData } from '../';
-import _ from 'lodash/core';
 
 function MotionShow({ motion }) {
-  const pro = _.filter(motion.arguments, { side: 'pro' });
-  const con = _.filter(motion.arguments, { side: 'con' });
+  const pro = motion.arguments.filter(e => e.side === 'pro');
+  const con = motion.arguments.filter(e => e.side === 'con');
+
+  const buttons = [{
+    label: 'Ik ben voor',
+    icon: 'thumbs-up',
+    action() {
+      console.log('Ik ben voor:', motion.title);
+    },
+  }, {
+    label: 'Neutraal',
+    icon: 'pause',
+    action() {
+      console.log('Ik ben neutraal:', motion.title);
+    },
+  }, {
+    label: 'Ik ben tegen',
+    icon: 'thumbs-down',
+    action() {
+      console.log('Ik ben tegen:', motion.title);
+    },
+  }];
 
   return (
     <div>
-      <Box type="motion">
+      <Box buttons={buttons}>
         <Heading size="2">{motion.title}</Heading>
         <div>{motion.description}</div>
       </Box>
@@ -19,15 +38,11 @@ function MotionShow({ motion }) {
       <Columns>
         <div>
           <Heading size="4">Voordelen</Heading>
-          {_.map(pro, a =>
-            <Argument key={a.id} data={a} />
-          )}
+          {pro.map(a => <Argument key={a.id} data={a} />)}
         </div>
         <div>
           <Heading size="4">Nadelen</Heading>
-          {_.map(con, a =>
-            <Argument key={a.id} data={a} />
-          )}
+          {con.map(a => <Argument key={a.id} data={a} />)}
         </div>
       </Columns>
     </div>
@@ -37,7 +52,8 @@ function MotionShow({ motion }) {
 MotionShow.propTypes = {
   motion: PropTypes.shape({
     title: PropTypes.string,
-    votes: PropTypes.array,
+    description: PropTypes.string,
+    votes: PropTypes.object,
     arguments: PropTypes.array,
   }),
 };
