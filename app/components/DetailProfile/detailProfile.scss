@@ -1,0 +1,20 @@
+@import "../shared/config.scss";
+
+.detailProfile {
+  display: inline-flex;
+  align-items: center;
+  margin-right: .8em;
+  height: $detail-height;
+}
+
+.detailProfile--image {
+  border-radius: 999px;
+  width: $detail-height;
+  height: $detail-height;
+  margin-right: .4em;
+}
+
+.detailProfile--text {
+  font-size: $detail-font-size;
+  color: $grey;
+}

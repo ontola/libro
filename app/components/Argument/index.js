@@ -1,7 +1,14 @@
 // @flow
 import './argument.scss';
 import React, { PropTypes } from 'react';
-import { Heading, Box, Details } from '../';
+import {
+  Box,
+  Detail,
+  DetailProfile,
+  DetailsBar,
+  Heading,
+  MarkdownContent,
+} from '../';
 
 function Argument({ data }) {
   const buttons = [{
@@ -21,7 +28,15 @@ function Argument({ data }) {
   return (
     <Box buttons={buttons}>
       <Heading size="3">{data.title}</Heading>
-      <div>{data.text}</div>
+      <DetailsBar>
+        <DetailProfile
+          name="Joep Meindertsma"
+          url="https://argu.co/u/joep"
+          imageUrl="https://argu-logos.s3.amazonaws.com/photos/825/icon_profielfoto_Joep_Meindertsma.jpg"
+        />
+        <Detail text="3 minuten geleden" icon="clock-o" />
+      </DetailsBar>
+      <MarkdownContent content={data.text} />
     </Box>
   );
 }

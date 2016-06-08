@@ -1,7 +1,7 @@
 // @flow
 import './motionShow.scss';
 import React, { PropTypes } from 'react';
-import { Heading, Box, Columns, Argument, VoteData } from '../';
+import { Heading, Box, Columns, DetailsBar, Detail, DetailProfile, Argument, VoteData } from '../';
 
 function MotionShow({ motion }) {
   const pro = motion.arguments && motion.arguments.filter(e => e.side === 'pro');
@@ -31,6 +31,21 @@ function MotionShow({ motion }) {
     <div>
       <Box buttons={buttons}>
         <Heading size="2">{motion.title}</Heading>
+        <DetailsBar>
+          <Detail
+            text="Idea"
+            icon="lightbulb-o"
+          />
+          <DetailProfile
+            name="Joep Meindertsma"
+            url="https://argu.co/u/joep"
+            imageUrl="https://argu-logos.s3.amazonaws.com/photos/825/icon_profielfoto_Joep_Meindertsma.jpg"
+          />
+          <Detail
+            text="3 minuten geleden"
+            icon="clock-o"
+          />
+        </DetailsBar>
         <div>{motion.description}</div>
       </Box>
 
