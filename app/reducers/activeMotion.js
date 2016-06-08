@@ -1,3 +1,4 @@
+// @flow
 import { SET_ACTIVE_MOTION } from '../actions/activeMotion';
 
 function activeMotion(state = 0, action) {

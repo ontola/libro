@@ -1,3 +1,4 @@
+// @flow
 import './columns.scss';
 import React, { PropTypes } from 'react';
 

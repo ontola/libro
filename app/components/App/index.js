@@ -1,3 +1,4 @@
+// @flow
 import './app.scss';
 import React, { PropTypes } from 'react';
 import NavbarContainer from '../../containers/NavbarContainer';

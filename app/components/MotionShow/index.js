@@ -1,3 +1,4 @@
+// @flow
 import './motionShow.scss';
 import React, { PropTypes } from 'react';
 import { Heading, Box, Columns, Argument, VoteData } from '../';

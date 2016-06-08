@@ -1,8 +1,10 @@
+// @flow
 export { default as App } from './App';
 export { default as Argument } from './Argument';
 export { default as Box } from './Box';
 export { default as Button } from './Button';
 export { default as Columns } from './Columns';
+export { default as Details } from './Details';
 export { default as Heading } from './Heading';
 export { default as MotionShow } from './MotionShow';
 export { default as MotionsList } from './MotionsList';

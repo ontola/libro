@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import { MotionsContainer } from '../containers';
 import { Heading } from '../components';

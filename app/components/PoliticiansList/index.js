@@ -1,3 +1,4 @@
+// @flow
 // import styles from './motionsList.scss';
 import React from 'react';
 

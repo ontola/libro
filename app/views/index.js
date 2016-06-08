@@ -1,3 +1,4 @@
+// @flow
 export { default as Home } from './Home';
 export { default as Motions } from './Motions';
 export { default as Motion } from './Motion';

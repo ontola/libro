@@ -1,3 +1,4 @@
+// @flow
 import './heading.scss';
 import React, { PropTypes } from 'react';
 

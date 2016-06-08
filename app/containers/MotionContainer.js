@@ -1,3 +1,4 @@
+// @flow
 import { connect } from 'react-redux';
 import { MotionShow } from '../components';
 import { setActiveMotion } from '../actions/activeMotion';

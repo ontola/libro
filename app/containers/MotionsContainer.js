@@ -1,3 +1,4 @@
+// @flow
 import { connect } from 'react-redux';
 import { MotionsList } from '../components';
 import { fetchMotions } from '../actions/appData';

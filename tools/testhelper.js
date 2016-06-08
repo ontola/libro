@@ -1,3 +1,4 @@
+// @flow
 require('babel-register')();
 
 function ignoreStyles() {
