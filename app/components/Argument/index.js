@@ -18,16 +18,9 @@ function Argument({ data }) {
     },
   }];
 
-  const details = [{
-    type: 'profile',
-    value: 'Joep Meindertsma',
-    image: 'https://argu.co/logo.png',
-  }];
-
   return (
     <Box buttons={buttons}>
       <Heading size="3">{data.title}</Heading>
-      <Details details={details} />
       <div>{data.text}</div>
     </Box>
   );
