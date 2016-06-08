@@ -31,3 +31,5 @@ Tests are made using mocha, chai assert and enzyme ([docs](http://airbnb.io/enzy
 ```
 npm run test
 ```
+### Links
+- [Airbnb React Styleguide](https://github.com/airbnb/javascript/tree/master/react#class-vs-reactcreateclass-vs-stateless)
