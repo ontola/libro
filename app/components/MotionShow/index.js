@@ -3,8 +3,8 @@ import React, { PropTypes } from 'react';
 import { Heading, Box, Columns, Argument, VoteData } from '../';
 
 function MotionShow({ motion }) {
-  const pro = motion.arguments.filter(e => e.side === 'pro');
-  const con = motion.arguments.filter(e => e.side === 'con');
+  const pro = motion.arguments && motion.arguments.filter(e => e.side === 'pro');
+  const con = motion.arguments && motion.arguments.filter(e => e.side === 'con');
 
   const buttons = [{
     label: 'Ik ben voor',
@@ -38,11 +38,11 @@ function MotionShow({ motion }) {
       <Columns>
         <div>
           <Heading size="4">Voordelen</Heading>
-          {pro.map(a => <Argument key={a.id} data={a} />)}
+          {motion.arguments && pro.map(a => <Argument key={a.id} data={a} />)}
         </div>
         <div>
           <Heading size="4">Nadelen</Heading>
-          {con.map(a => <Argument key={a.id} data={a} />)}
+          {motion.arguments && con.map(a => <Argument key={a.id} data={a} />)}
         </div>
       </Columns>
     </div>
