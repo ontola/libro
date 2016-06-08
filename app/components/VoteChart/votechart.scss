@@ -1,30 +1,30 @@
 @import "../shared/config.scss";
 
-.vote__result {
-  &--pass {
-    color: green;
+.votechart {
+  &__container {
+    width: 100%;
+    background-color: white;
+    height: .3em;
+    display: flex;
+    border-radius: $border-radius-base;
   }
-
-  &--fail {
-    color: red;
-  }
-}
-
-.vote__chart {
-  width: 100%;
-  background-color: $lightergrey;
-  height: 5px;
-  display: flex;
 
   &__fill {
-    height: 5px;
+    height: .3em;
     display: block;
+    border-radius: $border-radius-base;
 
     &--pass {
       background-color: green;
     }
 
     &--fail {
+      background-color: $red;
     }
+  }
+
+  &__legend {
+    display: flex;
+    justify-content: space-between;
   }
 }

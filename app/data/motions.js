@@ -63,28 +63,28 @@ const data = [
       ],
       counts: [
         {
-          "option": "yes",
+          "option": "no",
           "value": 15,
           "group": {
             "name": "VVD"
           }
         },
         {
-          "option": "yes",
+          "option": "no",
           "value": 9,
           "group": {
             "name": "D66"
           }
         },
         {
-          "option": "yes",
+          "option": "no",
           "value": 2,
           "group": {
             "name": "GroenLinks"
           }
         },
         {
-          "option": "no",
+          "option": "yes",
           "value": 3,
           "group": {
             "name": "PvdA"

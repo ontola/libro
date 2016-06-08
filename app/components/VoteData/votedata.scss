@@ -9,22 +9,3 @@
     color: red;
   }
 }
-
-.vote__chart {
-  width: 100%;
-  background-color: $lightergrey;
-  height: 5px;
-  display: flex;
-
-  &__fill {
-    height: 5px;
-    display: block;
-
-    &--pass {
-      background-color: green;
-    }
-
-    &--fail {
-    }
-  }
-}

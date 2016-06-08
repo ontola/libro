@@ -7,6 +7,7 @@ export { default as Heading } from './Heading';
 export { default as MotionShow } from './MotionShow';
 export { default as MotionsList } from './MotionsList';
 export { default as MotionsListItem } from './MotionsListItem';
+export { default as Opinions } from './Opinions';
 export { default as NavbarWrapper } from './NavbarWrapper';
 export { default as PoliticiansList } from './PoliticiansList';
 export { default as VoteChart } from './VoteChart';

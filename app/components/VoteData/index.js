@@ -1,26 +1,16 @@
 import './votedata.scss';
 import React, { PropTypes } from 'react';
-import { Heading, Box, VoteChart } from '../';
-
-const mapResults = {
-  pass: 'aangenomen',
-  fail: 'afgewezen',
-};
-
-const voteResult = (result) =>
-  <span className={`vote__result vote__result--${result}`}>{mapResults[result]}</span>;
+import { Heading, Box, VoteChart, Opinions } from '../';
 
 function voteDataExpanded(data) {
+  const opinionsPro = data.counts.filter(o => o.option === 'yes');
+  const opinionsCon = data.counts.filter(o => o.option === 'no');
+
   return (
-    <Box>
-      <Heading size="4">Opinions {voteResult(data.result)}</Heading>
-      {data.group_result.map(m => {
-        const count = data.counts.find(e => e.group.name === m.group.name);
-        return (
-          <div key={m.group.name}>{m.group.name}: {m.result} ({count.value})</div>
-        );
-      })}
-      <VoteChart data={data.result_aggs} />
+    <Box ghost>
+      <Heading size="4">Opinions</Heading>
+      <Opinions pro={opinionsPro} con={opinionsCon} />
+      <VoteChart data={data.result_aggs} result={data.result} />
     </Box>
   );
 }
@@ -28,15 +18,14 @@ function voteDataExpanded(data) {
 function voteDataUnexpanded(data) {
   return (
     <div className="vote">
-      {voteResult(data.result)}
-      <VoteChart data={data.result_aggs} />
+      <VoteChart data={data.result_aggs} result={data.result} />
     </div>
   );
 }
 
 function VoteData({ data, expanded }) {
-  //console.log(data);
   if(!data) return false;
+
   return expanded ? voteDataExpanded(data) : voteDataUnexpanded(data);
 }
 

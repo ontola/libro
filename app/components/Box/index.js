@@ -1,8 +1,14 @@
 import './box.scss';
 import React, { PropTypes } from 'react';
 import { Button } from '../';
+import classNames from 'classnames';
 
-function Box({ children, buttons }) {
+function Box({ children, buttons, ghost }) {
+  const boxClass = classNames({
+    'box': true,
+    'box--ghost': ghost,
+  });
+
   const generateButtons = buttons.map(button =>
     <Button
       key={button.label}
@@ -13,10 +19,20 @@ function Box({ children, buttons }) {
     />
   );
 
+  const renderButtons = () => {
+    if(generateButtons.length === 0) {
+      return false;
+    } else {
+      return (
+        <div className="box__actions">{generateButtons}</div>
+      );
+    }
+  }
+
   return (
-    <div className="box">
+    <div className={boxClass}>
       <div className="box__content">{children}</div>
-      <div className="box__actions">{generateButtons}</div>
+      {renderButtons()}
     </div>
   );
 }
@@ -24,11 +40,13 @@ function Box({ children, buttons }) {
 Box.propTypes = {
   children: PropTypes.node.isRequired,
   buttons: PropTypes.arrayOf(PropTypes.object),
+  ghost: PropTypes.bool,
 };
 
 Box.defaultProps = {
   children: [],
   buttons: [],
+  ghost: false,
 };
 
 export default Box;

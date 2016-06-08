@@ -6,6 +6,15 @@
   border: 1px solid $border-color;
   border-radius: $border-radius-base;
 
+  &--ghost {
+    background-color: transparent;
+    border: none;
+
+    .box__content {
+      padding: 0;
+    }
+  }
+
   @include large() {
     border-width: 1px;
     margin: $margin-base;
