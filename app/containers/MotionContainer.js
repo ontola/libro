@@ -4,7 +4,7 @@ import { setActiveMotion } from '../actions/activeMotion';
 import { dataMotions } from '../data';
 
 const mapStateToProps = (state) => ({
-  motion: dataMotions[state.activeMotion],
+  motion: dataMotions.find(e => e.identifier === Number(state.activeMotion)),
 });
 
 const mapDispatchToProps = (dispatch, index) =>
