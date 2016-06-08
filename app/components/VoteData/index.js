@@ -1,60 +1,45 @@
 // @flow
 import './votedata.scss';
 import React, { PropTypes } from 'react';
-import { Heading, Box } from '../';
-
-const mapResults = {
-  pass: 'aangenomen',
-  fail: 'afgewezen',
-};
-
-const voteResult = (result) =>
-  <span className={`vote__result vote__result--${result}`}>{mapResults[result]}</span>;
-
-const voteChart = (result) => {
-  return (
-    <div className="vote__chart">
-      <span className="vote__chart__fill vote__chart__fill--pass" style={{width: result.pass * 100 + '%' }}></span>
-      <span className="vote__chart__fill vote__chart__fill--fail" style={{width: result.fail * 100 + '%' }}></span>
-    </div>
-  );
-}
+import { Heading, Box, VoteChart, Opinions } from '../';
 
 function voteDataExpanded(data) {
+  const opinionsPro = data.counts.filter(o => o.option === 'yes');
+  const opinionsCon = data.counts.filter(o => o.option === 'no');
+
   return (
-    <Box>
-      <Heading size="4">Opinions {voteResult(data.result)}</Heading>
-      {data.group_result.map(m => {
-        const count = data.counts.find(e => e.group.name === m.group.name);
-        return (
-          <div key={m.group.name}>{m.group.name}: {m.result} ({count.value})</div>
-        );
-      })}
-      {voteChart(data.result_aggs)}
+    <Box ghost>
+      <Heading size="4">Opinions</Heading>
+      <Opinions pro={opinionsPro} con={opinionsCon} />
+      <VoteChart data={data.result_aggs} result={data.result} />
     </Box>
   );
 }
 
 function voteDataUnexpanded(data) {
   return (
-    <div>
-      {voteResult(data.result)}
-      {voteChart(data.result_aggs)}
+    <div className="vote">
+      <VoteChart data={data.result_aggs} result={data.result} />
     </div>
   );
 }
 
 function VoteData({ data, expanded }) {
+  if(!data) return false;
+
   return expanded ? voteDataExpanded(data) : voteDataUnexpanded(data);
 }
 
 VoteData.propTypes = {
-  data: PropTypes.object.isRequired,
-  expanded: PropTypes.bool.isRequired,
+  data: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.bool,
+  ]).isRequired,
+  expanded: PropTypes.bool,
 };
 
 VoteData.defaultProps = {
-  data: {},
+  data: false,
   expanded: false,
 };
 

@@ -1,0 +1,30 @@
+@import "../shared/config.scss";
+
+.votechart {
+  &__container {
+    width: 100%;
+    background-color: white;
+    height: .3em;
+    display: flex;
+    border-radius: $border-radius-base;
+  }
+
+  &__fill {
+    height: .3em;
+    display: block;
+    border-radius: $border-radius-base;
+
+    &--pass {
+      background-color: green;
+    }
+
+    &--fail {
+      background-color: $red;
+    }
+  }
+
+  &__legend {
+    display: flex;
+    justify-content: space-between;
+  }
+}

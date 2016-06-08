@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import FontAwesome from 'react-fontawesome';
 
 const Button = ({ weight, theme, icon, children, ...props }) => {
-
   const btnClass = classNames({
     btn: true,
     'btn--weight': weight,
