@@ -5,12 +5,14 @@
   align-items: center;
   margin-right: .8em;
   height: $detail-height;
+  margin-bottom: .5em;
 }
 
-.detail--text {
+.detail__text {
   font-size: $detail-font-size;
+  color: $grey;
 }
 
-.detail--icon {
+.detail__icon {
   margin-right: .3em;
 }

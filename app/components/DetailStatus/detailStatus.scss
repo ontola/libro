@@ -1,18 +1,16 @@
 @import "../shared/config.scss";
+@import "../detail/detail.scss";
 
-.detail {
-  display: inline-flex;
-  align-items: center;
-  margin-right: .8em;
-  height: $detail-height;
+.detailStatus {
+  @extend .detail;
 }
 
-.detail--text {
-  font-size: $detail-font-size;
+.detailStatus__text {
+  @extend .detail__text;
 }
 
-.detail--icon {
-  margin-right: .3em;
+.detailStatus__icon {
+  @extend .detail__icon;
 }
 
 .detailStatus--pass {

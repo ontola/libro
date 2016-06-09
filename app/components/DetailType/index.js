@@ -41,9 +41,9 @@ function DetailType({ type }) {
   }
 
   return (
-    <span className={"detail detailType " + className}>
-      <span className={"detailType--icon fa fa-" + icon.toString()} />
-      <span className="detail--text">{text}</span>
+    <span className={"detailType " + className}>
+      <span className={"detailType__icon fa fa-" + icon.toString()} />
+      <span className="detailType__text">{text}</span>
     </span>
   );
 }

@@ -62,7 +62,7 @@ function MotionShow({ motion }) {
             type="motion"
           />
           <DetailStatus
-            status="fail"
+            status="pass"
             voteData={motion.votes}
           />
           <DetailProfile

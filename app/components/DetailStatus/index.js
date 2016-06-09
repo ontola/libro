@@ -38,9 +38,9 @@ function DetailStatus({ status, voteData }) {
   }
 
   return (
-    <span className={"detail " + className}>
-      <span className={"detail--icon fa fa-" + icon.toString()} />
-      <span className="detail--text">{text}</span>
+    <span className={"detailStatus " + className}>
+      <span className={"detailStatus__icon fa fa-" + icon.toString()} />
+      <span className="detailStatus__text">{text}</span>
     </span>
   );
 }

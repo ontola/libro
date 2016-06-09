@@ -1,21 +1,20 @@
 @import "../shared/config.scss";
+@import "../detail/detail.scss";
 
-.detail {
-  display: inline-flex;
-  align-items: center;
-  margin-right: .8em;
-  height: $detail-height;
+.detailType {
+  @extend .detail;
 }
 
-.detail--text {
-  font-size: $detail-font-size;
+.detailType__text {
+  @extend .detail__text;
 }
 
-.detailType--icon {
+.detailType__icon {
+  @extend .detail__icon;
   margin-right: .3em;
   color: white;
-  width: 1.2em;
-  height: 1.2em;
+  width: $detail-height;
+  height: $detail-height;
   display: flex;
   border-radius: 1em;
   font-size: 1em;
@@ -24,13 +23,13 @@
 }
 
 .detailType--motion {
-  color: $motion;
-
- .detailType--icon {
+ .detailType__icon {
    background-color: $motion;
  }
 }
 
 .detailType--question {
-  color: $question;
+  .detailType__icon {
+    background-color: $question;
+  }
 }
