@@ -11,15 +11,7 @@
 
 .detailType__icon {
   @extend .detail__icon;
-  margin-right: .3em;
   color: white;
-  width: $detail-height;
-  height: $detail-height;
-  display: flex;
-  border-radius: 1em;
-  font-size: 1em;
-  align-items: center;
-  justify-content: center;
 }
 
 .detailType--motion {
