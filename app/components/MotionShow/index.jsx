@@ -1,7 +1,17 @@
 // @flow
 import './motionShow.scss';
 import React, { PropTypes } from 'react';
-import { Heading, Box, Columns, DetailsBar, Detail, DetailProfile, Argument, VoteData } from '../';
+import {
+  Heading,
+  Box,
+  Columns,
+  DetailsBar,
+  Detail,
+  DetailProfile,
+  DetailStatus,
+  Argument,
+  VoteData,
+} from '../';
 
 const propTypes = {
   motion: PropTypes.shape({
@@ -50,6 +60,10 @@ function MotionShow({ motion }) {
           <Detail
             text="Idea"
             icon="lightbulb-o"
+          />
+          <DetailStatus
+            status="fail"
+            voteData={motion.votes}
           />
           <DetailProfile
             name="Joep Meindertsma"

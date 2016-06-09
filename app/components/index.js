@@ -5,6 +5,7 @@ export { default as Box } from './Box';
 export { default as Button } from './Button';
 export { default as Columns } from './Columns';
 export { default as DetailProfile } from './DetailProfile';
+export { default as DetailStatus } from './DetailStatus';
 export { default as Detail } from './Detail';
 export { default as DetailsBar } from './DetailsBar';
 export { default as Heading } from './Heading';
