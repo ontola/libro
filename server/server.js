@@ -1,13 +1,14 @@
-const express = require('express');
-const app = express();
-const webpack = require('webpack');
-const webpackConfig = require('../webpack/common.config');
-const webpackMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
-const proxy = require('http-proxy').createProxyServer({});
+import express from 'express';
+import webpack from 'webpack';
+import webpackConfig from '../webpack/common.config';
+import webpackMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+import httpProxy from 'http-proxy';
+import { renderFullPage } from './utils/render';
 
 const compiler = webpack(webpackConfig);
-const renderFullPage = require('./utils/render').renderFullPage;
+const proxy = httpProxy.createProxyServer({});
+const app = express();
 const port = process.env.NODE_ENV === 'development' ? 3000 : 80;
 
 if (process.env.NODE_ENV === 'development') {
@@ -39,8 +40,8 @@ app.use(/\/api\/(.*)/, (req, res) => {
 });
 
 // Static directory for express
-//app.use('/dist', express.static(__dirname + '/../../dist/'));
-app.use(express.static(__dirname + '/dist'));
+app.use('/static', express.static(__dirname + '/../static/'));
+app.use('/dist', express.static(__dirname + '/../dist/'));
 
 app.get(/.*/, (req, res) => {
   const domain = req.get('host').replace(/\:.*/, '');

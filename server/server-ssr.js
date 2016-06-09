@@ -6,11 +6,7 @@ import { Provider } from 'react-redux';
 import { match, RouterContext } from 'react-router';
 //import Helmet from 'react-helmet';
 import fs from 'fs';
-const proxy = require('http-proxy').createProxyServer({});
-
-global.location = {};
-global.window = {};
-global.document = {};
+import httpProxy from 'http-proxy';
 
 //import { posts } from '../redux/modules';
 import configureStore from '../app/configureStore';
@@ -19,7 +15,13 @@ import routes from '../app/routes.js';
 import { apiFetch } from './utils/api';
 import { renderFullPage } from './utils/render';
 
+global.location = {};
+global.window = {};
+global.document = {};
+
+
 const app = express();
+const proxy = httpProxy.createProxyServer({});
 const devPort = process.env.NODE_ENV === 'development' ? 3001 : 80;
 const port = process.env.NODE_ENV === 'development' ? 3000 : 80;
 

@@ -15,6 +15,7 @@
     "start-ssr": "rimraf dist && NODE_ENV=development concurrently --kill-others \"nodemon --watch app bin/server-ssr.js\" \"node bin/webpack-server.js\"",
     "start-ssr:prod": "NODE_ENV=production node bin/server-ssr.js",
     "api": "NODE_ENV=development nodemon --watch api bin/api.js",
+    "api:prod": "NODE_ENV=production node bin/api.js",
     "build": "rimraf dist && NODE_ENV=production webpack --progress --verbose --display-error-details --config webpack/common.config.js",
     "test": "mocha tools/testhelper.js ./app/components/**/spec.js",
     "lint": "./node_modules/.bin/eslint ./app"
@@ -32,8 +33,6 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",
-    "babel-cli": "^6.9.0",
-    "babel-core": "^6.9.0",
     "babel-eslint": "^6.0.4",
     "babel-loader": "^6.2.4",
     "babel-plugin-react-remove-prop-types": "^2.0.2",
@@ -52,6 +51,7 @@
     "body-parser": "^1.15.1",
     "chai": "^3.5.0",
     "classnames": "^2.2.5",
+    "concurrently": "^2.1.0",
     "css-loader": "^0.23.1",
     "enzyme": "^2.3.0",
     "eslint": "^2.11.1",
@@ -66,6 +66,7 @@
     "jsdom": "^9.2.1",
     "mocha": "^2.5.3",
     "node-sass": "^3.7.0",
+    "nodemon": "^1.9.2",
     "postcss-loader": "^0.9.1",
     "react-addons-test-utils": "^15.1.0",
     "react-transform-hmr": "^1.0.1",

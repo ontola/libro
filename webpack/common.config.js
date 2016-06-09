@@ -1,16 +1,17 @@
-const webpack = require('webpack');
-const autoprefixer = require('autoprefixer');
-const merge = require('webpack-merge');
-const development = require('./dev.config.js');
-const production = require('./prod.config.js');
-const developmentSSR = require('./dev.ssr.config.js');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const path = require('path');
+import webpack from 'webpack';
+import autoprefixer from 'autoprefixer';
+import merge from 'webpack-merge';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import path from 'path';
+
+import development from './dev.config.js';
+import production from './prod.config.js';
+import developmentSSR from './dev.ssr.config.js';
 
 const TARGET = process.env.npm_lifecycle_event;
 process.env.BABEL_ENV = TARGET;
 
-var devUrl;
+let devUrl;
 
 // location dist for dev and prod
 if (!global.ssr && process.env.NODE_ENV === 'development') {
