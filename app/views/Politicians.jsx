@@ -11,9 +11,7 @@ function Politicians() {
         title="Politicians"
       />
       <Heading>Politicians</Heading>
-      <Box>
-        <p>Hier komt een lijst met alle leden van de raad.</p>
-      </Box>
+      <Box>Hier komt een lijst met alle leden van de raad. </Box>
       <PoliticiansContainer />
     </div>
   );

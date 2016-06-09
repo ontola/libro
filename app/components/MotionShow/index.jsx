@@ -68,11 +68,11 @@ function MotionShow({ motion }) {
 
       <Columns>
         <div>
-          <Heading size="4">Voordelen</Heading>
+          <Box ghost><Heading size="4">Voordelen</Heading></Box>
           {motion.arguments && pro.map(a => <Argument key={a.id} data={a} />)}
         </div>
         <div>
-          <Heading size="4">Nadelen</Heading>
+          <Box ghost><Heading size="4">Nadelen</Heading></Box>
           {motion.arguments && con.map(a => <Argument key={a.id} data={a} />)}
         </div>
       </Columns>
