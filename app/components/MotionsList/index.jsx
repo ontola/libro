@@ -1,3 +1,5 @@
+// @flow
+// import styles from './motionsList.scss';
 import React, { PropTypes } from 'react';
 import { MotionsListItem } from '../';
 

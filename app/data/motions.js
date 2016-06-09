@@ -1,3 +1,4 @@
+// @flow
 const data = [
   {
     identifier: 245245,

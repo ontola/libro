@@ -1,3 +1,4 @@
+// @flow
 const data = [
   { identifier: 0, fullName: 'A. Pechtold', party: 'D66' },
   { identifier: 1, fullName: 'H. Zijlstra', party: 'VVD' },

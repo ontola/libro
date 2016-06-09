@@ -1,3 +1,4 @@
+// @flow
 import { FETCH_MOTIONS, FETCH_POLITICIANS } from '../actions/appData';
 
 function appData(state = [], action) {

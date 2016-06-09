@@ -1,20 +1,21 @@
+// @flow
 import './motionsListItem.scss';
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { Box, VoteData } from '../';
-
-const propTypes = {
-  motion: PropTypes.shape({
-    identifier: PropTypes.number,
-    title: PropTypes.string,
-  }),
-};
 
 const defaultProps = {
   motion: {
     identifier: null,
     title: 'Joe',
   },
+};
+
+const propTypes = {
+  motion: PropTypes.shape({
+    identifier: PropTypes.number,
+    title: PropTypes.string,
+  }),
 };
 
 function MotionsListItem({ motion }) {

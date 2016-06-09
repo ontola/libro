@@ -1,0 +1,16 @@
+@import "../shared/config.scss";
+
+.detail {
+  display: inline-flex;
+  align-items: center;
+  margin-right: .8em;
+  height: $detail-height;
+}
+
+.detail--text {
+  font-size: $detail-font-size;
+}
+
+.detail--icon {
+  margin-right: .3em;
+}
