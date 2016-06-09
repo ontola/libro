@@ -1,4 +1,4 @@
-export const renderFullPage = (html, devPort, domain, initialState = {}) => {
+export const renderFullPage = (html, devPort, domain, initialState = {}, head) => {
 
   const bundleCSS = initialState !== null || process.env.NODE_ENV === 'production'
     ? `<link rel="stylesheet" type="text/css" href="http://${domain}:${devPort}/dist/bundle.css"></style>`
@@ -9,7 +9,10 @@ export const renderFullPage = (html, devPort, domain, initialState = {}) => {
     <meta charset="utf-8">
     <html>
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:type" content="website" />
+        ${head ? head.title.toString() : ''}
+        ${head ? head.meta.toString() : ''}
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
         ${bundleCSS}
       </head>

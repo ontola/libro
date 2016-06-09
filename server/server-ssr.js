@@ -4,7 +4,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { match, RouterContext } from 'react-router';
-//import Helmet from 'react-helmet';
+import Helmet from 'react-helmet';
 import fs from 'fs';
 import httpProxy from 'http-proxy';
 
@@ -87,22 +87,15 @@ function handleRender(req, res) {
         // });
 
         const store = configureStore(initialState);
-
         const html = renderToString(
           <Provider store={store}>
             <RouterContext {...renderProps} />
           </Provider>
         );
 
-        //const head = Helmet.rewind();
-        //head.url = `http://${req.get('host')}${req.url}`;
-
-        // Grab the initial state from our Redux store
+        const head = Helmet.rewind();
         const finalState = store.getState();
-
-        // Send the rendered page back to the client
-        res.end(renderFullPage(html, devPort, host, finalState));
-        //res.end(renderFullPage(html, devPort, host, finalState, head));
+        res.end(renderFullPage(html, devPort, host, finalState, head));
       });
 
     } else {
