@@ -7,10 +7,6 @@
 
 .detailProfile__image {
   @extend .detail__icon;
-  border-radius: 999px;
-  width: $detail-height;
-  height: $detail-height;
-  margin-right: .4em;
 }
 
 .detailProfile__text {
