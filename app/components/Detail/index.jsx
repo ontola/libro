@@ -8,22 +8,15 @@ const propTypes = {
   icon: PropTypes.string.isRequired,
 };
 
-function Detail({ icon, text, type, props }) {
-
-  switch (type) {
-    case 'profile':
-      return <DetailProfile {...props} />
-      break;
-    default:
-    return (
-      <span className="detail">
-        <span className={"detail__icon fa fa-" + icon }/>
-        <span className="detail__text">{text}</span>
-      </span>
-    );
-  }
+function Detail({ text, icon }) {
+  return (
+    <span className="detail">
+      <span className={"detail__icon fa fa-" + icon} />
+      <span className="detail__text">{text}</span>
+    </span>
+  );
 }
 
-Detail.propTypes = propTypes
+Detail.propTypes = propTypes;
 
 export default Detail;
