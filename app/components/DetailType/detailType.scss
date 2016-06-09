@@ -1,0 +1,36 @@
+@import "../shared/config.scss";
+
+.detail {
+  display: inline-flex;
+  align-items: center;
+  margin-right: .8em;
+  height: $detail-height;
+}
+
+.detail--text {
+  font-size: $detail-font-size;
+}
+
+.detailType--icon {
+  margin-right: .3em;
+  color: white;
+  width: 1.2em;
+  height: 1.2em;
+  display: flex;
+  border-radius: 1em;
+  font-size: 1em;
+  align-items: center;
+  justify-content: center;
+}
+
+.detailType--motion {
+  color: $motion;
+
+ .detailType--icon {
+   background-color: $motion;
+ }
+}
+
+.detailType--question {
+  color: $question;
+}

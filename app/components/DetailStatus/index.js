@@ -8,7 +8,7 @@ const propTypes = {
     'fail',
     'unknown',
   ]),
-  voteData: PropTypes.string.isRequired,
+  voteData: PropTypes.node,
 };
 
 const defaultProps = {
