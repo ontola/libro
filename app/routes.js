@@ -1,6 +1,5 @@
 import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-
 import { App } from './components';
 import { Home, Motions, Motion, Politicians, Profile } from './views';
 

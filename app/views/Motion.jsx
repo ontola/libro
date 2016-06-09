@@ -1,6 +1,7 @@
 // @flow
 import React, { PropTypes } from 'react';
 import { MotionContainer } from '../containers';
+import Helmet from 'react-helmet';
 
 const propTypes = {
   params: PropTypes.shape({
@@ -21,7 +22,13 @@ class Motion extends React.Component {
 
   render() {
     return (
-      <MotionContainer {...this.props} />
+      <div>
+        <Helmet
+          title="Motion"
+        />
+        <MotionContainer {...this.props} />
+      </div>
+
     );
   }
 }

@@ -1,10 +1,14 @@
 // @flow
 import React from 'react';
 import { Box, Button, Heading } from '../components';
+import Helmet from 'react-helmet';
 
 function Home() {
   return (
     <div>
+      <Helmet
+        title="Homepage"
+      />
       <Heading>Home</Heading>
       <Box>
         <p>adfiuahdfiug</p>
