@@ -20,13 +20,6 @@ p {
 }
 
 .page {
-  position: absolute;
-  width: 100%;
-  box-sizing: border-box;
-
-  &__wrapper {
-    max-width: 660px;
-    margin: 0 auto;
-  }
-
+  max-width: 660px;
+  margin: 0 auto;
 }

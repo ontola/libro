@@ -7,7 +7,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: [
     'webpack-hot-middleware/client?reload=true',
-    path.join(__dirname, 'app/index.js')
+    path.join(__dirname, 'app/client.js')
   ],
   output: {
     path: path.join(__dirname, '/dist/'),
