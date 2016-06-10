@@ -1,3 +1,3 @@
-// @flow
-export appData from './appData';
-export activeMotion from './activeMotion';
+import * as motions from './motions';
+
+export { motions };

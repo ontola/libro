@@ -1,25 +1,27 @@
 // @flow
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import { routerReducer, routerMiddleware } from 'react-router-redux';
+import { routerMiddleware } from 'react-router-redux';
 import { browserHistory } from 'react-router';
-import * as reducers from './reducers/';
-
-const reducer = combineReducers({
-  ...reducers,
-  routing: routerReducer
-});
+import rootReducer from './utils/reducers';
+import { promiseMiddleware } from './middleware/promise';
+import { apiMiddleware } from './middleware/api';
 
 const initialState = {
   appData: [],
   activeMotion: 0
 };
 
-const middleware = routerMiddleware(browserHistory);
+const middlewares = [
+  apiMiddleware,
+  promiseMiddleware(),
+  routerMiddleware(browserHistory)
+].filter(Boolean);
+
+const createStoreWithMiddleware = applyMiddleware(
+  ...middlewares,
+)(createStore);
 
 export default function configureStore(initialState) {
-  const store = createStore(reducer, initialState, compose(
-    applyMiddleware(...middleware),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
-  ));
+  const store = createStoreWithMiddleware(rootReducer, initialState);
   return store;
 }
