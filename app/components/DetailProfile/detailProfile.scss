@@ -1,20 +1,14 @@
 @import "../shared/config.scss";
+@import "../detail/detail.scss";
 
 .detailProfile {
-  display: inline-flex;
-  align-items: center;
-  margin-right: .8em;
-  height: $detail-height;
+  @extend .detail;
 }
 
-.detailProfile--image {
-  border-radius: 999px;
-  width: $detail-height;
-  height: $detail-height;
-  margin-right: .4em;
+.detailProfile__image {
+  @extend .detail__icon;
 }
 
-.detailProfile--text {
-  font-size: $detail-font-size;
-  color: $grey;
+.detailProfile__text {
+  @extend .detail__text;
 }

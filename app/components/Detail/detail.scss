@@ -4,13 +4,22 @@
   display: inline-flex;
   align-items: center;
   margin-right: .8em;
-  height: $detail-height;
+  height: 1.3em;
+  margin-bottom: .5em;
 }
 
-.detail--text {
-  font-size: $detail-font-size;
+.detail__text {
+  font-size: .8em;
+  color: $grey;
 }
 
-.detail--icon {
+.detail__icon {
   margin-right: .3em;
+  width: 1.4em;
+  height: 1.4em;
+  display: flex;
+  border-radius: 1em;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
 }

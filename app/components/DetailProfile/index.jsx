@@ -11,8 +11,8 @@ const propTypes = {
 function DetailProfile({ name, url, imageUrl }) {
   return (
     <a href={url} className="detailProfile">
-      <img className="detailProfile--image" role="presentation" src={imageUrl}></img>
-      <span className="detailProfile--text">{name}</span>
+      <img className="detailProfile__image" role="presentation" src={imageUrl}></img>
+      <span className="detailProfile__text">{name}</span>
     </a>
   );
 }

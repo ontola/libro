@@ -8,15 +8,15 @@ const propTypes = {
   icon: PropTypes.string.isRequired,
 };
 
-function Detail({ icon, text }) {
+function Detail({ text, icon }) {
   return (
     <span className="detail">
-      <span className={"detail--icon fa fa-" + icon }/>
-      <span className="detail--text">{text}</span>
+      <span className={"detail__icon fa fa-" + icon} />
+      <span className="detail__text">{text}</span>
     </span>
   );
 }
 
-Detail.propTypes = propTypes
+Detail.propTypes = propTypes;
 
 export default Detail;
