@@ -1,17 +1,4 @@
 @import "../shared/config.scss";
-@import "../detail/detail.scss";
-
-.detailStatus {
-  @extend .detail;
-}
-
-.detailStatus__text {
-  @extend .detail__text;
-}
-
-.detailStatus__icon {
-  @extend .detail__icon;
-}
 
 .detailStatus--pass {
   color: $pro;

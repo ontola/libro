@@ -1,27 +1,18 @@
 @import "../shared/config.scss";
 @import "../detail/detail.scss";
 
-.detailType {
-  @extend .detail;
-}
-
-.detailType__text {
-  @extend .detail__text;
-}
-
-.detailType__icon {
-  @extend .detail__icon;
+.detailType .detail__icon {
   color: white;
 }
 
 .detailType--motion {
- .detailType__icon {
+ .detail__icon {
    background-color: $motion;
  }
 }
 
 .detailType--question {
-  .detailType__icon {
+  .detail__icon {
     background-color: $question;
   }
 }

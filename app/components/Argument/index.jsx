@@ -14,6 +14,10 @@ const propTypes = {
   data: PropTypes.shape({
     title: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
+    side: PropTypes.oneOf([
+      'pro',
+      'con',
+    ]),
   }),
 };
 
@@ -41,7 +45,7 @@ function Argument({ data }) {
 
   return (
     <Box buttons={buttons}>
-      <Heading size="3">{data.title}</Heading>
+      <Heading size="3" className={data.side}>{data.title}</Heading>
       <DetailsBar>
         <DetailProfile
           name="Joep Meindertsma"

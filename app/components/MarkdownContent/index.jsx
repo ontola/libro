@@ -1,5 +1,6 @@
 // @flow
 import React, { PropTypes } from 'react';
+import './markdownContent.scss';
 
 const propTypes = {
   content: PropTypes.string.isRequired,
@@ -7,7 +8,7 @@ const propTypes = {
 
 function MarkdownContent({ content }) {
   return (
-    <div className="markdownContent">
+    <div className="markdownContent test">
       {content}
     </div>
   );

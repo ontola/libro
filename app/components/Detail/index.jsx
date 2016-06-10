@@ -3,17 +3,25 @@ import './detail.scss';
 import React, { PropTypes } from 'react';
 
 const propTypes = {
+  className: PropTypes.string,
   date: PropTypes.string,
   text: PropTypes.string,
-  icon: PropTypes.string.isRequired,
+  url: PropTypes.string,
+  icon: PropTypes.string,
+  imageUrl: PropTypes.string,
 };
 
-function Detail({ text, icon }) {
+function Detail({ text, icon, url, imageUrl, className, date }) {
+  let Element = url ? 'a' : 'div';
+  const image = imageUrl
+    ? <img src={imageUrl} className='detail__icon' role="presentation" />
+    : <span className={`detail__icon fa fa-${icon}`} />;
+
   return (
-    <span className="detail">
-      <span className={"detail__icon fa fa-" + icon} />
+    <Element href={url} className={`detail ${className}`}>
+      {image}
       <span className="detail__text">{text}</span>
-    </span>
+    </Element>
   );
 }
 

@@ -3,6 +3,12 @@
 .heading {
   color: $titleblue;
   line-height: 1.3;
+  &.pro {
+    color: $pro;
+  }
+  &.con {
+    color: $con;
+  }
 }
 
 h1 {

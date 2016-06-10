@@ -1,6 +1,7 @@
 // @flow
 import './detailType.scss';
 import React, { PropTypes } from 'react';
+import { Detail } from '../';
 
 const propTypes = {
   status: PropTypes.oneOf([
@@ -41,10 +42,7 @@ function DetailType({ type }) {
   }
 
   return (
-    <span className={"detailType " + className}>
-      <span className={"detailType__icon fa fa-" + icon.toString()} />
-      <span className="detailType__text">{text}</span>
-    </span>
+    <Detail className={`detailType ${className}`} text={text} icon={icon} />
   );
 }
 
