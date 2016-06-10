@@ -1,8 +1,6 @@
 import express from 'express';
 import webpack from 'webpack';
-import webpackConfig from '../webpack/common.config';
-import webpackMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
+import webpackConfig from '../webpack/common.config.babel';
 import httpProxy from 'http-proxy';
 import { renderFullPage } from './utils/render';
 
@@ -12,19 +10,11 @@ const app = express();
 const port = process.env.NODE_ENV === 'development' ? 3000 : 80;
 
 if (process.env.NODE_ENV === 'development') {
-  app.use(webpackMiddleware(compiler, {
-    publicPath: webpackConfig.output.publicPath,
-    stats: {
-      colors: true,
-      hash: false,
-      timings: true,
-      chunks: false,
-      chunkModules: false,
-      modules: false
-    }
+  app.use(require('webpack-dev-middleware')(compiler, {
+    noInfo: true, publicPath: webpackConfig.output.publicPath,
   }));
 
-  app.use(webpackHotMiddleware(compiler, {
+  app.use(require('webpack-hot-middleware')(compiler, {
     log: console.log, path: '/__webpack_hmr', heartbeat: 10 * 1000,
   }));
 }
@@ -40,7 +30,7 @@ app.use(/\/api\/(.*)/, (req, res) => {
 });
 
 // Static directory for express
-app.use('/static', express.static(__dirname + '/../static/'));
+//app.use('/static', express.static(__dirname + '/../static/'));
 app.use('/dist', express.static(__dirname + '/../dist/'));
 
 app.get(/.*/, (req, res) => {

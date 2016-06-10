@@ -2,8 +2,6 @@ import express from 'express';
 const router = express.Router();
 
 export default [
-
-  // See in /app/redux/modules/posts/posts.js
   router.get('/api/motions', function(req, res) {
     console.log(req.query); // example
 

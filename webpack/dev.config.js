@@ -4,7 +4,7 @@ module.exports = {
   devtool: 'eval-cheap-module-source-map',
 
   entry: {
-    main: ['webpack-hot-middleware/client', './app/client.js'],
+    main: ['webpack-hot-middleware/client', './app/client'],
   },
 
   resolve: {
@@ -20,6 +20,6 @@ module.exports = {
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoErrorsPlugin(),  
   ],
 };

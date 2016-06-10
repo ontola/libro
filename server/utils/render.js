@@ -4,8 +4,7 @@ export const renderFullPage = (html, devPort, domain, initialState = {}, head) =
     ? `<link rel="stylesheet" type="text/css" href="http://${domain}:${devPort}/dist/bundle.css"></style>`
     : '';
 
-  return `
-    <!doctype html>
+  return `<!doctype html>
     <meta charset="utf-8">
     <html>
       <head>
@@ -25,6 +24,5 @@ export const renderFullPage = (html, devPort, domain, initialState = {}, head) =
 
         <script src="http://${domain}:${devPort}/dist/bundle.js"></script>
       </body>
-    </html>
-    `;
+    </html>`;
 };

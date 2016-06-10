@@ -1,8 +1,7 @@
 import request from 'superagent-bluebird-promise';
 
-const API_URL = __PRODUCTION__
-  ? '/api/'
-  : 'http://localhost:3000/api/';
+const API_URL = 'http://localhost:3000/api/';
+// const API_URL = __PRODUCTION__ ? '/api/' : 'http://localhost:3000/api/';
 
 export const apiMiddleware = store => next => action => {
   if (action.url) {

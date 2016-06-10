@@ -18,7 +18,7 @@ export default createReducer({
   ['GET_MOTIONS_FAILURE']: (state, { payload }) => ({
     ...state,
     items: false
-  })
+  }),
 }, initialState);
 
 export const apiGetMotions = () => ({
@@ -26,12 +26,12 @@ export const apiGetMotions = () => ({
   type: 'GET_MOTIONS',
   url: 'motions',
   onSuccess: (res, dispatch) => {
-  //  console.log(res);
+    console.log(res);
   },
   onFailure: (res, dispatch) => {
-  //  console.log(res);
+    console.log(res);
   },
   callback: (res, dispatch) => {
-  //  console.log('joe', res);
+    console.log(res);
   },
 });
