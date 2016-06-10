@@ -8,13 +8,13 @@ import { apiMiddleware } from './middleware/api';
 
 const initialState = {
   appData: [],
-  activeMotion: 0
+  activeMotion: 0,
 };
 
 const middlewares = [
   apiMiddleware,
   promiseMiddleware(),
-  routerMiddleware(browserHistory)
+  routerMiddleware(browserHistory),
 ].filter(Boolean);
 
 const createStoreWithMiddleware = compose(

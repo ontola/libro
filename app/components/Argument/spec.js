@@ -11,13 +11,13 @@ const testData = {
   text: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
 };
 
-describe("Argument", function() {
-  it("contains data object", function() {
+describe('Argument', function () {
+  it('contains data object', function () {
     const wrapper = mount(<Argument data={testData} />);
     assert.isObject(wrapper.props().data, 'No data object has been found');
   });
 
-  it("is on the right side", function() {
+  it('is on the right side', function () {
     const wrapper = mount(<Argument data={testData} />);
     assert.isOk(wrapper.props().data.side, 'pro', 'Argument is on the wrong side');
   });

@@ -14,12 +14,12 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.scss$/,
-      loader: 'style!css-loader!postcss-loader!sass-loader'
+      loader: 'style!css-loader!postcss-loader!sass-loader',
     }],
   },
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),  
+    new webpack.NoErrorsPlugin(),
   ],
 };

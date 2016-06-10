@@ -35,7 +35,7 @@ const common = {
 
   resolve: {
     modulesDirectories: ['node_modules'],
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx'],
   },
 
   module: {
@@ -44,8 +44,8 @@ const common = {
         test: /\.jsx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
-      }
-    ]
+      },
+    ],
   },
 
   plugins: [
@@ -57,7 +57,7 @@ const common = {
       __DEVELOPMENT__: process.env.NODE_ENV === 'development',
       __PRODUCTION__: process.env.NODE_ENV === 'production',
       __CLIENT__: true,
-    })
+    }),
   ],
 
   postcss: (wp) => {

@@ -2,7 +2,7 @@ import express from 'express';
 const router = express.Router();
 
 export default [
-  router.get('/api/motions', function(req, res) {
+  router.get('/api/motions', function (req, res) {
     console.log(req.query); // example
 
     res.json({
@@ -35,68 +35,68 @@ export default [
               side: 'pro',
               title: 'Je zit niet altijd in een forum',
               text: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-            }
+            },
           ],
           votes: {
-            result: "fail",
+            result: 'fail',
             result_aggs: {
               pass: 0.19,
-              fail: 0.81
+              fail: 0.81,
             },
             group_result: [
               {
                 group: {
-                  name: "VVD",
+                  name: 'VVD',
                 },
-                result: "fail",
+                result: 'fail',
               },
               {
                 group: {
-                  name: "D66",
+                  name: 'D66',
                 },
-                result: "fail",
+                result: 'fail',
               },
               {
                 group: {
-                  name: "GroenLinks",
+                  name: 'GroenLinks',
                 },
-                result: "fail",
+                result: 'fail',
               },
               {
                 group: {
-                  name: "PvdA",
+                  name: 'PvdA',
                 },
-                result: "pass",
+                result: 'pass',
               },
             ],
             counts: [
               {
-                "option": "no",
-                "value": 15,
-                "group": {
-                  "name": "VVD"
-                }
+                'option': 'no',
+                'value': 15,
+                'group': {
+                  'name': 'VVD',
+                },
               },
               {
-                "option": "no",
-                "value": 9,
-                "group": {
-                  "name": "D66"
-                }
+                'option': 'no',
+                'value': 9,
+                'group': {
+                  'name': 'D66',
+                },
               },
               {
-                "option": "no",
-                "value": 2,
-                "group": {
-                  "name": "GroenLinks"
-                }
+                'option': 'no',
+                'value': 2,
+                'group': {
+                  'name': 'GroenLinks',
+                },
               },
               {
-                "option": "yes",
-                "value": 3,
-                "group": {
-                  "name": "PvdA"
-                }
+                'option': 'yes',
+                'value': 3,
+                'group': {
+                  'name': 'PvdA',
+                },
               },
             ],
           },
@@ -161,7 +161,7 @@ export default [
           arguments: false,
           votes: false,
         },
-      ]
+      ],
     });
   }),
 ];

@@ -8,6 +8,8 @@ const compiler = webpack(webpackConfig);
 const proxy = httpProxy.createProxyServer({});
 const app = express();
 const port = process.env.NODE_ENV === 'development' ? 3000 : 80;
+const MS = 1000;
+const heartBeatTime = 10;
 
 if (process.env.NODE_ENV === 'development') {
   app.use(require('webpack-dev-middleware')(compiler, {
@@ -15,7 +17,7 @@ if (process.env.NODE_ENV === 'development') {
   }));
 
   app.use(require('webpack-hot-middleware')(compiler, {
-    log: console.log, path: '/__webpack_hmr', heartbeat: 10 * 1000,
+    log: console.log, path: '/__webpack_hmr', heartbeat: heartBeatTime * MS,
   }));
 }
 
@@ -30,7 +32,7 @@ app.use(/\/api\/(.*)/, (req, res) => {
 });
 
 // Static directory for express
-//app.use('/static', express.static(__dirname + '/../static/'));
+// app.use('/static', express.static(__dirname + '/../static/'));
 app.use('/dist', express.static(__dirname + '/../dist/'));
 
 app.get(/.*/, (req, res) => {
