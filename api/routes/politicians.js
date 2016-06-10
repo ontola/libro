@@ -2,7 +2,7 @@ import express from 'express';
 const router = express.Router();
 
 export default [
-  router.get('/api/politicians', function (req, res) {
+  router.get('/api/politicians', (req, res) => {
     res.json({
       politicians: [
         { identifier: 0, fullName: 'A. Pechtold', party: 'D66' },

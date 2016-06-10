@@ -1,10 +1,9 @@
 // @flow
 import React from 'react';
 import { Heading, Box } from '../components';
-// import { PoliticiansContainer } from '../containers';
 import Helmet from 'react-helmet';
 
-function Politicians() {
+const Politicians = ({}) => {
   return (
     <div>
       <Helmet

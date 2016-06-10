@@ -1,12 +1,9 @@
 // @flow
 require('babel-register')();
 
-function ignoreStyles() {
-  return null;
-}
-
-var jsdom = require('jsdom').jsdom;
-var exposedProperties = ['window', 'navigator', 'document'];
+const jsdom = require('jsdom').jsdom;
+const exposedProperties = ['windnpm run ow', 'navigator', 'document'];
+const ignoreStyles = () => null;
 
 require.extensions['.scss'] = ignoreStyles;
 global.document = jsdom('');
@@ -22,5 +19,3 @@ Object.keys(document.defaultView).forEach((property) => {
 global.navigator = {
   userAgent: 'node.js',
 };
-
-documentRef = document;

@@ -2,8 +2,6 @@ import webpack from 'webpack';
 import autoprefixer from 'autoprefixer';
 import merge from 'webpack-merge';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import path from 'path';
-
 import development from './dev.config.js';
 import production from './prod.config.js';
 import developmentSSR from './dev.ssr.config.js';
@@ -28,7 +26,7 @@ if (process.env.NODE_ENV === 'production') {
 
 const common = {
   output: {
-    path: __dirname + '/../dist/',
+    path: `${__dirname}/../dist/`,
     publicPath: devUrl,
     filename: 'bundle.js',
   },
@@ -60,13 +58,8 @@ const common = {
     }),
   ],
 
-  postcss: (wp) => {
-    return [
-      autoprefixer({
-        browsers: ['last 2 versions'],
-      }),
-    ];
-  },
+  postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
+
 };
 
 if (process.env.NODE_ENV === 'development' && !global.ssr) {

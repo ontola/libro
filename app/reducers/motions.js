@@ -21,9 +21,12 @@ export default createReducer({
   })
 }, initialState);
 
-export const apiGetMotions = () => ({
+export const apiGetMotions = (id) => ({
   mode: 'GET',
   type: 'GET_MOTIONS',
+  data: {
+    identifier: id,
+  },
   url: 'motions',
   onSuccess: (res, dispatch) => {
   //  console.log(res);

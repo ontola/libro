@@ -7,22 +7,22 @@ const compiler = webpack(webpackConfig);
 
 const app = express();
 const port = 3001;
+const MS = 1000;
+const heartBeatTime = 10;
 
 global.ssr = true;
 
 (function initWebpack() {
-
-  app.use(require('webpack-dev-middleware')(compiler, {
+  app.use(webpackMiddleware(compiler, {
     noInfo: true, publicPath: webpackConfig.output.publicPath,
   }));
 
-  app.use(require('webpack-hot-middleware')(compiler, {
-    log: console.log, path: '/__webpack_hmr', heartbeat: 10 * 1000,
+  app.use(webpackHotMiddleware(compiler, {
+    log: console.log, path: '/__webpack_hmr', heartbeat: heartBeatTime * MS,
   }));
-
 }());
 
-app.listen(port, function onStart(err) {
+app.listen(port, (err) => {
   if (err) {
     console.log(err);
   }
