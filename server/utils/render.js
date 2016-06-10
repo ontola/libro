@@ -1,11 +1,9 @@
 export const renderFullPage = (html, devPort, domain, initialState = {}, head) => {
-
   const bundleCSS = initialState !== null || process.env.NODE_ENV === 'production'
     ? `<link rel="stylesheet" type="text/css" href="http://${domain}:${devPort}/dist/bundle.css"></style>`
     : '';
 
-  return `
-    <!doctype html>
+  return `<!doctype html>
     <meta charset="utf-8">
     <html>
       <head>
@@ -17,7 +15,7 @@ export const renderFullPage = (html, devPort, domain, initialState = {}, head) =
         ${bundleCSS}
       </head>
       <body>
-        <div id="root">${html ? html : ''}</div>
+        <div id="root">${html}</div>
 
         <script>
           window.__INITIAL_STATE__ = ${JSON.stringify(initialState || {})};
@@ -25,6 +23,5 @@ export const renderFullPage = (html, devPort, domain, initialState = {}, head) =
 
         <script src="http://${domain}:${devPort}/dist/bundle.js"></script>
       </body>
-    </html>
-    `;
+    </html>`;
 };

@@ -4,7 +4,7 @@ module.exports = {
   devtool: 'eval-cheap-module-source-map',
 
   entry: {
-    main: ['webpack-hot-middleware/client', './app/client.js'],
+    main: ['webpack-hot-middleware/client', './app/index'],
   },
 
   resolve: {
@@ -14,7 +14,7 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.scss$/,
-      loader: 'style!css-loader!postcss-loader!sass-loader'
+      loader: 'style!css-loader!postcss-loader!sass-loader',
     }],
   },
 

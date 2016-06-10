@@ -9,7 +9,7 @@ const ignore = [
     },
   ],
   'react-remove-prop-types', ['babel-plugin-webpack-alias', {
-    config: __dirname + '/../webpack/common.config.js',
+    config: __dirname + '/../webpack/common.config.babel.js',
   }],
 ];
 

@@ -1,25 +1,42 @@
 // @flow
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import { routerReducer, routerMiddleware } from 'react-router-redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { routerMiddleware } from 'react-router-redux';
 import { browserHistory } from 'react-router';
-import * as reducers from './reducers/';
+import rootReducer from './utils/reducers';
+import { promiseMiddleware } from './middleware/promise';
+import { apiMiddleware } from './middleware/api';
+import { default as someThing } from './reducers/index';
 
-const reducer = combineReducers({
-  ...reducers,
-  routing: routerReducer
-});
+const middlewares = [
+  apiMiddleware,
+  promiseMiddleware(),
+  routerMiddleware(browserHistory),
+].filter(Boolean);
+
+const createStoreWithMiddleware = compose(
+  applyMiddleware(...middlewares),
+  typeof window === 'object' &&
+  typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f
+)(createStore);
 
 const initialState = {
   appData: [],
-  activeMotion: 0
+  activeMotion: 0,
 };
 
-const middleware = routerMiddleware(browserHistory);
+const configureStore = (initialState) => {
+  const store = createStoreWithMiddleware(rootReducer, initialState);
 
-export default function configureStore(initialState) {
-  const store = createStore(reducer, initialState, compose(
-    applyMiddleware(...middleware),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
-  ));
+  if (module.hot) {
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept('./reducers', () => {
+      const nextRootReducer = someThing;
+      store.replaceReducer(nextRootReducer);
+      return true;
+    });
+  }
+
   return store;
-}
+};
+
+export default configureStore;

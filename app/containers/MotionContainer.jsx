@@ -1,19 +1,35 @@
 // @flow
+import React, { PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { MotionShow } from '../components';
-import { setActiveMotion } from '../actions/activeMotion';
-import { dataMotions } from '../data';
+import * as actionCreators from '../reducers';
 
-const mapStateToProps = (state) => ({
-  motion: dataMotions.find(e => e.identifier === Number(state.activeMotion)),
-});
+const propTypes = {
+  items: PropTypes.array,
+  apiGetMotions: PropTypes.func,
+};
 
-const mapDispatchToProps = (dispatch, index) =>
-  dispatch(setActiveMotion(index.params.motionId));
+@connect(
+  state => ({ ...state.motions }),
+  dispatch => bindActionCreators({
+    ...actionCreators.motions,
+  }, dispatch),
+)
 
-const Motion = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MotionShow);
+class MotionContainer extends React.Component {
 
-export default Motion;
+  componentDidMount() {
+    const { items, apiGetMotions, params } = this.props;
+    apiGetMotions(params.motionId);
+  }
+
+  render() {
+    const { items } = this.props;
+    return <MotionShow data={items} />;
+  }
+}
+
+MotionContainer.propTypes = propTypes;
+
+export default MotionContainer;
