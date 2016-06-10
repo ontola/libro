@@ -10,10 +10,10 @@ const propTypes = {
 
 function DetailProfile({ name, url, imageUrl }) {
   return (
-    <Detail imageUrl={imageUrl} text={name} url={url}/>
+    <Detail imageUrl={imageUrl} text={name} url={url} />
   );
 }
 
-DetailProfile.propTypes = propTypes
+DetailProfile.propTypes = propTypes;
 
 export default DetailProfile;

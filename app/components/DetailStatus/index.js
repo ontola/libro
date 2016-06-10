@@ -7,7 +7,6 @@ const propTypes = {
   status: PropTypes.oneOf([
     'pass',
     'fail',
-    'unknown',
   ]),
   voteData: PropTypes.node,
 };

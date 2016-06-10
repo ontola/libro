@@ -6,7 +6,7 @@ import { MotionsList } from '../components';
 import * as actionCreators from '../reducers';
 
 const propTypes = {
-  items: PropTypes.array,
+  motions: PropTypes.array,
   apiGetMotions: PropTypes.func,
 };
 
@@ -20,13 +20,13 @@ const propTypes = {
 class MotionsContainer extends React.Component {
 
   componentDidMount() {
-    const { items, apiGetMotions } = this.props;
+    const { motions, apiGetMotions } = this.props;
     apiGetMotions();
   }
 
   render() {
-    const { items } = this.props;
-    return <MotionsList data={items} />;
+    const { motions } = this.props;
+    return <MotionsList data={motions} />;
   }
 }
 

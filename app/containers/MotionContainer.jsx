@@ -5,14 +5,10 @@ import { connect } from 'react-redux';
 import { MotionShow } from '../components';
 import * as actionCreators from '../reducers';
 
-const propTypes = {
-  items: PropTypes.array,
-  apiGetMotions: PropTypes.func,
-};
-
 @connect(
-  state => ({ ...state.motions }),
+  state => ({...state}),
   dispatch => bindActionCreators({
+    ...actionCreators.activeMotion,
     ...actionCreators.motions,
   }, dispatch),
 )
@@ -20,16 +16,16 @@ const propTypes = {
 class MotionContainer extends React.Component {
 
   componentDidMount() {
-    const { items, apiGetMotions, params } = this.props;
+    const { apiGetMotions, setActiveMotion, params } = this.props;
     apiGetMotions(params.motionId);
+    setActiveMotion(params.motionId);
   }
 
   render() {
-    const { items } = this.props;
-    return <MotionShow data={items} />;
+    const { motions, activeMotion } = this.props;
+    const findMotion = motions.motions.find(m => m.identifier === Number(activeMotion.activeMotion));
+    return <MotionShow motion={findMotion} />;
   }
 }
-
-MotionContainer.propTypes = propTypes;
 
 export default MotionContainer;

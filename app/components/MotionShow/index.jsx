@@ -31,6 +31,7 @@ const defaultProps = {
 };
 
 function MotionShow({ motion }) {
+  //console.log(motion);
   const pro = motion.arguments && motion.arguments.filter(e => e.side === 'pro');
   const con = motion.arguments && motion.arguments.filter(e => e.side === 'con');
 
@@ -95,7 +96,7 @@ function MotionShow({ motion }) {
   );
 }
 
-MotionShow.propTypes = propTypes;
+//MotionShow.propTypes = propTypes;
 MotionShow.defaultProps = defaultProps;
 
 export default MotionShow;

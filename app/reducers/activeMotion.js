@@ -1,11 +1,17 @@
-// @flow
-function activeMotion(state = 0, action) {
-  switch (action.type) {
-    case 'SET_ACTIVE_MOTION':
-      return action.index;
-    default:
-      return state;
-  }
-}
+import { createReducer } from '../utils/createReducer';
 
-export default activeMotion;
+const initialState = {
+  activeMotion: 0,
+};
+
+export default createReducer({
+  ['SET_MOTION_ID']: (state, { data }) => ({
+    ...state,
+    activeMotion: data,
+  }),
+}, initialState);
+
+export const setActiveMotion = (id) => ({
+  type: 'SET_MOTION_ID',
+  data: id
+});

@@ -4,7 +4,7 @@ const router = express.Router();
 export default [
   router.get('/api/motions', (req, res) => {
 
-    const data = [
+    const motions = [
       {
         identifier: 245245,
         title: 'Het Heroverwegen van de positie van de toezichthouder',
@@ -171,9 +171,9 @@ export default [
     let returnData;
 
     if(req.query.identifier) {
-      returnData = data.find(o => o.identifier === Number(req.query.identifier));
+      returnData = [motions.find(o => o.identifier === Number(req.query.identifier))];
     } else {
-      returnData = { motions: data };
+      returnData = motions;
     }
 
     res.json(returnData);
