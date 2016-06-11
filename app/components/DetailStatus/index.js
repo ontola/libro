@@ -8,20 +8,19 @@ const propTypes = {
     'fail',
     'unknown',
   ]),
-  voteData: PropTypes.node,
 };
 
 const defaultProps = {
   status: 'unknown',
 };
 
-function DetailStatus({ status, voteData }) {
+function DetailStatus({ status }) {
 
   let className = 'defaultClassName';
   let icon = 'no-icon';
   let text = 'Onbekende status';
 
-  switch (status) {
+  switch (status.result) {
     case 'pass':
       className = 'detailStatus--pass';
       icon = 'check';
@@ -38,8 +37,8 @@ function DetailStatus({ status, voteData }) {
   }
 
   return (
-    <span className={"detailStatus " + className}>
-      <span className={"detailStatus__icon fa fa-" + icon.toString()} />
+    <span className={`detailStatus ${className}`}>
+      <span className={`detailStatus__icon fa fa-${icon.toString()}`} />
       <span className="detailStatus__text">{text}</span>
     </span>
   );

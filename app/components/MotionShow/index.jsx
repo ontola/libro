@@ -24,13 +24,13 @@ const propTypes = {
 };
 
 const defaultProps = {
+  activeMotion: 0,
   motion: {
     title: 'Laden...',
   },
 };
 
 function MotionShow({ motion }) {
-  //console.log(motion);
   const pro = motion.arguments && motion.arguments.filter(e => e.side === 'pro');
   const con = motion.arguments && motion.arguments.filter(e => e.side === 'con');
 
@@ -59,22 +59,10 @@ function MotionShow({ motion }) {
       <Box buttons={buttons}>
         <Heading size="2">{motion.title}</Heading>
         <DetailsBar>
-          <DetailType
-            type="motion"
-          />
-          <DetailStatus
-            status="pass"
-            voteData={motion.votes}
-          />
-          <DetailProfile
-            name="Joep Meindertsma"
-            url="https://argu.co/u/joep"
-            imageUrl="https://argu-logos.s3.amazonaws.com/photos/825/icon_profielfoto_Joep_Meindertsma.jpg"
-          />
-          <Detail
-            text="3 minuten geleden"
-            icon="clock-o"
-          />
+          <Detail text="Motie" icon="lightbulb-o" />
+          <Detail text="Verworpen" icon="close" />
+          <Detail text="Joep Meindertsma" icon="user" />
+          <Detail text="3 minuten geleden" icon="clock-o" />
         </DetailsBar>
         <div>{motion.description}</div>
       </Box>

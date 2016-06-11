@@ -11,6 +11,7 @@ const propTypes = {
     'argumentPro',
     'argumentCon',
     'project',
+    'unknown'
   ]),
   voteData: PropTypes.node,
 };

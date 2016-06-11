@@ -27,7 +27,14 @@ const fetchData = (component, host, pathname, params) => {
       case 'motions':
         apiFetch(motions.apiGetMotions(), host).then(res => {
           resolve({
-            motions: res.motions
+            motions: res
+          });
+        });
+        break;
+      case 'motion':
+        apiFetch(motions.apiGetMotions(params.motionId), host).then(res => {
+          resolve({
+            motions: res
           });
         });
         break;

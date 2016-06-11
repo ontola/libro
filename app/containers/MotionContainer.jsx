@@ -6,9 +6,8 @@ import { MotionShow } from '../components';
 import * as actionCreators from '../reducers';
 
 @connect(
-  state => ({...state}),
+  state => ({...state.motions}),
   dispatch => bindActionCreators({
-    ...actionCreators.activeMotion,
     ...actionCreators.motions,
   }, dispatch),
 )
@@ -23,7 +22,7 @@ class MotionContainer extends React.Component {
 
   render() {
     const { motions, activeMotion } = this.props;
-    const findMotion = motions.motions.find(m => m.identifier === Number(activeMotion.activeMotion));
+    const findMotion = motions.find(m => m.identifier === Number(activeMotion));
     return <MotionShow motion={findMotion} />;
   }
 }
