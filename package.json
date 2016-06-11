@@ -6,8 +6,8 @@
     "type": "git",
     "url": "https://tom_dalenberg@bitbucket.org/arguweb/aod_demo.git"
   },
-  "author": "Tom Dalenberg <tomdalenberg@argu.co> (https://argu.co)",
-  "license": "UNLICENSED",
+  "author": "Tom Dalenberg <tomdalenberg@argu.co> & Joep Meindertsma <joep@argu.co> (https://argu.co)",
+  "license": "All rights reserved. Copyright Argu B.V.",
   "private": true,
   "scripts": {
     "start": "rimraf dist && NODE_ENV=development node bin/server.js",

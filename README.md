@@ -3,11 +3,12 @@ Deze demo bevat een interface voor open data van de gemeenteraad.
 
 ### Usage
 
-```
-npm install
-npm start
-Open http://localhost:3000
-```
+* Install [Foreman](https://github.com/ddollar/foreman)
+* `$ foreman start`
+* Open http://localhost:3000
+
+See ./Procfile for the underlying commands
+
 ### Build
 
 Generate all the build files under /dist
