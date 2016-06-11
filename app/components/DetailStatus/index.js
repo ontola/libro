@@ -1,12 +1,12 @@
 // @flow
 import './detailStatus.scss';
 import React, { PropTypes } from 'react';
+import { Detail } from '../';
 
 const propTypes = {
   status: PropTypes.oneOf([
     'pass',
     'fail',
-    'unknown',
   ]),
 };
 
@@ -37,10 +37,11 @@ function DetailStatus({ status }) {
   }
 
   return (
-    <span className={`detailStatus ${className}`}>
-      <span className={`detailStatus__icon fa fa-${icon.toString()}`} />
-      <span className="detailStatus__text">{text}</span>
-    </span>
+    <Detail
+      className={className}
+      text={text}
+      icon={icon}
+    />
   );
 }
 

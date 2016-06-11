@@ -11,6 +11,7 @@ import {
   DetailStatus,
   DetailType,
   Heading,
+  MarkdownContent,
   VoteData,
 } from '../';
 
@@ -64,7 +65,7 @@ function MotionShow({ motion }) {
           <Detail text="Joep Meindertsma" icon="user" />
           <Detail text="3 minuten geleden" icon="clock-o" />
         </DetailsBar>
-        <div>{motion.description}</div>
+        <MarkdownContent content={motion.description} />
       </Box>
 
       <VoteData data={motion.votes} expanded />
@@ -72,7 +73,7 @@ function MotionShow({ motion }) {
       <Columns>
         <div>
           <Box ghost><Heading size="4">Voordelen</Heading></Box>
-          {motion.arguments && pro.map(a => <Argument key={a.id} data={a} />)}
+          {motion.arguments && pro.map(a => <Argument key={a.id} data={a}/>)}
         </div>
         <div>
           <Box ghost><Heading size="4">Nadelen</Heading></Box>

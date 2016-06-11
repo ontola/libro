@@ -1,9 +1,10 @@
 // @flow
 import './detailType.scss';
 import React, { PropTypes } from 'react';
+import { Detail } from '../';
 
 const propTypes = {
-  status: PropTypes.oneOf([
+  type: PropTypes.oneOf([
     'idea',
     'motion',
     'question',
@@ -17,35 +18,40 @@ const propTypes = {
 };
 
 const defaultProps = {
-  status: 'unknown',
+  type: 'unknown',
 };
 
 function DetailType({ type }) {
 
-  let className = '';
+  let className = null;
   let icon = 'cross';
   let text = 'No type';
+  let title = null;
 
   switch (type) {
     case 'idea':
       className = 'detailType--motion';
       icon = 'lightbulb-o';
       text = 'Idee';
+      title = 'Een idee is een concreet voorstel met voordelen en nadelen.';
       break;
     case 'motion':
       className = 'detailType--motion';
       icon = 'lightbulb-o';
       text = 'Motie';
+      title = 'Een motie is een voorstel van de raad.';
       break;
     default:
       break;
   }
 
   return (
-    <span className={"detailType " + className}>
-      <span className={"detailType__icon fa fa-" + icon.toString()} />
-      <span className="detailType__text">{text}</span>
-    </span>
+    <Detail
+      className={`detailType ${className}`}
+      text={text}
+      icon={icon}
+      title={title}
+    />
   );
 }
 

@@ -4,17 +4,29 @@ import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 const propTypes = {
-  date: PropTypes.string,
+  className: PropTypes.string,
   text: PropTypes.string,
-  icon: PropTypes.string.isRequired,
+  url: PropTypes.string,
+  icon: PropTypes.string,
+  imageUrl: PropTypes.string,
+  title: PropTypes.string,
 };
 
-function Detail({ text, icon }) {
+function Detail({ text, icon, url, imageUrl, className, title }) {
+  let Element = url ? 'a' : 'div';
+  const image = imageUrl
+    ? <img src={imageUrl} className="detail__icon" role="presentation" />
+    : <span className={`detail__icon fa fa-${icon}`} />;
+
   return (
-    <span className="detail">
-      <span className="detail__icon"><FontAwesome name={icon} /></span>
+    <Element
+      href={url}
+      className={`detail ${className}`}
+      title={title}
+    >
+      {image}
       <span className="detail__text">{text}</span>
-    </span>
+    </Element>
   );
 }
 

@@ -1,6 +1,6 @@
 // @flow
-import './detailProfile.scss';
 import React, { PropTypes } from 'react';
+import { Detail } from '../';
 
 const propTypes = {
   name: PropTypes.string.isRequired,
@@ -10,13 +10,10 @@ const propTypes = {
 
 function DetailProfile({ name, url, imageUrl }) {
   return (
-    <a href={url} className="detailProfile">
-      <img className="detailProfile__image" role="presentation" src={imageUrl}></img>
-      <span className="detailProfile__text">{name}</span>
-    </a>
+    <Detail imageUrl={imageUrl} text={name} url={url} />
   );
 }
 
-DetailProfile.propTypes = propTypes
+DetailProfile.propTypes = propTypes;
 
 export default DetailProfile;
