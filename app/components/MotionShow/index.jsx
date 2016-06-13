@@ -16,67 +16,70 @@ import {
 } from '../';
 
 const propTypes = {
-  motion: PropTypes.shape({
+  data: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string,
-    votes: PropTypes.object,
+    votes: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.bool,
+    ]),
     arguments: PropTypes.array,
   }),
 };
 
 const defaultProps = {
-  motion: {
+  data: {
     title: 'Laden...',
   },
 };
 
-function MotionShow({ motion, props }) {
-  const pro = motion.arguments && motion.arguments.filter(e => e.side === 'pro');
-  const con = motion.arguments && motion.arguments.filter(e => e.side === 'con');
+function MotionShow({ data }) {
+  const pro = data.arguments && data.arguments.filter(e => e.side === 'pro');
+  const con = data.arguments && data.arguments.filter(e => e.side === 'con');
 
   const buttons = [{
     label: 'Ik ben voor',
     icon: 'thumbs-up',
     action() {
-      console.log('Ik ben voor:', motion.title);
+      console.log('Ik ben voor:', data.title);
     },
   }, {
     label: 'Neutraal',
     icon: 'pause',
     action() {
-      console.log('Ik ben neutraal:', motion.title);
+      console.log('Ik ben neutraal:', data.title);
     },
   }, {
     label: 'Ik ben tegen',
     icon: 'thumbs-down',
     action() {
-      console.log('Ik ben tegen:', motion.title);
+      console.log('Ik ben tegen:', data.title);
     },
   }];
 
   return (
     <div>
       <Box buttons={buttons}>
-        <Heading size="2">{motion.title}</Heading>
+        <Heading size="2">{data.title}</Heading>
         <DetailsBar>
           <Detail text="Motie" icon="lightbulb-o" />
           <Detail text="Verworpen" icon="close" />
           <Detail text="Joep Meindertsma" icon="user" />
           <Detail text="3 minuten geleden" icon="clock-o" />
         </DetailsBar>
-        <MarkdownContent content={motion.description} />
+        <MarkdownContent content={data.description} />
       </Box>
 
-      <VoteData data={motion.votes} expanded />
+      <VoteData data={data.votes} expanded />
 
       <Columns>
         <div>
           <Box ghost><Heading size="4">Voordelen</Heading></Box>
-          {motion.arguments && pro.map(a => <Argument key={a.id} data={a}/>)}
+          {data.arguments && pro.map(a => <Argument key={a.id} data={a}/>)}
         </div>
         <div>
           <Box ghost><Heading size="4">Nadelen</Heading></Box>
-          {motion.arguments && con.map(a => <Argument key={a.id} data={a} />)}
+          {data.arguments && con.map(a => <Argument key={a.id} data={a} />)}
         </div>
       </Columns>
     </div>

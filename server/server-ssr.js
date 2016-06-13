@@ -7,8 +7,8 @@ import { match, RouterContext } from 'react-router';
 import Helmet from 'react-helmet';
 import fs from 'fs';
 import httpProxy from 'http-proxy';
-import { motions } from '../app/reducers';
-import configureStore from '../app/configureStore';
+import { apiGetMotions } from '../app/actions/motions';
+import configureStore from '../app/store//configureStore';
 import routes from '../app/routes.js';
 import { apiFetch } from './utils/api';
 import { renderFullPage } from './utils/render';
@@ -25,16 +25,16 @@ const fetchData = (component, host, pathname, params) => {
   return new Promise(resolve => {
     switch (component) {
       case 'motions':
-        apiFetch(motions.apiGetMotions(), host).then(res => {
+        apiFetch(apiGetMotions(), host).then(res => {
           resolve({
-            motions: res
+            items: res
           });
         });
         break;
       case 'motion':
-        apiFetch(motions.apiGetMotions(params.motionId), host).then(res => {
+        apiFetch(apiGetMotions(params.motionId), host).then(res => {
           resolve({
-            motions: res
+            items: res
           });
         });
         break;

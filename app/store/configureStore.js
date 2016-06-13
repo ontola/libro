@@ -1,16 +1,11 @@
 // @flow
 import { createStore, applyMiddleware, compose } from 'redux';
 import { apiMiddleware } from 'redux-api-middleware';
-import rootReducer from './reducers';
-
-// import { routerMiddleware } from 'react-router-redux';
+import rootReducer from '../reducers';
 
 function configureStore(initialState) {
-
   const createStoreWithMiddleware = compose(
-    applyMiddleware(
-      apiMiddleware,
-    ),
+    applyMiddleware(apiMiddleware),
     typeof window === 'object' &&
     typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f
   )(createStore);

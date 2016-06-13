@@ -5,9 +5,9 @@ import { MotionShow } from '../components';
 import { apiGetMotions } from '../actions/motions';
 
 const mapStateToProps = (state, ownProps) => {
-  const findMotion = state.motions.items.find(m => m.identifier === Number(ownProps.params.motionId));
+  const findMotion = state.motions.items && state.motions.items.find(m => m.identifier === Number(ownProps.params.motionId));
   return {
-    motion: findMotion
+    data: findMotion
   }
 }
 

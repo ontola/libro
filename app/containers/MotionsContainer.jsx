@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    actions: dispatch(apiGetMotions()),
+    actions: dispatch(apiGetMotions(0)),
   }
 }
 
