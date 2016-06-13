@@ -2,7 +2,6 @@ import { createReducer } from '../utils/createReducer';
 
 const initialState = {
   motions: [],
-  activeMotion: null,
 };
 
 export default createReducer({
@@ -19,11 +18,6 @@ export default createReducer({
   ['GET_MOTIONS_FAILURE']: (state, { payload }) => ({
     ...state,
     motions: false
-  }),
-
-  ['SET_MOTION_ID']: (state, { data }) => ({
-    ...state,
-    activeMotion: data,
   }),
 }, initialState);
 
@@ -43,9 +37,4 @@ export const apiGetMotions = (id) => ({
   callback: (res, dispatch) => {
   //  console.log('joe', res);
   },
-});
-
-export const setActiveMotion = (id) => ({
-  type: 'SET_MOTION_ID',
-  data: id
 });

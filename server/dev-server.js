@@ -1,10 +1,10 @@
-const express = require('express');
-const webpack = require('webpack');
-const webpackMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
-const webpackConfig = require('../webpack/common.config.babel');
-const compiler = webpack(webpackConfig);
+import express from 'express';
+import webpack from 'webpack';
+import webpackMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+import webpackConfig from '../webpack/common.config.babel';
 
+const compiler = webpack(webpackConfig);
 const app = express();
 const port = 3001;
 const MS = 1000;

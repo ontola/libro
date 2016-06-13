@@ -1,5 +1,5 @@
 // @flow
-import './motionShow.scss';
+// import './motionShow.scss';
 import React, { PropTypes } from 'react';
 import {
   Argument,
@@ -84,7 +84,7 @@ function MotionShow({ motion }) {
   );
 }
 
-//MotionShow.propTypes = propTypes;
+MotionShow.propTypes = propTypes;
 MotionShow.defaultProps = defaultProps;
 
 export default MotionShow;

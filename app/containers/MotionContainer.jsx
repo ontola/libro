@@ -15,14 +15,13 @@ import * as actionCreators from '../reducers';
 class MotionContainer extends React.Component {
 
   componentDidMount() {
-    const { apiGetMotions, setActiveMotion, params } = this.props;
+    const { apiGetMotions, params } = this.props;
     apiGetMotions(params.motionId);
-    setActiveMotion(params.motionId);
   }
 
   render() {
-    const { motions, activeMotion } = this.props;
-    const findMotion = motions.find(m => m.identifier === Number(activeMotion));
+    console.log(this);
+    const findMotion = this.props.motions.find(m => m.identifier === Number(this.props.params.motionId));
     return <MotionShow motion={findMotion} />;
   }
 }

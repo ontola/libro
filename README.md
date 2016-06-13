@@ -33,4 +33,5 @@ Tests are made using mocha, chai assert and enzyme ([docs](http://airbnb.io/enzy
 npm run test
 ```
 ### Links
-- [Airbnb React Styleguide](https://github.com/airbnb/javascript/tree/master/react#class-vs-reactcreateclass-vs-stateless)
+- Please use the [Airbnb React Styleguide](https://github.com/airbnb/javascript/tree/master/react#class-vs-reactcreateclass-vs-stateless)
+- Uses the [Redux DevTools Chrome Extension](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd)

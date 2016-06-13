@@ -32,7 +32,7 @@ const Button = ({ weight, theme, icon, children, ...props }) => {
   return (
     <button {...props} className={btnClass} role="button">
       <FontAwesome name={icon} />{' '}
-      {children}
+      Joe: {children}
     </button>
   );
 }
