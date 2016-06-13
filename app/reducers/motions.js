@@ -1,40 +1,18 @@
-import { createReducer } from '../utils/createReducer';
-
 const initialState = {
-  motions: [],
-};
+  motions: {}
+}
 
-export default createReducer({
-  ['GET_MOTIONS_REQUEST']: (state, { payload }) => ({
-    ...state,
-    motions: [],
-  }),
+const motions = (state = initialState, action) => {
+  switch(action.type) {
+    case 'FETCH_MOTIONS_SUCCESS':
+      return Object.assign({}, state, {
+        items: action.payload
+      });
+    break;
 
-  ['GET_MOTIONS_SUCCESS']: (state, { payload }) => ({
-    ...state,
-    motions: payload,
-  }),
+    default:
+      return state;
+  }
+}
 
-  ['GET_MOTIONS_FAILURE']: (state, { payload }) => ({
-    ...state,
-    motions: false
-  }),
-}, initialState);
-
-export const apiGetMotions = (id) => ({
-  mode: 'GET',
-  type: 'GET_MOTIONS',
-  url: 'motions',
-  data: {
-    identifier: id,
-  },
-  onSuccess: (res, dispatch) => {
-  //  console.log(res);
-  },
-  onFailure: (res, dispatch) => {
-  //  console.log(res);
-  },
-  callback: (res, dispatch) => {
-  //  console.log('joe', res);
-  },
-});
+export default motions;

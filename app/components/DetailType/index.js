@@ -12,7 +12,7 @@ const propTypes = {
     'argumentPro',
     'argumentCon',
     'project',
-    'unknown'
+    'unknown',
   ]),
   voteData: PropTypes.node,
 };
@@ -22,7 +22,6 @@ const defaultProps = {
 };
 
 function DetailType({ type }) {
-
   let className = null;
   let icon = 'cross';
   let text = 'No type';

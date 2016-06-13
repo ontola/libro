@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import './markdownContent.scss';
 
 const propTypes = {
-  content: PropTypes.string.isRequired,
+  content: PropTypes.string,
 };
 
 function MarkdownContent({ content }) {

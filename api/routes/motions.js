@@ -3,7 +3,6 @@ const router = express.Router();
 
 export default [
   router.get('/api/motions', (req, res) => {
-
     const motions = [
       {
         identifier: 245245,
@@ -170,7 +169,7 @@ export default [
 
     let returnData;
 
-    if(req.query.identifier) {
+    if (req.query.identifier) {
       returnData = [motions.find(o => o.identifier === Number(req.query.identifier))];
     } else {
       returnData = motions;

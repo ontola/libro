@@ -15,7 +15,6 @@ const defaultProps = {
 };
 
 function DetailStatus({ status }) {
-
   let className = 'defaultClassName';
   let icon = 'no-icon';
   let text = 'Onbekende status';

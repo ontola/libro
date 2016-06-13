@@ -35,3 +35,4 @@ npm run test
 ### Links
 - Please use the [Airbnb React Styleguide](https://github.com/airbnb/javascript/tree/master/react#class-vs-reactcreateclass-vs-stateless)
 - Uses the [Redux DevTools Chrome Extension](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd)
+- Uses [Redux Api Middleware](https://github.com/agraboso/redux-api-middleware)

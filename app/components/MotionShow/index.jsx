@@ -25,13 +25,12 @@ const propTypes = {
 };
 
 const defaultProps = {
-  activeMotion: 0,
   motion: {
     title: 'Laden...',
   },
 };
 
-function MotionShow({ motion }) {
+function MotionShow({ motion, props }) {
   const pro = motion.arguments && motion.arguments.filter(e => e.side === 'pro');
   const con = motion.arguments && motion.arguments.filter(e => e.side === 'con');
 
