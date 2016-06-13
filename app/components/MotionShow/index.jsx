@@ -19,20 +19,27 @@ const propTypes = {
   data: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string,
-    votes: PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.bool,
-    ]),
-    arguments: PropTypes.oneOfType([
-      PropTypes.array,
-      PropTypes.bool,
-    ]),
+    votes: PropTypes.object,
+    arguments: PropTypes.array,
   }),
 };
 
 const defaultProps = {
   data: {
     title: 'Laden...',
+    votes: {},
+    arguments: [
+      {
+        side: 'pro',
+        title: 'Joe',
+        text: 'Geen argumenten voor',
+      },
+      {
+        side: 'con',
+        title: 'Joe',
+        text: 'Geen argumenten tegen',
+      },
+    ],
   },
 };
 
@@ -78,11 +85,11 @@ function MotionShow({ data }) {
       <Columns>
         <div>
           <Box ghost><Heading size="4">Voordelen</Heading></Box>
-          {data.arguments && pro.map(a => <Argument key={a.id} data={a}/>)}
+          { pro.map(a => <Argument key={a.id} data={a}/>) }
         </div>
         <div>
           <Box ghost><Heading size="4">Nadelen</Heading></Box>
-          {data.arguments && con.map(a => <Argument key={a.id} data={a} />)}
+          { con.map(a => <Argument key={a.id} data={a} />) }
         </div>
       </Columns>
     </div>

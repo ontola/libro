@@ -108,62 +108,42 @@ export default [
       {
         identifier: 245175,
         title: 'Banken mede de financiële risico\'s laten dragen bij geborgde leningen',
-        arguments: false,
-        votes: false,
       },
       {
         identifier: 987654,
         title: 'Burgerparticipatie zonder bureaucratisering',
-        arguments: false,
-        votes: false,
       },
       {
         identifier: 642621,
         title: 'Het aanwenden van vrijvallende middelen ten behoeve van de Marker Wadden',
-        arguments: false,
-        votes: false,
       },
       {
         identifier: 136743,
         title: 'Uniformering van het lozingenbeleid voor mestverwerkingsinstallaties',
-        arguments: false,
-        votes: false,
       },
       {
         identifier: 367333,
         title: 'De totstandkoming van drinkwatertarieven',
-        arguments: false,
-        votes: false,
       },
       {
         identifier: 973533,
         title: 'Zelfcensuur als direct gevolg van bedreigingen',
-        arguments: false,
-        votes: false,
       },
       {
         identifier: 334672,
         title: 'Alle vormen van voortgezet onderwijs opnemen als mogelijk resultaat van de toets',
-        arguments: false,
-        votes: false,
       },
       {
         identifier: 358964,
         title: 'Het weigeren van leerlingen vanwege een dubbel advies',
-        arguments: false,
-        votes: false,
       },
       {
         identifier: 195075,
         title: 'Een verbod op islamitisch thuisonderwijs',
-        arguments: false,
-        votes: false,
       },
       {
         identifier: 752183,
         title: 'Evaluatie van de klankbordgroep bij vervanging van onderzeeboten',
-        arguments: false,
-        votes: false,
       },
     ];
 

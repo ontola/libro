@@ -17,8 +17,8 @@ const defaultProps = {
 };
 
 function voteDataExpanded(data) {
-  const opinionsPro = data.counts.filter(o => o.option === 'yes');
-  const opinionsCon = data.counts.filter(o => o.option === 'no');
+  const opinionsPro = data.counts && data.counts.filter(o => o.option === 'yes');
+  const opinionsCon = data.counts && data.counts.filter(o => o.option === 'no');
 
   return (
     <Box ghost>

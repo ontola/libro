@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === 'development') {
   }));
 
   app.use(webpackHotMiddleware(compiler, {
-    log: console.log, path: '/__webpack_hmr', heartbeat: heartBeatTime * MS,
+    log: console.log, path: '/__webpack_hmr', heartbeat: heartBeatTime * MS, reload: true,
   }));
 }
 
