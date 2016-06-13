@@ -11,15 +11,15 @@ const defaultProps = {
   con: [],
 };
 
-const opinion = (side, owner, msg) => {
+function Opinion({ side, owner, msg}) {
   return (
     <div className={`opinion opinion--${side}`}>{owner}</div>
   );
 }
 
 function Opinions({ pro, con }) {
-  const listProOpinions = pro.map(o => opinion(o.option, o.group.name, o.value));
-  const listConOpinions = con.map(o => opinion(o.option, o.group.name, o.value));
+  const listProOpinions = pro.map((o, i) => <Opinion key={i} side={o.option} owner={o.group.name} msg={o.value} />);
+  const listConOpinions = con.map((o, i) => <Opinion key={i} side={o.option} owner={o.group.name} msg={o.value} />);
 
   return (
     <div className="opinions">

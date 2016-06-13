@@ -23,7 +23,10 @@ const propTypes = {
       PropTypes.object,
       PropTypes.bool,
     ]),
-    arguments: PropTypes.array,
+    arguments: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.bool,
+    ]),
   }),
 };
 
