@@ -22,9 +22,8 @@ function voteDataExpanded(data) {
 
   return (
     <Box ghost>
-      {/*<Heading size="4">Opinions, yolo</Heading>*/}
-      <VoteChart data={data.result_aggs} result={data.result} />
       <Opinions pro={opinionsPro} con={opinionsCon} />
+      <VoteChart data={data.result_aggs} result={data.result} />
     </Box>
   );
 }
@@ -39,7 +38,6 @@ function voteDataUnexpanded(data) {
 
 function VoteData({ data, expanded }) {
   if (!data) return false;
-
   return expanded ? voteDataExpanded(data) : voteDataUnexpanded(data);
 }
 

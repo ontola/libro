@@ -51,8 +51,8 @@ app.use(/\/api\/(.*)/, (req, res) => {
 });
 
 // Static directory
-//app.use('/static', express.static(__dirname + '/../../static/'));
-app.use('/dist', express.static(__dirname + '/../dist/'));
+app.use('/static', express.static(`${__dirname}/../static/`));
+app.use('/dist', express.static(`${__dirname}/../dist/`));
 
 function handleRender(req, res) {
   return match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {

@@ -11,6 +11,7 @@ const propTypes = {
 const defaultProps = {
   children: 'No title specified',
   size: '2',
+  className: '',
 };
 
 function Heading({ children, size, className }) {

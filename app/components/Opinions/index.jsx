@@ -13,7 +13,7 @@ const defaultProps = {
 
 function Opinion({ side, owner, msg}) {
   return (
-    <div className={`opinion opinion--${side}`}>{owner}</div>
+    <div className={`opinion opinion--${side}`}><img src={`/static/icon-${owner}.png`} alt={owner} /></div>
   );
 }
 

@@ -156,9 +156,9 @@ export default [
     }
 
     // async yolo
-    setTimeout(function(){
+    // setTimeout(function(){
       res.json(returnData);
-    }, 200);
+    // }, 200);
 
   }),
 ];

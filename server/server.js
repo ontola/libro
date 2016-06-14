@@ -37,7 +37,7 @@ app.use(/\/api\/(.*)/, (request, res) => {
 });
 
 // Static directory for express
-// app.use('/static', express.static(__dirname + '/../static/'));
+app.use('/static', express.static(`${__dirname}/../static/`));
 app.use('/dist', express.static(`${__dirname}/../dist/`));
 
 app.get(/.*/, (req, res) => {

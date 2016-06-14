@@ -43,6 +43,13 @@ const common = {
         loader: 'babel-loader',
         exclude: /node_modules/,
       },
+      {
+        test: /\.png$/,
+        loader: 'file?name=[name].[ext]',
+      }, {
+        test: /\.jpg$/,
+        loader: 'file?name=[name].[ext]',
+      },
     ],
   },
 

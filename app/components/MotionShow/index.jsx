@@ -1,5 +1,5 @@
 // @flow
-// import './motionShow.scss';
+import './motionShow.scss';
 import React, { PropTypes } from 'react';
 import {
   Argument,
@@ -19,7 +19,10 @@ const propTypes = {
   data: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string,
-    votes: PropTypes.object,
+    votes: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.bool,
+    ]),
     arguments: PropTypes.array,
   }),
 };
@@ -27,19 +30,8 @@ const propTypes = {
 const defaultProps = {
   data: {
     title: 'Laden...',
-    votes: {},
-    arguments: [
-      {
-        side: 'pro',
-        title: 'Joe',
-        text: 'Geen argumenten voor',
-      },
-      {
-        side: 'con',
-        title: 'Joe',
-        text: 'Geen argumenten tegen',
-      },
-    ],
+    votes: false,
+    arguments: [],
   },
 };
 
@@ -77,19 +69,18 @@ function MotionShow({ data }) {
           <Detail text="Joep Meindertsma" icon="user" />
           <Detail text="3 minuten geleden" icon="clock-o" />
         </DetailsBar>
+        <img src="/static/photo.jpg" className="MotionShow_image" />
         <MarkdownContent content={data.description} />
       </Box>
-
       <VoteData data={data.votes} expanded />
-
       <Columns>
         <div>
           <Box ghost><Heading size="4">Voordelen</Heading></Box>
-          { pro.map(a => <Argument key={a.id} data={a}/>) }
+          { pro && pro.map(a => <Argument key={a.id} data={a}/>) }
         </div>
         <div>
           <Box ghost><Heading size="4">Nadelen</Heading></Box>
-          { con.map(a => <Argument key={a.id} data={a} />) }
+          { con && con.map(a => <Argument key={a.id} data={a} />) }
         </div>
       </Columns>
     </div>
