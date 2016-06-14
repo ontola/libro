@@ -1,8 +1,9 @@
 import { CALL_API } from 'redux-api-middleware';
+import { createAction, handleAction, handleActions } from 'redux-actions';
 import { API_ROOT } from '../constants/config';
 import * as action from '../constants/actionTypes';
 
-export const apiGetMotions = (id) => ({
+const apiGetMotions = (id) => ({
   [CALL_API]: {
     endpoint: API_ROOT + (id ? `/motions?identifier=${id}` : '/motions'),
     method: 'GET',
@@ -13,3 +14,7 @@ export const apiGetMotions = (id) => ({
     ],
   },
 });
+
+export {
+  apiGetMotions
+};

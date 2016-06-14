@@ -1,5 +1,10 @@
 @import "../shared/config.scss";
 
-.MotionShow_image {
-  width: 100%;
+.MotionShow_navigation {
+  display: flex;
+  justify-content: space-between;
+
+  a {
+    color: $dark;
+  }
 }

@@ -13,6 +13,10 @@ export default [
           'aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat ' +
           'nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui' +
           'officia deserunt mollit anim id est laborum.',
+        relations: {
+          nextMotion: 245175,
+          previousMotion: null,
+        },
         arguments: [
           {
             id: 1,
@@ -108,42 +112,82 @@ export default [
       {
         identifier: 245175,
         title: 'Banken mede de financiële risico\'s laten dragen bij geborgde leningen',
+        relations: {
+          nextMotion: 987654,
+          previousMotion: 245245,
+        },
       },
       {
         identifier: 987654,
         title: 'Burgerparticipatie zonder bureaucratisering',
+        relations: {
+          nextMotion: 642621,
+          previousMotion: 245245,
+        },
       },
       {
         identifier: 642621,
         title: 'Het aanwenden van vrijvallende middelen ten behoeve van de Marker Wadden',
+        relations: {
+          nextMotion: 136743,
+          previousMotion: 987654,
+        },
       },
       {
         identifier: 136743,
         title: 'Uniformering van het lozingenbeleid voor mestverwerkingsinstallaties',
+        relations: {
+          nextMotion: 367333,
+          previousMotion: 642621,
+        },
       },
       {
         identifier: 367333,
         title: 'De totstandkoming van drinkwatertarieven',
+        relations: {
+          nextMotion: 973533,
+          previousMotion: 136743,
+        },
       },
       {
         identifier: 973533,
         title: 'Zelfcensuur als direct gevolg van bedreigingen',
+        relations: {
+          nextMotion: 334672,
+          previousMotion: 367333,
+        },
       },
       {
         identifier: 334672,
         title: 'Alle vormen van voortgezet onderwijs opnemen als mogelijk resultaat van de toets',
+        relations: {
+          nextMotion: 358964,
+          previousMotion: 973533,
+        },
       },
       {
         identifier: 358964,
         title: 'Het weigeren van leerlingen vanwege een dubbel advies',
+        relations: {
+          nextMotion: 195075,
+          previousMotion: 334672,
+        },
       },
       {
         identifier: 195075,
         title: 'Een verbod op islamitisch thuisonderwijs',
+        relations: {
+          nextMotion: 752183,
+          previousMotion: 358964,
+        },
       },
       {
         identifier: 752183,
         title: 'Evaluatie van de klankbordgroep bij vervanging van onderzeeboten',
+        relations: {
+          nextMotion: null,
+          previousMotion: 195075,
+        },
       },
     ];
 

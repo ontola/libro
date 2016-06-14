@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
 const MotionContainer = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(MotionShow)
 
 export default MotionContainer
