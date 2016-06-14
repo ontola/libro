@@ -18,12 +18,6 @@ class Home extends React.Component {
             exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
             dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
           </p>
-          <p>
-            <Button />
-            <Button weight />
-            <Button theme="subtle" children="Klik hier niet" />
-            <Button weight theme="subtle" children="Klik hier niet" />
-          </p>
         </Box>
       </div>
     );
