@@ -4,24 +4,3 @@
   display: flex;
   justify-content: space-between;
 }
-
-.opinion {
-  width: 30px;
-  height: 30px;
-  display: inline-block;
-  border-radius: 100%;
-  overflow: hidden;
-  border-width: 2px;
-  border-style: solid;
-  background-color: white;
-
-  &--yes {
-    border-color: green;
-    margin-right: 4px;
-  }
-
-  &--no {
-    border-color: $red;
-    margin-left: 4px;
-  }
-}

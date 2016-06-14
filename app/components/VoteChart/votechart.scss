@@ -1,6 +1,6 @@
 @import "../shared/config.scss";
 
-.votechart {
+.VoteChart {
   &__container {
     width: 100%;
     background-color: white;
@@ -26,5 +26,7 @@
   &__legend {
     display: flex;
     justify-content: space-between;
+    font-size: $font-size-h6;
+    margin: $margin-small;
   }
 }

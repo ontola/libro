@@ -1,9 +1,16 @@
 import './opinions.scss';
 import React, { PropTypes } from 'react';
+import { Opinion } from '../';
 
 const propTypes = {
-  pro: PropTypes.arrayOf(PropTypes.object),
-  con: PropTypes.arrayOf(PropTypes.object),
+  pro: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.object),
+    PropTypes.bool,
+  ]),
+  con: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.object),
+    PropTypes.bool,
+  ]),
 };
 
 const defaultProps = {
@@ -11,15 +18,9 @@ const defaultProps = {
   con: [],
 };
 
-function Opinion({ side, owner, msg}) {
-  return (
-    <div className={`opinion opinion--${side}`}><img src={`/static/icon-${owner}.png`} alt={owner} /></div>
-  );
-}
-
 function Opinions({ pro, con }) {
-  const listProOpinions = pro.map((o, i) => <Opinion key={i} side={o.option} owner={o.group.name} msg={o.value} />);
-  const listConOpinions = con.map((o, i) => <Opinion key={i} side={o.option} owner={o.group.name} msg={o.value} />);
+  const listProOpinions = pro.map((o, i) => <Opinion key={i} side={o.option} owner={o.group.name}  />);
+  const listConOpinions = con.map((o, i) => <Opinion key={i} side={o.option} owner={o.group.name} />);
 
   return (
     <div className="opinions">
