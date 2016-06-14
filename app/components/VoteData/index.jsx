@@ -2,6 +2,7 @@
 import './votedata.scss';
 import React, { PropTypes } from 'react';
 import { Heading, Box, VoteChart, Opinions } from '../';
+import classNames from 'classnames';
 
 const propTypes = {
   data: PropTypes.oneOfType([
@@ -30,15 +31,23 @@ function voteDataExpanded(data) {
 
 function voteDataUnexpanded(data) {
   return (
-    <div className="vote">
-      <VoteChart data={data.result_aggs} result={data.result} />
-    </div>
+    <VoteChart data={data.result_aggs} result={data.result} />
   );
 }
 
 function VoteData({ data, expanded }) {
   if (!data) return false;
-  return expanded ? voteDataExpanded(data) : voteDataUnexpanded(data);
+
+  const voteDataClass = classNames({
+    'VoteData': true,
+    'VoteData--expanded': expanded,
+  });
+
+  return (
+    <div className={voteDataClass}>
+      { expanded ? voteDataExpanded(data) : voteDataUnexpanded(data) }
+    </div>
+  )
 }
 
 VoteData.propTypes = propTypes;
