@@ -4,11 +4,10 @@ Deze demo bevat een interface voor open data van de gemeenteraad.
 ### Usage
 
 * Install nodemon, concurrently and rimraf globally `npm i -g nodemon concurrently rimraf`
-* Install [Foreman](https://github.com/ddollar/foreman)
-* `$ foreman start`
-* Open http://localhost:3000
+* To start dev-server run `npm run start`
+* To start api run `npm run api`
+* To start dev-server and api alongside, run `npm run start-dev`
 
-See ./Procfile for the underlying commands
 
 ### Build
 
