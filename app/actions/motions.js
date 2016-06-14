@@ -16,5 +16,5 @@ const apiGetMotions = (id) => ({
 });
 
 export {
-  apiGetMotions
+  apiGetMotions,
 };
