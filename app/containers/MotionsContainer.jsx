@@ -6,7 +6,7 @@ import { apiGetMotions } from '../actions/motions';
 
 const mapStateToProps = (state) => {
   return {
-    data: state.motions.items
+    data: state.motions.items || []
   }
 }
 

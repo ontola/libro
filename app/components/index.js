@@ -10,6 +10,8 @@ export { default as DetailType } from './DetailType';
 export { default as Detail } from './Detail';
 export { default as DetailsBar } from './DetailsBar';
 export { default as Heading } from './Heading';
+export { default as Hoverable } from './Hoverable';
+export { default as HoverCard } from './HoverCard';
 export { default as MarkdownContent } from './MarkdownContent';
 export { default as MotionShow } from './MotionShow';
 export { default as MotionsList } from './MotionsList';

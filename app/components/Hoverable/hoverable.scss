@@ -1,0 +1,19 @@
+@import "../shared/config.scss";
+
+.Hoverable {
+
+  &__children {
+
+  }
+
+}
+
+.Hoverable__content {
+  display: none;
+
+  &--show {
+    display: block;
+    position: absolute;
+    z-index: 1000;
+  }
+}

@@ -40,7 +40,6 @@ const defaultProps = {
 };
 
 class MotionShow extends React.Component {
-
   constructor(props) {
     super(props);
   }
@@ -48,8 +47,9 @@ class MotionShow extends React.Component {
   render() {
     const { data } = this.props;
 
-    const pro = data.arguments && data.arguments.filter(e => e.side === 'pro');
-    const con = data.arguments && data.arguments.filter(e => e.side === 'con');
+    const argumentsList = data.arguments || [];
+    const pro = argumentsList.filter(e => e.side === 'pro');
+    const con = argumentsList.filter(e => e.side === 'con');
 
     const buttons = [{
       label: 'Ik ben voor',
@@ -75,8 +75,22 @@ class MotionShow extends React.Component {
       <div>
         <Box ghost>
           <div className="MotionShow_navigation">
-            <div className="MotionShow_navigation_link">{ data.relations.previousMotion !== null && <Link to={`/motion/${data.relations.previousMotion}`}><FontAwesome name="arrow-left" /> Vorige</Link>}</div>
-            <div className="MotionShow_navigation_link">{ data.relations.nextMotion !== null && <Link to={`/motion/${data.relations.nextMotion}`}>Volgende <FontAwesome name="arrow-right" /></Link>}</div>
+            <div className="MotionShow_navigation_link">
+              { data.relations.previousMotion !== null &&
+                <Link to={`/motion/${data.relations.previousMotion}`}>
+                  <FontAwesome name="arrow-left" />{' '}
+                  Vorige
+                </Link>
+              }
+            </div>
+            <div className="MotionShow_navigation_link">
+              { data.relations.nextMotion !== null &&
+                <Link to={`/motion/${data.relations.nextMotion}`}>
+                  Volgende{' '}
+                  <FontAwesome name="arrow-right" />
+                </Link>
+              }
+            </div>
           </div>
         </Box>
 
@@ -92,14 +106,19 @@ class MotionShow extends React.Component {
         </Box>
         <VoteData data={data.votes} expanded />
         <Columns>
-          <div>
-            <Box ghost><Heading size="4">Voordelen</Heading></Box>
-            { pro && pro.map(a => <Argument key={a.id} data={a}/>) }
-          </div>
-          <div>
-            <Box ghost><Heading size="4">Nadelen</Heading></Box>
-            { con && con.map(a => <Argument key={a.id} data={a} />) }
-          </div>
+          { pro.length > 0 &&
+            <div>
+              <Box ghost><Heading size="4">Voordelen</Heading></Box>
+              { pro.map(a => <Argument key={a.id} data={a}/>) }
+            </div>
+          }
+
+          { con.length > 0 &&
+            <div>
+              <Box ghost><Heading size="4">Nadelen</Heading></Box>
+              { con.map(a => <Argument key={a.id} data={a}/>) }
+            </div>
+          }
         </Columns>
       </div>
     );

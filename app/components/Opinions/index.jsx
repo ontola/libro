@@ -19,8 +19,26 @@ const defaultProps = {
 };
 
 function Opinions({ pro, con }) {
-  const listProOpinions = pro.map((o, i) => <Opinion key={i} side={o.option} owner={o.group.name}  />);
-  const listConOpinions = con.map((o, i) => <Opinion key={i} side={o.option} owner={o.group.name} />);
+
+  const message = (party, side, msg) => `De partij ${party} is ${side} met ${msg} stemmen`;
+
+  const listProOpinions = pro.map((o, i) =>
+    <Opinion
+      key={i}
+      side={o.option}
+      owner={o.group.name}
+      msg={message(o.group.name, o.option, o.value)}
+    />
+  );
+
+  const listConOpinions = con.map((o, i) =>
+    <Opinion
+      key={i}
+      side={o.option}
+      owner={o.group.name}
+      msg={message(o.group.name, o.option, o.value)}
+    />
+  );
 
   return (
     <div className="opinions">

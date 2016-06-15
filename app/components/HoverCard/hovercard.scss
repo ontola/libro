@@ -1,0 +1,10 @@
+@import "../shared/config.scss";
+
+.HoverCard {
+  position: absolute;
+  transition: .2s all;
+
+  &--hide {
+    display: none;
+  }
+}
