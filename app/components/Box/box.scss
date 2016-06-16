@@ -16,7 +16,6 @@
   }
 
   @include large() {
-    border-width: 1px;
     margin: $margin-base;
   }
 }

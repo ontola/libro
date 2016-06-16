@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import { HoverContainer } from '../../containers';
 
 const propTypes = {
-  side: PropTypes.oneOf(['yes', 'no']),
+  side: PropTypes.oneOf(['yes', 'no']).isRequired,
   owner: PropTypes.string,
   msg: PropTypes.string,
 };
@@ -14,7 +14,7 @@ const defaultProps = {
   msg: '',
 };
 
-function Opinion({ side, owner, msg}) {
+function Opinion({ side, owner, msg }) {
   return (
     <div className={`opinion opinion--${side}`}>
       <HoverContainer message={msg} id={owner}>

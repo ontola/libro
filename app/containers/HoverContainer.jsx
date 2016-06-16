@@ -15,6 +15,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onShow: (content) => {
       dispatch(setCard(content));
     },
+    onRemove: () => {
+      dispatch(removeCard());
+    },
   }
 }
 

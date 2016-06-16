@@ -13,36 +13,22 @@ const mapStateToProps = (state) => {
   return { hovercard: state.hovercard }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    onRemove: () => {
-      dispatch(removeCard());
-    },
-  }
-}
-
-function HoverCard({ hovercard, onRemove }) {
+function HoverCard({ hovercard }) {
   const { left, top, content } = hovercard.content;
   const className = classNames({
     'HoverCard': true,
     'HoverCard--hide': hovercard.hide
   });
   const style = {
-    left: left || 0,
-    top: (top || 0) + 20,
+    left: (left || -999),
+    top: (top || -999) + 20,
   };
 
   return (
-    <div
-      style={style}
-      className={className}
-      onMouseLeave={e => {
-        onRemove();
-      }}
-    >
-      <Box>
+    <div style={style} className={className}>
+      <div className="HoverCard__content">
         {content}
-      </Box>
+      </div>
     </div>
   );
 }
@@ -50,4 +36,4 @@ function HoverCard({ hovercard, onRemove }) {
 HoverCard.propTypes = propTypes;
 // HoverCard.defaultProps = defaultProps;
 
-export default connect(mapStateToProps, mapDispatchToProps)(HoverCard);
+export default connect(mapStateToProps)(HoverCard);

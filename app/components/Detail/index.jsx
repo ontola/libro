@@ -1,7 +1,6 @@
 // @flow
 import './detail.scss';
 import React, { PropTypes } from 'react';
-import FontAwesome from 'react-fontawesome';
 
 const propTypes = {
   className: PropTypes.string,
@@ -14,7 +13,7 @@ const propTypes = {
 
 function Detail({ text, icon, url, imageUrl, className, title }) {
   let Element = url ? 'a' : 'div';
-  const image = imageUrl
+  const pictogram = imageUrl
     ? <img src={imageUrl} className="detail__icon" role="presentation" />
     : <span className={`detail__icon fa fa-${icon}`} />;
 
@@ -24,7 +23,7 @@ function Detail({ text, icon, url, imageUrl, className, title }) {
       className={`detail ${className}`}
       title={title}
     >
-      {image}
+      {pictogram}
       <span className="detail__text">{text}</span>
     </Element>
   );

@@ -3,17 +3,9 @@
 .Hoverable {
 
   &__children {
-
-  }
-
-}
-
-.Hoverable__content {
-  display: none;
-
-  &--show {
-    display: block;
-    position: absolute;
+    position: relative;
     z-index: 1000;
   }
+
+
 }

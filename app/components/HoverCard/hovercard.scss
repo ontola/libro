@@ -2,9 +2,32 @@
 
 .HoverCard {
   position: absolute;
-  transition: .2s all;
+  transition: .3s opacity;
+  opacity: 1;
+  background-color: white;
+  margin-top: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  border-radius: 4px;
+  width: 300px;
+
+  &__content {
+    padding: 20px;
+  }
+
+  &::before {
+    position: absolute;
+    left: 10px;
+    top: -5px;
+    display: block;
+    content: ' ';
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid white;
+  }
 
   &--hide {
-    display: none;
+    opacity: 0;
   }
 }
