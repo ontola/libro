@@ -14,6 +14,10 @@ function navbarLeft() {
       <FontAwesome name="group" />
       <span className="icon-left">Politicians</span>
     </Link>,
+    <Link className="navbar-item" to="/search">
+      <FontAwesome name="search" />
+      <span className="icon-left">Search</span>
+    </Link>,
   ];
 
   return items;

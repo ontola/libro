@@ -9,6 +9,9 @@ export { default as DetailStatus } from './DetailStatus';
 export { default as DetailType } from './DetailType';
 export { default as Detail } from './Detail';
 export { default as DetailsBar } from './DetailsBar';
+export { default as EmptyState } from './EmptyState';
+export { default as EntryListItem } from './EntryListItem';
+// export { default as EntryTable } from './EntryTable';
 export { default as Heading } from './Heading';
 export { default as Hoverable } from './Hoverable';
 export { default as HoverCard } from './HoverCard';
@@ -20,7 +23,12 @@ export { default as Opinions } from './Opinions';
 export { default as Opinion } from './Opinion';
 export { default as NavbarWrapper } from './NavbarWrapper';
 export { default as PoliticiansList } from './PoliticiansList';
+export { default as RefinementOption } from './RefinementOption';
+export { default as ResetFiltersDisplay } from './ResetFiltersDisplay';
+export { default as VoteButtons } from './VoteButtons';
 export { default as VoteChart } from './VoteChart';
 export { default as VoteData } from './VoteData';
+
+
 import * as Components from '.';
 export default Components;

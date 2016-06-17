@@ -6,6 +6,7 @@ import FontAwesome from 'react-fontawesome';
 import {
   Argument,
   Box,
+  Button,
   Columns,
   Detail,
   DetailProfile,
@@ -14,6 +15,7 @@ import {
   DetailType,
   Heading,
   MarkdownContent,
+  VoteButtons,
   VoteData,
 } from '../';
 
@@ -42,34 +44,18 @@ const defaultProps = {
 class MotionShow extends React.Component {
   constructor(props) {
     super(props);
+    this.vote = this.vote.bind(this);
+  }
+
+  vote(side, id) {
+    console.log(id, side);
   }
 
   render() {
-    const { data } = this.props;
-
+    const { data, onVote } = this.props;
     const argumentsList = data.arguments || [];
     const pro = argumentsList.filter(e => e.side === 'pro');
     const con = argumentsList.filter(e => e.side === 'con');
-
-    const buttons = [{
-      label: 'Ik ben voor',
-      icon: 'thumbs-up',
-      action() {
-        console.log('Ik ben voor:', data.title);
-      },
-    }, {
-      label: 'Neutraal',
-      icon: 'pause',
-      action() {
-        console.log('Ik ben neutraal:', data.title);
-      },
-    }, {
-      label: 'Ik ben tegen',
-      icon: 'thumbs-down',
-      action() {
-        console.log('Ik ben tegen:', data.title);
-      },
-    }];
 
     return (
       <div>
@@ -94,16 +80,21 @@ class MotionShow extends React.Component {
           </div>
         </Box>
 
-        <Box buttons={buttons}>
-          <Heading size="2">{data.title}</Heading>
-          <DetailsBar>
-            <Detail text="Motie" icon="lightbulb-o" />
-            <Detail text="Verworpen" icon="close" />
-            <Detail text="Joep Meindertsma" icon="user" />
-            <Detail text="3 minuten geleden" icon="clock-o" />
-          </DetailsBar>
-          <MarkdownContent content={data.description} />
+        <Box>
+          <div className="box__content">
+            <Heading size="2">{data.title}</Heading>
+            <DetailsBar>
+              <Detail text="Motie" icon="lightbulb-o" />
+              <Detail text="Verworpen" icon="close" />
+              <Detail text="Joep Meindertsma" icon="user" />
+              <Detail text="3 minuten geleden" icon="clock-o" />
+            </DetailsBar>
+            <MarkdownContent content={data.description} />
+          </div>
+
+          <VoteButtons id={data.identifier} onVote={onVote} />
         </Box>
+
         <VoteData data={data.votes} expanded />
         <Columns>
           { pro.length > 0 &&

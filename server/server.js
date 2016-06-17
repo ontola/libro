@@ -3,6 +3,8 @@ import webpack from 'webpack';
 import webpackConfig from '../webpack/common.config.babel';
 import webpackMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
+import SearchkitExpress from 'searchkit-express';
+import bodyParser from 'body-parser';
 import httpProxy from 'http-proxy';
 import { renderFullPage } from './utils/render';
 
@@ -14,6 +16,9 @@ const prodPort = 80;
 const port = process.env.NODE_ENV === 'development' ? devPort : prodPort;
 const MS = 1000;
 const heartBeatTime = 10;
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 if (process.env.NODE_ENV === 'development') {
   app.use(webpackMiddleware(compiler, {
@@ -39,6 +44,10 @@ app.use(/\/api\/(.*)/, (request, res) => {
 // Static directory for express
 app.use('/static', express.static(`${__dirname}/../static/`));
 app.use('/dist', express.static(`${__dirname}/../dist/`));
+app.use('/aod_search', SearchkitExpress.createRouter({
+  host: process.env.ELASTICSEARCH_ADDRESS,
+  index: process.env.ELASTICSEARCH_INDEX,
+}));
 
 app.get(/.*/, (req, res) => {
   const domain = req.get('host').replace(/:.*/, '');

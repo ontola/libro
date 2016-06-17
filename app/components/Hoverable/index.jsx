@@ -41,9 +41,9 @@ class Hoverable extends React.Component {
       left: this.state.left,
     };
 
-    window.addEventListener('resize', function(){
-      this.getPos();
-    }.bind(this), true);
+    // window.addEventListener('resize', function(){
+    //   this.getPos();
+    // }.bind(this), true);
 
     return (
       <div
