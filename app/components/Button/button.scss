@@ -35,10 +35,14 @@
 .btn--box {
   background-color: $white;
   border-right: 1px solid $border-color;
-  color: $blue;
+  color: $g3;
   flex-grow: 1;
 
   &:last-child {
     border-right: 0;
+  }
+
+  &:hover {
+    color: $g4;
   }
 }

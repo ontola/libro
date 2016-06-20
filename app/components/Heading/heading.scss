@@ -46,3 +46,12 @@ h5 {
 h6 {
   font-size: $font-size-h6;
 }
+
+.heading--section {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: grey;
+  font-size: 1em;
+  font-weight: bold;
+}

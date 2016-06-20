@@ -84,9 +84,13 @@ class MotionShow extends React.Component {
           <div className="box__content">
             <Heading size="2">{data.title}</Heading>
             <DetailsBar>
-              <Detail text="Motie" icon="lightbulb-o" />
-              <Detail text="Verworpen" icon="close" />
-              <Detail text="Joep Meindertsma" icon="user" />
+              <DetailType type="motion" />
+              <DetailStatus status="fail" />
+              <DetailProfile
+                name="Joep Meindertsma"
+                url=""
+                imageUrl="https://argu-logos.s3.amazonaws.com/photos/825/icon_profielfoto_Joep_Meindertsma.jpg"
+              />
               <Detail text="3 minuten geleden" icon="clock-o" />
             </DetailsBar>
             <MarkdownContent content={data.description} />
@@ -99,14 +103,18 @@ class MotionShow extends React.Component {
         <Columns>
           { pro.length > 0 &&
             <div>
-              <Box ghost><Heading size="4">Voordelen</Heading></Box>
+              <Box ghost>
+                <Heading size="3" section>Voordelen</Heading>
+              </Box>
               { pro.map(a => <Argument key={a.id} data={a}/>) }
             </div>
           }
 
           { con.length > 0 &&
             <div>
-              <Box ghost><Heading size="4">Nadelen</Heading></Box>
+              <Box ghost>
+                <Heading size="3" section>Nadelen</Heading>
+              </Box>
               { con.map(a => <Argument key={a.id} data={a}/>) }
             </div>
           }
