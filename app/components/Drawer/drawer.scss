@@ -1,1 +1,96 @@
 @import "../shared/config.scss";
+
+
+.sk-sidebar {
+  @include small-only {
+    position: fixed;
+    left: -100%;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    transition: left 0s;
+    transition-delay: .2s;
+    z-index: 1000;
+  }
+
+  @include large {
+    display: block;
+    width: 30%;
+    margin: 0 2% 0 0;
+  }
+}
+
+.sk-sidebar__overlay {
+  @include small-only {
+    background-color: rgba(71, 86, 104, 0.3);
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    opacity: 0;
+  	visibility: hidden;
+  	transition: opacity .2s, visibility .2s .2s;
+    //transition-delay: .2s;
+  }
+}
+
+.sk-sidebar__wrapper {
+  @include small-only {
+    width: 330px;
+    position: fixed;
+    left: -100%;
+    top: 0;
+    bottom: 0;
+    background-color: #fff;
+    z-index: 10;
+    visibility: hidden;
+    transition: left 0.2s, visibility 0s 0.2s;
+  }
+}
+
+.sk-sidebar__container {
+  @include small-only {
+    height: 100%;
+    padding-bottom: 72px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+.sk-sidebar--visible {
+  left: 0;
+  transition: left 0s;
+
+  .sk-sidebar__overlay {
+    opacity: 1;
+  	visibility: visible;
+  	transition: opacity 0.2s;
+  }
+
+  .sk-sidebar__wrapper {
+    z-index: 20;
+    left: 0;
+    visibility: visible;
+    transition: left 0.2s;
+    //transition-delay: .2s;
+  }
+}
+
+.sk-drawer-action {
+  display: block;
+
+  @include large {
+    display: none;
+  }
+}
+
+.sk-drawer-action--close {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background-color: white;
+  padding: 1em;
+}

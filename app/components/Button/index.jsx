@@ -16,18 +16,20 @@ const propTypes = {
 };
 
 const defaultProps = {
+  useDefaultClassName: true,
   weight: false,
   theme: 'default',
   icon: '',
   children: 'Joep',
 };
 
-const Button = ({ weight, theme, icon, children, ...props }) => {
+const Button = ({ weight, theme, icon, children, className, ...props }) => {
+
   const btnClass = classNames({
     btn: true,
     'btn--weight': weight,
     [`btn--${theme}`]: true,
-  });
+  }, className);
 
   return (
     <button {...props} className={btnClass} role="button">

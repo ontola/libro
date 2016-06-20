@@ -9,7 +9,7 @@ function EntryListItem({ result }) {
 	return (
 		<Box>
 			<div className="box__content">
-				<Heading size="2">
+				<Heading size="3">
 					<Link to={`/doc/${result._id}`} dangerouslySetInnerHTML={{__html:source.onderwerp}}></Link>
 				</Heading>
 				<DetailsBar>

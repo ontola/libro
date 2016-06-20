@@ -1,5 +1,42 @@
 @import "mixins.scss";
 
+$sk-font-family: "Open Sans", Helvetica, sans-serif;
+$sk-primary-theme-color: rgb(71, 86, 104); // #e8e8e8;
+$sk-active-bg-color: #475668;
+$sk-border-color: #fff;
+$sk-title-color: #737373;
+$sk-text-color: #737373;
+$sk-list-secondary-text-color: #ccc;
+$sk-action-text-color: #737373;
+$sk-action-active-color: #737373;
+$sk-disabled-text-color: #999;
+$sk-border-radius: 3px;
+
+$sk-bold-weight: 700 !default;
+$sk-medium-weight: 500 !default;
+$sk-light-weight: 300 !default;
+
+$sk-text-secondary-color: #999 !default;
+$sk-list-text-color: #666 !default;
+$sk-remove-action-color: #fa2a00 !default;
+
+$sk-selector-background: white !default;
+$sk-selector-active-background: $sk-primary-theme-color;
+$sk-selector-border-color: #ccc !default;
+$sk-selector-text-color: black !default;
+$sk-selector-active-text-color: white !default;
+
+$sk-selected-filters-background: #f4f4f4 !default;
+
+$sk-heading-font-size: 14px !default;
+$sk-text-font-size: 14px !default;
+$sk-list-font-size: 14px !default;
+$sk-action-font-size: 12px !default;
+$sk-list-secondary-font-size: 12px !default;
+
+
+
+
 /*
 COLORS
 */

@@ -1,8 +1,6 @@
 // @flow
 import './search.scss';
 import React from 'react';
-import { connect } from 'react-redux';
-import { toggleDrawer, setHitCount } from '../../actions/search';
 import Helmet from 'react-helmet';
 
 import {
@@ -17,7 +15,6 @@ import {
 	SearchkitProvider, SearchkitManager, NoHits, Panel, InputFilter,
 	Toggle, Select, ItemList, RangeFilter, InitialLoader, ViewSwitcherToggle, ViewSwitcherHits
 } from 'searchkit';
-
 
 const sk = new SearchkitManager('/aod_search');
 
@@ -52,23 +49,6 @@ const translations = {
 	"searchbox.placeholder": "Zoeken",
 };
 
-const mapStateToProps = (state) => {
-  return {
-    hits: state.search.hits,
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-		setHitCount: (count) => {
-			dispatch(setHitCount(count));
-		},
-    toggleDrawer: () => {
-      dispatch(toggleDrawer());
-    }
-  }
-}
-
 class Search extends React.Component {
 	constructor(props) {
     super(props);
@@ -79,6 +59,8 @@ class Search extends React.Component {
   }
 
 	componentDidMount() {
+		console.log(this.props);
+
 		sk.resultsEmitter.listeners.push (results => {
 			this.props.setHitCount(results.hits.total);
 		});
@@ -106,34 +88,31 @@ class Search extends React.Component {
 	}
 
 	render() {
-		const { hits } = this.props;
+		const { hits, toggleDrawer } = this.props;
 
 		return (
 			<div>
 				<Helmet title="Zoeken" />
 				<SearchkitProvider searchkit={sk}>
-					<div className="sk-container">
+					<div>
 						<Box ghost>
-
-							<div className="sk-searchbar">
-								<SearchBox autofocus={true} searchOnChange={true} searchThrottleTime={1000} queryBuilder={this.queryBuilder} queryFields={["onderwerp", "text", "text.shingles"]}	/>
-							</div>
+							<SearchBox autofocus={true} searchOnChange={true} searchThrottleTime={1000} queryBuilder={this.queryBuilder} queryFields={["onderwerp", "text", "text.shingles"]}	/>
 
 							<div className="sk-searchtools">
+
 								<div className="sk-display-tools">
-									<div className="sk-drawer-action">
-										<Button theme="subtle" weight onClick={this.props.toggleDrawer}>Filter</Button>
-									</div>
+									<Button className="sk-drawer-action" theme="subtle" weight onClick={toggleDrawer}>Filter</Button>
 									<SortingSelector listComponent={Select} options={sortOption} />
 								</div>
 
-								<div class="sk-hits-stats" data-qa="hits-stats">
-									<div class="sk-hits-stats__info" data-qa="info">
+								<div class="sk-hits-stats">
+									<div class="sk-hits-stats__info">
 										{hits} resultaten
 									</div>
 								</div>
 
 							</div>
+
 						</Box>
 
 
@@ -159,4 +138,4 @@ class Search extends React.Component {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default Search;
