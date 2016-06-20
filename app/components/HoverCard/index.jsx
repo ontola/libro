@@ -1,7 +1,6 @@
 import './hovercard.scss';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-// import { removeCard } from '../../actions/hovercard';
 import classNames from 'classnames';
 
 const propTypes = {

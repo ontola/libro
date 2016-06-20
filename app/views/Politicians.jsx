@@ -10,7 +10,11 @@ const Politicians = ({}) => {
         title="Politicians"
       />
       <Heading>Politicians</Heading>
-      <Box>Hier komt een lijst met alle leden van de raad. </Box>
+      <Box>
+        <div className="box__content">
+          Hier komt een lijst met alle leden van de raad.
+        </div>
+      </Box>
     </div>
   );
 }

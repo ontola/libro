@@ -1,19 +1,23 @@
 // @flow
 import './search.scss';
 import React from 'react';
+import { connect } from 'react-redux';
+import { toggleDrawer, setHitCount } from '../../actions/search';
 import Helmet from 'react-helmet';
+
 import {
-	Box, Button, Heading,
+	Box, Button, Heading, Drawer,
 	ResetFiltersDisplay, EntryListItem, EmptyState
 } from '../../components';
 
 import {
-	SearchBox, HitsStats, RefinementListFilter,
+	SearchBox, RefinementListFilter,
   Pagination, ResetFilters, MenuFilter, SelectedFilters, HierarchicalMenuFilter,
   NumericRefinementListFilter, GroupedSelectedFilters, SortingSelector,
 	SearchkitProvider, SearchkitManager, NoHits, Panel, InputFilter,
-	Toggle, Select, Tabs, ItemList, RangeFilter, InitialLoader, ViewSwitcherToggle, ViewSwitcherHits
+	Toggle, Select, ItemList, RangeFilter, InitialLoader, ViewSwitcherToggle, ViewSwitcherHits
 } from 'searchkit';
+
 
 const sk = new SearchkitManager('/aod_search');
 
@@ -46,34 +50,38 @@ const translations = {
 	"NoHits.SearchWithoutFilters": "Zoek zonder filters",
 	"NoHits.NoResultsFoundDidYouMean": "Geen resultaten gevonden voor '{query}'",
 	"searchbox.placeholder": "Zoeken",
-	"hitstats.results_found": "{hitCount} resultaten" // gevonden in {timeTaken} milliseconde
 };
+
+const mapStateToProps = (state) => {
+  return {
+    hits: state.search.hits,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+		setHitCount: (count) => {
+			dispatch(setHitCount(count));
+		},
+    toggleDrawer: () => {
+      dispatch(toggleDrawer());
+    }
+  }
+}
 
 class Search extends React.Component {
 	constructor(props) {
     super(props);
-
-    this.state = {
-      visible: false
-    };
-
-		this.toggleDrawer = this.toggleDrawer.bind(this);
-
-		sk.resultsEmitter.listeners.push (results => {
-			this.setHitCount(results.hits.total);
-		});
 
 		sk.translateFunction = (key) => {
 		  return translations[key]
 		}
   }
 
-	setHitCount(hits) {
-		this.setState({ hits: hits });
-	}
-
-	toggleDrawer() {
-		this.setState({ visible: !this.state.visible });
+	componentDidMount() {
+		sk.resultsEmitter.listeners.push (results => {
+			this.props.setHitCount(results.hits.total);
+		});
 	}
 
 	queryBuilder(queryString) {
@@ -98,6 +106,8 @@ class Search extends React.Component {
 	}
 
 	render() {
+		const { hits } = this.props;
+
 		return (
 			<div>
 				<Helmet title="Zoeken" />
@@ -112,30 +122,28 @@ class Search extends React.Component {
 							<div className="sk-searchtools">
 								<div className="sk-display-tools">
 									<div className="sk-drawer-action">
-										<span className="sk-drawer-action__btn" onClick={this.toggleDrawer}>Filter</span>
+										<Button theme="subtle" weight onClick={this.props.toggleDrawer}>Filter</Button>
 									</div>
 									<SortingSelector listComponent={Select} options={sortOption} />
 								</div>
-								<HitsStats/>
+
+								<div class="sk-hits-stats" data-qa="hits-stats">
+									<div class="sk-hits-stats__info" data-qa="info">
+										{hits} resultaten
+									</div>
+								</div>
+
 							</div>
 						</Box>
 
 
 						<div className="sk-results">
-							<div className={(this.state.visible ? "sk-sidebar--visible " : "") + "sk-sidebar"}>
-								<div className="sk-sidebar__overlay" onClick={this.toggleDrawer}></div>
-								<div className="sk-sidebar__wrapper">
-									<div className="sk-sidebar__container">
-										<ResetFilters component={ResetFiltersDisplay} />
-										<RefinementListFilter id="soort" field="classification" operator="OR" title="Soort" size={5} containerComponent={<Panel collapsable={true} defaultCollapsed={false}/>}/>
-										<RefinementListFilter id="Vergaderjaar" field="legislative_session" orderKey="_term" orderDirection="desc" operator="AND" title="Vergaderjaar" size={5} containerComponent={<Panel collapsable={true} defaultCollapsed={false}/>}/>
-										<NumericRefinementListFilter id="dateFilter" title="Datum" field="date" containerComponent={<Panel collapsable={true} defaultCollapsed={false}/>} options={dateFilterOptions}/>
-									</div>
-									<div className="sk-drawer-action sk-drawer-action--close">
-										<span className="sk-drawer-action__btn sk-drawer-action__btn--primary" onClick={this.toggleDrawer}>Toon { this.state.hits } resultaten</span>
-									</div>
-								</div>
-							</div>
+							<Drawer>
+								<ResetFilters component={ResetFiltersDisplay} />
+								<RefinementListFilter id="soort" field="classification" operator="OR" title="Soort" size={5} containerComponent={<Panel collapsable={true} defaultCollapsed={false}/>}/>
+								<RefinementListFilter id="Vergaderjaar" field="legislative_session" orderKey="_term" orderDirection="desc" operator="AND" title="Vergaderjaar" size={5} containerComponent={<Panel collapsable={true} defaultCollapsed={false}/>}/>
+								<NumericRefinementListFilter id="dateFilter" title="Datum" field="date" containerComponent={<Panel collapsable={true} defaultCollapsed={false}/>} options={dateFilterOptions}/>
+							</Drawer>
 
 							<div className="sk-main">
 								<InitialLoader />
@@ -151,4 +159,4 @@ class Search extends React.Component {
 	}
 }
 
-export default Search;
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

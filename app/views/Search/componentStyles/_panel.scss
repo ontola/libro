@@ -14,6 +14,7 @@
 
 .sk-panel {
   width: 100%;
+  box-sizing: border-box;
 
   &__header {
     color: $sk-title-color;

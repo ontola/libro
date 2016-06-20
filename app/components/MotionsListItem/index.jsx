@@ -21,9 +21,11 @@ const propTypes = {
 function MotionsListItem({ motion }) {
   return (
     <Box>
-      <div className="motions__list__item">
-        <Link to={`/motion/${motion.identifier}`}>{motion.title}</Link>
-        <VoteData data={motion.votes} />
+      <div className="box__content">
+        <div className="motions__list__item">
+          <Link to={`/motion/${motion.identifier}`}>{motion.title}</Link>
+          <VoteData data={motion.votes} />
+        </div>
       </div>
     </Box>
   );

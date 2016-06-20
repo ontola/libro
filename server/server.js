@@ -16,6 +16,8 @@ const prodPort = 80;
 const port = process.env.NODE_ENV === 'development' ? devPort : prodPort;
 const MS = 1000;
 const heartBeatTime = 10;
+const ELASTICSEARCH_ADDRESS = process.env.ELASTICSEARCH_ADDRESS || 'http://128.199.44.185:9200';
+const ELASTICSEARCH_INDEX = process.env.ELASTICSEARCH_INDEX || 'aod8';
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -45,8 +47,8 @@ app.use(/\/api\/(.*)/, (request, res) => {
 app.use('/static', express.static(`${__dirname}/../static/`));
 app.use('/dist', express.static(`${__dirname}/../dist/`));
 app.use('/aod_search', SearchkitExpress.createRouter({
-  host: process.env.ELASTICSEARCH_ADDRESS,
-  index: process.env.ELASTICSEARCH_INDEX,
+  host: ELASTICSEARCH_ADDRESS,
+  index: ELASTICSEARCH_INDEX,
 }));
 
 app.get(/.*/, (req, res) => {
