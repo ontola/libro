@@ -17,7 +17,7 @@
     "start-ssr:prod": "NODE_ENV=production node bin/server-ssr.js",
     "api": "NODE_ENV=development nodemon --watch api bin/api.js",
     "api:prod": "NODE_ENV=production node bin/api.js",
-    "build": "rimraf dist && NODE_ENV=production webpack --progress --verbose --display-error-details --config webpack/common.config.babel.js",
+    "build": "rm -rf dist && NODE_ENV=production webpack --progress --verbose --display-error-details --config webpack/common.config.babel.js",
     "test": "mocha tools/testhelper.js ./app/components/**/spec.js",
     "lint": "./node_modules/.bin/eslint ."
   },
