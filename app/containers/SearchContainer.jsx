@@ -21,7 +21,6 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-
 const SearchContainer = connect(
   mapStateToProps,
   mapDispatchToProps,

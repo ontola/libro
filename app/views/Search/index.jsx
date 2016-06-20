@@ -1,6 +1,6 @@
 // @flow
 import './search.scss';
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Helmet from 'react-helmet';
 
 import {
@@ -9,23 +9,15 @@ import {
 } from '../../components';
 
 import {
-	SearchBox, RefinementListFilter,
-  Pagination, ResetFilters, MenuFilter, SelectedFilters, HierarchicalMenuFilter,
-  NumericRefinementListFilter, GroupedSelectedFilters, SortingSelector,
-	SearchkitProvider, SearchkitManager, NoHits, Panel, InputFilter,
-	Toggle, Select, ItemList, RangeFilter, InitialLoader, ViewSwitcherToggle, ViewSwitcherHits
+	SearchBox, RefinementListFilter, Pagination, ResetFilters,
+  NumericRefinementListFilter, SortingSelector, NoHits, Panel,
+	Select, InitialLoader, Hits,
 } from 'searchkit';
-
-const sk = new SearchkitManager('/aod_search');
 
 const sortOption = [
 	{label:"Relevantie", field:"_score", order:"desc", defaultOption:true},
 	{label:"Nieuw-Oud", field:"date", order:"desc"},
 	{label:"Oud-Nieuw", field:"date", order:"asc"}
-];
-
-const viewComponents = [
-	{key:"list", title:"Lijst", itemComponent: EntryListItem, defaultOption:true},
 ];
 
 const dateFilterOptions = [
@@ -46,45 +38,21 @@ const translations = {
 	"NoHits.DidYouMean": "Bedoel je {suggestion}",
 	"NoHits.SearchWithoutFilters": "Zoek zonder filters",
 	"NoHits.NoResultsFoundDidYouMean": "Geen resultaten gevonden voor '{query}'",
-	"searchbox.placeholder": "Zoeken",
 };
 
 class Search extends React.Component {
-	constructor(props) {
-    super(props);
+	constructor(props, context) {
+    super(props, context);
 
-		sk.translateFunction = (key) => {
+		this.context.searchkit.translateFunction = (key) => {
 		  return translations[key]
 		}
   }
 
 	componentDidMount() {
-		console.log(this.props);
-
-		sk.resultsEmitter.listeners.push (results => {
+		this.context.searchkit.resultsEmitter.listeners.push (results => {
 			this.props.setHitCount(results.hits.total);
 		});
-	}
-
-	queryBuilder(queryString) {
-		return ({
-			"bool": {
-				"must": {
-					"simple_query_string": {
-						"query": queryString,
-						"fields": ["text"],
-						"minimum_should_match": "80%"
-					}
-				},
-				"should": {
-					"simple_query_string": {
-						"query": queryString,
-						"fields": ["text.shingles"],
-						"minimum_should_match": "80%"
-					}
-				}
-			}
-		})
 	}
 
 	render() {
@@ -93,49 +61,43 @@ class Search extends React.Component {
 		return (
 			<div>
 				<Helmet title="Zoeken" />
-				<SearchkitProvider searchkit={sk}>
-					<div>
-						<Box ghost>
-							<SearchBox autofocus={true} searchOnChange={true} searchThrottleTime={1000} queryBuilder={this.queryBuilder} queryFields={["onderwerp", "text", "text.shingles"]}	/>
+				<Box ghost>
+					<div className="sk-searchtools">
+						<div className="sk-display-tools">
+							<Button className="sk-drawer-action" theme="subtle" weight onClick={toggleDrawer}>Filter</Button>
+							<SortingSelector listComponent={Select} options={sortOption} />
+						</div>
 
-							<div className="sk-searchtools">
-
-								<div className="sk-display-tools">
-									<Button className="sk-drawer-action" theme="subtle" weight onClick={toggleDrawer}>Filter</Button>
-									<SortingSelector listComponent={Select} options={sortOption} />
-								</div>
-
-								<div class="sk-hits-stats">
-									<div class="sk-hits-stats__info">
-										{hits} resultaten
-									</div>
-								</div>
-
-							</div>
-
-						</Box>
-
-
-						<div className="sk-results">
-							<Drawer>
-								<ResetFilters component={ResetFiltersDisplay} />
-								<RefinementListFilter id="soort" field="classification" operator="OR" title="Soort" size={5} containerComponent={<Panel collapsable={true} defaultCollapsed={false}/>}/>
-								<RefinementListFilter id="Vergaderjaar" field="legislative_session" orderKey="_term" orderDirection="desc" operator="AND" title="Vergaderjaar" size={5} containerComponent={<Panel collapsable={true} defaultCollapsed={false}/>}/>
-								<NumericRefinementListFilter id="dateFilter" title="Datum" field="date" containerComponent={<Panel collapsable={true} defaultCollapsed={false}/>} options={dateFilterOptions}/>
-							</Drawer>
-
-							<div className="sk-main">
-								<InitialLoader />
-								<ViewSwitcherHits hitsPerPage={8} highlightFields={["onderwerp","text"]} hitComponents={viewComponents} scrollTo="body" />
-								<NoHits suggestionsField="onderwerp"/>
-								<Pagination showNumbers={true}/>
+						<div class="sk-hits-stats">
+							<div class="sk-hits-stats__info">
+								{hits} resultaten
 							</div>
 						</div>
 					</div>
-				</SearchkitProvider>
+				</Box>
+
+				<div className="sk-results">
+					<Drawer>
+						<ResetFilters component={ResetFiltersDisplay} />
+						<RefinementListFilter id="soort" field="classification" operator="OR" title="Soort" size={5} containerComponent={<Panel collapsable={true} defaultCollapsed={false}/>}/>
+						<RefinementListFilter id="Vergaderjaar" field="legislative_session" orderKey="_term" orderDirection="desc" operator="AND" title="Vergaderjaar" size={5} containerComponent={<Panel collapsable={true} defaultCollapsed={false}/>}/>
+						<NumericRefinementListFilter id="dateFilter" title="Datum" field="date" containerComponent={<Panel collapsable={true} defaultCollapsed={false}/>} options={dateFilterOptions}/>
+					</Drawer>
+
+					<div className="sk-main">
+						<InitialLoader />
+						<Hits hitsPerPage={8} highlightFields={["onderwerp","text"]} itemComponent={EntryListItem} scrollTo="body" />
+						<NoHits suggestionsField="onderwerp"/>
+						<Pagination showNumbers={true}/>
+					</div>
+				</div>
 			</div>
 		);
 	}
 }
+
+Search.contextTypes = {
+  searchkit: PropTypes.object,
+};
 
 export default Search;

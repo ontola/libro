@@ -1,20 +1,42 @@
 // @flow
 import './navbar.scss';
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
+import { SearchBox } from 'searchkit';
 
 const propTypes = {
   contentLeft: PropTypes.arrayOf(PropTypes.node),
   contentRight: PropTypes.arrayOf(PropTypes.node),
 };
 
-class NavbarWrapper extends Component {
+class NavbarWrapper extends React.Component {
   wrapInListItems(content, keyBase) {
     return content && content.map((item, i) =>
       <li key={`${keyBase}.${i}`}>{item}</li>
     );
   }
+
+  queryBuilder(queryString) {
+		return ({
+			"bool": {
+				"must": {
+					"simple_query_string": {
+						"query": queryString,
+						"fields": ["text"],
+						"minimum_should_match": "80%"
+					}
+				},
+				"should": {
+					"simple_query_string": {
+						"query": queryString,
+						"fields": ["text.shingles"],
+						"minimum_should_match": "80%"
+					}
+				}
+			}
+		})
+	}
 
   render() {
     const {
@@ -25,6 +47,8 @@ class NavbarWrapper extends Component {
     return (
       <nav id="navbar" className="navbar" role="navigation">
         <div className="nav-container">
+          <SearchBox autofocus={true} searchOnChange={true} searchThrottleTime={1000} queryBuilder={this.queryBuilder} queryFields={["onderwerp", "text", "text.shingles"]}	/>
+
           <div className="navbar-logo">
             <Link to="/">
               <svg xmlns="http://www.w3.org/2000/svg" width="60" height="30" viewBox="0 0 211 108">
