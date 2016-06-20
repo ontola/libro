@@ -7,11 +7,9 @@ const initialState = {
 };
 
 const votes = handleActions({
-  [updateVoteTally]: (state, action) => {
-    return {
-      counter: state.counter + action.payload,
-    };
-  },
+  [updateVoteTally]: (state, action) => ({
+    counter: state.counter + action.payload,
+  }),
 }, initialState);
 
 export default votes;
