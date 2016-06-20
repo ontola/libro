@@ -15,9 +15,7 @@ import {
 	Toggle, Select, Tabs, ItemList, RangeFilter, InitialLoader, ViewSwitcherToggle, ViewSwitcherHits
 } from 'searchkit';
 
-const sk = new SearchkitManager('/aod_search', {
-	// searchOnLoad: false
-});
+const sk = new SearchkitManager('/aod_search');
 
 const sortOption = [
 	{label:"Relevantie", field:"_score", order:"desc", defaultOption:true},
@@ -105,19 +103,23 @@ class Search extends React.Component {
 				<Helmet title="Zoeken" />
 				<SearchkitProvider searchkit={sk}>
 					<div className="sk-container">
-						<div className="sk-searchbar">
-							<SearchBox autofocus={true} searchOnChange={true} searchThrottleTime={1000} queryBuilder={this.queryBuilder} queryFields={["onderwerp", "text", "text.shingles"]}	/>
-						</div>
+						<Box ghost>
 
-						<div className="sk-searchtools">
-							<div className="sk-display-tools">
-								<div className="sk-drawer-action">
-									<span className="sk-drawer-action__btn" onClick={this.toggleDrawer}>Filter</span>
-								</div>
-								<SortingSelector listComponent={Select} options={sortOption} />
+							<div className="sk-searchbar">
+								<SearchBox autofocus={true} searchOnChange={true} searchThrottleTime={1000} queryBuilder={this.queryBuilder} queryFields={["onderwerp", "text", "text.shingles"]}	/>
 							</div>
-							<HitsStats/>
-						</div>
+
+							<div className="sk-searchtools">
+								<div className="sk-display-tools">
+									<div className="sk-drawer-action">
+										<span className="sk-drawer-action__btn" onClick={this.toggleDrawer}>Filter</span>
+									</div>
+									<SortingSelector listComponent={Select} options={sortOption} />
+								</div>
+								<HitsStats/>
+							</div>
+						</Box>
+
 
 						<div className="sk-results">
 							<div className={(this.state.visible ? "sk-sidebar--visible " : "") + "sk-sidebar"}>

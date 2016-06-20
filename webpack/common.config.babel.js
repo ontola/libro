@@ -1,3 +1,4 @@
+import path from 'path';
 import webpack from 'webpack';
 import autoprefixer from 'autoprefixer';
 import merge from 'webpack-merge';
@@ -34,6 +35,7 @@ const common = {
   resolve: {
     modulesDirectories: ['node_modules'],
     extensions: ['', '.js', '.jsx'],
+    alias: { react: path.resolve('./node_modules/react') },
   },
 
   module: {
