@@ -1,0 +1,29 @@
+image: node
+
+before_script:
+  - node -v
+  - npm -v
+  - npm i
+
+stages:
+  - lint
+  - build
+  - test
+  - deploy
+
+job1:
+  stage: lint
+  script:
+    - npm run lint
+
+job2:
+  stage: build
+  script:
+    - npm run build
+  only:
+    - master
+
+job3:
+  stage: test
+  script:
+    - npm run test
