@@ -1,3 +1,5 @@
+[![build status](https://gitlab.com/arguweb/aod_demo/badges/master/build.svg)](https://gitlab.com/arguweb/aod_demo/commits/master)
+
 # AOD Demo
 Deze demo bevat een interface voor open data van de gemeenteraad.
 
