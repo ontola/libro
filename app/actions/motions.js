@@ -1,5 +1,4 @@
 import { CALL_API } from 'redux-api-middleware';
-import { createAction, handleAction, handleActions } from 'redux-actions';
 import { API_ROOT } from '../constants/config';
 import * as action from '../constants/actionTypes';
 

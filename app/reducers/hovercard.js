@@ -20,7 +20,7 @@ const hovercard = (state = initialState, action) => {
     case REMOVE_HOVER_CARD:
       return Object.assign({}, state, {
         content: {},
-        hide: true
+        hide: true,
       });
 
     default:

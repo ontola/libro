@@ -6,8 +6,8 @@ import rootReducer from '../reducers';
 
 function configureStore(initialState) {
   const middlewares = [
-      thunk,
-      apiMiddleware
+    thunk,
+    apiMiddleware,
   ].filter(Boolean);
 
   const createStoreWithMiddleware = compose(
@@ -17,7 +17,6 @@ function configureStore(initialState) {
   )(createStore);
 
   const store = createStoreWithMiddleware(rootReducer, initialState);
-
   return store;
 }
 
