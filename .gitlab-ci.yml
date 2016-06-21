@@ -21,6 +21,9 @@ job2:
   stage: build
   script:
     - npm run build
+ artifacts:
+    paths:
+    - dist/    
   only:
     - master
 
@@ -28,6 +31,3 @@ job3:
   stage: test
   script:
     - npm run test
-  artifacts:
-    paths:
-      - dist
