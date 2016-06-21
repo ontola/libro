@@ -1,13 +1,13 @@
 // @flow
 import React from 'react';
-import { Heading, Box } from '../components';
+import { Heading, Box, Page } from '../components';
 
 function Profile() {
   return (
-    <div>
+    <Page>
       <Heading>Profile</Heading>
       <Box />
-    </div>
+    </Page>
   );
 }
 

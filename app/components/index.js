@@ -23,6 +23,7 @@ export { default as ResetFiltersDisplay } from './ResetFiltersDisplay';
 export { default as SearchPage } from './SearchPage';
 export { default as Opinion } from './Opinion';
 export { default as Opinions } from './Opinions';
+export { default as Page } from './Page';
 export { default as PoliticiansList } from './PoliticiansList';
 export { default as VoteButtons } from './VoteButtons';
 export { default as VoteChart } from './VoteChart';

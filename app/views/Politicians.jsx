@@ -1,10 +1,10 @@
 // @flow
 import React from 'react';
-import { Heading, Box } from '../components';
+import { Heading, Box, Page } from '../components';
 import Helmet from 'react-helmet';
 
 const Politicians = () => (
-  <div>
+  <Page>
     <Helmet
       title="Politicians"
     />
@@ -14,7 +14,7 @@ const Politicians = () => (
         Hier komt een lijst met alle leden van de raad.
       </div>
     </Box>
-  </div>
+  </Page>
 );
 
 export default Politicians;

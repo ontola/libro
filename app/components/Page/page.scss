@@ -1,0 +1,13 @@
+@import "../shared/config.scss";
+
+.Page {
+  margin: 0 auto;
+
+  &--default {
+    max-width: $page-width-default;
+  }
+
+  &--full {
+    max-width: $page-width-fullwidth;
+  }
+}

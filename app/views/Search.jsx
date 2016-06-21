@@ -1,13 +1,14 @@
 // @flow
 import React from 'react';
 import { SearchContainer } from '../containers';
+import { Page } from '../components';
 import Helmet from 'react-helmet';
 
 const Search = () => (
-  <div>
+  <Page type="full">
     <Helmet title="Search" />
     <SearchContainer />
-  </div>
+  </Page>
 );
 
 export default Search;

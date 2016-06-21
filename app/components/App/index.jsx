@@ -16,9 +16,7 @@ function App({ children }) {
   return (
     <div>
       <NavbarContainer />
-      <div className="page" role="main">
-        {children}
-      </div>
+      {children}
       <HoverCard />
     </div>
   );

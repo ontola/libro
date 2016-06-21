@@ -1,10 +1,10 @@
 // @flow
 import React from 'react';
-import { Box, Heading } from '../components';
+import { Box, Heading, Page } from '../components';
 import Helmet from 'react-helmet';
 
 const Home = () => (
-  <div>
+  <Page>
     <Helmet
       title="Homepage"
     />
@@ -19,7 +19,7 @@ const Home = () => (
         </p>
       </div>
     </Box>
-  </div>
+  </Page>
 );
 
 export default Home;

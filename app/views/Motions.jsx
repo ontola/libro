@@ -1,18 +1,18 @@
 // @flow
 import React from 'react';
 import { MotionsContainer } from '../containers';
-import { Heading } from '../components';
+import { Heading, Page } from '../components';
 import Helmet from 'react-helmet';
 
 function Motions() {
   return (
-    <div>
+    <Page>
       <Helmet
         title="Motions"
       />
       <Heading>Motions</Heading>
       <MotionsContainer />
-    </div>
+    </Page>
   );
 }
 
