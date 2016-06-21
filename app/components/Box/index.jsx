@@ -15,8 +15,8 @@ const defaultProps = {
 
 function Box({ children, ghost }) {
   const boxClass = classNames({
-    box: true,
-    'box--ghost': ghost,
+    Box: true,
+    'Box--ghost': ghost,
   });
 
   return (

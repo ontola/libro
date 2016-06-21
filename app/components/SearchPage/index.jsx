@@ -3,25 +3,22 @@ import './searchpage.scss';
 import React, { PropTypes } from 'react';
 
 import {
-	Box,
-	Button,
-	Drawer,
-	ResetFiltersDisplay,
+	Box, Button, Drawer, ResetFiltersDisplay,
 } from '../';
 
 import SearchResultContainer from '../../containers/SearchResultContainer.jsx';
 
 import {
-	RefinementListFilter,
-	Pagination,
-	ResetFilters,
-	NumericRefinementListFilter,
-	SortingSelector,
-	NoHits,
-	Panel,
-	Select,
-	InitialLoader,
 	Hits,
+	InitialLoader,
+	NoHits,
+	NumericRefinementListFilter,
+	Pagination,
+	Panel,
+	RefinementListFilter,
+	ResetFilters,
+	Select,
+	SortingSelector,
 } from 'searchkit';
 
 const propTypes = {
@@ -73,7 +70,7 @@ class SearchPage extends React.Component {
     return (
       <div>
         <Box ghost>
-          <div className="sk-searchtools">
+          <div className="sk-searchtools Box__content">
             <div className="sk-display-tools">
               <Button
                 className="sk-drawer-action"

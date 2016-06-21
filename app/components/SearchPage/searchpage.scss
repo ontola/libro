@@ -1,23 +1,13 @@
 @import "../shared/config.scss";
 
-em {
-  background-color: pink;
-}
-
 //** LAYOUT
 .sk-searchtools {
   display: flex;
   flex-direction: column;
-  padding: .5em 1em;
-  box-sizing: border-box;
   justify-content: center;
-  margin: 2px 0 1em;
 
   @include large {
-    height: 40px;
     justify-content: space-between;
-    padding: .5em 0;
-    margin: 0 2em;
     align-items: center;
     flex-direction: row-reverse;
   }
@@ -26,7 +16,6 @@ em {
 .sk-display-tools {
   display: flex;
   justify-content: space-between;
-  margin-bottom: .5em;
 
   @include large {
     margin: 0;
@@ -37,28 +26,45 @@ em {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  margin: 0 1em;
 
   @include large {
-    margin: 1em 2em;
     flex-direction: row;
   }
 }
 
-//** TOOLS
-.sk-no-hits {
-  padding: 2em;
-  font-size: $sk-action-font-size;
-  color: $sk-action-text-color;
+.sk-main {
+  @include large {
+    width: 74%;
+  }
 }
 
+//** TOOLS
 .sk-pagination-navigation {
-  margin: 1em 0 2em;
   display: flex;
   justify-content: center;
 }
 
-//
+.sk-toggle {
+  display: flex;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-base;
+  color: $blue;
+
+  &-option {
+    padding: .5em 1em;
+    cursor: pointer;
+    border-right: 1px solid $border-color;
+
+    &:last-child {
+      border: 0;
+    }
+
+    &.is-active {
+      background-color: $border-color;
+    }
+  }
+}
+
 .sk-toggle-option {
   &.is-disabled {
     display: none;
@@ -69,40 +75,38 @@ em {
 .sk-panel {
   width: 100%;
   box-sizing: border-box;
-  padding: 1em 1em;
+  padding: 1em;
   border-bottom: 1px solid #ddd;
 
   &__header {
-    color: $sk-title-color;
+    color: $dark;
     margin-bottom: 5px;
-    font-weight: $sk-bold-weight;
-    font-size: $sk-heading-font-size;
+    font-size: $font-size-h5;
+    font-weight: 600;
     text-transform: uppercase;
 
     &.is-collapsable  {
       cursor: pointer;
       user-select: none;
-      padding-left:20px;
+      padding-left: 20px;
       position: relative;
 
       &:after {
-        content:"";
-        display:block;
-        position:absolute;
-        top:50%;
-        margin-top:-3px;
+        content: "";
+        display: block;
+        position: absolute;
+        top: 50%;
+        margin-top: -3px;
         left: 2px;
         @include sk-arrow-down(5px);
       }
 
       &.is-collapsed:after {
         @include sk-arrow-right(5px);
-        margin-top:-5px;
+        margin-top: -5px;
         left: 3px;
       }
-
     }
-
   }
 
   &__content {
@@ -122,15 +126,18 @@ em {
   }
 }
 
-
 //** ACTIONS
 .sk-refinement-list__view-more-action {
-  font-size:$sk-action-font-size;
-  color: $sk-text-secondary-color;
+  font-size: $font-size-h6;
+  color: $grey;
   margin: 5px 0;
   cursor: pointer;
-}
+  transition: .2s color;
 
+  &:hover {
+    color: $dark;
+  }
+}
 
 //** CHECKBOX
 .sk-item-list-option {
@@ -151,8 +158,14 @@ em {
     position: relative;
     padding-left: 20px;
     box-sizing: border-box;
+    transition: .2s color;
+
+    &:hover {
+      color: $dark;
+    }
 
     &::before {
+      transition: .2s all;
       content: ' ';
       width: 8px;
       height: 8px;

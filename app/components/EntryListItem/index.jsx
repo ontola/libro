@@ -11,7 +11,7 @@ function EntryListItem({ data }) {
 
   return (
     <Box>
-      <div className="box__content">
+      <div className="Box__content">
         <Heading size="3">
           <Link
             to={`/doc/${id}`}

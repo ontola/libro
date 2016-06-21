@@ -1,6 +1,6 @@
 @import "../shared/config.scss";
 
-.box {
+.Box {
   margin: 20px 10px;
   background-color: $white;
   border: 1px solid $border-color;
@@ -10,7 +10,7 @@
     background-color: transparent;
     border: none;
 
-    .box__content {
+    .Box__content {
       padding: 0;
     }
   }
@@ -20,11 +20,11 @@
   }
 }
 
-.box__content {
+.Box__content {
   padding: $padding-base;
 }
 
-.box__actions {
+.Box__actions {
   border-top: 1px solid $border-color;
   display: flex;
   flex-direction: row;
