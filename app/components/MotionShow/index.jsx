@@ -77,7 +77,6 @@ function MotionShow({ data, onVote }) {
           </DetailsBar>
           <MarkdownContent content={data.description} />
         </div>
-
         <VoteButtons identifier={data.identifier} onVote={onVote} />
       </Box>
 
@@ -85,14 +84,18 @@ function MotionShow({ data, onVote }) {
       <Columns>
         {pro.length > 0 &&
           <div>
-            <Box ghost><Heading size="4">Voordelen</Heading></Box>
+            <Box ghost>
+              <Heading size="3" section>Voordelen</Heading>
+            </Box>
             {pro.map(a => <Argument key={a.id} data={a} />)}
           </div>
         }
 
         {con.length > 0 &&
           <div>
-            <Box ghost><Heading size="4">Nadelen</Heading></Box>
+            <Box ghost>
+              <Heading size="3" section>Nadelen</Heading>
+            </Box>
             {con.map(a => <Argument key={a.id} data={a} />)}
           </div>
         }

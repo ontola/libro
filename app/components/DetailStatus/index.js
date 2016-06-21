@@ -19,7 +19,7 @@ function DetailStatus({ status }) {
   let icon = 'no-icon';
   let text = 'Onbekende status';
 
-  switch (status.result) {
+  switch (status) {
     case 'pass':
       className = 'detailStatus--pass';
       icon = 'check';

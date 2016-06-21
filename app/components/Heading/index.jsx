@@ -1,11 +1,13 @@
 // @flow
 import './heading.scss';
 import React, { PropTypes } from 'react';
+import classNames from 'classnames';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
   size: PropTypes.oneOf(['1', '2', '3', '4', '5', '6']),
   className: PropTypes.string,
+  section: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -14,12 +16,17 @@ const defaultProps = {
   className: '',
 };
 
-function Heading({ children, size, className }) {
+function Heading({ children, size, className, section }) {
   const Element = `h${size}`;
+
+  const headingClass = classNames({
+    heading: true,
+    'heading--section': section,
+  });
 
   return (
     <Element
-      className={`heading ${className}`}
+      className={`${className} ${headingClass}`}
       role="heading"
     >
       {children}
