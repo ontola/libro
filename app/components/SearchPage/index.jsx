@@ -100,16 +100,6 @@ class SearchPage extends React.Component {
               size={5}
               containerComponent={<Panel collapsable defaultCollapsed={false} />}
             />
-            <RefinementListFilter
-              id="Vergaderjaar"
-              field="legislative_session"
-              orderKey="_term"
-              orderDirection="desc"
-              operator="AND"
-              title="Vergaderjaar"
-              size={5}
-              containerComponent={<Panel collapsable defaultCollapsed={false} />}
-            />
             <NumericRefinementListFilter
               id="dateFilter"
               title="Datum"
