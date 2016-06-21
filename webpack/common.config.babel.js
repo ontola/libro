@@ -36,13 +36,15 @@ const common = {
   resolve: {
     modulesDirectories: ['node_modules'],
     extensions: ['', '.js', '.jsx', '.ts'],
-    react: path.resolve('./node_modules/react'),
+    alias: {
+      react: path.resolve('./node_modules/react'),
+    },
   },
 
   module: {
     loaders: [
       {
-        test: /\.jsx?$/,
+        test: /(\.jsx\.js)?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
       },

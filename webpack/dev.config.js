@@ -1,4 +1,5 @@
-const webpack = require('webpack');
+import path from 'path';
+import webpack from 'webpack';
 
 module.exports = {
   devtool: 'eval-cheap-module-source-map',
@@ -9,6 +10,10 @@ module.exports = {
 
   resolve: {
     unsafeCache: true,
+  },
+
+  resolveLoader: {
+    root: path.join(__dirname, 'node_modules'),
   },
 
   module: {

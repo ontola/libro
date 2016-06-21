@@ -3,14 +3,25 @@ import './searchpage.scss';
 import React, { PropTypes } from 'react';
 
 import {
-	Box, Button, Drawer,
-	ResetFiltersDisplay, EntryListItem,
+	Box,
+	Button,
+	Drawer,
+	ResetFiltersDisplay,
 } from '../';
 
+import SearchResultContainer from '../../containers/SearchResultContainer.jsx';
+
 import {
-	RefinementListFilter, Pagination, ResetFilters,
-	NumericRefinementListFilter, SortingSelector, NoHits, Panel,
-	Select, InitialLoader, Hits,
+	RefinementListFilter,
+	Pagination,
+	ResetFilters,
+	NumericRefinementListFilter,
+	SortingSelector,
+	NoHits,
+	Panel,
+	Select,
+	InitialLoader,
+	Hits,
 } from 'searchkit';
 
 const propTypes = {
@@ -113,7 +124,7 @@ class SearchPage extends React.Component {
             <Hits
               hitsPerPage={8}
               highlightFields={['onderwerp', 'text']}
-              itemComponent={EntryListItem}
+              itemComponent={SearchResultContainer}
               scrollTo="body"
             />
             <NoHits suggestionsField="onderwerp" />
