@@ -1,6 +1,5 @@
 import './hoverable.scss';
 import React, { PropTypes } from 'react';
-import classNames from 'classnames';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
@@ -19,7 +18,11 @@ class Hoverable extends React.Component {
     };
   }
 
-  getPos = () => {
+  componentDidMount() {
+    this.getPos();
+  }
+
+  getPos() {
     const elem = document.getElementById(`hoverable-${this.props.id}`);
     const pos = elem.getBoundingClientRect();
 
@@ -29,14 +32,10 @@ class Hoverable extends React.Component {
     });
   }
 
-  componentDidMount() {
-    this.getPos();
-  }
-
   render() {
     const { id, children, content, onShow, onRemove } = this.props;
     const data = {
-      content: content,
+      content,
       top: this.state.top,
       left: this.state.left,
     };
@@ -49,8 +48,8 @@ class Hoverable extends React.Component {
       <div
         id={`hoverable-${id}`}
         className="Hoverable"
-        onMouseEnter={e => { onShow(data); }}
-        onMouseLeave={e => { onRemove(); }}
+        onMouseEnter={() => { onShow(data); }}
+        onMouseLeave={() => { onRemove(); }}
       >
         <div className="Hoverable__children">
           {children}

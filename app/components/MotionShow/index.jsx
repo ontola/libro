@@ -6,13 +6,9 @@ import FontAwesome from 'react-fontawesome';
 import {
   Argument,
   Box,
-  Button,
   Columns,
   Detail,
-  DetailProfile,
   DetailsBar,
-  DetailStatus,
-  DetailType,
   Heading,
   MarkdownContent,
   VoteButtons,
@@ -30,6 +26,7 @@ const propTypes = {
     arguments: PropTypes.array,
     relations: PropTypes.object,
   }),
+  onVote: PropTypes.func,
 };
 
 const defaultProps = {
@@ -41,79 +38,67 @@ const defaultProps = {
   },
 };
 
-class MotionShow extends React.Component {
-  constructor(props) {
-    super(props);
-    this.vote = this.vote.bind(this);
-  }
+function MotionShow({ data, onVote }) {
+  const argumentsList = data.arguments || [];
+  const pro = argumentsList.filter(e => e.side === 'pro');
+  const con = argumentsList.filter(e => e.side === 'con');
 
-  vote(side, id) {
-    console.log(id, side);
-  }
-
-  render() {
-    const { data, onVote } = this.props;
-    const argumentsList = data.arguments || [];
-    const pro = argumentsList.filter(e => e.side === 'pro');
-    const con = argumentsList.filter(e => e.side === 'con');
-
-    return (
-      <div>
-        <Box ghost>
-          <div className="MotionShow_navigation">
-            <div className="MotionShow_navigation_link">
-              { data.relations.previousMotion !== null &&
-                <Link to={`/motion/${data.relations.previousMotion}`}>
-                  <FontAwesome name="arrow-left" />{' '}
-                  Vorige
-                </Link>
-              }
-            </div>
-            <div className="MotionShow_navigation_link">
-              { data.relations.nextMotion !== null &&
-                <Link to={`/motion/${data.relations.nextMotion}`}>
-                  Volgende{' '}
-                  <FontAwesome name="arrow-right" />
-                </Link>
-              }
-            </div>
+  return (
+    <div>
+      <Box ghost>
+        <div className="MotionShow_navigation">
+          <div className="MotionShow_navigation_link">
+            {data.relations.previousMotion !== null &&
+              <Link to={`/motion/${data.relations.previousMotion}`}>
+                <FontAwesome name="arrow-left" />{' '}
+                Vorige
+              </Link>
+            }
           </div>
-        </Box>
-
-        <Box>
-          <div className="box__content">
-            <Heading size="2">{data.title}</Heading>
-            <DetailsBar>
-              <Detail text="Motie" icon="lightbulb-o" />
-              <Detail text="Verworpen" icon="close" />
-              <Detail text="Joep Meindertsma" icon="user" />
-              <Detail text="3 minuten geleden" icon="clock-o" />
-            </DetailsBar>
-            <MarkdownContent content={data.description} />
+          <div className="MotionShow_navigation_link">
+            {data.relations.nextMotion !== null &&
+              <Link to={`/motion/${data.relations.nextMotion}`}>
+                Volgende{' '}
+                <FontAwesome name="arrow-right" />
+              </Link>
+            }
           </div>
+        </div>
+      </Box>
 
-          <VoteButtons id={data.identifier} onVote={onVote} />
-        </Box>
+      <Box>
+        <div className="box__content">
+          <Heading size="2">{data.title}</Heading>
+          <DetailsBar>
+            <Detail text="Motie" icon="lightbulb-o" />
+            <Detail text="Verworpen" icon="close" />
+            <Detail text="Joep Meindertsma" icon="user" />
+            <Detail text="3 minuten geleden" icon="clock-o" />
+          </DetailsBar>
+          <MarkdownContent content={data.description} />
+        </div>
 
-        <VoteData data={data.votes} expanded />
-        <Columns>
-          { pro.length > 0 &&
-            <div>
-              <Box ghost><Heading size="4">Voordelen</Heading></Box>
-              { pro.map(a => <Argument key={a.id} data={a}/>) }
-            </div>
-          }
+        <VoteButtons identifier={data.identifier} onVote={onVote} />
+      </Box>
 
-          { con.length > 0 &&
-            <div>
-              <Box ghost><Heading size="4">Nadelen</Heading></Box>
-              { con.map(a => <Argument key={a.id} data={a}/>) }
-            </div>
-          }
-        </Columns>
-      </div>
-    );
-  }
+      <VoteData data={data.votes} expanded />
+      <Columns>
+        {pro.length > 0 &&
+          <div>
+            <Box ghost><Heading size="4">Voordelen</Heading></Box>
+            {pro.map(a => <Argument key={a.id} data={a} />)}
+          </div>
+        }
+
+        {con.length > 0 &&
+          <div>
+            <Box ghost><Heading size="4">Nadelen</Heading></Box>
+            {con.map(a => <Argument key={a.id} data={a} />)}
+          </div>
+        }
+      </Columns>
+    </div>
+  );
 }
 
 MotionShow.propTypes = propTypes;

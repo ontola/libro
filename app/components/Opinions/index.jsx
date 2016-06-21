@@ -45,7 +45,7 @@ const Opinions = ({ pro, con }) => {
       <div className="opinions__list">{listConOpinions}</div>
     </div>
   );
-}
+};
 
 Opinions.propTypes = propTypes;
 Opinions.defaultProps = defaultProps;

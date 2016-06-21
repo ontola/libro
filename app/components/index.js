@@ -10,7 +10,6 @@ export { default as DetailType } from './DetailType';
 export { default as Detail } from './Detail';
 export { default as DetailsBar } from './DetailsBar';
 export { default as Drawer } from './Drawer';
-export { default as EmptyState } from './EmptyState';
 export { default as EntryListItem } from './EntryListItem';
 export { default as Heading } from './Heading';
 export { default as Hoverable } from './Hoverable';

@@ -30,7 +30,6 @@ const defaultProps = {
 };
 
 function Argument({ data }) {
-
   return (
     <Box>
       <div className="box__content">

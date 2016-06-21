@@ -7,19 +7,21 @@ const propTypes = {
   hovercard: PropTypes.object,
 };
 
-const mapStateToProps = (state) => {
-  return { hovercard: state.hovercard }
-}
+const mapStateToProps = (state) => ({
+  hovercard: state.hovercard,
+});
 
 function HoverCard({ hovercard }) {
+  const OFFSCREEN = -999;
+  const PADDINGTOP = 20;
   const { left, top, content } = hovercard.content;
   const className = classNames({
-    'HoverCard': true,
-    'HoverCard--hide': hovercard.hide
+    HoverCard: true,
+    'HoverCard--hide': hovercard.hide,
   });
   const style = {
-    left: (left || -999),
-    top: (top || -999) + 20,
+    left: (left || OFFSCREEN),
+    top: (top || OFFSCREEN) + PADDINGTOP,
   };
 
   return (
@@ -32,6 +34,4 @@ function HoverCard({ hovercard }) {
 }
 
 HoverCard.propTypes = propTypes;
-// HoverCard.defaultProps = defaultProps;
-
 export default connect(mapStateToProps)(HoverCard);

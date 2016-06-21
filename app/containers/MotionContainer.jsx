@@ -1,29 +1,29 @@
 // @flow
-import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { MotionShow } from '../components';
 import { apiGetMotions } from '../actions/motions';
 import { updateVoteTally } from '../actions/votes';
 
 const mapStateToProps = (state, ownProps) => {
-  const findMotion = state.motions.items && state.motions.items.find(m => m.identifier === Number(ownProps.params.motionId));
-  return {
-    data: findMotion
-  }
-}
+  const findMotion =
+    state.motions.items &&
+    state.motions.items.find(m => m.identifier === Number(ownProps.params.motionId));
 
-const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    actions: dispatch(apiGetMotions(ownProps.params.motionId)),
-    onVote: () => {
-      dispatch(updateVoteTally());
-    }
-  }
-}
+    data: findMotion,
+  };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  actions: dispatch(apiGetMotions(ownProps.params.motionId)),
+  onVote: () => {
+    dispatch(updateVoteTally());
+  },
+});
 
 const MotionContainer = connect(
   mapStateToProps,
-  mapDispatchToProps,
-)(MotionShow)
+  mapDispatchToProps
+)(MotionShow);
 
-export default MotionContainer
+export default MotionContainer;

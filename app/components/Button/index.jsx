@@ -13,6 +13,8 @@ const propTypes = {
   ]),
   icon: PropTypes.string,
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 const defaultProps = {
@@ -23,8 +25,7 @@ const defaultProps = {
   children: 'Joep',
 };
 
-const Button = ({ weight, theme, icon, children, className, ...props }) => {
-
+const Button = ({ weight, theme, icon, children, className, onClick }) => {
   const btnClass = classNames({
     btn: true,
     'btn--weight': weight,
@@ -32,12 +33,12 @@ const Button = ({ weight, theme, icon, children, className, ...props }) => {
   }, className);
 
   return (
-    <button {...props} className={btnClass} role="button">
+    <button onClick={onClick} className={btnClass} role="button">
       <FontAwesome name={icon} />{' '}
       {children}
     </button>
   );
-}
+};
 
 Button.propTypes = propTypes;
 Button.defaultProps = defaultProps;

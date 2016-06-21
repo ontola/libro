@@ -9,50 +9,38 @@ const propTypes = {
   children: PropTypes.node.isRequired,
   visible: PropTypes.bool,
   hits: PropTypes.number,
-  toggleDrawer: PropTypes.func,
+  onClickToggle: PropTypes.func,
 };
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    visible: state.search.visible,
-    hits: state.search.hits,
-  }
-}
+const mapStateToProps = (state) => ({
+  visible: state.search.visible,
+  hits: state.search.hits,
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    toggleDrawer: () => {
-      dispatch(toggleDrawer());
-    }
-  }
-}
+const mapDispatchToProps = (dispatch) => ({
+  onClickToggle: () => {
+    dispatch(toggleDrawer());
+  },
+});
 
-class Drawer extends React.Component {
-  constructor() {
-    super();
-  }
+const Drawer = ({ children, visible, hits, onClickToggle }) => {
+  const drawerClass = classNames({
+    'sk-sidebar': true,
+    'sk-sidebar--visible': visible,
+  });
 
-  render() {
-    const { children, visible, hits, toggleDrawer } = this.props;
-
-    const drawerClass = classNames({
-      'sk-sidebar': true,
-      'sk-sidebar--visible': visible,
-    });
-
-    return (
-      <div className={drawerClass}>
-        <div className="sk-sidebar__overlay" onClick={e => { toggleDrawer(); }}></div>
-        <div className="sk-sidebar__wrapper">
-          <div className="sk-sidebar__container">{children}</div>
-          <div className="sk-drawer-action sk-drawer-action--close">
-            <Button onClick={e => { toggleDrawer(); }}>Toon {hits} resultaten</Button>
-          </div>
+  return (
+    <div className={drawerClass}>
+      <div className="sk-sidebar__overlay" onClick={() => { onClickToggle(); }}></div>
+      <div className="sk-sidebar__wrapper">
+        <div className="sk-sidebar__container">{children}</div>
+        <div className="sk-drawer-action sk-drawer-action--close">
+          <Button onClick={() => { onClickToggle(); }}>Toon {hits} resultaten</Button>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 Drawer.propTypes = propTypes;
 

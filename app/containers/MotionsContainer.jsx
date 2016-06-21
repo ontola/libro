@@ -1,24 +1,19 @@
 // @flow
-import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { MotionsList } from '../components';
 import { apiGetMotions } from '../actions/motions';
 
-const mapStateToProps = (state) => {
-  return {
-    data: state.motions.items || []
-  }
-}
+const mapStateToProps = (state) => ({
+  data: state.motions.items || [],
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    actions: dispatch(apiGetMotions(0)),
-  }
-}
+const mapDispatchToProps = (dispatch) => ({
+  actions: dispatch(apiGetMotions(0)),
+});
 
 const MotionsContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(MotionsList)
+)(MotionsList);
 
 export default MotionsContainer;

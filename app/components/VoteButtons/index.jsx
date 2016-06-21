@@ -6,15 +6,16 @@ import {
 } from '../';
 
 const propTypes = {
+  identifier: PropTypes.number,
   onVote: PropTypes.func.isRequired,
 };
 
-function VoteButtons({ id, onVote }) {
+function VoteButtons({ identifier, onVote }) {
   return (
     <div className="box__actions">
       <Button
-        onClick={ e => onVote({
-          id: id,
+        onClick={() => onVote({
+          identifier,
           side: 'pro',
         })}
         icon="thumbs-up"
@@ -22,8 +23,8 @@ function VoteButtons({ id, onVote }) {
         theme="box"
       />
       <Button
-        onClick={ e => onVote({
-          id: id,
+        onClick={() => onVote({
+          identifier,
           side: 'neutral',
         })}
         icon="pause"
@@ -31,8 +32,8 @@ function VoteButtons({ id, onVote }) {
         theme="box"
       />
       <Button
-        onClick={ e => onVote({
-          id: id,
+        onClick={() => onVote({
+          identifier,
           side: 'con',
         })}
         icon="thumbs-down"

@@ -15,23 +15,14 @@ const defaultProps = {
   },
 };
 
-class Motion extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div>
-        <Helmet
-          title="Motion"
-        />
-        <MotionContainer {...this.props} />
-      </div>
-
-    );
-  }
-}
+const Motion = (props) => (
+  <div>
+    <Helmet
+      title="Motion"
+    />
+    <MotionContainer {...props} />
+  </div>
+);
 
 Motion.PropTypes = propTypes;
 Motion.defaultProps = defaultProps;

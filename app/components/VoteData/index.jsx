@@ -1,7 +1,7 @@
 // @flow
 import './votedata.scss';
 import React, { PropTypes } from 'react';
-import { Heading, Box, VoteChart, Opinions } from '../';
+import { Box, VoteChart, Opinions } from '../';
 import classNames from 'classnames';
 
 const propTypes = {
@@ -39,15 +39,15 @@ function VoteData({ data, expanded }) {
   if (!data) return false;
 
   const voteDataClass = classNames({
-    'VoteData': true,
+    VoteData: true,
     'VoteData--expanded': expanded,
   });
 
   return (
     <div className={voteDataClass}>
-      { expanded ? voteDataExpanded(data) : voteDataUnexpanded(data) }
+      {expanded ? voteDataExpanded(data) : voteDataUnexpanded(data)}
     </div>
-  )
+  );
 }
 
 VoteData.propTypes = propTypes;
