@@ -8,5 +8,4 @@ function ResetFiltersDisplay({ bemBlock, hasFilters, translate, resetFilters }) 
 		</div>
 	);
 }
-
 export default ResetFiltersDisplay;

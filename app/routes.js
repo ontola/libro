@@ -1,13 +1,13 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import { App } from './components';
-import { SearchContainer } from './containers';
 import {
   Home,
   Motions,
   Motion,
   Politicians,
   Profile,
+  Search,
 } from './views';
 
 const routes = (
@@ -17,7 +17,7 @@ const routes = (
     <Route path="motion/:motionId" component={Motion} />
     <Route path="politicians" component={Politicians} />
     <Route path="profile/:userId" component={Profile} />
-    <Route path="search" component={SearchContainer} />
+    <Route path="search" component={Search} />
   </Route>
 );
 

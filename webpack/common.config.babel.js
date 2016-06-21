@@ -3,6 +3,7 @@ import webpack from 'webpack';
 import autoprefixer from 'autoprefixer';
 import merge from 'webpack-merge';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+
 import development from './dev.config.js';
 import production from './prod.config.js';
 import developmentSSR from './dev.ssr.config.js';
@@ -34,8 +35,8 @@ const common = {
 
   resolve: {
     modulesDirectories: ['node_modules'],
-    extensions: ['', '.js', '.jsx'],
-    alias: { react: path.resolve('./node_modules/react') },
+    extensions: ['', '.js', '.jsx', '.ts'],
+    react: path.resolve('./node_modules/react'),
   },
 
   module: {
@@ -56,6 +57,9 @@ const common = {
   },
 
   plugins: [
+    new webpack.ProvidePlugin({
+      fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
+    }),
     new ExtractTextPlugin('bundle.css', { allChunks: true }),
     new webpack.DefinePlugin({
       'process.env': {

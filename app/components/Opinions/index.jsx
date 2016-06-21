@@ -18,8 +18,7 @@ const defaultProps = {
   con: [],
 };
 
-function Opinions({ pro, con }) {
-
+const Opinions = ({ pro, con }) => {
   const message = (party, side, msg) => `De partij ${party} is ${side} met ${msg} stemmen`;
 
   const listProOpinions = pro.map((o, i) =>

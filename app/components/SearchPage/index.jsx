@@ -1,17 +1,16 @@
 // @flow
-import './search.scss';
+import './searchpage.scss';
 import React, { PropTypes } from 'react';
-import Helmet from 'react-helmet';
 
 import {
-	Box, Button, Heading, Drawer,
-	ResetFiltersDisplay, EntryListItem, EmptyState
-} from '../../components';
+	Box, Button, Drawer,
+	ResetFiltersDisplay, EntryListItem
+} from '../';
 
 import {
-	SearchBox, RefinementListFilter, Pagination, ResetFilters,
+	RefinementListFilter, Pagination, ResetFilters,
   NumericRefinementListFilter, SortingSelector, NoHits, Panel,
-	Select, InitialLoader, Hits,
+	Select, InitialLoader, Hits
 } from 'searchkit';
 
 const sortOption = [
@@ -40,7 +39,7 @@ const translations = {
 	"NoHits.NoResultsFoundDidYouMean": "Geen resultaten gevonden voor '{query}'",
 };
 
-class Search extends React.Component {
+class SearchPage extends React.Component {
 	constructor(props, context) {
     super(props, context);
 
@@ -55,12 +54,32 @@ class Search extends React.Component {
 		});
 	}
 
+	queryBuilder(queryString) {
+		return ({
+			"bool": {
+				"must": {
+					"simple_query_string": {
+						"query": queryString,
+						"fields": ["text"],
+						"minimum_should_match": "80%"
+					}
+				},
+				"should": {
+					"simple_query_string": {
+						"query": queryString,
+						"fields": ["text.shingles"],
+						"minimum_should_match": "80%"
+					}
+				}
+			}
+		})
+	}
+
 	render() {
 		const { hits, toggleDrawer } = this.props;
 
 		return (
 			<div>
-				<Helmet title="Zoeken" />
 				<Box ghost>
 					<div className="sk-searchtools">
 						<div className="sk-display-tools">
@@ -96,8 +115,8 @@ class Search extends React.Component {
 	}
 }
 
-Search.contextTypes = {
+SearchPage.contextTypes = {
   searchkit: PropTypes.object,
 };
 
-export default Search;
+export default SearchPage;

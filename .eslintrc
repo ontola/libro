@@ -1,9 +1,32 @@
 {
+  "plugins": [
+    "react"
+  ],
   "extends": "airbnb",
+  "root": true,
   "env": {
-    "mocha": true,
+    "browser": true,
     "node": true,
     "es6": true,
+    "mocha": true,
+  },
+  "globals": {
+    "__DEV__": true,
+    "__SERVER__": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "templateStrings": true
+    }
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "0.15.0"
+    }
   },
   "rules": {
     "valid-jsdoc": "error",
@@ -23,5 +46,11 @@
     "no-unmodified-loop-condition": "error",
     "no-undef-init": "error",
     "no-inline-comments": "error",
-   }
+    "new-cap": [
+      "error",
+      {
+        "capIsNewExceptions": ["Record", "Alert"]
+      }
+    ]
+  }
 }

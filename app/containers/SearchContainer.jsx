@@ -1,7 +1,7 @@
 // @flow
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { Search } from '../views';
+import { SearchPage } from '../components';
 import { toggleDrawer, setHitCount } from '../actions/search';
 
 const mapStateToProps = (state) => {
@@ -24,6 +24,6 @@ const mapDispatchToProps = (dispatch) => {
 const SearchContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Search);
+)(SearchPage);
 
-export default SearchContainer
+export default SearchContainer;

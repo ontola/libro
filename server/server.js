@@ -12,7 +12,7 @@ const compiler = webpack(webpackConfig);
 const proxy = httpProxy.createProxyServer({});
 const app = express();
 const devPort = 3000;
-const prodPort = 80;
+const prodPort = 8080;
 const port = process.env.NODE_ENV === 'development' ? devPort : prodPort;
 const MS = 1000;
 const heartBeatTime = 10;
