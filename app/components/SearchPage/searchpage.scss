@@ -3,22 +3,19 @@
 //** LAYOUT
 .sk-searchtools {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
 
-  @include large {
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row-reverse;
+  &--hide {
+    display: none;
   }
 }
 
-.sk-display-tools {
-  display: flex;
-  justify-content: space-between;
+.sk-drawer-action {
+  display: inline-block;
 
   @include large {
-    margin: 0;
+    display: none;
   }
 }
 

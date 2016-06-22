@@ -6,6 +6,8 @@ import {
   FETCH_DOCUMENT_FAILURE,
 } from '../constants/actionTypes';
 
+import { LOCATION_CHANGE } from 'react-router-redux';
+
 const initialState = {
   visible: false,
   hits: null,
@@ -21,6 +23,10 @@ const search = (state = initialState, action) => {
     case SET_HIT_COUNT:
       return Object.assign({}, state, {
         hits: action.payload,
+      });
+    case LOCATION_CHANGE:
+      return Object.assign({}, state, {
+        hits: null,
       });
     case FETCH_DOCUMENT_REQUEST:
       return Object.assign({}, state, {

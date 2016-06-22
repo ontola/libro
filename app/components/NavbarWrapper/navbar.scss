@@ -161,10 +161,10 @@ input[type="submit"].nav-search-button {
   width: 200px;
   float: right;
   background-color: white;
-  margin: 0 1em;
+  margin: 10px 1em 0 0;
 
   @include large {
-    margin: 0 2em;
+    margin: 6px 1em;
   }
 }
 
@@ -179,25 +179,25 @@ input[type="submit"].nav-search-button {
   }
 
   &__icon {
-    flex:0 20px 20px;
-    margin:10px 0 0 10px;
+    flex:0 10px 10px;
+    margin: 6px 0 0 6px;
 
     &:before {
       content:"";
       @include search-icon;
       background-size: contain;
-      height:20px;
-      width:20px;
+      height:18px;
+      width:18px;
       display: block;
     }
     opacity:0.3;
   }
 
   .sk-search-box__text {
-    padding:10px .5em;
+    padding:6px .5em;
     width:100%;
     flex:3;
-    font-size:18px;
+    font-size:14px;
     border:none;
     height: initial;
     line-height: initial;
@@ -215,7 +215,7 @@ input[type="submit"].nav-search-button {
   &__loader {
     flex:0 20px 20px;
     align-self: flex-end;
-    margin: 8px;
+    margin: 6px 8px;
 
     &.is-hidden {
       display:none;
@@ -226,7 +226,7 @@ input[type="submit"].nav-search-button {
 
 //** SPINNING LOADER
 .sk-spinning-loader {
-  font-size: 10px;
+  font-size: 8px;
   position: relative;
   text-indent: -9999em;
   border-top: 2px solid rgba(0, 0, 0, 0.2);
@@ -240,8 +240,8 @@ input[type="submit"].nav-search-button {
 .sk-spinning-loader,
 .sk-spinning-loader:after {
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
+  width: 10px;
+  height: 10px;
 }
 
 @keyframes spinning-loader {
