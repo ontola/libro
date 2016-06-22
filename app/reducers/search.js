@@ -24,7 +24,7 @@ const search = (state = initialState, action) => {
       });
     case FETCH_DOCUMENT_REQUEST:
       return Object.assign({}, state, {
-        document: [],
+        document: {},
       });
     case FETCH_DOCUMENT_SUCCESS:
       return Object.assign({}, state, {
@@ -32,7 +32,7 @@ const search = (state = initialState, action) => {
       });
     case FETCH_DOCUMENT_FAILURE:
       return Object.assign({}, state, {
-        document: [],
+        document: {},
       });
 
     default:
