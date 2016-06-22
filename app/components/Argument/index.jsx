@@ -32,7 +32,7 @@ const defaultProps = {
 function Argument({ data }) {
   return (
     <Box>
-      <div className="box__content">
+      <div className="Box__content">
         <Heading size="3" className={data.side}>{data.title}</Heading>
         <DetailsBar>
           <DetailProfile
@@ -45,7 +45,7 @@ function Argument({ data }) {
         <MarkdownContent content={data.text} />
       </div>
 
-      <div className="box__actions">
+      <div className="Box__actions">
         <Button
           icon="comment"
           children="Reageer"

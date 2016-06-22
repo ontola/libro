@@ -12,7 +12,7 @@ const propTypes = {
 
 function VoteButtons({ identifier, onVote }) {
   return (
-    <div className="box__actions">
+    <div className="Box__actions">
       <Button
         onClick={() => onVote({
           identifier,

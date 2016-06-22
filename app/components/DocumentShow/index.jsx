@@ -10,7 +10,7 @@ import {
 } from '../';
 
 const propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.object.isRequired,
 };
 
 const DocumentShow = ({ data }) => {

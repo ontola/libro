@@ -67,7 +67,7 @@ function MotionShow({ data, onVote }) {
       </Box>
 
       <Box>
-        <div className="box__content">
+        <div className="Box__content">
           <Heading size="2">{data.title}</Heading>
           <DetailsBar>
             <Detail text="Motie" icon="lightbulb-o" />
