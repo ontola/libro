@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import { App } from './components';
 import {
+  Document,
   Home,
   Motions,
   Motion,
@@ -18,6 +19,7 @@ const routes = (
     <Route path="politicians" component={Politicians} />
     <Route path="profile/:userId" component={Profile} />
     <Route path="search" component={Search} />
+    <Route path="doc/:docId" component={Document} />
   </Route>
 );
 

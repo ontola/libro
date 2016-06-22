@@ -7,7 +7,7 @@ import { match, RouterContext } from 'react-router';
 import Helmet from 'react-helmet';
 import httpProxy from 'http-proxy';
 import { apiGetMotions } from '../app/actions/motions';
-import configureStore from '../app/store//configureStore';
+import configureStore from '../app/store/configureStore';
 import routes from '../app/routes.js';
 import { apiFetch } from './utils/api';
 import { renderFullPage } from './utils/render';

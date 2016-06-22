@@ -41,7 +41,6 @@
         400, 401, 402, 403, 404, 429,
         500, 501, 502, 503, 504]
     }],
-    "no-underscore-dangle": 0,
     "no-shadow": "error",
     "no-invalid-this": "error",
     "no-unmodified-loop-condition": "error",

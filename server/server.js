@@ -1,23 +1,21 @@
 import express from 'express';
 import webpack from 'webpack';
-import webpackConfig from '../webpack/common.config.babel';
 import webpackMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import SearchkitExpress from 'searchkit-express';
 import bodyParser from 'body-parser';
 import httpProxy from 'http-proxy';
+
+import webpackConfig from '../webpack/common.config.babel';
 import { renderFullPage } from './utils/render';
+import * as constants from '../app/constants/config';
 
 const compiler = webpack(webpackConfig);
 const proxy = httpProxy.createProxyServer({});
 const app = express();
-const devPort = 3000;
-const prodPort = 8080;
-const port = process.env.NODE_ENV === 'development' ? devPort : prodPort;
 const MS = 1000;
 const heartBeatTime = 10;
-const ELASTICSEARCH_ADDRESS = process.env.ELASTICSEARCH_ADDRESS || 'http://128.199.44.185:9200';
-const ELASTICSEARCH_INDEX = process.env.ELASTICSEARCH_INDEX || 'aod8';
+const port = constants.PORT;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -47,8 +45,8 @@ app.use(/\/api\/(.*)/, (request, res) => {
 app.use('/static', express.static(`${__dirname}/../static/`));
 app.use('/dist', express.static(`${__dirname}/../dist/`));
 app.use('/aod_search', SearchkitExpress.createRouter({
-  host: ELASTICSEARCH_ADDRESS,
-  index: ELASTICSEARCH_INDEX,
+  host: constants.ELASTICSEARCH_URL,
+  index: constants.ELASTICSEARCH_INDEX,
 }));
 
 app.get(/.*/, (req, res) => {

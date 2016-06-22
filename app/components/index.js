@@ -9,6 +9,7 @@ export { default as DetailStatus } from './DetailStatus';
 export { default as DetailType } from './DetailType';
 export { default as Detail } from './Detail';
 export { default as DetailsBar } from './DetailsBar';
+export { default as DocumentShow } from './DocumentShow';
 export { default as Drawer } from './Drawer';
 export { default as EntryListItem } from './EntryListItem';
 export { default as Heading } from './Heading';
