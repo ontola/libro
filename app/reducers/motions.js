@@ -6,6 +6,7 @@ import {
 
 const initialState = {
   items: [],
+  loading: false,
 };
 
 const motions = (state = initialState, action) => {
@@ -13,16 +14,19 @@ const motions = (state = initialState, action) => {
     case FETCH_MOTIONS_REQUEST:
       return Object.assign({}, state, {
         items: [],
+        loading: true,
       });
 
     case FETCH_MOTIONS_SUCCESS:
       return Object.assign({}, state, {
         items: action.payload,
+        loading: false,
       });
 
     case FETCH_MOTIONS_FAILURE:
       return Object.assign({}, state, {
         items: [],
+        loading: false,
       });
 
     default:

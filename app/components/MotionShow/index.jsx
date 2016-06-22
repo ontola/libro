@@ -27,18 +27,19 @@ const propTypes = {
     relations: PropTypes.object,
   }),
   onVote: PropTypes.func,
+  loading: PropTypes.bool,
 };
 
 const defaultProps = {
   data: {
-    title: 'Laden...',
+    title: 'Loading...',
     votes: false,
     arguments: [],
     relations: {},
   },
 };
 
-function MotionShow({ data, onVote }) {
+function MotionShow({ data, onVote, loading }) {
   const argumentsList = data.arguments || [];
   const pro = argumentsList.filter(e => e.side === 'pro');
   const con = argumentsList.filter(e => e.side === 'con');
@@ -68,14 +69,18 @@ function MotionShow({ data, onVote }) {
 
       <Box>
         <div className="Box__content">
-          <Heading size="2">{data.title}</Heading>
-          <DetailsBar>
-            <Detail text="Motie" icon="lightbulb-o" />
-            <Detail text="Verworpen" icon="close" />
-            <Detail text="Joep Meindertsma" icon="user" />
-            <Detail text="3 minuten geleden" icon="clock-o" />
-          </DetailsBar>
-          <MarkdownContent content={data.description} />
+          {loading ? <div>Laden...</div> :
+            <div>
+              <Heading size="2" children={data.title} />
+              <DetailsBar>
+                <Detail text="Motie" icon="lightbulb-o" />
+                <Detail text="Verworpen" icon="close" />
+                <Detail text="Joep Meindertsma" icon="user" />
+                <Detail text="3 minuten geleden" icon="clock-o" />
+              </DetailsBar>
+              <MarkdownContent content={data.description} />
+            </div>
+          }
         </div>
         <VoteButtons identifier={data.identifier} onVote={onVote} />
       </Box>

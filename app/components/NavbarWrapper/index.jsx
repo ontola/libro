@@ -48,22 +48,15 @@ class NavbarWrapper extends React.Component {
       <nav id="navbar" className="navbar" role="navigation">
         <div className="nav-container">
           <SearchBox
-            autofocus
-            searchOnChange
-            searchThrottleTime={1000}
             queryBuilder={this.queryBuilder}
             queryFields={['onderwerp', 'text', 'text.shingles']}
           />
           <div className="navbar-logo">
-            <Link to="/">
-              <img src="/static/logo.svg" alt="Logo Argu" />
-            </Link>
+            <Link to="/"><img src="/static/logo.svg" alt="Logo Argu" /></Link>
           </div>
           <ul className="navbar-links">
             <li>
-              <Link to="/" className="navbar-item">
-                <FontAwesome name="home" />
-              </Link>
+              <Link to="/" className="navbar-item"><FontAwesome name="home" /></Link>
             </li>
             {this.wrapInListItems(contentLeft, 'navbar-links-right')}
           </ul>

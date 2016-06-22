@@ -11,6 +11,7 @@ import {
 
 const propTypes = {
   data: PropTypes.object.isRequired,
+  loading: false,
 };
 
 const DocumentShow = ({ data }) => {

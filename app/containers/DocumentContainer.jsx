@@ -5,6 +5,7 @@ import { apiGetDocument } from '../actions/search';
 
 const mapStateToProps = (state) => ({
   data: state.search.document,
+  loading: state.search.loading,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

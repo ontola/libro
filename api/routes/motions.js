@@ -200,8 +200,8 @@ export default [
     }
 
     // async yolo
-    // setTimeout(function(){
-    res.json(returnData);
-    // }, 200);
+    setTimeout(() => {
+      res.json(returnData);
+    }, 500);
   }),
 ];

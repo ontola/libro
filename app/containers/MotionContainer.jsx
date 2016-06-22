@@ -11,6 +11,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     data: findMotion,
+    loading: state.motions.loading,
   };
 };
 

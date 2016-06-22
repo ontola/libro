@@ -6,12 +6,11 @@ import {
   FETCH_DOCUMENT_FAILURE,
 } from '../constants/actionTypes';
 
-import { LOCATION_CHANGE } from 'react-router-redux';
-
 const initialState = {
   visible: false,
   hits: null,
   document: {},
+  loading: false,
 };
 
 const search = (state = initialState, action) => {
@@ -24,23 +23,21 @@ const search = (state = initialState, action) => {
       return Object.assign({}, state, {
         hits: action.payload,
       });
-    case LOCATION_CHANGE:
-      return Object.assign({}, state, {
-        hits: null,
-      });
     case FETCH_DOCUMENT_REQUEST:
       return Object.assign({}, state, {
         document: {},
+        loading: true,
       });
     case FETCH_DOCUMENT_SUCCESS:
       return Object.assign({}, state, {
         document: action.payload._source,
+        loading: false,
       });
     case FETCH_DOCUMENT_FAILURE:
       return Object.assign({}, state, {
         document: {},
+        loading: true,
       });
-
     default:
       return state;
   }

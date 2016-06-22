@@ -10,7 +10,7 @@ import { SearchkitProvider, SearchkitManager } from 'searchkit';
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
 const sk = new SearchkitManager('/aod_search', {
-  searchOnLoad: false,
+  // searchOnLoad: false,
 });
 
 class Index extends React.Component {
