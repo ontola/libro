@@ -1,15 +1,18 @@
 import { handleActions } from 'redux-actions';
-// import { UPDATE_VOTE_TALLY } from '../constants/actionTypes';
-import { updateVoteTally } from '../actions/votes';
+import { UPDATE_VOTE_TALLY } from '../constants/actionTypes';
 
 const initialState = {
-  counter: 0,
+  all: [],
 };
 
 const votes = handleActions({
-  [updateVoteTally]: (state, action) => ({
-    counter: state.counter + action.payload,
-  }),
+  [UPDATE_VOTE_TALLY]: (state, action) =>
+    Object.assign({}, state, {
+      all: [
+        ...state.all,
+        action.payload,
+      ],
+    }),
 }, initialState);
 
 export default votes;
