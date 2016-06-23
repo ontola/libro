@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions';
-import * as action from '../constants/actionTypes';
+import * as types from '../constants/actionTypes';
 
-const updateVoteTally = createAction(action.UPDATE_VOTE_TALLY);
+const updateVoteTally = createAction(types.UPDATE_VOTE_TALLY);
 
 export {
   updateVoteTally,

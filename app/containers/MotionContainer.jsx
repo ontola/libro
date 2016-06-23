@@ -17,8 +17,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   actions: dispatch(apiGetMotions(ownProps.params.motionId)),
-  onVote: () => {
-    dispatch(updateVoteTally());
+  onVote: (data) => {
+    dispatch(updateVoteTally(data));
   },
 });
 
