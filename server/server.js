@@ -11,7 +11,7 @@ import { renderFullPage } from './utils/render';
 import * as constants from '../app/constants/config';
 
 const compiler = webpack(webpackConfig);
-const proxy = httpProxy.createProxyServer({});
+const proxy = httpProxy.createProxyServer({ secure: false });
 const app = express();
 const MS = 1000;
 const heartBeatTime = 10;
@@ -44,10 +44,19 @@ app.use(/\/api\/(.*)/, (request, res) => {
 // Static directory for express
 app.use('/static', express.static(`${__dirname}/../static/`));
 app.use('/dist', express.static(`${__dirname}/../dist/`));
-app.use('/aod_search', SearchkitExpress.createRouter({
-  host: constants.ELASTICSEARCH_URL,
-  index: constants.ELASTICSEARCH_INDEX,
-}));
+
+if (process.env.NODE_ENV === 'development') {
+  app.use('/aod_search', (request, res) => {
+    const req = request;
+    req.url = request.originalUrl;
+    proxy.web(req, res, { target: 'https://aod-search.argu.co' });
+  });
+} else {
+  app.use('/aod_search', SearchkitExpress.createRouter({
+    host: constants.ELASTICSEARCH_URL,
+    index: constants.ELASTICSEARCH_INDEX,
+  }));
+}
 
 app.get(/.*/, (req, res) => {
   const domain = req.get('host').replace(/:.*/, '');
