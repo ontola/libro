@@ -1,5 +1,6 @@
-import path from 'path';
-import webpack from 'webpack';
+"use strict";
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   devtool: 'eval-cheap-module-source-map',

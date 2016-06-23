@@ -1,12 +1,12 @@
-import path from 'path';
-import webpack from 'webpack';
-import autoprefixer from 'autoprefixer';
-import merge from 'webpack-merge';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
+"use strict";
+const path = require('path');
+const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
+const merge = require('webpack-merge');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-import development from './dev.config.js';
-import production from './prod.config.js';
-import developmentSSR from './dev.ssr.config.js';
+const development = require('./dev.config.js');
+const developmentSSR = require('./dev.ssr.config.js');
 
 const TARGET = process.env.npm_lifecycle_event;
 process.env.BABEL_ENV = TARGET;
@@ -20,10 +20,6 @@ if (!global.ssr && process.env.NODE_ENV === 'development') {
 
 if (global.ssr && process.env.NODE_ENV === 'development') {
   devUrl = 'http://localhost:3001/dist/';
-}
-
-if (process.env.NODE_ENV === 'production') {
-  devUrl = '/dist/';
 }
 
 const common = {
@@ -59,9 +55,6 @@ const common = {
   },
 
   plugins: [
-    new webpack.ProvidePlugin({
-      fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
-    }),
     new ExtractTextPlugin('bundle.css', { allChunks: true }),
     new webpack.DefinePlugin({
       'process.env': {
@@ -74,17 +67,12 @@ const common = {
   ],
 
   postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
-
 };
 
 if (process.env.NODE_ENV === 'development' && !global.ssr) {
   module.exports = merge(development, common);
-}
-
-if (process.env.NODE_ENV === 'development' && global.ssr) {
+} else if (process.env.NODE_ENV === 'development' && global.ssr) {
   module.exports = merge(developmentSSR, common);
-}
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports = merge(production, common);
+} else {
+  module.exports = common;
 }
