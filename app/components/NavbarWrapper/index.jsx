@@ -47,19 +47,13 @@ class NavbarWrapper extends React.Component {
     return (
       <nav id="navbar" className="navbar" role="navigation">
         <div className="nav-container">
+          <ul className="navbar-links">
+            {this.wrapInListItems(contentLeft, 'navbar-links-right')}
+          </ul>
           <SearchBox
             queryBuilder={this.queryBuilder}
             queryFields={['onderwerp', 'text', 'text.shingles']}
           />
-          <div className="navbar-logo">
-            <Link to="/"><img src="/static/logo.svg" alt="Logo Argu" /></Link>
-          </div>
-          <ul className="navbar-links">
-            <li>
-              <Link to="/" className="navbar-item"><FontAwesome name="home" /></Link>
-            </li>
-            {this.wrapInListItems(contentLeft, 'navbar-links-right')}
-          </ul>
           <ul className="navbar-links navbar-links-right">
             {this.wrapInListItems(contentRight, 'navbar-links-left')}
           </ul>
