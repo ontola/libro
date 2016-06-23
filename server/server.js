@@ -17,16 +17,22 @@ const MS = 1000;
 const heartBeatTime = 10;
 const port = constants.PORT;
 
+console.log(port);
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 if (process.env.NODE_ENV === 'development') {
   app.use(webpackMiddleware(compiler, {
-    noInfo: true, publicPath: webpackConfig.output.publicPath,
+    noInfo: true,
+    publicPath: webpackConfig.output.publicPath,
   }));
 
   app.use(webpackHotMiddleware(compiler, {
-    log: console.log, path: '/__webpack_hmr', heartbeat: heartBeatTime * MS, reload: true,
+    log: console.log,
+    path: '/__webpack_hmr',
+    heartbeat: heartBeatTime * MS,
+    reload: true,
   }));
 }
 

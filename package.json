@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "body-parser": "^1.15.1",
+    "concurrently": "^2.1.0",
     "exports-loader": "^0.6.3",
     "express": "^4.13.4",
     "imports-loader": "^0.6.5",
