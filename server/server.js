@@ -17,8 +17,6 @@ const MS = 1000;
 const heartBeatTime = 10;
 const port = constants.PORT;
 
-console.log(port);
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -44,7 +42,7 @@ proxy.on('error', (err, req) => {
 app.use(/\/api\/(.*)/, (request, res) => {
   const req = request;
   req.url = request.originalUrl;
-  proxy.web(req, res, { target: 'http://localhost:3030' });
+  proxy.web(req, res, { target: constants.ARGU_API_URL });
 });
 
 // Static directory for express
