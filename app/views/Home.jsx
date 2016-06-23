@@ -5,9 +5,7 @@ import Helmet from 'react-helmet';
 
 const Home = () => (
   <Page>
-    <Helmet
-      title="Homepage"
-    />
+    <Helmet title="Homepage" />
     <Heading>Home</Heading>
     <Box>
       <div className="box__content">

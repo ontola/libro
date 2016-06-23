@@ -32,7 +32,7 @@ const propTypes = {
 
 const defaultProps = {
   data: {
-    title: 'Loading...',
+    title: '',
     votes: false,
     arguments: [],
     relations: {},

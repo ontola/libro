@@ -20,6 +20,7 @@ const routes = (
     <Route path="profile/:userId" component={Profile} />
     <Route path="search" component={Search} />
     <Route path="doc/:docId" component={Document} />
+    <Route path="*" component={Home} />
   </Route>
 );
 

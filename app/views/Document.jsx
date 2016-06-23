@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import DocumentContainer from '../containers/DocumentContainer';
-import { Heading, Page } from '../components';
+import { Page } from '../components';
 import Helmet from 'react-helmet';
 
 const Document = (props) => (
