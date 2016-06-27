@@ -53,6 +53,7 @@ class NavbarWrapper extends React.Component {
           <SearchBox
             queryBuilder={this.queryBuilder}
             queryFields={['onderwerp', 'text', 'text.shingles']}
+            placeholder="Zoek op onderwerp, persoon, organisatie..."
           />
           <ul className="navbar-links navbar-links-right">
             {this.wrapInListItems(contentRight, 'navbar-links-left')}

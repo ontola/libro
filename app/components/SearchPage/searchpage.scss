@@ -179,3 +179,36 @@
   border-color: #737373;
   background-color: #737373;
 }
+
+.sk-search-box {
+  background-color: $lighten2;
+  transition: .2s all;
+
+  .sk-search-box__text {
+    transition: .2s all;
+    background: none;
+    color: white;
+
+    &::placeholder{
+        color: white;
+        transition: .2s all;
+
+    }
+  }
+
+  .sk-search-box__icon {
+    display: none;
+  }
+
+  &.is-focused {
+    background-color: $white;
+
+    .sk-search-box__text {
+      color: $g5;
+
+      &::placeholder{
+        color: $g2;
+      }
+    }
+  }
+}
