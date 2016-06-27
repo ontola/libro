@@ -155,22 +155,57 @@ input[type="submit"].nav-search-button {
   }
 }
 
-
-//** SEARCHBOX
-.sk-search-box {
-  width: 200px;
-  float: right;
-  background-color: white;
-  margin: 10px 1em 0 0;
-
-  @include large {
-    margin: 6px 1em;
-  }
-}
-
+//** SEARCHBOX **//
 
 .sk-search-box {
+  margin: .4em;
   flex: auto;
+  background-color: $lighten2;
+  transition: .2s all;
+
+  &:hover {
+    background-color: $lighten3;
+
+      .sk-search-box__text::placeholder{
+          color: white;
+          transition: .2s all;
+      }
+  }
+
+  .sk-search-box__text {
+    padding: .5em;
+    flex:auto;
+    font-size: 1em;
+    border:none;
+    transition: .2s all;
+    background: none;
+    color: white;
+
+    &:focus {
+      outline:0;
+    }
+
+    &::placeholder{
+        color: $lighten4;
+        transition: .2s all;
+    }
+  }
+
+  .sk-search-box__icon {
+    display: none;
+  }
+
+  &.is-focused {
+    background-color: $white;
+
+    .sk-search-box__text {
+      color: $g5;
+
+      &::placeholder{
+        color: $g2;
+      }
+    }
+  }
 
   form {
     display:flex;
@@ -193,29 +228,17 @@ input[type="submit"].nav-search-button {
     opacity:0.3;
   }
 
-  .sk-search-box__text {
-    padding:6px .5em;
-    width:100%;
-    flex:3;
-    font-size:14px;
-    border:none;
-    height: initial;
-    line-height: initial;
-
-    &:focus {
-      outline:0;
-    }
-  }
-
   &__action {
     height:40px;
     visibility: hidden;
+    display: none;
   }
 
   &__loader {
     flex:0 20px 20px;
     align-self: flex-end;
     margin: 6px 8px;
+    pointer-events: none;
 
     &.is-hidden {
       display:none;
@@ -223,10 +246,8 @@ input[type="submit"].nav-search-button {
   }
 }
 
-
 //** SPINNING LOADER
 .sk-spinning-loader {
-  font-size: 8px;
   position: relative;
   text-indent: -9999em;
   border-top: 2px solid rgba(0, 0, 0, 0.2);
@@ -242,6 +263,12 @@ input[type="submit"].nav-search-button {
   border-radius: 50%;
   width: 10px;
   height: 10px;
+  border-radius: 50%;
+  width: 1em;
+  height: 1em;
+  position: absolute;
+  right: 0;
+  top: 0em;
 }
 
 @keyframes spinning-loader {
