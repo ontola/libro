@@ -30,7 +30,7 @@ const search = (state = initialState, action) => {
       });
     case FETCH_DOCUMENT_SUCCESS:
       return Object.assign({}, state, {
-        document: action.payload._source,
+        document: action.payload.source,
         loading: false,
       });
     case FETCH_DOCUMENT_FAILURE:

@@ -22,11 +22,15 @@ app.use(bodyParser.json());
 
 if (process.env.NODE_ENV === 'development') {
   app.use(webpackMiddleware(compiler, {
-    noInfo: true, publicPath: webpackConfig.output.publicPath,
+    noInfo: true,
+    publicPath: webpackConfig.output.publicPath,
   }));
 
   app.use(webpackHotMiddleware(compiler, {
-    log: console.log, path: '/__webpack_hmr', heartbeat: heartBeatTime * MS, reload: true,
+    log: console.log,
+    path: '/__webpack_hmr',
+    heartbeat: heartBeatTime * MS,
+    reload: true,
   }));
 }
 
@@ -38,7 +42,7 @@ proxy.on('error', (err, req) => {
 app.use(/\/api\/(.*)/, (request, res) => {
   const req = request;
   req.url = request.originalUrl;
-  proxy.web(req, res, { target: 'http://localhost:3030' });
+  proxy.web(req, res, { target: constants.ARGU_API_URL });
 });
 
 // Static directory for express
