@@ -161,14 +161,13 @@ input[type="submit"].nav-search-button {
   margin: .4em;
   flex: auto;
   background-color: $lighten2;
-  transition: .2s all;
+  transition: .2s background-color;
 
   &:hover {
     background-color: $lighten3;
 
       .sk-search-box__text::placeholder{
           color: white;
-          transition: .2s all;
       }
   }
 
@@ -177,7 +176,7 @@ input[type="submit"].nav-search-button {
     flex:auto;
     font-size: 1em;
     border:none;
-    transition: .2s all;
+    transition: .2s color;
     background: none;
     color: white;
 
@@ -187,7 +186,7 @@ input[type="submit"].nav-search-button {
 
     &::placeholder{
         color: $lighten4;
-        transition: .2s all;
+        transition: .2s color;
     }
   }
 
