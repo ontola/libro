@@ -1,8 +1,9 @@
 const PORT_DEVELOPMENT = 3000;
+const PORT_API = 3030;
 const PORT_PRODUCTION = 8080;
 const PORT = process.env.NODE_ENV === 'development' ? PORT_DEVELOPMENT : PORT_PRODUCTION;
 
-const ARGU_API_URL = process.env.ARGU_API_URL || `http://localhost:${PORT}/api`;
+const ARGU_API_URL = process.env.ARGU_API_URL || `http://localhost:${PORT_API}`;
 
 const ELASTICSEARCH_URL = process.env.ELASTICSEARCH_URL || 'https://aod-search.argu.co';
 const ELASTICSEARCH_INDEX = process.env.ELASTICSEARCH_INDEX || 'aod';

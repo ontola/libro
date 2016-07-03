@@ -1,6 +1,6 @@
 export const renderFullPage = (html, devPort, domain, initialState = {}, head) => {
   const bundleCSS = initialState !== null || process.env.NODE_ENV === 'production'
-    ? `<link rel="stylesheet" type="text/css" href="/dist/bundle.css" />`
+    ? '<link rel="stylesheet" type="text/css" href="/dist/bundle.css" />'
     : '';
 
   return `<!doctype html>

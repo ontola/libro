@@ -8,7 +8,7 @@ const Home = () => (
     <Helmet title="Homepage" />
     <Heading>Home</Heading>
     <Box>
-      <div className="box__content">
+      <div className="Box__content">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
           incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud

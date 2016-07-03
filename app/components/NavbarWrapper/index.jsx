@@ -1,8 +1,6 @@
 // @flow
 import './navbar.scss';
 import React, { PropTypes } from 'react';
-import FontAwesome from 'react-fontawesome';
-import { Link } from 'react-router';
 import { SearchBox } from 'searchkit';
 import tinycolor from 'tinycolor2';
 
@@ -19,7 +17,7 @@ const defaultProps = {
 class NavbarWrapper extends React.Component {
 
   // This function changes the text to a dark variant if the forum color is too light.
-  calculatedClassName(forumColor: string) : string {
+  calculatedClassName(forumColor) {
     const borderValue = 0.5;
     const smartColor = tinycolor(forumColor);
     if (smartColor.getLuminance() < borderValue) {
