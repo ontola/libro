@@ -1,7 +1,7 @@
 // @flow
 import './votedata.scss';
 import React, { PropTypes } from 'react';
-import { Box, VoteChart, Opinions } from '../';
+import { Box, Heading, Opinions, VoteChart } from '../';
 import classNames from 'classnames';
 
 const propTypes = {
@@ -17,25 +17,28 @@ const defaultProps = {
   expanded: false,
 };
 
-function voteDataExpanded(data) {
+const voteDataExpanded = (data) => {
   const opinionsPro = data.counts && data.counts.filter(o => o.option === 'yes');
   const opinionsCon = data.counts && data.counts.filter(o => o.option === 'no');
 
   return (
-    <Box ghost>
-      <Opinions pro={opinionsPro} con={opinionsCon} />
-      <VoteChart data={data.result_aggs} result={data.result} />
-    </Box>
+    <div>
+      <Box ghost>
+        <Opinions pro={opinionsPro} con={opinionsCon} />
+        <VoteChart data={data.result_aggs} result={data.result} />
+      </Box>
+      <Box>
+        <div className="Box__content">
+          <Heading size="3">PvdA</Heading>
+        </div>
+      </Box>
+    </div>
   );
-}
+};
 
-function voteDataUnexpanded(data) {
-  return (
-    <VoteChart data={data.result_aggs} result={data.result} />
-  );
-}
+const voteDataUnexpanded = (data) => <VoteChart data={data.result_aggs} result={data.result} />;
 
-function VoteData({ data, expanded }) {
+const VoteData = ({ data, expanded }) => {
   if (!data) return false;
 
   const voteDataClass = classNames({
@@ -48,7 +51,7 @@ function VoteData({ data, expanded }) {
       {expanded ? voteDataExpanded(data) : voteDataUnexpanded(data)}
     </div>
   );
-}
+};
 
 VoteData.propTypes = propTypes;
 VoteData.defaultProps = defaultProps;

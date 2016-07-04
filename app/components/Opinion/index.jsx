@@ -14,15 +14,13 @@ const defaultProps = {
   msg: '',
 };
 
-function Opinion({ side, owner, msg }) {
-  return (
-    <div className={`opinion opinion--${side}`}>
-      <HoverContainer message={msg} id={owner}>
-        <img src={`/static/icon-${owner}.png`} alt={owner} />
-      </HoverContainer>
-    </div>
-  );
-}
+const Opinion = ({ side, owner, msg }) => (
+  <div className={`opinion opinion--${side}`}>
+    <HoverContainer message={msg} id={owner}>
+      <img src={`/static/icon-${owner}.png`} alt={owner} />
+    </HoverContainer>
+  </div>
+);
 
 Opinion.propTypes = propTypes;
 Opinion.defaultProps = defaultProps;
