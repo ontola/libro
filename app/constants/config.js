@@ -5,7 +5,7 @@ const PORT = process.env.NODE_ENV === 'development' ? PORT_DEVELOPMENT : PORT_PR
 
 const ARGU_API_URL = process.env.ARGU_API_URL || `http://localhost:${PORT_API}`;
 
-const ELASTICSEARCH_URL = process.env.ELASTICSEARCH_URL || 'https://aod-search.argu.co';
+const ELASTICSEARCH_URL = process.env.ELASTICSEARCH_URL || 'https://aod-search.argu.co/aod_search';
 const ELASTICSEARCH_INDEX = process.env.ELASTICSEARCH_INDEX || 'aod';
 const ELASTICSEARCH_DOCUMENT_BASE =
   `${ELASTICSEARCH_URL}/${ELASTICSEARCH_INDEX}/content/`;

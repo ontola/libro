@@ -53,7 +53,7 @@ if (process.env.NODE_ENV === 'development') {
   app.use('/aod_search', (request, res) => {
     const req = request;
     req.url = request.originalUrl;
-    proxy.web(req, res, { target: 'https://aod-search.argu.co' });
+    proxy.web(req, res, { target: 'https://aod-search.argu.co/aod_search' });
   });
 } else {
   app.use('/aod_search', SearchkitExpress.createRouter({
