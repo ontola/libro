@@ -15,6 +15,7 @@ $g3: rgb(115,115,115);
 $g4: rgb(90,90,90);
 $g5: rgb(50,50,50);
 
+
 $blue: rgb(71, 86, 104);
 $lightergrey: rgb(238, 240, 242); // rgb(232, 232, 232);
 $lightestgrey: rgb(244, 244, 244);
@@ -28,10 +29,36 @@ $green: rgb(84, 127, 75);
 $pink: #D0025B;
 $lightpink: pink;
 
+// Lighten and darken
+$darken0: rgba(0,0,0,.02);
+$darken1: rgba(0,0,0,.05);
+$darken2: rgba(0,0,0,.15);
+$darken3: rgba(0,0,0,.35);
+$darken_overlay: rgba(26, 26, 26, 0.76);
+$darken4: rgba(0,0,0,.5);
+$darken5: rgba(0,0,0,.8);
+
+$lighten1: rgba(255,255,255,.05);
+$lighten2: rgba(255,255,255,.15);
+$lighten3: rgba(255,255,255,.35);
+$lighten4: rgba(255,255,255,.7);
+$lighten5: rgba(255,255,255,.8);
+$lighten6: rgba(255,255,255,.9);
+
+$blue: rgb(71, 86, 104);
+$titleblue: rgb(6, 38, 77);
+$dark: rgb(90, 90, 90);
+$white: rgb(255,255,255);
+$brown: rgb(104, 71, 71);
+$red: rgb(134, 61, 61);
+$green: rgb(84, 127, 75);
+$pink: #D0025B;
+$lightpink: pink;
+
 $primary: $pink;
 $pro: $green;
 $con: $red;
-$neutral: $grey;
+$neutral: $g2;
 $motion: $blue;
 $question: $brown;
 
@@ -68,6 +95,9 @@ $box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 
 $page-width-default: 660px;
 $page-width-fullwidth: 980px;
+
+// The color that defines the navbar and some accents
+$forum-color: $blue;
 
 /*
 Z-INDICES

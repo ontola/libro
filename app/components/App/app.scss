@@ -4,11 +4,11 @@
 body {
   margin: 0;
   padding: 3em 0;
-  background-color: $lightergrey;
+  background-color: $g1;
   font-size: 14px;
   line-height: $line-height-base;
   font-family: $font-family;
-  color: $grey;
+  color: $g5;
 
   @include small-only() {
     font-size: 16px;
