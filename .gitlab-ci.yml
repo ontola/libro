@@ -9,8 +9,8 @@ stages:
   - lint
   - build
   - test
-  - deploy
   - bake
+  - deploy
 
 job1:
   stage: lint
@@ -23,7 +23,7 @@ job2:
     - npm run build
   artifacts:
     paths:
-    - dist/    
+    - dist/
   only:
     - master
 
@@ -31,3 +31,9 @@ job3:
   stage: test
   script:
     - npm run test
+
+job4:
+  stage: bake
+  script:
+    - docker build --pull=true -t registry.gitlab.com/arguweb/aod_demo .
+    - docker push registry.gitlab.com/arguweb/aod_demo
