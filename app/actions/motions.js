@@ -3,7 +3,7 @@ import { ARGU_API_URL } from '../constants/config';
 import * as action from '../constants/actionTypes';
 
 const apiGetMotions = (id) => {
-  const route = (id ? `/motions?identifier=${id}` : '/motions');
+  const route = id ? `motions?identifier=${id}` : 'motions';
   return {
     [CALL_API]: {
       endpoint: `${ARGU_API_URL}/api/${route}`,
