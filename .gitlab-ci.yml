@@ -9,6 +9,12 @@ before_script:
   - npm -v
   - npm i
 
+stages:
+  - build
+  - test
+  - deploy
+  - bake
+
 build:
   stage: build
   script:
