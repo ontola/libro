@@ -1,16 +1,13 @@
 image: node
 
+cache:
+  paths:
+  - node_modules/
+
 before_script:
   - node -v
   - npm -v
   - npm i
-
-stages:
-  - lint
-  - build
-  - test
-  - bake
-  - deploy
 
 lint:
   stage: lint
@@ -21,11 +18,6 @@ build:
   stage: build
   script:
     - npm run build
-  artifacts:
-    paths:
-    - dist/
-  only:
-    - master
 
 test:
   stage: test
