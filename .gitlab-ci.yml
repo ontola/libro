@@ -1,6 +1,7 @@
 image: node
 
 before_script:
+  - docker info
   - node -v
   - npm -v
   - npm i
