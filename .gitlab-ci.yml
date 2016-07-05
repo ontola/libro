@@ -9,11 +9,6 @@ before_script:
   - npm -v
   - npm i
 
-lint:
-  stage: lint
-  script:
-    - npm run lint
-
 build:
   stage: build
   script:
@@ -24,6 +19,7 @@ build:
 test:
   stage: test
   script:
+    - npm run lint
     - npm run test
     - npm run e2e
 
