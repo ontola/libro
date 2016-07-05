@@ -12,12 +12,12 @@ stages:
   - bake
   - deploy
 
-job1:
+lint:
   stage: lint
   script:
     - npm run lint
 
-job2:
+build:
   stage: build
   script:
     - npm run build
@@ -27,12 +27,13 @@ job2:
   only:
     - master
 
-job3:
+test:
   stage: test
   script:
     - npm run test
+    - npm run e2e
 
-job4:
+bake:
   stage: bake
   script:
     - docker build --pull=true -t registry.gitlab.com/arguweb/aod_demo .
