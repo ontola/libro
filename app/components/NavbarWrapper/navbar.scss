@@ -1,5 +1,7 @@
 @import "../shared/config.scss";
 
+$dark-text: rgba(0,0,0,.8);
+
 .navbar {
   position: fixed;
   top: 0;
@@ -7,7 +9,7 @@
   left: 0;
   z-index: 11;
   height: 3em;
-  background-color: $forum-color;
+  background-color: $forum-color; // This is overruled by inline styling.
 }
 
 .navbar-item {
@@ -16,6 +18,10 @@
   padding: 0 0.7em;
   font-size: 1em;
   height: 3em;
+
+  .navbar--dark-text & {
+    color: $dark-text;
+  }
 
   span {
     line-height: 3em;
@@ -32,6 +38,10 @@
   &:hover {
     background-color: $lighten2;
     text-decoration: none;
+
+    .navbar--dark-text & {
+      background-color: $darken2;
+    }
   }
 }
 
@@ -163,12 +173,24 @@ input[type="submit"].nav-search-button {
   background-color: $lighten2;
   transition: .2s background-color;
 
+  .navbar--dark-text & {
+    background-color: $darken2;
+  }
+
   &:hover {
     background-color: $lighten3;
 
-      .sk-search-box__text::placeholder{
-          color: white;
+    .navbar--dark-text & {
+      background-color: $darken3;
+    }
+
+    .sk-search-box__text::placeholder{
+      color: white;
+
+      .navbar--dark-text & {
+        color: $dark-text;
       }
+    }
   }
 
   .sk-search-box__text {
@@ -185,8 +207,12 @@ input[type="submit"].nav-search-button {
     }
 
     &::placeholder{
-        color: $lighten4;
-        transition: .2s color;
+      color: $lighten4;
+      transition: .2s color;
+
+      .navbar--dark-text & {
+        color: $darken4;
+      }
     }
   }
 
@@ -197,11 +223,23 @@ input[type="submit"].nav-search-button {
   &.is-focused {
     background-color: $white;
 
+    .navbar--dark-text & {
+      background-color: $dark-text;
+    }
+
     .sk-search-box__text {
       color: $g5;
 
+      .navbar--dark-text & {
+        color: white;
+      }
+
       &::placeholder{
         color: $g2;
+
+        .navbar--dark-text & {
+          color: $lighten4;
+        }
       }
     }
   }
