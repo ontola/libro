@@ -6,13 +6,18 @@ const initialState = {
 };
 
 const votes = handleActions({
-  [UPDATE_VOTE_TALLY]: (state, action) =>
-    Object.assign({}, state, {
-      all: [
-        ...state.all,
-        action.payload,
-      ],
-    }),
+  [UPDATE_VOTE_TALLY]: (state, action) => {
+    const hasVoted = state.all.find(vote => vote.identifier === action.payload.identifier);
+    if (hasVoted === undefined) {
+      return Object.assign({}, state, {
+        all: [
+          ...state.all,
+          action.payload,
+        ],
+      });
+    }
+    return state;
+  },
 }, initialState);
 
 export default votes;

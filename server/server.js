@@ -4,14 +4,14 @@ import webpackMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import SearchkitExpress from 'searchkit-express';
 import bodyParser from 'body-parser';
-import httpProxy from 'http-proxy';
+import proxy from 'http-proxy-middleware';
+import morgan from 'morgan';
 
 import webpackConfig from '../webpack/common.config.babel';
 import { renderFullPage } from './utils/render';
 import * as constants from '../app/constants/config';
 
 const compiler = webpack(webpackConfig);
-const proxy = httpProxy.createProxyServer({ secure: false });
 const app = express();
 const MS = 1000;
 const heartBeatTime = 10;
@@ -19,6 +19,8 @@ const port = constants.PORT;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use(morgan('short'));
 
 if (process.env.NODE_ENV === 'development') {
   app.use(webpackMiddleware(compiler, {
@@ -34,27 +36,32 @@ if (process.env.NODE_ENV === 'development') {
   }));
 }
 
-proxy.on('error', (err, req) => {
-  console.error(err, req.url);
-});
+// proxy.on('error', (err, req) => {
+//   console.error(err, req.url);
+// });
 
 // Activate proxy for session
-app.use(/\/api\/(.*)/, (request, res) => {
-  const req = request;
-  req.url = request.originalUrl;
-  proxy.web(req, res, { target: constants.ARGU_API_URL });
-});
+app.use(/\/api\/(.*)/, proxy({
+  target: constants.ARGU_API_URL,
+  changeOrigin: true,
+}));
 
 // Static directory for express
 app.use('/static', express.static(`${__dirname}/../static/`));
 app.use('/dist', express.static(`${__dirname}/../dist/`));
 
 if (process.env.NODE_ENV === 'development') {
-  app.use('/aod_search', (request, res) => {
-    const req = request;
-    req.url = request.originalUrl;
-    proxy.web(req, res, { target: 'https://aod-search.argu.co/aod_search' });
+  const elasticProxy = proxy({
+    target: 'https://aod-search.argu.co',
+    changeOrigin: true,
+    onError: (proxyRes, req, res) => {
+      console.log('Err', proxyRes);
+    },
+    onProxyReq: (proxyReq, req, res) => {
+      console.log('RAW Req:', proxyReq);
+    },
   });
+  app.use('/aod_search', elasticProxy);
 } else {
   app.use('/aod_search', SearchkitExpress.createRouter({
     host: constants.ELASTICSEARCH_URL,

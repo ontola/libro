@@ -1,9 +1,7 @@
 // @flow
 import './votebuttons.scss';
 import React, { PropTypes } from 'react';
-import {
-  Button,
-} from '../';
+import { Button } from '../';
 
 const propTypes = {
   identifier: PropTypes.number,
