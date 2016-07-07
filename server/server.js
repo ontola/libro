@@ -54,12 +54,6 @@ if (process.env.NODE_ENV === 'development') {
   const elasticProxy = proxy({
     target: 'https://aod-search.argu.co',
     changeOrigin: true,
-    onError: (proxyRes, req, res) => {
-      console.log('Err', proxyRes);
-    },
-    onProxyReq: (proxyReq, req, res) => {
-      console.log('RAW Req:', proxyReq);
-    },
   });
   app.use('/aod_search', elasticProxy);
 } else {

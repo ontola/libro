@@ -13,6 +13,7 @@ export default [
             'public/8351_0.jpg',
           biography: 'Ik vind het belangrijk dat politici met elkaar van gedachten wisselen.' +
             'Maar daar moet het niet bij blijven; de politiek moet ook resultaten boeken.',
+          party: 'D66',
         },
       },
       {
@@ -30,6 +31,7 @@ export default [
             ' van kruisraketten in het begin van de jaren 80. Ik was daar voor. De meeste van' +
             'mijn klasgenoten en alle leraren waren tegen. Toen maakte ik de keus voor de VVD' +
             'van Nijpels: Edje Raketje, inderdaad!',
+          party: 'VVD',
         },
       },
       {
@@ -46,6 +48,7 @@ export default [
             'veel met politiek te maken. Je kunt dan aanbevelingen doen, maar staat meer aan de' +
             'zijlijn. Nu ik in de Tweede Kamer zit, kan ik daadwerkelijk een bijdrage leveren' +
             'aan de toekomst.',
+          party: 'D66',
         },
       },
       {
@@ -59,6 +62,7 @@ export default [
             'en jarenlang was ik wethouder in Delft en Rotterdam. Van 23 november 2010 tot 20' +
             'september 2012 was ik al lid van de Tweede Kamer. Daarna, van 3 maart 2013 tot 12' +
             'mei 2015, was ik voorzitter van GroenLinks.',
+          party: 'GroenLinks',
         },
       },
     ]);

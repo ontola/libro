@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
-import { Heading, Box, Page } from '../components';
+import PoliticiansContainer from '../containers/PoliticiansContainer';
+import { Heading, Page } from '../components';
 import Helmet from 'react-helmet';
 
 const Politicians = () => (
@@ -9,11 +10,7 @@ const Politicians = () => (
       title="Politicians"
     />
     <Heading>Politicians</Heading>
-    <Box>
-      <div className="Box__content">
-        Hier komt een lijst met alle leden van de raad.
-      </div>
-    </Box>
+    <PoliticiansContainer />
   </Page>
 );
 
