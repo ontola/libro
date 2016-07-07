@@ -1,7 +1,7 @@
 import Motions from './routes/motions';
-import Politicians from './routes/politicians';
+import Persons from './routes/persons';
 
 export default [
   Motions,
-  Politicians,
+  Persons,
 ];
