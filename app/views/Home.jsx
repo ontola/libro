@@ -1,12 +1,28 @@
 // @flow
 import React from 'react';
-import { Box, Heading, Page } from '../components';
+import { Box, Heading, Navigation, Page } from '../components';
 import Helmet from 'react-helmet';
+
+const links = [
+  {
+    label: 'Home',
+    to: '/',
+  },
+  {
+    label: 'Motions',
+    to: '/motions',
+  },
+  {
+    label: 'Politicians',
+    to: '/politicians',
+  },
+];
 
 const Home = () => (
   <Page>
     <Helmet title="Homepage" />
     <Heading>Home</Heading>
+    <Navigation links={links} />
     <Box>
       <div className="Box__content">
         <p>

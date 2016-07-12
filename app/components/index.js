@@ -21,6 +21,7 @@ export { default as MotionShow } from './MotionShow';
 export { default as MotionsList } from './MotionsList';
 export { default as MotionsListItem } from './MotionsListItem';
 export { default as NavbarWrapper } from './NavbarWrapper';
+export { default as Navigation } from './Navigation';
 export { default as ResetFiltersDisplay } from './ResetFiltersDisplay';
 export { default as SearchPage } from './SearchPage';
 export { default as Opinion } from './Opinion';
