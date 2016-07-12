@@ -5,10 +5,7 @@ import { Link } from 'react-router';
 import classNames from 'classnames';
 
 const propTypes = {
-  links: PropTypes.shape({
-    to: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-  }).isRequired,
+  links: PropTypes.arrayOf(PropTypes.object),
   fullWidth: PropTypes.bool,
 };
 
@@ -21,6 +18,7 @@ const Navigation = ({ fullWidth, links }) => {
   const navClassName = classNames({
     Navigation,
     'Navigation--fullwidth': fullWidth,
+    'Navigation--default': !fullWidth,
   });
 
   const generateLinks = links.map(link => (

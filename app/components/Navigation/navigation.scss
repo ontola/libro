@@ -14,6 +14,7 @@
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     padding-left: 1em;
+    box-sizing: border-box;
   }
 
   &--fullwidth {
@@ -30,6 +31,12 @@
     &--fullwidth {
       margin: 0;
     }
+  }
+}
+
+.Navigation--fullwidth .Navigation__container {
+  @include large() {
+    padding-left: 0;
   }
 }
 
