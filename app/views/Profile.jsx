@@ -7,7 +7,7 @@ const propTypes = {
 };
 
 const Profile = (props) => (
-  <Page>
+  <Page type="full">
     <Heading>Profile</Heading>
     <Box>
       <div className="Box__content">{props.params.userId}</div>

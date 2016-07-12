@@ -7,7 +7,12 @@
     max-width: $page-width-default;
   }
 
-  &--full {
+  &--wide {
     max-width: $page-width-fullwidth;
   }
+
+  &--full {
+    width: 100%;
+  }
+
 }

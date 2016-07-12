@@ -16,10 +16,9 @@ const defaultProps = {
 };
 
 function Page({ type, children }) {
-  const pageClassModifier = `Page--${type}`;
   const pageClass = classNames({
     Page: true,
-    [pageClassModifier]: true,
+    [`Page--${type}`]: true,
   });
 
   return <section className={pageClass}>{children}</section>;

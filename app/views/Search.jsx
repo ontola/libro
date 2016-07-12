@@ -5,7 +5,7 @@ import { Page } from '../components';
 import Helmet from 'react-helmet';
 
 const Search = () => (
-  <Page type="full">
+  <Page type="wide">
     <Helmet title="Search" />
     <SearchContainer />
   </Page>
