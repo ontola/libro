@@ -1,0 +1,61 @@
+@import "../shared/config.scss";
+
+.ProfileCard {
+  background: $white;
+  padding: $padding-small;
+
+  &--loading .ProfileCard__container {
+    opacity: 0;
+    transition: 0s;
+  }
+
+  &__container {
+    max-width: $page-width-default;
+    min-height: 190px;
+    margin: 0 auto;
+    opacity: 1;
+    transition: .4s opacity;
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  &__image {
+    width: 100px;
+    height: 100px;
+
+    div {
+      width: 100px;
+      height: 100px;
+      background-size: cover;
+      border-radius: 100%;
+      border: 1px solid $g1;
+    }
+  }
+
+  &__foot {
+    border-top: 1px solid $g1;
+    margin-top: 5px;
+    padding: 8px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__stat {
+    display: inline-block;
+    color: $g2;
+    margin-right: 2em;
+  }
+
+  &__statValue {
+    color: $g5;
+    margin-left: .5em;
+  }
+}
+
+.ProfileCard--full {
+  padding: $padding-large;
+}

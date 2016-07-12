@@ -2,12 +2,12 @@
 import './motionsListItem.scss';
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
-import { Box, VoteData } from '../';
+import { Box, Heading, VoteButtons, VoteData } from '../';
 
 const defaultProps = {
   motion: {
     identifier: null,
-    title: 'Joe',
+    title: '',
   },
 };
 
@@ -18,18 +18,22 @@ const propTypes = {
   }),
 };
 
-function MotionsListItem({ motion }) {
-  return (
-    <Box>
-      <div className="Box__content">
-        <div className="motions__list__item">
-          <Link to={`/motion/${motion.identifier}`}>{motion.title}</Link>
-          <VoteData data={motion.votes} />
-        </div>
+const MotionsListItem = ({ motion }) => (
+  <Box>
+    <div className="Box__content">
+      <div className="motions__list__item">
+        <Heading size="3">
+          <Link
+            to={`/motion/${motion.identifier}`}
+            children={motion.title}
+          />
+        </Heading>
+        <VoteData data={motion.votes} />
       </div>
-    </Box>
-  );
-}
+    </div>
+    <VoteButtons identifier={motion.identifier} />
+  </Box>
+);
 
 MotionsListItem.propTypes = propTypes;
 MotionsListItem.defaultProps = defaultProps;

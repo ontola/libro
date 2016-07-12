@@ -1,18 +1,26 @@
 // @flow
 import React, { PropTypes } from 'react';
-import { Heading, Box, Page } from '../components';
+import { Box, Page } from '../components';
+import ProfileCardContainer from '../containers/ProfileCardContainer';
 
 const propTypes = {
   params: PropTypes.object,
 };
 
 const Profile = (props) => (
-  <Page type="full">
-    <Heading>Profile</Heading>
-    <Box>
-      <div className="Box__content">{props.params.userId}</div>
-    </Box>
-  </Page>
+  <div>
+    <Page type="full">
+      <ProfileCardContainer full user={props.params.userId} />
+    </Page>
+    <Page>
+      <Box>
+        <div className="Box__content">
+          Joe
+        </div>
+      </Box>
+    </Page>
+  </div>
+
 );
 
 Profile.propTypes = propTypes;
