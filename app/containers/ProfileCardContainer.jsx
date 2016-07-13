@@ -1,7 +1,13 @@
 // @flow
+import { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { ProfileCard } from '../components';
 import { apiGetPersons } from '../actions/persons';
+
+const propTypes = {
+  user: PropTypes.number.isRequired,
+  full: PropTypes.bool,
+};
 
 const mapStateToProps = (state, ownProps) => {
   const findPerson =
@@ -22,5 +28,7 @@ const ProfileCardContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(ProfileCard);
+
+ProfileCardContainer.PropTypes = propTypes;
 
 export default ProfileCardContainer;

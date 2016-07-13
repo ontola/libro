@@ -62,7 +62,11 @@ const ProfileCard = ({ data, loading, full }) => {
               <span className="ProfileCard__statValue">543</span>
             </div>
           </div>
-          <Button weight icon="tachometer">Vergelijk</Button>
+          <div>
+            {full && <Button weight theme="subtle" icon="square-o">Volgen</Button>}
+            {full && <Button weight theme="subtle" icon="envelope">Stuur bericht</Button>}
+            <Button weight icon="tachometer">Vergelijk</Button>
+          </div>
         </div>
       </div>
     </section>
