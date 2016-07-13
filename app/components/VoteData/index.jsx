@@ -1,7 +1,7 @@
 // @flow
 import './votedata.scss';
 import React, { PropTypes } from 'react';
-import { Box, Heading, Opinions, VoteChart } from '../';
+import { Box, Opinions, VoteChart } from '../';
 import classNames from 'classnames';
 
 const propTypes = {
@@ -26,11 +26,6 @@ const voteDataExpanded = (data) => {
       <Box ghost>
         <Opinions pro={opinionsPro} con={opinionsCon} />
         <VoteChart data={data.result_aggs} result={data.result} />
-      </Box>
-      <Box>
-        <div className="Box__content">
-          <Heading size="3">PvdA</Heading>
-        </div>
       </Box>
     </div>
   );

@@ -41,17 +41,21 @@ const ProfileCard = ({ data, loading, full }) => {
   return (
     <section className={profileClassname}>
       <div className="ProfileCard__container">
-        <div className="ProfileCard__main">
-          <div className="ProfileCard__content">
+
+        <div className="ProfileCard__head">
+          <div className="ProfileCard__title">
             <Heading>{name}</Heading>
             <div className="ProfileCard__party">Nederland · {party}</div>
-            <p className="ProfileCard__bio">{biography}</p>
           </div>
-          <div className="ProfileCard__image">
-            <div style={{ backgroundImage: `url(${image})` }} />
-          </div>
+          <div className="ProfileCard__image" style={{ backgroundImage: `url(${image})` }} />
         </div>
+
+        <div className="ProfileCard__main">
+          <p className="ProfileCard__bio">{biography}</p>
+        </div>
+
         <div className="ProfileCard__foot">
+
           <div className="ProfileCard__stats">
             <div className="ProfileCard__stat">
               Ideeen
@@ -62,7 +66,13 @@ const ProfileCard = ({ data, loading, full }) => {
               <span className="ProfileCard__statValue">543</span>
             </div>
           </div>
-          <Button weight icon="tachometer">Vergelijk</Button>
+
+          <div className="ProfileCard__buttons">
+            {full && <Button weight theme="subtle" icon="square-o">Volgen</Button>}{' '}
+            {full && <Button weight theme="subtle" icon="envelope">Stuur bericht</Button>}{' '}
+            <Button weight icon="tachometer">Vergelijk</Button>
+          </div>
+
         </div>
       </div>
     </section>

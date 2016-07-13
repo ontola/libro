@@ -1,6 +1,6 @@
 // @flow
 import React, { PropTypes } from 'react';
-import { Navigation, Page } from '../components';
+import { Navigation } from '../components';
 import ProfileCardContainer from '../containers/ProfileCardContainer';
 
 const propTypes = {
@@ -11,7 +11,7 @@ const propTypes = {
 const Profile = (props) => {
   const links = [
     {
-      label: 'Moties ingediend',
+      label: 'Ideëen',
       to: `/profile/${props.params.userId}`,
     },
     {
@@ -34,9 +34,7 @@ const Profile = (props) => {
 
   return (
     <div>
-      <Page type="full">
-        <ProfileCardContainer full user={props.params.userId} />
-      </Page>
+      <ProfileCardContainer full user={props.params.userId} />
       <Navigation fullWidth links={links} />
       {props.children}
     </div>

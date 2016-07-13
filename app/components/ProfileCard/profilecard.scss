@@ -4,35 +4,37 @@
   background: $white;
   padding: $padding-small;
 
-  &--loading .ProfileCard__container {
-    opacity: 0;
-    transition: 0s;
-  }
-
   &__container {
     max-width: $page-width-default;
     min-height: 190px;
     margin: 0 auto;
-    opacity: 1;
-    transition: .4s opacity;
+
+    @include small-only() {
+      padding: 0 10px;
+      box-sizing: border-box;
+    }
   }
 
-  &__main {
+  &__head {
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
+    width: 100%;
+  }
+
+  &__title {
+    flex-grow: 1;
   }
 
   &__image {
-    width: 100px;
-    height: 100px;
+    width: 5em;
+    height: 5em;
+    background-size: cover;
+    border-radius: 100%;
+    border: 1px solid $g1;
 
-    div {
-      width: 100px;
-      height: 100px;
-      background-size: cover;
-      border-radius: 100%;
-      border: 1px solid $g1;
+    @include large() {
+      width: 6em;
+      height: 6em;
     }
   }
 
@@ -42,6 +44,11 @@
     padding: 8px 0;
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
+
+    @include large() {
+      flex-direction: row;
+    }
   }
 
   &__stat {
@@ -57,5 +64,5 @@
 }
 
 .ProfileCard--full {
-  padding: $padding-large;
+  padding: 40px 0;
 }
