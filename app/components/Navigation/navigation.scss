@@ -53,6 +53,9 @@
     border-bottom: .2em solid $titleblue;
   }
 
+  &:last-of-type {
+    padding-right: 2em;
+  }
 }
 
 .Navigation--fullwidth .Navigation__container {

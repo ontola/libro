@@ -1,8 +1,8 @@
+import autoprefixer from 'autoprefixer';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import merge from 'webpack-merge';
 import path from 'path';
 import webpack from 'webpack';
-import autoprefixer from 'autoprefixer';
-import merge from 'webpack-merge';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 import development from './dev.config.js';
 import production from './prod.config.js';

@@ -13,4 +13,9 @@ describe('Application', () => {
     const wrapper = shallow(<App />);
     assert.isNotNull(wrapper.props().children, 'Children have not been born yet...');
   });
+
+  it('contains a hovercard', () => {
+    const wrapper = shallow(<App />);
+    assert.isNotNull(wrapper.find('div.HoverCard'), 'Hovercard is not present');
+  });
 });

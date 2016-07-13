@@ -2,7 +2,7 @@ import path from 'path';
 import webpack from 'webpack';
 
 module.exports = {
-  devtool: 'eval-cheap-module-source-map',
+  devtool: 'cheap-module-eval-source-map',
 
   entry: {
     main: ['webpack-hot-middleware/client', './app/index.js'],

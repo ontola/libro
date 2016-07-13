@@ -13,8 +13,6 @@ import * as constants from '../app/constants/config';
 
 const compiler = webpack(webpackConfig);
 const app = express();
-const MS = 1000;
-const heartBeatTime = 10;
 const port = constants.PORT;
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -26,14 +24,11 @@ if (process.env.NODE_ENV === 'development') {
   app.use(webpackMiddleware(compiler, {
     noInfo: true,
     publicPath: webpackConfig.output.publicPath,
+    silent: true,
+    stats: 'errors-only',
   }));
 
-  app.use(webpackHotMiddleware(compiler, {
-    log: console.log,
-    path: '/__webpack_hmr',
-    heartbeat: heartBeatTime * MS,
-    reload: true,
-  }));
+  app.use(webpackHotMiddleware(compiler));
 }
 
 // proxy.on('error', (err, req) => {

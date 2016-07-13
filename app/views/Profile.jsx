@@ -30,6 +30,10 @@ const Profile = (props) => {
       label: 'Groepen',
       to: `/profile/${props.params.userId}/groups`,
     },
+    {
+      label: 'Yoloswagness',
+      to: `/profile/${props.params.userId}/yolo`,
+    },
   ];
 
   return (

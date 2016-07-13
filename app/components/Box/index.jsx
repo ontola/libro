@@ -9,11 +9,11 @@ const propTypes = {
 };
 
 const defaultProps = {
-  children: [],
+  children: '',
   ghost: false,
 };
 
-function Box({ children, ghost }) {
+const Box = ({ children, ghost }) => {
   const boxClass = classNames({
     Box: true,
     'Box--ghost': ghost,
@@ -24,7 +24,7 @@ function Box({ children, ghost }) {
       {children}
     </div>
   );
-}
+};
 
 Box.propTypes = propTypes;
 Box.defaultProps = defaultProps;
