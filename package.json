@@ -13,8 +13,6 @@
     "start": "rimraf ./dist && NODE_ENV=development node ./bin/server.js",
     "start:dev": "concurrently \"npm run start\" \"npm run api\"",
     "start:prod": "NODE_ENV=production node ./bin/server.js",
-    "start-ssr": "rimraf ./dist && NODE_ENV=development concurrently --kill-others \"nodemon --watch app ./bin/server-ssr.js\" \"node ./bin/webpack-server.js\"",
-    "start-ssr:prod": "NODE_ENV=production node ./bin/server-ssr.js",
     "api": "NODE_ENV=development nodemon --watch api ./bin/api.js",
     "api:prod": "NODE_ENV=production node ./bin/api.js",
     "build": "rimraf ./dist && NODE_ENV=production webpack --production --progress --verbose --display-error-details --config ./webpack/common.config.babel.js",
@@ -62,7 +60,6 @@
     "babel-preset-stage-1": "^6.5.0",
     "babel-register": "^6.9.0",
     "babel-runtime": "^6.3.19",
-    "bluebird": "^3.4.0",
     "body-parser": "^1.15.1",
     "carte-blanche": "^0.3.0",
     "chai": "^3.5.0",
@@ -96,13 +93,10 @@
     "redux-thunk": "^2.1.0",
     "sass-loader": "^3.2.0",
     "style-loader": "^0.13.1",
-    "superagent": "^1.2.0",
-    "superagent-bluebird-promise": "^3.0.0",
     "url": "^0.11.0",
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.2.0",
     "webpack-hot-middleware": "^2.2.0",
-    "webpack-merge": "^0.14.0",
-    "winston": "^2.2.0"
+    "webpack-merge": "^0.14.0"
   }
 }

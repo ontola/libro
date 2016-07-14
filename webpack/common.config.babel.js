@@ -6,7 +6,6 @@ import webpack from 'webpack';
 
 import development from './dev.config.js';
 import production from './prod.config.js';
-import developmentSSR from './dev.ssr.config.js';
 
 const TARGET = process.env.npm_lifecycle_event;
 process.env.BABEL_ENV = TARGET;
@@ -14,15 +13,9 @@ process.env.BABEL_ENV = TARGET;
 let devUrl;
 
 // location dist for dev and prod
-if (!global.ssr && process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development') {
   devUrl = 'http://localhost:3000/dist/';
-}
-
-if (global.ssr && process.env.NODE_ENV === 'development') {
-  devUrl = 'http://localhost:3001/dist/';
-}
-
-if (process.env.NODE_ENV === 'production') {
+} else {
   devUrl = '/dist/';
 }
 
@@ -77,12 +70,8 @@ const common = {
 
 };
 
-if (process.env.NODE_ENV === 'development' && !global.ssr) {
+if (process.env.NODE_ENV === 'development') {
   module.exports = merge(development, common);
-}
-
-if (process.env.NODE_ENV === 'development' && global.ssr) {
-  module.exports = merge(developmentSSR, common);
 }
 
 if (process.env.NODE_ENV === 'production') {
