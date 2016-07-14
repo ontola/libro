@@ -19,18 +19,17 @@ const defaultProps = {
 function Heading({ children, size, className, section }) {
   const Element = `h${size}`;
 
-  const headingClass = classNames({
+  const headingClass = classNames(className, {
     heading: true,
     'heading--section': section,
   });
 
   return (
     <Element
-      className={`${className} ${headingClass}`}
+      className={headingClass}
       role="heading"
-    >
-      {children}
-    </Element>
+      children={children}
+    />
   );
 }
 

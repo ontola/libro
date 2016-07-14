@@ -22,7 +22,7 @@ const defaultProps = {
   weight: false,
   theme: 'default',
   icon: '',
-  children: 'Joep',
+  children: '',
 };
 
 const Button = ({ weight, theme, icon, children, className, onClick }) => {

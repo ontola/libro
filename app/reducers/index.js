@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import hovercard from './hovercard';
 import motions from './motions';
 import persons from './persons';
 import search from './search';
@@ -12,7 +11,6 @@ const rootReducer = combineReducers({
   search,
   motions,
   persons,
-  hovercard,
   routing: routerReducer,
 });
 

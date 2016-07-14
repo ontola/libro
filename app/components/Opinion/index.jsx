@@ -1,6 +1,5 @@
 import './opinion.scss';
 import React, { PropTypes } from 'react';
-import { HoverContainer } from '../../containers';
 
 const propTypes = {
   side: PropTypes.oneOf(['yes', 'no']).isRequired,
@@ -14,11 +13,9 @@ const defaultProps = {
   msg: '',
 };
 
-const Opinion = ({ side, owner, msg }) => (
+const Opinion = ({ side, owner }) => (
   <div className={`opinion opinion--${side}`}>
-    <HoverContainer message={msg} id={owner}>
-      <img src={`/static/icon-${owner}.png`} alt={owner} />
-    </HoverContainer>
+    <img src={`/static/icon-${owner}.png`} alt={owner} />
   </div>
 );
 

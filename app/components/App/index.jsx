@@ -2,7 +2,6 @@
 import './app.scss';
 import React, { PropTypes } from 'react';
 import NavbarContainer from '../../containers/NavbarContainer';
-import { HoverCard } from '../';
 
 const propTypes = {
   children: PropTypes.node,
@@ -17,7 +16,6 @@ function App({ children }) {
     <div>
       <NavbarContainer />
       {children}
-      <HoverCard />
     </div>
   );
 }
