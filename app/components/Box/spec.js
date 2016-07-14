@@ -5,7 +5,7 @@ import { assert } from 'chai';
 import Box from './';
 
 describe('A box', () => {
-  it('contains children that are react components', () => {
+  it('contains children', () => {
     const wrapper = shallow(<Box>joe</Box>);
     assert.isDefined(wrapper.props().children, 'Children have not been born yet...');
   });

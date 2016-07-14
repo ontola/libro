@@ -38,8 +38,8 @@ const Profile = (props) => {
 
   return (
     <div>
-      <ProfileCardContainer full user={props.params.userId} />
-      <Navigation fullWidth links={links} />
+      <ProfileCardContainer user={props.params.userId} full />
+      <Navigation links={links} fullWidth />
       {props.children}
     </div>
   );

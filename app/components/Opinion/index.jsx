@@ -1,5 +1,6 @@
 import './opinion.scss';
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 
 const propTypes = {
   side: PropTypes.oneOf(['yes', 'no']).isRequired,
@@ -15,7 +16,9 @@ const defaultProps = {
 
 const Opinion = ({ side, owner }) => (
   <div className={`opinion opinion--${side}`}>
-    <img src={`/static/icon-${owner}.png`} alt={owner} />
+    <Link to={{ pathname: location.pathname, query: { opinion: owner } }}>
+      <img src={`/static/icon-${owner}.png`} alt={owner} />
+    </Link>
   </div>
 );
 

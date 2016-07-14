@@ -40,9 +40,9 @@ const Opinions = ({ pro, con }) => {
   );
 
   return (
-    <div className="opinions">
-      <div className="opinions__list">{listProOpinions}</div>
-      <div className="opinions__list">{listConOpinions}</div>
+    <div className="Opinions">
+      <div className="Opinions__list">{listProOpinions}</div>
+      <div className="Opinions__list">{listConOpinions}</div>
     </div>
   );
 };
