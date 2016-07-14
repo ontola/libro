@@ -7,15 +7,6 @@
   border-radius: $border-radius-base;
   overflow: hidden;
 
-  &--ghost {
-    background-color: transparent;
-    border: none;
-
-    .Box__content {
-      padding: 0;
-    }
-  }
-
   @include large() {
     margin: $margin-base;
   }

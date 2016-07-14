@@ -3,7 +3,7 @@ import './searchpage.scss';
 import React, { PropTypes } from 'react';
 
 import {
-	Box, Button, Drawer, HitStats, ResetFiltersDisplay,
+	Box, Button, Container, Drawer, HitStats, ResetFiltersDisplay,
 } from '../';
 
 import SearchResultContainer from '../../containers/SearchResultContainer.jsx';
@@ -62,7 +62,7 @@ class SearchPage extends React.Component {
     const toolsClass = (hits === null) ? 'sk-searchtools sk-searchtools--hide' : 'sk-searchtools';
     return (
       <div>
-        <Box ghost>
+        <Container>
           <div className={toolsClass}>
             <Button
               className="sk-drawer-action"
@@ -73,7 +73,7 @@ class SearchPage extends React.Component {
             <HitStats hits={hits} />
             <SortingSelector listComponent={Select} options={sortOption} />
           </div>
-        </Box>
+        </Container>
 
         <div className="sk-results">
           <Drawer>

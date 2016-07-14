@@ -1,7 +1,7 @@
 // @flow
 import './votedata.scss';
 import React, { PropTypes } from 'react';
-import { Box, Opinions, VoteChart } from '../';
+import { Container, Opinions, VoteChart } from '../';
 import classNames from 'classnames';
 
 const propTypes = {
@@ -22,12 +22,10 @@ const voteDataExpanded = (data) => {
   const opinionsCon = data.counts && data.counts.filter(o => o.option === 'no');
 
   return (
-    <div>
-      <Box ghost>
-        <Opinions pro={opinionsPro} con={opinionsCon} />
-        <VoteChart data={data.result_aggs} result={data.result} />
-      </Box>
-    </div>
+    <Container>
+      <Opinions pro={opinionsPro} con={opinionsCon} />
+      <VoteChart data={data.result_aggs} result={data.result} />
+    </Container>
   );
 };
 

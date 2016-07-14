@@ -46,26 +46,24 @@ function MotionShow({ data, onVote, loading }) {
 
   return (
     <div>
-      <Box ghost>
-        <div className="MotionShow_navigation">
-          <div className="MotionShow_navigation_link">
-            {data.relations.previousMotion !== null &&
-              <Link to={`/motion/${data.relations.previousMotion}`}>
-                <FontAwesome name="arrow-left" />{' '}
-                Vorige
-              </Link>
-            }
-          </div>
-          <div className="MotionShow_navigation_link">
-            {data.relations.nextMotion !== null &&
-              <Link to={`/motion/${data.relations.nextMotion}`}>
-                Volgende{' '}
-                <FontAwesome name="arrow-right" />
-              </Link>
-            }
-          </div>
+      <div className="MotionShow_navigation">
+        <div className="MotionShow_navigation_link">
+          {data.relations.previousMotion !== null &&
+            <Link to={`/motion/${data.relations.previousMotion}`}>
+              <FontAwesome name="arrow-left" />{' '}
+              Vorige
+            </Link>
+          }
         </div>
-      </Box>
+        <div className="MotionShow_navigation_link">
+          {data.relations.nextMotion !== null &&
+            <Link to={`/motion/${data.relations.nextMotion}`}>
+              Volgende{' '}
+              <FontAwesome name="arrow-right" />
+            </Link>
+          }
+        </div>
+      </div>
 
       <Box>
         {loading ? <div>Laden...</div> :
@@ -87,18 +85,14 @@ function MotionShow({ data, onVote, loading }) {
       <Columns>
         {pro.length > 0 &&
           <div>
-            <Box ghost>
-              <Heading size="3" section>Voordelen</Heading>
-            </Box>
+            <Heading size="3" section>Voordelen</Heading>
             {pro.map(a => <Argument key={a.id} data={a} />)}
           </div>
         }
 
         {con.length > 0 &&
           <div>
-            <Box ghost>
-              <Heading size="3" section>Nadelen</Heading>
-            </Box>
+            <Heading size="3" section>Nadelen</Heading>
             {con.map(a => <Argument key={a.id} data={a} />)}
           </div>
         }
