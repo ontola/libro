@@ -1,6 +1,6 @@
 // @flow
 import React, { PropTypes } from 'react';
-import { Navigation } from '../components';
+import { Container, Cover, LinkList } from '../components';
 import ProfileCardContainer from '../containers/ProfileCardContainer';
 
 const propTypes = {
@@ -38,8 +38,18 @@ const Profile = (props) => {
 
   return (
     <div>
-      <ProfileCardContainer user={props.params.userId} full />
-      <Navigation links={links} fullWidth />
+      <Cover>
+        <Container>
+          <ProfileCardContainer user={props.params.userId} full />
+        </Container>
+      </Cover>
+
+      <Cover type="lighter">
+        <Container>
+          <LinkList links={links} fullWidth />
+        </Container>
+      </Cover>
+
       {props.children}
     </div>
   );

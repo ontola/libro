@@ -1,6 +1,6 @@
 // @flow
 import React, { PropTypes } from 'react';
-import { Box, Page } from '../components';
+import { Box, Container } from '../components';
 
 const propTypes = {
   params: PropTypes.shape({
@@ -15,13 +15,11 @@ const defaultProps = {
 };
 
 const UserStats = () => (
-  <Page>
+  <Container>
     <Box>
-      <div className="Box__content">
-        Statistiekenoverzicht
-      </div>
+      Statistiekenoverzicht
     </Box>
-  </Page>
+  </Container>
 );
 
 UserStats.PropTypes = propTypes;

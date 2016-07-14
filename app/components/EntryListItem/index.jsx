@@ -11,19 +11,17 @@ function EntryListItem({ data }) {
 
   return (
     <Box>
-      <div className="Box__content">
-        <Heading size="3">
-          <Link
-            to={`/doc/${id}`}
-            dangerouslySetInnerHTML={{ __html: title }}
-          />
-        </Heading>
-        <DetailsBar>
-          <Detail text={type} icon="lightbulb-o" />
-          <Detail text={date} icon="clock-o" />
-        </DetailsBar>
-        <div dangerouslySetInnerHTML={{ __html: content }}></div>
-      </div>
+      <Heading size="3">
+        <Link
+          to={`/doc/${id}`}
+          dangerouslySetInnerHTML={{ __html: title }}
+        />
+      </Heading>
+      <DetailsBar>
+        <Detail text={type} icon="lightbulb-o" />
+        <Detail text={date} icon="clock-o" />
+      </DetailsBar>
+      <div dangerouslySetInnerHTML={{ __html: content }}></div>
     </Box>
   );
 }

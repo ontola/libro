@@ -1,6 +1,7 @@
 // @flow
 import './navbar.scss';
 import React, { PropTypes } from 'react';
+import { Container, Cover } from '../';
 import { SearchBox } from 'searchkit';
 import tinycolor from 'tinycolor2';
 
@@ -67,23 +68,27 @@ class NavbarWrapper extends React.Component {
     return (
       <nav
         id="navbar"
-        className={`navbar piemels ${this.calculatedClassName(forumColor)}`}
+        className={`navbar ${this.calculatedClassName(forumColor)}`}
         role="navigation"
         style={style}
       >
-        <div className="nav-container">
-          <ul className="navbar-links">
-            {this.wrapInListItems(contentLeft, 'navbar-links-right')}
-          </ul>
-          <SearchBox
-            queryBuilder={this.queryBuilder}
-            queryFields={['onderwerp', 'text', 'text.shingles']}
-            placeholder="Zoek op onderwerp, persoon, organisatie..."
-          />
-          <ul className="navbar-links navbar-links-right">
-            {this.wrapInListItems(contentRight, 'navbar-links-left')}
-          </ul>
-        </div>
+        <Cover type="dark" fixed>
+          <Container size="large">
+            <div className="nav-container">
+              <ul className="navbar-links">
+                {this.wrapInListItems(contentLeft, 'navbar-links-right')}
+              </ul>
+              <SearchBox
+                queryBuilder={this.queryBuilder}
+                queryFields={['onderwerp', 'text', 'text.shingles']}
+                placeholder="Zoek op onderwerp, persoon, organisatie..."
+              />
+              <ul className="navbar-links navbar-links-right">
+                {this.wrapInListItems(contentRight, 'navbar-links-left')}
+              </ul>
+            </div>
+          </Container>
+        </Cover>
       </nav>
     );
   }

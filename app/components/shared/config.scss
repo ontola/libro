@@ -95,8 +95,9 @@ $border-radius-base: 3px;
 $border-color: #D8DEE4;
 $box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 
-$page-width-default: 660px;
-$page-width-fullwidth: 980px;
+$page-width-small: 400px;
+$page-width-medium: 660px;
+$page-width-large: 980px;
 
 // The color that defines the navbar and some accents
 $forum-color: $blue;

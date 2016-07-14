@@ -63,7 +63,7 @@ class SearchPage extends React.Component {
     return (
       <div>
         <Box ghost>
-          <div className={`${toolsClass} Box__content`}>
+          <div className={toolsClass}>
             <Button
               className="sk-drawer-action"
               theme="subtle"

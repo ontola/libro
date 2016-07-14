@@ -21,7 +21,9 @@ const Box = ({ children, ghost }) => {
 
   return (
     <div className={boxClass}>
-      {children}
+      <div className="Box__content">
+        {children}
+      </div>
     </div>
   );
 };

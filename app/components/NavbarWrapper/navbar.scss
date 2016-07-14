@@ -2,16 +2,6 @@
 
 $dark-text: rgba(0,0,0,.8);
 
-.navbar {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 11;
-  height: 3em;
-  background-color: $forum-color; // This is overruled by inline styling.
-}
-
 .navbar-item {
   color: white;
   display: block;
@@ -50,7 +40,6 @@ $dark-text: rgba(0,0,0,.8);
 }
 
 .navbar-links {
-  margin-left: 1em;
   float: left;
 
   > li {
@@ -98,10 +87,6 @@ input[type="submit"].nav-search-button {
 }
 
 .nav-container {
-  margin: auto;
-  position: relative;
-  height: 100%;
-  max-width: $page-width-fullwidth;
   display: flex;
 }
 

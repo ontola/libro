@@ -1,19 +1,7 @@
 @import "../shared/config.scss";
 
 .ProfileCard {
-  background: $white;
-  padding: $padding-small;
-
-  &__container {
-    max-width: $page-width-default;
-    min-height: 190px;
-    margin: 0 auto;
-
-    @include small-only() {
-      padding: 0 10px;
-      box-sizing: border-box;
-    }
-  }
+  padding: $padding-base;
 
   &__head {
     display: flex;

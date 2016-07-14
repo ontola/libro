@@ -1,0 +1,29 @@
+@import "../shared/config.scss";
+
+.Cover {
+  &--lighter {
+    background-color: $lightergrey;
+    border: 1px solid $border-color;
+    border-width: 1px 0;
+  }
+
+  &--default {
+    background-color: $white;
+  }
+
+  &--image {
+    background-size: cover;
+  }
+
+  &--dark {
+    background-color: $blue;
+  }
+
+  &--fixed {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: $zindex-4;
+  }
+}

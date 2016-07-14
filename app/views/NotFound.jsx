@@ -1,6 +1,6 @@
 // @flow
 import React, { PropTypes } from 'react';
-import { Heading, Page } from '../components';
+import { Box, Container, Heading } from '../components';
 import Helmet from 'react-helmet';
 
 const propTypes = {
@@ -16,10 +16,13 @@ const defaultProps = {
 };
 
 const NotFound = () => (
-  <Page>
+  <Container size="small">
     <Helmet title="404 Not Found" />
     <Heading>404 Niet gevonden</Heading>
-  </Page>
+    <Box>
+      De pagina die je zocht is helaas niet gevonden...
+    </Box>
+  </Container>
 );
 
 NotFound.PropTypes = propTypes;

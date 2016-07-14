@@ -68,20 +68,18 @@ function MotionShow({ data, onVote, loading }) {
       </Box>
 
       <Box>
-        <div className="Box__content">
-          {loading ? <div>Laden...</div> :
-            <div>
-              <Heading size="2" children={data.title} />
-              <DetailsBar>
-                <Detail text="Motie" icon="lightbulb-o" />
-                <Detail text="Verworpen" icon="close" />
-                <Detail text="Joep Meindertsma" icon="user" />
-                <Detail text="3 minuten geleden" icon="clock-o" />
-              </DetailsBar>
-              <MarkdownContent content={data.description} />
-            </div>
-          }
-        </div>
+        {loading ? <div>Laden...</div> :
+          <div>
+            <Heading size="2" children={data.title} />
+            <DetailsBar>
+              <Detail text="Motie" icon="lightbulb-o" />
+              <Detail text="Verworpen" icon="close" />
+              <Detail text="Joep Meindertsma" icon="user" />
+              <Detail text="3 minuten geleden" icon="clock-o" />
+            </DetailsBar>
+            <MarkdownContent content={data.description} />
+          </div>
+        }
         <VoteButtons identifier={data.identifier} onVote={onVote} />
       </Box>
 

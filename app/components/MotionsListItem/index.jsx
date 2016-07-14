@@ -20,16 +20,14 @@ const propTypes = {
 
 const MotionsListItem = ({ motion }) => (
   <Box>
-    <div className="Box__content">
-      <div className="motions__list__item">
-        <Heading size="3">
-          <Link
-            to={`/motion/${motion.identifier}`}
-            children={motion.title}
-          />
-        </Heading>
-        <VoteData data={motion.votes} />
-      </div>
+    <div className="motions__list__item">
+      <Heading size="3">
+        <Link
+          to={`/motion/${motion.identifier}`}
+          children={motion.title}
+        />
+      </Heading>
+      <VoteData data={motion.votes} />
     </div>
     <VoteButtons identifier={motion.identifier} />
   </Box>

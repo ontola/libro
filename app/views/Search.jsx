@@ -1,14 +1,14 @@
 // @flow
 import React from 'react';
 import { SearchContainer } from '../containers';
-import { Page } from '../components';
+import { Container } from '../components';
 import Helmet from 'react-helmet';
 
 const Search = () => (
-  <Page type="wide">
+  <Container size="large">
     <Helmet title="Search" />
     <SearchContainer />
-  </Page>
+  </Container>
 );
 
 export default Search;

@@ -1,7 +1,7 @@
 // @flow
 import React, { PropTypes } from 'react';
 import { MotionContainer } from '../containers';
-import { Page } from '../components';
+import { Container } from '../components';
 import Helmet from 'react-helmet';
 
 const propTypes = {
@@ -17,10 +17,10 @@ const defaultProps = {
 };
 
 const Motion = (props) => (
-  <Page>
+  <Container>
     <Helmet title="Motion" />
     <MotionContainer {...props} />
-  </Page>
+  </Container>
 );
 
 Motion.PropTypes = propTypes;

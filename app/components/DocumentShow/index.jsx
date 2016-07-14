@@ -24,14 +24,12 @@ const DocumentShow = ({ data }) => {
 
   return (
     <Box>
-      <div className="Box__content">
-        <Heading children={onderwerp} />
-        <DetailsBar>
-          <Detail text={classification} icon="file-o" />
-          <Detail text={date} icon="clock-o" />
-        </DetailsBar>
-        <MarkdownContent content={text} />
-      </div>
+      <Heading children={onderwerp} />
+      <DetailsBar>
+        <Detail text={classification} icon="file-o" />
+        <Detail text={date} icon="clock-o" />
+      </DetailsBar>
+      <MarkdownContent content={text} />
     </Box>
   );
 };
