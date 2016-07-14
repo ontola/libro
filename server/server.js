@@ -45,18 +45,10 @@ app.use(/\/api\/(.*)/, proxy({
 app.use('/static', express.static(`${__dirname}/../static/`));
 app.use('/dist', express.static(`${__dirname}/../dist/`));
 
-if (process.env.NODE_ENV === 'development') {
-  const elasticProxy = proxy({
-    target: 'https://aod-search.argu.co',
-    changeOrigin: true,
-  });
-  app.use('/aod_search', elasticProxy);
-} else {
-  app.use('/aod_search', SearchkitExpress.createRouter({
-    host: constants.ELASTICSEARCH_URL,
-    index: constants.ELASTICSEARCH_INDEX,
-  }));
-}
+app.use('/aod_search', SearchkitExpress.createRouter({
+  host: constants.ELASTICSEARCH_URL,
+  index: constants.ELASTICSEARCH_INDEX,
+}));
 
 app.get(/.*/, (req, res) => {
   const domain = req.get('host').replace(/:.*/, '');

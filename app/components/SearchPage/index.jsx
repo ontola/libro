@@ -3,7 +3,7 @@ import './searchpage.scss';
 import React, { PropTypes } from 'react';
 
 import {
-	Box, Button, Container, Drawer, HitStats, ResetFiltersDisplay,
+	Button, Container, Drawer, HitStats, ResetFiltersDisplay,
 } from '../';
 
 import SearchResultContainer from '../../containers/SearchResultContainer.jsx';
