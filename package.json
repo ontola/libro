@@ -16,7 +16,8 @@
     "api": "NODE_ENV=development nodemon --watch api ./bin/api.js",
     "api:prod": "NODE_ENV=production node ./bin/api.js",
     "build": "rimraf ./dist && NODE_ENV=production webpack --production --progress --verbose --display-error-details --config ./webpack/static.config",
-    "test": "mocha ./tests/testhelper.js ./app/components/**/spec.js",
+    "test": "test:lint && test:unit",
+    "test:unit": "mocha ./tests/testhelper.js ./app/components/**/spec.js",
     "test:lint": "./node_modules/.bin/eslint --ext .jsx,.js .",
     "test:nightwatch": "./node_modules/.bin/nightwatch"
   },
