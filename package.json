@@ -62,7 +62,6 @@
     "babel-register": "^6.9.0",
     "babel-runtime": "^6.3.19",
     "body-parser": "^1.15.1",
-    "carte-blanche": "^0.3.0",
     "chai": "^3.5.0",
     "classnames": "^2.2.5",
     "concurrently": "^2.1.0",
