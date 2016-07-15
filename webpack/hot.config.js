@@ -4,12 +4,10 @@ const config = require('./common.config');
 
 config.output.publicPath = 'http://localhost:3000/dist/';
 
-config.entry = {
-  main: [
-    'webpack-hot-middleware/client',
-    './app/index.js',
-  ],
-};
+config.entry = [
+  'webpack-hot-middleware/client',
+  './app/index.js',
+];
 
 config.devtool = 'cheap-module-eval-source-map';
 

@@ -36,9 +36,11 @@ npm run test
 ```
 
 ### Docker
-In a docker-enabled tab run `docker build .`
+- In a docker-enabled tab run `docker build .`
+- Run `docker run [id]`
+- Get docker machine ip by running `docker-machine ip default`
 
 ### Links
-- Please use the [Airbnb React Styleguide](https://github.com/airbnb/javascript/tree/master/react#class-vs-reactcreateclass-vs-stateless)
+- Please use the [Airbnb React Styleguide](https://github.com/airbnb/javascript/tree/master/react)
 - Uses the [Redux DevTools Chrome Extension](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd)
 - Uses [Redux Api Middleware](https://github.com/agraboso/redux-api-middleware)
