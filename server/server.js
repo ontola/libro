@@ -29,13 +29,13 @@ if (process.env.NODE_ENV === 'development') {
   }));
 
   app.use(webpackHotMiddleware(compiler));
-}
 
-// Activate proxy for session
-app.use(/\/api\/(.*)/, proxy({
-  target: constants.ARGU_API_URL,
-  changeOrigin: true,
-}));
+  // Activate proxy for session
+  app.use(/\/api\/(.*)/, proxy({
+    target: constants.ARGU_API_URL,
+    changeOrigin: true,
+  }));
+}
 
 // Static directory for express
 app.use('/static', express.static(`${__dirname}/../static/`));
