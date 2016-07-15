@@ -1,28 +1,13 @@
-import autoprefixer from 'autoprefixer';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import merge from 'webpack-merge';
-import path from 'path';
-import webpack from 'webpack';
+const autoprefixer = require('autoprefixer');
+const path = require('path');
+const webpack = require('webpack');
 
-import development from './dev.config.js';
-import production from './prod.config.js';
-
-const TARGET = process.env.npm_lifecycle_event;
-process.env.BABEL_ENV = TARGET;
-
-let devUrl;
-
-// location dist for dev and prod
-if (process.env.NODE_ENV === 'development') {
-  devUrl = 'http://localhost:3000/dist/';
-} else {
-  devUrl = '/dist/';
-}
+// const TARGET = process.env.npm_lifecycle_event;
+// process.env.BABEL_ENV = TARGET;
 
 const common = {
   output: {
     path: `${__dirname}/../dist/`,
-    publicPath: devUrl,
     filename: 'bundle.js',
   },
 
@@ -55,7 +40,6 @@ const common = {
     new webpack.ProvidePlugin({
       fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
     }),
-    new ExtractTextPlugin('bundle.css', { allChunks: true }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: process.env.NODE_ENV === 'development' ? '"development"' : '"production"',
@@ -65,15 +49,7 @@ const common = {
       __CLIENT__: true,
     }),
   ],
-
   postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
-
 };
 
-if (process.env.NODE_ENV === 'development') {
-  module.exports = merge(development, common);
-}
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports = merge(production, common);
-}
+module.exports = common;
