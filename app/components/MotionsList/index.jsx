@@ -1,25 +1,25 @@
 // @flow
-// import styles from './motionsList.scss';
+import './motionsList.scss';
 import React, { PropTypes } from 'react';
 import { MotionsListItem } from '../';
 
 const propTypes = {
-  data: PropTypes.array,
+  data: PropTypes.array.isRequired,
 };
 
 const defaultProps = {
   data: [],
 };
 
-function MotionsList({ data }) {
-  return (
-    <div>
-      {data.map(m =>
-        <MotionsListItem key={m.identifier} motion={m} />
-      )}
-    </div>
-  );
-}
+const MotionsList = ({ data }) => (
+  <ul>
+  {data.map(motion => (
+    <li key={motion.identifier}>
+      <MotionsListItem motion={motion} />
+    </li>
+  ))}
+  </ul>
+);
 
 MotionsList.propTypes = propTypes;
 MotionsList.defaultProps = defaultProps;

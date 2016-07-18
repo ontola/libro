@@ -5,6 +5,7 @@ import { apiGetMotions } from '../actions/motions';
 
 const mapStateToProps = (state) => ({
   data: state.motions.items || [],
+  loading: state.motions.loading,
 });
 
 const mapDispatchToProps = (dispatch) => ({

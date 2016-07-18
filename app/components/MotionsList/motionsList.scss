@@ -1,1 +1,6 @@
 @import "../shared/config.scss";
+
+.MotionsListItem {
+  opacity: 0;
+  transition: 2s opacity;
+}

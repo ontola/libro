@@ -9,18 +9,20 @@ const defaultProps = {
 };
 
 const UserMotions = () => (
-  <Container>
-    <Box>
-      <ul>
-        <li>Motie 1</li>
-        <li>Motie 2</li>
-        <li>Motie 3</li>
-        <li>Motie 4</li>
-        <li>Motie 5</li>
-        <li>Motie 6</li>
-      </ul>
-    </Box>
-  </Container>
+  <div>
+    <Container>
+      <Box>
+        <ul>
+          <li>Motie 1</li>
+          <li>Motie 2</li>
+          <li>Motie 3</li>
+          <li>Motie 4</li>
+          <li>Motie 5</li>
+          <li>Motie 6</li>
+        </ul>
+      </Box>
+    </Container>
+  </div>
 );
 
 UserMotions.PropTypes = propTypes;

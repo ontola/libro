@@ -5,188 +5,340 @@ export default [
   router.get('/api/motions', (req, res) => {
     const motions = [
       {
-        identifier: 245245,
-        title: 'Het Heroverwegen van de positie van de toezichthouder',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod ' +
-          'tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis ' +
-          'nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis ' +
-          'aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat ' +
-          'nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui' +
-          'officia deserunt mollit anim id est laborum.',
-        relations: {
-          nextMotion: 245175,
-          previousMotion: null,
+        links: {
+          self: 'http://localhost:3000/api/motions?identifier=245245',
+          next: 'http://localhost:3000/api/motions?identifier=973533',
         },
-        arguments: [
-          {
-            id: 1,
-            side: 'pro',
-            title: 'Losse discussies doen het erg goed - eerste indruk is belangrijk',
-            text: 'Dit zou een geweldig initiatief zijn zeker gezien het feit dat er een hoop ' +
-              'mensen zijn die net buiten de regels van de voedselbank vallen die er wel heel ' +
-              'erg bij gebaat zijn',
+        data: {
+          type: 'motion',
+          id: '245245',
+          attributes: {
+            title: 'Het Heroverwegen van de positie van de toezichthouder',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod' +
+              'tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis' +
+              'nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            created_at: '2015-05-22T14:56:29.000Z',
+            classification: 'Motie',
           },
-          {
-            id: 2,
-            side: 'con',
-            title: 'Lijkt \'actiever\', doordat het meer gefocust is',
-            text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tem.',
-          },
-          {
-            id: 3,
-            side: 'pro',
-            title: 'Niemand leest handleidingen',
-            text: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut',
-          },
-          {
-            id: 4,
-            side: 'pro',
-            title: 'Je zit niet altijd in een forum',
-            text: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia',
-          },
-        ],
-        votes: {
-          result: 'fail',
-          result_aggs: {
-            pass: 0.19,
-            fail: 0.81,
-          },
-          group_result: [
-            {
-              group: {
-                name: 'VVD',
+          relationships: {
+            creator: {
+              data: {
+                type: 'person',
+                id: '87654345678',
               },
+            },
+            arguments: {
+              data: [
+                { type: 'argument', id: '1' },
+                { type: 'argument', id: '2' },
+                { type: 'argument', id: '3' },
+                { type: 'argument', id: '4' },
+                { type: 'argument', id: '5' },
+              ],
+            },
+            vote_event: {
+              data: {
+                type: 'vote_event',
+                id: '1234567876543',
+              },
+            },
+          },
+        },
+        included: [
+          {
+            type: 'person',
+            id: '87654345678',
+            attributes: {
+              name: 'Han ten Broeke',
+              image: 'https://www.tweedekamer.nl/sites/default/files/styles/member_parliament/public/7892_13.jpg',
+            },
+          },
+          {
+            type: 'argument',
+            id: '11',
+            attributes: {
+              title: 'Losse discussies doen het erg goed - eerste indruk is belangrijk',
+              text: 'Dit zou een geweldig initiatief zijn zeker gezien het feit dat er een hoop ' +
+                'mensen zijn die net buiten de regels van de voedselbank vallen die er wel heel ' +
+                'erg bij gebaat zijn',
+              side: 'pro',
+              created_at: '2015-05-22T14:56:29.000Z',
+              vote_count: 0,
+            },
+          },
+          {
+            type: 'argument',
+            id: '12',
+            attributes: {
+              title: 'Lijkt \'actiever\', doordat het meer gefocust is',
+              text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tem.',
+              side: 'pro',
+              created_at: '2015-05-22T14:56:29.000Z',
+              vote_count: 4,
+            },
+          },
+          {
+            type: 'argument',
+            id: '13',
+            attributes: {
+              title: 'Niemand leest handleidingen',
+              side: 'pro',
+              created_at: '2015-05-22T14:56:29.000Z',
+              vote_count: 135,
+            },
+          },
+          {
+            type: 'argument',
+            id: '14',
+            attributes: {
+              title: 'Je zit niet altijd in een forum',
+              text: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia',
+              side: 'con',
+              created_at: '2015-05-22T14:56:29.000Z',
+              vote_count: 34,
+            },
+          },
+          {
+            type: 'vote_event',
+            id: '21',
+            attributes: {
               result: 'fail',
             },
-            {
-              group: {
-                name: 'D66',
+            relationships: {
+              counts: {
+                data: [
+                  {
+                    type: 'count',
+                    id: '31',
+                  },
+                  {
+                    type: 'count',
+                    id: '32',
+                  },
+                  {
+                    type: 'count',
+                    id: '33',
+                  },
+                  {
+                    type: 'count',
+                    id: '34',
+                  },
+                ],
               },
-              result: 'fail',
-            },
-            {
-              group: {
-                name: 'GroenLinks',
+              votes: {
+                data: [
+                  {
+                    type: 'vote',
+                    id: '41',
+                  },
+                ],
               },
-              result: 'fail',
             },
-            {
-              group: {
-                name: 'PvdA',
-              },
-              result: 'pass',
-            },
-          ],
-          counts: [
-            {
+          },
+          {
+            type: 'count',
+            id: '31',
+            attributes: {
               option: 'no',
               value: 15,
-              group: {
-                name: 'VVD',
-              },
+              name: 'VVD',
             },
-            {
+          },
+          {
+            type: 'count',
+            id: '32',
+            attributes: {
               option: 'no',
               value: 9,
-              group: {
-                name: 'D66',
-              },
+              name: 'D66',
             },
-            {
+          },
+          {
+            type: 'count',
+            id: '33',
+            attributes: {
               option: 'no',
               value: 2,
-              group: {
-                name: 'GroenLinks',
-              },
+              name: 'GroenLinks',
             },
-            {
+          },
+          {
+            type: 'count',
+            id: '34',
+            attributes: {
               option: 'yes',
               value: 3,
-              group: {
-                name: 'PvdA',
-              },
+              name: 'PvdA',
             },
-          ],
+          },
+          {
+            type: 'vote',
+            id: '41',
+            attributes: {
+              individual: true,
+              value: 'yes',
+            },
+          },
+        ],
+      },
+      {
+        links: {
+          self: 'http://localhost:3000/api/motions?identifier=245175',
+          next: 'http://localhost:3000/api/motions?identifier=987654',
+          last: 'http://localhost:3000/api/motions?identifier=245245',
+        },
+        data: {
+          type: 'motion',
+          id: '245175',
+          attributes: {
+            title: 'Banken mede de financiële risico\'s laten dragen bij geborgde leningen',
+            created_at: '2015-05-22T14:56:29.000Z',
+            classification: 'Motie',
+          },
         },
       },
       {
-        identifier: 245175,
-        title: 'Banken mede de financiële risico\'s laten dragen bij geborgde leningen',
-        relations: {
-          nextMotion: 987654,
-          previousMotion: 245245,
+        links: {
+          self: 'http://localhost:3000/api/motions?identifier=987654',
+          next: 'http://localhost:3000/api/motions?identifier=642621',
+          last: 'http://localhost:3000/api/motions?identifier=245175',
+        },
+        data: {
+          type: 'motion',
+          id: '987654',
+          attributes: {
+            title: 'Burgerparticipatie zonder bureaucratisering',
+            created_at: '2015-05-22T14:56:29.000Z',
+            classification: 'Motie',
+          },
         },
       },
       {
-        identifier: 987654,
-        title: 'Burgerparticipatie zonder bureaucratisering',
-        relations: {
-          nextMotion: 642621,
-          previousMotion: 245245,
+        links: {
+          self: 'http://localhost:3000/api/motions?identifier=642621',
+          next: 'http://localhost:3000/api/motions?identifier=136743',
+          last: 'http://localhost:3000/api/motions?identifier=987654',
+        },
+        data: {
+          type: 'motion',
+          id: '642621',
+          attributes: {
+            title: 'Het aanwenden van vrijvallende middelen ten behoeve van de Marker Wadden',
+            created_at: '2015-05-22T14:56:29.000Z',
+            classification: 'Motie',
+          },
         },
       },
       {
-        identifier: 642621,
-        title: 'Het aanwenden van vrijvallende middelen ten behoeve van de Marker Wadden',
-        relations: {
-          nextMotion: 136743,
-          previousMotion: 987654,
+        links: {
+          self: 'http://localhost:3000/api/motions?identifier=136743',
+          next: 'http://localhost:3000/api/motions?identifier=367333',
+          last: 'http://localhost:3000/api/motions?identifier=642621',
+        },
+        data: {
+          type: 'motion',
+          id: '136743',
+          attributes: {
+            title: 'Uniformering van het lozingenbeleid voor mestverwerkingsinstallaties',
+            created_at: '2015-05-22T14:56:29.000Z',
+            classification: 'Motie',
+          },
         },
       },
       {
-        identifier: 136743,
-        title: 'Uniformering van het lozingenbeleid voor mestverwerkingsinstallaties',
-        relations: {
-          nextMotion: 367333,
-          previousMotion: 642621,
+        links: {
+          self: 'http://localhost:3000/api/motions?identifier=367333',
+          next: 'http://localhost:3000/api/motions?identifier=973533',
+          last: 'http://localhost:3000/api/motions?identifier=136743',
+        },
+        data: {
+          type: 'motion',
+          id: '367333',
+          attributes: {
+            title: 'De totstandkoming van drinkwatertarieven',
+            created_at: '2015-05-22T14:56:29.000Z',
+            classification: 'Motie',
+          },
         },
       },
       {
-        identifier: 367333,
-        title: 'De totstandkoming van drinkwatertarieven',
-        relations: {
-          nextMotion: 973533,
-          previousMotion: 136743,
+        links: {
+          self: 'http://localhost:3000/api/motions?identifier=973533',
+          next: 'http://localhost:3000/api/motions?identifier=334672',
+          last: 'http://localhost:3000/api/motions?identifier=367333',
+        },
+        data: {
+          type: 'motion',
+          id: '973533',
+          attributes: {
+            title: 'Zelfcensuur als direct gevolg van bedreigingen',
+            created_at: '2015-05-22T14:56:29.000Z',
+            classification: 'Motie',
+          },
         },
       },
       {
-        identifier: 973533,
-        title: 'Zelfcensuur als direct gevolg van bedreigingen',
-        relations: {
-          nextMotion: 334672,
-          previousMotion: 367333,
+        links: {
+          self: 'http://localhost:3000/api/motions?identifier=334672',
+          next: 'http://localhost:3000/api/motions?identifier=358964',
+          last: 'http://localhost:3000/api/motions?identifier=973533',
+        },
+        data: {
+          type: 'motion',
+          id: '334672',
+          attributes: {
+            title: 'Alle vormen van voortgezet onderwijs opnemen als mogelijk resultaat ' +
+              'van de toets',
+            created_at: '2015-05-22T14:56:29.000Z',
+            classification: 'Motie',
+          },
         },
       },
       {
-        identifier: 334672,
-        title: 'Alle vormen van voortgezet onderwijs opnemen als mogelijk resultaat van de toets',
-        relations: {
-          nextMotion: 358964,
-          previousMotion: 973533,
+        links: {
+          self: 'http://localhost:3000/api/motions?identifier=358964',
+          next: 'http://localhost:3000/api/motions?identifier=195075',
+          last: 'http://localhost:3000/api/motions?identifier=334672',
+        },
+        data: {
+          type: 'motion',
+          id: '358964',
+          attributes: {
+            title: 'Het weigeren van leerlingen vanwege een dubbel advies',
+            created_at: '2015-05-22T14:56:29.000Z',
+            classification: 'Motie',
+          },
         },
       },
       {
-        identifier: 358964,
-        title: 'Het weigeren van leerlingen vanwege een dubbel advies',
-        relations: {
-          nextMotion: 195075,
-          previousMotion: 334672,
+        links: {
+          self: 'http://localhost:3000/api/motions?identifier=195075',
+          next: 'http://localhost:3000/api/motions?identifier=752183',
+          last: 'http://localhost:3000/api/motions?identifier=358964',
+        },
+        data: {
+          type: 'motion',
+          id: '195075',
+          attributes: {
+            title: 'Een verbod op islamitisch thuisonderwijs',
+            created_at: '2015-05-22T14:56:29.000Z',
+            classification: 'Motie',
+          },
         },
       },
       {
-        identifier: 195075,
-        title: 'Een verbod op islamitisch thuisonderwijs',
-        relations: {
-          nextMotion: 752183,
-          previousMotion: 358964,
+        links: {
+          self: 'http://localhost:3000/api/motions?identifier=752183',
+          last: 'http://localhost:3000/api/motions?identifier=195075',
         },
-      },
-      {
-        identifier: 752183,
-        title: 'Evaluatie van de klankbordgroep bij vervanging van onderzeeboten',
-        relations: {
-          nextMotion: null,
-          previousMotion: 195075,
+        data: {
+          type: 'motion',
+          id: '752183',
+          attributes: {
+            title: 'Evaluatie van de klankbordgroep bij vervanging van onderzeeboten',
+            created_at: '2015-05-22T14:56:29.000Z',
+            classification: 'Motie',
+          },
         },
       },
     ];
