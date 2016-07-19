@@ -2,26 +2,22 @@
 import './motionsList.scss';
 import React, { PropTypes } from 'react';
 import { MotionsListItem } from '../';
+import { MotionMap } from '../../models/Motion';
 
 const propTypes = {
-  data: PropTypes.array.isRequired,
+  motions: PropTypes.instanceOf(MotionMap).isRequired,
 };
 
-const defaultProps = {
-  data: [],
-};
-
-const MotionsList = ({ data }) => (
+const MotionsList = ({ motions }) => (
   <ul>
-  {data.map(motion => (
-    <li key={motion.identifier}>
-      <MotionsListItem motion={motion} />
-    </li>
-  ))}
+    {motions.map((motion) =>
+      <li key={motion.get('id')}>
+        <MotionsListItem motion={motion} />
+      </li>
+    ).toArray()}
   </ul>
 );
 
 MotionsList.propTypes = propTypes;
-MotionsList.defaultProps = defaultProps;
 
 export default MotionsList;

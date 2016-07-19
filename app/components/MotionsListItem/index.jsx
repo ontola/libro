@@ -4,36 +4,29 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { Box, Heading, VoteButtons, VoteData } from '../';
 
-const defaultProps = {
-  motion: {
-    identifier: null,
-    title: '',
-  },
-};
+import Motion from '../../models/Motion';
 
 const propTypes = {
-  motion: PropTypes.shape({
-    identifier: PropTypes.number,
-    title: PropTypes.string,
-  }),
+  motion: PropTypes.instanceOf(Motion).isRequired,
 };
 
-const MotionsListItem = ({ motion }) => (
-  <Box>
-    <div className="motions__list__item">
-      <Heading size="3">
-        <Link
-          to={`/motion/${motion.identifier}`}
-          children={motion.title}
-        />
-      </Heading>
-      <VoteData data={motion.votes} />
-    </div>
-    <VoteButtons identifier={motion.identifier} />
-  </Box>
-);
+const MotionsListItem = ({ motion }) => {
+  return (
+    <Box>
+      <div className="motions__list__item">
+        <Heading size="3">
+          <Link
+            to={`/motion/${motion.get('id')}`}
+            children={motion.get('title')}
+          />
+        </Heading>
+        <VoteData data={motion.votes} />
+      </div>
+      <VoteButtons id={motion.get('id')} />
+    </Box>
+  );
+};
 
 MotionsListItem.propTypes = propTypes;
-MotionsListItem.defaultProps = defaultProps;
 
 export default MotionsListItem;

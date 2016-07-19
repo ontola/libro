@@ -28,5 +28,5 @@ test:
 bake:
   stage: bake
   script:
-    - docker build --pull=true -t registry.gitlab.com/arguweb/aod_demo .
-    - docker push registry.gitlab.com/arguweb/aod_demo
+    - docker build --pull=true -t registry.gitlab.com/argu/aod_demo .
+    - docker push registry.gitlab.com/argu/aod_demo

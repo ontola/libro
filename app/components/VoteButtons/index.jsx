@@ -4,15 +4,15 @@ import React, { PropTypes } from 'react';
 import { Button } from '../';
 
 const propTypes = {
-  identifier: PropTypes.number,
+  id: PropTypes.string.isRequired,
   onVote: PropTypes.func.isRequired,
 };
 
-const VoteButtons = ({ identifier, onVote }) => (
+const VoteButtons = ({ id, onVote }) => (
   <div className="Box__actions">
     <Button
       onClick={() => onVote({
-        identifier,
+        id,
         side: 'pro',
       })}
       icon="thumbs-up"
@@ -21,7 +21,7 @@ const VoteButtons = ({ identifier, onVote }) => (
     />
     <Button
       onClick={() => onVote({
-        identifier,
+        id,
         side: 'neutral',
       })}
       icon="pause"
@@ -30,7 +30,7 @@ const VoteButtons = ({ identifier, onVote }) => (
     />
     <Button
       onClick={() => onVote({
-        identifier,
+        id,
         side: 'con',
       })}
       icon="thumbs-down"
