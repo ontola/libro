@@ -5,7 +5,7 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import SearchkitExpress from 'searchkit-express';
 import bodyParser from 'body-parser';
 import proxy from 'http-proxy-middleware';
-import morgan from 'morgan';
+// import morgan from 'morgan';
 
 import * as constants from '../app/constants/config';
 import { renderFullPage } from './utils/render';
@@ -18,14 +18,13 @@ const port = constants.PORT;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(morgan('short'));
+// app.use(morgan('short'));
 
 if (process.env.NODE_ENV === 'development') {
   app.use(webpackMiddleware(compiler, {
     noInfo: true,
     publicPath: webpackConfig.output.publicPath,
     silent: true,
-    stats: 'errors-only',
   }));
 
   app.use(webpackHotMiddleware(compiler));
@@ -40,7 +39,6 @@ if (process.env.NODE_ENV === 'development') {
 // Static directory for express
 app.use('/static', express.static(`${__dirname}/../static/`));
 app.use('/dist', express.static(`${__dirname}/../dist/`));
-
 
 app.use('/aod_search', SearchkitExpress.createRouter({
   host: constants.ELASTICSEARCH_URL,
