@@ -3,12 +3,9 @@ import { connect } from 'react-redux';
 import { MotionsList } from '../components';
 import { apiGetMotions } from '../actions/motions';
 
-const mapStateToProps = (state) => {
-  // console.log('container: ', state.motions);
-  return {
-    motions: state.motions,
-  };
-};
+const mapStateToProps = (state) => ({
+  motions: state.motions,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   actions: dispatch(apiGetMotions(0)),

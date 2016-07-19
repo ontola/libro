@@ -10,22 +10,20 @@ const propTypes = {
   motion: PropTypes.instanceOf(Motion).isRequired,
 };
 
-const MotionsListItem = ({ motion }) => {
-  return (
-    <Box>
-      <div className="motions__list__item">
-        <Heading size="3">
-          <Link
-            to={`/motion/${motion.get('id')}`}
-            children={motion.get('title')}
-          />
-        </Heading>
-        <VoteData data={motion.votes} />
-      </div>
-      <VoteButtons id={motion.get('id')} />
-    </Box>
-  );
-};
+const MotionsListItem = ({ motion }) => (
+  <Box>
+    <div className="motions__list__item">
+      <Heading size="3">
+        <Link
+          to={`/motion/${motion.get('id')}`}
+          children={motion.get('title')}
+        />
+      </Heading>
+      <VoteData data={motion.votes} />
+    </div>
+    <VoteButtons id={motion.get('id')} />
+  </Box>
+);
 
 MotionsListItem.propTypes = propTypes;
 

@@ -1,5 +1,5 @@
 import {
-  FETCH_MOTIONS_REQUEST,
+  // FETCH_MOTIONS_REQUEST,
   FETCH_MOTIONS_SUCCESS,
   FETCH_MOTIONS_FAILURE,
 } from '../constants/actionTypes';
