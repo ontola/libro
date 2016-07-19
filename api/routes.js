@@ -1,7 +1,7 @@
-import Motions from './routes/motions';
+import Documents from './routes/documents';
 import Persons from './routes/persons';
 
 export default [
-  Motions,
+  Documents,
   Persons,
 ];

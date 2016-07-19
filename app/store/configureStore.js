@@ -1,11 +1,14 @@
 // @flow
 import { createStore, applyMiddleware, compose } from 'redux';
 import { apiMiddleware } from 'redux-api-middleware';
+import thunk from 'redux-thunk';
+
 import rootReducer from '../reducers';
 
 function configureStore(initialState) {
   const middlewares = [
     apiMiddleware,
+    thunk,
   ].filter(Boolean);
 
   const createStoreWithMiddleware = compose(
