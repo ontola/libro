@@ -6,7 +6,7 @@ import * as actions from '../constants/actionTypes';
 import { Motion } from '../models/Motion';
 
 const apiGetMotions = (id) => {
-  const route = id ? `motions/?identifier=${id}` : 'motions';
+  const route = id ? `documents/?identifier=${id}` : 'documents';
   return {
     [CALL_API]: {
       endpoint: `${ARGU_API_URL}/api/${route}`,

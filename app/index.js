@@ -5,11 +5,10 @@ import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { SearchkitProvider, SearchkitManager } from 'searchkit';
 
-import configureStore from './store/configureStore';
+import store from './store/configureStore';
 import routes from './routes';
 import { ELASTICSEARCH_URL } from './constants/config';
 
-const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
 const sk = new SearchkitManager(ELASTICSEARCH_URL);
 
