@@ -28,6 +28,8 @@
     "immutable": "^3.8.1",
     "imports-loader": "^0.6.5",
     "isomorphic-fetch": "^2.2.1",
+    "jsonapi-datastore": "^0.4.0-beta",
+    "jsonapi-serializer": "^3.2.1",
     "method-override": "^2.3.5",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",

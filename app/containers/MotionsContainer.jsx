@@ -8,7 +8,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: dispatch(apiGetMotions(0)),
+  actions: dispatch(apiGetMotions()),
 });
 
 const MotionsContainer = connect(

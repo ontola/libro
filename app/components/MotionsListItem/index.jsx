@@ -4,7 +4,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { Box, Heading, VoteButtons, VoteData } from '../';
 
-import Motion from '../../models/Motion';
+import Motion from '../../models';
 
 const propTypes = {
   motion: PropTypes.instanceOf(Motion).isRequired,

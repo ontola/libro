@@ -2,7 +2,7 @@
 import './motionsList.scss';
 import React, { PropTypes } from 'react';
 import { MotionsListItem } from '../';
-import { MotionMap } from '../../models/Motion';
+import { MotionMap } from '../../models';
 
 const propTypes = {
   motions: PropTypes.instanceOf(MotionMap).isRequired,
