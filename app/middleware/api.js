@@ -1,10 +1,9 @@
 import fetch from 'isomorphic-fetch';
+
 import { JsonApiDataStore } from './helpers/dataStore';
 import * as actions from '../constants/actionTypes';
 
 const API_ROOT = 'http://localhost:3000/api/';
-const entities = new JsonApiDataStore();
-
 const actionData = {
   [actions.FETCH_MOTIONS]: {
     endpoint: 'documents',
@@ -13,6 +12,7 @@ const actionData = {
 
 const callApi = (endpoint) => {
   const fullUrl = API_ROOT + endpoint;
+  const entities = new JsonApiDataStore();
 
   return fetch(fullUrl)
     .then(response =>
@@ -21,10 +21,7 @@ const callApi = (endpoint) => {
       if (!response.ok) {
         return Promise.reject(json);
       }
-
       json.data.map(entity => entities.addEntityToStore(entity));
-      console.log(entities);
-
       return entities;
     });
 };

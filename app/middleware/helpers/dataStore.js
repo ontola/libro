@@ -1,18 +1,12 @@
-import Immutable from 'immutable';
-
-import {
-  Motion,
-  MotionMap,
-  Argument,
-  Person,
-  Count,
-  Vote,
-  VoteEvent,
-} from '../../models';
-
 class JsonApiDataStore {
   constructor() {
     this.graph = {};
+  }
+
+  makeGraph(type, id) {
+    this.graph[type] = this.graph[type] || {};
+    this.graph[type][id] = this.graph[type][id] || {};
+    return this.graph[type][id];
   }
 
   processEntity(record) {
@@ -25,7 +19,6 @@ class JsonApiDataStore {
 
     this.graph[type] = this.graph[type] || {};
     this.graph[type][id] = this.graph[type][id] || {};
-
     const entity = this.graph[type][id];
 
     // Assign all attributes to the entity
@@ -52,9 +45,12 @@ class JsonApiDataStore {
 
   addEntityToStore(payload) {
     const processEntity = this.processEntity.bind(this);
+    const ifArray = payload.data.constructor === Array;
+
     if (!payload.data) return [];
     if (payload.included) payload.included.map(processEntity);
-    return (payload.data.constructor === Array) ? payload.data.map(processEntity) : processEntity(payload.data);
+
+    return (ifArray) ? payload.data.map(processEntity) : processEntity(payload.data);
   }
 }
 
