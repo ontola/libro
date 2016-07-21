@@ -1,15 +1,14 @@
 // @flow
 import { connect } from 'react-redux';
 import { PoliticiansList } from '../components';
-import { apiGetPersons } from '../actions/persons';
+import { getPersons } from '../actions/entities';
 
 const mapStateToProps = (state) => ({
-  data: state.persons.items,
-  loading: state.persons.loading,
+  persons: state.entities.person,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: dispatch(apiGetPersons()),
+  actions: dispatch(getPersons()),
 });
 
 const PoliticiansContainer = connect(

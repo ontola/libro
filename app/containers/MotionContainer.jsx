@@ -1,25 +1,23 @@
 // @flow
 import { connect } from 'react-redux';
 import { MotionShow } from '../components';
-import { apiGetMotions } from '../actions/motions';
-import { updateVoteTally } from '../actions/votes';
+import { apiGetMotion } from '../actions/entities';
 
 const mapStateToProps = (state, ownProps) => {
   const findMotion =
-    state.motions.items &&
-    state.motions.items.find(m => m.identifier === Number(ownProps.params.motionId));
+    state.entities.motion &&
+    state.entities.motion.find(m => m.id === ownProps.params.motionId);
 
   return {
     data: findMotion,
-    loading: state.motions.loading,
+    loading: state.entities.loading,
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  actions: dispatch(apiGetMotions(ownProps.params.motionId)),
-  onVote: (data) => {
-    dispatch(updateVoteTally(data));
-  },
+  actions: dispatch(apiGetMotion({
+    id: ownProps.params.motionId,
+  })),
 });
 
 const MotionContainer = connect(

@@ -1,14 +1,14 @@
 // @flow
 import { connect } from 'react-redux';
 import { MotionsList } from '../components';
-import { apiGetMotions } from '../actions/motions';
+import { getMotions } from '../actions/entities';
 
 const mapStateToProps = (state) => ({
-  motions: state.motions,
+  motions: state.entities.motion,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: dispatch(apiGetMotions()),
+  actions: dispatch(getMotions()),
 });
 
 const MotionsContainer = connect(

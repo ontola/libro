@@ -19,7 +19,7 @@ export default [
             attributes: {
               title: 'Het Heroverwegen van de positie van de toezichthouder',
               text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod' +
-                'tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis' +
+                'tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, qui' +
                 'nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
               created_at: '2015-05-22T14:56:29.000Z',
               classification: 'Motie',
@@ -62,8 +62,8 @@ export default [
               id: '11',
               attributes: {
                 title: 'Losse discussies doen het erg goed - eerste indruk is belangrijk',
-                text: 'Dit zou een geweldig initiatief zijn zeker gezien het feit dat er een hoop ' +
-                  'mensen zijn die net buiten de regels van de voedselbank vallen die er wel heel ' +
+                text: 'Dit zou een geweldig initiatief zijn zeker gzien het feit dat er een hoop ' +
+                  'mensen zijn die net buiten de regels van de voedelbank vallen die er wel heel ' +
                   'erg bij gebaat zijn',
                 side: 'pro',
                 created_at: '2015-05-22T14:56:29.000Z',
@@ -75,7 +75,7 @@ export default [
               id: '12',
               attributes: {
                 title: 'Lijkt \'actiever\', doordat het meer gefocust is',
-                text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tem.',
+                text: 'Lorem ipsum dolor sit amet, consectetur adipicing elit, sed do eiusmod tem.',
                 side: 'pro',
                 created_at: '2015-05-22T14:56:29.000Z',
                 vote_count: 4,

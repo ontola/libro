@@ -2,7 +2,7 @@
 import { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { ProfileCard } from '../components';
-import { apiGetPersons } from '../actions/persons';
+import { getPersons } from '../actions/entities';
 
 const propTypes = {
   user: PropTypes.number.isRequired,
@@ -21,7 +21,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  actions: dispatch(apiGetPersons(ownProps.user)),
+  actions: dispatch(getPersons(ownProps.user)),
 });
 
 const ProfileCardContainer = connect(

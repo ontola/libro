@@ -4,10 +4,8 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { Box, Heading, VoteButtons, VoteData } from '../';
 
-import Motion from '../../models';
-
 const propTypes = {
-  motion: PropTypes.instanceOf(Motion).isRequired,
+  motion: PropTypes.object.isRequired,
 };
 
 const MotionsListItem = ({ motion }) => (
@@ -15,13 +13,13 @@ const MotionsListItem = ({ motion }) => (
     <div className="motions__list__item">
       <Heading size="3">
         <Link
-          to={`/motion/${motion.get('id')}`}
-          children={motion.get('title')}
+          to={`/motion/${motion.id}`}
+          children={motion.title}
         />
       </Heading>
       <VoteData data={motion.votes} />
     </div>
-    <VoteButtons id={motion.get('id')} />
+    <VoteButtons id={motion.id} />
   </Box>
 );
 

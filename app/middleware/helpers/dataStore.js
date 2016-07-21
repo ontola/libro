@@ -1,59 +1,75 @@
-class JsonApiDataStore {
-  constructor() {
-    this.graph = {};
-  }
+const formatEntity = (record) => {
+  const {
+    id,
+    attributes,
+    relationships,
+  } = record;
 
-  makeGraph(type, id) {
-    this.graph[type] = this.graph[type] || {};
-    this.graph[type][id] = this.graph[type][id] || {};
-    return this.graph[type][id];
-  }
+  const entity = {};
 
-  processEntity(record) {
-    const {
-      id,
-      type,
-      attributes,
-      relationships,
-    } = record;
+  // Assign all attributes to the entity
+  Object.assign(entity, attributes);
 
-    this.graph[type] = this.graph[type] || {};
-    this.graph[type][id] = this.graph[type][id] || {};
-    const entity = this.graph[type][id];
+  // Add id to entity
+  Object.assign(entity, {
+    id,
+  });
 
-    // Assign all attributes to the entity
-    Object.assign(entity, attributes);
-
-    // Check if relationships exist, if so add there ids in an array to the corresponding key
-    if (relationships) {
-      Object.keys(relationships).forEach(key => {
-        const relation = relationships[key].data;
-        if (relation !== undefined) {
-          if (relation === null) {
-            entity[key] = null;
-          } else if (relation.constructor === Array) {
-            entity[key] = relation.map(ent => ent.id);
-          } else {
-            entity[key] = relation.id;
-          }
+  // Check if relationships exist, if so add there ids in an array to the corresponding key
+  if (relationships) {
+    Object.keys(relationships).forEach(key => {
+      const relation = relationships[key].data;
+      if (relation !== undefined) {
+        if (relation === null) {
+          entity[key] = null;
+        } else if (relation.constructor === Array) {
+          entity[key] = relation.map(ent => ent.id);
+        } else {
+          entity[key] = relation.id;
         }
-      });
-    }
-
-    return entity;
+      }
+    });
   }
 
-  addEntityToStore(payload) {
-    const processEntity = this.processEntity.bind(this);
-    const ifArray = payload.data.constructor === Array;
+  // return formatted entity and type of entity
+  return entity;
+};
 
-    if (!payload.data) return [];
-    if (payload.included) payload.included.map(processEntity);
+const entityStore = (entity, type) => {
+  const store = {};
+  store[type] = store[type] || [];
+  store[type].push(formatEntity(entity));
+  return store;
+};
 
-    return (ifArray) ? payload.data.map(processEntity) : processEntity(payload.data);
+const formatEntities = (payload) => {
+  const {
+    data,
+    included,
+  } = payload;
+
+  const entities = {};
+
+  if (!data) return [];
+
+  if (included) {
+    included.map(entity => {
+      const newEntities = entityStore(entity, entity.type);
+      return Object.assign(entities, newEntities);
+    });
   }
-}
 
-module.exports = {
-  JsonApiDataStore,
+  if (data.constructor === Array) {
+    const newEntities = data.map(e => entityStore(e, e.type));
+    Object.assign(entities, newEntities);
+  } else {
+    const newEntities = entityStore(data, data.type);
+    Object.assign(entities, newEntities);
+  }
+
+  return entities;
+};
+
+export {
+  formatEntities,
 };
