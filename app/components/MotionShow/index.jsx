@@ -3,6 +3,7 @@ import './motionShow.scss';
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
+import { Motion } from '../../models';
 import {
   Argument,
   Box,
@@ -16,30 +17,17 @@ import {
 } from '../';
 
 const propTypes = {
-  data: PropTypes.shape({
-    title: PropTypes.string,
-    description: PropTypes.string,
-    votes: PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.bool,
-    ]),
-    arguments: PropTypes.array,
-    relations: PropTypes.object,
-  }),
+  data: PropTypes.instanceOf(Motion),
   onVote: PropTypes.func,
   loading: PropTypes.bool,
 };
 
 const defaultProps = {
-  data: {
-    title: '',
-    votes: false,
-    arguments: [],
-    relations: {},
-  },
+  data: {},
 };
 
 function MotionShow({ data, onVote, loading }) {
+  console.log(data);
   const argumentsList = data.arguments || [];
   const pro = argumentsList.filter(e => e.side === 'pro');
   const con = argumentsList.filter(e => e.side === 'con');

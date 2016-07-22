@@ -5,7 +5,7 @@ import { Button } from '../';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
-  onVote: PropTypes.func.isRequired,
+  onVote: PropTypes.func,
 };
 
 const VoteButtons = ({ id, onVote }) => (

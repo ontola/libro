@@ -9,8 +9,27 @@ import configureStore from './store/configureStore';
 import routes from './routes';
 import { ELASTICSEARCH_URL } from './constants/config';
 
+const createSelectLocationState = () => {
+  let prevRoutingState;
+  let prevRoutingStateJS;
+
+  return (state) => {
+    const routingState = state.get('router');
+
+    if (typeof prevRoutingState === 'undefined' || prevRoutingState !== routingState) {
+      prevRoutingState = routingState;
+      prevRoutingStateJS = routingState.toJS();
+    }
+
+    return prevRoutingStateJS;
+  };
+};
+
 const store = configureStore();
-const history = syncHistoryWithStore(browserHistory, store);
+const history = syncHistoryWithStore(browserHistory, store, {
+  selectLocationState: createSelectLocationState(),
+});
+
 const sk = new SearchkitManager(ELASTICSEARCH_URL);
 
 class Index extends React.Component {

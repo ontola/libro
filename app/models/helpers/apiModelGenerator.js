@@ -19,7 +19,7 @@ export const apiModelGenerator = (properties, apiDesc) => {
         payload: {
           apiAction: true,
           endpoint: this.apiDesc.get('endpoint'),
-          id: this.id,
+          id: this.get('id'),
         },
       };
     }

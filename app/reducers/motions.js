@@ -11,13 +11,19 @@ const initialState = new Map({
 const entities = (state = initialState, action) => {
   switch (action.type) {
     case GET_MOTION:
-      return state.setIn(
-        ['items', action.payload.record.get('id')],
-        action.payload.record
-      );
+      if (action.payload.record) {
+        return state.setIn(
+          ['items', action.payload.record.get('id')],
+          action.payload.record
+        );
+      }
+      break;
+
     default:
       return state;
   }
+
+  return state;
 };
 
 export default entities;

@@ -1,23 +1,24 @@
 // @flow
 import { connect } from 'react-redux';
 import { MotionShow } from '../components';
+import { Motion } from '../models';
 
 const mapStateToProps = (state, ownProps) => {
-  const findMotion =
-    state.entities.motion &&
-    state.entities.motion.find(m => m.id === ownProps.params.motionId);
+  const findMotion = state.getIn(['motions', 'items', ownProps.params.motionId]);
 
   return {
     data: findMotion,
-    loading: state.entities.loading,
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  actions: dispatch(apiGetMotion({
-    id: ownProps.params.motionId,
-  })),
-});
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const motion = new Motion();
+  const getMotion = motion.set('id', ownProps.params.motionId).fetch();
+
+  return {
+    actions: dispatch(getMotion),
+  };
+};
 
 const MotionContainer = connect(
   mapStateToProps,

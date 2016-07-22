@@ -1,3 +1,5 @@
+import { Map } from 'immutable';
+
 import {
   TOGGLE_DRAWER,
   SET_HIT_COUNT,
@@ -6,12 +8,12 @@ import {
   FETCH_DOCUMENT_FAILURE,
 } from '../constants/actionTypes';
 
-const initialState = {
+const initialState = new Map({
   visible: false,
   hits: null,
-  document: {},
+  document: new Map(),
   loading: false,
-};
+});
 
 const search = (state = initialState, action) => {
   switch (action.type) {

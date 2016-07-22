@@ -351,7 +351,9 @@ export default [
     let returnData;
 
     if (req.query.identifier) {
-      returnData = [documents.find(o => o.data.id === req.query.identifier)];
+      returnData = {
+        data: [documents.data.find(o => o.data.id === req.query.identifier)],
+      };
     } else {
       returnData = documents;
     }

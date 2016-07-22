@@ -33,12 +33,10 @@ const middleware = store => next => action => {
     return next(action);
   }
 
-  next({
-    type: action.type,
-    payload: {
-      loading: true,
-    },
-  });
+  const {
+    id,
+    endpoint,
+  } = action.payload;
 
   const emitRecord = (record) => {
     next({
@@ -49,7 +47,16 @@ const middleware = store => next => action => {
     });
   };
 
-  return callApi(action.payload.endpoint)
+  const constructEndpoint = id ? `${endpoint}?identifier=${id}` : endpoint;
+
+  next({
+    type: action.type,
+    payload: {
+      loading: true,
+    },
+  });
+
+  return callApi(constructEndpoint)
     .then(jsonData => parseResult(jsonData, emitRecord))
     .catch(error => next({
       type: action.type,
