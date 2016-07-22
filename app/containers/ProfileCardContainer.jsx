@@ -2,7 +2,6 @@
 import { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { ProfileCard } from '../components';
-import { getPersons } from '../actions/entities';
 
 const propTypes = {
   user: PropTypes.number.isRequired,

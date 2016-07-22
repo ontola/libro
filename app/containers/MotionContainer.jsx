@@ -1,7 +1,6 @@
 // @flow
 import { connect } from 'react-redux';
 import { MotionShow } from '../components';
-import { apiGetMotion } from '../actions/entities';
 
 const mapStateToProps = (state, ownProps) => {
   const findMotion =

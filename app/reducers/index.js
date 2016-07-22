@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import entities from './entities';
+import motions from './motions';
 import search from './search';
 
 const rootReducer = combineReducers({
   search,
-  entities,
+  motions,
   routing: routerReducer,
 });
 

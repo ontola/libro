@@ -1,7 +1,6 @@
 // @flow
 import { connect } from 'react-redux';
 import { PoliticiansList } from '../components';
-import { getPersons } from '../actions/entities';
 
 const mapStateToProps = (state) => ({
   persons: state.entities.person,

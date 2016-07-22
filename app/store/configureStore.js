@@ -1,16 +1,18 @@
 // @flow
 import { createStore, applyMiddleware, compose } from 'redux';
-import { apiMiddleware } from 'redux-api-middleware';
+// import { apiMiddleware } from 'redux-api-middleware';
 import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
-import api from '../middleware/api';
+import API from '../middleware/API';
+import * as models from '../models';
 
 const configureStore = (preloadedState) => {
+  const apiMiddleware = new API(Object.values(models));
   const store = createStore(
     rootReducer,
     preloadedState,
     compose(
-      applyMiddleware(thunk, api, apiMiddleware),
+      applyMiddleware(thunk, apiMiddleware),
       typeof window === 'object' &&
       typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f
     )
