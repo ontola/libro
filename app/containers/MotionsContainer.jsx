@@ -6,7 +6,7 @@ import { Motion } from '../models';
 const getMotions = new Motion().index();
 
 const mapStateToProps = (state) => ({
-  motions: state.motions.items,
+  motions: state.motions.get('items').toArray(),
 });
 
 const mapDispatchToProps = (dispatch) => ({
