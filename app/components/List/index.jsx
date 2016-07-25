@@ -3,17 +3,23 @@ import React, { PropTypes } from 'react';
 
 const propTypes = {
   list: PropTypes.array.isRequired,
-  RenderItem: PropTypes.node.isRequired,
+  renderItem: PropTypes.func.isRequired,
+  align: PropTypes.oneOf([
+    'horizontal',
+    'vertical',
+  ]),
 };
 
 const defaultProps = {
   list: [],
-  RenderItem: '',
+  align: 'vertical',
 };
 
-const List = ({ list, RenderItem }) => {
-  list.map((listItem, i) => <RenderItem key={i} data={listItem} />);
-};
+const List = ({ list, renderItem, align }) => (
+  <div className={(align === 'horizontal') ? 'List List--horizontal' : 'List'}>
+    {list.map(renderItem)}
+  </div>
+);
 
 List.propTypes = propTypes;
 List.defaultProps = defaultProps;

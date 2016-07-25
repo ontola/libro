@@ -10,7 +10,7 @@ const propTypes = {
 
 const MotionsListItem = ({ motion }) => (
   <Box>
-    <div className="motions__list__item">
+    <div className="MotionsListItem">
       <Heading size="3">
         <Link
           to={`/motion/${motion.id}`}

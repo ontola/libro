@@ -1,12 +1,20 @@
 // @flow
+import React from 'react';
 import { connect } from 'react-redux';
-import { MotionsList } from '../components';
+import { List, MotionsListItem } from '../components';
 import { Motion } from '../models';
 
 const getMotions = new Motion().index();
+const renderMotion = (motion) => (
+  <MotionsListItem
+    key={motion.id}
+    motion={motion}
+  />
+);
 
 const mapStateToProps = (state) => ({
-  motions: state.getIn(['motions', 'items']).toArray(),
+  list: state.getIn(['motions', 'items']).toArray(),
+  renderItem: renderMotion,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -16,6 +24,6 @@ const mapDispatchToProps = (dispatch) => ({
 const MotionsContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(MotionsList);
+)(List);
 
 export default MotionsContainer;

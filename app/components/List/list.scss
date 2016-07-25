@@ -1,21 +1,13 @@
 @import "../shared/config.scss";
 
-.opinion {
-  width: 30px;
-  height: 30px;
-  display: inline-block;
-  border-radius: 100%;
-  border-width: 2px;
-  border-style: solid;
-  background-color: white;
+.List {
+  &--horizontal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 
-  &--yes {
-    border-color: green;
-    margin-right: 4px;
-  }
-
-  &--no {
-    border-color: $red;
-    margin-left: 4px;
+    @include large() {
+      justify-content: space-between;
+    }
   }
 }
