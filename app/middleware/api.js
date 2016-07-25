@@ -19,13 +19,16 @@ const callApi = (endpoint) => {
 };
 
 const parseResult = (jsonData, emitRecord) => {
-  jsonData.forEach(entity => {
-    emitRecord(dataStore.formatEntity(entity.data));
-
-    if (entity.included) {
-      entity.included.forEach(ent => emitRecord(dataStore.formatEntity(ent)));
-    }
-  });
+  if (jsonData.constructor === Array) {
+    jsonData.forEach(entity => {
+      emitRecord(dataStore.formatEntity(entity));
+    });
+  } else {
+    emitRecord(dataStore.formatEntity(jsonData));
+  }
+  if (jsonData.included) {
+    jsonData.included.forEach(entity => emitRecord(dataStore.formatEntity(entity)));
+  }
 };
 
 const middleware = store => next => action => {
