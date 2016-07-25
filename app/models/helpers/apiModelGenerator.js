@@ -1,37 +1,39 @@
-import Immutable, { Map } from 'immutable';
+import { Map, Record } from 'immutable';
 
-const APIDesc = Immutable.Record({
+export const APIDesc = Record({
   actions: new Map(),
   endpoint: '',
   type: '',
 });
 
 export const apiModelGenerator = (properties, apiDesc) => {
-  const superClass = Immutable.Record(Object.assign(
+  const superClass = Record(Object.assign(
     {},
-    { apiDesc: new APIDesc(apiDesc) },
+    { apiDesc },
     properties
   ));
-  return class APIAction extends superClass {
+  const APIActionClass = class APIAction extends superClass {
     fetch() {
-      return {
-        type: this.apiDesc.getIn(['actions', 'resource']),
-        payload: {
-          apiAction: true,
-          endpoint: this.apiDesc.get('endpoint'),
-          id: this.get('id'),
-        },
-      };
-    }
-
-    index() {
-      return {
-        type: this.apiDesc.getIn(['actions', 'collection']),
-        payload: {
-          apiAction: true,
-          endpoint: this.apiDesc.get('endpoint'),
-        },
-      };
+      this.fetch(this.get('id'));
     }
   };
+
+  APIActionClass.fetch = id => ({
+    type: apiDesc.get('actions').get('resource'),
+    payload: {
+      apiAction: true,
+      endpoint: apiDesc.get('endpoint'),
+      id,
+    },
+  });
+
+  APIActionClass.index = () => ({
+    type: apiDesc.get('actions').get('collection'),
+    payload: {
+      apiAction: true,
+      endpoint: apiDesc.get('endpoint'),
+    },
+  });
+
+  return APIActionClass;
 };

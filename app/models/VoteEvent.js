@@ -1,13 +1,8 @@
 import { Map } from 'immutable';
 import * as actions from '../constants/actionTypes';
-import { apiModelGenerator } from './helpers/apiModelGenerator';
+import { APIDesc, apiModelGenerator } from './helpers/apiModelGenerator';
 
-const VoteEvent = apiModelGenerator({
-  id: null,
-  result: '',
-  counts: [],
-  votes: [],
-}, {
+const apiDesc = new APIDesc({
   actions: new Map({
     collection: actions.GET_VOTE_EVENTS,
     resource: actions.GET_VOTE_EVENT,
@@ -16,4 +11,11 @@ const VoteEvent = apiModelGenerator({
   type: 'vote_event',
 });
 
-export default VoteEvent;
+const attributes = {
+  id: null,
+  result: '',
+  counts: [],
+  votes: [],
+};
+
+export default apiModelGenerator(attributes, apiDesc);

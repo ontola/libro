@@ -50,7 +50,7 @@ const middleware = store => next => action => {
     });
   };
 
-  const constructEndpoint = id ? `${endpoint}?identifier=${id}` : endpoint;
+  const constructEndpoint = id ? `${endpoint}/${id}` : endpoint;
 
   next({
     type: action.type,

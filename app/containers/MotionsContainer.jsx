@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { List, MotionsListItem } from '../components';
 import { Motion } from '../models';
 
-const getMotions = new Motion().index();
+const getMotions = Motion.index();
 const renderMotion = (motion) => (
   <MotionsListItem
     key={motion.id}

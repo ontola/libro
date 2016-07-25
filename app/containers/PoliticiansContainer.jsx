@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { List, PoliticiansListItem } from '../components';
 import { Person } from '../models';
 
-const getPersons = new Person().index();
+const getPersons = Person.index();
 const renderPerson = (person) => (
   <PoliticiansListItem
     key={person.id}

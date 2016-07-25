@@ -1,12 +1,8 @@
 import { Map } from 'immutable';
 import * as actions from '../constants/actionTypes';
-import { apiModelGenerator } from './helpers/apiModelGenerator';
+import { APIDesc, apiModelGenerator } from './helpers/apiModelGenerator';
 
-const Person = apiModelGenerator({
-  id: null,
-  name: '',
-  image: '',
-}, {
+const apiDesc = new APIDesc({
   actions: new Map({
     collection: actions.GET_PERSONS,
     resource: actions.GET_PERSON,
@@ -15,4 +11,10 @@ const Person = apiModelGenerator({
   type: 'person',
 });
 
-export default Person;
+const attributes = {
+  id: null,
+  name: '',
+  image: '',
+};
+
+export default apiModelGenerator(attributes, apiDesc);

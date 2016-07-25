@@ -25,7 +25,6 @@ const defaultProps = {
 };
 
 const MotionShow = ({ data, argumentations, onVote }) => {
-  console.log(argumentations);
   return (
     <Container>
       <div className="MotionShow">

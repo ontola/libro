@@ -1,13 +1,8 @@
 import { Map } from 'immutable';
 import * as actions from '../constants/actionTypes';
-import { apiModelGenerator } from './helpers/apiModelGenerator';
+import { APIDesc, apiModelGenerator } from './helpers/apiModelGenerator';
 
-const Count = apiModelGenerator({
-  id: null,
-  name: '',
-  option: '',
-  value: null,
-}, {
+const apiDesc = new APIDesc({
   actions: new Map({
     collection: actions.GET_COUNTS,
     resource: actions.GET_COUNT,
@@ -16,4 +11,11 @@ const Count = apiModelGenerator({
   type: 'count',
 });
 
-export default Count;
+const attributes = {
+  id: null,
+  name: '',
+  option: '',
+  value: null,
+};
+
+export default apiModelGenerator(attributes, apiDesc);
