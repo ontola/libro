@@ -1,5 +1,5 @@
 // @flow
-import './argument.scss';
+import './argumentshow.scss';
 import React, { PropTypes } from 'react';
 import {
   Box,
@@ -29,7 +29,7 @@ const defaultProps = {
   },
 };
 
-const Argument = ({ data }) => (
+const ArgumentShow = ({ data }) => (
   <Box>
     <Heading size="3" className={data.side}>{data.title}</Heading>
     <DetailsBar>
@@ -57,7 +57,7 @@ const Argument = ({ data }) => (
   </Box>
 );
 
-Argument.propTypes = propTypes;
-Argument.defaultProps = defaultProps;
+ArgumentShow.propTypes = propTypes;
+ArgumentShow.defaultProps = defaultProps;
 
-export default Argument;
+export default ArgumentShow;

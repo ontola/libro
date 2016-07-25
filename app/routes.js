@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import { App } from './components';
+import MotionContainer from './containers/MotionContainer';
 import {
   Document,
   Home,
   Motions,
-  Motion,
   NotFound,
   Politicians,
   Profile,
@@ -18,7 +18,7 @@ const routes = (
   <Route path="/" component={App}>
     <IndexRoute component={Home} />
     <Route path="motions" component={Motions} />
-    <Route path="motion/:motionId" component={Motion} />
+    <Route path="motion/:motionId" component={MotionContainer} />
     <Route path="politicians" component={Politicians} />
     <Route path="profile/:userId" component={Profile}>
       <IndexRoute component={UserMotions} />

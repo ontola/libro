@@ -37,7 +37,6 @@ export default [
                   { type: 'argument', id: '12' },
                   { type: 'argument', id: '13' },
                   { type: 'argument', id: '14' },
-                  { type: 'argument', id: '15' },
                 ],
               },
               vote_event: {

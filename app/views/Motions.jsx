@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { MotionsContainer } from '../containers';
+import MotionsContainer from '../containers/MotionsContainer';
 import { Container, Heading } from '../components';
 import Helmet from 'react-helmet';
 

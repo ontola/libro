@@ -4,7 +4,7 @@ import React, { PropTypes } from 'react';
 import { Button } from '../';
 
 const propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   onVote: PropTypes.func,
 };
 

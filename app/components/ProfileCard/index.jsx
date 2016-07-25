@@ -11,14 +11,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  data: {
-    attributes: {
-      name: '',
-      party: '',
-      image: '',
-      biography: '',
-    },
-  },
+  data: {},
   loading: false,
   full: false,
 };
@@ -29,7 +22,7 @@ const ProfileCard = ({ data, loading, full }) => {
     party,
     image,
     biography,
-  } = data.attributes;
+  } = data;
 
   const profileClassname = classNames({
     ProfileCard,

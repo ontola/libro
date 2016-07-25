@@ -1,29 +1,32 @@
 // @flow
 import React, { PropTypes } from 'react';
-import { MotionContainer } from '../containers';
-import { Container } from '../components';
+import { MotionContainer, ArgumentsContainer } from '../containers';
+import { Container, Columns, Heading } from '../components';
 import Helmet from 'react-helmet';
 
 const propTypes = {
   params: PropTypes.shape({
-    motionId: PropTypes.number,
+    motionId: PropTypes.string.isRequired,
   }),
 };
 
-const defaultProps = {
-  params: {
-    motionId: 0,
-  },
-};
-
-const Motion = (props) => (
+const Motion = ({ params }) => (
   <Container>
     <Helmet title="Motion" />
-    <MotionContainer {...props} />
+    <MotionContainer motionId={params.motionId} />
+    <Columns>
+      <div>
+        <Heading size="3" section>Voordelen</Heading>
+        <ArgumentsContainer motionId={params.motionId} side="pro" />
+      </div>
+
+      <div>
+        <Heading size="3" section>Nadelen</Heading>
+      </div>
+    </Columns>
   </Container>
 );
 
-Motion.PropTypes = propTypes;
-Motion.defaultProps = defaultProps;
+Motion.propTypes = propTypes;
 
 export default Motion;

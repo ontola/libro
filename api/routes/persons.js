@@ -8,7 +8,7 @@ export default [
         {
           data: {
             type: 'person',
-            id: 123456789876543,
+            id: '123456789876543',
             attributes: {
               name: 'Salima Belhaj',
               image: 'https://www.tweedekamer.nl/sites/default/files/styles/member_parliament/' +
@@ -22,7 +22,7 @@ export default [
         {
           data: {
             type: 'person',
-            id: 87654345678,
+            id: '87654345678',
             attributes: {
               name: 'Han ten Broeke',
               image: 'https://www.tweedekamer.nl/sites/default/files/styles/member_parliament/' +
@@ -42,7 +42,7 @@ export default [
         {
           data: {
             type: 'person',
-            id: 234567985462,
+            id: '234567985462',
             attributes: {
               name: 'Pia Dijkstra',
               image: 'https://www.tweedekamer.nl/sites/default/files/styles/member_parliament/' +
@@ -61,7 +61,7 @@ export default [
         {
           data: {
             type: 'person',
-            id: 7362134784,
+            id: '7362134784',
             attributes: {
               name: 'Rik Grashoff',
               image: 'https://www.tweedekamer.nl/sites/default/files/styles/member_parliament/public/8042_1.jpg?itok=iVPVI6zL',
@@ -80,7 +80,9 @@ export default [
     let returnData;
 
     if (req.query.identifier) {
-      returnData = [persons.find(o => o.id === Number(req.query.id))];
+      returnData = {
+        data: [persons.data.find(o => o.data.id === req.query.identifier)],
+      };
     } else {
       returnData = persons;
     }

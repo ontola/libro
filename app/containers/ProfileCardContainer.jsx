@@ -2,6 +2,7 @@
 import { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { ProfileCard } from '../components';
+import { Person } from '../models';
 
 const propTypes = {
   user: PropTypes.number.isRequired,
@@ -9,19 +10,18 @@ const propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const findPerson =
-    state.persons.items &&
-    state.persons.items.find(person => person.id === Number(ownProps.user));
-
+  const findPerson = state.getIn(['persons', 'items', ownProps.user]);
   return {
-    data: findPerson,
-    loading: state.persons.loading,
+    data: findPerson && findPerson.toObject(),
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  actions: dispatch(getPersons(ownProps.user)),
-});
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const getPerson = new Person().set('id', ownProps.user).fetch();
+  return {
+    actions: dispatch(getPerson),
+  };
+};
 
 const ProfileCardContainer = connect(
   mapStateToProps,

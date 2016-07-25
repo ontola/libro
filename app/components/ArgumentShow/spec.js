@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { assert } from 'chai';
-import Argument from './';
+import ArgumentShow from './';
 
 const testData = {
   id: 3,
@@ -12,12 +12,12 @@ const testData = {
 
 describe('Argument', () => {
   it('contains data object', () => {
-    const wrapper = mount(<Argument data={testData} />);
+    const wrapper = mount(<ArgumentShow data={testData} />);
     assert.isObject(wrapper.props().data, 'No data object has been found');
   });
 
   it('is on the right side', () => {
-    const wrapper = mount(<Argument data={testData} />);
+    const wrapper = mount(<ArgumentShow data={testData} />);
     assert.isOk(wrapper.props().data.side, 'pro', 'Argument is on the wrong side');
   });
 });
