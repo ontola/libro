@@ -282,6 +282,7 @@ export default [
         self: `http://localhost:3000/api/motions/${req.params.motionId}`,
       },
       data: motions.find(o => o.id === req.params.motionId),
+      included,
     });
   }),
   router.get('/api/motions/:motionId/arguments', (req, res) => {

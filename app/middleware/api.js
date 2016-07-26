@@ -14,17 +14,17 @@ const callApi = (endpoint) => {
       if (!response.ok) {
         return Promise.reject(json);
       }
-      return Promise.resolve(json.data);
+      return Promise.resolve(json);
     });
 };
 
 const parseResult = (jsonData, emitRecord) => {
-  if (jsonData.constructor === Array) {
-    jsonData.forEach(entity => {
+  if (jsonData.data.constructor === Array) {
+    jsonData.data.forEach(entity => {
       emitRecord(dataStore.formatEntity(entity));
     });
   } else {
-    emitRecord(dataStore.formatEntity(jsonData));
+    emitRecord(dataStore.formatEntity(jsonData.data));
   }
   if (jsonData.included) {
     jsonData.included.forEach(entity => emitRecord(dataStore.formatEntity(entity)));
