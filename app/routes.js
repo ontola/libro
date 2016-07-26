@@ -18,7 +18,7 @@ const routes = (
   <Route path="/" component={App}>
     <IndexRoute component={Home} />
     <Route path="motions" component={Motions} />
-    <Route path="motion/:motionId" component={Motion} />
+    <Route path="motions/:motionId" component={Motion} />
     <Route path="politicians" component={Politicians} />
     <Route path="profile/:userId" component={Profile}>
       <IndexRoute component={UserMotions} />

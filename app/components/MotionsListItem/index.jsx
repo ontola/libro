@@ -13,7 +13,7 @@ const MotionsListItem = ({ motion }) => (
     <div className="MotionsListItem">
       <Heading size="3">
         <Link
-          to={`/motion/${motion.id}`}
+          to={`/motions/${motion.id}`}
           children={motion.title}
         />
       </Heading>

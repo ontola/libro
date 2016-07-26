@@ -1,6 +1,6 @@
 // @flow
 import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import MotionContainer from '../containers/MotionContainer';
 import { Container } from '../components';
 import Helmet from 'react-helmet';
@@ -12,23 +12,28 @@ const propTypes = {
   title: PropTypes.string,
 };
 
-const stateToProps = (state, ownProps) => {
-  const findMotion = state.getIn(['motions', 'items', ownProps.params.motionId]) || {};
-  return {
-    title: findMotion.title,
-    argumentations: findMotion.arguments,
-  };
-};
-
-const Motion = ({ params, title }) => (
+const Motion = ({ title, params }) => (
   <Container>
     <Helmet title={title} />
     <MotionContainer motionId={params.motionId} />
+
+    {
+      /*
+      <Columns>
+        <div>
+          <Heading size="3" section>Voordelen</Heading>
+          <List renderItem={ArgumentShow} list={argumentsPro} />
+        </div>
+
+        <div>
+          <Heading size="3" section>Nadelen</Heading>
+        </div>
+      </Columns>
+      */
+    }
   </Container>
 );
 
 Motion.propTypes = propTypes;
 
-export default connect(
-  stateToProps
-)(Motion);
+export default Motion;
