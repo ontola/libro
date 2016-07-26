@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { List, PoliticiansListItem } from '../components';
-import { Person } from '../models';
+import Person from '../models/Person';
 
 const getPersons = Person.index();
 const renderPerson = (person) => (

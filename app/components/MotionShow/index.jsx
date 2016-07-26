@@ -1,7 +1,7 @@
 // @flow
 import './motionShow.scss';
 import React, { PropTypes } from 'react';
-import { Motion } from '../../models';
+import Motion from '../../models/Motion';
 import {
   Box,
   Container,

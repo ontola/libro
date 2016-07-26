@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch';
-import DataStore from './helpers/DataStore';
+import DataStore from '../helpers/DataStore';
 
 let dataStore;
 const API_ROOT = 'http://localhost:3000/api/';

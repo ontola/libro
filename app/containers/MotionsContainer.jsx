@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { List, MotionsListItem } from '../components';
-import { Motion } from '../models';
+import Motion from '../models/Motion';
 
 const getMotions = Motion.index();
 const renderMotion = (motion) => (
