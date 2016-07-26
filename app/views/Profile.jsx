@@ -33,10 +33,6 @@ const links = id => ([
     label: 'Groepen',
     to: `/profile/${id}/groups`,
   },
-  {
-    label: 'Yoloswagness',
-    to: `/profile/${id}/yolo`,
-  },
 ]);
 
 const Profile = ({ params, children, name }) => (

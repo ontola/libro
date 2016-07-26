@@ -6,7 +6,6 @@ import persons from './persons';
 import router from './router';
 import search from './search';
 
-
 const rootReducer = combineReducers({
   argumentations,
   motions,

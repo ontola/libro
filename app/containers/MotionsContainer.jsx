@@ -1,29 +1,38 @@
 // @flow
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { List, MotionsListItem } from '../components';
 import Motion from '../models/Motion';
 
-const getMotions = Motion.index();
-const renderMotion = (motion) => (
-  <MotionsListItem
-    key={motion.id}
-    motion={motion}
-  />
-);
+const propTypes = {
+  motions: PropTypes.arrayOf(PropTypes.instanceOf(Motion)).isRequired,
+  loadMotions: PropTypes.func.isRequired,
+};
+
+class MotionsContainer extends Component {
+  componentDidMount() {
+    this.props.loadMotions();
+  }
+
+  render() {
+    const { motions } = this.props;
+    return (<List renderItem={MotionsListItem} list={motions} />);
+  }
+}
+
+MotionsContainer.propTypes = propTypes;
 
 const mapStateToProps = (state) => ({
-  list: state.getIn(['motions', 'items']).toArray(),
-  renderItem: renderMotion,
+  motions: state.getIn(['motions', 'items']),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: dispatch(getMotions),
+  loadMotions: () => {
+    dispatch(Motion.index());
+  },
 });
 
-const MotionsContainer = connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(List);
-
-export default MotionsContainer;
+)(MotionsContainer);

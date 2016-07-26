@@ -17,7 +17,8 @@
     "api:prod": "NODE_ENV=production node ./bin/api.js",
     "build": "rimraf ./dist && NODE_ENV=production webpack --production --progress --verbose --display-error-details --config ./webpack/static.config",
     "lint": "./node_modules/.bin/eslint --ext .jsx,.js .",
-    "test": "mocha ./tests/testhelper.js ./app/components/**/spec.js",
+    "test": "mocha ./tests/testhelper.js ./app/components/**/spec.js ./app/**/test/**.js",
+    "test:watch": "npm run test -- --watch",
     "test:nightwatch": "./node_modules/.bin/nightwatch"
   },
   "dependencies": {
@@ -64,6 +65,7 @@
     "babel-runtime": "^6.3.19",
     "body-parser": "^1.15.1",
     "chai": "^3.5.0",
+    "chai-immutable": "^1.6.0",
     "classnames": "^2.2.5",
     "concurrently": "^2.1.0",
     "cors": "^2.7.1",
