@@ -56,6 +56,7 @@ const middleware = store => next => action => {
     type: action.type,
     payload: {
       loading: true,
+      id,
     },
   });
 

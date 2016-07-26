@@ -1,32 +1,34 @@
 // @flow
 import React, { PropTypes } from 'react';
-import { MotionContainer, ArgumentsContainer } from '../containers';
-import { Container, Columns, Heading } from '../components';
+import { connect } from 'react-redux';
+import MotionContainer from '../containers/MotionContainer';
+import { Container } from '../components';
 import Helmet from 'react-helmet';
 
 const propTypes = {
   params: PropTypes.shape({
     motionId: PropTypes.string.isRequired,
   }),
+  title: PropTypes.string,
 };
 
-const Motion = ({ params }) => (
-  <Container>
-    <Helmet title="Motion" />
-    <MotionContainer motionId={params.motionId} />
-    <Columns>
-      <div>
-        <Heading size="3" section>Voordelen</Heading>
-        <ArgumentsContainer motionId={params.motionId} side="pro" />
-      </div>
+const stateToProps = (state, ownProps) => {
+  const findMotion = state.getIn(['motions', 'items', ownProps.params.motionId]) || {};
+  return {
+    title: findMotion.title,
+    argumentations: findMotion.arguments,
+  };
+};
 
-      <div>
-        <Heading size="3" section>Nadelen</Heading>
-      </div>
-    </Columns>
+const Motion = ({ params, title }) => (
+  <Container>
+    <Helmet title={title} />
+    <MotionContainer motionId={params.motionId} />
   </Container>
 );
 
 Motion.propTypes = propTypes;
 
-export default Motion;
+export default connect(
+  stateToProps
+)(Motion);
