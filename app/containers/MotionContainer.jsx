@@ -10,7 +10,7 @@ const propTypes = {
 };
 
 class MotionContainer extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.loadMotion();
   }
 
@@ -36,7 +36,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 });
 
 MotionContainer.propTypes = propTypes;
-// MotionContainer.defaultProps = defaultProps;
 
 export default connect(
   mapStateToProps,

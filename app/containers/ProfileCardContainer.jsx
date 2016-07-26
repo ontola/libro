@@ -1,33 +1,40 @@
 // @flow
-import { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { ProfileCard } from '../components';
-import { Person } from '../models';
+import Person from '../models/Person';
 
 const propTypes = {
-  user: PropTypes.number.isRequired,
   full: PropTypes.bool,
+  loadProfile: PropTypes.func.isRequired,
+  user: PropTypes.string.isRequired,
+  data: PropTypes.instanceOf(Person),
 };
+
+class ProfileCardContainer extends Component {
+  componentWillMount() {
+    this.props.loadProfile();
+  }
+
+  render() {
+    return <ProfileCard data={this.props.data} full={this.props.full} />;
+  }
+}
 
 const mapStateToProps = (state, ownProps) => {
   const findPerson = state.getIn(['persons', 'items', ownProps.user]);
   return {
-    data: findPerson && findPerson.toObject(),
+    data: findPerson,
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  const getPerson = new Person().set('id', ownProps.user).fetch();
-  return {
-    actions: dispatch(getPerson),
-  };
-};
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  loadProfile: () => dispatch(Person.fetch(ownProps.user)),
+});
 
-const ProfileCardContainer = connect(
+ProfileCardContainer.propTypes = propTypes;
+
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProfileCard);
-
-ProfileCardContainer.PropTypes = propTypes;
-
-export default ProfileCardContainer;
+)(ProfileCardContainer);

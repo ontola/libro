@@ -1,9 +1,10 @@
 // @flow
 import React, { PropTypes } from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
+import Helmet from 'react-helmet';
+
 import MotionContainer from '../containers/MotionContainer';
 import { Container } from '../components';
-import Helmet from 'react-helmet';
 
 const propTypes = {
   params: PropTypes.shape({
@@ -36,4 +37,8 @@ const Motion = ({ title, params }) => (
 
 Motion.propTypes = propTypes;
 
-export default Motion;
+const stateToProps = (state, ownProps) => ({
+  title: state.getIn(['motions', 'items', ownProps.params.motionId, 'title']),
+});
+
+export default connect(stateToProps)(Motion);

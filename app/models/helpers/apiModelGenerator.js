@@ -12,13 +12,14 @@ export const apiModelGenerator = (properties, apiDesc) => {
     { apiDesc },
     properties
   ));
+
   const APIActionClass = class APIAction extends superClass {
     fetch() {
       this.fetch(this.get('id'));
     }
   };
 
-  APIActionClass.fetch = id => ({
+  APIActionClass.fetch = (id) => ({
     type: apiDesc.get('actions').get('resource'),
     payload: {
       apiAction: true,
