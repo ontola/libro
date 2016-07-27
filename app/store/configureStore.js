@@ -1,6 +1,5 @@
 // @flow
 import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
 import API from '../middleware/API';
 import * as models from '../models';
@@ -11,19 +10,11 @@ const configureStore = (preloadedState) => {
     rootReducer,
     preloadedState,
     compose(
-      applyMiddleware(thunk, apiMiddleware),
+      applyMiddleware(apiMiddleware),
       typeof window === 'object' &&
       typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f
     )
   );
-
-  if (module.hot) {
-    // Enable Webpack hot module replacement for reducers
-    module.hot.accept('../reducers', () => {
-      const nextRootReducer = rootReducer.default;
-      store.replaceReducer(nextRootReducer);
-    });
-  }
 
   return store;
 };
