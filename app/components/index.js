@@ -20,6 +20,7 @@ export { default as MarkdownContent } from './MarkdownContent';
 export { default as MotionShow } from './MotionShow';
 export { default as MotionsListItem } from './MotionsListItem';
 export { default as NavbarWrapper } from './NavbarWrapper';
+export { default as Notification } from './Notification';
 export { default as LinkList } from './LinkList';
 export { default as List } from './List';
 export { default as ResetFiltersDisplay } from './ResetFiltersDisplay';

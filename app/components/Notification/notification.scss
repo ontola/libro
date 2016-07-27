@@ -1,0 +1,21 @@
+@import "../shared/config.scss";
+
+.Notification {
+  position: fixed;
+  right: 1em;
+  bottom: 1em;
+  background-color: $white;
+  padding: $padding-base;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-base;
+
+  &__preText {
+    font-weight: bold;
+    font-size: 1.4em;
+  }
+
+  &--error {
+    border-color: $red;
+    color: $red;
+  }
+}
