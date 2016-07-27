@@ -5,11 +5,9 @@ Deze demo bevat een interface voor open data van de gemeenteraad.
 
 ### Usage
 
-* Install nodemon, concurrently and rimraf globally `npm i -g nodemon concurrently rimraf`
+* Install rimraf globally `npm i -g rimraf`
 * To start dev-server run `npm run start`
-* To start api run `npm run api`
-* To start dev-server and api alongside, run `npm run start-dev`
-
+* To start api, go to the [repo](https://bitbucket.org/arguweb/od_api_generator/)
 
 ### Build
 

@@ -8,7 +8,7 @@ const apiDesc = new APIDesc({
     resource: actions.GET_VOTE,
   }),
   endpoint: 'votes',
-  type: 'vote',
+  type: 'votes',
 });
 
 const attributes = {

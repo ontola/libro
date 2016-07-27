@@ -8,7 +8,7 @@ const apiDesc = new APIDesc({
     resource: actions.GET_MOTION,
   }),
   endpoint: 'motions',
-  type: 'motion',
+  type: 'motions',
 });
 
 const attributes = {

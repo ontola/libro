@@ -5,6 +5,7 @@ import motions from './motions';
 import persons from './persons';
 import router from './router';
 import search from './search';
+import votes from './votes';
 
 const rootReducer = combineReducers({
   argumentations,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   persons,
   router,
   search,
+  votes,
 });
 
 export default rootReducer;

@@ -8,7 +8,7 @@ const apiDesc = new APIDesc({
     resource: actions.GET_PERSON,
   }),
   endpoint: 'persons',
-  type: 'person',
+  type: 'persons',
 });
 
 const attributes = {

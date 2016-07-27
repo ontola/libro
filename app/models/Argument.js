@@ -8,7 +8,7 @@ const apiDesc = new APIDesc({
     resource: actions.GET_ARGUMENT,
   }),
   endpoint: 'arguments',
-  type: 'argument',
+  type: 'arguments',
 });
 
 const attributes = {

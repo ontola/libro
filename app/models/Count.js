@@ -8,7 +8,7 @@ const apiDesc = new APIDesc({
     resource: actions.GET_COUNT,
   }),
   endpoint: 'counts',
-  type: 'count',
+  type: 'counts',
 });
 
 const attributes = {
