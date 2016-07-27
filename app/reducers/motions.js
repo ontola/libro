@@ -1,5 +1,5 @@
 import { Map } from 'immutable';
-import { GET_MOTION, GET_MOTIONS } from '../constants/actionTypes';
+import { GET_MOTION } from '../constants/actionTypes';
 import Motion from '../models/Motion';
 
 const initialState = new Map({
@@ -22,8 +22,6 @@ const motions = (state = initialState, action) => {
     case GET_MOTION:
       record = action.payload.record || newMotionUnlessExists(state, action.payload.id);
       return setMotion(state, record);
-    case GET_MOTIONS:
-      return state;
     default:
       return state;
   }
