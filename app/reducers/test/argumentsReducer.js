@@ -3,45 +3,45 @@ import chai, { assert } from 'chai';
 import { Map } from 'immutable';
 import chaiImmutable from 'chai-immutable';
 
-import motions from '../../reducers/motions';
+import argumentations from '../../reducers/arguments';
 import * as models from '../../models';
 import * as actions from '../../constants/actionTypes';
 
 chai.use(chaiImmutable);
 
-describe('Motions reducer', () => {
+describe('Arguments reducer', () => {
   it('should return the initial state', () => {
     const expectedState = new Map({
       items: new Map(),
     });
 
     assert.deepEqual(
-      motions(undefined, {}),
+      argumentations(undefined, {}),
       expectedState,
       'Initial state is not correct'
     );
   });
 
-  it('should handle GET_MOTION', () => {
+  it('should handle GET_ARGUMENT', () => {
     const expectedResponse = new Map({
       items: new Map({
-        14: new models.Motion({
+        14: new models.Argument({
           id: '14',
         }),
       }),
     });
 
     assert.deepEqual(
-      motions(undefined, {
-        type: actions.GET_MOTION,
+      argumentations(undefined, {
+        type: actions.GET_ARGUMENT,
         payload: {
           apiAction: true,
-          endpoint: 'motions',
+          endpoint: 'arguments',
           id: '14',
         },
       }),
       expectedResponse,
-      'does not handle GET_MOTION very well'
+      'does not handle GET_ARGUMENT very well'
     );
   });
 });
