@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { SearchContainer } from '../containers';
+import SearchContainer from '../containers/SearchContainer';
 import { Container } from '../components';
 import Helmet from 'react-helmet';
 

@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import PoliticiansContainer from '../containers/PoliticiansContainer';
+import PersonsContainer from '../containers/PersonsContainer';
 import { Container, Heading } from '../components';
 import Helmet from 'react-helmet';
 
@@ -10,7 +10,7 @@ const Politicians = () => (
       title="Politicians"
     />
     <Heading>Politicians</Heading>
-    <PoliticiansContainer />
+    <PersonsContainer />
   </Container>
 );
 

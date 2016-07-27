@@ -12,7 +12,7 @@ const newMotionUnlessExists = (state, id) => {
 };
 
 const setMotion = (state, record) => state.setIn(
-  ['items', record.get('id')],
+  ['items', record.id],
   record
 );
 

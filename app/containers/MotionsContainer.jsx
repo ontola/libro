@@ -5,8 +5,12 @@ import { List, MotionsListItem } from '../components';
 import Motion from '../models/Motion';
 
 const propTypes = {
-  motions: PropTypes.arrayOf(PropTypes.instanceOf(Motion)).isRequired,
+  motions: PropTypes.array,
   loadMotions: PropTypes.func.isRequired,
+};
+
+const defaultProps = {
+  motions: [],
 };
 
 class MotionsContainer extends Component {
@@ -14,16 +18,26 @@ class MotionsContainer extends Component {
     this.props.loadMotions();
   }
 
+  renderItem(data) {
+    return (
+      <MotionsListItem
+        key={data.id}
+        motion={data}
+      />
+    );
+  }
+
   render() {
     const { motions } = this.props;
-    return (<List renderItem={MotionsListItem} list={motions} />);
+    return <List renderItem={this.renderItem} items={motions} />;
   }
 }
 
+MotionsContainer.defaultProps = defaultProps;
 MotionsContainer.propTypes = propTypes;
 
 const mapStateToProps = (state) => ({
-  motions: state.getIn(['motions', 'items']),
+  motions: state.getIn(['motions', 'items']).toArray(),
 });
 
 const mapDispatchToProps = (dispatch) => ({
