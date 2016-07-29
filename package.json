@@ -11,7 +11,7 @@
   "private": true,
   "scripts": {
     "start": "rimraf ./dist && NODE_ENV=development node ./bin/server.js",
-    "start:prod": "NODE_ENV=production node ./bin/server.js",
+    "start:prod": "ARGU_API_URL=http://localhost:3030 NODE_ENV=production node ./bin/server.js",
     "build": "rimraf ./dist && NODE_ENV=production webpack --production --progress --verbose --display-error-details --config ./webpack/static.config",
     "lint": "./node_modules/.bin/eslint --ext .jsx,.js .",
     "test": "mocha ./tests/testhelper.js ./app/components/**/spec.js ./app/**/test/**.js",
@@ -81,7 +81,6 @@
     "style-loader": "^0.13.1",
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-dev-server": "^1.14.1",
     "webpack-hot-middleware": "^2.12.2"
   }
 }

@@ -17,7 +17,7 @@ const Home = () => (
     <Container size="large">
       <Columns>
         <Box>
-          <Heading>Moties</Heading>
+          <Heading>deze liedje is niet goed #twitter</Heading>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
             incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud

@@ -9,7 +9,7 @@ const propTypes = {
 };
 
 const MotionsListItem = ({ motion }) => {
-  const { loading, id, title, votes } = motion;
+  const { id, title, votes } = motion;
   return (
     <Box>
       <div className="MotionsListItem">

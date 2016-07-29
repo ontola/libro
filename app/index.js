@@ -21,10 +21,10 @@ render(
 
 if (module.hot) {
   module.hot.accept('./containers/IndexContainer', () => {
-    const NextAppContainer = require('./containers/IndexContainer').default;
+    const NextIndexContainer = require('./containers/IndexContainer').default;
     render(
       <AppContainer>
-        <NextAppContainer store={store} history={history} sk={sk} />
+        <NextIndexContainer store={store} history={history} sk={sk} />
       </AppContainer>,
       document.getElementById('root')
     );

@@ -15,7 +15,6 @@ const defaultProps = {
   children: [],
 };
 
-
 const App = ({ children, error, errorMessage }) => {
   const renderErrorMessage = () => {
     if (error) {
