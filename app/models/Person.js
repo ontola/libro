@@ -15,6 +15,8 @@ const attributes = {
   id: null,
   name: '',
   image: '',
+  biography: '',
+  party: '',
 };
 
 export default apiModelGenerator(attributes, apiDesc);

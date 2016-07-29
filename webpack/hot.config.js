@@ -9,7 +9,7 @@ config.entry = [
   './app/index.js',
 ];
 
-config.devtool = 'cheap-module-eval-source-map';
+config.devtool = 'inline-eval-cheap-source-map';
 
 config.resolveLoader = {
   root: path.join(__dirname, 'node_modules'),

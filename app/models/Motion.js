@@ -13,6 +13,7 @@ const apiDesc = new APIDesc({
 
 const attributes = {
   id: null,
+  loading: false,
   title: '',
   text: '',
   created_at: '',

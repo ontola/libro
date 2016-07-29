@@ -8,20 +8,23 @@ const propTypes = {
   motion: PropTypes.object.isRequired,
 };
 
-const MotionsListItem = ({ motion }) => (
-  <Box>
-    <div className="MotionsListItem">
-      <Heading size="3">
-        <Link
-          to={`/motions/${motion.id}`}
-          children={motion.title}
-        />
-      </Heading>
-      <VoteData data={motion.votes} />
-    </div>
-    <VoteButtons id={motion.id} />
-  </Box>
-);
+const MotionsListItem = ({ motion }) => {
+  const { loading, id, title, votes } = motion;
+  return (
+    <Box>
+      <div className="MotionsListItem">
+        <Heading size="3">
+          <Link
+            to={`/motions/${id}`}
+            children={title}
+          />
+        </Heading>
+        <VoteData data={votes} />
+      </div>
+      <VoteButtons id={id} />
+    </Box>
+  );
+};
 
 MotionsListItem.propTypes = propTypes;
 

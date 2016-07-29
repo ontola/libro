@@ -1,11 +1,12 @@
 import fetch from 'isomorphic-fetch';
 import DataStore from '../helpers/DataStore';
 
+import { ARGU_API_PROXIED, ARGU_API_BASE } from '../constants/config';
+
 let dataStore;
-const API_ROOT = 'http://localhost:3000/api/';
 
 const callApi = (endpoint) => {
-  const fullUrl = API_ROOT + endpoint;
+  const fullUrl = ARGU_API_PROXIED + ARGU_API_BASE + endpoint;
 
   return fetch(fullUrl)
     .then(response =>

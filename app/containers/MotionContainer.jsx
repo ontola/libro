@@ -4,9 +4,17 @@ import { connect } from 'react-redux';
 import { MotionShow } from '../components';
 import Motion from '../models/Motion';
 
+const renderMotion = (data) => <MotionShow data={data} />;
+
 const propTypes = {
-  loadMotion: PropTypes.func.isRequired,
   data: PropTypes.instanceOf(Motion),
+  loadMotion: PropTypes.func.isRequired,
+  motionId: PropTypes.string.isRequired,
+  renderItem: PropTypes.func.isRequired,
+};
+
+const defaultProps = {
+  renderItem: renderMotion,
 };
 
 class MotionContainer extends Component {
@@ -15,10 +23,8 @@ class MotionContainer extends Component {
   }
 
   render() {
-    const { data } = this.props;
-    return (
-      <MotionShow data={data} />
-    );
+    const { data, renderItem } = this.props;
+    return <div>{data && renderItem(data)}</div>;
   }
 }
 
@@ -36,6 +42,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 });
 
 MotionContainer.propTypes = propTypes;
+MotionContainer.defaultProps = defaultProps;
 
 export default connect(
   mapStateToProps,

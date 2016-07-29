@@ -2,7 +2,7 @@
 import './politicianslistitem.scss';
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
-import { Heading } from '../';
+import { Box, Heading } from '../';
 
 const propTypes = {
   data: PropTypes.object.isRequired,
@@ -11,26 +11,30 @@ const propTypes = {
 const PoliticiansListItem = ({ data }) => {
   const { id, image, name, party } = data;
   return (
-    <div
-      className="PoliticiansList__item"
-    >
-      <Link
-        to={`/profile/${id}`}
-        className="PoliticiansList__link"
-      >
-        <img
-          src={image}
-          alt={name}
-          className="PoliticiansList__image"
-        />
-        <Heading
-          size="3"
-          className="PoliticiansList__title"
-          children={name}
-        />
-        <div>{party}</div>
-      </Link>
-    </div>
+    <Box>
+      <div className="PoliticiansListItem">
+        <Link
+          to={`/profile/${id}`}
+          className="PoliticiansListItem__link"
+        >
+          <div className="PoliticiansListItem__imageWrapper">
+            <img
+              src={image}
+              alt={name}
+              className="PoliticiansListItem__image"
+            />
+          </div>
+          <div className="PoliticiansListItem__content">
+            <Heading
+              size="3"
+              className="PoliticiansListItem__title"
+              children={name}
+            />
+            <div>{party}</div>
+          </div>
+        </Link>
+      </div>
+    </Box>
   );
 };
 

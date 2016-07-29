@@ -17,6 +17,10 @@ export const apiModelGenerator = (properties, apiDesc) => {
     fetch() {
       this.fetch(this.get('id'));
     }
+
+    index() {
+      this.index();
+    }
   };
 
   APIActionClass.fetch = (id) => ({
