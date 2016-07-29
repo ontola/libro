@@ -1,6 +1,6 @@
 import express from 'express';
 import webpack from 'webpack';
-import webpackMiddleware from 'webpack-dev-middleware';
+import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import SearchkitExpress from 'searchkit-express';
 import bodyParser from 'body-parser';
@@ -21,10 +21,13 @@ app.use(bodyParser.json());
 // app.use(morgan('short'));
 
 if (process.env.NODE_ENV === 'development') {
-  app.use(webpackMiddleware(compiler, {
-    noInfo: true,
+  app.use(webpackDevMiddleware(compiler, {
     publicPath: webpackConfig.output.publicPath,
-    silent: true,
+    quiet: true,
+    noInfo: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
   }));
 
   app.use(webpackHotMiddleware(compiler));

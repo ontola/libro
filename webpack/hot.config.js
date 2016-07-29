@@ -1,3 +1,4 @@
+require('react-hot-loader/patch');
 const path = require('path');
 const webpack = require('webpack');
 const config = require('./common.config');
@@ -6,6 +7,7 @@ config.output.publicPath = 'http://localhost:3000/dist/';
 
 config.entry = [
   'webpack-hot-middleware/client',
+  'react-hot-loader/patch',
   './app/index.js',
 ];
 
