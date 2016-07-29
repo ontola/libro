@@ -3,13 +3,16 @@ import './container.scss';
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
+const sizes = [
+  'small',
+  'medium',
+  'large',
+];
+
 const propTypes = {
   children: PropTypes.node.isRequired,
-  size: PropTypes.oneOf([
-    'small',
-    'medium',
-    'large',
-  ]),
+  size: PropTypes.oneOf(sizes),
+  spacing: PropTypes.oneOf(sizes),
 };
 
 const defaultProps = {
@@ -17,10 +20,11 @@ const defaultProps = {
   size: 'medium',
 };
 
-const Container = ({ children, size }) => {
+const Container = ({ children, size, spacing }) => {
   const containerClassName = classNames({
     Container: true,
-    [`Container--${size}`]: true,
+    [`Container--size-${size}`]: true,
+    [`Container--spacing-${spacing}`]: true,
   });
 
   return (

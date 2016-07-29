@@ -55,7 +55,7 @@ const ProfileCard = ({ data, loading, full }) => {
           </div>
         </div>
         <div className="ProfileCard__buttons">
-          <Button weight icon="tachometer">Vergelijk</Button>
+          <Button small icon="tachometer">Vergelijk</Button>
         </div>
       </div>
     </section>

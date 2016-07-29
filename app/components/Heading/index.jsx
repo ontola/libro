@@ -6,22 +6,21 @@ import classNames from 'classnames';
 const propTypes = {
   children: PropTypes.node.isRequired,
   size: PropTypes.oneOf(['1', '2', '3', '4', '5', '6']),
-  className: PropTypes.string,
-  section: PropTypes.bool,
+  light: PropTypes.bool,
 };
 
 const defaultProps = {
-  children: 'No title specified',
+  children: '',
   size: '2',
-  className: '',
+  light: false,
 };
 
-function Heading({ children, size, className, section }) {
+const Heading = ({ children, size, light }) => {
   const Element = `h${size}`;
 
-  const headingClass = classNames(className, {
-    heading: true,
-    'heading--section': section,
+  const headingClass = classNames({
+    Heading: true,
+    'Heading--light': light,
   });
 
   return (
@@ -31,7 +30,7 @@ function Heading({ children, size, className, section }) {
       children={children}
     />
   );
-}
+};
 
 Heading.propTypes = propTypes;
 Heading.defaultProps = defaultProps;

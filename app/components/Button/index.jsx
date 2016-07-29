@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import FontAwesome from 'react-fontawesome';
 
 const propTypes = {
-  weight: PropTypes.bool,
+  small: PropTypes.bool,
   theme: PropTypes.oneOf([
     'box',
     'subtle',
@@ -13,24 +13,23 @@ const propTypes = {
   ]),
   icon: PropTypes.string,
   children: PropTypes.node.isRequired,
-  className: PropTypes.string,
   onClick: PropTypes.func,
 };
 
 const defaultProps = {
   useDefaultClassName: true,
-  weight: false,
+  small: false,
   theme: 'default',
   icon: '',
   children: '',
 };
 
-const Button = ({ weight, theme, icon, children, className, onClick }) => {
+const Button = ({ small, theme, icon, children, onClick }) => {
   const btnClass = classNames({
     btn: true,
-    'btn--weight': weight,
+    'btn--small': small,
     [`btn--${theme}`]: true,
-  }, className);
+  });
 
   return (
     <button onClick={onClick} className={btnClass} role="button">

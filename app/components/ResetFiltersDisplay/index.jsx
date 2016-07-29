@@ -11,7 +11,7 @@ const propTypes = {
 function ResetFiltersDisplay({ bemBlock, hasFilters, translate, resetFilters }) {
   return (
     <div className={`sk-panel ${bemBlock().state({ disabled: !hasFilters })}`}>
-      <Button theme="subtle" weight onClick={resetFilters}>{translate('reset.clear_all')}</Button>
+      <Button theme="subtle" small onClick={resetFilters}>{translate('reset.clear_all')}</Button>
     </div>
 	);
 }

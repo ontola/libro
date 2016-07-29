@@ -67,7 +67,7 @@ class SearchPage extends React.Component {
             <Button
               className="sk-drawer-action"
               theme="subtle"
-              weight
+              small
               onClick={toggleDrawer}
             >Filter</Button>
             <HitStats hits={hits} />
