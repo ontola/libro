@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
+import { getArgumentsByMotion } from '../reducers/motions';
 import MotionContainer from '../containers/MotionContainer';
 import { ArgumentShow, Columns, Container, Heading, List } from '../components';
 
@@ -57,14 +58,10 @@ Motion.propTypes = propTypes;
 
 const stateToProps = (state, ownProps) => {
   const currentMotion = state.getIn(['motions', 'items', ownProps.params.motionId]);
-  const args = currentMotion && currentMotion.arguments.map(a => {
-    const arg = state.getIn(['argumentations', 'items', a]);
-    return arg !== undefined ? arg : false;
-  });
 
   return {
     title: currentMotion && currentMotion.title,
-    argumentations: args,
+    argumentations: getArgumentsByMotion(state, ownProps),
   };
 };
 
