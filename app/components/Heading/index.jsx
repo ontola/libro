@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
 const propTypes = {
+  className: PropTypes.string,
   children: PropTypes.node.isRequired,
   size: PropTypes.oneOf(['1', '2', '3', '4', '5', '6']),
   light: PropTypes.bool,
@@ -15,7 +16,7 @@ const defaultProps = {
   light: false,
 };
 
-const Heading = ({ children, size, light }) => {
+const Heading = ({ children, size, light, className }) => {
   const Element = `h${size}`;
 
   const headingClass = classNames({
@@ -25,7 +26,7 @@ const Heading = ({ children, size, light }) => {
 
   return (
     <Element
-      className={headingClass}
+      className={headingClass + " " + className}
       role="heading"
       children={children}
     />

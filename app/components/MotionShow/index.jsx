@@ -2,6 +2,7 @@
 import './motionShow.scss';
 import React, { PropTypes } from 'react';
 import Motion from '../../models/Motion';
+import ArgumentsContainer from '../../containers/ArgumentsContainer';
 import {
   Box,
   Detail,
@@ -16,13 +17,15 @@ const propTypes = {
   data: PropTypes.instanceOf(Motion),
   onVote: PropTypes.func,
   loading: PropTypes.bool,
+  showArguments: PropTypes.bool,
 };
 
 const defaultProps = {
   data: new Motion(),
+  showArguments: false,
 };
 
-const MotionShow = ({ data, onVote }) => (
+const MotionShow = ({ data, onVote, showArguments }) => (
   <div className="MotionShow">
     <Box>
       <Heading size="2" children={data.title} />
@@ -33,6 +36,7 @@ const MotionShow = ({ data, onVote }) => (
         <Detail text="3 minuten geleden" icon="clock-o" />
       </DetailsBar>
       <MarkdownContent content={data.text} />
+      {showArguments && <ArgumentsContainer motionId={data.id} />}
       <VoteButtons id={data.id} onVote={onVote} />
     </Box>
     <VoteData data={data.votes} expanded />

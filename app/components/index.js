@@ -1,6 +1,7 @@
 // @flow
 export { default as App } from './App';
 export { default as ArgumentShow } from './ArgumentShow';
+export { default as ArgumentListItem } from './ArgumentListItem';
 export { default as Box } from './Box';
 export { default as Button } from './Button';
 export { default as Columns } from './Columns';

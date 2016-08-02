@@ -4,17 +4,21 @@ import { connect } from 'react-redux';
 import { MotionShow } from '../components';
 import Motion from '../models/Motion';
 
-const renderMotion = (data) => <MotionShow data={data} />;
+const renderMotion = (data, showArguments) => (
+  <MotionShow data={data} showArguments={showArguments} />
+);
 
 const propTypes = {
   data: PropTypes.instanceOf(Motion),
   loadMotion: PropTypes.func.isRequired,
   motionId: PropTypes.string.isRequired,
   renderItem: PropTypes.func.isRequired,
+  showArguments: PropTypes.bool,
 };
 
 const defaultProps = {
   renderItem: renderMotion,
+  showArguments: false,
 };
 
 class MotionContainer extends Component {
@@ -23,15 +27,21 @@ class MotionContainer extends Component {
   }
 
   render() {
-    const { data, renderItem } = this.props;
-    return <div>{data && renderItem(data)}</div>;
+    const { data, renderItem, showArguments } = this.props;
+    return <div>{data && renderItem(data, showArguments)}</div>;
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
   const findMotion = state.getIn(['motions', 'items', ownProps.motionId]);
+  // const findArguments = findMotion.arguments &&
+  //   findMotion.arguments.map(id => state.getIn(['argumentations', 'items', id]));
+  //
+  // console.log(findArguments);
+
   return {
     data: findMotion,
+    // argumentations: ownProps.showArguments && findArguments,
   };
 };
 

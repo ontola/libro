@@ -1,4 +1,5 @@
 // @flow
+export { default as CompareVotes } from './CompareVotes';
 export { default as Document } from './Document';
 export { default as Home } from './Home';
 export { default as Motions } from './Motions';
