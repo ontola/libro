@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch';
-import DataStore from '../helpers/DataStore';
+import { batchActions } from 'redux-batched-actions';
 
+import DataStore from '../helpers/DataStore';
 import { ARGU_API_PROXIED, ARGU_API_BASE } from '../constants/config';
 
 let dataStore;
@@ -19,17 +20,21 @@ const callApi = (endpoint) => {
     });
 };
 
-const parseResult = (jsonData, emitRecord) => {
+const parseResult = (jsonData, emitRecord, next) => {
+  const actions = [];
+
   if (jsonData.data.constructor === Array) {
     jsonData.data.forEach(entity => {
-      emitRecord(dataStore.formatEntity(entity));
+      actions.push(emitRecord(dataStore.formatEntity(entity)));
     });
   } else {
-    emitRecord(dataStore.formatEntity(jsonData.data));
+    actions.push(emitRecord(dataStore.formatEntity(jsonData.data)));
   }
   if (jsonData.included) {
-    jsonData.included.forEach(entity => emitRecord(dataStore.formatEntity(entity)));
+    jsonData.included.forEach(entity => actions.push(emitRecord(dataStore.formatEntity(entity))));
   }
+
+  next(batchActions(actions));
 };
 
 const middleware = store => next => action => {
@@ -42,16 +47,14 @@ const middleware = store => next => action => {
     endpoint,
   } = action.payload;
 
-  const emitRecord = (record) => {
-    next({
-      type: record.getIn(['apiDesc', 'actions', 'resource']),
-      payload: {
-        record,
-      },
-    });
-  };
-
   const constructEndpoint = id ? `${endpoint}/${id}` : endpoint;
+
+  const emitRecord = (record) => ({
+    type: record.getIn(['apiDesc', 'actions', 'resource']),
+    payload: {
+      record,
+    },
+  });
 
   next({
     type: action.type,
@@ -62,7 +65,7 @@ const middleware = store => next => action => {
   });
 
   return callApi(constructEndpoint)
-    .then(jsonData => parseResult(jsonData, emitRecord))
+    .then(jsonData => parseResult(jsonData, emitRecord, next))
     .catch(error => next({
       type: action.type,
       error: true,

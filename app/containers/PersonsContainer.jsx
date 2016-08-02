@@ -1,8 +1,7 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { PoliticiansListItem } from '../components';
-import { getPersons } from '../reducers/persons';
+import { List, PoliticiansListItem } from '../components';
 import Person from '../models/Person';
 
 const propTypes = {
@@ -14,6 +13,13 @@ const defaultProps = {
   persons: {},
 };
 
+const renderItem = person => (
+  <PoliticiansListItem
+    key={person.id}
+    data={person}
+  />
+);
+
 class PersonsContainer extends Component {
   componentWillMount() {
     this.props.loadPersons();
@@ -21,28 +27,14 @@ class PersonsContainer extends Component {
 
   render() {
     const { persons } = this.props;
-    return (
-      <div>
-        {persons.map(person => <PoliticiansListItem key={person.id} data={person} />)}
-      </div>
-    );
+    return <List items={persons} renderItem={renderItem} align="horizontal" />;
   }
 }
 
 PersonsContainer.defaultProps = defaultProps;
 PersonsContainer.propTypes = propTypes;
 
-const mapStateToProps = (state) => ({
-  persons: getPersons(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  loadPersons: () => {
-    dispatch(Person.index());
-  },
-});
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  state => ({ persons: state.getIn(['persons', 'items']) }),
+  dispatch => ({ loadPersons: () => { dispatch(Person.index()); } })
 )(PersonsContainer);

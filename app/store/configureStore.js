@@ -1,5 +1,7 @@
 // @flow
 import { createStore, applyMiddleware, compose } from 'redux';
+import { enableBatching } from 'redux-batched-actions';
+
 import rootReducer from '../reducers';
 import API from '../middleware/API';
 import * as models from '../models';
@@ -10,13 +12,13 @@ const configureStore = (preloadedState) => {
 
   if (process.env.NODE_ENV === 'production') {
     store = createStore(
-      rootReducer,
+      enableBatching(rootReducer),
       preloadedState,
       applyMiddleware(apiMiddleware)
     );
   } else {
     store = createStore(
-      rootReducer,
+      enableBatching(rootReducer),
       preloadedState,
       compose(
         applyMiddleware(apiMiddleware),

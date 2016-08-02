@@ -1,4 +1,3 @@
-import { createSelector } from 'reselect';
 import { Map } from 'immutable';
 
 import { GET_PERSON } from '../constants/actionTypes';
@@ -25,11 +24,3 @@ const persons = (state = initialState, action) => {
 };
 
 export default persons;
-
-export const getPersons = createSelector(
-  [state => state.getIn(['persons', 'items'])],
-  (ids) => {
-    console.log(ids);
-    return ids;
-  }
-);

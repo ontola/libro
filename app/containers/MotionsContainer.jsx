@@ -13,15 +13,16 @@ const defaultProps = {
   motions: {},
 };
 
-const renderItem = (data) => <MotionsListItem key={data.id} motion={data} />;
+const renderItem = (data) => (
+  <MotionsListItem
+    key={data.id}
+    motion={data}
+  />
+);
 
 class MotionsContainer extends Component {
   componentWillMount() {
     this.props.loadMotions();
-  }
-
-  shouldComponentUpdate(nextProps) {
-    return this.props.motions !== nextProps.motions;
   }
 
   render() {
@@ -33,17 +34,7 @@ class MotionsContainer extends Component {
 MotionsContainer.defaultProps = defaultProps;
 MotionsContainer.propTypes = propTypes;
 
-const mapStateToProps = (state) => ({
-  motions: state.getIn(['motions', 'items']),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  loadMotions: () => {
-    dispatch(Motion.index());
-  },
-});
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  state => ({ motions: state.getIn(['motions', 'items']) }),
+  dispatch => ({ loadMotions: () => { dispatch(Motion.index()); } })
 )(MotionsContainer);
