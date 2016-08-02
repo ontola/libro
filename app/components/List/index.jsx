@@ -18,16 +18,11 @@ const defaultProps = {
   align: 'vertical',
 };
 
-const List = ({ items, renderItem, align }) => {
-  const mapObject = Object.keys(items).map(obj => renderItem(items[obj]));
-  const mapArray = items.map(renderItem);
-  const renderItems = items === Array ? mapArray : mapObject;
-  return (
-    <div className={(align === 'horizontal') ? 'List List--horizontal' : 'List'}>
-      {renderItems}
-    </div>
-  );
-};
+const List = ({ items, renderItem, align }) => (
+  <div className={(align === 'horizontal') ? 'List List--horizontal' : 'List'}>
+    {items.map(renderItem)}
+  </div>
+);
 
 List.propTypes = propTypes;
 List.defaultProps = defaultProps;

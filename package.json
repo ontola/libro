@@ -74,6 +74,7 @@
     "nightwatch": "^0.9.5",
     "node-sass": "^3.8.0",
     "postcss-loader": "^0.9.1",
+    "react-addons-perf": "^15.3.0",
     "react-addons-test-utils": "^15.1.0",
     "react-hot-loader": "^3.0.0-beta.0",
     "redux-actions": "^0.10.0",

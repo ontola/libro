@@ -6,7 +6,7 @@ const propTypes = {
   data: PropTypes.object.isRequired,
 };
 
-function EntryListItem({ data }) {
+const EntryListItem = ({ data }) => {
   const { id, title, date, content, type } = data;
 
   return (
@@ -24,7 +24,7 @@ function EntryListItem({ data }) {
       <div dangerouslySetInnerHTML={{ __html: content }}></div>
     </Box>
   );
-}
+};
 
 EntryListItem.propTypes = propTypes;
 
