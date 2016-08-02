@@ -3,7 +3,6 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import SearchkitExpress from 'searchkit-express';
-import bodyParser from 'body-parser';
 import proxy from 'http-proxy-middleware';
 // import morgan from 'morgan';
 
@@ -14,9 +13,6 @@ import webpackConfig from '../webpack/hot.config';
 const compiler = webpack(webpackConfig);
 const app = express();
 const port = constants.PORT;
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 
 // app.use(morgan('short'));
 

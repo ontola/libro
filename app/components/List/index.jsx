@@ -20,7 +20,7 @@ const defaultProps = {
 
 const List = ({ items, renderItem, align }) => (
   <div className={(align === 'horizontal') ? 'List List--horizontal' : 'List'}>
-    {items.map(renderItem)}
+    {items.constructor === Array ? items.map(renderItem) : items.valueSeq().map(renderItem)}
   </div>
 );
 

@@ -3,7 +3,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { enableBatching } from 'redux-batched-actions';
 
 import rootReducer from '../reducers';
-import API from '../middleware/API';
+import API from '../middleware/api';
 import * as models from '../models';
 
 const configureStore = (preloadedState) => {
