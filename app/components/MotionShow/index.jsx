@@ -2,12 +2,13 @@
 import './motionShow.scss';
 import React, { PropTypes } from 'react';
 import Motion from '../../models/Motion';
+import PersonContainer from '../../containers/PersonContainer';
 import {
   Box,
   Detail,
   DetailsBar,
+  DetailProfile,
   Heading,
-  MarkdownContent,
   VoteButtons,
   VoteData,
 } from '../';
@@ -22,6 +23,14 @@ const defaultProps = {
   data: new Motion(),
 };
 
+const renderItem = (user, url) => (
+  <DetailProfile
+    name={user.name}
+    imageUrl={user.image}
+    url={url}
+  />
+);
+
 const MotionShow = ({ data, onVote }) => (
   <div className="MotionShow">
     <Box>
@@ -29,10 +38,10 @@ const MotionShow = ({ data, onVote }) => (
       <DetailsBar>
         <Detail text="Motie" icon="lightbulb-o" />
         <Detail text="Verworpen" icon="close" />
-        <Detail text="Joep Meindertsma" icon="user" />
-        <Detail text="3 minuten geleden" icon="clock-o" />
+        <PersonContainer user={data.creator} renderItem={renderItem} />
+        <Detail text={data.created_at} icon="clock-o" />
       </DetailsBar>
-      <MarkdownContent content={data.text} />
+      <div>{data.text}</div>
       <VoteButtons id={data.id} onVote={onVote} />
     </Box>
     <VoteData data={data.votes} expanded />

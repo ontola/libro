@@ -8,7 +8,6 @@ import {
   DetailProfile,
   DetailsBar,
   Heading,
-  MarkdownContent,
 } from '../';
 
 const propTypes = {
@@ -40,7 +39,7 @@ const ArgumentShow = ({ data }) => (
       />
       <Detail text="3 minuten geleden" icon="clock-o" />
     </DetailsBar>
-    <MarkdownContent content={data.text} />
+    <div>{data.text}</div>
 
     <div className="Box__actions">
       <Button

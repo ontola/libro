@@ -16,7 +16,6 @@ export { default as Drawer } from './Drawer';
 export { default as EntryListItem } from './EntryListItem';
 export { default as Heading } from './Heading';
 export { default as HitStats } from './HitStats';
-export { default as MarkdownContent } from './MarkdownContent';
 export { default as MotionShow } from './MotionShow';
 export { default as MotionsListItem } from './MotionsListItem';
 export { default as NavbarWrapper } from './NavbarWrapper';
