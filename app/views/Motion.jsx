@@ -26,14 +26,14 @@ const renderArgument = (data) => (
   />
 );
 
-const Motion = ({ title, params, argumentations, creator }) => (
+const Motion = ({ title, params, argumentations }) => (
   <Container>
     <Helmet title={title} />
     <MotionContainer motionId={params.motionId} />
     <Columns>
       {argumentations.length > 0 &&
         <div>
-          <Heading size="3" section>Voordelen</Heading>
+          <Heading size="3">Voordelen</Heading>
           <List
             renderItem={renderArgument}
             items={argumentations.filter(a => a.side === 'pro')}
@@ -42,7 +42,7 @@ const Motion = ({ title, params, argumentations, creator }) => (
       }
       {argumentations.length > 0 &&
         <div>
-          <Heading size="3" section>Nadelen</Heading>
+          <Heading size="3">Nadelen</Heading>
           <List
             renderItem={renderArgument}
             items={argumentations.filter(a => a.side === 'con')}

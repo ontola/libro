@@ -1,12 +1,11 @@
 // @flow
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import {
   ArgumentListItem,
   Columns,
   List,
 } from '../components';
-import Argument from '../models/Argument';
 
 const propTypes = {
   motionId: PropTypes.string.isRequired,
@@ -31,7 +30,7 @@ const ArgumentsContainer = ({ argumentations }) => {
       <List items={argumentsCon} renderItem={renderItem} />
     </Columns>
   );
-}
+};
 
 const mapStateToProps = (state, ownProps) => {
   const findMotion = state.getIn(['motions', 'items', ownProps.motionId]);

@@ -24,7 +24,7 @@ const defaultProps = {
 
 const ArgumentListItem = ({ data }) => (
   <div>
-    <Heading size="3" className={data.side}>{data.title}</Heading>
+    <Heading size="3" variant={data.side}>{data.title}</Heading>
     <div>{data.text}</div>
   </div>
 );

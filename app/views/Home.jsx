@@ -11,7 +11,7 @@ const Home = () => (
     <Helmet title="Argu Open Data" />
     <Cover image="/static/cover-home.jpg">
       <Container spacing="large">
-        <Heading size="1" light>Open Data Tweede Kamer</Heading>
+        <Heading size="1" variant="light">Open Data Tweede Kamer</Heading>
       </Container>
     </Cover>
     <Container size="large">
