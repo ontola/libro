@@ -8,6 +8,7 @@
   padding: $padding-base;
   border: 1px solid $border-color;
   border-radius: $border-radius-base;
+  z-index: $zindex-1;
 
   &__preText {
     font-weight: bold;
@@ -17,5 +18,9 @@
   &--error {
     border-color: $red;
     color: $red;
+  }
+
+  @include large() {
+    max-width: 50%;
   }
 }

@@ -10,10 +10,12 @@ import {
   Heading,
 } from '../';
 
+import PersonContainer from '../../containers/PersonContainer';
+
 const propTypes = {
   data: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
     side: PropTypes.oneOf([
       'pro',
       'con',
@@ -28,18 +30,22 @@ const defaultProps = {
   },
 };
 
+const renderItem = (user, url) => (
+  <DetailProfile
+    name={user.name}
+    imageUrl={user.image}
+    url={url}
+  />
+);
+
 const ArgumentShow = ({ data }) => (
   <Box>
     <Heading size="3" variant={data.side}>{data.title}</Heading>
     <DetailsBar>
-      <DetailProfile
-        name="Joep Meindertsma"
-        url="https://argu.co/u/joep"
-        imageUrl="https://argu-logos.s3.amazonaws.com/photos/825/icon_profielfoto_Joep_Meindertsma.jpg"
-      />
+      {data.creator && <PersonContainer user={data.creator} renderItem={renderItem} />}
       <Detail text="3 minuten geleden" icon="clock-o" />
     </DetailsBar>
-    <div>{data.text}</div>
+    <div>{data.content}</div>
 
     <div className="Box__actions">
       <Button

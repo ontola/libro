@@ -14,10 +14,11 @@ const apiDesc = new APIDesc({
 const attributes = {
   id: null,
   title: '',
-  text: '',
+  content: '',
   side: '',
   created_at: '',
   vote_count: null,
+  creator: null,
 };
 
 export default apiModelGenerator(attributes, apiDesc);

@@ -28,7 +28,10 @@ const defaultProps = {
 
 class PersonContainer extends Component {
   componentWillMount() {
-    this.props.loadProfile();
+    const { data, loadProfile } = this.props;
+    if (data === undefined) {
+      loadProfile();
+    }
   }
 
   render() {

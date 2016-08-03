@@ -18,3 +18,5 @@ export const GET_VOTE_EVENT = 'GET_VOTE_EVENT';
 
 export const TOGGLE_DRAWER = 'TOGGLE_DRAWER';
 export const SET_HIT_COUNT = 'SET_HIT_COUNT';
+
+export const RESET_ERROR_MESSAGE = 'RESET_ERROR_MESSAGE';
