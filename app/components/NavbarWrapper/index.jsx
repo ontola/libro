@@ -1,6 +1,6 @@
 // @flow
 import './navbar.scss';
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Container, Cover } from '../';
 import { SearchBox } from 'searchkit';
 import tinycolor from 'tinycolor2';
@@ -15,7 +15,7 @@ const defaultProps = {
   forumColor: '#475668',
 };
 
-class NavbarWrapper extends React.Component {
+class NavbarWrapper extends Component {
 
   // This function changes the text to a dark variant if the forum color is too light.
   calculatedClassName(forumColor) {

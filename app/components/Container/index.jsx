@@ -23,8 +23,8 @@ const defaultProps = {
 const Container = ({ children, size, spacing }) => {
   const containerClassName = classNames({
     Container: true,
-    [`Container--size-${size}`]: true,
-    [`Container--spacing-${spacing}`]: true,
+    [`Container--size-${size}`]: size,
+    [`Container--spacing-${spacing}`]: spacing,
   });
 
   return (
