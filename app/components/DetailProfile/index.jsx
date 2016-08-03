@@ -4,7 +4,7 @@ import { Detail } from '../';
 
 const propTypes = {
   name: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
+  url: PropTypes.string,
   imageUrl: PropTypes.string.isRequired,
 };
 

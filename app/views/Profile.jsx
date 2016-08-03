@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
 import { Container, Cover, LinkList } from '../components';
-import ProfileCardContainer from '../containers/ProfileCardContainer';
+import PersonContainer from '../containers/PersonContainer';
 
 const propTypes = {
   params: PropTypes.object,
@@ -40,7 +40,7 @@ const Profile = ({ params, children, name }) => (
     <Helmet title={`Profiel van ${name}`} />
     <Cover>
       <Container>
-        <ProfileCardContainer user={params.userId} full />
+        <PersonContainer user={params.userId} full />
       </Container>
     </Cover>
 

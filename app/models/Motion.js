@@ -17,7 +17,7 @@ const attributes = {
   title: '',
   text: '',
   created_at: '',
-  creator: {},
+  creator: null,
   classification: 'Motie',
   arguments: [],
   vote_event: [],

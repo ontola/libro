@@ -1,3 +1,4 @@
+import { createSelector } from 'reselect';
 import { Map } from 'immutable';
 
 import { GET_PERSON } from '../constants/actionTypes';
@@ -24,3 +25,15 @@ const persons = (state = initialState, action) => {
 };
 
 export default persons;
+
+export const getPerson = (state, props) => state.getIn(['persons', 'items', props.user]);
+
+export const getPersonUrl = createSelector(
+  [getPerson],
+  (person) => {
+    if (person !== undefined && person.has('id')) {
+      return `/profile/${person.id}`;
+    }
+    return 'joe';
+  }
+);

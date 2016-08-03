@@ -1,6 +1,7 @@
 // @flow
 import './detail.scss';
 import React, { PropTypes } from 'react';
+import { browserHistory } from 'react-router';
 
 const propTypes = {
   className: PropTypes.string,
@@ -19,6 +20,10 @@ function Detail({ text, icon, url, imageUrl, className, title }) {
 
   return (
     <Element
+      onClick={(e) => {
+        e.preventDefault();
+        browserHistory.push(url);
+      }}
       href={url}
       className={`detail ${className}`}
       title={title}

@@ -26,7 +26,7 @@ const renderArgument = (data) => (
   />
 );
 
-const Motion = ({ title, params, argumentations }) => (
+const Motion = ({ title, params, argumentations, creator }) => (
   <Container>
     <Helmet title={title} />
     <MotionContainer motionId={params.motionId} />

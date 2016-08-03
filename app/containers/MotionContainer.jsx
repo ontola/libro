@@ -4,17 +4,11 @@ import { connect } from 'react-redux';
 import { MotionShow } from '../components';
 import Motion from '../models/Motion';
 
-const renderMotion = (data) => <MotionShow data={data} />;
-
 const propTypes = {
   data: PropTypes.instanceOf(Motion),
   loadMotion: PropTypes.func.isRequired,
   motionId: PropTypes.string.isRequired,
-  renderItem: PropTypes.func.isRequired,
-};
-
-const defaultProps = {
-  renderItem: renderMotion,
+  creator: PropTypes.object,
 };
 
 class MotionContainer extends Component {
@@ -23,13 +17,14 @@ class MotionContainer extends Component {
   }
 
   render() {
-    const { data, renderItem } = this.props;
-    return <div>{data && renderItem(data)}</div>;
+    const { data } = this.props;
+    return <MotionShow data={data} />;
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
   const findMotion = state.getIn(['motions', 'items', ownProps.motionId]);
+
   return {
     data: findMotion,
   };
@@ -42,7 +37,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 });
 
 MotionContainer.propTypes = propTypes;
-MotionContainer.defaultProps = defaultProps;
 
 export default connect(
   mapStateToProps,
