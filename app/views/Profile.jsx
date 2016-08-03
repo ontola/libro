@@ -21,18 +21,6 @@ const links = id => ([
     label: 'Statistieken',
     to: `/profile/${id}/stats`,
   },
-  {
-    label: 'Activiteit',
-    to: `/profile/${id}/activity`,
-  },
-  {
-    label: 'Bio',
-    to: `/profile/${id}/bio`,
-  },
-  {
-    label: 'Groepen',
-    to: `/profile/${id}/groups`,
-  },
 ]);
 
 const Profile = ({ params, children, name }) => (

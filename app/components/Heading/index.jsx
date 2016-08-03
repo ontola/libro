@@ -21,7 +21,7 @@ const Heading = ({ children, size, variant }) => {
 
   const headingClass = classNames({
     Heading: true,
-    [`Heading--${variant}`]: true,
+    [`Heading--${variant}`]: variant,
   });
 
   return (
