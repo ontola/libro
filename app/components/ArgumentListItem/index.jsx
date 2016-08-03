@@ -20,7 +20,7 @@ const propTypes = {
 const defaultProps = {
   data: {
     title: 'Loading...',
-    text: '...',
+    content: '...',
   },
 };
 
@@ -43,7 +43,7 @@ const hoverBoxChildren = (data) => (
 );
 
 const hoverBoxHiddenChildren = (data) => (
-  <span>Hier komt de beschrijving van het argument te staan: {data.text}</span>
+  <span>{data.content}</span>
 );
 
 const ArgumentListItem = (props) => (
