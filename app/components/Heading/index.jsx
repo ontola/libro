@@ -7,7 +7,7 @@ const propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   size: PropTypes.oneOf(['1', '2', '3', '4', '5', '6']),
-  light: PropTypes.bool,
+  variant: PropTypes.oneOf(['pro', 'con', 'light']),
 };
 
 const defaultProps = {
@@ -16,19 +16,19 @@ const defaultProps = {
   light: false,
 };
 
-const Heading = ({ children, size, light, className }) => {
+const Heading = ({ children, size, variant }) => {
   const Element = `h${size}`;
 
   const headingClass = classNames({
     Heading: true,
-    'Heading--light': light,
+    [`Heading--${variant}`]: true,
   });
 
   return (
     <Element
-      className={headingClass + " " + className}
-      role="heading"
       children={children}
+      className={headingClass}
+      role="heading"
     />
   );
 };
