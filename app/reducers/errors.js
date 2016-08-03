@@ -1,4 +1,5 @@
 import { Map } from 'immutable';
+import * as actions from '../constants/actionTypes';
 
 const initialState = new Map({
   error: false,
@@ -7,11 +8,12 @@ const initialState = new Map({
 
 const errors = (state = initialState, action) => {
   if (action.error) {
-    const newState = {
+    return state.merge({
       error: true,
       message: action.payload,
-    };
-    return state.merge(newState);
+    });
+  } else if (action.type === actions.RESET_ERROR_MESSAGE) {
+    return null;
   }
   return state;
 };

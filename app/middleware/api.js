@@ -38,7 +38,7 @@ const parseResult = (jsonData, emitRecord, next) => {
 };
 
 const middleware = store => next => action => {
-  if (!action.payload.apiAction) {
+  if (action.payload !== undefined && !action.payload.apiAction) {
     return next(action);
   }
 

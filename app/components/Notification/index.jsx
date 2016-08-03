@@ -19,6 +19,7 @@ const Notification = ({ children, type }) => {
     Notification: true,
     [`Notification--${type}`]: true,
   });
+
   return (
     <div className={className}>
       {type === 'error' &&
