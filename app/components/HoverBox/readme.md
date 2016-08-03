@@ -1,0 +1,1 @@
+This item contains elements that are always visible, called 'visible', and elements that are only visible on hover. When the user hovers over the visible element, an absolutely positioned box appears around the hovered element that shows all of the content.

@@ -4,7 +4,6 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
 const propTypes = {
-  className: PropTypes.string,
   children: PropTypes.node.isRequired,
   size: PropTypes.oneOf(['1', '2', '3', '4', '5', '6']),
   variant: PropTypes.oneOf(['pro', 'con', 'light']),

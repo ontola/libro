@@ -5,7 +5,8 @@
   background-color: $white;
   border: 1px solid $border-color;
   border-radius: $border-radius-base;
-  overflow: hidden;
+  // This overflow also cuts off children, such as dropdown menu's and hover items.
+  // overflow: hidden;
 
   @include large() {
     margin: $margin-base;
@@ -22,4 +23,12 @@
   flex-direction: row;
   justify-content: center;
   margin: 10px -20px -10px -20px;
+
+  > *:first-child {
+    border-bottom-left-radius: $border-radius-base;
+  }
+
+  > *:last-child {
+    border-bottom-right-radius: $border-radius-base;
+  }
 }
