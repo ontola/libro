@@ -2,6 +2,8 @@
 import React, { PropTypes } from 'react';
 import {
   Heading,
+  HoverBox,
+  MarkdownContent,
 } from '../';
 
 const propTypes = {
@@ -22,10 +24,21 @@ const defaultProps = {
   },
 };
 
-const ArgumentListItem = ({ data }) => (
+const hoverBoxChildren = (data) => (
+  <Heading size="4" variant={data.side}>{data.title}</Heading>
+);
+
+const hoverBoxHiddenChildren = (data) => (
+  <span>Hier komt de beschrijving van het argument te staan. Momenteel is er echter alleen
+  nog dummy data!</span>
+);
+
+const ArgumentListItem = (props) => (
   <div>
-    <Heading size="3" variant={data.side}>{data.title}</Heading>
-    <div>{data.text}</div>
+    <HoverBox
+      children={hoverBoxChildren(props.data)}
+      hiddenChildren={hoverBoxHiddenChildren(props.data)}
+    />
   </div>
 );
 

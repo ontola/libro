@@ -9,11 +9,11 @@ import {
 
 const propTypes = {
   motionId: PropTypes.string.isRequired,
-  argumentations: PropTypes.object.isRequired,
+  argumentations: PropTypes.array.isRequired,
 };
 
 const defaultProps = {
-  argumentations: {},
+  argumentations: [],
 };
 
 const renderItem = (arg) => (
