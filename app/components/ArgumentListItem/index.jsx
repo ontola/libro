@@ -34,12 +34,12 @@ const iconClassname = (side) => {
 };
 
 const hoverBoxChildren = (data) => (
-  <div className={`ArgumentListItem ArgumentListItem--${data.side}`}>
+  <span className="ArgumentListItem__wrapper">
     <span className={`ArgumentListItem__icon ${iconClassname(data.side)}`} />
     <div className="ArgumentListItem__text">
       <Heading size="4" variant={data.side}>{data.title}</Heading>
     </div>
-  </div>
+  </span>
 );
 
 const hoverBoxHiddenChildren = (data) => (
@@ -47,10 +47,12 @@ const hoverBoxHiddenChildren = (data) => (
 );
 
 const ArgumentListItem = (props) => (
-  <HoverBox
-    children={hoverBoxChildren(props.data)}
-    hiddenChildren={hoverBoxHiddenChildren(props.data)}
-  />
+  <div className={`ArgumentListItem ArgumentListItem--${props.data.side}`}>
+    <HoverBox
+      children={hoverBoxChildren(props.data)}
+      hiddenChildren={hoverBoxHiddenChildren(props.data)}
+    />
+  </div>
 );
 
 ArgumentListItem.propTypes = propTypes;
