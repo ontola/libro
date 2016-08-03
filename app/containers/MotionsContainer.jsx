@@ -35,6 +35,10 @@ MotionsContainer.defaultProps = defaultProps;
 MotionsContainer.propTypes = propTypes;
 
 export default connect(
-  state => ({ motions: state.getIn(['motions', 'items']) }),
-  dispatch => ({ loadMotions: () => { dispatch(Motion.index()); } })
+  state => ({
+    motions: state.getIn(['motions', 'items']),
+  }),
+  dispatch => ({
+    loadMotions: () => { dispatch(Motion.index()); },
+  })
 )(MotionsContainer);

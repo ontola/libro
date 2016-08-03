@@ -13,17 +13,12 @@ const newMotionUnlessExists = (state, id) => {
   return record !== undefined ? record : new Motion({ id, loading: true });
 };
 
-const setMotion = (state, record) => state.setIn(
-  ['items', record.id],
-  record
-);
-
 const motions = (state = initialState, action) => {
   let record;
   switch (action.type) {
     case GET_MOTION:
       record = action.payload.record || newMotionUnlessExists(state, action.payload.id);
-      return setMotion(state, record);
+      return state.setIn(['items', record.id], record);
     case GET_MOTIONS:
       return state;
     default:

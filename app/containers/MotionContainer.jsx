@@ -24,7 +24,10 @@ const defaultProps = {
 
 class MotionContainer extends Component {
   componentWillMount() {
-    this.props.loadMotion();
+    const { data, loadMotion } = this.props;
+    if (data === undefined) {
+      loadMotion();
+    }
   }
 
   render() {
@@ -35,7 +38,6 @@ class MotionContainer extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const findMotion = state.getIn(['motions', 'items', ownProps.motionId]);
-
   return {
     data: findMotion,
   };
