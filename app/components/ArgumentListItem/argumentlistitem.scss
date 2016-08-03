@@ -1,0 +1,19 @@
+@import "../shared/config.scss";
+
+.ArgumentListItem {
+  display: flex;
+  &.ArgumentListItem--pro {
+    color: $pro;
+  }
+  &.ArgumentListItem--con {
+    color: $con;
+  }
+}
+
+.ArgumentListItem__icon {
+  margin-right: .5em;
+  line-height: 1.5em; 
+}
+
+.ArgumentListItem__text {
+}

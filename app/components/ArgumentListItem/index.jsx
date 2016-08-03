@@ -3,8 +3,8 @@ import React, { PropTypes } from 'react';
 import {
   Heading,
   HoverBox,
-  MarkdownContent,
 } from '../';
+import './argumentlistitem.scss';
 
 const propTypes = {
   data: PropTypes.shape({
@@ -24,22 +24,33 @@ const defaultProps = {
   },
 };
 
+const iconClassname = (side) => {
+  switch (side) {
+    case 'pro':
+      return ('fa fa-plus');
+    default:
+      return ('fa fa-minus');
+  }
+};
+
 const hoverBoxChildren = (data) => (
-  <Heading size="4" variant={data.side}>{data.title}</Heading>
+  <div className={`ArgumentListItem ArgumentListItem--${data.side}`}>
+    <span className={`ArgumentListItem__icon ${iconClassname(data.side)}`} />
+    <div className="ArgumentListItem__text">
+      <Heading size="4" variant={data.side}>{data.title}</Heading>
+    </div>
+  </div>
 );
 
 const hoverBoxHiddenChildren = (data) => (
-  <span>Hier komt de beschrijving van het argument te staan. Momenteel is er echter alleen
-  nog dummy data!</span>
+  <span>Hier komt de beschrijving van het argument te staan: {data.text}</span>
 );
 
 const ArgumentListItem = (props) => (
-  <div>
-    <HoverBox
-      children={hoverBoxChildren(props.data)}
-      hiddenChildren={hoverBoxHiddenChildren(props.data)}
-    />
-  </div>
+  <HoverBox
+    children={hoverBoxChildren(props.data)}
+    hiddenChildren={hoverBoxHiddenChildren(props.data)}
+  />
 );
 
 ArgumentListItem.propTypes = propTypes;
