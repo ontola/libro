@@ -33,6 +33,7 @@ export { default as ProfileCard } from './ProfileCard';
 export { default as VoteButtons } from './VoteButtons';
 export { default as VoteChart } from './VoteChart';
 export { default as VoteData } from './VoteData';
+export { default as VoteMatchProgress } from './VoteMatchProgress';
 
 import * as Components from '.';
 export default Components;

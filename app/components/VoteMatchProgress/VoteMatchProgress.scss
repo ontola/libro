@@ -1,0 +1,38 @@
+@import "../shared/config.scss";
+
+$progressBarHeight: 5px;
+
+.VoteMatchProgress {
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 15px 25px;
+  display: flex;
+}
+
+.VoteMatchProgress__bar {
+  height: $progressBarHeight;
+  background-color: $g3;
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  transition: .4s width;
+  z-index: 1;
+}
+
+.VoteMatchProgress__bar__background {
+  height: $progressBarHeight;
+  background-color: rgb(210,210,210);
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+.VoteMatchProgress__completionText {
+  margin-left: auto;
+}

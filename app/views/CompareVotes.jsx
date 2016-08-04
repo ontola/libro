@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 // import Helmet from 'react-helmet';
 
 import MotionContainer from '../containers/MotionContainer';
-import { Container } from '../components';
+import { Container, VoteMatchProgress } from '../components';
 
 const propTypes = {
   motions: PropTypes.object.isRequired,
@@ -14,13 +14,23 @@ const propTypes = {
 // const defaultProps = {
 // };
 
+const completedMotions = 15;
+const totalMotions = 30;
+
 const CompareVotes = ({ params }) => (
-  <Container>
-    <MotionContainer
-      showArguments
-      motionId={params.motionId}
+  <div>
+    <Container>
+      <MotionContainer
+        showArguments
+        motionId={params.motionId}
+      />
+    </Container>
+    <VoteMatchProgress
+      completedMotions={completedMotions}
+      totalMotions={totalMotions}
+      compareTo="Fleur Agema"
     />
-  </Container>
+  </div>
 );
 
 // CompareVotes.defaultProps = defaultProps;
