@@ -43,7 +43,7 @@ const MotionShow = ({ data, onVote, showArguments }) => (
         <Detail text="Motie" icon="lightbulb-o" />
         <Detail text="Verworpen" icon="close" />
         {data.creator && <PersonContainer user={data.creator} renderItem={renderItem} />}
-        <Detail text={data.created_at} icon="clock-o" />
+        {data.created_at && <Detail text={data.created_at} icon="clock-o" />}
       </DetailsBar>
       <div>{data.text}</div>
       {showArguments && <ArgumentsContainer motionId={data.id} />}
