@@ -7,21 +7,17 @@ import {
 import './argumentlistitem.scss';
 
 const propTypes = {
-  data: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
-    side: PropTypes.oneOf([
-      'pro',
-      'con',
-    ]),
-  }),
+  title: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  side: PropTypes.oneOf([
+    'pro',
+    'con',
+  ]),
 };
 
 const defaultProps = {
-  data: {
-    title: 'Loading...',
-    content: '...',
-  },
+  title: 'Loading...',
+  content: '...',
 };
 
 const iconClassname = (side) => {
@@ -33,24 +29,24 @@ const iconClassname = (side) => {
   }
 };
 
-const hoverBoxChildren = (data) => (
+const hoverBoxChildren = (side, title) => (
   <span className="ArgumentListItem__wrapper">
-    <span className={`ArgumentListItem__icon ${iconClassname(data.side)}`} />
+    <span className={`ArgumentListItem__icon ${iconClassname(side)}`} />
     <div className="ArgumentListItem__text">
-      <Heading size="4" variant={data.side}>{data.title}</Heading>
+      <Heading size="4" variant={side}>{title}</Heading>
     </div>
   </span>
 );
 
-const hoverBoxHiddenChildren = (data) => (
-  <span>{data.content}</span>
+const hoverBoxHiddenChildren = (content) => (
+  <span>{content}</span>
 );
 
-const ArgumentListItem = (props) => (
-  <div className={`ArgumentListItem ArgumentListItem--${props.data.side}`}>
+const ArgumentListItem = ({ side, title, content }) => (
+  <div className={`ArgumentListItem ArgumentListItem--${side}`}>
     <HoverBox
-      children={hoverBoxChildren(props.data)}
-      hiddenChildren={hoverBoxHiddenChildren(props.data)}
+      children={hoverBoxChildren(side, title)}
+      hiddenChildren={hoverBoxHiddenChildren(content)}
     />
   </div>
 );

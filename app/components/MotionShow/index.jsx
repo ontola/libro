@@ -4,7 +4,6 @@ import React, { PropTypes } from 'react';
 import Motion from '../../models/Motion';
 import PersonContainer from '../../containers/PersonContainer';
 import ArgumentsContainer from '../../containers/ArgumentsContainer';
-import { voteMatchNext } from '../../actions';
 
 import {
   Box,
@@ -20,6 +19,7 @@ const propTypes = {
   data: PropTypes.instanceOf(Motion),
   onVote: PropTypes.func,
   loading: PropTypes.bool,
+  next: PropTypes.func,
   showArguments: PropTypes.bool,
   activeVoteMatch: PropTypes.bool,
 };
@@ -40,6 +40,7 @@ const MotionShow = ({
   activeVoteMatch,
   data,
   onVote,
+  next,
   showArguments,
 }) => (
   <div className="MotionShow">
@@ -63,7 +64,7 @@ const MotionShow = ({
       </DetailsBar>
       <div>{data.text}</div>
       {showArguments && <ArgumentsContainer motionId={data.id} />}
-      <VoteButtons id={data.id} onVote={activeVoteMatch ? voteMatchNext : onVote} />
+      <VoteButtons id={data.id} onVote={activeVoteMatch ? next : onVote} />
     </Box>
     <VoteData data={data.votes} expanded />
   </div>

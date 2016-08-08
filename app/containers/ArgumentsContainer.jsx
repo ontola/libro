@@ -17,7 +17,12 @@ const defaultProps = {
 };
 
 const renderItem = (arg) => (
-  <ArgumentListItem key={arg.id} data={arg} />
+  <ArgumentListItem
+    key={arg.id}
+    title={arg.title}
+    content={arg.content}
+    side={arg.side}
+  />
 );
 
 const ArgumentsContainer = ({ argumentations }) => {

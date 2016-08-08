@@ -23,7 +23,7 @@ const links = id => ([{
 const Profile = ({ params, children, name }) => (
   <div>
     <Helmet title={`Profiel van ${name}`} />
-    <Cover>
+    <Cover type="light">
       <Container>
         <PersonContainer user={params.userId} full />
       </Container>
