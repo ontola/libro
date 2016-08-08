@@ -23,7 +23,6 @@ const propTypes = {
 };
 
 const defaultProps = {
-  data: new Motion(),
   showArguments: false,
 };
 

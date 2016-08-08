@@ -37,8 +37,12 @@ const parseResult = (jsonData, emitRecord, next) => {
   next(batchActions(actions));
 };
 
-const middleware = store => next => action => {
-  if (action.payload !== undefined && !action.payload.apiAction) {
+const middleware = () => next => action => {
+  if (!action.payload) {
+    return next(action);
+  }
+
+  if (!action.payload.apiAction) {
     return next(action);
   }
 

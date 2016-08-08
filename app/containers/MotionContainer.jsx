@@ -24,9 +24,9 @@ const defaultProps = {
 
 class MotionContainer extends Component {
   componentWillMount() {
-    const { data, loadMotion } = this.props;
+    const { data, loadMotion, motionId } = this.props;
     if (data === undefined) {
-      loadMotion();
+      loadMotion(motionId);
     }
   }
 
@@ -43,9 +43,9 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  loadMotion: () => {
-    dispatch(Motion.fetch(ownProps.motionId));
+const mapDispatchToProps = (dispatch) => ({
+  loadMotion: (id) => {
+    dispatch(Motion.fetch(id));
   },
 });
 

@@ -24,12 +24,15 @@ const ArgumentsContainer = ({ argumentations }) => {
   const argumentsPro = argumentations.filter(arg => arg.side === 'pro');
   const argumentsCon = argumentations.filter(arg => arg.side === 'con');
 
-  return (
-    <Columns>
-      <List items={argumentsPro} renderItem={renderItem} />
-      <List items={argumentsCon} renderItem={renderItem} />
-    </Columns>
-  );
+  if (argumentations.length > 0) {
+    return (
+      <Columns>
+        <List items={argumentsPro} renderItem={renderItem} />
+        <List items={argumentsCon} renderItem={renderItem} />
+      </Columns>
+    );
+  }
+  return false;
 };
 
 const mapStateToProps = (state, ownProps) => {

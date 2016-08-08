@@ -20,7 +20,7 @@ const propTypes = {
 const defaultProps = {
   data: {
     title: 'Loading...',
-    text: '...',
+    content: '...',
   },
 };
 

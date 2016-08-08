@@ -12,16 +12,13 @@ const propTypes = {
   name: PropTypes.string,
 };
 
-const links = id => ([
-  {
-    label: 'Ideëen',
-    to: `/profile/${id}`,
-  },
-  {
-    label: 'Statistieken',
-    to: `/profile/${id}/stats`,
-  },
-]);
+const links = id => ([{
+  label: 'Ideëen',
+  to: `/profile/${id}`,
+}, {
+  label: 'Statistieken',
+  to: `/profile/${id}/stats`,
+}]);
 
 const Profile = ({ params, children, name }) => (
   <div>
@@ -44,8 +41,8 @@ const Profile = ({ params, children, name }) => (
 
 Profile.propTypes = propTypes;
 
-const stateToProps = (state, ownProps) => ({
-  name: state.getIn(['persons', 'items', ownProps.params.userId, 'name']),
-});
-
-export default connect(stateToProps)(Profile);
+export default connect(
+  (state, ownProps) => ({
+    name: state.getIn(['persons', 'items', ownProps.params.userId, 'name']),
+  })
+)(Profile);

@@ -3,6 +3,7 @@ import './profilecard.scss';
 import React, { PropTypes } from 'react';
 import { Button, Heading } from '../';
 import classNames from 'classnames';
+import { browserHistory } from 'react-router';
 
 const propTypes = {
   data: PropTypes.object.isRequired,
@@ -18,6 +19,7 @@ const defaultProps = {
 
 const ProfileCard = ({ data, loading, full }) => {
   const {
+    id,
     name,
     party,
     image,
@@ -55,7 +57,15 @@ const ProfileCard = ({ data, loading, full }) => {
           </div>
         </div>
         <div className="ProfileCard__buttons">
-          <Button small icon="tachometer">Vergelijk</Button>
+          <Button
+            onClick={(e) => {
+              e.preventDefault();
+              browserHistory.push(`/comparevotes/${id}`);
+            }}
+            small
+            icon="tachometer"
+            children="Vergelijk"
+          />
         </div>
       </div>
     </section>
