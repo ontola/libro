@@ -1,33 +1,56 @@
 // @flow
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-// import Helmet from 'react-helmet';
 
-import MotionContainer from '../containers/MotionContainer';
-import { Container } from '../components';
+import { voteMatchNext } from '../actions';
+import { Button, Container, Heading } from '../components';
+import CompareVotesContainer from '../containers/CompareVotesContainer';
 
 const propTypes = {
-  motions: PropTypes.object.isRequired,
+  name: PropTypes.string.isRequired,
   params: PropTypes.object,
+  nextMotion: PropTypes.func,
+  currentIndex: PropTypes.number,
+  motionsLength: PropTypes.number,
 };
 
-// const defaultProps = {
-// };
+const defaultProps = {
+  name: '',
+};
 
-const CompareVotes = ({ params }) => (
+const CompareVotes = ({ name, currentIndex, motionsLength, nextMotion, params }) => (
   <Container>
-    <MotionContainer
-      showArguments
-      motionId={params.motionId}
-    />
+    <Heading>Vergelijk jouw stem met die van {name}</Heading>
+    {currentIndex + 1 > motionsLength &&
+      <div>Uitslag komt hier!</div>
+    }
+    <CompareVotesContainer compareWith={params.userId} />
+
+    {currentIndex !== null &&
+      <div>
+        {currentIndex + 1} van {motionsLength}{' '}
+        {currentIndex + 1 < motionsLength &&
+          <Button onClick={() => nextMotion()}>Overslaan</Button>
+        }
+      </div>
+    }
+
+    <div>
+      {currentIndex + 1 === motionsLength && <Button>Uitslag bekijken</Button>}
+    </div>
   </Container>
 );
 
-// CompareVotes.defaultProps = defaultProps;
 CompareVotes.propTypes = propTypes;
+CompareVotes.defaultProps = defaultProps;
 
-const stateToProps = (state) => ({
-  motions: state.getIn(['motions', 'items']),
-});
-
-export default connect(stateToProps)(CompareVotes);
+export default connect(
+  (state, ownProps) => ({
+    name: state.getIn(['persons', 'items', ownProps.params.userId, 'name']),
+    currentIndex: state.getIn(['compareVotes', 'currentIndex']),
+    motionsLength: state.getIn(['compareVotes', 'motionIds']).size,
+  }),
+  (dispatch) => ({
+    nextMotion: () => dispatch(voteMatchNext()),
+  })
+)(CompareVotes);

@@ -3,6 +3,8 @@ import { Route, IndexRoute } from 'react-router';
 import { App } from './components';
 import {
   CompareVotes,
+  CompareVotesIndex,
+  CompareVotesMotion,
   Document,
   Home,
   Motion,
@@ -18,7 +20,7 @@ import {
 const routes = (
   <Route path="/" component={App}>
     <IndexRoute component={Home} />
-    <Route path="comparevotes/:motionId" component={CompareVotes} />
+    <Route path="comparevotes/:userId" component={CompareVotes} />
     <Route path="motions" component={Motions} />
     <Route path="motions/:motionId" component={Motion} />
     <Route path="politicians" component={Politicians} />
