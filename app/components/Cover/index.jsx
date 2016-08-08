@@ -8,10 +8,12 @@ const propTypes = {
   type: PropTypes.oneOf([
     'default',
     'lighter',
+    'light',
     'dark',
   ]),
   fixed: PropTypes.bool,
   image: PropTypes.string,
+  fullScreen: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -19,20 +21,32 @@ const defaultProps = {
   type: 'default',
   image: undefined,
   fixed: false,
+  fullScreen: false,
 };
 
-const Cover = ({ children, type, image, fixed }) => {
+const Cover = ({
+  children,
+  fixed,
+  fullScreen,
+  image,
+  type,
+}) => {
   const coverClass = classNames({
     Cover: true,
     [`Cover--${type}`]: true,
     'Cover--image': image,
     'Cover--fixed': fixed,
+    'Cover--fullscreen': fullScreen,
   });
 
   const bgImage = image && { backgroundImage: `url(${image})` };
 
   return (
-    <section className={coverClass} style={bgImage}>{children}</section>
+    <section
+      className={coverClass}
+      style={bgImage}
+      children={children}
+    />
   );
 };
 

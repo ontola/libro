@@ -10,13 +10,12 @@ const sizes = [
 ];
 
 const propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   size: PropTypes.oneOf(sizes),
   spacing: PropTypes.oneOf(sizes),
 };
 
 const defaultProps = {
-  children: [],
   size: 'medium',
 };
 

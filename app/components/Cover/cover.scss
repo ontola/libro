@@ -7,7 +7,7 @@
     border-width: 1px 0;
   }
 
-  &--default {
+  &--light {
     background-color: $white;
   }
 
@@ -25,5 +25,11 @@
     right: 0;
     left: 0;
     z-index: $zindex-4;
+  }
+
+  &--fullscreen {
+    display: flex;
+    min-height: 600px;
+    align-items: center;
   }
 }
