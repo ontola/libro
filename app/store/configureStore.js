@@ -1,5 +1,6 @@
 // @flow
 import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
 import { enableBatching } from 'redux-batched-actions';
 
 import rootReducer from '../reducers';
@@ -14,14 +15,14 @@ const configureStore = (preloadedState) => {
     store = createStore(
       enableBatching(rootReducer),
       preloadedState,
-      applyMiddleware(apiMiddleware)
+      applyMiddleware(thunk, apiMiddleware)
     );
   } else {
     store = createStore(
       enableBatching(rootReducer),
       preloadedState,
       compose(
-        applyMiddleware(apiMiddleware),
+        applyMiddleware(thunk, apiMiddleware),
         typeof window === 'object' &&
         typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f
       )
