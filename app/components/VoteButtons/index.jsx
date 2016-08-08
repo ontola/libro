@@ -17,7 +17,7 @@ const VoteButtons = ({ id, onVote }) => (
       })}
       icon="thumbs-up"
       children="Ik ben voor"
-      theme="box"
+      theme="pro"
     />
     <Button
       onClick={() => onVote({
@@ -26,7 +26,7 @@ const VoteButtons = ({ id, onVote }) => (
       })}
       icon="pause"
       children="Neutraal"
-      theme="box"
+      theme="neutral"
     />
     <Button
       onClick={() => onVote({
@@ -35,7 +35,7 @@ const VoteButtons = ({ id, onVote }) => (
       })}
       icon="thumbs-down"
       children="Ik ben tegen"
-      theme="box"
+      theme="con"
     />
   </div>
 );

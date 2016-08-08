@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { MotionShow } from '../components';
 import Motion from '../models/Motion';
 
-const renderMotion = (data, showArguments) => (
-  <MotionShow data={data} showArguments={showArguments} />
+const renderMotion = (activeVoteMatch, data, showArguments) => (
+  <MotionShow data={data} showArguments={showArguments} activeVoteMatch={activeVoteMatch} />
 );
 
 const propTypes = {
@@ -15,6 +15,7 @@ const propTypes = {
   creator: PropTypes.object,
   renderItem: PropTypes.func.isRequired,
   showArguments: PropTypes.bool,
+  activeVoteMatch: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -31,8 +32,22 @@ class MotionContainer extends Component {
   }
 
   render() {
-    const { data, renderItem, showArguments } = this.props;
-    return <div>{data && renderItem(data, showArguments)}</div>;
+    const {
+      activeVoteMatch,
+      data,
+      renderItem,
+      showArguments,
+    } = this.props;
+
+    return (
+      <div>
+        {data && renderItem(
+          activeVoteMatch,
+          data,
+          showArguments
+        )}
+      </div>
+    );
   }
 }
 

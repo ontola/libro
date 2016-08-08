@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react';
 import Motion from '../../models/Motion';
 import PersonContainer from '../../containers/PersonContainer';
 import ArgumentsContainer from '../../containers/ArgumentsContainer';
+import { voteMatchNext } from '../../actions';
 
 import {
   Box,
@@ -20,6 +21,7 @@ const propTypes = {
   onVote: PropTypes.func,
   loading: PropTypes.bool,
   showArguments: PropTypes.bool,
+  activeVoteMatch: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -34,19 +36,34 @@ const renderItem = (user, url) => (
   />
 );
 
-const MotionShow = ({ data, onVote, showArguments }) => (
+const MotionShow = ({
+  activeVoteMatch,
+  data,
+  onVote,
+  showArguments,
+}) => (
   <div className="MotionShow">
     <Box>
       <Heading size="2" children={data.title} />
       <DetailsBar>
         <Detail text="Motie" icon="lightbulb-o" />
         <Detail text="Verworpen" icon="close" />
-        {data.creator && <PersonContainer user={data.creator} renderItem={renderItem} />}
-        <Detail text={data.created_at} icon="clock-o" />
+        {data.creator &&
+          <PersonContainer
+            user={data.creator}
+            renderItem={renderItem}
+          />
+        }
+        {data.created_at &&
+          <Detail
+            text={data.created_at}
+            icon="clock-o"
+          />
+        }
       </DetailsBar>
       <div>{data.text}</div>
       {showArguments && <ArgumentsContainer motionId={data.id} />}
-      <VoteButtons id={data.id} onVote={onVote} />
+      <VoteButtons id={data.id} onVote={activeVoteMatch ? voteMatchNext : onVote} />
     </Box>
     <VoteData data={data.votes} expanded />
   </div>

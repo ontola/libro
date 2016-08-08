@@ -33,7 +33,7 @@ const Motion = ({ title, params, argumentations }) => (
     <Columns>
       {argumentations.length > 0 &&
         <div>
-          <Heading size="3">Voordelen</Heading>
+          <Heading variant="outsideBox" size="2">Voordelen</Heading>
           <List
             renderItem={renderArgument}
             items={argumentations.filter(a => a.side === 'pro')}
@@ -42,7 +42,7 @@ const Motion = ({ title, params, argumentations }) => (
       }
       {argumentations.length > 0 &&
         <div>
-          <Heading size="3">Nadelen</Heading>
+          <Heading variant="outsideBox" size="2">Nadelen</Heading>
           <List
             renderItem={renderArgument}
             items={argumentations.filter(a => a.side === 'con')}

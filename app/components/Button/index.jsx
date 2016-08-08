@@ -10,6 +10,9 @@ const propTypes = {
     'box',
     'subtle',
     'default',
+    'pro',
+    'con',
+    'neutral',
   ]),
   icon: PropTypes.string,
   children: PropTypes.node.isRequired,
@@ -32,7 +35,7 @@ const Button = ({ small, theme, icon, children, onClick }) => {
   });
 
   return (
-    <button onClick={onClick} className={btnClass} role="button">
+    <button onClick={onClick} className={btnClass} role="button" tabIndex="0">
       <FontAwesome name={icon} />{' '}
       {children}
     </button>

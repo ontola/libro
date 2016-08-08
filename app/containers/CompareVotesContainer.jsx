@@ -34,6 +34,9 @@ class CompareVotesContainer extends Component {
 
   render() {
     const { currentIndex } = this.props;
+    const voteAndNext = () => {
+      return true;
+    };
 
     if (currentIndex === null) {
       return false;
@@ -42,7 +45,7 @@ class CompareVotesContainer extends Component {
     return (
       <Box>
         <Heading size="3">Motie {motions[currentIndex]}</Heading>
-        <VoteButtons id={motions[currentIndex]} />
+        <VoteButtons id={motions[currentIndex]} onVote={voteAndNext} />
       </Box>
     );
   }

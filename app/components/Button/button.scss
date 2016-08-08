@@ -8,7 +8,7 @@
   border: none;
   display: inline-block;
 
-  &:hover {
+  &:hover, &:focus {
     box-shadow: inset 0 0 0 999px rgba(0, 0, 0, .03);
     transition: .2s box-shadow;
   }
@@ -35,17 +35,59 @@
   padding: $padding-small;
 }
 
-.btn--box {
+.btn--box, .btn--pro, .btn--neutral, .btn--con {
   background-color: $white;
   border-right: 1px solid $border-color;
-  color: $blue;
+  color: $g3;
   flex-grow: 1;
 
   &:last-child {
     border-right: 0;
   }
 
-  &:hover {
+  &:hover, &:focus {
     color: $g4;
+  }
+}
+
+.btn--pro {
+  color: $pro;
+
+  &:hover, &:focus {
+    color: $pro;
+    background-color: lighten($pro, 60);
+  }
+
+  &:active {
+    color: $pro;
+    background-color: lighten($pro, 50);
+  }
+}
+
+.btn--neutral {
+  color: $neutral;
+
+  &:hover, &:focus {
+    color: $neutral;
+    background-color: lighten($neutral, 60);
+  }
+
+  &:active {
+    color: $neutral;
+    background-color: lighten($neutral, 50);
+  }
+}
+
+.btn--con {
+  color: $con;
+
+  &:hover, &:focus {
+    color: $con;
+    background-color: lighten($con, 60);
+  }
+
+  &:active {
+    color: $con;
+    background-color: lighten($con, 50);
   }
 }
