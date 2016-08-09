@@ -16,7 +16,6 @@ const defaultProps = {
 
 const Heading = ({ children, size, variant }) => {
   const Element = `h${size}`;
-
   const headingClass = classNames({
     Heading: true,
     [`Heading--${variant}`]: variant,

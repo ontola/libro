@@ -27,6 +27,7 @@ describe('Motions reducer', () => {
       items: new Map({
         14: new models.Motion({
           id: '14',
+          loading: true,
         }),
       }),
     });

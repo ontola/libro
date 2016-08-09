@@ -32,7 +32,12 @@ const defaultProps = {
 
 class MotionContainer extends Component {
   componentWillMount() {
-    const { data, loadMotion, motionId } = this.props;
+    const {
+      data,
+      loadMotion,
+      motionId,
+    } = this.props;
+
     if (data === undefined) {
       loadMotion(motionId);
     }
@@ -59,22 +64,18 @@ class MotionContainer extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const findMotion = state.getIn(['motions', 'items', ownProps.motionId]);
-  return {
-    data: findMotion,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => ({
-  loadMotion: (id) => dispatch(Motion.fetch(id)),
-  next: () => dispatch(voteMatchNext()),
-});
-
 MotionContainer.propTypes = propTypes;
 MotionContainer.defaultProps = defaultProps;
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  (state, ownProps) => {
+    const findMotion = state.getIn(['motions', 'items', ownProps.motionId]);
+    return {
+      data: findMotion,
+    };
+  },
+  (dispatch) => ({
+    loadMotion: (id) => dispatch(Motion.fetch(id)),
+    next: () => dispatch(voteMatchNext()),
+  })
 )(MotionContainer);

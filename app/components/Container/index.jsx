@@ -19,7 +19,11 @@ const defaultProps = {
   size: 'medium',
 };
 
-const Container = ({ children, size, spacing }) => {
+const Container = ({
+  children,
+  size,
+  spacing,
+}) => {
   const containerClassName = classNames({
     Container: true,
     [`Container--size-${size}`]: size,
