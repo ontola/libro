@@ -5,6 +5,9 @@ import classNames from 'classnames';
 import FontAwesome from 'react-fontawesome';
 
 const propTypes = {
+  children: PropTypes.node.isRequired,
+  onClick: PropTypes.func,
+  icon: PropTypes.string,
   small: PropTypes.bool,
   theme: PropTypes.oneOf([
     'box',
@@ -14,9 +17,11 @@ const propTypes = {
     'con',
     'neutral',
   ]),
-  icon: PropTypes.string,
-  children: PropTypes.node.isRequired,
-  onClick: PropTypes.func,
+  variant: PropTypes.oneOf([
+    'pro',
+    'con',
+    'neutral',
+  ]),
 };
 
 const defaultProps = {
@@ -27,16 +32,30 @@ const defaultProps = {
   children: '',
 };
 
-const Button = ({ small, theme, icon, children, onClick }) => {
+const Button = ({
+  children,
+  icon,
+  onClick,
+  small,
+  theme,
+  variant,
+}) => {
   const btnClass = classNames({
-    btn: true,
-    'btn--small': small,
-    [`btn--${theme}`]: true,
+    Button: true,
+    'Button--small': small,
+    [`Button--${theme}`]: true,
+    [`Button--variant-${variant}`]: true,
   });
 
   return (
-    <button onClick={onClick} className={btnClass} role="button" tabIndex="0">
-      <FontAwesome name={icon} />{' '}
+    <button
+      onClick={onClick}
+      className={btnClass}
+      role="button"
+      tabIndex="0"
+    >
+      <FontAwesome name={icon} />
+      {' '}
       {children}
     </button>
   );

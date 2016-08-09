@@ -1,6 +1,6 @@
 @import "../shared/config.scss";
 
-.btn {
+.Button {
   font-family: $font-family;
   font-size: $font-size-h5;
   padding: $padding-base;
@@ -18,24 +18,24 @@
   }
 }
 
-.btn--default {
+.Button--default {
   color: $white;
   background-color: $primary;
   border-radius: $border-radius-base;
 }
 
-.btn--subtle {
+.Button--subtle {
   background-color: $g1;
   color: $dark;
   border-radius: $border-radius-base;
 }
 
-.btn--small {
+.Button--small {
   font-size: $font-size-h6;
   padding: $padding-small;
 }
 
-.btn--box, .btn--pro, .btn--neutral, .btn--con {
+.Button--box {
   background-color: $white;
   border-right: 1px solid $border-color;
   color: $g3;
@@ -50,44 +50,46 @@
   }
 }
 
-.btn--pro {
-  color: $pro;
-
-  &:hover, &:focus {
+.Button--variant {
+  &-pro {
     color: $pro;
-    background-color: lighten($pro, 60);
+
+    &:hover, &:focus {
+      color: $pro;
+      background-color: lighten($pro, 60);
+    }
+
+    &:active {
+      color: $pro;
+      background-color: lighten($pro, 50);
+    }
   }
 
-  &:active {
-    color: $pro;
-    background-color: lighten($pro, 50);
-  }
-}
-
-.btn--neutral {
-  color: $neutral;
-
-  &:hover, &:focus {
+  &-neutral {
     color: $neutral;
-    background-color: lighten($neutral, 60);
+
+    &:hover, &:focus {
+      color: $neutral;
+      background-color: lighten($neutral, 60);
+    }
+
+    &:active {
+      color: $neutral;
+      background-color: lighten($neutral, 50);
+    }
   }
 
-  &:active {
-    color: $neutral;
-    background-color: lighten($neutral, 50);
-  }
-}
-
-.btn--con {
-  color: $con;
-
-  &:hover, &:focus {
+  &-con {
     color: $con;
-    background-color: lighten($con, 60);
-  }
 
-  &:active {
-    color: $con;
-    background-color: lighten($con, 50);
+    &:hover, &:focus {
+      color: $con;
+      background-color: lighten($con, 60);
+    }
+
+    &:active {
+      color: $con;
+      background-color: lighten($con, 50);
+    }
   }
 }
