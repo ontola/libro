@@ -4,11 +4,8 @@
   margin: 20px 0;
   background-color: $white;
   box-shadow: $box-shadow;
-  // border: 1px solid $border-color;
   border-radius: $border-radius-base;
-  // This overflow also cuts off children, such as dropdown menu's and hover items.
-  // overflow: hidden;
-
+  
   @include large() {
     margin: $margin-base;
   }
