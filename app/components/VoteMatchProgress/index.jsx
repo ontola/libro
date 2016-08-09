@@ -2,6 +2,8 @@
 import './VoteMatchProgress.scss';
 import React, { PropTypes } from 'react';
 
+const PERCENTAGE = 100;
+
 const propTypes = {
   compareTo: PropTypes.string,
   completedMotions: PropTypes.number,
@@ -12,11 +14,15 @@ const defaultProps = {
   completedMotions: 0,
 };
 
-const VoteMatchProgress = ({ completedMotions, totalMotions, compareTo }) => {
+const VoteMatchProgress = ({
+  completedMotions,
+  totalMotions,
+  compareTo,
+}) => {
   const completionFactor = completedMotions / totalMotions;
 
   const style = {
-    width: `${completionFactor * 100}%`,
+    width: `${completionFactor * PERCENTAGE}%`,
   };
 
   return (
