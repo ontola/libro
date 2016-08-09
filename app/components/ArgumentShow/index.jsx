@@ -13,21 +13,18 @@ import {
 import PersonContainer from '../../containers/PersonContainer';
 
 const propTypes = {
-  data: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
-    side: PropTypes.oneOf([
-      'pro',
-      'con',
-    ]),
-  }),
+  content: PropTypes.string,
+  creator: PropTypes.string,
+  side: PropTypes.oneOf([
+    'pro',
+    'con',
+  ]).isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 const defaultProps = {
-  data: {
-    title: 'Loading...',
-    text: '...',
-  },
+  title: 'Loading...',
+  text: '...',
 };
 
 const renderItem = (user, url) => (
@@ -38,14 +35,19 @@ const renderItem = (user, url) => (
   />
 );
 
-const ArgumentShow = ({ data }) => (
+const ArgumentShow = ({
+  content,
+  creator,
+  side,
+  title,
+}) => (
   <Box>
-    <Heading size="3" variant={data.side}>{data.title}</Heading>
+    <Heading size="3" variant={side}>{title}</Heading>
     <DetailsBar>
-      {data.creator && <PersonContainer user={data.creator} renderItem={renderItem} />}
+      {creator && <PersonContainer user={creator} renderItem={renderItem} />}
       <Detail text="3 minuten geleden" icon="clock-o" />
     </DetailsBar>
-    <div>{data.content}</div>
+    <div>{content}</div>
 
     <div className="Box__actions">
       <Button

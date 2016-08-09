@@ -5,7 +5,13 @@ import Helmet from 'react-helmet';
 
 import { getArgumentsByMotion } from '../reducers/motions';
 import MotionContainer from '../containers/MotionContainer';
-import { ArgumentShow, Columns, Container, Heading, List } from '../components';
+import {
+  ArgumentShow,
+  Columns,
+  Container,
+  Heading,
+  List,
+} from '../components';
 
 const propTypes = {
   params: PropTypes.shape({
@@ -22,11 +28,18 @@ const defaultProps = {
 const renderArgument = (data) => (
   <ArgumentShow
     key={data.id}
-    data={data}
+    title={data.title}
+    content={data.content}
+    creator={data.creator}
+    side={data.side}
   />
 );
 
-const Motion = ({ title, params, argumentations }) => (
+const Motion = ({
+  argumentations,
+  params,
+  title,
+}) => (
   <Container>
     <Helmet title={title} />
     <MotionContainer motionId={params.motionId} />
