@@ -6,7 +6,13 @@ import classNames from 'classnames';
 const propTypes = {
   children: PropTypes.node.isRequired,
   size: PropTypes.oneOf(['1', '2', '3', '4', '5', '6']),
-  variant: PropTypes.oneOf(['pro', 'con', 'light', 'center']),
+  variant: PropTypes.oneOf([
+    'pro',
+    'con',
+    'light',
+    'center',
+    'outsideBox',
+  ]),
 };
 
 const defaultProps = {

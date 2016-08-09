@@ -1,5 +1,8 @@
 import { Map } from 'immutable';
-import { VOTE_MATCH_NEXT, VOTE_MATCH_START } from '../constants/actionTypes';
+import {
+  VOTE_MATCH_INIT,
+  VOTE_MATCH_NEXT,
+} from '../constants/actionTypes';
 
 const initialState = new Map({
   compareWithPerson: '',
@@ -7,11 +10,11 @@ const initialState = new Map({
   motionIds: [],
 });
 
-const increaseByOne = (index) => (index === null ? 0 : index + 1);
+const increaseByOne = index => (index === null ? 0 : index + 1);
 
 const compareVotes = (state = initialState, action) => {
   switch (action.type) {
-    case VOTE_MATCH_START:
+    case VOTE_MATCH_INIT:
       return state.merge(action.payload);
     case VOTE_MATCH_NEXT:
       return state.set('currentIndex', increaseByOne(state.get('currentIndex')));

@@ -4,20 +4,26 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
 import { voteMatchStart } from '../actions';
-import { Container, Cover, VoteMatchProgress } from '../components';
 import MotionContainer from '../containers/MotionContainer';
 import Person from '../models/Person';
+import {
+  Box,
+  Container,
+  Cover,
+  Heading,
+  VoteMatchProgress,
+} from '../components';
 
-const motions = ['642621', '245245', '195075', '358964'];
+const motions = ['642621', '245245', '195075', '358964', '987654', '334672', '367333'];
 
 const propTypes = {
   currentIndex: PropTypes.number,
   loadPerson: PropTypes.func.isRequired,
+  motionsLength: PropTypes.number,
   name: PropTypes.string.isRequired,
   params: PropTypes.shape({
     userId: PropTypes.string.isRequired,
   }).isRequired,
-  motionsLength: PropTypes.number,
   start: PropTypes.func,
 };
 
@@ -36,6 +42,7 @@ class CompareVotes extends Component {
 
     start({
       compareWithPerson: params.userId,
+      currentIndex: null,
       motionIds: motions,
     });
 
@@ -44,22 +51,24 @@ class CompareVotes extends Component {
     }
   }
 
-  scrollTo(id) {
-    this.refs[id].scrollIntoView(true);
-  }
-
-  renderMotion(motion, i) {
+  componentWillUpdate(nextProps) {
     const {
       currentIndex,
       motionsLength,
-    } = this.props;
+    } = nextProps;
 
     if (currentIndex === motionsLength) {
       this.scrollTo('result');
-    } else if (i === currentIndex) {
-      this.scrollTo(`motion${motion}`);
+    } else {
+      this.scrollTo(`motion${motions[currentIndex]}`);
     }
+  }
 
+  scrollTo(id) {
+    this.refs[id].scrollIntoView();
+  }
+
+  renderMotion(motion) {
     return (
       <div ref={`motion${motion}`} key={motion}>
         <Cover fullScreen>
@@ -85,14 +94,17 @@ class CompareVotes extends Component {
     return (
       <div>
         <Helmet title={`Vergelijk opinies met ${name}`} />
-        {motions.map((motion, i) => this.renderMotion(motion, i))}
-        <Cover fullScreen>
-          <Container>
-            <div ref="result">
-              Resultaat
-            </div>
-          </Container>
-        </Cover>
+        {motions.map(this.renderMotion)}
+        <div ref="result">
+          <Cover fullScreen>
+            <Container>
+              <Heading>Resultaten</Heading>
+              <Box>
+                Hier komen de resultaten
+              </Box>
+            </Container>
+          </Cover>
+        </div>
         <VoteMatchProgress
           compareTo={name}
           completedMotions={currentIndex}

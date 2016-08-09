@@ -16,27 +16,29 @@ const defaultProps = {
   children: [],
 };
 
-const App = ({ children, error, errorMessage }) => {
-  const renderErrorMessage = () => {
-    if (error) {
-      return (
-        <Notification
-          type="error"
-          children={errorMessage}
-        />
-      );
-    }
-    return false;
-  };
-
-  return (
-    <div>
-      <NavbarContainer />
-      {renderErrorMessage()}
-      {children}
-    </div>
-  );
+const renderErrorMessage = (error, errorMessage) => {
+  if (error) {
+    return (
+      <Notification
+        type="error"
+        children={errorMessage}
+      />
+    );
+  }
+  return false;
 };
+
+const App = ({
+  children,
+  error,
+  errorMessage,
+}) => (
+  <div>
+    <NavbarContainer />
+    {renderErrorMessage(error, errorMessage)}
+    {children}
+  </div>
+);
 
 App.propTypes = propTypes;
 App.defaultProps = defaultProps;
