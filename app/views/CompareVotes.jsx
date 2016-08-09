@@ -11,7 +11,7 @@ import {
   Container,
   Cover,
   Heading,
-  VoteMatchProgress,
+  ProgressBar,
 } from '../components';
 
 const motions = ['642621', '245245', '195075', '358964', '987654', '334672', '367333'];
@@ -94,7 +94,7 @@ class CompareVotes extends Component {
     return (
       <div>
         <Helmet title={`Vergelijk opinies met ${name}`} />
-        {motions.map(this.renderMotion)}
+        <div>{motions.map(this.renderMotion)}</div>
         <div ref="result">
           <Cover fullScreen>
             <Container>
@@ -105,10 +105,10 @@ class CompareVotes extends Component {
             </Container>
           </Cover>
         </div>
-        <VoteMatchProgress
-          compareTo={name}
-          completedMotions={currentIndex}
-          totalMotions={motionsLength}
+        <ProgressBar
+          context={`VoteMatch - ${name}`}
+          completed={currentIndex}
+          total={motionsLength}
         />
       </div>
     );
