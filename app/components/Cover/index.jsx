@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
 const propTypes = {
+  backgroundColor: PropTypes.string,
   children: PropTypes.node.isRequired,
   type: PropTypes.oneOf([
     'default',
@@ -17,6 +18,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  backgroundColor: 'transparant',
   children: [],
   type: 'default',
   image: undefined,
@@ -25,6 +27,7 @@ const defaultProps = {
 };
 
 const Cover = ({
+  backgroundColor,
   children,
   fixed,
   fullScreen,
@@ -39,12 +42,17 @@ const Cover = ({
     'Cover--fullscreen': fullScreen,
   });
 
-  const bgImage = image && { backgroundImage: `url(${image})` };
+  // const imageStyle = image && { backgroundImage: `url(${image})` };
+  // const backgroundColorStyle = backgroundColor && { backgroundColor: `${backgroundColor}` };
+  const style = {
+    backgroundImage: `url(${image})`,
+    backgroundColor: `${backgroundColor}`,
+  };
 
   return (
     <section
       className={coverClass}
-      style={bgImage}
+      style={style}
       children={children}
     />
   );
