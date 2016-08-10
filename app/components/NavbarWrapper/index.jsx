@@ -13,6 +13,7 @@ const propTypes = {
 
 const defaultProps = {
   forumColor: '#475668',
+  // forumColor: '#a81d1d',
 };
 
 class NavbarWrapper extends Component {
@@ -72,7 +73,7 @@ class NavbarWrapper extends Component {
         role="navigation"
         style={style}
       >
-        <Cover type="dark" fixed>
+        <Cover backgroundColor={forumColor} fixed>
           <Container size="large">
             <div className="nav-container">
               <ul className="navbar-links">

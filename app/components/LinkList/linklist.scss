@@ -16,14 +16,17 @@
   padding: .7em 0;
   margin-right: 1.5em;
   color: $blue;
+  transition: .1s border-bottom;
+  border-bottom: 3px solid rgba($titleblue, 0);
 
-  &:hover {
+  &:hover, &:focus {
     color: $titleblue;
+    border-bottom-color: rgba($titleblue, .2);
   }
 
-  &--active {
+  &--active, &:active {
     color: $titleblue;
-    border-bottom: .2em solid $titleblue;
+    border-bottom-color: rgba($titleblue, 1) !important;
   }
 
   &:last-of-type {
