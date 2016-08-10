@@ -2,6 +2,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { List, MotionsListItem } from '../components';
+import MotionContainer from '../containers/MotionContainer';
 import Motion from '../models/Motion';
 
 const propTypes = {
@@ -13,10 +14,18 @@ const defaultProps = {
   motions: {},
 };
 
-const renderItem = (data) => (
+const renderMotion = (data) => (
   <MotionsListItem
     key={data.id}
     motion={data}
+  />
+);
+
+const renderMotionContainer = (data) => (
+  <MotionContainer
+    key={data.id}
+    motionId={data.id}
+    renderItem={renderMotion}
   />
 );
 
@@ -27,7 +36,7 @@ class MotionsContainer extends Component {
 
   render() {
     const { motions } = this.props;
-    return motions.size > 0 && <List renderItem={renderItem} items={motions} />;
+    return motions.size > 0 && <List renderItem={renderMotionContainer} items={motions} />;
   }
 }
 

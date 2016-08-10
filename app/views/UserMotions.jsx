@@ -2,12 +2,6 @@
 import React from 'react';
 import { Box, Container } from '../components';
 
-const propTypes = {
-};
-
-const defaultProps = {
-};
-
 const UserMotions = () => (
   <div>
     <Container>
@@ -24,8 +18,5 @@ const UserMotions = () => (
     </Container>
   </div>
 );
-
-UserMotions.PropTypes = propTypes;
-UserMotions.defaultProps = defaultProps;
 
 export default UserMotions;

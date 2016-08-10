@@ -4,18 +4,17 @@ import React, { PropTypes } from 'react';
 
 const propTypes = {
   context: PropTypes.string,
-  completed: PropTypes.number.isRequired,
+  completed: PropTypes.number,
   total: PropTypes.number.isRequired,
 };
 
 const defaultProps = {
-  completedMotions: 0,
+  completed: 0,
+  total: 0,
 };
 
-const barWidth = (completed, total) => {
-  const PERCENTAGE = 100;
-  return completed / total * PERCENTAGE;
-};
+const PERCENTAGE = 100;
+const barWidth = (completed, total) => completed / total * PERCENTAGE;
 
 const ProgressBar = ({
   completed,
