@@ -15,8 +15,8 @@ const defaultRenderItem = (data, url, full) => (
 
 const propTypes = {
   full: PropTypes.bool,
-  loadProfile: PropTypes.func.isRequired,
-  user: PropTypes.string,
+  loadProfile: PropTypes.func,
+  user: PropTypes.string.isRequired,
   data: PropTypes.instanceOf(Person),
   url: PropTypes.string,
   renderItem: PropTypes.func,
@@ -35,8 +35,8 @@ class PersonContainer extends Component {
   }
 
   render() {
-    const { data, renderItem, full, url } = this.props;
-    return this.props.user && renderItem(data, url, full);
+    const { data, renderItem, full, url, user } = this.props;
+    return user && renderItem(data, url, full);
   }
 }
 
