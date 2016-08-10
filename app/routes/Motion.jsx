@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
-import { getArgumentsByMotion } from '../reducers/motions';
+import { argsSelector } from '../state/argumentations/selectors';
 import MotionContainer from '../containers/MotionContainer';
 import {
   ArgumentShow,
@@ -74,7 +74,7 @@ const stateToProps = (state, ownProps) => {
 
   return {
     title: currentMotion && currentMotion.title,
-    argumentations: getArgumentsByMotion(state, ownProps),
+    argumentations: argsSelector(state, ownProps),
   };
 };
 

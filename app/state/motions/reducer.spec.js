@@ -3,9 +3,9 @@ import chai, { assert } from 'chai';
 import { Map } from 'immutable';
 import chaiImmutable from 'chai-immutable';
 
-import motions from '../../reducers/motions';
+import motions from './reducer';
 import * as models from '../../models';
-import * as actions from '../../constants/actionTypes';
+import * as actions from '../action-types';
 
 chai.use(chaiImmutable);
 

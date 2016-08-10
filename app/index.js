@@ -3,8 +3,8 @@ import { render } from 'react-dom';
 import { SearchkitManager } from 'searchkit';
 import { AppContainer } from 'react-hot-loader';
 
-import configureStore from './store/configureStore';
-import { ELASTICSEARCH_URL } from './constants/config';
+import configureStore from './state';
+import { ELASTICSEARCH_URL } from './config';
 import { immutableHistory } from './helpers/history';
 import IndexContainer from './containers/IndexContainer';
 
@@ -21,7 +21,7 @@ render(
 
 if (module.hot) {
   module.hot.accept('./containers/IndexContainer', () => {
-    const NextIndexContainer = require('./containers/IndexContainer').default;
+    const NextIndexContainer = require('./containers/IndexContainer').default; // eslint-disable-line
     render(
       <AppContainer>
         <NextIndexContainer store={store} history={history} sk={sk} />

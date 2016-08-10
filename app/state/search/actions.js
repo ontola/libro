@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions';
 import { CALL_API } from 'redux-api-middleware';
-import { ELASTICSEARCH_DOCUMENT_BASE } from '../constants/config';
-import * as actions from '../constants/actionTypes';
+import { ELASTICSEARCH_DOCUMENT_BASE } from '../../config';
+import * as actions from '../action-types';
 
 const apiGetDocument = (id) => ({
   [CALL_API]: {

@@ -1,5 +1,5 @@
 import { Map } from 'immutable';
-import * as actions from '../constants/actionTypes';
+import * as actions from '../action-types';
 
 const initialState = new Map({
   error: false,
@@ -13,7 +13,7 @@ const errors = (state = initialState, action) => {
       message: action.payload,
     });
   } else if (action.type === actions.RESET_ERROR_MESSAGE) {
-    return null;
+    return initialState;
   }
   return state;
 };

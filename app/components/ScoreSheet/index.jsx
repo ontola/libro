@@ -15,20 +15,21 @@ const propTypes = {
 const defaultProps = {
 };
 
-const renderPerson = (data) => {
-  console.log(data);
-  return (
-    <div>{data.name}</div>
-  );
-};
+// const renderPerson = (data) => {
+//   console.log(data);
+//   return (
+//     <div>{data.name}</div>
+//   );
+// };
 
 const renderItem = (id) => {
   return (
-    <PersonContainer
-      key={id}
-      user={id}
-      renderItem={renderPerson}
-    />
+    <div key={id}>{id}</div>
+    // <PersonContainer
+    //   key={id}
+    //   user={id}
+    //   renderItem={renderPerson}
+    // />
   );
 };
 

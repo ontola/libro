@@ -1,19 +1,18 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import { App } from './components';
-import {
-  CompareVotes,
-  Document,
-  Home,
-  Motion,
-  Motions,
-  NotFound,
-  Politicians,
-  Profile,
-  Search,
-  UserMotions,
-  UserStats,
-} from './views';
+import { App } from '../components';
+
+import CompareVotes from './CompareVotes';
+import Document from './Document';
+import Home from './Home';
+import Motion from './Motion';
+import Motions from './Motions';
+import NotFound from './NotFound';
+import Politicians from './Politicians';
+import Profile from './Profile';
+import Search from './Search';
+import UserMotions from './UserMotions';
+import UserStats from './UserStats';
 
 const routes = (
   <Route path="/" component={App}>

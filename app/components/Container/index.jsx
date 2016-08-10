@@ -31,7 +31,9 @@ const Container = ({
   });
 
   return (
-    <div className={containerClassName}>{children}</div>
+    <div className={containerClassName}>
+      {children}
+    </div>
   );
 };
 

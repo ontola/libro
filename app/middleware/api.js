@@ -1,8 +1,8 @@
 import fetch from 'isomorphic-fetch';
 import { batchActions } from 'redux-batched-actions';
 
-import DataStore from '../helpers/DataStore';
-import { ARGU_API_PROXIED, ARGU_API_BASE } from '../constants/config';
+import DataStore from './utils/DataStore';
+import { ARGU_API_PROXIED, ARGU_API_BASE } from '../config';
 
 let dataStore;
 

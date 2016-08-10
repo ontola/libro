@@ -6,7 +6,7 @@ import SearchkitExpress from 'searchkit-express';
 import proxy from 'http-proxy-middleware';
 // import morgan from 'morgan';
 
-import * as constants from '../app/constants/config';
+import * as constants from '../app/config';
 import { renderFullPage } from './utils/render';
 import webpackConfig from '../webpack/hot.config';
 

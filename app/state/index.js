@@ -1,11 +1,28 @@
-// @flow
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { enableBatching } from 'redux-batched-actions';
+import { combineReducers } from 'redux-immutable';
 
-import rootReducer from '../reducers';
+import argumentations from './argumentations/reducer';
+import errors from './errors/reducer';
+import motions from './motions/reducer';
+import persons from './persons/reducer';
+import router from './router/reducer';
+import search from './search/reducer';
+import votematch from './votematch/reducer';
+
 import API from '../middleware/api';
 import * as models from '../models';
+
+const rootReducer = combineReducers({
+  argumentations,
+  errors,
+  motions,
+  persons,
+  router,
+  search,
+  votematch,
+});
 
 const configureStore = (preloadedState) => {
   const apiMiddleware = new API(Object.values(models));

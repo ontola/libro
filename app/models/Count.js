@@ -1,6 +1,6 @@
 import { Map } from 'immutable';
-import * as actions from '../constants/actionTypes';
-import { APIDesc, apiModelGenerator } from '../helpers/apiModelGenerator';
+import * as actions from '../state/action-types';
+import { APIDesc, apiModelGenerator } from './utils/apiModelGenerator';
 
 const apiDesc = new APIDesc({
   actions: new Map({

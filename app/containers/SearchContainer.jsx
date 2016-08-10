@@ -1,7 +1,7 @@
 // @flow
 import { connect } from 'react-redux';
 import { SearchPage } from '../components';
-import { toggleDrawer, setHitCount } from '../actions/search';
+import { toggleDrawer, setHitCount } from '../state/search/actions';
 
 const mapStateToProps = (state) => ({
   hits: state.search.hits,

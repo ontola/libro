@@ -3,14 +3,12 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
-import { voteMatchStart } from '../actions';
+import { voteMatchStart } from '../state/votematch/actions';
 import MotionContainer from '../containers/MotionContainer';
 import Person from '../models/Person';
 import {
-  Box,
   Container,
   Cover,
-  Heading,
   ProgressBar,
   ScoreSheet,
 } from '../components';
@@ -119,8 +117,8 @@ CompareVotes.defaultProps = defaultProps;
 export default connect(
   (state, ownProps) => ({
     name: state.getIn(['persons', 'items', ownProps.params.userId, 'name']),
-    currentIndex: state.getIn(['compareVotes', 'currentIndex']),
-    motionsLength: state.getIn(['compareVotes', 'motionIds']).size,
+    currentIndex: state.getIn(['votematch', 'currentIndex']),
+    motionsLength: state.getIn(['votematch', 'motionIds']).size,
   }),
   (dispatch) => ({
     start: (data) => { dispatch(voteMatchStart(data)); },

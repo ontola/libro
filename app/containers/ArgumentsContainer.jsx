@@ -1,6 +1,7 @@
 // @flow
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { argsSelector } from '../state/argumentations/selectors';
 import {
   ArgumentListItem,
   Columns,
@@ -40,19 +41,11 @@ const ArgumentsContainer = ({ argumentations }) => {
   return false;
 };
 
-const mapStateToProps = (state, ownProps) => {
-  const findMotion = state.getIn(['motions', 'items', ownProps.motionId]);
-  const findArguments = findMotion.arguments &&
-    findMotion.arguments.map(id => state.getIn(['argumentations', 'items', id]));
-
-  return {
-    argumentations: findArguments,
-  };
-};
-
 ArgumentsContainer.propTypes = propTypes;
 ArgumentsContainer.defaultProps = defaultProps;
 
 export default connect(
-  mapStateToProps
+  (state, ownProps) => ({
+    argumentations: argsSelector(state, ownProps),
+  })
 )(ArgumentsContainer);

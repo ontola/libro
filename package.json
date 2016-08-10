@@ -14,7 +14,7 @@
     "start:prod": "ARGU_API_URL=http://localhost:3030 NODE_ENV=production node ./bin/server.js",
     "build": "rimraf ./dist && NODE_ENV=production webpack --production --progress --verbose --display-error-details --config ./webpack/static.config",
     "lint": "./node_modules/.bin/eslint --ext .jsx,.js .",
-    "test": "mocha ./tests/testhelper.js ./app/components/**/spec.js ./app/**/test/**.js",
+    "test": "mocha ./tests/testhelper.js ./app/**/spec.js ./app/**/*.spec.js ./app/**/test/**.js",
     "test:watch": "npm run test -- --watch",
     "test:nightwatch": "./node_modules/.bin/nightwatch"
   },

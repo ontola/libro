@@ -1,6 +1,6 @@
 import './drawer.scss';
 import { connect } from 'react-redux';
-import { toggleDrawer } from '../../actions/search';
+import { toggleDrawer } from '../../state/search/actions';
 import classNames from 'classnames';
 import React, { PropTypes } from 'react';
 import { Button } from '../';

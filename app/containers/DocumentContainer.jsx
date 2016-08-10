@@ -1,7 +1,7 @@
 // @flow
 import { connect } from 'react-redux';
 import { DocumentShow } from '../components';
-import { apiGetDocument } from '../actions/search';
+import { apiGetDocument } from '../state/search/actions';
 
 const mapStateToProps = (state) => ({
   data: state.search.document,
