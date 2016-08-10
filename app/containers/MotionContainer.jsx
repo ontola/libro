@@ -3,11 +3,12 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { MotionShow } from '../components';
 import Motion from '../models/Motion';
-import { voteMatchNext } from '../actions';
+import { voteMatchNext, voteAction } from '../actions';
 
-const renderMotion = (activeVoteMatch, data, next, showArguments) => (
+const renderMotion = (data, vote, activeVoteMatch, next, showArguments) => (
   <MotionShow
     data={data}
+    onVote={vote}
     showArguments={showArguments}
     activeVoteMatch={activeVoteMatch}
     next={next}
@@ -15,14 +16,15 @@ const renderMotion = (activeVoteMatch, data, next, showArguments) => (
 );
 
 const propTypes = {
+  activeVoteMatch: PropTypes.bool,
+  creator: PropTypes.object,
   data: PropTypes.instanceOf(Motion),
   loadMotion: PropTypes.func.isRequired,
   motionId: PropTypes.string.isRequired,
   next: PropTypes.func.isRequired,
-  creator: PropTypes.object,
   renderItem: PropTypes.func.isRequired,
   showArguments: PropTypes.bool,
-  activeVoteMatch: PropTypes.bool,
+  vote: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
@@ -50,12 +52,14 @@ class MotionContainer extends Component {
       next,
       renderItem,
       showArguments,
+      vote,
     } = this.props;
 
     if (data) {
       return renderItem(
-        activeVoteMatch,
         data,
+        vote,
+        activeVoteMatch,
         next,
         showArguments
       );
@@ -77,5 +81,6 @@ export default connect(
   (dispatch) => ({
     loadMotion: (id) => dispatch(Motion.fetch(id)),
     next: () => dispatch(voteMatchNext()),
+    vote: (data) => dispatch(voteAction(data)),
   })
 )(MotionContainer);

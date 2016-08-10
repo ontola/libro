@@ -28,7 +28,7 @@ const VoteButtons = ({ id, onVote }) => (
       <Button
         key={i}
         onClick={() => onVote({
-          id,
+          motionId: id,
           side: button.side,
         })}
         icon={button.icon}

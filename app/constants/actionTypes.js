@@ -23,3 +23,4 @@ export const RESET_ERROR_MESSAGE = 'RESET_ERROR_MESSAGE';
 
 export const VOTE_MATCH_INIT = 'VOTE_MATCH_INIT';
 export const VOTE_MATCH_NEXT = 'VOTE_MATCH_NEXT';
+export const VOTE = 'VOTE';
