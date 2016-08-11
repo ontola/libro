@@ -1,6 +1,6 @@
 // @flow
 import React, { PropTypes } from 'react';
-import { Box, Container, Heading } from '../components';
+import { Box, Container, Heading } from '../../components';
 import Helmet from 'react-helmet';
 
 const propTypes = {

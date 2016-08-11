@@ -3,8 +3,8 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
-import { Container, Cover, LinkList } from '../components';
-import PersonContainer from '../containers/PersonContainer';
+import { Container, Cover, LinkList } from '../../components';
+import PersonContainer from '../../containers/PersonContainer';
 
 const propTypes = {
   params: PropTypes.object,

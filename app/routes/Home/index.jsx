@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { Box, Button, Columns, Container, Cover, Heading } from '../components';
+import { Box, Button, Columns, Container, Cover, Heading } from '../../components';
 import Helmet from 'react-helmet';
 import { browserHistory } from 'react-router';
 
@@ -37,7 +37,6 @@ const Home = () => (
           <Button onClick={() => goTo('/politicians')} icon="group" small>Bekijk politici</Button>
         </Box>
       </Columns>
-      <p>Een initiatief van Argu.co</p>
     </Container>
   </div>
 );
