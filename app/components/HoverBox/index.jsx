@@ -13,7 +13,6 @@ const defaultProps = {
 };
 
 export default class HoverBox extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -21,55 +20,56 @@ export default class HoverBox extends Component {
     };
   }
 
-  handleOnMouseEnter = () => {
+  handleOnMouseEnter() {
     this.showContent();
-  };
+  }
 
-  handleOnMouseLeave = () => {
+  handleOnMouseLeave() {
     this.hideContent();
-  };
+  }
 
-  handleOnFocus = () => {
+  handleOnFocus() {
     this.showContent();
-  };
+  }
 
-  handleOnBlur = () => {
+  handleOnBlur() {
     this.hideContent();
-  };
+  }
 
-  showContent = () => {
+  showContent() {
     this.setState({
       isVisible: true,
-    })
-  };
+    });
+  }
 
-  hideContent = () => {
+  hideContent() {
     this.setState({
       isVisible: false,
-    })
+    });
   }
 
   // The trigger is always visisble and contains the children.
   // When the user hovers over them, the hiddenChildren appear.
-  trigger = (children) => (
-    <span
-      onMouseEnter={this.handleOnMouseEnter}
-      onMouseLeave={this.handleOnMouseLeave}
-      onFocus={this.handleOnFocus}
-      onBlur={this.handleOnBlur}
-      tabIndex='0'
-    >
-      {children}
-    </span>
-  );
+  trigger(children) {
+    return (
+      <span
+        onMouseEnter={this.handleOnMouseEnter}
+        onMouseLeave={this.handleOnMouseLeave}
+        onFocus={this.handleOnFocus}
+        onBlur={this.handleOnBlur}
+        tabIndex="0"
+      >
+        {children}
+      </span>
+    );
+  }
 
-  className = () => (
-    this.state.isVisible ? 'HoverBox__hiddenPart--visible' : 'HoverBox__hiddenPart--hidden'
-  )
-
+  className() {
+    return this.state.isVisible ? 'HoverBox__hiddenPart--visible' : 'HoverBox__hiddenPart--hidden';
+  }
   render() {
     return (
-      <div className='HoverBox'>
+      <div className="HoverBox">
         {this.trigger(this.props.children)}
         <div className={`HoverBox__hiddenPart ${this.className()}`}>
           {this.props.children}

@@ -14,7 +14,7 @@ const defaultProps = {
   status: 'unknown',
 };
 
-function DetailStatus({ status }) {
+const DetailStatus = ({ status }) => {
   let className = 'defaultClassName';
   let icon = 'no-icon';
   let text = 'Onbekende status';
@@ -42,7 +42,7 @@ function DetailStatus({ status }) {
       icon={icon}
     />
   );
-}
+};
 
 DetailStatus.propTypes = propTypes;
 DetailStatus.defaultProps = defaultProps;

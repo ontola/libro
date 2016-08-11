@@ -9,7 +9,6 @@ const propTypes = {
   onClick: PropTypes.func,
   icon: PropTypes.string,
   small: PropTypes.bool,
-  type: PropTypes.string,
   theme: PropTypes.oneOf([
     'box',
     'subtle',
@@ -26,11 +25,8 @@ const propTypes = {
 };
 
 const defaultProps = {
-  useDefaultClassName: true,
   small: false,
   theme: 'default',
-  type: 'button',
-  icon: '',
   children: '',
 };
 
@@ -40,7 +36,6 @@ const Button = ({
   onClick,
   small,
   theme,
-  type,
   variant,
 }) => {
   const btnClass = classNames({
@@ -55,9 +50,9 @@ const Button = ({
       onClick={onClick}
       className={btnClass}
       role="button"
-      type={type}
+      type="button"
     >
-      <FontAwesome name={icon} />
+      {icon && <FontAwesome name={icon} />}
       {' '}
       {children}
     </button>
