@@ -11,7 +11,6 @@ export const renderFullPage = (html, devPort, domain, initialState = {}, head) =
         <meta property="og:type" content="website" />
         ${head ? head.title.toString() : ''}
         ${head ? head.meta.toString() : ''}
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
         ${bundleCSS}
       </head>
       <body>
