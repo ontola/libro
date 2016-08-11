@@ -1,5 +1,4 @@
 // @flow
-export { default as App } from './App';
 export { default as ArgumentShow } from './ArgumentShow';
 export { default as ArgumentListItem } from './ArgumentListItem';
 export { default as Box } from './Box';
@@ -31,7 +30,6 @@ export { default as ProfileCard } from './ProfileCard';
 export { default as ProgressBar } from './ProgressBar';
 export { default as ResetFiltersDisplay } from './ResetFiltersDisplay';
 export { default as ScoreSheet } from './ScoreSheet';
-export { default as SearchPage } from './SearchPage';
 export { default as VoteButtons } from './VoteButtons';
 export { default as VoteChart } from './VoteChart';
 export { default as VoteData } from './VoteData';
