@@ -6,26 +6,29 @@ import classNames from 'classnames';
 import { browserHistory } from 'react-router';
 
 const propTypes = {
-  data: PropTypes.object.isRequired,
+  id: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  party: PropTypes.string,
+  image: PropTypes.string,
+  bio: PropTypes.string,
   loading: PropTypes.bool,
   full: PropTypes.bool,
 };
 
 const defaultProps = {
-  data: {},
   loading: false,
   full: false,
 };
 
-const ProfileCard = ({ data, loading, full }) => {
-  const {
-    id,
-    name,
-    party,
-    image,
-    biography,
-  } = data;
-
+const ProfileCard = ({
+  id,
+  name,
+  party,
+  image,
+  bio,
+  loading,
+  full,
+}) => {
   const profileClassname = classNames({
     ProfileCard,
     'ProfileCard--loading': loading,
@@ -38,12 +41,12 @@ const ProfileCard = ({ data, loading, full }) => {
       <div className="ProfileCard__head">
         <div className="ProfileCard__title">
           <Heading>{name}</Heading>
-          <div className="ProfileCard__party">Nederland · {party}</div>
+          <div className="ProfileCard__party">{party}</div>
         </div>
         <div className="ProfileCard__image" style={{ backgroundImage: `url(${image})` }} />
       </div>
 
-      <p className="ProfileCard__bio">{biography}</p>
+      <p className="ProfileCard__bio">{bio}</p>
 
       <div className="ProfileCard__foot">
         <div className="ProfileCard__stats">

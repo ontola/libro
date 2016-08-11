@@ -16,7 +16,10 @@ const defaultProps = {
 const renderItem = person => (
   <PoliticiansListItem
     key={person.id}
-    data={person}
+    id={person.id}
+    image={person.image}
+    name={person.name}
+    party={person.party}
   />
 );
 

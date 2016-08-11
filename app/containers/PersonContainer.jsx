@@ -8,7 +8,11 @@ import Person from 'models/Person';
 
 const defaultRenderItem = (data, url, full) => (
   <ProfileCard
-    data={data}
+    id={data.id}
+    name={data.name}
+    party={data.party}
+    image={data.image}
+    bio={data.biography}
     full={full}
   />
 );
@@ -35,8 +39,8 @@ class PersonContainer extends Component {
   }
 
   render() {
-    const { data, renderItem, full, url, user } = this.props;
-    return user && renderItem(data, url, full);
+    const { data, renderItem, full, url } = this.props;
+    return data !== undefined && renderItem(data, url, full);
   }
 }
 
