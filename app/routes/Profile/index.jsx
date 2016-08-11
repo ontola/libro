@@ -5,6 +5,7 @@ import Helmet from 'react-helmet';
 
 import { Container, Cover, LinkList } from '../../components';
 import PersonContainer from '../../containers/PersonContainer';
+import { getPersonName } from '../../state/persons/selectors';
 
 const propTypes = {
   params: PropTypes.object,
@@ -43,6 +44,6 @@ Profile.propTypes = propTypes;
 
 export default connect(
   (state, ownProps) => ({
-    name: state.getIn(['persons', 'items', ownProps.params.userId, 'name']),
+    name: getPersonName(state, ownProps),
   })
 )(Profile);
