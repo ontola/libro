@@ -21,7 +21,6 @@ const defaultProps = {
   backgroundColor: 'transparant',
   children: [],
   type: 'default',
-  image: undefined,
   fixed: false,
   fullScreen: false,
 };

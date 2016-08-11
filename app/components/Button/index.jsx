@@ -13,9 +13,6 @@ const propTypes = {
     'box',
     'subtle',
     'default',
-    'pro',
-    'con',
-    'neutral',
   ]),
   variant: PropTypes.oneOf([
     'pro',

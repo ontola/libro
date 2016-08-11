@@ -6,7 +6,6 @@ import {
   Detail,
   DetailsBar,
   Heading,
-  MarkdownContent,
 } from '../';
 
 const propTypes = {
@@ -29,7 +28,7 @@ const DocumentShow = ({ data }) => {
         <Detail text={classification} icon="file-o" />
         <Detail text={date} icon="clock-o" />
       </DetailsBar>
-      <MarkdownContent content={text} />
+      <div>{text}</div>
     </Box>
   );
 };
