@@ -1,8 +1,9 @@
 // @flow
 import React from 'react';
-import DocumentContainer from '../../containers/DocumentContainer';
-import { Container } from '../../components';
 import Helmet from 'react-helmet';
+
+import DocumentContainer from 'containers/DocumentContainer';
+import { Container } from 'components';
 
 const Document = (props) => (
   <Container>

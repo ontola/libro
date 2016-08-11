@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import {
   Heading,
   HoverBox,
-} from '../';
+} from 'components';
 import './argumentlistitem.scss';
 
 const propTypes = {

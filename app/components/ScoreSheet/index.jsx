@@ -1,7 +1,7 @@
 import './ScoreSheet.scss';
 import React, { PropTypes } from 'react';
 
-import PersonContainer from '../../containers/PersonContainer';
+import PersonContainer from 'containers/PersonContainer';
 
 import {
   Box,

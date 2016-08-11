@@ -1,8 +1,8 @@
 import { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { toggleDrawer } from '../state/search/actions';
-import { Drawer } from '../components';
+import { toggleDrawer } from 'state/search/actions';
+import { Drawer } from 'components';
 
 const propTypes = {
   visible: PropTypes.bool,

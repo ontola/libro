@@ -1,6 +1,6 @@
 import './opinions.scss';
 import React, { PropTypes } from 'react';
-import { Opinion } from '../';
+import { Opinion } from 'components';
 
 const propTypes = {
   pro: PropTypes.oneOfType([

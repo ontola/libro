@@ -6,7 +6,7 @@ import {
   Detail,
   DetailsBar,
   Heading,
-} from '../';
+} from 'components';
 
 const propTypes = {
   data: PropTypes.object.isRequired,

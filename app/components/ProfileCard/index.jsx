@@ -1,7 +1,7 @@
 // @flow
 import './profilecard.scss';
 import React, { PropTypes } from 'react';
-import { Button, Heading } from '../';
+import { Button, Heading } from 'components';
 import classNames from 'classnames';
 import { browserHistory } from 'react-router';
 

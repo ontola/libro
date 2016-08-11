@@ -2,7 +2,7 @@
 import './politicianslistitem.scss';
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
-import { Box, Heading } from '../';
+import { Box, Heading } from 'components';
 
 const propTypes = {
   data: PropTypes.object.isRequired,

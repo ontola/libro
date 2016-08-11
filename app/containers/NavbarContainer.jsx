@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { NavbarWrapper } from '../components';
+import { NavbarWrapper } from 'components';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
 

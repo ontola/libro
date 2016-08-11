@@ -2,8 +2,8 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
-import MotionsContainer from '../../containers/MotionsContainer';
-import { Container, Heading } from '../../components';
+import MotionsContainer from 'containers/MotionsContainer';
+import { Container, Heading } from 'components';
 
 const Motions = () => (
   <Container>

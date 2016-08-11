@@ -9,9 +9,9 @@ import {
   Heading,
   VoteButtons,
   VoteData,
-} from '../';
+} from 'components';
 
-import PersonContainer from '../../containers/PersonContainer';
+import PersonContainer from 'containers/PersonContainer';
 
 const propTypes = {
   motion: PropTypes.object.isRequired,

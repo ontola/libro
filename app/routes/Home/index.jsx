@@ -1,6 +1,14 @@
 // @flow
 import React from 'react';
-import { Box, Button, Columns, Container, Cover, Heading } from '../../components';
+import {
+  Box,
+  Button,
+  Columns,
+  Container,
+  Cover,
+  Heading,
+} from 'components';
+
 import Helmet from 'react-helmet';
 import { browserHistory } from 'react-router';
 

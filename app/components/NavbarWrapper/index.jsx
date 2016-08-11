@@ -1,7 +1,7 @@
 // @flow
 import './navbar.scss';
 import React, { Component, PropTypes } from 'react';
-import { Container, Cover } from '../';
+import { Container, Cover } from 'components';
 import { SearchBox } from 'searchkit';
 import tinycolor from 'tinycolor2';
 

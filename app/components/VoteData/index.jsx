@@ -1,7 +1,7 @@
 // @flow
 import './votedata.scss';
 import React, { PropTypes } from 'react';
-import { Container, Opinions, VoteChart } from '../';
+import { Container, Opinions, VoteChart } from 'components';
 import classNames from 'classnames';
 
 const propTypes = {

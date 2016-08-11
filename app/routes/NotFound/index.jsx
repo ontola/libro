@@ -1,7 +1,12 @@
 // @flow
 import React, { PropTypes } from 'react';
-import { Box, Container, Heading } from '../../components';
 import Helmet from 'react-helmet';
+
+import {
+  Box,
+  Container,
+  Heading,
+} from 'components';
 
 const propTypes = {
   params: PropTypes.shape({

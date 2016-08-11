@@ -3,15 +3,15 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
-import { argsSelector } from '../../state/argumentations/selectors';
-import MotionContainer from '../../containers/MotionContainer';
+import { argsSelector } from 'state/argumentations/selectors';
+import MotionContainer from 'containers/MotionContainer';
 import {
   ArgumentShow,
   Columns,
   Container,
   Heading,
   List,
-} from '../../components';
+} from 'components';
 
 const propTypes = {
   params: PropTypes.shape({

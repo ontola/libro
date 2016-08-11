@@ -9,9 +9,9 @@ import {
 	Panel, RefinementListFilter, ResetFilters, Select, SortingSelector,
 } from 'searchkit';
 
-import { Button, Container, Drawer } from '../../components';
-import SearchResultContainer from '../../containers/SearchResultContainer';
-import { toggleDrawer, setHitCount } from '../../state/search/actions';
+import { Button, Container, Drawer } from 'components';
+import SearchResultContainer from 'containers/SearchResultContainer';
+import { toggleDrawer, setHitCount } from 'state/search/actions';
 
 const propTypes = {
   setHitCountAction: PropTypes.func,

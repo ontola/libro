@@ -1,6 +1,6 @@
 // @flow
 import React, { PropTypes } from 'react';
-import { EntryListItem } from '../components';
+import { EntryListItem } from 'components';
 
 const propTypes = {
   result: PropTypes.object.isRequired,

@@ -1,9 +1,9 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { MotionShow } from '../components';
-import Motion from '../models/Motion';
-import { voteMatchNext, voteAction } from '../state/votematch/actions';
+import { MotionShow } from 'components';
+import Motion from 'models/Motion';
+import { voteMatchNext, voteAction } from 'state/votematch/actions';
 
 const renderMotion = (data, vote, activeVoteMatch, next, showArguments) => (
   <MotionShow

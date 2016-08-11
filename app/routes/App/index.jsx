@@ -1,10 +1,10 @@
 // @flow
-import '../../components/shared/init.scss';
+import 'components/shared/init.scss';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import NavbarContainer from '../../containers/NavbarContainer';
-import { Notification } from '../../components';
+import NavbarContainer from 'containers/NavbarContainer';
+import { Notification } from 'components';
 
 const propTypes = {
   children: PropTypes.node,

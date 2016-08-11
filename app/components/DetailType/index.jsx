@@ -1,7 +1,7 @@
 // @flow
 import './detailType.scss';
 import React, { PropTypes } from 'react';
-import { Detail } from '../';
+import { Detail } from 'components';
 
 const propTypes = {
   type: PropTypes.oneOf([

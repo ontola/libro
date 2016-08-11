@@ -26,7 +26,12 @@
     "react": {
       "pragma": "React",
       "version": "0.15.0"
-    }
+    },
+    "import/resolver": {
+      "webpack": {
+        "config": "./webpack/common.config.js",
+      },
+    },
   },
   "rules": {
     "valid-jsdoc": "error",

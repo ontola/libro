@@ -1,7 +1,7 @@
 // @flow
 import './detailStatus.scss';
 import React, { PropTypes } from 'react';
-import { Detail } from '../';
+import { Detail } from 'components';
 
 const propTypes = {
   status: PropTypes.oneOf([

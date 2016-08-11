@@ -3,15 +3,15 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
-import { voteMatchStart } from '../../state/votematch/actions';
-import MotionContainer from '../../containers/MotionContainer';
-import Person from '../../models/Person';
+import { voteMatchStart } from 'state/votematch/actions';
+import MotionContainer from 'containers/MotionContainer';
+import Person from 'models/Person';
 import {
   Container,
   Cover,
   ProgressBar,
   ScoreSheet,
-} from '../../components';
+} from 'components';
 
 const motions = ['642621', '245245', '195075', '358964', '987654', '334672', '367333'];
 

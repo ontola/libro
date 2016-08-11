@@ -20,6 +20,13 @@ module.exports = {
     webpackConfig.postcss = [ // eslint-disable-line
       autoprefixer({ browsers: ['last 2 versions'] }),
     ];
+    webpackConfig.resolve.alias = { // eslint-disable-line
+      react: path.resolve('./node_modules/react'),
+      components: path.resolve('./app/components'),
+      containers: path.resolve('./app/containers'),
+      state: path.resolve('./app/state'),
+      models: path.resolve('./app/models'),
+    };
     return webpackConfig;
   },
 };

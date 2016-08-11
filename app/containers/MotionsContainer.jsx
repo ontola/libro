@@ -1,9 +1,9 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { List, MotionsListItem } from '../components';
-import MotionContainer from '../containers/MotionContainer';
-import Motion from '../models/Motion';
+import { List, MotionsListItem } from 'components';
+import MotionContainer from 'containers/MotionContainer';
+import Motion from 'models/Motion';
 
 const propTypes = {
   motions: PropTypes.object,

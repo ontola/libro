@@ -3,9 +3,9 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
-import { Container, Cover, LinkList } from '../../components';
-import PersonContainer from '../../containers/PersonContainer';
-import { getPersonName } from '../../state/persons/selectors';
+import { Container, Cover, LinkList } from 'components';
+import PersonContainer from 'containers/PersonContainer';
+import { getPersonName } from 'state/persons/selectors';
 
 const propTypes = {
   params: PropTypes.object,
@@ -21,7 +21,11 @@ const links = id => ([{
   to: `/profile/${id}/stats`,
 }]);
 
-const Profile = ({ params, children, name }) => (
+const Profile = ({
+  params,
+  children,
+  name,
+}) => (
   <div>
     <Helmet title={`Profiel van ${name}`} />
     <Cover type="light">

@@ -1,7 +1,7 @@
 // @flow
 import './votebuttons.scss';
 import React, { PropTypes } from 'react';
-import { Button } from '../';
+import { Button } from 'components';
 
 const propTypes = {
   id: PropTypes.string.isRequired,

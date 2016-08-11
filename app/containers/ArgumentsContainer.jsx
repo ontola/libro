@@ -1,12 +1,12 @@
 // @flow
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { argsSelector } from '../state/argumentations/selectors';
+import { argsSelector } from 'state/argumentations/selectors';
 import {
   ArgumentListItem,
   Columns,
   List,
-} from '../components';
+} from 'components';
 
 const propTypes = {
   motionId: PropTypes.string.isRequired,

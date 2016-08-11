@@ -1,8 +1,8 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { List, PoliticiansListItem } from '../components';
-import Person from '../models/Person';
+import { List, PoliticiansListItem } from 'components';
+import Person from 'models/Person';
 
 const propTypes = {
   persons: PropTypes.object,

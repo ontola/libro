@@ -2,9 +2,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { getPerson, getPersonUrl } from '../state/persons/selectors';
-import { ProfileCard } from '../components';
-import Person from '../models/Person';
+import { getPerson, getPersonUrl } from 'state/persons/selectors';
+import { ProfileCard } from 'components';
+import Person from 'models/Person';
 
 const defaultRenderItem = (data, url, full) => (
   <ProfileCard
