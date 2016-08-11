@@ -34,8 +34,6 @@ export default class DataStore {
       });
     }
 
-    // console.log('entity', entity);
-
     return new this.types[type](entity);
   }
 }

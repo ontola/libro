@@ -1,5 +1,8 @@
 // @flow
 import React from 'react';
+import Helmet from 'react-helmet';
+import { browserHistory } from 'react-router';
+
 import {
   Box,
   Button,
@@ -8,9 +11,6 @@ import {
   Cover,
   Heading,
 } from 'components';
-
-import Helmet from 'react-helmet';
-import { browserHistory } from 'react-router';
 
 const goTo = (path) => browserHistory.push(path);
 

@@ -1,7 +1,5 @@
 import './ScoreSheet.scss';
-import React, { PropTypes } from 'react';
-
-import PersonContainer from 'containers/PersonContainer';
+import React from 'react';
 
 import {
   Box,
@@ -9,29 +7,9 @@ import {
   List,
 } from '../';
 
-const propTypes = {
-};
-
-const defaultProps = {
-};
-
-// const renderPerson = (data) => {
-//   console.log(data);
-//   return (
-//     <div>{data.name}</div>
-//   );
-// };
-
-const renderItem = (id) => {
-  return (
-    <div key={id}>{id}</div>
-    // <PersonContainer
-    //   key={id}
-    //   user={id}
-    //   renderItem={renderPerson}
-    // />
-  );
-};
+const renderItem = (id) => (
+  <div key={id}>{id}</div>
+);
 
 const ScoreSheet = () => {
   const persons = ['45', '31', '35'];
@@ -45,8 +23,5 @@ const ScoreSheet = () => {
     </div>
   );
 };
-
-ScoreSheet.propTypes = propTypes;
-ScoreSheet.defaultProps = defaultProps;
 
 export default ScoreSheet;
