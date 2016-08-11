@@ -16,7 +16,9 @@
     "lint": "./node_modules/.bin/eslint --ext .jsx,.js .",
     "test": "mocha ./tests/testhelper.js ./app/**/spec.js ./app/**/*.spec.js ./app/**/test/**.js",
     "test:watch": "npm run test -- --watch",
-    "test:nightwatch": "./node_modules/.bin/nightwatch"
+    "test:nightwatch": "./node_modules/.bin/nightwatch",
+    "styleguide-server": "styleguidist server",
+    "styleguide-build": "styleguidist build"
   },
   "dependencies": {
     "exports-loader": "^0.6.3",
@@ -76,7 +78,9 @@
     "postcss-loader": "^0.9.1",
     "react-addons-perf": "^15.3.0",
     "react-addons-test-utils": "^15.1.0",
+    "react-component-permutations": "^1.0.0-beta2",
     "react-hot-loader": "^3.0.0-beta.0",
+    "react-styleguidist": "^3.0.2",
     "redux-actions": "^0.10.0",
     "sass-loader": "^3.2.0",
     "style-loader": "^0.13.1",
