@@ -9,7 +9,7 @@ import {
 	Panel, RefinementListFilter, ResetFilters, Select, SortingSelector,
 } from 'searchkit';
 
-import { Button, Container, Drawer, HitStats, ResetFiltersDisplay } from '../../components';
+import { Button, Container, Drawer } from '../../components';
 import SearchResultContainer from '../../containers/SearchResultContainer';
 import { toggleDrawer, setHitCount } from '../../state/search/actions';
 
@@ -45,6 +45,12 @@ const translations = {
   'NoHits.NoResultsFoundDidYouMean': "Geen resultaten gevonden voor '{query}'",
 };
 
+const ResetFiltersDisplay = (bemBlock, hasFilters, translate, resetFilters) => (
+  <div className={`sk-panel ${bemBlock().state({ disabled: !hasFilters })}`}>
+    <Button theme="subtle" small onClick={resetFilters}>{translate('reset.clear_all')}</Button>
+  </div>
+);
+
 class Search extends Component {
   constructor(props, context) {
     super(props, context);
@@ -71,7 +77,9 @@ class Search extends Component {
               small
               onClick={toggleDrawerAction}
             >Filter</Button>
-            <HitStats hits={hits} />
+            <div className="sk-hits-stats">
+              <div className="sk-hits-stats__info">{`${hits} resultaten`}</div>
+            </div>
             <SortingSelector listComponent={Select} options={sortOption} />
           </div>
         </Container>

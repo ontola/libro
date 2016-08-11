@@ -18,8 +18,8 @@ const EntryListItem = ({ data }) => {
         />
       </Heading>
       <DetailsBar>
-        <Detail text={type} icon="lightbulb-o" />
-        <Detail text={date} icon="clock-o" />
+        {type && <Detail text={type} icon="lightbulb-o" />}
+        {date && <Detail text={date} icon="clock-o" />}
       </DetailsBar>
       <div dangerouslySetInnerHTML={{ __html: content }}></div>
     </Box>

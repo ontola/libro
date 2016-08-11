@@ -5,7 +5,6 @@ import {
   Box,
   Button,
   Detail,
-  DetailProfile,
   DetailsBar,
   Heading,
 } from '../';
@@ -28,8 +27,8 @@ const defaultProps = {
 };
 
 const renderItem = (user, url) => (
-  <DetailProfile
-    name={user.name}
+  <Detail
+    text={user.name}
     imageUrl={user.image}
     url={url}
   />

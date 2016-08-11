@@ -5,7 +5,6 @@ import { Link } from 'react-router';
 import {
   Box,
   Detail,
-  DetailProfile,
   DetailsBar,
   Heading,
   VoteButtons,
@@ -19,8 +18,8 @@ const propTypes = {
 };
 
 const renderItem = (user, url) => (
-  <DetailProfile
-    name={user.name}
+  <Detail
+    text={user.name}
     imageUrl={user.image}
     url={url}
   />
