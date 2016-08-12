@@ -10,7 +10,7 @@ const sizes = [
 ];
 
 const propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
   size: PropTypes.oneOf(sizes),
   spacing: PropTypes.oneOf(sizes),
 };
@@ -19,6 +19,10 @@ const defaultProps = {
   size: 'medium',
 };
 
+/**
+ * Centers the content and defines width
+ * @returns {component} Container with children
+ */
 const Container = ({
   children,
   size,

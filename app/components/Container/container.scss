@@ -29,6 +29,10 @@
   @include large() {
     padding: 0;
 
+    &--spacing-small {
+      padding: 1em 0;
+    }
+
     &--spacing-large {
       padding: 10em 0;
     }
