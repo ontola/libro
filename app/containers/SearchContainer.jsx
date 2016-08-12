@@ -4,7 +4,7 @@ import { SearchPage } from 'components';
 import { toggleDrawer, setHitCount } from 'state/search/actions';
 
 const mapStateToProps = (state) => ({
-  hits: state.search.hits,
+  hits: state.getIn(['search', 'hits']),
 });
 
 const mapDispatchToProps = (dispatch) => ({

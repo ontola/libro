@@ -11,8 +11,8 @@ const propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  visible: state.search.visible,
-  hits: state.search.hits,
+  visible: state.getIn(['search', 'visible']),
+  hits: state.getIn(['search', 'hits']),
 });
 
 const mapDispatchToProps = (dispatch) => ({

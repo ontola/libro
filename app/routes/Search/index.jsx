@@ -45,11 +45,14 @@ const translations = {
   'NoHits.NoResultsFoundDidYouMean': "Geen resultaten gevonden voor '{query}'",
 };
 
-const ResetFiltersDisplay = (bemBlock, hasFilters, translate, resetFilters) => (
-  <div className={`sk-panel ${bemBlock().state({ disabled: !hasFilters })}`}>
-    <Button theme="subtle" small onClick={resetFilters}>{translate('reset.clear_all')}</Button>
-  </div>
-);
+const ResetFiltersDisplay = (data) => {
+  const { bemBlock, hasFilters, translate, resetFilters } = data;
+  return (
+    <div className={`sk-panel ${bemBlock().state({ disabled: !hasFilters })}`}>
+      <Button theme="subtle" small onClick={resetFilters}>{translate('reset.clear_all')}</Button>
+    </div>
+  );
+};
 
 class Search extends Component {
   constructor(props, context) {
@@ -130,7 +133,7 @@ Search.propTypes = propTypes;
 
 export default connect(
   (state) => ({
-    hits: state.search.hits,
+    hits: state.getIn(['search', 'hits']),
   }),
   (dispatch) => ({
     setHitCountAction: (count) => {
