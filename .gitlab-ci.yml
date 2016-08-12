@@ -8,7 +8,7 @@ stages:
   - build
   - test
   - bake
-  - deploy
+  - release
 
 build:
   stage: build
@@ -26,5 +26,17 @@ test:
 bake:
   stage: bake
   script:
-    - docker build --pull=true -t registry.gitlab.com/argu/aod_demo .
-    - docker push registry.gitlab.com/argu/aod_demo
+    - docker build --pull=true -t registry.gitlab.com/argu/aod_demo:${CI_BUILD_REF_NAME} .
+
+tag:
+  stage: release
+  script:
+    - docker push registry.gitlab.com/argu/aod_demo:${CI_BUILD_REF_NAME}
+
+latest:
+  stage: release
+  script:
+    - docker tag registry.gitlab.com/argu/aod_demo:${CI_BUILD_REF_NAME} registry.gitlab.com/argu/aod_demo:latest
+    - docker push registry.gitlab.com/argu/aod_demo:latest
+  only:
+    - master
