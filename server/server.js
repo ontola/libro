@@ -1,10 +1,11 @@
+/* eslint no-console: 0 */
+
 import express from 'express';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import SearchkitExpress from 'searchkit-express';
 import proxy from 'http-proxy-middleware';
-// import morgan from 'morgan';
 
 import * as constants from '../app/config';
 import { renderFullPage } from './utils/render';
@@ -13,8 +14,6 @@ import webpackConfig from '../webpack/hot.config';
 const compiler = webpack(webpackConfig);
 const app = express();
 const port = constants.PORT;
-
-// app.use(morgan('short'));
 
 if (process.env.NODE_ENV === 'development') {
   app.use(webpackDevMiddleware(compiler, {
