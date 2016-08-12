@@ -8,6 +8,7 @@ Deze demo bevat een interface voor open data van de gemeenteraad.
 * Install rimraf globally `npm i -g rimraf`
 * To start dev-server run `npm start`
 * To start api, go to the [repo](https://bitbucket.org/arguweb/od_api_generator/)
+* To use search, run `npm run corsproxy`
 
 ### Build
 
