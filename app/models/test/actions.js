@@ -1,6 +1,6 @@
 import { assert } from 'chai';
-import * as models from '../../models';
-import * as actions from '../../state/action-types';
+import * as models from 'models';
+import * as actions from 'state/action-types';
 
 const SPECIFIC_MOTION_ID = 14;
 

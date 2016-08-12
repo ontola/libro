@@ -1,9 +1,9 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { assert } from 'chai';
-import App from './';
+import { DisconnectedApp } from './';
 
-const wrapper = mount(<App />);
+const wrapper = mount(<DisconnectedApp />);
 
 describe('Application', () => {
   it('contains a navbar', () => {

@@ -4,7 +4,7 @@ import { Map } from 'immutable';
 import chaiImmutable from 'chai-immutable';
 
 import motions from './reducer';
-import * as models from '../../models';
+import * as models from 'models';
 import * as actions from '../action-types';
 
 chai.use(chaiImmutable);

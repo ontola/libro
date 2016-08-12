@@ -7,9 +7,9 @@ import {
   Detail,
   DetailsBar,
   Heading,
-} from '../';
+} from 'components';
 
-import PersonContainer from '../../containers/PersonContainer';
+import PersonContainer from 'containers/PersonContainer';
 
 const propTypes = {
   content: PropTypes.string,

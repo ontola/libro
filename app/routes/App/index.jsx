@@ -1,5 +1,5 @@
 // @flow
-import 'components/shared/init.scss';
+import '../../components/shared/init.scss';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
@@ -44,6 +44,8 @@ const App = ({
 
 App.propTypes = propTypes;
 App.defaultProps = defaultProps;
+
+export const DisconnectedApp = App;
 
 export default connect(
   (state) => ({

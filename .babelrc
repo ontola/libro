@@ -7,6 +7,13 @@
   "env": {
     "production": {
       "plugins": ["transform-react-remove-prop-types"]
+    },
+    "test": {
+      "plugins": [
+        ["babel-plugin-webpack-alias", {
+          "config": "./webpack/hot.config.js"
+        }]
+      ]
     }
   }
 }
