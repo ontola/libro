@@ -18,6 +18,13 @@ export default class HoverBox extends Component {
     this.state = {
       isVisible: false,
     };
+
+    this.handleOnMouseEnter = this.handleOnMouseEnter.bind(this);
+    this.handleOnMouseLeave = this.handleOnMouseLeave.bind(this);
+    this.handleOnFocus = this.handleOnFocus.bind(this);
+    this.handleOnBlur = this.handleOnBlur.bind(this);
+    this.showContent = this.showContent.bind(this);
+    this.hideContent = this.hideContent.bind(this);
   }
 
   handleOnMouseEnter() {

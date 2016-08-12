@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { applyMiddleware, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { enableBatching } from 'redux-batched-actions';
 import { combineReducers } from 'redux-immutable';
@@ -26,25 +26,23 @@ const rootReducer = combineReducers({
 
 const configureStore = (preloadedState) => {
   const apiMiddleware = new API(Object.values(models));
-  let store;
+  let middleware;
 
   if (process.env.NODE_ENV === 'production') {
-    store = createStore(
-      enableBatching(rootReducer),
-      preloadedState,
-      applyMiddleware(thunk, apiMiddleware)
-    );
+    middleware = applyMiddleware(thunk, apiMiddleware);
   } else {
-    store = createStore(
-      enableBatching(rootReducer),
-      preloadedState,
-      compose(
-        applyMiddleware(thunk, apiMiddleware),
-        typeof window === 'object' &&
-        typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f
-      )
+    middleware = compose(
+      applyMiddleware(thunk, apiMiddleware),
+      typeof window === 'object' &&
+      typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f
     );
   }
+
+  const store = createStore(
+    enableBatching(rootReducer),
+    preloadedState,
+    middleware
+  );
 
   return store;
 };
