@@ -2,7 +2,7 @@ before_script:
   - docker info
   - node -v
   - npm -v
-  - npm i
+  - npm i -q
 
 stages:
   - build
