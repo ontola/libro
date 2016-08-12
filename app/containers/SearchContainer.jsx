@@ -1,10 +1,12 @@
 // @flow
 import { connect } from 'react-redux';
+
 import { SearchPage } from 'components';
+import { hitsSelector } from 'state/search/selectors';
 import { toggleDrawer, setHitCount } from 'state/search/actions';
 
 const mapStateToProps = (state) => ({
-  hits: state.getIn(['search', 'hits']),
+  hits: hitsSelector(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -3,15 +3,19 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
-import { voteMatchStart } from 'state/votematch/actions';
-import MotionContainer from 'containers/MotionContainer';
-import Person from 'models/Person';
 import {
   Container,
   Cover,
   ProgressBar,
   ScoreSheet,
 } from 'components';
+
+import MotionContainer from 'containers/MotionContainer';
+import Person from 'models/Person';
+
+import { getPersonName } from 'state/persons/selectors';
+import { getVoteMatchMotionsSize, getVoteMatchCurrentIndex } from 'state/votematch/selectors';
+import { voteMatchStart } from 'state/votematch/actions';
 
 const motions = ['642621', '245245', '195075', '358964', '987654', '334672', '367333'];
 
@@ -116,9 +120,9 @@ CompareVotes.defaultProps = defaultProps;
 
 export default connect(
   (state, ownProps) => ({
-    name: state.getIn(['persons', 'items', ownProps.params.userId, 'name']),
-    currentIndex: state.getIn(['votematch', 'currentIndex']),
-    motionsLength: state.getIn(['votematch', 'motionIds']).size,
+    name: getPersonName(state, ownProps),
+    currentIndex: getVoteMatchCurrentIndex(state),
+    motionsLength: getVoteMatchMotionsSize(state),
   }),
   (dispatch) => ({
     start: (data) => { dispatch(voteMatchStart(data)); },

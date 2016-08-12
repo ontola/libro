@@ -1,4 +1,13 @@
-// import { createSelector } from 'reselect';
+import { createSelector } from 'reselect';
 
-export const currentIndexSelector = state => state.getIn(['votematch', 'currentIndex']);
-export const countMotionsSelector = state => state.getIn(['votematch', 'motionIds']).size;
+export const getVoteMatch = state => state.get('votematch');
+
+export const getVoteMatchCurrentIndex = createSelector(
+  getVoteMatch,
+  votematch => votematch.get('currentIndex')
+);
+
+export const getVoteMatchMotionsSize = createSelector(
+  getVoteMatch,
+  votematch => votematch.get('motionIds').size
+);

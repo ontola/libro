@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import NavbarContainer from 'containers/NavbarContainer';
 import { Notification } from 'components';
 
+import { getErrorBool, getErrorMsg } from 'state/errors/selectors';
+
 const propTypes = {
   children: PropTypes.node,
   error: PropTypes.bool,
@@ -45,7 +47,7 @@ App.defaultProps = defaultProps;
 
 export default connect(
   (state) => ({
-    error: state.getIn(['errors', 'error']),
-    errorMessage: state.getIn(['errors', 'message']),
+    error: getErrorBool(state),
+    errorMessage: getErrorMsg(state),
   })
 )(App);

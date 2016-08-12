@@ -1,24 +1,20 @@
 import { createSelector } from 'reselect';
+import { getMotionArgIds } from 'state/motions/selectors';
 
-export const argumentIdsFromMotion = (state, ownProps) => {
-  const motionId = ownProps.params !== undefined ? ownProps.params.motionId : ownProps.motionId;
-  return state.getIn([
-    'motions',
-    'items',
-    motionId,
-    'arguments',
-  ]);
-};
+export const getArguments = state => state.getIn(['argumentations', 'items']);
 
-export const argumentsSelector = state => state.getIn(['argumentations', 'items']);
-
-export const argsSelector = createSelector(
-  argumentIdsFromMotion,
-  argumentsSelector,
-  (ids, argumentations) => {
-    if (ids !== undefined) {
-      return ids.map(id => argumentations.get(id));
+export const getArgs = createSelector(
+  getMotionArgIds,
+  getArguments,
+  (ids, args) => {
+    if (ids === undefined) {
+      return [];
     }
-    return [];
+
+    if (args.size === 0) {
+      return [];
+    }
+
+    return ids.map(id => args.get(id));
   }
 );

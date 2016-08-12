@@ -1,9 +1,11 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+
 import { List, MotionsListItem } from 'components';
 import MotionContainer from 'containers/MotionContainer';
 import Motion from 'models/Motion';
+import { getMotions } from 'state/motions/selectors';
 
 const propTypes = {
   motions: PropTypes.object,
@@ -45,7 +47,7 @@ MotionsContainer.propTypes = propTypes;
 
 export default connect(
   state => ({
-    motions: state.getIn(['motions', 'items']),
+    motions: getMotions(state),
   }),
   dispatch => ({
     loadMotions: () => { dispatch(Motion.index()); },

@@ -11,6 +11,7 @@ import {
 
 import { Button, Container, Drawer } from 'components';
 import SearchResultContainer from 'containers/SearchResultContainer';
+import { hitsSelector } from 'state/search/selectors';
 import { toggleDrawer, setHitCount } from 'state/search/actions';
 
 const propTypes = {
@@ -133,7 +134,7 @@ Search.propTypes = propTypes;
 
 export default connect(
   (state) => ({
-    hits: state.getIn(['search', 'hits']),
+    hits: hitsSelector(state),
   }),
   (dispatch) => ({
     setHitCountAction: (count) => {

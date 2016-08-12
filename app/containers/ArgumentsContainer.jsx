@@ -1,7 +1,7 @@
 // @flow
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { argsSelector } from 'state/argumentations/selectors';
+import { getArgs } from 'state/argumentations/selectors';
 import {
   ArgumentListItem,
   Columns,
@@ -46,6 +46,6 @@ ArgumentsContainer.defaultProps = defaultProps;
 
 export default connect(
   (state, ownProps) => ({
-    argumentations: argsSelector(state, ownProps),
+    argumentations: getArgs(state, ownProps),
   })
 )(ArgumentsContainer);

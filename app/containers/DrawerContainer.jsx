@@ -1,6 +1,7 @@
 import { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
+import { getSearchHits, getDrawerVisible } from 'state/search/selectors';
 import { toggleDrawer } from 'state/search/actions';
 import { Drawer } from 'components';
 
@@ -10,20 +11,16 @@ const propTypes = {
   onClickToggle: PropTypes.func,
 };
 
-const mapStateToProps = (state) => ({
-  visible: state.getIn(['search', 'visible']),
-  hits: state.getIn(['search', 'hits']),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onClickToggle: () => {
-    dispatch(toggleDrawer());
-  },
-});
-
 const DrawerContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  (state) => ({
+    visible: getDrawerVisible(state),
+    hits: getSearchHits(state),
+  }),
+  (dispatch) => ({
+    onClickToggle: () => {
+      dispatch(toggleDrawer());
+    },
+  })
 )(Drawer);
 
 DrawerContainer.propTypes = propTypes;

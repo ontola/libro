@@ -3,6 +3,8 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { MotionShow } from 'components';
 import Motion from 'models/Motion';
+
+import { getMotion } from 'state/motions/selectors';
 import { voteMatchNext, voteAction } from 'state/votematch/actions';
 
 const renderMotion = (data, vote, activeVoteMatch, next, showArguments) => (
@@ -72,12 +74,9 @@ MotionContainer.propTypes = propTypes;
 MotionContainer.defaultProps = defaultProps;
 
 export default connect(
-  (state, ownProps) => {
-    const findMotion = state.getIn(['motions', 'items', ownProps.motionId]);
-    return {
-      data: findMotion,
-    };
-  },
+  (state, ownProps) => ({
+    data: getMotion(state, ownProps),
+  }),
   (dispatch) => ({
     loadMotion: (id) => dispatch(Motion.fetch(id)),
     next: () => dispatch(voteMatchNext()),
