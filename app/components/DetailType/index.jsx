@@ -12,16 +12,10 @@ const propTypes = {
     'argumentPro',
     'argumentCon',
     'project',
-    'unknown',
-  ]),
-  voteData: PropTypes.node,
+  ]).isRequired,
 };
 
-const defaultProps = {
-  type: 'unknown',
-};
-
-function DetailType({ type }) {
+const DetailType = ({ type }) => {
   let className = null;
   let icon = 'cross';
   let text = 'No type';
@@ -52,9 +46,8 @@ function DetailType({ type }) {
       title={title}
     />
   );
-}
+};
 
 DetailType.propTypes = propTypes;
-DetailType.defaultProps = defaultProps;
 
 export default DetailType;

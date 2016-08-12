@@ -1,6 +1,11 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
-import { DetailsBar, Detail, Box, Heading } from 'components';
+import {
+  Box,
+  DetailsBar,
+  Detail,
+  Heading,
+} from 'components';
 
 const propTypes = {
   data: PropTypes.object.isRequired,

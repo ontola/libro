@@ -10,7 +10,12 @@ const propTypes = {
   onClickToggle: PropTypes.func,
 };
 
-const Drawer = ({ children, visible, hits, onClickToggle }) => {
+const Drawer = ({
+  children,
+  hits,
+  onClickToggle,
+  visible,
+}) => {
   const drawerClass = classNames({
     'sk-sidebar': true,
     'sk-sidebar--visible': visible,

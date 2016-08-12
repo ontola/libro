@@ -1,0 +1,1 @@
+    <DetailStatus status="pass" />

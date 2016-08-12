@@ -4,7 +4,10 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
 const propTypes = {
-  links: PropTypes.arrayOf(PropTypes.object),
+  links: PropTypes.arrayOf(PropTypes.shape({
+    to: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+  })).isRequired,
 };
 
 const defaultProps = {
@@ -12,10 +15,10 @@ const defaultProps = {
 };
 
 const LinkList = ({ links }) => {
-  const generateLinks = links.map(link => (
+  const generateLinks = links.map((link, i) => (
     <Link
       onlyActiveOnIndex
-      key={link.to}
+      key={i}
       className="LinkList__link"
       activeClassName="LinkList__link--active"
       to={link.to}

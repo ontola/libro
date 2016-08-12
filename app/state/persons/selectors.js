@@ -6,15 +6,15 @@ export const getPerson = (state, props) => {
 };
 
 export const getPersonName = createSelector([getPerson], (person) => {
-  if (person !== undefined) {
-    return person.name;
+  if (person === undefined) {
+    return '';
   }
-  return '';
+  return person.name;
 });
 
 export const getPersonUrl = createSelector([getPerson], (person) => {
-  if (person !== undefined && person.has('id')) {
-    return `/profile/${person.id}`;
+  if (person === undefined) {
+    return '';
   }
-  return '';
+  return `/profile/${person.id}`;
 });

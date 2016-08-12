@@ -1,4 +1,7 @@
 export default class DataStore {
+  /**
+   * @param {array} models An array with Immutable Records
+   */
   constructor(models) {
     this.types = {};
 

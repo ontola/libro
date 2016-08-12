@@ -17,10 +17,3 @@ The Column component takes all direct children and makes columns out of them.
         <Box>Column 4</Box>
       </Columns>
     </div>
-
-Columns can also be used as a horizontal list
-
-    <Columns flexGrow={false} gutter="small">
-      <Detail text="3 minutes ago" icon="clock-o" />
-      <Detail text="Motion" icon="lightbulb-o" />
-    </Columns>

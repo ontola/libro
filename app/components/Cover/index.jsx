@@ -25,6 +25,10 @@ const defaultProps = {
   fullScreen: false,
 };
 
+/**
+ * Building blocks with style
+ * @returns {component} Component
+ */
 const Cover = ({
   backgroundColor,
   children,
@@ -41,10 +45,8 @@ const Cover = ({
     'Cover--fullscreen': fullScreen,
   });
 
-  // const imageStyle = image && { backgroundImage: `url(${image})` };
-  // const backgroundColorStyle = backgroundColor && { backgroundColor: `${backgroundColor}` };
   const style = {
-    backgroundImage: `url(${image})`,
+    backgroundImage: image && `url(${image})`,
     backgroundColor: `${backgroundColor}`,
   };
 
