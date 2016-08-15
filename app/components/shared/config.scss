@@ -60,23 +60,22 @@ $button-variants-colors: (
   'con': 'brown',
 );
 
-
 // FONTS
 $font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$line-height-base: 1.5;
-
-$font-size-h1: 2.6em;
-$font-size-h2: 1.8em;
-$font-size-h3: 1.2em;
-$font-size-h4: 1.125em;
-$font-size-h5: 1em;
-$font-size-h6: .85em;
+$font-line-height: 1.5;
+$font-sizes: (
+  'xxx-large': 2.6em,
+  'xx-large': 1.8em,
+  'x-large': 1.2em,
+  'large': 1.125em,
+  'medium': 1em,
+  'small': .85em,
+);
 
 // SPACING
 $padding-large: 40px 20px;
 $padding-base: 10px 20px;
 $padding-small: 5px 10px;
-
 $margin-base: 20px 0;
 $margin-small: 5px 0;
 
@@ -87,20 +86,11 @@ $sizes-margin: (
 );
 
 // CONTAINER WIDTHS
-$page-width-small: 400px;
-$page-width-medium: 660px;
-$page-width-large: 980px;
-
 $container-width: (
-  'small': $page-width-small,
-  'medium': $page-width-medium,
-  'large': $page-width-large
+  'small': 400px,
+  'medium': 660px,
+  'large': 980px
 );
-
-// OTHERS
-$border-radius-base: 3px;
-$box-shadow: 0 1px 5px rgba(0, 0, 0, .2);
-$progressbar-height: 5px;
 
 // Z-INDICES
 $zindex-1: 100;
@@ -116,3 +106,8 @@ $z-layers: (
   'notification': $zindex-1,
   'progressbar': $zindex-1
 );
+
+// OTHERS
+$border-radius-base: 3px;
+$box-shadow: 0 1px 5px rgba(0, 0, 0, .1);
+$progressbar-height: 5px;

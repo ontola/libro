@@ -92,7 +92,7 @@
 
 .sk-panel__header {
   color: color('grey', 'dark');
-  font-size: $font-size-h5;
+  font-size: font-size();
   font-weight: 600;
   margin-bottom: 5px;
   text-transform: uppercase;
@@ -127,7 +127,7 @@
 .sk-refinement-list__view-more-action {
   color: color('grey', 'dark');
   cursor: pointer;
-  font-size: $font-size-h6;
+  font-size: font-size('small');
   margin: 5px 0;
   transition: .2s color;
 

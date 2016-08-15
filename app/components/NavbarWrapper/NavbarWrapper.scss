@@ -8,6 +8,7 @@
   padding: 0 .7em;
   transition: .2s background-color;
 
+  // TODO: Implement dark-text again properly
   .navbar--dark-text {
     color: color('grey', 'dark');
   }

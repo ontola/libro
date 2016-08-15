@@ -32,31 +32,31 @@
 }
 
 h1 {
-  font-size: $font-size-h1;
+  font-size: font-size('xxx-large');
   font-weight: bold;
-  padding: 6px 0; //$padding-base;
+  padding: 6px 0;
 }
 
 h2 {
-  font-size: $font-size-h2;
+  font-size: font-size('xx-large');
   font-weight: bold;
-  padding: 6px 0; //$padding-base;
+  padding: 6px 0;
 }
 
 h3 {
-  font-size: $font-size-h3;
+  font-size: font-size('x-large');
   font-weight: 500;
-  padding: 6px 0; //$padding-base;
+  padding: 6px 0;
 }
 
 h4 {
-  font-size: $font-size-h4;
+  font-size: font-size('large');
 }
 
 h5 {
-  font-size: $font-size-h5;
+  font-size: font-size('medium');
 }
 
 h6 {
-  font-size: $font-size-h6;
+  font-size: font-size('small');
 }
