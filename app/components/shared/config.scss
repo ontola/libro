@@ -2,93 +2,58 @@
 @import './functions';
 
 // COLORS
-$pro: rgb(84, 127, 75);
-$con: rgb(134, 61, 61);
-$neutral: rgb(115, 115, 115);
-
-$button-variants-colors: (
-  'pro': $pro,
-  'neutral': $neutral,
-  'con': $con,
-);
-
 $color-base-grey: rgb(128, 128, 128);
+$color-base-brown: rgb(134, 61, 61);
+$color-base-green: rgb(84, 127, 75);
+$color-base-blue: rgb(71, 86, 104);
 
+// TODO: Update sass-lint to 1.9.0 when it is released to fix the following linting warnings
 $colors: (
-  'grey': (
-    'x-dark': darken($color-base-grey, 60%),
-    'dark': darken($color-base-grey, 40%),
-    'mid-dark': darken($color-base-grey, 20%),
-    'base': $color-base-grey,
-    'mid-light': lighten($color-base-grey, 20%),
-    'light': lighten($color-base-grey, 20%),
-    'x-light': lighten($color-base-grey, 20%),
+  'black': (
+    'base': rgb(0, 0, 0),
   ),
   'blue': (
-    'dark': rgb(6, 38, 77),
-    'base': rgb(71, 86, 104),
-    'mid-light': rgb(200, 204, 210),
-    'light': rgb(216, 222, 228),
+    'base': $color-base-blue,
+    'mid-light': lighten($color-base-blue, 5%),
+    'light': lighten($color-base-blue, 30%),
+    'x-light': rgb(238, 240, 242),
+  ),
+  'brown': (
+    'dark': rgb(104, 71, 71),
+    'base': $color-base-brown,
+    'light': lighten($color-base-brown, 50%),
+    'x-light': rgba($color-base-brown, .02),
+  ),
+  'green': (
+    'base': $color-base-green,
+    'light': lighten($color-base-green, 60%),
+    'x-light': rgba($color-base-green, .02),
+  ),
+  'grey': (
+    'x-dark': darken($color-base-grey, 80%),
+    'dark': darken($color-base-grey, 50%),
+    'mid-dark': darken($color-base-grey, 20%),
+    'base': $color-base-grey,
+    'mid-light': lighten($color-base-grey, 10%),
+    'light': lighten($color-base-grey, 30%),
+    'x-light': lighten($color-base-grey, 40%),
   ),
   'pink': (
     'base': rgb(208, 2, 91),
     'light': rgb(255, 192, 203),
   ),
-  'brown': (
-    'dark': rgb(104, 71, 71),
-    'base': rgb(134, 61, 61),
-  ),
-  'green': (
-    'base': rgb(84, 127, 75),
-  ),
   'white': (
     'base': rgb(255, 255, 255),
   ),
-  'black': (
-    'base': rgb(0, 0, 0),
-  ),
 );
 
-
-// Greys
-$g1: rgb(232, 232, 232);
-$g2: rgb(170, 170, 170);
-$g2a: rgb(134, 134, 134);
-$g3: rgb(115, 115, 115);
-$g4: rgb(90, 90, 90);
-$g5: rgb(50, 50, 50);
-
-$blue: rgb(71, 86, 104);
-$lightblue: rgb(238, 240, 242);
-$lightergrey: rgb(238, 240, 242);
-$grey: rgb(155, 155, 155);
-$titleblue: rgb(6, 38, 77);
-$dark: rgb(90, 90, 90);
-$white: rgb(255, 255, 255);
-$brown: rgb(104, 71, 71);
-$red: rgb(134, 61, 61);
-$green: rgb(84, 127, 75);
-$pink: #d0025b;
-$lightpink: #ffc0cb;
-$dark-text: rgba(0, 0, 0, .8);
-$black: rgb(0, 0, 0);
-
-// Lighten and darken
-$darken0: rgba(0, 0, 0, .02);
-$darken1: rgba(0, 0, 0, .05);
-$darken2: rgba(0, 0, 0, .15);
-$darken3: rgba(0, 0, 0, .35);
-$darken4: rgba(0, 0, 0, .5);
-
-$lighten2: rgba(255, 255, 255, .15);
-$lighten3: rgba(255, 255, 255, .35);
-$lighten4: rgba(255, 255, 255, .7);
-
-$progressbar-background: rgb(210, 210, 210);
 $drawer-overlay-background: rgba(71, 86, 104, .3);
+$button-variants-colors: (
+  'pro': 'green',
+  'neutral': 'grey',
+  'con': 'brown',
+);
 
-$linklist-border-color: rgba($titleblue, 0);
-$linklist-border-color-light: rgba($titleblue, .2);
 
 // FONTS
 $font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -128,7 +93,6 @@ $container-width: (
 
 // OTHERS
 $border-radius-base: 3px;
-$border-color: #d8dee4;
 $box-shadow: 0 1px 5px rgba(0, 0, 0, .2);
 $progressbar-height: 5px;
 

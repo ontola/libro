@@ -15,12 +15,12 @@
 
 .ArgumentListItem--pro {
   .ArgumentListItem__icon {
-    color: $pro;
+    color: color('green');
   }
 }
 
 .ArgumentListItem--con {
   .ArgumentListItem__icon {
-    color: $con;
+    color: color('brown');
   }
 }

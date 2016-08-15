@@ -1,13 +1,14 @@
 @import '../shared/config';
 
 .Box {
-  @include large {
-    margin: $margin-base;
-  }
-  background-color: $white;
+  background-color: color('white');
   border-radius: $border-radius-base;
   box-shadow: $box-shadow;
   margin: 20px 0;
+
+  @include large {
+    margin: $margin-base;
+  }
 }
 
 .Box__content {
@@ -15,7 +16,7 @@
 }
 
 .Box__actions {
-  border-top: 1px solid $border-color;
+  border-top: 1px solid color('grey', 'x-light');
   display: flex;
   flex-direction: row;
   justify-content: center;

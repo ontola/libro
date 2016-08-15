@@ -1,9 +1,9 @@
 @import '../shared/config';
 
 .DetailStatus--pass {
-  color: $pro;
+  color: color('green');
 }
 
 .DetailStatus--fail {
-  color: $con;
+  color: color('brown');
 }

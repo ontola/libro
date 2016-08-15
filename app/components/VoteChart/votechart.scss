@@ -2,7 +2,7 @@
 
 .VoteChart {
   &__container {
-    background-color: $white;
+    background-color: color('white');
     border-radius: $border-radius-base;
     display: flex;
     height: .3em;
@@ -15,11 +15,11 @@
     height: .3em;
 
     &--pass {
-      background-color: $green;
+      background-color: color('green');
     }
 
     &--fail {
-      background-color: $red;
+      background-color: color('brown');
     }
   }
 

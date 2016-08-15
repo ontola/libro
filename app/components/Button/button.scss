@@ -21,33 +21,33 @@
 
   &:hover,
   &:focus {
-    box-shadow: inset 0 0 0 999px $darken2;
+    box-shadow: inset 0 0 0 999px color('grey', 'light');
   }
 
   &:active {
-    box-shadow: inset 0 0 0 999px $darken3;
+    box-shadow: inset 0 0 0 999px color('grey', 'x-light');
     transition: 0s box-shadow;
   }
 }
 
 .Button--default {
-  background-color: $pink;
+  background-color: color('pink');
   border-radius: $border-radius-base;
-  color: $white;
+  color: color('white');
 }
 
 .Button--subtle {
-  background-color: $g1;
+  background-color: color('grey', 'light');
   border-radius: $border-radius-base;
-  color: $dark;
+  color: color('grey', 'dark');
 
   &:hover,
   &:focus {
-    box-shadow: inset 0 0 0 999px $darken0;
+    box-shadow: inset 0 0 0 999px color('grey', 'light');
   }
 
   &:active {
-    box-shadow: inset 0 0 0 999px $darken1;
+    box-shadow: inset 0 0 0 999px color('grey', 'x-light');
   }
 }
 
@@ -57,41 +57,29 @@
 }
 
 .Button--box {
-  background-color: $white;
-  border-right: 1px solid $border-color;
-  color: $g3;
+  background-color: color('white');
+  border-right: 1px solid color('grey', 'x-light');
+  color: color('grey');
   flex-grow: 1;
 
   &:last-child {
     border-right: 0;
   }
-
-  &:hover,
-  &:focus {
-    color: $g4;
-  }
-}
-
-.Button--variant {
-  &:hover,
-  &:focus {
-    box-shadow: none;
-  }
 }
 
 @each $variant, $color in $button-variants-colors {
   .Button--variant-#{$variant} {
-    color: $color;
+    color: color($color);
 
     &:hover,
     &:focus {
-      background-color: opacify($color, .05);
-      color: $color;
+      background-color: color($color, 'x-light');
+      color: color($color);
     }
 
     &:active {
-      background-color: opacify($color, .1);
-      color: $color;
+      background-color: color($color, 'light');
+      color: color($color);
     }
   }
 }

@@ -40,13 +40,13 @@
 }
 
 .sk-toggle {
-  border: 1px solid $border-color;
+  border: 1px solid color('grey', 'x-light');
   border-radius: $border-radius-base;
-  color: $blue;
+  color: color('blue');
   display: flex;
 
   &-option {
-    border-right: 1px solid $border-color;
+    border-right: 1px solid color('grey', 'x-light');
     cursor: pointer;
     padding: .5em 1em;
 
@@ -55,7 +55,7 @@
     }
 
     &.is-active {
-      background-color: $border-color;
+      background-color: color('grey', 'x-light');
     }
   }
 }
@@ -68,12 +68,7 @@
 
 //** PANELS
 .sk-panel {
-  @include large {
-    border: 0;
-    margin-bottom: 1.5em;
-    padding: 0;
-  }
-  border-bottom: 1px solid $g3;
+  border-bottom: 1px solid color('grey', 'light');
   box-sizing: border-box;
   padding: 1em;
   width: 100%;
@@ -87,10 +82,16 @@
   &.is-disabled  {
     display: none;
   }
+
+  @include large {
+    border: 0;
+    margin-bottom: 1.5em;
+    padding: 0;
+  }
 }
 
 .sk-panel__header {
-  color: $dark;
+  color: color('grey', 'dark');
   font-size: $font-size-h5;
   font-weight: 600;
   margin-bottom: 5px;
@@ -124,14 +125,14 @@
 
 // ACTIONS
 .sk-refinement-list__view-more-action {
-  color: $grey;
+  color: color('grey', 'dark');
   cursor: pointer;
   font-size: $font-size-h6;
   margin: 5px 0;
   transition: .2s color;
 
   &:hover {
-    color: $dark;
+    color: color('grey', 'x-dark');
   }
 }
 
@@ -146,7 +147,7 @@
   }
 
   &__count {
-    color: $grey;
+    color: color('grey');
     font-size: 11px;
   }
 
@@ -157,11 +158,11 @@
     transition: .2s color;
 
     &:hover {
-      color: $dark;
+      color: color('grey', 'dark');
     }
 
     &::before {
-      border: 3px solid $g3;
+      border: 3px solid color('grey', 'light');
       content: ' ';
       display: block;
       height: 8px;
@@ -176,8 +177,8 @@
   &__is-active {
     .sk-item-list-option__text {
       &::before {
-        background-color: $g2a;
-        border-color: $g2a;
+        background-color: color('grey', 'dark');
+        border-color: color('grey', 'dark');
       }
     }
   }

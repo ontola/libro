@@ -8,23 +8,21 @@
 }
 
 .LinkList__link {
-  border-bottom: 3px solid $linklist-border-color;
-  color: $blue;
+  border-bottom: 3px solid transparent;
+  color: color('blue');
   display: block;
   margin-right: 1.5em;
   padding: .7em 0;
   transition: .1s border-bottom;
 
-  &:hover,
-  &:focus {
-    border-bottom-color: $linklist-border-color-light;
-    color: $titleblue;
+  &:hover {
+    border-bottom-color: color('blue', 'light');
   }
 
   &--active,
   &:active {
-    border-bottom-color: $titleblue;
-    color: $titleblue;
+    border-bottom-color: color('blue');
+    color: color('blue');
   }
 
   &:last-of-type {

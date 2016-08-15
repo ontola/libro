@@ -1,7 +1,7 @@
 @import '../shared/config';
 
 .Opinion {
-  background-color: $white;
+  background-color: color('white');
   border-radius: 100%;
   border-style: solid;
   border-width: 2px;
@@ -10,12 +10,12 @@
   width: 30px;
 
   &--yes {
-    border-color: $green;
+    border-color: color('green');
     margin-right: 4px;
   }
 
   &--no {
-    border-color: $red;
+    border-color: color('brown');
     margin-left: 4px;
   }
 }

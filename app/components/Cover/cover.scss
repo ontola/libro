@@ -2,13 +2,13 @@
 
 .Cover {
   &--lighter {
-    background-color: $lightergrey;
-    border: 1px solid $border-color;
+    background-color: color('blue', 'x-light');
+    border: 1px solid color('grey', 'x-light');
     border-width: 1px 0;
   }
 
   &--light {
-    background-color: $white;
+    background-color: color('white');
   }
 
   &--image {
@@ -16,7 +16,7 @@
   }
 
   &--dark {
-    background-color: $blue;
+    background-color: color('blue');
   }
 
   &--fixed {

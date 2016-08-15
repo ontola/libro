@@ -31,7 +31,7 @@
   }
 
   .sk-sidebar__wrapper {
-    background-color: $white;
+    background-color: color('white');
     bottom: 0;
     left: -100%;
     position: fixed;
@@ -71,7 +71,7 @@
 }
 
 .sk-drawer-action--close {
-  background-color: $white;
+  background-color: color('white');
   bottom: 0;
   left: 0;
   padding: 1em;

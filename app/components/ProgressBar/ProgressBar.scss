@@ -1,7 +1,7 @@
 @import '../shared/config';
 
 .ProgressBar {
-  background-color: $white;
+  background-color: color('white');
   bottom: 0;
   display: flex;
   left: 0;
@@ -11,7 +11,7 @@
 }
 
 .ProgressBar__bar {
-  background-color: $g3;
+  background-color: color('blue', 'mid-light');
   bottom: 100%;
   height: $progressbar-height;
   left: 0;
@@ -22,7 +22,7 @@
 }
 
 .ProgressBar__bar__background {
-  background-color: $progressbar-background;
+  background-color: color('grey', 'light');
   bottom: 100%;
   height: $progressbar-height;
   left: 0;
