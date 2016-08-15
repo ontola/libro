@@ -1,5 +1,5 @@
 // @flow
-import './politicianslistitem.scss';
+import './PoliticiansListItem.scss';
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { Box, Heading } from 'components';

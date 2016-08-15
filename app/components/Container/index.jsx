@@ -1,5 +1,5 @@
 // @flow
-import './container.scss';
+import './Container.scss';
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 

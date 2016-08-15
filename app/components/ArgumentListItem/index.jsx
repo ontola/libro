@@ -1,10 +1,10 @@
 // @flow
+import './ArgumentListItem.scss';
 import React, { PropTypes } from 'react';
 import {
   Heading,
   HoverBox,
 } from 'components';
-import './argumentlistitem.scss';
 
 const propTypes = {
   title: PropTypes.string.isRequired,

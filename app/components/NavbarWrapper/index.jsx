@@ -1,5 +1,5 @@
 // @flow
-import './navbar.scss';
+import './NavbarWrapper.scss';
 import React, { Component, PropTypes } from 'react';
 import { Container, Cover } from 'components';
 import { SearchBox } from 'searchkit';

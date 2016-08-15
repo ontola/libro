@@ -1,5 +1,5 @@
 // @flow
-import './votebuttons.scss';
+import './VoteButtons.scss';
 import React, { PropTypes } from 'react';
 import { Button } from 'components';
 

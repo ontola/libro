@@ -1,5 +1,5 @@
 // @flow
-import './detailsBar.scss';
+import './DetailsBar.scss';
 import React, { PropTypes } from 'react';
 
 function DetailsBar({ children }) {

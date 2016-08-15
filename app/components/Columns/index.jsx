@@ -1,5 +1,5 @@
 // @flow
-import './columns.scss';
+import './Columns.scss';
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 

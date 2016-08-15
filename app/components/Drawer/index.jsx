@@ -1,4 +1,4 @@
-import './drawer.scss';
+import './Drawer.scss';
 import classNames from 'classnames';
 import React, { PropTypes } from 'react';
 import { Button } from 'components';

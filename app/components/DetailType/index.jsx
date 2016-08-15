@@ -1,5 +1,5 @@
 // @flow
-import './detailType.scss';
+import './DetailType.scss';
 import React, { PropTypes } from 'react';
 import { Detail } from 'components';
 

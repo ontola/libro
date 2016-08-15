@@ -1,5 +1,5 @@
 // @flow
-import './profilecard.scss';
+import './ProfileCard.scss';
 import React, { PropTypes } from 'react';
 import { Button, Heading } from 'components';
 import classNames from 'classnames';

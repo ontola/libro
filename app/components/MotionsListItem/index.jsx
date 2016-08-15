@@ -1,5 +1,5 @@
 // @flow
-import './motionsListItem.scss';
+import './MotionsListItem.scss';
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import {

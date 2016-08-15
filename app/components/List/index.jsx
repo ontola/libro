@@ -1,4 +1,4 @@
-import './list.scss';
+import './List.scss';
 import React, { PropTypes } from 'react';
 
 const propTypes = {

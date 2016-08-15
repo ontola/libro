@@ -1,5 +1,5 @@
 // @flow
-import './box.scss';
+import './Box.scss';
 import React, { PropTypes } from 'react';
 
 const propTypes = {

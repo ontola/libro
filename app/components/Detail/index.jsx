@@ -1,5 +1,5 @@
 // @flow
-import './detail.scss';
+import './Detail.scss';
 import React, { PropTypes } from 'react';
 import { browserHistory } from 'react-router';
 

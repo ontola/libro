@@ -1,4 +1,4 @@
-import './opinions.scss';
+import './Opinions.scss';
 import React, { PropTypes } from 'react';
 import { Opinion } from 'components';
 

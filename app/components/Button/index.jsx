@@ -1,5 +1,5 @@
 // @flow
-import './button.scss';
+import './Button.scss';
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import FontAwesome from 'react-fontawesome';

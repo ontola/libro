@@ -1,5 +1,5 @@
 // @flow
-import './argumentshow.scss';
+import './ArgumentShow.scss';
 import React, { PropTypes } from 'react';
 import {
   Box,

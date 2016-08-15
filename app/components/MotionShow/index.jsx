@@ -1,5 +1,5 @@
 // @flow
-import './motionShow.scss';
+import './MotionShow.scss';
 import React, { PropTypes } from 'react';
 import { Motion } from 'models';
 import PersonContainer from 'containers/PersonContainer';
