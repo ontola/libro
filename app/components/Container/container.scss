@@ -25,7 +25,7 @@
     padding: 10em 0;
   }
 
-  @each $size, $width in $sizes-container {
+  @each $size, $width in $container-width {
     &--size-#{$size} {
       max-width: $width;
     }

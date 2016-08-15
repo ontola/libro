@@ -1,23 +1,57 @@
 @import './mixins';
+@import './functions';
 
 // COLORS
-
 $pro: rgb(84, 127, 75);
 $con: rgb(134, 61, 61);
 $neutral: rgb(115, 115, 115);
 
 $button-variants-colors: (
-  pro: $pro,
-  neutral: $neutral,
-  con: $con,
+  'pro': $pro,
+  'neutral': $neutral,
+  'con': $con,
+);
+
+$color-base-grey: rgb(128, 128, 128);
+
+$colors: (
+  'grey': (
+    'x-dark': darken($color-base-grey, 60%),
+    'dark': darken($color-base-grey, 40%),
+    'mid-dark': darken($color-base-grey, 20%),
+    'base': $color-base-grey,
+    'mid-light': lighten($color-base-grey, 20%),
+    'light': lighten($color-base-grey, 20%),
+    'x-light': lighten($color-base-grey, 20%),
+  ),
+  'blue': (
+    'dark': rgb(6, 38, 77),
+    'base': rgb(71, 86, 104),
+    'mid-light': rgb(200, 204, 210),
+    'light': rgb(216, 222, 228),
+  ),
+  'pink': (
+    'base': rgb(208, 2, 91),
+    'light': rgb(255, 192, 203),
+  ),
+  'brown': (
+    'dark': rgb(104, 71, 71),
+    'base': rgb(134, 61, 61),
+  ),
+  'green': (
+    'base': rgb(84, 127, 75),
+  ),
+  'white': (
+    'base': rgb(255, 255, 255),
+  ),
+  'black': (
+    'base': rgb(0, 0, 0),
+  ),
 );
 
 
 // Greys
-$g00: rgb(249, 249, 249);
-$g0: rgb(245, 245, 245);
 $g1: rgb(232, 232, 232);
-$g1a: rgb(208, 208, 208);
 $g2: rgb(170, 170, 170);
 $g2a: rgb(134, 134, 134);
 $g3: rgb(115, 115, 115);
@@ -27,7 +61,6 @@ $g5: rgb(50, 50, 50);
 $blue: rgb(71, 86, 104);
 $lightblue: rgb(238, 240, 242);
 $lightergrey: rgb(238, 240, 242);
-$lightestgrey: rgb(244, 244, 244);
 $grey: rgb(155, 155, 155);
 $titleblue: rgb(6, 38, 77);
 $dark: rgb(90, 90, 90);
@@ -45,22 +78,17 @@ $darken0: rgba(0, 0, 0, .02);
 $darken1: rgba(0, 0, 0, .05);
 $darken2: rgba(0, 0, 0, .15);
 $darken3: rgba(0, 0, 0, .35);
-$darken-overlay: rgba(26, 26, 26, .76);
 $darken4: rgba(0, 0, 0, .5);
-$darken5: rgba(0, 0, 0, .8);
 
-$lighten1: rgba(255, 255, 255, .05);
 $lighten2: rgba(255, 255, 255, .15);
 $lighten3: rgba(255, 255, 255, .35);
 $lighten4: rgba(255, 255, 255, .7);
-$lighten5: rgba(255, 255, 255, .8);
-$lighten6: rgba(255, 255, 255, .9);
-
-$primary: $pink;
-$motion: $blue;
-$question: $brown;
 
 $progressbar-background: rgb(210, 210, 210);
+$drawer-overlay-background: rgba(71, 86, 104, .3);
+
+$linklist-border-color: rgba($titleblue, 0);
+$linklist-border-color-light: rgba($titleblue, .2);
 
 // FONTS
 $font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -87,29 +115,22 @@ $sizes-margin: (
   'large': 2em,
 );
 
-// OTHERS
-$border-radius-base: 3px;
-$border-color: #d8dee4;
-$box-shadow: 0 1px 5px rgba(0, 0, 0, .2);
-
+// CONTAINER WIDTHS
 $page-width-small: 400px;
 $page-width-medium: 660px;
 $page-width-large: 980px;
 
-$progressbar-height: 5px;
-$drawer-overlay-background: rgba(71, 86, 104, .3);
-
-$linklist-border-color: rgba($titleblue, 0);
-$linklist-border-color-light: rgba($titleblue, .2);
-
-$sizes-container: (
+$container-width: (
   'small': $page-width-small,
   'medium': $page-width-medium,
   'large': $page-width-large
 );
 
-// The color that defines the navbar and some accents
-$forum-color: $blue;
+// OTHERS
+$border-radius-base: 3px;
+$border-color: #d8dee4;
+$box-shadow: 0 1px 5px rgba(0, 0, 0, .2);
+$progressbar-height: 5px;
 
 // Z-INDICES
 $zindex-1: 100;
@@ -118,3 +139,10 @@ $zindex-3: 300;
 $zindex-4: 400;
 $zindex-5: 500;
 $zindex-6: 600;
+
+$z-layers: (
+  'cover': $zindex-4,
+  'hoverbox': $zindex-1,
+  'notification': $zindex-1,
+  'progressbar': $zindex-1
+);

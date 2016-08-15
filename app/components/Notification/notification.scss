@@ -8,7 +8,7 @@
   padding: $padding-base;
   position: fixed;
   right: 1em;
-  z-index: $zindex-1;
+  z-index: z(notification);
 
   &__preText {
     font-size: 1.4em;

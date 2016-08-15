@@ -18,7 +18,7 @@
   position: absolute;
   right: 0;
   transition: .4s width;
-  z-index: 1;
+  z-index: z(progressbar);
 }
 
 .ProgressBar__bar__background {

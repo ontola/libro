@@ -1,0 +1,276 @@
+@import '../shared/config';
+
+.navbar-item {
+  @include small-only {
+    span {
+      display: none;
+    }
+
+    &.dont-hide {
+      display: inline-block;
+    }
+
+    &.fa {
+      display: inline-block;
+    }
+  }
+  color: $white;
+  display: block;
+  font-size: 1em;
+  height: 3em;
+  padding: 0 .7em;
+
+  .navbar--dark-text {
+    color: $dark-text;
+  }
+
+  span {
+    display: inline-block;
+    line-height: 3em;
+    vertical-align: top;
+  }
+
+  .fa {
+    float: none;
+    line-height: 3.2em;
+    padding: 0;
+  }
+
+  &:hover {
+    background-color: $lighten2;
+    text-decoration: none;
+
+    .navbar--dark-text & {
+      background-color: $darken2;
+    }
+  }
+
+  &:active {
+    transition: none;
+  }
+}
+
+.navbar-links {
+  float: left;
+
+  > li {
+    float: left;
+  }
+
+  > div {
+    display: inline-block;
+    float: left;
+  }
+
+}
+
+.navbar-links-right {
+  float: right;
+  margin-left: 0;
+
+}
+
+.navbar-logo {
+  box-sizing: border-box;
+  display: flex;
+  height: 3em;
+  padding: .6em;
+  width: 3.8em;
+
+  img {
+    width: 100%;
+  }
+}
+
+.nav-container {
+  display: flex;
+}
+
+.nav-search {
+  width: 19em;
+
+  &-text {
+    margin: 0;
+    resize: none;
+    width: 100%;
+  }
+
+  &-button {
+    display: inline;
+    width: 5em;
+  }
+}
+
+.profile-picture--navbar {
+  height: 2.2em;
+  margin: .4em;
+  margin-left: 0;
+  margin-right: .4em;
+  width: 2.2em;
+}
+
+.icon-left {
+  margin-left: .4em;
+}
+
+.profile-picture--navbar > a > .icon-left {
+  display: inline-block;
+  margin-left: .4em;
+  margin-top: 1em;
+  vertical-align: top;
+}
+
+.profile-name--navbar {
+  display: inline-block;
+  float: right;
+  padding: 1em 0;
+}
+
+//** SEARCHBOX **//
+
+.sk-search-box {
+  background-color: $lighten2;
+  flex: auto;
+  margin: .4em;
+  transition: .2s background-color;
+
+  .navbar--dark-text & {
+    background-color: $darken2;
+  }
+
+  &:hover {
+    background-color: $lighten3;
+
+    .navbar--dark-text & {
+      background-color: $darken3;
+    }
+
+    .sk-search-box__text {
+      &::placeholder {
+        color: $white;
+
+        .navbar--dark-text & {
+          color: $dark-text;
+        }
+      }
+    }
+  }
+
+  .sk-search-box__text {
+    background: none;
+    border: 0;
+    color: $white;
+    flex: auto;
+    font-size: 1em;
+    padding: .5em;
+    transition: .2s color;
+
+    &:focus {
+      outline: 0;
+    }
+
+    &::placeholder {
+      color: $lighten4;
+      transition: .2s color;
+
+      .navbar--dark-text & {
+        color: $darken4;
+      }
+    }
+  }
+
+  .sk-search-box__icon {
+    display: none;
+  }
+
+  &.is-focused {
+    background-color: $white;
+
+    .navbar--dark-text & {
+      background-color: $dark-text;
+    }
+
+    .sk-search-box__text {
+      color: $g5;
+
+      .navbar--dark-text & {
+        color: $white;
+      }
+
+      &::placeholder {
+        color: $g2;
+
+        .navbar--dark-text & {
+          color: $lighten4;
+        }
+      }
+    }
+  }
+
+  form {
+    display: flex;
+    margin: 0;
+    position: relative;
+  }
+
+  &__icon {
+    flex: 0 10px 10px;
+    margin: 6px 0 0 6px;
+
+    &::before {
+      @include search-icon;
+      background-size: contain;
+      content: '';
+      display: block;
+      height: 18px;
+      width: 18px;
+    }
+    opacity: .3;
+  }
+
+  &__action {
+    display: none;
+    height: 40px;
+    visibility: hidden;
+  }
+
+  &__loader {
+    align-self: flex-end;
+    flex: 0 20px 20px;
+    margin: 6px 8px;
+    pointer-events: none;
+
+    &.is-hidden {
+      display: none;
+    }
+  }
+}
+
+//** SPINNING LOADER
+.sk-spinning-loader {
+  animation: spinning-loader 1.1s infinite linear;
+  border: 2px solid $darken0;
+  border-left: 2px solid $black;
+  position: relative;
+  text-indent: -9999em;
+  transform: translateZ(0);
+
+  &::after {
+    border-radius: 50%;
+    height: 1em;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 1em;
+  }
+}
+
+@keyframes spinning-loader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

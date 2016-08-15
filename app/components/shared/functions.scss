@@ -1,0 +1,12 @@
+@function z($key) {
+  @if map-has-key($z-layers, $key) {
+    @return map-get($z-layers, $key);
+  }
+
+  @warn 'Unknown `#{$key}` in $z-layers.';
+  @return null;
+}
+
+@function color($color, $tone: 'base') {
+  @return map-get(map-get($colors, $color), $tone);
+}

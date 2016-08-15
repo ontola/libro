@@ -9,7 +9,7 @@
     transition: left 0s;
     transition-delay: .2s;
     width: 100%;
-    z-index: 1000;
+    z-index: $zindex-6;
   }
 
   @include large {
@@ -27,7 +27,7 @@
     transition: opacity .2s, visibility .2s .2s;
     visibility: hidden;
     width: 100%;
-    z-index: 10;
+    z-index: $zindex-1;
   }
 
   .sk-sidebar__wrapper {
@@ -39,7 +39,7 @@
     transition: left .2s, visibility 0s .2s;
     visibility: hidden;
     width: 330px;
-    z-index: 10;
+    z-index: $zindex-1;
   }
 
   .sk-sidebar__container {
@@ -66,7 +66,7 @@
     left: 0;
     transition: left .2s;
     visibility: visible;
-    z-index: 20;
+    z-index: $zindex-2;
   }
 }
 
@@ -77,5 +77,5 @@
   padding: 1em;
   position: absolute;
   right: 0;
-  z-index: 10;
+  z-index: $zindex-1;
 }
