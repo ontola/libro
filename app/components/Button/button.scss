@@ -21,11 +21,11 @@
 
   &:hover,
   &:focus {
-    box-shadow: inset 0 0 0 999px color('grey', 'light');
+    box-shadow: inset 0 0 0 999px color('transparent', 'x-light');
   }
 
   &:active {
-    box-shadow: inset 0 0 0 999px color('grey', 'x-light');
+    box-shadow: inset 0 0 0 999px color('transparent', 'light');
     transition: 0s box-shadow;
   }
 }
@@ -70,16 +70,5 @@
 @each $variant, $color in $button-variants-colors {
   .Button--variant-#{$variant} {
     color: color($color);
-
-    &:hover,
-    &:focus {
-      background-color: color($color, 'x-light');
-      color: color($color);
-    }
-
-    &:active {
-      background-color: color($color, 'light');
-      color: color($color);
-    }
   }
 }
