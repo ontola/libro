@@ -12,7 +12,8 @@
   "scripts": {
     "start": "rimraf ./dist && NODE_ENV=development ELASTICSEARCH_URL=http://localhost:1337/aod-search.argu.co/aod_search node ./bin/server.js",
     "start:prod": "ARGU_API_URL=http://localhost:3030 NODE_ENV=production node ./bin/server.js",
-    "build": "rimraf ./dist && NODE_ENV=production webpack --production --progress --verbose --display-error-details --config ./webpack/static.config",
+    "build": "rimraf ./dist && NODE_ENV=production webpack --production --config ./webpack/static.config",
+    "build:verbose": "rimraf ./dist && NODE_ENV=production webpack --production --progress --verbose --display-error-details --config ./webpack/static.config",
     "lint": "./node_modules/.bin/eslint --ext .jsx,.js .",
     "lint:style": "sass-lint ./app/**/*.scss  -v -q",
     "test": "NODE_PATH=./app mocha ./tests/testhelper.js ./app/**/spec.js ./app/**/*.spec.js --compilers js:babel-core/register --recursive",
