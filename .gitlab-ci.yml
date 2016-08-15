@@ -31,11 +31,13 @@ bake:
 tag:
   stage: release
   script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
     - docker push registry.gitlab.com/argu/aod_demo:${CI_BUILD_REF_NAME}
 
 latest:
   stage: release
   script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
     - docker tag registry.gitlab.com/argu/aod_demo:${CI_BUILD_REF_NAME} registry.gitlab.com/argu/aod_demo:latest
     - docker push registry.gitlab.com/argu/aod_demo:latest
   only:
