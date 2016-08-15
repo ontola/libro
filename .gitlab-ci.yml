@@ -1,24 +1,12 @@
-before_script:
-  - docker info
-  - node -v
-  - npm -v
-  - npm i -q
-
 stages:
-  - build
   - test
   - bake
   - release
 
-build:
-  stage: build
-  script:
-    - npm run build
-  only:
-    - master
-
 test:
   stage: test
+  before_script:
+    - npm i -q
   script:
     - npm run lint
     - npm run test
