@@ -12,14 +12,14 @@ const common = {
   },
 
   resolve: {
-    modulesDirectories: ['node_modules'],
+    modulesDirectories: ['./node_modules'],
     extensions: ['', '.js', '.jsx', '.ts'],
     alias: {
-      react: path.resolve('./node_modules/react'),
-      components: path.resolve('./app/components'),
-      containers: path.resolve('./app/containers'),
-      state: path.resolve('./app/state'),
-      models: path.resolve('./app/models'),
+      react: path.join(__dirname, 'node_modules/react'),
+      components: path.join(__dirname, 'app/components'),
+      containers: path.join(__dirname, 'app/containers'),
+      state: path.join(__dirname, 'app/state'),
+      models: path.join(__dirname, 'app/models'),
     },
   },
 

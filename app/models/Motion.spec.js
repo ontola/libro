@@ -4,7 +4,7 @@ import * as actions from 'state/action-types';
 
 const SPECIFIC_MOTION_ID = 14;
 
-describe('Model actions', () => {
+describe('Motion actions', () => {
   it('should have an action to get a specific motion', () => {
     const expectedAction = {
       type: actions.GET_MOTION,

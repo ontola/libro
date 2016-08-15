@@ -45,8 +45,6 @@ const App = ({
 App.propTypes = propTypes;
 App.defaultProps = defaultProps;
 
-export const DisconnectedApp = App;
-
 export default connect(
   (state) => ({
     error: getErrorBool(state),

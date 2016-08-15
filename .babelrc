@@ -10,8 +10,9 @@
     },
     "test": {
       "plugins": [
-        ["babel-plugin-webpack-alias", {
-          "config": "./webpack/hot.config.js"
+        ["webpack-alias", {
+          "config": "./webpack/hot.config.js",
+          "findConfig": true
         }]
       ]
     }
