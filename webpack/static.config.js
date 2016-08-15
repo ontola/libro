@@ -28,4 +28,15 @@ config.plugins.push(
   })
 );
 
+config.stats = {
+  // minimal logging
+  assets: false,
+  colors: true,
+  version: false,
+  timings: false,
+  chunks: false,
+  chunkModules: false,
+  children: false,
+};
+
 module.exports = config;
