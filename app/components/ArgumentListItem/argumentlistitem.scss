@@ -1,12 +1,12 @@
-@import "../shared/config.scss";
+@import '../shared/config';
 
 .ArgumentListItem {
   margin-bottom: .5em;
 }
 
 .ArgumentListItem__icon {
-  margin-right: .5em;
   line-height: 1.5em;
+  margin-right: .5em;
 }
 
 .ArgumentListItem__wrapper {

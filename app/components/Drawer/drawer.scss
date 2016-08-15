@@ -1,55 +1,54 @@
-@import "../shared/config.scss";
-
+@import '../shared/config';
 
 .sk-sidebar {
   @include small-only {
-    position: fixed;
-    left: -100%;
-    width: 100%;
-    top: 0;
     bottom: 0;
+    left: -100%;
+    position: fixed;
+    top: 0;
     transition: left 0s;
     transition-delay: .2s;
+    width: 100%;
     z-index: 1000;
   }
 
   @include large {
     display: block;
-    width: 24%;
     margin: 0 2% 0 0;
+    width: 24%;
   }
 }
 
 @include small-only {
   .sk-sidebar__overlay {
-    background-color: rgba(71, 86, 104, 0.3);
+    background-color: $drawer-overlay-background;
     height: 100%;
+    opacity: 0;
+    transition: opacity .2s, visibility .2s .2s;
+    visibility: hidden;
     width: 100%;
     z-index: 10;
-    opacity: 0;
-  	visibility: hidden;
-  	transition: opacity .2s, visibility .2s .2s;
   }
 
   .sk-sidebar__wrapper {
-    width: 330px;
-    position: fixed;
-    left: -100%;
-    top: 0;
+    background-color: $white;
     bottom: 0;
-    background-color: #fff;
-    z-index: 10;
+    left: -100%;
+    position: fixed;
+    top: 0;
+    transition: left .2s, visibility 0s .2s;
     visibility: hidden;
-    transition: left 0.2s, visibility 0s 0.2s;
+    width: 330px;
+    z-index: 10;
   }
 
   .sk-sidebar__container {
-    height: 100%;
-    padding-bottom: 72px;
-    box-sizing: border-box;
-    overflow-y: auto;
-    overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-bottom: 72px;
   }
 }
 
@@ -59,25 +58,24 @@
 
   .sk-sidebar__overlay {
     opacity: 1;
-  	visibility: visible;
-  	transition: opacity 0.2s;
+    transition: opacity .2s;
+    visibility: visible;
   }
 
   .sk-sidebar__wrapper {
-    z-index: 20;
     left: 0;
+    transition: left .2s;
     visibility: visible;
-    transition: left 0.2s;
-    //transition-delay: .2s;
+    z-index: 20;
   }
 }
 
 .sk-drawer-action--close {
-  position: absolute;
+  background-color: $white;
   bottom: 0;
   left: 0;
+  padding: 1em;
+  position: absolute;
   right: 0;
   z-index: 10;
-  background-color: white;
-  padding: 1em;
 }

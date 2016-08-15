@@ -7,27 +7,27 @@ const propTypes = {
   status: PropTypes.oneOf([
     'pass',
     'fail',
-  ]),
+  ]).isRequired,
 };
 
 const DetailStatus = ({ status }) => {
-  let className = 'defaultClassName';
+  let className = 'DetailStatus';
   let icon = 'no-icon';
   let text = 'Onbekende status';
 
   switch (status) {
     case 'pass':
-      className = 'detailStatus--pass';
+      className = 'DetailStatus--pass';
       icon = 'check';
       text = 'Aangenomen';
       break;
     case 'fail':
-      className = 'detailStatus--fail';
+      className = 'DetailStatus--fail';
       icon = 'close';
       text = 'Verworpen';
       break;
     default:
-      className = 'default';
+      className = 'DetailStatus';
       break;
   }
 

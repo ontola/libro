@@ -1,21 +1,21 @@
-@import "../shared/config.scss";
+@import '../shared/config';
 
 .VoteChart {
   &__container {
-    width: 100%;
-    background-color: white;
-    height: .3em;
-    display: flex;
+    background-color: $white;
     border-radius: $border-radius-base;
+    display: flex;
+    height: .3em;
+    width: 100%;
   }
 
   &__fill {
-    height: .3em;
-    display: block;
     border-radius: $border-radius-base;
+    display: block;
+    height: .3em;
 
     &--pass {
-      background-color: green;
+      background-color: $green;
     }
 
     &--fail {
@@ -25,8 +25,8 @@
 
   &__legend {
     display: flex;
-    justify-content: space-between;
     font-size: $font-size-h6;
+    justify-content: space-between;
     margin: $margin-small;
   }
 }

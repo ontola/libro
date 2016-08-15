@@ -15,8 +15,8 @@ const propTypes = {
 function Detail({ text, icon, url, imageUrl, className, title }) {
   let Element = url ? 'a' : 'div';
   const pictogram = imageUrl
-    ? <img src={imageUrl} className="detail__icon" role="presentation" />
-    : <span className={`detail__icon fa fa-${icon}`} />;
+    ? <img src={imageUrl} className="Detail__icon" role="presentation" />
+    : <span className={`Detail__icon fa fa-${icon}`} />;
 
   return (
     <Element
@@ -25,11 +25,11 @@ function Detail({ text, icon, url, imageUrl, className, title }) {
         browserHistory.push(url);
       }}
       href={url}
-      className={`detail ${className}`}
+      className={`Detail ${className}`}
       title={title}
     >
       {pictogram}
-      <span className="detail__text">{text}</span>
+      <span className="Detail__text">{text}</span>
     </Element>
   );
 }

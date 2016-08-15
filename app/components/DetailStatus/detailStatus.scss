@@ -1,9 +1,9 @@
-@import "../shared/config.scss";
+@import '../shared/config';
 
-.detailStatus--pass {
+.DetailStatus--pass {
   color: $pro;
 }
 
-.detailStatus--fail {
+.DetailStatus--fail {
   color: $con;
 }

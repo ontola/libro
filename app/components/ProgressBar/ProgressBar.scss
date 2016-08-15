@@ -1,34 +1,32 @@
-@import "../shared/config.scss";
-
-$progressBarHeight: 5px;
+@import '../shared/config';
 
 .ProgressBar {
-  background-color: white;
-  position: fixed;
+  background-color: $white;
   bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 15px 25px;
   display: flex;
+  left: 0;
+  padding: 15px 25px;
+  position: fixed;
+  right: 0;
 }
 
 .ProgressBar__bar {
-  height: $progressBarHeight;
   background-color: $g3;
-  position: absolute;
   bottom: 100%;
+  height: $progressbar-height;
   left: 0;
+  position: absolute;
   right: 0;
   transition: .4s width;
   z-index: 1;
 }
 
 .ProgressBar__bar__background {
-  height: $progressBarHeight;
-  background-color: rgb(210,210,210);
-  position: absolute;
+  background-color: $progressbar-background;
   bottom: 100%;
+  height: $progressbar-height;
   left: 0;
+  position: absolute;
   right: 0;
   width: 100%;
 }

@@ -1,32 +1,30 @@
-@import "../shared/config.scss";
+@import '../shared/config';
 
 .LinkList {
+  -webkit-overflow-scrolling: touch; // Enables inertial scrolling on iOS
   display: flex;
-
-  // Enables scrolling horizontally to reveal hidden items
   overflow-x: auto;
-  white-space: nowrap;
-
-  // Enables inertial scrolling on iOS
-  -webkit-overflow-scrolling: touch;
+  white-space: nowrap; // Enables scrolling horizontally to reveal hidden items
 }
 
 .LinkList__link {
-  display: block;
-  padding: .7em 0;
-  margin-right: 1.5em;
+  border-bottom: 3px solid $linklist-border-color;
   color: $blue;
+  display: block;
+  margin-right: 1.5em;
+  padding: .7em 0;
   transition: .1s border-bottom;
-  border-bottom: 3px solid rgba($titleblue, 0);
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
+    border-bottom-color: $linklist-border-color-light;
     color: $titleblue;
-    border-bottom-color: rgba($titleblue, .2);
   }
 
-  &--active, &:active {
+  &--active,
+  &:active {
+    border-bottom-color: $titleblue;
     color: $titleblue;
-    border-bottom-color: rgba($titleblue, 1) !important;
   }
 
   &:last-of-type {

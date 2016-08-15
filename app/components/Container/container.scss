@@ -1,32 +1,7 @@
-@import "../shared/config.scss";
+@import '../shared/config';
 
 .Container {
-  box-sizing: border-box;
-  margin: 0 auto;
-  padding: 0 10px;
-  position: relative;
-  width: 100%;
-
-  &--size-small {
-    max-width: $page-width-small;
-  }
-
-  &--size-medium {
-    max-width: $page-width-medium;
-  }
-
-  &--size-large {
-    max-width: $page-width-large;
-  }
-
-  &--spacing-large {
-    padding: 10em 0;
-    min-height: 200px;
-    display: flex;
-    align-items: center;
-  }
-
-  @include large() {
+  @include large {
     padding: 0;
 
     &--spacing-small {
@@ -35,6 +10,24 @@
 
     &--spacing-large {
       padding: 10em 0;
+    }
+  }
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0 10px;
+  position: relative;
+  width: 100%;
+
+  &--spacing-large {
+    align-items: center;
+    display: flex;
+    min-height: 200px;
+    padding: 10em 0;
+  }
+
+  @each $size, $width in $sizes-container {
+    &--size-#{$size} {
+      max-width: $width;
     }
   }
 }

@@ -15,7 +15,7 @@ const defaultProps = {
 };
 
 const Opinion = ({ side, owner }) => (
-  <div className={`opinion opinion--${side}`}>
+  <div className={`Opinion Opinion--${side}`}>
     <Link to={{ pathname: location.pathname, query: { opinion: owner } }}>
       <img src={`/static/icon-${owner}.png`} alt={owner} />
     </Link>

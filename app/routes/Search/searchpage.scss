@@ -1,6 +1,6 @@
-@import "../../components/shared/config.scss";
+@import '../../components/shared/config';
 
-//** LAYOUT
+// LAYOUT
 .sk-searchtools {
   display: flex;
   flex-direction: row;
@@ -12,21 +12,19 @@
 }
 
 .sk-drawer-action {
-  display: inline-block;
-
   @include large {
     display: none;
   }
+  display: inline-block;
 }
 
 .sk-results {
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-
   @include large {
     flex-direction: row;
   }
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
 .sk-main {
@@ -35,22 +33,22 @@
   }
 }
 
-//** TOOLS
+// TOOLS
 .sk-pagination-navigation {
   display: flex;
   justify-content: center;
 }
 
 .sk-toggle {
-  display: flex;
   border: 1px solid $border-color;
   border-radius: $border-radius-base;
   color: $blue;
+  display: flex;
 
   &-option {
-    padding: .5em 1em;
-    cursor: pointer;
     border-right: 1px solid $border-color;
+    cursor: pointer;
+    padding: .5em 1em;
 
     &:last-child {
       border: 0;
@@ -70,65 +68,66 @@
 
 //** PANELS
 .sk-panel {
-  width: 100%;
+  @include large {
+    border: 0;
+    margin-bottom: 1.5em;
+    padding: 0;
+  }
+  border-bottom: 1px solid $g3;
   box-sizing: border-box;
   padding: 1em;
-  border-bottom: 1px solid #ddd;
-
-  &__header {
-    color: $dark;
-    margin-bottom: 5px;
-    font-size: $font-size-h5;
-    font-weight: 600;
-    text-transform: uppercase;
-
-    &.is-collapsable  {
-      cursor: pointer;
-      user-select: none;
-      padding-left: 20px;
-      position: relative;
-
-      &:after {
-        content: "";
-        display: block;
-        position: absolute;
-        top: 50%;
-        margin-top: -3px;
-        left: 2px;
-        @include sk-arrow-down(5px);
-      }
-
-      &.is-collapsed:after {
-        @include sk-arrow-right(5px);
-        margin-top: -5px;
-        left: 3px;
-      }
-    }
-  }
+  width: 100%;
 
   &__content {
     &.is-collapsed  {
-      display:none;
+      display: none;
     }
   }
 
   &.is-disabled  {
-    display:none;
-  }
-
-  @include large {
-    padding: 0;
-    margin-bottom: 1.5em;
-    border: none;
+    display: none;
   }
 }
 
-//** ACTIONS
+.sk-panel__header {
+  color: $dark;
+  font-size: $font-size-h5;
+  font-weight: 600;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+
+  &.is-collapsable  {
+    cursor: pointer;
+    padding-left: 20px;
+    position: relative;
+    user-select: none;
+
+    &::after {
+      @include sk-arrow-down(5px);
+      content: '';
+      display: block;
+      left: 2px;
+      margin-top: -3px;
+      position: absolute;
+      top: 50%;
+    }
+
+    &.is-collapsed {
+      &::after {
+        @include sk-arrow-right(5px);
+        left: 3px;
+        margin-top: -5px;
+      }
+    }
+  }
+}
+
+// ACTIONS
 .sk-refinement-list__view-more-action {
-  font-size: $font-size-h6;
   color: $grey;
-  margin: 5px 0;
   cursor: pointer;
+  font-size: $font-size-h6;
+  margin: 5px 0;
   transition: .2s color;
 
   &:hover {
@@ -138,23 +137,23 @@
 
 //** CHECKBOX
 .sk-item-list-option {
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
-  cursor: pointer;
 
   &__checkbox {
-    display:none;
+    display: none;
   }
 
   &__count {
-    font-size: 11px;
     color: $grey;
+    font-size: 11px;
   }
 
   &__text {
-    position: relative;
-    padding-left: 20px;
     box-sizing: border-box;
+    padding-left: 20px;
+    position: relative;
     transition: .2s color;
 
     &:hover {
@@ -162,20 +161,24 @@
     }
 
     &::before {
-      transition: .2s all;
+      border: 3px solid $g3;
       content: ' ';
-      width: 8px;
-      height: 8px;
       display: block;
-      border: 3px solid #B5B5B5;
-      position: absolute;
+      height: 8px;
       left: 0;
-      top: 0.25em;
+      position: absolute;
+      top: .25em;
+      transition: .2s border-color, background-color;
+      width: 8px;
     }
   }
-}
 
-.sk-item-list__item.is-active .sk-item-list-option__text::before {
-  border-color: #737373;
-  background-color: #737373;
+  &__is-active {
+    .sk-item-list-option__text {
+      &::before {
+        background-color: $g2a;
+        border-color: $g2a;
+      }
+    }
+  }
 }

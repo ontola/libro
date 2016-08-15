@@ -4,7 +4,7 @@ import React, { PropTypes } from 'react';
 
 function DetailsBar({ children }) {
   return (
-    <div className="detailsBar">
+    <div className="DetailsBar">
       {children}
     </div>
   );

@@ -1,13 +1,10 @@
-@import "../shared/config.scss";
+@import '../shared/config';
 
 .Columns {
-  align-items: flex-start;
-  box-sizing: border-box;
-
-  @include large() {
+  @include large {
+    display: flex;
     margin-left: -1em;
     margin-right: -1em;
-    display: flex;
 
     &--flexGrow > .Column {
       flex-grow: 1;
@@ -15,13 +12,15 @@
       width: 100%; // this makes sure each column has equal width
     }
   }
+  align-items: flex-start;
+  box-sizing: border-box;
 }
 
 .Column {
   box-sizing: border-box;
 }
 
-@each $size, $margin in ('small': 0, 'medium': 1em, 'large': 2em) {
+@each $size, $margin in $sizes-margin {
   .Columns--gutter-#{$size} {
     margin: $margin inherit;
 

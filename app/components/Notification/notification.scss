@@ -1,18 +1,18 @@
-@import "../shared/config.scss";
+@import '../shared/config';
 
 .Notification {
-  position: fixed;
-  right: 1em;
-  bottom: 1em;
   background-color: $white;
-  padding: $padding-base;
   border: 1px solid $border-color;
   border-radius: $border-radius-base;
+  bottom: 1em;
+  padding: $padding-base;
+  position: fixed;
+  right: 1em;
   z-index: $zindex-1;
 
   &__preText {
-    font-weight: bold;
     font-size: 1.4em;
+    font-weight: bold;
   }
 
   &--error {
@@ -20,7 +20,7 @@
     color: $red;
   }
 
-  @include large() {
+  @include large {
     max-width: 50%;
   }
 }

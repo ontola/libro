@@ -1,19 +1,17 @@
-@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css); 
-@import "./reset.scss";
-@import "./config.scss";
+@import './reset';
+@import './config';
 
 body {
-  margin: 0;
-  padding: 3em 0;
-  background-color: $lightblue;
-  font-size: 14px;
-  line-height: $line-height-base;
-  font-family: $font-family;
-  color: $g3;
-
-  @include small-only() {
+  @include small-only {
     font-size: 16px;
   }
+  background-color: $lightblue;
+  color: $g3;
+  font-family: $font-family;
+  font-size: 14px;
+  line-height: $line-height-base;
+  margin: 0;
+  padding: 3em 0;
 }
 
 p {

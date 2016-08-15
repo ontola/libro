@@ -1,12 +1,12 @@
-@import "../shared/config.scss";
+@import '../shared/config';
 
 .Button {
+  border: 0;
+  display: inline-block;
   font-family: $font-family;
   font-size: $font-size-h5;
-  padding: $padding-base;
   margin: 0;
-  border: none;
-  display: inline-block;
+  padding: $padding-base;
   transition: .1s box-shadow, .1s background-color;
 
   &:hover {
@@ -19,33 +19,35 @@
     outline: 0;
   }
 
-  &:hover, &:focus {
-    box-shadow: inset 0 0 0 999px rgba(0, 0, 0, .15);
+  &:hover,
+  &:focus {
+    box-shadow: inset 0 0 0 999px $darken2;
   }
 
   &:active {
-    box-shadow: inset 0 0 0 999px rgba(0, 0, 0, .30);
-    transition: 0s box-shadow !important;
+    box-shadow: inset 0 0 0 999px $darken3;
+    transition: 0s box-shadow;
   }
 }
 
 .Button--default {
-  color: $white;
   background-color: $primary;
   border-radius: $border-radius-base;
+  color: $white;
 }
 
 .Button--subtle {
   background-color: $g1;
-  color: $dark;
   border-radius: $border-radius-base;
+  color: $dark;
 
-  &:hover, &:focus {
-    box-shadow: inset 0 0 0 999px rgba(0, 0, 0, .03);
+  &:hover,
+  &:focus {
+    box-shadow: inset 0 0 0 999px $darken0;
   }
 
   &:active {
-    box-shadow: inset 0 0 0 999px rgba(0, 0, 0, .08);
+    box-shadow: inset 0 0 0 999px $darken1;
   }
 }
 
@@ -64,57 +66,32 @@
     border-right: 0;
   }
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     color: $g4;
   }
 }
 
 .Button--variant {
-  &-pro, &-con, &-neutral {
-    &:hover, &:focus {
-      box-shadow: none !important;
-    }
+  &:hover,
+  &:focus {
+    box-shadow: none;
   }
+}
 
-  &-pro {
-    color: $pro;
+@each $variant, $color in $button-variants-colors {
+  .Button--variant-#{$variant} {
+    color: $color;
 
-    &:hover, &:focus {
-      color: $pro;
-      background-color: rgba($pro, .1);
+    &:hover,
+    &:focus {
+      background-color: opacify($color, .05);
+      color: $color;
     }
 
     &:active {
-      color: $pro;
-      background-color: rgba($pro, .3);
-    }
-  }
-
-  &-neutral {
-    color: $neutral;
-
-    &:hover, &:focus {
-      color: $neutral;
-      background-color: rgba($neutral, .1);
-    }
-
-    &:active {
-      color: $neutral;
-      background-color: rgba($neutral, .3);
-    }
-  }
-
-  &-con {
-    color: $con;
-
-    &:hover, &:focus {
-      color: $con;
-      background-color: rgba($con, .1);
-    }
-
-    &:active {
-      color: $con;
-      background-color: rgba($con, .3);
+      background-color: opacify($color, .1);
+      color: $color;
     }
   }
 }

@@ -23,13 +23,13 @@ const DetailType = ({ type }) => {
 
   switch (type) {
     case 'idea':
-      className = 'detailType--motion';
+      className = 'DetailType--motion';
       icon = 'lightbulb-o';
       text = 'Idee';
       title = 'Een idee is een concreet voorstel met voordelen en nadelen.';
       break;
     case 'motion':
-      className = 'detailType--motion';
+      className = 'DetailType--motion';
       icon = 'lightbulb-o';
       text = 'Motie';
       title = 'Een motie is een voorstel van de raad.';
@@ -40,7 +40,7 @@ const DetailType = ({ type }) => {
 
   return (
     <Detail
-      className={`detailType ${className}`}
+      className={`DetailType ${className}`}
       text={text}
       icon={icon}
       title={title}

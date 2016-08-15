@@ -19,9 +19,17 @@ npm run build
 ```
 
 ### Linting
+Install this base linter for atom [plugin](https://atom.io/packages/linter) for a realtime linting experience. 
 
+#### JS(X)
 ```
 npm run lint
+```
+
+#### SASS
+If you using Atom, please install [this plugin](https://atom.io/packages/linter-sass-lint).
+```
+npm run lint:style
 ```
 
 ### Testing
