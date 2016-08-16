@@ -15,11 +15,12 @@ const common = {
     modulesDirectories: ['./node_modules'],
     extensions: ['', '.js', '.jsx', '.ts'],
     alias: {
-      react: path.resolve('./node_modules/react'),
       components: path.resolve('app/components'),
       containers: path.resolve('app/containers'),
-      state: path.resolve('app/state'),
+      helpers: path.resolve('app/helpers'),
       models: path.resolve('app/models'),
+      react: path.resolve('./node_modules/react'),
+      state: path.resolve('app/state'),
     },
   },
 

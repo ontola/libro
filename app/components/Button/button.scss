@@ -21,11 +21,11 @@
 
   &:hover,
   &:focus {
-    box-shadow: inset 0 0 0 999px color('transparent', 'x-light');
+    box-shadow: inset 0 0 0 999px color('transparent', 'mid-dark');
   }
 
   &:active {
-    box-shadow: inset 0 0 0 999px color('transparent', 'light');
+    box-shadow: inset 0 0 0 999px color('transparent', 'dark');
     transition: 0s box-shadow;
   }
 }

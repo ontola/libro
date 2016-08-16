@@ -1,5 +1,5 @@
 // @flow
-import './NavbarWrapper.scss';
+import './Navbar.scss';
 import React, { Component, PropTypes } from 'react';
 import { Container, Cover } from 'components';
 import { SearchBox } from 'searchkit';
@@ -14,18 +14,19 @@ const propTypes = {
 const defaultProps = {
   forumColor: '#475668',
   // forumColor: '#a81d1d',
+  // forumColor: '#fff',
 };
 
-class NavbarWrapper extends Component {
+class Navbar extends Component {
 
   // This function changes the text to a dark variant if the forum color is too light.
-  calculatedClassName(forumColor) {
+  calculatedClassName(forumColor, base) {
     const borderValue = 0.5;
     const smartColor = tinycolor(forumColor);
     if (smartColor.getLuminance() < borderValue) {
-      return 'navbar--white-text';
+      return `${base}--white-text`;
     }
-    return 'navbar--dark-text';
+    return `${base}--dark-text`;
   }
 
   queryBuilder(queryString) {
@@ -66,26 +67,30 @@ class NavbarWrapper extends Component {
       backgroundColor: forumColor,
     };
 
+    const classNames = [
+      'NavbarWrapper',
+      this.calculatedClassName(forumColor, 'NavbarWrapper'),
+    ].join(' ');
+
     return (
       <nav
-        id="navbar"
-        className={`navbar ${this.calculatedClassName(forumColor)}`}
+        className={classNames}
         role="navigation"
         style={style}
       >
         <Cover backgroundColor={forumColor} fixed>
           <Container size="large">
-            <div className="nav-container">
-              <ul className="navbar-links">
-                {this.wrapInListItems(contentLeft, 'navbar-links-right')}
+            <div className="Navbar__container">
+              <ul className="Navbar__links">
+                {this.wrapInListItems(contentLeft, 'Navbar__links--right')}
               </ul>
               <SearchBox
                 queryBuilder={this.queryBuilder}
                 queryFields={['onderwerp', 'text', 'text.shingles']}
                 placeholder="Zoek op onderwerp, persoon, organisatie..."
               />
-              <ul className="navbar-links navbar-links-right">
-                {this.wrapInListItems(contentRight, 'navbar-links-left')}
+              <ul className="Navbar__links Navbar__links--right">
+                {this.wrapInListItems(contentRight, 'Navbar__links--left')}
               </ul>
             </div>
           </Container>
@@ -95,7 +100,7 @@ class NavbarWrapper extends Component {
   }
 }
 
-NavbarWrapper.propTypes = propTypes;
-NavbarWrapper.defaultProps = defaultProps;
+Navbar.propTypes = propTypes;
+Navbar.defaultProps = defaultProps;
 
-export default NavbarWrapper;
+export default Navbar;

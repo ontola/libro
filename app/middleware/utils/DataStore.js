@@ -10,16 +10,21 @@ export default class DataStore {
     });
   }
 
+  toCamel(string) {
+    return string.replace(/(\-[a-z])/g, substring =>
+      substring.toUpperCase().replace('-', '')
+    );
+  }
+
   formatEntity({ id, type, attributes, relationships }) {
     const entity = {};
+    // const normalizedAttributes = {};
 
-    // Assign all attributes to the entity
+    Object.assign(entity, { id });
+
+    // Normalize all keys
+    Object.keys(attributes).forEach(key => this.toCamel(key));
     Object.assign(entity, attributes);
-
-    // Add id to entity
-    Object.assign(entity, {
-      id,
-    });
 
     // Check if relationships exist, if so add there ids in an array to the corresponding key
     if (relationships) {

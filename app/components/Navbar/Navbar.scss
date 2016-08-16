@@ -1,0 +1,147 @@
+@import '../shared/config';
+
+.Navbar__item {
+  color: color('white');
+  display: block;
+  font-size: 1em;
+  height: 3em;
+  padding: 0 .7em;
+  transition: .2s background-color;
+
+  // TODO: Implement dark-text again properly
+  .Navbar--dark-text {
+    color: color('grey', 'dark');
+  }
+
+  &-text {
+    display: inline-block;
+    line-height: 3em;
+    margin-left: .4em;
+    vertical-align: top;
+  }
+
+  .fa {
+    float: none;
+    line-height: 3.2em;
+    padding: 0;
+  }
+
+  &--logo {
+    box-sizing: border-box;
+    display: flex;
+    height: 3em;
+    padding: .6em;
+    width: 3.8em;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &:hover {
+    background-color: color('transparent', 'light');
+    text-decoration: none;
+  }
+
+  &:active {
+    transition: none;
+  }
+
+  @include small-only {
+    &-text {
+      display: none;
+    }
+
+    .fa {
+      display: inline-block;
+    }
+  }
+}
+
+.Navbar__links {
+  float: left;
+
+  > li {
+    float: left;
+  }
+
+  > div {
+    display: inline-block;
+    float: left;
+  }
+
+  &--right {
+    float: right;
+    margin-left: 0;
+  }
+}
+
+.Navbar__container {
+  display: flex;
+}
+
+.Navbar__search {
+  width: 19em;
+
+  &-text {
+    margin: 0;
+    resize: none;
+    width: 100%;
+  }
+
+  &-button {
+    display: inline;
+    width: 5em;
+  }
+}
+
+
+// SEARCHBOX
+.sk-search-box {
+  background-color: color('transparent', 'light');
+  flex: auto;
+  margin: .4em;
+  transition: .2s background-color;
+
+  &:hover {
+    background-color: color('transparent', 'mid-light');
+  }
+
+  .sk-search-box__text {
+    background: none;
+    border: 0;
+    box-sizing: border-box;
+    color: color('white');
+    flex: auto;
+    font-size: 1em;
+    padding: .5em;
+    transition: .2s color;
+    width: 100%;
+
+    &:focus {
+      outline: 0;
+    }
+
+    &::placeholder {
+      color: color('transparent');
+      transition: .2s color;
+    }
+  }
+
+  &.is-focused {
+    background-color: color('white');
+
+    .sk-search-box__text {
+      color: color('grey', 'mid-dark');
+
+      &::placeholder {
+        color: color('grey', 'mid-light');
+      }
+    }
+  }
+
+  &__action {
+    display: none;
+    visibility: hidden;
+  }
+}

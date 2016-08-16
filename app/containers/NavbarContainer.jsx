@@ -1,17 +1,17 @@
 // @flow
 import React from 'react';
-import { NavbarWrapper } from 'components';
+import { Navbar } from 'components';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
 
 function navbarLeft() {
   const items = [
-    <Link className="navbar-item navbar-logo" to="/">
+    <Link className="Navbar__item Navbar__item--logo" to="/">
       <img src="/static/logo.svg" alt="Logo Argu" />
     </Link>,
-    <Link className="navbar-item" to="/search">
+    <Link className="Navbar__item" to="/search">
       <FontAwesome name="search" />
-      <span className="icon-left">Search</span>
+      <span className="Navbar__item-text">Search</span>
     </Link>,
   ];
 
@@ -20,13 +20,13 @@ function navbarLeft() {
 
 function navbarRight() {
   const items = [
-    <Link className="navbar-item" to="/motions">
+    <Link className="Navbar__item" to="/motions">
       <FontAwesome name="lightbulb-o" />
-      <span className="icon-left">Motions</span>
+      <span className="Navbar__item-text">Motions</span>
     </Link>,
-    <Link className="navbar-item" to="/politicians">
+    <Link className="Navbar__item" to="/politicians">
       <FontAwesome name="group" />
-      <span className="icon-left">Politicians</span>
+      <span className="Navbar__item-text">Politicians</span>
     </Link>,
   ];
 
@@ -35,7 +35,7 @@ function navbarRight() {
 
 function NavbarContainer() {
   return (
-    <NavbarWrapper contentLeft={navbarLeft()} contentRight={navbarRight()} />
+    <Navbar contentLeft={navbarLeft()} contentRight={navbarRight()} />
   );
 }
 

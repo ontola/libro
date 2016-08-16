@@ -26,7 +26,7 @@ const renderItem = (user, url) => (
 );
 
 const MotionsListItem = ({ motion }) => {
-  const { id, title, votes, creator } = motion;
+  const { id, title, votes, creator, createdAt } = motion;
   return (
     <Box>
       <div className="MotionsListItem">
@@ -38,7 +38,7 @@ const MotionsListItem = ({ motion }) => {
         </Heading>
         <DetailsBar>
           {creator && <PersonContainer user={creator} renderItem={renderItem} />}
-          <Detail text="3 minuten geleden" icon="clock-o" />
+          <Detail text={createdAt} icon="clock-o" />
         </DetailsBar>
         <VoteData data={votes} />
       </div>
