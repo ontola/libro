@@ -4,7 +4,9 @@ const config = require('./common.config');
 
 config.output.publicPath = '/dist/';
 
-config.entry = './app/index.js';
+config.entry = [
+  './app/index.js',
+];
 
 config.module.loaders.push(
   {
@@ -23,7 +25,6 @@ config.plugins.push(
     },
   }),
   new webpack.ProvidePlugin({
-    Promise: 'exports?global.Promise!es6-promise',
     fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
   })
 );

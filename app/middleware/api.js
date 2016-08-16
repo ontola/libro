@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch';
+import { Promise } from 'es6-promise';
 import { batchActions } from 'redux-batched-actions';
 
 import DataStore from './utils/DataStore';

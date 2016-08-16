@@ -1,7 +1,8 @@
+/* eslint no-magic-numbers: 0 */
 const PORT_DEVELOPMENT = process.env.PORT_DEVELOPMENT || 3001;
 const PORT_PRODUCTION = process.env.PORT_PRODUCTION || 8080;
 const PORT_API = process.env.PORT_API || 3030;
-const PORT = process.env.PORT || process.env.NODE_ENV === 'development' ? PORT_DEVELOPMENT : PORT_PRODUCTION;
+const PORT = process.env.PORT || (__DEVELOPMENT__ ? PORT_DEVELOPMENT : PORT_PRODUCTION);
 
 const ARGU_API_URL = process.env.ARGU_API_URL || `http://localhost:${PORT_API}/`;
 const ARGU_API_PROXIED = `http://localhost:${PORT}/`;

@@ -12,7 +12,9 @@
   },
   "globals": {
     "__DEV__": true,
-    "__SERVER__": true
+    "__SERVER__": true,
+    "__DEVELOPMENT__": true,
+    "__PRODUCTION__": true,
   },
   "parserOptions": {
     "ecmaVersion": 6,
