@@ -21,6 +21,7 @@
     "test:nightwatch": "./node_modules/.bin/nightwatch",
     "styleguide-server": "styleguidist server",
     "styleguide-build": "styleguidist build",
+    "doc:style": "sassdoc ./app -d ./docs/sass",
     "corsproxy": "./node_modules/.bin/corsproxy"
   },
   "dependencies": {
@@ -93,6 +94,7 @@
     "redux-actions": "^0.10.0",
     "sass-lint": "^1.8.2",
     "sass-loader": "^3.2.0",
+    "sassdoc": "^2.1.20",
     "style-loader": "^0.13.1",
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.6.1",

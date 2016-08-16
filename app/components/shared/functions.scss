@@ -1,11 +1,39 @@
+/// Grabs a color from the $colors map and returns the 'base' tone, unless tone is explicitly declared.
+/// @param {String} $color Value used to match a nested map in $colors
+/// @param {String} $tone [base] Specifies the tone of the color
+/// @example
+///   color('blue')
+///   color('grey', 'x-light')
 @function color($color, $tone: 'base') {
-  @return map-get(map-get($colors, $color), $tone);
+  @if map-has-key($colors, $color) {
+    @if map-has-key(map-get($colors, $color), $tone) {
+      @return map-get(map-get($colors, $color), $tone);
+    }
+    @warn 'Unknown `#{$tone}` in `#{$color}`';
+    @return null;
+  }
+  @warn 'Unknown `#{$color}` in $colors.';
+  @return null;
 }
 
+/// Abstraction layer for font sizing
+/// @param {String} $size [medium] Font-size
+/// @example
+///   font-size('xx-large')
 @function font-size($size: 'medium') {
-  @return map-get($font-sizes, $size);
+  @if map-has-key($font-sizes, $size) {
+    @return map-get($font-sizes, $size);
+  }
+
+  @warn 'Unknown `#{$size}` in $font-sizes.';
+  @return null;
 }
 
+/// Abstraction layer for z-indices
+/// @param {String} $key The name of the element to find the z-index for
+/// @returns {Int} Z-index for key
+/// @example
+///   z(progressbar)
 @function z($key) {
   @if map-has-key($z-layers, $key) {
     @return map-get($z-layers, $key);
