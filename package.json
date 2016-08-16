@@ -103,6 +103,7 @@
     "styleguide-server": "styleguidist server",
     "test": "NODE_PATH=./app mocha ./tests/testhelper.js ./app/**/spec.js ./app/**/*.spec.js --compilers js:babel-core/register --recursive",
     "test:nightwatch": "./node_modules/.bin/nightwatch",
+    "test:nightwatch:prod": "./node_modules/.bin/nightwatch --env ci -t tests/index.js",
     "test:watch": "npm run test -- --watch"
   }
 }
