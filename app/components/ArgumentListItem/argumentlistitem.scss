@@ -2,15 +2,15 @@
 
 .ArgumentListItem {
   margin-bottom: .5em;
-}
 
-.ArgumentListItem__icon {
-  line-height: 1.5em;
-  margin-right: .5em;
-}
+  &__icon {
+    line-height: 1.5em;
+    margin-right: .5em;
+  }
 
-.ArgumentListItem__wrapper {
-  display: flex;
+  &__wrapper {
+    display: flex;
+  }
 }
 
 .ArgumentListItem--pro {

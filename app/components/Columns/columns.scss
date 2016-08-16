@@ -1,6 +1,9 @@
 @import '../shared/config';
 
 .Columns {
+  align-items: flex-start;
+  box-sizing: border-box;
+
   @include large {
     display: flex;
     margin-left: -1em;
@@ -9,11 +12,9 @@
     &--flexGrow > .Column {
       flex-grow: 1;
       margin: 0 1em;
-      width: 100%; // this makes sure each column has equal width
+      width: 100%; // makes sure each column has equal width
     }
   }
-  align-items: flex-start;
-  box-sizing: border-box;
 }
 
 .Column {
@@ -22,7 +23,7 @@
 
 @each $size, $margin in $sizes-margin {
   .Columns--gutter-#{$size} {
-    margin: $margin inherit;
+    margin: $margin -1em;
 
     & > .Column {
       margin-left: $margin;

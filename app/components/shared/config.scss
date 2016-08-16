@@ -1,5 +1,5 @@
-@import './mixins';
-@import './functions';
+@import 'mixins';
+@import 'functions';
 
 // COLORS
 $color-base-grey: rgb(128, 128, 128);
@@ -7,12 +7,13 @@ $color-base-brown: rgb(134, 61, 61);
 $color-base-green: rgb(84, 127, 75);
 $color-base-blue: rgb(71, 86, 104);
 
-// TODO: Update sass-lint to 1.9.0 when it is released to fix the following linting warnings
+// TODO: Update sass-lint to 1.9.0 when it is released to fix the following linting warnings. For more see: https://github.com/sasstools/sass-lint/issues/783
 $colors: (
   'black': (
     'base': rgb(0, 0, 0),
   ),
   'blue': (
+    'dark': darken($color-base-blue, 20%),
     'base': $color-base-blue,
     'mid-light': lighten($color-base-blue, 5%),
     'light': lighten($color-base-blue, 30%),
@@ -43,10 +44,13 @@ $colors: (
     'light': rgb(255, 192, 203),
   ),
   'transparent': (
-    'dark': rgba(0, 0, 0, 0.3),
-    'base': rgba(0, 0, 0, 0.2),
-    'light': rgba(0, 0, 0, 0.1),
-    'x-light': rgba(0, 0, 0, 0.05),
+    'x-dark': rgba(0, 0, 0, .3),
+    'dark': rgba(0, 0, 0, .06),
+    'mid-dark': rgba(0, 0, 0, .03),
+    'base': rgba(255, 255, 255, .6),
+    'mid-light': rgba(255, 255, 255, .3),
+    'light': rgba(255, 255, 255, .15),
+    'x-light': rgba(255, 255, 255, .05),
   ),
   'white': (
     'base': rgb(255, 255, 255),
