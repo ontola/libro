@@ -8,11 +8,6 @@
   padding: 0 .7em;
   transition: .2s background-color;
 
-  // TODO: Implement dark-text again properly
-  .Navbar--dark-text {
-    color: color('grey', 'dark');
-  }
-
   &-text {
     display: inline-block;
     line-height: 3em;
@@ -95,6 +90,42 @@
   }
 }
 
+// DARK TEXT
+.Navbar--dark-text {
+  .Navbar__item {
+    color: color('grey', 'dark');
+  }
+
+  .sk-search-box {
+    background-color: color('transparent', 'dark');
+    color: color('grey', 'dark');
+
+    &:hover {
+      background-color: color('transparent', 'x-dark');
+    }
+
+    .sk-search-box__text {
+      color: color('grey', 'dark');
+
+      &::placeholder {
+        color: color('grey', 'dark');
+      }
+    }
+  }
+
+
+  &.is-focused {
+    background-color: color('transparent', 'dark');
+
+    .sk-search-box__text {
+      color: color('black');
+
+      &::placeholder {
+        color: color('grey', 'x-dark');
+      }
+    }
+  }
+}
 
 // SEARCHBOX
 .sk-search-box {

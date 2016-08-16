@@ -7,7 +7,7 @@ import { Link } from 'react-router';
 function navbarLeft() {
   const items = [
     <Link className="Navbar__item Navbar__item--logo" to="/">
-      <img src="/static/logo.svg" alt="Logo Argu" />
+      <img src="/static/logo.svg" alt="Argu" />
     </Link>,
     <Link className="Navbar__item" to="/search">
       <FontAwesome name="search" />

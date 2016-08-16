@@ -2,8 +2,8 @@
 import './Navbar.scss';
 import React, { Component, PropTypes } from 'react';
 import { Container, Cover } from 'components';
+import { checkLuminance } from 'helpers/color';
 import { SearchBox } from 'searchkit';
-import tinycolor from 'tinycolor2';
 
 const propTypes = {
   contentLeft: PropTypes.arrayOf(PropTypes.node),
@@ -12,23 +12,11 @@ const propTypes = {
 };
 
 const defaultProps = {
-  forumColor: '#475668',
-  // forumColor: '#a81d1d',
-  // forumColor: '#fff',
+  forumColor: 'rgb(71, 86, 104)',
+  // forumColor: 'rgb(240, 248, 255)',
 };
 
 class Navbar extends Component {
-
-  // This function changes the text to a dark variant if the forum color is too light.
-  calculatedClassName(forumColor, base) {
-    const borderValue = 0.5;
-    const smartColor = tinycolor(forumColor);
-    if (smartColor.getLuminance() < borderValue) {
-      return `${base}--white-text`;
-    }
-    return `${base}--dark-text`;
-  }
-
   queryBuilder(queryString) {
     return ({
       bool: {
@@ -69,7 +57,7 @@ class Navbar extends Component {
 
     const classNames = [
       'NavbarWrapper',
-      this.calculatedClassName(forumColor, 'NavbarWrapper'),
+      checkLuminance(forumColor) ? 'Navbar--white-text' : 'Navbar--dark-text',
     ].join(' ');
 
     return (
