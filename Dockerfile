@@ -1,19 +1,19 @@
-FROM node:4.4
+FROM alpine:edge
+
+RUN apk add --no-cache nodejs
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-COPY package.json /usr/src/app/
-RUN npm i -q
-COPY . /usr/src/app
+COPY package.json /usr/src/app/package.json
+RUN npm i -q --production
+COPY dist /usr/src/app/dist
+COPY static /usr/src/app/static
 
 ENV NODE_ENV 'production'
 ENV ELASTICSEARCH_URL ''
 ENV ELASTICSEARCH_INDEX ''
 ENV ARGU_API_URL 'http://localhost:3030/'
 
-RUN npm run build
-RUN npm prune -q --prod
-
 EXPOSE 8080
-CMD npm run start:prod
+ENTRYPOINT ["node", "./dist/server.js"]

@@ -26,6 +26,13 @@ const config = {
         test: /(\.jsx|\.js)+$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
+        query: {
+          presets: ['es2015', 'react'],
+          compact: true,
+          comments: false,
+          minified: true,
+          babelrc: false,
+        },
       },
       {
         test: /\.json$/,

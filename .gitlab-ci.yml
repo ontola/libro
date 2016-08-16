@@ -13,7 +13,10 @@ test:
 
 bake:
   stage: bake
+  before_script:
+    - npm i -q
   script:
+    - npm run build
     - docker build --pull=true -t registry.gitlab.com/argu/aod_demo:${CI_BUILD_REF_NAME} .
 
 tag:
