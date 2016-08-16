@@ -5,8 +5,8 @@ Deze demo bevat een interface voor open data van de gemeenteraad.
 
 ### Usage
 
-* Install rimraf globally `npm i -g rimraf`
-* To start dev-server run `npm start`
+* `npm i` to install dependencies
+* `npm start` to start dev-server
 * To start api, go to the [repo](https://bitbucket.org/arguweb/od_api_generator/)
 * To use search, run `npm run corsproxy`
 
@@ -19,7 +19,7 @@ npm run build
 ```
 
 ### Linting
-Install this base linter for atom [plugin](https://atom.io/packages/linter) for a realtime linting experience. 
+Install this base linter for atom [plugin](https://atom.io/packages/linter) for a realtime linting experience.
 
 #### JS(X)
 ```
@@ -52,7 +52,12 @@ npm run styleguide-server
 - Run `docker run [id]`
 - Get docker machine ip by running `docker-machine ip default`
 
+### Security
+Uses [NSP](https://github.com/nodesecurity/nsp) and [Retire.js](https://github.com/RetireJS/retire.js)
+```
+npm run secure
+```
+
 ### Links
 - Please use the [Airbnb React Styleguide](https://github.com/airbnb/javascript/tree/master/react)
 - Uses the [Redux DevTools Chrome Extension](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd)
-- Uses [Redux Api Middleware](https://github.com/agraboso/redux-api-middleware)

@@ -1,29 +1,8 @@
 {
   "name": "argu-open-data",
-  "version": "0.1.0",
   "description": "Een interface voor motiedata uit de gemeenteraad",
-  "repository": {
-    "type": "git",
-    "url": "https://tom_dalenberg@bitbucket.org/arguweb/aod_demo.git"
-  },
+  "version": "0.1.0",
   "author": "Tom Dalenberg <tomdalenberg@argu.co> & Joep Meindertsma <joep@argu.co> (https://argu.co)",
-  "license": "All rights reserved. Copyright Argu B.V.",
-  "private": true,
-  "scripts": {
-    "start": "rimraf ./dist && NODE_ENV=development ELASTICSEARCH_URL=http://localhost:1337/aod-search.argu.co/aod_search node ./bin/server.js",
-    "start:prod": "ARGU_API_URL=http://localhost:3030 NODE_ENV=production node ./bin/server.js",
-    "build": "rimraf ./dist && NODE_ENV=production webpack --production --config ./webpack/static.config",
-    "build:verbose": "rimraf ./dist && NODE_ENV=production webpack --production --progress --verbose --display-error-details --config ./webpack/static.config",
-    "lint": "./node_modules/.bin/eslint --ext .jsx,.js .",
-    "lint:style": "sass-lint ./app/**/*.scss  -v -q",
-    "test": "NODE_PATH=./app mocha ./tests/testhelper.js ./app/**/spec.js ./app/**/*.spec.js --compilers js:babel-core/register --recursive",
-    "test:watch": "npm run test -- --watch",
-    "test:nightwatch": "./node_modules/.bin/nightwatch",
-    "styleguide-server": "styleguidist server",
-    "styleguide-build": "styleguidist build",
-    "doc:style": "sassdoc ./app -d ./docs/sass",
-    "corsproxy": "./node_modules/.bin/corsproxy"
-  },
   "dependencies": {
     "exports-loader": "^0.6.3",
     "express": "^4.13.4",
@@ -85,6 +64,7 @@
     "morgan": "^1.7.0",
     "nightwatch": "^0.9.5",
     "node-sass": "^3.8.0",
+    "nsp": "^2.6.1",
     "postcss-loader": "^0.9.1",
     "react-addons-perf": "^15.3.0",
     "react-addons-test-utils": "^15.1.0",
@@ -92,6 +72,7 @@
     "react-hot-loader": "^3.0.0-beta.0",
     "react-styleguidist": "^3.0.2",
     "redux-actions": "^0.10.0",
+    "retire": "^1.1.5",
     "sass-lint": "^1.8.2",
     "sass-loader": "^3.2.0",
     "sassdoc": "^2.1.20",
@@ -99,5 +80,27 @@
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.12.2"
+  },
+  "license": "All rights reserved. Copyright Argu B.V.",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://tom_dalenberg@bitbucket.org/arguweb/aod_demo.git"
+  },
+  "scripts": {
+    "build": "rimraf ./dist && NODE_ENV=production webpack --production --config ./webpack/static.config",
+    "build:verbose": "rimraf ./dist && NODE_ENV=production webpack --production --progress --verbose --display-error-details --config ./webpack/static.config",
+    "corsproxy": "./node_modules/.bin/corsproxy",
+    "doc:style": "sassdoc ./app -d ./docs/sass",
+    "lint": "./node_modules/.bin/eslint --ext .jsx,.js .",
+    "lint:style": "sass-lint ./app/**/*.scss  -v -q",
+    "secure": "nsp check && retire",
+    "start": "rimraf ./dist && NODE_ENV=development ELASTICSEARCH_URL=http://localhost:1337/aod-search.argu.co/aod_search node ./bin/server.js",
+    "start:prod": "ARGU_API_URL=http://localhost:3030 NODE_ENV=production node ./bin/server.js",
+    "styleguide-build": "styleguidist build",
+    "styleguide-server": "styleguidist server",
+    "test": "NODE_PATH=./app mocha ./tests/testhelper.js ./app/**/spec.js ./app/**/*.spec.js --compilers js:babel-core/register --recursive",
+    "test:nightwatch": "./node_modules/.bin/nightwatch",
+    "test:watch": "npm run test -- --watch"
   }
 }
