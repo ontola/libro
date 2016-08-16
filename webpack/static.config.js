@@ -19,6 +19,13 @@ config.plugins.push(
   new ExtractTextPlugin('bundle.css'),
   new webpack.optimize.DedupePlugin(),
   new webpack.optimize.OccurrenceOrderPlugin(),
+  new webpack.DefinePlugin({
+    'process.env.NODE_ENV': JSON.stringify('production'),
+    'process.env.ARGU_API_EXT_BASE': JSON.stringify(
+      process.env.ARGU_API_EXT_BASE ||
+      'https://aod-search.argu.co/api/'
+    ),
+  }),
   new webpack.optimize.UglifyJsPlugin({
     compress: {
       warnings: false,

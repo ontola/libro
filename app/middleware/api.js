@@ -3,12 +3,12 @@ import { Promise } from 'es6-promise';
 import { batchActions } from 'redux-batched-actions';
 
 import DataStore from './utils/DataStore';
-import { ARGU_API_PROXIED, ARGU_API_BASE } from '../config';
+import { ARGU_API_URL_EXT } from '../config';
 
 let dataStore;
 
 const callApi = (endpoint) => {
-  const fullUrl = ARGU_API_PROXIED + ARGU_API_BASE + endpoint;
+  const fullUrl = ARGU_API_URL_EXT + endpoint;
 
   return fetch(fullUrl)
     .then(response =>

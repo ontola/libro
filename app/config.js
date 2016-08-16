@@ -4,9 +4,11 @@ const PORT_PRODUCTION = process.env.PORT_PRODUCTION || 8080;
 const PORT_API = process.env.PORT_API || 3030;
 const PORT = process.env.PORT || (__DEVELOPMENT__ ? PORT_DEVELOPMENT : PORT_PRODUCTION);
 
+// Used internally in the router as a reverse proxy
 const ARGU_API_URL = process.env.ARGU_API_URL || `http://localhost:${PORT_API}/`;
-const ARGU_API_PROXIED = `http://localhost:${PORT}/`;
-const ARGU_API_BASE = 'api/';
+const ARGU_API_PROXIED = __PRODUCTION__ ? undefined : `http://localhost:${PORT}/`;
+// Used externally as the endpoint for API calls by the browser app
+const ARGU_API_URL_EXT = process.env.ARGU_API_EXT_BASE || `${ARGU_API_PROXIED || ''}http://localhost:${PORT_API}/api/`;
 
 const ELASTICSEARCH_URL = process.env.ELASTICSEARCH_URL || 'https://aod-search.argu.co/aod_search';
 const ELASTICSEARCH_INDEX = process.env.ELASTICSEARCH_INDEX || 'aod';
@@ -16,8 +18,7 @@ const ELASTICSEARCH_DOCUMENT_BASE =
 export {
   PORT,
   ARGU_API_URL,
-  ARGU_API_BASE,
-  ARGU_API_PROXIED,
+  ARGU_API_URL_EXT,
   ELASTICSEARCH_URL,
   ELASTICSEARCH_INDEX,
   ELASTICSEARCH_DOCUMENT_BASE,
