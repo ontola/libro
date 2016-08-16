@@ -10,6 +10,14 @@ test:
   script:
     - npm run lint
     - npm run test
+    - npm run build
+  cache:
+    key: ${CI_BUILD_REF_NAME}
+    paths:
+      - node_modules/
+  artifacts:
+    paths:
+    - dist/
 
 bake:
   stage: bake
@@ -18,10 +26,13 @@ bake:
   after_script:
     - docker stop ${CI_BUILD_REF}
   script:
-    - npm run build
     - docker build --pull=true -t registry.gitlab.com/argu/aod_demo:${CI_BUILD_REF_NAME} .
     - docker run --name ${CI_BUILD_REF} -d registry.gitlab.com/argu/aod_demo:${CI_BUILD_REF_NAME}
     - npm run test:nightwatch:prod
+  cache:
+    key: ${CI_BUILD_REF_NAME}
+    paths:
+      - node_modules/
 
 tag:
   stage: release
