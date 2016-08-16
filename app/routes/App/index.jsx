@@ -19,15 +19,16 @@ const defaultProps = {
 };
 
 const renderErrorMessage = (error, errorMessage) => {
-  if (error) {
-    return (
-      <Notification
-        type="error"
-        children={errorMessage}
-      />
-    );
+  if (!error) {
+    return false;
   }
-  return false;
+
+  return (
+    <Notification
+      type="error"
+      children={errorMessage}
+    />
+  );
 };
 
 const App = ({

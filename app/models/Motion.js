@@ -16,11 +16,11 @@ const attributes = {
   loading: false,
   title: '',
   text: '',
-  created_at: '',
+  createdAt: '',
   creator: null,
   classification: 'Motie',
   arguments: [],
-  vote_event: [],
+  voteEvent: [],
 };
 
 export default apiModelGenerator(attributes, apiDesc);

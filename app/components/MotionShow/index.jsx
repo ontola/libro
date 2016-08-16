@@ -54,9 +54,9 @@ const MotionShow = ({
             renderItem={renderItem}
           />
         }
-        {data.created_at &&
+        {data.createdAt &&
           <Detail
-            text={data.created_at}
+            text={data.createdAt}
             icon="clock-o"
           />
         }
