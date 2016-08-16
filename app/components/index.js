@@ -19,7 +19,7 @@ export { default as LinkList } from './LinkList';
 export { default as List } from './List';
 export { default as MotionShow } from './MotionShow';
 export { default as MotionsListItem } from './MotionsListItem';
-export { default as NavbarWrapper } from './NavbarWrapper';
+export { default as Navbar } from './Navbar';
 export { default as Notification } from './Notification';
 export { default as Opinion } from './Opinion';
 export { default as Opinions } from './Opinions';
