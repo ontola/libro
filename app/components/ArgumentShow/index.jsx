@@ -10,9 +10,11 @@ import {
 } from 'components';
 
 import PersonContainer from 'containers/PersonContainer';
+import { formatDate } from 'helpers/date';
 
 const propTypes = {
   content: PropTypes.string,
+  createdAt: PropTypes.string,
   creator: PropTypes.string,
   side: PropTypes.oneOf([
     'pro',
@@ -37,6 +39,7 @@ const renderItem = (user, url) => (
 const ArgumentShow = ({
   content,
   creator,
+  createdAt,
   side,
   title,
 }) => (
@@ -44,7 +47,7 @@ const ArgumentShow = ({
     <Heading size="3" variant={side}>{title}</Heading>
     <DetailsBar>
       {creator && <PersonContainer user={creator} renderItem={renderItem} />}
-      <Detail text="3 minuten geleden" icon="clock-o" />
+      {createdAt && <Detail text={formatDate(createdAt)} icon="clock-o" />}
     </DetailsBar>
     <div>{content}</div>
 

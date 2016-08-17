@@ -14,7 +14,11 @@ import {
 import PersonContainer from 'containers/PersonContainer';
 
 const propTypes = {
-  motion: PropTypes.object.isRequired,
+  createdAt: PropTypes.string.isRequired,
+  creator: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  votes: PropTypes.string.isRequired,
 };
 
 const renderItem = (user, url) => (
@@ -25,27 +29,30 @@ const renderItem = (user, url) => (
   />
 );
 
-const MotionsListItem = ({ motion }) => {
-  const { id, title, votes, creator, createdAt } = motion;
-  return (
-    <Box>
-      <div className="MotionsListItem">
-        <Heading size="3">
-          <Link
-            to={`/motions/${id}`}
-            children={title}
-          />
-        </Heading>
-        <DetailsBar>
-          {creator && <PersonContainer user={creator} renderItem={renderItem} />}
-          <Detail text={createdAt} icon="clock-o" />
-        </DetailsBar>
-        <VoteData data={votes} />
-      </div>
-      <VoteButtons id={id} />
-    </Box>
-  );
-};
+const MotionsListItem = ({
+  createdAt,
+  creator,
+  id,
+  title,
+  votes,
+}) => (
+  <Box>
+    <div className="MotionsListItem">
+      <Heading size="3">
+        <Link
+          to={`/motions/${id}`}
+          children={title}
+        />
+      </Heading>
+      <DetailsBar>
+        {creator && <PersonContainer user={creator} renderItem={renderItem} />}
+        <Detail text={createdAt} icon="clock-o" />
+      </DetailsBar>
+      <VoteData data={votes} />
+    </div>
+    <VoteButtons id={id} />
+  </Box>
+);
 
 MotionsListItem.propTypes = propTypes;
 

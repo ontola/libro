@@ -6,6 +6,7 @@ import { List, MotionsListItem } from 'components';
 import MotionContainer from 'containers/MotionContainer';
 import Motion from 'models/Motion';
 import { getMotions } from 'state/motions/selectors';
+import { formatDate } from 'helpers/date';
 
 const propTypes = {
   motions: PropTypes.object,
@@ -19,7 +20,11 @@ const defaultProps = {
 const renderMotion = (data) => (
   <MotionsListItem
     key={data.id}
-    motion={data}
+    createdAt={formatDate(data.createdAt)}
+    creator={data.creator}
+    id={data.id}
+    title={data.title}
+    votes={data.votes}
   />
 );
 

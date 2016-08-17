@@ -16,6 +16,7 @@ import {
 
 const propTypes = {
   data: PropTypes.instanceOf(Motion),
+  date: PropTypes.string,
   onVote: PropTypes.func,
   loading: PropTypes.bool,
   next: PropTypes.func,
@@ -38,6 +39,7 @@ const renderItem = (user, url) => (
 const MotionShow = ({
   activeVoteMatch,
   data,
+  date,
   onVote,
   next,
   showArguments,
@@ -54,9 +56,9 @@ const MotionShow = ({
             renderItem={renderItem}
           />
         }
-        {data.createdAt &&
+        {date &&
           <Detail
-            text={data.createdAt}
+            text={date}
             icon="clock-o"
           />
         }

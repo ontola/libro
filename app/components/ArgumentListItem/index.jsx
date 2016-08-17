@@ -42,7 +42,11 @@ const hoverBoxHiddenChildren = (content) => (
   <span>{content}</span>
 );
 
-const ArgumentListItem = ({ side, title, content }) => (
+const ArgumentListItem = ({
+  side,
+  title,
+  content,
+}) => (
   <div className={`ArgumentListItem ArgumentListItem--${side}`}>
     <HoverBox
       children={hoverBoxChildren(side, title)}

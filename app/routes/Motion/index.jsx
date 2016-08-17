@@ -34,6 +34,7 @@ const renderArgument = (data) => (
     content={data.content}
     creator={data.creator}
     side={data.side}
+    createdAt={data.createdAt}
   />
 );
 

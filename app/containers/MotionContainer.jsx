@@ -4,13 +4,14 @@ import { connect } from 'react-redux';
 
 import { MotionShow } from 'components';
 import Motion from 'models/Motion';
-// import { formatDate } from 'helpers/date';
+import { formatDate } from 'helpers/date';
 import { getMotion } from 'state/motions/selectors';
 import { voteMatchNext, voteAction } from 'state/votematch/actions';
 
 const renderMotion = (data, vote, activeVoteMatch, next, showArguments) => (
   <MotionShow
     data={data}
+    date={formatDate(data.createdAt)}
     onVote={vote}
     showArguments={showArguments}
     activeVoteMatch={activeVoteMatch}
@@ -58,16 +59,17 @@ class MotionContainer extends Component {
       vote,
     } = this.props;
 
-    if (data) {
-      return renderItem(
-        data,
-        vote,
-        activeVoteMatch,
-        next,
-        showArguments
-      );
+    if (!data) {
+      return false;
     }
-    return false;
+
+    return renderItem(
+      data,
+      vote,
+      activeVoteMatch,
+      next,
+      showArguments
+    );
   }
 }
 
