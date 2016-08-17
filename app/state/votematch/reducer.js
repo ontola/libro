@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import { Map } from 'immutable';
+import { List, Map } from 'immutable';
 import {
   VOTE_MATCH_INIT,
   VOTE_MATCH_NEXT,
@@ -8,7 +8,7 @@ import {
 const initialState = new Map({
   compareWithPerson: '',
   currentIndex: null,
-  motionIds: [],
+  motionIds: new List(),
 });
 
 const increaseByOne = index => (index === null ? 0 : index + 1);
