@@ -8,7 +8,12 @@ import { SearchBox } from 'searchkit';
 const propTypes = {
   contentLeft: PropTypes.arrayOf(PropTypes.node),
   contentRight: PropTypes.arrayOf(PropTypes.node),
-  forumColor: PropTypes.string,
+  forumColor: (props, propName, componentName) => {
+    if (!/^rgb\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})\)$/.test(props[propName])) {
+      return new Error(`Invalid prop ${propName} supplied to ${componentName}`);
+    }
+    return null;
+  },
 };
 
 const defaultProps = {
