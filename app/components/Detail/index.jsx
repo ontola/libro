@@ -12,8 +12,16 @@ const propTypes = {
   title: PropTypes.string,
 };
 
-function Detail({ text, icon, url, imageUrl, className, title }) {
-  let Element = url ? 'a' : 'div';
+const Detail = ({
+  text,
+  icon,
+  url,
+  imageUrl,
+  className,
+  title,
+}) => {
+  const Element = url ? 'a' : 'div';
+  const classNames = ['Detail', className].join(' ');
   const pictogram = imageUrl
     ? <img src={imageUrl} className="Detail__icon" role="presentation" />
     : <span className={`Detail__icon fa fa-${icon}`} />;
@@ -25,14 +33,14 @@ function Detail({ text, icon, url, imageUrl, className, title }) {
         browserHistory.push(url);
       }}
       href={url}
-      className={`Detail ${className}`}
+      className={classNames}
       title={title}
     >
       {pictogram}
       <span className="Detail__text">{text}</span>
     </Element>
   );
-}
+};
 
 Detail.propTypes = propTypes;
 

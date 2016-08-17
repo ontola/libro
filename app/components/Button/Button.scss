@@ -30,6 +30,12 @@
   }
 }
 
+.Button--has-icon {
+  .Button__icon {
+    margin-right: 4px;
+  }
+}
+
 .Button--default {
   background-color: color('pink');
   border-radius: $border-radius-base;

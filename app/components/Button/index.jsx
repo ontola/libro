@@ -37,6 +37,7 @@ const Button = ({
 }) => {
   const btnClass = classNames({
     Button: true,
+    'Button--has-icon': icon,
     'Button--small': small,
     [`Button--${theme}`]: true,
     [`Button--variant-${variant}`]: true,
@@ -49,7 +50,7 @@ const Button = ({
       role="button"
       type="button"
     >
-      {icon && <FontAwesome name={icon} />}
+      {icon && <FontAwesome className="Button__icon" name={icon} />}
       {children}
     </button>
   );
