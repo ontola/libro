@@ -6,7 +6,7 @@ import routes, { listen } from './routes';
 
 const app = express();
 
-if (__DEVELOPMENT__ === true) {
+if (__DEVELOPMENT__) {
   devMiddleware(app);
 }
 

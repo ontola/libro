@@ -1,4 +1,4 @@
-[![build status](https://gitlab.com/arguweb/aod_demo/badges/master/build.svg)](https://gitlab.com/arguweb/aod_demo/commits/master)
+[![build status](https://gitlab.com/argu/aod_demo/badges/master/build.svg)](https://gitlab.com/arguweb/aod_demo/commits/master)
 
 # AOD Demo
 Deze demo bevat een interface voor open data van de gemeenteraad.
@@ -46,11 +46,6 @@ The styleguide can be used as a reference, and also to develop individual compon
 ```
 npm run styleguide-server
 ```
-
-### Docker (does not really work yet)
-- In a docker-enabled tab run `docker build .`
-- Run `docker run [id]`
-- Get docker machine ip by running `docker-machine ip default`
 
 ### Security
 Uses [NSP](https://github.com/nodesecurity/nsp) and [Retire.js](https://github.com/RetireJS/retire.js)

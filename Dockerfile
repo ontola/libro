@@ -16,4 +16,5 @@ ENV ELASTICSEARCH_INDEX ''
 ENV ARGU_API_URL 'http://localhost:3030/'
 
 EXPOSE 8080
-ENTRYPOINT ["node", "./dist/server.js"]
+# ENTRYPOINT ["node", "./dist/server.js"]
+CMD ["node", "./dist/server.js"]

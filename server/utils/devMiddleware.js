@@ -1,3 +1,4 @@
+/* eslint no-console: 0 */
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
@@ -7,6 +8,7 @@ export default function (app) {
   if (__PRODUCTION__ === true) {
     process.exit(1);
   }
+  console.log('🚧 Development extensions enabled');
 
   const compiler = webpack(webpackConfig);
 
