@@ -6,7 +6,7 @@ import Box from './';
 
 describe('A box', () => {
   it('contains children', () => {
-    const wrapper = shallow(<Box>joe</Box>);
+    const wrapper = shallow(<Box>Joe</Box>);
     assert.isDefined(wrapper.props().children, 'Children have not been born yet...');
   });
 });

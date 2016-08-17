@@ -21,12 +21,8 @@ const defaultProps = {
 };
 
 const iconClassname = (side) => {
-  switch (side) {
-    case 'pro':
-      return ('fa fa-plus');
-    default:
-      return ('fa fa-minus');
-  }
+  const className = side === 'pro' ? 'fa fa-plus' : 'fa fa-minus';
+  return className;
 };
 
 const hoverBoxChildren = (side, title) => (

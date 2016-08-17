@@ -50,7 +50,6 @@ const Button = ({
       type="button"
     >
       {icon && <FontAwesome name={icon} />}
-      {' '}
       {children}
     </button>
   );
