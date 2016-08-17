@@ -102,9 +102,8 @@
     "start:prod": "ARGU_API_URL=http://localhost:3030 NODE_ENV=production node ./dist/server.js",
     "styleguide-build": "styleguidist build",
     "styleguide-server": "styleguidist server",
-    "test": "NODE_PATH=./app mocha ./tests/testhelper.js ./app/**/spec.js ./app/**/*.spec.js --compilers js:babel-core/register --recursive",
+    "test": "NODE_PATH=./app mocha ./tests/testhelper.js \"./app/**/*.spec.js\" --compilers js:babel-core/register --recursive",
     "test:nightwatch": "./node_modules/.bin/nightwatch",
-    "test:nightwatch:prod": "./node_modules/.bin/nightwatch --env ci -t tests/index.js",
-    "test:watch": "npm run test -- --watch"
+    "test:nightwatch:prod": "./node_modules/.bin/nightwatch --env ci -t tests/index.js"
   }
 }

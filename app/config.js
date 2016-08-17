@@ -11,7 +11,7 @@ const ARGU_API_PROXIED = __PRODUCTION__ ? undefined : `http://localhost:${PORT_P
 // Used externally as the endpoint for API calls by the browser app
 const ARGU_API_URL_EXT = process.env.ARGU_API_EXT_BASE || `http://localhost:${PORT}/api/`;
 
-const ELASTICSEARCH_URL = process.env.ELASTICSEARCH_URL || `${ARGU_API_PROXIED || ''}aod-search.argu.co/aod_search/`;
+const ELASTICSEARCH_URL = process.env.ELASTICSEARCH_URL || `${ARGU_API_PROXIED || ''}https://aod-search.argu.co/aod_search/`;
 const ELASTICSEARCH_INDEX = process.env.ELASTICSEARCH_INDEX || 'aod';
 const ELASTICSEARCH_DOCUMENT_BASE =
   `${ELASTICSEARCH_URL}/${ELASTICSEARCH_INDEX}/content/`;
