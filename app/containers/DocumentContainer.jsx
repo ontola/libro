@@ -1,20 +1,34 @@
 // @flow
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { DocumentShow } from 'components';
 import { apiGetDocument } from 'state/search/actions';
 
-const mapStateToProps = (state) => ({
-  data: state.search.document,
-  loading: state.search.loading,
-});
+const propTypes = {
+  data: PropTypes.object,
+  loadDocument: PropTypes.func,
+  loading: PropTypes.bool,
+  params: PropTypes.object,
+};
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  actions: dispatch(apiGetDocument(ownProps.params.docId)),
-});
+class DocumentContainer extends Component {
+  componentWillMount() {
+    this.props.loadDocument(this.props.params.docId);
+  }
 
-const DocumentContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DocumentShow);
+  render() {
+    return <DocumentShow data={this.props.data} />;
+  }
+}
 
-export default DocumentContainer;
+DocumentContainer.propTypes = propTypes;
+
+export default connect(
+  (state) => ({
+    data: state.getIn(['search', 'document']),
+    loading: state.getIn(['search', 'loading']),
+  }),
+  (dispatch) => ({
+    loadDocument: (id) => dispatch(apiGetDocument(id)),
+  })
+)(DocumentContainer);

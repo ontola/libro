@@ -3,7 +3,6 @@ import express from 'express';
 import SearchkitExpress from 'searchkit-express';
 import proxy from 'http-proxy-middleware';
 import { renderFullPage } from './utils/render';
-
 import * as constants from '../app/config';
 
 export function listen(app, port) {
@@ -25,11 +24,6 @@ export default function routes(app, port) {
   // Static directory for express
   app.use('/static', express.static('static'));
   app.use('/dist', express.static('dist'));
-
-  app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3001');
-    next();
-  });
 
   app.use('/aod_search', SearchkitExpress.createRouter({
     host: constants.ELASTICSEARCH_URL,
