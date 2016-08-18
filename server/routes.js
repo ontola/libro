@@ -1,7 +1,9 @@
 /* eslint no-console: 0 */
+import bodyParser from 'body-parser';
 import express from 'express';
-import SearchkitExpress from 'searchkit-express';
 import proxy from 'http-proxy-middleware';
+import SearchkitExpress from 'searchkit-express';
+
 import { renderFullPage } from './utils/render';
 import * as constants from '../app/config';
 
@@ -15,6 +17,9 @@ export function listen(app, port) {
 }
 
 export default function routes(app, port) {
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.json());
+
   // Activate proxy for session
   app.use(/\/api\/(.*)/, proxy({
     target: constants.ARGU_API_URL,

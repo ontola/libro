@@ -22,27 +22,6 @@ const defaultProps = {
 };
 
 class Navbar extends Component {
-  queryBuilder(queryString) {
-    return ({
-      bool: {
-        must: {
-          simple_query_string: {
-            query: queryString,
-            fields: ['text'],
-            minimum_should_match: '80%',
-          },
-        },
-        should: {
-          simple_query_string: {
-            query: queryString,
-            fields: ['text.shingles'],
-            minimum_should_match: '80%',
-          },
-        },
-      },
-    });
-  }
-
   wrapInListItems(content, keyBase) {
     return content && content.map((item, i) =>
       <li key={`${keyBase}.${i}`}>{item}</li>
@@ -78,7 +57,6 @@ class Navbar extends Component {
                 {this.wrapInListItems(contentLeft, 'Navbar__links--right')}
               </ul>
               <SearchBox
-                queryBuilder={this.queryBuilder}
                 queryFields={['onderwerp', 'text', 'text.shingles']}
                 placeholder="Zoek op onderwerp, persoon, organisatie..."
               />

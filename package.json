@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "author": "Tom Dalenberg <tomdalenberg@argu.co> & Joep Meindertsma <joep@argu.co> (https://argu.co)",
   "dependencies": {
+    "body-parser": "^1.15.2",    
     "express": "^4.13.4",
     "http-proxy-middleware": "^0.17.0",
     "rimraf": "^2.5.4",
