@@ -2,6 +2,7 @@ stages:
   - test
   - bake
   - release
+  - deploy
 
 test:
   stage: test
@@ -48,3 +49,10 @@ latest:
     - docker push registry.gitlab.com/argu/aod_demo:latest
   only:
     - master
+
+deploy:
+  stage: deploy
+  script:
+    - curl -X POST $DEPLOYMENT_HOOK
+  only:
+    - tags
