@@ -16,9 +16,7 @@ const defaultProps = {
 
 const EventItem = ({ title, text }) => (
   <div className="EventItem">
-    <Heading size="3">
-      {title}
-    </Heading>
+    <Heading size="3" children={title} />
     {text}
   </div>
 );

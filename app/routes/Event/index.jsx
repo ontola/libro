@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
 import {
-  EventItemShow,
+  EventItem,
   Container,
   Heading,
   List,
@@ -27,7 +27,7 @@ const defaultProps = {
 };
 
 const renderEventItem = (data) => (
-  <EventItemShow
+  <EventItem
     key={data.id}
     title={data.title}
     content={data.content}
@@ -43,12 +43,10 @@ const Event = ({
     <Helmet title={title} />
     <EventContainer eventId={params.eventId} />
       {eventItems.length > 0 &&
-        <div>
-          <List
-            renderItem={renderEventItem}
-            items={eventItems.filter(a => a.side === 'pro')}
-          />
-        </div>
+        <List
+          renderItem={renderEventItem}
+          items={eventItems}
+        />
       }
   </Container>
 );
