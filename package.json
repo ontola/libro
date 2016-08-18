@@ -98,7 +98,7 @@
     "lint": "./node_modules/.bin/eslint --ext .jsx,.js .",
     "lint:style": "sass-lint ./app/**/*.scss  -v -q",
     "secure": "nsp check && retire",
-    "start": "rimraf ./dist && NODE_ENV=development npm run build:server && NODE_ENV=development ELASTICSEARCH_URL=http://localhost:1337/aod-search.argu.co/aod_search node ./dist/server.js",
+    "start": "rimraf ./dist && NODE_ENV=development npm run build:server && NODE_ENV=development node ./dist/server.js",
     "start:prod": "ARGU_API_URL=http://localhost:3030 NODE_ENV=production node ./dist/server.js",
     "styleguide-build": "styleguidist build",
     "styleguide-server": "styleguidist server",
