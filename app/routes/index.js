@@ -4,6 +4,7 @@ import { Route, IndexRoute } from 'react-router';
 import App from './App';
 import CompareVotes from './CompareVotes';
 import Document from './Document';
+import Event from './Event';
 import Home from './Home';
 import Motion from './Motion';
 import Motions from './Motions';
@@ -18,6 +19,7 @@ const routes = (
   <Route path="/" component={App}>
     <IndexRoute component={Home} />
     <Route path="comparevotes/:userId" component={CompareVotes} />
+    <Route path="events/:eventId" component={Event} />
     <Route path="motions" component={Motions} />
     <Route path="motions/:motionId" component={Motion} />
     <Route path="politicians" component={Politicians} />
