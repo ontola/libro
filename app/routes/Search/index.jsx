@@ -9,7 +9,7 @@ import {
 	Panel, RefinementListFilter, ResetFilters, Select, SortingSelector,
 } from 'searchkit';
 
-import { Button, Container } from 'components';
+import { Button, Container, Cover } from 'components';
 import DrawerContainer from 'containers/DrawerContainer';
 import SearchResultContainer from 'containers/SearchResultContainer';
 import { getSearchHits } from 'state/search/selectors';
@@ -72,57 +72,61 @@ class Search extends Component {
     const { hits, toggleDrawerAction } = this.props;
     const toolsClass = (hits === null) ? 'sk-searchtools sk-searchtools--hide' : 'sk-searchtools';
     return (
-      <Container size="large">
+      <div>
         <Helmet title="Search" />
-        <Container>
-          <div className={toolsClass}>
-            <Button
-              className="sk-drawer-action"
-              theme="subtle"
-              small
-              onClick={toggleDrawerAction}
-            >Filter</Button>
-            <div className="sk-hits-stats">
-              <div className="sk-hits-stats__info">{`${hits} resultaten`}</div>
+        <Cover type="lighter">
+          <Container size="large">
+            <div className={toolsClass}>
+              <div className="sk-drawer-action">
+                <Button
+                  theme="subtle"
+                  small
+                  onClick={toggleDrawerAction}
+                >Filter</Button>
+              </div>
+              <div className="sk-hits-stats">
+                <div className="sk-hits-stats__info">{`${hits} resultaten`}</div>
+              </div>
+              <SortingSelector listComponent={Select} options={sortOption} />
             </div>
-            <SortingSelector listComponent={Select} options={sortOption} />
+          </Container>
+        </Cover>
+        <Container size="large">
+          <div className="sk-results">
+            <DrawerContainer>
+              <ResetFilters component={ResetFiltersDisplay} />
+
+              <RefinementListFilter
+                id="soort"
+                field="classification"
+                operator="OR"
+                title="Soort"
+                size={5}
+                containerComponent={<Panel collapsable defaultCollapsed={false} />}
+              />
+              <NumericRefinementListFilter
+                id="dateFilter"
+                title="Datum"
+                field="date"
+                containerComponent={<Panel collapsable defaultCollapsed={false} />}
+                options={dateFilterOptions}
+              />
+            </DrawerContainer>
+
+            <div className="sk-main">
+              <InitialLoader />
+              <Hits
+                hitsPerPage={8}
+                highlightFields={['onderwerp', 'text']}
+                itemComponent={SearchResultContainer}
+                scrollTo="body"
+              />
+              <NoHits suggestionsField="onderwerp" />
+              <Pagination showNumbers />
+            </div>
           </div>
         </Container>
-
-        <div className="sk-results">
-          <DrawerContainer>
-            <ResetFilters component={ResetFiltersDisplay} />
-
-            <RefinementListFilter
-              id="soort"
-              field="classification"
-              operator="OR"
-              title="Soort"
-              size={5}
-              containerComponent={<Panel collapsable defaultCollapsed={false} />}
-            />
-            <NumericRefinementListFilter
-              id="dateFilter"
-              title="Datum"
-              field="date"
-              containerComponent={<Panel collapsable defaultCollapsed={false} />}
-              options={dateFilterOptions}
-            />
-          </DrawerContainer>
-
-          <div className="sk-main">
-            <InitialLoader />
-            <Hits
-              hitsPerPage={8}
-              highlightFields={['onderwerp', 'text']}
-              itemComponent={SearchResultContainer}
-              scrollTo="body"
-            />
-            <NoHits suggestionsField="onderwerp" />
-            <Pagination showNumbers />
-          </div>
-        </div>
-      </Container>
+      </div>
     );
   }
 }

@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding: 1em 0;
 
   &--hide {
     display: none;
@@ -16,6 +17,10 @@
   @include large {
     display: none;
   }
+}
+
+.sk-sidebar {
+  padding-top: 20px;
 }
 
 .sk-results {
@@ -39,6 +44,7 @@
   justify-content: center;
 }
 
+// TOGGLE
 .sk-toggle {
   border: 1px solid color('grey', 'x-light');
   border-radius: $border-radius-base;
@@ -66,7 +72,7 @@
   }
 }
 
-//** PANELS
+// PANELS
 .sk-panel {
   border-bottom: 1px solid color('grey', 'light');
   box-sizing: border-box;
@@ -136,7 +142,7 @@
   }
 }
 
-//** CHECKBOX
+//CHECKBOX
 .sk-item-list-option {
   cursor: pointer;
   display: flex;
@@ -174,11 +180,14 @@
     }
   }
 
-  &__is-active {
+  &.is-active {
     .sk-item-list-option__text {
+      color: color('grey', 'mid-dark');
+      font-weight: 500;
+
       &::before {
-        background-color: color('grey', 'dark');
-        border-color: color('grey', 'dark');
+        background-color: color('grey', 'mid-dark');
+        border-color: color('grey', 'mid-dark');
       }
     }
   }

@@ -12,8 +12,10 @@ const SearchResultContainer = ({ result }) => {
     highlight,
   } = result;
 
-  const data = Object.assign({}, source, highlight);
-  const content = highlight ? data.text : data.text.substr(0, 300);
+  const highlightFields = highlight !== undefined && highlight;
+  const data = Object.assign({}, source, highlightFields);
+  const content = highlight ? data.text : data.text.toString().substr(0, 300);
+
   const returnData = {
     id: data.id,
     title: data.onderwerp,

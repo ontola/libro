@@ -18,7 +18,12 @@ const UserMotions = () => (
     {motionTitles.map(title => (
       <Box key={title}>
         <Heading size="3">{title}</Heading>
-        <VoteButtons id="13" />
+        <VoteButtons
+          id="13"
+          onVote={() => {
+            console.log(`Gestemd op ${title}`);
+          }}
+        />
       </Box>
     ))}
   </Container>
