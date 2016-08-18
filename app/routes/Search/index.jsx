@@ -9,7 +9,8 @@ import {
 	Panel, RefinementListFilter, ResetFilters, Select, SortingSelector,
 } from 'searchkit';
 
-import { Button, Container, Drawer } from 'components';
+import { Button, Container } from 'components';
+import DrawerContainer from 'containers/DrawerContainer';
 import SearchResultContainer from 'containers/SearchResultContainer';
 import { getSearchHits } from 'state/search/selectors';
 import { toggleDrawer, setHitCount } from 'state/search/actions';
@@ -89,7 +90,7 @@ class Search extends Component {
         </Container>
 
         <div className="sk-results">
-          <Drawer>
+          <DrawerContainer>
             <ResetFilters component={ResetFiltersDisplay} />
 
             <RefinementListFilter
@@ -107,7 +108,7 @@ class Search extends Component {
               containerComponent={<Panel collapsable defaultCollapsed={false} />}
               options={dateFilterOptions}
             />
-          </Drawer>
+          </DrawerContainer>
 
           <div className="sk-main">
             <InitialLoader />

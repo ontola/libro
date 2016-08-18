@@ -17,7 +17,7 @@ const initialState = new Map({
 
 const search = handleActions({
   [TOGGLE_DRAWER]: (state) =>
-    state.set('visible', !state.visible),
+    state.set('visible', !state.get('visible')),
   [SET_HIT_COUNT]: (state, { payload }) =>
     state.set('hits', payload),
   [FETCH_DOCUMENT_REQUEST]: (state) =>

@@ -16,7 +16,7 @@ const motionTitles = [
 const UserMotions = () => (
   <Container>
     {motionTitles.map(title => (
-      <Box>
+      <Box key={title}>
         <Heading size="3">{title}</Heading>
         <VoteButtons id="13" />
       </Box>
