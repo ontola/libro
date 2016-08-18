@@ -14,7 +14,7 @@ import { formatDate } from 'helpers/date';
 
 const propTypes = {
   content: PropTypes.string,
-  createdAt: PropTypes.string,
+  createdAt: PropTypes.number,
   creator: PropTypes.string,
   side: PropTypes.oneOf([
     'pro',

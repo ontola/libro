@@ -10,7 +10,7 @@ import {
 
 const propTypes = {
   data: PropTypes.object.isRequired,
-  loading: false,
+  loading: PropTypes.bool,
 };
 
 const DocumentShow = ({ data }) => {
@@ -20,7 +20,6 @@ const DocumentShow = ({ data }) => {
     onderwerp,
     text,
   } = data;
-
   return (
     <Box>
       <Heading children={onderwerp} />

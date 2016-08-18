@@ -51,7 +51,7 @@ const Button = ({
       type="button"
     >
       {icon && <FontAwesome className="Button__icon" name={icon} />}
-      {children}
+      <span className="Button__label">{children}</span>
     </button>
   );
 };

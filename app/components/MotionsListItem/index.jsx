@@ -18,7 +18,7 @@ const propTypes = {
   creator: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  votes: PropTypes.string.isRequired,
+  votes: PropTypes.string,
 };
 
 const renderItem = (user, url) => (
@@ -50,7 +50,12 @@ const MotionsListItem = ({
       </DetailsBar>
       <VoteData data={votes} />
     </div>
-    <VoteButtons id={id} />
+    <VoteButtons
+      id={id}
+      onVote={() => {
+        console.log(`Gestemd op ${title}`);
+      }}
+    />
   </Box>
 );
 
