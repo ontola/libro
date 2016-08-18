@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "author": "Tom Dalenberg <tomdalenberg@argu.co> & Joep Meindertsma <joep@argu.co> (https://argu.co)",
   "dependencies": {
-    "body-parser": "^1.15.2",    
+    "body-parser": "^1.15.2",
     "express": "^4.13.4",
     "http-proxy-middleware": "^0.17.0",
     "rimraf": "^2.5.4",
@@ -99,7 +99,7 @@
     "lint": "./node_modules/.bin/eslint --ext .jsx,.js .",
     "lint:style": "sass-lint ./app/**/*.scss  -v -q",
     "secure": "nsp check && retire",
-    "start": "rimraf ./dist && NODE_ENV=development npm run build:server && NODE_ENV=development node ./dist/server.js",
+    "start": "rimraf ./dist && NODE_ENV=development npm run build:server && ELASTICSEARCH_URL=http://localhost:1337/aod-search.argu.co/aod_search NODE_ENV=development node ./dist/server.js",
     "start:prod": "ARGU_API_URL=http://localhost:3030 NODE_ENV=production node ./dist/server.js",
     "styleguide-build": "styleguidist build",
     "styleguide-server": "styleguidist server",

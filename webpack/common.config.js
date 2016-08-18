@@ -4,7 +4,6 @@ const webpack = require('webpack');
 
 const TARGET = process.env.npm_lifecycle_event;
 process.env.BABEL_ENV = TARGET;
-
 const common = {
   output: {
     path: `${__dirname}/../dist/`,
@@ -46,6 +45,7 @@ const common = {
       fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
     }),
     new webpack.DefinePlugin({
+      'process.env.ELASTICSEARCH_URL': JSON.stringify(process.env.ELASTICSEARCH_URL),
       'process.env': {
         NODE_ENV: process.env.NODE_ENV === 'development' ? '"development"' : '"production"',
       },
