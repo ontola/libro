@@ -12,10 +12,10 @@
 }
 
 .sk-drawer-action {
+  display: inline-block;
   @include large {
     display: none;
   }
-  display: inline-block;
 }
 
 .sk-results {
