@@ -5,7 +5,7 @@ import { APIDesc, apiModelGenerator } from './utils/apiModelGenerator';
 const apiDesc = new APIDesc({
   actions: new Map({
     collection: actions.GET_EVENTS,
-    resource: actions.GET_EVENTS,
+    resource: actions.GET_EVENT,
   }),
   endpoint: 'events',
   type: 'events',

@@ -16,15 +16,15 @@ const defaultProps = {
   eventItems: [],
 };
 
-const renderItem = (arg) => (
+const renderItem = (eventItem) => (
   <EventItem
-    key={arg.id}
-    title={arg.title}
-    content={arg.content}
+    key={eventItem.id}
+    title={eventItem.title}
+    text={eventItem.text}
   />
 );
 
-const EventItems = ({ eventItems }) => {
+const EventItemsContainer = ({ eventItems }) => {
   if (eventItems.length > 0) {
     return (
       <List items={eventItems} renderItem={renderItem} />
@@ -33,11 +33,11 @@ const EventItems = ({ eventItems }) => {
   return false;
 };
 
-EventItems.propTypes = propTypes;
-EventItems.defaultProps = defaultProps;
+EventItemsContainer.propTypes = propTypes;
+EventItemsContainer.defaultProps = defaultProps;
 
 export default connect(
   (state, ownProps) => ({
     eventItems: getEventItems(state, ownProps),
   })
-)(EventItems);
+)(EventItemsContainer);

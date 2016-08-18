@@ -19,7 +19,7 @@ const propTypes = {
 const defaultProps = {
 };
 
-const renderItem = (user, url) => (
+const renderAuthor = (user, url) => (
   <Detail
     text={user.name}
     imageUrl={user.image}
@@ -32,14 +32,13 @@ const EventShow = ({
 }) => (
   <div className="EventShow">
     <Box>
-      <Heading size="2" children={data.title} />
+      <Heading size="1" children={data.title} />
       <DetailsBar>
-        <Detail text="Motie" icon="lightbulb-o" />
-        <Detail text="Verworpen" icon="close" />
+        <Detail text="Vergadering" icon="agenda" />
         {data.creator &&
           <PersonContainer
             user={data.creator}
-            renderItem={renderItem}
+            renderItem={renderAuthor}
           />
         }
         {data.createdAt &&
