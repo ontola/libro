@@ -1,5 +1,10 @@
 @import '../shared/config';
 
+.Navbar__search {
+  flex: auto;
+  margin: .4em;
+}
+
 .Navbar__item {
   color: color('white');
   display: block;
@@ -55,6 +60,8 @@
 
 .Navbar__links {
   float: left;
+  height: 3em;
+  overflow: hidden;
 
   > li {
     float: left;
@@ -130,8 +137,6 @@
 // SEARCHBOX
 .sk-search-box {
   background-color: color('transparent', 'light');
-  flex: auto;
-  margin: .4em;
   transition: .2s background-color;
 
   &:hover {
