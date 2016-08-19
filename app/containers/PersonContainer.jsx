@@ -3,17 +3,14 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { getPerson, getPersonUrl } from 'state/persons/selectors';
-import { ProfileCard } from 'components';
+import { Detail } from 'components';
 import Person from 'models/Person';
 
-const defaultRenderItem = (data, url, full) => (
-  <ProfileCard
-    id={data.id}
-    name={data.name}
-    party={data.party}
-    image={data.image}
-    bio={data.biography}
-    full={full}
+const defaultRenderItem = (user, url) => (
+  <Detail
+    text={user.name}
+    imageUrl={user.image}
+    url={url}
   />
 );
 

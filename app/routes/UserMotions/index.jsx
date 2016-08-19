@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { Box, Container, Heading, VoteButtons } from 'components';
+import { Box, Container } from 'components';
 
 const motionTitles = [
   'Burgerparticipatie zonder bureaucratisering',
@@ -16,15 +16,11 @@ const motionTitles = [
 const UserMotions = () => (
   <Container>
     {motionTitles.map(title => (
-      <Box key={title}>
-        <Heading size="3">{title}</Heading>
-        <VoteButtons
-          id="13"
-          onVote={() => {
-            console.log(`Gestemd op ${title}`);
-          }}
-        />
-      </Box>
+      <Box
+        key={title}
+        title={title}
+        headingSize="3"
+      />
     ))}
   </Container>
 );

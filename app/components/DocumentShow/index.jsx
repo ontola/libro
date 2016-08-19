@@ -1,36 +1,23 @@
 // @flow
 import './Documentshow.scss';
 import React, { PropTypes } from 'react';
-import {
-  Box,
-  Detail,
-  DetailsBar,
-  Heading,
-} from 'components';
+import { Box } from 'components';
 
 const propTypes = {
   data: PropTypes.object.isRequired,
   loading: PropTypes.bool,
 };
 
-const DocumentShow = ({ data }) => {
-  const {
-    classification,
-    date,
-    onderwerp,
-    text,
-  } = data;
-  return (
-    <Box>
-      <Heading children={onderwerp} />
-      <DetailsBar>
-        <Detail text={classification} icon="file-o" />
-        <Detail text={date} icon="clock-o" />
-      </DetailsBar>
-      <div>{text}</div>
-    </Box>
-  );
-};
+const DocumentShow = ({
+  data,
+}) => (
+  <Box
+    title={data.onderwerp}
+    date={data.date}
+    children={data.text}
+    type={data.classification}
+  />
+);
 
 DocumentShow.propTypes = propTypes;
 

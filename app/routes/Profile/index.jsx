@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
-import { Container, Cover, LinkList } from 'components';
+import { Container, Cover, LinkList, ProfileCard } from 'components';
 import PersonContainer from 'containers/PersonContainer';
 import { getPersonName } from 'state/persons/selectors';
 
@@ -21,6 +21,17 @@ const links = id => ([{
   to: `/profile/${id}/stats`,
 }]);
 
+const profileCardRender = (data, url, full) => (
+  <ProfileCard
+    id={data.id}
+    name={data.name}
+    party={data.party}
+    image={data.image}
+    bio={data.biography}
+    full={full}
+  />
+);
+
 const Profile = ({
   params,
   children,
@@ -30,7 +41,7 @@ const Profile = ({
     <Helmet title={`Profiel van ${name}`} />
     <Cover type="light">
       <Container>
-        <PersonContainer user={params.userId} full />
+        <PersonContainer user={params.userId} renderItem={profileCardRender} full />
       </Container>
     </Cover>
 

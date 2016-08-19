@@ -2,6 +2,7 @@
 export { default as ArgumentShow } from './ArgumentShow';
 export { default as ArgumentListItem } from './ArgumentListItem';
 export { default as Box } from './Box';
+export { default as BoxActions } from './BoxActions';
 export { default as Button } from './Button';
 export { default as Columns } from './Columns';
 export { default as Container } from './Container';
@@ -12,7 +13,6 @@ export { default as Detail } from './Detail';
 export { default as DetailsBar } from './DetailsBar';
 export { default as DocumentShow } from './DocumentShow';
 export { default as Drawer } from './Drawer';
-export { default as EntryListItem } from './EntryListItem';
 export { default as Heading } from './Heading';
 export { default as HoverBox } from './HoverBox';
 export { default as LinkList } from './LinkList';
@@ -27,7 +27,6 @@ export { default as PoliticiansListItem } from './PoliticiansListItem';
 export { default as ProfileCard } from './ProfileCard';
 export { default as ProgressBar } from './ProgressBar';
 export { default as ScoreSheet } from './ScoreSheet';
-export { default as VoteButtons } from './VoteButtons';
 export { default as VoteChart } from './VoteChart';
 export { default as VoteData } from './VoteData';
 

@@ -1,18 +1,9 @@
 // @flow
 import './MotionShow.scss';
 import React, { PropTypes } from 'react';
-import { Motion } from 'models';
-import PersonContainer from 'containers/PersonContainer';
-import ArgumentsContainer from 'containers/ArgumentsContainer';
 
-import {
-  Box,
-  Detail,
-  DetailsBar,
-  Heading,
-  VoteButtons,
-  VoteData,
-} from '../';
+import { Box } from 'components';
+import { Motion } from 'models';
 
 const propTypes = {
   data: PropTypes.instanceOf(Motion),
@@ -28,48 +19,57 @@ const defaultProps = {
   showArguments: false,
 };
 
-const renderItem = (user, url) => (
-  <Detail
-    text={user.name}
-    imageUrl={user.image}
-    url={url}
-  />
-);
-
 const MotionShow = ({
   activeVoteMatch,
   data,
   date,
   onVote,
   next,
-  showArguments,
-}) => (
-  <div className="MotionShow">
-    <Box>
-      <Heading size="2" children={data.title} />
-      <DetailsBar>
-        <Detail text="Motie" icon="lightbulb-o" />
-        <Detail text="Verworpen" icon="close" />
-        {data.creator &&
-          <PersonContainer
-            user={data.creator}
-            renderItem={renderItem}
-          />
-        }
-        {date &&
-          <Detail
-            text={date}
-            icon="clock-o"
-          />
-        }
-      </DetailsBar>
-      <div>{data.text}</div>
-      {showArguments && <ArgumentsContainer motionId={data.id} />}
-      <VoteButtons id={data.id} onVote={activeVoteMatch ? next : onVote} />
-    </Box>
-    <VoteData data={data.votes} expanded />
-  </div>
-);
+}) => {
+  const buttonAction = activeVoteMatch ? next : onVote;
+
+  const buttons = [{
+    icon: 'thumbs-up',
+    label: 'Ik ben voor',
+    side: 'pro',
+    action: () => buttonAction({
+      motionId: data.id,
+      side: 'pro',
+    }),
+  }, {
+    icon: 'pause',
+    label: 'Neutraal',
+    side: 'neutral',
+    action: () => buttonAction({
+      motionId: data.id,
+      side: 'neutral',
+    }),
+  }, {
+    icon: 'thumbs-down',
+    label: 'Ik ben tegen',
+    side: 'con',
+    action: () => buttonAction({
+      motionId: data.id,
+      side: 'con',
+    }),
+  }];
+
+  return (
+    <div className="MotionShow">
+      <Box
+        title={data.title}
+        author={data.creator}
+        date={date}
+        children={data.text}
+        showArguments={activeVoteMatch}
+        showMeta
+        id={data.id}
+        boxActions={buttons}
+        type="Motie"
+      />
+    </div>
+  );
+};
 
 MotionShow.propTypes = propTypes;
 MotionShow.defaultProps = defaultProps;

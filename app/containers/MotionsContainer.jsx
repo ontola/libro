@@ -2,11 +2,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { List, MotionsListItem } from 'components';
+import { Box, List } from 'components';
 import MotionContainer from 'containers/MotionContainer';
 import Motion from 'models/Motion';
 import { getMotions } from 'state/motions/selectors';
-import { formatDate } from 'helpers/date';
 
 const propTypes = {
   motions: PropTypes.object,
@@ -17,14 +16,37 @@ const defaultProps = {
   motions: {},
 };
 
+const defaultButtons = [{
+  icon: 'thumbs-up',
+  label: 'Ik ben voor',
+  side: 'pro',
+  action: () => {
+    console.log('Gestemd');
+  },
+}, {
+  icon: 'pause',
+  label: 'Neutraal',
+  side: 'neutral',
+  action: () => {
+    console.log('Gestemd');
+  },
+}, {
+  icon: 'thumbs-down',
+  label: 'Ik ben tegen',
+  side: 'con',
+  action: () => {
+    console.log('Gestemd');
+  },
+}];
+
 const renderMotion = (data) => (
-  <MotionsListItem
-    key={data.id}
-    createdAt={formatDate(data.createdAt)}
-    creator={data.creator}
-    id={data.id}
+  <Box
     title={data.title}
-    votes={data.votes}
+    headingSize="3"
+    link={`/motions/${data.id}`}
+    author={data.creator}
+    date={data.createdAt}
+    boxActions={defaultButtons}
   />
 );
 

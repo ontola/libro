@@ -1,6 +1,6 @@
 // @flow
 import React, { PropTypes } from 'react';
-import { EntryListItem } from 'components';
+import { Box } from 'components';
 
 const propTypes = {
   result: PropTypes.object.isRequired,
@@ -16,15 +16,17 @@ const SearchResultContainer = ({ result }) => {
   const data = Object.assign({}, source, highlightFields);
   const content = highlight ? data.text : data.text.toString().substr(0, 300);
 
-  const returnData = {
-    id: data.id,
-    title: data.onderwerp,
-    date: data.date,
-    content,
-    type: data.classification,
-    fileId: data.file_id,
-  };
-  return <EntryListItem data={returnData} />;
+  return (
+    <Box
+      title={data.onderwerp}
+      date={data.date}
+      type={data.classification}
+      headingSize="3"
+      showMeta
+    >
+      <div dangerouslySetInnerHTML={{ __html: content }}></div>
+    </Box>
+  );
 };
 
 SearchResultContainer.propTypes = propTypes;
