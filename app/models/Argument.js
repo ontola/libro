@@ -16,7 +16,7 @@ const attributes = {
   title: '',
   content: '',
   side: '',
-  createdAt: '',
+  createdAt: null,
   voteCount: null,
   creator: null,
 };

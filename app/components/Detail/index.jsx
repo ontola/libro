@@ -30,7 +30,7 @@ const Detail = ({
     <Element
       onClick={(e) => {
         e.preventDefault();
-        browserHistory.push(url);
+        if (url) browserHistory.push(url);
       }}
       href={url}
       className={classNames}

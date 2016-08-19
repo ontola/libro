@@ -23,7 +23,6 @@ const callApi = (endpoint) => {
 
 const parseResult = (jsonData, emitRecord, next) => {
   const actions = [];
-
   if (jsonData.data.constructor === Array) {
     jsonData.data.forEach(entity => {
       actions.push(emitRecord(dataStore.formatEntity(entity)));

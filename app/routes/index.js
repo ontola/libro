@@ -3,7 +3,6 @@ import { Route, IndexRoute } from 'react-router';
 
 import App from './App';
 import CompareVotes from './CompareVotes';
-import Document from './Document';
 import Home from './Home';
 import Motion from './Motion';
 import Motions from './Motions';
@@ -26,7 +25,6 @@ const routes = (
       <Route path="stats" component={UserStats} />
     </Route>
     <Route path="search" component={Search} />
-    <Route path="doc/:docId" component={Document} />
     <Route path="*" component={NotFound} />
   </Route>
 );

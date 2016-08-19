@@ -11,6 +11,10 @@ export const getArgs = createSelector(
       return [];
     }
 
+    if (ids.length === 0) {
+      return [];
+    }
+
     if (args.size === 0) {
       return [];
     }

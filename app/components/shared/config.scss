@@ -6,7 +6,6 @@ $color-base-brown: rgb(134, 61, 61);
 $color-base-green: rgb(84, 127, 75);
 $color-base-blue: rgb(71, 86, 104);
 
-// TODO: Update sass-lint to 1.9.0 when it is released to fix the following linting warnings. For more see: https://github.com/sasstools/sass-lint/issues/783
 $colors: (
   'black': (
     'base': rgb(0, 0, 0),
@@ -73,6 +72,7 @@ $font-sizes: (
   'large': 1.125em,
   'medium': 1em,
   'small': .85em,
+  'x-small': .75em,
 );
 
 // SPACING
@@ -107,7 +107,8 @@ $z-layers: (
   'cover': $zindex-4,
   'hoverbox': $zindex-1,
   'notification': $zindex-1,
-  'progressbar': $zindex-1
+  'progressbar': $zindex-1,
+  'tooltip': $zindex-6,
 );
 
 // OTHERS

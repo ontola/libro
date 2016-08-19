@@ -7,7 +7,7 @@ import { Motion } from 'models';
 
 const propTypes = {
   data: PropTypes.instanceOf(Motion),
-  date: PropTypes.string,
+  date: PropTypes.number,
   onVote: PropTypes.func,
   loading: PropTypes.bool,
   next: PropTypes.func,
@@ -61,11 +61,12 @@ const MotionShow = ({
         author={data.creator}
         date={date}
         children={data.text}
+        preWrapWhiteSpace
         showArguments={activeVoteMatch}
         showMeta
         id={data.id}
         boxActions={buttons}
-        type="Motie"
+        type={data.classification}
       />
     </div>
   );

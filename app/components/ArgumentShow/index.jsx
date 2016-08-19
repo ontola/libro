@@ -35,14 +35,14 @@ const ArgumentShow = ({
   title,
 }) => (
   <Box
-    title={title}
-    date={createdAt}
     author={creator}
-    children={content}
     boxActions={buttons}
+    children={content}
+    date={createdAt}
     headingSize="3"
     headingVariant={side}
     showMeta
+    title={title}
   />
 );
 

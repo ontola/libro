@@ -6,12 +6,13 @@ import { Link } from 'react-router';
 import { BoxActions, Detail, DetailsBar, Heading } from 'components';
 import PersonContainer from 'containers/PersonContainer';
 import ArgumentsContainer from 'containers/ArgumentsContainer';
+import { formatDate } from 'helpers/date';
 
 const propTypes = {
   author: PropTypes.string,
   boxActions: PropTypes.array,
   children: PropTypes.node,
-  date: PropTypes.string,
+  date: PropTypes.number,
   id: PropTypes.string,
   headingSize: PropTypes.oneOf(['1', '2', '3', '4', '5', '6']),
   headingVariant: PropTypes.oneOf([
@@ -23,6 +24,7 @@ const propTypes = {
     'outsideBox',
   ]),
   link: PropTypes.string,
+  preWrapWhiteSpace: PropTypes.bool,
   showArguments: PropTypes.bool,
   showButtons: PropTypes.bool,
   showMeta: PropTypes.bool,
@@ -36,6 +38,8 @@ const defaultProps = {
   headingVariant: 'default',
 };
 
+const THOUSAND = 1000;
+
 const Box = ({
   author,
   boxActions,
@@ -45,6 +49,7 @@ const Box = ({
   headingVariant,
   id,
   link,
+  preWrapWhiteSpace,
   showArguments,
   showMeta,
   title,
@@ -54,7 +59,9 @@ const Box = ({
     <div className="Box__content">
       {title &&
         <Heading size={headingSize} variant={headingVariant}>
-          {link ? <Link to={link}>{title}</Link> : title}
+          {link
+            ? <Link to={link} dangerouslySetInnerHTML={{ __html: title }} />
+            : <div dangerouslySetInnerHTML={{ __html: title }} />}
         </Heading>
       }
 
@@ -62,11 +69,11 @@ const Box = ({
         <DetailsBar>
           {type && <Detail text={type} icon="file-o" />}
           {author && <PersonContainer user={author} />}
-          {date && <Detail text={date} icon="clock-o" />}
+          {date && <Detail text={formatDate(date * THOUSAND)} icon="clock-o" />}
         </DetailsBar>
       }
 
-      {children}
+      {preWrapWhiteSpace ? <div className="Box__contentPreWrapped">{children}</div> : children}
 
       {showArguments &&
         <ArgumentsContainer motionId={id} />

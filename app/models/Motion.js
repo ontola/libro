@@ -16,7 +16,7 @@ const attributes = {
   loading: false,
   title: '',
   text: '',
-  createdAt: '',
+  createdAt: null,
   creator: null,
   classification: 'Motie',
   arguments: [],

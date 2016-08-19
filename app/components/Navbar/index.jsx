@@ -20,7 +20,7 @@ const propTypes = {
 
 const defaultProps = {
   forumColor: 'rgb(71, 86, 104)',
-  // forumColor: 'rgb(240, 248, 255)',
+  // forumColor: 'rgb(0, 0, 0)',
 };
 
 class Navbar extends Component {
@@ -65,8 +65,10 @@ class Navbar extends Component {
                 }}
               >
                 <SearchBox
+                  mod="SearchBox"
                   queryFields={['onderwerp', 'text', 'text.shingles']}
                   placeholder="Zoek op onderwerp, persoon, organisatie..."
+                  blurAction="restore"
                 />
               </div>
               <ul className="Navbar__links Navbar__links--right">

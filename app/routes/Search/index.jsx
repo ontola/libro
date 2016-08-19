@@ -5,8 +5,9 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
 import {
-	Hits, InitialLoader, NoHits, NumericRefinementListFilter, Pagination,
-	Panel, RefinementListFilter, ResetFilters, Select, SortingSelector,
+	Hits, NoHits, NumericRefinementListFilter, Pagination,
+	RefinementListFilter, RangeFilter, RangeSliderHistogram,
+  ResetFilters, Select, SortingSelector,
 } from 'searchkit';
 
 import { Button, Container, Cover } from 'components';
@@ -14,6 +15,7 @@ import DrawerContainer from 'containers/DrawerContainer';
 import SearchResultContainer from 'containers/SearchResultContainer';
 import { getSearchHits } from 'state/search/selectors';
 import { toggleDrawer, setHitCount } from 'state/search/actions';
+import { formatDate } from 'helpers/date';
 
 const propTypes = {
   setHitCountAction: PropTypes.func,
@@ -37,7 +39,7 @@ const dateFilterOptions = [
 const translations = {
   'pagination.previous': 'Vorige',
   'pagination.next': 'Volgende',
-  'reset.clear_all': 'Reset filters',
+  'reset.clear_all': 'Reset zoekopdracht',
   'facets.view_more': 'Toon meer',
   'facets.view_less': 'Toon minder',
   'facets.view_all': 'Toon alles',
@@ -95,26 +97,32 @@ class Search extends Component {
           <div className="sk-results">
             <DrawerContainer>
               <ResetFilters component={ResetFiltersDisplay} />
-
               <RefinementListFilter
                 id="soort"
                 field="classification"
                 operator="OR"
                 title="Soort"
                 size={5}
-                containerComponent={<Panel collapsable defaultCollapsed={false} />}
               />
               <NumericRefinementListFilter
                 id="dateFilter"
                 title="Datum"
                 field="date"
-                containerComponent={<Panel collapsable defaultCollapsed={false} />}
                 options={dateFilterOptions}
+              />
+              <RangeFilter
+                field="date"
+                title="Datum"
+                id="dateRangeFilter"
+                min={1332460800000}
+                max={1458691200000}
+                showHistogram
+                rangeComponent={RangeSliderHistogram}
+                rangeFormatter={count => formatDate(count)}
               />
             </DrawerContainer>
 
             <div className="sk-main">
-              <InitialLoader />
               <Hits
                 hitsPerPage={8}
                 highlightFields={['onderwerp', 'text']}

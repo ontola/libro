@@ -1,18 +1,6 @@
 import moment from 'moment';
 
-/**
- * @constant
- * @type {number}
- */
-const MILLISECONDS_TO_SECONDS = 1000;
-
-
-/**
- * @constant
- * @type {string}
- */
-const dateDisplayFormat = 'DD-MM-YY';
-
+const dateDisplayFormat = 'DD-MM-YYYY';
 
 /**
  * @param {number} timestamp A unix timestamp
@@ -23,7 +11,7 @@ const formatDate = (timestamp) => {
     return undefined;
   }
 
-  const dateMilliSeconds = new Date(timestamp * MILLISECONDS_TO_SECONDS);
+  const dateMilliSeconds = new Date(timestamp);
   const formattedDate = moment(dateMilliSeconds).format(dateDisplayFormat);
   return formattedDate;
 };

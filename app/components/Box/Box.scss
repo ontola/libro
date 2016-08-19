@@ -14,3 +14,7 @@
 .Box__content {
   padding: $padding-base;
 }
+
+.Box__contentPreWrapped {
+  white-space: pre-wrap;
+}
