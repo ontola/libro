@@ -7,8 +7,8 @@ import { Container, Heading } from 'components';
 
 const Motions = () => (
   <Container>
-    <Helmet title="Motions" />
-    <Heading>Motions</Heading>
+    <Helmet title="Moties" />
+    <Heading>Moties</Heading>
     <MotionsContainer />
   </Container>
 );

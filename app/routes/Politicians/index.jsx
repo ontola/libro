@@ -6,10 +6,8 @@ import Helmet from 'react-helmet';
 
 const Politicians = () => (
   <Container>
-    <Helmet
-      title="Politicians"
-    />
-    <Heading>Politicians</Heading>
+    <Helmet title="Politici" />
+    <Heading>Politici</Heading>
     <PersonsContainer />
   </Container>
 );

@@ -60,15 +60,12 @@ class Navbar extends Component {
               </ul>
               <div
                 className="Navbar__search"
-                onClick={() => {
-                  browserHistory.push('/search');
-                }}
+                onClick={() => browserHistory.push('/search/')}
               >
                 <SearchBox
                   mod="SearchBox"
                   queryFields={['onderwerp', 'text', 'text.shingles']}
                   placeholder="Zoek op onderwerp, persoon, organisatie..."
-                  blurAction="restore"
                 />
               </div>
               <ul className="Navbar__links Navbar__links--right">

@@ -65,7 +65,13 @@ class Search extends Component {
   }
 
   componentDidMount() {
-    this.context.searchkit.resultsEmitter.listeners.push(results => {
+    const {
+      searchkit,
+    } = this.context;
+
+    searchkit.reloadSearch();
+
+    searchkit.resultsEmitter.listeners.push(results => {
       this.props.setHitCountAction(results.hits.total);
     });
   }

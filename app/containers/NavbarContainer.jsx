@@ -15,11 +15,11 @@ const itemsLeft = [
 const itemsRight = [
   <Link className="Navbar__item" to="/motions">
     <FontAwesome name="lightbulb-o" />
-    <span className="Navbar__item-text">Motions</span>
+    <span className="Navbar__item-text">Moties</span>
   </Link>,
   <Link className="Navbar__item" to="/politicians">
     <FontAwesome name="group" />
-    <span className="Navbar__item-text">Politicians</span>
+    <span className="Navbar__item-text">Politici</span>
   </Link>,
 ];
 
