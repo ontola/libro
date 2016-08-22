@@ -6,7 +6,9 @@ $color-base-brown: rgb(134, 61, 61);
 $color-base-green: rgb(84, 127, 75);
 $color-base-blue: rgb(71, 86, 104);
 
-// The following linting errors are due to an old version of sass-lint in the linter-sass-lint plugin of atom. Waiting for an update of this package.. https://github.com/AtomLinter/linter-sass-lint/pull/136
+// The following linting errors are due to an old version of sass-lint in the linter-sass-lint plugin of atom.
+// Waiting for an update of this package.. https://github.com/AtomLinter/linter-sass-lint/pull/136
+// The linting errors below do NOT show up when using npm run lint:style, because sass-lint 1.9.0 is included in the package
 $colors: (
   'black': (
     'base': rgb(0, 0, 0),

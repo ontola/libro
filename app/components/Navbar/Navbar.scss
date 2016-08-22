@@ -4,7 +4,7 @@
 .Navbar__item {
   color: color('white');
   display: block;
-  font-size: 1em;
+  font-size: font-size('medium');
   height: 3em;
   padding: 0 .7em;
   transition: .2s background-color;

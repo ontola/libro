@@ -11,7 +11,7 @@
   z-index: z(notification);
 
   &__pretext {
-    font-size: 1.4em;
+    font-size: font-size('x-large');
     font-weight: bold;
   }
 

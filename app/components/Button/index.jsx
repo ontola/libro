@@ -39,8 +39,8 @@ const Button = ({
     Button: true,
     'Button--has-icon': icon,
     'Button--small': small,
-    [`Button--${theme}`]: true,
-    [`Button--variant-${variant}`]: true,
+    [`Button--${theme}`]: theme,
+    [`Button--variant-${variant}`]: variant,
   });
 
   return (

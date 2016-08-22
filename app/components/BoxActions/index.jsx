@@ -4,22 +4,22 @@ import React, { PropTypes } from 'react';
 import { Button } from 'components';
 
 const propTypes = {
-  buttons: PropTypes.arrayOf(PropTypes.object).isRequired,
-  id: PropTypes.string,
+  buttons: PropTypes.arrayOf(PropTypes.shape({
+    icon: PropTypes.string,
+    label: PropTypes.string.isRequired,
+    side: PropTypes.oneOf(['pro', 'neutral', 'con']),
+    action: PropTypes.func.isRequired,
+  })).isRequired,
 };
 
 const BoxActions = ({
   buttons,
-  id,
 }) => (
   <div className="BoxActions">
     {buttons.map((button, i) =>
       <Button
         key={i}
-        onClick={() => button.action({
-          motionId: id,
-          side: button.side,
-        })}
+        onClick={() => button.action()}
         icon={button.icon}
         children={button.label}
         theme="box"

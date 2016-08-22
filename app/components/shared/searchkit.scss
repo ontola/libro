@@ -17,7 +17,7 @@
     box-sizing: border-box;
     color: color('white');
     flex: auto;
-    font-size: 1em;
+    font-size: font-size('medium');
     padding: .5em;
     transition: .2s color;
     width: 100%;
@@ -165,7 +165,7 @@
 
   &__count {
     color: color('grey');
-    font-size: 11px;
+    font-size: font-size('x-small');
   }
 
   &__text {

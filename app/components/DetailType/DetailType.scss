@@ -10,7 +10,7 @@
 
 .Detail__text {
   color: color('grey');
-  font-size: .8em;
+  font-size: font-size('small');
 }
 
 .Detail__icon {
@@ -26,7 +26,7 @@
 .DetailType {
   .Detail__icon {
     color: color('white');
-    font-size: .8em;
+    font-size: font-size('small');
     margin-right: .4em;
   }
 }
