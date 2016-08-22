@@ -72,13 +72,16 @@ export default class HoverBox extends Component {
   }
 
   className() {
-    return this.state.isVisible ? 'HoverBox__hiddenPart--visible' : 'HoverBox__hiddenPart--hidden';
+    return this.state.isVisible
+      ? 'HoverBox__hidden-part--visible'
+      : 'HoverBox__hidden-part--hidden';
   }
+
   render() {
     return (
       <div className="HoverBox">
         {this.trigger(this.props.children)}
-        <div className={`HoverBox__hiddenPart ${this.className()}`}>
+        <div className={`HoverBox__hidden-part ${this.className()}`}>
           {this.props.children}
           {this.state.isVisible && this.props.hiddenChildren}
         </div>

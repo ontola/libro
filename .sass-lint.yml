@@ -4,6 +4,8 @@ files:
   include: '**/*.s+(a|c)ss'
   ignore:
     - './app/components/shared/reset.scss'
+    - './app/components/shared/styleguide.scss'
+    - './app/components/shared/searchkit.scss'
 rules:
   # Extends
   extends-before-mixins: 1
@@ -20,7 +22,7 @@ rules:
 
   # Disallows
   no-attribute-selectors: 0
-  no-color-keywords: 1
+  no-color-keywords: 2
   no-color-literals: 2
   no-combinators: 0
   no-css-comments: 1
@@ -39,7 +41,7 @@ rules:
   no-trailing-zero: 1
   no-transition-all: 2
   no-universal-selectors: 0
-  no-url-protocols: 1
+  no-url-protocols: 2
   no-vendor-prefixes: 1
   no-warn: 0
   property-units: 0
@@ -50,16 +52,26 @@ rules:
   force-pseudo-nesting: 1
 
   # Name Formats
-  class-name-format: 0
+  class-name-format:
+    - 1
+    -
+      allow-leading-underscore: true
+      convention: ^[A-Z]([a-zA-Z0-9]+)*(__[a-z0-9]([-]?[a-z0-9]+)*)?(--[a-z0-9]([-]?[a-z0-9]+)+){0,2}$
+      ignore:
+        - 'sk-search-box'
+        - 'sk-search-box__text'
+        - 'is-focused'
+        - 'Button--variant-'
+        - 'Columns--gutter-'
   function-name-format: 1
-  id-name-format: 0
+  id-name-format: 1
   mixin-name-format: 1
   placeholder-name-format: 1
   variable-name-format: 1
 
   # Style Guide
   attribute-quotes: 1
-  bem-depth: 0
+  bem-depth: 1
   border-zero: 1
   brace-style: 1
   clean-import-paths: 1

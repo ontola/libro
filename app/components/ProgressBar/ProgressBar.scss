@@ -21,7 +21,7 @@
   z-index: z(progressbar);
 }
 
-.ProgressBar__bar__background {
+.ProgressBar__bar-background {
   background-color: color('grey', 'light');
   bottom: 100%;
   height: $progressbar-height;
@@ -31,6 +31,6 @@
   width: 100%;
 }
 
-.ProgressBar__completionText {
+.ProgressBar__completion-text {
   margin-left: auto;
 }

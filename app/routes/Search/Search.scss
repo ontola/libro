@@ -1,257 +1,39 @@
 @import '../../components/shared/config';
-@import '~rc-slider/assets/index.css';
+@import '../../components/shared/searchkit';
 
-// LAYOUT
-.sk-searchtools {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 1em 0;
-
-  &--hide {
-    display: none;
-  }
-}
-
-.sk-drawer-action {
-  display: inline-block;
-  @include large {
-    display: none;
-  }
-}
-
-.sk-sidebar {
-  padding-top: 20px;
-}
-
-.sk-results {
-  @include large {
+.Search {
+  &__search-tools {
+    display: flex;
     flex-direction: row;
-  }
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-}
+    justify-content: space-between;
+    padding: 1em 0;
 
-.sk-main {
-  @include large {
-    width: 74%;
-  }
-}
-
-// TOOLS
-.sk-pagination-navigation {
-  display: flex;
-  justify-content: center;
-}
-
-// TOGGLE
-.sk-toggle {
-  border: 1px solid color('grey', 'x-light');
-  border-radius: $border-radius-base;
-  color: color('blue');
-  display: flex;
-
-  &-option {
-    border-right: 1px solid color('grey', 'x-light');
-    cursor: pointer;
-    padding: .5em 1em;
-
-    &:last-child {
-      border: 0;
-    }
-
-    &.is-active {
-      background-color: color('grey', 'x-light');
-    }
-  }
-}
-
-.sk-toggle-option {
-  &.is-disabled {
-    display: none;
-  }
-}
-
-// PANELS
-.sk-panel {
-  border-bottom: 1px solid color('grey', 'light');
-  box-sizing: border-box;
-  padding: 1em;
-  position: relative;
-  width: 100%;
-
-  &__content {
-    &.is-collapsed  {
+    &--hide {
       display: none;
     }
   }
 
-  &.is-disabled  {
-    display: none;
+  &__drawer-action {
+    display: inline-block;
+  }
+
+  &__results {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
   }
 
   @include large {
-    border: 0;
-    margin-bottom: 1.5em;
-    padding: 0;
-  }
-}
-
-.sk-panel__header {
-  color: color('grey', 'dark');
-  font-size: font-size();
-  font-weight: 600;
-  margin-bottom: 5px;
-  text-transform: uppercase;
-
-  &.is-collapsable  {
-    cursor: pointer;
-    padding-left: 20px;
-    position: relative;
-    user-select: none;
-
-    &::after {
-      @include sk-arrow-down(5px);
-      content: '';
-      display: block;
-      left: 2px;
-      margin-top: -3px;
-      position: absolute;
-      top: 50%;
+    &__main {
+      width: 74%;
     }
 
-    &.is-collapsed {
-      &::after {
-        @include sk-arrow-right(5px);
-        left: 3px;
-        margin-top: -5px;
-      }
-    }
-  }
-}
-
-// ACTIONS
-.sk-refinement-list__view-more-action {
-  color: color('grey', 'dark');
-  cursor: pointer;
-  font-size: font-size('small');
-  margin: 5px 0;
-  transition: .2s color;
-
-  &:hover {
-    color: color('grey', 'x-dark');
-  }
-}
-
-//CHECKBOX
-.sk-item-list-option {
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-
-  &__checkbox {
-    display: none;
-  }
-
-  &__count {
-    color: color('grey');
-    font-size: 11px;
-  }
-
-  &__text {
-    box-sizing: border-box;
-    padding-left: 20px;
-    position: relative;
-    transition: .2s color;
-
-    &:hover {
-      color: color('grey', 'dark');
+    &__drawer-action {
+      display: none;
     }
 
-    &::before {
-      border: 3px solid color('grey', 'light');
-      content: ' ';
-      display: block;
-      height: 8px;
-      left: 0;
-      position: absolute;
-      top: .25em;
-      transition: .2s border-color, background-color;
-      width: 8px;
+    &__results {
+      flex-direction: row;
     }
   }
-
-  &.is-active {
-    .sk-item-list-option__text {
-      color: color('grey', 'mid-dark');
-
-      &::before {
-        background-color: color('grey');
-        border-color: color('grey');
-      }
-    }
-  }
-}
-
-.sk-range-histogram {
-  align-items: flex-end;
-  display: flex;
-  flex-flow: row nowrap;
-  height: 50px;
-  justify-content: space-around;
-
-  &__bar {
-    background: color('grey', 'mid-light');
-    flex: 1;
-
-    &.is-out-of-bounds {
-      background: color('grey', 'light');
-    }
-  }
-}
-
-.rc-tooltip {
-  z-index: z(tooltip);
-}
-
-.rc-slider {
-  background-color: color('grey', 'light');
-
-  &-mark {
-    font-size: font-size('x-small');
-  }
-}
-
-.rc-slider-handle {
-  border-color: color('grey', 'mid-dark');
-
-  &:hover {
-    border-color: color('grey', 'x-dark');
-  }
-}
-
-.rc-slider-track {
-  background-color: color('grey', 'mid-dark');
-}
-
-.rc-slider-mark {
-  &-text {
-    &-active {
-      color: color('grey', 'dark');
-    }
-  }
-}
-
-.rc-tooltip-placement-top {
-  .rc-tooltip-arrow {
-    border-top-color: color('pink');
-  }
-}
-
-.rc-tooltip-inner {
-  background-color: color('pink');
-  box-shadow: none;
-  box-sizing: border-box;
-  padding: 6px 10px;
 }

@@ -28,9 +28,9 @@ const ProgressBar = ({
         width: `${barWidth(completed, total)}%`,
       }}
     />
-    <div className="ProgressBar__bar__background" />
+    <div className="ProgressBar__bar-background" />
     <div className="ProgressBar__context">{context}</div>
-    <div className="ProgressBar__completionText">{completed}/{total}</div>
+    <div className="ProgressBar__completion-text">{completed}/{total}</div>
   </div>
 );
 

@@ -73,7 +73,7 @@ const Box = ({
         </DetailsBar>
       }
 
-      {preWrapWhiteSpace ? <div className="Box__contentPreWrapped">{children}</div> : children}
+      {preWrapWhiteSpace ? <div className="Box__content-prewrapped">{children}</div> : children}
 
       {showArguments &&
         <ArgumentsContainer motionId={id} />

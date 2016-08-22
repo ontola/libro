@@ -23,7 +23,7 @@ const Notification = ({ children, type }) => {
   return (
     <div className={className}>
       {type === 'error' &&
-        <div className="Notification__preText">Error:</div>
+        <div className="Notification__pretext">Error:</div>
       }
       <div className="Notification__text">{children}</div>
     </div>

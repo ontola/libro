@@ -1,4 +1,5 @@
 @import '../shared/config';
+@import '../shared/searchkit';
 
 .Navbar__item {
   color: color('white');
@@ -15,10 +16,14 @@
     vertical-align: top;
   }
 
-  .fa {
+  &-icon {
     float: none;
     line-height: 3.2em;
     padding: 0;
+  }
+
+  &-image {
+    width: 100%;
   }
 
   &--logo {
@@ -27,10 +32,6 @@
     height: 3em;
     padding: .6em;
     width: 3.8em;
-
-    img {
-      width: 100%;
-    }
   }
 
   &:hover {
@@ -47,7 +48,7 @@
       display: none;
     }
 
-    .fa {
+    &-icon {
       display: inline-block;
     }
   }
@@ -58,12 +59,7 @@
   height: 3em;
   overflow: hidden;
 
-  > li {
-    float: left;
-  }
-
-  > div {
-    display: inline-block;
+  > .Navbar__item-li {
     float: left;
   }
 
@@ -83,62 +79,13 @@
   margin: 0 .4em;
 }
 
-// SEARCHBOX
-.SearchBox {
-  background-color: color('transparent', 'light');
-  border-radius: $border-radius-base;
-  transition: .2s background-color;
-
-  &:hover {
-    background-color: color('transparent', 'mid-light');
-  }
-
-  &__text {
-    background: none;
-    border: 0;
-    box-sizing: border-box;
-    color: color('white');
-    flex: auto;
-    font-size: 1em;
-    padding: .5em;
-    transition: .2s color;
-    width: 100%;
-
-    &:focus {
-      outline: 0;
-    }
-
-    &::placeholder {
-      color: color('transparent');
-      transition: .2s color;
-    }
-  }
-
-  &.is-focused {
-    background-color: color('white');
-
-    .SearchBox__text {
-      color: color('grey', 'mid-dark');
-
-      &::placeholder {
-        color: color('grey', 'mid-light');
-      }
-    }
-  }
-
-  &__action {
-    display: none;
-    visibility: hidden;
-  }
-}
-
 // DARK TEXT
 .Navbar--dark-text {
   .Navbar__item {
     color: color('grey', 'dark');
   }
 
-  .SearchBox {
+  .sk-search-box {
     background-color: color('transparent', 'dark');
     color: color('grey', 'dark');
 
@@ -146,7 +93,7 @@
       background-color: color('transparent', 'x-dark');
     }
 
-    .SearchBox__text {
+    &__text {
       color: color('grey', 'dark');
 
       &::placeholder {
@@ -155,11 +102,10 @@
     }
   }
 
-
-  &.is-focused {
+  .is-focused {
     background-color: color('transparent', 'dark');
 
-    .SearchBox__text {
+    .sk-search-box__text {
       color: color('black');
 
       &::placeholder {

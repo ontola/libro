@@ -8,17 +8,17 @@ import { Link } from 'react-router';
 
 const itemsLeft = [
   <Link className="Navbar__item Navbar__item--logo" to="/">
-    <img src="/static/logo.svg" alt="Argu" />
+    <img src="/static/logo.svg" className="Navbar__item-image" alt="Argu" />
   </Link>,
 ];
 
 const itemsRight = [
   <Link className="Navbar__item" to="/motions">
-    <FontAwesome name="lightbulb-o" />
+    <span className="Navbar__item-icon"><FontAwesome name="lightbulb-o" /></span>
     <span className="Navbar__item-text">Moties</span>
   </Link>,
   <Link className="Navbar__item" to="/politicians">
-    <FontAwesome name="group" />
+    <span className="Navbar__item-icon"><FontAwesome name="group" /></span>
     <span className="Navbar__item-text">Politici</span>
   </Link>,
 ];

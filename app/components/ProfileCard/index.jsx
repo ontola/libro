@@ -56,7 +56,7 @@ const ProfileCard = ({
           </div>
           <div className="ProfileCard__stat">
             Opinies
-            <span className="ProfileCard__statValue">543</span>
+            <span className="ProfileCard__stat-value">543</span>
           </div>
         </div>
         <div className="ProfileCard__buttons">

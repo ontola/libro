@@ -23,7 +23,7 @@ const PoliticiansListItem = ({
         to={`/profile/${id}`}
         className="PoliticiansListItem__link"
       >
-        <div className="PoliticiansListItem__imageWrapper">
+        <div className="PoliticiansListItem__imagewrapper">
           <img
             src={image}
             alt={name}

@@ -17,16 +17,16 @@ const Drawer = ({
   visible,
 }) => {
   const drawerClass = classNames({
-    'sk-sidebar': true,
-    'sk-sidebar--visible': visible,
+    Drawer: true,
+    'Drawer--visible': visible,
   });
 
   return (
     <div className={drawerClass}>
-      <div className="sk-sidebar__overlay" onClick={() => { onClickToggle(); }}></div>
-      <div className="sk-sidebar__wrapper">
-        <div className="sk-sidebar__container">{children}</div>
-        <div className="sk-drawer-action sk-drawer-action--close">
+      <div className="Drawer__overlay" onClick={() => { onClickToggle(); }}></div>
+      <div className="Drawer__wrapper">
+        <div className="Drawer__container">{children}</div>
+        <div className="Drawer__action Drawer__action--close">
           <Button onClick={() => { onClickToggle(); }}>Toon {hits} resultaten</Button>
         </div>
       </div>

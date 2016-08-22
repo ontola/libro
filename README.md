@@ -32,6 +32,8 @@ If you using Atom, please install [this plugin](https://atom.io/packages/linter-
 npm run lint:style
 ```
 
+Uses [Harry Roberts'](https://en.bem.info/methodology/naming-convention/#alternative-naming-schemes) style naming with Component names as block name. For example `.Block__element--modifier` or `.ProfileCard__stat-value--light`
+
 ### Testing
 
 Tests are made using mocha, chai assert and enzyme ([docs](http://airbnb.io/enzyme/docs/api/index.html))

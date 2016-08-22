@@ -78,29 +78,28 @@ class Search extends Component {
 
   render() {
     const { hits, toggleDrawerAction } = this.props;
-    const toolsClass = (hits === null) ? 'sk-searchtools sk-searchtools--hide' : 'sk-searchtools';
+    const toolsClass = hits === null && 'Search__search-tools--hide';
+
     return (
       <div>
         <Helmet title="Search" />
         <Cover type="lighter">
           <Container size="large">
-            <div className={toolsClass}>
-              <div className="sk-drawer-action">
+            <div className={`Search__search-tools ${toolsClass}`}>
+              <div className="Search__drawer-action">
                 <Button
                   theme="subtle"
                   small
                   onClick={toggleDrawerAction}
                 >Filter</Button>
               </div>
-              <div className="sk-hits-stats">
-                <div className="sk-hits-stats__info">{`${hits} resultaten`}</div>
-              </div>
+              <div className="Search__hits">{`${hits} resultaten`}</div>
               <SortingSelector listComponent={Select} options={sortOption} />
             </div>
           </Container>
         </Cover>
         <Container size="large">
-          <div className="sk-results">
+          <div className="Search__results">
             <DrawerContainer>
               <ResetFilters component={ResetFiltersDisplay} />
               <RefinementListFilter
@@ -128,7 +127,7 @@ class Search extends Component {
               />
             </DrawerContainer>
 
-            <div className="sk-main">
+            <div className="Search__main">
               <Hits
                 hitsPerPage={8}
                 highlightFields={['onderwerp', 'text']}

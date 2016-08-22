@@ -4,11 +4,11 @@
   position: relative;
 }
 
-.HoverBox__hiddenPart {
+.HoverBox__hidden-part {
   display: none;
   pointer-events: none;
 
-  &.HoverBox__hiddenPart--visible {
+  &.HoverBox__hidden-part--visible {
     background-color: color('white');
     border-radius: $border-radius-base;
     box-shadow: $box-shadow;
