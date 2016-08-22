@@ -3,6 +3,7 @@ import { assert } from 'chai';
 import {
   checkLuminance,
   getLuminance,
+  isRGB,
   rgbToArray,
 } from './color';
 
@@ -29,6 +30,10 @@ describe('RGB Color value', () => {
       expectedLuminationValue,
       'Value not correct according to weighted W3C method'
     );
+  });
+
+  it('should check whether string is a rgb color code', () => {
+    assert.isTrue(isRGB(rgbInput), 'String is not a rgb color');
   });
 
   it('should return the correct boolean when checked with threshold value', () => {

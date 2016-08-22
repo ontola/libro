@@ -11,7 +11,7 @@ const propTypes = {
   contentLeft: PropTypes.arrayOf(PropTypes.node).isRequired,
   contentRight: PropTypes.arrayOf(PropTypes.node).isRequired,
   forumColor: (props, propName, componentName) => {
-    if (isRGB(props[propName])) {
+    if (!isRGB(props[propName])) {
       return new Error(`Invalid prop ${propName} supplied to ${componentName}`);
     }
     return null;
