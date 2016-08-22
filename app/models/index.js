@@ -1,4 +1,4 @@
-// @flow
+
 export { default as Argument } from './Argument';
 export { default as Count } from './Count';
 export { default as Motion } from './Motion';

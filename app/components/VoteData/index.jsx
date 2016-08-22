@@ -1,4 +1,3 @@
-// @flow
 import './VoteData.scss';
 import React, { PropTypes } from 'react';
 import { Container, Opinions, VoteChart } from 'components';

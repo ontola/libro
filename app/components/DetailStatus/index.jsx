@@ -1,4 +1,3 @@
-// @flow
 import './DetailStatus.scss';
 import React, { PropTypes } from 'react';
 import { Detail } from 'components';

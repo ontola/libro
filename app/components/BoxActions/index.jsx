@@ -1,4 +1,3 @@
-// @flow
 import './BoxActions.scss';
 import React, { PropTypes } from 'react';
 import { Button } from 'components';

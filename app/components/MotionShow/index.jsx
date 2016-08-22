@@ -1,4 +1,3 @@
-// @flow
 import './MotionShow.scss';
 import React, { PropTypes } from 'react';
 

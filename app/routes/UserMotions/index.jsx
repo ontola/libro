@@ -1,4 +1,4 @@
-// @flow
+
 import React from 'react';
 import { Box, Container } from 'components';
 

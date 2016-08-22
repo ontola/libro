@@ -2,11 +2,12 @@
 
 .List {
   &--horizontal {
-    @include large {
-      justify-content: space-between;
-    }
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+
+    @include large {
+      justify-content: space-between;
+    }
   }
 }

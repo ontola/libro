@@ -1,4 +1,3 @@
-// @flow
 import './ArgumentListItem.scss';
 import React, { PropTypes } from 'react';
 import {

@@ -1,4 +1,3 @@
-// @flow
 export { default as ArgumentShow } from './ArgumentShow';
 export { default as ArgumentListItem } from './ArgumentListItem';
 export { default as Box } from './Box';

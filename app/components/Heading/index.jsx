@@ -1,4 +1,3 @@
-// @flow
 import './Heading.scss';
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';

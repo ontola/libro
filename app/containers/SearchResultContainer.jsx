@@ -1,4 +1,4 @@
-// @flow
+
 import React, { PropTypes } from 'react';
 import { Box } from 'components';
 

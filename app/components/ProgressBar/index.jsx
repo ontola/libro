@@ -1,4 +1,3 @@
-// @flow
 import './ProgressBar.scss';
 import React, { PropTypes } from 'react';
 

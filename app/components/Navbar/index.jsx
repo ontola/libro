@@ -1,4 +1,3 @@
-// @flow
 import './Navbar.scss';
 import React, { PropTypes } from 'react';
 import { browserHistory } from 'react-router';

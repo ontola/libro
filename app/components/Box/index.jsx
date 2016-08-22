@@ -1,4 +1,3 @@
-// @flow
 import './Box.scss';
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';

@@ -1,4 +1,4 @@
-// @flow
+
 require('babel-register')();
 
 const jsdom = require('jsdom').jsdom;
