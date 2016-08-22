@@ -1,9 +1,14 @@
 /**
+ * @param {string} str A rgb color string
+ * @return {bool} True if string is rgb
+ */
+const isRGB = str => !/^rgb\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})\)$/.test(str);
+
+/**
  * @param {string} rgb A rgb color string
  * @return {array} An Array of the rgb values
  */
 const rgbToArray = rgb => rgb.replace(/[^\d,]/g, '').split(',');
-
 
 /**
  * For more info on this see check these links:
@@ -51,6 +56,7 @@ const checkLuminance = (
 
 
 export {
+  isRGB,
   checkLuminance,
   rgbToArray,
   getLuminance,
