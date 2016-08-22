@@ -1,18 +1,12 @@
 import './Heading.scss';
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { headingSizes, headingVariants } from 'components/shared/config';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
-  size: PropTypes.oneOf(['1', '2', '3', '4', '5', '6']),
-  variant: PropTypes.oneOf([
-    'default',
-    'pro',
-    'con',
-    'light',
-    'center',
-    'outsideBox',
-  ]),
+  size: PropTypes.oneOf(headingSizes),
+  variant: PropTypes.oneOf(headingVariants),
 };
 
 const defaultProps = {

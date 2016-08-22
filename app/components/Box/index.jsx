@@ -6,6 +6,7 @@ import { BoxActions, Detail, DetailsBar, Heading } from 'components';
 import PersonContainer from 'containers/PersonContainer';
 import ArgumentsContainer from 'containers/ArgumentsContainer';
 import { formatDate } from 'helpers/date';
+import { headingSizes, headingVariants } from 'components/shared/config';
 
 const propTypes = {
   author: PropTypes.string,
@@ -13,15 +14,8 @@ const propTypes = {
   children: PropTypes.node,
   date: PropTypes.number,
   id: PropTypes.string,
-  headingSize: PropTypes.oneOf(['1', '2', '3', '4', '5', '6']),
-  headingVariant: PropTypes.oneOf([
-    'default',
-    'pro',
-    'con',
-    'light',
-    'center',
-    'outsideBox',
-  ]),
+  headingSize: PropTypes.oneOf(headingSizes),
+  headingVariant: PropTypes.oneOf(headingVariants),
   link: PropTypes.string,
   preWrapWhiteSpace: PropTypes.bool,
   showArguments: PropTypes.bool,

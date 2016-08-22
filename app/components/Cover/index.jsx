@@ -1,16 +1,12 @@
 import './Cover.scss';
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { shades } from 'components/shared/config';
 
 const propTypes = {
   backgroundColor: PropTypes.string,
   children: PropTypes.node.isRequired,
-  type: PropTypes.oneOf([
-    'default',
-    'lighter',
-    'light',
-    'dark',
-  ]),
+  type: PropTypes.oneOf(shades),
   fixed: PropTypes.bool,
   image: PropTypes.string,
   fullScreen: PropTypes.bool,

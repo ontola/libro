@@ -1,5 +1,6 @@
 import './ArgumentListItem.scss';
 import React, { PropTypes } from 'react';
+import { sides } from 'components/shared/config';
 import {
   Heading,
   HoverBox,
@@ -8,10 +9,7 @@ import {
 const propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
-  side: PropTypes.oneOf([
-    'pro',
-    'con',
-  ]),
+  side: PropTypes.oneOf(sides),
 };
 
 const defaultProps = {

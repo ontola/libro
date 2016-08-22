@@ -1,12 +1,10 @@
 import './DetailStatus.scss';
 import React, { PropTypes } from 'react';
 import { Detail } from 'components';
+import { statusses } from 'components/shared/config';
 
 const propTypes = {
-  status: PropTypes.oneOf([
-    'pass',
-    'fail',
-  ]).isRequired,
+  status: PropTypes.oneOf(statusses).isRequired,
 };
 
 const DetailStatus = ({ status }) => {

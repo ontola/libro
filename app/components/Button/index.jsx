@@ -2,22 +2,15 @@ import './Button.scss';
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import FontAwesome from 'react-fontawesome';
+import { buttonThemes, sides } from 'components/shared/config';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func,
   icon: PropTypes.string,
   small: PropTypes.bool,
-  theme: PropTypes.oneOf([
-    'box',
-    'subtle',
-    'default',
-  ]),
-  variant: PropTypes.oneOf([
-    'pro',
-    'con',
-    'neutral',
-  ]),
+  theme: PropTypes.oneOf(buttonThemes),
+  variant: PropTypes.oneOf(sides),
 };
 
 const defaultProps = {

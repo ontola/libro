@@ -1,17 +1,10 @@
 import './DetailType.scss';
 import React, { PropTypes } from 'react';
 import { Detail } from 'components';
+import { types } from 'components/shared/config';
 
 const propTypes = {
-  type: PropTypes.oneOf([
-    'idea',
-    'motion',
-    'question',
-    'document',
-    'argumentPro',
-    'argumentCon',
-    'project',
-  ]).isRequired,
+  type: PropTypes.oneOf(types).isRequired,
 };
 
 const DetailType = ({ type }) => {

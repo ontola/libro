@@ -1,14 +1,12 @@
 import React, { PropTypes } from 'react';
 import { Box } from 'components';
+import { sides } from 'components/shared/config';
 
 const propTypes = {
   content: PropTypes.string,
   createdAt: PropTypes.number,
   creator: PropTypes.string,
-  side: PropTypes.oneOf([
-    'pro',
-    'con',
-  ]).isRequired,
+  side: PropTypes.oneOf(sides).isRequired,
   title: PropTypes.string.isRequired,
 };
 

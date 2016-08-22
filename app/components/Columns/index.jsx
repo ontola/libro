@@ -1,15 +1,12 @@
 import './Columns.scss';
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { sizes } from 'components/shared/config';
 
 const propTypes = {
   children: PropTypes.array.isRequired,
   flexGrow: PropTypes.bool,
-  gutter: PropTypes.oneOf([
-    'small',
-    'medium',
-    'large',
-  ]),
+  gutter: PropTypes.oneOf(sizes),
 };
 
 const defaultProps = {

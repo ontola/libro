@@ -1,12 +1,7 @@
 import './Container.scss';
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
-
-const sizes = [
-  'small',
-  'medium',
-  'large',
-];
+import { sizes } from 'components/shared/config';
 
 const propTypes = {
   children: PropTypes.node.isRequired,

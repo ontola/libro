@@ -1,12 +1,13 @@
 import './BoxActions.scss';
 import React, { PropTypes } from 'react';
 import { Button } from 'components';
+import { sides } from 'components/shared/config';
 
 const propTypes = {
   buttons: PropTypes.arrayOf(PropTypes.shape({
     icon: PropTypes.string,
     label: PropTypes.string.isRequired,
-    side: PropTypes.oneOf(['pro', 'neutral', 'con']),
+    side: PropTypes.oneOf(sides),
     action: PropTypes.func.isRequired,
   })).isRequired,
 };
