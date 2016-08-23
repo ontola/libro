@@ -1,7 +1,7 @@
 options:
   formatter: stylish
 files:
-  include: '**/*.s+(a|c)ss'
+  include: '**/*.scss'
   ignore:
     - './app/components/shared/reset.scss'
     - './app/components/shared/styleguide.scss'
@@ -35,14 +35,21 @@ rules:
   no-important: 2
   no-invalid-hex: 1
   no-mergeable-selectors: 1
-  no-misspelled-properties: 1
+  no-misspelled-properties:
+    - 1
+    -
+      'extra-properties':
+        - 'overflow-scrolling'
   no-qualifying-elements: 1
   no-trailing-whitespace: 1
   no-trailing-zero: 1
   no-transition-all: 2
   no-universal-selectors: 0
   no-url-protocols: 2
-  no-vendor-prefixes: 1
+  no-vendor-prefixes:
+    - 1
+    -
+      ignore-non-standard: true
   no-warn: 0
   property-units: 0
 
