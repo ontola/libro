@@ -40,18 +40,25 @@ const ProfileCard = ({
       <div className="ProfileCard__head">
         <div className="ProfileCard__title">
           <Heading>{name}</Heading>
-          <div className="ProfileCard__party">{party}</div>
+          {party && <div className="ProfileCard__party">{party}</div>}
         </div>
-        <div className="ProfileCard__image" style={{ backgroundImage: `url(${image})` }} />
+        {image &&
+          <div
+            className="ProfileCard__image"
+            style={{
+              backgroundImage: `url(${image})`,
+            }}
+          />
+        }
       </div>
 
-      <p className="ProfileCard__bio">{bio}</p>
+      {bio && <p className="ProfileCard__bio">{bio}</p>}
 
       <div className="ProfileCard__foot">
         <div className="ProfileCard__stats">
           <div className="ProfileCard__stat">
             Ideeen
-            <span className="ProfileCard__statValue">124</span>
+            <span className="ProfileCard__stat-value">124</span>
           </div>
           <div className="ProfileCard__stat">
             Opinies

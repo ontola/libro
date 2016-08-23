@@ -35,7 +35,7 @@ const Detail = ({
       className={classNames}
       title={title}
     >
-      {pictogram}
+      {(icon || imageUrl) && pictogram}
       <span className="Detail__text">{text}</span>
     </Element>
   );

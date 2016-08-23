@@ -10,5 +10,5 @@
       <Heading variant="con">Con Variant</Heading>
       <Heading variant="light">Light Variant</Heading>
       <Heading variant="center">Center Variant</Heading>
-      <Heading variant="outsideBox">Outside Box Variant</Heading>
+      <Heading variant="column">Outside Box Variant</Heading>
     </div>
