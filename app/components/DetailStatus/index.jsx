@@ -1,10 +1,10 @@
 import './DetailStatus.scss';
 import React, { PropTypes } from 'react';
 import { Detail } from 'components';
-import { statusses } from 'components/shared/config';
+import { statuses } from 'components/shared/config';
 
 const propTypes = {
-  status: PropTypes.oneOf(statusses).isRequired,
+  status: PropTypes.oneOf(statuses).isRequired,
 };
 
 const DetailStatus = ({ status }) => {

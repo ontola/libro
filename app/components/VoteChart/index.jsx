@@ -1,13 +1,13 @@
 import './VoteChart.scss';
 import React, { PropTypes } from 'react';
-import { statusses } from 'components/shared/config';
+import { statuses } from 'components/shared/config';
 
 const propTypes = {
   data: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.bool,
   ]).isRequired,
-  result: PropTypes.oneOf(statusses).isRequired,
+  result: PropTypes.oneOf(statuses).isRequired,
 };
 
 const defaultProps = {

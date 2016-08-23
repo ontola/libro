@@ -34,7 +34,7 @@ export const sizes = [
   'large',
 ];
 
-export const statusses = [
+export const statuses = [
   'pass',
   'fail',
 ];
