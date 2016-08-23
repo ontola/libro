@@ -19,6 +19,7 @@ const Drawer = ({
   const drawerClass = classNames({
     Drawer: true,
     'Drawer--visible': visible,
+    'Drawer--hide': !visible,
   });
 
   return (

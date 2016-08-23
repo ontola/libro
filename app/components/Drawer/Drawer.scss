@@ -13,9 +13,12 @@
   }
 
   @include large {
-    display: block;
-    margin: 0 2% 0 0;
+    margin: 20px 2% 0 0;
     width: 24%;
+
+    .Drawer__action {
+      display: none;
+    }
   }
 }
 
@@ -50,6 +53,16 @@
     overflow-y: auto;
     padding-bottom: 72px;
   }
+
+  .Drawer__action--close {
+    background-color: color('white');
+    bottom: 0;
+    left: 0;
+    padding: 1em;
+    position: absolute;
+    right: 0;
+    z-index: $zindex-1;
+  }
 }
 
 .Drawer--visible {
@@ -68,14 +81,4 @@
     visibility: visible;
     z-index: $zindex-2;
   }
-}
-
-.Drawer__action--close {
-  background-color: color('white');
-  bottom: 0;
-  left: 0;
-  padding: 1em;
-  position: absolute;
-  right: 0;
-  z-index: $zindex-1;
 }

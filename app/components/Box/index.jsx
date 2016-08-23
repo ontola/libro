@@ -17,7 +17,6 @@ const propTypes = {
   headingSize: PropTypes.oneOf(headingSizes),
   headingVariant: PropTypes.oneOf(headingVariants),
   link: PropTypes.string,
-  preWrapWhiteSpace: PropTypes.bool,
   showArguments: PropTypes.bool,
   showButtons: PropTypes.bool,
   showMeta: PropTypes.bool,
@@ -42,7 +41,6 @@ const Box = ({
   headingVariant,
   id,
   link,
-  preWrapWhiteSpace,
   showArguments,
   showMeta,
   title,
@@ -66,7 +64,7 @@ const Box = ({
         </DetailsBar>
       }
 
-      {preWrapWhiteSpace ? <div className="Box__content-prewrapped">{children}</div> : children}
+      {children}
 
       {showArguments &&
         <ArgumentsContainer motionId={id} />
