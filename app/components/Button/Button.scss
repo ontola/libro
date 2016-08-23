@@ -6,7 +6,7 @@
   font-family: $font-family;
   font-size: font-size('medium');
   margin: 0;
-  padding: $padding-base;
+  padding: units('x-small', 'large');
   transition: .1s box-shadow, .1s background-color;
 
   &:hover {
@@ -59,7 +59,8 @@
 
 .Button--small {
   font-size: font-size('small');
-  padding: $padding-small;
+  padding: units('xx-small', 'x-small');
+  // padding: $padding-small;
 }
 
 .Button--box {

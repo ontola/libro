@@ -3,7 +3,7 @@
 .Container {
   box-sizing: border-box;
   margin: 0 auto;
-  padding: 0 10px;
+  padding: units('none', 'small');
   position: relative;
   width: 100%;
 
@@ -17,7 +17,7 @@
     padding: 0;
 
     &--spacing-small {
-      padding: 1em 0;
+      padding: units('small', 'none');
     }
 
     &--spacing-large {

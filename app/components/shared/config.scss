@@ -85,10 +85,23 @@ $padding-small: 5px 10px;
 $margin-base: 20px 0;
 $margin-small: 5px 0;
 
+
+$base-unit: 1rem;
+
+$units: (
+  'none': 0,
+  'x-large': $base-unit * 2,
+  'large': $base-unit * 1.3,
+  'medium': $base-unit,
+  'small': $base-unit * .75,
+  'x-small': $base-unit * .5,
+  'xx-small': $base-unit * .3,
+);
+
 $sizes-margin: (
   'small': 0,
-  'medium': 1em,
-  'large': 2em,
+  'medium': $base-unit * 1.3,
+  'large': $base-unit * 2,
 );
 
 // CONTAINER WIDTHS

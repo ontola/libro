@@ -4,15 +4,11 @@
   background-color: color('white');
   border-radius: $border-radius-base;
   box-shadow: $box-shadow;
-  margin: 20px 0;
-
-  @include large {
-    margin: $margin-base;
-  }
+  margin: units('large');
 }
 
 .Box__content {
-  padding: $padding-base;
+  padding: units('small', 'large');
 }
 
 .Box__content-prewrapped {
