@@ -11,7 +11,6 @@ const ARGU_API_URL_EXT = process.env.ARGU_API_EXT_BASE || 'http://localhost:1337
 
 const ELASTICSEARCH_URL = process.env.ELASTICSEARCH_URL || 'https://aod-search.argu.co/aod_search/';
 const ELASTICSEARCH_INDEX = process.env.ELASTICSEARCH_INDEX || 'aod';
-const ELASTICSEARCH_DOCUMENT_BASE = `${ELASTICSEARCH_URL}/${ELASTICSEARCH_INDEX}/content/`;
 
 export {
   PORT,
@@ -19,5 +18,4 @@ export {
   ARGU_API_URL_EXT,
   ELASTICSEARCH_URL,
   ELASTICSEARCH_INDEX,
-  ELASTICSEARCH_DOCUMENT_BASE,
 };

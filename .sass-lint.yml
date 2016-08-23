@@ -65,9 +65,6 @@ rules:
       allow-leading-underscore: true
       convention: ^[A-Z]([a-zA-Z0-9]+)*(__[a-z0-9]([-]?[a-z0-9]+)*)?(--[a-z0-9]([-]?[a-z0-9]+)+){0,2}$
       ignore:
-        - 'sk-search-box'
-        - 'sk-search-box__text'
-        - 'is-focused'
         - 'Button--variant-'
         - 'Columns--gutter-'
   function-name-format: 1

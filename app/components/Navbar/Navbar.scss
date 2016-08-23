@@ -9,6 +9,10 @@
   padding: 0 .7em;
   transition: .2s background-color;
 
+  &-li {
+    float: left;
+  }
+
   &-text {
     display: inline-block;
     line-height: 3em;
@@ -59,10 +63,6 @@
   height: 3em;
   overflow: hidden;
 
-  > .Navbar__item-li {
-    float: left;
-  }
-
   &--right {
     float: right;
     margin-left: 0;
@@ -83,34 +83,5 @@
 .Navbar--dark-text {
   .Navbar__item {
     color: color('grey', 'dark');
-  }
-
-  .sk-search-box {
-    background-color: color('transparent', 'dark');
-    color: color('grey', 'dark');
-
-    &:hover {
-      background-color: color('transparent', 'x-dark');
-    }
-
-    &__text {
-      color: color('grey', 'dark');
-
-      &::placeholder {
-        color: color('grey', 'dark');
-      }
-    }
-  }
-
-  .is-focused {
-    background-color: color('transparent', 'dark');
-
-    .sk-search-box__text {
-      color: color('black');
-
-      &::placeholder {
-        color: color('grey', 'x-dark');
-      }
-    }
   }
 }
