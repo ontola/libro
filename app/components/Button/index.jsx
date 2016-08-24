@@ -16,7 +16,6 @@ const propTypes = {
 const defaultProps = {
   small: false,
   theme: 'default',
-  children: '',
 };
 
 const Button = ({

@@ -5,8 +5,12 @@ module.exports = {
     browser
       .url(`${browser.launch_url}/motions`)
       .waitForElementVisible('body', DELAY)
+      .assert.title('Moties')
       .pause(DELAY)
-      .waitForElementVisible('.motions__list__item', DELAY)
+      .waitForElementVisible('.List', DELAY)
+      .assert.containsText(
+        '.List .Box:first-child a',
+        'Het Heroverwegen van de positie van de toezichthouder')
       .end();
   },
 };

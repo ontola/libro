@@ -14,19 +14,19 @@
     "host": "127.0.0.1",
     "port": 4444,
     "cli_args": {
-      "webdriver.chrome.driver" : "bin/chromedriver",
-      "webdriver.ie.driver" : ""
+      "webdriver.chrome.driver": "bin/chromedriver",
+      "webdriver.ie.driver": ""
     }
   },
 
   "test_settings": {
     "default": {
-      "launch_url": "http://localhost:3003",
+      "launch_url": "http://localhost:3001",
       "selenium_port": 4444,
       "selenium_host": "localhost",
       "silent": true,
       "screenshots": {
-        "enabled": false,
+        "enabled": true,
         "path": "reports/screenshots"
       },
       "desiredCapabilities": {

@@ -1,12 +1,5 @@
-const DELAY = 1000;
+export { default as init } from './init';
+export { default as motions } from './motions';
 
-module.exports = {
-  'Test homepage': (browser) => {
-    browser
-      .url(`${browser.launch_url}/`)
-      .waitForElementVisible('body', DELAY)
-      .assert.containsText('.Box__content p',
-        'Lorem ipsum')
-      .end();
-  },
-};
+import * as Tests from '.';
+export default Tests;
