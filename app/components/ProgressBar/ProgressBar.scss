@@ -5,7 +5,7 @@
   bottom: 0;
   display: flex;
   left: 0;
-  padding: 15px 25px;
+  padding: units('medium', 'x-large');
   position: fixed;
   right: 0;
 }
@@ -13,7 +13,7 @@
 .ProgressBar__bar {
   background-color: color('blue', 'mid-light');
   bottom: 100%;
-  height: $progressbar-height;
+  height: unit('xx-small');
   left: 0;
   position: absolute;
   right: 0;
@@ -24,7 +24,7 @@
 .ProgressBar__bar-background {
   background-color: color('grey', 'light');
   bottom: 100%;
-  height: $progressbar-height;
+  height: unit('xx-small');
   left: 0;
   position: absolute;
   right: 0;

@@ -4,10 +4,10 @@
   background-color: color('white');
   border: 1px solid color('grey', 'x-light');
   border-radius: $border-radius-base;
-  bottom: 1em;
-  padding: $padding-base;
+  bottom: unit();
+  padding: units('small', 'large');
   position: fixed;
-  right: 1em;
+  right: unit();
   z-index: z(notification);
 
   &__pretext {

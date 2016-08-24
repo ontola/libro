@@ -6,7 +6,7 @@
   display: block;
   font-size: font-size('medium');
   height: 3em;
-  padding: 0 .7em;
+  padding: units('none', 'small');
   transition: .2s background-color;
 
   &-li {
@@ -16,7 +16,7 @@
   &-text {
     display: inline-block;
     line-height: 3em;
-    margin-left: .4em;
+    margin-left: unit('x-small');
     vertical-align: top;
   }
 
@@ -34,7 +34,7 @@
     box-sizing: border-box;
     display: flex;
     height: 3em;
-    padding: .6em;
+    padding: unit('x-small');
     width: 3.8em;
   }
 
@@ -76,7 +76,7 @@
 .Navbar__search {
   align-self: center;
   flex: auto;
-  margin: 0 .4em;
+  margin: units('none', 'x-small');
 }
 
 // DARK TEXT

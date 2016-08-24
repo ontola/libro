@@ -27,6 +27,6 @@
     display: flex;
     font-size: font-size('small');
     justify-content: space-between;
-    margin: $margin-small;
+    margin: units('xx-small', 'none');
   }
 }
