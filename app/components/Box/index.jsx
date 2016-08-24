@@ -64,7 +64,7 @@ const Box = ({
         </DetailsBar>
       }
 
-      {children}
+      <div className="Box__content-main">{children}</div>
 
       {showArguments &&
         <ArgumentsContainer motionId={id} />
