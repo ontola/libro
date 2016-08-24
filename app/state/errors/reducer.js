@@ -10,7 +10,7 @@ const errors = (state = initialState, action) => {
   if (action.error) {
     return state.merge({
       error: true,
-      message: action.payload,
+      message: action.payload.message,
     });
   } else if (action.type === actions.RESET_ERROR_MESSAGE) {
     return initialState;

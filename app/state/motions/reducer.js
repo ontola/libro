@@ -14,8 +14,13 @@ const newMotionUnlessExists = (state, id) => {
 };
 
 const motions = handleActions({
-  [GET_MOTION]: (state, { payload }) => {
+  [GET_MOTION]: (state, { error, payload }) => {
     const record = payload.record || newMotionUnlessExists(state, payload.id);
+
+    if (error) {
+      return state.deleteIn(['items', payload.id]);
+    }
+
     return state.setIn(['items', record.id], record);
   },
 }, initialState);

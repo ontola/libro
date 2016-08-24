@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 const propTypes = {
   children: PropTypes.string,
+  reset: PropTypes.func.isRequired,
   type: PropTypes.oneOf([
     'error',
     'message',
@@ -14,7 +15,11 @@ const defaultProps = {
   type: 'message',
 };
 
-const Notification = ({ children, type }) => {
+const Notification = ({
+  reset,
+  children,
+  type,
+}) => {
   const className = classNames({
     Notification: true,
     [`Notification--${type}`]: true,
@@ -22,6 +27,7 @@ const Notification = ({ children, type }) => {
 
   return (
     <div className={className}>
+      <span onClick={() => reset()}>x</span>
       {type === 'error' &&
         <div className="Notification__pretext">Error:</div>
       }

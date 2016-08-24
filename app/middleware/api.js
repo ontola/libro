@@ -73,7 +73,10 @@ const middleware = () => next => action => {
     .catch(error => next({
       type: action.type,
       error: true,
-      payload: error.message || 'Something bad happened',
+      payload: {
+        message: error.message || 'Something bad happened',
+        id,
+      },
     }));
 };
 

@@ -13,10 +13,12 @@ import {
 
 import { getMotionTitle } from 'state/motions/selectors';
 import { getArgs } from 'state/argumentations/selectors';
+import { getErrorBool } from 'state/errors/selectors';
 import MotionContainer from 'containers/MotionContainer';
 
 const propTypes = {
   argumentations: PropTypes.array,
+  error: PropTypes.bool.isRequired,
   params: PropTypes.shape({
     motionId: PropTypes.string.isRequired,
   }),
@@ -25,6 +27,7 @@ const propTypes = {
 
 const defaultProps = {
   argumentations: [],
+  error: false,
 };
 
 const renderArgument = (data) => (
@@ -40,12 +43,14 @@ const renderArgument = (data) => (
 
 const Motion = ({
   argumentations,
+  error,
   params,
   title,
 }) => (
   <Container>
     <Helmet title={title} />
-    <MotionContainer motionId={params.motionId} />
+    {error && <div>Pagina kan niet geladen worden...</div>}
+    {!error && <MotionContainer motionId={params.motionId} />}
     <Columns>
       {argumentations.length > 0 &&
         <div>
@@ -75,6 +80,7 @@ Motion.propTypes = propTypes;
 const stateToProps = (state, ownProps) => ({
   title: getMotionTitle(state, ownProps),
   argumentations: getArgs(state, ownProps),
+  error: getErrorBool(state),
 });
 
 export default connect(stateToProps)(Motion);
