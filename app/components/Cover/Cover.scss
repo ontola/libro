@@ -30,6 +30,6 @@
   &--fullscreen {
     display: flex;
     min-height: calc(100vh);
-    padding-top: 3em;
+    padding-top: unit('x-large');
   }
 }

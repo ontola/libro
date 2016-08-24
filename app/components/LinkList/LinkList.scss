@@ -11,8 +11,8 @@
   border-bottom: 3px solid transparent;
   color: color('blue');
   display: block;
-  margin-right: 1.5em;
-  padding: .7em 0;
+  margin-right: unit('large');
+  padding: units('small', 'none');
   transition: .1s border-bottom;
 
   &:hover {
@@ -26,6 +26,6 @@
   }
 
   &:last-of-type {
-    margin-right: 2em;
+    margin-right: unit('large');
   }
 }

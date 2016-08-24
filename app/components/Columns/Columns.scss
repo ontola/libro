@@ -11,7 +11,7 @@
 
     &--flexGrow > .Column {
       flex-grow: 1;
-      margin: 0 1em;
+      margin: units('none', 'large');
       width: 100%; // makes sure each column has equal width
     }
   }

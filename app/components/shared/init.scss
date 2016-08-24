@@ -16,7 +16,7 @@ body {
 }
 
 p {
-  margin: $margin-small;
+  margin: units('xx-small', 'none');
 }
 
 a {

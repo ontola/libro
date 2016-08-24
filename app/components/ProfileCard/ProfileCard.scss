@@ -1,7 +1,7 @@
 @import '../shared/config';
 
 .ProfileCard {
-  padding: $padding-base;
+  padding: units('small', 'large');
 
   &__head {
     align-items: center;
@@ -31,8 +31,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-top: 5px;
-    padding: 8px 0;
+    margin-top: unit('x-small');
+    padding: units('small', 'none');
 
     @include large {
       flex-direction: row;
@@ -42,15 +42,15 @@
   &__stat {
     color: color('grey', 'mid-light');
     display: inline-block;
-    margin-right: 2em;
+    margin-right: unit('x-large');
   }
 
   &__stat-value {
     color: color('grey', 'mid-dark');
-    margin-left: .5em;
+    margin-left: unit('x-small');
   }
 }
 
 .ProfileCard--full {
-  padding: 40px 0;
+  padding: units('x-large', 'none');
 }

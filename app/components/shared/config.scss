@@ -78,17 +78,23 @@ $font-sizes: (
   'x-small': .75em,
 );
 
-// SPACING
-$padding-large: 40px 20px;
-$padding-base: 10px 20px;
-$padding-small: 5px 10px;
-$margin-base: 20px 0;
-$margin-small: 5px 0;
+// UNITS
+$base-unit: 1rem;
+
+$units: (
+  'none': 0,
+  'x-large': $base-unit * 2,
+  'large': $base-unit * 1.3,
+  'medium': $base-unit,
+  'small': $base-unit * .75,
+  'x-small': $base-unit * .5,
+  'xx-small': $base-unit * .3,
+);
 
 $sizes-margin: (
   'small': 0,
-  'medium': 1em,
-  'large': 2em,
+  'medium': $base-unit * 1.3,
+  'large': $base-unit * 2,
 );
 
 // CONTAINER WIDTHS
@@ -117,4 +123,3 @@ $z-layers: (
 // OTHERS
 $border-radius-base: 3px;
 $box-shadow: 0 1px 5px rgba(0, 0, 0, .1);
-$progressbar-height: 5px;

@@ -33,19 +33,19 @@
 h1 {
   font-size: font-size('xxx-large');
   font-weight: bold;
-  padding: 6px 0;
+  padding: units('x-small', 'none');
 }
 
 h2 {
   font-size: font-size('xx-large');
   font-weight: bold;
-  padding: 6px 0;
+  padding: units('xx-small', 'none');
 }
 
 h3 {
   font-size: font-size('x-large');
   font-weight: 500;
-  padding: 6px 0;
+  padding: units('xx-small', 'none');
 }
 
 h4 {
