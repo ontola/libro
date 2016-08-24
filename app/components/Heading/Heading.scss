@@ -23,6 +23,11 @@
   &--con {
     color: color('brown');
   }
+
+  &--column {
+    color: color('grey');
+    text-align: center;
+  }
 }
 
 h1 {

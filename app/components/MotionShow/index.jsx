@@ -60,7 +60,6 @@ const MotionShow = ({
         author={data.creator}
         date={date}
         children={data.text}
-        preWrapWhiteSpace
         showArguments={activeVoteMatch}
         showMeta
         id={data.id}

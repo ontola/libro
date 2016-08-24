@@ -12,7 +12,7 @@ export const headingVariants = [
   'con',
   'light',
   'center',
-  'outsideBox',
+  'column',
 ];
 
 export const shades = [
