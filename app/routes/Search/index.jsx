@@ -82,7 +82,7 @@ class Search extends Component {
 
     return (
       <div>
-        <Helmet title="Search" />
+        <Helmet title="Zoeken" />
         <Cover type="lighter">
           <Container size="large">
             <div className={`Search__search-tools ${toolsClass}`}>

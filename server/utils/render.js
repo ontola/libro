@@ -8,6 +8,7 @@ export const renderFullPage = (html, devPort, domain, initialState = {}, head) =
     <html>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8" /> 
         <meta property="og:type" content="website" />
         ${head ? head.title.toString() : ''}
         ${head ? head.meta.toString() : ''}
