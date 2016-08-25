@@ -10,6 +10,7 @@ const propTypes = {
   fixed: PropTypes.bool,
   image: PropTypes.string,
   fullScreen: PropTypes.bool,
+  overlayColor: PropTypes.string,
 };
 
 const defaultProps = {
@@ -29,6 +30,7 @@ const Cover = ({
   children,
   fixed,
   fullScreen,
+  overlayColor,
   image,
   type,
 }) => {
@@ -38,6 +40,7 @@ const Cover = ({
     'Cover--image': image,
     'Cover--fixed': fixed,
     'Cover--fullscreen': fullScreen,
+    'Cover--hasOverlay': overlayColor,
   });
 
   const style = {
@@ -49,8 +52,10 @@ const Cover = ({
     <section
       className={coverClass}
       style={style}
-      children={children}
-    />
+    >
+      {overlayColor && <div className="Cover__overlay" style={{ backgroundColor: overlayColor }} />}
+      <div className="Cover__content">{children}</div>
+    </section>
   );
 };
 

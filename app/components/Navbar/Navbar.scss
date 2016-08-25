@@ -36,6 +36,11 @@
     height: 3em;
     padding: unit('x-small');
     width: 3.8em;
+
+    path,
+    rect {
+      fill: color('white');
+    }
   }
 
   &:hover {
@@ -83,5 +88,12 @@
 .Navbar--dark-text {
   .Navbar__item {
     color: color('grey', 'dark');
+  }
+
+  .Navbar__item--logo {
+    path,
+    rect {
+      fill: color('grey', 'dark');
+    }
   }
 }

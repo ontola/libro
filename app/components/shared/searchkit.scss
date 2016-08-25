@@ -278,7 +278,7 @@
   justify-content: space-around;
 
   &__bar {
-    background: color('transparent', 'x-dark');
+    background-color: color('transparent', 'x-dark');
     flex: 1;
 
     &.is-out-of-bounds {

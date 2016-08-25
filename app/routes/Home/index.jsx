@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Helmet from 'react-helmet';
 import { browserHistory } from 'react-router';
@@ -13,11 +12,12 @@ import {
 } from 'components';
 
 const goTo = (path) => browserHistory.push(path);
+const overlayColor = 'rgb(71, 86, 104)';
 
 const Home = () => (
   <div>
     <Helmet title="Argu Open Data" />
-    <Cover image="/static/cover-home.jpg">
+    <Cover image="/static/cover-home.jpg" overlayColor={overlayColor}>
       <Container spacing="large">
         <Heading size="1" variant="light">Open Data Tweede Kamer</Heading>
       </Container>

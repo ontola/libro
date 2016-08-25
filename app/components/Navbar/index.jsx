@@ -18,8 +18,10 @@ const propTypes = {
 };
 
 const defaultProps = {
-  forumColor: 'rgb(71, 86, 104)',
+  // forumColor: 'rgb(71, 86, 104)',
+  // forumColor: 'rgb(45, 134, 195)',
   // forumColor: 'rgb(0, 0, 0)',
+  forumColor: 'rgb(255, 255, 255)',
 };
 
 const wrapInListItems = (content, keyBase) => content && content.map((item, i) =>
