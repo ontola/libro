@@ -15,7 +15,6 @@ export { default as Heading } from './Heading';
 export { default as HoverBox } from './HoverBox';
 export { default as LinkList } from './LinkList';
 export { default as List } from './List';
-export { default as MotionShow } from './MotionShow';
 export { default as Navbar } from './Navbar';
 export { default as Notification } from './Notification';
 export { default as Opinion } from './Opinion';

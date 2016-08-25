@@ -1,27 +1,24 @@
 import './ScoreSheet.scss';
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import {
   Box,
   Heading,
-  List,
 } from '../';
 
-const renderItem = (id) => (
-  <div key={id}>{id}</div>
+const propTypes = {
+  results: PropTypes.object,
+};
+
+const ScoreSheet = ({ results }) => (
+  <div className="ScoreSheet">
+    <Heading>Resultaat</Heading>
+    <Box>
+      {results}
+    </Box>
+  </div>
 );
 
-const ScoreSheet = () => {
-  const persons = ['45', '31', '35'];
-
-  return (
-    <div className="ScoreSheet">
-      <Heading>Resultaat</Heading>
-      <Box>
-        <List items={persons} renderItem={renderItem} />
-      </Box>
-    </div>
-  );
-};
+ScoreSheet.propTypes = propTypes;
 
 export default ScoreSheet;

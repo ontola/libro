@@ -10,13 +10,19 @@ const propTypes = {
     side: PropTypes.oneOf(sides),
     action: PropTypes.func.isRequired,
   })).isRequired,
+  activeButton: PropTypes.string,
+};
+
+const defaultProps = {
+  activeButton: '',
 };
 
 const BoxActions = ({
+  activeButton,
   buttons,
 }) => (
   <div className="BoxActions">
-    {buttons.map((button, i) =>
+    {buttons.map((button, i) => (
       <Button
         key={i}
         onClick={() => button.action()}
@@ -24,11 +30,13 @@ const BoxActions = ({
         children={button.label}
         theme="box"
         variant={button.side}
+        active={button.side === activeButton}
       />
-    )}
+    ))}
   </div>
 );
 
 BoxActions.propTypes = propTypes;
+BoxActions.defaultProps = defaultProps;
 
 export default BoxActions;

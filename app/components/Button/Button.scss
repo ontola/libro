@@ -60,7 +60,6 @@
 .Button--small {
   font-size: font-size('small');
   padding: units('xx-small', 'x-small');
-  // padding: $padding-small;
 }
 
 .Button--box {
@@ -71,6 +70,10 @@
 
   &:last-child {
     border-right: 0;
+  }
+
+  &.Button--active {
+    background-color: color('grey', 'mid-light');
   }
 }
 

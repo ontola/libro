@@ -5,6 +5,7 @@ import FontAwesome from 'react-fontawesome';
 import { buttonThemes, sides } from 'components/shared/config';
 
 const propTypes = {
+  active: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func,
   icon: PropTypes.string,
@@ -16,9 +17,11 @@ const propTypes = {
 const defaultProps = {
   small: false,
   theme: 'default',
+  active: false,
 };
 
 const Button = ({
+  active,
   children,
   icon,
   onClick,
@@ -32,6 +35,7 @@ const Button = ({
     'Button--small': small,
     [`Button--${theme}`]: theme,
     [`Button--variant-${variant}`]: variant,
+    'Button--active': active,
   });
 
   return (

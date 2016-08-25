@@ -7,9 +7,9 @@ import {
   Container,
   Cover,
   ProgressBar,
-  ScoreSheet,
 } from 'components';
 
+import ScoreSheetContainer from 'containers/ScoreSheetContainer';
 import MotionContainer from 'containers/MotionContainer';
 import Person from 'models/Person';
 
@@ -100,7 +100,7 @@ class CompareVotes extends Component {
         <div ref="result">
           <Cover fullScreen>
             <Container>
-              <ScoreSheet />
+              <ScoreSheetContainer />
             </Container>
           </Cover>
         </div>

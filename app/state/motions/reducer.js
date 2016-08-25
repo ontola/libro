@@ -2,10 +2,16 @@ import { handleActions } from 'redux-actions';
 import { Map } from 'immutable';
 
 import Motion from 'models/Motion';
-import { GET_MOTION } from '../action-types';
+import Vote from 'models/Vote';
+
+import {
+  GET_MOTION,
+  SET_VOTE,
+} from '../action-types';
 
 const initialState = new Map({
   items: new Map(),
+  votes: new Map(),
 });
 
 const newMotionUnlessExists = (state, id) => {
@@ -22,6 +28,14 @@ const motions = handleActions({
     }
 
     return state.setIn(['items', record.id], record);
+  },
+  [SET_VOTE]: (state, { payload }) => {
+    const record = new Vote({
+      id: payload.motionId,
+      individual: true,
+      value: payload.side,
+    });
+    return state.setIn(['votes', payload.motionId], record);
   },
 }, initialState);
 

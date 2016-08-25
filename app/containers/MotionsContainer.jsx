@@ -16,37 +16,47 @@ const defaultProps = {
   motions: {},
 };
 
-const defaultButtons = [{
+const defaultButtons = (id, voteAction) => [{
   icon: 'thumbs-up',
   label: 'Ik ben voor',
   side: 'pro',
   action: () => {
-    console.log('Gestemd');
+    voteAction({
+      motionId: id,
+      side: 'pro',
+    });
   },
 }, {
   icon: 'pause',
   label: 'Neutraal',
   side: 'neutral',
   action: () => {
-    console.log('Gestemd');
+    voteAction({
+      motionId: id,
+      side: 'neutral',
+    });
   },
 }, {
   icon: 'thumbs-down',
   label: 'Ik ben tegen',
   side: 'con',
   action: () => {
-    console.log('Gestemd');
+    voteAction({
+      motionId: id,
+      side: 'con',
+    });
   },
 }];
 
-const renderMotion = (data) => (
+const renderMotion = (data, vote, voteData) => (
   <Box
     title={data.title}
     headingSize="3"
     link={`/motions/${data.id}`}
     author={data.creator}
     date={data.createdAt}
-    boxActions={defaultButtons}
+    boxActions={defaultButtons(data.id, vote)}
+    voteData={voteData}
   />
 );
 

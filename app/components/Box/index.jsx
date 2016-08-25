@@ -22,12 +22,14 @@ const propTypes = {
   showMeta: PropTypes.bool,
   title: PropTypes.string,
   type: PropTypes.string,
+  voteData: PropTypes.string,
 };
 
 const defaultProps = {
   boxActions: [],
   headingSize: '2',
   headingVariant: 'default',
+  voteData: undefined,
 };
 
 const THOUSAND = 1000;
@@ -45,6 +47,7 @@ const Box = ({
   showMeta,
   title,
   type,
+  voteData,
 }) => (
   <div className="Box">
     <div className="Box__content">
@@ -72,7 +75,7 @@ const Box = ({
     </div>
 
     {boxActions.length > 0 &&
-      <BoxActions buttons={boxActions} id={id} />
+      <BoxActions activeButton={voteData} buttons={boxActions} />
     }
   </div>
 );
