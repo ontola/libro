@@ -1,10 +1,15 @@
 import { connect } from 'react-redux';
-
 import { ScoreSheet } from 'components';
-import { getVoteMatchResults } from 'state/votematch/selectors';
+import {
+  getVoteMatchMotions,
+  getVoteMatchResults,
+  getVoteMatchCompareWithOpinions,
+} from 'state/votematch/selectors';
 
 const mapStateToProps = (state) => ({
   results: getVoteMatchResults(state),
+  motions: getVoteMatchMotions(state),
+  compareWith: getVoteMatchCompareWithOpinions(state),
 });
 
 const ScoreSheetContainer = connect(

@@ -2,22 +2,35 @@ import { createSelector } from 'reselect';
 
 export const getVoteMatch = state => state.get('votematch');
 
-export const getVotesByMotionIds = (state, props) => {
-  console.log(props.results);
-  return props.results;
-};
-
-export const getVoteMatchCurrentIndex = createSelector(
-  getVoteMatch,
+export const getVoteMatchCurrentIndex = createSelector(getVoteMatch,
   votematch => votematch.get('currentIndex')
 );
 
-export const getVoteMatchMotionsSize = createSelector(
-  getVoteMatch,
+export const getVoteMatchMotions = createSelector(getVoteMatch,
+  votematch => votematch.get('motionIds')
+);
+
+export const getVoteMatchMotionsSize = createSelector(getVoteMatch,
   votematch => votematch.get('motionIds').size
 );
 
+export const getVoteMatchCompareWithOpinions = createSelector(getVoteMatch,
+  votematch => votematch.get('compareWithResults')
+);
+
+export const getVotes = state => state.getIn(['motions', 'votes']);
+
 export const getVoteMatchResults = createSelector(
-  getVoteMatch,
-  (votematch) => votematch.get('motionIds')
+  getVoteMatchMotions,
+  getVotes,
+  (motions, votes) => {
+    if (votes.size === 0) {
+      return false;
+    }
+
+    return motions.map(id => ({
+      motion: id,
+      vote: votes.getIn([id, 'value']),
+    }));
+  }
 );

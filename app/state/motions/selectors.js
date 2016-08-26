@@ -2,6 +2,7 @@ import { createSelector } from 'reselect';
 
 export const getMotions = (state) => state.getIn(['motions', 'items']);
 export const getVotes = (state) => state.getIn(['motions', 'votes']);
+
 export const getMotionId = (state, props) => {
   if (props.params) {
     return props.params.motionId;

@@ -1,7 +1,7 @@
-
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
+import { Map } from 'immutable';
 
 import {
   Container,
@@ -17,7 +17,8 @@ import { getPersonName } from 'state/persons/selectors';
 import { getVoteMatchMotionsSize, getVoteMatchCurrentIndex } from 'state/votematch/selectors';
 import { voteMatchStart } from 'state/votematch/actions';
 
-const motions = ['642621', '245245', '195075', '358964', '987654', '334672', '367333'];
+const motions = ['642621', '245245', '195075'];
+const compareWithResults = ['pro', 'con', 'neutral'];
 
 const propTypes = {
   currentIndex: PropTypes.number,
@@ -45,6 +46,7 @@ class CompareVotes extends Component {
 
     start({
       compareWithPerson: params.userId,
+      compareWithResults,
       currentIndex: null,
       motionIds: motions,
     });
@@ -97,6 +99,7 @@ class CompareVotes extends Component {
     return (
       <div>
         <Helmet title={`Vergelijk opinies met ${name}`} />
+        <div>{motions.map(this.renderMotion)}</div>
         <div ref="result">
           <Cover fullScreen>
             <Container>
@@ -104,7 +107,6 @@ class CompareVotes extends Component {
             </Container>
           </Cover>
         </div>
-        <div>{motions.map(this.renderMotion)}</div>
         <ProgressBar
           context={`VoteMatch - ${name}`}
           completed={currentIndex}

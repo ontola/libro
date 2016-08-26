@@ -101,7 +101,6 @@ class Search extends Component {
         <Container size="large">
           <div className="Search__results">
             <DrawerContainer>
-              <ResetFilters component={ResetFiltersDisplay} />
               <RefinementListFilter
                 id="soort"
                 field="classification"
@@ -125,6 +124,7 @@ class Search extends Component {
                 rangeComponent={RangeSliderHistogram}
                 rangeFormatter={count => formatDate(count)}
               />
+              <ResetFilters component={ResetFiltersDisplay} />
             </DrawerContainer>
 
             <div className="Search__main">
