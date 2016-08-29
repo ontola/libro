@@ -1,36 +1,58 @@
 import { createSelector } from 'reselect';
+import { Map } from 'immutable';
 
 export const getVoteMatch = state => state.get('votematch');
+export const getUserVotes = state => state.getIn(['motions', 'votes']);
 
 export const getVoteMatchCurrentIndex = createSelector(getVoteMatch,
   votematch => votematch.get('currentIndex')
 );
 
 export const getVoteMatchMotions = createSelector(getVoteMatch,
-  votematch => votematch.get('motionIds')
+  votematch => votematch.get('items')
 );
 
 export const getVoteMatchMotionsSize = createSelector(getVoteMatch,
-  votematch => votematch.get('motionIds').size
-);
-
-export const getVoteMatchCompareWithOpinions = createSelector(getVoteMatch,
-  votematch => votematch.get('compareWithResults')
-);
-
-export const getVotes = state => state.getIn(['motions', 'votes']);
-
-export const getVoteMatchResults = createSelector(
-  getVoteMatchMotions,
-  getVotes,
-  (motions, votes) => {
-    if (votes.size === 0) {
-      return false;
+  votematch => {
+    if (votematch.get('items') === undefined) {
+      return 0;
     }
 
-    return motions.map(id => ({
-      motion: id,
-      vote: votes.getIn([id, 'value']),
-    }));
+    return votematch.get('items').size;
   }
 );
+
+export const getVoteMatchResults = createSelector([
+  getVoteMatchMotions,
+  getUserVotes,
+], (
+  motions,
+  userVotes
+) => {
+  if (userVotes.size === 0) {
+    return new Map();
+  }
+
+  return motions.valueSeq().map(val =>
+    val.set('userVote', userVotes.getIn([
+      val.get('motionId'),
+      'value',
+    ]))
+  ).toMap();
+});
+
+const calcPercentage = (number, total) => (number / total);
+
+export const getVoteMatchScore = createSelector([
+  getVoteMatchResults,
+], (results) => {
+  let counter = 0;
+
+  results.forEach(result => {
+    if (result.get('compareResult') === result.get('userVote')) {
+      counter++;
+    }
+  });
+
+  return calcPercentage(counter, results.size);
+});

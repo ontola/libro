@@ -3,12 +3,7 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { Map } from 'immutable';
 
-import {
-  Container,
-  Cover,
-  ProgressBar,
-} from 'components';
-
+import { Container, Cover, ProgressBar } from 'components';
 import ScoreSheetContainer from 'containers/ScoreSheetContainer';
 import MotionContainer from 'containers/MotionContainer';
 import Person from 'models/Person';
@@ -17,8 +12,20 @@ import { getPersonName } from 'state/persons/selectors';
 import { getVoteMatchMotionsSize, getVoteMatchCurrentIndex } from 'state/votematch/selectors';
 import { voteMatchStart } from 'state/votematch/actions';
 
-const motions = ['642621', '245245', '195075'];
-const compareWithResults = ['pro', 'con', 'neutral'];
+const motionData = new Map({
+  0: new Map({
+    motionId: '642621',
+    compareResult: 'pro',
+  }),
+  1: new Map({
+    motionId: '245245',
+    compareResult: 'con',
+  }),
+  2: new Map({
+    motionId: '195075',
+    compareResult: 'neutral',
+  }),
+});
 
 const propTypes = {
   currentIndex: PropTypes.number,
@@ -45,10 +52,9 @@ class CompareVotes extends Component {
     } = this.props;
 
     start({
-      compareWithPerson: params.userId,
-      compareWithResults,
       currentIndex: null,
-      motionIds: motions,
+      compareWithPerson: params.userId,
+      items: motionData,
     });
 
     if (name === '') {
@@ -65,7 +71,8 @@ class CompareVotes extends Component {
     if (currentIndex === motionsLength) {
       this.scrollTo('result');
     } else {
-      this.scrollTo(`motion${motions[currentIndex]}`);
+      const currentMotionIndex = motionData.find((val, key) => Number(key) === currentIndex);
+      this.scrollTo(`motion${currentMotionIndex.get('motionId')}`);
     }
   }
 
@@ -96,10 +103,13 @@ class CompareVotes extends Component {
       name,
     } = this.props;
 
+    const mapMotions = motion => this.renderMotion(motion.get('motionId'));
+    const motionsMap = motionData.valueSeq().map(mapMotions);
+
     return (
       <div>
         <Helmet title={`Vergelijk opinies met ${name}`} />
-        <div>{motions.map(this.renderMotion)}</div>
+        <div>{motionsMap}</div>
         <div ref="result">
           <Cover fullScreen>
             <Container>
