@@ -18,12 +18,11 @@ const defaultProps = {
 
 const ScoreSheet = ({
   resultsPerMotion,
-  score,
+  // score,
 }) => (
   <div className="ScoreSheet">
     <Heading>Resultaat</Heading>
     <Box>
-      Percentage overeenkomst: {score}%
       <table width="100%">
         <thead>
           <tr>

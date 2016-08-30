@@ -1,1 +1,0 @@
-    <ArgumentShow title="Financiering nog niet duidelijk" side="con" content="Welke organisaties of instanties vraag je te investeren in zonnepanelen? Wat zou de overheid moeten doen om dit mogelijk te maken?" />

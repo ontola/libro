@@ -25,6 +25,7 @@ const SearchResultContainer = ({ result }) => {
       headingSize="3"
       link={`/motions/${data.id}`}
       showMeta
+      showLink
     >
       <div dangerouslySetInnerHTML={{ __html: content }}></div>
     </Box>

@@ -18,6 +18,7 @@ const propTypes = {
   headingVariant: PropTypes.oneOf(headingVariants),
   link: PropTypes.string,
   showArguments: PropTypes.bool,
+  showLink: PropTypes.bool,
   showButtons: PropTypes.bool,
   showMeta: PropTypes.bool,
   title: PropTypes.string,
@@ -29,6 +30,7 @@ const defaultProps = {
   boxActions: [],
   headingSize: '2',
   headingVariant: 'default',
+  type: undefined,
   voteData: undefined,
 };
 
@@ -44,6 +46,7 @@ const Box = ({
   id,
   link,
   showArguments,
+  showLink,
   showMeta,
   title,
   type,
@@ -53,7 +56,7 @@ const Box = ({
     <div className="Box__content">
       {title &&
         <Heading size={headingSize} variant={headingVariant}>
-          {link
+          {showLink && link
             ? <Link to={link} dangerouslySetInnerHTML={{ __html: title }} />
             : <div dangerouslySetInnerHTML={{ __html: title }} />}
         </Heading>

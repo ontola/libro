@@ -1,4 +1,3 @@
-
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
@@ -34,10 +33,10 @@ const renderArgument = (data) => (
   <ArgumentShow
     key={data.id}
     title={data.title}
-    content={data.content}
-    creator={data.creator}
-    side={data.side}
-    createdAt={data.createdAt}
+    children={data.content}
+    author={data.creator}
+    headingVariant={data.side}
+    date={data.createdAt}
   />
 );
 

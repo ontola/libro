@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { Map } from 'immutable';
 
-import { Container, Cover, ProgressBar } from 'components';
+import { Container, Cover, MotionCompare, ProgressBar } from 'components';
 import ScoreSheetContainer from 'containers/ScoreSheetContainer';
 import MotionContainer from 'containers/MotionContainer';
 import Person from 'models/Person';
@@ -85,11 +85,7 @@ class CompareVotes extends Component {
       <div ref={`motion${motion}`} key={motion}>
         <Cover fullScreen>
           <Container>
-            <MotionContainer
-              motionId={motion}
-              showArguments
-              activeVoteMatch
-            />
+            <MotionContainer motionId={motion} renderItem={MotionCompare} />
           </Container>
         </Cover>
       </div>

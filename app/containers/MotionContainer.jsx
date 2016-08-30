@@ -2,60 +2,11 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { Box } from 'components';
+import { MotionShow } from 'components';
 import Motion from 'models/Motion';
 import { getMotion, getVoteByMotionId } from 'state/motions/selectors';
 import { voteAction } from 'state/motions/actions';
 import { voteMatchNext } from 'state/votematch/actions';
-
-const defaultButtons = (id, vote, nextMotion) => {
-  const btnActionFunc = nextMotion || vote;
-  const btnAction = (side) => btnActionFunc({
-    motionId: id,
-    side,
-  });
-
-  return [{
-    icon: 'thumbs-up',
-    label: 'Ik ben voor',
-    side: 'pro',
-    action: () => {
-      btnAction('pro');
-    },
-  }, {
-    icon: 'pause',
-    label: 'Neutraal',
-    side: 'neutral',
-    action: () => {
-      btnAction('neutral');
-    },
-  }, {
-    icon: 'thumbs-down',
-    label: 'Ik ben tegen',
-    side: 'con',
-    action: () => {
-      btnAction('con');
-    },
-  }];
-};
-
-
-const renderMotion = (data, vote, voteData, nextMotion, showArguments) => (
-  <Box
-    date={data.createdAt}
-    title={data.title}
-    headingSize="2"
-    link={`/motions/${data.id}`}
-    author={data.creator}
-    showArguments={showArguments}
-    boxActions={defaultButtons(data.id, vote, nextMotion)}
-    voteData={voteData}
-    showMeta
-    type={data.classification}
-    children={data.text}
-    id={data.id}
-  />
-);
 
 const propTypes = {
   creator: PropTypes.object,
@@ -70,17 +21,13 @@ const propTypes = {
 };
 
 const defaultProps = {
-  renderItem: renderMotion,
+  renderItem: MotionShow,
   showArguments: false,
 };
 
 class MotionContainer extends Component {
   componentWillMount() {
-    const {
-      data,
-      loadMotion,
-      motionId,
-    } = this.props;
+    const { data, loadMotion, motionId } = this.props;
 
     if (data === undefined) {
       loadMotion(motionId);
@@ -88,20 +35,27 @@ class MotionContainer extends Component {
   }
 
   render() {
-    const {
-      data,
-      nextMotion,
-      renderItem,
-      showArguments,
-      vote,
-      voteData,
-    } = this.props;
+    const { data, nextMotion, renderItem, vote, voteData } = this.props;
+    const RenderComponent = renderItem;
 
     if (!data) {
       return false;
     }
 
-    return renderItem(data, vote, voteData, nextMotion, showArguments);
+    return (
+      <RenderComponent
+        author={data.creator}
+        children={data.text}
+        date={data.createdAt}
+        id={data.id}
+        link={`/motions/${data.id}`}
+        onVoteAction={vote}
+        onNextMotion={nextMotion}
+        title={data.title}
+        type={data.classification}
+        voteData={voteData}
+      />
+    );
   }
 }
 
