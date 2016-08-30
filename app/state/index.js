@@ -4,7 +4,7 @@ import { enableBatching } from 'redux-batched-actions';
 import { combineReducers } from 'redux-immutable';
 
 import argumentations from './argumentations/reducer';
-import errors from './errors/reducer';
+import communication from './communication/reducer';
 import motions from './motions/reducer';
 import persons from './persons/reducer';
 import router from './router/reducer';
@@ -16,7 +16,7 @@ import * as models from '../models';
 
 const rootReducer = combineReducers({
   argumentations,
-  errors,
+  communication,
   motions,
   persons,
   router,

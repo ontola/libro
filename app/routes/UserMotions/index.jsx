@@ -1,27 +1,56 @@
-
 import React from 'react';
 import { Box, Container } from 'components';
+import MotionContainer from 'containers/MotionContainer';
 
-const motionTitles = [
-  'Burgerparticipatie zonder bureaucratisering',
-  'Het aanwenden van vrijvallende middelen ten behoeve van de Marker Wadden',
-  'Uniformering van het lozingenbeleid voor mestverwerkingsinstallaties',
-  'De totstandkoming van drinkwatertarieven',
-  'Zelfcensuur als direct gevolg van bedreigingen',
-  'Alle vormen van voortgezet onderwijs opnemen als mogelijk resultaat van de eindtoets',
-  'Het weigeren van leerlingen vanwege een dubbel advies',
-  'Een verbod op islamitisch thuisonderwijs',
-];
+const motions = ['245245', '987654', '642621', '136743', '334672'];
+
+const defaultButtons = (id, voteAction) => [{
+  icon: 'thumbs-up',
+  label: 'Ik ben voor',
+  side: 'pro',
+  action: () => {
+    voteAction({
+      motionId: id,
+      side: 'pro',
+    });
+  },
+}, {
+  icon: 'pause',
+  label: 'Neutraal',
+  side: 'neutral',
+  action: () => {
+    voteAction({
+      motionId: id,
+      side: 'neutral',
+    });
+  },
+}, {
+  icon: 'thumbs-down',
+  label: 'Ik ben tegen',
+  side: 'con',
+  action: () => {
+    voteAction({
+      motionId: id,
+      side: 'con',
+    });
+  },
+}];
+
+const renderMotion = (data, vote, voteData) => (
+  <Box
+    title={data.title}
+    headingSize="3"
+    link={`/motions/${data.id}`}
+    author={data.creator}
+    date={data.createdAt}
+    boxActions={defaultButtons(data.id, vote)}
+    voteData={voteData}
+  />
+);
 
 const UserMotions = () => (
   <Container>
-    {motionTitles.map(title => (
-      <Box
-        key={title}
-        title={title}
-        headingSize="3"
-      />
-    ))}
+    {motions.map(id => <MotionContainer key={id} motionId={id} renderItem={renderMotion} />)}
   </Container>
 );
 

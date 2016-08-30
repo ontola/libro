@@ -13,7 +13,7 @@ import {
 
 import { getMotionTitle } from 'state/motions/selectors';
 import { getArgs } from 'state/argumentations/selectors';
-import { getErrorBool } from 'state/errors/selectors';
+import { getErrorBool } from 'state/communication/selectors';
 import MotionContainer from 'containers/MotionContainer';
 
 const propTypes = {

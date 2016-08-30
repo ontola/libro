@@ -1,0 +1,32 @@
+@import '../shared/config';
+
+.Spinner {
+  animation: loader-animation 1.1s infinite linear;
+  border-bottom: 3px solid color('white');
+  border-left: 3px solid color('pink');
+  border-radius: 50%;
+  border-right: 3px solid color('white');
+  border-top: 3px solid color('white');
+  bottom: unit('medium');
+  display: none;
+  height: 30px;
+  left: unit('medium');
+  position: fixed;
+  transform: translateZ(0);
+  width: 30px;
+
+  &--loading {
+    display: block;
+  }
+}
+
+@keyframes loader-animation {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

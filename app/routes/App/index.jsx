@@ -4,15 +4,16 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import NavbarContainer from 'containers/NavbarContainer';
-import { Notification } from 'components';
+import { Notification, Spinner } from 'components';
 
-import { resetErrorMessage } from 'state/errors/actions';
-import { getErrorBool, getErrorMsg } from 'state/errors/selectors';
+import { resetErrorMessage } from 'state/communication/actions';
+import { getErrorBool, getErrorMsg, getLoadingBool } from 'state/communication/selectors';
 
 const propTypes = {
-  children: PropTypes.node,
-  error: PropTypes.bool,
+  children: PropTypes.node.isRequired,
+  error: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string,
+  loading: PropTypes.bool.isRequired,
   reset: PropTypes.func,
 };
 
@@ -38,9 +39,11 @@ const App = ({
   children,
   error,
   errorMessage,
+  loading,
   reset,
 }) => (
   <div>
+    <Spinner loading={loading} />
     <NavbarContainer />
     {renderErrorMessage(error, errorMessage, reset)}
     {children}
@@ -54,6 +57,7 @@ export default connect(
   (state) => ({
     error: getErrorBool(state),
     errorMessage: getErrorMsg(state),
+    loading: getLoadingBool(state),
   }),
   (dispatch) => ({
     reset: () => dispatch(resetErrorMessage()),

@@ -23,6 +23,7 @@ export { default as PoliticiansListItem } from './PoliticiansListItem';
 export { default as ProfileCard } from './ProfileCard';
 export { default as ProgressBar } from './ProgressBar';
 export { default as ScoreSheet } from './ScoreSheet';
+export { default as Spinner } from './Spinner';
 export { default as VoteChart } from './VoteChart';
 export { default as VoteData } from './VoteData';
 
