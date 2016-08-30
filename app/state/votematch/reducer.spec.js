@@ -1,5 +1,5 @@
 import chai, { assert } from 'chai';
-import { List, Map } from 'immutable';
+import { Map } from 'immutable';
 import chaiImmutable from 'chai-immutable';
 
 import votematch from './reducer';
@@ -9,8 +9,8 @@ describe('Votematch reducer', () => {
   it('should return the initial state', () => {
     const expectedState = new Map({
       compareWithPerson: '',
-      currentIndex: null,
-      motionIds: new List(),
+      currentIndex: 0,
+      items: new Map(),
     });
 
     assert.deepEqual(

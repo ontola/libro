@@ -23,7 +23,7 @@ const ScoreSheet = ({
   <div className="ScoreSheet">
     <Heading>Resultaat</Heading>
     <Box>
-      Percentage overeenkomst: {score * 100}%
+      Percentage overeenkomst: {score}%
       <table width="100%">
         <thead>
           <tr>

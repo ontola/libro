@@ -41,7 +41,8 @@ export const getVoteMatchResults = createSelector([
   ).toMap();
 });
 
-const calcPercentage = (number, total) => (number / total);
+const PERCENTAGE = 100;
+const calcPercentage = (number, total) => (number / total) * PERCENTAGE;
 
 export const getVoteMatchScore = createSelector([
   getVoteMatchResults,
