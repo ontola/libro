@@ -10,6 +10,7 @@ const wrapper = mount(
     date={1471869335}
     link="/test"
     showMeta
+    showLink
     title="Test title"
     type="Test"
   />
