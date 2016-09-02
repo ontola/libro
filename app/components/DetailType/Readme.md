@@ -1,4 +1,6 @@
-    <Box>
+    <DetailsBar>
       <DetailType type="idea" />
-      <DetailType type="motion" />
-    </Box>
+      <DetailType type="challenge" />
+      <DetailType type="meeting" />
+      <DetailType type="attachment" />
+    </DetailsBar>

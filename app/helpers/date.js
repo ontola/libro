@@ -1,4 +1,5 @@
 import moment from 'moment';
+import 'moment-duration-format';
 
 const dateDisplayFormat = 'DD-MM-YYYY';
 
@@ -20,6 +21,15 @@ const formatDate = (
   return formattedDate;
 };
 
+/**
+ * @param {number} seconds Accepts seconds
+ * @return {string} A formatted time string
+ */
+const durationToString = (seconds) => {
+  return moment.duration(seconds, 'seconds').format('h:mm:ss');
+};
+
 export {
+  durationToString,
   formatDate,
 };

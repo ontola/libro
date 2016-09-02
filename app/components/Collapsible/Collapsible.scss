@@ -1,0 +1,18 @@
+@import '../shared/config';
+
+.Collapsible {
+  // position: relative;
+}
+
+.Collapsible__hidden-part {
+  display: none;
+  pointer-events: none;
+
+  &.Collapsible__hidden-part--visible {
+    display: block;
+  }
+}
+
+.Collapsible__trigger {
+  cursor: pointer;
+}

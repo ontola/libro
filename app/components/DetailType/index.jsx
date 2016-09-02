@@ -26,6 +26,24 @@ const DetailType = ({ type }) => {
       text = 'Motie';
       title = 'Een motie is een voorstel van de raad.';
       break;
+    case 'challenge':
+      className = 'DetailType--question';
+      icon = 'question';
+      text = 'Uitdaging';
+      title = 'Een uitdaging is een probleem waar ideeën op kunnen worden ingediend.';
+      break;
+    case 'meeting':
+      className = 'DetailType--meeting';
+      icon = 'calendar';
+      text = 'Vergadering';
+      title = 'Een vergadering is een bijeenkomst waar besluiten worden gemaakt.';
+      break;
+    case 'attachment':
+      className = 'DetailType--attachment';
+      icon = 'file';
+      text = 'Bijlage';
+      title = 'Een bijlage is een bestand dat bij een vergaderpunt hoort.';
+      break;
     default:
       icon = 'file-o';
       text = type;
