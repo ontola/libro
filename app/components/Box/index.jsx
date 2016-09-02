@@ -72,14 +72,10 @@ const Box = ({
 
       <div className="Box__content-main">{children}</div>
 
-      {showArguments &&
-        <ArgumentsContainer motionId={id} />
-      }
+      {showArguments && <ArgumentsContainer motionId={id} />}
     </div>
 
-    {boxActions.length > 0 &&
-      <BoxActions activeButton={voteData} buttons={boxActions} />
-    }
+    {boxActions.length > 0 && <BoxActions activeButton={voteData} buttons={boxActions} />}
   </div>
 );
 
