@@ -3,3 +3,13 @@
 .EventItem {
   position: relative;
 }
+
+.EventItem__Index {
+  position: absolute;
+  left: -.9em;
+  top: .4em;
+  color: grey;
+  font-size: 1em;
+  z-index: 2;
+  font-weight: bold;
+}

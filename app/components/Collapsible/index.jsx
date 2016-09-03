@@ -1,14 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import './Collapsible.scss';
+import ReactCollapse from 'react-collapse';
 
 const propTypes = {
-  visibleContent: PropTypes.node,
-  hidden: PropTypes.node.isRequired,
   trigger: PropTypes.node.isRequired,
-};
-
-const defaultProps = {
-  children: '',
+  children: PropTypes.node.isRequired,
+  visibleContent: PropTypes.node,
 };
 
 export default class Collapsible extends Component {
@@ -63,9 +60,9 @@ export default class Collapsible extends Component {
       <div className="Collapsible">
         {trigger}
         {this.props.visibleContent}
-        <div className={`Collapsible__hidden-part ${this.className()}`}>
-          {this.state.isVisible && this.props.hidden}
-        </div>
+        <ReactCollapse isOpened={this.state.isVisible} >
+          {this.props.children}
+        </ReactCollapse>
       </div>
     );
   }
@@ -73,4 +70,3 @@ export default class Collapsible extends Component {
 }
 
 Collapsible.propTypes = propTypes;
-Collapsible.defaultProps = defaultProps;
