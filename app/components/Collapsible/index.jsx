@@ -15,7 +15,7 @@ export default class Collapsible extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isVisible: true,
+      isVisible: false,
     };
 
     this.handleOnClick = this.handleOnClick.bind(this);

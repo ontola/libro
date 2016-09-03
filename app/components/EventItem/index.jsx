@@ -74,11 +74,12 @@ export default class EventItem extends Component {
 
     const detailsBar = (
       <DetailsBar>
-        <DetailElapsedTime
-          elapsedTime={this.props.elapsedTime}
-          totalTime={this.props.totalTime}
-          isCurrent={this.props.isCurrent}
-        />
+        {this.props.totalTime &&
+          <DetailElapsedTime
+            elapsedTime={this.props.elapsedTime}
+            totalTime={this.props.totalTime}
+            isCurrent={this.props.isCurrent}
+          />}
       </DetailsBar>
     );
 
