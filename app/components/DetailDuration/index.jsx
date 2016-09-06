@@ -6,7 +6,7 @@ import { durationToString } from 'helpers/date';
 
 const propTypes = {
   elapsedTime: PropTypes.number,
-  totalTime: PropTypes.number.isRequired,
+  totalTime: PropTypes.number,
   isCurrent: PropTypes.bool,
 };
 
@@ -15,18 +15,16 @@ const DetailDuration = ({
   totalTime,
   isCurrent,
 }) => {
-  // Can't get this to work. Seems to return null, instead of the string.
-  // const formattedDuration = () => {
-  //   if (elapsedTime) {
-  //     return (
-  //       `${durationToString(elapsedTime)} / ${durationToString(totalTime)}`
-  //     );
-  //   }
-  //   console.log(durationToString(totalTime));
-  //   return durationToString(totalTime);
-  // };
-
-  const formattedDuration = (`${durationToString(elapsedTime)} / ${durationToString(totalTime)}`);
+  const formattedDuration = (total, elapsed) => {
+    if (elapsed && total) {
+      return (
+        `${durationToString(elapsed)} / ${durationToString(total)}`
+      );
+    } else if (elapsed) {
+      return durationToString(elapsed);
+    }
+    return durationToString(total);
+  };
 
   const elapsedTimeClass = classNames({
     DetailDuration: true,
@@ -36,7 +34,7 @@ const DetailDuration = ({
   return (
     <Detail
       className={elapsedTimeClass}
-      text={formattedDuration}
+      text={formattedDuration(totalTime, elapsedTime)}
       icon="clock-o"
     />
   );

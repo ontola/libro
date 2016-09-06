@@ -7,7 +7,7 @@ An EventItem is part of an Event. EventItems are ordered, hence the index prop. 
       <EventItem
         title="Kennismakingsbijeenkomst directeur GGDrU"
         elapsedTime={126}
-        totalTime={600}
+        plannedTime={600}
         isCurrent
         text="Wij willen graag in de Raadsinformatiebijeenkomst organiseren op een avond in de maand juni. We willen de raadsleden van de gemeente Utrecht dan graag laten kennismaken met onze nieuwe Directeur Publieke Gezondheid Nicolette Rigter die per 1 mei 2016 is benoemd en met het werk dat GGD regio Utrecht doet. Dit gekoppeld aan de concept Begroting 2017 en Begrotingswijziging 2016-1 die in de periode ook voorliggen bij de raden. Verder is het vertandig om aangaande periode 2 de voorzieningen te beraadslagen." />
     </div>
@@ -17,7 +17,7 @@ An EventItem is part of an Event. EventItems are ordered, hence the index prop. 
     <div>
       <EventItem
         title="Kennismakingsbijeenkomst directeur GGDrU"
-        totalTime={600}
+        plannedTime={600}
         index={1}
         showIndex={true}
         text="Wij willen graag in de Raadsinformatiebijeenkomst organiseren op een avond in de maand juni. We willen de raadsleden van de gemeente Utrecht dan graag laten kennismaken met onze nieuwe Directeur Publieke Gezondheid Nicolette Rigter die per 1 mei 2016 is benoemd en met het werk dat GGD regio Utrecht doet. Dit gekoppeld aan de concept Begroting 2017 en Begrotingswijziging 2016-1 die in de periode ook voorliggen bij de raden. Verder is het vertandig om aangaande periode 2 de voorzieningen te beraadslagen." />

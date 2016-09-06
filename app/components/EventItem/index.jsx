@@ -14,7 +14,7 @@ const propTypes = {
   isCurrent: PropTypes.bool,
   index: PropTypes.number,
   showIndex: PropTypes.bool,
-  totalTime: PropTypes.number,
+  plannedTime: PropTypes.number,
   text: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
@@ -24,24 +24,24 @@ const EventItem = ({
   isCurrent,
   index,
   showIndex,
-  totalTime,
+  plannedTime,
   text,
   title,
 }) => {
   const progress = isCurrent ? (
     <Progress
       completed={elapsedTime}
-      total={totalTime}
+      total={plannedTime}
       direction="down"
     />) :
     false;
 
   const detailsBar = (
     <DetailsBar>
-      {totalTime &&
+      {(plannedTime || elapsedTime) &&
         <DetailDuration
           elapsedTime={elapsedTime}
-          totalTime={totalTime}
+          totalTime={plannedTime}
           isCurrent={isCurrent}
         />}
     </DetailsBar>

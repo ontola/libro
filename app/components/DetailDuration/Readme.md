@@ -11,3 +11,7 @@ isCurrent={false}
 without elapsedTime
 
     <DetailDuration totalTime={120} />
+
+without totaltime
+
+    <DetailDuration totalTime={120} />
