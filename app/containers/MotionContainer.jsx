@@ -1,4 +1,3 @@
-
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
@@ -9,20 +8,17 @@ import { voteAction } from 'state/motions/actions';
 import { voteMatchNext } from 'state/votematch/actions';
 
 const propTypes = {
-  creator: PropTypes.object,
   data: PropTypes.instanceOf(Motion),
   loadMotion: PropTypes.func.isRequired,
   motionId: PropTypes.string.isRequired,
   nextMotion: PropTypes.func.isRequired,
   renderItem: PropTypes.func.isRequired,
-  showArguments: PropTypes.bool,
   vote: PropTypes.func.isRequired,
   voteData: PropTypes.string,
 };
 
 const defaultProps = {
   renderItem: MotionShow,
-  showArguments: false,
 };
 
 class MotionContainer extends Component {
@@ -35,7 +31,7 @@ class MotionContainer extends Component {
   }
 
   render() {
-    const { data, nextMotion, renderItem, vote, voteData } = this.props;
+    const { data, onNextMotion, renderItem, onVote, voteData } = this.props;
     const RenderComponent = renderItem;
 
     if (!data) {
@@ -49,8 +45,8 @@ class MotionContainer extends Component {
         date={data.createdAt}
         id={data.id}
         link={`/motions/${data.id}`}
-        onVoteAction={vote}
-        onNextMotion={nextMotion}
+        onVoteAction={onVote}
+        onNextMotion={onNextMotion}
         title={data.title}
         type={data.classification}
         voteData={voteData}
@@ -68,8 +64,8 @@ export default connect(
     voteData: getVoteByMotionId(state, ownProps),
   }),
   (dispatch) => ({
-    loadMotion: (id) => dispatch(Motion.fetch(id)),
-    nextMotion: (data) => dispatch(voteMatchNext(data)),
-    vote: (data) => dispatch(voteAction(data)),
+    onLoadMotion: (id) => dispatch(Motion.fetch(id)),
+    onNextMotion: (data) => dispatch(voteMatchNext(data)),
+    onVote: (data) => dispatch(voteAction(data)),
   })
 )(MotionContainer);

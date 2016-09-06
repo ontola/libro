@@ -2,9 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { MotionListItem, List } from 'components';
+import { getMotions } from 'state/motions/selectors';
+
 import MotionContainer from 'containers/MotionContainer';
 import Motion from 'models/Motion';
-import { getMotions } from 'state/motions/selectors';
 
 const propTypes = {
   motions: PropTypes.object,

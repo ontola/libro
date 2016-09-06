@@ -29,6 +29,3 @@ export { default as ScoreSheet } from './ScoreSheet';
 export { default as Spinner } from './Spinner';
 export { default as VoteChart } from './VoteChart';
 export { default as VoteData } from './VoteData';
-
-import * as Components from '.';
-export default Components;

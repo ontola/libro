@@ -6,8 +6,8 @@
 
   @include large {
     display: flex;
-    margin-left: -1em;
-    margin-right: -1em;
+    margin-left: -1rem;
+    margin-right: -1rem;
 
     &--flexGrow > .Column {
       flex-grow: 1;
@@ -23,7 +23,10 @@
 
 @each $size, $margin in $sizes-margin {
   .Columns--gutter-#{$size} {
-    margin: $margin -1em;
+    margin-bottom: 1rem;
+    margin-left: -$margin;
+    margin-right: -$margin;
+    margin-top: 1rem;
 
     & > .Column {
       margin-left: $margin;
