@@ -9,7 +9,7 @@ import { voteMatchNext } from 'state/votematch/actions';
 
 const propTypes = {
   data: PropTypes.instanceOf(Motion),
-  loadMotion: PropTypes.func.isRequired,
+  onLoadMotion: PropTypes.func.isRequired,
   motionId: PropTypes.string.isRequired,
   onNextMotion: PropTypes.func.isRequired,
   renderItem: PropTypes.func.isRequired,
@@ -23,10 +23,10 @@ const defaultProps = {
 
 class MotionContainer extends Component {
   componentWillMount() {
-    const { data, loadMotion, motionId } = this.props;
+    const { data, onLoadMotion, motionId } = this.props;
 
     if (data === undefined) {
-      loadMotion(motionId);
+      onLoadMotion(motionId);
     }
   }
 
