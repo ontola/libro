@@ -11,9 +11,9 @@ const propTypes = {
   data: PropTypes.instanceOf(Motion),
   loadMotion: PropTypes.func.isRequired,
   motionId: PropTypes.string.isRequired,
-  nextMotion: PropTypes.func.isRequired,
+  onNextMotion: PropTypes.func.isRequired,
   renderItem: PropTypes.func.isRequired,
-  vote: PropTypes.func.isRequired,
+  onVote: PropTypes.func.isRequired,
   voteData: PropTypes.string,
 };
 
