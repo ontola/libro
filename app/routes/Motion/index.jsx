@@ -34,9 +34,9 @@ const renderArgument = (data) => (
     key={data.id}
     title={data.title}
     children={data.content}
-    author={data.creator}
-    headingVariant={data.side}
-    date={data.createdAt}
+    creator={data.creator}
+    side={data.side}
+    createdAt={data.createdAt}
   />
 );
 

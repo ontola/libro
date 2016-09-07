@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
-import { Box } from 'components';
+
+import { SearchResultItem } from 'components';
+import { formatDate } from 'helpers/date';
 
 const propTypes = {
   result: PropTypes.object.isRequired,
@@ -8,27 +10,23 @@ const propTypes = {
 const SearchResultContainer = ({ result }) => {
   const {
     _source: source,
+    _score: score,
     highlight,
   } = result;
 
-  const THOUSAND = 1000;
   const highlightFields = highlight !== undefined && highlight;
   const data = Object.assign({}, source, highlightFields);
   const content = highlight ? data.text : data.text.toString().substr(0, 300);
-  const dateToTimeStamp = new Date(data.date);
 
   return (
-    <Box
-      title={data.onderwerp}
-      date={dateToTimeStamp.getTime() / THOUSAND}
-      type={data.classification}
-      headingSize="3"
+    <SearchResultItem
+      children={content}
+      classification={data.classification}
+      createdAt={formatDate(data.date)}
       link={`/motions/${data.id}`}
-      showMeta
-      showLink
-    >
-      <div dangerouslySetInnerHTML={{ __html: content }}></div>
-    </Box>
+      title={data.onderwerp}
+      score={score}
+    />
   );
 };
 
