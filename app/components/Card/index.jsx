@@ -5,6 +5,10 @@ const propTypes = {
   children: PropTypes.node.isRequired,
 };
 
+/**
+ * Renders an empty Card without padding
+ * @returns {component} Component
+ */
 const Card = ({
   children,
 }) => (

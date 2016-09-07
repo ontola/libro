@@ -6,6 +6,10 @@ const propTypes = {
   noSpacing: PropTypes.bool,
 };
 
+/**
+ * A wrapper for CardButtons to provide for the correct styling
+ * @returns {component} Component
+ */
 const CardActions = ({
   children,
   noSpacing,

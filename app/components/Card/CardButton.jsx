@@ -9,6 +9,10 @@ const propTypes = {
   type: PropTypes.string,
 };
 
+/**
+ * Component to specifically render a Card button. Uses the Button component under the hood.
+ * @returns {component} Component
+ */
 const CardButton = ({
   action,
   active,

@@ -7,7 +7,15 @@ const propTypes = {
   noSpacing: PropTypes.bool,
 };
 
-const CardContent = ({ children, maxLength, noSpacing }) => {
+/**
+ * Wrapper component for Card contents
+ * @returns {component} Component
+ */
+const CardContent = ({
+  children,
+  maxLength,
+  noSpacing,
+}) => {
   const className = noSpacing ? 'CardContent CardContent--no-spacing' : 'CardContent';
   const dots = '...';
   const content = (maxLength < children.length + dots.length)

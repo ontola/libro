@@ -10,7 +10,6 @@ import {
   Heading,
 } from 'components';
 
-
 const propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,

@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import PersonContainer from 'containers/PersonContainer';
 
 import {
   Card,
@@ -10,8 +11,6 @@ import {
   DetailsBar,
   Heading,
 } from 'components';
-
-import PersonContainer from 'containers/PersonContainer';
 
 const propTypes = {
   title: PropTypes.string.isRequired,

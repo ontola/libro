@@ -6,7 +6,14 @@ const propTypes = {
   noSpacing: PropTypes.bool,
 };
 
-const CardHeader = ({ children, noSpacing }) => (
+/**
+ * Just a wrapper component
+ * @returns {component} Component
+ */
+const CardHeader = ({
+  children,
+  noSpacing,
+}) => (
   <div
     children={children}
     className={
