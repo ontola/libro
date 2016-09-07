@@ -2,29 +2,33 @@
 import './EventItem.scss';
 import React, { PropTypes } from 'react';
 import {
-  Collapsible,
   DetailsBar,
   DetailDuration,
   Heading,
   Progress,
 } from 'components';
+import CollapsibleContainer from 'containers/CollapsibleContainer';
 
 const propTypes = {
+  children: PropTypes.node,
   elapsedTime: PropTypes.number,
-  isCurrent: PropTypes.bool,
+  eventId: PropTypes.string.isRequired,
   index: PropTypes.number,
-  showIndex: PropTypes.bool,
+  isCurrent: PropTypes.bool,
   plannedTime: PropTypes.number,
-  text: PropTypes.string.isRequired,
+  showIndex: PropTypes.bool,
+  text: PropTypes.string,
   title: PropTypes.string.isRequired,
 };
 
 const EventItem = ({
+  children,
   elapsedTime,
-  isCurrent,
+  eventId,
   index,
-  showIndex,
+  isCurrent,
   plannedTime,
+  showIndex,
   text,
   title,
 }) => {
@@ -35,6 +39,13 @@ const EventItem = ({
       direction="down"
     />) :
     false;
+
+  const content = (
+    <div>
+      {text}
+      {children}
+    </div>
+  );
 
   const detailsBar = (
     <DetailsBar>
@@ -48,7 +59,7 @@ const EventItem = ({
   );
 
   const indexComponent = (
-    <div className="EventItem__Index">
+    <div className="EventItem__index">
       {index}.
     </div>
   );
@@ -56,19 +67,21 @@ const EventItem = ({
   return (
     <div className="EventItem">
       {showIndex && !isCurrent && indexComponent}
-      <Collapsible
+      <CollapsibleContainer
         trigger={
           <Heading
             size="3"
             children={title}
           />}
         visibleContent={detailsBar}
-        children={text}
+        children={content}
+        group={`event.${eventId}`}
       />
       {progress}
     </div>
   );
 };
 
-export default EventItem;
 EventItem.propTypes = propTypes;
+
+export default EventItem;

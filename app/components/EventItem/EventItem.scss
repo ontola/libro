@@ -2,12 +2,13 @@
 
 .EventItem {
   position: relative;
+  margin-top: 1em;
 }
 
-.EventItem__Index {
+.EventItem__index {
   position: absolute;
   left: -.9em;
-  top: .4em;
+  top: .1em;
   color: grey;
   font-size: 1em;
   z-index: 2;

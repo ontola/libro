@@ -29,7 +29,8 @@ a:hover .Detail__text {
 .Detail__image {
   align-items: center;
   border-radius: 100%;
-  // Overwrites .fa styling
+  color: color('grey', 'mid-light');
+  // Important overwrites the fontAwesome styling.
   display: flex !important;
   justify-content: center;
   margin-right: unit('xx-small');

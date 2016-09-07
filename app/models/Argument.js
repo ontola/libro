@@ -7,12 +7,13 @@ const apiDesc = new APIDesc({
     collection: actions.GET_ARGUMENTS,
     resource: actions.GET_ARGUMENT,
   }),
-  endpoint: 'arguments',
-  type: 'arguments',
+  endpoint: 'eventItems',
+  type: 'eventItems',
 });
 
 const attributes = {
   id: null,
+  eventId: '',
   title: '',
   content: '',
   side: '',
