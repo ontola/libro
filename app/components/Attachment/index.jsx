@@ -26,7 +26,12 @@ const Attachment = ({
 
   return (
     <div className="Attachment" href={url}>
-      <a href={url} className="Attachment__primary" target="_blank" >
+      <a
+        href={url}
+        className="Attachment__primary"
+        target="_blank"
+        title={title}
+      >
         <FontAwesome className="Attachment__icon" name="file" />
         <div className="Attachment__text">
           {title}
@@ -34,12 +39,20 @@ const Attachment = ({
         <div className="Attachment__fill" style={fillStyle} />
       </a>
       {(!isDownloaded && !isDownloading) &&
-        <a href="#" className="Attachment__inside-button">
+        <a
+          href="#"
+          className="Attachment__inside-button"
+          title="Download bestand"
+        >
           <FontAwesome className="Attachment__icon" name="download" />
         </a>
       }
       {hasPreview &&
-        <a href="#" className="Attachment__inside-button">
+        <a
+          href="#"
+          className="Attachment__inside-button"
+          title="Bekijk voorbeeldweergave"
+        >
           <FontAwesome className="Attachment__icon" name="search-plus" />
         </a>
       }
