@@ -85,7 +85,11 @@ class CompareVotes extends Component {
       <div ref={`motion${motion}`} key={motion}>
         <Cover fullScreen>
           <Container>
-            <MotionContainer motionId={motion} renderItem={MotionCompare} />
+            <MotionContainer
+              motionId={motion}
+              renderItem={MotionCompare}
+              voteMatchActive
+            />
           </Container>
         </Cover>
       </div>

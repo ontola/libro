@@ -6,15 +6,17 @@ import Motion from 'models/Motion';
 import { getMotion, getVoteByMotionId } from 'state/motions/selectors';
 import { voteAction } from 'state/motions/actions';
 import { voteMatchNext } from 'state/votematch/actions';
+import { formatDate } from 'helpers/date';
 
 const propTypes = {
   data: PropTypes.instanceOf(Motion),
   onLoadMotion: PropTypes.func.isRequired,
-  motionId: PropTypes.string.isRequired,
   onNextMotion: PropTypes.func.isRequired,
-  renderItem: PropTypes.func.isRequired,
   onVote: PropTypes.func.isRequired,
+  motionId: PropTypes.string.isRequired,
+  renderItem: PropTypes.func.isRequired,
   voteData: PropTypes.string,
+  voteMatchActive: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -23,33 +25,41 @@ const defaultProps = {
 
 class MotionContainer extends Component {
   componentWillMount() {
-    const { data, onLoadMotion, motionId } = this.props;
-
-    if (data === undefined) {
-      onLoadMotion(motionId);
+    if (this.props.data === undefined) {
+      this.props.onLoadMotion(this.props.motionId);
     }
   }
 
   render() {
-    const { data, onNextMotion, renderItem, onVote, voteData } = this.props;
-    const RenderComponent = renderItem;
-
-    if (!data) {
-      return false;
+    if (!this.props.data) {
+      return null;
     }
+
+    const RenderComponent = this.props.renderItem;
+    const onVoteAction = (side) => {
+      const btnActionFunc = this.props.voteMatchActive
+        ? this.props.onNextMotion
+        : this.props.onVote;
+
+      return btnActionFunc({
+        motionId: this.props.data.id,
+        side,
+      });
+    };
 
     return (
       <RenderComponent
-        author={data.creator}
-        children={data.text}
-        date={data.createdAt}
-        id={data.id}
-        link={`/motions/${data.id}`}
-        onVoteAction={onVote}
-        onNextMotion={onNextMotion}
-        title={data.title}
-        type={data.classification}
-        voteData={voteData}
+        creator={this.props.data.creator}
+        children={this.props.data.text}
+        createdAt={formatDate(this.props.data.createdAt)}
+        id={this.props.data.id}
+        link={`/motions/${this.props.data.id}`}
+        onVoteAction={this.props.onVote}
+        onNextMotion={this.props.onNextMotion}
+        title={this.props.data.title}
+        type={this.props.data.classification}
+        voteData={this.props.voteData}
+        onVote={onVoteAction}
       />
     );
   }
