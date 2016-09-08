@@ -27,9 +27,11 @@ const MotionCompare = ({
     <CardHeader>
       <Heading size="2">{title}</Heading>
     </CardHeader>
-    <CardContent noSpacing>
-      <ArgumentsContainer motionId={id} />
-    </CardContent>
+    {id &&
+      <CardContent noSpacing>
+        <ArgumentsContainer motionId={id} />
+      </CardContent>
+    }
     <CardActions noSpacing>
       <CardButton
         active={voteData === 'pro'}

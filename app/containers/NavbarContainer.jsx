@@ -1,7 +1,5 @@
 /* eslint max-len: 0 */
 import React from 'react';
-import { connect } from 'react-redux';
-
 import { Navbar } from 'components';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
@@ -31,11 +29,11 @@ const itemsRight = [
   </Link>,
 ];
 
-const NavbarContainer = connect(
-  () => ({
-    contentLeft: itemsLeft,
-    contentRight: itemsRight,
-  })
-)(Navbar);
+const NavbarContainer = () => (
+  <Navbar
+    contentLeft={itemsLeft}
+    contentRight={itemsRight}
+  />
+);
 
 export default NavbarContainer;

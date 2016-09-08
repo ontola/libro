@@ -36,6 +36,7 @@ class MotionContainer extends Component {
     }
 
     const RenderComponent = this.props.renderItem;
+    const MILLISECONDS_TO_SECONDS = 1000;
     const onVoteAction = (side) => {
       const btnActionFunc = this.props.voteMatchActive
         ? this.props.onNextMotion
@@ -51,7 +52,7 @@ class MotionContainer extends Component {
       <RenderComponent
         creator={this.props.data.creator}
         children={this.props.data.text}
-        createdAt={formatDate(this.props.data.createdAt)}
+        createdAt={formatDate(this.props.data.createdAt * MILLISECONDS_TO_SECONDS)}
         id={this.props.data.id}
         link={`/motions/${this.props.data.id}`}
         onVoteAction={this.props.onVote}

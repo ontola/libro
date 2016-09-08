@@ -1,4 +1,3 @@
-
 import '../../components/shared/init.scss';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
