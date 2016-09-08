@@ -1,3 +1,4 @@
+/* eslint no-param-reassign: 0 */
 export default class DataStore {
   /**
    * @param {array} models An array with Immutable Records
