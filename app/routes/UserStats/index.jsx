@@ -1,13 +1,16 @@
-
 import React from 'react';
-import { Box, Container } from 'components';
+import {
+  Box,
+  CardContent,
+  Columns,
+  Container,
+  DonutChart,
+  Widget,
+} from 'components';
+
 
 const UserStats = () => (
-  <Container>
-    <Box>
-      Statistiekenoverzicht
-    </Box>
-  </Container>
+  <Container>Joe</Container>
 );
 
 export default UserStats;

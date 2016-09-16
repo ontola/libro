@@ -14,6 +14,7 @@ export { default as DetailStatus } from './DetailStatus';
 export { default as DetailType } from './DetailType';
 export { default as Detail } from './Detail';
 export { default as DetailsBar } from './DetailsBar';
+export { default as DonutChart } from './DonutChart';
 export { default as Drawer } from './Drawer';
 export { default as Heading } from './Heading';
 export { default as HoverBox } from './HoverBox';

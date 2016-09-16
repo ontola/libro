@@ -21,6 +21,10 @@
       padding: units('small', 'none');
     }
 
+    &--spacing-medium {
+      padding: units('x-large');
+    }
+
     &--spacing-large {
       min-height: 50vh;
     }

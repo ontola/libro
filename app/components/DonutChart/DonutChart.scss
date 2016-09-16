@@ -1,0 +1,30 @@
+@import '../shared/config';
+
+@keyframes appear {
+  0% { opacity: 0.1; }
+  100% { opacity: 1; }
+}
+
+.recharts-wrapper {
+   animation: appear 1s;
+}
+
+.recharts-sector {
+  cursor: pointer;
+}
+
+.recharts-pie-labels text {
+  font-size: 12px;
+  fill: #999;
+}
+
+.innerKey {
+  font-size: 20px;
+  fill: #475668;
+}
+
+.innerValue {
+  font-size: 13px;
+  font-weight: 600;
+  fill: #AEB8C4;
+}
