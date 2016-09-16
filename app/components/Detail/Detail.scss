@@ -16,7 +16,8 @@
 .Detail__icon {
   align-items: center;
   border-radius: 100%;
-  display: flex;
+  // Overwrites .fa styling
+  display: flex !important;
   height: unit('large');
   justify-content: center;
   margin-right: unit('xx-small');
