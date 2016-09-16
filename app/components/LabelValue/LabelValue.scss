@@ -1,0 +1,10 @@
+@import '../shared/config';
+
+.LabelValue__value {
+  color: color('blue');
+  font-size: font-size('xx-large');
+}
+
+.LabelValue__key {
+  color: color('grey', 'mid-light');
+}
