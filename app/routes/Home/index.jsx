@@ -11,6 +11,7 @@ import {
   DetailsBar,
   Detail,
   Heading,
+  Widget,
 } from 'components';
 
 const overlayColor = 'rgb(71, 86, 104)';
@@ -38,6 +39,12 @@ const Home = () => (
           <CardButton action={() => null}>Knop 3</CardButton>
         </CardActions>
       </Card>
+    </Container>
+
+    <Container>
+      <Widget title="Dit is een widget" description="Bla bla bla bla bla bla bla">
+        joe
+      </Widget>
     </Container>
 
   </div>
