@@ -7,6 +7,7 @@ export { default as CardActions } from './Card/CardActions';
 export { default as CardButton } from './Card/CardButton';
 export { default as CardContent } from './Card/CardContent';
 export { default as CardHeader } from './Card/CardHeader';
+export { default as CardRow } from './Card/CardRow';
 export { default as Columns } from './Columns';
 export { default as Container } from './Container';
 export { default as Cover } from './Cover';
