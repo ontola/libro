@@ -3,12 +3,12 @@ import { Link } from 'react-router';
 import PersonContainer from 'containers/PersonContainer';
 
 import {
-  CardRow,
+  Card,
+  CardActions,
+  CardButton,
   CardHeader,
   Detail,
   DetailsBar,
-  DetailStatus,
-  DetailVotedFor,
   Heading,
 } from 'components';
 
@@ -18,34 +18,50 @@ const propTypes = {
   createdAt: PropTypes.string,
   link: PropTypes.string.isRequired,
   onVote: PropTypes.func.isRequired,
-  side: PropTypes.string,
-  status: PropTypes.string,
   voteData: PropTypes.string.isRequired,
 };
 
-const MotionListItem = ({
+const MotionSmallItem = ({
   title,
   creator,
   createdAt,
   link,
-  side,
-  status,
+  onVote,
+  voteData,
 }) => (
-  <CardRow>
+  <Card>
     <CardHeader>
       <Heading size="3">
         <Link to={link}>{title}</Link>
       </Heading>
       <DetailsBar>
         {creator && <PersonContainer user={creator} />}
-        {status && <DetailStatus status={status} icon="clock-o" />}
-        {side && <DetailVotedFor side={side} icon="clock-o" />}
         <Detail text={createdAt} icon="clock-o" />
       </DetailsBar>
     </CardHeader>
-  </CardRow>
+    <CardActions noSpacing>
+      <CardButton
+        active={voteData === 'pro'}
+        action={() => onVote('pro')}
+        type="pro"
+        children="Voor"
+      />
+      <CardButton
+        active={voteData === 'neutral'}
+        action={() => onVote('neutral')}
+        type="neutral"
+        children="Neutraal"
+      />
+      <CardButton
+        active={voteData === 'con'}
+        action={() => onVote('con')}
+        type="con"
+        children="Tegen"
+      />
+    </CardActions>
+  </Card>
 );
 
-MotionListItem.propTypes = propTypes;
+MotionSmallItem.propTypes = propTypes;
 
-export default MotionListItem;
+export default MotionSmallItem;

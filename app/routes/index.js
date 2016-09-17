@@ -11,7 +11,8 @@ import Politicians from './Politicians';
 import Profile from './Profile';
 import Search from './Search';
 import UserMotions from './UserMotions';
-import UserStats from './UserStats';
+import UserAbout from './UserAbout';
+import UserOverview from './UserOverview';
 
 const routes = (
   <Route path="/" component={App}>
@@ -21,8 +22,9 @@ const routes = (
     <Route path="motions/:motionId" component={Motion} />
     <Route path="politicians" component={Politicians} />
     <Route path="profile/:userId" component={Profile}>
-      <IndexRoute component={UserMotions} />
-      <Route path="stats" component={UserStats} />
+      <IndexRoute component={UserOverview} />
+      <Route path="motions" component={UserMotions} />
+      <Route path="about" component={UserAbout} />
     </Route>
     <Route path="search" component={Search} />
     <Route path="*" component={NotFound} />

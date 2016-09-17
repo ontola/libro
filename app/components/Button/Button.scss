@@ -80,5 +80,9 @@
 @each $variant, $color in $button-variants-colors {
   .Button--variant-#{$variant} {
     color: color($color);
+    &.Button--active, &:active {
+      background-color: color($color);
+      color: white;
+    }
   }
 }

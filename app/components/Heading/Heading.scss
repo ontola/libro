@@ -6,6 +6,10 @@
 
   a {
     color: color('blue');
+
+    &:hover {
+      color: color('grey', 'dark');
+    }
   }
 
   &--light {

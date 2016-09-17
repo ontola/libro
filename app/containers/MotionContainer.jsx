@@ -15,6 +15,7 @@ const propTypes = {
   onVote: PropTypes.func.isRequired,
   motionId: PropTypes.string.isRequired,
   renderItem: PropTypes.func.isRequired,
+  status: PropTypes.string,
   voteData: PropTypes.string,
   voteMatchActive: PropTypes.bool,
 };
@@ -50,17 +51,18 @@ class MotionContainer extends Component {
 
     return (
       <RenderComponent
-        creator={this.props.data.creator}
         children={this.props.data.text}
         createdAt={formatDate(this.props.data.createdAt * MILLISECONDS_TO_SECONDS)}
+        creator={this.props.data.creator}
         id={this.props.data.id}
         link={`/motions/${this.props.data.id}`}
-        onVoteAction={this.props.onVote}
         onNextMotion={this.props.onNextMotion}
+        onVote={onVoteAction}
+        onVoteAction={this.props.onVote}
+        status={this.props.status}
         title={this.props.data.title}
         type={this.props.data.classification}
         voteData={this.props.voteData}
-        onVote={onVoteAction}
       />
     );
   }

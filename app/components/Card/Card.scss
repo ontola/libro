@@ -49,13 +49,14 @@
 .CardRow {
   border-bottom: solid 1px color('grey', 'x-light');
   position: relative;
+}
 
-  &:last-child {
-    border-bottom: none;
-  }
+.CardRow.CardRow--show-arrow:hover:after {
+  transform: translate(-10px, 0);
 }
 
 .CardRow--show-arrow:after {
+  transition: transform .2s;
   position: absolute;
   right: 10px;
   top: calc(50% - 5px);

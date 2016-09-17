@@ -14,11 +14,14 @@ const propTypes = {
 };
 
 const links = id => ([{
-  label: 'Ideëen',
+  label: 'Overzicht',
   to: `/profile/${id}`,
 }, {
-  label: 'Statistieken',
-  to: `/profile/${id}/stats`,
+  label: 'Ideëen',
+  to: `/profile/${id}/motions`,
+}, {
+  label: 'Over',
+  to: `/profile/${id}/about`,
 }]);
 
 const profileCardRender = (data, url, full) => (
