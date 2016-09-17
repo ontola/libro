@@ -21,6 +21,7 @@ export { default as Drawer } from './Drawer';
 export { default as Heading } from './Heading';
 export { default as HoverBox } from './HoverBox';
 export { default as LabelValue } from './LabelValue';
+export { default as LabelValueBar } from './LabelValueBar';
 export { default as LinkList } from './LinkList';
 export { default as List } from './List';
 export { default as MotionCompare } from './MotionCompare';

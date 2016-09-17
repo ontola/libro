@@ -2,8 +2,9 @@
 
 .PoliticiansListItem {
   overflow: hidden;
-  padding: units('x-small', 'x-small');
-  width: 8em;
+  padding: units('small', 'small');
+  width: 9em;
+  text-align: center;
 
   &__imagewrapper {
     overflow: hidden;
@@ -25,9 +26,10 @@
     width: 100%;
   }
 
-  &__content {
-    height: 3.5em;
-    text-align: center;
+  &__name {
+  }
+
+  &__party {
     color: color('grey', 'base');
   }
 }
