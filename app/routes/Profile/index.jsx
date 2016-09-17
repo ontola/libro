@@ -17,7 +17,7 @@ const links = id => ([{
   label: 'Overzicht',
   to: `/profile/${id}`,
 }, {
-  label: 'Ideëen',
+  label: 'Voorstellen',
   to: `/profile/${id}/motions`,
 }, {
   label: 'Over',

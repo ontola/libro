@@ -1,7 +1,6 @@
 import './PoliticiansListItem.scss';
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
-import { Box, Heading } from 'components';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
@@ -16,30 +15,23 @@ const PoliticiansListItem = ({
   name,
   party,
 }) => (
-  <Box>
-    <div className="PoliticiansListItem">
-      <Link
-        to={`/profile/${id}`}
-        className="PoliticiansListItem__link"
-      >
-        <div className="PoliticiansListItem__imagewrapper">
-          <img
-            src={image}
-            alt={name}
-            className="PoliticiansListItem__image"
-          />
-        </div>
-        <div className="PoliticiansListItem__content">
-          <Heading
-            size="3"
-            className="PoliticiansListItem__title"
-            children={name}
-          />
-          <div>{party}</div>
-        </div>
-      </Link>
-    </div>
-  </Box>
+  <div className="PoliticiansListItem">
+    <Link
+      to={`/profile/${id}`}
+      className="PoliticiansListItem__link"
+    >
+      <div className="PoliticiansListItem__imagewrapper">
+        <img
+          src={image}
+          alt={name}
+          className="PoliticiansListItem__image"
+        />
+      </div>
+      <div className="PoliticiansListItem__content">
+        {name} ({party})
+      </div>
+    </Link>
+  </div>
 );
 
 PoliticiansListItem.propTypes = propTypes;
