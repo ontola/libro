@@ -2,6 +2,10 @@
 
 .LabelValueBar {
   display: flex;
+
+  &:hover .LabelValueBar__bar {
+    background-color: color('pink', 'x-light');
+  }
 }
 
 .LabelValueBar__value {
@@ -19,6 +23,7 @@
 }
 
 .LabelValueBar__bar {
+  transition: background-color .1s;
   position: absolute;
   background-color: color('grey', 'xx-light');
   border-right: solid 1px color('grey', 'x-light');

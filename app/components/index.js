@@ -38,6 +38,7 @@ export { default as ProgressBar } from './ProgressBar';
 export { default as SearchResultItem } from './SearchResultItem';
 export { default as ScoreSheet } from './ScoreSheet';
 export { default as Spinner } from './Spinner';
+export { default as Tag } from './Tag';
 export { default as VoteChart } from './VoteChart';
 export { default as VoteData } from './VoteData';
 export { default as Widget } from './Widget';

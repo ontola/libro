@@ -5,12 +5,12 @@ Used to display percentages.
 Works great in CardRow components
 
     <Card>
-      <CardRow showArrow>
+      <CardRow>
         <CardContent>
           <LabelValueBar label="PvdA" value={80}/>
         </CardContent>
       </CardRow>
-      <CardRow showArrow>
+      <CardRow>
         <CardContent>
           <LabelValueBar label="VVD" value={56}/>
         </CardContent>

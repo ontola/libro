@@ -1,12 +1,12 @@
 import React from 'react';
 import {
-  Card,
   CardContent,
   CardRow,
   Container,
   LabelValue,
   LabelValueBar,
   MotionListItem,
+  Tag,
   Widget,
 } from 'components';
 import MotionContainer from 'containers/MotionContainer';
@@ -60,6 +60,16 @@ const UserOverview = () => (
             <LabelValueBar label="CDA" value="31" />
           </CardContent>
         </CardRow>
+      </Link>
+    </Widget>
+    <Widget
+      title="Thema's"
+      description="Deze onderwerpen kwamen relatief vaak voor in de moties van dit persoon."
+    >
+      <Link to="">
+        <Tag>
+          Defensie
+        </Tag>
       </Link>
     </Widget>
   </Container>

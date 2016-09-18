@@ -1,0 +1,33 @@
+@import '../shared/config';
+
+$border: solid 1px color('grey', 'x-light');
+
+.Tag {
+  display: inline-flex;
+  border: $border;
+  border-radius: 5px;
+  color: color('grey', 'mid-dark');
+  margin-right: 1em;
+  margin-bottom: 1em;
+  transition: background-color .1s;
+  overflow: hidden;
+  margin: .5em;
+
+  &:hover .Tag__center{
+    background-color: color('grey', 'x-light');
+  }
+}
+
+.Tag__center, .Tag__left, .Tag__right {
+  padding: 4px 6px;
+  background-color: color('grey', 'xx-light');
+}
+
+.Tag__left {
+  border-right: $border;
+}
+
+.Tag__right {
+  border-left: $border;
+  background-color: white;
+}
