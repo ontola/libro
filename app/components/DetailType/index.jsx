@@ -27,6 +27,8 @@ const DetailType = ({ type }) => {
       title = 'Een motie is een voorstel van de raad.';
       break;
     default:
+      icon = 'file-o';
+      text = type;
       break;
   }
 

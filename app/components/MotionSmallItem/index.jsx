@@ -7,7 +7,7 @@ import {
   CardActions,
   CardButton,
   CardHeader,
-  Detail,
+  DetailDate,
   DetailsBar,
   Heading,
 } from 'components';
@@ -36,7 +36,7 @@ const MotionSmallItem = ({
       </Heading>
       <DetailsBar>
         {creator && <PersonContainer user={creator} />}
-        <Detail text={createdAt} icon="clock-o" />
+        <DetailDate date={createdAt} />
       </DetailsBar>
     </CardHeader>
     <CardActions noSpacing>

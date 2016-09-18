@@ -8,6 +8,10 @@
   margin-right: unit('x-small');
 }
 
+a:hover .Detail__text {
+  color: color('grey', 'mid-dark');
+}
+
 .Detail__text {
   color: color('grey', 'mid-light');
   font-size: font-size('small');
@@ -18,8 +22,18 @@
   border-radius: 100%;
   // Overwrites .fa styling
   display: flex !important;
-  height: unit('large');
   justify-content: center;
   margin-right: unit('xx-small');
+}
+
+.Detail__image {
+  align-items: center;
+  border-radius: 100%;
+  // Overwrites .fa styling
+  display: flex !important;
+  justify-content: center;
+  margin-right: unit('xx-small');
+
   width: unit('large');
+  height: unit('large');
 }

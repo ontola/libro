@@ -5,7 +5,7 @@ import PersonContainer from 'containers/PersonContainer';
 import {
   CardRow,
   CardHeader,
-  Detail,
+  DetailDate,
   DetailsBar,
   DetailStatus,
   DetailVotedFor,
@@ -40,7 +40,7 @@ const MotionListItem = ({
         {creator && <PersonContainer user={creator} />}
         {status && <DetailStatus status={status} icon="clock-o" />}
         {side && <DetailVotedFor side={side} icon="clock-o" />}
-        <Detail text={createdAt} icon="clock-o" />
+        <DetailDate date={createdAt} />
       </DetailsBar>
     </CardHeader>
   </CardRow>

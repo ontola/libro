@@ -7,7 +7,7 @@ import {
   CardButton,
   CardContent,
   CardHeader,
-  Detail,
+  DetailDate,
   DetailType,
   DetailsBar,
   Heading,
@@ -37,7 +37,7 @@ const MotionShow = ({
       <DetailsBar>
         <DetailType type="motion" />
         {creator && <PersonContainer user={creator} />}
-        <Detail text={createdAt} icon="clock-o" />
+        <DetailDate date={createdAt} />
       </DetailsBar>
     </CardHeader>
     <CardContent noSpacing>{children}</CardContent>

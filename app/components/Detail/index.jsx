@@ -22,7 +22,7 @@ const Detail = ({
   const Element = url ? 'a' : 'div';
   const classNames = ['Detail', className].join(' ');
   const pictogram = imageUrl
-    ? <img src={imageUrl} className="Detail__icon" role="presentation" />
+    ? <img src={imageUrl} className="Detail__image" role="presentation" />
     : <span className={`Detail__icon fa fa-${icon}`} />;
 
   return (

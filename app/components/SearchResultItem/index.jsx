@@ -6,6 +6,8 @@ import {
   CardContent,
   CardHeader,
   Detail,
+  DetailDate,
+  DetailType,
   DetailsBar,
   Heading,
 } from 'components';
@@ -40,8 +42,8 @@ const SearchResultItem = ({
           </Link>
         </Heading>
         <DetailsBar>
-          <Detail text={classification} icon="file-o" />
-          <Detail text={createdAt} icon="clock-o" />
+          <DetailType type={classification} />
+          <DetailDate date={createdAt} />
           <Detail text={`${scorePercentage}% match`} icon={scoreIcon} />
         </DetailsBar>
       </CardHeader>

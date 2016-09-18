@@ -63,7 +63,7 @@ const UserOverview = () => (
       </Link>
     </Widget>
     <Widget
-      title="Thema's"
+      title="Thema focus"
       description="Deze onderwerpen kwamen relatief vaak voor in de moties van dit persoon."
     >
       <Link to="">

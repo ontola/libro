@@ -11,6 +11,7 @@ export { default as CardRow } from './Card/CardRow';
 export { default as Columns } from './Columns';
 export { default as Container } from './Container';
 export { default as Cover } from './Cover';
+export { default as DetailDate } from './DetailDate';
 export { default as DetailStatus } from './DetailStatus';
 export { default as DetailType } from './DetailType';
 export { default as DetailVotedFor } from './DetailVotedFor';

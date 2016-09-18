@@ -8,7 +8,7 @@ import {
   CardContent,
   CardHeader,
   DetailsBar,
-  Detail,
+  DetailDate,
   Heading,
 } from 'components';
 
@@ -32,7 +32,7 @@ const ArgumentShow = ({
       <Heading variant={side} size="3">{title}</Heading>
       <DetailsBar>
         <PersonContainer user={creator} />
-        <Detail text={createdAt} icon="clock-o" />
+        <DetailDate date={createdAt} />
       </DetailsBar>
     </CardHeader>
 
