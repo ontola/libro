@@ -43,21 +43,21 @@ const UserOverview = () => (
       <Link to="/">
         <CardRow>
           <CardContent>
-            <LabelValueBar label="PvdA" value="65" />
+            <LabelValueBar isPercentage label="PvdA" value="65" />
           </CardContent>
         </CardRow>
       </Link>
       <Link to="/">
         <CardRow>
           <CardContent>
-            <LabelValueBar label="VVD" value="46" />
+            <LabelValueBar isPercentage label="VVD" value="46" />
           </CardContent>
         </CardRow>
       </Link>
       <Link to="/">
         <CardRow>
           <CardContent>
-            <LabelValueBar label="CDA" value="31" />
+            <LabelValueBar isPercentage label="CDA" value="31" />
           </CardContent>
         </CardRow>
       </Link>

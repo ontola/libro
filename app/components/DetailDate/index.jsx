@@ -1,7 +1,6 @@
 import './DetailDate.scss';
 import React, { PropTypes } from 'react';
 import { Detail } from 'components';
-import { formatDate } from 'helpers/date';
 
 const propTypes = {
   date: PropTypes.string,
@@ -11,9 +10,9 @@ const DetailDate = ({
   date,
 }) => (
   <Detail
-    text={formatDate(date)}
+    text={date}
     icon="clock-o"
-    title={formatDate(date)}
+    title={date}
   />
 );
 

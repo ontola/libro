@@ -15,7 +15,7 @@ const propTypes = {
   value: PropTypes.string.isRequired,
 };
 
-const POS_KEY = -2;
+const POS_KEY = 2;
 const POS_VAL = 14;
 const SECTOR_EXTRA_RADIUS = 3;
 

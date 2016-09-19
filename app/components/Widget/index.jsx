@@ -16,7 +16,7 @@ const Widget = ({
 }) => (
   <div className="Widget">
     <Heading size="3">{title}</Heading>
-    <div>{description}</div>
+    <div className="Widget__description">{description}</div>
     <Card>{children}</Card>
   </div>
 );
