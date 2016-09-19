@@ -1,6 +1,5 @@
 export { default as ArgumentShow } from './ArgumentShow';
 export { default as ArgumentListItem } from './ArgumentListItem';
-export { default as ArgumentShow } from './Box/ArgumentShow';
 export { default as Attachment } from './Attachment';
 export { default as Box } from './Box';
 export { default as Button } from './Button';
