@@ -7,6 +7,7 @@ import Home from './Home';
 import Motion from './Motion';
 import Motions from './Motions';
 import NotFound from './NotFound';
+import Party from './Party';
 import Parties from './Parties';
 import Politicians from './Politicians';
 import Profile from './Profile';
@@ -22,6 +23,7 @@ const routes = (
     <Route path="motions" component={Motions} />
     <Route path="motions/:motionId" component={Motion} />
     <Route path="parties" component={Parties} />
+    <Route path="parties/:partyId" component={Party} />
     <Route path="politicians" component={Politicians} />
     <Route path="profile/:userId" component={Profile}>
       <IndexRoute component={UserOverview} />

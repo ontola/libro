@@ -8,7 +8,7 @@
   width: 100%;
 
   &--spacing-medium {
-    padding: units('large');
+    padding: units('large', 'small');
   }
 
   &--spacing-large {

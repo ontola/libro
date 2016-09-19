@@ -37,6 +37,11 @@
     padding: unit('x-small');
     width: 3.8em;
 
+    svg {
+      height: 100%;
+      width: 100%;
+    }
+
     path,
     rect {
       fill: color('white');

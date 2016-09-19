@@ -44,7 +44,7 @@ const Header = ({
   <div>
     <Cover image="/static/cover-home.jpg" overlayColor={overlayColor}>
       <Container spacing="medium">
-        <Heading size="1" variant="light">{title}</Heading>
+        <Heading size="2" variant="light">{title}</Heading>
       </Container>
     </Cover>
 
