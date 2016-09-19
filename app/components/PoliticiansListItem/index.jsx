@@ -31,7 +31,7 @@ const PoliticiansListItem = ({
         />
       </div>
       <div className="PoliticiansListItem__name">
-        <Heading size={3}>
+        <Heading size="3">
           {name}
         </Heading>
       </div>

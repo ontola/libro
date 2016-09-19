@@ -1,21 +1,19 @@
-
 import React from 'react';
 import Helmet from 'react-helmet';
 
-import PersonsContainer from 'containers/PersonsContainer';
 import {
   Container,
   Header,
 } from 'components';
 
-const Politicians = () => (
+const Parties = () => (
   <div>
-    <Helmet title="Politici" />
+    <Helmet title="Partijen" />
     <Header />
     <Container>
-      <PersonsContainer />
+      Hier komen de partijen :)
     </Container>
   </div>
 );
 
-export default Politicians;
+export default Parties;

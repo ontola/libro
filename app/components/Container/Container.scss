@@ -7,6 +7,10 @@
   position: relative;
   width: 100%;
 
+  &--spacing-medium {
+    padding: units('large');
+  }
+
   &--spacing-large {
     align-items: center;
     display: flex;

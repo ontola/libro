@@ -5,6 +5,7 @@ import {
   CardContent,
   Container,
   DonutChart,
+  Header,
   Widget,
 } from 'components';
 
@@ -27,13 +28,9 @@ const parties = [
   { name: 'Van Vliet', value: 1 },
 ];
 
-// const genderData = [
-//   { name: 'Man', value: 64 },
-//   { name: 'Vrouw', value: 86 },
-// ];
-
 const Home = () => (
   <div>
+    <Header />
     <Helmet title="Tweede Kamer Open Data" />
 
     <Container>
