@@ -9,9 +9,8 @@ import {
 } from 'state/action-types';
 
 const Collapsible = Record({
-  id: '',
-  group: '',
-  opened: true,
+  group: undefined,
+  opened: false,
 });
 
 const initialState = new Map({
@@ -47,13 +46,18 @@ function toggleAll(state, group) {
 }
 
 const collapsible = handleActions({
-  [COLL_ADD]: (state, { payload }) => state.set('items', new Collapsible(payload)),
+  [COLL_ADD]: (state, { payload }) => {
+    return state.setIn(['items', payload.identifier], new Collapsible({
+      group: payload.group,
+      opened: payload.startOpened,
+    }));
+  },
   [COLL_REMOVE]: (state, { payload }) => state.set('items', state.get('items').delete(payload.id)),
   [COLL_TOGGLE_ONE]: (state, { payload }) => updateRecord(
     state,
-    payload.id,
+    payload,
     'opened',
-    state.getIn(['items', payload.id]).opened
+    state.getIn(['items', payload]).opened
   ),
   [COLL_TOGGLE_GROUP]: (state, { payload }) => toggleAll(state, payload.group),
 }, initialState);

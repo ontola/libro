@@ -1,21 +1,26 @@
-import { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import Collapsible from 'components/Collapsible';
-import { toggleOne } from 'state/collapsible/actions';
+import {
+  initializeCollapsible,
+  toggleOne,
+} from 'state/collapsible/actions';
 import { getCollapsible } from 'state/collapsible/selectors';
 
 const propTypes = {
-  id: PropTypes.any,
+  id: PropTypes.any.isRequired,
   children: PropTypes.node.isRequired,
   group: PropTypes.string,
+  startOpened: PropTypes.bool,
   trigger: PropTypes.node.isRequired,
+  onInitializeCollapsible: PropTypes.func.isRequired,
   visibleContent: PropTypes.node,
 };
 
-function identifier(ownProps) {
-  return (ownProps.id || ownProps.trigger.key).toString();
-}
+const defaultProps = {
+  startOpened: false,
+};
 
 function mapStateToProps(state, ownProps) {
   const { children, group, id, trigger, visibleContent } = ownProps;
@@ -23,21 +28,41 @@ function mapStateToProps(state, ownProps) {
     id,
     children,
     group,
-    opened: getCollapsible(ownProps, identifier(ownProps)).opened,
+    opened: getCollapsible(state, ownProps).opened,
     trigger,
     visibleContent,
   };
 }
 
-const CollapsibleContainer = connect(
+class CollapsibleContainer extends Component {
+  componentWillMount() {
+    this.props.onInitializeCollapsible({
+      startOpened: this.props.startOpened,
+      identifier: this.props.id,
+      group: this.props.group,
+    });
+  }
+
+  render() {
+    return (
+      <Collapsible
+        {...this.props}
+      />
+    );
+  }
+}
+
+CollapsibleContainer.propTypes = propTypes;
+CollapsibleContainer.defaultProps = defaultProps;
+
+export default connect(
   mapStateToProps,
   (dispatch, ownProps) => ({
     onClickToggle: () => {
-      toggleOne(identifier(ownProps));
+      toggleOne(ownProps.id);
+    },
+    onInitializeCollapsible: (data) => {
+      dispatch(initializeCollapsible(data));
     },
   })
-)(Collapsible);
-
-CollapsibleContainer.propTypes = propTypes;
-
-export default CollapsibleContainer;
+)(CollapsibleContainer);

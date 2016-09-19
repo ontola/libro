@@ -14,7 +14,7 @@ const DetailDate = ({
     <Detail
       text={formatDate(date)}
       icon="clock-o"
-      title={formatDate(date)}
+      title={date}
     />
   );
 };

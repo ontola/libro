@@ -11,6 +11,10 @@ const propTypes = {
   visibleContent: PropTypes.node,
 };
 
+const defaultProps = {
+  opened: false,
+};
+
 const Collapsible = ({ children, onClickToggle, opened, trigger, visibleContent }) => {
   const triggerElem = (
     <a
@@ -33,5 +37,6 @@ const Collapsible = ({ children, onClickToggle, opened, trigger, visibleContent 
 };
 
 Collapsible.propTypes = propTypes;
+Collapsible.defaultProps = defaultProps;
 
 export default Collapsible;

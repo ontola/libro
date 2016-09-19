@@ -10,6 +10,7 @@ import {
   Widget,
 } from 'components';
 import MotionContainer from 'containers/MotionContainer';
+import CollapsibleContainer from 'containers/CollapsibleContainer';
 import { Link } from 'react-router';
 
 const motions = ['245245', '987654', '642621', '136743', '334672'];
@@ -40,13 +41,21 @@ const UserOverview = () => (
       description="Berekend met het stemgedrag van de partijleden op moties.
       Klik op een partij om te zien waarover ze verschillend stemden."
     >
-      <Link to="">
-        <CardRow>
-          <CardContent>
-            <LabelValueBar label="PvdA" value="65" />
-          </CardContent>
-        </CardRow>
-      </Link>
+      <CardRow>
+        <CollapsibleContainer
+          id="someid_1"
+          trigger={
+            <CardContent>
+              <LabelValueBar label="PvdA" value="65" />
+            </CardContent>
+          }
+          children={
+            <Tag>
+              Defensie
+            </Tag>
+          }
+        />
+      </CardRow>
       <Link to="">
         <CardRow>
           <CardContent>

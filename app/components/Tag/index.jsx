@@ -4,7 +4,6 @@ import React, { PropTypes } from 'react';
 const propTypes = {
   children: PropTypes.node,
   left: PropTypes.node,
-  link: PropTypes.string.isRequired,
   right: PropTypes.node,
 };
 
