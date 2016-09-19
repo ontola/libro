@@ -3,17 +3,19 @@
 .LabelValueBar {
   display: flex;
 
-  &:hover .LabelValueBar__bar {
-    background-color: color('pink', 'x-light');
+  &:hover {
+    .LabelValueBar__bar {
+      background-color: color('pink', 'x-light');
+    }
   }
 }
 
 .LabelValueBar__value {
   color: color('blue');
-  font-size: font-size('medium');
-  text-align: right;
   flex: 1;
+  font-size: font-size('medium');
   margin-left: auto;
+  text-align: right;
   z-index: 1;
 }
 
@@ -23,11 +25,11 @@
 }
 
 .LabelValueBar__bar {
-  transition: background-color .1s;
-  position: absolute;
   background-color: color('grey', 'xx-light');
   border-right: solid 1px color('grey', 'x-light');
-  left: 0;
-  top: 0;
   bottom: 0;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: background-color .1s;
 }

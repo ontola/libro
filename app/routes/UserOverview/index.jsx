@@ -20,14 +20,14 @@ const UserOverview = () => (
       {motions.map(id => <MotionContainer key={id} motionId={id} renderItem={MotionListItem} />)}
     </Widget>
     <Widget title="Statistieken">
-      <Link to="">
+      <Link to="/">
         <CardRow showArrow>
           <CardContent>
             <LabelValue label="Meest ingediende moties" value="#5" />
           </CardContent>
         </CardRow>
       </Link>
-      <Link to="">
+      <Link to="/">
         <CardRow showArrow>
           <CardContent>
             <LabelValue label="Percentage moties aangenomen" value="46%" />
@@ -40,21 +40,21 @@ const UserOverview = () => (
       description="Berekend met het stemgedrag van de partijleden op moties.
       Klik op een partij om te zien waarover ze verschillend stemden."
     >
-      <Link to="">
+      <Link to="/">
         <CardRow>
           <CardContent>
             <LabelValueBar label="PvdA" value="65" />
           </CardContent>
         </CardRow>
       </Link>
-      <Link to="">
+      <Link to="/">
         <CardRow>
           <CardContent>
             <LabelValueBar label="VVD" value="46" />
           </CardContent>
         </CardRow>
       </Link>
-      <Link to="">
+      <Link to="/">
         <CardRow>
           <CardContent>
             <LabelValueBar label="CDA" value="31" />
@@ -66,11 +66,10 @@ const UserOverview = () => (
       title="Thema focus"
       description="Deze onderwerpen kwamen relatief vaak voor in de moties van dit persoon."
     >
-      <Link to="">
-        <Tag>
-          Defensie
-        </Tag>
-      </Link>
+      <Link to="/"><Tag>Defensie</Tag></Link>
+      <Link to="/"><Tag suffix="56%">Defensie</Tag></Link>
+      <Link to="/"><Tag>Defensie</Tag></Link>
+      <Link to="/"><Tag>Defensie</Tag></Link>
     </Widget>
   </Container>
 );

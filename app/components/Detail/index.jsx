@@ -20,7 +20,12 @@ const Detail = ({
   title,
 }) => {
   const Element = url ? 'a' : 'div';
-  const classNames = ['Detail', className].join(' ');
+  const classNames = [
+    'Detail',
+    url && 'Detail--link',
+    className,
+  ].join(' ');
+
   const pictogram = imageUrl
     ? <img src={imageUrl} className="Detail__image" role="presentation" />
     : <span className={`Detail__icon fa fa-${icon}`} />;

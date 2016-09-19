@@ -21,8 +21,7 @@
 
   &--active,
   &:active {
-    // Overwrites hover style;
-    border-bottom-color: color('blue') !important;
+    border-bottom-color: color('blue');
     color: color('blue');
   }
 

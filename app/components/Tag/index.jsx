@@ -2,29 +2,20 @@ import './Tag.scss';
 import React, { PropTypes } from 'react';
 
 const propTypes = {
-  children: PropTypes.node,
-  left: PropTypes.node,
-  link: PropTypes.string.isRequired,
-  right: PropTypes.node,
+  children: PropTypes.node.isRequired,
+  prefix: PropTypes.node,
+  suffix: PropTypes.node,
 };
 
 const Tag = ({
   children,
-  left,
-  right,
+  prefix,
+  suffix,
 }) => (
-  <div
-    className="Tag"
-  >
-    {left && <div className="Tag__right">
-      {left}
-    </div>}
-    <div className="Tag__center">
-      {children}
-    </div>
-    {right && <div className="Tag__right">
-      {right}
-    </div>}
+  <div className="Tag">
+    {prefix && <div className="Tag__content Tag__content--prefix">{prefix}</div>}
+    <div className="Tag__content">{children}</div>
+    {suffix && <div className="Tag__content Tag__content--suffix">{suffix}</div>}
   </div>
 );
 
