@@ -18,6 +18,8 @@ export { default as DetailVotedFor } from './DetailVotedFor';
 export { default as Detail } from './Detail';
 export { default as DetailsBar } from './DetailsBar';
 export { default as DonutChart } from './DonutChart';
+export { default as DonutChartLabels } from './DonutChart/DonutChartLabels';
+export { default as DonutChartActiveShape } from './DonutChart/DonutChartActiveShape';
 export { default as Drawer } from './Drawer';
 export { default as Header } from './Header';
 export { default as Heading } from './Heading';

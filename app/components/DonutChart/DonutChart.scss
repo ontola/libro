@@ -1,30 +1,30 @@
 @import '../shared/config';
 
 @keyframes appear {
-  0% { opacity: 0.1; }
+  0% { opacity: .1; }
   100% { opacity: 1; }
 }
 
-.recharts-wrapper {
-   animation: appear 1s;
-}
+.DonutChart {
+  animation: appear 1s;
 
-.recharts-sector {
-  cursor: pointer;
-}
+  &__sector {
+    cursor: pointer;
+  }
 
-.recharts-pie-labels text {
-  font-size: 12px;
-  fill: #999;
-}
+  &__label {
+    fill: color('dark');
+    font-size: 12px;
+  }
 
-.innerKey {
-  font-size: 20px;
-  fill: #475668;
-}
+  &__inner-key {
+    fill: color('blue');
+    font-size: 20px;
+  }
 
-.innerValue {
-  font-size: 13px;
-  font-weight: 600;
-  fill: #AEB8C4;
+  &__inner-value {
+    fill: color('blue', 'light');
+    font-size: 13px;
+    font-weight: 600;
+  }
 }

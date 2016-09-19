@@ -9,15 +9,13 @@ const propTypes = {
 
 const DetailDate = ({
   date,
- }) => {
-  return (
-    <Detail
-      text={formatDate(date)}
-      icon="clock-o"
-      title={formatDate(date)}
-    />
-  );
-};
+}) => (
+  <Detail
+    text={formatDate(date)}
+    icon="clock-o"
+    title={formatDate(date)}
+  />
+);
 
 DetailDate.propTypes = propTypes;
 
