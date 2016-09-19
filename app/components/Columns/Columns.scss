@@ -12,7 +12,7 @@
     &--flexGrow > .Column {
       flex-grow: 1;
       margin: units('none', 'large');
-      width: 100%; // makes sure each column has equal width
+      width: 100%;
     }
   }
 }
@@ -24,13 +24,16 @@
 @each $size, $margin in $sizes-margin {
   .Columns--gutter-#{$size} {
     margin-bottom: 1rem;
-    margin-left: -$margin;
-    margin-right: -$margin;
     margin-top: 1rem;
 
-    & > .Column {
-      margin-left: $margin;
-      margin-right: $margin;
+    @include large {
+      margin-left: -$margin;
+      margin-right: -$margin;
+
+      & > .Column {
+        margin-left: $margin;
+        margin-right: $margin;
+      }
     }
   }
 }
