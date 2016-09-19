@@ -16,6 +16,9 @@ const defaultLinks = [{
 }, {
   label: 'Kamerleden',
   to: '/politicians',
+}, {
+  label: 'Moties',
+  to: '/motions',
 }];
 
 const propTypes = {

@@ -42,13 +42,13 @@ const genderData = [
 ];
 
 const motionsPerUser = [
-  { name: 'Wouter Koolmees', value: 135 },
-  { name: 'Agnes Mulder', value: 132 },
-  { name: 'Ronald van Raak', value: 98 },
-  { name: 'Pieter Duisenberg', value: 95 },
-  { name: 'Barry Madlener', value: 88 },
-  { name: 'Harry van Bommel', value: 76 },
-  { name: 'Manon Fokke', value: 74 },
+  { name: 'Wouter Koolmees', value: '135' },
+  { name: 'Agnes Mulder', value: '132' },
+  { name: 'Ronald van Raak', value: '98' },
+  { name: 'Pieter Duisenberg', value: '95' },
+  { name: 'Barry Madlener', value: '88' },
+  { name: 'Harry van Bommel', value: '76' },
+  { name: 'Manon Fokke', value: '74' },
 ];
 
 const motions = ['245245', '987654', '642621'];
@@ -78,14 +78,14 @@ const Home = () => (
             </CardContent>
           </CardRow>
         </Link>
-        <Link to="/">
+        <Link to="/motions">
           <CardRow showArrow>
             <CardContent>
               <LabelValue label="Moties ingediend" value="1.430" />
             </CardContent>
           </CardRow>
         </Link>
-        <Link to="/">
+        <Link to="/motions?filter=aangenomen">
           <CardRow showArrow>
             <CardContent>
               <LabelValue label="Moties aangenomen" value="52%" />
@@ -112,7 +112,7 @@ const Home = () => (
         description="Gebaseerd op moties van de afgelopen 6 maanden."
       >
         {motionsPerUser.map(user => (
-          <Link to="/">
+          <Link key={user.name} to="/">
             <CardRow>
               <CardContent>
                 <LabelValueBar label={user.name} value={user.value} />

@@ -1,16 +1,19 @@
-
 import React from 'react';
 import Helmet from 'react-helmet';
 
 import MotionsContainer from 'containers/MotionsContainer';
-import { Container, Heading } from 'components';
+import { Card, Container, Header } from 'components';
 
 const Motions = () => (
-  <Container>
+  <div>
     <Helmet title="Moties" />
-    <Heading>Moties</Heading>
-    <MotionsContainer />
-  </Container>
+    <Header />
+    <Container>
+      <Card>
+        <MotionsContainer />
+      </Card>
+    </Container>
+  </div>
 );
 
 export default Motions;
