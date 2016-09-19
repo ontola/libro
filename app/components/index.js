@@ -36,7 +36,7 @@ export { default as Navbar } from './Navbar';
 export { default as Notification } from './Notification';
 export { default as Opinion } from './Opinion';
 export { default as Opinions } from './Opinions';
-export { default as PoliticiansListItem } from './PoliticiansListItem';
+export { default as ProfileListItem } from './ProfileListItem';
 export { default as ProfileCard } from './ProfileCard';
 export { default as ProgressBar } from './ProgressBar';
 export { default as SearchResultItem } from './SearchResultItem';

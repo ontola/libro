@@ -1,7 +1,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { List, PoliticiansListItem } from 'components';
+import { List, ProfileListItem } from 'components';
 import Person from 'models/Person';
 
 const propTypes = {
@@ -14,12 +14,12 @@ const defaultProps = {
 };
 
 const renderItem = person => (
-  <PoliticiansListItem
+  <ProfileListItem
     key={person.id}
-    id={person.id}
+    link={`/profile/${person.id}`}
     image={person.image}
     name={person.name}
-    party={person.party}
+    description={person.party}
   />
 );
 

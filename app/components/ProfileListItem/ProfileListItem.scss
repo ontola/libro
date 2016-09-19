@@ -1,6 +1,6 @@
 @import '../shared/config';
 
-.PoliticiansListItem {
+.ProfileListItem {
   overflow: hidden;
   padding: units('small', 'small');
   text-align: center;
@@ -8,6 +8,7 @@
 
   &__imagewrapper {
     align-items: center;
+    background-color: color('white');
     border: solid 1px color('grey', 'x-light');
     border-radius: 999px;
     display: flex;
