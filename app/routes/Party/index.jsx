@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import Helmet from 'react-helmet';
 
 import {
+  BackButton,
   Container,
   Cover,
   LinkList,
@@ -28,6 +29,7 @@ const Party = ({
     <Helmet title="Profiel van D66" />
     <Cover type="light">
       <Container>
+        <BackButton link="/parties">Terug naar alle partijen</BackButton>
         <ProfileCard
           id={params.partyId}
           name="D66"

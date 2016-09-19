@@ -1,0 +1,12 @@
+@import '../shared/config';
+
+.BackButton {
+  color: color('grey', 'mid-light');
+  display: block;
+  font-size: font-size('small');
+  padding: units('small', 'none');
+
+  &:hover {
+    color: color('grey', 'mid-dark');
+  }
+}

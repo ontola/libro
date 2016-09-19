@@ -4,6 +4,7 @@ import Helmet from 'react-helmet';
 
 import {
   ArgumentShow,
+  BackButton,
   Columns,
   Container,
   Heading,
@@ -47,6 +48,7 @@ const Motion = ({
 }) => (
   <Container>
     <Helmet title={title} />
+    <BackButton link="/motions">Terug naar alle moties</BackButton>
     <MotionContainer motionId={params.motionId} />
     <Columns>
       {argumentations.length > 0 &&
