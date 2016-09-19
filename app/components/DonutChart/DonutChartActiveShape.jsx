@@ -40,7 +40,7 @@ const DonutChartActiveShape = ({
     />
     <text
       className="DonutChart__inner-value"
-      children={`${value} zetels`}
+      children={value}
       x={cx}
       y={cy + POS_VAL}
       textAnchor="middle"

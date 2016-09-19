@@ -64,14 +64,14 @@ const Home = () => (
       </Widget>
 
       <Widget title="Statistieken">
-        <Link to="/">
+        <Link to="/parties">
           <CardRow showArrow>
             <CardContent>
               <LabelValue label="Partijen" value="16" />
             </CardContent>
           </CardRow>
         </Link>
-        <Link to="/">
+        <Link to="/politicians">
           <CardRow showArrow>
             <CardContent>
               <LabelValue label="Kamerleden" value="150" />

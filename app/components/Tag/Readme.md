@@ -4,4 +4,4 @@ A tag.
 
 Add stuff to either side of it.
 
-    <Tag children="Defense" right="25%" link="" />
+    <Tag children="Defense" suffix="25%" prefix="&euro;" />
