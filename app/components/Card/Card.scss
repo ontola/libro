@@ -63,9 +63,11 @@
     top: calc(50% - 5px);
     transition: transform .2s;
     width: 0;
+  }
 
-    &:hover {
-      transform: translate(-10px, 0);
+  &:hover {
+    &::after {
+      transform: translate(6px, 0);
     }
   }
 }
