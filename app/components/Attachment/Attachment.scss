@@ -1,0 +1,57 @@
+@import '../shared/config';
+
+.Attachment {
+  border: solid 1px color('grey', 'mid-dark');
+  display: flex;
+  border-radius: $border-radius-base;
+  position: relative;
+  overflow: hidden;
+  max-width: 20em;
+  > * {
+    padding: .3em .6em;
+  }
+}
+
+.Attachment__primary {
+  z-index: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  flex-shrink: 1;
+  overflow: hidden;
+}
+
+.Attachment__fill {
+  background-color: color('grey', 'x-light');
+  width: 0%;
+  position: absolute;
+  left: 0;
+  top: -40%;
+  height: 160%;
+  bottom: 0;
+  z-index: 0;
+  padding: 0;
+}
+
+.Attachment__icon {
+  color: color('grey', 'mid-dark');
+  z-index: 1;
+  position: relative;
+}
+
+.Attachment__text {
+  color: color('grey', 'mid-dark');
+  z-index: 1;
+  margin: 0 .6em;
+  position: relative;
+}
+
+.Attachment__inside-button {
+  margin-right: auto;
+  position: relative;
+  border-left: solid 1px color('grey', 'mid-dark');
+  z-index: 1;
+  flex-grow: 0;
+  flex-shrink: 0;
+}

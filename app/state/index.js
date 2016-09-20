@@ -4,6 +4,7 @@ import { enableBatching } from 'redux-batched-actions';
 import { combineReducers } from 'redux-immutable';
 
 import argumentations from './argumentations/reducer';
+import collapsible from './collapsible/reducer';
 import communication from './communication/reducer';
 import motions from './motions/reducer';
 import persons from './persons/reducer';
@@ -16,6 +17,7 @@ import * as models from '../models';
 
 const rootReducer = combineReducers({
   argumentations,
+  collapsible,
   communication,
   motions,
   persons,

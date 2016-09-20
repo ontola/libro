@@ -1,0 +1,35 @@
+@import '../shared/config';
+
+.Progress__Container {
+}
+
+.Progress {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: -1em;
+  background-color: color('white');
+  bottom: 0;
+  display: flex;
+  width: unit('xx-small');
+  overflow: hidden;
+}
+
+.Progress__Completed {
+  position: absolute;
+  background-color: color('green');
+  left: 0;
+  top: 0;
+  transition: .4s height;
+  z-index: 1;
+  width: 100%;
+}
+
+.Progress__Total {
+  background-color: color('grey', 'light');
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  position: absolute;
+}

@@ -7,7 +7,7 @@ import { checkLuminance, isRGB } from 'helpers/color';
 import { SearchBox } from 'searchkit';
 
 const propTypes = {
-  contentLeft: PropTypes.arrayOf(PropTypes.node),
+  contentLeft: PropTypes.arrayOf(PropTypes.node).isRequired,
   contentRight: PropTypes.arrayOf(PropTypes.node),
   forumColor: (props, propName, componentName) => {
     if (!isRGB(props[propName])) {

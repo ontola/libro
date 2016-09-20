@@ -13,6 +13,7 @@ const apiDesc = new APIDesc({
 
 const attributes = {
   id: null,
+  motionId: '',
   title: '',
   content: '',
   side: '',

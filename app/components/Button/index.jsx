@@ -5,6 +5,7 @@ import FontAwesome from 'react-fontawesome';
 import { buttonThemes, sides } from 'components/shared/config';
 
 const propTypes = {
+  // Does this work?
   active: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func,

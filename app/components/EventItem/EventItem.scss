@@ -1,0 +1,16 @@
+@import '../shared/config';
+
+.EventItem {
+  position: relative;
+  margin-top: 1em;
+}
+
+.EventItem__index {
+  position: absolute;
+  left: -.9em;
+  top: .1em;
+  color: grey;
+  font-size: 1em;
+  z-index: 2;
+  font-weight: bold;
+}

@@ -1,13 +1,9 @@
 @import '../shared/config';
 
 .LabelValueBar {
+  position: relative;
   display: flex;
-
-  &:hover {
-    .LabelValueBar__bar {
-      background-color: color('pink', 'x-light');
-    }
-  }
+  padding: units('small', 'large');
 }
 
 .LabelValueBar__value {
@@ -26,10 +22,16 @@
 
 .LabelValueBar__bar {
   background-color: color('grey', 'xx-light');
-  border-right: solid 1px color('grey', 'x-light');
-  bottom: 0;
+  border-right: solid 3px color('grey', 'x-light');
+  // border-bottom: solid 1px color('grey', 'x-light');
   left: 0;
   position: absolute;
   top: 0;
+  height: 100%;
   transition: background-color .1s;
+}
+
+.LabelValueBar:hover .LabelValueBar__bar {
+  background-color: color('grey', 'x-light');
+  // border-right-color: color('grey', 'light');
 }

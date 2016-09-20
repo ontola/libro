@@ -25,3 +25,8 @@ export const VOTE_MATCH_INIT = 'VOTE_MATCH_INIT';
 export const VOTE_MATCH_NEXT = 'VOTE_MATCH_NEXT';
 
 export const SET_VOTE = 'SET_VOTE';
+
+export const COLL_ADD = 'COLL_ADD';
+export const COLL_REMOVE = 'COLL_REMOVE';
+export const COLL_TOGGLE_ONE = 'COLL_TOGGLE_ONE';
+export const COLL_TOGGLE_GROUP = 'COLL_TOGGLE_GROUP';
