@@ -1,8 +1,6 @@
 import moment from 'moment';
 import 'moment-duration-format';
 
-const dateDisplayFormat = 'DD-MM-YYYY';
-
 /**
  * @param {number} timestamp A unix timestamp
  * @param {string} format A format to display date
@@ -10,14 +8,14 @@ const dateDisplayFormat = 'DD-MM-YYYY';
  */
 const formatDate = (
   timestamp,
-  format
+  format = 'DD-MM-YYYY'
 ) => {
   if (!timestamp) {
     return undefined;
   }
 
   const dateMilliSeconds = new Date(timestamp);
-  const formattedDate = moment(dateMilliSeconds).format(format || dateDisplayFormat);
+  const formattedDate = moment(dateMilliSeconds).format(format);
   return formattedDate;
 };
 
@@ -25,9 +23,7 @@ const formatDate = (
  * @param {number} seconds Accepts seconds
  * @return {string} A formatted time string
  */
-const durationToString = (seconds) => {
-  return moment.duration(seconds, 'seconds').format('h:mm:ss');
-};
+const durationToString = (seconds) => moment.duration(seconds, 'seconds').format('h:mm:ss');
 
 export {
   durationToString,

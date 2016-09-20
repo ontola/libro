@@ -1,13 +1,15 @@
 // @flow
 import './CompareVotesBar.scss';
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
+
 import {
   LabelValueBar,
   List,
   Tag,
 } from 'components';
+
 import CollapsibleContainer from 'containers/CollapsibleContainer';
-import { Link } from 'react-router';
 import { percentageToRedOrGreen } from 'helpers/color';
 
 const propTypes = {
@@ -20,42 +22,31 @@ const propTypes = {
       link: PropTypes.string.isRequired,
       percentage: PropTypes.number.isRequired,
     })
-  ),
+  ).isRequired,
 };
 
-const renderTag = (tag) =>
-  <span
-    title="Klik om alle voorstellen over dit thema te bekijken."
-  >
+const suffix = (percentage) => (
+  <span style={{ color: percentageToRedOrGreen(percentage) }}>{percentage}%</span>
+);
+
+const renderTag = (tag) => (
+  <span key={tag.label} title="Klik om alle voorstellen over dit thema te bekijken.">
     <Link to={tag.link}>
-      <Tag
-        suffix={
-          <span
-            style={{
-              color: percentageToRedOrGreen(tag.percentage),
-            }}
-          >
-            {tag.percentage}%
-          </span>
-          }
-      >
-        {tag.label}
-      </Tag>
+      <Tag suffix={suffix(tag.percentage)}>{tag.label}</Tag>
     </Link>
-  </span>;
+  </span>
+);
 
 const CompareVotesBar = ({
   label,
   mainPercentage,
   tags,
 }) => {
-  const collapsibleChildren = () =>
+  const collapsibleChildren = () => (
     <div className="CompareVotesBar__collapsible-children">
-      <List
-        renderItem={renderTag}
-        items={tags}
-      />
-    </div>;
+      <List renderItem={renderTag} items={tags} />
+    </div>
+  );
 
   return (
     <div className="CompareVotesBar">

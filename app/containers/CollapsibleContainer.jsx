@@ -2,10 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import Collapsible from 'components/Collapsible';
-import {
-  initializeCollapsible,
-  toggleOne,
-} from 'state/collapsible/actions';
+import { initializeCollapsible, toggleOne } from 'state/collapsible/actions';
 import { getCollapsible } from 'state/collapsible/selectors';
 
 const propTypes = {
@@ -22,18 +19,6 @@ const defaultProps = {
   startOpened: false,
 };
 
-function mapStateToProps(state, ownProps) {
-  const { children, group, id, trigger, visibleContent } = ownProps;
-  return {
-    id,
-    children,
-    group,
-    opened: getCollapsible(state, ownProps).opened,
-    trigger,
-    visibleContent,
-  };
-}
-
 class CollapsibleContainer extends Component {
   componentWillMount() {
     this.props.onInitializeCollapsible({
@@ -44,11 +29,7 @@ class CollapsibleContainer extends Component {
   }
 
   render() {
-    return (
-      <Collapsible
-        {...this.props}
-      />
-    );
+    return <Collapsible {...this.props} />;
   }
 }
 
@@ -56,12 +37,20 @@ CollapsibleContainer.propTypes = propTypes;
 CollapsibleContainer.defaultProps = defaultProps;
 
 export default connect(
-  mapStateToProps,
+  (state, ownProps) => {
+    const { children, group, id, trigger, visibleContent } = ownProps;
+    return {
+      id,
+      children,
+      group,
+      opened: getCollapsible(state, ownProps).opened,
+      trigger,
+      visibleContent,
+    };
+  },
   (dispatch, ownProps) => ({
     onClickToggle: () => {
-      dispatch(toggleOne({
-        id: ownProps.id,
-      }));
+      dispatch(toggleOne({ id: ownProps.id }));
     },
     onInitializeCollapsible: (data) => {
       dispatch(initializeCollapsible(data));
