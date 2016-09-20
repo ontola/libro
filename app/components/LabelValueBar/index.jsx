@@ -4,19 +4,25 @@ import { percentageToRedOrGreen } from 'helpers/color';
 
 const propTypes = {
   children: PropTypes.node,
-  label: PropTypes.string.isRequired,
-  value: PropTypes.number.isRequired,
   coloredValue: PropTypes.bool,
+  isPercentage: PropTypes.bool,
+  label: PropTypes.string.isRequired,
+  showBar: PropTypes.bool,
+  value: PropTypes.number.isRequired,
 };
 
 const defaultProps = {
   coloredValue: false,
+  isPercentage: false,
+  showBar: false,
 };
 
 const LabelValueBar = ({
   children,
   coloredValue,
+  isPercentage,
   label,
+  showBar,
   value,
 }) => (
   <div className="LabelValueBar">
@@ -27,15 +33,15 @@ const LabelValueBar = ({
         color: coloredValue && percentageToRedOrGreen(value),
       }}
     >
-      {value}%
+      {value}{isPercentage && '%'}
     </div>
-    <div
+    {showBar && <div
       className="LabelValueBar__bar"
       style={{
         width: `${value}%`,
         borderRightColor: coloredValue && percentageToRedOrGreen(value),
       }}
-    />
+    />}
     {children}
   </div>
 );

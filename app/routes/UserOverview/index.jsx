@@ -108,10 +108,8 @@ const UserOverview = () => (
       title="Thema focus"
       description="Deze onderwerpen kwamen relatief vaak voor in de moties van dit persoon."
     >
-      <Link to="/"><Tag>Defensie</Tag></Link>
       <Link to="/"><Tag suffix="56%">Defensie</Tag></Link>
-      <Link to="/"><Tag>Defensie</Tag></Link>
-      <Link to="/"><Tag>Defensie</Tag></Link>
+      <Link to="/"><Tag suffix="24%">Cultuur</Tag></Link>
     </Widget>
   </Container>
 );

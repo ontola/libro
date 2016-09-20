@@ -57,6 +57,7 @@ const CompareVotesBar = ({
             label={label}
             value={mainPercentage}
             coloredValue
+            showBar
           />
         }
         children={collapsibleChildren()}

@@ -1,3 +1,4 @@
+
 import React, { PropTypes } from 'react';
 import './Collapsible.scss';
 import ReactCollapse from 'react-collapse';
@@ -17,15 +18,15 @@ const defaultProps = {
 
 const Collapsible = ({ children, onClickToggle, opened, trigger, visibleContent }) => {
   const triggerElem = (
-    <button
+    <a
       className="Collapsible__trigger"
-      // href="javascript:void(0);"
+      href="javascript:void(0);"
       onClick={
         () => onClickToggle()
       }
     >
       {trigger}
-    </button>
+    </a>
   );
 
   return (

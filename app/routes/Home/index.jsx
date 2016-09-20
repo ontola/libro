@@ -114,11 +114,11 @@ const Home = () => (
       >
         {motionsPerUser.map(user => (
           <Link key={user.name} to="/">
-            <CardRow>
-              <CardContent>
-                <LabelValueBar label={user.name} value={user.value} />
-              </CardContent>
-            </CardRow>
+            <LabelValueBar
+              label={user.name}
+              value={user.value}
+              showBar={false}
+            />
           </Link>
         ))}
       </Widget>
