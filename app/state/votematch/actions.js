@@ -12,7 +12,7 @@ export const voteMatchNext = data => dispatch => {
   dispatch(voteMatchNextMotion());
 };
 
-export const voteMatchStart = data => dispatch => {
+export const voteMatchStart = (data) => dispatch => {
   dispatch(voteMatchInit(data));
   dispatch(voteMatchNext());
 };

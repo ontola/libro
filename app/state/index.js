@@ -37,8 +37,7 @@ const configureStore = (preloadedState) => {
   } else {
     middleware = compose(
       applyMiddleware(thunk, apiMiddleware),
-      typeof window === 'object' &&
-      typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f
+      window.devToolsExtension ? window.devToolsExtension() : f => f
     );
   }
 

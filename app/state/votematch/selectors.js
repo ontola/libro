@@ -1,59 +1,32 @@
 import { createSelector } from 'reselect';
-import { Map } from 'immutable';
 
-export const getVoteMatch = state => state.get('votematch');
-export const getUserVotes = state => state.getIn(['motions', 'votes']);
+export const getVoteMatchData = state => state.get('votematch');
+export const getVoteMatches = state => state.getIn(['votematch', 'items']);
+export const getUserVotes = state => state.getIn(['votes', 'items']);
 
-export const getVoteMatchCurrentIndex = createSelector(getVoteMatch,
+export const getVoteMatchId = (state, props) => props.id;
+
+export const getVoteMatchCurrentIndex = createSelector(getVoteMatchData,
   votematch => votematch.get('currentIndex')
 );
 
-export const getVoteMatchMotions = createSelector(getVoteMatch,
-  votematch => votematch.get('items')
+export const getCurrentVoteMatch = createSelector(
+  [getVoteMatches, getVoteMatchId],
+  (votematches, id) => votematches.get(id)
 );
 
-export const getVoteMatchMotionsSize = createSelector(getVoteMatch,
+export const getVoteMatchMotions = createSelector(
+  getCurrentVoteMatch,
   votematch => {
-    if (votematch.get('items') === undefined) {
-      return 0;
+    if (votematch === undefined) {
+      return [];
     }
 
-    return votematch.get('items').size;
+    return votematch.get('motions');
   }
 );
 
-export const getVoteMatchResults = createSelector([
+export const getVoteMatchMotionsLength = createSelector(
   getVoteMatchMotions,
-  getUserVotes,
-], (
-  motions,
-  userVotes
-) => {
-  if (userVotes.size === 0) {
-    return new Map();
-  }
-
-  return motions.valueSeq().map(val =>
-    val.set('userVote', userVotes.getIn([
-      val.get('motionId'),
-      'value',
-    ]))
-  ).toMap();
-});
-
-const PERCENTAGE = 100;
-const calcPercentage = (number, total) => (number / total) * PERCENTAGE;
-
-export const getVoteMatchScore = createSelector([
-  getVoteMatchResults,
-], (results) => {
-  let counter = 0;
-
-  results.forEach(result => {
-    if (result.get('compareResult') === result.get('userVote')) {
-      counter++;
-    }
-  });
-
-  return calcPercentage(counter, results.size);
-});
+  motions => motions.length
+);

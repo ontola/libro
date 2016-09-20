@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import { ScoreSheet } from 'components';
 import {
-  getVoteMatchResults,
+  // getVoteMatchResults,
   // getVoteMatchScore,
 } from 'state/votematch/selectors';
 
 const mapStateToProps = (state) => ({
-  resultsPerMotion: getVoteMatchResults(state),
+  // resultsPerMotion: getVoteMatchResults(state),
   // score: getVoteMatchScore(state),
 });
 
