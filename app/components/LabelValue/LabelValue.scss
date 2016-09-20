@@ -5,6 +5,14 @@
   font-size: font-size('xx-large');
 }
 
+a:hover .LabelValue__value {
+  color: color('grey', 'dark');
+}
+
+a:hover .LabelValue__label {
+  color: color('grey', 'mid-dark');
+}
+
 .LabelValue__label {
   color: color('grey', 'mid-light');
 }

@@ -121,7 +121,6 @@ const Home = () => (
             <LabelValueBar
               label={user.name}
               value={user.value}
-              showBar={false}
             />
           </Link>
         ))}
