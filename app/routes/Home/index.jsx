@@ -15,25 +15,26 @@ import {
   Widget,
 } from 'components';
 
+import path from 'helpers/paths';
 import MotionContainer from 'containers/MotionContainer';
 
 const parties = [
-	{ name: 'VVD', value: 40, link: '/party/vdd' },
-  { name: 'PvdA', value: 36 },
-  { name: 'SP', value: 15 },
-  { name: 'CDA', value: 13 },
-  { name: 'PVV', value: 12 },
-  { name: 'D66', value: 12 },
-  { name: 'CU', value: 5 },
-  { name: 'GroenLinks', value: 4 },
-  { name: 'SGP', value: 3 },
-  { name: 'PvdD', value: 2 },
-  { name: '50PLUS', value: 1 },
-  { name: 'GrKÖ', value: 2 },
-  { name: 'GrBvK', value: 2 },
-  { name: 'Houwers', value: 1 },
-  { name: 'Klein', value: 1 },
-  { name: 'Van Vliet', value: 1 },
+	{ name: 'VVD', value: 40, link: path.party('1') },
+  { name: 'PvdA', value: 36, link: path.party('2') },
+  { name: 'SP', value: 15, link: path.party('3') },
+  { name: 'CDA', value: 13, link: path.party('4') },
+  { name: 'PVV', value: 12, link: path.party('5') },
+  { name: 'D66', value: 12, link: path.party('6') },
+  { name: 'CU', value: 5, link: path.party('7') },
+  { name: 'GroenLinks', value: 4, link: path.party('8') },
+  { name: 'SGP', value: 3, link: path.party('9') },
+  { name: 'PvdD', value: 2, link: path.party('10') },
+  { name: '50PLUS', value: 1, link: path.party('11') },
+  { name: 'GrKÖ', value: 2, link: path.party('12') },
+  { name: 'GrBvK', value: 2, link: path.party('13') },
+  { name: 'Houwers', value: 1, link: path.party('14') },
+  { name: 'Klein', value: 1, link: path.party('15') },
+  { name: 'Van Vliet', value: 1, link: path.party('16') },
 ];
 
 const genderData = [
@@ -64,28 +65,28 @@ const Home = () => (
       </Widget>
 
       <Widget title="Statistieken">
-        <Link to="/parties">
+        <Link to={path.partiesIndex()}>
           <CardRow showArrow>
             <CardContent>
               <LabelValue label="Partijen" value="16" />
             </CardContent>
           </CardRow>
         </Link>
-        <Link to="/politicians">
+        <Link to={path.politiciansIndex()}>
           <CardRow showArrow>
             <CardContent>
               <LabelValue label="Kamerleden" value="150" />
             </CardContent>
           </CardRow>
         </Link>
-        <Link to="/motions">
+        <Link to={path.motionsIndex()}>
           <CardRow showArrow>
             <CardContent>
               <LabelValue label="Moties ingediend" value="1.430" />
             </CardContent>
           </CardRow>
         </Link>
-        <Link to="/motions?filter=aangenomen">
+        <Link to={path.motionsIndex()}>
           <CardRow showArrow>
             <CardContent>
               <LabelValue label="Moties aangenomen" value="52%" />

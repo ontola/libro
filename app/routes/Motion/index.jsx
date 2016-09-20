@@ -15,6 +15,7 @@ import { getMotionTitle } from 'state/motions/selectors';
 import { getArgs } from 'state/argumentations/selectors';
 import MotionContainer from 'containers/MotionContainer';
 import { formatDate } from 'helpers/date';
+import path from 'helpers/paths';
 
 const MILLISECONDS_TO_SECONDS = 1000;
 
@@ -48,7 +49,7 @@ const Motion = ({
 }) => (
   <Container>
     <Helmet title={title} />
-    <BackButton link="/motions">Terug naar alle moties</BackButton>
+    <BackButton link={path.motionsIndex()}>Terug naar alle moties</BackButton>
     <MotionContainer motionId={params.motionId} />
     <Columns>
       {argumentations.length > 0 &&

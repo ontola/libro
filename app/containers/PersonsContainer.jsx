@@ -1,8 +1,9 @@
-
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+
 import { List, ProfileListItem } from 'components';
 import Person from 'models/Person';
+import path from 'helpers/paths';
 
 const propTypes = {
   persons: PropTypes.object,
@@ -16,7 +17,7 @@ const defaultProps = {
 const renderItem = person => (
   <ProfileListItem
     key={person.id}
-    link={`/profile/${person.id}`}
+    link={path.profile(person.id)}
     image={person.image}
     name={person.name}
     description={person.party}

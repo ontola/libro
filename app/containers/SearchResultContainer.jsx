@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 
 import { SearchResultItem } from 'components';
 import { formatDate } from 'helpers/date';
+import path from 'helpers/paths';
 
 const propTypes = {
   result: PropTypes.object.isRequired,
@@ -23,7 +24,7 @@ const SearchResultContainer = ({ result }) => {
       children={content}
       classification={data.classification}
       createdAt={formatDate(data.date)}
-      link={`/motions/${data.id}`}
+      link={path.motion(data.id)}
       title={data.onderwerp}
       score={score}
     />

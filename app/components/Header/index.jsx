@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 
+import path from 'helpers/paths';
 import {
   Cover,
   Container,
@@ -9,16 +10,16 @@ import {
 
 const defaultLinks = [{
   label: 'Dashboard',
-  to: '/',
+  to: path.index(),
 }, {
   label: 'Partijen',
-  to: '/parties',
+  to: path.partiesIndex(),
 }, {
   label: 'Kamerleden',
-  to: '/politicians',
+  to: path.politiciansIndex(),
 }, {
   label: 'Moties',
-  to: '/motions',
+  to: path.motionsIndex(),
 }];
 
 const propTypes = {

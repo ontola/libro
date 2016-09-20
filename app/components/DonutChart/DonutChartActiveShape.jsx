@@ -1,17 +1,17 @@
 import React, { PropTypes } from 'react';
 import { Sector } from 'recharts';
+import { browserHistory } from 'react-router';
 
 const propTypes = {
   cx: PropTypes.number.isRequired,
   cy: PropTypes.number.isRequired,
-  startAngle: PropTypes.number.isRequired,
   endAngle: PropTypes.number.isRequired,
   fill: PropTypes.string.isRequired,
-  midAngle: PropTypes.number.isRequired,
   innerRadius: PropTypes.number.isRequired,
-  outerRadius: PropTypes.number.isRequired,
-  percent: PropTypes.number.isRequired,
+  link: PropTypes.string,
   name: PropTypes.string.isRequired,
+  outerRadius: PropTypes.number.isRequired,
+  startAngle: PropTypes.number.isRequired,
   value: PropTypes.string.isRequired,
 };
 
@@ -25,6 +25,7 @@ const DonutChartActiveShape = ({
   endAngle,
   fill,
   innerRadius,
+  link,
   name,
   outerRadius,
   startAngle,
@@ -45,16 +46,24 @@ const DonutChartActiveShape = ({
       y={cy + POS_VAL}
       textAnchor="middle"
     />
-    <Sector
-      cx={cx}
-      cy={cy}
-      className="DonutChart__sector DonutChart__sector--active"
-      innerRadius={innerRadius}
-      outerRadius={outerRadius + SECTOR_EXTRA_RADIUS}
-      startAngle={startAngle}
-      endAngle={endAngle}
-      fill={fill}
-    />
+    <a
+      xlinkHref={link}
+      onClick={(e) => {
+        e.preventDefault();
+        return link && browserHistory.push(link);
+      }}
+    >
+      <Sector
+        cx={cx}
+        cy={cy}
+        className="DonutChart__sector DonutChart__sector--active"
+        innerRadius={innerRadius}
+        outerRadius={outerRadius + SECTOR_EXTRA_RADIUS}
+        startAngle={startAngle}
+        endAngle={endAngle}
+        fill={fill}
+      />
+    </a>
   </g>
 );
 

@@ -1,10 +1,12 @@
 /* eslint max-len: 0 */
 import React from 'react';
-import { Navbar } from 'components';
 import { Link } from 'react-router';
 
+import { Navbar } from 'components';
+import path from 'helpers/paths';
+
 const itemsLeft = [
-  <Link className="Navbar__item Navbar__item--logo" to="/">
+  <Link className="Navbar__item Navbar__item--logo" to={path.index()}>
     <svg xmlns="http://www.w3.org/2000/svg" width="37" height="28" viewBox="0 0 211 108">
       <rect x="159.8" y="86.4" width="51.2" height="8.3" />
       <rect y="86.2" width="86.9" height="8.4" />
@@ -17,10 +19,6 @@ const itemsLeft = [
   </Link>,
 ];
 
-const NavbarContainer = () => (
-  <Navbar
-    contentLeft={itemsLeft}
-  />
-);
+const NavbarContainer = () => <Navbar contentLeft={itemsLeft} />;
 
 export default NavbarContainer;

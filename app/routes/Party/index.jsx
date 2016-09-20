@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import Helmet from 'react-helmet';
 
+import path from 'helpers/paths';
 import {
   BackButton,
   Container,
@@ -14,11 +15,11 @@ const propTypes = {
   children: PropTypes.node,
 };
 
-const links = id => ([
-  { label: 'Overzicht', to: `/parties/${id}` },
-  { label: 'Voorstellen', to: `/parties/${id}/motions` },
-  { label: 'Leden', to: `/parties/${id}/members` },
-  { label: 'Info', to: `/parties/${id}/about` },
+const links = (id) => ([
+  { label: 'Overzicht', to: path.party(id) },
+  { label: 'Voorstellen', to: path.partyMotions(id) },
+  { label: 'Leden', to: path.partyMembers(id) },
+  { label: 'Info', to: path.partyAbout(id) },
 ]);
 
 const Party = ({
@@ -29,7 +30,7 @@ const Party = ({
     <Helmet title="Profiel van D66" />
     <Cover type="light">
       <Container>
-        <BackButton link="/parties">Terug naar alle partijen</BackButton>
+        <BackButton link={path.partiesIndex()}>Terug naar alle partijen</BackButton>
         <ProfileCard
           id={params.partyId}
           name="D66"

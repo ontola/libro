@@ -5,6 +5,8 @@ import Helmet from 'react-helmet';
 import PersonContainer from 'containers/PersonContainer';
 import { getPersonName } from 'state/persons/selectors';
 
+import path from 'helpers/paths';
+
 import {
   BackButton,
   Container,
@@ -21,13 +23,13 @@ const propTypes = {
 
 const links = id => ([{
   label: 'Overzicht',
-  to: `/profile/${id}`,
+  to: path.profile(id),
 }, {
   label: 'Voorstellen',
-  to: `/profile/${id}/motions`,
+  to: path.profileMotions(id),
 }, {
   label: 'Info',
-  to: `/profile/${id}/about`,
+  to: path.profileAbout(id),
 }]);
 
 const profileCardRender = (data, url, full) => (
@@ -50,7 +52,7 @@ const Profile = ({
     <Helmet title={`Profiel van ${name}`} />
     <Cover type="light">
       <Container>
-        <BackButton link="/politicians">Terug naar alle politici</BackButton>
+        <BackButton link={path.politiciansIndex()}>Terug naar alle politici</BackButton>
         <PersonContainer user={params.userId} renderItem={profileCardRender} full />
       </Container>
     </Cover>

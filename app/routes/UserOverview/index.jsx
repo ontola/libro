@@ -1,4 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router';
+
+import MotionContainer from 'containers/MotionContainer';
 import {
   CardContent,
   CardRow,
@@ -9,8 +12,6 @@ import {
   Tag,
   Widget,
 } from 'components';
-import MotionContainer from 'containers/MotionContainer';
-import { Link } from 'react-router';
 
 const motions = ['245245', '987654', '642621', '136743', '334672'];
 
