@@ -8,7 +8,6 @@ export const getCollapsible = createSelector(
   getCollapsibles,
   getCollapsibleId,
   (collapsibles, id) => {
-    console.log(collapsibles, id);
     if (collapsibles.get(id) === undefined) {
       return '';
     }

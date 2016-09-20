@@ -24,7 +24,6 @@ const defaultProps = {
 
 function mapStateToProps(state, ownProps) {
   const { children, group, id, trigger, visibleContent } = ownProps;
-  console.log(getCollapsible(state, ownProps));
   return {
     id,
     children,

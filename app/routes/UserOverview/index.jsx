@@ -3,17 +3,54 @@ import {
   CardContent,
   CardRow,
   Container,
+  CompareVotesBar,
   LabelValue,
-  LabelValueBar,
   MotionListItem,
   Tag,
   Widget,
 } from 'components';
 import MotionContainer from 'containers/MotionContainer';
-import CollapsibleContainer from 'containers/CollapsibleContainer';
 import { Link } from 'react-router';
 
 const motions = ['245245', '987654', '642621', '136743', '334672'];
+
+const tags = [
+  {
+    label: 'defensie',
+    percentage: 85,
+    link: '',
+  },
+  {
+    label: 'onderwijs',
+    percentage: 77,
+    link: '',
+  },
+  {
+    label: 'milieu',
+    percentage: 62,
+    link: '',
+  },
+  {
+    label: 'immigratie',
+    percentage: 55,
+    link: '',
+  },
+  {
+    label: 'economie',
+    percentage: 45,
+    link: '',
+  },
+  {
+    label: 'abortus',
+    percentage: 35,
+    link: '',
+  },
+  {
+    label: 'religie',
+    percentage: 20,
+    link: '',
+  },
+];
 
 const UserOverview = () => (
   <Container>
@@ -41,35 +78,30 @@ const UserOverview = () => (
       description="Berekend met het stemgedrag van de partijleden op moties.
       Klik op een partij om te zien waarover ze verschillend stemden."
     >
-      <CardRow>
-        <CollapsibleContainer
-          id="someid_1"
-          trigger={
-            <CardContent>
-              <LabelValueBar label="PvdA" value="65" />
-            </CardContent>
-          }
-          children={
-            <Tag>
-              Defensie
-            </Tag>
-          }
-        />
-      </CardRow>
-      <Link to="">
-        <CardRow>
-          <CardContent>
-            <LabelValueBar label="VVD" value="46" />
-          </CardContent>
-        </CardRow>
-      </Link>
-      <Link to="">
-        <CardRow>
-          <CardContent>
-            <LabelValueBar label="CDA" value="31" />
-          </CardContent>
-        </CardRow>
-      </Link>
+      <CompareVotesBar
+        label="GroenLinks"
+        mainPercentage={80}
+        compareAllLink=""
+        tags={tags}
+      />
+      <CompareVotesBar
+        label="PvdA"
+        mainPercentage={72}
+        compareAllLink=""
+        tags={tags}
+      />
+      <CompareVotesBar
+        label="VVD"
+        mainPercentage={55}
+        compareAllLink=""
+        tags={tags}
+      />
+      <CompareVotesBar
+        label="CDA"
+        mainPercentage={25}
+        compareAllLink=""
+        tags={tags}
+      />
     </Widget>
     <Widget
       title="Thema focus"

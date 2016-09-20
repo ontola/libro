@@ -1,3 +1,6 @@
+const RGB_NUMBER = 190;
+const HUNDRED_PERCENT = 100;
+
 /**
  * @param {string} str A rgb color string
  * @return {bool} True if string is rgb
@@ -54,10 +57,23 @@ const checkLuminance = (
   threshold = defaultLuminanceTreshold
 ) => getLuminance(rgb) < threshold;
 
+/**
+ * Returns an rgb string for a value between 0-100. Low values return green, high red.
+ * @param {percentage} 0-100
+ * @return {string} css RGB value
+ */
+
+function percentageToRedOrGreen(percentage) {
+  const red = RGB_NUMBER - (RGB_NUMBER * (percentage / HUNDRED_PERCENT));
+  const green = RGB_NUMBER * (percentage / HUNDRED_PERCENT);
+  const blue = 0;
+  return (`rgb(${Math.floor(red)},${Math.floor(green)},${Math.floor(blue)})`);
+}
 
 export {
-  isRGB,
   checkLuminance,
-  rgbToArray,
   getLuminance,
+  isRGB,
+  percentageToRedOrGreen,
+  rgbToArray,
 };

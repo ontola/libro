@@ -11,6 +11,7 @@ export { default as CardHeader } from './Card/CardHeader';
 export { default as CardRow } from './Card/CardRow';
 export { default as Collapsible } from './Collapsible';
 export { default as Columns } from './Columns';
+export { default as CompareVotesBar } from './CompareVotesBar';
 export { default as Container } from './Container';
 export { default as Cover } from './Cover';
 export { default as Detail } from './Detail';
