@@ -19,7 +19,7 @@ const Collapsible = ({ children, onClickToggle, opened, trigger, visibleContent 
   const triggerElem = (
     <a
       href="javascript:void(0);"
-      onClick={onClickToggle}
+      onClick={() => onClickToggle()}
     >
       {trigger}
     </a>

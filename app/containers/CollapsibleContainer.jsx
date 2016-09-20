@@ -24,6 +24,7 @@ const defaultProps = {
 
 function mapStateToProps(state, ownProps) {
   const { children, group, id, trigger, visibleContent } = ownProps;
+  console.log(getCollapsible(state, ownProps));
   return {
     id,
     children,
@@ -59,7 +60,9 @@ export default connect(
   mapStateToProps,
   (dispatch, ownProps) => ({
     onClickToggle: () => {
-      toggleOne(ownProps.id);
+      dispatch(toggleOne({
+        id: ownProps.id,
+      }));
     },
     onInitializeCollapsible: (data) => {
       dispatch(initializeCollapsible(data));

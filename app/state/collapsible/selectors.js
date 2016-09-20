@@ -1,14 +1,14 @@
 import { createSelector } from 'reselect';
 
-export const getCollapsibles = (state) => {
-  return state.getIn(['collapsible', 'items']);
-};
+export const getCollapsibles = (state) => state.getIn(['collapsible', 'items']);
 
-export const getCollapsibleId = (props) => props.id;
+export const getCollapsibleId = (state, props) => props.id;
 
 export const getCollapsible = createSelector(
-  [getCollapsibles, getCollapsibleId],
+  getCollapsibles,
+  getCollapsibleId,
   (collapsibles, id) => {
+    console.log(collapsibles, id);
     if (collapsibles.get(id) === undefined) {
       return '';
     }
