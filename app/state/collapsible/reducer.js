@@ -39,12 +39,10 @@ function toggleAll(state, group) {
 }
 
 const collapsible = handleActions({
-  [COLL_ADD]: (state, { payload }) => {
-    return state.setIn(['items', payload.identifier], new Collapsible({
-      group: payload.group,
-      opened: payload.startOpened,
-    }));
-  },
+  [COLL_ADD]: (state, { payload }) => state.setIn(['items', payload.identifier], new Collapsible({
+    group: payload.group,
+    opened: payload.startOpened,
+  })),
   [COLL_REMOVE]: (state, { payload }) => state.set('items', state.get('items').delete(payload.id)),
   [COLL_TOGGLE_ONE]: (state, { payload }) => state.setIn(
     ['items', payload.id, 'opened'],

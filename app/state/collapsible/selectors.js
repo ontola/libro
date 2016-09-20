@@ -14,5 +14,3 @@ export const getCollapsible = createSelector(
     return collapsibles.get(id);
   }
 );
-
-// export const getCollapsible = (state, id) => state.getIn(['collapsible', 'items', id]);

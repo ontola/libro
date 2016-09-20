@@ -1,9 +1,5 @@
 @import '../shared/config';
 
-.Collapsible {
-  // position: relative;
-}
-
 .Collapsible__hidden-part {
   display: none;
   pointer-events: none;
@@ -14,5 +10,10 @@
 }
 
 .Collapsible__trigger {
+  display: block;
+  background: none;
+  border: none;
+  width: 100%;
+  position: relative;
   cursor: pointer;
 }

@@ -17,12 +17,15 @@ const defaultProps = {
 
 const Collapsible = ({ children, onClickToggle, opened, trigger, visibleContent }) => {
   const triggerElem = (
-    <a
-      href="javascript:void(0);"
-      onClick={() => onClickToggle()}
+    <button
+      className="Collapsible__trigger"
+      // href="javascript:void(0);"
+      onClick={
+        () => onClickToggle()
+      }
     >
       {trigger}
-    </a>
+    </button>
   );
 
   return (
