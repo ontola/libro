@@ -1,27 +1,22 @@
 import './ScoreSheet.scss';
 import React, { PropTypes } from 'react';
-import { Map } from 'immutable';
-
-import {
-  Box,
-  Heading,
-} from 'components';
+import { Box, Heading } from 'components';
 
 const propTypes = {
-  resultsPerMotion: PropTypes.object.isRequired,
+  comparedProfilePositions: PropTypes.array.isRequired,
+  motionIds: PropTypes.array.isRequired,
+  userVotes: PropTypes.array.isRequired,
   score: PropTypes.number,
 };
 
-const defaultProps = {
-  resultsPerMotion: new Map(),
-};
-
 const ScoreSheet = ({
-  resultsPerMotion,
-  // score,
+  comparedProfilePositions,
+  motionIds,
+  userVotes,
+  score,
 }) => (
   <div className="ScoreSheet">
-    <Heading>Resultaat</Heading>
+    <Heading>Resultaat {score}%</Heading>
     <Box>
       <table width="100%">
         <thead>
@@ -33,18 +28,12 @@ const ScoreSheet = ({
           </tr>
         </thead>
         <tbody>
-          {resultsPerMotion.valueSeq().map((motionId, i) => (
-            <tr key={i}>
-              <td>{motionId.get('motionId')}</td>
-              <td>{motionId.get('userVote')}</td>
-              <td>{motionId.get('compareResult')}</td>
-              <td>
-                {
-                motionId.get('compareResult') === motionId.get('userVote')
-                  ? 'gelijk'
-                  : 'ongelijk'
-                }
-              </td>
+          {motionIds.map((motion, i) => (
+            <tr key={motion}>
+              <td>{motion}</td>
+              <td>{userVotes[i]}</td>
+              <td>{comparedProfilePositions[i]}</td>
+              <td>{userVotes[i] === comparedProfilePositions[i] ? 'Gelijk' : 'Anders'}</td>
             </tr>
           ))}
         </tbody>
@@ -54,6 +43,5 @@ const ScoreSheet = ({
 );
 
 ScoreSheet.propTypes = propTypes;
-ScoreSheet.defaultProps = defaultProps;
 
 export default ScoreSheet;

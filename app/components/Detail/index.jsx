@@ -1,6 +1,7 @@
 import './Detail.scss';
 import React, { PropTypes } from 'react';
 import { browserHistory } from 'react-router';
+import FontAwesome from 'react-fontawesome';
 
 const propTypes = {
   className: PropTypes.string,
@@ -28,7 +29,7 @@ const Detail = ({
 
   const pictogram = imageUrl
     ? <img src={imageUrl} className="Detail__image" role="presentation" />
-    : <span className={`Detail__icon fa fa-${icon}`} />;
+    : <span className="Detail__icon"><FontAwesome name={icon} /></span>;
 
   return (
     <Element

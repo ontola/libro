@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { getPerson, getPersonUrl } from 'state/persons/selectors';
 import { Detail } from 'components';
+import { fetchPerson } from 'state/persons/actions';
 import Person from 'models/Person';
 
 const defaultRenderItem = (user, url) => (
@@ -49,6 +50,6 @@ export default connect(
     url: getPersonUrl(state, ownProps),
   }),
   (dispatch, ownProps) => ({
-    loadProfile: () => dispatch(Person.fetch(ownProps.user)),
+    loadProfile: () => dispatch(fetchPerson(ownProps.user)),
   })
 )(PersonContainer);

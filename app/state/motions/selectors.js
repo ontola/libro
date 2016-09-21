@@ -1,7 +1,6 @@
 import { createSelector } from 'reselect';
 
 export const getMotions = (state) => state.getIn(['motions', 'items']);
-export const getVotes = (state) => state.getIn(['motions', 'votes']);
 
 export const getMotionId = (state, props) => {
   if (props.params) {
@@ -37,15 +36,5 @@ export const getMotionArgIds = createSelector(
       return '';
     }
     return motions.getIn([id, 'arguments']);
-  }
-);
-
-export const getVoteByMotionId = createSelector(
-  [getVotes, getMotionId],
-  (votes, motionId) => {
-    if (votes.get(motionId) === undefined) {
-      return '';
-    }
-    return votes.getIn([motionId, 'value']);
   }
 );

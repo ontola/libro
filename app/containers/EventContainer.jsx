@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import {
   EventShow,
 } from 'components';
-import Event from 'models/Event';
+
 import { getEvent } from 'state/events/selectors';
 import { expandAll } from 'state/collapsible/actions';
 import { EventItemsContainer } from 'containers/EventItemsContainer';
@@ -36,7 +36,7 @@ class EventContainer extends Component {
 
 EventContainer.propTypes = propTypes;
 
-function mapStateToProps(state, ownProps) {
+const mapStateToProps = (state, ownProps) => {
   const data = getEvent(state, ownProps);
   return {
     attendeesAbsent: data.attendeesAbsent,
@@ -47,7 +47,7 @@ function mapStateToProps(state, ownProps) {
     eventItems: data.eventItems,
     startDate: data.startDate,
   };
-}
+};
 
 export default connect(
   mapStateToProps,

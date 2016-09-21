@@ -28,7 +28,7 @@ const DetailDuration = ({
 
   const elapsedTimeClass = classNames({
     DetailDuration: true,
-    'DetailDuration--isCurrent': isCurrent,
+    'DetailDuration--is-current': isCurrent,
   });
 
   return (

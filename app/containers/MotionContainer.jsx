@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 
 import { MotionShow } from 'components';
 import Motion from 'models/Motion';
-import { getMotion, getVoteByMotionId } from 'state/motions/selectors';
-import { voteAction } from 'state/motions/actions';
+import { getMotion } from 'state/motions/selectors';
+import { getVoteByMotionId } from 'state/votes/selectors';
+import { voteAction } from 'state/votes/actions';
 import { voteMatchNext } from 'state/votematch/actions';
 import { formatDate } from 'helpers/date';
 import path from 'helpers/paths';

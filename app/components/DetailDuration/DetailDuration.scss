@@ -1,5 +1,7 @@
 @import '../shared/config';
 
-.DetailDuration--isCurrent .Detail__icon {
-  color: color('green');
+.DetailDuration--is-current {
+  .Detail__icon {
+    color: color('green');
+  }
 }

@@ -1,9 +1,15 @@
 @import '../shared/config';
 
 .LabelValueBar {
-  position: relative;
   display: flex;
   padding: units('small', 'large');
+  position: relative;
+
+  &:hover {
+    .LabelValueBar__bar {
+      background-color: color('grey', 'x-light');
+    }
+  }
 }
 
 .LabelValueBar__value {
@@ -27,15 +33,9 @@
 .LabelValueBar__bar {
   background-color: color('grey', 'xx-light');
   border-right: solid 3px color('grey', 'x-light');
-  // border-bottom: solid 1px color('grey', 'x-light');
+  height: 100%;
   left: 0;
   position: absolute;
   top: 0;
-  height: 100%;
   transition: background-color .1s;
-}
-
-.LabelValueBar:hover .LabelValueBar__bar {
-  background-color: color('grey', 'x-light');
-  // border-right-color: color('grey', 'light');
 }

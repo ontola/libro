@@ -18,7 +18,7 @@ const initialState = new Map({
 });
 
 // Opens all collapsibles if one or more in the group are currently closed
-function toggleAll(state, group) {
+const toggleAll = (state, group) => {
   let shouldOpen = false;
   const items = state.items.map(coll => {
     if (coll.group !== group) {
@@ -36,18 +36,26 @@ function toggleAll(state, group) {
     'items',
     state.get('items').map(coll => coll.set('opened', false))
   );
-}
+};
 
 const collapsible = handleActions({
-  [COLL_ADD]: (state, { payload }) => state.setIn(['items', payload.identifier], new Collapsible({
-    group: payload.group,
-    opened: payload.startOpened,
-  })),
-  [COLL_REMOVE]: (state, { payload }) => state.set('items', state.get('items').delete(payload.id)),
-  [COLL_TOGGLE_ONE]: (state, { payload }) => state.setIn(
-    ['items', payload.id, 'opened'],
-    !state.getIn(['items', payload.id, 'opened'])
+  [COLL_ADD]: (state, { payload }) => state.setIn(
+    ['items', payload.identifier],
+    new Collapsible({
+      group: payload.group,
+      opened: payload.startOpened,
+    })),
+
+  [COLL_REMOVE]: (state, { payload }) =>
+    state.set('items', state.get('items').delete(payload.id)),
+
+  [COLL_TOGGLE_ONE]: (state, { payload }) =>
+    state.setIn(
+      ['items', payload.id, 'opened'],
+      !state.getIn(['items', payload.id, 'opened']
+    )
   ),
+
   [COLL_TOGGLE_GROUP]: (state, { payload }) => toggleAll(state, payload.group),
 }, initialState);
 
