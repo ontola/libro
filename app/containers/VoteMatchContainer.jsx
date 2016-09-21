@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { VoteMatchShow } from 'components';
-import { voteMatchStart } from 'state/votematch/actions';
+import { voteMatchStart, voteMatchSaveScore } from 'state/votematch/actions';
 
 import {
   getVoteMatchMotions,
@@ -14,6 +14,7 @@ const propTypes = {
   id: PropTypes.string.isRequired,
   motionIds: PropTypes.node,
   onStartVoteMatch: PropTypes.func.isRequired,
+  onSaveScore: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
@@ -33,6 +34,7 @@ class VoteMatchContainer extends Component {
         voteMatchId={this.props.id}
         currentIndex={this.props.countUserVotes}
         motionIds={this.props.motionIds}
+        onSave={this.props.onSaveScore}
       />
     );
   }
@@ -48,5 +50,6 @@ export default connect(
   }),
   (dispatch) => ({
     onStartVoteMatch: (record) => dispatch(voteMatchStart(record)),
+    onSaveScore: (score) => dispatch(voteMatchSaveScore(score)),
   })
 )(VoteMatchContainer);

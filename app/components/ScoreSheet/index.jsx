@@ -1,6 +1,5 @@
 import './ScoreSheet.scss';
 import React, { PropTypes } from 'react';
-
 import { Box, Heading } from 'components';
 
 const propTypes = {

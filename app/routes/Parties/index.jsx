@@ -35,7 +35,7 @@ const renderParty = (party) => (
     id={party.id}
     link={party.link}
     image={party.image}
-    name={`${party.name} (${party.members})`}
+    name={party.name}
   />
 );
 

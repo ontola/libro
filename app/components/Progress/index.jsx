@@ -17,19 +17,20 @@ const Progress = ({
   total,
   direction,
 }) => {
+  const TO_PERCENTAGE = 100;
   const progressClass = classNames({
     Progress: true,
     [`Progress--direction-${direction}`]: direction,
   });
 
   return (
-    <div className="Progress__Container">
+    <div className="Progress__container">
       <div className={progressClass}>
-        <div className="Progress__Total" />
+        <div className="Progress__total" />
         <div
-          className="Progress__Completed"
+          className="Progress__completed"
           style={{
-            height: `${completed / total * 100}%`,
+            height: `${completed / total * TO_PERCENTAGE}%`,
           }}
         />
       </div>

@@ -1,10 +1,10 @@
 import { createSelector } from 'reselect';
 import { calcPercentage } from 'helpers/numbers';
 
-export const getVoteMatchData = state => state.get('votematch');
-export const getVoteMatches = state => state.getIn(['votematch', 'items']);
-export const getUserVotes = state => state.getIn(['votes', 'items']);
-export const getVoteMatchId = (state, props) => (props.params && props.params.userId) || props.id;
+const getVoteMatchData = state => state.get('votematch');
+const getVoteMatches = state => state.getIn(['votematch', 'items']);
+const getUserVotes = state => state.getIn(['votes', 'items']);
+const getVoteMatchId = (state, props) => (props.params && props.params.userId) || props.id;
 
 export const getVoteMatchCurrentIndex = createSelector(getVoteMatchData,
   votematch => votematch.get('currentIndex')

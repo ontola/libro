@@ -12,6 +12,7 @@ import ScoreSheetContainer from 'containers/ScoreSheetContainer';
 const propTypes = {
   currentIndex: PropTypes.number,
   motionIds: PropTypes.array.isRequired,
+  onSave: PropTypes.func.isRequired,
   voteMatchId: PropTypes.string.isRequired,
 };
 
@@ -29,9 +30,11 @@ class VoteMatchShow extends Component {
     const {
       currentIndex,
       motionIds,
+      // onSave,
     } = nextProps;
 
     if (currentIndex === motionIds.length) {
+      // TODO: save score onSave();
       this.scrollTo('results');
     } else {
       this.scrollTo(`motion${motionIds[currentIndex]}`);

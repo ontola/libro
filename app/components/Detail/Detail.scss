@@ -33,8 +33,7 @@
   align-items: center;
   border-radius: 100%;
   color: color('grey', 'mid-light');
-  // Important overwrites the fontAwesome styling.
-  display: flex !important;
+  display: flex;
   justify-content: center;
   margin-right: unit('xx-small');
   width: unit('large');
