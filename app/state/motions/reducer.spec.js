@@ -13,7 +13,6 @@ describe('Motions reducer', () => {
   it('should return the initial state', () => {
     const expectedState = new Map({
       items: new Map(),
-      votes: new Map(),
     });
 
     assert.deepEqual(
@@ -31,7 +30,6 @@ describe('Motions reducer', () => {
           loading: true,
         }),
       }),
-      votes: new Map(),
     });
 
     assert.deepEqual(
@@ -45,33 +43,6 @@ describe('Motions reducer', () => {
       }),
       expectedResponse,
       'does not handle GET_MOTION very well'
-    );
-  });
-
-  it('should handle SET_VOTE', () => {
-    const expectedResponse = new Map({
-      items: new Map(),
-      votes: new Map({
-        14: new models.Vote({
-          id: '14',
-          individual: true,
-          value: 'pro',
-        }),
-      }),
-    });
-
-    assert.deepEqual(
-      motions(undefined, {
-        type: actions.SET_VOTE,
-        payload: {
-          apiAction: true,
-          endpoint: 'votes',
-          motionId: '14',
-          side: 'pro',
-        },
-      }),
-      expectedResponse,
-      'does not handle SET_VOTE very well'
     );
   });
 });
