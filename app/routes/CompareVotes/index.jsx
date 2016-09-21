@@ -2,11 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
-import { Container, Cover, ProgressBar } from 'components';
-import ScoreSheetContainer from 'containers/ScoreSheetContainer';
+import { ProgressBar } from 'components';
 import VoteMatchContainer from 'containers/VoteMatchContainer';
 
-import Person from 'models/Person';
+import { fetchPerson } from 'state/persons/actions';
 import { getPersonName } from 'state/persons/selectors';
 
 import {
@@ -30,15 +29,8 @@ const defaultProps = {
 
 class CompareVotes extends Component {
   componentWillMount() {
-    const {
-      loadPerson,
-      name,
-      params,
-    } = this.props;
-
-
-    if (name === '') {
-      loadPerson(params.userId);
+    if (this.props.name === '') {
+      this.props.loadPerson(this.props.params.userId);
     }
   }
 
@@ -53,13 +45,6 @@ class CompareVotes extends Component {
       <div>
         <Helmet title={`Vergelijk opinies met ${name}`} />
         <VoteMatchContainer id={this.props.params.userId} />
-        <div ref="result">
-          <Cover fullScreen>
-            <Container>
-              <ScoreSheetContainer />
-            </Container>
-          </Cover>
-        </div>
         <ProgressBar
           context={`VoteMatch - ${name}`}
           completed={currentIndex}
@@ -80,6 +65,6 @@ export default connect(
     motionsLength: getVoteMatchMotionsLength(state, props),
   }),
   (dispatch) => ({
-    loadPerson: (id) => { dispatch(Person.fetch(id)); },
+    loadPerson: (id) => dispatch(fetchPerson(id)),
   })
 )(CompareVotes);

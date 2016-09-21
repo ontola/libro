@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { List, ProfileListItem } from 'components';
-import Person from 'models/Person';
+import { fetchPersons } from 'state/persons/actions';
 import path from 'helpers/paths';
 
 const propTypes = {
@@ -40,5 +40,5 @@ PersonsContainer.propTypes = propTypes;
 
 export default connect(
   state => ({ persons: state.getIn(['persons', 'items']) }),
-  dispatch => ({ loadPersons: () => { dispatch(Person.index()); } })
+  dispatch => ({ loadPersons: () => { dispatch(fetchPersons()); } })
 )(PersonsContainer);

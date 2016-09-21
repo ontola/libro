@@ -9,8 +9,7 @@ import {
 } from '../action-types';
 
 const initialState = new Map({
-  compareWithPerson: '',
-  currentIndex: 0,
+  currentIndex: null,
   currentVoteMatch: null,
   items: new Map(),
 });
@@ -28,7 +27,8 @@ const increaseByOne = index => (index === null ? 0 : index + 1);
 const votematch = handleActions({
   [VOTE_MATCH_INIT]: (state, { payload }) => state
     .setIn(['items', payload.id], newRecord(payload.id))
-    .set('currentVoteMatch', payload.id),
+    .set('currentVoteMatch', payload.id)
+    .set('currentIndex', null),
 
   [VOTE_MATCH_NEXT]: (state) =>
     state.set('currentIndex', increaseByOne(state.get('currentIndex'))),

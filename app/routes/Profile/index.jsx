@@ -52,8 +52,15 @@ const Profile = ({
     <Helmet title={`Profiel van ${name}`} />
     <Cover type="light">
       <Container>
-        <BackButton link={path.politiciansIndex()}>Terug naar alle politici</BackButton>
-        <PersonContainer user={params.userId} renderItem={profileCardRender} full />
+        <BackButton
+          link={path.politiciansIndex()}
+          children="Terug naar alle politici"
+        />
+        <PersonContainer
+          user={params.userId}
+          renderItem={profileCardRender}
+          full
+        />
       </Container>
     </Cover>
 
