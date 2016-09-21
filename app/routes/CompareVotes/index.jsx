@@ -9,7 +9,7 @@ import { fetchPerson } from 'state/persons/actions';
 import { getPersonName } from 'state/persons/selectors';
 
 import {
-  getVoteMatchCurrentIndex,
+  getVoteMatchCountUserVotes,
   getVoteMatchMotionsLength,
 } from 'state/votematch/selectors';
 
@@ -35,11 +35,7 @@ class CompareVotes extends Component {
   }
 
   render() {
-    const {
-      currentIndex,
-      motionsLength,
-      name,
-    } = this.props;
+    const { currentIndex, motionsLength, name } = this.props;
 
     return (
       <div>
@@ -61,7 +57,7 @@ CompareVotes.defaultProps = defaultProps;
 export default connect(
   (state, props) => ({
     name: getPersonName(state, props),
-    currentIndex: getVoteMatchCurrentIndex(state, props),
+    currentIndex: getVoteMatchCountUserVotes(state, props),
     motionsLength: getVoteMatchMotionsLength(state, props),
   }),
   (dispatch) => ({

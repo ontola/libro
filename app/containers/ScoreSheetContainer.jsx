@@ -1,17 +1,31 @@
+import { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { ScoreSheet } from 'components';
 import {
-  // getVoteMatchResults,
-  // getVoteMatchScore,
+  getVoteMatchUserVotes,
+  getVoteMatchMotions,
+  getVoteMatchComparedProfilePositions,
+  getVoteMatchScore,
 } from 'state/votematch/selectors';
 
-const mapStateToProps = (state) => ({
-  // resultsPerMotion: getVoteMatchResults(state),
-  // score: getVoteMatchScore(state),
+const propTypes = {
+  id: PropTypes.string.isRequired,
+  motionIds: PropTypes.array,
+  userVotes: PropTypes.array,
+};
+
+const mapStateToProps = (state, props) => ({
+  comparedProfilePositions: getVoteMatchComparedProfilePositions(state, props),
+  motionIds: getVoteMatchMotions(state, props),
+  userVotes: getVoteMatchUserVotes(state, props),
+  score: getVoteMatchScore(state, props),
 });
 
 const ScoreSheetContainer = connect(
   mapStateToProps
 )(ScoreSheet);
+
+
+ScoreSheetContainer.propTypes = propTypes;
 
 export default ScoreSheetContainer;

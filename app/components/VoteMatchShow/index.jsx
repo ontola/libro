@@ -16,7 +16,6 @@ const propTypes = {
 };
 
 const defaultProps = {
-  currentIndex: 0,
   motionIds: [],
 };
 
@@ -53,7 +52,11 @@ class VoteMatchShow extends Component {
       <div className="VoteMatchShow">
         <div className="VoteMatchShow__motionsList">
           {motionIds.map(id => (
-            <div className="VoteMatchShow__motion" ref={`motion${id}`} key={id}>
+            <div
+              className="VoteMatchShow__motion"
+              ref={`motion${id}`}
+              key={id}
+            >
               <Cover fullScreen>
                 <Container>
                   <MotionContainer

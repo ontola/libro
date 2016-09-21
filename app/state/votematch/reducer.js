@@ -2,11 +2,7 @@ import { handleActions } from 'redux-actions';
 import { Map } from 'immutable';
 
 import VoteMatch from 'models/VoteMatch';
-
-import {
-  VOTE_MATCH_INIT,
-  VOTE_MATCH_NEXT,
-} from '../action-types';
+import { VOTE_MATCH_INIT, VOTE_MATCH_NEXT } from '../action-types';
 
 const initialState = new Map({
   currentIndex: null,
@@ -17,9 +13,9 @@ const initialState = new Map({
 // NOTE: This is mock data. Eventually this data should be fetched by the api
 const newRecord = (id) => new VoteMatch({
   id,
-  motions: ['642621', '245245', '195075'],
+  motions: ['642621', '245245', '195075', '136743', '752183', '367333'],
   comparedProfile: id,
-  comparedProfilePositions: ['pro', 'con', 'neutral'],
+  comparedProfilePositions: ['pro', 'con', 'neutral', 'con', 'pro', 'pro'],
 });
 
 const increaseByOne = index => (index === null ? 0 : index + 1);
