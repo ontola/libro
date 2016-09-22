@@ -27,10 +27,6 @@ const Detail = ({
     className,
   ].join(' ');
 
-  const pictogram = imageUrl
-    ? <img src={imageUrl} className="Detail__image" role="presentation" />
-    : <span className="Detail__icon"><FontAwesome name={icon} /></span>;
-
   return (
     <Element
       onClick={(e) => {
@@ -41,8 +37,19 @@ const Detail = ({
       className={classNames}
       title={title}
     >
-      {(icon || imageUrl) && pictogram}
-      <span className="Detail__text">{text}</span>
+      {imageUrl &&
+        <img src={imageUrl} className="Detail__image" role="presentation" />
+      }
+
+      {!imageUrl && icon &&
+        <span className="Detail__icon">
+          <FontAwesome name={icon} />
+        </span>
+      }
+
+      {text &&
+        <span className="Detail__text">{text}</span>
+      }
     </Element>
   );
 };

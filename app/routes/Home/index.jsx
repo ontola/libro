@@ -52,7 +52,11 @@ const motionsPerUser = [
   { name: 'Manon Fokke', value: 74 },
 ];
 
-const motions = ['245245', '987654', '642621'];
+const motions = [
+  '6117dd10-2cf8-e511-9672-e4115babb880',
+  'c0e2a617-79f2-e511-9672-e4115babb880',
+  '3137bf58-89f5-e511-9672-e4115babb880',
+];
 
 const Home = () => (
   <div>

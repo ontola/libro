@@ -7,7 +7,6 @@ import { getMotion } from 'state/motions/selectors';
 import { getVoteByMotionId } from 'state/votes/selectors';
 import { voteAction } from 'state/votes/actions';
 import { voteMatchNext } from 'state/votematch/actions';
-import { formatDate } from 'helpers/date';
 import path from 'helpers/paths';
 
 const propTypes = {
@@ -39,8 +38,6 @@ class MotionContainer extends Component {
     }
 
     const RenderComponent = this.props.renderItem;
-    const MILLISECONDS_TO_SECONDS = 1000;
-
     const onVoteAction = (side) => {
       const btnActionFunc = this.props.voteMatchActive
         ? this.props.onNextMotion
@@ -55,7 +52,7 @@ class MotionContainer extends Component {
     return (
       <RenderComponent
         children={this.props.data.text}
-        createdAt={formatDate(this.props.data.createdAt * MILLISECONDS_TO_SECONDS)}
+        createdAt={this.props.data.createdAt}
         creator={this.props.data.creator}
         id={this.props.data.id}
         link={path.motion(this.props.data.id)}

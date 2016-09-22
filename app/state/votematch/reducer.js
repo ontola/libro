@@ -10,12 +10,18 @@ const initialState = new Map({
   items: new Map(),
 });
 
+const motions = [
+  '6117dd10-2cf8-e511-9672-e4115babb880',
+  '169b7429-14f8-e511-9672-e4115babb880',
+  '2ea244f5-14f8-e511-9672-e4115babb880',
+];
+
 // NOTE: This is mock data. Eventually this data should be fetched by the api
 const newRecord = (id) => new VoteMatch({
   id,
-  motions: ['642621', '245245', '195075', '136743', '752183', '367333'],
+  motions,
   comparedProfile: id,
-  comparedProfilePositions: ['pro', 'con', 'neutral', 'con', 'pro', 'pro'],
+  comparedProfilePositions: ['pro', 'con', 'neutral'],
 });
 
 const increaseByOne = index => (index === null ? 0 : index + 1);
