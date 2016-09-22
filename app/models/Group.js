@@ -4,18 +4,17 @@ import { APIDesc, apiModelGenerator } from './utils/apiModelGenerator';
 
 const apiDesc = new APIDesc({
   actions: new Map({
-    collection: actions.GET_VOTES,
-    resource: actions.GET_VOTE,
+    collection: actions.GET_GROUPS,
+    resource: actions.GET_GROUP,
   }),
-  endpoint: 'votes',
-  type: 'votes',
+  endpoint: 'groups',
+  type: 'groups',
 });
 
 const attributes = {
   id: undefined,
-  individual: true,
-  option: '',
-  voterId: undefined,
+  organisationId: undefined,
+  type: undefined,
 };
 
 export default apiModelGenerator(attributes, apiDesc);

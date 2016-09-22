@@ -20,7 +20,7 @@ const propTypes = {
   createdAt: PropTypes.string,
   link: PropTypes.string.isRequired,
   onVote: PropTypes.func.isRequired,
-  voteData: PropTypes.string.isRequired,
+  voteData: PropTypes.string,
 };
 
 const MotionShow = ({

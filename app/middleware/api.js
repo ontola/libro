@@ -23,34 +23,27 @@ const callApi = (endpoint) => {
 
 const parseResult = (jsonData, emitRecord, next) => {
   const actions = [];
+  const addRecordToActions = (entity) => actions.push(emitRecord(dataStore.formatEntity(entity)));
+
   if (jsonData.data.constructor === Array) {
-    jsonData.data.forEach(entity => {
-      actions.push(emitRecord(dataStore.formatEntity(entity)));
-    });
+    jsonData.data.forEach(entity => addRecordToActions(entity));
   } else {
-    actions.push(emitRecord(dataStore.formatEntity(jsonData.data)));
+    addRecordToActions(jsonData.data);
   }
+
   if (jsonData.included) {
-    jsonData.included.forEach(entity => actions.push(emitRecord(dataStore.formatEntity(entity))));
+    jsonData.included.forEach(entity => addRecordToActions(entity));
   }
 
   next(batchActions(actions));
 };
 
 const middleware = () => next => action => {
-  if (!action.payload) {
+  if (!action.payload || !action.payload.apiAction) {
     return next(action);
   }
 
-  if (!action.payload.apiAction) {
-    return next(action);
-  }
-
-  const {
-    id,
-    endpoint,
-  } = action.payload;
-
+  const { id, endpoint } = action.payload;
   const constructEndpoint = id ? `${endpoint}/${id}` : endpoint;
 
   const emitRecord = (record) => ({

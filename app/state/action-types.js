@@ -1,6 +1,9 @@
 export const GET_PERSONS = 'GET_PERSONS';
 export const GET_PERSON = 'GET_PERSON';
 
+export const GET_GROUPS = 'GET_GROUPS';
+export const GET_GROUP = 'GET_GROUP';
+
 export const GET_MOTIONS = 'GET_MOTIONS';
 export const GET_MOTION = 'GET_MOTION';
 

@@ -12,8 +12,8 @@ export default class DataStore {
   }
 
   toCamel(string) {
-    return string.replace(/(\-[a-z])/g, substring =>
-      substring.toUpperCase().replace('-', '')
+    return string.replace(/(_\w)/g, substring =>
+      substring.toUpperCase().replace('_', '')
     );
   }
 
