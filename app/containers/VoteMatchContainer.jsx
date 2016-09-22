@@ -2,11 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { VoteMatchShow } from 'components';
-import { voteMatchStart, voteMatchSaveScore } from 'state/votematch/actions';
+import { voteMatchStart, voteMatchSave } from 'state/votematch/actions';
 
 import {
   getVoteMatchMotions,
   getVoteMatchCountUserVotes,
+  getVoteMatchSimilarity,
 } from 'state/votematch/selectors';
 
 const propTypes = {
@@ -15,6 +16,7 @@ const propTypes = {
   motionIds: PropTypes.node,
   onStartVoteMatch: PropTypes.func.isRequired,
   onSaveScore: PropTypes.func.isRequired,
+  similarity: PropTypes.number.isRequired,
 };
 
 const defaultProps = {
@@ -23,18 +25,21 @@ const defaultProps = {
 
 class VoteMatchContainer extends Component {
   componentWillMount() {
-    this.props.onStartVoteMatch({
-      id: this.props.id,
-    });
+    const { onStartVoteMatch, id } = this.props;
+
+    onStartVoteMatch({ id });
   }
 
   render() {
+    const { id, countUserVotes, motionIds, onSaveScore, similarity } = this.props;
+
     return (
       <VoteMatchShow
-        voteMatchId={this.props.id}
-        currentIndex={this.props.countUserVotes}
-        motionIds={this.props.motionIds}
-        onSave={this.props.onSaveScore}
+        voteMatchId={id}
+        currentIndex={countUserVotes}
+        motionIds={motionIds}
+        onSave={onSaveScore}
+        similarity={similarity}
       />
     );
   }
@@ -47,9 +52,10 @@ export default connect(
   (state, props) => ({
     countUserVotes: getVoteMatchCountUserVotes(state, props),
     motionIds: getVoteMatchMotions(state, props),
+    similarity: getVoteMatchSimilarity(state, props),
   }),
   (dispatch) => ({
     onStartVoteMatch: (record) => dispatch(voteMatchStart(record)),
-    onSaveScore: (score) => dispatch(voteMatchSaveScore(score)),
+    onSaveScore: (score) => dispatch(voteMatchSave(score)),
   })
 )(VoteMatchContainer);

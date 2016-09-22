@@ -1,16 +1,18 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { getPerson, getPersonUrl } from 'state/persons/selectors';
 import { Detail } from 'components';
-import { fetchPerson } from 'state/persons/actions';
 import Person from 'models/Person';
+import path from 'helpers/paths';
 
-const defaultRenderItem = (user, url) => (
+import { getPerson } from 'state/persons/selectors';
+import { fetchPerson } from 'state/persons/actions';
+
+const defaultRenderItem = (user) => (
   <Detail
     text={user.name}
     imageUrl={user.image}
-    url={url}
+    url={path.profile(user.id)}
   />
 );
 
@@ -19,7 +21,6 @@ const propTypes = {
   loadProfile: PropTypes.func,
   user: PropTypes.string.isRequired,
   data: PropTypes.instanceOf(Person),
-  url: PropTypes.string,
   renderItem: PropTypes.func,
 };
 
@@ -36,8 +37,8 @@ class PersonContainer extends Component {
   }
 
   render() {
-    const { data, renderItem, full, url } = this.props;
-    return data !== undefined && renderItem(data, url, full);
+    const { data, renderItem, full } = this.props;
+    return data !== undefined && renderItem(data, full);
   }
 }
 
@@ -47,7 +48,6 @@ PersonContainer.defaultProps = defaultProps;
 export default connect(
   (state, ownProps) => ({
     data: getPerson(state, ownProps),
-    url: getPersonUrl(state, ownProps),
   }),
   (dispatch, ownProps) => ({
     loadProfile: () => dispatch(fetchPerson(ownProps.user)),

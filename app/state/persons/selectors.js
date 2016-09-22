@@ -1,7 +1,3 @@
-import { createSelector } from 'reselect';
-
-export const getPersons = (state) => state.getIn(['persons', 'items']);
-
 export const getPersonId = (state, props) => {
   if (props.params) {
     return props.params.userId;
@@ -14,21 +10,8 @@ export const getPersonId = (state, props) => {
   return null;
 };
 
-export const getPerson = createSelector(
-  [getPersons, getPersonId],
-  (persons, id) => persons.get(id)
-);
+export const getPerson = (state, props) =>
+  state.getIn(['persons', 'items', getPersonId(state, props)]);
 
-export const getPersonName = createSelector([getPerson], person => {
-  if (person === undefined) {
-    return '';
-  }
-  return person.name;
-});
-
-export const getPersonUrl = createSelector([getPerson], person => {
-  if (person === undefined) {
-    return '';
-  }
-  return `/profile/${person.id}`;
-});
+export const getPersonName = (state, props) =>
+  state.getIn(['persons', 'items', getPersonId(state, props), 'name']);

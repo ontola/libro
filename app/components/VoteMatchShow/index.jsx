@@ -30,11 +30,16 @@ class VoteMatchShow extends Component {
     const {
       currentIndex,
       motionIds,
-      // onSave,
+      onSave,
+      similarity,
+      voteMatchId,
     } = nextProps;
 
     if (currentIndex === motionIds.length) {
-      // TODO: save score onSave();
+      onSave({
+        id: voteMatchId,
+        similarity,
+      });
       this.scrollTo('results');
     } else {
       this.scrollTo(`motion${motionIds[currentIndex]}`);

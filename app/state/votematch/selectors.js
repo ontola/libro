@@ -1,30 +1,25 @@
 import { createSelector } from 'reselect';
 import { calcPercentage } from 'helpers/numbers';
+import { getVotes } from 'state/votes/selectors';
 
-const getVoteMatchData = state => state.get('votematch');
-const getVoteMatches = state => state.getIn(['votematch', 'items']);
-const getUserVotes = state => state.getIn(['votes', 'items']);
-const getVoteMatchId = (state, props) => (props.params && props.params.userId) || props.id;
+import VoteMatch from 'models/VoteMatch';
 
-export const getVoteMatchCurrentIndex = createSelector(getVoteMatchData,
-  votematch => votematch.get('currentIndex')
-);
+export const getVoteMatches = (state) =>
+  state.getIn(['votematch', 'items']);
 
-export const getCurrentVoteMatch = createSelector(
-  [getVoteMatches, getVoteMatchId],
-  (votematches, id) => votematches.get(id)
-);
+export const getVoteMatchCurrentIndex = (state) =>
+  state.getIn(['votematch', 'currentIndex']);
 
-export const getVoteMatchMotions = createSelector(
-  getCurrentVoteMatch,
-  votematch => {
-    if (votematch === undefined) {
-      return [];
-    }
+export const getCurrentVoteMatch = (state) => {
+  const id = state.getIn(['votematch', 'currentVoteMatch']);
+  return state.getIn(['votematch', 'items', id]) || new VoteMatch();
+};
 
-    return votematch.get('motions');
-  }
-);
+export const getVoteMatchMotions = (state) =>
+  getCurrentVoteMatch(state).get('motions');
+
+export const getVoteMatchComparedProfilePositions = (state) =>
+  getCurrentVoteMatch(state).get('comparedProfilePositions');
 
 export const getVoteMatchMotionsLength = createSelector(
   getVoteMatchMotions,
@@ -32,13 +27,8 @@ export const getVoteMatchMotionsLength = createSelector(
 );
 
 export const getVoteMatchUserVotes = createSelector(
-  [getUserVotes, getVoteMatchMotions],
+  [getVotes, getVoteMatchMotions],
   (votes, motions) => motions.map(motion => votes.getIn([motion, 'value']))
-);
-
-export const getVoteMatchComparedProfilePositions = createSelector(
-  getCurrentVoteMatch,
-  (votematch) => votematch.get('comparedProfilePositions')
 );
 
 export const getVoteMatchCountUserVotes = createSelector(
@@ -46,15 +36,13 @@ export const getVoteMatchCountUserVotes = createSelector(
   (votes) => votes.filter(vote => vote !== undefined).length
 );
 
-export const getVoteMatchScore = createSelector(
+export const getVoteMatchSimilarity = createSelector(
   [getVoteMatchUserVotes, getVoteMatchComparedProfilePositions],
   (userVotes, compareVotes) => {
-    let counter = 0;
-    userVotes.forEach((result, i) => {
-      if (result === compareVotes[i]) {
-        counter++;
-      }
-    });
-    return calcPercentage(counter, userVotes.length);
+    const countSimilarities = userVotes
+      .filter((userVote, i) => userVote === compareVotes[i])
+      .length;
+
+    return calcPercentage(countSimilarities, userVotes.length);
   }
 );

@@ -32,7 +32,7 @@ const links = id => ([{
   to: path.profileAbout(id),
 }]);
 
-const profileCardRender = (data, url, full) => (
+const profileCardRender = (data, full) => (
   <ProfileCard
     id={data.id}
     name={data.name}

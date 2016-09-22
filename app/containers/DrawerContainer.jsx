@@ -17,9 +17,7 @@ const DrawerContainer = connect(
     hits: getSearchHits(state),
   }),
   (dispatch) => ({
-    onClickToggle: () => {
-      dispatch(toggleDrawer());
-    },
+    onClickToggle: () => dispatch(toggleDrawer()),
   })
 )(Drawer);
 

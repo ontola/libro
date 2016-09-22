@@ -1,4 +1,3 @@
-
 import './Search.scss';
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
@@ -155,11 +154,7 @@ export default connect(
     hits: getSearchHits(state),
   }),
   (dispatch) => ({
-    setHitCountAction: (count) => {
-      dispatch(setHitCount(count));
-    },
-    toggleDrawerAction: () => {
-      dispatch(toggleDrawer());
-    },
+    setHitCountAction: (count) => { dispatch(setHitCount(count)); },
+    toggleDrawerAction: () => { dispatch(toggleDrawer()); },
   })
 )(Search);

@@ -24,11 +24,11 @@ const Drawer = ({
 
   return (
     <div className={drawerClass}>
-      <div className="Drawer__overlay" onClick={() => { onClickToggle(); }}></div>
+      <div className="Drawer__overlay" onClick={() => onClickToggle()}></div>
       <div className="Drawer__wrapper">
         <div className="Drawer__container">{children}</div>
         <div className="Drawer__action Drawer__action--close">
-          <Button onClick={() => { onClickToggle(); }}>Toon {hits} resultaten</Button>
+          <Button onClick={() => onClickToggle()}>Toon {hits} resultaten</Button>
         </div>
       </div>
     </div>

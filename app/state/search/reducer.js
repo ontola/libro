@@ -8,12 +8,13 @@ import {
 
 const initialState = new Map({
   visible: false,
-  hits: null,
+  hits: 0,
 });
 
 const search = handleActions({
   [TOGGLE_DRAWER]: (state) =>
     state.set('visible', !state.get('visible')),
+
   [SET_HIT_COUNT]: (state, { payload }) =>
     state.set('hits', payload),
 }, initialState);

@@ -5,7 +5,7 @@ import {
   getVoteMatchUserVotes,
   getVoteMatchMotions,
   getVoteMatchComparedProfilePositions,
-  getVoteMatchScore,
+  getVoteMatchSimilarity,
 } from 'state/votematch/selectors';
 
 const propTypes = {
@@ -18,7 +18,7 @@ const mapStateToProps = (state, props) => ({
   comparedProfilePositions: getVoteMatchComparedProfilePositions(state, props),
   motionIds: getVoteMatchMotions(state, props),
   userVotes: getVoteMatchUserVotes(state, props),
-  score: getVoteMatchScore(state, props),
+  score: getVoteMatchSimilarity(state, props),
 });
 
 const ScoreSheetContainer = connect(

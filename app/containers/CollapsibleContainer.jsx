@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Collapsible from 'components/Collapsible';
 import { initializeCollapsible, toggleOne } from 'state/collapsible/actions';
-import { getCollapsible } from 'state/collapsible/selectors';
+import { getCollapsibleOpened } from 'state/collapsible/selectors';
 
 const propTypes = {
   id: PropTypes.any.isRequired,
@@ -37,17 +37,9 @@ CollapsibleContainer.propTypes = propTypes;
 CollapsibleContainer.defaultProps = defaultProps;
 
 export default connect(
-  (state, ownProps) => {
-    const { children, group, id, trigger, visibleContent } = ownProps;
-    return {
-      id,
-      children,
-      group,
-      opened: getCollapsible(state, ownProps).opened,
-      trigger,
-      visibleContent,
-    };
-  },
+  (state, ownProps) => ({
+    opened: getCollapsibleOpened(state, ownProps),
+  }),
   (dispatch, ownProps) => ({
     onClickToggle: () => {
       dispatch(toggleOne({ id: ownProps.id }));

@@ -2,10 +2,15 @@ import { handleActions } from 'redux-actions';
 import { Map } from 'immutable';
 
 import VoteMatch from 'models/VoteMatch';
-import { VOTE_MATCH_INIT, VOTE_MATCH_NEXT } from '../action-types';
+
+import {
+  VOTE_MATCH_INIT,
+  VOTE_MATCH_NEXT,
+  VOTE_MATCH_SAVE,
+} from '../action-types';
 
 const initialState = new Map({
-  currentIndex: null,
+  currentIndex: 0,
   currentVoteMatch: null,
   items: new Map(),
 });
@@ -24,16 +29,17 @@ const newRecord = (id) => new VoteMatch({
   comparedProfilePositions: ['pro', 'con', 'neutral'],
 });
 
-const increaseByOne = index => (index === null ? 0 : index + 1);
-
 const votematch = handleActions({
   [VOTE_MATCH_INIT]: (state, { payload }) => state
     .setIn(['items', payload.id], newRecord(payload.id))
     .set('currentVoteMatch', payload.id)
-    .set('currentIndex', null),
+    .set('currentIndex', 0),
 
   [VOTE_MATCH_NEXT]: (state) =>
-    state.set('currentIndex', increaseByOne(state.get('currentIndex'))),
+    state.set('currentIndex', state.get('currentIndex') + 1),
+
+  [VOTE_MATCH_SAVE]: (state, { payload }) =>
+    state.setIn(['items', payload.id, 'similarity'], payload.similarity),
 
 }, initialState);
 
