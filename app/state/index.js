@@ -12,6 +12,7 @@ import router from './router/reducer';
 import search from './search/reducer';
 import votematch from './votematch/reducer';
 import votes from './votes/reducer';
+import voteEvents from './voteEvents/reducer';
 
 import API from '../middleware/api';
 import * as models from '../models';
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   search,
   votematch,
   votes,
+  voteEvents,
 });
 
 const configureStore = (preloadedState) => {

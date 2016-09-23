@@ -1,7 +1,3 @@
-import { createSelector } from 'reselect';
-
-export const getMotions = (state) => state.getIn(['motions', 'items']);
-
 export const getMotionId = (state, props) => {
   if (props.params) {
     return props.params.motionId;
@@ -11,30 +7,20 @@ export const getMotionId = (state, props) => {
     return props.motionId;
   }
 
-  return false;
+  return null;
 };
 
-export const getMotion = createSelector(
-  [getMotions, getMotionId],
-  (motions, id) => motions.get(id)
-);
+export const getMotions = (state) =>
+  state.getIn(['motions', 'items']);
 
-export const getMotionTitle = createSelector(
-  [getMotions, getMotionId],
-  (motions, id) => {
-    if (motions.get(id) === undefined) {
-      return '';
-    }
-    return motions.getIn([id, 'title']);
-  }
-);
+export const getMotion = (state, props) =>
+  state.getIn(['motions', 'items', getMotionId(state, props)]);
 
-export const getMotionArgIds = createSelector(
-  [getMotions, getMotionId],
-  (motions, id) => {
-    if (motions.get(id) === undefined) {
-      return '';
-    }
-    return motions.getIn([id, 'arguments']);
-  }
-);
+export const getMotionVoteEvents = (state, props) =>
+  state.getIn(['motions', 'items', getMotionId(state, props), 'voteEvents']);
+
+export const getMotionTitle = (state, props) =>
+  state.getIn(['motions', 'items', getMotionId(state, props), 'title']);
+
+export const getMotionArgIds = (state, props) =>
+  state.getIn(['motions', 'items', getMotionId(state, props), 'arguments']);
