@@ -4,6 +4,10 @@ stages:
   - release
   - deploy
 
+after_script:
+  - docker rm ${CI_BUILD_ID}
+  - docker rm registry.gitlab.com/argu/aod_demo:${CI_BUILD_REF_NAME}
+
 test:
   stage: test
   before_script:
@@ -24,10 +28,10 @@ test:
 bake:
   stage: bake
   after_script:
-    - docker stop ${CI_BUILD_REF}
+    - docker stop ${CI_BUILD_ID}
   script:
     - docker build --pull=true -t registry.gitlab.com/argu/aod_demo:${CI_BUILD_REF_NAME} .
-    - docker run --name ${CI_BUILD_REF} -d registry.gitlab.com/argu/aod_demo:${CI_BUILD_REF_NAME}
+    - docker run --name ${CI_BUILD_ID} -d registry.gitlab.com/argu/aod_demo:${CI_BUILD_REF_NAME}
 
 tag:
   stage: release
