@@ -6,6 +6,8 @@ import { combineReducers } from 'redux-immutable';
 import argumentations from './argumentations/reducer';
 import collapsible from './collapsible/reducer';
 import communication from './communication/reducer';
+import counts from './counts/reducer';
+import groups from './groups/reducer';
 import motions from './motions/reducer';
 import persons from './persons/reducer';
 import router from './router/reducer';
@@ -21,6 +23,8 @@ const rootReducer = combineReducers({
   argumentations,
   collapsible,
   communication,
+  counts,
+  groups,
   motions,
   persons,
   router,

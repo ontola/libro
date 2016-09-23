@@ -20,7 +20,7 @@ const propTypes = {
   onVote: PropTypes.func.isRequired,
   side: PropTypes.string,
   status: PropTypes.string,
-  voteData: PropTypes.string.isRequired,
+  voteData: PropTypes.string,
 };
 
 const MotionListItem = ({

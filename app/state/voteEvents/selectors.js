@@ -1,7 +1,9 @@
 import { createSelector } from 'reselect';
 import { calcPercentage } from 'helpers/numbers';
+
 import { getMotionVoteEvents } from 'state/motions/selectors';
 import { getVotes } from 'state/votes/selectors';
+
 import VoteEvent from 'models/VoteEvent';
 
 export const getVoteEvent = (state, props) => {
@@ -15,30 +17,40 @@ export const getVoteEventVotes = (state, props) =>
 export const getVoteEventResult = (state, props) =>
   getVoteEvent(state, props).get('result');
 
-export const getVoteEventOptions = (option) => createSelector(
-  [getVoteEventVotes, getVotes],
-  (eventVotes, votes) =>
-    eventVotes.filter(eventVote => votes.getIn([eventVote, 'option']) === option)
-);
+export const getVoteEventCounts = (state, props) =>
+  getVoteEvent(state, props).get('counts');
 
 export const getVoteEventVotesCount = createSelector(
   [getVoteEventVotes],
   (votes) => votes.length
 );
 
-export const getVoteEventVotesSorted = (state, props) => {
-  const options = {
-    yes: {},
-    no: {},
-    abstain: {},
-  };
+export const getVoteEventOptions = (option) => createSelector(
+  [getVoteEventVotes, getVotes],
+  (eventVotes, votes) =>
+    eventVotes.filter(eventVote => votes.getIn([eventVote, 'option']) === option)
+);
 
-  Object.keys(options).forEach(option => {
-    const votes = getVoteEventOptions(option)(state, props);
-    options[option].votes = votes;
-    options[option].count = votes.length;
-    options[option].percentage = calcPercentage(votes.length, getVoteEventVotesCount(state, props));
+export const getVoteEventVotesByOptions = (option) => createSelector(
+  [getVoteEventVotes, getVotes],
+  (eventVotes, votes) =>
+    eventVotes.filter(eventVote => votes.getIn([eventVote, 'option']) === option)
+);
+
+export const getVoteEventVotesSorted = (state, props) => {
+  const options = ['yes', 'no', 'abstain'];
+  const aggs = {};
+
+  options.forEach(option => {
+    const votes = getVoteEventVotesByOptions(option)(state, props);
+    Object.assign(aggs, {
+      [option]: {
+        count: votes.length,
+        percentage: calcPercentage(votes.length, getVoteEventVotesCount(state, props)),
+        votes,
+      },
+    });
   });
 
-  return options;
+  return aggs;
 };
