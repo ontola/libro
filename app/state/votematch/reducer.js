@@ -30,10 +30,11 @@ const newRecord = (id) => new VoteMatch({
 });
 
 const votematch = handleActions({
-  [VOTE_MATCH_INIT]: (state, { payload }) => state
+  [VOTE_MATCH_INIT]: (state, { payload }) => state.withMutations(s => s
     .setIn(['items', payload.id], newRecord(payload.id))
     .set('currentVoteMatch', payload.id)
-    .set('currentIndex', 0),
+    .set('currentIndex', 0)
+  ),
 
   [VOTE_MATCH_NEXT]: (state) =>
     state.set('currentIndex', state.get('currentIndex') + 1),
