@@ -1,18 +1,9 @@
 import './VoteData.scss';
-import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
-
+import React, { Component, PropTypes } from 'react';
 import path from 'helpers/paths';
-
+import { Link } from 'react-router';
 import {
-  DonutChart,
-  CardContent,
-  CardRow,
-  LabelValueBar,
-  Widget,
- } from 'components';
-
-import CollapsibleContainer from 'containers/CollapsibleContainer';
+} from 'components';
 
 const propTypes = {
   votes: PropTypes.object.isRequired,
@@ -23,47 +14,50 @@ const defaultProps = {
   votes: {},
 };
 
-const VoteData = ({
-  result,
-  votes,
-}) => {
-  const voteData = Object.keys(votes).map(option => ({
-    name: option,
-    value: votes[option].count,
-  }));
+class VoteData extends Component {
+  voteSegment(option, votes, barWidth) {
+    return (
+      <div
+        className={`VoteData__VoteBarPart VoteData__VoteBarPart--${option}`}
+        style={{ width: `${barWidth}%` }}
+      >
+        <div className="VoteData__VoteSegmentWrapper">
+          {this.segmentItems(votes.votes)}
+        </div>
+        <span className={`VoteData__VoteBarCount VoteData__VoteBarCount--${option}`}>
+          {votes.count}
+        </span>
+      </div>
+    );
+  }
 
-  const renderTrigger = (option) => (
-    <LabelValueBar
-      label={option}
-      value={votes[option].percentage}
-      showBar
-      isPercentage
-    />
-  );
+  segmentItems(items) {
+    return items.slice(0, 15).map(vote => (
+      <div className="VoteData__Opinion" title={vote}>
+        <Link key={vote} to={path.profile(vote)} />
+      </div>
+    ));
+  }
 
-  return (
-    <div className="VoteData">
-      <Widget title="Stemresultaten">
-        <CardContent>
-          <div>Resultaat stemronde: {result}</div>
-          {votes.yes.count > 0 && <DonutChart data={voteData} />}
-        </CardContent>
+  render() {
+    const { votes } = this.props;
+    const orderedKeys = ['yes', 'abstain', 'no'];
+    const total = orderedKeys
+      .map(opt => votes[opt].count)
+      .reduce((v, i) => v + i);
 
-        {votes.yes.count > 0 && Object.keys(votes).map(option => (
-          <CollapsibleContainer key={option} id={option} trigger={renderTrigger(option)}>
-            {votes[option].votes.map(vote => (
-              <Link key={vote} to={path.profile(vote)}>
-                <CardRow>
-                  <LabelValueBar label={vote} />
-                </CardRow>
-              </Link>
-            ))}
-          </CollapsibleContainer>
-        ))}
-      </Widget>
-    </div>
-  );
-};
+    return (
+      <div className="VoteData">
+        <div className="VoteData__VoteBar">
+          {orderedKeys.map(option => {
+            const barWidth = 100 * (votes[option].count) / (total);
+            return this.voteSegment(option, votes[option], barWidth);
+          })}
+        </div>
+      </div>
+    );
+  }
+}
 
 VoteData.propTypes = propTypes;
 VoteData.defaultProps = defaultProps;

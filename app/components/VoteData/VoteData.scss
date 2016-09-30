@@ -1,0 +1,65 @@
+@import '../shared/config';
+
+.VoteData__VoteBar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.VoteData__Opinion {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  background-color: white;
+  border-radius: 999px;
+}
+
+.VoteData__VoteBarCount {
+  color: white;
+  font-weight: bold;
+  align-self: center;
+  margin-left: auto;
+  margin-right: .5em;
+}
+
+.VoteData__VoteSegmentWrapper {
+  display: flex;
+  overflow: hidden;
+  flex-wrap: wrap;
+  max-height: 25px;
+}
+
+.VoteData__VoteBarPart {
+  display: flex;
+  padding: .5em;
+  border-radius: 7px;
+  margin-right: 10px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &--yes{
+    background-color: rgba(color('green'), .5);
+
+    &:hover {
+      background-color: rgba(color('green'), 1);
+    }
+  }
+
+  &--no{
+    background-color: rgba(color('brown'), .5);
+
+    &:hover {
+      background-color: rgba(color('brown'), 1);
+    }
+  }
+
+  &--abstain{
+    background-color: rgba(color('grey'), .5);
+
+    &:hover {
+      background-color: rgba(color('grey'), 1);
+    }
+  }
+}
