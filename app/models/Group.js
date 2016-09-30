@@ -13,7 +13,7 @@ const apiDesc = new APIDesc({
 
 const attributes = {
   id: undefined,
-  organisationId: undefined,
+  organizationId: undefined,
   type: undefined,
 };
 

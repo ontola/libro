@@ -13,8 +13,8 @@ const apiDesc = new APIDesc({
 
 const attributes = {
   id: null,
-  name: '',
-  option: '',
+  group: undefined,
+  option: undefined,
   value: null,
 };
 

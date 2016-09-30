@@ -36,13 +36,15 @@ export default class DataStore {
     if (relationships) {
       Object.keys(relationships).forEach(key => {
         const relation = relationships[key].data;
+        const camelKey = this.toCamel(key);
+
         if (relation !== undefined) {
           if (relation === null) {
-            entity[key] = null;
+            entity[camelKey] = null;
           } else if (relation.constructor === Array) {
-            entity[key] = relation.map(ent => ent.id);
+            entity[camelKey] = relation.map(ent => ent.id);
           } else {
-            entity[key] = relation.id;
+            entity[camelKey] = relation.id;
           }
         }
       });

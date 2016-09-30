@@ -14,6 +14,7 @@ import {
 import { getMotionTitle } from 'state/motions/selectors';
 import { getArgs } from 'state/argumentations/selectors';
 import MotionContainer from 'containers/MotionContainer';
+import VoteDataContainer from 'containers/VoteDataContainer';
 import { formatDate } from 'helpers/date';
 import path from 'helpers/paths';
 
@@ -51,6 +52,7 @@ const Motion = ({
     <Helmet title={title} />
     <BackButton link={path.motionsIndex()}>Terug naar alle moties</BackButton>
     <MotionContainer motionId={params.motionId} />
+    <VoteDataContainer motionId={params.motionId} />
     <Columns>
       {argumentations.length > 0 &&
         <div>

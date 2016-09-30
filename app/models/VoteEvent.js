@@ -12,9 +12,11 @@ const apiDesc = new APIDesc({
 });
 
 const attributes = {
+  counts: [],
+  endDate: undefined,
   id: null,
   result: '',
-  counts: [],
+  startDate: undefined,
   votes: [],
 };
 

@@ -21,7 +21,7 @@ const attributes = {
   status: '',
   text: '',
   title: '',
-  voteEvent: [],
+  voteEvents: undefined,
 };
 
 export default apiModelGenerator(attributes, apiDesc);

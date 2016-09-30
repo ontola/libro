@@ -1,46 +1,66 @@
 import './VoteData.scss';
 import React, { PropTypes } from 'react';
-import { Container, Opinions, VoteChart } from 'components';
-import classNames from 'classnames';
+import { Link } from 'react-router';
+
+import path from 'helpers/paths';
+
+import {
+  DonutChart,
+  CardContent,
+  CardRow,
+  LabelValueBar,
+  Widget,
+ } from 'components';
+
+import CollapsibleContainer from 'containers/CollapsibleContainer';
 
 const propTypes = {
-  data: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.bool,
-  ]).isRequired,
-  expanded: PropTypes.bool,
+  votes: PropTypes.object.isRequired,
+  result: PropTypes.string.isRequired,
 };
 
 const defaultProps = {
-  data: false,
-  expanded: false,
+  votes: {},
 };
 
-const voteDataExpanded = (data) => {
-  const opinionsPro = data.counts && data.counts.filter(o => o.option === 'yes');
-  const opinionsCon = data.counts && data.counts.filter(o => o.option === 'no');
+const VoteData = ({
+  result,
+  votes,
+}) => {
+  const voteData = Object.keys(votes).map(option => ({
+    name: option,
+    value: votes[option].count,
+  }));
 
-  return (
-    <Container>
-      <Opinions pro={opinionsPro} con={opinionsCon} />
-      <VoteChart data={data.result_aggs} result={data.result} />
-    </Container>
+  const renderTrigger = (option) => (
+    <LabelValueBar
+      label={option}
+      value={votes[option].percentage}
+      showBar
+      isPercentage
+    />
   );
-};
-
-const voteDataUnexpanded = (data) => <VoteChart data={data.result_aggs} result={data.result} />;
-
-const VoteData = ({ data, expanded }) => {
-  if (!data) return false;
-
-  const voteDataClass = classNames({
-    VoteData: true,
-    'VoteData--expanded': expanded,
-  });
 
   return (
-    <div className={voteDataClass}>
-      {expanded ? voteDataExpanded(data) : voteDataUnexpanded(data)}
+    <div className="VoteData">
+      <Widget title="Stemresultaten">
+        <CardContent>
+          <div>Resultaat stemronde: {result}</div>
+          {votes.yes.count > 0 && <DonutChart data={voteData} />}
+        </CardContent>
+
+        {votes.yes.count > 0 && Object.keys(votes).map(option => (
+          <CollapsibleContainer key={option} id={option} trigger={renderTrigger(option)}>
+            {votes[option].votes.map(vote => (
+              <Link key={vote} to={path.profile(vote)}>
+                <CardRow>
+                  <LabelValueBar label={vote} />
+                </CardRow>
+              </Link>
+            ))}
+          </CollapsibleContainer>
+        ))}
+      </Widget>
     </div>
   );
 };
