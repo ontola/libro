@@ -15,7 +15,7 @@ import {
 const propTypes = {
   children: PropTypes.node.isRequired,
   classification: PropTypes.string.isRequired,
-  createdAt: PropTypes.string.isRequired,
+  createdAt: PropTypes.instanceOf(Date).isRequired,
   link: PropTypes.string.isRequired,
   title: PropTypes.node.isRequired,
   score: PropTypes.number.isRequired,

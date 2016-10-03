@@ -4,7 +4,7 @@ import { Detail } from 'components';
 import { formatDate } from 'helpers/date';
 
 const propTypes = {
-  date: PropTypes.string,
+  date: PropTypes.instanceOf(Date),
 };
 
 const DetailDate = ({

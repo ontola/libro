@@ -2,7 +2,7 @@
 import React, { PropTypes } from 'react';
 
 import {
-  Box,
+  Card,
   Button,
   Detail,
 } from '../';
@@ -13,9 +13,9 @@ const propTypes = {
   loading: false,
   title: PropTypes.string,
   text: PropTypes.string,
-  startDate: PropTypes.integer,
-  endDate: PropTypes.integer,
-  createdAt: PropTypes.integer,
+  startDate: PropTypes.instanceOf(Date),
+  endDate: PropTypes.instanceOf(Date),
+  createdAt: PropTypes.instanceOf(Date),
   creator: PropTypes.string,
 };
 
@@ -35,7 +35,7 @@ const EventShow = ({
   title,
 }) => (
   <div className="EventShow">
-    <Box
+    <Card
       type="meeting"
       author={creator}
       date={createdAt}
@@ -49,7 +49,7 @@ const EventShow = ({
       <Button onClick={expandAll}>
         Expand all
       </Button>
-    </Box>
+    </Card>
   </div>
 );
 
