@@ -1,6 +1,6 @@
 Used to display percentages.
 
-    <LabelValueBar label="Kamerleden" value="12"/>
+    <LabelValueBar label="Kamerleden" value={12}/>
 
 Works great in CardRow components
 

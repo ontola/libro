@@ -1,6 +1,8 @@
 import moment from 'moment';
 import 'moment-duration-format';
 
+moment.locale('nl');
+
 /**
  * @param {number} timestamp A unix timestamp
  * @param {string} format A format to display date
@@ -8,7 +10,7 @@ import 'moment-duration-format';
  */
 const formatDate = (
   timestamp,
-  format = 'DD-MM-YYYY'
+  format = 'lll'
 ) => {
   if (!timestamp) {
     return undefined;

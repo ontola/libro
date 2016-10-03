@@ -15,10 +15,7 @@ import { getMotionTitle } from 'state/motions/selectors';
 import { getArgs } from 'state/argumentations/selectors';
 import MotionContainer from 'containers/MotionContainer';
 import VoteDataContainer from 'containers/VoteDataContainer';
-import { formatDate } from 'helpers/date';
 import path from 'helpers/paths';
-
-const MILLISECONDS_TO_SECONDS = 1000;
 
 const propTypes = {
   argumentations: PropTypes.array,
@@ -39,7 +36,7 @@ const renderArgument = (data) => (
     children={data.content}
     creator={data.creator}
     side={data.side}
-    createdAt={formatDate(data.createdAt * MILLISECONDS_TO_SECONDS)}
+    createdAt={data.createdAt}
   />
 );
 

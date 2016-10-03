@@ -17,7 +17,7 @@ const propTypes = {
   title: PropTypes.string.isRequired,
   children: PropTypes.string.isRequired,
   creator: PropTypes.string,
-  createdAt: PropTypes.string,
+  createdAt: PropTypes.typeOf(Date),
   link: PropTypes.string.isRequired,
   onVote: PropTypes.func.isRequired,
   voteData: PropTypes.string,

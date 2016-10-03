@@ -44,6 +44,18 @@ const DetailType = ({ type }) => {
       text = 'Bijlage';
       title = 'Een bijlage is een bestand dat bij een vergaderpunt hoort.';
       break;
+    case 'argumentPro':
+      className = 'DetailType--pro';
+      icon = 'plus';
+      text = 'Argument voor';
+      title = 'Een argument voor is een reden om voor het idee te zijn.';
+      break;
+    case 'argumentCon':
+      className = 'DetailType--con';
+      icon = 'minus';
+      text = 'Argument tegen';
+      title = 'Een tegenargument is een reden om tegen het idee te zijn.';
+      break;
     default:
       icon = 'file-o';
       text = type;

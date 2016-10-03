@@ -37,13 +37,18 @@ export const sizes = [
 export const statuses = [
   'pass',
   'fail',
+  'retracted',
+  'planned',
+  'open',
+  'closed',
 ];
 
 export const types = [
   'idea',
   'motion',
-  'question',
-  'document',
+  'challenge',
+  'meeting',
+  'attachment',
   'argumentPro',
   'argumentCon',
   'project',
