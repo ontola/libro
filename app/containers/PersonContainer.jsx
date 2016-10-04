@@ -1,12 +1,10 @@
+import { Detail } from 'components';
+import path from 'helpers/paths';
+import Person from 'models/Person';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-
-import { Detail } from 'components';
-import Person from 'models/Person';
-import path from 'helpers/paths';
-
-import { getPerson } from 'state/persons/selectors';
 import { fetchPerson } from 'state/persons/actions';
+import { getPerson } from 'state/persons/selectors';
 
 const defaultRenderItem = (user) => (
   <Detail

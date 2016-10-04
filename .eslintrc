@@ -1,8 +1,11 @@
 {
   "plugins": [
-    "react"
+    "react",
+    "jsx-a11y"
   ],
-  "extends": "airbnb",
+  "extends": [
+    "airbnb"
+  ],
   "root": true,
   "env": {
     "browser": true,
@@ -37,12 +40,38 @@
   },
   "rules": {
     "valid-jsdoc": "error",
-
+    // Accessibility
+    // The ones that are commented out resulted in errors. May be something wrong with the jsx-a11y plugin.
+    // "jsx-a11y/anchor-has-content": 2,
+    "jsx-a11y/aria-props": 2,
+    "jsx-a11y/aria-proptypes": 2,
+    "jsx-a11y/aria-role": 2,
+    "jsx-a11y/aria-unsupported-elements": 2,
+    // "jsx-a11y/click-events-have-key-events": 2,
+    "jsx-a11y/heading-has-content": 2,
+    "jsx-a11y/href-no-hash": 2,
+    "jsx-a11y/html-has-lang": 2,
+    "jsx-a11y/img-has-alt": 2,
+    "jsx-a11y/img-redundant-alt": 2,
+    "jsx-a11y/label-has-for": 2,
+    "jsx-a11y/lang": 2,
+    "jsx-a11y/mouse-events-have-key-events": 2,
+    "jsx-a11y/no-access-key": 2,
+    "jsx-a11y/no-marquee": 2,
+    "jsx-a11y/no-onchange": 2,
+    // "jsx-a11y/no-static-element-interactions": 2,
+    "jsx-a11y/onclick-has-focus": 2,
+    "jsx-a11y/onclick-has-role": 2,
+    "jsx-a11y/role-has-required-aria-props": 2,
+    "jsx-a11y/role-supports-aria-props": 2,
+    "jsx-a11y/scope": 2,
+    "jsx-a11y/tabindex-no-positive": 2,
     // Code style
     "space-unary-ops": ["error", { "words": true, "nonwords": false }],
     "no-magic-numbers": ["error", {
       "ignore": [
         -1, 0, 1,
+        100,
         200, 201, 202, 203, 204,
         300, 301, 302, 303, 304,
         400, 401, 402, 403, 404, 429,

@@ -1,9 +1,8 @@
-import './VoteData.scss';
-import React, { Component, PropTypes } from 'react';
+import 'components';
 import path from 'helpers/paths';
+import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import {
-} from 'components';
+import './VoteData.scss';
 
 const propTypes = {
   votes: PropTypes.object.isRequired,
@@ -13,6 +12,8 @@ const propTypes = {
 const defaultProps = {
   votes: {},
 };
+
+const NUMBER_OF_VOTE_BUBBLES = 15;
 
 class VoteData extends Component {
   voteSegment(option, votes, barWidth) {
@@ -32,7 +33,7 @@ class VoteData extends Component {
   }
 
   segmentItems(items) {
-    return items.slice(0, 15).map(vote => (
+    return items.slice(0, NUMBER_OF_VOTE_BUBBLES).map(vote => (
       <div className="VoteData__Opinion" title={vote}>
         <Link key={vote} to={path.profile(vote)} />
       </div>
