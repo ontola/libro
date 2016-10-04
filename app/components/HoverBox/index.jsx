@@ -2,8 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import './HoverBox.scss';
 
 const propTypes = {
+  /** Always visible. Functions as a trigger that responds to hover or focus. */
   children: PropTypes.node.isRequired,
-  currentClass: PropTypes.string,
+  /** Only show when hovering over the trigger / children */
   hiddenChildren: PropTypes.node.isRequired,
 };
 

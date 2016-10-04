@@ -13,10 +13,11 @@ import {
 } from 'components';
 
 const propTypes = {
+  /** Content of argument */
   children: PropTypes.node,
   creator: PropTypes.string.isRequired,
   createdAt: PropTypes.instanceOf(Date).isRequired,
-  side: PropTypes.string.isRequired,
+  side: PropTypes.oneOf(['pro', 'con']).isRequired,
   title: PropTypes.string.isRequired,
 };
 

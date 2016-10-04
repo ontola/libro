@@ -1,4 +1,4 @@
-Takes time in seconds.
+Shows duration.
 
 isCurrent={true}
 

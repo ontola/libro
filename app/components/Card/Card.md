@@ -36,7 +36,6 @@ Extensive Card example
         <Heading>Title</Heading>
         <DetailsBar>
           <DetailType type="motion" />
-          <Detail text="3 hours ago" icon="clock-o" />
         </DetailsBar>
       </CardHeader>
       <CardContent noSpacing>

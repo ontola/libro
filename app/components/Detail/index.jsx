@@ -9,6 +9,7 @@ const propTypes = {
   url: PropTypes.string,
   icon: PropTypes.string,
   imageUrl: PropTypes.string,
+  /** HTML title attribute */
   title: PropTypes.string,
 };
 

@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { sizes } from 'components/shared/config';
 
 const propTypes = {
+  /** Each child becomes a column. */
   children: PropTypes.array.isRequired,
   flexGrow: PropTypes.bool,
   gutter: PropTypes.oneOf(sizes),

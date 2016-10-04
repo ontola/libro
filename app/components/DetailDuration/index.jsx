@@ -5,7 +5,9 @@ import classNames from 'classnames';
 import { durationToString } from 'helpers/date';
 
 const propTypes = {
+  /** In seconds */
   elapsedTime: PropTypes.number,
+  /** In seconds */
   totalTime: PropTypes.number,
   isCurrent: PropTypes.bool,
 };

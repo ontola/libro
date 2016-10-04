@@ -14,6 +14,7 @@ import { percentageToRedOrGreen } from 'helpers/color';
 
 const propTypes = {
   label: PropTypes.string.isRequired,
+  /** Directs user to a page that shows more information about the differences in voting behavior */
   compareAllLink: PropTypes.string,
   mainPercentage: PropTypes.number.isRequired,
   tags: PropTypes.arrayOf(

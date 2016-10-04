@@ -4,7 +4,9 @@ import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 const propTypes = {
+  /** Label that is displayed */
   title: PropTypes.string.isRequired,
+  /** Link to the file */
   url: PropTypes.string.isRequired,
   percentageDownloaded: PropTypes.number,
   hasPreview: PropTypes.bool,

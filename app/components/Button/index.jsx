@@ -5,10 +5,11 @@ import FontAwesome from 'react-fontawesome';
 import { buttonThemes, sides } from 'components/shared/config';
 
 const propTypes = {
-  // Does this work?
-  active: PropTypes.bool.isRequired,
+  /** Should be true when the button is toggleable and toggled. */
+  active: PropTypes.bool,
+  /** Label of the button */
   children: PropTypes.node.isRequired,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
   icon: PropTypes.string,
   small: PropTypes.bool,
   theme: PropTypes.oneOf(buttonThemes),
