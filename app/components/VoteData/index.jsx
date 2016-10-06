@@ -15,9 +15,12 @@ const defaultProps = {
 const NUMBER_OF_VOTE_BUBBLES = 15;
 
 class VoteData extends Component {
-  voteSegment(option, votes, barWidth) {
+  voteSegment(option, votes, total) {
+    const barWidth = 100 * (votes.count) / (total);
+
     return (
       <div
+        key={option}
         className={`VoteData__votebar-part VoteData__votebar-part--${option}`}
         style={{ width: `${barWidth}%` }}
       >
@@ -32,8 +35,8 @@ class VoteData extends Component {
   }
 
   segmentItems(items) {
-    return items.slice(0, NUMBER_OF_VOTE_BUBBLES).map(vote => (
-      <div className="VoteData__opinion" title={vote}>
+    return items.slice(0, NUMBER_OF_VOTE_BUBBLES).map((vote, i) => (
+      <div key={i} className="VoteData__opinion" title={vote}>
         <Link key={vote} to={path.profile(vote)} />
       </div>
     ));
@@ -49,10 +52,7 @@ class VoteData extends Component {
     return (
       <div className="VoteData">
         <div className="VoteData__votebar">
-          {orderedKeys.map(option => {
-            const barWidth = 100 * (votes[option].count) / (total);
-            return this.voteSegment(option, votes[option], barWidth);
-          })}
+          {orderedKeys.map(option => this.voteSegment(option, votes[option], total))}
         </div>
       </div>
     );
