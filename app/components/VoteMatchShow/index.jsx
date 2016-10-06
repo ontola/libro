@@ -42,7 +42,7 @@ class VoteMatchShow extends Component {
       });
       this.scrollTo('results');
     } else {
-      this.scrollTo(`motion${motionIds[currentIndex]}`);
+      this.scrollTo(motionIds[currentIndex]);
     }
   }
 
@@ -62,7 +62,7 @@ class VoteMatchShow extends Component {
           {motionIds.map(id => (
             <div
               className="VoteMatchShow__motion"
-              ref={`motion${id}`}
+              ref={id}
               key={id}
             >
               <Cover fullScreen>

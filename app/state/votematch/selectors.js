@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import { calcPercentage } from 'helpers/numbers';
-import { getVotes } from 'state/votes/selectors';
+import { getUserVotes } from 'state/votes/selectors';
 
 import VoteMatch from 'models/VoteMatch';
 
@@ -27,8 +27,8 @@ export const getVoteMatchMotionsLength = createSelector(
 );
 
 export const getVoteMatchUserVotes = createSelector(
-  [getVotes, getVoteMatchMotions],
-  (votes, motions) => motions.map(motion => votes.getIn([motion, 'value']))
+  [getUserVotes, getVoteMatchMotions],
+  (votes, motions) => motions.map(motion => votes.getIn([motion, 'option']))
 );
 
 export const getVoteMatchCountUserVotes = createSelector(
@@ -42,6 +42,10 @@ export const getVoteMatchSimilarity = createSelector(
     const countSimilarities = userVotes
       .filter((userVote, i) => userVote === compareVotes[i])
       .length;
+
+    if (countSimilarities === 0) {
+      return 0;
+    }
 
     return calcPercentage(countSimilarities, userVotes.length);
   }
