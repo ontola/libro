@@ -4,4 +4,4 @@ export const getVotes = (state) =>
   state.getIn(['votes', 'items']);
 
 export const getVoteByMotionId = (state, props) =>
-  state.getIn(['votes', 'items', getMotionId(state, props), 'value']);
+  state.getIn(['votes', 'userVotes', getMotionId(state, props), 'option']);

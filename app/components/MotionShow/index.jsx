@@ -23,6 +23,12 @@ const propTypes = {
   voteData: PropTypes.string,
 };
 
+const options = {
+  pro: 'Voor',
+  neutral: 'Neutraal',
+  con: 'Tegen',
+};
+
 const MotionShow = ({
   title,
   children,
@@ -42,24 +48,15 @@ const MotionShow = ({
     </CardHeader>
     <CardContent noSpacing>{children}</CardContent>
     <CardActions>
-      <CardButton
-        active={voteData === 'pro'}
-        action={() => onVote('pro')}
-        type="pro"
-        children="Voor"
-      />
-      <CardButton
-        active={voteData === 'neutral'}
-        action={() => onVote('neutral')}
-        type="neutral"
-        children="Neutraal"
-      />
-      <CardButton
-        active={voteData === 'con'}
-        action={() => onVote('con')}
-        type="con"
-        children="Tegen"
-      />
+      {Object.keys(options).map(option => (
+        <CardButton
+          key={option}
+          active={voteData === option}
+          action={() => onVote(option)}
+          type={option}
+          children={options[option]}
+        />
+      ))}
     </CardActions>
   </Card>
 );
