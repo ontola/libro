@@ -4,7 +4,7 @@
     "jsx-a11y"
   ],
   "extends": [
-    "airbnb"
+    "eslint-config-airbnb"
   ],
   "root": true,
   "env": {

@@ -14,7 +14,7 @@ const LabelValue = ({
   label,
   value,
 }) => (
-  <div>
+  <div className="LabelValue">
     <div className="LabelValue__value">{value}</div>
     <div className="LabelValue__label">{label}</div>
     {children}

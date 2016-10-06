@@ -24,8 +24,8 @@ const defaultProps = {
 const Collapsible = ({ children, onClickToggle, opened, trigger, visibleContent }) => {
   const triggerElem = (
     <a
+      href="/"
       className="Collapsible__trigger"
-      href="#"
       children={trigger}
       onClick={(e) => {
         e.preventDefault();

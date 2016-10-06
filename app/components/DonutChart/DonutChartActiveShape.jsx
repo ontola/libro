@@ -47,6 +47,7 @@ const DonutChartActiveShape = ({
       textAnchor="middle"
     />
     <a
+      tabIndex={0}
       xlinkHref={link}
       onClick={(e) => {
         e.preventDefault();

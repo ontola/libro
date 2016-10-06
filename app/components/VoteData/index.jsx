@@ -1,4 +1,3 @@
-import 'components';
 import path from 'helpers/paths';
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
@@ -19,13 +18,13 @@ class VoteData extends Component {
   voteSegment(option, votes, barWidth) {
     return (
       <div
-        className={`VoteData__VoteBarPart VoteData__VoteBarPart--${option}`}
+        className={`VoteData__votebar-part VoteData__votebar-part--${option}`}
         style={{ width: `${barWidth}%` }}
       >
-        <div className="VoteData__VoteSegmentWrapper">
+        <div className="VoteData__votesegment-wrapper">
           {this.segmentItems(votes.votes)}
         </div>
-        <span className={`VoteData__VoteBarCount VoteData__VoteBarCount--${option}`}>
+        <span className={`VoteData__votebar-count VoteData__votebar-count--${option}`}>
           {votes.count}
         </span>
       </div>
@@ -34,7 +33,7 @@ class VoteData extends Component {
 
   segmentItems(items) {
     return items.slice(0, NUMBER_OF_VOTE_BUBBLES).map(vote => (
-      <div className="VoteData__Opinion" title={vote}>
+      <div className="VoteData__opinion" title={vote}>
         <Link key={vote} to={path.profile(vote)} />
       </div>
     ));
@@ -49,7 +48,7 @@ class VoteData extends Component {
 
     return (
       <div className="VoteData">
-        <div className="VoteData__VoteBar">
+        <div className="VoteData__votebar">
           {orderedKeys.map(option => {
             const barWidth = 100 * (votes[option].count) / (total);
             return this.voteSegment(option, votes[option], barWidth);

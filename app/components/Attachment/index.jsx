@@ -42,7 +42,7 @@ const Attachment = ({
       </a>
       {(!isDownloaded && !isDownloading) &&
         <a
-          href="#"
+          href="/"
           className="Attachment__inside-button"
           title="Download bestand"
         >
@@ -51,7 +51,7 @@ const Attachment = ({
       }
       {hasPreview &&
         <a
-          href="#"
+          href="/"
           className="Attachment__inside-button"
           title="Bekijk voorbeeldweergave"
         >

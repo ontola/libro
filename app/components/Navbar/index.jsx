@@ -59,6 +59,8 @@ const Navbar = ({
               {wrapInListItems(contentLeft, 'nbl-right')}
             </ul>
             <div
+              role="button"
+              tabIndex={0}
               className="Navbar__search"
               onClick={() => browserHistory.push('/search/')}
             >

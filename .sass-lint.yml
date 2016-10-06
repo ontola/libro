@@ -67,6 +67,7 @@ rules:
       ignore:
         - 'Button--variant-'
         - 'Columns--gutter-'
+        - 'VoteData__votebar-part--'
   function-name-format: 1
   id-name-format: 1
   mixin-name-format: 1

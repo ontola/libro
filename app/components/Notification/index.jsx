@@ -2,6 +2,8 @@ import './Notification.scss';
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
+import { Button } from 'components';
+
 const propTypes = {
   children: PropTypes.string,
   reset: PropTypes.func.isRequired,
@@ -27,7 +29,12 @@ const Notification = ({
 
   return (
     <div className={className}>
-      <span onClick={() => reset()}>x</span>
+      <Button
+        small
+        onClick={() => reset()}
+        children="x"
+        theme="subtle"
+      />
       {type === 'error' &&
         <div className="Notification__pretext">Error:</div>
       }

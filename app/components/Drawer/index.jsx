@@ -24,7 +24,12 @@ const Drawer = ({
 
   return (
     <div className={drawerClass}>
-      <div className="Drawer__overlay" onClick={() => onClickToggle()}></div>
+      <div
+        className="Drawer__overlay"
+        role="button"
+        tabIndex={0}
+        onClick={() => onClickToggle()}
+      />
       <div className="Drawer__wrapper">
         <div className="Drawer__container">{children}</div>
         <div className="Drawer__action Drawer__action--close">
