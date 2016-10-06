@@ -48,14 +48,22 @@ Uses [NSP](https://github.com/nodesecurity/nsp) and [Retire.js](https://github.c
 npm run secure
 ```
 
+### Running the API locally
+If you don't want to use the default AOD api, but run your own instance, you have to use a proxy. We've preconfigured an NGINX docker file to provide a proxy.
+
+- Paste your current local IP address in the `dev/nginx.conf`
+- Run `docker build .` in /dev
+- Copy the container id (e.g. 775a00c00bed)
+- Run `docker run -p 3331:3031 -it {container_id}`
+
 ### Dev rules
 - Please use the [Airbnb React Styleguide](https://github.com/airbnb/javascript/tree/master/react)
 - Document your components internally by adding comments to propTypes. Write them \/\*\* Like this \*\/ to make sure they are parsed by react-styleguidist.
 - Document your components by adding a `readme.md` that includes a usage example that works with react-styleguidist.
 
 ### Recommended Atom packages
-- Linter [plugin](https://atom.io/packages/linter) for a realtime linting experience.
-
+- [Linter](https://atom.io/packages/linter) for a realtime linting experience.
+- [language-babel](https://atom.io/packages/language-babel) for auto-indenting, syntax highlighting.
 
 ### Links
 - Please use the [Airbnb React Styleguide](https://github.com/airbnb/javascript/tree/master/react)
