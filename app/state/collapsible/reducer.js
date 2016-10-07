@@ -1,5 +1,6 @@
 import { handleActions } from 'redux-actions';
 import { Map, Record } from 'immutable';
+import { getCollapsibleGroup } from './selectors';
 
 import {
   COLL_ADD,
@@ -20,8 +21,10 @@ const initialState = new Map({
 // Opens all collapsibles if one or more in the group are currently closed
 const toggleAll = (state, group) => {
   let shouldOpen = false;
-  const items = state.items.map(coll => {
+  const items = state.get('items').map(coll => {
     if (coll.group !== group) {
+      console.log(coll.group);
+      console.log(group);
       return coll;
     }
     if (coll.opened === false) {
@@ -34,7 +37,9 @@ const toggleAll = (state, group) => {
   }
   return state.set(
     'items',
-    state.get('items').map(coll => coll.set('opened', false))
+    state.get('items').map(coll =>
+      coll.set('opened', false)
+    )
   );
 };
 
@@ -56,7 +61,8 @@ const collapsible = handleActions({
     )
   ),
 
-  [COLL_TOGGLE_GROUP]: (state, { payload }) => toggleAll(state, payload.group),
+  [COLL_TOGGLE_GROUP]: (state, { payload }) =>
+    toggleAll(state, payload.group),
 }, initialState);
 
 export default collapsible;

@@ -1,57 +1,96 @@
 // @flow
 import React, { PropTypes } from 'react';
-
 import {
   Card,
-  Button,
+  CardContent,
+  CardHeader,
+  ChronoFeed,
   Detail,
-} from '../';
+  DetailType,
+  Button,
+  List,
+  DetailDate,
+  DetailsBar,
+  Heading,
+} from 'components';
+import EventItemContainer from 'containers/EventItemContainer';
+import PersonContainer from 'containers/PersonContainer';
+import { toggleAll } from 'state/collapsible/actions';
 
 const propTypes = {
+  attendees: PropTypes.array,
   children: PropTypes.node,
-  expandAll: PropTypes.function,
-  loading: false,
-  title: PropTypes.string,
-  text: PropTypes.string,
-  startDate: PropTypes.instanceOf(Date),
-  endDate: PropTypes.instanceOf(Date),
   createdAt: PropTypes.instanceOf(Date),
   creator: PropTypes.string,
+  endDate: PropTypes.instanceOf(Date),
+  eventItems: PropTypes.array,
+  expandAll: PropTypes.function,
+  id: PropTypes.string,
+  loading: false,
+  startDate: PropTypes.instanceOf(Date),
+  speeches: PropTypes.arrayOf(PropTypes.object),
+  text: PropTypes.string,
+  title: PropTypes.string,
 };
 
 const defaultProps = {
+  showIndex: true,
 };
 
-const details = [
-  <Detail icon="clock-o" text="20-01-2012 23:30" />,
-];
-
 const EventShow = ({
+  attendees,
   children,
   createdAt,
   creator,
-  expandAll,
+  endDate,
+  eventItems,
+  id,
+  onToggleAll,
+  speeches,
+  startDate,
   text,
   title,
-}) => (
-  <div className="EventShow">
-    <Card
-      type="meeting"
-      author={creator}
-      date={createdAt}
-      headingSize={1}
-      title={title}
-      showMeta
-      details={details}
-    >
-      <div>{text}</div>
-      {children}
-      <Button onClick={expandAll}>
-        Expand all
-      </Button>
-    </Card>
-  </div>
-);
+}) => {
+  const renderEventItem = (eventItem) => (
+    <EventItemContainer id={eventItem} eventId={id} />
+  );
+
+  return (
+    <div className="EventShow">
+      <Card>
+        <CardHeader>
+          <Heading>{title}</Heading>
+          <DetailsBar>
+            <DetailType type="meeting" />
+            <DetailDate
+              createdAt={createdAt}
+              startsAt={startDate}
+              endsAt={endDate}
+            />
+            <Detail>{status}</Detail>
+          </DetailsBar>
+        </CardHeader>
+        <CardContent>
+          <div>{text}</div>
+          {children}
+          <Button onClick={() => onToggleAll(id)}>
+            Expand all
+          </Button>
+        </CardContent>
+        {eventItems && eventItems.length > 0 &&
+          <div>
+            <List
+              renderItem={renderEventItem}
+              items={eventItems}
+            />
+          </div>
+        }
+      </Card>
+      {/* {console.log(speeches)}
+      <ChronoFeed items={speeches} /> */}
+    </div>
+  );
+}
 
 EventShow.propTypes = propTypes;
 EventShow.defaultProps = defaultProps;

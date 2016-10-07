@@ -1,7 +1,9 @@
 import { createSelector } from 'reselect';
 
-export const getEvents = (state) => state.getIn(['events', 'items']);
-export const getEventId = (state, props) => props.id;
+export const getEvents = (state) =>
+  state.getIn(['events', 'items']);
+
+const getEventId = (state, props) => props.id;
 
 export const getEvent = createSelector(
   [getEvents, getEventId],

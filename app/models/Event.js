@@ -7,24 +7,27 @@ const apiDesc = new APIDesc({
     collection: actions.GET_EVENTS,
     resource: actions.GET_EVENT,
   }),
-  endpoint: 'motions',
-  type: 'motions',
+  endpoint: 'events',
+  type: 'events',
 });
 
 const attributes = {
+  attendees: [],
   classification: 'event',
   createdAt: null,
   creator: null,
   description: null,
   endDate: null,
   eventItems: [],
-  id: null,
+  id: '',
   identifiers: [],
+  loading: false,
   location: null,
-  name: null,
+  name: '',
   startDate: null,
   status: null,
-  text: null,
+  speeches: [],
+  text: '',
 };
 
 export default apiModelGenerator(attributes, apiDesc);

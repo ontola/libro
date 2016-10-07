@@ -3,6 +3,7 @@ import { Route, IndexRoute } from 'react-router';
 
 import App from './App';
 import CompareVotes from './CompareVotes';
+import Event from './Event';
 import Home from './Home';
 import Motion from './Motion';
 import Motions from './Motions';
@@ -21,6 +22,7 @@ const routes = (
     <IndexRoute component={Home} />
     <Route path="comparevotes/:userId" component={CompareVotes} />
     <Route path="motions" component={Motions} />
+    <Route path="events/:eventId" component={Event} />
     <Route path="motions/:motionId" component={Motion} />
     <Route path="parties" component={Parties} />
     <Route path="parties/:partyId" component={Party} />

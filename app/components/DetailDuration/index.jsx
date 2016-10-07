@@ -5,27 +5,33 @@ import classNames from 'classnames';
 import { durationToString } from 'helpers/date';
 
 const propTypes = {
-  /** In seconds */
-  elapsedTime: PropTypes.number,
-  /** In seconds */
-  totalTime: PropTypes.number,
+  startDate: PropTypes.instanceOf(Date),
+  currentDate: PropTypes.instanceOf(Date),
+  endDate: PropTypes.instanceOf(Date),
   isCurrent: PropTypes.bool,
 };
 
 const DetailDuration = ({
-  elapsedTime,
-  totalTime,
+  startDate,
+  endDate,
+  currentDate,
   isCurrent,
 }) => {
-  const formattedDuration = (total, elapsed) => {
-    if (elapsed && total) {
+  const totalDuration = () => Math.abs(endDate - startDate);
+  const completedDuration = () => Math.abs(currentDate - startDate);
+
+  console.log(completedDuration());
+  console.log(totalDuration());
+
+  const formattedDuration = () => {
+    if (currentDate && endDate && startDate) {
       return (
-        `${durationToString(elapsed)} / ${durationToString(total)}`
+        `${durationToString(completedDuration())} / ${durationToString(totalDuration())}`
       );
-    } else if (elapsed) {
-      return durationToString(elapsed);
+    } else if (currentDate && startDate) {
+      return durationToString(completedDuration());
     }
-    return durationToString(total);
+    return durationToString(totalDuration());
   };
 
   const elapsedTimeClass = classNames({
@@ -36,7 +42,7 @@ const DetailDuration = ({
   return (
     <Detail
       className={elapsedTimeClass}
-      text={formattedDuration(totalTime, elapsedTime)}
+      text={formattedDuration(totalDuration, completedDuration)}
       icon="clock-o"
     />
   );

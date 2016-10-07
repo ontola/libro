@@ -23,7 +23,7 @@ const Event = ({
 }) => (
   <Container>
     <Helmet title={title} />
-    <EventContainer eventId={params.eventId} />
+    <EventContainer id={params.eventId} />
   </Container>
 );
 

@@ -6,7 +6,9 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.13.4",
+    "filter": "^0.1.1",
     "http-proxy-middleware": "^0.17.0",
+    "react-fuzzy-filter": "^2.3.0",
     "rimraf": "^2.5.4",
     "searchkit-express": "^0.2.1"
   },
@@ -102,8 +104,10 @@
     "dev": "npm-run-all -p corsproxy start styleguide-server",
     "lint": "./node_modules/.bin/eslint --ext .jsx,.js .",
     "lint:style": "sass-lint ./app/**/*.scss  -v -q",
+    "rc-autocomplete": "rc-autocomplete",
     "secure": "nsp check && retire",
     "start": "rimraf ./dist && NODE_ENV=development npm run build:server && ELASTICSEARCH_URL=http://localhost:1337/aod-search.argu.co/aod_search NODE_ENV=development node ./dist/server.js",
+    "start:local-api": "rimraf ./dist && ARGU_API_EXT_BASE=http://localhost:3030/api/ NODE_ENV=development npm run build:server && ARGU_API_EXT_BASE=http://localhost:3030/api/ ELASTICSEARCH_URL=http://localhost:1337/aod-search.argu.co/aod_search NODE_ENV=development node ./dist/server.js",
     "start:prod": "ARGU_API_URL=http://localhost:3030 NODE_ENV=production node ./dist/server.js",
     "styleguide-build": "styleguidist build",
     "styleguide-server": "styleguidist server",

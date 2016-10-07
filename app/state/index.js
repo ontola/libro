@@ -7,14 +7,16 @@ import argumentations from './argumentations/reducer';
 import collapsible from './collapsible/reducer';
 import communication from './communication/reducer';
 import counts from './counts/reducer';
+import events from './events/reducer';
+import eventItems from './eventItems/reducer';
 import groups from './groups/reducer';
 import motions from './motions/reducer';
 import persons from './persons/reducer';
 import router from './router/reducer';
 import search from './search/reducer';
+import voteEvents from './voteEvents/reducer';
 import votematch from './votematch/reducer';
 import votes from './votes/reducer';
-import voteEvents from './voteEvents/reducer';
 
 import API from '../middleware/api';
 import * as models from '../models';
@@ -24,6 +26,8 @@ const rootReducer = combineReducers({
   collapsible,
   communication,
   counts,
+  events,
+  eventItems,
   groups,
   motions,
   persons,

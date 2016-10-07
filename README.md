@@ -65,6 +65,9 @@ If you don't want to use the default AOD api, but run your own instance, you hav
 - [Linter](https://atom.io/packages/linter) for a realtime linting experience.
 - [language-babel](https://atom.io/packages/language-babel) for auto-indenting, syntax highlighting.
 
+### Recommended Dev tools
+- Chrome plugins: [React Dev Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi), [Redux Dev Tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd) and [Immutable formatter](https://chrome.google.com/webstore/detail/immutablejs-object-format/hgldghadipiblonfkkicmgcbbijnpeog/related)
+
 ### Links
 - Please use the [Airbnb React Styleguide](https://github.com/airbnb/javascript/tree/master/react)
 - Uses the [Redux DevTools Chrome Extension](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd)

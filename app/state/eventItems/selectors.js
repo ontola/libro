@@ -1,1 +1,11 @@
-export const getEventItem = (state, props) => state.getIn(['evenItems', 'items', props.id]);
+import { createSelector } from 'reselect';
+
+export const getEventItems = (state) =>
+  state.getIn(['eventItems', 'items']);
+
+const getEventItemId = (state, props) => props.id;
+
+export const getEventItem = createSelector(
+  [getEventItems, getEventItemId],
+  (eventItems, id) => eventItems.get(id)
+);

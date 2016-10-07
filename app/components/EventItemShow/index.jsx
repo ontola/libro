@@ -1,7 +1,8 @@
 // @flow
-import './EventItem.scss';
+import './EventItemShow.scss';
 import React, { PropTypes } from 'react';
 import {
+  Detail,
   DetailsBar,
   DetailDuration,
   Heading,
@@ -10,32 +11,39 @@ import {
 import CollapsibleContainer from 'containers/CollapsibleContainer';
 
 const propTypes = {
+  startDate: PropTypes.instanceOf(Date),
+  currentDate: PropTypes.instanceOf(Date),
+  endDate: PropTypes.instanceOf(Date),
   children: PropTypes.node,
-  elapsedTime: PropTypes.number,
-  eventId: PropTypes.string.isRequired,
+  eventId: PropTypes.string,
+  id: PropTypes.string.isRequired,
   index: PropTypes.number,
   isCurrent: PropTypes.bool,
-  plannedTime: PropTypes.number,
   showIndex: PropTypes.bool,
   text: PropTypes.string,
   title: PropTypes.string.isRequired,
 };
 
-const EventItem = ({
+const EventItemShow = ({
   children,
-  elapsedTime,
+  startDate,
+  endDate,
+  currentDate,
   eventId,
+  id,
   index,
   isCurrent,
-  plannedTime,
   showIndex,
   text,
   title,
 }) => {
+  const totalDuration = () => Math.abs(endDate - startDate);
+  const completedDuration = () => Math.abs(currentDate - startDate);
+
   const progress = isCurrent ? (
     <Progress
-      completed={elapsedTime}
-      total={plannedTime}
+      total={totalDuration(startDate, endDate)}
+      completed={completedDuration(startDate, currentDate)}
       direction="down"
     />) :
     false;
@@ -49,23 +57,27 @@ const EventItem = ({
 
   const detailsBar = (
     <DetailsBar>
-      {(plannedTime || elapsedTime) &&
+      {(startDate || endDate) &&
         <DetailDuration
-          elapsedTime={elapsedTime}
-          totalTime={plannedTime}
+          currentDate={currentDate}
+          startDate={startDate}
+          endDate={endDate}
           isCurrent={isCurrent}
         />}
+      {text &&
+        <Detail>jup text</Detail>
+      }
     </DetailsBar>
   );
 
   const indexComponent = (
-    <div className="EventItem__index">
+    <div className="EventItemShow__index">
       {index}.
     </div>
   );
 
   return (
-    <div className="EventItem">
+    <div className="EventItemShow">
       {showIndex && !isCurrent && indexComponent}
       <CollapsibleContainer
         trigger={
@@ -76,12 +88,13 @@ const EventItem = ({
         visibleContent={detailsBar}
         children={content}
         group={`event.${eventId}`}
+        id={`eventItem.${id}`}
       />
       {progress}
     </div>
   );
 };
 
-EventItem.propTypes = propTypes;
+EventItemShow.propTypes = propTypes;
 
-export default EventItem;
+export default EventItemShow;

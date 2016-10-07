@@ -3,6 +3,10 @@ const path = {
     return '/';
   },
 
+  event(id) {
+    return `/events/${id}`;
+  },
+
   motion(id) {
     return `/motions/${id}`;
   },

@@ -1,35 +1,31 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-
+import Event from 'models/Event';
 import {
   EventShow,
 } from 'components';
 
 import { getEvent } from 'state/events/selectors';
-import { expandAll } from 'state/collapsible/actions';
-import { EventItemsContainer } from 'containers/EventItemsContainer';
+import { toggleAll } from 'state/collapsible/actions';
 
 const propTypes = {
   data: PropTypes.instanceOf(Event),
-  eventId: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   loadEvent: PropTypes.func.isRequired,
 };
 
 class EventContainer extends Component {
   componentWillMount() {
-    const {
-      data,
-      eventId,
-      loadEvent,
-    } = this.props;
+    const { data } = this.props;
 
     if (data === undefined) {
-      loadEvent(eventId);
+      this.props.loadEvent(this.props.id);
     }
   }
 
   render() {
+    // console.log(this.props);
     return <EventShow {...this.props} />;
   }
 }
@@ -38,21 +34,31 @@ EventContainer.propTypes = propTypes;
 
 const mapStateToProps = (state, ownProps) => {
   const data = getEvent(state, ownProps);
+
+  if (data === undefined) {
+    return {};
+  }
   return {
-    attendeesAbsent: data.attendeesAbsent,
-    attendeesPresent: data.attendeesPresent,
-    children: [data.eventItems.map(item => <EventItemsContainer id={item.id} />)],
+    attendeesPresent: data.attendees,
     createdAt: data.createdAt,
     description: data.description,
     eventItems: data.eventItems,
+    endDate: data.endDate,
     startDate: data.startDate,
+    title: data.name,
+    status: data.status,
+    speeches: data.speeches,
   };
 };
 
 export default connect(
   mapStateToProps,
   (dispatch, { data }) => ({
-    loadEvent: (id) => dispatch(Event.fetch(id)),
-    expandAll: () => dispatch(expandAll(`event.${data.id}`)),
+    onToggleAll: (id) => {
+      dispatch(toggleAll({ group: `event.${id}` }));
+    },
+    loadEvent: (id) => {
+      return dispatch(Event.fetch(id))
+    }
   })
 )(EventContainer);

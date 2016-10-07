@@ -4,7 +4,7 @@ An EventItem is part of an Event. EventItems are ordered, hence the index prop. 
 ## with isCurrent=true and duration data
 
     <div>
-      <EventItem
+      <EventItemShow
         title="Kennismakingsbijeenkomst directeur GGDrU"
         elapsedTime={126}
         plannedTime={600}
@@ -16,7 +16,7 @@ An EventItem is part of an Event. EventItems are ordered, hence the index prop. 
 ## with duration data (only total time) and index
 
     <div>
-      <EventItem
+      <EventItemShow
         title="Kennismakingsbijeenkomst directeur GGDrU"
         plannedTime={600}
         index={1}
@@ -28,7 +28,7 @@ An EventItem is part of an Event. EventItems are ordered, hence the index prop. 
 ## without duration data
 
     <div>
-      <EventItem
+      <EventItemShow
         title="Kennismakingsbijeenkomst directeur GGDrU"
         eventId="onzinID1"
         index={1}

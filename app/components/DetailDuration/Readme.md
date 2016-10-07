@@ -2,16 +2,4 @@ Shows duration.
 
 isCurrent={true}
 
-    <DetailDuration isCurrent={true} elapsedTime={92} totalTime={120} />
-
-isCurrent={false}
-
-    <DetailDuration elapsedTime={92} totalTime={120} />
-
-without elapsedTime
-
-    <DetailDuration totalTime={120} />
-
-without totaltime
-
-    <DetailDuration totalTime={120} />
+    <DetailDuration isCurrent={true} startDate={new Date(0)} endDate={new Date(100000)} />

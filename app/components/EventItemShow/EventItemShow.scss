@@ -1,16 +1,15 @@
 @import '../shared/config';
 
-.EventItem {
-  margin-top: 1em;
+.EventItemShow {
+  padding: units('x-small', 'large');
   position: relative;
 }
 
-.EventItem__index {
+.EventItemShow__index {
   color: color('grey');
   font-size: 1em;
   font-weight: bold;
   left: -.9em;
   position: absolute;
-  top: .1em;
   z-index: 2;
 }

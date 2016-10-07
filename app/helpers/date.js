@@ -22,10 +22,11 @@ const formatDate = (
 };
 
 /**
- * @param {number} seconds Accepts seconds
+ * @param {number} milliSeconds Accepts microseconds
  * @return {string} A formatted time string
  */
-const durationToString = (seconds) => moment.duration(seconds, 'seconds').format('h:mm:ss');
+const durationToString = (milliSeconds) =>
+  moment.duration(milliSeconds, 'milliSeconds').format('h:mm:ss');
 
 export {
   durationToString,
