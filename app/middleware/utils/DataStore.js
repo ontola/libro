@@ -22,9 +22,12 @@ export default class DataStore {
 
     Object.assign(entity, { id });
 
-    // Normalize all keys
+    // Normalize all keys & values
     Object.keys(attributes).forEach(key => {
       const camel = this.toCamel(key);
+      if (camel.match(/(Date|At)$/)) {
+        attributes[key] = new Date(attributes[key]);
+      }
       if (key !== camel) {
         attributes[camel] = attributes[key];
         delete attributes[key];
@@ -32,7 +35,7 @@ export default class DataStore {
     });
     Object.assign(entity, attributes);
 
-    // Check if relationships exist, if so add there ids in an array to the corresponding key
+    // Check if relationships exist, if so add their ids in an array to the corresponding key
     if (relationships) {
       Object.keys(relationships).forEach(key => {
         const relation = relationships[key].data;
@@ -49,7 +52,6 @@ export default class DataStore {
         }
       });
     }
-
     return new this.types[type](entity);
   }
 }
