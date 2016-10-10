@@ -49,6 +49,10 @@ class VoteData extends Component {
       .map(opt => votes[opt].count)
       .reduce((v, i) => v + i);
 
+    if (total === 0) {
+      return false;
+    }
+
     return (
       <div className="VoteData">
         <div className="VoteData__votebar">
