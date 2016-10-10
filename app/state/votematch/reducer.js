@@ -1,6 +1,11 @@
 import { handleActions } from 'redux-actions';
 import { Map } from 'immutable';
 
+import {
+  increaseValue,
+  updateRecordValue,
+} from 'helpers/reducers';
+
 import VoteMatch from 'models/VoteMatch';
 
 import {
@@ -37,10 +42,10 @@ const votematch = handleActions({
   ),
 
   [VOTE_MATCH_NEXT]: (state) =>
-    state.set('currentIndex', state.get('currentIndex') + 1),
+    increaseValue(state, 'currentIndex'),
 
   [VOTE_MATCH_SAVE]: (state, { payload }) =>
-    state.setIn(['items', payload.id, 'similarity'], payload.similarity),
+    updateRecordValue(state, payload.id, 'similarity', payload.similarity),
 
 }, initialState);
 

@@ -9,4 +9,4 @@ log
 builds
 persons.dat
 tmp/
-
+.nyc_output/

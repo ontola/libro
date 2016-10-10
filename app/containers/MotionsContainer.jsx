@@ -43,6 +43,6 @@ export default connect(
     motions: getMotions(state),
   }),
   dispatch => ({
-    loadMotions: () => { dispatch(Motion.index()); },
+    loadMotions: () => dispatch(Motion.index()),
   })
 )(MotionsContainer);

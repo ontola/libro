@@ -2,6 +2,12 @@ import { handleActions } from 'redux-actions';
 import { Map, Record } from 'immutable';
 
 import {
+  deleteRecord,
+  setRecord,
+  toggleValue,
+} from 'helpers/reducers';
+
+import {
   COLL_ADD,
   COLL_REMOVE,
   COLL_TOGGLE_ONE,
@@ -14,49 +20,46 @@ const Collapsible = Record({
 });
 
 const initialState = new Map({
-  items: new Map({}),
+  items: new Map(),
 });
 
 // Opens all collapsibles if one or more in the group are currently closed
 const toggleAll = (state, group) => {
   let shouldOpen = false;
+
   const items = state.get('items').map(coll => {
     if (coll.group !== group) {
       return coll;
     }
+
     if (coll.opened === false) {
       shouldOpen = true;
     }
+
     return coll.set('opened', true);
   });
+
   if (shouldOpen) {
     return state.set('items', items);
   }
-  return state.set(
-    'items',
-    state.get('items').map(coll =>
-      coll.set('opened', false)
-    )
-  );
+
+  return state.set('items', state.get('items').map(coll =>
+    coll.set('opened', false)
+  ));
 };
 
+const recordCollapsible = ({ group, startOpened }) =>
+  new Collapsible({ group, opened: startOpened });
+
 const collapsible = handleActions({
-  [COLL_ADD]: (state, { payload }) => state.setIn(
-    ['items', payload.identifier],
-    new Collapsible({
-      group: payload.group,
-      opened: payload.startOpened,
-    })),
+  [COLL_ADD]: (state, { payload }) =>
+    setRecord(state, recordCollapsible(payload), payload.identifier),
 
   [COLL_REMOVE]: (state, { payload }) =>
-    state.set('items', state.get('items').delete(payload.id)),
+    deleteRecord(state, payload.id),
 
   [COLL_TOGGLE_ONE]: (state, { payload }) =>
-    state.setIn(
-      ['items', payload.id, 'opened'],
-      !state.getIn(['items', payload.id, 'opened']
-    )
-  ),
+    toggleValue(state, payload.id, 'opened'),
 
   [COLL_TOGGLE_GROUP]: (state, { payload }) =>
     toggleAll(state, payload.group),

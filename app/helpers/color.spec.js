@@ -5,12 +5,16 @@ import {
   getLuminance,
   isRGB,
   rgbToArray,
+  percentageToRedOrGreen,
 } from './color';
 
 const rgbInput = 'rgb(230, 48, 205)';
 const rgbArray = ['230', '48', '205'];
 const threshold = 0.5;
 const expectedLuminationValue = 0.47;
+
+const PERCENTAGE = 62;
+const expectedRgb = 'rgb(72,117,0)';
 
 describe('RGB Color value', () => {
   it('should transform rgb value to array', () => {
@@ -38,5 +42,10 @@ describe('RGB Color value', () => {
 
   it('should return the correct boolean when checked with threshold value', () => {
     assert.equal(checkLuminance(rgbInput, threshold), true, 'Boolean value incorrect');
+    assert.equal(checkLuminance(rgbInput), true, 'Boolean value incorrect');
+  });
+
+  it('should return the correct rgb value when given a percentage', () => {
+    assert.equal(percentageToRedOrGreen(PERCENTAGE), expectedRgb, 'Boolean value incorrect');
   });
 });

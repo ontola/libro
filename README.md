@@ -23,7 +23,6 @@ npm run lint
 ```
 
 #### SASS
-If you're using Atom, please install [this plugin](https://atom.io/packages/linter-sass-lint).
 ```
 npm run lint:style
 ```
@@ -60,9 +59,11 @@ If you don't want to use the default AOD api, but run your own instance, you hav
 - Please use the [Airbnb React Styleguide](https://github.com/airbnb/javascript/tree/master/react)
 - Document your components internally by adding comments to propTypes. Write them \/\*\* Like this \*\/ to make sure they are parsed by react-styleguidist.
 - Document your components by adding a `readme.md` that includes a usage example that works with react-styleguidist.
+- This repo binds the linters and mocha tests to the git precommit hook. Now you cannot commit code that contains errors. Therefore committing may take a little longer, however this results in less errors.
 
 ### Recommended Atom packages
 - [Linter](https://atom.io/packages/linter) for a realtime linting experience.
+- [sass linter](https://atom.io/packages/linter-sass-lint)
 - [language-babel](https://atom.io/packages/language-babel) for auto-indenting, syntax highlighting.
 
 ### Recommended Dev tools
