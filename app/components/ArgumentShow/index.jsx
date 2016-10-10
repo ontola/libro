@@ -1,3 +1,4 @@
+/* eslint no-console: 0 */
 import React, { PropTypes } from 'react';
 
 import PersonContainer from 'containers/PersonContainer';

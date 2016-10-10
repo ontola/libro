@@ -17,7 +17,7 @@ const newEventItemUnlessExists = (state, id) => {
 };
 
 const eventItems = handleActions({
-  [GET_EVENT_ITEM]: (state, { error, payload }) => {
+  [GET_EVENT_ITEM]: (state, { payload }) => {
     const record = payload.record || newEventItemUnlessExists(state, payload.id);
 
     // This may be a bad idea.

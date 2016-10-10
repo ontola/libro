@@ -1,5 +1,5 @@
 // @flow
-import React, { Component, PropTypes } from 'react';
+import { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import EventItem from 'models/EventItem';
 import {
@@ -14,20 +14,7 @@ const propTypes = {
   id: PropTypes.string.isRequired,
 };
 
-class EventItemContainer extends Component {
-  componentWillMount() {
-    const {
-      data,
-      id,
-    } = this.props;
-  }
-
-  render() {
-    return <EventItemShow {...this.props} />;
-  }
-}
-
-const mapStateToProps = (state, ownProps) => {
+const EventItemContainer = connect((state, ownProps) => {
   const data = getEventItem(state, ownProps);
 
   return {
@@ -41,10 +28,8 @@ const mapStateToProps = (state, ownProps) => {
     text: data.description,
     title: data.name,
   };
-};
+})(EventItemShow);
 
 EventItemContainer.propTypes = propTypes;
 
-export default connect(
-  mapStateToProps
-)(EventItemContainer);
+export default EventItemContainer;

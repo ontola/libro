@@ -119,6 +119,6 @@
   "pre-commit": [
     "lint",
     "lint:style",
-    "test",
-  ],
+    "test"
+  ]
 }

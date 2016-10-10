@@ -1,6 +1,5 @@
 import { handleActions } from 'redux-actions';
 import { Map, Record } from 'immutable';
-import { getCollapsibleGroup } from './selectors';
 
 import {
   COLL_ADD,
@@ -23,8 +22,6 @@ const toggleAll = (state, group) => {
   let shouldOpen = false;
   const items = state.get('items').map(coll => {
     if (coll.group !== group) {
-      console.log(coll.group);
-      console.log(group);
       return coll;
     }
     if (coll.opened === false) {

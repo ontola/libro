@@ -4,7 +4,6 @@ import {
   Card,
   CardContent,
   CardHeader,
-  ChronoFeed,
   Detail,
   DetailType,
   Button,
@@ -14,8 +13,6 @@ import {
   Heading,
 } from 'components';
 import EventItemContainer from 'containers/EventItemContainer';
-import PersonContainer from 'containers/PersonContainer';
-import { toggleAll } from 'state/collapsible/actions';
 
 const propTypes = {
   attendees: PropTypes.array,
@@ -27,6 +24,7 @@ const propTypes = {
   expandAll: PropTypes.function,
   id: PropTypes.string,
   loading: false,
+  onToggleAll: PropTypes.func,
   startDate: PropTypes.instanceOf(Date),
   speeches: PropTypes.arrayOf(PropTypes.object),
   text: PropTypes.string,
@@ -38,15 +36,12 @@ const defaultProps = {
 };
 
 const EventShow = ({
-  attendees,
   children,
   createdAt,
-  creator,
   endDate,
   eventItems,
   id,
   onToggleAll,
-  speeches,
   startDate,
   text,
   title,
@@ -86,11 +81,9 @@ const EventShow = ({
           </div>
         }
       </Card>
-      {/* {console.log(speeches)}
-      <ChronoFeed items={speeches} /> */}
     </div>
   );
-}
+};
 
 EventShow.propTypes = propTypes;
 EventShow.defaultProps = defaultProps;

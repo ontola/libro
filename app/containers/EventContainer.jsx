@@ -53,12 +53,10 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(
   mapStateToProps,
-  (dispatch, { data }) => ({
+  (dispatch) => ({
     onToggleAll: (id) => {
       dispatch(toggleAll({ group: `event.${id}` }));
     },
-    loadEvent: (id) => {
-      return dispatch(Event.fetch(id))
-    }
+    loadEvent: (id) => dispatch(Event.fetch(id)),
   })
 )(EventContainer);

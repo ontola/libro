@@ -19,10 +19,6 @@ const DetailDuration = ({
 }) => {
   const totalDuration = () => Math.abs(endDate - startDate);
   const completedDuration = () => Math.abs(currentDate - startDate);
-
-  console.log(completedDuration());
-  console.log(totalDuration());
-
   const formattedDuration = () => {
     if (currentDate && endDate && startDate) {
       return (
