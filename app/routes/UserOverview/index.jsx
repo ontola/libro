@@ -19,48 +19,46 @@ const motions = [
   '2ea244f5-14f8-e511-9672-e4115babb880',
 ];
 
-const tags = [
-  {
-    label: 'defensie',
-    percentage: 85,
-    link: '',
-  },
-  {
-    label: 'onderwijs',
-    percentage: 77,
-    link: '',
-  },
-  {
-    label: 'milieu',
-    percentage: 62,
-    link: '',
-  },
-  {
-    label: 'immigratie',
-    percentage: 55,
-    link: '',
-  },
-  {
-    label: 'economie',
-    percentage: 45,
-    link: '',
-  },
-  {
-    label: 'abortus',
-    percentage: 35,
-    link: '',
-  },
-  {
-    label: 'religie',
-    percentage: 20,
-    link: '',
-  },
-];
+const tags = [{
+  label: 'defensie',
+  percentage: 85,
+  link: '',
+}, {
+  label: 'onderwijs',
+  percentage: 77,
+  link: '',
+}, {
+  label: 'milieu',
+  percentage: 62,
+  link: '',
+}, {
+  label: 'immigratie',
+  percentage: 55,
+  link: '',
+}, {
+  label: 'economie',
+  percentage: 45,
+  link: '',
+}, {
+  label: 'abortus',
+  percentage: 35,
+  link: '',
+}, {
+  label: 'religie',
+  percentage: 20,
+  link: '',
+}];
 
 const UserOverview = () => (
   <Container>
     <Widget title="Laatste moties">
-      {motions.map(id => <MotionContainer key={id} motionId={id} renderItem={MotionListItem} />)}
+      {motions.map(id => (
+        <MotionContainer
+          key={id}
+          motionId={id}
+          renderItem={MotionListItem}
+        />
+      ))}
     </Widget>
     <Widget title="Statistieken">
       <Link to="/">

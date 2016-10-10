@@ -6,8 +6,8 @@ Deze demo bevat een interface voor open data van de gemeenteraad.
 ### Usage
 
 * `npm i` to install dependencies
-* `npm dev` to start the dev-server with corsproxy for the API and react-styleguidist for component reference.
-* Visit http://localhost:3001/
+* `npm run dev` to start the dev-server with corsproxy for the API and react-styleguidist for component reference.
+* Visit [http://localhost:3001/](http://localhost:3001/)
 
 ### Build
 
@@ -67,7 +67,3 @@ If you don't want to use the default AOD api, but run your own instance, you hav
 
 ### Recommended Dev tools
 - Chrome plugins: [React Dev Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi), [Redux Dev Tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd) and [Immutable formatter](https://chrome.google.com/webstore/detail/immutablejs-object-format/hgldghadipiblonfkkicmgcbbijnpeog/related)
-
-### Links
-- Please use the [Airbnb React Styleguide](https://github.com/airbnb/javascript/tree/master/react)
-- Uses the [Redux DevTools Chrome Extension](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd)
