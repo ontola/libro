@@ -2,7 +2,7 @@ import { assert } from 'chai';
 import { formatDate, durationToString } from './date';
 
 const TIMESTAMP = 1457172000000;
-const expectedOutput = '05-03-2016';
+const expectedOutput = '5 mrt. 2016 11:00';
 
 describe('Date', () => {
   it('format correctly', () => {
@@ -10,11 +10,15 @@ describe('Date', () => {
   });
 });
 
-const DURATION = 60;
-const durationAsString = '1:00';
+const DURATION_IN_MILLISECONDS = 6000;
+const durationAsString = '6';
 
 describe('Duration', () => {
   it('format correctly', () => {
-    assert.equal(durationToString(DURATION), durationAsString, 'Date is not formatted correctly');
+    assert.equal(
+      durationToString(DURATION_IN_MILLISECONDS),
+      durationAsString,
+      'Date is not formatted correctly'
+    );
   });
 });

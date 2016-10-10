@@ -11,11 +11,12 @@ chai.use(chaiImmutable);
 describe('Votes reducer', () => {
   it('should handle SET_VOTE', () => {
     const expectedResponse = new Map({
-      items: new Map({
+      items: new Map(),
+      userVotes: new Map({
         14: new models.Vote({
           id: '14',
           individual: true,
-          value: 'pro',
+          option: 'pro',
         }),
       }),
     });
