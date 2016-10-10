@@ -1,5 +1,8 @@
 import { assert } from 'chai';
+import moment from 'moment';
 import { formatDate, durationToString } from './date';
+
+moment.locale('nl');
 
 const TIMESTAMP = 1457172000000;
 const expectedOutput = '5 mrt. 2016 11:00';
