@@ -12,13 +12,14 @@ const apiDesc = new APIDesc({
 });
 
 const attributes = {
+  attributionText: '',
+  endDate: '',
+  eventId: '',
+  eventItemId: '',
   id: undefined,
-  attribution_text: '',
-  start_date: '',
-  event_item_id: '',
-  event_id: '',
-  end_date: '',
-  speaker_id: '',
+  speakerId: '',
+  startDate: '',
+  text: '',
 };
 
 export default apiModelGenerator(attributes, apiDesc);

@@ -21,12 +21,11 @@ const propTypes = {
   creator: PropTypes.string,
   endDate: PropTypes.instanceOf(Date),
   eventItems: PropTypes.array,
-  expandAll: PropTypes.function,
   id: PropTypes.string,
   loading: false,
   onToggleAll: PropTypes.func,
   startDate: PropTypes.instanceOf(Date),
-  speeches: PropTypes.arrayOf(PropTypes.object),
+  speeches: PropTypes.array,
   text: PropTypes.string,
   title: PropTypes.string,
 };
@@ -81,6 +80,7 @@ const EventShow = ({
           </div>
         }
       </Card>
+      {speeches && <ChronoFeed items={speeches} />}
     </div>
   );
 };

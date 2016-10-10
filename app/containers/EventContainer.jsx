@@ -38,6 +38,7 @@ const mapStateToProps = (state, ownProps) => {
   if (data === undefined) {
     return {};
   }
+
   return {
     attendeesPresent: data.attendees,
     createdAt: data.createdAt,

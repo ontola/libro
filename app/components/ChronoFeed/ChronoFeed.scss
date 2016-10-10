@@ -1,0 +1,12 @@
+@import '../shared/config';
+
+.ChronoFeed {
+  position: fixed;
+  right: 0;
+  width: 30em;
+  top: 3em;
+  bottom: 0;
+  background-color: white;
+  overflow: scroll;
+  box-shadow: $box-shadow;
+}

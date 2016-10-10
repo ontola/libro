@@ -26,15 +26,17 @@ const DetailDate = ({
 
   const hoverTextItems = [
     (date && `${formatDate(date)}`),
-    (startsAt && `Begint op ${formatDate(startsAt)}`),
-    (endsAt && `Eindigt op ${formatDate(endsAt)}`),
-    (createdAt && `Aangemaakt op ${formatDate(createdAt)}`),
-    (updatedAt && `Bijgewerkt op ${formatDate(updatedAt)}`),
+    (startsAt && `Begin: ${formatDate(startsAt)}`),
+    (endsAt && `Einde: ${formatDate(endsAt)}`),
+    (createdAt && `Aangemaakt: ${formatDate(createdAt)}`),
+    (updatedAt && `Bijgewerkt: ${formatDate(updatedAt)}`),
   ];
 
+  const REMOVE_CHARACTER_NUMBER = -2;
   const hoverText = hoverTextItems
                       .filter(i => i !== undefined)
-                      .join('. \n');
+                      .join('. \n')
+                      .slice(0, REMOVE_CHARACTER_NUMBER);
 
   return (
     <Detail

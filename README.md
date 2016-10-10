@@ -47,6 +47,16 @@ Uses [NSP](https://github.com/nodesecurity/nsp) and [Retire.js](https://github.c
 npm run secure
 ```
 
+### Adding a new model
+Since this project uses Redux, displaying data is not that always that trivial. Say there's a new model (e.g. meetings, documents) accessible in the API. You want to use that data in this app. Here's how you do that:
+
+- Create a model with the name of the content type. Model (file)names are capitalized. It's easy to copy another model to bootstrap your new one.
+- Use camelCased attributes - even if the API passes you under_scored ones. This is because the DataStore normalizes all incoming data.
+- Write the relevant GET_MODEL actions and put them in the `state/action-types.js` file.
+- Write your reducer(s) in `state/model/reducer.js`. Import them in the `state/index.js` file and pass it as an argument to the `rootReducer` function.
+- Write your selectors in `state/model/selectors.js`. Use the [reselect library](https://github.com/reactjs/reselect) and immutable.js functions.
+- Create a container component that binds the store data to props and pass that to a UI component.
+
 ### Running the API locally
 If you don't want to use the default AOD api, but run your own instance, you have to use a proxy. We've preconfigured an NGINX docker file to provide a proxy.
 

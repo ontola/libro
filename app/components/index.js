@@ -10,6 +10,8 @@ export { default as CardButton } from './Card/CardButton';
 export { default as CardContent } from './Card/CardContent';
 export { default as CardHeader } from './Card/CardHeader';
 export { default as CardRow } from './Card/CardRow';
+export { default as ChronoFeed } from './ChronoFeed';
+export { default as ChronoItem } from './ChronoItem';
 export { default as Collapsible } from './Collapsible';
 export { default as Columns } from './Columns';
 export { default as CompareVotesBar } from './CompareVotesBar';
