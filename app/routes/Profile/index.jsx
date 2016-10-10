@@ -32,7 +32,7 @@ const links = id => ([{
   to: path.profileAbout(id),
 }]);
 
-const profileCardRender = (data, full) => (
+const profileCardRender = (data, full, similarity) => (
   <ProfileCard
     id={data.id}
     name={data.name}
@@ -40,6 +40,7 @@ const profileCardRender = (data, full) => (
     image={data.image}
     bio={data.biography}
     full={full}
+    similarity={similarity}
   />
 );
 

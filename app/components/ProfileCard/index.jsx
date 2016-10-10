@@ -12,6 +12,7 @@ const propTypes = {
   bio: PropTypes.string,
   loading: PropTypes.bool,
   full: PropTypes.bool,
+  similarity: PropTypes.number,
 };
 
 const defaultProps = {
@@ -27,6 +28,7 @@ const ProfileCard = ({
   bio,
   loading,
   full,
+  similarity,
 }) => {
   const profileClassname = classNames({
     ProfileCard,
@@ -66,15 +68,19 @@ const ProfileCard = ({
           </div>
         </div>
         <div className="ProfileCard__buttons">
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              browserHistory.push(`/comparevotes/${id}`);
-            }}
-            small
-            icon="tachometer"
-            children="Vergelijk"
-          />
+          {similarity ? (
+            <div>VoteMatch: {similarity}%</div>
+          ) : (
+            <Button
+              onClick={(e) => {
+                e.preventDefault();
+                browserHistory.push(`/comparevotes/${id}`);
+              }}
+              small
+              icon="tachometer"
+              children="Vergelijk"
+            />
+          )}
         </div>
       </div>
     </section>

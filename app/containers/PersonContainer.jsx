@@ -1,10 +1,15 @@
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+
 import { Detail } from 'components';
 import path from 'helpers/paths';
 import Person from 'models/Person';
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
 import { fetchPerson } from 'state/persons/actions';
-import { getPerson } from 'state/persons/selectors';
+
+import {
+  getPerson,
+  getPersonVoteMatch,
+} from 'state/persons/selectors';
 
 const defaultRenderItem = (user) => (
   <Detail
@@ -20,6 +25,7 @@ const propTypes = {
   user: PropTypes.string.isRequired,
   data: PropTypes.instanceOf(Person),
   renderItem: PropTypes.func,
+  similarity: PropTypes.number,
 };
 
 const defaultProps = {
@@ -35,8 +41,8 @@ class PersonContainer extends Component {
   }
 
   render() {
-    const { data, renderItem, full } = this.props;
-    return data !== undefined && renderItem(data, full);
+    const { data, renderItem, full, similarity } = this.props;
+    return data !== undefined && renderItem(data, full, similarity);
   }
 }
 
@@ -46,6 +52,7 @@ PersonContainer.defaultProps = defaultProps;
 export default connect(
   (state, ownProps) => ({
     data: getPerson(state, ownProps),
+    similarity: getPersonVoteMatch(state, ownProps),
   }),
   (dispatch, ownProps) => ({
     loadProfile: () => dispatch(fetchPerson(ownProps.user)),
