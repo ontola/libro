@@ -29,6 +29,7 @@ class SpeechContainer extends Component {
 const mapStateToProps = (state, ownProps) => {
   const data = getSpeech(state, ownProps);
   return {
+    attributionText: data.attributionText,
     children: data.text,
     currentDate: data.currentDate,
     endDate: data.endDate,

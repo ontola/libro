@@ -11,6 +11,9 @@ const propTypes = {
   imageUrl: PropTypes.string,
   /** HTML title attribute */
   title: PropTypes.string,
+  /** Since Detail uses flexbox, you need to place right floating Details
+  *   detail at the very end of a DetailsBar. */
+  floatRight: PropTypes.bool,
 };
 
 const Detail = ({
@@ -20,11 +23,13 @@ const Detail = ({
   imageUrl,
   className,
   title,
+  floatRight,
 }) => {
   const Element = url ? 'a' : 'div';
   const classNames = [
     'Detail',
     url && 'Detail--link',
+    floatRight && 'Detail--float-right',
     className,
   ].join(' ');
 

@@ -1,14 +1,16 @@
 import './ChronoFeed.scss';
 import React, { PropTypes } from 'react';
-import fuzzyFilterFactory from 'react-fuzzy-filter';
-const { InputFilter, FilterResults } = fuzzyFilterFactory();
 import SpeechContainer from 'containers/SpeechContainer';
 import {
   List,
 } from 'components';
 
 const propTypes = {
-  items: PropTypes.array,
+  speechIds: PropTypes.array,
+};
+
+const defaultProps = {
+  speechIds: [],
 };
 
 function renderItem(id) {
@@ -18,22 +20,18 @@ function renderItem(id) {
 }
 
 const ChronoFeed = ({
-  items,
-}) => {
-  const fuseConfig = {
-    keys: ['children', 'speaker'],
-  };
-
-  return (
-    <div className="ChronoFeed">
-      <List
-        renderItem={renderItem}
-        items={items}
-      />
-    </div>
-  );
-};
+  speechIds,
+}) => (
+  <div className="ChronoFeed">
+    {console.log(speechIds)}
+    <List
+      renderItem={renderItem}
+      items={speechIds}
+    />
+  </div>
+);
 
 ChronoFeed.propTypes = propTypes;
+ChronoFeed.defaultProps = defaultProps;
 
 export default ChronoFeed;

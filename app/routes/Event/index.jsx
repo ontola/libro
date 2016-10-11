@@ -5,10 +5,12 @@ import Helmet from 'react-helmet';
 
 import {
   Container,
+  SideBar,
 } from 'components';
 
 import { getEventTitle } from 'state/events/selectors';
 import EventContainer from 'containers/EventContainer';
+import SpeechesContainer from 'containers/SpeechesContainer';
 
 const propTypes = {
   params: PropTypes.shape({
@@ -20,12 +22,22 @@ const propTypes = {
 const Event = ({
   params,
   title,
-}) => (
-  <Container>
-    <Helmet title={title} />
-    <EventContainer id={params.eventId} />
-  </Container>
-);
+}) => {
+  const sidebar = (
+    <SpeechesContainer eventId={params.eventId} />
+  );
+
+  return (
+    <SideBar
+      sidebar={sidebar}
+    >
+      <Container>
+        <Helmet title={title} />
+        <EventContainer id={params.eventId} />
+      </Container>
+    </SideBar>
+  );
+};
 
 Event.propTypes = propTypes;
 

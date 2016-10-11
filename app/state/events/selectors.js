@@ -19,3 +19,11 @@ export const getEventTitle = createSelector(
     return events.getIn([id, 'title']);
   }
 );
+
+export const getEventSpeechIds = (id) => (state) => {
+  const ids = state.getIn(['events', 'items', id, 'speeches']);
+  if (ids === undefined) {
+    return [];
+  }
+  return ids;
+};

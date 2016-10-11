@@ -3,10 +3,15 @@ import PersonContainer from 'containers/PersonContainer';
 import {
   CardContent,
   CardRow,
+  Detail,
+  DetailDuration,
+  DetailsBar,
   Progress,
 } from 'components';
 
 const propTypes = {
+  /** */
+  attributionText: PropTypes.string,
   /** The content of the item */
   children: PropTypes.node.isRequired,
   /** Include a currentDate and an endDate to show a progressBar */
@@ -19,6 +24,7 @@ const propTypes = {
 };
 
 const ChronoItem = ({
+  attributionText,
   children,
   currentDate,
   endDate,
@@ -39,9 +45,21 @@ const ChronoItem = ({
             direction="down"
           />
         }
-        {speaker && <PersonContainer user={speaker} />}
+        <DetailsBar>
+          {speaker && <PersonContainer user={speaker} />}
+          {attributionText &&
+            <Detail text={attributionText} />
+          }
+          {startDate && endDate &&
+            <DetailDuration
+              startDate={startDate}
+              endDate={endDate}
+              currentDate={currentDate}
+              floatRight
+            />
+          }
+        </DetailsBar>
         {children && children.join(' \n')}
-        {id}
       </CardContent>
     </CardRow>
   );

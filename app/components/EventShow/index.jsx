@@ -67,8 +67,13 @@ const EventShow = ({
         <CardContent>
           <div>{text}</div>
           {children}
-          <Button onClick={() => onToggleAll(id)}>
-            Expand all
+          <Button
+            onClick={() => onToggleAll(id)}
+            theme="subtle"
+            small
+            icon="expand"
+          >
+            Agendapunten uitklappen
           </Button>
         </CardContent>
         {eventItems && eventItems.length > 0 &&
@@ -80,7 +85,6 @@ const EventShow = ({
           </div>
         }
       </Card>
-      {speeches && <ChronoFeed items={speeches} />}
     </div>
   );
 };

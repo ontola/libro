@@ -51,6 +51,7 @@ export { default as ProfileListItem } from './ProfileListItem';
 export { default as Progress } from './Progress';
 export { default as ProgressBar } from './ProgressBar';
 export { default as ScoreSheet } from './ScoreSheet';
+export { default as SideBar } from './SideBar';
 export { default as SearchResultItem } from './SearchResultItem';
 export { default as Spinner } from './Spinner';
 export { default as Tag } from './Tag';
