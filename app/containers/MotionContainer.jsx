@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { MotionShow } from 'components';
 import Motion from 'models/Motion';
 import { getMotion } from 'state/motions/selectors';
+import { fetchMotion } from 'state/motions/actions';
 import { getVoteByMotionId } from 'state/votes/selectors';
 import { voteAction } from 'state/votes/actions';
 import { voteMatchNext } from 'state/votematch/actions';
@@ -11,10 +12,10 @@ import path from 'helpers/paths';
 
 const propTypes = {
   data: PropTypes.instanceOf(Motion),
-  onLoadMotion: PropTypes.func.isRequired,
+  loadMotion: PropTypes.func.isRequired,
+  motionId: PropTypes.string.isRequired,
   onNextMotion: PropTypes.func.isRequired,
   onVote: PropTypes.func.isRequired,
-  motionId: PropTypes.string.isRequired,
   renderItem: PropTypes.func.isRequired,
   status: PropTypes.string,
   voteData: PropTypes.string,
@@ -28,41 +29,49 @@ const defaultProps = {
 class MotionContainer extends Component {
   componentWillMount() {
     if (this.props.data === undefined) {
-      this.props.onLoadMotion(this.props.motionId);
+      this.props.loadMotion(this.props.motionId);
     }
   }
 
   render() {
-    if (!this.props.data) {
+    const {
+      data,
+      onNextMotion,
+      onVote,
+      renderItem,
+      status,
+      voteData,
+      voteMatchActive,
+    } = this.props;
+
+    if (!data) {
       return null;
     }
 
-    const RenderComponent = this.props.renderItem;
-    const onVoteAction = (side) => {
-      const btnActionFunc = this.props.voteMatchActive
-        ? this.props.onNextMotion
-        : this.props.onVote;
+    const RenderComponent = renderItem;
 
+    const onVoteAction = (side) => {
+      const btnActionFunc = voteMatchActive ? onNextMotion : onVote;
       return btnActionFunc({
-        motionId: this.props.data.id,
+        motionId: data.id,
         side,
       });
     };
 
     return (
       <RenderComponent
-        children={this.props.data.text}
-        createdAt={this.props.data.createdAt}
-        creator={this.props.data.creator}
-        id={this.props.data.id}
-        link={path.motion(this.props.data.id)}
-        onNextMotion={this.props.onNextMotion}
+        children={data.text}
+        createdAt={data.createdAt}
+        creator={data.creator}
+        id={data.id}
+        link={path.motion(data.id)}
+        onNextMotion={onNextMotion}
         onVote={onVoteAction}
-        onVoteAction={this.props.onVote}
-        status={this.props.status}
-        title={this.props.data.title}
-        type={this.props.data.classification}
-        voteData={this.props.voteData}
+        onVoteAction={onVote}
+        status={status}
+        title={data.title}
+        type={data.classification}
+        voteData={voteData}
       />
     );
   }
@@ -77,7 +86,7 @@ export default connect(
     voteData: getVoteByMotionId(state, ownProps),
   }),
   (dispatch) => ({
-    onLoadMotion: (id) => dispatch(Motion.fetch(id)),
+    loadMotion: (id) => dispatch(fetchMotion(id)),
     onNextMotion: (data) => dispatch(voteMatchNext(data)),
     onVote: (data) => dispatch(voteAction(data)),
   })

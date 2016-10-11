@@ -9,12 +9,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setHitCount: (count) => {
-    dispatch(setHitCount(count));
-  },
-  toggleDrawer: () => {
-    dispatch(toggleDrawer());
-  },
+  setHitCount: (count) => dispatch(setHitCount(count)),
+  toggleDrawer: () => dispatch(toggleDrawer()),
 });
 
 const SearchContainer = connect(

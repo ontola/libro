@@ -40,12 +40,8 @@ export default connect(
   (state, ownProps) => ({
     opened: getCollapsibleOpened(state, ownProps),
   }),
-  (dispatch, ownProps) => ({
-    onClickToggle: () => {
-      dispatch(toggleOne({ id: ownProps.id }));
-    },
-    onInitializeCollapsible: (data) => {
-      dispatch(initializeCollapsible(data));
-    },
+  (dispatch, { id }) => ({
+    onClickToggle: () => dispatch(toggleOne({ id })),
+    onInitializeCollapsible: (data) => dispatch(initializeCollapsible(data)),
   })
 )(CollapsibleContainer);

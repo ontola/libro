@@ -16,6 +16,9 @@ export const getPersonId = (state, props) => {
 export const getPerson = (state, props) =>
   state.getIn(['persons', 'items', getPersonId(state, props)]);
 
+export const getPersons = (state) =>
+  state.getIn(['persons', 'items']);
+
 export const getPersonName = (state, props) =>
   state.getIn(['persons', 'items', getPersonId(state, props), 'name']);
 

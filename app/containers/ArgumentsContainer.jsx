@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { getArgs } from 'state/argumentations/selectors';
+import { getArgsPro, getArgsCon } from 'state/argumentations/selectors';
 import {
   ArgumentListItem,
   Columns,
@@ -9,11 +9,13 @@ import {
 
 const propTypes = {
   motionId: PropTypes.string.isRequired,
-  argumentations: PropTypes.array.isRequired,
+  argsPro: PropTypes.array.isRequired,
+  argsCon: PropTypes.array.isRequired,
 };
 
 const defaultProps = {
-  argumentations: [],
+  argsPro: [],
+  argsCon: [],
 };
 
 const renderItem = (arg) => (
@@ -25,26 +27,19 @@ const renderItem = (arg) => (
   />
 );
 
-const ArgumentsContainer = ({ argumentations }) => {
-  const argumentsPro = argumentations.filter(arg => arg.side === 'pro');
-  const argumentsCon = argumentations.filter(arg => arg.side === 'con');
-
-  if (argumentations.length > 0) {
-    return (
-      <Columns>
-        <List items={argumentsPro} renderItem={renderItem} />
-        <List items={argumentsCon} renderItem={renderItem} />
-      </Columns>
-    );
-  }
-  return false;
-};
+const ArgumentsContainer = ({ argsPro, argsCon }) => (
+  <Columns>
+    {argsPro.length > 0 && <List items={argsPro} renderItem={renderItem} />}
+    {argsCon.length > 0 && <List items={argsCon} renderItem={renderItem} />}
+  </Columns>
+);
 
 ArgumentsContainer.propTypes = propTypes;
 ArgumentsContainer.defaultProps = defaultProps;
 
 export default connect(
   (state, ownProps) => ({
-    argumentations: getArgs(state, ownProps),
+    argsPro: getArgsPro(state, ownProps),
+    argsCon: getArgsCon(state, ownProps),
   })
 )(ArgumentsContainer);

@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 
 import { MotionListItem, List } from 'components';
 import { getMotions } from 'state/motions/selectors';
+import { fetchMotions } from 'state/motions/actions';
 
 import MotionContainer from 'containers/MotionContainer';
-import Motion from 'models/Motion';
 
 const propTypes = {
   motions: PropTypes.object,
@@ -43,6 +43,6 @@ export default connect(
     motions: getMotions(state),
   }),
   dispatch => ({
-    loadMotions: () => dispatch(Motion.index()),
+    loadMotions: () => dispatch(fetchMotions()),
   })
 )(MotionsContainer);

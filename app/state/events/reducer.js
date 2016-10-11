@@ -1,31 +1,16 @@
 import { handleActions } from 'redux-actions';
 import { Map } from 'immutable';
 
-import Event from 'models/Event';
-
-import {
-  GET_EVENT,
-} from '../action-types';
+import { setRecord } from 'helpers/reducers';
+import { GET_EVENT } from '../action-types';
 
 const initialState = new Map({
   items: new Map(),
 });
 
-const newEventUnlessExists = (state, id) => {
-  const record = state.getIn(['items', id]);
-  return record !== undefined ? record : new Event({ id, loading: true });
-};
-
 const events = handleActions({
-  [GET_EVENT]: (state, { error, payload }) => {
-    const record = payload.record || newEventUnlessExists(state, payload.id);
-
-    if (error) {
-      return state.deleteIn(['items', payload.id]);
-    }
-
-    return state.setIn(['items', record.id], record);
-  },
+  [GET_EVENT]: (state, { payload }) =>
+    setRecord(state, payload.record, payload.id),
 }, initialState);
 
 export default events;

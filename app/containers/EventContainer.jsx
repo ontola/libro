@@ -1,12 +1,10 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import Event from 'models/Event';
-import {
-  EventShow,
-} from 'components';
 
+import { EventShow } from 'components';
 import { getEvent } from 'state/events/selectors';
+import { fetchEvent } from 'state/events/actions';
 import { toggleAll } from 'state/collapsible/actions';
 
 const propTypes = {
@@ -25,7 +23,6 @@ class EventContainer extends Component {
   }
 
   render() {
-    // console.log(this.props);
     return <EventShow {...this.props} />;
   }
 }
@@ -57,6 +54,6 @@ export default connect(
     onToggleAll: (id) => {
       dispatch(toggleAll({ group: `event.${id}` }));
     },
-    loadEvent: (id) => dispatch(Event.fetch(id)),
+    loadEvent: (id) => dispatch(fetchEvent(id)),
   })
 )(EventContainer);

@@ -2,10 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { EventListItem, List } from 'components';
-import { getEvents } from 'state/events/selectors';
-
 import EventContainer from 'containers/EventContainer';
-import Event from 'models/Event';
+
+import { getEvents } from 'state/events/selectors';
+import { fetchEvents } from 'state/events/actions';
 
 const propTypes = {
   events: PropTypes.object,
@@ -43,6 +43,6 @@ export default connect(
     events: getEvents(state),
   }),
   dispatch => ({
-    loadEvents: () => { dispatch(Event.index()); },
+    loadEvents: () => dispatch(fetchEvents()),
   })
 )(EventsContainer);

@@ -12,13 +12,14 @@ import {
 } from 'components';
 
 import { getMotionTitle } from 'state/motions/selectors';
-import { getArgs } from 'state/argumentations/selectors';
+import { getArgsPro, getArgsCon } from 'state/argumentations/selectors';
 import MotionContainer from 'containers/MotionContainer';
 import VoteDataContainer from 'containers/VoteDataContainer';
 import path from 'helpers/paths';
 
 const propTypes = {
-  argumentations: PropTypes.array,
+  argsPro: PropTypes.array,
+  argsCon: PropTypes.array,
   params: PropTypes.shape({
     motionId: PropTypes.string.isRequired,
   }),
@@ -26,7 +27,8 @@ const propTypes = {
 };
 
 const defaultProps = {
-  argumentations: [],
+  argsPro: [],
+  argsCon: [],
 };
 
 const renderArgument = (data) => (
@@ -41,34 +43,34 @@ const renderArgument = (data) => (
 );
 
 const Motion = ({
-  argumentations,
+  argsPro,
+  argsCon,
   params,
   title,
 }) => (
   <Container>
     <Helmet title={title} />
-    <BackButton link={path.motionsIndex()}>Terug naar alle moties</BackButton>
+    <BackButton
+      children="Terug naar alle moties"
+      link={path.motionsIndex()}
+    />
     <MotionContainer motionId={params.motionId} />
     <VoteDataContainer motionId={params.motionId} />
     <Columns>
-      {argumentations.length > 0 &&
-        <div>
-          <Heading variant="column" size="3">Voordelen</Heading>
-          <List
-            renderItem={renderArgument}
-            items={argumentations.filter(a => a.side === 'pro')}
-          />
-        </div>
-      }
-      {argumentations.length > 0 &&
-        <div>
-          <Heading variant="column" size="3">Nadelen</Heading>
-          <List
-            renderItem={renderArgument}
-            items={argumentations.filter(a => a.side === 'con')}
-          />
-        </div>
-      }
+      <div>
+        <Heading variant="column" size="3">Voordelen</Heading>
+        <List
+          renderItem={renderArgument}
+          items={argsPro}
+        />
+      </div>
+      <div>
+        <Heading variant="column" size="3">Nadelen</Heading>
+        <List
+          renderItem={renderArgument}
+          items={argsCon}
+        />
+      </div>
     </Columns>
   </Container>
 );
@@ -78,7 +80,8 @@ Motion.propTypes = propTypes;
 
 const stateToProps = (state, ownProps) => ({
   title: getMotionTitle(state, ownProps),
-  argumentations: getArgs(state, ownProps),
+  argsPro: getArgsPro(state, ownProps),
+  argsCon: getArgsCon(state, ownProps),
 });
 
 export default connect(stateToProps)(Motion);

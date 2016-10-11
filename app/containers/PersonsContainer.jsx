@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { List, ProfileListItem } from 'components';
 import { fetchPersons } from 'state/persons/actions';
+import { getPersons } from 'state/persons/selectors';
 import path from 'helpers/paths';
 
 const propTypes = {
@@ -39,6 +40,6 @@ PersonsContainer.defaultProps = defaultProps;
 PersonsContainer.propTypes = propTypes;
 
 export default connect(
-  state => ({ persons: state.getIn(['persons', 'items']) }),
-  dispatch => ({ loadPersons: () => { dispatch(fetchPersons()); } })
+  state => ({ persons: getPersons(state) }),
+  dispatch => ({ loadPersons: () => dispatch(fetchPersons()) })
 )(PersonsContainer);

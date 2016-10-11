@@ -2,26 +2,43 @@ import './List.scss';
 import React, { PropTypes } from 'react';
 
 const propTypes = {
+  align: PropTypes.oneOf([
+    'horizontal',
+    'vertical',
+  ]),
   items: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.object,
   ]).isRequired,
   renderItem: PropTypes.func.isRequired,
-  align: PropTypes.oneOf([
-    'horizontal',
-    'vertical',
-  ]),
 };
 
 const defaultProps = {
-  items: {},
+  items: [],
   align: 'vertical',
 };
 
-const List = ({ items, renderItem, align }) => (
-  <div className={(align === 'horizontal') ? 'List List--horizontal' : 'List'}>
-    {items.constructor === Array ? items.map(renderItem) : items.valueSeq().map(renderItem)}
-  </div>
+const hasItems = (items) => items.length > 0 || items.size > 0;
+
+const loopItems = (items, renderItem) => {
+  if (!hasItems(items)) {
+    return false;
+  }
+
+  return items.constructor === Array
+    ? items.map(renderItem)
+    : items.valueSeq().map(renderItem);
+};
+
+const List = ({
+  items,
+  renderItem,
+  align,
+}) => (
+  <div
+    className={(align === 'horizontal') ? 'List List--horizontal' : 'List'}
+    children={loopItems(items, renderItem)}
+  />
 );
 
 List.propTypes = propTypes;

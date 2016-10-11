@@ -3,22 +3,19 @@ import { getMotionArgIds } from 'state/motions/selectors';
 
 export const getArguments = state => state.getIn(['argumentations', 'items']);
 
-export const getArgs = createSelector(
+export const getArgs = (side) => createSelector(
   getMotionArgIds,
   getArguments,
   (ids, args) => {
-    if (ids === undefined) {
+    if (ids === undefined || ids.length === 0 || args.size === 0) {
       return [];
     }
 
-    if (ids.length === 0) {
-      return [];
-    }
-
-    if (args.size === 0) {
-      return [];
-    }
-
-    return ids.map(id => args.get(id));
+    return ids
+      .map(id => args.get(id))
+      .filter(arg => arg.get('side') === side);
   }
 );
+
+export const getArgsPro = (state, props) => getArgs('pro')(state, props);
+export const getArgsCon = (state, props) => getArgs('con')(state, props);

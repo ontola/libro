@@ -3,13 +3,25 @@
  * @param {string} state A state object
  * @param {string} record A format to display date
  * @param {string} id formatted date string
+ * @param {model} Model The model to be used for initialising
  * @return {string} state Returns new state that includes record
  */
 export const setRecord = (
   state,
   record,
-  id = record.id
-) => state.setIn(['items', id], record);
+  id = record.id,
+  Model
+) => {
+  let newRecord;
+
+  if (Model) {
+    newRecord = state.getIn(['items', id]) !== undefined
+      ? state.getIn(['items', id])
+      : new Model({ id, loading: true });
+  }
+
+  return state.setIn(['items', id], record || newRecord);
+};
 
 /**
  * Deletes record to items array in immutable Map

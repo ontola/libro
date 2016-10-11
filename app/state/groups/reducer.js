@@ -9,7 +9,8 @@ const initialState = new Map({
 });
 
 const groups = handleActions({
-  [GET_GROUP]: (state, { payload }) => setRecord(state, payload.record),
+  [GET_GROUP]: (state, { payload }) =>
+    setRecord(state, payload.record),
 }, initialState);
 
 export default groups;
