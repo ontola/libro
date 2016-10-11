@@ -2,13 +2,14 @@ import './DetailDuration.scss';
 import React, { PropTypes } from 'react';
 import { Detail } from 'components';
 import classNames from 'classnames';
-import { durationToString } from 'helpers/date';
+import { durationToHumanizedString } from 'helpers/date';
 
 const propTypes = {
   startDate: PropTypes.instanceOf(Date),
   currentDate: PropTypes.instanceOf(Date),
   endDate: PropTypes.instanceOf(Date),
   isCurrent: PropTypes.bool,
+  floatRight: PropTypes.bool,
 };
 
 const DetailDuration = ({
@@ -16,18 +17,21 @@ const DetailDuration = ({
   endDate,
   currentDate,
   isCurrent,
+  floatRight,
 }) => {
   const totalDuration = () => Math.abs(endDate - startDate);
   const completedDuration = () => Math.abs(currentDate - startDate);
+
   const formattedDuration = () => {
     if (currentDate && endDate && startDate) {
       return (
-        `${durationToString(completedDuration())} / ${durationToString(totalDuration())}`
+        `${durationToHumanizedString(completedDuration())} / \
+        ${durationToHumanizedString(totalDuration())}`
       );
     } else if (currentDate && startDate) {
-      return durationToString(completedDuration());
+      return durationToHumanizedString(completedDuration());
     }
-    return durationToString(totalDuration());
+    return durationToHumanizedString(totalDuration());
   };
 
   const elapsedTimeClass = classNames({
@@ -39,7 +43,7 @@ const DetailDuration = ({
     <Detail
       className={elapsedTimeClass}
       text={formattedDuration(totalDuration, completedDuration)}
-      icon="clock-o"
+      floatRight={floatRight}
     />
   );
 };

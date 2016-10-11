@@ -57,7 +57,7 @@ const EventItemShow = ({
 
   const detailsBar = (
     <DetailsBar>
-      {(startDate || endDate) &&
+      {((startDate && currentDate) || (startDate && endDate)) &&
         <DetailDuration
           currentDate={currentDate}
           startDate={startDate}

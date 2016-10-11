@@ -7,13 +7,14 @@ import argumentations from './argumentations/reducer';
 import collapsible from './collapsible/reducer';
 import communication from './communication/reducer';
 import counts from './counts/reducer';
-import events from './events/reducer';
 import eventItems from './eventItems/reducer';
+import events from './events/reducer';
 import groups from './groups/reducer';
 import motions from './motions/reducer';
 import persons from './persons/reducer';
 import router from './router/reducer';
 import search from './search/reducer';
+import speeches from './speeches/reducer';
 import voteEvents from './voteEvents/reducer';
 import votematch from './votematch/reducer';
 import votes from './votes/reducer';
@@ -26,16 +27,17 @@ const rootReducer = combineReducers({
   collapsible,
   communication,
   counts,
-  events,
   eventItems,
+  events,
   groups,
   motions,
   persons,
   router,
   search,
+  speeches,
+  voteEvents,
   votematch,
   votes,
-  voteEvents,
 });
 
 const configureStore = (preloadedState) => {

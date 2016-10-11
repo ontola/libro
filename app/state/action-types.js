@@ -1,19 +1,30 @@
-export const GET_PERSONS = 'GET_PERSONS';
-export const GET_PERSON = 'GET_PERSON';
+// Arguments
+export const GET_ARGUMENTS = 'GET_ARGUMENTS';
+export const GET_ARGUMENT = 'GET_ARGUMENT';
 
-export const GET_GROUPS = 'GET_GROUPS';
-export const GET_GROUP = 'GET_GROUP';
+// Collapsibles
+export const COLL_ADD = 'COLL_ADD';
+export const COLL_REMOVE = 'COLL_REMOVE';
+export const COLL_TOGGLE_ONE = 'COLL_TOGGLE_ONE';
+export const COLL_TOGGLE_GROUP = 'COLL_TOGGLE_GROUP';
 
+// Events
 export const GET_EVENTS = 'GET_EVENTS';
 export const GET_EVENT = 'GET_EVENT';
 
 export const GET_EVENT_ITEM = 'GET_EVENTS';
 
+// Groups
+export const GET_GROUPS = 'GET_GROUPS';
+export const GET_GROUP = 'GET_GROUP';
+
+// Persons
+export const GET_PERSONS = 'GET_PERSONS';
+export const GET_PERSON = 'GET_PERSON';
+
+// Motions & voting
 export const GET_MOTIONS = 'GET_MOTIONS';
 export const GET_MOTION = 'GET_MOTION';
-
-export const GET_ARGUMENTS = 'GET_ARGUMENTS';
-export const GET_ARGUMENT = 'GET_ARGUMENT';
 
 export const GET_COUNTS = 'GET_COUNTS';
 export const GET_COUNT = 'GET_COUNT';
@@ -24,11 +35,17 @@ export const GET_VOTE = 'GET_VOTE';
 export const GET_VOTE_EVENTS = 'GET_VOTE_EVENTS';
 export const GET_VOTE_EVENT = 'GET_VOTE_EVENT';
 
+// Search
 export const TOGGLE_DRAWER = 'TOGGLE_DRAWER';
 export const SET_HIT_COUNT = 'SET_HIT_COUNT';
 
 export const RESET_ERROR_MESSAGE = 'RESET_ERROR_MESSAGE';
 
+// Speeches
+export const GET_SPEECH = 'GET_SPEECH';
+export const GET_SPEECHES = 'GET_SPEECHES';
+
+// VoteMatch
 export const VOTE_MATCH_INIT = 'VOTE_MATCH_INIT';
 export const VOTE_MATCH_NEXT = 'VOTE_MATCH_NEXT';
 export const VOTE_MATCH_SAVE = 'VOTE_MATCHES_SAVE';
@@ -37,8 +54,3 @@ export const GET_VOTE_MATCH = 'GET_VOTE_MATCH';
 export const GET_VOTE_MATCHES = 'GET_VOTE_MATCHES';
 
 export const SET_VOTE = 'SET_VOTE';
-
-export const COLL_ADD = 'COLL_ADD';
-export const COLL_REMOVE = 'COLL_REMOVE';
-export const COLL_TOGGLE_ONE = 'COLL_TOGGLE_ONE';
-export const COLL_TOGGLE_GROUP = 'COLL_TOGGLE_GROUP';

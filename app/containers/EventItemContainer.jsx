@@ -10,7 +10,7 @@ import { getEventItem } from 'state/eventItems/selectors';
 
 const propTypes = {
   data: PropTypes.instanceOf(EventItem),
-  eventId: PropTypes.string.isRequired,
+  eventId: PropTypes.string,
   id: PropTypes.string.isRequired,
 };
 

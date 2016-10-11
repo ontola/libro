@@ -1,6 +1,7 @@
 import '../../components/shared/init.scss';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import Helmet from 'react-helmet';
 
 import NavbarContainer from 'containers/NavbarContainer';
 import { Notification, Spinner } from 'components';
@@ -42,6 +43,14 @@ const App = ({
   reset,
 }) => (
   <div>
+    <Helmet
+      htmlAttributes={{ lang: 'nl' }}
+      titleTemplate="%s - Argu"
+      defaultTitle="Argu"
+      meta={[
+        { name: 'viewport', content: 'Helmet application' },
+      ]}
+    />
     <Spinner loading={loading} />
     <NavbarContainer />
     {renderErrorMessage(error, errorMessage, reset)}
