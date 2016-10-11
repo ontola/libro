@@ -4,7 +4,7 @@ import {
   CardContent,
   CardRow,
   Detail,
-  DetailDuration,
+  DetailDate,
   DetailsBar,
   Progress,
 } from 'components';
@@ -49,11 +49,13 @@ const ChronoItem = ({
             <Detail text={attributionText} />
           }
           {startDate && endDate &&
-            <DetailDuration
+            <DetailDate
               startDate={startDate}
               endDate={endDate}
               currentDate={currentDate}
               floatRight
+              hideIcon
+              asHours
             />
           }
         </DetailsBar>

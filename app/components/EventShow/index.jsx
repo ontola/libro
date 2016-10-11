@@ -59,7 +59,7 @@ const EventShow = ({
             <DetailDate
               createdAt={createdAt}
               startsAt={startDate}
-              endsAt={endDate}
+              endDate={endDate}
             />
             <Detail>{status}</Detail>
           </DetailsBar>

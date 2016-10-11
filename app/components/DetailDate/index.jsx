@@ -1,48 +1,63 @@
 import './DetailDate.scss';
 import React, { PropTypes } from 'react';
 import { Detail } from 'components';
-import { formatDate } from 'helpers/date';
+import { formatDate, durationToHumanizedString } from 'helpers/date';
 import moment from 'moment';
 
 const propTypes = {
-  /** Deprecated - Try not to use this prop,
+  createdAt: PropTypes.instanceOf(Date),
+  /** Deprecated - Try not to use Date,
   *   since it does not tell anything about what this date means.
   */
   date: PropTypes.instanceOf(Date),
-  createdAt: PropTypes.instanceOf(Date),
-  updatedAt: PropTypes.instanceOf(Date),
-  startsAt: PropTypes.instanceOf(Date),
-  endsAt: PropTypes.instanceOf(Date),
+  endDate: PropTypes.instanceOf(Date),
+  floatRight: PropTypes.bool,
+  asHours: PropTypes.bool,
+  hideIcon: PropTypes.bool,
+  startDate: PropTypes.instanceOf(Date),
+  updatedDate: PropTypes.instanceOf(Date),
 };
 
 const DetailDate = ({
-  date,
   createdAt,
-  updatedAt,
-  startsAt,
-  endsAt,
+  date,
+  endDate,
+  floatRight,
+  startDate,
+  updatedDate,
+  asHours,
+  hideIcon,
 }) => {
-  const mostImportantDate = () => (date || startsAt || createdAt);
+  const mostImportantDate = () => (date || startDate || createdAt);
 
   const hoverTextItems = [
     (date && `${formatDate(date)}`),
-    (startsAt && `Begin: ${formatDate(startsAt)}`),
-    (endsAt && `Einde: ${formatDate(endsAt)}`),
+    (startDate && `Begin: ${formatDate(startDate)}`),
+    (endDate && `Einde: ${formatDate(endDate)}`),
     (createdAt && `Aangemaakt: ${formatDate(createdAt)}`),
-    (updatedAt && `Bijgewerkt: ${formatDate(updatedAt)}`),
+    (updatedDate && `Bijgewerkt: ${formatDate(updatedDate)}`),
+    (endDate && startDate && `Duur: ${durationToHumanizedString(Math.abs(endDate - startDate))}`),
   ];
 
-  const REMOVE_CHARACTER_NUMBER = -2;
   const hoverText = hoverTextItems
                       .filter(i => i !== undefined)
                       .join('. \n')
-                      .slice(0, REMOVE_CHARACTER_NUMBER);
+                      .concat('.');
+
+  const displayValue = () => {
+    if (asHours) {
+      return moment(mostImportantDate()).format('LT');
+    }
+    return moment(mostImportantDate()).fromNow();
+  };
 
   return (
     <Detail
-      text={moment(mostImportantDate()).fromNow()}
+      text={displayValue()}
       icon="clock-o"
       title={hoverText}
+      floatRight={floatRight}
+      hideIcon={hideIcon}
     />
   );
 };

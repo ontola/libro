@@ -76,8 +76,7 @@ class SideBar extends Component {
                 sideBarOpen: true,
               })}
               icon="comments"
-              theme="subtle"
-              children="notulen"
+              children="Discussie"
             />
           </div>
         }

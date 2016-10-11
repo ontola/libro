@@ -14,6 +14,7 @@ const propTypes = {
   /** Since Detail uses flexbox, you need to place right floating Details
   *   detail at the very end of a DetailsBar. */
   floatRight: PropTypes.bool,
+  hideIcon: PropTypes.bool,
 };
 
 const Detail = ({
@@ -21,6 +22,7 @@ const Detail = ({
   icon,
   url,
   imageUrl,
+  hideIcon,
   className,
   title,
   floatRight,
@@ -47,7 +49,7 @@ const Detail = ({
         <img src={imageUrl} className="Detail__image" role="presentation" />
       }
 
-      {!imageUrl && icon &&
+      {!imageUrl && icon && !hideIcon &&
         <span className="Detail__icon">
           <FontAwesome name={icon} />
         </span>
