@@ -7,13 +7,13 @@
     "body-parser": "^1.15.2",
     "express": "^4.13.4",
     "http-proxy-middleware": "^0.17.0",
-    "react-sidebar": "^2.2.1",
     "rimraf": "^2.5.4",
     "searchkit-express": "^0.2.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",
     "babel-core": "^6.9.1",
+    "babel-istanbul": "^0.11.0",
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-object-rest-spread": "^6.8.0",
@@ -68,6 +68,7 @@
     "react-redux": "^4.4.5",
     "react-router": "^2.4.0",
     "react-router-redux": "^4.0.4",
+    "react-sidebar": "^2.2.1",
     "react-styleguidist": "^3.0.2",
     "recharts": "^0.14.1",
     "redux": "^3.5.2",
@@ -100,7 +101,7 @@
     "build:server": "webpack -p --config ./webpack/server.config.js",
     "build:verbose": "rimraf ./dist && NODE_ENV=production webpack --production --progress --verbose --display-error-details --config ./webpack/static.config",
     "corsproxy": "./node_modules/.bin/corsproxy",
-    "coverage": "nyc npm run test",
+    "coverage": "nyc -e .jsx npm run test",
     "doc:style": "sassdoc ./app -d ./docs/sass",
     "dev": "npm-run-all -p corsproxy start styleguide-server",
     "lint": "./node_modules/.bin/eslint --ext .jsx,.js .",
@@ -124,9 +125,6 @@
     "test"
   ],
   "nyc": {
-    "include": [
-      "app/**/*.js",
-      "app/**/*.jsx"
-    ]
+    "include": ["app/**"]
   }
 }
