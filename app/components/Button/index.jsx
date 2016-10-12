@@ -9,7 +9,7 @@ const propTypes = {
   active: PropTypes.bool,
   /** Label of the button */
   children: PropTypes.node.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   icon: PropTypes.string,
   small: PropTypes.bool,
   theme: PropTypes.oneOf(buttonThemes),

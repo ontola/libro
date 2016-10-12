@@ -3,14 +3,24 @@ import { Map } from 'immutable';
 
 import {
   deleteRecord,
+  increaseValue,
   setRecord,
   toggleValue,
 } from 'helpers/reducers';
 
 import Vote from 'models/Vote';
 
-const record = new Vote({ id: '1', individual: true, option: 'pro' });
-const recordToggled = new Vote({ id: '1', individual: false, option: 'pro' });
+const record = new Vote({
+  id: '1',
+  individual: true,
+  option: 'pro',
+});
+
+const recordToggled = new Vote({
+  id: '1',
+  individual: false,
+  option: 'pro',
+});
 
 const initialState = new Map({
   items: new Map(),
@@ -48,7 +58,18 @@ describe('Reducer helpers', () => {
     assert.deepEqual(
       toggleValue(setRecord(initialState, record, record.id), record.id, 'individual'),
       expectedState(recordToggled),
-      'Record not deleted'
+      'Value not toggled'
+    );
+  });
+
+  it('increases a value by 1', () => {
+    const state = new Map({ counter: 0 });
+    const expected = new Map({ counter: 1 });
+
+    assert.deepEqual(
+      increaseValue(state, 'counter'),
+      expected,
+      'Value not increased by one'
     );
   });
 });

@@ -5,8 +5,8 @@ import { Map } from 'immutable';
 
 import List from './';
 
-const items = ['1', '2', '3'];
-const itemsObject = new Map({
+const mockItems = ['1', '2', '3'];
+const mockItemsObject = new Map({
   1: new Map({
     one: 'one',
   }),
@@ -19,12 +19,12 @@ const itemsObject = new Map({
 });
 
 const renderItem = (id) => <div key={id}>{id}</div>;
-const wrapper = shallow(<List items={items} renderItem={renderItem} />);
-const wrapperObjects = shallow(<List items={itemsObject} renderItem={renderItem} />);
+const wrapper = (items) => shallow(<List items={items} renderItem={renderItem} />);
+const wrapperObjects = shallow(<List items={mockItemsObject} renderItem={renderItem} />);
 const wrapperHorizontal = shallow(
   <List
     align="horizontal"
-    items={items}
+    items={mockItems}
     renderItem={renderItem}
   />
 );
@@ -32,16 +32,20 @@ const wrapperHorizontal = shallow(
 describe('List component', () => {
   it('should render all items in array/object', () => {
     assert.equal(
-      items.length,
-      wrapper.find('.List > div').length,
+      mockItems.length,
+      wrapper(mockItems).find('.List > div').length,
       'Items length does not equal to rendered list'
     );
 
     assert.equal(
-      itemsObject.size,
+      mockItemsObject.size,
       wrapperObjects.find('.List > div').length,
       'Items length does not equal to rendered list'
     );
+  });
+
+  it('should return false when there are no items to render', () => {
+    assert.isFalse(wrapper([]).props().children, 'Array is not empty');
   });
 
   it('should render the list horizontally if declared so', () => {

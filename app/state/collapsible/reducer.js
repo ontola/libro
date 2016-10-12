@@ -2,19 +2,17 @@ import { handleActions } from 'redux-actions';
 import { Map, Record } from 'immutable';
 
 import {
-  deleteRecord,
   setRecord,
   toggleValue,
 } from 'helpers/reducers';
 
 import {
   COLL_ADD,
-  COLL_REMOVE,
   COLL_TOGGLE_ONE,
   COLL_TOGGLE_GROUP,
 } from 'state/action-types';
 
-const Collapsible = Record({
+export const Collapsible = Record({
   group: undefined,
   opened: false,
 });
@@ -54,9 +52,6 @@ const recordCollapsible = ({ group, startOpened }) =>
 const collapsible = handleActions({
   [COLL_ADD]: (state, { payload }) =>
     setRecord(state, recordCollapsible(payload), payload.identifier),
-
-  [COLL_REMOVE]: (state, { payload }) =>
-    deleteRecord(state, payload.id),
 
   [COLL_TOGGLE_ONE]: (state, { payload }) =>
     toggleValue(state, payload.id, 'opened'),

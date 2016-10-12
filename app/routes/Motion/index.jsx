@@ -63,6 +63,7 @@ const Motion = ({
           renderItem={renderArgument}
           items={argsPro}
         />
+        {argsPro.length === 0 && <div>Er zijn nog geen voorargumenten. Voeg er een toe!</div>}
       </div>
       <div>
         <Heading variant="column" size="3">Nadelen</Heading>
@@ -70,6 +71,7 @@ const Motion = ({
           renderItem={renderArgument}
           items={argsCon}
         />
+        {argsCon.length === 0 && <div>Er zijn nog geen tegenargumenten. Voeg er een toe!</div>}
       </div>
     </Columns>
   </Container>
