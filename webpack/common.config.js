@@ -1,6 +1,7 @@
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
+const HappyPack = require('happypack');
 
 const TARGET = process.env.npm_lifecycle_event;
 process.env.BABEL_ENV = TARGET;
@@ -27,8 +28,9 @@ const common = {
     loaders: [
       {
         test: /(\.jsx\.js)?$/,
-        loader: 'babel-loader',
+        loaders: ['happypack/loader?id=babel'],
         exclude: /node_modules/,
+        include: /app/,
       },
       {
         test: /\.png$/,
@@ -52,6 +54,11 @@ const common = {
       __DEVELOPMENT__: process.env.NODE_ENV === 'development',
       __PRODUCTION__: process.env.NODE_ENV === 'production',
       __CLIENT__: true,
+    }),
+    new HappyPack({
+      id: 'babel',
+      threads: 4,
+      loaders: ['babel-loader?cacheDirectory'],
     }),
   ],
   postcss: [autoprefixer({ browsers: ['last 2 versions'] })],

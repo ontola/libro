@@ -2,8 +2,10 @@ require('react-hot-loader/patch');
 const path = require('path');
 const webpack = require('webpack');
 const config = require('./common.config');
+const HappyPack = require('happypack');
 
 config.output.publicPath = 'http://localhost:3001/dist/';
+config.output.pathinfo = true;
 
 config.entry = [
   'webpack-hot-middleware/client',
@@ -11,7 +13,9 @@ config.entry = [
   './app/index.js',
 ];
 
-config.devtool = 'inline-eval-cheap-source-map';
+config.cache = 'true';
+
+config.devtool = 'eval';
 
 config.resolveLoader = {
   root: path.join(__dirname, 'node_modules'),
@@ -19,10 +23,15 @@ config.resolveLoader = {
 
 config.module.loaders.push({
   test: /\.scss$/,
-  loader: 'style!css-loader!postcss-loader!sass-loader',
+  loaders: ['happypack/loader?id=scss'],
 });
 
 config.plugins.push(
+  new HappyPack({
+    id: 'scss',
+    threads: 4,
+    loaders: ['style!css-loader!postcss-loader!sass-loader?cacheDirectory'],
+  }),
   new webpack.HotModuleReplacementPlugin(),
   new webpack.NoErrorsPlugin()
 );

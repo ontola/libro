@@ -11,3 +11,4 @@ persons.dat
 tmp/
 .nyc_output/
 coverage
+.happypack
