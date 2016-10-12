@@ -2,7 +2,9 @@
 
 .EventItemShow {
   padding: units('x-small', 'large');
+  padding-bottom: 0;
   position: relative;
+  border-bottom: $box-divider;
 }
 
 .EventItemShow__index {
@@ -12,4 +14,8 @@
   left: -.9em;
   position: absolute;
   z-index: 2;
+}
+
+.EventItemShow__content {
+  padding-bottom: unit('x-small');
 }
