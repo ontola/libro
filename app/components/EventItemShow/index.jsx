@@ -4,7 +4,7 @@ import React, { PropTypes } from 'react';
 import {
   Detail,
   DetailsBar,
-  DetailDuration,
+  DetailDate,
   Heading,
   Progress,
 } from 'components';
@@ -49,7 +49,7 @@ const EventItemShow = ({
     false;
 
   const content = (
-    <div>
+    <div className="EventItemShow__content">
       {text}
       {children}
     </div>
@@ -57,15 +57,20 @@ const EventItemShow = ({
 
   const detailsBar = (
     <DetailsBar>
-      {((startDate && currentDate) || (startDate && endDate)) &&
-        <DetailDuration
+      {((startDate)) &&
+        <DetailDate
           currentDate={currentDate}
           startDate={startDate}
           endDate={endDate}
           isCurrent={isCurrent}
+          asHours
+          hideIcon
         />}
       {text &&
-        <Detail>jup text</Detail>
+        <Detail
+          icon="align-left"
+          text={`${text.split(' ').length} woorden`}
+        />
       }
     </DetailsBar>
   );
@@ -76,20 +81,27 @@ const EventItemShow = ({
     </div>
   );
 
+  const heading = (
+    <Heading
+      size="3"
+      children={title}
+    />
+  );
+
   return (
     <div className="EventItemShow">
       {showIndex && !isCurrent && indexComponent}
-      <CollapsibleContainer
-        trigger={
-          <Heading
-            size="3"
-            children={title}
-          />}
-        visibleContent={detailsBar}
-        children={content}
-        group={`event.${eventId}`}
-        id={`eventItem.${id}`}
-      />
+      {text &&
+        <CollapsibleContainer
+          trigger={heading}
+          visibleContent={detailsBar}
+          children={content}
+          group={`event.${eventId}`}
+          id={`eventItem.${id}`}
+        />
+      }
+      {!text && heading}
+      {!text && detailsBar}
       {progress}
     </div>
   );
