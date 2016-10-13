@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
 import {
-	Hits, NoHits, NumericRefinementListFilter, Pagination,
-	RefinementListFilter, RangeFilter, RangeSliderHistogram,
+  Hits, NoHits, NumericRefinementListFilter, Pagination,
+  RefinementListFilter, RangeFilter, RangeSliderHistogram,
   ResetFilters, Select, SortingSelector,
 } from 'searchkit';
 
@@ -23,16 +23,16 @@ const propTypes = {
 };
 
 const sortOption = [
-	{ label: 'Relevantie', field: '_score', order: 'desc', defaultOption: true },
-	{ label: 'Nieuw-Oud', field: 'date', order: 'desc' },
-	{ label: 'Oud-Nieuw', field: 'date', order: 'asc' },
+  { label: 'Relevantie', field: '_score', order: 'desc', defaultOption: true },
+  { label: 'Nieuw-Oud', field: 'date', order: 'desc' },
+  { label: 'Oud-Nieuw', field: 'date', order: 'asc' },
 ];
 
 const dateFilterOptions = [
-	{ title: 'Afgelopen 6 maanden', from: 1442966400000, to: 1458691200000 },
-	{ title: 'Afgelopen 1 jaar', from: 1427068800000, to: 1458691200000 },
-	{ title: 'Afgelopen 2 jaar', from: 1395532800000, to: 1458691200000 },
-	{ title: 'Afgelopen 5 jaar', from: 1332460800000, to: 1458691200000 },
+  { title: 'Afgelopen 6 maanden', from: 1442966400000, to: 1458691200000 },
+  { title: 'Afgelopen 1 jaar', from: 1427068800000, to: 1458691200000 },
+  { title: 'Afgelopen 2 jaar', from: 1395532800000, to: 1458691200000 },
+  { title: 'Afgelopen 5 jaar', from: 1332460800000, to: 1458691200000 },
 ];
 
 const translations = {
@@ -60,7 +60,7 @@ const ResetFiltersDisplay = (data) => {
 class Search extends Component {
   constructor(props, context) {
     super(props, context);
-    this.context.searchkit.translateFunction = (key) => translations[key];
+    this.context.searchkit.translateFunction = key => translations[key];
   }
 
   componentDidMount() {
@@ -70,7 +70,7 @@ class Search extends Component {
 
     searchkit.reloadSearch();
 
-    searchkit.resultsEmitter.listeners.push(results => {
+    searchkit.resultsEmitter.listeners.push((results) => {
       this.props.setHitCountAction(results.hits.total);
     });
   }
@@ -150,10 +150,10 @@ Search.contextTypes = {
 Search.propTypes = propTypes;
 
 export default connect(
-  (state) => ({
+  state => ({
     hits: getSearchHits(state),
   }),
-  (dispatch) => ({
+  dispatch => ({
     setHitCountAction: (count) => { dispatch(setHitCount(count)); },
     toggleDrawerAction: () => { dispatch(toggleDrawer()); },
   })

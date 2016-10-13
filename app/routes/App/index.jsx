@@ -6,7 +6,7 @@ import Helmet from 'react-helmet';
 import NavbarContainer from 'containers/NavbarContainer';
 import { Notification, Spinner } from 'components';
 
-import { resetErrorMessage } from 'state/communication/actions';
+import resetErrorMessage from 'state/communication/actions';
 import { getErrorBool, getErrorMsg, getLoadingBool } from 'state/communication/selectors';
 
 const propTypes = {
@@ -27,11 +27,7 @@ const renderErrorMessage = (error, errorMessage, reset) => {
   }
 
   return (
-    <Notification
-      type="error"
-      children={errorMessage}
-      reset={reset}
-    />
+    <Notification type="error" reset={reset}>{errorMessage}</Notification>
   );
 };
 
@@ -62,12 +58,12 @@ App.propTypes = propTypes;
 App.defaultProps = defaultProps;
 
 export default connect(
-  (state) => ({
+  state => ({
     error: getErrorBool(state),
     errorMessage: getErrorMsg(state),
     loading: getLoadingBool(state),
   }),
-  (dispatch) => ({
+  dispatch => ({
     reset: () => dispatch(resetErrorMessage()),
   })
 )(App);

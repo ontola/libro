@@ -15,7 +15,7 @@ const propTypes = {
   children: PropTypes.node,
 };
 
-const links = (id) => ([
+const links = id => ([
   { label: 'Overzicht', to: path.party(id) },
   { label: 'Voorstellen', to: path.partyMotions(id) },
   { label: 'Leden', to: path.partyMembers(id) },

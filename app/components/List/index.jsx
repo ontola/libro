@@ -18,7 +18,7 @@ const defaultProps = {
   align: 'vertical',
 };
 
-const hasItems = (items) => items.length > 0 || items.size > 0;
+const hasItems = items => items.length > 0 || items.size > 0;
 
 const loopItems = (items, renderItem) => {
   if (!hasItems(items)) {
@@ -35,10 +35,9 @@ const List = ({
   renderItem,
   align,
 }) => (
-  <div
-    className={(align === 'horizontal') ? 'List List--horizontal' : 'List'}
-    children={loopItems(items, renderItem)}
-  />
+  <div className={(align === 'horizontal') ? 'List List--horizontal' : 'List'}>
+    {loopItems(items, renderItem)}
+  </div>
 );
 
 List.propTypes = propTypes;

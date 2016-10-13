@@ -3,6 +3,8 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import './Progress.scss';
 
+import { calcPercentage } from 'helpers/numbers';
+
 const propTypes = {
   completed: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
@@ -17,7 +19,6 @@ const Progress = ({
   total,
   direction,
 }) => {
-  const TO_PERCENTAGE = 100;
   const progressClass = classNames({
     Progress: true,
     [`Progress--direction-${direction}`]: direction,
@@ -30,7 +31,7 @@ const Progress = ({
         <div
           className="Progress__completed"
           style={{
-            height: `${completed / total * TO_PERCENTAGE}%`,
+            height: `${calcPercentage(completed, total)}%`,
           }}
         />
       </div>

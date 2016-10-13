@@ -60,7 +60,7 @@ export default connect(
     currentIndex: getVoteMatchCountUserVotes(state, props),
     motionsLength: getVoteMatchMotionsLength(state, props),
   }),
-  (dispatch) => ({
-    loadPerson: (id) => dispatch(fetchPerson(id)),
+  dispatch => ({
+    loadPerson: id => dispatch(fetchPerson(id)),
   })
 )(CompareVotes);

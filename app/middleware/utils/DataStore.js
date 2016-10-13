@@ -1,4 +1,10 @@
 /* eslint no-param-reassign: 0 */
+
+
+const toCamel = key => key.replace(/(_\w)/g, substring =>
+  substring.toUpperCase().replace('_', '')
+);
+
 export default class DataStore {
   /**
    * @param {array} models An array with Immutable Records
@@ -6,15 +12,9 @@ export default class DataStore {
   constructor(models) {
     this.types = {};
 
-    models.forEach(Record => {
+    models.forEach((Record) => {
       this.types[new Record().getIn(['apiDesc', 'type'])] = Record;
     });
-  }
-
-  toCamel(string) {
-    return string.replace(/(_\w)/g, substring =>
-      substring.toUpperCase().replace('_', '')
-    );
   }
 
   formatEntity({ id, type, attributes, relationships }) {
@@ -23,8 +23,8 @@ export default class DataStore {
     Object.assign(entity, { id });
 
     // Normalize all keys & values
-    Object.keys(attributes).forEach(key => {
-      const camel = this.toCamel(key);
+    Object.keys(attributes).forEach((key) => {
+      const camel = toCamel(key);
       if (camel.match(/(Date|At)$/)) {
         attributes[key] = new Date(attributes[key]);
       }
@@ -37,9 +37,9 @@ export default class DataStore {
 
     // Check if relationships exist, if so add their ids in an array to the corresponding key
     if (relationships) {
-      Object.keys(relationships).forEach(key => {
+      Object.keys(relationships).forEach((key) => {
         const relation = relationships[key].data;
-        const camelKey = this.toCamel(key);
+        const camelKey = toCamel(key);
 
         if (relation !== undefined) {
           if (relation === null) {

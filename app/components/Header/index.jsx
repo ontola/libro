@@ -24,10 +24,7 @@ const defaultLinks = [{
 
 const propTypes = {
   title: PropTypes.string.isRequired,
-  links: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string.isRequired,
-    to: PropTypes.string.isRequired,
-  })).isRequired,
+  links: PropTypes.arrayOf(PropTypes.object),
   overlayColor: PropTypes.string.isRequired,
 };
 

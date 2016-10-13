@@ -1,10 +1,9 @@
 @import '../shared/config';
 
 .EventItemShow {
-  padding: units('x-small', 'large');
-  padding-bottom: 0;
-  position: relative;
   border-bottom: $box-divider;
+  padding: unit('x-small') unit('large') 0;
+  position: relative;
 }
 
 .EventItemShow__index {

@@ -27,7 +27,7 @@ const motions = [
 ];
 
 // NOTE: This is mock data. Eventually this data should be fetched by the api
-const newRecord = (id) => new VoteMatch({
+const newRecord = id => new VoteMatch({
   id,
   motions,
   comparedProfile: id,
@@ -41,7 +41,7 @@ const votematch = handleActions({
     .set('currentIndex', 0)
   ),
 
-  [VOTE_MATCH_NEXT]: (state) =>
+  [VOTE_MATCH_NEXT]: state =>
     increaseValue(state, 'currentIndex'),
 
   [VOTE_MATCH_SAVE]: (state, { payload }) =>

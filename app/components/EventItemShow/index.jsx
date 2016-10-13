@@ -81,12 +81,7 @@ const EventItemShow = ({
     </div>
   );
 
-  const heading = (
-    <Heading
-      size="3"
-      children={title}
-    />
-  );
+  const heading = <Heading size="3">{title}</Heading>;
 
   return (
     <div className="EventItemShow">
@@ -95,10 +90,11 @@ const EventItemShow = ({
         <CollapsibleContainer
           trigger={heading}
           visibleContent={detailsBar}
-          children={content}
           group={`event.${eventId}`}
           id={`eventItem.${id}`}
-        />
+        >
+          {content}
+        </CollapsibleContainer>
       }
       {!text && heading}
       {!text && detailsBar}

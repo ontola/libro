@@ -16,7 +16,7 @@ const defaultProps = {
   motions: {},
 };
 
-const renderMotionContainer = (data) => (
+const renderMotionContainer = data => (
   <MotionContainer
     key={data.id}
     motionId={data.id}

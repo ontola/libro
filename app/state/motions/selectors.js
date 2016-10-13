@@ -10,7 +10,7 @@ export const getMotionId = (state, props) => {
   return null;
 };
 
-export const getMotions = (state) =>
+export const getMotions = state =>
   state.getIn(['motions', 'items']);
 
 export const getMotion = (state, props) =>

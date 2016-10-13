@@ -18,7 +18,6 @@ const propTypes = {
   children: PropTypes.string.isRequired,
   creator: PropTypes.string,
   createdAt: PropTypes.instanceOf(Date),
-  link: PropTypes.string.isRequired,
   onVote: PropTypes.func.isRequired,
   voteData: PropTypes.string,
 };
@@ -54,8 +53,7 @@ const MotionShow = ({
           active={voteData === option}
           action={() => onVote(option)}
           type={option}
-          children={options[option]}
-        />
+        >{options[option]}</CardButton>
       ))}
     </CardActions>
   </Card>

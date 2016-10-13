@@ -25,7 +25,7 @@ const initialState = new Map({
 const toggleAll = (state, group) => {
   let shouldOpen = false;
 
-  const items = state.get('items').map(coll => {
+  const items = state.get('items').map((coll) => {
     if (coll.group !== group) {
       return coll;
     }

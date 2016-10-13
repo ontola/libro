@@ -34,18 +34,16 @@ const DonutChartActiveShape = ({
   <g>
     <text
       className="DonutChart__inner-key"
-      children={name}
       x={cx}
       y={cy - POS_KEY}
       textAnchor="middle"
-    />
+    >{name}</text>
     <text
       className="DonutChart__inner-value"
-      children={value}
       x={cx}
       y={cy + POS_VAL}
       textAnchor="middle"
-    />
+    >{value}</text>
     <a
       tabIndex={0}
       xlinkHref={link}

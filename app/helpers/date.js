@@ -25,14 +25,14 @@ const formatDate = (
  * @param {number} milliSeconds - Accepts milliSeconds
  * @return {string} A formatted time string
  */
-const durationToString = (milliSeconds) =>
+const durationToString = milliSeconds =>
   moment.duration(milliSeconds, 'milliSeconds').format('h:mm:ss');
 
 /**
  * @param {number} milliSeconds - Accepts milliSeconds
  * @return {string} A formatted time string
  */
-const durationToHumanizedString = (milliSeconds) =>
+const durationToHumanizedString = milliSeconds =>
   moment.duration(milliSeconds, 'milliSeconds').humanize();
 
 export {

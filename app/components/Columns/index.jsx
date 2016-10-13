@@ -27,18 +27,11 @@ const Columns = ({
   });
 
   const renderColumns = children.map((column, i) =>
-    <div
-      key={i}
-      className="Column"
-      children={column}
-    />
+    <div key={i} className="Column">{column}</div>
   );
 
   return (
-    <div
-      className={className}
-      children={renderColumns}
-    />
+    <div className={className}>{renderColumns}</div>
   );
 };
 

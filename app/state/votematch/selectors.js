@@ -4,10 +4,10 @@ import { getUserVotes } from 'state/votes/selectors';
 
 import VoteMatch from 'models/VoteMatch';
 
-export const getVoteMatches = (state) =>
+export const getVoteMatches = state =>
   state.getIn(['votematch', 'items']);
 
-export const getVoteMatchCurrentIndex = (state) =>
+export const getVoteMatchCurrentIndex = state =>
   state.getIn(['votematch', 'currentIndex']);
 
 export const getCurrentVoteMatch = (state) => {
@@ -15,10 +15,10 @@ export const getCurrentVoteMatch = (state) => {
   return state.getIn(['votematch', 'items', id]) || new VoteMatch();
 };
 
-export const getVoteMatchMotions = (state) =>
+export const getVoteMatchMotions = state =>
   getCurrentVoteMatch(state).get('motions');
 
-export const getVoteMatchComparedProfilePositions = (state) =>
+export const getVoteMatchComparedProfilePositions = state =>
   getCurrentVoteMatch(state).get('comparedProfilePositions');
 
 export const getVoteMatchMotionsLength = createSelector(
@@ -33,7 +33,7 @@ export const getVoteMatchUserVotes = createSelector(
 
 export const getVoteMatchCountUserVotes = createSelector(
   [getVoteMatchUserVotes],
-  (votes) => votes.filter(vote => vote !== undefined).length
+  votes => votes.filter(vote => vote !== undefined).length
 );
 
 export const getVoteMatchSimilarity = createSelector(

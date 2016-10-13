@@ -29,7 +29,7 @@ const partiesIndex = [
   { id: '16', name: 'Van Vliet', members: 1, image: '/static/logos/vanvliet.png', link: path.party('16') },
 ];
 
-const renderParty = (party) => (
+const renderParty = party => (
   <ProfileListItem
     key={party.id}
     id={party.id}

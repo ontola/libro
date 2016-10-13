@@ -26,7 +26,7 @@ const rgbToArray = rgb => rgb.replace(/[^\d,]/g, '').split(',');
  * @param {string} rgb A rgb color string
  * @return {string} luminance index number of rgb string
  */
-const getLuminance = rgb => {
+const getLuminance = (rgb) => {
   const LIMIT = 255;
   const DECIMALS = 2;
   const aR = 0.299;
@@ -41,7 +41,7 @@ const getLuminance = rgb => {
     rgbArray = rgb;
   }
 
-  const all = coefficients.map((a, i) => rgbArray[i] / LIMIT * a);
+  const all = coefficients.map((a, i) => (rgbArray[i] / LIMIT) * a);
   return all.reduce((prev, curr) => prev + curr).toFixed(DECIMALS);
 };
 

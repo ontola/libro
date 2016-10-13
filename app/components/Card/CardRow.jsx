@@ -15,11 +15,10 @@ const CardRow = ({
   showArrow,
 }) => (
   <div
-    children={children}
     className={
       showArrow ? 'CardRow CardRow--show-arrow' : 'CardRow'
     }
-  />
+  >{children}</div>
 );
 
 CardRow.propTypes = propTypes;

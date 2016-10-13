@@ -5,7 +5,6 @@ import { Link } from 'react-router';
 const propTypes = {
   side: PropTypes.oneOf(['yes', 'no']).isRequired,
   owner: PropTypes.string,
-  msg: PropTypes.string,
 };
 
 const defaultProps = {

@@ -5,15 +5,14 @@ import { assert } from 'chai';
 import Button from './';
 
 describe('Button component', () => {
-  const buttonReqProps = mount(<Button children="Button label" />);
+  const buttonReqProps = mount(<Button>Button label</Button>);
   const buttonAllProps = mount(
     <Button
-      children="joe"
       icon="lightbulb-o"
       small
       theme="subtle"
       variant="pro"
-    />
+    >Joe</Button>
   );
 
   describe('with only the required props', () => {

@@ -23,7 +23,7 @@ const callApi = (endpoint) => {
 
 const parseResult = (jsonData, emitRecord, next) => {
   const actions = [];
-  const addRecordToActions = (entity) => actions.push(emitRecord(dataStore.formatEntity(entity)));
+  const addRecordToActions = entity => actions.push(emitRecord(dataStore.formatEntity(entity)));
 
   if (jsonData.data.constructor === Array) {
     jsonData.data.forEach(entity => addRecordToActions(entity));
@@ -38,7 +38,7 @@ const parseResult = (jsonData, emitRecord, next) => {
   next(batchActions(actions));
 };
 
-const middleware = () => next => action => {
+const middleware = () => next => (action) => {
   if (!action.payload || !action.payload.apiAction) {
     return next(action);
   }
@@ -46,7 +46,7 @@ const middleware = () => next => action => {
   const { id, endpoint } = action.payload;
   const constructEndpoint = id ? `${endpoint}/${id}` : endpoint;
 
-  const emitRecord = (record) => ({
+  const emitRecord = record => ({
     type: record.getIn(['apiDesc', 'actions', 'resource']),
     payload: {
       record,
@@ -73,7 +73,7 @@ const middleware = () => next => action => {
     }));
 };
 
-export default models => {
+export default (models) => {
   dataStore = new DataStore(models);
   return middleware;
 };

@@ -60,7 +60,6 @@ class MotionContainer extends Component {
 
     return (
       <RenderComponent
-        children={data.text}
         createdAt={data.createdAt}
         creator={data.creator}
         id={data.id}
@@ -72,7 +71,9 @@ class MotionContainer extends Component {
         title={data.title}
         type={data.classification}
         voteData={voteData}
-      />
+      >
+        {data.text}
+      </RenderComponent>
     );
   }
 }
@@ -85,9 +86,9 @@ export default connect(
     data: getMotion(state, ownProps),
     voteData: getVoteByMotionId(state, ownProps),
   }),
-  (dispatch) => ({
-    loadMotion: (id) => dispatch(fetchMotion(id)),
-    onNextMotion: (data) => dispatch(voteMatchNext(data)),
-    onVote: (data) => dispatch(voteAction(data)),
+  dispatch => ({
+    loadMotion: id => dispatch(fetchMotion(id)),
+    onNextMotion: data => dispatch(voteMatchNext(data)),
+    onVote: data => dispatch(voteAction(data)),
   })
 )(MotionContainer);

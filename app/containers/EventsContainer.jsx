@@ -16,7 +16,7 @@ const defaultProps = {
   events: {},
 };
 
-const renderEventContainer = (data) => (
+const renderEventContainer = data => (
   <EventContainer
     key={data.id}
     eventId={data.id}

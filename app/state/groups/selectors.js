@@ -1,1 +1,1 @@
-export const getGroups = (state) => state.getIn(['groups', 'items']);
+export const getGroups = state => state.getIn(['groups', 'items']);

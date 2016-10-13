@@ -3,7 +3,7 @@ import { getMotionArgIds } from 'state/motions/selectors';
 
 export const getArguments = state => state.getIn(['argumentations', 'items']);
 
-export const getArgs = (side) => createSelector(
+export const getArgs = side => createSelector(
   getMotionArgIds,
   getArguments,
   (ids, args) => {

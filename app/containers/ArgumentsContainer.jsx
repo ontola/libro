@@ -8,7 +8,6 @@ import {
 } from 'components';
 
 const propTypes = {
-  motionId: PropTypes.string.isRequired,
   argsPro: PropTypes.array.isRequired,
   argsCon: PropTypes.array.isRequired,
 };
@@ -18,7 +17,7 @@ const defaultProps = {
   argsCon: [],
 };
 
-const renderItem = (arg) => (
+const renderItem = arg => (
   <ArgumentListItem
     key={arg.id}
     title={arg.title}

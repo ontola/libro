@@ -12,11 +12,11 @@ const propTypes = {
 };
 
 const DrawerContainer = connect(
-  (state) => ({
+  state => ({
     visible: getDrawerVisible(state),
     hits: getSearchHits(state),
   }),
-  (dispatch) => ({
+  dispatch => ({
     onClickToggle: () => dispatch(toggleDrawer()),
   })
 )(Drawer);

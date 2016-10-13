@@ -3,6 +3,7 @@ import { Map } from 'immutable';
 import chaiImmutable from 'chai-immutable';
 
 import votematch from './reducer';
+
 chai.use(chaiImmutable);
 
 describe('Votematch reducer', () => {

@@ -54,8 +54,8 @@ export default connect(
     motionIds: getVoteMatchMotions(state, props),
     similarity: getVoteMatchSimilarity(state, props),
   }),
-  (dispatch) => ({
-    onStartVoteMatch: (record) => dispatch(voteMatchStart(record)),
-    onSaveScore: (score) => dispatch(voteMatchSave(score)),
+  dispatch => ({
+    onStartVoteMatch: record => dispatch(voteMatchStart(record)),
+    onSaveScore: score => dispatch(voteMatchSave(score)),
   })
 )(VoteMatchContainer);

@@ -12,7 +12,7 @@ module.exports = {
       components: './app/components/Card/*.jsx',
     },
   ],
-  updateWebpackConfig: (webpackConfig => {
+  updateWebpackConfig: ((webpackConfig) => {
     Object.assign(webpackConfig.resolve.alias, webpackCommonConfig.resolve.alias);
     webpackConfig.entry.push(path.join(__dirname, 'app/components/shared/styleguide.scss'));
     webpackConfig.entry.unshift(path.join(__dirname, 'app/components/shared/init.scss'));

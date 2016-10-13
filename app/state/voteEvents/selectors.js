@@ -7,8 +7,10 @@ import { getVotes } from 'state/votes/selectors';
 import VoteEvent from 'models/VoteEvent';
 
 export const getVoteEvent = (state, props) => {
-  const voteEventId = getMotionVoteEvents(state, props);
-  return state.getIn(['voteEvents', 'items', voteEventId]) || new VoteEvent();
+  const voteEventIds = getMotionVoteEvents(state, props);
+  const eventId = voteEventIds && Object.values(voteEventIds)[0];
+  const voteEvent = state.getIn(['voteEvents', 'items', eventId]) || new VoteEvent();
+  return voteEvent;
 };
 
 export const getVoteEventVotes = (state, props) =>
@@ -22,16 +24,16 @@ export const getVoteEventCounts = (state, props) =>
 
 export const getVoteEventVotesCount = createSelector(
   [getVoteEventVotes],
-  (votes) => votes.length
+  votes => votes.length
 );
 
-export const getVoteEventOptions = (option) => createSelector(
+export const getVoteEventOptions = option => createSelector(
   [getVoteEventVotes, getVotes],
   (eventVotes, votes) =>
     eventVotes.filter(eventVote => votes.getIn([eventVote, 'option']) === option)
 );
 
-export const getVoteEventVotesByOptions = (option) => createSelector(
+export const getVoteEventVotesByOptions = option => createSelector(
   [getVoteEventVotes, getVotes],
   (eventVotes, votes) =>
     eventVotes.filter(eventVote => votes.getIn([eventVote, 'option']) === option)
@@ -41,7 +43,7 @@ export const getVoteEventVotesSorted = (state, props) => {
   const options = ['yes', 'no', 'abstain'];
   const aggs = {};
 
-  options.forEach(option => {
+  options.forEach((option) => {
     const votes = getVoteEventVotesByOptions(option)(state, props);
     Object.assign(aggs, {
       [option]: {

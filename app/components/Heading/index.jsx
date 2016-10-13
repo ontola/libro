@@ -26,11 +26,7 @@ const Heading = ({
   });
 
   return (
-    <Element
-      children={children}
-      className={headingClass}
-      role="heading"
-    />
+    <Element className={headingClass} role="heading">{children}</Element>
   );
 };
 

@@ -25,11 +25,9 @@ const defaultProps = {
 };
 
 const wrapInListItems = (content, keyBase) => content && content.map((item, i) =>
-  <li
-    key={`${keyBase}.${i}`}
-    className="Navbar__item-li"
-    children={item}
-  />
+  <li key={`${keyBase}.${i}`} className="Navbar__item-li">
+    {item}
+  </li>
 );
 
 const Navbar = ({

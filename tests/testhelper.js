@@ -1,7 +1,6 @@
-
 require('babel-register')();
-
 const jsdom = require('jsdom').jsdom;
+
 const exposedProperties = ['windnpm run ow', 'navigator', 'document'];
 const ignoreStyles = () => null;
 

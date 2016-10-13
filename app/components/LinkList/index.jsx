@@ -3,10 +3,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
 const propTypes = {
-  links: PropTypes.arrayOf(PropTypes.shape({
-    to: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-  })).isRequired,
+  links: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 const defaultProps = {
@@ -21,12 +18,11 @@ const LinkList = ({ links }) => {
       className="LinkList__link"
       activeClassName="LinkList__link--active"
       to={link.to}
-      children={link.label}
-    />
+    >{link.label}</Link>
   ));
 
   return (
-    <nav role="navigation" className="LinkList" children={generateLinks} />
+    <nav role="navigation" className="LinkList">{generateLinks}</nav>
   );
 };
 

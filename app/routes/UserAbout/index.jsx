@@ -43,7 +43,7 @@ const UserAbout = () => (
 
     <Widget title="Links">
       {profileLinks.map(link => (
-        <a key={link.value} href={link.to} target="_blank">
+        <a key={link.value} href={link.to} target="_blank" rel="noreferrer noopener">
           <CardRow showArrow>
             <CardContent>
               <LabelValue label={link.value} value={link.label} />

@@ -17,10 +17,8 @@ const propTypes = {
   creator: PropTypes.string,
   createdAt: PropTypes.instanceOf(Date),
   link: PropTypes.string.isRequired,
-  onVote: PropTypes.func.isRequired,
   side: PropTypes.string,
   status: PropTypes.string,
-  voteData: PropTypes.string,
 };
 
 const MotionListItem = ({

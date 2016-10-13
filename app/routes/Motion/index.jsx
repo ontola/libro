@@ -20,9 +20,7 @@ import path from 'helpers/paths';
 const propTypes = {
   argsPro: PropTypes.array,
   argsCon: PropTypes.array,
-  params: PropTypes.shape({
-    motionId: PropTypes.string.isRequired,
-  }),
+  params: PropTypes.object.isRequired,
   title: PropTypes.string,
 };
 
@@ -31,15 +29,14 @@ const defaultProps = {
   argsCon: [],
 };
 
-const renderArgument = (data) => (
+const renderArgument = data => (
   <ArgumentShow
     key={data.id}
     title={data.title}
-    children={data.content}
     creator={data.creator}
     side={data.side}
     createdAt={data.createdAt}
-  />
+  >{data.content}</ArgumentShow>
 );
 
 const Motion = ({
@@ -50,10 +47,7 @@ const Motion = ({
 }) => (
   <Container>
     <Helmet title={title} />
-    <BackButton
-      children="Terug naar alle moties"
-      link={path.motionsIndex()}
-    />
+    <BackButton link={path.motionsIndex()}>Terug naar alle moties</BackButton>
     <MotionContainer motionId={params.motionId} />
     <VoteDataContainer motionId={params.motionId} />
     <Columns>

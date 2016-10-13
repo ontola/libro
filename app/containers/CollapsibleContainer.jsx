@@ -7,12 +7,9 @@ import { getCollapsibleOpened } from 'state/collapsible/selectors';
 
 const propTypes = {
   id: PropTypes.any.isRequired,
-  children: PropTypes.node.isRequired,
   group: PropTypes.string,
   startOpened: PropTypes.bool,
-  trigger: PropTypes.node.isRequired,
   onInitializeCollapsible: PropTypes.func.isRequired,
-  visibleContent: PropTypes.node,
 };
 
 const defaultProps = {
@@ -42,6 +39,6 @@ export default connect(
   }),
   (dispatch, { id }) => ({
     onClickToggle: () => dispatch(toggleOne({ id })),
-    onInitializeCollapsible: (data) => dispatch(initializeCollapsible(data)),
+    onInitializeCollapsible: data => dispatch(initializeCollapsible(data)),
   })
 )(CollapsibleContainer);

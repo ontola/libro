@@ -78,8 +78,9 @@ const ProfileCard = ({
               }}
               small
               icon="tachometer"
-              children="Vergelijk"
-            />
+            >
+              Vergelijk
+            </Button>
           )}
         </div>
       </div>

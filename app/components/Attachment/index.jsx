@@ -32,6 +32,7 @@ const Attachment = ({
         href={url}
         className="Attachment__primary"
         target="_blank"
+        rel="noreferrer noopener"
         title={title}
       >
         <FontAwesome className="Attachment__icon" name="file" />

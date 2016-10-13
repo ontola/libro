@@ -15,17 +15,13 @@ import {
 import EventItemContainer from 'containers/EventItemContainer';
 
 const propTypes = {
-  attendees: PropTypes.array,
   children: PropTypes.node,
   createdAt: PropTypes.instanceOf(Date),
-  creator: PropTypes.string,
   endDate: PropTypes.instanceOf(Date),
   eventItems: PropTypes.array,
   id: PropTypes.string,
-  loading: false,
   onToggleAll: PropTypes.func,
   startDate: PropTypes.instanceOf(Date),
-  speeches: PropTypes.array,
   text: PropTypes.string,
   title: PropTypes.string,
 };
@@ -45,7 +41,7 @@ const EventShow = ({
   text,
   title,
 }) => {
-  const renderEventItem = (eventItem) => (
+  const renderEventItem = eventItem => (
     <EventItemContainer id={eventItem} eventId={id} />
   );
 

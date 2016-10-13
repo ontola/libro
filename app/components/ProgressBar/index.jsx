@@ -1,5 +1,6 @@
 import './ProgressBar.scss';
 import React, { PropTypes } from 'react';
+import { calcPercentage } from 'helpers/numbers';
 
 const propTypes = {
   context: PropTypes.string,
@@ -12,9 +13,6 @@ const defaultProps = {
   total: 0,
 };
 
-const PERCENTAGE = 100;
-const barWidth = (completed, total) => completed / total * PERCENTAGE;
-
 const ProgressBar = ({
   completed,
   total,
@@ -24,7 +22,7 @@ const ProgressBar = ({
     <div
       className="ProgressBar__bar"
       style={{
-        width: `${barWidth(completed, total)}%`,
+        width: `${calcPercentage(completed, total)}%`,
       }}
     />
     <div className="ProgressBar__bar-background" />

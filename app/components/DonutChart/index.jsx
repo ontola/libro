@@ -29,11 +29,7 @@ const defaultColors = [
 
 const propTypes = {
   colors: PropTypes.array,
-  data: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    value: PropTypes.number.isRequired,
-    link: PropTypes.string,
-  })).isRequired,
+  data: PropTypes.arrayOf(PropTypes.objects).isRequired,
 };
 
 const defaultProps = {

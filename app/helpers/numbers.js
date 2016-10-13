@@ -1,4 +1,4 @@
-const PERCENTAGE = 100;
+export const PERCENTAGE = 100;
 
 export const calcPercentage = (number, total) => {
   if (total < 1) {

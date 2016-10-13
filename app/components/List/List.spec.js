@@ -18,8 +18,8 @@ const mockItemsObject = new Map({
   }),
 });
 
-const renderItem = (id) => <div key={id}>{id}</div>;
-const wrapper = (items) => shallow(<List items={items} renderItem={renderItem} />);
+const renderItem = id => <div key={id}>{id}</div>;
+const wrapper = items => shallow(<List items={items} renderItem={renderItem} />);
 const wrapperObjects = shallow(<List items={mockItemsObject} renderItem={renderItem} />);
 const wrapperHorizontal = shallow(
   <List

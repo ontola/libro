@@ -5,7 +5,7 @@ import { AppContainer } from 'react-hot-loader';
 
 import configureStore from './state';
 import { ELASTICSEARCH_URL } from './config';
-import { immutableHistory } from './helpers/history';
+import immutableHistory from './helpers/history';
 import IndexContainer from './containers/IndexContainer';
 
 const store = configureStore();

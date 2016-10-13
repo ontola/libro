@@ -1,3 +1,4 @@
+/* eslint react/no-danger: 0 */
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
@@ -38,7 +39,7 @@ const SearchResultItem = ({
       <CardHeader noSpacing>
         <Heading size="3">
           <Link to={link}>
-            <div dangerouslySetInnerHTML={{ __html: title }}></div>
+            <div dangerouslySetInnerHTML={{ __html: title }} />
           </Link>
         </Heading>
         <DetailsBar>
@@ -48,7 +49,7 @@ const SearchResultItem = ({
         </DetailsBar>
       </CardHeader>
       <CardContent>
-        <div dangerouslySetInnerHTML={{ __html: children }}></div>
+        <div dangerouslySetInnerHTML={{ __html: children }} />
       </CardContent>
     </Card>
   );

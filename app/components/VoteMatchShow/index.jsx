@@ -23,6 +23,7 @@ const defaultProps = {
 class VoteMatchShow extends Component {
   constructor() {
     super();
+    this.sections = {};
     this.scrollTo = this.scrollTo.bind(this);
   }
 
@@ -47,7 +48,7 @@ class VoteMatchShow extends Component {
   }
 
   scrollTo(id) {
-    return this.refs[id] && this.refs[id].scrollIntoView();
+    return this.sections[id] && this.sections[id].scrollIntoView();
   }
 
   render() {
@@ -62,7 +63,7 @@ class VoteMatchShow extends Component {
           {motionIds.map(id => (
             <div
               className="VoteMatchShow__motion"
-              ref={id}
+              ref={(r) => { this.sections[id] = r; }}
               key={id}
             >
               <Cover fullScreen>
@@ -77,7 +78,7 @@ class VoteMatchShow extends Component {
             </div>
           ))}
         </div>
-        <div className="VoteMatchShow__results" ref="results">
+        <div className="VoteMatchShow__results" ref={(r) => { this.sections.results = r; }}>
           <Cover fullScreen>
             <Container>
               <ScoreSheetContainer id={voteMatchId} />

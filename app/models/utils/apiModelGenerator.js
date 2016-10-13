@@ -23,7 +23,7 @@ export const apiModelGenerator = (properties, apiDesc) => {
     }
   };
 
-  APIActionClass.fetch = (id) => ({
+  APIActionClass.fetch = id => ({
     type: apiDesc.get('actions').get('resource'),
     payload: {
       apiAction: true,

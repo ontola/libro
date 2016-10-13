@@ -21,13 +21,14 @@ const SearchResultContainer = ({ result }) => {
 
   return (
     <SearchResultItem
-      children={content}
       classification={data.classification}
       createdAt={formatDate(data.date)}
       link={path.motion(data.id)}
       title={data.onderwerp}
       score={score}
-    />
+    >
+      {content}
+    </SearchResultItem>
   );
 };
 

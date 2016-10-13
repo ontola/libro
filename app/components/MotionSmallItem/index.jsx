@@ -44,20 +44,17 @@ const MotionSmallItem = ({
         active={voteData === 'pro'}
         action={() => onVote('pro')}
         type="pro"
-        children="Voor"
-      />
+      >Voor</CardButton>
       <CardButton
         active={voteData === 'neutral'}
         action={() => onVote('neutral')}
         type="neutral"
-        children="Neutraal"
-      />
+      >Neutraal</CardButton>
       <CardButton
         active={voteData === 'con'}
         action={() => onVote('con')}
         type="con"
-        children="Tegen"
-      />
+      >Tegen</CardButton>
     </CardActions>
   </Card>
 );

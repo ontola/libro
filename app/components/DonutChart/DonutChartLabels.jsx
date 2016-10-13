@@ -25,9 +25,9 @@ const DonutChartLabels = ({
   const THRESHOLD = 0.02;
   const LABEL_POS_COEF = 1.25;
 
-  const radius = innerRadius + (outerRadius - innerRadius) * LABEL_POS_COEF;
-  const x = cx + radius * Math.cos(-midAngle * RADIAN);
-  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+  const radius = innerRadius + ((outerRadius - innerRadius) * LABEL_POS_COEF);
+  const x = cx + (radius * Math.cos(-midAngle * RADIAN));
+  const y = cy + (radius * Math.sin(-midAngle * RADIAN));
 
   if (percent <= THRESHOLD) {
     return undefined;
@@ -40,8 +40,7 @@ const DonutChartLabels = ({
       textAnchor={x > cx ? 'start' : 'end'}
       dominantBaseline="central"
       className="DonutChart__label"
-      children={name}
-    />
+    >{name}</text>
   );
 };
 

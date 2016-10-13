@@ -76,8 +76,9 @@ class SideBar extends Component {
                 sideBarOpen: true,
               })}
               icon="comments"
-              children="Discussie"
-            />
+            >
+              Discussie
+            </Button>
           </div>
         }
         {this.props.children}

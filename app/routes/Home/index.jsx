@@ -19,7 +19,7 @@ import path from 'helpers/paths';
 import MotionContainer from 'containers/MotionContainer';
 
 const parties = [
-	{ name: 'VVD', value: 40, link: path.party('1') },
+  { name: 'VVD', value: 40, link: path.party('1') },
   { name: 'PvdA', value: 36, link: path.party('2') },
   { name: 'SP', value: 15, link: path.party('3') },
   { name: 'CDA', value: 13, link: path.party('4') },

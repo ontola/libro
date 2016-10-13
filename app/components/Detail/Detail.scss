@@ -24,10 +24,10 @@
 .Detail__icon {
   align-items: center;
   border-radius: 100%;
+  color: color('grey');
   display: flex;
   justify-content: center;
   margin-right: unit('xx-small');
-  color: color('grey');
 }
 
 .Detail__image {

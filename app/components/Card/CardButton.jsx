@@ -30,12 +30,11 @@ const CardButton = ({
   return (
     <Button
       active={active}
-      children={children}
       icon={buttonIcon[type]}
       onClick={() => action()}
       theme="box"
       variant={type}
-    />
+    >{children}</Button>
   );
 };
 

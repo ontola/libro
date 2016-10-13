@@ -15,11 +15,10 @@ const CardActions = ({
   noSpacing,
 }) => (
   <div
-    children={children}
     className={
       noSpacing ? 'CardActions CardActions--no-spacing' : 'CardActions'
     }
-  />
+  >{children}</div>
 );
 
 CardActions.propTypes = propTypes;

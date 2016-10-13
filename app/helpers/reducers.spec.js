@@ -26,7 +26,7 @@ const initialState = new Map({
   items: new Map(),
 });
 
-const expectedState = (rec) => new Map({
+const expectedState = rec => new Map({
   items: new Map({
     [rec.id]: rec,
   }),

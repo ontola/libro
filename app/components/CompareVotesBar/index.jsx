@@ -15,22 +15,19 @@ import { percentageToRedOrGreen } from 'helpers/color';
 const propTypes = {
   label: PropTypes.string.isRequired,
   /** Directs user to a page that shows more information about the differences in voting behavior */
-  compareAllLink: PropTypes.string,
   mainPercentage: PropTypes.number.isRequired,
   tags: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
-      link: PropTypes.string.isRequired,
-      percentage: PropTypes.number.isRequired,
     })
   ).isRequired,
 };
 
-const suffix = (percentage) => (
+const suffix = percentage => (
   <span style={{ color: percentageToRedOrGreen(percentage) }}>{percentage}%</span>
 );
 
-const renderTag = (tag) => (
+const renderTag = tag => (
   <span key={tag.label} title="Klik om alle voorstellen over dit thema te bekijken.">
     <Link to={tag.link}>
       <Tag suffix={suffix(tag.percentage)}>{tag.label}</Tag>
@@ -49,20 +46,20 @@ const CompareVotesBar = ({
     </div>
   );
 
+  const trigger = (
+    <LabelValueBar
+      label={label}
+      value={mainPercentage}
+      coloredValue
+      showBar
+    />
+  );
+
   return (
     <div className="CompareVotesBar">
-      <CollapsibleContainer
-        id={label}
-        trigger={
-          <LabelValueBar
-            label={label}
-            value={mainPercentage}
-            coloredValue
-            showBar
-          />
-        }
-        children={collapsibleChildren()}
-      />
+      <CollapsibleContainer id={label} trigger={trigger}>
+        {collapsibleChildren()}
+      </CollapsibleContainer>
     </div>
   );
 };

@@ -3,9 +3,7 @@
     "react",
     "jsx-a11y"
   ],
-  "extends": [
-    "eslint-config-airbnb"
-  ],
+  "extends": "airbnb",
   "root": true,
   "env": {
     "browser": true,
@@ -59,7 +57,7 @@
     "jsx-a11y/no-access-key": 2,
     "jsx-a11y/no-marquee": 2,
     "jsx-a11y/no-onchange": 2,
-    // "jsx-a11y/no-static-element-interactions": 2,
+    "jsx-a11y/no-static-element-interactions": 0,
     "jsx-a11y/onclick-has-focus": 2,
     "jsx-a11y/onclick-has-role": 2,
     "jsx-a11y/role-has-required-aria-props": 2,
@@ -67,6 +65,13 @@
     "jsx-a11y/scope": 2,
     "jsx-a11y/tabindex-no-positive": 2,
     // Code style
+    "import/no-extraneous-dependencies": ["error", {
+      "devDependencies": true,
+    }],
+    "import/imports-first": 0,
+    "import/prefer-default-export": 0,
+    "prefer-default-export": 0,
+    "react/jsx-filename-extension": 0,
     "space-unary-ops": ["error", { "words": true, "nonwords": false }],
     "no-magic-numbers": ["error", {
       "ignore": [

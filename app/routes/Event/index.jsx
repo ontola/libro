@@ -13,9 +13,7 @@ import EventContainer from 'containers/EventContainer';
 import SpeechesContainer from 'containers/SpeechesContainer';
 
 const propTypes = {
-  params: PropTypes.shape({
-    eventId: PropTypes.string.isRequired,
-  }),
+  params: PropTypes.object.isRequired,
   title: PropTypes.string,
 };
 

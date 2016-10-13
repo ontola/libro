@@ -11,7 +11,7 @@ import {
   getPersonVoteMatch,
 } from 'state/persons/selectors';
 
-const defaultRenderItem = (user) => (
+const defaultRenderItem = user => (
   <Detail
     text={user.name}
     imageUrl={user.image}
@@ -22,7 +22,6 @@ const defaultRenderItem = (user) => (
 const propTypes = {
   full: PropTypes.bool,
   loadProfile: PropTypes.func,
-  user: PropTypes.string.isRequired,
   data: PropTypes.instanceOf(Person),
   renderItem: PropTypes.func,
   similarity: PropTypes.number,

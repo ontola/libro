@@ -10,7 +10,6 @@ import { getSpeech } from 'state/speeches/selectors';
 
 const propTypes = {
   data: PropTypes.instanceOf(Speech),
-  id: PropTypes.string.isRequired,
 };
 
 const SpeechContainer = ({
@@ -18,14 +17,15 @@ const SpeechContainer = ({
 }) => (
   <ChronoItem
     attributionText={data.attributionText}
-    children={data.text}
     currentDate={data.currentDate}
     endDate={data.endDate}
     eventId={data.eventId}
     id={data.id}
     speaker={data.speakerId}
     startDate={data.startDate}
-  />
+  >
+    {data.text}
+  </ChronoItem>
 );
 
 SpeechContainer.propTypes = propTypes;
