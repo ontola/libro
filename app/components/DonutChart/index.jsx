@@ -29,7 +29,7 @@ const defaultColors = [
 
 const propTypes = {
   colors: PropTypes.array,
-  data: PropTypes.arrayOf(PropTypes.objects).isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 const defaultProps = {

@@ -2,7 +2,6 @@
   "name": "argu-open-data",
   "description": "Een interface voor motiedata uit de gemeenteraad",
   "version": "0.1.0",
-  "author": "Tom Dalenberg <tomdalenberg@argu.co> (https://argu.co)",
   "author": "Joep Meindertsma <joep@argu.co> (https://argu.co)",
   "dependencies": {
     "body-parser": "^1.15.2",

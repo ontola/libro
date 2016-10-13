@@ -24,7 +24,10 @@ const propTypes = {
   loadProfile: PropTypes.func,
   data: PropTypes.instanceOf(Person),
   renderItem: PropTypes.func,
-  similarity: PropTypes.number,
+  similarity: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.bool,
+  ]),
 };
 
 const defaultProps = {
