@@ -16,7 +16,7 @@ import {
 const propTypes = {
   /** Content of argument */
   children: PropTypes.node,
-  creator: PropTypes.string.isRequired,
+  creator: PropTypes.string,
   createdAt: PropTypes.instanceOf(Date).isRequired,
   side: PropTypes.oneOf(['pro', 'con']).isRequired,
   title: PropTypes.string.isRequired,
@@ -33,7 +33,7 @@ const ArgumentShow = ({
     <CardHeader noSpacing>
       <Heading variant={side} size="3">{title}</Heading>
       <DetailsBar>
-        <PersonContainer user={creator} />
+        {creator && <PersonContainer user={creator} />}
         <DetailDate date={createdAt} />
       </DetailsBar>
     </CardHeader>

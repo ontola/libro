@@ -10,10 +10,12 @@ import {
 } from 'components';
 
 const propTypes = {
-  /** */
   attributionText: PropTypes.string,
   /** The content of the item */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.string,
+  ]).isRequired,
   /** Include a currentDate and an endDate to show a progressBar */
   currentDate: PropTypes.instanceOf(Date),
   endDate: PropTypes.instanceOf(Date),
@@ -30,16 +32,16 @@ const ChronoItem = ({
   speaker,
   startDate,
 }) => {
-  const totalDuration = () => Math.abs(endDate - startDate);
-  const completedDuration = () => Math.abs(currentDate - startDate);
+  const totalDuration = Math.abs(endDate - startDate);
+  const completedDuration = Math.abs(currentDate - startDate);
 
   return (
     <CardRow>
       <CardContent>
         {currentDate && endDate &&
           <Progress
-            total={totalDuration()}
-            completed={completedDuration()}
+            total={totalDuration}
+            completed={completedDuration}
             direction="down"
           />
         }

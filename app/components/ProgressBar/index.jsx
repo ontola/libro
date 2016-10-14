@@ -26,7 +26,7 @@ const ProgressBar = ({
       }}
     />
     <div className="ProgressBar__bar-background" />
-    <div className="ProgressBar__context">{context}</div>
+    {context && <div className="ProgressBar__context">{context}</div>}
     <div className="ProgressBar__completion-text">{completed}/{total}</div>
   </div>
 );

@@ -4,21 +4,22 @@ import {
   List,
 } from 'components';
 
+const defaultRenderItem = id => (
+  <SpeechContainer key={id} id={id} />
+);
+
 const propTypes = {
-  speechIds: PropTypes.array,
+  renderItem: PropTypes.func,
+  speechIds: PropTypes.array.isRequired,
 };
 
 const defaultProps = {
+  renderItem: defaultRenderItem,
   speechIds: [],
 };
 
-function renderItem(id) {
-  return (
-    <SpeechContainer key={id} id={id} />
-  );
-}
-
 const ChronoFeed = ({
+  renderItem,
   speechIds,
 }) => (
   <div className="ChronoFeed">
