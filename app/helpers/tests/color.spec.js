@@ -6,7 +6,7 @@ import {
   isRGB,
   rgbToArray,
   percentageToRedOrGreen,
-} from './color';
+} from '../color';
 
 const rgbInput = 'rgb(230, 48, 205)';
 const rgbArray = ['230', '48', '205'];

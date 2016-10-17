@@ -69,7 +69,7 @@ const ProfileCard = ({
         </div>
         <div className="ProfileCard__buttons">
           {similarity ? (
-            <div>VoteMatch: {similarity}%</div>
+            <div className="ProfileCard__similarity">VoteMatch: {similarity}%</div>
           ) : (
             <Button
               onClick={(e) => {

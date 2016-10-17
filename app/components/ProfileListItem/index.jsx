@@ -35,7 +35,7 @@ const ProfileListItem = ({
         </Heading>
       </div>
       {description &&
-        <div className="ProfileListItem__party">
+        <div className="ProfileListItem__description">
           {description}
         </div>
       }

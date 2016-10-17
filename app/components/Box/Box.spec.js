@@ -9,7 +9,7 @@ const comp = mount(
   <Box>Content</Box>
 );
 
-describe('BackButton component', () => {
+describe('Box component', () => {
   it('should render', () => {
     assert.equal(comp.find('.Card').length, 1, 'card does not render');
     assert.equal(comp.find('.CardContent').length, 1, 'cardcontent does not render');

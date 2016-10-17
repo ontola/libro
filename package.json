@@ -82,6 +82,7 @@
     "sass-loader": "^3.2.0",
     "sassdoc": "^2.1.20",
     "searchkit": "^0.10.1",
+    "sinon": "^1.17.6",
     "string-replace-webpack-plugin": "0.0.3",
     "style-loader": "^0.13.1",
     "webpack": "^1.12.2",

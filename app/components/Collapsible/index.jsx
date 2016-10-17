@@ -19,7 +19,13 @@ const defaultProps = {
   opened: false,
 };
 
-const Collapsible = ({ children, onClickToggle, opened, trigger, visibleContent }) => {
+const Collapsible = ({
+  children,
+  onClickToggle,
+  opened,
+  trigger,
+  visibleContent,
+}) => {
   const triggerElem = (
     <a
       href="/"
@@ -33,11 +39,13 @@ const Collapsible = ({ children, onClickToggle, opened, trigger, visibleContent 
 
   return (
     <div className="Collapsible">
-      {triggerElem}
-      {visibleContent}
-      <ReactCollapse isOpened={opened} >
-        {children}
-      </ReactCollapse>
+      <div className="Collapsible__trigger-wrapper">{triggerElem}</div>
+      <div className="Collapsible__visible-content">{visibleContent}</div>
+      <div className="Collapsible__invisible-content">
+        <ReactCollapse isOpened={opened}>
+          {children}
+        </ReactCollapse>
+      </div>
     </div>
   );
 };

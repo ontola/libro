@@ -1,4 +1,3 @@
-/* eslint no-console: 0 */
 import React, { PropTypes } from 'react';
 
 import PersonContainer from 'containers/PersonContainer';
@@ -43,8 +42,8 @@ const ArgumentShow = ({
     </CardContent>
 
     <CardActions>
-      <CardButton action={() => console.log('upvote')} type="upvote">Upvote</CardButton>
-      <CardButton action={() => console.log('reageer')} type="comment">Reageer</CardButton>
+      <CardButton type="upvote">Upvote</CardButton>
+      <CardButton type="comment">Reageer</CardButton>
     </CardActions>
   </Card>
 );

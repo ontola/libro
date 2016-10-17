@@ -2,6 +2,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { assert } from 'chai';
+import sinon from 'sinon';
 
 import Card from './';
 import CardActions from './CardActions';
@@ -28,11 +29,15 @@ describe('Card component', () => {
   });
 
   it('CardButton should render', () => {
-    const comp = mount(<CardButton type="pro">Click here</CardButton>);
+    const spy = sinon.spy(() => undefined);
+    const comp = mount(<CardButton type="pro" action={spy}>Click here</CardButton>);
     assert.equal(comp.find('.Button').length, 1, 'cardbutton does not render');
     assert.equal(comp.find('.Button').text(), 'Click here', 'cardbutton does not render children correctly');
     assert.isTrue(comp.find('.Button').hasClass('Button--has-icon'), 'button has class to show icon state');
     assert.isTrue(comp.find('.fa').hasClass('fa-thumbs-up'), 'button displays correct icon');
+
+    comp.simulate('click');
+    assert.isTrue(spy.called, 'Button click does not respond');
   });
 
   it('CardContent should render', () => {
@@ -49,10 +54,11 @@ describe('Card component', () => {
   });
 
   it('CardHeader should render', () => {
-    const comp = shallow(<CardHeader noSpacing>Content</CardHeader>);
+    const comp = shallow(<CardHeader>Content</CardHeader>);
     assert.equal(comp.find('.CardHeader').length, 1, 'card does not render');
     assert.equal(comp.find('.CardHeader').text(), 'Content', 'card does not render children correctly');
-    assert.isTrue(comp.find('.CardHeader').first().hasClass('CardHeader--no-spacing'), 'CardHeader has no noSpacing');
+    comp.setProps({ noSpacing: true });
+    assert.equal(comp.find('.CardHeader--no-spacing').length, 1, 'CardHeader has no noSpacing');
   });
 
   it('CardRow should render', () => {
