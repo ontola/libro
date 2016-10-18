@@ -4,8 +4,7 @@
 Deze demo bevat een interface voor open data van de gemeenteraad.
 
 ### Usage
-
-* `npm i` to install dependencies
+* `npm install` or `yarn` to install dependencies. [Yarn](https://yarnpkg.com) is similar to NPM, but better. It's faster, since it caches every package, and it's more deterministic, making it less prone to bugs. Follow the [Yarn installation instructions](https://yarnpkg.com/en/docs/install) for your OS.
 * `npm run dev` to start the dev-server with corsproxy for the API and react-styleguidist for component reference.
 * Visit [http://localhost:3001/](http://localhost:3001/)
 
