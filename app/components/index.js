@@ -53,6 +53,7 @@ export { default as SideBar } from './SideBar';
 export { default as SearchResultItem } from './SearchResultItem';
 export { default as Spinner } from './Spinner';
 export { default as Tag } from './Tag';
+export { default as VideoPlayer } from './VideoPlayer';
 export { default as VoteChart } from './VoteChart';
 export { default as VoteData } from './VoteData';
 export { default as VoteMatchShow } from './VoteMatchShow';
