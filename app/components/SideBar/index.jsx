@@ -17,7 +17,7 @@ class SideBar extends Component {
       sideBarOpen: false,
       sideBarDocked: true,
     };
-    this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
+    this.onSetSideBarOpen = this.onSetSideBarOpen.bind(this);
     this.mediaQueryChanged = this.mediaQueryChanged.bind(this);
     this.toggleOpen = this.toggleOpen.bind(this);
   }
@@ -31,7 +31,7 @@ class SideBar extends Component {
     });
     this.styles = {
       root: {
-        top: '2.5rem',
+        top: '3em',
       },
     };
   }
@@ -40,7 +40,7 @@ class SideBar extends Component {
     this.state.mql.removeListener(this.mediaQueryChanged);
   }
 
-  onSetSidebarOpen(open) {
+  onSetSideBarOpen(open) {
     this.setState({ sideBarOpen: open });
   }
 
@@ -62,7 +62,7 @@ class SideBar extends Component {
         sidebar={this.props.sidebar}
         open={this.state.sideBarOpen}
         docked={this.state.sideBarDocked}
-        onSetOpen={this.onSetSidebarOpen}
+        onSetOpen={this.onSetSideBarOpen}
         styles={this.styles}
         rootClassName="SideBar--content"
         sidebarClassName="SideBar--sidebar"
@@ -70,7 +70,7 @@ class SideBar extends Component {
         pullRight
       >
         {!this.state.sideBarOpen && !this.state.sideBarDocked &&
-          <div className="Sidebar--switch-wrapper">
+          <div className="SideBar--switch-wrapper">
             <Button
               onClick={() => this.setState({
                 sideBarOpen: true,
