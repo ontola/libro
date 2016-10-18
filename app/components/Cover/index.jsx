@@ -14,11 +14,8 @@ const propTypes = {
 };
 
 const defaultProps = {
-  backgroundColor: 'transparant',
-  children: [],
+  backgroundColor: 'transparent',
   type: 'default',
-  fixed: false,
-  fullScreen: false,
 };
 
 /**
@@ -40,11 +37,10 @@ const Cover = ({
     'Cover--image': image,
     'Cover--fixed': fixed,
     'Cover--fullscreen': fullScreen,
-    'Cover--hasOverlay': overlayColor,
   });
 
   const style = {
-    backgroundImage: image && `url(${image})`,
+    backgroundImage: image ? `url(${image})` : 'none',
     backgroundColor: `${backgroundColor}`,
   };
 
@@ -53,8 +49,17 @@ const Cover = ({
       className={coverClass}
       style={style}
     >
-      {overlayColor && <div className="Cover__overlay" style={{ backgroundColor: overlayColor }} />}
-      <div className="Cover__content">{children}</div>
+      {overlayColor && (
+        <div
+          className="Cover__overlay"
+          style={{
+            backgroundColor: overlayColor,
+          }}
+        />
+      )}
+      <div className="Cover__content">
+        {children}
+      </div>
     </section>
   );
 };

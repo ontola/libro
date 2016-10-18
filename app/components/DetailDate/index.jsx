@@ -40,9 +40,9 @@ const DetailDate = ({
   ];
 
   const hoverText = hoverTextItems
-                      .filter(i => i !== undefined)
-                      .join('. \n')
-                      .concat('.');
+    .filter(i => i !== undefined)
+    .join('. \n')
+    .concat('.');
 
   const displayValue = () => {
     if (asHours) {

@@ -16,11 +16,9 @@ const propTypes = {
   label: PropTypes.string.isRequired,
   /** Directs user to a page that shows more information about the differences in voting behavior */
   mainPercentage: PropTypes.number.isRequired,
-  tags: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-    })
-  ).isRequired,
+  tags: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string.isRequired,
+  })).isRequired,
 };
 
 const suffix = percentage => (
@@ -40,12 +38,6 @@ const CompareVotesBar = ({
   mainPercentage,
   tags,
 }) => {
-  const collapsibleChildren = () => (
-    <div className="CompareVotesBar__collapsible-children">
-      <List renderItem={renderTag} items={tags} />
-    </div>
-  );
-
   const trigger = (
     <LabelValueBar
       label={label}
@@ -58,7 +50,9 @@ const CompareVotesBar = ({
   return (
     <div className="CompareVotesBar">
       <CollapsibleContainer id={label} trigger={trigger}>
-        {collapsibleChildren()}
+        <div className="CompareVotesBar__collapsible-children">
+          <List renderItem={renderTag} items={tags} />
+        </div>
       </CollapsibleContainer>
     </div>
   );

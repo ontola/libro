@@ -32,22 +32,29 @@ const state = new Map({
   }),
 });
 
+const stateNoArgs = new Map({
+  argumentations: new Map({
+    items: new Map({}),
+  }),
+  motions: new Map({
+    items: new Map({
+      'test-motie-123': motion,
+    }),
+  }),
+});
+
+const expectedState = new Map({
+  argu: new models.Argument({ id: 'argu', title: 'Kost te veel', side: 'con' }),
+  ment: new models.Argument({ id: 'ment', title: 'Zeer goed', side: 'pro' }),
+});
+
 const props = {
   motionId: 'test-motie-123',
 };
 
 describe('Arguments selectors', () => {
-  const expectedState = new Map({
-    argu: new models.Argument({ id: 'argu', title: 'Kost te veel', side: 'con' }),
-    ment: new models.Argument({ id: 'ment', title: 'Zeer goed', side: 'pro' }),
-  });
-
   it('should return all arguments', () => {
-    assert.equal(
-      getArguments(state),
-      expectedState,
-      'Does not return arguments correctly'
-    );
+    assert.equal(getArguments(state), expectedState, 'Does not return arguments correctly');
   });
 
   it('should return only the correct arguments', () => {
@@ -57,16 +64,6 @@ describe('Arguments selectors', () => {
       'does not return correct pro arguments'
     );
 
-    assert.deepEqual(
-      getArgs('con')(state, props),
-      [new models.Argument({ id: 'argu', title: 'Kost te veel', side: 'con' })],
-      'does not return correct con arguments'
-    );
-
-    assert.deepEqual(
-      [],
-      [],
-      'does not return correct con arguments'
-    );
+    assert.deepEqual(getArgs('con')(stateNoArgs, props), [], 'does not return correct con arguments');
   });
 });

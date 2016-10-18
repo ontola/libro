@@ -42,8 +42,8 @@ const ArgumentShow = ({
     </CardContent>
 
     <CardActions>
-      <CardButton type="upvote">Upvote</CardButton>
-      <CardButton type="comment">Reageer</CardButton>
+      <CardButton type="upvote" action={() => undefined}>Upvote</CardButton>
+      <CardButton type="comment" action={() => undefined}>Reageer</CardButton>
     </CardActions>
   </Card>
 );

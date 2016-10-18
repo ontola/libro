@@ -6,10 +6,12 @@ import sinon from 'sinon';
 
 import Collapsible from './';
 
+const spy = sinon.spy(() => undefined);
 const comp = mount(
   <Collapsible
     trigger={<span>Click here</span>}
     visibleContent={<span>Content</span>}
+    onClickToggle={spy}
   >Hoi</Collapsible>
 );
 
@@ -21,9 +23,6 @@ describe('Collapsible component', () => {
 
     comp.setProps({ opened: true });
     assert.equal(comp.find('.Collapsible__invisible-content').first().text(), 'Hoi', 'Invisible content does not render when Collapsible is opened');
-
-    const spy = sinon.spy(() => undefined);
-    comp.setProps({ onClickToggle: spy });
 
     comp.find('.Collapsible__trigger').first().simulate('click');
     assert.isTrue(spy.called, 'Button click does not respond');
