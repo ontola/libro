@@ -21,15 +21,9 @@ const defaultProps = {
   children: [],
 };
 
-const renderErrorMessage = (error, errorMessage, reset) => {
-  if (!error) {
-    return false;
-  }
-
-  return (
-    <Notification type="error" reset={reset}>{errorMessage}</Notification>
-  );
-};
+const renderErrorMessage = (error, errorMessage, reset) => (!error ? false : (
+  <Notification type="error" reset={reset}>{errorMessage}</Notification>
+));
 
 const App = ({
   children,
@@ -49,8 +43,7 @@ const App = ({
     />
     <Spinner loading={loading} />
     <NavbarContainer />
-    {renderErrorMessage(error, errorMessage, reset)}
-    {children}
+    {error ? renderErrorMessage(error, errorMessage, reset) : children}
   </div>
 );
 

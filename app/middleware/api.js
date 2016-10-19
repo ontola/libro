@@ -1,79 +1,34 @@
-import fetch from 'isomorphic-fetch';
-import { Promise } from 'es6-promise';
-import { batchActions } from 'redux-batched-actions';
-
 import DataStore from './utils/DataStore';
-import { ARGU_API_URL_EXT } from '../config';
 
-let dataStore;
+import {
+  handleError,
+  handleRecord,
+  handleRequest,
+} from './utils/apiActionCreators';
 
-const callApi = (endpoint) => {
-  const fullUrl = ARGU_API_URL_EXT + endpoint;
+import {
+  callApi,
+  getEndpoint,
+  parseResult,
+  yieldEntities,
+} from './utils/apiHelpers';
 
-  return fetch(fullUrl)
-    .then(response =>
-      response.json().then(json => ({ json, response }))
-    ).then(({ json, response }) => {
-      if (!response.ok) {
-        return Promise.reject(json);
-      }
-      return Promise.resolve(json);
-    });
-};
-
-const parseResult = (jsonData, emitRecord, next) => {
-  const actions = [];
-  const addRecordToActions = entity => actions.push(emitRecord(dataStore.formatEntity(entity)));
-
-  if (jsonData.data.constructor === Array) {
-    jsonData.data.forEach(entity => addRecordToActions(entity));
-  } else {
-    addRecordToActions(jsonData.data);
-  }
-
-  if (jsonData.included) {
-    jsonData.included.forEach(entity => addRecordToActions(entity));
-  }
-
-  next(batchActions(actions));
-};
-
-const middleware = () => next => (action) => {
+const JsonApiMiddleware = ({
+  models,
+  apiBaseUrl,
+}) => () => next => (action) => {
   if (!action.payload || !action.payload.apiAction) {
     return next(action);
   }
 
-  const { id, endpoint } = action.payload;
-  const constructEndpoint = id ? `${endpoint}/${id}` : endpoint;
+  const dataStore = new DataStore(models);
+  const endpoint = getEndpoint(apiBaseUrl, action.payload);
 
-  const emitRecord = record => ({
-    type: record.getIn(['apiDesc', 'actions', 'resource']),
-    payload: {
-      record,
-    },
-  });
+  next(handleRequest(action));
 
-  next({
-    type: action.type,
-    payload: {
-      loading: true,
-      id,
-    },
-  });
-
-  return callApi(constructEndpoint)
-    .then(jsonData => parseResult(jsonData, emitRecord, next))
-    .catch(error => next({
-      type: action.type,
-      error: true,
-      payload: {
-        message: error.message || 'Something bad happened',
-        id,
-      },
-    }));
+  return callApi(endpoint)
+    .then(data => next(parseResult(dataStore, yieldEntities(data), handleRecord)))
+    .catch(error => next(handleError(action, error)));
 };
 
-export default (models) => {
-  dataStore = new DataStore(models);
-  return middleware;
-};
+export default JsonApiMiddleware;
