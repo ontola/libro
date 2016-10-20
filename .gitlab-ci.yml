@@ -11,12 +11,12 @@ after_script:
 test:
   stage: test
   before_script:
-    - npm i -q
+    - yarn install
   script:
-    - npm run lint
-    - npm run lint:style
-    - npm run test
-    - npm run build
+    - yarn run lint
+    - yarn run lint:style
+    - yarn run test
+    - yarn run build
   cache:
     key: ${CI_BUILD_REF_NAME}
     paths:
