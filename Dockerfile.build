@@ -4,7 +4,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 COPY package.json /usr/src/app/
-RUN yarn install
+RUN npm i -q
 COPY . /usr/src/app
 
 ENV NODE_ENV 'production'
@@ -12,8 +12,8 @@ ENV ELASTICSEARCH_URL ''
 ENV ELASTICSEARCH_INDEX ''
 ENV ARGU_API_URL 'http://localhost:3030/'
 
-RUN yarn run build
+RUN npm run build
 RUN npm prune -q --prod
 
 EXPOSE 8080
-CMD yarn run start:prod
+CMD npm run start:prod
