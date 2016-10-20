@@ -12,14 +12,14 @@ const apiDesc = new APIDesc({
 });
 
 const attributes = {
-  id: null,
+  id: '',
   motionId: '',
   title: '',
   content: '',
   side: '',
-  createdAt: null,
-  voteCount: null,
-  creator: null,
+  createdAt: new Date(),
+  voteCount: '',
+  creator: '',
 };
 
 export default apiModelGenerator(attributes, apiDesc);

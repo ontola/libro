@@ -12,10 +12,10 @@ const apiDesc = new APIDesc({
 });
 
 const attributes = {
-  id: undefined,
+  id: '',
   individual: true,
   option: '',
-  voterId: undefined,
+  voterId: '',
 };
 
 export default apiModelGenerator(attributes, apiDesc);

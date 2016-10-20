@@ -12,7 +12,7 @@ const apiDesc = new APIDesc({
 });
 
 const attributes = {
-  id: null,
+  id: '',
   name: '',
   image: '',
   biography: '',

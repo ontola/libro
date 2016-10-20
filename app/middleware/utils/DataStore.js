@@ -1,6 +1,4 @@
 /* eslint no-param-reassign: 0 */
-
-
 const toCamel = key => key.replace(/(_\w)/g, substring =>
   substring.toUpperCase().replace('_', '')
 );
@@ -22,18 +20,20 @@ export default class DataStore {
 
     Object.assign(entity, { id });
 
-    // Normalize all keys & values
-    Object.keys(attributes).forEach((key) => {
-      const camel = toCamel(key);
-      if (camel.match(/(Date|At)$/)) {
-        attributes[key] = new Date(attributes[key]);
-      }
-      if (key !== camel) {
-        attributes[camel] = attributes[key];
-        delete attributes[key];
-      }
-    });
-    Object.assign(entity, attributes);
+    if (attributes) {
+      // Normalize all keys & values
+      Object.keys(attributes).forEach((key) => {
+        const camel = toCamel(key);
+        if (camel.match(/(Date|At)$/)) {
+          attributes[key] = new Date(attributes[key]);
+        }
+        if (key !== camel) {
+          attributes[camel] = attributes[key];
+          delete attributes[key];
+        }
+      });
+      Object.assign(entity, attributes);
+    }
 
     // Check if relationships exist, if so add their ids in an array to the corresponding key
     if (relationships) {

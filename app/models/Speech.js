@@ -13,12 +13,12 @@ const apiDesc = new APIDesc({
 
 const attributes = {
   attributionText: '',
-  endDate: '',
+  endDate: new Date(),
   eventId: '',
   eventItemId: '',
-  id: undefined,
+  id: '',
   speakerId: '',
-  startDate: '',
+  startDate: new Date(),
   text: '',
 };
 

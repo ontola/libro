@@ -12,10 +12,10 @@ const apiDesc = new APIDesc({
 });
 
 const attributes = {
-  id: null,
-  group: undefined,
-  option: undefined,
-  value: null,
+  id: '',
+  group: '',
+  option: '',
+  value: '',
 };
 
 export default apiModelGenerator(attributes, apiDesc);

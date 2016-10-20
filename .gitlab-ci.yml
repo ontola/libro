@@ -22,6 +22,8 @@ test:
     key: ${CI_BUILD_REF_NAME}
     paths:
       - node_modules/
+      - .happypack/
+      - yarn.lock
   artifacts:
     paths:
     - dist/

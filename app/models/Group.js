@@ -12,9 +12,9 @@ const apiDesc = new APIDesc({
 });
 
 const attributes = {
-  id: undefined,
-  organizationId: undefined,
-  type: undefined,
+  id: '',
+  organizationId: '',
+  type: '',
 };
 
 export default apiModelGenerator(attributes, apiDesc);

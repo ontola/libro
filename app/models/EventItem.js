@@ -12,15 +12,15 @@ const apiDesc = new APIDesc({
 });
 
 const attributes = {
-  createdAt: null,
-  creator: null,
+  createdAt: new Date(),
+  creator: '',
   description: '',
-  endDate: null,
+  endDate: new Date(),
   eventId: '',
   id: '',
   loading: false,
   name: '',
-  startDate: null,
+  startDate: new Date(),
 };
 
 export default apiModelGenerator(attributes, apiDesc);

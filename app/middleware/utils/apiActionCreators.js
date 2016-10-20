@@ -13,11 +13,11 @@ export const handleRequest = ({ type, payload }) => ({
   },
 });
 
-export const handleError = ({ type, payload }, { message }) => ({
+export const handleError = ({ type, payload }, error) => ({
   type,
   error: true,
   payload: {
-    message,
-    id: payload.id,
+    message: error.message,
+    id: payload.id || undefined,
   },
 });

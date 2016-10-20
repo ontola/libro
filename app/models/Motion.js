@@ -14,14 +14,14 @@ const apiDesc = new APIDesc({
 const attributes = {
   arguments: [],
   classification: 'Motie',
-  createdAt: null,
-  creator: null,
-  id: null,
+  createdAt: new Date(),
+  creator: '',
+  id: '',
   loading: false,
   status: '',
   text: '',
   title: '',
-  voteEvents: undefined,
+  voteEvents: [],
 };
 
 export default apiModelGenerator(attributes, apiDesc);
