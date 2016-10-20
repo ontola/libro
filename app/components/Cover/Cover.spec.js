@@ -15,7 +15,7 @@ describe('Cover component', () => {
 
     assert.deepEqual(
       comp.find('.Cover').first().prop('style'),
-      { backgroundImage: 'none', backgroundColor: 'transparent' },
+      { backgroundImage: 'none', backgroundColor: 'undefined' },
       'Incorrect default values for background image and color'
     );
 
@@ -28,7 +28,7 @@ describe('Cover component', () => {
     assert.deepEqual(
       comp.find('.Cover--image').first().prop('style'),
       {
-        backgroundColor: 'transparent',
+        backgroundColor: 'undefined',
         backgroundImage: 'url(http://placehold.it/50x50)',
       },
       'Background image does not render correctly'

@@ -14,7 +14,6 @@ const propTypes = {
 };
 
 const defaultProps = {
-  backgroundColor: 'transparent',
   type: 'default',
 };
 
