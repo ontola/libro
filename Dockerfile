@@ -6,7 +6,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 COPY package.json /usr/src/app/package.json
-RUN npm i -q --production
+RUN yarn install --prod
 COPY dist /usr/src/app/dist
 COPY static /usr/src/app/static
 

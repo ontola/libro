@@ -5,7 +5,7 @@ echo Building image as "$TAG"
 
 mkdir -p tmp/dist tmp/static
 
-npm run build
+yarn run build
 
 cp -R ./{package.json,Dockerfile,dist,static} ./tmp
 cd tmp && docker build --pull=true -t registry.gitlab.com/argu/aod_demo:${TAG} .
