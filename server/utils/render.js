@@ -7,9 +7,27 @@ export const renderFullPage = (html, devPort, domain, initialState = {}, head) =
     <meta charset="utf-8">
     <html>
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta charset="utf-8" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8" />
         <meta property="og:type" content="website" />
+        <link rel="manifest" href="/static/manifest.json">
+
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="application-name" content="AOD">
+        <meta name="apple-mobile-web-app-title" content="AOD">
+        <meta name="theme-color" content="#60707F">
+        <meta name="msapplication-navbutton-color" content="#60707F">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="msapplication-starturl" content="/">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="icon" type="image/png" sizes="192x192" href="/static/icon-large.png">
+        <link rel="apple-touch-icon" type="image/png" sizes="192x192" href="/static/icon-large.png">
+        <link rel="icon" type="image/png" sizes="128x128" href="/static/icon-medium.png">
+        <link rel="apple-touch-icon" type="image/png" sizes="128x128" href="/static/icon-medium.png">
+        <link rel="icon" type="image/png" sizes="72x72" href="/static/icon-small.png">
+        <link rel="apple-touch-icon" type="image/png" sizes="72x72" href="/static/icon-small.png">
         ${head ? head.title.toString() : ''}
         ${head ? head.meta.toString() : ''}
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
