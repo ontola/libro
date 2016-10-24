@@ -60,6 +60,8 @@ const common = {
       threads: 4,
       loaders: ['babel-loader?cacheDirectory'],
     }),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    // new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en|nl/),
   ],
   postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
 };

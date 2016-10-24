@@ -35,8 +35,16 @@ const durationToString = milliSeconds =>
 const durationToHumanizedString = milliSeconds =>
   moment.duration(milliSeconds, 'milliSeconds').humanize();
 
+/**
+ * @param {number} milliSeconds - Accepts milliSeconds
+ * @return {string} A formatted time string
+ */
+const formatDateFromNow = milliSeconds => moment(milliSeconds).fromNow();
+
+
 export {
   durationToString,
   durationToHumanizedString,
   formatDate,
+  formatDateFromNow,
 };

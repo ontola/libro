@@ -1,8 +1,7 @@
 import './DetailDate.scss';
 import React, { PropTypes } from 'react';
 import { Detail } from 'components';
-import { formatDate, durationToHumanizedString } from 'helpers/date';
-import moment from 'moment';
+import { formatDateFromNow, formatDate, durationToHumanizedString } from 'helpers/date';
 
 const propTypes = {
   createdAt: PropTypes.instanceOf(Date),
@@ -44,16 +43,13 @@ const DetailDate = ({
     .join('. \n')
     .concat('.');
 
-  const displayValue = () => {
-    if (asHours) {
-      return moment(mostImportantDate()).format('LT');
-    }
-    return moment(mostImportantDate()).fromNow();
-  };
+  const displayValue = asHours
+    ? formatDate(mostImportantDate(), 'LT')
+    : formatDateFromNow(mostImportantDate());
 
   return (
     <Detail
-      text={displayValue()}
+      text={displayValue}
       icon="clock-o"
       title={hoverText}
       floatRight={floatRight}
