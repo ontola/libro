@@ -12,3 +12,4 @@ tmp/
 .nyc_output/
 coverage
 .happypack
+stats.json
