@@ -18,7 +18,7 @@ const events = handleActions({
     setRecord(state, payload.record, payload.id),
 
   [SET_EVENT_TIME]: (state, { payload }) =>
-    state.set('hits', payload),
+    state.set('eventTime', payload),
 
   [TOGGLE_SHOW_VIDEO]: state =>
     state.set('showVideo', !state.get('showVideo')),
