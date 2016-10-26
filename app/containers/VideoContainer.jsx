@@ -7,6 +7,7 @@ import { VideoPlayer } from 'components';
 const propTypes = {
   eventId: PropTypes.string.isRequired,
   onSetTime: PropTypes.func.isRequired,
+  url: PropTypes.string.isRequired,
 };
 
 class EventContainer extends Component {
@@ -14,6 +15,7 @@ class EventContainer extends Component {
     return (
       <VideoPlayer
         isPlaying
+        url={this.props.url}
       />
     );
   }

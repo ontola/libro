@@ -3,7 +3,8 @@
 // If you want to overwrite the default styling, use inline styles in the component.
 .SideBar--sidebar {
   background-color: color('white');
-  max-width: 30em;
+  width: 30em;
+  max-width: 100%;
   // Prevents a weird bug with fullscreen in chrome.
   will-change: inherit !important;
 }
@@ -42,4 +43,15 @@
 
 .SideBar__controls {
   background-color: color('grey', 'x-light');
+  display: flex;
+}
+
+.SideBar__search {
+  padding: 0.4em;
+  border-radius: 5px;
+  border: solid 1px color('grey', 'light');
+  margin-left: 0.3em;
+  font-size: 1em;
+  flex-grow: 1;
+  margin: 0.2em;
 }

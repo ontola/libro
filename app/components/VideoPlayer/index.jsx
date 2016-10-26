@@ -12,15 +12,14 @@ const propTypes = {
 const REFRESH_TIME = 1000;
 
 class VideoPlayer extends Component {
-
   componentDidMount() {
     setInterval(
       () => {
         if (this.props.isPlaying) {
-          console.log('tick');
+          // console.log('tick');
           // props.onSetTime(props.eventId, new Date());
         } else {
-          console.log('stop');
+          // console.log('stop');
         }
       },
       REFRESH_TIME
@@ -37,7 +36,7 @@ class VideoPlayer extends Component {
         poster="http://sourceposter.jpg"
         ref={this.props.id}
       >
-        <source src="http://video.webmfiles.org/big-buck-bunny_trailer.webm" type="video/webm" />
+        <source src={this.props.url} type="video/mp4" />
       </Video>
     );
   }

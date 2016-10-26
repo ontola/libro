@@ -3,6 +3,10 @@
 
 video, .video {
   width: 100%;
+  // Removes a black border
+  display: flex !important;
+  // Makes the height not bigger than required
+  flex-direction: column;
 }
 
 .video-icon {
