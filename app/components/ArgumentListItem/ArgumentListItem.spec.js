@@ -23,12 +23,6 @@ describe('ArgumentListItem component', () => {
       comp.find('.ArgumentListItem__icon').first().hasClass('fa-plus'),
       'Component does not show the correct icon'
     );
-
-    comp.setProps({ side: 'con' });
-    assert.isTrue(
-      comp.find('.ArgumentListItem__icon').first().hasClass('fa-minus'),
-      'Component does not show the correct icon'
-    );
   });
 
   it('contains an <HoverBox/> component', () => {

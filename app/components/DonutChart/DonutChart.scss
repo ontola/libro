@@ -1,31 +1,14 @@
 @import '../shared/config';
 
-@keyframes appear {
-  0% { opacity: .1; }
-  100% { opacity: 1; }
-}
-
 .DonutChart {
-  animation: appear 1s;
-  margin: 0 auto;
-
-  &__sector {
-    cursor: pointer;
-  }
-
   &__label {
-    fill: color('grey', 'dark');
-    font-size: 12px;
+    background-color: color('blue', 'dark');
+    border-radius: $border-radius-base;
+    color: color('white');
+    padding: .5rem;
   }
 
-  &__inner-key {
-    fill: color('blue');
-    font-size: 20px;
-  }
-
-  &__inner-value {
-    fill: color('blue', 'light');
-    font-size: 13px;
-    font-weight: 600;
+  text {
+    fill: color('white');
   }
 }

@@ -25,8 +25,6 @@ export { default as DetailStatus } from './DetailStatus';
 export { default as DetailType } from './DetailType';
 export { default as DetailVotedFor } from './DetailVotedFor';
 export { default as DonutChart } from './DonutChart';
-export { default as DonutChartActiveShape } from './DonutChart/DonutChartActiveShape';
-export { default as DonutChartLabels } from './DonutChart/DonutChartLabels';
 export { default as Drawer } from './Drawer';
 export { default as EventItemShow } from './EventItemShow';
 export { default as EventListItem } from './EventListItem';

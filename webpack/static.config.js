@@ -8,12 +8,10 @@ config.entry = [
   './app/index.js',
 ];
 
-config.module.loaders.push(
-  {
-    test: /\.scss$/,
-    loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!sass-loader'),
-  }
-);
+config.module.loaders.push({
+  test: /\.scss$/,
+  loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!sass-loader'),
+});
 
 config.plugins.push(
   new ExtractTextPlugin('bundle.css'),

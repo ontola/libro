@@ -2,11 +2,38 @@ require('babel-register')();
 const jsdom = require('jsdom').jsdom;
 
 const exposedProperties = ['windnpm run ow', 'navigator', 'document'];
-const ignoreStyles = () => null;
 
-require.extensions['.scss'] = ignoreStyles;
+require.extensions['.scss'] = () => null;
 global.document = jsdom('');
 global.window = document.defaultView;
+
+const ignoreGlobals = [
+  'SVGPathSeg',
+  'SVGPathSegClosePath',
+  'SVGPathSegMovetoAbs',
+  'SVGPathSegMovetoRel',
+  'SVGPathSegLinetoAbs',
+  'SVGPathSegLinetoRel',
+  'SVGPathSegCurvetoCubicAbs',
+  'SVGPathSegCurvetoCubicRel',
+  'SVGPathSegCurvetoQuadraticRel',
+  'SVGPathSegCurvetoQuadraticAbs',
+  'SVGPathSegArcAbs',
+  'SVGPathSegArcRel',
+  'SVGPathSegLinetoHorizontalAbs',
+  'SVGPathSegLinetoHorizontalRel',
+  'SVGPathSegLinetoVerticalAbs',
+  'SVGPathSegLinetoVerticalRel',
+  'SVGPathSegCurvetoCubicSmoothAbs',
+  'SVGPathSegCurvetoCubicSmoothRel',
+  'SVGPathSegCurvetoQuadraticSmoothAbs',
+  'SVGPathSegCurvetoQuadraticSmoothRel',
+  'SVGPathElement',
+  'SVGPathSegList',
+];
+ignoreGlobals.forEach((item) => {
+  global[item] = () => null;
+});
 
 Object.keys(document.defaultView).forEach((property) => {
   if (typeof global[property] === 'undefined') {

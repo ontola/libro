@@ -17,10 +17,7 @@ const defaultProps = {
   content: '...',
 };
 
-const iconClassname = (side) => {
-  const className = side === 'pro' ? 'fa fa-plus' : 'fa fa-minus';
-  return className;
-};
+const iconClassname = side => (side === 'pro' ? 'fa fa-plus' : 'fa fa-minus');
 
 const hoverBoxChildren = (side, title) => (
   <span className="ArgumentListItem__wrapper">

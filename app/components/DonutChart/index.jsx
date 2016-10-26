@@ -1,16 +1,6 @@
 import './DonutChart.scss';
 import React, { Component, PropTypes } from 'react';
-
-import {
-  PieChart,
-  Pie,
-  Cell,
-} from 'recharts';
-
-import {
-  DonutChartLabels,
-  DonutChartActiveShape,
-} from 'components';
+import c3 from 'c3';
 
 const defaultColors = [
   '#1395BA',
@@ -27,6 +17,10 @@ const defaultColors = [
   '#EF8B2C',
 ];
 
+const renderTooltip = d => (
+  `<div class="DonutChart__label">${d[0].value} zetels (${(d[0].ratio * 100).toFixed(1)}%)</div>`
+);
+
 const propTypes = {
   colors: PropTypes.array,
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -37,64 +31,42 @@ const defaultProps = {
 };
 
 class DonutChart extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      activeIndex: null,
-    };
-
-    this.onPieEnter = this.onPieEnter.bind(this);
-    this.onPieLeave = this.onPieLeave.bind(this);
+  componentDidMount() {
+    this.renderChart();
   }
 
-  onPieEnter(data, index) {
-    this.setState({ activeIndex: index });
-  }
+  renderChart() {
+    const { colors, data } = this.props;
 
-  onPieLeave() {
-    this.setState({ activeIndex: null });
+    return c3.generate({
+      bindto: this.wrapper,
+      data: {
+        columns: data.map(item => [item.name, item.value]),
+        type: 'donut',
+      },
+      color: {
+        pattern: colors,
+      },
+      legend: {
+        show: false,
+      },
+      tooltip: {
+        contents: renderTooltip,
+      },
+      donut: {
+        label: {
+          format: (value, ratio, id) => id,
+        },
+      },
+    });
   }
 
   render() {
-    const {
-      colors,
-      data,
-    } = this.props;
-
     return (
-      <PieChart
+      <div
+        ref={wrapper => (this.wrapper = wrapper)}
         className="DonutChart"
-        width={250}
-        height={250}
-        onMouseLeave={this.onPieLeave}
-        onMouseEnter={this.onPieEnter}
-      >
-        <Pie
-          className="DonutChart__chart"
-          data={data}
-          activeIndex={this.state.activeIndex}
-          activeShape={DonutChartActiveShape}
-          cx={125}
-          cy={125}
-          labelLine={false}
-          label={DonutChartLabels}
-          outerRadius={90}
-          innerRadius={55}
-          startAngle={90}
-          endAngle={-270}
-          fill={colors[0]}
-          isAnimationActive={false}
-        >
-          {data.map((entry, index) => (
-            <Cell
-              className="DonutChart__sector"
-              key={index}
-              fill={colors[index % colors.length]}
-            />
-          ))}
-        </Pie>
-      </PieChart>
+      />
     );
   }
 }
