@@ -57,6 +57,13 @@
   }
 }
 
+.Button--transparant {
+  color: color('grey');
+  &:hover {
+    color: color('grey','dark')
+  }
+}
+
 .Button--small {
   font-size: font-size('small');
   padding: units('xx-small', 'x-small');

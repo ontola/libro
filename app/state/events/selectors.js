@@ -12,13 +12,15 @@ const getEventId = (state, props) => {
     return props.id;
   }
 
+  if (props.eventId !== undefined) {
+    return props.eventId;
+  }
+
   return null;
 };
 
-export const getEvent = createSelector(
-  [getEvents, getEventId],
-  (events, id) => events.get(id)
-);
+export const getEvent = (state, props) =>
+  state.getIn(['events', 'items', getEventId(state, props)]);
 
 export const getEventTitle = createSelector(
   [getEvents, getEventId],
@@ -40,12 +42,15 @@ export const getVideoUrl = createSelector(
   }
 );
 
-export const getEventSpeechIds = id => (state) => {
-  const ids = state.getIn(['events', 'items', id, 'speeches']);
-  if (ids === undefined) {
-    return [];
+export const getEventSpeechIds = createSelector(
+  [getEvent],
+  (event) => {
+    if (event === undefined) {
+      return [];
+    }
+    const ids = event.get('speeches');
+    return ids;
   }
-  return ids;
-};
+);
 
 export const shouldVideoShow = state => state.getIn(['events', 'showVideo']);

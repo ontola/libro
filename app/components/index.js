@@ -36,6 +36,7 @@ export { default as LabelValue } from './LabelValue';
 export { default as LabelValueBar } from './LabelValueBar';
 export { default as LinkList } from './LinkList';
 export { default as List } from './List';
+export { default as Markdown } from './Markdown';
 export { default as MotionCompare } from './MotionCompare';
 export { default as MotionListItem } from './MotionListItem';
 export { default as MotionShow } from './MotionShow';

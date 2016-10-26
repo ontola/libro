@@ -5,7 +5,9 @@ import {
   ChronoFeed,
 } from 'components';
 
-import { getEventSpeechIds } from 'state/events/selectors';
+import {
+  getFilteredSpeechesForEvent,
+} from 'state/speeches/selectors';
 
 const propTypes = {
   /** Array of SpeechIds */
@@ -15,7 +17,7 @@ const propTypes = {
 
 const SpeechesContainer = connect(
   (state, ownProps) => ({
-    speechIds: getEventSpeechIds(ownProps.eventId)(state, ownProps),
+    speechIds: getFilteredSpeechesForEvent(state, ownProps),
   })
 )(ChronoFeed);
 

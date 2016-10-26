@@ -22,6 +22,7 @@ const initialState = new Map({
 });
 
 // Opens all collapsibles if one or more in the group are currently closed
+// The group should be a string preferably formatted as 'type_id', e.g. 'event_292104-247914'
 const toggleAll = (state, group) => {
   let shouldOpen = false;
 

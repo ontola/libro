@@ -26,7 +26,7 @@ const EventItemContainer = connect((state, ownProps) => {
     index: data.index,
     startDate: data.startDate,
     text: data.description,
-    title: data.name,
+    title: data.title,
   };
 })(EventItemShow);
 

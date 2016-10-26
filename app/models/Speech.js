@@ -20,6 +20,8 @@ const attributes = {
   speakerId: '',
   startDate: new Date(),
   text: '',
+  type: '',
+  title: '',
 };
 
 export default apiModelGenerator(attributes, apiDesc);

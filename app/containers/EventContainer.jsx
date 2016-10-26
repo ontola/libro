@@ -41,7 +41,7 @@ class EventContainer extends Component {
         speeches={data.speeches}
         startDate={data.startDate}
         status={data.status}
-        title={data.name}
+        title={data.title}
       />
     );
   }
