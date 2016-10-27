@@ -5,7 +5,10 @@ export const handleRecord = record => ({
   },
 });
 
-export const handleRequest = ({ type, payload }) => ({
+export const handleRequest = ({
+  payload,
+  type,
+}) => ({
   type,
   payload: {
     loading: true,
@@ -13,11 +16,14 @@ export const handleRequest = ({ type, payload }) => ({
   },
 });
 
-export const handleError = ({ type, payload }, error) => ({
+export const handleError = ({
+  payload,
+  type,
+}, error) => ({
   type,
   error: true,
   payload: {
-    message: error.message,
-    id: payload.id || undefined,
+    message: error.message || 'Something bad happened...',
+    id: payload.id,
   },
 });
