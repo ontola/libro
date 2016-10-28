@@ -1,5 +1,5 @@
 /* eslint no-param-reassign: 0 */
-const toCamel = key => key.replace(/(_\w)/g, substring =>
+export const toCamel = key => key.replace(/(_\w)/g, substring =>
   substring.toUpperCase().replace('_', '')
 );
 

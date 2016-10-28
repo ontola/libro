@@ -25,7 +25,7 @@ class IndexContainer extends Component {
     return (
       <Provider store={store}>
         <SearchkitProvider searchkit={sk}>
-          <Router history={history} routes={routes} />
+          <Router history={history} routes={routes} onUpdate={() => window.scrollTo(0, 0)} />
         </SearchkitProvider>
       </Provider>
     );

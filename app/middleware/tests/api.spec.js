@@ -14,6 +14,8 @@ import {
   yieldEntities,
 } from '../utils/apiHelpers';
 
+import DataStore, { toCamel } from '../utils/DataStore';
+
 import * as models from 'models';
 
 const record = new models.Motion({
@@ -78,13 +80,13 @@ describe('Api Middleware', () => {
   });
 
   it('should handle fetch requests', (done) => {
-    const jsondata = {
+    const jsondataSuccess = {
       data: 'success',
     };
 
     nock('http://api.example.com')
       .get('/success')
-      .reply(200, jsondata);
+      .reply(200, jsondataSuccess);
 
     callApi('http://api.example.com/success')
       .catch(done)
@@ -146,5 +148,40 @@ describe('Api Middleware', () => {
     }];
 
     assert.deepEqual(yieldEntities(rawJson), expectedEntities, 'Entities not formatted correctly');
+  });
+
+  it('should format a raw jsonapi-response-entity to a predefined record', () => {
+    const dataStore = new DataStore(Object.values(models));
+    const actualEntity = {
+      type: 'motions',
+      id: '3137bf58-89f5-e511-9672-e4115babb880',
+      attributes: {
+        classification: 'Motie',
+        createdAt: '2016-03-28T22:00:00Z',
+        title: 'A Motion Title',
+      },
+      relationships: {
+        vote_events: {
+          data: {
+            type: 'vote_events',
+            id: '3137bf58-89f5-e511-9672-e4115babb880',
+          },
+        },
+      },
+    };
+
+    const expectedRecord = new models.Motion({
+      id: '3137bf58-89f5-e511-9672-e4115babb880',
+      classification: 'Motie',
+      createdAt: new Date('2016-03-28T22:00:00Z'),
+      title: 'A Motion Title',
+      voteEvents: '3137bf58-89f5-e511-9672-e4115babb880',
+    });
+
+    assert.deepEqual(dataStore.formatEntity(actualEntity), expectedRecord, 'Entity not transformed properly');
+  });
+
+  it('should have a helpers function to transform snake_cased string to camelCased', () => {
+    assert.equal(toCamel('snake_cased'), 'snakeCased', 'toCamel function does not transform snake_cased strings properly');
   });
 });
