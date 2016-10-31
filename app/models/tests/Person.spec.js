@@ -10,6 +10,7 @@ describe('Persons actions', () => {
       type: actions.GET_PERSON,
       payload: {
         apiAction: true,
+        arguModel: false,
         endpoint: 'persons',
         id: SPECIFIC_PERSON_ID,
       },
@@ -26,6 +27,7 @@ describe('Persons actions', () => {
       type: actions.GET_PERSONS,
       payload: {
         apiAction: true,
+        arguModel: false,
         endpoint: 'persons',
       },
     };

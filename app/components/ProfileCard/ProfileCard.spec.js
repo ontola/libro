@@ -3,9 +3,13 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { assert } from 'chai';
 
+import { generateContext } from '../../../tests/linkhelper';
 import ProfileCard from './';
 
-const comp = mount(<ProfileCard name="Matthew Obrien" />);
+const comp = mount(
+  <ProfileCard name="Matthew Obrien" />,
+  generateContext({ linkedRenderStore: true, schemaObject: true })
+);
 
 describe('ProfileCard component', () => {
   it('ProfileCard should render', () => {

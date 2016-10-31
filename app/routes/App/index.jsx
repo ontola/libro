@@ -56,7 +56,7 @@ const App = ({
       <div id="start-of-content">
         {children}
       </div>
-      {renderErrorMessage(error, errorMessage, reset)}
+      {error && renderErrorMessage(error, errorMessage, reset)}
     </SideBarContainer>
   </div>
 );

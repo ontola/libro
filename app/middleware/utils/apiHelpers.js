@@ -2,13 +2,27 @@ import fetch from 'isomorphic-fetch';
 import { Promise } from 'es6-promise';
 import { batchActions } from 'redux-batched-actions';
 
+const headers = clientToken => ({
+  credentials: 'same-origin',
+  headers: {
+    Accept: 'application/vnd.api+json',
+    'Content-Type': 'application/vnd.api+json',
+    Authorization: `Bearer ${clientToken}`,
+  },
+});
+
 /**
  * Generates complete endpoint
  * @param {string} base Raw response from API
  * @param {object} payload Redux action payload that contains and endpoint and id string
  * @return {string} endpoint Endpoint
  */
-export const getEndpoint = (base, { endpoint, id }) => base + (id ? `${endpoint}/${id}` : endpoint);
+export const getEndpoint = (base, { arguModel, endpoint, id }) => {
+  if (arguModel) {
+    return (id ? `${endpoint}/${id}` : endpoint);
+  }
+  return base + (id ? `${endpoint}/${id}` : endpoint);
+};
 
 /**
  * Retrieve data from an API endpoint
@@ -34,11 +48,7 @@ export const callApi = (apiBaseUrl, { payload }) => {
   }
   return fetch(endpoint, {
     method: method || 'GET',
-    headers: {
-      Accept: 'application/vnd.api+json',
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${clientToken}`,
-    },
+    ...headers(clientToken),
     body: JSON.stringify(body),
   })
     .then(response => response.json()

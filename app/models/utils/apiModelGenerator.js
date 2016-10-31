@@ -4,6 +4,7 @@ export const APIDesc = Record({
   actions: new Map(),
   endpoint: '',
   type: '',
+  arguModel: false,
 });
 
 export const apiModelGenerator = (properties, apiDesc) => {
@@ -27,6 +28,7 @@ export const apiModelGenerator = (properties, apiDesc) => {
     type: apiDesc.get('actions').get('resource'),
     payload: {
       apiAction: true,
+      arguModel: apiDesc.get('arguModel'),
       endpoint: apiDesc.get('endpoint'),
       id,
     },
@@ -36,6 +38,7 @@ export const apiModelGenerator = (properties, apiDesc) => {
     type: apiDesc.get('actions').get('collection'),
     payload: {
       apiAction: true,
+      arguModel: apiDesc.get('arguModel'),
       endpoint: apiDesc.get('endpoint'),
     },
   });

@@ -13,3 +13,7 @@ tmp/
 coverage
 .happypack
 stats.json
+.idea/
+/dev/nginx.conf
+nginx.crt
+nginx.key

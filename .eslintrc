@@ -73,6 +73,7 @@
     "prefer-default-export": 0,
     "react/jsx-filename-extension": 0,
     "space-unary-ops": ["error", { "words": true, "nonwords": false }],
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "no-magic-numbers": ["error", {
       "ignore": [
         -1, 0, 1,
@@ -86,6 +87,7 @@
     "no-invalid-this": "error",
     "no-unmodified-loop-condition": "error",
     "no-undef-init": "error",
+    "no-unused-vars": ["error", { "varsIgnorePattern": "[iI]gnored" }],
     "no-inline-comments": "error",
     "new-cap": [
       "error",

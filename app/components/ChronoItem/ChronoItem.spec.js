@@ -3,6 +3,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { assert } from 'chai';
 
+import { generateContext } from '../../../tests/linkhelper';
 import ChronoItem from './';
 
 const comp = mount(
@@ -12,7 +13,8 @@ const comp = mount(
     endDate={new Date()}
     startDate={new Date()}
     text="Joe"
-  />
+  />,
+  generateContext({ linkedRenderStore: true, schemaObject: true })
 );
 
 describe('ChronoItem component', () => {

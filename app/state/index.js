@@ -4,6 +4,8 @@ import { enableBatching } from 'redux-batched-actions';
 import { combineReducers } from 'redux-immutable';
 
 import JsonApi from '../middleware/api';
+import { linkMiddleware } from 'link-redux';
+import LinkedRenderStore from '../helpers/LinkedRenderStore';
 import { ARGU_API_URL_EXT } from '../config';
 import * as reducers from './reducers';
 import * as models from '../models';
@@ -34,12 +36,12 @@ const configureStore = (preloadedState) => {
 
   if (process.env.NODE_ENV === 'production') {
     middleware = compose(
-      applyMiddleware(thunk, apiMiddleware),
+      applyMiddleware(thunk, apiMiddleware, linkMiddleware(LinkedRenderStore)),
       reduxSearchConfig()
     );
   } else {
     middleware = compose(
-      applyMiddleware(thunk, apiMiddleware),
+      applyMiddleware(thunk, apiMiddleware, linkMiddleware(LinkedRenderStore)),
       reduxSearchConfig(),
       window.devToolsExtension ? window.devToolsExtension() : f => f
     );

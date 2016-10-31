@@ -33,6 +33,10 @@ const common = {
         include: /app/,
       },
       {
+        test: /\.json$/,
+        loader: 'json-loader',
+      },
+      {
         test: /\.png$/,
         loader: 'file?name=[name].[ext]',
       }, {

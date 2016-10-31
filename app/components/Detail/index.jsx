@@ -1,6 +1,7 @@
 import './Detail.scss';
 import React, { PropTypes } from 'react';
 import { browserHistory } from 'react-router';
+import { Property, PropertyBase } from 'link-redux';
 import FontAwesome from 'react-fontawesome';
 
 const propTypes = {
@@ -17,48 +18,61 @@ const propTypes = {
   hideIcon: PropTypes.bool,
 };
 
-const Detail = ({
-  text,
-  icon,
-  url,
-  imageUrl,
-  hideIcon,
-  className,
-  title,
-  floatRight,
-}) => {
-  const Element = url ? 'a' : 'div';
-  const classNames = [
-    'Detail',
-    url && 'Detail--link',
-    floatRight && 'Detail--float-right',
-    className,
-  ].join(' ');
+class Detail extends PropertyBase {
+  getText() {
+    return this.getLinkedObjectProperty() ||
+      <span className="Detail__text">{this.props.text}</span>;
+  }
 
-  return (
-    <Element
-      onClick={(e) => {
+  getClickBinding() {
+    const url = this.props.url;
+    if (url) {
+      return (e) => {
         e.preventDefault();
         if (url) browserHistory.push(url);
-      }}
-      href={url}
-      className={classNames}
-      title={title}
-    >
-      {imageUrl &&
-        <img src={imageUrl} className="Detail__image" role="presentation" />
-      }
-      {!imageUrl && icon && !hideIcon &&
+      };
+    }
+    return undefined;
+  }
+
+  render() {
+    const {
+      icon,
+      url,
+      imageUrl,
+      hideIcon,
+      className,
+      title,
+      floatRight,
+    } = this.props;
+    const Element = url ? 'a' : 'div';
+    const classNames = [
+      'Detail',
+      url && 'Detail--link',
+      floatRight && 'Detail--float-right',
+      className,
+    ].join(' ');
+
+    return (
+      <Element
+        onClick={this.getClickBinding()}
+        href={url}
+        className={classNames}
+        title={title}
+      >
+        <Property label="schema:image" />
+
+        {!imageUrl && icon && !hideIcon &&
         <span className="Detail__icon">
           <FontAwesome name={icon} />
         </span>
-      }
-      {text &&
-        <span className="Detail__text">{text}</span>
-      }
-    </Element>
-  );
-};
+        }
+
+        {this.getText()}
+      </Element>
+    );
+  }
+}
 
 Detail.propTypes = propTypes;
 

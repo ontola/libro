@@ -49,7 +49,6 @@ const Columns = ({
   );
 };
 
-
 Columns.propTypes = propTypes;
 Columns.defaultProps = defaultProps;
 

@@ -14,18 +14,19 @@ export const setRecord = (
 ) => {
   let newRecord;
 
+  const stateId = record && record['@id'] ? record['@id'] : id;
   if (Model) {
-    newRecord = state.getIn(['items', id]) !== undefined
-      ? state.getIn(['items', id])
+    newRecord = state.getIn(['items', stateId]) !== undefined
+      ? state.getIn(['items', stateId])
       : new Model({ id, loading: true });
 
     if (record && record.get('title') === '') {
       if (newRecord.get('title').length > 0) {
-        return state.setIn(['items', id], newRecord);
+        return state.setIn(['items', stateId], newRecord);
       }
     }
   }
-  return state.setIn(['items', id], record || newRecord);
+  return state.setIn(['items', stateId], record || newRecord);
 };
 
 /**

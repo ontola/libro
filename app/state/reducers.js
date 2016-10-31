@@ -1,12 +1,15 @@
 export { default as argumentations } from './argumentations/reducer';
+export { default as currentActors } from './currentActors/reducer';
 export { default as collapsible } from './collapsible/reducer';
 export { default as communication } from './communication/reducer';
 export { default as counts } from './counts/reducer';
 export { default as eventItems } from './eventItems/reducer';
 export { default as events } from './events/reducer';
 export { default as groups } from './groups/reducer';
+export { linkReducer as linkedObjects } from 'link-redux';
 export { default as motions } from './motions/reducer';
 export { default as persons } from './persons/reducer';
+export { default as relationsBrowser } from './relationsBrowser/reducer';
 export { default as router } from './router/reducer';
 export { default as searchElastic } from './searchElastic/reducer';
 export { default as sideBars } from './sideBars/reducer';

@@ -10,6 +10,7 @@ describe('Vote events actions', () => {
       type: actions.GET_VOTE_EVENT,
       payload: {
         apiAction: true,
+        arguModel: false,
         endpoint: 'vote_events',
         id: SPECIFIC_VOTE_EVENT_ID,
       },
@@ -26,6 +27,7 @@ describe('Vote events actions', () => {
       type: actions.GET_VOTE_EVENTS,
       payload: {
         apiAction: true,
+        arguModel: false,
         endpoint: 'vote_events',
       },
     };

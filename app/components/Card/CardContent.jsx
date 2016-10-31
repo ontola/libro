@@ -2,7 +2,7 @@ import './Card.scss';
 import React, { PropTypes } from 'react';
 
 const propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   noSpacing: PropTypes.bool,
 };
 
@@ -14,6 +14,9 @@ const CardContent = ({
   children,
   noSpacing,
 }) => {
+  if (typeof children === 'undefined') {
+    return <div />;
+  }
   const className = noSpacing ? 'CardContent CardContent--no-spacing' : 'CardContent';
 
   return (

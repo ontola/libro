@@ -1,11 +1,26 @@
+/* eslint class-methods-use-this: 0 */
 import './DetailsBar.scss';
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 
-const DetailsBar = ({ children }) => (
-  <div className="DetailsBar">
-    {children}
-  </div>
-);
+class DetailsBar extends Component {
+  getChildContext() {
+    return {
+      topology: 'details',
+    };
+  }
+
+  render() {
+    return (
+      <div className="DetailsBar">
+        {this.props.children}
+      </div>
+    );
+  }
+}
+
+DetailsBar.childContextTypes = {
+  topology: PropTypes.string,
+};
 
 DetailsBar.propTypes = {
   children: PropTypes.node.isRequired,

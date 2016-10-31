@@ -1,11 +1,12 @@
 require('babel-register')();
 const jsdom = require('jsdom').jsdom;
 
-const exposedProperties = ['windnpm run ow', 'navigator', 'document'];
+const exposedProperties = ['window', 'navigator', 'document'];
 
 require.extensions['.scss'] = () => null;
 global.document = jsdom('');
 global.window = document.defaultView;
+global.window.URL = require('whatwg-url').URL;
 
 const ignoreGlobals = [
   'SVGPathSeg',

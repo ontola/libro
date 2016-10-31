@@ -10,6 +10,7 @@ describe('Count actions', () => {
       type: actions.GET_COUNT,
       payload: {
         apiAction: true,
+        arguModel: false,
         endpoint: 'counts',
         id: SPECIFIC_COUNT_ID,
       },
@@ -26,6 +27,7 @@ describe('Count actions', () => {
       type: actions.GET_COUNTS,
       payload: {
         apiAction: true,
+        arguModel: false,
         endpoint: 'counts',
       },
     };

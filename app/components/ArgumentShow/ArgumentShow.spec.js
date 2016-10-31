@@ -2,6 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { assert } from 'chai';
 
+import { generateContext } from '../../../tests/linkhelper';
 import ArgumentShow from './';
 
 const argument = 'Liefst de container nog voor de zomer. De zakken stinken nu al de garage uit';
@@ -11,7 +12,8 @@ const comp = mount(
     title="Zakken stinken de garage uit"
     side="pro"
     text={argument}
-  />
+  />,
+  generateContext({ linkedRenderStore: true, schemaObject: true })
 );
 
 describe('ArgumentShow component', () => {

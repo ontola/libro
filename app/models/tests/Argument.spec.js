@@ -10,6 +10,7 @@ describe('Argument actions', () => {
       type: actions.GET_ARGUMENT,
       payload: {
         apiAction: true,
+        arguModel: false,
         endpoint: 'arguments',
         id: SPECIFIC_ARGUMENT_ID,
       },
@@ -26,6 +27,7 @@ describe('Argument actions', () => {
       type: actions.GET_ARGUMENTS,
       payload: {
         apiAction: true,
+        arguModel: false,
         endpoint: 'arguments',
       },
     };

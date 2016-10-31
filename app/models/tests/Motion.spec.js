@@ -10,6 +10,7 @@ describe('Motion actions', () => {
       type: actions.GET_MOTION,
       payload: {
         apiAction: true,
+        arguModel: false,
         endpoint: 'motions',
         id: SPECIFIC_MOTION_ID,
       },
@@ -26,6 +27,7 @@ describe('Motion actions', () => {
       type: actions.GET_MOTIONS,
       payload: {
         apiAction: true,
+        arguModel: false,
         endpoint: 'motions',
       },
     };

@@ -1,5 +1,6 @@
 export { default as Argument } from './Argument';
 export { default as Count } from './Count';
+export { default as CurrentActor } from './CurrentActor';
 export { default as Event } from './Event';
 export { default as EventItem } from './EventItem';
 export { default as Group } from './Group';

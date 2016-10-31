@@ -3,8 +3,10 @@ import { Provider } from 'react-redux';
 import { applyRouterMiddleware, Router } from 'react-router';
 import { SearchkitProvider } from 'searchkit';
 import { useScroll } from 'react-router-scroll';
+import { RenderStoreProvider } from 'link-redux';
 
 import routes from '../routes';
+import LinkedRenderStore from '../helpers/LinkedRenderStore';
 
 const propTypes = {
   store: PropTypes.object.isRequired,
@@ -25,14 +27,16 @@ class IndexContainer extends Component {
     const { store, sk, history } = this.props;
     return (
       <Provider store={store}>
-        <SearchkitProvider searchkit={sk}>
-          <Router
-            history={history}
-            routes={routes}
-            render={applyRouterMiddleware(useScroll())}
-            // onUpdate={() => window.scrollTo(0, 0)}
-          />
-        </SearchkitProvider>
+        <RenderStoreProvider linkedRenderStore={LinkedRenderStore}>
+          <SearchkitProvider searchkit={sk}>
+            <Router
+              history={history}
+              routes={routes}
+              render={applyRouterMiddleware(useScroll())}
+              // onUpdate={() => window.scrollTo(0, 0)}
+            />
+          </SearchkitProvider>
+        </RenderStoreProvider>
       </Provider>
     );
   }
