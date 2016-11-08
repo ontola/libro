@@ -2,7 +2,9 @@ import { applyMiddleware, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { enableBatching } from 'redux-batched-actions';
 import { combineReducers } from 'redux-immutable';
+<<<<<<< 86608004f8433a0837bd0fe4ac067113bb7a18df
 import { reducer as searchLocal, reduxSearch } from 'redux-search';
+import { reducer as formReducer } from 'redux-form/immutable';
 
 import JsonApi from '../middleware/api';
 import { ARGU_API_URL_EXT } from '../config';
@@ -26,7 +28,7 @@ const configureStore = (preloadedState) => {
       // This selector is responsible for returning each collection of searchable resources
       resourceSelector: (resourceName, state) => state.getIn([resourceName, 'items']),
       // Matches the search state name in the combineReducers function.
-      searchStateSelector: state => state.get('searchLocal'),
+      searchStateSelector: state => state.get('search'),
     })
   );
 
@@ -44,7 +46,7 @@ const configureStore = (preloadedState) => {
   }
 
   const store = createStore(
-    enableBatching(combineReducers([...reducers, searchLocal])),
+    enableBatching(combineReducers([...reducers, searchLocal, form])),
     preloadedState,
     middleware
   );

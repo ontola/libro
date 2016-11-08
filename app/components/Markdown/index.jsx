@@ -34,6 +34,7 @@ const Markdown = ({
       source={highlightOrNot()}
       unwrapDisallowed
       escapeHtml
+      softBreak="br"
     />
   );
 };

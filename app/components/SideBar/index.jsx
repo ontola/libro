@@ -57,27 +57,32 @@ class SideBar extends Component {
 
 
   render() {
+    const {
+      sideBarOpen,
+      sideBarDocked,
+    } = this.state;
     return (
       <Sidebar
         sidebar={this.props.sidebar}
-        open={this.state.sideBarOpen}
-        docked={this.state.sideBarDocked}
+        open={sideBarOpen}
+        docked={sideBarDocked}
         onSetOpen={this.onSetSideBarOpen}
         styles={this.styles}
         rootClassName="SideBar--content"
-        sidebarClassName="SideBar--sidebar"
+        sidebarClassName={`SideBar--sidebar ${sideBarDocked && 'SideBar--docked'}`}
         overlayClassName="SideBar--overlay"
         pullRight
       >
-        {!this.state.sideBarOpen && !this.state.sideBarDocked &&
+        {!sideBarOpen && !sideBarDocked &&
           <div className="SideBar--switch-wrapper">
             <Button
               onClick={() => this.setState({
                 sideBarOpen: true,
               })}
               icon="comments"
+              theme="as-box"
             >
-              Discussie
+              Timeline
             </Button>
           </div>
         }

@@ -27,8 +27,8 @@
 
 .SideBar--switch-wrapper {
   position: fixed;
-  right: 1em;
-  top: 4em;
+  right: -.3em;
+  top: 3.6rem;
   z-index: 2;
 }
 
@@ -41,9 +41,41 @@
   flex-grow: 1;
 }
 
+.SideBar--docked {
+  box-shadow: none !important;
+  border-left: solid 1px color('grey', 'light');
+}
+
 .SideBar__controls {
   background-color: color('grey', 'x-light');
   display: flex;
+}
+
+.SideBar__search-form {
+  display: flex;
+  flex: 1;
+  // Used for the clear button
+  position: relative;
+}
+
+.SideBar__search-clear {
+  position: absolute;
+  right: 0.5em;
+  height: 1.5em;
+  width: 1.5em;
+  background-color: color('grey', 'x-light');
+  border-radius: 999px;
+  display: flex;
+  align-self: center;
+  align-content: center;
+  justify-content: center;
+  color: color('grey');
+
+  &:hover {
+    background-color: color('grey', 'light');
+    cursor: pointer;
+    color: color('grey', 'dark');
+  }
 }
 
 .SideBar__search {
