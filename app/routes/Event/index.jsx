@@ -2,6 +2,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
+import { reset } from 'redux-form';
 
 import {
   setEventTime,
@@ -14,8 +15,11 @@ import {
   SideBar,
 } from 'components';
 
+import SearchInput from 'containers/SearchInput';
+
 import {
   getEventTitle,
+  getVideoUrl,
   shouldVideoShow,
   text,
 } from 'state/events/selectors';
@@ -31,26 +35,33 @@ const propTypes = {
   title: PropTypes.string,
   onToggleShowVideo: PropTypes.func.isRequired,
   onSearchSpeeches: PropTypes.func.isRequired,
+  resetSearchForm: PropTypes.func.isRequired,
   showVideo: PropTypes.bool,
   videoUrl: PropTypes.string,
 };
 
 const Event = ({
-  params,
-  title,
-  onToggleShowVideo,
   onSearchSpeeches,
+  onToggleShowVideo,
+  params,
+  resetSearchForm,
   showVideo,
+  title,
   videoUrl,
 }) => {
-  const ONCHANGE_QUERY_LENGTH = 3;
-
-  function searchItMaybe(query) {
-    if (query.length > ONCHANGE_QUERY_LENGTH) {
-      onSearchSpeeches(query);
+  const handleSearch = (values) => {
+    const searchValue = values.get('search');
+    if (searchValue === undefined) {
+      onSearchSpeeches('');
+    } else {
+      onSearchSpeeches(searchValue);
     }
-    return null;
-  }
+  };
+
+  const handleClear = (e) => {
+    onSearchSpeeches('');
+    resetSearchForm();
+  };
 
   const sideBarContent = (
     <div className="SideBar--sidebar-wrapper">
@@ -80,12 +91,9 @@ const Event = ({
               Video verbergen
             </Button>
           }
-          <input
-            className="SideBar__search"
-            type="text"
-            placeholder="Zoeken in discussie..."
-            onChange={event => searchItMaybe(event.target.value)}
-            value={text}
+          <SearchInput
+            onSubmit={handleSearch}
+            handleClear={handleClear}
           />
         </div>
       </div>
@@ -112,8 +120,8 @@ Event.propTypes = propTypes;
 const stateToProps = (state, ownProps) => ({
   title: getEventTitle(state, ownProps),
   showVideo: shouldVideoShow(state),
-  searchQuery: text,
-  videoUrl: 'http://player.companywebcast.com/gemeenteutrecht/20160407_3/nl/resource/download/mp4/bb/gemeente%20utrecht-20160407_3.mp4',
+  // searchQuery: text,
+  videoUrl: getVideoUrl(state, ownProps),
 });
 
 export default connect(
@@ -122,5 +130,6 @@ export default connect(
     onToggleShowVideo: eventId => dispatch(toggleShowVideo(eventId)),
     onSetEventTime: (eventId, time) => dispatch(setEventTime(eventId, time)),
     onSearchSpeeches: searchText => dispatch(createSearchAction('speeches')(searchText)),
+    resetSearchForm: () => dispatch(reset('searchLocalInput')),
   })
 )(Event);

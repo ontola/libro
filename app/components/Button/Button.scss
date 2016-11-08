@@ -64,6 +64,13 @@
   }
 }
 
+.Button--as-box {
+  color: color('grey');
+  background-color: color('white');
+  box-shadow: $box-shadow;
+  border-radius: $border-radius-base;
+}
+
 .Button--small {
   font-size: font-size('small');
   padding: units('xx-small', 'x-small');

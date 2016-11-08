@@ -11,7 +11,7 @@ const initialState = new Map({
   hits: 0,
 });
 
-const search = handleActions({
+const searchElastic = handleActions({
   [TOGGLE_DRAWER]: state =>
     state.set('visible', !state.get('visible')),
 
@@ -19,4 +19,4 @@ const search = handleActions({
     state.set('hits', payload),
 }, initialState);
 
-export default search;
+export default searchElastic;

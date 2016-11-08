@@ -3,6 +3,7 @@ export const buttonThemes = [
   'box',
   'subtle',
   'transparant',
+  'as-box',
 ];
 
 export const headingSizes = ['1', '2', '3', '4', '5', '6'];

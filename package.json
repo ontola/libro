@@ -11,6 +11,7 @@
     "react-addons-shallow-compare": "^15.3.2",
     "react-html5video": "^1.2.12",
     "react-markdown": "^2.4.2",
+    "redux-form": "^6.1.1",
     "redux-search": "^2.3.2",
     "rimraf": "^2.5.4",
     "searchkit-express": "^0.2.1"
@@ -77,6 +78,7 @@
     "react-router-redux": "^4.0.4",
     "react-sidebar": "^2.2.1",
     "react-styleguidist": "^4.0.1",
+    "recharts": "0.15.1",
     "redux": "^3.5.2",
     "redux-actions": "^0.10.0",
     "redux-batched-actions": "^0.1.3",

@@ -48,13 +48,11 @@ const Detail = ({
       {imageUrl &&
         <img src={imageUrl} className="Detail__image" role="presentation" />
       }
-
       {!imageUrl && icon && !hideIcon &&
         <span className="Detail__icon">
           <FontAwesome name={icon} />
         </span>
       }
-
       {text &&
         <span className="Detail__text">{text}</span>
       }

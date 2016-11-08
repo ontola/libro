@@ -13,12 +13,14 @@ export const getSpeech = createSelector(
 );
 
 export const {
-  text,     // The input of the query
-  result,   // An array of IDs
+  /** Input of the query */
+  text,
+  /** Array of IDs of content that matches the query */
+  result,
 } = getSearchSelectors({
   resourceName: 'speeches',
   resourceSelector: (resourceName, state) => state.getIn([resourceName, 'items']),
-  searchStateSelector: state => state.get('searchLocal'),
+  searchStateSelector: state => state.get('search'),
 });
 
 export const getFilteredSpeechesForEvent = createSelector(
