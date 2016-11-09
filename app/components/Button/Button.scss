@@ -69,6 +69,20 @@
   background-color: color('white');
   box-shadow: $box-shadow;
   border-radius: $border-radius-base;
+  transition: .2s;
+  &:hover {
+    background-color: color('white');
+    box-shadow: $box-shadow--intense;
+    // transform: translateY(-1px);
+    color: color('grey', 'dark');
+  }
+  transition: .2s;
+  &:active {
+    background-color: color('white');
+    box-shadow: none;
+    // transform: translateY(1px);
+    color: color('grey', 'dark');
+  }
 }
 
 .Button--small {
