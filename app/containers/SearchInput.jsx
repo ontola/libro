@@ -1,22 +1,25 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, formValueSelector } from 'redux-form/immutable';
-import FontAwesome from 'react-fontawesome';
-import { text } from 'state/search/selectors';
+import { text as currentQuerySelector } from 'state/speeches/selectors';
+
+import {
+  Button,
+} from 'components';
 
 const propTypes = {
   currentValue: PropTypes.string,
+  lastSearchValue: PropTypes.string,
   handleClear: PropTypes.func.isRequired,
   // Since this uses redux-form, you need to pass onSubmit instead of handleSubmit.
   handleSubmit: PropTypes.func.isRequired,
 };
 
-console.log(text);
-
-let SearchInput = ({
+const SearchInput = ({
   currentValue,
   handleClear,
   handleSubmit,
+  lastSearchValue,
 }) =>
   <form
     onSubmit={handleSubmit}
@@ -29,14 +32,21 @@ let SearchInput = ({
       component="input"
       type="text"
     />
-    {currentValue &&
-      <button
+    {(currentValue || lastSearchValue) &&
+      <Button
         type="reset"
-        onClick={handleClear}
-        className="SideBar__search-clear"
+        onClick={() => handleClear()}
+        theme="transparant"
+        icon="close"
+      />
+    }
+    {currentValue && (currentValue !== lastSearchValue) &&
+      <Button
+        type="submit"
       >
-        <FontAwesome name="close" />
-      </button>}
+        Zoek
+      </Button>
+    }
   </form>
 ;
 
@@ -44,16 +54,15 @@ SearchInput.propTypes = propTypes;
 
 const formName = 'searchLocalInput';
 
-SearchInput = reduxForm({
+const SearchInputForm = reduxForm({
   form: formName,
 })(SearchInput);
 
-SearchInput = connect(
-  (state, ownProps) => ({
-    initialValues: { search: text },
-    currentValue: formValueSelector(formName),
-  }),
-  {}
-)(SearchInput);
+const SearchInputContainer = connect(
+  state => ({
+    lastSearchValue: currentQuerySelector(state),
+    currentValue: formValueSelector(formName)(state, 'search'),
+  })
+)(SearchInputForm);
 
-export default SearchInput;
+export default SearchInputContainer;

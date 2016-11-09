@@ -58,9 +58,9 @@ const Event = ({
     }
   };
 
-  const handleClear = (e) => {
-    onSearchSpeeches('');
+  const handleClear = () => {
     resetSearchForm();
+    onSearchSpeeches('');
   };
 
   const sideBarContent = (
