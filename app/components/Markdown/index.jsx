@@ -17,7 +17,7 @@ const Markdown = ({
   const pattern = new RegExp(highlightedText, 'gi');
 
   const highlighter = () =>
-    text.replace(pattern, `**${highlightedText}**`);
+    text.replace(pattern, `**${highlightedText.toUpperCase()}**`);
 
   const MIN_LENGTH_TO_ADD_HIGHLIGHT = 1;
 
