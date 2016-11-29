@@ -1,6 +1,6 @@
 FROM alpine:edge
 
-RUN apk add --no-cache nodejs
+RUN apk add --no-cache nodejs ca-certificates
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
