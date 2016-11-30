@@ -11,7 +11,8 @@ const comp = mount(
     currentDate={new Date()}
     endDate={new Date()}
     startDate={new Date()}
-  >{['Content', 'joe']}</ChronoItem>
+    text="Joe"
+  />
 );
 
 describe('ChronoItem component', () => {

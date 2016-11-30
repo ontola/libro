@@ -86,7 +86,7 @@
     "redux-thunk": "^2.1.0",
     "reselect": "^2.5.3",
     "retire": "^1.1.5",
-    "sass-lint": "^1.9.0",
+    "sass-lint": "^1.10.0",
     "sass-loader": "^3.2.0",
     "sassdoc": "^2.1.20",
     "searchkit": "^0.10.1",

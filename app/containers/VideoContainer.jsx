@@ -8,7 +8,6 @@ import {
 } from 'state/events/actions';
 
 const propTypes = {
-  eventId: PropTypes.string.isRequired,
   onSetTime: PropTypes.func.isRequired,
   url: PropTypes.string.isRequired,
 };
@@ -16,10 +15,6 @@ const propTypes = {
 const REFRESH_TIME = 1000;
 
 class VideoContainer extends Component {
-  constructor(props, context) {
-    super(props, context);
-  }
-
   componentDidMount() {
     setInterval(
       () => {

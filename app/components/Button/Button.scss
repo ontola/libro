@@ -59,24 +59,26 @@
 
 .Button--transparant {
   color: color('grey');
+
   &:hover {
-    color: color('grey','dark')
+    color: color('grey', 'dark');
   }
 }
 
 .Button--as-box {
-  color: color('grey');
   background-color: color('white');
-  box-shadow: $box-shadow;
   border-radius: $border-radius-base;
+  box-shadow: $box-shadow;
+  color: color('grey');
   transition: .2s;
+
   &:hover {
     background-color: color('white');
     box-shadow: $box-shadow--intense;
     // transform: translateY(-1px);
     color: color('grey', 'dark');
   }
-  transition: .2s;
+
   &:active {
     background-color: color('white');
     box-shadow: none;

@@ -21,7 +21,6 @@ import {
   getEventTitle,
   getVideoUrl,
   shouldVideoShow,
-  text,
 } from 'state/events/selectors';
 
 import { createSearchAction } from 'redux-search';
@@ -120,7 +119,6 @@ Event.propTypes = propTypes;
 const stateToProps = (state, ownProps) => ({
   title: getEventTitle(state, ownProps),
   showVideo: shouldVideoShow(state),
-  // searchQuery: text,
   videoUrl: getVideoUrl(state, ownProps),
 });
 
