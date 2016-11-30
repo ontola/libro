@@ -19,7 +19,7 @@ const attributes = {
   eventId: '',
   id: '',
   loading: false,
-  name: '',
+  title: '',
   startDate: new Date(),
 };
 
