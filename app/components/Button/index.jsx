@@ -2,6 +2,7 @@ import './Button.scss';
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import FontAwesome from 'react-fontawesome';
+import { buttonThemes } from 'components/shared/config';
 
 const propTypes = {
   /** Should be true when the button is toggleable and toggled. */
@@ -11,7 +12,7 @@ const propTypes = {
   onClick: PropTypes.func,
   icon: PropTypes.string,
   small: PropTypes.bool,
-  theme: PropTypes.oneOf(['default', 'box', 'subtle']),
+  theme: PropTypes.oneOf(buttonThemes),
   variant: PropTypes.oneOf(['pro', 'neutral', 'con', 'upvote', 'comment']),
 };
 

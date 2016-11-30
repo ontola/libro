@@ -22,7 +22,7 @@ const Markdown = ({
   const MIN_LENGTH_TO_ADD_HIGHLIGHT = 1;
 
   const highlightOrNot = () => {
-    if (highlightedText.length > MIN_LENGTH_TO_ADD_HIGHLIGHT) {
+    if (highlightedText && highlightedText.length > MIN_LENGTH_TO_ADD_HIGHLIGHT) {
       return highlighter();
     }
     return text;
