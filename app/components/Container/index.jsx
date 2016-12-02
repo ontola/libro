@@ -5,6 +5,7 @@ import { sizes } from 'components/shared/config';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
+  flex: PropTypes.bool,
   size: PropTypes.oneOf(sizes),
   spacing: PropTypes.oneOf(sizes),
 };
@@ -19,12 +20,14 @@ const defaultProps = {
  */
 const Container = ({
   children,
+  flex,
   size,
   spacing,
 }) => {
   const containerClassName = classNames({
     Container: true,
-    [`Container--size-${size}`]: size,
+    'Container--flex': flex,
+    [`Container--size-${size}`]: !flex && size,
     [`Container--spacing-${spacing}`]: spacing,
   });
 
