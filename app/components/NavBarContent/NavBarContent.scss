@@ -1,0 +1,29 @@
+@import '../shared/config';
+
+.NavBarContent {
+  display: flex;
+  flex-direction: column;
+
+  &__logo {
+    align-self: center;
+    color: color('white');
+
+    path,
+    rect {
+      fill: color('white');
+    }
+  }
+}
+
+.NavBarContent__top {
+  flex: 1;
+}
+
+.NavBarContent__footer {
+}
+
+.NavBarContent__centerFooter {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}

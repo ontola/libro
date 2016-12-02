@@ -1,0 +1,47 @@
+@import '../shared/config';
+
+.SideBarLink {
+  a {
+    display: flex;
+    font-size: 1em;
+    padding: .3em 0;
+  }
+
+  &:hover {
+    background-color: color('transparent', 'x-light');
+  }
+
+  &:active {
+    background-color: color('transparent', 'light');
+  }
+}
+
+.NavBarContent--white-text .SideBarLink a {
+  color: color('white');
+}
+
+.SideBarLink--active {
+  background-color: color('transparent', 'x-light');
+}
+
+.SideBarLink__icon, .SideBarLink__image-wrapper {
+  padding-left: 2em;
+  padding-right: 1em;
+  text-align: center;
+  width: 1em;
+  height: 1em;
+}
+
+.SideBarLink__icon {
+
+}
+
+.SideBarLink__image {
+  background-size: cover;
+  border: 1px solid color('grey', 'x-light');
+  border-radius: 100%;
+  height: 1.5em;
+  left: -.2em;
+  position: relative;
+  width: 1.5em;
+}

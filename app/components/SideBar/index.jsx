@@ -1,13 +1,21 @@
 import './SideBar.scss';
 import React, { PropTypes, Component } from 'react';
 import Sidebar from 'react-sidebar';
+import classNames from 'classnames';
 import {
   Button,
 } from 'components';
 
 const propTypes = {
+  /* The components that appear in the sidebar*/
   sidebar: PropTypes.node,
+  /* The components that appear in the main area*/
   children: PropTypes.node,
+  /* Set to true if you don't want the sidebar to appear from the left*/
+  pullRight: PropTypes.bool,
+  slim: PropTypes.bool,
+  /* Unique ID for state management */
+  ID: PropTypes.string.isRequired,
 };
 
 class SideBar extends Component {
@@ -23,15 +31,20 @@ class SideBar extends Component {
   }
 
   componentWillMount() {
-    const mql = window.matchMedia('(min-width: 1100px)');
+    const mql = window.matchMedia(`(min-width: ${this.triggerWidth()})`);
     mql.addListener(this.mediaQueryChanged);
     this.setState({
       mql,
       sideBarDocked: mql.matches,
     });
     this.styles = {
-      root: {
-        top: '3em',
+      sidebar: {
+        // To overlap the BottomBar
+        zIndex: '3',
+      },
+      content: {
+        // Prevents items disappearing underneath Bottombar
+        paddingBottom: '3em',
       },
     };
   }
@@ -42,6 +55,13 @@ class SideBar extends Component {
 
   onSetSideBarOpen(open) {
     this.setState({ sideBarOpen: open });
+  }
+
+  triggerWidth() {
+    if (this.props.slim === true) {
+      return '900px';
+    }
+    return '1100px';
   }
 
   mediaQueryChanged() {
@@ -61,17 +81,24 @@ class SideBar extends Component {
       sideBarOpen,
       sideBarDocked,
     } = this.state;
+
+    const sideBarClassNames = classNames({
+      'SideBar--sidebar': true,
+      'SideBar--docked': sideBarDocked,
+      'SideBar--slim': this.props.slim,
+    });
+
     return (
       <Sidebar
-        sidebar={this.props.sidebar}
-        open={sideBarOpen}
         docked={sideBarDocked}
         onSetOpen={this.onSetSideBarOpen}
-        styles={this.styles}
-        rootClassName="SideBar--content"
-        sidebarClassName={`SideBar--sidebar ${sideBarDocked && 'SideBar--docked'}`}
+        open={sideBarOpen}
         overlayClassName="SideBar--overlay"
-        pullRight
+        pullRight={this.props.pullRight}
+        rootClassName="SideBar--content"
+        sidebar={this.props.sidebar}
+        sidebarClassName={sideBarClassNames}
+        styles={this.styles}
       >
         {!sideBarOpen && !sideBarDocked &&
           <div className="SideBar--switch-wrapper">

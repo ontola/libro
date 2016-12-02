@@ -3,8 +3,13 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
-import NavbarContainer from 'containers/NavbarContainer';
-import { Notification, Spinner } from 'components';
+import {
+  BottomBar,
+  NavBarContent,
+  Notification,
+  SideBar,
+  Spinner,
+} from 'components';
 
 import resetErrorMessage from 'state/communication/actions';
 import { getErrorBool, getErrorMsg, getLoadingBool } from 'state/communication/selectors';
@@ -37,13 +42,15 @@ const App = ({
       htmlAttributes={{ lang: 'nl' }}
       titleTemplate="%s - Argu"
       defaultTitle="Argu"
-      meta={[
-        { name: 'viewport', content: 'Helmet application' },
-      ]}
     />
     <Spinner loading={loading} />
-    <NavbarContainer />
-    {error ? renderErrorMessage(error, errorMessage, reset) : children}
+    <SideBar
+      sidebar={<NavBarContent />}
+      slim
+    >
+      <BottomBar />
+      {error ? renderErrorMessage(error, errorMessage, reset) : children}
+    </SideBar>
   </div>
 );
 

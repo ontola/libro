@@ -1,0 +1,20 @@
+@import '../shared/config';
+
+.OrgSwitcher {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;;
+  padding: 1em;
+}
+
+.OrgSwitcher__name {
+  color: color('white');
+  font-weight: bold;
+}
+
+.OrgSwitcher__image {
+  border-radius: 999px;
+  height: 2em;
+  width: 2em;
+  margin-right: 1em;
+}

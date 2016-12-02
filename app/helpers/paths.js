@@ -50,6 +50,10 @@ const path = {
   partiesIndex() {
     return '/parties';
   },
+
+  search() {
+    return '/search';
+  },
 };
 
 export default path;

@@ -4,10 +4,15 @@
 // If you want to overwrite the default styling, use inline styles in the component.
 .SideBar--sidebar {
   background-color: color('white');
+  display: flex;
   max-width: 100%;
   width: 30em;
   // Prevents a weird bug with fullscreen in chrome.
   will-change: inherit !important;
+
+  &.SideBar--slim {
+    width: 15em;
+  }
 }
 
 .SideBar--sidebar-wrapper {
@@ -19,7 +24,7 @@
 }
 
 .SideBar--content {
-  top: 3em;
+  // top: 3em;
 }
 
 .SideBar--overlay {
@@ -43,8 +48,11 @@
 }
 
 .SideBar--docked {
-  border-left: solid 1px color('grey', 'light');
   box-shadow: none !important;
+
+  &.SideBar--right {
+    border-left: solid 1px color('grey', 'light');
+  }
 }
 
 .SideBar__controls {
