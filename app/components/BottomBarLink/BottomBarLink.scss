@@ -1,0 +1,60 @@
+@import '../shared/config';
+
+.BottomBarLink {
+  flex: 1;
+  max-width: 5em;
+
+  a {
+    align-items: center;
+    color: color('grey', 'dark');
+    display: flex;
+    flex-direction: column;
+    font-size: 1em;
+    padding: .3em 0;
+  }
+
+  &:hover {
+    background-color: color('transparent', 'mid-dark');
+
+  }
+
+  &:active {
+    background-color: color('transparent', 'dark');
+  }
+}
+
+.BottomBar--white-text .BottomBarLink a {
+  color: color('white');
+}
+
+.BottomBar--white-text .BottomBarLink:hover {
+  background-color: color('transparent', 'x-light');
+}
+
+.BottomBar--white-text .BottomBarLink:active {
+  background-color: color('transparent', 'light');
+}
+
+.BottomBarLink--active {
+  background-color: color('transparent', 'x-light');
+}
+
+.BottomBarLink__icon,
+.BottomBarLink__image-wrapper {
+  height: 1em;
+  padding-bottom: .3em;
+  text-align: center;
+  width: 1em;
+}
+
+.BottomBarLink__text {
+  font-size: .7em;
+}
+
+.BottomBarLink__image {
+  background-size: cover;
+  border: 1px solid color('grey', 'x-light');
+  border-radius: 100%;
+  height: 1.5em;
+  width: 1.5em;
+}
