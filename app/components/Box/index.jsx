@@ -17,7 +17,6 @@ const Box = ({
   </Card>
 );
 
-
 Box.propTypes = propTypes;
 
 export default Box;
