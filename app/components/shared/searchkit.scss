@@ -2,20 +2,18 @@
 
 // SEARCHBOX
 .sk-search-box {
-  background-color: color('transparent', 'light');
+  background-color: color('white');
   border-radius: $border-radius-base;
+  border: solid 1px color('grey', 'light');
+  margin-top: 1em;
   position: relative;
   transition: .2s background-color;
-
-  &:hover {
-    background-color: color('transparent', 'mid-light');
-  }
 
   &__text {
     background: none;
     border: 0;
     box-sizing: border-box;
-    color: color('white');
+    color: color('grey');
     flex: auto;
     font-size: font-size('medium');
     padding: .5em;
@@ -27,7 +25,7 @@
     }
 
     &::placeholder {
-      color: color('transparent');
+      color: color('grey');
       transition: .2s color;
     }
   }
@@ -47,37 +45,6 @@
   &__action {
     display: none;
     visibility: hidden;
-  }
-}
-
-.Navbar--dark-text {
-  .sk-search-box {
-    background-color: color('transparent', 'dark');
-    color: color('grey', 'dark');
-
-    &:hover {
-      background-color: color('transparent', 'x-dark');
-    }
-
-    &__text {
-      color: color('grey', 'dark');
-
-      &::placeholder {
-        color: color('grey', 'dark');
-      }
-    }
-  }
-
-  .is-focused {
-    background-color: color('transparent', 'dark');
-
-    .sk-search-box__text {
-      color: color('black');
-
-      &::placeholder {
-        color: color('grey', 'x-dark');
-      }
-    }
   }
 }
 
