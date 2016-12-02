@@ -1,0 +1,18 @@
+@import '../shared/config';
+
+.BottomBar {
+  align-items: center;
+  background-color: color('white');
+  bottom: 0;
+  display: none;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  z-index: 2;
+}
+
+@include small-only {
+  .BottomBar {
+    display: flex;
+  }
+}
