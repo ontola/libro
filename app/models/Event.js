@@ -23,11 +23,11 @@ const attributes = {
   identifiers: [],
   loading: false,
   location: '',
-  name: '',
+  speeches: [],
   startDate: new Date(),
   status: '',
-  speeches: [],
   text: '',
+  title: '',
 };
 
 export default apiModelGenerator(attributes, apiDesc);

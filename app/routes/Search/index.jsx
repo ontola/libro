@@ -6,7 +6,7 @@ import Helmet from 'react-helmet';
 import {
   Hits, NoHits, NumericRefinementListFilter, Pagination,
   RefinementListFilter, RangeFilter, RangeSliderHistogram,
-  ResetFilters, Select, SortingSelector,
+  ResetFilters, Select, SearchBox, SortingSelector,
 } from 'searchkit';
 
 import { Button, Container, Cover } from 'components';
@@ -82,8 +82,12 @@ class Search extends Component {
     return (
       <div>
         <Helmet title="Zoeken" />
-        <Cover type="lighter">
+        <Cover>
           <Container size="large">
+            <SearchBox
+              queryFields={['onderwerp', 'text', 'text.shingles']}
+              placeholder="Zoek op onderwerp, persoon, organisatie..."
+            />
             <div className={`Search__search-tools ${toolsClass}`}>
               <div className="Search__drawer-action">
                 <Button
