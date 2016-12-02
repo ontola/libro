@@ -63,7 +63,7 @@ const Home = () => (
     <Header />
     <Helmet title="Tweede Kamer Open Data" />
 
-    <Container flex>
+    <Container>
       <Widget title="Laatste moties">
         {motions.map(id => <MotionContainer key={id} motionId={id} renderItem={MotionListItem} />)}
       </Widget>
