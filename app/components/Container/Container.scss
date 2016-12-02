@@ -18,8 +18,31 @@
     min-height: 60vh;
   }
 
+  &--flex {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100% !important;
+    padding: 2rem;
+
+    .Widget {
+      flex: 1;
+      margin-bottom: 1rem;
+      margin-right: 2rem;
+      max-width: 40rem;
+      min-width: 20rem;
+    }
+
+    @include small-only {
+      padding: .75rem;
+
+      .Widget {
+        min-width: 100%;
+      }
+    }
+  }
+
   @include large {
-    padding: 0;
+    // padding: 0;
 
     &--spacing-small {
       padding: units('small', 'none');

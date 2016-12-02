@@ -63,7 +63,7 @@ const Home = () => (
     <Header />
     <Helmet title="Tweede Kamer Open Data" />
 
-    <Container>
+    <Container flex>
       <Widget title="Laatste moties">
         {motions.map(id => <MotionContainer key={id} motionId={id} renderItem={MotionListItem} />)}
       </Widget>
@@ -98,20 +98,16 @@ const Home = () => (
           </CardRow>
         </Link>
       </Widget>
-
-      <Columns>
-        <Widget title="Kamerverdeling">
-          <CardContent>
-            <DonutChart data={parties} />
-          </CardContent>
-        </Widget>
-        <Widget title="Man/vrouw verhouding">
-          <CardContent>
-            <DonutChart data={genderData} />
-          </CardContent>
-        </Widget>
-      </Columns>
-
+      <Widget title="Kamerverdeling">
+        <CardContent>
+          <DonutChart data={parties} />
+        </CardContent>
+      </Widget>
+      <Widget title="Man/vrouw verhouding">
+        <CardContent>
+          <DonutChart data={genderData} />
+        </CardContent>
+      </Widget>
       <Widget
         title="Ranglijst aantal moties"
         description="Gebaseerd op moties van de afgelopen 6 maanden."
