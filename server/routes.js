@@ -36,7 +36,16 @@ export default function routes(app, port) {
   }));
 
   app.get(/.*/, (req, res) => {
+    const accept = req.get('Accept');
+    if (accept && accept.includes('application/vnd.api+json')) {
+      return proxy({
+        target: constants.ARGU_API_URL,
+        pathRewrite: { '^/': '/api' },
+        changeOrigin: true,
+      });
+    }
     const domain = req.get('host').replace(/:.*/, '');
     res.end(renderFullPage('', port, domain));
+    return undefined;
   });
 }
