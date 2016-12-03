@@ -4,11 +4,12 @@ import './BottomBar.scss';
 import { checkLuminance } from 'helpers/color';
 
 import {
-  BottomBarLink,
+  BottomBarButton,
 } from 'components';
 
 const propTypes = {
   orgColor: PropTypes.string,
+  onOpen: PropTypes.func,
 };
 
 const defaultProps = {
@@ -17,6 +18,7 @@ const defaultProps = {
 
 const BottomBar = ({
   orgColor,
+  onOpen,
 }) => {
   const style = {
     backgroundColor: orgColor,
@@ -30,31 +32,22 @@ const BottomBar = ({
 
   return (
     <div style={style} className={classNames}>
-      <BottomBarLink
+      <BottomBarButton
+        icon="bars"
+        isIndex
+        label="Menu"
+        onClick={onOpen}
+      />
+      <BottomBarButton
         icon="th-large"
         isIndex
         label="Overzicht"
         to={path.index()}
       />
-      <BottomBarLink
+      <BottomBarButton
         icon="search"
         label="Zoeken"
         to={path.search()}
-      />
-      <BottomBarLink
-        icon="group"
-        label="Kamerleden"
-        to={path.politiciansIndex()}
-      />
-      <BottomBarLink
-        icon="institution"
-        label="Partijen"
-        to={path.partiesIndex()}
-      />
-      <BottomBarLink
-        icon="lightbulb-o"
-        label="Moties"
-        to={path.motionsIndex()}
       />
     </div>
   );

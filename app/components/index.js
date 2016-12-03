@@ -3,7 +3,7 @@ export { default as ArgumentShow } from './ArgumentShow';
 export { default as Attachment } from './Attachment';
 export { default as BackButton } from './BackButton';
 export { default as BottomBar } from './BottomBar';
-export { default as BottomBarLink } from './BottomBarLink';
+export { default as BottomBarButton } from './BottomBarButton';
 export { default as Box } from './Box';
 export { default as Button } from './Button';
 export { default as Card } from './Card';

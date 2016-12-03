@@ -4,12 +4,14 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
 import {
-  BottomBar,
+  // BottomBar,
   NavBarContent,
   Notification,
-  SideBar,
   Spinner,
 } from 'components';
+
+import SideBarContainer from 'containers/SideBarContainer';
+import BottomBarContainer from 'containers/BottomBarContainer';
 
 import resetErrorMessage from 'state/communication/actions';
 import { getErrorBool, getErrorMsg, getLoadingBool } from 'state/communication/selectors';
@@ -44,13 +46,14 @@ const App = ({
       defaultTitle="Argu"
     />
     <Spinner loading={loading} />
-    <SideBar
+    <SideBarContainer
+      id="Navbar"
       sidebar={<NavBarContent />}
       slim
     >
-      <BottomBar />
+      <BottomBarContainer />
       {error ? renderErrorMessage(error, errorMessage, reset) : children}
-    </SideBar>
+    </SideBarContainer>
   </div>
 );
 
