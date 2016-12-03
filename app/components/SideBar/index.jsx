@@ -14,20 +14,19 @@ const propTypes = {
   /* Set to true if you don't want the sidebar to appear from the left*/
   pullRight: PropTypes.bool,
   slim: PropTypes.bool,
-  /* Unique ID for state management */
-  ID: PropTypes.string.isRequired,
+  opened: PropTypes.bool.isRequired,
+  docked: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onOpen: PropTypes.func.isRequired,
+  onDock: PropTypes.func.isRequired,
+  onUndock: PropTypes.func.isRequired,
 };
 
 class SideBar extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      sideBarOpen: false,
-      sideBarDocked: true,
-    };
     this.onSetSideBarOpen = this.onSetSideBarOpen.bind(this);
     this.mediaQueryChanged = this.mediaQueryChanged.bind(this);
-    this.toggleOpen = this.toggleOpen.bind(this);
   }
 
   componentWillMount() {
@@ -35,8 +34,13 @@ class SideBar extends Component {
     mql.addListener(this.mediaQueryChanged);
     this.setState({
       mql,
-      sideBarDocked: mql.matches,
     });
+    if (mql.matches) {
+      this.props.onDock();
+    } else {
+      this.props.onUndock();
+    }
+
     this.styles = {
       sidebar: {
         // To overlap the BottomBar
@@ -45,6 +49,10 @@ class SideBar extends Component {
       content: {
         // Prevents items disappearing underneath Bottombar
         paddingBottom: '3em',
+        // Makes overlay hide BottomBar
+        zIndex: 0,
+        // Enables inertial scrolling in iOS
+        webkitOverflowScrolling: 'touch',
       },
     };
   }
@@ -53,8 +61,14 @@ class SideBar extends Component {
     this.state.mql.removeListener(this.mediaQueryChanged);
   }
 
+  // Handles the events from the used Sidebar component, such as dragging
+  // and closing by tapping the overlay.
   onSetSideBarOpen(open) {
-    this.setState({ sideBarOpen: open });
+    if (open) {
+      this.props.onOpen();
+    } else {
+      this.props.onClose();
+    }
   }
 
   triggerWidth() {
@@ -64,35 +78,36 @@ class SideBar extends Component {
     return '1100px';
   }
 
+  checkWidthAndDock() {
+    if (this.state.mql.matches) {
+      this.props.onDock();
+    } else {
+      this.props.onUndock();
+    }
+  }
+
   mediaQueryChanged() {
-    this.setState({ sideBarDocked: this.state.mql.matches });
+    this.checkWidthAndDock();
   }
 
   toggleOpen(ev) {
     if (ev) {
       ev.preventDefault();
     }
-    this.setState({ sideBarOpen: !this.state.sideBarOpen });
   }
 
-
   render() {
-    const {
-      sideBarOpen,
-      sideBarDocked,
-    } = this.state;
-
     const sideBarClassNames = classNames({
       'SideBar--sidebar': true,
-      'SideBar--docked': sideBarDocked,
+      'SideBar--docked': this.props.docked,
       'SideBar--slim': this.props.slim,
     });
 
     return (
       <Sidebar
-        docked={sideBarDocked}
+        docked={this.props.docked}
         onSetOpen={this.onSetSideBarOpen}
-        open={sideBarOpen}
+        open={this.props.opened}
         overlayClassName="SideBar--overlay"
         pullRight={this.props.pullRight}
         rootClassName="SideBar--content"
@@ -100,16 +115,23 @@ class SideBar extends Component {
         sidebarClassName={sideBarClassNames}
         styles={this.styles}
       >
-        {!sideBarOpen && !sideBarDocked &&
+        {!this.props.docked && this.state.mql.matches &&
           <div className="SideBar--switch-wrapper">
             <Button
-              onClick={() => this.setState({
-                sideBarOpen: true,
-              })}
-              icon="comments"
+              onClick={() => this.props.onDock()}
+              icon="caret-right"
               theme="as-box"
             >
-              Timeline
+            </Button>
+          </div>
+        }
+        {this.props.docked &&
+          <div className="SideBar--switch-wrapper">
+            <Button
+              onClick={() => this.props.onUndock()}
+              icon="caret-left"
+              theme="as-box"
+            >
             </Button>
           </div>
         }

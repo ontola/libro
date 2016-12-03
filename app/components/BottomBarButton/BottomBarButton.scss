@@ -1,6 +1,6 @@
 @import '../shared/config';
 
-.BottomBarLink {
+.BottomBarButton {
   flex: 1;
   max-width: 5em;
 
@@ -9,7 +9,6 @@
     color: color('grey', 'dark');
     display: flex;
     flex-direction: column;
-    font-size: 1em;
     padding: .3em 0;
   }
 
@@ -23,38 +22,46 @@
   }
 }
 
-.BottomBar--white-text .BottomBarLink a {
+.BottomBar--white-text .BottomBarButton a {
   color: color('white');
 }
 
-.BottomBar--white-text .BottomBarLink:hover {
+.BottomBar--white-text .BottomBarButton:hover {
   background-color: color('transparent', 'x-light');
 }
 
-.BottomBar--white-text .BottomBarLink:active {
+.BottomBar--white-text .BottomBarButton:active {
   background-color: color('transparent', 'light');
 }
 
-.BottomBarLink--active {
+.BottomBarButton--active {
   background-color: color('transparent', 'x-light');
 }
 
-.BottomBarLink__icon,
-.BottomBarLink__image-wrapper {
+.BottomBarButton__icon,
+.BottomBarButton__image-wrapper {
   height: 1em;
+  margin: auto;
   padding-bottom: .3em;
   text-align: center;
   width: 1em;
 }
 
-.BottomBarLink__text {
+.BottomBarButton__text {
   font-size: .7em;
 }
 
-.BottomBarLink__image {
+.BottomBarButton__image {
   background-size: cover;
   border: 1px solid color('grey', 'x-light');
   border-radius: 100%;
   height: 1.5em;
   width: 1.5em;
+}
+
+.BottomBarButton__wrapper {
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
 }
