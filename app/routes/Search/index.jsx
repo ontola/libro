@@ -12,8 +12,8 @@ import {
 import { Button, Container, Cover } from 'components';
 import DrawerContainer from 'containers/DrawerContainer';
 import SearchResultContainer from 'containers/SearchResultContainer';
-import { getSearchHits } from 'state/search/selectors';
-import { toggleDrawer, setHitCount } from 'state/search/actions';
+import { getSearchHits } from 'state/searchElastic/selectors';
+import { toggleDrawer, setHitCount } from 'state/searchElastic/actions';
 import { formatDate } from 'helpers/date';
 
 const propTypes = {
