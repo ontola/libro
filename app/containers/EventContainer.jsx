@@ -12,6 +12,11 @@ const propTypes = {
   id: PropTypes.string.isRequired,
   loadEvent: PropTypes.func.isRequired,
   onToggleAll: PropTypes.func.isRequired,
+  renderItem: PropTypes.func,
+};
+
+const defaultProps = {
+  renderItem: EventShow,
 };
 
 class EventContainer extends Component {
@@ -23,18 +28,24 @@ class EventContainer extends Component {
     }
   }
 
+
   render() {
-    const { data } = this.props;
+    const {
+      data,
+      renderItem,
+    } = this.props;
+    const RenderComponent = renderItem;
 
     if (data === undefined) {
       return false;
     }
 
     return (
-      <EventShow
+      <RenderComponent
         attendeesPresent={data.attendees}
         createdAt={data.createdAt}
         description={data.description}
+        id={data.id}
         endDate={data.endDate}
         eventItems={data.eventItems}
         onToggleAll={this.props.onToggleAll}
@@ -48,6 +59,7 @@ class EventContainer extends Component {
 }
 
 EventContainer.propTypes = propTypes;
+EventContainer.defaultProps = defaultProps;
 
 export default connect(
   (state, ownProps) => ({

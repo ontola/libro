@@ -13,6 +13,7 @@ import {
   Heading,
 } from 'components';
 import EventItemContainer from 'containers/EventItemContainer';
+import TimelineShowButton from 'containers/TimelineShowButton';
 
 const propTypes = {
   children: PropTypes.node,
@@ -65,12 +66,13 @@ const EventShow = ({
           {children}
           <Button
             onClick={() => onToggleAll(id)}
-            theme="subtle"
+            theme="transparant"
             small
             icon="expand"
           >
             Agendapunten uitklappen
           </Button>
+          <TimelineShowButton id={'Timeline'} />
         </CardContent>
         {eventItems && eventItems.length > 0 &&
           <div>

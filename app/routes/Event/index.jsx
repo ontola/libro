@@ -12,7 +12,6 @@ import {
 import {
   Button,
   Container,
-  SideBar,
 } from 'components';
 
 import SearchInput from 'containers/SearchInput';
@@ -28,6 +27,8 @@ import { createSearchAction } from 'redux-search';
 import EventContainer from 'containers/EventContainer';
 import VideoContainer from 'containers/VideoContainer';
 import SpeechesContainer from 'containers/SpeechesContainer';
+import SideBarContainer from 'containers/SideBarContainer';
+import TimelineHideButton from 'containers/TimelineHideButton';
 
 const propTypes = {
   params: PropTypes.object.isRequired,
@@ -72,6 +73,7 @@ const Event = ({
           />
         }
         <div className="SideBar__controls">
+          <TimelineHideButton id="Timeline" />
           {videoUrl && !showVideo &&
             <Button
               icon="play"
@@ -103,15 +105,16 @@ const Event = ({
   );
 
   return (
-    <SideBar
+    <SideBarContainer
       sidebar={sideBarContent}
       pullRight
+      id="Timeline"
     >
       <Container>
         <Helmet title={title} />
         <EventContainer id={params.eventId} />
       </Container>
-    </SideBar>
+    </SideBarContainer>
   );
 };
 
