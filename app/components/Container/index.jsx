@@ -5,7 +5,7 @@ import { sizes } from 'components/shared/config';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
-  flex: PropTypes.bool,
+  grid: PropTypes.bool,
   size: PropTypes.oneOf(sizes),
   spacing: PropTypes.oneOf(sizes),
 };
@@ -20,14 +20,14 @@ const defaultProps = {
  */
 const Container = ({
   children,
-  flex,
+  grid,
   size,
   spacing,
 }) => {
   const containerClassName = classNames({
     Container: true,
-    'Container--flex': flex,
-    [`Container--size-${size}`]: !flex && size,
+    'Container--grid': grid,
+    [`Container--size-${size}`]: !grid && size,
     [`Container--spacing-${spacing}`]: spacing,
   });
 

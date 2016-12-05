@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import path from 'helpers/paths';
 
 import {
   CardRow,
@@ -12,18 +13,18 @@ import {
 const propTypes = {
   title: PropTypes.string.isRequired,
   startDate: PropTypes.instanceOf(Date),
-  link: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 const EventListItem = ({
   title,
   startDate,
-  link,
+  id,
 }) => (
   <CardRow>
     <CardHeader>
       <Heading size="3">
-        <Link to={link}>{title}</Link>
+        <Link to={path.event(id)}>{title}</Link>
       </Heading>
       <DetailsBar>
         <DetailDate date={startDate} />

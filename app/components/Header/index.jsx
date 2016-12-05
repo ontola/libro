@@ -9,7 +9,7 @@ import {
 } from 'components';
 
 const defaultLinks = [{
-  label: 'Dashboard',
+  label: 'Overzicht',
   to: path.index(),
 }, {
   label: 'Partijen',

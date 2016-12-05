@@ -1,13 +1,14 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'react-router';
+import path from 'helpers/paths';
 
 import {
   CardContent,
   CardRow,
-  Columns,
   Container,
   DonutChart,
+  EventListItem,
   Header,
   LabelValueBar,
   LabelValue,
@@ -15,8 +16,8 @@ import {
   Widget,
 } from 'components';
 
-import path from 'helpers/paths';
 import MotionContainer from 'containers/MotionContainer';
+import EventContainer from 'containers/EventContainer';
 
 const parties = [
   { name: 'VVD', value: 40, link: path.party('1') },
@@ -58,16 +59,22 @@ const motions = [
   '3137bf58-89f5-e511-9672-e4115babb880',
 ];
 
+const events = [
+  'c772f3d1-76bf-e511-96bc-e4115babb880',
+  'ce872c1a-80ca-e511-96bc-e4115babb880',
+];
+
 const Home = () => (
   <div>
     <Header />
     <Helmet title="Tweede Kamer Open Data" />
-
     <Container>
-      <Widget title="Laatste moties">
+      <Widget title="Moties" to={path.motionsIndex()} >
         {motions.map(id => <MotionContainer key={id} motionId={id} renderItem={MotionListItem} />)}
       </Widget>
-
+      <Widget title="Vergaderingen" >
+        {events.map(id => <EventContainer key={id} id={id} renderItem={EventListItem} />)}
+      </Widget>
       <Widget title="Statistieken">
         <Link to={path.partiesIndex()}>
           <CardRow showArrow>
@@ -98,7 +105,7 @@ const Home = () => (
           </CardRow>
         </Link>
       </Widget>
-      <Widget title="Kamerverdeling">
+      <Widget title="Partijen" to={path.partiesIndex()}>
         <CardContent>
           <DonutChart data={parties} />
         </CardContent>
