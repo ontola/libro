@@ -21,7 +21,7 @@ const Widget = ({
   <div className="Widget">
     <Heading size="3">
       {to &&
-        <Link to={to}>
+        <Link to={to} className="Widget__link">
           {title} <FontAwesome name="chevron-right" className="Widget__chevron" />
         </Link>
       }

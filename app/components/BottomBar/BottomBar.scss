@@ -16,3 +16,19 @@
     display: flex;
   }
 }
+
+.BottomBar--white-text {
+  .BottomBarButton {
+    a {
+      color: color('white');
+    }
+
+    &:hover {
+      background-color: color('transparent', 'x-light');
+    }
+
+    &:active {
+      background-color: color('transparent', 'light');
+    }
+  }
+}

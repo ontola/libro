@@ -45,12 +45,6 @@ describe('Card component', () => {
     assert.equal(comp.find('.CardContent').length, 1, 'CardContent does not render');
     assert.equal(comp.find('.CardContent').text(), 'Content', 'CardContent does not render children correctly');
     assert.isTrue(comp.find('.CardContent').first().hasClass('CardContent--no-spacing'), 'CardContent has no noSpacing');
-
-    comp.setProps({ maxLength: 3 });
-    assert.equal(comp.find('.CardContent').text(), 'Con...', 'Maxlength prop does not display correct data');
-
-    comp.setProps({ maxLength: 100, children: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' });
-    assert.equal(comp.find('.CardContent').text(), 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore...', 'Maxlength prop does not display correct data');
   });
 
   it('CardHeader should render', () => {

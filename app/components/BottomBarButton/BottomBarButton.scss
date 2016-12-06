@@ -22,18 +22,6 @@
   }
 }
 
-.BottomBar--white-text .BottomBarButton a {
-  color: color('white');
-}
-
-.BottomBar--white-text .BottomBarButton:hover {
-  background-color: color('transparent', 'x-light');
-}
-
-.BottomBar--white-text .BottomBarButton:active {
-  background-color: color('transparent', 'light');
-}
-
 .BottomBarButton--active {
   background-color: color('transparent', 'x-light');
 }
@@ -61,7 +49,7 @@
 
 .BottomBarButton__wrapper {
   align-items: center;
-  flex-direction: column;
   flex: 1;
+  flex-direction: column;
   justify-content: center;
 }
