@@ -21,6 +21,7 @@
   flex-direction: column;
   height: 100%;
   overflow: hidden;
+  width: 100%;
 }
 
 .SideBar--content {
@@ -32,10 +33,21 @@
 }
 
 .SideBar--switch-wrapper {
-  left: -.3em;
+  left: 100%;
+  left: calc(100% - .2em);
   position: absolute;
   top: 3.6rem;
-  z-index: 2;
+  z-index: -1;
+
+  .fa {
+    margin-right: 0;
+  }
+
+  &--right {
+    left: auto;
+    right: 100%;
+    right: calc(100% - .2em);
+  }
 }
 
 .SideBar--top {
@@ -75,4 +87,9 @@
   margin: .2em;
   margin-left: .3em;
   padding: .4em;
+}
+
+.SideBar--sidebar--wrapper {
+  display: flex;
+  flex: 1;
 }

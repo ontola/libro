@@ -92,6 +92,10 @@
   padding: units('xx-small', 'x-small');
 }
 
+.Button--narrow {
+  padding: units('x-small', 'small');
+}
+
 .Button--box {
   background-color: color('white');
   border-right: 1px solid color('grey', 'x-light');
