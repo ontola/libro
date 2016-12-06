@@ -16,24 +16,17 @@
   }
 }
 
-.NavBarContent--white-text .SideBarLink a {
-  color: color('white');
-}
-
 .SideBarLink--active {
   background-color: color('transparent', 'x-light');
 }
 
-.SideBarLink__icon, .SideBarLink__image-wrapper {
+.SideBarLink__icon,
+.SideBarLink__image-wrapper {
+  height: 1em;
   padding-left: 2em;
   padding-right: 1em;
   text-align: center;
   width: 1em;
-  height: 1em;
-}
-
-.SideBarLink__icon {
-
 }
 
 .SideBarLink__image {

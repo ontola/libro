@@ -5,10 +5,6 @@
 
   > .Heading {
     font-weight: bold;
-
-    a:hover .Widget__chevron {
-      transform: translateX(3px);
-    }
   }
 
   &__chevron {
@@ -19,5 +15,13 @@
 
   &__description {
     color: color('grey', 'mid-dark');
+  }
+
+  &__link {
+    &:hover {
+      .Widget__chevron {
+        transform: translateX(3px);
+      }
+    }
   }
 }

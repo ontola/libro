@@ -23,6 +23,12 @@ const propTypes = {
 };
 
 class SideBar extends Component {
+  static toggleOpen(ev) {
+    if (ev) {
+      ev.preventDefault();
+    }
+  }
+
   constructor(props) {
     super(props);
     this.onSetSideBarOpen = this.onSetSideBarOpen.bind(this);
@@ -89,12 +95,6 @@ class SideBar extends Component {
 
   mediaQueryChanged() {
     this.checkWidthAndDock();
-  }
-
-  toggleOpen(ev) {
-    if (ev) {
-      ev.preventDefault();
-    }
   }
 
   render() {

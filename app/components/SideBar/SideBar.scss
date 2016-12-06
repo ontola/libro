@@ -33,19 +33,13 @@
 }
 
 .SideBar--switch-wrapper {
-  left: 100%;
   left: calc(100% - .2em);
   position: absolute;
   top: 3.6rem;
   z-index: -1;
 
-  .fa {
-    margin-right: 0;
-  }
-
   &--right {
     left: auto;
-    right: 100%;
     right: calc(100% - .2em);
   }
 }
