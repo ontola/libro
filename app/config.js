@@ -9,7 +9,7 @@ const ARGU_API_URL = process.env.ARGU_API_URL || '/';
 // Used externally as the endpoint for API calls by the browser app
 const ARGU_API_URL_EXT = process.env.ARGU_API_EXT_BASE || '/api/';
 
-const ELASTICSEARCH_URL = process.env.ELASTICSEARCH_URL || 'https://aod-search.argu.co/aod_search/';
+const ELASTICSEARCH_URL = process.env.ELASTICSEARCH_URL || '/aod_search/';
 const ELASTICSEARCH_INDEX = process.env.ELASTICSEARCH_INDEX || 'aod';
 
 export {

@@ -117,7 +117,7 @@
     "lint": "./node_modules/.bin/eslint --ext .jsx,.js .",
     "lint:style": "sass-lint ./app/**/*.scss  -v -q",
     "secure": "nsp check && retire",
-    "start": "rimraf ./dist && NODE_ENV=development yarn run build:server && ELASTICSEARCH_URL=http://localhost:1337/aod-search.argu.co/aod_search NODE_ENV=development node ./dist/server.js",
+    "start": "rimraf ./dist && NODE_ENV=development yarn run build:server &&  NODE_ENV=development node ./dist/server.js",
     "start:local-api": "rimraf ./dist && ARGU_API_EXT_BASE=http://localhost:3030/api/ NODE_ENV=development yarn run build:server && ARGU_API_EXT_BASE=http://localhost:3030/api/ ELASTICSEARCH_URL=http://localhost:1337/aod-search.argu.co/aod_search NODE_ENV=development node ./dist/server.js",
     "start:prod": "ARGU_API_URL=http://localhost:3030 NODE_ENV=production node ./dist/server.js",
     "stats:bundle": "NODE_ENV=production webpack -p --config ./webpack/static.config.js --json > stats.json",
