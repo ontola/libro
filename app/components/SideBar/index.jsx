@@ -45,6 +45,7 @@ class SideBar extends Component {
       sidebar: {
         // To overlap the BottomBar
         zIndex: '3',
+        overflowY: 'visible',
       },
       content: {
         // Prevents items disappearing underneath Bottombar
@@ -102,6 +103,50 @@ class SideBar extends Component {
       'SideBar--docked': this.props.docked,
       'SideBar--slim': this.props.slim,
     });
+    const buttonClassNames = classNames({
+      'SideBar--switch-wrapper': true,
+      'SideBar--switch-wrapper--right': this.props.pullRight,
+    });
+
+    const dockIcon = () => {
+      if (this.props.pullRight === true) {
+        return 'caret-left';
+      }
+      return 'caret-right';
+    };
+
+    const undockIcon = () => {
+      if (this.props.pullRight === true) {
+        return 'caret-right';
+      }
+      return 'caret-left';
+    };
+
+    const sidebar = (
+      <div className="SideBar--sidebar--wrapper">
+        {this.props.sidebar}
+        {!this.props.docked && this.state.mql.matches &&
+          <div className={buttonClassNames}>
+            <Button
+              onClick={() => this.props.onDock()}
+              icon={dockIcon()}
+              theme="as-box"
+              narrow
+            />
+          </div>
+        }
+        {this.props.docked &&
+          <div className={buttonClassNames}>
+            <Button
+              onClick={() => this.props.onUndock()}
+              icon={undockIcon()}
+              theme="as-box"
+              narrow
+            />
+          </div>
+        }
+      </div>
+    );
 
     return (
       <Sidebar
@@ -111,30 +156,10 @@ class SideBar extends Component {
         overlayClassName="SideBar--overlay"
         pullRight={this.props.pullRight}
         rootClassName="SideBar--content"
-        sidebar={this.props.sidebar}
+        sidebar={sidebar}
         sidebarClassName={sideBarClassNames}
         styles={this.styles}
       >
-        {!this.props.docked && this.state.mql.matches &&
-          <div className="SideBar--switch-wrapper">
-            <Button
-              onClick={() => this.props.onDock()}
-              icon="caret-right"
-              theme="as-box"
-            >
-            </Button>
-          </div>
-        }
-        {this.props.docked &&
-          <div className="SideBar--switch-wrapper">
-            <Button
-              onClick={() => this.props.onUndock()}
-              icon="caret-left"
-              theme="as-box"
-            >
-            </Button>
-          </div>
-        }
         {this.props.children}
       </Sidebar>
     );

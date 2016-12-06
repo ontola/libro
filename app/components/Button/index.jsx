@@ -11,15 +11,17 @@ const propTypes = {
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func,
   icon: PropTypes.string,
+  narrow: PropTypes.bool,
   small: PropTypes.bool,
   theme: PropTypes.oneOf(buttonThemes),
   variant: PropTypes.oneOf(['pro', 'neutral', 'con', 'upvote', 'comment']),
 };
 
 const defaultProps = {
+  active: false,
+  narrow: false,
   small: false,
   theme: 'default',
-  active: false,
 };
 
 const Button = ({
@@ -28,6 +30,7 @@ const Button = ({
   icon,
   onClick,
   small,
+  narrow,
   theme,
   variant,
 }) => {
@@ -35,6 +38,7 @@ const Button = ({
     Button: true,
     'Button--has-icon': icon,
     'Button--small': small,
+    'Button--narrow': narrow,
     [`Button--${theme}`]: theme,
     [`Button--variant-${variant}`]: variant,
     'Button--active': active,
