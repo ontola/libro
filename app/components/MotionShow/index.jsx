@@ -11,11 +11,12 @@ import {
   DetailType,
   DetailsBar,
   Heading,
+  Markdown,
 } from 'components';
 
 const propTypes = {
   title: PropTypes.string.isRequired,
-  children: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
   creator: PropTypes.string,
   createdAt: PropTypes.instanceOf(Date),
   onVote: PropTypes.func.isRequired,
@@ -30,7 +31,7 @@ const options = {
 
 const MotionShow = ({
   title,
-  children,
+  text,
   creator,
   createdAt,
   onVote,
@@ -45,7 +46,11 @@ const MotionShow = ({
         <DetailDate date={createdAt} />
       </DetailsBar>
     </CardHeader>
-    <CardContent noSpacing>{children}</CardContent>
+    <CardContent noSpacing>
+      <Markdown
+        text={text}
+      />
+    </CardContent>
     <CardActions>
       {Object.keys(options).map(option => (
         <CardButton

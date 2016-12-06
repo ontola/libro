@@ -8,13 +8,13 @@ import {
 
 const propTypes = {
   title: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
   side: PropTypes.oneOf(sides),
 };
 
 const defaultProps = {
   title: 'Loading...',
-  content: '...',
+  text: '...',
 };
 
 const iconClassname = side => (side === 'pro' ? 'fa fa-plus' : 'fa fa-minus');
@@ -28,17 +28,17 @@ const hoverBoxChildren = (side, title) => (
   </span>
 );
 
-const hoverBoxHiddenChildren = content => (
-  <span>{content}</span>
+const hoverBoxHiddenChildren = text => (
+  <span>{text}</span>
 );
 
 const ArgumentListItem = ({
   side,
   title,
-  content,
+  text,
 }) => (
   <div className={`ArgumentListItem ArgumentListItem--${side}`}>
-    <HoverBox hiddenChildren={hoverBoxHiddenChildren(content)}>
+    <HoverBox hiddenChildren={hoverBoxHiddenChildren(text)}>
       {hoverBoxChildren(side, title)}
     </HoverBox>
   </div>

@@ -10,7 +10,8 @@ const comp = mount(
     createdAt={new Date()}
     title="Zakken stinken de garage uit"
     side="pro"
-  >{argument}</ArgumentShow>
+    text={argument}
+  />
 );
 
 describe('ArgumentShow component', () => {

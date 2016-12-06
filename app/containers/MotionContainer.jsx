@@ -71,9 +71,8 @@ class MotionContainer extends Component {
         title={data.title}
         type={data.classification}
         voteData={voteData}
-      >
-        {data.text}
-      </RenderComponent>
+        text={data.text}
+      />
     );
   }
 }

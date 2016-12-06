@@ -10,22 +10,23 @@ import {
   DetailsBar,
   DetailDate,
   Heading,
+  Markdown,
 } from 'components';
 
 const propTypes = {
-  /** Content of argument */
-  children: PropTypes.node,
   creator: PropTypes.string,
   createdAt: PropTypes.instanceOf(Date).isRequired,
   side: PropTypes.oneOf(['pro', 'con']).isRequired,
+  /** Content of argument */
+  text: PropTypes.node,
   title: PropTypes.string.isRequired,
 };
 
 const ArgumentShow = ({
-  children,
-  creator,
   createdAt,
+  creator,
   side,
+  text,
   title,
 }) => (
   <Card>
@@ -36,11 +37,11 @@ const ArgumentShow = ({
         <DetailDate date={createdAt} />
       </DetailsBar>
     </CardHeader>
-
-    <CardContent noSpacing maxLength={150}>
-      {children}
+    <CardContent noSpacing>
+      <Markdown
+        text={text}
+      />
     </CardContent>
-
     <CardActions>
       <CardButton type="upvote" action={() => undefined}>Upvote</CardButton>
       <CardButton type="comment" action={() => undefined}>Reageer</CardButton>
