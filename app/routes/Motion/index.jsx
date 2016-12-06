@@ -5,6 +5,7 @@ import Helmet from 'react-helmet';
 import {
   ArgumentShow,
   BackButton,
+  Button,
   Columns,
   Container,
   Heading,
@@ -36,7 +37,8 @@ const renderArgument = data => (
     creator={data.creator}
     side={data.side}
     createdAt={data.createdAt}
-  >{data.content}</ArgumentShow>
+    text={data.text}
+  />
 );
 
 const Motion = ({
@@ -57,15 +59,25 @@ const Motion = ({
           renderItem={renderArgument}
           items={argsPro}
         />
-        {argsPro.length === 0 && <div>Er zijn nog geen voorargumenten. Voeg er een toe!</div>}
+        <Button
+          icon="plus"
+          theme="transparant"
+        >
+          Voordeel toevoegen
+        </Button>
       </div>
       <div>
-        <Heading variant="column" size="3">Nadelen</Heading>
+        <Heading variant="column" size="3">Problemen</Heading>
         <List
           renderItem={renderArgument}
           items={argsCon}
         />
-        {argsCon.length === 0 && <div>Er zijn nog geen tegenargumenten. Voeg er een toe!</div>}
+        <Button
+          icon="plus"
+          theme="transparant"
+        >
+          Probleem toevoegen
+        </Button>
       </div>
     </Columns>
   </Container>

@@ -15,7 +15,7 @@ const attributes = {
   id: '',
   motionId: '',
   title: '',
-  content: '',
+  text: '',
   side: '',
   createdAt: new Date(),
   voteCount: '',
