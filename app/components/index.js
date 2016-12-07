@@ -47,6 +47,7 @@ export { default as Navbar } from './Navbar';
 export { default as NavBarContent } from './NavBarContent';
 export { default as Notification } from './Notification';
 export { default as Opinion } from './Opinion';
+export { default as OpinionBubble } from './OpinionBubble';
 export { default as Opinions } from './Opinions';
 export { default as OrgSwitcher } from './OrgSwitcher';
 export { default as ProfileCard } from './ProfileCard';

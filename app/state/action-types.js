@@ -38,6 +38,9 @@ export const GET_VOTE = 'GET_VOTE';
 export const GET_VOTE_EVENTS = 'GET_VOTE_EVENTS';
 export const GET_VOTE_EVENT = 'GET_VOTE_EVENT';
 
+// react-router
+export const LOCATION_CHANGE = 'LOCATION_CHANGE';
+
 // Search
 export const TOGGLE_DRAWER = 'TOGGLE_DRAWER';
 export const SET_HIT_COUNT = 'SET_HIT_COUNT';

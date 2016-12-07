@@ -6,7 +6,12 @@ import {
   getVoteEventVotesSorted,
 } from 'state/voteEvents/selectors';
 
+import {
+  getVoteEventCountsSorted,
+} from 'state/counts/selectors';
+
 const mapStateToProps = (state, props) => ({
+  counts: getVoteEventCountsSorted(state, props),
   result: getVoteEventResult(state, props),
   votes: getVoteEventVotesSorted(state, props),
 });
