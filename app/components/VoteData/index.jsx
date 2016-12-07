@@ -3,13 +3,16 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import './VoteData.scss';
 import { calcPercentage } from 'helpers/numbers';
+import CountBubbleContainer from 'containers/CountBubbleContainer';
 
 const propTypes = {
   votes: PropTypes.object.isRequired,
+  counts: PropTypes.object,
 };
 
 const defaultProps = {
   votes: {},
+  counts: {},
 };
 
 const NUMBER_OF_VOTE_BUBBLES = 15;
@@ -33,9 +36,17 @@ class VoteData extends Component {
   }
 
   segmentItems(option) {
-    const items = this.props.votes[option].votes;
+    // debugger;
+    if (this.props.counts !== undefined) {
+      const counts = this.props.counts[option].counts;
 
-    return items.slice(0, NUMBER_OF_VOTE_BUBBLES).map((vote, i) => (
+      return counts.slice(0, NUMBER_OF_VOTE_BUBBLES).map((count, i) => (
+        <CountBubbleContainer id={count} />
+      ));
+    }
+    const votes = this.props.votes[option].votes;
+
+    return votes.slice(0, NUMBER_OF_VOTE_BUBBLES).map((vote, i) => (
       <div key={i} className="VoteData__opinion" title={vote}>
         <Link key={vote} to={path.profile(vote)}>
           joe

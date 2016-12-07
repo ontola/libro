@@ -14,12 +14,17 @@ const propTypes = {
   /* Set to true if you don't want the sidebar to appear from the left*/
   pullRight: PropTypes.bool,
   slim: PropTypes.bool,
-  opened: PropTypes.bool.isRequired,
-  docked: PropTypes.bool.isRequired,
+  opened: PropTypes.bool,
+  docked: PropTypes.bool,
   onClose: PropTypes.func.isRequired,
   onOpen: PropTypes.func.isRequired,
   onDock: PropTypes.func.isRequired,
   onUndock: PropTypes.func.isRequired,
+};
+
+const defaultProps = {
+  docked: false,
+  opened: false,
 };
 
 class SideBar extends Component {
@@ -167,5 +172,6 @@ class SideBar extends Component {
 }
 
 SideBar.propTypes = propTypes;
+SideBar.defaultProps = defaultProps;
 
 module.exports = SideBar;

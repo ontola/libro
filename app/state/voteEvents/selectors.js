@@ -19,9 +19,6 @@ export const getVoteEventVotes = (state, props) =>
 export const getVoteEventResult = (state, props) =>
   getVoteEvent(state, props).get('result');
 
-export const getVoteEventCounts = (state, props) =>
-  getVoteEvent(state, props).get('counts');
-
 export const getVoteEventVotesCount = createSelector(
   [getVoteEventVotes],
   votes => votes.length
