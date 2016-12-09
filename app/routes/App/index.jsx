@@ -52,7 +52,8 @@ const App = ({
       slim
     >
       <BottomBarContainer />
-      {error ? renderErrorMessage(error, errorMessage, reset) : children}
+      {children}
+      {renderErrorMessage(error, errorMessage, reset)}
     </SideBarContainer>
   </div>
 );

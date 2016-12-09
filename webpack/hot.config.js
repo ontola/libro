@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const config = require('./common.config');
 const HappyPack = require('happypack');
 
-config.output.publicPath = 'http://localhost:3001/dist/';
+config.output.publicPath = '/dist/';
 config.output.pathinfo = true;
 
 config.entry = [
