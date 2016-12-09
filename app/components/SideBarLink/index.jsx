@@ -11,7 +11,7 @@ const propTypes = {
   icon: PropTypes.string,
   // True for links that are leveled higher than others
   isIndex: PropTypes.bool,
-  to: PropTypes.function,
+  to: PropTypes.any,
 };
 
 const SideBarLink = ({

@@ -8,7 +8,7 @@ const propTypes = {
   /** Should be true when the button is toggleable and toggled. */
   active: PropTypes.bool,
   /** Label of the button */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   onClick: PropTypes.func,
   icon: PropTypes.string,
   narrow: PropTypes.bool,

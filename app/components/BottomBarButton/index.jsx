@@ -12,7 +12,7 @@ const propTypes = {
   // True for links that are leveled higher than others
   isIndex: PropTypes.bool,
   onClick: PropTypes.func,
-  to: PropTypes.function,
+  to: PropTypes.any,
 };
 
 const BottomBarButton = ({

@@ -41,7 +41,7 @@ class VoteData extends Component {
       const counts = this.props.counts[option].counts;
 
       return counts.slice(0, NUMBER_OF_VOTE_BUBBLES).map((count, i) => (
-        <CountBubbleContainer id={count} />
+        <CountBubbleContainer id={count} key={i} />
       ));
     }
     const votes = this.props.votes[option].votes;
