@@ -64,7 +64,7 @@ class SideBar extends Component {
         // Makes overlay hide BottomBar
         zIndex: 0,
         // Enables inertial scrolling in iOS
-        webkitOverflowScrolling: 'touch',
+        WebkitOverflowScrolling: 'touch',
       },
     };
   }
