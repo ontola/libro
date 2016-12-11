@@ -21,7 +21,7 @@ const renderItem = arg => (
   <ArgumentListItem
     key={arg.id}
     title={arg.title}
-    content={arg.content}
+    text={arg.text}
     side={arg.side}
   />
 );
