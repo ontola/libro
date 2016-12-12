@@ -18,8 +18,13 @@ export const setRecord = (
     newRecord = state.getIn(['items', id]) !== undefined
       ? state.getIn(['items', id])
       : new Model({ id, loading: true });
-  }
 
+    if (record && record.get('title') === '') {
+      if (newRecord.get('title').length > 0) {
+        return state.setIn(['items', id], newRecord);
+      }
+    }
+  }
   return state.setIn(['items', id], record || newRecord);
 };
 
