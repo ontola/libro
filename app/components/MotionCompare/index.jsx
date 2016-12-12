@@ -8,11 +8,13 @@ import {
   CardContent,
   CardHeader,
   Heading,
+  Markdown,
 } from 'components';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  text: PropTypes.string,
   onVote: PropTypes.func.isRequired,
   voteData: PropTypes.string.isRequired,
 };
@@ -20,6 +22,7 @@ const propTypes = {
 const MotionCompare = ({
   id,
   title,
+  text,
   onVote,
   voteData,
 }) => (
@@ -29,6 +32,7 @@ const MotionCompare = ({
     </CardHeader>
     {id &&
       <CardContent noSpacing>
+        <Markdown text={text} />
         <ArgumentsContainer motionId={id} />
       </CardContent>
     }
