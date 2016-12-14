@@ -92,6 +92,11 @@
   padding: units('xx-small', 'x-small');
 }
 
+.Button--plain {
+  background: none;
+  padding: 0;
+}
+
 .Button--narrow {
   padding: units('x-small', 'small');
 }

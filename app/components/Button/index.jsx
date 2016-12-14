@@ -7,11 +7,13 @@ import { buttonThemes } from 'components/shared/config';
 const propTypes = {
   /** Should be true when the button is toggleable and toggled. */
   active: PropTypes.bool,
+  className: PropTypes.string,
   /** Label of the button */
   children: PropTypes.node,
-  onClick: PropTypes.func,
   icon: PropTypes.string,
   narrow: PropTypes.bool,
+  onClick: PropTypes.func,
+  plain: PropTypes.bool,
   small: PropTypes.bool,
   theme: PropTypes.oneOf(buttonThemes),
   variant: PropTypes.oneOf(['pro', 'neutral', 'con', 'upvote', 'comment']),
@@ -20,6 +22,7 @@ const propTypes = {
 const defaultProps = {
   active: false,
   narrow: false,
+  plain: false,
   small: false,
   theme: 'default',
 };
@@ -27,10 +30,12 @@ const defaultProps = {
 const Button = ({
   active,
   children,
+  className,
   icon,
   onClick,
   small,
   narrow,
+  plain,
   theme,
   variant,
 }) => {
@@ -39,6 +44,7 @@ const Button = ({
     'Button--has-icon': icon,
     'Button--small': small,
     'Button--narrow': narrow,
+    'Button--plain': plain,
     [`Button--${theme}`]: theme,
     [`Button--variant-${variant}`]: variant,
     'Button--active': active,
@@ -47,7 +53,7 @@ const Button = ({
   return (
     <button
       onClick={onClick}
-      className={btnClass}
+      className={`${btnClass} ${className}`}
       role="button"
       type="button"
     >

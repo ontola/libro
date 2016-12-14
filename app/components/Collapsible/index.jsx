@@ -4,7 +4,7 @@ import './Collapsible.scss';
 import ReactCollapse from 'react-collapse';
 
 const propTypes = {
-  /** Content that is always visible. */
+  /** Content that is not always visible. */
   children: PropTypes.node.isRequired,
   /** Function that should dispatch a toggle action to open / close the Collapsible. */
   onClickToggle: PropTypes.func.isRequired,

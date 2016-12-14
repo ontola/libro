@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 import './NavBarContent.scss';
 
 import {
+  SideBarCollapsible,
   SideBarLink,
   OrgSwitcher,
 } from 'components';
@@ -37,14 +38,31 @@ const NavBarContent = ({
     >
       <div className="NavBarContent__top">
         <OrgSwitcher
-          name="Tweede Kamer"
-          imageUrl="https://pbs.twimg.com/profile_images/466215785933721600/PVkAcjtF_400x400.png"
+          name="Nederland"
+          imageUrl="https://argu-logos.s3.amazonaws.com/photos/736/avatar_2000px-Flag_of_the_Netherlands.svg.png"
         />
-        <SideBarLink icon="th-large" label="Overzicht" to={path.index()} isIndex />
         <SideBarLink icon="search" label="Zoeken" to={path.search()} />
-        <SideBarLink icon="group" label="Kamerleden" to={path.politiciansIndex()} />
-        <SideBarLink icon="institution" label="Partijen" to={path.partiesIndex()} />
-        <SideBarLink icon="lightbulb-o" label="Moties" to={path.motionsIndex()} />
+        <SideBarLink icon="th-large" label="Overzicht" to={path.index()} isIndex />
+        <SideBarLink icon="feed" label="Activiteit" to={'bestaatniet'} isIndex />
+        <SideBarCollapsible
+          label="Algemeen"
+          id="algemeen"
+          to={path.index()}
+        >
+          <SideBarLink icon="feed" label="Activiteit" to={'pindakaas'} />
+          <SideBarLink icon="question" label="Uitdagingen" to={'questions'} />
+          <SideBarLink icon="lightbulb-o" label="Ideeën" to={'motions'} />
+        </SideBarCollapsible>
+        <SideBarCollapsible
+          label="Tweede kamer"
+          id="group1"
+          to={path.index()}
+        >
+          <SideBarLink icon="th-large" label="Overzicht" to={path.index()} isIndex />
+          <SideBarLink icon="institution" label="Partijen" to={path.partiesIndex()} />
+          <SideBarLink icon="group" label="Kamerleden" to={path.politiciansIndex()} />
+          <SideBarLink icon="lightbulb-o" label="Moties" to={path.motionsIndex()} />
+        </SideBarCollapsible>
       </div>
       <div className="NavBarContent__footer">
         <SideBarLink

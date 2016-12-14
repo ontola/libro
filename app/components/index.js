@@ -58,6 +58,7 @@ export { default as ScoreSheet } from './ScoreSheet';
 export { default as SearchResultItem } from './SearchResultItem';
 export { default as SideBar } from './SideBar';
 export { default as SideBarLink } from './SideBarLink';
+export { default as SideBarCollapsible } from './SideBarCollapsible';
 export { default as Spinner } from './Spinner';
 export { default as Tag } from './Tag';
 export { default as VideoPlayer } from './VideoPlayer';

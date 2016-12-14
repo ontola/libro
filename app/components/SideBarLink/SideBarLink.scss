@@ -14,6 +14,13 @@
   &:active {
     background-color: color('transparent', 'light');
   }
+
+  &--bold {
+    .SideBarLink__label {
+      font-weight: bold;
+      padding-left: 2em;
+    }
+  }
 }
 
 .SideBarLink--active {

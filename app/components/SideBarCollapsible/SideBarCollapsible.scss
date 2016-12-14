@@ -1,0 +1,47 @@
+@import '../shared/config';
+
+.SideBarCollapsible {
+  border-bottom: solid 1px color('transparent', 'light');
+  border-top: solid 1px color('transparent', 'light');
+  position: relative;
+
+  ~ .SideBarCollapsible {
+    border-top: 0;
+  }
+
+  .SideBarCollapsible__toggle {
+    align-items: center;
+    border-radius: 100%;
+    color: color('transparent', 'mid-light');
+    cursor: pointer;
+    display: flex;
+    height: 1.3em;
+    justify-content: center;
+    position: absolute;
+    right: .8em;
+    top: .4em;
+    // transform: rotate(270deg);
+    transition: .2s transform;
+    width: 1.3em;
+
+    .Button__label {
+      display: flex;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: color('transparent', 'light');
+      color: color('white');
+    }
+
+    &:active {
+      background-color: color('transparent', 'mid-light');
+    }
+  }
+
+  &.SideBarCollapsible--open {
+    .SideBarCollapsible__toggle {
+      transform: rotate(90deg);
+    }
+  }
+}
