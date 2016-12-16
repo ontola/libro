@@ -55,7 +55,7 @@ const collapsible = handleActions({
     setRecord(state, recordCollapsible(payload), payload.identifier),
 
   [COLL_TOGGLE_ONE]: (state, { payload }) =>
-    toggleValue(state, payload.id, 'opened'),
+    toggleValue(state, payload, 'opened'),
 
   [COLL_TOGGLE_GROUP]: (state, { payload }) =>
     toggleAll(state, payload.group),

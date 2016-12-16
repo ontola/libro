@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
 import {
-  // BottomBar,
   NavBarContent,
   Notification,
   Spinner,
+  SkipNavigation,
 } from 'components';
 
 import SideBarContainer from 'containers/SideBarContainer';
@@ -46,13 +46,16 @@ const App = ({
       defaultTitle="Argu"
     />
     <Spinner loading={loading} />
+    <SkipNavigation />
     <SideBarContainer
       id="Navbar"
       sidebar={<NavBarContent />}
       slim
     >
       <BottomBarContainer />
-      {children}
+      <div id="start-of-content">
+        {children}
+      </div>
       {renderErrorMessage(error, errorMessage, reset)}
     </SideBarContainer>
   </div>

@@ -1,6 +1,7 @@
 @import '../shared/config';
 
 .BottomBar {
+  // The ProgressBar's height depends on this height, so adjust that one too.
   align-items: center;
   background-color: color('white');
   bottom: 0;

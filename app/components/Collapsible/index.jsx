@@ -9,8 +9,8 @@ const propTypes = {
   /** Function that should dispatch a toggle action to open / close the Collapsible. */
   onClickToggle: PropTypes.func.isRequired,
   opened: PropTypes.bool.isRequired,
-  /** This is what the user clicks to toggle the collapsible. */
-  trigger: PropTypes.node.isRequired,
+  /** Optional node that functionas as a clickable toggle. */
+  trigger: PropTypes.node,
   /** Content that's always visible, but does not work as a clickable toggle. */
   visibleContent: PropTypes.node,
 };
@@ -38,8 +38,10 @@ const Collapsible = ({
   );
 
   return (
-    <div className="Collapsible">
-      <div className="Collapsible__trigger-wrapper">{triggerElem}</div>
+    <div className="Collapsible" aria-expanded={opened}>
+      {trigger &&
+        <div className="Collapsible__trigger-wrapper">{triggerElem}</div>
+      }
       <div className="Collapsible__visible-content">{visibleContent}</div>
       <div className="Collapsible__invisible-content">
         <ReactCollapse isOpened={opened}>

@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import {
+  Button,
 } from 'components';
 
 const propTypes = {
@@ -51,12 +52,12 @@ const BottomBarButton = ({
           {LinkContent}
         </Link>}
       {onClick &&
-        <a
-          tabIndex={0}
+        <Button
+          plain
           onClick={() => onClick()}
         >
           {LinkContent}
-        </a>}
+        </Button>}
     </div>
   );
 };

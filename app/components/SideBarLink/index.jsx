@@ -3,8 +3,13 @@ import './SideBarLink.scss';
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
+import { connect } from 'react-redux';
 import {
 } from 'components';
+
+import {
+  closeSideBar,
+} from 'state/sideBars/actions';
 
 const propTypes = {
   bold: PropTypes.bool,
@@ -13,6 +18,7 @@ const propTypes = {
   icon: PropTypes.string,
   // True for links that are leveled higher than others
   isIndex: PropTypes.bool,
+  closeBarOnClick: PropTypes.func,
   to: PropTypes.any,
 };
 
@@ -22,6 +28,7 @@ const SideBarLink = ({
   icon,
   imageUrl,
   isIndex,
+  closeBarOnClick,
   to,
 }) => {
   const classes = classNames({
@@ -35,6 +42,7 @@ const SideBarLink = ({
         to={to}
         activeClassName="SideBarLink--active"
         onlyActiveOnIndex={isIndex}
+        onClick={() => closeBarOnClick()}
       >
         {icon && <div className="SideBarLink__icon">
           <FontAwesome name={icon} />
@@ -55,4 +63,14 @@ const SideBarLink = ({
 
 SideBarLink.propTypes = propTypes;
 
-export default SideBarLink;
+// export default SideBarLink;
+
+// The 'null' and 'pure:false': https://github.com/ReactTraining/react-router/issues/3536
+export default connect(
+  null,
+  dispatch => ({
+    closeBarOnClick: () => dispatch(closeSideBar('Navbar')),
+  }),
+  null,
+  { pure: false }
+)(SideBarLink);

@@ -15,16 +15,13 @@ import FontAwesome from 'react-fontawesome';
 const propTypes = {
   // A collection of SideBarLinks
   children: PropTypes.node,
-  // Unique string for state management
-  id: PropTypes.string,
-  label: PropTypes.string,
+  label: PropTypes.string.isRequired,
   onClickToggle: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
+  open: PropTypes.bool,
   to: PropTypes.string.isRequired,
 };
 
 const SideBarCollapsible = ({
-  id,
   label,
   children,
   onClickToggle,
@@ -44,32 +41,31 @@ const SideBarCollapsible = ({
         bold
         isIndex
       />
-      <CollapsibleContainer
-        id={id}
-      >
-        {children}
-      </CollapsibleContainer>
       <Button
         plain
         onClick={() => onClickToggle()}
         className="SideBarCollapsible__toggle"
+        alt={'Menu uitvouwen of inklappen'}
       >
         <FontAwesome name="caret-right" />
       </Button>
+      <CollapsibleContainer
+        id={label}
+      >
+        {children}
+      </CollapsibleContainer>
     </div>
   );
 };
 
 SideBarCollapsible.propTypes = propTypes;
 
-// export default SideBarCollapsible;
-
 export default connect(
   (state, ownProps) => ({
-    open: getCollapsibleOpened(state, ownProps),
+    open: getCollapsibleOpened(state, ownProps.label),
   }),
-  (dispatch, { id }) => ({
-    onClickToggle: () => dispatch(toggleOne({ id })),
+  (dispatch, { label }) => ({
+    onClickToggle: () => dispatch(toggleOne(label)),
     onInitializeCollapsible: data => dispatch(initializeCollapsible(data)),
   })
 )(SideBarCollapsible);

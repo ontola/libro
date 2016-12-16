@@ -7,6 +7,7 @@ import { buttonThemes } from 'components/shared/config';
 const propTypes = {
   /** Should be true when the button is toggleable and toggled. */
   active: PropTypes.bool,
+  alt: PropTypes.string,
   className: PropTypes.string,
   /** Label of the button */
   children: PropTypes.node,
@@ -29,6 +30,7 @@ const defaultProps = {
 
 const Button = ({
   active,
+  alt,
   children,
   className,
   icon,
@@ -50,12 +52,19 @@ const Button = ({
     'Button--active': active,
   });
 
+  // Used to remove the annoying focus outline border after clicking
+  const onClickAndBlur = (e) => {
+    onClick(e);
+    document.activeElement.blur();
+  };
+
   return (
     <button
-      onClick={onClick}
+      onClick={onClickAndBlur}
       className={`${btnClass} ${className}`}
       role="button"
       type="button"
+      alt={alt}
     >
       {icon && <FontAwesome className="Button__icon" name={icon} />}
       <span className="Button__label">{children}</span>

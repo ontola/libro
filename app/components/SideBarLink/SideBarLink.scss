@@ -1,18 +1,30 @@
 @import '../shared/config';
 
 .SideBarLink {
+  position: relative;
+
   a {
     display: flex;
     font-size: 1em;
     padding: .3em 0;
-  }
 
-  &:hover {
-    background-color: color('transparent', 'x-light');
-  }
+    &:hover {
+      background-color: color('transparent', 'x-light');
+    }
 
-  &:active {
-    background-color: color('transparent', 'light');
+    &:active {
+      background-color: color('transparent', 'light');
+    }
+
+    &::after {
+      background-color: none;
+      bottom: 0;
+      content: '';
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: .3em;
+    }
   }
 
   &--bold {
@@ -24,7 +36,9 @@
 }
 
 .SideBarLink--active {
-  background-color: color('transparent', 'x-light');
+  &::after {
+    background-color: color('transparent', 'mid-light');
+  }
 }
 
 .SideBarLink__icon,

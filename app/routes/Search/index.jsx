@@ -125,7 +125,7 @@ class Search extends Component {
                 max={1458691200000}
                 showHistogram
                 rangeComponent={RangeSliderHistogram}
-                rangeFormatter={count => formatDate(count)}
+                rangeFormatter={count => formatDate(count, 'l')}
               />
               <ResetFilters component={ResetFiltersDisplay} />
             </DrawerContainer>

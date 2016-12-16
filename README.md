@@ -52,7 +52,7 @@ Since this project uses Redux, displaying data is not that always that trivial. 
 - Create a model with the name of the content type. Model (file)names are capitalized. It's easy to copy another model to bootstrap your new one.
 - Use camelCased attributes - even if the API passes you under_scored ones. This is because the DataStore normalizes all incoming data.
 - Write the relevant GET_MODEL actions and put them in the `state/action-types.js` file.
-- Write your reducer(s) in `state/model/reducer.js`. Import them in the `state/index.js` file and pass it as an argument to the `rootReducer` function.
+- Write your reducer(s) in `state/model/reducer.js`.
 - Write your selectors in `state/model/selectors.js`. Use the [reselect library](https://github.com/reactjs/reselect) and immutable.js functions.
 - Create a container component that binds the store data to props and pass that to a UI component.
 
@@ -69,11 +69,13 @@ If you don't want to use the default AOD api, but run your own instance, you hav
 - Document your components internally by adding comments to propTypes. Write them \/\*\* Like this \*\/ to make sure they are parsed by react-styleguidist.
 - Document your components by adding a `readme.md` that includes a usage example that works with react-styleguidist.
 - This repo binds the linters and mocha tests to the git precommit hook. Now you cannot commit code that contains errors. Therefore committing may take a little longer, however this results in less errors.
+- Document functions using jsdoc.
 
 ### Recommended Atom packages
 - [Linter](https://atom.io/packages/linter) for a realtime linting experience.
 - [sass linter](https://atom.io/packages/linter-sass-lint)
 - [language-babel](https://atom.io/packages/language-babel) for auto-indenting, syntax highlighting.
+- [jsdoc](https://atom.io/packages/jsdoc) for quick jsdoc comment generation.
 
 ### Recommended Dev tools
 - Chrome plugins: [React Dev Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi), [Redux Dev Tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd) and [Immutable formatter](https://chrome.google.com/webstore/detail/immutablejs-object-format/hgldghadipiblonfkkicmgcbbijnpeog/related)

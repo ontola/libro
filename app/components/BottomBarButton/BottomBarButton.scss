@@ -1,16 +1,11 @@
 @import '../shared/config';
 
 .BottomBarButton {
+  color: color('grey', 'dark');
+  display: flex;
   flex: 1;
+  flex-direction: column;
   max-width: 5em;
-
-  a {
-    align-items: center;
-    color: color('grey', 'dark');
-    display: flex;
-    flex-direction: column;
-    padding: .3em 0;
-  }
 
   &:hover {
     background-color: color('transparent', 'mid-dark');
@@ -26,17 +21,9 @@
   background-color: color('transparent', 'x-light');
 }
 
-.BottomBarButton__icon,
-.BottomBarButton__image-wrapper {
-  height: 1em;
-  margin: auto;
-  padding-bottom: .3em;
-  text-align: center;
-  width: 1em;
-}
-
 .BottomBarButton__text {
   font-size: .7em;
+  text-align: center;
 }
 
 .BottomBarButton__image {
@@ -49,7 +36,8 @@
 
 .BottomBarButton__wrapper {
   align-items: center;
-  flex: 1;
+  display: flex;
   flex-direction: column;
+  height: $bottom-padding-height;
   justify-content: center;
 }

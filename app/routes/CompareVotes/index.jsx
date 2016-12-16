@@ -38,7 +38,7 @@ class CompareVotes extends Component {
     const { currentIndex, motionsLength, name } = this.props;
 
     return (
-      <div>
+      <div className="ProgressBar__wrapper">
         <Helmet title={`Vergelijk opinies met ${name}`} />
         <VoteMatchContainer id={this.props.params.userId} />
         <ProgressBar

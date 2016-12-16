@@ -1,6 +1,11 @@
 @import './reset';
 @import './config';
 
+html {
+  // Removes 300ms touch delay on iOS safari
+  touch-action: manipulation;
+}
+
 body {
   background-color: color('blue', 'x-light');
   color: color('grey', 'dark');

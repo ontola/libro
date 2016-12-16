@@ -62,9 +62,7 @@ describe('Collapsible reducer', () => {
     assert.deepEqual(
       collapsible(initialState, {
         type: actions.COLL_TOGGLE_ONE,
-        payload: {
-          id: 'CDA',
-        },
+        payload: 'CDA',
       }),
       expectedState,
       'does not handle COLL_TOGGLE_ONE very well'

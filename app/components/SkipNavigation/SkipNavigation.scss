@@ -1,0 +1,25 @@
+@import '../shared/config';
+
+.SkipNavigation__link {
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  position: fixed;
+  width: 1px;
+
+  &:focus {
+    background: color('blue');
+    clip: auto;
+    color: color('white');
+    font-weight: bold;
+    height: auto;
+    line-height: 3em;
+    padding: 0 10px;
+    text-align: center;
+    text-decoration: none;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+  }
+}

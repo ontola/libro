@@ -59,7 +59,7 @@ class SideBar extends Component {
         overflowY: 'visible',
       },
       content: {
-        // Prevents items disappearing underneath Bottombar
+        // Prevents items disappearing underneath Bottombar. Equal to $bottom-padding-height
         paddingBottom: '3em',
         // Makes overlay hide BottomBar
         zIndex: 0,

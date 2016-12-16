@@ -6,8 +6,14 @@
   display: flex;
   left: 0;
   padding: units('medium', 'x-large');
-  position: fixed;
+  position: absolute;;
   right: 0;
+}
+
+@include small-only {
+  .ProgressBar {
+    bottom: $bottom-padding-height;
+  }
 }
 
 .ProgressBar__bar {
@@ -33,4 +39,10 @@
 
 .ProgressBar__completion-text {
   margin-left: auto;
+}
+
+.ProgressBar__wrapper {
+  margin-bottom: -$bottom-padding-height;
+  max-height: 100vh;
+  overflow-y: scroll;
 }

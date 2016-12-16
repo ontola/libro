@@ -46,19 +46,16 @@ const NavBarContent = ({
         <SideBarLink icon="feed" label="Activiteit" to={'bestaatniet'} isIndex />
         <SideBarCollapsible
           label="Algemeen"
-          id="algemeen"
-          to={path.index()}
+          to="forum"
         >
-          <SideBarLink icon="feed" label="Activiteit" to={'pindakaas'} />
-          <SideBarLink icon="question" label="Uitdagingen" to={'questions'} />
-          <SideBarLink icon="lightbulb-o" label="Ideeën" to={'motions'} />
+          <SideBarLink icon="feed" label="Activiteit" to={'feed'} />
+          <SideBarLink icon="question" label="Uitdagingen" to={'challenges'} />
+          <SideBarLink icon="lightbulb-o" label="Ideeën" to={'ideas'} />
         </SideBarCollapsible>
         <SideBarCollapsible
           label="Tweede kamer"
-          id="group1"
           to={path.index()}
         >
-          <SideBarLink icon="th-large" label="Overzicht" to={path.index()} isIndex />
           <SideBarLink icon="institution" label="Partijen" to={path.partiesIndex()} />
           <SideBarLink icon="group" label="Kamerleden" to={path.politiciansIndex()} />
           <SideBarLink icon="lightbulb-o" label="Moties" to={path.motionsIndex()} />

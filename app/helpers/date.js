@@ -1,7 +1,9 @@
 import moment from 'moment';
 import 'moment-duration-format';
 
-moment.locale('nl');
+// This is not working for some reason
+// moment.locale('nl')
+require('moment/locale/nl');
 
 /**
  * @param {number} timestamp A unix timestamp
