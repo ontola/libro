@@ -73,9 +73,16 @@ If you don't want to use the default AOD api, but run your own instance, you hav
 
 ### Recommended Atom packages
 - [Linter](https://atom.io/packages/linter) for a realtime linting experience.
-- [sass linter](https://atom.io/packages/linter-sass-lint)
-- [language-babel](https://atom.io/packages/language-babel) for auto-indenting, syntax highlighting.
+- [linter-eslint](https://atom.io/packages/linter-eslint)
+- [linter-sass-lint](https://atom.io/packages/linter-sass-lint)
+- [language-babel](https://atom.io/packages/language-babel) for syntax highlighting and auto-indenting.
+- [ternjs](https://atom.io/packages/atom-ternjs) for autocompletion.
 - [jsdoc](https://atom.io/packages/jsdoc) for quick jsdoc comment generation.
+- [nuclide](https://atom.io/packages/nuclide) for go-to-definition click, built-in debugging and Flow support.
+- [nice index](https://atom.io/packages/nice-index) for displaying the component name instead of 'index.jsx' in the tabs.
+- [project-manager](https://atom.io/packages/project-manager) for quickly swithing between projects
+- [sort-lines](https://atom.io/packages/sort-lines) for sorting lines. Very useful, since both out sass and js linters require alphabetical sorting.
+- [toggle-quotes](https://atom.io/packages/toggle-quotes) for switching between double and single quotes.
 
 ### Recommended Dev tools
 - Chrome plugins: [React Dev Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi), [Redux Dev Tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd) and [Immutable formatter](https://chrome.google.com/webstore/detail/immutablejs-object-format/hgldghadipiblonfkkicmgcbbijnpeog/related)
