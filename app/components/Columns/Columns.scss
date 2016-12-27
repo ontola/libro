@@ -3,37 +3,43 @@
 .Columns {
   align-items: flex-start;
   box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -1rem;
+  margin-right: -1rem;
 
-  @include large {
-    display: flex;
-    margin-left: -1rem;
-    margin-right: -1rem;
+  &--flexGrow > .Column {
+    flex-grow: 1;
+    margin: units('none', 'large');
+    width: 100%;
+  }
 
-    &--flexGrow > .Column {
-      flex-grow: 1;
-      margin: units('none', 'large');
-      width: 100%;
+  @each $size, $width in $container-width {
+    &--size-#{$size} {
+      .Column {
+        max-width: $width;
+      }
     }
   }
 }
 
 .Column {
   box-sizing: border-box;
+  flex-grow: 1;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @each $size, $margin in $sizes-margin {
   .Columns--gutter-#{$size} {
     margin-bottom: 1rem;
+    margin-left: -$margin;
+    margin-right: -$margin;
     margin-top: 1rem;
 
-    @include large {
-      margin-left: -$margin;
-      margin-right: -$margin;
-
-      & > .Column {
-        margin-left: $margin;
-        margin-right: $margin;
-      }
+    & > .Column {
+      margin-left: $margin;
+      margin-right: $margin;
     }
   }
 }

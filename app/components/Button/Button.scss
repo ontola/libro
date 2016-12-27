@@ -23,6 +23,16 @@
     outline: 0;
     transition: 0s box-shadow;
   }
+
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: .5;
+
+    &:active,
+    &:hover {
+      box-shadow: none;
+    }
+  }
 }
 
 .Button--has-icon {
@@ -113,12 +123,23 @@
 
 @each $variant, $color in $button-variants-colors {
   .Button--variant-#{$variant} {
+    box-shadow: inset 0 0 0 0 color($color);
     color: color($color);
+    transition: box-shadow .2s;
 
-    &.Button--active,
+    &:hover,
+    &:focus {
+      background-color: color('white');
+      box-shadow: inset 0 -2px 0 0 color($color);
+    }
+
     &:active {
-      background-color: color($color);
-      color: color('white');
+      background-color: color('grey', 'x-light') !important;
+    }
+
+    &.Button--active {
+      background-color: color('white');
+      box-shadow: inset 0 -4px 0 0 color($color);
     }
   }
 }

@@ -1,0 +1,91 @@
+@import '../shared/config';
+
+.Field {
+  display: flex;
+  flex-direction: column;
+}
+
+.Field__input {
+  background-color: color('grey', 'xx-light');
+  border: solid 1px color('grey', 'light');
+  box-sizing: border-box;
+  font-size: 1em;
+  margin: 10px;
+  padding: 10px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+// Makes it less obvious that the input is a form, but looks prettier and resembles how the
+// item will look.
+.Field--preview {
+  .Field__input {
+    background: none;
+    border: 0;
+    margin: 0;
+    padding: 10px 20px;
+    width: 100%;
+
+    &:hover {
+      box-shadow: inset 5px 0 0 color('grey', 'light');
+    }
+
+    &:focus {
+      box-shadow: inset 5px 0 0 color('grey');
+    }
+  }
+}
+
+.Field--heading {
+  .Field__input {
+    font-size: 1.3em;
+    font-weight: bold;
+  }
+}
+
+.Field--pro {
+  .Field__input {
+    color: color('green');
+
+    &:focus {
+      box-shadow: inset 5px 0 0 color('green');
+    }
+  }
+}
+
+.Field--con {
+  .Field__input {
+    color: color('brown');
+
+    &:focus {
+      box-shadow: inset 5px 0 0 color('brown');
+    }
+  }
+}
+
+.Field--textarea {
+  .Field__input {
+    resize: vertical;
+  }
+}
+
+.Field__messages {
+  padding: 0 20px;
+  padding-bottom: 10px;
+}
+
+.Field__error,
+.Field__warning {
+  color: color('brown');
+}
+
+.Field__label {
+  color: color('grey', 'dark');
+  display: block;
+  font-size: 1em;
+  font-weight: bold;
+  padding-left: 1.3rem;
+  padding-top: 1rem;
+}

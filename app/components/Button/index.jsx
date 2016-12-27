@@ -11,12 +11,15 @@ const propTypes = {
   className: PropTypes.string,
   /** Label of the button */
   children: PropTypes.node,
+  disabled: PropTypes.bool,
   icon: PropTypes.string,
+  loading: PropTypes.bool,
   narrow: PropTypes.bool,
   onClick: PropTypes.func,
   plain: PropTypes.bool,
   small: PropTypes.bool,
   theme: PropTypes.oneOf(buttonThemes),
+  type: PropTypes.string,
   variant: PropTypes.oneOf(['pro', 'neutral', 'con', 'upvote', 'comment']),
 };
 
@@ -26,6 +29,7 @@ const defaultProps = {
   plain: false,
   small: false,
   theme: 'default',
+  type: 'button',
 };
 
 const Button = ({
@@ -33,12 +37,15 @@ const Button = ({
   alt,
   children,
   className,
+  disabled,
   icon,
+  loading,
   onClick,
   small,
   narrow,
   plain,
   theme,
+  type,
   variant,
 }) => {
   const btnClass = classNames({
@@ -54,8 +61,17 @@ const Button = ({
 
   // Used to remove the annoying focus outline border after clicking
   const onClickAndBlur = (e) => {
-    onClick(e);
-    document.activeElement.blur();
+    if (onClick !== undefined) {
+      onClick(e);
+      document.activeElement.blur();
+    }
+  };
+
+  const currentIcon = () => {
+    if (loading) {
+      return 'spinner';
+    }
+    return icon;
   };
 
   return (
@@ -63,11 +79,20 @@ const Button = ({
       onClick={onClickAndBlur}
       className={`${btnClass} ${className}`}
       role="button"
-      type="button"
+      type={type}
       alt={alt}
+      disabled={disabled || loading}
     >
-      {icon && <FontAwesome className="Button__icon" name={icon} />}
-      <span className="Button__label">{children}</span>
+      {icon &&
+        <FontAwesome
+          className="Button__icon"
+          spin={loading}
+          name={currentIcon()}
+        />
+      }
+      <span className="Button__label">
+        {children}
+      </span>
     </button>
   );
 };

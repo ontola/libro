@@ -43,18 +43,18 @@ Extensive Card example
       </CardContent>
       <CardActions>
         <CardButton
-          action={() => console.log('pro')}
-          type="pro"
+          onClick={() => console.log('pro')}
+          variant="pro"
           children="Voor"
         />
         <CardButton
-          action={() => console.log('neutral')}
-          type="neutral"
+          onClick={() => console.log('neutral')}
+          variant="neutral"
           children="Neutraal"
         />
         <CardButton
-          action={() => console.log('con')}
-          type="con"
+          onClick={() => console.log('con')}
+          variant="con"
           children="Tegen"
         />
       </CardActions>

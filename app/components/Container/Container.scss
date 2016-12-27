@@ -16,6 +16,10 @@
     display: flex;
     justify-content: center;
     min-height: 60vh;
+
+    @include small-only {
+      max-width: container-width('large');
+    }
   }
 
   &--grid {
@@ -23,6 +27,8 @@
     flex-direction: row;
     flex-wrap: wrap;
     padding: 2rem;
+
+
 
     .Widget {
       flex-basis: 20em;
@@ -44,8 +50,6 @@
   }
 
   @include large {
-    // padding: 0;
-
     &--spacing-small {
       padding: units('small', 'none');
     }

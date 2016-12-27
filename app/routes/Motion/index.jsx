@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
 import {
+  ArgumentForm,
   ArgumentShow,
   BackButton,
   Button,
@@ -21,6 +22,8 @@ import path from 'helpers/paths';
 const propTypes = {
   argsPro: PropTypes.array,
   argsCon: PropTypes.array,
+  formConOpen: PropTypes.bool,
+  formProOpen: PropTypes.bool,
   params: PropTypes.object.isRequired,
   title: PropTypes.string,
 };
@@ -28,6 +31,8 @@ const propTypes = {
 const defaultProps = {
   argsPro: [],
   argsCon: [],
+  formConOpen: true,
+  formProOpen: false,
 };
 
 const renderArgument = data => (
@@ -44,43 +49,64 @@ const renderArgument = data => (
 const Motion = ({
   argsPro,
   argsCon,
+  formConOpen,
+  formProOpen,
   params,
   title,
 }) => (
-  <Container>
-    <Helmet title={title} />
-    <BackButton link={path.motionsIndex()}>Terug naar alle moties</BackButton>
-    <MotionContainer motionId={params.motionId} />
-    <VoteDataContainer motionId={params.motionId} />
-    <Columns>
-      <div>
-        <Heading variant="column" size="3">Voordelen</Heading>
-        <List
-          renderItem={renderArgument}
-          items={argsPro}
-        />
-        <Button
-          icon="plus"
-          theme="transparant"
-        >
-          Voordeel toevoegen
-        </Button>
-      </div>
-      <div>
-        <Heading variant="column" size="3">Problemen</Heading>
-        <List
-          renderItem={renderArgument}
-          items={argsCon}
-        />
-        <Button
-          icon="plus"
-          theme="transparant"
-        >
-          Probleem toevoegen
-        </Button>
-      </div>
-    </Columns>
-  </Container>
+  <div>
+    <Container>
+      <Helmet title={title} />
+      <BackButton link={path.motionsIndex()}>Terug naar alle moties</BackButton>
+      <MotionContainer motionId={params.motionId} />
+      <VoteDataContainer motionId={params.motionId} />
+    </Container>
+    <Container size="large">
+      <Columns column-size="medium" total-size="large">
+        <div>
+          <Heading variant="column" size="3">Voordelen</Heading>
+          <List
+            renderItem={renderArgument}
+            items={argsPro}
+          />
+          {!formProOpen &&
+            <Button
+              icon="plus"
+              theme="transparant"
+            >
+              Voordeel toevoegen
+            </Button>}
+          {formProOpen &&
+            <ArgumentForm
+              side="pro"
+              motionId={params.motionId}
+            />
+          }
+        </div>
+        <div>
+          <Heading variant="column" size="3">Problemen</Heading>
+          <List
+            renderItem={renderArgument}
+            items={argsCon}
+          />
+          {!formConOpen &&
+            <Button
+              icon="plus"
+              theme="transparant"
+            >
+              Probleem toevoegen
+            </Button>
+          }
+          {formConOpen &&
+            <ArgumentForm
+              side="con"
+              motionId={params.motionId}
+            />
+          }
+        </div>
+      </Columns>
+    </Container>
+  </div>
 );
 
 Motion.defaultProps = defaultProps;

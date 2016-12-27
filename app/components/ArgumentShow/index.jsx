@@ -2,9 +2,9 @@ import React, { PropTypes } from 'react';
 
 import PersonContainer from 'containers/PersonContainer';
 import {
+  Button,
   Card,
   CardActions,
-  CardButton,
   CardContent,
   CardHeader,
   DetailsBar,
@@ -43,8 +43,20 @@ const ArgumentShow = ({
       />
     </CardContent>
     <CardActions>
-      <CardButton type="upvote" action={() => undefined}>Upvote</CardButton>
-      <CardButton type="comment" action={() => undefined}>Reageer</CardButton>
+      <Button
+        icon="arrow-up"
+        theme="box"
+        onClick={() => undefined}
+      >
+        Upvote
+      </Button>
+      <Button
+        icon="comment"
+        theme="box"
+        onClick={() => undefined}
+      >
+        Reageer
+      </Button>
     </CardActions>
   </Card>
 );
