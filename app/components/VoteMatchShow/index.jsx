@@ -48,7 +48,7 @@ class VoteMatchShow extends Component {
   }
 
   scrollTo(id) {
-    return this.sections[id] && this.sections[id].scrollIntoView();
+    return this.sections[id] && this.sections[id].scrollIntoView({ behavior: 'smooth' });
   }
 
   render() {

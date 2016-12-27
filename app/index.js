@@ -8,6 +8,8 @@ import { ELASTICSEARCH_URL } from './config';
 import immutableHistory from './helpers/history';
 import IndexContainer from './containers/IndexContainer';
 
+require('smoothscroll-polyfill').polyfill();
+
 const store = configureStore();
 const history = immutableHistory(store);
 const sk = new SearchkitManager(ELASTICSEARCH_URL);
