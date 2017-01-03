@@ -5,6 +5,7 @@ import { VoteMatchShow } from 'components';
 import { voteMatchStart, voteMatchSave } from 'state/votematch/actions';
 
 import {
+  getCurrentVoteMatch,
   getVoteMatchMotions,
   getVoteMatchCountUserVotes,
   getVoteMatchSimilarity,
@@ -17,6 +18,7 @@ const propTypes = {
   onStartVoteMatch: PropTypes.func.isRequired,
   onSaveScore: PropTypes.func.isRequired,
   similarity: PropTypes.number.isRequired,
+  data: PropTypes.object.isRequired,
 };
 
 const defaultProps = {
@@ -31,7 +33,18 @@ class VoteMatchContainer extends Component {
   }
 
   render() {
-    const { id, countUserVotes, motionIds, onSaveScore, similarity } = this.props;
+    const demoParties = [
+      'f77531ce-99d4-4d25-8d98-70897d904a53',
+    ];
+
+    const {
+      id,
+      countUserVotes,
+      data,
+      motionIds,
+      onSaveScore,
+      similarity,
+    } = this.props;
 
     return (
       <VoteMatchShow
@@ -40,6 +53,9 @@ class VoteMatchContainer extends Component {
         motionIds={motionIds}
         onSave={onSaveScore}
         similarity={similarity}
+        name={data.name}
+        text={data.text}
+        comparedProfiles={demoParties}
       />
     );
   }
@@ -53,9 +69,10 @@ export default connect(
     countUserVotes: getVoteMatchCountUserVotes(state, props),
     motionIds: getVoteMatchMotions(state, props),
     similarity: getVoteMatchSimilarity(state, props),
+    data: getCurrentVoteMatch(state, props),
   }),
   dispatch => ({
     onStartVoteMatch: record => dispatch(voteMatchStart(record)),
-    onSaveScore: score => dispatch(voteMatchSave(score)),
+    onSaveScore: score => {console.log(`save ${score}`); return dispatch(voteMatchSave(score))},
   })
 )(VoteMatchContainer);

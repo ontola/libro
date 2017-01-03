@@ -1,6 +1,7 @@
 // Arguments
 export const GET_ARGUMENTS = 'GET_ARGUMENTS';
 export const GET_ARGUMENT = 'GET_ARGUMENT';
+export const CREATE_ARGUMENT = 'CREATE_ARGUMENT';
 
 // Collapsibles
 export const COLL_ADD = 'COLL_ADD';

@@ -5,14 +5,24 @@ import './VoteData.scss';
 import { calcPercentage } from 'helpers/numbers';
 import CountBubbleContainer from 'containers/CountBubbleContainer';
 
+import {
+  DetailDate,
+  DetailStatus,
+} from 'components';
+
 const propTypes = {
+  optionCounts: PropTypes.object.isRequired,
   votes: PropTypes.object.isRequired,
   counts: PropTypes.object,
+  result: PropTypes.string,
+  endDate: PropTypes.date,
+  startDate: PropTypes.date,
 };
 
 const defaultProps = {
   votes: {},
   counts: {},
+  optionCounts: {},
 };
 
 const NUMBER_OF_VOTE_BUBBLES = 15;
@@ -20,23 +30,27 @@ const NUMBER_OF_VOTE_BUBBLES = 15;
 class VoteData extends Component {
   voteSegment(option, total) {
     const votes = this.props.votes[option];
+    const optionCounts = this.props.optionCounts[option];
+
+    if (!(optionCounts >= 1)) {
+      return false;
+    }
 
     return (
       <div
         key={option}
         className={`VoteData__votebar-part VoteData__votebar-part--${option}`}
-        style={{ width: `${calcPercentage(votes.count, total)}%` }}
+        style={{ width: `${calcPercentage(optionCounts, total)}%` }}
       >
         <div className="VoteData__votesegment-wrapper">{this.segmentItems(option)}</div>
         <span className={`VoteData__votebar-count VoteData__votebar-count--${option}`}>
-          {votes.count}
+          {optionCounts}
         </span>
       </div>
     );
   }
 
   segmentItems(option) {
-    // debugger;
     if (this.props.counts !== undefined) {
       const counts = this.props.counts[option].counts;
 
@@ -56,18 +70,30 @@ class VoteData extends Component {
   }
 
   render() {
-    const { votes } = this.props;
+    const { optionCounts, result, startDate, endDate } = this.props;
     const orderedKeys = ['yes', 'abstain', 'no'];
     const total = orderedKeys
-      .map(opt => votes[opt].count)
+      .map(opt => optionCounts[opt])
       .reduce((v, i) => v + i);
 
-    if (total === 0) {
+    // Only show the item if there are votes
+    if (!(total >= 1)) {
       return false;
     }
 
     return (
       <div className="VoteData">
+        {result &&
+          <DetailStatus
+            status={result}
+          />
+        }
+        {(startDate || endDate) &&
+          <DetailDate
+            startDate={startDate}
+            endDate={endDate}
+          />
+        }
         <div className="VoteData__votebar">
           {orderedKeys.map(option => this.voteSegment(option, total))}
         </div>

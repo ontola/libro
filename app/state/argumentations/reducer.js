@@ -3,7 +3,9 @@ import { Map } from 'immutable';
 
 import { Argument } from 'models';
 import { setRecord } from 'helpers/reducers';
-import { GET_ARGUMENT } from '../action-types';
+import {
+  GET_ARGUMENT,
+} from '../action-types';
 
 const initialState = new Map({
   items: new Map(),

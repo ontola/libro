@@ -67,5 +67,6 @@ export { default as Tag } from './Tag';
 export { default as VideoPlayer } from './VideoPlayer';
 export { default as VoteChart } from './VoteChart';
 export { default as VoteData } from './VoteData';
+export { default as VoteMatchResultBar } from './VoteMatchResultBar';
 export { default as VoteMatchShow } from './VoteMatchShow';
 export { default as Widget } from './Widget';

@@ -33,8 +33,6 @@ const motions = [
 const newRecord = id => new VoteMatch({
   id,
   motions,
-  comparedProfile: id,
-  comparedProfilePositions: ['pro', 'con', 'neutral'],
 });
 
 const votematch = handleActions({

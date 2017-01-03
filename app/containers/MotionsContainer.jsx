@@ -8,7 +8,7 @@ import { fetchMotions } from 'state/motions/actions';
 import MotionContainer from 'containers/MotionContainer';
 
 const propTypes = {
-  // motions: PropTypes.object,
+  motions: PropTypes.object,
   loadMotions: PropTypes.func.isRequired,
 };
 
@@ -30,15 +30,15 @@ class MotionsContainer extends Component {
   }
 
   render() {
-    // const { motions } = this.props;
-    const motions = [
-      { id: '6117dd10-2cf8-e511-9672-e4115babb880' },
-      { id: '169b7429-14f8-e511-9672-e4115babb880' },
-      { id: '2ea244f5-14f8-e511-9672-e4115babb880' },
-      { id: '6717dd10-2cf8-e511-9672-e4115babb880' },
-      { id: 'c0e2a617-79f2-e511-9672-e4115babb880' },
-      { id: '3137bf58-89f5-e511-9672-e4115babb880' },
-    ];
+    const { motions } = this.props;
+    // const motions = [
+    //   { id: '6117dd10-2cf8-e511-9672-e4115babb880' },
+    //   { id: '169b7429-14f8-e511-9672-e4115babb880' },
+    //   { id: '2ea244f5-14f8-e511-9672-e4115babb880' },
+    //   { id: '6717dd10-2cf8-e511-9672-e4115babb880' },
+    //   { id: 'c0e2a617-79f2-e511-9672-e4115babb880' },
+    //   { id: '3137bf58-89f5-e511-9672-e4115babb880' },
+    // ];
     return motions.length > 0 && <List renderItem={renderMotionContainer} items={motions} />;
   }
 }

@@ -11,6 +11,11 @@ export const getGroupId = (state, props) => {
 
 export const getGroups = state => state.getIn(['groups', 'items']);
 
+export const getGroupName = createSelector(
+  [getGroupId, getGroups],
+  (groupId, groups) => groups.getIn([groupId, 'image'])
+);
+
 export const getGroupByCount = createSelector(
   [getCount, getGroups],
   (count, groups) => {

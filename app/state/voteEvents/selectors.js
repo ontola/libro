@@ -16,8 +16,17 @@ export const getVoteEvent = (state, props) => {
 export const getVoteEventVotes = (state, props) =>
   getVoteEvent(state, props).get('votes');
 
+export const getVoteEventOptionCounts = (state, props) =>
+  getVoteEvent(state, props).get('optionCounts');
+
 export const getVoteEventResult = (state, props) =>
   getVoteEvent(state, props).get('result');
+
+export const getVoteEventStartDate = (state, props) =>
+  getVoteEvent(state, props).get('startDate');
+
+export const getVoteEventEndDate = (state, props) =>
+  getVoteEvent(state, props).get('endDate');
 
 export const getVoteEventVotesCount = createSelector(
   [getVoteEventVotes],

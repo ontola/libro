@@ -12,11 +12,11 @@ const apiDesc = new APIDesc({
 });
 
 const attributes = {
+  comparedProfile: null,
   id: null,
   motions: [],
-  comparedProfile: null,
-  comparedProfilePositions: [],
-  similarity: null,
+  name: 'Stemwijzer voor x',
+  text: 'Beschrijving van gebruiker',
 };
 
 export default apiModelGenerator(attributes, apiDesc);

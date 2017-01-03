@@ -1,18 +1,25 @@
 import React, { Component, PropTypes } from 'react';
 
 import {
+  Button,
+  Card,
+  CardContent,
   Cover,
   Container,
+  Heading,
   MotionCompare,
 } from 'components';
 
 import MotionContainer from 'containers/MotionContainer';
-import ScoreSheetContainer from 'containers/ScoreSheetContainer';
+import VoteMatchResultProfileContainer from 'containers/VoteMatchResultProfileContainer';
 
 const propTypes = {
+  comparedProfiles: PropTypes.array.isRequired,
   currentIndex: PropTypes.number,
   motionIds: PropTypes.array.isRequired,
+  name: PropTypes.string.isRequired,
   onSave: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
   voteMatchId: PropTypes.string.isRequired,
 };
 
@@ -53,12 +60,34 @@ class VoteMatchShow extends Component {
 
   render() {
     const {
+      comparedProfiles,
       motionIds,
+      name,
+      text,
       voteMatchId,
     } = this.props;
 
     return (
       <div className="VoteMatchShow">
+        <div className="VoteMatchShow__intro">
+          <Cover fullScreen>
+            <Container>
+              <Card>
+                <CardContent>
+                  <Heading>
+                    {name}
+                  </Heading>
+                  {text}
+                </CardContent>
+              </Card>
+              <Button
+                onClick={() => this.scrollTo(motionIds[0])}
+              >
+                Start
+              </Button>
+            </Container>
+          </Cover>
+        </div>
         <div className="VoteMatchShow__motionsList">
           {motionIds.map(id => (
             <div
@@ -81,7 +110,15 @@ class VoteMatchShow extends Component {
         <div className="VoteMatchShow__results" ref={(r) => { this.sections.results = r; }}>
           <Cover fullScreen>
             <Container>
-              <ScoreSheetContainer id={voteMatchId} />
+              <Card>
+                {comparedProfiles.map(profile => (
+                  <VoteMatchResultProfileContainer
+                    profileId={profile}
+                    voteMatchId={voteMatchId}
+                    motionIds={motionIds}
+                  />
+                ))}
+              </Card>
             </Container>
           </Cover>
         </div>

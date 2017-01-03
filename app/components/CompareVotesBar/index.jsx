@@ -13,12 +13,13 @@ import CollapsibleContainer from 'containers/CollapsibleContainer';
 import { percentageToRedOrGreen } from 'helpers/color';
 
 const propTypes = {
+  children: PropTypes.node.isRequired,
   label: PropTypes.string.isRequired,
   /** Directs user to a page that shows more information about the differences in voting behavior */
   mainPercentage: PropTypes.number.isRequired,
   tags: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string.isRequired,
-  })).isRequired,
+  })),
 };
 
 const suffix = percentage => (
@@ -34,6 +35,7 @@ const renderTag = tag => (
 );
 
 const CompareVotesBar = ({
+  children,
   label,
   mainPercentage,
   tags,
@@ -50,9 +52,11 @@ const CompareVotesBar = ({
   return (
     <div className="CompareVotesBar">
       <CollapsibleContainer id={label} trigger={trigger}>
-        <div className="CompareVotesBar__collapsible-children">
+        {tags && <div className="CompareVotesBar__collapsible-children">
           <List renderItem={renderTag} items={tags} />
         </div>
+        }
+        {children}
       </CollapsibleContainer>
     </div>
   );
