@@ -21,12 +21,12 @@ $colors: (
   'brown': (
     'dark': rgb(104, 71, 71),
     'base': $color-base-brown,
-    'light': lighten($color-base-brown, 50%),
+    'light': lighten($color-base-brown, 20%),
     'x-light': rgba($color-base-brown, .05),
   ),
   'green': (
     'base': $color-base-green,
-    'light': rgba($color-base-green, .6),
+    'light': lighten($color-base-green, 20%),
     'x-light': rgba($color-base-green, .1),
   ),
   'grey': (
@@ -35,7 +35,7 @@ $colors: (
     'mid-dark': darken($color-base-grey, 20%),
     'base': $color-base-grey,
     'mid-light': lighten($color-base-grey, 10%),
-    'light': lighten($color-base-grey, 30%),
+    'light': lighten($color-base-grey, 20%),
     'x-light': lighten($color-base-grey, 40%),
     'xx-light': lighten($color-base-grey, 47%),
   ),
@@ -65,9 +65,9 @@ $colors: (
 
 $drawer-overlay-background: rgba(71, 86, 104, .3);
 $button-variants-colors: (
-  'pro': 'green',
+  'yes': 'green',
   'neutral': 'grey',
-  'con': 'brown',
+  'no': 'brown',
 );
 
 // FONTS

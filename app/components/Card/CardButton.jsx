@@ -20,9 +20,9 @@ const CardButton = ({
   type,
 }) => {
   const buttonIcon = {
-    pro: 'thumbs-up',
+    yes: 'thumbs-up',
     neutral: 'pause',
-    con: 'thumbs-down',
+    no: 'thumbs-down',
     comment: 'comment',
     upvote: 'arrow-up',
   };

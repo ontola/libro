@@ -16,6 +16,7 @@ const attributes = {
   endDate: new Date(),
   id: '',
   result: '',
+  optionCounts: {},
   startDate: new Date(),
   votes: [],
 };

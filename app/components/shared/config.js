@@ -25,8 +25,8 @@ export const shades = [
 ];
 
 export const sides = [
-  'pro',
-  'con',
+  'yes',
+  'no',
   'neutral',
 ];
 

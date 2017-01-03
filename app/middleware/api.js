@@ -8,7 +8,6 @@ import {
 
 import {
   callApi,
-  getEndpoint,
   parseResult,
   yieldEntities,
 } from './utils/apiHelpers';
@@ -22,11 +21,10 @@ const JsonApiMiddleware = ({
   }
 
   const dataStore = new DataStore(models);
-  const endpoint = getEndpoint(apiBaseUrl, action.payload);
 
   next(handleRequest(action));
 
-  return callApi(endpoint)
+  return callApi(apiBaseUrl, action)
     .then(data => next(parseResult(dataStore, yieldEntities(data), handleRecord)))
     .catch(error => next(handleError(action, error)));
 };

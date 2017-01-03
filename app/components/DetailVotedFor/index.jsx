@@ -13,8 +13,8 @@ const DetailVotedFor = ({ side }) => {
   let text = 'Onbekende stem';
 
   switch (side) {
-    case 'pro':
-      className = 'DetailVotedFor--pro';
+    case 'yes':
+      className = 'DetailVotedFor--yes';
       icon = 'thumbs-up';
       text = 'Stemde voor';
       break;
@@ -23,8 +23,8 @@ const DetailVotedFor = ({ side }) => {
       icon = 'pause';
       text = 'Stemde neutraal';
       break;
-    case 'con':
-      className = 'DetailVotedFor--con';
+    case 'no':
+      className = 'DetailVotedFor--no';
       icon = 'thumbs-down';
       text = 'Stemde tegen';
       break;

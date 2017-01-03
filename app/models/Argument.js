@@ -6,6 +6,7 @@ const apiDesc = new APIDesc({
   actions: new Map({
     collection: actions.GET_ARGUMENTS,
     resource: actions.GET_ARGUMENT,
+    create: actions.CREATE_ARGUMENT,
   }),
   endpoint: 'arguments',
   type: 'arguments',
@@ -14,7 +15,7 @@ const apiDesc = new APIDesc({
 const attributes = {
   id: '',
   motionId: '',
-  title: '',
+  name: '',
   text: '',
   side: '',
   createdAt: new Date(),

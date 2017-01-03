@@ -38,9 +38,9 @@ const MotionCompare = ({
     }
     <CardActions noSpacing>
       <CardButton
-        active={voteData === 'pro'}
-        action={() => onVote('pro')}
-        type="pro"
+        active={voteData === 'yes'}
+        action={() => onVote('yes')}
+        type="yes"
       >Voor</CardButton>
       <CardButton
         active={voteData === 'neutral'}
@@ -48,9 +48,9 @@ const MotionCompare = ({
         type="neutral"
       >Neutraal</CardButton>
       <CardButton
-        active={voteData === 'con'}
-        action={() => onVote('con')}
-        type="con"
+        active={voteData === 'no'}
+        action={() => onVote('no')}
+        type="no"
       >Tegen</CardButton>
     </CardActions>
   </Card>

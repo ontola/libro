@@ -1,29 +1,28 @@
 import './ArgumentListItem.scss';
 import React, { PropTypes } from 'react';
-import { sides } from 'components/shared/config';
 import {
   Heading,
   HoverBox,
 } from 'components';
 
 const propTypes = {
-  title: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-  side: PropTypes.oneOf(sides),
+  side: PropTypes.oneOf(['pro', 'con']),
 };
 
 const defaultProps = {
-  title: 'Loading...',
+  name: 'Loading...',
   text: '...',
 };
 
 const iconClassname = side => (side === 'pro' ? 'fa fa-plus' : 'fa fa-minus');
 
-const hoverBoxChildren = (side, title) => (
+const hoverBoxChildren = (side, name) => (
   <span className="ArgumentListItem__wrapper">
     <span className={`ArgumentListItem__icon ${iconClassname(side)}`} />
     <div className="ArgumentListItem__text">
-      <Heading size="4" variant={side}>{title}</Heading>
+      <Heading size="4" variant={side}>{name}</Heading>
     </div>
   </span>
 );
@@ -34,12 +33,12 @@ const hoverBoxHiddenChildren = text => (
 
 const ArgumentListItem = ({
   side,
-  title,
+  name,
   text,
 }) => (
   <div className={`ArgumentListItem ArgumentListItem--${side}`}>
     <HoverBox hiddenChildren={hoverBoxHiddenChildren(text)}>
-      {hoverBoxChildren(side, title)}
+      {hoverBoxChildren(side, name)}
     </HoverBox>
   </div>
 );

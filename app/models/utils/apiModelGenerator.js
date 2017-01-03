@@ -40,5 +40,19 @@ export const apiModelGenerator = (properties, apiDesc) => {
     },
   });
 
+  APIActionClass.create = (attributes, opts = {}) => ({
+    type: apiDesc.get('actions').get('create'),
+    payload: {
+      apiAction: true,
+      attributes,
+      endpoint: apiDesc.get('endpoint'),
+      request: {
+        method: 'POST',
+        href: opts.href,
+      },
+      type: apiDesc.get('type'),
+    },
+  });
+
   return APIActionClass;
 };

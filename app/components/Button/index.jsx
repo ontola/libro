@@ -20,7 +20,7 @@ const propTypes = {
   small: PropTypes.bool,
   theme: PropTypes.oneOf(buttonThemes),
   type: PropTypes.string,
-  variant: PropTypes.oneOf(['pro', 'neutral', 'con', 'upvote', 'comment']),
+  variant: PropTypes.oneOf(['yes', 'neutral', 'no', 'upvote', 'comment']),
 };
 
 const defaultProps = {

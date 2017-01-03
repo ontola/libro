@@ -8,7 +8,7 @@ import HoverBox from '../HoverBox';
 const comp = mount(
   <ArgumentListItem
     title="Zakken stinken de garage uit"
-    content="Liefst de container nog voor de zomer. De zakken stinken nu al de garage uit"
+    text="Liefst de container nog voor de zomer. De zakken stinken nu al de garage uit"
     side="pro"
   />
 );

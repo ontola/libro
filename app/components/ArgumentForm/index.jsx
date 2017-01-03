@@ -2,8 +2,8 @@ import './ArgumentForm.scss';
 import React, { PropTypes } from 'react';
 import { Field, reduxForm, formValueSelector } from 'redux-form/immutable';
 import { connect } from 'react-redux';
-import { SubmissionError } from 'redux-form';
 
+import Argument from '../../models/Argument';
 import {
   Card,
   CardActions,
@@ -19,22 +19,6 @@ const propTypes = {
   side: PropTypes.oneOf(['pro', 'con']).isRequired,
   submitting: PropTypes.bool.isRequired,
 };
-
-// This is just for testing purposes
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-const SERVER_LATENCY = 1000;
-function submit(values) {
-  return sleep(SERVER_LATENCY)
-    .then(() => {
-      console.log(values);
-      if (['hitler', 'kutten'].includes(values.get('title'))) {
-        throw new SubmissionError({ title: 'Dat mag nie!' });
-      } else {
-        window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
-      }
-    });
-}
-// End test
 
 const ArgumentForm = ({
   handleSubmit,
@@ -52,13 +36,13 @@ const ArgumentForm = ({
   return (
     <Card>
       <form
-        onSubmit={handleSubmit(submit)}
+        onSubmit={handleSubmit}
         className="Argumentform"
       >
         <Field
           autoComplete="Off"
           id={`Argument${side}Title`}
-          name="title"
+          name="name"
           placeholder={headingtext()}
           className={`Field--heading Field--preview Field--${side}`}
           element="input"
@@ -67,7 +51,7 @@ const ArgumentForm = ({
         />
         <Field
           id={`Argument${side}Description`}
-          name="description"
+          name="text"
           placeholder="Toelichting (optioneel)..."
           className="Field--textarea Field--preview"
           component={FormField}
@@ -104,19 +88,19 @@ const validate = (values) => {
   const MIN_TITLE_LENGTH = 5;
   const MAX_BODY_LENGTH = 5000;
 
-  const title = values.get('title');
-  const description = values.get('description');
+  const name = values.get('name');
+  const text = values.get('text');
 
-  if (!title) {
-    errors.title = 'Vereist';
-  } else if (title.length > MAX_TITLE_LENGTH) {
-    errors.title = 'Te lang';
-  } else if (title.length < MIN_TITLE_LENGTH) {
-    errors.title = 'Te kort';
+  if (!name) {
+    errors.name = 'Vereist';
+  } else if (name.length > MAX_TITLE_LENGTH) {
+    errors.name = 'Te lang';
+  } else if (name.length < MIN_TITLE_LENGTH) {
+    errors.name = 'Te kort';
   }
-  if (description) {
-    if (description.length > MAX_BODY_LENGTH) {
-      errors.description = 'Te lang';
+  if (text) {
+    if (text.length > MAX_BODY_LENGTH) {
+      errors.text = 'Te lang';
     }
   }
   return errors;
@@ -132,10 +116,8 @@ const mapStateToProps = (state, ownProps) => {
   });
 };
 
-const mapDispatchToProps = () => ({
-  onSubmit: (values) => {
-    console.log(values);
-  },
+const mapDispatchToProps = dispatch => ({
+  onSubmit: values => dispatch(Argument.create(values, { href: '/lr/1/arguments' })),
 });
 
 const ArgumentFormContainer = connect(mapStateToProps, mapDispatchToProps)(reduxForm({

@@ -24,9 +24,9 @@ const propTypes = {
 };
 
 const options = {
-  pro: 'Voor',
+  yes: 'Voor',
   neutral: 'Neutraal',
-  con: 'Tegen',
+  no: 'Tegen',
 };
 
 const MotionShow = ({

@@ -20,7 +20,7 @@ const defaultProps = {
 const renderItem = arg => (
   <ArgumentListItem
     key={arg.id}
-    title={arg.title}
+    name={arg.name}
     text={arg.text}
     side={arg.side}
   />

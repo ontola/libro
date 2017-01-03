@@ -18,8 +18,8 @@ const propTypes = {
   createdAt: PropTypes.instanceOf(Date).isRequired,
   side: PropTypes.oneOf(['pro', 'con']).isRequired,
   /** Content of argument */
-  text: PropTypes.node,
-  title: PropTypes.string.isRequired,
+  text: PropTypes.string,
+  name: PropTypes.string.isRequired,
 };
 
 const ArgumentShow = ({
@@ -27,11 +27,11 @@ const ArgumentShow = ({
   creator,
   side,
   text,
-  title,
+  name,
 }) => (
   <Card>
     <CardHeader noSpacing>
-      <Heading variant={side} size="3">{title}</Heading>
+      <Heading variant={side} size="3">{name}</Heading>
       <DetailsBar>
         {creator && <PersonContainer user={creator} />}
         <DetailDate date={createdAt} />
