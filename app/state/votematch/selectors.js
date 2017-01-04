@@ -17,9 +17,10 @@ export const getCurrentVoteMatch = (state) => {
   return state.getIn(['votematch', 'items', id]) || new VoteMatch();
 };
 
-export const getVoteMatchMotions = (state, props) =>
+export const getVoteMatchMotions = state =>
   getCurrentVoteMatch(state).get('motions');
 
+// Note: this function is quite expensive and should be memoized correctly using Reselect.
 export const getVoteMatchComparedProfilePositions = (state, props) => {
   const positions = [];
   const motionIds = getVoteMatchMotions(state);
@@ -29,7 +30,7 @@ export const getVoteMatchComparedProfilePositions = (state, props) => {
       getVoteEvent(state, { motionId })
         .get('counts');
     let option = 'undefined';
-    countIds.map((countId) => {
+    countIds.forEach((countId) => {
       const count = getCount(state, { id: countId });
       if (count.group === compareOrg) {
         option = count.get('option');
@@ -37,32 +38,8 @@ export const getVoteMatchComparedProfilePositions = (state, props) => {
     });
     positions.push(option);
   });
-  console.log(positions);
   return positions;
 };
-
-// export const getVoteMatchComparedProfilePositionsRS = createSelector(
-//   (state, props, motionIds = []) => {
-//     debugger;
-//     const positions = [];
-//     const compareOrg = props.profileId;
-//     motionIds.map((motionId) => {
-//       const countIds =
-//         getVoteEvent(state, { motionId })
-//           .get('counts');
-//       let option = 'undefined';
-//       countIds.map((countId) => {
-//         const count = getCount(state, { id: countId });
-//         if (count.group === compareOrg) {
-//           option = count.get('option');
-//         }
-//       });
-//       positions.push(option);
-//     });
-//     console.log(positions);
-//     return positions;
-//   }
-// );
 
 export const getVoteMatchMotionsLength = createSelector(
   getVoteMatchMotions,

@@ -28,6 +28,12 @@ export const getVoteEventStartDate = (state, props) =>
 export const getVoteEventEndDate = (state, props) =>
   getVoteEvent(state, props).get('endDate');
 
+export const getVoteEventLegislativeSession = (state, props) =>
+  getVoteEvent(state, props).get('legislativeSession');
+
+export const getVoteEventOrganization = (state, props) =>
+  getVoteEvent(state, props).get('organization');
+
 export const getVoteEventVotesCount = createSelector(
   [getVoteEventVotes],
   votes => votes.length

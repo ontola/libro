@@ -6,11 +6,14 @@ import { calcPercentage } from 'helpers/numbers';
 import CountBubbleContainer from 'containers/CountBubbleContainer';
 
 import {
+  Detail,
   DetailDate,
   DetailStatus,
 } from 'components';
 
 const propTypes = {
+  legislativeSession: PropTypes.string,
+  organization: PropTypes.string,
   optionCounts: PropTypes.object.isRequired,
   votes: PropTypes.object.isRequired,
   counts: PropTypes.object,
@@ -28,8 +31,7 @@ const defaultProps = {
 const NUMBER_OF_VOTE_BUBBLES = 15;
 
 class VoteData extends Component {
-  voteSegment(option, total) {
-    const votes = this.props.votes[option];
+  voteSegment(option, totalVotes) {
     const optionCounts = this.props.optionCounts[option];
 
     if (!(optionCounts >= 1)) {
@@ -40,7 +42,7 @@ class VoteData extends Component {
       <div
         key={option}
         className={`VoteData__votebar-part VoteData__votebar-part--${option}`}
-        style={{ width: `${calcPercentage(optionCounts, total)}%` }}
+        style={{ width: `${calcPercentage(optionCounts, totalVotes)}%` }}
       >
         <div className="VoteData__votesegment-wrapper">{this.segmentItems(option)}</div>
         <span className={`VoteData__votebar-count VoteData__votebar-count--${option}`}>
@@ -70,32 +72,50 @@ class VoteData extends Component {
   }
 
   render() {
-    const { optionCounts, result, startDate, endDate } = this.props;
+    const {
+      endDate,
+      legislativeSession,
+      optionCounts,
+      organization,
+      result,
+      startDate,
+    } = this.props;
     const orderedKeys = ['yes', 'abstain', 'no'];
-    const total = orderedKeys
+    const totalVotes = orderedKeys
       .map(opt => optionCounts[opt])
       .reduce((v, i) => v + i);
 
     // Only show the item if there are votes
-    if (!(total >= 1)) {
+    if (!(totalVotes >= 1)) {
       return false;
     }
 
     return (
       <div className="VoteData">
+        {organization &&
+          <Detail
+            text={`Stemming ${organization}`}
+          />
+        }
         {result &&
           <DetailStatus
             status={result}
           />
         }
-        {(startDate || endDate) &&
+        {(legislativeSession && startDate) &&
+          <DetailDate
+            url={legislativeSession}
+            startDate={startDate}
+          />
+        }
+        {(!legislativeSession && (startDate || endDate)) &&
           <DetailDate
             startDate={startDate}
             endDate={endDate}
           />
         }
         <div className="VoteData__votebar">
-          {orderedKeys.map(option => this.voteSegment(option, total))}
+          {orderedKeys.map(option => this.voteSegment(option, totalVotes))}
         </div>
       </div>
     );
