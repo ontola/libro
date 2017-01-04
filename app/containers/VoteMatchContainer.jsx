@@ -73,6 +73,6 @@ export default connect(
   }),
   dispatch => ({
     onStartVoteMatch: record => dispatch(voteMatchStart(record)),
-    onSaveScore: score => {console.log(`save ${score}`); return dispatch(voteMatchSave(score))},
+    onSaveScore: score => dispatch(voteMatchSave(score)),
   })
 )(VoteMatchContainer);

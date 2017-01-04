@@ -15,8 +15,8 @@ const attributes = {
   comparedProfile: null,
   id: null,
   motions: [],
-  name: 'Stemwijzer voor x',
-  text: 'Beschrijving van gebruiker',
+  name: 'Stemwijzer wordt geladen...',
+  text: '',
 };
 
 export default apiModelGenerator(attributes, apiDesc);

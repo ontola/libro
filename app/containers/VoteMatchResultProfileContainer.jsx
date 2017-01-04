@@ -5,7 +5,6 @@ import {
   getVoteMatchUserVotes,
   getVoteMatchMotions,
   getVoteMatchComparedProfilePositions,
-  getVoteMatchComparedProfilePositionsRS,
   getVoteMatchSimilarity,
 } from 'state/votematch/selectors';
 import {

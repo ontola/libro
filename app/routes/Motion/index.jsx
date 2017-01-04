@@ -38,7 +38,7 @@ const defaultProps = {
 const renderArgument = data => (
   <ArgumentShow
     key={data.id}
-    title={data.title}
+    name={data.name}
     creator={data.creator}
     side={data.side}
     createdAt={data.createdAt}

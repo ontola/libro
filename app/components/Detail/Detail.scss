@@ -4,6 +4,7 @@
   align-items: center;
   display: inline-flex;
   height: unit('large');
+  line-height: unit('large');
   margin-bottom: unit('xx-small');
   margin-right: unit('x-small');
 }
@@ -13,6 +14,12 @@
     .Detail__text {
       color: color('grey', 'mid-dark');
     }
+  }
+}
+
+.DetailStatus--fail {
+  .Detail__icon {
+    color: color('brown');
   }
 }
 

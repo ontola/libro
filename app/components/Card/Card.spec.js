@@ -30,7 +30,7 @@ describe('Card component', () => {
 
   it('CardButton should render', () => {
     const spy = sinon.spy(() => undefined);
-    const comp = mount(<CardButton type="pro" action={spy}>Click here</CardButton>);
+    const comp = mount(<CardButton type="yes" action={spy}>Click here</CardButton>);
     assert.equal(comp.find('.Button').length, 1, 'cardbutton does not render');
     assert.equal(comp.find('.Button').text(), 'Click here', 'cardbutton does not render children correctly');
     assert.isTrue(comp.find('.Button').hasClass('Button--has-icon'), 'button has class to show icon state');

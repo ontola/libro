@@ -27,7 +27,7 @@ const Columns = ({
 }) => {
   const className = classNames({
     Columns,
-    'Columns--flexGrow': flexGrow,
+    'Columns--flex-grow': flexGrow,
     [`Columns--gutter-${gutter}`]: gutter,
     [`Columns--size-${size}`]: size,
   });

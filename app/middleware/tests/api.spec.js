@@ -88,7 +88,15 @@ describe('Api Middleware', () => {
       .get('/success')
       .reply(200, jsondataSuccess);
 
-    callApi('http://api.example.com/success')
+    callApi('someUrlThatIsOverwrittenByHref', {
+      type: 'TEST_ACITON',
+      payload: {
+        test: 'test',
+        request: {
+          href: 'http://api.example.com/success',
+        },
+      },
+    })
       .catch(done)
       .then((data) => {
         assert.equal(data.data, 'success', 'response is incorrect');

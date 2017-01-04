@@ -15,6 +15,8 @@ const propTypes = {
   hideIcon: PropTypes.bool,
   startDate: PropTypes.instanceOf(Date),
   updatedDate: PropTypes.instanceOf(Date),
+  // For linking to an event, like a meeting
+  url: PropTypes.string,
 };
 
 const DetailDate = ({
@@ -26,6 +28,7 @@ const DetailDate = ({
   updatedDate,
   asHours,
   hideIcon,
+  url,
 }) => {
   const mostImportantDate = () => (date || startDate || createdAt);
 
@@ -50,10 +53,11 @@ const DetailDate = ({
   return (
     <Detail
       text={displayValue}
-      icon="clock-o"
+      // icon="clock-o"
       title={hoverText}
       floatRight={floatRight}
       hideIcon={hideIcon}
+      url={url}
     />
   );
 };

@@ -20,8 +20,8 @@ export const callApi = (apiBaseUrl, { payload }) => {
   const { attributes, request, type } = payload;
   const method = request && request.method;
   const href = request && request.href;
-
   const endpoint = href || getEndpoint(apiBaseUrl, payload);
+  // Todo: set clientToken by logging in.
   const clientToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOiIyMDE3LTAxLTAyVDE2OjQ0OjQ2LjU2NzIyWiIsInVzZXIiOnsidHlwZSI6InVzZXIiLCJpZCI6OTUsImVtYWlsIjoiYXJ0aHVyQGFyZ3UuY28ifX0.WalOw-g3BTDw4w6v39wOfyBnXuMFwv5-uNjNkfzrRcQDN_nydx0uo-tuSDLmK6LJBtcFjxAxoB5ncdj81TBHIQ';
   let body;
   if (typeof method !== 'undefined' && method !== 'GET') {

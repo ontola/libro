@@ -134,7 +134,9 @@
     }
 
     &:active {
+      // sass-lint:disable no-important
       background-color: color('grey', 'x-light') !important;
+      // sass-lint:enable no-important
     }
 
     &.Button--active {
