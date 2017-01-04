@@ -13,8 +13,8 @@ export const setRecord = (
   Model
 ) => {
   let newRecord;
+  const stateId = (record && record['@id']) || id;
 
-  const stateId = record && record['@id'] ? record['@id'] : id;
   if (Model) {
     newRecord = state.getIn(['items', stateId]) !== undefined
       ? state.getIn(['items', stateId])

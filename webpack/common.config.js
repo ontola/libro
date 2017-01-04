@@ -43,10 +43,6 @@ const common = {
         test: /\.jpg$/,
         loader: 'file?name=[name].[ext]',
       },
-      {
-        test: /\.json$/,
-        loader: 'json',
-      },
     ],
   },
 

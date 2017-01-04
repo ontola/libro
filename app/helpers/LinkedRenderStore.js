@@ -111,7 +111,7 @@ LinkedRenderStore.addOntologySchematics([
   {
     '@id': 'https://argu.co/ns/od#Motie',
     'owl:sameAs': {
-      '@id': 'http://schema.org/CreativeWork',
+      '@id': 'https://argu.co/ns/core#Motion',
     },
   },
   {

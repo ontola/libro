@@ -19,9 +19,19 @@ const propTypes = {
 };
 
 class Detail extends PropertyBase {
+  getImage() {
+    if (typeof this.context.schemaObject !== 'undefined') {
+      return <Property label="schema:image" />;
+    }
+    return this.props.imageUrl &&
+      <img src={this.props.imageUrl} className="Detail__image" role="presentation" />;
+  }
+
   getText() {
-    return this.getLinkedObjectProperty() ||
-      <span className="Detail__text">{this.props.text}</span>;
+    if (typeof this.context.schemaObject !== 'undefined' && this.getLinkedObjectProperty()) {
+      return this.getLinkedObjectProperty();
+    }
+    return <span className="Detail__text">{this.props.text}</span>;
   }
 
   getClickBinding() {
@@ -60,7 +70,7 @@ class Detail extends PropertyBase {
         className={classNames}
         title={title}
       >
-        <Property label="schema:image" />
+        {this.getImage()}
 
         {!imageUrl && icon && !hideIcon &&
         <span className="Detail__icon">
