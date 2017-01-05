@@ -2,7 +2,7 @@
 // sass-lint:disable no-important
 
 // If you want to overwrite the default styling, use inline styles in the component.
-.SideBar--sidebar {
+.SideBar__sidebar {
   background-color: color('white');
   display: flex;
   max-width: 100%;
@@ -15,20 +15,36 @@
   }
 }
 
-.SideBar--sidebar-wrapper {
-  align-items: stretch;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow: hidden;
-  width: 100%;
+// .SideBar__sidebar-wrapper {
+//   align-items: stretch;
+//   display: flex;
+//   flex-direction: column;
+//   height: 100%;
+//   overflow: hidden;
+//   width: 100%;
+// }
+
+.SideBar__content {
+  // Enables smooth scrolling on iOS
+  -webkit-overflow-scrolling: touch;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  // Prevents items disappearing underneath Bottombar. Equal to $bottom-padding-height
+  padding-bottom: 3em;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: left .3s ease-out, right .3s ease-out;
+  // Makes overlay hide BottomBar
+  z-index: 0;
 }
 
 .SideBar--overlay {
   cursor: pointer;
 }
 
-.SideBar--switch-wrapper {
+.SideBar__switch-wrapper {
   left: calc(100% - .2em);
   position: absolute;
   top: 3.6rem;
@@ -79,7 +95,7 @@
   padding: .4em;
 }
 
-.SideBar--sidebar--wrapper {
+.SideBar__sidebar-wrapper {
   display: flex;
   flex: 1;
 }

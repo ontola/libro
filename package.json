@@ -11,6 +11,7 @@
     "react-addons-shallow-compare": "^15.3.2",
     "react-html5video": "^1.2.12",
     "react-markdown": "^2.4.2",
+    "react-router-scroll": "^0.4.1",
     "redux-form": "^6.1.1",
     "redux-search": "^2.3.2",
     "rimraf": "^2.5.4",

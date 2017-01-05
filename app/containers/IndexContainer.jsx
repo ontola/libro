@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { Provider } from 'react-redux';
-import { Router } from 'react-router';
+import { applyRouterMiddleware, Router } from 'react-router';
 import { SearchkitProvider } from 'searchkit';
+import { useScroll } from 'react-router-scroll';
 
 import routes from '../routes';
 
@@ -25,7 +26,12 @@ class IndexContainer extends Component {
     return (
       <Provider store={store}>
         <SearchkitProvider searchkit={sk}>
-          <Router history={history} routes={routes} onUpdate={() => window.scrollTo(0, 0)} />
+          <Router
+            history={history}
+            routes={routes}
+            render={applyRouterMiddleware(useScroll())}
+            // onUpdate={() => window.scrollTo(0, 0)}
+          />
         </SearchkitProvider>
       </Provider>
     );

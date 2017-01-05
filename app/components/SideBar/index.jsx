@@ -1,6 +1,7 @@
 import './SideBar.scss';
 import React, { PropTypes, Component } from 'react';
 import Sidebar from 'react-sidebar';
+import { ScrollContainer } from 'react-router-scroll';
 import classNames from 'classnames';
 import {
   Button,
@@ -13,6 +14,7 @@ const propTypes = {
   children: PropTypes.node,
   /* Set to true if you don't want the sidebar to appear from the left*/
   pullRight: PropTypes.bool,
+  id: PropTypes.string,
   slim: PropTypes.bool,
   opened: PropTypes.bool,
   docked: PropTypes.bool,
@@ -59,12 +61,10 @@ class SideBar extends Component {
         overflowY: 'visible',
       },
       content: {
-        // Prevents items disappearing underneath Bottombar. Equal to $bottom-padding-height
-        paddingBottom: '3em',
-        // Makes overlay hide BottomBar
-        zIndex: 0,
         // Enables inertial scrolling in iOS
         WebkitOverflowScrolling: 'touch',
+        // We scroll in a ScrollContainer wrapper, so 'content' should not scroll.
+        overflow: 'hidden',
       },
     };
   }
@@ -104,13 +104,13 @@ class SideBar extends Component {
 
   render() {
     const sideBarClassNames = classNames({
-      'SideBar--sidebar': true,
+      SideBar__sidebar: true,
       'SideBar--docked': this.props.docked,
       'SideBar--slim': this.props.slim,
     });
     const buttonClassNames = classNames({
-      'SideBar--switch-wrapper': true,
-      'SideBar--switch-wrapper--right': this.props.pullRight,
+      'SideBar__switch-wrapper': true,
+      'SideBar__switch-wrapper--right': this.props.pullRight,
     });
 
     const dockIcon = () => {
@@ -128,7 +128,7 @@ class SideBar extends Component {
     };
 
     const sidebar = (
-      <div className="SideBar--sidebar--wrapper">
+      <div className="SideBar__sidebar-wrapper">
         {this.props.sidebar}
         {!this.props.docked && this.state.mql.matches &&
           <div className={buttonClassNames}>
@@ -160,12 +160,17 @@ class SideBar extends Component {
         open={this.props.opened}
         overlayClassName="SideBar--overlay"
         pullRight={this.props.pullRight}
-        rootClassName="SideBar--content"
         sidebar={sidebar}
         sidebarClassName={sideBarClassNames}
         styles={this.styles}
       >
-        {this.props.children}
+        <ScrollContainer
+          scrollKey={this.props.id}
+        >
+          <div className="SideBar__content">
+            {this.props.children}
+          </div>
+        </ScrollContainer>
       </Sidebar>
     );
   }
