@@ -2,7 +2,7 @@ import chai, { assert } from 'chai';
 import { Map } from 'immutable';
 import chaiImmutable from 'chai-immutable';
 
-import votematch from './reducer';
+import voteMatch from './reducer';
 
 chai.use(chaiImmutable);
 
@@ -15,7 +15,7 @@ describe('Votematch reducer', () => {
     });
 
     assert.deepEqual(
-      votematch(undefined, {}),
+      voteMatch(undefined, {}),
       expectedState,
       'Initial state is not correct'
     );

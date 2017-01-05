@@ -1,25 +1,23 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
-
 import { ProgressBar } from 'components';
 import VoteMatchContainer from 'containers/VoteMatchContainer';
-
-import { fetchPerson } from 'state/persons/actions';
-import { getPersonName } from 'state/persons/selectors';
+import { fetchVoteMatch } from 'state/voteMatch/actions';
 
 import {
   getVoteMatchCountUserVotes,
   getVoteMatchMotionsLength,
+  getVoteMatchName,
 } from 'state/voteMatch/selectors';
 
 const propTypes = {
   currentIndex: PropTypes.number,
-  loadPerson: PropTypes.func.isRequired,
+  loadVoteMatch: PropTypes.func.isRequired,
   motionsLength: PropTypes.number,
   name: PropTypes.string.isRequired,
   params: PropTypes.shape({
-    userId: PropTypes.string.isRequired,
+    voteMatchId: PropTypes.string.isRequired,
   }).isRequired,
 };
 
@@ -27,10 +25,14 @@ const defaultProps = {
   name: '',
 };
 
-class CompareVotes extends Component {
+function currentUrl() {
+  return window.location.href;
+}
+
+class VoteMatch extends Component {
   componentWillMount() {
     if (this.props.name === '') {
-      this.props.loadPerson(this.props.params.userId);
+      this.props.loadVoteMatch(this.props.params.voteMatchId);
     }
   }
 
@@ -40,7 +42,7 @@ class CompareVotes extends Component {
     return (
       <div className="ProgressBar__wrapper">
         <Helmet title={`Vergelijk opinies met ${name}`} />
-        <VoteMatchContainer id={this.props.params.userId} />
+        <VoteMatchContainer id={currentUrl()} />
         <ProgressBar
           context={`VoteMatch - ${name}`}
           completed={currentIndex}
@@ -51,16 +53,16 @@ class CompareVotes extends Component {
   }
 }
 
-CompareVotes.propTypes = propTypes;
-CompareVotes.defaultProps = defaultProps;
+VoteMatch.propTypes = propTypes;
+VoteMatch.defaultProps = defaultProps;
 
 export default connect(
   (state, props) => ({
-    name: getPersonName(state, props),
+    name: getVoteMatchName(state, props),
     currentIndex: getVoteMatchCountUserVotes(state, props),
     motionsLength: getVoteMatchMotionsLength(state, props),
   }),
   dispatch => ({
-    loadPerson: id => dispatch(fetchPerson(id)),
+    loadVoteMatch: id => dispatch(fetchVoteMatch(id)),
   })
-)(CompareVotes);
+)(VoteMatch);

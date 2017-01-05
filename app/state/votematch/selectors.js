@@ -7,18 +7,25 @@ import { getCount } from 'state/counts/selectors';
 import VoteMatch from 'models/VoteMatch';
 
 export const getVoteMatches = state =>
-  state.getIn(['votematch', 'items']);
+  state.getIn(['voteMatch', 'items']);
+
+export const getVoteMatch = (state, props) =>
+  state.getIn(['voteMatch', 'items', props.id]);
+
+export const getVoteMatchName = (state, props) =>
+  state.getIn(['voteMatch', 'items', props.id, 'name']);
 
 export const getVoteMatchCurrentIndex = state =>
-  state.getIn(['votematch', 'currentIndex']);
+  state.getIn(['voteMatch', 'currentIndex']);
 
 export const getCurrentVoteMatch = (state) => {
-  const id = state.getIn(['votematch', 'currentVoteMatch']);
-  return state.getIn(['votematch', 'items', id]) || new VoteMatch();
+  const id = state.getIn(['voteMatch', 'currentVoteMatch']);
+  return state.getIn(['voteMatch', 'items', id]) || new VoteMatch();
 };
 
-export const getVoteMatchMotions = state =>
-  getCurrentVoteMatch(state).get('motions');
+export const getVoteMatchMotions = (state) => {
+  return getCurrentVoteMatch(state).get('voteables');
+};
 
 // Note: this function is quite expensive and should be memoized correctly using Reselect.
 export const getVoteMatchComparedProfilePositions = (state, props) => {

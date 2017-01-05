@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { getVoteMatches } from 'state/votematch/selectors';
+import { getVoteMatches } from 'state/voteMatch/selectors';
 
 export const getPersonId = (state, props) => {
   if (props.params) {
@@ -24,10 +24,10 @@ export const getPersonName = (state, props) =>
 
 export const getPersonVoteMatch = createSelector(
   [getPerson, getVoteMatches],
-  (person, votematches) => {
+  (person, voteMatches) => {
     if (person === undefined) {
       return false;
     }
-    return votematches.getIn([person.get('id'), 'similarity']);
+    return voteMatches.getIn([person.get('id'), 'similarity']);
   }
 );

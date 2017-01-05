@@ -8,7 +8,7 @@ const apiDesc = new APIDesc({
     resource: actions.GET_EVENT_ITEM,
   }),
   endpoint: 'event_items',
-  type: 'event_items',
+  type: 'eventItems',
 });
 
 const attributes = {

@@ -8,3 +8,4 @@ export { default as Person } from './Person';
 export { default as Speech } from './Speech';
 export { default as Vote } from './Vote';
 export { default as VoteEvent } from './VoteEvent';
+export { default as VoteMatch } from './VoteMatch';

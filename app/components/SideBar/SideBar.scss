@@ -29,7 +29,8 @@
   -webkit-overflow-scrolling: touch;
   bottom: 0;
   left: 0;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   // Prevents items disappearing underneath Bottombar. Equal to $bottom-padding-height
   padding-bottom: 3em;
   position: absolute;

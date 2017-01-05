@@ -6,7 +6,7 @@ import {
   getVoteMatchMotions,
   getVoteMatchComparedProfilePositions,
   getVoteMatchSimilarity,
-} from 'state/votematch/selectors';
+} from 'state/voteMatch/selectors';
 
 const propTypes = {
   id: PropTypes.string.isRequired,

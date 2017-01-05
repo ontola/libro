@@ -7,7 +7,7 @@ import { getMotion } from 'state/motions/selectors';
 import { fetchMotion } from 'state/motions/actions';
 import { getVoteByMotionId } from 'state/votes/selectors';
 import { voteAction } from 'state/votes/actions';
-import { voteMatchNext } from 'state/votematch/actions';
+import { voteMatchNext } from 'state/voteMatch/actions';
 import path from 'helpers/paths';
 
 const propTypes = {

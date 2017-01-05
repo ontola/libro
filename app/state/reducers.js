@@ -12,5 +12,5 @@ export { default as searchElastic } from './searchElastic/reducer';
 export { default as sideBars } from './sideBars/reducer';
 export { default as speeches } from './speeches/reducer';
 export { default as voteEvents } from './voteEvents/reducer';
-export { default as votematch } from './votematch/reducer';
+export { default as voteMatch } from './voteMatch/reducer';
 export { default as votes } from './votes/reducer';

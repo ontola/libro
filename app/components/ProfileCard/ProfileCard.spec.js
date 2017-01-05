@@ -29,6 +29,6 @@ describe('ProfileCard component', () => {
     );
 
     assert.equal(comp.find('.ProfileCard__similarity').length, 1, 'Does not render similarity');
-    assert.equal(comp.find('.Button').length, 0, 'Displays votematch button while it shouldnt');
+    assert.equal(comp.find('.Button').length, 0, 'Displays voteMatch button while it shouldnt');
   });
 });

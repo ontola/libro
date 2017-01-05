@@ -4,18 +4,21 @@ import { APIDesc, apiModelGenerator } from './utils/apiModelGenerator';
 
 const apiDesc = new APIDesc({
   actions: new Map({
-    collection: actions.GET_VOTE_MATCH,
-    resource: actions.GET_VOTE_MATCHES,
+    collection: actions.GET_VOTE_MATCHES,
+    resource: actions.GET_VOTE_MATCH,
   }),
-  endpoint: 'vote_match',
-  type: 'vote_match',
+  endpoint: 'vote_matches',
+  type: 'voteMatches',
 });
 
 const attributes = {
-  comparedProfile: null,
+  comparables: [],
+  voteables: [],
+  createdAt: null,
+  updatedAt: null,
   id: null,
-  motions: [],
-  name: 'Stemwijzer wordt geladen...',
+  similarity: null,
+  name: '',
   text: '',
 };
 
