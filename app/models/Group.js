@@ -14,6 +14,7 @@ const apiDesc = new APIDesc({
 const attributes = {
   id: '',
   image: '',
+  name: '',
   organizationId: '',
   type: '',
   members: [],

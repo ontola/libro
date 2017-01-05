@@ -33,6 +33,7 @@ export { default as EventItemShow } from './EventItemShow';
 export { default as EventListItem } from './EventListItem';
 export { default as EventShow } from './EventShow';
 export { default as FormField } from './FormField';
+export { default as GeneratedIcon } from './GeneratedIcon';
 export { default as Header } from './Header';
 export { default as Heading } from './Heading';
 export { default as HoverBox } from './HoverBox';

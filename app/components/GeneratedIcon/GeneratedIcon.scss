@@ -1,0 +1,20 @@
+@import '../shared/config';
+
+.GeneratedIcon {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+
+  &__text {
+    color: color('white');
+    flex: 1;
+    font-weight: bold;
+    pointer-events: none;
+    text-align: center;
+    text-indent: 0;
+    text-shadow: 0 0 2px color('transparent', 'xx-dark');
+    text-transform: uppercase;
+    z-index: 1;
+  }
+}

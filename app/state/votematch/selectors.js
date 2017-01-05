@@ -23,9 +23,8 @@ export const getCurrentVoteMatch = (state) => {
   return state.getIn(['voteMatch', 'items', id]) || new VoteMatch();
 };
 
-export const getVoteMatchMotions = (state) => {
-  return getCurrentVoteMatch(state).get('voteables');
-};
+export const getVoteMatchMotions = state =>
+  getCurrentVoteMatch(state).get('voteables');
 
 // Note: this function is quite expensive and should be memoized correctly using Reselect.
 export const getVoteMatchComparedProfilePositions = (state, props) => {

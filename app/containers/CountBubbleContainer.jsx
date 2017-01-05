@@ -5,9 +5,7 @@ import { fetchCount } from 'state/counts/actions';
 import {
   OpinionBubble,
 } from 'components';
-// import {
-//   getCount,
-// } from 'state/counts/selectors';
+
 import {
   getGroupByCount,
 } from 'state/groups/selectors';
@@ -15,7 +13,7 @@ import {
 const defaultRenderItem = data => (
   <OpinionBubble
     image={data.image}
-    side={data.option}
+    name={data.name}
   />
 );
 
@@ -38,8 +36,6 @@ class CountBubbleContainer extends Component {
   }
 
   render() {
-    // debugger;
-
     const { data, renderItem } = this.props;
     return data !== undefined && renderItem(data);
   }
@@ -50,7 +46,6 @@ CountBubbleContainer.defaultProps = defaultProps;
 
 export default connect(
   (state, ownProps) => ({
-    // data: getCount(state, ownProps),
     data: getGroupByCount(state, ownProps),
   }),
   (dispatch, ownProps) => ({
