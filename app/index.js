@@ -8,6 +8,8 @@ import { ELASTICSEARCH_URL } from './config';
 import immutableHistory from './helpers/history';
 import IndexContainer from './containers/IndexContainer';
 
+// Removes the rubber banding in iOS
+require('inobounce');
 require('smoothscroll-polyfill').polyfill();
 
 const store = configureStore();
