@@ -1,9 +1,10 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { assert } from 'chai';
+import { testUtilities } from 'link-redux';
 
-import { generateContext } from '../../../tests/linkhelper';
 import ArgumentShow from './';
+const { generateContext } = testUtilities;
 
 const argument = 'Liefst de container nog voor de zomer. De zakken stinken nu al de garage uit';
 const comp = mount(

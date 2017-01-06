@@ -2,9 +2,10 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { assert } from 'chai';
+import { testUtilities } from 'link-redux';
 
-import { generateContext } from '../../../tests/linkhelper';
 import ChronoItem from './';
+const { generateContext } = testUtilities;
 
 const comp = mount(
   <ChronoItem
