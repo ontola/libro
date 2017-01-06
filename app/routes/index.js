@@ -8,7 +8,6 @@ import Home from './Home';
 import LinkedObject, { LinkedObjectByID } from './LinkedObject';
 import Idea from './Idea';
 import LinkedPerson from './LinkedPerson';
-import Motion from './Motion';
 import Motions from './Motions';
 import NotFound from './NotFound';
 import Party from './Party';
@@ -28,7 +27,7 @@ const routes = (
     <Route path="vote_matches/:voteMatchId" component={VoteMatch} />
     <Route path="motions" component={Motions} />
     <Route path="events/:eventId" component={Event} />
-    <Route path="motions/:motionId" component={Motion} />
+    <Route path="motions/:motionId" component={Idea} />
     <Route path="parties" component={Parties} />
     <Route path="parties/:partyId" component={Party} />
     <Route path="politicians" component={Politicians} />

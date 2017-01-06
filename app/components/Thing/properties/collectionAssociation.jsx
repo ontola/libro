@@ -1,12 +1,26 @@
 import React from 'react';
-import { LinkedObjectContainer, PropertyBase } from 'link-redux';
+import { LinkedObjectContainer, Property, PropertyBase } from 'link-redux';
 
 import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
 
 class CollectionAssociation extends PropertyBase {
+  getArgumentsURL() {
+    return `https://argu.local/lr?iri=${this.context.schemaObject['@id']}`;
+  }
+
   render() {
+    const prop = this.getLinkedObjectProperty();
+    if (!prop && this.context.schemaObject && this.context.schemaObject['@id']) {
+      return (
+        <LinkedObjectContainer object={this.getArgumentsURL()}>
+          <Property label={this.props.label} />
+        </LinkedObjectContainer>
+      );
+    } else if (!prop) {
+      return null;
+    }
     return (
-      <LinkedObjectContainer object={this.getLinkedObjectProperty()} />
+      <LinkedObjectContainer object={prop} />
     );
   }
 }

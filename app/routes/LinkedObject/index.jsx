@@ -15,7 +15,7 @@ const LinkedObject = () => (
     <LinkedObjectContainer object={location.href} >
       <Property label="schema:isPartOf" />
       <Type />
-      <Property label="argu:collectionAssociation" />
+      <Property label={['argu:collectionAssociation', 'schema:comments']} />
     </LinkedObjectContainer>
   </Container>
 );

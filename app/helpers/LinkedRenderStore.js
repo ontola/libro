@@ -115,6 +115,12 @@ LinkedRenderStore.addOntologySchematics([
     },
   },
   {
+    '@id': 'https://argu.co/ns/od#Amendement',
+    'owl:sameAs': {
+      '@id': 'https://argu.co/ns/core#Motion',
+    },
+  },
+  {
     '@id': 'https://argu.co/ns/od#createdAt',
     'owl:sameAs': {
       '@id': 'http://schema.org/dateCreated',

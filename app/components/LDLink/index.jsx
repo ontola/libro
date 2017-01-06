@@ -8,7 +8,7 @@ const propTypes = {
 
 class LDLink extends PropertyBase {
   getLDLinkHref() {
-    return new URL(this.context.schemaObject['@id']).pathname;
+    return this.context.schemaObject['@id'] && new URL(this.context.schemaObject['@id']).pathname;
   }
 
   render() {

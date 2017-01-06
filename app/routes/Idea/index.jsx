@@ -13,22 +13,24 @@ const propTypes = {
 };
 
 const LinkedObject = () => (
-  <Container>
-    <LinkedObjectContainer object={location.href} >
+  <LinkedObjectContainer object={location.href} >
+    <Container>
       <Property label="schema:isPartOf" />
       <Type />
-      <Columns>
+    </Container>
+    <Container size="large">
+      <Columns column-size="medium" total-size="large">
         <div>
           <Heading variant="column" size="3">Voordelen</Heading>
-          <Property label="argu:topArgumentsPro" />
+          <Property forceRender label="argu:topArgumentsPro" />
         </div>
         <div>
           <Heading variant="column" size="3">Nadelen</Heading>
-          <Property label="argu:topArgumentsCon" />
+          <Property forceRender label="argu:topArgumentsCon" />
         </div>
       </Columns>
-    </LinkedObjectContainer>
-  </Container>
+    </Container>
+  </LinkedObjectContainer>
 );
 
 LinkedObject.propTypes = propTypes;
