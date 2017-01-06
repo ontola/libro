@@ -117,7 +117,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: values => dispatch(Argument.create(values, { href: '/lr/1/arguments' })),
+  onSubmit: values => dispatch(Argument.create(values, { href: '/lr/2/arguments' })),
 });
 
 const ArgumentFormContainer = connect(mapStateToProps, mapDispatchToProps)(reduxForm({

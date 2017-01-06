@@ -71,6 +71,7 @@ class MotionContainer extends Component {
         title={data.title}
         type={data.classification}
         voteData={voteData}
+        voteEvents={data.voteEvents}
         text={data.text}
       />
     );

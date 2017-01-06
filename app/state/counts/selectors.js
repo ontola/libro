@@ -14,13 +14,15 @@ export const getCounts = state => state.getIn(['counts', 'items']);
 export const getCount = (state, props) =>
   state.getIn(['counts', 'items', getCountId(state, props)]);
 
-export const getVoteEventCounts = (state, props) =>
-  getVoteEvent(state, props).get('counts');
+export const getVoteEventCounts = createSelector(
+  [getVoteEvent],
+  voteEvent => voteEvent && voteEvent.get('counts')
+);
 
 export const getVoteEventCountsByOptions = option => createSelector(
   [getVoteEventCounts, getCounts],
   (eventCounts, counts) =>
-    eventCounts.filter(eventVote => counts.getIn([eventVote, 'option']) === option)
+    eventCounts && eventCounts.filter(eventVote => counts.getIn([eventVote, 'option']) === option)
 );
 
 export const getVoteEventCountsSorted = (state, props) => {

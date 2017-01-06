@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 import { calcPercentage } from 'helpers/numbers';
 import { getUserVotes } from 'state/votes/selectors';
+import { getMotionVoteEvents } from 'state/motions/selectors';
 import { getVoteEvent } from 'state/voteEvents/selectors';
 import { getCount } from 'state/counts/selectors';
 
@@ -9,8 +10,9 @@ import VoteMatch from 'models/VoteMatch';
 export const getVoteMatches = state =>
   state.getIn(['voteMatch', 'items']);
 
-export const getVoteMatch = (state, props) =>
+export const getVoteMatch = (state, props) => {
   state.getIn(['voteMatch', 'items', props.id]);
+}
 
 export const getVoteMatchName = (state, props) =>
   state.getIn(['voteMatch', 'items', props.id, 'name']);
@@ -32,8 +34,9 @@ export const getVoteMatchComparedProfilePositions = (state, props) => {
   const motionIds = getVoteMatchMotions(state);
   const compareOrg = props.profileId;
   motionIds.forEach((motionId) => {
+    const voteEvent = getMotionVoteEvents(state, { motionId });
     const countIds =
-      getVoteEvent(state, { motionId })
+      getVoteEvent(state, { voteEvent })
         .get('counts');
     let option = 'undefined';
     countIds.forEach((countId) => {

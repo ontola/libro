@@ -13,10 +13,10 @@ import {
   List,
 } from 'components';
 
-import { getMotionTitle } from 'state/motions/selectors';
+import { getMotionTitle, getMotionVoteEvents } from 'state/motions/selectors';
 import { getArgsPro, getArgsCon } from 'state/argumentations/selectors';
 import MotionContainer from 'containers/MotionContainer';
-import VoteDataContainer from 'containers/VoteDataContainer';
+import VoteEventContainer from 'containers/VoteEventContainer';
 import path from 'helpers/paths';
 
 const propTypes = {
@@ -26,6 +26,7 @@ const propTypes = {
   formProOpen: PropTypes.bool,
   params: PropTypes.object.isRequired,
   title: PropTypes.string,
+  voteEvents: PropTypes.array,
 };
 
 const defaultProps = {
@@ -53,13 +54,16 @@ const Motion = ({
   formProOpen,
   params,
   title,
+  voteEvents,
 }) => (
   <div>
     <Container>
       <Helmet title={title} />
       <BackButton link={path.motionsIndex()}>Terug naar alle moties</BackButton>
       <MotionContainer motionId={params.motionId} />
-      <VoteDataContainer motionId={params.motionId} />
+      {voteEvents &&
+        <VoteEventContainer voteEventId={voteEvents[0]} />
+      }
     </Container>
     <Container size="large">
       <Columns column-size="medium" total-size="large">
@@ -114,6 +118,7 @@ Motion.propTypes = propTypes;
 
 const stateToProps = (state, ownProps) => ({
   title: getMotionTitle(state, ownProps),
+  voteEvents: getMotionVoteEvents(state, ownProps),
   argsPro: getArgsPro(state, ownProps),
   argsCon: getArgsCon(state, ownProps),
 });

@@ -24,7 +24,7 @@ const OpinionBubble = ({
         className="OpinionBubble__image"
       />
     }
-    {!image &&
+    {!image && name &&
       <GeneratedIcon
         name={name}
       />
