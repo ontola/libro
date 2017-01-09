@@ -3,10 +3,10 @@ import { Promise } from 'es6-promise';
 import { batchActions } from 'redux-batched-actions';
 
 const headers = clientToken => ({
-  credentials: 'same-origin',
+  // credentials: 'same-origin',
   headers: {
     Accept: 'application/vnd.api+json',
-    'Content-Type': 'application/vnd.api+json',
+    'Content-Type': 'application/json',
     Authorization: `Bearer ${clientToken}`,
   },
 });
@@ -36,7 +36,7 @@ export const callApi = (apiBaseUrl, { payload }) => {
   const href = request && request.href;
   const endpoint = href || getEndpoint(apiBaseUrl, payload);
   // Todo: set clientToken by logging in.
-  const clientToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOiIyMDE3LTAxLTAyVDE2OjQ0OjQ2LjU2NzIyWiIsInVzZXIiOnsidHlwZSI6InVzZXIiLCJpZCI6OTUsImVtYWlsIjoiYXJ0aHVyQGFyZ3UuY28ifX0.WalOw-g3BTDw4w6v39wOfyBnXuMFwv5-uNjNkfzrRcQDN_nydx0uo-tuSDLmK6LJBtcFjxAxoB5ncdj81TBHIQ';
+  const clientToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOiIyMDE3LTAxLTA2VDE2OjUwOjA4LjMxOTU2WiIsInVzZXIiOnsidHlwZSI6InVzZXIiLCJpZCI6MSwiZW1haWwiOiJqb2VwQGFyZ3UubmwifX0.Sr9a6Z0Q7rgti-kxzRjAJ3gL3Ke3NOPpZG62pfiQf8zYMUW1Hum-dFENb7r5Izi1EyWXJrTrpCZdBwRyy998AQ';
   let body;
   if (typeof method !== 'undefined' && method !== 'GET') {
     body = {
@@ -50,6 +50,7 @@ export const callApi = (apiBaseUrl, { payload }) => {
     method: method || 'GET',
     ...headers(clientToken),
     body: JSON.stringify(body),
+    // credentials: 'same-origin',
   })
     .then(response => response.json()
     .then(json => ({ json, response })))
