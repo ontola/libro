@@ -11,6 +11,5 @@ const Collection = () => (
 
 LinkedRenderStore.registerRenderer(Collection, 'http://www.w3.org/ns/hydra/core#Collection');
 
-import './properties/grouped';
 export { default as Member } from './properties/member';
 export { default as Name } from './properties/name';

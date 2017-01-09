@@ -10,6 +10,7 @@ $votebar-parts: (
 .VoteData__votebar {
   display: flex;
   justify-content: space-between;
+  width: 100%;
 
   &-count {
     align-self: center;
@@ -24,7 +25,7 @@ $votebar-parts: (
     flex-wrap: wrap;
     height: 2.6em;
     overflow: hidden;
-    justify-content: space-between;
+    width: 100%;
   }
 }
 

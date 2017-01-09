@@ -1,37 +1,24 @@
 import React from 'react';
-import { LinkedObjectContainer, Property, PropertyBase } from 'link-redux';
+import { LinkedObjectContainer, PropertyBase } from 'link-redux';
 
 import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
 
 class Votes extends PropertyBase {
-  getArguLinkedRecordURL() {
-    return `https://argu.local/lr?iri=${this.context.schemaObject['@id']}`;
-  }
-
   render() {
     const prop = this.getLinkedObjectProperty();
-    if (!prop && this.context.schemaObject && this.context.schemaObject['@id']) {
-      return (
-        <LinkedObjectContainer object={this.getArguLinkedRecordURL()}>
-          <Property label={this.props.label} />
-        </LinkedObjectContainer>
-      );
-    } else if (!prop) {
+    if (!prop) {
       return null;
     }
     return (
-      <div className={`VoteData__votebar`}>
-        <div className="VoteData__votebar-part" style={{width: '100%'}}>
-          <div className="VoteData__votesegment-wrapper">
-            <LinkedObjectContainer object={prop}>
-              <Property
-                label="http://www.w3.org/ns/hydra/core#member"
-                groupBy="http://schema.org/option"
-                limit="15"
-                style={{display: 'flex'}}
-              />
-            </LinkedObjectContainer>
-          </div>
+      <div className="VoteData__votebar">
+        <div className="VoteData__votesegment-wrapper">
+          <LinkedObjectContainer
+            object={prop}
+            optionCounts={
+              this.getLinkedObjectProperty('schema:optionCounts') ||
+                this.getLinkedObjectProperty('aod:option_counts')
+            }
+          />
         </div>
       </div>
     );
@@ -40,8 +27,8 @@ class Votes extends PropertyBase {
 
 LinkedRenderStore.registerRenderer(
   Votes,
-  'http://schema.org/Thing',
-  'argu:votes',
+  ['argu:VoteEvent', 'aod:VoteEvent'],
+  'argu:votes'
 );
 
 export default Votes;

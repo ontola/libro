@@ -31,6 +31,7 @@ LinkedRenderStore.registerRenderer(
   [
     'https://argu.co/ns/core#collectionAssociation',
     'argu:voteEvents',
+    'aod:counts',
     'argu:topArgumentsPro',
     'argu:topArgumentsCon',
   ]

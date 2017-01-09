@@ -41,14 +41,14 @@ export default OpinionBubble;
 
 const Vote = () => (
   <div className="OpinionBubble" >
-    <Property label="schema:creator" />
+    <Property label={['schema:creator', 'aod:voter_id']} />
   </div>
 );
 
-LinkedRenderStore.registerRenderer(Vote, 'argu:Vote');
+LinkedRenderStore.registerRenderer(Vote, ['argu:Vote', 'aod:Vote', 'aod:Count']);
 LinkedRenderStore.registerRenderer(
   Vote,
-  'argu:Vote',
+  ['argu:Vote', 'aod:Vote', 'aod:Count'],
   RENDER_CLASS_NAME,
   'collection'
 );

@@ -4,7 +4,6 @@ import { Property } from 'link-redux';
 
 import {
   Card,
-  CardActions,
   CardContent,
   CardHeader,
   DetailsBar,

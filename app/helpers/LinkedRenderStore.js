@@ -2,7 +2,9 @@
 // import fetch from 'isomorphic-fetch';
 import formatProvider from 'rdf-formats-common';
 import LinkedRenderStore, { processors } from 'link-lib';
-import React from 'react';
+
+import Error from '../components/Error';
+LinkedRenderStore.onError = Error;
 
 const formats = formatProvider();
 const PRIO_MAX = 1.0;
@@ -19,16 +21,9 @@ if (rdf[0]) {
 LinkedRenderStore.api.setAcceptForHost('https://argu.local/', 'application/vnd.api+json');
 LinkedRenderStore.api.setAcceptForHost('https://argu.co/', 'application/vnd.api+json');
 
-function getErrorMessage(code) {
-  switch (code) {
-    case 404:
-      return 'Object could not be found';
-    default:
-      return 'An unknown error occurred';
-  }
-}
-LinkedRenderStore.onError =
-  props => (<p>{getErrorMessage(props.data.get('http://www.w3.org/2011/http#statusCodeValue'))}</p>);
+LinkedRenderStore.store.rdf.prefixes.addAll({
+  aod: 'https://argu.co/ns/od#',
+});
 
 LinkedRenderStore.addOntologySchematics([
   {

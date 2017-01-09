@@ -25,5 +25,4 @@ LinkedRenderStore.registerRenderer(
   'http://schema.org/name'
 );
 
-
 export default Name;

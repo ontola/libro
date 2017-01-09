@@ -42,10 +42,10 @@
   border-radius: 100%;
   color: color('grey', 'mid-light');
   display: flex;
+  height: 100%;
   justify-content: center;
   margin-right: unit('xx-small');
   //width: unit('large');
-  width: 100%;
 }
 
 .Detail--float-right {

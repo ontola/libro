@@ -21,16 +21,17 @@ const PersonDetail = () => (
     <Detail label="schema:name" />
   </LDLink>
 );
+
 LinkedRenderStore.registerRenderer(
   PersonDetail,
-  'http://schema.org/Person',
+  ['http://schema.org/Person'],
   RENDER_CLASS_NAME,
   'detail'
 );
 
 LinkedRenderStore.registerRenderer(
   () => <Property label="schema:image" />,
-  'http://schema.org/Person',
+  ['http://schema.org/Person', 'aod:Persons'],
   RENDER_CLASS_NAME,
   'voteBubble'
 );

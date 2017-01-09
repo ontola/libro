@@ -12,7 +12,7 @@ export const getVoteMatches = state =>
 
 export const getVoteMatch = (state, props) => {
   state.getIn(['voteMatch', 'items', props.id]);
-}
+};
 
 export const getVoteMatchName = (state, props) =>
   state.getIn(['voteMatch', 'items', props.id, 'name']);

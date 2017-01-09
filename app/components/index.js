@@ -36,6 +36,7 @@ export { default as DonutChart } from './DonutChart';
 export { default as Drawer } from './Drawer';
 export { default as Dropdown } from './Dropdown';
 export { default as DropdownLink } from './Dropdown/DropdownLink.jsx';
+export { default as Error } from './Error';
 export { default as EventItemShow } from './EventItemShow';
 export { default as EventListItem } from './EventListItem';
 export { default as EventShow } from './EventShow';
@@ -86,7 +87,7 @@ export { default as LDLink } from './LDLink';
 export { default as LinkCard } from './LinkCard';
 export { default as LinkedDetailDate } from './LinkedDetailDate';
 export { default as Motion } from './Motion';
-export { default as Vote } from './Vote';
+export { default as VoteCollection } from './VoteCollection';
 export { default as VoteEvent } from './VoteEvent';
 
 export { default as Person } from './Person';

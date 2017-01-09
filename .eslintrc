@@ -32,9 +32,9 @@
     },
     "import/resolver": {
       "webpack": {
-        "config": "./webpack/common.config.js",
-      },
-    },
+        "config": "./webpack/common.config.js"
+      }
+    }
   },
   "rules": {
     "valid-jsdoc": "error",
@@ -70,6 +70,7 @@
     }],
     "import/imports-first": 0,
     "import/prefer-default-export": 0,
+    "import/newline-after-import": 0,
     "prefer-default-export": 0,
     "react/jsx-filename-extension": 0,
     "space-unary-ops": ["error", { "words": true, "nonwords": false }],

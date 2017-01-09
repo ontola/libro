@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
 
-import GroupedMemberProp from './grouped';
-import SingleMember from './plain';
+import Grouped from './Grouped';
+import SingleMember from './SingleMember';
+
+const propTypes = {
+  groupBy: PropTypes.string,
+};
 
 const Member = (props) => {
-  const Klass = props.groupBy !== undefined ? null : SingleMember;
-  return <Klass {...props} />
+  const Klass = props.groupBy !== undefined ? Grouped : SingleMember;
+  return <Klass {...props} />;
 };
+
+Member.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   Member,
