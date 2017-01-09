@@ -4,6 +4,7 @@ $votebar-parts: (
   'yes': 'green',
   'no': 'brown',
   'abstain': 'grey',
+  'neutral': 'grey',
 );
 
 .VoteData__votebar {
@@ -21,8 +22,9 @@ $votebar-parts: (
   .VoteData__votesegment-wrapper {
     display: flex;
     flex-wrap: wrap;
-    max-height: 25px;
+    height: 2.6em;
     overflow: hidden;
+    justify-content: space-between;
   }
 }
 

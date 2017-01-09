@@ -17,6 +17,12 @@ LinkedRenderStore.registerRenderer(
   RENDER_CLASS_NAME,
   'detail'
 );
+LinkedRenderStore.registerRenderer(
+  ImageObject,
+  'http://schema.org/ImageObject',
+  RENDER_CLASS_NAME,
+  'voteBubble'
+);
 
 export { default as Thumbnail } from './properties/thumbnail';
 

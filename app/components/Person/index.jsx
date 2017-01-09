@@ -1,6 +1,6 @@
-import React from 'react';
-
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
+import { Property } from 'link-redux';
+import React from 'react';
 
 import {
   Detail,
@@ -27,5 +27,14 @@ LinkedRenderStore.registerRenderer(
   RENDER_CLASS_NAME,
   'detail'
 );
+
+LinkedRenderStore.registerRenderer(
+  () => <Property label="schema:image" />,
+  'http://schema.org/Person',
+  RENDER_CLASS_NAME,
+  'voteBubble'
+);
+
+import './properties/image';
 
 // export default Person;

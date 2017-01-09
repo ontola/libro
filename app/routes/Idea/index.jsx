@@ -17,6 +17,7 @@ const LinkedObject = () => (
     <Container>
       <Property label="schema:isPartOf" />
       <Type />
+      <Property forceRender label="argu:voteEvents" />
     </Container>
     <Container size="large">
       <Columns column-size="medium" total-size="large">

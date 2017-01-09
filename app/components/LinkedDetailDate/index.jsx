@@ -19,7 +19,7 @@ class LinkedDetailDate extends PropertyBase {
   }
 
   getP(prop) {
-    return this.getLinkedObjectProperty(`http://schema.org/${prop}`);
+    return this.props[prop] || this.getLinkedObjectProperty(`http://schema.org/${prop}`);
   }
 
   render() {

@@ -23,13 +23,10 @@ const Motion = () => (
     <CardContent noSpacing>
       <Property label="schema:text" />
     </CardContent>
-
-    <CardActions>
-      <Property label="schema:updateAction" />
-    </CardActions>
   </Card>
 );
 
+LinkedRenderStore.registerRenderer(Motion, 'argu:Motion');
 LinkedRenderStore.registerRenderer(
   Motion,
   'argu:Motion',

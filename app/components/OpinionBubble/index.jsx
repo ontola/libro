@@ -1,5 +1,8 @@
 import './OpinionBubble.scss';
+import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
+import { Property } from 'link-redux';
 import React, { PropTypes } from 'react';
+
 import {
   GeneratedIcon,
 } from 'components';
@@ -35,3 +38,19 @@ const OpinionBubble = ({
 OpinionBubble.propTypes = propTypes;
 
 export default OpinionBubble;
+
+const Vote = () => (
+  <div className="OpinionBubble" >
+    <Property label="schema:creator" />
+  </div>
+);
+
+LinkedRenderStore.registerRenderer(Vote, 'argu:Vote');
+LinkedRenderStore.registerRenderer(
+  Vote,
+  'argu:Vote',
+  RENDER_CLASS_NAME,
+  'collection'
+);
+
+import './properties/creator';

@@ -44,7 +44,8 @@
   display: flex;
   justify-content: center;
   margin-right: unit('xx-small');
-  width: unit('large');
+  //width: unit('large');
+  width: 100%;
 }
 
 .Detail--float-right {

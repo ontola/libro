@@ -3,7 +3,7 @@ import { LinkedObjectContainer, Property, PropertyBase } from 'link-redux';
 
 import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
 
-class CollectionAssociation extends PropertyBase {
+class Votes extends PropertyBase {
   getArguLinkedRecordURL() {
     return `https://argu.local/lr?iri=${this.context.schemaObject['@id']}`;
   }
@@ -20,20 +20,28 @@ class CollectionAssociation extends PropertyBase {
       return null;
     }
     return (
-      <LinkedObjectContainer object={prop} />
+      <div className={`VoteData__votebar`}>
+        <div className="VoteData__votebar-part" style={{width: '100%'}}>
+          <div className="VoteData__votesegment-wrapper">
+            <LinkedObjectContainer object={prop}>
+              <Property
+                label="http://www.w3.org/ns/hydra/core#member"
+                groupBy="http://schema.org/option"
+                limit="15"
+                style={{display: 'flex'}}
+              />
+            </LinkedObjectContainer>
+          </div>
+        </div>
+      </div>
     );
   }
 }
 
 LinkedRenderStore.registerRenderer(
-  CollectionAssociation,
+  Votes,
   'http://schema.org/Thing',
-  [
-    'https://argu.co/ns/core#collectionAssociation',
-    'argu:voteEvents',
-    'argu:topArgumentsPro',
-    'argu:topArgumentsCon',
-  ]
+  'argu:votes',
 );
 
-export default CollectionAssociation;
+export default Votes;

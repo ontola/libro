@@ -85,6 +85,9 @@ export { default as Widget } from './Widget';
 export { default as LDLink } from './LDLink';
 export { default as LinkCard } from './LinkCard';
 export { default as LinkedDetailDate } from './LinkedDetailDate';
+export { default as Motion } from './Motion';
+export { default as Vote } from './Vote';
+export { default as VoteEvent } from './VoteEvent';
 
 export { default as Person } from './Person';
 import './Motion';
