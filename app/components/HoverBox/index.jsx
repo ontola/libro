@@ -12,6 +12,11 @@ const defaultProps = {
   children: '',
 };
 
+/**
+ * Mouse-first component designed to add some extra info where requested. Since it uses 'hover'
+ * state, make sure to add functionality for touch users.
+ * @returns {component} Component
+ */
 export default class HoverBox extends Component {
   constructor(props) {
     super(props);

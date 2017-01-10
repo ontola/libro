@@ -5,10 +5,6 @@ Attachments show a file that can be opened, downloaded and previewed.
     <Attachment  
       title="Some_document.pdf"
       url="http://downloads.palass.org/annual_meeting/2000/confabs2000.pdf"
-      isDownloaded={false}
-      isDownloading={false}
-      percentageDownloaded={0}
-      hasPreview={true}
     />
 
 ## Downloading
@@ -16,10 +12,8 @@ Attachments show a file that can be opened, downloaded and previewed.
     <Attachment  
       title="Some_document.pdf"
       url="http://downloads.palass.org/annual_meeting/2000/confabs2000.pdf"
-      isDownloaded={false}
       isDownloading={true}
       percentageDownloaded={78}
-      hasPreview={true}
     />
 
 ## Downloaded
@@ -28,16 +22,14 @@ Attachments show a file that can be opened, downloaded and previewed.
       title="Some_document.pdf"
       url="http://downloads.palass.org/annual_meeting/2000/confabs2000.pdf"
       isDownloaded={true}
-      percentageDownloaded={100}
-      hasPreview={true}
     />
 
-## No preview possible
+## Has preview
 
     <Attachment  
       title="Some_document.pdf"
       url="http://downloads.palass.org/annual_meeting/2000/confabs2000.pdf"
-      hasPreview={false}
+      hasPreview
     />
 
 ## Huge filename / title

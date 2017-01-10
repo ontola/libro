@@ -8,10 +8,19 @@ const propTypes = {
   title: PropTypes.string.isRequired,
   /** Link to the file */
   url: PropTypes.string.isRequired,
+  /** Value between 0 and 100 */
   percentageDownloaded: PropTypes.number,
+  /** If the file can be previewed without downloading */
   hasPreview: PropTypes.bool,
   isDownloaded: PropTypes.bool,
   isDownloading: PropTypes.bool,
+};
+
+const defaultProps = {
+  hasPreview: false,
+  isDownloaded: false,
+  isDownloading: false,
+  percentageDownloaded: 0,
 };
 
 const Attachment = ({
@@ -37,11 +46,17 @@ const Attachment = ({
       >
         <FontAwesome className="Attachment__icon" name="file" />
         <div className="Attachment__text">{title}</div>
-        {percentageDownloaded && <div className="Attachment__fill" style={fillStyle} />}
+        {(percentageDownloaded !== undefined) &&
+          <div className="Attachment__fill" style={fillStyle} />}
       </a>
       {(!isDownloaded && !isDownloading) &&
-        <a href="/" className="Attachment__inside-button" title="Download bestand">
+        <a href="/" className="Attachment__inside-button" title="Wordt gedownload...">
           <FontAwesome className="Attachment__icon" name="download" />
+        </a>
+      }
+      {isDownloading &&
+        <a href="/" className="Attachment__inside-button" title="Download bestand">
+          <FontAwesome className="Attachment__icon" name="spinner" spin />
         </a>
       }
       {hasPreview &&
@@ -53,6 +68,7 @@ const Attachment = ({
   );
 };
 
+Attachment.defaultProps = defaultProps;
 Attachment.propTypes = propTypes;
 
 export default Attachment;

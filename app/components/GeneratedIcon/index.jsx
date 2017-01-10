@@ -6,6 +6,11 @@ const propTypes = {
   name: PropTypes.string.isRequired,
 };
 
+/**
+ * Creates a unique icon by using only a name. Currently, this needs to be wrapped in something
+ * like an OpinionBubble or ProfilePicture to look decent.
+ * @returns {component} Component
+ */
 const GeneratedIcon = ({
   name,
 }) => {

@@ -21,6 +21,15 @@ const propTypes = {
   type: PropTypes.string,
 };
 
+const defaultProps = {
+  autoComplete: false,
+  meta: {},
+};
+
+/**
+ * Creates a field for forms. Use with redux-form Field if possible.
+ * @returns {component} Component
+ */
 const FormField = ({
   autoComplete,
   className,
@@ -76,5 +85,6 @@ const FormField = ({
 };
 
 FormField.propTypes = propTypes;
+FormField.defaultProps = defaultProps;
 
 export default FormField;

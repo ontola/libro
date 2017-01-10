@@ -18,7 +18,7 @@ const defaultProps = {
 };
 
 /**
- * Building blocks with style
+ * Fills its parent with a color or background.
  * @returns {component} Component
  */
 const Cover = ({

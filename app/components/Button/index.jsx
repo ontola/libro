@@ -2,22 +2,36 @@ import './Button.scss';
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import FontAwesome from 'react-fontawesome';
-import { buttonThemes } from 'components/shared/config';
+
+const buttonThemes = [
+  'default',
+  'box',
+  'subtle',
+  'transparant',
+  'as-box',
+];
 
 const propTypes = {
   /** Should be true when the button is toggleable and toggled. */
   active: PropTypes.bool,
+  /** Alt html tag. */
   alt: PropTypes.string,
+  /** Should be avoided. Try to use the 'theme' prop or wrap it in some other element for styling
+  and use the 'plain' prop. */
   className: PropTypes.string,
   /** Label of the button */
   children: PropTypes.node,
   disabled: PropTypes.bool,
+  /** FontAwesome icon string. */
   icon: PropTypes.string,
+  /** Set to true if the button should indicate that something is happening. Renders spinner. */
   loading: PropTypes.bool,
   narrow: PropTypes.bool,
   onClick: PropTypes.func,
+  /** Removes all styling. */
   plain: PropTypes.bool,
   small: PropTypes.bool,
+  /** Removes all styling. */
   theme: PropTypes.oneOf(buttonThemes),
   type: PropTypes.string,
   variant: PropTypes.oneOf(['yes', 'neutral', 'no', 'upvote', 'comment']),
@@ -32,6 +46,10 @@ const defaultProps = {
   type: 'button',
 };
 
+/**
+ * Used for any action in the app. Handles touch events and blurs after handling the onClick.
+ * @returns {component} Component
+ */
 const Button = ({
   active,
   alt,

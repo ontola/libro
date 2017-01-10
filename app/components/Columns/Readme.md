@@ -1,19 +1,15 @@
 The Column component takes all direct children and makes columns out of them.
 
-    <div>
       <Columns>
-        <Box>Column 1</Box>
-        <Box>Column 2</Box>
+        <Card>Column 1</Card>
+        <Card>Column 2</Card>
       </Columns>
-      <Columns>
-        <Box>Column 1</Box>
-        <Box>Column 2</Box>
-        <Box>Column 3</Box>
+
+Custom flexBasis (for narrower columns)
+
+      <Columns flexBasis="0">
+        <Card>Column 1</Card>
+        <Card>Column 2</Card>
+        <Card>Column 3</Card>
+        <Card>Column 4</Card>
       </Columns>
-      <Columns>
-        <Box>Column 1</Box>
-        <Box>Column 2</Box>
-        <Box>Column 3</Box>
-        <Box>Column 4</Box>
-      </Columns>
-    </div>

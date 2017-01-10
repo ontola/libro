@@ -97,8 +97,10 @@
   padding: units('xx-small', 'x-small');
 }
 
+// Should remove most or all of default button styling
 .Button--plain {
   background: none;
+  color: inherit;
   padding: 0;
 }
 

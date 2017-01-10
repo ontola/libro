@@ -22,7 +22,9 @@ const renderTooltip = d => (
 );
 
 const propTypes = {
+  /** Array of colors. Renders each item in the color of the same array position */
   colors: PropTypes.array,
+  /** Accepts an array of objects with a 'name' string and a 'value' integer */
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 

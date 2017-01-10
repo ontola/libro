@@ -10,6 +10,10 @@ const propTypes = {
   suffix: PropTypes.node,
 };
 
+/**
+ * Tag component. Wrap it in a Link to make it clickable.
+ * @returns {component} Component
+ */
 const Tag = ({
   children,
   prefix,
