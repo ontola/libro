@@ -1,7 +1,5 @@
 import './Card.scss';
 import React, { PropTypes } from 'react';
-// Fixes styleguide import
-// import Button from '../../Components/Button';
 import { Button } from 'components';
 
 const propTypes = {
