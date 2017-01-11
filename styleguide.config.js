@@ -15,7 +15,7 @@ module.exports = {
       components: './app/components/Card/*.jsx',
     },
   ],
-  components: './app/components/**/*.jsx',
+  components: './app/components/**/index.jsx',
   showCode: false,
   webpackConfig: {
     resolve: {

@@ -1,60 +1,20 @@
 [![build status](https://gitlab.com/argu/aod_demo/badges/master/build.svg)](https://gitlab.com/arguweb/aod_demo/commits/master)
 
 # AOD Demo
-Deze demo bevat een interface voor open data van de gemeenteraad.
+Front-end application for [Argu](https://argu.co).
 
-### Usage
-* `npm install` or `yarn` to install dependencies. [Yarn](https://yarnpkg.com) is similar to NPM, but better. It's faster, since it caches every package, and it's more deterministic, making it less prone to bugs. Follow the [Yarn installation instructions](https://yarnpkg.com/en/docs/install) for your OS.
-* `npm run dev` to start the dev-server with corsproxy for the API and react-styleguidist for component reference.
-* Visit [http://localhost:3001/](http://localhost:3001/)
+## Usage
+- `npm install` or `yarn` to install dependencies. [Yarn](https://yarnpkg.com) is similar to NPM, but better. Follow the [Yarn installation instructions](https://yarnpkg.com/en/docs/install) for your OS.
+- `npm run dev` to start the dev-server with corsproxy for the API and react-styleguidist for component reference.
+- Visit [http://localhost:3001/](http://localhost:3001/)
 
-### Build
-
-Generate all the build files under `/dist`
-
-```
-npm run build
-```
-
-#### JS(X)
-```
-npm run lint
-```
-
-#### SASS
-```
-npm run lint:style
-```
-
-Uses [Harry Roberts'](https://en.bem.info/methodology/naming-convention/#alternative-naming-schemes) style naming with Component names as block name. For example `.Block__element--modifier` or `.ProfileCard__stat-value--light`
-
-### Testing
-Tests are made using mocha, chai assert and enzyme ([docs](http://airbnb.io/enzyme/docs/api/index.html))
-
-```
-npm run test
-```
-
-### Styleguide
-[React-styleguidist styleguide](https://github.com/sapegin/react-styleguidist) can be used as a reference, and also to develop individual components.
-
-View the styleguide by visiting http://localhost:5000/
-
-### Security
-Uses [NSP](https://github.com/nodesecurity/nsp) and [Retire.js](https://github.com/RetireJS/retire.js)
-```
-npm run secure
-```
-
-### Adding a new model
-Since this project uses Redux, displaying data is not that always that trivial. Say there's a new model (e.g. meetings, documents) accessible in the API. You want to use that data in this app. Here's how you do that:
-
-- Create a model with the name of the content type. Model (file)names are capitalized. It's easy to copy another model to bootstrap your new one.
-- Use camelCased attributes - even if the API passes you under_scored ones. This is because the DataStore normalizes all incoming data.
-- Write the relevant GET_MODEL actions and put them in the `state/action-types.js` file.
-- Write your reducer(s) in `state/model/reducer.js`.
-- Write your selectors in `state/model/selectors.js`. Use the [reselect library](https://github.com/reactjs/reselect) and immutable.js functions.
-- Create a container component that binds the store data to props and pass that to a UI component.
+## Contributing
+All tests and linters will be run automatically as a pre-commit hook.
+- `npm run build` to generate all the build files under `/dist`
+- `npm run lint` to run the ES linter. We use the [Airbnb React Styleguide](https://github.com/airbnb/javascript/tree/master/react) (read it!) and [jsx-a11y](https://github.com/evcohen/eslint-plugin-jsx-a11y) as linters.
+- `npm run lint:style` to run the SASS linter.
+- `npm run test` to run all tests.
+- `npm run secure` to run security test.
 
 ### Running the API locally
 If you don't want to use the default AOD api, but run your own instance, you have to use a proxy. We've preconfigured an NGINX docker file to provide a proxy.
@@ -64,17 +24,70 @@ If you don't want to use the default AOD api, but run your own instance, you hav
 - Copy the container id (e.g. 775a00c00bed)
 - Run `docker run -p 3331:3031 -it {container_id}`
 
-### Dev rules
-- Please use the [Airbnb React Styleguide](https://github.com/airbnb/javascript/tree/master/react)
-- Document your components internally by adding comments to propTypes. Write them \/\*\* Like this \*\/ to make sure they are parsed by react-styleguidist.
-- Document your components by adding a `readme.md` that includes a usage example that works with react-styleguidist.
-- This repo binds the linters and mocha tests to the git precommit hook. Now you cannot commit code that contains errors. Therefore committing may take a little longer, however this results in less errors.
-- Document functions using jsdoc.
+### Styling
+Styling is done using SASS and React inline styles. Use [Harry Roberts'](https://en.bem.info/methodology/naming-convention/#alternative-naming-schemes) style naming with Component names as block name. For example `.Block__element--modifier` or `.ProfileCard__stat-value--light`.
+All styling must be done in its respective component. Don't use ClassNames from other components.
+
+[React-styleguidist styleguide](https://github.com/sapegin/react-styleguidist) can be used as a reference, and also to develop individual components. RUn `npm run dev` or `npm run styleguide-server` and visit http://localhost:5000/ to show the styleguide.
+
+### Testing
+Tests are made using mocha, chai assert and enzyme ([docs](http://airbnb.io/enzyme/docs/api/index.html)). Place the test files in the folder of the module. Name them `Module.spec.js`. If there are more tests (for various modules), add them to the `tests` folder of a component. Run all tests using `npm run test`.
+
+### Security
+Uses [NSP](https://github.com/nodesecurity/nsp) and [Retire.js](https://github.com/RetireJS/retire.js). Run tests using `npm run secure`.
+
+### Components
+- In this project, `components` are merely [presentational](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0) / display / UI components that should not represent any specific kind of concept. You can compare them to bootstrap components. Components should not fetch any data and should not be connected to redux. They also should not contain any components that fetch data. That's what Containers and Resources are responsible for.
+- Name them as abstract as possible. That makes the component more re-usable.
+- Use stateless functional components whenever possible to enhance performance.
+- Use React.propTypes and add a comment above non-obvious props `/** like this */` to provide a description that can be parsed by Styleguidist.
+- Add a Readme.md file to provide example usage that automatically appears in Styleguidist.
+- Document components like all other functions with JSdoc. Descriptions automatically appear in Styleguidist.
+
+### Resources (using Link)
+- Resources represent real world concepts, such as a person, a document, an event or an organization.
+- They are rendered using Link-lib, which deals with fetching the data and making it accessible to use in React.
+- Resources should not contain any styling of themselves. They are composed of Components.
+- Resources can be rendered in various context (i.e. in its own page, as a small list item or as a card in some list). We call such a context a **topology**. We have predefined a couple of topologies:
+  - **Page** - A page has its own Route and is the most detailed and complete view of the resource. This also the default.
+  - **CardItem** - Shown as a single card, often inside a collection of other cards. Often shows some name, description and various other data.
+  - **CardRow** - Shown as a single row inside a card.
+  - **ListItem** - Shown in some list. Is mostly nothing but a text string.
+  - **Detail** - Shown as a small piece of metadata inside some other resource.
+
+### Creating a new interactive model
+*Warning: only use this for models that the user can modify or create. Use Link-lib for view-only models.*
+Say there's a new model (e.g. meetings, documents) accessible in the API that the user should interact with.
+
+- Create a model with the name of the content type. Model (file)names are capitalized. It's easy to copy another model to bootstrap your new one.
+- Add the model path to `models/index.js`.
+- Use camelCased attributes - even if the API passes you under_scored ones. This is because `DataStore.js` in `/middleware` normalizes all incoming data.
+- Write the relevant `GET_MODEL` actions and put them in the `state/action-types.js` file.
+- Write your reducer(s) in `state/model/reducer.js`.
+- Write your selectors in `state/model/selectors.js`. Use the [reselect library](https://github.com/reactjs/reselect) and immutable.js functions.
+- Create a container component that binds the store data to props and pass that to a UI component.
+
+### Directory Structure
+* **app** - Code that runs in the browser
+  * **components** - 'Dumb' view-only components that do not know what kind of information they represent.
+  * **containers** - 'Smart' components that are connected to Redux. Preferably are not styled.
+  * **resources** - Link components that represent a certain resource, such as 'person' or 'motion'.
+  * **helpers** - Small, useful and re-usable pieces of code.
+  * **middleware** - Deals with the API.
+  * **models** - Contain models for resources that define its shape in the Redux store.
+  * **routes** - All routing logic rests in its index.js file. Create a folder with an index.jsx for page components. In the future, these will rest in the Link folder as Page components.
+  * **state** - Folders that contain all reducers, actions, selectors and respective tests.
+* **bin** - Binaries
+* **dev** - Helpers for developers, such as a nginx config and docker file.
+* **server** - Node server
+* **static** - Static files. Keep it to a minimum.
+* **tests** - Application wide tests only. Try to put tests in the folder of the respective module.
+* **webpack** - Configuration for your favorite bundler.
 
 ### Recommended Atom packages
 - [Linter](https://atom.io/packages/linter) for a realtime linting experience.
-- [linter-eslint](https://atom.io/packages/linter-eslint)
-- [linter-sass-lint](https://atom.io/packages/linter-sass-lint)
+  - [linter-eslint](https://atom.io/packages/linter-eslint)
+  - [linter-sass-lint](https://atom.io/packages/linter-sass-lint)
 - [language-babel](https://atom.io/packages/language-babel) for syntax highlighting and auto-indenting.
 - [ternjs](https://atom.io/packages/atom-ternjs) for autocompletion.
 - [jsdoc](https://atom.io/packages/jsdoc) for quick jsdoc comment generation.
