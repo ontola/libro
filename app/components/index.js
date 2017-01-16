@@ -9,7 +9,6 @@ export { default as Attachment } from './Attachment';
 export { default as BackButton } from './BackButton';
 export { default as BottomBar } from './BottomBar';
 export { default as BottomBarButton } from './BottomBarButton';
-export { default as Box } from './Box';
 export { default as Button } from './Button';
 export { default as Card } from './Card';
 export { default as CardActions } from './Card/CardActions';
@@ -81,7 +80,6 @@ export { default as VoteData } from './VoteData';
 export { default as VoteMatchResultBar } from './VoteMatchResultBar';
 export { default as VoteMatchShow } from './VoteMatchShow';
 export { default as Widget } from './Widget';
-
 
 export { default as LDLink } from './LDLink';
 export { default as LinkCard } from './LinkCard';

@@ -12,7 +12,7 @@ module.exports = {
       .assert.title('Zoeken')
       .assert.visible('.Search__hits')
       .assert.containsText(
-        '.sk-hits .Box:first-child .Box__content-main',
+        '.sk-hits .Card:first-child .Box__content-main',
         'visserij')
       .end();
   },

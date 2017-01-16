@@ -9,7 +9,7 @@ module.exports = {
       .pause(DELAY)
       .waitForElementVisible('.List', DELAY)
       .assert.containsText(
-        '.List .Box:first-child a',
+        '.List .Card:first-child a',
         'Het Heroverwegen van de positie van de toezichthouder')
       .end();
   },
