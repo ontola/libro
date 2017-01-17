@@ -44,19 +44,20 @@ const ArgumentForm = ({
           id={`Argument${side}Title`}
           name="name"
           placeholder={headingtext()}
-          className={`Field--heading Field--preview Field--${side}`}
+          className={`Field--heading Field--${side}`}
           element="input"
           component={FormField}
           type="text"
+          variant="preview"
         />
         <Field
           id={`Argument${side}Description`}
           name="text"
           placeholder="Toelichting (optioneel)..."
-          className="Field--textarea Field--preview"
           component={FormField}
           rows={3}
           element="textArea"
+          variant="preview"
         />
         <CardActions noSpacing>
           <Button

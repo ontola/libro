@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
 import {
-  NavBarContent,
   Notification,
   Spinner,
   SkipNavigation,
@@ -12,6 +11,7 @@ import {
 
 import SideBarContainer from 'containers/SideBarContainer';
 import BottomBarContainer from 'containers/BottomBarContainer';
+import NewNavbarContainer from 'containers/NewNavbarContainer';
 
 import resetErrorMessage from 'state/communication/actions';
 import { getErrorBool, getErrorMsg, getLoadingBool } from 'state/communication/selectors';
@@ -49,7 +49,7 @@ const App = ({
     <SkipNavigation />
     <SideBarContainer
       id="Navbar"
-      sidebar={<NavBarContent />}
+      sidebar={<NewNavbarContainer />}
       slim
     >
       <BottomBarContainer />

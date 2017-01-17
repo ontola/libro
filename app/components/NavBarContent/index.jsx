@@ -11,7 +11,9 @@ import {
 } from 'components';
 
 const propTypes = {
+  actorType: PropTypes.oneOf(['User', 'Guest']),
   orgColor: PropTypes.string,
+  displayName: PropTypes.string,
 };
 
 const defaultProps = {
@@ -20,6 +22,8 @@ const defaultProps = {
 
 const NavBarContent = ({
   orgColor,
+  actorType,
+  displayName,
 }) => {
   const style = {
     backgroundColor: orgColor,
@@ -62,12 +66,20 @@ const NavBarContent = ({
         </SideBarCollapsible>
       </div>
       <div className="NavBarContent__footer">
-        <SideBarLink
-          imageUrl="https://argu-logos.s3.amazonaws.com/photos/825/icon_profielfoto_Joep_Meindertsma.jpg"
-          label="Joep"
-          to={path.profile(1)}
-        />
-        <SideBarLink icon="gears" label="Instellingen" to={'/settings'} />
+        {(actorType === 'User') ?
+          <div>
+            <SideBarLink
+              imageUrl="https://argu-logos.s3.amazonaws.com/photos/825/icon_profielfoto_Joep_Meindertsma.jpg"
+              label={displayName}
+              to={path.profile(1)}
+            />
+            <SideBarLink icon="gears" label="Instellingen" to={path.settings()} />
+          </div>
+          :
+          <div>
+            <SideBarLink icon="sign-in" label="Log in / registreer" to={path.signIn()} />
+          </div>
+        }
         <div className="NavBarContent__center-footer">
           <Link className="NavBarContent__logo" to={path.index()}>
             {/* eslint-disable max-len */}

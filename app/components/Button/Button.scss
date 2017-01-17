@@ -47,6 +47,44 @@
   color: color('white');
 }
 
+// Props
+.Button--small {
+  font-size: font-size('small');
+  padding: units('xx-small', 'x-small');
+}
+
+.Button--margins {
+  margin: 0, unit('x-small');
+}
+
+// Should remove most or all of default button styling
+.Button--plain {
+  background: none;
+  color: inherit;
+  padding: 0;
+}
+
+.Button--narrow {
+  padding: units('x-small', 'small');
+}
+
+// Themes - remove all styling
+.Button--box {
+  background-color: color('white');
+  border-right: 1px solid color('grey', 'x-light');
+  color: color('grey');
+  flex-grow: 1;
+
+  &:last-child {
+    border-right: 0;
+  }
+
+  &.Button--active {
+    background-color: color('grey', 'x-light');
+  }
+}
+
+
 .Button--subtle {
   background-color: color('grey', 'light');
   border-radius: $border-radius-base;
@@ -92,36 +130,19 @@
   }
 }
 
-.Button--small {
-  font-size: font-size('small');
-  padding: units('xx-small', 'x-small');
+// Variants - maintain default style
+$facebook-color: rgb(59, 89, 152);
+
+.Button--variant-facebook {
+  background-color: $facebook-color;
 }
 
-// Should remove most or all of default button styling
-.Button--plain {
-  background: none;
-  color: inherit;
-  padding: 0;
+$google-color: #4285f4;
+
+.Button--variant-google {
+  background-color: $google-color;
 }
 
-.Button--narrow {
-  padding: units('x-small', 'small');
-}
-
-.Button--box {
-  background-color: color('white');
-  border-right: 1px solid color('grey', 'x-light');
-  color: color('grey');
-  flex-grow: 1;
-
-  &:last-child {
-    border-right: 0;
-  }
-
-  &.Button--active {
-    background-color: color('grey', 'x-light');
-  }
-}
 
 @each $variant, $color in $button-variants-colors {
   .Button--variant-#{$variant} {

@@ -10,7 +10,7 @@ const argument = 'Liefst de container nog voor de zomer. De zakken stinken nu al
 const comp = mount(
   <ArgumentShow
     createdAt={new Date()}
-    title="Zakken stinken de garage uit"
+    name="Zakken stinken de garage uit"
     side="pro"
     text={argument}
   />,

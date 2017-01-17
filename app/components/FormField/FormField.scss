@@ -6,8 +6,6 @@
 }
 
 .Field__input {
-  background-color: color('grey', 'xx-light');
-  border: solid 1px color('grey', 'light');
   box-sizing: border-box;
   font-size: 1em;
   margin: 10px;
@@ -15,26 +13,6 @@
 
   &:focus {
     outline: none;
-  }
-}
-
-// Makes it less obvious that the input is a form, but looks prettier and resembles how the
-// item will look.
-.Field--preview {
-  .Field__input {
-    background: none;
-    border: 0;
-    margin: 0;
-    padding: 10px 20px;
-    width: 100%;
-
-    &:hover {
-      box-shadow: inset 5px 0 0 color('grey', 'light');
-    }
-
-    &:focus {
-      box-shadow: inset 5px 0 0 color('grey');
-    }
   }
 }
 
@@ -72,6 +50,7 @@
 }
 
 .Field__messages {
+  margin-top: -.6em;
   padding: 0 20px;
   padding-bottom: 10px;
 }
@@ -82,10 +61,109 @@
 }
 
 .Field__label {
-  color: color('grey', 'dark');
+  color: color('grey', 'base');
   display: block;
   font-size: 1em;
   font-weight: bold;
-  padding-left: 1.3rem;
-  padding-top: 1rem;
+  margin-left: 1.3rem;
+}
+
+// Variants
+.Field--variant-default {
+  .Field__input {
+    background-color: color('grey', 'xx-light');
+    border: solid 1px color('grey', 'x-light');
+    border-radius: 5px;
+    margin-top: 0;
+    transition: border-color .2s, background-color .2s;
+
+    &:hover {
+      border-color: color('grey', 'light');
+    }
+
+    &:focus {
+      background-color: color('white');
+      border-color: color('grey', 'light');
+    }
+  }
+
+  .Field__label {
+    padding-bottom: .3rem;
+  }
+}
+
+.Field--variant-preview {
+  .Field__input {
+    background: none;
+    border: 0;
+    margin: 0;
+    padding: 10px 20px;
+    transition: box-shadow .2s;
+    width: 100%;
+
+    &:hover {
+      box-shadow: inset 5px 0 0 color('grey', 'light');
+    }
+
+    &:focus {
+      box-shadow: inset 5px 0 0 color('grey');
+    }
+  }
+}
+
+.Field--variant-material {
+  position: relative;
+
+  .Field__label {
+    cursor: text;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: scale(1) translate3d(0, 1rem, 0);
+    transform-origin: left top 0;
+    transition: transform .2s, opacity .2s;
+  }
+
+  .Field__input {
+    background: none;
+    border: 0;
+    border-bottom: solid 2px color('grey', 'x-light');
+    padding-bottom: .3rem;
+    transition: border .2s;
+
+    &::placeholder {
+      color: color('white');
+      transition: color .2s;
+    }
+  }
+
+  &.Field--active {
+    .Field__input {
+      border-bottom: solid 2px color('grey', 'light');
+    }
+
+    .Field__label {
+      opacity: 1;
+    }
+  }
+
+  // When the form is focused or filled in, make the label appear as if inside the form
+  &.Field--active,
+  &.Field--dirty {
+    .Field__label {
+      transform: scale(.8) translate3d(0, 0, 0);
+    }
+
+    .Field__input {
+      &::placeholder {
+        color: color('grey');
+      }
+    }
+  }
+
+  &.Field--dirty {
+    .Field__label {
+      opacity: .7;
+    }
+  }
 }

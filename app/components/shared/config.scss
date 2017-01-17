@@ -36,7 +36,8 @@ $colors: (
     'base': $color-base-grey,
     'mid-light': lighten($color-base-grey, 10%),
     'light': lighten($color-base-grey, 20%),
-    'x-light': lighten($color-base-grey, 40%),
+    // 'x-light': lighten($color-base-grey, 40%),
+    'x-light': rgb(230, 230, 230),
     'xx-light': lighten($color-base-grey, 47%),
   ),
   'pink': (

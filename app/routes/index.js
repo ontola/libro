@@ -15,6 +15,7 @@ import Parties from './Parties';
 import Politicians from './Politicians';
 import Profile from './Profile';
 import Search from './Search';
+import SignIn from './SignIn';
 import UserMotions from './UserMotions';
 import UserAbout from './UserAbout';
 import UserOverview from './UserOverview';
@@ -37,6 +38,7 @@ const routes = (
       <Route path="about" component={UserAbout} />
     </Route>
     <Route path="search" component={Search} />
+    <Route path="u/sign_in" component={SignIn} />
     <Route path="u/:id" component={LinkedPerson} />
     <Route path="m/:id" component={Idea} />
     <Route path=":type/:id" component={LinkedObject} />

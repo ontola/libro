@@ -54,6 +54,14 @@ const path = {
   search() {
     return '/search';
   },
+
+  settings() {
+    return '/settings';
+  },
+
+  signIn() {
+    return '/u/sign_in';
+  },
 };
 
 export default path;

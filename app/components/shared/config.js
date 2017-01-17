@@ -47,3 +47,11 @@ export const types = [
   'argumentCon',
   'project',
 ];
+
+/* eslint-disable no-magic-numbers */
+// These should match /shared/config.scss
+export const colors = {
+  grey: {
+    'x-light': 'rgb(230, 230, 230)',
+  },
+};

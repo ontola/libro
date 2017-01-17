@@ -27,6 +27,8 @@ const propTypes = {
   /** Set to true if the button should indicate that something is happening. Renders spinner. */
   loading: PropTypes.bool,
   narrow: PropTypes.bool,
+  /** Give some margins for inline usage */
+  margins: PropTypes.bool,
   onClick: PropTypes.func,
   /** Removes all styling. */
   plain: PropTypes.bool,
@@ -34,7 +36,7 @@ const propTypes = {
   /** Removes all styling. */
   theme: PropTypes.oneOf(buttonThemes),
   type: PropTypes.string,
-  variant: PropTypes.oneOf(['yes', 'neutral', 'no', 'upvote', 'comment']),
+  variant: PropTypes.oneOf(['yes', 'neutral', 'no', 'upvote', 'comment', 'facebook', 'google']),
 };
 
 const defaultProps = {
@@ -58,6 +60,7 @@ const Button = ({
   disabled,
   icon,
   loading,
+  margins,
   onClick,
   small,
   narrow,
@@ -70,6 +73,7 @@ const Button = ({
     Button: true,
     'Button--has-icon': icon,
     'Button--small': small,
+    'Button--margins': margins,
     'Button--narrow': narrow,
     'Button--plain': plain,
     [`Button--${theme}`]: theme,
