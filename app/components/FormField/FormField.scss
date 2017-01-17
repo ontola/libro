@@ -16,40 +16,16 @@
   }
 }
 
-.Field--heading {
-  .Field__input {
-    font-size: 1.3em;
-    font-weight: bold;
-  }
-}
-
-.Field--pro {
-  .Field__input {
-    color: color('green');
-
-    &:focus {
-      box-shadow: inset 5px 0 0 color('green');
-    }
-  }
-}
-
-.Field--con {
-  .Field__input {
-    color: color('brown');
-
-    &:focus {
-      box-shadow: inset 5px 0 0 color('brown');
-    }
-  }
-}
-
-.Field--textarea {
-  .Field__input {
-    resize: vertical;
-  }
+.Field__label {
+  color: color('grey', 'base');
+  display: block;
+  font-size: 1em;
+  font-weight: bold;
+  margin-left: 1.3rem;
 }
 
 .Field__messages {
+  font-size: .8em;
   margin-top: -.6em;
   padding: 0 20px;
   padding-bottom: 10px;
@@ -60,12 +36,11 @@
   color: color('brown');
 }
 
-.Field__label {
-  color: color('grey', 'base');
-  display: block;
-  font-size: 1em;
-  font-weight: bold;
-  margin-left: 1.3rem;
+// Props
+.Field--textarea {
+  .Field__input {
+    resize: vertical;
+  }
 }
 
 // Variants
@@ -143,7 +118,7 @@
     }
 
     .Field__label {
-      opacity: 1;
+      color: color('grey', 'mid-dark');
     }
   }
 
@@ -164,6 +139,34 @@
   &.Field--dirty {
     .Field__label {
       opacity: .7;
+    }
+  }
+}
+
+// Custom classes
+.Field--heading {
+  .Field__input {
+    font-size: 1.3em;
+    font-weight: bold;
+  }
+}
+
+.Field--pro {
+  .Field__input {
+    color: color('green');
+
+    &:focus {
+      box-shadow: inset 5px 0 0 color('green');
+    }
+  }
+}
+
+.Field--con {
+  .Field__input {
+    color: color('brown');
+
+    &:focus {
+      box-shadow: inset 5px 0 0 color('brown');
     }
   }
 }

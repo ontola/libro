@@ -40,7 +40,6 @@ const SignInForm = ({
       <Button small margins icon="facebook" variant="facebook">
         Facebook
       </Button>
-      <span> of </span>
       <Button small margins icon="google" variant="google">
         Google
       </Button>

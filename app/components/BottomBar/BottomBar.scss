@@ -5,6 +5,7 @@
   align-items: center;
   background-color: color('white');
   bottom: 0;
+  color: color('white');
   display: none;
   justify-content: center;
   position: fixed;
@@ -20,7 +21,9 @@
 
 .BottomBar--white-text {
   .BottomBarButton {
-    a {
+    span,
+    a,
+    div {
       color: color('white');
     }
 
