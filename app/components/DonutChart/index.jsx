@@ -17,20 +17,22 @@ const defaultColors = [
   '#EF8B2C',
 ];
 
-const renderTooltip = d => (
-  `<div class="DonutChart__label">${d[0].value} zetels (${(d[0].ratio * 100).toFixed(1)}%)</div>`
-);
-
 const propTypes = {
   /** Array of colors. Renders each item in the color of the same array position */
   colors: PropTypes.array,
   /** Accepts an array of objects with a 'name' string and a 'value' integer */
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  /** The name of the thing that is being counted (plural) */
+  unit: PropTypes.string.isRequired,
 };
 
 const defaultProps = {
   colors: defaultColors,
+  unit: 'units',
 };
+
+const renderTooltip = unit => d =>
+  `<div class="DonutChart__label">${d[0].name} ${d[0].value} ${unit} (${(d[0].ratio * 100).toFixed(1)}%)</div>`;
 
 class DonutChart extends Component {
   componentDidMount() {
@@ -38,7 +40,7 @@ class DonutChart extends Component {
   }
 
   renderChart() {
-    const { colors, data } = this.props;
+    const { colors, data, unit } = this.props;
 
     return c3.generate({
       bindto: this.wrapper,
@@ -53,7 +55,7 @@ class DonutChart extends Component {
         show: false,
       },
       tooltip: {
-        contents: renderTooltip,
+        contents: renderTooltip(unit),
       },
       donut: {
         label: {

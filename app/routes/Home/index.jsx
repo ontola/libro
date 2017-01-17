@@ -107,12 +107,12 @@ const Home = () => (
       </Widget>
       <Widget title="Partijen" to={path.partiesIndex()}>
         <CardContent>
-          <DonutChart data={parties} />
+          <DonutChart data={parties} unit="zetels" />
         </CardContent>
       </Widget>
       <Widget title="Man/vrouw verhouding">
         <CardContent>
-          <DonutChart data={genderData} />
+          <DonutChart data={genderData} unit="zetels" />
         </CardContent>
       </Widget>
       <Widget
