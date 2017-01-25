@@ -8,6 +8,15 @@ config.entry = [
   './app/index.js',
 ];
 
+config.module.loaders.unshift(
+  {
+    test: /(\.jsx\.js)?$/,
+    loaders: ['babel-loader'],
+    exclude: /node_modules/,
+    include: /app/,
+  }
+);
+
 config.module.loaders.push({
   test: /\.scss$/,
   loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!sass-loader'),

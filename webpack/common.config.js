@@ -1,7 +1,6 @@
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
-const HappyPack = require('happypack');
 
 const TARGET = process.env.npm_lifecycle_event;
 process.env.BABEL_ENV = TARGET;
@@ -15,23 +14,16 @@ const common = {
     modulesDirectories: ['./node_modules'],
     extensions: ['', '.js', '.jsx', '.ts'],
     alias: {
+      state: path.resolve('app/state'),
       components: path.resolve('app/components'),
       containers: path.resolve('app/containers'),
       helpers: path.resolve('app/helpers'),
       models: path.resolve('app/models'),
-      react: path.resolve('./node_modules/react'),
-      state: path.resolve('app/state'),
     },
   },
 
   module: {
     loaders: [
-      {
-        test: /(\.jsx\.js)?$/,
-        loaders: ['happypack/loader?id=babel'],
-        exclude: /node_modules/,
-        include: /app/,
-      },
       {
         test: /\.json$/,
         loader: 'json-loader',
@@ -58,11 +50,6 @@ const common = {
       __DEVELOPMENT__: process.env.NODE_ENV === 'development',
       __PRODUCTION__: process.env.NODE_ENV === 'production',
       __CLIENT__: true,
-    }),
-    new HappyPack({
-      id: 'babel',
-      threads: 4,
-      loaders: ['babel-loader?cacheDirectory'],
     }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     // new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en|nl/),

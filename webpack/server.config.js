@@ -67,7 +67,7 @@ const config = {
       __DEVELOPMENT__: process.env.NODE_ENV === 'development',
       __PRODUCTION__: process.env.NODE_ENV === 'production',
       __CLIENT__: true,
-      "import devMiddleware from './utils/devMiddleware';": 'undefinedfda',
+      "import devMiddleware from './utils/devMiddleware';": 'undefined',
     }),
     new StringReplacePlugin(),
   ],
