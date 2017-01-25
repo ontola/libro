@@ -26,6 +26,7 @@
     "react-router-scroll": "^0.4.1",
     "redux-form": "^6.1.1",
     "redux-search": "^2.3.2",
+    "request": "^2.79.0",
     "rimraf": "^2.5.4",
     "searchkit-express": "^0.2.1",
     "smoothscroll-polyfill": "^0.3.4",

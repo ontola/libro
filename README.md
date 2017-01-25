@@ -8,6 +8,8 @@ Front-end application for [Argu](https://argu.co).
 - `npm run dev` to start the dev-server with corsproxy for the API and react-styleguidist for component reference.
 - Visit [http://localhost:3001/](http://localhost:3001/)
 
+The `RAILS_OAUTH_TOKEN` env var needs to be set in order to send requests to the Rails API.
+
 ## Contributing
 All tests and linters will be run automatically as a pre-commit hook.
 - `npm run build` to generate all the build files under `/dist`

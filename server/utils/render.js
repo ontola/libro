@@ -1,4 +1,4 @@
-export const renderFullPage = (html, devPort, domain, initialState = {}, head) => {
+export const renderFullPage = (html, devPort, domain, csrfToken, initialState = {}, head) => {
   const bundleCSS = process.env.NODE_ENV === 'production'
     ? '<link rel="stylesheet" type="text/css" href="/dist/bundle.css" />'
     : '';
@@ -21,6 +21,9 @@ export const renderFullPage = (html, devPort, domain, initialState = {}, head) =
         <meta name="msapplication-starturl" content="/">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        
+        <meta name="csrf-param" content="authenticity_token">
+        <meta name="csrf-token" content="${csrfToken}">
 
         <link rel="icon" type="image/png" sizes="192x192" href="/static/icon-large.png">
         <link rel="apple-touch-icon" type="image/png" sizes="192x192" href="/static/icon-large.png">

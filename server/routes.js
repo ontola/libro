@@ -2,10 +2,12 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import proxy from 'http-proxy-middleware';
+import request from 'request';
 import SearchkitExpress from 'searchkit-express';
 
 import { renderFullPage } from './utils/render';
 import * as constants from '../app/config';
+const railsToken = process.env.RAILS_OAUTH_TOKEN;
 
 export function listen(app, port) {
   app.listen(port, (err) => {
@@ -45,7 +47,30 @@ export default function routes(app, port) {
       })(req, res);
     }
     const domain = req.get('host').replace(/:.*/, '');
-    res.end(renderFullPage('', port, domain));
+
+    if (railsToken !== undefined && railsToken !== '') {
+      request(
+        {
+          url: 'https://argu.local/csrf.json',
+          strictSSL: false,
+          headers: {
+            Authorization: `Bearer ${railsToken}`,
+            Cookie: req.header('Cookie'),
+          },
+        },
+        (error, response, body) => {
+          let csrfToken;
+          try {
+            csrfToken = JSON.parse(body).token;
+          } catch (SyntaxError) {
+            csrfToken = '';
+          }
+          res.end(renderFullPage('', port, domain, csrfToken));
+        }
+      );
+    } else {
+      res.end(renderFullPage('', port, domain, ''));
+    }
     return undefined;
   });
 }
