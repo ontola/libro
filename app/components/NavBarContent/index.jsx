@@ -34,6 +34,26 @@ const NavBarContent = ({
     'NavBarContent',
     checkLuminance(orgColor) ? 'NavBarContent--white-text' : 'NavBarContent--dark-text',
   ].join(' ');
+  let actorItem;
+
+  if (actorType === 'User') {
+    actorItem = (
+      <div>
+        <SideBarLink
+          imageUrl="https://argu-logos.s3.amazonaws.com/photos/825/icon_profielfoto_Joep_Meindertsma.jpg"
+          label={displayName}
+          to={path.profile(1)}
+        />
+        <SideBarLink icon="gears" label="Instellingen" to={path.settings()} />
+      </div>
+    );
+  } else {
+    actorItem = (
+      <div>
+        <SideBarLink icon="sign-in" label="Log in / registreer" to={path.signIn()} />
+      </div>
+    );
+  }
 
   return (
     <div
@@ -66,20 +86,7 @@ const NavBarContent = ({
         </SideBarCollapsible>
       </div>
       <div className="NavBarContent__footer">
-        {(actorType === 'User') ?
-          <div>
-            <SideBarLink
-              imageUrl="https://argu-logos.s3.amazonaws.com/photos/825/icon_profielfoto_Joep_Meindertsma.jpg"
-              label={displayName}
-              to={path.profile(1)}
-            />
-            <SideBarLink icon="gears" label="Instellingen" to={path.settings()} />
-          </div>
-          :
-          <div>
-            <SideBarLink icon="sign-in" label="Log in / registreer" to={path.signIn()} />
-          </div>
-        }
+        {actorItem}
         <div className="NavBarContent__center-footer">
           <Link className="NavBarContent__logo" to={path.index()}>
             {/* eslint-disable max-len */}
