@@ -17,6 +17,7 @@ if (typeof window !== 'undefined' && window.Worker) {
 
 LinkedRenderStore.api.setAcceptForHost('https://argu.local/', 'application/vnd.api+json');
 LinkedRenderStore.api.setAcceptForHost('https://argu.co/', 'application/vnd.api+json');
+LinkedRenderStore.api.setAcceptForHost('https://aod-search.argu.co/', 'application/vnd.api+json');
 
 LinkedRenderStore.store.rdf.prefixes.addAll({
   aod: 'https://argu.co/ns/od#',
