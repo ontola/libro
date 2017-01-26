@@ -7,7 +7,10 @@ import {
 } from 'components';
 
 const propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    null,
+  ]),
 };
 
 const LinkCard = ({ children }) => (

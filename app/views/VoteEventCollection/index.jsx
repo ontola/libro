@@ -1,6 +1,6 @@
-import React, { PropTypes } from 'react';
 import { getP, RENDER_CLASS_NAME } from 'link-lib';
 import { Property, PropertyBase } from 'link-redux';
+import React, { PropTypes } from 'react';
 
 import LinkedRenderStore from '../../helpers/LinkedRenderStore';
 

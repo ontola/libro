@@ -1,6 +1,6 @@
 /* eslint no-console: 0 */
-// import fetch from 'isomorphic-fetch';
 import LinkedRenderStore, { DataWorkerLoader } from 'link-lib';
+import { PropTypes } from 'react';
 
 import DataWorker from 'worker-loader!../workers/DataWorker';
 import transformers from './transformers';
@@ -160,11 +160,15 @@ LinkedRenderStore.addOntologySchematics([
   },
 ]);
 
-// fetch('/graph.jsonld')
-//   .then(graph => graph.json())
-//   .then((graph) => {
-//     LinkedRenderStore.addOntologySchematics(graph['@graph']);
-//   });
+const linkedPropVal = PropTypes.oneOfType([
+  PropTypes.object,
+  PropTypes.string,
+  undefined,
+]);
+
+export {
+  linkedPropVal,
+};
 
 export default LinkedRenderStore;
 window.LRS = LinkedRenderStore;

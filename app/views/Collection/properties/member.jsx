@@ -1,6 +1,6 @@
-import React, { PropTypes } from 'react';
 import LinkedRenderStore, { getValueOrID } from 'link-lib';
 import { LinkedObjectContainer, PropertyBase } from 'link-redux';
+import React, { PropTypes } from 'react';
 
 const propTypes = {
   /** The amount of items to render. Leave undefined for all items */

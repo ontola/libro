@@ -1,12 +1,12 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
 import {
   Heading,
 } from 'components';
-import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { linkedPropVal } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
-  linkedProp: PropTypes.object,
+  linkedProp: linkedPropVal,
 };
 
 const Name = ({ linkedProp }) => <Heading size="1">{linkedProp}</Heading>;

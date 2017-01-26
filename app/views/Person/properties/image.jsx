@@ -1,9 +1,10 @@
-import LinkedRenderStore from 'link-lib';
 import { LinkedObjectContainer } from 'link-redux';
-import React, { PropTypes } from 'react';
+import React from 'react';
+
+import LinkedRenderStore, { linkedPropVal } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
-  linkedProp: PropTypes.object,
+  linkedProp: linkedPropVal,
 };
 
 const Image = ({ linkedProp }) => (

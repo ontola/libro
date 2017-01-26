@@ -4,7 +4,10 @@ import { LinkedObjectContainer } from 'link-redux';
 import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
-  linkedProp: PropTypes.object,
+  linkedProp: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+  ]),
 };
 
 const Creator = ({ linkedProp }) => {

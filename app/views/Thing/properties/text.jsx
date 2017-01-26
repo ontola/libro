@@ -4,7 +4,7 @@ import React, { PropTypes } from 'react';
 import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
-  linkedProp: PropTypes.object,
+  linkedProp: PropTypes.string,
 };
 
 const Text = ({ linkedProp }) => <Markdown source={linkedProp} />;

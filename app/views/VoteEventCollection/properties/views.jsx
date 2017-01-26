@@ -1,5 +1,5 @@
-import React from 'react';
 import { LinkedObjectContainer, PropertyBase } from 'link-redux';
+import React from 'react';
 
 import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
 

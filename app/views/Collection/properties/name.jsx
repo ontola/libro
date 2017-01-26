@@ -1,6 +1,6 @@
+import { PropertyBase } from 'link-redux';
 import React from 'react';
 import { Link } from 'react-router';
-import { PropertyBase } from 'link-redux';
 
 import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
 import {

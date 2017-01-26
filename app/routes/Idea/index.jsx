@@ -8,7 +8,7 @@ const propTypes = {
   params: PropTypes.object.isRequired,
 };
 
-const LinkedObject = () => (
+const Idea = () => (
   <LinkedObjectContainer object={location.href} >
     <Container>
       <Property label="schema:isPartOf" />
@@ -21,6 +21,6 @@ const LinkedObject = () => (
   </LinkedObjectContainer>
 );
 
-LinkedObject.propTypes = propTypes;
+Idea.propTypes = propTypes;
 
-export default LinkedObject;
+export default Idea;
