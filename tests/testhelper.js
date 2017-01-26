@@ -3,7 +3,6 @@ const jsdom = require('jsdom').jsdom;
 
 const exposedProperties = ['window', 'navigator', 'document'];
 
-require.extensions['.scss'] = () => null;
 global.document = jsdom('');
 global.window = document.defaultView;
 global.window.URL = require('whatwg-url').URL;
@@ -35,6 +34,9 @@ const ignoreGlobals = [
 ignoreGlobals.forEach((item) => {
   global[item] = () => null;
 });
+global.SVGPathSeg.prototype = {};
+global.SVGPathElement.prototype = {};
+global.SVGPathSegList.prototype = {};
 
 Object.keys(document.defaultView).forEach((property) => {
   if (typeof global[property] === 'undefined') {
