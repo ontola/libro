@@ -13,11 +13,13 @@ test:
   before_script:
     - npm i -g yarn
     - yarn install
+    - npm rebuild node-sass
   script:
     - yarn run lint
     - yarn run lint:style
     - yarn run test
-    - yarn run build
+    - yarn run build:bundle
+    - yarn run build:server
   cache:
     key: ${CI_BUILD_REF_NAME}
     paths:
