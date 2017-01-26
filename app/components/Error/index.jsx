@@ -1,8 +1,8 @@
+import { getP } from 'link-lib';
 import React, { PropTypes } from 'react';
-import { Collection } from 'immutable';
 
 const propTypes = {
-  data: PropTypes.instanceOf(Collection),
+  data: PropTypes.object,
 };
 
 function getErrorMessage(code) {
@@ -16,7 +16,7 @@ function getErrorMessage(code) {
 
 const Error = props => (
   <p>
-    {getErrorMessage(props.data.get('http://www.w3.org/2011/http#statusCodeValue'))}
+    {getErrorMessage(getP(props.data, 'http://www.w3.org/2011/http#statusCodeValue'))}
   </p>
 );
 

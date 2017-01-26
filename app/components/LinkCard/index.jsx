@@ -1,5 +1,4 @@
-import React from 'react';
-import { PropertyBase } from 'link-redux';
+import React, { PropTypes } from 'react';
 
 import {
   Card,
@@ -7,18 +6,20 @@ import {
   LDLink,
 } from 'components';
 
-class LinkCard extends PropertyBase {
-  render() {
-    return (
-      <LDLink>
-        <Card>
-          <CardContent>
-            {this.getLinkedObjectProperty()}
-          </CardContent>
-        </Card>
-      </LDLink>
-    );
-  }
-}
+const propTypes = {
+  children: PropTypes.node,
+};
+
+const LinkCard = ({ children }) => (
+  <LDLink>
+    <Card>
+      <CardContent>
+        {children}
+      </CardContent>
+    </Card>
+  </LDLink>
+);
+
+LinkCard.propTypes = propTypes;
 
 export default LinkCard;

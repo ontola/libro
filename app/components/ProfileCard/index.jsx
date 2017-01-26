@@ -41,7 +41,7 @@ class ProfileCard extends PropertyBase {
       full,
       similarity,
     } = this.props;
-    const bio = this.getLegacyProperty('http://schema.org/description', 'bio');
+    const bio = this.getLegacyProperty(['http://schema.org/description', 'dbo:abstract'], 'bio');
 
     const profileClassname = classNames({
       ProfileCard,

@@ -1,24 +1,20 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
-import { PropertyBase } from 'link-redux';
+import { getP } from 'link-lib';
 
 const propTypes = {
-  label: PropTypes.string,
+  children: PropTypes.node,
 };
 
-class LDLink extends PropertyBase {
-  getLDLinkHref() {
-    return this.context.schemaObject['@id'] && new URL(this.context.schemaObject['@id']).pathname;
-  }
-
-  render() {
-    return (
-      <Link to={this.getLDLinkHref()}>
-        {this.props.children}
-      </Link>
-    );
-  }
-}
+const LDLink = ({ children }, { schemaObject }) => {
+  const p = getP(schemaObject, '@id');
+  const url = p && new URL(p).pathname;
+  return (
+    <Link to={url}>
+      {children}
+    </Link>
+  );
+};
 
 LDLink.contextTypes = {
   schemaObject: PropTypes.object,

@@ -7,26 +7,30 @@ import { testUtilities } from 'link-redux';
 import ProfileCard from './';
 const { generateContext } = testUtilities;
 
-
-const comp = mount(
-  <ProfileCard name="Matthew Obrien" />,
-  generateContext({ linkedRenderStore: true, schemaObject: true })
-);
-
 describe('ProfileCard component', () => {
   it('ProfileCard should render', () => {
+    const comp = mount(
+      <ProfileCard name="Matthew Obrien" />,
+      generateContext({ linkedRenderStore: true, schemaObject: true })
+    );
+
     assert.equal(comp.find('.ProfileCard').length, 1, 'ProfileCard does not render');
     assert.equal(comp.find('.Heading').length, 1, 'Profile heading does not render');
     assert.equal(comp.find('.Heading').first().text(), 'Matthew Obrien', 'Heading does not render correct title');
     assert.equal(comp.find('.ProfileCard__foot').length, 1, 'Footer does not render');
+  });
 
-    comp.setProps({
-      party: 'D66',
-      image: 'http://uinames.com/api/photos/male/40.jpg',
-      bio: 'Trololol',
-      similarity: 65,
-    });
-
+  it('renders party members', () => {
+    const comp = mount(
+      <ProfileCard
+        name="Matthew Obrien"
+        party="D66"
+        image="http://uinames.com/api/photos/male/40.jpg"
+        bio="Trololol"
+        similarity={65}
+      />,
+      generateContext({ linkedRenderStore: true, schemaObject: true })
+    );
     assert.equal(comp.find('.ProfileCard__party').first().text(), 'D66', 'Does not display party correctly');
     assert.deepEqual(
       comp.find('.ProfileCard__image').first().prop('style'),

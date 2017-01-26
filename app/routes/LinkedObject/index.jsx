@@ -11,13 +11,14 @@ const propTypes = {
 };
 
 const LinkedObject = () => (
-  <Container>
-    <LinkedObjectContainer object={location.href} >
+  <LinkedObjectContainer object={location.href} >
+    <Container>
       <Property label="schema:isPartOf" />
       <Type />
-      <Property label={['argu:collectionAssociation', 'schema:comments']} />
-    </LinkedObjectContainer>
-  </Container>
+      <Property label="argu:VoteEventCollection" />
+      <Property forceRender label={['argu:collectionAssociation', 'schema:comments']} />
+    </Container>
+  </LinkedObjectContainer>
 );
 
 LinkedObject.propTypes = propTypes;

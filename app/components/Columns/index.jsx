@@ -1,11 +1,15 @@
 import './Columns.scss';
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+
 import { sizes } from 'components/shared/config';
 
 const propTypes = {
   /** Each child becomes a column. */
-  children: PropTypes.array.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]).isRequired,
   flexBasis: PropTypes.string,
   flexGrow: PropTypes.bool,
   gutter: PropTypes.oneOf(sizes),

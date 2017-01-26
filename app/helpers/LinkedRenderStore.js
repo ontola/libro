@@ -74,7 +74,7 @@ LinkedRenderStore.addOntologySchematics([
     },
   },
   {
-    '@id': 'https://argu.co/ns/core#Challenge',
+    '@id': 'https://argu.co/ns/core#Question',
     '@type': 'rdfs:Class',
     'rdfs:comment': '',
     'rdfs:label': 'Challenge',
@@ -153,6 +153,12 @@ LinkedRenderStore.addOntologySchematics([
     '@id': 'https://argu.co/ns/od#text',
     'owl:sameAs': {
       '@id': 'http://schema.org/text',
+    },
+  },
+  {
+    '@id': 'https://argu.co/ns/core#VoteCollection',
+    'owl:sameAs': {
+      '@id': 'https://argu.co/ns/core#Collection',
     },
   },
 ]);

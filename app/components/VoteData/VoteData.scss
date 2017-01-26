@@ -23,7 +23,7 @@ $votebar-parts: (
   .VoteData__votesegment-wrapper {
     display: flex;
     flex-wrap: wrap;
-    height: 2.6em;
+    height: 25px;
     overflow: hidden;
     width: 100%;
   }
@@ -32,6 +32,7 @@ $votebar-parts: (
 .VoteData__votebar-part {
   border-radius: 7px;
   display: flex;
+  flex-grow: 1;
   margin-right: 10px;
   padding: .5em;
 

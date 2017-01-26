@@ -3,6 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 // import LinkedRenderStore from 'link-lib';
+import { getP } from 'link-lib';
 import { fetchLinkedObject, LinkedObjectContainer } from 'link-redux';
 
 import {
@@ -56,8 +57,8 @@ RelationsBrowserContainer.propTypes = propTypes;
 
 const ConnectedRelationsContainer = connect(
   (state, ownProps) => ({
-    object: getCurrentRelationId(state, ownProps.schemaObject['@id']),
-    data: getCurrentRelation(state, ownProps.schemaObject['@id']),
+    object: getCurrentRelationId(state, getP(ownProps.schemaObject, '@id')),
+    data: getCurrentRelation(state, getP(ownProps.schemaObject, '@id')),
   }),
   dispatch => ({
     loadRelation: href => dispatch(fetchLinkedObject(href)),

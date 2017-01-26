@@ -28,10 +28,11 @@ class Detail extends PropertyBase {
   }
 
   getText() {
+    let text = this.props.text;
     if (typeof this.context.schemaObject !== 'undefined' && this.getLinkedObjectProperty()) {
-      return this.getLinkedObjectProperty();
+      text = this.getLinkedObjectProperty();
     }
-    return <span className="Detail__text">{this.props.text}</span>;
+    return <span className="Detail__text">{text}</span>;
   }
 
   getClickBinding() {

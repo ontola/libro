@@ -4,6 +4,7 @@ import { Route, IndexRoute } from 'react-router';
 import App from './App';
 import CompareVotes from './CompareVotes';
 import Event from './Event';
+import Forum from './Forum';
 import Home from './Home';
 import LinkedObject, { LinkedObjectByID } from './LinkedObject';
 import Idea from './Idea';
@@ -28,7 +29,7 @@ const routes = (
     <Route path="vote_matches/:voteMatchId" component={VoteMatch} />
     <Route path="motions" component={Motions} />
     <Route path="events/:eventId" component={Event} />
-    <Route path="motions/:motionId" component={Idea} />
+    <Route path="motions/:motionId" component={LinkedObject} />
     <Route path="parties" component={Parties} />
     <Route path="parties/:partyId" component={Party} />
     <Route path="politicians" component={Politicians} />
@@ -41,6 +42,7 @@ const routes = (
     <Route path="u/sign_in" component={SignIn} />
     <Route path="u/:id" component={LinkedPerson} />
     <Route path="m/:id" component={Idea} />
+    <Route path="f/:id" component={Forum} />
     <Route path=":type/:id" component={LinkedObject} />
     <Route path="od" component={LinkedObjectByID} />
     <Route path="*" component={NotFound} />

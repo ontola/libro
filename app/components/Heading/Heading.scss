@@ -28,6 +28,10 @@
     color: color('brown');
   }
 
+  &--question {
+    color: color('brown', 'dark');
+  }
+
   &--column {
     color: color('grey');
     text-align: center;

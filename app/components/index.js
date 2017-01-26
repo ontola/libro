@@ -1,7 +1,3 @@
-export { default as Thing } from './Thing';
-export { default as CreativeWork } from './CreativeWork';
-export { default as Collection } from './Collection';
-
 export { default as ArgumentListItem } from './ArgumentListItem';
 export { default as ArgumentForm } from './ArgumentForm';
 export { default as ArgumentShow } from './ArgumentShow';
@@ -22,7 +18,6 @@ export { default as ChronoItem } from './ChronoItem';
 export { default as Collapsible } from './Collapsible';
 export { default as Columns } from './Columns';
 export { default as CompareVotesBar } from './CompareVotesBar';
-export { default as Comment } from './Comment';
 export { default as Container } from './Container';
 export { default as Cover } from './Cover';
 export { default as Detail } from './Detail';
@@ -45,7 +40,6 @@ export { default as GeneratedIcon } from './GeneratedIcon';
 export { default as Header } from './Header';
 export { default as Heading } from './Heading';
 export { default as HoverBox } from './HoverBox';
-export { default as ImageObject } from './ImageObject';
 export { default as LabelValue } from './LabelValue';
 export { default as LabelValueBar } from './LabelValueBar';
 export { default as LinkList } from './LinkList';
@@ -59,7 +53,6 @@ export { default as Navbar } from './Navbar';
 export { default as NavBarContent } from './NavBarContent';
 export { default as Notification } from './Notification';
 export { default as Opinion } from './Opinion';
-export { default as OpinionBubble } from './OpinionBubble';
 export { default as Opinions } from './Opinions';
 export { default as OrgSwitcher } from './OrgSwitcher';
 export { default as ProfileCard } from './ProfileCard';
@@ -81,13 +74,3 @@ export { default as VoteData } from './VoteData';
 export { default as VoteMatchResultBar } from './VoteMatchResultBar';
 export { default as VoteMatchShow } from './VoteMatchShow';
 export { default as Widget } from './Widget';
-
-export { default as LDLink } from './LDLink';
-export { default as LinkCard } from './LinkCard';
-export { default as LinkedDetailDate } from './LinkedDetailDate';
-export { default as Motion } from './Motion';
-export { default as VoteCollection } from './VoteCollection';
-export { default as VoteEvent } from './VoteEvent';
-
-export { default as Person } from './Person';
-import './Motion';
