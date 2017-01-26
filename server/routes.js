@@ -40,8 +40,14 @@ export default function routes(app, port) {
   app.get(/.*/, (req, res) => {
     const accept = req.get('Accept');
     if (accept && accept.includes('application/vnd.api+json')) {
+      if (req.originalUrl.match(/^\/(f|m|q|a|u|v)\//) !== null) {
+        return proxy({
+          target: constants.ARGU_API_URL,
+          changeOrigin: true,
+        })(req, res);
+      }
       return proxy({
-        target: constants.ARGU_API_URL,
+        target: constants.AOD_API_URL,
         pathRewrite: { '^/': '/api/' },
         changeOrigin: true,
       })(req, res);
