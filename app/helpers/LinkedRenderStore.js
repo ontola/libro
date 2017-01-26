@@ -1,21 +1,18 @@
 /* eslint no-console: 0 */
 // import fetch from 'isomorphic-fetch';
-import formatProvider from 'rdf-formats-common';
-import LinkedRenderStore, { processors } from 'link-lib';
+import LinkedRenderStore, { DataWorkerLoader } from 'link-lib';
 
+import DataWorker from 'worker-loader!../workers/DataWorker';
+import transformers from './transformers';
 import Error from '../components/Error';
 LinkedRenderStore.onError = Error;
 
-const formats = formatProvider();
-const PRIO_MAX = 1.0;
-const PRIO_HIGH = 0.8;
-
-LinkedRenderStore.api.registerProcessor(processors.jsonapi, 'application/vnd.api+json', PRIO_MAX);
-const mediaTypes = Object.keys(formats.parsers);
-const rdf = mediaTypes.splice(mediaTypes.indexOf('application/rdf+xml'), PRIO_MAX);
-LinkedRenderStore.api.registerProcessor(processors.rdfFormatsCommon, mediaTypes, PRIO_HIGH);
-if (rdf[0]) {
-  LinkedRenderStore.api.registerProcessor(processors.rdfFormatsCommon, 'application/rdf+xml', PRIO_MAX);
+if (typeof window !== 'undefined' && window.Worker) {
+  LinkedRenderStore.api.processor = new DataWorkerLoader(DataWorker);
+} else {
+  transformers.transformers.forEach(
+    t => LinkedRenderStore.api.registerTransformer(t.transformer, t.mediaTypes, t.acceptValue)
+  );
 }
 
 LinkedRenderStore.api.setAcceptForHost('https://argu.local/', 'application/vnd.api+json');
