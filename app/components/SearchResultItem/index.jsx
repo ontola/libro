@@ -5,7 +5,6 @@ import { Link } from 'react-router';
 import {
   Card,
   CardContent,
-  CardHeader,
   Detail,
   DetailDate,
   DetailType,
@@ -37,7 +36,7 @@ const SearchResultItem = ({
   const scoreIcon = score <= threshold ? 'star-half-o' : 'star';
   return (
     <Card>
-      <CardHeader noSpacing>
+      <CardContent>
         <Heading size="3">
           <Link to={link}>
             <div dangerouslySetInnerHTML={{ __html: title }} />
@@ -49,8 +48,6 @@ const SearchResultItem = ({
           <Detail text={`${scorePercentage}% match`} icon={scoreIcon} />
           <VoteMatchAddContainer id={link} />
         </DetailsBar>
-      </CardHeader>
-      <CardContent>
         <div dangerouslySetInnerHTML={{ __html: children }} />
       </CardContent>
     </Card>

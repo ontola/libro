@@ -56,7 +56,14 @@ const DetailType = ({ type }) => {
       text = 'Argument tegen';
       title = 'Een tegenargument is een reden om tegen het idee te zijn.';
       break;
+    case 'article':
+      className = 'DetailType--con';
+      icon = 'file-o';
+      text = 'Artikel';
+      title = 'Een artikel is een geschreven stuk tekst.';
+      break;
     default:
+      className = 'DetailType--other';
       icon = 'file-o';
       text = type;
       break;

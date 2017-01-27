@@ -12,18 +12,18 @@ const SearchResultContainer = ({ result }) => {
   const {
     _source: source,
     _score: score,
+    _type: type,
     highlight,
   } = result;
 
   const highlightFields = highlight !== undefined && highlight;
   const data = Object.assign({}, source, highlightFields);
   const content = highlight ? data.text : data.text.toString().substr(0, 300);
-
   return (
     <SearchResultItem
       classification={data.classification}
       createdAt={formatDate(data.date)}
-      link={path.motion(data.id)}
+      link={path.motion(id)}
       title={data.onderwerp}
       score={score}
     >
