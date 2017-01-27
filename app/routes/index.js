@@ -6,6 +6,8 @@ import CompareVotes from './CompareVotes';
 import Event from './Event';
 import Forum from './Forum';
 import Home from './Home';
+import Info from './Info';
+import InfoIndex from './InfoIndex';
 import LinkedObject, { LinkedObjectByID } from './LinkedObject';
 import Idea from './Idea';
 import LinkedPerson from './LinkedPerson';
@@ -39,6 +41,8 @@ const routes = (
       <Route path="about" component={UserAbout} />
     </Route>
     <Route path="search" component={Search} />
+    <Route path="info" component={InfoIndex} />
+    <Route path="info/:infoId" component={Info} />
     <Route path="u/sign_in" component={SignIn} />
     <Route path="u/:id" component={LinkedPerson} />
     <Route path="m/:id" component={Idea} />

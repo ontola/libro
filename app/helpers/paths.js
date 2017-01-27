@@ -7,6 +7,14 @@ const path = {
     return `/events/${id}`;
   },
 
+  info(id) {
+    return `/info/${id}`;
+  },
+
+  infoIndex() {
+    return '/info';
+  },
+
   motion(id) {
     return `/motions/${id}`;
   },

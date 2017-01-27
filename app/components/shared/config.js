@@ -14,6 +14,7 @@ export const shades = [
   'lighter',
   'light',
   'dark',
+  'white',
 ];
 
 export const sides = [

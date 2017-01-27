@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import path from 'helpers/paths';
+import articles from '../../articles';
 import { checkLuminance } from 'helpers/color';
 import { Link } from 'react-router';
 import './NavBarContent.scss';
@@ -57,6 +58,9 @@ const NavBarContent = ({
     );
   }
 
+  const renderInfoLink = info =>
+    <SideBarLink icon="info" label={articles[info].title} to={path.info(info)} />;
+
   return (
     <div
       style={style}
@@ -89,6 +93,12 @@ const NavBarContent = ({
       </div>
       <div className="NavBarContent__footer">
         {actorItem}
+        <SideBarCollapsible
+          label="Info"
+          to={path.infoIndex()}
+        >
+          {Object.keys(articles).map(a => renderInfoLink(a))}
+        </SideBarCollapsible>
         <div className="NavBarContent__center-footer">
           <Link className="NavBarContent__logo" to={path.index()}>
             {/* eslint-disable max-len */}

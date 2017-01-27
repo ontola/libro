@@ -15,11 +15,12 @@ const common = {
     modulesDirectories: ['./node_modules'],
     extensions: ['', '.js', '.jsx', '.ts'],
     alias: {
-      state: path.resolve('app/state'),
       components: path.resolve('app/components'),
       containers: path.resolve('app/containers'),
       helpers: path.resolve('app/helpers'),
       models: path.resolve('app/models'),
+      state: path.resolve('app/state'),
+      static: path.resolve('./static'),
     },
   },
 
@@ -35,6 +36,9 @@ const common = {
       }, {
         test: /\.jpg$/,
         loader: 'file?name=[name].[ext]',
+      }, {
+        test: /\.md$/,
+        loader: 'raw-loader',
       },
     ],
   },

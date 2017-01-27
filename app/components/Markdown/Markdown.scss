@@ -1,7 +1,51 @@
 @import '../shared/config';
 
 .Markdown {
+  // Disabled collapsing margins
+  display: flex;
+  flex-direction: column;
+
+  a {
+    color: color('grey', 'dark');
+    text-decoration: underline;
+  }
+
+  br {
+    line-height: 2em;
+  }
+
+  code {
+    background-color: color('transparent', 'dark');
+    font-family: monospace;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: color('grey', 'mid-dark');
+    font-weight: 600;
+  }
+
+  h1 {
+    line-height: 1em;
+  }
+
+  p {
+    margin-bottom: 1em;
+  }
+
   strong {
     font-weight: bold;
+  }
+
+  ul {
+    margin-bottom: .5em;
+
+    li {
+      list-style-type: disc;
+      margin-bottom: .3em;
+      margin-left: 1.5em;
+    }
   }
 }

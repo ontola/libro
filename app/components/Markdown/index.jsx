@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 import ReactMarkdown from 'react-markdown';
 import './Markdown.scss';
 
@@ -8,6 +9,13 @@ const propTypes = {
   /** The content of the item */
   text: PropTypes.string.isRequired,
 };
+
+// Replaces all internal links with React Router links.
+const RouterLink = link => (
+  link.href.match(/^\//)
+    ? <Link to={link.href}>{link.children}</Link>
+    : <a href={link.href}>{link.children}</a>
+);
 
 const Markdown = ({
   highlightedText,
@@ -35,6 +43,7 @@ const Markdown = ({
       unwrapDisallowed
       escapeHtml
       softBreak="br"
+      renderers={{ Link: RouterLink }}
     />
   );
 };
