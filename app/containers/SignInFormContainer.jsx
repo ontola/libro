@@ -17,6 +17,7 @@ const propTypes = {
   // Since this uses redux-form, you need to pass onSubmit instead of handleSubmit.
   handleSubmit: PropTypes.func.isRequired,
   hasCancel: PropTypes.bool,
+  redirect: PropTypes.string,
   submitting: PropTypes.bool.isRequired,
 };
 
@@ -32,17 +33,17 @@ const SignInForm = ({
   handleSubmit,
   hasCancel,
   invalid,
+  redirect,
   submitting,
 }) =>
   <CardRow>
     <CardContent>
       <span>Log in met </span>
-      <Button small margins icon="facebook" variant="facebook">
-        Facebook
-      </Button>
-      <Button small margins icon="google" variant="google">
-        Google
-      </Button>
+      <form action={`https://argu.co/users/auth/facebook?r=${redirect}`} method="GET" style={{ display: 'inline' }}>
+        <Button small margins icon="facebook" type="submit" variant="facebook">
+          Facebook
+        </Button>
+      </form>
     </CardContent>
     <CardDivider text="of" />
     <form

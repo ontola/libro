@@ -12,6 +12,7 @@ const propTypes = {
   shortname: PropTypes.string,
   finishedIntro: PropTypes.bool,
   loadActor: PropTypes.func,
+  redirectUrl: PropTypes.string,
 };
 
 class NavbarContainer extends Component {
@@ -25,6 +26,7 @@ class NavbarContainer extends Component {
         actorType={this.props.actorType}
         finishedIntro={this.props.finishedIntro}
         displayName={this.props.displayName}
+        redirectUrl={this.props.redirectUrl}
         shortname={this.props.shortname}
       />);
   }
@@ -37,6 +39,7 @@ function mapStateToProps(state) {
     actorType: state.getIn(['currentActors', 'actorType']),
     finishedIntro: state.getIn(['currentActors', 'finishedIntro']),
     displayName: state.getIn(['currentActors', 'displayName']),
+    redirectUrl: window.location.href,
     shortname: state.getIn(['currentActors', 'shortname']),
   };
 }

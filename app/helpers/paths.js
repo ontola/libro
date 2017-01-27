@@ -59,8 +59,14 @@ const path = {
     return '/settings';
   },
 
-  signIn() {
-    return '/u/sign_in';
+  /**
+   * Sign-in / registration entrance route
+   * @param {string} r The URL to return to after signing in/up
+   * @returns {string} The URL.
+   */
+  signIn(r) {
+    const url = '/u/sign_in';
+    return r ? `${url}?r=${encodeURIComponent(r)}` : url;
   },
 };
 

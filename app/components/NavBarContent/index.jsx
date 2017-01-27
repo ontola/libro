@@ -14,6 +14,7 @@ const propTypes = {
   actorType: PropTypes.oneOf(['User', 'Guest']),
   orgColor: PropTypes.string,
   displayName: PropTypes.string,
+  redirectUrl: PropTypes.string,
 };
 
 const defaultProps = {
@@ -24,6 +25,7 @@ const NavBarContent = ({
   orgColor,
   actorType,
   displayName,
+  redirectUrl,
 }) => {
   const style = {
     backgroundColor: orgColor,
@@ -50,7 +52,7 @@ const NavBarContent = ({
   } else {
     actorItem = (
       <div>
-        <SideBarLink icon="sign-in" label="Log in / registreer" to={path.signIn()} />
+        <SideBarLink icon="sign-in" label="Log in / registreer" to={path.signIn(redirectUrl)} />
       </div>
     );
   }

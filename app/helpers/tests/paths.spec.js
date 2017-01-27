@@ -18,4 +18,13 @@ describe('Path helpers', () => {
     assert.equal(path.partyAbout(12), '/parties/12/about', 'Does not return correct path');
     assert.equal(path.partiesIndex(), '/parties', 'Does not return correct path');
   });
+
+  it('should handle sign in', () => {
+    assert.equal(path.signIn(), '/u/sign_in', 'Does not return correct sign in path');
+    assert.equal(path.signIn(
+      'http://argu.co/redirect'),
+      '/u/sign_in?r=http%3A%2F%2Fargu.co%2Fredirect',
+      'Does not return correct sign in redirect path'
+    );
+  });
 });
