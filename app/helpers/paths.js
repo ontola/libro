@@ -3,6 +3,10 @@ const path = {
     return '/';
   },
 
+  createVoteMatch() {
+    return '/vote_matches/new';
+  },
+
   event(id) {
     return `/events/${id}`;
   },

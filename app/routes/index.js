@@ -3,6 +3,7 @@ import { Route, IndexRoute } from 'react-router';
 
 import App from './App';
 import CompareVotes from './CompareVotes';
+import CreateVoteMatch from './CreateVoteMatch';
 import Event from './Event';
 import Forum from './Forum';
 import Home from './Home';
@@ -27,6 +28,7 @@ import VoteMatch from './VoteMatch';
 const routes = (
   <Route path="/" component={App}>
     <IndexRoute component={Home} />
+    <Route path="vote_matches/new" component={CreateVoteMatch} />
     <Route path="comparevotes/:userId" component={CompareVotes} />
     <Route path="vote_matches/:voteMatchId" component={VoteMatch} />
     <Route path="motions" component={Motions} />

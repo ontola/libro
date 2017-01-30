@@ -1,5 +1,6 @@
 import React from 'react';
 import { Property } from 'link-redux';
+import { RENDER_CLASS_NAME } from 'link-lib';
 
 import LinkedRenderStore from '../../helpers/LinkedRenderStore';
 
@@ -23,6 +24,14 @@ const Thing = () => (
 );
 
 LinkedRenderStore.registerRenderer(Thing, 'http://schema.org/Thing');
+
+LinkedRenderStore.registerRenderer(
+  () => <Property label={['schema:name', 'rdfs:label']} />,
+  'http://schema.org/Thing',
+  RENDER_CLASS_NAME,
+  'inline'
+);
+
 
 export { default as collectionAssociation } from './properties/collectionAssociation';
 export { default as IsPrimaryTopicOf } from './properties/isPrimaryTopicOf';

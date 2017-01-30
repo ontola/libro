@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { VoteMatchResultBar } from 'components';
 import {
   getVoteMatchUserVotes,
-  getVoteMatchMotions,
+  getVoteMatchMotionIds,
   getVoteMatchComparedProfilePositions,
   getVoteMatchSimilarity,
 } from 'state/voteMatch/selectors';
@@ -20,7 +20,7 @@ const propTypes = {
 const mapStateToProps = (state, props) => ({
   comparedProfileName: getGroupName(state, { id: props.profileId }),
   comparedProfilePositions: getVoteMatchComparedProfilePositions(state, props),
-  motionIds: getVoteMatchMotions(state, props),
+  motionIds: getVoteMatchMotionIds(state, props),
   userVotes: getVoteMatchUserVotes(state, props),
   score: getVoteMatchSimilarity(state, props),
 });

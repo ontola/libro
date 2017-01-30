@@ -51,11 +51,12 @@ Uses [NSP](https://github.com/nodesecurity/nsp) and [Retire.js](https://github.c
 - They are rendered using Link-lib, which deals with fetching the data and making it accessible to use in React.
 - Resources should not contain any styling of themselves. They are composed of Components.
 - Resources can be rendered in various context (i.e. in its own page, as a small list item or as a card in some list). We call such a context a **topology**. We have predefined a couple of topologies:
-  - **Page** - A page has its own Route and is the most detailed and complete view of the resource. This also the default.
-  - **CardItem** - Shown as a single card, often inside a collection of other cards. Often shows some name, description and various other data.
-  - **CardRow** - Shown as a single row inside a card.
+  - **CardPlain** - Show as a card, but without any children.
+  - **Card** - Shown as a single card, often inside a collection of other cards. Often shows some name, description and various other data.
+  - **Row** - Shown as a single row inside a card.
   - **ListItem** - Shown in some list. Is mostly nothing but a text string.
   - **Detail** - Shown as a small piece of metadata inside some other resource.
+  - **Inline** - A text to appear in some other text. Can be a link.
 
 ### Creating a new interactive model
 *Warning: only use this for models that the user can modify or create. Use Link-lib for view-only models.*

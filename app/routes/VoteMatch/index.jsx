@@ -7,7 +7,7 @@ import { fetchVoteMatch } from 'state/voteMatch/actions';
 
 import {
   getVoteMatchCountUserVotes,
-  getVoteMatchMotionsLength,
+  getVoteMatchMotionIdsLength,
   getVoteMatchName,
 } from 'state/voteMatch/selectors';
 
@@ -60,7 +60,7 @@ export default connect(
   (state, props) => ({
     name: getVoteMatchName(state, props),
     currentIndex: getVoteMatchCountUserVotes(state, props),
-    motionsLength: getVoteMatchMotionsLength(state, props),
+    motionsLength: getVoteMatchMotionIdsLength(state, props),
   }),
   dispatch => ({
     loadVoteMatch: id => dispatch(fetchVoteMatch(id)),

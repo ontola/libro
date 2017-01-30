@@ -6,7 +6,7 @@ import { voteMatchStart, voteMatchSave } from 'state/voteMatch/actions';
 
 import {
   getVoteMatch,
-  getVoteMatchMotions,
+  getVoteMatchMotionIds,
   getVoteMatchCountUserVotes,
   getVoteMatchSimilarity,
 } from 'state/voteMatch/selectors';
@@ -67,7 +67,7 @@ VoteMatchContainer.defaultProps = defaultProps;
 export default connect(
   (state, props) => ({
     countUserVotes: getVoteMatchCountUserVotes(state, props),
-    motionIds: getVoteMatchMotions(state, props),
+    motionIds: getVoteMatchMotionIds(state, props),
     similarity: getVoteMatchSimilarity(state, props),
     data: getVoteMatch(state, props),
   }),

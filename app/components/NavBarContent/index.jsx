@@ -19,6 +19,7 @@ const propTypes = {
   actorType: PropTypes.oneOf(['User', 'Guest']),
   orgColor: PropTypes.string,
   redirectUrl: PropTypes.string,
+  voteMatchCount: PropTypes.integer,
 };
 
 const defaultProps = {
@@ -29,6 +30,7 @@ const NavBarContent = ({
   actorType,
   orgColor,
   redirectUrl,
+  voteMatchCount,
 }) => {
   const style = {
     backgroundColor: orgColor,
@@ -70,6 +72,12 @@ const NavBarContent = ({
           imageUrl="https://argu-logos.s3.amazonaws.com/photos/736/avatar_2000px-Flag_of_the_Netherlands.svg.png"
         />
         <SideBarLink icon="search" label="Zoeken" to={path.search()} />
+        <SideBarLink
+          icon="compass"
+          label="Stemwijzer maken"
+          to={path.createVoteMatch()}
+          count={voteMatchCount}
+        />
         <SideBarLink icon="th-large" label="Overzicht" to={path.index()} isIndex />
         <SideBarLink icon="feed" label="Activiteit" to={'bestaatniet'} isIndex />
         <SideBarCollapsible

@@ -1,5 +1,5 @@
 import chai, { assert } from 'chai';
-import { Map } from 'immutable';
+import { Map, List } from 'immutable';
 import chaiImmutable from 'chai-immutable';
 
 import voteMatch from './reducer';
@@ -11,7 +11,11 @@ describe('Votematch reducer', () => {
     const expectedState = new Map({
       currentIndex: 0,
       currentVoteMatch: null,
-      items: new Map(),
+      items: new Map({
+        LocalVoteMatch: new Map({
+          voteables: new List(),
+        }),
+      }),
     });
 
     assert.deepEqual(

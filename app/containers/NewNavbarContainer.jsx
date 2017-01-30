@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { getVoteMatchMotionIdsLength } from 'state/voteMatch/selectors';
 
 import { fetchActor } from 'state/currentActors/actions';
 import {
@@ -10,6 +11,7 @@ const propTypes = {
   actorType: PropTypes.string.isRequired,
   loadActor: PropTypes.func,
   redirectUrl: PropTypes.string,
+  voteMatchCount: PropTypes.integer,
 };
 
 class NavbarContainer extends Component {
@@ -22,8 +24,8 @@ class NavbarContainer extends Component {
       <NavBarContent
         actorType={this.props.actorType}
         redirectUrl={this.props.redirectUrl}
-      />
-    );
+        voteMatchCount={this.props.voteMatchCount}
+      />);
   }
 }
 
@@ -33,6 +35,7 @@ function mapStateToProps(state) {
   return {
     actorType: state.getIn(['currentActors', 'actorType']),
     redirectUrl: window.location.href,
+    voteMatchCount: getVoteMatchMotionIdsLength(state, { id: 'LocalVoteMatch' }),
   };
 }
 

@@ -10,7 +10,7 @@ import { getPersonName } from 'state/persons/selectors';
 
 import {
   getVoteMatchCountUserVotes,
-  getVoteMatchMotionsLength,
+  getVoteMatchMotionIdsLength,
 } from 'state/voteMatch/selectors';
 
 const propTypes = {
@@ -58,7 +58,7 @@ export default connect(
   (state, props) => ({
     name: getPersonName(state, props),
     currentIndex: getVoteMatchCountUserVotes(state, props),
-    motionsLength: getVoteMatchMotionsLength(state, props),
+    motionsLength: getVoteMatchMotionIdsLength(state, props),
   }),
   dispatch => ({
     loadPerson: id => dispatch(fetchPerson(id)),

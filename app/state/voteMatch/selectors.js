@@ -25,13 +25,13 @@ export const getCurrentVoteMatch = (state) => {
   return state.getIn(['voteMatch', 'items', id]) || new VoteMatch();
 };
 
-export const getVoteMatchMotions = state =>
-  getCurrentVoteMatch(state).get('voteables');
+export const getVoteMatchMotionIds = (state, props) =>
+  state.getIn(['voteMatch', 'items', props.id, 'voteables']);
 
 // Note: this function is quite expensive and should be memoized correctly using Reselect.
 export const getVoteMatchComparedProfilePositions = (state, props) => {
   const positions = [];
-  const motionIds = getVoteMatchMotions(state);
+  const motionIds = getVoteMatchMotionIds(state);
   const compareOrg = props.profileId;
   motionIds.forEach((motionId) => {
     const voteEvent = getMotionVoteEvents(state, { motionId });
@@ -50,13 +50,13 @@ export const getVoteMatchComparedProfilePositions = (state, props) => {
   return positions;
 };
 
-export const getVoteMatchMotionsLength = createSelector(
-  getVoteMatchMotions,
-  motions => motions.length
+export const getVoteMatchMotionIdsLength = createSelector(
+  getVoteMatchMotionIds,
+  motions => motions.count()
 );
 
 export const getVoteMatchUserVotes = createSelector(
-  [getUserVotes, getVoteMatchMotions],
+  [getUserVotes, getVoteMatchMotionIds],
   (votes, motions) => motions.map(motion => votes.getIn([motion, 'option']))
 );
 

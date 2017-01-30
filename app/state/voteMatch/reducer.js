@@ -1,30 +1,32 @@
 import { handleActions } from 'redux-actions';
-import { Map } from 'immutable';
+import { Map, List } from 'immutable';
 
 import {
   increaseValue,
   updateRecordValue,
   setRecord,
 } from 'helpers/reducers';
-
 import VoteMatch from 'models/VoteMatch';
 
 import {
+  GET_VOTE_MATCH,
+  VOTE_MATCH_ADD_VOTEABLE,
   VOTE_MATCH_INIT,
   VOTE_MATCH_NEXT,
+  VOTE_MATCH_REMOVE_VOTEABLE,
   VOTE_MATCH_SAVE,
-  GET_VOTE_MATCH,
+  VOTE_MATCH_UPDATE_VOTEABLES,
 } from '../action-types';
 
 const initialState = new Map({
   currentIndex: 0,
   currentVoteMatch: null,
-  items: new Map(),
+  items: new Map({
+    LocalVoteMatch: new Map({
+      voteables: new List(),
+    }),
+  }),
 });
-
-// const newRecord = id => new VoteMatch({
-//   id,
-// });
 
 const voteMatch = handleActions({
   [GET_VOTE_MATCH]: (state, { payload }) =>
@@ -41,6 +43,15 @@ const voteMatch = handleActions({
   [VOTE_MATCH_SAVE]: (state, { payload }) =>
     updateRecordValue(state, payload.id, 'similarity', payload.similarity),
 
+  [VOTE_MATCH_UPDATE_VOTEABLES]: (state, { payload }) =>
+    updateRecordValue(state, payload.id, 'voteables', payload.voteables),
+
+  [VOTE_MATCH_REMOVE_VOTEABLE]: (state, { payload }) =>
+    state.updateIn(['items', payload.id, 'voteables'],
+      voteables => voteables.filter(
+        voteable => voteable !== payload.voteable
+      )
+    ),
 }, initialState);
 
 export default voteMatch;

@@ -2,6 +2,7 @@ import React from 'react';
 
 import {
   Heading,
+  LDLink,
 } from 'components';
 import LinkedRenderStore, { linkedPropVal } from '../../../helpers/LinkedRenderStore';
 
@@ -23,4 +24,14 @@ LinkedRenderStore.registerRenderer(
   ]
 );
 
+LinkedRenderStore.registerRenderer(
+  ({ linkedProp }) => <LDLink>{linkedProp}</LDLink>,
+    'http://schema.org/Thing',
+  [
+    'http://schema.org/name',
+    'http://www.w3.org/2000/01/rdf-schema#label',
+    'http://xmlns.com/foaf/0.1/name',
+  ],
+  'inline'
+);
 export default Name;
