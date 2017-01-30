@@ -19,6 +19,7 @@ export { default as Collapsible } from './Collapsible';
 export { default as Columns } from './Columns';
 export { default as CompareVotesBar } from './CompareVotesBar';
 export { default as Container } from './Container';
+export { default as CountBubble } from './CountBubble';
 export { default as Cover } from './Cover';
 export { default as Detail } from './Detail';
 export { default as DetailDate } from './DetailDate';

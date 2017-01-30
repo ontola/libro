@@ -1,18 +1,21 @@
 import classNames from 'classnames';
-import './SideBarLink.scss';
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
-import {
-} from 'components';
+import { Link } from 'react-router';
 
+import './SideBarLink.scss';
+
+import {
+  CountBubble,
+} from 'components';
 import {
   closeSideBar,
 } from 'state/sideBars/actions';
 
 const propTypes = {
   bold: PropTypes.bool,
+  count: PropTypes.number,
   label: PropTypes.string,
   imageUrl: PropTypes.string,
   icon: PropTypes.string,
@@ -24,6 +27,7 @@ const propTypes = {
 
 const SideBarLink = ({
   bold,
+  count,
   label,
   icon,
   imageUrl,
@@ -56,6 +60,10 @@ const SideBarLink = ({
         <div className="SideBarLink__label">
           {label}
         </div>
+        {(count !== undefined && count > 0) &&
+          <div className="SideBarLink__count-wrapper">
+            <CountBubble count={count} />
+          </div>}
       </Link>
     </div>
   );
