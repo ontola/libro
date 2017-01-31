@@ -22,6 +22,7 @@ export { default as Container } from './Container';
 export { default as CountBubble } from './CountBubble';
 export { default as Cover } from './Cover';
 export { default as Detail } from './Detail';
+export { default as DetailPure } from './Detail/DetailPure';
 export { default as DetailDate } from './DetailDate';
 export { default as DetailDuration } from './DetailDuration';
 export { default as DetailsBar } from './DetailsBar';
