@@ -52,6 +52,11 @@ const voteMatch = handleActions({
         voteable => voteable !== payload.voteable
       )
     ),
+
+  [VOTE_MATCH_ADD_VOTEABLE]: (state, { payload }) =>
+    state.updateIn(['items', payload.id, 'voteables'],
+      voteables => voteables.push(payload.voteable)
+    ),
 }, initialState);
 
 export default voteMatch;

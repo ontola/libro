@@ -12,6 +12,7 @@ import {
   DetailsBar,
   Heading,
 } from 'components';
+import VoteMatchAddContainer from 'containers/VoteMatchAddContainer';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -46,6 +47,7 @@ const SearchResultItem = ({
           <DetailType type={classification} />
           <DetailDate date={createdAt} />
           <Detail text={`${scorePercentage}% match`} icon={scoreIcon} />
+          <VoteMatchAddContainer id={link} />
         </DetailsBar>
       </CardHeader>
       <CardContent>

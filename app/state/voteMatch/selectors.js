@@ -52,12 +52,12 @@ export const getVoteMatchComparedProfilePositions = (state, props) => {
 
 export const getVoteMatchMotionIdsLength = createSelector(
   getVoteMatchMotionIds,
-  motions => motions.count()
+  voteables => voteables.size
 );
 
 export const getVoteMatchUserVotes = createSelector(
   [getUserVotes, getVoteMatchMotionIds],
-  (votes, motions) => motions.map(motion => votes.getIn([motion, 'option']))
+  (votes, voteables) => voteables.map(motion => votes.getIn([motion, 'option']))
 );
 
 export const getVoteMatchCountUserVotes = createSelector(
@@ -79,3 +79,6 @@ export const getVoteMatchSimilarity = createSelector(
     return calcPercentage(countSimilarities, userVotes.length);
   }
 );
+
+export const isVoteablePresentInVoteMatch = (state, props) =>
+  state.getIn(['voteMatch', 'items', props.id, 'voteables']).contains(props.voteable);
