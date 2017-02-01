@@ -13,11 +13,15 @@ const propTypes = {
 const CountBubble = ({
   count,
 }) => (
-  <div className="CountBubble">
+  <AnimateOnChange
+    baseClassName="CountBubble"
+    animationClassName="CountBubble--pop-out"
+    animate={count !== 0}
+  >
     <div className="CountBubble__number">
       {count}
     </div>
-  </div>;
+  </AnimateOnChange>
 );
 
 CountBubble.propTypes = propTypes;
