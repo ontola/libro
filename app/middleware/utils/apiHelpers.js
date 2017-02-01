@@ -2,12 +2,13 @@ import fetch from 'isomorphic-fetch';
 import { Promise } from 'es6-promise';
 import { batchActions } from 'redux-batched-actions';
 
-const headers = clientToken => ({
-  // credentials: 'same-origin',
+import LinkedRenderStore from '../../helpers/LinkedRenderStore';
+import { safeCredentials } from 'helpers/arguHelpers';
+
+const headers = () => ({
   headers: {
     Accept: 'application/vnd.api+json',
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${clientToken}`,
   },
 });
 
@@ -35,8 +36,7 @@ export const callApi = (apiBaseUrl, { payload }) => {
   const method = request && request.method;
   const href = request && request.href;
   const endpoint = href || getEndpoint(apiBaseUrl, payload);
-  // Todo: set clientToken by logging in.
-  const clientToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOiIyMDE3LTAxLTA2VDE2OjUwOjA4LjMxOTU2WiIsInVzZXIiOnsidHlwZSI6InVzZXIiLCJpZCI6MSwiZW1haWwiOiJqb2VwQGFyZ3UubmwifX0.Sr9a6Z0Q7rgti-kxzRjAJ3gL3Ke3NOPpZG62pfiQf8zYMUW1Hum-dFENb7r5Izi1EyWXJrTrpCZdBwRyy998AQ';
+
   let body;
   if (typeof method !== 'undefined' && method !== 'GET') {
     body = {
@@ -53,14 +53,29 @@ export const callApi = (apiBaseUrl, { payload }) => {
     credentials: 'same-origin',
   })
   .then(creds => fetch(endpoint, creds))
-    .then(response => response.json()
-    .then(json => ({ json, response })))
-    .then(({ json, response }) => {
-      if (!response.ok) {
-        return Promise.reject(json);
-      }
-      return Promise.resolve(json);
+  .then(response => response.json()
+  .then(json => ({ json, response })))
+  .then(({ json, response }) => {
+    LinkedRenderStore.api.processor.worker.postMessage({
+      method: 'DATA_ACQUIRED',
+      params: {
+        iri: response.url,
+      },
+      data: {
+        status: response.status,
+        headers: {
+          Accept: response.headers.get('Accept'),
+          'Content-Type': response.headers.get('Content-Type'),
+        },
+        url: response.url,
+        body: JSON.stringify(json),
+      },
     });
+    if (!response.ok) {
+      return Promise.reject(json);
+    }
+    return Promise.resolve(json);
+  });
 };
 
 /**
@@ -94,6 +109,9 @@ export const yieldEntities = (json) => {
  * @return {object} actions An array of actions that can be dispatched in a batch
  */
 export const parseResult = (dataStore, entities, action) => {
-  const formatEntity = entity => action(dataStore.formatEntity(entity));
-  return batchActions(entities.map(formatEntity));
+  const formatEntity = (entity) => {
+    const formatted = dataStore.formatEntity(entity);
+    return formatted && action(formatted);
+  };
+  return batchActions(entities.map(formatEntity).filter(e => e));
 };
