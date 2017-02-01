@@ -83,6 +83,8 @@
       "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
       "newlines-between": "always"
     }],
+    "one-var-declaration-per-line": ["error", "initializations"],
+    "one-var": ["error", { "uninitialized": "always" }],
     "prefer-default-export": 0,
     "react/jsx-filename-extension": 0,
     "space-unary-ops": ["error", { "words": true, "nonwords": false }],
@@ -93,7 +95,7 @@
         100,
         200, 201, 202, 203, 204,
         300, 301, 302, 303, 304,
-        400, 401, 402, 403, 404, 429,
+        400, 401, 402, 403, 404, 422, 429,
         500, 501, 502, 503, 504]
     }],
     "no-shadow": "error",

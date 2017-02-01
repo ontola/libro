@@ -2,8 +2,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { browserHistory } from 'react-router';
 
 const createSelectLocationState = () => {
-  let prevRoutingState;
-  let prevRoutingStateJS;
+  let prevRoutingState, prevRoutingStateJS;
 
   return (state) => {
     const routingState = state.get('router');

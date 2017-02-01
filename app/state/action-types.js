@@ -21,6 +21,9 @@ export const GET_EVENT_ITEM = 'GET_EVENTS';
 export const SET_EVENT_TIME = 'SET_TIME';
 export const TOGGLE_SHOW_VIDEO = 'TOGGLE_SHOW_VIDEO';
 
+// Form
+export const EMAIL_TAKEN = 'EMAIL_TAKEN';
+
 // Groups
 export const GET_GROUPS = 'GET_GROUPS';
 export const GET_GROUP = 'GET_GROUP';

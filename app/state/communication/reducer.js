@@ -15,7 +15,7 @@ const communication = (state = initialState, action) => {
   if (action.error) {
     return state.merge({
       isError: true,
-      errorMessage: action.payload.message,
+      errorMessage: action.payload && action.payload.message,
     });
   }
 

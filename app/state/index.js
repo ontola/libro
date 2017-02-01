@@ -1,17 +1,16 @@
+import { linkMiddleware } from 'link-redux';
 import { applyMiddleware, createStore, compose } from 'redux';
-import thunk from 'redux-thunk';
 import { enableBatching } from 'redux-batched-actions';
 import { combineReducers } from 'redux-immutable';
+import { reducer as search, reduxSearch } from 'redux-search';
+import thunk from 'redux-thunk';
 
-import JsonApi from '../middleware/api';
-import { linkMiddleware } from 'link-redux';
-import LinkedRenderStore from '../helpers/LinkedRenderStore';
 import { ARGU_API_URL_EXT } from '../config';
-import * as reducers from './reducers';
+import LinkedRenderStore from '../helpers/LinkedRenderStore';
+import JsonApi from '../middleware/api';
 import * as models from '../models';
 
-import { reducer as search, reduxSearch } from 'redux-search';
-import { reducer as form } from 'redux-form/immutable';
+import * as reducers from './reducers';
 
 const apiMiddleware = new JsonApi({
   models: Object.values(models),
@@ -49,7 +48,7 @@ const configureStore = (preloadedState) => {
 
   const store = createStore(
     enableBatching(combineReducers(
-      Object.assign({}, reducers, { search, form }))
+      Object.assign({}, reducers, { search }))
     ),
     preloadedState,
     middleware
