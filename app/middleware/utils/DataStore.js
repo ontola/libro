@@ -52,6 +52,9 @@ export default class DataStore {
         }
       });
     }
-    return new this.types[type](entity);
+    if (this.types[type]) {
+      return new this.types[type](entity);
+    }
+    return undefined;
   }
 }

@@ -39,6 +39,7 @@ export { default as FormField } from './FormField';
 export { default as GeneratedIcon } from './GeneratedIcon';
 export { default as Header } from './Header';
 export { default as Heading } from './Heading';
+export { default as HiddenFormField } from './HiddenFormField';
 export { default as HoverBox } from './HoverBox';
 export { default as LabelValue } from './LabelValue';
 export { default as LabelValueBar } from './LabelValueBar';

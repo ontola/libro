@@ -1,6 +1,12 @@
 import React, { PropTypes } from 'react';
+import { withRouter } from 'react-router';
 import { Field, reduxForm } from 'redux-form/immutable';
 import { connect } from 'react-redux';
+
+import {
+  safeCredentials,
+} from 'helpers/arguHelpers';
+import { fetchActor } from 'state/currentActors/actions';
 
 import {
   Button,
@@ -9,7 +15,10 @@ import {
   CardDivider,
   CardRow,
   FormField,
+  HiddenFormField,
 } from 'components';
+
+const PATH_MATCH = 2;
 
 const propTypes = {
   // From redux-form
@@ -47,6 +56,7 @@ const SignInForm = ({
     </CardContent>
     <CardDivider text="of" />
     <form
+      action="/users"
       onSubmit={handleSubmit}
     >
       <Field
@@ -59,6 +69,11 @@ const SignInForm = ({
         placeholder="email@example.com"
         type="email"
         variant="material"
+      />
+      <Field
+        component={HiddenFormField}
+        id="r"
+        name="r"
       />
       <CardActions noSpacing>
         {hasCancel &&
@@ -98,18 +113,38 @@ const validate = (values) => {
   return errors;
 };
 
-const mapStateToProps = () => ({
+const mapStateToProps = (state, props) => ({
+  fields: ['email', 'r'],
   form: 'signIn',
+  initialValues: {
+    r: props.redirect,
+  },
   validate,
 });
 
-const mapDispatchToProps = dispatch => ({
-  onSubmit: values => dispatch(`SOME_REGISTRATION_OR_SIGN_IN_ACTION ${values}`),
+const mapDispatchToProps = (dispatch, props) => ({
+  onSubmit: values => safeCredentials({
+    method: 'POST',
+    body: JSON.stringify({
+      user: {
+        email: values.get('email'),
+      },
+    }),
+  })
+  .then(opts => fetch('/users', opts))
+  .then((res) => {
+    if (res.status === 201) {
+      dispatch(fetchActor());
+      const match = values.get('r').match(/^https:\/\/argu\.(local|co)([\w\W]*$)/);
+      const redirect = (match && match[PATH_MATCH]) || '/';
+      props.router.push(redirect);
+    }
+  }),
 });
 
-const SignInFormContainer = connect(mapStateToProps, mapDispatchToProps)(reduxForm({
+const SignInFormContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(reduxForm({
   validate,
 }
-)(SignInForm));
+)(SignInForm)));
 
 export default SignInFormContainer;
