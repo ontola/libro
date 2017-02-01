@@ -22,4 +22,11 @@ LinkedRenderStore.registerRenderer(
   'http://schema.org/thumbnail'
 );
 
+LinkedRenderStore.registerRenderer(
+  ({ linkedProp }) => <img className="SideBarLink__image" role="presentation" src={linkedProp} />,
+  'http://schema.org/ImageObject',
+  'http://schema.org/thumbnail',
+  'sideBar'
+);
+
 export default Thumbnail;

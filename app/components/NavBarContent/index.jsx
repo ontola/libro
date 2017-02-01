@@ -1,20 +1,23 @@
+import { LinkedObjectContainer } from 'link-redux';
 import React, { PropTypes } from 'react';
-import path from 'helpers/paths';
-import articles from '../../articles';
-import { checkLuminance } from 'helpers/color';
 import { Link } from 'react-router';
-import './NavBarContent.scss';
 
 import {
   SideBarCollapsible,
   SideBarLink,
   OrgSwitcher,
 } from 'components';
+import { checkLuminance } from 'helpers/color';
+import path from 'helpers/paths';
+
+import articles from '../../articles';
+import './NavBarContent.scss';
+
+import { ARGU_API_URL } from '../../config';
 
 const propTypes = {
   actorType: PropTypes.oneOf(['User', 'Guest']),
   orgColor: PropTypes.string,
-  displayName: PropTypes.string,
   redirectUrl: PropTypes.string,
 };
 
@@ -23,9 +26,8 @@ const defaultProps = {
 };
 
 const NavBarContent = ({
-  orgColor,
   actorType,
-  displayName,
+  orgColor,
   redirectUrl,
 }) => {
   const style = {
@@ -42,11 +44,7 @@ const NavBarContent = ({
   if (actorType === 'User') {
     actorItem = (
       <div>
-        <SideBarLink
-          imageUrl="https://argu-logos.s3.amazonaws.com/photos/825/icon_profielfoto_Joep_Meindertsma.jpg"
-          label={displayName}
-          to={path.profile(1)}
-        />
+        <LinkedObjectContainer object={`${ARGU_API_URL}/c_a`} topology="sideBar" />
         <SideBarLink icon="gears" label="Instellingen" to={path.settings()} />
       </div>
     );

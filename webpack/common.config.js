@@ -51,6 +51,7 @@ const common = {
       'process.env.ELASTICSEARCH_URL': JSON.stringify(process.env.ELASTICSEARCH_URL),
       'process.env': {
         NODE_ENV: process.env.NODE_ENV === 'development' ? '"development"' : '"production"',
+        ARGU_API_URL: JSON.stringify(process.env.ARGU_API_URL),
       },
       __DEVELOPMENT__: process.env.NODE_ENV === 'development',
       __PRODUCTION__: process.env.NODE_ENV === 'production',
