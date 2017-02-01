@@ -37,10 +37,36 @@ export default function routes(app, port) {
     index: constants.ELASTICSEARCH_INDEX,
   }));
 
+  app.post('/csrfToken', (req, res) => {
+    request(
+      {
+        url: `${constants.ARGU_API_URL}/csrf.json`,
+        strictSSL: false,
+        xfwd: true,
+        headers: {
+          Authorization: `Bearer ${railsToken}`,
+          Cookie: req.header('Cookie'),
+        },
+      },
+      (error, response, body) => {
+        let csrfToken;
+        try {
+          csrfToken = JSON.parse(body).token;
+        } catch (SyntaxError) {
+          csrfToken = '';
+        }
+        res.set('Set-Cookie', response.headers['set-cookie']);
+        res.end(JSON.stringify({
+          csrfToken,
+        }));
+      }
+    );
+  });
+
   app.get(/.*/, (req, res) => {
     const accept = req.get('Accept');
     if (accept && accept.includes('application/vnd.api+json')) {
-      if (req.originalUrl.match(/^\/(f|m|q|a|u|v)\//) !== null) {
+      if (req.originalUrl.match(/^\/(f|m|q|a|u|v|c_a)\//) !== null) {
         return proxy({
           target: constants.ARGU_API_URL,
           changeOrigin: true,
@@ -59,6 +85,7 @@ export default function routes(app, port) {
         {
           url: 'https://argu.local/csrf.json',
           strictSSL: false,
+          xfwd: true,
           headers: {
             Authorization: `Bearer ${railsToken}`,
             Cookie: req.header('Cookie'),
