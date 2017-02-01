@@ -9,6 +9,9 @@ export default function currentActors(state = initialState, action) {
       if (action.payload.loading === true) {
         return state;
       }
+      if (action.error === true) {
+        return state;
+      }
       return action.payload.record;
     }
     default: {
