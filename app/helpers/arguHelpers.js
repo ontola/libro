@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { ARGU_API_URL } from '../config';
 /**
  * @module arguHelpers
  * @summary Helpers from the main Argu codebase, do not use these methods in new components.
@@ -72,20 +73,34 @@ export function errorMessageForStatus(status) {
   };
 }
 
+export function json(response) {
+  if (typeof response !== 'undefined' && response.status !== 204 && response.status !== 304) {
+    return response.json();
+  }
+  return Promise.resolve();
+}
+
 export function getMetaContent(name) {
   const header = document.querySelector(`meta[name="${name}"]`);
   return header && header.content;
 }
 
 export function getAuthenticityToken() {
-  return getMetaContent('csrf-token');
+  return fetch(`${ARGU_API_URL}/csrfToken`, {
+    method: 'POST',
+    credentials: 'include',
+    mode: 'same-origin',
+  })
+  .then(json)
+  .then(jsonRes => jsonRes.csrfToken);
 }
 
 export function authenticityHeader(options) {
-  return Object.assign({}, options || {}, {
-    'X-CSRF-Token': getAuthenticityToken(),
+  return getAuthenticityToken()
+  .then(token => Object.assign({}, options || {}, {
+    'X-CSRF-Token': token,
     'X-Requested-With': 'XMLHttpRequest',
-  });
+  }));
 }
 
 export function getUserIdentityToken() {
@@ -114,11 +129,12 @@ export function jsonHeader(options) {
  */
 export function safeCredentials(options) {
   const opts = options || {};
-  return Object.assign(opts, {
+  return authenticityHeader()
+  .then(authHeader => Object.assign(opts, {
     credentials: 'include',
     mode: 'same-origin',
-    headers: Object.assign((options.headers || {}), authenticityHeader(), jsonHeader()),
-  });
+    headers: Object.assign((options.headers || {}), authHeader, jsonHeader()),
+  }));
 }
 
 export function statusSuccess(response) {
@@ -145,11 +161,4 @@ export function userIdentityToken(options) {
   return Object.assign({}, opts, {
     body: JSON.stringify(Object.assign((opts.body || {}), getUserIdentityToken())),
   });
-}
-
-export function json(response) {
-  if (typeof response !== 'undefined' && response.status !== 204 && response.status !== 304) {
-    return response.json();
-  }
-  return Promise.resolve();
 }

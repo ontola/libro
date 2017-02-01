@@ -7,7 +7,7 @@ import {
   json,
   statusSuccess,
   tryLogin,
-} from './arguHelpers';
+} from 'helpers/arguHelpers';
 
 import {
   CardActions,
@@ -35,9 +35,11 @@ class VoteButtons extends PropertyBase {
   }
 
   static createMembership(response) {
-    return fetch(response.links.create_membership.href, safeCredentials({
+    return safeCredentials({
       method: 'POST',
-    })).then(statusSuccess);
+    })
+    .then(opts => fetch(response.links.create_membership.href, opts))
+    .then(statusSuccess);
   }
 
   handleNotAMember(response) {
@@ -50,14 +52,15 @@ class VoteButtons extends PropertyBase {
   }
 
   vote(side) {
-    fetch(`${this.getLinkedObjectProperty('@id')}/votes.json`, safeCredentials({
+    safeCredentials({
       method: 'POST',
       body: JSON.stringify({
         vote: {
           for: side,
         },
       }),
-    }))
+    })
+    .then(opts => fetch(fetch(`${this.getLinkedObjectProperty('@id')}/votes.json`, opts)))
     .then(statusSuccess, tryLogin)
     .then(json, tryLogin)
     .then((data) => {

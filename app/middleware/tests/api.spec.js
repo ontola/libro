@@ -1,6 +1,7 @@
 /* eslint no-magic-numbers: 0 */
 import { assert } from 'chai';
 import nock from 'nock';
+import sinon from 'sinon';
 
 import {
   handleRecord,
@@ -15,8 +16,16 @@ import {
 } from '../utils/apiHelpers';
 
 import DataStore, { toCamel } from '../utils/DataStore';
-
+import LinkedRenderStore from '../../helpers/LinkedRenderStore';
 import * as models from 'models';
+
+function mockCSRF() {
+  LinkedRenderStore.api.processor.worker = { postMessage: () => {} };
+  sinon.stub(LinkedRenderStore.api.processor.worker, 'postMessage');
+  nock('https://argu.co')
+    .post('/csrfToken')
+    .reply(200, { csrfToken: 'sometoken' });
+}
 
 const record = new models.Motion({
   id: '1234567890',
@@ -80,6 +89,7 @@ describe('Api Middleware', () => {
   });
 
   it('should handle fetch requests', (done) => {
+    mockCSRF();
     const jsondataSuccess = {
       data: 'success',
     };

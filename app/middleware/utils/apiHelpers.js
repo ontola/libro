@@ -46,12 +46,13 @@ export const callApi = (apiBaseUrl, { payload }) => {
       },
     };
   }
-  return fetch(endpoint, {
+  return safeCredentials({
     method: method || 'GET',
-    ...headers(clientToken),
+    ...headers(),
     body: JSON.stringify(body),
-    // credentials: 'same-origin',
+    credentials: 'same-origin',
   })
+  .then(creds => fetch(endpoint, creds))
     .then(response => response.json()
     .then(json => ({ json, response })))
     .then(({ json, response }) => {
