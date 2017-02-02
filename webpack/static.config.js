@@ -1,5 +1,6 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
+
 const config = require('./common.config');
 
 config.output.publicPath = '/dist/';

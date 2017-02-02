@@ -1,8 +1,10 @@
-require('react-hot-loader/patch');
 const path = require('path');
-const webpack = require('webpack');
-const config = require('./common.config');
+
+require('react-hot-loader/patch');
 const HappyPack = require('happypack');
+const webpack = require('webpack');
+
+const config = require('./common.config');
 
 config.output.publicPath = '/dist/';
 config.output.pathinfo = true;

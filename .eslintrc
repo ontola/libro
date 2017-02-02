@@ -37,6 +37,13 @@
     }
   },
   "rules": {
+    "comma-dangle": ["error", {
+      "arrays": "only-multiline",
+      "objects": "only-multiline",
+      "imports": "only-multiline",
+      "exports": "only-multiline",
+      "functions": "never"
+    }],
     "valid-jsdoc": "error",
     // Accessibility
     // The ones that are commented out resulted in errors. May be something wrong with the jsx-a11y plugin.
@@ -49,7 +56,7 @@
     "jsx-a11y/heading-has-content": 2,
     "jsx-a11y/href-no-hash": 2,
     "jsx-a11y/html-has-lang": 2,
-    "jsx-a11y/img-has-alt": 2,
+    "jsx-a11y/img-has-alt": 1,
     "jsx-a11y/img-redundant-alt": 2,
     "jsx-a11y/label-has-for": 2,
     "jsx-a11y/lang": 2,
@@ -66,11 +73,16 @@
     "jsx-a11y/tabindex-no-positive": 2,
     // Code style
     "import/no-extraneous-dependencies": ["error", {
-      "devDependencies": true,
+      "devDependencies": true
     }],
     "import/imports-first": 0,
     "import/prefer-default-export": 0,
     "import/newline-after-import": 0,
+    "import/first": "warn",
+    "import/order": ["warn", {
+      "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
+      "newlines-between": "always"
+    }],
     "prefer-default-export": 0,
     "react/jsx-filename-extension": 0,
     "space-unary-ops": ["error", { "words": true, "nonwords": false }],
@@ -95,6 +107,9 @@
       {
         "capIsNewExceptions": ["Record", "Alert"]
       }
-    ]
+    ],
+    "react/require-default-props": 0,
+    "import/no-webpack-loader-syntax": 1,
+    "react/no-array-index-key": 1
   }
 }

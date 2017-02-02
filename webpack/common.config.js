@@ -1,5 +1,6 @@
-const autoprefixer = require('autoprefixer');
 const path = require('path');
+
+const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 
 const TARGET = process.env.npm_lifecycle_event;

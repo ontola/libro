@@ -1,7 +1,9 @@
-const config = require('./common.config');
-const nodeExternals = require('webpack-node-externals');
 const path = require('path');
+
+const nodeExternals = require('webpack-node-externals');
 const HappyPack = require('happypack');
+
+const config = require('./common.config');
 
 config.cache = 'true';
 config.entry = './test/testhelper.js';
