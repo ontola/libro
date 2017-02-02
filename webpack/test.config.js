@@ -7,7 +7,12 @@ const config = require('./common.config');
 
 config.cache = 'true';
 config.entry = './tests/testhelper.js';
-config.externals = [nodeExternals()];
+config.externals = [
+  nodeExternals(),
+  { '../../../node_modules/react.js': 'react' },
+  { '../../node_modules/react.js': 'react' }
+];
+
 config.output = {};
 
 config.resolveLoader = {
@@ -16,23 +21,23 @@ config.resolveLoader = {
 
 config.module.loaders.unshift(
   {
-    test: /(\.jsx|\.js)?$/,
-    loaders: ['happypack/loader?id=babel'],
     exclude: /node_modules/,
     include: /app/,
+    loaders: ['happypack/loader?id=babel'],
+    test: /(\.jsx|\.js)?$/,
   }
 );
 
 config.module.loaders.push({
-  test: /\.scss$/,
   loader: 'null-loader',
+  test: /\.scss$/,
 });
 
 config.plugins.push(
   new HappyPack({
     id: 'babel',
-    threads: 4,
     loaders: ['babel-loader?cacheDirectory'],
+    threads: 4,
   })
 );
 
