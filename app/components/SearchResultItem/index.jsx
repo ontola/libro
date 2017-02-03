@@ -15,11 +15,12 @@ import VoteMatchAddContainer from 'containers/VoteMatchAddContainer';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
-  classification: PropTypes.string.isRequired,
+  classification: PropTypes.string,
   createdAt: PropTypes.instanceOf(Date).isRequired,
   link: PropTypes.string.isRequired,
-  title: PropTypes.node.isRequired,
-  score: PropTypes.number.isRequired,
+  name: PropTypes.node.isRequired,
+  submitters: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 const SearchResultItem = ({
@@ -27,32 +28,27 @@ const SearchResultItem = ({
   classification,
   createdAt,
   link,
-  title,
-  score,
-}) => {
-  const threshold = 0.5;
-  const TO_PERCENTAGE = 100;
-  const scorePercentage = Math.ceil(score * TO_PERCENTAGE);
-  const scoreIcon = score <= threshold ? 'star-half-o' : 'star';
-  return (
-    <Card>
-      <CardContent>
-        <Heading size="3">
-          <Link to={link}>
-            <div dangerouslySetInnerHTML={{ __html: title }} />
-          </Link>
-        </Heading>
-        <DetailsBar>
-          <DetailType type={classification} />
-          <DetailDate date={createdAt} />
-          <Detail text={`${scorePercentage}% match`} icon={scoreIcon} />
-          <VoteMatchAddContainer id={link} />
-        </DetailsBar>
-        <div dangerouslySetInnerHTML={{ __html: children }} />
-      </CardContent>
-    </Card>
-  );
-};
+  name,
+  submitters,
+  type,
+}) => (
+  <Card>
+    <CardContent>
+      <Heading size="3">
+        <Link to={link}>
+          <div dangerouslySetInnerHTML={{ __html: name }} />
+        </Link>
+      </Heading>
+      <DetailsBar>
+        <DetailType classification={classification} type={type} />
+        <Detail text={submitters} />
+        <DetailDate date={createdAt} />
+        <VoteMatchAddContainer id={link} />
+      </DetailsBar>
+      <div dangerouslySetInnerHTML={{ __html: children }} />
+    </CardContent>
+  </Card>
+);
 
 SearchResultItem.propTypes = propTypes;
 

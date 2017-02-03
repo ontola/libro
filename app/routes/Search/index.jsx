@@ -4,12 +4,23 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
 import {
-  Hits, NoHits, NumericRefinementListFilter, Pagination,
-  RefinementListFilter, RangeFilter, RangeSliderHistogram,
-  ResetFilters, Select, SearchBox, SortingSelector,
+  Hits,
+  NoHits,
+  Pagination,
+  RangeFilter,
+  RangeSliderHistogram,
+  RefinementListFilter,
+  ResetFilters,
+  SearchBox,
+  Select,
+  SortingSelector,
 } from 'searchkit';
 
-import { Button, Container, Cover } from 'components';
+import {
+  Button,
+  Container,
+  Cover,
+} from 'components';
 import DrawerContainer from 'containers/DrawerContainer';
 import SearchResultContainer from 'containers/SearchResultContainer';
 import { getSearchHits } from 'state/searchElastic/selectors';
@@ -26,13 +37,6 @@ const sortOption = [
   { label: 'Relevantie', field: '_score', order: 'desc', defaultOption: true },
   { label: 'Nieuw-Oud', field: 'date', order: 'desc' },
   { label: 'Oud-Nieuw', field: 'date', order: 'asc' },
-];
-
-const dateFilterOptions = [
-  { title: 'Afgelopen 6 maanden', from: 1442966400000, to: 1458691200000 },
-  { title: 'Afgelopen 1 jaar', from: 1427068800000, to: 1458691200000 },
-  { title: 'Afgelopen 2 jaar', from: 1395532800000, to: 1458691200000 },
-  { title: 'Afgelopen 5 jaar', from: 1332460800000, to: 1458691200000 },
 ];
 
 const translations = {
@@ -85,8 +89,9 @@ class Search extends Component {
         <Cover>
           <Container size="large">
             <SearchBox
-              queryFields={['onderwerp', 'text', 'text.shingles']}
+              queryFields={['name', 'text', 'text.shingles']}
               placeholder="Zoek op onderwerp, persoon, organisatie..."
+              searchOnChange
             />
             <div className={`Search__search-tools ${toolsClass}`}>
               <div className="Search__drawer-action">
@@ -106,38 +111,52 @@ class Search extends Component {
             <DrawerContainer>
               <RefinementListFilter
                 id="soort"
-                field="classification"
+                field="_type"
                 operator="OR"
                 title="Soort"
                 size={5}
               />
-              <NumericRefinementListFilter
-                id="dateFilter"
-                title="Datum"
-                field="date"
-                options={dateFilterOptions}
+              <RefinementListFilter
+                id="onderwerp"
+                field="categories"
+                operator="OR"
+                title="Onderwerp"
+                size={5}
+              />
+              <RefinementListFilter
+                id="indiener"
+                field="submitters"
+                operator="OR"
+                title="Indiener"
+                size={5}
               />
               <RangeFilter
                 field="date"
                 title="Datum"
                 id="dateRangeFilter"
                 min={1332460800000}
-                max={1458691200000}
+                max={Date.now()}
                 showHistogram
                 rangeComponent={RangeSliderHistogram}
                 rangeFormatter={count => formatDate(count, 'l')}
               />
               <ResetFilters component={ResetFiltersDisplay} />
             </DrawerContainer>
-
             <div className="Search__main">
               <Hits
                 hitsPerPage={8}
-                highlightFields={['onderwerp', 'text']}
+                highlightFields={['name', 'text']}
                 itemComponent={SearchResultContainer}
                 scrollTo="body"
               />
-              <NoHits suggestionsField="onderwerp" />
+              <NoHits
+                suggestionsField="name"
+                translations={{
+                  'NoHits.NoResultsFound': 'Geen resultaten gevonden voor {query}',
+                  'NoHits.DidYouMean': 'Bedoelde je {suggestion}?',
+                  'NoHits.SearchWithoutFilters': 'Zoek naar {query} zonder filters',
+                }}
+              />
               <Pagination showNumbers />
             </div>
           </div>

@@ -23,9 +23,11 @@ const SearchResultContainer = ({ result }) => {
     <SearchResultItem
       classification={data.classification}
       createdAt={formatDate(data.date)}
-      link={path.motion(id)}
-      title={data.onderwerp}
+      link={path.odAbsolute(source.url)}
+      name={data.name}
       score={score}
+      type={type}
+      submitters={data.submitters}
     >
       {content}
     </SearchResultItem>

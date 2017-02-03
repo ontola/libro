@@ -80,6 +80,14 @@ const path = {
     const url = '/u/sign_in';
     return r ? `${url}?r=${encodeURIComponent(r)}` : url;
   },
+
+  od(iri) {
+    return `/od?iri=${iri}`;
+  },
+
+  odAbsolute(iri) {
+    return `/od?iri=https://argu.local${iri}`;
+  },
 };
 
 export default path;

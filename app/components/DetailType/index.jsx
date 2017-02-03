@@ -4,10 +4,15 @@ import { Detail } from 'components';
 import { types } from 'components/shared/config';
 
 const propTypes = {
+  // Optional string that adds extra information on the subtype, such as 'motion'. Overwrites type.
+  classification: PropTypes.string,
   type: PropTypes.oneOf(types).isRequired,
 };
 
-const DetailType = ({ type }) => {
+const DetailType = ({
+  classification,
+  type,
+}) => {
   let className = null;
   let icon = 'cross';
   let text = 'No type';
@@ -24,7 +29,7 @@ const DetailType = ({ type }) => {
       className = 'DetailType--motion';
       icon = 'lightbulb-o';
       text = 'Motie';
-      title = 'Een motie is een voorstel van de raad.';
+      title = 'Een motie is een voorstel om iets door een overheid te laten uitvoeren.';
       break;
     case 'challenge':
       className = 'DetailType--question';
@@ -72,9 +77,9 @@ const DetailType = ({ type }) => {
   return (
     <Detail
       className={`DetailType ${className}`}
-      text={text}
+      text={classification || text}
       icon={icon}
-      title={title}
+      title={classification || title}
     />
   );
 };
