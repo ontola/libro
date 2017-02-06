@@ -1,4 +1,5 @@
 /* eslint no-magic-numbers: 0 */
+const ASSETS_HOST = process.env.ASSETS_HOST || '';
 const FRONTEND_HOSTNAME = process.env.FRONTEND_HOSTNAME || 'https://beta.argu.co';
 const PORT_DEVELOPMENT = process.env.PORT_DEVELOPMENT || 3001;
 const PORT_PRODUCTION = process.env.PORT_PRODUCTION || 8080;
@@ -15,11 +16,12 @@ const ELASTICSEARCH_URL = process.env.ELASTICSEARCH_URL || '/aod_search/';
 const ELASTICSEARCH_INDEX = process.env.ELASTICSEARCH_INDEX || 'aod';
 
 export {
-  FRONTEND_HOSTNAME,
   PORT,
   AOD_API_URL,
   ARGU_API_URL,
   ARGU_API_URL_EXT,
+  ASSETS_HOST,
   ELASTICSEARCH_URL,
   ELASTICSEARCH_INDEX,
+  FRONTEND_HOSTNAME,
 };

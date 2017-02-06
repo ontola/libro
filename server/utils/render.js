@@ -1,6 +1,8 @@
+import { ASSETS_HOST } from '../../app/config';
+
 export const renderFullPage = (html, devPort, domain, csrfToken, initialState = {}, head) => {
   const bundleCSS = process.env.NODE_ENV === 'production'
-    ? '<link rel="stylesheet" type="text/css" href="/dist/bundle.css" />'
+    ? `<link rel="stylesheet" type="text/css" href="${ASSETS_HOST}/dist/bundle.css" />`
     : '';
   const bugsnagKey = process.env.BUGSNAG_KEY;
 
@@ -10,7 +12,7 @@ export const renderFullPage = (html, devPort, domain, csrfToken, initialState = 
       <head>
         <meta charset="utf-8" />
         <meta property="og:type" content="website" />
-        <link rel="manifest" href="/static/manifest.json">
+        <link rel="manifest" href="${ASSETS_HOST}/static/manifest.json">
 
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
@@ -40,7 +42,7 @@ export const renderFullPage = (html, devPort, domain, csrfToken, initialState = 
       </head>
       <body>
         <div id="root">${html}</div>
-        <script src="/dist/bundle.js"></script>
+        <script src="${ASSETS_HOST}/dist/bundle.js"></script>
       </body>
     </html>`;
 };
