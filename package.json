@@ -1,7 +1,7 @@
 {
   "name": "argu-open-data",
   "description": "Een interface voor motiedata uit de gemeenteraad",
-  "version": "0.1.0",
+  "version": "0.7.0",
   "author": "Joep Meindertsma <joep@argu.co> (https://argu.co)",
   "dependencies": {
     "assert": "^1.4.1",
