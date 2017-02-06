@@ -6,7 +6,7 @@ const HappyPack = require('happypack');
 const config = require('./common.config');
 
 config.cache = 'true';
-config.entry = './test/testhelper.js';
+config.entry = './tests/testhelper.js';
 config.externals = [nodeExternals()];
 config.output = {};
 
