@@ -66,7 +66,7 @@ export default function routes(app, port) {
   app.get(/.*/, (req, res) => {
     const accept = req.get('Accept');
     if (accept && (accept.includes('application/vnd.api+json') || accept.includes('application/json'))) {
-      if (req.originalUrl.match(/^\/(f|m|q|a|u|v|c_a)\//) !== null) {
+      if (req.originalUrl.match(/^\/(f|m|q|a|u|v|c_a)(\/|$)/) !== null) {
         return proxy({
           target: constants.ARGU_API_URL,
           changeOrigin: true,
