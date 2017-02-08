@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ARGU_API_URL } from '../config';
+import { FRONTEND_HOSTNAME } from '../config';
 /**
  * @module arguHelpers
  * @summary Helpers from the main Argu codebase, do not use these methods in new components.
@@ -86,7 +86,7 @@ export function getMetaContent(name) {
 }
 
 export function getAuthenticityToken() {
-  return fetch(`${ARGU_API_URL}/csrfToken`, {
+  return fetch(`${FRONTEND_HOSTNAME}/csrfToken`, {
     method: 'POST',
     credentials: 'include',
     mode: 'same-origin',
