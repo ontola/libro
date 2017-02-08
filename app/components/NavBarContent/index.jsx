@@ -13,7 +13,7 @@ import path from 'helpers/paths';
 import articles from '../../articles';
 import './NavBarContent.scss';
 
-import { ARGU_API_URL } from '../../config';
+import { FRONTEND_HOSTNAME } from '../../config';
 
 const propTypes = {
   actorType: PropTypes.oneOf(['User', 'Guest']),
@@ -44,7 +44,7 @@ const NavBarContent = ({
   if (actorType === 'User') {
     actorItem = (
       <div>
-        <LinkedObjectContainer object={`${ARGU_API_URL}/c_a`} topology="sideBar" />
+        <LinkedObjectContainer object={`${FRONTEND_HOSTNAME}/c_a`} topology="sideBar" />
         <SideBarLink icon="gears" label="Instellingen" to={path.settings()} />
       </div>
     );
