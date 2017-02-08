@@ -70,6 +70,10 @@ export default function routes(app, port) {
         return proxy({
           target: constants.ARGU_API_URL,
           changeOrigin: true,
+          xfwd: true,
+          headers: {
+            Cookie: req.header('Cookie'),
+          },
         })(req, res);
       }
       return proxy({
