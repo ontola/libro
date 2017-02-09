@@ -17,3 +17,4 @@ stats.json
 /dev/nginx.conf
 nginx.crt
 nginx.key
+.env

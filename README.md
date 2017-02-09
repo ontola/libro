@@ -5,10 +5,9 @@ Front-end application for [Argu](https://argu.co).
 
 ## Usage
 - `npm install` or `yarn` to install dependencies. [Yarn](https://yarnpkg.com) is similar to NPM, but better. Follow the [Yarn installation instructions](https://yarnpkg.com/en/docs/install) for your OS.
+- Create a [.env file](https://www.npmjs.com/package/dotenv) by copying `.env.template`.
 - `npm run dev` to start the dev-server with corsproxy for the API and react-styleguidist for component reference.
 - Visit [http://localhost:3001/](http://localhost:3001/)
-
-The `RAILS_OAUTH_TOKEN` env var needs to be set in order to send requests to the Rails API.
 
 ## Contributing
 All tests and linters will be run automatically as a pre-commit hook.
@@ -93,7 +92,7 @@ Say there's a new model (e.g. meetings, documents) accessible in the API that th
   - [linter-sass-lint](https://atom.io/packages/linter-sass-lint)
 - [language-babel](https://atom.io/packages/language-babel) for syntax highlighting and auto-indenting.
 - [ternjs](https://atom.io/packages/atom-ternjs) for autocompletion.
-- [jsdoc](https://atom.io/packages/jsdoc) for quick jsdoc comment generation.
+- [docblockr](https://atom.io/packages/docblockr) for quick jsdoc comment generation.
 - [nuclide](https://atom.io/packages/nuclide) for go-to-definition click, built-in debugging and Flow support.
 - [nice index](https://atom.io/packages/nice-index) for displaying the component name instead of 'index.jsx' in the tabs.
 - [project-manager](https://atom.io/packages/project-manager) for quickly swithing between projects

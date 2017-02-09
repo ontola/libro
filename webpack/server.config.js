@@ -17,7 +17,7 @@ const replacements = process.env.NODE_ENV === 'development'
 
 const config = {
   target: 'node',
-  entry: './server/server',
+  entry: './server/init',
 
   output: {
     path: `${__dirname}/../dist/`,
