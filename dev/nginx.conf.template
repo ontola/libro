@@ -40,7 +40,7 @@ http {
         merge_slashes off;¡
 
         location /aod_search/ {
-            proxy_pass https://aod-search.argu.co/aod_search/;
+            proxy_pass https://beta.argu.co/aod_search/;
         }
         location /proxy/ {
             rewrite ^/proxy/([\w\W]*)$ $1 break;

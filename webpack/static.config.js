@@ -31,7 +31,7 @@ config.plugins.push(
     'process.env.NODE_ENV': JSON.stringify('production'),
     'process.env.ARGU_API_EXT_BASE': JSON.stringify(
       process.env.ARGU_API_EXT_BASE ||
-      'https://aod-search.argu.co/api/'
+      'https://beta.argu.co/api/'
     ),
   }),
   new webpack.optimize.UglifyJsPlugin({
