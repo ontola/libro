@@ -18,6 +18,8 @@ import {
 import { fetchActor } from 'state/currentActors/actions';
 import { emailTaken } from 'state/form/actions';
 
+import { ARGU_API_URL } from '../config';
+
 const PATH_MATCH = 2;
 
 const propTypes = {
@@ -88,7 +90,7 @@ const SignInForm = ({
       </CardContent>
       <CardDivider text="of" />
       <form
-        action="/users"
+        action={`${ARGU_API_URL}/users`}
         onSubmit={handleSubmit}
       >
         <Field
@@ -168,7 +170,7 @@ const mapDispatchToProps = (dispatch, props) => ({
     const email = values.get('email');
     const password = values.get('password');
     const isLogin = email && password;
-    const location = isLogin ? '/oauth/token' : '/users';
+    const location = isLogin ? `${ARGU_API_URL}/oauth/token` : `${ARGU_API_URL}/users`;
     const body = isLogin ? values.toJS() : { user: values.toJS() };
     return safeCredentials({
       method: 'POST',
