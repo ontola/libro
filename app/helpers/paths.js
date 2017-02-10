@@ -84,10 +84,6 @@ const path = {
   od(iri) {
     return `/od?iri=${iri}`;
   },
-
-  odAbsolute(iri) {
-    return `/od?iri=https://argu.local${iri}`;
-  },
 };
 
 export default path;

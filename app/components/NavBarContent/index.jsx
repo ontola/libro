@@ -19,7 +19,7 @@ const propTypes = {
   actorType: PropTypes.oneOf(['User', 'Guest']),
   orgColor: PropTypes.string,
   redirectUrl: PropTypes.string,
-  voteMatchCount: PropTypes.integer,
+  voteMatchCount: PropTypes.number,
 };
 
 const defaultProps = {

@@ -6,6 +6,7 @@ const apiDesc = new APIDesc({
   actions: new Map({
     collection: actions.GET_VOTE_MATCHES,
     resource: actions.GET_VOTE_MATCH,
+    create: actions.CREATE_VOTE_MATCH,
   }),
   endpoint: 'vote_matches',
   type: 'voteMatches',

@@ -12,12 +12,13 @@ import {
   Heading,
 } from 'components';
 import VoteMatchAddContainer from 'containers/VoteMatchAddContainer';
+import path from 'helpers/paths';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
   classification: PropTypes.string,
   createdAt: PropTypes.instanceOf(Date).isRequired,
-  link: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   name: PropTypes.node.isRequired,
   submitters: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
@@ -27,7 +28,7 @@ const SearchResultItem = ({
   children,
   classification,
   createdAt,
-  link,
+  id,
   name,
   submitters,
   type,
@@ -35,7 +36,7 @@ const SearchResultItem = ({
   <Card>
     <CardContent>
       <Heading size="3">
-        <Link to={link}>
+        <Link to={path.od(id)}>
           <div dangerouslySetInnerHTML={{ __html: name }} />
         </Link>
       </Heading>
@@ -43,7 +44,7 @@ const SearchResultItem = ({
         <DetailType classification={classification} type={type} />
         <Detail text={submitters} />
         <DetailDate date={createdAt} />
-        <VoteMatchAddContainer id={link} />
+        <VoteMatchAddContainer id={id} />
       </DetailsBar>
       <div dangerouslySetInnerHTML={{ __html: children }} />
     </CardContent>
