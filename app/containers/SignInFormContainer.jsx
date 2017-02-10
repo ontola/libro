@@ -173,9 +173,10 @@ const mapDispatchToProps = (dispatch, props) => ({
     const location = isLogin ? `${ARGU_API_URL}/oauth/token` : `${ARGU_API_URL}/users`;
     const body = isLogin ? values.toJS() : { user: values.toJS() };
     return safeCredentials({
+      body: JSON.stringify(body),
+      mode: 'cross-origin',
       method: 'POST',
       redirect: 'manual',
-      body: JSON.stringify(body),
     })
     .then(opts => fetch(location, opts))
     .then((res) => {

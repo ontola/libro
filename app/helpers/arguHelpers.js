@@ -130,11 +130,15 @@ export function jsonHeader(options) {
 export function safeCredentials(options) {
   const opts = options || {};
   return authenticityHeader()
-  .then(authHeader => Object.assign(opts, {
-    credentials: 'include',
-    mode: 'same-origin',
-    headers: Object.assign((options.headers || {}), authHeader, jsonHeader()),
-  }));
+  .then(authHeader => Object.assign(
+    {},
+    {
+      credentials: 'include',
+      mode: 'same-origin',
+      headers: Object.assign((options.headers || {}), authHeader, jsonHeader()),
+    },
+    opts
+  ));
 }
 
 export function statusSuccess(response) {
