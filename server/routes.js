@@ -65,15 +65,14 @@ export default function routes(app, port) {
 
   app.get(/.*/, (req, res) => {
     const accept = req.get('Accept');
+    const headers = req.header('Cookie') ? { Cookie: req.header('Cookie') } : {};
     if (accept && (accept.includes('application/vnd.api+json') || accept.includes('application/json'))) {
       if (req.originalUrl.match(/^\/(f|m|q|a|u|v|c_a)(\/|$)/) !== null) {
         return proxy({
           target: constants.ARGU_API_URL,
           changeOrigin: true,
           xfwd: true,
-          headers: {
-            Cookie: req.header('Cookie'),
-          },
+          headers,
         })(req, res);
       }
       return proxy({
@@ -87,13 +86,12 @@ export default function routes(app, port) {
     if (railsToken !== undefined && railsToken !== '') {
       request(
         {
-          url: 'https://argu.local/csrf.json',
+          url: `${constants.ARGU_API_URL}/csrf.json`,
           strictSSL: false,
           xfwd: true,
-          headers: {
+          headers: Object.assign({
             Authorization: `Bearer ${railsToken}`,
-            Cookie: req.header('Cookie'),
-          },
+          }, headers),
         },
         (error, response, body) => {
           let csrfToken;
