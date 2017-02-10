@@ -1,6 +1,4 @@
-FROM alpine:edge
-
-RUN apk add --no-cache nodejs ca-certificates
+FROM node:6.9-alpine
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
@@ -16,5 +14,4 @@ ENV ELASTICSEARCH_INDEX ''
 ENV ARGU_API_URL 'http://localhost:3030/'
 
 EXPOSE 8080
-# ENTRYPOINT ["node", "./dist/server.js"]
 CMD ["node", "./dist/server.js"]
