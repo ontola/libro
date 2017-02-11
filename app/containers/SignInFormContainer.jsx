@@ -182,7 +182,7 @@ const mapDispatchToProps = (dispatch, props) => ({
     .then((res) => {
       if (res.status === 201 || (isLogin && (res.status === 302 || res.type === 'opaqueredirect'))) {
         dispatch(fetchActor());
-        const match = values.get('r').match(/^https:\/\/argu\.(local|co)([\w\W]*$)/);
+        const match = values.get('r').match(/^https:\/\/[\w*.]*argu\.(local|co)([\w\W]*$)/);
         const redirect = (match && match[PATH_MATCH]) || '/';
         props.router.push(redirect);
       } else if (res.status === 422) {
