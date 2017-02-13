@@ -1,5 +1,6 @@
 import OpenData from 'static/articles/OpenData.md';
 import VoteMatch from 'static/articles/VoteMatch.md';
+import Search from 'static/articles/Search.md';
 import Contact from 'static/articles/Contact.md';
 
 export default {
@@ -10,6 +11,10 @@ export default {
   VoteMatch: {
     title: 'Argu Stemwijzer',
     text: VoteMatch,
+  },
+  Search: {
+    title: 'Zoeken',
+    text: Search,
   },
   Contact: {
     title: 'Contact',

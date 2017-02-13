@@ -16,7 +16,9 @@
 
   code {
     background-color: color('transparent', 'dark');
+    border: solid 1px color('grey', 'x-light');
     font-family: monospace;
+    padding: .2em .3em;
   }
 
   h1,

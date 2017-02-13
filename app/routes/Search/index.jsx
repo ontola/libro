@@ -2,6 +2,7 @@ import './Search.scss';
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
+import { Link } from 'react-router';
 
 import {
   Hits,
@@ -26,6 +27,7 @@ import SearchResultContainer from 'containers/SearchResultContainer';
 import { getSearchHits } from 'state/searchElastic/selectors';
 import { toggleDrawer, setHitCount } from 'state/searchElastic/actions';
 import { formatDate } from 'helpers/date';
+import paths from 'helpers/paths';
 
 const propTypes = {
   setHitCountAction: PropTypes.func,
@@ -89,6 +91,7 @@ class Search extends Component {
         <Cover>
           <Container size="large">
             <SearchBox
+              autofocus
               queryFields={['name', 'text', 'text.shingles']}
               placeholder="Zoek op onderwerp, persoon, organisatie..."
               searchOnChange
@@ -102,6 +105,7 @@ class Search extends Component {
                 >Filter</Button>
               </div>
               <div className="Search__hits">{`${hits} resultaten`}</div>
+              <Link to={paths.info('Search')}>Bekijk zoektips</Link>
               <SortingSelector listComponent={Select} options={sortOption} />
             </div>
           </Container>
