@@ -115,7 +115,7 @@ export function getUserIdentityToken() {
  */
 export function jsonHeader(options) {
   return Object.assign({}, options || {}, {
-    Accept: 'application/json',
+    Accept: 'application/vnd.api+json',
     'Content-Type': 'application/json',
   });
 }
