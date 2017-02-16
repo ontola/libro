@@ -52,6 +52,7 @@ const common = {
       'process.env': {
         NODE_ENV: process.env.NODE_ENV === 'development' ? '"development"' : '"production"',
         ARGU_API_URL: JSON.stringify(process.env.ARGU_API_URL),
+        FRONTEND_HOSTNAME: JSON.stringify(process.env.FRONTEND_HOSTNAME),
       },
       __DEVELOPMENT__: process.env.NODE_ENV === 'development',
       __PRODUCTION__: process.env.NODE_ENV === 'production',

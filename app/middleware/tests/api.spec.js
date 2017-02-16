@@ -22,7 +22,7 @@ import * as models from 'models';
 function mockCSRF() {
   LinkedRenderStore.api.processor.worker = { postMessage: () => {} };
   sinon.stub(LinkedRenderStore.api.processor.worker, 'postMessage');
-  nock('https://argu.co')
+  nock('https://beta.argu.local')
     .post('/csrfToken')
     .reply(200, { csrfToken: 'sometoken' });
 }

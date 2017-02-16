@@ -18,7 +18,37 @@ export function listen(app, port) {
   });
 }
 
+function setHeaders(proxyReq, req) {
+  if (req.header('Cookie')) {
+    proxyReq.setHeader('Cookie', req.header('Cookie'));
+  }
+}
+
+const arguBackendRequests = proxy({
+  target: constants.ARGU_API_URL,
+  changeOrigin: true,
+  strictSSL: false,
+  toProxy: true,
+  secure: false,
+  xfwd: true,
+  onProxyReq: setHeaders,
+});
+
+const odApiProxy = proxy({
+  target: constants.AOD_API_URL,
+  pathRewrite: { '^/': '/api/' },
+  changeOrigin: true,
+});
+
 export default function routes(app, port) {
+  app.post(/^\/(f|m|q|a|u|v|c_a|users|vote_matches|oauth)(\/|$)/, (req, res) => {
+    const accept = req.get('Accept');
+    if (accept && (accept.includes('application/vnd.api+json') || accept.includes('application/json'))) {
+      return arguBackendRequests(req, res);
+    }
+    return res.status(406).end();
+  });
+
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
 
@@ -55,7 +85,9 @@ export default function routes(app, port) {
         } catch (SyntaxError) {
           csrfToken = '';
         }
-        res.set('Set-Cookie', response.headers['set-cookie']);
+        if (response) {
+          res.set('Set-Cookie', response.headers['set-cookie']);
+        }
         res.end(JSON.stringify({
           csrfToken,
         }));
@@ -65,25 +97,16 @@ export default function routes(app, port) {
 
   app.get(/.*/, (req, res) => {
     const accept = req.get('Accept');
-    const headers = req.header('Cookie') ? { Cookie: req.header('Cookie') } : {};
     if (accept && (accept.includes('application/vnd.api+json') || accept.includes('application/json'))) {
-      if (req.originalUrl.match(/^\/(f|m|q|a|u|v|c_a)(\/|$)/) !== null) {
-        return proxy({
-          target: constants.ARGU_API_URL,
-          changeOrigin: true,
-          xfwd: true,
-          headers,
-        })(req, res);
+      if (req.originalUrl.match(/^\/(f|m|q|a|u|v|c_a|vote_matches)(\/|$)/) !== null) {
+        return arguBackendRequests(req, res);
       }
-      return proxy({
-        target: constants.AOD_API_URL,
-        pathRewrite: { '^/': '/api/' },
-        changeOrigin: true,
-      })(req, res);
+      return odApiProxy(req, res);
     }
     const domain = req.get('host').replace(/:.*/, '');
 
     if (railsToken !== undefined && railsToken !== '') {
+      const headers = req.header('Cookie') ? { Cookie: req.header('Cookie') } : {};
       request(
         {
           url: `${constants.ARGU_API_URL}/csrf.json`,

@@ -1,6 +1,9 @@
 import { Map } from 'immutable';
-import * as actions from '../state/action-types';
+
 import { APIDesc, apiModelGenerator } from './utils/apiModelGenerator';
+
+import { FRONTEND_HOSTNAME } from '../config';
+import * as actions from '../state/action-types';
 
 const apiDesc = new APIDesc({
   actions: new Map({
@@ -8,8 +11,9 @@ const apiDesc = new APIDesc({
     resource: actions.GET_VOTE_MATCH,
     create: actions.CREATE_VOTE_MATCH,
   }),
-  endpoint: 'vote_matches',
+  endpoint: `${FRONTEND_HOSTNAME}/vote_matches`,
   type: 'voteMatches',
+  arguModel: true,
 });
 
 const attributes = {
