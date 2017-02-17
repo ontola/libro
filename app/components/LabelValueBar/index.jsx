@@ -1,14 +1,20 @@
-import './LabelValueBar.scss';
 import React, { PropTypes } from 'react';
+
 import { percentageToRedOrGreen } from 'helpers/color';
+
+import './LabelValueBar.scss';
 
 const propTypes = {
   children: PropTypes.node,
   coloredValue: PropTypes.bool,
-  isPercentage: PropTypes.bool,
   label: PropTypes.string.isRequired,
+  isPercentage: PropTypes.bool,
+  // Only use with max values of 100
   showBar: PropTypes.bool,
-  value: PropTypes.number.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string
+  ]).isRequired,
 };
 
 const defaultProps = {
@@ -20,9 +26,9 @@ const defaultProps = {
 const LabelValueBar = ({
   children,
   coloredValue,
-  isPercentage,
   label,
   showBar,
+  isPercentage,
   value,
 }) => (
   <div className="LabelValueBar">
@@ -35,13 +41,14 @@ const LabelValueBar = ({
     >
       {value}{isPercentage && '%'}
     </div>
-    {showBar && <div
-      className="LabelValueBar__bar"
-      style={{
-        width: `${value}%`,
-        borderRightColor: coloredValue && percentageToRedOrGreen(value),
-      }}
-    />}
+    {showBar && isPercentage &&
+      <div
+        className="LabelValueBar__bar"
+        style={{
+          width: `${value}%`,
+          borderRightColor: coloredValue && percentageToRedOrGreen(value),
+        }}
+      />}
     {children}
   </div>
 );

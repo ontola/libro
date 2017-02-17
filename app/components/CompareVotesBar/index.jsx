@@ -1,5 +1,4 @@
 // @flow
-import './CompareVotesBar.scss';
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
@@ -8,15 +7,15 @@ import {
   List,
   Tag,
 } from 'components';
-
 import CollapsibleContainer from 'containers/CollapsibleContainer';
 import { percentageToRedOrGreen } from 'helpers/color';
+
+import './CompareVotesBar.scss';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
   label: PropTypes.string.isRequired,
-  /** Directs user to a page that shows more information about the differences in voting behavior */
-  mainPercentage: PropTypes.number.isRequired,
+  totalValue: PropTypes.number.isRequired,
   tags: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string.isRequired,
   })),
@@ -37,13 +36,21 @@ const renderTag = tag => (
 const CompareVotesBar = ({
   children,
   label,
-  mainPercentage,
+  totalValue,
   tags,
 }) => {
+  let score = Math.round(totalValue * 100);
+  let isPercentage = true;
+  if (isNaN(score)) {
+    score = 'Niet te bepalen';
+    isPercentage = false;
+  }
+
   const trigger = (
     <LabelValueBar
       label={label}
-      value={mainPercentage}
+      isPercentage={isPercentage}
+      value={score}
       coloredValue
       showBar
     />

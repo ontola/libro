@@ -1,6 +1,6 @@
-import React from 'react';
 import LinkedRenderStore from 'link-lib';
 import { Property, PropertyBase } from 'link-redux';
+import React from 'react';
 
 class Collection extends PropertyBase {
   render() {
@@ -21,6 +21,11 @@ class Collection extends PropertyBase {
 }
 
 LinkedRenderStore.registerRenderer(Collection, ['argu:Collection', 'hydra:Collection']);
+LinkedRenderStore.registerRenderer(
+  Collection,
+  ['argu:Collection', 'hydra:Collection'],
+  'collection'
+);
 
 export { default as Member } from './properties/member';
 export { default as Name } from './properties/name';
