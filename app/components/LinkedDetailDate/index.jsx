@@ -46,7 +46,6 @@ class LinkedDetailDate extends PropertyBase {
     return (
       <Detail
         text={displayValue()}
-        icon="clock-o"
         title={hoverText}
         floatRight={floatRight}
         hideIcon={hideIcon}

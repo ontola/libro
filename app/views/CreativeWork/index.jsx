@@ -17,8 +17,8 @@ const CreativeWork = () => (
     <CardHeader noSpacing>
       <Property label="schema:name" />
       <DetailsBar>
-        <LinkedDetailDate />
         <Property label="schema:creator" />
+        <LinkedDetailDate />
       </DetailsBar>
     </CardHeader>
     <CardContent noSpacing>

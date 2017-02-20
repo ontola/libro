@@ -5,7 +5,6 @@ export const headingVariants = [
   'pro',
   'con',
   'light',
-  'center',
   'column',
 ];
 

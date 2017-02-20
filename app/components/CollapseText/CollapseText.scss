@@ -1,6 +1,7 @@
 @import '../shared/config';
 
 .CollapseText {
+  margin-bottom: -.5em;
 
   .CollapseText__toggle {
     background: linear-gradient(to bottom, color('transparent', 'transparent') 0%, color('white') 70%, color('white') 100%);
