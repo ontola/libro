@@ -4,7 +4,6 @@ import { SearchkitManager } from 'searchkit';
 import { AppContainer } from 'react-hot-loader';
 
 import configureStore from './state';
-import { ELASTICSEARCH_URL } from './config';
 import immutableHistory from './helpers/history';
 import IndexContainer from './containers/IndexContainer';
 import './views';
@@ -15,7 +14,7 @@ require('smoothscroll-polyfill').polyfill();
 
 const store = configureStore();
 const history = immutableHistory(store);
-const sk = new SearchkitManager(ELASTICSEARCH_URL);
+const sk = new SearchkitManager('/aod_search');
 
 if (__DEVELOPMENT__ && module.hot) {
   render(
