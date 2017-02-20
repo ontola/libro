@@ -16,6 +16,7 @@ export { default as CardRow } from './Card/CardRow';
 export { default as ChronoFeed } from './ChronoFeed';
 export { default as ChronoItem } from './ChronoItem';
 export { default as Collapsible } from './Collapsible';
+export { default as CollapseText } from './CollapseText';
 export { default as Columns } from './Columns';
 export { default as CompareVotesBar } from './CompareVotesBar';
 export { default as Container } from './Container';

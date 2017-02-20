@@ -14,6 +14,10 @@
     line-height: 2em;
   }
 
+  em {
+    font-weight: bold;
+  }
+
   code {
     background-color: color('transparent', 'dark');
     border: solid 1px color('grey', 'x-light');

@@ -1,0 +1,36 @@
+@import '../shared/config';
+
+.CollapseText {
+
+  .CollapseText__toggle {
+    background: linear-gradient(to bottom, color('transparent', 'transparent') 0%, color('white') 70%, color('white') 100%);
+    bottom: 1em;
+    position: relative;
+    width: 100%;
+  }
+
+  .Button__label {
+    background-color: color('white');
+    border: solid 1px color('grey', 'light');
+    border-radius: 999px;
+    color: color('grey', 'base');
+    padding: 0 .9em;
+    position: relative;
+    transition: .2s transform;
+
+    &:hover {
+      border: solid 1px color('grey', 'base');
+      color: color('grey', 'mid-dark');
+    }
+  }
+
+  &.CollapseText--open {
+    .CollapseText__toggle {
+      // sass-lint:disable class-name-format
+      .fa {
+        transform: rotate(180deg);
+      }
+      // sass-lint:enable class-name-format
+    }
+  }
+}

@@ -1,11 +1,13 @@
-
 import React, { PropTypes } from 'react';
-import './Collapsible.scss';
 import ReactCollapse from 'react-collapse';
+
+import './Collapsible.scss';
 
 const propTypes = {
   /** Content that is not always visible. */
   children: PropTypes.node.isRequired,
+  /** Minimum height in pixels **/
+  minHeight: PropTypes.number.isRequired,
   /** Function that should dispatch a toggle action to open / close the Collapsible. */
   onClickToggle: PropTypes.func.isRequired,
   opened: PropTypes.bool.isRequired,
@@ -22,14 +24,15 @@ const defaultProps = {
 const Collapsible = ({
   children,
   onClickToggle,
+  minHeight,
   opened,
   trigger,
   visibleContent,
 }) => {
   const triggerElem = (
     <a
-      href="/"
       className="Collapsible__trigger"
+      href="/"
       onClick={(e) => {
         e.preventDefault();
         onClickToggle();
@@ -37,14 +40,31 @@ const Collapsible = ({
     >{trigger}</a>
   );
 
+  const tabIndex = () => {
+    if (opened) {
+      return undefined;
+    }
+    return -1;
+  };
+
   return (
-    <div className="Collapsible" aria-expanded={opened}>
+    <div aria-expanded={opened} className="Collapsible">
       {trigger &&
         <div className="Collapsible__trigger-wrapper">{triggerElem}</div>
       }
       <div className="Collapsible__visible-content">{visibleContent}</div>
-      <div className="Collapsible__invisible-content">
-        <ReactCollapse isOpened={opened}>
+      <div ariaHidden={tabIndex()} className="Collapsible__invisible-content">
+        <ReactCollapse
+          isOpened={opened}
+          keepCollapsedContent={(minHeight !== undefined)}
+          springConfig={{
+            damping: 30,
+            stiffness: 300,
+          }}
+          style={{
+            'min-height': `${minHeight}px`,
+          }}
+        >
           {children}
         </ReactCollapse>
       </div>
