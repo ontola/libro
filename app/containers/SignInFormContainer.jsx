@@ -172,6 +172,10 @@ const mapDispatchToProps = (dispatch, props) => ({
     const body = isLogin ? values.toJS() : { user: values.toJS() };
     return safeCredentials({
       body: JSON.stringify(body),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
       mode: 'cross-origin',
       method: 'POST',
       redirect: 'manual',

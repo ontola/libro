@@ -135,7 +135,7 @@ export function safeCredentials(options) {
     {
       credentials: 'include',
       mode: 'same-origin',
-      headers: Object.assign((options.headers || {}), authHeader, jsonHeader()),
+      headers: Object.assign({}, authHeader, jsonHeader(), options.headers),
     },
     opts
   ));
