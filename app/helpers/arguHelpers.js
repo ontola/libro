@@ -152,7 +152,7 @@ export function tryLogin(response) {
   if (response.status === 401) {
     /* eslint no-alert: 0 */
     if (window.confirm(errorMessageForStatus(response.status).fallback)) {
-      window.location = `${window.location.origin}/users/sign_in?r=${encodeURIComponent(window.location.href)}`;
+      window.location = `${window.location.origin}/u/sign_in?r=${encodeURIComponent(window.location.href)}`;
     } else {
       return Promise.reject(errorMessageForStatus(response.status).fallback);
     }
