@@ -14,9 +14,6 @@ body {
   line-height: $font-line-height;
   margin: 0;
 
-  // Should match height of the Navbar
-  padding-top: 3em;
-
   @include small-only {
     font-size: 16px;
   }

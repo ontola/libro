@@ -16,6 +16,9 @@ const store = configureStore();
 const history = immutableHistory(store);
 const sk = new SearchkitManager('/aod_search');
 
+// Fade out the preloader and fade in the interface
+document.getElementsByTagName('body')[0].classList.remove('Body--show-preloader');
+
 if (__DEVELOPMENT__ && module.hot) {
   render(
     <AppContainer>
