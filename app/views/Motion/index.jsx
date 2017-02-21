@@ -15,8 +15,8 @@ const Motion = () => (
     <CardHeader noSpacing>
       <Property label="schema:name" />
       <DetailsBar>
-        <LinkedDetailDate />
         <Property label="schema:creator" />
+        <LinkedDetailDate />
       </DetailsBar>
     </CardHeader>
     <CardContent noSpacing>
@@ -26,9 +26,26 @@ const Motion = () => (
   </Card>
 );
 
+const MotionCollection = () => (
+  <Card>
+    <CardHeader noSpacing>
+      <Property label="schema:name" />
+      <DetailsBar>
+        <Property label="schema:creator" />
+        <LinkedDetailDate />
+      </DetailsBar>
+    </CardHeader>
+    <CardContent noSpacing>
+      <Property label="schema:text" />
+      <Property label="argu:arguments" />
+    </CardContent>
+    <Property forceRender label="argu:currentVote" />
+  </Card>
+);
+
 LinkedRenderStore.registerRenderer(Motion, 'argu:Motion');
 LinkedRenderStore.registerRenderer(
-  Motion,
+  MotionCollection,
   'argu:Motion',
   RENDER_CLASS_NAME,
   'collection'

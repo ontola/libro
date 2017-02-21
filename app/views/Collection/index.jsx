@@ -1,5 +1,5 @@
 import LinkedRenderStore from 'link-lib';
-import { Property, PropertyBase } from 'link-redux';
+import { Property, PropertyBase, RENDER_CLASS_NAME } from 'link-redux';
 import React from 'react';
 
 class Collection extends PropertyBase {
@@ -20,11 +20,31 @@ class Collection extends PropertyBase {
   }
 }
 
+class CollectionSection extends PropertyBase {
+  render() {
+    const views = this.getLinkedObjectPropertyRaw('argu:views');
+    const members = this.getLinkedObjectPropertyRaw('argu:members');
+    return (
+      <Property
+        label={views ? 'argu:views' : 'argu:members'}
+        linkedProp={views || members}
+        topology="section"
+      />
+    );
+  }
+}
+
 LinkedRenderStore.registerRenderer(Collection, ['argu:Collection', 'hydra:Collection']);
 LinkedRenderStore.registerRenderer(
   Collection,
   ['argu:Collection', 'hydra:Collection'],
   'collection'
+);
+LinkedRenderStore.registerRenderer(
+  CollectionSection,
+  ['argu:Collection', 'hydra:Collection'],
+  RENDER_CLASS_NAME,
+  'section'
 );
 
 export { default as Member } from './properties/member';

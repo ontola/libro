@@ -38,7 +38,7 @@ class Member extends PropertyBase {
         </div>
       );
     }
-    return <LinkedObjectContainer object={this.getLinkedObjectProperty()} topology="collection" />;
+    return <LinkedObjectContainer object={this.getLinkedObjectProperty()} />;
   }
 }
 
@@ -53,6 +53,12 @@ LinkedRenderStore.registerRenderer(
   Member,
   'argu:Collection',
   'argu:members'
+);
+LinkedRenderStore.registerRenderer(
+  Member,
+  'argu:Collection',
+  'argu:members',
+  'section'
 );
 
 export default Member;

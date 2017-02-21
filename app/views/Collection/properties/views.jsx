@@ -26,5 +26,11 @@ LinkedRenderStore.registerRenderer(
   'argu:Collection',
   'argu:views'
 );
+LinkedRenderStore.registerRenderer(
+  Views,
+  'argu:Collection',
+  'argu:views',
+  'section'
+);
 
 export default Views;

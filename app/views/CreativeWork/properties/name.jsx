@@ -28,16 +28,23 @@ class Name extends PropertyBase {
 }
 
 LinkedRenderStore.registerRenderer(
-  Name,
+  props => <Name headerSize="1" {...props} />,
   'http://schema.org/CreativeWork',
   'http://schema.org/name'
+);
+
+LinkedRenderStore.registerRenderer(
+  props => <LDLink><Name headerSize="2" {...props} /></LDLink>,
+  'http://schema.org/CreativeWork',
+  'http://schema.org/name',
+  'collection'
 );
 
 LinkedRenderStore.registerRenderer(
   props => <LDLink><Name headerSize="3" {...props} /></LDLink>,
   'http://schema.org/CreativeWork',
   'http://schema.org/name',
-  'collection'
+  'section'
 );
 
 LinkedRenderStore.registerRenderer(

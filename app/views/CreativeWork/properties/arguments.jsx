@@ -17,4 +17,11 @@ LinkedRenderStore.registerRenderer(
   ['http://schema.org/arguments', 'argu:arguments']
 );
 
+LinkedRenderStore.registerRenderer(
+  ({ linkedProp }) => <LinkedObjectContainer object={linkedProp} topology="section" />,
+  'http://schema.org/CreativeWork',
+  ['http://schema.org/arguments', 'argu:arguments'],
+  'collection'
+);
+
 export default Arguments;
