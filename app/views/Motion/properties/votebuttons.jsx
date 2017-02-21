@@ -60,7 +60,7 @@ class VoteButtons extends PropertyBase {
         },
       }),
     })
-    .then(opts => fetch(fetch(`${this.getLinkedObjectProperty('@id')}/votes.json`, opts)))
+    .then(opts => fetch(`${this.getLinkedObjectProperty('@id')}/votes.json`, opts))
     .then(statusSuccess, tryLogin)
     .then(json, tryLogin)
     .then((data) => {
