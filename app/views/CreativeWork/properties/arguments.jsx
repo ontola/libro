@@ -14,13 +14,13 @@ Arguments.propTypes = propTypes;
 LinkedRenderStore.registerRenderer(
   Arguments,
   'http://schema.org/CreativeWork',
-  ['http://schema.org/arguments', 'argu:arguments']
+  ['argu:arguments']
 );
 
 LinkedRenderStore.registerRenderer(
   ({ linkedProp }) => <LinkedObjectContainer object={linkedProp} topology="section" />,
   'http://schema.org/CreativeWork',
-  ['http://schema.org/arguments', 'argu:arguments'],
+  ['argu:arguments'],
   'collection'
 );
 

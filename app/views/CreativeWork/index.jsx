@@ -8,9 +8,12 @@ import {
   CardContent,
   CardHeader,
   DetailsBar,
+  HoverBox,
   LinkCard,
   LinkedDetailDate,
 } from 'components';
+
+import './properties/voteEvents';
 
 const CreativeWork = () => (
   <Card>
@@ -30,12 +33,28 @@ const CreativeWork = () => (
   </Card>
 );
 
+const HiddenChildren = () => (
+  <Property label="schema:text" />
+);
+
+const CreativeWorkSection = () => (
+  <HoverBox hiddenChildren={<HiddenChildren />}>
+    <Property label="schema:name" topology="inline" />
+  </HoverBox>
+);
+
 LinkedRenderStore.registerRenderer(CreativeWork, 'http://schema.org/CreativeWork');
 LinkedRenderStore.registerRenderer(
   CreativeWork,
   'http://schema.org/CreativeWork',
   RENDER_CLASS_NAME,
   'collection'
+);
+LinkedRenderStore.registerRenderer(
+  CreativeWorkSection,
+  'http://schema.org/CreativeWork',
+  RENDER_CLASS_NAME,
+  'section'
 );
 
 LinkedRenderStore.registerRenderer(
@@ -50,4 +69,3 @@ export { default as Creator } from './properties/creator';
 export { default as DateCreated } from './properties/dateCreated';
 export { default as isPartOf } from './properties/isPartOf';
 export { default as Name } from './properties/name';
-import './properties/voteEvents';
