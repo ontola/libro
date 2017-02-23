@@ -87,6 +87,11 @@
     "one-var": ["error", { "uninitialized": "always" }],
     "prefer-default-export": 0,
     "react/jsx-filename-extension": 0,
+    "react/jsx-sort-props": ["warn", {
+      "callbacksLast": true,
+      "shorthandFirst": true
+    }],
+    "sort-keys": ["warn", "asc", { "natural": true }],
     "space-unary-ops": ["error", { "words": true, "nonwords": false }],
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "no-magic-numbers": ["error", {
