@@ -10,6 +10,7 @@ const propTypes = {
   text: PropTypes.string.isRequired,
 };
 
+const MIN_LENGTH_TO_ADD_HIGHLIGHT = 1;
 // Replaces all internal links with React Router links.
 const RouterLink = link => (
   link.href.match(/^\//)
@@ -21,25 +22,17 @@ const Markdown = ({
   highlightedText,
   text,
 }) => {
-  // Selects all strings. Case insensitive.
-  const pattern = new RegExp(highlightedText, 'gi');
-
-  const highlighter = () =>
-    text.replace(pattern, `**${highlightedText.toUpperCase()}**`);
-
-  const MIN_LENGTH_TO_ADD_HIGHLIGHT = 1;
-
-  const highlightOrNot = () => {
-    if (highlightedText && highlightedText.length > MIN_LENGTH_TO_ADD_HIGHLIGHT) {
-      return highlighter();
-    }
-    return text;
-  };
+  let source = text;
+  if (highlightedText && highlightedText.length > MIN_LENGTH_TO_ADD_HIGHLIGHT) {
+    // Selects all strings. Case insensitive.
+    const pattern = new RegExp(highlightedText, 'gi');
+    source = text.replace(pattern, `**${highlightedText.toUpperCase()}**`);
+  }
 
   return (
     <ReactMarkdown
       className="Markdown"
-      source={highlightOrNot()}
+      source={source}
       unwrapDisallowed
       escapeHtml
       softBreak="br"
