@@ -7,7 +7,7 @@ const propTypes = {
   /** Content that is not always visible. */
   children: PropTypes.node.isRequired,
   /** Minimum height in pixels **/
-  minHeight: PropTypes.number.isRequired,
+  minHeight: PropTypes.number,
   /** Function that should dispatch a toggle action to open / close the Collapsible. */
   onClickToggle: PropTypes.func.isRequired,
   opened: PropTypes.bool.isRequired,
@@ -53,7 +53,7 @@ const Collapsible = ({
         <div className="Collapsible__trigger-wrapper">{triggerElem}</div>
       }
       <div className="Collapsible__visible-content">{visibleContent}</div>
-      <div ariaHidden={tabIndex()} className="Collapsible__invisible-content">
+      <div aria-hidden={tabIndex()} className="Collapsible__invisible-content">
         <ReactCollapse
           isOpened={opened}
           keepCollapsedContent={(minHeight !== undefined)}
@@ -62,7 +62,7 @@ const Collapsible = ({
             stiffness: 300,
           }}
           style={{
-            'min-height': `${minHeight}px`,
+            minHeight: `${minHeight}px`,
           }}
         >
           {children}
