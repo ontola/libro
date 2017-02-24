@@ -31,7 +31,7 @@ const SearchResultContainer = ({ result }) => {
   return (
     <SearchResultItem
       classification={data.classification}
-      createdAt={formatDate(data.date)}
+      createdAt={new Date(data.date)}
       id={fixedId()}
       name={data.name}
       score={score}

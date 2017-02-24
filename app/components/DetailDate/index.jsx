@@ -1,9 +1,16 @@
-import './DetailDate.scss';
 import React, { PropTypes } from 'react';
+
 import { Detail } from 'components';
-import { formatDateFromNow, formatDate, durationToHumanizedString } from 'helpers/date';
+import {
+  formatDate,
+  formatDateCalendar,
+  durationToHumanizedString,
+} from 'helpers/date';
+
+import './DetailDate.scss';
 
 const propTypes = {
+  asHours: PropTypes.bool,
   createdAt: PropTypes.instanceOf(Date),
   /** Deprecated - Try not to use Date,
   *   since it does not tell anything about what this date means.
@@ -11,7 +18,6 @@ const propTypes = {
   date: PropTypes.instanceOf(Date),
   endDate: PropTypes.instanceOf(Date),
   floatRight: PropTypes.bool,
-  asHours: PropTypes.bool,
   hideIcon: PropTypes.bool,
   startDate: PropTypes.instanceOf(Date),
   updatedDate: PropTypes.instanceOf(Date),
@@ -30,8 +36,6 @@ const DetailDate = ({
   hideIcon,
   url,
 }) => {
-  const mostImportantDate = () => (date || startDate || createdAt);
-
   const hoverTextItems = [
     (date && `${formatDate(date)}`),
     (startDate && `Begin: ${formatDate(startDate)}`),
@@ -46,17 +50,18 @@ const DetailDate = ({
     .join('. \n')
     .concat('.');
 
+  const mostImportantDate = () => (date || startDate || createdAt);
+
   const displayValue = asHours
     ? formatDate(mostImportantDate(), 'LT')
-    : formatDateFromNow(mostImportantDate());
+    : formatDateCalendar(mostImportantDate());
 
   return (
     <Detail
-      text={displayValue}
-      // icon="clock-o"
-      title={hoverText}
       floatRight={floatRight}
       hideIcon={hideIcon}
+      text={displayValue}
+      title={hoverText}
       url={url}
     />
   );

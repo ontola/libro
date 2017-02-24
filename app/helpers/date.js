@@ -24,6 +24,25 @@ const formatDate = (
 };
 
 /**
+ * @param {number} timestamp A unix timestamp
+ * @param {string} format A format to display date
+ * @return {string} A formatted date string
+ */
+const formatDateCalendar = (
+  timestamp,
+  format
+) => {
+  if (!timestamp) {
+    return undefined;
+  }
+
+  console.log('formatDateCalendar', timestamp);
+
+  const formattedDate = moment(timestamp).calendar(format);
+  return formattedDate;
+};
+
+/**
  * @param {number} milliSeconds - Accepts milliSeconds
  * @return {string} A formatted time string
  */
@@ -48,5 +67,6 @@ export {
   durationToString,
   durationToHumanizedString,
   formatDate,
+  formatDateCalendar,
   formatDateFromNow,
 };
