@@ -19,7 +19,7 @@ const Widget = ({
   to,
 }) => (
   <div className="Widget">
-    <Heading size="3">
+    <Heading size="2">
       {to &&
         <Link to={to} className="Widget__link">
           {title} <FontAwesome name="chevron-right" className="Widget__chevron" />

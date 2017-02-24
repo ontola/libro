@@ -11,7 +11,7 @@ const propTypes = {
   actorType: PropTypes.string.isRequired,
   loadActor: PropTypes.func,
   redirectUrl: PropTypes.string,
-  voteMatchCount: PropTypes.integer,
+  voteMatchCount: PropTypes.number,
 };
 
 class NavbarContainer extends Component {

@@ -71,7 +71,7 @@ const NavBarContent = ({
           name="Nederland"
           imageUrl="https://argu-logos.s3.amazonaws.com/photos/736/avatar_2000px-Flag_of_the_Netherlands.svg.png"
         />
-        <SideBarLink icon="search" label="Zoeken" to={path.search()} />
+        <SideBarLink icon="search" label="Moties zoeken" to={path.search()} />
         <SideBarLink
           icon="compass"
           label="Stemwijzer maken"
@@ -79,23 +79,6 @@ const NavBarContent = ({
           count={voteMatchCount}
         />
         <SideBarLink icon="th-large" label="Overzicht" to={path.index()} isIndex />
-        <SideBarLink icon="feed" label="Activiteit" to={'bestaatniet'} isIndex />
-        <SideBarCollapsible
-          label="Algemeen"
-          to="forum"
-        >
-          <SideBarLink icon="feed" label="Activiteit" to={'feed'} />
-          <SideBarLink icon="question" label="Uitdagingen" to={'challenges'} />
-          <SideBarLink icon="lightbulb-o" label="Ideeën" to={'ideas'} />
-        </SideBarCollapsible>
-        <SideBarCollapsible
-          label="Tweede kamer"
-          to={path.index()}
-        >
-          <SideBarLink icon="institution" label="Partijen" to={path.partiesIndex()} />
-          <SideBarLink icon="group" label="Kamerleden" to={path.politiciansIndex()} />
-          <SideBarLink icon="lightbulb-o" label="Moties" to={path.motionsIndex()} />
-        </SideBarCollapsible>
       </div>
       <div className="NavBarContent__footer">
         {actorItem}

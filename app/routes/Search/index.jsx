@@ -1,9 +1,7 @@
-import './Search.scss';
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { Link } from 'react-router';
-
 import {
   Hits,
   NoHits,
@@ -21,6 +19,7 @@ import {
   Button,
   Container,
   Cover,
+  Heading,
 } from 'components';
 import DrawerContainer from 'containers/DrawerContainer';
 import SearchResultContainer from 'containers/SearchResultContainer';
@@ -29,36 +28,51 @@ import { toggleDrawer, setHitCount } from 'state/searchElastic/actions';
 import { formatDate } from 'helpers/date';
 import paths from 'helpers/paths';
 
+import './Search.scss';
+
 const propTypes = {
-  setHitCountAction: PropTypes.func,
   hits: PropTypes.number,
+  setHitCountAction: PropTypes.func,
   toggleDrawerAction: PropTypes.func,
 };
 
 const sortOption = [
-  { label: 'Relevantie', field: '_score', order: 'desc', defaultOption: true },
-  { label: 'Nieuw-Oud', field: 'date', order: 'desc' },
-  { label: 'Oud-Nieuw', field: 'date', order: 'asc' },
+  {
+    field: 'date',
+    label: 'Nieuw-Oud',
+    order: 'desc',
+  },
+  {
+    field: 'date',
+    label: 'Oud-Nieuw',
+    order: 'asc',
+  },
+  {
+    defaultOption: true,
+    field: '_score',
+    label: 'Relevantie',
+    order: 'desc',
+  },
 ];
 
 const translations = {
-  'pagination.previous': 'Vorige',
-  'pagination.next': 'Volgende',
-  'reset.clear_all': 'Reset zoekopdracht',
-  'facets.view_more': 'Toon meer',
-  'facets.view_less': 'Toon minder',
-  'facets.view_all': 'Toon alles',
-  'NoHits.NoResultsFound': "Geen resultaten gevonden voor '{query}'",
-  'NoHits.DidYouMean': 'Bedoel je {suggestion}',
-  'NoHits.SearchWithoutFilters': 'Zoek zonder filters',
+  'NoHits.DidYouMean': 'Bedoelde je {suggestion}?',
+  'NoHits.NoResultsFound': 'Geen resultaten gevonden voor {query}',
   'NoHits.NoResultsFoundDidYouMean': "Geen resultaten gevonden voor '{query}'",
+  'NoHits.SearchWithoutFilters': 'Zoek naar {query} zonder filters',
+  'facets.view_all': 'Toon alles',
+  'facets.view_less': 'Toon minder',
+  'facets.view_more': 'Toon meer',
+  'pagination.next': 'Volgende',
+  'pagination.previous': 'Vorige',
+  'reset.clear_all': 'Reset zoekopdracht',
 };
 
 const ResetFiltersDisplay = (data) => {
   const { bemBlock, hasFilters, translate, resetFilters } = data;
   return (
     <div className={`sk-panel ${bemBlock().state({ disabled: !hasFilters })}`}>
-      <Button theme="subtle" small onClick={resetFilters}>{translate('reset.clear_all')}</Button>
+      <Button small theme="subtle" onClick={resetFilters}>{translate('reset.clear_all')}</Button>
     </div>
   );
 };
@@ -87,20 +101,21 @@ class Search extends Component {
 
     return (
       <div>
-        <Helmet title="Zoeken" />
+        <Helmet title="Moties zoeken" />
         <Cover>
           <Container size="large">
+            <Heading>Moties zoeken</Heading>
             <SearchBox
               autofocus
-              queryFields={['name', 'text', 'text.shingles']}
-              placeholder="Zoek op onderwerp, persoon, organisatie..."
               searchOnChange
+              placeholder="Zoek in 10.000 moties op onderwerp, bijv. 'zorg'"
+              queryFields={['name', 'text', 'text.shingles']}
             />
             <div className={`Search__search-tools ${toolsClass}`}>
               <div className="Search__drawer-action">
                 <Button
-                  theme="subtle"
                   small
+                  theme="subtle"
                   onClick={toggleDrawerAction}
                 >Filter</Button>
               </div>
@@ -114,50 +129,36 @@ class Search extends Component {
           <div className="Search__results">
             <DrawerContainer>
               <RefinementListFilter
-                id="soort"
-                field="_type"
-                operator="OR"
-                title="Soort"
-                size={5}
-              />
-              <RefinementListFilter
-                id="onderwerp"
-                field="categories"
-                operator="OR"
-                title="Onderwerp"
-                size={5}
-              />
-              <RefinementListFilter
-                id="indiener"
                 field="submitters"
+                id="indiener"
                 operator="OR"
-                title="Indiener"
                 size={5}
+                title="Indiener"
               />
               <RangeFilter
-                field="date"
-                title="Datum"
-                id="dateRangeFilter"
-                min={1332460800000}
-                max={Date.now()}
                 showHistogram
+                field="date"
+                id="dateRangeFilter"
+                max={Date.now()}
+                min={1332460800000}
                 rangeComponent={RangeSliderHistogram}
                 rangeFormatter={count => formatDate(count, 'l')}
+                title="Datum"
               />
               <ResetFilters component={ResetFiltersDisplay} />
             </DrawerContainer>
             <div className="Search__main">
               <Hits
-                hitsPerPage={8}
                 highlightFields={['name', 'text']}
+                hitsPerPage={8}
                 itemComponent={SearchResultContainer}
                 scrollTo="body"
               />
               <NoHits
                 suggestionsField="name"
                 translations={{
-                  'NoHits.NoResultsFound': 'Geen resultaten gevonden voor {query}',
                   'NoHits.DidYouMean': 'Bedoelde je {suggestion}?',
+                  'NoHits.NoResultsFound': 'Geen resultaten gevonden voor {query}',
                   'NoHits.SearchWithoutFilters': 'Zoek naar {query} zonder filters',
                 }}
               />
