@@ -6,8 +6,11 @@
   flex-direction: column;
 
   a {
-    color: color('grey', 'dark');
     text-decoration: underline;
+
+    &:hover {
+      color: color('blue');
+    }
   }
 
   br {
@@ -30,7 +33,7 @@
   h3,
   h4 {
     color: color('grey', 'mid-dark');
-    font-weight: 600;
+    font-weight: 700;
   }
 
   h1 {

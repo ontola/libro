@@ -1,0 +1,7 @@
+@import '../shared/config';
+
+.SearchResultItem {
+  em {
+    background-color: color('red', 'light');
+  }
+}

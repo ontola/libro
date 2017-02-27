@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 
 import { SearchResultItem } from 'components';
-import { formatDate } from 'helpers/date';
 
 import * as constants from '../../app/config';
 
@@ -35,8 +34,8 @@ const SearchResultContainer = ({ result }) => {
       id={fixedId()}
       name={data.name}
       score={score}
-      type={type}
       submitters={data.submitters}
+      type={type}
     >
       {content}
     </SearchResultItem>

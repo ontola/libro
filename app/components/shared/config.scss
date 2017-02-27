@@ -48,7 +48,7 @@ $colors: (
   'red': (
     'base': $color-base-red,
     'light': lighten($color-base-red, 60%),
-    'x-light': rgba($color-base-red, .1),
+    'x-light': rgba($color-base-red, .2),
   ),
   'transparent': (
     'xx-dark': rgba(0, 0, 0, .5),

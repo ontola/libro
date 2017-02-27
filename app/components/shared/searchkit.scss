@@ -55,10 +55,10 @@
 // LOADER
 .sk-search-box__loader {
   animation: loader-animation 1.1s infinite linear;
-  border-bottom: 3px solid color('transparent', 'mid-light');
-  border-left: 3px solid color('white');
-  border-right: 3px solid color('transparent', 'mid-light');
-  border-top: 3px solid color('transparent', 'mid-light');
+  border-bottom: 3px solid color('transparent', 'dark');
+  border-left: 3px solid color('blue');
+  border-right: 3px solid color('transparent', 'dark');
+  border-top: 3px solid color('transparent', 'dark');
   font-size: 10px;
   position: absolute;
   right: 5px;
@@ -148,7 +148,7 @@
 .sk-panel__header {
   color: color('blue');
   font-size: font-size();
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 5px;
   text-transform: uppercase;
 
@@ -210,6 +210,8 @@
     box-sizing: border-box;
     padding-left: 20px;
     position: relative;
+    // TEMP: For displaying party abbreviations
+    text-transform: uppercase;
     transition: .2s color;
 
     &:hover {

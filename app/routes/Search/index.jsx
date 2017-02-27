@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { Link } from 'react-router';
 import {
+  InitialLoader,
   Hits,
   NoHits,
   Pagination,
@@ -77,6 +78,10 @@ const ResetFiltersDisplay = (data) => {
   );
 };
 
+const InitialLoadingComponent = () => (
+  <Heading size="3">Zoekmachine wordt geladen...</Heading>
+);
+
 class Search extends Component {
   constructor(props, context) {
     super(props, context);
@@ -120,7 +125,6 @@ class Search extends Component {
                 >Filter</Button>
               </div>
               <div className="Search__hits">{`${hits} resultaten`}</div>
-              <Link to={paths.info('Search')}>Bekijk zoektips</Link>
               <SortingSelector listComponent={Select} options={sortOption} />
             </div>
           </Container>
@@ -146,14 +150,18 @@ class Search extends Component {
                 title="Datum"
               />
               <ResetFilters component={ResetFiltersDisplay} />
+              <Button small icon="info" theme="transparent">
+                <Link to={paths.info('Search')}>Bekijk zoektips</Link>
+              </Button>
             </DrawerContainer>
             <div className="Search__main">
               <Hits
                 highlightFields={['name', 'text']}
-                hitsPerPage={8}
+                hitsPerPage={25}
                 itemComponent={SearchResultContainer}
                 scrollTo="body"
               />
+              <InitialLoader component={InitialLoadingComponent} />
               <NoHits
                 suggestionsField="name"
                 translations={{

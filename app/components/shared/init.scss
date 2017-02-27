@@ -24,6 +24,8 @@ p {
 }
 
 a {
+  // Prevents browser default color
+  color: inherit;
   text-decoration: none;
 }
 

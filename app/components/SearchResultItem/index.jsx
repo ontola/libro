@@ -13,6 +13,8 @@ import {
 import VoteMatchAddContainer from 'containers/VoteMatchAddContainer';
 import path from 'helpers/paths';
 
+import './SearchResultItem.scss';
+
 const propTypes = {
   children: PropTypes.node.isRequired,
   createdAt: PropTypes.instanceOf(Date).isRequired,
@@ -29,19 +31,21 @@ const SearchResultItem = ({
   submitters,
 }) => (
   <Card>
-    <CardContent>
-      <Heading size="3">
-        <Link to={path.od(id)}>
-          <div dangerouslySetInnerHTML={{ __html: name }} />
-        </Link>
-      </Heading>
-      <DetailsBar>
-        <Detail text={submitters} />
-        <DetailDate createdAt={createdAt} />
-        <VoteMatchAddContainer id={id} />
-      </DetailsBar>
-      <div dangerouslySetInnerHTML={{ __html: children }} />
-    </CardContent>
+    <div className="SearchResultItem">
+      <CardContent>
+        <Heading size="3">
+          <Link to={path.od(id)}>
+            <div dangerouslySetInnerHTML={{ __html: name }} />
+          </Link>
+        </Heading>
+        <DetailsBar>
+          <Detail text={submitters} />
+          <DetailDate createdAt={createdAt} />
+          <VoteMatchAddContainer id={id} />
+        </DetailsBar>
+        <div dangerouslySetInnerHTML={{ __html: children }} />
+      </CardContent>
+    </div>
   </Card>
 );
 
