@@ -36,6 +36,7 @@ const VoteMatch = ({ handleStart }) => (
       </Cover>
     </div>
     <Property label="argu:motions" />
+    <Property label="argu:voteCompareResult" />
   </div>
 );
 

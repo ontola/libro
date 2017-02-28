@@ -1,18 +1,17 @@
-import React from 'react';
 import LinkedRenderStore from 'link-lib';
 import { PropertyBase } from 'link-redux';
+import React from 'react';
 
+import {
+  CardActions,
+  CardButton,
+} from 'components';
 import {
   safeCredentials,
   json,
   statusSuccess,
   tryLogin,
 } from 'helpers/arguHelpers';
-
-import {
-  CardActions,
-  CardButton,
-} from 'components';
 
 const propTypes = {
   actor: React.PropTypes.object,
@@ -21,6 +20,7 @@ const propTypes = {
   currentVote: React.PropTypes.string,
   objectId: React.PropTypes.number,
   objectType: React.PropTypes.string,
+  onVoteCompleted: React.PropTypes.func,
   percent: React.PropTypes.object,
   r: React.PropTypes.string,
   vote_url: React.PropTypes.string,
@@ -72,6 +72,12 @@ class VoteButtons extends PropertyBase {
         this.setState(data.vote);
       }
     })
+    .then(() => {
+      if (this.props.onVoteCompleted) {
+        return this.props.onVoteCompleted();
+      }
+      return Promise.resolve();
+    })
     .catch((e) => {
       if (e.status === 403) {
         return e.json()
@@ -113,4 +119,11 @@ LinkedRenderStore.registerRenderer(
   VoteButtons,
   'argu:Motion',
   'argu:currentVote'
+);
+
+LinkedRenderStore.registerRenderer(
+  VoteButtons,
+  'argu:Motion',
+  'argu:currentVote',
+  'voteMatch'
 );

@@ -15,6 +15,7 @@ import {
   VOTE_MATCH_NEXT,
   VOTE_MATCH_REMOVE_VOTEABLE,
   VOTE_MATCH_SAVE,
+  VOTE_MATCH_TRANSITION_TO,
   VOTE_MATCH_UPDATE_VOTEABLES,
 } from '../action-types';
 
@@ -42,6 +43,9 @@ const voteMatch = handleActions({
 
   [VOTE_MATCH_SAVE]: (state, { payload }) =>
     updateRecordValue(state, payload.id, 'similarity', payload.similarity),
+
+  [VOTE_MATCH_TRANSITION_TO]: (state, { payload }) =>
+    state.set('currentIndex', payload.id),
 
   [VOTE_MATCH_UPDATE_VOTEABLES]: (state, { payload }) =>
     updateRecordValue(state, payload.id, 'voteables', payload.voteables),

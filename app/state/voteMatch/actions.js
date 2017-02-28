@@ -24,3 +24,5 @@ export const voteMatchStart = data => (dispatch) => {
   dispatch(voteMatchInit(data));
   dispatch(voteMatchNext());
 };
+
+export const voteMatchTransitionTo = id => createAction(actions.VOTE_MATCH_TRANSITION_TO)({ id });

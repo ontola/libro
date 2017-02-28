@@ -1,6 +1,6 @@
-import React from 'react';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
+import React, { PropTypes } from 'react';
 
 import {
   Card,
@@ -10,7 +10,13 @@ import {
   LinkedDetailDate,
 } from 'components';
 
-const Motion = () => (
+import './properties/votebuttons';
+
+const propTypes = {
+  onVoteCompleted: PropTypes.func,
+};
+
+const Motion = ({ onVoteCompleted }) => (
   <Card>
     <CardHeader noSpacing>
       <Property label="schema:name" />
@@ -22,9 +28,11 @@ const Motion = () => (
     <CardContent noSpacing>
       <Property label="schema:text" />
     </CardContent>
-    <Property forceRender label="argu:currentVote" />
+    <Property forceRender label="argu:currentVote" onVoteCompleted={onVoteCompleted} />
   </Card>
 );
+
+Motion.propTypes = propTypes;
 
 const MotionCollection = () => (
   <Card>
@@ -50,5 +58,3 @@ LinkedRenderStore.registerRenderer(
   RENDER_CLASS_NAME,
   'collection'
 );
-
-import './properties/votebuttons';
