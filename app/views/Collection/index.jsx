@@ -47,6 +47,7 @@ LinkedRenderStore.registerRenderer(
   'section'
 );
 
+export { default as voteMatch } from './voteMatch';
 export { default as Member } from './properties/member';
 export { default as Name } from './properties/name';
 export { default as Views } from './properties/views';

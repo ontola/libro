@@ -23,14 +23,14 @@ import SignIn from './SignIn';
 import UserMotions from './UserMotions';
 import UserAbout from './UserAbout';
 import UserOverview from './UserOverview';
-import VoteMatch from './VoteMatch';
+import { LinkVoteMatch } from './VoteMatch';
 
 const routes = (
   <Route path="/" component={App}>
     <IndexRoute component={Home} />
     <Route path="vote_matches/new" component={CreateVoteMatch} />
     <Route path="comparevotes/:userId" component={CompareVotes} />
-    <Route path="vote_matches/:voteMatchId" component={VoteMatch} />
+    <Route path="vote_matches/:voteMatchId" component={LinkVoteMatch} />
     <Route path="motions" component={Motions} />
     <Route path="events/:eventId" component={Event} />
     <Route path="motions/:motionId" component={LinkedObject} />

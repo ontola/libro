@@ -66,3 +66,5 @@ export default connect(
     loadVoteMatch: id => dispatch(fetchVoteMatch(id)),
   })
 )(VoteMatch);
+
+export { default as LinkVoteMatch } from './LinkVoteMatch';

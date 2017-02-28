@@ -18,5 +18,6 @@ import './VoteCompareCells';
 import './VoteCompareRows';
 import './VoteEvent';
 import './VoteEventCollection';
+import './VoteMatch';
 import './VoteSide';
 import './VoteSidePage';

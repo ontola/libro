@@ -9,7 +9,7 @@ chai.use(chaiImmutable);
 describe('Votematch reducer', () => {
   it('should return the initial state', () => {
     const expectedState = new Map({
-      currentIndex: 0,
+      currentIndex: null,
       currentVoteMatch: null,
       items: new Map({
         LocalVoteMatch: new Map({

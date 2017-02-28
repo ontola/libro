@@ -19,7 +19,7 @@ import {
 } from '../action-types';
 
 const initialState = new Map({
-  currentIndex: 0,
+  currentIndex: null,
   currentVoteMatch: null,
   items: new Map({
     LocalVoteMatch: new Map({
