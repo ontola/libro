@@ -123,12 +123,12 @@ export default function routes(app, port) {
           } catch (SyntaxError) {
             csrfToken = '';
           }
-          res.setHeader('Link', `https://${constants.FRONTEND_HOSTNAME}/static/preloader.css; rel=preload; as=style`);
+          res.setHeader('Link', `${constants.FRONTEND_URL}/static/preloader.css; rel=preload; as=style`);
           res.end(renderFullPage('', port, domain, csrfToken));
         }
       );
     } else {
-      res.setHeader('Link', `https://${constants.FRONTEND_HOSTNAME}/static/preloader.css; rel=preload; as=style`);
+      res.setHeader('Link', `${constants.FRONTEND_URL}/static/preloader.css; rel=preload; as=style`);
       res.end(renderFullPage('', port, domain, ''));
     }
     return undefined;

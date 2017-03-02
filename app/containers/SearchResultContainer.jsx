@@ -25,7 +25,7 @@ const SearchResultContainer = ({ result }) => {
   const fixedId = () => {
     const REMOVE_CHARACTERS_COUNT = 4;
     const withoutApi = source.url.substr(REMOVE_CHARACTERS_COUNT);
-    return `${constants.FRONTEND_HOSTNAME}${withoutApi}`;
+    return `${constants.FRONTEND_URL}${withoutApi}`;
   };
 
   return (

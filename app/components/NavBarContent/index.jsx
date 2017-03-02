@@ -13,7 +13,7 @@ import path from 'helpers/paths';
 import articles from '../../articles';
 import './NavBarContent.scss';
 
-import { FRONTEND_HOSTNAME } from '../../config';
+import { FRONTEND_URL } from '../../config';
 
 const propTypes = {
   actorType: PropTypes.oneOf(['User', 'Guest']),
@@ -46,7 +46,7 @@ const NavBarContent = ({
   if (actorType === 'User') {
     actorItem = (
       <div>
-        <LinkedObjectContainer object={`${FRONTEND_HOSTNAME}/c_a`} topology="sideBar" />
+        <LinkedObjectContainer object={`${FRONTEND_URL}/c_a`} topology="sideBar" />
         <SideBarLink icon="gears" label="Instellingen" to={path.settings()} />
       </div>
     );

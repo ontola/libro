@@ -1,6 +1,6 @@
 import { Map } from 'immutable';
 
-import { FRONTEND_HOSTNAME } from '../config';
+import { FRONTEND_URL } from '../config';
 import * as actions from '../state/action-types';
 import { APIDesc, apiModelGenerator } from './utils/apiModelGenerator';
 
@@ -9,7 +9,7 @@ const apiDesc = new APIDesc({
     collection: actions.GET_CURRENT_ACTOR,
     resource: actions.GET_CURRENT_ACTOR,
   }),
-  endpoint: `${FRONTEND_HOSTNAME}/c_a`,
+  endpoint: `${FRONTEND_URL}/c_a`,
   type: 'currentActors',
   arguModel: true,
 });

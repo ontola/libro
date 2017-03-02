@@ -1,6 +1,7 @@
 /* eslint no-magic-numbers: 0 */
 const ASSETS_HOST = process.env.ASSETS_HOST || '';
-const FRONTEND_HOSTNAME = process.env.FRONTEND_HOSTNAME || 'https://beta.argu.co';
+const FRONTEND_HOSTNAME = process.env.FRONTEND_HOSTNAME || 'beta.argu.co';
+const FRONTEND_URL = `https://${FRONTEND_HOSTNAME}`;
 const PORT_DEVELOPMENT = process.env.PORT_DEVELOPMENT || 3001;
 const PORT_PRODUCTION = process.env.PORT_PRODUCTION || 8080;
 const PORT = process.env.PORT || (__DEVELOPMENT__ ? PORT_DEVELOPMENT : PORT_PRODUCTION);
@@ -23,5 +24,5 @@ export {
   ASSETS_HOST,
   ELASTICSEARCH_URL,
   ELASTICSEARCH_INDEX,
-  FRONTEND_HOSTNAME,
+  FRONTEND_URL,
 };
