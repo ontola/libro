@@ -1,10 +1,11 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { LinkedObjectContainer } from 'link-redux';
 
-import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { linkedPropVal } from '../../../helpers/LinkedRenderStore';
+import { FRONTEND_URL } from '../../../config';
 
 const propTypes = {
-  linkedProp: PropTypes.object,
+  linkedProp: linkedPropVal,
 };
 
 /**
@@ -20,8 +21,24 @@ const VoteEventCollection = ({ linkedProp }) => (
 
 VoteEventCollection.propTypes = propTypes;
 
+const linkedRecordWrapper = (component) => {
+  const wrapperComp = (props, ...args) => {
+    if (props.linkedProp && props.linkedProp.startsWith('https://beta.argu.co/nl/tweedekamer')) {
+      return (
+        <LinkedObjectContainer
+          object={`${FRONTEND_URL}/lr?iri=${props.linkedProp}`}
+          {...props}
+        />
+      );
+    }
+    return component(props, ...args);
+  };
+  wrapperComp.propTypes = propTypes;
+  return wrapperComp;
+};
+
 LinkedRenderStore.registerRenderer(
-  VoteEventCollection,
+  linkedRecordWrapper(VoteEventCollection),
   'argu:LinkedRecord',
   'argu:VoteEventCollection'
 );

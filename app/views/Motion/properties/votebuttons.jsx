@@ -1,5 +1,5 @@
 import LinkedRenderStore from 'link-lib';
-import { PropertyBase } from 'link-redux';
+import { LinkedObjectContainer, Property, PropertyBase } from 'link-redux';
 import React from 'react';
 
 import {
@@ -12,6 +12,8 @@ import {
   statusSuccess,
   tryLogin,
 } from 'helpers/arguHelpers';
+
+import { ARGU_API_URL, FRONTEND_URL } from '../../../config';
 
 const propTypes = {
   actor: React.PropTypes.object,
@@ -55,13 +57,16 @@ class VoteButtons extends PropertyBase {
 
   vote(side) {
     fetch(
-      `${this.getLinkedObjectProperty('@id')}/votes.json`,
+      `${this.getLinkedObjectProperty('@id').replace(ARGU_API_URL, FRONTEND_URL)}/votes.json`,
       safeCredentials({
         body: JSON.stringify({
           vote: {
             for: side,
           },
         }),
+        headers: {
+          'X-Allow-Guest': true,
+        },
         method: 'POST',
       })
     )
@@ -115,14 +120,53 @@ class VoteButtons extends PropertyBase {
 
 VoteButtons.propTypes = propTypes;
 
+
+const linkedRecordWrapper = (Component) => {
+  class LinkedRecordWrapper extends PropertyBase {
+    isLinkedRecord() {
+      const id = this.getLinkedObjectProperty('@id');
+      return id && id.startsWith('https://beta.argu.co/nl/tweedekamer');
+    }
+
+    render() {
+      if (this.isLinkedRecord()) {
+        const childProps = Object.assign({}, this.props, { forceRender: undefined, label: 'argu:voteableVoteEvent' });
+        return (
+          <LinkedObjectContainer object={`${FRONTEND_URL}/lr?iri=${this.getLinkedObjectProperty('@id')}`}>
+            <Property {...childProps} />
+          </LinkedObjectContainer>
+        );
+      }
+      return <Component {...this.props} />;
+    }
+  }
+
+  return LinkedRecordWrapper;
+};
+
 LinkedRenderStore.registerRenderer(
-  VoteButtons,
+  linkedRecordWrapper(VoteButtons),
   'argu:Motion',
   'argu:currentVote'
 );
 
 LinkedRenderStore.registerRenderer(
-  VoteButtons,
+  class VoteableVoteEvent extends PropertyBase {
+    render() {
+      const p = this.getLinkedObjectProperty();
+      return (
+        <LinkedObjectContainer object={p}>
+          <VoteButtons {...this.props} />
+        </LinkedObjectContainer>
+      );
+    }
+  },
+  'argu:LinkedRecord',
+  'argu:voteableVoteEvent'
+);
+
+LinkedRenderStore.registerRenderer(
+  linkedRecordWrapper(VoteButtons),
   'argu:Motion',
   'argu:currentVote',
   'voteMatch'

@@ -6,9 +6,9 @@ import LinkedRenderStore from '../../helpers/LinkedRenderStore';
 
 const propTypes = {
   optionCounts: PropTypes.objectOf({
-    yes: PropTypes.number,
     neutral: PropTypes.number,
     no: PropTypes.number,
+    yes: PropTypes.number,
   }),
 };
 
