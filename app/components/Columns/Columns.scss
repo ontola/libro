@@ -11,7 +11,8 @@
   &--flex-grow > .Column {
     flex-grow: 1;
     margin: units('none', 'large');
-    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   @each $size, $width in $container-width {
