@@ -7,10 +7,11 @@ const propTypes = {
 };
 
 const LDLink = ({ children }, { schemaObject }) => {
-  const p = getP(schemaObject, '@id');
-  const url = p && new URL(p).pathname;
+  const p = getP(schemaObject, '@id') || getP(schemaObject, 'href_url');
+  const url = p && new URL(p);
+  const href = url && [url.pathname, url.searchParams].join('?');
   return (
-    <Link to={url}>
+    <Link to={href}>
       {children}
     </Link>
   );
