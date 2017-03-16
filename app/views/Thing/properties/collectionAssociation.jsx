@@ -6,7 +6,7 @@ import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
 
 class CollectionAssociation extends PropertyBase {
   getArguLinkedRecordURL() {
-    return `https://argu.local/lr?iri=${getP(this.context.schemaObject, '@id')}`;
+    return `https://argu.dev/lr?iri=${getP(this.context.schemaObject, '@id')}`;
   }
 
   shouldRenderLinkedURL(prop) {

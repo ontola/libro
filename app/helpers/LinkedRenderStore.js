@@ -15,8 +15,8 @@ if (typeof window !== 'undefined' && window.Worker) {
   );
 }
 
-LinkedRenderStore.api.setAcceptForHost('https://argu.local/', 'application/vnd.api+json');
-LinkedRenderStore.api.setAcceptForHost('https://beta.argu.local/', 'application/vnd.api+json');
+LinkedRenderStore.api.setAcceptForHost('https://argu.dev/', 'application/vnd.api+json');
+LinkedRenderStore.api.setAcceptForHost('https://beta.argu.dev/', 'application/vnd.api+json');
 LinkedRenderStore.api.setAcceptForHost('https://argu.co/', 'application/vnd.api+json');
 LinkedRenderStore.api.setAcceptForHost('https://aod-search.argu.co/', 'application/vnd.api+json');
 LinkedRenderStore.api.setAcceptForHost('https://beta.argu.co/', 'application/vnd.api+json');
