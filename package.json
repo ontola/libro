@@ -9,8 +9,11 @@
   "dependencies": {
     "assert": "^1.4.1",
     "body-parser": "^1.15.2",
+    "connect-redis": "^3.2.0",
+    "csurf": "^1.9.0",
     "dotenv": "^4.0.0",
     "express": "^4.14.0",
+    "express-session": "^1.15.1",
     "http-proxy-middleware": "^0.17.0",
     "inobounce": "^0.1.4",
     "interpolate-url": "^0.0.2",
