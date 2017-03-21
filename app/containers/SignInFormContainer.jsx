@@ -47,7 +47,7 @@ const SignInForm = ({
   redirect,
   submitting,
 }) => {
-  let loginField, hiddenLoginFields;
+  let loginField;
   if (fields.includes('password')) {
     loginField = (
       <Field
@@ -60,20 +60,6 @@ const SignInForm = ({
         type="password"
         variant="material"
       />
-    );
-    hiddenLoginFields = (
-      <span>
-        <Field
-          component={HiddenFormField}
-          id="grant_type"
-          name="grant_type"
-        />
-        <Field
-          component={HiddenFormField}
-          id="scope"
-          name="scope"
-        />
-      </span>
     );
   }
   return (
@@ -108,7 +94,6 @@ const SignInForm = ({
           id="r"
           name="r"
         />
-        {hiddenLoginFields}
         <CardActions noSpacing>
           {hasCancel &&
             <Button
@@ -156,42 +141,41 @@ const mapStateToProps = (state, props) => {
     form: 'signIn',
     initialValues: {
       r: props.redirect,
-      grant_type: 'password',
-      scope: 'user',
     },
     validate,
   });
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
-  onSubmit: (values) => {
-    const email = values.get('email');
-    const password = values.get('password');
-    const isLogin = email && password;
-    const location = isLogin ? '/oauth/token' : '/users';
-    const body = isLogin ? values.toJS() : { user: values.toJS() };
-    return safeCredentials({
-      body: JSON.stringify(body),
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      mode: 'cross-origin',
-      method: 'POST',
-      redirect: 'manual',
-    })
-    .then(opts => fetch(location, opts))
-    .then((res) => {
-      if (res.status === 201 || (isLogin && (res.status === 302 || res.type === 'opaqueredirect'))) {
-        dispatch(fetchActor());
-        const match = values.get('r').match(/^https:\/\/[\w*.]*argu\.(local|co)([\w\W]*$)/);
-        const redirect = (match && match[PATH_MATCH]) || '/';
-        props.router.push(redirect);
-      } else if (res.status === 422) {
+  onSubmit: values => fetch('/login', safeCredentials({
+    body: JSON.stringify(values.toJS()),
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    method: 'POST',
+    redirect: 'manual',
+  }))
+  .then(res => res.json())
+  .then((json) => {
+    let match, r, redirect;
+    switch (json.status) {
+      case 'EMAIL_TAKEN':
         dispatch(emailTaken());
-      }
-    });
-  },
+        break;
+      case 'LOGGED_IN':
+        dispatch(fetchActor());
+        r = values.get('r');
+        if (r) {
+          match = r.match(/^https:\/\/[\w*.]*argu\.(local|co)([\w\W]*$)/);
+        }
+        redirect = (match && match[PATH_MATCH]) || '/';
+        props.router.push(redirect);
+        break;
+      default:
+        throw new Error('Unknown user error occurred');
+    }
+  })
 });
 
 const SignInFormContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(reduxForm({

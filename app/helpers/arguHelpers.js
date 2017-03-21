@@ -1,6 +1,4 @@
 import React from 'react';
-
-import { FRONTEND_URL } from '../config';
 /**
  * @module arguHelpers
  * @summary Helpers from the main Argu codebase, do not use these methods in new components.
@@ -86,27 +84,19 @@ export function getMetaContent(name) {
 }
 
 export function getAuthenticityToken() {
-  return fetch(`${FRONTEND_URL}/csrfToken`, {
-    method: 'POST',
-    credentials: 'include',
-    mode: 'same-origin',
-  })
-  .then(json)
-  .then(jsonRes => jsonRes.csrfToken);
+  return getMetaContent('csrf-token');
 }
 
 export function authenticityHeader(options) {
-  return getAuthenticityToken()
-  .then(token => Object.assign({}, options || {}, {
-    'X-CSRF-Token': token,
+  return Object.assign({}, options || {}, {
+    'X-CSRF-Token': getAuthenticityToken(),
     'X-Requested-With': 'XMLHttpRequest',
-  }));
+  });
 }
 
 export function getUserIdentityToken() {
   return { token: getMetaContent('user-identity-token') };
 }
-
 
 /**
  * For use with window.fetch
@@ -129,16 +119,11 @@ export function jsonHeader(options) {
  */
 export function safeCredentials(options) {
   const opts = options || {};
-  return authenticityHeader()
-  .then(authHeader => Object.assign(
-    {},
-    {
-      credentials: 'include',
-      mode: 'same-origin',
-      headers: Object.assign({}, authHeader, jsonHeader(), options.headers),
-    },
-    opts
-  ));
+  return Object.assign(opts, {
+    credentials: 'include',
+    headers: Object.assign({}, authenticityHeader(), jsonHeader(), options.headers),
+    mode: 'same-origin',
+  });
 }
 
 export function statusSuccess(response) {

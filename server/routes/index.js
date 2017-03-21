@@ -12,6 +12,8 @@ import * as constants from '../../app/config';
 import { renderFullPage } from '../utils/render';
 import verifyAuthenticated from '../utils/authentication';
 
+import login from './login';
+
 const redisAddress = process.env.REDIS_ADDRESS;
 const RedisStore = connectRedis(session);
 const redisStore = new RedisStore({ url: redisAddress });
@@ -96,6 +98,8 @@ export default function routes(app, port) {
     host: constants.ELASTICSEARCH_URL,
     index: constants.ELASTICSEARCH_INDEX,
   }));
+
+  app.post('/login', login);
 
   app.get(/.*/, isBackend, verifyAuthenticated, (req, res) => {
     if (req.originalUrl.match(BACKEND_ROUTES) !== null) {

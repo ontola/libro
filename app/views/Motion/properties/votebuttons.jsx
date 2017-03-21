@@ -35,10 +35,12 @@ class VoteButtons extends PropertyBase {
   }
 
   static createMembership(response) {
-    return safeCredentials({
-      method: 'POST',
-    })
-    .then(opts => fetch(response.links.create_membership.href, opts))
+    return fetch(
+      response.links.create_membership.href,
+      safeCredentials({
+        method: 'POST',
+      })
+    )
     .then(statusSuccess);
   }
 
@@ -52,15 +54,17 @@ class VoteButtons extends PropertyBase {
   }
 
   vote(side) {
-    safeCredentials({
-      method: 'POST',
-      body: JSON.stringify({
-        vote: {
-          for: side,
-        },
-      }),
-    })
-    .then(opts => fetch(`${this.getLinkedObjectProperty('@id')}/votes.json`, opts))
+    fetch(
+      `${this.getLinkedObjectProperty('@id')}/votes.json`,
+      safeCredentials({
+        body: JSON.stringify({
+          vote: {
+            for: side,
+          },
+        }),
+        method: 'POST',
+      })
+    )
     .then(statusSuccess, tryLogin)
     .then(json, tryLogin)
     .then((data) => {

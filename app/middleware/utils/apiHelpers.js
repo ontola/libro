@@ -41,34 +41,33 @@ export const callApi = (apiBaseUrl, { payload }) => {
   if (typeof method !== 'undefined' && method !== 'GET') {
     body = {
       data: {
-        type,
         attributes,
+        type,
       },
     };
   }
-  return safeCredentials({
-    method: method || 'GET',
-    ...headers(),
+  return fetch(endpoint, safeCredentials({
     body: JSON.stringify(body),
     credentials: 'same-origin',
-  })
-  .then(creds => fetch(endpoint, creds))
+    method: method || 'GET',
+    ...headers(),
+  }))
   .then(response => response.json()
   .then(json => ({ json, response })))
   .then(({ json, response }) => {
     LinkedRenderStore.api.processor.worker.postMessage({
-      method: 'DATA_ACQUIRED',
-      params: {
-        iri: response.url,
-      },
       data: {
-        status: response.status,
+        body: JSON.stringify(json),
         headers: {
           Accept: response.headers.get('Accept'),
           'Content-Type': response.headers.get('Content-Type'),
         },
+        status: response.status,
         url: response.url,
-        body: JSON.stringify(json),
+      },
+      method: 'DATA_ACQUIRED',
+      params: {
+        iri: response.url,
       },
     });
     if (!response.ok) {
