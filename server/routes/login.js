@@ -85,7 +85,8 @@ function signUp(req, res) {
     } else {
       throw new Error('Unknown error code 5241 occurred');
     }
-  }).catch(() => {
+  }).catch((e) => {
+    console.error(e);
     res.status(500);
     res.end('error');
   });
