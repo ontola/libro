@@ -6,6 +6,7 @@ import webpackConfig from '../../webpack/hot.config';
 
 export default function (app) {
   if (__PRODUCTION__ === true) {
+    console.error('DEV MIDDLEWARE RUN IN PRODUCTION');
     process.exit(1);
   }
   console.log('🚧 Development extensions enabled');

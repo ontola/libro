@@ -22,6 +22,7 @@ const sessionSecret = process.env.SESSION_SECRET;
 const BACKEND_ROUTES = /^\/(f|m|q|a|u|v|c_a|vote_matches)(\/|$)/;
 
 if (!sessionSecret) {
+  console.log('NO SESSION SECRET');
   process.exit(1);
 }
 
