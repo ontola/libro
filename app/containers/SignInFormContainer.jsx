@@ -167,7 +167,7 @@ const mapDispatchToProps = (dispatch, props) => ({
         dispatch(fetchActor());
         r = values.get('r');
         if (r) {
-          match = r.match(/^https:\/\/[\w*.]*argu\.(local|co)([\w\W]*$)/);
+          match = r.match(/^https:\/\/[\w*.]*argu\.(dev|co)([\w\W]*$)/);
         }
         redirect = (match && match[PATH_MATCH]) || '/';
         props.router.push(redirect);
