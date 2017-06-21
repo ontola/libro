@@ -44,6 +44,7 @@ const common = {
         NODE_ENV: process.env.NODE_ENV === 'development' ? '"development"' : '"production"',
       },
       'process.env.ELASTICSEARCH_URL': JSON.stringify(process.env.ELASTICSEARCH_URL),
+      __ORIGIN__: JSON.stringify(`https://${process.env.FRONTEND_HOSTNAME}`),
     }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     // new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en|nl/),

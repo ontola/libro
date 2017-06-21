@@ -18,3 +18,4 @@ stats.json
 nginx.crt
 nginx.key
 .env
+v8-compile-cache*

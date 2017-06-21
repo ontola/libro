@@ -10,7 +10,8 @@ import SearchkitExpress from 'searchkit-express';
 
 import * as constants from '../../app/config';
 import { renderFullPage } from '../utils/render';
-import verifyAuthenticated from '../utils/authentication';
+import { isAuthenticated, isBackend, isIframe } from '../utils/filters';
+import { backendProxy, iframeProxy, odApiProxy } from '../utils/proxies';
 
 import login from './login';
 
@@ -19,7 +20,7 @@ const RedisStore = connectRedis(session);
 const redisStore = new RedisStore({ url: redisAddress });
 const sessionSecret = process.env.SESSION_SECRET;
 
-const BACKEND_ROUTES = /^\/(f|m|q|a|u|v|c_a|vote_matches)(\/|$)/;
+const BACKEND_ROUTES = /^\/(a|actors|announcements|c_a|documents|f|follows|g|group_memberships|i|lr|m|media_objects|o|oauth|phases|policy|portal|posts|privacy|profiles|q|qa|settings|shortnames|u|users|v|vote_events|vote_matches)(\/|$)/;
 
 if (!sessionSecret) {
   console.log('NO SESSION SECRET');
@@ -35,40 +36,15 @@ export function listen(app, port) {
   });
 }
 
-function setHeaders(proxyReq, req) {
-  proxyReq.setHeader('Authorization', `Bearer ${req.session.arguToken.accessToken}`);
-}
-
-const backendProxy = proxy({
-  changeOrigin: true,
-  onProxyReq: setHeaders,
-  secure: process.env.NODE_ENV !== 'development',
-  strictSSL: process.env.NODE_ENV !== 'development',
-  target: constants.ARGU_API_URL,
-  toProxy: true,
-});
-
-const odApiProxy = proxy({
-  changeOrigin: true,
-  pathRewrite: { '^/': '/api/' },
-  target: constants.AOD_API_URL,
-});
-
-function isBackend(req, res, next) {
-  const accept = req.get('Accept');
-  if (accept && (accept.includes('application/vnd.api+json') || accept.includes('application/json'))) {
-    next();
-  } else {
-    next('route');
-  }
-}
-
 export default function routes(app, port) {
   app.use(morgan('dev'));
 
   // Static directory for express
   app.use('/static', express.static('static'));
   app.use('/dist', express.static('dist'));
+  if (__DEVELOPMENT__) {
+    app.get('/assets/*', backendProxy);
+  }
 
   app.use(session({
     cookie: {
@@ -82,7 +58,9 @@ export default function routes(app, port) {
     store: redisStore,
   }));
 
-  app.post(BACKEND_ROUTES, isBackend, verifyAuthenticated, backendProxy);
+  app.all('*', isIframe, isAuthenticated, iframeProxy);
+
+  app.post(BACKEND_ROUTES, isBackend, isAuthenticated, backendProxy);
 
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
@@ -102,7 +80,7 @@ export default function routes(app, port) {
 
   app.post('/login', login);
 
-  app.get(/.*/, isBackend, verifyAuthenticated, (req, res) => {
+  app.get(/.*/, isBackend, isAuthenticated, (req, res) => {
     if (req.originalUrl.match(BACKEND_ROUTES) !== null) {
       return backendProxy(req, res);
     }

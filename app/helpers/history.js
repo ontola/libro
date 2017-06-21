@@ -16,6 +16,8 @@ const createSelectLocationState = () => {
   };
 };
 
+export const history = browserHistory;
+
 const immutableHistory = store => syncHistoryWithStore(browserHistory, store, {
   selectLocationState: createSelectLocationState(),
 });

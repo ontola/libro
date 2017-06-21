@@ -32,6 +32,9 @@ export const GET_GROUP = 'GET_GROUP';
 export const GET_PERSONS = 'GET_PERSONS';
 export const GET_PERSON = 'GET_PERSON';
 
+// Iframe
+export const IFRAME_METADATA = 'IFRAME_METADATA';
+
 // Motions & voting
 export const GET_MOTIONS = 'GET_MOTIONS';
 export const GET_MOTION = 'GET_MOTION';

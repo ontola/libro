@@ -40,6 +40,7 @@
     "searchkit-express": "^0.2.1",
     "smoothscroll-polyfill": "^0.3.4",
     "unit.js": "^2.0.0",
+    "uuid": "^3.1.0",
     "xmldom": "^0.1.27"
   },
   "devDependencies": {

@@ -1,3 +1,4 @@
+/* eslint 'react/jsx-sort-props': 'off' */
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
@@ -11,9 +12,9 @@ import Info from './Info';
 import InfoIndex from './InfoIndex';
 import LinkedObject, { LinkedObjectByID } from './LinkedObject';
 import Idea from './Idea';
+import Iframe from './Iframe';
 import LinkedPerson from './LinkedPerson';
 import Motions from './Motions';
-import NotFound from './NotFound';
 import Party from './Party';
 import Parties from './Parties';
 import Politicians from './Politicians';
@@ -48,10 +49,11 @@ const routes = (
     <Route path="u/sign_in" component={SignIn} />
     <Route path="u/:id" component={LinkedPerson} />
     <Route path="m/:id" component={Idea} />
+    <Route path="q/:id" component={LinkedObject} />
+    <Route path="a/:id" component={LinkedObject} />
     <Route path="f/:id" component={Forum} />
-    <Route path=":type/:id" component={LinkedObject} />
     <Route path="od" component={LinkedObjectByID} />
-    <Route path="*" component={NotFound} />
+    <Route path="*" component={Iframe} />
   </Route>
 );
 

@@ -7,6 +7,7 @@ export { default as eventItems } from './eventItems/reducer';
 export { default as events } from './events/reducer';
 export { default as form } from './form/reducer';
 export { default as groups } from './groups/reducer';
+export { default as iframe } from './iframe/reducer';
 export { linkReducer as linkedObjects } from 'link-redux';
 export { default as motions } from './motions/reducer';
 export { default as persons } from './persons/reducer';

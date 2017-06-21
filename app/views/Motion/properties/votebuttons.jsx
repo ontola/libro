@@ -56,8 +56,10 @@ class VoteButtons extends PropertyBase {
   }
 
   vote(side) {
+    const url = new URL(this.getLinkedObjectProperty('@id').replace(ARGU_API_URL, FRONTEND_URL));
+    url.pathname += '/votes.json';
     fetch(
-      `${this.getLinkedObjectProperty('@id').replace(ARGU_API_URL, FRONTEND_URL)}/votes.json`,
+      url.toString(),
       safeCredentials({
         body: JSON.stringify({
           vote: {
