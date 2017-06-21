@@ -1,7 +1,10 @@
-import './Button.scss';
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import FontAwesome from 'react-fontawesome';
+
+import { LinkDuo } from 'components';
+
+import './Button.scss';
 
 const buttonThemes = [
   'default',
@@ -9,6 +12,7 @@ const buttonThemes = [
   'subtle',
   'transparant',
   'as-box',
+  'card--big',
 ];
 
 const propTypes = {
@@ -16,19 +20,21 @@ const propTypes = {
   active: PropTypes.bool,
   /** Alt html tag. */
   alt: PropTypes.string,
+  /** Label of the button */
+  children: PropTypes.node,
   /** Should be avoided. Try to use the 'theme' prop or wrap it in some other element for styling
   and use the 'plain' prop. */
   className: PropTypes.string,
-  /** Label of the button */
-  children: PropTypes.node,
   disabled: PropTypes.bool,
+  /** If the button is actually just a link */
+  href: PropTypes.string,
   /** FontAwesome icon string. */
   icon: PropTypes.string,
   /** Set to true if the button should indicate that something is happening. Renders spinner. */
   loading: PropTypes.bool,
-  narrow: PropTypes.bool,
   /** Give some margins for inline usage */
   margins: PropTypes.bool,
+  narrow: PropTypes.bool,
   onClick: PropTypes.func,
   /** Removes all styling. */
   plain: PropTypes.bool,
@@ -67,18 +73,19 @@ const Button = ({
   plain,
   theme,
   type,
+  href,
   variant,
 }) => {
   const btnClass = classNames({
     Button: true,
+    'Button--active': active,
     'Button--has-icon': icon,
-    'Button--small': small,
     'Button--margins': margins,
     'Button--narrow': narrow,
     'Button--plain': plain,
+    'Button--small': small,
     [`Button--${theme}`]: theme,
     [`Button--variant-${variant}`]: variant,
-    'Button--active': active,
   });
 
   // Used to remove the annoying focus outline border after clicking
@@ -96,20 +103,43 @@ const Button = ({
     return icon;
   };
 
+  if (typeof href !== 'undefined') {
+    return (
+      <LinkDuo
+        alt={alt}
+        className={`${btnClass} ${className}`}
+        disabled={disabled || loading}
+        role="button"
+        to={href}
+        type={type}
+      >
+        {icon &&
+          <FontAwesome
+            className="Button__icon"
+            name={currentIcon()}
+            spin={loading}
+          />
+        }
+        <span className="Button__label">
+          {children}
+        </span>
+      </LinkDuo>
+    );
+  }
   return (
     <button
-      onClick={onClickAndBlur}
+      alt={alt}
       className={`${btnClass} ${className}`}
+      disabled={disabled || loading}
       role="button"
       type={type}
-      alt={alt}
-      disabled={disabled || loading}
+      onClick={onClickAndBlur}
     >
       {icon &&
         <FontAwesome
           className="Button__icon"
-          spin={loading}
           name={currentIcon()}
+          spin={loading}
         />
       }
       <span className="Button__label">

@@ -7,6 +7,7 @@ import './CreativeWork';
 
 import './Collection';
 import './Comment';
+import './CreateAction';
 import './CurrentActor';
 import './ImageObject';
 import './LinkedRecord';

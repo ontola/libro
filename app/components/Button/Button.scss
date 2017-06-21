@@ -108,24 +108,24 @@
   }
 }
 
-.Button--as-box {
+.Button--as-card {
   background-color: color('white');
   border-radius: $border-radius-base;
   box-shadow: $box-shadow;
   color: color('grey');
+  margin-bottom: 1em;
   transition: .2s;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: color('white');
     box-shadow: $box-shadow--intense;
-    // transform: translateY(-1px);
     color: color('grey', 'dark');
   }
 
   &:active {
     background-color: color('white');
-    box-shadow: none;
-    // transform: translateY(1px);
+    box-shadow: $box-shadow--inside;
     color: color('grey', 'dark');
   }
 }

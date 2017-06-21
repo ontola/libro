@@ -36,6 +36,10 @@
     color: color('grey');
     text-align: center;
   }
+
+  &--inherit {
+    display: inherit;
+  }
 }
 
 h1 {

@@ -5,6 +5,7 @@ import { headingSizes, headingVariants } from 'components/shared/config';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
+  display: PropTypes.oneOf('inherit'),
   size: PropTypes.oneOf(headingSizes),
   variant: PropTypes.oneOf(headingVariants),
 };
@@ -16,6 +17,7 @@ const defaultProps = {
 
 const Heading = ({
   children,
+  display,
   size,
   variant,
 }) => {
@@ -23,6 +25,7 @@ const Heading = ({
   const headingClass = classNames({
     Heading: true,
     [`Heading--${variant}`]: variant,
+    [display === 'inherit' ? 'Heading--inherit' : null]: true,
   });
 
   return (

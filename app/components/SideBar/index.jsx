@@ -135,7 +135,7 @@ class SideBar extends Component {
             <Button
               onClick={() => this.props.onDock()}
               icon={dockIcon()}
-              theme="as-box"
+              theme="as-card"
               narrow
             />
           </div>
@@ -145,7 +145,7 @@ class SideBar extends Component {
             <Button
               onClick={() => this.props.onUndock()}
               icon={undockIcon()}
-              theme="as-box"
+              theme="as-card"
               narrow
             />
           </div>
