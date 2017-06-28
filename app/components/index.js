@@ -49,6 +49,7 @@ export { default as LabelValueBar } from './LabelValueBar';
 export { default as LDLink } from './LDLink';
 export { default as LinkedDetailDate } from './LinkedDetailDate';
 export { default as LinkCard } from './LinkCard';
+export { default as LinkDuo } from './LinkDuo';
 export { default as LinkList } from './LinkList';
 export { default as List } from './List';
 export { default as Markdown } from './Markdown';
