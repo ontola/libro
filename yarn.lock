@@ -4807,6 +4807,16 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
+link-lib@0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-0.3.1.tgz#cda275737419d78fec251c97a3683dec4c7cf33f"
+  dependencies:
+    babel-polyfill "^6.16.0"
+    jsonld "^0.4.11"
+    rdf-ext "^0.3.0"
+    rdf-formats-common "^0.3.1"
+    whatwg-fetch "^2.0.1"
+
 link-lib@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-0.3.0.tgz#d4d0c0b069372b7be8ebe2040e8e52ef1fcfa1c9"

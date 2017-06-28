@@ -11,6 +11,7 @@ const buttonThemes = [
   'box',
   'subtle',
   'transparant',
+  'pagination',
   'as-box',
   'card--big',
 ];

@@ -10,6 +10,7 @@ export { default as groups } from './groups/reducer';
 export { default as iframe } from './iframe/reducer';
 export { linkReducer as linkedObjects } from 'link-redux';
 export { default as motions } from './motions/reducer';
+export { default as pagination } from './pagination/reducer';
 export { default as persons } from './persons/reducer';
 export { default as relationsBrowser } from './relationsBrowser/reducer';
 export { default as router } from './router/reducer';

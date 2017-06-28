@@ -100,11 +100,21 @@
   }
 }
 
-.Button--transparant {
+.Button--transparant,
+.Button--pagination {
   color: color('grey');
 
   &:hover {
     color: color('grey', 'dark');
+  }
+}
+
+.Button--pagination {
+  &[disabled] {
+    color: color('grey', 'x-dark');
+    cursor: initial;
+    font-weight: bold;
+    opacity: 1;
   }
 }
 

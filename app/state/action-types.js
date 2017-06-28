@@ -48,6 +48,9 @@ export const GET_VOTE = 'GET_VOTE';
 export const GET_VOTE_EVENTS = 'GET_VOTE_EVENTS';
 export const GET_VOTE_EVENT = 'GET_VOTE_EVENT';
 
+// Pagination
+export const GOTO_PAGE = 'GOTO_PAGE';
+
 // react-router
 export const LOCATION_CHANGE = 'LOCATION_CHANGE';
 

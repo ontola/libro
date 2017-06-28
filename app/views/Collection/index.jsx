@@ -1,6 +1,9 @@
-import LinkedRenderStore from 'link-lib';
-import { Property, PropertyBase, RENDER_CLASS_NAME } from 'link-redux';
+import LinkedRenderStore, { getValueOrID } from 'link-lib';
+import { LinkedObjectContainer, Property, PropertyBase, RENDER_CLASS_NAME } from 'link-redux';
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { getPage } from '../../state/pagination/selectors';
 
 const viewsOrMembers = (views, members, topology) => (
   <Property
@@ -12,19 +15,45 @@ const viewsOrMembers = (views, members, topology) => (
 );
 
 class Collection extends PropertyBase {
+  pagination() {
+    const collectionIRI = this.getLinkedObjectProperty('argu:parentView');
+    return <Property collectionIRI={collectionIRI} label="argu:first" />;
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return this.props.linkedProp !== nextProps.linkedProp ||
+      this.props.currentPage !== nextProps.currentPage ||
+      getValueOrID(this.props.data) !== getValueOrID(nextProps.data);
+  }
+
   render() {
+    let children;
     const views = this.getLinkedObjectPropertyRaw('argu:views');
-    const children = viewsOrMembers(views, this.getLinkedObjectPropertyRaw('argu:members'));
+    if (this.props.currentPage) {
+      children = <LinkedObjectContainer object={this.props.currentPage} />;
+    } else {
+      children = viewsOrMembers(views, this.getLinkedObjectPropertyRaw('argu:members'));
+    }
+    const createAction = views ? undefined : <Property label="argu:createAction" />;
     const name = views ? <Property label="schema:name" /> : null;
+    const pagination = !views ? this.pagination() : null;
+
     return (
       <div>
         {name}
         {children}
-        {views ? undefined : <Property label="argu:createAction" />}
+        {pagination}
+        {createAction}
       </div>
     );
   }
 }
+
+const ConnectedCollection = connect(
+  (state, { data }) => ({
+    currentPage: getPage(state, data.get('@id'))
+  })
+)(Collection);
 
 class CollectionSection extends PropertyBase {
   render() {
@@ -36,9 +65,9 @@ class CollectionSection extends PropertyBase {
   }
 }
 
-LinkedRenderStore.registerRenderer(Collection, ['argu:Collection', 'hydra:Collection']);
+LinkedRenderStore.registerRenderer(ConnectedCollection, ['argu:Collection', 'hydra:Collection']);
 LinkedRenderStore.registerRenderer(
-  Collection,
+  ConnectedCollection,
   ['argu:Collection', 'hydra:Collection'],
   'collection'
 );
@@ -50,6 +79,7 @@ LinkedRenderStore.registerRenderer(
 );
 
 export { default as voteMatch } from './voteMatch';
+export { default as First } from './properties/first';
 export { default as Member } from './properties/member';
 export { default as Name } from './properties/name';
 export { default as CreateActionProp } from './properties/CreateActionProp';
