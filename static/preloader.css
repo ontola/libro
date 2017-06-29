@@ -5,6 +5,7 @@ html {
 
 body {
   height: 100%;
+  margin: 0;
 }
 
 body.Body--show-preloader .preloader {
@@ -51,7 +52,7 @@ body.Body--show-preloader #root {
   height: 100%;
   max-width: 400px;
   min-width: 150px;
-  width: 25vw;
+  width: 20vw;
 }
 
 .preloader__logo path {
