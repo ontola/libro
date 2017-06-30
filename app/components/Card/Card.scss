@@ -35,6 +35,14 @@
   }
 }
 
+.CardDivider {
+  align-items: center;
+  display: flex;
+  height: 1px;
+  justify-content: center;
+  width: 100%;
+}
+
 .CardContent {
   display: flex;
   flex-direction: column;

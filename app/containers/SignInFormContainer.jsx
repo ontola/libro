@@ -17,6 +17,7 @@ import {
   FormField,
   HiddenFormField,
 } from '../components';
+import validators from '../helpers/validators';
 
 const PATH_MATCH = 2;
 
@@ -71,7 +72,13 @@ const SignInForm = ({
       <CardContent>
         <span>Log in met </span>
         <form action={`https://argu.co/users/auth/facebook?r=${redirect}`} method="GET" style={{ display: 'inline' }}>
-          <Button margins small icon="facebook" type="submit" variant="facebook">
+          <Button
+            margins
+            small
+            icon="facebook"
+            type="submit"
+            variant="facebook"
+          >
             Facebook
           </Button>
         </form>
@@ -90,6 +97,10 @@ const SignInForm = ({
           name="email"
           placeholder="email@example.com"
           type="email"
+          validate={[
+            validators.required,
+            validators.isEmail,
+          ]}
           variant="material"
         />
         {loginField}
@@ -124,20 +135,6 @@ const SignInForm = ({
 SignInForm.propTypes = propTypes;
 SignInForm.defaultProps = defaultProps;
 
-const validate = (values) => {
-  const errors = {};
-
-  const email = values.get('email');
-
-  if (!email) {
-    errors.email = '* Vereist';
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
-    errors.email = 'Ongeldig e-mailadres';
-  }
-
-  return errors;
-};
-
 const mapStateToProps = (state, props) => {
   const password = state.getIn(['form', 'signIn', 'fields', 'password']) !== undefined;
   return ({
@@ -146,7 +143,6 @@ const mapStateToProps = (state, props) => {
     initialValues: {
       r: props.redirect,
     },
-    validate,
   });
 };
 
@@ -183,7 +179,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const SignInFormContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(reduxForm({
-  validate,
 })(SignInForm)));
 
 export default SignInFormContainer;

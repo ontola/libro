@@ -6,6 +6,7 @@ import { Route, Switch } from 'react-router';
 import LinkedObject from './LinkedObject';
 import DevBrowser from './DevBrowser';
 import Iframe from './Iframe';
+import MarkdownDebugger from './MarkdownDebugger';
 import SignIn from './SignIn';
 // import { LinkVoteMatch } from './VoteMatch';
 
@@ -19,7 +20,8 @@ const subRoutes = [
     path="*/(new|edit|trash|delete|decision|c|settings|statistics)"
     component={Iframe}
   />,
-  <Route key="6" path="*" component={LinkedObject} />
+  <Route key="6" path="/MarkdownEditor" component={MarkdownDebugger} />,
+  <Route key="7" path="*" component={LinkedObject} />
 ];
 
 if (__DEVELOPMENT__) {

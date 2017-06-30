@@ -39,6 +39,9 @@ const routerLink = tabIndex => (link) => {
   );
 };
 
+const codePre = code =>
+  <code className="Markdown__inline-code">{code.children}</code>;
+
 const defaultProps = {
   tabbable: true,
 };
@@ -56,12 +59,17 @@ const Markdown = ({
     source = text.replace(pattern, `**${highlightedText.toUpperCase()}**`);
   }
 
+  const customRenderers = {
+    Code: codePre,
+    Link: routerLink(tabIndex),
+  };
+
   return (
     <ReactMarkdown
       escapeHtml
       unwrapDisallowed
       className="Markdown"
-      renderers={{ Link: routerLink(tabIndex) }}
+      renderers={customRenderers}
       softBreak="br"
       source={source}
     />

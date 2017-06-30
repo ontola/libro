@@ -5,6 +5,8 @@ import { colors } from '../shared/config';
 
 const propTypes = {
   lineColor: PropTypes.string,
+  // Adds margin below the line
+  margin: PropTypes.bool,
   // Component adds a white padding to the text to make it stand out from the line.
   text: PropTypes.node,
 };
@@ -20,16 +22,13 @@ const defaultProps = {
 const CardDivider = ({
   lineColor,
   text,
+  margin,
 }) => (
   <div
+    className="CardDivider"
     style={{
-      alignItems: 'center',
       backgroundColor: lineColor,
-      display: 'flex',
-      height: '1px',
-      justifyContent: 'center',
-      marginBottom: '1em',
-      width: '100%',
+      marginBottom: (margin && '1em'),
     }}
   >
     {text &&

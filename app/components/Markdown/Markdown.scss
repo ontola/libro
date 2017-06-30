@@ -4,28 +4,34 @@
   // Disabled collapsing margins
   display: flex;
   flex-direction: column;
+  word-wrap: break-word;
 
   a {
     color: color('blue', power);
+    text-decoration: underline;
 
     &:hover {
       text-decoration: underline;
     }
   }
 
-  br {
-    line-height: 2em;
-  }
-
   em {
-    font-weight: bold;
+    font-style: italic;
   }
 
-  code {
+  code,
+  // Required to overwrite styling for megaDraft component
+  // sass-lint:disable class-name-format
+  .public-DraftStyleDefault-pre {
     background-color: color('transparent', 'dark');
     border: solid 1px color('grey', 'x-light');
+    display: block;
     font-family: monospace;
     padding: .2em .3em;
+  }
+
+  .Markdown__inline-code {
+    display: inline;
   }
 
   h1,
@@ -34,13 +40,26 @@
   h4 {
     color: color('grey', 'mid-dark');
     font-weight: 700;
+    line-height: 1em;
+    margin-bottom: 1em;
   }
 
   h1 {
-    line-height: 1em;
+    font-size: 1.3em;
   }
 
-  p {
+  h2 {
+    font-size: 1.2em;
+  }
+
+  h3 {
+    font-size: 1.1em;
+  }
+
+  p,
+  // Required to overwrite styling for megaDraft component
+  // sass-lint:disable class-name-format
+  .public-DraftStyleDefault-ltr {
     margin-bottom: 1em;
   }
 
@@ -55,6 +74,13 @@
     li {
       margin-bottom: .3em;
       margin-left: 1.5em;
+
+      // Required to overwrite styling for megaDraft component
+      // sass-lint:disable class-name-format
+      .public-DraftStyleDefault-ltr {
+        margin-bottom: 0;
+      }
+
     }
   }
 
@@ -64,5 +90,28 @@
 
   ol {
     list-style-type: decimal;
+  }
+
+  blockquote {
+    font-style: italic;
+    margin-bottom: 1em;
+    margin-left: .7em;
+    position: relative;
+
+    p {
+      margin-bottom: 0;
+    }
+
+    &::after {
+      background-color: color('grey', 'light');
+      bottom: 0;
+      content: '';
+      display: block;
+      height: 100%;
+      left: -.7em;
+      position: absolute;
+      top: 0;
+      width: .3em;
+    }
   }
 }

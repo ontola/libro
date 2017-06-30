@@ -141,6 +141,13 @@
   }
 }
 
+.Button--inside-textarea {
+  position: absolute;
+  right: 1em;
+  top: 0;
+  z-index: 1;
+}
+
 // Variants - maintain default style
 $facebook-color: rgb(59, 89, 152);
 

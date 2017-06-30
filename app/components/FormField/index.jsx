@@ -2,14 +2,17 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { TextEditor } from '../../components';
+
 import './FormField.scss';
 
 const propTypes = {
   autoComplete: PropTypes.string,
+  autoFocus: PropTypes.bool,
   // Preferably use variants to style this component.
   className: PropTypes.string,
   // E.g. 'input' or 'textArea'
-  element: PropTypes.string.isRequired,
+  element: PropTypes.string,
   // Unique identifier. Used to link label to input.
   id: PropTypes.string.isRequired,
   // Contains data from redux-form, such as values
@@ -28,6 +31,8 @@ const propTypes = {
     warning: PropTypes.string,
   }),
   placeholder: PropTypes.string,
+  // Enables the rich (markdown) text editor
+  rich: PropTypes.bool,
   // Number of rows for textAreas
   rows: PropTypes.number,
   // HTML input type, e.g. 'email'
@@ -38,7 +43,10 @@ const propTypes = {
 
 const defaultProps = {
   autoComplete: 'false',
+  autoFocus: 'false',
+  element: 'input',
   meta: {},
+  rich: false,
   variant: 'default',
 };
 
@@ -48,12 +56,14 @@ const defaultProps = {
  */
 const FormField = ({
   autoComplete,
+  autoFocus,
   className,
   rows,
   placeholder,
   input,
   element,
   label,
+  rich,
   type,
   id,
   variant,
@@ -65,14 +75,16 @@ const FormField = ({
     warning,
   },
 }) => {
-  const Element = element;
+  const Element = rich === true ? TextEditor : element;
 
   const classes = classNames({
     Field: true,
     [`Field--variant-${variant}`]: variant,
     'Field--active': active,
     'Field--dirty': dirty,
+    'Field--error': error,
     'Field--textarea': (type === 'textarea'),
+    'Field--warning': warning,
     className,
   });
 
@@ -89,11 +101,15 @@ const FormField = ({
       <Element
         {...input}
         autoComplete={autoComplete}
+        autoFocus={autoFocus}
         className="Field__input"
         id={id}
         placeholder={placeholder}
         rows={rows}
         type={type}
+        onBlur={input.onBlur}
+        onChange={value => input.onChange(value)}
+        onFocus={input.onFocus}
       />
       {touched && (error || warning) &&
         <div className="Field__messages">

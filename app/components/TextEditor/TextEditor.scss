@@ -1,0 +1,27 @@
+@import '../shared/config';
+
+.TextEditor {
+  position: relative;
+
+  textarea {
+    font-family: $font-family;
+    overflow: hidden;
+  }
+}
+
+.MarkdownPreview {
+  padding: 10px 20px;
+}
+
+// Styling draftJS component
+// sass-lint:disable class-name-format
+
+.public-DraftEditorPlaceholder-root {
+  color: color('grey');
+  pointer-events: none;
+  position: absolute;
+}
+
+.DraftEditor-root {
+  margin-bottom: -10px;
+}

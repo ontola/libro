@@ -4,6 +4,7 @@ export { default as communication } from './communication/reducer';
 export { default as form } from './form/reducer';
 export { default as iframe } from './iframe/reducer';
 export { linkReducer as linkedObjects } from 'link-redux';
+export { default as textEditor } from './textEditor/reducer';
 export { default as pagination } from './pagination/reducer';
 export { default as router } from './router/reducer';
 // export { default as searchElastic } from './searchElastic/reducer';
