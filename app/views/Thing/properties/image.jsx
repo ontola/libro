@@ -1,13 +1,17 @@
-import React, { PropTypes } from 'react';
 import { LinkedObjectContainer } from 'link-redux';
+import React from 'react';
+import FontAwesome from 'react-fontawesome';
 
-import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
+import { Image } from 'components';
 
+import LinkedRenderStore, { linkedPropVal } from '../../../helpers/LinkedRenderStore';
+
+const FABase = 'http://fontawesome.io/icon/';
 const propTypes = {
-  linkedProp: PropTypes.object,
+  linkedProp: linkedPropVal,
 };
 
-const Image = ({ linkedProp }) => {
+const ThingImageProp = ({ linkedProp }) => {
   if (!linkedProp) {
     return null;
   } else if (linkedProp &&
@@ -16,10 +20,12 @@ const Image = ({ linkedProp }) => {
   ) {
     return <div>image</div>;
   } else if (typeof linkedProp === 'string') {
+    if (linkedProp.startsWith(FABase)) {
+      return <FontAwesome name={linkedProp.split(FABase)[1]} />;
+    }
     return (
-      <img
-        role="presentation"
-        src={linkedProp}
+      <Image
+        linkedProp={linkedProp}
         style={{ float: 'right', maxWidth: '10em' }}
       />
     );
@@ -32,12 +38,19 @@ const Image = ({ linkedProp }) => {
   );
 };
 
-Image.propTypes = propTypes;
+ThingImageProp.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
-  Image,
+  ThingImageProp,
   'http://schema.org/Thing',
   ['http://schema.org/image', 'dbo:thumbnail', 'wdt:P18']
 );
 
-export default Image;
+LinkedRenderStore.registerRenderer(
+  ThingImageProp,
+  'http://schema.org/Thing',
+  ['http://schema.org/image', 'dbo:thumbnail', 'wdt:P18'],
+  'sidebar'
+);
+
+export default ThingImageProp;

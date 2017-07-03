@@ -10,9 +10,9 @@ import {
 import { checkLuminance } from 'helpers/color';
 import path from 'helpers/paths';
 
-import articles from '../../articles';
 import './NavBarContent.scss';
 
+import articles from '../../articles';
 import { FRONTEND_URL } from '../../config';
 
 const propTypes = {
@@ -46,7 +46,7 @@ const NavBarContent = ({
   if (actorType === 'User') {
     actorItem = (
       <div>
-        <LinkedObjectContainer object={`${FRONTEND_URL}/c_a`} topology="sideBar" />
+        <LinkedObjectContainer object={`${FRONTEND_URL}/c_a`} topology="sidebar" />
         <SideBarLink icon="gears" label="Instellingen" to={path.settings()} />
       </div>
     );
@@ -58,8 +58,14 @@ const NavBarContent = ({
     );
   }
 
-  const renderInfoLink = info =>
-    <SideBarLink icon="info" label={articles[info].title} to={path.info(info)} />;
+  const renderInfoLink = info => (
+    <SideBarLink
+      icon="info"
+      key={`info-link-${info}`}
+      label={articles[info].title}
+      to={path.info(info)}
+    />
+  );
 
   return (
     <div
@@ -79,6 +85,7 @@ const NavBarContent = ({
           count={voteMatchCount}
         />
         <SideBarLink icon="th-large" label="Overzicht" to={path.index()} isIndex />
+        <LinkedObjectContainer object="https://beta.argu.dev/o/125/menus/navigations" topology="sidebar" />
       </div>
       <div className="NavBarContent__footer">
         {actorItem}

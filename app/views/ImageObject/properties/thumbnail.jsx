@@ -1,32 +1,18 @@
 import React from 'react';
 
-import LinkedRenderStore, { linkedPropVal } from '../../../helpers/LinkedRenderStore';
+import { Image } from 'components';
 
-const propTypes = {
-  linkedProp: linkedPropVal,
-};
-
-const Thumbnail = ({ linkedProp }) => (
-  <img
-    className="Detail__image"
-    role="presentation"
-    src={linkedProp}
-  />
-);
-
-Thumbnail.propTypes = propTypes;
+import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
 
 LinkedRenderStore.registerRenderer(
-  Thumbnail,
+  ({ linkedProp }) => <Image className="Detail__image" linkedProp={linkedProp} />,
   'http://schema.org/ImageObject',
   'http://schema.org/thumbnail'
 );
 
 LinkedRenderStore.registerRenderer(
-  ({ linkedProp }) => <img className="SideBarLink__image" role="presentation" src={linkedProp} />,
+  ({ linkedProp }) => <Image className="SideBarLink__image" linkedProp={linkedProp} />,
   'http://schema.org/ImageObject',
   'http://schema.org/thumbnail',
-  'sideBar'
+  'sidebar'
 );
-
-export default Thumbnail;

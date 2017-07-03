@@ -2,14 +2,15 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { getP } from 'link-lib';
 
+import { retrievePath } from '../../helpers/iris';
+
 const propTypes = {
   children: PropTypes.node,
 };
 
 const LDLink = ({ children }, { schemaObject }) => {
   const p = getP(schemaObject, '@id') || getP(schemaObject, 'href_url');
-  const url = p && new URL(p);
-  const href = url && url.pathname + url.search;
+  const href = retrievePath(p);
   return (
     <Link to={href}>
       {children}

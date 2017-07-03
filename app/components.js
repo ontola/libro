@@ -44,6 +44,7 @@ export { default as Header } from './components/Header/index';
 export { default as Heading } from './components/Heading/index';
 export { default as HiddenFormField } from './components/HiddenFormField/index';
 export { default as HoverBox } from './components/HoverBox/index';
+export { default as Image } from './components/Image/index';
 export { default as LabelValue } from './components/LabelValue/index';
 export { default as LabelValueBar } from './components/LabelValueBar/index';
 export { default as LDLink } from './components/LDLink/index';

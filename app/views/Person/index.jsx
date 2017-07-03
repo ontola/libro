@@ -8,6 +8,9 @@ import {
   ProfileCard,
 } from 'components';
 
+import './sidebar';
+import './properties/image';
+
 LinkedRenderStore.registerRenderer(
   ProfileCard,
   [
@@ -35,7 +38,5 @@ LinkedRenderStore.registerRenderer(
   RENDER_CLASS_NAME,
   'voteBubble'
 );
-
-import './properties/image';
 
 // export default Person;

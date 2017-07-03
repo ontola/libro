@@ -57,6 +57,7 @@ Uses [NSP](https://github.com/nodesecurity/nsp) and [Retire.js](https://github.c
   - **Detail** - Shown as a small piece of metadata inside some other resource.
   - **Parent** - Shown as its own card, mostly on top of a page.
   - **Inline** - A text to appear in some other text. Can be a link.
+  - **Sidebar** - An item in the side menu.
 - When naming your component, name them as `propertyTopology` and `TypeTopology`. For example: `nameCollection` or `MotionRow`.
 
 ### Creating a new interactive model

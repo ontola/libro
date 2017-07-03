@@ -6,10 +6,12 @@ import {
   LDLink,
 } from 'components';
 
+import './properties/name';
+
 const CurrentActorSidebar = () => (
   <div className="SideBarLink">
     <LDLink>
-      <Property label="schema:image" topology="sideBar" />
+      <Property label="schema:image" />
       <div className="SideBarLink__label">
         <Property label="schema:name" />
       </div>
@@ -19,10 +21,7 @@ const CurrentActorSidebar = () => (
 
 LinkedRenderStore.registerRenderer(
   CurrentActorSidebar,
-  'argu:CurrentActor',
+  'schema:Person',
   RENDER_CLASS_NAME,
-  'sideBar'
+  'sidebar'
 );
-
-import './properties/image';
-import './properties/name';

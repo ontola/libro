@@ -14,7 +14,7 @@ const Iframe = ({ location, title }) => (
     <Helmet title={title} />
     <iframe
       id={identifier}
-      referrerpolicy="no-referrer-when-downgrade"
+      referrerPolicy="no-referrer-when-downgrade"
       src={location}
       style={{
         height: '100%',

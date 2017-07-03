@@ -3,7 +3,7 @@ import React from 'react';
 
 LinkedRenderStore.registerRenderer(
   ({ linkedProp }) => <p>{linkedProp}</p>,
-  'argu:CurrentActor',
+  'schema:Person',
   'schema:name',
-  'sideBar'
+  'sidebar'
 );

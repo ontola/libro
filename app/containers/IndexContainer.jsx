@@ -6,12 +6,12 @@ import { useScroll } from 'react-router-scroll';
 import { RenderStoreProvider } from 'link-redux';
 
 import routes from '../routes';
-import LinkedRenderStore from '../helpers/LinkedRenderStore';
 
 const propTypes = {
-  store: PropTypes.object.isRequired,
-  sk: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
+  linkedRenderStore: PropTypes.object.isRequired,
+  sk: PropTypes.object.isRequired,
+  store: PropTypes.object.isRequired,
 };
 
 const contextTypes = {
@@ -24,15 +24,15 @@ class IndexContainer extends Component {
   }
 
   render() {
-    const { store, sk, history } = this.props;
+    const { linkedRenderStore, sk, store, history } = this.props;
     return (
       <Provider store={store}>
-        <RenderStoreProvider linkedRenderStore={LinkedRenderStore}>
+        <RenderStoreProvider linkedRenderStore={linkedRenderStore}>
           <SearchkitProvider searchkit={sk}>
             <Router
               history={history}
+              render={__CLIENT__ ? applyRouterMiddleware(useScroll()) : undefined}
               routes={routes}
-              render={applyRouterMiddleware(useScroll())}
               // onUpdate={() => window.scrollTo(0, 0)}
             />
           </SearchkitProvider>
