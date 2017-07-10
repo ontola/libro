@@ -4,7 +4,7 @@
   "version": "0.7.0",
   "author": "Joep Meindertsma <joep@argu.co> (https://argu.co)",
   "engines": {
-    "node": ">=6.9.5 <7.0.0"
+    "node": ">=8.1.3"
   },
   "dependencies": {
     "assert": "^1.4.1",
