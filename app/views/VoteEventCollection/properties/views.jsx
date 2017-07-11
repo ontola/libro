@@ -3,8 +3,15 @@ import React from 'react';
 
 import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
 
+const propTypes = {
+  label: PropTypes.object,
+  subject: PropTypes.object,
+};
+
 /**
  * Renders the property that contains a 'VoteEventCollection'
+ * @param {object} props comp props
+ * @returns {object} The component
  */
 class Views extends PropertyBase {
   render() {
@@ -22,8 +29,19 @@ class Views extends PropertyBase {
       />
     );
   }
-}
+  return (
+    <LinkedObjectContainer
+      object={prop}
+      topology={NS.argu('voteEvent')}
+    />
+  );
+};
 
+Views.contextTypes = {
+  linkedRenderStore: PropTypes.object,
+  topology: PropTypes.string,
+};
+Views.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   Views,

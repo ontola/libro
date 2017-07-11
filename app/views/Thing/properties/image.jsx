@@ -2,8 +2,6 @@ import { LinkedObjectContainer } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { Image } from 'components';
-
 import LinkedRenderStore, { linkedPropVal } from '../../../helpers/LinkedRenderStore';
 
 const FABase = 'http://fontawesome.io/icon/';
@@ -19,16 +17,8 @@ const ThingImageProp = ({ linkedProp }) => {
     linkedProp.constructor === Object
   ) {
     return <div>image</div>;
-  } else if (typeof linkedProp === 'string') {
-    if (linkedProp.startsWith(FABase)) {
-      return <FontAwesome name={linkedProp.split(FABase)[1]} />;
-    }
-    return (
-      <Image
-        linkedProp={linkedProp}
-        style={{ float: 'right', maxWidth: '10em' }}
-      />
-    );
+  } else if (typeof linkedProp === 'string' && linkedProp.startsWith(FABase)) {
+    return <FontAwesome name={linkedProp.split(FABase)[1]} />;
   }
   return (
     <LinkedObjectContainer

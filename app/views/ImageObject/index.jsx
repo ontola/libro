@@ -6,6 +6,10 @@ const ImageObject = () => <Property label="schema:thumbnail" />;
 
 LinkedRenderStore.registerRenderer(
   ImageObject,
+  'http://schema.org/ImageObject'
+);
+LinkedRenderStore.registerRenderer(
+  ImageObject,
   'http://schema.org/ImageObject',
   RENDER_CLASS_NAME,
   'detail'

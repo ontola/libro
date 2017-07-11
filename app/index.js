@@ -3,9 +3,10 @@ import { render } from 'react-dom';
 import { SearchkitManager } from 'searchkit';
 import { AppContainer } from 'react-hot-loader';
 
-import configureStore from './state';
-import immutableHistory from './helpers/history';
 import IndexContainer from './containers/IndexContainer';
+import immutableHistory from './helpers/history';
+import LinkedRenderStore from './helpers/LinkedRenderStore';
+import configureStore from './state';
 import './views';
 
 // Removes the rubber banding in iOS
@@ -19,10 +20,19 @@ const sk = new SearchkitManager('/aod_search');
 // Fade out the preloader and fade in the interface
 document.getElementsByTagName('body')[0].classList.remove('Body--show-preloader');
 
+const indexContainer = Container => (
+  <Container
+    history={history}
+    linkedRenderStore={LinkedRenderStore}
+    sk={sk}
+    store={store}
+  />
+);
+
 if (__DEVELOPMENT__ && module.hot) {
   render(
     <AppContainer>
-      <IndexContainer store={store} history={history} sk={sk} />
+      {indexContainer(IndexContainer)}
     </AppContainer>,
     document.getElementById('root')
   );
@@ -31,14 +41,14 @@ if (__DEVELOPMENT__ && module.hot) {
     const NextIndexContainer = require('./containers/IndexContainer').default; // eslint-disable-line
     render(
       <AppContainer>
-        <NextIndexContainer store={store} history={history} sk={sk} />
+        {indexContainer(NextIndexContainer)}
       </AppContainer>,
       document.getElementById('root')
     );
   });
 } else {
   render(
-    <IndexContainer store={store} history={history} sk={sk} />,
+    indexContainer(IndexContainer),
     document.getElementById('root')
   );
 }

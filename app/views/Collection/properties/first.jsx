@@ -89,7 +89,7 @@ class First extends PropertyBase {
   render() {
     const pages = this.allPages();
     return (
-      <div style={{ 'margin-bottom': '1em' }}>
+      <div style={{ marginBottom: '1em' }}>
         {pages}
       </div>
     );

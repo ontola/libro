@@ -1,19 +1,21 @@
-import { LinkedObjectContainer } from 'link-redux';
+import { RENDER_CLASS_NAME } from 'link-lib';
+import { LinkedObjectContainer, Property } from 'link-redux';
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
 import {
   SideBarCollapsible,
   SideBarLink,
-  OrgSwitcher,
 } from 'components';
 import { checkLuminance } from 'helpers/color';
 import path from 'helpers/paths';
 
 import './NavBarContent.scss';
+import './properties/name';
 
 import articles from '../../articles';
 import { FRONTEND_URL } from '../../config';
+import LinkedRenderStore from '../../helpers/LinkedRenderStore';
 
 const propTypes = {
   actorType: PropTypes.oneOf(['User', 'Guest']),
@@ -26,7 +28,7 @@ const defaultProps = {
   orgColor: 'rgb(71, 86, 104)',
 };
 
-const NavBarContent = ({
+const OrganizationSidebarBlock = ({
   actorType,
   orgColor,
   redirectUrl,
@@ -34,6 +36,7 @@ const NavBarContent = ({
 }) => {
   const style = {
     backgroundColor: orgColor,
+    color: 'white',
     flex: '1',
   };
 
@@ -73,10 +76,7 @@ const NavBarContent = ({
       className={classNames}
     >
       <div className="NavBarContent__top">
-        <OrgSwitcher
-          name="Argu"
-          imageUrl="https://argu-logos.s3.amazonaws.com/photos/736/avatar_2000px-Flag_of_the_Netherlands.svg.png"
-        />
+        <Property label="schema:name" />
         <SideBarLink icon="search" label="Moties zoeken" to={path.search()} />
         <SideBarLink
           icon="compass"
@@ -85,6 +85,7 @@ const NavBarContent = ({
           count={voteMatchCount}
         />
         <SideBarLink icon="th-large" label="Overzicht" to={path.index()} isIndex />
+        <Property label="argu:menus" topology="sidebar" />
       </div>
       <div className="NavBarContent__footer">
         {actorItem}
@@ -114,8 +115,14 @@ const NavBarContent = ({
   );
 };
 
+OrganizationSidebarBlock.propTypes = propTypes;
+OrganizationSidebarBlock.defaultProps = defaultProps;
 
-NavBarContent.propTypes = propTypes;
-NavBarContent.defaultProps = defaultProps;
+LinkedRenderStore.registerRenderer(
+  OrganizationSidebarBlock,
+  'http://schema.org/Organization',
+  RENDER_CLASS_NAME,
+  'sidebarBlock'
+);
 
-export default NavBarContent;
+export default OrganizationSidebarBlock;

@@ -1,0 +1,36 @@
+@import '../../components/shared/config';
+
+.NavBarContent {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  &__logo {
+    align-self: center;
+    color: color('white');
+
+    path,
+    rect {
+      fill: color('white');
+    }
+  }
+}
+
+.NavBarContent__top {
+  flex: 1;
+}
+
+.NavBarContent__center-footer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.NavBarContent--white-text {
+  .SideBarLink {
+    a {
+      color: color('white');
+    }
+  }
+}

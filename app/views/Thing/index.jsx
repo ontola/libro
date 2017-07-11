@@ -2,13 +2,22 @@ import React, { PropTypes } from 'react';
 import { Property } from 'link-redux';
 import { RENDER_CLASS_NAME } from 'link-lib';
 
-import LinkedRenderStore from '../../helpers/LinkedRenderStore';
-
 import {
   Card,
   CardContent,
   CardHeader,
 } from 'components';
+
+import LinkedRenderStore from '../../helpers/LinkedRenderStore';
+
+import './properties/collectionAssociation';
+import './properties/isPrimaryTopicOf';
+import './properties/menus';
+import './properties/image';
+import './properties/name';
+import './properties/organization';
+import './properties/text';
+import './properties/updateAction';
 
 const propTypes = {
   object: PropTypes.string,
@@ -44,10 +53,3 @@ LinkedRenderStore.registerRenderer(
   RENDER_CLASS_NAME,
   'section'
 );
-
-export { default as collectionAssociation } from './properties/collectionAssociation';
-export { default as IsPrimaryTopicOf } from './properties/isPrimaryTopicOf';
-export { default as Image } from './properties/image';
-export { default as Name } from './properties/name';
-export { default as Text } from './properties/text';
-export { default as UpdateAction } from './properties/updateAction';

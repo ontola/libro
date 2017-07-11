@@ -1,9 +1,9 @@
+import { RenderStoreProvider } from 'link-redux';
 import React, { Component, PropTypes } from 'react';
 import { Provider } from 'react-redux';
 import { applyRouterMiddleware, Router } from 'react-router';
-import { SearchkitProvider } from 'searchkit';
 import { useScroll } from 'react-router-scroll';
-import { RenderStoreProvider } from 'link-redux';
+import { SearchkitProvider } from 'searchkit';
 
 import routes from '../routes';
 

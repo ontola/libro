@@ -1,4 +1,4 @@
-import { getP } from 'link-lib';
+import { anyObjectValue } from 'link-lib';
 import React, { PropTypes } from 'react';
 
 import { CollapseText, Markdown } from 'components';
@@ -26,7 +26,8 @@ const propTypesCollection = {
   linkedProp: PropTypes.string,
 };
 
-const TextCollection = ({ linkedProp }, { schemaObject }) => <CollapseText id={getP(schemaObject, '@id')} text={linkedProp} />;
+const TextCollection = ({ linkedProp }, { schemaObject }) =>
+  <CollapseText id={anyObjectValue(schemaObject, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#subject')} text={linkedProp} />;
 
 TextCollection.propTypes = propTypesCollection;
 TextCollection.contextTypes = contextTypesCollection;

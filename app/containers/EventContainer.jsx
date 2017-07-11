@@ -2,10 +2,12 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { EventShow } from '../components';
+import Event from 'models/Event';
 import { getEvent } from 'state/events/selectors';
 import { fetchEvent } from 'state/events/actions';
 import { toggleAll } from 'state/collapsible/actions';
+
+import { EventShow } from '../components';
 
 const propTypes = {
   data: PropTypes.instanceOf(Event),

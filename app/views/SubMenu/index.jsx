@@ -15,12 +15,16 @@ import { getCollapsibleOpened } from 'state/collapsible/selectors';
 import './properties/label';
 
 const propTypes = {
-  '@id': PropTypes.string,
+  'http://www.w3.org/1999/02/22-rdf-syntax-ns#subject': PropTypes.string,
   onClickToggle: PropTypes.func.isRequired,
   open: PropTypes.bool,
 };
 
-const SubMenuSideBar = ({ '@id': id, onClickToggle, open }) => {
+const SubMenuSideBar = ({
+  'http://www.w3.org/1999/02/22-rdf-syntax-ns#subject': id,
+  onClickToggle,
+  open
+}) => {
   const classes = classNames({
     SideBarCollapsible: true,
     'SideBarCollapsible--open': open,
@@ -50,7 +54,7 @@ SubMenuSideBar.propTypes = propTypes;
 
 const SubMenuSideBarConnected = connect(
   (state, { data }) => ({
-    '@id': getP(data, '@id'),
+    'http://www.w3.org/1999/02/22-rdf-syntax-ns#subject': getP(data, '@id'),
     open: getCollapsibleOpened(state, getP(data, '@id')),
     route: state.getIn(['router', 'locationBeforeTransitions', 'pathname']),
   }),

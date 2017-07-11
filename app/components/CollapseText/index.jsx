@@ -66,12 +66,16 @@ const CollapseText = ({
 };
 
 CollapseText.propTypes = propTypes;
-CollapseText.defaultProps = defaultProps;
 
 export default connect(
-  (state, ownProps) => ({
-    open: getCollapsibleOpened(state, ownProps.id),
-  }),
+  (state, ownProps) => {
+    const minCharacters = ownProps.minCharacters || defaultProps.minCharacters;
+    return ({
+      open: ownProps.text.length > minCharacters && getCollapsibleOpened(state, ownProps.id),
+      minCharacters,
+      minHeight: ownProps.minHeight || defaultProps.minHeight,
+    });
+  },
   (dispatch, { id }) => ({
     onClickToggle: () => dispatch(toggleOne(id)),
     onInitializeCollapsible: data => dispatch(initializeCollapsible(data)),

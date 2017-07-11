@@ -11,7 +11,7 @@ import Home from './Home';
 import Info from './Info';
 import InfoIndex from './InfoIndex';
 import LinkedObject, { LinkedObjectByID } from './LinkedObject';
-import Idea from './Idea';
+// import Idea from './Idea';
 import Iframe from './Iframe';
 import LinkedPerson from './LinkedPerson';
 import Motions from './Motions';
@@ -48,7 +48,7 @@ const routes = (
     <Route path="info/:infoId" component={Info} />
     <Route path="u/sign_in" component={SignIn} />
     <Route path="u/:id" component={LinkedPerson} />
-    <Route path="m/:id" component={Idea} />
+    <Route path="m/:id" component={LinkedObject} />
     <Route path="q/:id" component={LinkedObject} />
     <Route path="a/:id" component={LinkedObject} />
     <Route path="f/:id" component={Forum} />

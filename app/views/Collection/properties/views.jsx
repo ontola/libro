@@ -9,10 +9,12 @@ import {
 
 class Views extends PropertyBase {
   render() {
-    const obs = this.getLinkedObjectPropertyRaw()
-      .map(iri => <LinkedObjectContainer object={getValueOrID(iri)} />)
-      .toKeyedSeq();
-    if (obs && obs.size > 1) {
+    const prop = this.getLinkedObjectPropertyRaw();
+    if (typeof prop === 'string') {
+      return <LinkedObjectContainer object={prop} />;
+    }
+    const obs = prop.map(iri => <LinkedObjectContainer object={getValueOrID(iri)} />);
+    if (obs && obs.length > 1) {
       return <Columns>{obs}</Columns>;
     } else if (obs) {
       return <div>{obs}</div>;

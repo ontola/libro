@@ -10,6 +10,7 @@ import {
   LinkedDetailDate,
 } from 'components';
 
+import './page';
 import './properties/votebuttons';
 
 const propTypes = {

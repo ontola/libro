@@ -1,12 +1,13 @@
 // @flow
 import { PropTypes } from 'react';
 import { connect } from 'react-redux';
+
 import EventItem from 'models/EventItem';
+import { getEventItem } from 'state/eventItems/selectors';
+
 import {
   EventItemShow,
 } from '../components';
-
-import { getEventItem } from 'state/eventItems/selectors';
 
 const propTypes = {
   data: PropTypes.instanceOf(EventItem),

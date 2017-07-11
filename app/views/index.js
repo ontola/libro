@@ -14,6 +14,7 @@ import './MenuItem';
 import './Motion';
 import './NavigationsMenu';
 import './OpinionBubble';
+import './Organization';
 import './Person';
 import './SubMenu';
 import './Question';

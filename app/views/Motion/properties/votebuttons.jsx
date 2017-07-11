@@ -56,7 +56,7 @@ class VoteButtons extends PropertyBase {
   }
 
   vote(side) {
-    const url = new URL(this.getLinkedObjectProperty('@id').replace(ARGU_API_URL, FRONTEND_URL));
+    const url = new URL(this.getLinkedObjectProperty('http://www.w3.org/1999/02/22-rdf-syntax-ns#subject').replace(ARGU_API_URL, FRONTEND_URL));
     url.pathname += '/votes.json';
     fetch(
       url.toString(),

@@ -65,6 +65,14 @@ export const renderFullPage = (html, devPort, domain, csrfToken, initialState = 
         <div id="root">${html}</div>
         <script>document.body.className += ' Body--show-preloader';</script>
         <script src="${ASSETS_HOST}/dist/bundle.js"></script>
+        <script>
+          window.__PRELOADED_STATE__ = ${JSON.stringify(initialState).replace(/</g, '\\\u003c')}
+        </script>
       </body>
     </html>`;
 };
+
+
+export function handleRender(req, res, port, domain) {
+  res.send(renderFullPage(undefined, port, domain, req.csrfToken(), {}));
+}

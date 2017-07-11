@@ -2,7 +2,6 @@
 /* eslint react/prefer-stateless-function: 0 */
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-// import LinkedRenderStore from 'link-lib';
 import { getP } from 'link-lib';
 import { fetchLinkedObject, LinkedObjectContainer } from 'link-redux';
 

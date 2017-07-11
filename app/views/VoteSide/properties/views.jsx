@@ -15,27 +15,37 @@ function side(url) {
 
 const propTypes = {
   grandTotal: PropTypes.number,
+  label: PropTypes.object,
   linkedProp: PropTypes.object,
-  memberCount: PropTypes.number,
+  subject: PropTypes.object,
 };
 
 /**
  * Renders a side-filtered collection.
  * The collection contains a collection of pages for this filter.
  * @TODO Get the right side into the className
- * @return {ReactElement} This component
+ * @returns {object} The component
  */
-const SideViews = ({ grandTotal, linkedProp, memberCount }) => (
-  <div
-    className={`VoteData__votebar-part VoteData__votebar-part--${side(linkedProp)}`}
-    style={{ maxWidth: `${calcPercentage(memberCount, grandTotal)}%` }}
-  >
-    <LinkedObjectContainer
-      object={getValueOrID(linkedProp)}
-      topology="voteSidePage"
-    />
-  </div>
-);
+const SideViews = ({ grandTotal, label, linkedProp, subject }, { linkedRenderStore }) => {
+  const prop = linkedProp || getLinkedObjectProperty(
+    label,
+    subject,
+    linkedRenderStore,
+    true
+  );
+  const memberCount = getLinkedObjectProperty(NS.argu('totalCount'), subject, linkedRenderStore);
+  return (
+    <div
+      className={`VoteData__votebar-part VoteData__votebar-part--${side(prop)}`}
+      style={{ maxWidth: `${calcPercentage(parseInt(memberCount, 10), parseInt(grandTotal, 10))}%` }}
+    >
+      <LinkedObjectContainer
+        object={prop}
+        topology={NS.argu('voteSidePage')}
+      />
+    </div>
+  );
+};
 
 SideViews.propTypes = propTypes;
 

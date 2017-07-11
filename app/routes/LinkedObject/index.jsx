@@ -15,7 +15,10 @@ const LinkedObject = () => (
     <Container>
       <Property label="schema:isPartOf" />
       <Type />
+      <Property label="argu:attachments" />
       <Property label="argu:VoteEventCollection" />
+    </Container>
+    <Container size="large">
       <Property forceRender label={['argu:collectionAssociation', 'schema:comments']} />
     </Container>
   </LinkedObjectContainer>
@@ -26,3 +29,4 @@ LinkedObject.propTypes = propTypes;
 export default LinkedObject;
 
 export { default as LinkedObjectByID } from './LinkedObjectByID';
+export { default as LinkPage } from './LinkPage';

@@ -50,8 +50,8 @@ class Collection extends PropertyBase {
 }
 
 const ConnectedCollection = connect(
-  (state, { data }) => ({
-    currentPage: getPage(state, data.get('@id'))
+  (state, { subject }) => ({
+    currentPage: getPage(state, subject)
   })
 )(Collection);
 

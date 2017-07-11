@@ -9,7 +9,7 @@ import morgan from 'morgan';
 import SearchkitExpress from 'searchkit-express';
 
 import * as constants from '../../app/config';
-import { renderFullPage } from '../utils/render';
+import { handleRender } from '../utils/render';
 import { isAuthenticated, isBackend, isIframe } from '../utils/filters';
 import { backendProxy, iframeProxy, odApiProxy } from '../utils/proxies';
 
@@ -91,7 +91,8 @@ export default function routes(app, port) {
     const domain = req.get('host').replace(/:.*/, '');
 
     res.setHeader('Link', `${constants.FRONTEND_URL}/static/preloader.css; rel=preload; as=style`);
-    res.send(renderFullPage('', port, domain, req.csrfToken())).end();
+    handleRender(req, res, port, domain);
+    // res.send(renderFullPage('', port, domain, req.csrfToken())).end();
     return undefined;
   });
 }

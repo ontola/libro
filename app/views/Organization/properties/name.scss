@@ -1,0 +1,11 @@
+.OrganizationName {
+  align-items: center;
+  display: flex;
+  max-height: 2em;
+  padding: 1em;
+
+  &__value {
+    color: inherit;
+    font-weight: bold;
+  }
+}

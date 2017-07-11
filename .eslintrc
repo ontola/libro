@@ -12,6 +12,7 @@
     "mocha": true,
   },
   "globals": {
+    "__CLIENT__": true,
     "__DEV__": true,
     "__DEVELOPMENT__": true,
     "__ORIGIN__": true,

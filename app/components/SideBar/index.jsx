@@ -43,15 +43,17 @@ class SideBar extends Component {
   }
 
   componentWillMount() {
-    const mql = window.matchMedia(`(min-width: ${this.triggerWidth()})`);
-    mql.addListener(this.mediaQueryChanged);
-    this.setState({
-      mql,
-    });
-    if (mql.matches) {
-      this.props.onDock();
-    } else {
-      this.props.onUndock();
+    if (typeof window !== 'undefined') {
+      const mql = window.matchMedia(`(min-width: ${this.triggerWidth()})`);
+      mql.addListener(this.mediaQueryChanged);
+      this.setState({
+        mql,
+      });
+      if (mql.matches) {
+        this.props.onDock();
+      } else {
+        this.props.onUndock();
+      }
     }
 
     this.styles = {
@@ -70,7 +72,9 @@ class SideBar extends Component {
   }
 
   componentWillUnmount() {
-    this.state.mql.removeListener(this.mediaQueryChanged);
+    if (typeof window !== 'undefined') {
+      this.state.mql.removeListener(this.mediaQueryChanged);
+    }
   }
 
   // Handles the events from the used Sidebar component, such as dragging
@@ -130,7 +134,7 @@ class SideBar extends Component {
     const sidebar = (
       <div className="SideBar__sidebar-wrapper">
         {this.props.sidebar}
-        {!this.props.docked && this.state.mql.matches &&
+        {!this.props.docked && (typeof window === 'undefined' || this.state.mql.matches) &&
           <div className={buttonClassNames}>
             <Button
               onClick={() => this.props.onDock()}

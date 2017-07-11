@@ -52,6 +52,7 @@ export const iframeProxy = proxy({
 
 export const odApiProxy = proxy({
   changeOrigin: true,
-  pathRewrite: { '^/': '/api/' },
+  secure: process.env.NODE_ENV !== 'development',
+  strictSSL: process.env.NODE_ENV !== 'development',
   target: constants.AOD_API_URL,
 });

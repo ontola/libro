@@ -53,7 +53,9 @@ const configureStore = (preloadedState) => {
     middleware = compose(
       appliedMiddleware,
       reduxSearchConfig(),
-      window.devToolsExtension ? window.devToolsExtension() : f => f
+      typeof window !== 'undefined' && window.devToolsExtension
+        ? window.devToolsExtension()
+        : f => f
     );
   }
 

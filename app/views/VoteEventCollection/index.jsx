@@ -1,4 +1,4 @@
-import { getP, RENDER_CLASS_NAME } from 'link-lib';
+import { RENDER_CLASS_NAME } from 'link-lib';
 import { Property, PropertyBase } from 'link-redux';
 import React, { PropTypes } from 'react';
 
@@ -35,7 +35,7 @@ LinkedRenderStore.registerRenderer(
 class VoteEvent extends PropertyBase {
   shouldComponentUpdate(nextProps, Ignore, nextContext) {
     const { data } = this.props;
-    return !(data && getP(data, '@type') === getP(nextProps.data, '@type')) ||
+    return !(data && data['http://www.w3.org/1999/02/22-rdf-syntax-ns#type'] === nextProps.data['http://www.w3.org/1999/02/22-rdf-syntax-ns#type']) ||
       this.getLinkedObjectProperty('argu:member') !==
         this.getLinkedObjectProperty('argu:member', nextContext.schemaObject);
   }

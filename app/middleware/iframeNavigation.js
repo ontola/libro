@@ -31,7 +31,9 @@ export default (store) => {
       rootEvent.source.postMessage('hi', __ORIGIN__);
     }
   }
-  window.addEventListener('message', onlyArgu(receiveMessage), false);
+  if (typeof window !== 'undefined') {
+    window.addEventListener('message', onlyArgu(receiveMessage), false);
+  }
 
   return next => action => next(action);
 };

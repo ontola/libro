@@ -79,7 +79,9 @@ export function json(response) {
 }
 
 export function getMetaContent(name) {
-  const header = document.querySelector(`meta[name="${name}"]`);
+  const header = __CLIENT__ ?
+    document.querySelector(`meta[name="${name}"]`)
+    : 'TODO: REPLACE ME';
   return header && header.content;
 }
 

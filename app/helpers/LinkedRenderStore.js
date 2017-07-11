@@ -4,28 +4,37 @@ import { PropTypes } from 'react';
 
 import DataWorker from 'worker-loader!../workers/DataWorker';
 import transformers from './transformers';
+
 import Error from '../components/Error';
-LinkedRenderStore.onError = Error;
+
+const LRS = new LinkedRenderStore();
+
+LRS.onError = Error;
 
 if (typeof window !== 'undefined' && window.Worker) {
-  LinkedRenderStore.api.processor = new DataWorkerLoader(DataWorker);
+  LRS.api.processor = new DataWorkerLoader(DataWorker);
 } else {
   transformers.transformers.forEach(
-    t => LinkedRenderStore.api.registerTransformer(t.transformer, t.mediaTypes, t.acceptValue)
+    t => LRS.api.registerTransformer(t.transformer, t.mediaTypes, t.acceptValue)
   );
 }
 
-LinkedRenderStore.api.setAcceptForHost('https://argu.dev/', 'application/vnd.api+json');
-LinkedRenderStore.api.setAcceptForHost('https://beta.argu.dev/', 'application/vnd.api+json');
-LinkedRenderStore.api.setAcceptForHost('https://argu.co/', 'application/vnd.api+json');
-LinkedRenderStore.api.setAcceptForHost('https://aod-search.argu.co/', 'application/vnd.api+json');
-LinkedRenderStore.api.setAcceptForHost('https://beta.argu.co/', 'application/vnd.api+json');
+LRS.api.setAcceptForHost('https://argu.dev/', 'application/vnd.api+json');
+LRS.api.setAcceptForHost('https://beta.argu.dev/', 'application/vnd.api+json');
+LRS.api.setAcceptForHost('https://argu.co/', 'application/vnd.api+json');
+LRS.api.setAcceptForHost('https://aod-search.argu.co/', 'application/vnd.api+json');
+LRS.api.setAcceptForHost('https://beta.argu.co/', 'application/vnd.api+json');
 
-LinkedRenderStore.store.rdf.prefixes.addAll({
-  aod: 'https://argu.co/ns/od#',
-});
+LRS.namespaces.aod = rdf.Namespace('https://argu.co/ns/od#');
+export const NS = LRS.namespaces;
 
-LinkedRenderStore.addOntologySchematics([
+LRS.addOntologySchematics([
+  {
+    '@id': 'http://www.w3.org/2000/01/rdf-schema#Resource',
+    'rdfs:subClassOf': {
+      '@id': 'http://schema.org/Thing',
+    },
+  },
   {
     '@id': 'http://www.w3.org/2002/07/owl#Thing',
     'owl:sameAs': {
@@ -173,5 +182,5 @@ export {
   linkedPropVal,
 };
 
-export default LinkedRenderStore;
-window.LRS = LinkedRenderStore;
+export default LRS;
+window.LRS = LRS;
