@@ -12,6 +12,14 @@ const propTypes = {
   hideIcon: PropTypes.bool,
 };
 
+const prefixMap = {
+  startDate: 'Begin',
+  endDate: 'Einde',
+  dateCreated: 'Aangemaakt',
+  dateUpdated: 'Bijgewerkt',
+  duration: 'Duur',
+};
+
 class LinkedDetailDate extends PropertyBase {
   mostImportantDate() {
     return this.getP('startDate') ||
@@ -19,23 +27,15 @@ class LinkedDetailDate extends PropertyBase {
   }
 
   getP(prop) {
-    return this.props[prop] || this.getLinkedObjectProperty(`http://schema.org/${prop}`);
+    return this.props[prop] || this.getLinkedObjectPropertyRaw(`http://schema.org/${prop}`);
   }
 
   render() {
     const { asHours, floatRight, hideIcon } = this.props;
-    const hoverTextItems = [
-      (this.getP('startDate') && `Begin: ${formatDate(this.getP('startDate'))}`),
-      (this.getP('endDate') && `Einde: ${formatDate(this.getP('endDate'))}`),
-      (this.getP('dateCreated') && `Aangemaakt: ${formatDate(this.getP('dateCreated'))}`),
-      (this.getP('dateUpdated') && `Bijgewerkt: ${formatDate(this.getP('dateUpdated'))}`),
-      (this.getP('duration') && `Duur: ${durationToHumanizedString(this.getP('duration'))}`),
-    ];
 
-    const hoverText = hoverTextItems
-      .filter(i => i !== undefined)
-      .join('. \n')
-      .concat('.');
+    const processItem = item => (this.getP(item) ? `${prefixMap[item]}: ${this.getP(item)}` : '');
+
+    const hoverText = `${processItem('startDate')}${processItem('endDate')}${processItem('dateCreated')}${processItem('dateUpdated')}${processItem('duration')}.`;
 
     const displayValue = () => {
       if (asHours) {

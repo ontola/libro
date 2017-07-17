@@ -29,7 +29,7 @@ class Detail extends PropertyBase {
 
   getText() {
     let text = this.props.text;
-    if (typeof this.context.schemaObject !== 'undefined' && this.getLinkedObjectProperty()) {
+    if (typeof this.context.schemaObject !== 'undefined' && this.props.label && this.getLinkedObjectProperty()) {
       text = this.getLinkedObjectProperty();
     }
     return <span className="Detail__text">{text}</span>;

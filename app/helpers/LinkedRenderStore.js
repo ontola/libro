@@ -1,5 +1,6 @@
 /* eslint no-console: 0 */
 import LinkedRenderStore, { DataWorkerLoader } from 'link-lib';
+import rdf from 'rdflib';
 import { PropTypes } from 'react';
 
 import DataWorker from 'worker-loader!../workers/DataWorker';

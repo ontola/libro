@@ -41,6 +41,10 @@ config.plugins.push(
       'https://beta.argu.co/api/'
     ),
   }),
+  new webpack.ProvidePlugin({
+    fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
+    xmlhttprequest: 'imports?this=>global!exports?global.XMLHttpRequest!global.XMLHttpRequest'
+  }),
   new webpack.optimize.UglifyJsPlugin({
     compress: {
       warnings: false,

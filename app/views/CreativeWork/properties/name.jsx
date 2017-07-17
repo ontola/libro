@@ -11,7 +11,7 @@ class Name extends PropertyBase {
   getVariant() {
     switch (this.getLinkedObjectProperty('http://www.w3.org/1999/02/22-rdf-syntax-ns#type')) {
       case 'https://argu.co/ns/core#Argument':
-        return this.getLinkedObjectProperty('schema:option') === true ? 'pro' : 'con';
+        return this.getLinkedObjectProperty('schema:option') === 'true' ? 'pro' : 'con';
       default:
         return undefined;
     }

@@ -6,6 +6,10 @@ const TARGET = process.env.npm_lifecycle_event;
 process.env.BABEL_ENV = TARGET;
 
 const common = {
+  externals: {
+    xmlhttprequest: 'global.XMLHttpRequest',
+  },
+
   module: {
     rules: [
       {
@@ -38,6 +42,7 @@ const common = {
   plugins: [
     new webpack.ProvidePlugin({
       fetch: 'isomorphic-fetch',
+      xmlhttprequest: 'imports-loader?this=>global!exports?global.XMLHttpRequest!global.XMLHttpRequest'
     }),
     new webpack.DefinePlugin({
       __CLIENT__: true,
