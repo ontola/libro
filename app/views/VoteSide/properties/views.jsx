@@ -53,7 +53,7 @@ LinkedRenderStore.registerRenderer(
   SideViews,
   'argu:Collection',
   'argu:views',
-  'voteSide'
+  'argu:voteSide'
 );
 
 export default SideViews;

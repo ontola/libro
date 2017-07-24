@@ -33,7 +33,7 @@ class Grouped extends PropertyBase {
               <LinkedObjectContainer
                 key={`groupedmember${mem['@id']}`}
                 object={mem['@id']}
-                topology="collection"
+                topology="argu:collection"
               />
             ))}
           </div>

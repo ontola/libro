@@ -1,5 +1,5 @@
 import React from 'react';
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
+import LinkedRenderStore, { defaultNS, RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
 
 import {
@@ -18,17 +18,17 @@ import './properties/voteEvents';
 const CreativeWork = () => (
   <Card>
     <CardHeader noSpacing>
-      <Property label="schema:name" />
+      <Property label={defaultNS.schema('name')} />
       <DetailsBar>
-        <Property label="schema:creator" />
+        <Property label={defaultNS.schema('creator')} />
         <LinkedDetailDate />
       </DetailsBar>
     </CardHeader>
     <CardContent noSpacing>
-      <Property label="schema:text" />
+      <Property label={defaultNS.schema('text')} />
     </CardContent>
     <CardActions>
-      <Property label="schema:updateAction" />
+      <Property label={defaultNS.schema('updateAction')} />
     </CardActions>
   </Card>
 );
@@ -39,7 +39,7 @@ const HiddenChildren = () => (
 
 const CreativeWorkSection = () => (
   <HoverBox hiddenChildren={<HiddenChildren />}>
-    <Property label="schema:name" topology="inline" />
+    <Property label={defaultNS.schema('name')} topology="argu:inline" />
   </HoverBox>
 );
 
@@ -48,20 +48,20 @@ LinkedRenderStore.registerRenderer(
   CreativeWork,
   'http://schema.org/CreativeWork',
   RENDER_CLASS_NAME,
-  'collection'
+  'argu:collection'
 );
 LinkedRenderStore.registerRenderer(
   CreativeWorkSection,
   'http://schema.org/CreativeWork',
   RENDER_CLASS_NAME,
-  'section'
+  'argu:section'
 );
 
 LinkedRenderStore.registerRenderer(
-  () => <LinkCard><Property label="schema:name" /></LinkCard>,
+  () => <LinkCard><Property label={defaultNS.schema('name')} /></LinkCard>,
   'http://schema.org/CreativeWork',
   RENDER_CLASS_NAME,
-  'parent'
+  'argu:parent'
 );
 
 export { default as Arguments } from './properties/arguments';

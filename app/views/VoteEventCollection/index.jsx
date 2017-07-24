@@ -26,7 +26,7 @@ LinkedRenderStore.registerRenderer(
   VoteEventCollection,
   'argu:Collection',
   RENDER_CLASS_NAME,
-  'voteEvent'
+  'argu:voteEvent'
 );
 
 /**
@@ -54,7 +54,7 @@ LinkedRenderStore.registerRenderer(
   VoteEvent,
   ['argu:VoteEvent', 'aod:VoteEvent'],
   RENDER_CLASS_NAME,
-  'voteEventCollection'
+  'argu:voteEventCollection'
 );
 
 export default VoteEventCollection;

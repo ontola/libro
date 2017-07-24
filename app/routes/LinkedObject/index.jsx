@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import {defaultNS as NS } from 'link-lib'
 import { LinkedObjectContainer, Property, Type } from 'link-redux';
 
 import {
@@ -13,10 +14,10 @@ const propTypes = {
 const LinkedObject = () => (
   <LinkedObjectContainer object={location.href} >
     <Container>
-      <Property label="schema:isPartOf" />
+      <Property label={NS.schema('isPartOf')} />
       <Type />
-      <Property label="argu:attachments" />
-      <Property label="argu:VoteEventCollection" />
+      <Property label={NS.argu('attachments')} />
+      <Property label={NS.argu('VoteEventCollection')} />
     </Container>
     <Container size="large">
       <Property forceRender label={['argu:collectionAssociation', 'schema:comments']} />

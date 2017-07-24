@@ -19,5 +19,5 @@ LinkedRenderStore.registerRenderer(
   SubMenuLabelProp,
   'argu:SubMenu',
   'argu:label',
-  'sidebar'
+  'argu:sidebar'
 );

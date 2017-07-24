@@ -10,7 +10,7 @@ const propTypes = {
 const PersonImageProp = ({ linkedProp }) => (
   <LinkedObjectContainer
     object={linkedProp}
-    topology="voteBubble"
+    topology="argu:voteBubble"
   />
 );
 
@@ -20,14 +20,14 @@ LinkedRenderStore.registerRenderer(
   PersonImageProp,
   ['schema:Person', 'aod:Persons'],
   ['http://schema.org/image', 'dbo:thumbnail', 'wdt:P18'],
-  'detail'
+  'argu:detail'
 );
 
 LinkedRenderStore.registerRenderer(
   PersonImageProp,
   ['schema:Person', 'aod:Persons'],
   ['http://schema.org/image', 'dbo:thumbnail', 'wdt:P18'],
-  'voteBubble'
+  'argu:voteBubble'
 );
 
 LinkedRenderStore.registerRenderer(
@@ -36,7 +36,7 @@ LinkedRenderStore.registerRenderer(
   ),
   ['schema:Person', 'aod:Persons'],
   ['http://schema.org/image', 'dbo:thumbnail', 'wdt:P18'],
-  'sidebar'
+  'argu:sidebar'
 );
 
 export default PersonImageProp;

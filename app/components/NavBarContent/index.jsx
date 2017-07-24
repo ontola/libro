@@ -46,7 +46,7 @@ const NavBarContent = ({
   if (actorType === 'User') {
     actorItem = (
       <div>
-        <LinkedObjectContainer object={`${FRONTEND_URL}/c_a`} topology="sidebar" />
+        <LinkedObjectContainer object={`${FRONTEND_URL}/c_a`} topology="argu:sidebar" />
         <SideBarLink icon="gears" label="Instellingen" to={path.settings()} />
       </div>
     );

@@ -5,5 +5,5 @@ LinkedRenderStore.registerRenderer(
   ({ linkedProp }) => <p>{linkedProp}</p>,
   'schema:Person',
   'schema:name',
-  'sidebar'
+  'argu:sidebar'
 );

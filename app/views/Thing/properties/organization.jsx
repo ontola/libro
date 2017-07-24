@@ -8,7 +8,7 @@ const propTypes = {
 };
 
 const ThingOrganizationProp = ({ linkedProp }) =>
-  <LinkedObjectContainer object={linkedProp} topology="sidebarBlock" />;
+  <LinkedObjectContainer object={linkedProp} topology="argu:sidebarBlock" />;
 
 ThingOrganizationProp.propTypes = propTypes;
 

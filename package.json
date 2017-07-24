@@ -11,6 +11,7 @@
     "body-parser": "^1.15.2",
     "connect-redis": "^3.2.0",
     "csurf": "^1.9.0",
+    "development": "0.0.6",
     "dotenv": "^4.0.0",
     "express": "^4.14.0",
     "express-session": "^1.15.1",

@@ -13,7 +13,7 @@ const Creator = ({ linkedProp }) => {
   return (
     <LinkedObjectContainer
       object={object}
-      topology="voteBubble"
+      topology="argu:voteBubble"
     />
   );
 };

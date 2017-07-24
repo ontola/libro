@@ -25,7 +25,7 @@ class Views extends PropertyBase {
       <LinkedObjectContainer
         object={prop}
         optionCounts={optionCounts}
-        topology="voteEvent"
+        topology="argu:voteEvent"
       />
     );
   }
@@ -47,7 +47,7 @@ LinkedRenderStore.registerRenderer(
   Views,
   ['argu:VoteEvent', 'aod:VoteEvent', 'argu:Collection'],
   'argu:votes',
-  'voteEvent'
+  'argu:voteEvent'
 );
 
 export default Views;

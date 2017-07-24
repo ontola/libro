@@ -70,5 +70,5 @@ LinkedRenderStore.registerRenderer(
   SubMenuSideBarConnected,
   'argu:SubMenu',
   RENDER_CLASS_NAME,
-  'sidebar'
+  'argu:sidebar'
 );

@@ -54,5 +54,5 @@ LinkedRenderStore.registerRenderer(
   VoteViews,
   'argu:Collection',
   'argu:views',
-  'voteEvent'
+  'argu:voteEvent'
 );

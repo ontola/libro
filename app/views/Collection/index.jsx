@@ -60,7 +60,7 @@ class CollectionSection extends PropertyBase {
     return viewsOrMembers(
       this.getLinkedObjectPropertyRaw('argu:views'),
       this.getLinkedObjectPropertyRaw('argu:members'),
-      'section'
+      'argu:section'
     );
   }
 }
@@ -69,13 +69,13 @@ LinkedRenderStore.registerRenderer(ConnectedCollection, ['argu:Collection', 'hyd
 LinkedRenderStore.registerRenderer(
   ConnectedCollection,
   ['argu:Collection', 'hydra:Collection'],
-  'collection'
+  'argu:collection'
 );
 LinkedRenderStore.registerRenderer(
   CollectionSection,
   ['argu:Collection', 'hydra:Collection'],
   RENDER_CLASS_NAME,
-  'section'
+  'argu:section'
 );
 
 export { default as voteMatch } from './voteMatch';

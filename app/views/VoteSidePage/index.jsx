@@ -35,7 +35,7 @@ LinkedRenderStore.registerRenderer(
   VoteSidePage,
   ['argu:Collection', 'hydra:Collection'],
   RENDER_CLASS_NAME,
-  'voteSidePage'
+  'argu:voteSidePage'
 );
 
 // import './properties/members';

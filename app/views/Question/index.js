@@ -33,5 +33,5 @@ LinkedRenderStore.registerRenderer(
   QuestionCollection,
   'argu:Question',
   RENDER_CLASS_NAME,
-  'collection'
+  'argu:collection'
 );

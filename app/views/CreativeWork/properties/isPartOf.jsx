@@ -14,7 +14,7 @@ const IsPartOf = ({ linkedProp }) => {
   return (
     <LinkedObjectContainer
       object={linkedProp}
-      topology="parent"
+      topology="argu:parent"
       forceRender
       fetch
     />

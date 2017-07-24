@@ -23,5 +23,5 @@ LinkedRenderStore.registerRenderer(
   VoteCompareRows,
   'argu:CompareRow',
   RENDER_CLASS_NAME,
-  'collection'
+  'argu:collection'
 );

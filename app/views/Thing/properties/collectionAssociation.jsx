@@ -13,7 +13,7 @@ class CollectionAssociation extends PropertyBase {
     return prop &&
       prop === 'https://beta.argu.co/vote_events/7b1fb5f4-68a3-e511-b86d-e4115babb880' &&
       this.context.schemaObject &&
-      getP(this.context.schemaObject, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#subject');
+      getP(this.context.schemaObject, ns.rdf('subject'));
   }
 
   render() {

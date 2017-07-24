@@ -50,7 +50,7 @@ LinkedRenderStore.registerRenderer(
   Vote,
   ['argu:Vote', 'aod:Vote', 'aod:Count'],
   RENDER_CLASS_NAME,
-  'collection'
+  'argu:collection'
 );
 
 import './properties/creator';

@@ -29,7 +29,7 @@ LinkedRenderStore.registerRenderer(
   Idea,
   'argu:Motion',
   RENDER_CLASS_NAME,
-  'page'
+  'argu:page'
 );
 
 export default Idea;

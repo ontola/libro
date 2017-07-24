@@ -10,7 +10,7 @@ const propTypes = {
 const Motions = ({ linkedProp }) => (
   <LinkedObjectContainer
     object={linkedProp}
-    topology="voteMatch"
+    topology="argu:voteMatch"
   />
 );
 

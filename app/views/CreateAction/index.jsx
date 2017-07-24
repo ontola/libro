@@ -21,7 +21,7 @@ LinkedRenderStore.registerRenderer(
   CreateAction,
   'schema:CreateAction',
   RENDER_CLASS_NAME,
-  'collection'
+  'argu:collection'
 );
 
 export default CreateAction;

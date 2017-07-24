@@ -30,11 +30,11 @@ const renderErrorMessage = (error, errorMessage, reset) => (!error ? false : (
 const sidebar = () => (
   <LinkedObjectContainer
     object={window.location.href}
-    topology="page"
+    topology="argu:page"
     onError={NewNavbarContainer}
     onLoad={NewNavbarContainer}
   >
-    <Property label="schema:organization" topology="sidebarBlock" />
+    <Property label="schema:organization" topology="argu:sidebarBlock" />
   </LinkedObjectContainer>
 );
 
@@ -61,7 +61,7 @@ const LinkPage = ({
       <div id="start-of-content">
         <LinkedObjectContainer
           object={window.location.href}
-          topology="page"
+          topology="argu:page"
         />
       </div>
       {error && renderErrorMessage(error, errorMessage, reset)}

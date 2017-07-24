@@ -14,5 +14,5 @@ LinkedRenderStore.registerRenderer(
   ({ linkedProp }) => <Image className="SideBarLink__image" linkedProp={linkedProp} style={{ maxHeight: 'inherit' }} />,
   'http://schema.org/ImageObject',
   'http://schema.org/thumbnail',
-  'sidebar'
+  'argu:sidebar'
 );

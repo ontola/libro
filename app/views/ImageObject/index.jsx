@@ -12,13 +12,13 @@ LinkedRenderStore.registerRenderer(
   ImageObject,
   'http://schema.org/ImageObject',
   RENDER_CLASS_NAME,
-  'detail'
+  'argu:detail'
 );
 LinkedRenderStore.registerRenderer(
   ImageObject,
   'http://schema.org/ImageObject',
   RENDER_CLASS_NAME,
-  'voteBubble'
+  'argu:voteBubble'
 );
 LinkedRenderStore.registerRenderer(
   () => (
@@ -28,7 +28,7 @@ LinkedRenderStore.registerRenderer(
   ),
   'http://schema.org/ImageObject',
   RENDER_CLASS_NAME,
-  'sidebar'
+  'argu:sidebar'
 );
 
 export { default as Thumbnail } from './properties/thumbnail';

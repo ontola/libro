@@ -15,7 +15,7 @@ const propTypes = {
 const VoteEventCollection = ({ linkedProp }) => (
   <LinkedObjectContainer
     object={linkedProp}
-    topology="voteEventCollection"
+    topology="argu:voteEventCollection"
   />
 );
 

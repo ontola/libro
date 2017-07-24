@@ -23,7 +23,7 @@ LinkedRenderStore.registerRenderer(
   VoteEvent,
   ['argu:VoteEvent', 'aod:VoteEvent'],
   RENDER_CLASS_NAME,
-  'voteEvent'
+  'argu:voteEvent'
 );
 
 export { default as Members } from './properties/members';

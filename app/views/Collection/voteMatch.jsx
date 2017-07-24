@@ -42,7 +42,7 @@ LinkedRenderStore.registerRenderer(
   Motions,
   'argu:Collection',
   'argu:members',
-  'voteMatch'
+  'argu:voteMatch'
 );
 
 export default Motions;

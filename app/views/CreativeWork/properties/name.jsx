@@ -37,21 +37,21 @@ LinkedRenderStore.registerRenderer(
   props => <LDLink><Name headerSize="3" {...props} /></LDLink>,
   'http://schema.org/CreativeWork',
   'http://schema.org/name',
-  'collection'
+  'argu:collection'
 );
 
 LinkedRenderStore.registerRenderer(
   props => <LDLink><Name headerSize="4" {...props} /></LDLink>,
   'http://schema.org/CreativeWork',
   'http://schema.org/name',
-  'section'
+  'argu:section'
 );
 
 LinkedRenderStore.registerRenderer(
   ({ linkedProp }) => <span>{linkedProp}</span>,
   'http://schema.org/CreativeWork',
   'http://schema.org/name',
-  'parent'
+  'argu:parent'
 );
 
 export default Name;

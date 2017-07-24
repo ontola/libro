@@ -8,7 +8,7 @@ const propTypes = {
 };
 
 const ThingMenusProp = ({ linkedProp }) =>
-  <LinkedObjectContainer object={linkedProp} topology="sidebar" />;
+  <LinkedObjectContainer object={linkedProp} topology="argu:sidebar" />;
 
 ThingMenusProp.propTypes = propTypes;
 
@@ -16,7 +16,7 @@ LinkedRenderStore.registerRenderer(
   ThingMenusProp,
   'http://schema.org/Thing',
   'argu:menus',
-  'sidebarBlock'
+  'argu:sidebarBlock'
 );
 
 export default ThingMenusProp;

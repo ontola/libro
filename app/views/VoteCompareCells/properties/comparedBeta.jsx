@@ -10,7 +10,7 @@ const propTypes = {
 const ComparedBeta = ({ linkedProp }) => (
   <LinkedObjectContainer
     object={linkedProp}
-    topology="inline"
+    topology="argu:inline"
   />
 );
 

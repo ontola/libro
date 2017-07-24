@@ -17,7 +17,7 @@ const Creator = ({ linkedProp }) => {
   return (
     <LinkedObjectContainer
       object={linkedProp}
-      topology="detail"
+      topology="argu:detail"
     />
   );
 };

@@ -57,5 +57,5 @@ LinkedRenderStore.registerRenderer(
   MotionCollection,
   'argu:Motion',
   RENDER_CLASS_NAME,
-  'collection'
+  'argu:collection'
 );

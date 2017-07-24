@@ -24,12 +24,12 @@ LinkedRenderStore.registerRenderer(
   ),
   'argu:Question',
   'http://schema.org/name',
-  'collection'
+  'argu:collection'
 );
 
 LinkedRenderStore.registerRenderer(
   ({ linkedProp }) => <span>{linkedProp}</span>,
   'argu:Question',
   'http://schema.org/name',
-  'parent'
+  'argu:parent'
 );

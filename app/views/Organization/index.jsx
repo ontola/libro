@@ -49,7 +49,7 @@ const OrganizationSidebarBlock = ({
   if (actorType === 'User') {
     actorItem = (
       <div>
-        <LinkedObjectContainer object={`${FRONTEND_URL}/c_a`} topology="sidebar" />
+        <LinkedObjectContainer object={`${FRONTEND_URL}/c_a`} topology="argu:sidebar" />
         <SideBarLink icon="gears" label="Instellingen" to={path.settings()} />
       </div>
     );
@@ -85,7 +85,7 @@ const OrganizationSidebarBlock = ({
           count={voteMatchCount}
         />
         <SideBarLink icon="th-large" label="Overzicht" to={path.index()} isIndex />
-        <Property label="argu:menus" topology="sidebar" />
+        <Property label="argu:menus" topology="argu:sidebar" />
       </div>
       <div className="NavBarContent__footer">
         {actorItem}
@@ -122,7 +122,7 @@ LinkedRenderStore.registerRenderer(
   OrganizationSidebarBlock,
   'http://schema.org/Organization',
   RENDER_CLASS_NAME,
-  'sidebarBlock'
+  'argu:sidebarBlock'
 );
 
 export default OrganizationSidebarBlock;

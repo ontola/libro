@@ -12,5 +12,5 @@ LinkedRenderStore.registerRenderer(
   NavigationsMenuSidebar,
   'argu:NavigationsMenu',
   RENDER_CLASS_NAME,
-  'sidebar'
+  'argu:sidebar'
 );

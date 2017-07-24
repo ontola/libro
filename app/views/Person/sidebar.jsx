@@ -23,5 +23,5 @@ LinkedRenderStore.registerRenderer(
   CurrentActorSidebar,
   'schema:Person',
   RENDER_CLASS_NAME,
-  'sidebar'
+  'argu:sidebar'
 );

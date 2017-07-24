@@ -14,7 +14,7 @@ const propTypes = {
 const Members = ({ linkedProp }) => (
   <LinkedObjectContainer
     object={linkedProp}
-    topology="voteEvent"
+    topology="argu:voteEvent"
   />
 );
 
@@ -24,7 +24,7 @@ LinkedRenderStore.registerRenderer(
   Members,
   'argu:Collection',
   'argu:members',
-  'voteEventCollection'
+  'argu:voteEventCollection'
 );
 
 export default Members;

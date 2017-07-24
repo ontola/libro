@@ -5,7 +5,7 @@ import React, { Component, PropTypes } from 'react';
 class DetailsBar extends Component {
   getChildContext() {
     return {
-      topology: 'details',
+      topology: 'argu:details',
     };
   }
 

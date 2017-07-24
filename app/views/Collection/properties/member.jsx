@@ -9,7 +9,7 @@ const propTypes = {
 
 class Member extends PropertyBase {
   memberList(prop) {
-    const topology = this.context.topology ? this.context.topology : 'collection';
+    const topology = this.context.topology ? this.context.topology : 'argu:collection';
     return prop.slice(0, this.props.limit).map(iri => (
       <LinkedObjectContainer
         key={`${getValueOrID(this.context.schemaObject)}:${getValueOrID(iri)}`}
@@ -58,7 +58,7 @@ LinkedRenderStore.registerRenderer(
   Member,
   'argu:Collection',
   'argu:members',
-  'section'
+  'argu:section'
 );
 
 export default Member;

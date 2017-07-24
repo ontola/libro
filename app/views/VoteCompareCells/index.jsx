@@ -17,5 +17,5 @@ LinkedRenderStore.registerRenderer(
   VoteCompareCells,
   'argu:CompareCell',
   RENDER_CLASS_NAME,
-  'collection'
+  'argu:collection'
 );

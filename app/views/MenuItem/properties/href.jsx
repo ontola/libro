@@ -48,7 +48,7 @@ LinkedRenderStore.registerRenderer(
   hrefConnected,
   'argu:Link',
   ['argu:href'],
-  'sidebar'
+  'argu:sidebar'
 );
 
 export default href;

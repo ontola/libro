@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Property } from 'link-redux';
-import { RENDER_CLASS_NAME } from 'link-lib';
+import { defaultNS as NS, RENDER_CLASS_NAME } from 'link-lib';
 
 import {
   Card,
@@ -26,12 +26,12 @@ const propTypes = {
 const Thing = ({ object }) => (
   <Card>
     <CardHeader noSpacing>
-      <Property label={['schema:name', 'rdfs:label']} />
-      <Property label={['dbo:thumbnail', 'wdt:P18']} />
+      <Property label={[NS.schema('name'), NS.rdfs('label')]} />
+      <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
     </CardHeader>
     <CardContent noSpacing>
-      <Property label={['schema:text', 'schema:description', 'dbo:abstract']} object={object} />
-      <Property label="foaf:isPrimaryTopicOf" />
+      <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} object={object} />
+      <Property label={NS.foaf('isPrimaryTopicOf')} />
     </CardContent>
   </Card>
 );
@@ -44,12 +44,12 @@ LinkedRenderStore.registerRenderer(
   () => <Property label={['schema:name', 'rdfs:label']} />,
   'http://schema.org/Thing',
   RENDER_CLASS_NAME,
-  'inline'
+  NS.argu('inline')
 );
 
 LinkedRenderStore.registerRenderer(
   () => <Property label={['schema:name', 'rdfs:label']} />,
   'http://schema.org/Thing',
   RENDER_CLASS_NAME,
-  'section'
+  NS.argu('section')
 );

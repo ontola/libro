@@ -36,7 +36,7 @@ LinkedRenderStore.registerRenderer(
   TextCollection,
   'http://schema.org/Thing',
   'http://schema.org/text',
-  'collection'
+  'argu:collection'
 );
 
 export default Text;

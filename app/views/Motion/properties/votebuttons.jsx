@@ -1,4 +1,4 @@
-import LinkedRenderStore from 'link-lib';
+import LinkedRenderStore, { defaultNS as NS } from 'link-lib';
 import { LinkedObjectContainer, Property, PropertyBase } from 'link-redux';
 import React from 'react';
 
@@ -56,7 +56,7 @@ class VoteButtons extends PropertyBase {
   }
 
   vote(side) {
-    const url = new URL(this.getLinkedObjectProperty('http://www.w3.org/1999/02/22-rdf-syntax-ns#subject').replace(ARGU_API_URL, FRONTEND_URL));
+    const url = new URL(this.getLinkedObjectProperty(NS.rdf('subject')).replace(ARGU_API_URL, FRONTEND_URL));
     url.pathname += '/votes.json';
     fetch(
       url.toString(),
@@ -126,15 +126,15 @@ VoteButtons.propTypes = propTypes;
 const linkedRecordWrapper = (Component) => {
   class LinkedRecordWrapper extends PropertyBase {
     isLinkedRecord() {
-      const id = this.getLinkedObjectProperty('@id');
-      return id && id.startsWith('https://beta.argu.co/nl/tweedekamer');
+      const id = this.getLinkedObjectProperty(NS.rdf('subject'));
+      return id && id.value.startsWith('https://beta.argu.co/nl/tweedekamer');
     }
 
     render() {
       if (this.isLinkedRecord()) {
         const childProps = Object.assign({}, this.props, { forceRender: undefined, label: 'argu:voteableVoteEvent' });
         return (
-          <LinkedObjectContainer object={`${FRONTEND_URL}/lr?iri=${this.getLinkedObjectProperty('@id')}`}>
+          <LinkedObjectContainer object={`${FRONTEND_URL}/lr?iri=${this.getLinkedObjectProperty(NS.rdf('subject'))}`}>
             <Property {...childProps} />
           </LinkedObjectContainer>
         );
@@ -171,5 +171,5 @@ LinkedRenderStore.registerRenderer(
   linkedRecordWrapper(VoteButtons),
   'argu:Motion',
   'argu:currentVote',
-  'voteMatch'
+  'argu:voteMatch'
 );

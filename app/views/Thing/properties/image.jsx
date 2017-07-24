@@ -23,7 +23,7 @@ const ThingImageProp = ({ linkedProp }) => {
   return (
     <LinkedObjectContainer
       object={linkedProp}
-      topology="detail"
+      topology="argu:detail"
     />
   );
 };
@@ -40,7 +40,7 @@ LinkedRenderStore.registerRenderer(
   ThingImageProp,
   'http://schema.org/Thing',
   ['http://schema.org/image', 'dbo:thumbnail', 'wdt:P18'],
-  'sidebar'
+  'argu:sidebar'
 );
 
 export default ThingImageProp;

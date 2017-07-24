@@ -45,7 +45,7 @@ class VoteMatchItem extends React.Component { //eslint-disable-line
               <FontAwesome name="bars" />
             )}
           </span>
-          <LinkedObjectContainer object={item} topology="inline" />
+          <LinkedObjectContainer object={item} topology="argu:inline" />
           <Button
             icon="times"
             theme="transparant"

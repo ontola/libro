@@ -32,7 +32,7 @@ LinkedRenderStore.registerRenderer(
   Views,
   'argu:Collection',
   'argu:views',
-  'section'
+  'argu:section'
 );
 
 export default Views;

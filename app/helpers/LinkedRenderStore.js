@@ -176,7 +176,6 @@ LRS.addOntologySchematics([
 const linkedPropVal = PropTypes.oneOfType([
   PropTypes.object,
   PropTypes.string,
-  undefined,
 ]);
 
 export {

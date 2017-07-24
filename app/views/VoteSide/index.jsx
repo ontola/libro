@@ -32,7 +32,7 @@ LinkedRenderStore.registerRenderer(
   VoteSide,
   ['argu:Collection', 'hydra:Collection'],
   RENDER_CLASS_NAME,
-  'voteSide'
+  'argu:voteSide'
 );
 
 import './properties/views';

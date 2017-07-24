@@ -29,7 +29,7 @@ LinkedRenderStore.registerRenderer(
   Comment,
   ['http://schema.org/Comment', 'https://argu.co/ns/core#Comment'],
   RENDER_CLASS_NAME,
-  'collection'
+  'argu:collection'
 );
 
 export default Comment;

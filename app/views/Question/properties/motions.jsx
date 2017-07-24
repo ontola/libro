@@ -18,10 +18,10 @@ LinkedRenderStore.registerRenderer(
 );
 
 LinkedRenderStore.registerRenderer(
-  ({ linkedProp }) => <LinkedObjectContainer object={linkedProp} topology="section" />,
+  ({ linkedProp }) => <LinkedObjectContainer object={linkedProp} topology="argu:section" />,
   'http://schema.org/CreativeWork',
   ['argu:motions'],
-  'collection'
+  'argu:collection'
 );
 
 export default Motions;
