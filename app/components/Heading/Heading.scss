@@ -42,32 +42,30 @@
   }
 }
 
-h1 {
+// sass-lint:disable no-qualifying-elements force-element-nesting
+h1.Heading {
   font-size: font-size('xx-large');
   font-weight: bold;
-  padding: units('x-small', 'none');
 }
 
-h2 {
+h2.Heading {
   font-size: font-size('x-large');
   font-weight: bold;
-  padding: units('xx-small', 'none');
 }
 
-h3 {
+h3.Heading {
   font-size: font-size('medium');
   font-weight: bold;
-  padding: units('xx-small', 'none');
 }
 
-h4 {
+h4.Heading {
   font-size: font-size('medium');
 }
 
-h5 {
+h5.Heading {
   font-size: font-size('small');
 }
 
-h6 {
+h6.Heading {
   font-size: font-size('small');
 }
