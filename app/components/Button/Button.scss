@@ -104,7 +104,8 @@
 .Button--pagination {
   color: color('grey');
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: color('grey', 'dark');
   }
 }

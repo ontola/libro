@@ -11,9 +11,20 @@ argUnit(Button, () => {
     expect(subject).toMatchSnapshot();
   });
 
-  it('should be clickable', () => {
-    expect(subject.simulate('click'));
+  it('should be pressable', () => {
+    expect(subject.simulate('click', { nativeEvent: { x: 0 } }));
     expect(clickHandler).toHaveBeenCalled();
+  });
+
+  it('should blur when clicked', () => {
+    const blur = jest.fn();
+    const eventMock = {
+      nativeEvent: { x: 1 },
+      target: { blur },
+    };
+    expect(subject.simulate('click', eventMock));
+    expect(clickHandler).toHaveBeenCalled();
+    expect(blur).toHaveBeenCalled();
   });
 
   it('should not be disabled', () => {
