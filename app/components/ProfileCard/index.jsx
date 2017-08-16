@@ -1,9 +1,9 @@
 import './ProfileCard.scss';
 import assert from 'assert';
 import classNames from 'classnames';
+import { lowLevel, PropertyBase } from 'link-redux';
 import React, { PropTypes } from 'react';
 import { browserHistory } from 'react-router';
-import { PropertyBase } from 'link-redux';
 
 import {
   Button,
@@ -20,6 +20,7 @@ const propTypes = {
   loading: PropTypes.bool,
   full: PropTypes.bool,
   similarity: PropTypes.number,
+  subject: PropTypes.object,
 };
 
 const defaultProps = {
@@ -122,4 +123,4 @@ class ProfileCard extends PropertyBase {
 ProfileCard.propTypes = propTypes;
 ProfileCard.defaultProps = defaultProps;
 
-export default ProfileCard;
+export default lowLevel.linkedSubject(ProfileCard);

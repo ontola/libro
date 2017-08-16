@@ -6,8 +6,8 @@ import {
   Card,
   CardContent,
   CardHeader,
-} from 'components';
-
+  LinkCard,
+} from '../../components';
 import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
 import './properties/collectionAssociation';
@@ -58,4 +58,12 @@ LinkedRenderStore.registerRenderer(
   NS.schema('Thing'),
   RENDER_CLASS_NAME,
   NS.argu('section')
+);
+
+
+LinkedRenderStore.registerRenderer(
+  () => <LinkCard><Property label={[NS.schema('name'), NS.rdfs('label')]} /></LinkCard>,
+  NS.schema('Thing'),
+  RENDER_CLASS_NAME,
+  NS.argu('parent')
 );

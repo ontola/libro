@@ -1,17 +1,21 @@
 import './Detail.scss';
+import { Property, PropertyBase } from 'link-redux';
 import React, { PropTypes } from 'react';
 import { browserHistory } from 'react-router';
-import { Property, PropertyBase } from 'link-redux';
 import FontAwesome from 'react-fontawesome';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 
+const contextTypes = {
+  subject: PropTypes.object,
+};
 const propTypes = {
   className: PropTypes.string,
   text: PropTypes.string,
   url: PropTypes.string,
   icon: PropTypes.string,
   imageUrl: PropTypes.string,
+  subject: PropTypes.object,
   /** HTML title attribute */
   title: PropTypes.string,
   /** Since Detail uses flexbox, you need to place right floating Details
@@ -22,7 +26,7 @@ const propTypes = {
 
 class Detail extends PropertyBase {
   getImage() {
-    if (typeof this.context.schemaObject !== 'undefined') {
+    if (typeof this.context.subject !== 'undefined') {
       return <Property label={NS.schema('image')} />;
     }
     return this.props.imageUrl &&
@@ -31,7 +35,7 @@ class Detail extends PropertyBase {
 
   getText() {
     let text = this.props.text;
-    if (typeof this.context.schemaObject !== 'undefined' && this.props.label && this.getLinkedObjectProperty()) {
+    if (typeof this.context.subject !== 'undefined' && this.props.label && this.getLinkedObjectProperty()) {
       text = this.getLinkedObjectProperty();
     }
     return <span className="Detail__text">{text}</span>;
@@ -87,6 +91,7 @@ class Detail extends PropertyBase {
   }
 }
 
+Detail.contextTypes = contextTypes;
 Detail.propTypes = propTypes;
 
 export default Detail;

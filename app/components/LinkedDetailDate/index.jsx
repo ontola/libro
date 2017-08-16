@@ -1,9 +1,14 @@
 import '../DetailDate/DetailDate.scss';
+import {
+  PropertyBase,
+  lowLevel,
+  getLinkedObjectPropertyRaw,
+} from 'link-redux';
 import React, { PropTypes } from 'react';
-import { PropertyBase } from 'link-redux';
-
 import { Detail } from 'components';
 import moment from 'moment';
+
+import { NS } from '../../helpers/LinkedRenderStore';
 
 const propTypes = {
   asHours: PropTypes.bool,
@@ -26,7 +31,15 @@ class LinkedDetailDate extends PropertyBase {
   }
 
   getP(prop) {
-    return this.props[prop] || this.getLinkedObjectPropertyRaw(`http://schema.org/${prop}`);
+    if (this.props[prop]) {
+      return this.props[prop];
+    }
+    const val = getLinkedObjectPropertyRaw(
+        NS.schema(prop),
+        this.props.subject,
+        this.context.linkedRenderStore
+      );
+    return val && val.value;
   }
 
   render() {
@@ -55,4 +68,4 @@ class LinkedDetailDate extends PropertyBase {
 
 LinkedDetailDate.propTypes = propTypes;
 
-export default LinkedDetailDate;
+export default lowLevel.linkedSubject(lowLevel.linkedVersion(LinkedDetailDate));

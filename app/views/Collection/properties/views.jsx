@@ -10,7 +10,7 @@ import {
 import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const Views = (props, context) => {
-  const prop = getLinkedObjectPropertyRaw(props.label, props, context);
+  const prop = getLinkedObjectPropertyRaw(props.label, props.subject, context.linkedRenderStore);
   if (typeof prop === 'string') {
     return <LinkedObjectContainer object={prop} />;
   }

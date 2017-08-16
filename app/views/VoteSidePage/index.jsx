@@ -1,6 +1,10 @@
-import { LinkedObjectContainer, PropertyBase } from 'link-redux';
-import React from 'react';
 import { RENDER_CLASS_NAME } from 'link-lib';
+import {
+  getLinkedObjectPropertyRaw,
+  LinkedObjectContainer,
+  lowLevel,
+} from 'link-redux';
+import React, { PropTypes } from 'react';
 
 import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
@@ -34,7 +38,7 @@ VoteSidePage.contextTypes = {
 VoteSidePage.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
-  VoteSidePage,
+  lowLevel.linkedSubject(lowLevel.linkedVersion(VoteSidePage)),
   [NS.argu('Collection'), NS.hydra('Collection')],
   RENDER_CLASS_NAME,
   NS.argu('voteSidePage')

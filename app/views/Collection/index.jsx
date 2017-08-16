@@ -1,11 +1,12 @@
 import { RENDER_CLASS_NAME } from 'link-lib';
 import {
-  getValueOrID,
+  getLinkedObjectPropertyRaw,
   LinkedObjectContainer,
   Property,
   PropertyBase,
+  lowLevel,
 } from 'link-redux';
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
@@ -29,7 +30,8 @@ class Collection extends PropertyBase {
   shouldComponentUpdate(nextProps) {
     return this.props.linkedProp !== nextProps.linkedProp ||
       this.props.currentPage !== nextProps.currentPage ||
-      getValueOrID(this.props.data) !== getValueOrID(nextProps.data);
+      this.props.version !== nextProps.version ||
+      this.props.subject !== nextProps.subject;
   }
 
   render() {
@@ -55,21 +57,25 @@ class Collection extends PropertyBase {
   }
 }
 
-const ConnectedCollection = connect(
+const ConnectedCollection = lowLevel.linkedSubject(lowLevel.linkedVersion(connect(
   (state, { subject }) => ({
-    currentPage: getPage(state, subject)
+    currentPage: getPage(state, subject.value)
   })
-)(Collection);
+)(Collection)));
 
-class CollectionSection extends PropertyBase {
-  render() {
-    return viewsOrMembers(
-      this.getLinkedObjectPropertyRaw(NS.argu('views')),
-      this.getLinkedObjectPropertyRaw(NS.argu('members')),
-      NS.argu('section')
-    );
-  }
-}
+const CollectionSection = ({ subject }, { linkedRenderStore }) => viewsOrMembers(
+  getLinkedObjectPropertyRaw(NS.argu('views'), subject, linkedRenderStore),
+  getLinkedObjectPropertyRaw(NS.argu('members'), subject, linkedRenderStore),
+  NS.argu('section')
+);
+
+CollectionSection.contextTypes = {
+  linkedRenderStore: PropTypes.object,
+};
+
+const ConnectedCollectionSection = lowLevel.linkedSubject(lowLevel.linkedVersion(
+  CollectionSection
+));
 
 LinkedRenderStore.registerRenderer(ConnectedCollection, [NS.argu('Collection'), NS.hydra('Collection')]);
 LinkedRenderStore.registerRenderer(
@@ -78,7 +84,7 @@ LinkedRenderStore.registerRenderer(
   NS.argu('collection')
 );
 LinkedRenderStore.registerRenderer(
-  CollectionSection,
+  ConnectedCollectionSection,
   [NS.argu('Collection'), NS.hydra('Collection')],
   RENDER_CLASS_NAME,
   NS.argu('section')

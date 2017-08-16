@@ -29,7 +29,7 @@ VoteSide.contextTypes = {
 VoteSide.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
-  VoteSide,
+  lowLevel.linkedSubject(lowLevel.linkedVersion(VoteSide)),
   [NS.argu('Collection'), NS.hydra('Collection')],
   RENDER_CLASS_NAME,
   NS.argu('voteSide')

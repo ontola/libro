@@ -34,6 +34,7 @@ const VoteViews = (props, { linkedRenderStore }) => {
       topology={NS.argu('voteSide')}
     />
   ));
+
   if (obs) {
     return (
       <div className="VoteData__votebar">
@@ -46,12 +47,13 @@ const VoteViews = (props, { linkedRenderStore }) => {
 
 VoteViews.contextTypes = {
   linkedRenderStore: PropTypes.object,
-  topology: PropTypes.string,
+  topology: PropTypes.object,
 };
 VoteViews.propTypes = propTypes;
 
+
 LinkedRenderStore.registerRenderer(
-  VoteViews,
+  lowLevel.linkedSubject(lowLevel.linkedVersion(VoteViews)),
   NS.argu('Collection'),
   NS.argu('views'),
   NS.argu('voteEvent')

@@ -1,4 +1,4 @@
-import { anyObjectValue } from 'link-lib';
+import { lowLevel } from 'link-redux';
 import React, { PropTypes } from 'react';
 
 import { CollapseText, Markdown } from 'components';
@@ -19,21 +19,18 @@ LinkedRenderStore.registerRenderer(
   NS.schema('text')
 );
 
-const contextTypesCollection = {
-  schemaObject: PropTypes.object,
-};
 const propTypesCollection = {
   linkedProp: PropTypes.string,
+  subject: PropTypes.object,
 };
 
-const TextCollection = ({ linkedProp }, { schemaObject }) =>
-  <CollapseText id={anyObjectValue(schemaObject, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#subject')} text={linkedProp} />;
+const TextCollection = ({ linkedProp, subject }) =>
+  <CollapseText id={subject} text={linkedProp} />;
 
 TextCollection.propTypes = propTypesCollection;
-TextCollection.contextTypes = contextTypesCollection;
 
 LinkedRenderStore.registerRenderer(
-  TextCollection,
+  lowLevel.linkedSubject(TextCollection),
   NS.schema('Thing'),
   NS.schema('text'),
   NS.argu('collection')

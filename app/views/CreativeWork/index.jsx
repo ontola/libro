@@ -9,7 +9,6 @@ import {
   CardHeader,
   DetailsBar,
   HoverBox,
-  LinkCard,
   LinkedDetailDate,
 } from 'components';
 
@@ -57,13 +56,6 @@ LinkedRenderStore.registerRenderer(
   NS.schema('CreativeWork'),
   RENDER_CLASS_NAME,
   NS.argu('section')
-);
-
-LinkedRenderStore.registerRenderer(
-  () => <LinkCard><Property label={NS.schema('name')} /></LinkCard>,
-  NS.schema('CreativeWork'),
-  RENDER_CLASS_NAME,
-  NS.argu('parent')
 );
 
 export { default as Arguments } from './properties/arguments';

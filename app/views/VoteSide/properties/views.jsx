@@ -1,6 +1,9 @@
 import React, { PropTypes } from 'react';
 import { getValueOrID } from 'link-lib';
-import { LinkedObjectContainer } from 'link-redux';
+import {
+  getLinkedObjectProperty,
+  LinkedObjectContainer,
+} from 'link-redux';
 
 import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 import { calcPercentage } from '../../../helpers/numbers';
@@ -49,6 +52,9 @@ const SideViews = ({ grandTotal, label, linkedProp, subject }, { linkedRenderSto
 };
 
 SideViews.propTypes = propTypes;
+SideViews.contextTypes = {
+  linkedRenderStore: PropTypes.object,
+};
 
 LinkedRenderStore.registerRenderer(
   SideViews,

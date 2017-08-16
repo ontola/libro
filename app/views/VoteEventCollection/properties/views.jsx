@@ -1,6 +1,7 @@
 import {
   getLinkedObjectProperty,
   LinkedObjectContainer,
+  lowLevel,
 } from 'link-redux';
 import React, { PropTypes } from 'react';
 
@@ -37,7 +38,7 @@ Views.contextTypes = {
 Views.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
-  Views,
+  lowLevel.linkedSubject(lowLevel.linkedVersion(Views)),
   [NS.argu('VoteEvent'), NS.argu('VoteEvent'), NS.argu('Collection')],
   NS.argu('votes'),
   NS.argu('collection')
