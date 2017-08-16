@@ -1,27 +1,28 @@
-import { Property, RENDER_CLASS_NAME } from 'link-redux';
+import { RENDER_CLASS_NAME } from 'link-lib';
+import { Property } from 'link-redux';
 import React from 'react';
 
-import LinkedRenderStore from '../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
 import './properties/name';
 import './properties/target';
 
 const CreateAction = () => (
-  <Property label="schema:target">
-    <Property label="schema:name" style={{ display: 'inherit' }} />
+  <Property label={NS.schema('target')}>
+    <Property label={NS.schema('name')} style={{ display: 'inherit' }} />
   </Property>
 );
 
 LinkedRenderStore.registerRenderer(
   CreateAction,
-  'schema:CreateAction'
+  NS.schema('CreateAction')
 );
 
 LinkedRenderStore.registerRenderer(
   CreateAction,
-  'schema:CreateAction',
+  NS.schema('CreateAction'),
   RENDER_CLASS_NAME,
-  'argu:collection'
+  NS.argu('collection')
 );
 
 export default CreateAction;

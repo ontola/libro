@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
-import LinkedRenderStore, { getValueOrID } from 'link-lib';
+import { getValueOrID } from 'link-lib';
 import { LinkedObjectContainer } from 'link-redux';
 
-import { calcPercentage } from 'helpers/numbers';
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import { calcPercentage } from '../../../helpers/numbers';
 
 function side(url) {
   if (getValueOrID(url).includes('yes')) {
@@ -51,9 +52,9 @@ SideViews.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   SideViews,
-  'argu:Collection',
-  'argu:views',
-  'argu:voteSide'
+  NS.argu('Collection'),
+  NS.argu('views'),
+  NS.argu('voteSide')
 );
 
 export default SideViews;

@@ -1,6 +1,6 @@
-import React, { PropTypes } from 'react';
+import { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
-import { defaultNS as NS, RENDER_CLASS_NAME } from 'link-lib';
+import React, { PropTypes } from 'react';
 
 import {
   Card,
@@ -8,7 +8,7 @@ import {
   CardHeader,
 } from 'components';
 
-import LinkedRenderStore from '../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
 import './properties/collectionAssociation';
 import './properties/isPrimaryTopicOf';
@@ -38,18 +38,24 @@ const Thing = ({ object }) => (
 
 Thing.propTypes = propTypes;
 
-LinkedRenderStore.registerRenderer(Thing, 'http://schema.org/Thing');
+LinkedRenderStore.registerRenderer(Thing, NS.schema('Thing'));
+LinkedRenderStore.registerRenderer(
+  Thing,
+  NS.schema('Thing'),
+  RENDER_CLASS_NAME,
+  NS.argu('collection')
+);
 
 LinkedRenderStore.registerRenderer(
-  () => <Property label={['schema:name', 'rdfs:label']} />,
-  'http://schema.org/Thing',
+  () => <Property label={[NS.schema('name'), NS.rdfs('label')]} />,
+  NS.schema('Thing'),
   RENDER_CLASS_NAME,
   NS.argu('inline')
 );
 
 LinkedRenderStore.registerRenderer(
-  () => <Property label={['schema:name', 'rdfs:label']} />,
-  'http://schema.org/Thing',
+  () => <Property label={[NS.schema('name'), NS.rdfs('label')]} />,
+  NS.schema('Thing'),
   RENDER_CLASS_NAME,
   NS.argu('section')
 );

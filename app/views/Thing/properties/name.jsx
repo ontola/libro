@@ -4,7 +4,7 @@ import {
   Heading,
   LDLink,
 } from 'components';
-import LinkedRenderStore, { linkedPropVal } from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { linkedPropVal, NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   linkedProp: linkedPropVal,
@@ -16,22 +16,22 @@ Name.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   Name,
-  'http://schema.org/Thing',
+  NS.schema('Thing'),
   [
-    'http://schema.org/name',
-    'http://www.w3.org/2000/01/rdf-schema#label',
-    'http://xmlns.com/foaf/0.1/name',
+    NS.schema('name'),
+    NS.rdfs('label'),
+    NS.foaf('name'),
   ]
 );
 
 LinkedRenderStore.registerRenderer(
   ({ linkedProp }) => <LDLink>{linkedProp}</LDLink>,
-    'http://schema.org/Thing',
+    NS.schema('Thing'),
   [
-    'http://schema.org/name',
-    'http://www.w3.org/2000/01/rdf-schema#label',
-    'http://xmlns.com/foaf/0.1/name',
+    NS.schema('name'),
+    NS.rdfs('label'),
+    NS.foaf('name'),
   ],
-  'argu:inline'
+  NS.argu('inline')
 );
 export default Name;

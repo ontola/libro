@@ -1,7 +1,7 @@
 import { PropertyBase } from 'link-redux';
 import React from 'react';
 
-import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 import {
   Heading,
   LDLink,
@@ -9,9 +9,9 @@ import {
 
 class Name extends PropertyBase {
   getVariant() {
-    switch (this.getLinkedObjectProperty('http://www.w3.org/1999/02/22-rdf-syntax-ns#type')) {
+    switch (this.getLinkedObjectProperty(NS.rdf('type'))) {
       case 'https://argu.co/ns/core#Argument':
-        return this.getLinkedObjectProperty('schema:option') === 'true' ? 'pro' : 'con';
+        return this.getLinkedObjectProperty(NS.schema('option')) === 'true' ? 'pro' : 'con';
       default:
         return undefined;
     }
@@ -29,29 +29,29 @@ class Name extends PropertyBase {
 
 LinkedRenderStore.registerRenderer(
   props => <Name headerSize="1" {...props} />,
-  'http://schema.org/CreativeWork',
-  'http://schema.org/name'
+  NS.schema('CreativeWork'),
+  NS.schema('name')
 );
 
 LinkedRenderStore.registerRenderer(
   props => <LDLink><Name headerSize="3" {...props} /></LDLink>,
-  'http://schema.org/CreativeWork',
-  'http://schema.org/name',
-  'argu:collection'
+  NS.schema('CreativeWork'),
+  NS.schema('name'),
+  NS.argu('collection')
 );
 
 LinkedRenderStore.registerRenderer(
   props => <LDLink><Name headerSize="4" {...props} /></LDLink>,
-  'http://schema.org/CreativeWork',
-  'http://schema.org/name',
-  'argu:section'
+  NS.schema('CreativeWork'),
+  NS.schema('name'),
+  NS.argu('section')
 );
 
 LinkedRenderStore.registerRenderer(
   ({ linkedProp }) => <span>{linkedProp}</span>,
-  'http://schema.org/CreativeWork',
-  'http://schema.org/name',
-  'argu:parent'
+  NS.schema('CreativeWork'),
+  NS.schema('name'),
+  NS.argu('parent')
 );
 
 export default Name;

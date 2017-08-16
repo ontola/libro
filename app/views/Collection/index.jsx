@@ -1,14 +1,20 @@
-import LinkedRenderStore, { getValueOrID } from 'link-lib';
-import { LinkedObjectContainer, Property, PropertyBase, RENDER_CLASS_NAME } from 'link-redux';
+import { RENDER_CLASS_NAME } from 'link-lib';
+import {
+  getValueOrID,
+  LinkedObjectContainer,
+  Property,
+  PropertyBase,
+} from 'link-redux';
 import React from 'react';
 import { connect } from 'react-redux';
 
+import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 import { getPage } from '../../state/pagination/selectors';
 
 const viewsOrMembers = (views, members, topology) => (
   <Property
     forceRender
-    label={views ? 'argu:views' : 'argu:members'}
+    label={views ? NS.argu('views') : NS.argu('members')}
     linkedProp={views || members}
     topology={topology}
   />
@@ -16,8 +22,8 @@ const viewsOrMembers = (views, members, topology) => (
 
 class Collection extends PropertyBase {
   pagination() {
-    const collectionIRI = this.getLinkedObjectProperty('argu:parentView');
-    return <Property collectionIRI={collectionIRI} label="argu:first" />;
+    const collectionIRI = this.getLinkedObjectProperty(NS.argu('parentView'));
+    return <Property collectionIRI={collectionIRI} label={NS.argu('first')} />;
   }
 
   shouldComponentUpdate(nextProps) {
@@ -28,14 +34,14 @@ class Collection extends PropertyBase {
 
   render() {
     let children;
-    const views = this.getLinkedObjectPropertyRaw('argu:views');
+    const views = this.getLinkedObjectPropertyRaw(NS.argu('views'));
     if (this.props.currentPage) {
       children = <LinkedObjectContainer object={this.props.currentPage} />;
     } else {
-      children = viewsOrMembers(views, this.getLinkedObjectPropertyRaw('argu:members'));
+      children = viewsOrMembers(views, this.getLinkedObjectPropertyRaw(NS.argu('members')));
     }
-    const createAction = views ? undefined : <Property label="argu:createAction" />;
-    const name = views ? <Property label="schema:name" /> : null;
+    const createAction = views ? undefined : <Property label={NS.argu('createAction')} />;
+    const name = views ? <Property label={NS.schema('name')} /> : null;
     const pagination = !views ? this.pagination() : null;
 
     return (
@@ -58,24 +64,24 @@ const ConnectedCollection = connect(
 class CollectionSection extends PropertyBase {
   render() {
     return viewsOrMembers(
-      this.getLinkedObjectPropertyRaw('argu:views'),
-      this.getLinkedObjectPropertyRaw('argu:members'),
-      'argu:section'
+      this.getLinkedObjectPropertyRaw(NS.argu('views')),
+      this.getLinkedObjectPropertyRaw(NS.argu('members')),
+      NS.argu('section')
     );
   }
 }
 
-LinkedRenderStore.registerRenderer(ConnectedCollection, ['argu:Collection', 'hydra:Collection']);
+LinkedRenderStore.registerRenderer(ConnectedCollection, [NS.argu('Collection'), NS.hydra('Collection')]);
 LinkedRenderStore.registerRenderer(
   ConnectedCollection,
-  ['argu:Collection', 'hydra:Collection'],
-  'argu:collection'
+  [NS.argu('Collection'), NS.hydra('Collection')],
+  NS.argu('collection')
 );
 LinkedRenderStore.registerRenderer(
   CollectionSection,
-  ['argu:Collection', 'hydra:Collection'],
+  [NS.argu('Collection'), NS.hydra('Collection')],
   RENDER_CLASS_NAME,
-  'argu:section'
+  NS.argu('section')
 );
 
 export { default as voteMatch } from './voteMatch';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LinkedRenderStore, { linkedPropVal } from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { linkedPropVal, NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   linkedProp: linkedPropVal,
@@ -16,8 +16,8 @@ Name.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   Name,
-  'http://schema.org/CreateAction',
-  'http://schema.org/name'
+  NS.schema('CreateAction'),
+  NS.schema('name')
 );
 
 export default Name;

@@ -1,9 +1,10 @@
-import React, { PropTypes } from 'react';
 import { LinkedObjectContainer, Property, Type } from 'link-redux';
+import React, { PropTypes } from 'react';
 
 import {
   Container,
-} from 'components';
+} from '../../components';
+import { NS } from '../../helpers/LinkedRenderStore';
 
 const propTypes = {
   linkedObject: PropTypes.object,
@@ -14,8 +15,8 @@ const Forum = () => (
   <Container>
     <LinkedObjectContainer object={location.href} >
       <Type />
-      <Property label={['argu:questions']} />
-      <Property label={['argu:motions']} />
+      <Property label={NS.argu('questions')} />
+      <Property label={NS.argu('motions')} />
     </LinkedObjectContainer>
   </Container>
 );

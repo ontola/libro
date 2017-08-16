@@ -2,7 +2,7 @@ import React from 'react';
 import { getValueOrID } from 'link-lib';
 import { LinkedObjectContainer, PropertyBase } from 'link-redux';
 
-import LinkedRenderStore, { linkedPropVal } from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { linkedPropVal, NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   children: linkedPropVal,
@@ -32,8 +32,8 @@ menuItems.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   menuItems,
-  'argu:NavigationsMenu',
-  'argu:menuItems'
+  NS.argu('NavigationsMenu'),
+  NS.argu('menuItems')
 );
 
 export default menuItems;

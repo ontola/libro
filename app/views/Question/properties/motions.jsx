@@ -1,7 +1,7 @@
 import { LinkedObjectContainer } from 'link-redux';
 import React from 'react';
 
-import LinkedRenderStore, { linkedPropVal } from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { linkedPropVal, NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   linkedProp: linkedPropVal,
@@ -13,15 +13,15 @@ Motions.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   Motions,
-  'http://schema.org/CreativeWork',
-  ['argu:motions']
+  NS.schema('CreativeWork'),
+  NS.argu('motions')
 );
 
 LinkedRenderStore.registerRenderer(
-  ({ linkedProp }) => <LinkedObjectContainer object={linkedProp} topology="argu:section" />,
-  'http://schema.org/CreativeWork',
-  ['argu:motions'],
-  'argu:collection'
+  ({ linkedProp }) => <LinkedObjectContainer object={linkedProp} topology={NS.argu('section')} />,
+  NS.schema('CreativeWork'),
+  NS.argu('motions'),
+  NS.argu('collection')
 );
 
 export default Motions;

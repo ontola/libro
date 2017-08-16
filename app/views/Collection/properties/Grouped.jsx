@@ -5,9 +5,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import {
-  Columns,
-} from 'components';
+import { Columns } from '../../../components';
+import { NS } from '../../../helpers/LinkedRenderStore';
 
 class Grouped extends PropertyBase {
   render() {
@@ -33,7 +32,7 @@ class Grouped extends PropertyBase {
               <LinkedObjectContainer
                 key={`groupedmember${mem['@id']}`}
                 object={mem['@id']}
-                topology="argu:collection"
+                topology={NS.argu('collection')}
               />
             ))}
           </div>

@@ -1,6 +1,8 @@
-import LinkedRenderStore, { getValueOrID } from 'link-lib';
+import { getValueOrID } from 'link-lib';
 import { LinkedObjectContainer, PropertyBase } from 'link-redux';
 import React from 'react';
+
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 class VoteCompareCells extends PropertyBase {
   render() {
@@ -16,4 +18,8 @@ class VoteCompareCells extends PropertyBase {
   }
 }
 
-LinkedRenderStore.registerRenderer(VoteCompareCells, 'argu:CompareRow', 'argu:compareCells');
+LinkedRenderStore.registerRenderer(
+  VoteCompareCells,
+  NS.argu('CompareRow'),
+  NS.argu('compareCells')
+);

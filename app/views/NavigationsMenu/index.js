@@ -1,16 +1,18 @@
 import React from 'react';
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
+import { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
+
+import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
 import './properties/menuItems';
 
 const NavigationsMenuSidebar = () => (
-  <Property label="argu:menuItems" />
+  <Property label={NS.argu('menuItems')} />
 );
 
 LinkedRenderStore.registerRenderer(
   NavigationsMenuSidebar,
-  'argu:NavigationsMenu',
+  NS.argu('NavigationsMenu'),
   RENDER_CLASS_NAME,
-  'argu:sidebar'
+  NS.argu('sidebar')
 );

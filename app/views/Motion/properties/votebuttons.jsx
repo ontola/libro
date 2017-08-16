@@ -1,4 +1,3 @@
-import LinkedRenderStore, { defaultNS as NS } from 'link-lib';
 import { LinkedObjectContainer, Property, PropertyBase } from 'link-redux';
 import React from 'react';
 
@@ -14,6 +13,7 @@ import {
 } from 'helpers/arguHelpers';
 
 import { ARGU_API_URL, FRONTEND_URL } from '../../../config';
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   actor: React.PropTypes.object,
@@ -132,7 +132,7 @@ const linkedRecordWrapper = (Component) => {
 
     render() {
       if (this.isLinkedRecord()) {
-        const childProps = Object.assign({}, this.props, { forceRender: undefined, label: 'argu:voteableVoteEvent' });
+        const childProps = Object.assign({}, this.props, { forceRender: undefined, label: NS.argu('voteableVoteEvent') });
         return (
           <LinkedObjectContainer object={`${FRONTEND_URL}/lr?iri=${this.getLinkedObjectProperty(NS.rdf('subject'))}`}>
             <Property {...childProps} />
@@ -148,8 +148,8 @@ const linkedRecordWrapper = (Component) => {
 
 LinkedRenderStore.registerRenderer(
   linkedRecordWrapper(VoteButtons),
-  'argu:Motion',
-  'argu:currentVote'
+  NS.argu('Motion'),
+  NS.argu('currentVote')
 );
 
 LinkedRenderStore.registerRenderer(
@@ -163,13 +163,13 @@ LinkedRenderStore.registerRenderer(
       );
     }
   },
-  'argu:LinkedRecord',
-  'argu:voteableVoteEvent'
+  NS.argu('LinkedRecord'),
+  NS.argu('voteableVoteEvent')
 );
 
 LinkedRenderStore.registerRenderer(
   linkedRecordWrapper(VoteButtons),
-  'argu:Motion',
-  'argu:currentVote',
-  'argu:voteMatch'
+  NS.argu('Motion'),
+  NS.argu('currentVote'),
+  NS.argu('voteMatch')
 );

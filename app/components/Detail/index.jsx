@@ -4,6 +4,8 @@ import { browserHistory } from 'react-router';
 import { Property, PropertyBase } from 'link-redux';
 import FontAwesome from 'react-fontawesome';
 
+import { NS } from '../../helpers/LinkedRenderStore';
+
 const propTypes = {
   className: PropTypes.string,
   text: PropTypes.string,
@@ -21,7 +23,7 @@ const propTypes = {
 class Detail extends PropertyBase {
   getImage() {
     if (typeof this.context.schemaObject !== 'undefined') {
-      return <Property label="schema:image" />;
+      return <Property label={NS.schema('image')} />;
     }
     return this.props.imageUrl &&
       <img src={this.props.imageUrl} className="Detail__image" role="presentation" />;

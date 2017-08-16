@@ -1,6 +1,8 @@
+import { LinkedObjectContainer, PropertyBase } from 'link-redux';
 import React from 'react';
-import LinkedRenderStore, { getValueOrID } from 'link-lib';
-import { LinkedObjectContainer, PropertyBase, RENDER_CLASS_NAME } from 'link-redux';
+import { RENDER_CLASS_NAME } from 'link-lib';
+
+import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
 const propTypes = {
   subject: PropTypes.object,
@@ -33,9 +35,9 @@ VoteSidePage.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   VoteSidePage,
-  ['argu:Collection', 'hydra:Collection'],
+  [NS.argu('Collection'), NS.hydra('Collection')],
   RENDER_CLASS_NAME,
-  'argu:voteSidePage'
+  NS.argu('voteSidePage')
 );
 
 // import './properties/members';

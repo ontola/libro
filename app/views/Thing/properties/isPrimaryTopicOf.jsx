@@ -1,7 +1,7 @@
 import { isDifferentOrigin } from 'link-lib';
 import React, { PropTypes } from 'react';
 
-import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   linkedProp: PropTypes.object,
@@ -21,8 +21,8 @@ IsPrimaryTopicOf.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   IsPrimaryTopicOf,
-  'http://schema.org/Thing',
-  'http://xmlns.com/foaf/0.1/isPrimaryTopicOf'
+  NS.schema('Thing'),
+  NS.foaf('isPrimaryTopicOf')
 );
 
 export default IsPrimaryTopicOf;

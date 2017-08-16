@@ -9,6 +9,7 @@ import {
 } from 'components';
 import { checkLuminance } from 'helpers/color';
 import path from 'helpers/paths';
+import { NS } from '../../helpers/LinkedRenderStore';
 
 import './NavBarContent.scss';
 
@@ -46,7 +47,7 @@ const NavBarContent = ({
   if (actorType === 'User') {
     actorItem = (
       <div>
-        <LinkedObjectContainer object={`${FRONTEND_URL}/c_a`} topology="argu:sidebar" />
+        <LinkedObjectContainer object={`${FRONTEND_URL}/c_a`} topology={NS.argu('sidebar')} />
         <SideBarLink icon="gears" label="Instellingen" to={path.settings()} />
       </div>
     );

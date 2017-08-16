@@ -1,7 +1,6 @@
-import LinkedRenderStore from 'link-lib';
 import React from 'react';
 
-import { linkedPropVal } from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { linkedPropVal, NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   linkedProp: linkedPropVal,
@@ -17,7 +16,7 @@ SubMenuLabelProp.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   SubMenuLabelProp,
-  'argu:SubMenu',
-  'argu:label',
-  'argu:sidebar'
+  NS.argu('SubMenu'),
+  NS.argu('label'),
+  NS.argu('sidebar')
 );

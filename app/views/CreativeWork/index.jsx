@@ -1,5 +1,5 @@
 import React from 'react';
-import LinkedRenderStore, { defaultNS, RENDER_CLASS_NAME } from 'link-lib';
+import { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
 
 import {
@@ -13,55 +13,57 @@ import {
   LinkedDetailDate,
 } from 'components';
 
+import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
+
 import './properties/voteEvents';
 
 const CreativeWork = () => (
   <Card>
     <CardHeader noSpacing>
-      <Property label={defaultNS.schema('name')} />
+      <Property label={NS.schema('name')} />
       <DetailsBar>
-        <Property label={defaultNS.schema('creator')} />
+        <Property label={NS.schema('creator')} />
         <LinkedDetailDate />
       </DetailsBar>
     </CardHeader>
     <CardContent noSpacing>
-      <Property label={defaultNS.schema('text')} />
+      <Property label={NS.schema('text')} />
     </CardContent>
     <CardActions>
-      <Property label={defaultNS.schema('updateAction')} />
+      <Property label={NS.schema('updateAction')} />
     </CardActions>
   </Card>
 );
 
 const HiddenChildren = () => (
-  <Property label="schema:text" />
+  <Property label={NS.schema('text')} />
 );
 
 const CreativeWorkSection = () => (
   <HoverBox hiddenChildren={<HiddenChildren />}>
-    <Property label={defaultNS.schema('name')} topology="argu:inline" />
+    <Property label={NS.schema('name')} topology={NS.argu('inline')} />
   </HoverBox>
 );
 
-LinkedRenderStore.registerRenderer(CreativeWork, 'http://schema.org/CreativeWork');
+LinkedRenderStore.registerRenderer(CreativeWork, NS.schema('CreativeWork'));
 LinkedRenderStore.registerRenderer(
   CreativeWork,
-  'http://schema.org/CreativeWork',
+  NS.schema('CreativeWork'),
   RENDER_CLASS_NAME,
-  'argu:collection'
+  NS.argu('collection')
 );
 LinkedRenderStore.registerRenderer(
   CreativeWorkSection,
-  'http://schema.org/CreativeWork',
+  NS.schema('CreativeWork'),
   RENDER_CLASS_NAME,
-  'argu:section'
+  NS.argu('section')
 );
 
 LinkedRenderStore.registerRenderer(
-  () => <LinkCard><Property label={defaultNS.schema('name')} /></LinkCard>,
-  'http://schema.org/CreativeWork',
+  () => <LinkCard><Property label={NS.schema('name')} /></LinkCard>,
+  NS.schema('CreativeWork'),
   RENDER_CLASS_NAME,
-  'argu:parent'
+  NS.argu('parent')
 );
 
 export { default as Arguments } from './properties/arguments';

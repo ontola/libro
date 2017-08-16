@@ -9,10 +9,10 @@ import {
   Container,
 } from 'components';
 
+import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
+
 import './properties/motions';
 import './properties/voteCompareResult';
-
-import LinkedRenderStore from '../../helpers/LinkedRenderStore';
 
 const propTypes = {
   handleStart: PropTypes.func
@@ -25,8 +25,8 @@ const VoteMatch = ({ handleStart }) => (
         <Container>
           <Card>
             <CardContent>
-              <Property label="schema:name" />
-              <Property label={['schema:text', 'schema:description', 'dbo:abstract']} />
+              <Property label={NS.schema('name')} />
+              <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
             </CardContent>
           </Card>
           <Button onClick={handleStart}>
@@ -35,8 +35,8 @@ const VoteMatch = ({ handleStart }) => (
         </Container>
       </Cover>
     </div>
-    <Property label="argu:motions" />
-    <Property label="argu:voteCompareResult" />
+    <Property label={NS.argu('motions')} />
+    <Property label={NS.argu('voteCompareResult')} />
   </div>
 );
 
@@ -44,5 +44,5 @@ VoteMatch.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   VoteMatch,
-  'argu:VoteMatch'
+  NS.argu('VoteMatch')
 );

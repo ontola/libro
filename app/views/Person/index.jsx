@@ -1,4 +1,4 @@
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
+import { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
 import React from 'react';
 
@@ -8,35 +8,38 @@ import {
   ProfileCard,
 } from 'components';
 
+
+import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
+
 import './sidebar';
 import './properties/image';
 
 LinkedRenderStore.registerRenderer(
   ProfileCard,
   [
-    'http://schema.org/Person',
-    'http://xmlns.com/foaf/0.1/Person',
+    NS.schema('Person'),
+    NS.foaf('Person'),
   ]
 );
 
 const PersonDetail = () => (
   <LDLink>
-    <Detail label="schema:name" />
+    <Detail label={NS.schema('name')} />
   </LDLink>
 );
 
 LinkedRenderStore.registerRenderer(
   PersonDetail,
-  ['http://schema.org/Person'],
+  NS.schema('Person'),
   RENDER_CLASS_NAME,
-  'argu:detail'
+  NS.argu('detail')
 );
 
 LinkedRenderStore.registerRenderer(
-  () => <Property label="schema:image" />,
-  ['http://schema.org/Person', 'aod:Persons'],
+  () => <Property label={NS.schema('image')} />,
+  [NS.schema('Person'), NS.aod('Persons')],
   RENDER_CLASS_NAME,
-  'argu:voteBubble'
+  NS.argu('voteBubble')
 );
 
 // export default Person;

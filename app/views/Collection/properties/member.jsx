@@ -1,6 +1,8 @@
-import LinkedRenderStore, { getValueOrID } from 'link-lib';
+import { getValueOrID } from 'link-lib';
 import { LinkedObjectContainer, PropertyBase } from 'link-redux';
 import React, { PropTypes } from 'react';
+
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   /** The amount of items to render. Leave undefined for all items */
@@ -9,7 +11,7 @@ const propTypes = {
 
 class Member extends PropertyBase {
   memberList(prop) {
-    const topology = this.context.topology ? this.context.topology : 'argu:collection';
+    const topology = this.context.topology ? this.context.topology : NS.argu('collection');
     return prop.slice(0, this.props.limit).map(iri => (
       <LinkedObjectContainer
         key={`${getValueOrID(this.context.schemaObject)}:${getValueOrID(iri)}`}
@@ -21,7 +23,7 @@ class Member extends PropertyBase {
 
   render() {
     const prop = this.getLinkedObjectPropertyRaw();
-    if (this.getLinkedObjectProperty('argu:totalCount') === 0) {
+    if (this.getLinkedObjectProperty(NS.argu('totalCount')) === 0) {
       return <div>Nog geen items</div>;
     } else if (typeof prop === 'undefined') {
       return null;
@@ -51,14 +53,14 @@ Member.contextTypes = {
 
 LinkedRenderStore.registerRenderer(
   Member,
-  'argu:Collection',
-  'argu:members'
+  NS.argu('Collection'),
+  NS.argu('members')
 );
 LinkedRenderStore.registerRenderer(
   Member,
-  'argu:Collection',
-  'argu:members',
-  'argu:section'
+  NS.argu('Collection'),
+  NS.argu('members'),
+  NS.argu('section')
 );
 
 export default Member;

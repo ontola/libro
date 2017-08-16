@@ -30,9 +30,9 @@ VoteSide.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   VoteSide,
-  ['argu:Collection', 'hydra:Collection'],
+  [NS.argu('Collection'), NS.hydra('Collection')],
   RENDER_CLASS_NAME,
-  'argu:voteSide'
+  NS.argu('voteSide')
 );
 
 import './properties/views';

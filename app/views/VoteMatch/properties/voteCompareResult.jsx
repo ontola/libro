@@ -1,5 +1,5 @@
-import LinkedRenderStore from 'link-lib';
-import { LinkedObjectContainer, linkedPropVal } from 'link-redux';
+import { LinkedObjectContainer } from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import {
@@ -9,8 +9,10 @@ import {
   LDLink,
 } from 'components';
 
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+
 const propTypes = {
-  linkedProp: linkedPropVal,
+  linkedProp: PropTypes.any.isRequired,
 };
 
 const VoteCompareResult = ({ linkedProp }) => (
@@ -29,6 +31,6 @@ VoteCompareResult.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   VoteCompareResult,
-  'argu:VoteCompare',
-  'argu:voteCompareResult'
+  NS.argu('VoteCompare'),
+  NS.argu('voteCompareResult')
 );

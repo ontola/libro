@@ -1,7 +1,10 @@
-import { LinkedObjectContainer, PropertyBase } from 'link-redux';
-import React from 'react';
+import {
+  getLinkedObjectProperty,
+  LinkedObjectContainer,
+} from 'link-redux';
+import React, { PropTypes } from 'react';
 
-import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   label: PropTypes.object,
@@ -13,22 +16,12 @@ const propTypes = {
  * @param {object} props comp props
  * @returns {object} The component
  */
-class Views extends PropertyBase {
-  render() {
-    const prop = this.getLinkedObjectProperty();
-    if (!prop) {
-      return null;
-    }
-    const optionCounts = this.getLinkedObjectProperty('schema:optionCounts')
-      || this.getLinkedObjectProperty('aod:option_counts');
-    return (
-      <LinkedObjectContainer
-        object={prop}
-        optionCounts={optionCounts}
-        topology="argu:voteEvent"
-      />
-    );
+const Views = (props, { linkedRenderStore }) => {
+  const prop = getLinkedObjectProperty(props.label, props.subject, linkedRenderStore);
+  if (!prop) {
+    return null;
   }
+
   return (
     <LinkedObjectContainer
       object={prop}
@@ -45,9 +38,9 @@ Views.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   Views,
-  ['argu:VoteEvent', 'aod:VoteEvent', 'argu:Collection'],
-  'argu:votes',
-  'argu:voteEvent'
+  [NS.argu('VoteEvent'), NS.argu('VoteEvent'), NS.argu('Collection')],
+  NS.argu('votes'),
+  NS.argu('collection')
 );
 
 export default Views;

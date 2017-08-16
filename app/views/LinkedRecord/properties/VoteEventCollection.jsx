@@ -1,7 +1,7 @@
 import React from 'react';
 import { LinkedObjectContainer } from 'link-redux';
 
-import LinkedRenderStore, { linkedPropVal } from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { linkedPropVal, NS } from '../../../helpers/LinkedRenderStore';
 import { FRONTEND_URL } from '../../../config';
 
 const propTypes = {
@@ -15,7 +15,7 @@ const propTypes = {
 const VoteEventCollection = ({ linkedProp }) => (
   <LinkedObjectContainer
     object={linkedProp}
-    topology="argu:voteEventCollection"
+    topology={NS.argu('voteEventCollection')}
   />
 );
 
@@ -39,8 +39,8 @@ const linkedRecordWrapper = (component) => {
 
 LinkedRenderStore.registerRenderer(
   linkedRecordWrapper(VoteEventCollection),
-  'argu:LinkedRecord',
-  'argu:VoteEventCollection'
+  NS.argu('LinkedRecord'),
+  NS.argu('VoteEventCollection')
 );
 
 export default VoteEventCollection;

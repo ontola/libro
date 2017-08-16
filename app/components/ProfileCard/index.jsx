@@ -1,14 +1,15 @@
 import './ProfileCard.scss';
-import React, { PropTypes } from 'react';
 import assert from 'assert';
 import classNames from 'classnames';
+import React, { PropTypes } from 'react';
 import { browserHistory } from 'react-router';
 import { PropertyBase } from 'link-redux';
 
 import {
   Button,
   Heading,
-} from 'components';
+} from '../../components';
+import { NS } from '../../helpers/LinkedRenderStore';
 
 const propTypes = {
   id: PropTypes.string,
@@ -41,7 +42,7 @@ class ProfileCard extends PropertyBase {
       full,
       similarity,
     } = this.props;
-    const bio = this.getLegacyProperty(['http://schema.org/description', 'dbo:abstract'], 'bio');
+    const bio = this.getLegacyProperty([NS.schema('description'), NS.dbo('abstract')], 'bio');
 
     const profileClassname = classNames({
       ProfileCard,
@@ -54,7 +55,7 @@ class ProfileCard extends PropertyBase {
       <section className={profileClassname}>
         <div className="ProfileCard__head">
           <div className="ProfileCard__title">
-            <Heading>{this.getLegacyProperty('http://schema.org/name', 'name')}</Heading>
+            <Heading>{this.getLegacyProperty(NS.schema('name'), 'name')}</Heading>
             {party && <div className="ProfileCard__party">{party}</div>}
           </div>
           {image &&

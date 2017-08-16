@@ -1,5 +1,5 @@
 import React from 'react';
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
+import { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
 
 import {
@@ -9,6 +9,7 @@ import {
   DetailsBar,
   LinkedDetailDate,
 } from 'components';
+import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
 import './properties/name';
 import './properties/motions';
@@ -16,22 +17,22 @@ import './properties/motions';
 const QuestionCollection = () => (
   <Card>
     <CardHeader noSpacing>
-      <Property label="schema:name" />
+      <Property label={NS.schema('name')} />
       <DetailsBar>
-        <Property label="schema:creator" />
+        <Property label={NS.schema('creator')} />
         <LinkedDetailDate />
       </DetailsBar>
     </CardHeader>
     <CardContent noSpacing>
-      <Property label="schema:text" />
-      <Property label="argu:motions" />
+      <Property label={NS.schema('text')} />
+      <Property label={NS.argu('motions')} />
     </CardContent>
   </Card>
 );
 
 LinkedRenderStore.registerRenderer(
   QuestionCollection,
-  'argu:Question',
+  NS.argu('Question'),
   RENDER_CLASS_NAME,
-  'argu:collection'
+  NS.argu('collection')
 );

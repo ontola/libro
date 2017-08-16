@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { Button } from 'components';
 
-import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 import { gotoPage } from '../../../state/pagination/actions';
 import { getPage } from '../../../state/pagination/selectors';
 
@@ -16,7 +16,7 @@ class First extends PropertyBase {
     const pageProp = 'page';
     const baseUrl = new URL(this.props.linkedProp);
     const firstPage = Number.parseInt(baseUrl.searchParams.get(pageProp), 10);
-    const lastPage = Number.parseInt(new URL(this.getLinkedObjectProperty('argu:last')).searchParams.get(pageProp), 10);
+    const lastPage = Number.parseInt(new URL(this.getLinkedObjectProperty(NS.argu('last'))).searchParams.get(pageProp), 10);
     const currentPageUrl = new URL(this.props.currentPage);
     const currentPageNr = Number.parseInt(currentPageUrl.searchParams.get(pageProp), 10);
     const nextPage = () => {
@@ -105,8 +105,8 @@ const ConnectedFirst = connect(
 
 LinkedRenderStore.registerRenderer(
   ConnectedFirst,
-  'argu:Collection',
-  'https://argu.co/ns/core#first'
+  NS.argu('Collection'),
+  NS.argu('first')
 );
 
 export default First;

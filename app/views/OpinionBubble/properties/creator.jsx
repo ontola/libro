@@ -1,6 +1,7 @@
-import LinkedRenderStore from 'link-lib';
 import { LinkedObjectContainer } from 'link-redux';
 import React, { PropTypes } from 'react';
+
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   linkedProp: PropTypes.object,
@@ -13,7 +14,7 @@ const Creator = ({ linkedProp }) => {
   return (
     <LinkedObjectContainer
       object={object}
-      topology="argu:voteBubble"
+      topology={NS.argu('voteBubble')}
     />
   );
 };
@@ -22,6 +23,6 @@ Creator.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   Creator,
-  ['argu:Vote', 'aod:Vote', 'aod:Count'],
-  ['schema:creator', 'aod:voter_id']
+  [NS.argu('Vote'), NS.aod('Vote'), NS.aod('Count')],
+  [NS.schema('creator'), NS.aod('voter_id')]
 );

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import LinkedRenderStore, { getP, RENDER_CLASS_NAME } from 'link-lib';
+import { getP, RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
@@ -11,6 +11,8 @@ import {
 } from 'components';
 import { initializeCollapsible, toggleOne } from 'state/collapsible/actions';
 import { getCollapsibleOpened } from 'state/collapsible/selectors';
+
+import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
 import './properties/label';
 
@@ -32,8 +34,8 @@ const SubMenuSideBar = ({
 
   return (
     <div className={classes}>
-      <Property forSubMenu label="argu:href">
-        <Property label="argu:label" />
+      <Property forSubMenu label={NS.argu('href')}>
+        <Property label={NS.argu('label')} />
       </Property>
       <Button
         plain
@@ -44,7 +46,7 @@ const SubMenuSideBar = ({
         <FontAwesome name="caret-right" />
       </Button>
       <CollapsibleContainer id={id}>
-        <Property label="argu:menuItems" />
+        <Property label={NS.argu('menuItems')} />
       </CollapsibleContainer>
     </div>
   );
@@ -68,7 +70,7 @@ const SubMenuSideBarConnected = connect(
 
 LinkedRenderStore.registerRenderer(
   SubMenuSideBarConnected,
-  'argu:SubMenu',
+  NS.argu('SubMenu'),
   RENDER_CLASS_NAME,
-  'argu:sidebar'
+  NS.argu('sidebar')
 );

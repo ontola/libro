@@ -6,9 +6,9 @@ import {
   Container,
   Cover,
 } from 'components';
-import LinkedRenderStore from 'helpers/LinkedRenderStore';
 
 import VoteMatchVoteableContainer from '../../containers/VoteMatchVoteableContainer';
+import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
 class Motions extends PropertyBase {
   static renderMotion(m, i) {
@@ -40,9 +40,9 @@ class Motions extends PropertyBase {
 
 LinkedRenderStore.registerRenderer(
   Motions,
-  'argu:Collection',
-  'argu:members',
-  'argu:voteMatch'
+  NS.argu('Collection'),
+  NS.argu('members'),
+  NS.argu('voteMatch')
 );
 
 export default Motions;

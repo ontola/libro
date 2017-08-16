@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import { PropertyBase } from 'link-redux';
 
-import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 class UpdateAction extends PropertyBase {
   render() {
@@ -16,8 +16,8 @@ class UpdateAction extends PropertyBase {
 
 LinkedRenderStore.registerRenderer(
   UpdateAction,
-  'http://schema.org/Thing',
-  'http://schema.org/updateAction'
+  NS.schema('Thing'),
+  NS.schema('updateAction')
 );
 
 export default UpdateAction;

@@ -1,34 +1,37 @@
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
+import { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
 import React from 'react';
 
-const ImageObject = () => <Property label="schema:thumbnail" />;
+import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
+
+
+const ImageObject = () => <Property label={NS.schema('thumbnail')} />;
 
 LinkedRenderStore.registerRenderer(
   ImageObject,
-  'http://schema.org/ImageObject'
+  NS.schema('ImageObject')
 );
 LinkedRenderStore.registerRenderer(
   ImageObject,
-  'http://schema.org/ImageObject',
+  NS.schema('ImageObject'),
   RENDER_CLASS_NAME,
-  'argu:detail'
+  NS.argu('detail')
 );
 LinkedRenderStore.registerRenderer(
   ImageObject,
-  'http://schema.org/ImageObject',
+  NS.schema('ImageObject'),
   RENDER_CLASS_NAME,
-  'argu:voteBubble'
+  NS.argu('voteBubble')
 );
 LinkedRenderStore.registerRenderer(
   () => (
     <div className="SideBarLink__image-wrapper">
-      <Property label="schema:thumbnail" />
+      <Property label={NS.schema('thumbnail')} />
     </div>
   ),
-  'http://schema.org/ImageObject',
+  NS.schema('ImageObject'),
   RENDER_CLASS_NAME,
-  'argu:sidebar'
+  NS.argu('sidebar')
 );
 
 export { default as Thumbnail } from './properties/thumbnail';

@@ -1,7 +1,7 @@
 import { LinkedObjectContainer } from 'link-redux';
 import React from 'react';
 
-import LinkedRenderStore, { linkedPropVal } from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { linkedPropVal, NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   linkedProp: linkedPropVal,
@@ -13,10 +13,10 @@ const IsPartOf = ({ linkedProp }) => {
   }
   return (
     <LinkedObjectContainer
-      object={linkedProp}
-      topology="argu:parent"
-      forceRender
       fetch
+      forceRender
+      object={linkedProp}
+      topology={NS.argu('parent')}
     />
   );
 };
@@ -25,8 +25,8 @@ IsPartOf.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   IsPartOf,
-  'http://schema.org/CreativeWork',
-  'http://schema.org/isPartOf'
+  NS.schema('CreativeWork'),
+  NS.schema('isPartOf')
 );
 
 export default IsPartOf;

@@ -15,7 +15,7 @@ import './properties/name';
 
 import articles from '../../articles';
 import { FRONTEND_URL } from '../../config';
-import LinkedRenderStore from '../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
 const propTypes = {
   actorType: PropTypes.oneOf(['User', 'Guest']),
@@ -49,7 +49,7 @@ const OrganizationSidebarBlock = ({
   if (actorType === 'User') {
     actorItem = (
       <div>
-        <LinkedObjectContainer object={`${FRONTEND_URL}/c_a`} topology="argu:sidebar" />
+        <LinkedObjectContainer object={`${FRONTEND_URL}/c_a`} topology={NS.argu('sidebar')} />
         <SideBarLink icon="gears" label="Instellingen" to={path.settings()} />
       </div>
     );
@@ -76,7 +76,7 @@ const OrganizationSidebarBlock = ({
       className={classNames}
     >
       <div className="NavBarContent__top">
-        <Property label="schema:name" />
+        <Property label={NS.schema('name')} />
         <SideBarLink icon="search" label="Moties zoeken" to={path.search()} />
         <SideBarLink
           icon="compass"
@@ -85,7 +85,7 @@ const OrganizationSidebarBlock = ({
           count={voteMatchCount}
         />
         <SideBarLink icon="th-large" label="Overzicht" to={path.index()} isIndex />
-        <Property label="argu:menus" topology="argu:sidebar" />
+        <Property label={NS.argu('menus')} topology={NS.argu('sidebar')} />
       </div>
       <div className="NavBarContent__footer">
         {actorItem}
@@ -120,9 +120,9 @@ OrganizationSidebarBlock.defaultProps = defaultProps;
 
 LinkedRenderStore.registerRenderer(
   OrganizationSidebarBlock,
-  'http://schema.org/Organization',
+  NS.schema('Organization'),
   RENDER_CLASS_NAME,
-  'argu:sidebarBlock'
+  NS.argu('sidebarBlock')
 );
 
 export default OrganizationSidebarBlock;

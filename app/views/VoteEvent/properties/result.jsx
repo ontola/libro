@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 
-import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
 import { DetailStatus } from 'components';
+
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   linkedProp: PropTypes.object,
@@ -17,6 +18,6 @@ Result.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   Result,
-  'http://schema.org/Thing',
-  'http://schema.org/text'
+  NS.schema('Thing'),
+  NS.schema('text')
 );

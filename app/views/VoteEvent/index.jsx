@@ -1,5 +1,5 @@
 import React from 'react';
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
+import { RENDER_CLASS_NAME } from 'link-lib';
 import { Property, PropertyBase } from 'link-redux';
 
 // import '../VoteData/VoteData.scss';
@@ -7,13 +7,15 @@ import {
   LinkedDetailDate,
 } from 'components';
 
+import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
+
 class VoteEvent extends PropertyBase {
   render() {
     return (
       <div itemScope>
-        <Property label="schema:result" />
+        <Property label={NS.schema('result')} />
         <LinkedDetailDate />
-        <Property label="argu:votes" />
+        <Property label={NS.argu('votes')} />
       </div>
     );
   }
@@ -21,9 +23,9 @@ class VoteEvent extends PropertyBase {
 
 LinkedRenderStore.registerRenderer(
   VoteEvent,
-  ['argu:VoteEvent', 'aod:VoteEvent'],
+  [NS.argu('VoteEvent'), NS.aod('VoteEvent')],
   RENDER_CLASS_NAME,
-  'argu:voteEvent'
+  NS.argu('collection')
 );
 
 export { default as Members } from './properties/members';

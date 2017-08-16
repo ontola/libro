@@ -1,11 +1,13 @@
-import React from 'react';
 import { getValueOrID } from 'link-lib';
 import { contextTypes, getLinkedObjectPropertyRaw, LinkedObjectContainer } from 'link-redux';
+import PropTypes from 'prop-types';
+import rdf from 'rdflib';
+import React from 'react';
 
-import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
 import {
   Columns,
-} from 'components';
+} from '../../../components';
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const Views = (props, context) => {
   const prop = getLinkedObjectPropertyRaw(props.label, props, context);
@@ -22,17 +24,26 @@ const Views = (props, context) => {
 };
 
 Views.contextTypes = contextTypes;
+Views.propTypes = {
+  label: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.object,
+    PropTypes.arrayOf(PropTypes.object),
+  ]).isRequired,
+  subject: PropTypes.instanceOf(rdf.NamedNode)
+};
 
 LinkedRenderStore.registerRenderer(
   Views,
-  'argu:Collection',
-  'argu:views'
+  NS.argu('Collection'),
+  NS.argu('views')
 );
 LinkedRenderStore.registerRenderer(
   Views,
-  'argu:Collection',
-  'argu:views',
-  'argu:section'
+  NS.argu('Collection'),
+  NS.argu('views'),
+  NS.argu('section')
 );
 
 export default Views;

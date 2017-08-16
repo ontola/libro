@@ -2,10 +2,12 @@
 import './DetailsBar.scss';
 import React, { Component, PropTypes } from 'react';
 
+import { NS } from '../../helpers/LinkedRenderStore';
+
 class DetailsBar extends Component {
   getChildContext() {
     return {
-      topology: 'argu:details',
+      topology: NS.argu('detail'),
     };
   }
 

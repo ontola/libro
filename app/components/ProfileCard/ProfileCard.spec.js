@@ -2,10 +2,9 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { assert } from 'chai';
-import { testUtilities } from 'link-redux';
+import { generateContext } from 'link-redux/test/utilities';
 
 import ProfileCard from './';
-const { generateContext } = testUtilities;
 
 describe('ProfileCard component', () => {
   it('ProfileCard should render', () => {

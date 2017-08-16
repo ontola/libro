@@ -1,11 +1,12 @@
 import './OpinionBubble.scss';
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
+import { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
 import React, { PropTypes } from 'react';
 
 import {
   GeneratedIcon,
 } from 'components';
+import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
 const propTypes = {
   image: PropTypes.string,
@@ -41,16 +42,16 @@ export default OpinionBubble;
 
 const Vote = () => (
   <div className="OpinionBubble" >
-    <Property label={['schema:creator', 'aod:voter_id']} />
+    <Property label={[NS.schema('creator'), NS.aod('voter_id')]} />
   </div>
 );
 
-LinkedRenderStore.registerRenderer(Vote, ['argu:Vote', 'aod:Vote', 'aod:Count']);
+LinkedRenderStore.registerRenderer(Vote, [NS.argu('Vote'), NS.aod('Vote'), NS.aod('Count')]);
 LinkedRenderStore.registerRenderer(
   Vote,
-  ['argu:Vote', 'aod:Vote', 'aod:Count'],
+  [NS.argu('Vote'), NS.aod('Vote'), NS.aod('Count')],
   RENDER_CLASS_NAME,
-  'argu:collection'
+  NS.argu('collection')
 );
 
 import './properties/creator';

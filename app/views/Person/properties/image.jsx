@@ -1,7 +1,7 @@
 import { LinkedObjectContainer } from 'link-redux';
 import React from 'react';
 
-import LinkedRenderStore, { linkedPropVal } from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { NS, linkedPropVal } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   linkedProp: linkedPropVal,
@@ -10,7 +10,7 @@ const propTypes = {
 const PersonImageProp = ({ linkedProp }) => (
   <LinkedObjectContainer
     object={linkedProp}
-    topology="argu:voteBubble"
+    topology={NS.argu('voteBubble')}
   />
 );
 
@@ -18,25 +18,25 @@ PersonImageProp.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   PersonImageProp,
-  ['schema:Person', 'aod:Persons'],
-  ['http://schema.org/image', 'dbo:thumbnail', 'wdt:P18'],
-  'argu:detail'
+  [NS.schema('Person'), NS.aod('Persons')],
+  [NS.schema('image'), NS.dbo('thumbnail'), NS.wdt('P18')],
+  NS.argu('detail')
 );
 
 LinkedRenderStore.registerRenderer(
   PersonImageProp,
-  ['schema:Person', 'aod:Persons'],
-  ['http://schema.org/image', 'dbo:thumbnail', 'wdt:P18'],
-  'argu:voteBubble'
+  [NS.schema('Person'), NS.aod('Persons')],
+  [NS.schema('image'), NS.dbo('thumbnail'), NS.wdt('P18')],
+  NS.argu('voteBubble')
 );
 
 LinkedRenderStore.registerRenderer(
   ({ linkedProp }) => (
     <LinkedObjectContainer object={linkedProp} />
   ),
-  ['schema:Person', 'aod:Persons'],
-  ['http://schema.org/image', 'dbo:thumbnail', 'wdt:P18'],
-  'argu:sidebar'
+  [NS.schema('Person'), NS.aod('Persons')],
+  [NS.schema('image'), NS.dbo('thumbnail'), NS.wdt('P18')],
+  NS.argu('sidebar')
 );
 
 export default PersonImageProp;

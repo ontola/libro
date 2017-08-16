@@ -5,7 +5,7 @@ import {
   CompareVotesBar,
 } from 'components';
 
-import LinkedRenderStore, { linkedPropVal } from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { linkedPropVal, NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   children: PropTypes.node,
@@ -14,7 +14,7 @@ const propTypes = {
 
 const TotalScore = ({ children, linkedProp }) => (
   <CompareVotesBar
-    label={<Property label="argu:comparedBeta" />}
+    label={<Property label={NS.argu('comparedBeta')} />}
     totalValue={linkedProp}
   >
     {children}
@@ -25,8 +25,8 @@ TotalScore.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   TotalScore,
-  'argu:CompareCell',
-  'argu:totalScore'
+  NS.argu('CompareCell'),
+  NS.argu('totalScore')
 );
 
 export default TotalScore;

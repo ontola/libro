@@ -1,10 +1,10 @@
-import React, { PropTypes } from 'react';
-import {defaultNS as NS } from 'link-lib'
 import { LinkedObjectContainer, Property, Type } from 'link-redux';
+import React, { PropTypes } from 'react';
 
 import {
   Container,
-} from 'components';
+} from '../../components';
+import { NS } from '../../helpers/LinkedRenderStore';
 
 const propTypes = {
   linkedObject: PropTypes.object,
@@ -20,7 +20,16 @@ const LinkedObject = () => (
       <Property label={NS.argu('VoteEventCollection')} />
     </Container>
     <Container size="large">
-      <Property forceRender label={['argu:collectionAssociation', 'schema:comments']} />
+      <Property
+        forceRender
+        label={[
+          NS.argu('motions'),
+          NS.argu('questions'),
+          NS.argu('arguments'),
+          NS.argu('collectionAssociation'),
+          NS.schema('comments')
+        ]}
+      />
     </Container>
   </LinkedObjectContainer>
 );

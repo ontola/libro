@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LinkedRenderStore, { linkedPropVal } from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { linkedPropVal, NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   linkedProp: linkedPropVal,
@@ -12,8 +12,8 @@ CompareItemCount.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   CompareItemCount,
-  'argu:CompareCell',
-  'argu:compareItemCount'
+  NS.argu('CompareCell'),
+  NS.argu('compareItemCount')
 );
 
 export default CompareItemCount;

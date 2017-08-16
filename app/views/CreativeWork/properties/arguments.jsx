@@ -1,7 +1,7 @@
 import { LinkedObjectContainer } from 'link-redux';
 import React from 'react';
 
-import LinkedRenderStore, { linkedPropVal } from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { NS, linkedPropVal } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   linkedProp: linkedPropVal,
@@ -13,15 +13,15 @@ Arguments.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   Arguments,
-  'http://schema.org/CreativeWork',
-  ['argu:arguments']
+  NS.schema('CreativeWork'),
+  NS.argu('arguments')
 );
 
 LinkedRenderStore.registerRenderer(
-  ({ linkedProp }) => <LinkedObjectContainer object={linkedProp} topology="argu:section" />,
-  'http://schema.org/CreativeWork',
-  ['argu:arguments'],
-  'argu:collection'
+  ({ linkedProp }) => <LinkedObjectContainer object={linkedProp} topology={NS.argu('section')} />,
+  NS.schema('CreativeWork'),
+  NS.argu('arguments'),
+  NS.argu('collection')
 );
 
 export default Arguments;

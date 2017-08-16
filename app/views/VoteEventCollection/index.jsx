@@ -2,7 +2,7 @@ import { RENDER_CLASS_NAME } from 'link-lib';
 import { Property, PropertyBase } from 'link-redux';
 import React, { PropTypes } from 'react';
 
-import LinkedRenderStore from '../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
 const propTypes = {
   optionCounts: PropTypes.objectOf({
@@ -17,16 +17,16 @@ const propTypes = {
  * @returns {ReactElement} The vote event collection component
  */
 const VoteEventCollection = ({ optionCounts }) => (
-  <Property label="argu:views" optionCounts={optionCounts} />
+  <Property label={NS.argu('views')} optionCounts={optionCounts} />
 );
 
 VoteEventCollection.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   VoteEventCollection,
-  'argu:Collection',
+  NS.argu('Collection'),
   RENDER_CLASS_NAME,
-  'argu:voteEvent'
+  NS.argu('voteEvent')
 );
 
 /**
@@ -36,15 +36,15 @@ class VoteEvent extends PropertyBase {
   shouldComponentUpdate(nextProps, Ignore, nextContext) {
     const { data } = this.props;
     return !(data && data['http://www.w3.org/1999/02/22-rdf-syntax-ns#type'] === nextProps.data['http://www.w3.org/1999/02/22-rdf-syntax-ns#type']) ||
-      this.getLinkedObjectProperty('argu:member') !==
-        this.getLinkedObjectProperty('argu:member', nextContext.schemaObject);
+      this.getLinkedObjectProperty(NS.argu('member')) !==
+        this.getLinkedObjectProperty(NS.argu('member'), nextContext.schemaObject);
   }
 
   render() {
     // @TODO <Property label="argu:counts"/>
     return (
       <div className="VoteData">
-        <Property label="argu:members" />
+        <Property label={NS.argu('members')} />
       </div>
     );
   }
@@ -52,9 +52,9 @@ class VoteEvent extends PropertyBase {
 
 LinkedRenderStore.registerRenderer(
   VoteEvent,
-  ['argu:VoteEvent', 'aod:VoteEvent'],
+  [NS.argu('VoteEvent'), NS.aod('VoteEvent')],
   RENDER_CLASS_NAME,
-  'argu:voteEventCollection'
+  NS.argu('voteEventCollection')
 );
 
 export default VoteEventCollection;

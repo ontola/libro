@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 
 import { CollapseText, Markdown } from 'components';
 
-import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   linkedProp: PropTypes.string,
@@ -15,8 +15,8 @@ Text.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   Text,
-  'http://schema.org/Thing',
-  'http://schema.org/text'
+  NS.schema('Thing'),
+  NS.schema('text')
 );
 
 const contextTypesCollection = {
@@ -34,9 +34,9 @@ TextCollection.contextTypes = contextTypesCollection;
 
 LinkedRenderStore.registerRenderer(
   TextCollection,
-  'http://schema.org/Thing',
-  'http://schema.org/text',
-  'argu:collection'
+  NS.schema('Thing'),
+  NS.schema('text'),
+  NS.argu('collection')
 );
 
 export default Text;

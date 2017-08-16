@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 
-import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
 import {
   DetailDate,
 } from 'components';
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   linkedProp: PropTypes.object,
@@ -15,8 +15,8 @@ DateCreated.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   DateCreated,
-  'http://schema.org/CreativeWork',
-  'http://schema.org/dateCreated'
+  NS.schema('CreativeWork'),
+  NS.schema('dateCreated')
 );
 
 export default DateCreated;

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { LinkedObjectContainer } from 'link-redux';
 
-import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   linkedProp: PropTypes.oneOfType([
@@ -17,7 +17,7 @@ const Creator = ({ linkedProp }) => {
   return (
     <LinkedObjectContainer
       object={linkedProp}
-      topology="argu:detail"
+      topology={NS.argu('detail')}
     />
   );
 };
@@ -26,8 +26,8 @@ Creator.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   Creator,
-  'http://schema.org/CreativeWork',
-  'http://schema.org/creator'
+  NS.schema('CreativeWork'),
+  NS.schema('creator')
 );
 
 export default Creator;

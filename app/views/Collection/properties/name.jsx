@@ -6,12 +6,12 @@ import {
   Heading,
 } from 'components';
 
-import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 class CollectionName extends PropertyBase {
   render() {
     return (
-      <Link to={this.getLinkedObjectProperty('argu:href')}>
+      <Link to={this.getLinkedObjectProperty(NS.argu('href'))}>
         <Heading size="2" variant="column">
           {this.getLinkedObjectProperty()}
         </Heading>
@@ -22,8 +22,8 @@ class CollectionName extends PropertyBase {
 
 LinkedRenderStore.registerRenderer(
   CollectionName,
-  'argu:Collection',
-  'http://schema.org/name'
+  NS.argu('Collection'),
+  NS.schema('name')
 );
 
 export default CollectionName;

@@ -4,7 +4,7 @@ import {
   Button
 } from 'components';
 
-import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   children: PropTypes.node,
@@ -25,8 +25,8 @@ Target.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   Target,
-  'schema:CreateAction',
-  'schema:target'
+  NS.schema('CreateAction'),
+  NS.schema('target')
 );
 
 export default Target;

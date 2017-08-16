@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { closeSideBar } from 'state/sideBars/actions';
 
 import { retrievePath } from '../../../helpers/iris';
-import LinkedRenderStore, { linkedPropVal } from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { linkedPropVal, NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   children: PropTypes.node,
@@ -46,9 +46,9 @@ const hrefConnected = connect(
 
 LinkedRenderStore.registerRenderer(
   hrefConnected,
-  'argu:Link',
-  ['argu:href'],
-  'argu:sidebar'
+  NS.argu('Link'),
+  [NS.argu('href')],
+  NS.argu('sidebar')
 );
 
 export default href;

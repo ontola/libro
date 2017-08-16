@@ -1,19 +1,20 @@
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
+import { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
 import React from 'react';
 
 import {
   LDLink,
 } from 'components';
+import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
 import './properties/name';
 
 const CurrentActorSidebar = () => (
   <div className="SideBarLink">
     <LDLink>
-      <Property label="schema:image" />
+      <Property label={NS.schema('image')} />
       <div className="SideBarLink__label">
-        <Property label="schema:name" />
+        <Property label={NS.schema('name')} />
       </div>
     </LDLink>
   </div>
@@ -21,7 +22,7 @@ const CurrentActorSidebar = () => (
 
 LinkedRenderStore.registerRenderer(
   CurrentActorSidebar,
-  'schema:Person',
+  NS.schema('Person'),
   RENDER_CLASS_NAME,
-  'argu:sidebar'
+  NS.argu('sidebar')
 );

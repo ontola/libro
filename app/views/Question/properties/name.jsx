@@ -1,10 +1,10 @@
 import React from 'react';
 
-import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
 import {
   Heading,
   LDLink,
 } from 'components';
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 LinkedRenderStore.registerRenderer(
   ({ linkedProp }) => (
@@ -12,8 +12,8 @@ LinkedRenderStore.registerRenderer(
       {linkedProp}
     </Heading>
   ),
-  'argu:Question',
-  'http://schema.org/name'
+  NS.argu('Question'),
+  NS.schema('name')
 );
 
 LinkedRenderStore.registerRenderer(
@@ -22,14 +22,14 @@ LinkedRenderStore.registerRenderer(
       <Heading headerSize="3" variant="question">{linkedProp}</Heading>
     </LDLink>
   ),
-  'argu:Question',
-  'http://schema.org/name',
-  'argu:collection'
+  NS.argu('Question'),
+  NS.schema('name'),
+  NS.argu('collection')
 );
 
 LinkedRenderStore.registerRenderer(
   ({ linkedProp }) => <span>{linkedProp}</span>,
-  'argu:Question',
-  'http://schema.org/name',
-  'argu:parent'
+  NS.argu('Question'),
+  NS.schema('name'),
+  NS.argu('parent')
 );

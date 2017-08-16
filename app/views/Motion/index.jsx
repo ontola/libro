@@ -1,4 +1,4 @@
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
+import { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
 import React, { PropTypes } from 'react';
 
@@ -8,9 +8,9 @@ import {
   CardHeader,
   DetailsBar,
   LinkedDetailDate,
-} from 'components';
+} from '../../components';
+import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
-import './page';
 import './properties/votebuttons';
 
 const propTypes = {
@@ -20,16 +20,16 @@ const propTypes = {
 const Motion = ({ onVoteCompleted }) => (
   <Card>
     <CardHeader noSpacing>
-      <Property label="schema:name" />
+      <Property label={NS.schema('name')} />
       <DetailsBar>
-        <Property label="schema:creator" />
+        <Property label={NS.schema('creator')} />
         <LinkedDetailDate />
       </DetailsBar>
     </CardHeader>
     <CardContent noSpacing>
-      <Property label="schema:text" />
+      <Property label={NS.schema('text')} />
     </CardContent>
-    <Property forceRender label="argu:currentVote" onVoteCompleted={onVoteCompleted} />
+    <Property forceRender label={NS.argu('currentVote')} onVoteCompleted={onVoteCompleted} />
   </Card>
 );
 
@@ -38,24 +38,24 @@ Motion.propTypes = propTypes;
 const MotionCollection = () => (
   <Card>
     <CardHeader noSpacing>
-      <Property label="schema:name" />
+      <Property label={NS.schema('name')} />
       <DetailsBar>
-        <Property label="schema:creator" />
+        <Property label={NS.schema('creator')} />
         <LinkedDetailDate />
       </DetailsBar>
     </CardHeader>
     <CardContent noSpacing>
-      <Property label="schema:text" />
-      <Property label="argu:arguments" />
+      <Property label={NS.schema('text')} />
+      <Property label={NS.argu('arguments')} />
     </CardContent>
-    <Property forceRender label="argu:currentVote" />
+    <Property forceRender label={NS.argu('currentVote')} />
   </Card>
 );
 
-LinkedRenderStore.registerRenderer(Motion, 'argu:Motion');
+LinkedRenderStore.registerRenderer(Motion, NS.argu('Motion'));
 LinkedRenderStore.registerRenderer(
   MotionCollection,
-  'argu:Motion',
+  NS.argu('Motion'),
   RENDER_CLASS_NAME,
-  'argu:collection'
+  NS.argu('collection')
 );

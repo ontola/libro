@@ -1,18 +1,17 @@
 import React from 'react';
 
-import { Image } from 'components';
-
-import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
+import { Image } from '../../../components';
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 LinkedRenderStore.registerRenderer(
   ({ linkedProp }) => <Image className="Detail__image" linkedProp={linkedProp} style={{ maxHeight: 'inherit' }} />,
-  'http://schema.org/ImageObject',
-  'http://schema.org/thumbnail'
+  NS.schema('ImageObject'),
+  NS.schema('thumbnail')
 );
 
 LinkedRenderStore.registerRenderer(
   ({ linkedProp }) => <Image className="SideBarLink__image" linkedProp={linkedProp} style={{ maxHeight: 'inherit' }} />,
-  'http://schema.org/ImageObject',
-  'http://schema.org/thumbnail',
-  'argu:sidebar'
+  NS.schema('ImageObject'),
+  NS.schema('thumbnail'),
+  NS.argu('sidebar')
 );

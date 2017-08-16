@@ -2,7 +2,7 @@ import React from 'react';
 import { getP } from 'link-lib';
 import { LinkedObjectContainer, Property, PropertyBase } from 'link-redux';
 
-import LinkedRenderStore from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 class CollectionAssociation extends PropertyBase {
   getArguLinkedRecordURL() {
@@ -13,7 +13,7 @@ class CollectionAssociation extends PropertyBase {
     return prop &&
       prop === 'https://beta.argu.co/vote_events/7b1fb5f4-68a3-e511-b86d-e4115babb880' &&
       this.context.schemaObject &&
-      getP(this.context.schemaObject, ns.rdf('subject'));
+      getP(this.context.schemaObject, NS.rdf('subject'));
   }
 
   render() {
@@ -35,15 +35,15 @@ class CollectionAssociation extends PropertyBase {
 
 LinkedRenderStore.registerRenderer(
   CollectionAssociation,
-  'http://schema.org/Thing',
+  NS.schema('Thing'),
   [
-    'https://argu.co/ns/core#collectionAssociation',
-    'aod:counts',
-    'argu:topArgumentsPro',
-    'argu:topArgumentsCon',
-    'argu:motions',
-    'argu:questions',
-    'argu:bucket',
+    NS.argu('collectionAssociation'),
+    NS.aod('counts'),
+    NS.argu('topArgumentsPro'),
+    NS.argu('topArgumentsCon'),
+    NS.argu('motions'),
+    NS.argu('questions'),
+    NS.argu('bucket'),
   ]
 );
 

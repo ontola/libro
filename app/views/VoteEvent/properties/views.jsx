@@ -52,7 +52,7 @@ VoteViews.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   VoteViews,
-  'argu:Collection',
-  'argu:views',
-  'argu:voteEvent'
+  NS.argu('Collection'),
+  NS.argu('views'),
+  NS.argu('voteEvent')
 );

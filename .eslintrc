@@ -114,7 +114,7 @@
     "new-cap": [
       "error",
       {
-        "capIsNewExceptions": ["Record", "Alert"]
+        "capIsNewExceptions": ["Alert", "Record", "Namespace"]
       }
     ],
     "react/require-default-props": 0,

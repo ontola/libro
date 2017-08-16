@@ -3,7 +3,6 @@ import React, { PropTypes } from 'react';
 import { PropertyBase } from 'link-redux';
 
 import { Detail } from 'components';
-import { formatDate, durationToHumanizedString } from 'helpers/date';
 import moment from 'moment';
 
 const propTypes = {

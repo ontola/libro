@@ -1,7 +1,7 @@
 import { LinkedObjectContainer } from 'link-redux';
 import React from 'react';
 
-import LinkedRenderStore, { linkedPropVal } from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { linkedPropVal, NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   linkedProp: linkedPropVal,
@@ -13,8 +13,8 @@ CreateActionProp.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   CreateActionProp,
-  'schema:Thing',
-  'https://argu.co/ns/core#createAction'
+  NS.schema('Thing'),
+  NS.argu('createAction')
 );
 
 export default CreateActionProp;

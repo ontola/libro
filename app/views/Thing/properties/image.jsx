@@ -2,7 +2,7 @@ import { LinkedObjectContainer } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import LinkedRenderStore, { linkedPropVal } from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { linkedPropVal, NS } from '../../../helpers/LinkedRenderStore';
 
 const FABase = 'http://fontawesome.io/icon/';
 const propTypes = {
@@ -23,7 +23,7 @@ const ThingImageProp = ({ linkedProp }) => {
   return (
     <LinkedObjectContainer
       object={linkedProp}
-      topology="argu:detail"
+      topology={NS.argu('detail')}
     />
   );
 };
@@ -32,15 +32,15 @@ ThingImageProp.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   ThingImageProp,
-  'http://schema.org/Thing',
-  ['http://schema.org/image', 'dbo:thumbnail', 'wdt:P18']
+  NS.schema('Thing'),
+  [NS.schema('image'), NS.dbo('thumbnail'), NS.wdt('P18')]
 );
 
 LinkedRenderStore.registerRenderer(
   ThingImageProp,
-  'http://schema.org/Thing',
-  ['http://schema.org/image', 'dbo:thumbnail', 'wdt:P18'],
-  'argu:sidebar'
+  NS.schema('Thing'),
+  [NS.schema('image'), NS.dbo('thumbnail'), NS.wdt('P18')],
+  NS.argu('sidebar')
 );
 
 export default ThingImageProp;

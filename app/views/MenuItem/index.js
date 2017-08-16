@@ -1,21 +1,23 @@
 import React from 'react';
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
+import { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
+
+import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
 import './properties/href';
 
 const MenuItemSidebar = () => (
-  <Property label="argu:href">
+  <Property label={NS.argu('href')}>
     <div className="SideBarLink__icon">
-      <Property label="schema:image" />
+      <Property label={NS.schema('image')} />
     </div>
-    <Property label="argu:label" />
+    <Property label={NS.argu('label')} />
   </Property>
 );
 
 LinkedRenderStore.registerRenderer(
   MenuItemSidebar,
-  'argu:MenuItem',
+  NS.argu('MenuItem'),
   RENDER_CLASS_NAME,
-  'argu:sidebar'
+  NS.argu('sidebar')
 );
