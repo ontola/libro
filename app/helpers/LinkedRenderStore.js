@@ -1,24 +1,19 @@
 /* eslint no-console: 0 */
-import LinkedRenderStore, { DataWorkerLoader } from 'link-lib';
+import LinkedRenderStore from 'link-lib';
 import rdf from 'rdflib';
 import { PropTypes } from 'react';
 
-import DataWorker from 'worker-loader!../workers/DataWorker';
-import transformers from './transformers';
-
 import Error from '../components/Error';
+
+import transformers from './transformers';
 
 const LRS = new LinkedRenderStore();
 
 LRS.onError = Error;
 
-if (typeof window !== 'undefined' && window.Worker) {
-  LRS.api.processor = new DataWorkerLoader(DataWorker);
-} else {
-  transformers.transformers.forEach(
-    t => LRS.api.registerTransformer(t.transformer, t.mediaTypes, t.acceptValue)
-  );
-}
+transformers.transformers.forEach(
+  t => LRS.api.registerTransformer(t.transformer, t.mediaTypes, t.acceptValue)
+);
 
 LRS.api.setAcceptForHost('https://argu.dev/', 'application/vnd.api+json');
 LRS.api.setAcceptForHost('https://beta.argu.dev/', 'application/vnd.api+json');
