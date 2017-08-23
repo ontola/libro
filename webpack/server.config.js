@@ -1,3 +1,4 @@
+const path = require('path');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const StringReplacePlugin = require('string-replace-webpack-plugin');
@@ -17,41 +18,41 @@ const replacements = process.env.NODE_ENV === 'development'
 
 const config = {
   target: 'node',
-  entry: './server/init',
+  entry: path.resolve('./server/init'),
 
   output: {
-    path: `${__dirname}/../dist/`,
+    path: path.resolve(`${__dirname}/../dist/`),
     filename: 'server.js',
   },
 
   resolve: {
-    modulesDirectories: ['./node_modules'],
-    extensions: ['', '.js', '.jsx', '.ts', '.json'],
+    modules: ['./node_modules'],
+    extensions: ['.js', '.jsx', '.ts', '.json'],
   },
 
   externals: [nodeExternals()],
 
   module: {
-    loaders: [
+    rules: [
       {
-        test: /(\.jsx|\.js)+$/,
-        loader: 'babel-loader',
         exclude: /node_modules/,
-        query: {
-          presets: ['es2015', 'react'],
-          compact: true,
-          comments: false,
-          minified: true,
-          babelrc: false,
-        },
-      },
-      {
-        test: /\.json$/,
-        loader: 'json-loader',
+        test: /(\.jsx|\.js)+$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            query: {
+              babelrc: false,
+              comments: false,
+              compact: true,
+              minified: true,
+              presets: ['es2015', 'react'],
+            },
+          }
+        ],
       },
       {
         test: /(\.jsx|\.js)+$/,
-        loader: StringReplacePlugin.replace({
+        use: StringReplacePlugin.replace({
           replacements,
         }),
       },
@@ -60,7 +61,7 @@ const config = {
 
   plugins: [
     new webpack.ProvidePlugin({
-      fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
+      fetch: 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch',
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production'),
@@ -74,12 +75,8 @@ const config = {
 };
 
 config.plugins.push(
-  new webpack.optimize.DedupePlugin(),
-  new webpack.optimize.OccurrenceOrderPlugin(),
   new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: false,
-    },
+    sourceMap: true,
   })
 );
 

@@ -9,24 +9,31 @@ config.entry = [
   './app/index.js',
 ];
 
-config.module.loaders.unshift(
+config.module.rules.unshift(
   {
     test: /(\.jsx\.js)?$/,
-    loaders: ['babel-loader'],
+    use: ['babel-loader'],
     exclude: /node_modules/,
     include: /app/,
   }
 );
 
-config.module.loaders.push({
+config.module.rules.push({
   test: /\.scss$/,
-  loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!sass-loader'),
+  use: ExtractTextPlugin.extract({
+    fallback: 'style-loader',
+    use: [
+      'css-loader',
+      'postcss-loader',
+      'sass-loader',
+    ]
+  }),
 });
 
 config.plugins.push(
-  new ExtractTextPlugin('bundle.css'),
-  new webpack.optimize.DedupePlugin(),
-  new webpack.optimize.OccurrenceOrderPlugin(),
+  new ExtractTextPlugin({
+    filename: 'bundle.css'
+  }),
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify('production'),
     'process.env.ARGU_API_EXT_BASE': JSON.stringify(
@@ -40,7 +47,7 @@ config.plugins.push(
     },
   }),
   new webpack.ProvidePlugin({
-    fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
+    fetch: 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch',
   })
 );
 

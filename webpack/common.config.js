@@ -1,38 +1,43 @@
 const path = require('path');
 
-const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 
 const TARGET = process.env.npm_lifecycle_event;
 process.env.BABEL_ENV = TARGET;
+
 const common = {
   module: {
-    loaders: [
+    rules: [
       {
-        loader: 'json-loader',
-        test: /\.json$/,
+        test: /\.png$/,
+        use: 'file-loader?name=[name].[ext]',
+      }, {
+        test: /\.jpg$/,
+        use: 'file-loader?name=[name].[ext]',
+      }, {
+        test: /\.md$/,
+        use: 'raw-loader',
       },
       {
-        loader: 'file?name=[name].[ext]',
-        test: /\.png$/,
-      }, {
-        loader: 'file?name=[name].[ext]',
-        test: /\.jpg$/,
-      }, {
-        loader: 'raw-loader',
-        test: /\.md$/,
+        test: /\.css/,
+        use: [
+          { loader: 'style-loader', options: { sourceMap: true } },
+          { loader: 'css-loader', options: { sourceMap: true } },
+          { loader: 'postcss-loader', options: { sourceMap: true } },
+          { loader: 'sass-loader', options: { sourceMap: true } }
+        ],
       },
     ],
   },
 
   output: {
     filename: 'bundle.js',
-    path: `${__dirname}/../dist/`,
+    path: path.resolve(`${__dirname}/../dist/`),
   },
 
   plugins: [
     new webpack.ProvidePlugin({
-      fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
+      fetch: 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch',
     }),
     new webpack.DefinePlugin({
       __CLIENT__: true,
@@ -50,8 +55,6 @@ const common = {
     // new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en|nl/),
   ],
 
-  postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
-
   resolve: {
     alias: {
       components: path.resolve('app/components'),
@@ -62,8 +65,8 @@ const common = {
       state: path.resolve('app/state'),
       static: path.resolve('./static'),
     },
-    extensions: ['', '.js', '.jsx', '.ts'],
-    modulesDirectories: ['./node_modules'],
+    extensions: ['.js', '.jsx', '.ts'],
+    modules: ['./node_modules'],
   },
 };
 

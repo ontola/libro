@@ -68,8 +68,8 @@ class DonutChart extends Component {
   render() {
     return (
       <div
-        ref={wrapper => (this.wrapper = wrapper)}
         className="DonutChart"
+        ref={(wrapper) => { this.wrapper = wrapper; }}
       />
     );
   }

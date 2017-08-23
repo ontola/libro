@@ -8,11 +8,11 @@ import {
 } from 'components';
 
 const propTypes = {
-  /* The components that appear in the sidebar*/
+  /* The components that appear in the sidebar */
   sidebar: PropTypes.node,
-  /* The components that appear in the main area*/
+  /* The components that appear in the main area */
   children: PropTypes.node,
-  /* Set to true if you don't want the sidebar to appear from the left*/
+  /* Set to true if you don't want the sidebar to appear from the left */
   pullRight: PropTypes.bool,
   id: PropTypes.string,
   slim: PropTypes.bool,

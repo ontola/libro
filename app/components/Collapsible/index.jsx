@@ -6,7 +6,7 @@ import './Collapsible.scss';
 const propTypes = {
   /** Content that is not always visible. */
   children: PropTypes.node.isRequired,
-  /** Minimum height in pixels **/
+  /** Minimum height in pixels */
   minHeight: PropTypes.number,
   /** Function that should dispatch a toggle action to open / close the Collapsible. */
   onClickToggle: PropTypes.func.isRequired,

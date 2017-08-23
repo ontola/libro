@@ -7,7 +7,7 @@ import './Markdown.scss';
 const propTypes = {
   /** Array of strings that need to be highlighted */
   highlightedText: PropTypes.string,
-  /** Makes all links tabbable. **/
+  /** Makes all links tabbable. */
   tabbable: PropTypes.bool,
   /** The content of the item */
   text: PropTypes.string.isRequired,

@@ -5,7 +5,7 @@ const propTypes = {
   children: PropTypes.node,
   /** The smaller text that is displayed at the bottom. */
   label: PropTypes.string.isRequired,
-  /** The big text (should be a value) that is displayed at the top*/
+  /** The big text (should be a value) that is displayed at the top */
   value: PropTypes.string.isRequired,
 };
 

@@ -19,8 +19,8 @@ module.exports = {
   showCode: false,
   webpackConfig: {
     resolve: {
-      modulesDirectories: ['./node_modules'],
-      extensions: ['', '.js', '.jsx', '.ts'],
+      modules: ['./node_modules'],
+      extensions: ['.js', '.jsx', '.ts'],
       alias: {
         components: path.resolve('app/components'),
         containers: path.resolve('app/containers'),

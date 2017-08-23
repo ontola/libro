@@ -5,7 +5,7 @@ const HappyPack = require('happypack');
 
 const config = require('./common.config');
 
-config.cache = 'true';
+config.cache = true;
 config.entry = './tests/testhelper.js';
 config.externals = [
   nodeExternals(),
@@ -14,10 +14,6 @@ config.externals = [
 ];
 
 config.output = {};
-
-config.resolveLoader = {
-  root: path.join(__dirname, 'node_modules'),
-};
 
 config.module.loaders.unshift(
   {

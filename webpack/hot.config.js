@@ -1,6 +1,6 @@
-const path = require('path');
+// const path = require('path');
 
-require('react-hot-loader/patch');
+// require('react-hot-loader/patch');
 const HappyPack = require('happypack');
 const webpack = require('webpack');
 
@@ -15,26 +15,32 @@ config.entry = [
   './app/index.js',
 ];
 
-config.cache = 'true';
+config.cache = true;
 
 config.devtool = 'eval';
 
-config.resolveLoader = {
-  root: path.join(__dirname, 'node_modules'),
-};
-
-config.module.loaders.unshift(
+config.module.rules.unshift(
   {
     test: /(\.jsx\.js)?$/,
-    loaders: ['happypack/loader?id=babel'],
+    use: [{
+      loader: 'happypack/loader',
+      options: {
+        id: 'babel'
+      }
+    }],
     exclude: /node_modules/,
     include: /app/,
   }
 );
 
-config.module.loaders.push({
+config.module.rules.push({
   test: /\.scss$/,
-  loaders: ['happypack/loader?id=scss'],
+  use: [
+    {
+      loader: 'happypack/loader',
+      options: { id: 'scss' },
+    },
+  ],
 });
 
 config.plugins.push(
@@ -46,7 +52,7 @@ config.plugins.push(
   new HappyPack({
     id: 'scss',
     threads: 4,
-    loaders: ['style!css-loader!postcss-loader!sass-loader?cacheDirectory'],
+    loaders: ['style-loader!css-loader!postcss-loader!sass-loader?cacheDirectory'],
   }),
   new webpack.HotModuleReplacementPlugin(),
   new webpack.NoErrorsPlugin()
