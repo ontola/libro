@@ -34,10 +34,11 @@ const ignoreGlobals = [
 ];
 ignoreGlobals.forEach((item) => {
   global[item] = () => null;
+  global.window[item] = () => null;
 });
-global.SVGPathSeg.prototype = {};
-global.SVGPathElement.prototype = {};
-global.SVGPathSegList.prototype = {};
+global.window.SVGPathSeg.prototype = {};
+global.window.SVGPathElement.prototype = {};
+global.window.SVGPathSegList.prototype = {};
 
 Object.keys(document.defaultView).forEach((property) => {
   if (typeof global[property] === 'undefined') {

@@ -6,7 +6,7 @@ const HappyPack = require('happypack');
 const config = require('./common.config');
 
 config.cache = true;
-config.entry = './tests/testhelper.js';
+config.entry = path.resolve('./tests/testhelper.js');
 config.externals = [
   nodeExternals(),
   { '../../../node_modules/react.js': 'react' },
@@ -15,16 +15,21 @@ config.externals = [
 
 config.output = {};
 
-config.module.loaders.unshift(
+config.module.rules.unshift(
   {
     exclude: /node_modules/,
     include: /app/,
-    loaders: ['happypack/loader?id=babel'],
     test: /(\.jsx|\.js)?$/,
+    use: [{
+      loader: 'happypack/loader',
+      query: {
+        id: 'babel'
+      }
+    }],
   }
 );
 
-config.module.loaders.push({
+config.module.rules.push({
   loader: 'null-loader',
   test: /\.scss$/,
 });
@@ -36,6 +41,5 @@ config.plugins.push(
     threads: 4,
   })
 );
-
 
 module.exports = config;
