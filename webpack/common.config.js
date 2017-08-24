@@ -37,7 +37,7 @@ const common = {
 
   plugins: [
     new webpack.ProvidePlugin({
-      fetch: 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch',
+      fetch: 'isomorphic-fetch',
     }),
     new webpack.DefinePlugin({
       __CLIENT__: true,

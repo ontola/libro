@@ -61,7 +61,7 @@ const config = {
 
   plugins: [
     new webpack.ProvidePlugin({
-      fetch: 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch',
+      fetch: 'isomorphic-fetch',
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production'),
