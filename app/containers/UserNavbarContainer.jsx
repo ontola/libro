@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { UserNavbar } from 'components/Navbar';
+import { UserNavbar } from '../components/Navbar';
 
 function mapStateToProps(state) {
   return {

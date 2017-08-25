@@ -1,14 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+
 import Count from 'models/Count';
 import { fetchCount } from 'state/counts/actions';
 import {
-  OpinionBubble,
-} from 'components';
-
-import {
   getGroupByCount,
 } from 'state/groups/selectors';
+
+import OpinionBubble from '../views/OpinionBubble';
 
 const defaultRenderItem = data => (
   <OpinionBubble

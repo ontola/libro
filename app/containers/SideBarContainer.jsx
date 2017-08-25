@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import SideBar from 'components/SideBar';
 import {
   closeSideBar,
   dockSideBar,
@@ -13,6 +12,8 @@ import {
   getSideBarDocked,
   getSideBarOpened,
 } from 'state/sideBars/selectors';
+
+import { SideBar } from '../components';
 
 const propTypes = {
   id: PropTypes.any.isRequired,

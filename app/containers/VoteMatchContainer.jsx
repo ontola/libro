@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { VoteMatchShow } from 'components';
+import { VoteMatchShow } from '../components';
 import { voteMatchStart, voteMatchSave } from 'state/voteMatch/actions';
 
 import {

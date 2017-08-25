@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { EventListItem, List } from 'components';
+import { EventListItem, List } from '../components';
 import EventContainer from 'containers/EventContainer';
 
 import { getEvents } from 'state/events/selectors';

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { getSearchHits, getDrawerVisible } from 'state/searchElastic/selectors';
 import { toggleDrawer } from 'state/searchElastic/actions';
-import { Drawer } from 'components';
+import { Drawer } from '../components';
 
 const propTypes = {
   visible: PropTypes.bool,

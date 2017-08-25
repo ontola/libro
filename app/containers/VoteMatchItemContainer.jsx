@@ -6,7 +6,7 @@ import { LinkedObjectContainer } from 'link-redux';
 import {
   Button,
   Heading,
-} from 'components';
+} from '../components';
 import { voteMatchRemoveVoteable } from 'state/voteMatch/actions';
 
 const propTypes = {

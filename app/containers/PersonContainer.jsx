@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { Detail } from 'components';
+import { Detail } from '../components';
 import path from 'helpers/paths';
 import Person from 'models/Person';
 import { fetchPerson } from 'state/persons/actions';

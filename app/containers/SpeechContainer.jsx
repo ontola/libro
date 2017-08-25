@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Speech from 'models/Speech';
 import {
   ChronoItem,
-} from 'components';
+} from '../components';
 
 import {
   getSpeech,

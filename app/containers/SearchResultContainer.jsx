@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import { SearchResultItem } from 'components';
+import { SearchResultItem } from '../components';
 
 import * as constants from '../../app/config';
 

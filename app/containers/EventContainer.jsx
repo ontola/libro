@@ -2,7 +2,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { EventShow } from 'components';
+import { EventShow } from '../components';
 import { getEvent } from 'state/events/selectors';
 import { fetchEvent } from 'state/events/actions';
 import { toggleAll } from 'state/collapsible/actions';

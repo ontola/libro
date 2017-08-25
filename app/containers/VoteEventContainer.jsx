@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { VoteData } from 'components';
+import { VoteData } from '../components';
 import React, { PropTypes } from 'react';
 
 import {

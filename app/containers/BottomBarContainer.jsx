@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import BottomBar from 'components/BottomBar';
+
 import {
   openSideBar,
 } from 'state/sideBars/actions';
+
+import { BottomBar } from '../components';
 
 const BottomBarContainer = props => <BottomBar {...props} />;
 

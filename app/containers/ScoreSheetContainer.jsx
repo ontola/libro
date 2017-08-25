@@ -1,6 +1,6 @@
 import { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { ScoreSheet } from 'components';
+import { ScoreSheet } from '../components';
 import {
   getVoteMatchUserVotes,
   getVoteMatchMotionIds,

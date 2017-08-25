@@ -21,6 +21,8 @@ config.devtool = 'eval';
 
 config.module.rules.unshift(
   {
+    exclude: /node_modules/,
+    include: /app/,
     test: /(\.jsx\.js)?$/,
     use: [{
       loader: 'happypack/loader',
@@ -28,8 +30,6 @@ config.module.rules.unshift(
         id: 'babel'
       }
     }],
-    exclude: /node_modules/,
-    include: /app/,
   }
 );
 
@@ -46,13 +46,13 @@ config.module.rules.push({
 config.plugins.push(
   new HappyPack({
     id: 'babel',
-    threads: 4,
     loaders: ['babel-loader?cacheDirectory'],
+    threads: 4,
   }),
   new HappyPack({
     id: 'scss',
+    loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
     threads: 4,
-    loaders: ['style-loader!css-loader!postcss-loader!sass-loader?cacheDirectory'],
   }),
   new webpack.HotModuleReplacementPlugin(),
   new webpack.NoErrorsPlugin()

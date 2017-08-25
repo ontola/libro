@@ -11,7 +11,7 @@ import {
   CardRow,
   FormField,
   HiddenFormField,
-} from 'components';
+} from '../components';
 import {
   safeCredentials,
 } from 'helpers/arguHelpers';

@@ -5,7 +5,7 @@ import { getVoteMatchMotionIdsLength } from 'state/voteMatch/selectors';
 import { fetchActor } from 'state/currentActors/actions';
 import {
   NavBarContent,
-} from 'components';
+} from '../components';
 
 const propTypes = {
   actorType: PropTypes.string.isRequired,

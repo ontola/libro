@@ -52,6 +52,7 @@ const common = {
       __ORIGIN__: JSON.stringify(`https://${process.env.FRONTEND_HOSTNAME}`),
     }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new webpack.optimize.ModuleConcatenationPlugin(),
     // new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en|nl/),
   ],
 

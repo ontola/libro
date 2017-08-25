@@ -3,7 +3,7 @@ import { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import {
   ChronoFeed,
-} from 'components';
+} from '../components';
 
 import {
   getFilteredSpeechesForEvent,

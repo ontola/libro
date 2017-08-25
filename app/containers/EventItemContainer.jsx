@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import EventItem from 'models/EventItem';
 import {
   EventItemShow,
-} from 'components';
+} from '../components';
 
 import { getEventItem } from 'state/eventItems/selectors';
 

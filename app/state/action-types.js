@@ -16,7 +16,8 @@ export const COLL_TOGGLE_GROUP = 'COLL_TOGGLE_GROUP';
 export const GET_EVENTS = 'GET_EVENTS';
 export const GET_EVENT = 'GET_EVENT';
 
-export const GET_EVENT_ITEM = 'GET_EVENTS';
+export const GET_EVENT_ITEM = 'GET_EVENT_ITEM';
+export const GET_EVENT_ITEMS = 'GET_EVENT_ITEMS';
 
 export const SET_EVENT_TIME = 'SET_TIME';
 export const TOGGLE_SHOW_VIDEO = 'TOGGLE_SHOW_VIDEO';
@@ -53,6 +54,9 @@ export const GOTO_PAGE = 'GOTO_PAGE';
 
 // react-router
 export const LOCATION_CHANGE = 'LOCATION_CHANGE';
+
+// Relations browser
+export const GET_RELATION = 'GET_RELATION';
 
 // Search
 export const TOGGLE_DRAWER = 'TOGGLE_DRAWER';

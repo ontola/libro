@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 
 import { fetchActor } from 'state/currentActors/actions';
 import UserNavbarContainer from 'containers/UserNavbarContainer';
+
 import {
   ClosedNavbar,
   GuestNavbar,
-} from 'components/Navbar';
+} from '../components/Navbar/index';
 
 const propTypes = {
   actorType: PropTypes.string.isRequired,

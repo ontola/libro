@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import {
   Button,
-} from 'components';
+} from '../components';
 import {
   openSideBar,
 } from 'state/sideBars/actions';

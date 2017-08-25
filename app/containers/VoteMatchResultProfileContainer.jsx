@@ -1,6 +1,6 @@
 import { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { VoteMatchResultBar } from 'components';
+import { VoteMatchResultBar } from '../components';
 import {
   getVoteMatchUserVotes,
   getVoteMatchMotionIds,

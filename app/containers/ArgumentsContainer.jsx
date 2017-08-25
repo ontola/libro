@@ -5,7 +5,7 @@ import {
   ArgumentListItem,
   Columns,
   List,
-} from 'components';
+} from '../components';
 
 const propTypes = {
   argsPro: PropTypes.array.isRequired,

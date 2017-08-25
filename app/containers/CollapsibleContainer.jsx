@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import Collapsible from 'components/Collapsible';
 import { initializeCollapsible, toggleOne } from 'state/collapsible/actions';
 import { getCollapsibleOpened } from 'state/collapsible/selectors';
+
+import { Collapsible } from '../components';
 
 const propTypes = {
   id: PropTypes.any.isRequired,

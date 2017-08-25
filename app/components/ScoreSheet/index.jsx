@@ -1,6 +1,7 @@
 import './ScoreSheet.scss';
 import React, { PropTypes } from 'react';
-import { Box, Heading } from 'components';
+
+import { Card, Heading } from '../../components';
 
 const propTypes = {
   comparedProfilePositions: PropTypes.array.isRequired,
@@ -17,7 +18,7 @@ const ScoreSheet = ({
 }) => (
   <div className="ScoreSheet">
     <Heading>Resultaat {score}%</Heading>
-    <Box>
+    <Card>
       <table width="100%">
         <thead>
           <tr>
@@ -38,7 +39,7 @@ const ScoreSheet = ({
           ))}
         </tbody>
       </table>
-    </Box>
+    </Card>
   </div>
 );
 

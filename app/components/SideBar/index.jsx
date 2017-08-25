@@ -179,4 +179,4 @@ class SideBar extends Component {
 SideBar.propTypes = propTypes;
 SideBar.defaultProps = defaultProps;
 
-module.exports = SideBar;
+export default SideBar;

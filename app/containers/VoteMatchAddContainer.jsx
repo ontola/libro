@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {
   Button,
   DetailPure,
-} from 'components';
+} from '../components';
 import { voteMatchAddVoteable, voteMatchRemoveVoteable } from 'state/voteMatch/actions';
 import { isVoteablePresentInVoteMatch } from 'state/voteMatch/selectors';
 

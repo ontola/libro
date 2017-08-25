@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { MotionListItem, List } from 'components';
+import { MotionListItem, List } from '../components';
 import { getMotions } from 'state/motions/selectors';
 import { fetchMotions } from 'state/motions/actions';
 

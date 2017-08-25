@@ -5,7 +5,7 @@ import { text as currentQuerySelector } from 'state/speeches/selectors';
 
 import {
   Button,
-} from 'components';
+} from '../components';
 
 const propTypes = {
   currentValue: PropTypes.string,
