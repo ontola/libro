@@ -13,8 +13,13 @@ config.module.rules.unshift(
   {
     test: /(\.jsx\.js)?$/,
     use: ['babel-loader'],
-    exclude: /node_modules/,
-    include: /app/,
+    include: [
+      /app/,
+      /node_modules\/whatwg-url/,
+      /node_modules\/universal-url/,
+      /node_modules\/webidl-conversions/,
+      /node_modules\/ml-disjoint-set/,
+    ],
   }
 );
 

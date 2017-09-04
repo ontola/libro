@@ -2,7 +2,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { assert } from 'chai';
-import { generateContext } from 'link-redux/test/utilities';
+import * as ctx from 'link-redux/test/fixtures';
 
 import ChronoItem from './';
 
@@ -14,7 +14,7 @@ const comp = mount(
     startDate={new Date()}
     text="Joe"
   />,
-  generateContext({ linkedRenderStore: true, schemaObject: true })
+  ctx.empty(undefined, true)
 );
 
 describe('ChronoItem component', () => {

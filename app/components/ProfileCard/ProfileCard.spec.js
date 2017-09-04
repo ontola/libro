@@ -2,7 +2,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { assert } from 'chai';
-import { generateContext } from 'link-redux/test/utilities';
+import * as ctx from 'link-redux/test/fixtures';
 
 import ProfileCard from './';
 
@@ -10,7 +10,7 @@ describe('ProfileCard component', () => {
   it('ProfileCard should render', () => {
     const comp = mount(
       <ProfileCard name="Matthew Obrien" />,
-      generateContext({ linkedRenderStore: true, schemaObject: true })
+      ctx.empty(undefined, true)
     );
 
     assert.equal(comp.find('.ProfileCard').length, 1, 'ProfileCard does not render');
@@ -28,8 +28,9 @@ describe('ProfileCard component', () => {
         bio="Trololol"
         similarity={65}
       />,
-      generateContext({ linkedRenderStore: true, schemaObject: true })
+      ctx.empty()
     );
+      // generateContext({ linkedRenderStore: true, schemaObject: true })
     assert.equal(comp.find('.ProfileCard__party').first().text(), 'D66', 'Does not display party correctly');
     assert.deepEqual(
       comp.find('.ProfileCard__image').first().prop('style'),

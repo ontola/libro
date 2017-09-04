@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { assert } from 'chai';
-import { generateContext } from 'link-redux/test/utilities';
+import * as ctx from 'link-redux/test/fixtures';
 
 import ArgumentShow from './';
 
@@ -13,7 +13,7 @@ const comp = mount(
     side="pro"
     text={argument}
   />,
-  generateContext({ linkedRenderStore: true, schemaObject: true })
+  ctx.empty(undefined, true)
 );
 
 describe('ArgumentShow component', () => {
