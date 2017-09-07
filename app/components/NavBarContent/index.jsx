@@ -2,19 +2,18 @@ import { LinkedObjectContainer } from 'link-redux';
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
+import articles from '../../articles';
 import {
   SideBarCollapsible,
   SideBarLink,
   OrgSwitcher,
-} from 'components';
-import { checkLuminance } from 'helpers/color';
-import path from 'helpers/paths';
+} from '../../components';
+import { FRONTEND_URL } from '../../config';
+import { checkLuminance } from '../../helpers/color';
+import path from '../../helpers/paths';
 import { NS } from '../../helpers/LinkedRenderStore';
 
 import './NavBarContent.scss';
-
-import articles from '../../articles';
-import { FRONTEND_URL } from '../../config';
 
 const propTypes = {
   actorType: PropTypes.oneOf(['User', 'Guest']),

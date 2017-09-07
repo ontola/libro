@@ -3,7 +3,7 @@ import React from 'react';
 import {
   Heading,
   LDLink,
-} from 'components';
+} from '../../../components';
 import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 LinkedRenderStore.registerRenderer(

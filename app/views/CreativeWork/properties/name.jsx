@@ -1,11 +1,11 @@
 import { PropertyBase } from 'link-redux';
 import React from 'react';
 
-import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 import {
   Heading,
   LDLink,
-} from 'components';
+} from '../../../components';
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 class Name extends PropertyBase {
   getVariant() {

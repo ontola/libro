@@ -10,8 +10,7 @@ import {
   DetailsBar,
   HoverBox,
   LinkedDetailDate,
-} from 'components';
-
+} from '../../components';
 import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
 import './properties/voteEvents';

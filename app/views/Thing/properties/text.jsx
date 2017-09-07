@@ -1,8 +1,10 @@
 import { lowLevel } from 'link-redux';
 import React, { PropTypes } from 'react';
 
-import { CollapseText, Markdown } from 'components';
-
+import {
+  CollapseText,
+  Markdown,
+} from '../../../components';
 import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {

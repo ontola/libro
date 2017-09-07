@@ -5,7 +5,7 @@ import React, { PropTypes } from 'react';
 
 import {
   GeneratedIcon,
-} from 'components';
+} from '../../components';
 import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
 const propTypes = {

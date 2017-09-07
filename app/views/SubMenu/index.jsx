@@ -6,12 +6,12 @@ import classNames from 'classnames';
 import FontAwesome from 'react-fontawesome';
 
 import CollapsibleContainer from 'containers/CollapsibleContainer';
-import {
-  Button,
-} from 'components';
 import { initializeCollapsible, toggleOne } from 'state/collapsible/actions';
 import { getCollapsibleOpened } from 'state/collapsible/selectors';
 
+import {
+  Button,
+} from '../../components';
 import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
 import './properties/label';

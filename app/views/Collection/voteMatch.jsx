@@ -5,8 +5,7 @@ import React from 'react';
 import {
   Container,
   Cover,
-} from 'components';
-
+} from '../../components';
 import VoteMatchVoteableContainer from '../../containers/VoteMatchVoteableContainer';
 import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 

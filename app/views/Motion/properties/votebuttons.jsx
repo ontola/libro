@@ -4,15 +4,14 @@ import React from 'react';
 import {
   CardActions,
   CardButton,
-} from 'components';
+} from '../../../components';
+import { ARGU_API_URL, FRONTEND_URL } from '../../../config';
 import {
   safeCredentials,
   json,
   statusSuccess,
   tryLogin,
-} from 'helpers/arguHelpers';
-
-import { ARGU_API_URL, FRONTEND_URL } from '../../../config';
+} from '../../../helpers/arguHelpers';
 import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {

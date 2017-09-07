@@ -1,9 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import {
-  Button
-} from 'components';
-
+import { Button } from '../../../components';
 import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {

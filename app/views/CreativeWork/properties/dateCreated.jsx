@@ -1,8 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import {
-  DetailDate,
-} from 'components';
+import { DetailDate } from '../../../components';
 import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {

@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import { DetailStatus } from 'components';
-
+import { DetailStatus } from '../../../components';
 import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {

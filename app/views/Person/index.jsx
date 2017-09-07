@@ -6,9 +6,7 @@ import {
   Detail,
   LDLink,
   ProfileCard,
-} from 'components';
-
-
+} from '../../components';
 import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
 import './sidebar';

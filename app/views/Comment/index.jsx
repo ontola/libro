@@ -8,8 +8,7 @@ import {
   CardHeader,
   DetailsBar,
   LinkedDetailDate,
-} from 'components';
-
+} from '../../components';
 import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
 const Comment = () => (

@@ -3,10 +3,7 @@ import { RENDER_CLASS_NAME } from 'link-lib';
 import { Property, PropertyBase } from 'link-redux';
 
 // import '../VoteData/VoteData.scss';
-import {
-  LinkedDetailDate,
-} from 'components';
-
+import { LinkedDetailDate } from '../../components';
 import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
 class VoteEvent extends PropertyBase {

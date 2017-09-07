@@ -4,7 +4,7 @@ import React from 'react';
 
 import {
   LDLink,
-} from 'components';
+} from '../../components';
 import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
 import './properties/name';

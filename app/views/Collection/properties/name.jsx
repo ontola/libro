@@ -8,8 +8,7 @@ import { Link } from 'react-router';
 
 import {
   Heading,
-} from 'components';
-
+} from '../../../components';
 import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
