@@ -24,6 +24,12 @@ LinkedRenderStore.registerRenderer(
   RENDER_CLASS_NAME,
   NS.argu('collection')
 );
+LinkedRenderStore.registerRenderer(
+  VoteEvent,
+  [NS.argu('VoteEvent'), NS.aod('VoteEvent')],
+  RENDER_CLASS_NAME,
+  NS.argu('voteEvent')
+);
 
 export { default as Members } from './properties/members';
 export { default as Views } from './properties/views';

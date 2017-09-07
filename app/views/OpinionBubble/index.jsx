@@ -53,5 +53,11 @@ LinkedRenderStore.registerRenderer(
   RENDER_CLASS_NAME,
   NS.argu('collection')
 );
+LinkedRenderStore.registerRenderer(
+  Vote,
+  [NS.argu('Vote'), NS.aod('Vote'), NS.aod('Count')],
+  RENDER_CLASS_NAME,
+  NS.argu('voteSidePage')
+);
 
 import './properties/creator';

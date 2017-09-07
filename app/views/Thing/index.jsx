@@ -12,8 +12,9 @@ import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
 import './properties/collectionAssociation';
 import './properties/isPrimaryTopicOf';
-import './properties/menus';
+import './properties/isPartOf';
 import './properties/image';
+import './properties/menus';
 import './properties/name';
 import './properties/organization';
 import './properties/text';

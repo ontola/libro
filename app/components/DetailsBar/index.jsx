@@ -21,7 +21,7 @@ class DetailsBar extends Component {
 }
 
 DetailsBar.childContextTypes = {
-  topology: PropTypes.string,
+  topology: PropTypes.object,
 };
 
 DetailsBar.propTypes = {

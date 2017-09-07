@@ -25,8 +25,8 @@ IsPartOf.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   IsPartOf,
-  NS.schema('CreativeWork'),
-  NS.schema('isPartOf')
+  NS.schema('Thing'),
+  [NS.argu('parent'), NS.schema('isPartOf')]
 );
 
 export default IsPartOf;

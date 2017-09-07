@@ -26,3 +26,10 @@ LinkedRenderStore.registerRenderer(
   [NS.argu('Vote'), NS.aod('Vote'), NS.aod('Count')],
   [NS.schema('creator'), NS.aod('voter_id')]
 );
+
+LinkedRenderStore.registerRenderer(
+  Creator,
+  [NS.argu('Vote'), NS.aod('Vote'), NS.aod('Count')],
+  [NS.schema('creator'), NS.aod('voter_id')],
+  NS.argu('voteSidePage')
+);

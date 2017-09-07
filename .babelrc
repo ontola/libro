@@ -6,6 +6,7 @@
   ],
   "plugins": [
     "transform-object-rest-spread",
+    "transform-new-target",
     "transform-runtime",
     "react-hot-loader/babel"
   ],
