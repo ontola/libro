@@ -53,6 +53,7 @@ export { default as LinkCard } from './components/LinkCard/index';
 export { default as LinkDuo } from './components/LinkDuo/index';
 export { default as LinkList } from './components/LinkList/index';
 export { default as List } from './components/List/index';
+export { default as Loading } from './components/Loading/index';
 export { default as Markdown } from './components/Markdown/index';
 export { default as MotionCompare } from './components/MotionCompare/index';
 export { default as MotionListItem } from './components/MotionListItem/index';

@@ -4,12 +4,14 @@ import rdf from 'rdflib';
 import { PropTypes } from 'react';
 
 import Error from '../components/Error';
+import Loading from '../components/Loading';
 
 import transformers from './transformers';
 
 const LRS = new LinkedRenderStore();
 
 LRS.onError = Error;
+LRS.loadingComp = Loading;
 
 transformers.transformers.forEach(
   t => LRS.api.registerTransformer(t.transformer, t.mediaTypes, t.acceptValue)
