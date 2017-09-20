@@ -7,21 +7,9 @@
   margin: units('medium');
 }
 
-.CardHeader {
-  padding: units('small', 'large');
-
-  &--no-spacing {
-    padding-bottom: 0;
-  }
-}
-
 .CardContent {
   padding: units('small', 'large');
-
-  &--no-spacing {
-    padding-bottom: 0;
-    padding-top: 0;
-  }
+  padding-bottom: 0;
 }
 
 .CardActions {

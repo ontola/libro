@@ -6,7 +6,6 @@ import {
   Card,
   CardActions,
   CardContent,
-  CardHeader,
   DetailsBar,
   HoverBox,
   LinkedDetailDate,
@@ -17,14 +16,12 @@ import './properties/voteEvents';
 
 const CreativeWork = () => (
   <Card>
-    <CardHeader noSpacing>
+    <CardContent noSpacing>
       <Property label={NS.schema('name')} />
       <DetailsBar>
         <Property label={NS.schema('creator')} />
         <LinkedDetailDate />
       </DetailsBar>
-    </CardHeader>
-    <CardContent noSpacing>
       <Property label={NS.schema('text')} />
     </CardContent>
     <CardActions>

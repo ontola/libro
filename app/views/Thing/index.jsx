@@ -6,7 +6,6 @@ import React from 'react';
 import {
   Card,
   CardContent,
-  CardHeader,
   LinkCard,
 } from '../../components';
 import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
@@ -29,11 +28,9 @@ const propTypes = {
 
 const Thing = ({ object }) => (
   <Card>
-    <CardHeader noSpacing>
+    <CardContent noSpacing>
       <Property label={[NS.schema('name'), NS.rdfs('label')]} />
       <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
-    </CardHeader>
-    <CardContent noSpacing>
       <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} object={object} />
       <Property label={NS.foaf('isPrimaryTopicOf')} />
     </CardContent>

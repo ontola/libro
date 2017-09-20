@@ -7,7 +7,6 @@ import sinon from 'sinon';
 import CardActions from './CardActions';
 import CardButton from './CardButton';
 import CardContent from './CardContent';
-import CardHeader from './CardHeader';
 import CardRow from './CardRow';
 
 import Card from './index';
@@ -46,14 +45,6 @@ describe('Card component', () => {
     assert.equal(comp.find('.CardContent').length, 1, 'CardContent does not render');
     assert.equal(comp.find('.CardContent').text(), 'Content', 'CardContent does not render children correctly');
     assert.isTrue(comp.find('.CardContent').first().hasClass('CardContent--no-spacing'), 'CardContent has no noSpacing');
-  });
-
-  it('CardHeader should render', () => {
-    const comp = shallow(<CardHeader>Content</CardHeader>);
-    assert.equal(comp.find('.CardHeader').length, 1, 'card does not render');
-    assert.equal(comp.find('.CardHeader').text(), 'Content', 'card does not render children correctly');
-    comp.setProps({ noSpacing: true });
-    assert.equal(comp.find('.CardHeader--no-spacing').length, 1, 'CardHeader has no noSpacing');
   });
 
   it('CardRow should render', () => {

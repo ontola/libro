@@ -3,6 +3,7 @@ import React from 'react';
 
 import { Image } from '../../../components';
 import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import SideBarLinkImage from '../../../components/SideBarLink/SideBarLinkImage';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -26,9 +27,10 @@ LinkedRenderStore.registerRenderer(
 
 const ImageObjectThumbnailTop = ({ linkedProp }) => (
   <Image
-    className="SideBarLink__image"
+    imageUrl={linkedProp}
     linkedProp={linkedProp}
-    style={{ maxHeight: 'inherit' }}
+    override={SideBarLinkImage}
+    style={{ height: '100%' }}
   />
 );
 

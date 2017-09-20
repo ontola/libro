@@ -5,7 +5,6 @@ import React from 'react';
 import {
   Card,
   CardContent,
-  CardHeader,
   DetailsBar,
   LinkedDetailDate,
 } from '../../components';
@@ -13,13 +12,11 @@ import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
 const Comment = () => (
   <Card>
-    <CardHeader noSpacing>
+    <CardContent>
       <DetailsBar>
         <LinkedDetailDate />
         <Property label={NS.schema('creator')} />
       </DetailsBar>
-    </CardHeader>
-    <CardContent noSpacing>
       <Property label={NS.schema('text')} />
     </CardContent>
   </Card>

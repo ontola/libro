@@ -6,7 +6,6 @@ import React from 'react';
 import {
   Card,
   CardContent,
-  CardHeader,
   DetailsBar,
   LinkedDetailDate,
 } from '../../components';
@@ -20,14 +19,12 @@ const propTypes = {
 
 const Motion = ({ onVoteCompleted }) => (
   <Card>
-    <CardHeader noSpacing>
+    <CardContent>
       <Property label={NS.schema('name')} />
       <DetailsBar>
         <Property label={NS.schema('creator')} />
         <LinkedDetailDate />
       </DetailsBar>
-    </CardHeader>
-    <CardContent noSpacing>
       <Property label={NS.schema('text')} />
     </CardContent>
     <Property forceRender label={NS.argu('currentVote')} onVoteCompleted={onVoteCompleted} />
@@ -38,14 +35,12 @@ Motion.propTypes = propTypes;
 
 const MotionCollection = () => (
   <Card>
-    <CardHeader noSpacing>
+    <CardContent>
       <Property label={NS.schema('name')} />
       <DetailsBar>
         <Property label={NS.schema('creator')} />
         <LinkedDetailDate />
       </DetailsBar>
-    </CardHeader>
-    <CardContent noSpacing>
       <Property label={NS.schema('text')} />
       <Property label={NS.argu('arguments')} />
     </CardContent>

@@ -5,7 +5,6 @@ import { Property } from 'link-redux';
 import {
   Card,
   CardContent,
-  CardHeader,
   DetailsBar,
   LinkedDetailDate,
 } from '../../components';
@@ -16,14 +15,12 @@ import './properties/motions';
 
 const QuestionCollection = () => (
   <Card>
-    <CardHeader noSpacing>
+    <CardContent noSpacing>
       <Property label={NS.schema('name')} />
       <DetailsBar>
         <Property label={NS.schema('creator')} />
         <LinkedDetailDate />
       </DetailsBar>
-    </CardHeader>
-    <CardContent noSpacing>
       <Property label={NS.schema('text')} />
       <Property label={NS.argu('motions')} />
     </CardContent>
