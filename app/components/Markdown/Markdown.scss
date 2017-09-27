@@ -6,10 +6,10 @@
   flex-direction: column;
 
   a {
-    text-decoration: underline;
+    color: color('blue', power);
 
     &:hover {
-      color: color('blue');
+      text-decoration: underline;
     }
   }
 

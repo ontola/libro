@@ -16,11 +16,28 @@ const propTypes = {
 
 const MIN_LENGTH_TO_ADD_HIGHLIGHT = 1;
 // Replaces all internal links with React Router links.
-const routerLink = tabIndex => link => (
-  link.href.match(/^\//)
-    ? <Link tabIndex={tabIndex} to={link.href}>{link.children}</Link>
-    : <a href={link.href} tabIndex={tabIndex}>{link.children}</a>
-);
+const routerLink = tabIndex => (link) => {
+  if (link.href.match(/^\//)) {
+    return (
+      <Link
+        tabIndex={tabIndex}
+        to={link.href}
+      >
+        {link.children}
+      </Link>
+    );
+  }
+  return (
+    <a
+      href={link.href}
+      rel="noopener noreferrer"
+      tabIndex={tabIndex}
+      target="_blank"
+    >
+      {link.children}
+    </a>
+  );
+};
 
 const defaultProps = {
   tabbable: true,
