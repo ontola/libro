@@ -6,6 +6,7 @@ import { PropTypes } from 'react';
 import Error from '../components/Error';
 import Loading from '../components/Loading';
 
+import './linkDevTools';
 import transformers from './transformers';
 
 const LRS = new LinkedRenderStore();
@@ -180,4 +181,6 @@ export {
 };
 
 export default LRS;
-window.LRS = LRS;
+if (typeof window !== 'undefined') {
+  window.LRS = LRS;
+}
