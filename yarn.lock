@@ -3423,6 +3423,18 @@ fbjs@^0.6.1:
     ua-parser-js "^0.7.9"
     whatwg-fetch "^0.9.0"
 
+fbjs@^0.8.16:
+  version "0.8.16"
+  resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.16.tgz#5e67432f550dc41b572bf55847b8aca64e5337db"
+  dependencies:
+    core-js "^1.0.0"
+    isomorphic-fetch "^2.1.1"
+    loose-envify "^1.0.0"
+    object-assign "^4.1.0"
+    promise "^7.1.1"
+    setimmediate "^1.0.5"
+    ua-parser-js "^0.7.9"
+
 fbjs@^0.8.4, fbjs@^0.8.9:
   version "0.8.12"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.12.tgz#10b5d92f76d45575fd63a217d4ea02bea2f8ed04"
@@ -5210,18 +5222,6 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-link-lib@1.0.0-beta2:
-  version "1.0.0-beta2"
-  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-beta2.tgz#ea47cd421d3e0a2ad56cdc69d475282094a8dc3f"
-  dependencies:
-    babel-polyfill "^6.16.0"
-    jsonld "^0.4.11"
-    ml-disjoint-set "^1.0.0"
-    rdflib "^0.15.0"
-    universal-url "^1.0.0"
-    whatwg-fetch "^2.0.1"
-    whatwg-url "6.1.0"
-
 link-lib@1.0.0-beta3:
   version "1.0.0-beta3"
   resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-beta3.tgz#a289a82749bb098c45b997c58c71df2bb19d83fc"
@@ -5234,14 +5234,15 @@ link-lib@1.0.0-beta3:
     whatwg-fetch "^2.0.1"
     whatwg-url "6.1.0"
 
-link-redux@^1.0.0-beta3:
-  version "1.0.0-beta3"
-  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-beta3.tgz#bb6cfc2778d84596059dbeedf1cf4975d83a1615"
+link-redux@^1.0.0-beta4:
+  version "1.0.0-beta4"
+  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-beta4.tgz#856186d3703cdd379346b58196229148958a401b"
   dependencies:
     es6-promise "^4.0.5"
     immutable "^3.8.1"
     jsonld "^0.4.11"
-    link-lib "1.0.0-beta2"
+    link-lib "1.0.0-beta3"
+    prop-types "^15.6.0"
     rdflib "^0.15.0"
     react "^15.6.1"
     react-redux "^4.4.6"
@@ -7455,6 +7456,14 @@ prop-types@15.x, prop-types@^15.5.1, prop-types@^15.5.10, prop-types@^15.5.4, pr
   dependencies:
     fbjs "^0.8.9"
     loose-envify "^1.3.1"
+
+prop-types@^15.6.0:
+  version "15.6.0"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.0.tgz#ceaf083022fc46b4a35f69e13ef75aed0d639856"
+  dependencies:
+    fbjs "^0.8.16"
+    loose-envify "^1.3.1"
+    object-assign "^4.1.1"
 
 propagate@0.4.0:
   version "0.4.0"

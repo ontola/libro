@@ -22,7 +22,7 @@
     "is-url-external": "^1.0.3",
     "jsonld": "^0.4.11",
     "link-lib": "1.0.0-beta3",
-    "link-redux": "^1.0.0-beta3",
+    "link-redux": "^1.0.0-beta4",
     "material-color-hash": "^0.1.3",
     "morgan": "^1.7.0",
     "n3": "^0.8.1",
