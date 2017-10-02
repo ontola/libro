@@ -118,7 +118,7 @@
     "react-sidebar": "^2.2.1",
     "react-styleguidist": "^5.0.0-beta-6",
     "recharts": "0.15.1",
-    "redux": "^3.5.2",
+    "redux": "^3.7.2",
     "redux-actions": "^0.10.0",
     "redux-batched-actions": "^0.1.6",
     "redux-immutable": "^3.0.6",
