@@ -1,13 +1,12 @@
 {
   "presets": [
     "react",
-    ["es2015", { "modules": false }], 
+    ["es2015", { "modules": false }],
     "stage-0"
   ],
   "plugins": [
     "transform-object-rest-spread",
     "transform-new-target",
-    "transform-runtime",
     "react-hot-loader/babel"
   ],
   "env": {
