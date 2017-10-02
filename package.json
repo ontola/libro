@@ -1,8 +1,12 @@
 {
-  "name": "argu-open-data",
-  "description": "Een interface voor motiedata uit de gemeenteraad",
-  "version": "0.7.0",
-  "author": "Joep Meindertsma <joep@argu.co> (https://argu.co)",
+  "name": "argu-front-end",
+  "description": "Argu front-end application.",
+  "version": "0.8.0",
+  "contributors": [
+    "Joep Meindertsma <joep@argu.co> (https://argu.co)",
+    "Thom van Kalkeren <thom@argu.co>",
+    "Jurrian Tromp <jurrian@argu.co>"
+  ],
   "engines": {
     "node": ">=8.1.3"
   },
