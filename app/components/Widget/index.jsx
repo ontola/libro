@@ -1,8 +1,11 @@
-import './Widget.scss';
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
-import { Heading, Card } from 'components';
+
+import Heading from '../Heading';
+import Card from '../Card';
+
+import './Widget.scss';
 
 const propTypes = {
   children: PropTypes.node,

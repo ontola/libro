@@ -1,16 +1,16 @@
-import { connect } from 'react-redux';
 import classNames from 'classnames';
-import CollapsibleContainer from 'containers/CollapsibleContainer';
 import React, { PropTypes } from 'react';
-import './SideBarCollapsible.scss';
+import { connect } from 'react-redux';
+import FontAwesome from 'react-fontawesome';
 
+import CollapsibleContainer from 'containers/CollapsibleContainer';
 import { initializeCollapsible, toggleOne } from 'state/collapsible/actions';
 import { getCollapsibleOpened } from 'state/collapsible/selectors';
-import {
-  Button,
-  SideBarLink,
-} from 'components';
-import FontAwesome from 'react-fontawesome';
+
+import Button from '../Button';
+import SideBarLink from '../SideBarLink';
+
+import './SideBarCollapsible.scss';
 
 const propTypes = {
   // A collection of SideBarLinks

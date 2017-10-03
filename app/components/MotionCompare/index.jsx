@@ -1,15 +1,15 @@
 import React, { PropTypes } from 'react';
 
 import ArgumentsContainer from 'containers/ArgumentsContainer';
-import {
-  Card,
+
+import Card, {
   CardActions,
   CardButton,
   CardContent,
   CardHeader,
-  Heading,
-  Markdown,
-} from 'components';
+} from '../Card';
+import Heading from '../Heading';
+import Markdown from '../Markdown';
 
 const propTypes = {
   id: PropTypes.string.isRequired,

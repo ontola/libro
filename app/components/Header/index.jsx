@@ -1,12 +1,11 @@
 import React, { PropTypes } from 'react';
 
 import path from 'helpers/paths';
-import {
-  Cover,
-  Container,
-  Heading,
-  LinkList,
-} from 'components';
+
+import Cover from '../Cover';
+import Container from '../Container';
+import Heading from '../Heading';
+import LinkList from '../LinkList';
 
 const defaultLinks = [{
   label: 'Overzicht',

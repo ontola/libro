@@ -1,7 +1,9 @@
-import './Drawer.scss';
 import classNames from 'classnames';
 import React, { PropTypes } from 'react';
-import { Button } from 'components';
+
+import Button from '../Button';
+
+import './Drawer.scss';
 
 const propTypes = {
   children: PropTypes.node.isRequired,

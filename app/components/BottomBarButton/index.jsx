@@ -1,10 +1,10 @@
-import './BottomBarButton.scss';
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
-import {
-  Button,
-} from 'components';
+
+import Button from '../Button';
+
+import './BottomBarButton.scss';
 
 const propTypes = {
   icon: PropTypes.string,

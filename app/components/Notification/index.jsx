@@ -1,8 +1,9 @@
-import './Notification.scss';
-import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import React, { PropTypes } from 'react';
 
-import { Button } from 'components';
+import Button from '../Button';
+
+import './Notification.scss';
 
 const propTypes = {
   children: PropTypes.string,

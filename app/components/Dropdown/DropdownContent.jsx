@@ -1,5 +1,6 @@
 /* eslint react/jsx-no-bind: 0 */
 import React, { PropTypes } from 'react';
+
 import ScrollLockedComponent from './ScrollLockedComponent';
 
 const ANIMATION_DURATION = 10;

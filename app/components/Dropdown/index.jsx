@@ -83,4 +83,5 @@ const Dropdown = React.createClass({
   },
 });
 
+export { default as DropdownLink } from './DropdownLink';
 export default onClickOutside(Dropdown);

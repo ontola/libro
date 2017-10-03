@@ -1,8 +1,8 @@
-import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { LinkDuo } from 'components';
+import LinkDuo from '../LinkDuo';
 
 import './Button.scss';
 

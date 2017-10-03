@@ -1,15 +1,15 @@
-import './ProfileCard.scss';
 import assert from 'assert';
+
 import classNames from 'classnames';
 import { lowLevel, PropertyBase } from 'link-redux';
 import React, { PropTypes } from 'react';
 import { browserHistory } from 'react-router';
 
-import {
-  Button,
-  Heading,
-} from '../../components';
+import Button from '../Button';
+import Heading from '../Heading';
 import { NS } from '../../helpers/LinkedRenderStore';
+
+import './ProfileCard.scss';
 
 const propTypes = {
   id: PropTypes.string,

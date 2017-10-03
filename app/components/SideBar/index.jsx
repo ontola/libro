@@ -1,11 +1,11 @@
-import './SideBar.scss';
+import classNames from 'classnames';
 import React, { PropTypes, Component } from 'react';
 import Sidebar from 'react-sidebar';
 import { ScrollContainer } from 'react-router-scroll';
-import classNames from 'classnames';
-import {
-  Button,
-} from 'components';
+
+import Button from '../Button';
+
+import './SideBar.scss';
 
 const propTypes = {
   /* The components that appear in the sidebar */

@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
-import {
-  CompareVotesBar,
-} from 'components';
+
+import CompareVotesBar from '../CompareVotesBar';
 
 const propTypes = {
   comparedProfileName: PropTypes.string.isRequired,

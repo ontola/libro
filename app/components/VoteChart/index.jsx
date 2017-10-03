@@ -1,6 +1,8 @@
-import './VoteChart.scss';
 import React, { PropTypes } from 'react';
+
 import { statuses } from 'components/shared/config';
+
+import './VoteChart.scss';
 
 const propTypes = {
   data: PropTypes.oneOfType([

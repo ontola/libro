@@ -2,16 +2,16 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-import {
-  Card,
-  CardContent,
-  Detail,
-  DetailDate,
-  DetailsBar,
-  Heading,
-} from 'components';
 import VoteMatchAddContainer from 'containers/VoteMatchAddContainer';
 import path from 'helpers/paths';
+
+import Card, {
+  CardContent,
+} from '../Card';
+import Detail from '../Detail';
+import DetailDate from '../DetailDate';
+import DetailsBar from '../DetailsBar';
+import Heading from '../Heading';
 
 import './SearchResultItem.scss';
 

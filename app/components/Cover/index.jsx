@@ -1,7 +1,9 @@
-import './Cover.scss';
-import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import React, { PropTypes } from 'react';
+
 import { shades } from 'components/shared/config';
+
+import './Cover.scss';
 
 const propTypes = {
   backgroundColor: PropTypes.string,

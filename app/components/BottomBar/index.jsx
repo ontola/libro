@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
-import path from 'helpers/paths';
-import './BottomBar.scss';
-import { checkLuminance } from 'helpers/color';
 
-import {
-  BottomBarButton,
-} from 'components';
+import { checkLuminance } from 'helpers/color';
+import path from 'helpers/paths';
+
+import BottomBarButton from '../BottomBarButton';
+
+import './BottomBar.scss';
 
 const propTypes = {
   orgColor: PropTypes.string,

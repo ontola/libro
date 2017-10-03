@@ -1,15 +1,15 @@
-import './ArgumentForm.scss';
 import React, { PropTypes } from 'react';
 import { Field, reduxForm, formValueSelector } from 'redux-form/immutable';
 import { connect } from 'react-redux';
 
 import Argument from '../../models/Argument';
-import {
-  Card,
+import Card, {
   CardActions,
-  Button,
-  FormField,
-} from 'components';
+} from '../Card';
+import Button from '../Button';
+import FormField from '../FormField';
+
+import './ArgumentForm.scss';
 
 const propTypes = {
   // From redux-form

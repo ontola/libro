@@ -1,18 +1,18 @@
 import React, { PropTypes } from 'react';
 
 import PersonContainer from 'containers/PersonContainer';
-import {
-  Card,
+
+import Card, {
   CardActions,
   CardButton,
   CardContent,
   CardHeader,
-  DetailDate,
-  DetailType,
-  DetailsBar,
-  Heading,
-  Markdown,
-} from 'components';
+  } from '../Card';
+import DetailDate from '../DetailDate';
+import DetailType from '../DetailType';
+import DetailsBar from '../DetailsBar';
+import Heading from '../Heading';
+import Markdown from '../Markdown';
 
 const propTypes = {
   title: PropTypes.string.isRequired,

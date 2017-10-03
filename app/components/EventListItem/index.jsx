@@ -1,14 +1,15 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+
 import path from 'helpers/paths';
 
 import {
   CardRow,
   CardHeader,
-  DetailDate,
-  DetailsBar,
-  Heading,
-} from 'components';
+} from '../Card';
+import DetailDate from '../DetailDate';
+import DetailsBar from '../DetailsBar';
+import Heading from '../Heading';
 
 const propTypes = {
   title: PropTypes.string.isRequired,

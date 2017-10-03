@@ -1,19 +1,20 @@
 // @flow
 import React, { PropTypes } from 'react';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  Detail,
-  DetailType,
-  Button,
-  List,
-  DetailDate,
-  DetailsBar,
-  Heading,
-} from 'components';
+
 import EventItemContainer from 'containers/EventItemContainer';
 import TimelineShowButton from 'containers/TimelineShowButton';
+
+import Card, {
+  CardContent,
+  CardHeader,
+} from '../Card';
+import Detail from '../Detail';
+import DetailType from '../DetailType';
+import Button from '../Button';
+import List from '../List';
+import DetailDate from '../DetailDate';
+import DetailsBar from '../DetailsBar';
+import Heading from '../Heading';
 
 const propTypes = {
   children: PropTypes.node,

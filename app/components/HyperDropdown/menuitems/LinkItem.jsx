@@ -1,6 +1,7 @@
 /* eslint react/no-find-dom-node: 0 */
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
+
 import image from '../image';
 
 const propTypes = {

@@ -1,6 +1,8 @@
-import './ProgressBar.scss';
 import React, { PropTypes } from 'react';
+
 import { calcPercentage } from 'helpers/numbers';
+
+import './ProgressBar.scss';
 
 const propTypes = {
   context: PropTypes.string,

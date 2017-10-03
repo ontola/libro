@@ -1,10 +1,9 @@
 import React, { PropTypes } from 'react';
 
-import {
-  Card,
+import Card, {
   CardContent,
-  LDLink,
-} from 'components';
+} from '../Card';
+import LDLink from '../LDLink';
 
 const propTypes = {
   children: PropTypes.oneOfType([

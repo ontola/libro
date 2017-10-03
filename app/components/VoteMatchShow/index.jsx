@@ -1,17 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 
-import {
-  Button,
-  Card,
-  CardContent,
-  Cover,
-  Container,
-  Heading,
-  MotionCompare,
-} from 'components';
-
 import MotionContainer from 'containers/MotionContainer';
 import VoteMatchResultProfileContainer from 'containers/VoteMatchResultProfileContainer';
+
+import Button from '../Button';
+import Card, {
+  CardContent,
+} from '../Card';
+import Cover from '../Cover';
+import Container from '../Container';
+import Heading from '../Heading';
+import MotionCompare from '../MotionCompare';
 
 const propTypes = {
   comparedProfiles: PropTypes.array.isRequired,

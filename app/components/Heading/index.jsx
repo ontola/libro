@@ -1,7 +1,9 @@
-import './Heading.scss';
-import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import React, { PropTypes } from 'react';
+
 import { headingSizes, headingVariants } from 'components/shared/config';
+
+import './Heading.scss';
 
 const propTypes = {
   children: PropTypes.node.isRequired,

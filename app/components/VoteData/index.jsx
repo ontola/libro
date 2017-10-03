@@ -1,15 +1,15 @@
-import path from 'helpers/paths';
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import './VoteData.scss';
-import { calcPercentage } from 'helpers/numbers';
-import CountBubbleContainer from 'containers/CountBubbleContainer';
 
-import {
-  Detail,
-  DetailDate,
-  DetailStatus,
-} from 'components';
+import CountBubbleContainer from 'containers/CountBubbleContainer';
+import { calcPercentage } from 'helpers/numbers';
+import path from 'helpers/paths';
+
+import Detail from '../Detail';
+import DetailDate from '../DetailDate';
+import DetailStatus from '../DetailStatus';
+
+import './VoteData.scss';
 
 const propTypes = {
   legislativeSession: PropTypes.string,

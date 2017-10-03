@@ -1,8 +1,9 @@
-import './ProfileListItem.scss';
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-import { Heading } from 'components';
+import Heading from '../Heading';
+
+import './ProfileListItem.scss';
 
 const propTypes = {
   image: PropTypes.string,

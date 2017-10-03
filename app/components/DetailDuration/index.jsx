@@ -1,8 +1,11 @@
-import './DetailDuration.scss';
 import React, { PropTypes } from 'react';
-import { Detail } from 'components';
 import classNames from 'classnames';
+
 import { durationToHumanizedString } from 'helpers/date';
+
+import Detail from '../Detail';
+
+import './DetailDuration.scss';
 
 const propTypes = {
   startDate: PropTypes.instanceOf(Date),

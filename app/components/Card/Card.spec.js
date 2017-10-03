@@ -4,12 +4,13 @@ import { mount, shallow } from 'enzyme';
 import { assert } from 'chai';
 import sinon from 'sinon';
 
-import Card from './';
 import CardActions from './CardActions';
 import CardButton from './CardButton';
 import CardContent from './CardContent';
 import CardHeader from './CardHeader';
 import CardRow from './CardRow';
+
+import Card from './index';
 
 describe('Card component', () => {
   it('Card should render', () => {

@@ -3,15 +3,13 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
 import articles from '../../articles';
-import {
-  SideBarCollapsible,
-  SideBarLink,
-  OrgSwitcher,
-} from '../../components';
 import { FRONTEND_URL } from '../../config';
 import { checkLuminance } from '../../helpers/color';
 import path from '../../helpers/paths';
 import { NS } from '../../helpers/LinkedRenderStore';
+import SideBarCollapsible from '../SideBarCollapsible';
+import SideBarLink from '../SideBarLink';
+import OrgSwitcher from '../OrgSwitcher';
 
 import './NavBarContent.scss';
 

@@ -1,7 +1,10 @@
-import './DetailType.scss';
 import React, { PropTypes } from 'react';
-import { Detail } from 'components';
+
 import { types } from 'components/shared/config';
+
+import Detail from '../Detail';
+
+import './DetailType.scss';
 
 const propTypes = {
   // Optional string that adds extra information on the subtype, such as 'motion'. Overwrites type.

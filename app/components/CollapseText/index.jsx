@@ -6,10 +6,9 @@ import FontAwesome from 'react-fontawesome';
 import CollapsibleContainer from 'containers/CollapsibleContainer';
 import { initializeCollapsible, toggleOne } from 'state/collapsible/actions';
 import { getCollapsibleOpened } from 'state/collapsible/selectors';
-import {
-  Button,
-  Markdown,
-} from 'components';
+
+import Button from '../Button';
+import Markdown from '../Markdown';
 
 import './CollapseText.scss';
 

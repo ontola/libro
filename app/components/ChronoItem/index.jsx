@@ -1,14 +1,16 @@
 import React, { PropTypes } from 'react';
+
 import PersonContainer from 'containers/PersonContainer';
+
 import {
   CardContent,
-  CardRow,
-  Detail,
-  DetailDate,
-  DetailsBar,
-  Markdown,
-  Progress,
-} from 'components';
+  CardRow
+} from '../Card';
+import Detail from '../Detail';
+import DetailDate from '../DetailDate';
+import DetailsBar from '../DetailsBar';
+import Markdown from '../Markdown';
+import Progress from '../Progress';
 
 const propTypes = {
   attributionText: PropTypes.string,

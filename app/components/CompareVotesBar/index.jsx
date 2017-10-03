@@ -2,13 +2,12 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-import {
-  LabelValueBar,
-  List,
-  Tag,
-} from 'components';
 import CollapsibleContainer from 'containers/CollapsibleContainer';
 import { percentageToRedOrGreen } from 'helpers/color';
+
+import LabelValueBar from '../LabelValueBar';
+import List from '../List';
+import Tag from '../Tag';
 
 import './CompareVotesBar.scss';
 

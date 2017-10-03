@@ -1,6 +1,8 @@
-import './Opinions.scss';
 import React, { PropTypes } from 'react';
-import { Opinion } from 'components';
+
+import Opinion from '../Opinion';
+
+import './Opinions.scss';
 
 const propTypes = {
   pro: PropTypes.oneOfType([

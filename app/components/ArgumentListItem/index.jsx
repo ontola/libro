@@ -1,9 +1,9 @@
-import './ArgumentListItem.scss';
 import React, { PropTypes } from 'react';
-import {
-  Heading,
-  HoverBox,
-} from 'components';
+
+import Heading from '../Heading';
+import HoverBox from '../HoverBox';
+
+import './ArgumentListItem.scss';
 
 const propTypes = {
   name: PropTypes.string.isRequired,

@@ -1,12 +1,15 @@
 /* eslint max-len: 0 */
-import './Navbar.scss';
 import React, { PropTypes } from 'react';
 import { browserHistory, Link } from 'react-router';
-
-import { Container, Cover } from 'components';
-import { checkLuminance, isRGB } from 'helpers/color';
 import { SearchBox } from 'searchkit';
+
+import { checkLuminance, isRGB } from 'helpers/color';
 import path from 'helpers/paths';
+
+import Container from '../Container';
+import Cover from '../Cover';
+
+import './Navbar.scss';
 
 const propTypes = {
   contentLeft: PropTypes.arrayOf(PropTypes.node),

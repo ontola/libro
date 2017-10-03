@@ -1,14 +1,14 @@
-import '../DetailDate/DetailDate.scss';
 import {
   PropertyBase,
   lowLevel,
   getLinkedObjectPropertyRaw,
 } from 'link-redux';
 import React, { PropTypes } from 'react';
-import { Detail } from 'components';
 import moment from 'moment';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import Detail from '../Detail';
+import '../DetailDate/DetailDate.scss';
 
 const propTypes = {
   asHours: PropTypes.bool,

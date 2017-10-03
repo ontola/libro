@@ -2,8 +2,9 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { assert } from 'chai';
 
-import ArgumentListItem from './';
 import HoverBox from '../HoverBox';
+
+import ArgumentListItem from './';
 
 const comp = mount(
   <ArgumentListItem

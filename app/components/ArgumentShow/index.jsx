@@ -1,17 +1,17 @@
 import React, { PropTypes } from 'react';
 
 import PersonContainer from 'containers/PersonContainer';
-import {
-  Button,
-  Card,
+
+import Button from '../Button';
+import Card, {
   CardActions,
   CardContent,
   CardHeader,
-  DetailsBar,
-  DetailDate,
-  Heading,
-  Markdown,
-} from 'components';
+} from '../Card';
+import DetailsBar from '../DetailsBar';
+import DetailDate from '../DetailDate';
+import Heading from '../Heading';
+import Markdown from '../Markdown';
 
 const propTypes = {
   creator: PropTypes.string,

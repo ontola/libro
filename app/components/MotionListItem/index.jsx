@@ -1,16 +1,17 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+
 import PersonContainer from 'containers/PersonContainer';
 
 import {
   CardRow,
   CardHeader,
-  DetailDate,
-  DetailsBar,
-  DetailStatus,
-  DetailVotedFor,
-  Heading,
-} from 'components';
+} from '../Card';
+import DetailDate from '../DetailDate';
+import DetailsBar from '../DetailsBar';
+import DetailStatus from '../DetailStatus';
+import DetailVotedFor from '../DetailVotedFor';
+import Heading from '../Heading';
 
 const propTypes = {
   title: PropTypes.string.isRequired,

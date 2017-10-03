@@ -4,14 +4,13 @@ import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-import './SideBarLink.scss';
-
-import {
-  CountBubble,
-} from 'components';
 import {
   closeSideBar,
 } from 'state/sideBars/actions';
+
+import CountBubble from '../CountBubble';
+
+import './SideBarLink.scss';
 
 const propTypes = {
   bold: PropTypes.bool,

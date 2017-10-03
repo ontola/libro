@@ -1,11 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 
-import NavbarWrapper from './NavbarWrapper';
-
-import {
-  Dropdown,
+import Dropdown, {
   DropdownLink,
-} from 'components';
+} from '../Dropdown';
+
+import NavbarWrapper from './NavbarWrapper';
 
 const propTypes = {
   displayName: PropTypes.string,

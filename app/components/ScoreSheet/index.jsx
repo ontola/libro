@@ -1,7 +1,10 @@
-import './ScoreSheet.scss';
 import React, { PropTypes } from 'react';
 
-import { Card, Heading } from '../../components';
+
+import Card from '../Card';
+import Heading from '../Heading';
+
+import './ScoreSheet.scss';
 
 const propTypes = {
   comparedProfilePositions: PropTypes.array.isRequired,

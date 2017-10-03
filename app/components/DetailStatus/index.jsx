@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
-import { Detail } from 'components';
+
+import Detail from '../Detail';
 
 const propTypes = {
   status: PropTypes.oneOf([

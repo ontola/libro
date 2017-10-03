@@ -1,6 +1,8 @@
-import './Card.scss';
 import React, { PropTypes } from 'react';
-import { Button } from 'components';
+
+import Button from '../Button';
+
+import './Card.scss';
 
 const propTypes = {
   action: PropTypes.func.isRequired,

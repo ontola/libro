@@ -1,6 +1,7 @@
-import React from 'react';
-import { mount } from 'enzyme';
 import { assert } from 'chai';
+import { mount } from 'enzyme';
+import React from 'react';
+
 import LinkList from './';
 
 const links = [{

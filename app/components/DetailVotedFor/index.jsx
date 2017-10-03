@@ -1,7 +1,10 @@
-import './DetailVotedFor.scss';
 import React, { PropTypes } from 'react';
-import { Detail } from 'components';
+
 import { sides } from 'components/shared/config';
+
+import Detail from '../Detail';
+
+import './DetailVotedFor.scss';
 
 const propTypes = {
   side: PropTypes.oneOf(sides).isRequired,

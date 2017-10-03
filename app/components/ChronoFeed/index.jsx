@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
+
 import SpeechContainer from 'containers/SpeechContainer';
-import {
-  List,
-} from 'components';
+
+import List from '../List';
 
 const defaultRenderItem = id => (
   <SpeechContainer key={id} id={id} />

@@ -1,14 +1,15 @@
 // @flow
-import './EventItemShow.scss';
 import React, { PropTypes } from 'react';
-import {
-  Detail,
-  DetailsBar,
-  DetailDate,
-  Heading,
-  Progress,
-} from 'components';
+
 import CollapsibleContainer from 'containers/CollapsibleContainer';
+
+import Detail from '../Detail';
+import DetailsBar from '../DetailsBar';
+import DetailDate from '../DetailDate';
+import Heading from '../Heading';
+import Progress from '../Progress';
+
+import './EventItemShow.scss';
 
 const propTypes = {
   startDate: PropTypes.instanceOf(Date),

@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+
 import { colors } from 'components/shared/config';
 
 const propTypes = {
