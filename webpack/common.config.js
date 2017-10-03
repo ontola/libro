@@ -7,7 +7,10 @@ process.env.BABEL_ENV = TARGET;
 
 const common = {
   externals: {
-    xmlhttprequest: 'global.XMLHttpRequest',
+    xmlhttprequest: 'self.XMLHttpRequest',
+    URL: 'self.URL',
+    'whatwg-url': 'self.URL',
+    'universal-url': '{URL: self.URL}',
   },
 
   module: {

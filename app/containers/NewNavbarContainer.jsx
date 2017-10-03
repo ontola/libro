@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { getVoteMatchMotionIdsLength } from 'state/voteMatch/selectors';
+// import { getVoteMatchMotionIdsLength } from 'state/voteMatch/selectors';
 
 import { fetchActor } from 'state/currentActors/actions';
 import {
@@ -8,7 +8,7 @@ import {
 } from '../components';
 
 const propTypes = {
-  actorType: PropTypes.string.isRequired,
+  actorType: PropTypes.string,
   loadActor: PropTypes.func,
   redirectUrl: PropTypes.string,
   voteMatchCount: PropTypes.number,
@@ -35,7 +35,6 @@ function mapStateToProps(state) {
   return {
     actorType: state.getIn(['currentActors', 'actorType']),
     redirectUrl: window.location.href,
-    voteMatchCount: getVoteMatchMotionIdsLength(state, { id: 'LocalVoteMatch' }),
   };
 }
 

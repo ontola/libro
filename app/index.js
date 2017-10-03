@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { SearchkitManager } from 'searchkit';
 import { AppContainer } from 'react-hot-loader';
 
 import IndexContainer from './containers/IndexContainer';
@@ -15,7 +14,6 @@ require('smoothscroll-polyfill').polyfill();
 
 const store = configureStore();
 const history = immutableHistory(store);
-const sk = new SearchkitManager('/aod_search');
 
 // Fade out the preloader and fade in the interface
 document.getElementsByTagName('body')[0].classList.remove('Body--show-preloader');
@@ -24,7 +22,6 @@ const indexContainer = Container => (
   <Container
     history={history}
     linkedRenderStore={LinkedRenderStore}
-    sk={sk}
     store={store}
   />
 );
