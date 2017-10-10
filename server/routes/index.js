@@ -15,10 +15,10 @@ import { backendProxy, iframeProxy, odApiProxy } from '../utils/proxies';
 
 import login from './login';
 
-const redisAddress = process.env.REDIS_ADDRESS;
+const redisAddress = constants.redisAddress;
 const RedisStore = connectRedis(session);
 const redisStore = new RedisStore({ url: redisAddress });
-const sessionSecret = process.env.SESSION_SECRET;
+const sessionSecret = constants.sessionSecret;
 
 const BACKEND_ROUTES = /^\/(a|actors|announcements|c_a|documents|f|follows|g|group_memberships|i|lr|m|media_objects|o|oauth|phases|policy|portal|posts|privacy|profiles|q|qa|settings|shortnames|u|users|v|vote_events|vote_matches)(\/|$)/;
 

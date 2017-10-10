@@ -1,11 +1,7 @@
 /* eslint-disable no-param-reassign */
 import fetch from 'isomorphic-fetch';
 
-import * as constants from '../../app/config';
-
-const clientID = process.env.RAILS_OAUTH_CLIENT_ID;
-const clientSecret = process.env.RAILS_OAUTH_CLIENT_SECRET;
-const oauthToken = process.env.RAILS_OAUTH_TOKEN;
+import { clientID,  clientSecret, oauthToken } from '../config';
 
 const SERVER_TIMESTAMP_MULTI = 1000;
 
