@@ -2,8 +2,6 @@
 import bodyParser from 'body-parser';
 import csurf from 'csurf';
 import express from 'express';
-import session from 'express-session';
-import connectRedis from 'connect-redis';
 import proxy from 'http-proxy-middleware';
 import morgan from 'morgan';
 import SearchkitExpress from 'searchkit-express';
@@ -12,20 +10,11 @@ import * as constants from '../../app/config';
 import { handleRender } from '../utils/render';
 import { isAuthenticated, isBackend, isIframe } from '../utils/filters';
 import { backendProxy, iframeProxy, odApiProxy } from '../utils/proxies';
+import sessionMiddleware from '../middleware/sessionMiddleware';
 
 import login from './login';
 
-const redisAddress = constants.redisAddress;
-const RedisStore = connectRedis(session);
-const redisStore = new RedisStore({ url: redisAddress });
-const sessionSecret = constants.sessionSecret;
-
 const BACKEND_ROUTES = /^\/(a|actors|announcements|c_a|documents|f|follows|g|group_memberships|i|lr|m|media_objects|o|oauth|phases|policy|portal|posts|privacy|profiles|q|qa|settings|shortnames|u|users|v|vote_events|vote_matches)(\/|$)/;
-
-if (!sessionSecret) {
-  console.log('NO SESSION SECRET');
-  process.exit(1);
-}
 
 export function listen(app, port) {
   app.listen(port, (err) => {
@@ -46,17 +35,7 @@ export default function routes(app, port) {
     app.get('/assets/*', backendProxy);
   }
 
-  app.use(session({
-    cookie: {
-      httpOnly: true,
-      secure: true,
-    },
-    proxy: true,
-    resave: false,
-    saveUninitialized: true,
-    secret: sessionSecret,
-    store: redisStore,
-  }));
+  app.use(sessionMiddleware);
 
   app.all('*', isIframe, isAuthenticated, iframeProxy);
 
