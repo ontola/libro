@@ -1,97 +1,68 @@
 /* eslint-disable no-param-reassign */
-import fetch from 'isomorphic-fetch';
 
-import { clientID,  clientSecret, oauthToken } from '../config';
+import * as errors from '../utils/errors';
 
 const SERVER_TIMESTAMP_MULTI = 1000;
 
-function login(req, res) {
-  fetch(
-    `${constants.ARGU_API_URL}/oauth/token`,
-    {
-      body: JSON.stringify({
-        client_id: clientID,
-        client_secret: clientSecret,
-        grant_type: 'password',
-        password: req.body.password,
-        scope: 'user',
-        username: req.body.email,
-      }),
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-      redirect: 'error',
-      strictSSL: false,
+async function login(req, res, next) {
+  try {
+    const response = await req.api.requestUserToken(req.body.email, req.body.password);
+    const json = await response.json();
+
+    const expiresAt = new Date(
+      (json.created_at * SERVER_TIMESTAMP_MULTI) + (json.expires_in * SERVER_TIMESTAMP_MULTI)
+    );
+    if (json.token_type === 'bearer' && expiresAt > Date.now()) {
+      req.session.arguToken = {
+        accessToken: json.access_token,
+        expiresAt,
+        scope: json.scope,
+      };
+      res.send({ status: 'LOGGED_IN' }).end();
+      return;
     }
-  )
-  .then(response => response.json()
-  .then(json => ({ json, response })))
-  .then(({ json, response }) => {
-    if (response.status >= 200 && response.status < 300) {
-      const expiresAt = new Date(
-        (json.created_at * SERVER_TIMESTAMP_MULTI) + (json.expires_in * SERVER_TIMESTAMP_MULTI)
-      );
-      if (json.token_type === 'bearer' && expiresAt > Date.now()) {
-        req.session.arguToken = {
-          accessToken: json.access_token,
-          expiresAt,
-          scope: json.scope,
-        };
-        res.send({ status: 'LOGGED_IN' }).end();
-      } else {
-        throw new Error(req.access_token);
+    throw new errors.NotImplementedError('Non-valid tokens have not been implemented yet.');
+  } catch (e) {
+    if (e.status === errors.UnprocessableEntityError.status) {
+      const json = await e.response.json();
+      switch (json.code) {
+        case 'WRONG_PASSWORD':
+          res.send(json).end();
+          break;
+        case 'UNKNOWN_EMAIL':
+          res.send(json).end();
+          break;
+        case 'UNKNOWN_USERNAME':
+          res.send(json).end();
+          break;
+        default:
+          throw new Error('Unknown response 422 from backend');
       }
-    } else if (response.status === 422 && json.error.code === 'WRONG_CREDENTIALS') {
-      // @TODO: Handle form error
-      res.send(json).end();
-    } else {
-      throw new Error(req.access_token);
+      return;
     }
-  }).catch((e) => {
-    res.status(500);
-    res.end(JSON.stringify(e));
-  });
-}
-
-function signUp(req, res) {
-  fetch(
-    `${constants.ARGU_API_URL}/users`,
-    {
-      body: JSON.stringify({
-        user: {
-          email: req.body.email
-        },
-      }),
-      headers: {
-        Accept: 'application/json',
-        Authorization: `Bearer ${oauthToken}`,
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-      redirect: 'error',
-      strictSSL: false,
-    }
-  )
-  .then((resp) => {
-    if (resp.status === 422) {
-      res.send({ status: 'EMAIL_TAKEN' });
-      res.end();
-    } else {
-      throw new Error('Unknown error code 5241 occurred');
-    }
-  }).catch((e) => {
-    console.error(e);
-    res.status(500);
-    res.end('error');
-  });
-}
-
-export default (req, res) => {
-  if (req.body.password) {
-    login(req, res);
-  } else {
-    signUp(req, res);
+    next(e);
   }
+}
+
+async function signUp(req, res, next) {
+  try {
+    await req.api.createUser(req.body.email);
+    throw new errors.NotImplementedError('Only the error-free login flow has been implemented');
+  } catch (e) {
+    switch (e.constructor) {
+      case errors.UnprocessableEntityError:
+        res.send({ status: 'EMAIL_TAKEN' });
+        res.end();
+        break;
+      default:
+        next(new errors.NotImplementedError('Only the error-free login flow has been implemented'));
+    }
+  }
+}
+
+export default (req, res, next) => {
+  if (req.body.password) {
+    return login(req, res, next);
+  }
+  return signUp(req, res, next);
 };

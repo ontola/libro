@@ -10,6 +10,8 @@ import * as constants from '../../app/config';
 import { handleRender } from '../utils/render';
 import { isAuthenticated, isBackend, isIframe } from '../utils/filters';
 import { backendProxy, iframeProxy, odApiProxy } from '../utils/proxies';
+import apiMiddleware from '../middleware/apiMiddleware';
+import errorHandlerMiddleware from '../middleware/errorHandlerMiddleware';
 import sessionMiddleware from '../middleware/sessionMiddleware';
 
 import login from './login';
@@ -36,6 +38,8 @@ export default function routes(app, port) {
   }
 
   app.use(sessionMiddleware);
+
+  app.use(apiMiddleware);
 
   app.all('*', isIframe, isAuthenticated, iframeProxy);
 
@@ -74,4 +78,6 @@ export default function routes(app, port) {
     // res.send(renderFullPage('', port, domain, req.csrfToken())).end();
     return undefined;
   });
+
+  app.use(errorHandlerMiddleware);
 }

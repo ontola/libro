@@ -1,0 +1,19 @@
+{
+  "env": {
+    "browser": false,
+    "node": true,
+    "es6": true
+  },
+  "globals": {
+    "__CLIENT__": true,
+    "__DEV__": true,
+    "__DEVELOPMENT__": true,
+    "__ORIGIN__": true,
+    "__PRODUCTION__": true,
+    "__SERVER__": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "sourceType": "module"
+  }
+}

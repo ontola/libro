@@ -155,7 +155,7 @@
     "build": "rimraf ./dist && yarn run build:bundle && yarn run build:server",
     "build:analyze": "webpack -p --progress --verbose --display-error-details --config ./webpack/static.config --profile --json  > stats.json",
     "build:bundle": "cross-env NODE_ENV=production webpack -p --progress --config ./webpack/static.config",
-    "build:server": "webpack -p --config ./webpack/server.config.js",
+    "build:server": "webpack --config ./webpack/server.config.js",
     "build:verbose": "rimraf ./dist && NODE_ENV=production webpack -p --progress --verbose --display-error-details --config ./webpack/static.config",
     "corsproxy": "./node_modules/.bin/corsproxy",
     "coverage": "nyc -e .jsx yarn run test",

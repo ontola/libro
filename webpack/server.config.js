@@ -46,7 +46,7 @@ const config = {
               comments: false,
               compact: true,
               minified: true,
-              presets: ['es2015', 'react'],
+              presets: ['react'],
             },
           }
         ],
@@ -74,12 +74,6 @@ const config = {
     new StringReplacePlugin(),
   ],
 };
-
-config.plugins.push(
-  new webpack.optimize.UglifyJsPlugin({
-    sourceMap: true,
-  })
-);
 
 config.stats = {
   // minimal logging
