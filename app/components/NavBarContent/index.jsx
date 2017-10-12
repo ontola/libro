@@ -14,9 +14,7 @@ import OrgSwitcher from '../OrgSwitcher';
 import './NavBarContent.scss';
 
 const propTypes = {
-  actorType: PropTypes.oneOf(['User', 'Guest']),
   orgColor: PropTypes.string,
-  redirectUrl: PropTypes.string,
   voteMatchCount: PropTypes.number,
 };
 
@@ -25,9 +23,7 @@ const defaultProps = {
 };
 
 const NavBarContent = ({
-  actorType,
   orgColor,
-  redirectUrl,
   voteMatchCount,
 }) => {
   const style = {
@@ -39,22 +35,6 @@ const NavBarContent = ({
     'NavBarContent',
     checkLuminance(orgColor) ? 'NavBarContent--white-text' : 'NavBarContent--dark-text',
   ].join(' ');
-  let actorItem;
-
-  if (actorType === 'User') {
-    actorItem = (
-      <div>
-        <LinkedObjectContainer object={`${FRONTEND_URL}/c_a`} topology={NS.argu('sidebar')} />
-        <SideBarLink icon="gears" label="Instellingen" to={path.settings()} />
-      </div>
-    );
-  } else {
-    actorItem = (
-      <div>
-        <SideBarLink icon="sign-in" label="Log in / registreer" to={path.signIn(redirectUrl)} />
-      </div>
-    );
-  }
 
   const renderInfoLink = info => (
     <SideBarLink
@@ -85,7 +65,7 @@ const NavBarContent = ({
         <SideBarLink icon="th-large" label="Overzicht" to={path.index()} isIndex />
       </div>
       <div className="NavBarContent__footer">
-        {actorItem}
+        <LinkedObjectContainer object={`${FRONTEND_URL}/c_a`} topology={NS.argu('sidebar')} />
         <SideBarCollapsible
           label="Info"
           to={path.infoIndex()}
