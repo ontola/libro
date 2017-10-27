@@ -17,6 +17,20 @@
   }
 }
 
+.NavBarContent__switcher {
+  align-items: stretch;
+  display: flex;
+  .Dropdown {
+    display: flex;
+    padding-left: 1em;
+    padding-right: .5em;
+    .Dropdown__trigger {
+      align-items: center;
+      display: flex;
+    }
+  }
+}
+
 .NavBarContent__top {
   flex: 1;
 }

@@ -33,6 +33,16 @@ LinkedRenderStore.registerRenderer(
   RENDER_CLASS_NAME,
   NS.argu('sidebar')
 );
+LinkedRenderStore.registerRenderer(
+  () => (
+    <div className="SideBarLink__image-wrapper">
+      <Property label={NS.schema('thumbnail')} />
+    </div>
+  ),
+  NS.schema('ImageObject'),
+  RENDER_CLASS_NAME,
+  NS.argu('sidebarBlock')
+);
 
 export { default as Thumbnail } from './properties/thumbnail';
 

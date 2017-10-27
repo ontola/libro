@@ -16,7 +16,7 @@ import sessionMiddleware from '../middleware/sessionMiddleware';
 
 import login from './login';
 
-const BACKEND_ROUTES = /^\/(a|actors|announcements|c_a|documents|f|follows|g|group_memberships|i|lr|m|media_objects|o|oauth|phases|policy|portal|posts|privacy|profiles|q|qa|settings|shortnames|u|users|v|vote_events|vote_matches)(\/|$)/;
+const BACKEND_ROUTES = /^\/(a|actors|announcements|c_a|documents|f|follows|g|group_memberships|i|lr|m|menus|media_objects|o|oauth|phases|policy|portal|posts|privacy|profiles|q|qa|settings|shortnames|u|users|v|vote_events|vote_matches)(\/|$)/;
 
 export function listen(app, port) {
   app.listen(port, (err) => {

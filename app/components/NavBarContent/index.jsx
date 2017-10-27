@@ -1,4 +1,4 @@
-import { LinkedObjectContainer } from 'link-redux';
+import { LinkedObjectContainer, Property, Type } from 'link-redux';
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
@@ -9,13 +9,11 @@ import path from '../../helpers/paths';
 import { NS } from '../../helpers/LinkedRenderStore';
 import SideBarCollapsible from '../SideBarCollapsible';
 import SideBarLink from '../SideBarLink';
-import OrgSwitcher from '../OrgSwitcher';
 
 import './NavBarContent.scss';
 
 const propTypes = {
   orgColor: PropTypes.string,
-  voteMatchCount: PropTypes.number,
 };
 
 const defaultProps = {
@@ -24,10 +22,10 @@ const defaultProps = {
 
 const NavBarContent = ({
   orgColor,
-  voteMatchCount,
 }) => {
   const style = {
     backgroundColor: orgColor,
+    color: 'white',
     flex: '1',
   };
 
@@ -47,22 +45,21 @@ const NavBarContent = ({
 
   return (
     <div
-      style={style}
       className={classNames}
+      style={style}
     >
       <div className="NavBarContent__top">
-        <OrgSwitcher
-          name="Argu"
-          imageUrl="https://argu-logos.s3.amazonaws.com/photos/736/avatar_2000px-Flag_of_the_Netherlands.svg.png"
-        />
-        <SideBarLink icon="search" label="Moties zoeken" to={path.search()} />
-        <SideBarLink
-          icon="compass"
-          label="Stemwijzer maken"
-          to={path.createVoteMatch()}
-          count={voteMatchCount}
-        />
-        <SideBarLink icon="th-large" label="Overzicht" to={path.index()} isIndex />
+        <LinkedObjectContainer
+          forceRender
+          object={`${FRONTEND_URL}/o/find.json_api?iri=${window.location.href}`}
+          topology={NS.argu('sidebarBlock')}
+        >
+          <div className="NavBarContent__switcher">
+            <LinkedObjectContainer object={`${FRONTEND_URL}/menus/organizations`} />
+            <Property label={NS.schema('name')} />
+          </div>
+          <Type />
+        </LinkedObjectContainer>
       </div>
       <div className="NavBarContent__footer">
         <LinkedObjectContainer object={`${FRONTEND_URL}/c_a`} topology={NS.argu('sidebar')} />
