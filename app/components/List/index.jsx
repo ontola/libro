@@ -25,9 +25,9 @@ const loopItems = (items, renderItem) => {
     return false;
   }
 
-  return items.constructor === Array
+  return Array.isArray(items)
     ? items.map(renderItem)
-    : items.valueSeq().map(renderItem);
+    : items.valueSeq().map(renderItem).toArray();
 };
 
 const List = ({

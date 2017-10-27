@@ -32,14 +32,14 @@ const wrapperHorizontal = shallow(
 describe('List component', () => {
   it('should render all items in array/object', () => {
     assert.equal(
-      mockItems.length,
       wrapper(mockItems).find('.List > div').length,
+      mockItems.length,
       'Items length does not equal to rendered list'
     );
 
     assert.equal(
-      mockItemsObject.size,
       wrapperObjects.find('.List > div').length,
+      mockItemsObject.size,
       'Items length does not equal to rendered list'
     );
   });

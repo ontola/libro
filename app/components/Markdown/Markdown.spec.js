@@ -1,11 +1,11 @@
 /* eslint no-magic-numbers: 0 */
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { assert } from 'chai';
 
 import Markdown from './';
 
-const comp = mount(
+const comp = shallow(
   <Markdown
     text="Joep is cool"
     highlightedText="Joe"

@@ -3,14 +3,21 @@ require('babel-register')({
     return !filename.match(/node_modules\/link-redux/);
   }
 });
-require('react');
-const jsdom = require('jsdom').jsdom;
+const { JSDOM } = require('jsdom');
 
+const jsdom = new JSDOM(
+  '<!doctype html><html><body></body></html>',
+  {
+    userAgent: 'node.js',
+  }
+);
 const exposedProperties = ['window', 'navigator', 'document'];
+const { window } = jsdom;
 
-global.document = jsdom('');
-global.window = document.defaultView;
-global.window.URL = require('whatwg-url').URL;
+global.window = window;
+global.document = window.document;
+global.window.fetch = require('whatwg-fetch').fetch;
+global.URL = require('whatwg-url').URL;
 
 const ignoreGlobals = [
   'SVGPathSeg',
@@ -51,6 +58,8 @@ Object.keys(document.defaultView).forEach((property) => {
   }
 });
 
-global.navigator = {
-  userAgent: 'node.js',
-};
+const Enzyme = require('enzyme');
+const Adapter = require('enzyme-adapter-react-15');
+require('react');
+
+Enzyme.configure({ adapter: new Adapter() });
