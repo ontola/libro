@@ -14,6 +14,7 @@ import './ImageObject';
 import './MenuItem';
 // import './Motion';
 import './NavigationsMenu';
+import './OrganizationsMenu';
 // import './OpinionBubble';
 import './Organization';
 import './Person';
