@@ -3,12 +3,11 @@ import { Property } from 'link-redux';
 import React from 'react';
 
 import {
-  Detail,
-  LDLink,
   ProfileCard,
 } from '../../components';
 import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
+import './detail';
 import './sidebar';
 import './properties/image';
 
@@ -18,19 +17,6 @@ LinkedRenderStore.registerRenderer(
     NS.schema('Person'),
     NS.foaf('Person'),
   ]
-);
-
-const PersonDetail = () => (
-  <LDLink>
-    <Detail label={NS.schema('name')} />
-  </LDLink>
-);
-
-LinkedRenderStore.registerRenderer(
-  PersonDetail,
-  NS.schema('Person'),
-  RENDER_CLASS_NAME,
-  NS.argu('detail')
 );
 
 LinkedRenderStore.registerRenderer(
