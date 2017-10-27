@@ -44,11 +44,13 @@ const hrefConnected = connect(
   { pure: false }
 )(href);
 
-LinkedRenderStore.registerRenderer(
-  hrefConnected,
-  NS.argu('Link'),
-  [NS.argu('href')],
-  NS.argu('sidebar')
-);
+[NS.argu('sidebar'), NS.argu('sidebarBlock')].forEach((top) => {
+  LinkedRenderStore.registerRenderer(
+    hrefConnected,
+    [NS.argu('Link'), NS.argu('MenuItem'), NS.argu('SubMenu')],
+    NS.argu('href'),
+    top
+  );
+});
 
 export default href;

@@ -36,11 +36,13 @@ LinkedRenderStore.registerRenderer(
   [NS.schema('image'), NS.dbo('thumbnail'), NS.wdt('P18')]
 );
 
-LinkedRenderStore.registerRenderer(
-  ThingImageProp,
-  NS.schema('Thing'),
-  [NS.schema('image'), NS.dbo('thumbnail'), NS.wdt('P18')],
-  NS.argu('sidebar')
-);
+[NS.argu('sidebar'), NS.argu('sidebarBlock')].forEach((top) => {
+  LinkedRenderStore.registerRenderer(
+    ThingImageProp,
+    NS.schema('Thing'),
+    [NS.schema('image'), NS.dbo('thumbnail'), NS.wdt('P18')],
+    top
+  );
+});
 
 export default ThingImageProp;

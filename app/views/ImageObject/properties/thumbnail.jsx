@@ -33,7 +33,13 @@ const ImageObjectThumbnailTop = ({ linkedProp }) => (
 
 ImageObjectThumbnailTop.propTypes = propTypes;
 
-[undefined, NS.argu('sidebar'), NS.argu('voteBubble'), NS.argu('detail')].forEach((t) => {
+[
+  undefined,
+  NS.argu('detail'),
+  NS.argu('sidebar'),
+  NS.argu('voteBubble'),
+  NS.argu('sidebarBlock')
+].forEach((t) => {
   LinkedRenderStore.registerRenderer(
     ImageObjectThumbnailTop,
     NS.schema('ImageObject'),

@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-// import { getVoteMatchMotionIdsLength } from 'state/voteMatch/selectors';
 
 import { fetchActor } from 'state/currentActors/actions';
 import {
@@ -25,7 +24,8 @@ class NavbarContainer extends Component {
         actorType={this.props.actorType}
         redirectUrl={this.props.redirectUrl}
         voteMatchCount={this.props.voteMatchCount}
-      />);
+      />
+    );
   }
 }
 

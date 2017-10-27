@@ -30,10 +30,13 @@ class menuItems extends PropertyBase {
 
 menuItems.propTypes = propTypes;
 
-LinkedRenderStore.registerRenderer(
-  menuItems,
-  NS.argu('NavigationsMenu'),
-  NS.argu('menuItems')
-);
+[undefined, NS.argu('sidebar')].forEach((top) => {
+  LinkedRenderStore.registerRenderer(
+    menuItems,
+    NS.argu('NavigationsMenu'),
+    NS.argu('menuItems'),
+    top
+  );
+});
 
 export default menuItems;
