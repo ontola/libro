@@ -10,6 +10,7 @@ function setHeaders(proxyReq, req) {
   if (typeof req.session !== 'undefined') {
     proxyReq.setHeader('Authorization', `Bearer ${req.session.arguToken.accessToken}`);
   }
+  proxyReq.setHeader('Cookie', req.headers.cookie.replace(/([$|\s])beta=true/, '$1beta=false'));
 }
 
 export const backendProxy = proxy({
