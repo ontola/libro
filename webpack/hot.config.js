@@ -6,7 +6,7 @@ const webpack = require('webpack');
 
 const config = require('./common.config');
 
-config.output.publicPath = '/dist/';
+config.output.publicPath = '/f_assets/';
 config.output.pathinfo = true;
 
 config.entry = [

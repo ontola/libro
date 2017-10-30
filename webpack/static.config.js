@@ -1,13 +1,10 @@
-const path = require('path');
-
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const webpack = require('webpack');
 
 const config = require('./common.config');
 
-config.output.publicPath = '/dist/';
-config.output.path = path.resolve(`${__dirname}/../dist/public`);
+config.output.publicPath = '/f_assets/';
 
 config.entry = [
   './app/index.js',
