@@ -32,10 +32,10 @@ export default function routes(app, port) {
 
   // Static directory for express
   app.use('/static', express.static('static'));
-  app.use('/dist', express.static('dist'));
   if (__DEVELOPMENT__) {
     app.get('/assets/*', backendProxy);
   }
+  app.use('/f_assets', express.static('dist/public'));
 
   app.use(sessionMiddleware);
 

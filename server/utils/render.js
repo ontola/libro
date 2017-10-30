@@ -1,8 +1,10 @@
 import { ASSETS_HOST } from '../../app/config';
 
+import manifest from './manifest';
+
 export const renderFullPage = (html, devPort, domain, csrfToken, initialState = {}, head) => {
   const bundleCSS = process.env.NODE_ENV === 'production'
-    ? `<link rel="stylesheet" type="text/css" href="${ASSETS_HOST}/dist/bundle.css" />`
+    ? `<link rel="stylesheet" type="text/css" href="${ASSETS_HOST}${manifest['main.css']}" />`
     : '';
   const bugsnagKey = process.env.BUGSNAG_KEY;
 
@@ -65,7 +67,7 @@ export const renderFullPage = (html, devPort, domain, csrfToken, initialState = 
         </div>
         <div id="root">${html}</div>
         <script>document.body.className += ' Body--show-preloader';</script>
-        <script src="${ASSETS_HOST}/dist/bundle.js"></script>
+        <script src="${ASSETS_HOST}${manifest['main.js']}"></script>
         <script>
           window.__PRELOADED_STATE__ = ${JSON.stringify(initialState).replace(/</g, '\\\u003c')}
         </script>

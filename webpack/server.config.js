@@ -22,8 +22,8 @@ const config = {
   entry: path.resolve('./server/init'),
 
   output: {
-    path: path.resolve(`${__dirname}/../dist/`),
     filename: 'server.js',
+    path: path.resolve(`${__dirname}/../dist/private`),
   },
 
   resolve: {
