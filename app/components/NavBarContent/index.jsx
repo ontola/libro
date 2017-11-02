@@ -51,7 +51,7 @@ const NavBarContent = ({
       <div className="NavBarContent__top">
         <LinkedObjectContainer
           forceRender
-          object={`${FRONTEND_URL}/o/find.json_api?iri=${window.location.href}`}
+          object={`${FRONTEND_URL}/o/find?iri=${encodeURIComponent(window.location.href)}`}
           topology={NS.argu('sidebarBlock')}
         >
           <div className="NavBarContent__switcher">

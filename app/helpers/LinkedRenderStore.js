@@ -17,11 +17,10 @@ transformers
   .transformers
   .forEach(t => LRS.api.registerTransformer(t.transformer, t.mediaTypes, t.acceptValue));
 
-LRS.api.setAcceptForHost('https://argu.dev/', 'application/vnd.api+json');
-LRS.api.setAcceptForHost('https://beta.argu.dev/', 'application/vnd.api+json');
-LRS.api.setAcceptForHost('https://argu.co/', 'application/vnd.api+json');
-LRS.api.setAcceptForHost('https://aod-search.argu.co/', 'application/vnd.api+json');
-LRS.api.setAcceptForHost('https://beta.argu.co/', 'application/vnd.api+json');
+LRS.api.setAcceptForHost('https://argu.dev/', 'text/n3');
+LRS.api.setAcceptForHost('https://beta.argu.dev/', 'text/n3');
+LRS.api.setAcceptForHost('https://argu.co/', 'text/n3');
+LRS.api.setAcceptForHost('https://beta.argu.co/', 'text/n3');
 
 LRS.namespaces.aod = rdf.Namespace('https://argu.co/ns/od#');
 export const NS = LRS.namespaces;

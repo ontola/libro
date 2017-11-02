@@ -64,7 +64,7 @@ export { boundAuthenticated as isAuthenticated };
 
 export function isBackend(req, res, next) {
   const accept = req.get('Accept');
-  if (accept && (accept.includes('application/vnd.api+json') || accept.includes('application/json'))) {
+  if (accept && (accept.includes('text/n3') || accept.includes('application/vnd.api+json') || accept.includes('application/json'))) {
     next();
   } else {
     next('route');

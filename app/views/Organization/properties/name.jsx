@@ -20,7 +20,7 @@ OrganizationName.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   OrganizationName,
-  NS.schema('Organization'),
+  [NS.schema('Organization'), NS.argu('Page')],
   [
     NS.schema('name'),
     NS.rdfs('label'),

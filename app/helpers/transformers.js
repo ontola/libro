@@ -6,8 +6,8 @@ export default {
   transformers: [
     {
       acceptValue: PRIO_MAX,
-      mediaTypes: 'application/vnd.api+json',
-      transformer: transformers.jsonapi,
+      mediaTypes: 'text/n3',
+      transformer: transformers.rdfFormatsCommon,
     },
   ],
 };

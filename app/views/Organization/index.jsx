@@ -27,7 +27,7 @@ const OrganizationSidebarBlock = ({
       to={path.createVoteMatch()}
     />
     <SideBarLink isIndex icon="th-large" label="Overzicht" to={path.index()} />
-    <Property label={NS.argu('menus')} topology={NS.argu('sidebar')} />
+    <Property label={NS.argu('navigationsMenu')} topology={NS.argu('sidebar')} />
   </div>
 );
 
@@ -35,7 +35,7 @@ OrganizationSidebarBlock.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   OrganizationSidebarBlock,
-  NS.schema('Organization'),
+  [NS.schema('Organization'), NS.argu('Page')],
   RENDER_CLASS_NAME,
   NS.argu('sidebarBlock')
 );

@@ -15,7 +15,7 @@ ThingMenusProp.propTypes = propTypes;
 LinkedRenderStore.registerRenderer(
   ThingMenusProp,
   NS.schema('Thing'),
-  NS.argu('menus'),
+  [NS.argu('menus'), NS.argu('navigationsMenu')],
   NS.argu('sidebarBlock')
 );
 
