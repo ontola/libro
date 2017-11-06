@@ -7,42 +7,32 @@ import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
 const ImageObject = () => <Property label={NS.schema('thumbnail')} />;
 
-LinkedRenderStore.registerRenderer(
-  ImageObject,
-  NS.schema('ImageObject')
-);
-LinkedRenderStore.registerRenderer(
-  ImageObject,
-  NS.schema('ImageObject'),
-  RENDER_CLASS_NAME,
-  NS.argu('detail')
-);
-LinkedRenderStore.registerRenderer(
-  ImageObject,
-  NS.schema('ImageObject'),
-  RENDER_CLASS_NAME,
+[
+  undefined,
+  NS.argu('collection'),
+  NS.argu('detail'),
   NS.argu('voteBubble')
-);
-LinkedRenderStore.registerRenderer(
-  () => (
-    <div className="SideBarLink__image-wrapper">
-      <Property label={NS.schema('thumbnail')} />
-    </div>
-  ),
-  NS.schema('ImageObject'),
-  RENDER_CLASS_NAME,
-  NS.argu('sidebar')
-);
-LinkedRenderStore.registerRenderer(
-  () => (
-    <div className="SideBarLink__image-wrapper">
-      <Property label={NS.schema('thumbnail')} />
-    </div>
-  ),
-  NS.schema('ImageObject'),
-  RENDER_CLASS_NAME,
-  NS.argu('sidebarBlock')
-);
+].forEach((top) => {
+  LinkedRenderStore.registerRenderer(
+    ImageObject,
+    NS.schema('ImageObject'),
+    RENDER_CLASS_NAME,
+    top
+  );
+});
+
+[NS.argu('sidebar'), NS.argu('sidebarBlock')].forEach((top) => {
+  LinkedRenderStore.registerRenderer(
+    () => (
+      <div className="SideBarLink__image-wrapper">
+        <Property label={NS.schema('thumbnail')} />
+      </div>
+    ),
+    NS.schema('ImageObject'),
+    RENDER_CLASS_NAME,
+    top
+  );
+});
 
 export { default as Thumbnail } from './properties/thumbnail';
 

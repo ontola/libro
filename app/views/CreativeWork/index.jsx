@@ -59,5 +59,4 @@ LinkedRenderStore.registerRenderer(
 
 export { default as Arguments } from './properties/arguments';
 export { default as Creator } from './properties/creator';
-export { default as DateCreated } from './properties/dateCreated';
 export { default as Name } from './properties/name';

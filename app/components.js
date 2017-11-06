@@ -24,7 +24,7 @@ export { default as Container } from './components/Container/index';
 export { default as Cover } from './components/Cover/index';
 export { default as Detail } from './components/Detail/index';
 export { default as DetailPure } from './components/Detail/DetailPure';
-// export { default as DetailDate } from './components/DetailDate/index';
+export { default as DetailDate } from './components/DetailDate/index';
 // export { default as DetailDuration } from './components/DetailDuration/index';
 export { default as DetailsBar } from './components/DetailsBar/index';
 export { default as DetailStatus } from './components/DetailStatus/index';

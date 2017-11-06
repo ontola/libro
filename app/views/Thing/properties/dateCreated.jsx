@@ -12,10 +12,16 @@ const DateCreated = ({ linkedProp }) => <DetailDate createdAt={linkedProp} />;
 
 DateCreated.propTypes = propTypes;
 
-LinkedRenderStore.registerRenderer(
-  DateCreated,
-  NS.schema('CreativeWork'),
-  NS.schema('dateCreated')
-);
+[
+  undefined,
+  NS.argu('collection'),
+].forEach((top) => {
+  LinkedRenderStore.registerRenderer(
+    DateCreated,
+    NS.schema('Thing'),
+    NS.schema('dateCreated'),
+    top
+  );
+});
 
 export default DateCreated;

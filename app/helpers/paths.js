@@ -1,7 +1,7 @@
 import { FRONTEND_URL } from '../config';
 
 export function currentLocation(location) {
-  return `${FRONTEND_URL}${location.pathname}`;
+  return `${FRONTEND_URL}${location.pathname}${location.search}`;
 }
 
 const path = {

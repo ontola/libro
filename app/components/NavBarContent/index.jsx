@@ -61,6 +61,7 @@ const NavBarContent = ({
       </div>
       <div className="NavBarContent__footer">
         <LinkedObjectContainer object={`${FRONTEND_URL}/c_a`} topology={NS.argu('sidebar')} />
+        <LinkedObjectContainer object={`${FRONTEND_URL}/n?type=infinite`} topology={NS.argu('sidebar')} />
         <SideBarCollapsible
           label="Info"
           to={path.infoIndex()}

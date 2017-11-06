@@ -6,7 +6,7 @@ import Button from '../Button';
 import './Card.scss';
 
 const propTypes = {
-  action: PropTypes.func.isRequired,
+  action: PropTypes.func,
   active: PropTypes.bool,
   children: PropTypes.string.isRequired,
   type: PropTypes.string,
@@ -38,7 +38,7 @@ const CardButton = ({
       icon={buttonIcon[type]}
       theme="box"
       variant={type}
-      onClick={() => action()}
+      onClick={() => action && action()}
     >{children}
     </Button>
   );

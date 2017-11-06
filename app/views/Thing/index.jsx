@@ -13,6 +13,7 @@ import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
 import './properties/contains';
 import './properties/collectionAssociation';
+import './properties/dateCreated';
 import './properties/isPrimaryTopicOf';
 import './properties/isPartOf';
 import './properties/image';

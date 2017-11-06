@@ -36,6 +36,7 @@ ImageObjectThumbnailTop.propTypes = propTypes;
 
 [
   undefined,
+  NS.argu('collection'),
   NS.argu('detail'),
   NS.argu('sidebar'),
   NS.argu('voteBubble'),

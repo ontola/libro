@@ -5,6 +5,8 @@ import ReactCollapse from 'react-collapse';
 import './Collapsible.scss';
 
 const propTypes = {
+  /** Mount children if closed. */
+  alwaysMountChildren: PropTypes.bool,
   /** Content that is not always visible. */
   children: PropTypes.node.isRequired,
   /** Minimum height in pixels */
@@ -19,10 +21,12 @@ const propTypes = {
 };
 
 const defaultProps = {
+  alwaysMountChildren: true,
   opened: false,
 };
 
 const Collapsible = ({
+  alwaysMountChildren,
   children,
   onClickToggle,
   minHeight,
@@ -67,7 +71,7 @@ const Collapsible = ({
             minHeight: `${minHeight}px`,
           }}
         >
-          {children}
+          {alwaysMountChildren ? children : (opened && children)}
         </ReactCollapse>
       </div>
     </div>

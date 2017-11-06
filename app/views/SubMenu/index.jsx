@@ -1,6 +1,6 @@
 import classNames from 'classnames';
-import { RENDER_CLASS_NAME, getP } from 'link-lib';
-import { Property } from 'link-redux';
+import { RENDER_CLASS_NAME } from 'link-lib';
+import { lowLevel, Property, subjectType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
@@ -18,13 +18,13 @@ import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 import './properties/label';
 
 const propTypes = {
-  'http://www.w3.org/1999/02/22-rdf-syntax-ns#subject': PropTypes.string,
   onClickToggle: PropTypes.func.isRequired,
   open: PropTypes.bool,
+  subject: subjectType,
 };
 
 const SubMenuSideBar = ({
-  'http://www.w3.org/1999/02/22-rdf-syntax-ns#subject': id,
+  subject,
   onClickToggle,
   open
 }) => {
@@ -46,7 +46,7 @@ const SubMenuSideBar = ({
       >
         <FontAwesome name="caret-right" />
       </Button>
-      <CollapsibleContainer id={id}>
+      <CollapsibleContainer id={subject}>
         <Property label={NS.argu('menuItems')} />
       </CollapsibleContainer>
     </div>
@@ -56,21 +56,22 @@ const SubMenuSideBar = ({
 SubMenuSideBar.propTypes = propTypes;
 
 const SubMenuSideBarConnected = connect(
-  (state, { data }) => ({
-    'http://www.w3.org/1999/02/22-rdf-syntax-ns#subject': getP(data, '@id'),
-    open: getCollapsibleOpened(state, getP(data, '@id')),
+  (state, { subject }) => ({
+    open: getCollapsibleOpened(state, subject),
     route: state.getIn(['router', 'locationBeforeTransitions', 'pathname']),
   }),
-  (dispatch, { data }) => ({
-    onClickToggle: () => dispatch(toggleOne(getP(data, '@id'))),
+  (dispatch, { subject }) => ({
+    onClickToggle: () => dispatch(toggleOne(subject)),
     onInitializeCollapsible: props => dispatch(initializeCollapsible(props)),
   }),
   null,
   { pure: false }
 )(SubMenuSideBar);
 
+const SubMenuSideBarComplete = lowLevel.linkedSubject(SubMenuSideBarConnected);
+
 LinkedRenderStore.registerRenderer(
-  SubMenuSideBarConnected,
+  SubMenuSideBarComplete,
   NS.argu('SubMenu'),
   RENDER_CLASS_NAME,
   NS.argu('sidebar')

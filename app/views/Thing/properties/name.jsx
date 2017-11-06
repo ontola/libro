@@ -26,6 +26,17 @@ LinkedRenderStore.registerRenderer(
 );
 
 LinkedRenderStore.registerRenderer(
+  ({ linkedProp }) => <span>{linkedProp}</span>,
+  NS.schema('Thing'),
+  [
+    NS.schema('name'),
+    NS.rdfs('label'),
+    NS.foaf('name'),
+  ],
+  NS.argu('sidebar')
+);
+
+LinkedRenderStore.registerRenderer(
   ({ linkedProp }) => <LDLink>{linkedProp}</LDLink>,
   NS.schema('Thing'),
   [

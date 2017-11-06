@@ -9,7 +9,7 @@ import { Route, Switch } from 'react-router';
 // import Home from './Home';
 // import Info from './Info';
 // import InfoIndex from './InfoIndex';
-// import LinkedObject, { LinkedObjectByID } from './LinkedObject';
+import LinkedObject from './LinkedObject';
 // import Idea from './Idea';
 import Iframe from './Iframe';
 // import LinkedPerson from './LinkedPerson';
@@ -28,6 +28,7 @@ import SignIn from './SignIn';
 const routes = (
   <Switch>
     <Route path="/u/sign_in" component={SignIn} />
+    <Route path="/n" component={LinkedObject} />
     <Route path="*" component={Iframe} />
   </Switch>
 );

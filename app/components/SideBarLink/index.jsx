@@ -21,7 +21,10 @@ const propTypes = {
   imageUrl: PropTypes.string,
   // True for links that are leveled higher than others
   isIndex: PropTypes.bool,
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+  ]),
   to: PropTypes.string,
 };
 

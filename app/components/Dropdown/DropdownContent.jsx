@@ -59,6 +59,7 @@ class DropdownContent extends ScrollLockedComponent {
   render() {
     const { children, contentClassName } = this.props;
     const collapseClass = this.props.renderLeft ? 'Dropdown--left ' : 'Dropdown-right ';
+    // const topClass = this.props.renderTop ? 'Dropdown--top ' : ' ';
 
     return (
       <div

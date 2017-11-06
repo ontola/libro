@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
 import {
   Notification,
@@ -63,7 +64,7 @@ const App = ({
 App.propTypes = propTypes;
 App.defaultProps = defaultProps;
 
-export default connect(
+export default withRouter(connect(
   state => ({
     error: getErrorBool(state),
     errorMessage: getErrorMsg(state),
@@ -72,4 +73,4 @@ export default connect(
   dispatch => ({
     reset: () => dispatch(resetErrorMessage()),
   })
-)(App);
+)(App));
