@@ -3,13 +3,14 @@ import {
   getLinkedObjectPropertyRaw,
   LinkedObjectContainer,
   lowLevel,
+  subjectType,
 } from 'link-redux';
 import React, { PropTypes } from 'react';
 
 import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
 const propTypes = {
-  subject: PropTypes.object,
+  subject: subjectType,
 };
 
 /**

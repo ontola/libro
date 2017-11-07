@@ -1,9 +1,10 @@
 import {
   getLinkedObjectProperty,
   lowLevel,
-  PropertyBase
+  PropertyBase,
+  labelType,
 } from 'link-redux';
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { Link } from 'react-router';
 
 import {
@@ -12,7 +13,7 @@ import {
 import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
-  label: PropTypes.object,
+  label: labelType,
 };
 
 class CollectionName extends PropertyBase {

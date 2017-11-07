@@ -1,5 +1,4 @@
-import { LinkedObjectContainer } from 'link-redux';
-import PropTypes from 'prop-types';
+import { LinkedObjectContainer, linkedPropType } from 'link-redux';
 import React from 'react';
 
 import {
@@ -11,7 +10,7 @@ import {
 import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
-  linkedProp: PropTypes.any.isRequired,
+  linkedProp: linkedPropType.isRequired,
 };
 
 const VoteCompareResult = ({ linkedProp }) => (

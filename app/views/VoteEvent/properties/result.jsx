@@ -1,10 +1,11 @@
-import React, { PropTypes } from 'react';
+import { linkedPropType } from 'link-redux';
+import React from 'react';
 
 import { DetailStatus } from '../../../components';
 import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
-  linkedProp: PropTypes.object,
+  linkedProp: linkedPropType,
 };
 
 const Result = ({ linkedProp }) => (

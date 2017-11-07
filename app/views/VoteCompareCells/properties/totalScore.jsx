@@ -1,12 +1,12 @@
-import { Property } from 'link-redux';
+import { linkedPropType, Property } from 'link-redux';
 import React, { PropTypes } from 'react';
 
 import { CompareVotesBar } from '../../../components';
-import LinkedRenderStore, { linkedPropVal, NS } from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   children: PropTypes.node,
-  linkedProp: linkedPropVal,
+  linkedProp: linkedPropType,
 };
 
 const TotalScore = ({ children, linkedProp }) => (

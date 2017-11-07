@@ -1,7 +1,6 @@
 /* eslint no-console: 0 */
 import LinkedRenderStore from 'link-lib';
 import rdf from 'rdflib';
-import { PropTypes } from 'react';
 
 import Error from '../components/Error';
 import Loading from '../components/Loading';
@@ -168,15 +167,6 @@ LRS.addOntologySchematics([
     },
   },
 ]);
-
-const linkedPropVal = PropTypes.oneOfType([
-  PropTypes.object,
-  PropTypes.string,
-]);
-
-export {
-  linkedPropVal,
-};
 
 export default LRS;
 if (typeof window !== 'undefined') {

@@ -4,14 +4,16 @@ import {
   getLinkedObjectPropertyRaw,
   LinkedObjectContainer,
   lowLevel,
+  labelType,
+  subjectType,
 } from 'link-redux';
 import React, { PropTypes } from 'react';
 
 import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
-  label: PropTypes.object,
-  subject: PropTypes.object,
+  label: labelType,
+  subject: subjectType,
 };
 
 /**

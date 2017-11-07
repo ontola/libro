@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { linkedPropType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router';
@@ -7,13 +8,13 @@ import { connect } from 'react-redux';
 import { closeSideBar } from 'state/sideBars/actions';
 
 import { retrievePath } from '../../../helpers/iris';
-import LinkedRenderStore, { linkedPropVal, NS } from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   children: PropTypes.node,
   forSubMenu: PropTypes.bool,
   handleClick: PropTypes.func,
-  linkedProp: linkedPropVal,
+  linkedProp: linkedPropType,
 };
 
 const classString = forSubMenu => classNames({

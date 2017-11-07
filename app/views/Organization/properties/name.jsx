@@ -1,12 +1,12 @@
-import { Property } from 'link-redux';
+import { Property, linkedPropType } from 'link-redux';
 import React from 'react';
 
-import LinkedRenderStore, { linkedPropVal, NS } from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 import './name.scss';
 
 const propTypes = {
-  linkedProp: linkedPropVal,
+  linkedProp: linkedPropType,
 };
 
 const OrganizationName = ({ linkedProp }) => (

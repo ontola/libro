@@ -1,7 +1,7 @@
 import assert from 'assert';
 
 import classNames from 'classnames';
-import { lowLevel, PropertyBase } from 'link-redux';
+import { lowLevel, PropertyBase, subjectType } from 'link-redux';
 import React, { PropTypes } from 'react';
 import { browserHistory } from 'react-router';
 
@@ -20,7 +20,7 @@ const propTypes = {
   loading: PropTypes.bool,
   full: PropTypes.bool,
   similarity: PropTypes.number,
-  subject: PropTypes.object,
+  subject: subjectType,
 };
 
 const defaultProps = {

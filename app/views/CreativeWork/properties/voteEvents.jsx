@@ -1,10 +1,10 @@
+import { LinkedObjectContainer, linkedPropType } from 'link-redux';
 import React from 'react';
-import { LinkedObjectContainer } from 'link-redux';
 
-import LinkedRenderStore, { linkedPropVal, NS } from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
-  linkedProp: linkedPropVal,
+  linkedProp: linkedPropType,
 };
 
 const VoteEvents = ({ linkedProp }) =>

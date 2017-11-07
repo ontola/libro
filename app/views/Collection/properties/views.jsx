@@ -1,7 +1,11 @@
 import { getValueOrID } from 'link-lib';
-import { contextTypes, getLinkedObjectPropertyRaw, LinkedObjectContainer } from 'link-redux';
-import PropTypes from 'prop-types';
-import rdf from 'rdflib';
+import {
+  contextTypes,
+  getLinkedObjectPropertyRaw,
+  labelType,
+  LinkedObjectContainer,
+  subjectType
+} from 'link-redux';
 import React from 'react';
 
 import {
@@ -25,13 +29,8 @@ const Views = (props, context) => {
 
 Views.contextTypes = contextTypes;
 Views.propTypes = {
-  label: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-    PropTypes.object,
-    PropTypes.arrayOf(PropTypes.object),
-  ]).isRequired,
-  subject: PropTypes.instanceOf(rdf.NamedNode)
+  label: labelType.isRequired,
+  subject: subjectType
 };
 
 LinkedRenderStore.registerRenderer(

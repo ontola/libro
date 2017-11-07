@@ -3,6 +3,9 @@ import { getValueOrID } from 'link-lib';
 import {
   getLinkedObjectProperty,
   LinkedObjectContainer,
+  labelType,
+  linkedPropType,
+  subjectType,
 } from 'link-redux';
 
 import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
@@ -19,9 +22,9 @@ function side(url) {
 
 const propTypes = {
   grandTotal: PropTypes.number,
-  label: PropTypes.object,
-  linkedProp: PropTypes.object,
-  subject: PropTypes.object,
+  label: labelType,
+  linkedProp: linkedPropType,
+  subject: subjectType,
 };
 
 /**

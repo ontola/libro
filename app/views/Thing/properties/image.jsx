@@ -1,12 +1,12 @@
-import { LinkedObjectContainer } from 'link-redux';
+import { LinkedObjectContainer, linkedPropType } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import LinkedRenderStore, { linkedPropVal, NS } from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const FABase = 'http://fontawesome.io/icon/';
 const propTypes = {
-  linkedProp: linkedPropVal,
+  linkedProp: linkedPropType,
 };
 
 const ThingImageProp = ({ linkedProp }) => {

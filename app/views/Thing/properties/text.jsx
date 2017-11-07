@@ -1,5 +1,5 @@
-import { lowLevel } from 'link-redux';
-import React, { PropTypes } from 'react';
+import { linkedPropType, lowLevel, subjectType } from 'link-redux';
+import React from 'react';
 
 import {
   CollapseText,
@@ -8,7 +8,7 @@ import {
 import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
-  linkedProp: PropTypes.string,
+  linkedProp: linkedPropType,
 };
 
 const Text = ({ linkedProp }) => <Markdown text={linkedProp} />;
@@ -22,8 +22,8 @@ LinkedRenderStore.registerRenderer(
 );
 
 const propTypesCollection = {
-  linkedProp: PropTypes.string,
-  subject: PropTypes.object,
+  linkedProp: linkedPropType,
+  subject: subjectType,
 };
 
 const TextCollection = ({ linkedProp, subject }) =>

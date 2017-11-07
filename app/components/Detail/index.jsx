@@ -1,5 +1,5 @@
 import './Detail.scss';
-import { Property, PropertyBase } from 'link-redux';
+import { Property, PropertyBase, subjectType } from 'link-redux';
 import React, { PropTypes } from 'react';
 import { browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
@@ -7,7 +7,7 @@ import FontAwesome from 'react-fontawesome';
 import { NS } from '../../helpers/LinkedRenderStore';
 
 const contextTypes = {
-  subject: PropTypes.object,
+  subject: subjectType,
 };
 const propTypes = {
   className: PropTypes.string,
@@ -15,7 +15,7 @@ const propTypes = {
   url: PropTypes.string,
   icon: PropTypes.string,
   imageUrl: PropTypes.string,
-  subject: PropTypes.object,
+  subject: subjectType,
   /** HTML title attribute */
   title: PropTypes.string,
   /** Since Detail uses flexbox, you need to place right floating Details

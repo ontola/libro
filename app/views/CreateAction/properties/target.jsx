@@ -1,3 +1,4 @@
+import { linkedPropType } from 'link-redux';
 import React, { PropTypes } from 'react';
 
 import { Button } from '../../../components';
@@ -5,7 +6,7 @@ import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   children: PropTypes.node,
-  linkedProp: PropTypes.string
+  linkedProp: linkedPropType,
 };
 
 const Target = ({ children, linkedProp }) => {

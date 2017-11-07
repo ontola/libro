@@ -1,10 +1,11 @@
 import { isDifferentOrigin } from 'link-lib';
-import React, { PropTypes } from 'react';
+import { linkedPropType } from 'link-redux';
+import React from 'react';
 
 import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
-  linkedProp: PropTypes.object,
+  linkedProp: linkedPropType,
 };
 
 const IsPrimaryTopicOf = ({ linkedProp }) => {

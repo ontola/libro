@@ -1,11 +1,11 @@
+import { LinkedObjectContainer, linkedPropType } from 'link-redux';
 import React from 'react';
-import { LinkedObjectContainer } from 'link-redux';
 
-import LinkedRenderStore, { linkedPropVal, NS } from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 import { FRONTEND_URL } from '../../../config';
 
 const propTypes = {
-  linkedProp: linkedPropVal,
+  linkedProp: linkedPropType,
 };
 
 /**

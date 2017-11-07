@@ -1,13 +1,14 @@
+import { linkedPropType } from 'link-redux';
 import React from 'react';
 
 import {
   Heading,
   LDLink,
 } from '../../../components';
-import LinkedRenderStore, { linkedPropVal, NS } from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
-  linkedProp: linkedPropVal,
+  linkedProp: linkedPropType,
 };
 
 const Name = ({ linkedProp }) => <Heading size="1">{linkedProp}</Heading>;

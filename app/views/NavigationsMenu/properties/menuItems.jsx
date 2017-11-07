@@ -1,12 +1,12 @@
-import React from 'react';
 import { getValueOrID } from 'link-lib';
-import { LinkedObjectContainer, PropertyBase } from 'link-redux';
+import { LinkedObjectContainer, PropertyBase, linkedPropType } from 'link-redux';
+import React from 'react';
 
-import LinkedRenderStore, { linkedPropVal, NS } from '../../../helpers/LinkedRenderStore';
+import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
-  children: linkedPropVal,
-  linkedProp: linkedPropVal,
+  children: linkedPropType,
+  linkedProp: linkedPropType,
 };
 
 class menuItems extends PropertyBase {
