@@ -7,6 +7,7 @@ import { redisAddress } from '../config';
 const sessionSecret = process.env.SESSION_SECRET;
 
 if (!sessionSecret) {
+  // eslint-disable-next-line no-console
   console.log('NO SESSION SECRET');
   process.exit(1);
 }

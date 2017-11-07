@@ -36,10 +36,7 @@ const formatDateCalendar = (
     return undefined;
   }
 
-  console.log('formatDateCalendar', timestamp);
-
-  const formattedDate = moment(timestamp).calendar(format);
-  return formattedDate;
+  return moment(timestamp).calendar(format);
 };
 
 /**

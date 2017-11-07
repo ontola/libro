@@ -8,6 +8,7 @@ import { ARGU_API_URL } from './config';
 const oAuthToken = process.env.RAILS_OAUTH_TOKEN;
 
 if (!oAuthToken) {
+  // eslint-disable-next-line no-console
   console.error('NO OAUTH TOKEN');
   process.exit(1);
 }
