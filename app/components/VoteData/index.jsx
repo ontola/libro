@@ -40,8 +40,8 @@ class VoteData extends Component {
 
     return (
       <div
-        key={option}
         className={`VoteData__votebar-part VoteData__votebar-part--${option}`}
+        key={option}
         style={{ width: `${calcPercentage(optionCounts, totalVotes)}%` }}
       >
         <div className="VoteData__votesegment-wrapper">{this.segmentItems(option)}</div>
@@ -63,7 +63,7 @@ class VoteData extends Component {
     const votes = this.props.votes[option].votes;
 
     return votes.slice(0, NUMBER_OF_VOTE_BUBBLES).map((vote, i) => (
-      <div key={i} className="VoteData__opinion" title={vote}>
+      <div className="VoteData__opinion" key={i} title={vote}>
         <Link key={vote} to={path.profile(vote)}>
           joe
         </Link>
@@ -104,14 +104,14 @@ class VoteData extends Component {
         }
         {(legislativeSession && startDate) &&
           <DetailDate
-            url={legislativeSession}
             startDate={startDate}
+            url={legislativeSession}
           />
         }
         {(!legislativeSession && (startDate || endDate)) &&
           <DetailDate
-            startDate={startDate}
             endDate={endDate}
+            startDate={startDate}
           />
         }
         <div className="VoteData__votebar">

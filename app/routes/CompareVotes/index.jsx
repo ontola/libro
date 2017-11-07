@@ -42,8 +42,8 @@ class CompareVotes extends Component {
         <Helmet title={`Vergelijk opinies met ${name}`} />
         <VoteMatchContainer id={this.props.params.userId} />
         <ProgressBar
-          context={`VoteMatch - ${name}`}
           completed={currentIndex}
+          context={`VoteMatch - ${name}`}
           total={motionsLength}
         />
       </div>

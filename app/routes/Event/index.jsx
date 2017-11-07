@@ -106,9 +106,9 @@ const Event = ({
 
   return (
     <SideBarContainer
-      sidebar={sideBarContent}
-      pullRight
       id="Timeline"
+      pullRight
+      sidebar={sideBarContent}
     >
       <Container>
         <Helmet title={title} />

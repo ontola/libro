@@ -19,7 +19,8 @@ describe('Vote events actions', () => {
     assert.deepEqual(
       models.VoteEvent.fetch(SPECIFIC_VOTE_EVENT_ID),
       expectedAction,
-      'Action is not formatted correctly');
+      'Action is not formatted correctly'
+    );
   });
 
   it('should have an action to get all Vote events', () => {
@@ -35,6 +36,7 @@ describe('Vote events actions', () => {
     assert.deepEqual(
       models.VoteEvent.index(),
       expectedAction,
-      'Action is not formatted correctly');
+      'Action is not formatted correctly'
+    );
   });
 });

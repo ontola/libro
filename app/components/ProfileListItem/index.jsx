@@ -20,14 +20,14 @@ const ProfileListItem = ({
 }) => (
   <div className="ProfileListItem">
     <Link
-      to={link}
       className="ProfileListItem__link"
+      to={link}
     >
       <div className="ProfileListItem__imagewrapper">
         {image && <img
-          src={image}
           alt={name}
           className="ProfileListItem__image"
+          src={image}
         />}
       </div>
       <div className="ProfileListItem__name">

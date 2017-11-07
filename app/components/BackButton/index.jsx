@@ -12,7 +12,7 @@ const BackButton = ({
   children,
   link,
 }) => (
-  <Link to={link} className="BackButton">
+  <Link className="BackButton" to={link}>
     <FontAwesome name="th" />{' '}
     {children}
   </Link>

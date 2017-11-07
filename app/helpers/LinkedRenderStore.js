@@ -14,9 +14,7 @@ const LRS = new LinkedRenderStore();
 LRS.onError = Error;
 LRS.loadingComp = Loading;
 
-transformers.transformers.forEach(
-  t => LRS.api.registerTransformer(t.transformer, t.mediaTypes, t.acceptValue)
-);
+transformers.transformers.forEach(t => LRS.api.registerTransformer(t.transformer, t.mediaTypes, t.acceptValue));
 
 LRS.api.setAcceptForHost('https://argu.dev/', 'application/vnd.api+json');
 LRS.api.setAcceptForHost('https://beta.argu.dev/', 'application/vnd.api+json');

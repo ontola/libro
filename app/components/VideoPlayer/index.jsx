@@ -29,10 +29,11 @@ class VideoPlayer extends Component {
   render() {
     return (
       <Video
-        fullscreen
-        controls
         autoPlay
-        loop muted
+        controls
+        fullscreen
+        loop
+        muted
         poster="http://sourceposter.jpg"
         ref={this.props.id}
       >

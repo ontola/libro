@@ -5,12 +5,10 @@ import { assert } from 'chai';
 
 import Attachment from './';
 
-const comp = mount(
-  <Attachment
-    title="Argu"
-    url="http://argu.co/"
-  />
-);
+const comp = mount(<Attachment
+  title="Argu"
+  url="http://argu.co/"
+/>);
 
 describe('Attachment component', () => {
   it('should render', () => {

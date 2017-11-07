@@ -55,9 +55,7 @@ const configureStore = (preloadedState) => {
   }
 
   return createStore(
-    enableBatching(combineReducers(
-      reducers
-    )),
+    enableBatching(combineReducers(reducers)),
     preloadedState,
     middleware
   );

@@ -43,7 +43,7 @@ const HyperDropdownMixin = {
       referenceDropdownElement: domRef.getElementsByClassName('Dropdown__content')[0],
       dropdownElement: domRef.getElementsByClassName('Dropdown__content')[1]
     });
-    /* eslint-enable*/
+    /* eslint-enable */
     window.addEventListener('resize', this.handleResize);
     this.calculateRenderLeft();
   },

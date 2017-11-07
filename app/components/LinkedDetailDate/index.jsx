@@ -35,10 +35,10 @@ class LinkedDetailDate extends PropertyBase {
       return this.props[prop];
     }
     const val = getLinkedObjectPropertyRaw(
-        NS.schema(prop),
-        this.props.subject,
-        this.context.linkedRenderStore
-      );
+      NS.schema(prop),
+      this.props.subject,
+      this.context.linkedRenderStore
+    );
     return val && val.value;
   }
 
@@ -57,10 +57,10 @@ class LinkedDetailDate extends PropertyBase {
     };
     return (
       <Detail
-        text={displayValue()}
-        title={hoverText}
         floatRight={floatRight}
         hideIcon={hideIcon}
+        text={displayValue()}
+        title={hoverText}
       />
     );
   }

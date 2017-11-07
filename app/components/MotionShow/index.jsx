@@ -7,7 +7,7 @@ import Card, {
   CardButton,
   CardContent,
   CardHeader,
-  } from '../Card';
+} from '../Card';
 import DetailDate from '../DetailDate';
 import DetailType from '../DetailType';
 import DetailsBar from '../DetailsBar';
@@ -54,11 +54,12 @@ const MotionShow = ({
     <CardActions>
       {Object.keys(options).map(option => (
         <CardButton
-          key={option}
-          active={voteData === option}
           action={() => onVote(option)}
+          active={voteData === option}
+          key={option}
           type={option}
-        >{options[option]}</CardButton>
+        >{options[option]}
+        </CardButton>
       ))}
     </CardActions>
   </Card>

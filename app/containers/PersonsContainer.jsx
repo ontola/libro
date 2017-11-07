@@ -17,11 +17,11 @@ const defaultProps = {
 
 const renderItem = person => (
   <ProfileListItem
+    description={person.party}
+    image={person.image}
     key={person.id}
     link={path.profile(person.id)}
-    image={person.image}
     name={person.name}
-    description={person.party}
   />
 );
 
@@ -32,7 +32,7 @@ class PersonsContainer extends Component {
 
   render() {
     const { persons } = this.props;
-    return <List items={persons} renderItem={renderItem} align="horizontal" />;
+    return <List align="horizontal" items={persons} renderItem={renderItem} />;
   }
 }
 

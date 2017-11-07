@@ -5,7 +5,7 @@ import SpeechContainer from 'containers/SpeechContainer';
 import List from '../List';
 
 const defaultRenderItem = id => (
-  <SpeechContainer key={id} id={id} />
+  <SpeechContainer id={id} key={id} />
 );
 
 const propTypes = {
@@ -24,8 +24,8 @@ const ChronoFeed = ({
 }) => (
   <div className="ChronoFeed">
     <List
-      renderItem={renderItem}
       items={speechIds}
+      renderItem={renderItem}
     />
   </div>
 );

@@ -67,7 +67,7 @@ const SignInForm = ({
       <CardContent>
         <span>Log in met </span>
         <form action={`https://argu.co/users/auth/facebook?r=${redirect}`} method="GET" style={{ display: 'inline' }}>
-          <Button small margins icon="facebook" type="submit" variant="facebook">
+          <Button icon="facebook" margins small type="submit" variant="facebook">
             Facebook
           </Button>
         </form>
@@ -97,17 +97,17 @@ const SignInForm = ({
         <CardActions noSpacing>
           {hasCancel &&
             <Button
-              theme="box"
               icon="times"
+              theme="box"
             >
               Annuleren
             </Button>}
           <Button
-            loading={submitting}
             disabled={invalid}
-            type="submit"
-            theme="box"
             icon="arrow-right"
+            loading={submitting}
+            theme="box"
+            type="submit"
           >
             Verder
           </Button>
@@ -156,31 +156,30 @@ const mapDispatchToProps = (dispatch, props) => ({
     method: 'POST',
     redirect: 'manual',
   }))
-  .then(res => res.json())
-  .then((json) => {
-    let match, r, redirect;
-    switch (json.status) {
-      case 'EMAIL_TAKEN':
-        dispatch(emailTaken());
-        break;
-      case 'LOGGED_IN':
-        dispatch(fetchActor());
-        r = values.get('r');
-        if (r) {
-          match = r.match(/^https:\/\/[\w*.]*argu\.(dev|co)([\w\W]*$)/);
-        }
-        redirect = (match && match[PATH_MATCH]) || '/';
-        props.router.push(redirect);
-        break;
-      default:
-        throw new Error('Unknown user error occurred');
-    }
-  })
+    .then(res => res.json())
+    .then((json) => {
+      let match, r, redirect;
+      switch (json.status) {
+        case 'EMAIL_TAKEN':
+          dispatch(emailTaken());
+          break;
+        case 'LOGGED_IN':
+          dispatch(fetchActor());
+          r = values.get('r');
+          if (r) {
+            match = r.match(/^https:\/\/[\w*.]*argu\.(dev|co)([\w\W]*$)/);
+          }
+          redirect = (match && match[PATH_MATCH]) || '/';
+          props.router.push(redirect);
+          break;
+        default:
+          throw new Error('Unknown user error occurred');
+      }
+    })
 });
 
 const SignInFormContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(reduxForm({
   validate,
-}
-)(SignInForm)));
+})(SignInForm)));
 
 export default SignInFormContainer;

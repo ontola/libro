@@ -30,7 +30,9 @@ const propTypes = {
  * @TODO Get the right side into the className
  * @returns {object} The component
  */
-const SideViews = ({ grandTotal, label, linkedProp, subject }, { linkedRenderStore }) => {
+const SideViews = ({
+  grandTotal, label, linkedProp, subject
+}, { linkedRenderStore }) => {
   const prop = linkedProp || getLinkedObjectProperty(
     label,
     subject,

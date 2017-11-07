@@ -47,11 +47,11 @@ const CompareVotesBar = ({
 
   const trigger = (
     <LabelValueBar
-      label={label}
-      isPercentage={isPercentage}
-      value={score}
       coloredValue
+      isPercentage={isPercentage}
+      label={label}
       showBar
+      value={score}
     />
   );
 
@@ -59,7 +59,7 @@ const CompareVotesBar = ({
     <div className="CompareVotesBar">
       <CollapsibleContainer id={label} trigger={trigger}>
         {tags && <div className="CompareVotesBar__collapsible-children">
-          <List renderItem={renderTag} items={tags} />
+          <List items={tags} renderItem={renderTag} />
         </div>
         }
         {children}

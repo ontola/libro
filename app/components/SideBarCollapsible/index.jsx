@@ -45,7 +45,7 @@ const SideBarCollapsible = ({
         plain
         onClick={() => onClickToggle()}
         className="SideBarCollapsible__toggle"
-        alt={'Menu uitvouwen of inklappen'}
+        alt="Menu uitvouwen of inklappen"
       >
         <FontAwesome name="caret-right" />
       </Button>

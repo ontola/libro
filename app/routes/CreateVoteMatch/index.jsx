@@ -58,30 +58,30 @@ const CreateVoteMatch = ({
           className="Argumentform"
         >
           <Field
+            className="Field--heading"
+            component={FormField}
+            element="input"
             id="voteMatchName"
             name="name"
             placeholder="Titel van stemwijzer"
-            className="Field--heading"
-            element="input"
-            component={FormField}
             type="text"
             variant="preview"
           />
           <Field
-            name="text"
-            id="voteMatchText"
-            placeholder="Toelichting (optioneel)..."
             component={FormField}
-            rows={3}
             element="textArea"
+            id="voteMatchText"
+            name="text"
+            placeholder="Toelichting (optioneel)..."
+            rows={3}
             variant="preview"
           />
           {voteables && voteables.length > 0 &&
             <DraggableList
-              template={VoteMatchItemContainer}
-              list={voteables}
               itemKey={id => `voteMatch_${id}`}
+              list={voteables}
               onMoveEnd={newList => onUpdateVoteables(newList)}
+              template={VoteMatchItemContainer}
             />
           }
           {hasEnoughVoteables() &&
@@ -92,18 +92,18 @@ const CreateVoteMatch = ({
           }
           <CardActions noSpacing>
             <Button
-              theme="box"
               icon="search"
               onClick={() => browserHistory.push(paths.search())}
+              theme="box"
             >
               Moties zoeken
             </Button>
             <Button
-              loading={submitting}
               disabled={(invalid || hasEnoughVoteables())}
-              type="submit"
-              theme="box"
               icon="send"
+              loading={submitting}
+              theme="box"
+              type="submit"
             >
               Opslaan
             </Button>

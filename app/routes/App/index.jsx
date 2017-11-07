@@ -29,7 +29,7 @@ const defaultProps = {
 };
 
 const renderErrorMessage = (error, errorMessage, reset) => (!error ? false : (
-  <Notification type="error" reset={reset}>{errorMessage}</Notification>
+  <Notification reset={reset} type="error">{errorMessage}</Notification>
 ));
 
 const App = ({
@@ -41,9 +41,9 @@ const App = ({
 }) => (
   <div>
     <Helmet
+      defaultTitle="Argu"
       htmlAttributes={{ lang: 'nl' }}
       titleTemplate="%s - Argu"
-      defaultTitle="Argu"
     />
     <Spinner loading={loading} />
     <SkipNavigation />

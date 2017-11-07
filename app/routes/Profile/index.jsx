@@ -34,12 +34,12 @@ const links = id => ([{
 
 const profileCardRender = (data, full, similarity) => (
   <ProfileCard
-    id={data.id}
-    name={data.name}
-    party={data.party}
-    image={data.image}
     bio={data.biography}
     full={full}
+    id={data.id}
+    image={data.image}
+    name={data.name}
+    party={data.party}
     similarity={similarity}
   />
 );
@@ -55,9 +55,9 @@ const Profile = ({
       <Container>
         <BackButton link={path.politiciansIndex()}>Terug naar alle politici</BackButton>
         <PersonContainer
-          user={params.userId}
-          renderItem={profileCardRender}
           full
+          renderItem={profileCardRender}
+          user={params.userId}
         />
       </Container>
     </Cover>
@@ -74,8 +74,6 @@ const Profile = ({
 
 Profile.propTypes = propTypes;
 
-export default connect(
-  (state, ownProps) => ({
-    name: getPersonName(state, ownProps),
-  })
-)(Profile);
+export default connect((state, ownProps) => ({
+  name: getPersonName(state, ownProps),
+}))(Profile);

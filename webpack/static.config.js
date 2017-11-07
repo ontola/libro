@@ -12,19 +12,17 @@ config.entry = [
 
 config.output.filename = 'bundle-[chunkhash].js';
 
-config.module.rules.unshift(
-  {
-    test: /(\.jsx\.js)?$/,
-    use: ['babel-loader'],
-    include: [
-      /app/,
-      /node_modules\/whatwg-url/,
-      /node_modules\/universal-url/,
-      /node_modules\/webidl-conversions/,
-      /node_modules\/ml-disjoint-set/,
-    ],
-  }
-);
+config.module.rules.unshift({
+  test: /(\.jsx\.js)?$/,
+  use: ['babel-loader'],
+  include: [
+    /app/,
+    /node_modules\/whatwg-url/,
+    /node_modules\/universal-url/,
+    /node_modules\/webidl-conversions/,
+    /node_modules\/ml-disjoint-set/,
+  ],
+});
 
 config.module.rules.push({
   test: /\.scss$/,
@@ -44,10 +42,8 @@ config.plugins.push(
   }),
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify('production'),
-    'process.env.ARGU_API_EXT_BASE': JSON.stringify(
-      process.env.ARGU_API_EXT_BASE ||
-      'https://beta.argu.co/api/'
-    ),
+    'process.env.ARGU_API_EXT_BASE': JSON.stringify(process.env.ARGU_API_EXT_BASE ||
+      'https://beta.argu.co/api/'),
   }),
   new webpack.ProvidePlugin({
     fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',

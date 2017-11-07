@@ -5,12 +5,10 @@ import { assert } from 'chai';
 
 import Markdown from './';
 
-const comp = shallow(
-  <Markdown
-    text="Joep is cool"
-    highlightedText="Joe"
-  />
-);
+const comp = shallow(<Markdown
+  highlightedText="Joe"
+  text="Joep is cool"
+/>);
 
 describe('Markdown component', () => {
   it('Markdown should render', () => {

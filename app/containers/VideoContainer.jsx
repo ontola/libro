@@ -38,8 +38,6 @@ class VideoContainer extends Component {
 
 VideoContainer.propTypes = propTypes;
 
-export default connect(
-  dispatch => ({
-    onSetTime: date => dispatch(setEventTime(date)),
-  })
-)(VideoContainer);
+export default connect(dispatch => ({
+  onSetTime: date => dispatch(setEventTime(date)),
+}))(VideoContainer);

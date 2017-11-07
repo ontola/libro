@@ -21,13 +21,11 @@ const mockItemsObject = new Map({
 const renderItem = id => <div key={id}>{id}</div>;
 const wrapper = items => shallow(<List items={items} renderItem={renderItem} />);
 const wrapperObjects = shallow(<List items={mockItemsObject} renderItem={renderItem} />);
-const wrapperHorizontal = shallow(
-  <List
-    align="horizontal"
-    items={mockItems}
-    renderItem={renderItem}
-  />
-);
+const wrapperHorizontal = shallow(<List
+  align="horizontal"
+  items={mockItems}
+  renderItem={renderItem}
+/>);
 
 describe('List component', () => {
   it('should render all items in array/object', () => {

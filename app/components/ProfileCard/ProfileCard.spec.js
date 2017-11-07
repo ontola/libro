@@ -22,10 +22,10 @@ describe('ProfileCard component', () => {
   it('renders party members', () => {
     const comp = mount(
       <ProfileCard
+        bio="Trololol"
+        image="http://uinames.com/api/photos/male/40.jpg"
         name="Matthew Obrien"
         party="D66"
-        image="http://uinames.com/api/photos/male/40.jpg"
-        bio="Trololol"
         similarity={65}
       />,
       ctx.empty()

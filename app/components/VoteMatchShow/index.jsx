@@ -91,8 +91,8 @@ class VoteMatchShow extends Component {
           {motionIds.map(id => (
             <div
               className="VoteMatchShow__motion"
-              ref={(r) => { this.sections[id] = r; }}
               key={id}
+              ref={(r) => { this.sections[id] = r; }}
             >
               <Cover fullScreen>
                 <Container>
@@ -112,9 +112,9 @@ class VoteMatchShow extends Component {
               <Card>
                 {comparedProfiles.map(profile => (
                   <VoteMatchResultProfileContainer
+                    motionIds={motionIds}
                     profileId={profile}
                     voteMatchId={voteMatchId}
-                    motionIds={motionIds}
                   />
                 ))}
               </Card>

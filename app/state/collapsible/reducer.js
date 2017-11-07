@@ -43,8 +43,7 @@ const toggleAll = (state, group) => {
   }
 
   return state.set('items', state.get('items').map(coll =>
-    coll.set('opened', false)
-  ));
+    coll.set('opened', false)));
 };
 
 const recordCollapsible = ({ group, startOpened }) =>

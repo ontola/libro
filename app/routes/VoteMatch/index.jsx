@@ -44,8 +44,8 @@ class VoteMatch extends Component {
         <Helmet title={`Vergelijk opinies met ${name}`} />
         <VoteMatchContainer id={currentUrl()} />
         <ProgressBar
-          context={`VoteMatch - ${name}`}
           completed={currentIndex}
+          context={`VoteMatch - ${name}`}
           total={motionsLength}
         />
       </div>

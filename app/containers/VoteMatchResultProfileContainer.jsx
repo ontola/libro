@@ -25,9 +25,7 @@ const mapStateToProps = (state, props) => ({
   score: getVoteMatchSimilarity(state, props),
 });
 
-const VoteMatchResultProfileContainer = connect(
-  mapStateToProps
-)(VoteMatchResultBar);
+const VoteMatchResultProfileContainer = connect(mapStateToProps)(VoteMatchResultBar);
 
 VoteMatchResultProfileContainer.propTypes = propTypes;
 

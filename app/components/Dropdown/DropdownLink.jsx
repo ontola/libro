@@ -13,7 +13,7 @@ const DropdownLink = ({
   children,
 }) => (
   <a className="DropdownLink" href={url}>
-    {icon && <FontAwesome name={icon} className="DropdownLink__icon" />}
+    {icon && <FontAwesome className="DropdownLink__icon" name={icon} />}
     <span className={icon && 'DropdownLink__text--icon-left'}>{children}</span>
   </a>
 );

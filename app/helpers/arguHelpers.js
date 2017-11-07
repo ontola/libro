@@ -10,7 +10,7 @@ import React from 'react';
  */
 export function image(props) {
   if (props.image) {
-    return <img src={props.image.url} alt={props.image.title} className={props.image.className} />;
+    return <img alt={props.image.title} className={props.image.className} src={props.image.url} />;
   } else if (props.fa) {
     return <span className={['fa', props.fa].join(' ')} />;
   }

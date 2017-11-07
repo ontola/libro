@@ -31,7 +31,7 @@ const ArgumentShow = ({
 }) => (
   <Card>
     <CardHeader noSpacing>
-      <Heading variant={side} size="3">{name}</Heading>
+      <Heading size="3" variant={side}>{name}</Heading>
       <DetailsBar>
         {creator && <PersonContainer user={creator} />}
         {createdAt && <DetailDate date={createdAt} />}

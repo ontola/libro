@@ -43,9 +43,9 @@ const ChronoItem = ({
       <CardContent>
         {currentDate && endDate &&
           <Progress
-            total={totalDuration}
             completed={completedDuration}
             direction="down"
+            total={totalDuration}
           />
         }
         <DetailsBar>
@@ -55,12 +55,12 @@ const ChronoItem = ({
           }
           {startDate && endDate &&
             <DetailDate
-              startDate={startDate}
-              endDate={endDate}
+              asHours
               currentDate={currentDate}
+              endDate={endDate}
               floatRight
               hideIcon
-              asHours
+              startDate={startDate}
             />
           }
         </DetailsBar>

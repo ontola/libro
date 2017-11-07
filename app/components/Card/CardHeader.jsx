@@ -18,7 +18,8 @@ const CardHeader = ({
     className={
       noSpacing ? 'CardHeader CardHeader--no-spacing' : 'CardHeader'
     }
-  >{children}</div>
+  >{children}
+  </div>
 );
 
 CardHeader.propTypes = propTypes;

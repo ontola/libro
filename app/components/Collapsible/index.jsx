@@ -37,7 +37,8 @@ const Collapsible = ({
         e.preventDefault();
         onClickToggle();
       }}
-    >{trigger}</a>
+    >{trigger}
+    </a>
   );
 
   const tabIndex = () => {

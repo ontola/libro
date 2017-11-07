@@ -48,14 +48,14 @@ class VoteMatchContainer extends Component {
 
     return (
       <VoteMatchShow
-        voteMatchId={id}
         comparedProfiles={data.comparables}
-        name={data.name}
-        text={data.text}
         currentIndex={countUserVotes}
         motionIds={motionIds}
+        name={data.name}
         onSave={onSaveScore}
         similarity={similarity}
+        text={data.text}
+        voteMatchId={id}
       />
     );
   }

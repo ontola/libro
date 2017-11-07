@@ -13,8 +13,8 @@ const OrgSwitcher = ({
 }) => (
   <div className="OrgSwitcher">
     <img
-      role="Presentation"
       className="OrgSwitcher__image"
+      role="Presentation"
       src={imageUrl}
     />
     <span className="OrgSwitcher__name">{name}</span>

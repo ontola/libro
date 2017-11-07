@@ -21,7 +21,9 @@ const classString = forSubMenu => classNames({
   'SideBarLink--bold': forSubMenu,
 });
 
-const href = ({ children, forSubMenu, handleClick, linkedProp }) => (
+const href = ({
+  children, forSubMenu, handleClick, linkedProp
+}) => (
   <div className={classString(forSubMenu)}>
     <Link
       activeClassName="SideBarLink--active"

@@ -19,7 +19,8 @@ describe('Count actions', () => {
     assert.deepEqual(
       models.Count.fetch(SPECIFIC_COUNT_ID),
       expectedAction,
-      'Action is not formatted correctly');
+      'Action is not formatted correctly'
+    );
   });
 
   it('should have an action to get all Counts', () => {
@@ -35,6 +36,7 @@ describe('Count actions', () => {
     assert.deepEqual(
       models.Count.index(),
       expectedAction,
-      'Action is not formatted correctly');
+      'Action is not formatted correctly'
+    );
   });
 });

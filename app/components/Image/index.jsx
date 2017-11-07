@@ -11,7 +11,9 @@ const propTypes = {
 };
 
 function Image(props) {
-  const { className, override, style, linkedProp } = props;
+  const {
+    className, override, style, linkedProp
+  } = props;
   if (linkedProp.startsWith(FABase)) {
     return <FontAwesome name={linkedProp.split(FABase)[1]} />;
   }

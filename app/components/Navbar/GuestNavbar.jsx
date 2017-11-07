@@ -11,7 +11,7 @@ const childrenLeft = () => [
 ];
 
 const childrenRight = () => [
-  <a href="/users/sign_in" id="sign_in" className="Navbar__item Navbar__item-text">
+  <a className="Navbar__item Navbar__item-text" href="/users/sign_in" id="sign_in">
     <span className="fa fa-sign-in" />
     <span className="icon-left dont-hide">Sign in</span>
   </a>,

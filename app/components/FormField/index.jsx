@@ -70,8 +70,8 @@ const FormField = ({
     <div className={`Field ${className} ${classes}`}>
       {label &&
         <label
-          htmlFor={id}
           className="Field__label"
+          htmlFor={id}
         >
           {label}
         </label>
@@ -80,9 +80,9 @@ const FormField = ({
         {...input}
         autoComplete={autoComplete}
         className="Field__input"
-        rows={rows}
         id={id}
         placeholder={placeholder}
+        rows={rows}
         type={type}
       />
       {touched && (error || warning) &&

@@ -39,8 +39,8 @@ const DetailVotedFor = ({ side }) => {
   return (
     <Detail
       className={className}
-      text={text}
       icon={icon}
+      text={text}
     />
   );
 };

@@ -43,9 +43,9 @@ const EventItemShow = ({
 
   const progress = isCurrent ? (
     <Progress
-      total={totalDuration(startDate, endDate)}
       completed={completedDuration(startDate, currentDate)}
       direction="down"
+      total={totalDuration(startDate, endDate)}
     />) :
     false;
 
@@ -60,12 +60,12 @@ const EventItemShow = ({
     <DetailsBar>
       {((startDate)) &&
         <DetailDate
-          currentDate={currentDate}
-          startDate={startDate}
-          endDate={endDate}
-          isCurrent={isCurrent}
           asHours
+          currentDate={currentDate}
+          endDate={endDate}
           hideIcon
+          isCurrent={isCurrent}
+          startDate={startDate}
         />}
       {text &&
         <Detail
@@ -89,10 +89,10 @@ const EventItemShow = ({
       {showIndex && !isCurrent && indexComponent}
       {text &&
         <CollapsibleContainer
-          trigger={heading}
-          visibleContent={detailsBar}
           group={`event.${eventId}`}
           id={`eventItem.${id}`}
+          trigger={heading}
+          visibleContent={detailsBar}
         >
           {content}
         </CollapsibleContainer>

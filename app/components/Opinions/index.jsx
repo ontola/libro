@@ -24,22 +24,20 @@ const Opinions = ({ pro, con }) => {
   const message = (party, side, msg) => `De partij ${party} is ${side} met ${msg} stemmen`;
 
   const listProOpinions = pro.map((o, i) =>
-    <Opinion
+    (<Opinion
       key={i}
-      side={o.option}
-      owner={o.group.name}
       msg={message(o.group.name, o.option, o.value)}
-    />
-  );
+      owner={o.group.name}
+      side={o.option}
+    />));
 
   const listConOpinions = con.map((o, i) =>
-    <Opinion
+    (<Opinion
       key={i}
-      side={o.option}
-      owner={o.group.name}
       msg={message(o.group.name, o.option, o.value)}
-    />
-  );
+      owner={o.group.name}
+      side={o.option}
+    />));
 
   return (
     <div className="Opinions">

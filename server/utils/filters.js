@@ -16,9 +16,7 @@ async function getGuestToken(req) {
   if (response.status >= 300) {
     return Promise.reject(new errors.InternalServerErrorError());
   }
-  const expiresAt = new Date(
-    (body.created_at * SERVER_TIMESTAMP_MULTI) + (body.expires_in * SERVER_TIMESTAMP_MULTI)
-  );
+  const expiresAt = new Date((body.created_at * SERVER_TIMESTAMP_MULTI) + (body.expires_in * SERVER_TIMESTAMP_MULTI));
   if (body.token_type !== 'bearer') {
     return Promise.reject(new errors.UnauthorizedError());
   }

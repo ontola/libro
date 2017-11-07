@@ -57,11 +57,9 @@ class Collection extends PropertyBase {
   }
 }
 
-const ConnectedCollection = lowLevel.linkedSubject(lowLevel.linkedVersion(connect(
-  (state, { subject }) => ({
-    currentPage: getPage(state, subject.value)
-  })
-)(Collection)));
+const ConnectedCollection = lowLevel.linkedSubject(lowLevel.linkedVersion(connect((state, { subject }) => ({
+  currentPage: getPage(state, subject.value)
+}))(Collection)));
 
 const CollectionSection = ({ subject }, { linkedRenderStore }) => viewsOrMembers(
   getLinkedObjectPropertyRaw(NS.argu('views'), subject, linkedRenderStore),
@@ -73,9 +71,7 @@ CollectionSection.contextTypes = {
   linkedRenderStore: PropTypes.object,
 };
 
-const ConnectedCollectionSection = lowLevel.linkedSubject(lowLevel.linkedVersion(
-  CollectionSection
-));
+const ConnectedCollectionSection = lowLevel.linkedSubject(lowLevel.linkedVersion(CollectionSection));
 
 LinkedRenderStore.registerRenderer(ConnectedCollection, [NS.argu('Collection'), NS.hydra('Collection')]);
 LinkedRenderStore.registerRenderer(

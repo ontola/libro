@@ -14,9 +14,9 @@ const CountBubble = ({
   count,
 }) => (
   <AnimateOnChange
-    baseClassName="CountBubble"
-    animationClassName="CountBubble--pop-out"
     animate={count !== 0}
+    animationClassName="CountBubble--pop-out"
+    baseClassName="CountBubble"
   >
     <div className="CountBubble__number">
       {count}

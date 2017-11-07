@@ -20,7 +20,7 @@ const CardDivider = ({
   lineColor,
   text,
 }) =>
-  <div
+  (<div
     style={{
       width: '100%',
       height: '1px',
@@ -42,7 +42,7 @@ const CardDivider = ({
       >
         {text}
       </span>}
-  </div>;
+   </div>);
 
 CardDivider.defaultProps = defaultProps;
 CardDivider.propTypes = propTypes;

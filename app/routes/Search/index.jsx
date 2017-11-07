@@ -70,7 +70,9 @@ const translations = {
 };
 
 const ResetFiltersDisplay = (data) => {
-  const { bemBlock, hasFilters, translate, resetFilters } = data;
+  const {
+    bemBlock, hasFilters, translate, resetFilters
+  } = data;
   return (
     <div className={`sk-panel ${bemBlock().state({ disabled: !hasFilters })}`}>
       <Button small theme="subtle" onClick={resetFilters}>{translate('reset.clear_all')}</Button>
@@ -122,7 +124,8 @@ class Search extends Component {
                   small
                   theme="subtle"
                   onClick={toggleDrawerAction}
-                >Filter</Button>
+                >Filter
+                </Button>
               </div>
               <div className="Search__hits">{`${hits} resultaten`}</div>
               <SortingSelector listComponent={Select} options={sortOption} />

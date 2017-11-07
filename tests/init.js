@@ -5,8 +5,10 @@ module.exports = {
     browser
       .url(`${browser.launch_url}/`)
       .waitForElementVisible('body', DELAY)
-      .assert.containsText('.Box__content p',
-        'Lorem ipsum')
+      .assert.containsText(
+        '.Box__content p',
+        'Lorem ipsum'
+      )
       .end();
   },
 };

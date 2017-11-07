@@ -9,7 +9,7 @@ const propTypes = {
 /**
  * Link that also works for external URL's. Don't pass a href attribute.
  */
- // eslint-disable-next-line react/prefer-stateless-function
+// eslint-disable-next-line react/prefer-stateless-function
 export default class LinkDuo extends Component {
   render() {
     return isExternal(this.props.to) ?

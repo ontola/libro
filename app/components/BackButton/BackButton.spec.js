@@ -5,9 +5,7 @@ import { assert } from 'chai';
 
 import BackButton from './';
 
-const comp = mount(
-  <BackButton link="http://argu.co/">Go back</BackButton>
-);
+const comp = mount(<BackButton link="http://argu.co/">Go back</BackButton>);
 
 describe('BackButton component', () => {
   it('should render', () => {

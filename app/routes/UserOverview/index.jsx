@@ -77,38 +77,38 @@ const UserOverview = () => (
       </Link>
     </Widget>
     <Widget
-      title="Gelijkenis"
       description="Berekend met het stemgedrag van de partijleden op moties.
       Klik op een partij om te zien waarover ze verschillend stemden."
+      title="Gelijkenis"
     >
       <CompareVotesBar
+        compareAllLink=""
         label="GroenLinks"
         mainPercentage={80}
-        compareAllLink=""
         tags={tags}
       />
       <CompareVotesBar
+        compareAllLink=""
         label="PvdA"
         mainPercentage={72}
-        compareAllLink=""
         tags={tags}
       />
       <CompareVotesBar
+        compareAllLink=""
         label="VVD"
         mainPercentage={55}
-        compareAllLink=""
         tags={tags}
       />
       <CompareVotesBar
+        compareAllLink=""
         label="CDA"
         mainPercentage={25}
-        compareAllLink=""
         tags={tags}
       />
     </Widget>
     <Widget
-      title="Thema focus"
       description="Deze onderwerpen kwamen relatief vaak voor in de moties van dit persoon."
+      title="Thema focus"
     >
       <Link to="/"><Tag suffix="56%">Defensie</Tag></Link>
       <Link to="/"><Tag suffix="24%">Cultuur</Tag></Link>

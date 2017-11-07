@@ -19,7 +19,8 @@ describe('Argument actions', () => {
     assert.deepEqual(
       models.Argument.fetch(SPECIFIC_ARGUMENT_ID),
       expectedAction,
-      'Action is not formatted correctly');
+      'Action is not formatted correctly'
+    );
   });
 
   it('should have an action to get all arguments', () => {
@@ -35,6 +36,7 @@ describe('Argument actions', () => {
     assert.deepEqual(
       models.Argument.index(),
       expectedAction,
-      'Action is not formatted correctly');
+      'Action is not formatted correctly'
+    );
   });
 });

@@ -25,10 +25,10 @@ const OrganizationSidebarBlock = ({
   <div>
     <SideBarLink icon="search" label="Moties zoeken" to={path.search()} />
     <SideBarLink
+      count={voteMatchCount}
       icon="compass"
       label="Stemwijzer maken"
       to={path.createVoteMatch()}
-      count={voteMatchCount}
     />
     <SideBarLink icon="th-large" label="Overzicht" to={path.index()} isIndex />
     <Property label={NS.argu('menus')} topology={NS.argu('sidebar')} />

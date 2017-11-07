@@ -21,15 +21,15 @@ const SearchInput = ({
   handleSubmit,
   lastSearchValue,
 }) =>
-  <form
+  (<form
     onSubmit={handleSubmit}
     className="SideBar__search-form"
   >
     <Field
-      name="search"
-      placeholder="Zoeken..."
       className="SideBar__search"
       component="input"
+      name="search"
+      placeholder="Zoeken..."
       type="text"
     />
     {(currentValue || lastSearchValue) &&
@@ -47,9 +47,7 @@ const SearchInput = ({
         Zoek
       </Button>
     }
-  </form>
-;
-
+   </form>);
 SearchInput.propTypes = propTypes;
 
 const formName = 'searchLocalInput';
@@ -58,11 +56,9 @@ const SearchInputForm = reduxForm({
   form: formName,
 })(SearchInput);
 
-const SearchInputContainer = connect(
-  state => ({
-    lastSearchValue: currentQuerySelector(state),
-    currentValue: formValueSelector(formName)(state, 'search'),
-  })
-)(SearchInputForm);
+const SearchInputContainer = connect(state => ({
+  lastSearchValue: currentQuerySelector(state),
+  currentValue: formValueSelector(formName)(state, 'search'),
+}))(SearchInputForm);
 
 export default SearchInputContainer;

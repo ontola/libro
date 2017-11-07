@@ -25,21 +25,19 @@ const SpeechContainer = ({
     currentDate={data.currentDate}
     endDate={data.endDate}
     eventId={data.eventId}
+    highlightedText={searchQuery}
     id={data.id}
     speaker={data.speakerId}
     startDate={data.startDate}
-    highlightedText={searchQuery}
     text={data.text}
-    type={data.type}
     title={data.title}
+    type={data.type}
   />
 );
 
 SpeechContainer.propTypes = propTypes;
 
-export default connect(
-  (state, ownProps) => ({
-    searchQuery: text(state),
-    data: getSpeech(state, ownProps),
-  })
-)(SpeechContainer);
+export default connect((state, ownProps) => ({
+  searchQuery: text(state),
+  data: getSpeech(state, ownProps),
+}))(SpeechContainer);

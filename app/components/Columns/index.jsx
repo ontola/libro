@@ -37,16 +37,15 @@ const Columns = ({
   });
 
   const renderColumns = children.map((column, i) =>
-    <div
-      key={i}
+    (<div
       className="Column"
+      key={i}
       style={{
         flexBasis,
       }}
     >
       {column}
-    </div>
-  );
+     </div>));
 
   return (
     <div className={className}>{renderColumns}</div>

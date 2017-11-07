@@ -41,37 +41,37 @@ const ArgumentForm = ({
       >
         <Field
           autoComplete="Off"
+          className={`Field--heading Field--${side}`}
+          component={FormField}
+          element="input"
           id={`Argument${side}Title`}
           name="name"
           placeholder={headingtext()}
-          className={`Field--heading Field--${side}`}
-          element="input"
-          component={FormField}
           type="text"
           variant="preview"
         />
         <Field
+          component={FormField}
+          element="textArea"
           id={`Argument${side}Description`}
           name="text"
           placeholder="Toelichting (optioneel)..."
-          component={FormField}
           rows={3}
-          element="textArea"
           variant="preview"
         />
         <CardActions noSpacing>
           <Button
-            theme="box"
             icon="times"
+            theme="box"
           >
             Annuleren
           </Button>
           <Button
-            loading={submitting}
             disabled={invalid}
-            type="submit"
-            theme="box"
             icon="send"
+            loading={submitting}
+            theme="box"
+            type="submit"
           >
             Opslaan
           </Button>
@@ -123,7 +123,6 @@ const mapDispatchToProps = dispatch => ({
 
 const ArgumentFormContainer = connect(mapStateToProps, mapDispatchToProps)(reduxForm({
   validate,
-}
-)(ArgumentForm));
+})(ArgumentForm));
 
 export default ArgumentFormContainer;

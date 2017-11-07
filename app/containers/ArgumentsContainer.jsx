@@ -21,8 +21,8 @@ const renderItem = arg => (
   <ArgumentListItem
     key={arg.id}
     name={arg.name}
-    text={arg.text}
     side={arg.side}
+    text={arg.text}
   />
 );
 
@@ -36,9 +36,7 @@ const ArgumentsContainer = ({ argsPro, argsCon }) => (
 ArgumentsContainer.propTypes = propTypes;
 ArgumentsContainer.defaultProps = defaultProps;
 
-export default connect(
-  (state, ownProps) => ({
-    argsPro: getArgsPro(state, ownProps),
-    argsCon: getArgsCon(state, ownProps),
-  })
-)(ArgumentsContainer);
+export default connect((state, ownProps) => ({
+  argsPro: getArgsPro(state, ownProps),
+  argsCon: getArgsCon(state, ownProps),
+}))(ArgumentsContainer);

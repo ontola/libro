@@ -37,8 +37,8 @@ const MotionListItem = ({
       </Heading>
       <DetailsBar>
         {creator && <PersonContainer user={creator} />}
-        {status && <DetailStatus status={status} icon="clock-o" />}
-        {side && <DetailVotedFor side={side} icon="clock-o" />}
+        {status && <DetailStatus icon="clock-o" status={status} />}
+        {side && <DetailVotedFor icon="clock-o" side={side} />}
         <DetailDate date={createdAt} />
       </DetailsBar>
     </CardHeader>

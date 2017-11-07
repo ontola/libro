@@ -5,7 +5,7 @@ import { assert } from 'chai';
 
 import Progress from './';
 
-const comp = shallow(<Progress completed={2} total={4} direction="down" />);
+const comp = shallow(<Progress completed={2} direction="down" total={4} />);
 
 describe('Progress component', () => {
   it('Progress should render', () => {

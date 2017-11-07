@@ -45,8 +45,8 @@ const DetailDuration = ({
   return (
     <Detail
       className={elapsedTimeClass}
-      text={formattedDuration(totalDuration, completedDuration)}
       floatRight={floatRight}
+      text={formattedDuration(totalDuration, completedDuration)}
     />
   );
 };

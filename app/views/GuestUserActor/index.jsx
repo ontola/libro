@@ -20,11 +20,9 @@ const GuestUserActor = ({ redirectURL }) => (
 
 GuestUserActor.propTypes = propTypes;
 
-const GuestUserActorConnected = connect(
-  () => ({
-    redirectURL: window.location.href,
-  })
-)(GuestUserActor);
+const GuestUserActorConnected = connect(() => ({
+  redirectURL: window.location.href,
+}))(GuestUserActor);
 
 LinkedRenderStore.registerRenderer(
   GuestUserActorConnected,

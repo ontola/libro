@@ -31,7 +31,7 @@ const BottomBar = ({
   ].join(' ');
 
   return (
-    <div style={style} className={classNames}>
+    <div className={classNames} style={style}>
       <BottomBarButton
         icon="bars"
         isIndex

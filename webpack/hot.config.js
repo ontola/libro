@@ -19,19 +19,17 @@ config.cache = true;
 
 config.devtool = 'eval';
 
-config.module.rules.unshift(
-  {
-    exclude: /node_modules/,
-    include: /app/,
-    test: /(\.jsx\.js)?$/,
-    use: [{
-      loader: 'happypack/loader',
-      options: {
-        id: 'babel'
-      }
-    }],
-  }
-);
+config.module.rules.unshift({
+  exclude: /node_modules/,
+  include: /app/,
+  test: /(\.jsx\.js)?$/,
+  use: [{
+    loader: 'happypack/loader',
+    options: {
+      id: 'babel'
+    }
+  }],
+});
 
 config.module.rules.push({
   test: /\.scss$/,

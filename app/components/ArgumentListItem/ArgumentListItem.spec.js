@@ -6,13 +6,11 @@ import HoverBox from '../HoverBox';
 
 import ArgumentListItem from './';
 
-const comp = mount(
-  <ArgumentListItem
-    title="Zakken stinken de garage uit"
-    text="Liefst de container nog voor de zomer. De zakken stinken nu al de garage uit"
-    side="pro"
-  />
-);
+const comp = mount(<ArgumentListItem
+  side="pro"
+  text="Liefst de container nog voor de zomer. De zakken stinken nu al de garage uit"
+  title="Zakken stinken de garage uit"
+/>);
 
 describe('ArgumentListItem component', () => {
   it('should render', () => {

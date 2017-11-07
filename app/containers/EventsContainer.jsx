@@ -18,8 +18,8 @@ const defaultProps = {
 
 const renderEventContainer = data => (
   <EventContainer
-    key={data.id}
     eventId={data.id}
+    key={data.id}
     renderItem={EventListItem}
   />
 );
@@ -31,7 +31,7 @@ class EventsContainer extends Component {
 
   render() {
     const { events } = this.props;
-    return events.size > 0 && <List renderItem={renderEventContainer} items={events} />;
+    return events.size > 0 && <List items={events} renderItem={renderEventContainer} />;
   }
 }
 

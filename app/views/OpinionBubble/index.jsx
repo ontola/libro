@@ -18,14 +18,14 @@ const OpinionBubble = ({
   name,
 }) => (
   <div
-    title={name}
     className="OpinionBubble"
+    title={name}
   >
     {image &&
       <img
         alt={name}
-        src={image}
         className="OpinionBubble__image"
+        src={image}
       />
     }
     {!image && name &&

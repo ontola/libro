@@ -30,7 +30,7 @@ class Detail extends PropertyBase {
       return <Property label={NS.schema('image')} />;
     }
     return this.props.imageUrl &&
-      <img src={this.props.imageUrl} className="Detail__image" role="presentation" />;
+      <img className="Detail__image" role="presentation" src={this.props.imageUrl} />;
   }
 
   getText() {

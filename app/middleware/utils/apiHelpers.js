@@ -52,29 +52,29 @@ export const callApi = (apiBaseUrl, { payload }) => {
     method: method || 'GET',
     ...headers(),
   }))
-  .then(response => response.json()
-  .then(json => ({ json, response })))
-  .then(({ json, response }) => {
-    LinkedRenderStore.api.processor.worker.postMessage({
-      data: {
-        body: JSON.stringify(json),
-        headers: {
-          Accept: response.headers.get('Accept'),
-          'Content-Type': response.headers.get('Content-Type'),
+    .then(response => response.json()
+      .then(json => ({ json, response })))
+    .then(({ json, response }) => {
+      LinkedRenderStore.api.processor.worker.postMessage({
+        data: {
+          body: JSON.stringify(json),
+          headers: {
+            Accept: response.headers.get('Accept'),
+            'Content-Type': response.headers.get('Content-Type'),
+          },
+          status: response.status,
+          url: response.url,
         },
-        status: response.status,
-        url: response.url,
-      },
-      method: 'DATA_ACQUIRED',
-      params: {
-        iri: response.url,
-      },
+        method: 'DATA_ACQUIRED',
+        params: {
+          iri: response.url,
+        },
+      });
+      if (!response.ok) {
+        return Promise.reject(json);
+      }
+      return Promise.resolve(json);
     });
-    if (!response.ok) {
-      return Promise.reject(json);
-    }
-    return Promise.resolve(json);
-  });
 };
 
 /**

@@ -39,7 +39,7 @@ const SubMenuSideBar = ({
       </Property>
       <Button
         plain
-        alt={'Menu uitvouwen of inklappen'}
+        alt="Menu uitvouwen of inklappen"
         className="SideBarCollapsible__toggle"
         onClick={onClickToggle}
       >

@@ -15,11 +15,9 @@ const propTypes = {
   eventId: PropTypes.string.isRequired,
 };
 
-const SpeechesContainer = connect(
-  (state, ownProps) => ({
-    speechIds: getFilteredSpeechesForEvent(state, ownProps),
-  })
-)(ChronoFeed);
+const SpeechesContainer = connect((state, ownProps) => ({
+  speechIds: getFilteredSpeechesForEvent(state, ownProps),
+}))(ChronoFeed);
 
 SpeechesContainer.propTypes = propTypes;
 

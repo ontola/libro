@@ -13,16 +13,17 @@ const defaultProps = {
 const LinkList = ({ links }) => {
   const generateLinks = links.map((link, i) => (
     <Link
-      onlyActiveOnIndex
-      key={i}
-      className="LinkList__link"
       activeClassName="LinkList__link--active"
+      className="LinkList__link"
+      key={i}
+      onlyActiveOnIndex
       to={link.to}
-    >{link.label}</Link>
+    >{link.label}
+    </Link>
   ));
 
   return (
-    <nav role="navigation" className="LinkList">{generateLinks}</nav>
+    <nav className="LinkList" role="navigation">{generateLinks}</nav>
   );
 };
 

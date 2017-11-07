@@ -29,9 +29,7 @@ const Iframe = ({ location, title }) => (
 
 Iframe.propTypes = propTypes;
 
-export default connect(
-    state => ({
-      location: state.getIn(['iframe', 'location']),
-      title: state.getIn(['iframe', 'metadata', 'title']),
-    })
-)(Iframe);
+export default connect(state => ({
+  location: state.getIn(['iframe', 'location']),
+  title: state.getIn(['iframe', 'metadata', 'title']),
+}))(Iframe);

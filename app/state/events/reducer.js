@@ -6,7 +6,7 @@ import {
   GET_EVENT,
   SET_EVENT_TIME,
   TOGGLE_SHOW_VIDEO,
- } from '../action-types';
+} from '../action-types';
 
 const initialState = new Map({
   items: new Map(),

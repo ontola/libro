@@ -34,11 +34,11 @@ class FBShareItem extends Component {
     return (
       <div className={`link ${this.props.type}`}>
         <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href={this.props.url}
           data-turbolinks="false"
+          href={this.props.url}
           onClick={this.handleClick}
+          rel="noopener noreferrer"
+          target="_blank"
         >
           {image({ fa: 'fa-facebook' })}
           <span className="icon-left">Facebook {this.countInParentheses()}</span>

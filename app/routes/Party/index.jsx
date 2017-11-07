@@ -32,11 +32,11 @@ const Party = ({
       <Container>
         <BackButton link={path.partiesIndex()}>Terug naar alle partijen</BackButton>
         <ProfileCard
-          id={params.partyId}
-          name="D66"
-          image="/static/logos/d66.png"
           bio="Samen sterker - kansen voor iedereen"
           full
+          id={params.partyId}
+          image="/static/logos/d66.png"
+          name="D66"
         />
       </Container>
     </Cover>

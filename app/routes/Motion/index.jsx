@@ -38,11 +38,11 @@ const defaultProps = {
 
 const renderArgument = data => (
   <ArgumentShow
+    createdAt={data.createdAt}
+    creator={data.creator}
     key={data.id}
     name={data.name}
-    creator={data.creator}
     side={data.side}
-    createdAt={data.createdAt}
     text={data.text}
   />
 );
@@ -68,10 +68,10 @@ const Motion = ({
     <Container size="large">
       <Columns column-size="medium" total-size="large">
         <div>
-          <Heading variant="column" size="3">Voordelen</Heading>
+          <Heading size="3" variant="column">Voordelen</Heading>
           <List
-            renderItem={renderArgument}
             items={argsPro}
+            renderItem={renderArgument}
           />
           {!formProOpen &&
             <Button
@@ -82,16 +82,16 @@ const Motion = ({
             </Button>}
           {formProOpen &&
             <ArgumentForm
-              side="pro"
               motionId={params.motionId}
+              side="pro"
             />
           }
         </div>
         <div>
-          <Heading variant="column" size="3">Problemen</Heading>
+          <Heading size="3" variant="column">Problemen</Heading>
           <List
-            renderItem={renderArgument}
             items={argsCon}
+            renderItem={renderArgument}
           />
           {!formConOpen &&
             <Button
@@ -103,8 +103,8 @@ const Motion = ({
           }
           {formConOpen &&
             <ArgumentForm
-              side="con"
               motionId={params.motionId}
+              side="con"
             />
           }
         </div>

@@ -8,10 +8,10 @@ const propTypes = {
 };
 
 const VoteEvents = ({ linkedProp }) =>
-  <LinkedObjectContainer
+  (<LinkedObjectContainer
     object={linkedProp}
     topology={NS.argu('voteEventCollection')}
-  />;
+  />);
 
 VoteEvents.propTypes = propTypes;
 

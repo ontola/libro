@@ -35,8 +35,7 @@ const voteMatch = handleActions({
 
   [VOTE_MATCH_INIT]: (state, { payload }) => state.withMutations(s => s
     .set('currentVoteMatch', payload.id)
-    .set('currentIndex', 0)
-  ),
+    .set('currentIndex', 0)),
 
   [VOTE_MATCH_NEXT]: state =>
     increaseValue(state, 'currentIndex'),
@@ -51,14 +50,14 @@ const voteMatch = handleActions({
     updateRecordValue(state, payload.id, 'voteables', payload.voteables),
 
   [VOTE_MATCH_REMOVE_VOTEABLE]: (state, { payload }) =>
-    state.updateIn(['items', payload.id, 'voteables'],
-      voteables => voteables.filter(
-        voteable => voteable !== payload.voteable
-      )
+    state.updateIn(
+      ['items', payload.id, 'voteables'],
+      voteables => voteables.filter(voteable => voteable !== payload.voteable)
     ),
 
   [VOTE_MATCH_ADD_VOTEABLE]: (state, { payload }) =>
-    state.updateIn(['items', payload.id, 'voteables'],
+    state.updateIn(
+      ['items', payload.id, 'voteables'],
       voteables => voteables.push(payload.voteable)
     ),
 }, initialState);

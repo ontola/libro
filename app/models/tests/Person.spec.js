@@ -19,7 +19,8 @@ describe('Persons actions', () => {
     assert.deepEqual(
       models.Person.fetch(SPECIFIC_PERSON_ID),
       expectedAction,
-      'Action is not formatted correctly');
+      'Action is not formatted correctly'
+    );
   });
 
   it('should have an action to get all Persons', () => {
@@ -35,6 +36,7 @@ describe('Persons actions', () => {
     assert.deepEqual(
       models.Person.index(),
       expectedAction,
-      'Action is not formatted correctly');
+      'Action is not formatted correctly'
+    );
   });
 });

@@ -33,9 +33,7 @@ const LinkVoteMatch = ({
 
 LinkVoteMatch.propTypes = propTypes;
 
-export default connect(
-  state => ({
-    current: state.getIn(['voteMatch', 'currentIndex']),
-    url: window.location.href,
-  })
-)(LinkVoteMatch);
+export default connect(state => ({
+  current: state.getIn(['voteMatch', 'currentIndex']),
+  url: window.location.href,
+}))(LinkVoteMatch);

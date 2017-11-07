@@ -19,7 +19,8 @@ describe('Motion actions', () => {
     assert.deepEqual(
       models.Motion.fetch(SPECIFIC_MOTION_ID),
       expectedAction,
-      'Action is not formatted correctly');
+      'Action is not formatted correctly'
+    );
   });
 
   it('should have an action to get all motions', () => {
@@ -35,6 +36,7 @@ describe('Motion actions', () => {
     assert.deepEqual(
       models.Motion.index(),
       expectedAction,
-      'Action is not formatted correctly');
+      'Action is not formatted correctly'
+    );
   });
 });

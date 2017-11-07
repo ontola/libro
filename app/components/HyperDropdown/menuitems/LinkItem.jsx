@@ -49,17 +49,17 @@ class LinkItem extends Component {
       <div className={type}>
         {divider}
         <a
-          href={url}
-          target={target}
-          data-remote={data && data.remote}
-          data-method={data && data.method}
-          data-confirm={data && data.confirm}
-          onMouseDownCapture={this.handleMouseDown}
-          data-turbolinks={data && data.turbolinks}
-          data-sort-value={data && data['sort-value']}
-          data-filter-value={data && data['filter-value']}
-          data-display-setting={data && data['display-setting']}
           className={className}
+          data-confirm={data && data.confirm}
+          data-display-setting={data && data['display-setting']}
+          data-filter-value={data && data['filter-value']}
+          data-method={data && data.method}
+          data-remote={data && data.remote}
+          data-sort-value={data && data['sort-value']}
+          data-turbolinks={data && data.turbolinks}
+          href={url}
+          onMouseDownCapture={this.handleMouseDown}
+          target={target}
         >
           {image(this.props)}
           <span className={(this.props.image || fa) ? 'icon-left' : ''}>

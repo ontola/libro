@@ -42,9 +42,11 @@ class DropdownContent extends ScrollLockedComponent {
         this.leaveTimeout = window.setTimeout(() => {
           this.setState(
             { appearState: 'Dropdown--leave Dropdown--leave-active' },
-            () => { this.innerLeaveTimeout = window.setTimeout(callback, 200); });
+            () => { this.innerLeaveTimeout = window.setTimeout(callback, 200); }
+          );
         }, 0);
-      });
+      }
+    );
   }
 
   componentWillUnmount() {

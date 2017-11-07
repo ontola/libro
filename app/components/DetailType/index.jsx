@@ -80,8 +80,8 @@ const DetailType = ({
   return (
     <Detail
       className={`DetailType ${className}`}
-      text={classification || text}
       icon={icon}
+      text={classification || text}
       title={classification || title}
     />
   );

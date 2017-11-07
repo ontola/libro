@@ -45,9 +45,9 @@ const BottomBarButton = ({
     <div className="BottomBarButton">
       {to &&
         <Link
-          to={to}
           activeClassName="BottomBarButton--active"
           onlyActiveOnIndex={isIndex}
+          to={to}
         >
           {LinkContent}
         </Link>}

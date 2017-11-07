@@ -24,8 +24,8 @@ const Widget = ({
   <div className="Widget">
     <Heading size="2">
       {to &&
-        <Link to={to} className="Widget__link">
-          {title} <FontAwesome name="chevron-right" className="Widget__chevron" />
+        <Link className="Widget__link" to={to}>
+          {title} <FontAwesome className="Widget__chevron" name="chevron-right" />
         </Link>
       }
       {!to && title}

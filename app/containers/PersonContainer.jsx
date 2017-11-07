@@ -13,8 +13,8 @@ import {
 
 const defaultRenderItem = user => (
   <Detail
-    text={user.name}
     imageUrl={user.image}
+    text={user.name}
     url={path.profile(user.id)}
   />
 );
@@ -43,7 +43,9 @@ class PersonContainer extends Component {
   }
 
   render() {
-    const { data, renderItem, full, similarity } = this.props;
+    const {
+      data, renderItem, full, similarity
+    } = this.props;
     return data !== undefined && renderItem(data, full, similarity);
   }
 }

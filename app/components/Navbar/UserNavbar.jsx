@@ -13,8 +13,8 @@ const propTypes = {
 
 const linkItem = (title, url, image) => (
   <DropdownLink
-    url={url}
     icon={image}
+    url={url}
   >
     {title}
   </DropdownLink>

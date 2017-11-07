@@ -15,20 +15,18 @@ config.externals = [
 
 config.output = {};
 
-config.module.rules.unshift(
-  {
-    include: [
-      /app/,
-      /node_modules\/link-redux/,
-      /node_modules\/whatwg-url/,
-      /node_modules\/universal-url/,
-      /node_modules\/webidl-conversions/,
-      /node_modules\/ml-disjoint-set/,
-    ],
-    test: /(\.jsx\.js)?$/,
-    use: ['babel-loader'],
-  }
-);
+config.module.rules.unshift({
+  include: [
+    /app/,
+    /node_modules\/link-redux/,
+    /node_modules\/whatwg-url/,
+    /node_modules\/universal-url/,
+    /node_modules\/webidl-conversions/,
+    /node_modules\/ml-disjoint-set/,
+  ],
+  test: /(\.jsx\.js)?$/,
+  use: ['babel-loader'],
+});
 
 config.module.rules.push({
   loader: 'null-loader',

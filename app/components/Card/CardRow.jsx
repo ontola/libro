@@ -18,7 +18,8 @@ const CardRow = ({
     className={
       showArrow ? 'CardRow CardRow--show-arrow' : 'CardRow'
     }
-  >{children}</div>
+  >{children}
+  </div>
 );
 
 CardRow.propTypes = propTypes;

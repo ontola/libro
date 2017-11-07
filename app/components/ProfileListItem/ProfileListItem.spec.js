@@ -5,12 +5,10 @@ import { assert } from 'chai';
 
 import ProfileListItem from './';
 
-const comp = mount(
-  <ProfileListItem
-    link="https://argu.co"
-    name="Matthew Obrien"
-  />
-);
+const comp = mount(<ProfileListItem
+  link="https://argu.co"
+  name="Matthew Obrien"
+/>);
 
 describe('ProfileListItem component', () => {
   it('ProfileListItem should render', () => {

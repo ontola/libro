@@ -41,14 +41,14 @@ const VoteDataRenderItem = ({
   return (
     <VoteData
       counts={counts}
-      votes={votes}
-      result={data.result}
-      startDate={data.startDate}
       endDate={data.endDate}
       legislativeSession={data.legislativeSession}
-      organization={data.organization}
-      // optionCounts={data.optionCounts}
       optionCounts={optionCounts()}
+      organization={data.organization}
+      result={data.result}
+      startDate={data.startDate}
+      // optionCounts={data.optionCounts}
+      votes={votes}
     />
   );
 };
@@ -61,8 +61,6 @@ const mapStateToProps = (state, props) => ({
   votes: getVoteEventVotesSorted(state, props),
 });
 
-const VoteEventContainer = connect(
-  mapStateToProps
-)(VoteDataRenderItem);
+const VoteEventContainer = connect(mapStateToProps)(VoteDataRenderItem);
 
 export default VoteEventContainer;

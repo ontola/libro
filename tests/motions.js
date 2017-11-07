@@ -10,7 +10,8 @@ module.exports = {
       .waitForElementVisible('.List', DELAY)
       .assert.containsText(
         '.List .Card:first-child a',
-        'Het Heroverwegen van de positie van de toezichthouder')
+        'Het Heroverwegen van de positie van de toezichthouder'
+      )
       .end();
   },
 };

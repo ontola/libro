@@ -38,7 +38,8 @@ const CardButton = ({
       onClick={() => action()}
       theme="box"
       variant={type}
-    >{children}</Button>
+    >{children}
+    </Button>
   );
 };
 

@@ -1,7 +1,6 @@
 /* eslint no-param-reassign: 0 */
 export const toCamel = key => key.replace(/(_\w)/g, substring =>
-  substring.toUpperCase().replace('_', '')
-);
+  substring.toUpperCase().replace('_', ''));
 
 export default class DataStore {
   /**
@@ -15,7 +14,9 @@ export default class DataStore {
     });
   }
 
-  formatEntity({ id, type, attributes, relationships }) {
+  formatEntity({
+    id, type, attributes, relationships
+  }) {
     const entity = {};
 
     Object.assign(entity, { id });

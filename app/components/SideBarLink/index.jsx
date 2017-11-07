@@ -42,10 +42,10 @@ const SideBarLink = ({
   return (
     <div className={classes}>
       <Link
-        to={to}
         activeClassName="SideBarLink--active"
-        onlyActiveOnIndex={isIndex}
         onClick={() => closeBarOnClick()}
+        onlyActiveOnIndex={isIndex}
+        to={to}
       >
         {icon && <div className="SideBarLink__icon">
           <FontAwesome name={icon} />

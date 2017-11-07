@@ -41,9 +41,7 @@ class VoteMatchItem extends React.Component { //eslint-disable-line
               display: 'block',
             }}
           >
-            {dragHandle(
-              <FontAwesome name="bars" />
-            )}
+            {dragHandle(<FontAwesome name="bars" />)}
           </span>
           <LinkedObjectContainer object={item} topology="argu:inline" />
           <Button

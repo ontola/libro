@@ -44,7 +44,7 @@ const EventShow = ({
   title,
 }) => {
   const renderEventItem = eventItem => (
-    <EventItemContainer id={eventItem} eventId={id} />
+    <EventItemContainer eventId={id} id={eventItem} />
   );
 
   return (
@@ -56,8 +56,8 @@ const EventShow = ({
             <DetailType type="meeting" />
             <DetailDate
               createdAt={createdAt}
-              startsAt={startDate}
               endDate={endDate}
+              startsAt={startDate}
             />
             <Detail>{status}</Detail>
           </DetailsBar>
@@ -73,13 +73,13 @@ const EventShow = ({
           >
             Agendapunten uitklappen
           </Button>
-          <TimelineShowButton id={'Timeline'} />
+          <TimelineShowButton id="Timeline" />
         </CardContent>
         {eventItems && eventItems.length > 0 &&
           <div>
             <List
-              renderItem={renderEventItem}
               items={eventItems}
+              renderItem={renderEventItem}
             />
           </div>
         }

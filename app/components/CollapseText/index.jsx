@@ -50,7 +50,7 @@ const CollapseText = ({
         </CollapsibleContainer>
         <Button
           plain
-          alt={'Menu uitvouwen of inklappen'}
+          alt="Menu uitvouwen of inklappen"
           className="CollapseText__toggle"
           onClick={() => onClickToggle()}
         >

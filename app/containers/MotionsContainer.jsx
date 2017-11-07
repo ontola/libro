@@ -39,7 +39,7 @@ class MotionsContainer extends Component {
     //   { id: 'c0e2a617-79f2-e511-9672-e4115babb880' },
     //   { id: '3137bf58-89f5-e511-9672-e4115babb880' },
     // ];
-    return motions.length > 0 && <List renderItem={renderMotionContainer} items={motions} />;
+    return motions.length > 0 && <List items={motions} renderItem={renderMotionContainer} />;
   }
 }
 

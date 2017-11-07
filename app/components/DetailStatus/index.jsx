@@ -60,8 +60,8 @@ const DetailStatus = ({
   return (
     <Detail
       className={getValue('className')}
-      text={`Status: ${getValue('text')}`}
       icon={getValue('icon')}
+      text={`Status: ${getValue('text')}`}
       title={getValue('title')}
     />
   );

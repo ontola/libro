@@ -14,7 +14,7 @@ import './properties/menuItems';
 const OrganizationsMenu = () => (
   <Dropdown
     contentClassName="Dropdown__organizations_menu__content"
-    trigger={<FontAwesome name={'caret-square-o-down'} />}
+    trigger={<FontAwesome name="caret-square-o-down" />}
   >
     <Property label={NS.argu('menuItems')} />
   </Dropdown>

@@ -43,7 +43,7 @@ const DetailPure = ({
       title={title}
     >
       {imageUrl &&
-        <img src={imageUrl} className="Detail__image" role="presentation" />
+        <img className="Detail__image" role="presentation" src={imageUrl} />
       }
       {!imageUrl && icon && !hideIcon &&
         <span className="Detail__icon">

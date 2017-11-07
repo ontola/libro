@@ -73,7 +73,7 @@ const Home = () => (
         {motions.map(id => <MotionContainer key={id} motionId={id} renderItem={MotionListItem} />)}
       </Widget>
       <Widget title="Vergaderingen" >
-        {events.map(id => <EventContainer key={id} id={id} renderItem={EventListItem} />)}
+        {events.map(id => <EventContainer id={id} key={id} renderItem={EventListItem} />)}
       </Widget>
       <Widget title="Statistieken">
         <Link to={path.partiesIndex()}>
@@ -116,8 +116,8 @@ const Home = () => (
         </CardContent>
       </Widget>
       <Widget
-        title="Ranglijst aantal moties"
         description="Gebaseerd op moties van de afgelopen 6 maanden."
+        title="Ranglijst aantal moties"
       >
         {motionsPerUser.map(user => (
           <Link key={user.name} to="/">

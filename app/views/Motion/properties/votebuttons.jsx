@@ -42,14 +42,14 @@ class VoteButtons extends PropertyBase {
         method: 'POST',
       })
     )
-    .then(statusSuccess);
+      .then(statusSuccess);
   }
 
   handleNotAMember(response) {
     if (response.type === 'error' &&
       response.error_id === 'NOT_A_MEMBER') {
       return this.createMembership(response)
-      .then(() => this.vote(response.original_request.for));
+        .then(() => this.vote(response.original_request.for));
     }
     return Promise.resolve();
   }
@@ -71,27 +71,27 @@ class VoteButtons extends PropertyBase {
         method: 'POST',
       })
     )
-    .then(statusSuccess, tryLogin)
-    .then(json, tryLogin)
-    .then((data) => {
-      if (typeof data !== 'undefined') {
-        this.setState(data.vote);
-      }
-    })
-    .then(() => {
-      if (this.props.onVoteCompleted) {
-        return this.props.onVoteCompleted();
-      }
-      return Promise.resolve();
-    })
-    .catch((e) => {
-      if (e.status === 403) {
-        return e.json()
-          .then(this.handleNotAMember);
-      }
-      // Bugsnag.notifyException(e);
-      throw e;
-    });
+      .then(statusSuccess, tryLogin)
+      .then(json, tryLogin)
+      .then((data) => {
+        if (typeof data !== 'undefined') {
+          this.setState(data.vote);
+        }
+      })
+      .then(() => {
+        if (this.props.onVoteCompleted) {
+          return this.props.onVoteCompleted();
+        }
+        return Promise.resolve();
+      })
+      .catch((e) => {
+        if (e.status === 403) {
+          return e.json()
+            .then(this.handleNotAMember);
+        }
+        // Bugsnag.notifyException(e);
+        throw e;
+      });
   }
 
   shouldComponentUpdate(nextProps, nextState) {

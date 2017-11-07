@@ -23,10 +23,10 @@ const GeneratedIcon = ({
 
   return (
     <div
+      className="GeneratedIcon"
       style={{
         backgroundColor: backgroundColor(),
       }}
-      className="GeneratedIcon"
     >
       <div
         className="GeneratedIcon__text"

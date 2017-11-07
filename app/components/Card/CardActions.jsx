@@ -18,7 +18,8 @@ const CardActions = ({
     className={
       noSpacing ? 'CardActions CardActions--no-spacing' : 'CardActions'
     }
-  >{children}</div>
+  >{children}
+  </div>
 );
 
 CardActions.propTypes = propTypes;
