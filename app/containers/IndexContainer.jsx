@@ -2,7 +2,7 @@ import { RenderStoreProvider } from 'link-redux';
 import LinkedRenderStore from 'link-lib';
 import React, { PropTypes } from 'react';
 import { Provider } from 'react-redux';
-import { applyRouterMiddleware, Router } from 'react-router';
+import { Router, applyRouterMiddleware } from 'react-router';
 import { useScroll } from 'react-router-scroll';
 
 import routes from '../routes';

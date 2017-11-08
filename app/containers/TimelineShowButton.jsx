@@ -1,14 +1,12 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+
+import { openSideBar } from 'state/sideBars/actions';
+import { getSideBarDocked } from 'state/sideBars/selectors';
+
 import {
   Button,
 } from '../components';
-import {
-  openSideBar,
-} from 'state/sideBars/actions';
-import {
-  getSideBarDocked,
-} from 'state/sideBars/selectors';
 
 const propTypes = {
   docked: PropTypes.bool.isRequired,

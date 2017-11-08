@@ -1,9 +1,9 @@
 import { getValueOrID } from 'link-lib';
 import {
+  LinkedObjectContainer,
   contextTypes,
   getLinkedObjectPropertyRaw,
   labelType,
-  LinkedObjectContainer,
   subjectType
 } from 'link-redux';
 import React from 'react';

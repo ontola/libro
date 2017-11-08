@@ -1,5 +1,6 @@
 /* eslint no-magic-numbers: 0 */
 import { assert } from 'chai';
+
 import path from '../paths';
 
 describe('Path helpers', () => {

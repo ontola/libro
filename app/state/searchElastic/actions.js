@@ -1,4 +1,5 @@
 import { createAction } from 'redux-actions';
+
 import * as actions from '../action-types';
 
 const toggleDrawer = createAction(actions.TOGGLE_DRAWER);

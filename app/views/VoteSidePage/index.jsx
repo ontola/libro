@@ -1,7 +1,7 @@
 import { RENDER_CLASS_NAME } from 'link-lib';
 import {
-  getLinkedObjectPropertyRaw,
   LinkedObjectContainer,
+  getLinkedObjectPropertyRaw,
   lowLevel,
   subjectType,
 } from 'link-redux';

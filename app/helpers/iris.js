@@ -11,3 +11,5 @@ export function retrievePath(iriString) {
   const iri = iriString && new URL(iriString);
   return iri && iri.pathname + iri.search;
 }
+
+export default retrievePath;

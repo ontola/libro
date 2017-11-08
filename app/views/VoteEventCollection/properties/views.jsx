@@ -1,8 +1,8 @@
 import {
-  getLinkedObjectProperty,
   LinkedObjectContainer,
-  lowLevel,
+  getLinkedObjectProperty,
   labelType,
+  lowLevel,
   subjectType,
 } from 'link-redux';
 import React, { PropTypes } from 'react';

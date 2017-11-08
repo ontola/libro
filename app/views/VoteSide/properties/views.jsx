@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import { getValueOrID } from 'link-lib';
 import {
-  getLinkedObjectProperty,
   LinkedObjectContainer,
+  getLinkedObjectProperty,
   labelType,
   linkedPropType,
   subjectType,

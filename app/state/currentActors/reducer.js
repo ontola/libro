@@ -1,5 +1,6 @@
-import { GET_CURRENT_ACTOR } from '../action-types';
 import CurrentActor from 'models/CurrentActor';
+
+import { GET_CURRENT_ACTOR } from '../action-types';
 
 const initialState = new CurrentActor();
 

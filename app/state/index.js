@@ -1,6 +1,6 @@
 import { linkMiddleware } from 'link-redux';
 import { routerMiddleware } from 'react-router-redux';
-import { applyMiddleware, createStore, compose } from 'redux';
+import { applyMiddleware, compose, createStore } from 'redux';
 import { enableBatching } from 'redux-batched-actions';
 import { combineReducers } from 'redux-immutable';
 // import { reducer as search, reduxSearch } from 'redux-search';

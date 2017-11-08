@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 
 import {
+  durationToHumanizedString,
   formatDate,
   formatDateCalendar,
-  durationToHumanizedString,
 } from 'helpers/date';
 
 import Detail from '../Detail';

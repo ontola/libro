@@ -1,8 +1,9 @@
-import { handleActions } from 'redux-actions';
 import { Map } from 'immutable';
+import { handleActions } from 'redux-actions';
 
 import { setRecord } from 'helpers/reducers';
 import Vote from 'models/Vote';
+
 import { GET_VOTE, SET_VOTE } from '../action-types';
 
 const initialState = new Map({

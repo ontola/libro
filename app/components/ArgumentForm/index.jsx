@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Field, reduxForm, formValueSelector } from 'redux-form/immutable';
+import { Field, formValueSelector, reduxForm } from 'redux-form/immutable';
 import { connect } from 'react-redux';
 
 import Argument from '../../models/Argument';

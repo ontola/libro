@@ -1,6 +1,7 @@
-import './LinkList.scss';
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+
+import './LinkList.scss';
 
 const propTypes = {
   links: PropTypes.arrayOf(PropTypes.object).isRequired,

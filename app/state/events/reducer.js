@@ -1,7 +1,8 @@
-import { handleActions } from 'redux-actions';
 import { Map } from 'immutable';
+import { handleActions } from 'redux-actions';
 
 import { setRecord } from 'helpers/reducers';
+
 import {
   GET_EVENT,
   SET_EVENT_TIME,

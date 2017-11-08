@@ -1,10 +1,10 @@
 import { handleActions } from 'redux-actions';
-import { Map, List } from 'immutable';
+import { List, Map } from 'immutable';
 
 import {
   increaseValue,
-  updateRecordValue,
   setRecord,
+  updateRecordValue,
 } from 'helpers/reducers';
 import VoteMatch from 'models/VoteMatch';
 

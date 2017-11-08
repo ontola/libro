@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { VoteData } from '../components';
 import React, { PropTypes } from 'react';
 
 import Vote from 'models/Vote';
@@ -7,9 +6,9 @@ import {
   getVoteEvent,
   getVoteEventVotesSorted,
 } from 'state/voteEvents/selectors';
-import {
-  getVoteEventCountsSorted,
-} from 'state/counts/selectors';
+import { getVoteEventCountsSorted } from 'state/counts/selectors';
+
+import { VoteData } from '../components';
 
 const propTypes = {
   counts: PropTypes.arrayOf(PropTypes.shape({

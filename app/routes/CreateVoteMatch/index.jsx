@@ -19,6 +19,7 @@ import VoteMatchItemContainer from 'containers/VoteMatchItemContainer';
 import paths from 'helpers/paths';
 import { getVoteMatchMotionIds } from 'state/voteMatch/selectors';
 import { voteMatchUpdateMotions } from 'state/voteMatch/actions';
+
 import VoteMatch from '../../models/VoteMatch';
 
 const propTypes = {

@@ -2,9 +2,9 @@ import { assert } from 'chai';
 import moment from 'moment';
 
 import {
-  formatDate,
-  durationToString,
   durationToHumanizedString,
+  durationToString,
+  formatDate,
 } from '../date';
 
 const TIMESTAMP = 1457172000000;

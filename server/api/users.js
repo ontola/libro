@@ -7,3 +7,5 @@ export const createUserRequest = email =>
     },
     path: 'users',
   });
+
+export default createUserRequest;

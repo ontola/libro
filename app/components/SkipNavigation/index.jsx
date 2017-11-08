@@ -1,5 +1,6 @@
-import './SkipNavigation.scss';
 import React from 'react';
+
+import './SkipNavigation.scss';
 
 const SkipNavigation = () => (
   <div className="SkipNavigation">

@@ -5,7 +5,6 @@ import {
   Container,
   Heading,
 } from 'components';
-
 import SignInFormContainer from 'containers/SignInFormContainer';
 
 const propTypes = {

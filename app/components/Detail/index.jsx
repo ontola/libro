@@ -1,10 +1,11 @@
-import './Detail.scss';
 import { Property, PropertyBase, subjectType } from 'link-redux';
 import React, { PropTypes } from 'react';
-import { browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
+import { browserHistory } from 'react-router';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+
+import './Detail.scss';
 
 const contextTypes = {
   subject: subjectType,

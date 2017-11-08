@@ -1,5 +1,6 @@
-import './Tag.scss';
 import React, { PropTypes } from 'react';
+
+import './Tag.scss';
 
 const propTypes = {
   /** Label of the tag. */

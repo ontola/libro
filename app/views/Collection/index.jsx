@@ -1,9 +1,9 @@
 import { RENDER_CLASS_NAME } from 'link-lib';
 import {
-  getLinkedObjectPropertyRaw,
   LinkedObjectContainer,
   Property,
   PropertyBase,
+  getLinkedObjectPropertyRaw,
   lowLevel,
 } from 'link-redux';
 import React, { PropTypes } from 'react';

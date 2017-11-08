@@ -7,8 +7,8 @@ import {
 } from '../../../components';
 import { ARGU_API_URL, FRONTEND_URL } from '../../../config';
 import {
-  safeCredentials,
   json,
+  safeCredentials,
   statusSuccess,
   tryLogin,
 } from '../../../helpers/arguHelpers';

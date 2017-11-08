@@ -1,7 +1,7 @@
 import {
   PropertyBase,
-  lowLevel,
   getLinkedObjectPropertyRaw,
+  lowLevel,
 } from 'link-redux';
 import React, { PropTypes } from 'react';
 import moment from 'moment';

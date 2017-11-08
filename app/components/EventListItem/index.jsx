@@ -4,8 +4,8 @@ import { Link } from 'react-router';
 import path from 'helpers/paths';
 
 import {
-  CardRow,
   CardHeader,
+  CardRow,
 } from '../Card';
 import DetailDate from '../DetailDate';
 import DetailsBar from '../DetailsBar';

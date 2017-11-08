@@ -2,11 +2,11 @@ import Immutable from 'immutable';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { EventListItem, List } from '../components';
+import { fetchEvents } from 'state/events/actions';
+import { getEvents } from 'state/events/selectors';
 import EventContainer from 'containers/EventContainer';
 
-import { getEvents } from 'state/events/selectors';
-import { fetchEvents } from 'state/events/actions';
+import { EventListItem, List } from '../components';
 
 const propTypes = {
   events: PropTypes.instanceOf(Immutable.List),

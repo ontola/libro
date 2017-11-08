@@ -1,5 +1,6 @@
-import { createSelector } from 'reselect';
 import { getSearchSelectors } from 'redux-search';
+import { createSelector } from 'reselect';
+
 import { getEventSpeechIds } from 'state/events/selectors';
 
 export const getSpeeches = state =>

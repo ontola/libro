@@ -81,11 +81,9 @@
     "import/no-extraneous-dependencies": ["error", {
       "devDependencies": true
     }],
-    "import/imports-first": 0,
-    "import/prefer-default-export": 0,
-    "import/newline-after-import": 0,
-    "import/first": "warn",
-    "import/order": ["warn", {
+    "import/prefer-default-export": "error",
+    "import/first": "error",
+    "import/order": ["error", {
       "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
       "newlines-between": "always"
     }],

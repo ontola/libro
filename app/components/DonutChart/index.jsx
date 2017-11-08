@@ -1,6 +1,7 @@
-import './DonutChart.scss';
-import React, { Component, PropTypes } from 'react';
 import c3 from 'c3';
+import React, { Component, PropTypes } from 'react';
+
+import './DonutChart.scss';
 
 const defaultColors = [
   '#1395BA',

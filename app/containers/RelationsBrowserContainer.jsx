@@ -3,7 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { getP } from 'link-lib';
-import { fetchLinkedObject, LinkedObjectContainer } from 'link-redux';
+import { LinkedObjectContainer, fetchLinkedObject } from 'link-redux';
 import { Statement } from 'rdflib';
 
 import {

@@ -7,7 +7,6 @@ import {
   setRecord,
   toggleValue,
 } from 'helpers/reducers';
-
 import Vote from 'models/Vote';
 
 const record = new Vote({

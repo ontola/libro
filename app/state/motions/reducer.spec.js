@@ -1,11 +1,12 @@
-
 import chai, { assert } from 'chai';
 import { Map } from 'immutable';
 import chaiImmutable from 'chai-immutable';
 
-import motions from './reducer';
 import * as models from 'models';
+
 import * as actions from '../action-types';
+
+import motions from './reducer';
 
 chai.use(chaiImmutable);
 

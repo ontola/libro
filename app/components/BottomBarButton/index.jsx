@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
+import { Link } from 'react-router';
 
 import Button from '../Button';
 

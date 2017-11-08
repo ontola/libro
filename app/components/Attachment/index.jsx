@@ -1,7 +1,7 @@
-// @flow
-import './Attachment.scss';
 import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
+
+import './Attachment.scss';
 
 const propTypes = {
   /** Label that is displayed */

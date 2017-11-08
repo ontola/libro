@@ -1,11 +1,11 @@
-// @flow
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { VideoPlayer } from '../components';
 
 import {
   setEventTime,
 } from 'state/events/actions';
+
+import { VideoPlayer } from '../components';
 
 const propTypes = {
   onSetTime: PropTypes.func.isRequired,

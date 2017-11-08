@@ -4,10 +4,8 @@ import Helmet from 'react-helmet';
 
 import { ProgressBar } from 'components';
 import VoteMatchContainer from 'containers/VoteMatchContainer';
-
 import { fetchPerson } from 'state/persons/actions';
 import { getPersonName } from 'state/persons/selectors';
-
 import {
   getVoteMatchCountUserVotes,
   getVoteMatchMotionIdsLength,

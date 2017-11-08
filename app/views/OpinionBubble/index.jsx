@@ -1,4 +1,3 @@
-import './OpinionBubble.scss';
 import { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
 import React, { PropTypes } from 'react';
@@ -7,6 +6,9 @@ import {
   GeneratedIcon,
 } from '../../components';
 import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
+
+import './OpinionBubble.scss';
+import './properties/creator';
 
 const propTypes = {
   image: PropTypes.string,
@@ -59,5 +61,3 @@ LinkedRenderStore.registerRenderer(
   RENDER_CLASS_NAME,
   NS.argu('voteSidePage')
 );
-
-import './properties/creator';

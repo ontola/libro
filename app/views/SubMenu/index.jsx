@@ -1,9 +1,9 @@
-import React, { PropTypes } from 'react';
-import { getP, RENDER_CLASS_NAME } from 'link-lib';
-import { Property } from 'link-redux';
-import { connect } from 'react-redux';
 import classNames from 'classnames';
+import { RENDER_CLASS_NAME, getP } from 'link-lib';
+import { Property } from 'link-redux';
+import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
+import { connect } from 'react-redux';
 
 import CollapsibleContainer from 'containers/CollapsibleContainer';
 import { initializeCollapsible, toggleOne } from 'state/collapsible/actions';

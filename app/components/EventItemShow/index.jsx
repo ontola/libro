@@ -1,4 +1,3 @@
-// @flow
 import React, { PropTypes } from 'react';
 
 import CollapsibleContainer from 'containers/CollapsibleContainer';

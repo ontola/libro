@@ -2,7 +2,6 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'react-router';
 
-import articles from '../../articles';
 import path from 'helpers/paths';
 import {
   CardContent,
@@ -11,6 +10,8 @@ import {
   Heading,
   Widget,
 } from 'components';
+
+import articles from '../../articles';
 
 const renderLink = article => (
   <Link to={path.info(article)}>

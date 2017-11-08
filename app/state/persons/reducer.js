@@ -1,8 +1,9 @@
-import { handleActions } from 'redux-actions';
 import { Map } from 'immutable';
+import { handleActions } from 'redux-actions';
 
-import { Person } from 'models';
 import { setRecord } from 'helpers/reducers';
+import { Person } from 'models';
+
 import { GET_PERSON } from '../action-types';
 
 const initialState = new Map({

@@ -1,8 +1,9 @@
 import { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { getSearchHits, getDrawerVisible } from 'state/searchElastic/selectors';
+import { getDrawerVisible, getSearchHits } from 'state/searchElastic/selectors';
 import { toggleDrawer } from 'state/searchElastic/actions';
+
 import { Drawer } from '../components';
 
 const propTypes = {

@@ -1,4 +1,4 @@
-import { linkedPropType, Property } from 'link-redux';
+import { Property, linkedPropType } from 'link-redux';
 import React, { PropTypes } from 'react';
 
 import { CompareVotesBar } from '../../../components';

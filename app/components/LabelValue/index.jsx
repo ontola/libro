@@ -1,5 +1,6 @@
-import './LabelValue.scss';
 import React, { PropTypes } from 'react';
+
+import './LabelValue.scss';
 
 const propTypes = {
   children: PropTypes.node,

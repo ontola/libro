@@ -1,5 +1,6 @@
-import './List.scss';
 import React, { PropTypes } from 'react';
+
+import './List.scss';
 
 const propTypes = {
   align: PropTypes.oneOf([

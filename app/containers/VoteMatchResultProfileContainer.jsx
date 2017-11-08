@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 
 import Vote from 'models/Vote';
 import {
-  getVoteMatchUserVotes,
-  getVoteMatchMotionIds,
   getVoteMatchComparedProfilePositions,
+  getVoteMatchMotionIds,
   getVoteMatchSimilarity,
+  getVoteMatchUserVotes,
 } from 'state/voteMatch/selectors';
 import {
   getGroupName,

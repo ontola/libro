@@ -1,15 +1,14 @@
-import { handleActions } from 'redux-actions';
 import { Map, Record } from 'immutable';
+import { handleActions } from 'redux-actions';
 
 import {
   setRecord,
   toggleValue,
 } from 'helpers/reducers';
-
 import {
   COLL_ADD,
-  COLL_TOGGLE_ONE,
   COLL_TOGGLE_GROUP,
+  COLL_TOGGLE_ONE,
 } from 'state/action-types';
 
 export const Collapsible = Record({

@@ -6,3 +6,5 @@ export const gotoPage = createAction(
   actions.GOTO_PAGE,
   (collectionIRI, page) => ({ collectionIRI, page })
 );
+
+export default gotoPage;

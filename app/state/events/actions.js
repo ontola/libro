@@ -1,5 +1,7 @@
-import Event from 'models/Event';
 import { createAction } from 'redux-actions';
+
+import Event from 'models/Event';
+
 import * as actions from '../action-types';
 
 export const setEventTime = createAction(actions.SET_EVENT_TIME);

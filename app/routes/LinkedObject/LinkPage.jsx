@@ -5,8 +5,8 @@ import Helmet from 'react-helmet';
 
 import {
   Notification,
-  Spinner,
   SkipNavigation,
+  Spinner,
 } from 'components';
 import SideBarContainer from 'containers/SideBarContainer';
 import BottomBarContainer from 'containers/BottomBarContainer';

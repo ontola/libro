@@ -1,10 +1,10 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { Link } from 'react-router';
 import {
-  InitialLoader,
   Hits,
+  InitialLoader,
   NoHits,
   Pagination,
   RangeFilter,
@@ -25,7 +25,7 @@ import {
 import DrawerContainer from 'containers/DrawerContainer';
 import SearchResultContainer from 'containers/SearchResultContainer';
 import { getSearchHits } from 'state/searchElastic/selectors';
-import { toggleDrawer, setHitCount } from 'state/searchElastic/actions';
+import { setHitCount, toggleDrawer } from 'state/searchElastic/actions';
 import { formatDate } from 'helpers/date';
 import paths from 'helpers/paths';
 

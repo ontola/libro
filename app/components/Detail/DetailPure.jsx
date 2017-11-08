@@ -1,7 +1,9 @@
-import './Detail.scss';
 import React, { PropTypes } from 'react';
-import { browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
+import { browserHistory } from 'react-router';
+
+import './Detail.scss';
+
 const propTypes = {
   className: PropTypes.string,
   /** Since Detail uses flexbox, you need to place right floating Details

@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+
 import { getCount } from 'state/counts/selectors';
 
 export const getGroupId = (state, props) => {

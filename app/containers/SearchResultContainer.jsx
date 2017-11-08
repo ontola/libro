@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react';
 
-import { SearchResultItem } from '../components';
-
 import * as constants from '../../app/config';
+import { SearchResultItem } from '../components';
 
 const propTypes = {
   result: PropTypes.shape({

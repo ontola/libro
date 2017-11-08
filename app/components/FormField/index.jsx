@@ -1,6 +1,7 @@
-import './FormField.scss';
-import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import React, { PropTypes } from 'react';
+
+import './FormField.scss';
 
 const propTypes = {
   autoComplete: PropTypes.string,

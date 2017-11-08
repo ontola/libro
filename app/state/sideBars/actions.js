@@ -1,6 +1,6 @@
-import * as actions from '../action-types';
-
 import { createAction } from 'redux-actions';
+
+import * as actions from '../action-types';
 
 export const closeSideBar = createAction(actions.SIDEBAR_CLOSE);
 export const dockSideBar = createAction(actions.SIDEBAR_DOCK);

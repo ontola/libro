@@ -1,9 +1,10 @@
 import chai, { assert } from 'chai';
-import { Map } from 'immutable';
 import chaiImmutable from 'chai-immutable';
+import { Map } from 'immutable';
+
+import * as actions from '../action-types';
 
 import collapsible, { Collapsible } from './reducer';
-import * as actions from '../action-types';
 
 chai.use(chaiImmutable);
 

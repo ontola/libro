@@ -12,14 +12,13 @@ import {
   Heading,
   List,
 } from 'components';
-import Argument from 'models/Argument';
-import VoteEvent from 'models/VoteEvent';
-
-import { getMotionTitle, getMotionVoteEvents } from 'state/motions/selectors';
-import { getArgsPro, getArgsCon } from 'state/argumentations/selectors';
 import MotionContainer from 'containers/MotionContainer';
 import VoteEventContainer from 'containers/VoteEventContainer';
 import path from 'helpers/paths';
+import Argument from 'models/Argument';
+import VoteEvent from 'models/VoteEvent';
+import { getArgsCon, getArgsPro } from 'state/argumentations/selectors';
+import { getMotionTitle, getMotionVoteEvents } from 'state/motions/selectors';
 
 const propTypes = {
   argsPro: PropTypes.arrayOf(Argument),

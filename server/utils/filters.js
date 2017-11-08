@@ -1,7 +1,7 @@
-const MILLISECONDS = 1000;
-
 import * as errors from './errors';
 import handleAsyncErrors from './handleAsyncErrors';
+
+const MILLISECONDS = 1000;
 
 /**
  * Fetches a new guest token from the server and stores it in the session.

@@ -1,6 +1,6 @@
-import * as actions from '../action-types';
-
 import { createAction } from 'redux-actions';
+
+import * as actions from '../action-types';
 
 /**
  * Toggle the open state of a single collapsible

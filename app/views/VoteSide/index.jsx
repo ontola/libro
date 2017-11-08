@@ -1,11 +1,13 @@
 import { RENDER_CLASS_NAME } from 'link-lib';
 import {
-  lowLevel,
   Property,
+  lowLevel,
 } from 'link-redux';
 import React, { PropTypes } from 'react';
 
 import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
+
+import './properties/views';
 
 const propTypes = {
   grandTotal: PropTypes.number,
@@ -34,7 +36,5 @@ LinkedRenderStore.registerRenderer(
   RENDER_CLASS_NAME,
   NS.argu('voteSide')
 );
-
-import './properties/views';
 
 export default VoteSide;

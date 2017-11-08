@@ -1,20 +1,19 @@
-import '../../components/shared/init.scss';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
 import {
   Notification,
-  Spinner,
   SkipNavigation,
+  Spinner,
 } from 'components';
-
 import SideBarContainer from 'containers/SideBarContainer';
 import BottomBarContainer from 'containers/BottomBarContainer';
 import NewNavbarContainer from 'containers/NewNavbarContainer';
-
 import resetErrorMessage from 'state/communication/actions';
 import { getErrorBool, getErrorMsg, getLoadingBool } from 'state/communication/selectors';
+
+import '../../components/shared/init.scss';
 
 const propTypes = {
   children: PropTypes.node.isRequired,

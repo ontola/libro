@@ -1,6 +1,7 @@
-import './VideoPlayer.scss';
 import React, { Component, PropTypes } from 'react';
 import Video from 'react-html5video';
+
+import './VideoPlayer.scss';
 
 const propTypes = {
   url: PropTypes.string,

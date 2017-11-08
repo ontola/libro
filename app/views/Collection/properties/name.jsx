@@ -1,8 +1,8 @@
 import {
-  getLinkedObjectProperty,
-  lowLevel,
   PropertyBase,
+  getLinkedObjectProperty,
   labelType,
+  lowLevel,
 } from 'link-redux';
 import React from 'react';
 import { Link } from 'react-router';

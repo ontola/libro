@@ -2,6 +2,7 @@
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
+
 import webpackConfig from '../../webpack/hot.config';
 
 export default function (app) {

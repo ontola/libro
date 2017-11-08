@@ -2,8 +2,9 @@ import fetch from 'isomorphic-fetch';
 import { Promise } from 'es6-promise';
 import { batchActions } from 'redux-batched-actions';
 
-import LinkedRenderStore from '../../helpers/LinkedRenderStore';
 import { safeCredentials } from 'helpers/arguHelpers';
+
+import LinkedRenderStore from '../../helpers/LinkedRenderStore';
 
 const headers = () => ({
   headers: {

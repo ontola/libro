@@ -1,6 +1,7 @@
 import toMaterialStyle from 'material-color-hash';
-import './GeneratedIcon.scss';
 import React, { PropTypes } from 'react';
+
+import './GeneratedIcon.scss';
 
 const propTypes = {
   name: PropTypes.string.isRequired,

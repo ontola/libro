@@ -1,7 +1,7 @@
 import assert from 'assert';
 
 import classNames from 'classnames';
-import { lowLevel, PropertyBase, subjectType } from 'link-redux';
+import { PropertyBase, lowLevel, subjectType } from 'link-redux';
 import React, { PropTypes } from 'react';
 import { browserHistory } from 'react-router';
 

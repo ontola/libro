@@ -1,11 +1,11 @@
 import { createSelector } from 'reselect';
+
 import { calcPercentage } from 'helpers/numbers';
+import VoteMatch from 'models/VoteMatch';
 import { getUserVotes } from 'state/votes/selectors';
 import { getMotionVoteEvents } from 'state/motions/selectors';
 import { getVoteEvent } from 'state/voteEvents/selectors';
 import { getCount } from 'state/counts/selectors';
-
-import VoteMatch from 'models/VoteMatch';
 
 export const getVoteMatches = state =>
   state.getIn(['voteMatch', 'items']);

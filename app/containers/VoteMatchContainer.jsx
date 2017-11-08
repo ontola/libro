@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { voteMatchStart, voteMatchSave } from 'state/voteMatch/actions';
+import { voteMatchSave, voteMatchStart } from 'state/voteMatch/actions';
 import {
   getVoteMatch,
-  getVoteMatchMotionIds,
   getVoteMatchCountUserVotes,
+  getVoteMatchMotionIds,
   getVoteMatchSimilarity,
 } from 'state/voteMatch/selectors';
 

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { getArgsPro, getArgsCon } from 'state/argumentations/selectors';
+import { getArgsCon, getArgsPro } from 'state/argumentations/selectors';
 
 import {
   ArgumentListItem,

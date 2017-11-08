@@ -4,6 +4,8 @@ require('babel-register')({
   }
 });
 const { JSDOM } = require('jsdom');
+const whatwgFetch = require('whatwg-fetch').fetch;
+const whatwgURL = require('whatwg-url').URL; // eslint-disable-line import/order
 
 const jsdom = new JSDOM(
   '<!doctype html><html><body></body></html>',
@@ -16,8 +18,8 @@ const { window } = jsdom;
 
 global.window = window;
 global.document = window.document;
-global.window.fetch = require('whatwg-fetch').fetch;
-global.URL = require('whatwg-url').URL;
+global.window.fetch = whatwgFetch;
+global.URL = whatwgURL;
 
 const ignoreGlobals = [
   'SVGPathSeg',

@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
-import { calcPercentage } from 'helpers/numbers';
 
+import { calcPercentage } from 'helpers/numbers';
 import { getVotes } from 'state/votes/selectors';
 
 // import { getMotionVoteEvents } from 'state/motions/selectors';

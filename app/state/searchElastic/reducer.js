@@ -2,8 +2,8 @@ import { handleActions } from 'redux-actions';
 import { Map } from 'immutable';
 
 import {
-  TOGGLE_DRAWER,
   SET_HIT_COUNT,
+  TOGGLE_DRAWER,
 } from '../action-types';
 
 const initialState = new Map({

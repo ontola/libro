@@ -1,11 +1,12 @@
 import chai, { assert } from 'chai';
-import { Map } from 'immutable';
 import chaiImmutable from 'chai-immutable';
+import { Map } from 'immutable';
 
 import * as models from 'models';
+
 import {
-  getArguments,
   getArgs,
+  getArguments,
   // getArgsPro,
   // getArgsCon,
 } from '../selectors';

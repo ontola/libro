@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm, formValueSelector } from 'redux-form/immutable';
+import { Field, formValueSelector, reduxForm } from 'redux-form/immutable';
+
 import { text as currentQuerySelector } from 'state/speeches/selectors';
 
 import {

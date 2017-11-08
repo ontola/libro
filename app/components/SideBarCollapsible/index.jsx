@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
+import { connect } from 'react-redux';
 
 import CollapsibleContainer from 'containers/CollapsibleContainer';
 import { initializeCollapsible, toggleOne } from 'state/collapsible/actions';

@@ -1,5 +1,6 @@
-import './Card.scss';
 import React, { PropTypes } from 'react';
+
+import './Card.scss';
 
 const propTypes = {
   children: PropTypes.node,

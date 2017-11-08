@@ -1,6 +1,6 @@
 /* eslint 'react/jsx-sort-props': 'off' */
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import { IndexRoute, Route } from 'react-router';
 
 import App from './App';
 // import CompareVotes from './CompareVotes';

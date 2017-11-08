@@ -3,21 +3,20 @@ import { assert } from 'chai';
 import nock from 'nock';
 import sinon from 'sinon';
 
+import * as models from 'models';
+
 import {
+  handleError,
   handleRecord,
   handleRequest,
-  handleError,
 } from '../utils/apiActionCreators';
-
 import {
   callApi,
   getEndpoint,
   yieldEntities,
 } from '../utils/apiHelpers';
-
 import DataStore, { toCamel } from '../utils/DataStore';
 import LinkedRenderStore from '../../helpers/LinkedRenderStore';
-import * as models from 'models';
 
 function mockCSRF() {
   LinkedRenderStore.api.processor.worker = { postMessage: () => {} };

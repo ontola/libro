@@ -1,16 +1,15 @@
-import { handleActions } from 'redux-actions';
 import { Map, Record } from 'immutable';
+import { handleActions } from 'redux-actions';
 
 import {
   setRecord,
   updateRecordValue,
 } from 'helpers/reducers';
-
 import {
   SIDEBAR_ADD,
-  SIDEBAR_OPEN,
   SIDEBAR_CLOSE,
   SIDEBAR_DOCK,
+  SIDEBAR_OPEN,
   SIDEBAR_UNDOCK,
 } from 'state/action-types';
 

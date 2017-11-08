@@ -1,4 +1,3 @@
-// @flow
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
@@ -29,7 +28,6 @@ class EventContainer extends Component {
       this.props.loadEvent(this.props.id);
     }
   }
-
 
   render() {
     const {

@@ -5,8 +5,8 @@ import {
   Button,
   Card,
   CardContent,
-  Cover,
   Container,
+  Cover,
 } from '../../components';
 import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 

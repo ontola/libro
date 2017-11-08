@@ -2,6 +2,7 @@ import { Map } from 'immutable';
 
 import { FRONTEND_URL } from '../config';
 import * as actions from '../state/action-types';
+
 import { APIDesc, apiModelGenerator } from './utils/apiModelGenerator';
 
 const apiDesc = new APIDesc({

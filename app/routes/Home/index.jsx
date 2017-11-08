@@ -1,7 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'react-router';
-import path from 'helpers/paths';
+
 
 import {
   CardContent,
@@ -10,14 +10,14 @@ import {
   DonutChart,
   EventListItem,
   Header,
-  LabelValueBar,
   LabelValue,
+  LabelValueBar,
   MotionListItem,
   Widget,
 } from 'components';
-
 import MotionContainer from 'containers/MotionContainer';
 import EventContainer from 'containers/EventContainer';
+import path from 'helpers/paths';
 
 const parties = [
   { name: 'VVD', value: 40, link: path.party('1') },

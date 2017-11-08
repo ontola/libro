@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+
 import { getVoteEvent } from 'state/voteEvents/selectors';
 
 export const getCountId = (state, props) => {

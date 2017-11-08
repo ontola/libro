@@ -1,7 +1,7 @@
-import OpenData from 'static/articles/OpenData.md';
-import VoteMatch from 'static/articles/VoteMatch.md';
-import Search from 'static/articles/Search.md';
 import Contact from 'static/articles/Contact.md';
+import OpenData from 'static/articles/OpenData.md';
+import Search from 'static/articles/Search.md';
+import VoteMatch from 'static/articles/VoteMatch.md';
 
 export default {
   OpenData: {

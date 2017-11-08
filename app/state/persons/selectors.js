@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+
 import { getVoteMatches } from 'state/voteMatch/selectors';
 
 export const getPersonId = (state, props) => {

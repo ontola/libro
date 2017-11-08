@@ -1,4 +1,5 @@
 import { assert } from 'chai';
+
 import * as models from 'models';
 import * as actions from 'state/action-types';
 

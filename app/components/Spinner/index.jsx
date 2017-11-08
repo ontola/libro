@@ -1,5 +1,6 @@
-import './Spinner.scss';
 import React, { PropTypes } from 'react';
+
+import './Spinner.scss';
 
 const propTypes = {
   loading: PropTypes.bool.isRequired,

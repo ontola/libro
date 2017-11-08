@@ -1,15 +1,15 @@
-// @flow
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import Speech from 'models/Speech';
-import {
-  ChronoItem,
-} from '../components';
 
+import Speech from 'models/Speech';
 import {
   getSpeech,
   text,
 } from 'state/speeches/selectors';
+
+import {
+  ChronoItem,
+} from '../components';
 
 const propTypes = {
   data: PropTypes.instanceOf(Speech),

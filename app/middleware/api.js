@@ -1,16 +1,14 @@
-import DataStore from './utils/DataStore';
-
 import {
   handleError,
   handleRecord,
   handleRequest,
 } from './utils/apiActionCreators';
-
 import {
   callApi,
   parseResult,
   yieldEntities,
 } from './utils/apiHelpers';
+import DataStore from './utils/DataStore';
 
 const JsonApiMiddleware = ({
   models,

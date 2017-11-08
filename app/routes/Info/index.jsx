@@ -1,13 +1,14 @@
 import Helmet from 'react-helmet';
 import React, { PropTypes } from 'react';
 
-import articles from '../../articles';
 import {
+  Container,
   Cover,
   Heading,
   Markdown,
-  Container,
 } from 'components';
+
+import articles from '../../articles';
 
 const propTypes = {
   // Gets the infoId from the address bar

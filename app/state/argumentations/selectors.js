@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+
 import { getMotionArgIds } from 'state/motions/selectors';
 
 export const getArguments = state => state.getIn(['argumentations', 'items']);

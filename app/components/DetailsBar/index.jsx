@@ -1,8 +1,9 @@
 /* eslint class-methods-use-this: 0 */
-import './DetailsBar.scss';
 import React, { Component, PropTypes } from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+
+import './DetailsBar.scss';
 
 class DetailsBar extends Component {
   getChildContext() {

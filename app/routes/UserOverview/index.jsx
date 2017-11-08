@@ -5,8 +5,8 @@ import MotionContainer from 'containers/MotionContainer';
 import {
   CardContent,
   CardRow,
-  Container,
   CompareVotesBar,
+  Container,
   LabelValue,
   MotionListItem,
   Tag,

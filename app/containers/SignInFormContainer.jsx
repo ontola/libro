@@ -3,6 +3,10 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form/immutable';
 
+import { safeCredentials } from 'helpers/arguHelpers';
+import { fetchActor } from 'state/currentActors/actions';
+import { emailTaken } from 'state/form/actions';
+
 import {
   Button,
   CardActions,
@@ -12,11 +16,6 @@ import {
   FormField,
   HiddenFormField,
 } from '../components';
-import {
-  safeCredentials,
-} from 'helpers/arguHelpers';
-import { fetchActor } from 'state/currentActors/actions';
-import { emailTaken } from 'state/form/actions';
 
 const PATH_MATCH = 2;
 

@@ -2,11 +2,6 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
-import PersonContainer from 'containers/PersonContainer';
-import { getPersonName } from 'state/persons/selectors';
-
-import path from 'helpers/paths';
-
 import {
   BackButton,
   Container,
@@ -14,6 +9,9 @@ import {
   LinkList,
   ProfileCard,
 } from 'components';
+import path from 'helpers/paths';
+import PersonContainer from 'containers/PersonContainer';
+import { getPersonName } from 'state/persons/selectors';
 
 const propTypes = {
   params: PropTypes.shape({

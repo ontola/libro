@@ -3,9 +3,9 @@
 
 import { allRDFValues, defaultNS } from 'link-lib';
 import {
+  LinkedObjectContainer,
   getLinkedObjectProperty,
   getLinkedObjectPropertyRaw,
-  LinkedObjectContainer,
 } from 'link-redux';
 import { getLinkedObjectClass } from 'link-redux/dist/module/react/components/Property';
 import { expandedProperty } from 'link-redux/dist/module/react/components/PropertyBase';

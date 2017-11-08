@@ -2,11 +2,11 @@ import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 
+import './views';
 import IndexContainer from './containers/IndexContainer';
 import immutableHistory from './helpers/history';
 import LinkedRenderStore from './helpers/LinkedRenderStore';
 import configureStore from './state';
-import './views';
 
 // Removes the rubber banding in iOS
 require('inobounce');

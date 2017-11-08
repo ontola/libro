@@ -1,6 +1,7 @@
 const path = require('path');
-const HappyPack = require('happypack');
+
 const autoprefixer = require('autoprefixer');
+const HappyPack = require('happypack');
 
 module.exports = {
   // Using the existng webpackConfig would be preferable, since it should prevent a lot of code

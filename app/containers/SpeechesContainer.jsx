@@ -1,13 +1,13 @@
-// @flow
 import { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import {
-  ChronoFeed,
-} from '../components';
 
 import {
   getFilteredSpeechesForEvent,
 } from 'state/speeches/selectors';
+
+import {
+  ChronoFeed,
+} from '../components';
 
 const propTypes = {
   /** Array of SpeechIds */

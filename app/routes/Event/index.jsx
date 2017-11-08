@@ -1,34 +1,28 @@
-// @flow
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { reset } from 'redux-form';
-
-import {
-  setEventTime,
-  toggleShowVideo,
-} from 'state/events/actions';
+import { createSearchAction } from 'redux-search';
 
 import {
   Button,
   Container,
 } from 'components';
-
+import EventContainer from 'containers/EventContainer';
 import SearchInput from 'containers/SearchInput';
-
+import SideBarContainer from 'containers/SideBarContainer';
+import SpeechesContainer from 'containers/SpeechesContainer';
+import TimelineHideButton from 'containers/TimelineHideButton';
+import VideoContainer from 'containers/VideoContainer';
+import {
+  setEventTime,
+  toggleShowVideo,
+} from 'state/events/actions';
 import {
   getEventTitle,
   getVideoUrl,
   shouldVideoShow,
 } from 'state/events/selectors';
-
-import { createSearchAction } from 'redux-search';
-
-import EventContainer from 'containers/EventContainer';
-import VideoContainer from 'containers/VideoContainer';
-import SpeechesContainer from 'containers/SpeechesContainer';
-import SideBarContainer from 'containers/SideBarContainer';
-import TimelineHideButton from 'containers/TimelineHideButton';
 
 const propTypes = {
   params: PropTypes.shape({

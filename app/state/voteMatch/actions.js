@@ -1,7 +1,9 @@
 import { createAction } from 'redux-actions';
-import * as actions from '../action-types';
-import { voteAction } from 'state/votes/actions';
+
 import VoteMatch from 'models/VoteMatch';
+import { voteAction } from 'state/votes/actions';
+
+import * as actions from '../action-types';
 
 export const fetchVoteMatch = id => VoteMatch.fetch(id);
 

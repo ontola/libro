@@ -1,11 +1,12 @@
 /* eslint no-magic-numbers: 0 */
 import { assert } from 'chai';
+
 import {
   checkLuminance,
   getLuminance,
   isRGB,
-  rgbToArray,
   percentageToRedOrGreen,
+  rgbToArray,
 } from '../color';
 
 const rgbInput = 'rgb(230, 48, 205)';

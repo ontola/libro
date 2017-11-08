@@ -1,9 +1,9 @@
-// @flow
-import React, { PropTypes } from 'react';
 import classNames from 'classnames';
-import './Progress.scss';
+import React, { PropTypes } from 'react';
 
 import { calcPercentage } from 'helpers/numbers';
+
+import './Progress.scss';
 
 const propTypes = {
   completed: PropTypes.number.isRequired,

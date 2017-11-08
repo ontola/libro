@@ -1,5 +1,5 @@
 import chai, { assert } from 'chai';
-import { Map, List } from 'immutable';
+import { List, Map } from 'immutable';
 import chaiImmutable from 'chai-immutable';
 
 import voteMatch from './reducer';

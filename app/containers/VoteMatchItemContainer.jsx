@@ -1,13 +1,14 @@
+import { LinkedObjectContainer } from 'link-redux';
 import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
-import { LinkedObjectContainer } from 'link-redux';
+
+import { voteMatchRemoveVoteable } from 'state/voteMatch/actions';
 
 import {
   Button,
   Heading,
 } from '../components';
-import { voteMatchRemoveVoteable } from 'state/voteMatch/actions';
 
 const propTypes = {
   dragHandle: PropTypes.func.isRequired,

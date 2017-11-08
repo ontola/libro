@@ -7,12 +7,12 @@ import morgan from 'morgan';
 import SearchkitExpress from 'searchkit-express';
 
 import * as constants from '../../app/config';
-import { handleRender } from '../utils/render';
-import { isAuthenticated, isBackend, isIframe } from '../utils/filters';
-import { backendProxy, iframeProxy, odApiProxy } from '../utils/proxies';
 import apiMiddleware from '../middleware/apiMiddleware';
 import errorHandlerMiddleware from '../middleware/errorHandlerMiddleware';
 import sessionMiddleware from '../middleware/sessionMiddleware';
+import { isAuthenticated, isBackend, isIframe } from '../utils/filters';
+import { backendProxy, iframeProxy, odApiProxy } from '../utils/proxies';
+import { handleRender } from '../utils/render';
 
 import login from './login';
 
