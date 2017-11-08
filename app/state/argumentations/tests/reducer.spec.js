@@ -33,12 +33,12 @@ describe('Arguments reducer', () => {
 
     assert.deepEqual(
       argumentations(undefined, {
-        type: actions.GET_ARGUMENT,
         payload: {
           apiAction: true,
           endpoint: 'arguments',
           id: '14',
         },
+        type: actions.GET_ARGUMENT,
       }),
       expectedResponse,
       'does not handle GET_ARGUMENT very well'

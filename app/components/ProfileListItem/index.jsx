@@ -6,10 +6,10 @@ import Heading from '../Heading';
 import './ProfileListItem.scss';
 
 const propTypes = {
+  description: PropTypes.string,
   image: PropTypes.string,
   link: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  description: PropTypes.string,
 };
 
 const ProfileListItem = ({

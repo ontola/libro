@@ -11,15 +11,15 @@ import Progress from '../Progress';
 import './EventItemShow.scss';
 
 const propTypes = {
-  startDate: PropTypes.instanceOf(Date),
+  children: PropTypes.node,
   currentDate: PropTypes.instanceOf(Date),
   endDate: PropTypes.instanceOf(Date),
-  children: PropTypes.node,
   eventId: PropTypes.string,
   id: PropTypes.string.isRequired,
   index: PropTypes.number,
   isCurrent: PropTypes.bool,
   showIndex: PropTypes.bool,
+  startDate: PropTypes.instanceOf(Date),
   text: PropTypes.string,
   title: PropTypes.string.isRequired,
 };

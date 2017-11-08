@@ -10,8 +10,8 @@ import './ScoreSheet.scss';
 const propTypes = {
   comparedProfilePositions: PropTypes.arrayOf(Vote).isRequired,
   motionIds: PropTypes.arrayOf(PropTypes.string).isRequired,
-  userVotes: PropTypes.arrayOf(Vote).isRequired,
   score: PropTypes.number,
+  userVotes: PropTypes.arrayOf(Vote).isRequired,
 };
 
 const ScoreSheet = ({

@@ -19,8 +19,8 @@ const EventItemContainer = connect((state, ownProps) => {
   const data = getEventItem(state, ownProps);
 
   return {
-    currentDate: data.createdAt,
     createdAt: data.createdAt,
+    currentDate: data.createdAt,
     endDate: data.endDate,
     eventId: ownProps.eventId,
     id: data.id,

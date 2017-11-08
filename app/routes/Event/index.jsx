@@ -25,14 +25,14 @@ import {
 } from 'state/events/selectors';
 
 const propTypes = {
+  onSearchSpeeches: PropTypes.func.isRequired,
+  onToggleShowVideo: PropTypes.func.isRequired,
   params: PropTypes.shape({
     eventId: PropTypes.string.isRequired,
   }).isRequired,
-  title: PropTypes.string,
-  onToggleShowVideo: PropTypes.func.isRequired,
-  onSearchSpeeches: PropTypes.func.isRequired,
   resetSearchForm: PropTypes.func.isRequired,
   showVideo: PropTypes.bool,
+  title: PropTypes.string,
   videoUrl: PropTypes.string,
 };
 
@@ -117,17 +117,17 @@ const Event = ({
 Event.propTypes = propTypes;
 
 const stateToProps = (state, ownProps) => ({
-  title: getEventTitle(state, ownProps),
   showVideo: shouldVideoShow(state),
+  title: getEventTitle(state, ownProps),
   videoUrl: getVideoUrl(state, ownProps),
 });
 
 export default connect(
   stateToProps,
   dispatch => ({
-    onToggleShowVideo: eventId => dispatch(toggleShowVideo(eventId)),
-    onSetEventTime: (eventId, time) => dispatch(setEventTime(eventId, time)),
     onSearchSpeeches: searchText => dispatch(createSearchAction('speeches')(searchText)),
+    onSetEventTime: (eventId, time) => dispatch(setEventTime(eventId, time)),
+    onToggleShowVideo: eventId => dispatch(toggleShowVideo(eventId)),
     resetSearchForm: () => dispatch(reset('searchLocalInput')),
   })
 )(Event);

@@ -9,9 +9,9 @@ import './BottomBarButton.scss';
 const propTypes = {
   icon: PropTypes.string,
   imageUrl: PropTypes.string,
-  label: PropTypes.string,
   // True for links that are leveled higher than others
   isIndex: PropTypes.bool,
+  label: PropTypes.string,
   onClick: PropTypes.func,
   to: PropTypes.string,
 };

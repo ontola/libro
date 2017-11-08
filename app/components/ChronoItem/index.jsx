@@ -17,11 +17,11 @@ const propTypes = {
   /** Include a currentDate and an endDate to show a progressBar */
   currentDate: PropTypes.instanceOf(Date),
   endDate: PropTypes.instanceOf(Date),
+  /** Usually the search query */
+  highlightedText: PropTypes.string,
   /** Add the ID of a profile to show a name and a profile picture */
   speaker: PropTypes.string,
   startDate: PropTypes.instanceOf(Date).isRequired,
-  /** Usually the search query */
-  highlightedText: PropTypes.string,
   /** The content of the item */
   text: PropTypes.string.isRequired,
 };

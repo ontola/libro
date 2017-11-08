@@ -35,12 +35,12 @@ describe('Motions reducer', () => {
 
     assert.deepEqual(
       motions(undefined, {
-        type: actions.GET_MOTION,
         payload: {
           apiAction: true,
           endpoint: 'motions',
           id: '14',
         },
+        type: actions.GET_MOTION,
       }),
       expectedResponse,
       'does not handle GET_MOTION very well'

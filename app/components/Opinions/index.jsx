@@ -5,19 +5,19 @@ import Opinion from '../Opinion';
 import './Opinions.scss';
 
 const propTypes = {
-  pro: PropTypes.oneOfType([
+  con: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.object),
     PropTypes.bool,
   ]),
-  con: PropTypes.oneOfType([
+  pro: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.object),
     PropTypes.bool,
   ]),
 };
 
 const defaultProps = {
-  pro: [],
   con: [],
+  pro: [],
 };
 
 const Opinions = ({ pro, con }) => {

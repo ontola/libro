@@ -8,20 +8,20 @@ import Button from '../Button';
 import './SideBar.scss';
 
 const propTypes = {
-  /* The components that appear in the sidebar */
-  sidebar: PropTypes.node,
   /* The components that appear in the main area */
   children: PropTypes.node,
+  docked: PropTypes.bool,
+  id: PropTypes.string,
+  onClose: PropTypes.func.isRequired,
+  onDock: PropTypes.func.isRequired,
+  onOpen: PropTypes.func.isRequired,
+  onUndock: PropTypes.func.isRequired,
+  opened: PropTypes.bool,
   /* Set to true if you don't want the sidebar to appear from the left */
   pullRight: PropTypes.bool,
-  id: PropTypes.string,
+  /* The components that appear in the sidebar */
+  sidebar: PropTypes.node,
   slim: PropTypes.bool,
-  opened: PropTypes.bool,
-  docked: PropTypes.bool,
-  onClose: PropTypes.func.isRequired,
-  onOpen: PropTypes.func.isRequired,
-  onDock: PropTypes.func.isRequired,
-  onUndock: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
@@ -57,16 +57,16 @@ class SideBar extends Component {
     }
 
     this.styles = {
-      sidebar: {
-        // To overlap the BottomBar
-        zIndex: '3',
-        overflowY: 'visible',
-      },
       content: {
         // Enables inertial scrolling in iOS
         WebkitOverflowScrolling: 'touch',
         // We scroll in a ScrollContainer wrapper, so 'content' should not scroll.
         overflow: 'hidden',
+      },
+      sidebar: {
+        overflowY: 'visible',
+        // To overlap the BottomBar
+        zIndex: '3',
       },
     };
   }

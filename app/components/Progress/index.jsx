@@ -7,11 +7,11 @@ import './Progress.scss';
 
 const propTypes = {
   completed: PropTypes.number.isRequired,
-  total: PropTypes.number.isRequired,
   direction: PropTypes.oneOf([
     'down',
     'right',
   ]),
+  total: PropTypes.number.isRequired,
 };
 
 const Progress = ({

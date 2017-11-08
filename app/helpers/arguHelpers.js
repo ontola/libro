@@ -29,45 +29,45 @@ image.propTypes = {
 export function errorMessageForStatus(status) {
   if (status === 401) {
     return {
-      type: 'alert',
-      severity: 'error',
-      i18nString: 'errors.status.401',
       fallback: 'Je moet ingelogd zijn voor deze actie.',
+      i18nString: 'errors.status.401',
+      severity: 'error',
+      type: 'alert',
     };
   } else if (status === 404) {
     return {
-      type: 'alert',
-      severity: 'error',
-      i18nString: 'errors.status.404',
       fallback: 'Het item is niet gevonden, probeer de pagina te verversen.',
+      i18nString: 'errors.status.404',
+      severity: 'error',
+      type: 'alert',
     };
   } else if (status === 429) {
     return {
-      type: 'alert',
-      severity: 'error',
-      i18nString: 'errors.status.429',
       fallback: 'Je maakt te veel verzoeken, probeer het over halve minuut nog eens.',
+      i18nString: 'errors.status.429',
+      severity: 'error',
+      type: 'alert',
     };
   } else if (status === 500) {
     return {
-      type: 'alert',
-      severity: 'error',
-      i18nString: 'errors.status.500',
       fallback: 'Er ging iets aan onze kant fout, probeer het later nog eens.',
+      i18nString: 'errors.status.500',
+      severity: 'error',
+      type: 'alert',
     };
   } else if (status === 0) {
     return {
-      type: 'none',
-      severity: '',
-      i18nString: undefined,
       fallback: '',
+      i18nString: undefined,
+      severity: '',
+      type: 'none',
     };
   }
   return {
-    type: 'none',
-    severity: '',
-    i18nString: undefined,
     fallback: undefined,
+    i18nString: undefined,
+    severity: '',
+    type: 'none',
   };
 }
 

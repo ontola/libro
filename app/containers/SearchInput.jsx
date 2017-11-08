@@ -10,10 +10,10 @@ import {
 
 const propTypes = {
   currentValue: PropTypes.string,
-  lastSearchValue: PropTypes.string,
   handleClear: PropTypes.func.isRequired,
   // Since this uses redux-form, you need to pass onSubmit instead of handleSubmit.
   handleSubmit: PropTypes.func.isRequired,
+  lastSearchValue: PropTypes.string,
 };
 
 const SearchInput = ({
@@ -59,8 +59,8 @@ const SearchInputForm = reduxForm({
 })(SearchInput);
 
 const SearchInputContainer = connect(state => ({
-  lastSearchValue: currentQuerySelector(state),
   currentValue: formValueSelector(formName)(state, 'search'),
+  lastSearchValue: currentQuerySelector(state),
 }))(SearchInputForm);
 
 export default SearchInputContainer;

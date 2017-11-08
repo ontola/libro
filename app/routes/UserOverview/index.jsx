@@ -21,32 +21,32 @@ const motions = [
 
 const tags = [{
   label: 'defensie',
-  percentage: 85,
   link: '',
+  percentage: 85,
 }, {
   label: 'onderwijs',
-  percentage: 77,
   link: '',
+  percentage: 77,
 }, {
   label: 'milieu',
-  percentage: 62,
   link: '',
+  percentage: 62,
 }, {
   label: 'immigratie',
-  percentage: 55,
   link: '',
+  percentage: 55,
 }, {
   label: 'economie',
-  percentage: 45,
   link: '',
+  percentage: 45,
 }, {
   label: 'abortus',
-  percentage: 35,
   link: '',
+  percentage: 35,
 }, {
   label: 'religie',
-  percentage: 20,
   link: '',
+  percentage: 20,
 }];
 
 const UserOverview = () => (

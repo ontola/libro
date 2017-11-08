@@ -15,8 +15,8 @@ import {
 import { VoteMatchResultBar } from '../components';
 
 const propTypes = {
-  profileId: PropTypes.string.isRequired,
   motionIds: PropTypes.arrayOf(PropTypes.number),
+  profileId: PropTypes.string.isRequired,
   userVotes: PropTypes.arrayOf(Vote),
 };
 
@@ -24,8 +24,8 @@ const mapStateToProps = (state, props) => ({
   comparedProfileName: getGroupName(state, { id: props.profileId }),
   comparedProfilePositions: getVoteMatchComparedProfilePositions(state, props),
   motionIds: getVoteMatchMotionIds(state, props),
-  userVotes: getVoteMatchUserVotes(state, props),
   score: getVoteMatchSimilarity(state, props),
+  userVotes: getVoteMatchUserVotes(state, props),
 });
 
 const VoteMatchResultProfileContainer = connect(mapStateToProps)(VoteMatchResultBar);

@@ -70,9 +70,9 @@ export default connect(
   (state, ownProps) => {
     const minCharacters = ownProps.minCharacters || defaultProps.minCharacters;
     return ({
-      open: ownProps.text.length > minCharacters && getCollapsibleOpened(state, ownProps.id),
       minCharacters,
       minHeight: ownProps.minHeight || defaultProps.minHeight,
+      open: ownProps.text.length > minCharacters && getCollapsibleOpened(state, ownProps.id),
     });
   },
   (dispatch, { id }) => ({

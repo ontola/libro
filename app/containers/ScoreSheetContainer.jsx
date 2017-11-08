@@ -20,8 +20,8 @@ const propTypes = {
 const mapStateToProps = (state, props) => ({
   comparedProfilePositions: getVoteMatchComparedProfilePositions(state, props),
   motionIds: getVoteMatchMotionIds(state, props),
-  userVotes: getVoteMatchUserVotes(state, props),
   score: getVoteMatchSimilarity(state, props),
+  userVotes: getVoteMatchUserVotes(state, props),
 });
 
 const ScoreSheetContainer = connect(mapStateToProps)(ScoreSheet);

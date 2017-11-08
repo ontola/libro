@@ -38,6 +38,6 @@ const SpeechContainer = ({
 SpeechContainer.propTypes = propTypes;
 
 export default connect((state, ownProps) => ({
-  searchQuery: text(state),
   data: getSpeech(state, ownProps),
+  searchQuery: text(state),
 }))(SpeechContainer);

@@ -32,11 +32,11 @@ describe('Collapsible reducer', () => {
 
     assert.deepEqual(
       collapsible(undefined, {
-        type: actions.COLL_ADD,
         payload: {
-          startOpened: false,
           identifier: 'CDA',
+          startOpened: false,
         },
+        type: actions.COLL_ADD,
       }),
       expectedResponse,
       'does not handle COLL_ADD very well'
@@ -62,8 +62,8 @@ describe('Collapsible reducer', () => {
 
     assert.deepEqual(
       collapsible(initialState, {
-        type: actions.COLL_TOGGLE_ONE,
         payload: 'CDA',
+        type: actions.COLL_TOGGLE_ONE,
       }),
       expectedState,
       'does not handle COLL_TOGGLE_ONE very well'
@@ -99,10 +99,10 @@ describe('Collapsible reducer', () => {
 
     assert.deepEqual(
       collapsible(initialState, {
-        type: actions.COLL_TOGGLE_GROUP,
         payload: {
           id: 'politiek',
         },
+        type: actions.COLL_TOGGLE_GROUP,
       }),
       expectedState,
       'does not handle COLL_TOGGLE_GROUP very well'

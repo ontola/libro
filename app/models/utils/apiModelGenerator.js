@@ -2,9 +2,9 @@ import { Map, Record } from 'immutable';
 
 export const APIDesc = Record({
   actions: new Map(),
+  arguModel: false,
   endpoint: '',
   type: '',
-  arguModel: false,
 });
 
 export const apiModelGenerator = (properties, apiDesc) => {
@@ -25,36 +25,36 @@ export const apiModelGenerator = (properties, apiDesc) => {
   };
 
   APIActionClass.fetch = id => ({
-    type: apiDesc.get('actions').get('resource'),
     payload: {
       apiAction: true,
       arguModel: apiDesc.get('arguModel'),
       endpoint: apiDesc.get('endpoint'),
       id,
     },
+    type: apiDesc.get('actions').get('resource'),
   });
 
   APIActionClass.index = () => ({
-    type: apiDesc.get('actions').get('collection'),
     payload: {
       apiAction: true,
       arguModel: apiDesc.get('arguModel'),
       endpoint: apiDesc.get('endpoint'),
     },
+    type: apiDesc.get('actions').get('collection'),
   });
 
   APIActionClass.create = (attributes, opts = {}) => ({
-    type: apiDesc.get('actions').get('create'),
     payload: {
       apiAction: true,
       attributes,
       endpoint: apiDesc.get('endpoint'),
       request: {
-        method: 'POST',
         href: opts.href,
+        method: 'POST',
       },
       type: apiDesc.get('type'),
     },
+    type: apiDesc.get('actions').get('create'),
   });
 
   return APIActionClass;

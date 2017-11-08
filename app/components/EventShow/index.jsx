@@ -25,9 +25,9 @@ const propTypes = {
   id: PropTypes.string,
   onToggleAll: PropTypes.func,
   startDate: PropTypes.instanceOf(Date),
+  status: PropTypes.string,
   text: PropTypes.string,
   title: PropTypes.string,
-  status: PropTypes.string,
 };
 
 const EventShow = ({

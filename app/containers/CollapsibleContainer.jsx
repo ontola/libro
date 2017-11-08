@@ -7,10 +7,10 @@ import { getCollapsibleOpened } from 'state/collapsible/selectors';
 import { Collapsible } from '../components';
 
 const propTypes = {
-  id: PropTypes.string.isRequired,
   group: PropTypes.string,
-  startOpened: PropTypes.bool,
+  id: PropTypes.string.isRequired,
   onInitializeCollapsible: PropTypes.func.isRequired,
+  startOpened: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -20,9 +20,9 @@ const defaultProps = {
 class CollapsibleContainer extends Component {
   componentWillMount() {
     this.props.onInitializeCollapsible({
-      startOpened: this.props.startOpened,
-      identifier: this.props.id,
       group: this.props.group,
+      identifier: this.props.id,
+      startOpened: this.props.startOpened,
     });
   }
 

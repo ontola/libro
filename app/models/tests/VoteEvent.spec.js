@@ -8,13 +8,13 @@ const SPECIFIC_VOTE_EVENT_ID = 14;
 describe('Vote events actions', () => {
   it('should have an action to get a specific Vote event', () => {
     const expectedAction = {
-      type: actions.GET_VOTE_EVENT,
       payload: {
         apiAction: true,
         arguModel: false,
         endpoint: 'vote_events',
         id: SPECIFIC_VOTE_EVENT_ID,
       },
+      type: actions.GET_VOTE_EVENT,
     };
 
     assert.deepEqual(
@@ -26,12 +26,12 @@ describe('Vote events actions', () => {
 
   it('should have an action to get all Vote events', () => {
     const expectedAction = {
-      type: actions.GET_VOTE_EVENTS,
       payload: {
         apiAction: true,
         arguModel: false,
         endpoint: 'vote_events',
       },
+      type: actions.GET_VOTE_EVENTS,
     };
 
     assert.deepEqual(

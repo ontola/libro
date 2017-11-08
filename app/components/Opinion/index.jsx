@@ -4,8 +4,8 @@ import { Link } from 'react-router';
 import './Opinion.scss';
 
 const propTypes = {
-  side: PropTypes.oneOf(['yes', 'no']).isRequired,
   owner: PropTypes.string,
+  side: PropTypes.oneOf(['yes', 'no']).isRequired,
 };
 
 const defaultProps = {

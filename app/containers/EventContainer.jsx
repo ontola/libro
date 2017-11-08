@@ -66,7 +66,7 @@ export default connect(
     data: getEvent(state, ownProps),
   }),
   dispatch => ({
-    onToggleAll: id => dispatch(toggleAll({ group: `event.${id}` })),
     loadEvent: id => dispatch(fetchEvent(id)),
+    onToggleAll: id => dispatch(toggleAll({ group: `event.${id}` })),
   })
 )(EventContainer);

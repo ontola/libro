@@ -7,8 +7,8 @@ import './LabelValueBar.scss';
 const propTypes = {
   children: PropTypes.node,
   coloredValue: PropTypes.bool,
-  label: PropTypes.string.isRequired,
   isPercentage: PropTypes.bool,
+  label: PropTypes.string.isRequired,
   // Only use with max values of 100
   showBar: PropTypes.bool,
   value: PropTypes.oneOfType([
@@ -45,8 +45,8 @@ const LabelValueBar = ({
       <div
         className="LabelValueBar__bar"
         style={{
-          width: `${value}%`,
           borderRightColor: coloredValue && percentageToRedOrGreen(value),
+          width: `${value}%`,
         }}
       />}
     {children}

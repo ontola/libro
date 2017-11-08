@@ -14,9 +14,9 @@ const apiDesc = new APIDesc({
 });
 
 const attributes = {
+  group: '',
   id: '',
   image: '',
-  group: '',
   option: '',
   value: '',
 };

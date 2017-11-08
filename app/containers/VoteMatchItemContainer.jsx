@@ -19,7 +19,6 @@ const propTypes = {
 
 // Has a weird bug that requires it to be a class instead of arrow function.
 class VoteMatchItem extends React.Component { //eslint-disable-line
-
   render() {
     const {
       dragHandle,
@@ -36,10 +35,10 @@ class VoteMatchItem extends React.Component { //eslint-disable-line
         >
           <span
             style={{
-              marginLeft: '1rem',
-              marginRight: '1rem',
               cursor: 'move',
               display: 'block',
+              marginLeft: '1rem',
+              marginRight: '1rem',
             }}
           >
             {dragHandle(<FontAwesome name="bars" />)}

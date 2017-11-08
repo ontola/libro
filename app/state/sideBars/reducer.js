@@ -29,12 +29,12 @@ const recordCollapsible = ({ id }) =>
 const sideBars = handleActions({
   [SIDEBAR_ADD]: (state, { payload }) =>
     setRecord(state, recordCollapsible(payload), payload.id),
-  [SIDEBAR_OPEN]: (state, { payload }) =>
-    updateRecordValue(state, payload, 'opened', true),
   [SIDEBAR_CLOSE]: (state, { payload }) =>
     updateRecordValue(state, payload, 'opened', false),
   [SIDEBAR_DOCK]: (state, { payload }) =>
     updateRecordValue(state, payload, 'docked', true),
+  [SIDEBAR_OPEN]: (state, { payload }) =>
+    updateRecordValue(state, payload, 'opened', true),
   [SIDEBAR_UNDOCK]: (state, { payload }) =>
     updateRecordValue(state, payload, 'docked', false),
 }, initialState);

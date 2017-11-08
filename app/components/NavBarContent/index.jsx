@@ -2,7 +2,7 @@ import { LinkedObjectContainer, Property, Type } from 'link-redux';
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-import articles from '../../articles';
+import articles, { order } from '../../articles';
 import { FRONTEND_URL } from '../../config';
 import { checkLuminance } from '../../helpers/color';
 import path from '../../helpers/paths';
@@ -67,7 +67,7 @@ const NavBarContent = ({
           label="Info"
           to={path.infoIndex()}
         >
-          {Object.keys(articles).map(a => renderInfoLink(a))}
+          {order.map(a => renderInfoLink(a))}
         </SideBarCollapsible>
         <div className="NavBarContent__center-footer">
           <Link className="NavBarContent__logo" to={path.index()}>

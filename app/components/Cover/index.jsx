@@ -8,11 +8,11 @@ import './Cover.scss';
 const propTypes = {
   backgroundColor: PropTypes.string,
   children: PropTypes.node.isRequired,
-  type: PropTypes.oneOf(shades),
   fixed: PropTypes.bool,
-  image: PropTypes.string,
   fullScreen: PropTypes.bool,
+  image: PropTypes.string,
   overlayColor: PropTypes.string,
+  type: PropTypes.oneOf(shades),
 };
 
 const defaultProps = {
@@ -35,14 +35,14 @@ const Cover = ({
   const coverClass = classNames({
     Cover: true,
     [`Cover--${type}`]: true,
-    'Cover--image': image,
     'Cover--fixed': fixed,
     'Cover--fullscreen': fullScreen,
+    'Cover--image': image,
   });
 
   const style = {
-    backgroundImage: image ? `url(${image})` : 'none',
     backgroundColor: `${backgroundColor}`,
+    backgroundImage: image ? `url(${image})` : 'none',
   };
 
   return (

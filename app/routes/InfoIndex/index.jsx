@@ -11,7 +11,7 @@ import {
   Widget,
 } from 'components';
 
-import articles from '../../articles';
+import articles, { order } from '../../articles';
 
 const renderLink = article => (
   <Link to={path.info(article)}>
@@ -32,7 +32,7 @@ const InfoIndex = () => (
   <Container>
     <Helmet title="Informatie" />
     <Widget title="Informatie">
-      {Object.keys(articles).map(a => renderLink(a))}
+      {order.map(a => renderLink(a))}
     </Widget>
   </Container>
 );

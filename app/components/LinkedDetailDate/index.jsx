@@ -17,11 +17,11 @@ const propTypes = {
 };
 
 const prefixMap = {
-  startDate: 'Begin',
-  endDate: 'Einde',
   dateCreated: 'Aangemaakt',
   dateUpdated: 'Bijgewerkt',
   duration: 'Duur',
+  endDate: 'Einde',
+  startDate: 'Begin',
 };
 
 class LinkedDetailDate extends PropertyBase {

@@ -12,10 +12,10 @@ import FormField from '../FormField';
 import './ArgumentForm.scss';
 
 const propTypes = {
-  // From redux-form
-  invalid: PropTypes.bool,
   // Since this uses redux-form, you need to pass onSubmit instead of handleSubmit.
   handleSubmit: PropTypes.func.isRequired,
+  // From redux-form
+  invalid: PropTypes.bool,
   side: PropTypes.oneOf(['pro', 'con']).isRequired,
   submitting: PropTypes.bool.isRequired,
 };

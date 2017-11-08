@@ -4,16 +4,16 @@ import FontAwesome from 'react-fontawesome';
 import './Attachment.scss';
 
 const propTypes = {
-  /** Label that is displayed */
-  title: PropTypes.string.isRequired,
-  /** Link to the file */
-  url: PropTypes.string.isRequired,
-  /** Value between 0 and 100 */
-  percentageDownloaded: PropTypes.number,
   /** If the file can be previewed without downloading */
   hasPreview: PropTypes.bool,
   isDownloaded: PropTypes.bool,
   isDownloading: PropTypes.bool,
+  /** Value between 0 and 100 */
+  percentageDownloaded: PropTypes.number,
+  /** Label that is displayed */
+  title: PropTypes.string.isRequired,
+  /** Link to the file */
+  url: PropTypes.string.isRequired,
 };
 
 const defaultProps = {

@@ -57,8 +57,8 @@ RelationsBrowserContainer.propTypes = propTypes;
 
 const ConnectedRelationsContainer = connect(
   (state, ownProps) => ({
-    object: getCurrentRelationId(state, getP(ownProps.schemaObject, '@id')),
     data: getCurrentRelation(state, getP(ownProps.schemaObject, '@id')),
+    object: getCurrentRelationId(state, getP(ownProps.schemaObject, '@id')),
   }),
   dispatch => ({
     loadRelation: href => dispatch(fetchLinkedObject(href)),

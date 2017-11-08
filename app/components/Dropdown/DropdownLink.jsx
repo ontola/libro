@@ -2,9 +2,9 @@ import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 const propTypes = {
+  children: PropTypes.node,
   icon: PropTypes.string,
   url: PropTypes.string,
-  children: PropTypes.node,
 };
 
 const DropdownLink = ({

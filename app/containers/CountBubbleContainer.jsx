@@ -17,8 +17,8 @@ const defaultRenderItem = data => (
 );
 
 const propTypes = {
-  loadCount: PropTypes.func,
   data: PropTypes.instanceOf(Count),
+  loadCount: PropTypes.func,
   renderItem: PropTypes.func,
 };
 

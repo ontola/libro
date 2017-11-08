@@ -16,10 +16,10 @@ const apiDesc = new APIDesc({
 const attributes = {
   id: '',
   image: '',
+  members: [],
   name: '',
   organizationId: '',
   type: '',
-  members: [],
 };
 
 export default apiModelGenerator(attributes, apiDesc);

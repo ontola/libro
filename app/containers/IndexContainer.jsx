@@ -17,9 +17,9 @@ const propTypes = {
   }).isRequired,
   linkedRenderStore: PropTypes.instanceOf(LinkedRenderStore).isRequired,
   store: PropTypes.shape({
-    subscribe: PropTypes.func.isRequired,
     dispatch: PropTypes.func.isRequired,
-    getState: PropTypes.func.isRequired
+    getState: PropTypes.func.isRequired,
+    subscribe: PropTypes.func.isRequired,
   }).isRequired,
 };
 

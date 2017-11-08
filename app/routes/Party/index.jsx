@@ -11,10 +11,10 @@ import {
 } from 'components';
 
 const propTypes = {
+  children: PropTypes.node,
   params: PropTypes.shape({
     partyId: PropTypes.number,
   }),
-  children: PropTypes.node,
 };
 
 const links = id => ([

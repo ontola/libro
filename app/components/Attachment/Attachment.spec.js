@@ -22,7 +22,7 @@ describe('Attachment component', () => {
       'attachment with preview should have a previewlink'
     );
 
-    comp.setProps({ isDownloading: false, isDownloaded: false });
+    comp.setProps({ isDownloaded: false, isDownloading: false });
     assert.equal(
       comp.find('.Attachment__inside-button').length,
       2,

@@ -20,22 +20,22 @@ import EventContainer from 'containers/EventContainer';
 import path from 'helpers/paths';
 
 const parties = [
-  { name: 'VVD', value: 40, link: path.party('1') },
-  { name: 'PvdA', value: 36, link: path.party('2') },
-  { name: 'SP', value: 15, link: path.party('3') },
-  { name: 'CDA', value: 13, link: path.party('4') },
-  { name: 'PVV', value: 12, link: path.party('5') },
-  { name: 'D66', value: 12, link: path.party('6') },
-  { name: 'CU', value: 5, link: path.party('7') },
-  { name: 'GroenLinks', value: 4, link: path.party('8') },
-  { name: 'SGP', value: 3, link: path.party('9') },
-  { name: 'PvdD', value: 2, link: path.party('10') },
-  { name: '50PLUS', value: 1, link: path.party('11') },
-  { name: 'GrKÖ', value: 2, link: path.party('12') },
-  { name: 'GrBvK', value: 2, link: path.party('13') },
-  { name: 'Houwers', value: 1, link: path.party('14') },
-  { name: 'Klein', value: 1, link: path.party('15') },
-  { name: 'Van Vliet', value: 1, link: path.party('16') },
+  { link: path.party('1'), name: 'VVD', value: 40 },
+  { link: path.party('2'), name: 'PvdA', value: 36 },
+  { link: path.party('3'), name: 'SP', value: 15 },
+  { link: path.party('4'), name: 'CDA', value: 13 },
+  { link: path.party('5'), name: 'PVV', value: 12 },
+  { link: path.party('6'), name: 'D66', value: 12 },
+  { link: path.party('7'), name: 'CU', value: 5 },
+  { link: path.party('8'), name: 'GroenLinks', value: 4 },
+  { link: path.party('9'), name: 'SGP', value: 3 },
+  { link: path.party('10'), name: 'PvdD', value: 2 },
+  { link: path.party('11'), name: '50PLUS', value: 1 },
+  { link: path.party('12'), name: 'GrKÖ', value: 2 },
+  { link: path.party('13'), name: 'GrBvK', value: 2 },
+  { link: path.party('14'), name: 'Houwers', value: 1 },
+  { link: path.party('15'), name: 'Klein', value: 1 },
+  { link: path.party('16'), name: 'Van Vliet', value: 1 },
 ];
 
 const genderData = [

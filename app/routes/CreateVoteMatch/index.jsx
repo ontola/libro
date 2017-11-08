@@ -23,15 +23,15 @@ import { voteMatchUpdateMotions } from 'state/voteMatch/actions';
 import VoteMatch from '../../models/VoteMatch';
 
 const propTypes = {
-  // From redux-form. Is true unless form input is valid.
-  invalid: PropTypes.bool,
   // Since this uses redux-form, you need to pass onSubmit instead of handleSubmit.
   handleSubmit: PropTypes.func.isRequired,
-  // Immutable List of voteable items, such as motions
-  voteables: PropTypes.instanceOf(List),
+  // From redux-form. Is true unless form input is valid.
+  invalid: PropTypes.bool,
   // Function that is called when dragging is stopped.
   onUpdateVoteables: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
+  // Immutable List of voteable items, such as motions
+  voteables: PropTypes.instanceOf(List),
 };
 
 const CreateVoteMatch = ({
@@ -145,11 +145,11 @@ const mapStateToProps = (state) => {
   const formName = 'VoteMatch';
   return ({
     form: formName,
-    voteables: getVoteMatchMotionIds(state, { id: 'LocalVoteMatch' }).toJS(),
-    validate,
     initialValues: {
       voteables: getVoteMatchMotionIds(state, { id: 'LocalVoteMatch' }).toJS(),
     },
+    validate,
+    voteables: getVoteMatchMotionIds(state, { id: 'LocalVoteMatch' }).toJS(),
   });
 };
 

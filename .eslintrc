@@ -95,7 +95,7 @@
       "callbacksLast": true,
       "shorthandFirst": true
     }],
-    "sort-keys": ["warn", "asc", { "natural": true }],
+    "sort-keys": ["error", "asc", { "natural": true }],
     "space-unary-ops": ["error", { "words": true, "nonwords": false }],
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "no-magic-numbers": ["error", {

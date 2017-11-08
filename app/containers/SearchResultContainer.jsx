@@ -5,8 +5,8 @@ import { SearchResultItem } from '../components';
 
 const propTypes = {
   result: PropTypes.shape({
-    _source: PropTypes.string,
     _score: PropTypes.string,
+    _source: PropTypes.string,
     _type: PropTypes.string,
     highlight: PropTypes.shape({
       classification: PropTypes.string,

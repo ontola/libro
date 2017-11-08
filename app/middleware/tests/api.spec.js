@@ -34,30 +34,30 @@ const record = new models.Motion({
 describe('Api Middleware', () => {
   it('should have an action to handle a record', () => {
     const expectedAction = {
-      type: 'GET_MOTION',
       payload: {
         record,
       },
+      type: 'GET_MOTION',
     };
     assert.deepEqual(handleRecord(record), expectedAction, 'Action not formatted properly');
   });
 
   it('should have an action to handle a request', () => {
     const actualPayload = {
-      type: 'GET_MOTION',
       payload: {
         apiAction: true,
         endpoint: 'motions',
         id: '123456789',
       },
+      type: 'GET_MOTION',
     };
 
     const expectedAction = {
-      type: 'GET_MOTION',
       payload: {
-        loading: true,
         id: '123456789',
+        loading: true,
       },
+      type: 'GET_MOTION',
     };
 
     assert.deepEqual(handleRequest(actualPayload), expectedAction, 'HandleRequest action not properly formatted');
@@ -65,23 +65,23 @@ describe('Api Middleware', () => {
 
   it('should have an action to handle an error', () => {
     const actualAction = {
-      type: 'GET_MOTION',
       payload: {
         apiAction: true,
         endpoint: 'motions',
         id: '123456789',
       },
+      type: 'GET_MOTION',
     };
 
     const actualError = new Error('Failed to fetch');
 
     const expectedAction = {
-      type: 'GET_MOTION',
       error: true,
       payload: {
-        message: 'Failed to fetch',
         id: '123456789',
+        message: 'Failed to fetch',
       },
+      type: 'GET_MOTION',
     };
 
     assert.deepEqual(handleError(actualAction, actualError), expectedAction, 'HandleError action not properly formatted');
@@ -98,13 +98,13 @@ describe('Api Middleware', () => {
       .reply(200, jsondataSuccess);
 
     callApi('someUrlThatIsOverwrittenByHref', {
-      type: 'TEST_ACITON',
       payload: {
-        test: 'test',
         request: {
           href: 'http://api.example.com/success',
         },
+        test: 'test',
       },
+      type: 'TEST_ACITON',
     })
       .catch(done)
       .then((data) => {
@@ -141,27 +141,27 @@ describe('Api Middleware', () => {
   it('should yield correct entities from json object', () => {
     const rawJson = {
       data: [{
-        type: 'motions',
         id: '3137bf58-89f5-e511-9672-e4115babb880',
-      }, {
         type: 'motions',
+      }, {
         id: '3137bf58-89f5-e511-9672-e13513uievsq',
+        type: 'motions',
       }],
       included: [{
-        type: 'persons',
         id: '2c37bf58-89f5-e511-9672-e4115babb880',
+        type: 'persons',
       }],
     };
 
     const expectedEntities = [{
-      type: 'motions',
       id: '3137bf58-89f5-e511-9672-e4115babb880',
-    }, {
       type: 'motions',
-      id: '3137bf58-89f5-e511-9672-e13513uievsq',
     }, {
-      type: 'persons',
+      id: '3137bf58-89f5-e511-9672-e13513uievsq',
+      type: 'motions',
+    }, {
       id: '2c37bf58-89f5-e511-9672-e4115babb880',
+      type: 'persons',
     }];
 
     assert.deepEqual(yieldEntities(rawJson), expectedEntities, 'Entities not formatted correctly');
@@ -170,27 +170,27 @@ describe('Api Middleware', () => {
   it('should format a raw jsonapi-response-entity to a predefined record', () => {
     const dataStore = new DataStore(Object.values(models));
     const actualEntity = {
-      type: 'motions',
-      id: '3137bf58-89f5-e511-9672-e4115babb880',
       attributes: {
         classification: 'Motie',
         createdAt: '2016-03-28T22:00:00Z',
         title: 'A Motion Title',
       },
+      id: '3137bf58-89f5-e511-9672-e4115babb880',
       relationships: {
         vote_events: {
           data: {
-            type: 'vote_events',
             id: '3137bf58-89f5-e511-9672-e4115babb880',
+            type: 'vote_events',
           },
         },
       },
+      type: 'motions',
     };
 
     const expectedRecord = new models.Motion({
-      id: '3137bf58-89f5-e511-9672-e4115babb880',
       classification: 'Motie',
       createdAt: new Date('2016-03-28T22:00:00Z'),
+      id: '3137bf58-89f5-e511-9672-e4115babb880',
       title: 'A Motion Title',
       voteEvents: '3137bf58-89f5-e511-9672-e4115babb880',
     });

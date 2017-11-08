@@ -8,20 +8,44 @@ module.exports = {
   // duplication bewtween this file and common.config.js. However, that did not work.
   // see: https://github.com/styleguidist/react-styleguidist/blob/next/docs/GettingStarted.md
   // webpackConfigFile: './webpack/common.config.js',
-  serverPort: 5000,
+  components: './app/components/**/index.jsx',
   sections: [
     {
-      name: 'Card Components',
-      content: './app/components/Card/Card.md',
       components: './app/components/Card/*.jsx',
+      content: './app/components/Card/Card.md',
+      name: 'Card Components',
     },
   ],
-  components: './app/components/**/index.jsx',
+  serverPort: 5000,
   showCode: false,
   webpackConfig: {
+    entry: [
+      path.join(__dirname, 'app/components/shared/styleguide.scss'),
+      path.join(__dirname, 'app/components/shared/init.scss'),
+    ],
+    module: {
+      loaders: [
+        {
+          exclude: /node_modules/,
+          include: path.join(__dirname, 'app'),
+          loader: 'babel',
+          test: /\.jsx?$/,
+        }, {
+          include: path.join(__dirname, 'app'),
+          loader: 'style!css-loader!postcss-loader!sass-loader',
+          test: /\.scss$/,
+        },
+      ],
+      plugins: [
+        new HappyPack({
+          id: 'babel',
+          loaders: ['babel-loader?cacheDirectory'],
+          threads: 4,
+        }),
+      ],
+      postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
+    },
     resolve: {
-      modules: ['./node_modules'],
-      extensions: ['.js', '.jsx', '.ts'],
       alias: {
         components: path.resolve('app/components'),
         containers: path.resolve('app/containers'),
@@ -30,32 +54,8 @@ module.exports = {
         react: path.resolve('./node_modules/react'),
         state: path.resolve('app/state'),
       },
+      extensions: ['.js', '.jsx', '.ts'],
+      modules: ['./node_modules'],
     },
-    module: {
-      loaders: [
-        {
-          test: /\.jsx?$/,
-          loader: 'babel',
-          include: path.join(__dirname, 'app'),
-          exclude: /node_modules/,
-        }, {
-          test: /\.scss$/,
-          include: path.join(__dirname, 'app'),
-          loader: 'style!css-loader!postcss-loader!sass-loader',
-        },
-      ],
-      plugins: [
-        new HappyPack({
-          id: 'babel',
-          threads: 4,
-          loaders: ['babel-loader?cacheDirectory'],
-        }),
-      ],
-      postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
-    },
-    entry: [
-      path.join(__dirname, 'app/components/shared/styleguide.scss'),
-      path.join(__dirname, 'app/components/shared/init.scss'),
-    ],
   },
 };

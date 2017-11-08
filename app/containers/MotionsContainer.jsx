@@ -9,8 +9,8 @@ import { fetchMotions } from 'state/motions/actions';
 import { List, MotionListItem } from '../components';
 
 const propTypes = {
-  motions: PropTypes.instanceOf(Immutable.List),
   loadMotions: PropTypes.func.isRequired,
+  motions: PropTypes.instanceOf(Immutable.List),
 };
 
 const defaultProps = {

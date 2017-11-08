@@ -14,13 +14,13 @@ import './SideBarLink.scss';
 
 const propTypes = {
   bold: PropTypes.bool,
+  closeBarOnClick: PropTypes.func,
   count: PropTypes.number,
-  label: PropTypes.string,
-  imageUrl: PropTypes.string,
   icon: PropTypes.string,
+  imageUrl: PropTypes.string,
   // True for links that are leveled higher than others
   isIndex: PropTypes.bool,
-  closeBarOnClick: PropTypes.func,
+  label: PropTypes.string,
   to: PropTypes.string,
 };
 

@@ -5,16 +5,16 @@ export function currentLocation(location) {
 }
 
 const path = {
-  index() {
-    return '/';
-  },
-
   createVoteMatch() {
     return '/vote_matches/new';
   },
 
   event(id) {
     return `/events/${id}`;
+  },
+
+  index() {
+    return '/';
   },
 
   info(id) {
@@ -33,40 +33,44 @@ const path = {
     return '/motions';
   },
 
-  profile(id) {
-    return `/profile/${id}`;
+  od(iri) {
+    return `/od?iri=${iri}`;
   },
 
-  profileMotions(id) {
-    return `/profile/${id}/motions`;
-  },
-
-  profileAbout(id) {
-    return `/profile/${id}/about`;
-  },
-
-  politiciansIndex() {
-    return '/politicians';
+  partiesIndex() {
+    return '/parties';
   },
 
   party(id) {
     return `/parties/${id}`;
   },
 
-  partyMotions(id) {
-    return `/parties/${id}/motions`;
+  partyAbout(id) {
+    return `/parties/${id}/about`;
   },
 
   partyMembers(id) {
     return `/parties/${id}/members`;
   },
 
-  partyAbout(id) {
-    return `/parties/${id}/about`;
+  partyMotions(id) {
+    return `/parties/${id}/motions`;
   },
 
-  partiesIndex() {
-    return '/parties';
+  politiciansIndex() {
+    return '/politicians';
+  },
+
+  profile(id) {
+    return `/profile/${id}`;
+  },
+
+  profileAbout(id) {
+    return `/profile/${id}/about`;
+  },
+
+  profileMotions(id) {
+    return `/profile/${id}/motions`;
   },
 
   search() {
@@ -85,10 +89,6 @@ const path = {
   signIn(r) {
     const url = '/u/sign_in';
     return r ? `${url}?r=${encodeURIComponent(r)}` : url;
-  },
-
-  od(iri) {
-    return `/od?iri=${iri}`;
   },
 };
 

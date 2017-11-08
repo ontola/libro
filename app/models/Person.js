@@ -14,11 +14,11 @@ const apiDesc = new APIDesc({
 });
 
 const attributes = {
-  id: '',
-  name: '',
-  image: '',
   biography: '',
   group: '',
+  id: '',
+  image: '',
+  name: '',
 };
 
 export default apiModelGenerator(attributes, apiDesc);

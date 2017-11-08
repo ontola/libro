@@ -26,10 +26,10 @@ const propTypes = {
     PropTypes.number,
     PropTypes.string,
   ])),
-  invalid: PropTypes.bool,
   // Since this uses redux-form, you need to pass onSubmit instead of handleSubmit.
   handleSubmit: PropTypes.func.isRequired,
   hasCancel: PropTypes.bool,
+  invalid: PropTypes.bool,
   redirect: PropTypes.string,
   submitting: PropTypes.bool.isRequired,
 };

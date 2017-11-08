@@ -7,9 +7,9 @@ import './Drawer.scss';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
-  visible: PropTypes.bool,
   hits: PropTypes.number,
   onClickToggle: PropTypes.func,
+  visible: PropTypes.bool,
 };
 
 const Drawer = ({
@@ -20,8 +20,8 @@ const Drawer = ({
 }) => {
   const drawerClass = classNames({
     Drawer: true,
-    'Drawer--visible': visible,
     'Drawer--hide': !visible,
+    'Drawer--visible': visible,
   });
 
   return (

@@ -11,17 +11,6 @@ function isTouchDevice() {
 }
 
 const HyperDropdownMixin = {
-  getInitialState() {
-    this.listeningToClick = true;
-    this.openedByClick = false;
-    return {
-      openState: false,
-      opened: false,
-      renderLeft: false,
-      dropdownElement: {},
-    };
-  },
-
   calculateRenderLeft() {
     this.referenceDropdownElement().style.left = '0';
     this.referenceDropdownElement().style.right = 'auto';
@@ -53,6 +42,17 @@ const HyperDropdownMixin = {
     window.clearTimeout(this.mouseEnterOpenedTimeout);
   },
 
+  getInitialState() {
+    this.listeningToClick = true;
+    this.openedByClick = false;
+    return {
+      dropdownElement: {},
+      openState: false,
+      opened: false,
+      renderLeft: false,
+    };
+  },
+
   handleClick(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -72,6 +72,10 @@ const HyperDropdownMixin = {
     if (this.state.openState === true) {
       this.close();
     }
+  },
+
+  handleResize() {
+    this.calculateRenderLeft();
   },
 
   mouseEnterTimeoutCallback() {
@@ -98,10 +102,6 @@ const HyperDropdownMixin = {
         window.clearTimeout(this.mouseEnterOpenedTimeout);
       }
     }
-  },
-
-  handleResize() {
-    this.calculateRenderLeft();
   },
 
   open() {

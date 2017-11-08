@@ -21,8 +21,8 @@ import { getArgsCon, getArgsPro } from 'state/argumentations/selectors';
 import { getMotionTitle, getMotionVoteEvents } from 'state/motions/selectors';
 
 const propTypes = {
-  argsPro: PropTypes.arrayOf(Argument),
   argsCon: PropTypes.arrayOf(Argument),
+  argsPro: PropTypes.arrayOf(Argument),
   formConOpen: PropTypes.bool,
   formProOpen: PropTypes.bool,
   params: PropTypes.shape({
@@ -33,8 +33,8 @@ const propTypes = {
 };
 
 const defaultProps = {
-  argsPro: [],
   argsCon: [],
+  argsPro: [],
   formConOpen: true,
   formProOpen: false,
 };
@@ -120,10 +120,10 @@ Motion.defaultProps = defaultProps;
 Motion.propTypes = propTypes;
 
 const stateToProps = (state, ownProps) => ({
+  argsCon: getArgsCon(state, ownProps),
+  argsPro: getArgsPro(state, ownProps),
   title: getMotionTitle(state, ownProps),
   voteEvents: getMotionVoteEvents(state, ownProps),
-  argsPro: getArgsPro(state, ownProps),
-  argsCon: getArgsCon(state, ownProps),
 });
 
 export default connect(stateToProps)(Motion);

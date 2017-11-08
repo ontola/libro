@@ -12,9 +12,9 @@ import DetailsBar from '../DetailsBar';
 import Heading from '../Heading';
 
 const propTypes = {
-  title: PropTypes.string.isRequired,
-  startDate: PropTypes.instanceOf(Date),
   id: PropTypes.string.isRequired,
+  startDate: PropTypes.instanceOf(Date),
+  title: PropTypes.string.isRequired,
 };
 
 const EventListItem = ({

@@ -8,13 +8,13 @@ const SPECIFIC_COUNT_ID = 14;
 describe('Count actions', () => {
   it('should have an action to get a specific Count', () => {
     const expectedAction = {
-      type: actions.GET_COUNT,
       payload: {
         apiAction: true,
         arguModel: false,
         endpoint: 'counts',
         id: SPECIFIC_COUNT_ID,
       },
+      type: actions.GET_COUNT,
     };
 
     assert.deepEqual(
@@ -26,12 +26,12 @@ describe('Count actions', () => {
 
   it('should have an action to get all Counts', () => {
     const expectedAction = {
-      type: actions.GET_COUNTS,
       payload: {
         apiAction: true,
         arguModel: false,
         endpoint: 'counts',
       },
+      type: actions.GET_COUNTS,
     };
 
     assert.deepEqual(

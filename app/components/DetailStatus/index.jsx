@@ -14,11 +14,11 @@ const propTypes = {
 };
 
 const statusInfo = {
-  pass: {
-    className: 'DetailStatus--pass',
-    icon: 'check',
-    text: 'Aangenomen',
-    title: 'Het voorstel is geaccepteerd.',
+  closed: {
+    className: 'DetailStatus',
+    icon: 'lock',
+    text: 'Closed',
+    title: 'De discussie is gesloten.',
   },
   fail: {
     className: 'DetailStatus--fail',
@@ -26,11 +26,17 @@ const statusInfo = {
     text: 'Verworpen',
     title: 'Het voorstel is verworpen.',
   },
-  retracted: {
+  open: {
     className: 'DetailStatus',
-    icon: 'close',
-    text: 'Ingetrokken',
-    title: 'Het voorstel is ingetrokken.',
+    icon: 'comment-o',
+    text: 'Open',
+    title: 'De discussie is open.',
+  },
+  pass: {
+    className: 'DetailStatus--pass',
+    icon: 'check',
+    text: 'Aangenomen',
+    title: 'Het voorstel is geaccepteerd.',
   },
   planned: {
     className: 'DetailStatus',
@@ -38,17 +44,11 @@ const statusInfo = {
     text: 'Geagendeerd',
     title: 'Het voorstel zal worden besproken tijdens een vergadering in de toekomst.',
   },
-  open: {
+  retracted: {
     className: 'DetailStatus',
-    icon: 'comment-o',
-    text: 'Open',
-    title: 'De discussie is open.',
-  },
-  closed: {
-    className: 'DetailStatus',
-    icon: 'lock',
-    text: 'Closed',
-    title: 'De discussie is gesloten.',
+    icon: 'close',
+    text: 'Ingetrokken',
+    title: 'Het voorstel is ingetrokken.',
   },
 };
 

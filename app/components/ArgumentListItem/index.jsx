@@ -7,8 +7,8 @@ import './ArgumentListItem.scss';
 
 const propTypes = {
   name: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
   side: PropTypes.oneOf(['pro', 'con']),
+  text: PropTypes.string.isRequired,
 };
 
 const defaultProps = {

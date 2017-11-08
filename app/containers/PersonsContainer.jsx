@@ -9,8 +9,8 @@ import path from 'helpers/paths';
 import { List, ProfileListItem } from '../components';
 
 const propTypes = {
-  persons: PropTypes.instanceOf(Immutable.List),
   loadPersons: PropTypes.func.isRequired,
+  persons: PropTypes.instanceOf(Immutable.List),
 };
 
 const defaultProps = {

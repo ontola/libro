@@ -17,9 +17,9 @@ class FBShareItem extends Component {
     if (typeof FB !== 'undefined') {
       e.preventDefault();
       FB.ui({
-        method: 'share',
-        href: this.props.shareUrl,
         caption: this.props.title,
+        href: this.props.shareUrl,
+        method: 'share',
       }, () => {
         this.props.done();
       });

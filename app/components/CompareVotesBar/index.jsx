@@ -13,10 +13,10 @@ import './CompareVotesBar.scss';
 const propTypes = {
   children: PropTypes.node.isRequired,
   label: PropTypes.string.isRequired,
-  totalValue: PropTypes.number.isRequired,
   tags: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string.isRequired,
   })),
+  totalValue: PropTypes.number.isRequired,
 };
 
 const suffix = percentage => (

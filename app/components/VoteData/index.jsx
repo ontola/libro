@@ -13,14 +13,14 @@ import { Count, Vote } from '../../models/index';
 import './VoteData.scss';
 
 const propTypes = {
-  legislativeSession: PropTypes.string,
-  organization: PropTypes.string,
-  optionCounts: PropTypes.arrayOf(Count).isRequired,
-  votes: PropTypes.arrayOf(Vote).isRequired,
   counts: PropTypes.arrayOf(Count),
-  result: PropTypes.string,
   endDate: PropTypes.date,
+  legislativeSession: PropTypes.string,
+  optionCounts: PropTypes.arrayOf(Count).isRequired,
+  organization: PropTypes.string,
+  result: PropTypes.string,
   startDate: PropTypes.date,
+  votes: PropTypes.arrayOf(Vote).isRequired,
 };
 
 const defaultProps = {

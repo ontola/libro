@@ -13,11 +13,11 @@ import DetailsBar from '../DetailsBar';
 import Heading from '../Heading';
 
 const propTypes = {
-  title: PropTypes.string.isRequired,
-  creator: PropTypes.string,
   createdAt: PropTypes.instanceOf(Date),
+  creator: PropTypes.string,
   link: PropTypes.string.isRequired,
   onVote: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
   voteData: PropTypes.string,
 };
 

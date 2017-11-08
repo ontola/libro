@@ -12,20 +12,20 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import './ProfileCard.scss';
 
 const propTypes = {
+  bio: PropTypes.string,
+  full: PropTypes.bool,
   id: PropTypes.string,
+  image: PropTypes.string,
+  loading: PropTypes.bool,
   name: PropTypes.string,
   party: PropTypes.string,
-  image: PropTypes.string,
-  bio: PropTypes.string,
-  loading: PropTypes.bool,
-  full: PropTypes.bool,
   similarity: PropTypes.number,
   subject: subjectType,
 };
 
 const defaultProps = {
-  loading: false,
   full: false,
+  loading: false,
 };
 
 class ProfileCard extends PropertyBase {
@@ -47,8 +47,8 @@ class ProfileCard extends PropertyBase {
 
     const profileClassname = classNames({
       ProfileCard,
-      'ProfileCard--loading': loading,
       'ProfileCard--full': full,
+      'ProfileCard--loading': loading,
       'ProfileCard--small': !full,
     });
 

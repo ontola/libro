@@ -11,13 +11,13 @@ import {
 import { Argument } from '../models/index';
 
 const propTypes = {
-  argsPro: PropTypes.arrayOf(Argument).isRequired,
   argsCon: PropTypes.arrayOf(Argument).isRequired,
+  argsPro: PropTypes.arrayOf(Argument).isRequired,
 };
 
 const defaultProps = {
-  argsPro: [],
   argsCon: [],
+  argsPro: [],
 };
 
 const renderItem = arg => (
@@ -40,6 +40,6 @@ ArgumentsContainer.propTypes = propTypes;
 ArgumentsContainer.defaultProps = defaultProps;
 
 export default connect((state, ownProps) => ({
-  argsPro: getArgsPro(state, ownProps),
   argsCon: getArgsCon(state, ownProps),
+  argsPro: getArgsPro(state, ownProps),
 }))(ArgumentsContainer);

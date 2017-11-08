@@ -22,14 +22,14 @@ const defaultLinks = [{
 }];
 
 const propTypes = {
-  title: PropTypes.string.isRequired,
   links: PropTypes.arrayOf(PropTypes.object),
   overlayColor: PropTypes.string,
+  title: PropTypes.string.isRequired,
 };
 
 const defaultProps = {
-  overlayColor: 'rgb(71, 86, 104)',
   links: defaultLinks,
+  overlayColor: 'rgb(71, 86, 104)',
 };
 
 const Header = ({

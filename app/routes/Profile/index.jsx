@@ -14,11 +14,11 @@ import PersonContainer from 'containers/PersonContainer';
 import { getPersonName } from 'state/persons/selectors';
 
 const propTypes = {
+  children: PropTypes.node,
+  name: PropTypes.string,
   params: PropTypes.shape({
     userId: PropTypes.number,
   }),
-  children: PropTypes.node,
-  name: PropTypes.string,
 };
 
 const links = id => ([{

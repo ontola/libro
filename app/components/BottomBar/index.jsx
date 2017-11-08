@@ -8,8 +8,8 @@ import BottomBarButton from '../BottomBarButton';
 import './BottomBar.scss';
 
 const propTypes = {
-  orgColor: PropTypes.string,
   onOpen: PropTypes.func,
+  orgColor: PropTypes.string,
 };
 
 const defaultProps = {

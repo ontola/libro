@@ -18,18 +18,7 @@ const replacements = process.env.NODE_ENV === 'development'
   }];
 
 const config = {
-  target: 'node',
   entry: path.resolve('./server/init'),
-
-  output: {
-    filename: 'server.js',
-    path: path.resolve(`${__dirname}/../dist/private`),
-  },
-
-  resolve: {
-    modules: ['./node_modules'],
-    extensions: ['.js', '.jsx', '.ts', '.json'],
-  },
 
   externals: [nodeExternals()],
 
@@ -60,30 +49,42 @@ const config = {
     ],
   },
 
+  output: {
+    filename: 'server.js',
+    path: path.resolve(`${__dirname}/../dist/private`),
+  },
+
   plugins: [
     new webpack.ProvidePlugin({
       fetch: 'isomorphic-fetch',
     }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production'),
+      __CLIENT__: true,
       __DEVELOPMENT__: process.env.NODE_ENV === 'development',
       __PRODUCTION__: process.env.NODE_ENV === 'production',
-      __CLIENT__: true,
       "import devMiddleware from './utils/devMiddleware';": 'undefined',
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production'),
     }),
     new StringReplacePlugin(),
   ],
+
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.json'],
+    modules: ['./node_modules'],
+  },
+
+  target: 'node',
 };
 
 config.stats = {
   // minimal logging
   assets: false,
-  colors: true,
-  version: false,
-  timings: false,
-  chunks: false,
-  chunkModules: false,
   children: false,
+  chunkModules: false,
+  chunks: false,
+  colors: true,
+  timings: false,
+  version: false,
 };
 
 module.exports = config;

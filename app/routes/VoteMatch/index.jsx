@@ -59,9 +59,9 @@ VoteMatch.propTypes = propTypes;
 
 export default connect(
   (state, props) => ({
-    name: getVoteMatchName(state, props),
     currentIndex: getVoteMatchCountUserVotes(state, props),
     motionsLength: getVoteMatchMotionIdsLength(state, props),
+    name: getVoteMatchName(state, props),
   }),
   dispatch => ({
     loadVoteMatch: id => dispatch(fetchVoteMatch(id)),

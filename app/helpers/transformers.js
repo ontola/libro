@@ -5,9 +5,9 @@ const PRIO_MAX = 1.0;
 export default {
   transformers: [
     {
-      transformer: transformers.jsonapi,
-      mediaTypes: 'application/vnd.api+json',
       acceptValue: PRIO_MAX,
+      mediaTypes: 'application/vnd.api+json',
+      transformer: transformers.jsonapi,
     },
   ],
 };

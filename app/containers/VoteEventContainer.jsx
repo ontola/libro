@@ -12,19 +12,19 @@ import { VoteData } from '../components';
 
 const propTypes = {
   counts: PropTypes.arrayOf(PropTypes.shape({
-    yes: PropTypes.number,
-    no: PropTypes.number,
     abstain: PropTypes.number,
+    no: PropTypes.number,
+    yes: PropTypes.number,
   })),
-  votes: PropTypes.arrayOf(Vote),
   data: PropTypes.shape({
-    optionCounts: PropTypes.string,
     endDate: PropTypes.string,
     legislativeSession: PropTypes.string,
+    optionCounts: PropTypes.string,
     organization: PropTypes.string,
     result: PropTypes.string,
     startDate: PropTypes.string,
   }),
+  votes: PropTypes.arrayOf(Vote),
 };
 
 const VoteDataRenderItem = ({
@@ -40,9 +40,9 @@ const VoteDataRenderItem = ({
   const optionCounts = () => {
     if (data.optionCounts === undefined) {
       return {
-        yes: 123,
-        no: 123,
         abstain: 123,
+        no: 123,
+        yes: 123,
       };
     }
     return data.optionCounts;
@@ -66,8 +66,8 @@ const VoteDataRenderItem = ({
 VoteDataRenderItem.propTypes = propTypes;
 
 const mapStateToProps = (state, props) => ({
-  data: getVoteEvent(state, props),
   counts: getVoteEventCountsSorted(state, props),
+  data: getVoteEvent(state, props),
   votes: getVoteEventVotesSorted(state, props),
 });
 

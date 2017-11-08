@@ -17,10 +17,10 @@ const attributes = {
   counts: [],
   endDate: null,
   id: '',
-  result: '',
-  optionCounts: {},
   legislativeSession: '',
+  optionCounts: {},
   organization: '',
+  result: '',
   startDate: null,
   votes: [],
 };

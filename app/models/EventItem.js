@@ -21,8 +21,8 @@ const attributes = {
   eventId: '',
   id: '',
   loading: false,
-  title: '',
   startDate: new Date(),
+  title: '',
 };
 
 export default apiModelGenerator(attributes, apiDesc);

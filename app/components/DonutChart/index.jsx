@@ -44,23 +44,23 @@ class DonutChart extends Component {
 
     return c3.generate({
       bindto: this.wrapper,
+      color: {
+        pattern: colors,
+      },
       data: {
         columns: data.map(item => [item.name, item.value]),
         type: 'donut',
       },
-      color: {
-        pattern: colors,
+      donut: {
+        label: {
+          format: (value, ratio, id) => id,
+        },
       },
       legend: {
         show: false,
       },
       tooltip: {
         contents: renderTooltip(unit),
-      },
-      donut: {
-        label: {
-          format: (value, ratio, id) => id,
-        },
       },
     });
   }

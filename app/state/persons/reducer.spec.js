@@ -34,12 +34,12 @@ describe('Persons reducer', () => {
 
     assert.deepEqual(
       persons(undefined, {
-        type: actions.GET_PERSON,
         payload: {
           apiAction: true,
           endpoint: 'persons',
           id: '14',
         },
+        type: actions.GET_PERSON,
       }),
       expectedResponse,
       'does not handle GET_PERSON very well'

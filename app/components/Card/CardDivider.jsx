@@ -22,22 +22,22 @@ const CardDivider = ({
 }) => (
   <div
     style={{
-      width: '100%',
-      height: '1px',
+      alignItems: 'center',
       backgroundColor: lineColor,
       display: 'flex',
-      marginBottom: '1em',
-      alignItems: 'center',
+      height: '1px',
       justifyContent: 'center',
+      marginBottom: '1em',
+      width: '100%',
     }}
   >
     {text &&
     <span
       style={{
         backgroundColor: 'rgb(255,255,255)',
-        padding: '0 7px',
-        fontWeight: 'bold',
         color: 'rgb(100,100,100)',
+        fontWeight: 'bold',
+        padding: '0 7px',
       }}
     >
       {text}

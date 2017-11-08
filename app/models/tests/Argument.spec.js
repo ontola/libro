@@ -8,13 +8,13 @@ const SPECIFIC_ARGUMENT_ID = 14;
 describe('Argument actions', () => {
   it('should have an action to get a specific Argument', () => {
     const expectedAction = {
-      type: actions.GET_ARGUMENT,
       payload: {
         apiAction: true,
         arguModel: false,
         endpoint: 'arguments',
         id: SPECIFIC_ARGUMENT_ID,
       },
+      type: actions.GET_ARGUMENT,
     };
 
     assert.deepEqual(
@@ -26,12 +26,12 @@ describe('Argument actions', () => {
 
   it('should have an action to get all arguments', () => {
     const expectedAction = {
-      type: actions.GET_ARGUMENTS,
       payload: {
         apiAction: true,
         arguModel: false,
         endpoint: 'arguments',
       },
+      type: actions.GET_ARGUMENTS,
     };
 
     assert.deepEqual(

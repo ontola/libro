@@ -10,18 +10,18 @@ const apiDesc = new APIDesc({
     collection: actions.GET_CURRENT_ACTOR,
     resource: actions.GET_CURRENT_ACTOR,
   }),
+  arguModel: true,
   endpoint: `${FRONTEND_URL}/c_a`,
   type: 'currentActors',
-  arguModel: true,
 });
 
 const attributes = {
   actorType: 'Guest',
   displayName: '',
-  shortname: '',
   finishedIntro: true,
   id: null,
   loading: false,
+  shortname: '',
 };
 
 export default apiModelGenerator(attributes, apiDesc);

@@ -14,12 +14,12 @@ import Heading from '../Heading';
 import Markdown from '../Markdown';
 
 const propTypes = {
-  creator: PropTypes.string,
   createdAt: PropTypes.instanceOf(Date),
+  creator: PropTypes.string,
+  name: PropTypes.string.isRequired,
   side: PropTypes.oneOf(['pro', 'con']).isRequired,
   /** Content of argument */
   text: PropTypes.string,
-  name: PropTypes.string.isRequired,
 };
 
 const ArgumentShow = ({

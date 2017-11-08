@@ -14,12 +14,12 @@ import DetailVotedFor from '../DetailVotedFor';
 import Heading from '../Heading';
 
 const propTypes = {
-  title: PropTypes.string.isRequired,
-  creator: PropTypes.string,
   createdAt: PropTypes.instanceOf(Date),
+  creator: PropTypes.string,
   link: PropTypes.string.isRequired,
   side: PropTypes.string,
   status: PropTypes.string,
+  title: PropTypes.string.isRequired,
 };
 
 const MotionListItem = ({

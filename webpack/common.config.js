@@ -7,10 +7,10 @@ process.env.BABEL_ENV = TARGET;
 
 const common = {
   externals: {
-    xmlhttprequest: 'self.XMLHttpRequest',
     URL: 'self.URL',
-    'whatwg-url': 'self.URL',
     'universal-url': '{URL: self.URL}',
+    'whatwg-url': 'self.URL',
+    xmlhttprequest: 'self.XMLHttpRequest',
   },
 
   module: {
@@ -50,6 +50,7 @@ const common = {
     new webpack.DefinePlugin({
       __CLIENT__: true,
       __DEVELOPMENT__: process.env.NODE_ENV === 'development',
+      __ORIGIN__: JSON.stringify(`https://${process.env.FRONTEND_HOSTNAME}`),
       __PRODUCTION__: process.env.NODE_ENV === 'production',
       'process.env': {
         ARGU_API_URL: JSON.stringify(process.env.ARGU_API_URL),
@@ -57,7 +58,6 @@ const common = {
         NODE_ENV: process.env.NODE_ENV === 'development' ? '"development"' : '"production"',
       },
       'process.env.ELASTICSEARCH_URL': JSON.stringify(process.env.ELASTICSEARCH_URL),
-      __ORIGIN__: JSON.stringify(`https://${process.env.FRONTEND_HOSTNAME}`),
     }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.optimize.ModuleConcatenationPlugin(),

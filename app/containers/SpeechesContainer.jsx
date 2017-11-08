@@ -10,9 +10,9 @@ import {
 } from '../components';
 
 const propTypes = {
+  eventId: PropTypes.string.isRequired,
   /** Array of SpeechIds */
   speechIds: PropTypes.arrayOf(PropTypes.string),
-  eventId: PropTypes.string.isRequired,
 };
 
 const SpeechesContainer = connect((state, ownProps) => ({

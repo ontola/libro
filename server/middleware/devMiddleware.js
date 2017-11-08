@@ -15,12 +15,12 @@ export default function (app) {
   const compiler = webpack(webpackConfig);
 
   app.use(webpackDevMiddleware(compiler, {
-    publicPath: webpackConfig.output.publicPath,
-    quiet: true,
-    noInfo: true,
     headers: {
       'Access-Control-Allow-Origin': '*',
     },
+    noInfo: true,
+    publicPath: webpackConfig.output.publicPath,
+    quiet: true,
   }));
 
   app.use(webpackHotMiddleware(compiler, compiler));

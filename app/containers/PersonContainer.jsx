@@ -20,9 +20,9 @@ const defaultRenderItem = user => (
 );
 
 const propTypes = {
+  data: PropTypes.instanceOf(Person),
   full: PropTypes.bool,
   loadProfile: PropTypes.func,
-  data: PropTypes.instanceOf(Person),
   renderItem: PropTypes.func,
   similarity: PropTypes.oneOfType([
     PropTypes.number,

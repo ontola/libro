@@ -8,13 +8,13 @@ const SPECIFIC_PERSON_ID = 14;
 describe('Persons actions', () => {
   it('should have an action to get a specific Person', () => {
     const expectedAction = {
-      type: actions.GET_PERSON,
       payload: {
         apiAction: true,
         arguModel: false,
         endpoint: 'persons',
         id: SPECIFIC_PERSON_ID,
       },
+      type: actions.GET_PERSON,
     };
 
     assert.deepEqual(
@@ -26,12 +26,12 @@ describe('Persons actions', () => {
 
   it('should have an action to get all Persons', () => {
     const expectedAction = {
-      type: actions.GET_PERSONS,
       payload: {
         apiAction: true,
         arguModel: false,
         endpoint: 'persons',
       },
+      type: actions.GET_PERSONS,
     };
 
     assert.deepEqual(

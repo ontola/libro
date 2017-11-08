@@ -15,13 +15,13 @@ describe('Cover component', () => {
 
     assert.deepEqual(
       comp.find('.Cover').first().prop('style'),
-      { backgroundImage: 'none', backgroundColor: 'undefined' },
+      { backgroundColor: 'undefined', backgroundImage: 'none' },
       'Incorrect default values for background image and color'
     );
 
     comp.setProps({
-      overlayColor: 'red',
       image: 'http://placehold.it/50x50',
+      overlayColor: 'red',
     });
 
     assert.equal(comp.find('.Cover__overlay').length, 1, 'Cover overlay does not render');

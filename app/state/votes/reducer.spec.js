@@ -25,13 +25,13 @@ describe('Votes reducer', () => {
 
     assert.deepEqual(
       votes(undefined, {
-        type: actions.SET_VOTE,
         payload: {
           apiAction: true,
           endpoint: 'votes',
           motionId: '14',
           side: 'pro',
         },
+        type: actions.SET_VOTE,
       }),
       expectedResponse,
       'does not handle SET_VOTE very well'

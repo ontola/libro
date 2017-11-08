@@ -10,9 +10,9 @@ import {
 } from '../components';
 
 const propTypes = {
-  presentInCurrentVoteable: PropTypes.bool.isRequired,
   onAddVoteMatchVoteable: PropTypes.func.isRequired,
   onRemoveVoteMatchVoteable: PropTypes.func.isRequired,
+  presentInCurrentVoteable: PropTypes.bool.isRequired,
 };
 
 const VoteMatchAddContainer = ({

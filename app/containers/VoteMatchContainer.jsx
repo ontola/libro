@@ -13,16 +13,16 @@ import { VoteMatchShow } from '../components';
 
 const propTypes = {
   countUserVotes: PropTypes.number,
-  id: PropTypes.string.isRequired,
-  motionIds: PropTypes.node,
-  onStartVoteMatch: PropTypes.func.isRequired,
-  onSaveScore: PropTypes.func.isRequired,
-  similarity: PropTypes.number.isRequired,
   data: PropTypes.shape({
     comparables: PropTypes.arrayOf(PropTypes.string),
     name: PropTypes.string,
     text: PropTypes.string,
   }),
+  id: PropTypes.string.isRequired,
+  motionIds: PropTypes.node,
+  onSaveScore: PropTypes.func.isRequired,
+  onStartVoteMatch: PropTypes.func.isRequired,
+  similarity: PropTypes.number.isRequired,
 };
 
 const defaultProps = {
@@ -71,12 +71,12 @@ VoteMatchContainer.defaultProps = defaultProps;
 export default connect(
   (state, props) => ({
     countUserVotes: getVoteMatchCountUserVotes(state, props),
+    data: getVoteMatch(state, props),
     motionIds: getVoteMatchMotionIds(state, props),
     similarity: getVoteMatchSimilarity(state, props),
-    data: getVoteMatch(state, props),
   }),
   dispatch => ({
-    onStartVoteMatch: record => dispatch(voteMatchStart(record)),
     onSaveScore: score => dispatch(voteMatchSave(score)),
+    onStartVoteMatch: record => dispatch(voteMatchStart(record)),
   })
 )(VoteMatchContainer);

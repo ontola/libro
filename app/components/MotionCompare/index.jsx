@@ -13,9 +13,9 @@ import Markdown from '../Markdown';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  text: PropTypes.string,
   onVote: PropTypes.func.isRequired,
+  text: PropTypes.string,
+  title: PropTypes.string.isRequired,
   voteData: PropTypes.string.isRequired,
 };
 

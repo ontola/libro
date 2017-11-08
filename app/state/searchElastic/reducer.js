@@ -7,16 +7,16 @@ import {
 } from '../action-types';
 
 const initialState = new Map({
-  visible: false,
   hits: 0,
+  visible: false,
 });
 
 const searchElastic = handleActions({
-  [TOGGLE_DRAWER]: state =>
-    state.set('visible', !state.get('visible')),
-
   [SET_HIT_COUNT]: (state, { payload }) =>
     state.set('hits', payload),
+
+  [TOGGLE_DRAWER]: state =>
+    state.set('visible', !state.get('visible')),
 }, initialState);
 
 export default searchElastic;

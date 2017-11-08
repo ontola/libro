@@ -7,15 +7,15 @@ import { toggleDrawer } from 'state/searchElastic/actions';
 import { Drawer } from '../components';
 
 const propTypes = {
-  visible: PropTypes.bool,
   hits: PropTypes.number,
   onClickToggle: PropTypes.func,
+  visible: PropTypes.bool,
 };
 
 const DrawerContainer = connect(
   state => ({
-    visible: getDrawerVisible(state),
     hits: getSearchHits(state),
+    visible: getDrawerVisible(state),
   }),
   dispatch => ({
     onClickToggle: () => dispatch(toggleDrawer()),

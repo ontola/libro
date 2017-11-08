@@ -4,9 +4,9 @@ import Video from 'react-html5video';
 import './VideoPlayer.scss';
 
 const propTypes = {
-  url: PropTypes.string,
   id: PropTypes.string,
   isPlaying: PropTypes.bool,
+  url: PropTypes.string,
 };
 
 // How long it takes before currentTime is updated.

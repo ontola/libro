@@ -22,8 +22,8 @@ const motion = new models.Motion({
 const state = new Map({
   argumentations: new Map({
     items: new Map({
-      argu: new models.Argument({ id: 'argu', title: 'Kost te veel', side: 'con' }),
-      ment: new models.Argument({ id: 'ment', title: 'Zeer goed', side: 'pro' }),
+      argu: new models.Argument({ id: 'argu', side: 'con', title: 'Kost te veel' }),
+      ment: new models.Argument({ id: 'ment', side: 'pro', title: 'Zeer goed' }),
     }),
   }),
   motions: new Map({
@@ -45,8 +45,8 @@ const stateNoArgs = new Map({
 });
 
 const expectedState = new Map({
-  argu: new models.Argument({ id: 'argu', title: 'Kost te veel', side: 'con' }),
-  ment: new models.Argument({ id: 'ment', title: 'Zeer goed', side: 'pro' }),
+  argu: new models.Argument({ id: 'argu', side: 'con', title: 'Kost te veel' }),
+  ment: new models.Argument({ id: 'ment', side: 'pro', title: 'Zeer goed' }),
 });
 
 const props = {
@@ -61,7 +61,7 @@ describe('Arguments selectors', () => {
   it('should return only the correct arguments', () => {
     assert.deepEqual(
       getArgs('pro')(state, props),
-      [new models.Argument({ id: 'ment', title: 'Zeer goed', side: 'pro' })],
+      [new models.Argument({ id: 'ment', side: 'pro', title: 'Zeer goed' })],
       'does not return correct pro arguments'
     );
 

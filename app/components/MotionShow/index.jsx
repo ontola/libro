@@ -15,19 +15,20 @@ import Heading from '../Heading';
 import Markdown from '../Markdown';
 
 const propTypes = {
-  title: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
-  creator: PropTypes.string,
   createdAt: PropTypes.instanceOf(Date),
+  creator: PropTypes.string,
   onVote: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   voteData: PropTypes.string,
 };
 
 const options = {
-  yes: 'Voor',
   neutral: 'Neutraal',
   no: 'Tegen',
+  yes: 'Voor',
 };
+const order = ['yes', 'neutral', 'no'];
 
 const MotionShow = ({
   title,
@@ -52,7 +53,7 @@ const MotionShow = ({
       />
     </CardContent>
     <CardActions>
-      {Object.keys(options).map(option => (
+      {order.map(option => (
         <CardButton
           action={() => onVote(option)}
           active={voteData === option}

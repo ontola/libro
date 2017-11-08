@@ -49,9 +49,9 @@ CompareVotes.propTypes = propTypes;
 
 export default connect(
   (state, props) => ({
-    name: getPersonName(state, props),
     currentIndex: getVoteMatchCountUserVotes(state, props),
     motionsLength: getVoteMatchMotionIdsLength(state, props),
+    name: getPersonName(state, props),
   }),
   dispatch => ({
     loadPerson: id => dispatch(fetchPerson(id)),

@@ -13,9 +13,9 @@ const propTypes = {
   icon: PropTypes.string,
   imageUrl: PropTypes.string,
   text: PropTypes.string,
-  url: PropTypes.string,
   /** HTML title attribute */
   title: PropTypes.string,
+  url: PropTypes.string,
 };
 const DetailPure = ({
   className,

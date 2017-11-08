@@ -13,8 +13,6 @@ config.entry = [
 config.output.filename = 'bundle-[chunkhash].js';
 
 config.module.rules.unshift({
-  test: /(\.jsx\.js)?$/,
-  use: ['babel-loader'],
   include: [
     /app/,
     /node_modules\/whatwg-url/,
@@ -22,6 +20,8 @@ config.module.rules.unshift({
     /node_modules\/webidl-conversions/,
     /node_modules\/ml-disjoint-set/,
   ],
+  test: /(\.jsx\.js)?$/,
+  use: ['babel-loader'],
 });
 
 config.module.rules.push({
@@ -41,9 +41,9 @@ config.plugins.push(
     filename: 'bundle-[contenthash].css'
   }),
   new webpack.DefinePlugin({
-    'process.env.NODE_ENV': JSON.stringify('production'),
     'process.env.ARGU_API_EXT_BASE': JSON.stringify(process.env.ARGU_API_EXT_BASE ||
       'https://beta.argu.co/api/'),
+    'process.env.NODE_ENV': JSON.stringify('production'),
   }),
   new webpack.ProvidePlugin({
     fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
@@ -67,12 +67,12 @@ config.plugins.push(
 config.stats = {
   // minimal logging
   assets: false,
-  colors: true,
-  version: false,
-  timings: false,
-  chunks: false,
-  chunkModules: false,
   children: false,
+  chunkModules: false,
+  chunks: false,
+  colors: true,
+  timings: false,
+  version: false,
 };
 
 module.exports = config;

@@ -3,21 +3,23 @@ import OpenData from 'static/articles/OpenData.md';
 import Search from 'static/articles/Search.md';
 import VoteMatch from 'static/articles/VoteMatch.md';
 
+export const order = ['OpenData', 'VoteMatch', 'Search', 'Contact'];
+
 export default {
-  OpenData: {
-    title: 'Argu Open Data',
-    text: OpenData,
+  Contact: {
+    text: Contact,
+    title: 'Contact',
   },
-  VoteMatch: {
-    title: 'Argu Stemwijzer',
-    text: VoteMatch,
+  OpenData: {
+    text: OpenData,
+    title: 'Argu Open Data',
   },
   Search: {
-    title: 'Zoeken',
     text: Search,
+    title: 'Zoeken',
   },
-  Contact: {
-    title: 'Contact',
-    text: Contact,
+  VoteMatch: {
+    text: VoteMatch,
+    title: 'Argu Stemwijzer',
   },
 };

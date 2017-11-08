@@ -22,13 +22,13 @@ const CardButton = ({
   type,
 }) => {
   const buttonIcon = {
-    yes: 'thumbs-up',
-    pro: 'thumbs-up',
+    comment: 'comment',
+    con: 'thumbs-down',
     neutral: 'pause',
     no: 'thumbs-down',
-    con: 'thumbs-down',
-    comment: 'comment',
+    pro: 'thumbs-up',
     upvote: 'arrow-up',
+    yes: 'thumbs-up',
   };
 
   return (

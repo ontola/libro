@@ -3,8 +3,8 @@ import { Map } from 'immutable';
 import * as actions from '../action-types';
 
 const initialState = new Map({
-  isError: false,
   errorMessage: '',
+  isError: false,
   isLoading: false,
 });
 
@@ -15,8 +15,8 @@ const communication = (state = initialState, action) => {
 
   if (action.error) {
     return state.merge({
-      isError: true,
       errorMessage: action.payload && action.payload.message,
+      isError: true,
     });
   }
 

@@ -8,11 +8,11 @@ import Detail from '../Detail';
 import './DetailDuration.scss';
 
 const propTypes = {
-  startDate: PropTypes.instanceOf(Date),
   currentDate: PropTypes.instanceOf(Date),
   endDate: PropTypes.instanceOf(Date),
-  isCurrent: PropTypes.bool,
   floatRight: PropTypes.bool,
+  isCurrent: PropTypes.bool,
+  startDate: PropTypes.instanceOf(Date),
 };
 
 const DetailDuration = ({

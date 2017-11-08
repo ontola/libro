@@ -9,20 +9,20 @@ import {
 } from 'components';
 
 const profileLinks = [{
-  to: 'http://www.d66.nl',
   label: 'Website',
+  to: 'http://www.d66.nl',
   value: 'www.d66.nl',
 }, {
-  to: 'http://www.d66.nl/standpunten',
   label: 'Standpunten',
+  to: 'http://www.d66.nl/standpunten',
   value: 'www.d66.nl/standpunten',
 }, {
-  to: 'https://nl.wikipedia.org/wiki/Democraten_66',
   label: 'Wikipedia',
+  to: 'https://nl.wikipedia.org/wiki/Democraten_66',
   value: 'nl.wikipedia.org/wiki/Democraten_66',
 }, {
-  to: 'http://www.twitter.com/d66',
   label: 'Twitter',
+  to: 'http://www.twitter.com/d66',
   value: 'www.twitter.com/d66',
 }];
 

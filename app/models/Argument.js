@@ -7,22 +7,22 @@ import { APIDesc, apiModelGenerator } from './utils/apiModelGenerator';
 const apiDesc = new APIDesc({
   actions: new Map({
     collection: actions.GET_ARGUMENTS,
-    resource: actions.GET_ARGUMENT,
     create: actions.CREATE_ARGUMENT,
+    resource: actions.GET_ARGUMENT,
   }),
   endpoint: 'arguments',
   type: 'arguments',
 });
 
 const attributes = {
+  createdAt: null,
+  creator: '',
   id: '',
   motionId: '',
   name: '',
-  text: '',
   side: '',
-  createdAt: null,
+  text: '',
   voteCount: '',
-  creator: '',
 };
 
 export default apiModelGenerator(attributes, apiDesc);

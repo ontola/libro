@@ -5,8 +5,8 @@ import { calcPercentage } from 'helpers/numbers';
 import './ProgressBar.scss';
 
 const propTypes = {
-  context: PropTypes.string,
   completed: PropTypes.number,
+  context: PropTypes.string,
   total: PropTypes.number.isRequired,
 };
 
