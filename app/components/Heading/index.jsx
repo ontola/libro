@@ -7,13 +7,12 @@ import './Heading.scss';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
-  display: PropTypes.oneOf('inherit'),
+  display: PropTypes.oneOf(['inherit']),
   size: PropTypes.oneOf(headingSizes),
   variant: PropTypes.oneOf(headingVariants),
 };
 
 const defaultProps = {
-  children: '',
   size: '2',
 };
 

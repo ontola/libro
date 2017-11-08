@@ -7,7 +7,8 @@ import { ProgressBar } from 'components';
 import LinkVoteMatchContainer from '../../containers/LinkVoteMatchContainer';
 
 const propTypes = {
-  current: PropTypes.nubmer,
+  current: PropTypes.number,
+  name: PropTypes.string,
   url: PropTypes.string,
 };
 
@@ -18,6 +19,7 @@ const voteMatchUrl = (url) => {
 
 const LinkVoteMatch = ({
   current,
+  name,
   url,
 }) => (
   <div className="ProgressBar__wrapper">

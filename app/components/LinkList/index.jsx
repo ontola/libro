@@ -6,10 +6,6 @@ const propTypes = {
   links: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-const defaultProps = {
-  links: [],
-};
-
 const LinkList = ({ links }) => {
   const generateLinks = links.map((link, i) => (
     <Link
@@ -23,11 +19,10 @@ const LinkList = ({ links }) => {
   ));
 
   return (
-    <nav className="LinkList" role="navigation">{generateLinks}</nav>
+    <nav className="LinkList">{generateLinks}</nav>
   );
 };
 
 LinkList.propTypes = propTypes;
-LinkList.defaultProps = defaultProps;
 
 export default LinkList;

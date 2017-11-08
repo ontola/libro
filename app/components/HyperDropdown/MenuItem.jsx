@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 
-import LinkItem from './menuitems/LinkItem';
+import LinkItem, { linkItemPropTypes } from './menuitems/LinkItem';
 import FBShareItem from './menuitems/FBShareItem';
 
 const propTypes = {
-  childProps: PropTypes.object,
+  childProps: PropTypes.shape(linkItemPropTypes),
   done: PropTypes.func,
   type: PropTypes.oneOf(['link', 'actor', 'fb_share']).isRequired,
 };

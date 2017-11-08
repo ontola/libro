@@ -19,7 +19,7 @@ const defaultColors = [
 
 const propTypes = {
   /** Array of colors. Renders each item in the color of the same array position */
-  colors: PropTypes.array,
+  colors: PropTypes.arrayOf(PropTypes.string),
   /** Accepts an array of objects with a 'name' string and a 'value' integer */
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   /** The name of the thing that is being counted (plural) */
@@ -28,7 +28,6 @@ const propTypes = {
 
 const defaultProps = {
   colors: defaultColors,
-  unit: 'units',
 };
 
 const renderTooltip = unit => d =>

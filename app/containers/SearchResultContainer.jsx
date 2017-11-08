@@ -5,7 +5,17 @@ import { SearchResultItem } from '../components';
 import * as constants from '../../app/config';
 
 const propTypes = {
-  result: PropTypes.object.isRequired,
+  result: PropTypes.shape({
+    _source: PropTypes.string,
+    _score: PropTypes.string,
+    _type: PropTypes.string,
+    highlight: PropTypes.shape({
+      classification: PropTypes.string,
+      date: PropTypes.string,
+      name: PropTypes.string,
+      submitters: PropTypes.arrayOf(PropTypes.string),
+    }),
+  }).isRequired,
 };
 
 const SearchResultContainer = ({ result }) => {

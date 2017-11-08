@@ -1,12 +1,13 @@
 import React, { PropTypes } from 'react';
 
 import CompareVotesBar from '../CompareVotesBar';
+import { Vote } from '../../models/index';
 
 const propTypes = {
   comparedProfileName: PropTypes.string.isRequired,
-  comparedProfilePositions: PropTypes.array.isRequired,
-  motionIds: PropTypes.array.isRequired,
-  userVotes: PropTypes.array.isRequired,
+  comparedProfilePositions: PropTypes.arrayOf(Vote).isRequired,
+  motionIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+  userVotes: PropTypes.arrayOf(Vote).isRequired,
   score: PropTypes.number,
 };
 

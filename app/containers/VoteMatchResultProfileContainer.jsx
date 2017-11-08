@@ -1,6 +1,7 @@
 import { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { VoteMatchResultBar } from '../components';
+
+import Vote from 'models/Vote';
 import {
   getVoteMatchUserVotes,
   getVoteMatchMotionIds,
@@ -11,10 +12,12 @@ import {
   getGroupName,
 } from 'state/groups/selectors';
 
+import { VoteMatchResultBar } from '../components';
+
 const propTypes = {
   profileId: PropTypes.string.isRequired,
-  motionIds: PropTypes.array,
-  userVotes: PropTypes.array,
+  motionIds: PropTypes.arrayOf(PropTypes.number),
+  userVotes: PropTypes.arrayOf(Vote),
 };
 
 const mapStateToProps = (state, props) => ({

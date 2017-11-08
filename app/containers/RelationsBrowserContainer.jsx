@@ -4,6 +4,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { getP } from 'link-lib';
 import { fetchLinkedObject, LinkedObjectContainer } from 'link-redux';
+import { Statement } from 'rdflib';
 
 import {
   getCurrentRelation,
@@ -11,9 +12,9 @@ import {
 } from 'state/relationsBrowser/selectors';
 
 const propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.arrayOf(Statement),
   loadRelation: PropTypes.func.isRequired,
-  object: PropTypes.any,
+  object: PropTypes.string,
 };
 
 class RelationsBrowserContainer extends Component {

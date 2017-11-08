@@ -12,7 +12,6 @@ const propTypes = {
 
 const defaultProps = {
   completed: 0,
-  total: 0,
 };
 
 const ProgressBar = ({

@@ -11,7 +11,9 @@ import {
 } from 'components';
 
 const propTypes = {
-  params: PropTypes.object,
+  params: PropTypes.shape({
+    partyId: PropTypes.number,
+  }),
   children: PropTypes.node,
 };
 

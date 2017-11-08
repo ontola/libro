@@ -5,15 +5,18 @@ import {
   Container,
 } from 'components';
 
+import { currentLocation } from '../../helpers/paths';
+
 
 const propTypes = {
-  linkedObject: PropTypes.object,
-  params: PropTypes.object.isRequired,
+  location: PropTypes.shape({
+    href: PropTypes.string,
+  }),
 };
 
-const LinkedPerson = () => (
+const LinkedPerson = ({ location }) => (
   <Container>
-    <LinkedObjectContainer object={location.href} />
+    <LinkedObjectContainer object={currentLocation(location)} />
   </Container>
 );
 

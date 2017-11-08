@@ -1,15 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { VoteMatchShow } from '../components';
 import { voteMatchStart, voteMatchSave } from 'state/voteMatch/actions';
-
 import {
   getVoteMatch,
   getVoteMatchMotionIds,
   getVoteMatchCountUserVotes,
   getVoteMatchSimilarity,
 } from 'state/voteMatch/selectors';
+
+import { VoteMatchShow } from '../components';
 
 const propTypes = {
   countUserVotes: PropTypes.number,
@@ -18,7 +18,11 @@ const propTypes = {
   onStartVoteMatch: PropTypes.func.isRequired,
   onSaveScore: PropTypes.func.isRequired,
   similarity: PropTypes.number.isRequired,
-  data: PropTypes.object,
+  data: PropTypes.shape({
+    comparables: PropTypes.arrayOf(PropTypes.string),
+    name: PropTypes.string,
+    text: PropTypes.string,
+  }),
 };
 
 const defaultProps = {

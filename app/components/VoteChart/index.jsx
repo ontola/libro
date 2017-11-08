@@ -12,11 +12,6 @@ const propTypes = {
   result: PropTypes.oneOf(statuses).isRequired,
 };
 
-const defaultProps = {
-  data: false,
-  result: 'pass',
-};
-
 function VoteChart({ data, result }) {
   const PERCENTAGE = 100;
   const widthPass = `${data.pass * PERCENTAGE}%`;
@@ -38,6 +33,5 @@ function VoteChart({ data, result }) {
 }
 
 VoteChart.propTypes = propTypes;
-VoteChart.defaultProps = defaultProps;
 
 export default VoteChart;

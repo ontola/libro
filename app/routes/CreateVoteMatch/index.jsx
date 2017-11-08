@@ -27,7 +27,7 @@ const propTypes = {
   // Since this uses redux-form, you need to pass onSubmit instead of handleSubmit.
   handleSubmit: PropTypes.func.isRequired,
   // Immutable List of voteable items, such as motions
-  voteables: PropTypes.object,
+  voteables: PropTypes.instanceOf(List),
   // Function that is called when dragging is stopped.
   onUpdateVoteables: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,

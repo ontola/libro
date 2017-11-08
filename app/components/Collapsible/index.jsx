@@ -10,7 +10,7 @@ const propTypes = {
   minHeight: PropTypes.number,
   /** Function that should dispatch a toggle action to open / close the Collapsible. */
   onClickToggle: PropTypes.func.isRequired,
-  opened: PropTypes.bool.isRequired,
+  opened: PropTypes.bool,
   /** Optional node that functionas as a clickable toggle. */
   trigger: PropTypes.node,
   /** Content that's always visible, but does not work as a clickable toggle. */

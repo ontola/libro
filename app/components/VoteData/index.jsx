@@ -8,24 +8,23 @@ import path from 'helpers/paths';
 import Detail from '../Detail';
 import DetailDate from '../DetailDate';
 import DetailStatus from '../DetailStatus';
+import { Count, Vote } from '../../models/index';
 
 import './VoteData.scss';
 
 const propTypes = {
   legislativeSession: PropTypes.string,
   organization: PropTypes.string,
-  optionCounts: PropTypes.object.isRequired,
-  votes: PropTypes.object.isRequired,
-  counts: PropTypes.object,
+  optionCounts: PropTypes.arrayOf(Count).isRequired,
+  votes: PropTypes.arrayOf(Vote).isRequired,
+  counts: PropTypes.arrayOf(Count),
   result: PropTypes.string,
   endDate: PropTypes.date,
   startDate: PropTypes.date,
 };
 
 const defaultProps = {
-  votes: {},
   counts: {},
-  optionCounts: {},
 };
 
 const NUMBER_OF_VOTE_BUBBLES = 15;
@@ -54,13 +53,13 @@ class VoteData extends Component {
 
   segmentItems(option) {
     if (this.props.counts !== undefined) {
-      const counts = this.props.counts[option].counts;
+      const { counts } = this.props.counts[option];
 
       return counts.slice(0, NUMBER_OF_VOTE_BUBBLES).map((count, i) => (
         <CountBubbleContainer id={count} key={i} />
       ));
     }
-    const votes = this.props.votes[option].votes;
+    const { votes } = this.props.votes[option];
 
     return votes.slice(0, NUMBER_OF_VOTE_BUBBLES).map((vote, i) => (
       <div className="VoteData__opinion" key={i} title={vote}>

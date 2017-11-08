@@ -12,6 +12,8 @@ import {
   Heading,
   List,
 } from 'components';
+import Argument from 'models/Argument';
+import VoteEvent from 'models/VoteEvent';
 
 import { getMotionTitle, getMotionVoteEvents } from 'state/motions/selectors';
 import { getArgsPro, getArgsCon } from 'state/argumentations/selectors';
@@ -20,13 +22,15 @@ import VoteEventContainer from 'containers/VoteEventContainer';
 import path from 'helpers/paths';
 
 const propTypes = {
-  argsPro: PropTypes.array,
-  argsCon: PropTypes.array,
+  argsPro: PropTypes.arrayOf(Argument),
+  argsCon: PropTypes.arrayOf(Argument),
   formConOpen: PropTypes.bool,
   formProOpen: PropTypes.bool,
-  params: PropTypes.object.isRequired,
+  params: PropTypes.shape({
+    motionId: PropTypes.string,
+  }).isRequired,
   title: PropTypes.string,
-  voteEvents: PropTypes.array,
+  voteEvents: PropTypes.arrayOf(VoteEvent),
 };
 
 const defaultProps = {

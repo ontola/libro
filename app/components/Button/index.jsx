@@ -132,7 +132,6 @@ const Button = ({
       alt={alt}
       className={`${btnClass} ${className}`}
       disabled={disabled || loading}
-      role="button"
       type={type}
       onClick={onClickAndBlur}
     >

@@ -16,7 +16,7 @@ const propTypes = {
   motionId: PropTypes.string.isRequired,
   onNextMotion: PropTypes.func.isRequired,
   onVote: PropTypes.func.isRequired,
-  renderItem: PropTypes.func.isRequired,
+  renderItem: PropTypes.func,
   status: PropTypes.string,
   voteData: PropTypes.string,
   voteMatchActive: PropTypes.bool,

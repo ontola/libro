@@ -16,7 +16,9 @@ import {
 } from 'components';
 
 const propTypes = {
-  params: PropTypes.object,
+  params: PropTypes.shape({
+    userId: PropTypes.number,
+  }),
   children: PropTypes.node,
   name: PropTypes.string,
 };

@@ -21,7 +21,7 @@ const propTypes = {
   // True for links that are leveled higher than others
   isIndex: PropTypes.bool,
   closeBarOnClick: PropTypes.func,
-  to: PropTypes.any,
+  to: PropTypes.string,
 };
 
 const SideBarLink = ({
@@ -47,10 +47,12 @@ const SideBarLink = ({
         onlyActiveOnIndex={isIndex}
         to={to}
       >
-        {icon && <div className="SideBarLink__icon">
+        {icon &&
+        <div className="SideBarLink__icon">
           <FontAwesome name={icon} />
         </div>}
-        {imageUrl && <div className="SideBarLink__image-wrapper">
+        {imageUrl &&
+        <div className="SideBarLink__image-wrapper">
           <div
             className="SideBarLink__image"
             style={{ backgroundImage: `url(${imageUrl})` }}
@@ -60,9 +62,9 @@ const SideBarLink = ({
           {label}
         </div>
         {(count !== undefined && count > 0) &&
-          <div className="SideBarLink__count-wrapper">
-            <CountBubble count={count} />
-          </div>}
+        <div className="SideBarLink__count-wrapper">
+          <CountBubble count={count} />
+        </div>}
       </Link>
     </div>
   );

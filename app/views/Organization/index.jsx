@@ -15,10 +15,6 @@ const propTypes = {
   voteMatchCount: PropTypes.number,
 };
 
-const defaultProps = {
-  orgColor: 'rgb(71, 86, 104)',
-};
-
 const OrganizationSidebarBlock = ({
   voteMatchCount,
 }) => (
@@ -36,7 +32,6 @@ const OrganizationSidebarBlock = ({
 );
 
 OrganizationSidebarBlock.propTypes = propTypes;
-OrganizationSidebarBlock.defaultProps = defaultProps;
 
 LinkedRenderStore.registerRenderer(
   OrganizationSidebarBlock,

@@ -13,17 +13,13 @@ import Heading from '../Heading';
 import MotionCompare from '../MotionCompare';
 
 const propTypes = {
-  comparedProfiles: PropTypes.array.isRequired,
+  comparedProfiles: PropTypes.arrayOf(PropTypes.string).isRequired,
   currentIndex: PropTypes.number,
-  motionIds: PropTypes.array.isRequired,
+  motionIds: PropTypes.arrayOf(PropTypes.string).isRequired,
   name: PropTypes.string.isRequired,
   onSave: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
   voteMatchId: PropTypes.string.isRequired,
-};
-
-const defaultProps = {
-  motionIds: [],
 };
 
 class VoteMatchShow extends Component {
@@ -127,6 +123,5 @@ class VoteMatchShow extends Component {
 }
 
 VoteMatchShow.propTypes = propTypes;
-VoteMatchShow.defaultProps = defaultProps;
 
 export default VoteMatchShow;

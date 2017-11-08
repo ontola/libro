@@ -36,8 +36,8 @@ const Columns = ({
     [`Columns--size-${size}`]: size,
   });
 
-  const renderColumns = children.map((column, i) =>
-    (<div
+  const renderColumns = children.map((column, i) => (
+    <div
       className="Column"
       key={i}
       style={{
@@ -45,7 +45,8 @@ const Columns = ({
       }}
     >
       {column}
-     </div>));
+    </div>
+  ));
 
   return (
     <div className={className}>{renderColumns}</div>

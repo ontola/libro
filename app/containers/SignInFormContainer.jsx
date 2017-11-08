@@ -22,7 +22,11 @@ const PATH_MATCH = 2;
 
 const propTypes = {
   // From redux-form
-  fields: PropTypes.arrayOf(PropTypes.string),
+  fields: PropTypes.arrayOf(PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.number,
+    PropTypes.string,
+  ])),
   invalid: PropTypes.bool,
   // Since this uses redux-form, you need to pass onSubmit instead of handleSubmit.
   handleSubmit: PropTypes.func.isRequired,

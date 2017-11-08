@@ -59,7 +59,6 @@ export { default as Loading } from './components/Loading/index';
 // export { default as MotionListItem } from './components/MotionListItem/index';
 // export { default as MotionShow } from './components/MotionShow/index';
 // export { default as MotionSmallItem } from './components/MotionSmallItem/index';
-// export { default as Navbar } from './components/Navbar/index';
 export { default as NavBarContent } from './components/NavBarContent/index';
 export { default as Notification } from './components/Notification/index';
 export { default as Opinion } from './components/Opinion/index';

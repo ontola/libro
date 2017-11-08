@@ -19,8 +19,8 @@ const defaultProps = {
 const CardDivider = ({
   lineColor,
   text,
-}) =>
-  (<div
+}) => (
+  <div
     style={{
       width: '100%',
       height: '1px',
@@ -32,17 +32,18 @@ const CardDivider = ({
     }}
   >
     {text &&
-      <span
-        style={{
-          backgroundColor: 'rgb(255,255,255)',
-          padding: '0 7px',
-          fontWeight: 'bold',
-          color: 'rgb(100,100,100)',
-        }}
-      >
-        {text}
-      </span>}
-   </div>);
+    <span
+      style={{
+        backgroundColor: 'rgb(255,255,255)',
+        padding: '0 7px',
+        fontWeight: 'bold',
+        color: 'rgb(100,100,100)',
+      }}
+    >
+      {text}
+    </span>}
+  </div>
+);
 
 CardDivider.defaultProps = defaultProps;
 CardDivider.propTypes = propTypes;

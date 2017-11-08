@@ -1,3 +1,9 @@
+import { FRONTEND_URL } from '../config';
+
+export function currentLocation(location) {
+  return `${FRONTEND_URL}${location.pathname}`;
+}
+
 const path = {
   index() {
     return '/';

@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+
+export const imageShape = React.PropTypes.shape({
+  title: PropTypes.string,
+  className: PropTypes.string,
+  url: PropTypes.string
+});
 
 const propTypes = {
   fa: React.PropTypes.string,
-  image: React.PropTypes.object,
+  image: imageShape,
 };
 
 /**

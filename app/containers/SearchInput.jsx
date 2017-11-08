@@ -20,8 +20,8 @@ const SearchInput = ({
   handleClear,
   handleSubmit,
   lastSearchValue,
-}) =>
-  (<form
+}) => (
+  <form
     onSubmit={handleSubmit}
     className="SideBar__search-form"
   >
@@ -33,21 +33,22 @@ const SearchInput = ({
       type="text"
     />
     {(currentValue || lastSearchValue) &&
-      <Button
-        type="reset"
-        onClick={() => handleClear()}
-        theme="transparant"
-        icon="close"
-      />
+    <Button
+      type="reset"
+      onClick={() => handleClear()}
+      theme="transparant"
+      icon="close"
+    />
     }
     {currentValue && (currentValue !== lastSearchValue) &&
-      <Button
-        type="submit"
-      >
-        Zoek
-      </Button>
+    <Button
+      type="submit"
+    >
+      Zoek
+    </Button>
     }
-   </form>);
+  </form>
+);
 SearchInput.propTypes = propTypes;
 
 const formName = 'searchLocalInput';

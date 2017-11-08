@@ -5,14 +5,16 @@ import {
   Container,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { currentLocation } from '../../helpers/paths';
 
 const propTypes = {
-  linkedObject: PropTypes.object,
-  params: PropTypes.object.isRequired,
+  location: PropTypes.shape({
+    href: PropTypes.string,
+  }),
 };
 
-const LinkedObject = () => (
-  <LinkedObjectContainer object={location.href} >
+const LinkedObject = ({ location }) => (
+  <LinkedObjectContainer object={currentLocation(location)}>
     <Container>
       <Property label={NS.schema('isPartOf')} />
       <Type />

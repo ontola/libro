@@ -2,14 +2,14 @@
 
 import * as errors from '../utils/errors';
 
-const SERVER_TIMESTAMP_MULTI = 1000;
+const MILLISECONDS = 1000;
 
 async function login(req, res, next) {
   try {
     const response = await req.api.requestUserToken(req.body.email, req.body.password);
     const json = await response.json();
 
-    const expiresAt = new Date((json.created_at * SERVER_TIMESTAMP_MULTI) + (json.expires_in * SERVER_TIMESTAMP_MULTI));
+    const expiresAt = new Date((json.created_at * MILLISECONDS) + (json.expires_in * MILLISECONDS));
     if (json.token_type === 'bearer' && expiresAt > Date.now()) {
       req.session.arguToken = {
         accessToken: json.access_token,

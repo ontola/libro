@@ -1,5 +1,5 @@
 import Helmet from 'react-helmet';
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import articles from '../../articles';
 import {
@@ -11,7 +11,9 @@ import {
 
 const propTypes = {
   // Gets the infoId from the address bar
-  params: React.PropTypes.object,
+  params: PropTypes.shape({
+    infoId: PropTypes.string,
+  }),
 };
 
 const Info = ({ params }) => {

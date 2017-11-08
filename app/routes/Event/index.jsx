@@ -31,7 +31,9 @@ import SideBarContainer from 'containers/SideBarContainer';
 import TimelineHideButton from 'containers/TimelineHideButton';
 
 const propTypes = {
-  params: PropTypes.object.isRequired,
+  params: PropTypes.shape({
+    eventId: PropTypes.string.isRequired,
+  }).isRequired,
   title: PropTypes.string,
   onToggleShowVideo: PropTypes.func.isRequired,
   onSearchSpeeches: PropTypes.func.isRequired,

@@ -2,15 +2,23 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 
-import image from '../image';
+import image, { imageShape } from '../image';
 
-const propTypes = {
+export const propTypes = {
   className: PropTypes.string,
-  data: PropTypes.object,
+  data: PropTypes.shape({
+    confirm: PropTypes.string,
+    'display-setting': PropTypes.string,
+    'filter-value': PropTypes.string,
+    method: PropTypes.string,
+    remote: PropTypes.string,
+    'sort-value': PropTypes.string,
+    turbolinks: PropTypes.string,
+  }),
   divider: PropTypes.func,
   done: PropTypes.func,
   fa: PropTypes.string,
-  image: PropTypes.object,
+  image: imageShape,
   target: PropTypes.string,
   title: PropTypes.string,
   type: PropTypes.string,

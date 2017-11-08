@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 
+import Vote from 'models/Vote';
 
 import Card from '../Card';
 import Heading from '../Heading';
@@ -7,9 +8,9 @@ import Heading from '../Heading';
 import './ScoreSheet.scss';
 
 const propTypes = {
-  comparedProfilePositions: PropTypes.array.isRequired,
-  motionIds: PropTypes.array.isRequired,
-  userVotes: PropTypes.array.isRequired,
+  comparedProfilePositions: PropTypes.arrayOf(Vote).isRequired,
+  motionIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+  userVotes: PropTypes.arrayOf(Vote).isRequired,
   score: PropTypes.number,
 };
 

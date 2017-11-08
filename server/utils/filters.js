@@ -1,4 +1,4 @@
-const SERVER_TIMESTAMP_MULTI = 1000;
+const MILLISECONDS = 1000;
 
 import * as errors from './errors';
 import handleAsyncErrors from './handleAsyncErrors';
@@ -16,7 +16,7 @@ async function getGuestToken(req) {
   if (response.status >= 300) {
     return Promise.reject(new errors.InternalServerErrorError());
   }
-  const expiresAt = new Date((body.created_at * SERVER_TIMESTAMP_MULTI) + (body.expires_in * SERVER_TIMESTAMP_MULTI));
+  const expiresAt = new Date((body.created_at * MILLISECONDS) + (body.expires_in * MILLISECONDS));
   if (body.token_type !== 'bearer') {
     return Promise.reject(new errors.UnauthorizedError());
   }

@@ -8,7 +8,9 @@ const propTypes = {
   className: PropTypes.string,
   linkedProp: linkedPropType,
   override: PropTypes.func,
-  style: PropTypes.object,
+  style: PropTypes.shape({
+    maxHeight: PropTypes.string,
+  }),
 };
 
 function Image(props) {

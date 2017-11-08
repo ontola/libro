@@ -11,6 +11,7 @@ import App from './App';
 // import Info from './Info';
 // import InfoIndex from './InfoIndex';
 // import LinkedObject, { LinkedObjectByID } from './LinkedObject';
+import LinkedObject from './LinkedObject';
 // import Idea from './Idea';
 import Iframe from './Iframe';
 // import LinkedPerson from './LinkedPerson';
@@ -30,6 +31,7 @@ const routes = (
   <Route component={App}>
     <IndexRoute component={Iframe} />
     <Route path="u/sign_in" component={SignIn} />
+    <Route path="m/:id" component={LinkedObject} />
     <Route path="*" component={Iframe} />
   </Route>
 );

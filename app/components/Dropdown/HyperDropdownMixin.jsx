@@ -114,7 +114,7 @@ const HyperDropdownMixin = {
     if (typeof this.state.referenceDropdownElement !== 'undefined') {
       refDropdown = this.state.referenceDropdownElement;
     } else {
-      refDropdown = ReactDOM.findDOMNode(this).getElementsByClassName('Dropdown__content')[0];
+      [refDropdown] = ReactDOM.findDOMNode(this).getElementsByClassName('Dropdown__content');
     }
     return refDropdown;
   },

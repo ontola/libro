@@ -10,7 +10,7 @@ const defaultRenderItem = id => (
 
 const propTypes = {
   renderItem: PropTypes.func,
-  speechIds: PropTypes.array.isRequired,
+  speechIds: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 const defaultProps = {

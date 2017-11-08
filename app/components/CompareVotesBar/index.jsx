@@ -40,7 +40,7 @@ const CompareVotesBar = ({
 }) => {
   let score = Math.round(totalValue * 100);
   let isPercentage = true;
-  if (isNaN(score)) {
+  if (Number.isNaN(score)) {
     score = 'Niet te bepalen';
     isPercentage = false;
   }
@@ -58,7 +58,8 @@ const CompareVotesBar = ({
   return (
     <div className="CompareVotesBar">
       <CollapsibleContainer id={label} trigger={trigger}>
-        {tags && <div className="CompareVotesBar__collapsible-children">
+        {tags &&
+        <div className="CompareVotesBar__collapsible-children">
           <List items={tags} renderItem={renderTag} />
         </div>
         }

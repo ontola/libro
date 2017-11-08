@@ -1,3 +1,4 @@
+import Immutable from 'immutable';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
@@ -8,7 +9,7 @@ import { getEvents } from 'state/events/selectors';
 import { fetchEvents } from 'state/events/actions';
 
 const propTypes = {
-  events: PropTypes.object,
+  events: PropTypes.instanceOf(Immutable.List),
   loadEvents: PropTypes.func.isRequired,
 };
 

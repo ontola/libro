@@ -23,10 +23,6 @@ const propTypes = {
   }).isRequired,
 };
 
-const defaultProps = {
-  name: '',
-};
-
 class CompareVotes extends Component {
   componentWillMount() {
     if (this.props.name === '') {
@@ -52,7 +48,6 @@ class CompareVotes extends Component {
 }
 
 CompareVotes.propTypes = propTypes;
-CompareVotes.defaultProps = defaultProps;
 
 export default connect(
   (state, props) => ({

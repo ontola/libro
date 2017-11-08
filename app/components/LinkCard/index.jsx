@@ -6,10 +6,7 @@ import Card, {
 import LDLink from '../LDLink';
 
 const propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.node,
-    null,
-  ]),
+  children: PropTypes.node,
 };
 
 const LinkCard = ({ children }) => (

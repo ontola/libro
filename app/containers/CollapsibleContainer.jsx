@@ -7,7 +7,7 @@ import { getCollapsibleOpened } from 'state/collapsible/selectors';
 import { Collapsible } from '../components';
 
 const propTypes = {
-  id: PropTypes.any.isRequired,
+  id: PropTypes.string.isRequired,
   group: PropTypes.string,
   startOpened: PropTypes.bool,
   onInitializeCollapsible: PropTypes.func.isRequired,

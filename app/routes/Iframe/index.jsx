@@ -21,6 +21,7 @@ const Iframe = ({ location, title }) => (
         position: 'absolute',
         width: '100%',
       }}
+      title="Argu contents"
     >
       Oeps! Jouw browser ondersteunt geen iframe elementen. Probeer een andere browser.
     </iframe>

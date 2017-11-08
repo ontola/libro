@@ -1,33 +1,30 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
+
 import { ProgressBar } from 'components';
 import VoteMatchContainer from 'containers/VoteMatchContainer';
 import { fetchVoteMatch } from 'state/voteMatch/actions';
-
 import {
   getVoteMatchCountUserVotes,
   getVoteMatchMotionIdsLength,
   getVoteMatchName,
 } from 'state/voteMatch/selectors';
 
+import { currentLocation } from '../../helpers/paths';
+
 const propTypes = {
   currentIndex: PropTypes.number,
   loadVoteMatch: PropTypes.func.isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }),
   motionsLength: PropTypes.number,
   name: PropTypes.string.isRequired,
   params: PropTypes.shape({
     voteMatchId: PropTypes.string.isRequired,
   }).isRequired,
 };
-
-const defaultProps = {
-  name: '',
-};
-
-function currentUrl() {
-  return window.location.href;
-}
 
 class VoteMatch extends Component {
   componentWillMount() {
@@ -37,12 +34,17 @@ class VoteMatch extends Component {
   }
 
   render() {
-    const { currentIndex, motionsLength, name } = this.props;
+    const {
+      currentIndex,
+      location,
+      motionsLength,
+      name
+    } = this.props;
 
     return (
       <div className="ProgressBar__wrapper">
         <Helmet title={`Vergelijk opinies met ${name}`} />
-        <VoteMatchContainer id={currentUrl()} />
+        <VoteMatchContainer id={currentLocation(location)} />
         <ProgressBar
           completed={currentIndex}
           context={`VoteMatch - ${name}`}
@@ -54,7 +56,6 @@ class VoteMatch extends Component {
 }
 
 VoteMatch.propTypes = propTypes;
-VoteMatch.defaultProps = defaultProps;
 
 export default connect(
   (state, props) => ({

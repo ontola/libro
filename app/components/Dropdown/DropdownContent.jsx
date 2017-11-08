@@ -13,7 +13,6 @@ const dropdownContentPropTypes = {
   close: PropTypes.func,
   contentClassName: PropTypes.string,
   renderLeft: PropTypes.bool,
-  sections: PropTypes.array,
 };
 
 class DropdownContent extends ScrollLockedComponent {

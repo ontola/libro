@@ -24,13 +24,12 @@ const defaultLinks = [{
 const propTypes = {
   title: PropTypes.string.isRequired,
   links: PropTypes.arrayOf(PropTypes.object),
-  overlayColor: PropTypes.string.isRequired,
+  overlayColor: PropTypes.string,
 };
 
 const defaultProps = {
   overlayColor: 'rgb(71, 86, 104)',
   links: defaultLinks,
-  title: 'Tweede Kamer',
 };
 
 const Header = ({

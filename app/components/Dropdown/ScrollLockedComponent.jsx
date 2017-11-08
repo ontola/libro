@@ -6,8 +6,7 @@ import ReactDOM from 'react-dom';
 class ScrollLockedComponent extends Component {
   onScrollHandler(e) {
     const elem = ReactDOM.findDOMNode(e.currentTarget);
-    const scrollTop = elem.scrollTop;
-    const scrollHeight = elem.scrollHeight;
+    const { scrollHeight, scrollTop } = elem;
     const height = elem.clientHeight;
     const wheelDelta = e.deltaY;
     const isDeltaPositive = wheelDelta > 0;

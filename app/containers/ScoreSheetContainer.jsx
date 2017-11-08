@@ -1,6 +1,7 @@
 import { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { ScoreSheet } from '../components';
+
+import Vote from 'models/Vote';
 import {
   getVoteMatchUserVotes,
   getVoteMatchMotionIds,
@@ -8,10 +9,12 @@ import {
   getVoteMatchSimilarity,
 } from 'state/voteMatch/selectors';
 
+import { ScoreSheet } from '../components';
+
 const propTypes = {
   id: PropTypes.string.isRequired,
-  motionIds: PropTypes.array,
-  userVotes: PropTypes.array,
+  motionIds: PropTypes.arrayOf(PropTypes.string),
+  userVotes: PropTypes.arrayOf(Vote),
 };
 
 const mapStateToProps = (state, props) => ({

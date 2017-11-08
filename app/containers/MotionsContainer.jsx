@@ -1,3 +1,4 @@
+import Immutable from 'immutable';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
@@ -8,7 +9,7 @@ import { fetchMotions } from 'state/motions/actions';
 import MotionContainer from 'containers/MotionContainer';
 
 const propTypes = {
-  motions: PropTypes.object,
+  motions: PropTypes.instanceOf(Immutable.List),
   loadMotions: PropTypes.func.isRequired,
 };
 

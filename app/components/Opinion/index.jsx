@@ -8,14 +8,12 @@ const propTypes = {
 };
 
 const defaultProps = {
-  side: '',
   owner: '',
-  msg: '',
 };
 
 const Opinion = ({ side, owner }) => (
   <div className={`Opinion Opinion--${side}`}>
-    <Link to={{ pathname: location.pathname, query: { opinion: owner } }}>
+    <Link to={{ query: { opinion: owner } }}>
       <img alt={owner} src={`/static/logos/${owner}.png`} />
     </Link>
   </div>

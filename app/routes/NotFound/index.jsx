@@ -1,5 +1,4 @@
-
-import React, { PropTypes } from 'react';
+import React from 'react';
 import Helmet from 'react-helmet';
 
 import {
@@ -8,18 +7,6 @@ import {
   Container,
   Heading,
 } from 'components';
-
-const propTypes = {
-  params: PropTypes.shape({
-    motionId: PropTypes.number,
-  }),
-};
-
-const defaultProps = {
-  params: {
-    motionId: 0,
-  },
-};
 
 const NotFound = () => (
   <Container size="small">
@@ -32,8 +19,5 @@ const NotFound = () => (
     </Card>
   </Container>
 );
-
-NotFound.PropTypes = propTypes;
-NotFound.defaultProps = defaultProps;
 
 export default NotFound;

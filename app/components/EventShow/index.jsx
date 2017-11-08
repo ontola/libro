@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 
 import EventItemContainer from 'containers/EventItemContainer';
 import TimelineShowButton from 'containers/TimelineShowButton';
+import EventItem from 'models/EventItem';
 
 import Card, {
   CardContent,
@@ -20,16 +21,13 @@ const propTypes = {
   children: PropTypes.node,
   createdAt: PropTypes.instanceOf(Date),
   endDate: PropTypes.instanceOf(Date),
-  eventItems: PropTypes.array,
+  eventItems: PropTypes.arrayOf(EventItem),
   id: PropTypes.string,
   onToggleAll: PropTypes.func,
   startDate: PropTypes.instanceOf(Date),
   text: PropTypes.string,
   title: PropTypes.string,
-};
-
-const defaultProps = {
-  showIndex: true,
+  status: PropTypes.string,
 };
 
 const EventShow = ({
@@ -40,6 +38,7 @@ const EventShow = ({
   id,
   onToggleAll,
   startDate,
+  status,
   text,
   title,
 }) => {
@@ -89,6 +88,5 @@ const EventShow = ({
 };
 
 EventShow.propTypes = propTypes;
-EventShow.defaultProps = defaultProps;
 
 export default EventShow;

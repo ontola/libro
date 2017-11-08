@@ -11,7 +11,7 @@ import {
 
 const propTypes = {
   /** Array of SpeechIds */
-  speechIds: PropTypes.array,
+  speechIds: PropTypes.arrayOf(PropTypes.string),
   eventId: PropTypes.string.isRequired,
 };
 

@@ -34,15 +34,16 @@ class Detail extends PropertyBase {
   }
 
   getText() {
-    let text = this.props.text;
-    if (typeof this.context.subject !== 'undefined' && this.props.label && this.getLinkedObjectProperty()) {
-      text = this.getLinkedObjectProperty();
+    const { label, text } = this.props;
+    let displayText = text;
+    if (typeof this.context.subject !== 'undefined' && label && this.getLinkedObjectProperty()) {
+      displayText = this.getLinkedObjectProperty();
     }
-    return <span className="Detail__text">{text}</span>;
+    return <span className="Detail__text">{displayText}</span>;
   }
 
   getClickBinding() {
-    const url = this.props.url;
+    const { url } = this.props;
     if (url) {
       return (e) => {
         e.preventDefault();

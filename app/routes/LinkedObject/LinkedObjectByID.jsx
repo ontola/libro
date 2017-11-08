@@ -7,13 +7,16 @@ import {
 import RelationsBrowserContainer from 'containers/RelationsBrowserContainer';
 
 const propTypes = {
-  linkedObject: PropTypes.object,
-  params: PropTypes.object.isRequired,
+  location: PropTypes.shape({
+    query: PropTypes.shape({
+      iri: PropTypes.string,
+    }),
+  }),
 };
 
-const LinkedObjectByID = router => (
+const LinkedObjectByID = ({ location }) => (
   <Container>
-    <LinkedObjectContainer object={router.location.query.iri} >
+    <LinkedObjectContainer object={location.query.iri} >
       <Type />
       <RelationsBrowserContainer />
     </LinkedObjectContainer>

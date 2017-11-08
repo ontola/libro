@@ -1,15 +1,18 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+
 import { getArgsPro, getArgsCon } from 'state/argumentations/selectors';
+
 import {
   ArgumentListItem,
   Columns,
   List,
 } from '../components';
+import { Argument } from '../models/index';
 
 const propTypes = {
-  argsPro: PropTypes.array.isRequired,
-  argsCon: PropTypes.array.isRequired,
+  argsPro: PropTypes.arrayOf(Argument).isRequired,
+  argsCon: PropTypes.arrayOf(Argument).isRequired,
 };
 
 const defaultProps = {

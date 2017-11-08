@@ -9,7 +9,11 @@ import {
 import SignInFormContainer from 'containers/SignInFormContainer';
 
 const propTypes = {
-  location: PropTypes.object,
+  location: PropTypes.shape({
+    query: PropTypes.shape({
+      r: PropTypes.string,
+    }),
+  }),
 };
 
 const SignIn = ({ location }) => (

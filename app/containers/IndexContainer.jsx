@@ -1,4 +1,5 @@
 import { RenderStoreProvider } from 'link-redux';
+import LinkedRenderStore from 'link-lib';
 import React, { PropTypes } from 'react';
 import { Provider } from 'react-redux';
 import { applyRouterMiddleware, Router } from 'react-router';
@@ -7,9 +8,19 @@ import { useScroll } from 'react-router-scroll';
 import routes from '../routes';
 
 const propTypes = {
-  history: PropTypes.object.isRequired,
-  linkedRenderStore: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired,
+  history: PropTypes.shape({
+    go: PropTypes.func,
+    goBack: PropTypes.func,
+    push: PropTypes.func,
+    replace: PropTypes.func,
+    transitionTo: PropTypes.func,
+  }).isRequired,
+  linkedRenderStore: PropTypes.instanceOf(LinkedRenderStore).isRequired,
+  store: PropTypes.shape({
+    subscribe: PropTypes.func.isRequired,
+    dispatch: PropTypes.func.isRequired,
+    getState: PropTypes.func.isRequired
+  }).isRequired,
 };
 
 const IndexContainer = ({ linkedRenderStore, store, history }) => (

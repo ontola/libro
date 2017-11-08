@@ -16,7 +16,7 @@ import {
 import { SideBar } from '../components';
 
 const propTypes = {
-  id: PropTypes.any.isRequired,
+  id: PropTypes.string.isRequired,
   onInitializeSideBar: PropTypes.func.isRequired,
 };
 

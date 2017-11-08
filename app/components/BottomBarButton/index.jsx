@@ -13,7 +13,7 @@ const propTypes = {
   // True for links that are leveled higher than others
   isIndex: PropTypes.bool,
   onClick: PropTypes.func,
-  to: PropTypes.any,
+  to: PropTypes.string,
 };
 
 const BottomBarButton = ({
@@ -26,10 +26,12 @@ const BottomBarButton = ({
 }) => {
   const LinkContent = (
     <div className="BottomBarButton__wrapper">
-      {icon && <div className="BottomBarButton__icon">
+      {icon &&
+      <div className="BottomBarButton__icon">
         <FontAwesome name={icon} />
       </div>}
-      {imageUrl && <div className="BottomBarButton__image-wrapper">
+      {imageUrl &&
+      <div className="BottomBarButton__image-wrapper">
         <div
           className="BottomBarButton__image"
           style={{ 'background-image': `url(${imageUrl})` }}

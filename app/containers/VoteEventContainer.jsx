@@ -2,19 +2,30 @@ import { connect } from 'react-redux';
 import { VoteData } from '../components';
 import React, { PropTypes } from 'react';
 
+import Vote from 'models/Vote';
 import {
   getVoteEvent,
   getVoteEventVotesSorted,
 } from 'state/voteEvents/selectors';
-
 import {
   getVoteEventCountsSorted,
 } from 'state/counts/selectors';
 
 const propTypes = {
-  counts: PropTypes.array,
-  votes: PropTypes.array,
-  data: PropTypes.object,
+  counts: PropTypes.arrayOf(PropTypes.shape({
+    yes: PropTypes.number,
+    no: PropTypes.number,
+    abstain: PropTypes.number,
+  })),
+  votes: PropTypes.arrayOf(Vote),
+  data: PropTypes.shape({
+    optionCounts: PropTypes.string,
+    endDate: PropTypes.string,
+    legislativeSession: PropTypes.string,
+    organization: PropTypes.string,
+    result: PropTypes.string,
+    startDate: PropTypes.string,
+  }),
 };
 
 const VoteDataRenderItem = ({

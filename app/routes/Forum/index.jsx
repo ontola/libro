@@ -5,15 +5,17 @@ import {
   Container,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { currentLocation } from '../../helpers/paths';
 
 const propTypes = {
-  linkedObject: PropTypes.object,
-  params: PropTypes.object.isRequired,
+  location: PropTypes.shape({
+    href: PropTypes.string,
+  }),
 };
 
-const Forum = () => (
+const Forum = ({ location }) => (
   <Container>
-    <LinkedObjectContainer object={location.href} >
+    <LinkedObjectContainer object={currentLocation(location)} >
       <Type />
       <Property label={NS.argu('questions')} />
       <Property label={NS.argu('motions')} />

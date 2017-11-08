@@ -15,14 +15,12 @@ import {
 import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
-  actor: React.PropTypes.object,
   buttonsType: React.PropTypes.string,
   closed: React.PropTypes.bool,
   currentVote: React.PropTypes.string,
   objectId: React.PropTypes.number,
   objectType: React.PropTypes.string,
   onVoteCompleted: React.PropTypes.func,
-  percent: React.PropTypes.object,
   r: React.PropTypes.string,
   vote_url: React.PropTypes.string,
 };

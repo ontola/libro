@@ -1,3 +1,4 @@
+import Immutable from 'immutable';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
@@ -7,7 +8,7 @@ import { getPersons } from 'state/persons/selectors';
 import path from 'helpers/paths';
 
 const propTypes = {
-  persons: PropTypes.object,
+  persons: PropTypes.instanceOf(Immutable.List),
   loadPersons: PropTypes.func.isRequired,
 };
 

@@ -4,14 +4,16 @@ import React, { PropTypes } from 'react';
 
 import { Container } from '../../components';
 import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
+import { currentLocation } from '../../helpers/paths';
 
 const propTypes = {
-  linkedObject: PropTypes.object,
-  params: PropTypes.object,
+  location: PropTypes.shape({
+    href: PropTypes.string,
+  }),
 };
 
-const Idea = () => (
-  <LinkedObjectContainer object={location.href} topology={null} >
+const Idea = ({ location }) => (
+  <LinkedObjectContainer object={currentLocation(location)} topology={null} >
     <Container>
       <Property label={NS.schema('isPartOf')} />
       <Type />

@@ -2,7 +2,9 @@ import { getP } from 'link-lib';
 import React, { PropTypes } from 'react';
 
 const propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.shape({
+    'http://www.w3.org/2011/http#statusCodeValue': PropTypes.number,
+  }),
 };
 
 function getErrorMessage(code) {
