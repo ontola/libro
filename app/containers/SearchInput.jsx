@@ -23,8 +23,8 @@ const SearchInput = ({
   lastSearchValue,
 }) => (
   <form
-    onSubmit={handleSubmit}
     className="SideBar__search-form"
+    onSubmit={handleSubmit}
   >
     <Field
       className="SideBar__search"
@@ -35,16 +35,14 @@ const SearchInput = ({
     />
     {(currentValue || lastSearchValue) &&
     <Button
+      icon="close"
+      theme="transparant"
       type="reset"
       onClick={() => handleClear()}
-      theme="transparant"
-      icon="close"
     />
     }
     {currentValue && (currentValue !== lastSearchValue) &&
-    <Button
-      type="submit"
-    >
+    <Button type="submit">
       Zoek
     </Button>
     }

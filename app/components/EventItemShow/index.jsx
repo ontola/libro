@@ -60,9 +60,9 @@ const EventItemShow = ({
       {((startDate)) &&
         <DetailDate
           asHours
+          hideIcon
           currentDate={currentDate}
           endDate={endDate}
-          hideIcon
           isCurrent={isCurrent}
           startDate={startDate}
         />}

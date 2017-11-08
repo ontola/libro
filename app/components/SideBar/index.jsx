@@ -137,20 +137,20 @@ class SideBar extends Component {
         {!this.props.docked && (typeof window === 'undefined' || this.state.mql.matches) &&
           <div className={buttonClassNames}>
             <Button
-              onClick={() => this.props.onDock()}
+              narrow
               icon={dockIcon()}
               theme="as-card"
-              narrow
+              onClick={() => this.props.onDock()}
             />
           </div>
         }
         {this.props.docked &&
           <div className={buttonClassNames}>
             <Button
-              onClick={() => this.props.onUndock()}
+              narrow
               icon={undockIcon()}
               theme="as-card"
-              narrow
+              onClick={() => this.props.onUndock()}
             />
           </div>
         }
@@ -160,13 +160,13 @@ class SideBar extends Component {
     return (
       <Sidebar
         docked={this.props.docked}
-        onSetOpen={this.onSetSideBarOpen}
         open={this.props.opened}
         overlayClassName="SideBar--overlay"
         pullRight={this.props.pullRight}
         sidebar={sidebar}
         sidebarClassName={sideBarClassNames}
         styles={this.styles}
+        onSetOpen={this.onSetSideBarOpen}
       >
         <ScrollContainer
           scrollKey={this.props.id}

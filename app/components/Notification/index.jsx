@@ -30,7 +30,7 @@ const Notification = ({
 
   return (
     <div className={className}>
-      <Button small onClick={() => reset()} theme="subtle">x</Button>
+      <Button small theme="subtle" onClick={reset}>x</Button>
       {type === 'error' &&
         <div className="Notification__pretext">Error:</div>
       }

@@ -36,13 +36,13 @@ const DetailPure = ({
   ].join(' ');
   return (
     <Element
+      className={classNames}
+      href={url}
+      title={title}
       onClick={(e) => {
         e.preventDefault();
         if (url) browserHistory.push(url);
       }}
-      href={url}
-      className={classNames}
-      title={title}
     >
       {imageUrl &&
         <img className="Detail__image" role="presentation" src={imageUrl} />

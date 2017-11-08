@@ -1,4 +1,3 @@
-// @flow
 import React, { PropTypes } from 'react';
 
 import EventItemContainer from 'containers/EventItemContainer';
@@ -65,10 +64,10 @@ const EventShow = ({
           <div>{text}</div>
           {children}
           <Button
-            onClick={() => onToggleAll(id)}
-            theme="transparant"
             small
             icon="expand"
+            theme="transparant"
+            onClick={() => onToggleAll(id)}
           >
             Agendapunten uitklappen
           </Button>

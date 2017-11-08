@@ -64,7 +64,7 @@ const Profile = ({
 
     <Cover type="lighter">
       <Container>
-        <LinkList links={links(params.userId)} fullWidth />
+        <LinkList fullWidth links={links(params.userId)} />
       </Container>
     </Cover>
 

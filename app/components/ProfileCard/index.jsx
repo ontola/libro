@@ -87,12 +87,12 @@ class ProfileCard extends PropertyBase {
               <div>VoteMatch: {similarity}%</div>
             ) : (
               <Button
+                small
+                icon="tachometer"
                 onClick={(e) => {
                   e.preventDefault();
                   browserHistory.push(`/comparevotes/${id}`);
                 }}
-                small
-                icon="tachometer"
               >
                 Vergelijk
               </Button>
@@ -104,12 +104,12 @@ class ProfileCard extends PropertyBase {
             <div className="ProfileCard__similarity">VoteMatch: {similarity}%</div>
           ) : (
             <Button
+              small
+              icon="tachometer"
               onClick={(e) => {
                 e.preventDefault();
                 browserHistory.push(`/comparevotes/${id}`);
               }}
-              small
-              icon="tachometer"
             >
               Vergelijk
             </Button>

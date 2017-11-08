@@ -46,7 +46,7 @@ const Header = ({
 
     <Cover type="lighter">
       <Container>
-        <LinkList links={links} fullWidth />
+        <LinkList fullWidth links={links} />
       </Container>
     </Cover>
   </div>

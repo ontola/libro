@@ -7,8 +7,8 @@ import Button from './';
 describe('Button component', () => {
   const buttonReqProps = mount(<Button>Button label</Button>);
   const buttonAllProps = mount(<Button
-    icon="lightbulb-o"
     small
+    icon="lightbulb-o"
     theme="subtle"
     variant="pro"
   >Joe

@@ -45,9 +45,9 @@ class VoteMatchItem extends React.Component { //eslint-disable-line
           </span>
           <LinkedObjectContainer object={item} topology="argu:inline" />
           <Button
+            small
             icon="times"
             theme="transparant"
-            small
             onClick={onRemoveVoteable}
           />
         </div>

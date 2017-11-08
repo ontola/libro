@@ -61,11 +61,11 @@ export default class HoverBox extends Component {
   trigger(children) {
     return (
       <span
+        tabIndex="0"
         onBlur={this.handleOnBlur}
         onFocus={this.handleOnFocus}
         onMouseEnter={this.handleOnMouseEnter}
         onMouseLeave={this.handleOnMouseLeave}
-        tabIndex="0"
       >
         {children}
       </span>

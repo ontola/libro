@@ -36,16 +36,16 @@ const SideBarCollapsible = ({
   return (
     <div className={classes}>
       <SideBarLink
-        label={label}
-        to={to}
         bold
         isIndex
+        label={label}
+        to={to}
       />
       <Button
         plain
-        onClick={() => onClickToggle()}
-        className="SideBarCollapsible__toggle"
         alt="Menu uitvouwen of inklappen"
+        className="SideBarCollapsible__toggle"
+        onClick={() => onClickToggle()}
       >
         <FontAwesome name="caret-right" />
       </Button>

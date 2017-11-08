@@ -47,9 +47,9 @@ const App = ({
     <Spinner loading={loading} />
     <SkipNavigation />
     <SideBarContainer
+      slim
       id="Navbar"
       sidebar={<NewNavbarContainer />}
-      slim
     >
       <BottomBarContainer />
       <div id="start-of-content">

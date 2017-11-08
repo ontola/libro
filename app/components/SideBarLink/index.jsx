@@ -43,9 +43,9 @@ const SideBarLink = ({
     <div className={classes}>
       <Link
         activeClassName="SideBarLink--active"
-        onClick={() => closeBarOnClick()}
         onlyActiveOnIndex={isIndex}
         to={to}
+        onClick={() => closeBarOnClick()}
       >
         {icon &&
         <div className="SideBarLink__icon">

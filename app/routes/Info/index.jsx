@@ -24,7 +24,7 @@ const Info = ({ params }) => {
   } = articles[params.infoId];
 
   return (
-    <Cover type="white" fullScreen>
+    <Cover fullScreen type="white">
       <Helmet title={title} />
       <Container>
         <Heading>{title}</Heading>

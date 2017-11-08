@@ -33,14 +33,14 @@ const BottomBar = ({
   return (
     <div className={classNames} style={style}>
       <BottomBarButton
-        icon="bars"
         isIndex
+        icon="bars"
         label="Menu"
         onClick={onOpen}
       />
       <BottomBarButton
-        icon="th-large"
         isIndex
+        icon="th-large"
         label="Overzicht"
         to={path.index()}
       />

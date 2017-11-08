@@ -20,10 +20,10 @@ const TimelineShowButton = ({
   if (docked === false) {
     return (
       <Button
-        onClick={onOpen}
-        theme="transparant"
         small
         icon="comment"
+        theme="transparant"
+        onClick={onOpen}
       >
         Timeline weergeven
       </Button>

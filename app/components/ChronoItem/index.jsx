@@ -56,10 +56,10 @@ const ChronoItem = ({
           {startDate && endDate &&
             <DetailDate
               asHours
-              currentDate={currentDate}
-              endDate={endDate}
               floatRight
               hideIcon
+              currentDate={currentDate}
+              endDate={endDate}
               startDate={startDate}
             />
           }

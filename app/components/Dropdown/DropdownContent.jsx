@@ -62,8 +62,8 @@ class DropdownContent extends ScrollLockedComponent {
     return (
       <div
         className={`Dropdown__content ${collapseClass}${contentClassName} ${this.state.appearState}`}
-        onWheel={this.onScrollHandler.bind(this)}
         style={null}
+        onWheel={this.onScrollHandler.bind(this)}
       >
         {children}
       </div>

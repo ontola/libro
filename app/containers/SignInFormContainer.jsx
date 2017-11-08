@@ -70,7 +70,7 @@ const SignInForm = ({
       <CardContent>
         <span>Log in met </span>
         <form action={`https://argu.co/users/auth/facebook?r=${redirect}`} method="GET" style={{ display: 'inline' }}>
-          <Button icon="facebook" margins small type="submit" variant="facebook">
+          <Button margins small icon="facebook" type="submit" variant="facebook">
             Facebook
           </Button>
         </form>

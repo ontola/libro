@@ -56,7 +56,7 @@ const Attachment = ({
       }
       {isDownloading &&
         <a className="Attachment__inside-button" href="/" title="Download bestand">
-          <FontAwesome className="Attachment__icon" name="spinner" spin />
+          <FontAwesome spin className="Attachment__icon" name="spinner" />
         </a>
       }
       {hasPreview &&

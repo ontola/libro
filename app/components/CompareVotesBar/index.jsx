@@ -47,9 +47,9 @@ const CompareVotesBar = ({
   const trigger = (
     <LabelValueBar
       coloredValue
+      showBar
       isPercentage={isPercentage}
       label={label}
-      showBar
       value={score}
     />
   );

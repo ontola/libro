@@ -34,8 +34,8 @@ const Party = ({
       <Container>
         <BackButton link={path.partiesIndex()}>Terug naar alle partijen</BackButton>
         <ProfileCard
-          bio="Samen sterker - kansen voor iedereen"
           full
+          bio="Samen sterker - kansen voor iedereen"
           id={params.partyId}
           image="/static/logos/d66.png"
           name="D66"
@@ -45,7 +45,7 @@ const Party = ({
 
     <Cover type="lighter">
       <Container>
-        <LinkList links={links(params.partyId)} fullWidth />
+        <LinkList fullWidth links={links(params.partyId)} />
       </Container>
     </Cover>
 

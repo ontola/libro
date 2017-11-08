@@ -35,9 +35,9 @@ const CardButton = ({
     <Button
       active={active}
       icon={buttonIcon[type]}
-      onClick={() => action()}
       theme="box"
       variant={type}
+      onClick={() => action()}
     >{children}
     </Button>
   );

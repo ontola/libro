@@ -74,10 +74,10 @@ class Detail extends PropertyBase {
 
     return (
       <Element
-        onClick={this.getClickBinding()}
-        href={url}
         className={classNames}
+        href={url}
         title={title}
+        onClick={this.getClickBinding()}
       >
         {this.getImage()}
 

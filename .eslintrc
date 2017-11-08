@@ -91,7 +91,7 @@
     "one-var": ["error", { "uninitialized": "always" }],
     "prefer-default-export": 0,
     "react/jsx-filename-extension": 0,
-    "react/jsx-sort-props": ["warn", {
+    "react/jsx-sort-props": ["error", {
       "callbacksLast": true,
       "shorthandFirst": true
     }],

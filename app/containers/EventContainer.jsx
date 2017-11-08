@@ -48,11 +48,11 @@ class EventContainer extends Component {
         endDate={data.endDate}
         eventItems={data.eventItems}
         id={data.id}
-        onToggleAll={this.props.onToggleAll}
         speeches={data.speeches}
         startDate={data.startDate}
         status={data.status}
         title={data.title}
+        onToggleAll={this.props.onToggleAll}
       />
     );
   }

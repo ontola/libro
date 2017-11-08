@@ -23,8 +23,8 @@ const VoteMatchAddContainer = ({
   if (presentInCurrentVoteable) {
     return (
       <Button
-        onClick={onRemoveVoteMatchVoteable}
         plain
+        onClick={onRemoveVoteMatchVoteable}
       >
         <DetailPure icon="times" text="Verwijder uit stemwijzer" />
       </Button>
@@ -32,8 +32,8 @@ const VoteMatchAddContainer = ({
   }
   return (
     <Button
-      onClick={onAddVoteMatchVoteable}
       plain
+      onClick={onAddVoteMatchVoteable}
     >
       <DetailPure icon="plus" text="Voeg toe aan stemwijzer" />
     </Button>

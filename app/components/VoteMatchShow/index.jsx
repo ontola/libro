@@ -93,9 +93,9 @@ class VoteMatchShow extends Component {
               <Cover fullScreen>
                 <Container>
                   <MotionContainer
+                    voteMatchActive
                     motionId={id}
                     renderItem={MotionCompare}
-                    voteMatchActive
                   />
                 </Container>
               </Cover>

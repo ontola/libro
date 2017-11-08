@@ -56,10 +56,10 @@ class VoteMatchContainer extends Component {
         currentIndex={countUserVotes}
         motionIds={motionIds}
         name={data.name}
-        onSave={onSaveScore}
         similarity={similarity}
         text={data.text}
         voteMatchId={id}
+        onSave={onSaveScore}
       />
     );
   }

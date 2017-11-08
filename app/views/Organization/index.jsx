@@ -26,7 +26,7 @@ const OrganizationSidebarBlock = ({
       label="Stemwijzer maken"
       to={path.createVoteMatch()}
     />
-    <SideBarLink icon="th-large" label="Overzicht" to={path.index()} isIndex />
+    <SideBarLink isIndex icon="th-large" label="Overzicht" to={path.index()} />
     <Property label={NS.argu('menus')} topology={NS.argu('sidebar')} />
   </div>
 );

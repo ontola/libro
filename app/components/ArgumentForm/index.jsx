@@ -36,8 +36,8 @@ const ArgumentForm = ({
   return (
     <Card>
       <form
-        onSubmit={handleSubmit}
         className="Argumentform"
+        onSubmit={handleSubmit}
       >
         <Field
           autoComplete="Off"

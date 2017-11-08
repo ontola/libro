@@ -16,8 +16,8 @@ import articles, { order } from '../../articles';
 const renderLink = article => (
   <Link to={path.info(article)}>
     <CardRow
-      key={article}
       showArrow
+      key={article}
     >
       <CardContent>
         <Heading size={3}>

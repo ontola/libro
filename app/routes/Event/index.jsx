@@ -89,8 +89,8 @@ const Event = ({
             </Button>
           }
           <SearchInput
-            onSubmit={handleSearch}
             handleClear={handleClear}
+            onSubmit={handleSearch}
           />
         </div>
       </div>
@@ -102,8 +102,8 @@ const Event = ({
 
   return (
     <SideBarContainer
-      id="Timeline"
       pullRight
+      id="Timeline"
       sidebar={sideBarContent}
     >
       <Container>

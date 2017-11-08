@@ -55,8 +55,8 @@ const CreateVoteMatch = ({
       </Heading>
       <Card>
         <form
-          onSubmit={handleSubmit}
           className="Argumentform"
+          onSubmit={handleSubmit}
         >
           <Field
             className="Field--heading"
@@ -81,8 +81,8 @@ const CreateVoteMatch = ({
             <DraggableList
               itemKey={id => `voteMatch_${id}`}
               list={voteables}
-              onMoveEnd={newList => onUpdateVoteables(newList)}
               template={VoteMatchItemContainer}
+              onMoveEnd={newList => onUpdateVoteables(newList)}
             />
           }
           {hasEnoughVoteables() &&
@@ -94,8 +94,8 @@ const CreateVoteMatch = ({
           <CardActions noSpacing>
             <Button
               icon="search"
-              onClick={() => browserHistory.push(paths.search())}
               theme="box"
+              onClick={() => browserHistory.push(paths.search())}
             >
               Moties zoeken
             </Button>

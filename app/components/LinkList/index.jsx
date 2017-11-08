@@ -10,10 +10,10 @@ const propTypes = {
 const LinkList = ({ links }) => {
   const generateLinks = links.map((link, i) => (
     <Link
+      onlyActiveOnIndex
       activeClassName="LinkList__link--active"
       className="LinkList__link"
       key={i}
-      onlyActiveOnIndex
       to={link.to}
     >{link.label}
     </Link>

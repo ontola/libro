@@ -65,15 +65,15 @@ class MotionContainer extends Component {
         creator={data.creator}
         id={data.id}
         link={path.motion(data.id)}
-        onNextMotion={onNextMotion}
-        onVote={onVoteAction}
-        onVoteAction={onVote}
         status={status}
+        text={data.text}
         title={data.title}
         type={data.classification}
         voteData={voteData}
         voteEvents={data.voteEvents}
-        text={data.text}
+        onNextMotion={onNextMotion}
+        onVote={onVoteAction}
+        onVoteAction={onVote}
       />
     );
   }

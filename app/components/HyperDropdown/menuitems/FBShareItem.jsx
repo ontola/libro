@@ -36,9 +36,9 @@ class FBShareItem extends Component {
         <a
           data-turbolinks="false"
           href={this.props.url}
-          onClick={this.handleClick}
           rel="noopener noreferrer"
           target="_blank"
+          onClick={this.handleClick}
         >
           {image({ fa: 'fa-facebook' })}
           <span className="icon-left">Facebook {this.countInParentheses()}</span>

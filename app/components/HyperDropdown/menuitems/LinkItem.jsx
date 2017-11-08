@@ -66,8 +66,8 @@ class LinkItem extends Component {
           data-sort-value={data && data['sort-value']}
           data-turbolinks={data && data.turbolinks}
           href={url}
-          onMouseDownCapture={this.handleMouseDown}
           target={target}
+          onMouseDownCapture={this.handleMouseDown}
         >
           {image(this.props)}
           <span className={(this.props.image || fa) ? 'icon-left' : ''}>

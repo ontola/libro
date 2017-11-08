@@ -20,10 +20,10 @@ const TimelineHideButton = ({
   if (docked === false) {
     return (
       <Button
-        onClick={onClose}
-        theme="transparant"
         small
         icon="arrow-left"
+        theme="transparant"
+        onClick={onClose}
       >
         Terug
       </Button>
