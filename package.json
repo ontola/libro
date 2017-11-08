@@ -21,6 +21,7 @@
     "express-session": "^1.15.1",
     "history": "3",
     "http-proxy-middleware": "^0.17.0",
+    "http-status-codes": "^1.3.0",
     "inobounce": "^0.1.4",
     "interpolate-url": "^0.0.2",
     "ioredis": "^3.1.4",

@@ -1,3 +1,4 @@
+import HttpStatus from 'http-status-codes';
 import { LinkedObjectContainer, Property, PropertyBase } from 'link-redux';
 import React from 'react';
 
@@ -83,7 +84,7 @@ class VoteButtons extends PropertyBase {
         return Promise.resolve();
       })
       .catch((e) => {
-        if (e.status === 403) {
+        if (e.status === HttpStatus.FORBIDDEN) {
           return e.json()
             .then(this.handleNotAMember);
         }

@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import HttpStatus from 'http-status-codes';
 
 import * as errors from '../utils/errors';
 
@@ -22,7 +23,7 @@ export default function errorHandlerMiddleware(err, req, res, next) {
     console.warn(err.devMessage);
     console.error(errMsg);
     console.debug(err.stack);
-    res.status(500).end();
+    res.status(HttpStatus.INTERNAL_SERVER_ERROR).end();
     return;
   }
   console.warn(err);

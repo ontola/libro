@@ -1,4 +1,5 @@
 /* eslint react/jsx-no-bind: 0 */
+import HttpStatus from 'http-status-codes';
 import React, { PropTypes } from 'react';
 
 import ScrollLockedComponent from './ScrollLockedComponent';
@@ -41,7 +42,7 @@ class DropdownContent extends ScrollLockedComponent {
         this.leaveTimeout = window.setTimeout(() => {
           this.setState(
             { appearState: 'Dropdown--leave Dropdown--leave-active' },
-            () => { this.innerLeaveTimeout = window.setTimeout(callback, 200); }
+            () => { this.innerLeaveTimeout = window.setTimeout(callback, HttpStatus.OK); }
           );
         }, 0);
       }

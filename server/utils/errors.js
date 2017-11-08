@@ -1,3 +1,5 @@
+import HttpStatus from 'http-status-codes';
+
 /**
  * Provides error classes to be used in the server.
  * These can be raised to indicate a certain error has occurred.
@@ -55,10 +57,10 @@ export class BadRequestError extends ArguError {
   constructor(devMessage) {
     super(BadRequestError.getErrorMessage());
     this.devMessage = devMessage;
-    this.status = 400;
+    this.status = HttpStatus.BAD_REQUEST;
   }
 
-  static get status() { return 400; }
+  static get status() { return HttpStatus.BAD_REQUEST; }
 
   static getErrorMessage() {
     return 'Bad request, the request could not be processed.';
@@ -72,7 +74,7 @@ export class UnauthorizedError extends ArguError {
     this.status = UnauthorizedError.status;
   }
 
-  static get status() { return 401; }
+  static get status() { return HttpStatus.UNAUTHORIZED; }
 
   static getErrorMessage() {
     return 'Not authorized, please log in to continue.';
@@ -86,7 +88,7 @@ export class ForbiddenError extends ArguError {
     this.status = ForbiddenError.status;
   }
 
-  static get status() { return 403; }
+  static get status() { return HttpStatus.FORBIDDEN; }
 
   static getErrorMessage() {
     return 'Forbidden, ask your manager for permission.';
@@ -100,7 +102,7 @@ export class NotFoundError extends ArguError {
     this.status = NotFoundError.status;
   }
 
-  static get status() { return 404; }
+  static get status() { return HttpStatus.NOT_FOUND; }
 
   static getErrorMessage() {
     return 'Resource could not be found, check if the URL is correct.';
@@ -114,7 +116,7 @@ export class UnprocessableEntityError extends ArguError {
     this.status = UnprocessableEntityError.status;
   }
 
-  static get status() { return 422; }
+  static get status() { return HttpStatus.UNPROCESSABLE_ENTITY; }
 
   static getErrorMessage() {
     return 'Request is valid but failed due to semantics, check the contents of the request.';
@@ -130,7 +132,7 @@ export class InternalServerErrorError extends ArguError {
     this.status = InternalServerErrorError.status;
   }
 
-  static get status() { return 500; }
+  static get status() { return HttpStatus.INTERNAL_SERVER_ERROR; }
 
   static getErrorMessage() {
     return 'An internal server error occurred, please try again.';
@@ -144,7 +146,7 @@ export class NotImplementedError extends ArguError {
     this.status = NotImplementedError.status;
   }
 
-  static get status() { return 501; }
+  static get status() { return HttpStatus.NOT_IMPLEMENTED; }
 
   static getErrorMessage() {
     return 'Feature is not implemented yet';
@@ -158,7 +160,7 @@ export class BadGatewayError extends ArguError {
     this.status = BadGatewayError.status;
   }
 
-  static get status() { return 502; }
+  static get status() { return HttpStatus.BAD_GATEWAY; }
 
   static getErrorMessage() {
     return 'Bad gateway, please try again later.';
@@ -172,7 +174,7 @@ export class ServiceUnavailableError extends ArguError {
     this.status = ServiceUnavailableError.status;
   }
 
-  static get status() { return 503; }
+  static get status() { return HttpStatus.SERVICE_UNAVAILABLE; }
 
   static getErrorMessage() {
     return 'Service unavailable, please try again later.';
@@ -186,7 +188,7 @@ export class GatewayTimeoutError extends ArguError {
     this.status = GatewayTimeoutError.status;
   }
 
-  static get status() { return 504; }
+  static get status() { return HttpStatus.GATEWAY_TIMEOUT; }
 
   static getErrorMessage() {
     return 'Gateway timeout, please try again.';
@@ -195,25 +197,25 @@ export class GatewayTimeoutError extends ArguError {
 
 export default function getErrorClass(status) {
   switch (status) {
-    case 400:
+    case HttpStatus.BAD_REQUEST:
       return BadRequestError;
-    case 401:
+    case HttpStatus.UNAUTHORIZED:
       return UnauthorizedError;
-    case 403:
+    case HttpStatus.FORBIDDEN:
       return ForbiddenError;
-    case 404:
+    case HttpStatus.NOT_FOUND:
       return NotFoundError;
-    case 422:
+    case HttpStatus.UNPROCESSABLE_ENTITY:
       return UnprocessableEntityError;
-    case 500:
+    case HttpStatus.INTERNAL_SERVER_ERROR:
       return InternalServerErrorError;
-    case 501:
+    case HttpStatus.NOT_IMPLEMENTED:
       return NotImplementedError;
-    case 502:
+    case HttpStatus.BAD_GATEWAY:
       return BadGatewayError;
-    case 503:
+    case HttpStatus.SERVICE_UNAVAILABLE:
       return ServiceUnavailableError;
-    case 504:
+    case HttpStatus.GATEWAY_TIMEOUT:
       return GatewayTimeoutError;
     default:
       return undefined;

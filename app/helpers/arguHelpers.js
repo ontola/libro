@@ -1,3 +1,4 @@
+import HttpStatus from 'http-status-codes';
 import React from 'react';
 /**
  * @module arguHelpers
@@ -27,28 +28,28 @@ image.propTypes = {
 };
 
 export function errorMessageForStatus(status) {
-  if (status === 401) {
+  if (status === HttpStatus.UNAUTHORIZED) {
     return {
       fallback: 'Je moet ingelogd zijn voor deze actie.',
       i18nString: 'errors.status.401',
       severity: 'error',
       type: 'alert',
     };
-  } else if (status === 404) {
+  } else if (status === HttpStatus.NOT_FOUND) {
     return {
       fallback: 'Het item is niet gevonden, probeer de pagina te verversen.',
       i18nString: 'errors.status.404',
       severity: 'error',
       type: 'alert',
     };
-  } else if (status === 429) {
+  } else if (status === HttpStatus.TOO_MANY_REQUESTS) {
     return {
       fallback: 'Je maakt te veel verzoeken, probeer het over halve minuut nog eens.',
       i18nString: 'errors.status.429',
       severity: 'error',
       type: 'alert',
     };
-  } else if (status === 500) {
+  } else if (status === HttpStatus.INTERNAL_SERVER_ERROR) {
     return {
       fallback: 'Er ging iets aan onze kant fout, probeer het later nog eens.',
       i18nString: 'errors.status.500',
@@ -72,7 +73,7 @@ export function errorMessageForStatus(status) {
 }
 
 export function json(response) {
-  if (typeof response !== 'undefined' && response.status !== 204 && response.status !== 304) {
+  if (typeof response !== 'undefined' && response.status !== HttpStatus.NO_CONTENT && response.status !== HttpStatus.NOT_MODIFIED) {
     return response.json();
   }
   return Promise.resolve();
@@ -129,14 +130,16 @@ export function safeCredentials(options) {
 }
 
 export function statusSuccess(response) {
-  if ((response.status >= 200 && response.status < 300) || response.status === 304) {
+  if ((response.status >= HttpStatus.OK
+      && response.status < HttpStatus.MULTIPLE_CHOICES)
+      || response.status === HttpStatus.NOT_MODIFIED) {
     return Promise.resolve(response);
   }
   return Promise.reject(response);
 }
 
 export function tryLogin(response) {
-  if (response.status === 401) {
+  if (response.status === HttpStatus.UNAUTHORIZED) {
     /* eslint no-alert: 0 */
     if (window.confirm(errorMessageForStatus(response.status).fallback)) {
       window.location = `${window.location.origin}/u/sign_in?r=${encodeURIComponent(window.location.href)}`;

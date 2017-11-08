@@ -1,3 +1,4 @@
+import HttpStatus from 'http-status-codes';
 import { getP } from 'link-lib';
 import React, { PropTypes } from 'react';
 
@@ -9,7 +10,7 @@ const propTypes = {
 
 function getErrorMessage(code) {
   switch (code) {
-    case 404:
+    case HttpStatus.NOT_FOUND:
       return 'Object could not be found';
     default:
       return 'An unknown error occurred';

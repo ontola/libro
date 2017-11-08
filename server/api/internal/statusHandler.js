@@ -1,8 +1,10 @@
+import HttpStatus from 'http-status-codes';
+
 import getErrorClass from '../../utils/errors';
 
 function getDevMessage(status) {
   switch (status) {
-    case 401:
+    case HttpStatus.UNAUTHORIZED:
       return 'Not authenticated to backend (is an oauth token present?)';
     default:
       return undefined;
@@ -17,7 +19,7 @@ function getDevMessage(status) {
  * @return {Promise<Response|Error>} The response if valid, an error object otherwise.
  */
 export default function processResponse(response) {
-  if (response.status >= 200 && response.status < 300) {
+  if (response.status >= HttpStatus.OK && response.status < HttpStatus.MULTIPLE_CHOICES) {
     return response;
   }
   const ErrClass = getErrorClass(response.status);

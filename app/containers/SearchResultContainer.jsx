@@ -17,6 +17,9 @@ const propTypes = {
   }).isRequired,
 };
 
+const PREVIEW_LENGTH = 300;
+const REMOVE_CHARACTERS_COUNT = 4;
+
 const SearchResultContainer = ({ result }) => {
   const {
     _source: source,
@@ -27,11 +30,10 @@ const SearchResultContainer = ({ result }) => {
 
   const highlightFields = highlight !== undefined && highlight;
   const data = Object.assign({}, source, highlightFields);
-  const content = highlight ? data.text : data.text.toString().substr(0, 300);
+  const content = highlight ? data.text : data.text.toString().substr(0, PREVIEW_LENGTH);
 
   // Temporary helper function to deal with the ID's stored in Jur's PG API
   const fixedId = () => {
-    const REMOVE_CHARACTERS_COUNT = 4;
     const withoutApi = source.url.substr(REMOVE_CHARACTERS_COUNT);
     return `${constants.FRONTEND_URL}${withoutApi}`;
   };

@@ -1,3 +1,5 @@
+import HttpStatus from 'http-status-codes';
+
 import * as errors from './errors';
 import handleAsyncErrors from './handleAsyncErrors';
 
@@ -13,7 +15,7 @@ async function getGuestToken(req) {
   const response = await req.api.requestGuestToken();
   const body = await response.json();
 
-  if (response.status >= 300) {
+  if (response.status >= HttpStatus.MULTIPLE_CHOICES) {
     return Promise.reject(new errors.InternalServerErrorError());
   }
   const expiresAt = new Date((body.created_at * MILLISECONDS) + (body.expires_in * MILLISECONDS));
@@ -48,7 +50,7 @@ async function isAuthenticated(req, res, next) {
     if (t && !expired) {
       return next();
     }
-    res.status(401);
+    res.status(HttpStatus.UNAUTHORIZED);
     const status = expired ? 'SESSION_EXPIRED' : 'UNAUTHORIZED';
     return res.send({ status }).end();
   }
