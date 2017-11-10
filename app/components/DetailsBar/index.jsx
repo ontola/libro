@@ -1,5 +1,6 @@
 /* eslint class-methods-use-this: 0 */
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 

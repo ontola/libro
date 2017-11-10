@@ -1,6 +1,7 @@
 import { getValueOrID } from 'link-lib';
 import { LinkedObjectContainer, PropertyBase, lowLevel } from 'link-redux';
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 

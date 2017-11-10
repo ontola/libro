@@ -1,6 +1,7 @@
 /* eslint react/jsx-no-bind: 0 */
 import HttpStatus from 'http-status-codes';
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 import ScrollLockedComponent from './ScrollLockedComponent';
 

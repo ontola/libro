@@ -1,6 +1,7 @@
 /* eslint react/no-multi-comp: 0 */
 /* eslint react/prefer-stateless-function: 0 */
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getP } from 'link-lib';
 import { LinkedObjectContainer, fetchLinkedObject } from 'link-redux';

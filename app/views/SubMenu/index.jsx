@@ -1,7 +1,8 @@
 import classNames from 'classnames';
 import { RENDER_CLASS_NAME, getP } from 'link-lib';
 import { Property } from 'link-redux';
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
 

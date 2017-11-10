@@ -41,7 +41,7 @@ Uses [NSP](https://github.com/nodesecurity/nsp) and [Retire.js](https://github.c
 - In this project, `components` are merely [presentational](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0) / display / UI components that should not represent any specific kind of concept. You can compare them to bootstrap components. Components should not fetch any data and should not be connected to redux. They also should not contain any components that fetch data. That's what Containers and Resources are responsible for.
 - Name them as abstract as possible. That makes the component more re-usable.
 - Use stateless functional components whenever possible to enhance performance.
-- Use React.propTypes and add a comment above non-obvious props `/** like this */` to provide a description that can be parsed by Styleguidist.
+- Use PropTypes and add a comment above non-obvious props `/** like this */` to provide a description that can be parsed by Styleguidist.
 - Add a Readme.md file to provide example usage that automatically appears in Styleguidist.
 - Document components like all other functions with JSdoc. Descriptions automatically appear in Styleguidist.
 

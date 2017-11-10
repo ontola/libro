@@ -1,5 +1,6 @@
 import HttpStatus from 'http-status-codes';
 import { LinkedObjectContainer, Property, PropertyBase } from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import {
@@ -16,14 +17,14 @@ import {
 import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
-  buttonsType: React.PropTypes.string,
-  closed: React.PropTypes.bool,
-  currentVote: React.PropTypes.string,
-  objectId: React.PropTypes.number,
-  objectType: React.PropTypes.string,
-  onVoteCompleted: React.PropTypes.func,
-  r: React.PropTypes.string,
-  vote_url: React.PropTypes.string,
+  buttonsType: PropTypes.string,
+  closed: PropTypes.bool,
+  currentVote: PropTypes.string,
+  objectId: PropTypes.number,
+  objectType: PropTypes.string,
+  onVoteCompleted: PropTypes.func,
+  r: PropTypes.string,
+  vote_url: PropTypes.string,
 };
 
 class VoteButtons extends PropertyBase {

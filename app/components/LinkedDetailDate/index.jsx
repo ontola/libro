@@ -3,7 +3,8 @@ import {
   getLinkedObjectPropertyRaw,
   lowLevel,
 } from 'link-redux';
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import moment from 'moment';
 
 import { NS } from '../../helpers/LinkedRenderStore';

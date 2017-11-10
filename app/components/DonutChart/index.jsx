@@ -1,5 +1,6 @@
 import c3 from 'c3';
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
 import './DonutChart.scss';
 

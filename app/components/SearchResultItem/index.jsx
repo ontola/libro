@@ -1,5 +1,6 @@
 /* eslint react/no-danger: 0 */
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { Link } from 'react-router';
 
 import VoteMatchAddContainer from 'containers/VoteMatchAddContainer';

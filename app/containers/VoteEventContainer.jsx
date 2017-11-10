@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 import Vote from 'models/Vote';
 import {

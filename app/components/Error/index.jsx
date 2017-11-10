@@ -1,6 +1,7 @@
 import HttpStatus from 'http-status-codes';
 import { getP } from 'link-lib';
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const propTypes = {
   data: PropTypes.shape({

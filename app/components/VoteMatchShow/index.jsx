@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
 import MotionContainer from 'containers/MotionContainer';
 import VoteMatchResultProfileContainer from 'containers/VoteMatchResultProfileContainer';

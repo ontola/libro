@@ -1,5 +1,6 @@
 import toMaterialStyle from 'material-color-hash';
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 import './GeneratedIcon.scss';
 

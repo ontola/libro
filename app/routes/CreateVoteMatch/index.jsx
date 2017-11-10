@@ -1,5 +1,6 @@
 import { List } from 'immutable';
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import DraggableList from 'react-draggable-list';
 import { connect } from 'react-redux';
 import { Link, browserHistory } from 'react-router';

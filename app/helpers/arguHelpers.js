@@ -1,4 +1,5 @@
 import HttpStatus from 'http-status-codes';
+import PropTypes from 'prop-types';
 import React from 'react';
 /**
  * @module arguHelpers
@@ -19,11 +20,11 @@ export function image(props) {
 }
 
 image.propTypes = {
-  fa: React.PropTypes.string,
-  image: React.PropTypes.objectOf({
-    className: React.PropTypes.string,
-    title: React.PropTypes.string,
-    url: React.PropTypes.string,
+  fa: PropTypes.string,
+  image: PropTypes.objectOf({
+    className: PropTypes.string,
+    title: PropTypes.string,
+    url: PropTypes.string,
   }),
 };
 

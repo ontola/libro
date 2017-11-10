@@ -1,5 +1,6 @@
 import { Property, linkedPropType } from 'link-redux';
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 import { CompareVotesBar } from '../../../components';
 import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';

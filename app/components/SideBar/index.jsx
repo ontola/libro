@@ -1,5 +1,6 @@
 import classNames from 'classnames';
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import Sidebar from 'react-sidebar';
 import { ScrollContainer } from 'react-router-scroll';
 
