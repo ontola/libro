@@ -26,8 +26,8 @@ function Image(props) {
   }
   return (
     <img
+      alt=""
       className={className}
-      role="presentation"
       src={linkedProp}
       style={style}
     />

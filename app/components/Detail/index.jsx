@@ -26,13 +26,17 @@ const propTypes = {
   url: PropTypes.string,
 };
 
+const defaultProps = {
+  title: '',
+};
+
 class Detail extends PropertyBase {
   getImage() {
     if (typeof this.context.subject !== 'undefined') {
       return <Property label={NS.schema('image')} />;
     }
     return this.props.imageUrl &&
-      <img className="Detail__image" role="presentation" src={this.props.imageUrl} />;
+      <img alt={this.props.title} className="Detail__image" src={this.props.imageUrl} />;
   }
 
   getText() {
@@ -95,6 +99,7 @@ class Detail extends PropertyBase {
 }
 
 Detail.contextTypes = contextTypes;
+Detail.defaultProps = defaultProps;
 Detail.propTypes = propTypes;
 
 export default Detail;

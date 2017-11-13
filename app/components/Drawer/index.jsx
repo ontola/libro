@@ -32,6 +32,7 @@ const Drawer = ({
         role="button"
         tabIndex={0}
         onClick={() => onClickToggle()}
+        onKeyUp={() => onClickToggle()}
       />
       <div className="Drawer__wrapper">
         <div className="Drawer__container">{children}</div>

@@ -18,6 +18,11 @@ const propTypes = {
   title: PropTypes.string,
   url: PropTypes.string,
 };
+
+const defaultProps = {
+  title: '',
+};
+
 const DetailPure = ({
   className,
   floatRight,
@@ -46,7 +51,7 @@ const DetailPure = ({
       }}
     >
       {imageUrl &&
-        <img className="Detail__image" role="presentation" src={imageUrl} />
+        <img alt={title} className="Detail__image" src={imageUrl} />
       }
       {!imageUrl && icon && !hideIcon &&
         <span className="Detail__icon">
@@ -59,6 +64,8 @@ const DetailPure = ({
     </Element>
   );
 };
+
+DetailPure.defaultProps = defaultProps;
 DetailPure.propTypes = propTypes;
 
 export default DetailPure;
