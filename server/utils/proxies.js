@@ -10,11 +10,10 @@ function setHeaders(proxyReq, req) {
   if (typeof req.session !== 'undefined') {
     proxyReq.setHeader('Authorization', `Bearer ${req.session.arguToken.accessToken}`);
   }
-  proxyReq.setHeader('Cookie', req.headers.cookie.replace(/([$|\s])beta=true/, '$1beta=false'));
+  proxyReq.setHeader('X-Argu-Back', 'true');
 }
 
 export const backendProxy = proxy({
-  changeOrigin: true,
   onProxyReq: setHeaders,
   secure: process.env.NODE_ENV !== 'development',
   strictSSL: process.env.NODE_ENV !== 'development',
@@ -23,7 +22,6 @@ export const backendProxy = proxy({
 });
 
 export const iframeProxy = proxy({
-  changeOrigin: true,
   onProxyReq: (proxyReq, req) => {
     if (req.method === 'GET' || req.method === 'OPTIONS') {
       setHeaders(proxyReq, req);
@@ -49,11 +47,4 @@ export const iframeProxy = proxy({
   strictSSL: process.env.NODE_ENV !== 'development',
   target: constants.ARGU_API_URL,
   toProxy: true,
-});
-
-export const odApiProxy = proxy({
-  changeOrigin: true,
-  secure: process.env.NODE_ENV !== 'development',
-  strictSSL: process.env.NODE_ENV !== 'development',
-  target: constants.AOD_API_URL,
 });

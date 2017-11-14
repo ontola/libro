@@ -12,4 +12,11 @@ export function retrievePath(iriString) {
   return iri && iri.pathname + iri.search;
 }
 
+export function currentURL() {
+  if (typeof window !== 'undefined') {
+    return window.location.href;
+  }
+  return undefined;
+}
+
 export default retrievePath;

@@ -11,6 +11,7 @@ import {
 } from '../../components';
 import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
+import './properties/contains';
 import './properties/collectionAssociation';
 import './properties/isPrimaryTopicOf';
 import './properties/isPartOf';

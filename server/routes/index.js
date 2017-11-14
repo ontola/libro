@@ -2,21 +2,17 @@
 import bodyParser from 'body-parser';
 import csurf from 'csurf';
 import express from 'express';
-import proxy from 'http-proxy-middleware';
 import morgan from 'morgan';
-import SearchkitExpress from 'searchkit-express';
 
 import * as constants from '../../app/config';
 import apiMiddleware from '../middleware/apiMiddleware';
 import errorHandlerMiddleware from '../middleware/errorHandlerMiddleware';
 import sessionMiddleware from '../middleware/sessionMiddleware';
 import { isAuthenticated, isBackend, isIframe } from '../utils/filters';
-import { backendProxy, iframeProxy, odApiProxy } from '../utils/proxies';
+import { backendProxy, iframeProxy } from '../utils/proxies';
 import { handleRender } from '../utils/render';
 
 import login from './login';
-
-const BACKEND_ROUTES = /^\/(a|actors|announcements|c_a|documents|f|follows|g|group_memberships|i|lr|m|menus|media_objects|o|oauth|phases|policy|portal|posts|privacy|profiles|q|qa|settings|shortnames|u|users|v|vote_events|vote_matches)(\/|$)/;
 
 export function listen(app, port) {
   app.listen(port, (err) => {
@@ -42,39 +38,20 @@ export default function routes(app, port) {
 
   app.all('*', isIframe, isAuthenticated, iframeProxy);
 
-  app.post(BACKEND_ROUTES, isBackend, isAuthenticated, backendProxy);
-
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
 
   app.use(csurf());
 
-  // Activate proxy for session
-  app.use(/\/api\/(.*)/, proxy({
-    changeOrigin: true,
-    target: constants.ARGU_API_URL,
-  }));
-
-  app.use('/aod_search', SearchkitExpress.createRouter({
-    host: constants.ELASTICSEARCH_URL,
-    index: constants.ELASTICSEARCH_INDEX,
-  }));
+  app.all('*', isBackend, isAuthenticated, backendProxy);
 
   app.post('/login', login);
-
-  app.get(/.*/, isBackend, isAuthenticated, (req, res) => {
-    if (req.originalUrl.match(BACKEND_ROUTES) !== null) {
-      return backendProxy(req, res);
-    }
-    return odApiProxy(req, res);
-  });
 
   app.get(/.*/, (req, res) => {
     const domain = req.get('host').replace(/:.*/, '');
 
     res.setHeader('Link', `${constants.FRONTEND_URL}/static/preloader.css; rel=preload; as=style`);
     handleRender(req, res, port, domain);
-    // res.send(renderFullPage('', port, domain, req.csrfToken())).end();
     return undefined;
   });
 

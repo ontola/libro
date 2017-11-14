@@ -3,6 +3,7 @@ import HttpStatus from 'http-status-codes';
 import * as errors from './errors';
 import handleAsyncErrors from './handleAsyncErrors';
 
+const FRONTEND_ROUTES = /^\/(login)(\/|$)/;
 const MILLISECONDS = 1000;
 
 /**
@@ -62,13 +63,15 @@ async function isAuthenticated(req, res, next) {
 const boundAuthenticated = handleAsyncErrors(isAuthenticated);
 export { boundAuthenticated as isAuthenticated };
 
-export function isBackend(req, res, next) {
+export function isBackend(req, _res, next) {
+  if (req.originalUrl.match(FRONTEND_ROUTES)) {
+    return next('route');
+  }
   const accept = req.get('Accept');
   if (accept && (accept.includes('text/n3') || accept.includes('application/vnd.api+json') || accept.includes('application/json'))) {
-    next();
-  } else {
-    next('route');
+    return next();
   }
+  return next('route');
 }
 
 export function isIframe(req, res, next) {
