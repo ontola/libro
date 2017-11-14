@@ -1,6 +1,7 @@
 import { assert } from 'chai';
 import { mount } from 'enzyme';
 import React from 'react';
+import { StaticRouter } from 'react-router';
 
 import LinkList from './';
 
@@ -14,7 +15,7 @@ const links = [{
 
 describe('A navigation bar', () => {
   it('must contain one or more links', () => {
-    const wrapper = mount(<LinkList links={links} />);
+    const wrapper = mount(<StaticRouter context={{}}><LinkList links={links} /></StaticRouter>);
     const findLinks = wrapper.find('nav a');
     assert(findLinks.length > 0, 'No links have been found');
   });

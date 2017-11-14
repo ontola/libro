@@ -16,13 +16,21 @@ const propTypes = {
   }),
 };
 
+function redirectForLocation(location) {
+  const params = new URLSearchParams(location.search);
+  if (params.get('r')) {
+    return params.get('r');
+  }
+  return '';
+}
+
 const SignIn = ({ location }) => (
   <Container size="small">
     <Heading variant="column">
       Inloggen of registreren
     </Heading>
     <Card>
-      <SignInFormContainer redirect={location.query.r} />
+      <SignInFormContainer redirect={redirectForLocation(location)} />
     </Card>
   </Container>
 );

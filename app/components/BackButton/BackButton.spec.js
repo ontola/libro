@@ -1,11 +1,16 @@
 /* eslint no-magic-numbers: 0 */
-import React from 'react';
-import { mount } from 'enzyme';
 import { assert } from 'chai';
+import { mount } from 'enzyme';
+import React from 'react';
+import { StaticRouter } from 'react-router';
 
 import BackButton from './';
 
-const comp = mount(<BackButton link="http://argu.co/">Go back</BackButton>);
+const comp = mount((
+  <StaticRouter context={{}}>
+    <BackButton link="http://argu.co/">Go back</BackButton>
+  </StaticRouter>
+));
 
 describe('BackButton component', () => {
   it('should render', () => {

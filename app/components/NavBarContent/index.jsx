@@ -1,12 +1,13 @@
-import { LinkedObjectContainer, Property, Type } from 'link-redux';
+import { LinkedObjectContainer, Property } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import articles, { order } from '../../articles';
 import { FRONTEND_URL } from '../../config';
 import { checkLuminance } from '../../helpers/color';
 import path from '../../helpers/paths';
+import { currentURL } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 import SideBarCollapsible from '../SideBarCollapsible';
 import SideBarLink from '../SideBarLink';
@@ -52,14 +53,10 @@ const NavBarContent = ({
       <div className="NavBarContent__top">
         <LinkedObjectContainer
           forceRender
-          object={`${FRONTEND_URL}/o/find?iri=${encodeURIComponent(window.location.href)}`}
+          object={`${FRONTEND_URL}/o/find?iri=${encodeURIComponent(currentURL())}`}
           topology={NS.argu('sidebarBlock')}
         >
-          <div className="NavBarContent__switcher">
-            <LinkedObjectContainer object={`${FRONTEND_URL}/menus/organizations`} />
-            <Property label={NS.schema('name')} />
-          </div>
-          <Type />
+          <Property label={NS.argu('contains')} />
         </LinkedObjectContainer>
       </div>
       <div className="NavBarContent__footer">

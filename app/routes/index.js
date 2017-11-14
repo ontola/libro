@@ -1,8 +1,7 @@
 /* eslint 'react/jsx-sort-props': 'off' */
 import React from 'react';
-import { IndexRoute, Route } from 'react-router';
+import { Route, Switch } from 'react-router';
 
-import App from './App';
 // import CompareVotes from './CompareVotes';
 // import CreateVoteMatch from './CreateVoteMatch';
 // import Event from './Event';
@@ -27,11 +26,10 @@ import SignIn from './SignIn';
 // import { LinkVoteMatch } from './VoteMatch';
 
 const routes = (
-  <Route component={App}>
-    <IndexRoute component={Iframe} />
-    <Route path="u/sign_in" component={SignIn} />
+  <Switch>
+    <Route path="/u/sign_in" component={SignIn} />
     <Route path="*" component={Iframe} />
-  </Route>
+  </Switch>
 );
 
 export default routes;

@@ -8,7 +8,7 @@ import thunk from 'redux-thunk';
 
 // import { ARGU_API_URL_EXT } from '../config';
 import LinkedRenderStore from '../helpers/LinkedRenderStore';
-import { history } from '../helpers/history';
+import history from '../helpers/history';
 // import JsonApi from '../middleware/api';
 import iframeNavigation from '../middleware/iframeNavigation';
 // import * as models from '../models';

@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { linkedPropType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { closeSideBar } from 'state/sideBars/actions';

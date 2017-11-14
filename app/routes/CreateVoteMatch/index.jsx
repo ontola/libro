@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import DraggableList from 'react-draggable-list';
 import { connect } from 'react-redux';
-import { Link, browserHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import { Field, reduxForm } from 'redux-form/immutable';
 
@@ -96,7 +96,6 @@ const CreateVoteMatch = ({
             <Button
               icon="search"
               theme="box"
-              onClick={() => browserHistory.push(paths.search())}
             >
               Moties zoeken
             </Button>

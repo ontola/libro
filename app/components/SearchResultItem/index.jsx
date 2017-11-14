@@ -1,7 +1,7 @@
 /* eslint react/no-danger: 0 */
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import VoteMatchAddContainer from 'containers/VoteMatchAddContainer';
 import path from 'helpers/paths';

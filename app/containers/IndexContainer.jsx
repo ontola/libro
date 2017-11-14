@@ -3,12 +3,11 @@ import LinkedRenderStore from 'link-lib';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Router, applyRouterMiddleware } from 'react-router';
-import { useScroll } from 'react-router-scroll';
 
-import routes from '../routes';
+import AppFrame from '../routes/App';
 
 const propTypes = {
+  Router: PropTypes.func,
   history: PropTypes.shape({
     go: PropTypes.func,
     goBack: PropTypes.func,
@@ -24,15 +23,17 @@ const propTypes = {
   }).isRequired,
 };
 
-const IndexContainer = ({ linkedRenderStore, store, history }) => (
+const IndexContainer = ({
+  Router,
+  history,
+  linkedRenderStore,
+  store,
+}) => (
   <Provider store={store}>
     <RenderStoreProvider linkedRenderStore={linkedRenderStore}>
-      <Router
-        history={history}
-        render={__CLIENT__ ? applyRouterMiddleware(useScroll()) : undefined}
-        routes={routes}
-        // onUpdate={() => window.scrollTo(0, 0)}
-      />
+      <Router history={history}>
+        <AppFrame />
+      </Router>
     </RenderStoreProvider>
   </Provider>
 );

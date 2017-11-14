@@ -2,7 +2,6 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Sidebar from 'react-sidebar';
-import { ScrollContainer } from 'react-router-scroll';
 
 import Button from '../Button';
 
@@ -12,7 +11,6 @@ const propTypes = {
   /* The components that appear in the main area */
   children: PropTypes.node,
   docked: PropTypes.bool,
-  id: PropTypes.string,
   onClose: PropTypes.func.isRequired,
   onDock: PropTypes.func.isRequired,
   onOpen: PropTypes.func.isRequired,
@@ -169,13 +167,9 @@ class SideBar extends Component {
         styles={this.styles}
         onSetOpen={this.onSetSideBarOpen}
       >
-        <ScrollContainer
-          scrollKey={this.props.id}
-        >
-          <div className="SideBar__content">
-            {this.props.children}
-          </div>
-        </ScrollContainer>
+        <div className="SideBar__content">
+          {this.props.children}
+        </div>
       </Sidebar>
     );
   }

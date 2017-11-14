@@ -15,9 +15,9 @@ import resetErrorMessage from 'state/communication/actions';
 import { getErrorBool, getErrorMsg, getLoadingBool } from 'state/communication/selectors';
 
 import '../../components/shared/init.scss';
+import Routes from '../';
 
 const propTypes = {
-  children: PropTypes.node.isRequired,
   error: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string,
   loading: PropTypes.bool.isRequired,
@@ -33,7 +33,6 @@ const renderErrorMessage = (error, errorMessage, reset) => (!error ? false : (
 ));
 
 const App = ({
-  children,
   error,
   errorMessage,
   loading,
@@ -54,7 +53,7 @@ const App = ({
     >
       <BottomBarContainer />
       <div id="start-of-content">
-        {children}
+        {Routes}
       </div>
       {error && renderErrorMessage(error, errorMessage, reset)}
     </SideBarContainer>
