@@ -4,6 +4,7 @@ import rdf from 'rdflib';
 
 import Error from '../components/Error';
 import Loading from '../components/Loading';
+import { FRONTEND_URL } from '../config';
 
 import './linkDevTools';
 import transformers from './transformers';
@@ -17,9 +18,7 @@ transformers
   .transformers
   .forEach(t => LRS.api.registerTransformer(t.transformer, t.mediaTypes, t.acceptValue));
 
-LRS.api.setAcceptForHost('https://argu.dev/', 'text/n3');
-LRS.api.setAcceptForHost('https://beta.argu.dev/', 'text/n3');
-LRS.api.setAcceptForHost('https://argu.co/', 'text/n3');
+LRS.api.setAcceptForHost(FRONTEND_URL, 'text/n3');
 LRS.api.setAcceptForHost('https://beta.argu.co/', 'text/n3');
 
 LRS.namespaces.aod = rdf.Namespace('https://argu.co/ns/od#');
