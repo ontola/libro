@@ -1,29 +1,32 @@
-import { linkedPropType } from 'link-redux';
+import {
+  linkedPropType,
+} from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
-import { retrievePath } from '../../../helpers/iris';
 
 const propTypes = {
   children: PropTypes.node,
   linkedProp: linkedPropType,
 };
 
-const Target = ({ children = null, linkedProp }) => (
-  <Link style={{ display: 'flex', flexGrow: 1, paddingTop: '.5em' }} to={retrievePath(linkedProp)}>
+const ReadAction = ({ linkedProp, children }) => (
+  <div
+    onClick={() => LinkedRenderStore.execActionByIRI(linkedProp)}
+    onKeyUp={() => LinkedRenderStore.execActionByIRI(linkedProp)}
+  >
     {children}
-  </Link>
+  </div>
 );
 
-Target.propTypes = propTypes;
+ReadAction.propTypes = propTypes;
 
 [undefined, NS.argu('collection'), NS.argu('sidebar')].forEach((top) => {
   LinkedRenderStore.registerRenderer(
-    Target,
+    ReadAction,
     NS.argu('Notification'),
-    NS.schema('target'),
+    NS.argu('readAction'),
     top
   );
 });

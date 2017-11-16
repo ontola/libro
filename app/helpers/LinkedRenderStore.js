@@ -1,11 +1,12 @@
 /* eslint no-console: 0 */
-import LinkedRenderStore from 'link-lib';
+import LinkedRenderStore, { anyRDFValue } from 'link-lib';
 import rdf from 'rdflib';
 
 import Error from '../components/Error';
 import Loading from '../components/Loading';
 import { FRONTEND_URL } from '../config';
 
+import { authenticityHeader } from './arguHelpers';
 import './linkDevTools';
 import transformers from './transformers';
 
@@ -167,6 +168,34 @@ LRS.addOntologySchematics([
     },
   },
 ]);
+
+LRS.execActionByIRI = function execActionByIRI(subject) {
+  let object, url;
+  this
+    .getEntity(new rdf.NamedNode(subject))
+    .then((action) => {
+      object = this.getEntity(anyRDFValue(action, NS.schema('object')));
+      return this.getEntity(anyRDFValue(action, NS.schema('target')));
+    })
+    .then((target) => {
+      url = anyRDFValue(target, NS.schema('url'));
+      const targetMethod = anyRDFValue(target, NS.schema('method'));
+      const method = typeof targetMethod !== 'undefined' ? targetMethod.toString() : 'GET';
+      const opts = {
+        credentials: 'include',
+        headers: authenticityHeader({
+          Accept: LRS.api.processor.accept[new URL(url.value).origin],
+        }),
+        method: method.toUpperCase(),
+        mode: 'same-origin',
+      };
+      return fetch(url.value, opts);
+    })
+    .then(resp => Promise.all([LRS.api.processor.feedResponse(url, resp), object]))
+    .then(([statements, objectRef]) => {
+      this.replaceStatements(objectRef, statements);
+    });
+};
 
 export default LRS;
 if (typeof window !== 'undefined') {
