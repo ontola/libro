@@ -8,6 +8,7 @@ import './CreativeWork';
 import './Collection';
 // import './Comment';
 import './CreateAction';
+import './EntryPoint';
 import './GuestUserActor';
 import './ImageObject';
 import './InfiniteCollection';

@@ -23,12 +23,15 @@ class CollectionName extends PropertyBase {
       this.props.subject,
       this.context.linkedRenderStore
     );
+    const href = this.getLinkedObjectProperty(NS.argu('href'));
+    const Wrapper = typeof href !== 'undefined' ? Link : 'div';
+
     return (
-      <Link to={this.getLinkedObjectProperty(NS.argu('href'))}>
+      <Wrapper to={href}>
         <Heading size="2" variant="column">
           {propVal}
         </Heading>
-      </Link>
+      </Wrapper>
     );
   }
 }

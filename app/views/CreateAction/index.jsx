@@ -4,13 +4,8 @@ import React from 'react';
 
 import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
-import './properties/name';
-import './properties/target';
-
 const CreateAction = () => (
-  <Property label={NS.schema('target')}>
-    <Property label={NS.schema('name')} style={{ display: 'inherit' }} />
-  </Property>
+  <Property label={NS.schema('target')} />
 );
 
 LinkedRenderStore.registerRenderer(

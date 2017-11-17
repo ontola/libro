@@ -14,7 +14,7 @@ CreateActionProp.propTypes = propTypes;
 LinkedRenderStore.registerRenderer(
   CreateActionProp,
   NS.schema('Thing'),
-  NS.argu('createAction')
+  NS.argu('newAction')
 );
 
 export default CreateActionProp;

@@ -10,7 +10,7 @@ const propTypes = {
   linkedProp: linkedPropType,
 };
 
-const Target = ({ children, linkedProp }) => {
+const Url = ({ children, linkedProp }) => {
   const url = new URL(linkedProp);
   const href = url && url.pathname + url.search;
   return (
@@ -20,12 +20,17 @@ const Target = ({ children, linkedProp }) => {
   );
 };
 
-Target.propTypes = propTypes;
+Url.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
-  Target,
-  NS.schema('CreateAction'),
-  NS.schema('target')
+  Url,
+  NS.schema('EntryPoint'),
+  NS.schema('url')
 );
 
-export default Target;
+LinkedRenderStore.registerRenderer(
+  Url,
+  NS.schema('EntryPoint'),
+  NS.schema('url'),
+  NS.argu('collection')
+);

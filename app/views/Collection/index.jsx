@@ -43,7 +43,7 @@ class Collection extends PropertyBase {
     } else {
       children = viewsOrMembers(views, this.getLinkedObjectPropertyRaw(NS.argu('members')));
     }
-    const createAction = views ? undefined : <Property label={NS.argu('createAction')} />;
+    const createAction = views ? undefined : <Property label={NS.argu('newAction')} />;
     const name = views ? <Property label={NS.schema('name')} /> : null;
     const pagination = !views ? this.pagination() : null;
 

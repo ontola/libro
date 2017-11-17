@@ -8,17 +8,22 @@ const propTypes = {
 };
 
 const Name = ({ linkedProp }) => (
-  <span>
-    {linkedProp}
-  </span>
+  <span>{linkedProp}</span>
 );
 
 Name.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   Name,
-  NS.schema('CreateAction'),
+  NS.schema('EntryPoint'),
   NS.schema('name')
+);
+
+LinkedRenderStore.registerRenderer(
+  Name,
+  NS.schema('EntryPoint'),
+  NS.schema('name'),
+  NS.argu('collection')
 );
 
 export default Name;
