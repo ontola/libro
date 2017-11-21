@@ -56,7 +56,7 @@ const NavBarContent = ({
           object={`${FRONTEND_URL}/o/find?iri=${encodeURIComponent(currentURL())}`}
           topology={NS.argu('sidebarBlock')}
         >
-          <Property label={NS.argu('contains')} />
+          <Property forceRender label={NS.argu('contains')} />
         </LinkedObjectContainer>
       </div>
       <div className="NavBarContent__footer">
