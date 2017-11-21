@@ -33,7 +33,7 @@ menuItems.propTypes = propTypes;
 [undefined, NS.argu('sidebar')].forEach((top) => {
   LinkedRenderStore.registerRenderer(
     menuItems,
-    NS.argu('NavigationsMenu'),
+    [NS.argu('NavigationsMenu'), NS.argu('SubMenu')],
     NS.argu('menuItems'),
     top
   );
