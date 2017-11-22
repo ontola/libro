@@ -2,9 +2,19 @@ import { URL } from 'url';
 
 import session from 'express-session';
 import proxy from 'http-proxy-middleware';
+import HttpStatus from 'http-status-codes';
 import uuid from 'uuid';
 
 import * as constants from '../../app/config';
+
+function isRedirect(status) {
+  return status === HttpStatus.MULTIPLE_CHOICES
+    || status === HttpStatus.MOVED_PERMANENTLY
+    || status === HttpStatus.MOVED_TEMPORARILY
+    || status === HttpStatus.SEE_OTHER
+    || status === HttpStatus.TEMPORARY_REDIRECT
+    || status === HttpStatus.PERMANENT_REDIRECT;
+}
 
 function setHeaders(proxyReq, req) {
   if (typeof req.session !== 'undefined') {
@@ -36,6 +46,14 @@ export const iframeProxy = proxy({
       } else {
         throw new Error('Invalid CSRF token');
       }
+    }
+  },
+  onProxyRes: (proxyRes) => {
+    if (isRedirect(proxyRes.statusCode)) {
+      const location = new URL(proxyRes.headers.location);
+      location.searchParams.set('iframe', 'positive');
+      // eslint-disable-next-line no-param-reassign
+      proxyRes.headers.location = location.toString();
     }
   },
   pathRewrite: (path, req) => {
