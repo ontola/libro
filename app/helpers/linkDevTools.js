@@ -4,11 +4,11 @@
 import { allRDFValues, defaultNS } from 'link-lib';
 import {
   LinkedObjectContainer,
+  expandedProperty,
   getLinkedObjectProperty,
   getLinkedObjectPropertyRaw,
+  getLinkedObjectClass,
 } from 'link-redux';
-import { getLinkedObjectClass } from 'link-redux/dist/module/react/components/Property';
-import { expandedProperty } from 'link-redux/dist/module/react/components/PropertyBase';
 import rdf from 'rdflib';
 
 function returnWithError(msg = undefined) {

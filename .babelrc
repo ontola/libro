@@ -1,7 +1,7 @@
 {
   "presets": [
     "react",
-    ["es2015", { "modules": false }],
+    "es2015",
     "stage-0"
   ],
   "plugins": [
@@ -10,15 +10,31 @@
     "react-hot-loader/babel"
   ],
   "env": {
+    "development": {
+      "presets": [
+        "react",
+        ["es2015", {"modules": false}],
+        "stage-0"
+      ]
+    },
     "production": {
-      "plugins": ["transform-react-remove-prop-types"]
+      "plugins": [
+        "transform-react-remove-prop-types",
+        "transform-new-target"
+      ],
+      "presets": [
+        "react",
+        ["es2015", {"modules": false}],
+        "stage-0"
+      ]
     },
     "test": {
       "plugins": [
         [
           "babel-plugin-webpack-alias",
-          { "config": "./webpack/common.config.js" }
-        ]
+          { "config": "./webpack/test.config.js" }
+        ],
+        "transform-es2015-modules-commonjs"
       ]
     }
   }

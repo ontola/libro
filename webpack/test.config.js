@@ -1,11 +1,8 @@
-const path = require('path');
-
 const nodeExternals = require('webpack-node-externals');
 
 const config = require('./common.config');
 
 config.cache = true;
-config.entry = path.resolve('./tests/testhelper.js');
 config.externals = [
   nodeExternals(),
   { '../../../../node_modules/react.js': 'react' },
@@ -15,10 +12,12 @@ config.externals = [
 
 config.output = {};
 
-config.module.rules.unshift({
+config.module.rules.push({
   include: [
     /app/,
     /node_modules\/link-redux/,
+    /node_modules\/link-redux\/test/,
+    /node_modules\/link-redux\/test\/fixtures/,
     /node_modules\/whatwg-url/,
     /node_modules\/universal-url/,
     /node_modules\/webidl-conversions/,

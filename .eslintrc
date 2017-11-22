@@ -5,12 +5,7 @@
   ],
   "extends": "airbnb",
   "root": true,
-  "env": {
-    "browser": true,
-    "node": true,
-    "es6": true,
-    "mocha": true,
-  },
+
   "globals": {
     "__CLIENT__": true,
     "__DEV__": true,
@@ -30,7 +25,7 @@
   "settings": {
     "react": {
       "pragma": "React",
-      "version": "0.15.0"
+      "version": "0.16.0"
     },
     "import/resolver": {
       "webpack": {
@@ -118,5 +113,36 @@
     "react/require-default-props": 0,
     "import/no-webpack-loader-syntax": 1,
     "react/no-array-index-key": 1
-  }
+  },
+  "overrides": [
+    {
+      "files": ["app/**/*.js", "app/**/*.jsx"],
+      "env": {
+        "browser": true
+      }
+    },
+    {
+      "files": "server/*",
+      "env": {
+        "node": true
+      }
+    },
+    {
+      "files": ["*.spec.js", "*.spec.jsx", "tests/*.js"],
+      "env": {
+        "jest": true
+      },
+      "globals": {
+        "argUnit": true,
+        "declareProps": true,
+        "defineMarker": true,
+        "its": true,
+        "marker": true,
+        "markerNS": true,
+        "testProps": true,
+        "set": true,
+        "subject": true
+      }
+    }
+  ]
 }
