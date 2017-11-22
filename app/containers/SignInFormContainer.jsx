@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import { Field, reduxForm } from 'redux-form/immutable';
 
 import { safeCredentials } from 'helpers/arguHelpers';
@@ -150,7 +151,7 @@ const mapStateToProps = (state, props) => {
   });
 };
 
-const mapDispatchToProps = (dispatch, props) => ({
+const mapDispatchToProps = dispatch => ({
   onSubmit: values => fetch('/login', safeCredentials({
     body: JSON.stringify(values.toJS()),
     headers: {
@@ -174,7 +175,7 @@ const mapDispatchToProps = (dispatch, props) => ({
             match = r.match(/^https:\/\/[\w*.]*argu\.(dev|co)([\w\W]*$)/);
           }
           redirect = (match && match[PATH_MATCH]) || '/';
-          props.router.push(redirect);
+          dispatch(push(redirect));
           break;
         default:
           throw new Error('Unknown user error occurred');
