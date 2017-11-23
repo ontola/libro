@@ -4,12 +4,11 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
 
-import CollapsibleContainer from 'containers/CollapsibleContainer';
-import { initializeCollapsible, toggleOne } from 'state/collapsible/actions';
-import { getCollapsibleOpened } from 'state/collapsible/selectors';
-
 import Button from '../Button';
 import Markdown from '../Markdown';
+import CollapsibleContainer from '../../containers/CollapsibleContainer';
+import { initializeCollapsible, toggleOne } from '../../state/collapsible/actions';
+import { getCollapsibleOpened } from '../../state/collapsible/selectors';
 
 import './CollapseText.scss';
 

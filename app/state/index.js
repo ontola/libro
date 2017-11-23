@@ -6,19 +6,11 @@ import { combineReducers } from 'redux-immutable';
 // import { reducer as search, reduxSearch } from 'redux-search';
 import thunk from 'redux-thunk';
 
-// import { ARGU_API_URL_EXT } from '../config';
 import LinkedRenderStore from '../helpers/LinkedRenderStore';
 import history from '../helpers/history';
-// import JsonApi from '../middleware/api';
 import iframeNavigation from '../middleware/iframeNavigation';
-// import * as models from '../models';
 
 import * as reducers from './reducers';
-
-// const apiMiddleware = new JsonApi({
-//   apiBaseUrl: ARGU_API_URL_EXT,
-//   models: Object.values(models),
-// });
 
 const configureStore = (preloadedState) => {
   let middleware;

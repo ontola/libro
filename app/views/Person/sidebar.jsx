@@ -6,8 +6,9 @@ import {
   LDLink,
 } from '../../components';
 import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
-import './properties/name';
 import SideBarLinkLabel from '../../components/SideBarLink/SideBarLinkLabel';
+
+import './properties/name';
 
 const CurrentActorSidebar = () => (
   <div className="SideBarLink">

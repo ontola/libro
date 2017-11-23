@@ -4,14 +4,14 @@ import { handleActions } from 'redux-actions';
 import {
   setRecord,
   toggleValue,
-} from 'helpers/reducers';
+} from '../../helpers/reducers';
 import {
   COLL_ADD,
   COLL_CLOSE_ONE,
   COLL_OPEN_GROUPED,
   COLL_TOGGLE_GROUP,
   COLL_TOGGLE_ONE,
-} from 'state/action-types';
+} from '../../state/action-types';
 
 export const Collapsible = Record({
   group: undefined,

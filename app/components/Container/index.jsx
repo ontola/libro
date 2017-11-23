@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 
-import { sizes } from 'components/shared/config';
+import { sizes } from '../shared/config';
 
 import './Container.scss';
 

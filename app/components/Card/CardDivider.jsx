@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { colors } from 'components/shared/config';
+import { colors } from '../shared/config';
 
 const propTypes = {
   lineColor: PropTypes.string,

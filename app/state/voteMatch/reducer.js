@@ -2,11 +2,6 @@ import { handleActions } from 'redux-actions';
 import { List, Map } from 'immutable';
 
 import {
-  increaseValue,
-  updateRecordValue,
-} from 'helpers/reducers';
-
-import {
   VOTE_MATCH_ADD_VOTEABLE,
   VOTE_MATCH_INIT,
   VOTE_MATCH_NEXT,
@@ -15,6 +10,10 @@ import {
   VOTE_MATCH_TRANSITION_TO,
   VOTE_MATCH_UPDATE_VOTEABLES,
 } from '../action-types';
+import {
+  increaseValue,
+  updateRecordValue,
+} from '../../helpers/reducers';
 
 const initialState = new Map({
   currentIndex: null,

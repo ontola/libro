@@ -2,10 +2,9 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { initializeCollapsible, toggleOne } from 'state/collapsible/actions';
-import { getCollapsibleOpened } from 'state/collapsible/selectors';
-
 import { Collapsible } from '../components';
+import { initializeCollapsible, toggleOne } from '../state/collapsible/actions';
+import { getCollapsibleOpened } from '../state/collapsible/selectors';
 
 const propTypes = {
   group: PropTypes.string,

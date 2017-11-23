@@ -1,7 +1,7 @@
 /* eslint no-magic-numbers: 0 */
-import React from 'react';
-import { mount } from 'enzyme';
 import { assert } from 'chai';
+import { mount } from 'enzyme';
+import React from 'react';
 
 import ChronoFeed from './';
 

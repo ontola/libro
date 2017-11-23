@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { sides } from 'components/shared/config';
-
 import Detail from '../Detail';
+import { sides } from '../shared/config';
 
 import './DetailVotedFor.scss';
 

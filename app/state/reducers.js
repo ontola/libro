@@ -8,4 +8,3 @@ export { default as router } from './router/reducer';
 // export { default as searchElastic } from './searchElastic/reducer';
 export { default as sideBars } from './sideBars/reducer';
 // export { default as voteMatch } from './voteMatch/reducer';
-// export { default as votes } from './votes/reducer';

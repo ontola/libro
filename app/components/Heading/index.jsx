@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { headingSizes, headingVariants } from 'components/shared/config';
+import { headingSizes, headingVariants } from '../shared/config';
 
 import './Heading.scss';
 

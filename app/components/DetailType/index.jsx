@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { types } from 'components/shared/config';
-
 import Detail from '../Detail';
+import { types } from '../shared/config';
 
 import './DetailType.scss';
 

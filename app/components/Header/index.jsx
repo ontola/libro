@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import path from 'helpers/paths';
-
+import path from '../../helpers/paths';
 import Cover from '../Cover';
 import Container from '../Container';
 import Heading from '../Heading';

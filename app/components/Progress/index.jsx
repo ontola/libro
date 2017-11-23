@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { calcPercentage } from 'helpers/numbers';
+import { calcPercentage } from '../../helpers/numbers';
 
 import './Progress.scss';
 

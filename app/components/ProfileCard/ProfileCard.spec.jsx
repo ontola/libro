@@ -2,7 +2,8 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { assert } from 'chai';
-import * as ctx from 'link-redux/test/fixtures';
+
+import * as ctx from '../../../tests/link-redux/fixtures';
 
 import ProfileCard from './';
 

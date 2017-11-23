@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { shades } from 'components/shared/config';
+import { shades } from '../shared/config';
 
 import './Cover.scss';
 

@@ -4,10 +4,9 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
 
-import CollapsibleContainer from 'containers/CollapsibleContainer';
-import { openInGrouped, closeOne } from 'state/collapsible/actions';
-import { getCollapsibleOpened } from 'state/collapsible/selectors';
-
+import CollapsibleContainer from '../../containers/CollapsibleContainer';
+import { openInGrouped, closeOne } from '../../state/collapsible/actions';
+import { getCollapsibleOpened } from '../../state/collapsible/selectors';
 import Button from '../Button';
 
 import './SideBarCollapsible.scss';

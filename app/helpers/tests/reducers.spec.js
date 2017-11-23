@@ -6,8 +6,7 @@ import {
   increaseValue,
   setRecord,
   toggleValue,
-} from 'helpers/reducers';
-
+} from '../reducers';
 
 const TestRecord = new Record({
   id: '',

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { percentageToRedOrGreen } from 'helpers/color';
+import { percentageToRedOrGreen } from '../../helpers/color';
 
 import './LabelValueBar.scss';
 

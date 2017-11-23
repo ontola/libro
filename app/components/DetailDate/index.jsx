@@ -1,13 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import Detail from '../Detail';
 import {
   durationToHumanizedString,
   formatDate,
   formatDateCalendar,
-} from 'helpers/date';
-
-import Detail from '../Detail';
+} from '../../helpers/date';
 
 import './DetailDate.scss';
 
