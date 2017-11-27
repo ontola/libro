@@ -5,14 +5,17 @@ import { connect } from 'react-redux';
 import {
   NavBarContent,
 } from '../components';
+import { getSideBarColor } from '../state/sideBars/selectors';
 
 const propTypes = {
+  orgColor: PropTypes.string,
   redirectUrl: PropTypes.string,
   voteMatchCount: PropTypes.number,
 };
 
-const NavbarContainer = ({ redirectUrl, voteMatchCount }) => (
+const NavbarContainer = ({ redirectUrl, orgColor, voteMatchCount }) => (
   <NavBarContent
+    orgColor={orgColor}
     redirectUrl={redirectUrl}
     voteMatchCount={voteMatchCount}
   />
@@ -20,8 +23,9 @@ const NavbarContainer = ({ redirectUrl, voteMatchCount }) => (
 
 NavbarContainer.propTypes = propTypes;
 
-function mapStateToProps() {
+function mapStateToProps(state) {
   return {
+    orgColor: getSideBarColor(state),
     redirectUrl: window.location.href,
   };
 }

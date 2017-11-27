@@ -66,6 +66,7 @@ class Contains extends Component {
         >
           {this.navbarSwitcher()}
           <Type />
+          <Property label={NS.argu('baseColor')} />
         </LinkedObjectContainer>
       );
     }

@@ -24,6 +24,7 @@ export const SIDEBAR_ADD = 'SIDEBAR_ADD';
 export const SIDEBAR_OPEN = 'SIDEBAR_OPEN';
 export const SIDEBAR_CLOSE = 'SIDEBAR_CLOSE';
 export const SIDEBAR_DOCK = 'SIDEBAR_DOCK';
+export const SIDEBAR_SET_BASE_COLOR = 'SIDEBAR_SET_BASE_COLOR';
 export const SIDEBAR_UNDOCK = 'SIDEBAR_UNDOCK';
 
 // VoteMatch

@@ -51,6 +51,9 @@ export const types = [
 /* eslint-disable no-magic-numbers */
 // These should match /shared/config.scss
 export const colors = {
+  blue: {
+    base: 'rgb(71, 86, 104)',
+  },
   grey: {
     'x-light': 'rgb(230, 230, 230)',
   },

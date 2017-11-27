@@ -1,20 +1,15 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { checkLuminance } from 'helpers/color';
-import path from 'helpers/paths';
-
+import { checkLuminance } from '../../helpers/color';
+import path from '../../helpers/paths';
 import BottomBarButton from '../BottomBarButton';
 
 import './BottomBar.scss';
 
 const propTypes = {
   onOpen: PropTypes.func,
-  orgColor: PropTypes.string,
-};
-
-const defaultProps = {
-  orgColor: 'rgb(71, 86, 104)',
+  orgColor: PropTypes.string.isRequired,
 };
 
 const BottomBar = ({
@@ -55,6 +50,5 @@ const BottomBar = ({
 };
 
 BottomBar.propTypes = propTypes;
-BottomBar.defaultProps = defaultProps;
 
 export default BottomBar;

@@ -10,6 +10,7 @@ import {
 } from '../../components';
 import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
+import './properties/baseColor';
 import './properties/contains';
 import './properties/collectionAssociation';
 import './properties/dateCreated';

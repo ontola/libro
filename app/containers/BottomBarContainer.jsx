@@ -3,14 +3,18 @@ import { connect } from 'react-redux';
 
 import {
   openSideBar,
-} from 'state/sideBars/actions';
-
+} from '../state/sideBars/actions';
+import {
+  getSideBarColor,
+} from '../state/sideBars/selectors';
 import { BottomBar } from '../components';
 
 const BottomBarContainer = props => <BottomBar {...props} />;
 
 export default connect(
-  null,
+  state => ({
+    orgColor: getSideBarColor(state),
+  }),
   dispatch => ({
     onOpen: () => dispatch(openSideBar('Navbar')),
   })

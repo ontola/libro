@@ -2,16 +2,20 @@ import { Map, Record } from 'immutable';
 import { handleActions } from 'redux-actions';
 
 import {
+  colors,
+} from '../../components/shared/config';
+import {
   setRecord,
   updateRecordValue,
-} from 'helpers/reducers';
+} from '../../helpers/reducers';
 import {
   SIDEBAR_ADD,
   SIDEBAR_CLOSE,
   SIDEBAR_DOCK,
   SIDEBAR_OPEN,
+  SIDEBAR_SET_BASE_COLOR,
   SIDEBAR_UNDOCK,
-} from 'state/action-types';
+} from '../../state/action-types';
 
 export const SideBar = Record({
   docked: false,
@@ -20,6 +24,7 @@ export const SideBar = Record({
 });
 
 const initialState = new Map({
+  baseColor: colors.blue.base,
   items: new Map(),
 });
 
@@ -35,6 +40,8 @@ const sideBars = handleActions({
     updateRecordValue(state, payload, 'docked', true),
   [SIDEBAR_OPEN]: (state, { payload }) =>
     updateRecordValue(state, payload, 'opened', true),
+  [SIDEBAR_SET_BASE_COLOR]: (state, { payload }) =>
+    state.set('baseColor', payload),
   [SIDEBAR_UNDOCK]: (state, { payload }) =>
     updateRecordValue(state, payload, 'docked', false),
 }, initialState);

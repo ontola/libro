@@ -45,6 +45,20 @@ const getLuminance = (rgb) => {
   return all.reduce((prev, curr) => prev + curr).toFixed(DECIMALS);
 };
 
+
+/**
+ * @param {string} hex A hex color string
+ * @return {string} rgb color string
+ */
+const R = 1;
+const G = 2;
+const B = 3;
+const hexSplit = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i;
+function hexToRgb(hex) {
+  const result = hexSplit.exec(hex);
+  return result ? `rgb(${parseInt(result[R], 16)},${parseInt(result[G], 16)},${parseInt(result[B], 16)})` : null;
+}
+
 /**
  * @param {string} rgb A rgb color string
  * @param {number} threshold A decimal number
@@ -71,6 +85,7 @@ export {
   checkLuminance,
   getLuminance,
   isRGB,
+  hexToRgb,
   percentageToRedOrGreen,
   rgbToArray,
 };
