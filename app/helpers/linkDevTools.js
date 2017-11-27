@@ -220,7 +220,7 @@ export function explain() {
   /* eslint no-underscore-dangle: 0 */
   const int = comp._reactInternalInstance;
   if (typeof int === 'undefined') returnWithError();
-  const name = int.getName();
+  const name = typeof int.getName === 'function' ? int.getName() : '?';
   console.group(`Explanation for component ${name}`);
   if (name === 'LinkedObjectContainer') {
     explainLOC(comp, lrs);
