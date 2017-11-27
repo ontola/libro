@@ -17,7 +17,7 @@ config.entry = [
 
 config.cache = true;
 
-config.devtool = 'eval';
+config.devtool = 'inline-source-map';
 
 config.module.rules.unshift({
   exclude: /node_modules/,
