@@ -2,10 +2,6 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import {
-  setEventTime,
-} from 'state/events/actions';
-
 import { VideoPlayer } from '../components';
 
 const propTypes = {
@@ -39,6 +35,6 @@ class VideoContainer extends Component {
 
 VideoContainer.propTypes = propTypes;
 
-export default connect(dispatch => ({
-  onSetTime: date => dispatch(setEventTime(date)),
+export default connect(undefined, (dispatch, ownProps) => ({
+  onSetTime: date => dispatch(ownProps.onSetTime(date)),
 }))(VideoContainer);

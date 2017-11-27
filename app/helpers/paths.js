@@ -25,10 +25,6 @@ const path = {
     return '/info';
   },
 
-  motion(id) {
-    return `/motions/${id}`;
-  },
-
   motionsIndex() {
     return '/motions';
   },

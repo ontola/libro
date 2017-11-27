@@ -1,12 +1,11 @@
+import { LinkedObjectContainer } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-
-import SpeechContainer from 'containers/SpeechContainer';
 
 import List from '../List';
 
 const defaultRenderItem = id => (
-  <SpeechContainer id={id} key={id} />
+  <LinkedObjectContainer key={`chrono-feed-${id}`} object={id} />
 );
 
 const propTypes = {

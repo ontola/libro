@@ -3,8 +3,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, formValueSelector, reduxForm } from 'redux-form/immutable';
 
-import { text as currentQuerySelector } from 'state/speeches/selectors';
-
 import {
   Button,
 } from '../components';
@@ -59,7 +57,7 @@ const SearchInputForm = reduxForm({
 
 const SearchInputContainer = connect(state => ({
   currentValue: formValueSelector(formName)(state, 'search'),
-  lastSearchValue: currentQuerySelector(state),
+  lastSearchValue: '',
 }))(SearchInputForm);
 
 export default SearchInputContainer;

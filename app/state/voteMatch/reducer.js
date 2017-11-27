@@ -3,13 +3,10 @@ import { List, Map } from 'immutable';
 
 import {
   increaseValue,
-  setRecord,
   updateRecordValue,
 } from 'helpers/reducers';
-import VoteMatch from 'models/VoteMatch';
 
 import {
-  GET_VOTE_MATCH,
   VOTE_MATCH_ADD_VOTEABLE,
   VOTE_MATCH_INIT,
   VOTE_MATCH_NEXT,
@@ -30,9 +27,6 @@ const initialState = new Map({
 });
 
 const voteMatch = handleActions({
-  [GET_VOTE_MATCH]: (state, { payload }) =>
-    setRecord(state, payload.record, payload.id, VoteMatch),
-
   [VOTE_MATCH_ADD_VOTEABLE]: (state, { payload }) =>
     state.updateIn(
       ['items', payload.id, 'voteables'],

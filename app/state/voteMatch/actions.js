@@ -1,9 +1,8 @@
 import { createAction } from 'redux-actions';
 
-import VoteMatch from 'models/VoteMatch';
-import { voteAction } from 'state/votes/actions';
-
 import * as actions from '../action-types';
+
+import VoteMatch from './model';
 
 export const fetchVoteMatch = id => VoteMatch.fetch(id);
 
@@ -14,10 +13,7 @@ export const voteMatchUpdateMotions = createAction(actions.VOTE_MATCH_UPDATE_VOT
 export const voteMatchRemoveVoteable = createAction(actions.VOTE_MATCH_REMOVE_VOTEABLE);
 export const voteMatchAddVoteable = createAction(actions.VOTE_MATCH_ADD_VOTEABLE);
 
-export const voteMatchNext = data => (dispatch) => {
-  if (data) {
-    dispatch(voteAction(data));
-  }
+export const voteMatchNext = () => (dispatch) => {
   dispatch(voteMatchNextMotion());
 };
 

@@ -1,14 +1,6 @@
 import { createSelector } from 'reselect';
 
-import { calcPercentage } from 'helpers/numbers';
-import VoteMatch from 'models/VoteMatch';
-import { getUserVotes } from 'state/votes/selectors';
-import { getMotionVoteEvents } from 'state/motions/selectors';
-import { getVoteEvent } from 'state/voteEvents/selectors';
-import { getCount } from 'state/counts/selectors';
-
-export const getVoteMatches = state =>
-  state.getIn(['voteMatch', 'items']);
+import VoteMatch from './model';
 
 export const getVoteMatch = (state, props) => {
   state.getIn(['voteMatch', 'items', props.id]);
@@ -28,56 +20,9 @@ export const getCurrentVoteMatch = (state) => {
 export const getVoteMatchMotionIds = (state, props) =>
   state.getIn(['voteMatch', 'items', props.id, 'voteables']);
 
-// Note: this function is quite expensive and should be memoized correctly using Reselect.
-export const getVoteMatchComparedProfilePositions = (state, props) => {
-  const positions = [];
-  const motionIds = getVoteMatchMotionIds(state);
-  const compareOrg = props.profileId;
-  motionIds.forEach((motionId) => {
-    const voteEvent = getMotionVoteEvents(state, { motionId });
-    const countIds =
-      getVoteEvent(state, { voteEvent })
-        .get('counts');
-    let option = 'undefined';
-    countIds.forEach((countId) => {
-      const count = getCount(state, { id: countId });
-      if (count.group === compareOrg) {
-        option = count.get('option');
-      }
-    });
-    positions.push(option);
-  });
-  return positions;
-};
-
 export const getVoteMatchMotionIdsLength = createSelector(
   getVoteMatchMotionIds,
   voteables => voteables.size
-);
-
-export const getVoteMatchUserVotes = createSelector(
-  [getUserVotes, getVoteMatchMotionIds],
-  (votes, voteables) => voteables.map(motion => votes.getIn([motion, 'option']))
-);
-
-export const getVoteMatchCountUserVotes = createSelector(
-  [getVoteMatchUserVotes],
-  votes => votes.filter(vote => vote !== undefined).length
-);
-
-export const getVoteMatchSimilarity = createSelector(
-  [getVoteMatchUserVotes, getVoteMatchComparedProfilePositions],
-  (userVotes, compareVotes) => {
-    const countSimilarities = userVotes
-      .filter((userVote, i) => userVote === compareVotes[i])
-      .length;
-
-    if (countSimilarities === 0) {
-      return 0;
-    }
-
-    return calcPercentage(countSimilarities, userVotes.length);
-  }
 );
 
 export const isVoteablePresentInVoteMatch = (state, props) =>

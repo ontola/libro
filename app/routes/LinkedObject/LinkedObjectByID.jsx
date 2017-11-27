@@ -5,7 +5,6 @@ import { LinkedObjectContainer, Type } from 'link-redux';
 import {
   Container,
 } from 'components';
-import RelationsBrowserContainer from 'containers/RelationsBrowserContainer';
 
 const propTypes = {
   location: PropTypes.shape({
@@ -19,7 +18,6 @@ const LinkedObjectByID = ({ location }) => (
   <Container>
     <LinkedObjectContainer object={location.query.iri} >
       <Type />
-      <RelationsBrowserContainer />
     </LinkedObjectContainer>
   </Container>
 );

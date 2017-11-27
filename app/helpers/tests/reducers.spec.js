@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { Map } from 'immutable';
+import { Map, Record } from 'immutable';
 
 import {
   deleteRecord,
@@ -7,15 +7,21 @@ import {
   setRecord,
   toggleValue,
 } from 'helpers/reducers';
-import Vote from 'models/Vote';
 
-const record = new Vote({
+
+const TestRecord = new Record({
+  id: '',
+  individual: true,
+  option: '',
+});
+
+const record = new TestRecord({
   id: '1',
   individual: true,
   option: 'pro',
 });
 
-const recordToggled = new Vote({
+const recordToggled = new TestRecord({
   id: '1',
   individual: false,
   option: 'pro',

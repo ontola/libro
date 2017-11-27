@@ -1,7 +1,6 @@
+import LinkedObjectContainer from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-
-import PersonContainer from 'containers/PersonContainer';
 
 import {
   CardContent,
@@ -50,7 +49,7 @@ const ChronoItem = ({
           />
         }
         <DetailsBar>
-          {speaker && <PersonContainer user={speaker} />}
+          {speaker && <LinkedObjectContainer object={speaker} />}
           {attributionText &&
             <Detail text={attributionText} />
           }

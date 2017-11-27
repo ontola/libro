@@ -15,13 +15,12 @@ import {
   Container,
   FormField,
   Heading,
-} from 'components';
-import VoteMatchItemContainer from 'containers/VoteMatchItemContainer';
-import paths from 'helpers/paths';
-import { getVoteMatchMotionIds } from 'state/voteMatch/selectors';
-import { voteMatchUpdateMotions } from 'state/voteMatch/actions';
-
-import VoteMatch from '../../models/VoteMatch';
+} from '../../components';
+import VoteMatchItemContainer from '../../containers/VoteMatchItemContainer';
+import paths from '../../helpers/paths';
+import { voteMatchUpdateMotions } from '../../state/voteMatch/actions';
+import { getVoteMatchMotionIds } from '../../state/voteMatch/selectors';
+import VoteMatch from '../../state/voteMatch/model';
 
 const propTypes = {
   // Since this uses redux-form, you need to pass onSubmit instead of handleSubmit.
