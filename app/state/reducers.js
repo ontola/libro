@@ -1,5 +1,4 @@
 // export { default as argumentations } from './argumentations/reducer';
-// export { default as currentActors } from './currentActors/reducer';
 export { default as collapsible } from './collapsible/reducer';
 export { default as communication } from './communication/reducer';
 // export { default as counts } from './counts/reducer';

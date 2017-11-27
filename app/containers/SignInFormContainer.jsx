@@ -6,7 +6,6 @@ import { push } from 'react-router-redux';
 import { Field, reduxForm } from 'redux-form/immutable';
 
 import { safeCredentials } from 'helpers/arguHelpers';
-import { fetchActor } from 'state/currentActors/actions';
 import { emailTaken } from 'state/form/actions';
 
 import {
@@ -169,7 +168,6 @@ const mapDispatchToProps = dispatch => ({
           dispatch(emailTaken());
           break;
         case 'LOGGED_IN':
-          dispatch(fetchActor());
           r = values.get('r');
           if (r) {
             match = r.match(/^https:\/\/[\w*.]*argu\.(dev|co)([\w\W]*$)/);

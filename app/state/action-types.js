@@ -1,6 +1,3 @@
-// Actors
-export const GET_CURRENT_ACTOR = 'GET_CURRENT_ACTOR';
-
 // Arguments
 export const GET_ARGUMENTS = 'GET_ARGUMENTS';
 export const GET_ARGUMENT = 'GET_ARGUMENT';
