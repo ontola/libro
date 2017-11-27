@@ -7,7 +7,7 @@ import {
   CardActions,
   CardButton,
 } from '../../../components';
-import { ARGU_API_URL, FRONTEND_URL } from '../../../config';
+import { FRONTEND_URL } from '../../../config';
 import {
   json,
   safeCredentials,
@@ -55,7 +55,7 @@ class VoteButtons extends PropertyBase {
   }
 
   vote(side) {
-    const url = new URL(this.getLinkedObjectProperty(NS.rdf('subject')).replace(ARGU_API_URL, FRONTEND_URL));
+    const url = new URL(this.props.subject.value);
     url.pathname += '/votes.json';
     fetch(
       url.toString(),

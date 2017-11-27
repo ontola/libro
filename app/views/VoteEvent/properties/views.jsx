@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import { VoteData } from '../../../components';
 
 const propTypes = {
   label: labelType,
@@ -39,11 +40,7 @@ const VoteViews = (props, { linkedRenderStore }) => {
   ));
 
   if (obs) {
-    return (
-      <div className="VoteData__votebar">
-        {obs}
-      </div>
-    );
+    return <VoteData>{obs}</VoteData>;
   }
   return null;
 };

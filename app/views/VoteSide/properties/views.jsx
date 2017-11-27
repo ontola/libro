@@ -44,6 +44,7 @@ const SideViews = ({
     true
   );
   const memberCount = getLinkedObjectProperty(NS.argu('totalCount'), subject, linkedRenderStore);
+  // TODO: Export a component to abstract the x-part--{side} API
   return (
     <div
       className={`VoteData__votebar-part VoteData__votebar-part--${side(prop)}`}

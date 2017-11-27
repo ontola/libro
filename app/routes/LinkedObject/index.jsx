@@ -20,7 +20,7 @@ const LinkedObject = ({ location }) => (
       <Property label={NS.schema('isPartOf')} />
       <Type />
       <Property label={NS.argu('attachments')} />
-      <Property label={NS.argu('VoteEventCollection')} />
+      <Property label={NS.argu('voteEvents')} />
     </Container>
     <Container size="large">
       <Property

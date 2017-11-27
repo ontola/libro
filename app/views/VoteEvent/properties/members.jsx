@@ -11,12 +11,22 @@ const propTypes = {
  * Renders a vote event from a collection of vote events.
  * @returns {ReactElement} The vote event component
  */
-const Members = ({ linkedProp }) => (
-  <LinkedObjectContainer
-    object={linkedProp}
-    topology={NS.argu('voteEvent')}
-  />
-);
+const Members = ({ linkedProp }) => {
+  if (Array.isArray(linkedProp)) {
+    return linkedProp.map(item => (
+      <LinkedObjectContainer
+        object={item.object}
+        topology={NS.argu('voteEvent')}
+      />
+    ));
+  }
+  return (
+    <LinkedObjectContainer
+      object={linkedProp}
+      topology={NS.argu('voteEvent')}
+    />
+  );
+};
 
 Members.propTypes = propTypes;
 

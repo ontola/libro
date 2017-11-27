@@ -75,23 +75,25 @@ CollectionSection.contextTypes = {
 
 const LinkedCollectionSection = lowLevel.linkedSubject(lowLevel.linkedVersion(CollectionSection));
 
-LinkedRenderStore.registerRenderer(
-  ConnectedCollection,
-  [NS.argu('Collection'), NS.hydra('Collection')]
-);
+[
+  undefined,
+  NS.argu('section'),
+  NS.argu('voteEventCollection')
+].forEach((top) => {
+  LinkedRenderStore.registerRenderer(
+    LinkedCollectionSection,
+    [NS.argu('Collection'), NS.hydra('Collection')],
+    RENDER_CLASS_NAME,
+    top
+  );
+});
 LinkedRenderStore.registerRenderer(
   ConnectedCollection,
   [NS.argu('Collection'), NS.hydra('Collection')],
   NS.argu('collection')
 );
-LinkedRenderStore.registerRenderer(
-  LinkedCollectionSection,
-  [NS.argu('Collection'), NS.hydra('Collection')],
-  RENDER_CLASS_NAME,
-  NS.argu('section')
-);
 
-export { default as voteMatch } from './voteMatch';
+// export { default as voteMatch } from './voteMatch';
 export { default as First } from './properties/first';
 export { default as Member } from './properties/member';
 export { default as Name } from './properties/name';
