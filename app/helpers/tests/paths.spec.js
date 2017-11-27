@@ -1,22 +1,22 @@
-/* eslint no-magic-numbers: 0 */
 import { assert } from 'chai';
 
 import path from '../paths';
 
+const TEST_ID = 12;
+
 describe('Path helpers', () => {
   it('should return correct paths', () => {
     assert.equal(path.index(), '/', 'Does not return correct index path');
-    assert.equal(path.event(12), '/events/12', 'Does not return correct events resource path');
-    assert.equal(path.motion(12), '/motions/12', 'Does not return correct motions resource path');
+    assert.equal(path.event(TEST_ID), '/events/12', 'Does not return correct events resource path');
     assert.equal(path.motionsIndex(), '/motions', 'Does not return correct motions index path');
-    assert.equal(path.profile(12), '/profile/12', 'Does not return correct path');
-    assert.equal(path.profileMotions(12), '/profile/12/motions', 'Does not return correct path');
-    assert.equal(path.profileAbout(12), '/profile/12/about', 'Does not return correct path');
+    assert.equal(path.profile(TEST_ID), '/profile/12', 'Does not return correct path');
+    assert.equal(path.profileMotions(TEST_ID), '/profile/12/motions', 'Does not return correct path');
+    assert.equal(path.profileAbout(TEST_ID), '/profile/12/about', 'Does not return correct path');
     assert.equal(path.politiciansIndex(), '/politicians', 'Does not return correct path');
-    assert.equal(path.party(12), '/parties/12', 'Does not return correct path');
-    assert.equal(path.partyMotions(12), '/parties/12/motions', 'Does not return correct path');
-    assert.equal(path.partyMembers(12), '/parties/12/members', 'Does not return correct path');
-    assert.equal(path.partyAbout(12), '/parties/12/about', 'Does not return correct path');
+    assert.equal(path.party(TEST_ID), '/parties/12', 'Does not return correct path');
+    assert.equal(path.partyMotions(TEST_ID), '/parties/12/motions', 'Does not return correct path');
+    assert.equal(path.partyMembers(TEST_ID), '/parties/12/members', 'Does not return correct path');
+    assert.equal(path.partyAbout(TEST_ID), '/parties/12/about', 'Does not return correct path');
     assert.equal(path.partiesIndex(), '/parties', 'Does not return correct path');
   });
 

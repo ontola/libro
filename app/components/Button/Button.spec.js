@@ -6,13 +6,16 @@ import Button from './';
 
 describe('Button component', () => {
   const buttonReqProps = mount(<Button>Button label</Button>);
-  const buttonAllProps = mount(<Button
-    small
-    icon="lightbulb-o"
-    theme="subtle"
-    variant="pro"
-  >Joe
-                               </Button>);
+  const buttonAllProps = mount((
+    <Button
+      small
+      icon="lightbulb-o"
+      theme="subtle"
+      variant="pro"
+    >
+      Joe
+    </Button>
+  ));
 
   describe('with only the required props', () => {
     it('should have a label', () => {

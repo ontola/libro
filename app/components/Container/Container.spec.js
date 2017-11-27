@@ -5,9 +5,11 @@ import { assert } from 'chai';
 
 import Container from './';
 
-const comp = shallow(<Container>
+const comp = shallow((
+  <Container>
     Content
-                     </Container>);
+  </Container>
+));
 
 describe('Container component', () => {
   it('Container should render', () => {

@@ -7,12 +7,15 @@ import sinon from 'sinon';
 import Collapsible from './';
 
 const spy = sinon.spy(() => undefined);
-const comp = mount(<Collapsible
-  trigger={<span>Click here</span>}
-  visibleContent={<span>Content</span>}
-  onClickToggle={spy}
->Hoi
-                   </Collapsible>);
+const comp = mount((
+  <Collapsible
+    trigger={<span>Click here</span>}
+    visibleContent={<span>Content</span>}
+    onClickToggle={spy}
+  >
+    Hoi
+  </Collapsible>
+));
 
 describe('Collapsible component', () => {
   it('Collapsible should render', () => {

@@ -7,11 +7,12 @@ const propTypes = {
   linkedProp: linkedPropType,
 };
 
-const VoteEvents = ({ linkedProp }) =>
-  (<LinkedObjectContainer
+const VoteEvents = ({ linkedProp }) => (
+  <LinkedObjectContainer
     object={linkedProp}
     topology={NS.argu('voteEventCollection')}
-  />);
+  />
+);
 
 VoteEvents.propTypes = propTypes;
 
