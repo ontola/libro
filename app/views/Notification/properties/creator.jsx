@@ -12,7 +12,7 @@ const propTypes = {
 };
 
 const Creator = ({ linkedProp }) => (
-  <LinkedObjectContainer object={linkedProp}>
+  <LinkedObjectContainer object={linkedProp} topology={NS.argu('detail')}>
     <Property label={NS.schema('image')} />
   </LinkedObjectContainer>
 );

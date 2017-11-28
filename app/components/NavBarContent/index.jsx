@@ -3,14 +3,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import articles, { order } from '../../articles';
 import { FRONTEND_URL } from '../../config';
 import { checkLuminance } from '../../helpers/color';
 import path from '../../helpers/paths';
 import { currentURL } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
-import SideBarCollapsible from '../SideBarCollapsible';
-import SideBarLink from '../SideBarLink';
 
 import './NavBarContent.scss';
 
@@ -36,15 +33,6 @@ const NavBarContent = ({
     checkLuminance(orgColor) ? 'NavBarContent--white-text' : 'NavBarContent--dark-text',
   ].join(' ');
 
-  const renderInfoLink = info => (
-    <SideBarLink
-      icon="info"
-      key={`info-link-${info}`}
-      label={articles[info].title}
-      to={path.info(info)}
-    />
-  );
-
   return (
     <div
       className={classNames}
@@ -62,12 +50,7 @@ const NavBarContent = ({
       <div className="NavBarContent__footer">
         <LinkedObjectContainer object={`${FRONTEND_URL}/c_a`} topology={NS.argu('sidebar')} />
         <LinkedObjectContainer object={`${FRONTEND_URL}/n?type=infinite`} topology={NS.argu('sidebar')} />
-        <SideBarCollapsible
-          label="Info"
-          to={path.infoIndex()}
-        >
-          {order.map(a => renderInfoLink(a))}
-        </SideBarCollapsible>
+        <LinkedObjectContainer object={`${FRONTEND_URL}/menus/info`} topology={NS.argu('sidebar')} />
         <div className="NavBarContent__center-footer">
           <Link className="NavBarContent__logo" to={path.index()}>
             {/* eslint-disable max-len */}

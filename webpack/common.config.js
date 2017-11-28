@@ -21,9 +21,6 @@ const common = {
       }, {
         test: /\.jpg$/,
         use: 'file-loader?name=[name].[ext]',
-      }, {
-        test: /\.md$/,
-        use: 'raw-loader',
       },
       {
         test: /\.css/,
