@@ -1,24 +1,26 @@
-import { LinkedObjectContainer, Property, Type, linkedPropType } from 'link-redux';
+import {
+  LinkedObjectContainer,
+  Property,
+  Type,
+  linkedPropType,
+  subjectType,
+} from 'link-redux';
 import { NamedNode } from 'rdflib';
 import React, { Component } from 'react';
 
 import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 import { FRONTEND_URL } from '../../../config';
+import {
+  LDLink,
+  SideBarCollapsible,
+} from '../../../components';
 
 const propTypes = {
   linkedProp: linkedPropType,
+  subject: subjectType,
 };
 
 class Contains extends Component {
-  static navbarSwitcher() {
-    return (
-      <div className="NavBarContent__switcher">
-        <LinkedObjectContainer object={`${FRONTEND_URL}/menus/organizations`} />
-        <Property label={NS.schema('name')} />
-      </div>
-    );
-  }
-
   constructor(props) {
     super(props);
     this.state = {
@@ -34,6 +36,25 @@ class Contains extends Component {
     }
   }
 
+  navbarSwitcher() {
+    const label = (
+      <LDLink>
+        <Property label={NS.schema('name')} />
+      </LDLink>
+    );
+
+    return (
+      <div className="NavBarContent__switcher">
+        <SideBarCollapsible
+          id={`${this.props.subject}-menu-items`}
+          labelComp={label}
+        >
+          <LinkedObjectContainer object={`${FRONTEND_URL}/menus/organizations`} />
+        </SideBarCollapsible>
+      </div>
+    );
+  }
+
   render() {
     const { currentOrg } = this.state;
 
@@ -43,7 +64,7 @@ class Contains extends Component {
           forceRender
           object={currentOrg}
         >
-          {Contains.navbarSwitcher()}
+          {this.navbarSwitcher()}
           <Type />
         </LinkedObjectContainer>
       );
@@ -51,7 +72,7 @@ class Contains extends Component {
 
     return (
       <div>
-        {Contains.navbarSwitcher()}
+        {this.navbarSwitcher()}
       </div>
     );
   }
