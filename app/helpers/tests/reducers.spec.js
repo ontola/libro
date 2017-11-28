@@ -1,4 +1,3 @@
-import { assert } from 'chai';
 import { Map, Record } from 'immutable';
 
 import {
@@ -38,42 +37,29 @@ const expectedState = rec => new Map({
 
 describe('Reducer helpers', () => {
   it('sets a record', () => {
-    assert.deepEqual(
-      setRecord(initialState, record, record.id),
-      expectedState(record),
-      'Record not set correctly'
-    );
-    assert.deepEqual(
-      setRecord(initialState, record),
-      expectedState(record),
-      'Record not set correctly'
-    );
+    expect(setRecord(initialState, record, record.id))
+      .toEqual(expectedState(record));
+    expect(setRecord(initialState, record))
+      .toEqual(expectedState(record));
   });
 
   it('deletes a record', () => {
-    assert.deepEqual(
-      deleteRecord(setRecord(initialState, record, record.id), record.id),
-      initialState,
-      'Record not deleted'
-    );
+    expect(deleteRecord(setRecord(initialState, record, record.id), record.id))
+      .toEqual(initialState);
   });
 
   it('toggles a value', () => {
-    assert.deepEqual(
-      toggleValue(setRecord(initialState, record, record.id), record.id, 'individual'),
-      expectedState(recordToggled),
-      'Value not toggled'
-    );
+    expect(toggleValue(setRecord(initialState, record, record.id), record.id, 'individual'))
+      .toEqual(expectedState(recordToggled));
   });
 
-  it('increases a value by 1', () => {
-    const state = new Map({ counter: 0 });
+  describe('increaseValue', () => {
+    const subject = new Map({ counter: 0 });
     const expected = new Map({ counter: 1 });
 
-    assert.deepEqual(
-      increaseValue(state, 'counter'),
-      expected,
-      'Value not increased by one'
-    );
+    it('increments the value', () => {
+      expect(increaseValue(subject, 'counter'))
+        .toEqual(expected);
+    });
   });
 });

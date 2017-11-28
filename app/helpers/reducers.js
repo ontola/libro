@@ -60,7 +60,7 @@ export const updateRecordValue = (state, id, key, newValue) =>
   state.setIn(['items', id, key], newValue);
 
 /**
- * Increases the specifief value by 1
+ * Increases the specific value by 1
  * @param {string} state A state object
  * @param {string} value The value to increase by 1
  * @return {string} state Returns new state that has toggled the key of the specified record
