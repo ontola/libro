@@ -1,17 +1,17 @@
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-
-import {
-  closeSideBar,
-} from 'state/sideBars/actions';
 
 import CountBubble from '../CountBubble';
 
 import './SideBarLink.scss';
+import SideBarLinkIcon from './SideBarLinkIcon';
+import SideBarLinkImage, {
+  SideBarLinkImageWrapper
+} from './SideBarLinkImage';
+import SideBarLinkLabel from './SideBarLinkLabel';
+import SideBarLinkLink from './SideBarLinkLink';
+import SideBarLinkWrapper from './SideBarLinkWrapper';
 
 const propTypes = {
   bold: PropTypes.bool,
@@ -37,53 +37,38 @@ const SideBarLink = ({
   isIndex,
   closeBarOnClick,
   to,
-}) => {
-  const classes = classNames({
-    SideBarLink: true,
-    'SideBarLink--bold': bold,
-  });
-
-  return (
-    <div className={classes}>
-      <Link
-        activeClassName="SideBarLink--active"
-        onlyActiveOnIndex={isIndex}
-        to={to}
-        onClick={() => closeBarOnClick()}
-      >
-        {icon &&
-        <div className="SideBarLink__icon">
-          <FontAwesome name={icon} />
-        </div>}
-        {imageUrl &&
-        <div className="SideBarLink__image-wrapper">
-          <div
-            className="SideBarLink__image"
-            style={{ backgroundImage: `url(${imageUrl})` }}
-          />
-        </div>}
-        <div className="SideBarLink__label">
-          {label}
-        </div>
-        {(count !== undefined && count > 0) &&
-        <div className="SideBarLink__count-wrapper">
-          <CountBubble count={count} />
-        </div>}
-      </Link>
-    </div>
-  );
-};
+}) => (
+  <SideBarLinkWrapper bold={bold}>
+    <SideBarLinkLink
+      onlyActiveOnIndex={isIndex}
+      to={to}
+      onClick={closeBarOnClick}
+    >
+      {icon &&
+      <SideBarLinkIcon>
+        <FontAwesome name={icon} />
+      </SideBarLinkIcon>}
+      {imageUrl &&
+      <SideBarLinkImageWrapper>
+        <SideBarLinkImage imageUrl={imageUrl} />
+      </SideBarLinkImageWrapper>}
+      <SideBarLinkLabel>
+        {label}
+      </SideBarLinkLabel>
+      {(count !== undefined && count > 0) &&
+      <div className="SideBarLink__count-wrapper">
+        <CountBubble count={count} />
+      </div>}
+    </SideBarLinkLink>
+  </SideBarLinkWrapper>
+);
 
 SideBarLink.propTypes = propTypes;
 
-// export default SideBarLink;
-
-// The 'null' and 'pure:false': https://github.com/ReactTraining/react-router/issues/3536
-export default connect(
-  null,
-  dispatch => ({
-    closeBarOnClick: () => dispatch(closeSideBar('Navbar')),
-  }),
-  null,
-  { pure: false }
-)(SideBarLink);
+export default SideBarLink;
+export {
+  SideBarLinkIcon,
+  SideBarLinkImageWrapper,
+  SideBarLinkLink,
+  SideBarLinkWrapper,
+};

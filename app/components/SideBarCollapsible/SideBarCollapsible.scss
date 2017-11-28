@@ -2,9 +2,14 @@
 
 .SideBarCollapsible {
   position: relative;
+  flex-grow: 1;
 
   .Collapsible__invisible-content {
     background-color: color('transparent', 'x-light');
+  }
+
+  .SideBarCollapsible__label {
+    position: relative;
   }
 
   .SideBarCollapsible__toggle {
@@ -13,7 +18,8 @@
     color: color('transparent', 'mid-light');
     cursor: pointer;
     display: flex;
-    height: 2.1em;
+    height: 100%;
+    min-height: 2.1em;
     justify-content: center;
     position: absolute;
     right: 0;

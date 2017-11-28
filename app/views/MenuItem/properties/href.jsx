@@ -1,12 +1,11 @@
-import classNames from 'classnames';
 import { linkedPropType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 
-import { closeSideBar } from 'state/sideBars/actions';
-
+import {
+  SideBarLinkLink,
+  SideBarLinkWrapper,
+} from '../../../components/SideBarLink';
 import { retrievePath } from '../../../helpers/iris';
 import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
@@ -17,39 +16,34 @@ const propTypes = {
   linkedProp: linkedPropType,
 };
 
-const classString = forSubMenu => classNames({
-  SideBarLink: true,
-  'SideBarLink--bold': forSubMenu,
-});
-
 const href = ({
   children, forSubMenu, handleClick, linkedProp
-}) => (
-  <div className={classString(forSubMenu)}>
-    <Link
-      activeClassName="SideBarLink--active"
-      to={retrievePath(linkedProp)}
-      onClick={handleClick}
-    >
-      {children}
-    </Link>
-  </div>
-);
+}) => {
+  let hrefInner = children;
+  if (linkedProp) {
+    hrefInner = (
+      <SideBarLinkLink
+        activeClassName="SideBarLink--active"
+        to={retrievePath(linkedProp)}
+        onClick={handleClick}
+      >
+        {children}
+      </SideBarLinkLink>
+    );
+  }
+
+  return (
+    <SideBarLinkWrapper bold={forSubMenu}>
+      {hrefInner}
+    </SideBarLinkWrapper>
+  );
+};
 
 href.propTypes = propTypes;
 
-const hrefConnected = connect(
-  null,
-  dispatch => ({
-    handleClick: () => dispatch(closeSideBar('Navbar')),
-  }),
-  null,
-  { pure: false }
-)(href);
-
 [NS.argu('sidebar'), NS.argu('sidebarBlock')].forEach((top) => {
   LinkedRenderStore.registerRenderer(
-    hrefConnected,
+    href,
     [NS.argu('Link'), NS.argu('MenuItem'), NS.argu('SubMenu')],
     NS.argu('href'),
     top

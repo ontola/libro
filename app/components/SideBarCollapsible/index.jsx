@@ -9,24 +9,25 @@ import { initializeCollapsible, toggleOne } from 'state/collapsible/actions';
 import { getCollapsibleOpened } from 'state/collapsible/selectors';
 
 import Button from '../Button';
-import SideBarLink from '../SideBarLink';
 
 import './SideBarCollapsible.scss';
 
 const propTypes = {
+  alwaysMountChildren: PropTypes.bool,
   // A collection of SideBarLinks
   children: PropTypes.node,
-  label: PropTypes.string.isRequired,
+  id: PropTypes.string,
+  labelComp: PropTypes.node.isRequired,
   onClickToggle: PropTypes.func.isRequired,
   open: PropTypes.bool,
-  to: PropTypes.string.isRequired,
 };
 
 const SideBarCollapsible = ({
-  label,
+  alwaysMountChildren,
   children,
+  id,
+  labelComp,
   onClickToggle,
-  to,
   open,
 }) => {
   const classes = classNames({
@@ -36,23 +37,18 @@ const SideBarCollapsible = ({
 
   return (
     <div className={classes}>
-      <SideBarLink
-        bold
-        isIndex
-        label={label}
-        to={to}
-      />
-      <Button
-        plain
-        alt="Menu uitvouwen of inklappen"
-        className="SideBarCollapsible__toggle"
-        onClick={() => onClickToggle()}
-      >
-        <FontAwesome name="caret-right" />
-      </Button>
-      <CollapsibleContainer
-        id={label}
-      >
+      <div className="SideBarCollapsible__label">
+        {labelComp}
+        <Button
+          plain
+          alt="Menu uitvouwen of inklappen"
+          className="SideBarCollapsible__toggle"
+          onClick={onClickToggle}
+        >
+          <FontAwesome name="caret-right" />
+        </Button>
+      </div>
+      <CollapsibleContainer alwaysMountChildren={alwaysMountChildren} id={id}>
         {children}
       </CollapsibleContainer>
     </div>
@@ -63,10 +59,10 @@ SideBarCollapsible.propTypes = propTypes;
 
 export default connect(
   (state, ownProps) => ({
-    open: getCollapsibleOpened(state, ownProps.label),
+    open: getCollapsibleOpened(state, ownProps.id),
   }),
-  (dispatch, { label }) => ({
-    onClickToggle: () => dispatch(toggleOne(label)),
+  (dispatch, { id }) => ({
+    onClickToggle: () => dispatch(toggleOne(id)),
     onInitializeCollapsible: data => dispatch(initializeCollapsible(data)),
   })
 )(SideBarCollapsible);

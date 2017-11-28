@@ -1,5 +1,7 @@
 import {
   linkedPropType,
+  lowLevel,
+  subjectType,
   LinkedObjectContainer,
   Property,
 } from 'link-redux';
@@ -23,17 +25,18 @@ const ViewsDropdown = (props) => {
       >
         <LinkedObjectContainer object={props.linkedProp} />
       </Dropdown>
-      <SideBarLink label={label} />
+      <SideBarLink label={label} to={props.subject} />
     </div>
   );
 };
 
 ViewsDropdown.propTypes = {
   linkedProp: linkedPropType.isRequired,
+  subject: subjectType.isRequired,
 };
 
 LinkedRenderStore.registerRenderer(
-  ViewsDropdown,
+  lowLevel.linkedSubject(ViewsDropdown),
   NS.argu('InfiniteCollection'),
   NS.argu('views'),
   NS.argu('sidebar')

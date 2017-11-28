@@ -2,8 +2,8 @@ import { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
 import React from 'react';
 
+import { SideBarLinkImageWrapper } from '../../components/SideBarLink';
 import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
-
 
 const ImageObject = () => <Property label={NS.schema('thumbnail')} />;
 
@@ -24,9 +24,9 @@ const ImageObject = () => <Property label={NS.schema('thumbnail')} />;
 [NS.argu('sidebar'), NS.argu('sidebarBlock')].forEach((top) => {
   LinkedRenderStore.registerRenderer(
     () => (
-      <div className="SideBarLink__image-wrapper">
+      <SideBarLinkImageWrapper>
         <Property label={NS.schema('thumbnail')} />
-      </div>
+      </SideBarLinkImageWrapper>
     ),
     NS.schema('ImageObject'),
     RENDER_CLASS_NAME,

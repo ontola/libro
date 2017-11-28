@@ -2,17 +2,27 @@ import React from 'react';
 import { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
 
+import { SideBarLinkIcon } from '../../components/SideBarLink';
 import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
 import './properties/href';
+import './properties/menuItems';
 
-const MenuItemSidebar = () => (
-  <Property label={NS.argu('href')}>
-    <div className="SideBarLink__icon">
+const label = (
+  <Property forceRender label={NS.argu('href')}>
+    <SideBarLinkIcon>
       <Property label={NS.schema('image')} />
-    </div>
+    </SideBarLinkIcon>
     <Property label={NS.argu('label')} />
   </Property>
+);
+
+const MenuItemSidebar = () => (
+  <Property
+    forceRender
+    label={NS.argu('menuItems')}
+    labelComp={label}
+  />
 );
 
 [NS.argu('sidebar'), NS.argu('sidebarBlock')].forEach((top) => {

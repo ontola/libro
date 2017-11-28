@@ -1,55 +1,40 @@
-import classNames from 'classnames';
 import { RENDER_CLASS_NAME } from 'link-lib';
-import { lowLevel, Property, subjectType } from 'link-redux';
-import PropTypes from 'prop-types';
+import {
+  linkedSubject,
+  lowLevel,
+  Property,
+} from 'link-redux';
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
 
-import CollapsibleContainer from 'containers/CollapsibleContainer';
 import { initializeCollapsible, toggleOne } from 'state/collapsible/actions';
 import { getCollapsibleOpened } from 'state/collapsible/selectors';
 
 import {
-  Button,
+  SideBarCollapsible,
 } from '../../components';
 import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 
 import './properties/label';
 
 const propTypes = {
-  onClickToggle: PropTypes.func.isRequired,
-  open: PropTypes.bool,
-  subject: subjectType,
+  subject: linkedSubject,
 };
 
-const SubMenuSideBar = ({
-  subject,
-  onClickToggle,
-  open
-}) => {
-  const classes = classNames({
-    SideBarCollapsible: true,
-    'SideBarCollapsible--open': open,
-  });
+const SubMenuSideBar = ({ subject }) => {
+  const label = (
+    <Property forSubMenu label={NS.argu('href')}>
+      <Property label={NS.argu('label')} />
+    </Property>
+  );
 
   return (
-    <div className={classes}>
-      <Property forSubMenu label={NS.argu('href')}>
-        <Property label={NS.argu('label')} />
-      </Property>
-      <Button
-        plain
-        alt="Menu uitvouwen of inklappen"
-        className="SideBarCollapsible__toggle"
-        onClick={onClickToggle}
-      >
-        <FontAwesome name="caret-right" />
-      </Button>
-      <CollapsibleContainer id={subject}>
-        <Property label={NS.argu('menuItems')} />
-      </CollapsibleContainer>
-    </div>
+    <SideBarCollapsible
+      id={`menu-${subject}`}
+      labelComp={label}
+    >
+      <Property label={NS.argu('menuItems')} />
+    </SideBarCollapsible>
   );
 };
 
