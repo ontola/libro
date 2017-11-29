@@ -5,7 +5,8 @@
   flex-direction: column;
   overflow-x: hidden;
   overflow-y: auto;
-
+  width: 13em;
+  
   &__logo {
     align-self: center;
     color: color('white');
@@ -13,20 +14,6 @@
     path,
     rect {
       fill: color('white');
-    }
-  }
-}
-
-.NavBarContent__switcher {
-  align-items: stretch;
-  display: flex;
-  .Dropdown {
-    display: flex;
-    padding-left: 1em;
-    padding-right: .5em;
-    .Dropdown__trigger {
-      align-items: center;
-      display: flex;
     }
   }
 }

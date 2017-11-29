@@ -1,11 +1,17 @@
 .OrganizationName {
   align-items: center;
   display: flex;
-  max-height: 2em;
   padding: 1em;
 
   &__value {
     color: inherit;
     font-weight: bold;
+    margin-left: .4em;
+  }
+
+  .SideBarLink__image {
+    height: 2.2em;
+    margin-left: .3em;
+    width: 2.2em;
   }
 }

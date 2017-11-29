@@ -1,10 +1,12 @@
 @import '../shared/config';
 
 .SideBarLink {
-  display: flex;
+  align-content: center;
   font-size: 1em;
-  padding: .3em 0;
-  position: relative;
+  display: flex;
+  height: 2.4em;
+  overflow: hidden;
+  flex: 1;
 
   &:hover,
   &:focus {
@@ -26,7 +28,7 @@
   }
 
   a {
-    display: inherit;
+    display: flex;
     flex-grow: 1;
   }
 
@@ -46,21 +48,27 @@
 
 .SideBarLink__icon,
 .SideBarLink__image-wrapper {
-  height: 1em;
   padding-left: 2em;
   padding-right: 1em;
-  text-align: center;
-  width: 1em;
+  width: 1.5em;
+  display: flex;
+  flex-shrink: 1;
+  align-items: center;
+  justify-content: center;
 }
 
 .SideBarLink__image {
   background-size: cover;
-  border: 1px solid color('grey', 'x-light');
   border-radius: 100%;
   height: 1.5em;
-  left: -.2em;
-  position: relative;
   width: 1.5em;
+}
+
+.SideBarLink__label {
+  flex: 1;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
 }
 
 .SideBarLink__count-wrapper {

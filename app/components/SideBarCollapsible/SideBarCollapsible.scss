@@ -3,6 +3,11 @@
 .SideBarCollapsible {
   position: relative;
   flex-grow: 1;
+  flex-direction: column;
+
+  a {
+    flex: 1;
+  }
 
   .Collapsible__invisible-content {
     background-color: color('transparent', 'x-light');
@@ -10,6 +15,7 @@
 
   .SideBarCollapsible__label {
     position: relative;
+    display: flex;
   }
 
   .SideBarCollapsible__toggle {
@@ -18,12 +24,7 @@
     color: color('transparent', 'mid-light');
     cursor: pointer;
     display: flex;
-    height: 100%;
-    min-height: 2.1em;
     justify-content: center;
-    position: absolute;
-    right: 0;
-    top: 0;
     width: 2.1em;
 
     .Button__label {
