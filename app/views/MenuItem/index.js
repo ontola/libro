@@ -28,7 +28,7 @@ const MenuItemSidebar = () => (
 [NS.argu('sidebar'), NS.argu('sidebarBlock')].forEach((top) => {
   LinkedRenderStore.registerRenderer(
     MenuItemSidebar,
-    NS.argu('MenuItem'),
+    [NS.argu('MenuItem'), NS.argu('SubMenu')],
     RENDER_CLASS_NAME,
     top
   );

@@ -55,6 +55,7 @@ const SubMenuSideBarConnected = connect(
 
 const SubMenuSideBarComplete = lowLevel.linkedSubject(SubMenuSideBarConnected);
 
+// I believe this one is deprecated
 LinkedRenderStore.registerRenderer(
   SubMenuSideBarComplete,
   NS.argu('SubMenu'),

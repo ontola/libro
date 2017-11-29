@@ -11,19 +11,17 @@ import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   children: PropTypes.node,
-  forSubMenu: PropTypes.bool,
   handleClick: PropTypes.func,
   linkedProp: linkedPropType,
 };
 
 const href = ({
-  children, forSubMenu, handleClick, linkedProp
+  children, handleClick, linkedProp
 }) => {
   let hrefInner = children;
   if (linkedProp) {
     hrefInner = (
       <SideBarLinkLink
-        activeClassName="SideBarLink--active"
         to={retrievePath(linkedProp)}
         onClick={handleClick}
       >
@@ -33,7 +31,7 @@ const href = ({
   }
 
   return (
-    <SideBarLinkWrapper bold={forSubMenu}>
+    <SideBarLinkWrapper>
       {hrefInner}
     </SideBarLinkWrapper>
   );
@@ -44,7 +42,7 @@ href.propTypes = propTypes;
 [NS.argu('sidebar'), NS.argu('sidebarBlock')].forEach((top) => {
   LinkedRenderStore.registerRenderer(
     href,
-    [NS.argu('Link'), NS.argu('MenuItem'), NS.argu('SubMenu')],
+    [NS.argu('Link'), NS.argu('MenuItem'), NS.argu('SubMenu'), NS.argu('NavigationsMenu')],
     NS.argu('href'),
     top
   );

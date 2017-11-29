@@ -7,7 +7,7 @@ import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 import './properties/menuItems';
 
 const NavigationsMenuSidebar = () => (
-  <Property label={NS.argu('menuItems')} />
+  <Property forceRender label={NS.argu('menuItems')} />
 );
 
 LinkedRenderStore.registerRenderer(

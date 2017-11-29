@@ -15,9 +15,11 @@ const SubMenuLabelProp = ({ linkedProp }) => (
 
 SubMenuLabelProp.propTypes = propTypes;
 
-LinkedRenderStore.registerRenderer(
-  SubMenuLabelProp,
-  [NS.argu('SubMenu'), NS.argu('MenuItem')],
-  NS.argu('label'),
-  NS.argu('sidebar')
-);
+[NS.argu('sidebar'), NS.argu('sidebarBlock')].forEach((top) => {
+  LinkedRenderStore.registerRenderer(
+    SubMenuLabelProp,
+    [NS.argu('SubMenu'), NS.argu('MenuItem')],
+    NS.argu('label'),
+    top
+  );
+});
