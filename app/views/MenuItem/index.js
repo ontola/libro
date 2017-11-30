@@ -8,8 +8,8 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import href from './properties/href';
 import menuItems from './properties/menuItems';
 
-const label = (
-  <Property forceRender label={NS.argu('href')}>
+const MenuItemLabel = (
+  <Property forceRender data-test="MenuItem-MenuItemLabel" label={NS.argu('href')}>
     <SideBarLinkIcon>
       <Property label={NS.schema('image')} />
     </SideBarLinkIcon>
@@ -21,7 +21,7 @@ const MenuItemSidebar = () => (
   <Property
     forceRender
     label={NS.argu('menuItems')}
-    labelComp={label}
+    labelComp={MenuItemLabel}
   />
 );
 

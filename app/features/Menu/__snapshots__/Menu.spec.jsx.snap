@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Menu https://argu.co/ns/core#sidebar renders a menu 1`] = `
+<div
+  data-test="MenuSection-menu-section"
+>
+  <div
+    className="MenuSectionLabel"
+    data-test="MenuSection-MenuSectionLabel"
+  >
+    <div
+      className="MenuSectionLabel__bar"
+    />
+    <div
+      className="MenuSectionLabel__text"
+    >
+      Forum
+    </div>
+    <div
+      className="MenuSectionLabel__bar"
+    />
+  </div>
+  <div
+    className="SideBarLink"
+  >
+    <a
+      aria-current={false}
+      className={undefined}
+      href="/f/utrecht/motions"
+      onClick={[Function]}
+      style={undefined}
+    >
+      <div
+        className="SideBarLink__icon"
+      />
+      <div>
+        Ideeën
+      </div>
+    </a>
+  </div>
+  <div
+    className="SideBarLink"
+  >
+    <a
+      aria-current={false}
+      className={undefined}
+      href="/f/utrecht/questions"
+      onClick={[Function]}
+      style={undefined}
+    >
+      <div
+        className="SideBarLink__icon"
+      />
+      <div>
+        Vraagstukken
+      </div>
+    </a>
+  </div>
+  <div
+    className="SideBarLink"
+  >
+    <a
+      aria-current={false}
+      className={undefined}
+      href="/utrecht/settings"
+      onClick={[Function]}
+      style={undefined}
+    >
+      <div
+        className="SideBarLink__icon"
+      />
+      <div>
+        Instellingen
+      </div>
+    </a>
+  </div>
+</div>
+`;

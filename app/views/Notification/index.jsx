@@ -15,7 +15,7 @@ import Target from './properties/target';
 import Unread from './properties/unread';
 
 const Notification = () => (
-  <div style={{ position: 'relative' }}>
+  <div data-test="Notification-notification" style={{ position: 'relative' }}>
     <Card>
       <Property label={NS.argu('unread')} />
       <CardContent>

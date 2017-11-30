@@ -30,7 +30,7 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     () => (
-      <SideBarLinkImageWrapper>
+      <SideBarLinkImageWrapper data-test="ImageObject-sidebar">
         <Property label={NS.schema('thumbnail')} />
       </SideBarLinkImageWrapper>
     ),

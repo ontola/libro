@@ -8,7 +8,7 @@ import Label from './properties/label';
 import './MenuSection.scss';
 
 const MenuSection = () => (
-  <div>
+  <div data-test="MenuSection-menu-section">
     <Property label={NS.argu('label')} />
     <Property
       forceRender

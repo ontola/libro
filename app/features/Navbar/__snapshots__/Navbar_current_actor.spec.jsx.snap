@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar current_actor logged in renders the correct representation 1`] = `
+<div
+  className="SideBarCollapsible"
+>
+  <div
+    className="SideBarCollapsible__label"
+  >
+    <div
+      className="SideBarLink"
+    >
+      <a
+        href="/u/123"
+        onClick={[Function]}
+      >
+        <div
+          className="SideBarLink__label"
+        >
+          <p
+            className="SideBarLink__truncatedLabel"
+          >
+            <div>
+              Maarten van Scharendrecht
+            </div>
+          </p>
+        </div>
+      </a>
+    </div>
+    <button
+      alt="Menu uitvouwen of inklappen"
+      className="Button Button--plain Button--default SideBarCollapsible__toggle"
+      disabled={undefined}
+      onClick={[Function]}
+      type="button"
+    >
+      <span
+        className="Button__label"
+      >
+        <span
+          aria-hidden={true}
+          className="fa fa-caret-right"
+        />
+      </span>
+    </button>
+  </div>
+  <div
+    aria-expanded={false}
+    className="Collapsible"
+  >
+    <div
+      className="Collapsible__visible-content"
+    />
+    <div
+      aria-hidden={-1}
+      className="Collapsible__invisible-content"
+    >
+      <div />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Navbar current_actor logged out renders the correct representation 1`] = `
+<div
+  className="SideBarLink"
+>
+  <a
+    aria-current={false}
+    className={undefined}
+    href="/u/sign_in?r=about%3Ablank"
+    onClick={[Function]}
+    style={undefined}
+  >
+    <div
+      className="SideBarLink__icon"
+    >
+      <span
+        aria-hidden={true}
+        className="fa fa-sign-in"
+      />
+    </div>
+    <div
+      className="SideBarLink__label"
+    >
+      <p
+        className="SideBarLink__truncatedLabel"
+      >
+        Log in / registreer
+      </p>
+    </div>
+  </a>
+</div>
+`;

@@ -12,6 +12,7 @@ const propTypes = {
 
 export const ImageObjectThumbnail = ({ linkedProp }) => (
   <Image
+    data-test="ImageObject-ImageObjectThumbnail"
     imageUrl={linkedProp}
     linkedProp={linkedProp}
     override={SideBarLinkImage}

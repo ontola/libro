@@ -35,6 +35,7 @@ class menuItems extends PropertyBase {
     if (items) {
       return (
         <SideBarCollapsible
+          data-test="MenuItem-menuItems-collapsible"
           id={`${this.props.subject}-menu-items`}
           labelComp={this.props.labelComp}
         >

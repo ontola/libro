@@ -12,7 +12,8 @@ const propTypes = {
 };
 
 const Unread = ({ linkedProp }) => {
-  if (typeof linkedProp === 'undefined' || linkedProp === 'false') {
+  // eslint-disable-next-line eqeqeq
+  if (linkedProp == undefined || linkedProp == false) {
     return null;
   }
 
@@ -22,6 +23,7 @@ const Unread = ({ linkedProp }) => {
       label={NS.argu('readAction')}
     >
       <div
+        data-test="Notification-Unread"
         style={{
           background: '#B63131',
           borderRadius: '999px',

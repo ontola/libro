@@ -5,7 +5,7 @@ import React from 'react';
 import { NS } from '../../helpers/LinkedRenderStore';
 
 const NotificationSidebar = () => (
-  <Property label={NS.schema('url')} />
+  <Property data-test="Notification-url" label={NS.schema('url')} />
 );
 
 export default LinkedRenderStore.registerRenderer(

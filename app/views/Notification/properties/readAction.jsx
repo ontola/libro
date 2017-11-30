@@ -14,6 +14,7 @@ const propTypes = {
 
 const ReadAction = ({ linkedProp, children }) => (
   <div
+    data-test="Notification-ReadAction"
     onClick={() => LinkedRenderStore.execActionByIRI(linkedProp)}
     onKeyUp={() => LinkedRenderStore.execActionByIRI(linkedProp)}
   >

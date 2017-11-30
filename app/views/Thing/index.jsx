@@ -1,6 +1,5 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import {
@@ -23,22 +22,16 @@ import Organization from './properties/organization';
 import Text from './properties/text';
 import UpdateAction from './properties/updateAction';
 
-const propTypes = {
-  object: PropTypes.string,
-};
-
-const Thing = ({ object }) => (
-  <Card>
+const Thing = () => (
+  <Card data-test="Thing-thing">
     <CardContent noSpacing>
       <Property label={[NS.schema('name'), NS.rdfs('label')]} />
       <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
-      <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} object={object} />
+      <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
       <Property label={NS.foaf('isPrimaryTopicOf')} />
     </CardContent>
   </Card>
 );
-
-Thing.propTypes = propTypes;
 
 export default [
   LinkedRenderStore.registerRenderer(Thing, NS.schema('Thing')),
