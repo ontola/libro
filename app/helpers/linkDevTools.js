@@ -11,6 +11,8 @@ import {
 } from 'link-redux';
 import rdf from 'rdflib';
 
+import { NS } from './LinkedRenderStore';
+
 function returnWithError(msg = undefined) {
   return console.error(`${msg ? `${msg}, i` : 'I'}s a link component selected? (check the value of \`$r\`)`);
 }
@@ -23,8 +25,7 @@ export function getLRS(comp) {
   return lrs || window.LRS;
 }
 
-export function dataArr() {
-  const comp = $r;
+export function dataArr(comp = $r) {
   const lrs = getLRS(comp);
   if (typeof comp === 'undefined') {
     console.error('No component selected in react devtools (check the value of `$r`)');
@@ -65,7 +66,7 @@ export function showProp(func) {
   };
 }
 
-export function toObject(arr) {
+export function toObject(arr, denormalize = true) {
   if (!Array.isArray(arr)) {
     console.error('Pass an array of statements to process');
   }
@@ -79,11 +80,7 @@ export function toObject(arr) {
     const subj = cur.subject.toString();
     const pred = cur.predicate.toString();
     if (typeof obj[subj] === 'undefined') {
-      obj[subj] = {
-        get types() {
-          return this[defaultNS.rdf('type')];
-        }
-      };
+      obj[subj] = {};
     }
     if (typeof obj[subj][pred] === 'undefined') {
       obj[subj][pred] = cur.object;
@@ -97,12 +94,121 @@ export function toObject(arr) {
     }
   }
   const allKeys = Object.keys(obj);
-  if (allKeys.length === 1) {
+  if (denormalize && allKeys.length === 1) {
     console.debug('Returning single subject;', allKeys[0]);
     return obj[allKeys[0]];
   }
   return obj;
 }
+
+export function tryShorten(namedNode) {
+  const shortMap = Object
+    .keys(NS)
+    .map(ns => ({ [NS[ns]().value]: ns }))
+    .reduce((a, b) => Object.assign(a, b));
+
+  const entries = Object.entries(shortMap);
+
+  for (let i = 0; i < entries.length; i++) {
+    const [key, value] = entries[i];
+    if (namedNode.includes(key)) {
+      return `NS.${value}('${namedNode.split(key)[1]}')`;
+    }
+  }
+
+  return `new NamedNode('${namedNode}')`;
+}
+
+function snapshotNode(subject, comp) {
+  const data = toObject(dataArr(comp), false);
+  return Object.keys(data).map((s) => {
+    const sVal = s.slice(1, -1);
+    const attrs = Object.keys(data[s]).map((attrKey) => {
+      const attrObj = data[s][attrKey];
+      const predicate = attrKey.slice(1, -1);
+      const term = (type, value) => {
+        if (type.termType === 'NamedNode') {
+          return tryShorten(value);
+        }
+        let castValue, constructor;
+        switch (type.datatype.value) {
+          case NS.xsd('boolean').value:
+            castValue = value === 'true';
+            constructor = 'Literal.fromBoolean';
+            break;
+          case NS.xsd('dateTime').value:
+            castValue = `new Date('${value}')`;
+            constructor = 'Literal.fromDate';
+            break;
+          case NS.xsd('decimal').value:
+          case NS.xsd('float').value:
+            castValue = Number.parseFloat(value);
+            constructor = 'Literal.fromNumber';
+            break;
+          case NS.xsd('double').value:
+            castValue = Number.parseInt(value, 10);
+            constructor = 'Literal.fromNumber';
+            break;
+          default:
+            castValue = value.includes('\'') ? `"${value}"` : `'${value}'`;
+            constructor = 'new Literal';
+        }
+
+        return `${constructor}(${castValue})`;
+      };
+      const toNode = object => `    [${tryShorten(predicate)}]: ${object},`;
+      if (Array.isArray(attrObj)) {
+        const attrType = attrObj[0];
+        return toNode(`[\n${attrObj.map(v => `      ${term(attrType, v.value)}`).join(',\n')},\n    ]`);
+      }
+      return toNode(term(attrObj, attrObj.value));
+    });
+    const keyVal = sVal === subject ? 'subject' : tryShorten(sVal);
+    return (
+      `[${keyVal}]: {\n${attrs.join('\n')}\n  },`
+    );
+  });
+}
+
+function snapshotTraverse(subject, maxDepth, startComp) {
+  function innerTraverse(depth, comp) {
+    let resources = [];
+    if (depth > maxDepth) {
+      console.debug('Maximum stack depth reached');
+      return resources;
+    }
+    if (comp !== undefined && comp !== null) {
+      if (comp.type && comp.type.name === 'LinkedObjectContainer') {
+        resources = snapshotNode(subject, comp.stateNode);
+      }
+      resources = resources.concat(innerTraverse(depth + 1, comp.child));
+      resources = resources.concat(innerTraverse(depth + 1, comp.sibling));
+    }
+    return resources;
+  }
+  return innerTraverse(0, startComp);
+}
+
+export function snapshot(traverse = 100) {
+  const comp = $r;
+  const subject = comp.props.object;
+
+  let resources = snapshotNode(subject, comp);
+
+  if (typeof traverse !== 'undefined' && traverse > 0) {
+    const startChild = comp._reactInternalFiber.child;
+    resources = resources.concat(snapshotTraverse(subject, traverse, startChild));
+  }
+
+  return (
+    `const subject = new NamedNode('${subject}');
+
+const resources = {
+  ${resources.join('\n')}
+};\n`
+  );
+}
+
 
 export const data = () => toObject(dataArr());
 export const getPropArr = showProp(getLinkedObjectProperty);
@@ -292,6 +398,7 @@ const devObj = {
   get getPropRawArr() { return getPropRawArr(); },
   get help() { return showHelp(); },
   get propertyRenderers() { return getLRS($r).mapping; },
+  snapshot,
   toObject,
   get topology() {
     return $r.props.topology === null ? undefined : ($r.props.topology || $r.context.topology);

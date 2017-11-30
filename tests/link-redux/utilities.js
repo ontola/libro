@@ -45,7 +45,22 @@ function generateContext(properties = {}) {
   return c;
 }
 
+function defaultContext(properties = {}) {
+  const keys = Object.keys(properties);
+  const c = {};
+  const defaults = contextDefaults();
+  keys.forEach((key) => {
+    if (properties[key] === true) {
+      c[key] = defaults[key];
+    } else if (properties[key] !== undefined) {
+      c[key] = properties[key];
+    }
+  });
+  return c;
+}
+
 export {
   chai,
+  defaultContext,
   generateContext,
 };

@@ -133,7 +133,7 @@
         "jest": true
       },
       "globals": {
-        "argUnit": true,
+        // Shared specs
         "declareProps": true,
         "defineMarker": true,
         "its": true,
@@ -141,7 +141,19 @@
         "markerNS": true,
         "testProps": true,
         "set": true,
-        "subject": true
+        "subject": true,
+
+        // Unit specs
+        "argUnit": true,
+
+        // View specs
+        "as": true,
+        "describeView": true,
+        "c": true,
+        "ch": true,
+        "r": true,
+        "s": true,
+        "t": true
       }
     }
   ]

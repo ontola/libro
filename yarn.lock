@@ -6211,22 +6211,22 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-link-lib@1.0.0-beta5, link-lib@^1.0.0-beta5:
-  version "1.0.0-beta5"
-  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-beta5.tgz#f5aca720709c954916a70da22454387c51a24bf6"
+link-lib@1.0.0-beta6, link-lib@^1.0.0-beta6:
+  version "1.0.0-beta6"
+  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-beta6.tgz#ac2175503c8ea87fb252a36a5230aaa662bd7b8a"
   dependencies:
     jsonld "^0.4.11"
     ml-disjoint-set "^1.0.0"
     rdflib "^0.16.3"
 
-link-redux@^1.0.0-beta7:
-  version "1.0.0-beta7"
-  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-beta7.tgz#44f7086088ce80faffe3b59e4ca85d9a43342e5e"
+link-redux@^1.0.0-beta8:
+  version "1.0.0-beta8"
+  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-beta8.tgz#ea7134efb163af00b96f76513d0d40d5fc43f6d5"
   dependencies:
     es6-promise "^4.0.5"
     immutable "^3.8.1"
     jsonld "^0.4.11"
-    link-lib "^1.0.0-beta5"
+    link-lib "^1.0.0-beta6"
     prop-types "^15.6.0"
     rdflib "^0.16.3"
     react "^16.1.0"
@@ -9178,9 +9178,17 @@ react-styleguidist@^6.0.33:
     webpack-dev-server "^2.8.2"
     webpack-merge "^4.1.0"
 
-react-test-renderer@^16.0.0-0, react-test-renderer@^16.1.1:
+react-test-renderer@^16.0.0-0:
   version "16.1.1"
   resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.1.1.tgz#a05184688d564be799f212449262525d1e350537"
+  dependencies:
+    fbjs "^0.8.16"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
+
+react-test-renderer@^16.1.1:
+  version "16.2.0"
+  resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.2.0.tgz#bddf259a6b8fcd8555f012afc8eacc238872a211"
   dependencies:
     fbjs "^0.8.16"
     object-assign "^4.1.1"
