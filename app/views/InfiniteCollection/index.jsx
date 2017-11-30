@@ -1,3 +1,4 @@
+import LinkedRenderStore from 'link-lib';
 import {
   lowLevel,
   Property,
@@ -5,8 +6,12 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
+import { NS } from '../../helpers/LinkedRenderStore';
+
 import './sidebar';
+import Member from './properties/members';
+import UnreadCount from './properties/unreadCount';
+import Views from './properties/views';
 
 const viewsOrMembers = views => (
   <Property
@@ -24,8 +29,9 @@ class Collection extends PropertyBase {
 
 const ConnectedCollection = lowLevel.linkedSubject(lowLevel.linkedVersion(Collection));
 
-LinkedRenderStore.registerRenderer(ConnectedCollection, [NS.argu('InfiniteCollection')]);
-
-export { default as Member } from './properties/members';
-export { default as UnreadCount } from './properties/unreadCount';
-export { default as Views } from './properties/views';
+export default [
+  LinkedRenderStore.registerRenderer(ConnectedCollection, [NS.argu('InfiniteCollection')]),
+  ...Member,
+  UnreadCount,
+  ...Views,
+];

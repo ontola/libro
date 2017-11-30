@@ -1,11 +1,11 @@
-import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
-import menuItems from '../../NavigationsMenu/properties/menuItems';
+import LinkedRenderStore from 'link-lib';
 
-[undefined, NS.argu('sidebarBlock')].forEach((top) => {
-  LinkedRenderStore.registerRenderer(
-    menuItems,
-    NS.argu('OrganizationsMenu'),
-    NS.argu('menuItems'),
-    top
-  );
-});
+import { NS } from '../../../helpers/LinkedRenderStore';
+import { menuItems } from '../../NavigationsMenu/properties/menuItems';
+
+export default LinkedRenderStore.registerRenderer(
+  menuItems,
+  NS.argu('OrganizationsMenu'),
+  NS.argu('menuItems'),
+  [undefined, NS.argu('sidebarBlock')]
+);

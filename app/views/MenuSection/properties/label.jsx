@@ -1,7 +1,8 @@
+import LinkedRenderStore from 'link-lib';
 import { linkedPropType } from 'link-redux';
 import React from 'react';
 
-import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -19,9 +20,9 @@ const MenuSectionLabel = ({ linkedProp }) => (
 
 MenuSectionLabel.propTypes = propTypes;
 
-LinkedRenderStore.registerRenderer(
+export default LinkedRenderStore.registerRenderer(
   MenuSectionLabel,
-  [NS.argu('MenuSection')],
+  NS.argu('MenuSection'),
   NS.argu('label'),
   NS.argu('sidebar')
 );

@@ -1,10 +1,11 @@
+import LinkedRenderStore from 'link-lib';
 import {
   linkedPropType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   children: PropTypes.node,
@@ -22,13 +23,9 @@ const ReadAction = ({ linkedProp, children }) => (
 
 ReadAction.propTypes = propTypes;
 
-[undefined, NS.argu('collection'), NS.argu('sidebar')].forEach((top) => {
-  LinkedRenderStore.registerRenderer(
-    ReadAction,
-    NS.argu('Notification'),
-    NS.argu('readAction'),
-    top
-  );
-});
-
-export default URL;
+export default LinkedRenderStore.registerRenderer(
+  ReadAction,
+  NS.argu('Notification'),
+  NS.argu('readAction'),
+  [undefined, NS.argu('collection'), NS.argu('sidebar')]
+);

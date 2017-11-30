@@ -1,9 +1,9 @@
-import { getValueOrID } from 'link-lib';
+import LinkedRenderStore, { getValueOrID } from 'link-lib';
 import { LinkedObjectContainer, PropertyBase, lowLevel } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   /** The amount of items to render. Leave undefined for all items */
@@ -59,18 +59,16 @@ MemberComp.contextTypes = {
 };
 
 const Member = lowLevel.linkedSubject(lowLevel.linkedVersion(MemberComp));
-
-LinkedRenderStore.registerRenderer(
-  Member,
-  NS.argu('InfiniteCollection'),
-  NS.argu('members')
-);
-
-LinkedRenderStore.registerRenderer(
-  props => <Member divider direction="inverted" {...props} />,
-  NS.argu('InfiniteCollection'),
-  NS.argu('members'),
-  NS.argu('sidebar')
-);
-
-export default Member;
+export default [
+  LinkedRenderStore.registerRenderer(
+    Member,
+    NS.argu('InfiniteCollection'),
+    NS.argu('members')
+  ),
+  LinkedRenderStore.registerRenderer(
+    props => <Member divider direction="inverted" {...props} />,
+    NS.argu('InfiniteCollection'),
+    NS.argu('members'),
+    NS.argu('sidebar')
+  ),
+];

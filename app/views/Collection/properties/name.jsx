@@ -1,3 +1,4 @@
+import LinkedRenderStore from 'link-lib';
 import {
   PropertyBase,
   getLinkedObjectProperty,
@@ -10,7 +11,7 @@ import { Link } from 'react-router-dom';
 import {
   Heading,
 } from '../../../components';
-import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   label: labelType,
@@ -38,10 +39,8 @@ class CollectionName extends PropertyBase {
 
 CollectionName.propTypes = propTypes;
 
-LinkedRenderStore.registerRenderer(
+export default LinkedRenderStore.registerRenderer(
   lowLevel.linkedSubject(lowLevel.linkedVersion(CollectionName)),
   NS.argu('Collection'),
   NS.schema('name')
 );
-
-export default CollectionName;

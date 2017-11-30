@@ -1,9 +1,9 @@
-import { getValueOrID } from 'link-lib';
+import LinkedRenderStore, { getValueOrID } from 'link-lib';
 import { LinkedObjectContainer, PropertyBase, linkedPropType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
 import { SideBarCollapsible } from '../../../components';
 
 const propTypes = {
@@ -49,13 +49,9 @@ class menuItems extends PropertyBase {
 
 menuItems.propTypes = propTypes;
 
-[undefined, NS.argu('sidebar'), NS.argu('sidebarBlock')].forEach((top) => {
-  LinkedRenderStore.registerRenderer(
-    menuItems,
-    [NS.argu('MenuItem'), NS.argu('SubMenu'), NS.argu('NavigationsMenu'), NS.argu('MenuSection')],
-    NS.argu('menuItems'),
-    top
-  );
-});
-
-export default menuItems;
+export default LinkedRenderStore.registerRenderer(
+  menuItems,
+  [NS.argu('MenuItem'), NS.argu('SubMenu'), NS.argu('NavigationsMenu'), NS.argu('MenuSection')],
+  NS.argu('menuItems'),
+  [undefined, NS.argu('sidebar'), NS.argu('sidebarBlock')]
+);

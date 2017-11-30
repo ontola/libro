@@ -1,7 +1,8 @@
+import LinkedRenderStore from 'link-lib';
 import { Property, linkedPropType } from 'link-redux';
 import React from 'react';
 
-import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
 
 import './name.scss';
 
@@ -18,7 +19,7 @@ const OrganizationName = ({ linkedProp }) => (
 
 OrganizationName.propTypes = propTypes;
 
-LinkedRenderStore.registerRenderer(
+export default LinkedRenderStore.registerRenderer(
   OrganizationName,
   [NS.schema('Organization'), NS.argu('Page')],
   [
@@ -28,5 +29,3 @@ LinkedRenderStore.registerRenderer(
   ],
   NS.argu('sidebarBlock')
 );
-
-export default OrganizationName;

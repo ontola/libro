@@ -1,8 +1,8 @@
-import React from 'react';
-import { getP } from 'link-lib';
+import LinkedRenderStore, { getP } from 'link-lib';
 import { LinkedObjectContainer, Property, PropertyBase } from 'link-redux';
+import React from 'react';
 
-import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
 
 class CollectionAssociation extends PropertyBase {
   getArguLinkedRecordURL() {
@@ -33,7 +33,7 @@ class CollectionAssociation extends PropertyBase {
   }
 }
 
-LinkedRenderStore.registerRenderer(
+export default LinkedRenderStore.registerRenderer(
   CollectionAssociation,
   NS.schema('Thing'),
   [
@@ -46,5 +46,3 @@ LinkedRenderStore.registerRenderer(
     NS.argu('bucket'),
   ]
 );
-
-export default CollectionAssociation;

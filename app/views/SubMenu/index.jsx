@@ -1,4 +1,4 @@
-import { RENDER_CLASS_NAME } from 'link-lib';
+import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   linkedSubject,
   lowLevel,
@@ -13,9 +13,9 @@ import { getCollapsibleOpened } from 'state/collapsible/selectors';
 import {
   SideBarCollapsible,
 } from '../../components';
-import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
+import { NS } from '../../helpers/LinkedRenderStore';
 
-import './properties/label';
+import Label from './properties/label';
 
 const propTypes = {
   subject: linkedSubject,
@@ -55,10 +55,12 @@ const SubMenuSideBarConnected = connect(
 
 const SubMenuSideBarComplete = lowLevel.linkedSubject(SubMenuSideBarConnected);
 
-// I believe this one is deprecated
-LinkedRenderStore.registerRenderer(
-  SubMenuSideBarComplete,
-  NS.argu('SubMenu'),
-  RENDER_CLASS_NAME,
-  NS.argu('sidebar')
-);
+export default [
+  LinkedRenderStore.registerRenderer(
+    SubMenuSideBarComplete,
+    NS.argu('SubMenu'),
+    RENDER_CLASS_NAME,
+    NS.argu('sidebar')
+  ),
+  Label
+];

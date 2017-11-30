@@ -1,10 +1,11 @@
+import LinkedRenderStore from 'link-lib';
 import {
   Property,
   linkedPropType,
 } from 'link-redux';
 import React from 'react';
 
-import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -40,13 +41,9 @@ const Unread = ({ linkedProp }) => {
 
 Unread.propTypes = propTypes;
 
-[undefined, NS.argu('collection'), NS.argu('sidebar')].forEach((top) => {
-  LinkedRenderStore.registerRenderer(
-    Unread,
-    NS.argu('Notification'),
-    NS.argu('unread'),
-    top
-  );
-});
-
-export default URL;
+export default LinkedRenderStore.registerRenderer(
+  Unread,
+  NS.argu('Notification'),
+  NS.argu('unread'),
+  [undefined, NS.argu('collection'), NS.argu('sidebar')]
+);

@@ -1,12 +1,12 @@
-import React from 'react';
-import { RENDER_CLASS_NAME } from 'link-lib';
+import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
+import React from 'react';
 
 import { SideBarLinkIcon } from '../../components/SideBarLink';
-import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
+import { NS } from '../../helpers/LinkedRenderStore';
 
-import './properties/href';
-import './properties/menuItems';
+import href from './properties/href';
+import menuItems from './properties/menuItems';
 
 const label = (
   <Property forceRender label={NS.argu('href')}>
@@ -25,11 +25,13 @@ const MenuItemSidebar = () => (
   />
 );
 
-[NS.argu('sidebar'), NS.argu('sidebarBlock')].forEach((top) => {
+export default [
   LinkedRenderStore.registerRenderer(
     MenuItemSidebar,
     [NS.argu('MenuItem'), NS.argu('SubMenu')],
     RENDER_CLASS_NAME,
-    top
-  );
-});
+    [NS.argu('sidebar'), NS.argu('sidebarBlock')]
+  ),
+  href,
+  menuItems,
+];

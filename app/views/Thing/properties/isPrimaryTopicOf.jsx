@@ -1,8 +1,8 @@
-import { isDifferentOrigin } from 'link-lib';
+import LinkedRenderStore, { isDifferentOrigin } from 'link-lib';
 import { linkedPropType } from 'link-redux';
 import React from 'react';
 
-import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -20,10 +20,8 @@ const IsPrimaryTopicOf = ({ linkedProp }) => {
 
 IsPrimaryTopicOf.propTypes = propTypes;
 
-LinkedRenderStore.registerRenderer(
+export default LinkedRenderStore.registerRenderer(
   IsPrimaryTopicOf,
   NS.schema('Thing'),
   NS.foaf('isPrimaryTopicOf')
 );
-
-export default IsPrimaryTopicOf;

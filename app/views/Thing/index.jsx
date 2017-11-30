@@ -1,4 +1,4 @@
-import { RENDER_CLASS_NAME } from 'link-lib';
+import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -8,20 +8,20 @@ import {
   CardContent,
   LinkCard,
 } from '../../components';
-import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
+import { NS } from '../../helpers/LinkedRenderStore';
 
-import './properties/baseColor';
-import './properties/contains';
-import './properties/collectionAssociation';
-import './properties/dateCreated';
-import './properties/isPrimaryTopicOf';
-import './properties/isPartOf';
-import './properties/image';
-import './properties/menus';
-import './properties/name';
-import './properties/organization';
-import './properties/text';
-import './properties/updateAction';
+import BaseColor from './properties/baseColor';
+import Contains from './properties/contains';
+import CollectionAssociation from './properties/collectionAssociation';
+import DateCreated from './properties/dateCreated';
+import IsPrimaryTopicOf from './properties/isPrimaryTopicOf';
+import IsPartOf from './properties/isPartOf';
+import Image from './properties/image';
+import Menus from './properties/menus';
+import Name from './properties/name';
+import Organization from './properties/organization';
+import Text from './properties/text';
+import UpdateAction from './properties/updateAction';
 
 const propTypes = {
   object: PropTypes.string,
@@ -40,32 +40,42 @@ const Thing = ({ object }) => (
 
 Thing.propTypes = propTypes;
 
-LinkedRenderStore.registerRenderer(Thing, NS.schema('Thing'));
-LinkedRenderStore.registerRenderer(
-  Thing,
-  NS.schema('Thing'),
-  RENDER_CLASS_NAME,
-  NS.argu('collection')
-);
-
-LinkedRenderStore.registerRenderer(
-  () => <Property label={[NS.schema('name'), NS.rdfs('label')]} />,
-  NS.schema('Thing'),
-  RENDER_CLASS_NAME,
-  NS.argu('inline')
-);
-
-LinkedRenderStore.registerRenderer(
-  () => <Property label={[NS.schema('name'), NS.rdfs('label')]} />,
-  NS.schema('Thing'),
-  RENDER_CLASS_NAME,
-  NS.argu('section')
-);
-
-
-LinkedRenderStore.registerRenderer(
-  () => <LinkCard><Property label={[NS.schema('name'), NS.rdfs('label')]} /></LinkCard>,
-  NS.schema('Thing'),
-  RENDER_CLASS_NAME,
-  NS.argu('parent')
-);
+export default [
+  LinkedRenderStore.registerRenderer(Thing, NS.schema('Thing')),
+  LinkedRenderStore.registerRenderer(
+    Thing,
+    NS.schema('Thing'),
+    RENDER_CLASS_NAME,
+    NS.argu('collection')
+  ),
+  LinkedRenderStore.registerRenderer(
+    () => <Property label={[NS.schema('name'), NS.rdfs('label')]} />,
+    NS.schema('Thing'),
+    RENDER_CLASS_NAME,
+    NS.argu('inline')
+  ),
+  LinkedRenderStore.registerRenderer(
+    () => <Property label={[NS.schema('name'), NS.rdfs('label')]} />,
+    NS.schema('Thing'),
+    RENDER_CLASS_NAME,
+    NS.argu('section')
+  ),
+  LinkedRenderStore.registerRenderer(
+    () => <LinkCard><Property label={[NS.schema('name'), NS.rdfs('label')]} /></LinkCard>,
+    NS.schema('Thing'),
+    RENDER_CLASS_NAME,
+    NS.argu('parent')
+  ),
+  BaseColor,
+  Contains,
+  CollectionAssociation,
+  DateCreated,
+  IsPrimaryTopicOf,
+  IsPartOf,
+  Image,
+  Menus,
+  ...Name,
+  Organization,
+  ...Text,
+  UpdateAction,
+];

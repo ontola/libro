@@ -1,9 +1,9 @@
-import { RENDER_CLASS_NAME } from 'link-lib';
+import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
+import { NS } from '../../helpers/LinkedRenderStore';
 import { SideBarLink } from '../../components';
 import path from '../../helpers/paths';
 
@@ -25,7 +25,7 @@ const GuestUserActorConnected = connect(() => ({
   redirectURL: window.location.href,
 }))(GuestUserActor);
 
-LinkedRenderStore.registerRenderer(
+export default LinkedRenderStore.registerRenderer(
   GuestUserActorConnected,
   NS.argu('GuestUserActor'),
   RENDER_CLASS_NAME,

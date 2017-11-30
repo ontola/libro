@@ -1,3 +1,4 @@
+import LinkedRenderStore from 'link-lib';
 import { PropertyBase } from 'link-redux';
 import React from 'react';
 
@@ -5,7 +6,7 @@ import {
   Heading,
   LDLink,
 } from '../../../components';
-import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
 
 class Name extends PropertyBase {
   getVariant() {
@@ -27,31 +28,28 @@ class Name extends PropertyBase {
   }
 }
 
-LinkedRenderStore.registerRenderer(
-  props => <Name headerSize="1" {...props} />,
-  NS.schema('CreativeWork'),
-  NS.schema('name')
-);
-
-LinkedRenderStore.registerRenderer(
-  props => <LDLink><Name headerSize="3" {...props} /></LDLink>,
-  NS.schema('CreativeWork'),
-  NS.schema('name'),
-  NS.argu('collection')
-);
-
-LinkedRenderStore.registerRenderer(
-  props => <LDLink><Name headerSize="4" {...props} /></LDLink>,
-  NS.schema('CreativeWork'),
-  NS.schema('name'),
-  NS.argu('section')
-);
-
-LinkedRenderStore.registerRenderer(
-  ({ linkedProp }) => <span>{linkedProp}</span>,
-  NS.schema('CreativeWork'),
-  NS.schema('name'),
-  NS.argu('parent')
-);
-
-export default Name;
+export default [
+  LinkedRenderStore.registerRenderer(
+    props => <Name headerSize="1" {...props} />,
+    NS.schema('CreativeWork'),
+    NS.schema('name')
+  ),
+  LinkedRenderStore.registerRenderer(
+    props => <LDLink><Name headerSize="3" {...props} /></LDLink>,
+    NS.schema('CreativeWork'),
+    NS.schema('name'),
+    NS.argu('collection')
+  ),
+  LinkedRenderStore.registerRenderer(
+    props => <LDLink><Name headerSize="4" {...props} /></LDLink>,
+    NS.schema('CreativeWork'),
+    NS.schema('name'),
+    NS.argu('section')
+  ),
+  LinkedRenderStore.registerRenderer(
+    ({ linkedProp }) => <span>{linkedProp}</span>,
+    NS.schema('CreativeWork'),
+    NS.schema('name'),
+    NS.argu('parent')
+  ),
+];

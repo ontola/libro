@@ -1,7 +1,8 @@
+import LinkedRenderStore from 'link-lib';
 import { LinkedObjectContainer, linkedPropType } from 'link-redux';
 import React from 'react';
 
-import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -12,10 +13,8 @@ const ThingOrganizationProp = ({ linkedProp }) =>
 
 ThingOrganizationProp.propTypes = propTypes;
 
-LinkedRenderStore.registerRenderer(
+export default LinkedRenderStore.registerRenderer(
   ThingOrganizationProp,
   NS.schema('Thing'),
   NS.schema('organization')
 );
-
-export default ThingOrganizationProp;

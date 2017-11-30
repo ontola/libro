@@ -1,3 +1,4 @@
+import LinkedRenderStore from 'link-lib';
 import {
   contextTypes,
   linkedPropType,
@@ -7,7 +8,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import LinkedRenderStore, { NS } from '../../../../helpers/LinkedRenderStore';
+import { NS } from '../../../../helpers/LinkedRenderStore';
 import { CardButton } from '../../../../components';
 import CollapsibleContainer from '../../../../containers/CollapsibleContainer';
 
@@ -38,10 +39,8 @@ Views.propTypes = {
   linkedProp: linkedPropType,
 };
 
-LinkedRenderStore.registerRenderer(
+export default LinkedRenderStore.registerRenderer(
   Views,
   NS.argu('InfiniteCollection'),
   NS.argu('views')
 );
-
-export default Views;

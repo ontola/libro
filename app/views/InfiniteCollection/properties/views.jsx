@@ -1,4 +1,7 @@
-import './views/dropdown';
+import Dropdown from './views/dropdown';
 import defaultView from './views/default';
 
-export default defaultView;
+export default [
+  defaultView,
+  Dropdown,
+];

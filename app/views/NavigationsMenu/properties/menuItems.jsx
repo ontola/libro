@@ -1,15 +1,15 @@
-import { getValueOrID } from 'link-lib';
+import LinkedRenderStore, { getValueOrID } from 'link-lib';
 import { LinkedObjectContainer, PropertyBase, linkedPropType } from 'link-redux';
 import React from 'react';
 
-import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   children: linkedPropType,
   linkedProp: linkedPropType,
 };
 
-class menuItems extends PropertyBase {
+export class menuItems extends PropertyBase {
   render() {
     const items = this
       .getLinkedObjectPropertyRaw()
@@ -30,14 +30,9 @@ class menuItems extends PropertyBase {
 
 menuItems.propTypes = propTypes;
 
-// I believe this one is deprecated
-[undefined, NS.argu('sidebar')].forEach((top) => {
-  LinkedRenderStore.registerRenderer(
-    menuItems,
-    [NS.argu('SubMenu')],
-    NS.argu('menuItems'),
-    top
-  );
-});
-
-export default menuItems;
+export default LinkedRenderStore.registerRenderer(
+  menuItems,
+  NS.argu('SubMenu'),
+  NS.argu('menuItems'),
+  [undefined, NS.argu('sidebar')]
+);

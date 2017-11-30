@@ -1,3 +1,4 @@
+import LinkedRenderStore from 'link-lib';
 import {
   linkedPropType,
   lowLevel,
@@ -12,7 +13,7 @@ import {
   Dropdown,
   SideBarLink,
 } from '../../../../components';
-import LinkedRenderStore, { NS } from '../../../../helpers/LinkedRenderStore';
+import { NS } from '../../../../helpers/LinkedRenderStore';
 
 const ViewsDropdown = (props) => {
   const label = <Property label={NS.schema('name')} topology={NS.argu('sidebar')} />;
@@ -35,11 +36,9 @@ ViewsDropdown.propTypes = {
   subject: subjectType.isRequired,
 };
 
-LinkedRenderStore.registerRenderer(
+export default LinkedRenderStore.registerRenderer(
   lowLevel.linkedSubject(ViewsDropdown),
   NS.argu('InfiniteCollection'),
   NS.argu('views'),
   NS.argu('sidebar')
 );
-
-export default ViewsDropdown;

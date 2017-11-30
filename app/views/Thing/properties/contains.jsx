@@ -1,3 +1,4 @@
+import LinkedRenderStore from 'link-lib';
 import {
   LinkedObjectContainer,
   Property,
@@ -8,7 +9,7 @@ import {
 import { NamedNode } from 'rdflib';
 import React, { Component } from 'react';
 
-import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
 import { FRONTEND_URL } from '../../../config';
 import {
   LDLink,
@@ -81,11 +82,9 @@ class Contains extends Component {
 
 Contains.propTypes = propTypes;
 
-LinkedRenderStore.registerRenderer(
+export default LinkedRenderStore.registerRenderer(
   Contains,
   [NS.schema('Thing'), new NamedNode('http://www.w3.org/2007/ont/link#Document')],
   NS.argu('contains'),
   NS.argu('sidebarBlock')
 );
-
-export default Contains;

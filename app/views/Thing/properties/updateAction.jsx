@@ -1,8 +1,9 @@
+import LinkedRenderStore from 'link-lib';
+import { PropertyBase } from 'link-redux';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { PropertyBase } from 'link-redux';
 
-import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
 
 class UpdateAction extends PropertyBase {
   render() {
@@ -14,10 +15,8 @@ class UpdateAction extends PropertyBase {
   }
 }
 
-LinkedRenderStore.registerRenderer(
+export default LinkedRenderStore.registerRenderer(
   UpdateAction,
   NS.schema('Thing'),
   NS.schema('updateAction')
 );
-
-export default UpdateAction;

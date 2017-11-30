@@ -1,8 +1,9 @@
+import LinkedRenderStore from 'link-lib';
 import { LinkedObjectContainer, linkedPropType } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
 
 const FABase = 'http://fontawesome.io/icon/';
 const propTypes = {
@@ -21,28 +22,15 @@ const ThingImageProp = ({ linkedProp }) => {
     return <FontAwesome name={linkedProp.split(FABase)[1]} />;
   }
   return (
-    <LinkedObjectContainer
-      object={linkedProp}
-      topology={NS.argu('detail')}
-    />
+    <LinkedObjectContainer object={linkedProp} />
   );
 };
 
 ThingImageProp.propTypes = propTypes;
 
-LinkedRenderStore.registerRenderer(
+export default LinkedRenderStore.registerRenderer(
   ThingImageProp,
   NS.schema('Thing'),
-  [NS.schema('image'), NS.dbo('thumbnail'), NS.wdt('P18')]
+  [NS.schema('image'), NS.dbo('thumbnail'), NS.wdt('P18')],
+  [undefined, NS.argu('sidebar'), NS.argu('sidebarBlock')]
 );
-
-[NS.argu('sidebar'), NS.argu('sidebarBlock')].forEach((top) => {
-  LinkedRenderStore.registerRenderer(
-    ThingImageProp,
-    NS.schema('Thing'),
-    [NS.schema('image'), NS.dbo('thumbnail'), NS.wdt('P18')],
-    top
-  );
-});
-
-export default ThingImageProp;

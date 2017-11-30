@@ -1,20 +1,21 @@
-import { RENDER_CLASS_NAME } from 'link-lib';
+import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
 import React from 'react';
 
-import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
+import { NS } from '../../helpers/LinkedRenderStore';
 
-import './properties/name';
+import Name from './properties/name';
 
 const OrganizationSidebarBlock = () => (
   <Property label={NS.argu('navigationsMenu')} topology={NS.argu('sidebar')} />
 );
 
-LinkedRenderStore.registerRenderer(
-  OrganizationSidebarBlock,
-  [NS.schema('Organization'), NS.argu('Page')],
-  RENDER_CLASS_NAME,
-  NS.argu('sidebarBlock')
-);
-
-export default OrganizationSidebarBlock;
+export default [
+  LinkedRenderStore.registerRenderer(
+    OrganizationSidebarBlock,
+    [NS.schema('Organization'), NS.argu('Page')],
+    RENDER_CLASS_NAME,
+    NS.argu('sidebarBlock')
+  ),
+  Name
+];

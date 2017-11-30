@@ -1,7 +1,8 @@
+import LinkedRenderStore from 'link-lib';
 import { LinkedObjectContainer, linkedPropType } from 'link-redux';
 import React from 'react';
 
-import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -12,11 +13,9 @@ const ThingMenusProp = ({ linkedProp }) =>
 
 ThingMenusProp.propTypes = propTypes;
 
-LinkedRenderStore.registerRenderer(
+export default LinkedRenderStore.registerRenderer(
   ThingMenusProp,
   NS.schema('Thing'),
   [NS.argu('menus'), NS.argu('navigationsMenu')],
   NS.argu('sidebarBlock')
 );
-
-export default ThingMenusProp;

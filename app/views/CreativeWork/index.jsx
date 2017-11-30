@@ -1,6 +1,6 @@
-import React from 'react';
-import { RENDER_CLASS_NAME } from 'link-lib';
+import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
+import React from 'react';
 
 import {
   Card,
@@ -10,9 +10,12 @@ import {
   HoverBox,
   LinkedDetailDate,
 } from '../../components';
-import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
+import { NS } from '../../helpers/LinkedRenderStore';
 
-import './properties/voteEvents';
+import Arguments from './properties/arguments';
+import Creator from './properties/creator';
+import Name from './properties/name';
+import VoteEvents from './properties/voteEvents';
 
 const CreativeWork = () => (
   <Card>
@@ -40,20 +43,22 @@ const CreativeWorkSection = () => (
   </HoverBox>
 );
 
-LinkedRenderStore.registerRenderer(CreativeWork, NS.schema('CreativeWork'));
-LinkedRenderStore.registerRenderer(
-  CreativeWork,
-  NS.schema('CreativeWork'),
-  RENDER_CLASS_NAME,
-  NS.argu('collection')
-);
-LinkedRenderStore.registerRenderer(
-  CreativeWorkSection,
-  NS.schema('CreativeWork'),
-  RENDER_CLASS_NAME,
-  NS.argu('section')
-);
-
-export { default as Arguments } from './properties/arguments';
-export { default as Creator } from './properties/creator';
-export { default as Name } from './properties/name';
+export default [
+  LinkedRenderStore.registerRenderer(CreativeWork, NS.schema('CreativeWork')),
+  LinkedRenderStore.registerRenderer(
+    CreativeWork,
+    NS.schema('CreativeWork'),
+    RENDER_CLASS_NAME,
+    NS.argu('collection')
+  ),
+  LinkedRenderStore.registerRenderer(
+    CreativeWorkSection,
+    NS.schema('CreativeWork'),
+    RENDER_CLASS_NAME,
+    NS.argu('section')
+  ),
+  ...Arguments,
+  Creator,
+  ...Name,
+  VoteEvents,
+];

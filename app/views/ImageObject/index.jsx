@@ -1,27 +1,33 @@
-import { RENDER_CLASS_NAME } from 'link-lib';
+import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
 import React from 'react';
 
 import { SideBarLinkImageWrapper } from '../../components/SideBarLink';
-import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
+import { NS } from '../../helpers/LinkedRenderStore';
+
+import thumbnail from './properties/thumbnail';
 
 const ImageObject = () => <Property label={NS.schema('thumbnail')} />;
 
-[
-  undefined,
-  NS.argu('collection'),
-  NS.argu('detail'),
-  NS.argu('voteBubble')
-].forEach((top) => {
+export default [
   LinkedRenderStore.registerRenderer(
     ImageObject,
     NS.schema('ImageObject'),
     RENDER_CLASS_NAME,
-    top
-  );
-});
-
-[NS.argu('sidebar'), NS.argu('sidebarBlock')].forEach((top) => {
+    NS.argu('collection')
+  ),
+  LinkedRenderStore.registerRenderer(
+    ImageObject,
+    NS.schema('ImageObject'),
+    RENDER_CLASS_NAME,
+    [
+      undefined,
+      NS.argu('collection'),
+      NS.argu('detail'),
+      NS.argu('sidebarBlock'),
+      NS.argu('voteBubble'),
+    ]
+  ),
   LinkedRenderStore.registerRenderer(
     () => (
       <SideBarLinkImageWrapper>
@@ -30,10 +36,7 @@ const ImageObject = () => <Property label={NS.schema('thumbnail')} />;
     ),
     NS.schema('ImageObject'),
     RENDER_CLASS_NAME,
-    top
-  );
-});
-
-export { default as Thumbnail } from './properties/thumbnail';
-
-export default ImageObject;
+    [NS.argu('sidebar')]
+  ),
+  ...thumbnail
+];

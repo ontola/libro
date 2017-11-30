@@ -1,30 +1,31 @@
+import LRS from '../helpers/LinkedRenderStore';
+
 /**
  * This document is purely for including all the views into the code.
  * Please properly include each file when access to the code is needed.
  */
-import './Thing';
-import './CreativeWork';
-
-import './Collection';
+import Thing from './Thing';
+import CreativeWork from './CreativeWork';
+import Collection from './Collection';
 // import './Comment';
-import './CreateAction';
-import './EntryPoint';
-import './GuestUserActor';
-import './ImageObject';
-import './InfiniteCollection';
+import CreateAction from './CreateAction';
+import EntryPoint from './EntryPoint';
+import GuestUserActor from './GuestUserActor';
+import ImageObject from './ImageObject';
+import InfiniteCollection from './InfiniteCollection';
 // import './LinkedRecord';
-import './MenuItem';
+import MenuItem from './MenuItem';
+import MenuSection from './MenuSection';
 // import './Motion';
-import './MenuSection';
-import './NavigationsMenu';
-import './Notification';
-import './OrganizationsMenu';
+import NavigationsMenu from './NavigationsMenu';
+import Notification from './Notification';
+import OrganizationsMenu from './OrganizationsMenu';
 // import './OpinionBubble';
-import './Organization';
-import './Person';
-import './SubMenu';
+import Organization from './Organization';
+import Person from './Person';
+import SubMenu from './SubMenu';
 // import './Question';
-import './UserActor';
+import UserActor from './UserActor';
 // import './VoteCompareCells';
 // import './VoteCompareRows';
 // import './VoteEvent';
@@ -32,3 +33,23 @@ import './UserActor';
 // import './VoteMatch';
 // import './VoteSide';
 // import './VoteSidePage';
+
+LRS.registerAll(
+  ...Thing,
+  ...CreativeWork,
+  ...CreateAction,
+  ...Collection,
+  ...EntryPoint,
+  GuestUserActor,
+  ...ImageObject,
+  ...InfiniteCollection,
+  ...MenuItem,
+  ...MenuSection,
+  ...NavigationsMenu,
+  ...Notification,
+  ...OrganizationsMenu,
+  ...Organization,
+  ...Person,
+  ...SubMenu,
+  UserActor
+);

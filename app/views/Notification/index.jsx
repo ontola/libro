@@ -1,4 +1,4 @@
-import { RENDER_CLASS_NAME } from 'link-lib';
+import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
 import React from 'react';
 
@@ -6,7 +6,13 @@ import {
   Card,
   CardContent,
 } from '../../components';
-import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
+import { NS } from '../../helpers/LinkedRenderStore';
+
+import Sidebar from './sidebar';
+import Creator from './properties/creator';
+import ReadAction from './properties/readAction';
+import Target from './properties/target';
+import Unread from './properties/unread';
 
 const Notification = () => (
   <div style={{ position: 'relative' }}>
@@ -25,19 +31,16 @@ const Notification = () => (
   </div>
 );
 
-[undefined, NS.argu('collection')].forEach((top) => {
+export default [
   LinkedRenderStore.registerRenderer(
     Notification,
     NS.argu('Notification'),
     RENDER_CLASS_NAME,
-    top
-  );
-});
-
-export { default as Sidebar } from './sidebar';
-export { default as Creator } from './properties/creator';
-export { default as ReadAction } from './properties/readAction';
-export { default as Target } from './properties/target';
-export { default as Unread } from './properties/unread';
-
-export default Notification;
+    [undefined, NS.argu('collection')]
+  ),
+  Sidebar,
+  Creator,
+  ReadAction,
+  Target,
+  Unread,
+];

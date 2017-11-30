@@ -1,4 +1,4 @@
-import { getValueOrID } from 'link-lib';
+import LinkedRenderStore, { getValueOrID } from 'link-lib';
 import {
   LinkedObjectContainer,
   contextTypes,
@@ -11,7 +11,7 @@ import React from 'react';
 import {
   Columns,
 } from '../../../components';
-import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
 
 const Views = (props, context) => {
   const prop = getLinkedObjectPropertyRaw(props.label, props.subject, context.linkedRenderStore);
@@ -32,17 +32,16 @@ Views.propTypes = {
   label: labelType.isRequired,
   subject: subjectType
 };
-
-LinkedRenderStore.registerRenderer(
-  Views,
-  NS.argu('Collection'),
-  NS.argu('views')
-);
-LinkedRenderStore.registerRenderer(
-  Views,
-  NS.argu('Collection'),
-  NS.argu('views'),
-  NS.argu('section')
-);
-
-export default Views;
+export default [
+  LinkedRenderStore.registerRenderer(
+    Views,
+    NS.argu('Collection'),
+    NS.argu('views')
+  ),
+  LinkedRenderStore.registerRenderer(
+    Views,
+    NS.argu('Collection'),
+    NS.argu('views'),
+    NS.argu('section')
+  ),
+];

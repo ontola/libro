@@ -1,9 +1,10 @@
+import LinkedRenderStore from 'link-lib';
 import { PropertyBase } from 'link-redux';
 import React from 'react';
 import { connect } from 'react-redux';
 
 import { Button } from '../../../components';
-import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
 import { gotoPage } from '../../../state/pagination/actions';
 import { getPage } from '../../../state/pagination/selectors';
 
@@ -100,10 +101,8 @@ const ConnectedFirst = connect((state, { collectionIRI, linkedProp }) => ({
   currentPage: getPage(state, collectionIRI) || linkedProp
 }))(First);
 
-LinkedRenderStore.registerRenderer(
+export default LinkedRenderStore.registerRenderer(
   ConnectedFirst,
   NS.argu('Collection'),
   NS.argu('first')
 );
-
-export default First;

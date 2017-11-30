@@ -1,18 +1,21 @@
-import React from 'react';
-import { RENDER_CLASS_NAME } from 'link-lib';
+import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
+import React from 'react';
 
-import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
+import { NS } from '../../helpers/LinkedRenderStore';
 
-import './properties/menuItems';
+import MenuItems from './properties/menuItems';
 
 const NavigationsMenuSidebar = () => (
   <Property forceRender label={NS.argu('menuItems')} />
 );
 
-LinkedRenderStore.registerRenderer(
-  NavigationsMenuSidebar,
-  NS.argu('NavigationsMenu'),
-  RENDER_CLASS_NAME,
-  NS.argu('sidebar')
-);
+export default [
+  LinkedRenderStore.registerRenderer(
+    NavigationsMenuSidebar,
+    NS.argu('NavigationsMenu'),
+    RENDER_CLASS_NAME,
+    NS.argu('sidebar')
+  ),
+  MenuItems,
+];

@@ -1,4 +1,4 @@
-import { RENDER_CLASS_NAME } from 'link-lib';
+import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   LinkedObjectContainer,
   Property,
@@ -10,8 +10,15 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
+import { NS } from '../../helpers/LinkedRenderStore';
 import { getPage } from '../../state/pagination/selectors';
+
+// export { default as voteMatch } from './voteMatch';
+import First from './properties/first';
+import Member from './properties/member';
+import Name from './properties/name';
+import CreateActionProp from './properties/CreateActionProp';
+import Views from './properties/views';
 
 const viewsOrMembers = (views, members, topology) => (
   <Property
@@ -75,27 +82,25 @@ CollectionSection.contextTypes = {
 
 const LinkedCollectionSection = lowLevel.linkedSubject(lowLevel.linkedVersion(CollectionSection));
 
-[
-  undefined,
-  NS.argu('section'),
-  NS.argu('voteEventCollection')
-].forEach((top) => {
+export default [
   LinkedRenderStore.registerRenderer(
     LinkedCollectionSection,
     [NS.argu('Collection'), NS.hydra('Collection')],
     RENDER_CLASS_NAME,
-    top
-  );
-});
-LinkedRenderStore.registerRenderer(
-  ConnectedCollection,
-  [NS.argu('Collection'), NS.hydra('Collection')],
-  NS.argu('collection')
-);
-
-// export { default as voteMatch } from './voteMatch';
-export { default as First } from './properties/first';
-export { default as Member } from './properties/member';
-export { default as Name } from './properties/name';
-export { default as CreateActionProp } from './properties/CreateActionProp';
-export { default as Views } from './properties/views';
+    [
+      undefined,
+      NS.argu('section'),
+      NS.argu('voteEventCollection')
+    ]
+  ),
+  LinkedRenderStore.registerRenderer(
+    ConnectedCollection,
+    [NS.argu('Collection'), NS.hydra('Collection')],
+    NS.argu('collection')
+  ),
+  First,
+  ...Member,
+  Name,
+  CreateActionProp,
+  ...Views,
+];
