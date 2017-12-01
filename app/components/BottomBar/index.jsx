@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { checkLuminance } from '../../helpers/color';
 import path from '../../helpers/paths';
+import { checkLuminance } from '../../helpers/color';
 import BottomBarButton from '../BottomBarButton';
 
 import './BottomBar.scss';
