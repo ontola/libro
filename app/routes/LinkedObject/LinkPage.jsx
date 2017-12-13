@@ -11,7 +11,7 @@ import {
 } from 'components';
 import SideBarContainer from 'containers/SideBarContainer';
 import BottomBarContainer from 'containers/BottomBarContainer';
-import NewNavbarContainer from 'containers/NewNavbarContainer';
+import NavbarContainer from 'containers/NavbarContainer';
 import resetErrorMessage from 'state/communication/actions';
 import { getErrorBool, getErrorMsg } from 'state/communication/selectors';
 
@@ -32,8 +32,8 @@ const sidebar = () => (
   <LinkedObjectContainer
     object={window.location.href}
     topology="argu:page"
-    onError={NewNavbarContainer}
-    onLoad={NewNavbarContainer}
+    onError={NavbarContainer}
+    onLoad={NavbarContainer}
   >
     <Property label="schema:organization" topology="argu:sidebarBlock" />
   </LinkedObjectContainer>

@@ -11,7 +11,7 @@ import {
 } from 'components';
 import SideBarContainer from 'containers/SideBarContainer';
 import BottomBarContainer from 'containers/BottomBarContainer';
-import NewNavbarContainer from 'containers/NewNavbarContainer';
+import NavbarContainer from 'containers/NavbarContainer';
 import resetErrorMessage from 'state/communication/actions';
 import { getErrorBool, getErrorMsg, getLoadingBool } from 'state/communication/selectors';
 
@@ -50,7 +50,7 @@ const App = ({
     <SideBarContainer
       slim
       id="Navbar"
-      sidebar={<NewNavbarContainer />}
+      sidebar={<NavbarContainer />}
     >
       <BottomBarContainer />
       <div id="start-of-content">
