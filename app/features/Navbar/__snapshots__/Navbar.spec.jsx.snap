@@ -47,6 +47,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                 <button
                   alt="Menu uitvouwen of inklappen"
                   className="Button Button--plain Button--default SideBarCollapsible__toggle"
+                  data-test="Button-button"
                   disabled={undefined}
                   onClick={[Function]}
                   type="button"

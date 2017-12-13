@@ -46,22 +46,37 @@ const Attachment = ({
         title={title}
       >
         <FontAwesome className="Attachment__icon" name="file" />
-        <div className="Attachment__text">{title}</div>
+        <div className="Attachment__text" data-test="Attachment-title">{title}</div>
         {(percentageDownloaded !== undefined) &&
-          <div className="Attachment__fill" style={fillStyle} />}
+          <div className="Attachment__fill" data-test="Attachment-progress" style={fillStyle} />}
       </a>
       {(!isDownloaded && !isDownloading) &&
-        <a className="Attachment__inside-button" href="/" title="Wordt gedownload...">
+        <a
+          className="Attachment__inside-button"
+          data-test="Attachment-download"
+          href="/"
+          title="Download bestand"
+        >
           <FontAwesome className="Attachment__icon" name="download" />
         </a>
       }
       {isDownloading &&
-        <a className="Attachment__inside-button" href="/" title="Download bestand">
+        <a
+          className="Attachment__inside-button"
+          data-test="Attachment-downloading"
+          href="/"
+          title="Wordt gedownload..."
+        >
           <FontAwesome spin className="Attachment__icon" name="spinner" />
         </a>
       }
       {hasPreview &&
-        <a className="Attachment__inside-button" href="/" title="Bekijk voorbeeldweergave">
+        <a
+          className="Attachment__inside-button"
+          data-test="Attachment-preview"
+          href="/"
+          title="Bekijk voorbeeldweergave"
+        >
           <FontAwesome className="Attachment__icon" name="search-plus" />
         </a>
       }

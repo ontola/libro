@@ -10,7 +10,7 @@ const propTypes = {
   /** Each child becomes a column. */
   children: PropTypes.oneOfType([
     PropTypes.array,
-    PropTypes.object,
+    PropTypes.node,
   ]).isRequired,
   flexBasis: PropTypes.string,
   flexGrow: PropTypes.bool,
@@ -38,10 +38,11 @@ const Columns = ({
     [`Columns--size-${size}`]: size,
   });
 
-  const renderColumns = children.map((column, i) => (
+  const normChildren = Array.isArray(children) ? children : [children];
+  const renderColumns = normChildren.map(column => (
     <div
       className="Column"
-      key={i}
+      key={`col-${column.key}`}
       style={{
         flexBasis,
       }}

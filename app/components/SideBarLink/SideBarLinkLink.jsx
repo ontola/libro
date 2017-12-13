@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { closeSideBar } from '../../state/sideBars/actions';
 
@@ -18,14 +18,14 @@ const SideBarLinkLink = ({
   onClick,
   to,
 }) => (
-  <Link
+  <NavLink
     activeClassName="SideBarLink--active"
-    onlyActiveOnIndex={isIndex}
+    exact={isIndex}
     to={to}
     onClick={onClick}
   >
     {children}
-  </Link>
+  </NavLink>
 );
 
 SideBarLinkLink.propTypes = propTypes;

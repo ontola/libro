@@ -1,23 +1,27 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import './LinkList.scss';
 
 const propTypes = {
-  links: PropTypes.arrayOf(PropTypes.object).isRequired,
+  links: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string,
+    to: PropTypes.string,
+  })).isRequired,
 };
 
 const LinkList = ({ links }) => {
-  const generateLinks = links.map((link, i) => (
-    <Link
-      onlyActiveOnIndex
+  const generateLinks = links.map(link => (
+    <NavLink
+      exact
       activeClassName="LinkList__link--active"
       className="LinkList__link"
-      key={i}
+      data-test="LinkList-link"
+      key={`${link.label}-${link.to}`}
       to={link.to}
     >{link.label}
-    </Link>
+    </NavLink>
   ));
 
   return (

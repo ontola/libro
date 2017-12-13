@@ -1,17 +1,27 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import { assert } from 'chai';
 
 import Columns from './';
 
-describe('Columns component', () => {
-  const wrapper = shallow(<Columns><div>Joe</div><div>Joe</div></Columns>);
+const exampleChildren = [<div>Joe</div>, <div>Joe</div>];
 
-  it('should render at least 2 Columns', () => {
-    assert.isAbove(
-      wrapper.find('.Column').length,
-      1,
-      'Columns does not have enough Column elements'
-    );
+argUnit(Columns, () => {
+  describe('with node child', () => {
+    set('children', () => <p>test</p>);
+
+    it('renders', () => {
+      expect(subject).toMatchSnapshot();
+    });
+  });
+
+  describe('with array child', () => {
+    set('children', () => exampleChildren);
+
+    it('renders', () => {
+      expect(subject).toMatchSnapshot();
+    });
+
+    it('renders all children', () => {
+      expect(subject.children()).toHaveLength(exampleChildren.length);
+    });
   });
 });

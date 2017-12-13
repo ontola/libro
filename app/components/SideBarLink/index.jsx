@@ -40,7 +40,7 @@ const SideBarLink = ({
 }) => (
   <SideBarLinkWrapper bold={bold}>
     <SideBarLinkLink
-      onlyActiveOnIndex={isIndex}
+      exact={isIndex}
       to={to}
       onClick={closeBarOnClick}
     >

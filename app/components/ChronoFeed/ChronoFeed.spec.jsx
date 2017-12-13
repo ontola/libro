@@ -10,7 +10,7 @@ describe('ChronoFeed component', () => {
     const comp = mount((
       <ChronoFeed
         renderItem={id => <div key={id}>{id}</div>}
-        speechIds={[1, 2, 3]}
+        speechIds={['1', '2', '3']}
       >
         Content
       </ChronoFeed>

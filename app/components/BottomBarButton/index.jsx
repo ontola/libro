@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import Button from '../Button';
 
@@ -47,13 +47,13 @@ const BottomBarButton = ({
   return (
     <div className="BottomBarButton">
       {to &&
-        <Link
+        <NavLink
           activeClassName="BottomBarButton--active"
           onlyActiveOnIndex={isIndex}
           to={to}
         >
           {LinkContent}
-        </Link>}
+        </NavLink>}
       {onClick &&
         <Button
           plain

@@ -44,7 +44,7 @@ const propTypes = {
   /** Removes all styling. */
   theme: PropTypes.oneOf(buttonThemes),
   type: PropTypes.string,
-  variant: PropTypes.oneOf(['yes', 'neutral', 'no', 'upvote', 'comment', 'facebook', 'google']),
+  variant: PropTypes.oneOf(['yes', 'pro', 'neutral', 'no', 'con', 'upvote', 'comment', 'facebook', 'google']),
 };
 
 const defaultProps = {
@@ -88,6 +88,7 @@ const Button = ({
     'Button--small': small,
     [`Button--${theme}`]: theme,
     [`Button--variant-${variant}`]: variant,
+    [className]: className,
   });
 
   // Used to remove the annoying focus outline border after clicking
@@ -109,7 +110,8 @@ const Button = ({
     return (
       <LinkDuo
         alt={alt}
-        className={`${btnClass} ${className}`}
+        className={btnClass}
+        data-test="Button-link"
         disabled={disabled || loading}
         role="button"
         to={href}
@@ -118,6 +120,7 @@ const Button = ({
         {icon &&
           <FontAwesome
             className="Button__icon"
+            data-test="Button-icon"
             name={currentIcon()}
             spin={loading}
           />
@@ -131,7 +134,8 @@ const Button = ({
   return (
     <button
       alt={alt}
-      className={`${btnClass} ${className}`}
+      className={btnClass}
+      data-test="Button-button"
       disabled={disabled || loading}
       type={type}
       onClick={onClickAndBlur}
@@ -139,6 +143,7 @@ const Button = ({
       {icon &&
         <FontAwesome
           className="Button__icon"
+          data-test="Button-icon"
           name={currentIcon()}
           spin={loading}
         />

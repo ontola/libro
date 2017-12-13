@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Columns with array child renders 1`] = `
+<div
+  className="Columns Columns--flex-grow Columns--gutter-medium"
+>
+  <div
+    className="Column"
+    key="col-null"
+    style={
+      Object {
+        "flexBasis": "19em",
+      }
+    }
+  >
+    <div>
+      Joe
+    </div>
+  </div>
+  <div
+    className="Column"
+    key="col-null"
+    style={
+      Object {
+        "flexBasis": "19em",
+      }
+    }
+  >
+    <div>
+      Joe
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Columns with node child renders 1`] = `
+<div
+  className="Columns Columns--flex-grow Columns--gutter-medium"
+>
+  <div
+    className="Column"
+    key="col-null"
+    style={
+      Object {
+        "flexBasis": "19em",
+      }
+    }
+  >
+    <p>
+      test
+    </p>
+  </div>
+</div>
+`;
