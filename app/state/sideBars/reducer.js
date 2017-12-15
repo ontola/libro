@@ -28,14 +28,16 @@ const initialState = new Map({
   items: new Map(),
 });
 
+const closeSidebar = (state, sidebarName) => updateRecordValue(state, sidebarName, 'opened', false);
+
 const recordCollapsible = ({ id }) =>
   new SideBar({ id });
 
 const sideBars = handleActions({
+  '@@router/LOCATION_CHANGE': state => closeSidebar(state, 'Navbar'),
   [SIDEBAR_ADD]: (state, { payload }) =>
     setRecord(state, recordCollapsible(payload), payload.id),
-  [SIDEBAR_CLOSE]: (state, { payload }) =>
-    updateRecordValue(state, payload, 'opened', false),
+  [SIDEBAR_CLOSE]: (state, { payload }) => closeSidebar(state, payload),
   [SIDEBAR_DOCK]: (state, { payload }) =>
     updateRecordValue(state, payload, 'docked', true),
   [SIDEBAR_OPEN]: (state, { payload }) =>
