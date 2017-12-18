@@ -7,6 +7,8 @@ import {
 } from 'helpers/reducers';
 import {
   COLL_ADD,
+  COLL_CLOSE_ONE,
+  COLL_OPEN_GROUPED,
   COLL_TOGGLE_GROUP,
   COLL_TOGGLE_ONE,
 } from 'state/action-types';
@@ -45,18 +47,42 @@ const toggleAll = (state, group) => {
     coll.set('opened', false)));
 };
 
+const closeGroup = (state, group) => {
+  const modifiedItems = state
+    .get('items')
+    .filter(item => item.get('group') === group)
+    .map(item => item.set('opened', false));
+  return state.mergeIn(['items'], modifiedItems);
+};
+
 const recordCollapsible = ({ group, startOpened }) =>
   new Collapsible({ group, opened: startOpened });
 
+const openOne = (state, payload) =>
+  state.setIn(['items', payload.identifier, 'opened'], true);
+
+const closeOne = (state, payload) =>
+  state.setIn(['items', payload.identifier, 'opened'], false);
+
 const collapsible = handleActions({
+  '@@router/LOCATION_CHANGE': state =>
+    closeGroup(state, 'Navbar'),
+
   [COLL_ADD]: (state, { payload }) =>
     setRecord(state, recordCollapsible(payload), payload.identifier),
+
+  [COLL_CLOSE_ONE]: (state, { payload }) =>
+    closeOne(state, payload, 'opened'),
+
+  [COLL_OPEN_GROUPED]: (state, { payload }) =>
+    openOne(closeGroup(state, payload.group), payload),
 
   [COLL_TOGGLE_GROUP]: (state, { payload }) =>
     toggleAll(state, payload.group),
 
   [COLL_TOGGLE_ONE]: (state, { payload }) =>
-    toggleValue(state, payload, 'opened'),
+    toggleValue(state, payload, 'opened')
+
 }, initialState);
 
 export default collapsible;

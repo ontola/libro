@@ -11,6 +11,7 @@ import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
 const CurrentActor = () => (
   <SideBarCollapsible
     alwaysMountChildren
+    id="CurrentActorNavBar"
     labelComp={<Property label={NS.argu('actor')} />}
   >
     <LinkedObjectContainer object={`${FRONTEND_URL}/menus/user`}>

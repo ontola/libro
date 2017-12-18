@@ -5,7 +5,7 @@ import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
 
 import CollapsibleContainer from 'containers/CollapsibleContainer';
-import { initializeCollapsible, toggleOne } from 'state/collapsible/actions';
+import { openInGrouped, closeOne } from 'state/collapsible/actions';
 import { getCollapsibleOpened } from 'state/collapsible/selectors';
 
 import Button from '../Button';
@@ -48,7 +48,11 @@ const SideBarCollapsible = ({
           <FontAwesome name="caret-right" />
         </Button>
       </div>
-      <CollapsibleContainer alwaysMountChildren={alwaysMountChildren} id={id}>
+      <CollapsibleContainer
+        alwaysMountChildren={alwaysMountChildren}
+        group="Navbar"
+        id={id}
+      >
         {children}
       </CollapsibleContainer>
     </div>
@@ -62,7 +66,20 @@ export default connect(
     open: getCollapsibleOpened(state, ownProps.id),
   }),
   (dispatch, { id }) => ({
-    onClickToggle: () => dispatch(toggleOne(id)),
-    onInitializeCollapsible: data => dispatch(initializeCollapsible(data)),
-  })
+    onClose: () => dispatch(closeOne({
+      identifier: id,
+    })),
+    onOpen: () => dispatch(openInGrouped({
+      group: 'Navbar',
+      identifier: id,
+    })),
+  }),
+  (stateProps, dispatchProps, ownProps) => Object.assign(
+    {},
+    ownProps,
+    stateProps,
+    {
+      onClickToggle: stateProps.open ? dispatchProps.onClose : dispatchProps.onOpen,
+    }
+  )
 )(SideBarCollapsible);
