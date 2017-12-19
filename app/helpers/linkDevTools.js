@@ -376,6 +376,7 @@ export function showHelp() {
     helpTableObj('getProp', "Returns the component's formatted 'object property' by using `getLinkedObjectProperty`."),
     helpTableObj('getPropRaw', "Returns the component's formatted 'object property' by using `getLinkedObjectPropertyRaw`."),
     helpTableObj('help', 'Displays this help message.'),
+    helpTableObj('snapshot(n)', "Returns JS-formatted data for snapshot testing `n` LOC's deep."),
     helpTableObj('toObject(arr)', 'Converts an array of statements to an object.'),
     helpTableObj('topology', "Returns the current location's topology."),
     helpTableObj('types', ''),

@@ -32,7 +32,64 @@ All styling must be done in its respective component. Don't use ClassNames from 
 [React-styleguidist styleguide](https://github.com/sapegin/react-styleguidist) can be used as a reference, and also to develop individual components. RUn `npm run dev` or `npm run styleguide-server` and visit http://localhost:5000/ to show the styleguide.
 
 ### Testing
-Tests are made using mocha, chai assert and enzyme ([docs](http://airbnb.io/enzyme/docs/api/index.html)). Place the test files in the folder of the module. Name them `Module.spec.js`. If there are more tests (for various modules), add them to the `tests` folder of a component. Run all tests using `npm run test`.
+Tests are written using jest+enzyme with additional expect matcher packages and some of our own
+helper methods.
+
+Some literature:
+* [Jest introduction chapters](https://facebook.github.io/jest/docs/en/getting-started.html)
+* [Testing introduction](https://blog.progressly.com/what-makes-a-good-test-dff3df6058a2)
+
+Matcher documentations:
+* [Jest expect matchers](https://github.com/blainekasten/enzyme-matchers#assertions)
+* [Enzyme matchers](https://github.com/blainekasten/enzyme-matchers#assertions)
+* [Jest-rspec](https://github.com/negativetwelve/jest-plugins/tree/master/packages/jest-plugin-set)
+* [Enzyme shallow](http://airbnb.io/enzyme/docs/api/shallow.html)
+* and our custom helper in `test/specHelper.js`
+
+In general, only enzyme shallow should be used, since it's a lot faster and the additional
+capabilities of `mount` are not needed in our unit tests.
+
+### Markers
+We use test markers to determine whether features were rendered. Decoupling these features allow us
+to separate proof from implementation, which in turn makes implementation refactoring easier.
+
+The markers have the following structure (in [RFC5234 ABNF](https://tools.ietf.org/html/rfc5234)):
+
+```ABNF
+marker = component-name "-" feature-name *( "-" feature-name ) ; upcase component name with appended (nested) feature names
+feature-name   = 1*varchar                ; The name of a specific feature, often named semantically or based on an argument.
+component-name = 1*pascalcase             ; The name of the class, module, or component.
+varchar        =  ALPHA / DIGIT / "_"     ; We allow alphanum and underscores
+pascalcase     =  uppercase 1*( lowercase / digit / uppercase )
+lowercase      =  %x61-%x7A               ; a-z
+uppercase      =  %x41-%x5A               ; A-Z
+```
+
+The feature name casing generally is dependent on the origin of the word; eg: `Notification-Unread` or `Attachment-preview`
+
+#### Test structure
+Tests are written on three levels;
+1. Feature tests - These should cover the integration of multiple coupled views, e.g. entire features such as rendering the navbar or a motion page.
+2. View tests - These should cover the integration between data and (multiple tightly coupled) views, e.g. submenu rendering.
+3. Unit tests - These cover all the permutations of the base components, e.g. all the props and their output.
+
+The unit (components) tests generally consist of two components:
+- A general snapshot test to ensure all components are in order and the correct classes have been set
+- Many marker-based tests to ensure all functionality is present and switched according to the requirements (arguments/data).
+
+#### Golden tests
+Since the underlying architecture/structure is still in early development, the exact requirements of
+tests are still ill-defined, so the following files can be used for reference for the creation of
+additional specs;
+- Feature tests: `app/features/Navbar/*.spec.jsx`
+- View tests: `app/views/MenuItem/MenuItem.spec.js`
+- Unit tests: `app/components/Button/Button.spec.js`
+
+#### Harvesting data
+The feature and view tests require data to be feeded into the system, but since we don't have a
+factory system yet, the data needs to be harvested manually for the time being. Luckily,
+snapshot-testing compatible JS data can be obtained by running `dev.snapshot()` on the desired LOC
+in the browser console.
 
 ### Security
 Uses [NSP](https://github.com/nodesecurity/nsp) and [Retire.js](https://github.com/RetireJS/retire.js). Run tests using `npm run secure`.

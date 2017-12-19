@@ -63,10 +63,25 @@ function defineMarker(ns) {
   set('markerNS', () => ns);
 }
 
+/**
+ * Generate a marker for the current testing scope (ABNF `component-name`) to use in `find` queries.
+ * @param {String} name The name of the primary feature (ABNF required `feature-name`).
+ * @param {String[]} [other] List of descendant feature names (ABNF optional `feature-name`'s).
+ * @return {string} A CSS query search string for the associated marker name.
+ */
 function marker(name, ...other) {
   return `[data-test="${markerNS}-${name}${Array.isArray(other) ? ['', ...other].join('-') : ''}"]`;
 }
 
+/**
+ * Low-level Argu unit test interface. Use {argUnit} unless you have no other option.
+ * @see {argUnit}
+ * @param {String} desc Description of the component, also used as a marker prefix.
+ * @param {React.Component} comp The component to test.
+ * @param {String[]} props The properties to be defined.
+ * @param {function} func The test body.
+ * @return {undefined}
+ */
 function argUnitCustom(desc, comp, props, func) {
   describe(desc, () => {
     defineMarker(desc);
@@ -77,11 +92,13 @@ function argUnitCustom(desc, comp, props, func) {
 }
 
 /**
- * Sets up an Argu-style unit test.
+ * Sets up an Argu-style unit test;
+ * It sets up the subject as a shallow rendering of {Component}.
+ * It declares all the {Component}'s prop types as settable variables.
+ * It defines the marker prefix to be the name of the component.
  * @param {React.Component} comp The component to test.
- * @param {String[]} props The properties to be defined.
  * @param {function} func The test body.
- * @returns {undefined}
+ * @return {undefined}
  */
 function argUnit(comp, func) {
   const desc = comp.name;
@@ -108,6 +125,16 @@ function createContext(opts = {}) {
   });
 }
 
+/**
+ * Sets up a view test environment.
+ * @see {fixtures.loc}
+ * @param {String} desc The name of the view (generally equal to the parent folder).
+ * @param {Object[]} components An array of `LRS.registerRenderer` formatted registrations.
+ * @param {rdf.Statement[]} resources Dataset to load into the store.
+ * @param {rdf.NamedNode} subject The URI of the object to render.
+ * @param {function} func The further test body.
+ * @return {undefined}
+ */
 function describeView(desc, components, resources, subject, func) {
   describe(desc, () => {
     defineMarker(desc);
@@ -124,6 +151,12 @@ function describeView(desc, components, resources, subject, func) {
   });
 }
 
+/**
+ * Overrides the current topology.
+ * @param {rdf.NamedNode} topology The topology to use for the component.
+ * @param {function} func The further test body.
+ * @return {undefined}
+ */
 function as(topology, func) {
   describe(topology.value, () => {
     set('t', () => topology);
