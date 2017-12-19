@@ -6,16 +6,16 @@ import {
   LDLink,
 } from '../../components';
 import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
-
 import './properties/name';
+import SideBarLinkLabel from '../../components/SideBarLink/SideBarLinkLabel';
 
 const CurrentActorSidebar = () => (
   <div className="SideBarLink">
     <LDLink>
       <Property label={NS.schema('image')} />
-      <div className="SideBarLink__label">
+      <SideBarLinkLabel>
         <Property label={NS.schema('name')} />
-      </div>
+      </SideBarLinkLabel>
     </LDLink>
   </div>
 );

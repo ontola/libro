@@ -21,6 +21,7 @@
   a {
     display: flex;
     flex-grow: 1;
+    overflow: hidden;
   }
 
   &--bold {
@@ -56,16 +57,24 @@
 }
 
 .SideBarLink__label {
-  flex: 1;
-  white-space: nowrap;
-  display: flex;
   align-items: center;
+  display: flex;
+  flex: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .SideBarLink__count-wrapper {
   position: absolute;
   right: .5rem;
   top: .35rem;
+}
+
+.SideBarLink__truncatedLabel,
+.SideBarLink__truncatedLabel * {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .SideBarLink,

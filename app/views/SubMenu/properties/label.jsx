@@ -2,15 +2,16 @@ import { linkedPropType } from 'link-redux';
 import React from 'react';
 
 import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import SideBarLinkLabel from '../../../components/SideBarLink/SideBarLinkLabel';
 
 const propTypes = {
   linkedProp: linkedPropType,
 };
 
 const SubMenuLabelProp = ({ linkedProp }) => (
-  <div className="SideBarLink__label">
+  <SideBarLinkLabel>
     {linkedProp}
-  </div>
+  </SideBarLinkLabel>
 );
 
 SubMenuLabelProp.propTypes = propTypes;

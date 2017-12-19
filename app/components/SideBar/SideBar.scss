@@ -6,23 +6,18 @@
   background-color: color('white');
   display: flex;
   max-width: 100%;
-  width: 30em;
+  // width: 30em;
   // Prevents a weird bug with fullscreen in chrome.
   will-change: inherit !important;
 
   &.SideBar--slim {
-    width: 15em;
+    width: 17em;
   }
 }
 
-// .SideBar__sidebar-wrapper {
-//   align-items: stretch;
-//   display: flex;
-//   flex-direction: column;
-//   height: 100%;
-//   overflow: hidden;
-//   width: 100%;
-// }
+.SideBar__sidebar-wrapper {
+  width: 100%;
+}
 
 .SideBar__content {
   // Enables smooth scrolling on iOS
