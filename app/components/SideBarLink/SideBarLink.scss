@@ -8,15 +8,6 @@
   overflow: hidden;
   flex: 1;
 
-  &:hover,
-  &:focus {
-    background-color: color('transparent', 'x-light');
-  }
-
-  &:active {
-    background-color: color('transparent', 'light');
-  }
-
   &::after {
     background-color: none;
     bottom: 0;
@@ -75,4 +66,21 @@
   position: absolute;
   right: .5rem;
   top: .35rem;
+}
+
+.SideBarLink,
+.SideBarCollapsible__toggle {
+  &:focus{
+    background-color: color('transparent', 'x-light');
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: color('transparent', 'x-light');
+    }
+  }
+
+  &:active {
+    background-color: color('transparent', 'light');
+  }
 }

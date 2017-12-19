@@ -10,7 +10,7 @@
   }
 
   .Collapsible__invisible-content {
-    background-color: color('transparent', 'x-light');
+    background-color: color('transparent', 'dark');
   }
 
   .SideBarCollapsible__label {
@@ -40,12 +40,7 @@
 
     &:hover,
     &:focus {
-      background-color: color('transparent', 'light');
       color: color('white');
-    }
-
-    &:active {
-      background-color: color('transparent', 'mid-light');
     }
   }
 

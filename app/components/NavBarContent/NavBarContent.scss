@@ -1,19 +1,30 @@
-@import '../shared/config';
+@import '../shared/config'; 
 
 .NavBarContent {
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: color('transparent', 'transparent');
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
   overflow-y: auto;
-  width: 13em;
-  
+  transition: .3s background-color;
+
+
   &__logo {
     align-self: center;
     color: color('white');
 
+    & .NavBarContent--dark-text {
+      color: color('grey', 'dark');
+    }
+
     path,
     rect {
       fill: color('white');
+
+      & .NavBarContent--dark-text {
+        color: color('grey', 'dark');
+      }
     }
   }
 }
@@ -32,6 +43,16 @@
   .SideBarLink {
     a {
       color: color('white');
+      transition: .3s color;
+    }
+  }
+}
+
+.NavBarContent--dark-text {
+  .SideBarLink {
+    a {
+      color: color('grey', 'dark');
+      transition: .3s color;
     }
   }
 }
