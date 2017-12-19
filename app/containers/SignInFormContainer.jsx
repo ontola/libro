@@ -174,6 +174,7 @@ const mapDispatchToProps = dispatch => ({
           }
           redirect = (match && match[PATH_MATCH]) || '/';
           dispatch(push(redirect));
+          window.location.reload();
           break;
         default:
           throw new Error('Unknown user error occurred');
