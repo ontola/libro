@@ -12,7 +12,7 @@ config.output.pathinfo = true;
 config.entry = [
   'webpack-hot-middleware/client',
   'react-hot-loader/patch',
-  './app/index.js',
+  './app/index.jsx',
 ];
 
 config.cache = true;

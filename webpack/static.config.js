@@ -7,7 +7,7 @@ const config = require('./common.config');
 config.output.publicPath = '/f_assets/';
 
 config.entry = [
-  './app/index.js',
+  './app/index.jsx',
 ];
 
 config.output.filename = 'bundle-[chunkhash].js';
