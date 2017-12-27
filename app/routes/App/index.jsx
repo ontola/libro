@@ -52,10 +52,10 @@ const App = ({
       id="Navbar"
       sidebar={<NavbarContainer />}
     >
-      <BottomBarContainer />
-      <div id="start-of-content">
+      <div className="MainContentWrapper" id="start-of-content">
         {Routes}
       </div>
+      <BottomBarContainer />
       {error && renderErrorMessage(error, errorMessage, reset)}
     </SideBarContainer>
   </div>

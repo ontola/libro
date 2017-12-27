@@ -7,8 +7,11 @@
   bottom: 0;
   color: color('white');
   display: none;
+  flex: 1 1 0%;
+  flex-basis: 3em;
+  flex-grow: initial;
+  flex-shrink: 1;
   justify-content: center;
-  position: fixed;
   width: 100%;
   z-index: 2;
 }

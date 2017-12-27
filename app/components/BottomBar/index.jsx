@@ -18,7 +18,6 @@ const BottomBar = ({
 }) => {
   const style = {
     backgroundColor: orgColor,
-    flex: '1',
   };
 
   const classNames = [

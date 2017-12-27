@@ -22,25 +22,22 @@
 }
 
 .SideBar__content {
-  // Enables smooth scrolling on iOS
   -webkit-overflow-scrolling: touch;
   bottom: 0;
   left: 0;
-  overflow-x: hidden;
-  // Always show the scrollbar to prevent jumping of interface
-  overflow-y: scroll;
   position: absolute;
   right: 0;
   top: 0;
   transition: left .3s ease-out, right .3s ease-out;
-  // Makes overlay hide BottomBar
   z-index: 0;
-}
+  display: flex;
+  flex-direction: column;
 
-@include small-only {
-  .SideBar__content {
-    // Prevents items disappearing underneath Bottombar. Equal to $bottom-padding-height
-    padding-bottom: 3em;
+  .MainContentWrapper {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    flex: 1;
+    position: relative;
   }
 }
 

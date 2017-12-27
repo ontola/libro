@@ -4,6 +4,8 @@ import FontAwesome from 'react-fontawesome';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 
+import './Iframe.scss';
+
 const propTypes = {
   location: PropTypes.string,
   title: PropTypes.string,
@@ -51,18 +53,13 @@ class Iframe extends Component {
   render() {
     const { location, title } = this.props;
     return (
-      <div>
+      <div className="Iframe__Wrapper" >
         <Helmet title={title} />
         {this.loadComponent()}
         <iframe
           id={identifier}
           referrerPolicy="no-referrer-when-downgrade"
           src={location}
-          style={{
-            height: '100%',
-            position: 'absolute',
-            width: '100%',
-          }}
           title="Argu contents"
           onLoad={this.hideLoader}
         >
