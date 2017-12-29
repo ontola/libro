@@ -16,6 +16,7 @@ const propTypes = {
   onOpen: PropTypes.func.isRequired,
   onUndock: PropTypes.func.isRequired,
   opened: PropTypes.bool,
+  orgColor: PropTypes.string.isRequired,
   /* Set to true if you don't want the sidebar to appear from the left */
   pullRight: PropTypes.bool,
   /* The components that appear in the sidebar */
@@ -113,46 +114,76 @@ class SideBar extends Component {
     });
     const buttonClassNames = classNames({
       'SideBar__switch-wrapper': true,
+      'SideBar__switch-wrapper--hidden': !this.state.mql.matches,
       'SideBar__switch-wrapper--right': this.props.pullRight,
     });
 
     const dockIcon = () => {
       if (this.props.pullRight === true) {
-        return 'caret-left';
+        return 'chevron-left';
       }
-      return 'caret-right';
+      return 'chevron-right';
     };
 
     const undockIcon = () => {
       if (this.props.pullRight === true) {
-        return 'caret-right';
+        return 'chevron-right';
       }
-      return 'caret-left';
+      return 'chevron-left';
     };
+
+    // Returns true if the window is wide enough.
+    const wideWindow = () => (typeof window === 'undefined' || this.state.mql.matches);
 
     const sidebar = (
       <div className="SideBar__sidebar-wrapper">
         {this.props.sidebar}
-        {!this.props.docked && (typeof window === 'undefined' || this.state.mql.matches) &&
-          <div className={buttonClassNames}>
+        <div
+          className={buttonClassNames}
+          style={{
+            backgroundColor: this.props.orgColor,
+          }}
+        >
+          {!this.props.docked && wideWindow && this.props.opened &&
             <Button
               narrow
+              plain
+              alt="Openvouwen"
               icon={dockIcon()}
-              theme="as-card"
               onClick={() => this.props.onDock()}
             />
-          </div>
-        }
-        {this.props.docked &&
-          <div className={buttonClassNames}>
+          }
+          {this.props.docked &&
             <Button
               narrow
+              plain
+              alt="Dichtvouwen"
               icon={undockIcon()}
-              theme="as-card"
-              onClick={() => this.props.onUndock()}
+              onClick={() => {
+                this.props.onUndock();
+                this.props.onClose();
+              }}
             />
-          </div>
-        }
+          }
+          {!this.props.docked && !this.props.opened && wideWindow &&
+            <Button
+              narrow
+              plain
+              alt="Menu openen"
+              icon="bars"
+              onClick={() => this.props.onOpen()}
+            />
+          }
+          {!this.props.docked && this.props.opened && wideWindow &&
+            <Button
+              narrow
+              plain
+              alt="Menu sluiten"
+              icon="close"
+              onClick={() => this.props.onClose()}
+            />
+          }
+        </div>
       </div>
     );
 

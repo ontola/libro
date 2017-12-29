@@ -10,6 +10,7 @@ import {
   undockSideBar,
 } from 'state/sideBars/actions';
 import {
+  getSideBarColor,
   getSideBarDocked,
   getSideBarOpened,
 } from 'state/sideBars/selectors';
@@ -39,7 +40,7 @@ export default connect(
   (state, ownProps) => ({
     docked: getSideBarDocked(state, ownProps),
     opened: getSideBarOpened(state, ownProps),
-    // opened: true,
+    orgColor: getSideBarColor(state),
   }),
   (dispatch, { id }) => ({
     onClose: () => dispatch(closeSideBar(id)),

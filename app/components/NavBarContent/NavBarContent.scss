@@ -7,7 +7,7 @@
   flex-direction: column;
   overflow-x: hidden;
   overflow-y: auto;
-  transition: .3s background-color;
+  transition: $nav-transition-time background-color;
 
 
   &__logo {
@@ -43,7 +43,7 @@
   .SideBarLink {
     a {
       color: color('white');
-      transition: .3s color;
+      transition: $nav-transition-time color;
     }
   }
 }
@@ -52,7 +52,7 @@
   .SideBarLink {
     a {
       color: color('grey', 'dark');
-      transition: .3s color;
+      transition: $nav-transition-time color;
     }
   }
 }
