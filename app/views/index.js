@@ -25,6 +25,7 @@ import Organization from './Organization';
 import Person from './Person';
 import SubMenu from './SubMenu';
 // import './Question';
+import SeqComp from './Seq';
 import UserActor from './UserActor';
 // import './VoteCompareCells';
 // import './VoteCompareRows';
@@ -50,6 +51,7 @@ LRS.registerAll(
   ...OrganizationsMenu,
   ...Organization,
   ...Person,
+  SeqComp,
   ...SubMenu,
   UserActor
 );

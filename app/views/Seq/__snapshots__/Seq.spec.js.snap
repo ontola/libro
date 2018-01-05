@@ -1,0 +1,609 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Seq renders a sequence fragment 1`] = `
+<Seq
+  dispatch={[Function]}
+  label={
+    NamedNode {
+      "termType": "NamedNode",
+      "value": "http://label.required.bugfix",
+    }
+  }
+  subject={
+    NamedNode {
+      "termType": "NamedNode",
+      "value": "_:g70120412320900",
+    }
+  }
+  version="test0"
+>
+  <Connect(LinkedObjectContainer)
+    count={6}
+    data-test="Seq-0"
+    first={
+      NamedNode {
+        "termType": "NamedNode",
+        "value": "https://argu.dev/menus/info#about",
+      }
+    }
+    key="<_:g70120412320900>-<https://argu.dev/menus/info#about>"
+    last={
+      NamedNode {
+        "termType": "NamedNode",
+        "value": "https://argu.dev/menus/info#contact",
+      }
+    }
+    object={
+      NamedNode {
+        "termType": "NamedNode",
+        "value": "https://argu.dev/menus/info#about",
+      }
+    }
+  >
+    <LinkedObjectContainer
+      count={6}
+      data-test="Seq-0"
+      first={
+        NamedNode {
+          "termType": "NamedNode",
+          "value": "https://argu.dev/menus/info#about",
+        }
+      }
+      forceRender={false}
+      last={
+        NamedNode {
+          "termType": "NamedNode",
+          "value": "https://argu.dev/menus/info#contact",
+        }
+      }
+      loadLinkedObject={[Function]}
+      object={
+        NamedNode {
+          "termType": "NamedNode",
+          "value": "https://argu.dev/menus/info#about",
+        }
+      }
+      version="test1"
+    >
+      <div
+        className="no-view"
+      >
+        <linkedSubject[ConnectedProp]
+          label={
+            NamedNode {
+              "termType": "NamedNode",
+              "value": "http://schema.org/name",
+            }
+          }
+        >
+          <ConnectedProp
+            label={
+              NamedNode {
+                "termType": "NamedNode",
+                "value": "http://schema.org/name",
+              }
+            }
+            subject={
+              NamedNode {
+                "termType": "NamedNode",
+                "value": "https://argu.dev/menus/info#about",
+              }
+            }
+          >
+            <Property
+              dispatch={[Function]}
+              forceRender={false}
+              label={
+                NamedNode {
+                  "termType": "NamedNode",
+                  "value": "http://schema.org/name",
+                }
+              }
+              subject={
+                NamedNode {
+                  "termType": "NamedNode",
+                  "value": "https://argu.dev/menus/info#about",
+                }
+              }
+              version="test1"
+            />
+          </ConnectedProp>
+        </linkedSubject[ConnectedProp]>
+        <p>
+          We currently don't have a view for this (&lt;https://argu.co/ns/core#MenuItem&gt;)
+        </p>
+      </div>
+    </LinkedObjectContainer>
+  </Connect(LinkedObjectContainer)>
+  <Connect(LinkedObjectContainer)
+    count={6}
+    data-test="Seq-1"
+    first={
+      NamedNode {
+        "termType": "NamedNode",
+        "value": "https://argu.dev/menus/info#about",
+      }
+    }
+    key="<_:g70120412320900>-<https://argu.dev/menus/info#team>"
+    last={
+      NamedNode {
+        "termType": "NamedNode",
+        "value": "https://argu.dev/menus/info#contact",
+      }
+    }
+    object={
+      NamedNode {
+        "termType": "NamedNode",
+        "value": "https://argu.dev/menus/info#team",
+      }
+    }
+  >
+    <LinkedObjectContainer
+      count={6}
+      data-test="Seq-1"
+      first={
+        NamedNode {
+          "termType": "NamedNode",
+          "value": "https://argu.dev/menus/info#about",
+        }
+      }
+      forceRender={false}
+      last={
+        NamedNode {
+          "termType": "NamedNode",
+          "value": "https://argu.dev/menus/info#contact",
+        }
+      }
+      loadLinkedObject={[Function]}
+      object={
+        NamedNode {
+          "termType": "NamedNode",
+          "value": "https://argu.dev/menus/info#team",
+        }
+      }
+      version="test2"
+    >
+      <div
+        className="no-view"
+      >
+        <linkedSubject[ConnectedProp]
+          label={
+            NamedNode {
+              "termType": "NamedNode",
+              "value": "http://schema.org/name",
+            }
+          }
+        >
+          <ConnectedProp
+            label={
+              NamedNode {
+                "termType": "NamedNode",
+                "value": "http://schema.org/name",
+              }
+            }
+            subject={
+              NamedNode {
+                "termType": "NamedNode",
+                "value": "https://argu.dev/menus/info#team",
+              }
+            }
+          >
+            <Property
+              dispatch={[Function]}
+              forceRender={false}
+              label={
+                NamedNode {
+                  "termType": "NamedNode",
+                  "value": "http://schema.org/name",
+                }
+              }
+              subject={
+                NamedNode {
+                  "termType": "NamedNode",
+                  "value": "https://argu.dev/menus/info#team",
+                }
+              }
+              version="test2"
+            />
+          </ConnectedProp>
+        </linkedSubject[ConnectedProp]>
+        <p>
+          We currently don't have a view for this (&lt;https://argu.co/ns/core#MenuItem&gt;)
+        </p>
+      </div>
+    </LinkedObjectContainer>
+  </Connect(LinkedObjectContainer)>
+  <Connect(LinkedObjectContainer)
+    count={6}
+    data-test="Seq-2"
+    first={
+      NamedNode {
+        "termType": "NamedNode",
+        "value": "https://argu.dev/menus/info#about",
+      }
+    }
+    key="<_:g70120412320900>-<https://argu.dev/menus/info#governments>"
+    last={
+      NamedNode {
+        "termType": "NamedNode",
+        "value": "https://argu.dev/menus/info#contact",
+      }
+    }
+    object={
+      NamedNode {
+        "termType": "NamedNode",
+        "value": "https://argu.dev/menus/info#governments",
+      }
+    }
+  >
+    <LinkedObjectContainer
+      count={6}
+      data-test="Seq-2"
+      first={
+        NamedNode {
+          "termType": "NamedNode",
+          "value": "https://argu.dev/menus/info#about",
+        }
+      }
+      forceRender={false}
+      last={
+        NamedNode {
+          "termType": "NamedNode",
+          "value": "https://argu.dev/menus/info#contact",
+        }
+      }
+      loadLinkedObject={[Function]}
+      object={
+        NamedNode {
+          "termType": "NamedNode",
+          "value": "https://argu.dev/menus/info#governments",
+        }
+      }
+      version="test3"
+    >
+      <div
+        className="no-view"
+      >
+        <linkedSubject[ConnectedProp]
+          label={
+            NamedNode {
+              "termType": "NamedNode",
+              "value": "http://schema.org/name",
+            }
+          }
+        >
+          <ConnectedProp
+            label={
+              NamedNode {
+                "termType": "NamedNode",
+                "value": "http://schema.org/name",
+              }
+            }
+            subject={
+              NamedNode {
+                "termType": "NamedNode",
+                "value": "https://argu.dev/menus/info#governments",
+              }
+            }
+          >
+            <Property
+              dispatch={[Function]}
+              forceRender={false}
+              label={
+                NamedNode {
+                  "termType": "NamedNode",
+                  "value": "http://schema.org/name",
+                }
+              }
+              subject={
+                NamedNode {
+                  "termType": "NamedNode",
+                  "value": "https://argu.dev/menus/info#governments",
+                }
+              }
+              version="test3"
+            />
+          </ConnectedProp>
+        </linkedSubject[ConnectedProp]>
+        <p>
+          We currently don't have a view for this (&lt;https://argu.co/ns/core#MenuItem&gt;)
+        </p>
+      </div>
+    </LinkedObjectContainer>
+  </Connect(LinkedObjectContainer)>
+  <Connect(LinkedObjectContainer)
+    count={6}
+    data-test="Seq-3"
+    first={
+      NamedNode {
+        "termType": "NamedNode",
+        "value": "https://argu.dev/menus/info#about",
+      }
+    }
+    key="<_:g70120412320900>-<https://argu.dev/menus/info#press_media>"
+    last={
+      NamedNode {
+        "termType": "NamedNode",
+        "value": "https://argu.dev/menus/info#contact",
+      }
+    }
+    object={
+      NamedNode {
+        "termType": "NamedNode",
+        "value": "https://argu.dev/menus/info#press_media",
+      }
+    }
+  >
+    <LinkedObjectContainer
+      count={6}
+      data-test="Seq-3"
+      first={
+        NamedNode {
+          "termType": "NamedNode",
+          "value": "https://argu.dev/menus/info#about",
+        }
+      }
+      forceRender={false}
+      last={
+        NamedNode {
+          "termType": "NamedNode",
+          "value": "https://argu.dev/menus/info#contact",
+        }
+      }
+      loadLinkedObject={[Function]}
+      object={
+        NamedNode {
+          "termType": "NamedNode",
+          "value": "https://argu.dev/menus/info#press_media",
+        }
+      }
+      version="test4"
+    >
+      <div
+        className="no-view"
+      >
+        <linkedSubject[ConnectedProp]
+          label={
+            NamedNode {
+              "termType": "NamedNode",
+              "value": "http://schema.org/name",
+            }
+          }
+        >
+          <ConnectedProp
+            label={
+              NamedNode {
+                "termType": "NamedNode",
+                "value": "http://schema.org/name",
+              }
+            }
+            subject={
+              NamedNode {
+                "termType": "NamedNode",
+                "value": "https://argu.dev/menus/info#press_media",
+              }
+            }
+          >
+            <Property
+              dispatch={[Function]}
+              forceRender={false}
+              label={
+                NamedNode {
+                  "termType": "NamedNode",
+                  "value": "http://schema.org/name",
+                }
+              }
+              subject={
+                NamedNode {
+                  "termType": "NamedNode",
+                  "value": "https://argu.dev/menus/info#press_media",
+                }
+              }
+              version="test4"
+            />
+          </ConnectedProp>
+        </linkedSubject[ConnectedProp]>
+        <p>
+          We currently don't have a view for this (&lt;https://argu.co/ns/core#MenuItem&gt;)
+        </p>
+      </div>
+    </LinkedObjectContainer>
+  </Connect(LinkedObjectContainer)>
+  <Connect(LinkedObjectContainer)
+    count={6}
+    data-test="Seq-4"
+    first={
+      NamedNode {
+        "termType": "NamedNode",
+        "value": "https://argu.dev/menus/info#about",
+      }
+    }
+    key="<_:g70120412320900>-<https://argu.dev/menus/info#support>"
+    last={
+      NamedNode {
+        "termType": "NamedNode",
+        "value": "https://argu.dev/menus/info#contact",
+      }
+    }
+    object={
+      NamedNode {
+        "termType": "NamedNode",
+        "value": "https://argu.dev/menus/info#support",
+      }
+    }
+  >
+    <LinkedObjectContainer
+      count={6}
+      data-test="Seq-4"
+      first={
+        NamedNode {
+          "termType": "NamedNode",
+          "value": "https://argu.dev/menus/info#about",
+        }
+      }
+      forceRender={false}
+      last={
+        NamedNode {
+          "termType": "NamedNode",
+          "value": "https://argu.dev/menus/info#contact",
+        }
+      }
+      loadLinkedObject={[Function]}
+      object={
+        NamedNode {
+          "termType": "NamedNode",
+          "value": "https://argu.dev/menus/info#support",
+        }
+      }
+      version="test5"
+    >
+      <div
+        className="no-view"
+      >
+        <linkedSubject[ConnectedProp]
+          label={
+            NamedNode {
+              "termType": "NamedNode",
+              "value": "http://schema.org/name",
+            }
+          }
+        >
+          <ConnectedProp
+            label={
+              NamedNode {
+                "termType": "NamedNode",
+                "value": "http://schema.org/name",
+              }
+            }
+            subject={
+              NamedNode {
+                "termType": "NamedNode",
+                "value": "https://argu.dev/menus/info#support",
+              }
+            }
+          >
+            <Property
+              dispatch={[Function]}
+              forceRender={false}
+              label={
+                NamedNode {
+                  "termType": "NamedNode",
+                  "value": "http://schema.org/name",
+                }
+              }
+              subject={
+                NamedNode {
+                  "termType": "NamedNode",
+                  "value": "https://argu.dev/menus/info#support",
+                }
+              }
+              version="test5"
+            />
+          </ConnectedProp>
+        </linkedSubject[ConnectedProp]>
+        <p>
+          We currently don't have a view for this (&lt;https://argu.co/ns/core#MenuItem&gt;)
+        </p>
+      </div>
+    </LinkedObjectContainer>
+  </Connect(LinkedObjectContainer)>
+  <Connect(LinkedObjectContainer)
+    count={6}
+    data-test="Seq-5"
+    first={
+      NamedNode {
+        "termType": "NamedNode",
+        "value": "https://argu.dev/menus/info#about",
+      }
+    }
+    key="<_:g70120412320900>-<https://argu.dev/menus/info#contact>"
+    last={
+      NamedNode {
+        "termType": "NamedNode",
+        "value": "https://argu.dev/menus/info#contact",
+      }
+    }
+    object={
+      NamedNode {
+        "termType": "NamedNode",
+        "value": "https://argu.dev/menus/info#contact",
+      }
+    }
+  >
+    <LinkedObjectContainer
+      count={6}
+      data-test="Seq-5"
+      first={
+        NamedNode {
+          "termType": "NamedNode",
+          "value": "https://argu.dev/menus/info#about",
+        }
+      }
+      forceRender={false}
+      last={
+        NamedNode {
+          "termType": "NamedNode",
+          "value": "https://argu.dev/menus/info#contact",
+        }
+      }
+      loadLinkedObject={[Function]}
+      object={
+        NamedNode {
+          "termType": "NamedNode",
+          "value": "https://argu.dev/menus/info#contact",
+        }
+      }
+      version="test6"
+    >
+      <div
+        className="no-view"
+      >
+        <linkedSubject[ConnectedProp]
+          label={
+            NamedNode {
+              "termType": "NamedNode",
+              "value": "http://schema.org/name",
+            }
+          }
+        >
+          <ConnectedProp
+            label={
+              NamedNode {
+                "termType": "NamedNode",
+                "value": "http://schema.org/name",
+              }
+            }
+            subject={
+              NamedNode {
+                "termType": "NamedNode",
+                "value": "https://argu.dev/menus/info#contact",
+              }
+            }
+          >
+            <Property
+              dispatch={[Function]}
+              forceRender={false}
+              label={
+                NamedNode {
+                  "termType": "NamedNode",
+                  "value": "http://schema.org/name",
+                }
+              }
+              subject={
+                NamedNode {
+                  "termType": "NamedNode",
+                  "value": "https://argu.dev/menus/info#contact",
+                }
+              }
+              version="test6"
+            />
+          </ConnectedProp>
+        </linkedSubject[ConnectedProp]>
+        <p>
+          We currently don't have a view for this (&lt;https://argu.co/ns/core#MenuItem&gt;)
+        </p>
+      </div>
+    </LinkedObjectContainer>
+  </Connect(LinkedObjectContainer)>
+</Seq>
+`;
