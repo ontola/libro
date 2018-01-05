@@ -37,9 +37,3 @@ Views.contextTypes = contextTypes;
 Views.propTypes = {
   linkedProp: linkedPropType,
 };
-
-export default LinkedRenderStore.registerRenderer(
-  Views,
-  NS.argu('InfiniteCollection'),
-  NS.argu('views')
-);

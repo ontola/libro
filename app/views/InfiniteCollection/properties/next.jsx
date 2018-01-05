@@ -1,35 +1,49 @@
+import LinkedRenderStore from 'link-lib';
 import {
-  LinkedObjectContainer,
+  getLinkedObjectPropertyRaw,
   linkedPropType,
-  Type,
+  lrsType,
+  PropertyBase,
 } from 'link-redux';
+import { Literal, NamedNode, Statement } from 'rdflib';
 import React from 'react';
 
-import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
 import { CardButton } from '../../../components';
-import CollapsibleContainer from '../../../containers/CollapsibleContainer';
 
+class InfiniteCollectionNext extends PropertyBase {
+  render() {
+    const { linkedProp, subject, count } = this.props;
+    const { linkedRenderStore } = this.context;
 
-const InfiniteCollectionNext = ({ linkedProp }) => (
-  <LinkedObjectContainer object={linkedProp}>
-    <CollapsibleContainer
-      alwaysMountChildren={false}
-      id={linkedProp}
-      trigger={<CardButton plain>Load more</CardButton>}
-    >
-      <Type />
-    </CollapsibleContainer>
-  </LinkedObjectContainer>
-);
+    const action = () => {
+      const parent = this.getLinkedObjectPropertyRaw(NS.argu('parentView'))[0];
+      const seqParent = getLinkedObjectPropertyRaw(NS.argu('views'), parent.object, linkedRenderStore)[0];
+      linkedRenderStore.addStatements([
+        new Statement(seqParent.object, NS.rdf(`_${count}`), new NamedNode(linkedProp)),
+        new Statement(subject, NS.argu('void'), new Literal(0))
+      ]);
+    };
+
+    return React.createElement(
+      CardButton,
+      { action },
+      'Load more'
+    );
+  }
+}
 
 InfiniteCollectionNext.propTypes = {
   linkedProp: linkedPropType,
 };
 
-LinkedRenderStore.registerRenderer(
+InfiniteCollectionNext.contextTypes = {
+  linkedRenderStore: lrsType,
+};
+
+export default LinkedRenderStore.registerRenderer(
   InfiniteCollectionNext,
   NS.argu('InfiniteCollection'),
   NS.argu('next')
 );
 
-export default InfiniteCollectionNext;
