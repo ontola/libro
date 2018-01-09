@@ -153,7 +153,7 @@ export default [
     ThingSection,
     NS.schema('Thing'),
     RENDER_CLASS_NAME,
-    [NS.argu('section'), NS.argu('cardRow')]
+    NS.argu('section')
   ),
   LinkedRenderStore.registerRenderer(
     ThingParent,
@@ -191,6 +191,7 @@ export default [
       NS.argu('card'),
       NS.argu('cardFixed'),
       NS.argu('cardMain'),
+      NS.argu('cardRow'),
     ]
   ),
   Arguments,

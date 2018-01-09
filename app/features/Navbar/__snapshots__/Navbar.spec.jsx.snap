@@ -760,6 +760,74 @@ exports[`Navbar as default renders the correct representation 1`] = `
           version="new"
         />
       </Connect(LinkedResourceContainer)>
+      <SideBarLink
+        icon="gears"
+        label="DevBrowser"
+        to="/d/browser?iri=https://argu.dev/o/1"
+      >
+        <SideBarLinkWrapper>
+          <div
+            className="SideBarLink"
+          >
+            <Connect(SideBarLinkLink)
+              to="/d/browser?iri=https://argu.dev/o/1"
+            >
+              <SideBarLinkLink
+                closeBarOnClick={[Function]}
+                to="/d/browser?iri=https://argu.dev/o/1"
+              >
+                <NavLink
+                  activeClassName="SideBarLink--active"
+                  ariaCurrent="true"
+                  to="/d/browser?iri=https://argu.dev/o/1"
+                >
+                  <Route
+                    path="/d/browser?iri=https://argu.dev/o/1"
+                  >
+                    <Link
+                      aria-current={false}
+                      replace={false}
+                      to="/d/browser?iri=https://argu.dev/o/1"
+                    >
+                      <a
+                        aria-current={false}
+                        href="/d/browser?iri=https://argu.dev/o/1"
+                        onClick={[Function]}
+                      >
+                        <SideBarLinkIcon>
+                          <div
+                            className="SideBarLink__icon"
+                          >
+                            <FontAwesome
+                              name="gears"
+                            >
+                              <span
+                                aria-hidden={true}
+                                className="fa fa-gears"
+                              />
+                            </FontAwesome>
+                          </div>
+                        </SideBarLinkIcon>
+                        <SideBarLinkLabel>
+                          <div
+                            className="SideBarLink__label"
+                          >
+                            <p
+                              className="SideBarLink__truncatedLabel"
+                            >
+                              DevBrowser
+                            </p>
+                          </div>
+                        </SideBarLinkLabel>
+                      </a>
+                    </Link>
+                  </Route>
+                </NavLink>
+              </SideBarLinkLink>
+            </Connect(SideBarLinkLink)>
+          </div>
+        </SideBarLinkWrapper>
+      </SideBarLink>
       <div
         className="NavBarContent__center-footer"
       >

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import SideBarLink from '../../components/SideBarLink';
 import { checkLuminance } from '../../helpers/color';
 import path from '../../helpers/paths';
 import { currentURL } from '../../helpers/iris';
@@ -50,6 +51,11 @@ const NavBarContent = ({
         <LinkedResourceContainer subject={NS.app('c_a')} topology={NS.argu('sidebar')} />
         <LinkedResourceContainer subject={NS.app('n?type=infinite')} topology={NS.argu('sidebar')} />
         <LinkedResourceContainer subject={NS.app('menus/info')} topology={NS.argu('sidebar')} />
+        {__DEVELOPMENT__ && <SideBarLink
+          icon="gears"
+          label="DevBrowser"
+          to={`/d/browser?iri=${encodeURI(currentURL())}`}
+        />}
         <div className="NavBarContent__center-footer">
           <button
             style={{

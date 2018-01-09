@@ -3,22 +3,27 @@ import React from 'react';
 import { Route, Switch } from 'react-router';
 
 // import CreateVoteMatch from './CreateVoteMatch';
-// import Forum from './Forum';
 import LinkedObject from './LinkedObject';
+import DevBrowser from './DevBrowser';
 import Iframe from './Iframe';
-// import Search from './Search';
 import SignIn from './SignIn';
 // import { LinkVoteMatch } from './VoteMatch';
 
-const routes = (
-  <Switch>
-    <Route path="/u/sign_in" component={SignIn} />
-    <Route path="/n" component={LinkedObject} />
-    <Route path="/" component={Iframe} exact />
-    <Route path="/(i|u|settings)/*" component={Iframe} />
-    <Route path="*/(new|edit|trash|delete|decision|c|settings|statistics)" component={Iframe} />
-    <Route path="*" component={LinkedObject} />
-  </Switch>
-);
+const subRoutes = [
+  <Route key="1" path="/u/sign_in" component={SignIn} />,
+  <Route key="2" path="/n" component={LinkedObject} />,
+  <Route key="3" path="/" component={Iframe} exact />,
+  <Route key="4" path="/(i|u|settings)/*" component={Iframe} />,
+  <Route
+    key="5"
+    path="*/(new|edit|trash|delete|decision|c|settings|statistics)"
+    component={Iframe}
+  />,
+  <Route key="6" path="*" component={LinkedObject} />
+];
 
-export default routes;
+if (__DEVELOPMENT__) {
+  subRoutes.splice(-1, 0, <Route key="7" path="/d/browser" component={DevBrowser} />);
+}
+
+export default <Switch>{subRoutes}</Switch>;

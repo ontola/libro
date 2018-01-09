@@ -69,6 +69,10 @@
   + .CardRow {
     border-top: 0;
   }
+
+  .CardRow {
+    border-left: solid 8px color('grey', 'x-light');
+  }
 }
 
 .CardRow--show-arrow {

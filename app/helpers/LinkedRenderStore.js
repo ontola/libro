@@ -49,6 +49,13 @@ export const allTopologies = [
   NS.argu('widget'),
 ];
 
+export const getTopologyNumber = topology => allTopologies.findIndex((item) => {
+  if (item) {
+    return item.term === topology.term;
+  }
+  return topology === item;
+});
+
 LRS.addOntologySchematics([
   new Statement(NS.rdfs('Resource'), NS.rdfs('subClassOf'), NS.schema('Thing')),
   new Statement(NS.owl('Thing'), NS.owl('sameAs'), NS.schema('Thing')),
