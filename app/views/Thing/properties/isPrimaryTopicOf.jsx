@@ -14,7 +14,7 @@ const IsPrimaryTopicOf = ({ linkedProp }) => {
   }
   const target = isDifferentOrigin(linkedProp) ? '_blank' : undefined;
   return (
-    <a href={linkedProp} target={target}>External information</a>
+    <a href={linkedProp.value} target={target}>External information</a>
   );
 };
 

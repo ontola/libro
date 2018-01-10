@@ -7,7 +7,7 @@ const propTypes = {
   linkedProp: linkedPropType,
 };
 
-const CompareItemCount = ({ linkedProp }) => <span>Gebaseerd op {linkedProp} stemmen.</span>;
+const CompareItemCount = ({ linkedProp }) => <span>Gebaseerd op {linkedProp.value} stemmen.</span>;
 
 CompareItemCount.propTypes = propTypes;
 

@@ -9,7 +9,7 @@ import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
 LinkedRenderStore.registerRenderer(
   ({ linkedProp }) => (
     <Heading headerSize="3" variant="question">
-      {linkedProp}
+      {linkedProp.value}
     </Heading>
   ),
   NS.argu('Question'),
@@ -19,7 +19,7 @@ LinkedRenderStore.registerRenderer(
 LinkedRenderStore.registerRenderer(
   ({ linkedProp }) => (
     <LDLink>
-      <Heading headerSize="3" variant="question">{linkedProp}</Heading>
+      <Heading headerSize="3" variant="question">{linkedProp.value}</Heading>
     </LDLink>
   ),
   NS.argu('Question'),
@@ -28,7 +28,7 @@ LinkedRenderStore.registerRenderer(
 );
 
 LinkedRenderStore.registerRenderer(
-  ({ linkedProp }) => <span>{linkedProp}</span>,
+  ({ linkedProp }) => <span>{linkedProp.value}</span>,
   NS.argu('Question'),
   NS.schema('name'),
   NS.argu('parent')

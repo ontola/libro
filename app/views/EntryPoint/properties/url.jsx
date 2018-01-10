@@ -11,7 +11,7 @@ const propTypes = {
 };
 
 const Url = ({ children, linkedProp }) => {
-  const url = new URL(linkedProp);
+  const url = new URL(linkedProp.value);
   const href = url && url.pathname + url.search;
   return (
     <Button className="Button--has-icon" href={href} icon="plus" theme="as-card">

@@ -1,5 +1,6 @@
 import { LinkedObjectContainer, Property } from 'link-redux';
 import PropTypes from 'prop-types';
+import { NamedNode } from 'rdflib';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -41,16 +42,16 @@ const NavBarContent = ({
       <div className="NavBarContent__top">
         <LinkedObjectContainer
           forceRender
-          object={`${FRONTEND_URL}/o/find?iri=${encodeURIComponent(currentURL())}`}
+          object={new NamedNode(`${FRONTEND_URL}/o/find?iri=${encodeURIComponent(currentURL())}`)}
           topology={NS.argu('sidebarBlock')}
         >
           <Property forceRender label={NS.argu('contains')} />
         </LinkedObjectContainer>
       </div>
       <div className="NavBarContent__footer">
-        <LinkedObjectContainer object={`${FRONTEND_URL}/c_a`} topology={NS.argu('sidebar')} />
-        <LinkedObjectContainer object={`${FRONTEND_URL}/n?type=infinite`} topology={NS.argu('sidebar')} />
-        <LinkedObjectContainer object={`${FRONTEND_URL}/menus/info`} topology={NS.argu('sidebar')} />
+        <LinkedObjectContainer object={new NamedNode(`${FRONTEND_URL}/c_a`)} topology={NS.argu('sidebar')} />
+        <LinkedObjectContainer object={new NamedNode(`${FRONTEND_URL}/n?type=infinite`)} topology={NS.argu('sidebar')} />
+        <LinkedObjectContainer object={new NamedNode(`${FRONTEND_URL}/menus/info`)} topology={NS.argu('sidebar')} />
         <div className="NavBarContent__center-footer">
           <Link className="NavBarContent__logo" to={path.index()}>
             {/* eslint-disable max-len */}

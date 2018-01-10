@@ -1,4 +1,4 @@
-import LinkedRenderStore, { getValueOrID } from 'link-lib';
+import LinkedRenderStore from 'link-lib';
 import { LinkedObjectContainer, PropertyBase, linkedPropType } from 'link-redux';
 import React from 'react';
 
@@ -13,11 +13,10 @@ export class menuItems extends PropertyBase {
   render() {
     const items = this
       .getLinkedObjectPropertyRaw()
-      .map(getValueOrID)
-      .map(url => (
+      .map(item => (
         <LinkedObjectContainer
-          key={`menu-${url}`}
-          object={url}
+          key={`menu-${item.object}`}
+          object={item.object}
         />
       ));
     return (

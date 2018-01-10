@@ -10,7 +10,7 @@ const propTypes = {
 const Creator = ({ linkedProp }) => {
   const object = linkedProp.includes('://')
     ? linkedProp
-    : `https://beta.argu.co/persons/${linkedProp}`;
+    : `https://beta.argu.co/persons/${linkedProp.value}`;
   return (
     <LinkedObjectContainer
       object={object}

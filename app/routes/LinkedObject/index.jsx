@@ -1,5 +1,6 @@
 import { LinkedObjectContainer, Property, Type } from 'link-redux';
 import PropTypes from 'prop-types';
+import { NamedNode } from 'rdflib';
 import React from 'react';
 
 import {
@@ -15,7 +16,7 @@ const propTypes = {
 };
 
 const LinkedObject = ({ location }) => (
-  <LinkedObjectContainer object={currentLocation(location)}>
+  <LinkedObjectContainer object={new NamedNode(currentLocation(location))}>
     <Container>
       <Property label={NS.schema('isPartOf')} />
       <Type />

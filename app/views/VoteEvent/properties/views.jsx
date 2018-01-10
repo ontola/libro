@@ -1,4 +1,3 @@
-import { getValueOrID } from 'link-lib';
 import {
   LinkedObjectContainer,
   getLinkedObjectProperty,
@@ -34,7 +33,7 @@ const VoteViews = (props, { linkedRenderStore }) => {
   ).map(iri => (
     <LinkedObjectContainer
       grandTotal={totalCount}
-      object={getValueOrID(iri)}
+      object={iri.object}
       topology={NS.argu('voteSide')}
     />
   ));

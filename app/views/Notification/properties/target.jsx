@@ -13,7 +13,7 @@ const propTypes = {
 };
 
 const Target = ({ children = null, linkedProp }) => (
-  <Link style={{ display: 'flex', flexGrow: 1, paddingTop: '.5em' }} to={retrievePath(linkedProp)}>
+  <Link style={{ display: 'flex', flexGrow: 1, paddingTop: '.5em' }} to={retrievePath(linkedProp.value)}>
     {children}
   </Link>
 );

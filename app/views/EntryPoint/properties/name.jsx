@@ -8,7 +8,7 @@ const propTypes = {
 };
 
 const Name = ({ linkedProp }) => (
-  <span>{linkedProp}</span>
+  <span>{linkedProp.value}</span>
 );
 
 Name.propTypes = propTypes;

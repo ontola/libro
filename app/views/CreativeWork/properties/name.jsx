@@ -47,7 +47,7 @@ export default [
     NS.argu('section')
   ),
   LinkedRenderStore.registerRenderer(
-    ({ linkedProp }) => <span>{linkedProp}</span>,
+    ({ linkedProp }) => <span>{linkedProp.value}</span>,
     NS.schema('CreativeWork'),
     NS.schema('name'),
     NS.argu('parent')

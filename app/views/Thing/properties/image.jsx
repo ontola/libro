@@ -18,8 +18,8 @@ const ThingImageProp = ({ linkedProp }) => {
     linkedProp.constructor === Object
   ) {
     return <div>image</div>;
-  } else if (typeof linkedProp === 'string' && linkedProp.startsWith(FABase)) {
-    return <FontAwesome name={linkedProp.split(FABase)[1]} />;
+  } else if (linkedProp.termType === 'NamedNode' && linkedProp.value.startsWith(FABase)) {
+    return <FontAwesome name={linkedProp.value.split(FABase)[1]} />;
   }
   return (
     <LinkedObjectContainer object={linkedProp} />

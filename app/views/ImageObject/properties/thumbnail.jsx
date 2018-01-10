@@ -7,13 +7,12 @@ import SideBarLinkImage from '../../../components/SideBarLink/SideBarLinkImage';
 import { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
-  linkedProp: linkedPropType,
+  linkedProp: linkedPropType.isRequired,
 };
 
 export const ImageObjectThumbnail = ({ linkedProp }) => (
   <Image
     data-test="ImageObject-ImageObjectThumbnail"
-    imageUrl={linkedProp}
     linkedProp={linkedProp}
     override={SideBarLinkImage}
     style={{ height: '100%' }}

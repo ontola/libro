@@ -23,7 +23,7 @@ const href = ({
   if (linkedProp) {
     hrefInner = (
       <SideBarLinkLink
-        to={retrievePath(linkedProp)}
+        to={retrievePath(linkedProp.value)}
         onClick={handleClick}
       >
         {children}

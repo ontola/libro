@@ -10,7 +10,7 @@ const propTypes = {
 
 const Result = ({ linkedProp }) => (
   <DetailStatus
-    status={linkedProp}
+    status={linkedProp.value}
   />
 );
 

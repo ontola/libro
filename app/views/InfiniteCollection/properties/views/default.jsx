@@ -1,4 +1,3 @@
-import LinkedRenderStore from 'link-lib';
 import {
   contextTypes,
   linkedPropType,

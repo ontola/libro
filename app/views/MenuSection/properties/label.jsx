@@ -12,7 +12,7 @@ const MenuSectionLabel = ({ linkedProp }) => (
   <div className="MenuSectionLabel" data-test="MenuSection-MenuSectionLabel">
     <div className="MenuSectionLabel__bar" />
     <div className="MenuSectionLabel__text" >
-      {linkedProp}
+      {linkedProp.value}
     </div>
     <div className="MenuSectionLabel__bar" />
   </div>

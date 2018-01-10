@@ -7,7 +7,7 @@ import React from 'react';
 import { NS } from '../../../helpers/LinkedRenderStore';
 
 const UnreadCount = ({ linkedProp }) => (
-  <span> ({linkedProp})</span>
+  <span> ({linkedProp.value})</span>
 );
 
 UnreadCount.propTypes = {

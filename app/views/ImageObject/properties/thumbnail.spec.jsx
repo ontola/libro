@@ -24,6 +24,7 @@ describeView('ImageObject', components, resources, resource, () => {
   });
 
   it('passes the correct url', () => {
-    expect(subject.find(marker('ImageObjectThumbnail'))).toHaveProp('imageUrl', 'http://example.com/1.thumb.png');
+    expect(subject.find(marker('ImageObjectThumbnail')))
+      .toHaveProp('linkedProp', new NamedNode('http://example.com/1.thumb.png'));
   });
 });

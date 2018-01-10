@@ -13,7 +13,7 @@ const propTypes = {
 const TotalScore = ({ children, linkedProp }) => (
   <CompareVotesBar
     label={<Property label={NS.argu('comparedBeta')} />}
-    totalValue={linkedProp}
+    totalValue={linkedProp.value}
   >
     {children}
   </CompareVotesBar>

@@ -12,7 +12,9 @@ const propTypes = {
   linkedProp: linkedPropType,
 };
 
-const Name = ({ linkedProp }) => <Heading data-test="Thing-name" size="1">{linkedProp}</Heading>;
+const Name = ({ linkedProp }) => (
+  <Heading data-test="Thing-name" size="1">{linkedProp.value}</Heading>
+);
 
 Name.propTypes = propTypes;
 
@@ -28,7 +30,7 @@ export default [
     [undefined, NS.argu('collection'), NS.argu('parent'), NS.argu('section')]
   ),
   LinkedRenderStore.registerRenderer(
-    ({ linkedProp }) => <span data-test="Thing-name-sidebar">{linkedProp}</span>,
+    ({ linkedProp }) => <span data-test="Thing-name-sidebar">{linkedProp.value}</span>,
     NS.schema('Thing'),
     [
       NS.schema('name'),
@@ -38,7 +40,7 @@ export default [
     NS.argu('sidebar')
   ),
   LinkedRenderStore.registerRenderer(
-    ({ linkedProp }) => <LDLink data-test="Thing-name-inline">{linkedProp}</LDLink>,
+    ({ linkedProp }) => <LDLink data-test="Thing-name-inline">{linkedProp.value}</LDLink>,
     NS.schema('Thing'),
     [
       NS.schema('name'),

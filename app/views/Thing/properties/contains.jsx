@@ -50,7 +50,7 @@ class Contains extends Component {
           id={`${this.props.subject}-menu-items`}
           labelComp={label}
         >
-          <LinkedObjectContainer object={`${FRONTEND_URL}/menus/organizations`} />
+          <LinkedObjectContainer object={new NamedNode(`${FRONTEND_URL}/menus/organizations`)} />
         </SideBarCollapsible>
       </div>
     );

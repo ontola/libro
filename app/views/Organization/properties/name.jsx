@@ -13,7 +13,7 @@ const propTypes = {
 const OrganizationName = ({ linkedProp }) => (
   <div className="OrganizationName">
     <Property label={NS.schema('image')} />
-    <span className="OrganizationName__value">{linkedProp}</span>
+    <span className="OrganizationName__value">{linkedProp.value}</span>
   </div>
 );
 

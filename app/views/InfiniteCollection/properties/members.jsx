@@ -21,7 +21,7 @@ class MemberComp extends PropertyBase {
     return list.map(iri => (
       <div key={`${this.props.subject}:${getValueOrID(iri)}`}>
         <LinkedObjectContainer
-          object={getValueOrID(iri)}
+          object={iri.object}
           topology={topology}
         />
         {divider}

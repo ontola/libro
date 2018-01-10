@@ -1,4 +1,4 @@
-import LinkedRenderStore, { getValueOrID } from 'link-lib';
+import LinkedRenderStore from 'link-lib';
 import {
   LinkedObjectContainer,
   contextTypes,
@@ -18,7 +18,7 @@ const Views = (props, context) => {
   if (typeof prop === 'string') {
     return <LinkedObjectContainer object={prop} />;
   }
-  const obs = prop.map(iri => <LinkedObjectContainer object={getValueOrID(iri)} />);
+  const obs = prop.map(iri => <LinkedObjectContainer object={iri.object} />);
   if (obs && obs.length > 1) {
     return <Columns>{obs}</Columns>;
   } else if (obs) {

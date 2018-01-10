@@ -7,7 +7,7 @@ const FABase = 'http://fontawesome.io/icon/';
 
 const propTypes = {
   className: PropTypes.string,
-  linkedProp: linkedPropType,
+  linkedProp: linkedPropType.isRequired,
   override: PropTypes.func,
   style: PropTypes.shape({
     maxHeight: PropTypes.string,
@@ -18,7 +18,7 @@ function Image(props) {
   const {
     className, override, style, linkedProp
   } = props;
-  if (linkedProp.startsWith(FABase)) {
+  if (linkedProp.value.startsWith(FABase)) {
     return <FontAwesome name={linkedProp.split(FABase)[1]} />;
   }
   if (typeof override !== 'undefined') {
@@ -28,7 +28,7 @@ function Image(props) {
     <img
       alt=""
       className={className}
-      src={linkedProp}
+      src={linkedProp.value}
       style={style}
     />
   );
