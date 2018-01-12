@@ -1,25 +1,25 @@
 @import '../../components/shared/config';
 
-.MenuSectionLabel__text{
-    display: block;
-    flex: 1;
-    font-size: .8em;
-    font-weight: bold;
-    text-align: center;
-    text-transform: uppercase;
-    width: 100%;
-    letter-spacing: .1em;
-    padding-left: .1em;
+.MenuSectionLabel__text {
+  display: block;
+  flex: 1;
+  font-size: .8em;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  width: 100%;
+  letter-spacing: .1em;
+  padding-left: .1em;
 }
 
 .MenuSectionLabel {
-    align-items: center;
-    display: flex;
-    margin-top: .7em;
+  align-items: center;
+  display: flex;
+  margin-top: .7em;
 }
 
 .MenuSectionLabel__bar {
-    background-color: color('transparent', 'light');
-    flex: 1;
-    height: 2px;
+  background-color: color('transparent', 'light');
+  flex: 1;
+  height: 2px;
 }

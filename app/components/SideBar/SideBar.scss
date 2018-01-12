@@ -17,6 +17,8 @@
 
 .SideBar__sidebar-wrapper {
   width: 100%;
+  display: flex;
+  flex: 1;
 }
 
 .SideBar__content {
@@ -95,9 +97,4 @@
   margin: .2em;
   margin-left: .3em;
   padding: .4em;
-}
-
-.SideBar__sidebar-wrapper {
-  display: flex;
-  flex: 1;
 }
