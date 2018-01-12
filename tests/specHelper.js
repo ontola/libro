@@ -1,3 +1,10 @@
+import LinkedRenderStore from 'link-lib';
+import { RenderStoreProvider } from 'link-redux';
+import { Provider } from 'react-redux';
+import { StaticRouter } from 'react-router';
+
+import { generateStore } from './link-redux/utilities';
+
 import { ctx } from './index';
 
 const { mount, shallow } = require('enzyme');
@@ -111,12 +118,28 @@ function argUnitCustom(desc, comp, props, func) {
  * It defines the marker prefix to be the name of the component.
  * @param {React.Component} comp The component to test.
  * @param {function} func The test body.
+ * @param {object} opts Test option toggles.
  * @return {undefined}
  */
-function argUnit(comp, func) {
+function argUnit(comp, func, opts = {}) {
   const desc = comp.name;
-  const props = Object.keys(comp.propTypes);
-  const render = p => shallow(React.createElement(comp, p));
+  const props = Object.keys(opts.propTypes || comp.propTypes);
+
+  const render = (p) => {
+    const method = opts.mount === true ? mount : shallow;
+    let element = React.createElement(comp, p);
+    const lrs = new LinkedRenderStore();
+    if (opts.link || opts.redux) {
+      element = React.createElement(RenderStoreProvider, { linkedRenderStore: lrs }, element);
+    }
+    if (opts.redux) {
+      element = React.createElement(Provider, { store: generateStore(lrs) }, element);
+    }
+    if (opts.router) {
+      element = React.createElement(StaticRouter, {}, element);
+    }
+    return method(element);
+  };
 
   argUnitCustom(desc, render, props, func);
 }
