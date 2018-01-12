@@ -17,10 +17,10 @@ const propTypes = {
 };
 
 const label = (
-  <div>
+  <span>
     <Property forceRender label={NS.schema('name')} />
     <Property label={NS.argu('unreadCount')} />
-  </div>
+  </span>
 );
 
 const CollectionSidebar = ({ subject }) => (
