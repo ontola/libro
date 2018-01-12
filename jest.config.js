@@ -17,7 +17,6 @@ module.exports = {
     'jest-plugin-set/setup',
   ],
   setupTestFrameworkScriptFile: '<rootDir>/tests/testhelper.js',
-  testEnvironment: 'jsdom-latest',
   transform: {
     '^.+\\.jsx?$': 'babel-jest',
   },
