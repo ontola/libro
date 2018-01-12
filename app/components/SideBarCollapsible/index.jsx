@@ -15,13 +15,13 @@ const propTypes = {
   alwaysMountChildren: PropTypes.bool,
   // A collection of SideBarLinks
   children: PropTypes.node,
-  id: PropTypes.string,
+  id: PropTypes.string.isRequired,
   labelComp: PropTypes.node.isRequired,
   onClickToggle: PropTypes.func.isRequired,
   open: PropTypes.bool,
 };
 
-const SideBarCollapsible = ({
+export const SideBarCollapsible = ({
   alwaysMountChildren,
   children,
   id,
@@ -35,13 +35,14 @@ const SideBarCollapsible = ({
   });
 
   return (
-    <div className={classes}>
-      <div className="SideBarCollapsible__label">
+    <div className={classes} data-test="SideBarCollapsible-sideBarCollapsible">
+      <div className="SideBarCollapsible__label" data-test="SideBarCollapsible-label">
         {labelComp}
         <Button
           plain
           alt="Menu uitvouwen of inklappen"
           className="SideBarCollapsible__toggle"
+          data-test="SideBarCollapsible-toggle"
           onClick={onClickToggle}
         >
           <FontAwesome name="caret-right" />

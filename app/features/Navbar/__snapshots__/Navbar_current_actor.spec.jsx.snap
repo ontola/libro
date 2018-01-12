@@ -3,9 +3,11 @@
 exports[`Navbar current_actor logged in renders the correct representation 1`] = `
 <div
   className="SideBarCollapsible"
+  data-test="SideBarCollapsible-sideBarCollapsible"
 >
   <div
     className="SideBarCollapsible__label"
+    data-test="SideBarCollapsible-label"
   >
     <div
       className="SideBarLink"

@@ -36,9 +36,11 @@ exports[`Navbar as default renders the correct representation 1`] = `
           >
             <div
               className="SideBarCollapsible"
+              data-test="SideBarCollapsible-sideBarCollapsible"
             >
               <div
                 className="SideBarCollapsible__label"
+                data-test="SideBarCollapsible-label"
               >
                 <a
                   href="/o/find?iri=about%3Ablank"
