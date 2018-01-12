@@ -1,6 +1,6 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
-  linkedSubject,
+  subjectType,
   lowLevel,
   Property,
 } from 'link-redux';
@@ -18,7 +18,7 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import Label from './properties/label';
 
 const propTypes = {
-  subject: linkedSubject,
+  subject: subjectType,
 };
 
 const SubMenuSideBar = ({ subject }) => {
