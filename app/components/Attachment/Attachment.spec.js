@@ -3,8 +3,8 @@ import Attachment from './index';
 const curProgress = 45;
 
 argUnit(Attachment, () => {
-  set('url', () => 'http://argu.co/');
-  set('title', () => 'Attachment label');
+  setProp('url', () => 'http://argu.co/');
+  setProp('title', () => 'Attachment label');
 
   it('renders', () => {
     expect(subject).toMatchSnapshot();
@@ -15,7 +15,7 @@ argUnit(Attachment, () => {
   });
 
   describe('with preview', () => {
-    set('hasPreview', () => true);
+    setProp('hasPreview', () => true);
 
     it('renders preview links', () => {
       expect(subject.find(marker('preview'))).toHaveProp('href', '/');
@@ -23,8 +23,8 @@ argUnit(Attachment, () => {
   });
 
   describe('when downloading', () => {
-    set('percentageDownloaded', () => curProgress);
-    set('isDownloading', () => true);
+    setProp('percentageDownloaded', () => curProgress);
+    setProp('isDownloading', () => true);
 
     it('renders downloading spinner', () => {
       expect(subject.find(marker('downloading'))).toHaveProp('href', '/');

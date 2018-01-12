@@ -6,7 +6,7 @@ const exampleChildren = [<div>Joe</div>, <div>Joe</div>];
 
 argUnit(Columns, () => {
   describe('with node child', () => {
-    set('children', () => <p>test</p>);
+    setProp('children', () => <p>test</p>);
 
     it('renders', () => {
       expect(subject).toMatchSnapshot();
@@ -14,7 +14,7 @@ argUnit(Columns, () => {
   });
 
   describe('with array child', () => {
-    set('children', () => exampleChildren);
+    setProp('children', () => exampleChildren);
 
     it('renders', () => {
       expect(subject).toMatchSnapshot();

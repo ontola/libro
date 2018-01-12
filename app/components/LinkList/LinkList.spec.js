@@ -9,7 +9,7 @@ const exampleLinks = [{
 }];
 
 argUnit(LinkList, () => {
-  set('links', () => exampleLinks);
+  setProp('links', () => exampleLinks);
 
   it('renders', () => {
     expect(subject).toMatchSnapshot();

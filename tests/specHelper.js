@@ -3,6 +3,8 @@ import { ctx } from './index';
 const { mount, shallow } = require('enzyme');
 const React = require('react');
 
+const VAR_PREFIX = '__argu_global_prop_';
+
 const define = ({ scope, name, block }) => {
   let value;
   let isEvaluated = false;
@@ -49,12 +51,23 @@ function declareProps(arr, ...params) {
   Object.entries(props).forEach(([k, v]) => set(k, () => v));
 }
 
+function propName(k) {
+  return `${VAR_PREFIX}${k}`;
+}
+
 function declareTestProps(arr, ...params) {
   const props = normalizeProps(arr, params);
-  Object.entries(props).forEach((k, v) => define({ block: () => v, name: k, scope: global }));
+  Object.entries(props).forEach(([k, v]) => define({
+    block: () => v,
+    name: propName(k),
+    scope: global
+  }));
+
   set('testProps', () => {
     const propMap = {};
-    Object.keys(props).forEach((p) => { propMap[p] = global[p]; });
+    Object.keys(props).forEach((p) => {
+      propMap[p] = global[propName(p)];
+    });
     return propMap;
   });
 }
@@ -164,6 +177,10 @@ function as(topology, func) {
   });
 }
 
+function setProp(key, block) {
+  set(propName(key), block);
+}
+
 module.exports = {
   argUnit,
   as,
@@ -173,4 +190,5 @@ module.exports = {
   describeView,
   marker,
   normalizeProps,
+  setProp,
 };

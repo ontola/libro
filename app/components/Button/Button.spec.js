@@ -4,7 +4,7 @@ const clickHandler = jest.fn();
 const link = 'http://argu.co/resource';
 
 argUnit(Button, () => {
-  set('onClick', () => clickHandler);
+  setProp('onClick', () => clickHandler);
 
   it('should render', () => {
     expect(clickHandler).not.toHaveBeenCalled();
@@ -26,7 +26,7 @@ argUnit(Button, () => {
   });
 
   describe('with custom class', () => {
-    set('className', () => 'custom');
+    setProp('className', () => 'custom');
 
     it('should render subtle', () => {
       expect(subject).toHaveClassName('custom');
@@ -34,7 +34,7 @@ argUnit(Button, () => {
   });
 
   describe('with href', () => {
-    set('href', () => link);
+    setProp('href', () => link);
 
     it('should render a link', () => {
       expect(subject.find(marker('link'))).toBePresent();
@@ -50,7 +50,7 @@ argUnit(Button, () => {
     });
 
     describe('with icon', () => {
-      set('icon', () => 'lightbulb-o');
+      setProp('icon', () => 'lightbulb-o');
 
       it('should render an icon', () => {
         expect(subject.find(marker('icon'))).toHaveProp('name', 'lightbulb-o');
@@ -59,7 +59,7 @@ argUnit(Button, () => {
   });
 
   describe('with icon', () => {
-    set('icon', () => 'lightbulb-o');
+    setProp('icon', () => 'lightbulb-o');
 
     it('should render an icon', () => {
       expect(subject.find(marker('icon'))).toHaveProp('name', 'lightbulb-o');
@@ -67,7 +67,7 @@ argUnit(Button, () => {
   });
 
   describe('with label', () => {
-    set('children', () => 'Button label');
+    setProp('children', () => 'Button label');
 
     it('should render a label', () => {
       expect(subject.find('.Button__label')).toHaveText('Button label');
@@ -75,7 +75,7 @@ argUnit(Button, () => {
   });
 
   describe('when loading', () => {
-    set('loading', () => true);
+    setProp('loading', () => true);
 
     it('should be disabled', () => {
       expect(subject.find(marker('button'))).toHaveProp('disabled', true);
@@ -83,7 +83,7 @@ argUnit(Button, () => {
   });
 
   describe('with small', () => {
-    set('small', () => true);
+    setProp('small', () => true);
 
     it('should render small', () => {
       expect(subject).toHaveClassName('Button--small');
@@ -91,7 +91,7 @@ argUnit(Button, () => {
   });
 
   describe('with subtle', () => {
-    set('theme', () => 'subtle');
+    setProp('theme', () => 'subtle');
 
     it('should render subtle', () => {
       expect(subject).toHaveClassName('Button--subtle');
@@ -99,7 +99,7 @@ argUnit(Button, () => {
   });
 
   describe('with variant', () => {
-    set('variant', () => 'pro');
+    setProp('variant', () => 'pro');
 
     it('should render subtle', () => {
       expect(subject).toHaveClassName('Button--variant-pro');

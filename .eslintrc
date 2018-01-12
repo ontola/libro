@@ -138,6 +138,7 @@
         "markerNS": true,
         "testProps": true,
         "set": true,
+        "setProp": true,
         "subject": true,
 
         // Unit specs
