@@ -10,6 +10,7 @@ import Collection from './Collection';
 import CreateAction from './CreateAction';
 import EntryPoint from './EntryPoint';
 import GuestUserActor from './GuestUserActor';
+import Forum from './Forum';
 import ImageObject from './ImageObject';
 import InfiniteCollection from './InfiniteCollection';
 // import './LinkedRecord';
@@ -39,6 +40,7 @@ LRS.registerAll(
   ...CreateAction,
   ...Collection,
   ...EntryPoint,
+  Forum,
   GuestUserActor,
   ...ImageObject,
   ...InfiniteCollection,

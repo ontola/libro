@@ -18,6 +18,13 @@ const Name = ({ linkedProp }) => (
 
 Name.propTypes = propTypes;
 
+const ThingNameHeader = ({ linkedProp }) => (
+  <Heading data-test="Thing-name-header" size="1">{linkedProp}</Heading>
+);
+
+ThingNameHeader.propTypes = propTypes;
+
+
 export default [
   LinkedRenderStore.registerRenderer(
     Name,
@@ -48,5 +55,15 @@ export default [
       NS.foaf('name'),
     ],
     NS.argu('inline')
+  ),
+  LinkedRenderStore.registerRenderer(
+    ThingNameHeader,
+    NS.schema('Thing'),
+    [
+      NS.schema('name'),
+      NS.rdfs('label'),
+      NS.foaf('name'),
+    ],
+    NS.argu('header')
   ),
 ];

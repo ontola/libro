@@ -57,6 +57,16 @@ describeView('Thing', components, resources, resource, () => {
     });
   });
 
+  as(NS.argu('header'), () => {
+    it('renders the name', () => {
+      expect(subject.find(marker('name', 'header'))).toBePresent();
+    });
+
+    it('does not render the text', () => {
+      expect(subject.find(marker('text'))).toBeEmpty();
+    });
+  });
+
   as(NS.argu('parent'), () => {
     it('renders the name', () => {
       expect(subject.find(marker('name'))).toBePresent();
