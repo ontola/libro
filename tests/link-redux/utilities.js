@@ -14,25 +14,28 @@ Enzyme.configure({ adapter: new Adapter() });
 chai.use(chaiEnzyme());
 chai.use(sinonChai);
 
-export const generateStore = lrs =>
-  createStore(combineReducers({ linkedObjects: linkReducer }), applyMiddleware(lrMiddleware(lrs)));
+export const generateStore = (lrs, initialState = undefined) => createStore(
+  combineReducers({ linkedObjects: linkReducer }),
+  initialState,
+  applyMiddleware(lrMiddleware(lrs))
+);
 
-const contextDefaults = () => {
+const contextDefaults = (state = undefined) => {
   const lrs = new LinkedRenderStore();
   return {
     linkedRenderStore: lrs,
     schemaObject: {},
-    store: generateStore(lrs),
+    store: generateStore(lrs, state),
   };
 };
 
-function generateContext(properties = {}) {
+function generateContext(properties = {}, initialState = undefined) {
   const keys = Object.keys(properties);
   const c = {
     childContextTypes: {},
     context: {},
   };
-  const defaults = contextDefaults();
+  const defaults = contextDefaults(initialState);
   keys.forEach((key) => {
     if (properties[key] === true) {
       c.context[key] = defaults[key];
@@ -45,10 +48,10 @@ function generateContext(properties = {}) {
   return c;
 }
 
-function defaultContext(properties = {}) {
+function defaultContext(properties = {}, initialState = undefined) {
   const keys = Object.keys(properties);
   const c = {};
-  const defaults = contextDefaults();
+  const defaults = contextDefaults(initialState);
   keys.forEach((key) => {
     if (properties[key] === true) {
       c[key] = defaults[key];
