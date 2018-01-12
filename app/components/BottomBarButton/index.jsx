@@ -49,7 +49,7 @@ const BottomBarButton = ({
       {to &&
         <NavLink
           activeClassName="BottomBarButton--active"
-          onlyActiveOnIndex={isIndex}
+          exact={isIndex}
           to={to}
         >
           {LinkContent}
