@@ -11,6 +11,8 @@ const propTypes = {
   /* The components that appear in the main area */
   children: PropTypes.node,
   docked: PropTypes.bool,
+  /* Should be true for wide screens */
+  isWideWindow: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   onDock: PropTypes.func.isRequired,
   onOpen: PropTypes.func.isRequired,
@@ -39,23 +41,9 @@ class SideBar extends Component {
   constructor(props) {
     super(props);
     this.onSetSideBarOpen = this.onSetSideBarOpen.bind(this);
-    this.mediaQueryChanged = this.mediaQueryChanged.bind(this);
   }
 
   componentWillMount() {
-    if (typeof window !== 'undefined') {
-      const mql = window.matchMedia(`(min-width: ${this.triggerWidth()})`);
-      mql.addListener(this.mediaQueryChanged);
-      this.setState({
-        mql,
-      });
-      if (mql.matches) {
-        this.props.onDock();
-      } else {
-        this.props.onUndock();
-      }
-    }
-
     this.styles = {
       content: {
         // Enables inertial scrolling in iOS
@@ -71,12 +59,6 @@ class SideBar extends Component {
     };
   }
 
-  componentWillUnmount() {
-    if (typeof window !== 'undefined') {
-      this.state.mql.removeListener(this.mediaQueryChanged);
-    }
-  }
-
   // Handles the events from the used Sidebar component, such as dragging
   // and closing by tapping the overlay.
   onSetSideBarOpen(open) {
@@ -87,23 +69,18 @@ class SideBar extends Component {
     }
   }
 
-  triggerWidth() {
-    if (this.props.slim === true) {
-      return '900px';
+  dockIcon() {
+    if (this.props.pullRight === true) {
+      return 'chevron-left';
     }
-    return '1100px';
+    return 'chevron-right';
   }
 
-  checkWidthAndDock() {
-    if (this.state.mql.matches) {
-      this.props.onDock();
-    } else {
-      this.props.onUndock();
+  undockIcon() {
+    if (this.props.pullRight === true) {
+      return 'chevron-right';
     }
-  }
-
-  mediaQueryChanged() {
-    this.checkWidthAndDock();
+    return 'chevron-left';
   }
 
   render() {
@@ -114,26 +91,9 @@ class SideBar extends Component {
     });
     const buttonClassNames = classNames({
       'SideBar__switch-wrapper': true,
-      'SideBar__switch-wrapper--hidden': !this.state.mql.matches,
+      'SideBar__switch-wrapper--hidden': !this.props.isWideWindow,
       'SideBar__switch-wrapper--right': this.props.pullRight,
     });
-
-    const dockIcon = () => {
-      if (this.props.pullRight === true) {
-        return 'chevron-left';
-      }
-      return 'chevron-right';
-    };
-
-    const undockIcon = () => {
-      if (this.props.pullRight === true) {
-        return 'chevron-right';
-      }
-      return 'chevron-left';
-    };
-
-    // Returns true if the window is wide enough.
-    const wideWindow = () => (typeof window === 'undefined' || this.state.mql.matches);
 
     const sidebar = (
       <div className="SideBar__sidebar-wrapper">
@@ -144,13 +104,14 @@ class SideBar extends Component {
             backgroundColor: this.props.orgColor,
           }}
         >
-          {!this.props.docked && wideWindow && this.props.opened &&
+          {!this.props.docked && this.props.isWideWindow && this.props.opened &&
             <Button
               narrow
               plain
               alt="Openvouwen"
-              icon={dockIcon()}
-              onClick={() => this.props.onDock()}
+              data-test="SideBar-button-dock"
+              icon={this.dockIcon()}
+              onClick={this.props.onDock}
             />
           }
           {this.props.docked &&
@@ -158,29 +119,32 @@ class SideBar extends Component {
               narrow
               plain
               alt="Dichtvouwen"
-              icon={undockIcon()}
+              data-test="SideBar-button-undock"
+              icon={this.undockIcon()}
               onClick={() => {
                 this.props.onUndock();
                 this.props.onClose();
               }}
             />
           }
-          {!this.props.docked && !this.props.opened && wideWindow &&
+          {!this.props.docked && !this.props.opened && this.props.isWideWindow &&
             <Button
               narrow
               plain
               alt="Menu openen"
+              data-test="SideBar-button-open"
               icon="bars"
-              onClick={() => this.props.onOpen()}
+              onClick={this.props.onOpen}
             />
           }
-          {!this.props.docked && this.props.opened && wideWindow &&
+          {!this.props.docked && this.props.opened && this.props.isWideWindow &&
             <Button
               narrow
               plain
               alt="Menu sluiten"
+              data-test="SideBar-button-close"
               icon="close"
-              onClick={() => this.props.onClose()}
+              onClick={this.props.onClose}
             />
           }
         </div>

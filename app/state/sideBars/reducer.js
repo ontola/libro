@@ -30,8 +30,8 @@ const initialState = new Map({
 
 const closeSidebar = (state, sidebarName) => updateRecordValue(state, sidebarName, 'opened', false);
 
-const recordCollapsible = ({ id }) =>
-  new SideBar({ id });
+const recordCollapsible = ({ id, docked }) =>
+  new SideBar({ docked, id });
 
 const sideBars = handleActions({
   '@@router/LOCATION_CHANGE': state => closeSidebar(state, 'Navbar'),
