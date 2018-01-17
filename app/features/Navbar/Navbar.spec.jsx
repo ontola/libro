@@ -1,16 +1,14 @@
 import { Literal, NamedNode } from 'rdflib';
 import React from 'react';
-import { create } from 'react-test-renderer';
 
 import { NS } from '../../helpers/LinkedRenderStore';
-import * as ctx from '../../../tests/link-redux/fixtures';
 
 import components, { Component } from './Navbar';
 
-const subject = new NamedNode('https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1');
+const resource = new NamedNode('https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1');
 
 const resources = {
-  [subject]: {
+  [resource]: {
     [NS.rdf('type')]: [
       new NamedNode('http://www.w3.org/ns/iana/media-types/text/n3#Resource'),
       new NamedNode('http://www.w3.org/2007/ont/link#Document'),
@@ -89,19 +87,12 @@ const resources = {
   },
 };
 
-describe('Navbar', () => {
+describeView('Navbar', components, resources, resource, () => {
+  set('ch', () => <Component />);
+
   describe('as default', () => {
     it('renders the correct representation', () => {
-      const children = <Component />;
-
-      const context = ctx.loc({
-        children,
-        components,
-        resources,
-        subject,
-      });
-
-      expect(create(context)).toMatchSnapshot();
+      expect(subject.find(Component)).toMatchSnapshot();
     });
   });
 });

@@ -12,7 +12,7 @@ import { NS } from '../../helpers/LinkedRenderStore';
 
 import './ProfileCard.scss';
 
-const propTypes = {
+export const propTypes = {
   bio: PropTypes.string,
   full: PropTypes.bool,
   id: PropTypes.string,
@@ -29,10 +29,11 @@ const defaultProps = {
   loading: false,
 };
 
-class ProfileCard extends PropertyBase {
+export class ProfileCard extends PropertyBase {
   getLegacyProperty(ldprop, prop) {
     assert(ldprop, 'ldprop is required');
-    return this.getLinkedObjectProperty(ldprop) || this.props[prop];
+    const lp = this.getLinkedObjectProperty(ldprop);
+    return lp ? lp.value : this.props[prop];
   }
 
   render() {
@@ -54,15 +55,19 @@ class ProfileCard extends PropertyBase {
     });
 
     return (
-      <section className={profileClassname}>
-        <div className="ProfileCard__head">
+      <section className={profileClassname} data-test="ProfileCard">
+        <div className="ProfileCard__head" data-test="ProfileCard-head">
           <div className="ProfileCard__title">
-            <Heading>{this.getLegacyProperty(NS.schema('name'), 'name')}</Heading>
-            {party && <div className="ProfileCard__party">{party}</div>}
+            <Heading data-test="ProfileCard-head-name">
+              {this.getLegacyProperty(NS.schema('name'), 'name')}
+            </Heading>
+            {party &&
+              <div className="ProfileCard__party" data-test="ProfileCard-head-party">{party}</div>}
           </div>
           {image &&
           <div
             className="ProfileCard__image"
+            data-test="ProfileCard-head-image"
             style={{
               backgroundImage: `url(${image})`,
             }}
@@ -70,9 +75,9 @@ class ProfileCard extends PropertyBase {
           }
         </div>
 
-        {bio && <p className="ProfileCard__bio">{bio}</p>}
+        {bio && <p className="ProfileCard__bio" data-test="ProfileCard-bio">{bio}</p>}
 
-        <div className="ProfileCard__foot">
+        <div className="ProfileCard__foot" data-test="ProfileCard-footer">
           <div className="ProfileCard__stats">
             <div className="ProfileCard__stat">
               Ideeen

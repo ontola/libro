@@ -1,56 +1,65 @@
-/* eslint no-magic-numbers: 0 */
 import React from 'react';
-import { mount } from 'enzyme';
-import { assert } from 'chai';
 import rdf from 'rdflib';
 
-import * as ctx from '../../../tests/link-redux/fixtures';
+import { NS } from '../../helpers/LinkedRenderStore';
 
-import ProfileCard from './';
+import ProfileCardConnected, { ProfileCard, propTypes } from './index';
 
-const subject = new rdf.NamedNode('http://example.com/profile/1');
+const resource = new rdf.NamedNode('http://example.com/profile/1');
+const resources = {
 
-describe('ProfileCard component', () => {
-  it('ProfileCard should render', () => {
-    const comp = mount(
-      ctx.loc({
-        children: <ProfileCard name="Matthew Obrien" />,
-        subject,
-      }),
-      ctx.empty(undefined, true)
-    );
+  [resource]: {
+    [NS.schema('name')]: new rdf.Literal('Title'),
+    [NS.schema('description')]: new rdf.Literal('bio'),
+  },
+};
 
-    assert.equal(comp.find('.ProfileCard').length, 1, 'ProfileCard does not render');
-    assert.equal(comp.find('.Heading').length, 1, 'Profile heading does not render');
-    assert.equal(comp.find('.Heading').first().text(), 'Matthew Obrien', 'Heading does not render correct title');
-    assert.equal(comp.find('.ProfileCard__foot').length, 1, 'Footer does not render');
+describeView('ProfileCard', [], resources, resource, () => {
+  set('ch', () => <ProfileCardConnected />);
+
+  describe('with link', () => {
+    it('should render', () => {
+      expect(subject.find(ProfileCardConnected)).toMatchSnapshot();
+      expect(subject.find(marker()));
+    });
+
+    it('should display the title', () => {
+      expect(subject.find(marker('head', 'name'))).toHaveText('Title');
+    });
+
+    it('should display the bio', () => {
+      expect(subject.find(marker('bio'))).toHaveText('bio');
+    });
+
+    it('should display the footer', () => {
+      expect(subject.find(marker('footer'))).toBePresent();
+    });
   });
 
-  it('renders party members', () => {
-    const comp = mount(
-      ctx.loc({
-        children: (
-          <ProfileCard
-            bio="Trololol"
-            image="http://uinames.com/api/photos/male/40.jpg"
-            name="Matthew Obrien"
-            party="D66"
-            similarity={65}
-          />
-        ),
-        subject,
-      }),
-      ctx.empty()
-    );
-      // generateContext({ linkedRenderStore: true, schemaObject: true })
-    assert.equal(comp.find('.ProfileCard__party').first().text(), 'D66', 'Does not display party correctly');
-    assert.deepEqual(
-      comp.find('.ProfileCard__image').first().prop('style'),
-      { backgroundImage: 'url(http://uinames.com/api/photos/male/40.jpg)' },
-      'Does not display party correctly'
-    );
+  describe('without link', () => {
+    set('ch', () => (
+      <ProfileCard
+        bio="classic bio"
+        name="classic name"
+        party="classic party"
+      />
+    ));
 
-    assert.equal(comp.find('.ProfileCard__similarity').length, 1, 'Does not render similarity');
-    assert.equal(comp.find('.Button').length, 0, 'Displays voteMatch button while it shouldnt');
+
+    it('should display the title', () => {
+      expect(subject.find(marker('head', 'name'))).toHaveText('classic name');
+    });
+
+    it('should display the bio', () => {
+      expect(subject.find(marker('bio'))).toHaveText('classic bio');
+    });
+
+    it('should display the footer', () => {
+      expect(subject.find(marker('footer'))).toBePresent();
+    });
+
+    it('should display the party', () => {
+      expect(subject.find(marker('head', 'party'))).toHaveText('classic party');
+    });
   });
-});
+}, { propTypes });
