@@ -22,7 +22,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
         object={
           NamedNode {
             "termType": "NamedNode",
-            "value": "https://beta.argu.co/o/find?iri=about%3Ablank",
+            "value": "https://argu.dev/o/find?iri=about%3Ablank",
           }
         }
         topology={
@@ -38,7 +38,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
           object={
             NamedNode {
               "termType": "NamedNode",
-              "value": "https://beta.argu.co/o/find?iri=about%3Ablank",
+              "value": "https://argu.dev/o/find?iri=about%3Ablank",
             }
           }
           topology={
@@ -77,7 +77,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                 subject={
                   NamedNode {
                     "termType": "NamedNode",
-                    "value": "https://beta.argu.co/o/find?iri=about%3Ablank",
+                    "value": "https://argu.dev/o/find?iri=about%3Ablank",
                   }
                 }
               >
@@ -93,7 +93,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                   subject={
                     NamedNode {
                       "termType": "NamedNode",
-                      "value": "https://beta.argu.co/o/find?iri=about%3Ablank",
+                      "value": "https://argu.dev/o/find?iri=about%3Ablank",
                     }
                   }
                 >
@@ -109,7 +109,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                     subject={
                       NamedNode {
                         "termType": "NamedNode",
-                        "value": "https://beta.argu.co/o/find?iri=about%3Ablank",
+                        "value": "https://argu.dev/o/find?iri=about%3Ablank",
                       }
                     }
                   >
@@ -118,7 +118,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                         className="NavBarContent__switcher"
                       >
                         <Connect(SideBarCollapsible)
-                          id="<https://beta.argu.co/o/find?iri=about%3Ablank>-menu-items"
+                          id="<https://argu.dev/o/find?iri=about%3Ablank>-menu-items"
                           labelComp={
                             <linkedSubject>
                               <linkedSubject[ConnectedProp]
@@ -133,7 +133,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                           }
                         >
                           <SideBarCollapsible
-                            id="<https://beta.argu.co/o/find?iri=about%3Ablank>-menu-items"
+                            id="<https://argu.dev/o/find?iri=about%3Ablank>-menu-items"
                             labelComp={
                               <linkedSubject>
                                 <linkedSubject[ConnectedProp]
@@ -162,7 +162,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                     subject={
                                       NamedNode {
                                         "termType": "NamedNode",
-                                        "value": "https://beta.argu.co/o/find?iri=about%3Ablank",
+                                        "value": "https://argu.dev/o/find?iri=about%3Ablank",
                                       }
                                     }
                                   >
@@ -192,7 +192,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                             subject={
                                               NamedNode {
                                                 "termType": "NamedNode",
-                                                "value": "https://beta.argu.co/o/find?iri=about%3Ablank",
+                                                "value": "https://argu.dev/o/find?iri=about%3Ablank",
                                               }
                                             }
                                           >
@@ -208,7 +208,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                               subject={
                                                 NamedNode {
                                                   "termType": "NamedNode",
-                                                  "value": "https://beta.argu.co/o/find?iri=about%3Ablank",
+                                                  "value": "https://argu.dev/o/find?iri=about%3Ablank",
                                                 }
                                               }
                                             />
@@ -254,11 +254,11 @@ exports[`Navbar as default renders the correct representation 1`] = `
                               </div>
                               <Connect(CollapsibleContainer)
                                 group="Navbar"
-                                id="<https://beta.argu.co/o/find?iri=about%3Ablank>-menu-items"
+                                id="<https://argu.dev/o/find?iri=about%3Ablank>-menu-items"
                               >
                                 <CollapsibleContainer
                                   group="Navbar"
-                                  id="<https://beta.argu.co/o/find?iri=about%3Ablank>-menu-items"
+                                  id="<https://argu.dev/o/find?iri=about%3Ablank>-menu-items"
                                   onClickToggle={[Function]}
                                   onInitializeCollapsible={[Function]}
                                   opened={false}
@@ -267,7 +267,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                   <Collapsible
                                     alwaysMountChildren={true}
                                     group="Navbar"
-                                    id="<https://beta.argu.co/o/find?iri=about%3Ablank>-menu-items"
+                                    id="<https://argu.dev/o/find?iri=about%3Ablank>-menu-items"
                                     onClickToggle={[Function]}
                                     onInitializeCollapsible={[Function]}
                                     opened={false}
@@ -304,7 +304,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                               object={
                                                 NamedNode {
                                                   "termType": "NamedNode",
-                                                  "value": "https://beta.argu.co/menus/organizations",
+                                                  "value": "https://argu.dev/menus/organizations",
                                                 }
                                               }
                                             >
@@ -314,7 +314,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                 object={
                                                   NamedNode {
                                                     "termType": "NamedNode",
-                                                    "value": "https://beta.argu.co/menus/organizations",
+                                                    "value": "https://argu.dev/menus/organizations",
                                                   }
                                                 }
                                                 version="new"
@@ -347,7 +347,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
         object={
           NamedNode {
             "termType": "NamedNode",
-            "value": "https://beta.argu.co/c_a",
+            "value": "https://argu.dev/c_a",
           }
         }
         topology={
@@ -363,7 +363,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
           object={
             NamedNode {
               "termType": "NamedNode",
-              "value": "https://beta.argu.co/c_a",
+              "value": "https://argu.dev/c_a",
             }
           }
           topology={
@@ -379,7 +379,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
         object={
           NamedNode {
             "termType": "NamedNode",
-            "value": "https://beta.argu.co/n?type=infinite",
+            "value": "https://argu.dev/n?type=infinite",
           }
         }
         topology={
@@ -395,7 +395,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
           object={
             NamedNode {
               "termType": "NamedNode",
-              "value": "https://beta.argu.co/n?type=infinite",
+              "value": "https://argu.dev/n?type=infinite",
             }
           }
           topology={
@@ -411,7 +411,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
         object={
           NamedNode {
             "termType": "NamedNode",
-            "value": "https://beta.argu.co/menus/info",
+            "value": "https://argu.dev/menus/info",
           }
         }
         topology={
@@ -427,7 +427,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
           object={
             NamedNode {
               "termType": "NamedNode",
-              "value": "https://beta.argu.co/menus/info",
+              "value": "https://argu.dev/menus/info",
             }
           }
           topology={
