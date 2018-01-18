@@ -1,14 +1,15 @@
+import { linkedPropType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 const propTypes = {
-  imageUrl: PropTypes.string,
+  linkedProp: linkedPropType.isRequired,
 };
 
-const SideBarLinkImage = ({ imageUrl }) => (
+const SideBarLinkImage = ({ linkedProp }) => (
   <div
     className="SideBarLink__image"
-    style={{ backgroundImage: `url(${imageUrl})` }}
+    style={{ backgroundImage: `url(${linkedProp.value})` }}
   />
 );
 
