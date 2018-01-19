@@ -100,7 +100,10 @@
     "no-invalid-this": "error",
     "no-unmodified-loop-condition": "error",
     "no-undef-init": "error",
-    "no-unused-vars": ["error", { "varsIgnorePattern": "[iI]gnored" }],
+    "no-unused-vars": ["error", {
+      "argsIgnorePattern": "[iI]gnored",
+      "varsIgnorePattern": "[iI]gnored"
+    }],
     "no-inline-comments": "error",
     "new-cap": [
       "error",
@@ -125,7 +128,7 @@
       }
     },
     {
-      "files": ["*.spec.js", "*.spec.jsx", "tests/*.js"],
+      "files": ["*.spec.js", "*.spec.jsx", "tests/*.js", "**/__tests__/*.js"],
       "env": {
         "jest": true
       },

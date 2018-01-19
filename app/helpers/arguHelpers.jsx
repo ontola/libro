@@ -98,10 +98,6 @@ export function authenticityHeader(options) {
   });
 }
 
-export function getUserIdentityToken() {
-  return { token: getMetaContent('user-identity-token') };
-}
-
 /**
  * For use with window.fetch
  * @param {Object} options Object to be merged with jsonHeader options.
@@ -121,9 +117,8 @@ export function jsonHeader(options) {
  * @param {Object} options Object to be merged with safeCredentials options.
  * @returns {Object} The merged object.
  */
-export function safeCredentials(options) {
-  const opts = options || {};
-  return Object.assign(opts, {
+export function safeCredentials(options = {}) {
+  return Object.assign({}, options, {
     credentials: 'include',
     headers: Object.assign({}, authenticityHeader(), jsonHeader(), options.headers),
     mode: 'same-origin',
@@ -149,11 +144,4 @@ export function tryLogin(response) {
     }
   }
   return Promise.reject(response);
-}
-
-export function userIdentityToken(options) {
-  const opts = options || {};
-  return Object.assign({}, opts, {
-    body: JSON.stringify(Object.assign((opts.body || {}), getUserIdentityToken())),
-  });
 }

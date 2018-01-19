@@ -1,12 +1,33 @@
-import path from '../paths';
+import path, { currentLocation } from '../paths';
 
 const TEST_ID = 12;
 
 describe('helpers', () => {
   describe('paths', () => {
+    describe('currentLocation', () => {
+      it('returns the correct path', () => {
+        expect(currentLocation({
+          pathname: '/n',
+          search: '?type=infinite'
+        })).toEqual('https://argu.dev/n?type=infinite');
+      });
+    });
+
+    describe('index', () => {
+      it('returns the correct path', () => {
+        expect(path.createVoteMatch()).toEqual('/vote_matches/new');
+      });
+    });
+
     describe('index', () => {
       it('returns the correct path', () => {
         expect(path.index()).toEqual('/');
+      });
+    });
+
+    describe('info', () => {
+      it('returns the correct path', () => {
+        expect(path.info('about')).toEqual('/info/about');
       });
     });
 
@@ -16,9 +37,21 @@ describe('helpers', () => {
       });
     });
 
+    describe('infoIndex', () => {
+      it('returns the correct path', () => {
+        expect(path.infoIndex()).toEqual('/info');
+      });
+    });
+
     describe('motionsIndex', () => {
       it('returns the correct path', () => {
         expect(path.motionsIndex()).toEqual('/motions');
+      });
+    });
+
+    describe('od', () => {
+      it('returns the correct path', () => {
+        expect(path.od('http://example.com/')).toEqual('/od?iri=http://example.com/');
       });
     });
 
@@ -28,15 +61,27 @@ describe('helpers', () => {
       });
     });
 
+    describe('profileAbout', () => {
+      it('returns the correct path', () => {
+        expect(path.profileAbout(TEST_ID)).toEqual('/profile/12/about');
+      });
+    });
+
     describe('profileMotions', () => {
       it('returns the correct path', () => {
         expect(path.profileMotions(TEST_ID)).toEqual('/profile/12/motions');
       });
     });
 
-    describe('profileAbout', () => {
+    describe('search', () => {
       it('returns the correct path', () => {
-        expect(path.profileAbout(TEST_ID)).toEqual('/profile/12/about');
+        expect(path.search()).toEqual('/search');
+      });
+    });
+
+    describe('settings', () => {
+      it('returns the correct path', () => {
+        expect(path.settings()).toEqual('/settings');
       });
     });
 

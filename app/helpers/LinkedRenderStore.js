@@ -7,7 +7,7 @@ import Loading from '../components/Loading';
 import { FRONTEND_URL } from '../config';
 
 import { authenticityHeader } from './arguHelpers';
-import './linkDevTools';
+import LinkDevTools from './LinkDevTools';
 import transformers from './transformers';
 
 const LRS = new LinkedRenderStore();
@@ -200,4 +200,7 @@ LRS.execActionByIRI = function execActionByIRI(subject) {
 export default LRS;
 if (typeof window !== 'undefined') {
   window.LRS = LRS;
+  if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== 'undefined') {
+    window.dev = new LinkDevTools('');
+  }
 }

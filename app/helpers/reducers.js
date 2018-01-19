@@ -3,29 +3,16 @@
  * @param {string} state A state object
  * @param {string} record A format to display date
  * @param {string} id formatted date string
- * @param {model} Model The model to be used for initialising
  * @return {string} state Returns new state that includes record
  */
 export const setRecord = (
   state,
   record,
-  id = record.id,
-  Model
+  id = record.id
 ) => {
   let newRecord;
   const stateId = (record && record['@id']) || id;
 
-  if (Model) {
-    newRecord = state.getIn(['items', stateId]) !== undefined
-      ? state.getIn(['items', stateId])
-      : new Model({ id, loading: true });
-
-    if (record && record.get('title') === '') {
-      if (newRecord.get('title').length > 0) {
-        return state.setIn(['items', stateId], newRecord);
-      }
-    }
-  }
   return state.setIn(['items', stateId], record || newRecord);
 };
 

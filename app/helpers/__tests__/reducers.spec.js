@@ -3,6 +3,7 @@ import { Map, Record } from 'immutable';
 import {
   deleteRecord,
   increaseValue,
+  updateRecordValue,
   setRecord,
   toggleValue,
 } from '../reducers';
@@ -57,6 +58,13 @@ describe('helpers', () => {
     describe('toggleValue', () => {
       it('toggles a value', () => {
         expect(toggleValue(setRecord(initialState, record, record.id), record.id, 'individual'))
+          .toEqual(expectedState(recordToggled));
+      });
+    });
+
+    describe('updateRecordValue', () => {
+      it('toggles a value', () => {
+        expect(updateRecordValue(expectedState(record), record.id, 'individual', false))
           .toEqual(expectedState(recordToggled));
       });
     });

@@ -1,6 +1,6 @@
 import {
   checkLuminance,
-  getLuminance,
+  getLuminance, hexToRgb,
   isRGB,
   percentageToRedOrGreen,
   rgbToArray,
@@ -31,6 +31,12 @@ describe('helpers', () => {
 
       it('handles rgb array input', () => {
         expect(getLuminance(rgbArray)).toEqual(expectedLuminationValue);
+      });
+    });
+
+    describe('hexToRgb', () => {
+      it('should convert a hex value', () => {
+        expect(hexToRgb('#AABBCC')).toEqual('rgb(170,187,204)');
       });
     });
 

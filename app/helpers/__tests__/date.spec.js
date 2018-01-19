@@ -4,6 +4,7 @@ import {
   durationToHumanizedString,
   durationToString,
   formatDate,
+  formatDateCalendar,
 } from '../date';
 
 const TIMESTAMP = 1457172000000;
@@ -26,6 +27,17 @@ describe('helpers', () => {
         expect(formatDate(TIMESTAMP, 'LLL')).toEqual(moment(TIMESTAMP).format('LLL'));
       });
     });
+
+    describe('formatDateCalendar', () => {
+      it('formats correctly', () => {
+        expect(formatDateCalendar(TIMESTAMP, undefined)).toEqual('05-03-2016');
+      });
+
+      it('handles undefined values', () => {
+        expect(formatDateCalendar(undefined, undefined)).toBeUndefined();
+      });
+    });
+
 
     describe('durationToString', () => {
       it('formats correctly', () => {
