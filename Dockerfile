@@ -9,8 +9,6 @@ COPY dist /usr/src/app/dist
 COPY static /usr/src/app/static
 
 ENV NODE_ENV 'production'
-ENV ELASTICSEARCH_URL ''
-ENV ELASTICSEARCH_INDEX ''
 ENV ARGU_API_URL 'http://localhost:3030/'
 
 EXPOSE 8080
