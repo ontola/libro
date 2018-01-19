@@ -112,7 +112,6 @@
     "npm-run-all": "^4.1.2",
     "nsp": "^3.1.0",
     "null-loader": "^0.1.1",
-    "nyc": "^11.4.1",
     "postcss-loader": "^2.0.10",
     "raf": "^3.4.0",
     "raw-loader": "^0.5.1",
@@ -173,7 +172,7 @@
     "build:server": "webpack --config ./webpack/server.config.js",
     "build:verbose": "rimraf ./dist && NODE_ENV=production webpack -p --progress --verbose --display-error-details --config ./webpack/static.config",
     "corsproxy": "./node_modules/.bin/corsproxy",
-    "coverage": "nyc -e .jsx yarn run test",
+    "coverage": "jest --coverage",
     "doc:style": "sassdoc ./app -d ./docs/sass",
     "dev": "npm-run-all -p corsproxy start styleguide-server",
     "lint": "./node_modules/.bin/eslint --fix --ext .jsx,.js .",
@@ -201,10 +200,5 @@
       "git add"
     ],
     "*.scss": "sass-lint ./app/**/*.scss -q"
-  },
-  "nyc": {
-    "include": [
-      "app/**"
-    ]
   }
 }

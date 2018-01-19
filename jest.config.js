@@ -1,4 +1,12 @@
 module.exports = {
+  coverageThreshold: {
+    global: {
+      branches: 36,
+      functions: 50,
+      lines: 57,
+      statements: 58
+    }
+  },
   globals: {
     __CLIENT__: 'true',
     __DEVELOPMENT__: 'false',
