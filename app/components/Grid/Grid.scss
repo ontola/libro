@@ -1,0 +1,25 @@
+@import '../shared/config';
+
+.Grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -1em;
+  margin-right: -1em;
+
+  &--scroll {
+    overflow-x: auto;
+  }
+
+  .Card {
+    max-width: 26em;
+    min-width: 21em;
+    max-height: 15em;
+    min-height: 15em;
+    margin: 1em;
+    flex: 1;
+    
+    @include small-only {
+      min-width: auto;
+    }
+  }
+}

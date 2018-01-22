@@ -15,11 +15,22 @@ class MemberComp extends PropertyBase {
     const topology = this.context.topology ? this.context.topology : NS.argu('collection');
     return prop.slice(0, this.props.limit).map(iri => (
       <LinkedResourceContainer
-        key={`${this.props.subject}:${iri.subject}`}
+        key={`${this.props.subject}:${iri.object.value}`}
         subject={iri.object}
         topology={topology}
       />
     ));
+  }
+
+  styleWrapper(memberList) {
+    if (this.props.style && this.props.style !== {}) {
+      return (
+        <div style={this.props.style}>
+          {memberList}
+        </div>
+      );
+    }
+    return memberList;
   }
 
   render() {
@@ -29,17 +40,9 @@ class MemberComp extends PropertyBase {
     } else if (Array.isArray(prop) && prop.length === 0) {
       return null;
     } else if (Array.isArray(prop)) {
-      return (
-        <div style={this.props.style}>
-          {this.memberList(prop)}
-        </div>
-      );
+      return this.styleWrapper(this.memberList(prop));
     } else if (typeof prop.toArray !== 'undefined') {
-      return (
-        <div style={this.props.style}>
-          {this.memberList(prop).toKeyedSeq()}
-        </div>
-      );
+      return this.styleWrapper(this.memberList(prop).toKeyedSeq());
     }
     return <LinkedResourceContainer subject={this.getLinkedObjectProperty()} />;
   }
@@ -59,6 +62,10 @@ export default [
     Member,
     NS.argu('Collection'),
     NS.argu('members'),
-    NS.argu('section')
+    [
+      NS.argu('section'),
+      NS.argu('widget'),
+      NS.argu('grid')
+    ]
   ),
 ];

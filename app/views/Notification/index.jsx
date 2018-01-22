@@ -10,6 +10,7 @@ import { NS } from '../../helpers/LinkedRenderStore';
 
 import Sidebar from './sidebar';
 import Creator from './properties/creator';
+import Name from './properties/name';
 import ReadAction from './properties/readAction';
 import Target from './properties/target';
 import Unread from './properties/unread';
@@ -40,6 +41,7 @@ export default [
   ),
   Sidebar,
   Creator,
+  Name,
   ReadAction,
   Target,
   Unread,

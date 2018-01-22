@@ -2,20 +2,24 @@ import LinkedRenderStore from 'link-lib';
 import { linkedPropType } from 'link-redux';
 import React from 'react';
 
-import { DetailDate } from '../../../components';
+import {
+  Heading,
+} from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   linkedProp: linkedPropType,
 };
 
-const DateCreated = ({ linkedProp }) => <DetailDate createdAt={linkedProp.value} />;
+const Creator = ({ linkedProp }) => (
+  <Heading size="3">{linkedProp.value}</Heading>
+);
 
-DateCreated.propTypes = propTypes;
+Creator.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
-  DateCreated,
-  NS.schema('Thing'),
-  NS.schema('dateCreated'),
+  Creator,
+  NS.argu('Notification'),
+  NS.schema('name'),
   [undefined, NS.argu('collection'), NS.argu('card')]
 );

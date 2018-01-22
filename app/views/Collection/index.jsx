@@ -3,12 +3,14 @@ import {
   LinkedResourceContainer,
   Property,
   PropertyBase,
+  subjectType,
   lowLevel,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { Carousel } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { getPage } from '../../state/pagination/selectors';
 
@@ -17,6 +19,15 @@ import Member from './properties/member';
 import Name from './properties/name';
 import CreateActionProp from './properties/CreateActionProp';
 import Views from './properties/views';
+
+const contextTypes = {
+  linkedRenderStore: PropTypes.object,
+};
+
+const propTypes = {
+  subject: subjectType,
+};
+
 
 const viewsOrMembers = (views, members, topology) => (
   <Property
@@ -74,21 +85,52 @@ const CollectionSection = ({ subject }, { linkedRenderStore }) => viewsOrMembers
   NS.argu('section')
 );
 
-CollectionSection.contextTypes = {
-  linkedRenderStore: PropTypes.object,
-};
+CollectionSection.contextTypes = contextTypes;
 
-const LinkedCollectionSection = lowLevel.linkedSubject(lowLevel.linkedVersion(CollectionSection));
+const CollectionContainer = ({ subject }, { linkedRenderStore }) => viewsOrMembers(
+  linkedRenderStore.getResourcePropertyRaw(subject, NS.argu('views')),
+  linkedRenderStore.getResourcePropertyRaw(subject, NS.argu('members')),
+  NS.argu('container')
+);
+
+CollectionContainer.contextTypes = contextTypes;
+
+const CollectionFixedCards = ({ subject }, { linkedRenderStore }) => (
+  <Carousel>
+    {
+      viewsOrMembers(
+        linkedRenderStore.getResourcePropertyRaw(subject, NS.argu('views')),
+        linkedRenderStore.getResourcePropertyRaw(subject, NS.argu('members')),
+        NS.argu('grid')
+      )
+    }
+  </Carousel>
+);
+
+CollectionSection.contextTypes = contextTypes;
+CollectionFixedCards.contextTypes = contextTypes;
+CollectionFixedCards.propTypes = propTypes;
+
+const wrapUpdate = Component => lowLevel.linkedSubject(lowLevel.linkedVersion(Component));
 
 export default [
   LinkedRenderStore.registerRenderer(
-    LinkedCollectionSection,
+    wrapUpdate(CollectionSection),
     [NS.argu('Collection'), NS.hydra('Collection')],
     RENDER_CLASS_NAME,
     [
       undefined,
       NS.argu('section'),
+      NS.argu('grid'),
       NS.argu('voteEventCollection')
+    ]
+  ),
+  LinkedRenderStore.registerRenderer(
+    wrapUpdate(CollectionFixedCards),
+    [NS.argu('Collection'), NS.hydra('Collection')],
+    RENDER_CLASS_NAME,
+    [
+      NS.argu('widget')
     ]
   ),
   LinkedRenderStore.registerRenderer(

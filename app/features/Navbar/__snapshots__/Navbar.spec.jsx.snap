@@ -21,7 +21,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
         forceRender={true}
         subject={
           NamedNode {
-            "sI": 76,
+            "sI": 80,
             "term": "o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
             "termType": "NamedNode",
             "value": "https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
@@ -41,7 +41,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
           loadLinkedObject={[Function]}
           subject={
             NamedNode {
-              "sI": 76,
+              "sI": 80,
               "term": "o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
               "termType": "NamedNode",
               "value": "https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
@@ -88,7 +88,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                 }
                 subject={
                   NamedNode {
-                    "sI": 76,
+                    "sI": 80,
                     "term": "o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
                     "termType": "NamedNode",
                     "value": "https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
@@ -109,7 +109,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                   limit={1}
                   subject={
                     NamedNode {
-                      "sI": 76,
+                      "sI": 80,
                       "term": "o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
                       "termType": "NamedNode",
                       "value": "https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
@@ -137,7 +137,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                     }
                     subject={
                       NamedNode {
-                        "sI": 76,
+                        "sI": 80,
                         "term": "o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
                         "termType": "NamedNode",
                         "value": "https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
@@ -165,7 +165,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                       }
                       subject={
                         NamedNode {
-                          "sI": 76,
+                          "sI": 80,
                           "term": "o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
                           "termType": "NamedNode",
                           "value": "https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
@@ -193,7 +193,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                         }
                         subject={
                           NamedNode {
-                            "sI": 76,
+                            "sI": 80,
                             "term": "o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
                             "termType": "NamedNode",
                             "value": "https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
@@ -434,7 +434,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                     <Connect(LinkedResourceContainer)
                                                       subject={
                                                         NamedNode {
-                                                          "sI": 80,
+                                                          "sI": 84,
                                                           "term": "menus/organizations",
                                                           "termType": "NamedNode",
                                                           "value": "https://argu.dev/menus/organizations",
@@ -446,7 +446,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                         loadLinkedObject={[Function]}
                                                         subject={
                                                           NamedNode {
-                                                            "sI": 80,
+                                                            "sI": 84,
                                                             "term": "menus/organizations",
                                                             "termType": "NamedNode",
                                                             "value": "https://argu.dev/menus/organizations",
@@ -550,7 +550,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                               <linkedSubject[ConnectedProp]
                                 label={
                                   NamedNode {
-                                    "sI": 81,
+                                    "sI": 85,
                                     "term": "baseColor",
                                     "termType": "NamedNode",
                                     "value": "https://argu.co/ns/core#baseColor",
@@ -560,7 +560,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                 <ConnectedProp
                                   label={
                                     NamedNode {
-                                      "sI": 81,
+                                      "sI": 85,
                                       "term": "baseColor",
                                       "termType": "NamedNode",
                                       "value": "https://argu.co/ns/core#baseColor",
@@ -578,7 +578,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                     forceRender={false}
                                     label={
                                       NamedNode {
-                                        "sI": 81,
+                                        "sI": 85,
                                         "term": "baseColor",
                                         "termType": "NamedNode",
                                         "value": "https://argu.co/ns/core#baseColor",
@@ -614,7 +614,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
       <Connect(LinkedResourceContainer)
         subject={
           NamedNode {
-            "sI": 77,
+            "sI": 81,
             "term": "c_a",
             "termType": "NamedNode",
             "value": "https://argu.dev/c_a",
@@ -634,7 +634,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
           loadLinkedObject={[Function]}
           subject={
             NamedNode {
-              "sI": 77,
+              "sI": 81,
               "term": "c_a",
               "termType": "NamedNode",
               "value": "https://argu.dev/c_a",
@@ -654,7 +654,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
       <Connect(LinkedResourceContainer)
         subject={
           NamedNode {
-            "sI": 78,
+            "sI": 82,
             "term": "n?type=infinite",
             "termType": "NamedNode",
             "value": "https://argu.dev/n?type=infinite",
@@ -674,7 +674,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
           loadLinkedObject={[Function]}
           subject={
             NamedNode {
-              "sI": 78,
+              "sI": 82,
               "term": "n?type=infinite",
               "termType": "NamedNode",
               "value": "https://argu.dev/n?type=infinite",
@@ -694,7 +694,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
       <Connect(LinkedResourceContainer)
         subject={
           NamedNode {
-            "sI": 79,
+            "sI": 83,
             "term": "menus/info",
             "termType": "NamedNode",
             "value": "https://argu.dev/menus/info",
@@ -714,7 +714,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
           loadLinkedObject={[Function]}
           subject={
             NamedNode {
-              "sI": 79,
+              "sI": 83,
               "term": "menus/info",
               "termType": "NamedNode",
               "value": "https://argu.dev/menus/info",

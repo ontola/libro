@@ -27,7 +27,7 @@ describeView('Thing', components, resources, resource, () => {
     expect(subject.find(marker('text'))).toBePresent();
   });
 
-  as(NS.argu('collection'), () => {
+  as(NS.argu('card'), () => {
     it('renders the name', () => {
       expect(subject.find(marker('name'))).toBePresent();
     });
@@ -49,7 +49,7 @@ describeView('Thing', components, resources, resource, () => {
 
   as(NS.argu('section'), () => {
     it('renders the name', () => {
-      expect(subject.find(marker('name'))).toBePresent();
+      expect(subject.find(marker('name', 'section'))).toBePresent();
     });
 
     it('does not render the text', () => {

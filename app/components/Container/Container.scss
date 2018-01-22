@@ -27,26 +27,6 @@
     flex-direction: row;
     flex-wrap: wrap;
     padding: 2rem;
-
-
-
-    .Widget {
-      flex-basis: 20em;
-      flex-grow: 1;
-      margin: 1rem;
-      margin-right: 2rem;
-      margin-top: 0;
-      max-width: 40em;
-      min-width: 20rem;
-    }
-
-    @include small-only {
-      padding: .75rem;
-
-      .Widget {
-        min-width: 100%;
-      }
-    }
   }
 
   @include large {

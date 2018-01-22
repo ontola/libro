@@ -2,8 +2,8 @@ import LinkedRenderStore from 'link-lib';
 import {
   LinkedResourceContainer,
   labelType,
-  subjectType,
   PropertyBase,
+  subjectType,
 } from 'link-redux';
 import React from 'react';
 
@@ -23,7 +23,7 @@ class Views extends PropertyBase {
     if (obs && obs.length > 1) {
       return <Columns>{obs}</Columns>;
     } else if (obs) {
-      return <div>{obs}</div>;
+      return obs;
     }
 
     return null;
@@ -45,6 +45,10 @@ export default [
     Views,
     NS.argu('Collection'),
     NS.argu('views'),
-    NS.argu('section')
+    [
+      NS.argu('section'),
+      NS.argu('widget'),
+      NS.argu('grid')
+    ]
   ),
 ];

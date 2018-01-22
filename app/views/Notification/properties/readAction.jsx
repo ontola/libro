@@ -28,5 +28,5 @@ export default LinkedRenderStore.registerRenderer(
   ReadAction,
   NS.argu('Notification'),
   NS.argu('readAction'),
-  [undefined, NS.argu('collection'), NS.argu('sidebar')]
+  [undefined, NS.argu('collection'), NS.argu('sidebar'), NS.argu('card')]
 );

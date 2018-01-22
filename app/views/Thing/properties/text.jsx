@@ -21,10 +21,10 @@ const propTypesCollection = {
   subject: subjectType,
 };
 
-const TextCollection = ({ linkedProp, subject }) =>
-  <CollapseText data-test="Thing-text-collection" id={subject.value} text={linkedProp.value} />;
+const TextCollapsed = ({ linkedProp, subject }) =>
+  <CollapseText data-test="Thing-text-card" id={subject.value} text={linkedProp.value} />;
 
-TextCollection.propTypes = propTypesCollection;
+TextCollapsed.propTypes = propTypesCollection;
 
 export default [
   LinkedRenderStore.registerRenderer(
@@ -33,7 +33,7 @@ export default [
     NS.schema('text')
   ),
   LinkedRenderStore.registerRenderer(
-    lowLevel.linkedSubject(TextCollection),
+    lowLevel.linkedSubject(TextCollapsed),
     NS.schema('Thing'),
     NS.schema('text'),
     NS.argu('collection')

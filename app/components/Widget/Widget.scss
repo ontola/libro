@@ -1,10 +1,32 @@
 @import '../shared/config';
 
+.Container--grid {
+  .Widget {
+    flex-basis: 200em;
+    flex-grow: 1;
+    margin: 1rem;
+    margin-top: 0;
+    max-width: 100%;
+    min-width: 20rem;
+  }
+  
+  @include small-only {
+    padding: .75rem;
+  
+    .Widget {
+      min-width: auto;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}
+
 .Widget {
   margin: units('medium');
 
   > .Heading {
     font-weight: bold;
+    margin-bottom: .5em;
   }
 
   &__chevron {

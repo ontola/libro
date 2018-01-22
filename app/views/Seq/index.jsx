@@ -51,5 +51,8 @@ export default LinkedRenderStore.registerRenderer(
     NS.argu('inline'),
     NS.argu('sidebar'),
     NS.argu('sidebarBlock'),
+    NS.argu('section'),
+    NS.argu('grid'),
+    NS.argu('widget'),
   ]
 );

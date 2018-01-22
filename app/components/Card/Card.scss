@@ -10,6 +10,10 @@
 .CardContent {
   padding: units('small', 'large');
   padding-bottom: 0;
+
+  &--align-end {
+    align-self: flex-end;
+  }
 }
 
 .CardActions {

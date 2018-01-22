@@ -1,9 +1,16 @@
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import './Card.scss';
 
+const defaultProps = {
+  alignEnd: false,
+  noSpacing: false,
+};
+
 const propTypes = {
+  alignEnd: PropTypes.bool,
   children: PropTypes.node,
   noSpacing: PropTypes.bool,
 };
@@ -13,19 +20,26 @@ const propTypes = {
  * @returns {component} Component
  */
 const CardContent = ({
+  alignEnd,
   children,
   noSpacing,
 }) => {
   if (typeof children === 'undefined') {
     return <div />;
   }
-  const className = noSpacing ? 'CardContent CardContent--no-spacing' : 'CardContent';
+
+  const classes = classNames({
+    CardContent: true,
+    'CardContent--align-end': alignEnd,
+    'CardContent--no-spacing': noSpacing,
+  });
 
   return (
-    <div className={className}>{children}</div>
+    <div className={classes}>{children}</div>
   );
 };
 
 CardContent.propTypes = propTypes;
+CardContent.defaulTProps = defaultProps;
 
 export default CardContent;

@@ -19,11 +19,10 @@ const Name = ({ linkedProp }) => (
 Name.propTypes = propTypes;
 
 const ThingNameHeader = ({ linkedProp }) => (
-  <Heading data-test="Thing-name-header" size="1">{linkedProp}</Heading>
+  <Heading data-test="Thing-name-header" size="1">{linkedProp.value}</Heading>
 );
 
 ThingNameHeader.propTypes = propTypes;
-
 
 export default [
   LinkedRenderStore.registerRenderer(
@@ -57,6 +56,29 @@ export default [
     NS.argu('inline')
   ),
   LinkedRenderStore.registerRenderer(
+    ({ linkedProp }) => <LDLink><Heading size="3">{linkedProp.value}</Heading></LDLink>,
+    NS.schema('Thing'),
+    [
+      NS.schema('name'),
+      NS.rdfs('label'),
+      NS.foaf('name'),
+    ],
+    [
+      NS.argu('card'),
+      NS.argu('collection'),
+    ]
+  ),
+  LinkedRenderStore.registerRenderer(
+    ({ linkedProp }) => <Heading size="2">{linkedProp.value}</Heading>,
+    NS.schema('Thing'),
+    [
+      NS.schema('name'),
+      NS.rdfs('label'),
+      NS.foaf('name'),
+    ],
+    NS.argu('widget')
+  ),
+  LinkedRenderStore.registerRenderer(
     ThingNameHeader,
     NS.schema('Thing'),
     [
@@ -65,5 +87,15 @@ export default [
       NS.foaf('name'),
     ],
     NS.argu('header')
+  ),
+  LinkedRenderStore.registerRenderer(
+    ({ linkedProp }) => <LDLink><Heading data-test="Thing-name-card" size="3">{linkedProp.value}</Heading></LDLink>,
+    NS.schema('Thing'),
+    [
+      NS.schema('name'),
+      NS.rdfs('label'),
+      NS.foaf('name'),
+    ],
+    NS.argu('section')
   ),
 ];

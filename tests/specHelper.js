@@ -90,7 +90,7 @@ function defineMarker(ns) {
  * @return {string} A CSS query search string for the associated marker name.
  */
 function marker(name, ...other) {
-  const add = `${name}${Array.isArray(other) ? ['', ...other].join('-') : ''}`;
+  const add = `${name || ''}${Array.isArray(other) ? ['', ...other].join('-') : ''}`;
   return `[data-test="${markerNS}${add.length > 0 ? `-${add}` : ''}"]`;
 }
 

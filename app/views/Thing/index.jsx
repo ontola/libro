@@ -33,6 +33,16 @@ const Thing = () => (
   </Card>
 );
 
+const ThingGrid = () => (
+  <Card fixed>
+    <CardContent noSpacing>
+      <Property label={[NS.schema('name'), NS.rdfs('label')]} />
+      <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
+      <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
+    </CardContent>
+  </Card>
+);
+
 export default [
   LinkedRenderStore.registerRenderer(Thing, NS.schema('Thing')),
   LinkedRenderStore.registerRenderer(
@@ -58,6 +68,12 @@ export default [
     NS.schema('Thing'),
     RENDER_CLASS_NAME,
     NS.argu('parent')
+  ),
+  LinkedRenderStore.registerRenderer(
+    ThingGrid,
+    NS.schema('Thing'),
+    RENDER_CLASS_NAME,
+    NS.argu('grid')
   ),
   BaseColor,
   Contains,

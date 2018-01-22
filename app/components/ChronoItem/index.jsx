@@ -39,7 +39,7 @@ const ChronoItem = ({
   const completedDuration = Math.abs(currentDate - startDate);
 
   return (
-    <CardRow>
+    <CardRow data-test="ChronoItem">
       <CardContent>
         {currentDate && endDate &&
           <Progress
@@ -48,7 +48,7 @@ const ChronoItem = ({
             total={totalDuration}
           />
         }
-        <DetailsBar>
+        <DetailsBar data-test="ChronoItem-details">
           {speaker && <LinkedResourceContainer subject={speaker} />}
           {attributionText &&
             <Detail text={attributionText} />
@@ -59,6 +59,7 @@ const ChronoItem = ({
               floatRight
               hideIcon
               currentDate={currentDate}
+              data-test="ChronoItem-date"
               endDate={endDate}
               startDate={startDate}
             />

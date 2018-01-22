@@ -4,16 +4,18 @@ import { Property } from 'link-redux';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import { PageHeader } from '../../components';
+import Container from '../../components/Container/index';
 
 const ForumPage = () => (
   <div>
     <PageHeader>
       <Property label={NS.schema('name')} />
       <Property label={[NS.schema('description'), NS.rdfs('label')]} />
-      <Property label={NS.argu('followMenu')} />
-      <Property label={NS.argu('actionsMenu')} />
     </PageHeader>
-    <Property label={NS.argu('widgets')} />
+    <Container grid>
+      <Property label={NS.argu('widgets')} />
+    </Container>
+    <Property label={NS.argu('voteMatches')} />
   </div>
 );
 

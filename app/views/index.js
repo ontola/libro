@@ -27,6 +27,7 @@ import SubMenu from './SubMenu';
 // import './Question';
 import SeqComp from './Seq';
 import UserActor from './UserActor';
+import Widget from './Widget';
 // import './VoteCompareCells';
 // import './VoteCompareRows';
 // import './VoteEvent';
@@ -53,5 +54,6 @@ LRS.registerAll(
   ...Person,
   SeqComp,
   ...SubMenu,
-  UserActor
+  UserActor,
+  Widget
 );

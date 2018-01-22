@@ -34,6 +34,7 @@ export { default as DropdownLink } from './components/Dropdown/DropdownLink.jsx'
 export { default as Error } from './components/Error/index';
 // export { default as EventItemShow } from './components/EventItemShow/index';
 export { default as FormField } from './components/FormField/index';
+export { default as Grid } from './components/Grid/index';
 // export { default as GeneratedIcon } from './components/GeneratedIcon/index';
 export { default as Header } from './components/Header/index';
 export { default as Heading } from './components/Heading/index';
@@ -68,4 +69,4 @@ export { default as Tag } from './components/Tag/index';
 // export { default as VideoPlayer } from './components/VideoPlayer/index';
 // export { default as VoteChart } from './components/VoteChart/index';
 // export { default as VoteData } from './components/VoteData/index';
-// export { default as Widget } from './components/Widget/index';
+export { default as WidgetTopology } from './components/Widget/WidgetTopology';
