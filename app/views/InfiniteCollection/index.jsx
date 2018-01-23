@@ -14,7 +14,7 @@ import Next from './properties/next';
 import UnreadCount from './properties/unreadCount';
 import Views from './properties/views';
 
-class Collection extends PropertyBase {
+class InfiniteCollection extends PropertyBase {
   shouldComponentUpdate(nextProps) {
     return this.props.subject !== nextProps.subject
       || this.props.version !== nextProps.version
@@ -49,10 +49,11 @@ class Collection extends PropertyBase {
   }
 }
 
-const ConnectedCollection = lowLevel.linkedSubject(lowLevel.linkedVersion(Collection));
+const ConnectedInfiniteCollection =
+  lowLevel.linkedSubject(lowLevel.linkedVersion(InfiniteCollection));
 
 export default [
-  LinkedRenderStore.registerRenderer(ConnectedCollection, [NS.argu('InfiniteCollection')]),
+  LinkedRenderStore.registerRenderer(ConnectedInfiniteCollection, NS.argu('InfiniteCollection')),
   ...Member,
   Next,
   UnreadCount,
