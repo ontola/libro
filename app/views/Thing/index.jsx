@@ -5,6 +5,8 @@ import React from 'react';
 import {
   Card,
   CardContent,
+  CardMenuFloater,
+  Container,
   DetailsBar,
   LinkCard,
 } from '../../components';
@@ -24,18 +26,35 @@ import Text from './properties/text';
 import UpdateAction from './properties/updateAction';
 
 const Thing = () => (
-  <Card data-test="Thing-thing">
-    <CardContent noSpacing>
-      <Property label={[NS.schema('name'), NS.rdfs('label')]} />
-      <DetailsBar>
-        <Property label={NS.schema('creator')} />
-        <Property label={NS.schema('dateCreated')} />
-      </DetailsBar>
-      <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
-      <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
-      <Property label={NS.foaf('isPrimaryTopicOf')} />
-    </CardContent>
-  </Card>
+  <div>
+    <Property label={NS.argu('coverPhoto')} />
+    <Container>
+      <Property label={NS.schema('isPartOf')} />
+      <Card data-test="Thing-thing">
+        <CardContent noSpacing>
+          <CardMenuFloater
+            header={<Property label={[NS.schema('name'), NS.rdfs('label')]} />}
+          >
+            <Property label={NS.argu('actionsMenu')} />
+            <Property label={NS.argu('followMenu')} />
+            <Property label={NS.argu('shareMenu')} />
+          </CardMenuFloater>
+          <DetailsBar>
+            <Property label={NS.schema('creator')} />
+            <Property label={NS.schema('dateCreated')} />
+          </DetailsBar>
+          <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
+          <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
+          <Property label={NS.foaf('isPrimaryTopicOf')} />
+        </CardContent>
+        <Property label={NS.argu('attachments')} />
+        <Property label={NS.council('attachment')} />
+        <Property label={NS.council('agenda')} />
+      </Card>
+      <Property label={NS.argu('blogPosts')} />
+      <Property label={NS.schema('comments')} />
+    </Container>
+  </div>
 );
 
 const ThingGrid = () => (
@@ -49,6 +68,10 @@ const ThingGrid = () => (
       <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
     </CardContent>
   </Card>
+);
+
+const ThingCard = () => (
+  <Property label={[NS.schema('name'), NS.rdfs('label'), NS.argu('label')]} />
 );
 
 export default [
@@ -82,6 +105,12 @@ export default [
     NS.schema('Thing'),
     RENDER_CLASS_NAME,
     NS.argu('grid')
+  ),
+  LinkedRenderStore.registerRenderer(
+    ThingCard,
+    NS.schema('Thing'),
+    RENDER_CLASS_NAME,
+    NS.argu('card')
   ),
   BaseColor,
   Contains,

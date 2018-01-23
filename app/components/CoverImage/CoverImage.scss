@@ -1,0 +1,28 @@
+@import '../shared/config';
+
+.CoverImage {
+  &__wrapper {
+    height: 19em;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    .Card & {
+      height: 12em;
+      position: relative;
+      width: 100%;
+    }
+  }
+
+  &__child {
+    background-size: cover;
+    height: 100%;
+    opacity: .5;
+    width: 100%;
+
+    .Card & {
+      opacity: 1;
+    }
+  }
+}

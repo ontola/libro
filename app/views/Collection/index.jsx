@@ -122,7 +122,8 @@ export default [
       undefined,
       NS.argu('section'),
       NS.argu('grid'),
-      NS.argu('voteEventCollection')
+      NS.argu('voteEventCollection'),
+      NS.argu('card')
     ]
   ),
   LinkedRenderStore.registerRenderer(
