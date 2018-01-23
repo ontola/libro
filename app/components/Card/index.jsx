@@ -48,5 +48,6 @@ export { default as CardActions } from './CardActions';
 export { default as CardButton } from './CardButton';
 export { default as CardContent } from './CardContent';
 export { default as CardDivider } from './CardDivider';
+export { default as CardMenuFloater } from './CardMenuFloater';
 export { default as CardRow } from './CardRow';
 export default Card;

@@ -62,3 +62,15 @@
     }
   }
 }
+
+.CardMenuFloater {
+  display: flex;
+
+  &--header {
+    flex: 1;
+  }
+
+  &--children {
+    display: flex;
+  }
+}
