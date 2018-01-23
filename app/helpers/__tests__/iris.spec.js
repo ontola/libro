@@ -1,6 +1,6 @@
 import {
   retrievePath,
-  currentURL,
+  iris,
 } from '../iris';
 
 describe('helpers', () => {
@@ -25,7 +25,13 @@ describe('helpers', () => {
 
     describe('currentURL', () => {
       it('should return the window location', () => {
-        expect(currentURL()).toEqual('about:blank');
+        const windowed = iris(window);
+        expect(windowed.currentURL()).toEqual('about:blank');
+      });
+
+      it('should return undefined without window', () => {
+        const windowLess = iris(undefined);
+        expect(windowLess.currentURL()).toBeUndefined();
       });
     });
   });

@@ -28,7 +28,7 @@ function getSubject(obj, subject) {
   return subject || keys[0];
 }
 
-function toArr(obj) {
+export function toArr(obj) {
   if (typeof obj === 'undefined') {
     return [];
   }

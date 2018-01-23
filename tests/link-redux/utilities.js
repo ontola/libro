@@ -4,7 +4,6 @@ import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import sinonChai from 'sinon-chai';
 import LinkedRenderStore from 'link-lib';
-import PropTypes from 'prop-types';
 import { applyMiddleware, createStore } from 'redux';
 import { combineReducers } from 'redux-immutable';
 import { linkMiddleware as lrMiddleware, linkReducer } from 'link-redux';
@@ -29,25 +28,6 @@ const contextDefaults = (state = undefined) => {
   };
 };
 
-function generateContext(properties = {}, initialState = undefined) {
-  const keys = Object.keys(properties);
-  const c = {
-    childContextTypes: {},
-    context: {},
-  };
-  const defaults = contextDefaults(initialState);
-  keys.forEach((key) => {
-    if (properties[key] === true) {
-      c.context[key] = defaults[key];
-      c.childContextTypes[key] = PropTypes.object;
-    } else if (properties[key] !== undefined) {
-      c.context[key] = properties[key];
-      c.childContextTypes[key] = PropTypes.object;
-    }
-  });
-  return c;
-}
-
 function defaultContext(properties = {}, initialState = undefined) {
   const keys = Object.keys(properties);
   const c = {};
@@ -65,5 +45,4 @@ function defaultContext(properties = {}, initialState = undefined) {
 export {
   chai,
   defaultContext,
-  generateContext,
 };
