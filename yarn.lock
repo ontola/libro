@@ -6458,9 +6458,9 @@ link-lib@1.0.0-beta7, link-lib@^1.0.0-beta7:
     ml-disjoint-set "^1.0.0"
     rdflib "^0.16.3"
 
-link-redux@1.0.0-beta12:
-  version "1.0.0-beta12"
-  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-beta12.tgz#b963d2fe0a15386d0567205b2ce8f9b0b111fe53"
+link-redux@1.0.0-beta13:
+  version "1.0.0-beta13"
+  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-beta13.tgz#3b7ab44509c2147e68a39b636cbac80fd7ee8789"
   dependencies:
     es6-promise "^4.2.2"
     immutable "^3.8.1"
