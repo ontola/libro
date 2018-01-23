@@ -35,7 +35,7 @@ function toArr(obj) {
   const statements = [];
   Object.keys(obj).forEach((s) => {
     const resource = obj[s];
-    const subject = new rdf.NamedNode(s.slice(1, -1));
+    const subject = s.startsWith('_:') ? new rdf.BlankNode(s.slice('_:'.length)) : new rdf.NamedNode(s.slice(1, -1));
     Object.keys(resource).forEach((p) => {
       const object = resource[p];
       const predicate = new rdf.NamedNode(p.slice(1, -1));
@@ -85,7 +85,11 @@ export const loc = ({
     <Provider store={ctx.store}>
       <RenderStoreProvider linkedRenderStore={ctx.linkedRenderStore}>
         <StaticRouter context={{}}>
-          <LinkedObjectContainer forceRender object={subject} topology={topology}>
+          <LinkedObjectContainer
+            forceRender
+            object={subject}
+            topology={topology}
+          >
             {children}
           </LinkedObjectContainer>
         </StaticRouter>

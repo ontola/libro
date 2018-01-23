@@ -13,6 +13,62 @@ import rdf from 'rdflib';
 
 import { NS } from './LinkedRenderStore';
 
+function tryShorten(iri) {
+  if (iri.startsWith(':')) {
+    return `new BlankNode('${iri.slice(1)}')`;
+  }
+  const shortMap = Object
+    .keys(NS)
+    .map(ns => ({ [NS[ns]().value]: ns }))
+    .reduce((a, b) => Object.assign(a, b));
+
+  const entries = Object.entries(shortMap);
+
+  for (let i = 0; i < entries.length; i++) {
+    const [key, value] = entries[i];
+    if (iri.includes(key)) {
+      return `NS.${value}('${iri.split(key)[1]}')`;
+    }
+  }
+
+  return `new NamedNode('${iri}')`;
+}
+
+export function parseTerm(type, value) {
+  if (type.termType === 'BlankNode') {
+    return `new BlankNode('${value.slice(1)}')`;
+  }
+  if (type.termType === 'NamedNode') {
+    return tryShorten(value);
+  }
+  let castValue, constructor;
+  switch (type.datatype && type.datatype.value) {
+    case NS.xsd('boolean').value:
+      castValue = value === 'true';
+      constructor = 'Literal.fromBoolean';
+      break;
+    case NS.xsd('dateTime').value:
+      castValue = `new Date('${value}')`;
+      constructor = 'Literal.fromDate';
+      break;
+    case NS.xsd('decimal').value:
+    case NS.xsd('float').value:
+      castValue = Number.parseFloat(value);
+      constructor = 'Literal.fromNumber';
+      break;
+    case NS.xsd('double').value:
+    case NS.xsd('integer').value:
+      castValue = Number.parseInt(value, 10);
+      constructor = 'Literal.fromNumber';
+      break;
+    default:
+      castValue = value.includes('\'') ? `"${value}"` : `'${value}'`;
+      constructor = 'new Literal';
+  }
+
+  return `${constructor}(${castValue})`;
+}
+
 class LinkDevTools {
   constructor(reactDevTools, globalName = 'dev') {
     this.rDevTools = reactDevTools;
@@ -119,26 +175,12 @@ class LinkDevTools {
   }
 
   /**
-   * Resolves a NamedNode to an NS shortened version, or its constructor call if not resolved.
-   * @param {String} namedNode URL string to resolve.
-   * @return {String} Valid JS syntax string to create the NamedNode reference.
+   * Resolves a Blank/NamedNode to an NS shortened version, or its constructor call if not resolved.
+   * @param {String} iri URL string to resolve.
+   * @return {String} Valid JS syntax string to create the Blank/NamedNode reference.
    */
-  static tryShorten(namedNode) {
-    const shortMap = Object
-      .keys(NS)
-      .map(ns => ({ [NS[ns]().value]: ns }))
-      .reduce((a, b) => Object.assign(a, b));
-
-    const entries = Object.entries(shortMap);
-
-    for (let i = 0; i < entries.length; i++) {
-      const [key, value] = entries[i];
-      if (namedNode.includes(key)) {
-        return `NS.${value}('${namedNode.split(key)[1]}')`;
-      }
-    }
-
-    return `new NamedNode('${namedNode}')`;
+  static tryShorten(iri) {
+    return tryShorten(iri);
   }
 
   snapshotNode(subject, comp) {
@@ -148,42 +190,12 @@ class LinkDevTools {
       const attrs = Object.keys(data[s]).map((attrKey) => {
         const attrObj = data[s][attrKey];
         const predicate = attrKey.slice(1, -1);
-        const term = (type, value) => {
-          if (type.termType === 'NamedNode') {
-            return LinkDevTools.tryShorten(value);
-          }
-          let castValue, constructor;
-          switch (type.datatype.value) {
-            case NS.xsd('boolean').value:
-              castValue = value === 'true';
-              constructor = 'Literal.fromBoolean';
-              break;
-            case NS.xsd('dateTime').value:
-              castValue = `new Date('${value}')`;
-              constructor = 'Literal.fromDate';
-              break;
-            case NS.xsd('decimal').value:
-            case NS.xsd('float').value:
-              castValue = Number.parseFloat(value);
-              constructor = 'Literal.fromNumber';
-              break;
-            case NS.xsd('double').value:
-              castValue = Number.parseInt(value, 10);
-              constructor = 'Literal.fromNumber';
-              break;
-            default:
-              castValue = value.includes('\'') ? `"${value}"` : `'${value}'`;
-              constructor = 'new Literal';
-          }
-
-          return `${constructor}(${castValue})`;
-        };
         const toNode = object => `    [${LinkDevTools.tryShorten(predicate)}]: ${object},`;
         if (Array.isArray(attrObj)) {
           const attrType = attrObj[0];
-          return toNode(`[\n${attrObj.map(v => `      ${term(attrType, v.value)}`).join(',\n')},\n    ]`);
+          return toNode(`[\n${attrObj.map(v => `      ${parseTerm(attrType, v.value)}`).join(',\n')},\n    ]`);
         }
-        return toNode(term(attrObj, attrObj.value));
+        return toNode(parseTerm(attrObj, attrObj.value));
       });
       const keyVal = sVal === subject ? 'subject' : LinkDevTools.tryShorten(sVal);
       return (

@@ -8,7 +8,7 @@ import {
 } from 'rdflib';
 import React from 'react';
 
-import LinkDevTools from '../LinkDevTools';
+import LinkDevTools, { parseTerm } from '../LinkDevTools';
 import { NS } from '../LinkedRenderStore';
 
 const reactDevTools = jest.fn();
@@ -174,6 +174,57 @@ describe('helpers', () => {
       });
     });
 
+    describe('parseTerm', () => {
+      it('should instantiate a BlankNode', () => {
+        expect(parseTerm({ termType: 'BlankNode' }, ':_G_3543')).toEqual("new BlankNode('_G_3543')");
+      });
+
+      it('should shorten a known NamedNode', () => {
+        const type = { ...new NamedNode('http://schema.org/name') };
+        expect(parseTerm(type, 'http://schema.org/name')).toEqual("NS.schema('name')");
+      });
+
+      it('should instantiate an unknown NamedNode', () => {
+        const type = { ...new NamedNode('http://example.com/1') };
+        expect(parseTerm(type, 'http://example.com/1')).toEqual("new NamedNode('http://example.com/1')");
+      });
+
+      it('should instantiate a boolean Literal', () => {
+        const type = { ...Literal.fromValue(true) };
+        expect(parseTerm(type, 'true')).toEqual('Literal.fromBoolean(true)');
+      });
+
+      it('should instantiate a Date Literal', () => {
+        const type = { ...Literal.fromValue(new Date()) };
+        const value = 'Tue Jan 23 2018 15:18:57 GMT+0100 (CET)';
+        expect(parseTerm(type, value)).toEqual(`Literal.fromDate(new Date('${value}'))`);
+      });
+
+      it('should instantiate a float Literal', () => {
+        const value = 1.5;
+        const type = { ...Literal.fromValue(value) };
+        expect(parseTerm(type, value.toString())).toEqual('Literal.fromNumber(1.5)');
+      });
+
+      it('should instantiate a int Literal', () => {
+        const value = 124;
+        const type = { ...Literal.fromValue(value) };
+        expect(parseTerm(type, value.toString())).toEqual('Literal.fromNumber(124)');
+      });
+
+      it('should instantiate a string Literal', () => {
+        const value = 'String value';
+        const type = { ...Literal.fromValue(value) };
+        expect(parseTerm(type, value.toString())).toEqual("new Literal('String value')");
+      });
+
+      it('should instantiate a string Literal with apostrophes', () => {
+        const value = "String's value";
+        const type = { ...Literal.fromValue(value) };
+        expect(parseTerm(type, value.toString())).toEqual('new Literal("String\'s value")');
+      });
+    });
+
     describe('toObject', () => {
       const devObj = new LinkDevTools(reactDevTools);
 
@@ -259,7 +310,7 @@ describe('helpers', () => {
       });
     });
 
-    describe('tryShorten', () => {
+    describe('topology', () => {
       const devObj = new LinkDevTools(reactDevTools);
 
       it('should return from props', () => {
@@ -285,6 +336,10 @@ describe('helpers', () => {
 
       it('should instantiate an unknown NamedNode', () => {
         expect(LinkDevTools.tryShorten('http://example.com/1')).toEqual("new NamedNode('http://example.com/1')");
+      });
+
+      it('should instantiate a BlankNode', () => {
+        expect(LinkDevTools.tryShorten(':_G_3543')).toEqual("new BlankNode('_G_3543')");
       });
     });
 
