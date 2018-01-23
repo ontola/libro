@@ -5,7 +5,7 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import LRS, { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   children: PropTypes.node,
@@ -15,8 +15,8 @@ const propTypes = {
 const ReadAction = ({ linkedProp, children }) => (
   <div
     data-test="Notification-ReadAction"
-    onClick={() => LinkedRenderStore.execActionByIRI(linkedProp)}
-    onKeyUp={() => LinkedRenderStore.execActionByIRI(linkedProp)}
+    onClick={() => LRS.execActionByIRI(linkedProp)}
+    onKeyUp={() => LRS.execActionByIRI(linkedProp)}
   >
     {children}
   </div>
