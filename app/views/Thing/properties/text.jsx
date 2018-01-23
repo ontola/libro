@@ -36,7 +36,10 @@ export default [
     lowLevel.linkedSubject(TextCollapsed),
     NS.schema('Thing'),
     NS.schema('text'),
-    NS.argu('card'),
-    NS.argu('collection'),
+    [
+      NS.argu('card'),
+      NS.argu('collection'),
+      NS.argu('container'),
+    ]
   ),
 ];

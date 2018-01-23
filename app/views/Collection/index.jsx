@@ -107,7 +107,6 @@ const CollectionFixedCards = ({ subject }, { linkedRenderStore }) => (
   </Carousel>
 );
 
-CollectionSection.contextTypes = contextTypes;
 CollectionFixedCards.contextTypes = contextTypes;
 CollectionFixedCards.propTypes = propTypes;
 
@@ -132,6 +131,14 @@ export default [
     RENDER_CLASS_NAME,
     [
       NS.argu('widget')
+    ]
+  ),
+  LinkedRenderStore.registerRenderer(
+    wrapUpdate(CollectionContainer),
+    [NS.argu('Collection'), NS.hydra('Collection')],
+    RENDER_CLASS_NAME,
+    [
+      NS.argu('container')
     ]
   ),
   LinkedRenderStore.registerRenderer(

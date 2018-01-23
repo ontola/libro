@@ -8,6 +8,7 @@ import {
   CardMenuFloater,
   Container,
   DetailsBar,
+  LDLink,
   LinkCard,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
@@ -25,7 +26,7 @@ import Organization from './properties/organization';
 import Text from './properties/text';
 import UpdateAction from './properties/updateAction';
 
-const Thing = () => (
+const ThingPage = () => (
   <div>
     <Property label={NS.argu('coverPhoto')} />
     <Container>
@@ -38,6 +39,7 @@ const Thing = () => (
             <Property label={NS.argu('actionsMenu')} />
             <Property label={NS.argu('followMenu')} />
             <Property label={NS.argu('shareMenu')} />
+            <Property label={NS.argu('actionsMenu')} />
           </CardMenuFloater>
           <DetailsBar>
             <Property label={NS.schema('creator')} />
@@ -52,13 +54,32 @@ const Thing = () => (
         <Property label={NS.council('agenda')} />
       </Card>
       <Property label={NS.argu('blogPosts')} />
-      <Property label={NS.schema('comments')} />
+      <Property label={NS.argu('motions')} />
+      <Property label={NS.argu('arguments')} />
+      <Property label={NS.argu('comments')} />
     </Container>
   </div>
 );
 
+const ThingContainer = () => (
+  <Card>
+    <LDLink>
+      <Property label={NS.argu('coverPhoto')} />
+    </LDLink>
+    <CardContent noSpacing>
+      <Property label={[NS.schema('name'), NS.rdfs('label')]} />
+      <DetailsBar>
+        <Property label={NS.schema('creator')} />
+        <Property label={NS.schema('dateCreated')} />
+      </DetailsBar>
+      <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
+    </CardContent>
+  </Card>
+);
+
 const ThingGrid = () => (
   <Card fixed>
+    <Property label={NS.argu('coverPhoto')} />
     <CardContent noSpacing>
       <Property label={[NS.schema('name'), NS.rdfs('label')]} />
       <DetailsBar>
@@ -75,9 +96,9 @@ const ThingCard = () => (
 );
 
 export default [
-  LinkedRenderStore.registerRenderer(Thing, NS.schema('Thing')),
+  LinkedRenderStore.registerRenderer(ThingPage, NS.schema('Thing')),
   LinkedRenderStore.registerRenderer(
-    Thing,
+    ThingPage,
     NS.schema('Thing'),
     RENDER_CLASS_NAME,
     NS.argu('collection')
@@ -95,7 +116,7 @@ export default [
     NS.argu('section')
   ),
   LinkedRenderStore.registerRenderer(
-    () => <LinkCard><Property label={[NS.schema('name'), NS.rdfs('label')]} /></LinkCard>,
+    () => <LinkCard data-test="Thing-parent"><Property label={[NS.schema('name'), NS.rdfs('label')]} /></LinkCard>,
     NS.schema('Thing'),
     RENDER_CLASS_NAME,
     NS.argu('parent')
@@ -105,6 +126,12 @@ export default [
     NS.schema('Thing'),
     RENDER_CLASS_NAME,
     NS.argu('grid')
+  ),
+  LinkedRenderStore.registerRenderer(
+    ThingContainer,
+    NS.schema('Thing'),
+    RENDER_CLASS_NAME,
+    NS.argu('container')
   ),
   LinkedRenderStore.registerRenderer(
     ThingCard,

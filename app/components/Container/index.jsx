@@ -1,7 +1,9 @@
+import classNames from 'classnames';
+import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import classNames from 'classnames';
 
+import { NS } from '../../helpers/LinkedRenderStore';
 import { sizes } from '../shared/config';
 
 import './Container.scss';
@@ -21,25 +23,28 @@ const defaultProps = {
  * Centers the content and defines width
  * @returns {component} Container with children
  */
-const Container = ({
-  children,
-  grid,
-  size,
-  spacing,
-}) => {
-  const containerClassName = classNames({
-    Container: true,
-    'Container--grid': grid,
-    [`Container--size-${size}`]: !grid && size,
-    [`Container--spacing-${spacing}`]: spacing,
-  });
+class Container extends TopologyProvider {
+  constructor() {
+    super();
 
-  return (
-    <div className={containerClassName}>
-      {children}
-    </div>
-  );
-};
+    this.topology = NS.argu('container');
+  }
+
+  render() {
+    const containerClassName = classNames({
+      Container: true,
+      'Container--grid': this.props.grid,
+      [`Container--size-${this.props.size}`]: !this.props.grid && this.props.size,
+      [`Container--spacing-${this.props.spacing}`]: this.props.spacing,
+    });
+
+    return (
+      <div className={containerClassName}>
+        {this.props.children}
+      </div>
+    );
+  }
+}
 
 Container.propTypes = propTypes;
 Container.defaultProps = defaultProps;

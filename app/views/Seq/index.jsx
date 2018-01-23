@@ -25,6 +25,7 @@ export class Seq extends PropertyBase {
 
   render() {
     const sequences = this.sequences();
+
     return (
       sequences.map((s, i) => (
         <LinkedResourceContainer
@@ -47,6 +48,7 @@ export default LinkedRenderStore.registerRenderer(
   [
     undefined,
     NS.argu('collection'),
+    NS.argu('container'),
     NS.argu('detail'),
     NS.argu('inline'),
     NS.argu('sidebar'),

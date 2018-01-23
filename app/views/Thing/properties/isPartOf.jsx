@@ -10,12 +10,13 @@ const propTypes = {
 
 const IsPartOf = ({ linkedProp }) => {
   if (linkedProp && Object.keys(linkedProp).length === 0 && linkedProp.constructor === Object) {
-    return <div>parent</div>;
+    return <div data-test="Thing-parent">parent</div>;
   }
   return (
     <LinkedResourceContainer
       fetch
       forceRender
+      data-test="Thing-parent"
       subject={linkedProp}
       topology={NS.argu('parent')}
     />
@@ -27,5 +28,6 @@ IsPartOf.propTypes = propTypes;
 export default LinkedRenderStore.registerRenderer(
   IsPartOf,
   NS.schema('Thing'),
-  [NS.argu('parent'), NS.schema('isPartOf')]
+  [NS.argu('parent'), NS.schema('isPartOf')],
+  NS.argu('container')
 );

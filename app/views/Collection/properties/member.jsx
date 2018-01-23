@@ -65,7 +65,8 @@ export default [
     [
       NS.argu('section'),
       NS.argu('widget'),
-      NS.argu('grid')
+      NS.argu('grid'),
+      NS.argu('container')
     ]
   ),
 ];

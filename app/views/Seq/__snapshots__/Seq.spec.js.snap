@@ -22,7 +22,7 @@ exports[`Seq renders a sequence fragment 1`] = `
     data-test="Seq-0"
     first={
       NamedNode {
-        "sI": 56,
+        "sI": 64,
         "term": "menus/info#about",
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#about",
@@ -31,7 +31,7 @@ exports[`Seq renders a sequence fragment 1`] = `
     key="<_:g70120412320900>-<https://argu.dev/menus/info#about>"
     last={
       NamedNode {
-        "sI": 52,
+        "sI": 60,
         "term": "menus/info#contact",
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#contact",
@@ -39,7 +39,7 @@ exports[`Seq renders a sequence fragment 1`] = `
     }
     subject={
       NamedNode {
-        "sI": 56,
+        "sI": 64,
         "term": "menus/info#about",
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#about",
@@ -51,7 +51,7 @@ exports[`Seq renders a sequence fragment 1`] = `
       data-test="Seq-0"
       first={
         NamedNode {
-          "sI": 56,
+          "sI": 64,
           "term": "menus/info#about",
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#about",
@@ -60,7 +60,7 @@ exports[`Seq renders a sequence fragment 1`] = `
       forceRender={false}
       last={
         NamedNode {
-          "sI": 52,
+          "sI": 60,
           "term": "menus/info#contact",
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#contact",
@@ -69,7 +69,7 @@ exports[`Seq renders a sequence fragment 1`] = `
       loadLinkedObject={[Function]}
       subject={
         NamedNode {
-          "sI": 56,
+          "sI": 64,
           "term": "menus/info#about",
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#about",
@@ -101,7 +101,7 @@ exports[`Seq renders a sequence fragment 1`] = `
             }
             subject={
               NamedNode {
-                "sI": 56,
+                "sI": 64,
                 "term": "menus/info#about",
                 "termType": "NamedNode",
                 "value": "https://argu.dev/menus/info#about",
@@ -122,7 +122,7 @@ exports[`Seq renders a sequence fragment 1`] = `
               limit={1}
               subject={
                 NamedNode {
-                  "sI": 56,
+                  "sI": 64,
                   "term": "menus/info#about",
                   "termType": "NamedNode",
                   "value": "https://argu.dev/menus/info#about",
@@ -143,7 +143,7 @@ exports[`Seq renders a sequence fragment 1`] = `
     data-test="Seq-1"
     first={
       NamedNode {
-        "sI": 56,
+        "sI": 64,
         "term": "menus/info#about",
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#about",
@@ -152,7 +152,7 @@ exports[`Seq renders a sequence fragment 1`] = `
     key="<_:g70120412320900>-<https://argu.dev/menus/info#team>"
     last={
       NamedNode {
-        "sI": 52,
+        "sI": 60,
         "term": "menus/info#contact",
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#contact",
@@ -160,7 +160,7 @@ exports[`Seq renders a sequence fragment 1`] = `
     }
     subject={
       NamedNode {
-        "sI": 62,
+        "sI": 70,
         "term": "menus/info#team",
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#team",
@@ -172,7 +172,7 @@ exports[`Seq renders a sequence fragment 1`] = `
       data-test="Seq-1"
       first={
         NamedNode {
-          "sI": 56,
+          "sI": 64,
           "term": "menus/info#about",
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#about",
@@ -181,7 +181,7 @@ exports[`Seq renders a sequence fragment 1`] = `
       forceRender={false}
       last={
         NamedNode {
-          "sI": 52,
+          "sI": 60,
           "term": "menus/info#contact",
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#contact",
@@ -190,7 +190,7 @@ exports[`Seq renders a sequence fragment 1`] = `
       loadLinkedObject={[Function]}
       subject={
         NamedNode {
-          "sI": 62,
+          "sI": 70,
           "term": "menus/info#team",
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#team",
@@ -222,7 +222,7 @@ exports[`Seq renders a sequence fragment 1`] = `
             }
             subject={
               NamedNode {
-                "sI": 62,
+                "sI": 70,
                 "term": "menus/info#team",
                 "termType": "NamedNode",
                 "value": "https://argu.dev/menus/info#team",
@@ -243,7 +243,7 @@ exports[`Seq renders a sequence fragment 1`] = `
               limit={1}
               subject={
                 NamedNode {
-                  "sI": 62,
+                  "sI": 70,
                   "term": "menus/info#team",
                   "termType": "NamedNode",
                   "value": "https://argu.dev/menus/info#team",
@@ -264,7 +264,7 @@ exports[`Seq renders a sequence fragment 1`] = `
     data-test="Seq-2"
     first={
       NamedNode {
-        "sI": 56,
+        "sI": 64,
         "term": "menus/info#about",
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#about",
@@ -273,7 +273,7 @@ exports[`Seq renders a sequence fragment 1`] = `
     key="<_:g70120412320900>-<https://argu.dev/menus/info#governments>"
     last={
       NamedNode {
-        "sI": 52,
+        "sI": 60,
         "term": "menus/info#contact",
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#contact",
@@ -281,7 +281,7 @@ exports[`Seq renders a sequence fragment 1`] = `
     }
     subject={
       NamedNode {
-        "sI": 54,
+        "sI": 62,
         "term": "menus/info#governments",
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#governments",
@@ -293,7 +293,7 @@ exports[`Seq renders a sequence fragment 1`] = `
       data-test="Seq-2"
       first={
         NamedNode {
-          "sI": 56,
+          "sI": 64,
           "term": "menus/info#about",
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#about",
@@ -302,7 +302,7 @@ exports[`Seq renders a sequence fragment 1`] = `
       forceRender={false}
       last={
         NamedNode {
-          "sI": 52,
+          "sI": 60,
           "term": "menus/info#contact",
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#contact",
@@ -311,7 +311,7 @@ exports[`Seq renders a sequence fragment 1`] = `
       loadLinkedObject={[Function]}
       subject={
         NamedNode {
-          "sI": 54,
+          "sI": 62,
           "term": "menus/info#governments",
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#governments",
@@ -343,7 +343,7 @@ exports[`Seq renders a sequence fragment 1`] = `
             }
             subject={
               NamedNode {
-                "sI": 54,
+                "sI": 62,
                 "term": "menus/info#governments",
                 "termType": "NamedNode",
                 "value": "https://argu.dev/menus/info#governments",
@@ -364,7 +364,7 @@ exports[`Seq renders a sequence fragment 1`] = `
               limit={1}
               subject={
                 NamedNode {
-                  "sI": 54,
+                  "sI": 62,
                   "term": "menus/info#governments",
                   "termType": "NamedNode",
                   "value": "https://argu.dev/menus/info#governments",
@@ -385,7 +385,7 @@ exports[`Seq renders a sequence fragment 1`] = `
     data-test="Seq-3"
     first={
       NamedNode {
-        "sI": 56,
+        "sI": 64,
         "term": "menus/info#about",
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#about",
@@ -394,7 +394,7 @@ exports[`Seq renders a sequence fragment 1`] = `
     key="<_:g70120412320900>-<https://argu.dev/menus/info#press_media>"
     last={
       NamedNode {
-        "sI": 52,
+        "sI": 60,
         "term": "menus/info#contact",
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#contact",
@@ -402,7 +402,7 @@ exports[`Seq renders a sequence fragment 1`] = `
     }
     subject={
       NamedNode {
-        "sI": 58,
+        "sI": 66,
         "term": "menus/info#press_media",
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#press_media",
@@ -414,7 +414,7 @@ exports[`Seq renders a sequence fragment 1`] = `
       data-test="Seq-3"
       first={
         NamedNode {
-          "sI": 56,
+          "sI": 64,
           "term": "menus/info#about",
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#about",
@@ -423,7 +423,7 @@ exports[`Seq renders a sequence fragment 1`] = `
       forceRender={false}
       last={
         NamedNode {
-          "sI": 52,
+          "sI": 60,
           "term": "menus/info#contact",
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#contact",
@@ -432,7 +432,7 @@ exports[`Seq renders a sequence fragment 1`] = `
       loadLinkedObject={[Function]}
       subject={
         NamedNode {
-          "sI": 58,
+          "sI": 66,
           "term": "menus/info#press_media",
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#press_media",
@@ -464,7 +464,7 @@ exports[`Seq renders a sequence fragment 1`] = `
             }
             subject={
               NamedNode {
-                "sI": 58,
+                "sI": 66,
                 "term": "menus/info#press_media",
                 "termType": "NamedNode",
                 "value": "https://argu.dev/menus/info#press_media",
@@ -485,7 +485,7 @@ exports[`Seq renders a sequence fragment 1`] = `
               limit={1}
               subject={
                 NamedNode {
-                  "sI": 58,
+                  "sI": 66,
                   "term": "menus/info#press_media",
                   "termType": "NamedNode",
                   "value": "https://argu.dev/menus/info#press_media",
@@ -506,7 +506,7 @@ exports[`Seq renders a sequence fragment 1`] = `
     data-test="Seq-4"
     first={
       NamedNode {
-        "sI": 56,
+        "sI": 64,
         "term": "menus/info#about",
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#about",
@@ -515,7 +515,7 @@ exports[`Seq renders a sequence fragment 1`] = `
     key="<_:g70120412320900>-<https://argu.dev/menus/info#support>"
     last={
       NamedNode {
-        "sI": 52,
+        "sI": 60,
         "term": "menus/info#contact",
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#contact",
@@ -523,7 +523,7 @@ exports[`Seq renders a sequence fragment 1`] = `
     }
     subject={
       NamedNode {
-        "sI": 60,
+        "sI": 68,
         "term": "menus/info#support",
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#support",
@@ -535,7 +535,7 @@ exports[`Seq renders a sequence fragment 1`] = `
       data-test="Seq-4"
       first={
         NamedNode {
-          "sI": 56,
+          "sI": 64,
           "term": "menus/info#about",
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#about",
@@ -544,7 +544,7 @@ exports[`Seq renders a sequence fragment 1`] = `
       forceRender={false}
       last={
         NamedNode {
-          "sI": 52,
+          "sI": 60,
           "term": "menus/info#contact",
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#contact",
@@ -553,7 +553,7 @@ exports[`Seq renders a sequence fragment 1`] = `
       loadLinkedObject={[Function]}
       subject={
         NamedNode {
-          "sI": 60,
+          "sI": 68,
           "term": "menus/info#support",
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#support",
@@ -585,7 +585,7 @@ exports[`Seq renders a sequence fragment 1`] = `
             }
             subject={
               NamedNode {
-                "sI": 60,
+                "sI": 68,
                 "term": "menus/info#support",
                 "termType": "NamedNode",
                 "value": "https://argu.dev/menus/info#support",
@@ -606,7 +606,7 @@ exports[`Seq renders a sequence fragment 1`] = `
               limit={1}
               subject={
                 NamedNode {
-                  "sI": 60,
+                  "sI": 68,
                   "term": "menus/info#support",
                   "termType": "NamedNode",
                   "value": "https://argu.dev/menus/info#support",
@@ -627,7 +627,7 @@ exports[`Seq renders a sequence fragment 1`] = `
     data-test="Seq-5"
     first={
       NamedNode {
-        "sI": 56,
+        "sI": 64,
         "term": "menus/info#about",
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#about",
@@ -636,7 +636,7 @@ exports[`Seq renders a sequence fragment 1`] = `
     key="<_:g70120412320900>-<https://argu.dev/menus/info#contact>"
     last={
       NamedNode {
-        "sI": 52,
+        "sI": 60,
         "term": "menus/info#contact",
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#contact",
@@ -644,7 +644,7 @@ exports[`Seq renders a sequence fragment 1`] = `
     }
     subject={
       NamedNode {
-        "sI": 52,
+        "sI": 60,
         "term": "menus/info#contact",
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#contact",
@@ -656,7 +656,7 @@ exports[`Seq renders a sequence fragment 1`] = `
       data-test="Seq-5"
       first={
         NamedNode {
-          "sI": 56,
+          "sI": 64,
           "term": "menus/info#about",
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#about",
@@ -665,7 +665,7 @@ exports[`Seq renders a sequence fragment 1`] = `
       forceRender={false}
       last={
         NamedNode {
-          "sI": 52,
+          "sI": 60,
           "term": "menus/info#contact",
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#contact",
@@ -674,7 +674,7 @@ exports[`Seq renders a sequence fragment 1`] = `
       loadLinkedObject={[Function]}
       subject={
         NamedNode {
-          "sI": 52,
+          "sI": 60,
           "term": "menus/info#contact",
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#contact",
@@ -706,7 +706,7 @@ exports[`Seq renders a sequence fragment 1`] = `
             }
             subject={
               NamedNode {
-                "sI": 52,
+                "sI": 60,
                 "term": "menus/info#contact",
                 "termType": "NamedNode",
                 "value": "https://argu.dev/menus/info#contact",
@@ -727,7 +727,7 @@ exports[`Seq renders a sequence fragment 1`] = `
               limit={1}
               subject={
                 NamedNode {
-                  "sI": 52,
+                  "sI": 60,
                   "term": "menus/info#contact",
                   "termType": "NamedNode",
                   "value": "https://argu.dev/menus/info#contact",
