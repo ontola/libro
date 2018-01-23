@@ -5,6 +5,7 @@ import React from 'react';
 import {
   Card,
   CardContent,
+  DetailsBar,
   LinkCard,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
@@ -26,6 +27,10 @@ const Thing = () => (
   <Card data-test="Thing-thing">
     <CardContent noSpacing>
       <Property label={[NS.schema('name'), NS.rdfs('label')]} />
+      <DetailsBar>
+        <Property label={NS.schema('creator')} />
+        <Property label={NS.schema('dateCreated')} />
+      </DetailsBar>
       <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
       <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
       <Property label={NS.foaf('isPrimaryTopicOf')} />
@@ -37,7 +42,10 @@ const ThingGrid = () => (
   <Card fixed>
     <CardContent noSpacing>
       <Property label={[NS.schema('name'), NS.rdfs('label')]} />
-      <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
+      <DetailsBar>
+        <Property label={NS.schema('creator')} />
+        <Property label={NS.schema('dateCreated')} />
+      </DetailsBar>
       <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
     </CardContent>
   </Card>

@@ -1,4 +1,4 @@
-import { Property, PropertyBase, subjectType } from 'link-redux';
+import { Property, PropertyBase, subjectType, lowLevel, lrsType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
@@ -9,8 +9,9 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import './Detail.scss';
 
 const contextTypes = {
-  subject: subjectType,
+  linkedRenderStore: lrsType,
 };
+
 const propTypes = {
   className: PropTypes.string,
   /** Since Detail uses flexbox, you need to place right floating Details
@@ -43,7 +44,7 @@ class Detail extends PropertyBase {
     const { label, text } = this.props;
     let displayText = text;
     if (typeof this.props.subject !== 'undefined' && label && this.getLinkedObjectProperty()) {
-      displayText = this.getLinkedObjectProperty();
+      displayText = this.getLinkedObjectProperty().value;
     }
     return <span className="Detail__text">{displayText}</span>;
   }
@@ -102,4 +103,12 @@ Detail.contextTypes = contextTypes;
 Detail.defaultProps = defaultProps;
 Detail.propTypes = propTypes;
 
-export default Detail;
+const DetailSubject = (props, { subject }) => React.createElement(
+  lowLevel.linkedVersion(Detail),
+  { subject, ...props }
+);
+DetailSubject.contextTypes = {
+  subject: subjectType,
+};
+
+export default DetailSubject;

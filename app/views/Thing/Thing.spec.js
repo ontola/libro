@@ -20,7 +20,7 @@ describeView('Thing', components, resources, resource, () => {
   });
 
   it('renders the name', () => {
-    expect(subject.find(marker('name'))).toBePresent();
+    expect(subject.find(marker('name', 'card'))).toBePresent();
   });
 
   it('renders the text', () => {
@@ -29,7 +29,7 @@ describeView('Thing', components, resources, resource, () => {
 
   as(NS.argu('card'), () => {
     it('renders the name', () => {
-      expect(subject.find(marker('name'))).toBePresent();
+      expect(subject.find(marker('name', 'card'))).toBePresent();
     });
 
     it('renders the text', () => {
@@ -69,7 +69,7 @@ describeView('Thing', components, resources, resource, () => {
 
   as(NS.argu('parent'), () => {
     it('renders the name', () => {
-      expect(subject.find(marker('name'))).toBePresent();
+      expect(subject.find(marker('name', 'card'))).toBePresent();
     });
 
     it('does not render the text', () => {

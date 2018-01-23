@@ -17,5 +17,5 @@ export default LinkedRenderStore.registerRenderer(
   DateCreated,
   NS.schema('Thing'),
   NS.schema('dateCreated'),
-  [undefined, NS.argu('collection'), NS.argu('card')]
+  [undefined, NS.argu('detail')]
 );

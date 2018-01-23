@@ -16,7 +16,7 @@ import InfiniteCollection from './InfiniteCollection';
 // import './LinkedRecord';
 import MenuItem from './MenuItem';
 import MenuSection from './MenuSection';
-// import './Motion';
+import './Motion';
 import NavigationsMenu from './NavigationsMenu';
 import Notification from './Notification';
 import OrganizationsMenu from './OrganizationsMenu';
