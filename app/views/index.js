@@ -5,7 +5,6 @@ import LRS from '../helpers/LinkedRenderStore';
  * Please properly include each file when access to the code is needed.
  */
 import Thing from './Thing';
-import CreativeWork from './CreativeWork';
 import Collection from './Collection';
 // import './Comment';
 import CreateAction from './CreateAction';
@@ -37,7 +36,6 @@ import UserActor from './UserActor';
 
 LRS.registerAll(
   ...Thing,
-  ...CreativeWork,
   ...CreateAction,
   ...Collection,
   ...EntryPoint,

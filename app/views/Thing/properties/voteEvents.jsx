@@ -19,6 +19,6 @@ VoteEvents.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
   VoteEvents,
-  NS.schema('CreativeWork'),
+  NS.schema('Thing'),
   NS.argu('voteEvents')
 );
