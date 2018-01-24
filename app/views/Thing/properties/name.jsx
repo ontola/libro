@@ -1,6 +1,7 @@
 import LinkedRenderStore from 'link-lib';
-import { linkedPropType } from 'link-redux';
+import { PropertyBase } from 'link-redux';
 import React from 'react';
+import { Literal } from 'rdflib';
 
 import {
   Heading,
@@ -8,94 +9,85 @@ import {
 } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
 
-const propTypes = {
-  linkedProp: linkedPropType,
-};
+class ColoredHeading extends PropertyBase {
+  getVariant() {
+    switch (this.getLinkedObjectProperty(NS.rdf('type')).value) {
+      case 'https://argu.co/ns/core#Argument':
+        return this.getLinkedObjectProperty(NS.schema('option')).equals(Literal.fromBoolean(true)) ? 'pro' : 'con';
+      default:
+        return undefined;
+    }
+  }
 
-const Name = ({ linkedProp }) => (
-  <Heading data-test="Thing-name" size="1">{linkedProp.value}</Heading>
-);
+  render() {
+    const { size } = this.props;
+    return (
+      <Heading
+        size={size}
+        variant={this.getVariant()}
+      >
+        {this.getLinkedObjectProperty().value}
+      </Heading>
+    );
+  }
+}
 
-Name.propTypes = propTypes;
-
-const ThingNameHeader = ({ linkedProp }) => (
-  <Heading data-test="Thing-name-header" size="1">{linkedProp.value}</Heading>
-);
-
-ThingNameHeader.propTypes = propTypes;
+const NamePredicates = [
+  NS.schema('name'),
+  NS.rdfs('label'),
+  NS.foaf('name'),
+];
 
 export default [
   LinkedRenderStore.registerRenderer(
-    Name,
+    props => <LDLink><ColoredHeading data-test="Thing-name-widget" size="4" {...props} /></LDLink>,
     NS.schema('Thing'),
-    [
-      NS.schema('name'),
-      NS.rdfs('label'),
-      NS.foaf('name'),
-    ],
+    NamePredicates,
     [undefined, NS.argu('collection'), NS.argu('parent'), NS.argu('section')]
   ),
   LinkedRenderStore.registerRenderer(
     ({ linkedProp }) => <span data-test="Thing-name-sidebar">{linkedProp.value}</span>,
     NS.schema('Thing'),
-    [
-      NS.schema('name'),
-      NS.rdfs('label'),
-      NS.foaf('name'),
-    ],
+    NamePredicates,
     NS.argu('sidebar')
   ),
   LinkedRenderStore.registerRenderer(
     ({ linkedProp }) => <LDLink data-test="Thing-name-inline">{linkedProp.value}</LDLink>,
     NS.schema('Thing'),
-    [
-      NS.schema('name'),
-      NS.rdfs('label'),
-      NS.foaf('name'),
-    ],
+    NamePredicates,
     NS.argu('inline')
   ),
   LinkedRenderStore.registerRenderer(
-    ({ linkedProp }) => <LDLink><Heading size="3">{linkedProp.value}</Heading></LDLink>,
+    props => <ColoredHeading data-test="Thing-name-collection" size="3" {...props} />,
     NS.schema('Thing'),
-    [
-      NS.schema('name'),
-      NS.rdfs('label'),
-      NS.foaf('name'),
-    ],
+    NamePredicates,
     [
       NS.argu('card'),
       NS.argu('collection'),
     ]
   ),
   LinkedRenderStore.registerRenderer(
-    ({ linkedProp }) => <Heading size="2">{linkedProp.value}</Heading>,
+    props => <ColoredHeading data-test="Thing-name-widget" size="2" {...props} />,
     NS.schema('Thing'),
-    [
-      NS.schema('name'),
-      NS.rdfs('label'),
-      NS.foaf('name'),
-    ],
+    NamePredicates,
     NS.argu('widget')
   ),
   LinkedRenderStore.registerRenderer(
-    ThingNameHeader,
+    ({ linkedProp }) => <Heading data-test="Thing-name-header">{linkedProp.value}</Heading>,
     NS.schema('Thing'),
-    [
-      NS.schema('name'),
-      NS.rdfs('label'),
-      NS.foaf('name'),
-    ],
+    NamePredicates,
     NS.argu('header')
   ),
   LinkedRenderStore.registerRenderer(
-    ({ linkedProp }) => <LDLink><Heading data-test="Thing-name-card" size="3">{linkedProp.value}</Heading></LDLink>,
+    props => <LDLink><ColoredHeading size="4" {...props} /></LDLink>,
     NS.schema('Thing'),
-    [
-      NS.schema('name'),
-      NS.rdfs('label'),
-      NS.foaf('name'),
-    ],
+    NamePredicates,
     NS.argu('section')
+  ),
+  LinkedRenderStore.registerRenderer(
+    props => <LDLink><ColoredHeading data-test="Thing-name-card" size="3" {...props} /></LDLink>,
+    NS.schema('Thing'),
+    NamePredicates,
+    NS.argu('card')
   ),
 ];
