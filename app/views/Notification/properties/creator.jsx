@@ -28,6 +28,7 @@ export default LinkedRenderStore.registerRenderer(
     undefined,
     NS.argu('collection'),
     NS.argu('card'),
+    NS.argu('cardMain'),
     NS.argu('detail'),
     NS.argu('sidebar'),
   ]

@@ -46,6 +46,12 @@ export default [
     [undefined, NS.argu('collection'), NS.argu('parent'), NS.argu('section')]
   ),
   LinkedRenderStore.registerRenderer(
+    props => <ColoredHeading data-test="Thing-name-card-main" size="1" {...props} />,
+    NS.schema('Thing'),
+    NamePredicates,
+    NS.argu('cardMain')
+  ),
+  LinkedRenderStore.registerRenderer(
     ({ linkedProp }) => <span data-test="Thing-name-sidebar">{linkedProp.value}</span>,
     NS.schema('Thing'),
     NamePredicates,

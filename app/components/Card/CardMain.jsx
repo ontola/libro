@@ -20,11 +20,11 @@ const defaultProps = {
  * Renders an empty Card without padding
  * @returns {component} Component
  */
-class Card extends TopologyProvider {
+class CardMain extends TopologyProvider {
   constructor() {
     super();
 
-    this.topology = NS.argu('card');
+    this.topology = NS.argu('cardMain');
   }
 
   render() {
@@ -41,14 +41,7 @@ class Card extends TopologyProvider {
   }
 }
 
-Card.propTypes = propTypes;
-Card.defaultProps = defaultProps;
+CardMain.propTypes = propTypes;
+CardMain.defaultProps = defaultProps;
 
-export { default as CardActions } from './CardActions';
-export { default as CardButton } from './CardButton';
-export { default as CardContent } from './CardContent';
-export { default as CardDivider } from './CardDivider';
-export { default as CardMenuFloater } from './CardMenuFloater';
-export { default as CardRow } from './CardRow';
-export { default as CardMain } from './CardMain';
-export default Card;
+export default CardMain;

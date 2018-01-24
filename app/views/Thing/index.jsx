@@ -5,6 +5,7 @@ import React from 'react';
 import {
   Card,
   CardContent,
+  CardMain,
   CardMenuFloater,
   Container,
   DetailsBar,
@@ -31,7 +32,7 @@ const ThingPage = () => (
     <Property label={NS.argu('coverPhoto')} />
     <Container>
       <Property label={NS.schema('isPartOf')} />
-      <Card data-test="Thing-thing">
+      <CardMain data-test="Thing-thing">
         <CardContent noSpacing>
           <CardMenuFloater
             header={<Property label={[NS.schema('name'), NS.rdfs('label')]} />}
@@ -52,7 +53,7 @@ const ThingPage = () => (
         <Property label={NS.argu('attachments')} />
         <Property label={NS.council('attachment')} />
         <Property label={NS.council('agenda')} />
-      </Card>
+      </CardMain>
       <Property label={NS.argu('blogPosts')} />
       <Property label={NS.argu('motions')} />
       <Property label={NS.argu('arguments')} />
@@ -137,7 +138,10 @@ export default [
     ThingCard,
     NS.schema('Thing'),
     RENDER_CLASS_NAME,
-    NS.argu('card')
+    [
+      NS.argu('card'),
+      NS.argu('cardMain'),
+    ]
   ),
   BaseColor,
   Contains,

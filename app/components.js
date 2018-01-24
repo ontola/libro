@@ -8,6 +8,7 @@ export { default as CardActions } from './components/Card/CardActions';
 export { default as CardButton } from './components/Card/CardButton';
 export { default as CardContent } from './components/Card/CardContent';
 export { default as CardDivider } from './components/Card/CardDivider';
+export { default as CardMain } from './components/Card/CardMain';
 export { default as CardRow } from './components/Card/CardRow';
 // export { default as ChronoFeed } from './components/ChronoFeed/index';
 // export { default as ChronoItem } from './components/ChronoItem/index';

@@ -39,6 +39,7 @@ export default [
     [
       undefined,
       NS.argu('card'),
+      NS.argu('cardMain'),
     ]
   ),
   LinkedRenderStore.registerRenderer(

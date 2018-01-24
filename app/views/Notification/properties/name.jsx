@@ -21,5 +21,10 @@ export default LinkedRenderStore.registerRenderer(
   Creator,
   NS.argu('Notification'),
   NS.schema('name'),
-  [undefined, NS.argu('collection'), NS.argu('card')]
+  [
+    undefined,
+    NS.argu('collection'),
+    NS.argu('card'),
+    NS.argu('cardMain'),
+  ]
 );
