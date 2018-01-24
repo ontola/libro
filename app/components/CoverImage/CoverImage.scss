@@ -12,6 +12,15 @@
       height: 12em;
       position: relative;
       width: 100%;
+      overflow: hidden;
+      border-top-right-radius: $border-radius-base;
+      border-top-left-radius: $border-radius-base;
+    }
+
+    .Card--fixed & {
+      display: flex;
+      height: auto;
+      flex: 1;
     }
   }
 

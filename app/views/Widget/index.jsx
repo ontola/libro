@@ -1,4 +1,4 @@
-import LinkedRenderStore from 'link-lib';
+import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
 import React from 'react';
 
@@ -16,5 +16,7 @@ const Widget = () => (
 
 export default LinkedRenderStore.registerRenderer(
   Widget,
-  NS.argu('Widget')
+  NS.argu('Widget'),
+  RENDER_CLASS_NAME,
+  NS.argu('container')
 );

@@ -9,6 +9,7 @@ import {
   CardMenuFloater,
   Container,
   DetailsBar,
+  HoverBox,
   LDLink,
   LinkCard,
 } from '../../components';
@@ -74,13 +75,16 @@ const ThingContainer = () => (
         <Property label={NS.schema('dateCreated')} />
       </DetailsBar>
       <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
+      <Property label={NS.argu('arguments')} />
     </CardContent>
   </Card>
 );
 
 const ThingGrid = () => (
   <Card fixed>
-    <Property label={NS.argu('coverPhoto')} />
+    <LDLink>
+      <Property label={NS.argu('coverPhoto')} />
+    </LDLink>
     <CardContent noSpacing>
       <Property label={[NS.schema('name'), NS.rdfs('label')]} />
       <DetailsBar>
@@ -90,6 +94,16 @@ const ThingGrid = () => (
       <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
     </CardContent>
   </Card>
+);
+
+const HiddenChildren = () => (
+  <Property label={NS.schema('text')} />
+);
+
+const ThingSection = () => (
+  <HoverBox hiddenChildren={<HiddenChildren />}>
+    <Property label={NS.schema('name')} topology={NS.argu('inline')} />
+  </HoverBox>
 );
 
 const ThingCard = () => (
