@@ -1,7 +1,6 @@
 import LinkedRenderStore from 'link-lib';
 import { PropertyBase } from 'link-redux';
 import React from 'react';
-import { Literal } from 'rdflib';
 
 import {
   Heading,
@@ -12,8 +11,14 @@ import { NS } from '../../../helpers/LinkedRenderStore';
 class ColoredHeading extends PropertyBase {
   getVariant() {
     switch (this.getLinkedObjectProperty(NS.rdf('type')).value) {
-      case 'https://argu.co/ns/core#Argument':
-        return this.getLinkedObjectProperty(NS.schema('option')).equals(Literal.fromBoolean(true)) ? 'pro' : 'con';
+      case 'https://argu.co/ns/core#ConArgument':
+        return 'con';
+      case 'https://argu.co/ns/core#ProArgument':
+        return 'pro';
+      case 'https://argu.co/ns/core#Motion':
+        return 'motion';
+      case 'https://argu.co/ns/core#Question':
+        return 'question';
       default:
         return undefined;
     }
@@ -40,10 +45,10 @@ const NamePredicates = [
 
 export default [
   LinkedRenderStore.registerRenderer(
-    props => <LDLink><ColoredHeading data-test="Thing-name-widget" size="4" {...props} /></LDLink>,
+    props => <ColoredHeading data-test="Thing-name-widget" size="4" {...props} />,
     NS.schema('Thing'),
     NamePredicates,
-    [undefined, NS.argu('collection'), NS.argu('parent'), NS.argu('section')]
+    [undefined, NS.argu('parent'), NS.argu('section')]
   ),
   LinkedRenderStore.registerRenderer(
     props => <ColoredHeading data-test="Thing-name-card-main" size="1" {...props} />,
@@ -69,7 +74,12 @@ export default [
     NamePredicates,
     [
       NS.argu('card'),
+      NS.argu('cardFixed'),
+      NS.argu('cardHover'),
+      NS.argu('cardRow'),
       NS.argu('collection'),
+      NS.argu('container'),
+      NS.argu('parent'),
     ]
   ),
   LinkedRenderStore.registerRenderer(
@@ -85,15 +95,9 @@ export default [
     NS.argu('header')
   ),
   LinkedRenderStore.registerRenderer(
-    props => <LDLink><ColoredHeading size="4" {...props} /></LDLink>,
+    props => <LDLink><ColoredHeading data-test="Thing-name-section" size="4" {...props} /></LDLink>,
     NS.schema('Thing'),
     NamePredicates,
     NS.argu('section')
-  ),
-  LinkedRenderStore.registerRenderer(
-    props => <LDLink><ColoredHeading data-test="Thing-name-card" size="3" {...props} /></LDLink>,
-    NS.schema('Thing'),
-    NamePredicates,
-    NS.argu('card')
   ),
 ];
