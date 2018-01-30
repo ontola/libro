@@ -12,6 +12,7 @@ export { default as CardFixed } from './components/Card/CardFixed';
 export { default as CardMain } from './components/Card/CardMain';
 export { default as CardMenuFloater } from './components/Card/CardMenuFloater';
 export { default as CardRow } from './components/Card/CardRow';
+export { default as Carousel } from './components/Grid/Carousel';
 // export { default as ChronoFeed } from './components/ChronoFeed/index';
 // export { default as ChronoItem } from './components/ChronoItem/index';
 export { default as Collapsible } from './components/Collapsible/index';

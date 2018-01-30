@@ -3,6 +3,7 @@ import { LinkedResourceContainer, PropertyBase, lowLevel } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { Carousel } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
@@ -65,8 +66,16 @@ export default [
     [
       NS.argu('section'),
       NS.argu('widget'),
-      NS.argu('grid'),
       NS.argu('container')
+    ]
+  ),
+  LinkedRenderStore.registerRenderer(
+    props => <Carousel><Member {...props} /></Carousel>,
+    CollectionTypes,
+    NS.argu('members'),
+    [
+      NS.argu('grid'),
+      NS.argu('widget'),
     ]
   ),
 ];

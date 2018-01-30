@@ -17,7 +17,6 @@ class Grid extends TopologyProvider {
   render() {
     const classes = classNames({
       Grid: true,
-      'Grid--scrollable': this.props.scrollable,
     });
 
     return (
@@ -30,11 +29,6 @@ class Grid extends TopologyProvider {
 
 Grid.propTypes = {
   children: PropTypes.node.isRequired,
-  scrollable: PropTypes.bool,
-};
-
-Grid.defaultProps = {
-  scrollable: false,
 };
 
 export default Grid;

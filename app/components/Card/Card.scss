@@ -8,8 +8,12 @@
 
   &--fixed {
     width: 22em;
+    min-width: 22em;
+    max-width: 22em;
+    min-height: 16em;
+    max-height: 16em;
     height: 16em;
-    margin: 1em;
+    margin: $grid-margin;
     display: inline-flex;
     flex-direction: column;
 
@@ -18,7 +22,7 @@
       display: flex;
       flex: 1;
     }
-    
+
     @include smallest-only {
       width: 100%;
     }
@@ -59,7 +63,12 @@
 
 .CardRow {
   border-bottom: solid 1px color('grey', 'x-light');
+  border-top: solid 1px color('grey', 'x-light');
   position: relative;
+
+  + .CardRow {
+    border-top: 0;
+  }
 }
 
 .CardRow--show-arrow {

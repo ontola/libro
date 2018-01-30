@@ -137,6 +137,8 @@ $box-shadow: 0 1px 5px rgba(0, 0, 0, .1);
 $box-shadow--intense: 0 2px 8px rgba(0, 0, 0, .2);
 $box-shadow--inside: 0 2px 8px rgba(0, 0, 0, .2) inset;
 $box-divider: solid 1px color('grey', 'x-light');
+$background-color: color('blue', 'x-light');
+$grid-margin: 1em;
 
 // Used to add a padding on all pages. This is subtracted from full page views.
 $bottom-padding-height: 3em;

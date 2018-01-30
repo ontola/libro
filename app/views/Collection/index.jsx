@@ -10,7 +10,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { Carousel } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { getPage } from '../../state/pagination/selectors';
 
@@ -96,15 +95,11 @@ const CollectionContainer = ({ subject }, { linkedRenderStore }) => viewsOrMembe
 CollectionContainer.contextTypes = contextTypes;
 
 const CollectionFixedCards = ({ subject }, { linkedRenderStore }) => (
-  <Carousel>
-    {
-      viewsOrMembers(
-        linkedRenderStore.getResourcePropertyRaw(subject, NS.argu('views')),
-        linkedRenderStore.getResourcePropertyRaw(subject, NS.argu('members')),
-        NS.argu('grid')
-      )
-    }
-  </Carousel>
+  viewsOrMembers(
+    linkedRenderStore.getResourcePropertyRaw(subject, NS.argu('views')),
+    linkedRenderStore.getResourcePropertyRaw(subject, NS.argu('members')),
+    NS.argu('grid')
+  )
 );
 
 CollectionFixedCards.contextTypes = contextTypes;
