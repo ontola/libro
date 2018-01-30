@@ -1,6 +1,8 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { lowLevel, Property, PropertyBase } from 'link-redux';
-import React from 'react';
+import { link, Property } from 'link-redux';
+import PropTypes from 'prop-types';
+import { Literal, NamedNode } from 'rdflib';
+import React, { PureComponent } from 'react';
 
 import { SideBarLinkImageWrapper } from '../../components/SideBarLink';
 import { CoverImage } from '../../components';
@@ -8,26 +10,27 @@ import { NS } from '../../helpers/LinkedRenderStore';
 
 import thumbnail from './properties/thumbnail';
 
-class ImageObjectCoverComp extends PropertyBase {
+const propTypes = {
+  imagePositionY: PropTypes.instanceOf(Literal).isRequired,
+  url: PropTypes.instanceOf(NamedNode).isRequired,
+};
+
+class ImageObjectCoverComp extends PureComponent {
   render() {
-    const url = this.getLinkedObjectProperty(NS.schema('url')).value;
-    if (!url) {
-      return null;
-    }
-
-    const position = this.getLinkedObjectProperty(NS.argu('imagePositionY')).value;
-
+    const { imagePositionY, url } = this.props;
     return (
       <CoverImage
         data-test="ImageObject-cover"
-        positionY={position}
-        url={url}
+        positionY={Number.parseInt(imagePositionY, 10)}
+        url={url.value}
       />
     );
   }
 }
 
-const ImageObjectCover = lowLevel.linkedSubject(lowLevel.linkedVersion(ImageObjectCoverComp));
+ImageObjectCoverComp.propTypes = propTypes;
+
+const ImageObjectCover = link([NS.schema('url'), NS.argu('imagePositionY')])(ImageObjectCoverComp);
 
 const ImageObject = () => <Property label={NS.schema('thumbnail')} />;
 
@@ -39,12 +42,9 @@ export default [
     [
       undefined,
       NS.argu('card'),
+      NS.argu('cardFixed'),
       NS.argu('cardMain'),
     ]
-  ),
-  LinkedRenderStore.registerRenderer(
-    ImageObjectCover,
-    NS.schema('ImageObject')
   ),
   LinkedRenderStore.registerRenderer(
     ImageObject,
@@ -52,6 +52,7 @@ export default [
     RENDER_CLASS_NAME,
     [
       NS.argu('detail'),
+      NS.argu('collection'),
       NS.argu('sidebarBlock'),
       NS.argu('voteBubble'),
     ]

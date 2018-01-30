@@ -5,12 +5,12 @@ import React from 'react';
 import {
   Card,
   CardContent,
+  CardFixed,
   CardMain,
   CardMenuFloater,
   Container,
   DetailsBar,
   HoverBox,
-  LDLink,
   LinkCard,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
@@ -18,6 +18,7 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import BaseColor from './properties/baseColor';
 import Contains from './properties/contains';
 import CollectionAssociation from './properties/collectionAssociation';
+import CoverPhoto from './properties/coverPhoto';
 import DateCreated from './properties/dateCreated';
 import IsPrimaryTopicOf from './properties/isPrimaryTopicOf';
 import IsPartOf from './properties/isPartOf';
@@ -56,18 +57,16 @@ const ThingPage = () => (
         <Property label={NS.council('agenda')} />
       </CardMain>
       <Property label={NS.argu('blogPosts')} />
-      <Property label={NS.argu('motions')} />
+      <Property label={NS.schema('comments')} />
       <Property label={NS.argu('arguments')} />
-      <Property label={NS.argu('comments')} />
+      <Property label={NS.argu('motions')} />
     </Container>
   </div>
 );
 
 const ThingContainer = () => (
   <Card>
-    <LDLink>
-      <Property label={NS.argu('coverPhoto')} />
-    </LDLink>
+    <Property label={NS.argu('coverPhoto')} />
     <CardContent noSpacing>
       <Property label={[NS.schema('name'), NS.rdfs('label')]} />
       <DetailsBar>
@@ -81,10 +80,8 @@ const ThingContainer = () => (
 );
 
 const ThingGrid = () => (
-  <Card fixed>
-    <LDLink>
-      <Property label={NS.argu('coverPhoto')} />
-    </LDLink>
+  <CardFixed>
+    <Property label={NS.argu('coverPhoto')} />
     <CardContent noSpacing>
       <Property label={[NS.schema('name'), NS.rdfs('label')]} />
       <DetailsBar>
@@ -93,15 +90,21 @@ const ThingGrid = () => (
       </DetailsBar>
       <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
     </CardContent>
-  </Card>
+  </CardFixed>
 );
 
-const HiddenChildren = () => (
-  <Property label={NS.schema('text')} />
+const ThingHoverBoxHidden = () => (
+  <div>
+    <DetailsBar>
+      <Property label={NS.schema('creator')} />
+      <Property label={NS.schema('dateCreated')} />
+    </DetailsBar>
+    <Property label={NS.schema('text')} />
+  </div>
 );
 
 const ThingSection = () => (
-  <HoverBox hiddenChildren={<HiddenChildren />}>
+  <HoverBox hiddenChildren={<ThingHoverBoxHidden />}>
     <Property label={NS.schema('name')} topology={NS.argu('inline')} />
   </HoverBox>
 );
@@ -125,7 +128,7 @@ export default [
     NS.argu('inline')
   ),
   LinkedRenderStore.registerRenderer(
-    () => <Property label={[NS.schema('name'), NS.rdfs('label')]} />,
+    ThingSection,
     NS.schema('Thing'),
     RENDER_CLASS_NAME,
     NS.argu('section')
@@ -154,12 +157,14 @@ export default [
     RENDER_CLASS_NAME,
     [
       NS.argu('card'),
+      NS.argu('cardFixed'),
       NS.argu('cardMain'),
     ]
   ),
   BaseColor,
   Contains,
   CollectionAssociation,
+  CoverPhoto,
   DateCreated,
   IsPrimaryTopicOf,
   IsPartOf,

@@ -1,5 +1,6 @@
 // BREAKPOINTS
 $responsive-small-breakpoint: 900px;
+$responsive-smallest-breakpoint: 650px;
 
 @mixin large {
   @media (min-width: #{$responsive-small-breakpoint}) {
@@ -9,6 +10,12 @@ $responsive-small-breakpoint: 900px;
 
 @mixin small-only {
   @media (max-width: #{$responsive-small-breakpoint}) {
+    @content;
+  }
+}
+
+@mixin smallest-only {
+  @media (max-width: #{$responsive-smallest-breakpoint}) {
     @content;
   }
 }

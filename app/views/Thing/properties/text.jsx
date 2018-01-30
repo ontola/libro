@@ -1,5 +1,5 @@
 import LinkedRenderStore from 'link-lib';
-import { linkedPropType, lowLevel, subjectType } from 'link-redux';
+import { linkedPropType, lowLevel, subjectType, PropertyBase } from 'link-redux';
 import React from 'react';
 
 import {
@@ -16,6 +16,27 @@ const Text = ({ linkedProp }) => <Markdown data-test="Thing-text" text={linkedPr
 
 Text.propTypes = propTypes;
 
+/** Only displays text when there is no cover image, and does not overflow. */
+class TextCutoff extends PropertyBase {
+  render() {
+    if (!this.getLinkedObjectProperty() || this.getLinkedObjectProperty(NS.argu('coverPhoto'))) {
+      return null;
+    }
+    return (
+      <div style={{
+        maxHeight: '10.7em',
+        overflow: 'hidden',
+        position: 'relative',
+      }}
+      >
+        {this.getLinkedObjectProperty().value}
+      </div>
+    );
+  }
+}
+
+TextCutoff.propTypes = propTypes;
+
 const propTypesCollection = {
   linkedProp: linkedPropType,
   subject: subjectType,
@@ -30,7 +51,11 @@ export default [
   LinkedRenderStore.registerRenderer(
     Text,
     NS.schema('Thing'),
-    NS.schema('text')
+    NS.schema('text'),
+    [
+      undefined,
+      NS.argu('cardMain'),
+    ]
   ),
   LinkedRenderStore.registerRenderer(
     lowLevel.linkedSubject(TextCollapsed),
@@ -42,5 +67,11 @@ export default [
       NS.argu('collection'),
       NS.argu('container'),
     ]
+  ),
+  LinkedRenderStore.registerRenderer(
+    TextCutoff,
+    NS.schema('Thing'),
+    NS.schema('text'),
+    NS.argu('cardFixed')
   ),
 ];

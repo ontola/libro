@@ -120,9 +120,9 @@ export default [
     [
       undefined,
       NS.argu('section'),
-      NS.argu('grid'),
       NS.argu('voteEventCollection'),
       NS.argu('card'),
+      NS.argu('cardFixed'),
       NS.argu('cardMain'),
     ]
   ),
@@ -131,6 +131,7 @@ export default [
     [NS.argu('Collection'), NS.hydra('Collection')],
     RENDER_CLASS_NAME,
     [
+      NS.argu('grid'),
       NS.argu('widget')
     ]
   ),
@@ -139,6 +140,7 @@ export default [
     [NS.argu('Collection'), NS.hydra('Collection')],
     RENDER_CLASS_NAME,
     [
+      undefined,
       NS.argu('container')
     ]
   ),

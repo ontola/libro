@@ -47,8 +47,8 @@ export default [
     NS.argu('views'),
     [
       NS.argu('section'),
+      NS.argu('grid'),
       NS.argu('widget'),
-      NS.argu('grid')
     ]
   ),
 ];

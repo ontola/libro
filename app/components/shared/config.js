@@ -6,6 +6,7 @@ export const headingVariants = [
   'con',
   'light',
   'column',
+  'question',
 ];
 
 export const shades = [

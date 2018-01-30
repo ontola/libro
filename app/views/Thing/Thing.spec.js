@@ -26,7 +26,7 @@ describeView('Thing', components, resources, resource, () => {
   });
 
   it('renders the name', () => {
-    expect(subject.find(marker('name', 'card'))).toBePresent();
+    expect(subject.find(marker('name', 'card', 'main'))).toBePresent();
   });
 
   it('renders the text', () => {
