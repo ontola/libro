@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { LinkedObjectContainer, Type } from 'link-redux';
+import { LinkedResourceContainer, Type } from 'link-redux';
 
 import {
   Container,
@@ -16,9 +16,9 @@ const propTypes = {
 
 const LinkedObjectByID = ({ location }) => (
   <Container>
-    <LinkedObjectContainer object={location.query.iri} >
+    <LinkedResourceContainer subject={location.query.iri} >
       <Type />
-    </LinkedObjectContainer>
+    </LinkedResourceContainer>
   </Container>
 );
 

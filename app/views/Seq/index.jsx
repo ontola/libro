@@ -1,5 +1,5 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { LinkedObjectContainer, PropertyBase } from 'link-redux';
+import { LinkedResourceContainer, PropertyBase } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
@@ -27,13 +27,13 @@ export class Seq extends PropertyBase {
     const sequences = this.sequences();
     return (
       sequences.map((s, i) => (
-        <LinkedObjectContainer
+        <LinkedResourceContainer
           count={sequences.length}
           data-test={`Seq-${i}`}
           first={sequences[0].object}
           key={`${this.context.subject}-${s.object}`}
           last={sequences[sequences.length - 1].object}
-          object={s.object}
+          subject={s.object}
         />
       ))
     );

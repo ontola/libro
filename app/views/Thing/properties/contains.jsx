@@ -1,6 +1,6 @@
 import LinkedRenderStore from 'link-lib';
 import {
-  LinkedObjectContainer,
+  LinkedResourceContainer,
   Property,
   Type,
   linkedPropType,
@@ -50,7 +50,7 @@ class Contains extends Component {
           id={`${this.props.subject}-menu-items`}
           labelComp={label}
         >
-          <LinkedObjectContainer object={new NamedNode(`${FRONTEND_URL}/menus/organizations`)} />
+          <LinkedResourceContainer subject={new NamedNode(`${FRONTEND_URL}/menus/organizations`)} />
         </SideBarCollapsible>
       </div>
     );
@@ -61,14 +61,14 @@ class Contains extends Component {
 
     if (currentOrg) {
       return (
-        <LinkedObjectContainer
+        <LinkedResourceContainer
           forceRender
-          object={currentOrg}
+          subject={currentOrg}
         >
           {this.navbarSwitcher()}
           <Type />
           <Property label={NS.argu('baseColor')} />
-        </LinkedObjectContainer>
+        </LinkedResourceContainer>
       );
     }
 

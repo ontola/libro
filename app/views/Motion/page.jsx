@@ -1,5 +1,5 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { LinkedObjectContainer, Property, Type } from 'link-redux';
+import { LinkedResourceContainer, Property, Type } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -14,7 +14,7 @@ const propTypes = {
 };
 
 const Idea = ({ location }) => (
-  <LinkedObjectContainer object={currentLocation(location)} topology={null} >
+  <LinkedResourceContainer subject={currentLocation(location)} topology={null} >
     <Container>
       <Property label={NS.schema('isPartOf')} />
       <Type />
@@ -23,7 +23,7 @@ const Idea = ({ location }) => (
     <Container size="large">
       <Property label={NS.argu('arguments')} />
     </Container>
-  </LinkedObjectContainer>
+  </LinkedResourceContainer>
 );
 
 Idea.propTypes = propTypes;

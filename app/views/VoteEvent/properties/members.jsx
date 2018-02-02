@@ -1,5 +1,5 @@
 import LinkedRenderStore from 'link-lib';
-import { LinkedObjectContainer, linkedPropType } from 'link-redux';
+import { LinkedResourceContainer, linkedPropType } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
@@ -15,15 +15,15 @@ const propTypes = {
 const Members = ({ linkedProp }) => {
   if (Array.isArray(linkedProp)) {
     return linkedProp.map(item => (
-      <LinkedObjectContainer
-        object={item.object}
+      <LinkedResourceContainer
+        subject={item.object}
         topology={NS.argu('voteEvent')}
       />
     ));
   }
   return (
-    <LinkedObjectContainer
-      object={linkedProp}
+    <LinkedResourceContainer
+      subject={linkedProp}
       topology={NS.argu('voteEvent')}
     />
   );

@@ -17,11 +17,12 @@ exports[`Seq renders a sequence fragment 1`] = `
   }
   version="test0"
 >
-  <Connect(LinkedObjectContainer)
+  <Connect(LinkedResourceContainer)
     count={6}
     data-test="Seq-0"
     first={
       NamedNode {
+        "sI": 56,
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#about",
       }
@@ -29,22 +30,25 @@ exports[`Seq renders a sequence fragment 1`] = `
     key="<_:g70120412320900>-<https://argu.dev/menus/info#about>"
     last={
       NamedNode {
+        "sI": 52,
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#contact",
       }
     }
-    object={
+    subject={
       NamedNode {
+        "sI": 56,
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#about",
       }
     }
   >
-    <LinkedObjectContainer
+    <LinkedResourceContainer
       count={6}
       data-test="Seq-0"
       first={
         NamedNode {
+          "sI": 56,
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#about",
         }
@@ -52,13 +56,15 @@ exports[`Seq renders a sequence fragment 1`] = `
       forceRender={false}
       last={
         NamedNode {
+          "sI": 52,
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#contact",
         }
       }
       loadLinkedObject={[Function]}
-      object={
+      subject={
         NamedNode {
+          "sI": 56,
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#about",
         }
@@ -71,6 +77,7 @@ exports[`Seq renders a sequence fragment 1`] = `
         <linkedSubject[ConnectedProp]
           label={
             NamedNode {
+              "sI": 42,
               "termType": "NamedNode",
               "value": "http://schema.org/name",
             }
@@ -79,12 +86,14 @@ exports[`Seq renders a sequence fragment 1`] = `
           <ConnectedProp
             label={
               NamedNode {
+                "sI": 42,
                 "termType": "NamedNode",
                 "value": "http://schema.org/name",
               }
             }
             subject={
               NamedNode {
+                "sI": 56,
                 "termType": "NamedNode",
                 "value": "https://argu.dev/menus/info#about",
               }
@@ -95,12 +104,14 @@ exports[`Seq renders a sequence fragment 1`] = `
               forceRender={false}
               label={
                 NamedNode {
+                  "sI": 42,
                   "termType": "NamedNode",
                   "value": "http://schema.org/name",
                 }
               }
               subject={
                 NamedNode {
+                  "sI": 56,
                   "termType": "NamedNode",
                   "value": "https://argu.dev/menus/info#about",
                 }
@@ -110,16 +121,17 @@ exports[`Seq renders a sequence fragment 1`] = `
           </ConnectedProp>
         </linkedSubject[ConnectedProp]>
         <p>
-          We currently don't have a view for this (&lt;https://argu.co/ns/core#MenuItem&gt;)
+          We currently don"t have a view for this (&lt;https://argu.dev/menus/info#about&gt;)
         </p>
       </div>
-    </LinkedObjectContainer>
-  </Connect(LinkedObjectContainer)>
-  <Connect(LinkedObjectContainer)
+    </LinkedResourceContainer>
+  </Connect(LinkedResourceContainer)>
+  <Connect(LinkedResourceContainer)
     count={6}
     data-test="Seq-1"
     first={
       NamedNode {
+        "sI": 56,
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#about",
       }
@@ -127,22 +139,25 @@ exports[`Seq renders a sequence fragment 1`] = `
     key="<_:g70120412320900>-<https://argu.dev/menus/info#team>"
     last={
       NamedNode {
+        "sI": 52,
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#contact",
       }
     }
-    object={
+    subject={
       NamedNode {
+        "sI": 62,
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#team",
       }
     }
   >
-    <LinkedObjectContainer
+    <LinkedResourceContainer
       count={6}
       data-test="Seq-1"
       first={
         NamedNode {
+          "sI": 56,
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#about",
         }
@@ -150,13 +165,15 @@ exports[`Seq renders a sequence fragment 1`] = `
       forceRender={false}
       last={
         NamedNode {
+          "sI": 52,
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#contact",
         }
       }
       loadLinkedObject={[Function]}
-      object={
+      subject={
         NamedNode {
+          "sI": 62,
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#team",
         }
@@ -169,6 +186,7 @@ exports[`Seq renders a sequence fragment 1`] = `
         <linkedSubject[ConnectedProp]
           label={
             NamedNode {
+              "sI": 42,
               "termType": "NamedNode",
               "value": "http://schema.org/name",
             }
@@ -177,12 +195,14 @@ exports[`Seq renders a sequence fragment 1`] = `
           <ConnectedProp
             label={
               NamedNode {
+                "sI": 42,
                 "termType": "NamedNode",
                 "value": "http://schema.org/name",
               }
             }
             subject={
               NamedNode {
+                "sI": 62,
                 "termType": "NamedNode",
                 "value": "https://argu.dev/menus/info#team",
               }
@@ -193,12 +213,14 @@ exports[`Seq renders a sequence fragment 1`] = `
               forceRender={false}
               label={
                 NamedNode {
+                  "sI": 42,
                   "termType": "NamedNode",
                   "value": "http://schema.org/name",
                 }
               }
               subject={
                 NamedNode {
+                  "sI": 62,
                   "termType": "NamedNode",
                   "value": "https://argu.dev/menus/info#team",
                 }
@@ -208,16 +230,17 @@ exports[`Seq renders a sequence fragment 1`] = `
           </ConnectedProp>
         </linkedSubject[ConnectedProp]>
         <p>
-          We currently don't have a view for this (&lt;https://argu.co/ns/core#MenuItem&gt;)
+          We currently don"t have a view for this (&lt;https://argu.dev/menus/info#team&gt;)
         </p>
       </div>
-    </LinkedObjectContainer>
-  </Connect(LinkedObjectContainer)>
-  <Connect(LinkedObjectContainer)
+    </LinkedResourceContainer>
+  </Connect(LinkedResourceContainer)>
+  <Connect(LinkedResourceContainer)
     count={6}
     data-test="Seq-2"
     first={
       NamedNode {
+        "sI": 56,
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#about",
       }
@@ -225,22 +248,25 @@ exports[`Seq renders a sequence fragment 1`] = `
     key="<_:g70120412320900>-<https://argu.dev/menus/info#governments>"
     last={
       NamedNode {
+        "sI": 52,
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#contact",
       }
     }
-    object={
+    subject={
       NamedNode {
+        "sI": 54,
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#governments",
       }
     }
   >
-    <LinkedObjectContainer
+    <LinkedResourceContainer
       count={6}
       data-test="Seq-2"
       first={
         NamedNode {
+          "sI": 56,
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#about",
         }
@@ -248,13 +274,15 @@ exports[`Seq renders a sequence fragment 1`] = `
       forceRender={false}
       last={
         NamedNode {
+          "sI": 52,
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#contact",
         }
       }
       loadLinkedObject={[Function]}
-      object={
+      subject={
         NamedNode {
+          "sI": 54,
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#governments",
         }
@@ -267,6 +295,7 @@ exports[`Seq renders a sequence fragment 1`] = `
         <linkedSubject[ConnectedProp]
           label={
             NamedNode {
+              "sI": 42,
               "termType": "NamedNode",
               "value": "http://schema.org/name",
             }
@@ -275,12 +304,14 @@ exports[`Seq renders a sequence fragment 1`] = `
           <ConnectedProp
             label={
               NamedNode {
+                "sI": 42,
                 "termType": "NamedNode",
                 "value": "http://schema.org/name",
               }
             }
             subject={
               NamedNode {
+                "sI": 54,
                 "termType": "NamedNode",
                 "value": "https://argu.dev/menus/info#governments",
               }
@@ -291,12 +322,14 @@ exports[`Seq renders a sequence fragment 1`] = `
               forceRender={false}
               label={
                 NamedNode {
+                  "sI": 42,
                   "termType": "NamedNode",
                   "value": "http://schema.org/name",
                 }
               }
               subject={
                 NamedNode {
+                  "sI": 54,
                   "termType": "NamedNode",
                   "value": "https://argu.dev/menus/info#governments",
                 }
@@ -306,16 +339,17 @@ exports[`Seq renders a sequence fragment 1`] = `
           </ConnectedProp>
         </linkedSubject[ConnectedProp]>
         <p>
-          We currently don't have a view for this (&lt;https://argu.co/ns/core#MenuItem&gt;)
+          We currently don"t have a view for this (&lt;https://argu.dev/menus/info#governments&gt;)
         </p>
       </div>
-    </LinkedObjectContainer>
-  </Connect(LinkedObjectContainer)>
-  <Connect(LinkedObjectContainer)
+    </LinkedResourceContainer>
+  </Connect(LinkedResourceContainer)>
+  <Connect(LinkedResourceContainer)
     count={6}
     data-test="Seq-3"
     first={
       NamedNode {
+        "sI": 56,
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#about",
       }
@@ -323,22 +357,25 @@ exports[`Seq renders a sequence fragment 1`] = `
     key="<_:g70120412320900>-<https://argu.dev/menus/info#press_media>"
     last={
       NamedNode {
+        "sI": 52,
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#contact",
       }
     }
-    object={
+    subject={
       NamedNode {
+        "sI": 58,
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#press_media",
       }
     }
   >
-    <LinkedObjectContainer
+    <LinkedResourceContainer
       count={6}
       data-test="Seq-3"
       first={
         NamedNode {
+          "sI": 56,
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#about",
         }
@@ -346,13 +383,15 @@ exports[`Seq renders a sequence fragment 1`] = `
       forceRender={false}
       last={
         NamedNode {
+          "sI": 52,
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#contact",
         }
       }
       loadLinkedObject={[Function]}
-      object={
+      subject={
         NamedNode {
+          "sI": 58,
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#press_media",
         }
@@ -365,6 +404,7 @@ exports[`Seq renders a sequence fragment 1`] = `
         <linkedSubject[ConnectedProp]
           label={
             NamedNode {
+              "sI": 42,
               "termType": "NamedNode",
               "value": "http://schema.org/name",
             }
@@ -373,12 +413,14 @@ exports[`Seq renders a sequence fragment 1`] = `
           <ConnectedProp
             label={
               NamedNode {
+                "sI": 42,
                 "termType": "NamedNode",
                 "value": "http://schema.org/name",
               }
             }
             subject={
               NamedNode {
+                "sI": 58,
                 "termType": "NamedNode",
                 "value": "https://argu.dev/menus/info#press_media",
               }
@@ -389,12 +431,14 @@ exports[`Seq renders a sequence fragment 1`] = `
               forceRender={false}
               label={
                 NamedNode {
+                  "sI": 42,
                   "termType": "NamedNode",
                   "value": "http://schema.org/name",
                 }
               }
               subject={
                 NamedNode {
+                  "sI": 58,
                   "termType": "NamedNode",
                   "value": "https://argu.dev/menus/info#press_media",
                 }
@@ -404,16 +448,17 @@ exports[`Seq renders a sequence fragment 1`] = `
           </ConnectedProp>
         </linkedSubject[ConnectedProp]>
         <p>
-          We currently don't have a view for this (&lt;https://argu.co/ns/core#MenuItem&gt;)
+          We currently don"t have a view for this (&lt;https://argu.dev/menus/info#press_media&gt;)
         </p>
       </div>
-    </LinkedObjectContainer>
-  </Connect(LinkedObjectContainer)>
-  <Connect(LinkedObjectContainer)
+    </LinkedResourceContainer>
+  </Connect(LinkedResourceContainer)>
+  <Connect(LinkedResourceContainer)
     count={6}
     data-test="Seq-4"
     first={
       NamedNode {
+        "sI": 56,
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#about",
       }
@@ -421,22 +466,25 @@ exports[`Seq renders a sequence fragment 1`] = `
     key="<_:g70120412320900>-<https://argu.dev/menus/info#support>"
     last={
       NamedNode {
+        "sI": 52,
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#contact",
       }
     }
-    object={
+    subject={
       NamedNode {
+        "sI": 60,
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#support",
       }
     }
   >
-    <LinkedObjectContainer
+    <LinkedResourceContainer
       count={6}
       data-test="Seq-4"
       first={
         NamedNode {
+          "sI": 56,
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#about",
         }
@@ -444,13 +492,15 @@ exports[`Seq renders a sequence fragment 1`] = `
       forceRender={false}
       last={
         NamedNode {
+          "sI": 52,
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#contact",
         }
       }
       loadLinkedObject={[Function]}
-      object={
+      subject={
         NamedNode {
+          "sI": 60,
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#support",
         }
@@ -463,6 +513,7 @@ exports[`Seq renders a sequence fragment 1`] = `
         <linkedSubject[ConnectedProp]
           label={
             NamedNode {
+              "sI": 42,
               "termType": "NamedNode",
               "value": "http://schema.org/name",
             }
@@ -471,12 +522,14 @@ exports[`Seq renders a sequence fragment 1`] = `
           <ConnectedProp
             label={
               NamedNode {
+                "sI": 42,
                 "termType": "NamedNode",
                 "value": "http://schema.org/name",
               }
             }
             subject={
               NamedNode {
+                "sI": 60,
                 "termType": "NamedNode",
                 "value": "https://argu.dev/menus/info#support",
               }
@@ -487,12 +540,14 @@ exports[`Seq renders a sequence fragment 1`] = `
               forceRender={false}
               label={
                 NamedNode {
+                  "sI": 42,
                   "termType": "NamedNode",
                   "value": "http://schema.org/name",
                 }
               }
               subject={
                 NamedNode {
+                  "sI": 60,
                   "termType": "NamedNode",
                   "value": "https://argu.dev/menus/info#support",
                 }
@@ -502,16 +557,17 @@ exports[`Seq renders a sequence fragment 1`] = `
           </ConnectedProp>
         </linkedSubject[ConnectedProp]>
         <p>
-          We currently don't have a view for this (&lt;https://argu.co/ns/core#MenuItem&gt;)
+          We currently don"t have a view for this (&lt;https://argu.dev/menus/info#support&gt;)
         </p>
       </div>
-    </LinkedObjectContainer>
-  </Connect(LinkedObjectContainer)>
-  <Connect(LinkedObjectContainer)
+    </LinkedResourceContainer>
+  </Connect(LinkedResourceContainer)>
+  <Connect(LinkedResourceContainer)
     count={6}
     data-test="Seq-5"
     first={
       NamedNode {
+        "sI": 56,
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#about",
       }
@@ -519,22 +575,25 @@ exports[`Seq renders a sequence fragment 1`] = `
     key="<_:g70120412320900>-<https://argu.dev/menus/info#contact>"
     last={
       NamedNode {
+        "sI": 52,
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#contact",
       }
     }
-    object={
+    subject={
       NamedNode {
+        "sI": 52,
         "termType": "NamedNode",
         "value": "https://argu.dev/menus/info#contact",
       }
     }
   >
-    <LinkedObjectContainer
+    <LinkedResourceContainer
       count={6}
       data-test="Seq-5"
       first={
         NamedNode {
+          "sI": 56,
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#about",
         }
@@ -542,13 +601,15 @@ exports[`Seq renders a sequence fragment 1`] = `
       forceRender={false}
       last={
         NamedNode {
+          "sI": 52,
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#contact",
         }
       }
       loadLinkedObject={[Function]}
-      object={
+      subject={
         NamedNode {
+          "sI": 52,
           "termType": "NamedNode",
           "value": "https://argu.dev/menus/info#contact",
         }
@@ -561,6 +622,7 @@ exports[`Seq renders a sequence fragment 1`] = `
         <linkedSubject[ConnectedProp]
           label={
             NamedNode {
+              "sI": 42,
               "termType": "NamedNode",
               "value": "http://schema.org/name",
             }
@@ -569,12 +631,14 @@ exports[`Seq renders a sequence fragment 1`] = `
           <ConnectedProp
             label={
               NamedNode {
+                "sI": 42,
                 "termType": "NamedNode",
                 "value": "http://schema.org/name",
               }
             }
             subject={
               NamedNode {
+                "sI": 52,
                 "termType": "NamedNode",
                 "value": "https://argu.dev/menus/info#contact",
               }
@@ -585,12 +649,14 @@ exports[`Seq renders a sequence fragment 1`] = `
               forceRender={false}
               label={
                 NamedNode {
+                  "sI": 42,
                   "termType": "NamedNode",
                   "value": "http://schema.org/name",
                 }
               }
               subject={
                 NamedNode {
+                  "sI": 52,
                   "termType": "NamedNode",
                   "value": "https://argu.dev/menus/info#contact",
                 }
@@ -600,10 +666,10 @@ exports[`Seq renders a sequence fragment 1`] = `
           </ConnectedProp>
         </linkedSubject[ConnectedProp]>
         <p>
-          We currently don't have a view for this (&lt;https://argu.co/ns/core#MenuItem&gt;)
+          We currently don"t have a view for this (&lt;https://argu.dev/menus/info#contact&gt;)
         </p>
       </div>
-    </LinkedObjectContainer>
-  </Connect(LinkedObjectContainer)>
+    </LinkedResourceContainer>
+  </Connect(LinkedResourceContainer)>
 </Seq>
 `;

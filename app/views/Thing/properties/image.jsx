@@ -1,5 +1,5 @@
 import LinkedRenderStore from 'link-lib';
-import { LinkedObjectContainer, linkedPropType } from 'link-redux';
+import { LinkedResourceContainer, linkedPropType } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
@@ -22,7 +22,7 @@ const ThingImageProp = ({ linkedProp }) => {
     return <FontAwesome name={linkedProp.value.split(FABase)[1]} />;
   }
   return (
-    <LinkedObjectContainer object={linkedProp} />
+    <LinkedResourceContainer subject={linkedProp} />
   );
 };
 

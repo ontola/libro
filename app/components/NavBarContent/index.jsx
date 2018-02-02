@@ -1,4 +1,4 @@
-import { LinkedObjectContainer, Property } from 'link-redux';
+import { LinkedResourceContainer, Property } from 'link-redux';
 import PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
 import React from 'react';
@@ -40,18 +40,18 @@ const NavBarContent = ({
       style={style}
     >
       <div className="NavBarContent__top">
-        <LinkedObjectContainer
+        <LinkedResourceContainer
           forceRender
-          object={new NamedNode(`${FRONTEND_URL}/o/find?iri=${encodeURIComponent(currentURL())}`)}
+          subject={new NamedNode(`${FRONTEND_URL}/o/find?iri=${encodeURIComponent(currentURL())}`)}
           topology={NS.argu('sidebarBlock')}
         >
           <Property forceRender label={NS.argu('contains')} />
-        </LinkedObjectContainer>
+        </LinkedResourceContainer>
       </div>
       <div className="NavBarContent__footer">
-        <LinkedObjectContainer object={new NamedNode(`${FRONTEND_URL}/c_a`)} topology={NS.argu('sidebar')} />
-        <LinkedObjectContainer object={new NamedNode(`${FRONTEND_URL}/n?type=infinite`)} topology={NS.argu('sidebar')} />
-        <LinkedObjectContainer object={new NamedNode(`${FRONTEND_URL}/menus/info`)} topology={NS.argu('sidebar')} />
+        <LinkedResourceContainer subject={new NamedNode(`${FRONTEND_URL}/c_a`)} topology={NS.argu('sidebar')} />
+        <LinkedResourceContainer subject={new NamedNode(`${FRONTEND_URL}/n?type=infinite`)} topology={NS.argu('sidebar')} />
+        <LinkedResourceContainer subject={new NamedNode(`${FRONTEND_URL}/menus/info`)} topology={NS.argu('sidebar')} />
         <div className="NavBarContent__center-footer">
           <Link className="NavBarContent__logo" to={path.index()}>
             {/* eslint-disable max-len */}

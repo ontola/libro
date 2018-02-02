@@ -1,4 +1,4 @@
-import { LinkedObjectContainer, Property, Type } from 'link-redux';
+import { LinkedResourceContainer, Property, Type } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -16,11 +16,11 @@ const propTypes = {
 
 const Forum = ({ location }) => (
   <Container>
-    <LinkedObjectContainer object={currentLocation(location)} >
+    <LinkedResourceContainer subject={currentLocation(location)} >
       <Type />
       <Property label={NS.argu('questions')} />
       <Property label={NS.argu('motions')} />
-    </LinkedObjectContainer>
+    </LinkedResourceContainer>
   </Container>
 );
 

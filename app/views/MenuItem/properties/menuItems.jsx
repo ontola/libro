@@ -1,5 +1,5 @@
 import LinkedRenderStore from 'link-lib';
-import { LinkedObjectContainer, PropertyBase, linkedPropType } from 'link-redux';
+import { LinkedResourceContainer, PropertyBase, linkedPropType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -21,9 +21,9 @@ class menuItems extends PropertyBase {
 
     const items = rawProp
       .map(item => (
-        <LinkedObjectContainer
+        <LinkedResourceContainer
           key={`menu-${item.object}`}
-          object={item.object}
+          subject={item.object}
         />
       ));
 

@@ -1,11 +1,11 @@
-import { LinkedObjectContainer } from 'link-redux';
+import { LinkedResourceContainer } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import List from '../List';
 
 const defaultRenderItem = id => (
-  <LinkedObjectContainer key={`chrono-feed-${id}`} object={id} />
+  <LinkedResourceContainer key={`chrono-feed-${id}`} subject={id} />
 );
 
 const propTypes = {

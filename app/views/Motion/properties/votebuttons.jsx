@@ -1,6 +1,6 @@
 import HttpStatus from 'http-status-codes';
 import LinkedRenderStore from 'link-lib';
-import { LinkedObjectContainer, Property, PropertyBase } from 'link-redux';
+import { LinkedResourceContainer, Property, PropertyBase } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -134,9 +134,9 @@ const linkedRecordWrapper = (Component) => {
       if (this.isLinkedRecord()) {
         const childProps = Object.assign({}, this.props, { forceRender: undefined, label: NS.argu('voteableVoteEvent') });
         return (
-          <LinkedObjectContainer object={`${FRONTEND_URL}/lr?iri=${this.getLinkedObjectProperty(NS.rdf('subject'))}`}>
+          <LinkedResourceContainer subject={`${FRONTEND_URL}/lr?iri=${this.getLinkedObjectProperty(NS.rdf('subject'))}`}>
             <Property {...childProps} />
-          </LinkedObjectContainer>
+          </LinkedResourceContainer>
         );
       }
       return <Component {...this.props} />;
@@ -157,9 +157,9 @@ LinkedRenderStore.registerRenderer(
     render() {
       const p = this.getLinkedObjectProperty();
       return (
-        <LinkedObjectContainer object={p}>
+        <LinkedResourceContainer subject={p}>
           <VoteButtons {...this.props} />
-        </LinkedObjectContainer>
+        </LinkedResourceContainer>
       );
     }
   },

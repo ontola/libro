@@ -1,5 +1,5 @@
 import LinkedRenderStore from 'link-lib';
-import { LinkedObjectContainer, linkedPropType } from 'link-redux';
+import { LinkedResourceContainer, linkedPropType } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
@@ -14,8 +14,8 @@ const propTypes = {
  * @returns {ReactElement} The vote event component
  */
 const VoteEventCollection = ({ linkedProp }) => (
-  <LinkedObjectContainer
-    object={linkedProp}
+  <LinkedResourceContainer
+    subject={linkedProp}
     topology={NS.argu('voteEventCollection')}
   />
 );
@@ -26,8 +26,8 @@ const linkedRecordWrapper = (component) => {
   const wrapperComp = (props, ...args) => {
     if (props.linkedProp && props.linkedProp.startsWith('https://beta.argu.co/nl/tweedekamer')) {
       return (
-        <LinkedObjectContainer
-          object={`${FRONTEND_URL}/lr?iri=${props.linkedProp}`}
+        <LinkedResourceContainer
+          subject={`${FRONTEND_URL}/lr?iri=${props.linkedProp}`}
           {...props}
         />
       );

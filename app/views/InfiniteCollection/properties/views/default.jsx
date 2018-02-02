@@ -1,7 +1,7 @@
 import {
   contextTypes,
   linkedPropType,
-  LinkedObjectContainer,
+  LinkedResourceContainer,
   Property,
   PropertyBase,
 } from 'link-redux';
@@ -18,8 +18,8 @@ class Views extends PropertyBase {
     return (
       <div>
         <Property label={[NS.schema('name'), NS.rdfs('label')]} />
-        {pageIRIs.map(iri => <LinkedObjectContainer key={`view-${iri}`} object={iri} />)}
-        <LinkedObjectContainer object={pageIRIs[pageIRIs.length - 1]}>
+        {pageIRIs.map(iri => <LinkedResourceContainer key={`view-${iri}`} subject={iri} />)}
+        <LinkedResourceContainer subject={pageIRIs[pageIRIs.length - 1]}>
           <CollapsibleContainer
             alwaysMountChildren={false}
             id={pageIRIs[pageIRIs.length - 1].value}
@@ -27,7 +27,7 @@ class Views extends PropertyBase {
           >
             <Property label={NS.argu('next')} />
           </CollapsibleContainer>
-        </LinkedObjectContainer>
+        </LinkedResourceContainer>
       </div>
     );
   }

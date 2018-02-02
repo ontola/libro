@@ -1,6 +1,6 @@
 import { Map } from 'immutable';
 import {
-  LinkedObjectContainer,
+  LinkedResourceContainer,
   PropertyBase,
 } from 'link-redux';
 import React from 'react';
@@ -29,9 +29,9 @@ class Grouped extends PropertyBase {
         {groups.map(group => (
           <div key={`groupedmember${group}`}>
             {grouped[group].map(mem => (
-              <LinkedObjectContainer
+              <LinkedResourceContainer
                 key={`groupedmember${mem['@id']}`}
-                object={mem['@id']}
+                subject={mem['@id']}
                 topology={NS.argu('collection')}
               />
             ))}

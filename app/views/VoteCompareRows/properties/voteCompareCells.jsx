@@ -1,5 +1,5 @@
 import LinkedRenderStore, { getValueOrID } from 'link-lib';
-import { LinkedObjectContainer, PropertyBase } from 'link-redux';
+import { LinkedResourceContainer, PropertyBase } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
@@ -8,7 +8,7 @@ class VoteCompareCells extends PropertyBase {
   render() {
     const cells = this
       .getLinkedObjectPropertyRaw()
-      .map(link => <LinkedObjectContainer key={`vote-comp-cell-${getValueOrID(link)}`} object={link.object} />);
+      .map(link => <LinkedResourceContainer key={`vote-comp-cell-${getValueOrID(link)}`} subject={link.object} />);
 
     return (
       <div>

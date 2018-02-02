@@ -1,7 +1,7 @@
 import LinkedRenderStore from 'link-lib';
 import {
   linkedPropType,
-  LinkedObjectContainer,
+  LinkedResourceContainer,
   Property,
 } from 'link-redux';
 import React from 'react';
@@ -13,9 +13,9 @@ const propTypes = {
 };
 
 const Creator = ({ linkedProp }) => (
-  <LinkedObjectContainer object={linkedProp} topology={NS.argu('detail')}>
+  <LinkedResourceContainer subject={linkedProp} topology={NS.argu('detail')}>
     <Property label={NS.schema('image')} />
-  </LinkedObjectContainer>
+  </LinkedResourceContainer>
 );
 
 Creator.propTypes = propTypes;

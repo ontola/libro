@@ -1,4 +1,4 @@
-import { LinkedObjectContainer } from 'link-redux';
+import { LinkedResourceContainer } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -17,7 +17,7 @@ class LinkVoteMatchContainer extends Component {
   }
 
   render() {
-    return <LinkedObjectContainer {...this.props} />;
+    return <LinkedResourceContainer {...this.props} />;
   }
 }
 

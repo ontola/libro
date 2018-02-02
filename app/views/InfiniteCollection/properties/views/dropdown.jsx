@@ -3,7 +3,7 @@ import {
   linkedPropType,
   lowLevel,
   subjectType,
-  LinkedObjectContainer,
+  LinkedResourceContainer,
   Property,
 } from 'link-redux';
 import React from 'react';
@@ -24,7 +24,7 @@ const ViewsDropdown = (props) => {
         contentClassName="Dropdown__organizations_menu__content"
         trigger={<FontAwesome name="caret-square-o-down" />}
       >
-        <LinkedObjectContainer object={props.linkedProp} />
+        <LinkedResourceContainer subject={props.linkedProp} />
       </Dropdown>
       <SideBarLink label={label} to={props.subject} />
     </div>

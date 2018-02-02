@@ -1,6 +1,6 @@
 import LinkedRenderStore from 'link-lib';
 import {
-  LinkedObjectContainer,
+  LinkedResourceContainer,
   getLinkedObjectProperty,
   getLinkedObjectPropertyRaw,
   labelType,
@@ -32,9 +32,9 @@ const VoteViews = (props, { linkedRenderStore }) => {
     props.subject,
     linkedRenderStore
   ).map(iri => (
-    <LinkedObjectContainer
+    <LinkedResourceContainer
       grandTotal={totalCount}
-      object={iri.object}
+      subject={iri.object}
       topology={NS.argu('voteSide')}
     />
   ));

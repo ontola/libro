@@ -3,7 +3,7 @@
 
 import { allRDFValues, defaultNS } from 'link-lib';
 import {
-  LinkedObjectContainer,
+  LinkedResourceContainer,
   expandedProperty,
   getLinkedObjectProperty,
   getLinkedObjectPropertyRaw,
@@ -212,7 +212,7 @@ class LinkDevTools {
         return resources;
       }
       if (comp !== undefined && comp !== null) {
-        if (comp.type && comp.type.name === 'LinkedObjectContainer') {
+        if (comp.type && comp.type.name === 'LinkedResourceContainer') {
           resources = this.snapshotNode(subject, comp.stateNode);
         }
         resources = resources.concat(innerTraverse(depth + 1, comp.child));
@@ -285,7 +285,7 @@ class LinkDevTools {
       console.debug('Detected forceRender, but no children were given, continuing.');
     }
     const compData = comp.data();
-    if (LinkedObjectContainer.hasData(compData)) {
+    if (LinkedResourceContainer.hasData(compData)) {
       const cause = compData === 'undefined' ? 'Component has no data' : 'Component has too little data';
       console.info(cause);
       console.debug('Resolved data;', compData);
@@ -295,7 +295,7 @@ class LinkDevTools {
       }
       return console.info('No loading component was resolved; rendering `null`');
     }
-    if (LinkedObjectContainer.hasErrors(compData)) {
+    if (LinkedResourceContainer.hasErrors(compData)) {
       console.info('The object is in error state');
       console.debug(this.getPropArr(defaultNS.http('statusCodeValue')));
       if (comp.onError()) {
@@ -381,7 +381,7 @@ class LinkDevTools {
     if (typeof comp.constructor === 'undefined') LinkDevTools.returnWithError();
     const { displayName, name } = comp.constructor;
     console.group(`Explanation for component ${name}`);
-    if (name === 'LinkedObjectContainer') {
+    if (name === 'LinkedResourceContainer') {
       this.explainLOC(comp, lrs);
     } else if (name === 'Property' || displayName === 'ConnectedProp') {
       this.explainProperty(comp, lrs);
@@ -400,7 +400,7 @@ class LinkDevTools {
     }
 
     console.warn('__DO NOT__ USE THESE METHODS IN CODE SINCE ARE NOT PUBLIC, AND ARE FOR DEBUGGING PURPOSES ONLY.');
-    console.group('Available object methods for LinkedObjectContainer');
+    console.group('Available object methods for LinkedResourceContainer');
     const LOC = [
       helpTableObj('<<static>> hasData', 'Returns whether the resource is considered to have data'),
       helpTableObj('<<static>> hasErrors', 'Returns whether the resource is considered to be in an error state'),

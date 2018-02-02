@@ -1,6 +1,6 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
-  LinkedObjectContainer,
+  LinkedResourceContainer,
   getLinkedObjectPropertyRaw,
   lowLevel,
   subjectType,
@@ -24,9 +24,9 @@ const VoteSidePage = (props, { linkedRenderStore }) => {
   return (
     <div className="VoteData__votesegment-wrapper">
       {members && members.map(iri => (
-        <LinkedObjectContainer
+        <LinkedResourceContainer
           key={`v-${props.subject}-${iri}`}
-          object={iri.object}
+          subject={iri.object}
         />
       ))}
     </div>

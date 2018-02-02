@@ -1,5 +1,5 @@
 import LinkedRenderStore, { getValueOrID } from 'link-lib';
-import { LinkedObjectContainer, PropertyBase, lowLevel } from 'link-redux';
+import { LinkedResourceContainer, PropertyBase, lowLevel } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -19,9 +19,9 @@ class MemberComp extends PropertyBase {
     }
     const divider = this.props.divider ? <div className="Dropdown__divider" /> : undefined;
     return list.map(iri => (
-      <div key={`${this.props.subject}:${getValueOrID(iri)}`}>
-        <LinkedObjectContainer
-          object={iri.object}
+      <div key={`${this.props.subject}:${iri.value}`}>
+        <LinkedResourceContainer
+          subject={iri.object}
           topology={topology}
         />
         {divider}
@@ -48,7 +48,7 @@ class MemberComp extends PropertyBase {
         </div>
       );
     }
-    return <LinkedObjectContainer object={this.getLinkedObjectProperty()} />;
+    return <LinkedResourceContainer subject={this.getLinkedObjectProperty()} />;
   }
 }
 

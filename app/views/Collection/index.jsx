@@ -1,6 +1,6 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
-  LinkedObjectContainer,
+  LinkedResourceContainer,
   Property,
   PropertyBase,
   getLinkedObjectPropertyRaw,
@@ -46,7 +46,7 @@ class Collection extends PropertyBase {
     let children;
     const views = this.getLinkedObjectPropertyRaw(NS.argu('views'));
     if (this.props.currentPage) {
-      children = <LinkedObjectContainer object={this.props.currentPage} />;
+      children = <LinkedResourceContainer subject={this.props.currentPage} />;
     } else {
       children = viewsOrMembers(views, this.getLinkedObjectPropertyRaw(NS.argu('members')));
     }

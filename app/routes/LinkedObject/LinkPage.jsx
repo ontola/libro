@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import { LinkedObjectContainer, Property } from 'link-redux';
+import { LinkedResourceContainer, Property } from 'link-redux';
 import Helmet from 'react-helmet';
 
 import {
@@ -29,14 +29,14 @@ const renderErrorMessage = (error, errorMessage, reset) => (!error ? false : (
 ));
 
 const sidebar = () => (
-  <LinkedObjectContainer
-    object={window.location.href}
+  <LinkedResourceContainer
+    subject={window.location.href}
     topology="argu:page"
     onError={NavbarContainer}
     onLoad={NavbarContainer}
   >
     <Property label="schema:organization" topology="argu:sidebarBlock" />
-  </LinkedObjectContainer>
+  </LinkedResourceContainer>
 );
 
 const LinkPage = ({
@@ -60,8 +60,8 @@ const LinkPage = ({
     >
       <BottomBarContainer />
       <div id="start-of-content">
-        <LinkedObjectContainer
-          object={window.location.href}
+        <LinkedResourceContainer
+          subject={window.location.href}
           topology="argu:page"
         />
       </div>

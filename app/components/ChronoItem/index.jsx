@@ -1,4 +1,4 @@
-import LinkedObjectContainer from 'link-redux';
+import LinkedResourceContainer from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -49,7 +49,7 @@ const ChronoItem = ({
           />
         }
         <DetailsBar>
-          {speaker && <LinkedObjectContainer object={speaker} />}
+          {speaker && <LinkedResourceContainer subject={speaker} />}
           {attributionText &&
             <Detail text={attributionText} />
           }

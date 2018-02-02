@@ -17,37 +17,41 @@ exports[`Navbar as default renders the correct representation 1`] = `
     <div
       className="NavBarContent__top"
     >
-      <Connect(LinkedObjectContainer)
+      <Connect(LinkedResourceContainer)
         forceRender={true}
-        object={
+        subject={
           NamedNode {
+            "sI": 76,
             "termType": "NamedNode",
-            "value": "https://argu.dev/o/find?iri=about%3Ablank",
+            "value": "https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
           }
         }
         topology={
           NamedNode {
+            "sI": 48,
             "termType": "NamedNode",
             "value": "https://argu.co/ns/core#sidebarBlock",
           }
         }
       >
-        <LinkedObjectContainer
+        <LinkedResourceContainer
           forceRender={true}
           loadLinkedObject={[Function]}
-          object={
+          subject={
             NamedNode {
+              "sI": 76,
               "termType": "NamedNode",
-              "value": "https://argu.dev/o/find?iri=about%3Ablank",
+              "value": "https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
             }
           }
           topology={
             NamedNode {
+              "sI": 48,
               "termType": "NamedNode",
               "value": "https://argu.co/ns/core#sidebarBlock",
             }
           }
-          version="new"
+          version="test0"
         >
           <div
             className="view-overridden"
@@ -61,6 +65,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
               forceRender={true}
               label={
                 NamedNode {
+                  "sI": 47,
                   "termType": "NamedNode",
                   "value": "https://argu.co/ns/core#contains",
                 }
@@ -70,14 +75,16 @@ exports[`Navbar as default renders the correct representation 1`] = `
                 forceRender={true}
                 label={
                   NamedNode {
+                    "sI": 47,
                     "termType": "NamedNode",
                     "value": "https://argu.co/ns/core#contains",
                   }
                 }
                 subject={
                   NamedNode {
+                    "sI": 76,
                     "termType": "NamedNode",
-                    "value": "https://argu.dev/o/find?iri=about%3Ablank",
+                    "value": "https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
                   }
                 }
               >
@@ -86,105 +93,404 @@ exports[`Navbar as default renders the correct representation 1`] = `
                   forceRender={true}
                   label={
                     NamedNode {
+                      "sI": 47,
                       "termType": "NamedNode",
                       "value": "https://argu.co/ns/core#contains",
                     }
                   }
                   subject={
                     NamedNode {
+                      "sI": 76,
                       "termType": "NamedNode",
-                      "value": "https://argu.dev/o/find?iri=about%3Ablank",
+                      "value": "https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
                     }
                   }
+                  version="test0"
                 >
-                  <Contains
+                  <linkedSubject[Connect(Contains)]
                     dispatch={[Function]}
                     forceRender={true}
                     label={
                       NamedNode {
+                        "sI": 47,
                         "termType": "NamedNode",
                         "value": "https://argu.co/ns/core#contains",
                       }
                     }
-                    subject={
+                    linkedProp={
                       NamedNode {
                         "termType": "NamedNode",
-                        "value": "https://argu.dev/o/find?iri=about%3Ablank",
+                        "value": "https://argu.dev/o/1",
                       }
                     }
+                    subject={
+                      NamedNode {
+                        "sI": 76,
+                        "termType": "NamedNode",
+                        "value": "https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
+                      }
+                    }
+                    version="test0"
                   >
-                    <div>
-                      <div
-                        className="NavBarContent__switcher"
+                    <Connect(Contains)
+                      dispatch={[Function]}
+                      forceRender={true}
+                      label={
+                        NamedNode {
+                          "sI": 47,
+                          "termType": "NamedNode",
+                          "value": "https://argu.co/ns/core#contains",
+                        }
+                      }
+                      linkedProp={
+                        NamedNode {
+                          "termType": "NamedNode",
+                          "value": "https://argu.dev/o/1",
+                        }
+                      }
+                      subject={
+                        NamedNode {
+                          "sI": 76,
+                          "termType": "NamedNode",
+                          "value": "https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
+                        }
+                      }
+                      version="test0"
+                    >
+                      <Contains
+                        dispatch={[Function]}
+                        forceRender={true}
+                        label={
+                          NamedNode {
+                            "sI": 47,
+                            "termType": "NamedNode",
+                            "value": "https://argu.co/ns/core#contains",
+                          }
+                        }
+                        linkedProp={
+                          NamedNode {
+                            "termType": "NamedNode",
+                            "value": "https://argu.dev/o/1",
+                          }
+                        }
+                        subject={
+                          NamedNode {
+                            "sI": 76,
+                            "termType": "NamedNode",
+                            "value": "https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
+                          }
+                        }
+                        version="test0"
                       >
-                        <Connect(SideBarCollapsible)
-                          id="<https://argu.dev/o/find?iri=about%3Ablank>-menu-items"
-                          labelComp={
-                            <linkedSubject>
-                              <linkedSubject[ConnectedProp]
-                                label={
-                                  NamedNode {
-                                    "termType": "NamedNode",
-                                    "value": "http://schema.org/name",
-                                  }
-                                }
-                              />
-                            </linkedSubject>
+                        <Connect(LinkedResourceContainer)
+                          forceRender={true}
+                          subject={
+                            NamedNode {
+                              "termType": "NamedNode",
+                              "value": "https://argu.dev/o/1",
+                            }
                           }
                         >
-                          <SideBarCollapsible
-                            id="<https://argu.dev/o/find?iri=about%3Ablank>-menu-items"
-                            labelComp={
-                              <linkedSubject>
-                                <linkedSubject[ConnectedProp]
-                                  label={
-                                    NamedNode {
-                                      "termType": "NamedNode",
-                                      "value": "http://schema.org/name",
-                                    }
-                                  }
-                                />
-                              </linkedSubject>
+                          <LinkedResourceContainer
+                            forceRender={true}
+                            loadLinkedObject={[Function]}
+                            subject={
+                              NamedNode {
+                                "termType": "NamedNode",
+                                "value": "https://argu.dev/o/1",
+                              }
                             }
-                            onClickToggle={[Function]}
-                            open={false}
+                            version="test1"
                           >
                             <div
-                              className="SideBarCollapsible"
-                              data-test="SideBarCollapsible-sideBarCollapsible"
+                              className="view-overridden"
+                              style={
+                                Object {
+                                  "display": "inherit",
+                                }
+                              }
                             >
                               <div
-                                className="SideBarCollapsible__label"
-                                data-test="SideBarCollapsible-label"
+                                className="NavBarContent__switcher"
                               >
-                                <linkedSubject>
-                                  <LDLink
-                                    subject={
-                                      NamedNode {
-                                        "termType": "NamedNode",
-                                        "value": "https://argu.dev/o/find?iri=about%3Ablank",
-                                      }
-                                    }
-                                  >
-                                    <Link
-                                      replace={false}
-                                      to="/o/find?iri=about%3Ablank"
-                                    >
-                                      <a
-                                        href="/o/find?iri=about%3Ablank"
-                                        onClick={[Function]}
-                                      >
+                                <Connect(SideBarCollapsible)
+                                  id="<https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1>-menu-items"
+                                  labelComp={
+                                    <linkedSubject[LDLink]>
+                                      <linkedSubject[ConnectedProp]
+                                        label={
+                                          NamedNode {
+                                            "sI": 42,
+                                            "termType": "NamedNode",
+                                            "value": "http://schema.org/name",
+                                          }
+                                        }
+                                      />
+                                    </linkedSubject[LDLink]>
+                                  }
+                                >
+                                  <SideBarCollapsible
+                                    id="<https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1>-menu-items"
+                                    labelComp={
+                                      <linkedSubject[LDLink]>
                                         <linkedSubject[ConnectedProp]
                                           label={
                                             NamedNode {
+                                              "sI": 42,
                                               "termType": "NamedNode",
                                               "value": "http://schema.org/name",
                                             }
                                           }
+                                        />
+                                      </linkedSubject[LDLink]>
+                                    }
+                                    onClickToggle={[Function]}
+                                    open={false}
+                                  >
+                                    <div
+                                      className="SideBarCollapsible"
+                                      data-test="SideBarCollapsible-sideBarCollapsible"
+                                    >
+                                      <div
+                                        className="SideBarCollapsible__label"
+                                        data-test="SideBarCollapsible-label"
+                                      >
+                                        <linkedSubject[LDLink]>
+                                          <LDLink
+                                            subject={
+                                              NamedNode {
+                                                "termType": "NamedNode",
+                                                "value": "https://argu.dev/o/1",
+                                              }
+                                            }
+                                          >
+                                            <Link
+                                              replace={false}
+                                              to="/o/1"
+                                            >
+                                              <a
+                                                href="/o/1"
+                                                onClick={[Function]}
+                                              >
+                                                <linkedSubject[ConnectedProp]
+                                                  label={
+                                                    NamedNode {
+                                                      "sI": 42,
+                                                      "termType": "NamedNode",
+                                                      "value": "http://schema.org/name",
+                                                    }
+                                                  }
+                                                >
+                                                  <ConnectedProp
+                                                    label={
+                                                      NamedNode {
+                                                        "sI": 42,
+                                                        "termType": "NamedNode",
+                                                        "value": "http://schema.org/name",
+                                                      }
+                                                    }
+                                                    subject={
+                                                      NamedNode {
+                                                        "termType": "NamedNode",
+                                                        "value": "https://argu.dev/o/1",
+                                                      }
+                                                    }
+                                                  >
+                                                    <Property
+                                                      dispatch={[Function]}
+                                                      forceRender={false}
+                                                      label={
+                                                        NamedNode {
+                                                          "sI": 42,
+                                                          "termType": "NamedNode",
+                                                          "value": "http://schema.org/name",
+                                                        }
+                                                      }
+                                                      subject={
+                                                        NamedNode {
+                                                          "termType": "NamedNode",
+                                                          "value": "https://argu.dev/o/1",
+                                                        }
+                                                      }
+                                                      version="test1"
+                                                    >
+                                                      <div>
+                                                        Gemeente Utrecht
+                                                      </div>
+                                                    </Property>
+                                                  </ConnectedProp>
+                                                </linkedSubject[ConnectedProp]>
+                                              </a>
+                                            </Link>
+                                          </LDLink>
+                                        </linkedSubject[LDLink]>
+                                        <Button
+                                          active={false}
+                                          alt="Menu uitvouwen of inklappen"
+                                          className="SideBarCollapsible__toggle"
+                                          data-test="SideBarCollapsible-toggle"
+                                          narrow={false}
+                                          onClick={[Function]}
+                                          plain={true}
+                                          small={false}
+                                          theme="default"
+                                          type="button"
                                         >
-                                          <ConnectedProp
+                                          <button
+                                            alt="Menu uitvouwen of inklappen"
+                                            className="Button Button--plain Button--default SideBarCollapsible__toggle"
+                                            data-test="Button-button"
+                                            onClick={[Function]}
+                                            type="button"
+                                          >
+                                            <span
+                                              className="Button__label"
+                                            >
+                                              <FontAwesome
+                                                name="caret-right"
+                                              >
+                                                <span
+                                                  aria-hidden={true}
+                                                  className="fa fa-caret-right"
+                                                />
+                                              </FontAwesome>
+                                            </span>
+                                          </button>
+                                        </Button>
+                                      </div>
+                                      <Connect(CollapsibleContainer)
+                                        group="Navbar"
+                                        id="<https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1>-menu-items"
+                                      >
+                                        <CollapsibleContainer
+                                          group="Navbar"
+                                          id="<https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1>-menu-items"
+                                          onClickToggle={[Function]}
+                                          onInitializeCollapsible={[Function]}
+                                          opened={false}
+                                          startOpened={false}
+                                        >
+                                          <Collapsible
+                                            alwaysMountChildren={true}
+                                            group="Navbar"
+                                            id="<https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1>-menu-items"
+                                            onClickToggle={[Function]}
+                                            onInitializeCollapsible={[Function]}
+                                            opened={false}
+                                            startOpened={false}
+                                          >
+                                            <div
+                                              aria-expanded={false}
+                                              className="Collapsible"
+                                            >
+                                              <div
+                                                className="Collapsible__visible-content"
+                                              />
+                                              <div
+                                                aria-hidden={-1}
+                                                className="Collapsible__invisible-content"
+                                              >
+                                                <ReactCollapse
+                                                  isOpened={false}
+                                                  keepCollapsedContent={false}
+                                                  springConfig={
+                                                    Object {
+                                                      "damping": 30,
+                                                      "stiffness": 300,
+                                                    }
+                                                  }
+                                                  style={
+                                                    Object {
+                                                      "minHeight": "undefinedpx",
+                                                    }
+                                                  }
+                                                >
+                                                  <div>
+                                                    <Connect(LinkedResourceContainer)
+                                                      subject={
+                                                        NamedNode {
+                                                          "sI": 80,
+                                                          "termType": "NamedNode",
+                                                          "value": "https://argu.dev/menus/organizations",
+                                                        }
+                                                      }
+                                                    >
+                                                      <LinkedResourceContainer
+                                                        forceRender={false}
+                                                        loadLinkedObject={[Function]}
+                                                        subject={
+                                                          NamedNode {
+                                                            "sI": 80,
+                                                            "termType": "NamedNode",
+                                                            "value": "https://argu.dev/menus/organizations",
+                                                          }
+                                                        }
+                                                        version="new"
+                                                      />
+                                                    </Connect(LinkedResourceContainer)>
+                                                  </div>
+                                                </ReactCollapse>
+                                              </div>
+                                            </div>
+                                          </Collapsible>
+                                        </CollapsibleContainer>
+                                      </Connect(CollapsibleContainer)>
+                                    </div>
+                                  </SideBarCollapsible>
+                                </Connect(SideBarCollapsible)>
+                              </div>
+                              <linkedSubject[Connect(Type)]>
+                                <Connect(Type)
+                                  subject={
+                                    NamedNode {
+                                      "termType": "NamedNode",
+                                      "value": "https://argu.dev/o/1",
+                                    }
+                                  }
+                                >
+                                  <Type
+                                    dispatch={[Function]}
+                                    subject={
+                                      NamedNode {
+                                        "termType": "NamedNode",
+                                        "value": "https://argu.dev/o/1",
+                                      }
+                                    }
+                                    version="test1"
+                                  >
+                                    <div
+                                      className="no-view"
+                                    >
+                                      <linkedSubject[ConnectedProp]
+                                        label={
+                                          NamedNode {
+                                            "sI": 42,
+                                            "termType": "NamedNode",
+                                            "value": "http://schema.org/name",
+                                          }
+                                        }
+                                      >
+                                        <ConnectedProp
+                                          label={
+                                            NamedNode {
+                                              "sI": 42,
+                                              "termType": "NamedNode",
+                                              "value": "http://schema.org/name",
+                                            }
+                                          }
+                                          subject={
+                                            NamedNode {
+                                              "termType": "NamedNode",
+                                              "value": "https://argu.dev/o/1",
+                                            }
+                                          }
+                                        >
+                                          <Property
+                                            dispatch={[Function]}
+                                            forceRender={false}
                                             label={
                                               NamedNode {
+                                                "sI": 42,
                                                 "termType": "NamedNode",
                                                 "value": "http://schema.org/name",
                                               }
@@ -192,253 +498,192 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                             subject={
                                               NamedNode {
                                                 "termType": "NamedNode",
-                                                "value": "https://argu.dev/o/find?iri=about%3Ablank",
+                                                "value": "https://argu.dev/o/1",
                                               }
                                             }
+                                            version="test1"
                                           >
-                                            <Property
-                                              dispatch={[Function]}
-                                              forceRender={false}
-                                              label={
-                                                NamedNode {
-                                                  "termType": "NamedNode",
-                                                  "value": "http://schema.org/name",
-                                                }
-                                              }
-                                              subject={
-                                                NamedNode {
-                                                  "termType": "NamedNode",
-                                                  "value": "https://argu.dev/o/find?iri=about%3Ablank",
-                                                }
-                                              }
-                                            />
-                                          </ConnectedProp>
-                                        </linkedSubject[ConnectedProp]>
-                                      </a>
-                                    </Link>
-                                  </LDLink>
-                                </linkedSubject>
-                                <Button
-                                  active={false}
-                                  alt="Menu uitvouwen of inklappen"
-                                  className="SideBarCollapsible__toggle"
-                                  data-test="SideBarCollapsible-toggle"
-                                  narrow={false}
-                                  onClick={[Function]}
-                                  plain={true}
-                                  small={false}
-                                  theme="default"
-                                  type="button"
-                                >
-                                  <button
-                                    alt="Menu uitvouwen of inklappen"
-                                    className="Button Button--plain Button--default SideBarCollapsible__toggle"
-                                    data-test="Button-button"
-                                    onClick={[Function]}
-                                    type="button"
-                                  >
-                                    <span
-                                      className="Button__label"
-                                    >
-                                      <FontAwesome
-                                        name="caret-right"
-                                      >
-                                        <span
-                                          aria-hidden={true}
-                                          className="fa fa-caret-right"
-                                        />
-                                      </FontAwesome>
-                                    </span>
-                                  </button>
-                                </Button>
-                              </div>
-                              <Connect(CollapsibleContainer)
-                                group="Navbar"
-                                id="<https://argu.dev/o/find?iri=about%3Ablank>-menu-items"
-                              >
-                                <CollapsibleContainer
-                                  group="Navbar"
-                                  id="<https://argu.dev/o/find?iri=about%3Ablank>-menu-items"
-                                  onClickToggle={[Function]}
-                                  onInitializeCollapsible={[Function]}
-                                  opened={false}
-                                  startOpened={false}
-                                >
-                                  <Collapsible
-                                    alwaysMountChildren={true}
-                                    group="Navbar"
-                                    id="<https://argu.dev/o/find?iri=about%3Ablank>-menu-items"
-                                    onClickToggle={[Function]}
-                                    onInitializeCollapsible={[Function]}
-                                    opened={false}
-                                    startOpened={false}
-                                  >
-                                    <div
-                                      aria-expanded={false}
-                                      className="Collapsible"
-                                    >
-                                      <div
-                                        className="Collapsible__visible-content"
-                                      />
-                                      <div
-                                        aria-hidden={-1}
-                                        className="Collapsible__invisible-content"
-                                      >
-                                        <ReactCollapse
-                                          isOpened={false}
-                                          keepCollapsedContent={false}
-                                          springConfig={
-                                            Object {
-                                              "damping": 30,
-                                              "stiffness": 300,
-                                            }
-                                          }
-                                          style={
-                                            Object {
-                                              "minHeight": "undefinedpx",
-                                            }
-                                          }
-                                        >
-                                          <div>
-                                            <Connect(LinkedObjectContainer)
-                                              object={
-                                                NamedNode {
-                                                  "termType": "NamedNode",
-                                                  "value": "https://argu.dev/menus/organizations",
-                                                }
-                                              }
-                                            >
-                                              <LinkedObjectContainer
-                                                forceRender={false}
-                                                loadLinkedObject={[Function]}
-                                                object={
-                                                  NamedNode {
-                                                    "termType": "NamedNode",
-                                                    "value": "https://argu.dev/menus/organizations",
-                                                  }
-                                                }
-                                                version="new"
-                                              />
-                                            </Connect(LinkedObjectContainer)>
-                                          </div>
-                                        </ReactCollapse>
-                                      </div>
+                                            <div>
+                                              Gemeente Utrecht
+                                            </div>
+                                          </Property>
+                                        </ConnectedProp>
+                                      </linkedSubject[ConnectedProp]>
+                                      <p>
+                                        We currently don't have a view for this
+                                      </p>
                                     </div>
-                                  </Collapsible>
-                                </CollapsibleContainer>
-                              </Connect(CollapsibleContainer)>
+                                  </Type>
+                                </Connect(Type)>
+                              </linkedSubject[Connect(Type)]>
+                              <linkedSubject[ConnectedProp]
+                                label={
+                                  NamedNode {
+                                    "sI": 81,
+                                    "termType": "NamedNode",
+                                    "value": "https://argu.co/ns/core#baseColor",
+                                  }
+                                }
+                              >
+                                <ConnectedProp
+                                  label={
+                                    NamedNode {
+                                      "sI": 81,
+                                      "termType": "NamedNode",
+                                      "value": "https://argu.co/ns/core#baseColor",
+                                    }
+                                  }
+                                  subject={
+                                    NamedNode {
+                                      "termType": "NamedNode",
+                                      "value": "https://argu.dev/o/1",
+                                    }
+                                  }
+                                >
+                                  <Property
+                                    dispatch={[Function]}
+                                    forceRender={false}
+                                    label={
+                                      NamedNode {
+                                        "sI": 81,
+                                        "termType": "NamedNode",
+                                        "value": "https://argu.co/ns/core#baseColor",
+                                      }
+                                    }
+                                    subject={
+                                      NamedNode {
+                                        "termType": "NamedNode",
+                                        "value": "https://argu.dev/o/1",
+                                      }
+                                    }
+                                    version="test1"
+                                  />
+                                </ConnectedProp>
+                              </linkedSubject[ConnectedProp]>
                             </div>
-                          </SideBarCollapsible>
-                        </Connect(SideBarCollapsible)>
-                      </div>
-                    </div>
-                  </Contains>
+                          </LinkedResourceContainer>
+                        </Connect(LinkedResourceContainer)>
+                      </Contains>
+                    </Connect(Contains)>
+                  </linkedSubject[Connect(Contains)]>
                 </Property>
               </ConnectedProp>
             </linkedSubject[ConnectedProp]>
           </div>
-        </LinkedObjectContainer>
-      </Connect(LinkedObjectContainer)>
+        </LinkedResourceContainer>
+      </Connect(LinkedResourceContainer)>
     </div>
     <div
       className="NavBarContent__footer"
     >
-      <Connect(LinkedObjectContainer)
-        object={
+      <Connect(LinkedResourceContainer)
+        subject={
           NamedNode {
+            "sI": 77,
             "termType": "NamedNode",
             "value": "https://argu.dev/c_a",
           }
         }
         topology={
           NamedNode {
+            "sI": 50,
             "termType": "NamedNode",
             "value": "https://argu.co/ns/core#sidebar",
           }
         }
       >
-        <LinkedObjectContainer
+        <LinkedResourceContainer
           forceRender={false}
           loadLinkedObject={[Function]}
-          object={
+          subject={
             NamedNode {
+              "sI": 77,
               "termType": "NamedNode",
               "value": "https://argu.dev/c_a",
             }
           }
           topology={
             NamedNode {
+              "sI": 50,
               "termType": "NamedNode",
               "value": "https://argu.co/ns/core#sidebar",
             }
           }
           version="new"
         />
-      </Connect(LinkedObjectContainer)>
-      <Connect(LinkedObjectContainer)
-        object={
+      </Connect(LinkedResourceContainer)>
+      <Connect(LinkedResourceContainer)
+        subject={
           NamedNode {
+            "sI": 78,
             "termType": "NamedNode",
             "value": "https://argu.dev/n?type=infinite",
           }
         }
         topology={
           NamedNode {
+            "sI": 50,
             "termType": "NamedNode",
             "value": "https://argu.co/ns/core#sidebar",
           }
         }
       >
-        <LinkedObjectContainer
+        <LinkedResourceContainer
           forceRender={false}
           loadLinkedObject={[Function]}
-          object={
+          subject={
             NamedNode {
+              "sI": 78,
               "termType": "NamedNode",
               "value": "https://argu.dev/n?type=infinite",
             }
           }
           topology={
             NamedNode {
+              "sI": 50,
               "termType": "NamedNode",
               "value": "https://argu.co/ns/core#sidebar",
             }
           }
           version="new"
         />
-      </Connect(LinkedObjectContainer)>
-      <Connect(LinkedObjectContainer)
-        object={
+      </Connect(LinkedResourceContainer)>
+      <Connect(LinkedResourceContainer)
+        subject={
           NamedNode {
+            "sI": 79,
             "termType": "NamedNode",
             "value": "https://argu.dev/menus/info",
           }
         }
         topology={
           NamedNode {
+            "sI": 50,
             "termType": "NamedNode",
             "value": "https://argu.co/ns/core#sidebar",
           }
         }
       >
-        <LinkedObjectContainer
+        <LinkedResourceContainer
           forceRender={false}
           loadLinkedObject={[Function]}
-          object={
+          subject={
             NamedNode {
+              "sI": 79,
               "termType": "NamedNode",
               "value": "https://argu.dev/menus/info",
             }
           }
           topology={
             NamedNode {
+              "sI": 50,
               "termType": "NamedNode",
               "value": "https://argu.co/ns/core#sidebar",
             }
           }
           version="new"
         />
-      </Connect(LinkedObjectContainer)>
+      </Connect(LinkedResourceContainer)>
       <div
         className="NavBarContent__center-footer"
       >

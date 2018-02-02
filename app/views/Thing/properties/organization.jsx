@@ -1,5 +1,5 @@
 import LinkedRenderStore from 'link-lib';
-import { LinkedObjectContainer, linkedPropType } from 'link-redux';
+import { LinkedResourceContainer, linkedPropType } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
@@ -9,7 +9,7 @@ const propTypes = {
 };
 
 const ThingOrganizationProp = ({ linkedProp }) =>
-  <LinkedObjectContainer object={linkedProp} topology={NS.argu('sidebarBlock')} />;
+  <LinkedResourceContainer subject={linkedProp} topology={NS.argu('sidebarBlock')} />;
 
 ThingOrganizationProp.propTypes = propTypes;
 

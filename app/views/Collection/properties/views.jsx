@@ -1,6 +1,6 @@
 import LinkedRenderStore from 'link-lib';
 import {
-  LinkedObjectContainer,
+  LinkedResourceContainer,
   contextTypes,
   getLinkedObjectPropertyRaw,
   labelType,
@@ -16,9 +16,9 @@ import { NS } from '../../../helpers/LinkedRenderStore';
 const Views = (props, context) => {
   const prop = getLinkedObjectPropertyRaw(props.label, props.subject, context.linkedRenderStore);
   if (typeof prop === 'string') {
-    return <LinkedObjectContainer object={prop} />;
+    return <LinkedResourceContainer subject={prop} />;
   }
-  const obs = prop.map(iri => <LinkedObjectContainer object={iri.object} />);
+  const obs = prop.map(iri => <LinkedResourceContainer subject={iri.object} />);
   if (obs && obs.length > 1) {
     return <Columns>{obs}</Columns>;
   } else if (obs) {

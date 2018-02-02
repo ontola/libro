@@ -1,5 +1,5 @@
 import LinkedRenderStore, { getP } from 'link-lib';
-import { LinkedObjectContainer, Property, PropertyBase } from 'link-redux';
+import { LinkedResourceContainer, Property, PropertyBase } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
@@ -20,15 +20,15 @@ class CollectionAssociation extends PropertyBase {
     const prop = this.getLinkedObjectProperty();
     if (this.shouldRenderLinkedURL(prop)) {
       return (
-        <LinkedObjectContainer object={this.getArguLinkedRecordURL()}>
+        <LinkedResourceContainer subject={this.getArguLinkedRecordURL()}>
           <Property label={this.props.label} />
-        </LinkedObjectContainer>
+        </LinkedResourceContainer>
       );
     } else if (!prop) {
       return null;
     }
     return (
-      <LinkedObjectContainer object={prop} />
+      <LinkedResourceContainer subject={prop} />
     );
   }
 }

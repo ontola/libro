@@ -1,5 +1,5 @@
 import LinkedRenderStore from 'link-lib';
-import { LinkedObjectContainer, linkedPropType } from 'link-redux';
+import { LinkedResourceContainer, linkedPropType } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
@@ -9,8 +9,8 @@ const propTypes = {
 };
 
 const PersonImageProp = ({ linkedProp }) => (
-  <LinkedObjectContainer
-    object={linkedProp}
+  <LinkedResourceContainer
+    subject={linkedProp}
     topology={NS.argu('voteBubble')}
   />
 );
@@ -26,7 +26,7 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     ({ linkedProp }) => (
-      <LinkedObjectContainer object={linkedProp} />
+      <LinkedResourceContainer subject={linkedProp} />
     ),
     [NS.schema('Person'), NS.aod('Persons')],
     [NS.schema('image'), NS.dbo('thumbnail'), NS.wdt('P18')],

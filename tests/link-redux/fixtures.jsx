@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
 import LinkedRenderStore from 'link-lib';
-import { LinkedObjectContainer, Property, RenderStoreProvider } from 'link-redux';
+import { LinkedResourceContainer, Property, RenderStoreProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 import rdf from 'rdflib';
 import React from 'react';
@@ -85,13 +85,13 @@ export const loc = ({
     <Provider store={ctx.store}>
       <RenderStoreProvider linkedRenderStore={ctx.linkedRenderStore}>
         <StaticRouter context={{}}>
-          <LinkedObjectContainer
+          <LinkedResourceContainer
             forceRender
-            object={subject}
+            subject={subject}
             topology={topology}
           >
             {children}
-          </LinkedObjectContainer>
+          </LinkedResourceContainer>
         </StaticRouter>
       </RenderStoreProvider>
     </Provider>

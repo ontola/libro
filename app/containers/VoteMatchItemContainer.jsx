@@ -1,4 +1,4 @@
-import { LinkedObjectContainer } from 'link-redux';
+import { LinkedResourceContainer } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
@@ -44,7 +44,7 @@ class VoteMatchItem extends React.Component { //eslint-disable-line
           >
             {dragHandle(<FontAwesome name="bars" />)}
           </span>
-          <LinkedObjectContainer object={item} topology="argu:inline" />
+          <LinkedResourceContainer subject={item} topology="argu:inline" />
           <Button
             small
             icon="times"

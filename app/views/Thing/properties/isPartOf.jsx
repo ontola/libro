@@ -1,5 +1,5 @@
 import LinkedRenderStore from 'link-lib';
-import { LinkedObjectContainer, linkedPropType } from 'link-redux';
+import { LinkedResourceContainer, linkedPropType } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
@@ -13,10 +13,10 @@ const IsPartOf = ({ linkedProp }) => {
     return <div>parent</div>;
   }
   return (
-    <LinkedObjectContainer
+    <LinkedResourceContainer
       fetch
       forceRender
-      object={linkedProp}
+      subject={linkedProp}
       topology={NS.argu('parent')}
     />
   );

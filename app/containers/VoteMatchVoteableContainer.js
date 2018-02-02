@@ -1,4 +1,4 @@
-import { LinkedObjectContainer } from 'link-redux';
+import { LinkedResourceContainer } from 'link-redux';
 import { connect } from 'react-redux';
 
 import { voteMatchNextMotion } from 'state/voteMatch/actions';
@@ -8,4 +8,4 @@ export default connect(
   (dispatch, { next }) => ({
     onVoteCompleted: () => { dispatch(voteMatchNextMotion({ id: next })); },
   })
-)(LinkedObjectContainer);
+)(LinkedResourceContainer);

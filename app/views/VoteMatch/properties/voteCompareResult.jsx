@@ -1,5 +1,5 @@
 import LinkedRenderStore from 'link-lib';
-import { LinkedObjectContainer, linkedPropType } from 'link-redux';
+import { LinkedResourceContainer, linkedPropType } from 'link-redux';
 import React from 'react';
 
 import {
@@ -15,7 +15,7 @@ const propTypes = {
 };
 
 const VoteCompareResult = ({ linkedProp }) => (
-  <LinkedObjectContainer object={linkedProp}>
+  <LinkedResourceContainer subject={linkedProp}>
     <Cover fullScreen>
       <Container>
         <Card>
@@ -23,7 +23,7 @@ const VoteCompareResult = ({ linkedProp }) => (
         </Card>
       </Container>
     </Cover>
-  </LinkedObjectContainer>
+  </LinkedResourceContainer>
 );
 
 VoteCompareResult.propTypes = propTypes;

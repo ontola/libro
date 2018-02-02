@@ -1,6 +1,6 @@
 import LinkedRenderStore, { getValueOrID } from 'link-lib';
 import {
-  LinkedObjectContainer,
+  LinkedResourceContainer,
   getLinkedObjectProperty,
   labelType,
   linkedPropType,
@@ -50,8 +50,8 @@ const SideViews = ({
       className={`VoteData__votebar-part VoteData__votebar-part--${side(prop)}`}
       style={{ maxWidth: `${calcPercentage(parseInt(memberCount, 10), parseInt(grandTotal, 10))}%` }}
     >
-      <LinkedObjectContainer
-        object={prop}
+      <LinkedResourceContainer
+        subject={prop}
         topology={NS.argu('voteSidePage')}
       />
     </div>

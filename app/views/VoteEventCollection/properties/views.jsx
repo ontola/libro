@@ -1,6 +1,6 @@
 import LinkedRenderStore from 'link-lib';
 import {
-  LinkedObjectContainer,
+  LinkedResourceContainer,
   getLinkedObjectProperty,
   labelType,
   lowLevel,
@@ -28,8 +28,8 @@ const Views = (props, { linkedRenderStore }) => {
   }
 
   return (
-    <LinkedObjectContainer
-      object={prop}
+    <LinkedResourceContainer
+      subject={prop}
       topology={NS.argu('voteEvent')}
     />
   );
