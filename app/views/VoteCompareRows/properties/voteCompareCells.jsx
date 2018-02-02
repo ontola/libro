@@ -1,8 +1,8 @@
-import { getValueOrID } from 'link-lib';
+import LinkedRenderStore, { getValueOrID } from 'link-lib';
 import { LinkedObjectContainer, PropertyBase } from 'link-redux';
 import React from 'react';
 
-import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
 
 class VoteCompareCells extends PropertyBase {
   render() {

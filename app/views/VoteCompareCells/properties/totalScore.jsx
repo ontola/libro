@@ -1,9 +1,10 @@
+import LinkedRenderStore from 'link-lib';
 import { Property, linkedPropType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import { CompareVotesBar } from '../../../components';
-import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   children: PropTypes.node,

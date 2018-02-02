@@ -1,10 +1,10 @@
-import { RENDER_CLASS_NAME } from 'link-lib';
+import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { LinkedObjectContainer, Property, Type } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import { Container } from '../../components';
-import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
+import { NS } from '../../helpers/LinkedRenderStore';
 import { currentLocation } from '../../helpers/paths';
 
 const propTypes = {

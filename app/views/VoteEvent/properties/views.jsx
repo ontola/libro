@@ -1,3 +1,4 @@
+import LinkedRenderStore from 'link-lib';
 import {
   LinkedObjectContainer,
   getLinkedObjectProperty,
@@ -9,7 +10,7 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
 import { VoteData } from '../../../components';
 
 const propTypes = {

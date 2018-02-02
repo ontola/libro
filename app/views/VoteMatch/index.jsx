@@ -1,3 +1,4 @@
+import LinkedRenderStore from 'link-lib';
 import { Property } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -9,7 +10,7 @@ import {
   Container,
   Cover,
 } from '../../components';
-import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
+import { NS } from '../../helpers/LinkedRenderStore';
 
 import './properties/motions';
 import './properties/voteCompareResult';

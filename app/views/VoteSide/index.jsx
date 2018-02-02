@@ -1,4 +1,4 @@
-import { RENDER_CLASS_NAME } from 'link-lib';
+import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   Property,
   lowLevel,
@@ -6,7 +6,7 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
+import { NS } from '../../helpers/LinkedRenderStore';
 
 import './properties/views';
 

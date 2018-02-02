@@ -1,5 +1,5 @@
-import { RenderStoreProvider } from 'link-redux';
 import LinkedRenderStore from 'link-lib';
+import { RenderStoreProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Provider } from 'react-redux';

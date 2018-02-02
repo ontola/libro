@@ -1,6 +1,4 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import { getValueOrID } from 'link-lib';
+import LinkedRenderStore, { getValueOrID } from 'link-lib';
 import {
   LinkedObjectContainer,
   getLinkedObjectProperty,
@@ -8,8 +6,10 @@ import {
   linkedPropType,
   subjectType,
 } from 'link-redux';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
 import { calcPercentage } from '../../../helpers/numbers';
 
 function side(url) {

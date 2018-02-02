@@ -1,10 +1,11 @@
+import LinkedRenderStore from 'link-lib';
 import React from 'react';
 
 import {
   Heading,
   LDLink,
 } from '../../../components';
-import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
 
 LinkedRenderStore.registerRenderer(
   ({ linkedProp }) => (

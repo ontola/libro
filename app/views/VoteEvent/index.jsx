@@ -1,9 +1,9 @@
-import React from 'react';
-import { RENDER_CLASS_NAME } from 'link-lib';
+import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { Property, PropertyBase } from 'link-redux';
+import React from 'react';
 
 import { LinkedDetailDate } from '../../components';
-import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
+import { NS } from '../../helpers/LinkedRenderStore';
 
 class VoteEvent extends PropertyBase {
   render() {

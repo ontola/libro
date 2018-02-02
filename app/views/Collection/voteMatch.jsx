@@ -1,4 +1,4 @@
-import { getValueOrID } from 'link-lib';
+import LinkedRenderStore, { getValueOrID } from 'link-lib';
 import { PropertyBase } from 'link-redux';
 import React from 'react';
 
@@ -7,7 +7,7 @@ import {
   Cover,
 } from '../../components';
 import VoteMatchVoteableContainer from '../../containers/VoteMatchVoteableContainer';
-import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
+import { NS } from '../../helpers/LinkedRenderStore';
 
 class Motions extends PropertyBase {
   static renderMotion(m, i) {

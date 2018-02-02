@@ -1,4 +1,4 @@
-import { RENDER_CLASS_NAME } from 'link-lib';
+import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   lowLevel,
   Property,
@@ -10,7 +10,7 @@ import {
   SideBarLink,
 } from '../../components';
 import { retrievePath } from '../../helpers/iris';
-import LinkedRenderStore, { NS } from '../../helpers/LinkedRenderStore';
+import { NS } from '../../helpers/LinkedRenderStore';
 
 const propTypes = {
   subject: subjectType,

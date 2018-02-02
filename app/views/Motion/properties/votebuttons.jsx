@@ -1,4 +1,5 @@
 import HttpStatus from 'http-status-codes';
+import LinkedRenderStore from 'link-lib';
 import { LinkedObjectContainer, Property, PropertyBase } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -14,7 +15,7 @@ import {
   statusSuccess,
   tryLogin,
 } from '../../../helpers/arguHelpers';
-import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   buttonsType: PropTypes.string,

@@ -1,3 +1,4 @@
+import LinkedRenderStore from 'link-lib';
 import { LinkedObjectContainer, linkedPropType } from 'link-redux';
 import React from 'react';
 
@@ -7,7 +8,7 @@ import {
   Cover,
   LDLink,
 } from '../../../components';
-import LinkedRenderStore, { NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   linkedProp: linkedPropType.isRequired,
