@@ -1,8 +1,6 @@
 import LinkedRenderStore from 'link-lib';
 import {
   LinkedResourceContainer,
-  getLinkedObjectProperty,
-  getLinkedObjectPropertyRaw,
   labelType,
   lowLevel,
   subjectType,
@@ -26,11 +24,10 @@ const propTypes = {
  * @return {object} The component
  */
 const VoteViews = (props, { linkedRenderStore }) => {
-  const totalCount = getLinkedObjectProperty(NS.argu('totalCount'), props.subject, linkedRenderStore);
-  const obs = getLinkedObjectPropertyRaw(
-    props.label,
+  const totalCount = linkedRenderStore.getResourceProperty(NS.argu('totalCount'), props.subject);
+  const obs = linkedRenderStore.getResourcePropertyRaw(
     props.subject,
-    linkedRenderStore
+    props.label
   ).map(iri => (
     <LinkedResourceContainer
       grandTotal={totalCount}

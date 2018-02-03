@@ -5,8 +5,6 @@ import { allRDFValues, defaultNS } from 'link-lib';
 import {
   LinkedResourceContainer,
   expandedProperty,
-  getLinkedObjectProperty,
-  getLinkedObjectPropertyRaw,
   getLinkedObjectClass,
 } from 'link-redux';
 import rdf from 'rdflib';
@@ -135,7 +133,7 @@ class LinkDevTools {
       const lrs = this.getLRS(comp);
 
       console.debug('Using: ', comp.props.label, comp.props.subject, lrs ? 'local LRS' : 'global LRS');
-      return func(comp.props.label, comp.props.subject, lrs);
+      return func(comp.props.subject, comp.props.label);
     };
   }
 
@@ -247,10 +245,10 @@ class LinkDevTools {
     return this.toObject(this.dataArr());
   }
   get getPropArr() {
-    return this.showProp(getLinkedObjectProperty);
+    return this.showProp(this.getLinkedObjectProperty);
   }
   get getPropRawArr() {
-    return this.showProp(getLinkedObjectPropertyRaw);
+    return this.showProp(this.getLinkedObjectPropertyRaw);
   }
   get getProp() {
     const propVal = this.getPropArr;
@@ -441,21 +439,17 @@ class LinkDevTools {
   }
 
 
-  getLinkedObjectProperty(property, subject, linkedRenderStore, term) {
-    return getLinkedObjectProperty(
+  getLinkedObjectProperty(property, subject, linkedRenderStore) {
+    return (linkedRenderStore || this.getLRS()).getLinkedObjectProperty(
       property,
-      subject,
-      linkedRenderStore || this.getLRS(),
-      term
+      subject
     );
   }
 
-  getLinkedObjectPropertyRaw(property, subject, linkedRenderStore, term) {
-    return getLinkedObjectPropertyRaw(
-      property,
+  getLinkedObjectPropertyRaw(subject, property, linkedRenderStore) {
+    return (linkedRenderStore || this.getLRS()).getLinkedObjectPropertyRaw(
       subject,
-      linkedRenderStore || this.getLRS(),
-      term
+      property
     );
   }
 }

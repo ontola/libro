@@ -1,6 +1,5 @@
 import {
   PropertyBase,
-  getLinkedObjectPropertyRaw,
   lowLevel,
 } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -35,10 +34,9 @@ class LinkedDetailDate extends PropertyBase {
     if (this.props[prop]) {
       return this.props[prop];
     }
-    const val = getLinkedObjectPropertyRaw(
-      NS.schema(prop),
+    const val = this.context.linkedRenderStore.getLinkedObjectPropertyRaw(
       this.props.subject,
-      this.context.linkedRenderStore
+      NS.schema(prop)
     );
     return val && val.value;
   }

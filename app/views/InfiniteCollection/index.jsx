@@ -8,7 +8,7 @@ import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 
-import './sidebar';
+import sidebar from './sidebar';
 import Member from './properties/members';
 import Next from './properties/next';
 import UnreadCount from './properties/unreadCount';
@@ -22,7 +22,7 @@ class InfiniteCollection extends PropertyBase {
   }
 
   viewsOrMembers(views) {
-    if (!views) {
+    if (views.length === 0) {
       let header, next;
       if (this.context.subject.value === this.props.first.value) {
         header = <Property label={[NS.schema('name'), NS.rdfs('label')]} />;
@@ -38,6 +38,7 @@ class InfiniteCollection extends PropertyBase {
         </div>
       );
     }
+
     return (
       <Property forceRender label={NS.argu('views')} />
     );
@@ -54,6 +55,7 @@ const ConnectedInfiniteCollection =
 
 export default [
   LinkedRenderStore.registerRenderer(ConnectedInfiniteCollection, NS.argu('InfiniteCollection')),
+  sidebar,
   ...Member,
   Next,
   UnreadCount,

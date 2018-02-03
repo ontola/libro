@@ -3,7 +3,6 @@ import {
   LinkedResourceContainer,
   Property,
   PropertyBase,
-  getLinkedObjectPropertyRaw,
   lowLevel,
 } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -71,8 +70,8 @@ const ReduxCollection = connect((state, { subject }) => ({
 const ConnectedCollection = lowLevel.linkedSubject(lowLevel.linkedVersion(ReduxCollection));
 
 const CollectionSection = ({ subject }, { linkedRenderStore }) => viewsOrMembers(
-  getLinkedObjectPropertyRaw(NS.argu('views'), subject, linkedRenderStore),
-  getLinkedObjectPropertyRaw(NS.argu('members'), subject, linkedRenderStore),
+  linkedRenderStore.getResourcePropertyRaw(subject, NS.argu('views')),
+  linkedRenderStore.getResourcePropertyRaw(subject, NS.argu('members')),
   NS.argu('section')
 );
 

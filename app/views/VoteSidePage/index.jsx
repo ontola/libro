@@ -1,7 +1,6 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   LinkedResourceContainer,
-  getLinkedObjectPropertyRaw,
   lowLevel,
   subjectType,
 } from 'link-redux';
@@ -20,7 +19,7 @@ const propTypes = {
  * @returns {object} The component
  */
 const VoteSidePage = (props, { linkedRenderStore }) => {
-  const members = getLinkedObjectPropertyRaw(NS.argu('members'), props.subject, linkedRenderStore);
+  const members = linkedRenderStore.getResourcePropertyRaw(props.subject, NS.argu('members'));
   return (
     <div className="VoteData__votesegment-wrapper">
       {members && members.map(iri => (

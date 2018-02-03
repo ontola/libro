@@ -15,7 +15,7 @@ const propTypes = {
 class menuItems extends PropertyBase {
   render() {
     const rawProp = this.getLinkedObjectPropertyRaw();
-    if (!rawProp) {
+    if (rawProp.length === 0) {
       return this.props.labelComp;
     }
 

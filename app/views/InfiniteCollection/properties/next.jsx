@@ -1,6 +1,5 @@
 import LinkedRenderStore from 'link-lib';
 import {
-  getLinkedObjectPropertyRaw,
   linkedPropType,
   lrsType,
   PropertyBase,
@@ -18,8 +17,8 @@ class InfiniteCollectionNext extends PropertyBase {
 
     const action = () => {
       const parent = this.getLinkedObjectPropertyRaw(NS.argu('parentView'))[0];
-      const seqParent = getLinkedObjectPropertyRaw(NS.argu('views'), parent.object, linkedRenderStore)[0];
-      linkedRenderStore.addStatements([
+      const seqParent = linkedRenderStore.getResourcePropertyRaw(parent.object, NS.argu('views'))[0];
+      linkedRenderStore.store.addStatements([
         new Statement(seqParent.object, NS.rdf(`_${count}`), new NamedNode(linkedProp)),
         new Statement(subject, NS.argu('void'), new Literal(0))
       ]);

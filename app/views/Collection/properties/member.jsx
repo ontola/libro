@@ -24,11 +24,11 @@ class MemberComp extends PropertyBase {
 
   render() {
     const prop = this.getLinkedObjectPropertyRaw();
-    if (this.getLinkedObjectProperty(NS.argu('totalCount')) === 0) {
+    if (this.getLinkedObjectProperty(NS.argu('totalCount')).value === '0') {
       return <div>Nog geen items</div>;
-    } else if (typeof prop === 'undefined') {
+    } else if (Array.isArray(prop) && prop.length === 0) {
       return null;
-    } else if (prop instanceof Array) {
+    } else if (Array.isArray(prop)) {
       return (
         <div style={this.props.style}>
           {this.memberList(prop)}

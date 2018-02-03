@@ -2,7 +2,6 @@ import LinkedRenderStore from 'link-lib';
 import {
   LinkedResourceContainer,
   contextTypes,
-  getLinkedObjectPropertyRaw,
   labelType,
   subjectType
 } from 'link-redux';
@@ -14,7 +13,7 @@ import {
 import { NS } from '../../../helpers/LinkedRenderStore';
 
 const Views = (props, context) => {
-  const prop = getLinkedObjectPropertyRaw(props.label, props.subject, context.linkedRenderStore);
+  const prop = context.linkedRenderStore.getResourcePropertyRaw(props.subject, props.label);
   if (typeof prop === 'string') {
     return <LinkedResourceContainer subject={prop} />;
   }
