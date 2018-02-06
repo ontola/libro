@@ -69,7 +69,7 @@ export default [
     NS.argu('inline')
   ),
   LinkedRenderStore.registerRenderer(
-    props => <ColoredHeading data-test="Thing-name-collection" size="3" {...props} />,
+    props => <LDLink><ColoredHeading data-test="Thing-name-card" size="3" {...props} /></LDLink>,
     NS.schema('Thing'),
     NamePredicates,
     [

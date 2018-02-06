@@ -1,7 +1,8 @@
+import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import './Card.scss';
+import { NS } from '../../helpers/LinkedRenderStore';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -12,17 +13,22 @@ const propTypes = {
  * Used to divide a card in multiple rows
  * @returns {component} Component
  */
-const CardRow = ({
-  children,
-  showArrow,
-}) => (
-  <div
-    className={
-      showArrow ? 'CardRow CardRow--show-arrow' : 'CardRow'
-    }
-  >{children}
-  </div>
-);
+class CardRow extends TopologyProvider {
+  constructor() {
+    super();
+
+    this.topology = NS.argu('cardRow');
+  }
+
+  render() {
+    const className = this.props.showArrow ? 'CardRow CardRow--show-arrow' : 'CardRow';
+    return (
+      <div className={className}>
+        {this.props.children}
+      </div>
+    );
+  }
+}
 
 CardRow.propTypes = propTypes;
 

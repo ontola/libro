@@ -55,6 +55,7 @@ export default [
     [
       undefined,
       NS.argu('cardMain'),
+      NS.argu('cardRow'),
     ]
   ),
   LinkedRenderStore.registerRenderer(
@@ -72,6 +73,9 @@ export default [
     TextCutoff,
     NS.schema('Thing'),
     NS.schema('text'),
-    NS.argu('cardFixed')
+    [
+      NS.argu('cardFixed'),
+      NS.argu('cardHover')
+    ]
   ),
 ];

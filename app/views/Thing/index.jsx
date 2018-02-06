@@ -8,6 +8,7 @@ import {
   CardFixed,
   CardMain,
   CardMenuFloater,
+  CardRow,
   Container,
   DetailsBar,
   HoverBox,
@@ -110,7 +111,13 @@ const ThingSection = () => (
 );
 
 const ThingCard = () => (
-  <Property label={[NS.schema('name'), NS.rdfs('label'), NS.argu('label')]} />
+  <CardRow>
+    <CardContent>
+      <Property label={[NS.schema('name'), NS.rdfs('label'), NS.argu('label')]} />
+      <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
+      <Property label={NS.council('attachment')} />
+    </CardContent>
+  </CardRow>
 );
 
 export default [
@@ -131,7 +138,7 @@ export default [
     ThingSection,
     NS.schema('Thing'),
     RENDER_CLASS_NAME,
-    NS.argu('section')
+    [NS.argu('section'), NS.argu('cardRow')]
   ),
   LinkedRenderStore.registerRenderer(
     () => <LinkCard data-test="Thing-parent"><Property label={[NS.schema('name'), NS.rdfs('label')]} /></LinkCard>,
