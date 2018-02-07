@@ -1,6 +1,9 @@
+import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import './HoverBox.scss';
+
+import { NS } from '../../helpers/LinkedRenderStore';
 
 const propTypes = {
   /** Always visible. Functions as a trigger that responds to hover or focus. */
@@ -14,12 +17,14 @@ const propTypes = {
  * state, make sure to add functionality for touch users.
  * @returns {component} Component
  */
-export default class HoverBox extends Component {
-  constructor(props) {
-    super(props);
+export default class HoverBox extends TopologyProvider {
+  constructor() {
+    super();
+
     this.state = {
       isVisible: false,
     };
+    this.topology = NS.argu('cardHover');
 
     this.handleOnMouseEnter = this.handleOnMouseEnter.bind(this);
     this.handleOnMouseLeave = this.handleOnMouseLeave.bind(this);
@@ -57,11 +62,12 @@ export default class HoverBox extends Component {
     });
   }
 
-  // The trigger is always visisble and contains the children.
+  // The trigger is always visible and contains the children.
   // When the user hovers over them, the hiddenChildren appear.
   trigger(children) {
     return (
       <span
+        data-test="HoverBox-trigger"
         tabIndex="0"
         onBlur={this.handleOnBlur}
         onFocus={this.handleOnFocus}
@@ -73,7 +79,7 @@ export default class HoverBox extends Component {
     );
   }
 
-  className() {
+  classNames() {
     return this.state.isVisible
       ? 'HoverBox__hidden-part--visible'
       : 'HoverBox__hidden-part--hidden';
@@ -81,9 +87,9 @@ export default class HoverBox extends Component {
 
   render() {
     return (
-      <div className="HoverBox">
+      <div className="HoverBox" data-test="HoverBox">
         {this.trigger(this.props.children)}
-        <div className={`HoverBox__hidden-part ${this.className()}`}>
+        <div className={`HoverBox__hidden-part ${this.classNames()}`}>
           {this.props.children}
           {this.state.isVisible && this.props.hiddenChildren}
         </div>
