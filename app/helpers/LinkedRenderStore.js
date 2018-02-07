@@ -24,6 +24,7 @@ LRS.api.setAcceptForHost('https://beta.argu.co/', 'text/n3');
 
 LRS.namespaces.app = memoizedNamespace(FRONTEND_URL.endsWith('/') ? FRONTEND_URL : `${FRONTEND_URL}/`);
 LRS.namespaces.aod = memoizedNamespace('https://argu.co/ns/od#');
+LRS.namespaces.council = memoizedNamespace('https://argu.co/ns/0.1/gov/council#');
 export const NS = LRS.namespaces;
 
 LRS.addOntologySchematics([
