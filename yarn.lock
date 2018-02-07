@@ -6450,27 +6450,28 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-link-lib@1.0.0-beta7, link-lib@^1.0.0-beta7:
-  version "1.0.0-beta7"
-  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-beta7.tgz#36f3a22ba80f17b69807524cedae1938a898cb5a"
+link-lib@^1.0.0-beta8:
+  version "1.0.0-beta8"
+  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-beta8.tgz#b7e7fcd435aaef840d97493cc182b50048b22c2e"
   dependencies:
+    http-status-codes "^1.3.0"
     jsonld "^0.4.11"
-    ml-disjoint-set "^1.0.0"
-    rdflib "^0.16.3"
+    rdflib "^0.16.5"
 
-link-redux@1.0.0-beta13:
-  version "1.0.0-beta13"
-  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-beta13.tgz#3b7ab44509c2147e68a39b636cbac80fd7ee8789"
+link-redux@^1.0.0-beta14:
+  version "1.0.0-beta14"
+  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-beta14.tgz#b601e251e1165d41efa965fa51ab2f591a4abf0c"
   dependencies:
     es6-promise "^4.2.2"
+    http-status-codes "^1.3.0"
     immutable "^3.8.1"
     jsonld "^0.4.11"
-    link-lib "^1.0.0-beta7"
-    prop-types "^15.6.0"
+    link-lib "^1.0.0-beta8"
+    prop-types "15.6.0"
     rdflib "^0.16.5"
     react "^16.2.0"
     react-redux "^5.0.6"
-    redux "^3.6.0"
+    redux "^4.0.0-beta.1"
     redux-batched-actions "^0.2.1"
 
 lint-staged@^6.0.1:
@@ -7373,10 +7374,6 @@ mkdirp@0.5.1, mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdi
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
     minimist "0.0.8"
-
-ml-disjoint-set@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/ml-disjoint-set/-/ml-disjoint-set-1.0.0.tgz#6cd8e583eef5a02585348b98d0df21fd83ef6082"
 
 mocha-webpack@^1.0.0-rc.1:
   version "1.0.1"
@@ -8861,7 +8858,7 @@ prop-types@15.5.8:
   dependencies:
     fbjs "^0.8.9"
 
-prop-types@15.x, prop-types@^15.5.1, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.8, prop-types@^15.5.9, prop-types@^15.6.0:
+prop-types@15.6.0, prop-types@15.x, prop-types@^15.5.1, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.8, prop-types@^15.5.9, prop-types@^15.6.0:
   version "15.6.0"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.0.tgz#ceaf083022fc46b4a35f69e13ef75aed0d639856"
   dependencies:
@@ -9130,7 +9127,7 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-rdflib@^0.16.3, rdflib@^0.16.5:
+rdflib@^0.16.5:
   version "0.16.5"
   resolved "https://registry.yarnpkg.com/rdflib/-/rdflib-0.16.5.tgz#f9e8eb40d1def8806df5812eb7e43d2ffeb3b885"
   dependencies:
@@ -9828,12 +9825,19 @@ redux-thunk@^2.1.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.2.0.tgz#e615a16e16b47a19a515766133d1e3e99b7852e5"
 
-redux@^3.0.4, redux@^3.6.0, redux@^3.7.2:
+redux@^3.0.4, redux@^3.7.2:
   version "3.7.2"
   resolved "https://registry.yarnpkg.com/redux/-/redux-3.7.2.tgz#06b73123215901d25d065be342eb026bc1c8537b"
   dependencies:
     lodash "^4.2.1"
     lodash-es "^4.2.1"
+    loose-envify "^1.1.0"
+    symbol-observable "^1.0.3"
+
+redux@^4.0.0-beta.1:
+  version "4.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/redux/-/redux-4.0.0-beta.1.tgz#fc1cf2fc33d23a1a201d00235b3e27a331261ec7"
+  dependencies:
     loose-envify "^1.1.0"
     symbol-observable "^1.0.3"
 
