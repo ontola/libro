@@ -32,7 +32,7 @@ const defaultProps = {
 
 class Detail extends PropertyBase {
   getImage() {
-    if (typeof this.context.subject !== 'undefined') {
+    if (typeof this.props.subject !== 'undefined') {
       return <Property label={NS.schema('image')} />;
     }
     return this.props.imageUrl &&
@@ -42,7 +42,7 @@ class Detail extends PropertyBase {
   getText() {
     const { label, text } = this.props;
     let displayText = text;
-    if (typeof this.context.subject !== 'undefined' && label && this.getLinkedObjectProperty()) {
+    if (typeof this.props.subject !== 'undefined' && label && this.getLinkedObjectProperty()) {
       displayText = this.getLinkedObjectProperty();
     }
     return <span className="Detail__text">{displayText}</span>;

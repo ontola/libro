@@ -24,10 +24,10 @@ class InfiniteCollection extends PropertyBase {
   viewsOrMembers(views) {
     if (views.length === 0) {
       let header, next;
-      if (this.context.subject.value === this.props.first.value) {
+      if (this.props.subject.value === this.props.first.value) {
         header = <Property label={[NS.schema('name'), NS.rdfs('label')]} />;
       }
-      if (this.context.subject.value === this.props.last.value) {
+      if (this.props.subject.value === this.props.last.value) {
         next = <Property count={this.props.count} label={NS.argu('next')} />;
       }
       return (

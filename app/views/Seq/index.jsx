@@ -18,7 +18,7 @@ export class Seq extends PropertyBase {
     return this
       .context
       .linkedRenderStore
-      .tryEntity(this.context.subject)
+      .tryEntity(this.props.subject)
       .filter(s => s && s.predicate.value.match(filter))
       .sort(numAsc);
   }
@@ -31,7 +31,7 @@ export class Seq extends PropertyBase {
           count={sequences.length}
           data-test={`Seq-${i}`}
           first={sequences[0].object}
-          key={`${this.context.subject}-${s.object}`}
+          key={`${this.props.subject}-${s.object}`}
           last={sequences[sequences.length - 1].object}
           subject={s.object}
         />
