@@ -1,7 +1,6 @@
 import LinkedRenderStore from 'link-lib';
 import { linkedPropType } from 'link-redux';
 import PropTypes from 'prop-types';
-import { NamedNode } from 'rdflib';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -41,7 +40,7 @@ BaseColorDispatcherConnect.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
   BaseColorDispatcherConnect,
-  [NS.schema('Thing'), new NamedNode('http://www.w3.org/2007/ont/link#Document')],
+  [NS.schema('Thing'), NS.link('Document')],
   NS.argu('baseColor'),
   NS.argu('sidebarBlock')
 );

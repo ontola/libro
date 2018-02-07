@@ -1,5 +1,5 @@
 /* eslint no-console: 0 */
-import LinkedRenderStore, { anyRDFValue } from 'link-lib';
+import LinkedRenderStore, { anyRDFValue, memoizedNamespace } from 'link-lib';
 import rdf from 'rdflib';
 
 import Error from '../components/Error';
@@ -22,7 +22,7 @@ transformers
 LRS.api.setAcceptForHost(FRONTEND_URL, 'text/n3');
 LRS.api.setAcceptForHost('https://beta.argu.co/', 'text/n3');
 
-LRS.namespaces.aod = rdf.Namespace('https://argu.co/ns/od#');
+LRS.namespaces.aod = memoizedNamespace('https://argu.co/ns/od#');
 export const NS = LRS.namespaces;
 
 LRS.addOntologySchematics([

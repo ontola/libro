@@ -84,7 +84,7 @@ Contains.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
   Contains,
-  [NS.schema('Thing'), new NamedNode('http://www.w3.org/2007/ont/link#Document')],
+  [NS.schema('Thing'), NS.link('Document')],
   NS.argu('contains'),
   NS.argu('sidebarBlock')
 );
