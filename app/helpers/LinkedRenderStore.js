@@ -1,6 +1,6 @@
 /* eslint no-console: 0 */
 import LinkedRenderStore, { anyRDFValue, memoizedNamespace } from 'link-lib';
-import rdf from 'rdflib';
+import { Literal, NamedNode, Statement } from 'rdflib';
 
 import Error from '../components/Error';
 import Loading from '../components/Loading';
@@ -26,153 +26,57 @@ LRS.namespaces.aod = memoizedNamespace('https://argu.co/ns/od#');
 export const NS = LRS.namespaces;
 
 LRS.addOntologySchematics([
-  {
-    '@id': 'http://www.w3.org/2000/01/rdf-schema#Resource',
-    'rdfs:subClassOf': {
-      '@id': 'http://schema.org/Thing',
-    },
-  },
-  {
-    '@id': 'http://www.w3.org/2002/07/owl#Thing',
-    'owl:sameAs': {
-      '@id': 'http://schema.org/Thing',
-    },
-  },
-  {
-    '@id': 'http://wikiba.se/ontology#Entity',
-    'owl:sameAs': {
-      '@id': 'http://schema.org/Thing',
-    },
-  },
-  {
-    '@id': 'http://schema.org/CreativeWork',
-    '@type': 'rdfs:Class',
-    'http://purl.org/dc/terms/source': {
-      '@id': 'http://www.w3.org/wiki/WebSchemas/SchemaDotOrgSources#source_rNews',
-    },
-    'rdfs:comment': 'The most generic kind of creative work, including books, movies, photographs, software programs, etc.',
-    'rdfs:label': 'CreativeWork',
-    'rdfs:subClassOf': {
-      '@id': 'http://schema.org/Thing',
-    },
-  },
-  {
-    '@id': 'http://schema.org/Argument',
-    '@type': 'rdfs:Class',
-    'http://purl.org/dc/terms/source': {
-      '@id': 'http://www.w3.org/wiki/WebSchemas/SchemaDotOrgSources#source_rNews',
-    },
-    'rdfs:comment': 'The most generic kind of creative work, including books, movies, photographs, software programs, etc.',
-    'rdfs:label': 'CreativeWork',
-    'rdfs:subClassOf': {
-      '@id': 'http://schema.org/Comment',
-    },
-  },
-  {
-    '@id': 'http://schema.org/Comment',
-    '@type': 'rdfs:Class',
-    'rdfs:comment': "A comment on an item - for example, a comment on a blog post. The comment's content is " +
+  new Statement(NS.rdfs('Resource'), NS.rdfs('subClassOf'), NS.schema('Thing')),
+  new Statement(NS.owl('Thing'), NS.owl('sameAs'), NS.schema('Thing')),
+
+  new Statement(NS.schema('CreativeWork'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.schema('CreativeWork'), NS.dc('source'), new NamedNode('http://www.w3.org/wiki/WebSchemas/SchemaDotOrgSources#source_rNews')),
+  new Statement(NS.schema('CreativeWork'), NS.rdfs('comment'), new Literal('The most generic kind of creative work, including books, movies, photographs, software programs, etc.')),
+  new Statement(NS.schema('CreativeWork'), NS.rdfs('label'), new Literal('CreativeWork')),
+  new Statement(NS.schema('CreativeWork'), NS.rdfs('subClassOf'), NS.schema('Thing')),
+
+  new Statement(NS.schema('Comment'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.schema('Comment'), NS.rdfs('comment'), new Literal("A comment on an item - for example, a comment on a blog post. The comment's content is " +
     'expressed via the <a class="localLink" href="/text">text</a> property, and its topic ' +
-    'via <a class="localLink" href="/about">about</a>, properties shared with all CreativeWorks.',
-    'rdfs:label': 'Comment',
-    'rdfs:subClassOf': {
-      '@id': 'http://schema.org/CreativeWork',
-    },
-  },
-  {
-    '@id': 'https://argu.co/ns/core#Question',
-    '@type': 'rdfs:Class',
-    'rdfs:comment': '',
-    'rdfs:label': 'Challenge',
-    'rdfs:subClassOf': {
-      '@id': 'http://schema.org/CreativeWork',
-    },
-  },
-  {
-    '@id': 'http://schema.org/Thing',
-    '@type': 'rdfs:Class',
-    'rdfs:comment': 'The most generic type of item.',
-    'rdfs:label': 'Thing',
-  },
-  {
-    '@id': 'http://schema.org/Person',
-    '@type': 'rdfs:Class',
-    'http://purl.org/dc/terms/source': {
-      '@id': 'http://www.w3.org/wiki/WebSchemas/SchemaDotOrgSources#source_rNews',
-    },
-    'http://www.w3.org/2002/07/owl#equivalentClass': {
-      '@id': 'http://xmlns.com/foaf/0.1/Person',
-    },
-    'rdfs:comment': 'A person (alive, dead, undead, or fictional).',
-    'rdfs:label': 'Person',
-    'rdfs:subClassOf': {
-      '@id': 'http://schema.org/Thing',
-    },
-  },
-  {
-    '@id': 'http://xmlns.com/foaf/0.1/name',
-    'owl:sameAs': {
-      '@id': 'http://schema.org/name',
-    },
-  },
-  {
-    '@id': 'https://argu.co/ns/od#title',
-    'owl:sameAs': {
-      '@id': 'http://schema.org/name',
-    },
-  },
-  {
-    '@id': 'https://argu.co/ns/od#Motie',
-    'owl:sameAs': {
-      '@id': 'https://argu.co/ns/core#Motion',
-    },
-  },
-  {
-    '@id': 'https://argu.co/ns/od#Amendement',
-    'owl:sameAs': {
-      '@id': 'https://argu.co/ns/core#Motion',
-    },
-  },
-  {
-    '@id': 'https://argu.co/ns/od#createdAt',
-    'owl:sameAs': {
-      '@id': 'http://schema.org/dateCreated',
-    },
-  },
-  {
-    '@id': 'https://argu.co/ns/core#Motion',
-    '@type': 'rdfs:Class',
-    'rdfs:label': 'Motion',
-    'rdfs:subClassOf': {
-      '@id': 'http://schema.org/CreativeWork',
-    },
-  },
-  {
-    '@id': 'https://argu.co/ns/core#Argument',
-    '@type': 'rdfs:Class',
-    'rdfs:label': 'Argument',
-    'rdfs:subClassOf': {
-      '@id': 'http://schema.org/CreativeWork',
-    },
-  },
-  {
-    '@id': 'https://argu.co/ns/od#text',
-    'owl:sameAs': {
-      '@id': 'http://schema.org/text',
-    },
-  },
-  {
-    '@id': 'https://argu.co/ns/core#VoteCollection',
-    'owl:sameAs': {
-      '@id': 'https://argu.co/ns/core#Collection',
-    },
-  },
+    'via <a class="localLink" href="/about">about</a>, properties shared with all CreativeWorks.')),
+  new Statement(NS.schema('Comment'), NS.rdfs('label'), new Literal('Comment')),
+  new Statement(NS.schema('Comment'), NS.rdfs('subClassOf'), NS.schema('CreativeWork')),
+
+  new Statement(NS.argu('Question'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('Question'), NS.rdfs('label'), new Literal('Challenge')),
+  new Statement(NS.argu('Question'), NS.rdfs('subClassOf'), NS.schema('CreativeWork')),
+
+  new Statement(NS.schema('Thing'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.schema('Thing'), NS.rdfs('comment'), new Literal('The most generic type of item.')),
+  new Statement(NS.schema('Thing'), NS.rdfs('label'), new Literal('Thing')),
+
+
+  new Statement(NS.schema('Person'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.schema('Person'), NS.dc('source'), new NamedNode('http://www.w3.org/wiki/WebSchemas/SchemaDotOrgSources#source_rNews')),
+  new Statement(NS.schema('Person'), NS.owl('equivalentClass'), NS.foaf('Person')),
+  new Statement(NS.schema('Person'), NS.rdfs('comment'), new Literal('A person (alive, dead, undead, or fictional).')),
+  new Statement(NS.schema('Person'), NS.rdfs('label'), new Literal('Person')),
+  new Statement(NS.schema('Person'), NS.rdfs('subClassOf'), NS.schema('Thing')),
+
+
+  new Statement(NS.foaf('name'), NS.owl('sameAs'), NS.schema('name')),
+  new Statement(NS.aod('title'), NS.owl('sameAs'), NS.schema('name')),
+
+  new Statement(NS.argu('Motion'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('Motion'), NS.rdfs('label'), new Literal('Motion')),
+  new Statement(NS.argu('Motion'), NS.rdfs('subClassOf'), NS.schema('CreativeWork')),
+
+  new Statement(NS.argu('Argument'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('Argument'), NS.rdfs('label'), new Literal('Argument')),
+  new Statement(NS.argu('Argument'), NS.rdfs('subClassOf'), NS.schema('CreativeWork')),
+
+  new Statement(NS.aod('title'), NS.owl('sameAs'), NS.schema('name')),
 ]);
 
 LRS.execActionByIRI = function execActionByIRI(subject) {
   let object, url;
   this
-    .getEntity(new rdf.NamedNode(subject))
+    .getEntity(new NamedNode(subject))
     .then((action) => {
       object = this.getEntity(anyRDFValue(action, NS.schema('object')));
       return this.getEntity(anyRDFValue(action, NS.schema('target')));

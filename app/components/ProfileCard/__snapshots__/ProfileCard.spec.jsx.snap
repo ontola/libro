@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ProfileCard with link should render 1`] = `
-<linkedSubject>
+<linkedSubject[ProfileCard]>
   <ProfileCard
     full={false}
     loading={false}
@@ -149,5 +149,5 @@ exports[`ProfileCard with link should render 1`] = `
       </div>
     </section>
   </ProfileCard>
-</linkedSubject>
+</linkedSubject[ProfileCard]>
 `;

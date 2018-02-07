@@ -7,7 +7,7 @@ export default {
     {
       acceptValue: PRIO_MAX,
       mediaTypes: 'text/n3',
-      transformer: transformers.rdfFormatsCommon,
+      transformer: transformers.processRDF,
     },
   ],
 };

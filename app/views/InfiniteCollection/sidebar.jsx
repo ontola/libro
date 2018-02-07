@@ -18,7 +18,7 @@ const propTypes = {
 
 const label = (
   <span>
-    <Property forceRender label={NS.schema('name')} />
+    <Property label={NS.schema('name')} />
     <Property label={NS.argu('unreadCount')} />
   </span>
 );
@@ -35,7 +35,7 @@ CollectionSidebar.propTypes = propTypes;
 
 const ConnectedCollection = lowLevel.linkedSubject(lowLevel.linkedVersion(CollectionSidebar));
 
-LinkedRenderStore.registerRenderer(
+export default LinkedRenderStore.registerRenderer(
   ConnectedCollection,
   NS.argu('InfiniteCollection'),
   RENDER_CLASS_NAME,

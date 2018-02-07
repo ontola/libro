@@ -19,7 +19,7 @@ export class Seq extends PropertyBase {
       .context
       .linkedRenderStore
       .tryEntity(this.props.subject)
-      .filter(s => s && s.predicate.value.match(filter))
+      .filter(s => s && s.predicate.value.match(filter) !== null)
       .sort(numAsc);
   }
 

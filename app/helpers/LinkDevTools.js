@@ -4,7 +4,6 @@
 import { allRDFValues, defaultNS } from 'link-lib';
 import {
   LinkedResourceContainer,
-  expandedProperty,
   getLinkedObjectClass,
 } from 'link-redux';
 import rdf from 'rdflib';
@@ -293,7 +292,7 @@ class LinkDevTools {
       }
       return console.info('No loading component was resolved; rendering `null`');
     }
-    if (LinkedResourceContainer.hasErrors(compData)) {
+    if (comp.hasErrors()) {
       console.info('The object is in error state');
       console.debug(this.getPropArr(defaultNS.http('statusCodeValue')));
       if (comp.onError()) {
@@ -305,7 +304,7 @@ class LinkDevTools {
     if (comp.props.children) {
       return console.info('Children were passed to the component, rendering a div containing the children.');
     }
-    const ownObjType = allRDFValues(compData, lrs.namespaces.rdf('type'), true);
+    const ownObjType = allRDFValues(compData, lrs.namespaces.rdf('type'));
     if (!ownObjType) {
       console.debug("Resolved data doesn't contain a type");
     }
@@ -319,7 +318,7 @@ class LinkDevTools {
     const typeMsg = ownObjType ? 'Continuing with type from data.' : 'Continuing with default type.';
     console.debug(typeMsg, ownObjType || lrsDefaultType);
 
-    const renderClass = lrs.getRenderClassForType(ownObjType || lrsDefaultType, comp.topology());
+    const renderClass = lrs.resourceComponent(comp.props.subject, comp.topology());
     console.debug('Requesting class from LRS with topology', comp.topology());
     if (!renderClass) {
       return console.info('No class could be found, rendering no-view div.');
@@ -349,8 +348,8 @@ class LinkDevTools {
     console.debug('Found value:', val);
     console.debug(
       'Component lookup will be done with: ',
-      allRDFValues(lrs.tryEntity(comp.props.subject), defaultNS.rdf('type'), true),
-      expandedProperty(comp.props.label, lrs),
+      allRDFValues(lrs.tryEntity(comp.props.subject), defaultNS.rdf('type')),
+      lrs.expandProperty(comp.props.label),
       this.topology
     );
     const propOrconnectedPropCtx = comp.context.linkedRenderStore
@@ -438,16 +437,15 @@ class LinkDevTools {
     return undefined;
   }
 
-
   getLinkedObjectProperty(property, subject, linkedRenderStore) {
-    return (linkedRenderStore || this.getLRS()).getLinkedObjectProperty(
+    return (linkedRenderStore || this.getLRS()).getResourceProperty(
       property,
       subject
     );
   }
 
   getLinkedObjectPropertyRaw(subject, property, linkedRenderStore) {
-    return (linkedRenderStore || this.getLRS()).getLinkedObjectPropertyRaw(
+    return (linkedRenderStore || this.getLRS()).getResourcePropertyRaw(
       subject,
       property
     );

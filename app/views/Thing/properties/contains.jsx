@@ -4,6 +4,7 @@ import {
   Property,
   Type,
   linkedPropType,
+  lowLevel,
   subjectType,
 } from 'link-redux';
 import { NamedNode } from 'rdflib';
@@ -83,7 +84,7 @@ class Contains extends Component {
 Contains.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
-  Contains,
+  lowLevel.linkedSubject(lowLevel.linkedVersion(Contains)),
   [NS.schema('Thing'), NS.link('Document')],
   NS.argu('contains'),
   NS.argu('sidebarBlock')

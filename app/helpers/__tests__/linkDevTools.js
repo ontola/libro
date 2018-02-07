@@ -107,7 +107,9 @@ describe('helpers', () => {
       it('should handle LOC without data', () => {
         expect(devObj.explainLOC({
           data: () => undefined,
-          props: {},
+          hasErrors: () => false,
+          props: { subject: NS.example('1') },
+          topology: () => undefined,
         }, new LinkedRenderStore())).toBeUndefined();
       });
     });
@@ -143,8 +145,8 @@ describe('helpers', () => {
         const mock = jest.fn().mockReturnValueOnce('ret');
         const mocklrs = jest.fn();
         devObj.getLRS = jest.fn().mockReturnValueOnce(mocklrs);
-        expect(devObj.showProp(mock)({ props: { label: 'a', subject: 'b' } })).toEqual('ret');
-        expect(mock).toBeCalledWith('a', 'b', mocklrs);
+        expect(devObj.showProp(mock)({ props: { label: 'b', subject: 'a' } })).toEqual('ret');
+        expect(mock).toBeCalledWith('a', 'b');
       });
     });
 
@@ -398,25 +400,23 @@ describe('helpers', () => {
       });
 
       it('should expose getLinkedObjectProperty', () => {
-        const tryEntity = jest.fn();
+        const getResourceProperty = jest.fn();
         expect(devObj.getLinkedObjectProperty(
           NS.schema('name'),
           NS.argu('resource/4'),
-          { tryEntity },
-          false
+          { getResourceProperty }
         )).toBeUndefined();
-        expect(tryEntity).toHaveBeenCalledWith(NS.argu('resource/4'));
+        expect(getResourceProperty).toHaveBeenCalled();
       });
 
       it('should expose getLinkedObjectPropertyRaw', () => {
-        const tryEntity = jest.fn();
+        const getResourcePropertyRaw = jest.fn();
         expect(devObj.getLinkedObjectPropertyRaw(
           NS.schema('name'),
           NS.argu('resource/4'),
-          { tryEntity },
-          false
+          { getResourcePropertyRaw }
         )).toBeUndefined();
-        expect(tryEntity).toHaveBeenCalledWith(NS.argu('resource/4'));
+        expect(getResourcePropertyRaw).toHaveBeenCalled();
       });
     });
   });

@@ -32,6 +32,9 @@ const defaultProps = {
 export class ProfileCard extends PropertyBase {
   getLegacyProperty(ldprop, prop) {
     assert(ldprop, 'ldprop is required');
+    if (typeof this.props.subject === 'undefined') {
+      return this.props[prop];
+    }
     const lp = this.getLinkedObjectProperty(ldprop);
     return lp ? lp.value : this.props[prop];
   }

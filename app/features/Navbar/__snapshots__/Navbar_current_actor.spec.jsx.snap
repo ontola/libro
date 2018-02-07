@@ -71,7 +71,7 @@ exports[`Navbar current_actor logged out renders the correct representation 1`] 
   <a
     aria-current={false}
     className={undefined}
-    href="/u/sign_in?r=about%3Ablank"
+    href="/u/sign_in?r=https%3A%2F%2Fargu.dev%2Fo%2F1"
     onClick={[Function]}
     style={undefined}
   >

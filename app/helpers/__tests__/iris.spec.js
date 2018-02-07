@@ -26,7 +26,7 @@ describe('helpers', () => {
     describe('currentURL', () => {
       it('should return the window location', () => {
         const windowed = iris(window);
-        expect(windowed.currentURL()).toEqual('about:blank');
+        expect(windowed.currentURL()).toEqual('https://argu.dev/o/1');
       });
 
       it('should return undefined without window', () => {
