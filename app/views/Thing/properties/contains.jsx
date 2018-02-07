@@ -7,11 +7,9 @@ import {
   lowLevel,
   subjectType,
 } from 'link-redux';
-import { NamedNode } from 'rdflib';
 import React, { Component } from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
-import { FRONTEND_URL } from '../../../config';
 import {
   LDLink,
   SideBarCollapsible,
@@ -51,7 +49,7 @@ class Contains extends Component {
           id={`${this.props.subject}-menu-items`}
           labelComp={label}
         >
-          <LinkedResourceContainer subject={new NamedNode(`${FRONTEND_URL}/menus/organizations`)} />
+          <LinkedResourceContainer subject={NS.app('menus/organizations')} />
         </SideBarCollapsible>
       </div>
     );

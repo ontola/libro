@@ -1,12 +1,10 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { LinkedResourceContainer, Property, lowLevel, subjectType } from 'link-redux';
-import { NamedNode } from 'rdflib';
 import React from 'react';
 
 import {
   SideBarCollapsible
 } from '../../components';
-import { FRONTEND_URL } from '../../config';
 import { NS } from '../../helpers/LinkedRenderStore';
 
 const propTypes = {
@@ -19,7 +17,7 @@ const CurrentActor = ({ subject }) => (
     id={`${subject}-sidebar-menu`}
     labelComp={<Property label={NS.argu('actor')} />}
   >
-    <LinkedResourceContainer subject={new NamedNode(`${FRONTEND_URL}/menus/user`)}>
+    <LinkedResourceContainer subject={NS.app('menus/user')}>
       <Property label={NS.argu('menuItems')} />
     </LinkedResourceContainer>
   </SideBarCollapsible>

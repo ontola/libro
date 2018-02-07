@@ -22,6 +22,7 @@ transformers
 LRS.api.setAcceptForHost(FRONTEND_URL, 'text/n3');
 LRS.api.setAcceptForHost('https://beta.argu.co/', 'text/n3');
 
+LRS.namespaces.app = memoizedNamespace(FRONTEND_URL.endsWith('/') ? FRONTEND_URL : `${FRONTEND_URL}/`);
 LRS.namespaces.aod = memoizedNamespace('https://argu.co/ns/od#');
 export const NS = LRS.namespaces;
 
