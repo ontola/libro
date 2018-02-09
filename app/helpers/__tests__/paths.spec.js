@@ -9,7 +9,7 @@ describe('helpers', () => {
         expect(currentLocation({
           pathname: '/n',
           search: '?type=infinite'
-        })).toEqual('https://argu.dev/n?type=infinite');
+        }).value).toEqual('https://argu.dev/n?type=infinite');
       });
     });
 

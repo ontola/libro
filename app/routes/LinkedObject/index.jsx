@@ -15,7 +15,7 @@ const propTypes = {
 };
 
 const LinkedObject = ({ location }) => (
-  <LinkedResourceContainer subject={NS.app(currentLocation(location))}>
+  <LinkedResourceContainer subject={currentLocation(location)}>
     <Container>
       <Property label={NS.schema('isPartOf')} />
       <Type />

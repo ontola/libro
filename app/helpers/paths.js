@@ -1,7 +1,7 @@
-import { FRONTEND_URL } from '../config';
+import { NS } from './LinkedRenderStore';
 
 export function currentLocation(location) {
-  return `${FRONTEND_URL}${location.pathname}${location.search}`;
+  return NS.app(`${location.pathname.substr(1)}${location.search}`);
 }
 
 const path = {
