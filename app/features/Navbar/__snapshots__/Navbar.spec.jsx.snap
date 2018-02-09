@@ -22,6 +22,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
         subject={
           NamedNode {
             "sI": 76,
+            "term": "o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
             "termType": "NamedNode",
             "value": "https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
           }
@@ -29,6 +30,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
         topology={
           NamedNode {
             "sI": 48,
+            "term": "sidebarBlock",
             "termType": "NamedNode",
             "value": "https://argu.co/ns/core#sidebarBlock",
           }
@@ -40,6 +42,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
           subject={
             NamedNode {
               "sI": 76,
+              "term": "o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
               "termType": "NamedNode",
               "value": "https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
             }
@@ -47,6 +50,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
           topology={
             NamedNode {
               "sI": 48,
+              "term": "sidebarBlock",
               "termType": "NamedNode",
               "value": "https://argu.co/ns/core#sidebarBlock",
             }
@@ -66,6 +70,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
               label={
                 NamedNode {
                   "sI": 47,
+                  "term": "contains",
                   "termType": "NamedNode",
                   "value": "https://argu.co/ns/core#contains",
                 }
@@ -76,6 +81,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                 label={
                   NamedNode {
                     "sI": 47,
+                    "term": "contains",
                     "termType": "NamedNode",
                     "value": "https://argu.co/ns/core#contains",
                   }
@@ -83,6 +89,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                 subject={
                   NamedNode {
                     "sI": 76,
+                    "term": "o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
                     "termType": "NamedNode",
                     "value": "https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
                   }
@@ -94,13 +101,16 @@ exports[`Navbar as default renders the correct representation 1`] = `
                   label={
                     NamedNode {
                       "sI": 47,
+                      "term": "contains",
                       "termType": "NamedNode",
                       "value": "https://argu.co/ns/core#contains",
                     }
                   }
+                  limit={1}
                   subject={
                     NamedNode {
                       "sI": 76,
+                      "term": "o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
                       "termType": "NamedNode",
                       "value": "https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
                     }
@@ -113,10 +123,12 @@ exports[`Navbar as default renders the correct representation 1`] = `
                     label={
                       NamedNode {
                         "sI": 47,
+                        "term": "contains",
                         "termType": "NamedNode",
                         "value": "https://argu.co/ns/core#contains",
                       }
                     }
+                    limit={1}
                     linkedProp={
                       NamedNode {
                         "termType": "NamedNode",
@@ -126,6 +138,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                     subject={
                       NamedNode {
                         "sI": 76,
+                        "term": "o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
                         "termType": "NamedNode",
                         "value": "https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
                       }
@@ -138,10 +151,12 @@ exports[`Navbar as default renders the correct representation 1`] = `
                       label={
                         NamedNode {
                           "sI": 47,
+                          "term": "contains",
                           "termType": "NamedNode",
                           "value": "https://argu.co/ns/core#contains",
                         }
                       }
+                      limit={1}
                       linkedProp={
                         NamedNode {
                           "termType": "NamedNode",
@@ -151,6 +166,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                       subject={
                         NamedNode {
                           "sI": 76,
+                          "term": "o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
                           "termType": "NamedNode",
                           "value": "https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
                         }
@@ -163,10 +179,12 @@ exports[`Navbar as default renders the correct representation 1`] = `
                         label={
                           NamedNode {
                             "sI": 47,
+                            "term": "contains",
                             "termType": "NamedNode",
                             "value": "https://argu.co/ns/core#contains",
                           }
                         }
+                        limit={1}
                         linkedProp={
                           NamedNode {
                             "termType": "NamedNode",
@@ -176,6 +194,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                         subject={
                           NamedNode {
                             "sI": 76,
+                            "term": "o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
                             "termType": "NamedNode",
                             "value": "https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
                           }
@@ -221,6 +240,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                         label={
                                           NamedNode {
                                             "sI": 42,
+                                            "term": "name",
                                             "termType": "NamedNode",
                                             "value": "http://schema.org/name",
                                           }
@@ -237,6 +257,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                           label={
                                             NamedNode {
                                               "sI": 42,
+                                              "term": "name",
                                               "termType": "NamedNode",
                                               "value": "http://schema.org/name",
                                             }
@@ -276,6 +297,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                   label={
                                                     NamedNode {
                                                       "sI": 42,
+                                                      "term": "name",
                                                       "termType": "NamedNode",
                                                       "value": "http://schema.org/name",
                                                     }
@@ -285,6 +307,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                     label={
                                                       NamedNode {
                                                         "sI": 42,
+                                                        "term": "name",
                                                         "termType": "NamedNode",
                                                         "value": "http://schema.org/name",
                                                       }
@@ -302,10 +325,12 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                       label={
                                                         NamedNode {
                                                           "sI": 42,
+                                                          "term": "name",
                                                           "termType": "NamedNode",
                                                           "value": "http://schema.org/name",
                                                         }
                                                       }
+                                                      limit={1}
                                                       subject={
                                                         NamedNode {
                                                           "termType": "NamedNode",
@@ -410,6 +435,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                       subject={
                                                         NamedNode {
                                                           "sI": 80,
+                                                          "term": "menus/organizations",
                                                           "termType": "NamedNode",
                                                           "value": "https://argu.dev/menus/organizations",
                                                         }
@@ -421,6 +447,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                         subject={
                                                           NamedNode {
                                                             "sI": 80,
+                                                            "term": "menus/organizations",
                                                             "termType": "NamedNode",
                                                             "value": "https://argu.dev/menus/organizations",
                                                           }
@@ -465,6 +492,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                         label={
                                           NamedNode {
                                             "sI": 42,
+                                            "term": "name",
                                             "termType": "NamedNode",
                                             "value": "http://schema.org/name",
                                           }
@@ -474,6 +502,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                           label={
                                             NamedNode {
                                               "sI": 42,
+                                              "term": "name",
                                               "termType": "NamedNode",
                                               "value": "http://schema.org/name",
                                             }
@@ -491,10 +520,12 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                             label={
                                               NamedNode {
                                                 "sI": 42,
+                                                "term": "name",
                                                 "termType": "NamedNode",
                                                 "value": "http://schema.org/name",
                                               }
                                             }
+                                            limit={1}
                                             subject={
                                               NamedNode {
                                                 "termType": "NamedNode",
@@ -520,6 +551,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                 label={
                                   NamedNode {
                                     "sI": 81,
+                                    "term": "baseColor",
                                     "termType": "NamedNode",
                                     "value": "https://argu.co/ns/core#baseColor",
                                   }
@@ -529,6 +561,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                   label={
                                     NamedNode {
                                       "sI": 81,
+                                      "term": "baseColor",
                                       "termType": "NamedNode",
                                       "value": "https://argu.co/ns/core#baseColor",
                                     }
@@ -546,10 +579,12 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                     label={
                                       NamedNode {
                                         "sI": 81,
+                                        "term": "baseColor",
                                         "termType": "NamedNode",
                                         "value": "https://argu.co/ns/core#baseColor",
                                       }
                                     }
+                                    limit={1}
                                     subject={
                                       NamedNode {
                                         "termType": "NamedNode",
@@ -580,6 +615,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
         subject={
           NamedNode {
             "sI": 77,
+            "term": "c_a",
             "termType": "NamedNode",
             "value": "https://argu.dev/c_a",
           }
@@ -587,6 +623,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
         topology={
           NamedNode {
             "sI": 50,
+            "term": "sidebar",
             "termType": "NamedNode",
             "value": "https://argu.co/ns/core#sidebar",
           }
@@ -598,6 +635,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
           subject={
             NamedNode {
               "sI": 77,
+              "term": "c_a",
               "termType": "NamedNode",
               "value": "https://argu.dev/c_a",
             }
@@ -605,6 +643,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
           topology={
             NamedNode {
               "sI": 50,
+              "term": "sidebar",
               "termType": "NamedNode",
               "value": "https://argu.co/ns/core#sidebar",
             }
@@ -616,6 +655,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
         subject={
           NamedNode {
             "sI": 78,
+            "term": "n?type=infinite",
             "termType": "NamedNode",
             "value": "https://argu.dev/n?type=infinite",
           }
@@ -623,6 +663,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
         topology={
           NamedNode {
             "sI": 50,
+            "term": "sidebar",
             "termType": "NamedNode",
             "value": "https://argu.co/ns/core#sidebar",
           }
@@ -634,6 +675,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
           subject={
             NamedNode {
               "sI": 78,
+              "term": "n?type=infinite",
               "termType": "NamedNode",
               "value": "https://argu.dev/n?type=infinite",
             }
@@ -641,6 +683,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
           topology={
             NamedNode {
               "sI": 50,
+              "term": "sidebar",
               "termType": "NamedNode",
               "value": "https://argu.co/ns/core#sidebar",
             }
@@ -652,6 +695,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
         subject={
           NamedNode {
             "sI": 79,
+            "term": "menus/info",
             "termType": "NamedNode",
             "value": "https://argu.dev/menus/info",
           }
@@ -659,6 +703,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
         topology={
           NamedNode {
             "sI": 50,
+            "term": "sidebar",
             "termType": "NamedNode",
             "value": "https://argu.co/ns/core#sidebar",
           }
@@ -670,6 +715,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
           subject={
             NamedNode {
               "sI": 79,
+              "term": "menus/info",
               "termType": "NamedNode",
               "value": "https://argu.dev/menus/info",
             }
@@ -677,6 +723,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
           topology={
             NamedNode {
               "sI": 50,
+              "term": "sidebar",
               "termType": "NamedNode",
               "value": "https://argu.co/ns/core#sidebar",
             }
