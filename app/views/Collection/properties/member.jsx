@@ -1,4 +1,4 @@
-import LinkedRenderStore, { getValueOrID } from 'link-lib';
+import LinkedRenderStore from 'link-lib';
 import { LinkedResourceContainer, PropertyBase, lowLevel } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -15,7 +15,7 @@ class MemberComp extends PropertyBase {
     const topology = this.context.topology ? this.context.topology : NS.argu('collection');
     return prop.slice(0, this.props.limit).map(iri => (
       <LinkedResourceContainer
-        key={`${this.props.subject}:${getValueOrID(iri)}`}
+        key={`${this.props.subject}:${iri.subject}`}
         subject={iri.object}
         topology={topology}
       />
@@ -46,10 +46,6 @@ class MemberComp extends PropertyBase {
 }
 
 MemberComp.propTypes = propTypes;
-MemberComp.contextTypes = {
-  linkedRenderStore: PropTypes.object,
-  topology: PropTypes.string,
-};
 
 const Member = lowLevel.linkedSubject(lowLevel.linkedVersion(MemberComp));
 

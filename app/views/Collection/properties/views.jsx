@@ -1,9 +1,9 @@
 import LinkedRenderStore from 'link-lib';
 import {
   LinkedResourceContainer,
-  contextTypes,
   labelType,
-  subjectType
+  subjectType,
+  PropertyBase,
 } from 'link-redux';
 import React from 'react';
 
@@ -12,25 +12,29 @@ import {
 } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
 
-const Views = (props, context) => {
-  const prop = context.linkedRenderStore.getResourcePropertyRaw(props.subject, props.label);
-  if (typeof prop === 'string') {
-    return <LinkedResourceContainer subject={prop} />;
-  }
-  const obs = prop.map(iri => <LinkedResourceContainer subject={iri.object} />);
-  if (obs && obs.length > 1) {
-    return <Columns>{obs}</Columns>;
-  } else if (obs) {
-    return <div>{obs}</div>;
-  }
-  return null;
-};
+class Views extends PropertyBase {
+  render() {
+    const prop = this.getLinkedObjectPropertyRaw(this.props.label);
 
-Views.contextTypes = contextTypes;
+    if (prop.length === 1) {
+      return <LinkedResourceContainer forceRender subject={prop[0].object} />;
+    }
+    const obs = prop.map(iri => <LinkedResourceContainer subject={iri.object} />);
+    if (obs && obs.length > 1) {
+      return <Columns>{obs}</Columns>;
+    } else if (obs) {
+      return <div>{obs}</div>;
+    }
+
+    return null;
+  }
+}
+
 Views.propTypes = {
   label: labelType.isRequired,
   subject: subjectType
 };
+
 export default [
   LinkedRenderStore.registerRenderer(
     Views,

@@ -12,7 +12,6 @@ import { connect } from 'react-redux';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { getPage } from '../../state/pagination/selectors';
 
-// export { default as voteMatch } from './voteMatch';
 import First from './properties/first';
 import Member from './properties/member';
 import Name from './properties/name';
@@ -22,8 +21,8 @@ import Views from './properties/views';
 const viewsOrMembers = (views, members, topology) => (
   <Property
     forceRender
-    label={views ? NS.argu('views') : NS.argu('members')}
-    linkedProp={views || members}
+    label={views.length > 0 ? NS.argu('views') : NS.argu('members')}
+    linkedProp={views.length > 0 ? views : members}
     topology={topology}
   />
 );
@@ -49,9 +48,9 @@ class Collection extends PropertyBase {
     } else {
       children = viewsOrMembers(views, this.getLinkedObjectPropertyRaw(NS.argu('members')));
     }
-    const createAction = views ? undefined : <Property label={NS.argu('newAction')} />;
-    const name = views ? <Property label={NS.schema('name')} /> : null;
-    const pagination = !views ? this.pagination() : null;
+    const createAction = views.length > 0 ? undefined : <Property label={NS.argu('newAction')} />;
+    const name = views.length > 0 ? <Property label={NS.schema('name')} /> : null;
+    const pagination = views.length === 0 ? this.pagination() : null;
 
     return (
       <div>
