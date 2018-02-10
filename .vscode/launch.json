@@ -6,7 +6,7 @@
             "type": "firefox",
             "request": "launch",
             "reAttach": true,
-            "url": "https://argu.dev/nederland",
+            "url": "https://argu.localdev/*",
             "pathMappings": [{
                 "url": "webpack:///",
                 "path": "${webRoot}"
@@ -16,13 +16,28 @@
             "name": "Attach Chrome Front",
             "type": "chrome",
             "request": "attach",
-            "url": "https://argu.dev/nederland",
+            "url": "https://argu.localdev/*",
             "port": 9222,
             "sourceMaps": true,
             "webRoot": "${workspaceFolder}",
             "sourceMapPathOverrides": {
                 "webpack:///./*":"${workspaceFolder}/*"
             }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Jest Tests",
+            "program": "${workspaceRoot}/node_modules/jest/bin/jest.js",
+            "args": [
+                "-i"
+            ],
+            // "preLaunchTask": "build",
+            "internalConsoleOptions": "openOnSessionStart",
+            "outFiles": [
+                "${workspaceRoot}/dist/**/*"
+            ],
+            "envFile": "${workspaceRoot}/.env"
         }
     ]
 }
