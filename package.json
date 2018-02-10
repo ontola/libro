@@ -185,7 +185,7 @@
     "stats:bundle": "cross-env NODE_ENV=production webpack -p --config ./webpack/static.config.js --json > stats.json",
     "styleguide-build": "styleguidist build",
     "styleguide-server": "styleguidist server",
-    "test": "jest"
+    "test": "NODE_ENV=test jest"
   },
   "moduleRoots": [
     "./app"

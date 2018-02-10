@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import ReactCollapse from 'react-collapse';
+import * as Collapse from 'react-collapse';
 
 import './Collapsible.scss';
 
@@ -53,6 +53,8 @@ const Collapsible = ({
     return -1;
   };
 
+  const CollapsibleComp = __TEST__ ? Collapse.default : Collapse.default.Collapse;
+
   return (
     <div aria-expanded={opened} className="Collapsible">
       {trigger &&
@@ -60,7 +62,7 @@ const Collapsible = ({
       }
       <div className="Collapsible__visible-content">{visibleContent}</div>
       <div aria-hidden={tabIndex()} className="Collapsible__invisible-content">
-        <ReactCollapse
+        <CollapsibleComp
           isOpened={opened}
           keepCollapsedContent={(minHeight !== undefined)}
           springConfig={{
@@ -72,7 +74,7 @@ const Collapsible = ({
           }}
         >
           {alwaysMountChildren ? children : (opened && children)}
-        </ReactCollapse>
+        </CollapsibleComp>
       </div>
     </div>
   );

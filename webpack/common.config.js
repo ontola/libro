@@ -49,6 +49,7 @@ const common = {
       __DEVELOPMENT__: process.env.NODE_ENV === 'development',
       __ORIGIN__: JSON.stringify(`https://${process.env.FRONTEND_HOSTNAME}`),
       __PRODUCTION__: process.env.NODE_ENV === 'production',
+      __TEST__: process.env.NODE_ENV === 'test',
       'process.env': {
         ARGU_API_URL: JSON.stringify(process.env.ARGU_API_URL),
         FRONTEND_HOSTNAME: JSON.stringify(process.env.FRONTEND_HOSTNAME),
