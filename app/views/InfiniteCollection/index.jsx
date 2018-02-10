@@ -6,6 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { Container, WidgetTopology } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 
 import sidebar from './sidebar';
@@ -31,11 +32,13 @@ class InfiniteCollection extends PropertyBase {
         next = <Property count={this.props.count} label={NS.argu('next')} />;
       }
       return (
-        <div>
-          {header}
+        <Container>
+          <WidgetTopology>
+            {header}
+          </WidgetTopology>
           <Property forceRender label={NS.argu('members')} />
           {next}
-        </div>
+        </Container>
       );
     }
 

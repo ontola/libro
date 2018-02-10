@@ -78,10 +78,10 @@ LRS.addOntologySchematics([
 LRS.execActionByIRI = function execActionByIRI(subject) {
   let object, url;
   this
-    .getEntity(new NamedNode(subject))
+    .getEntity(subject)
     .then((action) => {
-      object = this.getEntity(anyRDFValue(action, NS.schema('object')));
-      return this.getEntity(anyRDFValue(action, NS.schema('target')));
+      object = this.getResourceProperty(action, NS.schema('object'));
+      return this.getResourceProperties(action, NS.schema('target'));
     })
     .then((target) => {
       url = anyRDFValue(target, NS.schema('url'));

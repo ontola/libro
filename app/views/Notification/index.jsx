@@ -37,7 +37,11 @@ export default [
     Notification,
     NS.argu('Notification'),
     RENDER_CLASS_NAME,
-    [undefined, NS.argu('collection')]
+    [
+      undefined,
+      NS.argu('collection'),
+      NS.argu('container'),
+    ]
   ),
   Sidebar,
   Creator,
