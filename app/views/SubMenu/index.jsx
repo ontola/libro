@@ -14,6 +14,7 @@ import {
   SideBarCollapsible,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { SideBarLinkIcon } from '../../components/SideBarLink/index';
 
 import Label from './properties/label';
 
@@ -24,6 +25,7 @@ const propTypes = {
 const SubMenuSideBar = ({ subject }) => {
   const label = (
     <Property forSubMenu label={NS.argu('href')}>
+      <SideBarLinkIcon />
       <Property label={NS.argu('label')} />
     </Property>
   );
