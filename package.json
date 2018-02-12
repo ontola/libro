@@ -175,7 +175,7 @@
     "coverage": "jest --coverage",
     "doc:style": "sassdoc ./app -d ./docs/sass",
     "dev": "npm-run-all -p corsproxy start styleguide-server",
-    "lint": "./node_modules/.bin/eslint --fix --ext .jsx,.js .",
+    "lint": "./node_modules/.bin/eslint --ext .jsx,.js .",
     "lint:style": "sass-lint ./app/**/*.scss -v -q",
     "precommit": "lint-staged",
     "secure": "nsp check && retire",
