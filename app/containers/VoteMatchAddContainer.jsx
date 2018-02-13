@@ -7,7 +7,7 @@ import { isVoteablePresentInVoteMatch } from 'state/voteMatch/selectors';
 
 import {
   Button,
-  DetailPure,
+  Detail,
 } from '../components';
 
 const propTypes = {
@@ -27,7 +27,7 @@ const VoteMatchAddContainer = ({
         plain
         onClick={onRemoveVoteMatchVoteable}
       >
-        <DetailPure icon="times" text="Verwijder uit stemwijzer" />
+        <Detail icon="times" text="Verwijder uit stemwijzer" />
       </Button>
     );
   }
@@ -36,7 +36,7 @@ const VoteMatchAddContainer = ({
       plain
       onClick={onAddVoteMatchVoteable}
     >
-      <DetailPure icon="plus" text="Voeg toe aan stemwijzer" />
+      <Detail icon="plus" text="Voeg toe aan stemwijzer" />
     </Button>
   );
 };

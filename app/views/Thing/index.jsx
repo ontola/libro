@@ -1,5 +1,5 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { Property } from 'link-redux';
+import { link, Property } from 'link-redux';
 import React from 'react';
 
 import {
@@ -10,8 +10,10 @@ import {
   CardMenuFloater,
   CardRow,
   Container,
+  Detail,
   DetailsBar,
   HoverBox,
+  LDLink,
   LinkCard,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
@@ -145,6 +147,20 @@ export default [
     NS.schema('Thing'),
     RENDER_CLASS_NAME,
     NS.argu('parent')
+  ),
+  LinkedRenderStore.registerRenderer(
+    link([NS.schema('name'), NS.schema('image')])(({ image, name }) => (
+      <LDLink>
+        <Detail
+          data-test="Thing-parent"
+          linkedImage={!!image}
+          text={name.value}
+        />
+      </LDLink>
+    )),
+    NS.schema('Thing'),
+    RENDER_CLASS_NAME,
+    NS.argu('detail')
   ),
   LinkedRenderStore.registerRenderer(
     ThingGrid,

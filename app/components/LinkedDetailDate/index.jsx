@@ -1,8 +1,9 @@
 import {
   PropertyBase,
-  lowLevel,
+  link,
 } from 'link-redux';
 import PropTypes from 'prop-types';
+import { Literal } from 'rdflib';
 import React from 'react';
 import moment from 'moment';
 
@@ -12,8 +13,13 @@ import '../DetailDate/DetailDate.scss';
 
 const propTypes = {
   asHours: PropTypes.bool,
+  dateCreated: PropTypes.instanceOf(Literal),
+  dateUpdated: PropTypes.instanceOf(Literal),
+  duration: PropTypes.instanceOf(Literal),
+  endDate: PropTypes.instanceOf(Literal),
   floatRight: PropTypes.bool,
   hideIcon: PropTypes.bool,
+  startDate: PropTypes.instanceOf(Literal),
 };
 
 const prefixMap = {
@@ -26,25 +32,18 @@ const prefixMap = {
 
 class LinkedDetailDate extends PropertyBase {
   mostImportantDate() {
-    return this.getP('startDate') ||
-      this.getP('dateCreated');
-  }
-
-  getP(prop) {
-    if (this.props[prop]) {
-      return this.props[prop];
-    }
-    const val = this.context.linkedRenderStore.getLinkedObjectPropertyRaw(
-      this.props.subject,
-      NS.schema(prop)
-    );
-    return val && val.value;
+    const date = this.props.startDate || this.props.dateCreated;
+    return date && date.value;
   }
 
   render() {
-    const { asHours, floatRight, hideIcon } = this.props;
+    const {
+      asHours,
+      floatRight,
+      hideIcon,
+    } = this.props;
 
-    const processItem = item => (this.getP(item) ? `${prefixMap[item]}: ${this.getP(item)}` : '');
+    const processItem = item => (this.getP(item) ? `${prefixMap[item]}: ${this.props[item.value]}` : '');
 
     const hoverText = `${processItem('startDate')}${processItem('endDate')}${processItem('dateCreated')}${processItem('dateUpdated')}${processItem('duration')}.`;
 
@@ -56,6 +55,7 @@ class LinkedDetailDate extends PropertyBase {
     };
     return (
       <Detail
+        linkedImage
         floatRight={floatRight}
         hideIcon={hideIcon}
         text={displayValue()}
@@ -67,4 +67,10 @@ class LinkedDetailDate extends PropertyBase {
 
 LinkedDetailDate.propTypes = propTypes;
 
-export default lowLevel.linkedSubject(lowLevel.linkedVersion(LinkedDetailDate));
+export default link([
+  NS.schema('startDate'),
+  NS.schema('endDate'),
+  NS.schema('dateCreated'),
+  NS.schema('dateUpdated'),
+  NS.schema('duration'),
+])(LinkedDetailDate);

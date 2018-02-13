@@ -1,16 +1,12 @@
-import { Property, PropertyBase, subjectType, lowLevel, lrsType } from 'link-redux';
+import { Property } from 'link-redux';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { PureComponent } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { browserHistory } from 'react-router';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 
 import './Detail.scss';
-
-const contextTypes = {
-  linkedRenderStore: lrsType,
-};
 
 const propTypes = {
   className: PropTypes.string,
@@ -20,7 +16,7 @@ const propTypes = {
   hideIcon: PropTypes.bool,
   icon: PropTypes.string,
   imageUrl: PropTypes.string,
-  subject: subjectType,
+  linkedImage: PropTypes.bool,
   text: PropTypes.string,
   /** HTML title attribute */
   title: PropTypes.string,
@@ -31,22 +27,19 @@ const defaultProps = {
   title: '',
 };
 
-class Detail extends PropertyBase {
+class Detail extends PureComponent {
   getImage() {
-    if (typeof this.props.subject !== 'undefined') {
-      return <Property label={NS.schema('image')} />;
+    if (this.props.linkedImage === true) {
+      return <Property data-test="Detail-linked-image" label={NS.schema('image')} />;
     }
-    return this.props.imageUrl &&
-      <img alt={this.props.title} className="Detail__image" src={this.props.imageUrl} />;
-  }
-
-  getText() {
-    const { label, text } = this.props;
-    let displayText = text;
-    if (typeof this.props.subject !== 'undefined' && label && this.getLinkedObjectProperty()) {
-      displayText = this.getLinkedObjectProperty().value;
-    }
-    return <span className="Detail__text">{displayText}</span>;
+    return this.props.imageUrl && (
+      <img
+        alt={this.props.title}
+        className="Detail__image"
+        data-test="Detail-image"
+        src={this.props.imageUrl}
+      />
+    );
   }
 
   getClickBinding() {
@@ -62,25 +55,21 @@ class Detail extends PropertyBase {
 
   render() {
     const {
-      icon,
-      url,
-      imageUrl,
-      hideIcon,
       className,
-      title,
       floatRight,
+      hideIcon,
+      icon,
+      imageUrl,
+      text,
+      title,
+      url,
     } = this.props;
     const Element = url ? 'a' : 'div';
-    const classNames = [
-      'Detail',
-      url && 'Detail--link',
-      floatRight && 'Detail--float-right',
-      className,
-    ].join(' ');
 
     return (
       <Element
-        className={classNames}
+        className={`Detail ${url && 'Detail--link '}${floatRight && 'Detail--float-right '} ${className}`}
+        data-test="Detail"
         href={url}
         title={title}
         onClick={this.getClickBinding()}
@@ -88,27 +77,18 @@ class Detail extends PropertyBase {
         {this.getImage()}
 
         {!imageUrl && icon && !hideIcon &&
-        <span className="Detail__icon">
+        <span className="Detail__icon" data-test="Detail-icon">
           <FontAwesome name={icon} />
         </span>
         }
 
-        {this.getText()}
+        {text && <span className="Detail__text" data-test="Detail-text">{text}</span>}
       </Element>
     );
   }
 }
 
-Detail.contextTypes = contextTypes;
 Detail.defaultProps = defaultProps;
 Detail.propTypes = propTypes;
 
-const DetailSubject = (props, { subject }) => React.createElement(
-  lowLevel.linkedVersion(Detail),
-  { subject, ...props }
-);
-DetailSubject.contextTypes = {
-  subject: subjectType,
-};
-
-export default DetailSubject;
+export default Detail;
