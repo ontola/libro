@@ -25,7 +25,27 @@ LRS.api.setAcceptForHost('https://beta.argu.co/', 'text/n3');
 LRS.namespaces.app = memoizedNamespace(FRONTEND_URL.endsWith('/') ? FRONTEND_URL : `${FRONTEND_URL}/`);
 LRS.namespaces.aod = memoizedNamespace('https://argu.co/ns/od#');
 LRS.namespaces.council = memoizedNamespace('https://argu.co/ns/0.1/gov/council#');
+
 export const NS = LRS.namespaces;
+
+export const allTopologies = [
+  undefined,
+  NS.argu('card'),
+  NS.argu('cardFixed'),
+  NS.argu('cardHover'),
+  NS.argu('cardMain'),
+  NS.argu('cardRow'),
+  NS.argu('collection'),
+  NS.argu('container'),
+  NS.argu('detail'),
+  NS.argu('inline'),
+  NS.argu('sidebar'),
+  NS.argu('sidebarBlock'),
+  NS.argu('section'),
+  NS.argu('grid'),
+  NS.argu('voteBubble'),
+  NS.argu('widget'),
+];
 
 LRS.addOntologySchematics([
   new Statement(NS.rdfs('Resource'), NS.rdfs('subClassOf'), NS.schema('Thing')),

@@ -2,7 +2,7 @@ import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { LinkedResourceContainer, PropertyBase } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import { allTopologies, NS } from '../../helpers/LinkedRenderStore';
 
 const base = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#_';
 const filter = /^http:\/\/www\.w3\.org\/1999\/02\/22-rdf-syntax-ns#_[\d]+$/;
@@ -45,20 +45,5 @@ export default LinkedRenderStore.registerRenderer(
   Seq,
   NS.rdf('Seq'),
   RENDER_CLASS_NAME,
-  [
-    undefined,
-    NS.argu('card'),
-    NS.argu('cardFixed'),
-    NS.argu('cardMain'),
-    NS.argu('cardRow'),
-    NS.argu('collection'),
-    NS.argu('container'),
-    NS.argu('detail'),
-    NS.argu('inline'),
-    NS.argu('sidebar'),
-    NS.argu('sidebarBlock'),
-    NS.argu('section'),
-    NS.argu('grid'),
-    NS.argu('widget'),
-  ]
+  allTopologies
 );
