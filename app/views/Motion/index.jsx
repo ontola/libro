@@ -49,7 +49,7 @@ const MotionCollection = () => (
         <LinkedDetailDate />
       </DetailsBar>
       <Property label={NS.schema('text')} />
-      <Property label={NS.argu('arguments')} />
+      <Property forceRender label={NS.argu('arguments')} />
     </CardContent>
     <Property forceRender label={NS.argu('currentVote')} />
   </Card>

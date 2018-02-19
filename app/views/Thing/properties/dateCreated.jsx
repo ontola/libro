@@ -9,7 +9,7 @@ const propTypes = {
   linkedProp: linkedPropType,
 };
 
-const DateCreated = ({ linkedProp }) => <DetailDate createdAt={linkedProp.value} />;
+const DateCreated = ({ linkedProp }) => <DetailDate createdAt={new Date(linkedProp.value)} />;
 
 DateCreated.propTypes = propTypes;
 

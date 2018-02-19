@@ -18,6 +18,7 @@ import {
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 
+import Arguments from './properties/arguments';
 import BaseColor from './properties/baseColor';
 import Contains from './properties/contains';
 import CollectionAssociation from './properties/collectionAssociation';
@@ -60,9 +61,13 @@ const ThingPage = () => (
         <Property label={NS.council('agenda')} />
       </CardMain>
       <Property label={NS.argu('blogPosts')} />
-      <Property label={NS.schema('comments')} />
-      <Property label={NS.argu('arguments')} />
       <Property label={NS.argu('motions')} />
+    </Container>
+    <Container size="large">
+      <Property forceRender label={NS.argu('arguments')} />
+    </Container>
+    <Container>
+      <Property label={NS.schema('comments')} />
     </Container>
   </div>
 );
@@ -77,7 +82,7 @@ const ThingContainer = () => (
         <Property label={NS.schema('dateCreated')} />
       </DetailsBar>
       <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
-      <Property label={NS.argu('arguments')} />
+      <Property forceRender label={NS.argu('arguments')} />
     </CardContent>
   </Card>
 );
@@ -184,6 +189,7 @@ export default [
       NS.argu('cardMain'),
     ]
   ),
+  Arguments,
   BaseColor,
   Contains,
   CollectionAssociation,

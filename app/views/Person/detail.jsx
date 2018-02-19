@@ -1,4 +1,7 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
+import { link, Property } from 'link-redux';
+import PropTypes from 'prop-types';
+import { Literal } from 'rdflib';
 import React from 'react';
 
 import {
@@ -7,14 +10,23 @@ import {
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 
-const PersonDetail = () => (
+const propTypes = {
+  name: PropTypes.instanceOf(Literal),
+};
+
+const PersonDetail = ({ name }) => (
   <LDLink>
-    <Detail label={NS.schema('name')} />
+    <div style={{ display: 'inline-flex' }}>
+      <Property label={NS.schema('image')} />
+      <Detail text={name.value} />
+    </div>
   </LDLink>
 );
 
+PersonDetail.propTypes = propTypes;
+
 export default LinkedRenderStore.registerRenderer(
-  PersonDetail,
+  link([NS.schema('name')])(PersonDetail),
   NS.schema('Person'),
   RENDER_CLASS_NAME,
   NS.argu('detail')

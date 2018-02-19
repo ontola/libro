@@ -64,7 +64,6 @@ const Collapsible = ({
       <div aria-hidden={tabIndex()} className="Collapsible__invisible-content">
         <CollapsibleComp
           isOpened={opened}
-          keepCollapsedContent={(minHeight !== undefined)}
           springConfig={{
             damping: 30,
             stiffness: 300,

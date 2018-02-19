@@ -72,14 +72,12 @@ LRS.addOntologySchematics([
   new Statement(NS.schema('Thing'), NS.rdfs('comment'), new Literal('The most generic type of item.')),
   new Statement(NS.schema('Thing'), NS.rdfs('label'), new Literal('Thing')),
 
-
   new Statement(NS.schema('Person'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.schema('Person'), NS.dc('source'), new NamedNode('http://www.w3.org/wiki/WebSchemas/SchemaDotOrgSources#source_rNews')),
   new Statement(NS.schema('Person'), NS.owl('equivalentClass'), NS.foaf('Person')),
   new Statement(NS.schema('Person'), NS.rdfs('comment'), new Literal('A person (alive, dead, undead, or fictional).')),
   new Statement(NS.schema('Person'), NS.rdfs('label'), new Literal('Person')),
   new Statement(NS.schema('Person'), NS.rdfs('subClassOf'), NS.schema('Thing')),
-
 
   new Statement(NS.foaf('name'), NS.owl('sameAs'), NS.schema('name')),
   new Statement(NS.aod('title'), NS.owl('sameAs'), NS.schema('name')),
@@ -92,6 +90,13 @@ LRS.addOntologySchematics([
   new Statement(NS.argu('Argument'), NS.rdfs('label'), new Literal('Argument')),
   new Statement(NS.argu('Argument'), NS.rdfs('subClassOf'), NS.schema('CreativeWork')),
 
+  new Statement(NS.argu('ConArgument'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('ConArgument'), NS.rdfs('label'), new Literal('Argument against')),
+  new Statement(NS.argu('ConArgument'), NS.rdfs('subClassOf'), NS.schema('Argument')),
+
+  new Statement(NS.argu('ProArgument'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('ProArgument'), NS.rdfs('label'), new Literal('Argument in favour')),
+  new Statement(NS.argu('ProArgument'), NS.rdfs('subClassOf'), NS.schema('Argument')),
   new Statement(NS.aod('title'), NS.owl('sameAs'), NS.schema('name')),
 ]);
 

@@ -21,7 +21,7 @@ const Idea = ({ location }) => (
       <Property label={NS.argu('voteEvents')} />
     </Container>
     <Container size="large">
-      <Property label={NS.argu('arguments')} />
+      <Property forceRender label={NS.argu('arguments')} />
     </Container>
   </LinkedResourceContainer>
 );
