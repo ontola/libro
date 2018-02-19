@@ -38,6 +38,7 @@ export const allTopologies = [
   NS.argu('collection'),
   NS.argu('container'),
   NS.argu('detail'),
+  NS.argu('dropdownContent'),
   NS.argu('inline'),
   NS.argu('sidebar'),
   NS.argu('sidebarBlock'),
@@ -97,6 +98,13 @@ LRS.addOntologySchematics([
   new Statement(NS.argu('ProArgument'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.argu('ProArgument'), NS.rdfs('label'), new Literal('Argument in favour')),
   new Statement(NS.argu('ProArgument'), NS.rdfs('subClassOf'), NS.schema('Argument')),
+
+  new Statement(NS.argu('ActionsMenu'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('ActionsMenu'), NS.rdfs('subClassOf'), NS.schema('SubMenu')),
+
+  new Statement(NS.argu('ShareMenu'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('ShareMenu'), NS.rdfs('subClassOf'), NS.schema('SubMenu')),
+
   new Statement(NS.aod('title'), NS.owl('sameAs'), NS.schema('name')),
 ]);
 

@@ -43,7 +43,6 @@ const ThingPage = () => (
           <CardMenuFloater
             header={<Property label={[NS.schema('name'), NS.rdfs('label')]} />}
           >
-            <Property label={NS.argu('actionsMenu')} />
             <Property label={NS.argu('followMenu')} />
             <Property label={NS.argu('shareMenu')} />
             <Property label={NS.argu('actionsMenu')} />

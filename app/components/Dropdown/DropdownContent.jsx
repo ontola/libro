@@ -20,6 +20,7 @@ const dropdownContentPropTypes = {
 class DropdownContent extends ScrollLockedComponent {
   constructor(props) {
     super(props);
+
     this.state = {
       appearState: '',
     };
@@ -64,7 +65,7 @@ class DropdownContent extends ScrollLockedComponent {
     return (
       <div
         className={`Dropdown__content ${collapseClass}${contentClassName} ${this.state.appearState}`}
-        style={null}
+        style={{ display: 'flex', flexDirection: 'column' }}
         onWheel={this.onScrollHandler.bind(this)}
       >
         {children}

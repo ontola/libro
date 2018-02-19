@@ -1,24 +1,34 @@
+import { linkType } from 'link-redux';
 import PropTypes from 'prop-types';
-import React from 'react';
-import FontAwesome from 'react-fontawesome';
+import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
+
+import { retrievePath } from '../../helpers/iris';
+import Image from '../Image';
 
 const propTypes = {
   children: PropTypes.node,
-  icon: PropTypes.string,
-  url: PropTypes.string,
+  icon: linkType,
+  url: linkType,
 };
 
 const DropdownLink = ({
   icon,
   url,
   children,
-}) => (
-  <a className="DropdownLink" href={url}>
-    {icon && <FontAwesome className="DropdownLink__icon" name={icon} />}
-    <span className={icon && 'DropdownLink__text--icon-left'}>{children}</span>
-  </a>
-);
+}) => {
+  const inner = (
+    <Fragment>
+      {icon && <Image className="DropdownLink__icon" linkedProp={icon} />}
+      <span className={icon && 'DropdownLink__text--icon-left'}>{children}</span>
+    </Fragment>
+  );
 
+  if (url) {
+    return <Link className="DropdownLink" to={retrievePath(url.value)}>{inner}</Link>;
+  }
+  return <div className="DropdownLink">{inner}</div>;
+};
 DropdownLink.propTypes = propTypes;
 
 export default DropdownLink;

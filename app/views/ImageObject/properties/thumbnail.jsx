@@ -4,7 +4,7 @@ import React from 'react';
 
 import { Image } from '../../../components';
 import SideBarLinkImage from '../../../components/SideBarLink/SideBarLinkImage';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import { allTopologies, NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   linkedProp: linkedPropType.isRequired,
@@ -26,13 +26,6 @@ export default [
     ImageObjectThumbnail,
     NS.schema('ImageObject'),
     NS.schema('thumbnail'),
-    [
-      undefined,
-      NS.argu('detail'),
-      NS.argu('collection'),
-      NS.argu('sidebar'),
-      NS.argu('sidebarBlock'),
-      NS.argu('voteBubble'),
-    ]
+    allTopologies
   ),
 ];

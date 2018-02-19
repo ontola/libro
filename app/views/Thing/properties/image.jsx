@@ -3,7 +3,7 @@ import { LinkedResourceContainer, linkedPropType } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import { allTopologies, NS } from '../../../helpers/LinkedRenderStore';
 
 const FABase = 'http://fontawesome.io/icon/';
 const propTypes = {
@@ -32,5 +32,5 @@ export default LinkedRenderStore.registerRenderer(
   ThingImageProp,
   NS.schema('Thing'),
   [NS.schema('image'), NS.dbo('thumbnail'), NS.wdt('P18')],
-  [undefined, NS.argu('sidebar'), NS.argu('sidebarBlock')]
+  allTopologies
 );

@@ -53,6 +53,7 @@ export default [
     [
       NS.argu('detail'),
       NS.argu('collection'),
+      NS.argu('dropdownContent'),
       NS.argu('sidebarBlock'),
       NS.argu('voteBubble'),
     ]

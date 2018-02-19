@@ -6,6 +6,7 @@ import FontAwesome from 'react-fontawesome';
 const FABase = 'http://fontawesome.io/icon/';
 
 const propTypes = {
+  ariaLabel: PropTypes.string,
   className: PropTypes.string,
   linkedProp: linkedPropType.isRequired,
   override: PropTypes.func,
@@ -16,17 +17,23 @@ const propTypes = {
 
 function Image(props) {
   const {
-    className, override, style, linkedProp
+    ariaLabel, className, override, style, linkedProp
   } = props;
   if (linkedProp.value.startsWith(FABase)) {
-    return <FontAwesome name={linkedProp.split(FABase)[1]} />;
+    return (
+      <FontAwesome
+        ariaLabel={ariaLabel || ''}
+        className={className}
+        name={linkedProp.value.split(FABase)[1]}
+      />
+    );
   }
   if (typeof override !== 'undefined') {
     return override(props);
   }
   return (
     <img
-      alt=""
+      alt={ariaLabel || ''}
       className={className}
       src={linkedProp.value}
       style={style}
