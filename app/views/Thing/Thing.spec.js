@@ -79,7 +79,7 @@ describeView('Thing', components, resources, resource, () => {
 
   as(NS.argu('parent'), () => {
     it('renders the name', () => {
-      expect(subject.find(marker('name', 'card'))).toBePresent();
+      expect(subject.find(marker('parent'))).toBePresent();
     });
 
     it('does not render the text', () => {

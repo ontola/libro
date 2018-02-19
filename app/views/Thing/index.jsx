@@ -1,6 +1,7 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { link, Property } from 'link-redux';
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
 
 import {
   Card,
@@ -14,7 +15,6 @@ import {
   DetailsBar,
   HoverBox,
   LDLink,
-  LinkCard,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 
@@ -148,19 +148,20 @@ export default [
     [NS.argu('section'), NS.argu('cardRow')]
   ),
   LinkedRenderStore.registerRenderer(
-    () => <LinkCard data-test="Thing-parent"><Property label={[NS.schema('name'), NS.rdfs('label')]} /></LinkCard>,
+    () => (
+      <div data-test="Thing-parent" style={{ display: 'inline-flex', padding: '1em 1em 0em 1em' }}>
+        <FontAwesome name="arrow-up" style={{ marginRight: '.5em' }} />
+        <Property data-test="Thing-parent" label={[NS.schema('name'), NS.rdfs('label')]} />
+      </div>
+    ),
     NS.schema('Thing'),
     RENDER_CLASS_NAME,
     NS.argu('parent')
   ),
   LinkedRenderStore.registerRenderer(
-    link([NS.schema('name'), NS.schema('image')])(({ image, name }) => (
-      <LDLink>
-        <Detail
-          data-test="Thing-parent"
-          linkedImage={!!image}
-          text={name.value}
-        />
+    link([NS.schema('name')])(({ name }) => (
+      <LDLink data-test="Thing-parent">
+        <Detail text={name.value} />
       </LDLink>
     )),
     NS.schema('Thing'),

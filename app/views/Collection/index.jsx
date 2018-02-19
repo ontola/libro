@@ -27,7 +27,6 @@ const propTypes = {
   subject: subjectType,
 };
 
-
 const viewsOrMembers = (views, members, topology) => (
   <Property
     forceRender
@@ -107,13 +106,18 @@ CollectionFixedCards.propTypes = propTypes;
 
 const wrapUpdate = Component => lowLevel.linkedSubject(lowLevel.linkedVersion(Component));
 
+const CollectionTypes = [
+  NS.argu('Collection'),
+  NS.argu('EdgeableCollection'),
+  NS.hydra('Collection'),
+];
+
 export default [
   LinkedRenderStore.registerRenderer(
     wrapUpdate(CollectionSection),
-    [NS.argu('Collection'), NS.hydra('Collection')],
+    CollectionTypes,
     RENDER_CLASS_NAME,
     [
-      undefined,
       NS.argu('section'),
       NS.argu('voteEventCollection'),
       NS.argu('card'),
@@ -123,7 +127,7 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     wrapUpdate(CollectionFixedCards),
-    [NS.argu('Collection'), NS.hydra('Collection')],
+    CollectionTypes,
     RENDER_CLASS_NAME,
     [
       NS.argu('grid'),
@@ -132,7 +136,7 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     wrapUpdate(CollectionContainer),
-    [NS.argu('Collection'), NS.hydra('Collection')],
+    CollectionTypes,
     RENDER_CLASS_NAME,
     [
       undefined,
@@ -141,7 +145,7 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     ConnectedCollection,
-    [NS.argu('Collection'), NS.hydra('Collection')],
+    CollectionTypes,
     NS.argu('collection')
   ),
   First,
