@@ -14,7 +14,10 @@ const routes = (
   <Switch>
     <Route path="/u/sign_in" component={SignIn} />
     <Route path="/n" component={LinkedObject} />
-    <Route path="*" component={Iframe} />
+    <Route path="/" component={Iframe} exact />
+    <Route path="/(i|u|settings)/*" component={Iframe} />
+    <Route path="*/(new|edit|trash|delete|decision|c|settings|statistics)" component={Iframe} />
+    <Route path="*" component={LinkedObject} />
   </Switch>
 );
 
