@@ -4,9 +4,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { Button } from '../../../components';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import { allTopologies, NS } from '../../../helpers/LinkedRenderStore';
 import { gotoPage } from '../../../state/pagination/actions';
 import { getPage } from '../../../state/pagination/selectors';
+import { CollectionTypes } from '../types';
 
 /**
  * Renders a pagination element if the `argu:first` property is available.
@@ -14,9 +15,9 @@ import { getPage } from '../../../state/pagination/selectors';
 class First extends PropertyBase {
   allPages() {
     const pageProp = 'page';
-    const baseUrl = new URL(this.props.linkedProp);
+    const baseUrl = new URL(this.props.linkedProp.value);
     const firstPage = Number.parseInt(baseUrl.searchParams.get(pageProp), 10);
-    const lastPage = Number.parseInt(new URL(this.getLinkedObjectProperty(NS.argu('last'))).searchParams.get(pageProp), 10);
+    const lastPage = Number.parseInt(new URL(this.getLinkedObjectProperty(NS.argu('last')).value).searchParams.get(pageProp), 10);
     const currentPageUrl = new URL(this.props.currentPage);
     const currentPageNr = Number.parseInt(currentPageUrl.searchParams.get(pageProp), 10);
     const nextPage = () => {
@@ -98,11 +99,12 @@ class First extends PropertyBase {
 
 
 const ConnectedFirst = connect((state, { collectionIRI, linkedProp }) => ({
-  currentPage: getPage(state, collectionIRI) || linkedProp
+  currentPage: getPage(state, collectionIRI) || linkedProp.value
 }))(First);
 
 export default LinkedRenderStore.registerRenderer(
   ConnectedFirst,
-  NS.argu('Collection'),
-  NS.argu('first')
+  CollectionTypes,
+  NS.argu('first'),
+  allTopologies
 );

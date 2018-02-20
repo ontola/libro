@@ -1,13 +1,11 @@
 import LinkedRenderStore from 'link-lib';
 import {
-  linkedPropType,
-  lrsType,
   PropertyBase,
 } from 'link-redux';
 import { Literal, NamedNode, Statement } from 'rdflib';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import { allTopologies, NS } from '../../../helpers/LinkedRenderStore';
 import { CardButton } from '../../../components';
 
 class InfiniteCollectionNext extends PropertyBase {
@@ -22,6 +20,7 @@ class InfiniteCollectionNext extends PropertyBase {
         new Statement(seqParent.object, NS.rdf(`_${count}`), new NamedNode(linkedProp)),
         new Statement(subject, NS.argu('void'), new Literal(0))
       ]);
+      linkedRenderStore.broadcast();
     };
 
     return React.createElement(
@@ -32,17 +31,10 @@ class InfiniteCollectionNext extends PropertyBase {
   }
 }
 
-InfiniteCollectionNext.propTypes = {
-  linkedProp: linkedPropType,
-};
-
-InfiniteCollectionNext.contextTypes = {
-  linkedRenderStore: lrsType,
-};
-
 export default LinkedRenderStore.registerRenderer(
   InfiniteCollectionNext,
   NS.argu('InfiniteCollection'),
-  NS.argu('next')
+  NS.argu('next'),
+  allTopologies
 );
 

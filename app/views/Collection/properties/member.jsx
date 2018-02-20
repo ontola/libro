@@ -5,6 +5,7 @@ import React from 'react';
 
 import { Carousel } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { CollectionTypes } from '../types';
 
 const propTypes = {
   /** The amount of items to render. Leave undefined for all items */
@@ -13,12 +14,11 @@ const propTypes = {
 
 class MemberComp extends PropertyBase {
   memberList(prop) {
-    const topology = this.context.topology ? this.context.topology : NS.argu('collection');
     return prop.slice(0, this.props.limit).map(iri => (
       <LinkedResourceContainer
         key={`${this.props.subject}:${iri.object.value}`}
         subject={iri.object}
-        topology={topology}
+        topology={this.context.topology}
       />
     ));
   }
@@ -56,12 +56,12 @@ const Member = lowLevel.linkedSubject(lowLevel.linkedVersion(MemberComp));
 export default [
   LinkedRenderStore.registerRenderer(
     Member,
-    NS.argu('Collection'),
+    CollectionTypes,
     NS.argu('members')
   ),
   LinkedRenderStore.registerRenderer(
     Member,
-    NS.argu('Collection'),
+    CollectionTypes,
     NS.argu('members'),
     [
       NS.argu('section'),

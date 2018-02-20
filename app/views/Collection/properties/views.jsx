@@ -11,6 +11,7 @@ import {
   Columns,
 } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { CollectionTypes } from '../types';
 
 class Views extends PropertyBase {
   render() {
@@ -19,7 +20,7 @@ class Views extends PropertyBase {
     if (prop.length === 1) {
       return <LinkedResourceContainer forceRender subject={prop[0].object} />;
     }
-    const obs = prop.map(iri => <LinkedResourceContainer subject={iri.object} />);
+    const obs = prop.map(iri => <LinkedResourceContainer key={`views-${iri.object.value}`} subject={iri.object} />);
     if (obs && obs.length > 1) {
       return <Columns>{obs}</Columns>;
     } else if (obs) {
@@ -38,12 +39,12 @@ Views.propTypes = {
 export default [
   LinkedRenderStore.registerRenderer(
     Views,
-    NS.argu('Collection'),
+    CollectionTypes,
     NS.argu('views')
   ),
   LinkedRenderStore.registerRenderer(
     Views,
-    NS.argu('Collection'),
+    CollectionTypes,
     NS.argu('views'),
     [
       NS.argu('section'),

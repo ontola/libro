@@ -38,9 +38,9 @@ import Widget from './Widget';
 
 LRS.registerAll(
   ...Thing,
-  ...CreateAction,
+  CreateAction,
   ...Collection,
-  ...EntryPoint,
+  EntryPoint,
   Forum,
   GuestUserActor,
   ...ImageObject,

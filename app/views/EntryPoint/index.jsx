@@ -1,27 +1,29 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { Property } from 'link-redux';
+import { link, linkedPropType } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import { Button } from '../../components';
+import { allTopologies, NS } from '../../helpers/LinkedRenderStore';
 
-import './properties/name';
-import './properties/url';
+const EntryPoint = ({ name, url }) => {
+  const parsedURL = new URL(url.value);
+  const href = parsedURL && parsedURL.pathname + parsedURL.search;
 
-const EntryPoint = () => (
-  <Property label={NS.schema('url')} style={{ display: 'inherit' }}>
-    <Property label={NS.schema('name')} style={{ display: 'inherit' }} />
-  </Property>
+  return (
+    <Button className="Button--has-icon" href={href} icon="plus" theme="transparant">
+      <span>{name.value}</span>
+    </Button>
+  );
+};
+
+EntryPoint.propTypes = {
+  name: linkedPropType,
+  url: linkedPropType,
+};
+
+export default LinkedRenderStore.registerRenderer(
+  link([NS.schema('name'), NS.schema('url')])(EntryPoint),
+  NS.schema('EntryPoint'),
+  RENDER_CLASS_NAME,
+  allTopologies
 );
-
-export default [
-  LinkedRenderStore.registerRenderer(
-    EntryPoint,
-    NS.schema('EntryPoint')
-  ),
-  LinkedRenderStore.registerRenderer(
-    EntryPoint,
-    NS.schema('EntryPoint'),
-    RENDER_CLASS_NAME,
-    NS.argu('collection')
-  ),
-];
