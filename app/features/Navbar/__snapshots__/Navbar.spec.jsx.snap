@@ -417,7 +417,6 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                               >
                                                 <ReactCollapse
                                                   isOpened={false}
-                                                  keepCollapsedContent={false}
                                                   springConfig={
                                                     Object {
                                                       "damping": 30,
@@ -734,6 +733,24 @@ exports[`Navbar as default renders the correct representation 1`] = `
       <div
         className="NavBarContent__center-footer"
       >
+        <button
+          onClick={[Function]}
+          style={
+            Object {
+              "bottom": "0em",
+              "color": "white",
+              "cursor": "pointer",
+              "left": "0em",
+              "padding": "1em",
+              "position": "absolute",
+            }
+          }
+          title="Back to classic Argu"
+        >
+          <span
+            className="fa fa-close"
+          />
+        </button>
         <Link
           className="NavBarContent__logo"
           replace={false}
