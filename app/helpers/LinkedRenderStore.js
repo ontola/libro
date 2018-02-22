@@ -1,5 +1,5 @@
 /* eslint no-console: 0 */
-import LinkedRenderStore, { anyRDFValue, memoizedNamespace } from 'link-lib';
+import LinkedRenderStore, { memoizedNamespace } from 'link-lib';
 import { Literal, NamedNode, Statement } from 'rdflib';
 
 import Error from '../components/Error';
@@ -112,13 +112,11 @@ LRS.execActionByIRI = function execActionByIRI(subject) {
   let object, url;
   this
     .getEntity(subject)
-    .then((action) => {
-      object = this.getResourceProperty(action, NS.schema('object'));
-      return this.getResourceProperties(action, NS.schema('target'));
-    })
-    .then((target) => {
-      url = anyRDFValue(target, NS.schema('url'));
-      const targetMethod = anyRDFValue(target, NS.schema('method'));
+    .then(() => {
+      object = this.getResourceProperty(subject, NS.schema('object'));
+      const target = this.getResourceProperty(subject, NS.schema('target'));
+      url = this.getResourceProperty(target, NS.schema('url'));
+      const targetMethod = this.getResourceProperty(target, NS.schema('method'));
       const method = typeof targetMethod !== 'undefined' ? targetMethod.toString() : 'GET';
       const opts = {
         credentials: 'include',
@@ -130,9 +128,9 @@ LRS.execActionByIRI = function execActionByIRI(subject) {
       };
       return fetch(url.value, opts);
     })
-    .then(resp => Promise.all([LRS.api.processor.feedResponse(url, resp), object]))
+    .then(resp => Promise.all([LRS.api.processor.feedResponse(resp), object]))
     .then(([statements, objectRef]) => {
-      this.replaceStatements(objectRef, statements);
+      this.store.replaceStatements(this.getResourcePropertyRaw(objectRef), statements);
     });
 };
 
