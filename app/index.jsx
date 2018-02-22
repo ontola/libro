@@ -3,10 +3,10 @@ import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { ConnectedRouter } from 'react-router-redux';
 
+import LinkedRenderStore from './helpers/LinkedRenderStore';
 import './views';
 import IndexContainer from './containers/IndexContainer';
 import history from './helpers/history';
-import LinkedRenderStore from './helpers/LinkedRenderStore';
 import configureStore from './state';
 
 // Removes the rubber banding in iOS

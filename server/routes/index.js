@@ -9,6 +9,7 @@ import apiMiddleware from '../middleware/apiMiddleware';
 import errorHandlerMiddleware from '../middleware/errorHandlerMiddleware';
 import sessionMiddleware from '../middleware/sessionMiddleware';
 import { isAuthenticated, isBackend, isIframe } from '../utils/filters';
+import manifest from '../utils/manifest';
 import { backendProxy, iframeProxy } from '../utils/proxies';
 import { handleRender } from '../utils/render';
 
@@ -50,7 +51,14 @@ export default function routes(app, port) {
   app.get(/.*/, (req, res) => {
     const domain = req.get('host').replace(/:.*/, '');
 
-    res.setHeader('Link', `${constants.FRONTEND_URL}/static/preloader.css; rel=preload; as=style`);
+    res.setHeader(
+      'Link',
+      [
+        `<${constants.FRONTEND_URL}/static/preloader.css>; rel=preload; as=style`,
+        `<${constants.ASSETS_HOST}${manifest['main.js']}>; rel=preload; as=script`,
+        `<${constants.ASSETS_HOST}${manifest['main.css']}>; rel=preload; as=style`,
+      ]
+    );
     handleRender(req, res, port, domain);
     return undefined;
   });

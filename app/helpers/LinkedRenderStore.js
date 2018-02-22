@@ -134,6 +134,12 @@ LRS.execActionByIRI = function execActionByIRI(subject) {
     });
 };
 
+try {
+  LRS.getEntity(new NamedNode(window.location.href));
+} catch (e) {
+  console.error('preload failed');
+}
+
 export default LRS;
 if (typeof window !== 'undefined') {
   window.LRS = LRS;
