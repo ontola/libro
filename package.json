@@ -1,7 +1,7 @@
 {
   "name": "argu-front-end",
   "description": "Argu front-end application.",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "contributors": [
     "Joep Meindertsma <joep@argu.co> (https://argu.co)",
     "Thom van Kalkeren <thom@argu.co>",
@@ -163,7 +163,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://tom_dalenberg@bitbucket.org/arguweb/aod_demo.git"
+    "url": "https://git@bitbucket.org/arguweb/aod_demo.git"
   },
   "scripts": {
     "build": "rimraf ./dist/* && yarn run build:bundle && yarn run build:server",
