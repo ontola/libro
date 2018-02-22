@@ -339,9 +339,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                       }
                                                       version="test1"
                                                     >
-                                                      <div>
-                                                        Gemeente Utrecht
-                                                      </div>
+                                                      Gemeente Utrecht
                                                     </Property>
                                                   </ConnectedProp>
                                                 </linkedSubject[ConnectedProp]>
@@ -533,9 +531,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                             }
                                             version="test1"
                                           >
-                                            <div>
-                                              Gemeente Utrecht
-                                            </div>
+                                            Gemeente Utrecht
                                           </Property>
                                         </ConnectedProp>
                                       </linkedSubject[ConnectedProp]>

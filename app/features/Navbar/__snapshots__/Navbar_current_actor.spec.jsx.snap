@@ -22,9 +22,7 @@ exports[`Navbar current_actor logged in renders the correct representation 1`] =
           <p
             className="SideBarLink__truncatedLabel"
           >
-            <div>
-              Maarten van Scharendrecht
-            </div>
+            Maarten van Scharendrecht
           </p>
         </div>
       </a>
