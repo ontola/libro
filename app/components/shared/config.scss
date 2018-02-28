@@ -103,7 +103,7 @@ $units: (
 );
 
 $sizes-margin: (
-  'small': 0,
+  'small': $base-unit,
   'medium': $base-unit * 1.3,
   'large': $base-unit * 2,
 );

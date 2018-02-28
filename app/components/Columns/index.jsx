@@ -21,7 +21,7 @@ const propTypes = {
 const defaultProps = {
   flexBasis: '19em',
   flexGrow: true,
-  gutter: 'medium',
+  gutter: 'small',
 };
 
 const Columns = ({

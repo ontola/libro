@@ -2,7 +2,7 @@
 
 exports[`Columns with array child renders 1`] = `
 <div
-  className="Columns Columns--flex-grow Columns--gutter-medium"
+  className="Columns Columns--flex-grow Columns--gutter-small"
 >
   <div
     className="Column"
@@ -35,7 +35,7 @@ exports[`Columns with array child renders 1`] = `
 
 exports[`Columns with node child renders 1`] = `
 <div
-  className="Columns Columns--flex-grow Columns--gutter-medium"
+  className="Columns Columns--flex-grow Columns--gutter-small"
 >
   <div
     className="Column"
