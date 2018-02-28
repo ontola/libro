@@ -54,7 +54,6 @@ export default [
     NS.schema('text'),
     [
       NS.argu('card'),
-      NS.argu('cardMain'),
       NS.argu('collection'),
       NS.argu('container'),
     ]
