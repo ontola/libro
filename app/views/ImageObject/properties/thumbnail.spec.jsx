@@ -11,8 +11,8 @@ const resource = new NamedNode('http://example.com/image/1');
 const resources = {
   [resource]: {
     [NS.rdf('type')]: NS.schema('ImageObject'),
-    [NS.schema('thumbnail')]: new NamedNode('http://example.com/1.thumb.png'),
-    [NS.schema('url')]: new NamedNode('http://example.com/1.png'),
+    [NS.schema('thumbnail')]: new NamedNode('http://www.example.com/1.thumb.png'),
+    [NS.schema('url')]: new NamedNode('http://www.example.com/1.png'),
   }
 };
 
@@ -25,6 +25,6 @@ describeView('ImageObject', components, resources, resource, () => {
 
   it('passes the correct url', () => {
     expect(subject.find(marker('ImageObjectThumbnail')))
-      .toHaveProp('linkedProp', new NamedNode('http://example.com/1.thumb.png'));
+      .toHaveProp('linkedProp', NS.example('1.thumb.png'));
   });
 });
