@@ -7,13 +7,17 @@ import { retrievePath } from '../../helpers/iris';
 
 const propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
   subject: subjectType,
 };
 
-const LDLink = ({ children, subject }) => {
+const LDLink = ({ className, children, subject }) => {
   const href = retrievePath(subject.value);
   return (
-    <Link to={href}>
+    <Link
+      className={className}
+      to={href}
+    >
       {children}
     </Link>
   );
