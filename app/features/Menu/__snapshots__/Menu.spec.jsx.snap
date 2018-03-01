@@ -25,7 +25,7 @@ exports[`Menu https://argu.co/ns/core#sidebar renders a menu 1`] = `
   >
     <a
       aria-current={false}
-      className={undefined}
+      className="SideBarLink__link"
       href="/f/utrecht/motions"
       onClick={[Function]}
       style={undefined}
@@ -46,7 +46,7 @@ exports[`Menu https://argu.co/ns/core#sidebar renders a menu 1`] = `
   >
     <a
       aria-current={false}
-      className={undefined}
+      className="SideBarLink__link"
       href="/f/utrecht/questions"
       onClick={[Function]}
       style={undefined}
@@ -67,7 +67,7 @@ exports[`Menu https://argu.co/ns/core#sidebar renders a menu 1`] = `
   >
     <a
       aria-current={false}
-      className={undefined}
+      className="SideBarLink__link"
       href="/utrecht/settings"
       onClick={[Function]}
       style={undefined}

@@ -10,7 +10,7 @@ import './properties/name';
 
 const CurrentActorSidebar = () => (
   <div className="SideBarLink">
-    <LDLink>
+    <LDLink className="SideBarLink__link">
       <Property label={NS.schema('image')} />
       <SideBarLinkLabel>
         <Property label={NS.schema('name')} />

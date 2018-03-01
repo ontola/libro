@@ -20,6 +20,7 @@ const SideBarLinkLink = ({
 }) => (
   <NavLink
     activeClassName="SideBarLink--active"
+    className="SideBarLink__link"
     exact={isIndex}
     to={to}
     onClick={onClick}

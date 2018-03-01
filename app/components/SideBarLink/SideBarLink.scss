@@ -79,7 +79,7 @@
   text-overflow: ellipsis;
 }
 
-.SideBarLink,
+.SideBarLink__link,
 .SideBarCollapsible__toggle {
   &:focus {
     background-color: color('transparent', 'x-light');
