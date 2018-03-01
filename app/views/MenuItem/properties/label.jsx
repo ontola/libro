@@ -10,16 +10,14 @@ const propTypes = {
   label: linkedPropType,
 };
 
-const Label = ({ image, label }) => (
-  <span style={{ margin: '.5em' }}>
-    <Image ariaLabel={label.value} linkedProp={image} />
-  </span>
+const MenuItemLabel = ({ image, label }) => (
+  <Image ariaLabel={label.value} linkedProp={image} />
 );
 
-Label.propTypes = propTypes;
+MenuItemLabel.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
-  link([NS.argu('label'), NS.schema('image')])(Label),
+  link([NS.argu('label'), NS.schema('image')])(MenuItemLabel),
   [
     NS.argu('MenuItem'),
     NS.argu('SubMenu'),
