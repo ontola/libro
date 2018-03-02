@@ -33,6 +33,7 @@ exports[`Navbar current_actor logged in renders the correct representation 1`] =
       data-test="Button-button"
       disabled={undefined}
       onClick={[Function]}
+      title={undefined}
       type="button"
     >
       <span

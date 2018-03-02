@@ -110,6 +110,15 @@ const ThingHoverBoxHidden = () => (
   </div>
 );
 
+const ThingParent = () => (
+  <LDLink>
+    <div data-test="Thing-parent" style={{ alignItems: 'center', display: 'inline-flex', padding: '1em 1em 0em 1em' }}>
+      <FontAwesome name="arrow-up" style={{ marginRight: '.5em' }} />
+      <Property data-test="Thing-parent" label={[NS.schema('name'), NS.rdfs('label')]} />
+    </div>
+  </LDLink>
+);
+
 const ThingSection = () => (
   <HoverBox hiddenChildren={<ThingHoverBoxHidden />}>
     <Property label={NS.schema('name')} topology={NS.argu('inline')} />
@@ -147,12 +156,7 @@ export default [
     [NS.argu('section'), NS.argu('cardRow')]
   ),
   LinkedRenderStore.registerRenderer(
-    () => (
-      <div data-test="Thing-parent" style={{ display: 'inline-flex', padding: '1em 1em 0em 1em' }}>
-        <FontAwesome name="arrow-up" style={{ marginRight: '.5em' }} />
-        <Property data-test="Thing-parent" label={[NS.schema('name'), NS.rdfs('label')]} />
-      </div>
-    ),
+    ThingParent,
     NS.schema('Thing'),
     RENDER_CLASS_NAME,
     NS.argu('parent')

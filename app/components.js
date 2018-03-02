@@ -52,8 +52,15 @@ export { default as LinkCard } from './components/LinkCard/index';
 export { default as LinkDuo } from './components/LinkDuo/index';
 export { default as LinkList } from './components/LinkList/index';
 export { default as List } from './components/List/index';
+export {
+  default as Loading,
+  LoadingCard,
+  LoadingPage,
+  LoadingParent,
+  LoadingRow,
+  LoadingSideBarLink,
+} from './components/Loading/index';
 export { default as Markdown } from './components/Markdown/index';
-export { default as Loading, LoadingCard, LoadingRow, LoadingSideBarLink } from './components/Loading/index';
 export { default as NavBarContent } from './components/NavBarContent/index';
 export { default as Notification } from './components/Notification/index';
 export { default as OrgSwitcher } from './components/OrgSwitcher/index';

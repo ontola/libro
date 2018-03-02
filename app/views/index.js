@@ -9,11 +9,13 @@ import Collection from './Collection';
 // import './Comment';
 import CreateAction from './CreateAction';
 import EntryPoint from './EntryPoint';
+import Error from './Error';
 import GuestUserActor from './GuestUserActor';
 import Forum from './Forum';
 import ImageObject from './ImageObject';
 import InfiniteCollection from './InfiniteCollection';
 // import './LinkedRecord';
+import Loading from './Loading';
 import MenuItem from './MenuItem';
 import MenuSection from './MenuSection';
 import './Motion';
@@ -41,10 +43,12 @@ LRS.registerAll(
   CreateAction,
   ...Collection,
   EntryPoint,
+  ...Error,
   Forum,
   GuestUserActor,
   ...ImageObject,
   ...InfiniteCollection,
+  ...Loading,
   ...MenuItem,
   ...MenuSection,
   ...NavigationsMenu,

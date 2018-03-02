@@ -40,7 +40,7 @@ export const renderFullPage = (html, devPort, domain, csrfToken, initialState = 
         <link rel="apple-touch-icon" type="image/png" sizes="72x72" href="/static/icon-small.png">
         ${head ? head.title.toString() : ''}
         ${head ? head.meta.toString() : ''}
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
         ${bundleCSS}
         <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,Promise,Promise.prototype.finally|gated,fetch" async></script>
       </head>

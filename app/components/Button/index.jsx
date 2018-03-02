@@ -43,6 +43,7 @@ const propTypes = {
   small: PropTypes.bool,
   /** Removes all styling. */
   theme: PropTypes.oneOf(buttonThemes),
+  title: PropTypes.string,
   type: PropTypes.string,
   variant: PropTypes.oneOf(['yes', 'pro', 'neutral', 'no', 'con', 'upvote', 'comment', 'facebook', 'google']),
 };
@@ -74,6 +75,7 @@ const Button = ({
   narrow,
   plain,
   theme,
+  title,
   type,
   href,
   variant,
@@ -114,6 +116,7 @@ const Button = ({
         data-test="Button-link"
         disabled={disabled || loading}
         role="button"
+        title={title}
         to={href}
         type={type}
       >
@@ -137,6 +140,7 @@ const Button = ({
       className={btnClass}
       data-test="Button-button"
       disabled={disabled || loading}
+      title={title}
       type={type}
       onClick={onClickAndBlur}
     >

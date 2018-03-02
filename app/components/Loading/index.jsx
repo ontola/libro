@@ -1,4 +1,5 @@
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
 
 import './Loading.scss';
 
@@ -6,6 +7,8 @@ import {
   Card,
   CardRow,
   CardContent,
+  Container,
+  LDLink,
 } from '../../components';
 
 const LoadingText = () => <span>Loading...</span>;
@@ -26,6 +29,23 @@ export const LoadingCard = () => (
     </CardContent>
   </Card>
 );
+
+export const LoadingPage = () => (
+  <Container>
+    <LoadingParent />
+    <LoadingCard />
+  </Container>
+);
+
+export const LoadingParent = () => (
+  <LDLink>
+    <div style={{ alignItems: 'center', display: 'flex', padding: '1em 1em 0em 1em' }}>
+      <FontAwesome name="arrow-up" style={{ marginRight: '.5em' }} />
+      <div className="Loading__Header Loading__background" />
+    </div>
+  </LDLink>
+);
+
 
 export const LoadingRow = () => (
   <CardRow>

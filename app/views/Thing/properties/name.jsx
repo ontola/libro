@@ -83,6 +83,12 @@ export default [
     ]
   ),
   LinkedRenderStore.registerRenderer(
+    props => <ColoredHeading data-test="Thing-name-card" size="3" {...props} />,
+    NS.schema('Thing'),
+    NamePredicates,
+    NS.argu('parent')
+  ),
+  LinkedRenderStore.registerRenderer(
     props => <ColoredHeading data-test="Thing-name-widget" size="2" {...props} />,
     NS.schema('Thing'),
     NamePredicates,
