@@ -61,6 +61,7 @@ export {
   LoadingSideBarLink,
 } from './components/Loading/index';
 export { default as Markdown } from './components/Markdown/index';
+export { default as MarkdownFixedPreview } from './components/MarkdownFixedPreview/index';
 export { default as NavBarContent } from './components/NavBarContent/index';
 export { default as Notification } from './components/Notification/index';
 export { default as OrgSwitcher } from './components/OrgSwitcher/index';

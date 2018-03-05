@@ -2,10 +2,7 @@ import LinkedRenderStore from 'link-lib';
 import { linkedPropType, lowLevel, subjectType, PropertyBase } from 'link-redux';
 import React from 'react';
 
-import {
-  CollapseText,
-  Markdown,
-} from '../../../components';
+import { CollapseText, Markdown, MarkdownFixedPreview } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
@@ -23,14 +20,7 @@ class TextCutoff extends PropertyBase {
       return null;
     }
     return (
-      <div style={{
-        maxHeight: '10.7em',
-        overflow: 'hidden',
-        position: 'relative',
-      }}
-      >
-        {this.getLinkedObjectProperty().value}
-      </div>
+      <MarkdownFixedPreview text={this.getLinkedObjectProperty().value} />
     );
   }
 }
