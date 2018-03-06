@@ -9,5 +9,10 @@ export default {
       mediaTypes: 'text/n3',
       transformer: transformers.processRDF,
     },
+    {
+      acceptValue: PRIO_MAX,
+      mediaTypes: 'text/turtle',
+      transformer: transformers.processRDF,
+    },
   ],
 };
