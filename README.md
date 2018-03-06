@@ -49,7 +49,7 @@ Matcher documentations:
 In general, only enzyme shallow should be used, since it's a lot faster and the additional
 capabilities of `mount` are not needed in our unit tests.
 
-### Markers
+#### Markers
 We use test markers to determine whether features were rendered. Decoupling these features allow us
 to separate proof from implementation, which in turn makes implementation refactoring easier.
 
@@ -102,22 +102,32 @@ Uses [NSP](https://github.com/nodesecurity/nsp) and [Retire.js](https://github.c
 - Add a Readme.md file to provide example usage that automatically appears in Styleguidist.
 - Document components like all other functions with JSdoc. Descriptions automatically appear in Styleguidist.
 
-### Resources (using Link)
-- Resources represent real world concepts, such as a person, a document, an event or an organization.
-- They are rendered using Link-lib, which deals with fetching the data and making it accessible to use in React.
-- Resources should not contain any styling of themselves. They are composed of Components.
-- Resources can be rendered in various context (i.e. in its own page, as a small list item or as a card in some list). We call such a context a **topology**. We have predefined a couple of topologies:
-  - **(default)** - The view that is used on the route, although some of the logic still resides in the route page.
-  - **Collection** - Shown as a card with details and its most relevant properties.
-  - **Row** - Shown as a single row inside a card with the most important details.
-  - **Section** - Shown inside a card, but not as its own row.
-  - **Detail** - Shown as a small piece of metadata inside some other resource.
-  - **Parent** - Shown as its own card, mostly on top of a page.
+### Views (using Link)
+- Views represent real world concepts, such as a person, a document, an event or an organization.
+- They are rendered using `link-lib` and `link-redux`, which respectively deal with managing the data and making it accessible to use in React components.
+- Views should not contain any styling of themselves. Don't re-use classesnames from other components.They are composed of Components.
+- Views can be rendered in various context (i.e. in its own page, as a small list item or as a card in some list). We call such a context a **topology**. We have predefined a couple of topologies:
+  - **(default)** - The view that is used on the route / page. `LinkedObjectContainers` with an undefined topology render as default.
+  - **Container** - A large column, often with cards inside it. Used on the Question page, or the Argument columns.
+  - **Card** - Inside a card.
+  - **CardMain** - Inside the card of the resource from the current URL. Makes the title bigger.
+  - **CardFixed** - Inside a card with fixed dimensions. 
+  - **Detail** - Shown in the DetailsBar, should be a small piece of metadata.
+  - **Parent** - Shown on top of a page to convey the hierarchy of the site.
   - **Inline** - A text to appear in some other text. Can be a link.
   - **Sidebar** - An item in the side menu.
-- When naming your component, name them as `propertyTopology` and `TypeTopology`. For example: `nameCollection` or `MotionRow`.
+- When naming your component, name them as `propertyTopology` and `TypeTopology`. For example: `nameCard` or `MotionContainer`.
 
-### Creating a new interactive model
+### Debugging Link
+So, your Link View / Property isn't showing. Check the following:
+- Is the request handled correctly? Check the `network` tab in your browser's debugger view.
+- Is the data parsed correctly?
+- Is the component present in the virtual DOM? Use the react debugging tools to find the component. Does it contain the Property components that you expect it to have? 
+- If there is a component, check its contents by clicking its LinkedObjectContainer in the debugging tools and running `dev.data` in the console.
+- Is the View or the Property being registered correctly? Use LRS.
+
+
+### Creating a new interactive model (deprecated)
 *Warning: only use this for models that the user can modify or create. Use Link-lib for view-only models.*
 Say there's a new model (e.g. meetings, documents) accessible in the API that the user should interact with.
 
@@ -132,13 +142,14 @@ Say there's a new model (e.g. meetings, documents) accessible in the API that th
 ### Directory Structure
 * **app** - Code that runs in the browser
   * **components** - 'Dumb' view-only components that do not know what kind of information they represent.
-  * **containers** - 'Smart' components that are connected to Redux. Preferably are not styled.
+  * **containers** - 'Smart' components that are connected to Redux. Preferably are not styled. Mostly deprecated by Link.
   * **resources** - Link components that represent a certain resource, such as 'person' or 'motion'.
   * **helpers** - Small, useful and re-usable pieces of code.
   * **middleware** - Deals with the API.
   * **models** - Contain models for resources that define its shape in the Redux store.
   * **routes** - All routing logic rests in its index.js file. Create a folder with an index.jsx for page components. In the future, these will rest in the Link folder as Page components.
   * **state** - Folders that contain all reducers, actions, selectors and respective tests.
+  * **views** - Link view components. Properties are stored in the parent resource.
 * **bin** - Binaries
 * **dev** - Helpers for developers, such as a nginx config and docker file.
 * **server** - Node server
