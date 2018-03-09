@@ -30,10 +30,12 @@
 }
 
 .CardContent {
+  display: flex;
+  // [AOD-174] Fixes overflowing text in fixed card height in firefox
+  flex: 1;
+  flex-direction: column;
   padding: units('small', 'large');
   padding-bottom: 0;
-  display: flex;
-  flex-direction: column;
 
   &--align-end {
     align-self: flex-end;
