@@ -83,6 +83,58 @@ exports[`ProfileCard with link should render 1`] = `
             theme="default"
             type="button"
           >
+            <BlurButton
+              className="Button Button--has-icon Button--small Button--default"
+              data-test="Button-button"
+              onClick={[Function]}
+              type="button"
+            >
+              <button
+                className="Button Button--has-icon Button--small Button--default"
+                data-test="Button-button"
+                onClick={[Function]}
+                type="button"
+              >
+                <FontAwesome
+                  className="Button__icon"
+                  data-test="Button-icon"
+                  name="tachometer"
+                >
+                  <span
+                    aria-hidden={true}
+                    className="fa fa-tachometer Button__icon"
+                    data-test="Button-icon"
+                  />
+                </FontAwesome>
+                <span
+                  className="Button__label"
+                >
+                  Vergelijk
+                </span>
+              </button>
+            </BlurButton>
+          </Button>
+        </div>
+      </div>
+      <div
+        className="ProfileCard__buttons"
+      >
+        <Button
+          active={false}
+          icon="tachometer"
+          narrow={false}
+          onClick={[Function]}
+          plain={false}
+          small={true}
+          theme="default"
+          type="button"
+        >
+          <BlurButton
+            className="Button Button--has-icon Button--small Button--default"
+            data-test="Button-button"
+            onClick={[Function]}
+            type="button"
+          >
             <button
               className="Button Button--has-icon Button--small Button--default"
               data-test="Button-button"
@@ -106,45 +158,7 @@ exports[`ProfileCard with link should render 1`] = `
                 Vergelijk
               </span>
             </button>
-          </Button>
-        </div>
-      </div>
-      <div
-        className="ProfileCard__buttons"
-      >
-        <Button
-          active={false}
-          icon="tachometer"
-          narrow={false}
-          onClick={[Function]}
-          plain={false}
-          small={true}
-          theme="default"
-          type="button"
-        >
-          <button
-            className="Button Button--has-icon Button--small Button--default"
-            data-test="Button-button"
-            onClick={[Function]}
-            type="button"
-          >
-            <FontAwesome
-              className="Button__icon"
-              data-test="Button-icon"
-              name="tachometer"
-            >
-              <span
-                aria-hidden={true}
-                className="fa fa-tachometer Button__icon"
-                data-test="Button-icon"
-              />
-            </FontAwesome>
-            <span
-              className="Button__label"
-            >
-              Vergelijk
-            </span>
-          </button>
+          </BlurButton>
         </Button>
       </div>
     </section>

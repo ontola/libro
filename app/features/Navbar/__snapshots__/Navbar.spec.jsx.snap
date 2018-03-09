@@ -10,7 +10,6 @@ exports[`Navbar as default renders the correct representation 1`] = `
       Object {
         "backgroundColor": "rgb(71, 86, 104)",
         "color": "white",
-        "flex": "1",
       }
     }
   >
@@ -377,26 +376,34 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                           theme="default"
                                           type="button"
                                         >
-                                          <button
+                                          <BlurButton
                                             alt="Menu uitvouwen of inklappen"
                                             className="Button Button--plain Button--default SideBarCollapsible__toggle"
                                             data-test="Button-button"
                                             onClick={[Function]}
                                             type="button"
                                           >
-                                            <span
-                                              className="Button__label"
+                                            <button
+                                              alt="Menu uitvouwen of inklappen"
+                                              className="Button Button--plain Button--default SideBarCollapsible__toggle"
+                                              data-test="Button-button"
+                                              onClick={[Function]}
+                                              type="button"
                                             >
-                                              <FontAwesome
-                                                name="caret-right"
+                                              <span
+                                                className="Button__label"
                                               >
-                                                <span
-                                                  aria-hidden={true}
-                                                  className="fa fa-caret-right"
-                                                />
-                                              </FontAwesome>
-                                            </span>
-                                          </button>
+                                                <FontAwesome
+                                                  name="caret-right"
+                                                >
+                                                  <span
+                                                    aria-hidden={true}
+                                                    className="fa fa-caret-right"
+                                                  />
+                                                </FontAwesome>
+                                              </span>
+                                            </button>
+                                          </BlurButton>
                                         </Button>
                                       </div>
                                       <Connect(CollapsibleContainer)
@@ -812,11 +819,11 @@ exports[`Navbar as default renders the correct representation 1`] = `
                           <div
                             className="SideBarLink__label"
                           >
-                            <p
+                            <span
                               className="SideBarLink__truncatedLabel"
                             >
                               DevBrowser
-                            </p>
+                            </span>
                           </div>
                         </SideBarLinkLabel>
                       </a>

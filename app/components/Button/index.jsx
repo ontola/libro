@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
+import { BlurButton } from '../../components';
 import LinkDuo from '../LinkDuo';
-
 import './Button.scss';
 
 const buttonThemes = [
@@ -93,18 +93,6 @@ const Button = ({
     [className]: className,
   });
 
-  // Used to remove the annoying focus outline border after clicking
-  const onClickAndBlur = (e) => {
-    if (onClick !== undefined) {
-      onClick(e);
-      // Only blur when the event is a click, not for using the Enter button.
-      // React fires a clickEvent when the user uses Enter, but the coordinates are zero.
-      if (e.nativeEvent.x !== 0) {
-        e.target.blur();
-      }
-    }
-  };
-
   const currentIcon = () => {
     if (loading) {
       return 'spinner';
@@ -139,14 +127,14 @@ const Button = ({
     );
   }
   return (
-    <button
+    <BlurButton
       alt={alt}
       className={btnClass}
       data-test="Button-button"
       disabled={disabled || loading}
       title={title}
       type={type}
-      onClick={onClickAndBlur}
+      onClick={onClick}
     >
       {icon &&
         <FontAwesome
@@ -159,7 +147,7 @@ const Button = ({
       <span className="Button__label">
         {children}
       </span>
-    </button>
+    </BlurButton>
   );
 };
 

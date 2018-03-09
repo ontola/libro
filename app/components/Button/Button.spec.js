@@ -16,17 +16,6 @@ argUnit(Button, () => {
     expect(clickHandler).toHaveBeenCalled();
   });
 
-  it('should blur when clicked', () => {
-    const blur = jest.fn();
-    const eventMock = {
-      nativeEvent: { x: 1 },
-      target: { blur },
-    };
-    expect(subject.simulate('click', eventMock));
-    expect(clickHandler).toHaveBeenCalled();
-    expect(blur).toHaveBeenCalled();
-  });
-
   it('should not be disabled', () => {
     expect(subject.find(marker('button'))).toHaveProp('disabled', undefined);
   });
