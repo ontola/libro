@@ -4,6 +4,7 @@ import { subjectType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import FontAwesome from 'react-fontawesome';
 
 import {
   Card,
@@ -12,14 +13,14 @@ import {
   Heading,
   LinkDuo,
 } from '../../components';
-import SideBarLinkLabel from '../../components/SideBarLink/SideBarLinkLabel';
-import SideBarLinkWrapper from '../../components/SideBarLink/SideBarLinkWrapper';
 import SignInFormContainer from '../../containers/SignInFormContainer';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { currentLocation } from '../../helpers/paths';
 
 import ErrorButtonWithFeedback from './ErrorButtonWithFeedback';
+import ErrorButtonInline from './ErrorButtonInline';
 import { bodyForStatus, errors, headerForStatus } from './ErrorMessages';
+import ErrorButtonSideBar from './ErrorButtonSideBar';
 
 const propTypes = {
   linkRequestStatus: PropTypes.shape({
@@ -45,7 +46,11 @@ const ErrorCardComp = (props) => {
   return (
     <Card>
       <CardContent>
-        <Heading>{headerForStatus(linkRequestStatus)}</Heading>
+        <Heading size="2" variant="alert">
+          <FontAwesome name="exclamation-triangle" />
+          {' '}
+          {headerForStatus(linkRequestStatus)}
+        </Heading>
         <p>{bodyForStatus(linkRequestStatus)}</p>
         {mainAction}
       </CardContent>
@@ -76,10 +81,14 @@ const ErrorPageComp = (props) => {
     <Container>
       <Card>
         <CardContent>
-          <Heading size="1">{headerForStatus(linkRequestStatus)}</Heading>
+          <Heading size="1" variant="alert">
+            <FontAwesome name="exclamation-triangle" />
+            {' '}
+            {headerForStatus(linkRequestStatus)}
+          </Heading>
           {bodyForStatus(linkRequestStatus)}
           <p>
-            {errors.nl.mistaken}
+            {`${errors.nl.mistaken} `}
             <LinkDuo
               style={{ textDecoration: 'underline' }}
               to="https://argu.freshdesk.com/support/tickets/new"
@@ -104,11 +113,7 @@ const ErrorSidebar = (props) => {
   }
 
   return (
-    <SideBarLinkWrapper>
-      <SideBarLinkLabel>
-        <ErrorButtonWithFeedback margins small theme="transparant" {...props} />
-      </SideBarLinkLabel>
-    </SideBarLinkWrapper>
+    <ErrorButtonSideBar {...props} />
   );
 };
 
@@ -119,17 +124,6 @@ ErrorSidebar.propTypes = {
   reloadLinkedObject: PropTypes.func,
   subject: subjectType,
 };
-
-const ErrorInline = props => (
-  <ErrorButtonWithFeedback
-    margins
-    small
-    theme="transparant"
-    {...props}
-  />
-);
-
-ErrorInline.propTypes = propTypes;
 
 export default [
   LinkedRenderStore.registerRenderer(
@@ -164,7 +158,7 @@ export default [
     ]
   ),
   LinkedRenderStore.registerRenderer(
-    ErrorInline,
+    ErrorButtonInline,
     NS.ll('ErrorResource'),
     RENDER_CLASS_NAME,
     [

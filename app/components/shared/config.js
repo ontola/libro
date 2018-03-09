@@ -2,6 +2,7 @@ export const headingSizes = ['1', '2', '3', '4', '5', '6'];
 
 export const headingVariants = [
   'default',
+  'error',
   'pro',
   'con',
   'light',

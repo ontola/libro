@@ -16,7 +16,7 @@ describe('Drawer component', () => {
     assert.equal(comp.find('.Drawer__container').length, 1, 'Drawer__container does not render');
     assert.equal(comp.find('.Drawer__action').length, 1, 'Drawer__action does not render');
 
-    comp.find('.Button').simulate('click');
+    comp.find('button.Button').simulate('click');
     assert.isTrue(spy.called, 'Button onClick does not work');
     assert.equal(comp.find('.Button').first().text(), 'Toon 1337 resultaten', 'Button does not display correct text');
   });

@@ -40,19 +40,17 @@
 }
 
 .NavBarContent--white-text {
-  .SideBarLink {
-    a {
-      color: color('white');
-      transition: $nav-transition-time color;
-    }
+  span,
+  a {
+    color: color('white');
+    transition: $nav-transition-time color;
   }
 }
 
 .NavBarContent--dark-text {
-  .SideBarLink {
-    a {
-      color: color('grey', 'dark');
-      transition: $nav-transition-time color;
-    }
+  span,
+  a {
+    color: color('grey', 'dark');
+    transition: $nav-transition-time color;
   }
 }

@@ -37,6 +37,10 @@
     color: color('brown', 'dark');
   }
 
+  &--alert {
+    color: color('red', 'base');
+  }
+
   &--column {
     color: color('grey');
     text-align: center;

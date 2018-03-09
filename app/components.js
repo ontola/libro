@@ -3,6 +3,7 @@ export { default as BackButton } from './components/BackButton/index';
 export { default as BottomBar } from './components/BottomBar/index';
 export { default as BottomBarButton } from './components/BottomBarButton/index';
 export { default as Button } from './components/Button/index';
+export { default as BlurButton } from './components/BlurButton/index';
 export { default as Card } from './components/Card/index';
 export { default as CardActions } from './components/Card/CardActions';
 export { default as CardButton } from './components/Card/CardButton';

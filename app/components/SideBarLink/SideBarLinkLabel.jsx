@@ -7,7 +7,7 @@ const propTypes = {
 
 const SideBarLinkLabel = ({ children }) => (
   <div className="SideBarLink__label">
-    <p className="SideBarLink__truncatedLabel">{children}</p>
+    <span className="SideBarLink__truncatedLabel">{children}</span>
   </div>
 );
 

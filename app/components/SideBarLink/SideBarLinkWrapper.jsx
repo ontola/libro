@@ -13,7 +13,7 @@ const SideBarLinkWrapper = ({ children, bold }) => {
     'SideBarLink--bold': bold,
   });
 
-  return <div className={classes}>{children}</div>;
+  return <div className={classes} >{children}</div>;
 };
 
 SideBarLinkWrapper.propTypes = propTypes;

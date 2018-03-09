@@ -19,11 +19,11 @@ exports[`Navbar current_actor logged in renders the correct representation 1`] =
         <div
           className="SideBarLink__label"
         >
-          <p
+          <span
             className="SideBarLink__truncatedLabel"
           >
             Maarten van Scharendrecht
-          </p>
+          </span>
         </div>
       </a>
     </div>
@@ -85,11 +85,11 @@ exports[`Navbar current_actor logged out renders the correct representation 1`] 
     <div
       className="SideBarLink__label"
     >
-      <p
+      <span
         className="SideBarLink__truncatedLabel"
       >
         Log in / registreer
-      </p>
+      </span>
     </div>
   </a>
 </div>
