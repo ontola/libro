@@ -4,11 +4,11 @@
   -webkit-overflow-scrolling: touch;
   -webkit-tap-highlight-color: color('transparent', 'transparent');
   display: flex;
+  flex: 1;
   flex-direction: column;
   overflow-x: hidden;
   overflow-y: auto;
   transition: $nav-transition-time background-color;
-
 
   &__logo {
     align-self: center;

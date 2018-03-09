@@ -133,6 +133,19 @@ const TopologyWrapper = ({ pure, topology, subject }) => {
         </Card>
       </Container>
     );
+  } else if (topology === NS.argu('sidebar')) {
+    return (
+      <div
+        className="NavBarContent NavBarContent--white-text"
+        style={{
+          backgroundColor: 'rgb(71, 86, 104)',
+          margin: 'auto',
+          width: '17em',
+        }}
+      >
+        <LRC />
+      </div>
+    );
   }
   return <LRC />;
 };

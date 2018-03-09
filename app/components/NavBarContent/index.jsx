@@ -25,7 +25,6 @@ const NavBarContent = ({
   const style = {
     backgroundColor: orgColor,
     color: 'white',
-    flex: '1',
   };
 
   const classNames = [
