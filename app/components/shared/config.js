@@ -1,12 +1,15 @@
 export const headingSizes = ['1', '2', '3', '4', '5', '6'];
 
 export const headingVariants = [
+  'column',
+  'con',
+  'default',
   'default',
   'error',
-  'pro',
-  'con',
   'light',
-  'column',
+  'motion',
+  'pro',
+  'pro',
   'question',
 ];
 

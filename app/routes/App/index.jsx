@@ -3,6 +3,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import ScrollMemory from 'react-router-scroll-memory';
 
 import {
   Notification,
@@ -53,6 +54,7 @@ const App = ({
       sidebar={<NavbarContainer />}
     >
       <div className="MainContentWrapper" id="start-of-content">
+        <ScrollMemory elementId="start-of-content" />
         {Routes}
       </div>
       <BottomBarContainer />
