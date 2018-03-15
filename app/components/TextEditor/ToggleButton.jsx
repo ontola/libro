@@ -2,9 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import {
-  getEditorShowRich,
-} from '../../state/textEditor/selectors';
+import { getEditorShowRich } from '../../state/textEditor/selectors';
 import {
   showDraftEditor,
   showMarkdownEditor,
@@ -35,12 +33,13 @@ const ToggleEditor = ({
   return (
     <Button
       small
-      className="Button--inside-textarea"
       icon={icon()}
       theme="transparant"
-      title="Wanneer dit aangevinkt staat, kan je tekst selecteren om opmaak te wijzigen en links toe te voegen."
+      title="Wanneer dit aangevinkt staat, kan je tekst selecteren
+        om opmaak te wijzigen en links toe te voegen."
       onClick={onClick()}
-    >Opmaak
+    >
+      Opmaak
     </Button>
   );
 };

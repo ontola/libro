@@ -1,4 +1,3 @@
-export { default as ArgumentForm } from './components/ArgumentForm/index';
 // export { default as Attachment } from './components/Attachment/index';
 export { default as BackButton } from './components/BackButton/index';
 export { default as BottomBar } from './components/BottomBar/index';
@@ -66,6 +65,7 @@ export { default as Markdown } from './components/Markdown/index';
 export { default as MarkdownFixedPreview } from './components/MarkdownFixedPreview/index';
 export { default as NavBarContent } from './components/NavBarContent/index';
 export { default as Notification } from './components/Notification/index';
+export { default as Omniform } from './components/Omniform/index';
 export { default as OrgSwitcher } from './components/OrgSwitcher/index';
 export { default as PageHeader } from './components/PageHeader/index';
 export { default as ProfileCard } from './components/ProfileCard/index';

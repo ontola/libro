@@ -3843,7 +3843,7 @@ execa@^0.8.0:
     signal-exit "^3.0.0"
     strip-eof "^1.0.0"
 
-exenv@^1.2.1:
+exenv@^1.2.0, exenv@^1.2.1:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/exenv/-/exenv-1.2.2.tgz#2ae78e85d9894158670b03d47bec1f03bd91bb9d"
 
@@ -9248,10 +9248,6 @@ raw-body@2.3.2:
     iconv-lite "0.4.19"
     unpipe "1.0.0"
 
-raw-loader@^0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/raw-loader/-/raw-loader-0.5.1.tgz#0c3d0beaed8a01c966d9787bf778281252a979aa"
-
 rc-align@2.x:
   version "2.3.6"
   resolved "https://registry.yarnpkg.com/rc-align/-/rc-align-2.3.6.tgz#35046d2ac25771b1e5cbd600eae8f862c450f9e6"
@@ -9490,6 +9486,14 @@ react-markdown@^2.4.2:
     commonmark "^0.24.0"
     commonmark-react-renderer "^4.3.4"
     prop-types "^15.5.1"
+
+react-modal@^3.3.2:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-3.3.2.tgz#b13da9490653a7c76bc0e9600323eb1079c620e7"
+  dependencies:
+    exenv "^1.2.0"
+    prop-types "^15.5.10"
+    warning "^3.0.0"
 
 react-motion@^0.5.2:
   version "0.5.2"
@@ -10004,7 +10008,7 @@ redux-batched-actions@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/redux-batched-actions/-/redux-batched-actions-0.2.1.tgz#d0c41d495a934004cabafbe0e851746d1795e9dd"
 
-redux-form@^7.2.0:
+redux-form@^7.3.0:
   version "7.3.0"
   resolved "https://registry.yarnpkg.com/redux-form/-/redux-form-7.3.0.tgz#b92ef1639c86a6009b0821aacfc80ad8b5ac8c05"
   dependencies:

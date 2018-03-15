@@ -5,7 +5,7 @@ const validators = {
     return (!emailRegex.test(value)) ?
       'Ongeldig e-mailadres' : undefined;
   },
-  maxLength: max => value => (value && value.length > max ? `Maximaal ${max} tekens` : undefined),
+  maxLength: max => value => (value && value.length > max ? `Maximaal ${max} tekens, nu ${value.length}` : undefined),
   minLength: min => value => (value && value.length < min ? `Minimaal ${min} tekens` : undefined),
   required: value => ((!value) ? 'Vereist' : undefined),
 };

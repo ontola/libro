@@ -141,11 +141,57 @@
   }
 }
 
-.Button--inside-textarea {
-  position: absolute;
-  right: 1em;
-  top: 0;
-  z-index: 1;
+.Button--omniform-switcher {
+  color: color('grey', 'mid-light');
+  padding-left: .8em;
+  padding-right: .8em;
+  position: relative;
+
+  &::after {
+    background-color: transparent;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    content: '';
+    height: 6px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &:hover {
+    &::after {
+      background-color: color('grey', 'light');
+    }
+  }
+}
+
+.Button--omniform-switcher--current {
+  color: color('grey', 'mid-dark');
+
+  &::after {
+    background-color: color('grey', 'x-light');
+  }
+
+  &:hover, {
+    &::after {
+      background-color: color('grey', 'mid-light');
+    }
+  }
+
+  &:active, {
+    &::after {
+      background-color: color('grey', 'base');
+    }
+  }
+
+  &.Button--omniform-switcher--pro {
+    color: color('green', 'base');
+  }
+
+  &.Button--omniform-switcher--con {
+    color: color('brown', 'base');
+  }
 }
 
 // Variants - maintain default style

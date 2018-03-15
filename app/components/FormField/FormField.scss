@@ -12,6 +12,7 @@
   margin-bottom: 0;
   padding: 10px;
   width: calc(100% - 20px);
+  -webkit-appearance: none;
 
   &:focus {
     outline: none;
@@ -29,12 +30,17 @@
 .Field__messages {
   font-size: .8em;
   padding: 0 20px;
-  padding-bottom: 10px;
+  padding-top: 10px;
+
+  &--bottom {
+    padding-bottom: 10px;
+    padding-top: 0;
+  }
 }
 
 .Field__error,
 .Field__warning {
-  color: color('brown');
+  color: $alert-color;
 }
 
 // Props
@@ -75,6 +81,7 @@
   .Field__input {
     background: none;
     border: 0;
+    border-radius: 0;
     margin: 0;
     padding: 10px 20px;
     transition: box-shadow .2s;
@@ -85,13 +92,23 @@
     }
 
     &:focus {
-      .Field--active & {
-        box-shadow: inset 5px 0 0 color('grey');
-      }
+      box-shadow: inset 5px 0 0 color('grey');
     }
   }
 
-  .Field--pro {
+  .Field--active {
+    .Field__input {
+      box-shadow: inset 5px 0 0 color('grey');
+    }
+  }
+
+  &.Field--error {
+    .Field__input {
+      box-shadow: inset 5px 0 0 $alert-color;
+    }
+  }
+
+  &.Field--pro {
     .Field__input {
       color: color('green');
 
@@ -101,7 +118,7 @@
     }
   }
 
-  .Field--con {
+  &.Field--con {
     .Field__input {
       color: color('brown');
 

@@ -50,6 +50,33 @@ const defaultProps = {
   variant: 'default',
 };
 
+const MessagesProps = {
+  bottom: propTypes.bool,
+  error: propTypes.string,
+  warning: propTypes.string,
+};
+
+const MessagesDefaultProps = {
+  bottom: false,
+};
+
+const Messages = ({ error, warning, bottom }) => (
+  <div className={`Field__messages ${bottom ? 'Field__messages--bottom' : ''}`}>
+    {((error &&
+      <span className="Field__error">
+        {error}
+      </span>
+    ) || (warning &&
+      <span className="Field__warning">
+        {warning}
+      </span>
+    ))}
+  </div>
+);
+
+Messages.propTypes = MessagesProps;
+Messages.defaultProps = MessagesDefaultProps;
+
 /**
  * Creates a field for forms. Use with redux-form Field if possible.
  * @returns {component} Component
@@ -88,8 +115,15 @@ const FormField = ({
     className,
   });
 
+  const renderMessages = touched && (error || warning);
+
+  const messagesAboveLabel = (variant !== 'material');
+
   return (
     <div className={`Field ${className} ${classes}`}>
+      {renderMessages && messagesAboveLabel &&
+        <Messages error={error} warning={warning} />
+      }
       {label &&
         <label
           className="Field__label"
@@ -111,18 +145,8 @@ const FormField = ({
         onChange={value => input.onChange(value)}
         onFocus={input.onFocus}
       />
-      {touched && (error || warning) &&
-        <div className="Field__messages">
-          {((error &&
-            <span className="Field__error">
-              {error}
-            </span>
-          ) || (warning &&
-            <span className="Field__warning">
-              {warning}
-            </span>
-          ))}
-        </div>
+      {renderMessages && !messagesAboveLabel &&
+        <Messages bottom error={error} warning={warning} />
       }
     </div>
   );

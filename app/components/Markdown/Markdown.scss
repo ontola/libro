@@ -27,6 +27,8 @@
     border: solid 1px color('grey', 'x-light');
     display: block;
     font-family: monospace;
+    margin-bottom: 1em;
+    overflow: auto;
     padding: .2em .3em;
   }
 
@@ -41,7 +43,7 @@
     color: color('grey', 'mid-dark');
     font-weight: 700;
     line-height: 1em;
-    margin-bottom: 1em;
+    margin-bottom: .4em;
   }
 
   h1 {

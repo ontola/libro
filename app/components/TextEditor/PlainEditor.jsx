@@ -19,8 +19,10 @@ import {
 } from '../../state/textEditor/actions';
 
 import ToggleButton from './ToggleButton';
+import MarkdownInstructions from './MarkdownInstructions';
 
 const propTypes = {
+  disableRich: PropTypes.bool.isRequired,
   id: PropTypes.string.isRequired,
   mdText: PropTypes.string.isRequired,
   onBlur: PropTypes.func.isRequired,
@@ -38,21 +40,10 @@ const defaultProps = {
 };
 
 /* eslint react/prop-types: 0 */
-const ShowPreview = ({ onClick }) => (
+const PreviewButton = ({ show, onClick }) => (
   <Button
     small
-    icon="caret-right"
-    theme="transparant"
-    onClick={onClick}
-  >
-    Voorbeeldweergave
-  </Button>
-);
-
-const HidePreview = ({ onClick }) => (
-  <Button
-    small
-    icon="caret-down"
+    icon={show ? 'caret-down' : 'caret-right'}
     theme="transparant"
     onClick={onClick}
   >
@@ -61,6 +52,7 @@ const HidePreview = ({ onClick }) => (
 );
 
 const PlainEditor = ({
+  disableRich,
   id,
   mdText,
   onChange,
@@ -73,7 +65,7 @@ const PlainEditor = ({
   showPreview,
 }) => (
   <div>
-    <div>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
       <Textarea
         className="Field__input"
         id={id}
@@ -88,20 +80,23 @@ const PlainEditor = ({
         }
         onFocus={onFocus}
       />
-      <ToggleButton id={id} />
+      <div style={{ display: 'flex' }}>
+        {!disableRich && <ToggleButton id={id} />}
+        <PreviewButton
+          show={showPreview}
+          onClick={showPreview ? onHidePreview : onShowPreview}
+        />
+        <MarkdownInstructions />
+      </div>
     </div>
     {showPreview &&
       <div>
-        <HidePreview onClick={onHidePreview} />
         <CardDivider />
         <div className="MarkdownPreview">
           <Markdown text={mdText} />
         </div>
         <CardDivider />
       </div>
-    }
-    {!showPreview && (mdText !== '') &&
-      <ShowPreview onClick={onShowPreview} />
     }
   </div>
 );

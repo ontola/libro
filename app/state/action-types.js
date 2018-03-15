@@ -39,6 +39,10 @@ export const GET_VOTE_EVENT = 'GET_VOTE_EVENT';
 // Pagination
 export const GOTO_PAGE = 'GOTO_PAGE';
 
+// Omniform
+export const OMNIFORM_INITIALIZE = 'OMNIFORM_INITIALIZE';
+export const OMNIFORM_SET_TYPE = 'OMNIFORM_SET_TYPE';
+
 // Search
 export const TOGGLE_DRAWER = 'TOGGLE_DRAWER';
 export const SET_HIT_COUNT = 'SET_HIT_COUNT';

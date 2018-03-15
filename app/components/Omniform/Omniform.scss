@@ -1,0 +1,41 @@
+@import '../shared/config';
+
+.Omniform__footer {
+  background-color: color('grey', 'xx-light');
+  border-bottom-left-radius: $border-radius-base;
+  border-bottom-right-radius: $border-radius-base;
+  border-top: solid 1px color('grey', 'x-light');
+  display: flex;
+  flex-direction: row;
+}
+
+.Omniform__submit {
+  background-color: color('green');
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  color: color('white');
+  justify-self: flex-end;
+  margin-left: auto;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.Omniform__actor-switcher {
+  background-color: color('grey', 'mid-light');
+  border-radius: 999px;
+  height: 2em;
+  margin: .4em;
+  margin-right: 1.2em;
+  width: 2em;
+}
+
+.Omniform__error {
+  color: color('red');
+
+  span {
+    font-size: .7em;
+    margin-left: .6em;
+    margin-right: .3em;
+  }
+}

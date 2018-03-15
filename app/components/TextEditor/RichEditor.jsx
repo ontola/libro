@@ -19,6 +19,7 @@ const propTypes = {
   }).isRequired,
   id: PropTypes.string.isRequired,
   onBlur: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   onFocus: PropTypes.func.isRequired,
   onSaveEditorState: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
@@ -41,22 +42,30 @@ const RichEditor = ({
   editorState,
   id,
   onBlur,
+  onChange,
   onFocus,
   onSaveEditorState,
   placeholder,
 }) => (
-  <div className="Field__input">
-    <MegadraftEditor
-      customStyleMap={styleMap}
-      editorState={editorState}
-      id={id}
-      placeholder={placeholder}
-      sidebarRendererFn={mySideBar}
-      onBlur={onBlur}
-      onChange={onSaveEditorState}
-      onFocus={onFocus}
-    />
-    <ToggleButton id={id} />
+  <div>
+    <div className="Field__input">
+      <MegadraftEditor
+        customStyleMap={styleMap}
+        editorState={editorState}
+        id={id}
+        placeholder={placeholder}
+        sidebarRendererFn={mySideBar}
+        onBlur={onBlur}
+        onChange={(e) => {
+          onSaveEditorState(e);
+          onChange(e);
+        }}
+        onFocus={onFocus}
+      />
+    </div>
+    <div style={{ display: 'flex' }}>
+      <ToggleButton id={id} />
+    </div>
   </div>
 );
 
