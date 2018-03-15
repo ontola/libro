@@ -59,6 +59,7 @@ async function signUp(req, res, next) {
 }
 
 export default (req, res, next) => {
+  res.setHeader('Vary', 'Accept,Accept-Encoding,Content-Type');
   if (req.body.password) {
     return login(req, res, next);
   }
