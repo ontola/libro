@@ -20,7 +20,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
         forceRender={true}
         subject={
           NamedNode {
-            "sI": 99,
+            "sI": 98,
             "term": "find",
             "termType": "NamedNode",
             "value": "https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
@@ -28,7 +28,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
         }
         topology={
           NamedNode {
-            "sI": 45,
+            "sI": 46,
             "term": "sidebarBlock",
             "termType": "NamedNode",
             "value": "https://argu.co/ns/core#sidebarBlock",
@@ -41,7 +41,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
           reloadLinkedObject={[Function]}
           subject={
             NamedNode {
-              "sI": 99,
+              "sI": 98,
               "term": "find",
               "termType": "NamedNode",
               "value": "https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
@@ -49,7 +49,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
           }
           topology={
             NamedNode {
-              "sI": 45,
+              "sI": 46,
               "term": "sidebarBlock",
               "termType": "NamedNode",
               "value": "https://argu.co/ns/core#sidebarBlock",
@@ -65,51 +65,22 @@ exports[`Navbar as default renders the correct representation 1`] = `
               }
             }
           >
-            <linkedSubject[ConnectedProp]
-              forceRender={true}
-              label={
-                NamedNode {
-                  "sI": 74,
-                  "term": "contains",
-                  "termType": "NamedNode",
-                  "value": "https://argu.co/ns/core#contains",
-                }
-              }
-            >
-              <ConnectedProp
-                forceRender={true}
-                label={
-                  NamedNode {
-                    "sI": 74,
-                    "term": "contains",
-                    "termType": "NamedNode",
-                    "value": "https://argu.co/ns/core#contains",
-                  }
-                }
+            <linkedSubject[Connect(Link(Connect))]>
+              <Connect(Link(Connect))
                 subject={
                   NamedNode {
-                    "sI": 99,
+                    "sI": 98,
                     "term": "find",
                     "termType": "NamedNode",
                     "value": "https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
                   }
                 }
               >
-                <Property
+                <Link(Connect)
                   dispatch={[Function]}
-                  forceRender={true}
-                  label={
-                    NamedNode {
-                      "sI": 74,
-                      "term": "contains",
-                      "termType": "NamedNode",
-                      "value": "https://argu.co/ns/core#contains",
-                    }
-                  }
-                  limit={1}
                   subject={
                     NamedNode {
-                      "sI": 99,
+                      "sI": 98,
                       "term": "find",
                       "termType": "NamedNode",
                       "value": "https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
@@ -117,29 +88,19 @@ exports[`Navbar as default renders the correct representation 1`] = `
                   }
                   version="test0"
                 >
-                  <linkedSubject[Connect(Contains)]
-                    dispatch={[Function]}
-                    forceRender={true}
-                    label={
+                  <Connect(Contains)
+                    contains={
                       NamedNode {
-                        "sI": 74,
-                        "term": "contains",
-                        "termType": "NamedNode",
-                        "value": "https://argu.co/ns/core#contains",
-                      }
-                    }
-                    limit={1}
-                    linkedProp={
-                      NamedNode {
-                        "sI": 69,
+                        "sI": 70,
                         "term": "1",
                         "termType": "NamedNode",
                         "value": "https://argu.dev/o/1",
                       }
                     }
+                    dispatch={[Function]}
                     subject={
                       NamedNode {
-                        "sI": 99,
+                        "sI": 98,
                         "term": "find",
                         "termType": "NamedNode",
                         "value": "https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
@@ -147,29 +108,20 @@ exports[`Navbar as default renders the correct representation 1`] = `
                     }
                     version="test0"
                   >
-                    <Connect(Contains)
-                      dispatch={[Function]}
-                      forceRender={true}
-                      label={
+                    <Contains
+                      contains={
                         NamedNode {
-                          "sI": 74,
-                          "term": "contains",
-                          "termType": "NamedNode",
-                          "value": "https://argu.co/ns/core#contains",
-                        }
-                      }
-                      limit={1}
-                      linkedProp={
-                        NamedNode {
-                          "sI": 69,
+                          "sI": 70,
                           "term": "1",
                           "termType": "NamedNode",
                           "value": "https://argu.dev/o/1",
                         }
                       }
+                      dispatch={[Function]}
+                      onOrganizationChange={[Function]}
                       subject={
                         NamedNode {
-                          "sI": 99,
+                          "sI": 98,
                           "term": "find",
                           "termType": "NamedNode",
                           "value": "https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
@@ -177,80 +129,67 @@ exports[`Navbar as default renders the correct representation 1`] = `
                       }
                       version="test0"
                     >
-                      <Contains
-                        dispatch={[Function]}
+                      <Connect(LinkedResourceContainer)
                         forceRender={true}
-                        label={
+                        subject={
                           NamedNode {
-                            "sI": 74,
-                            "term": "contains",
-                            "termType": "NamedNode",
-                            "value": "https://argu.co/ns/core#contains",
-                          }
-                        }
-                        limit={1}
-                        linkedProp={
-                          NamedNode {
-                            "sI": 69,
+                            "sI": 70,
                             "term": "1",
                             "termType": "NamedNode",
                             "value": "https://argu.dev/o/1",
                           }
                         }
-                        subject={
-                          NamedNode {
-                            "sI": 99,
-                            "term": "find",
-                            "termType": "NamedNode",
-                            "value": "https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1",
-                          }
-                        }
-                        version="test0"
                       >
-                        <Connect(LinkedResourceContainer)
+                        <LinkedResourceContainer
                           forceRender={true}
+                          loadLinkedObject={[Function]}
+                          reloadLinkedObject={[Function]}
                           subject={
                             NamedNode {
-                              "sI": 69,
+                              "sI": 70,
                               "term": "1",
                               "termType": "NamedNode",
                               "value": "https://argu.dev/o/1",
                             }
                           }
+                          version="test1"
                         >
-                          <LinkedResourceContainer
-                            forceRender={true}
-                            loadLinkedObject={[Function]}
-                            reloadLinkedObject={[Function]}
-                            subject={
-                              NamedNode {
-                                "sI": 69,
-                                "term": "1",
-                                "termType": "NamedNode",
-                                "value": "https://argu.dev/o/1",
+                          <div
+                            className="view-overridden"
+                            style={
+                              Object {
+                                "display": "inherit",
                               }
                             }
-                            version="test1"
                           >
                             <div
-                              className="view-overridden"
-                              style={
-                                Object {
-                                  "display": "inherit",
-                                }
-                              }
+                              className="NavBarContent__switcher"
                             >
-                              <div
-                                className="NavBarContent__switcher"
+                              <Connect(SideBarCollapsible)
+                                id="<https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1>-menu-items"
+                                labelComp={
+                                  <linkedSubject[LDLink]>
+                                    <linkedSubject[ConnectedProp]
+                                      label={
+                                        NamedNode {
+                                          "sI": 60,
+                                          "term": "name",
+                                          "termType": "NamedNode",
+                                          "value": "http://schema.org/name",
+                                        }
+                                      }
+                                    />
+                                  </linkedSubject[LDLink]>
+                                }
                               >
-                                <Connect(SideBarCollapsible)
+                                <SideBarCollapsible
                                   id="<https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1>-menu-items"
                                   labelComp={
                                     <linkedSubject[LDLink]>
                                       <linkedSubject[ConnectedProp]
                                         label={
                                           NamedNode {
-                                            "sI": 59,
+                                            "sI": 60,
                                             "term": "name",
                                             "termType": "NamedNode",
                                             "value": "http://schema.org/name",
@@ -259,158 +198,150 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                       />
                                     </linkedSubject[LDLink]>
                                   }
+                                  onClickToggle={[Function]}
+                                  open={false}
                                 >
-                                  <SideBarCollapsible
-                                    id="<https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1>-menu-items"
-                                    labelComp={
-                                      <linkedSubject[LDLink]>
-                                        <linkedSubject[ConnectedProp]
-                                          label={
-                                            NamedNode {
-                                              "sI": 59,
-                                              "term": "name",
-                                              "termType": "NamedNode",
-                                              "value": "http://schema.org/name",
-                                            }
-                                          }
-                                        />
-                                      </linkedSubject[LDLink]>
-                                    }
-                                    onClickToggle={[Function]}
-                                    open={false}
+                                  <div
+                                    className="SideBarCollapsible"
+                                    data-test="SideBarCollapsible-sideBarCollapsible"
                                   >
                                     <div
-                                      className="SideBarCollapsible"
-                                      data-test="SideBarCollapsible-sideBarCollapsible"
+                                      className="SideBarCollapsible__label"
+                                      data-test="SideBarCollapsible-label"
                                     >
-                                      <div
-                                        className="SideBarCollapsible__label"
-                                        data-test="SideBarCollapsible-label"
-                                      >
-                                        <linkedSubject[LDLink]>
-                                          <LDLink
-                                            subject={
-                                              NamedNode {
-                                                "sI": 69,
-                                                "term": "1",
-                                                "termType": "NamedNode",
-                                                "value": "https://argu.dev/o/1",
-                                              }
+                                      <linkedSubject[LDLink]>
+                                        <LDLink
+                                          subject={
+                                            NamedNode {
+                                              "sI": 70,
+                                              "term": "1",
+                                              "termType": "NamedNode",
+                                              "value": "https://argu.dev/o/1",
                                             }
+                                          }
+                                        >
+                                          <Link
+                                            replace={false}
+                                            to="/o/1"
                                           >
-                                            <Link
-                                              replace={false}
-                                              to="/o/1"
+                                            <a
+                                              href="/o/1"
+                                              onClick={[Function]}
                                             >
-                                              <a
-                                                href="/o/1"
-                                                onClick={[Function]}
+                                              <linkedSubject[ConnectedProp]
+                                                label={
+                                                  NamedNode {
+                                                    "sI": 60,
+                                                    "term": "name",
+                                                    "termType": "NamedNode",
+                                                    "value": "http://schema.org/name",
+                                                  }
+                                                }
                                               >
-                                                <linkedSubject[ConnectedProp]
+                                                <ConnectedProp
                                                   label={
                                                     NamedNode {
-                                                      "sI": 59,
+                                                      "sI": 60,
                                                       "term": "name",
                                                       "termType": "NamedNode",
                                                       "value": "http://schema.org/name",
                                                     }
                                                   }
+                                                  subject={
+                                                    NamedNode {
+                                                      "sI": 70,
+                                                      "term": "1",
+                                                      "termType": "NamedNode",
+                                                      "value": "https://argu.dev/o/1",
+                                                    }
+                                                  }
                                                 >
-                                                  <ConnectedProp
+                                                  <Property
+                                                    dispatch={[Function]}
+                                                    forceRender={false}
                                                     label={
                                                       NamedNode {
-                                                        "sI": 59,
+                                                        "sI": 60,
                                                         "term": "name",
                                                         "termType": "NamedNode",
                                                         "value": "http://schema.org/name",
                                                       }
                                                     }
+                                                    limit={1}
                                                     subject={
                                                       NamedNode {
-                                                        "sI": 69,
+                                                        "sI": 70,
                                                         "term": "1",
                                                         "termType": "NamedNode",
                                                         "value": "https://argu.dev/o/1",
                                                       }
                                                     }
+                                                    version="test1"
                                                   >
-                                                    <Property
-                                                      dispatch={[Function]}
-                                                      forceRender={false}
-                                                      label={
-                                                        NamedNode {
-                                                          "sI": 59,
-                                                          "term": "name",
-                                                          "termType": "NamedNode",
-                                                          "value": "http://schema.org/name",
-                                                        }
-                                                      }
-                                                      limit={1}
-                                                      subject={
-                                                        NamedNode {
-                                                          "sI": 69,
-                                                          "term": "1",
-                                                          "termType": "NamedNode",
-                                                          "value": "https://argu.dev/o/1",
-                                                        }
-                                                      }
-                                                      version="test1"
-                                                    >
-                                                      Gemeente Utrecht
-                                                    </Property>
-                                                  </ConnectedProp>
-                                                </linkedSubject[ConnectedProp]>
-                                              </a>
-                                            </Link>
-                                          </LDLink>
-                                        </linkedSubject[LDLink]>
-                                        <Button
-                                          active={false}
+                                                    Gemeente Utrecht
+                                                  </Property>
+                                                </ConnectedProp>
+                                              </linkedSubject[ConnectedProp]>
+                                            </a>
+                                          </Link>
+                                        </LDLink>
+                                      </linkedSubject[LDLink]>
+                                      <Button
+                                        active={false}
+                                        alt="Menu uitvouwen of inklappen"
+                                        className="SideBarCollapsible__toggle"
+                                        data-test="SideBarCollapsible-toggle"
+                                        narrow={false}
+                                        onClick={[Function]}
+                                        plain={true}
+                                        small={false}
+                                        theme="default"
+                                        type="button"
+                                      >
+                                        <BlurButton
                                           alt="Menu uitvouwen of inklappen"
-                                          className="SideBarCollapsible__toggle"
-                                          data-test="SideBarCollapsible-toggle"
-                                          narrow={false}
+                                          className="Button Button--plain Button--default SideBarCollapsible__toggle"
+                                          data-test="Button-button"
                                           onClick={[Function]}
-                                          plain={true}
-                                          small={false}
-                                          theme="default"
                                           type="button"
                                         >
-                                          <BlurButton
+                                          <button
                                             alt="Menu uitvouwen of inklappen"
                                             className="Button Button--plain Button--default SideBarCollapsible__toggle"
                                             data-test="Button-button"
                                             onClick={[Function]}
                                             type="button"
                                           >
-                                            <button
-                                              alt="Menu uitvouwen of inklappen"
-                                              className="Button Button--plain Button--default SideBarCollapsible__toggle"
-                                              data-test="Button-button"
-                                              onClick={[Function]}
-                                              type="button"
+                                            <span
+                                              className="Button__label"
                                             >
-                                              <span
-                                                className="Button__label"
+                                              <FontAwesome
+                                                name="caret-right"
                                               >
-                                                <FontAwesome
-                                                  name="caret-right"
-                                                >
-                                                  <span
-                                                    aria-hidden={true}
-                                                    className="fa fa-caret-right"
-                                                  />
-                                                </FontAwesome>
-                                              </span>
-                                            </button>
-                                          </BlurButton>
-                                        </Button>
-                                      </div>
-                                      <Connect(CollapsibleContainer)
+                                                <span
+                                                  aria-hidden={true}
+                                                  className="fa fa-caret-right"
+                                                />
+                                              </FontAwesome>
+                                            </span>
+                                          </button>
+                                        </BlurButton>
+                                      </Button>
+                                    </div>
+                                    <Connect(CollapsibleContainer)
+                                      group="Navbar"
+                                      id="<https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1>-menu-items"
+                                    >
+                                      <CollapsibleContainer
                                         group="Navbar"
                                         id="<https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1>-menu-items"
+                                        onClickToggle={[Function]}
+                                        onInitializeCollapsible={[Function]}
+                                        opened={false}
+                                        startOpened={false}
                                       >
-                                        <CollapsibleContainer
+                                        <Collapsible
+                                          alwaysMountChildren={true}
                                           group="Navbar"
                                           id="<https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1>-menu-items"
                                           onClickToggle={[Function]}
@@ -418,42 +349,46 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                           opened={false}
                                           startOpened={false}
                                         >
-                                          <Collapsible
-                                            alwaysMountChildren={true}
-                                            group="Navbar"
-                                            id="<https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1>-menu-items"
-                                            onClickToggle={[Function]}
-                                            onInitializeCollapsible={[Function]}
-                                            opened={false}
-                                            startOpened={false}
+                                          <div
+                                            aria-expanded={false}
+                                            className="Collapsible"
                                           >
                                             <div
-                                              aria-expanded={false}
-                                              className="Collapsible"
+                                              className="Collapsible__visible-content"
+                                            />
+                                            <div
+                                              aria-hidden={-1}
+                                              className="Collapsible__invisible-content"
                                             >
-                                              <div
-                                                className="Collapsible__visible-content"
-                                              />
-                                              <div
-                                                aria-hidden={-1}
-                                                className="Collapsible__invisible-content"
+                                              <ReactCollapse
+                                                isOpened={false}
+                                                springConfig={
+                                                  Object {
+                                                    "damping": 30,
+                                                    "stiffness": 300,
+                                                  }
+                                                }
+                                                style={
+                                                  Object {
+                                                    "minHeight": "undefinedpx",
+                                                  }
+                                                }
                                               >
-                                                <ReactCollapse
-                                                  isOpened={false}
-                                                  springConfig={
-                                                    Object {
-                                                      "damping": 30,
-                                                      "stiffness": 300,
+                                                <div>
+                                                  <Connect(LinkedResourceContainer)
+                                                    subject={
+                                                      NamedNode {
+                                                        "sI": 120,
+                                                        "term": "menus/organizations",
+                                                        "termType": "NamedNode",
+                                                        "value": "https://argu.dev/menus/organizations",
+                                                      }
                                                     }
-                                                  }
-                                                  style={
-                                                    Object {
-                                                      "minHeight": "undefinedpx",
-                                                    }
-                                                  }
-                                                >
-                                                  <div>
-                                                    <Connect(LinkedResourceContainer)
+                                                  >
+                                                    <LinkedResourceContainer
+                                                      forceRender={false}
+                                                      loadLinkedObject={[Function]}
+                                                      reloadLinkedObject={[Function]}
                                                       subject={
                                                         NamedNode {
                                                           "sI": 120,
@@ -462,121 +397,118 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                           "value": "https://argu.dev/menus/organizations",
                                                         }
                                                       }
-                                                    >
-                                                      <LinkedResourceContainer
-                                                        forceRender={false}
-                                                        loadLinkedObject={[Function]}
-                                                        reloadLinkedObject={[Function]}
-                                                        subject={
-                                                          NamedNode {
-                                                            "sI": 120,
-                                                            "term": "menus/organizations",
-                                                            "termType": "NamedNode",
-                                                            "value": "https://argu.dev/menus/organizations",
-                                                          }
-                                                        }
-                                                        version="new"
-                                                      />
-                                                    </Connect(LinkedResourceContainer)>
-                                                  </div>
-                                                </ReactCollapse>
-                                              </div>
+                                                      version="new"
+                                                    />
+                                                  </Connect(LinkedResourceContainer)>
+                                                </div>
+                                              </ReactCollapse>
                                             </div>
-                                          </Collapsible>
-                                        </CollapsibleContainer>
-                                      </Connect(CollapsibleContainer)>
-                                    </div>
-                                  </SideBarCollapsible>
-                                </Connect(SideBarCollapsible)>
-                              </div>
-                              <linkedSubject[Connect(Type)]>
-                                <Connect(Type)
+                                          </div>
+                                        </Collapsible>
+                                      </CollapsibleContainer>
+                                    </Connect(CollapsibleContainer)>
+                                  </div>
+                                </SideBarCollapsible>
+                              </Connect(SideBarCollapsible)>
+                            </div>
+                            <linkedSubject[Connect(Type)]>
+                              <Connect(Type)
+                                subject={
+                                  NamedNode {
+                                    "sI": 70,
+                                    "term": "1",
+                                    "termType": "NamedNode",
+                                    "value": "https://argu.dev/o/1",
+                                  }
+                                }
+                              >
+                                <Type
+                                  dispatch={[Function]}
                                   subject={
                                     NamedNode {
-                                      "sI": 69,
+                                      "sI": 70,
                                       "term": "1",
                                       "termType": "NamedNode",
                                       "value": "https://argu.dev/o/1",
                                     }
                                   }
+                                  version="test1"
                                 >
-                                  <Type
-                                    dispatch={[Function]}
-                                    subject={
-                                      NamedNode {
-                                        "sI": 69,
-                                        "term": "1",
-                                        "termType": "NamedNode",
-                                        "value": "https://argu.dev/o/1",
-                                      }
-                                    }
-                                    version="test1"
+                                  <div
+                                    className="no-view"
                                   >
-                                    <div
-                                      className="no-view"
+                                    <linkedSubject[ConnectedProp]
+                                      label={
+                                        NamedNode {
+                                          "sI": 60,
+                                          "term": "name",
+                                          "termType": "NamedNode",
+                                          "value": "http://schema.org/name",
+                                        }
+                                      }
                                     >
-                                      <linkedSubject[ConnectedProp]
+                                      <ConnectedProp
                                         label={
                                           NamedNode {
-                                            "sI": 59,
+                                            "sI": 60,
                                             "term": "name",
                                             "termType": "NamedNode",
                                             "value": "http://schema.org/name",
                                           }
                                         }
+                                        subject={
+                                          NamedNode {
+                                            "sI": 70,
+                                            "term": "1",
+                                            "termType": "NamedNode",
+                                            "value": "https://argu.dev/o/1",
+                                          }
+                                        }
                                       >
-                                        <ConnectedProp
+                                        <Property
+                                          dispatch={[Function]}
+                                          forceRender={false}
                                           label={
                                             NamedNode {
-                                              "sI": 59,
+                                              "sI": 60,
                                               "term": "name",
                                               "termType": "NamedNode",
                                               "value": "http://schema.org/name",
                                             }
                                           }
+                                          limit={1}
                                           subject={
                                             NamedNode {
-                                              "sI": 69,
+                                              "sI": 70,
                                               "term": "1",
                                               "termType": "NamedNode",
                                               "value": "https://argu.dev/o/1",
                                             }
                                           }
+                                          version="test1"
                                         >
-                                          <Property
-                                            dispatch={[Function]}
-                                            forceRender={false}
-                                            label={
-                                              NamedNode {
-                                                "sI": 59,
-                                                "term": "name",
-                                                "termType": "NamedNode",
-                                                "value": "http://schema.org/name",
-                                              }
-                                            }
-                                            limit={1}
-                                            subject={
-                                              NamedNode {
-                                                "sI": 69,
-                                                "term": "1",
-                                                "termType": "NamedNode",
-                                                "value": "https://argu.dev/o/1",
-                                              }
-                                            }
-                                            version="test1"
-                                          >
-                                            Gemeente Utrecht
-                                          </Property>
-                                        </ConnectedProp>
-                                      </linkedSubject[ConnectedProp]>
-                                      <p>
-                                        We currently don"t have a view for this (&lt;https://argu.dev/o/1&gt;)
-                                      </p>
-                                    </div>
-                                  </Type>
-                                </Connect(Type)>
-                              </linkedSubject[Connect(Type)]>
-                              <linkedSubject[ConnectedProp]
+                                          Gemeente Utrecht
+                                        </Property>
+                                      </ConnectedProp>
+                                    </linkedSubject[ConnectedProp]>
+                                    <p>
+                                      We currently don"t have a view for this (&lt;https://argu.dev/o/1&gt;)
+                                    </p>
+                                  </div>
+                                </Type>
+                              </Connect(Type)>
+                            </linkedSubject[Connect(Type)]>
+                            <linkedSubject[ConnectedProp]
+                              label={
+                                NamedNode {
+                                  "sI": 121,
+                                  "term": "baseColor",
+                                  "termType": "NamedNode",
+                                  "value": "https://argu.co/ns/core#baseColor",
+                                }
+                              }
+                            >
+                              <ConnectedProp
                                 label={
                                   NamedNode {
                                     "sI": 121,
@@ -585,8 +517,18 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                     "value": "https://argu.co/ns/core#baseColor",
                                   }
                                 }
+                                subject={
+                                  NamedNode {
+                                    "sI": 70,
+                                    "term": "1",
+                                    "termType": "NamedNode",
+                                    "value": "https://argu.dev/o/1",
+                                  }
+                                }
                               >
-                                <ConnectedProp
+                                <Property
+                                  dispatch={[Function]}
+                                  forceRender={false}
                                   label={
                                     NamedNode {
                                       "sI": 121,
@@ -595,48 +537,27 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                       "value": "https://argu.co/ns/core#baseColor",
                                     }
                                   }
+                                  limit={1}
                                   subject={
                                     NamedNode {
-                                      "sI": 69,
+                                      "sI": 70,
                                       "term": "1",
                                       "termType": "NamedNode",
                                       "value": "https://argu.dev/o/1",
                                     }
                                   }
-                                >
-                                  <Property
-                                    dispatch={[Function]}
-                                    forceRender={false}
-                                    label={
-                                      NamedNode {
-                                        "sI": 121,
-                                        "term": "baseColor",
-                                        "termType": "NamedNode",
-                                        "value": "https://argu.co/ns/core#baseColor",
-                                      }
-                                    }
-                                    limit={1}
-                                    subject={
-                                      NamedNode {
-                                        "sI": 69,
-                                        "term": "1",
-                                        "termType": "NamedNode",
-                                        "value": "https://argu.dev/o/1",
-                                      }
-                                    }
-                                    version="test1"
-                                  />
-                                </ConnectedProp>
-                              </linkedSubject[ConnectedProp]>
-                            </div>
-                          </LinkedResourceContainer>
-                        </Connect(LinkedResourceContainer)>
-                      </Contains>
-                    </Connect(Contains)>
-                  </linkedSubject[Connect(Contains)]>
-                </Property>
-              </ConnectedProp>
-            </linkedSubject[ConnectedProp]>
+                                  version="test1"
+                                />
+                              </ConnectedProp>
+                            </linkedSubject[ConnectedProp]>
+                          </div>
+                        </LinkedResourceContainer>
+                      </Connect(LinkedResourceContainer)>
+                    </Contains>
+                  </Connect(Contains)>
+                </Link(Connect)>
+              </Connect(Link(Connect))>
+            </linkedSubject[Connect(Link(Connect))]>
           </div>
         </LinkedResourceContainer>
       </Connect(LinkedResourceContainer)>
@@ -655,7 +576,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
         }
         topology={
           NamedNode {
-            "sI": 44,
+            "sI": 45,
             "term": "sidebar",
             "termType": "NamedNode",
             "value": "https://argu.co/ns/core#sidebar",
@@ -676,7 +597,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
           }
           topology={
             NamedNode {
-              "sI": 44,
+              "sI": 45,
               "term": "sidebar",
               "termType": "NamedNode",
               "value": "https://argu.co/ns/core#sidebar",
@@ -696,7 +617,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
         }
         topology={
           NamedNode {
-            "sI": 44,
+            "sI": 45,
             "term": "sidebar",
             "termType": "NamedNode",
             "value": "https://argu.co/ns/core#sidebar",
@@ -717,7 +638,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
           }
           topology={
             NamedNode {
-              "sI": 44,
+              "sI": 45,
               "term": "sidebar",
               "termType": "NamedNode",
               "value": "https://argu.co/ns/core#sidebar",
@@ -737,7 +658,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
         }
         topology={
           NamedNode {
-            "sI": 44,
+            "sI": 45,
             "term": "sidebar",
             "termType": "NamedNode",
             "value": "https://argu.co/ns/core#sidebar",
@@ -758,7 +679,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
           }
           topology={
             NamedNode {
-              "sI": 44,
+              "sI": 45,
               "term": "sidebar",
               "termType": "NamedNode",
               "value": "https://argu.co/ns/core#sidebar",

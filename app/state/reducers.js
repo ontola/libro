@@ -1,3 +1,4 @@
+export { default as app } from './app/reducer';
 export { default as collapsible } from './collapsible/reducer';
 export { default as communication } from './communication/reducer';
 export { default as form } from './form/reducer';

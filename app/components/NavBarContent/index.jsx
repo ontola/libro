@@ -1,4 +1,4 @@
-import { LinkedResourceContainer, Property } from 'link-redux';
+import { LinkedResourceContainer } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -10,6 +10,7 @@ import { currentURL } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 
 import './NavBarContent.scss';
+import ContainsContainer from './contains';
 
 const propTypes = {
   orgColor: PropTypes.string,
@@ -19,9 +20,7 @@ const defaultProps = {
   orgColor: 'rgb(71, 86, 104)',
 };
 
-const NavBarContent = ({
-  orgColor,
-}) => {
+const NavBarContent = ({ orgColor }) => {
   const style = {
     backgroundColor: orgColor,
     color: 'white',
@@ -43,7 +42,7 @@ const NavBarContent = ({
           subject={NS.app(`o/find?iri=${encodeURIComponent(currentURL())}`)}
           topology={NS.argu('sidebarBlock')}
         >
-          <Property forceRender label={NS.argu('contains')} />
+          <ContainsContainer />
         </LinkedResourceContainer>
       </div>
       <div className="NavBarContent__footer">
@@ -88,7 +87,6 @@ const NavBarContent = ({
     </div>
   );
 };
-
 
 NavBarContent.propTypes = propTypes;
 NavBarContent.defaultProps = defaultProps;

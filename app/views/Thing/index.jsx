@@ -20,7 +20,6 @@ import { NS } from '../../helpers/LinkedRenderStore';
 
 import Arguments from './properties/arguments';
 import BaseColor from './properties/baseColor';
-import Contains from './properties/contains';
 import CollectionAssociation from './properties/collectionAssociation';
 import CoverPhoto from './properties/coverPhoto';
 import DateCreated from './properties/dateCreated';
@@ -196,7 +195,6 @@ export default [
   ),
   Arguments,
   BaseColor,
-  Contains,
   CollectionAssociation,
   CoverPhoto,
   DateCreated,

@@ -1,3 +1,6 @@
+// App
+export const SET_ORGANIZATION = 'SET_ORGANIZATION';
+
 // Collapsibles
 export const COLL_ADD = 'COLL_ADD';
 export const COLL_REMOVE = 'COLL_REMOVE';
