@@ -47,6 +47,7 @@ const ThingPage = () => (
             <Property label={NS.argu('actionsMenu')} />
           </CardMenuFloater>
           <DetailsBar>
+            <Property label={NS.rdf('type')} />
             <Property label={NS.schema('creator')} />
             <Property label={NS.schema('dateCreated')} />
           </DetailsBar>

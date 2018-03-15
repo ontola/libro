@@ -14,6 +14,7 @@ import GuestUserActor from './GuestUserActor';
 import Forum from './Forum';
 import ImageObject from './ImageObject';
 import InfiniteCollection from './InfiniteCollection';
+import RDFSClass from './RDFSClass';
 // import './LinkedRecord';
 import Loading from './Loading';
 import MenuItem from './MenuItem';
@@ -56,6 +57,7 @@ LRS.registerAll(
   ...OrganizationsMenu,
   ...Organization,
   ...Person,
+  ...RDFSClass,
   SeqComp,
   ...SubMenu,
   UserActor,

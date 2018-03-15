@@ -56,7 +56,7 @@ export const getTopologyNumber = topology => allTopologies.findIndex((item) => {
   return topology === item;
 });
 
-LRS.addOntologySchematics([
+const ontologicalData = [
   new Statement(NS.rdfs('Resource'), NS.rdfs('subClassOf'), NS.schema('Thing')),
   new Statement(NS.owl('Thing'), NS.owl('sameAs'), NS.schema('Thing')),
 
@@ -76,6 +76,8 @@ LRS.addOntologySchematics([
   new Statement(NS.argu('Question'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.argu('Question'), NS.rdfs('label'), new Literal('Challenge')),
   new Statement(NS.argu('Question'), NS.rdfs('subClassOf'), NS.schema('CreativeWork')),
+  new Statement(NS.argu('Question'), NS.schema('description'), new Literal('Een uitdaging is een vraagstuk of probleem waaronder ', 'nl-NL')),
+  new Statement(NS.argu('Question'), NS.schema('image'), new NamedNode('http://fontawesome.io/icon/question')),
 
   new Statement(NS.schema('Thing'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.schema('Thing'), NS.rdfs('comment'), new Literal('The most generic type of item.')),
@@ -94,6 +96,8 @@ LRS.addOntologySchematics([
   new Statement(NS.argu('Motion'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.argu('Motion'), NS.rdfs('label'), new Literal('Motion')),
   new Statement(NS.argu('Motion'), NS.rdfs('subClassOf'), NS.schema('CreativeWork')),
+  new Statement(NS.argu('Motion'), NS.schema('description'), new Literal('Een idee is een concreet voorstel om ', 'nl-NL')),
+  new Statement(NS.argu('Motion'), NS.schema('image'), new NamedNode('http://fontawesome.io/icon/lightbulb-o')),
 
   new Statement(NS.argu('Argument'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.argu('Argument'), NS.rdfs('label'), new Literal('Argument')),
@@ -114,7 +118,10 @@ LRS.addOntologySchematics([
   new Statement(NS.argu('ShareMenu'), NS.rdfs('subClassOf'), NS.schema('SubMenu')),
 
   new Statement(NS.aod('title'), NS.owl('sameAs'), NS.schema('name')),
-]);
+];
+
+LRS.addOntologySchematics(ontologicalData);
+LRS.store.addStatements(ontologicalData);
 
 LRS.execActionByIRI = function execActionByIRI(subject) {
   let object, url;
