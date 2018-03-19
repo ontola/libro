@@ -20,7 +20,13 @@
     // Displaying clickable items directly in card
     > a {
       display: flex;
+      // [AOD-179] Stretch to fill parent
       flex: 1;
+    }
+
+    & .CardContent {
+      // [AOD-174][AOD-179] Hides overflowing text, should not flex due to rendering in Chrome
+      overflow: hidden;
     }
 
     @include smallest-only {
@@ -31,8 +37,6 @@
 
 .CardContent {
   display: flex;
-  // [AOD-174] Fixes overflowing text in fixed card height in firefox
-  flex: 1;
   flex-direction: column;
   padding: units('small', 'large');
   padding-bottom: 0;
