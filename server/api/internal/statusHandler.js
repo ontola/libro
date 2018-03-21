@@ -26,8 +26,11 @@ export default function processResponse(response) {
   if (typeof ErrClass === 'undefined') {
     throw new Error('Unhandled exception');
   }
-  const err = new ErrClass(getDevMessage(response.status));
-  err.internal = true;
-  err.response = response;
+  const devMsg = getDevMessage(response.status);
+  const err = new ErrClass(devMsg);
+  if (devMsg) {
+    err.internal = true;
+    err.response = response;
+  }
   return Promise.reject(err);
 }

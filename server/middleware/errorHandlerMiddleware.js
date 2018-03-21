@@ -32,12 +32,12 @@ export default function errorHandlerMiddleware(err, req, res, next) {
     console.warn(err.stack);
   }
   let error;
-  switch (err) {
-    case errors.BadGatewayError:
-    case errors.ServiceUnavailableError:
+  switch (err.status) {
+    case errors.BadGatewayError.status:
+    case errors.ServiceUnavailableError.status:
       error = new errors.ServiceUnavailableError();
       break;
-    case errors.NotFoundError:
+    case errors.NotFoundError.status:
       error = new errors.NotFoundError();
       break;
     default:
