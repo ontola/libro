@@ -282,7 +282,7 @@ class LinkDevTools {
       console.debug('Detected forceRender, but no children were given, continuing.');
     }
     const compData = comp.data();
-    if (LinkedResourceContainer.hasData(compData)) {
+    if (LinkedResourceContainer.isLoading(comp.props.subject)) {
       const cause = compData === 'undefined' ? 'Component has no data' : 'Component has too little data';
       console.info(cause);
       console.debug('Resolved data;', compData);

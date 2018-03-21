@@ -17,6 +17,18 @@ exports[`Navbar current_actor logged in renders the correct representation 1`] =
         onClick={[Function]}
       >
         <div
+          className="SideBarLink__image-wrapper"
+        >
+          <div
+            className="SideBarLink__image"
+            style={
+              Object {
+                "backgroundImage": "url(https://argu-logos.s3.amazonaws.com/photos/734/icon_Adventure_Time_thinkinh.jpg)",
+              }
+            }
+          />
+        </div>
+        <div
           className="SideBarLink__label"
         >
           <span
@@ -57,7 +69,16 @@ exports[`Navbar current_actor logged in renders the correct representation 1`] =
       aria-hidden={-1}
       className="Collapsible__invisible-content"
     >
-      <div />
+      <div>
+        <div
+          className="view-overridden"
+          style={
+            Object {
+              "display": "inherit",
+            }
+          }
+        />
+      </div>
     </div>
   </div>
 </div>

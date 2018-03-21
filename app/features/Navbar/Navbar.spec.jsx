@@ -6,6 +6,9 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import components, { Component } from './Navbar';
 
 const resource = new NamedNode('https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1');
+const pageSize = 10;
+const totalCount = 378;
+const unreadCount = 6;
 
 const resources = {
   [resource]: {
@@ -85,6 +88,15 @@ const resources = {
     [NS.schema('isPartOf')]: new NamedNode('https://argu.dev/o/1/menus/navigations#forums'),
     [NS.schema('image')]: new NamedNode('http://fontawesome.io/icon/gear'),
   },
+  [NS.app('n?type=infinite')]: {
+    [NS.rdf('type')]: NS.argu('InfiniteCollection'),
+    [NS.dc('identifier')]: NS.app('n?type=infinite'),
+    [NS.schema('name')]: new Literal('Notifications'),
+    [NS.argu('first')]: NS.app('n?type=infinite&before=2018-03-22%2010%3A42%3A42'),
+    [NS.argu('pageSize')]: Literal.fromNumber(pageSize),
+    [NS.argu('totalCount')]: Literal.fromNumber(totalCount),
+    [NS.argu('unreadCount')]: Literal.fromNumber(unreadCount),
+  }
 };
 
 describeView('Navbar', components, resources, resource, () => {

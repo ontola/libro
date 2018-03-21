@@ -32,7 +32,12 @@ exports[`Menu https://argu.co/ns/core#sidebar renders a menu 1`] = `
     >
       <div
         className="SideBarLink__icon"
-      />
+      >
+        <span
+          aria-hidden={true}
+          className="fa fa-lightbulb-o"
+        />
+      </div>
       Ideeën
     </a>
   </div>
@@ -48,7 +53,12 @@ exports[`Menu https://argu.co/ns/core#sidebar renders a menu 1`] = `
     >
       <div
         className="SideBarLink__icon"
-      />
+      >
+        <span
+          aria-hidden={true}
+          className="fa fa-question"
+        />
+      </div>
       Vraagstukken
     </a>
   </div>
@@ -64,7 +74,12 @@ exports[`Menu https://argu.co/ns/core#sidebar renders a menu 1`] = `
     >
       <div
         className="SideBarLink__icon"
-      />
+      >
+        <span
+          aria-hidden={true}
+          className="fa fa-gear"
+        />
+      </div>
       Instellingen
     </a>
   </div>

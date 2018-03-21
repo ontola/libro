@@ -24,7 +24,7 @@ const resourcesLoggedIn = {
     [NS.schema('description')]: new Literal("I'm a writer."),
     [NS.schema('email')]: new Literal('maartenvscharendrecht@example.com'),
     [NS.argu('emails')]: new NamedNode('https://argu.dev/email/456'),
-    [NS.schema('image')]: new NamedNode('https://argu.dev/media_objects/253'),
+    [NS.schema('image')]: new NamedNode('https://argu.dev/media_objects/734'),
     [NS.argu('voteMatches')]: new NamedNode('https://argu.dev/u/123/vote_matches?type=paginated'),
   },
   [new NamedNode('https://argu.dev/media_objects/734')]: {

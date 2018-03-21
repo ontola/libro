@@ -1,5 +1,7 @@
 import HttpStatus from 'http-status-codes';
 
+const CLIENT_CLOSED_REQUEST = 499;
+
 export const errors = {
   en: {
     [HttpStatus.BAD_REQUEST]: {
@@ -65,6 +67,10 @@ export const errors = {
     [HttpStatus.GATEWAY_TIMEOUT]: {
       body: 'There was a networking issue during this request, please retry or try again later',
       header: 'Gateway timeout',
+    },
+    [CLIENT_CLOSED_REQUEST]: {
+      body: 'There was a (network) issue during this request, check the internet connection, please retry or try a different browser.',
+      header: 'Problem with the browser',
     },
     again: 'Try again',
     click_to_retry: 'Click to retry',
@@ -136,6 +142,10 @@ export const errors = {
     [HttpStatus.GATEWAY_TIMEOUT]: {
       body: 'Er was een netwerkprobleem voor dit verzoek, probeer het opnieuw of later nog eens.',
       header: 'Doorgang stilgevallen',
+    },
+    [CLIENT_CLOSED_REQUEST]: {
+      body: 'Er was een (netwerk) probleem voor dit verzoek, controleer de internet verbinding, probeer het later nog eens of in een andere browser.',
+      header: 'Probleem met de browser',
     },
     again: 'Opnieuw',
     click_to_retry: 'Klik om het nogmaals te proberen.',
