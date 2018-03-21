@@ -56,60 +56,84 @@ export const getTopologyNumber = topology => allTopologies.findIndex((item) => {
   return topology === item;
 });
 
+const languages = {
+  en: 'en',
+  nl: 'nl',
+};
+
 const ontologicalData = [
   new Statement(NS.rdfs('Resource'), NS.rdfs('subClassOf'), NS.schema('Thing')),
   new Statement(NS.owl('Thing'), NS.owl('sameAs'), NS.schema('Thing')),
 
   new Statement(NS.schema('CreativeWork'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.schema('CreativeWork'), NS.dc('source'), new NamedNode('http://www.w3.org/wiki/WebSchemas/SchemaDotOrgSources#source_rNews')),
-  new Statement(NS.schema('CreativeWork'), NS.rdfs('comment'), new Literal('The most generic kind of creative work, including books, movies, photographs, software programs, etc.')),
-  new Statement(NS.schema('CreativeWork'), NS.rdfs('label'), new Literal('CreativeWork')),
+  new Statement(NS.schema('CreativeWork'), NS.rdfs('comment'), new Literal('The most generic kind of creative work, including books, movies, photographs, software programs, etc.', languages.en)),
+  new Statement(NS.schema('CreativeWork'), NS.rdfs('label'), new Literal('CreativeWork', languages.en)),
   new Statement(NS.schema('CreativeWork'), NS.rdfs('subClassOf'), NS.schema('Thing')),
 
   new Statement(NS.schema('Comment'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.schema('Comment'), NS.rdfs('comment'), new Literal("A comment on an item - for example, a comment on a blog post. The comment's content is " +
     'expressed via the <a class="localLink" href="/text">text</a> property, and its topic ' +
     'via <a class="localLink" href="/about">about</a>, properties shared with all CreativeWorks.')),
-  new Statement(NS.schema('Comment'), NS.rdfs('label'), new Literal('Comment')),
+  new Statement(NS.schema('Comment'), NS.rdfs('label'), new Literal('Comment', languages.en)),
+  new Statement(NS.schema('Comment'), NS.rdfs('label'), new Literal('Reactie', languages.nl)),
   new Statement(NS.schema('Comment'), NS.rdfs('subClassOf'), NS.schema('CreativeWork')),
+  new Statement(NS.schema('Comment'), NS.schema('description'), new Literal('A comment is a (brief) written response or note about a thing.', languages.en)),
+  new Statement(NS.schema('Comment'), NS.schema('description'), new Literal('Een reactie is een (korte) geschreven antwoord of notitie over een ding.', languages.nl)),
 
   new Statement(NS.argu('Question'), NS.rdf('type'), NS.rdfs('Class')),
-  new Statement(NS.argu('Question'), NS.rdfs('label'), new Literal('Challenge')),
+  new Statement(NS.argu('Question'), NS.rdfs('label'), new Literal('Challenge', languages.en)),
+  new Statement(NS.argu('Question'), NS.rdfs('label'), new Literal('Uitdaging', languages.nl)),
   new Statement(NS.argu('Question'), NS.rdfs('subClassOf'), NS.schema('CreativeWork')),
-  new Statement(NS.argu('Question'), NS.schema('description'), new Literal('Een uitdaging is een vraagstuk of probleem waaronder ', 'nl-NL')),
+  new Statement(NS.argu('Question'), NS.schema('description'), new Literal('A challenge is een problem or question to which people can submit their ideas.', languages.en)),
+  new Statement(NS.argu('Question'), NS.schema('description'), new Literal('Een uitdaging is een probleem waar ideeën op kunnen worden ingediend.', languages.nl)),
   new Statement(NS.argu('Question'), NS.schema('image'), new NamedNode('http://fontawesome.io/icon/question')),
 
   new Statement(NS.schema('Thing'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.schema('Thing'), NS.rdfs('comment'), new Literal('The most generic type of item.')),
-  new Statement(NS.schema('Thing'), NS.rdfs('label'), new Literal('Thing')),
+  new Statement(NS.schema('Thing'), NS.rdfs('label'), new Literal('Thing', languages.en)),
 
   new Statement(NS.schema('Person'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.schema('Person'), NS.dc('source'), new NamedNode('http://www.w3.org/wiki/WebSchemas/SchemaDotOrgSources#source_rNews')),
   new Statement(NS.schema('Person'), NS.owl('equivalentClass'), NS.foaf('Person')),
-  new Statement(NS.schema('Person'), NS.rdfs('comment'), new Literal('A person (alive, dead, undead, or fictional).')),
-  new Statement(NS.schema('Person'), NS.rdfs('label'), new Literal('Person')),
+  new Statement(NS.schema('Person'), NS.rdfs('comment'), new Literal('A person (alive, dead, undead, or fictional).', languages.en)),
+  new Statement(NS.schema('Person'), NS.rdfs('label'), new Literal('Person', languages.en)),
+  new Statement(NS.schema('Person'), NS.rdfs('label'), new Literal('Persoon', languages.nl)),
   new Statement(NS.schema('Person'), NS.rdfs('subClassOf'), NS.schema('Thing')),
 
   new Statement(NS.foaf('name'), NS.owl('sameAs'), NS.schema('name')),
   new Statement(NS.aod('title'), NS.owl('sameAs'), NS.schema('name')),
 
   new Statement(NS.argu('Motion'), NS.rdf('type'), NS.rdfs('Class')),
-  new Statement(NS.argu('Motion'), NS.rdfs('label'), new Literal('Motion')),
+  new Statement(NS.argu('Motion'), NS.rdfs('label'), new Literal('Idea', languages.en)),
+  new Statement(NS.argu('Motion'), NS.rdfs('label'), new Literal('Idee', languages.nl)),
   new Statement(NS.argu('Motion'), NS.rdfs('subClassOf'), NS.schema('CreativeWork')),
-  new Statement(NS.argu('Motion'), NS.schema('description'), new Literal('Een idee is een concreet voorstel om ', 'nl-NL')),
+  new Statement(NS.argu('Motion'), NS.schema('description'), new Literal('An idea is a proposal on which people can vote and add pro- or con arguments.', languages.en)),
+  new Statement(NS.argu('Motion'), NS.schema('description'), new Literal('Een motie is een voorstel om iets door een overheid te laten uitvoeren.', languages.nl)),
   new Statement(NS.argu('Motion'), NS.schema('image'), new NamedNode('http://fontawesome.io/icon/lightbulb-o')),
 
   new Statement(NS.argu('Argument'), NS.rdf('type'), NS.rdfs('Class')),
-  new Statement(NS.argu('Argument'), NS.rdfs('label'), new Literal('Argument')),
+  new Statement(NS.argu('Argument'), NS.rdfs('label'), new Literal('Argument', languages.en)),
+  new Statement(NS.argu('Argument'), NS.rdfs('label'), new Literal('Argument', languages.nl)),
   new Statement(NS.argu('Argument'), NS.rdfs('subClassOf'), NS.schema('CreativeWork')),
+  new Statement(NS.argu('Argument'), NS.rdfs('description'), new Literal('An argument is a single reason in favor or against an idea.', languages.en)),
+  new Statement(NS.argu('Argument'), NS.rdfs('description'), new Literal('Een argument is een enkele reden voor of tegen een idee..', languages.nl)),
 
   new Statement(NS.argu('ConArgument'), NS.rdf('type'), NS.rdfs('Class')),
-  new Statement(NS.argu('ConArgument'), NS.rdfs('label'), new Literal('Argument against')),
+  new Statement(NS.argu('ConArgument'), NS.rdfs('label'), new Literal('Argument against', languages.en)),
+  new Statement(NS.argu('ConArgument'), NS.rdfs('label'), new Literal('Argument tegen', languages.nl)),
   new Statement(NS.argu('ConArgument'), NS.rdfs('subClassOf'), NS.schema('Argument')),
+  new Statement(NS.argu('ConArgument'), NS.schema('description'), new Literal('A con is a reason to be against the idea.', languages.en)),
+  new Statement(NS.argu('ConArgument'), NS.schema('description'), new Literal('Een tegenargument is een reden om tegen het idee te zijn.', languages.nl)),
+  new Statement(NS.argu('ConArgument'), NS.schema('image'), new NamedNode('http://fontawesome.io/icon/minus')),
 
   new Statement(NS.argu('ProArgument'), NS.rdf('type'), NS.rdfs('Class')),
-  new Statement(NS.argu('ProArgument'), NS.rdfs('label'), new Literal('Argument in favour')),
+  new Statement(NS.argu('ProArgument'), NS.rdfs('label'), new Literal('Argument in favour', languages.en)),
+  new Statement(NS.argu('ProArgument'), NS.rdfs('label'), new Literal('Argument voor', languages.nl)),
   new Statement(NS.argu('ProArgument'), NS.rdfs('subClassOf'), NS.schema('Argument')),
+  new Statement(NS.argu('ProArgument'), NS.schema('description'), new Literal('A pro voor is een reden om voor het idee te zijn.', languages.en)),
+  new Statement(NS.argu('ProArgument'), NS.schema('description'), new Literal('Een argument voor is een reden om voor het idee te zijn.', languages.nl)),
+  new Statement(NS.argu('ProArgument'), NS.schema('image'), new NamedNode('http://fontawesome.io/icon/plus')),
 
   new Statement(NS.argu('ActionsMenu'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.argu('ActionsMenu'), NS.rdfs('subClassOf'), NS.schema('SubMenu')),
@@ -118,6 +142,14 @@ const ontologicalData = [
   new Statement(NS.argu('ShareMenu'), NS.rdfs('subClassOf'), NS.schema('SubMenu')),
 
   new Statement(NS.aod('title'), NS.owl('sameAs'), NS.schema('name')),
+
+  new Statement(NS.schema('MediaObject'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.schema('MediaObject'), NS.rdfs('label'), new Literal('Attachment', languages.en)),
+  new Statement(NS.schema('MediaObject'), NS.rdfs('label'), new Literal('Bijlage', languages.nl)),
+  new Statement(NS.schema('MediaObject'), NS.rdfs('subClassOf'), NS.schema('Thing')),
+  new Statement(NS.schema('MediaObject'), NS.schema('description'), new Literal('An attachment is a file which has been appended to a document to provide more information.', languages.en)),
+  new Statement(NS.schema('MediaObject'), NS.schema('description'), new Literal('Een bijlage is een bestand dat bij een document gevoegd is om meer informatie te verschaffen.', languages.nl)),
+  new Statement(NS.schema('MediaObject'), NS.schema('image'), new NamedNode('http://fontawesome.io/icon/file')),
 ];
 
 LRS.addOntologySchematics(ontologicalData);
