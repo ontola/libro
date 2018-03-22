@@ -4064,6 +4064,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                 <NavLink
                   activeClassName="SideBarLink--active"
                   ariaCurrent="true"
+                  className="SideBarLink__link"
                   to="/d/browser?iri=https://argu.dev/o/1"
                 >
                   <Route
@@ -4071,11 +4072,13 @@ exports[`Navbar as default renders the correct representation 1`] = `
                   >
                     <Link
                       aria-current={false}
+                      className="SideBarLink__link"
                       replace={false}
                       to="/d/browser?iri=https://argu.dev/o/1"
                     >
                       <a
                         aria-current={false}
+                        className="SideBarLink__link"
                         href="/d/browser?iri=https://argu.dev/o/1"
                         onClick={[Function]}
                       >
@@ -4098,7 +4101,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                             className="SideBarLink__label"
                           >
                             <span
-                              className="SideBarLink__truncatedLabel"
+                              className="SideBarLink__truncated-label"
                             >
                               DevBrowser
                             </span>

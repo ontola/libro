@@ -1,5 +1,5 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { link, Property } from 'link-redux';
+import { link } from 'link-redux';
 import PropTypes from 'prop-types';
 import { Literal } from 'rdflib';
 import React from 'react';
@@ -16,10 +16,7 @@ const propTypes = {
 
 const PersonDetail = ({ name }) => (
   <LDLink>
-    <div style={{ display: 'inline-flex' }}>
-      <Property label={NS.schema('image')} />
-      <Detail text={name.value} />
-    </div>
+    <Detail linkedImage text={name.value} />
   </LDLink>
 );
 

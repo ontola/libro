@@ -21,20 +21,22 @@
 }
 
 .Dropdown__trigger {
-  cursor: pointer;
-  height: 2em;
-  width: 2em;
+  align-items: center;
   border-radius: 999px;
+  color: color('grey', 'mid-light');
+  cursor: pointer;
+  display: flex;
+  height: 2em;
+  justify-content: center;
   position: relative;
   transition: opacity .2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: color('grey', 'mid-dark');
+  width: 2em;
 
-  &--opened, &:hover, &:focus {
-  color: color('grey', 'dark');
-  background-color: color('grey', 'xx-light');
+  &--opened,
+  &:hover,
+  &:focus {
+    background-color: color('grey', 'xx-light');
+    color: color('grey', 'dark');
   }
 }
 
@@ -88,7 +90,8 @@
     width: 1.1em;
   }
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: color('transparent', 'dark');
     color: color('grey', 'dark');
     text-decoration: none;
