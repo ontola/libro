@@ -37,14 +37,14 @@ export default function routes(app, port) {
 
   app.use(apiMiddleware);
 
+  app.use(csurf());
+
   app.all('*', isIframe, isAuthenticated, iframeProxy);
+
+  app.all('*', isBackend, isAuthenticated, backendProxy);
 
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
-
-  app.use(csurf());
-
-  app.all('*', isBackend, isAuthenticated, backendProxy);
 
   app.post('/login', login);
 

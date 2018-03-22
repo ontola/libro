@@ -25,10 +25,12 @@ function setHeaders(proxyReq, req) {
 
 export const backendProxy = proxy({
   onProxyReq: setHeaders,
+  preserveHeaderKeyCase: true,
   secure: process.env.NODE_ENV !== 'development',
   strictSSL: process.env.NODE_ENV !== 'development',
   target: constants.ARGU_API_URL,
   toProxy: true,
+  xfwd: true,
 });
 
 export const iframeProxy = proxy({
@@ -39,6 +41,7 @@ export const iframeProxy = proxy({
         session.iframeToken = uuid.v4();
       }
       proxyReq.setHeader('X-Iframe-Csrf-Token', session.iframeToken);
+      proxyReq.setHeader('X-Client-Csrf-Token', req.csrfToken());
     } else {
       const csrfToken = req.headers['x-iframe-csrf-token'];
       if (typeof csrfToken !== 'undefined' && csrfToken === session.iframeToken) {
