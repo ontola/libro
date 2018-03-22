@@ -3,9 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, formValueSelector, reduxForm } from 'redux-form/immutable';
 
-import {
-  Button,
-} from '../components';
+import { Button } from '../components';
 
 const propTypes = {
   currentValue: PropTypes.string,

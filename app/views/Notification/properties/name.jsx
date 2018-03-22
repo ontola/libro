@@ -2,9 +2,7 @@ import LinkedRenderStore from 'link-lib';
 import { linkedPropType } from 'link-redux';
 import React from 'react';
 
-import {
-  Heading,
-} from '../../../components';
+import { Heading } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {

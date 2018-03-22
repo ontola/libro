@@ -7,9 +7,7 @@ import {
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import {
-  Heading,
-} from '../../../components';
+import { Heading } from '../../../components';
 import { allTopologies, NS } from '../../../helpers/LinkedRenderStore';
 import { CollectionTypes } from '../types';
 

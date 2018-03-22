@@ -6,9 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import {
-  SideBarLink,
-} from '../../components';
+import { SideBarLink } from '../../components';
 import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 

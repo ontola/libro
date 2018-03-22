@@ -312,7 +312,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                         <linkedSubject[ConnectedProp]
                                                           label={
                                                             NamedNode {
-                                                              "sI": 86,
+                                                              "sI": 78,
                                                               "term": "image",
                                                               "termType": "NamedNode",
                                                               "value": "http://schema.org/image",
@@ -322,7 +322,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                           <ConnectedProp
                                                             label={
                                                               NamedNode {
-                                                                "sI": 86,
+                                                                "sI": 78,
                                                                 "term": "image",
                                                                 "termType": "NamedNode",
                                                                 "value": "http://schema.org/image",
@@ -342,7 +342,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                               forceRender={false}
                                                               label={
                                                                 NamedNode {
-                                                                  "sI": 86,
+                                                                  "sI": 78,
                                                                   "term": "image",
                                                                   "termType": "NamedNode",
                                                                   "value": "http://schema.org/image",
@@ -364,7 +364,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                 forceRender={false}
                                                                 label={
                                                                   NamedNode {
-                                                                    "sI": 86,
+                                                                    "sI": 78,
                                                                     "term": "image",
                                                                     "termType": "NamedNode",
                                                                     "value": "http://schema.org/image",
@@ -430,7 +430,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                       <linkedSubject[ConnectedProp]
                                                                         label={
                                                                           NamedNode {
-                                                                            "sI": 76,
+                                                                            "sI": 92,
                                                                             "term": "thumbnail",
                                                                             "termType": "NamedNode",
                                                                             "value": "http://schema.org/thumbnail",
@@ -440,7 +440,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                         <ConnectedProp
                                                                           label={
                                                                             NamedNode {
-                                                                              "sI": 76,
+                                                                              "sI": 92,
                                                                               "term": "thumbnail",
                                                                               "termType": "NamedNode",
                                                                               "value": "http://schema.org/thumbnail",
@@ -460,7 +460,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                             forceRender={false}
                                                                             label={
                                                                               NamedNode {
-                                                                                "sI": 76,
+                                                                                "sI": 92,
                                                                                 "term": "thumbnail",
                                                                                 "termType": "NamedNode",
                                                                                 "value": "http://schema.org/thumbnail",
@@ -482,7 +482,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                               forceRender={false}
                                                                               label={
                                                                                 NamedNode {
-                                                                                  "sI": 76,
+                                                                                  "sI": 92,
                                                                                   "term": "thumbnail",
                                                                                   "termType": "NamedNode",
                                                                                   "value": "http://schema.org/thumbnail",
@@ -1082,7 +1082,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                     forceRender={true}
                                                                     label={
                                                                       NamedNode {
-                                                                        "sI": 84,
+                                                                        "sI": 85,
                                                                         "term": "href",
                                                                         "termType": "NamedNode",
                                                                         "value": "https://argu.co/ns/core#href",
@@ -1093,7 +1093,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                       <linkedSubject[ConnectedProp]
                                                                         label={
                                                                           NamedNode {
-                                                                            "sI": 86,
+                                                                            "sI": 78,
                                                                             "term": "image",
                                                                             "termType": "NamedNode",
                                                                             "value": "http://schema.org/image",
@@ -1104,7 +1104,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                     <linkedSubject[ConnectedProp]
                                                                       label={
                                                                         NamedNode {
-                                                                          "sI": 85,
+                                                                          "sI": 86,
                                                                           "term": "label",
                                                                           "termType": "NamedNode",
                                                                           "value": "https://argu.co/ns/core#label",
@@ -1130,7 +1130,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                       forceRender={true}
                                                                       label={
                                                                         NamedNode {
-                                                                          "sI": 84,
+                                                                          "sI": 85,
                                                                           "term": "href",
                                                                           "termType": "NamedNode",
                                                                           "value": "https://argu.co/ns/core#href",
@@ -1141,7 +1141,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                         <linkedSubject[ConnectedProp]
                                                                           label={
                                                                             NamedNode {
-                                                                              "sI": 86,
+                                                                              "sI": 78,
                                                                               "term": "image",
                                                                               "termType": "NamedNode",
                                                                               "value": "http://schema.org/image",
@@ -1152,7 +1152,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                       <linkedSubject[ConnectedProp]
                                                                         label={
                                                                           NamedNode {
-                                                                            "sI": 85,
+                                                                            "sI": 86,
                                                                             "term": "label",
                                                                             "termType": "NamedNode",
                                                                             "value": "https://argu.co/ns/core#label",
@@ -1187,7 +1187,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                         forceRender={true}
                                                                         label={
                                                                           NamedNode {
-                                                                            "sI": 84,
+                                                                            "sI": 85,
                                                                             "term": "href",
                                                                             "termType": "NamedNode",
                                                                             "value": "https://argu.co/ns/core#href",
@@ -1198,7 +1198,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                           <linkedSubject[ConnectedProp]
                                                                             label={
                                                                               NamedNode {
-                                                                                "sI": 86,
+                                                                                "sI": 78,
                                                                                 "term": "image",
                                                                                 "termType": "NamedNode",
                                                                                 "value": "http://schema.org/image",
@@ -1209,7 +1209,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                         <linkedSubject[ConnectedProp]
                                                                           label={
                                                                             NamedNode {
-                                                                              "sI": 85,
+                                                                              "sI": 86,
                                                                               "term": "label",
                                                                               "termType": "NamedNode",
                                                                               "value": "https://argu.co/ns/core#label",
@@ -1246,7 +1246,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                           forceRender={true}
                                                                           label={
                                                                             NamedNode {
-                                                                              "sI": 84,
+                                                                              "sI": 85,
                                                                               "term": "href",
                                                                               "termType": "NamedNode",
                                                                               "value": "https://argu.co/ns/core#href",
@@ -1257,7 +1257,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                             <linkedSubject[ConnectedProp]
                                                                               label={
                                                                                 NamedNode {
-                                                                                  "sI": 86,
+                                                                                  "sI": 78,
                                                                                   "term": "image",
                                                                                   "termType": "NamedNode",
                                                                                   "value": "http://schema.org/image",
@@ -1268,7 +1268,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                           <linkedSubject[ConnectedProp]
                                                                             label={
                                                                               NamedNode {
-                                                                                "sI": 85,
+                                                                                "sI": 86,
                                                                                 "term": "label",
                                                                                 "termType": "NamedNode",
                                                                                 "value": "https://argu.co/ns/core#label",
@@ -1293,7 +1293,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                         forceRender={true}
                                                                         label={
                                                                           NamedNode {
-                                                                            "sI": 84,
+                                                                            "sI": 85,
                                                                             "term": "href",
                                                                             "termType": "NamedNode",
                                                                             "value": "https://argu.co/ns/core#href",
@@ -1305,7 +1305,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                           forceRender={true}
                                                                           label={
                                                                             NamedNode {
-                                                                              "sI": 84,
+                                                                              "sI": 85,
                                                                               "term": "href",
                                                                               "termType": "NamedNode",
                                                                               "value": "https://argu.co/ns/core#href",
@@ -1326,7 +1326,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                             forceRender={true}
                                                                             label={
                                                                               NamedNode {
-                                                                                "sI": 84,
+                                                                                "sI": 85,
                                                                                 "term": "href",
                                                                                 "termType": "NamedNode",
                                                                                 "value": "https://argu.co/ns/core#href",
@@ -1349,7 +1349,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                               forceRender={true}
                                                                               label={
                                                                                 NamedNode {
-                                                                                  "sI": 84,
+                                                                                  "sI": 85,
                                                                                   "term": "href",
                                                                                   "termType": "NamedNode",
                                                                                   "value": "https://argu.co/ns/core#href",
@@ -1408,7 +1408,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                                   <linkedSubject[ConnectedProp]
                                                                                                     label={
                                                                                                       NamedNode {
-                                                                                                        "sI": 86,
+                                                                                                        "sI": 78,
                                                                                                         "term": "image",
                                                                                                         "termType": "NamedNode",
                                                                                                         "value": "http://schema.org/image",
@@ -1418,7 +1418,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                                     <ConnectedProp
                                                                                                       label={
                                                                                                         NamedNode {
-                                                                                                          "sI": 86,
+                                                                                                          "sI": 78,
                                                                                                           "term": "image",
                                                                                                           "termType": "NamedNode",
                                                                                                           "value": "http://schema.org/image",
@@ -1438,7 +1438,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                                         forceRender={false}
                                                                                                         label={
                                                                                                           NamedNode {
-                                                                                                            "sI": 86,
+                                                                                                            "sI": 78,
                                                                                                             "term": "image",
                                                                                                             "termType": "NamedNode",
                                                                                                             "value": "http://schema.org/image",
@@ -1460,7 +1460,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                                           forceRender={false}
                                                                                                           label={
                                                                                                             NamedNode {
-                                                                                                              "sI": 86,
+                                                                                                              "sI": 78,
                                                                                                               "term": "image",
                                                                                                               "termType": "NamedNode",
                                                                                                               "value": "http://schema.org/image",
@@ -1502,7 +1502,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                               <linkedSubject[ConnectedProp]
                                                                                                 label={
                                                                                                   NamedNode {
-                                                                                                    "sI": 85,
+                                                                                                    "sI": 86,
                                                                                                     "term": "label",
                                                                                                     "termType": "NamedNode",
                                                                                                     "value": "https://argu.co/ns/core#label",
@@ -1512,7 +1512,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                                 <ConnectedProp
                                                                                                   label={
                                                                                                     NamedNode {
-                                                                                                      "sI": 85,
+                                                                                                      "sI": 86,
                                                                                                       "term": "label",
                                                                                                       "termType": "NamedNode",
                                                                                                       "value": "https://argu.co/ns/core#label",
@@ -1532,7 +1532,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                                     forceRender={false}
                                                                                                     label={
                                                                                                       NamedNode {
-                                                                                                        "sI": 85,
+                                                                                                        "sI": 86,
                                                                                                         "term": "label",
                                                                                                         "termType": "NamedNode",
                                                                                                         "value": "https://argu.co/ns/core#label",
@@ -1617,7 +1617,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                 <linkedSubject[ConnectedProp]
                                                                   label={
                                                                     NamedNode {
-                                                                      "sI": 85,
+                                                                      "sI": 86,
                                                                       "term": "label",
                                                                       "termType": "NamedNode",
                                                                       "value": "https://argu.co/ns/core#label",
@@ -1627,7 +1627,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                   <ConnectedProp
                                                                     label={
                                                                       NamedNode {
-                                                                        "sI": 85,
+                                                                        "sI": 86,
                                                                         "term": "label",
                                                                         "termType": "NamedNode",
                                                                         "value": "https://argu.co/ns/core#label",
@@ -1647,7 +1647,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                       forceRender={false}
                                                                       label={
                                                                         NamedNode {
-                                                                          "sI": 85,
+                                                                          "sI": 86,
                                                                           "term": "label",
                                                                           "termType": "NamedNode",
                                                                           "value": "https://argu.co/ns/core#label",
@@ -1669,7 +1669,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                         forceRender={false}
                                                                         label={
                                                                           NamedNode {
-                                                                            "sI": 85,
+                                                                            "sI": 86,
                                                                             "term": "label",
                                                                             "termType": "NamedNode",
                                                                             "value": "https://argu.co/ns/core#label",
@@ -1849,7 +1849,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                     forceRender={true}
                                                                                     label={
                                                                                       NamedNode {
-                                                                                        "sI": 84,
+                                                                                        "sI": 85,
                                                                                         "term": "href",
                                                                                         "termType": "NamedNode",
                                                                                         "value": "https://argu.co/ns/core#href",
@@ -1860,7 +1860,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                       <linkedSubject[ConnectedProp]
                                                                                         label={
                                                                                           NamedNode {
-                                                                                            "sI": 86,
+                                                                                            "sI": 78,
                                                                                             "term": "image",
                                                                                             "termType": "NamedNode",
                                                                                             "value": "http://schema.org/image",
@@ -1871,7 +1871,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                     <linkedSubject[ConnectedProp]
                                                                                       label={
                                                                                         NamedNode {
-                                                                                          "sI": 85,
+                                                                                          "sI": 86,
                                                                                           "term": "label",
                                                                                           "termType": "NamedNode",
                                                                                           "value": "https://argu.co/ns/core#label",
@@ -1897,7 +1897,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                       forceRender={true}
                                                                                       label={
                                                                                         NamedNode {
-                                                                                          "sI": 84,
+                                                                                          "sI": 85,
                                                                                           "term": "href",
                                                                                           "termType": "NamedNode",
                                                                                           "value": "https://argu.co/ns/core#href",
@@ -1908,7 +1908,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                         <linkedSubject[ConnectedProp]
                                                                                           label={
                                                                                             NamedNode {
-                                                                                              "sI": 86,
+                                                                                              "sI": 78,
                                                                                               "term": "image",
                                                                                               "termType": "NamedNode",
                                                                                               "value": "http://schema.org/image",
@@ -1919,7 +1919,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                       <linkedSubject[ConnectedProp]
                                                                                         label={
                                                                                           NamedNode {
-                                                                                            "sI": 85,
+                                                                                            "sI": 86,
                                                                                             "term": "label",
                                                                                             "termType": "NamedNode",
                                                                                             "value": "https://argu.co/ns/core#label",
@@ -1954,7 +1954,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                         forceRender={true}
                                                                                         label={
                                                                                           NamedNode {
-                                                                                            "sI": 84,
+                                                                                            "sI": 85,
                                                                                             "term": "href",
                                                                                             "termType": "NamedNode",
                                                                                             "value": "https://argu.co/ns/core#href",
@@ -1965,7 +1965,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                           <linkedSubject[ConnectedProp]
                                                                                             label={
                                                                                               NamedNode {
-                                                                                                "sI": 86,
+                                                                                                "sI": 78,
                                                                                                 "term": "image",
                                                                                                 "termType": "NamedNode",
                                                                                                 "value": "http://schema.org/image",
@@ -1976,7 +1976,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                         <linkedSubject[ConnectedProp]
                                                                                           label={
                                                                                             NamedNode {
-                                                                                              "sI": 85,
+                                                                                              "sI": 86,
                                                                                               "term": "label",
                                                                                               "termType": "NamedNode",
                                                                                               "value": "https://argu.co/ns/core#label",
@@ -2013,7 +2013,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                           forceRender={true}
                                                                                           label={
                                                                                             NamedNode {
-                                                                                              "sI": 84,
+                                                                                              "sI": 85,
                                                                                               "term": "href",
                                                                                               "termType": "NamedNode",
                                                                                               "value": "https://argu.co/ns/core#href",
@@ -2024,7 +2024,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                             <linkedSubject[ConnectedProp]
                                                                                               label={
                                                                                                 NamedNode {
-                                                                                                  "sI": 86,
+                                                                                                  "sI": 78,
                                                                                                   "term": "image",
                                                                                                   "termType": "NamedNode",
                                                                                                   "value": "http://schema.org/image",
@@ -2035,7 +2035,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                           <linkedSubject[ConnectedProp]
                                                                                             label={
                                                                                               NamedNode {
-                                                                                                "sI": 85,
+                                                                                                "sI": 86,
                                                                                                 "term": "label",
                                                                                                 "termType": "NamedNode",
                                                                                                 "value": "https://argu.co/ns/core#label",
@@ -2060,7 +2060,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                         forceRender={true}
                                                                                         label={
                                                                                           NamedNode {
-                                                                                            "sI": 84,
+                                                                                            "sI": 85,
                                                                                             "term": "href",
                                                                                             "termType": "NamedNode",
                                                                                             "value": "https://argu.co/ns/core#href",
@@ -2072,7 +2072,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                           forceRender={true}
                                                                                           label={
                                                                                             NamedNode {
-                                                                                              "sI": 84,
+                                                                                              "sI": 85,
                                                                                               "term": "href",
                                                                                               "termType": "NamedNode",
                                                                                               "value": "https://argu.co/ns/core#href",
@@ -2093,7 +2093,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                             forceRender={true}
                                                                                             label={
                                                                                               NamedNode {
-                                                                                                "sI": 84,
+                                                                                                "sI": 85,
                                                                                                 "term": "href",
                                                                                                 "termType": "NamedNode",
                                                                                                 "value": "https://argu.co/ns/core#href",
@@ -2116,7 +2116,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                               forceRender={true}
                                                                                               label={
                                                                                                 NamedNode {
-                                                                                                  "sI": 84,
+                                                                                                  "sI": 85,
                                                                                                   "term": "href",
                                                                                                   "termType": "NamedNode",
                                                                                                   "value": "https://argu.co/ns/core#href",
@@ -2175,7 +2175,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                                                   <linkedSubject[ConnectedProp]
                                                                                                                     label={
                                                                                                                       NamedNode {
-                                                                                                                        "sI": 86,
+                                                                                                                        "sI": 78,
                                                                                                                         "term": "image",
                                                                                                                         "termType": "NamedNode",
                                                                                                                         "value": "http://schema.org/image",
@@ -2185,7 +2185,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                                                     <ConnectedProp
                                                                                                                       label={
                                                                                                                         NamedNode {
-                                                                                                                          "sI": 86,
+                                                                                                                          "sI": 78,
                                                                                                                           "term": "image",
                                                                                                                           "termType": "NamedNode",
                                                                                                                           "value": "http://schema.org/image",
@@ -2205,7 +2205,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                                                         forceRender={false}
                                                                                                                         label={
                                                                                                                           NamedNode {
-                                                                                                                            "sI": 86,
+                                                                                                                            "sI": 78,
                                                                                                                             "term": "image",
                                                                                                                             "termType": "NamedNode",
                                                                                                                             "value": "http://schema.org/image",
@@ -2227,7 +2227,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                                                           forceRender={false}
                                                                                                                           label={
                                                                                                                             NamedNode {
-                                                                                                                              "sI": 86,
+                                                                                                                              "sI": 78,
                                                                                                                               "term": "image",
                                                                                                                               "termType": "NamedNode",
                                                                                                                               "value": "http://schema.org/image",
@@ -2269,7 +2269,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                                               <linkedSubject[ConnectedProp]
                                                                                                                 label={
                                                                                                                   NamedNode {
-                                                                                                                    "sI": 85,
+                                                                                                                    "sI": 86,
                                                                                                                     "term": "label",
                                                                                                                     "termType": "NamedNode",
                                                                                                                     "value": "https://argu.co/ns/core#label",
@@ -2279,7 +2279,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                                                 <ConnectedProp
                                                                                                                   label={
                                                                                                                     NamedNode {
-                                                                                                                      "sI": 85,
+                                                                                                                      "sI": 86,
                                                                                                                       "term": "label",
                                                                                                                       "termType": "NamedNode",
                                                                                                                       "value": "https://argu.co/ns/core#label",
@@ -2299,7 +2299,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                                                     forceRender={false}
                                                                                                                     label={
                                                                                                                       NamedNode {
-                                                                                                                        "sI": 85,
+                                                                                                                        "sI": 86,
                                                                                                                         "term": "label",
                                                                                                                         "termType": "NamedNode",
                                                                                                                         "value": "https://argu.co/ns/core#label",
@@ -2394,7 +2394,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                     forceRender={true}
                                                                                     label={
                                                                                       NamedNode {
-                                                                                        "sI": 84,
+                                                                                        "sI": 85,
                                                                                         "term": "href",
                                                                                         "termType": "NamedNode",
                                                                                         "value": "https://argu.co/ns/core#href",
@@ -2405,7 +2405,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                       <linkedSubject[ConnectedProp]
                                                                                         label={
                                                                                           NamedNode {
-                                                                                            "sI": 86,
+                                                                                            "sI": 78,
                                                                                             "term": "image",
                                                                                             "termType": "NamedNode",
                                                                                             "value": "http://schema.org/image",
@@ -2416,7 +2416,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                     <linkedSubject[ConnectedProp]
                                                                                       label={
                                                                                         NamedNode {
-                                                                                          "sI": 85,
+                                                                                          "sI": 86,
                                                                                           "term": "label",
                                                                                           "termType": "NamedNode",
                                                                                           "value": "https://argu.co/ns/core#label",
@@ -2442,7 +2442,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                       forceRender={true}
                                                                                       label={
                                                                                         NamedNode {
-                                                                                          "sI": 84,
+                                                                                          "sI": 85,
                                                                                           "term": "href",
                                                                                           "termType": "NamedNode",
                                                                                           "value": "https://argu.co/ns/core#href",
@@ -2453,7 +2453,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                         <linkedSubject[ConnectedProp]
                                                                                           label={
                                                                                             NamedNode {
-                                                                                              "sI": 86,
+                                                                                              "sI": 78,
                                                                                               "term": "image",
                                                                                               "termType": "NamedNode",
                                                                                               "value": "http://schema.org/image",
@@ -2464,7 +2464,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                       <linkedSubject[ConnectedProp]
                                                                                         label={
                                                                                           NamedNode {
-                                                                                            "sI": 85,
+                                                                                            "sI": 86,
                                                                                             "term": "label",
                                                                                             "termType": "NamedNode",
                                                                                             "value": "https://argu.co/ns/core#label",
@@ -2499,7 +2499,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                         forceRender={true}
                                                                                         label={
                                                                                           NamedNode {
-                                                                                            "sI": 84,
+                                                                                            "sI": 85,
                                                                                             "term": "href",
                                                                                             "termType": "NamedNode",
                                                                                             "value": "https://argu.co/ns/core#href",
@@ -2510,7 +2510,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                           <linkedSubject[ConnectedProp]
                                                                                             label={
                                                                                               NamedNode {
-                                                                                                "sI": 86,
+                                                                                                "sI": 78,
                                                                                                 "term": "image",
                                                                                                 "termType": "NamedNode",
                                                                                                 "value": "http://schema.org/image",
@@ -2521,7 +2521,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                         <linkedSubject[ConnectedProp]
                                                                                           label={
                                                                                             NamedNode {
-                                                                                              "sI": 85,
+                                                                                              "sI": 86,
                                                                                               "term": "label",
                                                                                               "termType": "NamedNode",
                                                                                               "value": "https://argu.co/ns/core#label",
@@ -2558,7 +2558,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                           forceRender={true}
                                                                                           label={
                                                                                             NamedNode {
-                                                                                              "sI": 84,
+                                                                                              "sI": 85,
                                                                                               "term": "href",
                                                                                               "termType": "NamedNode",
                                                                                               "value": "https://argu.co/ns/core#href",
@@ -2569,7 +2569,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                             <linkedSubject[ConnectedProp]
                                                                                               label={
                                                                                                 NamedNode {
-                                                                                                  "sI": 86,
+                                                                                                  "sI": 78,
                                                                                                   "term": "image",
                                                                                                   "termType": "NamedNode",
                                                                                                   "value": "http://schema.org/image",
@@ -2580,7 +2580,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                           <linkedSubject[ConnectedProp]
                                                                                             label={
                                                                                               NamedNode {
-                                                                                                "sI": 85,
+                                                                                                "sI": 86,
                                                                                                 "term": "label",
                                                                                                 "termType": "NamedNode",
                                                                                                 "value": "https://argu.co/ns/core#label",
@@ -2605,7 +2605,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                         forceRender={true}
                                                                                         label={
                                                                                           NamedNode {
-                                                                                            "sI": 84,
+                                                                                            "sI": 85,
                                                                                             "term": "href",
                                                                                             "termType": "NamedNode",
                                                                                             "value": "https://argu.co/ns/core#href",
@@ -2617,7 +2617,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                           forceRender={true}
                                                                                           label={
                                                                                             NamedNode {
-                                                                                              "sI": 84,
+                                                                                              "sI": 85,
                                                                                               "term": "href",
                                                                                               "termType": "NamedNode",
                                                                                               "value": "https://argu.co/ns/core#href",
@@ -2638,7 +2638,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                             forceRender={true}
                                                                                             label={
                                                                                               NamedNode {
-                                                                                                "sI": 84,
+                                                                                                "sI": 85,
                                                                                                 "term": "href",
                                                                                                 "termType": "NamedNode",
                                                                                                 "value": "https://argu.co/ns/core#href",
@@ -2661,7 +2661,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                               forceRender={true}
                                                                                               label={
                                                                                                 NamedNode {
-                                                                                                  "sI": 84,
+                                                                                                  "sI": 85,
                                                                                                   "term": "href",
                                                                                                   "termType": "NamedNode",
                                                                                                   "value": "https://argu.co/ns/core#href",
@@ -2720,7 +2720,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                                                   <linkedSubject[ConnectedProp]
                                                                                                                     label={
                                                                                                                       NamedNode {
-                                                                                                                        "sI": 86,
+                                                                                                                        "sI": 78,
                                                                                                                         "term": "image",
                                                                                                                         "termType": "NamedNode",
                                                                                                                         "value": "http://schema.org/image",
@@ -2730,7 +2730,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                                                     <ConnectedProp
                                                                                                                       label={
                                                                                                                         NamedNode {
-                                                                                                                          "sI": 86,
+                                                                                                                          "sI": 78,
                                                                                                                           "term": "image",
                                                                                                                           "termType": "NamedNode",
                                                                                                                           "value": "http://schema.org/image",
@@ -2750,7 +2750,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                                                         forceRender={false}
                                                                                                                         label={
                                                                                                                           NamedNode {
-                                                                                                                            "sI": 86,
+                                                                                                                            "sI": 78,
                                                                                                                             "term": "image",
                                                                                                                             "termType": "NamedNode",
                                                                                                                             "value": "http://schema.org/image",
@@ -2772,7 +2772,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                                                           forceRender={false}
                                                                                                                           label={
                                                                                                                             NamedNode {
-                                                                                                                              "sI": 86,
+                                                                                                                              "sI": 78,
                                                                                                                               "term": "image",
                                                                                                                               "termType": "NamedNode",
                                                                                                                               "value": "http://schema.org/image",
@@ -2814,7 +2814,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                                               <linkedSubject[ConnectedProp]
                                                                                                                 label={
                                                                                                                   NamedNode {
-                                                                                                                    "sI": 85,
+                                                                                                                    "sI": 86,
                                                                                                                     "term": "label",
                                                                                                                     "termType": "NamedNode",
                                                                                                                     "value": "https://argu.co/ns/core#label",
@@ -2824,7 +2824,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                                                 <ConnectedProp
                                                                                                                   label={
                                                                                                                     NamedNode {
-                                                                                                                      "sI": 85,
+                                                                                                                      "sI": 86,
                                                                                                                       "term": "label",
                                                                                                                       "termType": "NamedNode",
                                                                                                                       "value": "https://argu.co/ns/core#label",
@@ -2844,7 +2844,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                                                     forceRender={false}
                                                                                                                     label={
                                                                                                                       NamedNode {
-                                                                                                                        "sI": 85,
+                                                                                                                        "sI": 86,
                                                                                                                         "term": "label",
                                                                                                                         "termType": "NamedNode",
                                                                                                                         "value": "https://argu.co/ns/core#label",
@@ -2939,7 +2939,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                     forceRender={true}
                                                                                     label={
                                                                                       NamedNode {
-                                                                                        "sI": 84,
+                                                                                        "sI": 85,
                                                                                         "term": "href",
                                                                                         "termType": "NamedNode",
                                                                                         "value": "https://argu.co/ns/core#href",
@@ -2950,7 +2950,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                       <linkedSubject[ConnectedProp]
                                                                                         label={
                                                                                           NamedNode {
-                                                                                            "sI": 86,
+                                                                                            "sI": 78,
                                                                                             "term": "image",
                                                                                             "termType": "NamedNode",
                                                                                             "value": "http://schema.org/image",
@@ -2961,7 +2961,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                     <linkedSubject[ConnectedProp]
                                                                                       label={
                                                                                         NamedNode {
-                                                                                          "sI": 85,
+                                                                                          "sI": 86,
                                                                                           "term": "label",
                                                                                           "termType": "NamedNode",
                                                                                           "value": "https://argu.co/ns/core#label",
@@ -2987,7 +2987,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                       forceRender={true}
                                                                                       label={
                                                                                         NamedNode {
-                                                                                          "sI": 84,
+                                                                                          "sI": 85,
                                                                                           "term": "href",
                                                                                           "termType": "NamedNode",
                                                                                           "value": "https://argu.co/ns/core#href",
@@ -2998,7 +2998,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                         <linkedSubject[ConnectedProp]
                                                                                           label={
                                                                                             NamedNode {
-                                                                                              "sI": 86,
+                                                                                              "sI": 78,
                                                                                               "term": "image",
                                                                                               "termType": "NamedNode",
                                                                                               "value": "http://schema.org/image",
@@ -3009,7 +3009,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                       <linkedSubject[ConnectedProp]
                                                                                         label={
                                                                                           NamedNode {
-                                                                                            "sI": 85,
+                                                                                            "sI": 86,
                                                                                             "term": "label",
                                                                                             "termType": "NamedNode",
                                                                                             "value": "https://argu.co/ns/core#label",
@@ -3044,7 +3044,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                         forceRender={true}
                                                                                         label={
                                                                                           NamedNode {
-                                                                                            "sI": 84,
+                                                                                            "sI": 85,
                                                                                             "term": "href",
                                                                                             "termType": "NamedNode",
                                                                                             "value": "https://argu.co/ns/core#href",
@@ -3055,7 +3055,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                           <linkedSubject[ConnectedProp]
                                                                                             label={
                                                                                               NamedNode {
-                                                                                                "sI": 86,
+                                                                                                "sI": 78,
                                                                                                 "term": "image",
                                                                                                 "termType": "NamedNode",
                                                                                                 "value": "http://schema.org/image",
@@ -3066,7 +3066,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                         <linkedSubject[ConnectedProp]
                                                                                           label={
                                                                                             NamedNode {
-                                                                                              "sI": 85,
+                                                                                              "sI": 86,
                                                                                               "term": "label",
                                                                                               "termType": "NamedNode",
                                                                                               "value": "https://argu.co/ns/core#label",
@@ -3103,7 +3103,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                           forceRender={true}
                                                                                           label={
                                                                                             NamedNode {
-                                                                                              "sI": 84,
+                                                                                              "sI": 85,
                                                                                               "term": "href",
                                                                                               "termType": "NamedNode",
                                                                                               "value": "https://argu.co/ns/core#href",
@@ -3114,7 +3114,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                             <linkedSubject[ConnectedProp]
                                                                                               label={
                                                                                                 NamedNode {
-                                                                                                  "sI": 86,
+                                                                                                  "sI": 78,
                                                                                                   "term": "image",
                                                                                                   "termType": "NamedNode",
                                                                                                   "value": "http://schema.org/image",
@@ -3125,7 +3125,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                           <linkedSubject[ConnectedProp]
                                                                                             label={
                                                                                               NamedNode {
-                                                                                                "sI": 85,
+                                                                                                "sI": 86,
                                                                                                 "term": "label",
                                                                                                 "termType": "NamedNode",
                                                                                                 "value": "https://argu.co/ns/core#label",
@@ -3150,7 +3150,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                         forceRender={true}
                                                                                         label={
                                                                                           NamedNode {
-                                                                                            "sI": 84,
+                                                                                            "sI": 85,
                                                                                             "term": "href",
                                                                                             "termType": "NamedNode",
                                                                                             "value": "https://argu.co/ns/core#href",
@@ -3162,7 +3162,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                           forceRender={true}
                                                                                           label={
                                                                                             NamedNode {
-                                                                                              "sI": 84,
+                                                                                              "sI": 85,
                                                                                               "term": "href",
                                                                                               "termType": "NamedNode",
                                                                                               "value": "https://argu.co/ns/core#href",
@@ -3183,7 +3183,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                             forceRender={true}
                                                                                             label={
                                                                                               NamedNode {
-                                                                                                "sI": 84,
+                                                                                                "sI": 85,
                                                                                                 "term": "href",
                                                                                                 "termType": "NamedNode",
                                                                                                 "value": "https://argu.co/ns/core#href",
@@ -3206,7 +3206,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                               forceRender={true}
                                                                                               label={
                                                                                                 NamedNode {
-                                                                                                  "sI": 84,
+                                                                                                  "sI": 85,
                                                                                                   "term": "href",
                                                                                                   "termType": "NamedNode",
                                                                                                   "value": "https://argu.co/ns/core#href",
@@ -3265,7 +3265,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                                                   <linkedSubject[ConnectedProp]
                                                                                                                     label={
                                                                                                                       NamedNode {
-                                                                                                                        "sI": 86,
+                                                                                                                        "sI": 78,
                                                                                                                         "term": "image",
                                                                                                                         "termType": "NamedNode",
                                                                                                                         "value": "http://schema.org/image",
@@ -3275,7 +3275,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                                                     <ConnectedProp
                                                                                                                       label={
                                                                                                                         NamedNode {
-                                                                                                                          "sI": 86,
+                                                                                                                          "sI": 78,
                                                                                                                           "term": "image",
                                                                                                                           "termType": "NamedNode",
                                                                                                                           "value": "http://schema.org/image",
@@ -3295,7 +3295,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                                                         forceRender={false}
                                                                                                                         label={
                                                                                                                           NamedNode {
-                                                                                                                            "sI": 86,
+                                                                                                                            "sI": 78,
                                                                                                                             "term": "image",
                                                                                                                             "termType": "NamedNode",
                                                                                                                             "value": "http://schema.org/image",
@@ -3317,7 +3317,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                                                           forceRender={false}
                                                                                                                           label={
                                                                                                                             NamedNode {
-                                                                                                                              "sI": 86,
+                                                                                                                              "sI": 78,
                                                                                                                               "term": "image",
                                                                                                                               "termType": "NamedNode",
                                                                                                                               "value": "http://schema.org/image",
@@ -3359,7 +3359,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                                               <linkedSubject[ConnectedProp]
                                                                                                                 label={
                                                                                                                   NamedNode {
-                                                                                                                    "sI": 85,
+                                                                                                                    "sI": 86,
                                                                                                                     "term": "label",
                                                                                                                     "termType": "NamedNode",
                                                                                                                     "value": "https://argu.co/ns/core#label",
@@ -3369,7 +3369,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                                                 <ConnectedProp
                                                                                                                   label={
                                                                                                                     NamedNode {
-                                                                                                                      "sI": 85,
+                                                                                                                      "sI": 86,
                                                                                                                       "term": "label",
                                                                                                                       "termType": "NamedNode",
                                                                                                                       "value": "https://argu.co/ns/core#label",
@@ -3389,7 +3389,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                                                                                     forceRender={false}
                                                                                                                     label={
                                                                                                                       NamedNode {
-                                                                                                                        "sI": 85,
+                                                                                                                        "sI": 86,
                                                                                                                         "term": "label",
                                                                                                                         "termType": "NamedNode",
                                                                                                                         "value": "https://argu.co/ns/core#label",
@@ -3742,7 +3742,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                       <linkedSubject[ConnectedProp]
                         label={
                           NamedNode {
-                            "sI": 97,
+                            "sI": 77,
                             "term": "unreadCount",
                             "termType": "NamedNode",
                             "value": "https://argu.co/ns/core#unreadCount",
@@ -3861,7 +3861,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                           <linkedSubject[ConnectedProp]
                                             label={
                                               NamedNode {
-                                                "sI": 97,
+                                                "sI": 77,
                                                 "term": "unreadCount",
                                                 "termType": "NamedNode",
                                                 "value": "https://argu.co/ns/core#unreadCount",
@@ -3871,7 +3871,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                             <ConnectedProp
                                               label={
                                                 NamedNode {
-                                                  "sI": 97,
+                                                  "sI": 77,
                                                   "term": "unreadCount",
                                                   "termType": "NamedNode",
                                                   "value": "https://argu.co/ns/core#unreadCount",
@@ -3891,7 +3891,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                                 forceRender={false}
                                                 label={
                                                   NamedNode {
-                                                    "sI": 97,
+                                                    "sI": 77,
                                                     "term": "unreadCount",
                                                     "termType": "NamedNode",
                                                     "value": "https://argu.co/ns/core#unreadCount",

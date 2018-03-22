@@ -7,9 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import {
-  Columns,
-} from '../../../components';
+import { Columns } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { CollectionTypes } from '../types';
 

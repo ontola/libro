@@ -1,9 +1,7 @@
 import { Map, Record } from 'immutable';
 import { handleActions } from 'redux-actions';
 
-import {
-  colors,
-} from '../../components/shared/config';
+import { colors } from '../../components/shared/config';
 import {
   setRecord,
   updateRecordValue,

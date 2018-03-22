@@ -6,9 +6,7 @@ import { Link } from 'react-router-dom';
 import VoteMatchAddContainer from 'containers/VoteMatchAddContainer';
 import path from 'helpers/paths';
 
-import Card, {
-  CardContent,
-} from '../Card';
+import Card, { CardContent } from '../Card';
 import Detail from '../Detail';
 import DetailDate from '../DetailDate';
 import DetailsBar from '../DetailsBar';

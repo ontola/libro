@@ -34,7 +34,7 @@ export { default as DetailVotedFor } from './components/DetailVotedFor/index';
 // export { default as DonutChart } from './components/DonutChart/index';
 export { default as Drawer } from './components/Drawer/index';
 export { default as Dropdown } from './components/Dropdown/index';
-export { default as DropdownLink } from './components/Dropdown/DropdownLink.jsx';
+export { default as DropdownLink } from './components/Dropdown/DropdownLink';
 export { default as Error } from './components/Error/index';
 // export { default as EventItemShow } from './components/EventItemShow/index';
 export { default as FormField } from './components/FormField/index';

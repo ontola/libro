@@ -2,9 +2,7 @@ import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
 import React from 'react';
 
-import {
-  ProfileCard,
-} from '../../components';
+import { ProfileCard } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 
 import Detail from './detail';

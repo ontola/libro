@@ -2,9 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import {
-  NavBarContent,
-} from '../components';
+import { NavBarContent } from '../components';
 import { getSideBarColor } from '../state/sideBars/selectors';
 
 const propTypes = {

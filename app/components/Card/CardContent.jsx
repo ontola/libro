@@ -40,6 +40,6 @@ const CardContent = ({
 };
 
 CardContent.propTypes = propTypes;
-CardContent.defaulTProps = defaultProps;
+CardContent.defaultProps = defaultProps;
 
 export default CardContent;

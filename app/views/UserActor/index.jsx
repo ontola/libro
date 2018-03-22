@@ -2,9 +2,7 @@ import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { LinkedResourceContainer, Property, lowLevel, subjectType } from 'link-redux';
 import React from 'react';
 
-import {
-  SideBarCollapsible
-} from '../../components';
+import { SideBarCollapsible } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 
 const propTypes = {

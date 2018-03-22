@@ -2,9 +2,7 @@ import { LinkedResourceContainer, Property, Type } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {
-  Container,
-} from '../../components';
+import { Container } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { currentLocation } from '../../helpers/paths';
 

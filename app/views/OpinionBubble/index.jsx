@@ -3,9 +3,7 @@ import { Property } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {
-  GeneratedIcon,
-} from '../../components';
+import { GeneratedIcon } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 
 import './OpinionBubble.scss';

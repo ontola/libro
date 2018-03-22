@@ -10,9 +10,7 @@ import { connect } from 'react-redux';
 import { initializeCollapsible, toggleOne } from 'state/collapsible/actions';
 import { getCollapsibleOpened } from 'state/collapsible/selectors';
 
-import {
-  SideBarCollapsible,
-} from '../../components';
+import { SideBarCollapsible } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { SideBarLinkIcon } from '../../components/SideBarLink/index';
 

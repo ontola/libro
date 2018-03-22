@@ -6,9 +6,7 @@ import CountBubble from '../CountBubble';
 
 import './SideBarLink.scss';
 import SideBarLinkIcon from './SideBarLinkIcon';
-import SideBarLinkImage, {
-  SideBarLinkImageWrapper
-} from './SideBarLinkImage';
+import SideBarLinkImage, { SideBarLinkImageWrapper } from './SideBarLinkImage';
 import SideBarLinkLabel from './SideBarLinkLabel';
 import SideBarLinkLink from './SideBarLinkLink';
 import SideBarLinkWrapper from './SideBarLinkWrapper';

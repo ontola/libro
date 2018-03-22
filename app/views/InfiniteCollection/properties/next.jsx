@@ -1,7 +1,5 @@
 import LinkedRenderStore from 'link-lib';
-import {
-  PropertyBase,
-} from 'link-redux';
+import { PropertyBase } from 'link-redux';
 import { Literal, NamedNode, Statement } from 'rdflib';
 import React from 'react';
 

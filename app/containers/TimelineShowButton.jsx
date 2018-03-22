@@ -5,9 +5,7 @@ import { connect } from 'react-redux';
 import { openSideBar } from 'state/sideBars/actions';
 import { getSideBarDocked } from 'state/sideBars/selectors';
 
-import {
-  Button,
-} from '../components';
+import { Button } from '../components';
 
 const propTypes = {
   docked: PropTypes.bool.isRequired,
