@@ -622,7 +622,7 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                         startOpened={false}
                                       >
                                         <Collapsible
-                                          alwaysMountChildren={true}
+                                          alwaysMountChildren={false}
                                           group="Navbar"
                                           id="<https://argu.dev/o/find?iri=https%3A%2F%2Fargu.dev%2Fo%2F1>-menu-items"
                                           onClickToggle={[Function]}
@@ -637,114 +637,29 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                             <div
                                               className="Collapsible__visible-content"
                                             />
-                                            <div
-                                              aria-hidden={-1}
-                                              className="Collapsible__invisible-content"
+                                            <ReactCollapse
+                                              forceInitialAnimation={true}
+                                              isOpened={false}
+                                              onRest={[Function]}
+                                              springConfig={
+                                                Object {
+                                                  "damping": 30,
+                                                  "stiffness": 300,
+                                                }
+                                              }
+                                              style={
+                                                Object {
+                                                  "minHeight": "undefinedpx",
+                                                }
+                                              }
                                             >
-                                              <ReactCollapse
-                                                isOpened={false}
-                                                springConfig={
-                                                  Object {
-                                                    "damping": 30,
-                                                    "stiffness": 300,
-                                                  }
-                                                }
-                                                style={
-                                                  Object {
-                                                    "minHeight": "undefinedpx",
-                                                  }
-                                                }
-                                              >
-                                                <div>
-                                                  <Connect(LinkedResourceContainer)
-                                                    subject={
-                                                      NamedNode {
-                                                        "sI": 148,
-                                                        "term": "menus/organizations",
-                                                        "termType": "NamedNode",
-                                                        "value": "https://argu.dev/menus/organizations",
-                                                      }
-                                                    }
-                                                  >
-                                                    <LinkedResourceContainer
-                                                      forceRender={false}
-                                                      loadLinkedObject={[Function]}
-                                                      reloadLinkedObject={[Function]}
-                                                      subject={
-                                                        NamedNode {
-                                                          "sI": 148,
-                                                          "term": "menus/organizations",
-                                                          "termType": "NamedNode",
-                                                          "value": "https://argu.dev/menus/organizations",
-                                                        }
-                                                      }
-                                                      version="new"
-                                                    >
-                                                      <div
-                                                        className="view-overridden"
-                                                        style={
-                                                          Object {
-                                                            "display": "inherit",
-                                                          }
-                                                        }
-                                                      >
-                                                        <linkedSubject[ConnectedProp]
-                                                          label={
-                                                            NamedNode {
-                                                              "sI": 107,
-                                                              "term": "menuItems",
-                                                              "termType": "NamedNode",
-                                                              "value": "https://argu.co/ns/core#menuItems",
-                                                            }
-                                                          }
-                                                        >
-                                                          <ConnectedProp
-                                                            label={
-                                                              NamedNode {
-                                                                "sI": 107,
-                                                                "term": "menuItems",
-                                                                "termType": "NamedNode",
-                                                                "value": "https://argu.co/ns/core#menuItems",
-                                                              }
-                                                            }
-                                                            subject={
-                                                              NamedNode {
-                                                                "sI": 148,
-                                                                "term": "menus/organizations",
-                                                                "termType": "NamedNode",
-                                                                "value": "https://argu.dev/menus/organizations",
-                                                              }
-                                                            }
-                                                          >
-                                                            <Property
-                                                              dispatch={[Function]}
-                                                              forceRender={false}
-                                                              label={
-                                                                NamedNode {
-                                                                  "sI": 107,
-                                                                  "term": "menuItems",
-                                                                  "termType": "NamedNode",
-                                                                  "value": "https://argu.co/ns/core#menuItems",
-                                                                }
-                                                              }
-                                                              limit={1}
-                                                              subject={
-                                                                NamedNode {
-                                                                  "sI": 148,
-                                                                  "term": "menus/organizations",
-                                                                  "termType": "NamedNode",
-                                                                  "value": "https://argu.dev/menus/organizations",
-                                                                }
-                                                              }
-                                                            />
-                                                          </ConnectedProp>
-                                                        </linkedSubject[ConnectedProp]>
-                                                      </div>
-                                                    </LinkedResourceContainer>
-                                                  </Connect(LinkedResourceContainer)>
-                                                </div>
-                                              </ReactCollapse>
-                                            </div>
+                                              <div>
+                                                <div
+                                                  aria-hidden={-1}
+                                                  className="Collapsible__invisible-content"
+                                                />
+                                              </div>
+                                            </ReactCollapse>
                                           </div>
                                         </Collapsible>
                                       </CollapsibleContainer>

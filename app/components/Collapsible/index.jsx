@@ -21,48 +21,71 @@ const propTypes = {
 };
 
 const defaultProps = {
-  alwaysMountChildren: true,
+  alwaysMountChildren: false,
   opened: false,
 };
 
-const Collapsible = ({
-  alwaysMountChildren,
-  children,
-  onClickToggle,
-  minHeight,
-  opened,
-  trigger,
-  visibleContent,
-}) => {
-  const triggerElem = (
-    <a
-      className="Collapsible__trigger"
-      href="/"
-      onClick={(e) => {
-        e.preventDefault();
-        onClickToggle();
-      }}
-    >{trigger}
-    </a>
-  );
+class Collapsible extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      opened: this.props.opened,
+    };
+    this.hideChildren = this.hideChildren.bind(this);
+  }
 
-  const tabIndex = () => {
-    if (opened) {
-      return undefined;
+  hideChildren() {
+    this.setState({
+      opened: this.props.opened,
+    });
+  }
+
+  render() {
+    const {
+      alwaysMountChildren,
+      children,
+      onClickToggle,
+      minHeight,
+      opened,
+      trigger,
+      visibleContent,
+    } = this.props;
+
+    const triggerElem = (
+      <a
+        className="Collapsible__trigger"
+        href="/"
+        onClick={(e) => {
+          e.preventDefault();
+          onClickToggle();
+        }}
+      >{trigger}
+      </a>
+    );
+
+    if (opened === true) {
+      this.setState({
+        opened: true,
+      });
     }
-    return -1;
-  };
 
-  const CollapsibleComp = __TEST__ ? Collapse.default : Collapse.default.Collapse;
-
-  return (
-    <div aria-expanded={opened} className="Collapsible">
-      {trigger &&
-        <div className="Collapsible__trigger-wrapper">{triggerElem}</div>
+    const tabIndex = () => {
+      if (opened) {
+        return undefined;
       }
-      <div className="Collapsible__visible-content">{visibleContent}</div>
-      <div aria-hidden={tabIndex()} className="Collapsible__invisible-content">
+      return -1;
+    };
+
+    const CollapsibleComp = __TEST__ ? Collapse.default : Collapse.default.Collapse;
+
+    return (
+      <div aria-expanded={opened} className="Collapsible">
+        {trigger &&
+          <div className="Collapsible__trigger-wrapper">{triggerElem}</div>
+        }
+        <div className="Collapsible__visible-content">{visibleContent}</div>
         <CollapsibleComp
+          forceInitialAnimation
           isOpened={opened}
           springConfig={{
             damping: 30,
@@ -71,13 +94,16 @@ const Collapsible = ({
           style={{
             minHeight: `${minHeight}px`,
           }}
+          onRest={this.hideChildren}
         >
-          {alwaysMountChildren ? children : (opened && children)}
+          <div aria-hidden={tabIndex()} className="Collapsible__invisible-content">
+            {alwaysMountChildren ? children : (this.state.opened && children)}
+          </div>
         </CollapsibleComp>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 Collapsible.propTypes = propTypes;
 Collapsible.defaultProps = defaultProps;

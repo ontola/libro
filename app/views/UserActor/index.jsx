@@ -15,7 +15,6 @@ const CurrentActorFooter = () => (
 
 const CurrentActorSidebar = ({ subject }) => (
   <SideBarCollapsible
-    alwaysMountChildren
     id={`${subject}-sidebar-menu`}
     labelComp={<Property label={NS.argu('actor')} />}
   >
