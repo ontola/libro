@@ -19,7 +19,7 @@ export default [
     OrganizationsMenu,
     NS.argu('OrganizationsMenu'),
     RENDER_CLASS_NAME,
-    [NS.argu('sidebar'), NS.argu('sidebarBlock')]
+    NS.argu('sidebar')
   ),
   MenuItems,
 ];

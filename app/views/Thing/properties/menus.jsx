@@ -17,5 +17,5 @@ export default LinkedRenderStore.registerRenderer(
   ThingMenusProp,
   NS.schema('Thing'),
   [NS.argu('menus'), NS.argu('navigationsMenu')],
-  NS.argu('sidebarBlock')
+  NS.argu('sidebar')
 );

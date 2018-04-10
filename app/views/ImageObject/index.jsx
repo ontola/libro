@@ -61,7 +61,7 @@ export default [
       NS.argu('dropdownContent'),
       NS.argu('formFooter'),
       NS.argu('section'),
-      NS.argu('sidebarBlock'),
+      NS.argu('sidebar'),
       NS.argu('voteBubble'),
       NS.argu('voteEventSide'),
     ]

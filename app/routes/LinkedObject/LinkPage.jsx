@@ -35,7 +35,7 @@ const sidebar = () => (
     onError={NavbarContainer}
     onLoad={NavbarContainer}
   >
-    <Property label="schema:organization" topology="argu:sidebarBlock" />
+    <Property label="schema:organization" topology="argu:sidebar" />
   </LinkedResourceContainer>
 );
 

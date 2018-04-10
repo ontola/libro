@@ -158,10 +158,7 @@ export default [
     ErrorSidebar,
     NS.ll('ErrorResource'),
     RENDER_CLASS_NAME,
-    [
-      NS.argu('sidebar'),
-      NS.argu('sidebarBlock'),
-    ]
+    NS.argu('sidebar')
   ),
   LinkedRenderStore.registerRenderer(
     ErrorButtonInline,

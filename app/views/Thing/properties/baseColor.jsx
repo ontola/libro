@@ -48,5 +48,5 @@ export default LinkedRenderStore.registerRenderer(
   BaseColorDispatcherConnect,
   [NS.schema('Thing'), NS.link('Document')],
   NS.argu('baseColor'),
-  NS.argu('sidebarBlock')
+  NS.argu('sidebar')
 );

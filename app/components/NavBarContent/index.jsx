@@ -40,7 +40,7 @@ const NavBarContent = ({ orgColor }) => {
         <LinkedResourceContainer
           forceRender
           subject={NS.app(`o/find?iri=${encodeURIComponent(currentURL())}`)}
-          topology={NS.argu('sidebarBlock')}
+          topology={NS.argu('sidebar')}
         >
           <ContainsContainer />
         </LinkedResourceContainer>

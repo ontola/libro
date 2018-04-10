@@ -56,7 +56,7 @@ export default [
     MenuItemSidebar,
     [NS.argu('MenuItem'), NS.argu('SubMenu')],
     RENDER_CLASS_NAME,
-    [NS.argu('sidebar'), NS.argu('sidebarBlock')]
+    NS.argu('sidebar')
   ),
   LinkedRenderStore.registerRenderer(
     link([NS.argu('href'), NS.argu('label'), NS.schema('image')])(MenuItemDropdownContent),

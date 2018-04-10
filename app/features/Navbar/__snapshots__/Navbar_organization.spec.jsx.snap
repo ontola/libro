@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Navbar organization as argu:sidebarBlock renders the correct representation 1`] = `
+exports[`Navbar organization as argu:sidebar renders the correct representation 1`] = `
 Array [
   <div
     className="SideBarLink"

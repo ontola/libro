@@ -95,8 +95,8 @@ function represent(topology) {
 
 describe('Navbar', () => {
   describe('organization', () => {
-    describe('as argu:sidebarBlock', () => {
-      represent(NS.argu('sidebarBlock'));
+    describe('as argu:sidebar', () => {
+      represent(NS.argu('sidebar'));
     });
   });
 });

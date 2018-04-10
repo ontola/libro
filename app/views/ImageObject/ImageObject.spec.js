@@ -74,7 +74,7 @@ describeView('ImageObject', components, resources, resource, () => {
     });
   });
 
-  as(NS.argu('sidebarBlock'), () => {
+  as(NS.argu('sidebar'), () => {
     it('renders a thumbnail', () => {
       expect(subject.find(marker('ImageObjectThumbnail'))).toBePresent();
     });

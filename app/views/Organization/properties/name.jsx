@@ -27,5 +27,5 @@ export default LinkedRenderStore.registerRenderer(
     NS.rdfs('label'),
     NS.foaf('name'),
   ],
-  NS.argu('sidebarBlock')
+  NS.argu('sidebar')
 );

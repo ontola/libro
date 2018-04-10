@@ -22,7 +22,7 @@ export default[
     MenuSection,
     [NS.argu('MenuSection')],
     RENDER_CLASS_NAME,
-    [NS.argu('sidebar'), NS.argu('sidebarBlock')]
+    NS.argu('sidebar')
   ),
   Label,
 ];

@@ -52,7 +52,6 @@ export default [
     [
       NS.argu('dropdownContent'),
       NS.argu('sidebar'),
-      NS.argu('sidebarBlock'),
     ]
   ),
   LinkedRenderStore.registerRenderer(

@@ -45,7 +45,6 @@ export const allTopologies = [
   NS.argu('parent'),
   NS.argu('popup'),
   NS.argu('sidebar'),
-  NS.argu('sidebarBlock'),
   NS.argu('section'),
   NS.argu('grid'),
   NS.argu('voteBubble'),

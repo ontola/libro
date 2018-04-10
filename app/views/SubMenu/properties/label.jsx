@@ -21,5 +21,5 @@ export default LinkedRenderStore.registerRenderer(
   SubMenuLabelProp,
   [NS.argu('SubMenu'), NS.argu('MenuItem')],
   NS.argu('label'),
-  [NS.argu('sidebar'), NS.argu('sidebarBlock')]
+  NS.argu('sidebar')
 );

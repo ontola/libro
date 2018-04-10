@@ -6,16 +6,16 @@ import { NS } from '../../helpers/LinkedRenderStore';
 
 import Name from './properties/name';
 
-const OrganizationSidebarBlock = () => (
+const OrganizationSidebar = () => (
   <Property label={NS.argu('navigationsMenu')} topology={NS.argu('sidebar')} />
 );
 
 export default [
   LinkedRenderStore.registerRenderer(
-    OrganizationSidebarBlock,
+    OrganizationSidebar,
     [NS.schema('Organization'), NS.argu('Page')],
     RENDER_CLASS_NAME,
-    NS.argu('sidebarBlock')
+    NS.argu('sidebar')
   ),
   Name
 ];

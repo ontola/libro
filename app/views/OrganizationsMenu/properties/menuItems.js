@@ -7,5 +7,5 @@ export default LinkedRenderStore.registerRenderer(
   menuItems,
   NS.argu('OrganizationsMenu'),
   NS.argu('menuItems'),
-  [undefined, NS.argu('sidebarBlock')]
+  [undefined, NS.argu('sideBar')]
 );
