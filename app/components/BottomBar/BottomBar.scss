@@ -12,6 +12,7 @@
   flex-grow: initial;
   flex-shrink: 1;
   justify-content: center;
+  transition: $nav-transition-time background-color;
   width: 100%;
   z-index: 2;
 }

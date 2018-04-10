@@ -11,6 +11,9 @@
 
   .Collapsible__invisible-content {
     background-color: color('transparent', 'dark');
+    border-top: solid 1px color('transparent', 'x-dark');
+    border-bottom: solid 1px color('transparent', 'x-dark');
+    padding: .4em 0;
   }
 
   .SideBarCollapsible__label {
