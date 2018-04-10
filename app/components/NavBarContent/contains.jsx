@@ -56,7 +56,9 @@ class Contains extends PropertyBase {
           id={`${this.props.subject}-menu-items`}
           labelComp={label}
         >
-          <LinkedResourceContainer subject={NS.app('menus/organizations')} />
+          <LinkedResourceContainer subject={NS.app('menus/organizations')}>
+            <Property label={NS.argu('menuItems')} />
+          </LinkedResourceContainer>
         </SideBarCollapsible>
       </div>
     );

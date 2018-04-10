@@ -1,7 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Navbar organization as argu:sidebar renders the correct representation 1`] = `
-Array [
+<div
+  className="view-overridden"
+  style={
+    Object {
+      "display": "inherit",
+    }
+  }
+>
   <div
     className="SideBarLink"
   >
@@ -22,89 +29,6 @@ Array [
       </div>
       Instellingen
     </a>
-  </div>,
-  <div
-    data-test="MenuSection-menu-section"
-  >
-    <div
-      className="MenuSectionLabel"
-      data-test="MenuSection-MenuSectionLabel"
-    >
-      <div
-        className="MenuSectionLabel__bar"
-      />
-      <div
-        className="MenuSectionLabel__text"
-      >
-        Forum
-      </div>
-      <div
-        className="MenuSectionLabel__bar"
-      />
-    </div>
-    <div
-      className="SideBarLink"
-    >
-      <a
-        aria-current={false}
-        className="SideBarLink__link"
-        href="/f/utrecht/motions"
-        onClick={[Function]}
-        style={undefined}
-      >
-        <div
-          className="SideBarLink__icon"
-        >
-          <span
-            aria-hidden={true}
-            className="fa fa-lightbulb-o"
-          />
-        </div>
-        Ideeën
-      </a>
-    </div>
-    <div
-      className="SideBarLink"
-    >
-      <a
-        aria-current={false}
-        className="SideBarLink__link"
-        href="/f/utrecht/questions"
-        onClick={[Function]}
-        style={undefined}
-      >
-        <div
-          className="SideBarLink__icon"
-        >
-          <span
-            aria-hidden={true}
-            className="fa fa-question"
-          />
-        </div>
-        Vraagstukken
-      </a>
-    </div>
-    <div
-      className="SideBarLink"
-    >
-      <a
-        aria-current={false}
-        className="SideBarLink__link"
-        href="/utrecht/settings"
-        onClick={[Function]}
-        style={undefined}
-      >
-        <div
-          className="SideBarLink__icon"
-        >
-          <span
-            aria-hidden={true}
-            className="fa fa-gear"
-          />
-        </div>
-        Instellingen
-      </a>
-    </div>
-  </div>,
-]
+  </div>
+</div>
 `;

@@ -54,7 +54,7 @@ MenuItemDropdown.propTypes = {
 export default [
   LinkedRenderStore.registerRenderer(
     MenuItemSidebar,
-    [NS.argu('MenuItem'), NS.argu('SubMenu')],
+    [NS.argu('MenuItem'), NS.argu('SubMenu'), NS.argu('Menu')],
     RENDER_CLASS_NAME,
     NS.argu('sidebar')
   ),
@@ -69,9 +69,7 @@ export default [
     [
       NS.argu('MenuItem'),
       NS.argu('SubMenu'),
-      NS.argu('ActionsMenu'),
-      NS.argu('FollowMenu'),
-      NS.argu('ShareMenu'),
+      NS.argu('Menu'),
     ],
     RENDER_CLASS_NAME,
     NS.argu('cardMain')

@@ -30,7 +30,7 @@ const resources = {
     [NS.rdf('type')]: [
       new NamedNode('http://www.w3.org/ns/iana/media-types/text/n3#Resource'),
       new NamedNode('http://www.w3.org/2007/ont/link#Document'),
-      NS.argu('NavigationsMenu'),
+      NS.argu('Menu'),
       new NamedNode('http://www.w3.org/2007/ont/link#RDFDocument'),
     ],
     [NS.argu('label')]: new Literal('Navigations'),

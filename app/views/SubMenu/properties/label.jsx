@@ -19,7 +19,7 @@ SubMenuLabelProp.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
   SubMenuLabelProp,
-  [NS.argu('SubMenu'), NS.argu('MenuItem')],
+  [NS.argu('SubMenu'), NS.argu('MenuItem'), NS.argu('Menu')],
   NS.argu('label'),
   NS.argu('sidebar')
 );

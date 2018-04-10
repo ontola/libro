@@ -42,7 +42,7 @@ href.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
   href,
-  [NS.argu('Link'), NS.argu('MenuItem'), NS.argu('SubMenu'), NS.argu('NavigationsMenu')],
+  [NS.argu('Link'), NS.argu('MenuItem'), NS.argu('SubMenu')],
   NS.argu('href'),
   NS.argu('sidebar')
 );

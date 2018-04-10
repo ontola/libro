@@ -21,9 +21,7 @@ export default LinkedRenderStore.registerRenderer(
   [
     NS.argu('MenuItem'),
     NS.argu('SubMenu'),
-    NS.argu('ActionsMenu'),
-    NS.argu('FollowMenu'),
-    NS.argu('ShareMenu'),
+    NS.argu('Menu'),
   ],
   NS.argu('label'),
   NS.argu('cardMain')

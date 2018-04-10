@@ -51,7 +51,7 @@ menuItems.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
   menuItems,
-  [NS.argu('MenuItem'), NS.argu('SubMenu'), NS.argu('NavigationsMenu'), NS.argu('MenuSection')],
+  [NS.argu('MenuItem'), NS.argu('SubMenu'), NS.argu('MenuSection')],
   NS.argu('menuItems'),
   [undefined, NS.argu('sidebar'), NS.argu('dropdownContent')]
 );

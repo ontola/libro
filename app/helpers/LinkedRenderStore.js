@@ -169,12 +169,6 @@ const ontologicalData = [
   new Statement(NS.argu('BlogPost'), NS.schema('description'), new Literal('Een update is een bericht waarin de voortgang van een project wordt gedeeld.', languages.nl)),
   new Statement(NS.argu('BlogPost'), NS.schema('image'), new NamedNode('http://fontawesome.io/icon/bullhorn')),
 
-  new Statement(NS.argu('ActionsMenu'), NS.rdf('type'), NS.rdfs('Class')),
-  new Statement(NS.argu('ActionsMenu'), NS.rdfs('subClassOf'), NS.schema('SubMenu')),
-
-  new Statement(NS.argu('ShareMenu'), NS.rdf('type'), NS.rdfs('Class')),
-  new Statement(NS.argu('ShareMenu'), NS.rdfs('subClassOf'), NS.schema('SubMenu')),
-
   new Statement(NS.aod('title'), NS.owl('sameAs'), NS.schema('name')),
 
   new Statement(NS.schema('MediaObject'), NS.rdf('type'), NS.rdfs('Class')),

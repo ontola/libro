@@ -21,15 +21,13 @@ import Loading from './Loading';
 import MenuItem from './MenuItem';
 import MenuSection from './MenuSection';
 import Motion from './Motion';
-import NavigationsMenu from './NavigationsMenu';
 import Notification from './Notification';
-import OrganizationsMenu from './OrganizationsMenu';
 // import './OpinionBubble';
 import Organization from './Organization';
 import Person from './Person';
-import SubMenu from './SubMenu';
 // import './Question';
 import SeqComp from './Seq';
+import SubMenu from './SubMenu';
 import UserActor from './UserActor';
 import Vote from './Vote';
 // import './VoteCompareCells';
@@ -55,9 +53,7 @@ LRS.registerAll(
   ...MenuItem,
   ...MenuSection,
   Motion,
-  ...NavigationsMenu,
   ...Notification,
-  ...OrganizationsMenu,
   ...Organization,
   ...Person,
   ...RDFSClass,
