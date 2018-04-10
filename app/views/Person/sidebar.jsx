@@ -4,6 +4,7 @@ import React from 'react';
 
 import { LDLink } from '../../components';
 import SideBarLinkLabel from '../../components/SideBarLink/SideBarLinkLabel';
+import SidebarLinkIcon from '../../components/SideBarLink/SideBarLinkIcon';
 import { NS } from '../../helpers/LinkedRenderStore';
 
 import './properties/name';
@@ -11,7 +12,9 @@ import './properties/name';
 const CurrentActorSidebar = () => (
   <div className="SideBarLink">
     <LDLink className="SideBarLink__link">
-      <Property label={NS.schema('image')} />
+      <SidebarLinkIcon>
+        <Property label={NS.schema('image')} />
+      </SidebarLinkIcon>
       <SideBarLinkLabel>
         <Property label={NS.schema('name')} />
       </SideBarLinkLabel>
