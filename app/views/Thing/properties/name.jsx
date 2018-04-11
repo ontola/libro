@@ -104,7 +104,7 @@ export default [
     NS.argu('widget')
   ),
   LinkedRenderStore.registerRenderer(
-    ({ linkedProp }) => <Heading data-test="Thing-name-header">{linkedProp.value}</Heading>,
+    ({ linkedProp }) => <Heading data-test="Thing-name-header" size={1}>{linkedProp.value}</Heading>,
     NS.schema('Thing'),
     NamePredicates,
     NS.argu('header')

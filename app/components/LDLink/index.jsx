@@ -11,7 +11,13 @@ const propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   subject: subjectType,
-  theme: PropTypes.oneOf(['parent']),
+  theme: PropTypes.oneOf([
+    'default',
+    'parent',
+  ]),
+};
+const defaultProps = {
+  theme: 'default'
 };
 
 const LDLink = ({
@@ -23,13 +29,15 @@ const LDLink = ({
   const href = retrievePath(subject.value);
   return (
     <Link
-      className={`${className || (theme === 'parent' ? 'LDLink__parent' : '')}`}
+      className={`${className || `LDLink__${theme}`}`}
       to={href}
     >
       {children}
     </Link>
   );
 };
+
+LDLink.defaultProps = defaultProps;
 LDLink.propTypes = propTypes;
 
 export default lowLevel.linkedSubject(LDLink);

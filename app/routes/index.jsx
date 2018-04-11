@@ -14,7 +14,7 @@ const subRoutes = [
   <Route key="signin" path="/u/sign_in" component={SignIn} />,
   <Route key="notifications" path="/n" component={LinkedObject} />,
   <Route key="home" path="/" component={Iframe} exact />,
-  <Route key="iframeRoutesTop" path="/(i|u|settings)/*" component={Iframe} />,
+  <Route key="iframeRoutesTop" path="/(i|settings)/*" component={Iframe} />,
   <Route
     key="iframeRoutesNested"
     path="*/(new|edit|trash|delete|decision|c|settings|statistics)"

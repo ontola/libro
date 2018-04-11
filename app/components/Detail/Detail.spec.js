@@ -45,7 +45,7 @@ argUnit(Detail, () => {
     });
 
     it('should render text', () => {
-      expect(subject.find(marker('text'))).toHaveText('Some text');
+      expect(subject.find(marker('DetailText'))).toBePresent();
     });
   });
 

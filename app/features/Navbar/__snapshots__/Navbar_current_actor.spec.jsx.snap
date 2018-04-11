@@ -75,16 +75,7 @@ exports[`Navbar current_actor logged in renders the correct representation 1`] =
         aria-hidden={-1}
         className="Collapsible__invisible-content"
         hidden={false}
-      >
-        <div
-          className="view-overridden"
-          style={
-            Object {
-              "display": "inherit",
-            }
-          }
-        />
-      </div>
+      />
     </div>
   </div>
 </div>

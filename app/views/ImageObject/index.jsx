@@ -56,10 +56,11 @@ export default [
     NS.schema('ImageObject'),
     RENDER_CLASS_NAME,
     [
-      NS.argu('detail'),
       NS.argu('collection'),
+      NS.argu('detail'),
       NS.argu('dropdownContent'),
       NS.argu('formFooter'),
+      NS.argu('header'),
       NS.argu('section'),
       NS.argu('sidebar'),
       NS.argu('voteBubble'),

@@ -3,7 +3,7 @@ import { linkedPropType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { Image } from '../../../components';
+import { DetailImage, Image } from '../../../components';
 import FormFooterImage from '../../../components/Form/FooterImage';
 import SideBarLinkImage from '../../../components/SideBarLink/SideBarLinkImage';
 import { allTopologiesExcept, NS } from '../../../helpers/LinkedRenderStore';
@@ -33,7 +33,13 @@ export default [
     createThumbnail(SideBarLinkImage),
     NS.schema('ImageObject'),
     NS.schema('thumbnail'),
-    allTopologiesExcept(NS.argu('formFooter'))
+    allTopologiesExcept(NS.argu('detail'), NS.argu('formFooter'))
+  ),
+  LinkedRenderStore.registerRenderer(
+    createThumbnail(DetailImage),
+    NS.schema('ImageObject'),
+    NS.schema('thumbnail'),
+    NS.argu('detail')
   ),
   LinkedRenderStore.registerRenderer(
     createThumbnail(FormFooterImage),

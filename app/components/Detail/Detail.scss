@@ -25,7 +25,9 @@
 
 .Detail__text {
   color: color('grey', 'mid-light');
+  height: unit('large');
   font-size: font-size('small');
+  line-height: unit('large');
 }
 
 .Detail__icon {

@@ -2,33 +2,24 @@
 
 exports[`Navbar organization as argu:sidebar renders the correct representation 1`] = `
 <div
-  className="view-overridden"
-  style={
-    Object {
-      "display": "inherit",
-    }
-  }
+  className="SideBarLink"
 >
-  <div
-    className="SideBarLink"
+  <a
+    aria-current={false}
+    className="SideBarLink__link"
+    href="/o/gemeente_utrecht/settings"
+    onClick={[Function]}
+    style={undefined}
   >
-    <a
-      aria-current={false}
-      className="SideBarLink__link"
-      href="/o/gemeente_utrecht/settings"
-      onClick={[Function]}
-      style={undefined}
+    <div
+      className="SideBarLink__icon"
     >
-      <div
-        className="SideBarLink__icon"
-      >
-        <span
-          aria-hidden={true}
-          className="fa fa-gear"
-        />
-      </div>
-      Instellingen
-    </a>
-  </div>
+      <span
+        aria-hidden={true}
+        className="fa fa-gear"
+      />
+    </div>
+    Instellingen
+  </a>
 </div>
 `;

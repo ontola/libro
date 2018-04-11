@@ -41,6 +41,7 @@ export const allTopologies = [
   NS.argu('detail'),
   NS.argu('dropdownContent'),
   NS.argu('formFooter'),
+  NS.argu('header'),
   NS.argu('inline'),
   NS.argu('parent'),
   NS.argu('popup'),

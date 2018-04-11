@@ -1,6 +1,11 @@
 @import '../shared/config';
 
 .LDLink {
+
+  &__default {
+    display: inline-flex;
+  }
+
   &__parent {
     background-color: color('grey', 'x-light');
     border-radius: 999px;

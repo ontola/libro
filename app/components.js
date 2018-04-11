@@ -29,6 +29,7 @@ export { default as CoverImage } from './components/CoverImage/index';
 export { default as Cover } from './components/Cover/index';
 export { default as Detail } from './components/Detail/index';
 export { default as DetailText } from './components/Detail/text';
+export { default as DetailImage } from './components/Detail/image';
 export { default as DetailDate } from './components/DetailDate/index';
 // export { default as DetailDuration } from './components/DetailDuration/index';
 export { default as DetailsBar } from './components/DetailsBar/index';

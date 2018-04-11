@@ -7,6 +7,7 @@ import { browserHistory } from 'react-router';
 import { NS } from '../../helpers/LinkedRenderStore';
 
 import './Detail.scss';
+import DetailText from './text';
 
 const propTypes = {
   className: PropTypes.string,
@@ -68,7 +69,7 @@ class Detail extends PureComponent {
 
     return (
       <Element
-        className={`Detail ${url && 'Detail--link '}${floatRight && 'Detail--float-right '} ${className}`}
+        className={`Detail ${url ? 'Detail--link ' : ''}${floatRight ? 'Detail--float-right ' : ''} ${className || ''}`}
         data-test="Detail"
         href={url}
         title={title}
@@ -81,8 +82,9 @@ class Detail extends PureComponent {
           <FontAwesome name={icon} />
         </span>
         }
-
-        {text && <span className="Detail__text" data-test="Detail-text">{text}</span>}
+        <DetailText data-test="Detail-DetailText">
+          {text}
+        </DetailText>
       </Element>
     );
   }
