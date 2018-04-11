@@ -5,17 +5,25 @@ import { lowLevel, subjectType } from 'link-redux';
 
 import { retrievePath } from '../../helpers/iris';
 
+import './LDLink.scss';
+
 const propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   subject: subjectType,
+  theme: PropTypes.oneOf(['parent']),
 };
 
-const LDLink = ({ className, children, subject }) => {
+const LDLink = ({
+  className,
+  children,
+  subject,
+  theme,
+}) => {
   const href = retrievePath(subject.value);
   return (
     <Link
-      className={className}
+      className={`${className || (theme === 'parent' ? 'LDLink__parent' : '')}`}
       to={href}
     >
       {children}
