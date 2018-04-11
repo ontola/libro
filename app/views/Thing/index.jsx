@@ -143,9 +143,15 @@ const ThingParent = () => (
 );
 
 const ThingSection = ({ highlighted }) => (
-  <CardHoverBox hiddenChildren={<ThingHoverBoxHidden />} shine={highlighted}>
-    <Property label={NS.schema('name')} topology={NS.argu('inline')} />
-  </CardHoverBox>
+  <div
+    style={{
+      marginBottom: '.5em',
+    }}
+  >
+    <CardHoverBox hiddenChildren={<ThingHoverBoxHidden />} shine={highlighted}>
+      <Property label={NS.schema('name')} />
+    </CardHoverBox>
+  </div>
 );
 
 ThingSection.propTypes = hightlightPropTypes;

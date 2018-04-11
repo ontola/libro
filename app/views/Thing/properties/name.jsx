@@ -45,10 +45,19 @@ const NamePredicates = [
 
 export default [
   LinkedRenderStore.registerRenderer(
-    props => <ColoredHeading data-test="Thing-name-widget" size="4" {...props} />,
+    props => <ColoredHeading data-test="Thing-name-small-title" size="4" {...props} />,
     NS.schema('Thing'),
     NamePredicates,
-    [undefined, NS.argu('parent'), NS.argu('section')]
+    [undefined, NS.argu('parent')]
+  ),
+  LinkedRenderStore.registerRenderer(
+    props => (
+      <LDLink>
+        <ColoredHeading data-test="Thing-name-card-preview" size="4" {...props} />
+      </LDLink>),
+    NS.schema('Thing'),
+    NamePredicates,
+    [NS.argu('cardHover'), NS.argu('section')]
   ),
   LinkedRenderStore.registerRenderer(
     props => <ColoredHeading data-test="Thing-name-card-main" size="1" {...props} />,
@@ -75,7 +84,6 @@ export default [
     [
       NS.argu('card'),
       NS.argu('cardFixed'),
-      NS.argu('cardHover'),
       NS.argu('cardRow'),
       NS.argu('collection'),
       NS.argu('container'),
@@ -100,11 +108,5 @@ export default [
     NS.schema('Thing'),
     NamePredicates,
     NS.argu('header')
-  ),
-  LinkedRenderStore.registerRenderer(
-    props => <LDLink><ColoredHeading data-test="Thing-name-section" size="4" {...props} /></LDLink>,
-    NS.schema('Thing'),
-    NamePredicates,
-    NS.argu('section')
   ),
 ];

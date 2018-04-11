@@ -43,6 +43,7 @@ const CollapseText = ({
     return (
       <div className={classes}>
         <CollapsibleContainer
+          alwaysMountChildren
           id={id}
           minHeight={minHeight}
         >
