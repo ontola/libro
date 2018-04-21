@@ -1,5 +1,21 @@
 @import '../shared/config';
 
+@keyframes highlight {
+  0% {
+    box-shadow: none;
+  }
+
+  50% {
+    animation-timing-function: ease-in;
+    box-shadow: 0 0 1em color('green', 'light');
+  }
+
+  100% {
+    animation-timing-function: ease-out;
+    box-shadow: none;
+  }
+}
+
 .Card {
   background-color: color('white');
   border-radius: $border-radius-base;
@@ -32,6 +48,10 @@
     @include smallest-only {
       width: 100%;
     }
+  }
+
+  &--shine {
+    animation: highlight 1s 1;
   }
 }
 

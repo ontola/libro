@@ -1,4 +1,5 @@
 // App
+export const HIGHLIGHT_RESOURCE = 'HIGHLIGHT_RESOURCE';
 export const SET_ORGANIZATION = 'SET_ORGANIZATION';
 
 // Collapsibles
@@ -40,8 +41,13 @@ export const GET_VOTE_EVENT = 'GET_VOTE_EVENT';
 export const GOTO_PAGE = 'GOTO_PAGE';
 
 // Omniform
+export const OMNIFORM_ADD_ACTION = 'OMNIFORM_ADD_ACTION';
 export const OMNIFORM_INITIALIZE = 'OMNIFORM_INITIALIZE';
 export const OMNIFORM_SET_TYPE = 'OMNIFORM_SET_TYPE';
+
+// Popups
+export const SET_POPUP_RESOURCE = 'SET_POPUP_RESOURCE';
+export const UNSET_POPUP_RESOURCE = 'UNSET_POPUP_RESOURCE';
 
 // Search
 export const TOGGLE_DRAWER = 'TOGGLE_DRAWER';

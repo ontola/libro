@@ -1,7 +1,28 @@
 @import '../shared/config';
 
+@keyframes hb-highlight {
+  0% {
+    box-shadow: none;
+  }
+
+  50% {
+    animation-timing-function: ease-in;
+    box-shadow: 0 0 1em color('green', 'light');
+  }
+
+  100% {
+    animation-timing-function: ease-out;
+    box-shadow: none;
+  }
+}
+
+
 .HoverBox {
   position: relative;
+
+  &--shine {
+    animation: hb-highlight 1s 1;
+  }
 }
 
 .HoverBox__hidden-part {

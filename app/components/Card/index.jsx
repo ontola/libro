@@ -10,10 +10,12 @@ import './Card.scss';
 const propTypes = {
   children: PropTypes.node.isRequired,
   fixed: PropTypes.bool,
+  shine: PropTypes.bool,
 };
 
 const defaultProps = {
   fixed: false,
+  shine: false,
 };
 
 /**
@@ -21,8 +23,8 @@ const defaultProps = {
  * @returns {component} Component
  */
 class Card extends TopologyProvider {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.topology = NS.argu('card');
   }
@@ -31,6 +33,7 @@ class Card extends TopologyProvider {
     const classes = classNames({
       Card: true,
       'Card--fixed': this.props.fixed,
+      'Card--shine': this.props.shine,
     });
 
     return (
@@ -45,6 +48,7 @@ Card.propTypes = propTypes;
 Card.defaultProps = defaultProps;
 
 export { default as CardActions } from './CardActions';
+export { default as CardAppendix } from './CardAppendix';
 export { default as CardButton } from './CardButton';
 export { default as CardContent } from './CardContent';
 export { default as CardDivider } from './CardDivider';
