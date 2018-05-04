@@ -10,13 +10,19 @@ import { setBaseColor } from '../../../state/sideBars/actions';
 
 const propTypes = {
   linkedProp: linkedPropType,
-  setBaseColor: PropTypes.func,
+  onChange: PropTypes.func,
 };
 
 class BaseColorDispatcher extends Component {
+  componentDidMount() {
+    if (this.props.linkedProp) {
+      this.props.onChange(hexToRgb(this.props.linkedProp.value));
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.linkedProp) {
-      this.props.setBaseColor(hexToRgb(nextProps.linkedProp));
+      this.props.onChange(hexToRgb(nextProps.linkedProp));
     }
   }
 
@@ -30,7 +36,7 @@ BaseColorDispatcher.propTypes = propTypes;
 const BaseColorDispatcherConnect = connect(
   null,
   dispatch => ({
-    setBaseColor: rgbColor => dispatch(setBaseColor(rgbColor)),
+    onChange: rgbColor => dispatch(setBaseColor(rgbColor)),
   }),
   null,
   { pure: false }
