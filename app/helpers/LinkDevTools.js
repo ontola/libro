@@ -258,6 +258,21 @@ class LinkDevTools {
     return Array.isArray(propVal) ? this.toObject(propVal) : propVal;
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  get rdf() {
+    return rdf;
+  }
+
+  get reload() {
+    if (this.$r && this.$r.props) {
+      if (!this.$r.props.reloadLinkedObject) {
+        return console.warn("Selected node doesn't seem to be a LOC");
+      }
+      return this.$r.props.reloadLinkedObject();
+    }
+    return console.warn('No node or wrong node type selected.');
+  }
+
   get topology() {
     return this.$r.props.topology === null
       ? undefined
@@ -425,6 +440,7 @@ class LinkDevTools {
       helpTableObj('getProp', "Returns the component's formatted 'object property' by using `getLinkedObjectProperty`."),
       helpTableObj('getPropRaw', "Returns the component's formatted 'object property' by using `getLinkedObjectPropertyRaw`."),
       helpTableObj('help', 'Displays this help message.'),
+      helpTableObj('reload', 'Reloads the currently selected LOC (if possible).'),
       helpTableObj('snapshot(n)', "Returns JS-formatted data for snapshot testing `n` LOC's deep."),
       helpTableObj('toObject(arr)', 'Converts an array of statements to an object.'),
       helpTableObj('topology', "Returns the current location's topology."),
