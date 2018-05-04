@@ -5,19 +5,20 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import ScrollMemory from 'react-router-scroll-memory';
 
-import {
-  Notification,
-  SkipNavigation,
-  Spinner,
-} from 'components';
 import SideBarContainer from 'containers/SideBarContainer';
 import BottomBarContainer from 'containers/BottomBarContainer';
 import NavbarContainer from 'containers/NavbarContainer';
 import resetErrorMessage from 'state/communication/actions';
 import { getErrorBool, getErrorMsg, getLoadingBool } from 'state/communication/selectors';
 
-import '../../components/shared/init.scss';
 import Routes from '../';
+import {
+  LinkedPopup,
+  Notification,
+  SkipNavigation,
+  Spinner,
+} from '../../components';
+import '../../components/shared/init.scss';
 
 const propTypes = {
   error: PropTypes.bool.isRequired,
@@ -60,6 +61,7 @@ const App = ({
       <BottomBarContainer />
       {error && renderErrorMessage(error, errorMessage, reset)}
     </SideBarContainer>
+    <LinkedPopup />
   </div>
 );
 
