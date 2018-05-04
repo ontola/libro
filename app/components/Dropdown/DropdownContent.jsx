@@ -66,7 +66,6 @@ class DropdownContent extends ScrollLockedComponent {
       <div
         className={`Dropdown__content ${collapseClass}${contentClassName} ${this.state.appearState}`}
         style={{ display: 'flex', flexDirection: 'column' }}
-        onWheel={this.onScrollHandler.bind(this)}
       >
         {children}
       </div>

@@ -22,7 +22,7 @@ const propTypes = {
   onDock: PropTypes.func.isRequired,
   onInitializeSideBar: PropTypes.func.isRequired,
   onUndock: PropTypes.func.isRequired,
-  slim: PropTypes,
+  slim: PropTypes.bool,
 };
 
 const defaultProps = {

@@ -37,6 +37,7 @@
     -webkit-overflow-scrolling: touch;
     flex: 1;
     position: relative;
+    will-change: transform;
   }
 }
 

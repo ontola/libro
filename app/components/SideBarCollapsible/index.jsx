@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { PureComponent } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
 
@@ -21,43 +21,47 @@ const propTypes = {
   open: PropTypes.bool,
 };
 
-export const SideBarCollapsible = ({
-  alwaysMountChildren,
-  children,
-  id,
-  labelComp,
-  onClickToggle,
-  open,
-}) => {
-  const classes = classNames({
-    SideBarCollapsible: true,
-    'SideBarCollapsible--open': open,
-  });
+export class SideBarCollapsible extends PureComponent {
+  render() {
+    const {
+      alwaysMountChildren,
+      children,
+      id,
+      labelComp,
+      onClickToggle,
+      open,
+    } = this.props;
 
-  return (
-    <div className={classes} data-test="SideBarCollapsible-sideBarCollapsible">
-      <div className="SideBarCollapsible__label" data-test="SideBarCollapsible-label">
-        {labelComp}
-        <Button
-          plain
-          alt="Menu uitvouwen of inklappen"
-          className="SideBarCollapsible__toggle"
-          data-test="SideBarCollapsible-toggle"
-          onClick={onClickToggle}
+    const classes = classNames({
+      SideBarCollapsible: true,
+      'SideBarCollapsible--open': open,
+    });
+
+    return (
+      <div className={classes} data-test="SideBarCollapsible-sideBarCollapsible">
+        <div className="SideBarCollapsible__label" data-test="SideBarCollapsible-label">
+          {labelComp}
+          <Button
+            plain
+            alt="Menu uitvouwen of inklappen"
+            className="SideBarCollapsible__toggle"
+            data-test="SideBarCollapsible-toggle"
+            onClick={onClickToggle}
+          >
+            <FontAwesome name="caret-right" />
+          </Button>
+        </div>
+        <CollapsibleContainer
+          alwaysMountChildren={alwaysMountChildren}
+          group="Navbar"
+          id={id}
         >
-          <FontAwesome name="caret-right" />
-        </Button>
+          {children}
+        </CollapsibleContainer>
       </div>
-      <CollapsibleContainer
-        alwaysMountChildren={alwaysMountChildren}
-        group="Navbar"
-        id={id}
-      >
-        {children}
-      </CollapsibleContainer>
-    </div>
-  );
-};
+    );
+  }
+}
 
 SideBarCollapsible.propTypes = propTypes;
 

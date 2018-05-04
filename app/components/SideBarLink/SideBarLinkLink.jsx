@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 import { closeSideBar } from '../../state/sideBars/actions';
 
@@ -12,33 +12,35 @@ const propTypes = {
   to: PropTypes.string,
 };
 
-const SideBarLinkLink = ({
-  children,
-  isIndex,
-  onClick,
-  to,
-}) => (
-  <NavLink
-    activeClassName="SideBarLink--active"
-    className="SideBarLink__link"
-    exact={isIndex}
-    to={to}
-    onClick={onClick}
-  >
-    {children}
-  </NavLink>
-);
+class SideBarLinkLink extends PureComponent {
+  render() {
+    const {
+      children,
+      isIndex,
+      onClick,
+      to,
+    } = this.props;
+
+    return (
+      <NavLink
+        activeClassName="SideBarLink--active"
+        className="SideBarLink__link"
+        exact={isIndex}
+        to={to}
+        onClick={onClick}
+      >
+        {children}
+      </NavLink>
+    );
+  }
+}
 
 SideBarLinkLink.propTypes = propTypes;
 
 const defaultAction = dispatch => () => dispatch(closeSideBar('Navbar'));
 
-// The 'null' and 'pure:false': https://github.com/ReactTraining/react-router/issues/3536
-export default connect(
-  null,
-  (dispatch, ownProps) => ({
-    closeBarOnClick: (ownProps.onClick || defaultAction(dispatch)),
-  }),
-  null,
-  { pure: false }
-)(SideBarLinkLink);
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  closeBarOnClick: (ownProps.onClick || defaultAction(dispatch)),
+});
+
+export default withRouter(connect(null, mapDispatchToProps)(SideBarLinkLink));
