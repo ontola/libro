@@ -32,6 +32,7 @@ export default function routes(app, port) {
   app.use('/f_assets', express.static('dist/public'));
   app.get('/assets/*', backendProxy);
   app.get('/packs/*', backendProxy);
+  app.get('/photos/*', backendProxy);
 
   app.use(sessionMiddleware);
 

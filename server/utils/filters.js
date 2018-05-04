@@ -68,7 +68,13 @@ export function isBackend(req, _res, next) {
     return next('route');
   }
   const accept = req.get('Accept');
-  if (accept && (accept.includes('text/n3') || accept.includes('application/vnd.api+json') || accept.includes('application/json'))) {
+  if (accept && (
+    accept.includes('text/n3') ||
+    accept.includes('application/n-triples') ||
+    accept.includes('application/n-quads') ||
+    accept.includes('text/turtle') ||
+    accept.includes('application/vnd.api+json') ||
+    accept.includes('application/json'))) {
     return next();
   }
   const contentType = req.get('Content-Type');

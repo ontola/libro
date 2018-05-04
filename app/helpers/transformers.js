@@ -14,5 +14,15 @@ export default {
       mediaTypes: 'text/turtle',
       transformer: transformers.processRDF,
     },
+    {
+      acceptValue: PRIO_MAX,
+      mediaTypes: 'application/n-quads',
+      transformer: transformers.processRDF,
+    },
+    {
+      acceptValue: PRIO_MAX,
+      mediaTypes: 'application/n-triples',
+      transformer: transformers.processRDF,
+    },
   ],
 };
