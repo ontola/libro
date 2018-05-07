@@ -8,6 +8,7 @@ process.env.BABEL_ENV = TARGET;
 const common = {
   externals: {
     URL: 'self.URL',
+    jsonld: '{}',
     'solid-auth-client': 'self.fetch',
     'universal-url': '{URL: self.URL}',
     'whatwg-url': 'self.URL',
