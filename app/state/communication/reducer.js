@@ -14,8 +14,17 @@ const communication = (state = initialState, action) => {
   }
 
   if (action.error) {
+    let message = action.payload && action.payload.message;
+    if (typeof action.payload === 'string') {
+      message = action.payload;
+    }
+
+    if (!message && state.get('errorMessage')) {
+      return state;
+    }
+
     return state.merge({
-      errorMessage: action.payload && action.payload.message,
+      errorMessage: message,
       isError: true,
     });
   }
