@@ -8,7 +8,7 @@ import {
 import React from 'react';
 
 import { Columns } from '../../../components';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import { allTopologies, NS } from '../../../helpers/LinkedRenderStore';
 import { CollectionTypes } from '../types';
 
 class Views extends PropertyBase {
@@ -38,16 +38,7 @@ export default [
   LinkedRenderStore.registerRenderer(
     Views,
     CollectionTypes,
-    NS.argu('views')
-  ),
-  LinkedRenderStore.registerRenderer(
-    Views,
-    CollectionTypes,
     NS.argu('views'),
-    [
-      NS.argu('section'),
-      NS.argu('grid'),
-      NS.argu('widget'),
-    ]
+    allTopologies
   ),
 ];

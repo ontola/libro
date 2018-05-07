@@ -10,7 +10,9 @@ const propTypes = {
   linkRequestStatus: PropTypes.shape({
     status: PropTypes.number,
   }),
-  location: PropTypes.string,
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }),
   reloadLinkedObject: PropTypes.func,
 };
 

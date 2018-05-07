@@ -26,7 +26,9 @@ const propTypes = {
   linkRequestStatus: PropTypes.shape({
     status: PropTypes.number,
   }),
-  location: PropTypes.string,
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }),
   reloadLinkedObject: PropTypes.func,
 };
 
@@ -40,7 +42,11 @@ const ErrorCardComp = (props) => {
   );
 
   if (linkRequestStatus.status === HttpStatus.FORBIDDEN) {
-    mainAction = <Container size="small"><SignInFormContainer redirect={location} /></Container>;
+    mainAction = (
+      <Container size="small">
+        <SignInFormContainer redirect={currentLocation(location).value} />
+      </Container>
+    );
   }
 
   return (

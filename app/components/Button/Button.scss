@@ -173,13 +173,13 @@
     background-color: color('grey', 'x-light');
   }
 
-  &:hover, {
+  &:hover {
     &::after {
       background-color: color('grey', 'mid-light');
     }
   }
 
-  &:active, {
+  &:active {
     &::after {
       background-color: color('grey', 'base');
     }

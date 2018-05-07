@@ -13,7 +13,7 @@ const propTypes = {
 
 const Unread = ({ linkedProp }) => {
   // eslint-disable-next-line eqeqeq
-  if (linkedProp == undefined || linkedProp == false) {
+  if (linkedProp == undefined || linkedProp == false || linkedProp.value === 'false') {
     return null;
   }
 

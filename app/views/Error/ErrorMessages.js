@@ -156,13 +156,25 @@ export const errors = {
 };
 
 export function bodyForStatus(requestStatus, lang = 'nl') {
-  return errors[lang][requestStatus.status].body;
+  if (!requestStatus.requested) {
+    return null;
+  }
+  const err = errors[lang][requestStatus.status];
+  return err ? err.body : null;
 }
 
 export function headerForStatus(requestStatus, lang = 'nl') {
-  return errors[lang][requestStatus.status].header;
+  if (!requestStatus.requested) {
+    return null;
+  }
+  const err = errors[lang][requestStatus.status];
+  return err ? err.header : null;
 }
 
 export function titleForStatus(requestStatus, lang = 'nl') {
-  return `${errors[lang][requestStatus.status].header} - ${errors[lang][requestStatus.status].body}`;
+  if (!requestStatus.requested) {
+    return null;
+  }
+  const err = errors[lang][requestStatus.status];
+  return !err ? null : `${err.header} - ${errors[lang][requestStatus.status].body}`;
 }

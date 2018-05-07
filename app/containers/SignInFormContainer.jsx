@@ -56,7 +56,7 @@ const SignInForm = ({
   if (fields.includes('password')) {
     loginField = (
       <Field
-        autoComplete="Off"
+        autoComplete="off"
         component={FormField}
         element="input"
         id="SignInPassword"
@@ -89,7 +89,7 @@ const SignInForm = ({
         onSubmit={handleSubmit}
       >
         <Field
-          autoComplete="Off"
+          autoComplete="off"
           component={FormField}
           element="input"
           id="SignInEmail"

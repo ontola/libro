@@ -42,8 +42,8 @@ const propTypes = {
 };
 
 const defaultProps = {
-  autoComplete: 'false',
-  autoFocus: 'false',
+  autoComplete: 'off',
+  autoFocus: false,
   element: 'input',
   meta: {},
   rich: false,
@@ -51,9 +51,9 @@ const defaultProps = {
 };
 
 const MessagesProps = {
-  bottom: propTypes.bool,
-  error: propTypes.string,
-  warning: propTypes.string,
+  bottom: PropTypes.bool,
+  error: PropTypes.string,
+  warning: PropTypes.string,
 };
 
 const MessagesDefaultProps = {
