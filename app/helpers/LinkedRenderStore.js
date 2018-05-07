@@ -6,7 +6,6 @@ import Error from '../components/Error';
 import Loading from '../components/Loading';
 import { FRONTEND_URL } from '../config';
 
-import { authenticityHeader } from './arguHelpers';
 import LinkDevTools from './LinkDevTools';
 import transformers from './transformers';
 
@@ -19,8 +18,7 @@ transformers
   .transformers
   .forEach(t => LRS.api.registerTransformer(t.transformer, t.mediaTypes, t.acceptValue));
 
-LRS.api.setAcceptForHost(FRONTEND_URL, 'text/n3');
-LRS.api.setAcceptForHost('https://beta.argu.co/', 'text/n3');
+LRS.api.setAcceptForHost(FRONTEND_URL, 'application/n-quads');
 
 LRS.namespaces.app = memoizedNamespace(FRONTEND_URL.endsWith('/') ? FRONTEND_URL : `${FRONTEND_URL}/`);
 LRS.namespaces.aod = memoizedNamespace('https://argu.co/ns/od#');
@@ -170,32 +168,6 @@ const ontologicalData = [
 
 LRS.addOntologySchematics(ontologicalData);
 LRS.store.addStatements(ontologicalData);
-
-LRS.execActionByIRI = function execActionByIRI(subject) {
-  let object, url;
-  this
-    .getEntity(subject)
-    .then(() => {
-      object = this.getResourceProperty(subject, NS.schema('object'));
-      const target = this.getResourceProperty(subject, NS.schema('target'));
-      url = this.getResourceProperty(target, NS.schema('url'));
-      const targetMethod = this.getResourceProperty(target, NS.schema('method'));
-      const method = typeof targetMethod !== 'undefined' ? targetMethod.toString() : 'GET';
-      const opts = {
-        credentials: 'include',
-        headers: authenticityHeader({
-          Accept: LRS.api.processor.accept[new URL(url.value).origin],
-        }),
-        method: method.toUpperCase(),
-        mode: 'same-origin',
-      };
-      return fetch(url.value, opts);
-    })
-    .then(resp => Promise.all([LRS.api.processor.feedResponse(resp), object]))
-    .then(([statements, objectRef]) => {
-      this.store.replaceStatements(this.getResourcePropertyRaw(objectRef), statements);
-    });
-};
 
 try {
   LRS.getEntity(new NamedNode(window.location.href));
