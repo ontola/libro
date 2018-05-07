@@ -1,31 +1,44 @@
 import LinkedRenderStore from 'link-lib';
 import { linkedPropType } from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import { Image } from '../../../components';
+import FormFooterImage from '../../../components/Form/FooterImage';
 import SideBarLinkImage from '../../../components/SideBarLink/SideBarLinkImage';
-import { allTopologies, NS } from '../../../helpers/LinkedRenderStore';
+import { allTopologiesExcept, NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
+  ariaLabel: PropTypes.string,
   linkedProp: linkedPropType.isRequired,
 };
 
-export const ImageObjectThumbnail = ({ linkedProp }) => (
-  <Image
-    data-test="ImageObject-ImageObjectThumbnail"
-    linkedProp={linkedProp}
-    override={SideBarLinkImage}
-    style={{ height: '100%' }}
-  />
-);
+const createThumbnail = (override) => {
+  const ImageProp = ({ ariaLabel, linkedProp }) => (
+    <Image
+      ariaLabel={ariaLabel}
+      data-test="ImageObject-ImageObjectThumbnail"
+      linkedProp={linkedProp}
+      override={override}
+      style={{ height: '100%' }}
+    />
+  );
+  ImageProp.propTypes = propTypes;
 
-ImageObjectThumbnail.propTypes = propTypes;
+  return ImageProp;
+};
 
 export default [
   LinkedRenderStore.registerRenderer(
-    ImageObjectThumbnail,
+    createThumbnail(SideBarLinkImage),
     NS.schema('ImageObject'),
     NS.schema('thumbnail'),
-    allTopologies
+    allTopologiesExcept(NS.argu('formFooter'))
+  ),
+  LinkedRenderStore.registerRenderer(
+    createThumbnail(FormFooterImage),
+    NS.schema('ImageObject'),
+    NS.schema('thumbnail'),
+    NS.argu('formFooter')
   ),
 ];

@@ -1,0 +1,13 @@
+.ActionsBar {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+
+  &--small {
+    flex-direction: row-reverse;
+
+    & > * {
+      transform: scale(.8);
+    }
+  }
+}

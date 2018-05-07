@@ -1,11 +1,12 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { Property } from 'link-redux';
+import { link, Property } from 'link-redux';
 import React from 'react';
 
 import { ProfileCard } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 
 import Detail from './detail';
+import Section from './section';
 import Sidebar from './sidebar';
 import Image from './properties/image';
 
@@ -18,12 +19,15 @@ export default [
     ]
   ),
   LinkedRenderStore.registerRenderer(
-    () => <Property label={NS.schema('image')} />,
+    link([NS.schema('name')], { returnType: 'value' })(({ name }) => (
+      <Property ariaLabel={name} label={NS.schema('image')} />
+    )),
     [NS.schema('Person'), NS.aod('Persons')],
     RENDER_CLASS_NAME,
-    NS.argu('voteBubble')
+    [NS.argu('voteEventSide'), NS.argu('voteBubble'), NS.argu('formFooter')]
   ),
   Detail,
+  Section,
   Sidebar,
   Image,
 ];

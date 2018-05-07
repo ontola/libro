@@ -9,7 +9,11 @@ const propTypes = {
   subject: subjectType,
 };
 
-const CurrentActor = ({ subject }) => (
+const CurrentActorFooter = () => (
+  <Property label={NS.argu('actor')} />
+);
+
+const CurrentActorSidebar = ({ subject }) => (
   <SideBarCollapsible
     alwaysMountChildren
     id={`${subject}-sidebar-menu`}
@@ -21,11 +25,21 @@ const CurrentActor = ({ subject }) => (
   </SideBarCollapsible>
 );
 
-CurrentActor.propTypes = propTypes;
+CurrentActorSidebar.propTypes = propTypes;
 
-export default LinkedRenderStore.registerRenderer(
-  lowLevel.linkedSubject(CurrentActor),
-  NS.argu('UserActor'),
-  RENDER_CLASS_NAME,
-  NS.argu('sidebar')
-);
+const ActorTypes = [NS.argu('UserActor'), NS.argu('GuestUserActor')];
+
+export default [
+  LinkedRenderStore.registerRenderer(
+    lowLevel.linkedSubject(CurrentActorSidebar),
+    NS.argu('UserActor'),
+    RENDER_CLASS_NAME,
+    NS.argu('sidebar')
+  ),
+  LinkedRenderStore.registerRenderer(
+    lowLevel.linkedSubject(CurrentActorFooter),
+    ActorTypes,
+    RENDER_CLASS_NAME,
+    NS.argu('formFooter')
+  ),
+];

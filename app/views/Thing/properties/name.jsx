@@ -80,6 +80,7 @@ export default [
       NS.argu('collection'),
       NS.argu('container'),
       NS.argu('parent'),
+      NS.argu('popup'),
     ]
   ),
   LinkedRenderStore.registerRenderer(

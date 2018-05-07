@@ -55,7 +55,7 @@ LinkedRenderStore.registerRenderer(
   VoteEvent,
   [NS.argu('VoteEvent'), NS.aod('VoteEvent')],
   RENDER_CLASS_NAME,
-  NS.argu('voteEventCollection')
+  [NS.argu('section'), NS.argu('voteEventCollection')]
 );
 
 export default VoteEventCollection;

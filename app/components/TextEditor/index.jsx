@@ -13,6 +13,7 @@ import RichEditor from './RichEditor';
 import './TextEditor.scss';
 
 const propTypes = {
+  autoFocus: PropTypes.bool,
   disableRich: PropTypes.bool,
   getMarkdownValue: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
@@ -20,6 +21,7 @@ const propTypes = {
   onBlur: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   onFocus: PropTypes.func.isRequired,
+  onKeyUp: PropTypes.func,
   placeholder: PropTypes.string,
   showRichEditor: PropTypes.bool.isRequired,
 };
@@ -47,6 +49,7 @@ class TextEditor extends Component {
 
   render() {
     const {
+      autoFocus,
       id,
       getMarkdownValue,
       placeholder,
@@ -54,6 +57,7 @@ class TextEditor extends Component {
       onBlur,
       onFocus,
       onChange,
+      onKeyUp,
     } = this.props;
 
     let { disableRich } = this.props;
@@ -67,6 +71,7 @@ class TextEditor extends Component {
       <div className="Markdown TextEditor">
         {(showRichEditor && !disableRich) &&
           <RichEditor
+            autoFocus={autoFocus}
             id={id}
             placeholder={placeholder}
             onBlur={(e) => {
@@ -76,16 +81,19 @@ class TextEditor extends Component {
             }}
             onChange={() => this.startTimer()}
             onFocus={onFocus}
+            onKeyUp={onKeyUp}
           />
         }
         {(!showRichEditor || disableRich) &&
           <PlainEditor
+            autoFocus={autoFocus}
             disableRich={disableRich}
             id={id}
             placeholder={placeholder}
             onBlur={onBlur}
             onChange={e => onChange(e.target.value)}
             onFocus={onFocus}
+            onKeyUp={onKeyUp}
           />
         }
       </div>

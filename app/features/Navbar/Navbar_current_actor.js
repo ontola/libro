@@ -7,5 +7,5 @@ export default [
   GuestUserActor,
   ...ImageObject,
   ...PersonSidebar,
-  UserActor,
+  ...UserActor,
 ];

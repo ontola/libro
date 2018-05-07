@@ -3,15 +3,19 @@ import React from 'react';
 import { Field, formValueSelector, reduxForm } from 'redux-form/immutable';
 import { connect } from 'react-redux';
 
-import { argumentValidator } from '../../helpers/validators';
-import FormField from '../FormField';
+import { argumentValidator } from '../../../../helpers/validators';
+import FormField from '../../../../components/FormField/index';
 
 const propTypes = {
+  form: PropTypes.string,
+  onKeyUp: PropTypes.func,
   // From redux-form
   side: PropTypes.oneOf(['pro', 'con']).isRequired,
 };
 
 const ArgumentForm = ({
+  onKeyUp,
+  form,
   side,
 }) => {
   const headingtext = () => {
@@ -27,25 +31,27 @@ const ArgumentForm = ({
     <div>
       <Field
         autoFocus
-        autoComplete="Off"
+        autoComplete="off"
         className={`Field--heading Field--${side}`}
         component={FormField}
         element="input"
-        id="omniTitle"
-        name="name"
+        id={`${form}-omniTitle`}
+        name="schema:name"
         placeholder={headingtext()}
         type="text"
         validate={argumentValidator.title}
         variant={formStyle}
+        onKeyUp={onKeyUp}
       />
       <Field
         rich
         component={FormField}
-        id="omniBody"
-        name="text"
+        id={`${form}-omniBody`}
+        name="schema:text"
         placeholder="Toelichting (optioneel)..."
         validate={argumentValidator.text}
         variant={formStyle}
+        onKeyUp={onKeyUp}
       />
     </div>
   );

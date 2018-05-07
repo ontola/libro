@@ -5,6 +5,7 @@ import FontAwesome from 'react-fontawesome';
 
 import {
   Card,
+  CardAppendix,
   CardContent,
   CardFixed,
   CardMain,
@@ -13,24 +14,35 @@ import {
   Container,
   Detail,
   DetailsBar,
-  HoverBox,
+  hoverBox,
   LDLink,
 } from '../../components';
+import {
+  connectHighlighting,
+  hightlightPropTypes,
+  hightlightType,
+} from '../../containers/Highlight';
 import { NS } from '../../helpers/LinkedRenderStore';
 
 import Arguments from './properties/arguments';
 import BaseColor from './properties/baseColor';
 import CollectionAssociation from './properties/collectionAssociation';
 import CoverPhoto from './properties/coverPhoto';
+import CreateAction from './properties/createAction';
 import DateCreated from './properties/dateCreated';
 import IsPrimaryTopicOf from './properties/isPrimaryTopicOf';
 import IsPartOf from './properties/isPartOf';
 import Image from './properties/image';
 import Menus from './properties/menus';
 import Name from './properties/name';
+import Omniform from './properties/omniform';
+import Operation from './properties/operation';
 import Organization from './properties/organization';
 import Text from './properties/text';
 import UpdateAction from './properties/updateAction';
+import VoteEvents from './properties/voteEvents';
+
+const CardHoverBox = hoverBox();
 
 const ThingPage = () => (
   <div>
@@ -59,6 +71,7 @@ const ThingPage = () => (
         <Property label={NS.council('attachment')} />
         <Property label={NS.council('agenda')} />
       </CardMain>
+      <Property label={NS.argu('voteEvents')} />
       <Property label={NS.argu('blogPosts')} />
       <Property label={NS.argu('motions')} />
     </Container>
@@ -67,12 +80,13 @@ const ThingPage = () => (
     </Container>
     <Container>
       <Property label={NS.schema('comments')} />
+      <Property forceRender label={NS.app('omniform')} />
     </Container>
   </div>
 );
 
-const ThingContainer = () => (
-  <Card>
+const ThingContainer = ({ highlighted }) => (
+  <Card shine={highlighted}>
     <Property label={NS.argu('coverPhoto')} />
     <CardContent noSpacing>
       <Property label={[NS.schema('name'), NS.rdfs('label')]} />
@@ -83,8 +97,17 @@ const ThingContainer = () => (
       <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
       <Property forceRender label={NS.argu('arguments')} />
     </CardContent>
+    <CardAppendix>
+      <Property label={NS.argu('voteableVoteEvent')} />
+      <Property label={NS.schema('comments')} />
+      <Property forceRender label={NS.app('omniform')} />
+    </CardAppendix>
   </Card>
 );
+
+ThingContainer.propTypes = {
+  highlighted: hightlightType,
+};
 
 const ThingGrid = () => (
   <CardFixed>
@@ -119,11 +142,13 @@ const ThingParent = () => (
   </LDLink>
 );
 
-const ThingSection = () => (
-  <HoverBox hiddenChildren={<ThingHoverBoxHidden />}>
+const ThingSection = ({ highlighted }) => (
+  <CardHoverBox hiddenChildren={<ThingHoverBoxHidden />} shine={highlighted}>
     <Property label={NS.schema('name')} topology={NS.argu('inline')} />
-  </HoverBox>
+  </CardHoverBox>
 );
+
+ThingSection.propTypes = hightlightPropTypes;
 
 const ThingCard = () => (
   <CardRow>
@@ -150,7 +175,7 @@ export default [
     NS.argu('inline')
   ),
   LinkedRenderStore.registerRenderer(
-    ThingSection,
+    connectHighlighting(ThingSection),
     NS.schema('Thing'),
     RENDER_CLASS_NAME,
     NS.argu('section')
@@ -178,7 +203,7 @@ export default [
     NS.argu('grid')
   ),
   LinkedRenderStore.registerRenderer(
-    ThingContainer,
+    connectHighlighting(ThingContainer),
     NS.schema('Thing'),
     RENDER_CLASS_NAME,
     NS.argu('container')
@@ -198,13 +223,17 @@ export default [
   BaseColor,
   CollectionAssociation,
   CoverPhoto,
+  CreateAction,
   DateCreated,
   IsPrimaryTopicOf,
   IsPartOf,
   Image,
   Menus,
   ...Name,
+  ...Omniform,
+  Operation,
   Organization,
   ...Text,
   UpdateAction,
+  VoteEvents,
 ];

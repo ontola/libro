@@ -21,7 +21,9 @@ class CardRow extends TopologyProvider {
   }
 
   render() {
-    const className = this.props.showArrow ? 'CardRow CardRow--show-arrow' : 'CardRow';
+    const { backdrop, showArrow } = this.props;
+    const className = `CardRow ${showArrow && 'CardRow--show-arrow'} ${backdrop && 'CardRow--backdrop'}`;
+
     return (
       <div className={className}>
         {this.props.children}

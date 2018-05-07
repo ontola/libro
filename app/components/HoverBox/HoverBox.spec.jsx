@@ -1,6 +1,8 @@
 import React from 'react';
 
-import HoverBox from './index';
+import hoverBox from './index';
+
+const HoverBox = hoverBox();
 
 argUnit(HoverBox, () => {
   setProp('children', () => <span data-test="HoverBox-always" />);

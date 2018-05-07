@@ -1,6 +1,6 @@
 import { MegadraftEditor } from 'megadraft';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
 import {
@@ -21,6 +21,7 @@ const propTypes = {
   onBlur: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   onFocus: PropTypes.func.isRequired,
+  onKeyUp: PropTypes.func,
   onSaveEditorState: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
 };
@@ -38,36 +39,45 @@ const styleMap = {
 // Removes the sidebar. All neccesary functionality is available through selecting text.
 const mySideBar = () => null;
 
-const RichEditor = ({
-  editorState,
-  id,
-  onBlur,
-  onChange,
-  onFocus,
-  onSaveEditorState,
-  placeholder,
-}) => (
-  <div>
-    <div className="Field__input">
-      <MegadraftEditor
-        customStyleMap={styleMap}
-        editorState={editorState}
-        id={id}
-        placeholder={placeholder}
-        sidebarRendererFn={mySideBar}
-        onBlur={onBlur}
-        onChange={(e) => {
-          onSaveEditorState(e);
-          onChange(e);
-        }}
-        onFocus={onFocus}
-      />
-    </div>
-    <div style={{ display: 'flex' }}>
-      <ToggleButton id={id} />
-    </div>
-  </div>
-);
+class RichEditor extends PureComponent {
+  render() {
+    const {
+      editorState,
+      id,
+      onBlur,
+      onChange,
+      onFocus,
+      onKeyUp,
+      onSaveEditorState,
+      placeholder,
+    } = this.props;
+
+    return (
+      <div>
+        <div className="Field__input">
+          <MegadraftEditor
+            customStyleMap={styleMap}
+            editorState={editorState}
+            id={id}
+            placeholder={placeholder}
+            sidebarRendererFn={mySideBar}
+            onBlur={onBlur}
+            onChange={(e) => {
+              onSaveEditorState(e);
+              onChange(e);
+            }}
+            onEscape={onKeyUp}
+            onFocus={onFocus}
+            onKeyUp={onKeyUp}
+          />
+        </div>
+        <div style={{ display: 'flex' }}>
+          <ToggleButton id={id} />
+        </div>
+      </div>
+    );
+  }
+}
 
 RichEditor.propTypes = propTypes;
 

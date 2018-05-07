@@ -1,135 +1,140 @@
+import { Set } from 'immutable';
+import { LinkedResourceContainer, Property, subjectType } from 'link-redux';
 import PropTypes from 'prop-types';
+import { NamedNode } from 'rdflib';
 import React from 'react';
-import { formValueSelector, reduxForm } from 'redux-form/immutable';
+import { formValueSelector, reduxForm, reset } from 'redux-form/immutable';
 import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
 
 import {
-  getOmniformType,
+  getOmniformAction,
   omniformInitialize,
-  omniformSetType,
-} from '../../state/omniform/duck';
-import Card from '../Card';
+  omniformSetAction,
+} from '../../state/omniform';
+import { NS } from '../../helpers/LinkedRenderStore';
 import Button from '../Button';
-
-import ArgumentFields from './ArgumentFields';
-import CommentFields from './CommentFields';
+import { FormFooter } from '../Form';
 
 import './Omniform.scss';
 
 const propTypes = {
+  actions: PropTypes.instanceOf(Set).isRequired,
   // The NamedNode of the currently selected form.
-  currentType: PropTypes.string.isRequired,
+  currentAction: subjectType,
   error: PropTypes.string,
   // Unique name of the form
   form: PropTypes.string.isRequired,
-  // Since this uses redux-form, you need to pass onSubmit instead of handleSubmit.
+  // Redux-form's handleSubmit implementation
   handleSubmit: PropTypes.func.isRequired,
   // From redux-form
   invalid: PropTypes.bool,
+  onActionChange: PropTypes.func.isRequired,
   onInitialize: PropTypes.func.isRequired,
-  onTypeChange: PropTypes.func.isRequired,
+  onKeyUp: PropTypes.func,
+  // Our submit handler which must be passed to `handleSubmit`.
+  submitHandler: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
 };
 
-const currentForm = (currentType, formName) => {
-  switch (currentType) {
-    case 'pro':
-      return <ArgumentFields formName={formName} side="pro" />;
-    case 'con':
-      return <ArgumentFields formName={formName} side="con" />;
-    case 'comment':
-      return <CommentFields formName={formName} />;
-    default:
-      return null;
-  }
-};
-
-const typeIcon = (type) => {
-  switch (type) {
-    case 'pro':
-      return 'plus';
-    case 'con':
-      return 'minus';
-    case 'comment':
-      return 'comment';
-    default:
-      return 'exclamation-triangle';
-  }
-};
-
-const typeName = (type) => {
-  switch (type) {
-    case 'pro':
-      return 'Voordeel';
-    case 'con':
-      return 'Probleem';
-    case 'comment':
-      return 'Reactie';
-    default:
-      return type;
-  }
-};
+const FILTER = [
+  '/create_vote',
+  '/destroy_vote',
+];
+const ORDER = [
+  '/create_motion',
+  '/create_comment',
+  '/create_pro_argument',
+  '/create_con_argument',
+];
 
 class Omniform extends React.Component {
   componentDidMount() {
     this.props.onInitialize();
   }
 
-  buttonCreator(type) {
+  linkedFieldset() {
+    const { currentAction, form, onKeyUp } = this.props;
+    if (!(currentAction instanceof NamedNode)) {
+      return null;
+    }
+
     return (
-      <Button
-        className={`Button--omniform-switcher Button--omniform-switcher--${type} ${(type === this.props.currentType) ? 'Button--omniform-switcher--current' : null}`}
-        icon={typeIcon(type)}
-        theme="omniform-switcher"
-        onClick={this.props.onTypeChange(type)}
-      >
-        {typeName(type)}
-      </Button>
+      <LinkedResourceContainer subject={currentAction}>
+        <Property
+          forceRender
+          formName={form}
+          label={NS.app('omniformFieldset')}
+          onKeyUp={onKeyUp}
+        />
+      </LinkedResourceContainer>
     );
+  }
+
+  types() {
+    return this
+      .props
+      .actions
+      .map(iri => (
+        <LinkedResourceContainer key={iri} subject={iri}>
+          <Property
+            current={iri === this.props.currentAction}
+            label={NS.schema('result')}
+            onClick={this.props.onActionChange(iri)}
+          />
+        </LinkedResourceContainer>
+      ));
   }
 
   render() {
     const {
-      currentType,
+      actions,
+      currentAction,
       error,
       form,
       invalid,
       submitting,
+      submitHandler,
       handleSubmit,
     } = this.props;
 
+    if (actions.length === 0) {
+      return null;
+    }
+
+    const types = this.types();
+
+    if (!currentAction || types.size === 0) {
+      return null;
+    }
+
     return (
-      <Card>
-        <form
-          className="Omniform"
-          onSubmit={handleSubmit}
-        >
-          {error &&
-            <div className="Omniform__error">
-              <FontAwesome name="exclamation-triangle" />
-              {error}
-            </div>
-          }
-          {currentForm(currentType, form)}
-          <div className="Omniform__footer">
-            <div className="Omniform__actor-switcher" />
-            {this.buttonCreator('comment')}
-            {this.buttonCreator('pro')}
-            {this.buttonCreator('con')}
-            <Button
-              plain
-              className="Omniform__submit"
-              disabled={invalid}
-              icon="send"
-              loading={submitting}
-              type="submit"
-            >
-              Opslaan
-            </Button>
+      <form
+        className="Omniform"
+        onSubmit={handleSubmit(submitHandler)}
+      >
+        {error &&
+          <div className="Omniform__error">
+            <FontAwesome name="exclamation-triangle" />
+            {error}
           </div>
-        </form>
-      </Card>
+        }
+        {this.linkedFieldset()}
+        <FormFooter>
+          <LinkedResourceContainer subject={NS.app('c_a')} />
+          {this.types()}
+          <Button
+            plain
+            className="Omniform__submit"
+            disabled={invalid}
+            icon="send"
+            loading={submitting}
+            type="submit"
+          >
+            Opslaan
+          </Button>
+        </FormFooter>
+      </form>
     );
   }
 }
@@ -137,29 +142,58 @@ class Omniform extends React.Component {
 Omniform.propTypes = propTypes;
 
 const mapStateToProps = (state, ownProps) => {
+  const actions = ownProps.actions
+    .filter(iri => FILTER.findIndex(f => iri.value.includes(f)) === -1)
+    .sort((a, b) => {
+      const oA = ORDER.findIndex(o => a.value.includes(o));
+      const oB = ORDER.findIndex(o => b.value.includes(o));
+
+      if (oA === -1) return 1;
+      if (oB === -1) return -1;
+      if (oA < oB) return 0;
+      if (oA > oB) return 1;
+      return -1;
+    });
   const formName = `Omniform-${ownProps.parentIRI}`;
+  const currentAction = getOmniformAction(state, ownProps.parentIRI) || actions.first();
 
   return ({
-    currentType: getOmniformType(state, ownProps.parentIRI),
+    actions,
+    currentAction,
     currentValue: formValueSelector(formName)(state, 'search'),
     form: formName,
   });
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
-  onInitialize: () => dispatch(omniformInitialize({
-    currentType: 'comment',
-    parentIRI: props.parentIRI,
-  })),
-  onTypeChange: type => () => {
-    dispatch(omniformSetType({
-      currentType: type,
+  onActionChange: action => () => {
+    dispatch(omniformSetAction({
+      currentAction: action,
       parentIRI: props.parentIRI,
     }));
   },
+  onInitialize: action => dispatch(omniformInitialize({
+    currentAction: action,
+    parentIRI: props.parentIRI,
+  })),
+  resetForm: formName => dispatch(reset(formName)),
 });
 
-const OmniformContainer =
-  connect(mapStateToProps, mapDispatchToProps)(reduxForm({})(Omniform));
+const mergeProps = (stateProps, dispatchProps, ownProps) => Object.assign(
+  {},
+  ownProps,
+  stateProps,
+  dispatchProps,
+  {
+    onInitialize: () => dispatchProps.onInitialize(stateProps.actions.first()),
+    submitHandler: values => ownProps
+      .submitHandler({ selectedAction: stateProps.currentAction }, values.toJS())
+      .then(() => dispatchProps.resetForm(stateProps.form)),
+  }
+);
+
+const OmniformContainer = connect(mapStateToProps, mapDispatchToProps, mergeProps)(reduxForm({
+  enableReinitialize: false
+})(Omniform));
 
 export default OmniformContainer;

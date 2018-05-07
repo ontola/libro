@@ -171,6 +171,7 @@ export default [
       NS.argu('detail'),
       NS.argu('inline'),
       NS.argu('voteBubble'),
+      NS.argu('voteEventResult'),
     ]
   ),
 ];

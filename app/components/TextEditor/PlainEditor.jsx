@@ -22,12 +22,14 @@ import ToggleButton from './ToggleButton';
 import MarkdownInstructions from './MarkdownInstructions';
 
 const propTypes = {
+  autoFocus: PropTypes.bool,
   disableRich: PropTypes.bool.isRequired,
   id: PropTypes.string.isRequired,
   mdText: PropTypes.string.isRequired,
   onBlur: PropTypes.func.isRequired,
   onFocus: PropTypes.func.isRequired,
   onHidePreview: PropTypes.func.isRequired,
+  onKeyUp: PropTypes.func,
   onPlainChange: PropTypes.func.isRequired,
   onShowPreview: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
@@ -35,6 +37,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  autoFocus: false,
   id: 'defaultId',
   showRichEditor: true,
 };
@@ -52,6 +55,7 @@ const PreviewButton = ({ show, onClick }) => (
 );
 
 const PlainEditor = ({
+  autoFocus,
   disableRich,
   id,
   mdText,
@@ -59,6 +63,7 @@ const PlainEditor = ({
   onBlur,
   onFocus,
   onHidePreview,
+  onKeyUp,
   onPlainChange,
   onShowPreview,
   placeholder,
@@ -67,6 +72,7 @@ const PlainEditor = ({
   <div>
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       <Textarea
+        autoFocus={autoFocus}
         className="Field__input"
         id={id}
         placeholder={placeholder}
@@ -79,6 +85,7 @@ const PlainEditor = ({
           }
         }
         onFocus={onFocus}
+        onKeyUp={onKeyUp}
       />
       <div style={{ display: 'flex' }}>
         {!disableRich && <ToggleButton id={id} />}

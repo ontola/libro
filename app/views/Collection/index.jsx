@@ -1,9 +1,12 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
+  link,
+  linkType,
   LinkedResourceContainer,
   Property,
   PropertyBase,
   subjectType,
+  linkedPropType,
   lowLevel,
 } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -11,6 +14,7 @@ import { NamedNode } from 'rdflib';
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { CardRow } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { getPage } from '../../state/pagination/selectors';
 
@@ -19,6 +23,7 @@ import Member from './properties/member';
 import Name from './properties/name';
 import Views from './properties/views';
 import { CollectionTypes } from './types';
+import voteEvent from './voteEvent';
 
 const contextTypes = {
   linkedRenderStore: PropTypes.object,
@@ -26,6 +31,12 @@ const contextTypes = {
 
 const propTypes = {
   subject: subjectType,
+};
+
+const mvcPropTypes = {
+  members: subjectType,
+  totalCount: linkedPropType,
+  views: linkType,
 };
 
 const viewsOrMembers = (views, members, topology) => (
@@ -57,7 +68,7 @@ class Collection extends PropertyBase {
     } else {
       children = viewsOrMembers(views, this.getLinkedObjectPropertyRaw(NS.argu('members')));
     }
-    const createAction = views.length > 0 ? undefined : <Property label={NS.argu('newAction')} />;
+    const createAction = views.length > 0 ? undefined : <Property label={NS.argu('createAction')} />;
     const name = views.length > 0 ? <Property label={NS.schema('name')} /> : null;
     const pagination = views.length === 0 ? this.pagination() : null;
 
@@ -77,18 +88,47 @@ const ReduxCollection = connect((state, { subject }) => ({
 }))(Collection);
 const ConnectedCollection = lowLevel.linkedSubject(lowLevel.linkedVersion(ReduxCollection));
 
-const CollectionSection = ({ subject }, { linkedRenderStore }) => {
-  if (linkedRenderStore.getResourceProperty(subject, NS.argu('totalCount')).value === '0') {
-    return null;
+const CollectionCardAppendix = ({ members, totalCount, views }) => {
+  if (totalCount.value === '0') {
+    return <Property label={NS.argu('createAction')} />;
   }
-  return viewsOrMembers(
-    linkedRenderStore.getResourcePropertyRaw(subject, NS.argu('views')),
-    linkedRenderStore.getResourcePropertyRaw(subject, NS.argu('members')),
-    NS.argu('section')
+
+  const children = viewsOrMembers(views, members, NS.argu('cardRow'));
+
+  return (
+    <CardRow backdrop>
+      {children}
+    </CardRow>
   );
 };
 
-CollectionSection.contextTypes = contextTypes;
+CollectionCardAppendix.propTypes = mvcPropTypes;
+
+const collectionSection = (shortCircuit = true) => {
+  const CollectionSection = ({ members, totalCount, views }) => {
+    if (shortCircuit && totalCount.value === '0') {
+      return <Property label={NS.argu('createAction')} />;
+    }
+    const children = viewsOrMembers(
+      views,
+      members,
+      NS.argu('section')
+    );
+    const createAction = views.length > 0 ? undefined : <Property label={NS.argu('createAction')} />;
+
+    return (
+      <div>
+        {children}
+        {createAction}
+      </div>
+    );
+  };
+
+  CollectionSection.propTypes = mvcPropTypes;
+  CollectionSection.contextTypes = contextTypes;
+
+  return CollectionSection;
+};
 
 const CollectionContainer = ({ subject }, { linkedRenderStore }) => viewsOrMembers(
   linkedRenderStore.getResourcePropertyRaw(subject, NS.argu('views')),
@@ -111,18 +151,46 @@ CollectionFixedCards.propTypes = propTypes;
 
 const wrapUpdate = Component => lowLevel.linkedSubject(lowLevel.linkedVersion(Component));
 
+const membersViewsCount = {
+  members: {
+    label: NS.argu('members')
+  },
+  totalCount: {
+    label: NS.argu('totalCount')
+  },
+  views: {
+    label: NS.argu('views'),
+    limit: Infinity,
+  },
+};
+
 export default [
   LinkedRenderStore.registerRenderer(
-    wrapUpdate(CollectionSection),
+    link(membersViewsCount)(collectionSection()),
     CollectionTypes,
     RENDER_CLASS_NAME,
     [
       NS.argu('section'),
-      NS.argu('voteEventCollection'),
       NS.argu('card'),
       NS.argu('cardFixed'),
       NS.argu('cardMain'),
+      NS.argu('cardRow'),
     ]
+  ),
+  LinkedRenderStore.registerRenderer(
+    link(membersViewsCount)(collectionSection(false)),
+    CollectionTypes,
+    RENDER_CLASS_NAME,
+    [
+      NS.argu('cardVoteEvent'),
+      NS.argu('voteEventCollection'),
+    ]
+  ),
+  LinkedRenderStore.registerRenderer(
+    link(membersViewsCount)(CollectionCardAppendix),
+    CollectionTypes,
+    RENDER_CLASS_NAME,
+    NS.argu('cardAppendix')
   ),
   LinkedRenderStore.registerRenderer(
     wrapUpdate(CollectionFixedCards),
@@ -151,4 +219,5 @@ export default [
   ...Member,
   Name,
   ...Views,
+  ...voteEvent
 ];

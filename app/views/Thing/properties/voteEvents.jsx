@@ -1,8 +1,8 @@
 import LinkedRenderStore from 'link-lib';
-import { LinkedResourceContainer, linkedPropType } from 'link-redux';
+import { LinkedResourceContainer, linkedPropType, Property } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import { allTopologies, NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -11,8 +11,9 @@ const propTypes = {
 const VoteEvents = ({ linkedProp }) => (
   <LinkedResourceContainer
     subject={linkedProp}
-    topology={NS.argu('voteEventCollection')}
-  />
+  >
+    <Property label={NS.argu('members')} />
+  </LinkedResourceContainer>
 );
 
 VoteEvents.propTypes = propTypes;
@@ -20,5 +21,6 @@ VoteEvents.propTypes = propTypes;
 export default LinkedRenderStore.registerRenderer(
   VoteEvents,
   NS.schema('Thing'),
-  NS.argu('voteEvents')
+  NS.argu('voteEvents'),
+  allTopologies
 );

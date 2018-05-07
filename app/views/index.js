@@ -6,8 +6,9 @@ import LRS from '../helpers/LinkedRenderStore';
  */
 import Thing from './Thing';
 import Collection from './Collection';
-// import './Comment';
-import CreateAction from './CreateAction';
+import Comment from './Comment';
+import Action from './Action/index';
+import Argument from './Argument/index';
 import EntryPoint from './EntryPoint';
 import Error from './Error';
 import GuestUserActor from './GuestUserActor';
@@ -19,7 +20,7 @@ import RDFSClass from './RDFSClass';
 import Loading from './Loading';
 import MenuItem from './MenuItem';
 import MenuSection from './MenuSection';
-import './Motion';
+import Motion from './Motion';
 import NavigationsMenu from './NavigationsMenu';
 import Notification from './Notification';
 import OrganizationsMenu from './OrganizationsMenu';
@@ -30,19 +31,20 @@ import SubMenu from './SubMenu';
 // import './Question';
 import SeqComp from './Seq';
 import UserActor from './UserActor';
-import Widget from './Widget';
+import Vote from './Vote';
 // import './VoteCompareCells';
 // import './VoteCompareRows';
-// import './VoteEvent';
+import VoteEvent from './VoteEvent';
 // import './VoteEventCollection';
 // import './VoteMatch';
-// import './VoteSide';
-// import './VoteSidePage';
+import Widget from './Widget';
 
 LRS.registerAll(
   ...Thing,
-  CreateAction,
+  ...Action,
+  ...Argument,
   ...Collection,
+  ...Comment,
   EntryPoint,
   ...Error,
   Forum,
@@ -52,6 +54,7 @@ LRS.registerAll(
   ...Loading,
   ...MenuItem,
   ...MenuSection,
+  Motion,
   ...NavigationsMenu,
   ...Notification,
   ...OrganizationsMenu,
@@ -60,6 +63,8 @@ LRS.registerAll(
   ...RDFSClass,
   SeqComp,
   ...SubMenu,
-  UserActor,
+  ...UserActor,
+  ...Vote,
+  ...VoteEvent,
   Widget
 );

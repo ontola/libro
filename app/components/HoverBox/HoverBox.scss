@@ -41,5 +41,10 @@
     right: -10px;
     top: -10px;
     z-index: z(hoverbox);
+
+    &--popout {
+      right: auto;
+      width: 20em;
+    }
   }
 }

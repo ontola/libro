@@ -35,6 +35,10 @@
   }
 }
 
+.Button--grow {
+  flex-grow: 1;
+}
+
 .Button--has-icon {
   .Button__icon {
     margin-right: 4px;

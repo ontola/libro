@@ -13,6 +13,10 @@ const Text = ({ linkedProp }) => <Markdown data-test="Thing-text" text={linkedPr
 
 Text.propTypes = propTypes;
 
+const TextInline = ({ linkedProp }) => <Markdown inline data-test="Thing-text" text={linkedProp.value} />;
+
+TextInline.propTypes = propTypes;
+
 /** Only displays text when there is no cover image, and does not overflow. */
 class TextCutoff extends PropertyBase {
   render() {
@@ -59,12 +63,21 @@ export default [
     ]
   ),
   LinkedRenderStore.registerRenderer(
+    lowLevel.linkedSubject(TextInline),
+    NS.schema('Thing'),
+    NS.schema('text'),
+    [
+      NS.argu('section'),
+    ]
+  ),
+  LinkedRenderStore.registerRenderer(
     TextCutoff,
     NS.schema('Thing'),
     NS.schema('text'),
     [
       NS.argu('cardFixed'),
-      NS.argu('cardHover')
+      NS.argu('cardHover'),
+      NS.argu('popup'),
     ]
   ),
 ];

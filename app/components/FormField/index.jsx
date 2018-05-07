@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { TextEditor } from '../../components';
+import Input from '../Input/Input';
 
 import './FormField.scss';
 
@@ -30,6 +31,7 @@ const propTypes = {
     touched: PropTypes.bool,
     warning: PropTypes.string,
   }),
+  onKeyUp: PropTypes.func,
   placeholder: PropTypes.string,
   // Enables the rich (markdown) text editor
   rich: PropTypes.bool,
@@ -101,9 +103,8 @@ const FormField = ({
     touched,
     warning,
   },
+  onKeyUp,
 }) => {
-  const Element = rich === true ? TextEditor : element;
-
   const classes = classNames({
     Field: true,
     [`Field--variant-${variant}`]: variant,
@@ -132,11 +133,12 @@ const FormField = ({
           {label}
         </label>
       }
-      <Element
+      <Input
         {...input}
         autoComplete={autoComplete}
         autoFocus={autoFocus}
         className="Field__input"
+        element={rich === true ? TextEditor : element}
         id={id}
         placeholder={placeholder}
         rows={rows}
@@ -144,6 +146,7 @@ const FormField = ({
         onBlur={input.onBlur}
         onChange={value => input.onChange(value)}
         onFocus={input.onFocus}
+        onKeyUp={onKeyUp}
       />
       {renderMessages && !messagesAboveLabel &&
         <Messages bottom error={error} warning={warning} />

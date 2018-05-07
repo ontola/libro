@@ -32,7 +32,12 @@ ImageObjectCoverComp.propTypes = propTypes;
 
 const ImageObjectCover = link([NS.schema('url'), NS.argu('imagePositionY')])(ImageObjectCoverComp);
 
-const ImageObject = () => <Property label={NS.schema('thumbnail')} />;
+const ImageObject = ({ ariaLabel }) => <Property ariaLabel={ariaLabel} label={NS.schema('thumbnail')} />;
+
+ImageObject.propTypes = {
+  // Hover text to display.
+  ariaLabel: PropTypes.string,
+};
 
 export default [
   LinkedRenderStore.registerRenderer(
@@ -54,8 +59,11 @@ export default [
       NS.argu('detail'),
       NS.argu('collection'),
       NS.argu('dropdownContent'),
+      NS.argu('formFooter'),
+      NS.argu('section'),
       NS.argu('sidebarBlock'),
       NS.argu('voteBubble'),
+      NS.argu('voteEventSide'),
     ]
   ),
   LinkedRenderStore.registerRenderer(

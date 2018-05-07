@@ -28,24 +28,45 @@ export const NS = LRS.namespaces;
 
 export const allTopologies = [
   undefined,
+  NS.argu('actionsBar'),
   NS.argu('card'),
+  NS.argu('cardAppendix'),
   NS.argu('cardFixed'),
   NS.argu('cardHover'),
   NS.argu('cardMain'),
   NS.argu('cardRow'),
+  NS.argu('cardVoteEvent'),
   NS.argu('collection'),
   NS.argu('container'),
   NS.argu('detail'),
   NS.argu('dropdownContent'),
+  NS.argu('formFooter'),
   NS.argu('inline'),
   NS.argu('parent'),
+  NS.argu('popup'),
   NS.argu('sidebar'),
   NS.argu('sidebarBlock'),
   NS.argu('section'),
   NS.argu('grid'),
   NS.argu('voteBubble'),
+  NS.argu('voteEvent'),
+  NS.argu('voteEventResult'),
+  NS.argu('voteEventResultCard'),
+  NS.argu('voteEventSide'),
   NS.argu('widget'),
 ];
+
+export function allTopologiesExcept(...topologies) {
+  const filtered = allTopologies.slice();
+  topologies.forEach((t) => {
+    const i = filtered.indexOf(t);
+    if (i !== -1) {
+      filtered.splice(i, 1);
+    }
+  });
+
+  return filtered;
+}
 
 export const getTopologyNumber = topology => allTopologies.findIndex((item) => {
   if (item) {
@@ -164,6 +185,30 @@ const ontologicalData = [
   new Statement(NS.schema('MediaObject'), NS.schema('description'), new Literal('An attachment is a file which has been appended to a document to provide more information.', languages.en)),
   new Statement(NS.schema('MediaObject'), NS.schema('description'), new Literal('Een bijlage is een bestand dat bij een document gevoegd is om meer informatie te verschaffen.', languages.nl)),
   new Statement(NS.schema('MediaObject'), NS.schema('image'), new NamedNode('http://fontawesome.io/icon/file')),
+
+  new Statement(NS.argu('CreateAction'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('CreateAction'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
+
+  new Statement(NS.argu('CreateComment'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('CreateComment'), NS.rdfs('subClassOf'), NS.argu('CreateAction')),
+
+  new Statement(NS.argu('CreateProArgument'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('CreateProArgument'), NS.rdfs('subClassOf'), NS.argu('CreateAction')),
+
+  new Statement(NS.argu('CreateConArgument'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('CreateConArgument'), NS.rdfs('subClassOf'), NS.argu('CreateAction')),
+
+  new Statement(NS.argu('CreateBlogPost'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('CreateBlogPost'), NS.rdfs('subClassOf'), NS.argu('CreateAction')),
+
+  new Statement(NS.argu('CreateComment'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('CreateComment'), NS.rdfs('subClassOf'), NS.argu('CreateAction')),
+
+  new Statement(NS.argu('CreateMotion'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('CreateMotion'), NS.rdfs('subClassOf'), NS.argu('CreateAction')),
+
+  new Statement(NS.argu('CreateVote'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('CreateVote'), NS.rdfs('subClassOf'), NS.argu('CreateAction')),
 ];
 
 LRS.addOntologySchematics(ontologicalData);

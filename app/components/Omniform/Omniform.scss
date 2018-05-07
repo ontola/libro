@@ -1,5 +1,10 @@
 @import '../shared/config';
 
+.Omniform__preview {
+  display: block;
+  width: 100%;
+}
+
 .Omniform__footer {
   background-color: color('grey', 'xx-light');
   border-bottom-left-radius: $border-radius-base;
@@ -7,6 +12,11 @@
   border-top: solid 1px color('grey', 'x-light');
   display: flex;
   flex-direction: row;
+
+  &-preview-text {
+    align-self: center;
+    color: color('grey');
+  }
 }
 
 .Omniform__submit {

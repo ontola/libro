@@ -1,35 +1,67 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { Property, PropertyBase } from 'link-redux';
+import { lowLevel, Property, TopologyProvider } from 'link-redux';
 import React from 'react';
 
-import { LinkedDetailDate } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 
-class VoteEvent extends PropertyBase {
+import CurrentVote from './properties/currentVote';
+
+class VoteEventCard extends TopologyProvider {
+  constructor() {
+    super();
+
+    this.topology = NS.argu('cardVoteEvent');
+  }
+
   render() {
     return (
       <div itemScope>
+        <Property forceRender label={NS.argu('currentVote')} />
         <Property label={NS.schema('result')} />
-        <LinkedDetailDate />
         <Property label={NS.argu('votes')} />
       </div>
     );
   }
 }
 
-[
-  undefined,
-  NS.argu('collection'),
-  NS.argu('voteEvent'),
-  NS.argu('voteEventCollection'),
-].forEach((top) => {
+class VoteEventContainer extends TopologyProvider {
+  constructor() {
+    super();
+
+    this.topology = NS.argu('voteEvent');
+  }
+
+  render() {
+    return (
+      <div itemScope>
+        <Property forceRender label={NS.argu('currentVote')} />
+        <Property label={NS.schema('result')} />
+        <Property label={NS.argu('votes')} />
+      </div>
+    );
+  }
+}
+
+export default [
   LinkedRenderStore.registerRenderer(
-    VoteEvent,
+    lowLevel.linkedSubject(lowLevel.linkedVersion(VoteEventContainer)),
     [NS.argu('VoteEvent'), NS.aod('VoteEvent')],
     RENDER_CLASS_NAME,
-    top
-  );
-});
+    [
+      undefined,
+      NS.argu('collection'),
+      NS.argu('cardAppendix'),
+      NS.argu('container'),
+      NS.argu('voteEvent'),
+      NS.argu('voteEventCollection'),
+    ]
+  ),
+  LinkedRenderStore.registerRenderer(
+    lowLevel.linkedSubject(lowLevel.linkedVersion(VoteEventCard)),
+    NS.argu('VoteEvent'),
+    RENDER_CLASS_NAME,
+    NS.argu('cardMain')
+  ),
+  CurrentVote
+];
 
-export { default as Members } from './properties/members';
-export { default as Views } from './properties/views';

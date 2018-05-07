@@ -28,6 +28,8 @@ const propTypes = {
   and use the 'plain' prop. */
   className: PropTypes.string,
   disabled: PropTypes.bool,
+  /** Whether the button should fill it's container */
+  grow: PropTypes.bool,
   /** If the button is actually just a link */
   href: PropTypes.string,
   /** FontAwesome icon string. */
@@ -45,11 +47,23 @@ const propTypes = {
   theme: PropTypes.oneOf(buttonThemes),
   title: PropTypes.string,
   type: PropTypes.string,
-  variant: PropTypes.oneOf(['yes', 'pro', 'neutral', 'no', 'con', 'upvote', 'comment', 'facebook', 'google']),
+  variant: PropTypes.oneOf([
+    'yes',
+    'pro',
+    'neutral',
+    'other',
+    'no',
+    'con',
+    'upvote',
+    'comment',
+    'facebook',
+    'google',
+  ]),
 };
 
 const defaultProps = {
   active: false,
+  grow: false,
   narrow: false,
   plain: false,
   small: false,
@@ -67,6 +81,7 @@ const Button = ({
   children,
   className,
   disabled,
+  grow,
   icon,
   loading,
   margins,
@@ -83,6 +98,7 @@ const Button = ({
   const btnClass = classNames({
     Button: true,
     'Button--active': active,
+    'Button--grow': grow,
     'Button--has-icon': icon,
     'Button--margins': margins,
     'Button--narrow': narrow,

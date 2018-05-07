@@ -1,27 +1,38 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Field, formValueSelector, reduxForm } from 'redux-form/immutable';
 import { connect } from 'react-redux';
 
-import { argumentValidator } from '../../helpers/validators';
-import FormField from '../FormField';
+import { argumentValidator } from '../../../../helpers/validators';
+import FormField from '../../../../components/FormField/index';
 
-const CommentField = () => {
+const propTypes = {
+  autoFocus: PropTypes.bool,
+  form: PropTypes.string,
+  onKeyUp: PropTypes.func,
+};
+
+const CommentField = ({ autoFocus, form, onKeyUp }) => {
   const formStyle = 'preview';
 
   return (
     <div>
       <Field
         rich
+        autoFocus={autoFocus}
         component={FormField}
-        id="omniBody"
-        name="text"
+        id={`${form}-omniBody`}
+        name="schema:text"
         placeholder="Plaats een reactie..."
         validate={argumentValidator.text}
         variant={formStyle}
+        onKeyUp={onKeyUp}
       />
     </div>
   );
 };
+
+CommentField.propTypes = propTypes;
 
 const mapStateToProps = (state, ownProps) => ({
   currentValue: formValueSelector(ownProps.formName)(state, 'search'),

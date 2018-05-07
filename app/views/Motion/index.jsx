@@ -1,64 +1,51 @@
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
+import LinkedRenderStore from 'link-lib';
 import { Property } from 'link-redux';
 import React from 'react';
 
 import {
-  Card,
   CardContent,
+  CardMain,
+  CardMenuFloater,
   Container,
   DetailsBar,
-  LinkedDetailDate,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 
-import './properties/votebuttons';
-
-const Motion = () => (
+const MotionPage = () => (
   <div>
     <Property label={NS.argu('coverPhoto')} />
     <Container>
-      <Card>
-        <CardContent>
-          <Property label={NS.schema('name')} />
+      <Property label={NS.schema('isPartOf')} />
+      <CardMain data-test="Thing-thing">
+        <CardContent noSpacing>
+          <CardMenuFloater
+            header={<Property label={[NS.schema('name'), NS.rdfs('label')]} />}
+          >
+            <Property label={NS.argu('followMenu')} />
+            <Property label={NS.argu('shareMenu')} />
+            <Property label={NS.argu('actionsMenu')} />
+          </CardMenuFloater>
           <DetailsBar>
             <Property label={NS.schema('creator')} />
             <Property label={NS.schema('dateCreated')} />
           </DetailsBar>
-          <Property label={NS.schema('text')} />
+          <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
+          <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
         </CardContent>
-      </Card>
+        <Property label={NS.argu('attachments')} />
+        <Property label={NS.council('attachment')} />
+        <Property label={NS.argu('voteableVoteEvent')} />
+      </CardMain>
+      <Property label={NS.argu('blogPosts')} />
     </Container>
     <Container size="large">
-      <Property
-        forceRender
-        label={[
-          NS.argu('arguments'),
-          NS.schema('comments')
-        ]}
-      />
+      <Property forceRender label={NS.argu('arguments')} />
+    </Container>
+    <Container>
+      <Property label={NS.schema('comments')} />
+      <Property forceRender label={NS.app('omniform')} />
     </Container>
   </div>
 );
 
-const MotionCollection = () => (
-  <Card>
-    <CardContent>
-      <Property label={NS.schema('name')} />
-      <DetailsBar>
-        <Property label={NS.schema('creator')} />
-        <LinkedDetailDate />
-      </DetailsBar>
-      <Property label={NS.schema('text')} />
-      <Property forceRender label={NS.argu('arguments')} />
-    </CardContent>
-    <Property forceRender label={NS.argu('currentVote')} />
-  </Card>
-);
-
-LinkedRenderStore.registerRenderer(Motion, NS.argu('Motion'));
-LinkedRenderStore.registerRenderer(
-  MotionCollection,
-  NS.argu('Motion'),
-  RENDER_CLASS_NAME,
-  NS.argu('collection')
-);
+export default LinkedRenderStore.registerRenderer(MotionPage, NS.argu('Motion'));

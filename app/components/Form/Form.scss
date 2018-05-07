@@ -1,0 +1,26 @@
+@import '../shared/config';
+
+.Form__footer {
+  background-color: color('grey', 'xx-light');
+  border-bottom-left-radius: $border-radius-base;
+  border-bottom-right-radius: $border-radius-base;
+  border-top: solid 1px color('grey', 'x-light');
+  display: flex;
+  flex-direction: row;
+
+  &-preview-text {
+    align-self: center;
+    color: color('grey');
+  }
+
+  &-image {
+    background-color: color('grey', 'mid-light');
+    background-size: cover;
+    border-radius: 999px;
+    height: 2em;
+    align-self: center;
+    margin: .4em;
+    margin-right: 1.2em;
+    width: 2em;
+  }
+}

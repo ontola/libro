@@ -8,6 +8,8 @@ import './Markdown.scss';
 const propTypes = {
   /** Array of strings that need to be highlighted */
   highlightedText: PropTypes.string,
+  /** Renders all children inline */
+  inline: PropTypes.bool,
   /** Makes all links tabbable. */
   tabbable: PropTypes.bool,
   /** The content of the item */
@@ -43,10 +45,12 @@ const codePre = code =>
   <code className="Markdown__inline-code">{code.children}</code>;
 
 const defaultProps = {
+  inline: false,
   tabbable: true,
 };
 
 const Markdown = ({
+  inline,
   highlightedText,
   tabbable,
   text,
@@ -68,7 +72,7 @@ const Markdown = ({
     <ReactMarkdown
       escapeHtml
       unwrapDisallowed
-      className="Markdown"
+      className={`Markdown ${inline ? 'Markdown--inline' : ''}`}
       renderers={customRenderers}
       softBreak="br"
       source={source}

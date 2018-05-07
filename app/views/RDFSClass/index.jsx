@@ -6,6 +6,8 @@ import { Detail } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import TypeDetail from '../Thing/properties/type';
 
+import FormFooter from './FormFooter';
+
 const propTypes = {
   description: linkedPropType,
   label: linkedPropType,
@@ -32,5 +34,6 @@ export default [
     RENDER_CLASS_NAME,
     NS.argu('detail')
   ),
+  FormFooter,
   TypeDetail,
 ];
