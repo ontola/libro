@@ -1,3 +1,15 @@
+const FABase = 'http://fontawesome.io/icon/';
+
+export function isFontAwesomeIRI(iri) {
+  return iri.startsWith(FABase);
+}
+
+export function normalizeFontAwesomeIRI(stringOrIRI) {
+  const string = typeof stringOrIRI !== 'string' ? stringOrIRI.value : stringOrIRI;
+
+  return isFontAwesomeIRI(string) ? string.split(FABase).pop() : string;
+}
+
 /**
  * Helpers to aid in IRI processing.
  * @param {Window} window The window object.

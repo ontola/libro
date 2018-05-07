@@ -2,6 +2,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
+import { countInParentheses } from '../../../helpers/numbers';
 import image from '../image';
 
 const propTypes = {
@@ -27,10 +28,6 @@ class FBShareItem extends Component {
     }
   }
 
-  countInParentheses() {
-    return this.props.count > 0 ? `(${this.props.count})` : '';
-  }
-
   render() {
     return (
       <div className={`link ${this.props.type}`}>
@@ -42,7 +39,7 @@ class FBShareItem extends Component {
           onClick={this.handleClick}
         >
           {image({ fa: 'fa-facebook' })}
-          <span className="icon-left">Facebook {this.countInParentheses()}</span>
+          <span className="icon-left">Facebook {countInParentheses(this.props.count)}</span>
         </a>
       </div>
     );

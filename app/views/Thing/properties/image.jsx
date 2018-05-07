@@ -1,16 +1,18 @@
 import LinkedRenderStore from 'link-lib';
 import { LinkedResourceContainer, linkedPropType } from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
+import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../../helpers/iris';
 import { allTopologies, NS } from '../../../helpers/LinkedRenderStore';
 
-const FABase = 'http://fontawesome.io/icon/';
 const propTypes = {
+  ariaLabel: PropTypes.string,
   linkedProp: linkedPropType,
 };
 
-const ThingImageProp = ({ linkedProp }) => {
+const ThingImageProp = ({ ariaLabel, linkedProp }) => {
   if (!linkedProp) {
     return null;
   } else if (linkedProp &&
@@ -18,11 +20,11 @@ const ThingImageProp = ({ linkedProp }) => {
     linkedProp.constructor === Object
   ) {
     return <div>image</div>;
-  } else if (linkedProp.termType === 'NamedNode' && linkedProp.value.startsWith(FABase)) {
-    return <FontAwesome name={linkedProp.value.split(FABase)[1]} />;
+  } else if (linkedProp.termType === 'NamedNode' && isFontAwesomeIRI(linkedProp.value)) {
+    return <FontAwesome name={normalizeFontAwesomeIRI(linkedProp)} />;
   }
   return (
-    <LinkedResourceContainer subject={linkedProp} />
+    <LinkedResourceContainer ariaLabel={ariaLabel} subject={linkedProp} />
   );
 };
 
