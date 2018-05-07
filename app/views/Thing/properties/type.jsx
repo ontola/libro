@@ -16,11 +16,18 @@ const TypeDetail = ({ type }) => {
       case 'Resource':
       case 'Document':
       case 'RDFDocument':
+        if (!bestType) {
+          bestType = type[i];
+        }
         break;
       default:
         bestType = type[i];
         break;
     }
+  }
+
+  if (!bestType) {
+    return null;
   }
 
   return (

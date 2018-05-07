@@ -126,6 +126,7 @@ const ontologicalData = [
   new Statement(NS.argu('ConArgument'), NS.schema('description'), new Literal('A con is a reason to be against the idea.', languages.en)),
   new Statement(NS.argu('ConArgument'), NS.schema('description'), new Literal('Een tegenargument is een reden om tegen het idee te zijn.', languages.nl)),
   new Statement(NS.argu('ConArgument'), NS.schema('image'), new NamedNode('http://fontawesome.io/icon/minus')),
+  new Statement(NS.argu('ConArgument'), NS.rdfs('subClassOf'), NS.argu('Argument')),
 
   new Statement(NS.argu('ProArgument'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.argu('ProArgument'), NS.rdfs('label'), new Literal('Argument in favour', languages.en)),
@@ -134,6 +135,21 @@ const ontologicalData = [
   new Statement(NS.argu('ProArgument'), NS.schema('description'), new Literal('A pro voor is een reden om voor het idee te zijn.', languages.en)),
   new Statement(NS.argu('ProArgument'), NS.schema('description'), new Literal('Een argument voor is een reden om voor het idee te zijn.', languages.nl)),
   new Statement(NS.argu('ProArgument'), NS.schema('image'), new NamedNode('http://fontawesome.io/icon/plus')),
+  new Statement(NS.argu('ProArgument'), NS.rdfs('subClassOf'), NS.argu('Argument')),
+
+  new Statement(NS.argu('Comment'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('Comment'), NS.rdfs('label'), new Literal('Comment', languages.en)),
+  new Statement(NS.argu('Comment'), NS.rdfs('label'), new Literal('Reactie', languages.nl)),
+  new Statement(NS.argu('Comment'), NS.schema('description'), new Literal('A comment is a (brief) written response or note about a thing.', languages.en)),
+  new Statement(NS.argu('Comment'), NS.schema('description'), new Literal('Een reactie is een (korte) geschreven antwoord of notitie over een ding.', languages.nl)),
+  new Statement(NS.argu('Comment'), NS.schema('image'), new NamedNode('http://fontawesome.io/icon/comment')),
+
+  new Statement(NS.argu('BlogPost'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('BlogPost'), NS.rdfs('label'), new Literal('Update', languages.en)),
+  new Statement(NS.argu('BlogPost'), NS.rdfs('label'), new Literal('Update', languages.nl)),
+  new Statement(NS.argu('BlogPost'), NS.schema('description'), new Literal('An update is a message in which the progress of a project is shared.', languages.en)),
+  new Statement(NS.argu('BlogPost'), NS.schema('description'), new Literal('Een update is een bericht waarin de voortgang van een project wordt gedeeld.', languages.nl)),
+  new Statement(NS.argu('BlogPost'), NS.schema('image'), new NamedNode('http://fontawesome.io/icon/bullhorn')),
 
   new Statement(NS.argu('ActionsMenu'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.argu('ActionsMenu'), NS.rdfs('subClassOf'), NS.schema('SubMenu')),
