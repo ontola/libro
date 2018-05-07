@@ -307,7 +307,9 @@ class LinkDevTools {
       }
       return console.info('No loading component was resolved; rendering `null`');
     }
-    if (comp.hasErrors()) {
+    const err = (comp.state && comp.state.hasCaughtError) ||
+      LinkedResourceContainer.hasErrors(lrs.api.getStatus(comp.props.subject));
+    if (err) {
       console.info('The object is in error state');
       console.debug(this.getPropArr(defaultNS.http('statusCodeValue')));
       if (comp.onError()) {
@@ -393,9 +395,9 @@ class LinkDevTools {
     if (typeof comp.constructor === 'undefined') LinkDevTools.returnWithError();
     const { displayName, name } = comp.constructor;
     console.group(`Explanation for component ${name}`);
-    if (name === 'LinkedResourceContainer') {
+    if (name.startsWith('LinkedResourceContainer')) {
       this.explainLOC(comp, lrs);
-    } else if (name === 'Property' || displayName === 'ConnectedProp') {
+    } else if (name.startsWith('Property') || (displayName && displayName.startsWith('ConnectedProp'))) {
       this.explainProperty(comp, lrs);
     } else {
       console.warn(`Component seems of unknown type (${name})`);
