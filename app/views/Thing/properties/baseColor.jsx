@@ -20,9 +20,9 @@ class BaseColorDispatcher extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.linkedProp) {
-      this.props.onChange(hexToRgb(nextProps.linkedProp));
+  componentDidUpdate(prevProps) {
+    if (this.props.linkedProp && this.props.linkedProp !== prevProps.linkedProp) {
+      this.props.onChange(hexToRgb(this.props.linkedProp));
     }
   }
 

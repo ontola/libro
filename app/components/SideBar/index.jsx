@@ -43,7 +43,7 @@ class SideBar extends Component {
     this.onSetSideBarOpen = this.onSetSideBarOpen.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.styles = {
       content: {
         // Enables inertial scrolling in iOS

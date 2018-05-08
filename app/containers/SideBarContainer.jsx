@@ -43,13 +43,13 @@ class SideBarContainer extends Component {
     this.mql = window.matchMedia(`(min-width: ${this.triggerWidth()})`);
 
     this.state = {
-      isWideWindow: true,
+      isWideWindow: this.mql.matches,
     };
 
     this.mediaQueryChanged = this.mediaQueryChanged.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.onInitializeSideBar({
       docked: this.mql.matches,
       id: this.props.id,
@@ -57,9 +57,7 @@ class SideBarContainer extends Component {
 
     if (typeof window !== 'undefined') {
       this.mql.addListener(this.mediaQueryChanged);
-      this.setState({
-        isWideWindow: this.mql.matches,
-      });
+
       if (this.mql.matches) {
         this.props.onDock();
       } else {

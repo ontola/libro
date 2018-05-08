@@ -28,7 +28,7 @@ const propTypes = {
 };
 
 class VoteMatch extends Component {
-  componentWillMount() {
+  componentDidMount() {
     if (this.props.name === '') {
       this.props.loadVoteMatch(this.props.params.voteMatchId);
     }

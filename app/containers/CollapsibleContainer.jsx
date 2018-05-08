@@ -18,10 +18,11 @@ const defaultProps = {
 };
 
 class CollapsibleContainer extends Component {
-  componentWillMount() {
+  componentDidMount() {
     if (this.props.id === undefined) {
       throw new Error();
     }
+
     this.props.onInitializeCollapsible({
       group: this.props.group,
       identifier: this.props.id,

@@ -26,7 +26,7 @@
   "settings": {
     "react": {
       "pragma": "React",
-      "version": "0.16.0"
+      "version": "16.3.2"
     },
     "import/resolver": {
       "webpack": {

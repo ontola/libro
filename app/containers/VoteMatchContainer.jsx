@@ -31,7 +31,7 @@ const defaultProps = {
 };
 
 class VoteMatchContainer extends Component {
-  componentWillMount() {
+  componentDidMount() {
     const { onStartVoteMatch, id } = this.props;
 
     onStartVoteMatch({ id });

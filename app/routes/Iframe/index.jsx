@@ -28,8 +28,8 @@ class Iframe extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.location !== nextProps.location) {
+  componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
       this.showLoader();
     }
   }

@@ -10,9 +10,11 @@ const propTypes = {
 };
 
 class LinkVoteMatchContainer extends Component {
-  componentWillReceiveProps({ step }) {
-    if (step !== this.props.step) {
-      document.getElementById(`voteMatch-step-${step}`).scrollIntoView({ behavior: 'smooth' });
+  componentDidUpdate(prevProps) {
+    if (this.props.step !== prevProps.step) {
+      document
+        .getElementById(`voteMatch-step-${this.props.step}`)
+        .scrollIntoView({ behavior: 'smooth' });
     }
   }
 

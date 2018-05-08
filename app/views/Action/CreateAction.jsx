@@ -19,9 +19,9 @@ class CreateActionDispatcher extends Component {
     this.props.onChange(this.identifier(), this.props.subject.value);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.subject) {
-      this.props.onChange(this.identifier(), nextProps.subject.value);
+  componentDidUpdate(prevProps) {
+    if (this.props.subject && this.props.subject !== prevProps.subject) {
+      this.props.onChange(this.identifier(), this.props.subject.value);
     }
   }
 

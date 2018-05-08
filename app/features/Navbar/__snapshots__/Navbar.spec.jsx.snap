@@ -640,7 +640,6 @@ exports[`Navbar as default renders the correct representation 1`] = `
                                             <ReactCollapse
                                               forceInitialAnimation={true}
                                               isOpened={false}
-                                              onRest={[Function]}
                                               springConfig={
                                                 Object {
                                                   "damping": 30,
