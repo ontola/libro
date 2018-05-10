@@ -1,19 +1,29 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import * as Collapse from 'react-collapse';
+import { Collapse } from 'react-collapse';
 
 import './Collapsible.scss';
+
+const REACT_COLLAPSE_TRANSITION_TIME_MS = 200;
 
 const propTypes = {
   /** Mount children if closed. */
   alwaysMountChildren: PropTypes.bool,
   /** Content that is not always visible. */
   children: PropTypes.node.isRequired,
-  /** Minimum height in pixels */
-  minHeight: PropTypes.number,
+  /** @internal */
+  hideChildren: PropTypes.bool.isRequired,
+  /**
+   * Linting disabled due to unreleased patch
+   * https://github.com/yannickcr/eslint-plugin-react/issues/1751
+   * @internal
+   */
+  notOpened: PropTypes.func.isRequired, // eslint-disable-line react/no-unused-prop-types
   /** Function that should dispatch a toggle action to open / close the Collapsible. */
   onClickToggle: PropTypes.func.isRequired,
   opened: PropTypes.bool,
+  /** Should the first part of the content be visible when collapsed */
+  preview: PropTypes.bool,
   /** Optional node that functionas as a clickable toggle. */
   trigger: PropTypes.node,
   /** Content that's always visible, but does not work as a clickable toggle. */
@@ -26,26 +36,31 @@ const defaultProps = {
 };
 
 class Collapsible extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      opened: this.props.opened,
-    };
-    this.hideChildren = this.hideChildren.bind(this);
+  static getDerivedStateFromProps(nextProps) {
+    if (!nextProps.opened && !nextProps.hideChildren) {
+      if (typeof window !== 'undefined') {
+        window.setTimeout(nextProps.notOpened, REACT_COLLAPSE_TRANSITION_TIME_MS);
+      } else {
+        nextProps.notOpened();
+      }
+    }
+
+    return null;
   }
 
-  hideChildren() {
-    this.setState({
-      opened: this.props.opened,
-    });
+  constructor(props) {
+    super(props);
+
+    this.state = {};
   }
 
   render() {
     const {
       alwaysMountChildren,
       children,
+      hideChildren,
       onClickToggle,
-      minHeight,
+      preview,
       opened,
       trigger,
       visibleContent,
@@ -63,12 +78,6 @@ class Collapsible extends React.PureComponent {
       </a>
     );
 
-    if (opened === true) {
-      this.setState({
-        opened: true,
-      });
-    }
-
     const tabIndex = () => {
       if (opened) {
         return undefined;
@@ -76,30 +85,29 @@ class Collapsible extends React.PureComponent {
       return -1;
     };
 
-    const CollapsibleComp = __TEST__ ? Collapse.default : Collapse.default.Collapse;
-
     return (
       <div aria-expanded={opened} className="Collapsible">
         {trigger &&
           <div className="Collapsible__trigger-wrapper">{triggerElem}</div>
         }
         <div className="Collapsible__visible-content">{visibleContent}</div>
-        <CollapsibleComp
+        <Collapse
           forceInitialAnimation
           isOpened={opened}
           springConfig={{
             damping: 30,
             stiffness: 300,
           }}
-          style={{
-            minHeight: `${minHeight}px`,
-          }}
-          onRest={this.hideChildren}
+          theme={preview ? { container: 'Collapsible__container--preview' } : undefined}
         >
-          <div aria-hidden={tabIndex()} className="Collapsible__invisible-content">
-            {alwaysMountChildren ? children : (this.state.opened && children)}
+          <div
+            aria-hidden={tabIndex()}
+            className="Collapsible__invisible-content"
+            hidden={!alwaysMountChildren && hideChildren}
+          >
+            {(alwaysMountChildren || !hideChildren) && children}
           </div>
-        </CollapsibleComp>
+        </Collapse>
       </div>
     );
   }

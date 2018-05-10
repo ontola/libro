@@ -15,7 +15,6 @@ import './CollapseText.scss';
 const propTypes = {
   id: PropTypes.string.isRequired,
   minCharacters: PropTypes.number,
-  minHeight: PropTypes.number,
   onClickToggle: PropTypes.func.isRequired,
   open: PropTypes.bool,
   text: PropTypes.string,
@@ -23,14 +22,12 @@ const propTypes = {
 
 const defaultProps = {
   minCharacters: 700,
-  minHeight: 100,
 };
 
 const CollapseText = ({
   id,
   onClickToggle,
   minCharacters,
-  minHeight,
   open,
   text,
 }) => {
@@ -44,8 +41,8 @@ const CollapseText = ({
       <div className={classes}>
         <CollapsibleContainer
           alwaysMountChildren
+          preview
           id={id}
-          minHeight={minHeight}
         >
           <Markdown tabbable={open} text={text} />
         </CollapsibleContainer>
@@ -72,7 +69,6 @@ export default connect(
     const minCharacters = ownProps.minCharacters || defaultProps.minCharacters;
     return ({
       minCharacters,
-      minHeight: ownProps.minHeight || defaultProps.minHeight,
       open: ownProps.text.length > minCharacters && getCollapsibleOpened(state, ownProps.id),
     });
   },

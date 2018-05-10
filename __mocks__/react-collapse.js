@@ -5,9 +5,15 @@
  * @module ReactCollapse
  */
 
+import PropTypes from 'prop-types';
 import React from 'react';
 
-export const ReactCollapse = ({ children }) =>
-  (children ? React.createElement('div', null, children) : null);
+const propTypes = {
+  children: PropTypes.node,
+};
 
-export default ReactCollapse;
+export const Collapse = ({ children }) => React.createElement('div', null, children);
+
+Collapse.propTypes = propTypes;
+
+export default Collapse;

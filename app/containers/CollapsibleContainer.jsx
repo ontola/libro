@@ -18,6 +18,21 @@ const defaultProps = {
 };
 
 class CollapsibleContainer extends Component {
+  static getDerivedStateFromProps(nextProps, prevState) {
+    return {
+      hideChildren: !nextProps.opened && prevState ? prevState.hideChildren : false,
+    };
+  }
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hideChildren: false,
+    };
+    this.hideChildren = this.hideChildren.bind(this);
+  }
+
   componentDidMount() {
     if (this.props.id === undefined) {
       throw new Error();
@@ -30,8 +45,20 @@ class CollapsibleContainer extends Component {
     });
   }
 
+  hideChildren() {
+    this.setState({
+      hideChildren: true,
+    });
+  }
+
   render() {
-    return <Collapsible {...this.props} />;
+    return (
+      <Collapsible
+        {...this.props}
+        hideChildren={this.state.hideChildren}
+        notOpened={this.hideChildren}
+      />
+    );
   }
 }
 
