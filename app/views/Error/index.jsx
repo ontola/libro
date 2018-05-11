@@ -3,6 +3,7 @@ import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { subjectType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
 
@@ -16,11 +17,16 @@ import {
 import SignInFormContainer from '../../containers/SignInFormContainer';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { currentLocation } from '../../helpers/paths';
+import { getCurrentUserType } from '../../state/app/selectors';
 
 import ErrorButtonWithFeedback from './ErrorButtonWithFeedback';
 import ErrorButtonInline from './ErrorButtonInline';
 import { bodyForStatus, errors, headerForStatus } from './ErrorMessages';
 import ErrorButtonSideBar from './ErrorButtonSideBar';
+
+const withUserType = Comp => connect(state => ({
+  userType: getCurrentUserType(state),
+}))(Comp);
 
 const propTypes = {
   linkRequestStatus: PropTypes.shape({
@@ -30,10 +36,11 @@ const propTypes = {
     pathname: PropTypes.string,
   }),
   reloadLinkedObject: PropTypes.func,
+  userType: PropTypes.oneOf(['GuestUser', 'ConfirmedUser', 'UnconfirmedUser']),
 };
 
 const ErrorCardComp = (props) => {
-  const { linkRequestStatus, location } = props;
+  const { linkRequestStatus, location, userType } = props;
 
   let mainAction = (
     <ErrorButtonWithFeedback theme="box" {...props}>
@@ -41,7 +48,7 @@ const ErrorCardComp = (props) => {
     </ErrorButtonWithFeedback>
   );
 
-  if (linkRequestStatus.status === HttpStatus.FORBIDDEN) {
+  if (linkRequestStatus.status === HttpStatus.FORBIDDEN && userType === 'GuestUser') {
     mainAction = (
       <Container size="small">
         <SignInFormContainer redirect={currentLocation(location).value} />
@@ -66,10 +73,10 @@ const ErrorCardComp = (props) => {
 
 ErrorCardComp.propTypes = propTypes;
 
-const ErrorCard = withRouter(ErrorCardComp);
+const ErrorCard = withRouter(withUserType(ErrorCardComp));
 
 const ErrorPageComp = (props) => {
-  const { linkRequestStatus, location } = props;
+  const { linkRequestStatus, location, userType } = props;
 
   let cardAction = (
     <ErrorButtonWithFeedback theme="box" {...props}>
@@ -77,7 +84,7 @@ const ErrorPageComp = (props) => {
     </ErrorButtonWithFeedback>
   );
 
-  if (linkRequestStatus.status === HttpStatus.FORBIDDEN) {
+  if (linkRequestStatus.status === HttpStatus.FORBIDDEN && userType === 'GuestUser') {
     cardAction = (
       <SignInFormContainer redirect={currentLocation(location).value} />
     );
@@ -111,7 +118,7 @@ const ErrorPageComp = (props) => {
 
 ErrorPageComp.propTypes = propTypes;
 
-const ErrorPage = withRouter(ErrorPageComp);
+const ErrorPage = withRouter(withUserType(ErrorPageComp));
 
 const ErrorSidebar = (props) => {
   if (props.subject === NS.app('n?type=infinite')) {

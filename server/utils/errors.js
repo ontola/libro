@@ -46,8 +46,11 @@ export class ArguError extends ExtendableError {
   }
 
   set response(value) {
-    if (!this.internal) throw new Error("Can't use response outside internal errors.");
     this.responseObj = value;
+  }
+
+  markAsSafe() {
+    this.internal = true;
   }
 }
 

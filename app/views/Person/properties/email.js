@@ -1,18 +1,19 @@
 import LinkedRenderStore from 'link-lib';
-import { linkedPropType } from 'link-redux';
+import { linkedPropType } from 'link-redux/dist/typings/link-redux';
 import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
-import { setCurrentUserType } from '../../../state/app/actions';
+import { setCurrentUserEmail } from '../../../state/app/actions';
+
 
 const propTypes = {
   linkedProp: linkedPropType,
   onChange: PropTypes.func,
 };
 
-class ActorTypeDispatcher extends Component {
+class EmailDispatcher extends Component {
   componentDidMount() {
     if (this.props.linkedProp) {
       this.props.onChange(this.props.linkedProp.value);
@@ -21,7 +22,7 @@ class ActorTypeDispatcher extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.linkedProp && this.props.linkedProp !== prevProps.linkedProp) {
-      this.props.onChange(this.props.linkedProp.value);
+      this.props.onChange(this.props.linkedProp);
     }
   }
 
@@ -30,22 +31,23 @@ class ActorTypeDispatcher extends Component {
   }
 }
 
-ActorTypeDispatcher.propTypes = propTypes;
+EmailDispatcher.propTypes = propTypes;
 
-const ActorTypeDispatcherConnect = connect(
+const EmailDispatcherConnect = connect(
   null,
   dispatch => ({
-    onChange: actorType => dispatch(setCurrentUserType(actorType)),
+    onChange: email => dispatch(setCurrentUserEmail(email)),
   }),
   null,
   { pure: false }
-)(ActorTypeDispatcher);
+)(EmailDispatcher);
 
-ActorTypeDispatcherConnect.propTypes = propTypes;
+EmailDispatcherConnect.propTypes = propTypes;
+
 
 export default LinkedRenderStore.registerRenderer(
-  ActorTypeDispatcherConnect,
-  [NS.argu('ConfirmedUser'), NS.argu('UnconfirmedUser'), NS.argu('GuestUser')],
-  NS.argu('actorType'),
+  EmailDispatcherConnect,
+  NS.schema('Person'),
+  NS.schema('email'),
   NS.argu('sidebar')
 );

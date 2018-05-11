@@ -101,6 +101,10 @@
   box-shadow: $box-shadow;
 }
 
+.CardLink {
+  color: color('blue', 'power');
+}
+
 .CardRow {
   border-bottom: solid 1px color('grey', 'x-light');
   border-top: solid 1px color('grey', 'x-light');

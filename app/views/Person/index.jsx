@@ -8,6 +8,7 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import Detail from './detail';
 import Section from './section';
 import Sidebar from './sidebar';
+import Email from './properties/email';
 import Image from './properties/image';
 
 export default [
@@ -27,7 +28,8 @@ export default [
     [NS.argu('voteEventSide'), NS.argu('voteBubble'), NS.argu('formFooter')]
   ),
   Detail,
+  Email,
+  Image,
   Section,
   Sidebar,
-  Image,
 ];

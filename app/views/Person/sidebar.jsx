@@ -19,6 +19,7 @@ const CurrentActorSidebar = () => (
         <Property label={NS.schema('name')} />
       </SideBarLinkLabel>
     </LDLink>
+    <Property label={NS.schema('email')} />
   </div>
 );
 

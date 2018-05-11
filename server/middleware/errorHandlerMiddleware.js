@@ -23,7 +23,7 @@ export default function errorHandlerMiddleware(err, req, res, next) {
     console.warn(err.devMessage);
     console.error(errMsg);
     console.debug(err.stack);
-    res.status(HttpStatus.INTERNAL_SERVER_ERROR).end();
+    res.sendStatus(HttpStatus.INTERNAL_SERVER_ERROR).end();
     return;
   }
   console.warn(err);
@@ -43,5 +43,5 @@ export default function errorHandlerMiddleware(err, req, res, next) {
     default:
       error = new errors.InternalServerErrorError();
   }
-  res.status(error.status).end();
+  res.sendStatus(error.status).end();
 }

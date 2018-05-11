@@ -106,7 +106,10 @@ const propTypes = {
     'url',
     'week',
   ]),
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.string,
+  ]),
 };
 
 const defaultProps = {

@@ -1,9 +1,12 @@
 import LinkedRenderStore from 'link-lib';
 import { link, LinkedResourceContainer, PropertyBase, TopologyProvider } from 'link-redux';
 import React from 'react';
+import { connect } from 'react-redux';
 
-import { retrievePath } from '../../../helpers/iris';
+import { SignInFormContainerCardRow } from '../../../containers/SignInFormContainer';
+import { currentURL, retrievePath } from '../../../helpers/iris';
 import { allTopologies, NS } from '../../../helpers/LinkedRenderStore';
+import { getCurrentUserType } from '../../../state/app/selectors';
 
 class CurrentVote extends PropertyBase {
   shouldComponentUpdate(nextProps) {
@@ -60,6 +63,19 @@ export const getVoteButtons = (options) => {
       this.topology = NS.argu('cardVoteEvent');
     }
 
+    signInFlow() {
+      if (!this.props.showSignInFlow) {
+        return null;
+      }
+
+      return (
+        <SignInFormContainerCardRow
+          reason="BEVESTIG JOUW STEM VIA EMAIL:"
+          redirect={currentURL()}
+        />
+      );
+    }
+
     render() {
       const voteButtons = options.map(side => (
         <CurrentVote
@@ -71,14 +87,19 @@ export const getVoteButtons = (options) => {
       ));
 
       return (
-        <div itemScope style={{ display: 'flex' }}>
-          {voteButtons}
-        </div>
+        <React.Fragment>
+          <div itemScope style={{ display: 'flex' }}>
+            {voteButtons}
+          </div>
+          {this.signInFlow()}
+        </React.Fragment>
       );
     }
   }
 
-  return VoteButtons;
+  return connect((state, ownProps) => ({
+    showSignInFlow: ownProps.currentVote && ['GuestUser', 'UnconfirmedUser'].includes(getCurrentUserType(state))
+  }))(VoteButtons);
 };
 
 export default LinkedRenderStore.registerRenderer(

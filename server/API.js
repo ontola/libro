@@ -17,18 +17,20 @@ if (!oAuthToken) {
  * Class for communicating with the Argu API & SPI.
  */
 class API {
-  constructor() {
+  constructor({ userToken }) {
     this.base = ARGU_API_URL;
-    this.token = oAuthToken;
+    this.serviceToken = oAuthToken;
+    this.userToken = userToken;
   }
 
   /**
    * Create a new user.
    * @param {String} email The email address of the user
+   * @param {Boolean} acceptTerms Whether the user has agreed with the terms
    * @return {Promise} Raw fetch response promise
    */
-  createUser(email) {
-    return this.fetch(createUserRequest(email));
+  createUser(email, acceptTerms) {
+    return this.fetch(this.userToken, createUserRequest(email, acceptTerms));
   }
 
   /**
@@ -36,7 +38,7 @@ class API {
    * @return {Promise} Raw fetch response promise
    */
   requestGuestToken() {
-    return this.fetch(guestTokenRequest);
+    return this.fetch(this.serviceToken, guestTokenRequest);
   }
 
   /**
@@ -46,25 +48,28 @@ class API {
    * @return {Promise} The raw fetch response promise
    */
   requestUserToken(login, password) {
-    return this.fetch(userTokenRequest(login, password));
+    return this.fetch(this.serviceToken, userTokenRequest(login, password));
   }
 
   /**
    * Makes network calls
    * @private
+   * @param {String} authToken WARNING: USING THE SERVICE TOKEN FOR THE WRONG REQUEST WILL LEAD TO
+   * DISASTROUS RESULTS.
    * @param {String} path The API path.
    * @param {Object} body The API request body.
    * @return {Promise} The raw fetch promise.
    */
-  fetch({ path, body }) {
+  fetch(authToken, { path, body }) {
     return fetch(
       [this.base, path].join('/'),
       {
         body: JSON.stringify(body),
         headers: {
           Accept: 'application/json',
-          Authorization: `Bearer ${this.token}`,
+          Authorization: `Bearer ${authToken}`,
           'Content-Type': 'application/json',
+          'X-Argu-Back': 'true',
         },
         method: 'POST',
         redirect: 'error',

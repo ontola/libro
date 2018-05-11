@@ -1,184 +1,50 @@
-import PropTypes from 'prop-types';
-import React from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
-import { Field, reduxForm } from 'redux-form/immutable';
-
-import { safeCredentials } from 'helpers/arguHelpers';
-import { emailTaken } from 'state/form/actions';
+import { reduxForm } from 'redux-form/immutable';
 
 import {
-  Button,
-  CardActions,
-  CardContent,
-  CardDivider,
-  CardRow,
-  FormField,
-  HiddenFormField,
+  SignInFormCard,
+  SignInFormCardRow,
 } from '../components';
-import validators from '../helpers/validators';
-
-const PATH_MATCH = 2;
-
-const propTypes = {
-  // From redux-form
-  fields: PropTypes.arrayOf(PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.number,
-    PropTypes.string,
-  ])),
-  // Since this uses redux-form, you need to pass onSubmit instead of handleSubmit.
-  handleSubmit: PropTypes.func.isRequired,
-  hasCancel: PropTypes.bool,
-  invalid: PropTypes.bool,
-  redirect: PropTypes.string,
-  submitting: PropTypes.bool.isRequired,
-};
-
-const defaultProps = {
-  hasCancel: false,
-};
-
-/**
- * Should be rendered inside a card.
- * @returns {component} Component
- */
-const SignInForm = ({
-  handleSubmit,
-  hasCancel,
-  fields,
-  invalid,
-  redirect,
-  submitting,
-}) => {
-  let loginField;
-  if (fields.includes('password')) {
-    loginField = (
-      <Field
-        autoComplete="off"
-        component={FormField}
-        element="input"
-        id="SignInPassword"
-        label="Jouw wachtwoord"
-        name="password"
-        type="password"
-        variant="material"
-      />
-    );
-  }
-  return (
-    <CardRow>
-      <CardContent>
-        <span>Log in met </span>
-        <form action={`https://argu.co/users/auth/facebook?r=${redirect}`} method="GET" style={{ display: 'inline' }}>
-          <Button
-            margins
-            small
-            icon="facebook"
-            type="submit"
-            variant="facebook"
-          >
-            Facebook
-          </Button>
-        </form>
-      </CardContent>
-      <CardDivider text="of" />
-      <form
-        action="/users"
-        onSubmit={handleSubmit}
-      >
-        <Field
-          autoComplete="off"
-          component={FormField}
-          element="input"
-          id="SignInEmail"
-          label="Uw e-mailadres"
-          name="email"
-          placeholder="email@example.com"
-          type="email"
-          validate={[
-            validators.required,
-            validators.isEmail,
-          ]}
-          variant="material"
-        />
-        {loginField}
-        <Field
-          component={HiddenFormField}
-          id="r"
-          name="r"
-        />
-        <CardActions noSpacing>
-          {hasCancel &&
-            <Button
-              icon="times"
-              theme="box"
-            >
-              Annuleren
-            </Button>}
-          <Button
-            disabled={invalid}
-            icon="arrow-right"
-            loading={submitting}
-            theme="box"
-            type="submit"
-          >
-            Verder
-          </Button>
-        </CardActions>
-      </form>
-    </CardRow>
-  );
-};
-
-SignInForm.propTypes = propTypes;
-SignInForm.defaultProps = defaultProps;
+import { apiLogin } from '../middleware/api';
+import {
+  getCurrentUserEmail,
+  getCurrentUserType,
+} from '../state/app/selectors';
+import { stepBack } from '../state/form/actions';
+import { STEPS } from '../state/form/reducer';
+import {
+  signInGetStep,
+  signInHasBack,
+} from '../state/form/selectors';
 
 const mapStateToProps = (state, props) => {
-  const password = state.getIn(['form', 'signIn', 'fields', 'password']) !== undefined;
-  return ({
-    fields: ['email', 'r', password && 'password'],
+  const userType = getCurrentUserType(state);
+  return {
     form: 'signIn',
+    hasBack: signInHasBack(state),
     initialValues: {
       r: props.redirect,
     },
-  });
+    registeredEmail: getCurrentUserEmail(state),
+    step: userType === 'GuestUser' ? signInGetStep(state) : STEPS.signUpCompleted,
+    userType: getCurrentUserType(state),
+  };
 };
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: values => fetch('/login', safeCredentials({
-    body: JSON.stringify(values.toJS()),
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    method: 'POST',
-    redirect: 'manual',
-  }))
-    .then(res => res.json())
-    .then((json) => {
-      let match, r, redirect;
-      switch (json.status) {
-        case 'EMAIL_TAKEN':
-          dispatch(emailTaken());
-          break;
-        case 'LOGGED_IN':
-          r = values.get('r');
-          if (r) {
-            match = r.match(/^https:\/\/[\w*.]*argu\.(dev|co)([\w\W]*$)/);
-          }
-          redirect = (match && match[PATH_MATCH]) || '/';
-          dispatch(push(redirect));
-          window.location.reload();
-          break;
-        default:
-          throw new Error('Unknown user error occurred');
-      }
-    })
+  onSubmit: values => dispatch(apiLogin(values.toJS())),
+  stepBack: () => dispatch(stepBack()),
 });
 
-const SignInFormContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(reduxForm({
-})(SignInForm)));
+const SignInFormContainer = withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(reduxForm({})(SignInFormCard)));
+
+export const SignInFormContainerCardRow = withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(reduxForm({})(SignInFormCardRow)));
 
 export default SignInFormContainer;

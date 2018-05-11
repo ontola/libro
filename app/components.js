@@ -12,6 +12,7 @@ export { default as CardButton } from './components/Card/CardButton';
 export { default as CardContent } from './components/Card/CardContent';
 export { default as CardDivider } from './components/Card/CardDivider';
 export { default as CardFixed } from './components/Card/CardFixed';
+export { default as CardLink } from './components/Card/CardLink';
 export { default as CardMain } from './components/Card/CardMain';
 export { default as CardMenuFloater } from './components/Card/CardMenuFloater';
 export { default as CardRow } from './components/Card/CardRow';
@@ -83,6 +84,10 @@ export { default as ProgressBar } from './components/ProgressBar/index';
 export { default as SideBar } from './components/SideBar/index';
 export { default as SideBarLink } from './components/SideBarLink/index';
 export { default as SideBarCollapsible } from './components/SideBarCollapsible/index';
+export {
+  SignInFormCard,
+  SignInFormCardRow,
+} from './components/SignInForm/index';
 export { default as SkipNavigation } from './components/SkipNavigation/index';
 export { default as Spinner } from './components/Spinner/index';
 export { default as Tag } from './components/Tag/index';

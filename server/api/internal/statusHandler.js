@@ -28,9 +28,9 @@ export default function processResponse(response) {
   }
   const devMsg = getDevMessage(response.status);
   const err = new ErrClass(devMsg);
+  err.response = response;
   if (devMsg) {
     err.internal = true;
-    err.response = response;
   }
   return Promise.reject(err);
 }

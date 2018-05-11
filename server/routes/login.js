@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+import HttpStatus from 'http-status-codes';
 
 import * as errors from '../utils/errors';
 
@@ -16,19 +17,30 @@ async function login(req, res, next) {
         expiresAt,
         scope: json.scope,
       };
-      res.send({ status: 'LOGGED_IN' }).end();
+      res.send({ status: 'SIGN_IN_LOGGED_IN' }).end();
       return;
     }
     throw new errors.NotImplementedError('Non-valid tokens have not been implemented yet.');
   } catch (e) {
-    if (e.status === errors.UnprocessableEntityError.status) {
+    if (e && e.status === errors.UnprocessableEntityError.status) {
+      e.markAsSafe();
+      if (!e.response || e.response.headers['Content-Type'] === 'application/json') {
+        res.sendStatus(HttpStatus.INTERNAL_SERVER_ERROR).end();
+        return;
+      }
+
       const json = await e.response.json();
+      if (!json) {
+        res.sendStatus(HttpStatus.INTERNAL_SERVER_ERROR).end();
+        return;
+      }
+
       switch (json.code) {
         case 'WRONG_PASSWORD':
-          res.send(json).end();
+          res.send({ status: 'SIGN_IN_WRONG_PASSWORD' }).end();
           break;
         case 'UNKNOWN_EMAIL':
-          res.send(json).end();
+          res.send({ status: 'SIGN_IN_UNKNOWN_EMAIL' }).end();
           break;
         case 'UNKNOWN_USERNAME':
           res.send(json).end();
@@ -44,12 +56,24 @@ async function login(req, res, next) {
 
 async function signUp(req, res, next) {
   try {
-    await req.api.createUser(req.body.email);
-    throw new errors.NotImplementedError('Only the error-free login flow has been implemented');
+    const response = await req.api.createUser(req.body.email, req.body.acceptTerms);
+
+    if (response.status !== HttpStatus.CREATED) {
+      throw new errors.NotImplementedError('Only the error-free login flow has been implemented');
+    }
+    res.status = response.status;
+    const json = await response.json();
+    const auth = response.headers.get('New-Authorization');
+    req.session.arguToken.accessToken = auth;
+    req.api.userToken = auth;
+    res.send({
+      email: json.data.attributes.email,
+      status: 'SIGN_IN_USER_CREATED',
+    });
   } catch (e) {
     switch (e.constructor) {
       case errors.UnprocessableEntityError:
-        res.send({ status: 'EMAIL_TAKEN' });
+        res.send({ status: 'SIGN_IN_EMAIL_TAKEN' });
         res.end();
         break;
       default:
@@ -60,7 +84,7 @@ async function signUp(req, res, next) {
 
 export default (req, res, next) => {
   res.setHeader('Vary', 'Accept,Accept-Encoding,Content-Type');
-  if (req.body.password) {
+  if (typeof req.body.acceptTerms === 'undefined') {
     return login(req, res, next);
   }
   return signUp(req, res, next);

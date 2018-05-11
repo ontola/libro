@@ -1,12 +1,11 @@
 import API from '../API';
 
 export default function apiMiddleware(req, res, next) {
-  if (req.api) {
-    next();
-    return;
-  }
+  const userToken = req.session && req.session.arguToken && req.session.arguToken.accessToken;
 
-  req.api = new API();
+  req.api = new API({
+    userToken,
+  });
 
   next();
 }

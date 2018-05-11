@@ -14,6 +14,10 @@
     }
   }
 
+  b {
+    color: color('grey', 'dark');
+  }
+
   &--light {
     color: color('white');
 

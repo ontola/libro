@@ -32,6 +32,7 @@ async function getGuestToken(req) {
     expiresAt,
     scope: body.scope,
   };
+  req.api.userToken = body.access_token;
   return undefined;
 }
 
@@ -51,7 +52,7 @@ async function isAuthenticated(req, res, next) {
     if (t && !expired) {
       return next();
     }
-    res.status(HttpStatus.UNAUTHORIZED);
+    res.status = HttpStatus.UNAUTHORIZED;
     const status = expired ? 'SESSION_EXPIRED' : 'UNAUTHORIZED';
     return res.send({ status }).end();
   }

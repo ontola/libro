@@ -1,12 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { connect } from 'react-redux';
 
-import {
-  Card,
-  Container,
-  Heading,
-} from 'components';
-import SignInFormContainer from 'containers/SignInFormContainer';
+import { Container } from '../../components';
+import SignInFormContainer from '../../containers/SignInFormContainer';
 
 const propTypes = {
   location: PropTypes.shape({
@@ -26,15 +23,17 @@ function redirectForLocation(location) {
 
 const SignIn = ({ location }) => (
   <Container size="small">
-    <Heading variant="column">
-      Inloggen of registreren
-    </Heading>
-    <Card>
-      <SignInFormContainer redirect={redirectForLocation(location)} />
-    </Card>
+    <SignInFormContainer redirect={redirectForLocation(location)} />
   </Container>
 );
 
 SignIn.propTypes = propTypes;
 
-export default SignIn;
+const mapStateToProps = (state, props) => ({
+  form: 'signIn',
+  initialValues: {
+    r: props.redirect,
+  },
+});
+
+export default connect(mapStateToProps)(SignIn);
