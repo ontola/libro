@@ -5,6 +5,9 @@ import React from 'react';
 import { SideBarCollapsible } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 
+import ActorType from './properties/actorType';
+import GuestUser from './GuestUser';
+
 const propTypes = {
   subject: subjectType,
 };
@@ -18,6 +21,7 @@ const CurrentActorSidebar = ({ subject }) => (
     id={`${subject}-sidebar-menu`}
     labelComp={<Property label={NS.argu('actor')} />}
   >
+    <Property label={NS.argu('actorType')} />
     <LinkedResourceContainer subject={NS.app('menus/user')}>
       <Property label={NS.argu('menuItems')} />
     </LinkedResourceContainer>
@@ -26,12 +30,13 @@ const CurrentActorSidebar = ({ subject }) => (
 
 CurrentActorSidebar.propTypes = propTypes;
 
-const ActorTypes = [NS.argu('UserActor'), NS.argu('GuestUserActor')];
+const RegisteredTypes = [NS.argu('ConfirmedUser'), NS.argu('UnconfirmedUser')];
+const ActorTypes = [...RegisteredTypes, NS.argu('GuestUser')];
 
 export default [
   LinkedRenderStore.registerRenderer(
     lowLevel.linkedSubject(CurrentActorSidebar),
-    NS.argu('UserActor'),
+    RegisteredTypes,
     RENDER_CLASS_NAME,
     NS.argu('sidebar')
   ),
@@ -41,4 +46,6 @@ export default [
     RENDER_CLASS_NAME,
     NS.argu('formFooter')
   ),
+  ActorType,
+  GuestUser,
 ];

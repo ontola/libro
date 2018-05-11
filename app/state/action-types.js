@@ -1,5 +1,6 @@
 // App
 export const HIGHLIGHT_RESOURCE = 'HIGHLIGHT_RESOURCE';
+export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const SET_ORGANIZATION = 'SET_ORGANIZATION';
 
 // Collapsibles

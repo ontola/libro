@@ -1,4 +1,5 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
+import { Property } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -12,11 +13,14 @@ const propTypes = {
 };
 
 const GuestUserActor = ({ redirectURL }) => (
-  <SideBarLink
-    icon="sign-in"
-    label="Log in / registreer"
-    to={path.signIn(redirectURL)}
-  />
+  <React.Fragment>
+    <SideBarLink
+      icon="sign-in"
+      label="Log in / registreer"
+      to={path.signIn(redirectURL)}
+    />
+    <Property label={NS.argu('actorType')} />
+  </React.Fragment>
 );
 
 GuestUserActor.propTypes = propTypes;
@@ -27,7 +31,7 @@ const GuestUserActorConnected = connect(() => ({
 
 export default LinkedRenderStore.registerRenderer(
   GuestUserActorConnected,
-  NS.argu('GuestUserActor'),
+  NS.argu('GuestUser'),
   RENDER_CLASS_NAME,
   NS.argu('sidebar')
 );

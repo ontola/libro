@@ -10,8 +10,8 @@ const subject = new NamedNode('https://argu.dev/c_a');
 
 const resourcesLoggedIn = {
   [subject]: {
-    [NS.rdf('type')]: NS.argu('UserActor'),
-    [NS.argu('actorType')]: new Literal('User'),
+    [NS.rdf('type')]: NS.argu('ConfirmedUser'),
+    [NS.argu('actorType')]: new Literal('ConfirmedUser'),
     [NS.schema('image')]: new NamedNode('https://argu.dev/media_objects/734'),
     [NS.argu('user')]: new NamedNode('https://argu.dev/u/123'),
     [NS.argu('actor')]: new NamedNode('https://argu.dev/u/123'),
@@ -41,7 +41,7 @@ const resourcesLoggedOut = {
     [NS.rdf('type')]: [
       new NamedNode('http://www.w3.org/ns/iana/media-types/text/n3#Resource'),
       new NamedNode('http://www.w3.org/2007/ont/link#Document'),
-      NS.argu('GuestUserActor'),
+      NS.argu('GuestUser'),
       new NamedNode('http://www.w3.org/2007/ont/link#RDFDocument'),
     ],
     [NS.argu('actorType')]: new Literal('GuestUser'),

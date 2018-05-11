@@ -11,7 +11,6 @@ import Action from './Action/index';
 import Argument from './Argument/index';
 import EntryPoint from './EntryPoint';
 import Error from './Error';
-import GuestUserActor from './GuestUserActor';
 import Forum from './Forum';
 import ImageObject from './ImageObject';
 import InfiniteCollection from './InfiniteCollection';
@@ -28,7 +27,7 @@ import Person from './Person';
 // import './Question';
 import SeqComp from './Seq';
 import SubMenu from './SubMenu';
-import UserActor from './UserActor';
+import User from './User';
 import Vote from './Vote';
 // import './VoteCompareCells';
 // import './VoteCompareRows';
@@ -46,7 +45,6 @@ LRS.registerAll(
   EntryPoint,
   ...Error,
   Forum,
-  GuestUserActor,
   ...ImageObject,
   ...InfiniteCollection,
   ...Loading,
@@ -59,7 +57,7 @@ LRS.registerAll(
   ...RDFSClass,
   SeqComp,
   ...SubMenu,
-  ...UserActor,
+  ...User,
   ...Vote,
   ...VoteEvent,
   Widget
