@@ -11,7 +11,7 @@ const initialState = new Map({
   resource: undefined,
 });
 
-const sideBars = handleActions({
+const popup = handleActions({
   [SET_POPUP_RESOURCE]: (state, { payload }) => new Map({
     location: payload.location,
     resource: payload.resource,
@@ -19,4 +19,4 @@ const sideBars = handleActions({
   [UNSET_POPUP_RESOURCE]: state => state.set('resource', undefined).set('location', {}),
 }, initialState);
 
-export default sideBars;
+export default popup;
