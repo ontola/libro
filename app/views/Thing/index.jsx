@@ -193,8 +193,8 @@ export default [
     NS.argu('parent')
   ),
   LinkedRenderStore.registerRenderer(
-    link([NS.schema('name')])(({ name }) => (
-      <LDLink data-test="Thing-parent">
+    link([NS.schema('name')])(({ name, theme }) => (
+      <LDLink data-test="Thing-parent" theme={theme}>
         <Detail text={name.value} />
       </LDLink>
     )),

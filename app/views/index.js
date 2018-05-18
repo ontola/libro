@@ -4,6 +4,7 @@ import LRS from '../helpers/LinkedRenderStore';
  * This document is purely for including all the views into the code.
  * Please properly include each file when access to the code is needed.
  */
+import Activity from './Activity';
 import Thing from './Thing';
 import Collection from './Collection';
 import Comment from './Comment';
@@ -37,6 +38,7 @@ import VoteEvent from './VoteEvent';
 import Widget from './Widget';
 
 LRS.registerAll(
+  ...Activity,
   ...Thing,
   ...Action,
   ...Argument,
