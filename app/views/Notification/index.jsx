@@ -1,5 +1,9 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { Property } from 'link-redux';
+import {
+  link,
+  linkType,
+  Property,
+} from 'link-redux';
 import React from 'react';
 
 import {
@@ -15,26 +19,41 @@ import ReadAction from './properties/readAction';
 import Target from './properties/target';
 import Unread from './properties/unread';
 
-const Notification = () => (
-  <div data-test="Notification-notification" style={{ position: 'relative' }}>
-    <Card>
-      <Property label={NS.argu('unread')} />
-      <CardContent>
-        <Property label={NS.schema('target')}>
-          <Property label={NS.schema('creator')} />
-          <div style={{ width: '100%' }}>
-            <Property label={NS.schema('name')} />
-            <Property label={NS.schema('dateCreated')} style={{ display: 'block' }} />
-          </div>
-        </Property>
-      </CardContent>
-    </Card>
-  </div>
-);
+const propTypes = {
+  target: linkType,
+};
+
+const Notification = ({ target }) => {
+  let content = <Property label={NS.schema('name')} />;
+  if (target) {
+    content = (
+      <Property label={NS.schema('target')}>
+        <Property label={NS.schema('creator')} />
+        <div style={{ width: '100%' }}>
+          <Property label={NS.schema('name')} />
+          <Property label={NS.schema('dateCreated')} style={{ display: 'block' }} />
+        </div>
+      </Property>
+    );
+  }
+
+  return (
+    <div data-test="Notification-notification" style={{ position: 'relative' }}>
+      <Card>
+        <Property label={NS.argu('unread')} />
+        <CardContent>
+          {content}
+        </CardContent>
+      </Card>
+    </div>
+  );
+};
+
+Notification.propTypes = propTypes;
 
 export default [
   LinkedRenderStore.registerRenderer(
-    Notification,
+    link([NS.schema('name'), NS.schema('target')])(Notification),
     NS.argu('Notification'),
     RENDER_CLASS_NAME,
     [
