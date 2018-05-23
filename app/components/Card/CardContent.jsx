@@ -12,6 +12,7 @@ const defaultProps = {
 const propTypes = {
   alignEnd: PropTypes.bool,
   children: PropTypes.node,
+  endSpacing: PropTypes.bool,
   noSpacing: PropTypes.bool,
 };
 
@@ -22,6 +23,7 @@ const propTypes = {
 const CardContent = ({
   alignEnd,
   children,
+  endSpacing,
   noSpacing,
 }) => {
   if (typeof children === 'undefined') {
@@ -31,6 +33,7 @@ const CardContent = ({
   const classes = classNames({
     CardContent: true,
     'CardContent--align-end': alignEnd,
+    'CardContent--end-spacing': endSpacing,
     'CardContent--no-spacing': noSpacing,
   });
 

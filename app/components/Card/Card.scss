@@ -76,6 +76,10 @@
   &--align-end {
     align-self: flex-end;
   }
+
+  &--end-spacing {
+    padding-bottom: unit('small');
+  }
 }
 
 .CardActions {
