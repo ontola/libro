@@ -35,6 +35,13 @@
   }
 }
 
+a {
+  &.Button {
+    align-items: center;
+    display: flex;
+  }
+}
+
 .Button--grow {
   flex-grow: 1;
 }
@@ -88,6 +95,14 @@
   }
 }
 
+.Button--submit {
+  background-color: color('green');
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  color: color('white');
+  padding: 0 1em;
+}
 
 .Button--subtle {
   background-color: color('grey', 'light');

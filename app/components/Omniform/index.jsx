@@ -129,6 +129,7 @@ class Omniform extends React.Component {
               disabled={invalid}
               icon="send"
               loading={submitting}
+              theme="submit"
               type="submit"
             >
               Opslaan

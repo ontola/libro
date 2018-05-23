@@ -8,13 +8,14 @@ import LinkDuo from '../LinkDuo';
 import './Button.scss';
 
 const buttonThemes = [
-  'default',
+  'as-card',
   'box',
+  'card--big',
+  'default',
+  'pagination',
+  'submit',
   'subtle',
   'transparant',
-  'pagination',
-  'as-card',
-  'card--big',
 ];
 
 const propTypes = {
