@@ -14,7 +14,7 @@ import {
 } from '../../state/omniform';
 import { NS } from '../../helpers/LinkedRenderStore';
 import Button from '../Button';
-import { FormFooter } from '../Form';
+import { FormFooter, FormFooterRight } from '../Form';
 
 import './Omniform.scss';
 
@@ -123,16 +123,17 @@ class Omniform extends React.Component {
         <FormFooter>
           <LinkedResourceContainer subject={NS.app('c_a')} />
           {this.types()}
-          <Button
-            plain
-            className="Omniform__submit"
-            disabled={invalid}
-            icon="send"
-            loading={submitting}
-            type="submit"
-          >
-            Opslaan
-          </Button>
+          <FormFooterRight>
+            <Button
+              plain
+              disabled={invalid}
+              icon="send"
+              loading={submitting}
+              type="submit"
+            >
+              Opslaan
+            </Button>
+          </FormFooterRight>
         </FormFooter>
       </form>
     );

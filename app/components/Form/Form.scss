@@ -23,4 +23,13 @@
     margin-right: 1.2em;
     width: 2em;
   }
+
+  &--right {
+    display: flex;
+    margin-left: auto;
+
+    & > :last-child {
+      border-bottom-right-radius: $border-radius-base;
+    }
+  }
 }
