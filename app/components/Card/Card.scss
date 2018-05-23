@@ -53,6 +53,10 @@
   &--shine {
     animation: highlight 1s 1;
   }
+
+  &--warn {
+    border: 2px solid color('red', 'dark');
+  }
 }
 
 .CardDivider {

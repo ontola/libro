@@ -11,11 +11,13 @@ const propTypes = {
   children: PropTypes.node.isRequired,
   fixed: PropTypes.bool,
   shine: PropTypes.bool,
+  warn: PropTypes.bool,
 };
 
 const defaultProps = {
   fixed: false,
   shine: false,
+  warn: false,
 };
 
 /**
@@ -34,6 +36,7 @@ class Card extends TopologyProvider {
       Card: true,
       'Card--fixed': this.props.fixed,
       'Card--shine': this.props.shine,
+      'Card--warn': this.props.warn,
     });
 
     return (
