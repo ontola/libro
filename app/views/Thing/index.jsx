@@ -49,6 +49,7 @@ const ThingPage = () => (
     <Property label={NS.argu('coverPhoto')} />
     <Container>
       <Property label={NS.schema('isPartOf')} />
+      <Property label={NS.argu('trashedAt')} />
       <CardMain data-test="Thing-thing">
         <CardContent noSpacing>
           <CardMenuFloater
