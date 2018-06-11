@@ -45,7 +45,7 @@ describeView('MenuItem', components, resources, resource, () => {
   as(NS.argu('sidebar'), () => {
     describe('with children', () => {
       it('renders the children', () => {
-        expect(subject.find(marker('menuItems', 'collapsible'))).toBePresent();
+        expect(subject.find(marker('menuItems', 'collapsible'))).toExist();
       });
     });
 
@@ -53,7 +53,7 @@ describeView('MenuItem', components, resources, resource, () => {
       set('s', () => showResource);
 
       it('renders the label', () => {
-        expect(subject.find(marker('MenuItemLabel'))).toBePresent();
+        expect(subject.find(marker('MenuItemLabel'))).toExist();
       });
     });
   });

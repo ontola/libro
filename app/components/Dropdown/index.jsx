@@ -38,6 +38,7 @@ class Dropdown extends Component {
       openState: false,
       renderLeft: false,
     };
+    this.calculateRenderLeft = this.calculateRenderLeft.bind(this);
     this.handleResize = this.handleResize.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.onMouseEnter = this.onMouseEnter.bind(this);
@@ -66,7 +67,7 @@ class Dropdown extends Component {
     });
     /* eslint-enable */
     window.addEventListener('resize', this.handleResize);
-    this.calculateRenderLeft();
+    window.requestAnimationFrame(this.calculateRenderLeft);
   }
 
   componentWillUnmount() {

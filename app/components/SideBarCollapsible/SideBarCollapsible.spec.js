@@ -40,7 +40,7 @@ describe('SideBarCollapsible package', () => {
 
       it('should mount children', () => {
         expect(subject.find(CollapsibleContainer)).toHaveProp('alwaysMountChildren', true);
-        expect(subject.find(marker('children'))).toBePresent();
+        expect(subject.find(marker('children'))).toExist();
       });
     });
 

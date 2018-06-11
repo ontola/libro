@@ -1,8 +1,8 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   subjectType,
-  lowLevel,
   Property,
+  withLinkCtx,
 } from 'link-redux';
 import React, { PureComponent } from 'react';
 
@@ -40,7 +40,7 @@ class SubMenuSideBar extends PureComponent {
 
 SubMenuSideBar.propTypes = propTypes;
 
-const SubMenuSideBarComplete = lowLevel.linkedSubject(SubMenuSideBar);
+const SubMenuSideBarComplete = withLinkCtx(SubMenuSideBar);
 
 export default [
   LinkedRenderStore.registerRenderer(

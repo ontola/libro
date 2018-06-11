@@ -1,15 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Field } from 'redux-form/immutable';
 
 import {
   Button,
   CardLink,
-  HiddenFormField,
   FormField,
-  Input,
 } from '../../components';
-import validators from '../../helpers/validators';
+import validators, { combineValidators } from '../../helpers/validators';
 import { STEPS } from '../../state/form/reducer';
 
 const propTypes = {
@@ -27,19 +24,17 @@ const propTypes = {
 class SignInFormBase extends React.PureComponent {
   static emailField() {
     return (
-      <Field
+      <FormField
         autoComplete="off"
-        component={FormField}
-        element="input"
-        id="SignInEmail"
+        field={btoa('email')}
+        key="email"
         label="Uw e-mailadres"
-        name="email"
         placeholder="email@example.com"
         type="email"
-        validate={[
+        validate={combineValidators(
           validators.required,
-          validators.isEmail,
-        ]}
+          validators.isEmail
+        )}
         variant="material"
       />
     );
@@ -49,20 +44,17 @@ class SignInFormBase extends React.PureComponent {
     return (
       <React.Fragment>
         {this.emailField()}
-        <Field
+        <FormField
           autoComplete="off"
-          component={FormField}
-          element="input"
-          id="SignInPassword"
+          field={btoa('password')}
+          key="password"
           label="Jouw wachtwoord"
-          name="password"
           type="password"
           variant="material"
         />
-        <Field
-          component={HiddenFormField}
-          id="r"
-          name="r"
+        <FormField
+          field={btoa('r')}
+          type="hidden"
         />
       </React.Fragment>
     );
@@ -72,13 +64,13 @@ class SignInFormBase extends React.PureComponent {
     return (
       <React.Fragment>
         {this.emailField()}
-        <Field
-          hiddenValue
-          component={Input}
-          element="input"
-          id="SignUpTerms"
-          name="acceptTerms"
+        <FormField
+          defaultValue="true"
+          field={btoa('acceptTerms')}
+          initialValue="true"
+          key="acceptTerms"
           type="hidden"
+          value="true"
         />
         <p>Door je te registreren ga je akkoord met de
           <CardLink to="/policy" > algemene voorwaarden </CardLink>
@@ -110,18 +102,15 @@ class SignInFormBase extends React.PureComponent {
       <React.Fragment>
         <p>{this.props.reason}</p>
         {this.constructor.emailField()}
-        <Field
-          component={Input}
-          element="input"
-          hiddenValue=""
-          id="SignInPassword"
-          name="password"
+        <FormField
+          field={btoa('password')}
+          key="password"
           type="hidden"
         />
-        <Field
-          component={HiddenFormField}
-          id="r"
-          name="r"
+        <FormField
+          field={btoa('r')}
+          key="r"
+          type="hidden"
         />
       </React.Fragment>
     );

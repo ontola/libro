@@ -1,11 +1,9 @@
 /* globals $r */
 /* eslint no-console: 0 */
 
+import { ACCEPTED, BAD_REQUEST } from 'http-status-codes';
 import { allRDFValues, defaultNS } from 'link-lib';
-import {
-  LinkedResourceContainer,
-  getLinkedObjectClass,
-} from 'link-redux';
+import { getLinkedObjectClass } from 'link-redux';
 import rdf from 'rdflib';
 
 import { NS } from './LinkedRenderStore';
@@ -85,9 +83,9 @@ class LinkDevTools {
    * @return {LinkedRenderStore|undefined} Resolved LinkedRenderStore if any.
    */
   getLRS(comp = this.$r) {
-    const lrs = comp && comp.context && comp.context.linkedRenderStore;
+    const lrs = comp && comp.props && comp.props.lrs;
     if (typeof lrs === 'undefined') {
-      console.warn('Component `linkedRenderStore` is undefined, recovering by using global (you should still fix this)');
+      console.warn('Component `lrs` prop is undefined, recovering by using global (you should still fix this)');
     }
     return lrs || window.LRS;
   }
@@ -276,7 +274,7 @@ class LinkDevTools {
   get topology() {
     return this.$r.props.topology === null
       ? undefined
-      : (this.$r.props.topology || this.$r.context.topology);
+      : (this.$r.props.topology || this.$r.props.topologyCtx);
   }
 
   get propertyRenderers() {
@@ -297,7 +295,8 @@ class LinkDevTools {
       console.debug('Detected forceRender, but no children were given, continuing.');
     }
     const compData = comp.data();
-    if (LinkedResourceContainer.isLoading(comp.props.subject)) {
+    const status = lrs.getStatus(comp.props.subject);
+    if (status === ACCEPTED) {
       const cause = compData === 'undefined' ? 'Component has no data' : 'Component has too little data';
       console.info(cause);
       console.debug('Resolved data;', compData);
@@ -307,8 +306,7 @@ class LinkDevTools {
       }
       return console.info('No loading component was resolved; rendering `null`');
     }
-    const err = (comp.state && comp.state.hasCaughtError) ||
-      LinkedResourceContainer.hasErrors(lrs.api.getStatus(comp.props.subject));
+    const err = (comp.state && comp.state.hasCaughtError) || status >= BAD_REQUEST;
     if (err) {
       console.info('The object is in error state');
       console.debug(this.getPropArr(defaultNS.http('statusCodeValue')));
@@ -369,10 +367,7 @@ class LinkDevTools {
       lrs.expandProperty(comp.props.label),
       this.topology
     );
-    const propOrconnectedPropCtx = comp.context.linkedRenderStore
-      ? comp.context
-      : comp.__reactInternalMemoizedUnmaskedChildContext;// eslint-disable-line no-underscore-dangle
-    const klass = getLinkedObjectClass(comp.props, propOrconnectedPropCtx);
+    const klass = getLinkedObjectClass(comp.props);
     if (typeof klass !== 'undefined') {
       console.info(`Component will be rendered with matched class '${klass.name}'`);
       return console.debug('Matched component class reference:', klass);
@@ -455,15 +450,15 @@ class LinkDevTools {
     return undefined;
   }
 
-  getLinkedObjectProperty(property, subject, linkedRenderStore) {
-    return (linkedRenderStore || this.getLRS()).getResourceProperty(
+  getLinkedObjectProperty(property, subject, lrs) {
+    return (lrs || this.getLRS()).getResourceProperty(
       property,
       subject
     );
   }
 
-  getLinkedObjectPropertyRaw(subject, property, linkedRenderStore) {
-    return (linkedRenderStore || this.getLRS()).getResourcePropertyRaw(
+  getLinkedObjectPropertyRaw(subject, property, lrs) {
+    return (lrs || this.getLRS()).getResourcePropertyRaw(
       subject,
       property
     );

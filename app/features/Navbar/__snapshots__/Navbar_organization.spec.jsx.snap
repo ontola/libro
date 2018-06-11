@@ -5,11 +5,10 @@ exports[`Navbar organization as argu:sidebar renders the correct representation 
   className="SideBarLink"
 >
   <a
-    aria-current={false}
+    aria-current={null}
     className="SideBarLink__link"
     href="/o/gemeente_utrecht/settings"
     onClick={[Function]}
-    style={undefined}
   >
     <div
       className="SideBarLink__icon"

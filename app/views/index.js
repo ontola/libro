@@ -7,6 +7,7 @@ import LRS from '../helpers/LinkedRenderStore';
 import Activity from './Activity';
 import Thing from './Thing';
 import Collection from './Collection';
+import CollectionPage from './CollectionPage';
 import Comment from './Comment';
 import Action from './Action/index';
 import Argument from './Argument/index';
@@ -14,7 +15,7 @@ import EntryPoint from './EntryPoint';
 import Error from './Error';
 import Forum from './Forum';
 import ImageObject from './ImageObject';
-import InfiniteCollection from './InfiniteCollection';
+import InfiniteCollectionView from './InfiniteCollectionView';
 import RDFSClass from './RDFSClass';
 // import './LinkedRecord';
 import Loading from './Loading';
@@ -27,6 +28,7 @@ import Organization from './Organization';
 import Person from './Person';
 // import './Question';
 import SeqComp from './Seq';
+import Shape from './Shape';
 import SubMenu from './SubMenu';
 import User from './User';
 import Vote from './Vote';
@@ -43,12 +45,13 @@ LRS.registerAll(
   ...Action,
   ...Argument,
   ...Collection,
+  ...CollectionPage,
   ...Comment,
-  EntryPoint,
+  ...EntryPoint,
   ...Error,
   Forum,
   ...ImageObject,
-  ...InfiniteCollection,
+  ...InfiniteCollectionView,
   ...Loading,
   ...MenuItem,
   ...MenuSection,
@@ -58,6 +61,7 @@ LRS.registerAll(
   ...Person,
   ...RDFSClass,
   SeqComp,
+  ...Shape,
   ...SubMenu,
   ...User,
   ...Vote,

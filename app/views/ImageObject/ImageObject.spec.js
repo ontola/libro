@@ -20,7 +20,7 @@ const resources = {
 
 describeView('ImageObject', components, resources, resource, () => {
   it('renders a cover', () => {
-    expect(subject.find(marker('cover'))).toBePresent();
+    expect(subject.find(marker('cover'))).toExist();
   });
 
   it('passed the Y position', () => {
@@ -33,50 +33,50 @@ describeView('ImageObject', components, resources, resource, () => {
 
   as(NS.argu('card'), () => {
     it('renders a thumbnail', () => {
-      expect(subject.find(marker('cover'))).toBePresent();
+      expect(subject.find(marker('cover'))).toExist();
     });
   });
 
   as(NS.argu('cardFixed'), () => {
     it('renders a thumbnail', () => {
-      expect(subject.find(marker('cover'))).toBePresent();
+      expect(subject.find(marker('cover'))).toExist();
     });
   });
 
   as(NS.argu('cardMain'), () => {
     it('renders a thumbnail', () => {
-      expect(subject.find(marker('cover'))).toBePresent();
+      expect(subject.find(marker('cover'))).toExist();
     });
   });
 
   as(NS.argu('collection'), () => {
     it('renders a thumbnail', () => {
-      expect(subject.find(marker('ImageObjectThumbnail'))).toBePresent();
+      expect(subject.find(marker('ImageObjectThumbnail'))).toExist();
     });
   });
 
   as(NS.argu('detail'), () => {
     it('renders a thumbnail', () => {
-      expect(subject.find(marker('ImageObjectThumbnail'))).toBePresent();
+      expect(subject.find(marker('ImageObjectThumbnail'))).toExist();
     });
   });
 
   as(NS.argu('sidebar'), () => {
     it('renders a thumbnail', () => {
-      expect(subject.find(marker('sidebar'))).toBePresent();
-      expect(subject.find(marker('ImageObjectThumbnail'))).toBePresent();
+      expect(subject.find(marker('sidebar'))).toExist();
+      expect(subject.find(marker('ImageObjectThumbnail'))).toExist();
     });
   });
 
   as(NS.argu('voteBubble'), () => {
     it('renders a thumbnail', () => {
-      expect(subject.find(marker('ImageObjectThumbnail'))).toBePresent();
+      expect(subject.find(marker('ImageObjectThumbnail'))).toExist();
     });
   });
 
   as(NS.argu('sidebar'), () => {
     it('renders a thumbnail', () => {
-      expect(subject.find(marker('ImageObjectThumbnail'))).toBePresent();
+      expect(subject.find(marker('ImageObjectThumbnail'))).toExist();
     });
   });
 });

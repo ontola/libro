@@ -43,11 +43,11 @@ const resources = {
 describeView('MenuSection', components, resources, resource, () => {
   as(NS.argu('sidebar'), () => {
     it('renders a MenuSection', () => {
-      expect(subject.find(marker('menu-section'))).toBePresent();
+      expect(subject.find(marker('menu-section'))).toExist();
     });
 
     it('renders the label', () => {
-      expect(subject.find(marker('MenuSectionLabel'))).toBePresent();
+      expect(subject.find(marker('MenuSectionLabel'))).toExist();
     });
   });
 });

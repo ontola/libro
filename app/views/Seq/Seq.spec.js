@@ -1,13 +1,11 @@
 import { memoizedNamespace } from 'link-lib';
-import { Type } from 'link-redux';
-import { Literal, NamedNode } from 'rdflib';
-import React from 'react';
+import { Literal, BlankNode } from 'rdflib';
 
 import { NS } from '../../../tests/index';
 
-import components, { Seq } from './index';
+import components from './index';
 
-const resource = new NamedNode('_:g70120412320900');
+const resource = new BlankNode('g70120412320900');
 
 const testNS = memoizedNamespace('https://argu.dev/');
 
@@ -62,24 +60,18 @@ const resources = {
 const children = Object.keys(resources[resource]).length - 1;
 
 describeView('Seq', components, resources, resource, () => {
-  set('ch', () => React.createElement(Type, { label: new NamedNode('http://label.required.bugfix') }));
-
-  it('renders a sequence fragment', () => {
-    expect(subject.find(Seq)).toMatchSnapshot();
-  });
-
   it('renders the children', () => {
-    expect(subject.find(Seq).children()).toHaveLength(children);
+    expect(subject.find('Seq').children()).toHaveLength(children);
   });
 
   describe('#sequences', () => {
     it('filters its data', () => {
-      const result = subject.find(Seq).instance().sequences();
+      const result = subject.find('Seq').instance().sequences();
       expect(result).toHaveLength(children);
     });
 
     it('orders its data', () => {
-      const result = subject.find(Seq).instance().sequences();
+      const result = subject.find('Seq').instance().sequences();
       for (let i = 0; i < children; i++) {
         expect(result[i].predicate.value).toEqual(NS.rdf(`_${i}`).value);
       }

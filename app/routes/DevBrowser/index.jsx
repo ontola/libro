@@ -1,5 +1,5 @@
 import { namedNodeByIRI } from 'link-lib';
-import { lrsType } from 'link-redux';
+import { lrsType, withLinkCtx } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
@@ -9,10 +9,6 @@ import { NS, allTopologies, getTopologyNumber } from '../../helpers/LinkedRender
 
 import TopologyWrapper from './TopologyWrapper';
 
-const contextTypes = {
-  linkedRenderStore: lrsType,
-};
-
 const propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
@@ -21,6 +17,7 @@ const propTypes = {
     hash: PropTypes.string.isRequired,
     search: PropTypes.string.isRequired,
   }).isRequired,
+  lrs: lrsType,
 };
 
 const specialTopologies = [
@@ -84,8 +81,7 @@ class DevBrowser extends Component {
       selectedTopology,
     } = this.getPropsFromURL();
 
-    const resourcesKeys = Object.keys(this.context
-      .linkedRenderStore.store.store.subjectIndex);
+    const resourcesKeys = Object.keys(this.props.lrs.store.store.subjectIndex);
 
     return (
       <div data-marker="DevBrowser">
@@ -169,7 +165,6 @@ class DevBrowser extends Component {
   }
 }
 
-DevBrowser.contextTypes = contextTypes;
 DevBrowser.propTypes = propTypes;
 
-export default withRouter(DevBrowser);
+export default withRouter(withLinkCtx(DevBrowser));

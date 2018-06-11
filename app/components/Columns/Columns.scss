@@ -21,13 +21,6 @@
   }
 }
 
-.Column {
-  box-sizing: border-box;
-  flex-grow: 1;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 @each $size, $margin in $sizes-margin {
   .Columns--gutter-#{$size} {
     margin-left: -$margin / 2;

@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 
+import Column from '../Column';
 import { sizes } from '../shared/config';
 
 import './Columns.scss';
@@ -39,16 +40,13 @@ const Columns = ({
   });
 
   const normChildren = Array.isArray(children) ? children : [children];
-  const renderColumns = normChildren.map(column => (
-    <div
-      className="Column"
-      key={`col-${column.key}`}
-      style={{
-        flexBasis,
-      }}
+  const renderColumns = normChildren.map(child => (
+    <Column
+      flexBasis={flexBasis}
+      key={`col-${child.key}`}
     >
-      {column}
-    </div>
+      {child}
+    </Column>
   ));
 
   return (

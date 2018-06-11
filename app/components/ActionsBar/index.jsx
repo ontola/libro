@@ -25,11 +25,11 @@ class ActionsBar extends TopologyProvider {
       'ActionsBar--small': this.props.small,
     });
 
-    return (
+    return this.wrap((
       <div className={classes}>
         {this.props.children}
       </div>
-    );
+    ));
   }
 }
 

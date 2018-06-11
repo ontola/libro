@@ -10,7 +10,7 @@ const initialState = new Map({
     actorType: 'GuestUser',
     primaryEmail: undefined,
   }),
-  [SET_ORGANIZATION]: NS.app('o/argu'),
+  [SET_ORGANIZATION]: NS.app('argu'),
 });
 
 const collapsible = handleActions({

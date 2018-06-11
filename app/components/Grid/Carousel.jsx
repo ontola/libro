@@ -119,7 +119,7 @@ class Grid extends TopologyProvider {
       );
     }
 
-    return (
+    return this.wrap((
       <div
         className="Carousel__wrapper"
         onScroll={this.handleScroll}
@@ -133,7 +133,7 @@ class Grid extends TopologyProvider {
         </div>
         {rightButton}
       </div>
-    );
+    ));
   }
 }
 

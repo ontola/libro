@@ -23,6 +23,7 @@ LRS.api.setAcceptForHost(FRONTEND_URL, 'application/n-quads');
 LRS.namespaces.app = memoizedNamespace(FRONTEND_URL.endsWith('/') ? FRONTEND_URL : `${FRONTEND_URL}/`);
 LRS.namespaces.aod = memoizedNamespace('https://argu.co/ns/od#');
 LRS.namespaces.council = memoizedNamespace('https://argu.co/ns/0.1/gov/council#');
+LRS.namespaces.sh = memoizedNamespace('http://www.w3.org/ns/shacl#');
 
 export const NS = LRS.namespaces;
 
@@ -43,6 +44,7 @@ export const allTopologies = [
   NS.argu('formFooter'),
   NS.argu('header'),
   NS.argu('inline'),
+  NS.argu('omniformFields'),
   NS.argu('parent'),
   NS.argu('popup'),
   NS.argu('sidebar'),
@@ -180,6 +182,14 @@ const ontologicalData = [
   new Statement(NS.schema('MediaObject'), NS.schema('description'), new Literal('Een bijlage is een bestand dat bij een document gevoegd is om meer informatie te verschaffen.', languages.nl)),
   new Statement(NS.schema('MediaObject'), NS.schema('image'), new NamedNode('http://fontawesome.io/icon/file')),
 
+  new Statement(NS.schema('Action'), NS.rdf('type'), NS.rdfs('Class')),
+
+  new Statement(NS.schema('CreateAction'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.schema('CreateAction'), NS.rdfs('subClassOf'), NS.schema('Action')),
+
+  new Statement(NS.schema('UpdateAction'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.schema('UpdateAction'), NS.rdfs('subClassOf'), NS.schema('Action')),
+
   new Statement(NS.argu('CreateAction'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.argu('CreateAction'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
 
@@ -203,6 +213,15 @@ const ontologicalData = [
 
   new Statement(NS.argu('CreateVote'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.argu('CreateVote'), NS.rdfs('subClassOf'), NS.argu('CreateAction')),
+
+  new Statement(NS.argu('TrashAction'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('TrashAction'), NS.rdfs('subClassOf'), NS.schema('Action')),
+
+  new Statement(NS.argu('UntrashAction'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('UntrashAction'), NS.rdfs('subClassOf'), NS.schema('Action')),
+
+  new Statement(NS.argu('InfiniteCollectionView'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('InfiniteCollectionView'), NS.rdfs('subClassOf'), NS.as('CollectionPage')),
 ];
 
 LRS.addOntologySchematics(ontologicalData);

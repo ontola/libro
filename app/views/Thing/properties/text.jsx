@@ -1,5 +1,10 @@
 import LinkedRenderStore from 'link-lib';
-import { linkedPropType, lowLevel, subjectType, PropertyBase } from 'link-redux';
+import {
+  linkedPropType,
+  subjectType,
+  PropertyBase,
+  withLinkCtx,
+} from 'link-redux';
 import React from 'react';
 
 import { CollapseText, Markdown, MarkdownFixedPreview } from '../../../components';
@@ -53,7 +58,7 @@ export default [
     ]
   ),
   LinkedRenderStore.registerRenderer(
-    lowLevel.linkedSubject(TextCollapsed),
+    withLinkCtx(TextCollapsed),
     NS.schema('Thing'),
     NS.schema('text'),
     [
@@ -63,12 +68,10 @@ export default [
     ]
   ),
   LinkedRenderStore.registerRenderer(
-    lowLevel.linkedSubject(TextInline),
+    TextInline,
     NS.schema('Thing'),
     NS.schema('text'),
-    [
-      NS.argu('section'),
-    ]
+    NS.argu('section')
   ),
   LinkedRenderStore.registerRenderer(
     TextCutoff,

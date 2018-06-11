@@ -21,8 +21,8 @@ argUnit(Button, () => {
   });
 
   it('should render a button', () => {
-    expect(subject.find(marker('link'))).not.toBePresent();
-    expect(subject.find(marker('button'))).toBePresent();
+    expect(subject.find(marker('link'))).not.toExist();
+    expect(subject.find(marker('button'))).toExist();
   });
 
   describe('with custom class', () => {
@@ -37,8 +37,8 @@ argUnit(Button, () => {
     setProp('href', () => link);
 
     it('should render a link', () => {
-      expect(subject.find(marker('link'))).toBePresent();
-      expect(subject.find(marker('button'))).not.toBePresent();
+      expect(subject.find(marker('link'))).toExist();
+      expect(subject.find(marker('button'))).not.toExist();
     });
 
     it('should point to the link', () => {

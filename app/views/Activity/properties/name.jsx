@@ -39,6 +39,7 @@ class ActivityName extends PropertyBase {
 
 const NamePredicates = [
   NS.schema('name'),
+  NS.as('name'),
   NS.rdfs('label'),
   NS.foaf('name'),
 ];

@@ -21,7 +21,7 @@ const Comment = ({ highlighted }) => (
       </DetailsBar>
       <Property label={NS.schema('text')} />
       <ActionsBar small>
-        <Property label={NS.hydra('operation')} />
+        <Property label={NS.schema('potentialAction')} />
       </ActionsBar>
     </CardContent>
     <CardAppendix>
@@ -33,8 +33,8 @@ const Comment = ({ highlighted }) => (
 Comment.propTypes = hightlightPropTypes;
 
 const CommentSection = ({ highlighted }) => (
-  <div className={highlighted ? 'Card--shine' : ''} style={{ margin: '.2em' }}>
-    <Property label={NS.schema('creator')} />&#9;<Property label={NS.schema('text')} />
+  <div className={highlighted ? 'Card--shine' : ''} style={{ padding: '.3rem 1.3rem' }}>
+    <Property label={NS.schema('creator')} topology={NS.argu('section')} />&#9;<Property label={NS.schema('text')} topology={NS.argu('section')} />
   </div>
 );
 
@@ -55,6 +55,6 @@ export default [
     connectHighlighting(CommentSection),
     [NS.schema('Comment'), NS.argu('Comment')],
     RENDER_CLASS_NAME,
-    NS.argu('section')
+    [NS.argu('section'), NS.argu('cardRow')]
   ),
 ];

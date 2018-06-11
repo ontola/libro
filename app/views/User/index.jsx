@@ -1,5 +1,10 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { LinkedResourceContainer, Property, lowLevel, subjectType } from 'link-redux';
+import {
+  LinkedResourceContainer,
+  Property,
+  subjectType,
+  withLinkCtx,
+} from 'link-redux';
 import React from 'react';
 
 import { SideBarCollapsible } from '../../components';
@@ -35,13 +40,13 @@ const ActorTypes = [...RegisteredTypes, NS.argu('GuestUser')];
 
 export default [
   LinkedRenderStore.registerRenderer(
-    lowLevel.linkedSubject(CurrentActorSidebar),
+    withLinkCtx(CurrentActorSidebar),
     RegisteredTypes,
     RENDER_CLASS_NAME,
     NS.argu('sidebar')
   ),
   LinkedRenderStore.registerRenderer(
-    lowLevel.linkedSubject(CurrentActorFooter),
+    withLinkCtx(CurrentActorFooter),
     ActorTypes,
     RENDER_CLASS_NAME,
     NS.argu('formFooter')

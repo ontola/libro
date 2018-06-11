@@ -32,11 +32,11 @@ class WidgetTopology extends TopologyProvider {
       [`Widget--width-${width}`]: width,
     });
 
-    return (
+    return this.wrap((
       <div className={classes}>
         {this.props.children}
       </div>
-    );
+    ));
   }
 }
 

@@ -38,11 +38,11 @@ class Container extends TopologyProvider {
       [`Container--spacing-${this.props.spacing}`]: this.props.spacing,
     });
 
-    return (
+    return this.wrap((
       <div className={containerClassName}>
         {this.props.children}
       </div>
-    );
+    ));
   }
 }
 

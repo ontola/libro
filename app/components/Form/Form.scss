@@ -1,35 +1,49 @@
 @import '../shared/config';
 
-.Form__footer {
-  background-color: color('grey', 'xx-light');
-  border-bottom-left-radius: $border-radius-base;
-  border-bottom-right-radius: $border-radius-base;
-  border-top: solid 1px color('grey', 'x-light');
-  display: flex;
-  flex-direction: row;
-
-  &-preview-text {
-    align-self: center;
-    color: color('grey');
+.Form {
+  fieldset {
+    color: color('grey', 'mid-dark');
+    font-size: font-size('large');
+    font-weight: bold;
   }
 
-  &-image {
-    background-color: color('grey', 'mid-light');
-    background-size: cover;
-    border-radius: 999px;
-    height: 2em;
-    align-self: center;
-    margin: .4em;
-    margin-right: 1.2em;
-    width: 2em;
+  hr {
+    background-color: color('grey', 'x-light');
+    border: 0;
+    height: 1px;
   }
 
-  &--right {
+  .Form__footer {
+    background-color: color('grey', 'xx-light');
+    border-bottom-left-radius: $border-radius-base;
+    border-bottom-right-radius: $border-radius-base;
+    border-top: solid 1px color('grey', 'x-light');
     display: flex;
-    margin-left: auto;
+    flex-direction: row;
 
-    & > :last-child {
-      border-bottom-right-radius: $border-radius-base;
+    &-preview-text {
+      align-self: center;
+      color: color('grey');
+    }
+
+    &-image {
+      background-color: color('grey', 'mid-light');
+      background-size: cover;
+      border-radius: 999px;
+      height: 2em;
+      align-self: center;
+      margin: .4em;
+      margin-right: 1.2em;
+      width: 2em;
+    }
+
+    &--right {
+      display: flex;
+      margin-left: auto;
+
+      & > :last-child {
+        border-bottom-right-radius: $border-radius-base;
+      }
     }
   }
 }

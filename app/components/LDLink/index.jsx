@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { lowLevel, subjectType } from 'link-redux';
+import { subjectType, withLinkCtx } from 'link-redux';
 
 import { retrievePath } from '../../helpers/iris';
 
@@ -26,6 +26,8 @@ const LDLink = ({
   subject,
   theme,
 }) => {
+  if (!subject) return 'LDLINK NO SUBJECT';
+
   const href = retrievePath(subject.value);
   return (
     <Link
@@ -40,4 +42,4 @@ const LDLink = ({
 LDLink.defaultProps = defaultProps;
 LDLink.propTypes = propTypes;
 
-export default lowLevel.linkedSubject(LDLink);
+export default withLinkCtx(LDLink);

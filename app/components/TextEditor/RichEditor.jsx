@@ -36,7 +36,7 @@ const styleMap = {
   },
 };
 
-// Removes the sidebar. All neccesary functionality is available through selecting text.
+// Removes the sidebar. All necessary functionality is available through selecting text.
 const mySideBar = () => null;
 
 class RichEditor extends PureComponent {
@@ -53,7 +53,7 @@ class RichEditor extends PureComponent {
     } = this.props;
 
     return (
-      <div>
+      <React.Fragment>
         <div className="Field__input">
           <MegadraftEditor
             customStyleMap={styleMap}
@@ -74,7 +74,7 @@ class RichEditor extends PureComponent {
         <div style={{ display: 'flex' }}>
           <ToggleButton id={id} />
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

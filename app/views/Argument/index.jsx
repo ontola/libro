@@ -25,13 +25,13 @@ const ArgumentContainer = ({ highlighted, votesProCount }) => (
       </DetailsBar>
       <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
       <ActionsBar>
-        <Property count={votesProCount} label={NS.hydra('operation')} />
+        <Property count={votesProCount} label={NS.schema('potentialAction')} />
       </ActionsBar>
     </CardContent>
     <CardAppendix>
       <Property label={NS.argu('voteableVoteEvent')} />
       <Property label={NS.schema('comments')} />
-      <Property forceRender clickToOpen={false} label={NS.app('omniform')} />
+      <Property clickToOpen forceRender label={NS.app('omniform')} />
     </CardAppendix>
   </Card>
 );

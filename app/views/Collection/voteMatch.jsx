@@ -39,8 +39,8 @@ class Motions extends PropertyBase {
 
 LinkedRenderStore.registerRenderer(
   Motions,
-  NS.argu('Collection'),
-  NS.argu('members'),
+  NS.as('Collection'),
+  NS.as('items'),
   NS.argu('voteMatch')
 );
 

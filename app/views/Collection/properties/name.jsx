@@ -2,13 +2,13 @@ import LinkedRenderStore from 'link-lib';
 import {
   PropertyBase,
   labelType,
-  lowLevel,
+  withLinkCtx,
 } from 'link-redux';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { Heading } from '../../../components';
-import { allTopologies, NS } from '../../../helpers/LinkedRenderStore';
+import { allTopologiesExcept, NS } from '../../../helpers/LinkedRenderStore';
 import { CollectionTypes } from '../types';
 
 const propTypes = {
@@ -33,8 +33,8 @@ class CollectionName extends PropertyBase {
 CollectionName.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
-  lowLevel.linkedSubject(lowLevel.linkedVersion(CollectionName)),
+  withLinkCtx(CollectionName),
   CollectionTypes,
-  NS.schema('name'),
-  allTopologies
+  NS.as('name'),
+  allTopologiesExcept(NS.argu('sidebar'))
 );

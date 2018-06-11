@@ -1,5 +1,5 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { LinkedResourceContainer, PropertyBase } from 'link-redux';
+import { LinkedResourceContainer, PropertyBase, withLinkCtx } from 'link-redux';
 import React from 'react';
 
 import { allTopologies, NS } from '../../helpers/LinkedRenderStore';
@@ -16,8 +16,8 @@ function numAsc(a, b) {
 export class Seq extends PropertyBase {
   sequences() {
     return this
-      .context
-      .linkedRenderStore
+      .props
+      .lrs
       .tryEntity(this.props.subject)
       .filter(s => s && s.predicate.value.match(filter) !== null)
       .sort(numAsc);
@@ -42,7 +42,7 @@ export class Seq extends PropertyBase {
 }
 
 export default LinkedRenderStore.registerRenderer(
-  Seq,
+  withLinkCtx(Seq),
   NS.rdf('Seq'),
   RENDER_CLASS_NAME,
   allTopologies

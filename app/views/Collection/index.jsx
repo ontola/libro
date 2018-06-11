@@ -1,103 +1,111 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   link,
-  linkType,
   LinkedResourceContainer,
   Property,
   PropertyBase,
-  subjectType,
   linkedPropType,
-  lowLevel,
+  withLinkCtx,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { CardRow } from '../../components';
+import { CardRow, Container } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { getPage } from '../../state/pagination/selectors';
 
+import FilteredCollections from './properties/filteredCollections';
 import First from './properties/first';
 import Member from './properties/member';
 import Name from './properties/name';
-import Views from './properties/views';
+import UnreadCount from './properties/unreadCount';
+import Pages from './properties/pages';
 import { CollectionTypes } from './types';
+import sidebar from './sidebar';
 import voteEvent from './voteEvent';
 
-const contextTypes = {
-  linkedRenderStore: PropTypes.object,
-};
-
-const propTypes = {
-  subject: subjectType,
-};
-
 const mvcPropTypes = {
-  members: subjectType,
-  totalCount: linkedPropType,
-  views: linkType,
+  totalItems: linkedPropType,
 };
 
-const viewsOrMembers = (views, members, topology) => (
-  <Property
-    forceRender
-    label={views.length > 0 ? NS.argu('views') : NS.argu('members')}
-    topology={topology}
-  />
-);
+function getCollection({ WrappingElement = 'div', renderWhenEmpty = true } = {}) {
+  class Collection extends PropertyBase {
+    pagination() {
+      const { defaultType, pages } = this.props;
+      if (defaultType && defaultType.value === 'infinite') {
+        const lastPage = pages && pages[pages.length - 1];
 
-class Collection extends PropertyBase {
-  pagination() {
-    const collectionIRI = this.getLinkedObjectProperty(NS.argu('parentView'));
-    return <Property collectionIRI={collectionIRI} label={NS.argu('first')} />;
-  }
+        if (!lastPage) {
+          return null;
+        }
 
-  shouldComponentUpdate(nextProps) {
-    return this.props.linkedProp !== nextProps.linkedProp ||
-      this.props.currentPage !== nextProps.currentPage ||
-      this.props.version !== nextProps.version ||
-      this.props.subject !== nextProps.subject;
-  }
+        return (
+          <LinkedResourceContainer subject={lastPage}>
+            <Property label={NS.as('next')} />
+          </LinkedResourceContainer>
+        );
+      }
 
-  render() {
-    let children;
-    const views = this.getLinkedObjectPropertyRaw(NS.argu('views'));
-    if (this.props.currentPage) {
-      children = <LinkedResourceContainer subject={new NamedNode(this.props.currentPage)} />;
-    } else {
-      children = viewsOrMembers(views, this.getLinkedObjectPropertyRaw(NS.argu('members')));
+      return null;
     }
-    const createAction = views.length > 0 ? undefined : <Property label={NS.argu('createAction')} />;
-    const name = views.length > 0 ? <Property label={NS.schema('name')} /> : null;
-    const pagination = views.length === 0 ? this.pagination() : null;
 
-    return (
-      <div>
-        {name}
-        {children}
-        {pagination}
-        {createAction}
-      </div>
-    );
+    shouldComponentUpdate(nextProps) {
+      return this.props.linkedProp !== nextProps.linkedProp ||
+        this.props.currentPage !== nextProps.currentPage ||
+        this.props.linkVersion !== nextProps.linkVersion ||
+        this.props.subject !== nextProps.subject ||
+        this.props.pages !== nextProps.pages;
+    }
+
+    render() {
+      const { totalItems } = this.props;
+      if (!renderWhenEmpty && totalItems && totalItems.value === '0') {
+        return null;
+      }
+
+      let children;
+      const pages = this.getLinkedObjectPropertyRaw(NS.as('pages'));
+      if (this.props.currentPage) {
+        children = <LinkedResourceContainer subject={new NamedNode(this.props.currentPage)} />;
+      } else {
+        children = <Property forceRender label={NS.as('pages')} />;
+      }
+      const name = pages.length > 0 ? <Property label={NS.as('name')} /> : null;
+
+      return (
+        <WrappingElement>
+          {name}
+          {children}
+          {this.pagination()}
+        </WrappingElement>
+      );
+    }
   }
+
+  const ReduxCollection = connect((state, { subject }) => ({
+    currentPage: getPage(state, subject.value),
+    renderWhenEmpty,
+  }))(Collection);
+
+  return link({
+    defaultType: NS.argu('defaultType'),
+    pages: {
+      label: NS.as('pages'),
+      limit: Infinity,
+    },
+    totalItems: NS.as('totalItems'),
+  })(ReduxCollection);
 }
 
-const ReduxCollection = connect((state, { subject }) => ({
-  currentPage: getPage(state, subject)
-}))(Collection);
-const ConnectedCollection = lowLevel.linkedSubject(lowLevel.linkedVersion(ReduxCollection));
-
-const CollectionCardAppendix = ({ members, totalCount, views }) => {
-  if (totalCount.value === '0') {
-    return <Property label={NS.argu('createAction')} />;
+const CollectionCardAppendix = ({ totalItems }) => {
+  if (totalItems.value === '0') {
+    return null;
   }
-
-  const children = viewsOrMembers(views, members, NS.argu('cardRow'));
 
   return (
     <CardRow backdrop>
-      {children}
+      <Property forceRender label={NS.as('pages')} topology={NS.argu('cardRow')} />
     </CardRow>
   );
 };
@@ -105,68 +113,46 @@ const CollectionCardAppendix = ({ members, totalCount, views }) => {
 CollectionCardAppendix.propTypes = mvcPropTypes;
 
 const collectionSection = (shortCircuit = true) => {
-  const CollectionSection = ({ members, totalCount, views }) => {
-    if (shortCircuit && totalCount.value === '0') {
-      return <Property label={NS.argu('createAction')} />;
+  const CollectionSection = ({ totalItems }) => {
+    if (shortCircuit && totalItems.value === '0') {
+      return null;
     }
-    const children = viewsOrMembers(
-      views,
-      members,
-      NS.argu('section')
-    );
-    const createAction = views.length > 0 ? undefined : <Property label={NS.argu('createAction')} />;
 
     return (
       <div>
-        {children}
-        {createAction}
+        <Property forceRender label={NS.as('pages')} topology={NS.argu('section')} />
       </div>
     );
   };
 
   CollectionSection.propTypes = mvcPropTypes;
-  CollectionSection.contextTypes = contextTypes;
 
   return CollectionSection;
 };
 
-const CollectionContainer = ({ subject }, { linkedRenderStore }) => viewsOrMembers(
-  linkedRenderStore.getResourcePropertyRaw(subject, NS.argu('views')),
-  linkedRenderStore.getResourcePropertyRaw(subject, NS.argu('members')),
-  NS.argu('container')
+const CollectionFixedCards = () => (
+  <Property forceRender label={NS.as('pages')} topology={NS.argu('grid')} />
 );
 
-CollectionContainer.contextTypes = contextTypes;
+const wrapUpdate = Component => withLinkCtx(Component);
 
-const CollectionFixedCards = ({ subject }, { linkedRenderStore }) => (
-  viewsOrMembers(
-    linkedRenderStore.getResourcePropertyRaw(subject, NS.argu('views')),
-    linkedRenderStore.getResourcePropertyRaw(subject, NS.argu('members')),
-    NS.argu('grid')
-  )
-);
-
-CollectionFixedCards.contextTypes = contextTypes;
-CollectionFixedCards.propTypes = propTypes;
-
-const wrapUpdate = Component => lowLevel.linkedSubject(lowLevel.linkedVersion(Component));
-
-const membersViewsCount = {
-  members: {
-    label: NS.argu('members')
-  },
-  totalCount: {
-    label: NS.argu('totalCount')
-  },
-  views: {
-    label: NS.argu('views'),
-    limit: Infinity,
+const itemsCount = {
+  totalItems: {
+    label: NS.as('totalItems')
   },
 };
 
 export default [
   LinkedRenderStore.registerRenderer(
-    link(membersViewsCount)(collectionSection()),
+    getCollection({
+      WrappingElement: Container,
+      renderWhenEmpty: true,
+    }),
+    CollectionTypes,
+    RENDER_CLASS_NAME
+  ),
+  LinkedRenderStore.registerRenderer(
+    link(itemsCount)(collectionSection()),
     CollectionTypes,
     RENDER_CLASS_NAME,
     [
@@ -178,7 +164,7 @@ export default [
     ]
   ),
   LinkedRenderStore.registerRenderer(
-    link(membersViewsCount)(collectionSection(false)),
+    link(itemsCount)(collectionSection({ renderWhenEmpty: false })),
     CollectionTypes,
     RENDER_CLASS_NAME,
     [
@@ -187,7 +173,7 @@ export default [
     ]
   ),
   LinkedRenderStore.registerRenderer(
-    link(membersViewsCount)(CollectionCardAppendix),
+    link(itemsCount)(CollectionCardAppendix),
     CollectionTypes,
     RENDER_CLASS_NAME,
     NS.argu('cardAppendix')
@@ -202,22 +188,22 @@ export default [
     ]
   ),
   LinkedRenderStore.registerRenderer(
-    wrapUpdate(ConnectedCollection),
+    getCollection({ renderWhenEmpty: false }),
     CollectionTypes,
     RENDER_CLASS_NAME,
-    [
-      undefined,
-      NS.argu('container')
-    ]
+    NS.argu('container')
   ),
   LinkedRenderStore.registerRenderer(
-    ConnectedCollection,
+    getCollection(),
     CollectionTypes,
     NS.argu('collection')
   ),
+  ...FilteredCollections,
   First,
   ...Member,
   Name,
-  ...Views,
+  sidebar,
+  UnreadCount,
+  ...Pages,
   ...voteEvent
 ];

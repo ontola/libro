@@ -1,5 +1,5 @@
 import LinkedRenderStore from 'link-lib';
-import { PropertyBase } from 'link-redux';
+import { PropertyBase, withLinkCtx } from 'link-redux';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -17,7 +17,7 @@ class First extends PropertyBase {
     const pageProp = 'page';
     const baseUrl = new URL(this.props.linkedProp.value);
     const firstPage = Number.parseInt(baseUrl.searchParams.get(pageProp), 10);
-    const lastPage = Number.parseInt(new URL(this.getLinkedObjectProperty(NS.argu('last')).value).searchParams.get(pageProp), 10);
+    const lastPage = Number.parseInt(new URL(this.getLinkedObjectProperty(NS.as('last')).value).searchParams.get(pageProp), 10);
     const currentPageUrl = new URL(this.props.currentPage);
     const currentPageNr = Number.parseInt(currentPageUrl.searchParams.get(pageProp), 10);
     const nextPage = () => {
@@ -103,8 +103,8 @@ const ConnectedFirst = connect((state, { collectionIRI, linkedProp }) => ({
 }))(First);
 
 export default LinkedRenderStore.registerRenderer(
-  ConnectedFirst,
+  withLinkCtx(ConnectedFirst),
   CollectionTypes,
-  NS.argu('first'),
+  NS.as('first'),
   allTopologies
 );

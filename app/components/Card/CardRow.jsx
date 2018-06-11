@@ -24,11 +24,11 @@ class CardRow extends TopologyProvider {
     const { backdrop, showArrow } = this.props;
     const className = `CardRow ${showArrow && 'CardRow--show-arrow'} ${backdrop && 'CardRow--backdrop'}`;
 
-    return (
+    return this.wrap((
       <div className={className}>
         {this.props.children}
       </div>
-    );
+    ));
   }
 }
 

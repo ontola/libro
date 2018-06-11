@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Form } from 'informed';
 
 import {
   Button,
@@ -29,35 +30,33 @@ const defaultProps = {
 class SignInFormCardRow extends SignInFormBase {
   render() {
     const {
-      handleSubmit,
       invalid,
-      submitting,
+      onSubmit,
     } = this.props;
     const { buttonText, formFields } = this.currentFields();
 
     return (
-      <CardContent>
-        <form
-          action="/users"
-          onSubmit={handleSubmit}
-        >
-          {formFields}
-          <CardActions noSpacing>
-            {this.backButton()}
-            {buttonText && (
-              <Button
-                disabled={invalid}
-                icon="arrow-right"
-                loading={submitting}
-                theme="default"
-                type="submit"
-              >
-                {buttonText}
-              </Button>
-            )}
-          </CardActions>
-        </form>
-      </CardContent>
+      <Form validateOnBlur onSubmit={onSubmit}>
+        {() => (
+          <CardContent>
+            {formFields}
+            <CardActions noSpacing>
+              {this.backButton()}
+              {buttonText && (
+                <Button
+                  disabled={invalid}
+                  icon="arrow-right"
+                  loading={false}
+                  theme="default"
+                  type="submit"
+                >
+                  {buttonText}
+                </Button>
+              )}
+            </CardActions>
+          </CardContent>
+        )}
+      </Form>
     );
   }
 }

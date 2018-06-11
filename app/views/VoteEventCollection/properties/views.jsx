@@ -3,16 +3,17 @@ import {
   LinkedResourceContainer,
   getLinkedObjectProperty,
   labelType,
-  lowLevel,
   subjectType,
+  withLinkCtx,
+  lrsType,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
   label: labelType,
+  lrs: lrsType,
   subject: subjectType,
 };
 
@@ -21,8 +22,8 @@ const propTypes = {
  * @param {object} props comp props
  * @returns {object} The component
  */
-const Views = (props, { linkedRenderStore }) => {
-  const prop = getLinkedObjectProperty(props.label, props.subject, linkedRenderStore);
+const Views = (props) => {
+  const prop = getLinkedObjectProperty(props.label, props.subject, props.lrs);
   if (!prop) {
     return null;
   }
@@ -35,15 +36,11 @@ const Views = (props, { linkedRenderStore }) => {
   );
 };
 
-Views.contextTypes = {
-  linkedRenderStore: PropTypes.object,
-  topology: PropTypes.string,
-};
 Views.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
-  lowLevel.linkedSubject(lowLevel.linkedVersion(Views)),
-  [NS.argu('VoteEvent'), NS.argu('VoteEvent'), NS.argu('Collection')],
+  withLinkCtx(Views),
+  [NS.argu('VoteEvent'), NS.argu('VoteEvent'), NS.as('Collection'), NS.argu('Collection')],
   NS.argu('votes'),
   NS.argu('collection')
 );

@@ -1,7 +1,8 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   Property,
-  link, TopologyProvider, lrsType,
+  link,
+  TopologyProvider, linkedPropType, subjectType,
 } from 'link-redux';
 import React from 'react';
 
@@ -15,23 +16,23 @@ const LOWER_LIMIT = 5;
 const THREE_SIDE_STALEMATE = 33;
 
 class VoteEventResult extends TopologyProvider {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.topology = NS.argu('voteEventResult');
     this.card = false;
   }
 
   render() {
-    return (
+    return this.wrap((
       <VoteData card={this.card}>
         <Property
-          label={NS.argu('views')}
-          totalVotes={this.props.totalCount}
+          label={NS.argu('filteredCollections')}
+          totalVotes={this.props.totalItems}
           variant={this.props.variant}
         />
       </VoteData>
-    );
+    ));
   }
 }
 
@@ -43,22 +44,10 @@ class VoteEventResultCard extends VoteEventResult {
   }
 }
 
-class VoteEventSide extends TopologyProvider {
-  constructor() {
-    super();
-
-    this.topology = NS.argu('voteEventSide');
-  }
-
+class VoteEventSide extends React.PureComponent {
   percentages() {
-    const sideCount = Number.parseInt(this.props.totalCount.value, 10);
-    const voteEventCountRaw = this
-      .context
-      .linkedRenderStore
-      .getResourceProperty(
-        this.props.parentView,
-        NS.argu('totalCount')
-      ).value;
+    const sideCount = Number.parseInt(this.props.totalItems.value, 10);
+    const voteEventCountRaw = this.props.totalVotes.value;
     const voteEventCount = Number.parseInt(voteEventCountRaw, 10);
 
     if (voteEventCount === 0) {
@@ -72,45 +61,48 @@ class VoteEventSide extends TopologyProvider {
   }
 
   render() {
-    const part = new URL(this.props.subject.value).searchParams.get('filter[option]');
+    const filters = new URL(this.props.subject.value).searchParams.get('filter[]');
+    const option = new URLSearchParams(decodeURIComponent(filters)).get('option');
 
     const [votePercentage, displayPercentage] = this.percentages();
 
     return (
       <div
-        className={`VoteData__votebar-part VoteData__votebar-part--${part}`}
+        className={`VoteData__votebar-part VoteData__votebar-part--${option}`}
         style={{ width: `${displayPercentage}%` }}
-        title={`${this.props.totalCount.value} (${Math.round(votePercentage)}%)`}
+        title={`${this.props.totalItems.value} (${Math.round(votePercentage)}%)`}
       />
     );
   }
 }
 
-VoteEventSide.contextTypes = {
-  linkedRenderStore: lrsType,
+VoteEventSide.propTypes = {
+  subject: subjectType,
+  totalItems: linkedPropType,
+  totalVotes: linkedPropType,
 };
 
 export default [
   LinkedRenderStore.registerRenderer(
-    link([NS.argu('totalCount')])(VoteEventResult),
+    link([NS.as('totalItems')])(VoteEventResult),
     CollectionTypes,
     RENDER_CLASS_NAME,
     NS.argu('voteEvent')
   ),
   LinkedRenderStore.registerRenderer(
-    link([NS.argu('totalCount')])(VoteEventResultCard),
+    link([NS.as('totalItems')])(VoteEventResultCard),
     CollectionTypes,
     RENDER_CLASS_NAME,
     NS.argu('cardVoteEvent')
   ),
   LinkedRenderStore.registerRenderer(
-    link([NS.argu('parentView'), NS.argu('totalCount')])(VoteEventSide),
+    link([NS.argu('parentView'), NS.as('totalItems')])(VoteEventSide),
     CollectionTypes,
     RENDER_CLASS_NAME,
     NS.argu('voteEventResult')
   ),
   LinkedRenderStore.registerRenderer(
-    () => <Property label={NS.argu('members')} />,
+    () => <Property label={NS.as('items')} />,
     CollectionTypes,
     RENDER_CLASS_NAME,
     NS.argu('voteEventSide')

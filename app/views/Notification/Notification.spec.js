@@ -49,12 +49,12 @@ describeView('Notification', components, resources, resource, () => {
     set('topology', () => NS.argu('collection'));
 
     it('renders', () => {
-      expect(subject.find(marker('notification'))).toBePresent();
+      expect(subject.find(marker('notification'))).toExist();
     });
 
     describe('when unread', () => {
       it('has an unread marker', () => {
-        expect(subject.find(marker('Unread'))).toBePresent();
+        expect(subject.find(marker('Unread'))).toExist();
       });
     });
 
@@ -62,14 +62,14 @@ describeView('Notification', components, resources, resource, () => {
       set('s', () => readResource);
 
       it('has no unread marker', () => {
-        expect(subject.find(marker('Unread'))).not.toBePresent();
+        expect(subject.find(marker('Unread'))).not.toExist();
       });
     });
   });
 
   as(NS.argu('sidebar'), () => {
     it('renders its url', () => {
-      expect(subject.find(marker('url'))).toBePresent();
+      expect(subject.find(marker('url'))).toExist();
     });
   });
 });

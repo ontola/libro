@@ -1,8 +1,5 @@
-/* eslint no-magic-numbers: 0 */
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import { assert } from 'chai';
-import sinon from 'sinon';
 
 import CardActions from './CardActions';
 import CardButton from './CardButton';
@@ -13,44 +10,41 @@ import Card from './index';
 
 describe('Card component', () => {
   it('Card should render', () => {
-    const comp = shallow(<Card>Content</Card>);
-    assert.equal(comp.find('.Card').length, 1, 'card does not render');
-    assert.equal(comp.find('.Card').text(), 'Content', 'card does not render children correctly');
+    const tree = mount(<Card>Content</Card>);
+    expect(tree.find(Card)).toExist();
+    expect(tree.find('.Card')).toHaveText('Content');
   });
 
   it('CardActions should render', () => {
-    const comp = shallow(<CardActions>Content</CardActions>);
-    assert.equal(comp.find('.CardActions').length, 1, 'card does not render');
-    comp.setProps({ noSpacing: true });
-    assert.isTrue(
-      comp.find('.CardActions').hasClass('CardActions--no-spacing'),
-      'card does not render children correctly'
-    );
+    const tree = shallow(<CardActions>Content</CardActions>);
+    expect(tree.find('.CardActions')).toExist();
+    tree.setProps({ noSpacing: true });
+    expect(tree.find('.CardActions')).toHaveClassName('CardActions--no-spacing');
   });
 
   it('CardButton should render', () => {
-    const spy = sinon.spy(() => undefined);
-    const comp = mount(<CardButton action={spy} type="yes">Click here</CardButton>);
-    assert.equal(comp.find('button.Button').length, 1, 'cardbutton does not render');
-    assert.equal(comp.find('button.Button').text(), 'Click here', 'cardbutton does not render children correctly');
-    assert.isTrue(comp.find('button.Button').hasClass('Button--has-icon'), 'button has class to show icon state');
-    assert.isTrue(comp.find('.fa').hasClass('fa-thumbs-up'), 'button displays correct icon');
+    const spy = jest.fn();
+    const tree = mount(<CardButton action={spy} type="yes">Click here</CardButton>);
+    expect(tree.find('button.Button')).toExist();
+    expect(tree.find('button.Button')).toHaveText('Click here');
+    expect(tree.find('button.Button')).toHaveClassName('Button--has-icon');
+    expect(tree.find('.fa')).toHaveClassName('fa-thumbs-up');
 
-    comp.simulate('click');
-    assert.isTrue(spy.called, 'Button click does not respond');
+    tree.simulate('click');
+    expect(spy).toHaveBeenCalled();
   });
 
   it('CardContent should render', () => {
-    const comp = shallow(<CardContent noSpacing>Content</CardContent>);
-    assert.equal(comp.find('.CardContent').length, 1, 'CardContent does not render');
-    assert.equal(comp.find('.CardContent').text(), 'Content', 'CardContent does not render children correctly');
-    assert.isTrue(comp.find('.CardContent').first().hasClass('CardContent--no-spacing'), 'CardContent has no noSpacing');
+    const tree = mount(<CardContent noSpacing>Content</CardContent>);
+    expect(tree.find('CardContent')).toExist();
+    expect(tree.find('.CardContent')).toHaveText('Content');
+    expect(tree.find('.CardContent')).toHaveClassName('CardContent--no-spacing');
   });
 
   it('CardRow should render', () => {
-    const comp = shallow(<CardRow showArrow>Content</CardRow>);
-    assert.equal(comp.find('.CardRow').length, 1, 'CardRow does not render');
-    assert.equal(comp.find('.CardRow').text(), 'Content', 'CardRow does not render children correctly');
-    assert.isTrue(comp.find('.CardRow').first().hasClass('CardRow--show-arrow'), 'CardRow has no noSpacing');
+    const tree = mount(<CardRow showArrow>Content</CardRow>);
+    expect(tree.find('CardRow')).toExist();
+    expect(tree.find('.CardRow')).toHaveText('Content');
+    expect(tree.find('.CardRow')).toHaveClassName('CardRow--show-arrow');
   });
 });

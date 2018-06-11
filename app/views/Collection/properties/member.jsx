@@ -1,5 +1,5 @@
 import LinkedRenderStore from 'link-lib';
-import { LinkedResourceContainer, PropertyBase, lowLevel } from 'link-redux';
+import { LinkedResourceContainer, PropertyBase, withLinkCtx } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -36,7 +36,7 @@ class MemberComp extends PropertyBase {
 
   render() {
     const prop = this.getLinkedObjectPropertyRaw();
-    if (this.getLinkedObjectProperty(NS.argu('totalCount')).value === '0') {
+    if (this.getLinkedObjectProperty(NS.as('totalItems')).value === '0') {
       return <div>Nog geen items</div>;
     } else if (Array.isArray(prop) && prop.length === 0) {
       return null;
@@ -51,18 +51,18 @@ class MemberComp extends PropertyBase {
 
 MemberComp.propTypes = propTypes;
 
-const Member = lowLevel.linkedSubject(lowLevel.linkedVersion(MemberComp));
+const Member = withLinkCtx(MemberComp);
 
 export default [
   LinkedRenderStore.registerRenderer(
     Member,
     CollectionTypes,
-    NS.argu('members')
+    NS.as('items')
   ),
   LinkedRenderStore.registerRenderer(
     Member,
     CollectionTypes,
-    NS.argu('members'),
+    NS.as('items'),
     [
       NS.argu('section'),
       NS.argu('widget'),
@@ -72,7 +72,7 @@ export default [
   LinkedRenderStore.registerRenderer(
     props => <Carousel><Member {...props} /></Carousel>,
     CollectionTypes,
-    NS.argu('members'),
+    NS.as('items'),
     [
       NS.argu('grid'),
       NS.argu('widget'),

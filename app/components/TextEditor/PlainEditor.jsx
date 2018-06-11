@@ -25,7 +25,9 @@ const propTypes = {
   autoFocus: PropTypes.bool,
   disableRich: PropTypes.bool.isRequired,
   id: PropTypes.string.isRequired,
+  maxLength: PropTypes.string,
   mdText: PropTypes.string.isRequired,
+  minLength: PropTypes.string,
   onBlur: PropTypes.func.isRequired,
   onFocus: PropTypes.func.isRequired,
   onHidePreview: PropTypes.func.isRequired,
@@ -58,7 +60,9 @@ const PlainEditor = ({
   autoFocus,
   disableRich,
   id,
+  maxLength,
   mdText,
+  minLength,
   onChange,
   onBlur,
   onFocus,
@@ -75,6 +79,8 @@ const PlainEditor = ({
         autoFocus={autoFocus}
         className="Field__input"
         id={id}
+        maxLength={maxLength}
+        minLength={minLength}
         placeholder={placeholder}
         value={mdText}
         onBlur={onBlur}

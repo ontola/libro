@@ -21,6 +21,7 @@ export { default as Carousel } from './components/Grid/Carousel';
 // export { default as ChronoItem } from './components/ChronoItem/index';
 export { default as Collapsible } from './components/Collapsible/index';
 export { default as CollapseText } from './components/CollapseText/index';
+export { default as Column } from './components/Column/index';
 export { default as Columns } from './components/Columns/index';
 // export { default as CompareVotesBar } from './components/CompareVotesBar/index';
 export { default as Container } from './components/Container/index';
@@ -42,8 +43,11 @@ export { default as Dropdown } from './components/Dropdown/index';
 export { default as DropdownLink } from './components/Dropdown/DropdownLink';
 export { default as Error } from './components/Error/index';
 // export { default as EventItemShow } from './components/EventItemShow/index';
-export { FormFooter } from './components/Form/index';
-export * from './components/Input/index';
+export {
+  Form,
+  FormFooter,
+  FormSection,
+} from './components/Form/index';
 export { default as FormField } from './components/FormField/index';
 export { default as Grid } from './components/Grid/index';
 // export { default as GeneratedIcon } from './components/GeneratedIcon/index';
@@ -52,6 +56,10 @@ export { default as Heading } from './components/Heading/index';
 export { default as HiddenFormField } from './components/HiddenFormField/index';
 export { default as hoverBox } from './components/HoverBox/index';
 export { default as Image } from './components/Image/index';
+export {
+  Input,
+  FileInput,
+} from './components/Input/index';
 export { default as LabelValue } from './components/LabelValue/index';
 export { default as LabelValueBar } from './components/LabelValueBar/index';
 export { default as LDLink } from './components/LDLink/index';
@@ -75,6 +83,7 @@ export { default as MarkdownFixedPreview } from './components/MarkdownFixedPrevi
 export { default as NavBarContent } from './components/NavBarContent/index';
 export { default as Notification } from './components/Notification/index';
 export { default as Omniform } from './components/Omniform/index';
+export { default as OmniformFields } from './components/Omniform/OmniformFields';
 export { default as OmniformPreview } from './components/Omniform/OmniformPreview';
 export { default as OrgSwitcher } from './components/OrgSwitcher/index';
 export { default as PageHeader } from './components/PageHeader/index';

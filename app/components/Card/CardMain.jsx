@@ -33,11 +33,11 @@ class CardMain extends TopologyProvider {
       'Card--fixed': this.props.fixed,
     });
 
-    return (
+    return this.wrap((
       <div className={classes}>
         {this.props.children}
       </div>
-    );
+    ));
   }
 }
 

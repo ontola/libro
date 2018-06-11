@@ -1,6 +1,5 @@
 import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
-import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 
@@ -22,14 +21,7 @@ class CardFixed extends TopologyProvider {
     super(props);
 
     this.topology = NS.argu('cardFixed');
-  }
-
-  render() {
-    return (
-      <div className="Card Card--fixed">
-        {this.props.children}
-      </div>
-    );
+    this.className = 'Card Card--fixed';
   }
 }
 

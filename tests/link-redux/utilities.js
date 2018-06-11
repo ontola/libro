@@ -22,7 +22,7 @@ export const generateStore = (lrs, initialState = undefined) => createStore(
 const contextDefaults = (state = undefined) => {
   const lrs = new LinkedRenderStore();
   return {
-    linkedRenderStore: lrs,
+    lrs,
     schemaObject: {},
     store: generateStore(lrs, state),
   };

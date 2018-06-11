@@ -1,4 +1,5 @@
-import SidebarCollections from '../../views/InfiniteCollection/sidebar';
+import SidebarCollections from '../../views/Collection/sidebar';
+import Sequence from '../../views/Seq/index';
 import Menu from '../Menu/Menu';
 
 import currentActor from './Navbar_current_actor';
@@ -11,4 +12,5 @@ export default [
   ...Menu,
   ...organization,
   ...SidebarCollections,
+  Sequence,
 ];

@@ -6,15 +6,15 @@ argUnit(Detail, () => {
   });
 
   it('should not render an image', () => {
-    expect(subject.find(marker('image'))).not.toBePresent();
+    expect(subject.find(marker('image'))).not.toExist();
   });
 
   it('should not render an icon', () => {
-    expect(subject.find(marker('icon'))).not.toBePresent();
+    expect(subject.find(marker('icon'))).not.toExist();
   });
 
   it('should not render text', () => {
-    expect(subject.find(marker('text'))).not.toBePresent();
+    expect(subject.find(marker('text'))).not.toExist();
   });
 
   describe('with url', () => {
@@ -37,15 +37,15 @@ argUnit(Detail, () => {
     });
 
     it('should not render an image', () => {
-      expect(subject.find(marker('image'))).not.toBePresent();
+      expect(subject.find(marker('image'))).not.toExist();
     });
 
     it('should not render an icon', () => {
-      expect(subject.find(marker('icon'))).not.toBePresent();
+      expect(subject.find(marker('icon'))).not.toExist();
     });
 
     it('should render text', () => {
-      expect(subject.find(marker('DetailText'))).toBePresent();
+      expect(subject.find(marker('DetailText'))).toExist();
     });
   });
 
@@ -58,7 +58,7 @@ argUnit(Detail, () => {
     });
 
     it('should render an image', () => {
-      expect(subject.find(marker('image'))).toBePresent();
+      expect(subject.find(marker('image'))).toExist();
     });
 
     it('should have the correct url', () => {
@@ -70,11 +70,11 @@ argUnit(Detail, () => {
     });
 
     it('should not render an icon', () => {
-      expect(subject.find(marker('icon'))).not.toBePresent();
+      expect(subject.find(marker('icon'))).not.toExist();
     });
 
     it('should not render text', () => {
-      expect(subject.find(marker('text'))).not.toBePresent();
+      expect(subject.find(marker('text'))).not.toExist();
     });
   });
 
@@ -86,26 +86,26 @@ argUnit(Detail, () => {
     });
 
     it('should not render an image', () => {
-      expect(subject.find(marker('image'))).not.toBePresent();
+      expect(subject.find(marker('image'))).not.toExist();
     });
 
     it('should render an icon', () => {
-      expect(subject.find(marker('icon'))).toBePresent();
+      expect(subject.find(marker('icon'))).toExist();
     });
 
     it('should not render text', () => {
-      expect(subject.find(marker('text'))).not.toBePresent();
+      expect(subject.find(marker('text'))).not.toExist();
     });
 
     describe('with image', () => {
       setProp('imageUrl', () => 'http://example.org/photo.jpg');
 
       it('should render an image', () => {
-        expect(subject.find(marker('image'))).toBePresent();
+        expect(subject.find(marker('image'))).toExist();
       });
 
       it('should not render an icon', () => {
-        expect(subject.find(marker('icon'))).not.toBePresent();
+        expect(subject.find(marker('icon'))).not.toExist();
       });
     });
 
@@ -113,11 +113,11 @@ argUnit(Detail, () => {
       setProp('hideIcon', () => true);
 
       it('should not render an image', () => {
-        expect(subject.find(marker('image'))).not.toBePresent();
+        expect(subject.find(marker('image'))).not.toExist();
       });
 
       it('should not render an icon', () => {
-        expect(subject.find(marker('icon'))).not.toBePresent();
+        expect(subject.find(marker('icon'))).not.toExist();
       });
     });
   });

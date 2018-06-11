@@ -4,64 +4,41 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { LDLink } from '../../components';
 import { NS, allTopologiesExcept } from '../../helpers/LinkedRenderStore';
-import { omniformAddAction, omniformOpenInline } from '../../state/omniform';
+import { omniformOpenInline } from '../../state/omniform';
 
 const propTypes = {
   children: PropTypes.element,
-  isPartOf: linkedPropType,
-  onChange: PropTypes.func,
-  subject: subjectType,
 };
 
-class CreateActionDispatcher extends Component {
-  componentDidMount() {
-    this.props.onChange(this.identifier(), this.props.subject.value);
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.subject && this.props.subject !== prevProps.subject) {
-      this.props.onChange(this.identifier(), this.props.subject.value);
-    }
-  }
-
-  identifier() {
-    return btoa(this.props.isPartOf || this.props.subject);
-  }
-
+class CreateActionButton extends Component {
   render() {
     if (this.props.children) {
       return this.props.children;
     }
 
-    return null;
+    return (
+      <LDLink>
+        <Property label={NS.schema('target')} />
+      </LDLink>
+    );
   }
 }
 
-CreateActionDispatcher.propTypes = propTypes;
-
-const mapDispatchToProps = dispatch => ({
-  onChange: (parent, action) => dispatch(omniformAddAction(parent, action)),
-});
-
-const BoundCreateActionDispatcher = connect(
-  null,
-  mapDispatchToProps,
-  null,
-  { pure: false }
-)(CreateActionDispatcher);
+CreateActionButton.propTypes = propTypes;
 
 const mapActionsBarDispatchToProps = (dispatch, ownProps) => ({
   onClick: () => Promise.resolve(dispatch(omniformOpenInline(ownProps.isPartOf))),
 });
 
-const CreateActionButton = ({ isPartOf, onClick, subject }) => (
-  <BoundCreateActionDispatcher isPartOf={isPartOf} subject={subject}>
+const InlineCreateActionButton = ({ isPartOf, onClick, subject }) => (
+  <CreateActionButton isPartOf={isPartOf} subject={subject}>
     <Property label={NS.schema('target')} onClick={onClick} />
-  </BoundCreateActionDispatcher>
+  </CreateActionButton>
 );
 
-CreateActionButton.propTypes = {
+InlineCreateActionButton.propTypes = {
   isPartOf: linkedPropType,
   onClick: PropTypes.func,
   subject: subjectType,
@@ -69,13 +46,13 @@ CreateActionButton.propTypes = {
 
 export default [
   LinkedRenderStore.registerRenderer(
-    BoundCreateActionDispatcher,
+    CreateActionButton,
     NS.argu('CreateAction'),
     RENDER_CLASS_NAME,
     allTopologiesExcept(NS.argu('actionsBar'))
   ),
   LinkedRenderStore.registerRenderer(
-    link([NS.schema('object')])(connect(null, mapActionsBarDispatchToProps)(CreateActionButton)),
+    link([NS.schema('object')])(connect(null, mapActionsBarDispatchToProps)(InlineCreateActionButton)),
     NS.argu('CreateAction'),
     RENDER_CLASS_NAME,
     NS.argu('actionsBar')

@@ -6,7 +6,7 @@ exports[`LinkList renders 1`] = `
 >
   <NavLink
     activeClassName="LinkList__link--active"
-    ariaCurrent="true"
+    aria-current="page"
     className="LinkList__link"
     data-test="LinkList-link"
     exact={true}
@@ -17,7 +17,7 @@ exports[`LinkList renders 1`] = `
   </NavLink>
   <NavLink
     activeClassName="LinkList__link--active"
-    ariaCurrent="true"
+    aria-current="page"
     className="LinkList__link"
     data-test="LinkList-link"
     exact={true}

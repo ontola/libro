@@ -18,7 +18,7 @@ export default class LinkDuo extends Component {
       <a
         href={this.props.to}
         {...this.props}
-        rel="nofollow"
+        rel="nofollow noopener noreferrer"
         target="_blank"
       />
       :

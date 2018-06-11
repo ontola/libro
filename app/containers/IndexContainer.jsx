@@ -15,7 +15,7 @@ const propTypes = {
     replace: PropTypes.func,
     transitionTo: PropTypes.func,
   }).isRequired,
-  linkedRenderStore: PropTypes.instanceOf(LinkedRenderStore).isRequired,
+  lrs: PropTypes.instanceOf(LinkedRenderStore).isRequired,
   store: PropTypes.shape({
     dispatch: PropTypes.func.isRequired,
     getState: PropTypes.func.isRequired,
@@ -26,11 +26,11 @@ const propTypes = {
 const IndexContainer = ({
   Router,
   history,
-  linkedRenderStore,
+  lrs,
   store,
 }) => (
   <Provider store={store}>
-    <RenderStoreProvider linkedRenderStore={linkedRenderStore}>
+    <RenderStoreProvider value={lrs}>
       <Router history={history}>
         <AppFrame />
       </Router>

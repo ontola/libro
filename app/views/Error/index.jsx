@@ -29,6 +29,7 @@ const withUserType = Comp => connect(state => ({
 }))(Comp);
 
 const propTypes = {
+  caughtError: PropTypes.instanceOf(Error),
   linkRequestStatus: PropTypes.shape({
     status: PropTypes.number,
   }),
@@ -76,7 +77,12 @@ ErrorCardComp.propTypes = propTypes;
 const ErrorCard = withRouter(withUserType(ErrorCardComp));
 
 const ErrorPageComp = (props) => {
-  const { linkRequestStatus, location, userType } = props;
+  const {
+    caughtError,
+    linkRequestStatus,
+    location,
+    userType,
+  } = props;
 
   let cardAction = (
     <ErrorButtonWithFeedback theme="box" {...props}>
@@ -97,9 +103,11 @@ const ErrorPageComp = (props) => {
           <Heading size="1" variant="alert">
             <FontAwesome name="exclamation-triangle" />
             {' '}
-            {headerForStatus(linkRequestStatus)}
+            {headerForStatus(linkRequestStatus) || (caughtError && caughtError.name)}
           </Heading>
           {bodyForStatus(linkRequestStatus)}
+          {caughtError && <p>{caughtError.message}</p>}
+          {__DEVELOPMENT__ && caughtError && <pre>{caughtError.stack}</pre>}
           <p>
             {`${errors.nl.mistaken} `}
             <LinkDuo

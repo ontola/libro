@@ -22,7 +22,7 @@ const indexContainer = Container => (
   <Container
     Router={ConnectedRouter}
     history={history}
-    linkedRenderStore={LinkedRenderStore}
+    lrs={LinkedRenderStore}
     store={store}
   />
 );

@@ -1,4 +1,4 @@
-const validators = {
+const validatorMap = {
   isEmail: (value) => {
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
     /* eslint no-useless-escape: 0 */
@@ -10,20 +10,29 @@ const validators = {
   required: value => ((!value) ? 'Vereist' : undefined),
 };
 
+export function combineValidators(...validators) {
+  return (value) => {
+    const results = (Array.isArray(validators[0]) ? validators[0] : validators)
+      .map(validator => validator && validator(value))
+      .filter(validationRes => !!validationRes);
+    return results.length > 0 ? results : undefined;
+  };
+}
+
 // These will probably be sent by the backend
 /* eslint no-magic-numbers: 0 */
 export const argumentValidator = {
   side: [
-    validators.required,
+    validatorMap.required,
   ],
   text: [
-    validators.maxLength(5000),
+    validatorMap.maxLength(5000),
   ],
   title: [
-    validators.maxLength(70),
-    validators.minLength(5),
-    validators.required,
+    validatorMap.maxLength(70),
+    validatorMap.minLength(5),
+    validatorMap.required,
   ],
 };
 
-export default validators;
+export default validatorMap;

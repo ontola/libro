@@ -39,6 +39,7 @@ class ColoredHeading extends PropertyBase {
 
 const NamePredicates = [
   NS.schema('name'),
+  NS.as('name'),
   NS.rdfs('label'),
   NS.foaf('name'),
 ];
@@ -78,7 +79,7 @@ export default [
     NS.argu('inline')
   ),
   LinkedRenderStore.registerRenderer(
-    props => <LDLink><ColoredHeading data-test="Thing-name-card" size="3" {...props} /></LDLink>,
+    props => <LDLink><ColoredHeading data-test="Thing-name-card" size="2" {...props} /></LDLink>,
     NS.schema('Thing'),
     NamePredicates,
     [

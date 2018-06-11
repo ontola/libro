@@ -1,7 +1,7 @@
 import assert from 'assert';
 
 import classNames from 'classnames';
-import { PropertyBase, lowLevel, subjectType } from 'link-redux';
+import { PropertyBase, subjectType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { browserHistory } from 'react-router';
@@ -132,4 +132,4 @@ export class ProfileCard extends PropertyBase {
 ProfileCard.propTypes = propTypes;
 ProfileCard.defaultProps = defaultProps;
 
-export default lowLevel.linkedSubject(ProfileCard);
+export default ProfileCard;

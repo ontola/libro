@@ -14,8 +14,25 @@
   width: calc(100% - 20px);
   -webkit-appearance: none;
 
+  &--checkbox {
+    -moz-appearance: checkbox;
+    -webkit-appearance: checkbox;
+    width: auto;
+  }
+
+  &--select {
+    -moz-appearance: menulist;
+    -webkit-appearance: menulist;
+    width: auto;
+  }
+
   &:focus {
     outline: none;
+  }
+
+  &.Field__input--hidden {
+    border: 0;
+    display: none;
   }
 }
 
@@ -44,6 +61,10 @@
 }
 
 // Props
+.Field--hidden {
+  display: none;
+}
+
 .Field--textarea {
   .Field__input {
     resize: vertical;

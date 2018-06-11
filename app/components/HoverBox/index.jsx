@@ -1,11 +1,11 @@
-import { TopologyProvider } from 'link-redux';
+import { TopologyProvider, withLinkCtx } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import './HoverBox.scss';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 
-const propTypes = {
+export const propTypes = {
   /** Always visible. Functions as a trigger that responds to hover or focus. */
   children: PropTypes.node.isRequired,
   /** Only show when hovering over the trigger / children */
@@ -87,7 +87,7 @@ export default function (topology = NS.argu('cardHover'), popout = false) {
     }
 
     render() {
-      return (
+      return this.wrap((
         <div className={`HoverBox ${this.props.shine && 'HoverBox--shine'}`} data-test="HoverBox">
           {this.trigger(this.props.children)}
           <div className={`HoverBox__hidden-part ${this.classNames()}`}>
@@ -95,11 +95,11 @@ export default function (topology = NS.argu('cardHover'), popout = false) {
             {this.state.isVisible && this.props.hiddenChildren}
           </div>
         </div>
-      );
+      ));
     }
   }
 
   HoverBox.propTypes = propTypes;
 
-  return HoverBox;
+  return withLinkCtx(HoverBox);
 }

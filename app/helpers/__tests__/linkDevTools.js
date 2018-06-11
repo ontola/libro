@@ -156,7 +156,7 @@ describe('helpers', () => {
       it("should get the component's LRS", () => {
         window.LRS = Symbol('mock lrs');
         const localLRS = Symbol('mock local lrs');
-        const comp = { context: { linkedRenderStore: localLRS } };
+        const comp = { props: { lrs: localLRS } };
         expect(devObj.getLRS(comp)).toEqual(localLRS);
         window.LRS = undefined;
       });
@@ -321,12 +321,12 @@ describe('helpers', () => {
       });
 
       it('should return from context', () => {
-        devObj.rDevTools = { context: { topology: 'mock' }, props: {} };
+        devObj.rDevTools = { props: { topologyCtx: 'mock' } };
         expect(devObj.topology).toEqual('mock');
       });
 
       it('should null', () => {
-        devObj.rDevTools = { context: { topology: 'mock' }, props: { topology: null } };
+        devObj.rDevTools = { props: { topology: null, topologyCtx: 'mock' } };
         expect(devObj.topology).toBeUndefined();
       });
     });

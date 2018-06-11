@@ -131,7 +131,7 @@ function argUnit(comp, func, opts = {}) {
     let element = React.createElement(comp, p);
     const lrs = new LinkedRenderStore();
     if (opts.link || opts.redux) {
-      element = React.createElement(RenderStoreProvider, { linkedRenderStore: lrs }, element);
+      element = React.createElement(RenderStoreProvider, { value: lrs }, element);
     }
     if (opts.redux) {
       element = React.createElement(Provider, { store: generateStore(lrs) }, element);

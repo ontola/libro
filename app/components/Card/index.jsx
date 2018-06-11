@@ -25,8 +25,8 @@ const defaultProps = {
  * @returns {component} Component
  */
 class Card extends TopologyProvider {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.topology = NS.argu('card');
   }
@@ -39,11 +39,11 @@ class Card extends TopologyProvider {
       'Card--warn': this.props.warn,
     });
 
-    return (
+    return this.wrap((
       <div className={classes}>
         {this.props.children}
       </div>
-    );
+    ));
   }
 }
 

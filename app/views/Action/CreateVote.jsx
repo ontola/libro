@@ -42,12 +42,12 @@ class CreateVote extends PropertyBase {
     }
 
     const currentVote = this
-      .context
-      .linkedRenderStore
+      .props
+      .lrs
       .getResourceProperty(this.props.object, NS.argu('currentVote'));
 
     if (currentVote) {
-      this.context.linkedRenderStore.getEntity(currentVote);
+      this.props.lrs.getEntity(currentVote);
       return true;
     }
 
@@ -60,8 +60,8 @@ class CreateVote extends PropertyBase {
     }
 
     const parentType = this
-      .context
-      .linkedRenderStore
+      .props
+      .lrs
       .getResourceProperty(this.props.object, NS.rdf('type'));
 
     return parentType === NS.argu('ProArgument') ? 'yes' : 'no';
@@ -75,12 +75,16 @@ class CreateVote extends PropertyBase {
     } = this.props;
 
     const handleClick = () => this
-      .context
-      .linkedRenderStore
+      .props
+      .lrs
       .execActionByIRI(subject)
       .catch((e) => {
         throw e;
       });
+
+    if (!target) {
+      return null;
+    }
 
     return (
       <LinkedResourceContainer

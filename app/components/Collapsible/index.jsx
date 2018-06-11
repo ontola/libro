@@ -36,22 +36,22 @@ const defaultProps = {
 };
 
 class Collapsible extends React.PureComponent {
-  static getDerivedStateFromProps(nextProps) {
-    if (!nextProps.opened && !nextProps.hideChildren) {
-      if (typeof window !== 'undefined') {
-        window.setTimeout(nextProps.notOpened, REACT_COLLAPSE_TRANSITION_TIME_MS);
-      } else {
-        nextProps.notOpened();
-      }
-    }
-
-    return null;
-  }
-
   constructor(props) {
     super(props);
 
     this.state = {};
+  }
+
+  componentDidUpdate() {
+    if (!this.props.opened && !this.props.hideChildren) {
+      if (typeof window !== 'undefined') {
+        window.setTimeout(this.props.notOpened, REACT_COLLAPSE_TRANSITION_TIME_MS);
+      } else {
+        this.props.notOpened();
+      }
+    }
+
+    return null;
   }
 
   render() {

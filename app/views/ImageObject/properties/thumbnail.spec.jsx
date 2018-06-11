@@ -20,7 +20,7 @@ describeView('ImageObject', components, resources, resource, () => {
   set('ch', () => <Property label={NS.schema('thumbnail')} />);
 
   it('renders a thumbnail', () => {
-    expect(subject.find(marker('ImageObjectThumbnail'))).toBePresent();
+    expect(subject.find(marker('ImageObjectThumbnail'))).toExist();
   });
 
   it('passes the correct url', () => {

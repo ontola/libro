@@ -29,14 +29,14 @@ const propTypes = {
 class Contains extends PropertyBase {
   shouldComponentUpdate(nextProps) {
     return this.props.subject !== nextProps.subject
-      || this.props.version !== nextProps.version
+      || this.props.linkVersion !== nextProps.linkVersion
       || this.props.lastOrganization !== nextProps.lastOrganization;
   }
 
   currentOrg() {
     const { lastOrganization, contains } = this.props;
 
-    if (contains && this.context.linkedRenderStore.tryEntity(contains)) {
+    if (contains && this.props.lrs.tryEntity(contains)) {
       return contains;
     }
 
@@ -67,7 +67,7 @@ class Contains extends PropertyBase {
   render() {
     const { contains } = this.props;
 
-    const status = this.context.linkedRenderStore.api.getStatus(this.props.subject);
+    const status = this.props.lrs.api.getStatus(this.props.subject);
     if (status.requested === true && status.status === HttpStatus.OK) {
       this.props.onOrganizationChange(contains);
     }

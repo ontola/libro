@@ -17,7 +17,7 @@ const subRoutes = [
   <Route key="iframeRoutesTop" path="/(i|settings)/*" component={Iframe} />,
   <Route
     key="iframeRoutesNested"
-    path="*/(new|edit|trash|delete|decision|c|settings|statistics)"
+    path="*/(decision|statistics)"
     component={Iframe}
   />,
   <Route key="linkedResources" path="*" component={LinkedObject} />

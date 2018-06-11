@@ -24,11 +24,10 @@ exports[`Menu https://argu.co/ns/core#sidebar renders a menu 1`] = `
     className="SideBarLink"
   >
     <a
-      aria-current={false}
+      aria-current={null}
       className="SideBarLink__link"
       href="/f/utrecht/motions"
       onClick={[Function]}
-      style={undefined}
     >
       <div
         className="SideBarLink__icon"
@@ -45,11 +44,10 @@ exports[`Menu https://argu.co/ns/core#sidebar renders a menu 1`] = `
     className="SideBarLink"
   >
     <a
-      aria-current={false}
+      aria-current={null}
       className="SideBarLink__link"
       href="/f/utrecht/questions"
       onClick={[Function]}
-      style={undefined}
     >
       <div
         className="SideBarLink__icon"
@@ -66,11 +64,10 @@ exports[`Menu https://argu.co/ns/core#sidebar renders a menu 1`] = `
     className="SideBarLink"
   >
     <a
-      aria-current={false}
+      aria-current={null}
       className="SideBarLink__link"
       href="/utrecht/settings"
       onClick={[Function]}
-      style={undefined}
     >
       <div
         className="SideBarLink__icon"

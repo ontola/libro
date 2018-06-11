@@ -22,58 +22,58 @@ const resources = {
 
 describeView('Thing', components, resources, resource, () => {
   it('renders a Thing', () => {
-    expect(subject.find(marker('thing'))).toBePresent();
+    expect(subject.find(marker('thing'))).toExist();
   });
 
   it('renders the name', () => {
-    expect(subject.find(marker('name', 'card', 'main'))).toBePresent();
+    expect(subject.find(marker('name', 'card', 'main'))).toExist();
   });
 
   it('renders the text', () => {
-    expect(subject.find(marker('text'))).toBePresent();
+    expect(subject.find(marker('text'))).toExist();
   });
 
   it('renders the parent', () => {
-    expect(subject.find(marker('parent'))).toBePresent();
+    expect(subject.find(marker('parent'))).toExist();
   });
 
   as(NS.argu('card'), () => {
     it('renders the name', () => {
-      expect(subject.find(marker('name', 'card'))).toBePresent();
+      expect(subject.find(marker('name', 'card'))).toExist();
     });
 
     it('renders the text', () => {
-      expect(subject.find(marker('text'))).toBePresent();
+      expect(subject.find(marker('text'))).toExist();
     });
   });
 
   as(NS.argu('inline'), () => {
     it('renders the name', () => {
-      expect(subject.find(marker('name', 'inline'))).toBePresent();
+      expect(subject.find(marker('name', 'inline'))).toExist();
     });
 
     it('does not render the text', () => {
-      expect(subject.find(marker('text'))).toBeEmpty();
+      expect(subject.find(marker('text'))).not.toExist();
     });
   });
 
   as(NS.argu('section'), () => {
     it('renders the name', () => {
-      expect(subject.find(marker('name', 'card', 'preview'))).toBePresent();
+      expect(subject.find(marker('name', 'card', 'preview'))).toExist();
     });
 
     it('does not render the text', () => {
-      expect(subject.find(marker('text'))).toBeEmpty();
+      expect(subject.find(marker('text'))).not.toExist();
     });
   });
 
   as(NS.argu('parent'), () => {
     it('renders the name', () => {
-      expect(subject.find(marker('parent'))).toBePresent();
+      expect(subject.find(marker('parent'))).toExist();
     });
 
     it('does not render the text', () => {
-      expect(subject.find(marker('text'))).toBeEmpty();
+      expect(subject.find(marker('text'))).not.toExist();
     });
   });
 });

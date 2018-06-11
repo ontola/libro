@@ -1,19 +1,20 @@
 import React from 'react';
 
-import hoverBox from './index';
+import hoverBox, { propTypes } from './index';
 
 const HoverBox = hoverBox();
 
 argUnit(HoverBox, () => {
+  set('markerNS', () => 'HoverBox');
   setProp('children', () => <span data-test="HoverBox-always" />);
   setProp('hiddenChildren', () => <span data-test="HoverBox-sometimes" />);
 
   it('should show the children', () => {
-    expect(subject.find(marker('always'))).toBePresent();
+    expect(subject.find(marker('always'))).toExist();
   });
 
   it('should not show the hidden children', () => {
-    expect(subject.find(marker('sometimes'))).not.toBePresent();
+    expect(subject.find(marker('sometimes'))).not.toExist();
   });
 
   describe('when focused', () => {
@@ -22,11 +23,11 @@ argUnit(HoverBox, () => {
     });
 
     it('should show the children', () => {
-      expect(subject.find(marker('always'))).toBePresent();
+      expect(subject.find(marker('always'))).toExist();
     });
 
     it('should show the hidden children', () => {
-      expect(subject.find(marker('sometimes'))).toBePresent();
+      expect(subject.find(marker('sometimes'))).toExist();
     });
   });
 
@@ -36,11 +37,11 @@ argUnit(HoverBox, () => {
     });
 
     it('should show the children', () => {
-      expect(subject.find(marker('always'))).toBePresent();
+      expect(subject.find(marker('always'))).toExist();
     });
 
     it('should show the hidden children', () => {
-      expect(subject.find(marker('sometimes'))).toBePresent();
+      expect(subject.find(marker('sometimes'))).toExist();
     });
   });
 
@@ -51,11 +52,11 @@ argUnit(HoverBox, () => {
     });
 
     it('should show the children', () => {
-      expect(subject.find(marker('always'))).toBePresent();
+      expect(subject.find(marker('always'))).toExist();
     });
 
     it('should show the hidden children', () => {
-      expect(subject.find(marker('sometimes'))).not.toBePresent();
+      expect(subject.find(marker('sometimes'))).not.toExist();
     });
   });
 
@@ -66,11 +67,11 @@ argUnit(HoverBox, () => {
     });
 
     it('should show the children', () => {
-      expect(subject.find(marker('always'))).toBePresent();
+      expect(subject.find(marker('always'))).toExist();
     });
 
     it('should show the hidden children', () => {
-      expect(subject.find(marker('sometimes'))).not.toBePresent();
+      expect(subject.find(marker('sometimes'))).not.toExist();
     });
   });
-});
+}, { link: true, mount: true, propTypes });

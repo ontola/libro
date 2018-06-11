@@ -7,10 +7,10 @@ argUnit(ChronoItem, () => {
   setProp('text', () => 'Joe');
 
   it('should render', () => {
-    expect(subject.find(marker())).toBePresent();
+    expect(subject.find(marker())).toExist();
   });
 
   it('should render the details', () => {
-    expect(subject.find(marker('details'))).toBePresent();
+    expect(subject.find(marker('details'))).toExist();
   });
 }, { mount: true, redux: true });

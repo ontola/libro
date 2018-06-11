@@ -12,7 +12,7 @@ import { defaultContext } from './utilities';
 const exNS = memoizedNamespace('http://example.org/');
 
 const context = (iri, lrs, store, initialState = undefined) => defaultContext({
-  linkedRenderStore: lrs || true,
+  lrs: lrs || true,
   store: store || true,
   subject: iri,
 }, initialState);
@@ -78,12 +78,12 @@ export const loc = ({
   const initialState = new Immutable.Map().set('linkedObjects', versions);
   const ctx = generateCtx(resources, subject, initialState);
   if (Array.isArray(components)) {
-    ctx.linkedRenderStore.registerAll(...components);
+    ctx.lrs.registerAll(...components);
   }
 
   return (
     <Provider store={ctx.store}>
-      <RenderStoreProvider linkedRenderStore={ctx.linkedRenderStore}>
+      <RenderStoreProvider value={ctx.lrs}>
         <StaticRouter context={{}}>
           <LinkedResourceContainer
             forceRender

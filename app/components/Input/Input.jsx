@@ -118,16 +118,12 @@ const defaultProps = {
 
 const Input = ({
   element,
-  hiddenValue,
   ...props
 }) => {
   const Element = element;
-  if (props.type === 'hidden' && hiddenValue && hiddenValue !== props.value) {
-    props.input.onChange(hiddenValue);
-  }
 
   return (
-    <Element {...props} {...props.input} />
+    <Element {...props} />
   );
 };
 

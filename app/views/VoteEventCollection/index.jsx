@@ -18,14 +18,14 @@ const propTypes = {
  * @returns {ReactElement} The vote event collection component
  */
 const VoteEventCollection = ({ optionCounts }) => (
-  <Property label={NS.argu('views')} optionCounts={optionCounts} />
+  <Property label={NS.as('pages')} optionCounts={optionCounts} />
 );
 
 VoteEventCollection.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   VoteEventCollection,
-  NS.argu('Collection'),
+  NS.as('Collection'),
   RENDER_CLASS_NAME,
   NS.argu('voteEvent')
 );
@@ -45,7 +45,7 @@ class VoteEvent extends PropertyBase {
     // @TODO <Property label="argu:counts"/>
     return (
       <div className="VoteData">
-        <Property label={NS.argu('members')} />
+        <Property label={NS.as('items')} />
       </div>
     );
   }

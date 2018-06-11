@@ -17,6 +17,8 @@ const propTypes = {
   disableRich: PropTypes.bool,
   getMarkdownValue: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
+  maxLength: PropTypes.string,
+  minLength: PropTypes.string,
   // Handle the blurring for redux-form
   onBlur: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
@@ -39,10 +41,19 @@ const UPDATE_DELAY = 300;
  * to improve performance.
  */
 class TextEditor extends Component {
-  startTimer() {
+  constructor(props) {
+    super(props);
+
+    this.debounce = this.debounce.bind(this);
+  }
+
+  debounce() {
     clearTimeout(this.timer);
+    if (!this) {
+      throw new Error('No object defined');
+    }
     this.timer = setTimeout(
-      () => this.props.onChange(this.props.getMarkdownValue()),
+      () => this.props.onChange({ target: { value: this.props.getMarkdownValue() } }),
       UPDATE_DELAY
     );
   }
@@ -52,6 +63,8 @@ class TextEditor extends Component {
       autoFocus,
       id,
       getMarkdownValue,
+      maxLength,
+      minLength,
       placeholder,
       showRichEditor,
       onBlur,
@@ -77,9 +90,9 @@ class TextEditor extends Component {
             onBlur={(e) => {
               onBlur(e);
               // Convert the DraftJS object to Markdown and store it in Redux-Form.
-              onChange(getMarkdownValue());
+              onChange({ target: { value: getMarkdownValue() } });
             }}
-            onChange={() => this.startTimer()}
+            onChange={this.debounce}
             onFocus={onFocus}
             onKeyUp={onKeyUp}
           />
@@ -89,9 +102,11 @@ class TextEditor extends Component {
             autoFocus={autoFocus}
             disableRich={disableRich}
             id={id}
+            maxLength={maxLength}
+            minLength={minLength}
             placeholder={placeholder}
             onBlur={onBlur}
-            onChange={e => onChange(e.target.value)}
+            onChange={onChange}
             onFocus={onFocus}
             onKeyUp={onKeyUp}
           />

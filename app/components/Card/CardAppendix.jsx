@@ -1,6 +1,5 @@
 import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
-import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 
@@ -15,18 +14,10 @@ const propTypes = {
  * @returns {component} Component
  */
 class CardAppendix extends TopologyProvider {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.topology = NS.argu('cardAppendix');
-  }
-
-  render() {
-    return (
-      <React.Fragment>
-        {this.props.children}
-      </React.Fragment>
-    );
   }
 }
 

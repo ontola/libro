@@ -22,7 +22,7 @@ describe('Collapsible component', () => {
   it('should render', () => {
     const comp = getComp();
 
-    expect(comp.find('.Collapsible')).toBePresent();
+    expect(comp.find('.Collapsible')).toExist();
     expect(comp.find('.Collapsible__trigger span').first().html()).toEqual('<span>Click here</span>');
     expect(comp.find('.Collapsible__visible-content span').first().html()).toEqual('<span>Content</span>');
 

@@ -36,9 +36,10 @@ import Image from './properties/image';
 import Menus from './properties/menus';
 import Name from './properties/name';
 import Omniform from './properties/omniform';
-import Operation from './properties/operation';
 import Organization from './properties/organization';
+import PotentialAction from './properties/potentialAction';
 import Text from './properties/text';
+import TrashedAt from './properties/trashedAt';
 import UpdateAction from './properties/updateAction';
 import VoteEvents from './properties/voteEvents';
 
@@ -68,9 +69,6 @@ const ThingPage = () => (
           <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
           <Property label={NS.foaf('isPrimaryTopicOf')} />
         </CardContent>
-        <Property label={NS.argu('attachments')} />
-        <Property label={NS.council('attachment')} />
-        <Property label={NS.council('agenda')} />
       </CardMain>
       <Property label={NS.argu('voteEvents')} />
       <Property label={NS.argu('blogPosts')} />
@@ -96,10 +94,10 @@ const ThingContainer = ({ highlighted }) => (
         <Property label={NS.schema('dateCreated')} />
       </DetailsBar>
       <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
-      <Property forceRender label={NS.argu('arguments')} />
     </CardContent>
     <CardAppendix>
       <Property label={NS.argu('voteableVoteEvent')} />
+      <Property forceRender label={NS.argu('arguments')} />
       <Property label={NS.schema('comments')} />
       <Property forceRender label={NS.app('omniform')} />
     </CardAppendix>
@@ -185,7 +183,10 @@ export default [
     connectHighlighting(ThingSection),
     NS.schema('Thing'),
     RENDER_CLASS_NAME,
-    NS.argu('section')
+    [
+      NS.argu('cardRow'),
+      NS.argu('section'),
+    ]
   ),
   LinkedRenderStore.registerRenderer(
     ThingParent,
@@ -223,24 +224,24 @@ export default [
       NS.argu('card'),
       NS.argu('cardFixed'),
       NS.argu('cardMain'),
-      NS.argu('cardRow'),
     ]
   ),
-  Arguments,
+  ...Arguments,
   BaseColor,
   CollectionAssociation,
   CoverPhoto,
   CreateAction,
   DateCreated,
   IsPrimaryTopicOf,
-  IsPartOf,
+  ...IsPartOf,
   Image,
   Menus,
   ...Name,
   ...Omniform,
-  Operation,
   Organization,
+  ...PotentialAction,
   ...Text,
+  TrashedAt,
   UpdateAction,
   VoteEvents,
 ];

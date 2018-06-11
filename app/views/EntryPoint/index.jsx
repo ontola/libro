@@ -5,8 +5,11 @@ import PropTypes from 'prop-types';
 
 import { Button } from '../../components';
 import ButtonWithFeedback from '../../components/ButtonWithFeedback';
-import { allTopologies, NS } from '../../helpers/LinkedRenderStore';
+import { allTopologiesExcept, NS } from '../../helpers/LinkedRenderStore';
 import { countInParentheses } from '../../helpers/numbers';
+
+import EntryPointContainer from './EntryPointContainer';
+import EntryPointOmiform from './EntryPointOmiform';
 
 const FABase = 'http://fontawesome.io/icon/';
 
@@ -56,9 +59,13 @@ EntryPoint.propTypes = {
   url: linkedPropType,
 };
 
-export default LinkedRenderStore.registerRenderer(
-  link([NS.schema('image'), NS.schema('name'), NS.schema('url'), NS.schema('httpMethod')])(EntryPoint),
-  NS.schema('EntryPoint'),
-  RENDER_CLASS_NAME,
-  allTopologies
-);
+export default [
+  EntryPointContainer,
+  EntryPointOmiform,
+  LinkedRenderStore.registerRenderer(
+    link([NS.schema('image'), NS.schema('name'), NS.schema('url'), NS.schema('httpMethod')])(EntryPoint),
+    NS.schema('EntryPoint'),
+    RENDER_CLASS_NAME,
+    allTopologiesExcept(NS.argu('container'), NS.argu('omniformFields'))
+  ),
+];

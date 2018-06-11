@@ -12,7 +12,7 @@ const VoteEvents = ({ linkedProp }) => (
   <LinkedResourceContainer
     subject={linkedProp}
   >
-    <Property label={NS.argu('members')} />
+    <Property label={NS.as('items')} />
   </LinkedResourceContainer>
 );
 

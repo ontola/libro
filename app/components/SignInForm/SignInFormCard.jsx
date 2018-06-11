@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Form } from 'informed';
 
 import {
   Button,
@@ -21,12 +22,10 @@ const propTypes = {
     PropTypes.number,
     PropTypes.string,
   ])),
-  // Since this uses redux-form, you need to pass onSubmit instead of handleSubmit.
-  handleSubmit: PropTypes.func.isRequired,
   invalid: PropTypes.bool,
+  onSubmit: PropTypes.func,
   redirect: PropTypes.string,
   step: PropTypes.string.isRequired,
-  submitting: PropTypes.bool.isRequired,
 };
 
 const defaultProps = {
@@ -46,7 +45,8 @@ class SignInFormCard extends SignInFormBase {
     return (
       <React.Fragment>
         <CardContent>
-          <form
+          <Form
+            validateOnBlur
             action={`https://argu.co/users/auth/facebook?r=${this.props.redirect}`}
             method="GET"
             style={{ display: 'inline' }}
@@ -61,7 +61,7 @@ class SignInFormCard extends SignInFormBase {
               Facebook login
             </Button>
             <p />
-          </form>
+          </Form>
         </CardContent>
         <CardDivider text="of" />
       </React.Fragment>
@@ -94,9 +94,8 @@ class SignInFormCard extends SignInFormBase {
 
   render() {
     const {
-      handleSubmit,
       invalid,
-      submitting,
+      onSubmit,
     } = this.props;
 
     const { buttonText, formFields } = this.currentFields();
@@ -109,26 +108,31 @@ class SignInFormCard extends SignInFormBase {
         <Card>
           <CardRow>
             {this.contentHeader()}
-            <form
+            <Form
+              validateOnBlur
               action="/users"
-              onSubmit={handleSubmit}
+              onSubmit={onSubmit}
             >
-              <CardContent>
-                {formFields}
-              </CardContent>
-              <CardActions noSpacing>
-                {this.backButton()}
-                <Button
-                  disabled={invalid}
-                  icon="arrow-right"
-                  loading={submitting}
-                  theme="box"
-                  type="submit"
-                >
-                  {buttonText}
-                </Button>
-              </CardActions>
-            </form>
+              {() => (
+                <React.Fragment>
+                  <CardContent>
+                    {formFields}
+                  </CardContent>
+                  <CardActions noSpacing>
+                    {this.backButton()}
+                    <Button
+                      disabled={invalid}
+                      icon="arrow-right"
+                      loading={false}
+                      theme="box"
+                      type="submit"
+                    >
+                      {buttonText}
+                    </Button>
+                  </CardActions>
+                </React.Fragment>
+              )}
+            </Form>
           </CardRow>
         </Card>
         <ul>

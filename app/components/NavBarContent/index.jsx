@@ -47,7 +47,7 @@ const NavBarContent = ({ orgColor }) => {
       </div>
       <div className="NavBarContent__footer">
         <LinkedResourceContainer subject={NS.app('c_a')} topology={NS.argu('sidebar')} />
-        <LinkedResourceContainer subject={NS.app('n?type=infinite')} topology={NS.argu('sidebar')} />
+        <LinkedResourceContainer subject={NS.app('n')} topology={NS.argu('sidebar')} />
         <LinkedResourceContainer subject={NS.app('menus/info')} topology={NS.argu('sidebar')} />
         {__DEVELOPMENT__ && <SideBarLink
           icon="gears"

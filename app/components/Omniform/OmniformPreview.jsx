@@ -12,7 +12,7 @@ const propTypes = {
 };
 
 const OmniformPreview = ({ onClick }) => (
-  <button className="Omniform Omniform__preview" onClick={onClick}>
+  <button className="Form Omniform Omniform__preview" onClick={onClick}>
     <FormFooter>
       <LinkedResourceContainer subject={NS.app('c_a')} />
       <p className="Form__footer-preview-text">Plaats jouw reactie...</p>
