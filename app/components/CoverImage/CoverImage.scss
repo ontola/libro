@@ -26,12 +26,16 @@
 
   &__child {
     background-size: cover;
+    filter: blur(15px);
     height: 100%;
-    opacity: .5;
+    opacity: .3;
+    transform: scale(1.2);
     width: 100%;
 
     .Card & {
+      filter: none;
       opacity: 1;
+      transform: none;
     }
   }
 }
