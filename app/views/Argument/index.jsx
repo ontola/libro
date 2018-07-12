@@ -24,10 +24,10 @@ const ArgumentContainer = ({ highlighted, votesProCount }) => (
         <Property label={NS.schema('dateCreated')} />
       </DetailsBar>
       <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
-      <ActionsBar>
-        <Property count={votesProCount} label={NS.schema('potentialAction')} />
-      </ActionsBar>
     </CardContent>
+    <ActionsBar>
+      <Property count={votesProCount} label={NS.schema('potentialAction')} />
+    </ActionsBar>
     <CardAppendix>
       <Property label={NS.argu('voteableVoteEvent')} />
       <Property label={NS.schema('comments')} />

@@ -20,10 +20,10 @@ const Comment = ({ highlighted }) => (
         <Property label={NS.schema('dateCreated')} />
       </DetailsBar>
       <Property label={NS.schema('text')} />
-      <ActionsBar small>
-        <Property label={NS.schema('potentialAction')} />
-      </ActionsBar>
     </CardContent>
+    <ActionsBar small>
+      <Property label={NS.schema('potentialAction')} />
+    </ActionsBar>
     <CardAppendix>
       <Property forceRender clickToOpen={false} label={NS.app('omniform')} />
     </CardAppendix>

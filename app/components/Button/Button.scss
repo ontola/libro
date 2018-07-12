@@ -211,14 +211,21 @@ $google-color: #4285f4;
 
 @each $variant, $color in $button-variants-colors {
   .Button--variant-#{$variant} {
-    box-shadow: inset 0 0 0 0 color($color);
     color: color($color);
     transition: box-shadow .2s;
+
+    .Button__label {
+      box-shadow: inset 0 0 0 0 color($color);
+      padding: .3em 0;
+    }
 
     &:hover,
     &:focus {
       background-color: color('white');
-      box-shadow: inset 0 -2px 0 0 color($color);
+
+      .Button__label {
+        box-shadow: inset 0 -2px 0 0 color($color);
+      }
     }
 
     &:active {
@@ -229,7 +236,10 @@ $google-color: #4285f4;
 
     &.Button--active {
       background-color: color('white');
-      box-shadow: inset 0 -4px 0 0 color($color);
+
+      .Button__label {
+        box-shadow: inset 0 -4px 0 0 color($color);
+      }
     }
   }
 }
