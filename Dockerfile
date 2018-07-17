@@ -9,7 +9,8 @@ COPY dist /usr/src/app/dist
 COPY static /usr/src/app/static
 
 ENV NODE_ENV 'production'
-ENV ARGU_API_URL 'http://localhost:3030/'
+ARG ARGU_API_URL
+ENV ARGU_API_URL $ARGU_API_URL
 
 EXPOSE 8080
 CMD ["node", "./dist/private/server.js"]

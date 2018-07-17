@@ -8,7 +8,8 @@ RUN npm i -q
 COPY . /usr/src/app
 
 ENV NODE_ENV 'production'
-ENV ARGU_API_URL 'http://localhost:3030/'
+ARG ARGU_API_URL
+ENV ARGU_API_URL $ARGU_API_URL
 
 RUN npm run build
 RUN npm prune -q --prod
