@@ -1,7 +1,6 @@
 // const path = require('path');
 
 // require('react-hot-loader/patch');
-const HappyPack = require('happypack');
 const webpack = require('webpack');
 
 const config = require('./common.config');
@@ -21,39 +20,23 @@ config.devtool = 'inline-source-map';
 
 config.module.rules.unshift({
   exclude: /node_modules/,
-  include: /app/,
-  test: /(\.jsx\.js)?$/,
-  use: [{
-    loader: 'happypack/loader',
-    options: {
-      id: 'babel'
-    }
-  }],
+  test: /\.(js|jsx)$/,
+  use: ['babel-loader']
 });
 
-config.module.rules.push({
-  test: /\.scss$/,
+config.module.rules.unshift({
+  test: /\.(sa|sc|c)ss$/,
   use: [
-    {
-      loader: 'happypack/loader',
-      options: { id: 'scss' },
-    },
+    'style-loader',
+    'css-loader',
+    'postcss-loader',
+    'sass-loader',
   ],
 });
 
 config.plugins.push(
-  new HappyPack({
-    id: 'babel',
-    loaders: ['babel-loader?cacheDirectory'],
-    threads: 4,
-  }),
-  new HappyPack({
-    id: 'scss',
-    loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
-    threads: 4,
-  }),
   new webpack.HotModuleReplacementPlugin(),
-  new webpack.NoErrorsPlugin()
+  new webpack.NoEmitOnErrorsPlugin()
 );
 
 module.exports = config;

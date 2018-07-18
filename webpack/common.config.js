@@ -15,6 +15,8 @@ const common = {
     xmlhttprequest: 'self.XMLHttpRequest',
   },
 
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
+
   module: {
     rules: [
       {
@@ -61,7 +63,6 @@ const common = {
     }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.optimize.ModuleConcatenationPlugin(),
-    // new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en|nl/),
   ],
 
   resolve: {

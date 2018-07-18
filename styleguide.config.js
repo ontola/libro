@@ -1,7 +1,6 @@
 const path = require('path');
 
 const autoprefixer = require('autoprefixer');
-const HappyPack = require('happypack');
 
 module.exports = {
   // Using the existng webpackConfig would be preferable, since it should prevent a lot of code
@@ -36,13 +35,7 @@ module.exports = {
           test: /\.scss$/,
         },
       ],
-      plugins: [
-        new HappyPack({
-          id: 'babel',
-          loaders: ['babel-loader?cacheDirectory'],
-          threads: 4,
-        }),
-      ],
+      plugins: [],
       postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
     },
     resolve: {

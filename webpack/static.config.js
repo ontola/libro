@@ -1,4 +1,4 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const webpack = require('webpack');
 
@@ -25,19 +25,17 @@ config.module.rules.unshift({
 });
 
 config.module.rules.push({
-  test: /\.scss$/,
-  use: ExtractTextPlugin.extract({
-    fallback: 'style-loader',
-    use: [
-      'css-loader',
-      'postcss-loader',
-      'sass-loader',
-    ]
-  }),
+  test: /\.(sa|sc|c)ss$/,
+  use: [
+    MiniCssExtractPlugin.loader,
+    'css-loader',
+    'postcss-loader',
+    'sass-loader',
+  ],
 });
 
 config.plugins.push(
-  new ExtractTextPlugin({
+  new MiniCssExtractPlugin({
     filename: 'bundle-[contenthash].css'
   }),
   new webpack.DefinePlugin({
@@ -48,11 +46,6 @@ config.plugins.push(
   new webpack.ProvidePlugin({
     fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
     xmlhttprequest: 'imports?this=>global!exports?global.XMLHttpRequest!global.XMLHttpRequest'
-  }),
-  new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: false,
-    },
   }),
   new webpack.ProvidePlugin({
     fetch: 'isomorphic-fetch',
