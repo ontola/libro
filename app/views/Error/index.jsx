@@ -66,8 +66,8 @@ const ErrorCardComp = (props) => {
           {headerForStatus(linkRequestStatus)}
         </Heading>
         <p>{bodyForStatus(linkRequestStatus)}</p>
-        {mainAction}
       </CardContent>
+      {mainAction}
     </Card>
   );
 };
@@ -117,8 +117,8 @@ const ErrorPageComp = (props) => {
               {errors.nl.let_us_know}
             </LinkDuo>
           </p>
-          {cardAction}
         </CardContent>
+        {cardAction}
       </Card>
     </Container>
   );
@@ -156,11 +156,6 @@ export default [
     NS.ll('ErrorResource'),
     RENDER_CLASS_NAME,
     [
-      NS.argu('card'),
-      NS.argu('cardFixed'),
-      NS.argu('cardHover'),
-      NS.argu('cardMain'),
-      NS.argu('cardRow'),
       NS.argu('collection'),
       NS.argu('container'),
       NS.argu('dropdownContent'),
@@ -180,6 +175,11 @@ export default [
     NS.ll('ErrorResource'),
     RENDER_CLASS_NAME,
     [
+      NS.argu('card'),
+      NS.argu('cardFixed'),
+      NS.argu('cardHover'),
+      NS.argu('cardMain'),
+      NS.argu('cardRow'),
       NS.argu('detail'),
       NS.argu('inline'),
       NS.argu('voteBubble'),

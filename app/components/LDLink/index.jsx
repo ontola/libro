@@ -15,6 +15,7 @@ const propTypes = {
     'default',
     'parent',
   ]),
+  title: PropTypes.string,
 };
 const defaultProps = {
   theme: 'default',
@@ -25,6 +26,7 @@ const LDLink = ({
   children,
   subject,
   theme,
+  title,
 }) => {
   if (!subject) return 'LDLINK NO SUBJECT';
 
@@ -32,6 +34,7 @@ const LDLink = ({
   return (
     <Link
       className={`${className || `LDLink__${theme}`}`}
+      title={title}
       to={href}
     >
       {children}

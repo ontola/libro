@@ -3,13 +3,9 @@
 exports[`Attachment renders 1`] = `
 <div
   className="Attachment"
-  href="http://argu.co/"
 >
-  <a
+  <withLinkCtxWrapper
     className="Attachment__primary"
-    href="http://argu.co/"
-    rel="noreferrer noopener"
-    target="_blank"
     title="Attachment label"
   >
     <FontAwesome
@@ -22,21 +18,14 @@ exports[`Attachment renders 1`] = `
     >
       Attachment label
     </div>
-    <div
-      className="Attachment__fill"
-      data-test="Attachment-progress"
-      style={
-        Object {
-          "width": "0%",
-        }
-      }
-    />
-  </a>
+  </withLinkCtxWrapper>
   <a
     className="Attachment__inside-button"
     data-test="Attachment-download"
-    href="/"
-    title="Download bestand"
+    download={true}
+    rel="noopener noreferrer"
+    target="_blank"
+    title="Download NaN undefined"
   >
     <FontAwesome
       className="Attachment__icon"

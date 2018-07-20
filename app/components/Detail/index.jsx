@@ -18,6 +18,7 @@ const propTypes = {
   icon: PropTypes.string,
   imageUrl: PropTypes.string,
   linkedImage: PropTypes.bool,
+  spin: PropTypes.bool,
   text: PropTypes.string,
   /** HTML title attribute */
   title: PropTypes.string,
@@ -25,6 +26,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  spin: false,
   title: '',
 };
 
@@ -61,6 +63,7 @@ class Detail extends PureComponent {
       hideIcon,
       icon,
       imageUrl,
+      spin,
       text,
       title,
       url,
@@ -79,7 +82,7 @@ class Detail extends PureComponent {
 
         {!imageUrl && icon && !hideIcon && (
         <span className="Detail__icon" data-test="Detail-icon">
-          <FontAwesome name={icon} />
+          <FontAwesome name={icon} spin={spin} />
         </span>
         )}
         <DetailText data-test="Detail-DetailText">

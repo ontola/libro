@@ -11,7 +11,7 @@ import Card, {
 import Container from '../Container';
 import LDLink from '../LDLink';
 
-const LoadingText = () => <span>Loading...</span>;
+const LoadingInline = () => <div className="Loading__Paragraph Loading__background" />;
 
 export const LoadingSideBarLink = () => (
   <div className="LoadingSideBarLink">
@@ -48,11 +48,15 @@ export const LoadingPage = () => (
   </Container>
 );
 
+export const LoadingDetail = () => (
+  <div className="Loading__Paragraph Loading__Paragraph--detail Loading__background" />
+);
+
 export const LoadingParent = () => (
   <LDLink>
     <div style={{ alignItems: 'center', display: 'flex', padding: '1em 1em 0em 1em' }}>
       <FontAwesome name="arrow-up" style={{ marginRight: '.5em' }} />
-      <div className="Loading__Header Loading__background" />
+      <div className="Loading__Paragraph Loading__background" />
     </div>
   </LDLink>
 );
@@ -71,4 +75,4 @@ export const LoadingMicroRow = () => (
   </CardMicroRow>
 );
 
-export default LoadingText;
+export default LoadingInline;

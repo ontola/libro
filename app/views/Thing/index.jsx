@@ -33,11 +33,13 @@ import DateCreated from './properties/dateCreated';
 import IsPrimaryTopicOf from './properties/isPrimaryTopicOf';
 import IsPartOf from './properties/isPartOf';
 import Image from './properties/image';
+import Location from './properties/location';
 import Menus from './properties/menus';
 import Name from './properties/name';
 import Omniform from './properties/omniform';
 import Organization from './properties/organization';
 import PotentialAction from './properties/potentialAction';
+import SuperEvent from './properties/superEvent';
 import Text from './properties/text';
 import TrashedAt from './properties/trashedAt';
 import UpdateAction from './properties/updateAction';
@@ -52,6 +54,7 @@ const ThingPage = () => (
       <Property label={NS.schema('isPartOf')} />
       <Property label={NS.argu('trashedAt')} />
       <CardMain data-test="Thing-thing">
+        <Property label={NS.schema('superEvent')} />
         <CardContent noSpacing>
           <CardMenuFloater
             header={<Property label={[NS.schema('name'), NS.rdfs('label')]} />}
@@ -64,11 +67,15 @@ const ThingPage = () => (
             <Property label={NS.rdf('type')} />
             <Property label={NS.schema('creator')} />
             <Property label={NS.schema('dateCreated')} />
+            <Property label={NS.schema('location')} />
           </DetailsBar>
           <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
           <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
           <Property label={NS.foaf('isPrimaryTopicOf')} />
+          <Property label={NS.council('attachment')} />
+          <Property label={NS.argu('attachments')} />
         </CardContent>
+        <Property label={NS.council('agenda')} />
       </CardMain>
       <Property label={NS.argu('voteEvents')} />
       <Property label={NS.argu('blogPosts')} />
@@ -235,10 +242,12 @@ export default [
   IsPrimaryTopicOf,
   ...IsPartOf,
   Image,
+  Location,
   Menus,
   ...Name,
   ...Omniform,
   Organization,
+  SuperEvent,
   ...PotentialAction,
   ...Text,
   TrashedAt,

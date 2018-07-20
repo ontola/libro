@@ -11,16 +11,12 @@
   }
 
   .Button__label {
-    background-color: color('white');
-    border: solid 1px color('grey', 'light');
-    border-radius: 999px;
     color: color('grey', 'base');
     padding: 0 .9em;
     position: relative;
     transition: .2s transform;
 
     &:hover {
-      border: solid 1px color('grey', 'base');
       color: color('grey', 'mid-dark');
     }
   }

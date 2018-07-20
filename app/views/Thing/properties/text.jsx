@@ -53,7 +53,6 @@ export default [
     [
       undefined,
       NS.argu('cardMain'),
-      NS.argu('cardRow'),
     ]
   ),
   LinkedRenderStore.registerRenderer(
@@ -62,6 +61,7 @@ export default [
     NS.schema('text'),
     [
       NS.argu('card'),
+      NS.argu('cardRow'),
       NS.argu('collection'),
       NS.argu('container'),
     ]

@@ -1,5 +1,9 @@
 export const PERCENTAGE = 100;
 
+const SIZES = ['Byte', 'KB', 'MB', 'GB', 'TB'];
+const ZERO_BYTE = '0 Byte';
+const BYTE_SIZE_TO_KBYTE = 1024;
+
 /**
  * Calculates rounded percentage when given a number and the total amount
  * @param {number} number The number to calculate the percentage of
@@ -21,4 +25,11 @@ export function countInParentheses(count) {
   if (!count) return '';
   const val = typeof count === 'number' ? count : Number.parseInt(count.value, 10);
   return val > 0 ? `(${val})` : '';
+}
+
+export function byteToSize(byte) {
+  if (byte === 0) return ZERO_BYTE;
+  const i = parseInt(Math.floor(Math.log(byte) / Math.log(BYTE_SIZE_TO_KBYTE)), 8);
+
+  return `${Math.round(byte / (BYTE_SIZE_TO_KBYTE ** i))} ${SIZES[i]}`;
 }

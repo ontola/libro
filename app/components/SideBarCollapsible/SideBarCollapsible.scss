@@ -1,9 +1,9 @@
 @import '../shared/config';
 
 .SideBarCollapsible {
-  position: relative;
-  flex-grow: 1;
   flex-direction: column;
+  flex-grow: 1;
+  position: relative;
 
   a {
     flex: 1;
@@ -17,12 +17,13 @@
   }
 
   .SideBarCollapsible__label {
-    position: relative;
     display: flex;
+    position: relative;
   }
 
   .SideBarCollapsible__toggle {
     align-items: center;
+    align-self: stretch;
     border-radius: 0;
     color: color('transparent', 'mid-light');
     cursor: pointer;

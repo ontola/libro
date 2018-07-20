@@ -1,5 +1,6 @@
 export { default as ActionsBar } from './components/ActionsBar/index';
 // export { default as Attachment } from './components/Attachment/index';
+export { default as Attachment } from './components/Attachment/index';
 export { default as BackButton } from './components/BackButton/index';
 export { default as BottomBar } from './components/BottomBar/index';
 export { default as BottomBarButton } from './components/BottomBarButton/index';
@@ -76,6 +77,7 @@ export {
   LoadingCard,
   LoadingCardFixed,
   LoadingMicroRow,
+  LoadingDetail,
   LoadingPage,
   LoadingParent,
   LoadingRow,

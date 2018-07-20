@@ -7,6 +7,7 @@ import {
   LoadingCard,
   LoadingCardFixed,
   LoadingMicroRow,
+  LoadingDetail,
   LoadingPage,
   LoadingParent,
   LoadingRow,
@@ -71,13 +72,21 @@ export default [
     ]
   ),
   LinkedRenderStore.registerRenderer(
+    LoadingDetail,
+    NS.ll('LoadingResource'),
+    RENDER_CLASS_NAME,
+    NS.argu('detail')
+  ),
+  LinkedRenderStore.registerRenderer(
     Loading,
     NS.ll('LoadingResource'),
     RENDER_CLASS_NAME,
     [
-      NS.argu('detail'),
       NS.argu('inline'),
       NS.argu('voteBubble'),
+      NS.argu('card'),
+      NS.argu('cardMain'),
+      NS.argu('cardRow'),
     ]
   ),
 ];

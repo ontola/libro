@@ -43,7 +43,7 @@ describeView('Thing', components, resources, resource, () => {
     });
 
     it('renders the text', () => {
-      expect(subject.find(marker('text'))).toExist();
+      expect(subject.find(marker('text', 'card'))).toExist();
     });
   });
 

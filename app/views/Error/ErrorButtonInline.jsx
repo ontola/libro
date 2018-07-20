@@ -20,11 +20,10 @@ class ErrorButtonSideBar extends ErrorButtonWithFeedback {
 
     return (
       <Button
-        margins
         small
         icon="exclamation-triangle"
         loading={this.state.loading}
-        theme="transparant"
+        theme="subtle"
         title={titleForStatus(linkRequestStatus)}
         onClick={this.reload}
       >
