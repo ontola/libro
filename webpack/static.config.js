@@ -1,6 +1,9 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const webpack = require('webpack');
+const { BugsnagBuildReporterPlugin } = require('webpack-bugsnag-plugins');
+
+const pjson = require('../package.json');
 
 const config = require('./common.config');
 
@@ -56,6 +59,14 @@ config.plugins.push(
     publicPath: '/f_assets/',
   })
 );
+
+if (process.env.SEMAHORE_DEPLOY_NUMBER) {
+  config.plugins.push(new BugsnagBuildReporterPlugin({
+    apiKey: process.env.BUGSNAG_KEY,
+    appVersion: pjson.version,
+    releaseStage: process.env.SEMAPHORE_SERVER_NAME,
+  }));
+}
 
 config.stats = {
   // minimal logging

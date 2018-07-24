@@ -1,4 +1,5 @@
-import { ASSETS_HOST } from '../../app/config';
+import { ASSETS_HOST, STAGE } from '../../app/config';
+import pjson from '../../package.json';
 
 import manifest from './manifest';
 
@@ -6,7 +7,12 @@ export const renderFullPage = (html, devPort, domain, csrfToken, initialState = 
   const bundleCSS = process.env.NODE_ENV === 'production'
     ? `<link rel="stylesheet" type="text/css" href="${ASSETS_HOST}${manifest['main.css']}" />`
     : '';
-  const bugsnagKey = process.env.BUGSNAG_KEY;
+
+  const bugsnagOpts = {
+    apiKey: process.env.BUGSNAG_KEY,
+    appVersion: pjson.version,
+    releaseStage: STAGE,
+  };
 
   return `<!doctype html>
     <meta charset="utf-8">
@@ -31,7 +37,7 @@ export const renderFullPage = (html, devPort, domain, csrfToken, initialState = 
         <meta name="csrf-param" content="authenticity_token">
         <meta name="csrf-token" content="${csrfToken}">
         <script src="//d2wy8f7a9ursnm.cloudfront.net/v4/bugsnag.min.js"></script>
-        <script>window.bugsnagClient = bugsnag('${bugsnagKey}')</script>
+        <script>window.bugsnagClient = bugsnag(${JSON.stringify(bugsnagOpts)})</script>
 
         <link rel="icon" type="image/png" sizes="192x192" href="/static/icon-large.png">
         <link rel="apple-touch-icon" type="image/png" sizes="192x192" href="/static/icon-large.png">
