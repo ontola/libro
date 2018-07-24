@@ -52,13 +52,12 @@
   left: 0;
   margin: 0;
   max-height: 30em;
-  overflow: hidden;
+  min-width: 15em;
   overflow-y: auto;
   position: absolute;
   text-align: left;
   text-transform: none;
   top: 100%;
-  width: 15em;
   z-index: 10;
 
   @include closed-state;
@@ -80,7 +79,6 @@
 .DropdownLink {
   color: color('grey', 'mid-dark');
   display: block;
-  min-width: 100%;
   padding: .6em .7em;
   position: relative;
 

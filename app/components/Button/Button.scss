@@ -177,12 +177,6 @@ a {
     right: 0;
     top: 0;
   }
-
-  &:hover {
-    &::after {
-      background-color: color('grey', 'light');
-    }
-  }
 }
 
 .Button--omniform-switcher--current {
@@ -190,18 +184,6 @@ a {
 
   &::after {
     background-color: color('grey', 'x-light');
-  }
-
-  &:hover {
-    &::after {
-      background-color: color('grey', 'mid-light');
-    }
-  }
-
-  &:active {
-    &::after {
-      background-color: color('grey', 'base');
-    }
   }
 
   &.Button--omniform-switcher--pro {

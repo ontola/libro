@@ -2,9 +2,11 @@
 
 .Form {
   fieldset {
-    color: color('grey', 'mid-dark');
-    font-size: font-size('large');
-    font-weight: bold;
+    legend {
+      color: color('grey', 'mid-dark');
+      font-size: font-size('large');
+      font-weight: bold;
+    }
   }
 
   hr {
@@ -27,11 +29,11 @@
     }
 
     &-image {
+      align-self: center;
       background-color: color('grey', 'mid-light');
       background-size: cover;
       border-radius: 999px;
       height: 2em;
-      align-self: center;
       margin: .4em;
       margin-right: 1.2em;
       width: 2em;

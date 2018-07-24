@@ -6,13 +6,14 @@
 }
 
 .Field__input {
+  -webkit-appearance: none;
   box-sizing: border-box;
+  font-family: $font-family;
   font-size: 1em;
   margin: 10px;
   margin-bottom: 0;
   padding: 10px;
   width: calc(100% - 20px);
-  -webkit-appearance: none;
 
   &--checkbox {
     -moz-appearance: checkbox;
@@ -79,8 +80,11 @@
     background-color: color('grey', 'xx-light');
     border: solid 1px color('grey', 'x-light');
     border-radius: 5px;
+    margin-left: 0;
+    margin-right: 0;
     margin-top: 0;
     transition: border-color .2s, background-color .2s;
+    width: auto;
 
     &:hover {
       border-color: color('grey', 'light');
@@ -94,7 +98,12 @@
   }
 
   .Field__label {
+    margin: 0;
     padding-bottom: .3rem;
+  }
+
+  .Field__messages {
+    padding: 0;
   }
 }
 
