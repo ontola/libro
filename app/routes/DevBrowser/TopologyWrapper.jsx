@@ -118,9 +118,11 @@ const TopologyWrapper = ({ pure, topology, subject }) => {
       <Container>
         <Card>
           <CardContent>
-            <p>
-              Some text in front: <LRC />, and some text behind it.
-            </p>
+            <div className="Markdown">
+              <p>
+                This is the item: <LRC />, and here is some text behind it.
+              </p>
+            </div>
           </CardContent>
         </Card>
       </Container>

@@ -7,7 +7,8 @@
   "plugins": [
     "transform-object-rest-spread",
     "transform-new-target",
-    "react-hot-loader/babel"
+    "react-hot-loader/babel",
+    "add-react-displayname"
   ],
   "env": {
     "development": {

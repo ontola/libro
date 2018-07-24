@@ -24,6 +24,7 @@ const propTypes = {
 const specialTopologies = [
   undefined,
   NS.argu('container'),
+  NS.argu('grid'),
   NS.argu('card'),
   NS.argu('inline'),
 ];

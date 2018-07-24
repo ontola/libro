@@ -4,6 +4,7 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import { enableBatching } from 'redux-batched-actions';
 import { combineReducers } from 'redux-immutable';
 import thunk from 'redux-thunk';
+import LogRocket from 'logrocket';
 
 import LinkedRenderStore from '../helpers/LinkedRenderStore';
 import history from '../helpers/history';
@@ -20,7 +21,8 @@ const configureStore = (preloadedState) => {
     apiMiddleware,
     iframeNavigation,
     routerMiddleware(history),
-    linkMiddleware(LinkedRenderStore)
+    linkMiddleware(LinkedRenderStore),
+    LogRocket.reduxMiddleware()
   );
 
   if (process.env.NODE_ENV === 'production') {

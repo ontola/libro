@@ -1,3 +1,5 @@
+import LogRocket from 'logrocket';
+import setupLogRocketReact from 'logrocket-react';
 import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
@@ -14,6 +16,21 @@ import configureStore from './state';
 require('inobounce');
 require('smoothscroll-polyfill').polyfill();
 
+if (__PRODUCTION__) {
+  try {
+    LogRocket.init('argu/aod');
+    setupLogRocketReact(LogRocket);
+    // TODO: Set hashed user identity
+    LogRocket.identify('dev');
+  } catch (e) {
+    if (window.bugsnagClient !== undefined) {
+      window.bugsnagClient.notify(e);
+    } else {
+      // eslint-disable-next-line no-console
+      console.error(e);
+    }
+  }
+}
 const store = configureStore();
 
 // Fade out the preloader and fade in the interface
