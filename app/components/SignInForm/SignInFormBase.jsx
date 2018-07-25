@@ -11,6 +11,7 @@ import { STEPS } from '../../state/form/reducer';
 
 const propTypes = {
   hasBack: PropTypes.bool,
+  initialValues: PropTypes.objectOf(PropTypes.string),
   reason: PropTypes.string,
   registeredEmail: PropTypes.string,
   step: PropTypes.string,
@@ -40,26 +41,6 @@ class SignInFormBase extends React.PureComponent {
     );
   }
 
-  static signInFields() {
-    return (
-      <React.Fragment>
-        {this.emailField()}
-        <FormField
-          autoComplete="off"
-          field={btoa('password')}
-          key="password"
-          label="Jouw wachtwoord"
-          type="password"
-          variant="material"
-        />
-        <FormField
-          field={btoa('r')}
-          type="hidden"
-        />
-      </React.Fragment>
-    );
-  }
-
   static confirmFields() {
     return (
       <React.Fragment>
@@ -77,6 +58,27 @@ class SignInFormBase extends React.PureComponent {
           en de
           <CardLink to="/privacy"> privacy policy</CardLink>.
         </p>
+      </React.Fragment>
+    );
+  }
+
+  signInFields() {
+    return (
+      <React.Fragment>
+        {this.constructor.emailField()}
+        <FormField
+          autoComplete="off"
+          field={btoa('password')}
+          key="password"
+          label="Jouw wachtwoord"
+          type="password"
+          variant="material"
+        />
+        <FormField
+          field={btoa('r')}
+          initialValue={this.props.initialValues.r}
+          type="hidden"
+        />
       </React.Fragment>
     );
   }
@@ -109,6 +111,7 @@ class SignInFormBase extends React.PureComponent {
         />
         <FormField
           field={btoa('r')}
+          initialValue={this.props.initialValues.r}
           key="r"
           type="hidden"
         />
@@ -135,7 +138,7 @@ class SignInFormBase extends React.PureComponent {
         buttonText = 'Bevestig';
         break;
       case STEPS.signIn:
-        formFields = this.constructor.signInFields();
+        formFields = this.signInFields();
         buttonText = 'Verder';
         break;
       case STEPS.signUp:
