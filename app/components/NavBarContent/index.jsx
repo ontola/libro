@@ -13,6 +13,7 @@ import './NavBarContent.scss';
 import ContainsContainer from './contains';
 
 const propTypes = {
+  actorType: PropTypes.string,
   orgColor: PropTypes.string,
 };
 
@@ -20,7 +21,7 @@ const defaultProps = {
   orgColor: 'rgb(71, 86, 104)',
 };
 
-const NavBarContent = ({ orgColor }) => {
+const NavBarContent = ({ actorType, orgColor }) => {
   const style = {
     backgroundColor: orgColor,
     color: 'white',
@@ -47,7 +48,7 @@ const NavBarContent = ({ orgColor }) => {
       </div>
       <div className="NavBarContent__footer">
         <LinkedResourceContainer subject={NS.app('c_a')} topology={NS.argu('sidebar')} />
-        <LinkedResourceContainer subject={NS.app('n')} topology={NS.argu('sidebar')} />
+        {actorType !== 'GuestUser' && <LinkedResourceContainer subject={NS.app('n')} topology={NS.argu('sidebar')} />}
         <LinkedResourceContainer subject={NS.app('menus/info')} topology={NS.argu('sidebar')} />
         {__DEVELOPMENT__ && <SideBarLink
           icon="gears"

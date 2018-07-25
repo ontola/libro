@@ -12,7 +12,6 @@ import SignIn from './SignIn';
 
 const subRoutes = [
   <Route key="signin" path="/u/sign_in" component={SignIn} />,
-  <Route key="notifications" path="/n" component={LinkedObject} />,
   <Route key="iframeRoutesTop" path="/(i|settings)/*" component={Iframe} />,
   <Route
     key="iframeRoutesNested"
