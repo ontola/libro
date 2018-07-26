@@ -40,4 +40,3 @@ export default LinkedRenderStore.registerRenderer(
   NS.as('next'),
   allTopologies
 );
-

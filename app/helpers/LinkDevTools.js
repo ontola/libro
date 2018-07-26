@@ -241,16 +241,20 @@ class LinkDevTools {
   get data() {
     return this.toObject(this.dataArr());
   }
+
   get getPropArr() {
     return this.showProp(this.getLinkedObjectProperty);
   }
+
   get getPropRawArr() {
     return this.showProp(this.getLinkedObjectPropertyRaw);
   }
+
   get getProp() {
     const propVal = this.getPropArr;
     return Array.isArray(propVal) ? this.toObject(propVal) : propVal;
   }
+
   get getPropRaw() {
     const propVal = this.getPropRawArr;
     return Array.isArray(propVal) ? this.toObject(propVal) : propVal;

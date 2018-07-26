@@ -22,6 +22,7 @@ class LinkedPopup extends Component {
       show: false,
     };
   }
+
   render() {
     if (this.state.show || !this.props.popup) {
       return null;
