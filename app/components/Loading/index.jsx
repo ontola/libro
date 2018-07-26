@@ -11,7 +11,7 @@ import Card, {
 import Container from '../Container';
 import LDLink from '../LDLink';
 
-const LoadingInline = () => <div className="Loading__Paragraph Loading__background" />;
+const LoadingInline = () => <div className="Loading__Paragraph Loading__Paragraph--inline Loading__background" />;
 
 export const LoadingSideBarLink = () => (
   <div className="LoadingSideBarLink">

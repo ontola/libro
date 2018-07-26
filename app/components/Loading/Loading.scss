@@ -33,6 +33,11 @@
 .Loading__Paragraph {
   height: 1em;
   margin-bottom: 1em;
+
+  &--inline {
+    display: inline-flex;
+    width: 5em;
+  }
 }
 
 .Loading__Paragraph--detail {

@@ -20,11 +20,16 @@
     width: .3em;
   }
 
-  a {
+  .SideBarLink__link {
+    align-items: center;
     display: flex;
     flex-grow: 1;
     height: 100%;
     overflow: hidden;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   &--bold {

@@ -23,6 +23,7 @@ const propTypes = {
     PropTypes.string,
     PropTypes.node,
   ]),
+  onClick: PropTypes.func,
   to: PropTypes.string,
 };
 
@@ -34,13 +35,14 @@ const SideBarLink = ({
   imageUrl,
   isIndex,
   closeBarOnClick,
+  onClick,
   to,
 }) => (
   <SideBarLinkWrapper bold={bold}>
     <SideBarLinkLink
       exact={isIndex}
       to={to}
-      onClick={closeBarOnClick}
+      onClick={onClick || closeBarOnClick}
     >
       {icon && (
       <SideBarLinkIcon>

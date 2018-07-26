@@ -51,27 +51,18 @@ const NavBarContent = ({ actorType, orgColor }) => {
         {actorType !== 'GuestUser' && <LinkedResourceContainer subject={NS.app('n')} topology={NS.argu('sidebar')} />}
         <LinkedResourceContainer subject={NS.app('menus/info')} topology={NS.argu('sidebar')} />
         {__DEVELOPMENT__ && (
-        <SideBarLink
-          icon="gears"
-          label="DevBrowser"
-          to={`/d/browser?iri=${encodeURI(currentURL())}`}
-        />
+          <SideBarLink
+            icon="gears"
+            label="DevBrowser"
+            to={`/d/browser?iri=${encodeURI(currentURL())}`}
+          />
         )}
+        <SideBarLink
+          icon="close"
+          label="Exit beta"
+          onClick={() => { document.cookie = 'beta=false;path=/'; window.location.reload(); }}
+        />
         <div className="NavBarContent__center-footer">
-          <button
-            style={{
-              bottom: '0em',
-              color: 'white',
-              cursor: 'pointer',
-              left: '0em',
-              padding: '1em',
-              position: 'absolute',
-            }}
-            title="Back to classic Argu"
-            onClick={() => { document.cookie = 'beta=false;path=/'; window.location.reload(); }}
-          >
-            <span className="fa fa-close" />
-          </button>
           <Link className="NavBarContent__logo" to={path.index()}>
             {/* eslint-disable max-len */}
             <svg height="28" viewBox="0 0 211 108" width="37" xmlns="http://www.w3.org/2000/svg">

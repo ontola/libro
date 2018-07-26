@@ -21,6 +21,17 @@ class SideBarLinkLink extends PureComponent {
       to,
     } = this.props;
 
+    if (to === undefined) {
+      return (
+        <button
+          className="SideBarLink__link"
+          onClick={onClick}
+        >
+          {children}
+        </button>
+      );
+    }
+
     return (
       <NavLink
         activeClassName="SideBarLink--active"
