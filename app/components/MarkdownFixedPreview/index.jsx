@@ -17,9 +17,8 @@ const MarkdownFixedPreview = ({
 }) => (
   <div className="MarkdownFixedPreview">
     <Markdown data-test="Thing-text" text={text.slice(0, STRING_LENGTH)} />
-    <div className="MarkdownFixedPreview__footer" />
+    {text.length > STRING_LENGTH && <div className="MarkdownFixedPreview__footer" />}
   </div>
-
 );
 
 MarkdownFixedPreview.propTypes = propTypes;

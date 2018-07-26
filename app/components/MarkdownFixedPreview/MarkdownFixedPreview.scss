@@ -7,9 +7,9 @@
 }
 
 .MarkdownFixedPreview__footer {
+  background: linear-gradient(to bottom, color('transparent', 'transparent') 0%, color('white') 70%, color('white') 100%);
   bottom: 0;
   height: 2em;
   position: absolute;
   width: 100%;
-  background: linear-gradient(to bottom, color('transparent', 'transparent') 0%, color('white') 70%, color('white') 100%);
 }
