@@ -27,17 +27,19 @@ const BottomBarButton = ({
 }) => {
   const LinkContent = (
     <div className="BottomBarButton__wrapper">
-      {icon &&
+      {icon && (
       <div className="BottomBarButton__icon">
         <FontAwesome name={icon} />
-      </div>}
-      {imageUrl &&
+      </div>
+      )}
+      {imageUrl && (
       <div className="BottomBarButton__image-wrapper">
         <div
           className="BottomBarButton__image"
           style={{ 'background-image': `url(${imageUrl})` }}
         />
-      </div>}
+      </div>
+      )}
       <div className="BottomBarButton__text">
         {label}
       </div>
@@ -46,21 +48,23 @@ const BottomBarButton = ({
 
   return (
     <div className="BottomBarButton">
-      {to &&
-        <NavLink
-          activeClassName="BottomBarButton--active"
-          exact={isIndex}
-          to={to}
-        >
-          {LinkContent}
-        </NavLink>}
-      {onClick &&
-        <Button
-          plain
-          onClick={() => onClick()}
-        >
-          {LinkContent}
-        </Button>}
+      {to && (
+      <NavLink
+        activeClassName="BottomBarButton--active"
+        exact={isIndex}
+        to={to}
+      >
+        {LinkContent}
+      </NavLink>
+      )}
+      {onClick && (
+      <Button
+        plain
+        onClick={() => onClick()}
+      >
+        {LinkContent}
+      </Button>
+      )}
     </div>
   );
 };

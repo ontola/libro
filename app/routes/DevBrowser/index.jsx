@@ -160,7 +160,7 @@ class DevBrowser extends Component {
             topology={currentTopology}
           />
         </div>
-      </div >
+      </div>
     );
   }
 }

@@ -82,35 +82,35 @@ class TextEditor extends Component {
 
     return (
       <div className="Markdown TextEditor">
-        {(showRichEditor && !disableRich) &&
-          <RichEditor
-            autoFocus={autoFocus}
-            id={id}
-            placeholder={placeholder}
-            onBlur={(e) => {
-              onBlur(e);
-              // Convert the DraftJS object to Markdown and store it in Redux-Form.
-              onChange({ target: { value: getMarkdownValue() } });
-            }}
-            onChange={this.debounce}
-            onFocus={onFocus}
-            onKeyUp={onKeyUp}
-          />
-        }
-        {(!showRichEditor || disableRich) &&
-          <PlainEditor
-            autoFocus={autoFocus}
-            disableRich={disableRich}
-            id={id}
-            maxLength={maxLength}
-            minLength={minLength}
-            placeholder={placeholder}
-            onBlur={onBlur}
-            onChange={onChange}
-            onFocus={onFocus}
-            onKeyUp={onKeyUp}
-          />
-        }
+        {(showRichEditor && !disableRich) && (
+        <RichEditor
+          autoFocus={autoFocus}
+          id={id}
+          placeholder={placeholder}
+          onBlur={(e) => {
+            onBlur(e);
+            // Convert the DraftJS object to Markdown and store it in Redux-Form.
+            onChange({ target: { value: getMarkdownValue() } });
+          }}
+          onChange={this.debounce}
+          onFocus={onFocus}
+          onKeyUp={onKeyUp}
+        />
+        )}
+        {(!showRichEditor || disableRich) && (
+        <PlainEditor
+          autoFocus={autoFocus}
+          disableRich={disableRich}
+          id={id}
+          maxLength={maxLength}
+          minLength={minLength}
+          placeholder={placeholder}
+          onBlur={onBlur}
+          onChange={onChange}
+          onFocus={onFocus}
+          onKeyUp={onKeyUp}
+        />
+        )}
       </div>
     );
   }

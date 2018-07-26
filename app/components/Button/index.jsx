@@ -129,14 +129,14 @@ const Button = ({
         to={href}
         type={type}
       >
-        {icon &&
-          <FontAwesome
-            className="Button__icon"
-            data-test="Button-icon"
-            name={currentIcon()}
-            spin={loading}
-          />
-        }
+        {icon && (
+        <FontAwesome
+          className="Button__icon"
+          data-test="Button-icon"
+          name={currentIcon()}
+          spin={loading}
+        />
+        )}
         <span className="Button__label">
           {children}
         </span>
@@ -153,14 +153,14 @@ const Button = ({
       type={type}
       onClick={onClick}
     >
-      {icon &&
-        <FontAwesome
-          className="Button__icon"
-          data-test="Button-icon"
-          name={currentIcon()}
-          spin={loading}
-        />
-      }
+      {icon && (
+      <FontAwesome
+        className="Button__icon"
+        data-test="Button-icon"
+        name={currentIcon()}
+        spin={loading}
+      />
+      )}
       <span className="Button__label">
         {children}
       </span>

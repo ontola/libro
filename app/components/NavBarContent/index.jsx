@@ -50,11 +50,13 @@ const NavBarContent = ({ actorType, orgColor }) => {
         <LinkedResourceContainer subject={NS.app('c_a')} topology={NS.argu('sidebar')} />
         {actorType !== 'GuestUser' && <LinkedResourceContainer subject={NS.app('n')} topology={NS.argu('sidebar')} />}
         <LinkedResourceContainer subject={NS.app('menus/info')} topology={NS.argu('sidebar')} />
-        {__DEVELOPMENT__ && <SideBarLink
+        {__DEVELOPMENT__ && (
+        <SideBarLink
           icon="gears"
           label="DevBrowser"
           to={`/d/browser?iri=${encodeURI(currentURL())}`}
-        />}
+        />
+        )}
         <div className="NavBarContent__center-footer">
           <button
             style={{

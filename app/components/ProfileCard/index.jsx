@@ -67,7 +67,7 @@ export class ProfileCard extends PropertyBase {
             {party &&
               <div className="ProfileCard__party" data-test="ProfileCard-head-party">{party}</div>}
           </div>
-          {image &&
+          {image && (
           <div
             className="ProfileCard__image"
             data-test="ProfileCard-head-image"
@@ -75,7 +75,7 @@ export class ProfileCard extends PropertyBase {
               backgroundImage: `url(${image})`,
             }}
           />
-          }
+          )}
         </div>
 
         {bio && <p className="ProfileCard__bio" data-test="ProfileCard-bio">{bio}</p>}

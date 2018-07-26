@@ -22,18 +22,18 @@ const OpinionBubble = ({
     className="OpinionBubble"
     title={name}
   >
-    {image &&
-      <img
-        alt={name}
-        className="OpinionBubble__image"
-        src={image}
-      />
-    }
-    {!image && name &&
-      <GeneratedIcon
-        name={name}
-      />
-    }
+    {image && (
+    <img
+      alt={name}
+      className="OpinionBubble__image"
+      src={image}
+    />
+    )}
+    {!image && name && (
+    <GeneratedIcon
+      name={name}
+    />
+    )}
   </div>
 );
 
@@ -42,7 +42,7 @@ OpinionBubble.propTypes = propTypes;
 export default OpinionBubble;
 
 const Vote = () => (
-  <div className="OpinionBubble" >
+  <div className="OpinionBubble">
     <Property label={[NS.schema('creator'), NS.aod('voter_id')]} />
   </div>
 );

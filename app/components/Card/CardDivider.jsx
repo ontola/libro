@@ -31,7 +31,7 @@ const CardDivider = ({
       marginBottom: (margin && '1em'),
     }}
   >
-    {text &&
+    {text && (
     <span
       style={{
         backgroundColor: 'rgb(255,255,255)',
@@ -41,7 +41,8 @@ const CardDivider = ({
       }}
     >
       {text}
-    </span>}
+    </span>
+    )}
   </div>
 );
 

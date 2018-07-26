@@ -24,11 +24,11 @@ const Widget = ({
 }) => (
   <div className="Widget">
     <Heading size="2">
-      {to &&
-        <Link className="Widget__link" to={to}>
-          {title} <FontAwesome className="Widget__chevron" name="chevron-right" />
-        </Link>
-      }
+      {to && (
+      <Link className="Widget__link" to={to}>
+        {title} <FontAwesome className="Widget__chevron" name="chevron-right" />
+      </Link>
+      )}
       {!to && title}
     </Heading>
     <div className="Widget__description">{description}</div>

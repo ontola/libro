@@ -13,16 +13,18 @@ const propTypes = {
 // eslint-disable-next-line react/prefer-stateless-function
 export default class LinkDuo extends Component {
   render() {
-    return isExternal(this.props.to) ?
-      // eslint-disable-next-line jsx-a11y/anchor-has-content
-      <a
-        href={this.props.to}
-        {...this.props}
-        rel="nofollow noopener noreferrer"
-        target="_blank"
-      />
-      :
-      <Link {...this.props} />;
+    if (isExternal(this.props.to)) {
+      return (
+        <a
+          href={this.props.to}
+          {...this.props}
+          rel="nofollow noopener noreferrer"
+          target="_blank"
+        />
+      );
+    }
+
+    return <Link {...this.props} />;
   }
 }
 

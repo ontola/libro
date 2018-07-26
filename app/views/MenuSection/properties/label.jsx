@@ -11,7 +11,7 @@ const propTypes = {
 const MenuSectionLabel = ({ linkedProp }) => (
   <div className="MenuSectionLabel" data-test="MenuSection-MenuSectionLabel">
     <div className="MenuSectionLabel__bar" />
-    <div className="MenuSectionLabel__text" >
+    <div className="MenuSectionLabel__text">
       {linkedProp.value}
     </div>
     <div className="MenuSectionLabel__bar" />

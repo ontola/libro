@@ -77,11 +77,11 @@ class Detail extends PureComponent {
       >
         {this.getImage()}
 
-        {!imageUrl && icon && !hideIcon &&
+        {!imageUrl && icon && !hideIcon && (
         <span className="Detail__icon" data-test="Detail-icon">
           <FontAwesome name={icon} />
         </span>
-        }
+        )}
         <DetailText data-test="Detail-DetailText">
           {text}
         </DetailText>

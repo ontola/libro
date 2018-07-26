@@ -102,15 +102,15 @@ const PlainEditor = ({
         <MarkdownInstructions />
       </div>
     </div>
-    {showPreview &&
-      <div>
-        <CardDivider />
-        <div className="MarkdownPreview">
-          <Markdown text={mdText} />
-        </div>
-        <CardDivider />
+    {showPreview && (
+    <div>
+      <CardDivider />
+      <div className="MarkdownPreview">
+        <Markdown text={mdText} />
       </div>
-    }
+      <CardDivider />
+    </div>
+    )}
   </div>
 );
 

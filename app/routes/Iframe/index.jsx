@@ -53,7 +53,7 @@ class Iframe extends Component {
   render() {
     const { location, title } = this.props;
     return (
-      <div className="Iframe__Wrapper" >
+      <div className="Iframe__Wrapper">
         <Helmet title={title} />
         {this.loadComponent()}
         <iframe

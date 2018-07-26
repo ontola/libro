@@ -22,7 +22,7 @@ const MarkdownDebugger = () => (
         });
 
         window.setTimeout(() => reject(err), TIMEOUT);
-        })
+      })
       }
     />
   </Container>

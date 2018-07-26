@@ -77,20 +77,20 @@ const CreateVoteMatch = ({
             rows={3}
             variant="preview"
           />
-          {voteables && voteables.length > 0 &&
-            <DraggableList
-              itemKey={id => `voteMatch_${id}`}
-              list={voteables}
-              template={VoteMatchItemContainer}
-              onMoveEnd={newList => onUpdateVoteables(newList)}
-            />
-          }
-          {hasEnoughVoteables() &&
-            <CardContent>
+          {voteables && voteables.length > 0 && (
+          <DraggableList
+            itemKey={id => `voteMatch_${id}`}
+            list={voteables}
+            template={VoteMatchItemContainer}
+            onMoveEnd={newList => onUpdateVoteables(newList)}
+          />
+          )}
+          {hasEnoughVoteables() && (
+          <CardContent>
               Je stemwijzer heeft minimaal {MINIMUM_VOTEABLES} moties nodig.
-              <Link to={paths.search()}> Zoek naar moties</Link>.
-            </CardContent>
-          }
+            <Link to={paths.search()}> Zoek naar moties</Link>.
+          </CardContent>
+          )}
           <CardActions noSpacing>
             <Button
               icon="search"

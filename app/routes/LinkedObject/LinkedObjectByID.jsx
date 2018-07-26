@@ -14,7 +14,7 @@ const propTypes = {
 
 const LinkedObjectByID = ({ location }) => (
   <Container>
-    <LinkedResourceContainer subject={location.query.iri} >
+    <LinkedResourceContainer subject={location.query.iri}>
       <Type />
     </LinkedResourceContainer>
   </Container>

@@ -30,19 +30,19 @@ const SearchInput = ({
       placeholder="Zoeken..."
       type="text"
     />
-    {(currentValue || lastSearchValue) &&
+    {(currentValue || lastSearchValue) && (
     <Button
       icon="close"
       theme="transparant"
       type="reset"
       onClick={() => handleClear()}
     />
-    }
-    {currentValue && (currentValue !== lastSearchValue) &&
+    )}
+    {currentValue && (currentValue !== lastSearchValue) && (
     <Button type="submit">
       Zoek
     </Button>
-    }
+    )}
   </form>
 );
 SearchInput.propTypes = propTypes;

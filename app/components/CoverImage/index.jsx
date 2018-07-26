@@ -16,7 +16,7 @@ const CoverImage = ({
   url,
   positionY,
 }) => (
-  <div className="CoverImage__wrapper" >
+  <div className="CoverImage__wrapper">
     <div
       className="CoverImage__child"
       style={{

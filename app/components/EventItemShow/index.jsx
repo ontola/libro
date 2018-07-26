@@ -58,21 +58,22 @@ const EventItemShow = ({
 
   const detailsBar = (
     <DetailsBar>
-      {((startDate)) &&
-        <DetailDate
-          asHours
-          hideIcon
-          currentDate={currentDate}
-          endDate={endDate}
-          isCurrent={isCurrent}
-          startDate={startDate}
-        />}
-      {text &&
-        <Detail
-          icon="align-left"
-          text={`${text.split(' ').length} woorden`}
-        />
-      }
+      {((startDate)) && (
+      <DetailDate
+        asHours
+        hideIcon
+        currentDate={currentDate}
+        endDate={endDate}
+        isCurrent={isCurrent}
+        startDate={startDate}
+      />
+      )}
+      {text && (
+      <Detail
+        icon="align-left"
+        text={`${text.split(' ').length} woorden`}
+      />
+      )}
     </DetailsBar>
   );
 
@@ -87,16 +88,16 @@ const EventItemShow = ({
   return (
     <div className="EventItemShow">
       {showIndex && !isCurrent && indexComponent}
-      {text &&
-        <CollapsibleContainer
-          group={`event.${eventId}`}
-          id={`eventItem.${id}`}
-          trigger={heading}
-          visibleContent={detailsBar}
-        >
-          {content}
-        </CollapsibleContainer>
-      }
+      {text && (
+      <CollapsibleContainer
+        group={`event.${eventId}`}
+        id={`eventItem.${id}`}
+        trigger={heading}
+        visibleContent={detailsBar}
+      >
+        {content}
+      </CollapsibleContainer>
+      )}
       {!text && heading}
       {!text && detailsBar}
       {progress}

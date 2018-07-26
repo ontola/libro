@@ -57,11 +57,11 @@ const CompareVotesBar = ({
   return (
     <div className="CompareVotesBar">
       <CollapsibleContainer id={label} trigger={trigger}>
-        {tags &&
+        {tags && (
         <div className="CompareVotesBar__collapsible-children">
           <List items={tags} renderItem={renderTag} />
         </div>
-        }
+        )}
         {children}
       </CollapsibleContainer>
     </div>

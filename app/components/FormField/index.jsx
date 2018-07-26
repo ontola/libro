@@ -74,19 +74,25 @@ const MessagesDefaultProps = {
   bottom: false,
 };
 
-const Messages = ({ error, warning, bottom }) => (
-  <div className={`Field__messages ${bottom ? 'Field__messages--bottom' : ''}`}>
-    {((error &&
-      <span className="Field__error">
-        {error}
-      </span>
-    ) || (warning &&
-      <span className="Field__warning">
-        {warning}
-      </span>
-    ))}
-  </div>
-);
+const Messages = ({ error, warning, bottom }) => {
+  const err = error && (
+    <span className="Field__error">
+      {error}
+    </span>
+  );
+  const warn = (!error && warning) && (
+    <span className="Field__warning">
+      {warning}
+    </span>
+  );
+
+  return (
+    <div className={`Field__messages ${bottom ? 'Field__messages--bottom' : ''}`}>
+      {err}
+      {warn}
+    </div>
+  );
+};
 
 Messages.propTypes = MessagesProps;
 Messages.defaultProps = MessagesDefaultProps;

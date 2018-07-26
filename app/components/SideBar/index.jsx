@@ -104,49 +104,49 @@ class SideBar extends Component {
             backgroundColor: this.props.orgColor,
           }}
         >
-          {!this.props.docked && this.props.isWideWindow && this.props.opened &&
-            <Button
-              narrow
-              plain
-              alt="Openvouwen"
-              data-test="SideBar-button-dock"
-              icon={this.dockIcon()}
-              onClick={this.props.onDock}
-            />
-          }
-          {this.props.docked &&
-            <Button
-              narrow
-              plain
-              alt="Dichtvouwen"
-              data-test="SideBar-button-undock"
-              icon={this.undockIcon()}
-              onClick={() => {
-                this.props.onUndock();
-                this.props.onClose();
-              }}
-            />
-          }
-          {!this.props.docked && !this.props.opened && this.props.isWideWindow &&
-            <Button
-              narrow
-              plain
-              alt="Menu openen"
-              data-test="SideBar-button-open"
-              icon="bars"
-              onClick={this.props.onOpen}
-            />
-          }
-          {!this.props.docked && this.props.opened && this.props.isWideWindow &&
-            <Button
-              narrow
-              plain
-              alt="Menu sluiten"
-              data-test="SideBar-button-close"
-              icon="close"
-              onClick={this.props.onClose}
-            />
-          }
+          {!this.props.docked && this.props.isWideWindow && this.props.opened && (
+          <Button
+            narrow
+            plain
+            alt="Openvouwen"
+            data-test="SideBar-button-dock"
+            icon={this.dockIcon()}
+            onClick={this.props.onDock}
+          />
+          )}
+          {this.props.docked && (
+          <Button
+            narrow
+            plain
+            alt="Dichtvouwen"
+            data-test="SideBar-button-undock"
+            icon={this.undockIcon()}
+            onClick={() => {
+              this.props.onUndock();
+              this.props.onClose();
+            }}
+          />
+          )}
+          {!this.props.docked && !this.props.opened && this.props.isWideWindow && (
+          <Button
+            narrow
+            plain
+            alt="Menu openen"
+            data-test="SideBar-button-open"
+            icon="bars"
+            onClick={this.props.onOpen}
+          />
+          )}
+          {!this.props.docked && this.props.opened && this.props.isWideWindow && (
+          <Button
+            narrow
+            plain
+            alt="Menu sluiten"
+            data-test="SideBar-button-close"
+            icon="close"
+            onClick={this.props.onClose}
+          />
+          )}
         </div>
       </div>
     );

@@ -11,7 +11,7 @@ const OrganizationSidebarProps = {
 };
 
 const OrganizationSidebar = ({ navigationsMenu }) => (
-  <LinkedResourceContainer subject={navigationsMenu} >
+  <LinkedResourceContainer subject={navigationsMenu}>
     <Property label={NS.argu('menuItems')} />
   </LinkedResourceContainer>
 );

@@ -41,29 +41,29 @@ const ChronoItem = ({
   return (
     <CardRow data-test="ChronoItem">
       <CardContent>
-        {currentDate && endDate &&
-          <Progress
-            completed={completedDuration}
-            direction="down"
-            total={totalDuration}
-          />
-        }
+        {currentDate && endDate && (
+        <Progress
+          completed={completedDuration}
+          direction="down"
+          total={totalDuration}
+        />
+        )}
         <DetailsBar data-test="ChronoItem-details">
           {speaker && <LinkedResourceContainer subject={speaker} />}
           {attributionText &&
             <Detail text={attributionText} />
           }
-          {startDate && endDate &&
-            <DetailDate
-              asHours
-              floatRight
-              hideIcon
-              currentDate={currentDate}
-              data-test="ChronoItem-date"
-              endDate={endDate}
-              startDate={startDate}
-            />
-          }
+          {startDate && endDate && (
+          <DetailDate
+            asHours
+            floatRight
+            hideIcon
+            currentDate={currentDate}
+            data-test="ChronoItem-date"
+            endDate={endDate}
+            startDate={startDate}
+          />
+          )}
         </DetailsBar>
         <Markdown
           highlightedText={highlightedText}

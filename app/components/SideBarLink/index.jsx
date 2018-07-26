@@ -42,21 +42,24 @@ const SideBarLink = ({
       to={to}
       onClick={closeBarOnClick}
     >
-      {icon &&
+      {icon && (
       <SideBarLinkIcon>
         <FontAwesome name={icon} />
-      </SideBarLinkIcon>}
-      {imageUrl &&
+      </SideBarLinkIcon>
+      )}
+      {imageUrl && (
       <SideBarLinkImageWrapper>
         <SideBarLinkImage imageUrl={imageUrl} />
-      </SideBarLinkImageWrapper>}
+      </SideBarLinkImageWrapper>
+      )}
       <SideBarLinkLabel>
         {label}
       </SideBarLinkLabel>
-      {(count !== undefined && count > 0) &&
+      {(count !== undefined && count > 0) && (
       <div className="SideBarLink__count-wrapper">
         <CountBubble count={count} />
-      </div>}
+      </div>
+      )}
     </SideBarLinkLink>
   </SideBarLinkWrapper>
 );

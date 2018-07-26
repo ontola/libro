@@ -16,7 +16,7 @@ class SideBarLinkWrapper extends PureComponent {
       'SideBarLink--bold': bold,
     });
 
-    return <div className={classes} >{children}</div>;
+    return <div className={classes}>{children}</div>;
   }
 }
 

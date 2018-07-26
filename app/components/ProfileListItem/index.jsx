@@ -25,22 +25,24 @@ const ProfileListItem = ({
       to={link}
     >
       <div className="ProfileListItem__imagewrapper">
-        {image && <img
+        {image && (
+        <img
           alt={name}
           className="ProfileListItem__image"
           src={image}
-        />}
+        />
+        )}
       </div>
       <div className="ProfileListItem__name">
         <Heading size="3">
           {name}
         </Heading>
       </div>
-      {description &&
-        <div className="ProfileListItem__description">
-          {description}
-        </div>
-      }
+      {description && (
+      <div className="ProfileListItem__description">
+        {description}
+      </div>
+      )}
     </Link>
   </div>
 );

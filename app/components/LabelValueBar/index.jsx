@@ -42,14 +42,15 @@ const LabelValueBar = ({
     >
       {value}{isPercentage && '%'}
     </div>
-    {showBar && isPercentage &&
-      <div
-        className="LabelValueBar__bar"
-        style={{
-          borderRightColor: coloredValue && percentageToRedOrGreen(value),
-          width: `${value}%`,
-        }}
-      />}
+    {showBar && isPercentage && (
+    <div
+      className="LabelValueBar__bar"
+      style={{
+        borderRightColor: coloredValue && percentageToRedOrGreen(value),
+        width: `${value}%`,
+      }}
+    />
+    )}
     {children}
   </div>
 );

@@ -54,7 +54,7 @@ class SignInFormBase extends React.PureComponent {
           value="true"
         />
         <p>Door je te registreren ga je akkoord met de
-          <CardLink to="/policy" > algemene voorwaarden </CardLink>
+          <CardLink to="/policy"> algemene voorwaarden </CardLink>
           en de
           <CardLink to="/privacy"> privacy policy</CardLink>.
         </p>

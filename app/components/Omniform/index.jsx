@@ -122,12 +122,12 @@ class Omniform extends EntryPointBase {
 
     return (
       <Form className="Form Omniform" onSubmit={this.submitHandler}>
-        {error &&
+        {error && (
         <div className="Omniform__error">
           <FontAwesome name="exclamation-triangle" />
           {error}
         </div>
-        }
+        )}
         <OmniformFields>
           {this.linkedFieldset()}
         </OmniformFields>
