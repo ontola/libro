@@ -26,7 +26,6 @@ import Notification from './Notification';
 // import './OpinionBubble';
 import Organization from './Organization';
 import Person from './Person';
-// import './Question';
 import SeqComp from './Seq';
 import Shape from './Shape';
 import SubMenu from './SubMenu';

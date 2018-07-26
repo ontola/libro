@@ -50,7 +50,7 @@ export {
 } from './components/Form/index';
 export { default as FormField } from './components/FormField/index';
 export { default as Grid } from './components/Grid/index';
-// export { default as GeneratedIcon } from './components/GeneratedIcon/index';
+export { default as GeneratedIcon } from './components/GeneratedIcon/index';
 export { default as Header } from './components/Header/index';
 export { default as Heading } from './components/Heading/index';
 export { default as HiddenFormField } from './components/HiddenFormField/index';

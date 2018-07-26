@@ -206,7 +206,7 @@ function setProp(key, block) {
   set(propName(key), block);
 }
 
-module.exports = {
+export {
   argUnit,
   as,
   createContext,

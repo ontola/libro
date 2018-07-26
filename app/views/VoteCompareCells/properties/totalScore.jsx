@@ -3,7 +3,7 @@ import { Property, linkedPropType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { CompareVotesBar } from '../../../components';
+import CompareVotesBar from '../../../components/CompareVotesBar';
 import { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
