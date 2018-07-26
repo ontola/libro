@@ -47,8 +47,9 @@ const Attachment = ({
       >
         <FontAwesome className="Attachment__icon" name="file" />
         <div className="Attachment__text" data-test="Attachment-title">{title}</div>
-        {(percentageDownloaded !== undefined) &&
-          <div className="Attachment__fill" data-test="Attachment-progress" style={fillStyle} />}
+        {(percentageDownloaded !== undefined) && (
+          <div className="Attachment__fill" data-test="Attachment-progress" style={fillStyle} />
+        )}
       </a>
       {(!isDownloaded && !isDownloading) && (
       <a

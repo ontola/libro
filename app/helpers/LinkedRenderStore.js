@@ -93,9 +93,9 @@ const ontologicalData = [
   new Statement(NS.schema('CreativeWork'), NS.rdfs('subClassOf'), NS.schema('Thing')),
 
   new Statement(NS.schema('Comment'), NS.rdf('type'), NS.rdfs('Class')),
-  new Statement(NS.schema('Comment'), NS.rdfs('comment'), new Literal("A comment on an item - for example, a comment on a blog post. The comment's content is " +
-    'expressed via the <a class="localLink" href="/text">text</a> property, and its topic ' +
-    'via <a class="localLink" href="/about">about</a>, properties shared with all CreativeWorks.')),
+  new Statement(NS.schema('Comment'), NS.rdfs('comment'), new Literal("A comment on an item - for example, a comment on a blog post. The comment's content is "
+    + 'expressed via the <a class="localLink" href="/text">text</a> property, and its topic '
+    + 'via <a class="localLink" href="/about">about</a>, properties shared with all CreativeWorks.')),
   new Statement(NS.schema('Comment'), NS.rdfs('label'), new Literal('Comment', languages.en)),
   new Statement(NS.schema('Comment'), NS.rdfs('label'), new Literal('Reactie', languages.nl)),
   new Statement(NS.schema('Comment'), NS.rdfs('subClassOf'), NS.schema('CreativeWork')),

@@ -10,10 +10,10 @@ class CollectionAssociation extends PropertyBase {
   }
 
   shouldRenderLinkedURL(prop) {
-    return prop &&
-      prop === 'https://beta.argu.co/vote_events/7b1fb5f4-68a3-e511-b86d-e4115babb880' &&
-      this.context.schemaObject &&
-      getP(this.context.schemaObject, NS.rdf('subject'));
+    return prop
+      && prop === 'https://beta.argu.co/vote_events/7b1fb5f4-68a3-e511-b86d-e4115babb880'
+      && this.context.schemaObject
+      && getP(this.context.schemaObject, NS.rdf('subject'));
   }
 
   render() {

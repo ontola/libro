@@ -32,9 +32,7 @@ const Notification = ({
   return (
     <div className={className}>
       <Button small theme="subtle" onClick={reset}>x</Button>
-      {type === 'error' &&
-        <div className="Notification__pretext">Error:</div>
-      }
+      {type === 'error' && <div className="Notification__pretext">Error:</div>}
       <div className="Notification__text">{children}</div>
     </div>
   );

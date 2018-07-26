@@ -64,8 +64,11 @@ export class ProfileCard extends PropertyBase {
             <Heading data-test="ProfileCard-head-name">
               {this.getLegacyProperty(NS.schema('name'), 'name')}
             </Heading>
-            {party &&
-              <div className="ProfileCard__party" data-test="ProfileCard-head-party">{party}</div>}
+            {party && (
+              <div className="ProfileCard__party" data-test="ProfileCard-head-party">
+                {party}
+              </div>
+            )}
           </div>
           {image && (
           <div

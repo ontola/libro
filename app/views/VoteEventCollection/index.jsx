@@ -36,9 +36,8 @@ LinkedRenderStore.registerRenderer(
 class VoteEvent extends PropertyBase {
   shouldComponentUpdate(nextProps, Ignore, nextContext) {
     const { data } = this.props;
-    return !(data && data['http://www.w3.org/1999/02/22-rdf-syntax-ns#type'] === nextProps.data['http://www.w3.org/1999/02/22-rdf-syntax-ns#type']) ||
-      this.getLinkedObjectProperty(NS.argu('member')) !==
-        this.getLinkedObjectProperty(NS.argu('member'), nextContext.schemaObject);
+    return !(data && data['http://www.w3.org/1999/02/22-rdf-syntax-ns#type'] === nextProps.data['http://www.w3.org/1999/02/22-rdf-syntax-ns#type'])
+      || this.getLinkedObjectProperty(NS.argu('member')) !== this.getLinkedObjectProperty(NS.argu('member'), nextContext.schemaObject);
   }
 
   render() {

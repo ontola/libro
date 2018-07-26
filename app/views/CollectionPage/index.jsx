@@ -33,10 +33,10 @@ class CollectionPage extends PropertyBase {
   }
 
   shouldComponentUpdate(nextProps) {
-    return this.props.linkedProp !== nextProps.linkedProp ||
-      this.props.currentPage !== nextProps.currentPage ||
-      this.props.linkVersion !== nextProps.linkVersion ||
-      this.props.subject !== nextProps.subject;
+    return this.props.linkedProp !== nextProps.linkedProp
+      || this.props.currentPage !== nextProps.currentPage
+      || this.props.linkVersion !== nextProps.linkVersion
+      || this.props.subject !== nextProps.subject;
   }
 
   render() {

@@ -51,11 +51,11 @@ function getCollection({ WrappingElement = 'div', renderWhenEmpty = true } = {})
     }
 
     shouldComponentUpdate(nextProps) {
-      return this.props.linkedProp !== nextProps.linkedProp ||
-        this.props.currentPage !== nextProps.currentPage ||
-        this.props.linkVersion !== nextProps.linkVersion ||
-        this.props.subject !== nextProps.subject ||
-        this.props.pages !== nextProps.pages;
+      return this.props.linkedProp !== nextProps.linkedProp
+        || this.props.currentPage !== nextProps.currentPage
+        || this.props.linkVersion !== nextProps.linkVersion
+        || this.props.subject !== nextProps.subject
+        || this.props.pages !== nextProps.pages;
     }
 
     render() {

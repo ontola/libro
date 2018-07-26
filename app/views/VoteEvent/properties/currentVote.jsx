@@ -16,9 +16,9 @@ import { getCurrentUserType } from '../../../state/app/selectors';
 
 class CurrentVote extends PropertyBase {
   shouldComponentUpdate(nextProps) {
-    return this.props.subject !== nextProps.subject ||
-      this.props.linkVersion !== nextProps.linkVersion ||
-      this.props.currentVote !== nextProps.currentVote;
+    return this.props.subject !== nextProps.subject
+      || this.props.linkVersion !== nextProps.linkVersion
+      || this.props.currentVote !== nextProps.currentVote;
   }
 
   getEntryPoint() {

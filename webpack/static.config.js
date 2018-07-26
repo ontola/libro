@@ -39,8 +39,8 @@ config.plugins.push(
     filename: 'bundle-[contenthash].css'
   }),
   new webpack.DefinePlugin({
-    'process.env.ARGU_API_EXT_BASE': JSON.stringify(process.env.ARGU_API_EXT_BASE ||
-      'https://beta.argu.co/api/'),
+    'process.env.ARGU_API_EXT_BASE': JSON.stringify(process.env.ARGU_API_EXT_BASE
+      || 'https://beta.argu.co/api/'),
     'process.env.NODE_ENV': JSON.stringify('production'),
   }),
   new webpack.ProvidePlugin({

@@ -31,9 +31,9 @@ class Grid extends TopologyProvider {
 
   checkDimensions() {
     const showRight = (
-      this.carouselRef.scrollWidth -
-      this.carouselRef.scrollLeft -
-      this.carouselRef.offsetWidth > MIN_PIXELS
+      this.carouselRef.scrollWidth
+      - this.carouselRef.scrollLeft
+      - this.carouselRef.offsetWidth > MIN_PIXELS
     );
 
     this.setState({

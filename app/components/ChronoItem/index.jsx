@@ -50,9 +50,9 @@ const ChronoItem = ({
         )}
         <DetailsBar data-test="ChronoItem-details">
           {speaker && <LinkedResourceContainer subject={speaker} />}
-          {attributionText &&
+          {attributionText && (
             <Detail text={attributionText} />
-          }
+          )}
           {startDate && endDate && (
           <DetailDate
             asHours

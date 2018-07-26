@@ -87,9 +87,9 @@ class Collapsible extends React.PureComponent {
 
     return (
       <div aria-expanded={opened} className="Collapsible">
-        {trigger &&
-          <div className="Collapsible__trigger-wrapper">{triggerElem}</div>
-        }
+        {trigger && (
+        <div className="Collapsible__trigger-wrapper">{triggerElem}</div>
+        )}
         <div className="Collapsible__visible-content">{visibleContent}</div>
         <Collapse
           forceInitialAnimation

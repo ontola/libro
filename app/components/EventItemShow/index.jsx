@@ -41,13 +41,13 @@ const EventItemShow = ({
   const totalDuration = () => Math.abs(endDate - startDate);
   const completedDuration = () => Math.abs(currentDate - startDate);
 
-  const progress = isCurrent ? (
+  const progress = isCurrent && (
     <Progress
       completed={completedDuration(startDate, currentDate)}
       direction="down"
       total={totalDuration(startDate, endDate)}
-    />) :
-    false;
+    />
+  );
 
   const content = (
     <div className="EventItemShow__content">

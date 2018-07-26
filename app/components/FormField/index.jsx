@@ -290,14 +290,12 @@ class FormField extends React.Component {
 
     return (
       <div className={`Field ${className} ${classes}`}>
-        {renderMessages && messagesAboveLabel &&
-        <Messages error={error} warning={warning} />
-        }
+        {renderMessages && messagesAboveLabel && <Messages error={error} warning={warning} />}
         {this.label(label)}
         {this.inputElement()}
-        {renderMessages && !messagesAboveLabel &&
-        <Messages bottom error={error} warning={warning} />
-        }
+        {renderMessages && !messagesAboveLabel && (
+          <Messages bottom error={error} warning={warning} />
+        )}
       </div>
     );
   }

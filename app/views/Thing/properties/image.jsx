@@ -15,9 +15,9 @@ const propTypes = {
 const ThingImageProp = ({ ariaLabel, linkedProp }) => {
   if (!linkedProp) {
     return null;
-  } else if (linkedProp &&
-    Object.keys(linkedProp).length === 0 &&
-    linkedProp.constructor === Object
+  } else if (linkedProp
+    && Object.keys(linkedProp).length === 0
+    && linkedProp.constructor === Object
   ) {
     return <div>image</div>;
   } else if (linkedProp.termType === 'NamedNode' && isFontAwesomeIRI(linkedProp.value)) {

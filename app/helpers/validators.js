@@ -2,8 +2,7 @@ const validatorMap = {
   isEmail: (value) => {
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
     /* eslint no-useless-escape: 0 */
-    return (!emailRegex.test(value)) ?
-      'Ongeldig e-mailadres' : undefined;
+    return (!emailRegex.test(value)) ? 'Ongeldig e-mailadres' : undefined;
   },
   maxLength: max => value => (value && value.length > max ? `Maximaal ${max} tekens, nu ${value.length}` : undefined),
   minLength: min => value => (value && value.length < min ? `Minimaal ${min} tekens` : undefined),
