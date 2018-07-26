@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import * as constants from "../config";
+import * as constants from '../config';
 import { SearchResultItem } from '../components';
 
 const propTypes = {

@@ -3,7 +3,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { assert } from 'chai';
 
-import Tag from ".";
+import Tag from '.';
 
 const comp = shallow(<Tag>Content</Tag>);
 

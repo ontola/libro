@@ -3,7 +3,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { assert } from 'chai';
 
-import Progress from ".";
+import Progress from '.';
 
 const comp = shallow(<Progress completed={2} direction="down" total={4} />);
 

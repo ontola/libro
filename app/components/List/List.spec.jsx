@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { assert } from 'chai';
 import { Map } from 'immutable';
 
-import List from ".";
+import List from '.';
 
 const mockItems = ['1', '2', '3'];
 const mockItemsObject = new Map({

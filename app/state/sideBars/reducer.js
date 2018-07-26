@@ -13,7 +13,7 @@ import {
   SIDEBAR_OPEN,
   SIDEBAR_SET_BASE_COLOR,
   SIDEBAR_UNDOCK,
-} from "../action-types";
+} from '../action-types';
 
 export const SideBar = Record({
   docked: false,

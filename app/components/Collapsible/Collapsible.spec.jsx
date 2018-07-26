@@ -1,7 +1,7 @@
 import { mount } from 'enzyme';
 import React from 'react';
 
-import Collapsible from ".";
+import Collapsible from '.';
 
 const spy = jest.fn();
 const notOpened = jest.fn();

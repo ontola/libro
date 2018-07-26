@@ -3,7 +3,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { assert } from 'chai';
 
-import Cover from ".";
+import Cover from '.';
 
 const comp = shallow(<Cover>Content</Cover>);
 

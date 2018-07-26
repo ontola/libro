@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Columns from ".";
+import Columns from '.';
 
 const exampleChildren = [<div>Joe</div>, <div>Joe</div>];
 

@@ -1,7 +1,7 @@
 import { mount } from 'enzyme';
 import React from 'react';
 
-import Container from ".";
+import Container from '.';
 
 describe('Container component', () => {
   it('Container should render', () => {

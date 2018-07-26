@@ -4,7 +4,7 @@ import { mount } from 'enzyme';
 import React from 'react';
 import { StaticRouter } from 'react-router';
 
-import ProfileListItem from ".";
+import ProfileListItem from '.';
 
 const comp = mount((
   <StaticRouter context={{}}>

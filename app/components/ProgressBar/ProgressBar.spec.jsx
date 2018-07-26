@@ -3,7 +3,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { assert } from 'chai';
 
-import ProgressBar from ".";
+import ProgressBar from '.';
 
 const comp = shallow(<ProgressBar completed={2} total={4} />);
 

@@ -3,7 +3,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { assert } from 'chai';
 
-import Widget from ".";
+import Widget from '.';
 
 const comp = mount(<Widget description="Beschrijving" title="Titel">Content</Widget>);
 
