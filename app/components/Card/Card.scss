@@ -114,6 +114,10 @@
     margin-top: 0;
   }
 
+  &--align-right {
+    justify-content: flex-end;
+  }
+
   & > * {
     &:first-child {
       border-bottom-left-radius: $border-radius-base;

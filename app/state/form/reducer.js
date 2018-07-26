@@ -6,6 +6,7 @@ import { combineReducers } from 'redux-immutable';
 import {
   SIGN_IN_EMAIL_TAKEN,
   SIGN_IN_UNKNOWN_EMAIL,
+  SIGN_IN_SHOW_FORM,
   SIGN_IN_STEP_BACK,
   SIGN_IN_WRONG_PASSWORD,
 } from '../action-types';
@@ -25,6 +26,7 @@ function transitionTo(state, step) {
 
 export default combineReducers({
   signIn: handleActions({
+    // TODO: Originally written for redux forms, needs to be updated
     // [actionTypes.CHANGE]: (state, action) => {
     //   if (typeof state === 'undefined' || state.get('step') !== STEPS.confirm ||
     // action.meta.field !== 'email') {
@@ -50,9 +52,12 @@ export default combineReducers({
       }
     },
     [SIGN_IN_EMAIL_TAKEN]: state => transitionTo(state, STEPS.signIn),
+    [SIGN_IN_SHOW_FORM]: (state, { payload }) => transitionTo(state, STEPS.signUp)
+      .set('subject', payload),
     [SIGN_IN_STEP_BACK]: (state) => {
       const prevChain = state.get('stepChain').pop();
-      return transitionTo(state, prevChain.last())
+      const subjectState = prevChain.size === 1 ? state.set('subject', undefined) : state;
+      return transitionTo(subjectState, prevChain.last())
         .set('stepChain', prevChain);
     },
     [SIGN_IN_UNKNOWN_EMAIL]: state => transitionTo(state, STEPS.confirm),

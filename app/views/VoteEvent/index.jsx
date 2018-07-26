@@ -50,6 +50,7 @@ export default [
     [
       undefined,
       NS.argu('collection'),
+      NS.argu('card'),
       NS.argu('cardAppendix'),
       NS.argu('container'),
       NS.argu('voteEvent'),

@@ -48,7 +48,13 @@ class EntryPointBase extends PropertyBase {
         }
         return Promise.resolve();
       }).catch((e) => {
-        if (!e.response || e.response.status !== HttpStatus.UNPROCESSABLE_ENTITY) {
+        if (!e.response) {
+          throw e;
+        }
+        if (this.props.onStatusForbidden && e.response.status === HttpStatus.UNAUTHORIZED) {
+          return this.props.onStatusForbidden();
+        }
+        if (e.response.status !== HttpStatus.UNPROCESSABLE_ENTITY) {
           throw e;
         }
 
@@ -69,6 +75,7 @@ class EntryPointBase extends PropertyBase {
 EntryPointBase.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   invalid: PropTypes.bool,
+  onStatusForbidden: PropTypes.func,
   submitHandler: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
   url: linkType,

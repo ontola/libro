@@ -4,6 +4,7 @@ import React from 'react';
 import './Card.scss';
 
 const propTypes = {
+  alignRight: PropTypes.bool,
   children: PropTypes.node.isRequired,
   noSpacing: PropTypes.bool,
 };
@@ -13,14 +14,14 @@ const propTypes = {
  * @returns {component} Component
  */
 const CardActions = ({
+  alignRight,
   children,
   noSpacing,
 }) => (
   <div
-    className={
-      noSpacing ? 'CardActions CardActions--no-spacing' : 'CardActions'
-    }
-  >{children}
+    className={`CardActions ${noSpacing ? 'CardActions--no-spacing' : ''} ${alignRight ? 'CardActions--align-right' : ''}`}
+  >
+    {children}
   </div>
 );
 

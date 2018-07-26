@@ -1,5 +1,9 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { link, Property } from 'link-redux';
+import {
+  link,
+  Property,
+  subjectType,
+} from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
@@ -22,6 +26,7 @@ import {
   hightlightPropTypes,
   hightlightType,
 } from '../../containers/Highlight';
+import SignInSwitcherContainer from '../../containers/SignInSwitcherContainer';
 import { NS } from '../../helpers/LinkedRenderStore';
 
 import Arguments from './properties/arguments';
@@ -91,7 +96,7 @@ const ThingPage = () => (
   </div>
 );
 
-const ThingContainer = ({ highlighted }) => (
+const ThingContainer = ({ highlighted, subject }) => (
   <Card shine={highlighted}>
     <Property label={NS.argu('coverPhoto')} />
     <CardContent noSpacing>
@@ -102,17 +107,20 @@ const ThingContainer = ({ highlighted }) => (
       </DetailsBar>
       <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
     </CardContent>
+    <Property label={NS.argu('voteableVoteEvent')} />
     <CardAppendix>
-      <Property label={NS.argu('voteableVoteEvent')} />
-      <Property forceRender label={NS.argu('arguments')} />
-      <Property label={NS.schema('comments')} />
-      <Property forceRender label={NS.app('omniform')} />
+      <SignInSwitcherContainer subject={subject}>
+        <Property forceRender label={NS.argu('arguments')} />
+        <Property label={NS.schema('comments')} />
+        <Property forceRender label={NS.app('omniform')} />
+      </SignInSwitcherContainer>
     </CardAppendix>
   </Card>
 );
 
 ThingContainer.propTypes = {
   highlighted: hightlightType,
+  subject: subjectType,
 };
 
 const ThingGrid = () => (

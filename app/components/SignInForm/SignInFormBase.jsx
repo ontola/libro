@@ -4,7 +4,7 @@ import React from 'react';
 import validators, { combineValidators } from '../../helpers/validators';
 import { STEPS } from '../../state/form/reducer';
 import Button from '../Button';
-import { CardLink } from '../Card';
+import { CardLink, CardContent } from '../Card';
 import FormField from '../FormField';
 
 const propTypes = {
@@ -42,6 +42,13 @@ class SignInFormBase extends React.PureComponent {
   static confirmFields() {
     return (
       <React.Fragment>
+        <CardContent>
+          <p>Door je te registreren ga je akkoord met de
+            <CardLink to="/policy"> algemene voorwaarden </CardLink>
+            en de
+            <CardLink to="/privacy"> privacy policy</CardLink>.
+          </p>
+        </CardContent>
         {this.emailField()}
         <FormField
           defaultValue="true"
@@ -51,11 +58,6 @@ class SignInFormBase extends React.PureComponent {
           type="hidden"
           value="true"
         />
-        <p>Door je te registreren ga je akkoord met de
-          <CardLink to="/policy"> algemene voorwaarden </CardLink>
-          en de
-          <CardLink to="/privacy"> privacy policy</CardLink>.
-        </p>
       </React.Fragment>
     );
   }
@@ -89,7 +91,7 @@ class SignInFormBase extends React.PureComponent {
     return (
       <Button
         icon="arrow-left"
-        theme="box"
+        theme="transparant"
         onClick={this.props.stepBack}
       >
         Terug
@@ -100,7 +102,9 @@ class SignInFormBase extends React.PureComponent {
   registerFields() {
     return (
       <React.Fragment>
-        <p>{this.props.reason}</p>
+        <CardContent>
+          <p>{this.props.reason}</p>
+        </CardContent>
         {this.constructor.emailField()}
         <FormField
           field={btoa('password')}

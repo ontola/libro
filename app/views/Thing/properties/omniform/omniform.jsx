@@ -15,6 +15,7 @@ import {
 import { allTopologiesExcept, NS } from '../../../../helpers/LinkedRenderStore';
 
 const propTypes = {
+  formFooterButtons: PropTypes.node,
   onKeyUp: PropTypes.func,
   potentialAction: linkedPropType,
   subject: subjectType,
@@ -30,6 +31,7 @@ class OmniformProp extends React.PureComponent {
     return (
       <Omniform
         actions={new Set(this.props.potentialAction)}
+        formFooterButtons={this.props.formFooterButtons}
         parentIRI={this.reduxFormsSafeIRI()}
         onKeyUp={this.props.onKeyUp}
       />

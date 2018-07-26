@@ -24,6 +24,10 @@ class VoteEventResult extends TopologyProvider {
   }
 
   render() {
+    if (this.props.totalItems.value === '0') {
+      return null;
+    }
+
     return this.wrap((
       <VoteData card={this.card}>
         <Property

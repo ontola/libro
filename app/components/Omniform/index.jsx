@@ -23,6 +23,7 @@ import {
 import EntryPointBase from '../../views/EntryPoint/EntryPointBase';
 import Button from '../Button';
 import { FormFooter, FormFooterRight } from '../Form';
+import { showForm } from '../../state/form/actions';
 
 import './Omniform.scss';
 import OmniformFields from './OmniformFields';
@@ -34,7 +35,8 @@ const propTypes = {
   error: PropTypes.string,
   // Unique name of the form
   form: PropTypes.string.isRequired,
-  // From redux-form
+  formFooterButtons: PropTypes.node,
+  // From redux-forms
   invalid: PropTypes.bool,
   onActionChange: PropTypes.func.isRequired,
   onKeyUp: PropTypes.func,
@@ -140,6 +142,7 @@ class Omniform extends EntryPointBase {
           <LinkedResourceContainer subject={NS.app('c_a')} />
           {this.types()}
           <FormFooterRight>
+            {this.props.formFooterButtons}
             <Button
               plain
               disabled={invalid}
@@ -180,6 +183,7 @@ const mapDispatchToProps = (dispatch, props) => ({
       parentIRI: props.parentIRI,
     }));
   },
+  onStatusForbidden: () => dispatch(showForm(atob(props.parentIRI))),
 });
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => Object.assign(

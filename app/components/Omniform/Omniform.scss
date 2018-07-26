@@ -1,8 +1,19 @@
 @import '../shared/config';
 
 .Omniform__preview {
+  cursor: text;
   display: block;
   width: 100%;
+
+  &:hover {
+    .Form__footer {
+      background-color: color('white');
+    }
+  }
+}
+
+.Form__footer {
+  transition: background-color .2s;
 }
 
 .Omniform__footer {

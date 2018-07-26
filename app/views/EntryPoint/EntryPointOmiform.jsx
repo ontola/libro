@@ -1,8 +1,8 @@
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
-  link,
   linkType,
-  Property, withLRS,
+  Property,
+  register,
+  withLRS,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -33,26 +33,27 @@ class EntryPointOmniform extends EntryPointBase {
 EntryPointOmniform.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   invalid: PropTypes.bool,
+  onStatusForbidden: PropTypes.func.isRequired,
   submitHandler: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
   url: linkType,
 };
 
-const EntryPointOmniformForm = link([
+const EntryPointOmniformWrapper = withLRS(props => (
+  <EntryPointOmniform
+    form={props.subject.value}
+    piemls="thomispieml"
+    {...props}
+  />
+));
+
+EntryPointOmniformWrapper.mapDataToProps = [
   NS.schema('image'),
   NS.schema('name'),
   NS.schema('url'),
   NS.schema('httpMethod'),
-])(EntryPointOmniform);
+];
+EntryPointOmniformWrapper.topology = NS.argu('omniformFields');
+EntryPointOmniformWrapper.type = NS.schema('EntryPoint');
 
-export default LinkedRenderStore.registerRenderer(
-  withLRS(props => (
-    <EntryPointOmniformForm
-      form={props.subject.value}
-      {...props}
-    />
-  )),
-  NS.schema('EntryPoint'),
-  RENDER_CLASS_NAME,
-  NS.argu('omniformFields')
-);
+export default register(EntryPointOmniformWrapper);
