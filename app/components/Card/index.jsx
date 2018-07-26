@@ -57,6 +57,7 @@ export { default as CardContent } from './CardContent';
 export { default as CardDivider } from './CardDivider';
 export { default as CardFixed } from './CardFixed';
 export { default as CardLink } from './CardLink';
+export { default as CardMicroRow } from './CardMicroRow';
 export { default as CardMenuFloater } from './CardMenuFloater';
 export { default as CardRow } from './CardRow';
 export { default as CardMain } from './CardMain';

@@ -7,6 +7,7 @@ import {
   Card,
   CardAppendix,
   CardContent,
+  CardMicroRow,
   DetailsBar,
 } from '../../components';
 import { connectHighlighting, hightlightPropTypes } from '../../containers/Highlight';
@@ -33,9 +34,9 @@ const Comment = ({ highlighted }) => (
 Comment.propTypes = hightlightPropTypes;
 
 const CommentSection = ({ highlighted }) => (
-  <div className={highlighted ? 'Card--shine' : ''} style={{ padding: '.3rem 1.3rem' }}>
+  <CardMicroRow highlighted={highlighted}>
     <Property label={NS.schema('creator')} topology={NS.argu('section')} />&#9;<Property label={NS.schema('text')} topology={NS.argu('section')} />
-  </div>
+  </CardMicroRow>
 );
 
 CommentSection.propTypes = hightlightPropTypes;

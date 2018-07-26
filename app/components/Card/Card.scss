@@ -113,6 +113,11 @@
   color: color('blue', 'power');
 }
 
+.CardMicroRow {
+  font-size: .9em;
+  padding: .3rem 1.3rem;
+}
+
 .CardRow {
   border-bottom: solid 1px color('grey', 'x-light');
   border-top: solid 1px color('grey', 'x-light');
@@ -128,7 +133,6 @@
 
   &--backdrop {
     background-color: color('grey', 'xx-light');
-    border: 1px solid color('grey', 'x-light');
   }
 }
 

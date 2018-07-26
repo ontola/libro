@@ -11,7 +11,7 @@ const propTypes = {
 };
 
 const PersonSection = ({ name }) => (
-  <b style={{ fontWeight: 'bold' }}>{name.value}</b>
+  <b style={{ color: 'grey', fontWeight: 'bold' }}>{name.value}</b>
 );
 
 PersonSection.propTypes = propTypes;
