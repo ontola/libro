@@ -11,7 +11,7 @@ import {
   COLL_OPEN_GROUPED,
   COLL_TOGGLE_GROUP,
   COLL_TOGGLE_ONE,
-} from '../../state/action-types';
+} from "../action-types";
 
 export const Collapsible = Record({
   group: undefined,

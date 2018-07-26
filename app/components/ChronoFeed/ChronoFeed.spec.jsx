@@ -3,7 +3,7 @@ import { assert } from 'chai';
 import { mount } from 'enzyme';
 import React from 'react';
 
-import ChronoFeed from './';
+import ChronoFeed from ".";
 
 describe('ChronoFeed component', () => {
   it('ChronoFeed should render', () => {

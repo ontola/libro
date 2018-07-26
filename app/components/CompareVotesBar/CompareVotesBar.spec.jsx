@@ -3,7 +3,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { assert } from 'chai';
 
-import CompareVotesBar from './';
+import CompareVotesBar from ".";
 
 const comp = shallow((
   <CompareVotesBar

@@ -3,7 +3,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { assert } from 'chai';
 
-import Markdown from './';
+import Markdown from ".";
 
 const comp = shallow(<Markdown
   highlightedText="Joe"

@@ -4,7 +4,7 @@ import { mount } from 'enzyme';
 import { assert } from 'chai';
 import sinon from 'sinon';
 
-import Drawer from './';
+import Drawer from ".";
 
 const spy = sinon.spy(() => undefined);
 const comp = mount(<Drawer hits={1337} onClickToggle={spy}>Content</Drawer>);

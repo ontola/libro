@@ -1,4 +1,4 @@
-import LinkList from './';
+import LinkList from ".";
 
 const exampleLinks = [{
   label: 'Test 1',
