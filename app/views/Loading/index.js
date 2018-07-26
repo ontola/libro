@@ -5,6 +5,7 @@ import {
   Loading,
   LoadingSideBarLink,
   LoadingCard,
+  LoadingCardFixed,
   LoadingPage,
   LoadingParent,
   LoadingRow,
@@ -29,6 +30,13 @@ export default [
       NS.argu('collection'),
       NS.argu('container'),
       NS.argu('section'),
+    ]
+  ),
+  LinkedRenderStore.registerRenderer(
+    LoadingCardFixed,
+    NS.ll('LoadingResource'),
+    RENDER_CLASS_NAME,
+    [
       NS.argu('grid'),
       NS.argu('widget'),
     ]

@@ -29,6 +29,17 @@ export const LoadingCard = () => (
   </Card>
 );
 
+export const LoadingCardFixed = () => (
+  <Card fixed>
+    <CardContent>
+      <div className="Loading__Header Loading__background" />
+      <div className="Loading__Paragraph Loading__background" />
+      <div className="Loading__Paragraph Loading__background" />
+      <div className="Loading__Paragraph--shorter Loading__background" />
+    </CardContent>
+  </Card>
+);
+
 export const LoadingPage = () => (
   <Container>
     <LoadingParent />
@@ -44,7 +55,6 @@ export const LoadingParent = () => (
     </div>
   </LDLink>
 );
-
 
 export const LoadingRow = () => (
   <CardRow>
