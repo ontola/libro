@@ -124,6 +124,7 @@ function argUnitCustom(desc, comp, props, func) {
  */
 function argUnit(comp, func, opts = {}) {
   const desc = comp.name;
+  // eslint-disable-next-line react/forbid-foreign-prop-types
   const props = Object.keys(opts.propTypes || comp.propTypes);
 
   const render = (p) => {

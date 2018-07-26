@@ -23,7 +23,7 @@ const onClickAndBlur = (e, onClick) => {
 const BlurButton = ({
   children,
   onClick,
-  ...props,
+  ...props
 }) => (
   <button
     {...props}

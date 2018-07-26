@@ -20,7 +20,7 @@ const EntryPoint = ({
   name,
   onClick,
   url,
-  ...props,
+  ...props
 }) => {
   const label = `${name.value} ${countInParentheses(count)}`;
 

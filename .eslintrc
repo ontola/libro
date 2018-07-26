@@ -5,7 +5,6 @@
   ],
   "extends": "airbnb",
   "root": true,
-
   "globals": {
     "__CLIENT__": true,
     "__DEV__": true,
@@ -16,7 +15,7 @@
     "__TEST__": true
   },
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 2018,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true,
@@ -26,7 +25,7 @@
   "settings": {
     "react": {
       "pragma": "React",
-      "version": "16.3.2"
+      "version": "16.4.1"
     },
     "import/resolver": {
       "webpack": {
@@ -36,10 +35,10 @@
   },
   "rules": {
     "comma-dangle": ["error", {
-      "arrays": "only-multiline",
-      "objects": "only-multiline",
-      "imports": "only-multiline",
-      "exports": "only-multiline",
+      "arrays": "always-multiline",
+      "objects": "always-multiline",
+      "imports": "always-multiline",
+      "exports": "always-multiline",
       "functions": "never"
     }],
     "valid-jsdoc": "error",
@@ -85,12 +84,14 @@
     }],
     "one-var-declaration-per-line": ["error", "initializations"],
     "one-var": ["error", { "uninitialized": "always" }],
+    "react/button-has-type": "warn",
     "react/jsx-sort-props": ["error", {
       "callbacksLast": true,
       "shorthandFirst": true
     }],
     "sort-keys": ["error", "asc", { "natural": true }],
     "space-unary-ops": ["error", { "words": true, "nonwords": false }],
+    "no-else-return": ["error", { "allowElseIf": true }],
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "no-magic-numbers": ["error", {
       "ignore": [
@@ -112,7 +113,9 @@
         "capIsNewExceptions": ["Alert", "Record", "Namespace"]
       }
     ],
+    "react/jsx-one-expression-per-line": 0,
     "react/require-default-props": 0,
+    "react/destructuring-assignment": 0,
     "import/no-webpack-loader-syntax": "error"
   },
   "overrides": [
