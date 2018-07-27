@@ -50,7 +50,7 @@ export default [
       filteredCollections: {
         label: NS.argu('filteredCollections'),
         limit: Infinity,
-      }
+      },
     })(FilteredCollections),
     CollectionTypes,
     NS.argu('filteredCollections'),

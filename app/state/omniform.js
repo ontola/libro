@@ -34,7 +34,7 @@ export const omniformReducer = handleActions({
 
     return state.set(payload.parentIRI, new OmniformRecord({
       action: payload.action,
-      parentIRI: payload.parentIRI
+      parentIRI: payload.parentIRI,
     }));
   },
   [OMNIFORM_OPEN_INLINE]: (state, { payload }) => state.setIn([payload, 'inlineOpened'], true),

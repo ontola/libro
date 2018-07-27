@@ -32,7 +32,7 @@ class Pages extends PropertyBase {
 
 Pages.propTypes = {
   label: labelType.isRequired,
-  subject: subjectType
+  subject: subjectType,
 };
 
 export default [

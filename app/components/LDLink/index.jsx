@@ -17,7 +17,7 @@ const propTypes = {
   ]),
 };
 const defaultProps = {
-  theme: 'default'
+  theme: 'default',
 };
 
 const LDLink = ({

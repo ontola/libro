@@ -77,5 +77,5 @@ export default [
     RENDER_CLASS_NAME,
     [NS.argu('sidebar')]
   ),
-  ...thumbnail
+  ...thumbnail,
 ];

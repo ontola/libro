@@ -65,7 +65,7 @@ CollapsedOmniformProp.propTypes = {
 
 
 const mapInlineStateToProps = (state, ownProps) => ({
-  opened: getOmniformOpenState(state, ownProps.subject)
+  opened: getOmniformOpenState(state, ownProps.subject),
 });
 
 const mapInlineDispatchToProps = (dispatch, ownProps) => ({

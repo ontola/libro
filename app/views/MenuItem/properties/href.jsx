@@ -17,7 +17,7 @@ const propTypes = {
 };
 
 const href = ({
-  children, handleClick, linkedProp
+  children, handleClick, linkedProp,
 }) => {
   let hrefInner = children;
   if (linkedProp) {

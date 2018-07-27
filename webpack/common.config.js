@@ -32,7 +32,7 @@ const common = {
           { loader: 'style-loader', options: { sourceMap: true } },
           { loader: 'css-loader', options: { sourceMap: true } },
           { loader: 'postcss-loader', options: { sourceMap: true } },
-          { loader: 'sass-loader', options: { sourceMap: true } }
+          { loader: 'sass-loader', options: { sourceMap: true } },
         ],
       },
     ],
@@ -46,7 +46,7 @@ const common = {
   plugins: [
     new webpack.ProvidePlugin({
       fetch: 'isomorphic-fetch',
-      xmlhttprequest: 'imports-loader?this=>global!exports?global.XMLHttpRequest!global.XMLHttpRequest'
+      xmlhttprequest: 'imports-loader?this=>global!exports?global.XMLHttpRequest!global.XMLHttpRequest',
     }),
     new webpack.DefinePlugin({
       __CLIENT__: true,

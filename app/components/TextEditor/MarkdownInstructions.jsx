@@ -16,7 +16,7 @@ class MarkdownInstructions extends Component {
   constructor() {
     super();
     this.state = {
-      showModal: false
+      showModal: false,
     };
 
     this.handleOpenModal = this.handleOpenModal.bind(this);

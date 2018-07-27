@@ -81,7 +81,7 @@ const collapsible = handleActions({
     toggleAll(state, payload.group),
 
   [COLL_TOGGLE_ONE]: (state, { payload }) =>
-    toggleValue(state, payload, 'opened')
+    toggleValue(state, payload, 'opened'),
 
 }, initialState);
 

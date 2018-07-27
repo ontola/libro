@@ -14,7 +14,7 @@ const propTypes = {
   showBar: PropTypes.bool,
   value: PropTypes.oneOfType([
     PropTypes.number,
-    PropTypes.string
+    PropTypes.string,
   ]).isRequired,
 };
 

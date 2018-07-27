@@ -13,7 +13,7 @@ const resources = {
     [NS.rdf('type')]: NS.schema('ImageObject'),
     [NS.schema('thumbnail')]: new NamedNode('http://www.example.com/1.thumb.png'),
     [NS.schema('url')]: new NamedNode('http://www.example.com/1.png'),
-  }
+  },
 };
 
 describeView('ImageObject', components, resources, resource, () => {

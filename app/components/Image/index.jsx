@@ -17,7 +17,7 @@ const propTypes = {
 
 function Image(props) {
   const {
-    ariaLabel, className, override, style, linkedProp
+    ariaLabel, className, override, style, linkedProp,
   } = props;
   if (linkedProp.value.startsWith(FABase)) {
     return (

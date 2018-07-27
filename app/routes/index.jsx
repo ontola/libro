@@ -18,7 +18,7 @@ const subRoutes = [
     path="*/(decision|statistics)"
     component={Iframe}
   />,
-  <Route key="linkedResources" path="*" component={LinkedObject} />
+  <Route key="linkedResources" path="*" component={LinkedObject} />,
 ];
 
 if (__DEVELOPMENT__) {

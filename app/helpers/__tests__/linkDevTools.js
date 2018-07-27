@@ -275,7 +275,7 @@ describe('helpers', () => {
             [NS.rdf('type')]: NS.schema('CreativeWork'),
             [NS.schema('name')]: new Literal('Second resource'),
             [NS.argu('arguments')]: argumentArr,
-          }
+          },
         });
       });
 
@@ -293,7 +293,7 @@ describe('helpers', () => {
             [NS.rdf('type')]: NS.schema('Thing'),
             [NS.schema('name')]: new Literal('Title'),
             [NS.schema('text')]: new Literal('Lovely contents'),
-          }
+          },
         });
       });
     });
@@ -394,7 +394,7 @@ describe('helpers', () => {
 
       it('should expose typeRenderers', () => {
         devObj.getLRS = jest.fn().mockReturnValueOnce({
-          mapping: { '<http://purl.org/link-lib/typeRenderClass>': 'mock' }
+          mapping: { '<http://purl.org/link-lib/typeRenderClass>': 'mock' },
         });
         expect(devObj.typeRenderers).toEqual('mock');
       });

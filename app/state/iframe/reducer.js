@@ -6,7 +6,7 @@ import { IFRAME_METADATA } from '../action-types';
 
 const initialState = new Map({
   location: '',
-  metadata: new Map()
+  metadata: new Map(),
 });
 
 const generateIframeURL = (location) => {
@@ -19,7 +19,7 @@ const motions = handleActions({
   [IFRAME_METADATA]: (state, { payload }) =>
     state.setIn(['metadata', 'title'], payload.title),
   [LOCATION_CHANGE]: (state, { payload }) =>
-    state.set('location', generateIframeURL(payload))
+    state.set('location', generateIframeURL(payload)),
 }, initialState);
 
 export default motions;

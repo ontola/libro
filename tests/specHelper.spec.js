@@ -59,7 +59,7 @@ describe('specHelper', () => {
     describe('with mixed params', () => {
       set('subject', () => normalizeProps({ a: 'aa', b: 'bb' }, 'c', 'd'));
       set('result', () => ({
-        a: 'aa', b: 'bb', c: undefined, d: undefined
+        a: 'aa', b: 'bb', c: undefined, d: undefined,
       }));
 
       it('normalizes the props', () => {

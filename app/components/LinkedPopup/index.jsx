@@ -48,7 +48,7 @@ class LinkedPopup extends Component {
 
 LinkedPopup.propTypes = propTypes;
 LinkedPopup.stateTypes = {
-  show: PropTypes.boolean
+  show: PropTypes.boolean,
 };
 
 const LinkedPopupConnect = connect(

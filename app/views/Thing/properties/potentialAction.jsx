@@ -41,7 +41,7 @@ export default [
       potentialActions: {
         label: NS.schema('potentialAction'),
         limit: Infinity,
-      }
+      },
     })(potentialAction([])),
     [NS.schema('Thing'), NS.rdfs('Resource')],
     NS.schema('potentialAction'),
@@ -52,7 +52,7 @@ export default [
       potentialActions: {
         label: NS.schema('potentialAction'),
         limit: Infinity,
-      }
+      },
     })(potentialAction(actionsBarBlacklist)),
     [NS.schema('Thing'), NS.rdfs('Resource')],
     NS.schema('potentialAction'),

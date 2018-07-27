@@ -107,7 +107,7 @@ class CollectionPageFirst extends React.PureComponent {
 CollectionPageFirst.propTypes = propTypes;
 
 const ConnectedFirst = connect((state, { partOf, first }) => ({
-  currentPage: getPage(state, partOf) || first
+  currentPage: getPage(state, partOf) || first,
 }))(CollectionPageFirst);
 
 export default LinkedRenderStore.registerRenderer(

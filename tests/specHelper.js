@@ -67,7 +67,7 @@ function declareTestProps(arr, ...params) {
   Object.entries(props).forEach(([k, v]) => define({
     block: () => v,
     name: propName(k),
-    scope: global
+    scope: global,
   }));
 
   set('testProps', () => {
@@ -152,7 +152,7 @@ function createContext(opts = {}) {
     ch: children,
     r: resources,
     s: subject,
-    t: topology
+    t: topology,
   } = opts;
   return ctx.loc({
     children: children || ch,
@@ -182,7 +182,7 @@ function describeView(desc, components, resources, subject, func) {
       c: components,
       r: resources,
       s: subject,
-      t: undefined
+      t: undefined,
     });
     set('subject', () => mount(createContext()));
     func();

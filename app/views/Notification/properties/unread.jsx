@@ -34,7 +34,7 @@ const Unread = ({ linkedProp }) => {
           left: '-.6em',
           position: 'absolute',
           top: '-.6em',
-          width: '1em'
+          width: '1em',
         }}
       />
     </Property>

@@ -8,7 +8,7 @@ describe('helpers', () => {
       it('returns the correct path', () => {
         expect(currentLocation({
           pathname: '/n',
-          search: '?type=infinite'
+          search: '?type=infinite',
         }).value).toEqual('https://argu.dev/n?type=infinite');
       });
     });

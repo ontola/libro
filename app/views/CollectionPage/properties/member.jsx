@@ -74,7 +74,7 @@ export default [
     [
       NS.argu('section'),
       NS.argu('widget'),
-      NS.argu('container')
+      NS.argu('container'),
     ]
   ),
   LinkedRenderStore.registerRenderer(

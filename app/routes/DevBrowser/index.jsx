@@ -151,7 +151,7 @@ class DevBrowser extends Component {
         </form>
         <div
           style={{
-            position: 'relative'
+            position: 'relative',
           }}
         >
           <TopologyWrapper

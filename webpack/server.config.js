@@ -37,7 +37,7 @@ const config = {
               minified: true,
               presets: ['react'],
             },
-          }
+          },
         ],
       },
       {

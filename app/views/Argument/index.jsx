@@ -51,5 +51,5 @@ export default [
     RENDER_CLASS_NAME,
     NS.argu('container')
   ),
-  CurrentVote
+  CurrentVote,
 ];

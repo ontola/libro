@@ -13,7 +13,7 @@ describe('tests', () => {
           const tree = mount(prop({
             property: name,
             resources: [],
-            subject: defaultNS.argu('test')
+            subject: defaultNS.argu('test'),
           }));
           expect(tree.find(Property)).toHaveProp('label', name);
         });

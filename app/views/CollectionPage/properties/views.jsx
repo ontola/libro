@@ -31,7 +31,7 @@ class Views extends PropertyBase {
 
 Views.propTypes = {
   label: labelType.isRequired,
-  subject: subjectType
+  subject: subjectType,
 };
 
 export default [

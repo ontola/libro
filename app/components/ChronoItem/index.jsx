@@ -4,7 +4,7 @@ import React from 'react';
 
 import {
   CardContent,
-  CardRow
+  CardRow,
 } from '../Card';
 import Detail from '../Detail';
 import DetailDate from '../DetailDate';

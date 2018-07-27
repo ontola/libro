@@ -59,7 +59,7 @@ class CollectionPage extends PropertyBase {
 }
 
 const ReduxCollectionPage = connect((state, { subject }) => ({
-  currentPage: getPage(state, subject)
+  currentPage: getPage(state, subject),
 }))(CollectionPage);
 const ConnectedCollectionView = withLinkCtx(ReduxCollectionPage);
 
@@ -101,7 +101,7 @@ const wrapUpdate = Component => withLinkCtx(Component);
 
 const membersViewsCount = {
   totalCount: {
-    label: NS.as('totalItems')
+    label: NS.as('totalItems'),
   },
 };
 
@@ -139,7 +139,7 @@ export default [
     RENDER_CLASS_NAME,
     [
       NS.argu('grid'),
-      NS.argu('widget')
+      NS.argu('widget'),
     ]
   ),
   LinkedRenderStore.registerRenderer(
@@ -148,7 +148,7 @@ export default [
     RENDER_CLASS_NAME,
     [
       undefined,
-      NS.argu('container')
+      NS.argu('container'),
     ]
   ),
   LinkedRenderStore.registerRenderer(

@@ -16,7 +16,7 @@ import './properties/motions';
 import './properties/voteCompareResult';
 
 const propTypes = {
-  handleStart: PropTypes.func
+  handleStart: PropTypes.func,
 };
 
 const VoteMatch = ({ handleStart }) => (

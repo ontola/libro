@@ -17,7 +17,7 @@ const resources = {
     [NS.schema('isPartOf')]: parent,
     [NS.schema('name')]: new Literal('Test item'),
     [NS.schema('text')]: new Literal('Body text'),
-  }
+  },
 };
 
 describeView('Thing', components, resources, resource, () => {

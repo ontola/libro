@@ -15,7 +15,7 @@ const resources = {
     [NS.schema('url')]: new NamedNode(url),
     [NS.schema('dateCreated')]: new Literal(Date.now()),
     [NS.argu('imagePositionY')]: Literal.fromValue(imagePositionY),
-  }
+  },
 };
 
 describeView('ImageObject', components, resources, resource, () => {

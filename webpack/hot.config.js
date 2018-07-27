@@ -21,7 +21,7 @@ config.devtool = 'inline-source-map';
 config.module.rules.unshift({
   exclude: /node_modules/,
   test: /\.(js|jsx)$/,
-  use: ['babel-loader']
+  use: ['babel-loader'],
 });
 
 config.module.rules.unshift({

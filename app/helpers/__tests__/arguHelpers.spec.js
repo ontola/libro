@@ -26,7 +26,7 @@ describe('helpers', () => {
         HttpStatus.UNAUTHORIZED,
         HttpStatus.NOT_FOUND,
         HttpStatus.TOO_MANY_REQUESTS,
-        HttpStatus.INTERNAL_SERVER_ERROR
+        HttpStatus.INTERNAL_SERVER_ERROR,
       ].forEach((status) => {
         it(`should handle status ${status}`, () => {
           const err = errorMessageForStatus(status);
@@ -62,13 +62,13 @@ describe('helpers', () => {
         },
       };
       const faProp = {
-        fa: 'fa-address-book'
+        fa: 'fa-address-book',
       };
       const imgMerged = Object.assign({}, imgProp, faProp);
       const expectedImage = React.createElement('img', {
         alt: imgProp.image.title,
         className: imgProp.image.className,
-        src: imgProp.image.url
+        src: imgProp.image.url,
       });
 
       it('should return an img element', () => {

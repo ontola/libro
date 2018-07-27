@@ -11,5 +11,5 @@ export const userTokenRequest = (login, password) =>
       scope: 'user',
       username: login,
     },
-    path: 'spi/oauth/token'
+    path: 'spi/oauth/token',
   });

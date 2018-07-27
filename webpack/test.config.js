@@ -7,7 +7,7 @@ config.externals = [
   nodeExternals(),
   { '../../../../node_modules/react.js': 'react' },
   { '../../../node_modules/react.js': 'react' },
-  { '../../node_modules/react.js': 'react' }
+  { '../../node_modules/react.js': 'react' },
 ];
 
 config.output = {};

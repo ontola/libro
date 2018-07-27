@@ -49,5 +49,5 @@ export default [
     RENDER_CLASS_NAME,
     NS.argu('sidebar')
   ),
-  Label
+  Label,
 ];

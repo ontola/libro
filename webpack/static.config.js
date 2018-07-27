@@ -36,7 +36,7 @@ config.module.rules.push({
 
 config.plugins.push(
   new MiniCssExtractPlugin({
-    filename: 'bundle-[contenthash].css'
+    filename: 'bundle-[contenthash].css',
   }),
   new webpack.DefinePlugin({
     'process.env.ARGU_API_EXT_BASE': JSON.stringify(process.env.ARGU_API_EXT_BASE
@@ -45,7 +45,7 @@ config.plugins.push(
   }),
   new webpack.ProvidePlugin({
     fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
-    xmlhttprequest: 'imports?this=>global!exports?global.XMLHttpRequest!global.XMLHttpRequest'
+    xmlhttprequest: 'imports?this=>global!exports?global.XMLHttpRequest!global.XMLHttpRequest',
   }),
   new webpack.ProvidePlugin({
     fetch: 'isomorphic-fetch',

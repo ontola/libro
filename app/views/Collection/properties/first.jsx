@@ -99,7 +99,7 @@ class First extends PropertyBase {
 
 
 const ConnectedFirst = connect((state, { collectionIRI, linkedProp }) => ({
-  currentPage: getPage(state, collectionIRI) || linkedProp.value
+  currentPage: getPage(state, collectionIRI) || linkedProp.value,
 }))(First);
 
 export default LinkedRenderStore.registerRenderer(

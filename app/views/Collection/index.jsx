@@ -138,7 +138,7 @@ const wrapUpdate = Component => withLinkCtx(Component);
 
 const itemsCount = {
   totalItems: {
-    label: NS.as('totalItems')
+    label: NS.as('totalItems'),
   },
 };
 
@@ -184,7 +184,7 @@ export default [
     RENDER_CLASS_NAME,
     [
       NS.argu('grid'),
-      NS.argu('widget')
+      NS.argu('widget'),
     ]
   ),
   LinkedRenderStore.registerRenderer(
@@ -205,5 +205,5 @@ export default [
   sidebar,
   UnreadCount,
   ...Pages,
-  ...voteEvent
+  ...voteEvent,
 ];

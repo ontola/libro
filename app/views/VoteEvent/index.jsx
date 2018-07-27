@@ -62,5 +62,5 @@ export default [
     RENDER_CLASS_NAME,
     NS.argu('cardMain')
   ),
-  CurrentVote
+  CurrentVote,
 ];
