@@ -6,7 +6,7 @@ import { NS } from '../../helpers/LinkedRenderStore';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
-  highlighted: PropTypes.node.isRequired,
+  highlighted: PropTypes.bool,
 };
 
 /**
