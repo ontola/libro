@@ -144,7 +144,6 @@ class Omniform extends EntryPointBase {
           <FormFooterRight>
             {this.props.formFooterButtons}
             <Button
-              plain
               disabled={invalid}
               icon="send"
               loading={false}

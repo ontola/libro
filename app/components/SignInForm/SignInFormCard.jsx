@@ -51,7 +51,6 @@ class SignInFormCard extends SignInFormBase {
             style={{ display: 'inline' }}
           >
             <Button
-              margins
               small
               icon="facebook"
               type="submit"

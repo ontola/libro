@@ -4,7 +4,7 @@ import React from 'react';
 import validators, { combineValidators } from '../../helpers/validators';
 import { STEPS } from '../../state/form/reducer';
 import Button from '../Button';
-import { CardLink, CardContent } from '../Card';
+import { CardLink } from '../Card';
 import FormField from '../FormField';
 
 const propTypes = {
@@ -34,7 +34,6 @@ class SignInFormBase extends React.PureComponent {
           validators.required,
           validators.isEmail
         )}
-        variant="material"
       />
     );
   }
@@ -42,13 +41,11 @@ class SignInFormBase extends React.PureComponent {
   confirmFields() {
     return (
       <React.Fragment>
-        <CardContent>
-          <p>Door je te registreren ga je akkoord met de
-            <CardLink to="/policy"> algemene voorwaarden </CardLink>
-            en de
-            <CardLink to="/privacy"> privacy policy</CardLink>.
-          </p>
-        </CardContent>
+        <p>Door je te registreren ga je akkoord met de
+          <CardLink to="/policy"> algemene voorwaarden </CardLink>
+          en de
+          <CardLink to="/privacy"> privacy policy</CardLink>.
+        </p>
         {this.constructor.emailField()}
         <FormField
           defaultValue="true"
@@ -84,9 +81,7 @@ class SignInFormBase extends React.PureComponent {
           key="password"
           label="Jouw wachtwoord"
           type="password"
-          variant="material"
         />
-        {this.redirectField()}
       </React.Fragment>
     );
   }
@@ -110,9 +105,7 @@ class SignInFormBase extends React.PureComponent {
   registerFields() {
     return (
       <React.Fragment>
-        <CardContent>
-          <p>{this.props.reason}</p>
-        </CardContent>
+        <p>{this.props.reason}</p>
         {this.constructor.emailField()}
         <FormField
           field={btoa('password')}
@@ -126,12 +119,12 @@ class SignInFormBase extends React.PureComponent {
 
   signUpCompleted() {
     return (
-      <CardContent>
-        <p style={{ border: '1px solid #863d3d' }}>
+      <React.Fragment>
+        <p>
           Vergeet niet je stem te bevestigen door op de link te klikken die we je hebben gemaild
           naar <b>{this.props.registeredEmail}</b>
         </p>
-      </CardContent>
+      </React.Fragment>
     );
   }
 

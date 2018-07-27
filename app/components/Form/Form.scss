@@ -23,20 +23,25 @@
     display: flex;
     flex-direction: row;
 
+    .CardRow + & {
+      border-top: 0;
+    }
+
     &-preview-text {
       align-self: center;
       color: color('grey');
+      padding: .5rem 1.3rem;
+      padding-left: 0;
     }
 
     &-image {
       align-self: center;
-      background-color: color('grey', 'mid-light');
       background-size: cover;
       border-radius: 999px;
-      height: 2em;
-      margin: .4em;
-      margin-right: 1.2em;
-      width: 2em;
+      height: 1.3em;
+      margin: .6em;
+      margin-right: .5em;
+      width: 1.3em;
     }
 
     &--right {

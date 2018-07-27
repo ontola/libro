@@ -3,7 +3,7 @@ import React from 'react';
 import { Form } from 'informed';
 
 import Button from '../Button';
-import { CardActions } from '../Card';
+import { CardActions, CardContent } from '../Card';
 
 import SignInFormBase from './SignInFormBase';
 
@@ -36,7 +36,9 @@ class SignInFormCardRow extends SignInFormBase {
       <Form validateOnBlur onSubmit={onSubmit}>
         {() => (
           <React.Fragment>
-            {formFields}
+            <CardContent>
+              {formFields}
+            </CardContent>
             <CardActions alignRight noSpacing>
               {this.backButton()}
               {buttonText && (

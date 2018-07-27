@@ -94,6 +94,7 @@
   display: flex;
   flex-direction: column;
   padding: units('small', 'large');
+  padding-bottom: 0;
 
   &--align-end {
     align-self: flex-end;
@@ -185,6 +186,7 @@
 
 .CardMenuFloater {
   display: flex;
+  margin-right: -.7rem;
 
   &--header {
     flex: 1;

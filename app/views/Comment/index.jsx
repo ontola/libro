@@ -47,7 +47,6 @@ export default [
     [NS.schema('Comment'), NS.argu('Comment')],
     RENDER_CLASS_NAME,
     [
-      undefined,
       NS.argu('collection'),
       NS.argu('container'),
     ]

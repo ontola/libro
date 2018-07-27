@@ -71,7 +71,7 @@ export const LoadingRow = () => (
 
 export const LoadingMicroRow = () => (
   <CardMicroRow>
-    <div className="Loading__Paragraph Loading__background" />
+    <div className="Loading__Paragraph Loading__Paragraph--micro-row Loading__background" />
   </CardMicroRow>
 );
 

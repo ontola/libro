@@ -25,6 +25,10 @@ a {
   text-decoration: none;
 }
 
+p {
+  margin-bottom: 1em;
+}
+
 ::selection {
   background-color: color('pink', 'light');
   color: color('grey', 'dark');

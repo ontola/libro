@@ -86,7 +86,6 @@ export default [
       NS.argu('voteBubble'),
       NS.argu('card'),
       NS.argu('cardMain'),
-      NS.argu('cardRow'),
     ]
   ),
 ];
