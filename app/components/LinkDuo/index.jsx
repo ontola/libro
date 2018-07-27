@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import isExternal from 'is-url-external';
 
 const propTypes = {
+  children: PropTypes.node.isRequired,
   to: PropTypes.string.isRequired,
 };
 
@@ -14,13 +15,19 @@ const propTypes = {
 export default class LinkDuo extends Component {
   render() {
     if (isExternal(this.props.to)) {
+      const {
+        children,
+        ...rest
+      } = this.props;
       return (
         <a
           href={this.props.to}
-          {...this.props}
+          {...rest}
           rel="nofollow noopener noreferrer"
           target="_blank"
-        />
+        >
+          {children}
+        </a>
       );
     }
 

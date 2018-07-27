@@ -18,12 +18,6 @@ const defaultProps = {
 };
 
 class CollapsibleContainer extends Component {
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return {
-      hideChildren: !nextProps.opened && prevState ? prevState.hideChildren : false,
-    };
-  }
-
   constructor(props) {
     super(props);
 
@@ -43,6 +37,12 @@ class CollapsibleContainer extends Component {
       identifier: this.props.id,
       startOpened: this.props.startOpened,
     });
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    return {
+      hideChildren: !nextProps.opened && prevState ? prevState.hideChildren : false,
+    };
   }
 
   hideChildren() {
