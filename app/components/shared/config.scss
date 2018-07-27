@@ -135,9 +135,13 @@ $z-layers: (
 
 // OTHERS
 $border-radius-base: 3px;
+
 $box-shadow: 0 1px 5px rgba(0, 0, 0, .1);
+$box-shadow--transparent: 0 0 0 rgba(0, 0, 0, 0);
 $box-shadow--intense: 0 2px 8px rgba(0, 0, 0, .2);
 $box-shadow--inside: 0 2px 8px rgba(0, 0, 0, .2) inset;
+$box-shadow--crazy: 0 0 20px 1px rgba(0, 0, 0, .3);
+
 $box-divider: solid 1px color('grey', 'x-light');
 $background-color: color('blue', 'x-light');
 $grid-margin: 1em;

@@ -23,6 +23,7 @@
   margin: units('medium');
 
   &--fixed {
+    // sass-lint:disable property-sort-order
     width: 22em;
     min-width: 22em;
     max-width: 22em;
@@ -32,6 +33,7 @@
     margin: $grid-margin;
     display: inline-flex;
     flex-direction: column;
+    // sass-lint:enable property-sort-order
 
     // Displaying clickable items directly in card
     > a {
@@ -51,11 +53,30 @@
   }
 
   &--shine {
-    animation: highlight 1s 1;
+    animation: shine 2s 1;
+    animation-delay: .3s;
   }
 
   &--warn {
     border: 2px solid color('red', 'dark');
+  }
+}
+
+@keyframes shine {
+  0% {
+    box-shadow: $box-shadow--transparent;
+  }
+
+  40% {
+    box-shadow: $box-shadow--crazy;
+  }
+
+  60% {
+    box-shadow: $box-shadow--crazy;
+  }
+
+  100% {
+    box-shadow: $box-shadow--transparent;
   }
 }
 
