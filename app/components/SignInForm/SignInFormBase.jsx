@@ -1,13 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {
-  Button,
-  CardLink,
-  FormField,
-} from '../../components';
 import validators, { combineValidators } from '../../helpers/validators';
 import { STEPS } from '../../state/form/reducer';
+import Button from '../Button';
+import { CardLink } from '../Card';
+import FormField from '../FormField';
 
 const propTypes = {
   hasBack: PropTypes.bool,

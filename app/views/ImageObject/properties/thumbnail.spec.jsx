@@ -2,7 +2,7 @@ import { Property } from 'link-redux';
 import { NamedNode } from 'rdflib';
 import React from 'react';
 
-import { NS } from '../../../../tests/index';
+import { NS } from '../../../../tests';
 
 import components from './thumbnail';
 

@@ -4,8 +4,7 @@ import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
 
 import { generateStore } from './link-redux/utilities';
-
-import { ctx } from './index';
+import * as ctx from './link-redux/fixtures';
 
 const { mount, shallow } = require('enzyme');
 const React = require('react');

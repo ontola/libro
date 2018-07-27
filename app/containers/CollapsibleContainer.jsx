@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Collapsible } from '../components';
+import Collapsible from '../components/Collapsible';
 import { initializeCollapsible, toggleOne } from '../state/collapsible/actions';
 import { getCollapsibleOpened } from '../state/collapsible/selectors';
 

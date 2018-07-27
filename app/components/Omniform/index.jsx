@@ -13,7 +13,6 @@ import { formValueSelector } from 'redux-form/immutable';
 import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
 
-import { OmniformFields } from '../../components';
 import { filterSort } from '../../helpers/data';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { highlightResource } from '../../state/app/actions';
@@ -26,6 +25,7 @@ import Button from '../Button';
 import { FormFooter, FormFooterRight } from '../Form';
 
 import './Omniform.scss';
+import OmniformFields from './OmniformFields';
 
 const propTypes = {
   // The NamedNode of the currently selected form.

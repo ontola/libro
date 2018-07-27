@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Form } from 'informed';
 
+import Button from '../Button';
 import {
-  Button,
   CardActions,
   CardContent,
-} from '../../components';
+} from '../Card';
 
 import SignInFormBase from './SignInFormBase';
 

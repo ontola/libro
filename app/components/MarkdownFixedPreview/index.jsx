@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { Markdown } from '../../components';
+import Markdown from '../Markdown';
 
 import './MarkdownFixedPreview.scss';
 

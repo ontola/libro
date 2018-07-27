@@ -4,11 +4,6 @@ import { connect } from 'react-redux';
 import Textarea from 'react-textarea-autosize';
 
 import {
-  Button,
-  CardDivider,
-  Markdown,
-} from '../../components';
-import {
   getEditorShowPreview,
   getMarkdownTextPlain,
 } from '../../state/textEditor/selectors';
@@ -17,6 +12,9 @@ import {
   doShowPreview,
   updateMarkdown,
 } from '../../state/textEditor/actions';
+import Button from '../Button';
+import { CardDivider } from '../Card';
+import Markdown from '../Markdown';
 
 import ToggleButton from './ToggleButton';
 import MarkdownInstructions from './MarkdownInstructions';

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { Button } from '../../components';
+import Button from '../Button';
 
 const propTypes = {
   children: PropTypes.node,

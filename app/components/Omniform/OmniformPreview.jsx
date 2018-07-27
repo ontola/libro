@@ -2,7 +2,7 @@ import { LinkedResourceContainer } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { FormFooter } from '../../components';
+import { FormFooter } from '../Form';
 import { NS } from '../../helpers/LinkedRenderStore';
 
 import './Omniform.scss';

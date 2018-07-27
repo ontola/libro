@@ -2,16 +2,15 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Form } from 'informed';
 
-import {
-  Button,
-  Card,
+import { STEPS } from '../../state/form/reducer';
+import Button from '../Button';
+import Card, {
   CardActions,
   CardContent,
   CardDivider,
   CardRow,
-  Heading,
-} from '../../components';
-import { STEPS } from '../../state/form/reducer';
+} from '../Card';
+import Heading from '../Heading';
 
 import SignInFormBase from './SignInFormBase';
 

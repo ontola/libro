@@ -3,13 +3,12 @@ import FontAwesome from 'react-fontawesome';
 
 import './Loading.scss';
 
-import {
-  Card,
+import Card, {
   CardRow,
   CardContent,
-  Container,
-  LDLink,
-} from '../../components';
+} from '../Card';
+import Container from '../Container';
+import LDLink from '../LDLink';
 
 const LoadingText = () => <span>Loading...</span>;
 

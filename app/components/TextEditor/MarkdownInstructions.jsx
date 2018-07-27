@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 
-import { Button, Markdown } from '../../components';
+import Button from '../Button';
+import Markdown from '../Markdown';
 
 import './Modal.scss';
 import instructions from './instructions';

@@ -1,6 +1,6 @@
 import { Literal, NamedNode } from 'rdflib';
 
-import { NS } from '../../../tests/index';
+import { NS } from '../../../tests';
 
 import components from './index';
 

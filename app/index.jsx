@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { ConnectedRouter } from 'react-router-redux';
 
+import LinkDevTools from './helpers/LinkDevTools';
 import LinkedRenderStore from './helpers/LinkedRenderStore';
 import './views';
 import IndexContainer from './containers/IndexContainer';
@@ -49,4 +50,11 @@ if (__DEVELOPMENT__ && module.hot) {
     indexContainer(IndexContainer),
     document.getElementById('root')
   );
+}
+
+if (typeof window !== 'undefined') {
+  window.LRS = LinkedRenderStore;
+  if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== 'undefined') {
+    window.dev = new LinkDevTools('');
+  }
 }

@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { BlurButton } from '../../components';
+import BlurButton from '../BlurButton';
 import LinkDuo from '../LinkDuo';
+
 import './Button.scss';
 
 const buttonThemes = [

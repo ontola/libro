@@ -5,7 +5,7 @@ import React from 'react';
 import { asField } from 'informed';
 
 import './FormField.scss';
-import { TextEditor } from '../../components';
+import TextEditor from '../TextEditor';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { Input } from '../Input';
 

@@ -12,13 +12,11 @@ import {
 import React from 'react';
 import { connect } from 'react-redux';
 
-import {
-  LDLink,
-  SideBarCollapsible,
-} from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { setOrganization } from '../../state/app/actions';
 import { getOrganization } from '../../state/app/selectors';
+import LDLink from '../LDLink';
+import { SideBarCollapsible } from '../SideBarCollapsible';
 
 const propTypes = {
   contains: linkedPropType,
