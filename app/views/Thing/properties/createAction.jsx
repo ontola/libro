@@ -1,5 +1,10 @@
 import LinkedRenderStore from 'link-lib';
-import { link, linkedPropType, LinkedResourceContainer, subjectType } from 'link-redux';
+import {
+  link,
+  linkedPropType,
+  LinkedResourceContainer,
+  subjectType,
+} from 'link-redux';
 import React from 'react';
 
 import { allTopologies, NS } from '../../../helpers/LinkedRenderStore';

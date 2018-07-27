@@ -1,5 +1,10 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { link, Property, LinkedResourceContainer, linkedPropType } from 'link-redux';
+import {
+  link,
+  Property,
+  LinkedResourceContainer,
+  linkedPropType,
+} from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';

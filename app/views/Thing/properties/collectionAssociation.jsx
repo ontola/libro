@@ -1,5 +1,10 @@
 import LinkedRenderStore, { getP } from 'link-lib';
-import { LinkedResourceContainer, Property, PropertyBase, withLinkCtx } from 'link-redux';
+import {
+  LinkedResourceContainer,
+  Property,
+  PropertyBase,
+  withLinkCtx,
+} from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';

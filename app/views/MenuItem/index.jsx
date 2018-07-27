@@ -1,5 +1,11 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { link, linkType, LinkedResourceContainer, Property, linkedPropType } from 'link-redux';
+import {
+  link,
+  linkType,
+  LinkedResourceContainer,
+  Property,
+  linkedPropType,
+} from 'link-redux';
 import React from 'react';
 
 import { Dropdown, DropdownLink } from '../../components';

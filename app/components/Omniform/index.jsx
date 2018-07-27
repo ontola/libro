@@ -1,5 +1,10 @@
 import { Set } from 'immutable';
-import { LinkedResourceContainer, Property, subjectType, withLRS } from 'link-redux';
+import {
+  LinkedResourceContainer,
+  Property,
+  subjectType,
+  withLRS,
+} from 'link-redux';
 import PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
 import React from 'react';
