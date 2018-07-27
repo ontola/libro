@@ -75,6 +75,7 @@ export {
   default as Loading,
   LoadingCard,
   LoadingCardFixed,
+  LoadingMicroRow,
   LoadingPage,
   LoadingParent,
   LoadingRow,

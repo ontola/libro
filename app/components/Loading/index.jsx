@@ -4,6 +4,7 @@ import FontAwesome from 'react-fontawesome';
 import './Loading.scss';
 
 import Card, {
+  CardMicroRow,
   CardRow,
   CardContent,
 } from '../Card';
@@ -62,6 +63,12 @@ export const LoadingRow = () => (
       <div className="Loading__Paragraph Loading__background" />
     </CardContent>
   </CardRow>
+);
+
+export const LoadingMicroRow = () => (
+  <CardMicroRow>
+    <div className="Loading__Paragraph Loading__background" />
+  </CardMicroRow>
 );
 
 export default LoadingText;

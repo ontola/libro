@@ -6,6 +6,7 @@ import {
   LoadingSideBarLink,
   LoadingCard,
   LoadingCardFixed,
+  LoadingMicroRow,
   LoadingPage,
   LoadingParent,
   LoadingRow,
@@ -42,6 +43,14 @@ export default [
     ]
   ),
   LinkedRenderStore.registerRenderer(
+    LoadingMicroRow,
+    NS.ll('LoadingResource'),
+    RENDER_CLASS_NAME,
+    [
+      NS.argu('cardRow'),
+    ]
+  ),
+  LinkedRenderStore.registerRenderer(
     LoadingRow,
     NS.ll('LoadingResource'),
     RENDER_CLASS_NAME,
@@ -50,7 +59,6 @@ export default [
       NS.argu('cardFixed'),
       NS.argu('cardHover'),
       NS.argu('cardMain'),
-      NS.argu('cardRow'),
     ]
   ),
   LinkedRenderStore.registerRenderer(
