@@ -7,10 +7,9 @@ const initialState = Immutable.fromJS({
 });
 
 const router = handleActions({
-  [LOCATION_CHANGE]: (state, { payload }) =>
-    state.merge({
-      locationBeforeTransitions: payload,
-    }),
+  [LOCATION_CHANGE]: (state, { payload }) => state.merge({
+    locationBeforeTransitions: payload,
+  }),
 }, initialState);
 
 export default router;

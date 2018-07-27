@@ -41,8 +41,7 @@ const routerLink = tabIndex => (link) => {
   );
 };
 
-const codePre = code =>
-  <code className="Markdown__inline-code">{code.children}</code>;
+const codePre = code => <code className="Markdown__inline-code">{code.children}</code>;
 
 const defaultProps = {
   inline: false,

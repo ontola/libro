@@ -32,8 +32,7 @@ const defaultProps = {
   colors: defaultColors,
 };
 
-const renderTooltip = unit => d =>
-  `<div class="DonutChart__label">${d[0].name} ${d[0].value} ${unit} (${(d[0].ratio * 100).toFixed(1)}%)</div>`;
+const renderTooltip = unit => d => `<div class="DonutChart__label">${d[0].name} ${d[0].value} ${unit} (${(d[0].ratio * 100).toFixed(1)}%)</div>`;
 
 class DonutChart extends Component {
   componentDidMount() {

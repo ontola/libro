@@ -8,8 +8,7 @@ const propTypes = {
   linkedProp: linkedPropType,
 };
 
-const ThingOrganizationProp = ({ linkedProp }) =>
-  <LinkedResourceContainer subject={linkedProp} topology={NS.argu('sidebar')} />;
+const ThingOrganizationProp = ({ linkedProp }) => <LinkedResourceContainer subject={linkedProp} topology={NS.argu('sidebar')} />;
 
 ThingOrganizationProp.propTypes = propTypes;
 

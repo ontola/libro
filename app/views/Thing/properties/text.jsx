@@ -41,8 +41,7 @@ const propTypesCollection = {
   subject: subjectType,
 };
 
-const TextCollapsed = ({ linkedProp, subject }) =>
-  <CollapseText data-test="Thing-text-card" id={subject.value} text={linkedProp.value} />;
+const TextCollapsed = ({ linkedProp, subject }) => <CollapseText data-test="Thing-text-card" id={subject.value} text={linkedProp.value} />;
 
 TextCollapsed.propTypes = propTypesCollection;
 

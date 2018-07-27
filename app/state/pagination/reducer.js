@@ -8,8 +8,7 @@ const initialState = new Map({
 });
 
 const motions = handleActions({
-  [GOTO_PAGE]: (state, { payload }) =>
-    state.setIn(['items', payload.collectionIRI], payload.page),
+  [GOTO_PAGE]: (state, { payload }) => state.setIn(['items', payload.collectionIRI], payload.page),
 }, initialState);
 
 export default motions;

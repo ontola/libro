@@ -27,11 +27,13 @@ const order = [
   'destroy_comment',
 ];
 
-const potentialAction = blacklist => ({ potentialActions, ...props }) =>
-  filterSort(potentialActions, blacklist, order)
-    .map(iri => (
-      <LinkedResourceContainer {...props} isPartOf={props.subject} key={iri} subject={iri} />
-    ));
+const potentialAction = blacklist => ({ potentialActions, ...props }) => filterSort(
+  potentialActions,
+  blacklist,
+  order
+).map(iri => (
+  <LinkedResourceContainer {...props} isPartOf={props.subject} key={iri} subject={iri} />
+));
 
 potentialAction.propTypes = propTypes;
 

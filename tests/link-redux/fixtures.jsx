@@ -35,7 +35,9 @@ export function toArr(obj) {
   const statements = [];
   Object.keys(obj).forEach((s) => {
     const resource = obj[s];
-    const subject = s.startsWith('_:') ? new rdf.BlankNode(s.slice('_:'.length)) : new rdf.NamedNode(s.slice(1, -1));
+    const subject = s.startsWith('_:')
+      ? new rdf.BlankNode(s.slice('_:'.length))
+      : new rdf.NamedNode(s.slice(1, -1));
     Object.keys(resource).forEach((p) => {
       const object = resource[p];
       const predicate = new rdf.NamedNode(p.slice(1, -1));
@@ -49,8 +51,12 @@ export function toArr(obj) {
   return statements;
 }
 
-export const generateCtx = (obj, subject = null, initialState = undefined) =>
-  chargeLRS(getSubject(obj, subject), toArr(obj), undefined, initialState);
+export const generateCtx = (obj, subject = null, initialState = undefined) => chargeLRS(
+  getSubject(obj, subject),
+  toArr(obj),
+  undefined,
+  initialState
+);
 
 export const empty = (id = '0', store = false) => chargeLRS(id, [], store);
 

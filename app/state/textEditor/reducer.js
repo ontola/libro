@@ -9,7 +9,7 @@ import {
 
 import {
   getMarkdownTextPlainSlice,
-  getDraftContentFromSlice,
+  getSliceDraftContent,
 } from './selectors';
 
 const initialState = new Immutable.Map({
@@ -25,11 +25,11 @@ const reducer = handleActions({
     .set(payload.id, createDraftFromMarkdown(getMarkdownTextPlainSlice(state, payload.id))),
   [actions.TEXT_EDITOR_SWITCH_TO_MARKDOWN]: (state, { payload }) => state
     .set('showRichEditor', false)
-    .set(`${payload.id}_plain`, createMarkdownFromDraft(getDraftContentFromSlice(state, payload.id))),
-  [actions.TEXT_EDITOR_UPDATE_DRAFT]: (state, { payload }) =>
-    state.set(payload.id, payload.editorState),
-  [actions.TEXT_EDITOR_UPDATE_MARKDOWN]: (state, { payload }) =>
-    state.set(`${payload.id}_plain`, payload.markdownValue),
+    .set(`${payload.id}_plain`, createMarkdownFromDraft(getSliceDraftContent(state, payload.id))),
+  [actions.TEXT_EDITOR_UPDATE_DRAFT]: (state, { payload }) => state
+    .set(payload.id, payload.editorState),
+  [actions.TEXT_EDITOR_UPDATE_MARKDOWN]: (state, { payload }) => state
+    .set(`${payload.id}_plain`, payload.markdownValue),
 }, initialState);
 
 export default reducer;

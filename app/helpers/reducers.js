@@ -22,8 +22,7 @@ export const setRecord = (
  * @param {string} id UUID
  * @return {string} state Returns new state that excludes record with id
  */
-export const deleteRecord = (state, id) =>
-  state.deleteIn(['items', id]);
+export const deleteRecord = (state, id) => state.deleteIn(['items', id]);
 
 /**
  * Toggles a specific key in a record
@@ -32,8 +31,7 @@ export const deleteRecord = (state, id) =>
  * @param {string} key The key to be toggled
  * @return {string} state Returns new state that has toggled the key of the specified record
  */
-export const toggleValue = (state, id, key) =>
-  state.updateIn(['items', id, key], value => !value);
+export const toggleValue = (state, id, key) => state.updateIn(['items', id, key], value => !value);
 
 /**
  * Updates a specific key in a record
@@ -43,8 +41,7 @@ export const toggleValue = (state, id, key) =>
  * @param {string} newValue The new value to replace the old one with
  * @return {string} state Returns new state that has toggled the key of the specified record
  */
-export const updateRecordValue = (state, id, key, newValue) =>
-  state.setIn(['items', id, key], newValue);
+export const updateRecordValue = (state, id, key, newValue) => state.setIn(['items', id, key], newValue);
 
 /**
  * Increases the specific value by 1
@@ -52,5 +49,4 @@ export const updateRecordValue = (state, id, key, newValue) =>
  * @param {string} value The value to increase by 1
  * @return {string} state Returns new state that has toggled the key of the specified record
  */
-export const increaseValue = (state, value) =>
-  state.update(value, v => v + 1);
+export const increaseValue = (state, value) => state.update(value, v => v + 1);

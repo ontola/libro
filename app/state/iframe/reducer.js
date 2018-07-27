@@ -16,10 +16,8 @@ const generateIframeURL = (location) => {
 };
 
 const motions = handleActions({
-  [IFRAME_METADATA]: (state, { payload }) =>
-    state.setIn(['metadata', 'title'], payload.title),
-  [LOCATION_CHANGE]: (state, { payload }) =>
-    state.set('location', generateIframeURL(payload)),
+  [IFRAME_METADATA]: (state, { payload }) => state.setIn(['metadata', 'title'], payload.title),
+  [LOCATION_CHANGE]: (state, { payload }) => state.set('location', generateIframeURL(payload)),
 }, initialState);
 
 export default motions;

@@ -35,7 +35,7 @@ export const getMarkdownTextPlainSlice = (stateSlice, id) => {
   return content;
 };
 
-export const getDraftContentFromSlice = (stateSlice, id) => stateSlice.get(id);
+export const getSliceDraftContent = (stateSlice, id) => stateSlice.get(id);
 
 export const getMarkdownTextPlain = (state, id) => {
   let content = state.getIn(['textEditor', `${id}_plain`]);

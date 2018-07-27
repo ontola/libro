@@ -38,8 +38,7 @@ export const omniformReducer = handleActions({
     }));
   },
   [OMNIFORM_OPEN_INLINE]: (state, { payload }) => state.setIn([payload, 'inlineOpened'], true),
-  [OMNIFORM_SET_ACTION]: (state, { payload }) =>
-    state.setIn([payload.parentIRI, 'action'], payload.action),
+  [OMNIFORM_SET_ACTION]: (state, { payload }) => state.setIn([payload.parentIRI, 'action'], payload.action),
 }, initialState);
 
 // Selectors

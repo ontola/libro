@@ -43,15 +43,13 @@ const formatDateCalendar = (
  * @param {number} milliSeconds - Accepts milliSeconds
  * @return {string} A formatted time string
  */
-const durationToString = milliSeconds =>
-  moment.duration(milliSeconds, 'milliSeconds').format('h:mm:ss');
+const durationToString = milliSeconds => moment.duration(milliSeconds, 'milliSeconds').format('h:mm:ss');
 
 /**
  * @param {number} milliSeconds - Accepts milliSeconds
  * @return {string} A formatted time string
  */
-const durationToHumanizedString = milliSeconds =>
-  moment.duration(milliSeconds, 'milliSeconds').humanize();
+const durationToHumanizedString = milliSeconds => moment.duration(milliSeconds, 'milliSeconds').humanize();
 
 /**
  * @param {number} milliSeconds - Accepts milliSeconds

@@ -43,8 +43,7 @@ const toggleAll = (state, group) => {
     return state.set('items', items);
   }
 
-  return state.set('items', state.get('items').map(coll =>
-    coll.set('opened', false)));
+  return state.set('items', state.get('items').map(coll => coll.set('opened', false)));
 };
 
 const closeGroup = (state, group) => {
@@ -55,33 +54,31 @@ const closeGroup = (state, group) => {
   return state.mergeIn(['items'], modifiedItems);
 };
 
-const recordCollapsible = ({ group, startOpened }) =>
-  new Collapsible({ group, opened: startOpened });
+const recordCollapsible = ({ group, startOpened }) => new Collapsible({
+  group,
+  opened: startOpened,
+});
 
-const openOne = (state, payload) =>
-  state.setIn(['items', payload.identifier, 'opened'], true);
+const openOne = (state, payload) => state.setIn(['items', payload.identifier, 'opened'], true);
 
-const closeOne = (state, payload) =>
-  state.setIn(['items', payload.identifier, 'opened'], false);
+const closeOne = (state, payload) => state.setIn(['items', payload.identifier, 'opened'], false);
 
 const collapsible = handleActions({
-  '@@router/LOCATION_CHANGE': state =>
-    closeGroup(state, 'Navbar'),
+  '@@router/LOCATION_CHANGE': state => closeGroup(state, 'Navbar'),
 
-  [COLL_ADD]: (state, { payload }) =>
-    setRecord(state, recordCollapsible(payload), payload.identifier),
+  [COLL_ADD]: (state, { payload }) => setRecord(
+    state,
+    recordCollapsible(payload),
+    payload.identifier
+  ),
 
-  [COLL_CLOSE_ONE]: (state, { payload }) =>
-    closeOne(state, payload, 'opened'),
+  [COLL_CLOSE_ONE]: (state, { payload }) => closeOne(state, payload, 'opened'),
 
-  [COLL_OPEN_GROUPED]: (state, { payload }) =>
-    openOne(closeGroup(state, payload.group), payload),
+  [COLL_OPEN_GROUPED]: (state, { payload }) => openOne(closeGroup(state, payload.group), payload),
 
-  [COLL_TOGGLE_GROUP]: (state, { payload }) =>
-    toggleAll(state, payload.group),
+  [COLL_TOGGLE_GROUP]: (state, { payload }) => toggleAll(state, payload.group),
 
-  [COLL_TOGGLE_ONE]: (state, { payload }) =>
-    toggleValue(state, payload, 'opened'),
+  [COLL_TOGGLE_ONE]: (state, { payload }) => toggleValue(state, payload, 'opened'),
 
 }, initialState);
 

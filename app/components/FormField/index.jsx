@@ -214,14 +214,13 @@ class FormField extends React.Component {
         }}
         onChange={(e) => {
           if (type === 'file') {
-            return new Promise(() =>
-              getBase64(e.target.files[0])
-                .then((enc) => {
-                  fieldApi.setValue(enc);
-                  if (onChange) {
-                    onChange(enc, e);
-                  }
-                }));
+            return new Promise(() => getBase64(e.target.files[0])
+              .then((enc) => {
+                fieldApi.setValue(enc);
+                if (onChange) {
+                  onChange(enc, e);
+                }
+              }));
           }
           fieldApi.setValue(e.target.value);
           if (onChange) {
