@@ -39,7 +39,7 @@ class SignInFormBase extends React.PureComponent {
     );
   }
 
-  static confirmFields() {
+  confirmFields() {
     return (
       <React.Fragment>
         <CardContent>
@@ -49,7 +49,7 @@ class SignInFormBase extends React.PureComponent {
             <CardLink to="/privacy"> privacy policy</CardLink>.
           </p>
         </CardContent>
-        {this.emailField()}
+        {this.constructor.emailField()}
         <FormField
           defaultValue="true"
           field={btoa('acceptTerms')}
@@ -58,7 +58,19 @@ class SignInFormBase extends React.PureComponent {
           type="hidden"
           value="true"
         />
+        {this.redirectField()}
       </React.Fragment>
+    );
+  }
+
+  redirectField() {
+    return (
+      <FormField
+        field={btoa('r')}
+        initialValue={this.props.initialValues.r}
+        key="r"
+        type="hidden"
+      />
     );
   }
 
@@ -74,11 +86,7 @@ class SignInFormBase extends React.PureComponent {
           type="password"
           variant="material"
         />
-        <FormField
-          field={btoa('r')}
-          initialValue={this.props.initialValues.r}
-          type="hidden"
-        />
+        {this.redirectField()}
       </React.Fragment>
     );
   }
@@ -111,24 +119,19 @@ class SignInFormBase extends React.PureComponent {
           key="password"
           type="hidden"
         />
-        <FormField
-          field={btoa('r')}
-          initialValue={this.props.initialValues.r}
-          key="r"
-          type="hidden"
-        />
+        {this.redirectField()}
       </React.Fragment>
     );
   }
 
   signUpCompleted() {
     return (
-      <React.Fragment>
+      <CardContent>
         <p style={{ border: '1px solid #863d3d' }}>
           Vergeet niet je stem te bevestigen door op de link te klikken die we je hebben gemaild
           naar <b>{this.props.registeredEmail}</b>
         </p>
-      </React.Fragment>
+      </CardContent>
     );
   }
 
@@ -136,7 +139,7 @@ class SignInFormBase extends React.PureComponent {
     let buttonText, formFields;
     switch (this.props.step) {
       case STEPS.confirm:
-        formFields = this.constructor.confirmFields();
+        formFields = this.confirmFields();
         buttonText = 'Bevestig';
         break;
       case STEPS.signIn:
