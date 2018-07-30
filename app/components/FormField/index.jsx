@@ -11,6 +11,7 @@ import { Input } from '../Input';
 
 const propTypes = {
   autoComplete: PropTypes.string,
+  autofocus: PropTypes.bool,
   // Preferably use variants to style this component.
   className: PropTypes.string,
   // Unique identifier. Used to link label to input.
@@ -60,6 +61,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  autofocus: false,
   rich: false,
   variant: 'default',
 };
@@ -125,6 +127,7 @@ class FormField extends React.Component {
   inputElement() {
     const {
       autoComplete,
+      autofocus,
       field,
       fieldApi,
       forwardedRef,
@@ -191,6 +194,7 @@ class FormField extends React.Component {
     return (
       <Input
         autoComplete={autoComplete}
+        autoFocus={autofocus}
         className={`Field__input Field__input--${type || 'text'}`}
         element={element}
         id={id || fieldTxt}

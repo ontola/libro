@@ -21,6 +21,7 @@ const MAX_STR_LEN = 255;
 const TEXTFIELD_ROWS = 3;
 
 const propTypes = {
+  autofocus: PropTypes.bool,
   class: linkType,
   datatype: linkType,
   description: linkType,
@@ -87,6 +88,7 @@ class PropertyShape extends PropertyBase {
 
   render() {
     const {
+      autofocus,
       datatype,
       description,
       maxLength,
@@ -132,6 +134,7 @@ class PropertyShape extends PropertyBase {
         <FormField
           validateOnBlur
           validateOnChange
+          autofocus={autofocus}
           field={fieldName}
           initialValue={t && t.value}
           label={name && name.value}

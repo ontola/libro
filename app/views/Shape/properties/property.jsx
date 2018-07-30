@@ -19,7 +19,7 @@ class ShProperty extends PropertyBase {
     return Array.from(s);
   }
 
-  renderPropOrGroup(propOrGroup) {
+  renderPropOrGroup(propsOrGroup, focusNode) {
     const {
       blacklist,
       onKeyUp,
@@ -27,8 +27,7 @@ class ShProperty extends PropertyBase {
       theme,
       whitelist,
     } = this.props;
-    // The props in order
-    let props = ShProperty.toCompactList(propOrGroup);
+    let props = propsOrGroup;
 
     if (whitelist || blacklist) {
       const paths = this
@@ -47,10 +46,10 @@ class ShProperty extends PropertyBase {
 
       let matches;
       if (whitelist) {
-        // The filter is on the blanknode id of the propshape, rather than it's sh:path value
+        // The filter is on the blanknode id of the propshape, rather than its sh:path value
         matches = allow(paths.map(s => s.object), whitelist);
       } else if (blacklist) {
-        // The filter is on the blanknode id of the propshape, rather than it's sh:path value
+        // The filter is on the blanknode id of the propshape, rather than its sh:path value
         matches = filter(paths.map(s => s.object), blacklist);
       }
 
@@ -64,8 +63,9 @@ class ShProperty extends PropertyBase {
             key={s.group.value}
             properties={ShProperty
               .toCompactList(s.props)
-              .map(p => (
+              .map((p, i) => (
                 <LinkedResourceContainer
+                  autofocus={i === 0 && s.value === focusNode.value}
                   key={p.value}
                   subject={p}
                   targetNode={targetNode}
@@ -81,6 +81,7 @@ class ShProperty extends PropertyBase {
 
       return (
         <LinkedResourceContainer
+          autofocus={s.value === focusNode.value}
           key={s.value}
           subject={s}
           targetNode={targetNode}
@@ -96,7 +97,7 @@ class ShProperty extends PropertyBase {
 
     const groups = new Map();
     const props = [];
-    const gutter = [];
+    const unorderedProps = [];
 
     this
       .getLinkedObjectPropertyRaw()
@@ -115,7 +116,7 @@ class ShProperty extends PropertyBase {
             props[i] = s.object;
           }
         } else if (s && s.object) {
-          gutter.push(s.object);
+          unorderedProps.push(s.object);
         }
       });
 
@@ -127,22 +128,27 @@ class ShProperty extends PropertyBase {
         const i = Number.parseInt(order.object.value, DECIMAL);
         props.splice(i, 0, group);
       } else if (group) {
-        gutter.push(group);
+        unorderedProps.push(group);
       }
     });
 
-    if (props.length === 0) {
+    if (props.length + unorderedProps.length === 0) {
       // TODO: bugsnag
       return null;
     }
 
+    const propsCompact = ShProperty.toCompactList(props);
+    const unorderedPropsCompact = ShProperty.toCompactList(unorderedProps);
+
+    const focusNode = propsCompact.length ? propsCompact[0] : unorderedPropsCompact[0];
+
     return (
       <React.Fragment>
         <div className="grouped">
-          {this.renderPropOrGroup(props)}
+          {this.renderPropOrGroup(propsCompact, focusNode)}
         </div>
-        <div className="gutter">
-          {this.renderPropOrGroup(gutter)}
+        <div>
+          {this.renderPropOrGroup(unorderedPropsCompact, focusNode)}
         </div>
       </React.Fragment>
     );
