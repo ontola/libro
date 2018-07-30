@@ -1,6 +1,6 @@
+import { Form } from 'informed';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Form } from 'informed';
 
 import Button from '../Button';
 import { CardActions } from '../Card';
@@ -39,18 +39,18 @@ class SignInFormCardRow extends SignInFormBase {
             {formFields}
             {(this.backButton() || buttonText) && (
               <CardActions alignRight noSpacing>
-                  {this.backButton()}
-                  {buttonText && (
-                    <Button
-                      disabled={invalid}
-                      icon="arrow-right"
-                      loading={false}
-                      theme="default"
-                      type="submit"
-                    >
-                      {buttonText}
-                    </Button>
-                  )}
+                {this.backButton()}
+                {buttonText && (
+                  <Button
+                    disabled={invalid}
+                    icon="arrow-right"
+                    loading={false}
+                    theme="default"
+                    type="submit"
+                  >
+                    {buttonText}
+                  </Button>
+                )}
               </CardActions>
             )}
           </React.Fragment>
