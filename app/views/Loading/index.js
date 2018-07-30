@@ -84,8 +84,8 @@ export default [
     [
       NS.argu('inline'),
       NS.argu('voteBubble'),
-      NS.argu('card'),
       NS.argu('cardMain'),
+      NS.argu('section'),
     ]
   ),
 ];
