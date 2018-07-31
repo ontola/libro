@@ -21,6 +21,7 @@ class EntryPointOmniform extends EntryPointBase {
   render() {
     return (
       <Property
+        autofocusForm={this.props.autofocusForm}
         label={NS.ll('actionBody')}
         theme="omniform"
         whitelist={this.props.whitelist}
@@ -42,7 +43,6 @@ EntryPointOmniform.propTypes = {
 const EntryPointOmniformWrapper = withLRS(props => (
   <EntryPointOmniform
     form={props.subject.value}
-    piemls="thomispieml"
     {...props}
   />
 ));

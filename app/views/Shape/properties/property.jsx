@@ -23,6 +23,7 @@ class ShProperty extends PropertyBase {
     const {
       blacklist,
       onKeyUp,
+      autofocusForm,
       targetNode,
       theme,
       whitelist,
@@ -65,7 +66,7 @@ class ShProperty extends PropertyBase {
               .toCompactList(s.props)
               .map((p, i) => (
                 <LinkedResourceContainer
-                  autofocus={i === 0 && s.value === focusNode.value}
+                  autofocus={i === 0 && autofocusForm && s.value === focusNode.value}
                   key={p.value}
                   subject={p}
                   targetNode={targetNode}
@@ -81,7 +82,7 @@ class ShProperty extends PropertyBase {
 
       return (
         <LinkedResourceContainer
-          autofocus={s.value === focusNode.value}
+          autofocus={autofocusForm && s.value === focusNode.value}
           key={s.value}
           subject={s}
           targetNode={targetNode}

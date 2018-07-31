@@ -81,6 +81,7 @@ class Omniform extends EntryPointBase {
       <LinkedResourceContainer subject={action}>
         <Property
           forceRender
+          autofocusForm={this.props.autofocusForm}
           formName={form}
           label={NS.schema('target')}
           whitelist={PROPS_WHITELIST}

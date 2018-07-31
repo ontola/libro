@@ -132,7 +132,6 @@ class PropertyShape extends PropertyBase {
 
       return (
         <FormField
-          validateOnBlur
           validateOnChange
           autofocus={autofocus}
           field={fieldName}

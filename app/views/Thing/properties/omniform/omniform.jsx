@@ -15,6 +15,7 @@ import {
 import { allTopologiesExcept, NS } from '../../../../helpers/LinkedRenderStore';
 
 const propTypes = {
+  autofocusForm: PropTypes.bool,
   formFooterButtons: PropTypes.node,
   onKeyUp: PropTypes.func,
   potentialAction: linkedPropType,
@@ -31,6 +32,7 @@ class OmniformProp extends React.PureComponent {
     return (
       <Omniform
         actions={new Set(this.props.potentialAction)}
+        autofocusForm={this.props.autofocusForm}
         formFooterButtons={this.props.formFooterButtons}
         parentIRI={this.reduxFormsSafeIRI()}
         onKeyUp={this.props.onKeyUp}
@@ -49,7 +51,9 @@ export const ConnectedOmniformProp = link({
 })(OmniformProp);
 
 export default LinkedRenderStore.registerRenderer(
-  ({ subject }) => <Card><ConnectedOmniformProp opened subject={subject} /></Card>,
+  ({ subject }) => (
+    <Card><ConnectedOmniformProp opened autofocusForm={false} subject={subject} /></Card>
+  ),
   [NS.schema('Thing'), NS.link('Document')],
   NS.app('omniform'),
   allTopologiesExcept(NS.argu('card'), NS.argu('cardAppendix'))

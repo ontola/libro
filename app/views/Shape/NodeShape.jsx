@@ -7,13 +7,19 @@ import React from 'react';
 import { allTopologies, NS } from '../../helpers/LinkedRenderStore';
 
 const propTypes = {
+  autofocusForm: PropTypes.bool,
   onKeyUp: PropTypes.func,
   targetNode: PropTypes.instanceOf(NamedNode),
   theme: PropTypes.string,
   whitelist: PropTypes.arrayOf(PropTypes.object),
 };
 
+const defaultProps = {
+  autofocusForm: true,
+};
+
 const NodeShape = ({
+  autofocusForm,
   targetNode,
   theme,
   onKeyUp,
@@ -22,6 +28,7 @@ const NodeShape = ({
   <React.Fragment>
     <Property label={NS.rdfs('label')} />
     <Property
+      autofocusForm={autofocusForm}
       label={NS.sh('property')}
       targetNode={targetNode}
       theme={theme}
@@ -32,6 +39,7 @@ const NodeShape = ({
 );
 
 NodeShape.propTypes = propTypes;
+NodeShape.defaultProps = defaultProps;
 
 export default LinkedRenderStore.registerRenderer(
   link(
