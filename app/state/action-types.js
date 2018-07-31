@@ -14,6 +14,10 @@ export const COLL_OPEN_GROUPED = 'COLL_OPEN_GROUPED';
 export const COLL_TOGGLE_ONE = 'COLL_TOGGLE_ONE';
 export const COLL_TOGGLE_GROUP = 'COLL_TOGGLE_GROUP';
 
+// Closeable
+export const CLOSEABLE_ADD = 'CLOSEABLE_ADD';
+export const CLOSEABLE_CLOSE = 'CLOSEABLE_CLOSE';
+
 // Form
 export const SIGN_IN_EMAIL_TAKEN = 'SIGN_IN_EMAIL_TAKEN';
 export const SIGN_IN_LOGGED_IN = 'SIGN_IN_LOGGED_IN';

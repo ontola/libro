@@ -29,6 +29,8 @@ const propTypes = {
   /** Should be avoided. Try to use the 'theme' prop or wrap it in some other element for styling
   and use the 'plain' prop. */
   className: PropTypes.string,
+  /** Displays button on top right position of relative parent */
+  corner: PropTypes.bool,
   disabled: PropTypes.bool,
   /** Whether the button should fill it's container */
   grow: PropTypes.bool,
@@ -65,6 +67,7 @@ const propTypes = {
 
 const defaultProps = {
   active: false,
+  corner: false,
   grow: false,
   narrow: false,
   plain: false,
@@ -82,6 +85,7 @@ const Button = ({
   alt,
   children,
   className,
+  corner,
   disabled,
   grow,
   icon,
@@ -100,6 +104,7 @@ const Button = ({
   const btnClass = classNames({
     Button: true,
     'Button--active': active,
+    'Button--corner': corner,
     'Button--grow': grow,
     'Button--has-icon': icon,
     'Button--margins': margins,
@@ -162,9 +167,11 @@ const Button = ({
         spin={loading}
       />
       )}
+      {children && (
       <span className="Button__label">
         {children}
       </span>
+      )}
     </BlurButton>
   );
 };

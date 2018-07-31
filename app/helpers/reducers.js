@@ -17,6 +17,28 @@ export const setRecord = (
 };
 
 /**
+ * Sets record to items array in immutable Map,
+ * only if there is no existing record.
+ * @param {string} state A state object
+ * @param {string} record A format to display date
+ * @param {string} id formatted date string
+ * @return {string} state Returns new state that includes record
+ */
+export const setRecordIfNew = (
+  state,
+  record,
+  id = record.id
+) => {
+  const stateId = (record && record['@id']) || id;
+
+  if (state.get(stateId) === undefined) {
+    return state.set(stateId, record);
+  }
+
+  return state;
+};
+
+/**
  * Deletes record to items array in immutable Map
  * @param {string} state A state object
  * @param {string} id UUID

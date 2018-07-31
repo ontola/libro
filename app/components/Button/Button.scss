@@ -48,8 +48,8 @@ a {
 }
 
 .Button--has-icon {
-  .Button__icon {
-    margin-right: 4px;
+  .Button__label {
+    margin-left: 4px;
   }
 }
 
@@ -208,9 +208,9 @@ $google-color: #4285f4;
 
     .Button__label {
       box-shadow: inset 0 -2px 0 0 transaprent;
-      transition: box-shadow .2s;
       color: color($color);
       padding: .3em 0;
+      transition: box-shadow .2s;
     }
 
     .Button__icon {
@@ -240,4 +240,13 @@ $google-color: #4285f4;
       }
     }
   }
+}
+
+.Button--corner {
+  line-height: 1em;
+  padding: .4em;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
 }

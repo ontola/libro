@@ -4,8 +4,9 @@ import React from 'react';
 import validators, { combineValidators } from '../../helpers/validators';
 import { STEPS } from '../../state/form/reducer';
 import Button from '../Button';
-import { CardLink } from '../Card';
+import { CardContent, CardLink, CardRow } from '../Card';
 import FormField from '../FormField';
+import CloseableContainer from '../../containers/CloseableContainer';
 
 const propTypes = {
   hasBack: PropTypes.bool,
@@ -40,23 +41,25 @@ class SignInFormBase extends React.PureComponent {
 
   confirmFields() {
     return (
-      <React.Fragment>
-        <p>Door je te registreren ga je akkoord met de
-          <CardLink to="/policy"> algemene voorwaarden </CardLink>
-          en de
-          <CardLink to="/privacy"> privacy policy</CardLink>.
-        </p>
-        {this.constructor.emailField()}
-        <FormField
-          defaultValue="true"
-          field={btoa('acceptTerms')}
-          initialValue="true"
-          key="acceptTerms"
-          type="hidden"
-          value="true"
-        />
-        {this.redirectField()}
-      </React.Fragment>
+      <CardRow>
+        <CardContent>
+          <p>Door je te registreren ga je akkoord met de
+            <CardLink to="/policy"> algemene voorwaarden </CardLink>
+            en de
+            <CardLink to="/privacy"> privacy policy</CardLink>.
+          </p>
+          {this.constructor.emailField()}
+          <FormField
+            defaultValue="true"
+            field={btoa('acceptTerms')}
+            initialValue="true"
+            key="acceptTerms"
+            type="hidden"
+            value="true"
+          />
+          {this.redirectField()}
+        </CardContent>
+      </CardRow>
     );
   }
 
@@ -73,16 +76,18 @@ class SignInFormBase extends React.PureComponent {
 
   signInFields() {
     return (
-      <React.Fragment>
-        {this.constructor.emailField()}
-        <FormField
-          autoComplete="off"
-          field={btoa('password')}
-          key="password"
-          label="Jouw wachtwoord"
-          type="password"
-        />
-      </React.Fragment>
+      <CardRow>
+        <CardContent>
+          {this.constructor.emailField()}
+          <FormField
+            autoComplete="off"
+            field={btoa('password')}
+            key="password"
+            label="Jouw wachtwoord"
+            type="password"
+          />
+        </CardContent>
+      </CardRow>
     );
   }
 
@@ -104,27 +109,33 @@ class SignInFormBase extends React.PureComponent {
 
   registerFields() {
     return (
-      <React.Fragment>
-        <p>{this.props.reason}</p>
-        {this.constructor.emailField()}
-        <FormField
-          field={btoa('password')}
-          key="password"
-          type="hidden"
-        />
-        {this.redirectField()}
-      </React.Fragment>
+      <CardRow>
+        <CardContent>
+          <p>{this.props.reason}</p>
+          {this.constructor.emailField()}
+          <FormField
+            field={btoa('password')}
+            key="password"
+            type="hidden"
+          />
+          {this.redirectField()}
+        </CardContent>
+      </CardRow>
     );
   }
 
   signUpCompleted() {
     return (
-      <React.Fragment>
-        <p>
-          Vergeet niet je stem te bevestigen door op de link te klikken die we je hebben gemaild
-          naar <b>{this.props.registeredEmail}</b>
-        </p>
-      </React.Fragment>
+      <CloseableContainer id="ConfirmEmail">
+        <CardRow>
+          <CardContent>
+            <p>
+              Vergeet niet je stem te bevestigen door op de link te klikken die we je hebben gemaild
+              naar <b>{this.props.registeredEmail}</b>
+            </p>
+          </CardContent>
+        </CardRow>
+      </CloseableContainer>
     );
   }
 
@@ -152,7 +163,10 @@ class SignInFormBase extends React.PureComponent {
         buttonText = 'Onverwachtse staat';
     }
 
-    return { buttonText, formFields };
+    return {
+      buttonText,
+      formFields,
+    };
   }
 
   render() {

@@ -6,9 +6,5 @@ exports[`Button should render 1`] = `
   data-test="Button-button"
   onClick={[MockFunction]}
   type="button"
->
-  <span
-    className="Button__label"
-  />
-</BlurButton>
+/>
 `;

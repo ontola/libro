@@ -8,7 +8,6 @@ import Card, {
   CardActions,
   CardContent,
   CardDivider,
-  CardRow,
 } from '../Card';
 import Heading from '../Heading';
 
@@ -104,34 +103,30 @@ class SignInFormCard extends SignInFormBase {
           {this.getHeaderText()}
         </Heading>
         <Card>
-          <CardRow>
-            {this.contentHeader()}
-            <Form
-              validateOnBlur
-              action="/users"
-              onSubmit={onSubmit}
-            >
-              {() => (
-                <React.Fragment>
-                  <CardContent>
-                    {formFields}
-                  </CardContent>
-                  <CardActions noSpacing>
-                    {this.backButton()}
-                    <Button
-                      disabled={invalid}
-                      icon="arrow-right"
-                      loading={false}
-                      theme="box"
-                      type="submit"
-                    >
-                      {buttonText}
-                    </Button>
-                  </CardActions>
-                </React.Fragment>
-              )}
-            </Form>
-          </CardRow>
+          {this.contentHeader()}
+          <Form
+            validateOnBlur
+            action="/users"
+            onSubmit={onSubmit}
+          >
+            {() => (
+              <React.Fragment>
+                {formFields}
+                <CardActions noSpacing>
+                  {this.backButton()}
+                  <Button
+                    disabled={invalid}
+                    icon="arrow-right"
+                    loading={false}
+                    theme="box"
+                    type="submit"
+                  >
+                    {buttonText}
+                  </Button>
+                </CardActions>
+              </React.Fragment>
+            )}
+          </Form>
         </Card>
         <ul>
           <li>{this.getFooterText()}</li>
