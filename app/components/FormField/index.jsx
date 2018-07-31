@@ -37,7 +37,6 @@ const propTypes = {
   ]),
   // Text above input field
   label: PropTypes.string,
-  maxLength: PropTypes.number,
   minLength: PropTypes.number,
   // Name of the input, defaults to the field name
   name: PropTypes.string,
@@ -133,7 +132,6 @@ class FormField extends React.Component {
       forwardedRef,
       id,
       initialValue,
-      maxLength,
       minLength,
       name,
       onBlur,
@@ -198,7 +196,8 @@ class FormField extends React.Component {
         className={`Field__input Field__input--${type || 'text'}`}
         element={element}
         id={id || fieldTxt}
-        maxLength={maxLength}
+        // TODO: [AOD-218] HTML only noscript
+        // maxLength={maxLength}
         minLength={minLength}
         name={name || fieldTxt}
         placeholder={placeholder}

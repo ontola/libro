@@ -36,7 +36,7 @@ class EntryPointContainer extends EntryPointBase {
 
     return (
       <Form
-        validateOnBlur
+        validateOnChange
         action={new URL(url.value).pathname}
         method={httpMethod}
         onSubmit={this.submitHandler}
