@@ -13,7 +13,7 @@ const propTypes = {
 
 const OmniformPreview = ({ onClick }) => (
   <button
-    className="Form Omniform Omniform__preview"
+    className="Form Omniform__preview"
     type="button"
     onClick={onClick}
   >

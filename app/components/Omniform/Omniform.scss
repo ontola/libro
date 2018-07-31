@@ -1,5 +1,11 @@
 @import '../shared/config';
 
+.Omniform {
+  .Card & {
+    border-top: solid 1px color('grey', 'x-light');
+  }
+}
+
 .Omniform__preview {
   cursor: text;
   display: block;
