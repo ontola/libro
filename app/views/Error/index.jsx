@@ -36,7 +36,7 @@ const propTypes = {
   location: PropTypes.shape({
     pathname: PropTypes.string,
   }),
-  reloadLinkedObject: PropTypes.func,
+  reloadLinkedObject: PropTypes.func.isRequired,
   userType: PropTypes.oneOf(['GuestUser', 'ConfirmedUser', 'UnconfirmedUser']),
 };
 
@@ -142,7 +142,7 @@ ErrorSidebar.propTypes = {
   linkRequestStatus: PropTypes.shape({
     status: PropTypes.number,
   }),
-  reloadLinkedObject: PropTypes.func,
+  reloadLinkedObject: PropTypes.func.isRequired,
   subject: subjectType,
 };
 

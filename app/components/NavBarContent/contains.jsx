@@ -63,7 +63,7 @@ class Contains extends PropertyBase {
   }
 
   render() {
-    const { contains } = this.props;
+    const { contains, reloadLinkedObject } = this.props;
 
     const status = this.props.lrs.api.getStatus(this.props.subject);
     if (status.requested === true && status.status === HttpStatus.OK) {
@@ -79,7 +79,7 @@ class Contains extends PropertyBase {
           subject={currentOrg}
         >
           {this.navbarSwitcher()}
-          <Type />
+          <Type reloadLinkedObject={reloadLinkedObject} />
           <Property label={NS.argu('baseColor')} />
         </LinkedResourceContainer>
       );

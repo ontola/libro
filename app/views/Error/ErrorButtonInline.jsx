@@ -11,7 +11,7 @@ const propTypes = {
     status: PropTypes.number,
   }),
   location: PropTypes.string,
-  reloadLinkedObject: PropTypes.func,
+  reloadLinkedObject: PropTypes.func.isRequired,
 };
 
 class ErrorButtonSideBar extends ErrorButtonWithFeedback {
