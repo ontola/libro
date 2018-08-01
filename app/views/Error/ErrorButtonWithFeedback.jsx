@@ -13,7 +13,7 @@ const propTypes = {
   location: PropTypes.shape({
     pathname: PropTypes.string,
   }),
-  reloadLinkedObject: PropTypes.func,
+  reloadLinkedObject: PropTypes.func.isRequired,
 };
 
 class ErrorButtonWithFeedback extends React.Component {
@@ -29,10 +29,13 @@ class ErrorButtonWithFeedback extends React.Component {
 
   reload() {
     this.setState({ loading: true });
+    const disable = () => { this.setState({ loading: false }); };
     this
       .props
       .reloadLinkedObject()
-      .then(() => { this.setState({ loading: false }); });
+      .then(disable)
+      // TODO: bugsnag
+      .catch(disable);
   }
 
   render() {
