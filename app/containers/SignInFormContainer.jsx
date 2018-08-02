@@ -21,15 +21,15 @@ const mapStateToProps = (state, props) => ({
   form: 'signIn',
   hasBack: signInHasBack(state),
   initialValues: {
-    r: props.redirect,
+    r: props.r,
   },
   registeredEmail: getCurrentUserEmail(state),
   step: signInGetStep(state),
   userType: getCurrentUserType(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-  onSubmit: values => dispatch(apiLogin(convertKeysAtoB(values))),
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  onSubmit: values => dispatch(apiLogin({ r: ownProps.r, ...convertKeysAtoB(values) })),
   stepBack: () => dispatch(stepBack()),
 });
 

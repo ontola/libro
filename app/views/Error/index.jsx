@@ -52,7 +52,7 @@ const ErrorCardComp = (props) => {
   if (linkRequestStatus.status === HttpStatus.FORBIDDEN && userType === 'GuestUser') {
     mainAction = (
       <Container size="small">
-        <SignInFormContainer redirect={currentLocation(location).value} />
+        <SignInFormContainer r={currentLocation(location).value} />
       </Container>
     );
   }
@@ -92,7 +92,7 @@ const ErrorPageComp = (props) => {
 
   if (linkRequestStatus.status === HttpStatus.FORBIDDEN && userType === 'GuestUser') {
     cardAction = (
-      <SignInFormContainer redirect={currentLocation(location).value} />
+      <SignInFormContainer r={currentLocation(location).value} />
     );
   }
 

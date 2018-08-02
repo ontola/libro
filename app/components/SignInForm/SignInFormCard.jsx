@@ -22,7 +22,7 @@ const propTypes = {
   ])),
   invalid: PropTypes.bool,
   onSubmit: PropTypes.func,
-  redirect: PropTypes.string,
+  r: PropTypes.string,
   step: PropTypes.string.isRequired,
 };
 

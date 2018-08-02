@@ -11,6 +11,7 @@ import CloseableContainer from '../../containers/CloseableContainer';
 const propTypes = {
   hasBack: PropTypes.bool,
   initialValues: PropTypes.objectOf(PropTypes.string),
+  r: PropTypes.string,
   reason: PropTypes.string,
   registeredEmail: PropTypes.string,
   step: PropTypes.string,
@@ -67,7 +68,7 @@ class SignInFormBase extends React.PureComponent {
     return (
       <FormField
         field={btoa('r')}
-        initialValue={this.props.initialValues.r}
+        initialValue={this.props.initialValues.r || this.props.r}
         key="r"
         type="hidden"
       />

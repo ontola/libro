@@ -71,8 +71,8 @@ export const getVoteButtons = (options) => {
 
       return (
         <SignInFormContainerCardRow
+          r={currentURL()}
           reason="BEVESTIG JOUW STEM VIA EMAIL:"
-          redirect={currentURL()}
         />
       );
     }

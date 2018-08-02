@@ -17,8 +17,8 @@ class SignInSwitcherContainer extends React.PureComponent {
     if (this.props.showSignIn === true) {
       return (
         <SignInFormContainerCardRow
+          r={currentURL()}
           reason="Registreer of log in met jouw email adres:"
-          redirect={currentURL()}
         />
       );
     }

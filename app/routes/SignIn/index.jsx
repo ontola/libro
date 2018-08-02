@@ -23,7 +23,7 @@ function redirectForLocation(location) {
 
 const SignIn = ({ location }) => (
   <Container size="small">
-    <SignInFormContainer redirect={redirectForLocation(location)} />
+    <SignInFormContainer r={redirectForLocation(location)} />
   </Container>
 );
 
