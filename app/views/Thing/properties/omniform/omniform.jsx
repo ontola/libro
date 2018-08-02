@@ -17,6 +17,7 @@ import { allTopologiesExcept, NS } from '../../../../helpers/LinkedRenderStore';
 const propTypes = {
   autofocusForm: PropTypes.bool,
   formFooterButtons: PropTypes.node,
+  onDone: PropTypes.func,
   onKeyUp: PropTypes.func,
   potentialAction: linkedPropType,
   subject: subjectType,
@@ -35,6 +36,7 @@ class OmniformProp extends React.PureComponent {
         autofocusForm={this.props.autofocusForm}
         formFooterButtons={this.props.formFooterButtons}
         parentIRI={this.reduxFormsSafeIRI()}
+        onDone={this.props.onDone}
         onKeyUp={this.props.onKeyUp}
       />
     );
