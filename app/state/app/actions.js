@@ -4,9 +4,10 @@ import { createAction } from 'redux-actions';
 import * as actions from '../action-types';
 
 export const highlightResource = createAction(actions.HIGHLIGHT_RESOURCE);
-export const setCurrentUserType = createAction(
+
+export const setCurrentUser = createAction(
   actions.SET_CURRENT_USER,
-  actorType => new Map({ actorType })
+  ({ actorType, anonymousID }) => new Map({ actorType, anonymousID })
 );
 export const setCurrentUserEmail = createAction(
   actions.SET_CURRENT_USER,

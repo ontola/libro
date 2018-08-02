@@ -20,8 +20,6 @@ if (__PRODUCTION__) {
   try {
     LogRocket.init('argu/aod');
     setupLogRocketReact(LogRocket);
-    // TODO: Set hashed user identity
-    LogRocket.identify('dev');
   } catch (e) {
     if (window.bugsnagClient !== undefined) {
       window.bugsnagClient.notify(e);

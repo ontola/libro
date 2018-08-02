@@ -8,6 +8,7 @@ import { SET_CURRENT_USER, SET_ORGANIZATION, HIGHLIGHT_RESOURCE } from '../actio
 const initialState = new Map({
   [SET_CURRENT_USER]: new Map({
     actorType: 'GuestUser',
+    anonymousID: undefined,
     primaryEmail: undefined,
   }),
   [SET_ORGANIZATION]: NS.app('argu'),

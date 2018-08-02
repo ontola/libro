@@ -12,6 +12,7 @@ import apiMiddleware from '../middleware/api';
 import iframeNavigation from '../middleware/iframeNavigation';
 
 import * as reducers from './reducers';
+import appMiddleware from './appMiddleware';
 
 const configureStore = (preloadedState) => {
   let middleware;
@@ -22,6 +23,7 @@ const configureStore = (preloadedState) => {
     iframeNavigation,
     routerMiddleware(history),
     linkMiddleware(LinkedRenderStore),
+    appMiddleware,
     LogRocket.reduxMiddleware()
   );
 
