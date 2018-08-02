@@ -16,7 +16,7 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import { setOrganization } from '../../state/app/actions';
 import { getOrganization } from '../../state/app/selectors';
 import LDLink from '../LDLink';
-import { SideBarCollapsible } from '../SideBarCollapsible';
+import SideBarCollapsibleDefault from '../SideBarCollapsible';
 
 const propTypes = {
   contains: linkedPropType,
@@ -50,14 +50,14 @@ class Contains extends PropertyBase {
 
     return (
       <div className="NavBarContent__switcher">
-        <SideBarCollapsible
+        <SideBarCollapsibleDefault
           id={`${this.props.subject}-menu-items`}
           labelComp={label}
         >
           <LinkedResourceContainer subject={NS.app('menus/organizations')}>
             <Property label={NS.argu('menuItems')} />
           </LinkedResourceContainer>
-        </SideBarCollapsible>
+        </SideBarCollapsibleDefault>
       </div>
     );
   }
