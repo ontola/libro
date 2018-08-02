@@ -23,7 +23,7 @@ class CardMicroRow extends TopologyProvider {
   render() {
     return this.wrap((
       <div
-        className={`CardMicroRow ${this.props.highlighted ? 'Card--shine' : ''}`}
+        className={`CardMicroRow ${this.props.highlighted ? 'CardMicroRow--shine' : ''}`}
       >
         {this.props.children}
       </div>

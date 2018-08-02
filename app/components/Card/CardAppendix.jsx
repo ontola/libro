@@ -10,7 +10,7 @@ const propTypes = {
 };
 
 /**
- * Renders an empty Card without padding
+ * Renders an empty CardAppendix
  * @returns {component} Component
  */
 class CardAppendix extends TopologyProvider {

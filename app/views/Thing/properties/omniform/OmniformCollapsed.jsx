@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Button, OmniformPreview } from '../../../../components';
+import { Button, CardRow, OmniformPreview } from '../../../../components';
 import { NS } from '../../../../helpers/LinkedRenderStore';
 import {
   getOmniformOpenState,
@@ -49,16 +49,26 @@ class CollapsedOmniformProp extends Component {
       );
 
       return (
-        <ConnectedOmniformProp
-          formFooterButtons={backButton}
-          onDone={this.toggle}
-          onKeyUp={this.handleKey}
-          {...this.props}
-        />
+        <CardRow>
+          <ConnectedOmniformProp
+            formFooterButtons={backButton}
+            onDone={this.toggle}
+            onKeyUp={this.handleKey}
+            {...this.props}
+          />
+        </CardRow>
       );
     }
 
-    return this.props.clickToOpen ? <OmniformPreview onClick={this.toggle} /> : null;
+    if (!this.props.clickToOpen) {
+      return null;
+    }
+
+    return (
+      <CardRow>
+        <OmniformPreview onClick={this.toggle} />
+      </CardRow>
+    );
   }
 }
 

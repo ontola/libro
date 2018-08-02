@@ -138,13 +138,13 @@ const ThingGrid = () => (
 );
 
 const ThingHoverBoxHidden = () => (
-  <div>
+  <React.Fragment>
     <DetailsBar>
       <Property label={NS.schema('creator')} />
       <Property label={NS.schema('dateCreated')} />
     </DetailsBar>
     <Property label={NS.schema('text')} />
-  </div>
+  </React.Fragment>
 );
 
 const ThingParent = () => (
@@ -157,15 +157,11 @@ const ThingParent = () => (
 );
 
 const ThingSection = ({ highlighted }) => (
-  <div
-    style={{
-      marginBottom: '.5em',
-    }}
-  >
+  <React.Fragment>
     <CardHoverBox hiddenChildren={<ThingHoverBoxHidden />} shine={highlighted}>
       <Property label={NS.schema('name')} />
     </CardHoverBox>
-  </div>
+  </React.Fragment>
 );
 
 ThingSection.propTypes = hightlightPropTypes;

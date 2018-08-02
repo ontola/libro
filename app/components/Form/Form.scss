@@ -15,42 +15,38 @@
     height: 1px;
   }
 
-  .Form__footer {
-    background-color: color('grey', 'xx-light');
-    border-bottom-left-radius: $border-radius-base;
-    border-bottom-right-radius: $border-radius-base;
-    border-top: solid 1px color('grey', 'x-light');
+}
+
+.Form__footer {
+  background-color: color('grey', 'xx-light');
+  border-bottom-left-radius: $border-radius-base;
+  border-bottom-right-radius: $border-radius-base;
+  border-top: solid 1px color('grey', 'x-light');
+  display: flex;
+  flex-direction: row;
+  // For animating the Omniform preview on hover
+  transition: background-color .2s;
+
+  .CardRow + & {
+    border-top: 0;
+  }
+
+  &-image {
+    align-self: center;
+    background-size: cover;
+    border-radius: 999px;
+    height: 1.3em;
+    margin: .6em;
+    margin-right: .5em;
+    width: 1.3em;
+  }
+
+  &--right {
     display: flex;
-    flex-direction: row;
+    margin-left: auto;
 
-    .CardRow + & {
-      border-top: 0;
-    }
-
-    &-preview-text {
-      align-self: center;
-      color: color('grey');
-      padding: .5rem 1.3rem;
-      padding-left: 0;
-    }
-
-    &-image {
-      align-self: center;
-      background-size: cover;
-      border-radius: 999px;
-      height: 1.3em;
-      margin: .6em;
-      margin-right: .5em;
-      width: 1.3em;
-    }
-
-    &--right {
-      display: flex;
-      margin-left: auto;
-
-      & > :last-child {
-        border-bottom-right-radius: $border-radius-base;
-      }
+    & > :last-child {
+      border-bottom-right-radius: $border-radius-base;
     }
   }
 }

@@ -54,13 +54,17 @@
     }
   }
 
+  &--warn {
+    border: 2px solid color('red', 'dark');
+  }
+}
+
+.Card,
+.CardMicroRow {
   &--shine {
     animation: shine 2s 1;
     animation-delay: .3s;
-  }
-
-  &--warn {
-    border: 2px solid color('red', 'dark');
+    z-index: 1;
   }
 }
 
@@ -152,6 +156,10 @@
 
   + .CardRow {
     border-top: 0;
+  }
+
+  &:last-child {
+    border-bottom: 0;
   }
 
   .CardRow {

@@ -2,7 +2,6 @@ import { LinkedResourceContainer } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { FormFooter } from '../Form';
 import { NS } from '../../helpers/LinkedRenderStore';
 
 import './Omniform.scss';
@@ -13,14 +12,12 @@ const propTypes = {
 
 const OmniformPreview = ({ onClick }) => (
   <button
-    className="Form Omniform__preview"
+    className="Omniform__preview"
     type="button"
     onClick={onClick}
   >
-    <FormFooter>
-      <LinkedResourceContainer subject={NS.app('c_a')} />
-      <span className="Form__footer-preview-text">Plaats jouw reactie...</span>
-    </FormFooter>
+    <LinkedResourceContainer subject={NS.app('c_a')} topology={NS.argu('formFooter')} />
+    <span className="Omniform__preview-text">Plaats jouw reactie...</span>
   </button>
 );
 
