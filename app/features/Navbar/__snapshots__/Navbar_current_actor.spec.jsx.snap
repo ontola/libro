@@ -2,78 +2,82 @@
 
 exports[`Navbar current_actor logged in renders the correct representation 1`] = `
 <div
-  className="SideBarCollapsible"
-  data-test="SideBarCollapsible-sideBarCollapsible"
+  resource="https://argu.dev/c_a"
 >
   <div
-    className="SideBarCollapsible__label"
-    data-test="SideBarCollapsible-label"
+    className="SideBarCollapsible"
+    data-test="SideBarCollapsible-sideBarCollapsible"
   >
     <div
-      className="SideBarLink"
+      className="SideBarCollapsible__label"
+      data-test="SideBarCollapsible-label"
     >
-      <a
-        className="SideBarLink__link"
-        href="/u/123"
-        onClick={[Function]}
+      <div
+        className="SideBarLink"
       >
-        <div
-          className="SideBarLink__icon"
+        <a
+          className="SideBarLink__link"
+          href="/u/123"
+          onClick={[Function]}
         >
           <div
-            className="SideBarLink__image-wrapper"
+            className="SideBarLink__icon"
           >
             <div
-              className="SideBarLink__image"
-              style={
-                Object {
-                  "backgroundImage": "url(https://argu-logos.s3.amazonaws.com/photos/734/icon_Adventure_Time_thinkinh.jpg)",
+              className="SideBarLink__image-wrapper"
+            >
+              <div
+                className="SideBarLink__image"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://argu-logos.s3.amazonaws.com/photos/734/icon_Adventure_Time_thinkinh.jpg)",
+                  }
                 }
-              }
-            />
+              />
+            </div>
           </div>
-        </div>
-        <div
-          className="SideBarLink__label"
-        >
-          <span
-            className="SideBarLink__truncated-label"
+          <div
+            className="SideBarLink__label"
           >
-            Maarten van Scharendrecht
-          </span>
-        </div>
-      </a>
-    </div>
-    <button
-      alt="Menu uitvouwen of inklappen"
-      className="Button Button--plain Button--default SideBarCollapsible__toggle"
-      data-test="Button-button"
-      onClick={[Function]}
-      type="button"
-    >
-      <span
-        className="Button__label"
+            <span
+              className="SideBarLink__truncated-label"
+            >
+              Maarten van Scharendrecht
+            </span>
+          </div>
+        </a>
+      </div>
+      <button
+        alt="Menu uitvouwen of inklappen"
+        className="Button Button--plain Button--default SideBarCollapsible__toggle"
+        data-test="Button-button"
+        onClick={[Function]}
+        type="button"
       >
         <span
-          aria-hidden={true}
-          className="fa fa-caret-right"
-        />
-      </span>
-    </button>
-  </div>
-  <div
-    aria-expanded={false}
-    className="Collapsible"
-  >
+          className="Button__label"
+        >
+          <span
+            aria-hidden={true}
+            className="fa fa-caret-right"
+          />
+        </span>
+      </button>
+    </div>
     <div
-      className="Collapsible__visible-content"
-    />
-    <div>
+      aria-expanded={false}
+      className="Collapsible"
+    >
       <div
-        aria-hidden={-1}
-        className="Collapsible__invisible-content"
-        hidden={false}
+        className="Collapsible__visible-content"
       />
+      <div>
+        <div
+          aria-hidden={-1}
+          className="Collapsible__invisible-content"
+          hidden={false}
+        />
+      </div>
     </div>
   </div>
 </div>

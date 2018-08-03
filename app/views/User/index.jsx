@@ -7,7 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { SideBarCollapsible } from '../../components';
+import { Resource, SideBarCollapsible } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 
 import ActorType from './properties/actorType';
@@ -22,15 +22,17 @@ const CurrentActorFooter = () => (
 );
 
 const CurrentActorSidebar = ({ subject }) => (
-  <SideBarCollapsible
-    id={`${subject}-sidebar-menu`}
-    labelComp={<Property label={NS.argu('actor')} />}
-  >
-    <Property label={NS.argu('actorType')} />
-    <LinkedResourceContainer subject={NS.app('menus/user')}>
-      <Property label={NS.argu('menuItems')} />
-    </LinkedResourceContainer>
-  </SideBarCollapsible>
+  <Resource>
+    <SideBarCollapsible
+      id={`${subject}-sidebar-menu`}
+      labelComp={<Property label={NS.argu('actor')} />}
+    >
+      <Property label={NS.argu('actorType')} />
+      <LinkedResourceContainer subject={NS.app('menus/user')}>
+        <Property label={NS.argu('menuItems')} />
+      </LinkedResourceContainer>
+    </SideBarCollapsible>
+  </Resource>
 );
 
 CurrentActorSidebar.propTypes = propTypes;

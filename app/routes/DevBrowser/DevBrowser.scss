@@ -1,0 +1,24 @@
+$focus-red: #f00;
+
+.HoverHelper--show-borders {
+  & [resource],
+  & [href] {
+    box-shadow: 0 0 1px 0 $focus-red;
+    // sass-lint:disable no-important
+    pointer-events: all !important;
+
+    &:hover {
+      box-shadow: 0 0 3px 2px $focus-red;
+      z-index: 1;
+    }
+
+    &:active {
+      box-shadow: 0 0 5px 3px $focus-red;
+      z-index: 1;
+    }
+  }
+
+  & *:not([resource]) {
+    pointer-events: none;
+  }
+}

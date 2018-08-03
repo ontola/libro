@@ -8,6 +8,7 @@ import { withRouter } from 'react-router-dom';
 import { NS, allTopologies, getTopologyNumber } from '../../helpers/LinkedRenderStore';
 
 import TopologyWrapper from './TopologyWrapper';
+import './DevBrowser.scss';
 
 const propTypes = {
   history: PropTypes.shape({

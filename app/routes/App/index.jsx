@@ -20,6 +20,7 @@ import {
   Spinner,
 } from '../../components';
 import '../../components/shared/init.scss';
+import HoverHelper from '../DevBrowser/HoverHelper';
 
 const propTypes = {
   error: PropTypes.bool.isRequired,
@@ -42,7 +43,7 @@ const App = ({
   loading,
   reset,
 }) => (
-  <div>
+  <HoverHelper>
     <Helmet
       defaultTitle="Argu"
       htmlAttributes={{ lang: 'nl' }}
@@ -63,7 +64,7 @@ const App = ({
       {error && renderErrorMessage(error, errorMessage, reset)}
     </SideBarContainer>
     <LinkedPopup />
-  </div>
+  </HoverHelper>
 );
 
 App.propTypes = propTypes;

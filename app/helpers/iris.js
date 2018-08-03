@@ -25,6 +25,15 @@ export function iris(window) {
     },
 
     /**
+     * @param {string} pathString The path to process, e.g. `/path`.
+     * @returns {undefined|string} The fully qualified URL.
+     */
+    expandPath(pathString) {
+      if (!pathString) return undefined;
+      return new URL(pathString, window.location.origin).href;
+    },
+
+    /**
      * Returns only the pathname and beyond. Useful for relative navigation.
      * @param {string} iriString The IRI to process.
      * @returns {undefined|string} The pathname or undefined if invalid.
@@ -40,6 +49,7 @@ const windowBound = iris(typeof window !== 'undefined' ? window : undefined);
 
 export const {
   currentURL,
+  expandPath,
   retrievePath,
 } = windowBound;
 
