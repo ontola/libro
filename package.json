@@ -29,7 +29,7 @@
     "ioredis": "^3.2.2",
     "is-url-external": "^1.0.3",
     "link-lib": "=1.0.0-beta22-1",
-    "link-redux": "=1.0.0-beta29",
+    "link-redux": "=1.0.0-beta29.1",
     "markdown-draft-js": "^0.6.2",
     "material-color-hash": "^0.1.4",
     "megadraft": "^0.4.37",

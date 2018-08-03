@@ -97,6 +97,7 @@ export { default as ProfileListItem } from './components/ProfileListItem/index';
 export { default as Progress } from './components/Progress/index';
 export { default as ProgressBar } from './components/ProgressBar/index';
 // export { default as SearchResultItem } from './components/SearchResultItem/index';
+export { default as Resource } from './components/Resource/index';
 export { default as SideBar } from './components/SideBar/index';
 export { default as SideBarLink } from './components/SideBarLink/index';
 export { default as SideBarCollapsible } from './components/SideBarCollapsible/index';

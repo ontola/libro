@@ -1,7 +1,7 @@
-import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import Topology from '../Topology/index';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -16,7 +16,7 @@ const defaultProps = {
  * Renders an empty Card without padding
  * @returns {component} Component
  */
-class CardFixed extends TopologyProvider {
+class CardFixed extends Topology {
   constructor(props) {
     super(props);
 

@@ -20,6 +20,7 @@ import {
   DetailsBar,
   hoverBox,
   LDLink,
+  Resource,
 } from '../../components';
 import {
   connectHighlighting,
@@ -53,7 +54,7 @@ import VoteEvents from './properties/voteEvents';
 const CardHoverBox = hoverBox();
 
 const ThingPage = () => (
-  <div>
+  <Resource>
     <Property label={NS.argu('coverPhoto')} />
     <Container>
       <Property label={NS.schema('isPartOf')} />
@@ -93,11 +94,11 @@ const ThingPage = () => (
       <Property label={NS.schema('comments')} />
       <Property forceRender label={NS.app('omniform')} />
     </Container>
-  </div>
+  </Resource>
 );
 
 const ThingContainer = ({ highlighted, subject }) => (
-  <Card shine={highlighted}>
+  <Card about={subject.value} shine={highlighted}>
     <Property label={NS.argu('coverPhoto')} />
     <CardContent noSpacing>
       <Property label={[NS.schema('name'), NS.rdfs('label')]} />
@@ -157,11 +158,9 @@ const ThingParent = () => (
 );
 
 const ThingSection = ({ highlighted }) => (
-  <React.Fragment>
-    <CardHoverBox hiddenChildren={<ThingHoverBoxHidden />} shine={highlighted}>
-      <Property label={NS.schema('name')} />
-    </CardHoverBox>
-  </React.Fragment>
+  <CardHoverBox hiddenChildren={<ThingHoverBoxHidden />} shine={highlighted}>
+    <Property label={NS.schema('name')} />
+  </CardHoverBox>
 );
 
 ThingSection.propTypes = hightlightPropTypes;

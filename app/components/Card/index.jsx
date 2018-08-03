@@ -1,9 +1,8 @@
 import classNames from 'classnames';
-import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
-import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import Topology from '../Topology/index';
 
 import './Card.scss';
 
@@ -24,26 +23,20 @@ const defaultProps = {
  * Renders an empty Card without padding
  * @returns {component} Component
  */
-class Card extends TopologyProvider {
+class Card extends Topology {
   constructor() {
     super();
 
     this.topology = NS.argu('card');
   }
 
-  render() {
-    const classes = classNames({
+  getClassName() {
+    return classNames({
       Card: true,
       'Card--fixed': this.props.fixed,
       'Card--shine': this.props.shine,
       'Card--warn': this.props.warn,
     });
-
-    return this.wrap((
-      <div className={classes}>
-        {this.props.children}
-      </div>
-    ));
   }
 }
 
