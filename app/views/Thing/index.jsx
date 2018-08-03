@@ -82,6 +82,7 @@ const ThingPage = () => (
           <Property label={NS.argu('attachments')} />
         </CardContent>
         <Property label={NS.council('agenda')} />
+        <Property forceRender label={NS.app('omniform')} />
       </CardMain>
       <Property label={NS.argu('voteEvents')} />
       <Property label={NS.argu('blogPosts')} />

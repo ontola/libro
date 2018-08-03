@@ -58,5 +58,5 @@ export default LinkedRenderStore.registerRenderer(
   ),
   [NS.schema('Thing'), NS.link('Document')],
   NS.app('omniform'),
-  allTopologiesExcept(NS.argu('card'), NS.argu('cardAppendix'))
+  allTopologiesExcept(NS.argu('card'), NS.argu('cardMain'), NS.argu('cardAppendix'))
 );

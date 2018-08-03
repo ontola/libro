@@ -97,5 +97,5 @@ export default LinkedRenderStore.registerRenderer(
   connect(mapInlineStateToProps, mapInlineDispatchToProps)(CollapsedOmniformProp),
   [NS.schema('Thing'), NS.link('Document')],
   NS.app('omniform'),
-  [NS.argu('card'), NS.argu('cardAppendix')]
+  [NS.argu('card'), NS.argu('cardAppendix'), NS.argu('cardMain')]
 );
