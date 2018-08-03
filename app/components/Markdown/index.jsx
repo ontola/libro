@@ -1,7 +1,10 @@
+import { isDifferentOrigin } from 'link-lib';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Link } from 'react-router-dom';
+
+import { expandPath, retrievePath } from '../../helpers/iris';
 
 import './Markdown.scss';
 
@@ -17,18 +20,21 @@ const propTypes = {
 };
 
 const MIN_LENGTH_TO_ADD_HIGHLIGHT = 1;
-// Replaces all internal links with React Router links.
+
 const routerLink = tabIndex => (link) => {
-  if (link.href.match(/^\//)) {
+  const extendedLink = expandPath(link.href);
+
+  if (!isDifferentOrigin(extendedLink)) {
     return (
       <Link
         tabIndex={tabIndex}
-        to={link.href}
+        to={retrievePath(extendedLink)}
       >
         {link.children}
       </Link>
     );
   }
+
   return (
     <a
       href={link.href}
