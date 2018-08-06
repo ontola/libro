@@ -38,6 +38,7 @@ const CardDivider = ({
         color: 'rgb(100,100,100)',
         fontWeight: 'bold',
         padding: '0 7px',
+        zIndex: '1',
       }}
     >
       {text}

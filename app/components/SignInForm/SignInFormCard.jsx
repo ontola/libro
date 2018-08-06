@@ -8,6 +8,7 @@ import Card, {
   CardActions,
   CardContent,
   CardDivider,
+  CardRow,
 } from '../Card';
 import Heading from '../Heading';
 
@@ -112,18 +113,20 @@ class SignInFormCard extends SignInFormBase {
             {() => (
               <React.Fragment>
                 {formFields}
-                <CardActions noSpacing>
-                  {this.backButton()}
-                  <Button
-                    disabled={invalid}
-                    icon="arrow-right"
-                    loading={false}
-                    theme="box"
-                    type="submit"
-                  >
-                    {buttonText}
-                  </Button>
-                </CardActions>
+                <CardRow>
+                  <CardActions noSpacing>
+                    {this.backButton()}
+                    <Button
+                      disabled={invalid}
+                      icon="arrow-right"
+                      loading={false}
+                      theme="box"
+                      type="submit"
+                    >
+                      {buttonText}
+                    </Button>
+                  </CardActions>
+                </CardRow>
               </React.Fragment>
             )}
           </Form>

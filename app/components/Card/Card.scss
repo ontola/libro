@@ -25,17 +25,13 @@
   margin: units('medium');
 
   &--fixed {
-    // sass-lint:disable property-sort-order
-    width: 22em;
-    min-width: 22em;
-    max-width: 22em;
-    min-height: 16em;
-    max-height: 16em;
-    height: 16em;
-    margin: $grid-margin;
     display: inline-flex;
     flex-direction: column;
-    // sass-lint:enable property-sort-order
+    height: 16em;
+    margin: $grid-margin;
+    max-height: 16em;
+    min-height: 16em;
+    width: calc(33.3% - #{2* $grid-margin});
 
     // Displaying clickable items directly in card
     > a {
@@ -47,6 +43,10 @@
     & .CardContent {
       // [AOD-174][AOD-179] Hides overflowing text, should not flex due to rendering in Chrome
       overflow: hidden;
+    }
+
+    @include small-only {
+      width: calc(50% - #{2* $grid-margin});
     }
 
     @include smallest-only {
@@ -110,7 +110,6 @@
 }
 
 .CardActions {
-  border-top: 1px solid color('grey', 'x-light');
   display: flex;
   flex-direction: row;
   justify-content: center;

@@ -3,10 +3,10 @@
 .Detail {
   align-items: center;
   display: inline-flex;
-  height: unit('large');
   line-height: unit('large');
   margin-bottom: unit('xx-small');
   margin-right: unit('x-small');
+  min-height: unit('large');
 }
 
 .Detail--link {
@@ -25,9 +25,9 @@
 
 .Detail__text {
   color: color('grey', 'mid-light');
-  height: unit('large');
   font-size: font-size('small');
   line-height: unit('large');
+  min-height: unit('large');
 }
 
 .Detail__icon {
@@ -37,6 +37,7 @@
   display: flex;
   justify-content: center;
   margin-right: unit('xx-small');
+  max-height: unit('large');
 }
 
 .Detail__image {
@@ -47,7 +48,7 @@
   height: 100%;
   justify-content: center;
   margin-right: unit('xx-small');
-  max-height: unit('x-large');
+  max-height: unit('large');
 }
 
 .Detail--float-right {

@@ -4,23 +4,24 @@
   &__wrapper {
     height: 19em;
     left: 0;
+    overflow: hidden;
     position: absolute;
     right: 0;
     top: 0;
 
     .Card & {
+      border-top-left-radius: $border-radius-base;
+      border-top-right-radius: $border-radius-base;
       height: 7em;
+      overflow: hidden;
       position: relative;
       width: 100%;
-      overflow: hidden;
-      border-top-right-radius: $border-radius-base;
-      border-top-left-radius: $border-radius-base;
     }
 
     .Card--fixed & {
       display: flex;
-      height: auto;
       flex: 1;
+      height: auto;
     }
   }
 
