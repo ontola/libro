@@ -1,6 +1,7 @@
 import { namedNodeByIRI } from 'link-lib';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { HotKeys } from 'react-hotkeys';
 
 import { expandPath } from '../../helpers/iris';
 
@@ -67,16 +68,26 @@ class HoverHelper extends Component {
 
     const listeners = this.state.activated ? { onClick: e => HoverHelper.getElement(e) } : {};
 
+    const handlers = {
+      startHoverHelper: () => this.setState({
+        activated: true,
+      }),
+      stopHoverHelper: () => this.setState({
+        activated: false,
+      }),
+    };
+
     return (
-      <div
-        className={`${this.state.activated ? 'HoverHelper--show-borders' : ''}`}
-        tabIndex={0}
-        onKeyDown={e => this.handleKeyDown(e)}
-        onKeyUp={e => this.handleKeyUp(e)}
-        {...listeners}
+      <HotKeys
+        handlers={handlers}
       >
-        {this.props.children}
-      </div>
+        <div
+          className={`${this.state.activated ? 'HoverHelper--show-borders' : ''}`}
+          {...listeners}
+        >
+          {this.props.children}
+        </div>
+      </HotKeys>
     );
   }
 }

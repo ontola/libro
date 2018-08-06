@@ -29,10 +29,10 @@ module.exports = merge(common, {
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
-          'style-loader',
-          'css-loader',
-          'postcss-loader',
-          'sass-loader',
+          { loader: 'style-loader', options: { sourceMap: true } },
+          { loader: 'css-loader', options: { sourceMap: true } },
+          { loader: 'postcss-loader', options: { sourceMap: true } },
+          { loader: 'sass-loader', options: { sourceMap: true } },
         ],
       },
     ],

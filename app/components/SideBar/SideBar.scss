@@ -8,10 +8,6 @@
   max-width: 100%;
   // Prevents a weird bug with fullscreen in chrome.
   will-change: inherit !important;
-
-  &.SideBar--slim {
-    width: 17em;
-  }
 }
 
 .SideBar__sidebar-wrapper {
@@ -22,6 +18,8 @@
 .SideBar__content {
   -webkit-overflow-scrolling: touch;
   bottom: 0;
+  display: flex;
+  flex-direction: column;
   left: 0;
   position: absolute;
   right: 0;
@@ -29,13 +27,11 @@
   transition: left $nav-transition-time ease-out, right $nav-transition-time ease-out;
   // Makes overlay hide BottomBar
   z-index: 0;
-  display: flex;
-  flex-direction: column;
 
   .MainContentWrapper {
-    overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     flex: 1;
+    overflow-y: auto;
     position: relative;
     will-change: transform;
   }
@@ -52,8 +48,8 @@
   left: 100%;
   opacity: .65;
   position: absolute;
-  z-index: -1;
   transition: $nav-transition-time background-color;
+  z-index: -1;
 
   .fa {
     color: color('white');

@@ -142,7 +142,7 @@ const TopologyWrapper = ({ pure, topology, subject }) => {
         style={{
           backgroundColor: 'rgb(71, 86, 104)',
           margin: 'auto',
-          width: '17em',
+          width: '17rem',
         }}
       >
         <LRC />

@@ -8,6 +8,7 @@ export { linkReducer as linkedObjects } from 'link-redux';
 export { default as textEditor } from './textEditor/reducer';
 export { omniformReducer as omniform } from './omniform';
 export { default as pagination } from './pagination/reducer';
+export { default as PDFViewer } from './PDFViewer/reducer';
 export { default as popup } from './popup/reducer';
 export { default as router } from './router/reducer';
 // export { default as searchElastic } from './searchElastic/reducer';

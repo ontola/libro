@@ -59,10 +59,10 @@ class First extends PropertyBase {
       pages.push((
         <Button
           small
-          alt="volgende"
           icon="arrow-right"
           key={`${this.props.collectionIRI}-page-switcher-next`}
           theme="pagination"
+          title="volgende"
           onClick={() => this.props.dispatch(action)}
         />
       ));
@@ -72,10 +72,10 @@ class First extends PropertyBase {
       pages.unshift((
         <Button
           small
-          alt="vorige"
           icon="arrow-left"
           key={`${this.props.collectionIRI}-page-switcher-previous`}
           theme="pagination"
+          title="vorige"
           onClick={() => this.props.dispatch(action)}
         />
       ));

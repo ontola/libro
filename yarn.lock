@@ -309,9 +309,13 @@ ajv-keywords@^1.0.0:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-1.5.1.tgz#314dd0a4b3368fad3dfcdc54ede6171b886daf3c"
 
-ajv-keywords@^3.0.0, ajv-keywords@^3.1.0:
+ajv-keywords@^3.0.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-3.2.0.tgz#e86b819c602cf8821ad637413698f1dec021847a"
+
+ajv-keywords@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-3.1.0.tgz#ac2b27939c543e95d2c06e7f7f5c27be4aa543be"
 
 ajv@^4.7.0, ajv@^4.9.1, ajv@^4.9.2:
   version "4.11.8"
@@ -6719,7 +6723,7 @@ loader-utils@^0.2.5, loader-utils@~0.2.2, loader-utils@~0.2.3, loader-utils@~0.2
     json5 "^0.5.0"
     object-assign "^4.0.1"
 
-loader-utils@^1.0.1, loader-utils@^1.0.2, loader-utils@^1.1.0:
+loader-utils@^1.0.0, loader-utils@^1.0.1, loader-utils@^1.0.2, loader-utils@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-1.1.0.tgz#c98aef488bcceda2ffb5e2de646d6a754429f5cd"
   dependencies:
@@ -6917,6 +6921,10 @@ lodash.isarray@^3.0.0:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/lodash.isarray/-/lodash.isarray-3.0.4.tgz#79e4eb88c36a8122af86f844aa9bcd851b5fbb55"
 
+lodash.isboolean@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/lodash.isboolean/-/lodash.isboolean-3.0.3.tgz#6c2e171db2a257cd96802fd43b01b20d5f5870f6"
+
 lodash.isempty@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/lodash.isempty/-/lodash.isempty-4.4.0.tgz#6f86cbedd8be4ec987be9aaf33c9684db1b31e7e"
@@ -6928,13 +6936,17 @@ lodash.isequal@^3.0:
     lodash._baseisequal "^3.0.0"
     lodash._bindcallback "^3.0.0"
 
-lodash.isequal@^4.0.0:
+lodash.isequal@^4.0.0, lodash.isequal@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
 
 lodash.isfunction@~2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/lodash.isfunction/-/lodash.isfunction-2.4.1.tgz#2cfd575c73e498ab57e319b77fa02adef13a94d1"
+
+lodash.isobject@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/lodash.isobject/-/lodash.isobject-3.0.2.tgz#3c8fb8d5b5bf4bf90ae06e14f2a530a4ed935e1d"
 
 lodash.isobject@~2.4.1:
   version "2.4.1"
@@ -6989,6 +7001,10 @@ lodash.noop@^3.0.1:
 lodash.noop@~2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/lodash.noop/-/lodash.noop-2.4.1.tgz#4fb54f816652e5ae10e8f72f717a388c7326538a"
+
+lodash.once@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/lodash.once/-/lodash.once-4.1.1.tgz#0dd3971213c7c56df880977d504c88fb471a97ac"
 
 lodash.partial@^4.2.1:
   version "4.2.1"
@@ -7149,6 +7165,10 @@ make-dir@^1.0.0:
   resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-1.3.0.tgz#79c1033b80515bd6d24ec9933e860ca75ee27f0c"
   dependencies:
     pify "^3.0.0"
+
+make-event-props@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/make-event-props/-/make-event-props-1.0.0.tgz#c6f7c409fdd51bc58edb262124b343faf028a62a"
 
 makeerror@1.0.x:
   version "1.0.11"
@@ -7320,6 +7340,10 @@ meow@^4.0.0:
     read-pkg-up "^3.0.0"
     redent "^2.0.0"
     trim-newlines "^2.0.0"
+
+merge-class-names@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/merge-class-names/-/merge-class-names-1.1.1.tgz#3bd2f38eb5418c464a0fef615484fdf6c8932256"
 
 merge-descriptors@1.0.1:
   version "1.0.1"
@@ -7582,6 +7606,10 @@ morgan@^1.9.0:
     on-finished "~2.3.0"
     on-headers "~1.0.1"
 
+mousetrap@^1.5.2:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/mousetrap/-/mousetrap-1.6.1.tgz#2a085f5c751294c75e7e81f6ec2545b29cbf42d9"
+
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/move-concurrently/-/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
@@ -7723,6 +7751,10 @@ node-dir@^0.1.10:
   resolved "https://registry.yarnpkg.com/node-dir/-/node-dir-0.1.17.tgz#5f5665d93351335caabef8f1c554516cf5f1e4e5"
   dependencies:
     minimatch "^3.0.2"
+
+node-ensure@^0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/node-ensure/-/node-ensure-0.0.0.tgz#ecae764150de99861ec5c810fd5d096b183932a7"
 
 node-fetch@^1.0.1, node-fetch@^1.7.1, node-fetch@^1.7.2:
   version "1.7.3"
@@ -8441,6 +8473,13 @@ pbkdf2@^3.0.3:
     ripemd160 "^2.0.1"
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
+
+pdfjs-dist@^2.0.550:
+  version "2.0.550"
+  resolved "https://registry.yarnpkg.com/pdfjs-dist/-/pdfjs-dist-2.0.550.tgz#52a5bd05d8b250206ccd2843209cfa3b8f1ea4ae"
+  dependencies:
+    node-ensure "^0.0.0"
+    worker-loader "^2.0.0"
 
 pem-jwk@^1.5.1:
   version "1.5.1"
@@ -9227,6 +9266,16 @@ react-hot-loader@^4.3.3:
     react-lifecycles-compat "^3.0.4"
     shallowequal "^1.0.2"
 
+react-hotkeys@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/react-hotkeys/-/react-hotkeys-1.1.4.tgz#a0712aa2e0c03a759fd7885808598497a4dace72"
+  dependencies:
+    lodash.isboolean "^3.0.3"
+    lodash.isequal "^4.5.0"
+    lodash.isobject "^3.0.2"
+    mousetrap "^1.5.2"
+    prop-types "^15.6.0"
+
 react-html5video@^2.5.1:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/react-html5video/-/react-html5video-2.5.1.tgz#bbc4314be1d583cb991a11ca3480e70a3c964caf"
@@ -9281,6 +9330,17 @@ react-motion@^0.5.2:
 react-onclickoutside@^6.6.3:
   version "6.7.1"
   resolved "https://registry.yarnpkg.com/react-onclickoutside/-/react-onclickoutside-6.7.1.tgz#6a5b5b8b4eae6b776259712c89c8a2b36b17be93"
+
+react-pdf@^4.0.0-beta.4:
+  version "4.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/react-pdf/-/react-pdf-4.0.0-beta.4.tgz#95fe7cd43a04b34cd26a07838334869e0460ba7d"
+  dependencies:
+    babel-runtime "^6.26.0"
+    lodash.once "^4.1.1"
+    make-event-props "^1.0.0"
+    merge-class-names "^1.1.1"
+    pdfjs-dist "^2.0.550"
+    prop-types "^15.6.2"
 
 react-portal-stateless@^1.0.3:
   version "1.0.3"
@@ -12114,6 +12174,13 @@ worker-farm@^1.3.1, worker-farm@^1.5.2:
   resolved "https://registry.yarnpkg.com/worker-farm/-/worker-farm-1.6.0.tgz#aecc405976fab5a95526180846f0dba288f3a4a0"
   dependencies:
     errno "~0.1.7"
+
+worker-loader@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/worker-loader/-/worker-loader-2.0.0.tgz#45fda3ef76aca815771a89107399ee4119b430ac"
+  dependencies:
+    loader-utils "^1.0.0"
+    schema-utils "^0.4.0"
 
 wrap-ansi@^2.0.0:
   version "2.1.0"

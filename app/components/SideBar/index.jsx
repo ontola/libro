@@ -53,6 +53,7 @@ class SideBar extends Component {
       },
       sidebar: {
         overflowY: 'visible',
+        width: '17rem',
         // To overlap the BottomBar
         zIndex: '3',
       },

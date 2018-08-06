@@ -39,7 +39,6 @@
 a {
   &.Button {
     align-items: center;
-    display: flex;
   }
 }
 
@@ -50,6 +49,12 @@ a {
 .Button--has-icon {
   .Button__label {
     margin-left: 4px;
+  }
+
+  &.Button--has-children {
+    .Button__icon {
+      margin-right: 4px;
+    }
   }
 }
 
@@ -71,6 +76,7 @@ a {
 
 // Should remove most or all of default button styling
 .Button--plain {
+  align-self: initial;
   background: none;
   color: inherit;
   padding: 0;

@@ -48,8 +48,7 @@ exports[`Navbar current_actor logged in renders the correct representation 1`] =
         </a>
       </div>
       <button
-        alt="Menu uitvouwen of inklappen"
-        className="Button Button--plain Button--default SideBarCollapsible__toggle"
+        className="Button Button--has-children Button--plain Button--default SideBarCollapsible__toggle"
         data-test="Button-button"
         onClick={[Function]}
         type="button"

@@ -54,6 +54,15 @@ export const GET_VOTE_EVENT = 'GET_VOTE_EVENT';
 // Pagination
 export const GOTO_PAGE = 'GOTO_PAGE';
 
+// PDFViewer
+export const PDF_SET_NUM_PAGES = 'PDF_SET_NUM_PAGES';
+export const PDF_SET_ROTATION = 'PDF_SET_ROTATION';
+export const PDF_SET_ZOOM_LEVEL = 'PDF_SET_ZOOM_LEVEL';
+export const PDF_SET_SHOW_COMMENTS = 'PDF_SET_SHOW_COMMENTS';
+
+// react-router
+export const LOCATION_CHANGE = 'LOCATION_CHANGE';
+
 // Omniform
 export const OMNIFORM_ADD_ACTION = 'OMNIFORM_ADD_ACTION';
 export const OMNIFORM_CLOSE_INLINE = 'OMNIFORM_CLOSE_INLINE';

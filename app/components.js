@@ -94,6 +94,7 @@ export { default as OmniformFields } from './components/Omniform/OmniformFields'
 export { default as OmniformPreview } from './components/Omniform/OmniformPreview';
 export { default as OrgSwitcher } from './components/OrgSwitcher/index';
 export { default as PageHeader } from './components/PageHeader/index';
+export { default as PDF } from './components/PDF';
 export { default as ProfileCard } from './components/ProfileCard/index';
 export { default as ProfileListItem } from './components/ProfileListItem/index';
 export { default as Progress } from './components/Progress/index';

@@ -4,6 +4,7 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import ScrollMemory from 'react-router-scroll-memory';
+import { HotKeys } from 'react-hotkeys';
 
 import SideBarContainer from 'containers/SideBarContainer';
 import BottomBarContainer from 'containers/BottomBarContainer';
@@ -21,6 +22,7 @@ import {
 } from '../../components';
 import '../../components/shared/init.scss';
 import HoverHelper from '../DevBrowser/HoverHelper';
+import { defaultKeymap, devKeymap } from '../../helpers/keyboard';
 
 const propTypes = {
   error: PropTypes.bool.isRequired,
@@ -43,28 +45,34 @@ const App = ({
   loading,
   reset,
 }) => (
-  <HoverHelper>
-    <Helmet
-      defaultTitle="Argu"
-      htmlAttributes={{ lang: 'nl' }}
-      titleTemplate="%s - Argu"
-    />
-    <Spinner loading={loading} />
-    <SkipNavigation />
-    <SideBarContainer
-      slim
-      id="Navbar"
-      sidebar={<NavbarContainer />}
-    >
-      <div className="MainContentWrapper" id="start-of-content">
-        <ScrollMemory elementId="start-of-content" />
-        {Routes}
-      </div>
-      <BottomBarContainer />
-      {error && renderErrorMessage(error, errorMessage, reset)}
-    </SideBarContainer>
-    <LinkedPopup />
-  </HoverHelper>
+  <HotKeys
+    focused
+    attach={window}
+    keyMap={__DEVELOPMENT__ ? devKeymap : defaultKeymap}
+  >
+    <HoverHelper>
+      <Helmet
+        defaultTitle="Argu"
+        htmlAttributes={{ lang: 'nl' }}
+        titleTemplate="%s - Argu"
+      />
+      <Spinner loading={loading} />
+      <SkipNavigation />
+      <SideBarContainer
+        slim
+        id="Navbar"
+        sidebar={<NavbarContainer />}
+      >
+        <div className="MainContentWrapper" id="start-of-content">
+          <ScrollMemory elementId="start-of-content" />
+          {Routes}
+        </div>
+        <BottomBarContainer />
+        {error && renderErrorMessage(error, errorMessage, reset)}
+      </SideBarContainer>
+      <LinkedPopup />
+    </HoverHelper>
+  </HotKeys>
 );
 
 App.propTypes = propTypes;

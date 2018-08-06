@@ -22,8 +22,6 @@ const buttonThemes = [
 const propTypes = {
   /** Should be true when the button is toggleable and toggled. */
   active: PropTypes.bool,
-  /** Alt html tag. */
-  alt: PropTypes.string,
   /** Label of the button */
   children: PropTypes.node,
   /** Should be avoided. Try to use the 'theme' prop or wrap it in some other element for styling
@@ -49,6 +47,7 @@ const propTypes = {
   small: PropTypes.bool,
   /** Removes all styling. */
   theme: PropTypes.oneOf(buttonThemes),
+  /** Title html tag. */
   title: PropTypes.string,
   type: PropTypes.string,
   variant: PropTypes.oneOf([
@@ -82,7 +81,6 @@ const defaultProps = {
  */
 const Button = ({
   active,
-  alt,
   children,
   className,
   corner,
@@ -106,6 +104,7 @@ const Button = ({
     'Button--active': active,
     'Button--corner': corner,
     'Button--grow': grow,
+    'Button--has-children': children,
     'Button--has-icon': icon,
     'Button--margins': margins,
     'Button--narrow': narrow,
@@ -126,7 +125,6 @@ const Button = ({
   if (typeof href !== 'undefined') {
     return (
       <LinkDuo
-        alt={alt}
         className={btnClass}
         data-test="Button-link"
         disabled={disabled || loading}
@@ -152,7 +150,6 @@ const Button = ({
   }
   return (
     <BlurButton
-      alt={alt}
       className={btnClass}
       data-test="Button-button"
       disabled={disabled || loading}
