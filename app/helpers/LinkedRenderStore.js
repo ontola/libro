@@ -28,6 +28,10 @@ export const allTopologies = [
   NS.argu('card'),
   NS.argu('cardAppendix'),
   NS.argu('cardFixed'),
+  /**
+   * In the top right corner of a card
+   */
+  NS.argu('cardFloat'),
   NS.argu('cardHover'),
   /**
    * A list inside a CardContent

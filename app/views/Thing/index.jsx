@@ -13,7 +13,7 @@ import {
   CardContent,
   CardFixed,
   CardMain,
-  CardMenuFloater,
+  CardHeader,
   CardRow,
   Container,
   Detail,
@@ -62,13 +62,13 @@ const ThingPage = () => (
       <CardMain data-test="Thing-thing">
         <Property label={NS.schema('superEvent')} />
         <CardContent noSpacing>
-          <CardMenuFloater
+          <CardHeader
             header={<Property label={[NS.schema('name'), NS.rdfs('label')]} />}
           >
             <Property label={NS.argu('followMenu')} />
             <Property label={NS.argu('shareMenu')} />
             <Property label={NS.argu('actionsMenu')} />
-          </CardMenuFloater>
+          </CardHeader>
           <DetailsBar>
             <Property label={NS.rdf('type')} />
             <Property label={NS.schema('creator')} />

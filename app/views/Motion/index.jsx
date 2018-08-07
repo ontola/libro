@@ -5,7 +5,7 @@ import React from 'react';
 import {
   CardContent,
   CardMain,
-  CardMenuFloater,
+  CardHeader,
   Container,
   DetailsBar,
 } from '../../components';
@@ -19,13 +19,13 @@ const MotionPage = () => (
       <Property label={NS.argu('trashedAt')} />
       <CardMain data-test="Thing-thing">
         <CardContent noSpacing>
-          <CardMenuFloater
+          <CardHeader
             header={<Property label={[NS.schema('name'), NS.rdfs('label')]} />}
           >
             <Property label={NS.argu('followMenu')} />
             <Property label={NS.argu('shareMenu')} />
             <Property label={NS.argu('actionsMenu')} />
-          </CardMenuFloater>
+          </CardHeader>
           <DetailsBar>
             <Property label={NS.schema('creator')} />
             <Property label={NS.schema('dateCreated')} />

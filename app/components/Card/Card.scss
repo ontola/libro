@@ -191,16 +191,22 @@
   }
 }
 
-.CardMenuFloater {
+.CardHeader {
   display: flex;
+  margin-bottom: .5rem;
   margin-right: -.7rem;
 
   &--header {
     flex: 1;
-  }
 
-  &--children {
-    align-items: start;
-    display: flex;
+    .Heading {
+      margin-bottom: 0;
+    }
   }
+}
+
+
+.CardFloat {
+  align-items: start;
+  display: flex;
 }

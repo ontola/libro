@@ -24,5 +24,5 @@ export default LinkedRenderStore.registerRenderer(
     NS.argu('Menu'),
   ],
   NS.schema('name'),
-  NS.argu('cardMain')
+  NS.argu('cardFloat')
 );

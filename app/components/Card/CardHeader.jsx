@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import CardFloat from './CardFloat';
+
 const propTypes = {
   /** The children float to the top right */
   children: PropTypes.node,
@@ -12,16 +14,18 @@ const propTypes = {
  * Holds a header and menu items that float to the top right of the card
  * @returns {component} Component
  */
-const CardMenuFloater = ({
+const CardHeader = ({
   children,
   header,
 }) => (
-  <div className="CardMenuFloater">
-    <div className="CardMenuFloater--header">{header}</div>
-    <div className="CardMenuFloater--children">{children}</div>
+  <div className="CardHeader">
+    <div className="CardHeader--header">{header}</div>
+    <CardFloat>
+      {children}
+    </CardFloat>
   </div>
 );
 
-CardMenuFloater.propTypes = propTypes;
+CardHeader.propTypes = propTypes;
 
-export default CardMenuFloater;
+export default CardHeader;

@@ -129,7 +129,7 @@ export default [
       NS.argu('Menu'),
     ],
     RENDER_CLASS_NAME,
-    NS.argu('cardMain')
+    NS.argu('cardFloat')
   ),
   LinkedRenderStore.registerRenderer(
     MenuItemPage,
