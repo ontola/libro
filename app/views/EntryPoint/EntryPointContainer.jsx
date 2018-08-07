@@ -46,6 +46,7 @@ class EntryPointContainer extends EntryPointBase {
             <Property label={NS.schema('name')} />
             <Card>
               <CardContent>
+                <Property label={NS.schema('text')} />
                 <Property label={NS.ll('actionBody')} />
               </CardContent>
               <FormFooter>
