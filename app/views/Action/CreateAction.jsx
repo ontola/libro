@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 
 import { LDLink } from '../../components';
 import { NS, allTopologiesExcept } from '../../helpers/LinkedRenderStore';
-import { omniformOpenInline } from '../../state/omniform';
+import { omniformOpenInline, omniformSetAction } from '../../state/omniform';
 
 const propTypes = {
   children: PropTypes.element,
@@ -37,6 +37,19 @@ const mapActionsBarDispatchToProps = (dispatch, ownProps) => ({
   onClick: () => Promise.resolve(dispatch(omniformOpenInline(ownProps.isPartOf))),
 });
 
+const mapCardListDispatchToProps = (dispatch, ownProps) => ({
+  onClick: (e) => {
+    e.preventDefault();
+    return Promise.all([
+      dispatch(omniformOpenInline(ownProps.isPartOf)),
+      dispatch(omniformSetAction({
+        action: ownProps.subject,
+        parentIRI: btoa(ownProps.isPartOf),
+      })),
+    ]);
+  },
+});
+
 const InlineCreateActionButton = ({ isPartOf, onClick, subject }) => (
   <CreateActionButton isPartOf={isPartOf} subject={subject}>
     <Property label={NS.schema('target')} onClick={onClick} />
@@ -52,14 +65,20 @@ InlineCreateActionButton.propTypes = {
 export default [
   LinkedRenderStore.registerRenderer(
     CreateActionButton,
-    NS.argu('CreateAction'),
+    NS.schema('CreateAction'),
     RENDER_CLASS_NAME,
-    allTopologiesExcept(NS.argu('actionsBar'))
+    allTopologiesExcept([NS.argu('actionsBar'), NS.argu('cardList')])
   ),
   LinkedRenderStore.registerRenderer(
     link([NS.schema('object')])(connect(null, mapActionsBarDispatchToProps)(InlineCreateActionButton)),
     NS.argu('CreateAction'),
     RENDER_CLASS_NAME,
     NS.argu('actionsBar')
+  ),
+  LinkedRenderStore.registerRenderer(
+    link([NS.schema('object')])(connect(null, mapCardListDispatchToProps)(InlineCreateActionButton)),
+    NS.schema('CreateAction'),
+    RENDER_CLASS_NAME,
+    NS.argu('cardList')
   ),
 ];

@@ -116,13 +116,12 @@ CollectionCardAppendix.propTypes = mvcPropTypes;
 
 const collectionSection = (shortCircuit = true) => {
   const CollectionSection = ({ totalItems }) => {
-    if (shortCircuit && totalItems.value === '0') {
-      return null;
-    }
+    const pagesShouldRender = !shortCircuit || totalItems.value !== '0';
 
     return (
       <CardList>
-        <Property forceRender label={NS.as('pages')} />
+        {pagesShouldRender && <Property forceRender label={NS.as('pages')} />}
+        <Property label={NS.argu('createAction')} />
       </CardList>
     );
   };

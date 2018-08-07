@@ -8,6 +8,7 @@ import ButtonWithFeedback from '../../components/ButtonWithFeedback';
 import { allTopologiesExcept, NS } from '../../helpers/LinkedRenderStore';
 import { countInParentheses } from '../../helpers/numbers';
 
+import EntryPointCardList from './EntryPointCardList';
 import EntryPointContainer from './EntryPointContainer';
 import EntryPointOmiform from './EntryPointOmiform';
 
@@ -60,12 +61,13 @@ EntryPoint.propTypes = {
 };
 
 export default [
+  EntryPointCardList,
   EntryPointContainer,
   EntryPointOmiform,
   LinkedRenderStore.registerRenderer(
     link([NS.schema('image'), NS.schema('name'), NS.schema('url'), NS.schema('httpMethod')])(EntryPoint),
     NS.schema('EntryPoint'),
     RENDER_CLASS_NAME,
-    allTopologiesExcept(NS.argu('container'), NS.argu('omniformFields'))
+    allTopologiesExcept(NS.argu('container'), NS.argu('omniformFields'), NS.argu('cardList'))
   ),
 ];

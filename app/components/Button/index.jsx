@@ -134,6 +134,7 @@ const Button = ({
         title={title}
         to={href}
         type={type}
+        onClick={onClick}
       >
         {icon && (
         <FontAwesome

@@ -74,6 +74,15 @@ a {
   background: none;
   color: inherit;
   padding: 0;
+
+  &:hover,
+  &:focus {
+    box-shadow: none;
+  }
+
+  &:active {
+    box-shadow: none;
+  }
 }
 
 .Button--narrow {
@@ -249,4 +258,19 @@ $google-color: #4285f4;
   right: 0;
   top: 0;
   z-index: 1;
+}
+
+.Button--CardList {
+  color: color('grey', 'base');
+  font-size: .8rem;
+  font-weight: bold;
+  margin-bottom: .7rem;
+
+  &:hover {
+    color: color('grey', 'mid-dark');
+  }
+
+  &:active {
+    color: color('grey', 'dark');
+  }
 }
