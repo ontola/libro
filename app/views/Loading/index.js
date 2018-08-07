@@ -31,7 +31,7 @@ export default [
     [
       NS.argu('collection'),
       NS.argu('container'),
-      NS.argu('section'),
+      NS.argu('cardList'),
     ]
   ),
   LinkedRenderStore.registerRenderer(
@@ -82,10 +82,10 @@ export default [
     NS.ll('LoadingResource'),
     RENDER_CLASS_NAME,
     [
+      NS.argu('cardList'),
       NS.argu('inline'),
       NS.argu('voteBubble'),
       NS.argu('cardMain'),
-      NS.argu('section'),
     ]
   ),
 ];

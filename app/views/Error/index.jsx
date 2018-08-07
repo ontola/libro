@@ -159,7 +159,7 @@ export default [
       NS.argu('collection'),
       NS.argu('container'),
       NS.argu('dropdownContent'),
-      NS.argu('section'),
+      NS.argu('cardList'),
       NS.argu('grid'),
       NS.argu('widget'),
     ]

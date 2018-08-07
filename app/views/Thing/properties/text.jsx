@@ -70,7 +70,7 @@ export default [
     TextInline,
     NS.schema('Thing'),
     NS.schema('text'),
-    NS.argu('section')
+    NS.argu('cardList')
   ),
   LinkedRenderStore.registerRenderer(
     TextCutoff,

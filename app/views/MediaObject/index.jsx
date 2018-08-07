@@ -15,7 +15,7 @@ export default [
     [NS.schema('MediaObject'), NS.council('Attachment')],
     RENDER_CLASS_NAME,
     [
-      NS.argu('section'),
+      NS.argu('cardList'),
       NS.argu('cardRow'),
       NS.argu('card'),
       NS.argu('cardMain'),

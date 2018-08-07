@@ -57,7 +57,7 @@ describeView('Thing', components, resources, resource, () => {
     });
   });
 
-  as(NS.argu('section'), () => {
+  as(NS.argu('cardList'), () => {
     it('renders the name', () => {
       expect(subject.find(marker('name', 'card', 'preview'))).toExist();
     });

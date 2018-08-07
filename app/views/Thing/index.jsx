@@ -196,7 +196,7 @@ export default [
     RENDER_CLASS_NAME,
     [
       NS.argu('cardRow'),
-      NS.argu('section'),
+      NS.argu('cardList'),
     ]
   ),
   LinkedRenderStore.registerRenderer(

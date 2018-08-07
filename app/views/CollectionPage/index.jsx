@@ -84,7 +84,7 @@ const collectionViewSection = (shortCircuit = true) => {
     }
 
     return (
-      <Property forceRender label={NS.as('items')} renderLimit={Infinity} topology={NS.argu('section')} />
+      <Property forceRender label={NS.as('items')} renderLimit={Infinity} topology={NS.argu('cardList')} />
     );
   };
 
@@ -111,7 +111,7 @@ export default [
     CollectionViewTypes,
     RENDER_CLASS_NAME,
     [
-      NS.argu('section'),
+      NS.argu('cardList'),
       NS.argu('card'),
       NS.argu('cardFixed'),
       NS.argu('cardMain'),

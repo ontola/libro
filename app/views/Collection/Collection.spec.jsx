@@ -11,7 +11,7 @@ const testClass = LinkedRenderStore.registerRenderer(
   link([NS.as('name')])(({ name }) => <p className="testComp">{name.value}</p>),
   NS.example('TestClass'),
   RENDER_CLASS_NAME,
-  [undefined, NS.argu('collection'), NS.argu('section')]
+  [undefined, NS.argu('collection'), NS.argu('cardList')]
 );
 
 const ITEMS = 10;

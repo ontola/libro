@@ -20,5 +20,5 @@ export default LinkedRenderStore.registerRenderer(
   link([NS.schema('name')])(PersonSection),
   NS.schema('Person'),
   RENDER_CLASS_NAME,
-  NS.argu('section')
+  NS.argu('cardList')
 );

@@ -72,7 +72,7 @@ export default [
     CollectionViewTypes,
     NS.as('items'),
     [
-      NS.argu('section'),
+      NS.argu('cardList'),
       NS.argu('widget'),
       NS.argu('container'),
     ]

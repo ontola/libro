@@ -11,7 +11,7 @@ import { NamedNode } from 'rdflib';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { CardRow, Container } from '../../components';
+import { CardList, Container, Resource } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { getPage } from '../../state/pagination/selectors';
 
@@ -75,9 +75,11 @@ function getCollection({ WrappingElement = 'div', renderWhenEmpty = true } = {})
 
       return (
         <WrappingElement>
-          {name}
-          {children}
-          {this.pagination()}
+          <Resource>
+            {name}
+            {children}
+            {this.pagination()}
+          </Resource>
         </WrappingElement>
       );
     }
@@ -104,9 +106,9 @@ const CollectionCardAppendix = ({ totalItems }) => {
   }
 
   return (
-    <CardRow backdrop>
-      <Property forceRender label={NS.as('pages')} topology={NS.argu('cardRow')} />
-    </CardRow>
+    <Resource>
+      <Property forceRender label={NS.as('pages')} />
+    </Resource>
   );
 };
 
@@ -119,9 +121,9 @@ const collectionSection = (shortCircuit = true) => {
     }
 
     return (
-      <div>
-        <Property forceRender label={NS.as('pages')} topology={NS.argu('section')} />
-      </div>
+      <CardList>
+        <Property forceRender label={NS.as('pages')} />
+      </CardList>
     );
   };
 
@@ -131,7 +133,9 @@ const collectionSection = (shortCircuit = true) => {
 };
 
 const CollectionFixedCards = () => (
-  <Property forceRender label={NS.as('pages')} topology={NS.argu('grid')} />
+  <Resource>
+    <Property forceRender label={NS.as('pages')} topology={NS.argu('grid')} />
+  </Resource>
 );
 
 const wrapUpdate = Component => withLinkCtx(Component);
@@ -156,7 +160,7 @@ export default [
     CollectionTypes,
     RENDER_CLASS_NAME,
     [
-      NS.argu('section'),
+      NS.argu('cardList'),
       NS.argu('card'),
       NS.argu('cardFixed'),
       NS.argu('cardMain'),

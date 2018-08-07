@@ -58,7 +58,7 @@ export default [
       </LDLink>),
     NS.schema('Thing'),
     NamePredicates,
-    [NS.argu('cardHover'), NS.argu('section')]
+    [NS.argu('cardHover'), NS.argu('cardList')]
   ),
   LinkedRenderStore.registerRenderer(
     props => <ColoredHeading data-test="Thing-name-card-main" size="1" {...props} />,

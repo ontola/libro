@@ -35,7 +35,7 @@ Comment.propTypes = hightlightPropTypes;
 
 const CommentSection = ({ highlighted }) => (
   <CardMicroRow highlighted={highlighted}>
-    <Property label={NS.schema('creator')} topology={NS.argu('section')} />&#9;<Property label={NS.schema('text')} topology={NS.argu('section')} />
+    <Property label={NS.schema('creator')} topology={NS.argu('cardList')} />&#9;<Property label={NS.schema('text')} topology={NS.argu('cardList')} />
   </CardMicroRow>
 );
 
@@ -55,6 +55,6 @@ export default [
     connectHighlighting(CommentSection),
     [NS.schema('Comment'), NS.argu('Comment')],
     RENDER_CLASS_NAME,
-    [NS.argu('section'), NS.argu('cardRow')]
+    [NS.argu('cardList'), NS.argu('cardRow')]
   ),
 ];

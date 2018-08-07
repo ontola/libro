@@ -29,6 +29,10 @@ export const allTopologies = [
   NS.argu('cardAppendix'),
   NS.argu('cardFixed'),
   NS.argu('cardHover'),
+  /**
+   * A list inside a CardContent
+   */
+  NS.argu('cardList'),
   NS.argu('cardMain'),
   NS.argu('cardRow'),
   NS.argu('cardVoteEvent'),
@@ -44,7 +48,6 @@ export const allTopologies = [
   NS.argu('parent'),
   NS.argu('popup'),
   NS.argu('sidebar'),
-  NS.argu('section'),
   NS.argu('tabBar'),
   NS.argu('voteBubble'),
   NS.argu('voteEvent'),

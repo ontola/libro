@@ -14,6 +14,7 @@ export { default as CardContent } from './components/Card/CardContent';
 export { default as CardDivider } from './components/Card/CardDivider';
 export { default as CardFixed } from './components/Card/CardFixed';
 export { default as CardLink } from './components/Card/CardLink';
+export { default as CardList } from './components/Card/CardList';
 export { default as CardMain } from './components/Card/CardMain';
 export { default as CardMenuFloater } from './components/Card/CardMenuFloater';
 export { default as CardRow } from './components/Card/CardRow';
