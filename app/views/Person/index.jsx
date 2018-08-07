@@ -1,17 +1,19 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   link,
-  linkedPropType,
   LinkedResourceContainer,
   Property,
 } from 'link-redux';
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import {
   Container,
   PageHeader,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { getOrganization } from '../../state/app/selectors';
 
 import Detail from './detail';
 import Section from './section';
@@ -19,33 +21,36 @@ import Sidebar from './sidebar';
 import Email from './properties/email';
 import Image from './properties/image';
 
-function feedForSubject(subject) {
-  const site = subject.site().value;
-
-  return NS.app(`${subject.value}/feed?type=paginated`.split(site).pop());
-}
-
 const propTypes = {
-  subject: linkedPropType,
+  feedIRI: PropTypes.string,
 };
 
-const PersonPage = ({ subject }) => (
+const PersonPage = ({ feedIRI }) => (
   <React.Fragment>
     <PageHeader>
       <Property label={NS.schema('name')} />
       <Property label={NS.schema('description')} />
     </PageHeader>
     <Container>
-      <LinkedResourceContainer subject={feedForSubject(subject)} />
+      <LinkedResourceContainer subject={feedIRI} />
     </Container>
   </React.Fragment>
 );
 
 PersonPage.propTypes = propTypes;
 
+const mapStateToProps = (state, { subject }) => {
+  const site = subject.site().value;
+  const org = getOrganization(state);
+
+  return ({
+    feedIRI: subject && org && NS.app(`${org && org.term}/${subject.value.split(site).pop()}/feed`),
+  });
+};
+
 export default [
   LinkedRenderStore.registerRenderer(
-    PersonPage,
+    connect(mapStateToProps)(PersonPage),
     [
       NS.schema('Person'),
       NS.foaf('Person'),

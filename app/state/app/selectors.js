@@ -7,5 +7,3 @@ export const getCurrentUserAnonymousID = state => state.getIn(['app', SET_CURREN
 export const getCurrentUserEmail = state => state.getIn(['app', SET_CURRENT_USER, 'primaryEmail']);
 
 export const isHighlighted = (state, iri) => state.getIn(['app', HIGHLIGHT_RESOURCE]) === iri.value;
-
-export default getOrganization;
