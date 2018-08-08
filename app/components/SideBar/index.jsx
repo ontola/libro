@@ -104,13 +104,13 @@ class SideBar extends Component {
             backgroundColor: this.props.orgColor,
           }}
         >
-          {!this.props.docked && this.props.isWideWindow && this.props.opened && (
+          {!this.props.docked && this.props.isWideWindow && (
           <Button
             narrow
             plain
-            alt="Openvouwen"
             data-test="SideBar-button-dock"
             icon={this.dockIcon()}
+            title="Openvouwen"
             onClick={this.props.onDock}
           />
           )}
@@ -118,32 +118,32 @@ class SideBar extends Component {
           <Button
             narrow
             plain
-            alt="Dichtvouwen"
             data-test="SideBar-button-undock"
             icon={this.undockIcon()}
+            title="Dichtvouwen"
             onClick={() => {
               this.props.onUndock();
               this.props.onClose();
             }}
           />
           )}
-          {!this.props.docked && !this.props.opened && this.props.isWideWindow && (
+          {!this.props.docked && !this.props.opened && !this.props.isWideWindow && (
           <Button
             narrow
             plain
-            alt="Menu openen"
             data-test="SideBar-button-open"
             icon="bars"
+            title="Menu openen"
             onClick={this.props.onOpen}
           />
           )}
-          {!this.props.docked && this.props.opened && this.props.isWideWindow && (
+          {!this.props.docked && this.props.opened && !this.props.isWideWindow && (
           <Button
             narrow
             plain
-            alt="Menu sluiten"
             data-test="SideBar-button-close"
             icon="close"
+            title="Menu sluiten"
             onClick={this.props.onClose}
           />
           )}
