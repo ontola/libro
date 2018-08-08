@@ -1,7 +1,7 @@
 import { NS } from './LinkedRenderStore';
 
 export function currentLocation(location) {
-  return NS.app(`${location.pathname.substr(1)}${location.search}`);
+  return NS.app(`${location.pathname.substr(1)}${location.search}${location.hash}`);
 }
 
 const path = {

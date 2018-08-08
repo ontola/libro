@@ -21,13 +21,10 @@ exports[`Menu https://argu.co/ns/core#sidebar renders a menu 1`] = `
     />
   </div>
   <div
-    className="SideBarLink"
+    resource="https://argu.dev/o/1/menus/navigations#forums.motions"
   >
-    <a
-      aria-current={null}
-      className="SideBarLink__link"
-      href="/f/utrecht/motions"
-      onClick={[Function]}
+    <div
+      className="SideBarLink"
     >
       <div
         className="SideBarLink__icon"
@@ -38,16 +35,13 @@ exports[`Menu https://argu.co/ns/core#sidebar renders a menu 1`] = `
         />
       </div>
       Ideeën
-    </a>
+    </div>
   </div>
   <div
-    className="SideBarLink"
+    resource="https://argu.dev/o/1/menus/navigations#forums.questions"
   >
-    <a
-      aria-current={null}
-      className="SideBarLink__link"
-      href="/f/utrecht/questions"
-      onClick={[Function]}
+    <div
+      className="SideBarLink"
     >
       <div
         className="SideBarLink__icon"
@@ -58,16 +52,13 @@ exports[`Menu https://argu.co/ns/core#sidebar renders a menu 1`] = `
         />
       </div>
       Vraagstukken
-    </a>
+    </div>
   </div>
   <div
-    className="SideBarLink"
+    resource="https://argu.dev/o/1/menus/navigations#forums.settings"
   >
-    <a
-      aria-current={null}
-      className="SideBarLink__link"
-      href="/utrecht/settings"
-      onClick={[Function]}
+    <div
+      className="SideBarLink"
     >
       <div
         className="SideBarLink__icon"
@@ -78,7 +69,7 @@ exports[`Menu https://argu.co/ns/core#sidebar renders a menu 1`] = `
         />
       </div>
       Instellingen
-    </a>
+    </div>
   </div>
 </div>
 `;

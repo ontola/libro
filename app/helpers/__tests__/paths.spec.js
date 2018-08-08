@@ -7,6 +7,7 @@ describe('helpers', () => {
     describe('currentLocation', () => {
       it('returns the correct path', () => {
         expect(currentLocation({
+          hash: '',
           pathname: '/n',
           search: '?type=infinite',
         }).value).toEqual('https://argu.dev/n?type=infinite');

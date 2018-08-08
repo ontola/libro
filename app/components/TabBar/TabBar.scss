@@ -1,0 +1,32 @@
+@import '../shared/config';
+
+.TabBar {
+  background-color: color('white');
+  overflow-x: auto;
+  white-space: nowrap;
+  width: 100%;
+
+  > div {
+    display: inline-block;
+  }
+}
+
+.Tab {
+  color: color('grey');
+  display: flex;
+  padding: .6rem;
+
+  &__icon {
+    margin-right: .3rem;
+  }
+
+  &.LDLink__active {
+    box-shadow: inset 0 -3px 0 color('grey', 'mid-light');
+    color: color('grey', 'mid-dark');
+    position: relative;
+  }
+
+  &:hover {
+    color: color('grey', 'dark');
+  }
+}

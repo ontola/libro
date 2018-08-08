@@ -2,23 +2,27 @@
 
 exports[`Navbar organization as argu:sidebar renders the correct representation 1`] = `
 <div
-  className="SideBarLink"
+  resource="https://argu.dev/o/1/menus/navigations#settings"
 >
-  <a
-    aria-current={null}
-    className="SideBarLink__link"
-    href="/o/gemeente_utrecht/settings"
-    onClick={[Function]}
+  <div
+    className="SideBarLink"
   >
-    <div
-      className="SideBarLink__icon"
+    <a
+      aria-current={null}
+      className="SideBarLink__link"
+      href="/o/gemeente_utrecht/settings"
+      onClick={[Function]}
     >
-      <span
-        aria-hidden={true}
-        className="fa fa-gear"
-      />
-    </div>
-    Instellingen
-  </a>
+      <div
+        className="SideBarLink__icon"
+      >
+        <span
+          aria-hidden={true}
+          className="fa fa-gear"
+        />
+      </div>
+      Instellingen
+    </a>
+  </div>
 </div>
 `;

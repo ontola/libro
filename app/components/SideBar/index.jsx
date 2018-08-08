@@ -108,8 +108,9 @@ class SideBar extends Component {
           <Button
             narrow
             plain
+            alt="Menu tonen"
             data-test="SideBar-button-dock"
-            icon={this.dockIcon()}
+            icon="bars"
             title="Openvouwen"
             onClick={this.props.onDock}
           />
@@ -118,8 +119,9 @@ class SideBar extends Component {
           <Button
             narrow
             plain
+            alt="Menu verbergen"
             data-test="SideBar-button-undock"
-            icon={this.undockIcon()}
+            icon="bars"
             title="Dichtvouwen"
             onClick={() => {
               this.props.onUndock();

@@ -8,9 +8,17 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { Dropdown, DropdownLink } from '../../components';
+import {
+  Container,
+  Dropdown,
+  DropdownLink,
+  TabBar,
+  Tab,
+  Resource,
+} from '../../components';
 import { SideBarLinkIcon } from '../../components/SideBarLink';
 import { NS } from '../../helpers/LinkedRenderStore';
+import Card from '../../components/Card';
 
 import Href from './properties/href';
 import Label from './properties/label';
@@ -38,19 +46,23 @@ MenuItemDropdownContent.propTypes = {
 };
 
 const MenuItemSidebar = () => (
-  <Property
-    forceRender
-    label={NS.argu('menuItems')}
-    labelComp={MenuItemLabel}
-  />
+  <Resource>
+    <Property
+      forceRender
+      label={NS.argu('menuItems')}
+      labelComp={MenuItemLabel}
+    />
+  </Resource>
 );
 
 const MenuItemDropdown = ({ menuItems }) => (
-  <Dropdown
-    trigger={<Property label={NS.schema('name')} />}
-  >
-    <LinkedResourceContainer subject={menuItems} topology={NS.argu('dropdownContent')} />
-  </Dropdown>
+  <Resource>
+    <Dropdown
+      trigger={<Property label={NS.schema('name')} />}
+    >
+      <LinkedResourceContainer subject={menuItems} topology={NS.argu('dropdownContent')} />
+    </Dropdown>
+  </Resource>
 );
 
 MenuItemDropdown.propTypes = {
@@ -112,11 +124,36 @@ export default [
     link([NS.argu('menuItems')])(MenuItemDropdown),
     [
       NS.argu('MenuItem'),
+      NS.argu('MenuSection'),
       NS.argu('SubMenu'),
       NS.argu('Menu'),
     ],
     RENDER_CLASS_NAME,
     NS.argu('cardMain')
+  ),
+  LinkedRenderStore.registerRenderer(
+    MenuItemPage,
+    [
+      NS.argu('MenuItem'),
+      NS.argu('MenuSection'),
+      NS.argu('SubMenu'),
+      NS.argu('Menu'),
+    ],
+    RENDER_CLASS_NAME,
+    undefined
+  ),
+  LinkedRenderStore.registerRenderer(
+    link([
+      NS.schema('name'),
+    ])(MenuItemTab),
+    [
+      NS.argu('MenuItem'),
+      NS.argu('MenuSection'),
+      NS.argu('SubMenu'),
+      NS.argu('Menu'),
+    ],
+    RENDER_CLASS_NAME,
+    NS.argu('tabBar')
   ),
   Href,
   Label,

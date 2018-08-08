@@ -40,7 +40,7 @@ export function iris(window) {
      */
     retrievePath(iriString) {
       const iri = iriString && new URL(iriString);
-      return iri && iri.pathname + iri.search;
+      return iri && iri.pathname + iri.search + iri.hash;
     },
   };
 }
