@@ -3,6 +3,7 @@ import { Property } from 'link-redux';
 import React from 'react';
 
 import {
+  CardAppendix,
   CardContent,
   CardMain,
   CardHeader,
@@ -27,6 +28,7 @@ const MotionPage = () => (
             <Property label={NS.argu('actionsMenu')} />
           </CardHeader>
           <DetailsBar>
+            <Property label={NS.rdf('type')} />
             <Property label={NS.schema('creator')} />
             <Property label={NS.schema('dateCreated')} />
           </DetailsBar>
@@ -36,6 +38,9 @@ const MotionPage = () => (
         <Property label={NS.argu('attachments')} />
         <Property label={NS.council('attachment')} />
         <Property label={NS.argu('voteableVoteEvent')} />
+        <CardAppendix>
+          <Property forceRender label={NS.app('omniform')} />
+        </CardAppendix>
       </CardMain>
       <Property label={NS.argu('blogPosts')} />
     </Container>

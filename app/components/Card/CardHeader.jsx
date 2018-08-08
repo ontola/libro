@@ -19,7 +19,7 @@ const CardHeader = ({
   header,
 }) => (
   <div className="CardHeader">
-    <div className="CardHeader--header">{header}</div>
+    {header && <div className="CardHeader--header">{header}</div>}
     <CardFloat>
       {children}
     </CardFloat>

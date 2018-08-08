@@ -11,7 +11,12 @@ import { NamedNode } from 'rdflib';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { CardList, Container, Resource } from '../../components';
+import {
+  CardList,
+  Container,
+  Resource,
+  CardHeader,
+} from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { getPage } from '../../state/pagination/selectors';
 
@@ -29,7 +34,7 @@ const mvcPropTypes = {
   totalItems: linkedPropType,
 };
 
-function getCollection({ WrappingElement = 'div', renderWhenEmpty = true } = {}) {
+function getCollection({ WrappingElement = Resource, renderWhenEmpty = true } = {}) {
   class Collection extends PropertyBase {
     pagination() {
       const { defaultType, pages } = this.props;
@@ -72,11 +77,14 @@ function getCollection({ WrappingElement = 'div', renderWhenEmpty = true } = {})
         children = <Property forceRender label={NS.as('pages')} />;
       }
       const name = pages.length > 0 ? <Property label={NS.as('name')} /> : null;
+      const newButton = <Property label={NS.argu('createAction')} />;
 
       return (
         <WrappingElement>
           <Resource>
-            {name}
+            <CardHeader header={name}>
+              {newButton}
+            </CardHeader>
             {children}
             {this.pagination()}
           </Resource>

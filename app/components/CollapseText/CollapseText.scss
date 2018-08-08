@@ -7,18 +7,26 @@
     background: linear-gradient(to bottom, color('transparent', 'transparent') 0%, color('white') 70%, color('white') 100%);
     bottom: 1em;
     position: relative;
+    text-align: right;
     width: 100%;
+
+    &:hover {
+      // sass-lint:disable nesting-depth
+      .Button__label {
+        color: color('grey', 'mid-dark');
+      }
+      // sass-lint:enable nesting-depth
+    }
   }
 
   .Button__label {
+    background: color('white', 'base');
     color: color('grey', 'base');
-    padding: 0 .9em;
+    margin: 0;
+    padding: .3em 1.2em;
     position: relative;
+    right: 0;
     transition: .2s transform;
-
-    &:hover {
-      color: color('grey', 'mid-dark');
-    }
   }
 
   &.CollapseText--open {

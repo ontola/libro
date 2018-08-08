@@ -260,11 +260,10 @@ $google-color: #4285f4;
   z-index: 1;
 }
 
-.Button--CardList {
+.Button--CardList,
+.Button--CardFloat {
   color: color('grey', 'base');
-  font-size: .8rem;
   font-weight: bold;
-  margin-bottom: .7rem;
 
   &:hover {
     color: color('grey', 'mid-dark');
@@ -273,4 +272,9 @@ $google-color: #4285f4;
   &:active {
     color: color('grey', 'dark');
   }
+}
+
+.Button--CardList {
+  font-size: .8rem;
+  margin-bottom: .7rem;
 }

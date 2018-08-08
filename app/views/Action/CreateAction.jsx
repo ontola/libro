@@ -67,7 +67,7 @@ export default [
     CreateActionButton,
     NS.schema('CreateAction'),
     RENDER_CLASS_NAME,
-    allTopologiesExcept([NS.argu('actionsBar'), NS.argu('cardList')])
+    allTopologiesExcept([NS.argu('actionsBar'), NS.argu('cardList'), NS.argu('cardFloat')])
   ),
   LinkedRenderStore.registerRenderer(
     link([NS.schema('object')])(connect(null, mapActionsBarDispatchToProps)(InlineCreateActionButton)),
@@ -79,6 +79,6 @@ export default [
     link([NS.schema('object')])(connect(null, mapCardListDispatchToProps)(InlineCreateActionButton)),
     NS.schema('CreateAction'),
     RENDER_CLASS_NAME,
-    NS.argu('cardList')
+    [NS.argu('cardList'), NS.argu('cardFloat')]
   ),
 ];
