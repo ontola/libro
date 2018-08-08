@@ -1,5 +1,10 @@
 import LinkedRenderStore from 'link-lib';
-import { linkedPropType } from 'link-redux';
+import {
+  link,
+  linkedPropType,
+  lrsType,
+  subjectType,
+} from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -11,20 +16,28 @@ import { retrievePath } from '../../../helpers/iris';
 import { NS } from '../../../helpers/LinkedRenderStore';
 
 const propTypes = {
+  action: linkedPropType,
   children: PropTypes.node,
   handleClick: PropTypes.func,
-  linkedProp: linkedPropType,
+  href: linkedPropType,
+  lrs: lrsType,
+  subject: subjectType,
 };
 
-const href = ({
-  children, handleClick, linkedProp,
+const Href = ({
+  action,
+  children,
+  handleClick,
+  href,
+  lrs,
+  subject,
 }) => {
   let hrefInner = children;
-  if (linkedProp) {
+  if (href) {
     hrefInner = (
       <SideBarLinkLink
-        to={retrievePath(linkedProp.value)}
-        onClick={handleClick}
+        to={!action && retrievePath(href.value)}
+        onClick={handleClick || (() => lrs.exec(action, subject))}
       >
         {children}
       </SideBarLinkLink>
@@ -38,10 +51,10 @@ const href = ({
   );
 };
 
-href.propTypes = propTypes;
+Href.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
-  href,
+  link([NS.argu('action'), NS.argu('href')])(Href),
   [NS.argu('Link'), NS.argu('MenuItem'), NS.argu('SubMenu')],
   NS.argu('href'),
   NS.argu('sidebar')

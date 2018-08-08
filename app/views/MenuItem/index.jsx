@@ -5,6 +5,8 @@ import {
   LinkedResourceContainer,
   Property,
   linkedPropType,
+  lrsType,
+  subjectType,
 } from 'link-redux';
 import React from 'react';
 
@@ -33,16 +35,33 @@ const MenuItemLabel = (
   </Property>
 );
 
-const MenuItemDropdownContent = ({ href, image, name }) => (
-  <DropdownLink icon={image} url={href}>
+
+const MenuItemDropdownContent = ({
+  action,
+  href,
+  image,
+  name,
+  lrs,
+  subject,
+}) => (
+  <DropdownLink
+    action={action}
+    icon={image}
+    lrs={lrs}
+    subject={subject}
+    url={href}
+  >
     {name.value}
   </DropdownLink>
 );
 
 MenuItemDropdownContent.propTypes = {
+  action: linkType,
   href: linkType,
   image: linkType,
   name: linkedPropType,
+  lrs: lrsType,
+  subject: subjectType,
 };
 
 const MenuItemSidebar = () => (
@@ -115,7 +134,12 @@ export default [
     NS.argu('sidebar')
   ),
   LinkedRenderStore.registerRenderer(
-    link([NS.argu('href'), NS.schema('name'), NS.schema('image')])(MenuItemDropdownContent),
+    link([
+      NS.argu('action'),
+      NS.argu('href'),
+      NS.schema('name'),
+      NS.schema('image'),
+    ])(MenuItemDropdownContent),
     NS.argu('MenuItem'),
     RENDER_CLASS_NAME,
     NS.argu('dropdownContent')

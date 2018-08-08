@@ -130,11 +130,11 @@ describeView('Navbar', components, resources, resource, () => {
 
     it('renders the forum items', () => {
       const forumSection = subject.find('.NavBarContent__top MenuSection');
-      expect(forumSection.find('MenuItemSidebar[data-test="Seq-0"] Link'))
+      expect(forumSection.find('MenuItemSidebar[data-test="Seq-0"] SideBarLinkLink Link'))
         .toHaveText('Overzicht');
-      expect(forumSection.find('MenuItemSidebar[data-test="Seq-1"] Link'))
+      expect(forumSection.find('MenuItemSidebar[data-test="Seq-1"] SideBarLinkLink Link'))
         .toHaveText('Nieuwe discussie');
-      expect(forumSection.find('MenuItemSidebar[data-test="Seq-2"] Link'))
+      expect(forumSection.find('MenuItemSidebar[data-test="Seq-2"] SideBarLinkLink Link'))
         .toHaveText('Activiteit');
     });
   });

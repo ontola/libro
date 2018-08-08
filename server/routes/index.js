@@ -14,6 +14,7 @@ import { backendProxy, iframeProxy } from '../utils/proxies';
 import { handleRender } from '../utils/render';
 
 import login from './login';
+import logout from './logout';
 
 export function listen(app, port) {
   app.listen(port, (err) => {
@@ -36,6 +37,9 @@ export default function routes(app, port) {
 
   app.use(sessionMiddleware);
 
+  app.get('/logout', logout);
+  app.post('/logout', logout);
+
   app.use(apiMiddleware);
 
   app.use(csurf());
@@ -46,7 +50,6 @@ export default function routes(app, port) {
 
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
-
   app.post('/login', login);
 
   app.get(/.*/, (req, res) => {

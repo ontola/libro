@@ -7,15 +7,17 @@ import { retrievePath } from '../../helpers/iris';
 import Image from '../Image';
 
 const propTypes = {
+  action: linkType,
   children: PropTypes.node,
   icon: linkType,
   url: linkType,
 };
 
 const DropdownLink = ({
+  action,
+  children,
   icon,
   url,
-  children,
 }) => {
   const inner = (
     <Fragment>
@@ -24,10 +26,15 @@ const DropdownLink = ({
     </Fragment>
   );
 
-  if (url) {
+  if (!action && url) {
     return <Link className="DropdownLink" to={retrievePath(url.value)}>{inner}</Link>;
   }
-  return <div className="DropdownLink">{inner}</div>;
+
+  return (
+    <div className="DropdownLink" onClick={action} onKeyUp={action}>
+      {inner}
+    </div>
+  );
 };
 DropdownLink.propTypes = propTypes;
 

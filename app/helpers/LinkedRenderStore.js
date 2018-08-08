@@ -5,8 +5,17 @@ import { Literal, NamedNode, Statement } from 'rdflib';
 import { FRONTEND_URL } from '../config';
 
 import transformers from './transformers';
+import ontolaMiddleware from './ontolaMiddleware';
 
-const LRS = new LinkedRenderStore();
+const LRS = new LinkedRenderStore({
+  middleware: [
+    () => next => (a, o) => {
+      console.log('Link action:', a, o);
+      return next(a, o);
+    },
+    ontolaMiddleware,
+  ],
+});
 
 transformers
   .transformers
