@@ -34,33 +34,57 @@ const MenuItemLabel = (
     <Property label={NS.schema('name')} />
   </Property>
 );
+class MenuItemDropdownContent extends React.PureComponent {
+  constructor() {
+    super();
 
+    this.action = this.action.bind(this);
+    this.state = {
+      nameOverride: undefined,
+    };
+  }
 
-const MenuItemDropdownContent = ({
-  action,
-  href,
-  image,
-  name,
-  lrs,
-  subject,
-}) => (
-  <DropdownLink
-    action={action}
-    icon={image}
-    lrs={lrs}
-    subject={subject}
-    url={href}
-  >
-    {name.value}
-  </DropdownLink>
-);
+  action() {
+    this.props.lrs
+      .exec(this.props.action)
+      .then((msg) => {
+        if (typeof msg === 'string') {
+          this.setState({
+            nameOverride: msg,
+          });
+        }
+      });
+  }
+
+  render() {
+    const {
+      href,
+      image,
+      name,
+      lrs,
+      subject,
+    } = this.props;
+
+    return (
+      <DropdownLink
+        action={this.props.action && this.action}
+        icon={image}
+        lrs={lrs}
+        subject={subject}
+        url={href}
+      >
+        {this.state.nameOverride || name.value}
+      </DropdownLink>
+    );
+  }
+}
 
 MenuItemDropdownContent.propTypes = {
   action: linkType,
   href: linkType,
   image: linkType,
-  name: linkedPropType,
   lrs: lrsType,
+  name: linkedPropType,
   subject: subjectType,
 };
 

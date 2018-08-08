@@ -13,6 +13,7 @@
   "dependencies": {
     "assert": "^1.4.1",
     "body-parser": "^1.18.2",
+    "clipboard-copy": "^2.0.0",
     "connect-redis": "^3.3.3",
     "connected-react-router": "^4.3.0",
     "csurf": "^1.9.0",

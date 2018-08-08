@@ -1,3 +1,4 @@
+import clipboardCopy from 'clipboard-copy';
 import { memoizedNamespace } from 'link-lib';
 
 import { safeCredentials } from './arguHelpers';
@@ -16,6 +17,13 @@ const ontolaMiddleware = (store) => {
         }, () => {
           // TODO: bugsnag
         });
+    }
+
+    if (iri.value.startsWith(store.namespaces.ontola('actions/copyToClipboard').value)) {
+      const value = new URL(iri.value).searchParams.get('value');
+
+      return clipboardCopy(value)
+        .then(() => Promise.resolve('Gekopieerd...'));
     }
 
     return next(iri, opts);
