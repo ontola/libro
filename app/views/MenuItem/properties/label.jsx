@@ -17,12 +17,12 @@ const MenuItemLabel = ({ image, label }) => (
 MenuItemLabel.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
-  link([NS.argu('label'), NS.schema('image')])(MenuItemLabel),
+  link([NS.schema('name'), NS.schema('image')])(MenuItemLabel),
   [
     NS.argu('MenuItem'),
     NS.argu('SubMenu'),
     NS.argu('Menu'),
   ],
-  NS.argu('label'),
+  NS.schema('name'),
   NS.argu('cardMain')
 );

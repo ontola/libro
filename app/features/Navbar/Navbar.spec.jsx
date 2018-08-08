@@ -45,7 +45,7 @@ const resources = {
   [NS.app('nederland/menus/navigations')]: {
     [NS.schema('isPartOf')]: NS.app('nederland/menus'),
     [NS.argu('menuItems')]: new BlankNode('12_g69837729252540'),
-    [NS.argu('label')]: new Literal('Navigations'),
+    [NS.schema('name')]: new Literal('Navigations'),
     [NS.dc('identifier')]: NS.app('nederland/menus/navigations'),
     [NS.rdf('type')]: NS.argu('MenuItem'),
   },
@@ -58,7 +58,7 @@ const resources = {
   [NS.app('nederland/menus/navigations#settings')]: {
     [NS.schema('isPartOf')]: NS.app('nederland/menus/navigations'),
     [NS.schema('image')]: new NamedNode('http://fontawesome.io/icon/gear'),
-    [NS.argu('label')]: new Literal('Instellingen'),
+    [NS.schema('name')]: new Literal('Instellingen'),
     [NS.dc('identifier')]: NS.app('nederland/menus/navigations#settings'),
     [NS.argu('href')]: new Literal('https://argu.localdev/nederland/settings'),
     [NS.rdf('type')]: NS.argu('MenuItem'),
@@ -66,7 +66,7 @@ const resources = {
   [NS.app('nederland/menus/navigations#forums')]: {
     [NS.schema('isPartOf')]: NS.app('nederland/menus/navigations'),
     [NS.argu('menuItems')]: new BlankNode('12_g69837780660080'),
-    [NS.argu('label')]: new Literal('Forum'),
+    [NS.schema('name')]: new Literal('Forum'),
     [NS.dc('identifier')]: NS.app('nederland/menus/navigations#forums'),
     [NS.rdf('type')]: NS.argu('MenuSection'),
   },
@@ -80,7 +80,7 @@ const resources = {
   [NS.app('nederland/menus/navigations#forums.overview')]: {
     [NS.schema('isPartOf')]: NS.app('nederland/menus/navigations#forums'),
     [NS.schema('image')]: new NamedNode('http://fontawesome.io/icon/th-large'),
-    [NS.argu('label')]: new Literal('Overzicht'),
+    [NS.schema('name')]: new Literal('Overzicht'),
     [NS.dc('identifier')]: NS.app('nederland/menus/navigations#forums.overview'),
     [NS.argu('href')]: NS.app('nederland/forum'),
     [NS.rdf('type')]: NS.argu('MenuItem'),
@@ -88,7 +88,7 @@ const resources = {
   [NS.app('nederland/menus/navigations#forums.new_discussion')]: {
     [NS.schema('isPartOf')]: NS.app('nederland/menus/navigations#forums'),
     [NS.schema('image')]: new NamedNode('http://fontawesome.io/icon/plus'),
-    [NS.argu('label')]: new Literal('Nieuwe discussie'),
+    [NS.schema('name')]: new Literal('Nieuwe discussie'),
     [NS.dc('identifier')]: NS.app('nederland/menus/navigations#forums.new_discussion'),
     [NS.argu('href')]: NS.app('nederland/forum/discussions/new'),
     [NS.rdf('type')]: NS.argu('MenuItem'),
@@ -96,7 +96,7 @@ const resources = {
   [NS.app('nederland/menus/navigations#forums.activity')]: {
     [NS.schema('isPartOf')]: NS.app('nederland/menus/navigations#forums'),
     [NS.schema('image')]: new NamedNode('http://fontawesome.io/icon/feed'),
-    [NS.argu('label')]: new Literal('Activiteit'),
+    [NS.schema('name')]: new Literal('Activiteit'),
     [NS.dc('identifier')]: NS.app('nederland/menus/navigations#forums.activity'),
     [NS.argu('href')]: NS.app('nederland/forum/feed'),
     [NS.rdf('type')]: NS.argu('MenuItem'),

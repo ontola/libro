@@ -23,6 +23,6 @@ MenuSectionLabel.propTypes = propTypes;
 export default LinkedRenderStore.registerRenderer(
   MenuSectionLabel,
   NS.argu('MenuSection'),
-  NS.argu('label'),
+  NS.schema('name'),
   NS.argu('sidebar')
 );

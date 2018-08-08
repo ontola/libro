@@ -21,20 +21,20 @@ const MenuItemLabel = (
     <SideBarLinkIcon>
       <Property label={NS.schema('image')} />
     </SideBarLinkIcon>
-    <Property label={NS.argu('label')} />
+    <Property label={NS.schema('name')} />
   </Property>
 );
 
-const MenuItemDropdownContent = ({ href, image, label }) => (
+const MenuItemDropdownContent = ({ href, image, name }) => (
   <DropdownLink icon={image} url={href}>
-    {label.value}
+    {name.value}
   </DropdownLink>
 );
 
 MenuItemDropdownContent.propTypes = {
   href: linkType,
   image: linkType,
-  label: linkedPropType,
+  name: linkedPropType,
 };
 
 const MenuItemSidebar = () => (
@@ -47,7 +47,7 @@ const MenuItemSidebar = () => (
 
 const MenuItemDropdown = ({ menuItems }) => (
   <Dropdown
-    trigger={<Property label={NS.argu('label')} />}
+    trigger={<Property label={NS.schema('name')} />}
   >
     <LinkedResourceContainer subject={menuItems} topology={NS.argu('dropdownContent')} />
   </Dropdown>
@@ -55,6 +55,44 @@ const MenuItemDropdown = ({ menuItems }) => (
 
 MenuItemDropdown.propTypes = {
   menuItems: linkType,
+};
+
+const MenuItemPage = ({ topLevel }) => (
+  <Resource>
+    {topLevel && (
+    <Container>
+      <Card>
+        <Property label={NS.schema('isPartOf')} />
+      </Card>
+    </Container>
+    )}
+    <Property label={NS.argu('parentMenu')} topLevel={false} />
+    <TabBar>
+      <Property label={NS.argu('menuItems')} />
+    </TabBar>
+    <Property label={NS.argu('href')} />
+  </Resource>
+);
+
+MenuItemPage.propTypes = {
+  topLevel: linkType,
+};
+
+MenuItemPage.defaultProps = {
+  topLevel: true,
+};
+
+const MenuItemTab = ({ name }) => (
+  <Resource>
+    <Tab
+      icon={<Property label={NS.schema('image')} />}
+      label={name.value}
+    />
+  </Resource>
+);
+
+MenuItemTab.propTypes = {
+  name: linkType,
 };
 
 export default [
@@ -65,7 +103,7 @@ export default [
     NS.argu('sidebar')
   ),
   LinkedRenderStore.registerRenderer(
-    link([NS.argu('href'), NS.argu('label'), NS.schema('image')])(MenuItemDropdownContent),
+    link([NS.argu('href'), NS.schema('name'), NS.schema('image')])(MenuItemDropdownContent),
     NS.argu('MenuItem'),
     RENDER_CLASS_NAME,
     NS.argu('dropdownContent')

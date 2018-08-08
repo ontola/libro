@@ -9,7 +9,7 @@ import './MenuSection.scss';
 
 const MenuSection = () => (
   <div data-test="MenuSection-menu-section">
-    <Property label={NS.argu('label')} />
+    <Property label={NS.schema('name')} />
     <Property
       forceRender
       label={NS.argu('menuItems')}

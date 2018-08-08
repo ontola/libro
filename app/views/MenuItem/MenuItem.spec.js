@@ -10,7 +10,7 @@ const showResource = new NamedNode('https://argu.dev/menus/user#show');
 const resources = {
   [resource]: {
     [NS.rdf('type')]: NS.argu('MenuItem'),
-    [NS.argu('label')]: new Literal('Maarten van Scharendrecht'),
+    [NS.schema('name')]: new Literal('Maarten van Scharendrecht'),
     [NS.schema('isPartOf')]: new NamedNode('https://argu.dev/menus'),
     [NS.argu('menuItems')]: [
       new NamedNode('https://argu.dev/menus/user#show'),
@@ -20,21 +20,21 @@ const resources = {
   },
   [showResource]: {
     [NS.rdf('type')]: NS.argu('MenuItem'),
-    [NS.argu('label')]: new Literal('Gebruiker weergeven'),
+    [NS.schema('name')]: new Literal('Gebruiker weergeven'),
     [NS.argu('href')]: new Literal('https://argu.dev/u/maartenvscharendrecht'),
     [NS.schema('isPartOf')]: new NamedNode('https://argu.dev/menus/user'),
     [NS.schema('image')]: new NamedNode('http://fontawesome.io/icon/user'),
   },
   [new NamedNode('https://argu.dev/menus/user#profile')]: {
     [NS.rdf('type')]: NS.argu('MenuItem'),
-    [NS.argu('label')]: new Literal('Profiel bewerken'),
+    [NS.schema('name')]: new Literal('Profiel bewerken'),
     [NS.argu('href')]: new Literal('https://argu.dev/settings?tab=profile'),
     [NS.schema('isPartOf')]: new NamedNode('https://argu.dev/menus/user'),
     [NS.schema('image')]: new NamedNode('http://fontawesome.io/icon/pencil'),
   },
   [new NamedNode('https://argu.dev/menus/user#settings')]: {
     [NS.rdf('type')]: NS.argu('MenuItem'),
-    [NS.argu('label')]: new Literal('Gebruikersinstellingen'),
+    [NS.schema('name')]: new Literal('Gebruikersinstellingen'),
     [NS.argu('href')]: new Literal('https://argu.dev/settings'),
     [NS.schema('isPartOf')]: new NamedNode('https://argu.dev/menus/user'),
     [NS.schema('image')]: new NamedNode('http://fontawesome.io/icon/gear'),

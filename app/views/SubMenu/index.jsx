@@ -23,7 +23,7 @@ class SubMenuSideBar extends PureComponent {
     const label = (
       <Property forSubMenu label={NS.argu('href')}>
         <SideBarLinkIcon />
-        <Property label={NS.argu('label')} />
+        <Property label={NS.schema('name')} />
       </Property>
     );
 

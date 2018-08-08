@@ -23,37 +23,37 @@ const resources = {
     [NS.rdf('type')]: NS.argu('MenuItem'),
     [NS.schema('isPartOf')]: testNS('menus/info'),
     [NS.argu('href')]: new Literal('https://argu.dev/i/about'),
-    [NS.argu('label')]: new Literal('Over Argu'),
+    [NS.schema('name')]: new Literal('Over Argu'),
   },
   [testNS('menus/info#team')]: {
     [NS.rdf('type')]: NS.argu('MenuItem'),
     [NS.schema('isPartOf')]: testNS('menus/info'),
     [NS.argu('href')]: new Literal('https://argu.dev/i/team'),
-    [NS.argu('label')]: new Literal('Ons team'),
+    [NS.schema('name')]: new Literal('Ons team'),
   },
   [testNS('menus/info#governments')]: {
     [NS.rdf('type')]: NS.argu('MenuItem'),
     [NS.schema('isPartOf')]: testNS('menus/info'),
     [NS.argu('href')]: new Literal('https://argu.dev/i/governments'),
-    [NS.argu('label')]: new Literal('Argu voor overheden'),
+    [NS.schema('name')]: new Literal('Argu voor overheden'),
   },
   [testNS('menus/info#press_media')]: {
     [NS.rdf('type')]: NS.argu('MenuItem'),
     [NS.schema('isPartOf')]: testNS('menus/info'),
     [NS.argu('href')]: new Literal('https://argu.pr.co'),
-    [NS.argu('label')]: new Literal('Pers & media'),
+    [NS.schema('name')]: new Literal('Pers & media'),
   },
   [testNS('menus/info#support')]: {
     [NS.rdf('type')]: NS.argu('MenuItem'),
     [NS.schema('isPartOf')]: testNS('menus/info'),
     [NS.argu('href')]: new Literal('https://argu.freshdesk.com/support/home'),
-    [NS.argu('label')]: new Literal('Help & support'),
+    [NS.schema('name')]: new Literal('Help & support'),
   },
   [testNS('menus/info#contact')]: {
     [NS.rdf('type')]: NS.argu('MenuItem'),
     [NS.schema('isPartOf')]: testNS('menus/info'),
     [NS.argu('href')]: new Literal('https://argu.dev/i/contact'),
-    [NS.argu('label')]: new Literal('Contact'),
+    [NS.schema('name')]: new Literal('Contact'),
   },
 };
 
