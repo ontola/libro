@@ -1,6 +1,6 @@
 import { Map } from 'immutable';
 import { handleActions } from 'redux-actions';
-import { LOCATION_CHANGE } from 'react-router-redux';
+import { LOCATION_CHANGE } from 'connected-react-router';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import { SET_CURRENT_USER, SET_ORGANIZATION, HIGHLIGHT_RESOURCE } from '../action-types';

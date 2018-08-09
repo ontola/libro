@@ -4,7 +4,7 @@
  * @module API
  */
 
-import { push } from 'react-router-redux';
+import { push } from 'connected-react-router';
 import { createAction } from 'redux-actions';
 
 import { safeCredentials } from '../helpers/arguHelpers';

@@ -2,7 +2,7 @@ import LinkedRenderStore from 'link-lib';
 import { link, Property, subjectType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
-import { push } from 'react-router-redux';
+import { push } from 'connected-react-router';
 import { connect } from 'react-redux';
 
 import { Container } from '../../components';

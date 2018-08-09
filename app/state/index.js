@@ -1,5 +1,5 @@
 import { linkMiddleware } from 'link-redux';
-import { routerMiddleware } from 'react-router-redux';
+import { connectRouter, routerMiddleware } from 'connected-react-router/immutable';
 import { applyMiddleware, compose, createStore } from 'redux';
 import { enableBatching } from 'redux-batched-actions';
 import { combineReducers } from 'redux-immutable';
@@ -39,7 +39,7 @@ const configureStore = (preloadedState) => {
   }
 
   return createStore(
-    enableBatching(combineReducers(reducers)),
+    enableBatching(connectRouter(history)(combineReducers(reducers))),
     preloadedState,
     middleware
   );

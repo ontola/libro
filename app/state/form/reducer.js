@@ -1,5 +1,5 @@
 import { Map, List } from 'immutable';
-import { LOCATION_CHANGE } from 'react-router-redux';
+import { LOCATION_CHANGE } from 'connected-react-router';
 import { handleActions } from 'redux-actions';
 import { combineReducers } from 'redux-immutable';
 
