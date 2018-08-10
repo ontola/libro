@@ -12,4 +12,4 @@ export const PORT = getEnv('PORT', (__DEVELOPMENT__ ? PORT_DEVELOPMENT : PORT_PR
 export const STAGE = process.env.NODE_ENV === 'production' ? 'production' : 'staging';
 
 // Used internally in the router as a reverse proxy
-export const ARGU_API_URL = getEnv('ARGU_API_URL', 'https://argu.co', 'https://argu.dev');
+export const ARGU_API_URL = getEnv('ARGU_API_URL', 'https://argu.co', 'https://argu.localdev');

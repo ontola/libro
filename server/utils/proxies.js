@@ -7,7 +7,7 @@ import uuid from 'uuid';
 
 import * as constants from '../../app/config';
 
-function isRedirect(status) {
+export function isRedirect(status) {
   return status === HttpStatus.MULTIPLE_CHOICES
     || status === HttpStatus.MOVED_PERMANENTLY
     || status === HttpStatus.MOVED_TEMPORARILY

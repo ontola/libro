@@ -1,9 +1,10 @@
 import fetch from 'isomorphic-fetch';
 
+import * as constants from '../app/config';
+
 import { createUserRequest } from './api/users';
 import processResponse from './api/internal/statusHandler';
 import { guestTokenRequest, userTokenRequest } from './api/tokens';
-import { ARGU_API_URL } from './config';
 
 const oAuthToken = process.env.RAILS_OAUTH_TOKEN;
 
@@ -18,7 +19,7 @@ if (!oAuthToken) {
  */
 class API {
   constructor({ userToken }) {
-    this.base = ARGU_API_URL;
+    this.base = constants.ARGU_API_URL;
     this.serviceToken = oAuthToken;
     this.userToken = userToken;
   }
@@ -31,6 +32,22 @@ class API {
    */
   createUser(email, acceptTerms) {
     return this.fetch(this.userToken, createUserRequest(email, acceptTerms));
+  }
+
+  /**
+   * Make a request with the HEAD method
+   * @param {Request} req The request to forward
+   * @return {Promise} The proxies response
+   */
+  headRequest(req) {
+    return this.fetchRaw(this.userToken, {
+      headers: {
+        Accept: constants.FRONTEND_ACCEPT,
+      },
+      method: 'HEAD',
+      path: req.url,
+      redirect: 'manual',
+    });
   }
 
   /**
@@ -61,21 +78,36 @@ class API {
    * @return {Promise} The raw fetch promise.
    */
   fetch(authToken, { path, body }) {
-    return fetch(
-      [this.base, path].join('/'),
+    return this.fetchRaw(
+      authToken,
       {
         body: JSON.stringify(body),
         headers: {
           Accept: 'application/json',
-          Authorization: `Bearer ${authToken}`,
           'Content-Type': 'application/json',
-          'X-Argu-Back': 'true',
         },
         method: 'POST',
+        path,
         redirect: 'error',
-        strictSSL: process.env.NODE_ENV !== 'development',
       }
     ).then(processResponse);
+  }
+
+  fetchRaw(authToken, { path, ...opts }) {
+    const { headers, ...rest } = opts;
+
+    return fetch(
+      new URL(path, this.base).toString(),
+      {
+        ...rest,
+        headers: {
+          ...headers,
+          Authorization: `Bearer ${authToken}`,
+          'X-Argu-Back': 'true',
+        },
+        strictSSL: process.env.NODE_ENV !== 'development',
+      }
+    );
   }
 }
 

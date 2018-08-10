@@ -2,6 +2,7 @@
 import bodyParser from 'body-parser';
 import csurf from 'csurf';
 import express from 'express';
+import { INTERNAL_SERVER_ERROR } from 'http-status-codes';
 import morgan from 'morgan';
 
 import * as constants from '../../app/config';
@@ -10,7 +11,7 @@ import errorHandlerMiddleware from '../middleware/errorHandlerMiddleware';
 import sessionMiddleware from '../middleware/sessionMiddleware';
 import { isAuthenticated, isBackend, isIframe } from '../utils/filters';
 import manifest from '../utils/manifest';
-import { backendProxy, iframeProxy } from '../utils/proxies';
+import { backendProxy, iframeProxy, isRedirect } from '../utils/proxies';
 import { handleRender } from '../utils/render';
 
 import login from './login';
@@ -55,17 +56,34 @@ export default function routes(app, port) {
   app.get(/.*/, (req, res) => {
     const domain = req.get('host').replace(/:.*/, '');
 
-    res.setHeader(
-      'Link',
-      [
-        `<${constants.FRONTEND_URL}/static/preloader.css>; rel=preload; as=style`,
-        `<${constants.ASSETS_HOST}${manifest['main.js']}>; rel=preload; as=script`,
-        `<${constants.ASSETS_HOST}${manifest['main.css']}>; rel=preload; as=style`,
-      ]
-    );
-    res.setHeader('Vary', 'Accept,Accept-Encoding,Content-Type');
-    handleRender(req, res, port, domain);
-    return undefined;
+    req.api.headRequest(req).then((serverRes) => {
+      res.status(serverRes.status);
+      if (isRedirect(serverRes.status)) {
+        const location = serverRes.headers.get('Location');
+        if (!location) {
+          // TODO: bugsnag
+        }
+
+        res.set('Location', location);
+        return res.end();
+      }
+
+      res.setHeader(
+        'Link',
+        [
+          `<${constants.FRONTEND_URL}/static/preloader.css>; rel=preload; as=style`,
+          `<${constants.ASSETS_HOST}${manifest['main.js']}>; rel=preload; as=script`,
+          `<${constants.ASSETS_HOST}${manifest['main.css']}>; rel=preload; as=style`,
+        ]
+      );
+      res.setHeader('Vary', 'Accept,Accept-Encoding,Content-Type');
+      handleRender(req, res, port, domain);
+      return undefined;
+    }).catch((e) => {
+      console.log(e);
+      // TODO: bugsnag
+      res.sendStatus(INTERNAL_SERVER_ERROR).end();
+    });
   });
 
   app.use(errorHandlerMiddleware);

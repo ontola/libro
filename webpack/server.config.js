@@ -1,5 +1,7 @@
 const path = require('path');
 
+const babelRestSpread = require('babel-plugin-transform-object-rest-spread');
+const babelTransformRuntime = require('babel-plugin-transform-runtime');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const StringReplacePlugin = require('string-replace-webpack-plugin');
@@ -35,7 +37,8 @@ const config = {
               comments: false,
               compact: true,
               minified: true,
-              presets: ['react'],
+              plugins: [babelRestSpread, babelTransformRuntime],
+              presets: ['env'],
             },
           },
         ],
