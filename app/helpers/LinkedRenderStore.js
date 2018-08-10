@@ -2,7 +2,7 @@
 import LinkedRenderStore, { memoizedNamespace } from 'link-lib';
 import { Literal, NamedNode, Statement } from 'rdflib';
 
-import { FRONTEND_URL } from '../config';
+import { FRONTEND_ACCEPT, FRONTEND_URL } from '../config';
 
 import transformers from './transformers';
 import ontolaMiddleware from './ontolaMiddleware';
@@ -21,7 +21,7 @@ transformers
   .transformers
   .forEach(t => LRS.api.registerTransformer(t.transformer, t.mediaTypes, t.acceptValue));
 
-LRS.api.setAcceptForHost(FRONTEND_URL, 'application/n-quads');
+LRS.api.setAcceptForHost(FRONTEND_URL, FRONTEND_ACCEPT);
 
 LRS.namespaces.app = memoizedNamespace(FRONTEND_URL.endsWith('/') ? FRONTEND_URL : `${FRONTEND_URL}/`);
 LRS.namespaces.aod = memoizedNamespace('https://argu.co/ns/od#');
