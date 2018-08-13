@@ -23,6 +23,8 @@ const config = {
 
   externals: [nodeExternals()],
 
+  mode: 'production',
+
   module: {
     rules: [
       {

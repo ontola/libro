@@ -37,7 +37,7 @@ export const renderFullPage = (html, devPort, domain, csrfToken, initialState = 
         <meta name="csrf-param" content="authenticity_token">
         <meta name="csrf-token" content="${csrfToken}">
         <script src="//d2wy8f7a9ursnm.cloudfront.net/v4/bugsnag.min.js"></script>
-        <script>window.bugsnagClient = bugsnag(${JSON.stringify(bugsnagOpts)})</script>
+        <script>window.bugsnagClient = typeof bugsnag !== 'undefined' && bugsnag(${JSON.stringify(bugsnagOpts)})</script>
 
         <link rel="icon" type="image/png" sizes="192x192" href="/static/icon-large.png">
         <link rel="apple-touch-icon" type="image/png" sizes="192x192" href="/static/icon-large.png">
@@ -72,9 +72,10 @@ export const renderFullPage = (html, devPort, domain, csrfToken, initialState = 
             <div class="rect5"></div>
           </div>
         </div>
-        <div id="root">${html}</div>
+        <div id="root">${html || ''}</div>
         <script>document.body.className += ' Body--show-preloader';</script>
-        <script src="${ASSETS_HOST}${manifest['main.js']}"></script>
+        <script async src="${ASSETS_HOST}${manifest['main.js']}"></script>
+        ${(manifest['vendors~main.js'] && `<script async src="${ASSETS_HOST}${manifest['vendors~main.js']}"></script>`) || ''}
         <script>
           window.__PRELOADED_STATE__ = ${JSON.stringify(initialState).replace(/</g, '\\\u003c')}
         </script>

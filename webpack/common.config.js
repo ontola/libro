@@ -1,6 +1,7 @@
 const path = require('path');
 
 const webpack = require('webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const TARGET = process.env.npm_lifecycle_event;
 process.env.BABEL_ENV = TARGET;
@@ -39,11 +40,12 @@ const common = {
   },
 
   output: {
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
     path: path.resolve(`${__dirname}/../dist/public/`),
   },
 
   plugins: [
+    new CleanWebpackPlugin(),
     new webpack.ProvidePlugin({
       fetch: 'isomorphic-fetch',
       xmlhttprequest: 'imports-loader?this=>global!exports?global.XMLHttpRequest!global.XMLHttpRequest',

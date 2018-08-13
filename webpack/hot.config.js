@@ -2,41 +2,49 @@
 
 // require('react-hot-loader/patch');
 const webpack = require('webpack');
+const merge = require('webpack-merge');
 
-const config = require('./common.config');
+const common = require('./common.config');
 
-config.output.publicPath = '/f_assets/';
-config.output.pathinfo = true;
+module.exports = merge(common, {
+  cache: true,
 
-config.entry = [
-  'webpack-hot-middleware/client',
-  'react-hot-loader/patch',
-  './app/index.jsx',
-];
+  devtool: 'inline-source-map',
 
-config.cache = true;
+  entry: [
+    'webpack-hot-middleware/client',
+    'react-hot-loader/patch',
+    './app/index.jsx',
+  ],
 
-config.devtool = 'inline-source-map';
+  mode: 'development',
 
-config.module.rules.unshift({
-  exclude: /node_modules/,
-  test: /\.(js|jsx)$/,
-  use: ['babel-loader'],
-});
+  module: {
+    rules: [
+      {
+        exclude: /node_modules/,
+        test: /\.(js|jsx)$/,
+        use: ['babel-loader'],
+      },
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'postcss-loader',
+          'sass-loader',
+        ],
+      },
+    ],
+  },
 
-config.module.rules.unshift({
-  test: /\.(sa|sc|c)ss$/,
-  use: [
-    'style-loader',
-    'css-loader',
-    'postcss-loader',
-    'sass-loader',
+  output: {
+    pathinfo: true,
+    publicPath: '/f_assets/',
+  },
+
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
   ],
 });
-
-config.plugins.push(
-  new webpack.HotModuleReplacementPlugin(),
-  new webpack.NoEmitOnErrorsPlugin()
-);
-
-module.exports = config;

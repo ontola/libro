@@ -1,82 +1,98 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const merge = require('webpack-merge');
 const webpack = require('webpack');
 const { BugsnagBuildReporterPlugin } = require('webpack-bugsnag-plugins');
 
 const pjson = require('../package.json');
 
-const config = require('./common.config');
+const common = require('./common.config');
 
-config.output.publicPath = '/f_assets/';
-
-config.entry = [
-  './app/index.jsx',
-];
-
-config.output.filename = 'bundle-[chunkhash].js';
-
-config.module.rules.unshift({
-  include: [
-    /app/,
-    /node_modules\/whatwg-url/,
-    /node_modules\/universal-url/,
-    /node_modules\/webidl-conversions/,
-    /node_modules\/ml-disjoint-set/,
-  ],
-  test: /(\.jsx\.js)?$/,
-  use: ['babel-loader'],
-});
-
-config.module.rules.push({
-  test: /\.(sa|sc|c)ss$/,
-  use: [
-    MiniCssExtractPlugin.loader,
-    'css-loader',
-    'postcss-loader',
-    'sass-loader',
-  ],
-});
-
-config.plugins.push(
-  new MiniCssExtractPlugin({
-    filename: 'bundle-[contenthash].css',
-  }),
-  new webpack.DefinePlugin({
-    'process.env.ARGU_API_EXT_BASE': JSON.stringify(process.env.ARGU_API_EXT_BASE
-      || 'https://beta.argu.co/api/'),
-    'process.env.NODE_ENV': JSON.stringify('production'),
-  }),
-  new webpack.ProvidePlugin({
-    fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
-    xmlhttprequest: 'imports?this=>global!exports?global.XMLHttpRequest!global.XMLHttpRequest',
-  }),
-  new webpack.ProvidePlugin({
-    fetch: 'isomorphic-fetch',
-  }),
-  new webpack.HashedModuleIdsPlugin(),
-  new ManifestPlugin({
-    fileName: '../private/manifest.json',
-    publicPath: '/f_assets/',
-  })
-);
-
+let bugsnagPlugin;
 if (process.env.SEMAHORE_DEPLOY_NUMBER) {
-  config.plugins.push(new BugsnagBuildReporterPlugin({
+  bugsnagPlugin = new BugsnagBuildReporterPlugin({
     apiKey: process.env.BUGSNAG_KEY,
     appVersion: pjson.version,
     releaseStage: process.env.SEMAPHORE_SERVER_NAME,
-  }));
+  });
 }
 
-config.stats = {
-  // minimal logging
-  assets: false,
-  children: false,
-  chunkModules: false,
-  chunks: false,
-  colors: true,
-  timings: false,
-  version: false,
-};
+module.exports = merge(common, {
+  devtool: 'source-map',
 
-module.exports = config;
+  entry: [
+    './app/index.jsx',
+  ],
+
+  module: {
+    rules: [
+      {
+        include: [
+          /app/,
+          /node_modules\/whatwg-url/,
+          /node_modules\/universal-url/,
+          /node_modules\/webidl-conversions/,
+          /node_modules\/ml-disjoint-set/,
+        ],
+        test: /(\.jsx\.js)?$/,
+        use: ['babel-loader'],
+      },
+
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+          'sass-loader',
+        ],
+      },
+    ],
+  },
+
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
+  },
+
+  output: {
+    filename: 'bundle-[chunkhash].js',
+    publicPath: '/f_assets/',
+  },
+
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'bundle-[contenthash].css',
+    }),
+    new webpack.DefinePlugin({
+      'process.env.ARGU_API_EXT_BASE': JSON.stringify(process.env.ARGU_API_EXT_BASE
+        || 'https://beta.argu.co/api/'),
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    }),
+    new webpack.ProvidePlugin({
+      fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
+      xmlhttprequest: 'imports?this=>global!exports?global.XMLHttpRequest!global.XMLHttpRequest',
+    }),
+    new webpack.ProvidePlugin({
+      fetch: 'isomorphic-fetch',
+    }),
+    new webpack.HashedModuleIdsPlugin(),
+    new ManifestPlugin({
+      fileName: '../private/manifest.json',
+      publicPath: '/f_assets/',
+    }),
+    bugsnagPlugin,
+  ].filter(p => typeof p !== 'undefined'),
+
+  stats: {
+    // minimal logging
+    assets: false,
+    children: false,
+    chunkModules: false,
+    chunks: false,
+    colors: true,
+    timings: false,
+    version: false,
+  },
+});
