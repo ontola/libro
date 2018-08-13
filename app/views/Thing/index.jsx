@@ -32,7 +32,6 @@ import { NS } from '../../helpers/LinkedRenderStore';
 
 import Arguments from './properties/arguments';
 import BaseColor from './properties/baseColor';
-import CollectionAssociation from './properties/collectionAssociation';
 import CoverPhoto from './properties/coverPhoto';
 import CreateAction from './properties/createAction';
 import DateCreated from './properties/dateCreated';
@@ -241,7 +240,6 @@ export default [
   ),
   ...Arguments,
   BaseColor,
-  CollectionAssociation,
   CoverPhoto,
   CreateAction,
   DateCreated,
