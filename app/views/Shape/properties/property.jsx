@@ -3,7 +3,6 @@ import {
   LinkedResourceContainer,
   PropertyBase, withLRS,
 } from 'link-redux';
-import { BlankNode } from 'rdflib';
 import React from 'react';
 
 import { allow, filter, sortIRIS } from '../../../helpers/data';
@@ -105,14 +104,14 @@ class ShProperty extends PropertyBase {
       .forEach((s) => {
         const group = lrs.store.anyStatementMatching(s.object, NS.sh('group'));
         if (group && !groups.has(group.object.value)) {
-          groups.set(group.object.value, []);
+          groups.set(group.object, []);
         }
 
         const order = lrs.store.anyStatementMatching(s.object, NS.sh('order'));
         if (order) {
           const i = Number.parseInt(order.object.value, DECIMAL);
           if (group) {
-            groups.get(group.object.value)[i] = s.object;
+            groups.get(group.object)[i] = s.object;
           } else {
             props[i] = s.object;
           }
@@ -121,8 +120,7 @@ class ShProperty extends PropertyBase {
         }
       });
 
-    groups.forEach((v, k) => {
-      const g = new BlankNode(k);
+    groups.forEach((v, g) => {
       const group = { group: g, props: v.filter(p => p !== undefined) };
       const order = lrs.store.anyStatementMatching(g, NS.sh('order'));
       if (order) {

@@ -19,7 +19,7 @@ function compare(a, b) {
 function convertKeysAtoB(obj) {
   const output = {};
   Object.entries(obj).forEach(([k, v]) => {
-    if (Object.prototype.toString.apply(v) === '[object Object]') {
+    if (Object.prototype.toString.apply(v) === '[object Object]' && !Object.prototype.hasOwnProperty.call(v, 'termType')) {
       output[atob(k)] = convertKeysAtoB(v);
     } else if (Array.isArray(v)) {
       output[atob(k)] = v.map(i => convertKeysAtoB(i));

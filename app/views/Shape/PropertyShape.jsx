@@ -24,6 +24,7 @@ const propTypes = {
   autofocus: PropTypes.bool,
   class: linkType,
   datatype: linkType,
+  defaultValue: linkType,
   description: linkType,
   in: linkType,
   maxLength: linkType,
@@ -90,6 +91,7 @@ class PropertyShape extends PropertyBase {
     const {
       autofocus,
       datatype,
+      defaultValue,
       description,
       maxLength,
       minCount,
@@ -135,7 +137,7 @@ class PropertyShape extends PropertyBase {
           validateOnChange
           autofocus={autofocus}
           field={fieldName}
-          initialValue={t && t.value}
+          initialValue={(t && t.value) || defaultValue}
           label={name && name.value}
           maxLength={maxLength}
           minLength={minLength}
@@ -163,6 +165,7 @@ export default [
       NS.sh('class'),
       NS.sh('datatype'),
       NS.sh('description'),
+      NS.sh('defaultValue'),
       NS.sh('in'),
       NS.sh('maxLength'),
       NS.sh('minCount'),
