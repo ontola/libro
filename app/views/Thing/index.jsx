@@ -81,10 +81,10 @@ const ThingPage = () => (
           <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
           <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
           <Property label={NS.foaf('isPrimaryTopicOf')} />
-          <Property label={NS.council('attachment')} />
+          <Property label={NS.meeting('attachment')} />
           <Property label={NS.argu('attachments')} />
         </CardContent>
-        <Property label={NS.council('agenda')} />
+        <Property label={NS.meeting('agenda')} />
         <CardAppendix>
           <Property forceRender label={NS.app('omniform')} />
         </CardAppendix>
@@ -180,7 +180,7 @@ const ThingCard = () => (
     <CardContent>
       <Property label={[NS.schema('name'), NS.rdfs('label'), NS.schema('name')]} />
       <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
-      <Property label={NS.council('attachment')} />
+      <Property label={NS.meeting('attachment')} />
     </CardContent>
   </CardRow>
 );

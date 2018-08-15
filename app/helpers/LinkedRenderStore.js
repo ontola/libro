@@ -25,7 +25,7 @@ LRS.api.setAcceptForHost(FRONTEND_URL, FRONTEND_ACCEPT);
 
 LRS.namespaces.app = memoizedNamespace(FRONTEND_URL.endsWith('/') ? FRONTEND_URL : `${FRONTEND_URL}/`);
 LRS.namespaces.aod = memoizedNamespace('https://argu.co/ns/od#');
-LRS.namespaces.council = memoizedNamespace('https://argu.co/ns/0.1/gov/council#');
+LRS.namespaces.meeting = memoizedNamespace('https://argu.co/ns/meeting/');
 LRS.namespaces.sh = memoizedNamespace('http://www.w3.org/ns/shacl#');
 LRS.namespaces.opengov = memoizedNamespace('http://www.w3.org/ns/opengov#');
 
@@ -235,25 +235,22 @@ const ontologicalData = [
   new Statement(NS.argu('InfiniteCollectionView'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.argu('InfiniteCollectionView'), NS.rdfs('subClassOf'), NS.as('CollectionPage')),
 
-  new Statement(NS.opengov('Event'), NS.rdf('type'), NS.rdfs('Class')),
-  new Statement(NS.opengov('Event'), NS.rdfs('label'), new Literal('Event', languages.en)),
-  new Statement(NS.opengov('Event'), NS.rdfs('label'), new Literal('Gebeurtenis', languages.nl)),
-  new Statement(NS.opengov('Event'), NS.rdfs('subClassOf'), NS.schema('Thing')),
-  new Statement(NS.opengov('Event'), NS.schema('description'), new Literal('An event is an occurrence that people may attend.', languages.en)),
-  new Statement(NS.opengov('Event'), NS.schema('description'), new Literal('Een gebeurtenis is iets dat mensen kunnen bijwonen.', languages.nl)),
-  new Statement(NS.opengov('Event'), NS.schema('image'), new NamedNode('http://fontawesome.io/icon/calendar')),
+  new Statement(NS.meeting('Meeting'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.meeting('Meeting'), NS.rdfs('subClassOf'), NS.schema('Thing')),
+  new Statement(NS.meeting('Meeting'), NS.rdfs('subClassOf'), new NamedNode('http://purl.org/NET/c4dm/event.owl#Event')),
+  new Statement(NS.meeting('Meeting'), NS.rdfs('label'), new Literal('Meeting', languages.en)),
+  new Statement(NS.meeting('Meeting'), NS.rdfs('label'), new Literal('Vergadering', languages.nl)),
+  new Statement(NS.meeting('Meeting'), NS.schema('description'), new Literal('A meeting is an event where people discuss things and make decisions.', languages.en)),
+  new Statement(NS.meeting('Meeting'), NS.schema('description'), new Literal('Een vergadering is een bijeenkomst waar mensen dingen bespreken en belsuiten nemen.', languages.nl)),
+  new Statement(NS.meeting('Meeting'), NS.schema('image'), new NamedNode('http://fontawesome.io/icon/calendar')),
 
-  new Statement(NS.council('AgendaItem'), NS.rdf('type'), NS.rdfs('Class')),
-  new Statement(NS.council('AgendaItem'), NS.rdfs('label'), new Literal('Agenda Item', languages.en)),
-  new Statement(NS.council('AgendaItem'), NS.rdfs('label'), new Literal('Agendapunt', languages.nl)),
-  new Statement(NS.council('AgendaItem'), NS.rdfs('subClassOf'), NS.schema('Thing')),
-  new Statement(NS.council('AgendaItem'), NS.schema('description'), new Literal('An Agenda Item is a topic that is discussed during a meeeting.', languages.en)),
-  new Statement(NS.council('AgendaItem'), NS.schema('description'), new Literal('Een Agendapunt is een onderwerp dat wordt besproken tijdens een vergadering.', languages.nl)),
-  new Statement(NS.council('AgendaItem'), NS.schema('image'), new NamedNode('http://fontawesome.io/icon/list')),
-
-  new Statement(NS.council('Attachment'), NS.rdf('type'), NS.rdfs('Class')),
-  new Statement(NS.council('Attachment'), NS.rdfs('subClassOf'), NS.schema('Thing')),
-  new Statement(NS.council('Attachment'), NS.rdfs('subClassOf'), NS.schema('MediaObject')),
+  new Statement(NS.meeting('AgendaItem'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.meeting('AgendaItem'), NS.rdfs('label'), new Literal('Agenda Item', languages.en)),
+  new Statement(NS.meeting('AgendaItem'), NS.rdfs('label'), new Literal('Agendapunt', languages.nl)),
+  new Statement(NS.meeting('AgendaItem'), NS.rdfs('subClassOf'), NS.schema('Thing')),
+  new Statement(NS.meeting('AgendaItem'), NS.schema('description'), new Literal('An Agenda Item is a topic that is discussed during a meeeting.', languages.en)),
+  new Statement(NS.meeting('AgendaItem'), NS.schema('description'), new Literal('Een Agendapunt is een onderwerp dat wordt besproken tijdens een vergadering.', languages.nl)),
+  new Statement(NS.meeting('AgendaItem'), NS.schema('image'), new NamedNode('http://fontawesome.io/icon/list')),
 ];
 
 LRS.addOntologySchematics(ontologicalData);

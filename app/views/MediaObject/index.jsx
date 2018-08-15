@@ -12,7 +12,7 @@ export default [
       NS.schema('fileFormat'),
       NS.schema('fileSize'),
     ], { returnType: 'value' })(Attachment),
-    [NS.schema('MediaObject'), NS.council('Attachment')],
+    NS.schema('MediaObject'),
     RENDER_CLASS_NAME,
     [
       NS.argu('cardList'),

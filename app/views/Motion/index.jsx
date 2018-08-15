@@ -39,7 +39,7 @@ const MotionPage = () => (
           <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
         </CardContent>
         <Property label={NS.argu('attachments')} />
-        <Property label={NS.council('attachment')} />
+        <Property label={NS.meeting('attachment')} />
         <Property label={NS.argu('voteableVoteEvent')} />
         <CardAppendix>
           <Property forceRender label={NS.app('omniform')} />
