@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "assert": "^1.4.1",
+    "babel-eslint": "7.2.3",
     "babel-plugin-transform-runtime": "^6.23.0",
     "body-parser": "^1.18.2",
     "clipboard-copy": "^2.0.0",
