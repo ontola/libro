@@ -33,11 +33,11 @@ class HoverHelper extends Component {
       if (resourceLink) {
         /* global dev:true */
         const trips = dev.getLRS().tryEntity(namedNodeByIRI(resourceLink));
-        console.log(dev.toObject(trips));
+        console.log(dev.toObject(trips)); // eslint-disable-line no-console
         break;
       }
       if (currentElement.tagName === 'BODY') {
-        console.log('Nothing found!');
+        console.log('Nothing found!'); // eslint-disable-line no-console
         break;
       }
       currentElement = currentElement.parentElement;
