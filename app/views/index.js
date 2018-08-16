@@ -13,7 +13,7 @@ import Action from './Action/index';
 import Argument from './Argument/index';
 import EntryPoint from './EntryPoint';
 import Error from './Error';
-import Forum from './Forum';
+import Forum from './Forum/index';
 import ImageObject from './ImageObject';
 import InfiniteCollectionView from './InfiniteCollectionView';
 import RDFSClass from './RDFSClass';
@@ -25,7 +25,7 @@ import MenuSection from './MenuSection';
 import Motion from './Motion';
 import Notification from './Notification';
 // import './OpinionBubble';
-import Organization from './Organization';
+import Organization from './Organization/index';
 import Person from './Person';
 import SeqComp from './Seq';
 import Shape from './Shape';
@@ -49,7 +49,7 @@ LRS.registerAll(
   ...Comment,
   ...EntryPoint,
   ...Error,
-  Forum,
+  ...Forum,
   ...ImageObject,
   ...InfiniteCollectionView,
   ...Loading,

@@ -1,31 +1,35 @@
-import LinkedRenderStore from 'link-lib';
-import { Property, linkedPropType } from 'link-redux';
+import { Property, linkedPropType, register } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
 
 import './name.scss';
 
-const propTypes = {
-  linkedProp: linkedPropType,
-};
+class OrganizationName extends React.PureComponent {
+  static type = [NS.schema('Organization'), NS.argu('Page')];
 
-const OrganizationName = ({ linkedProp }) => (
-  <div className="OrganizationName">
-    <Property label={NS.schema('image')} />
-    <span className="OrganizationName__value">{linkedProp.value}</span>
-  </div>
-);
-
-OrganizationName.propTypes = propTypes;
-
-export default LinkedRenderStore.registerRenderer(
-  OrganizationName,
-  [NS.schema('Organization'), NS.argu('Page')],
-  [
+  static property = [
     NS.schema('name'),
     NS.rdfs('label'),
     NS.foaf('name'),
-  ],
-  NS.argu('sidebar')
-);
+  ];
+
+  static topology = NS.argu('sidebar');
+
+  static propTypes = {
+    linkedProp: linkedPropType,
+  };
+
+  render() {
+    const { linkedProp } = this.props;
+
+    return (
+      <div className="OrganizationName">
+        <Property label={NS.schema('image')} />
+        <span className="OrganizationName__value">{linkedProp.value}</span>
+      </div>
+    );
+  }
+}
+
+export default register(OrganizationName);
