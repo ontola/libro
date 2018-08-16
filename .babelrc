@@ -18,6 +18,7 @@
   ],
   "plugins": [
     "transform-object-rest-spread",
+    "transform-class-properties",
     "syntax-dynamic-import",
     "transform-new-target",
     "add-react-displayname"
@@ -35,10 +36,6 @@
       ]
     },
     "test": {
-      "presets": [
-        "react",
-        "es2015"
-      ],
       "plugins": [
         [
           "babel-plugin-webpack-alias",

@@ -1,5 +1,6 @@
 import { mount } from 'enzyme';
 import React from 'react';
+import { Collapse } from 'react-collapse';
 
 import Collapsible from '.';
 
@@ -34,14 +35,14 @@ describe('Collapsible component', () => {
   });
 
   it('should not display a preview', () => {
-    expect(getComp().find('Collapse')).toHaveProp('theme', undefined);
+    expect(getComp().find(Collapse)).toHaveProp('theme', undefined);
   });
 
   describe('with preview', () => {
     it('should display a preview', () => {
       const comp = getComp({ preview: true });
 
-      expect(comp.find('Collapse'))
+      expect(comp.find(Collapse))
         .toHaveProp('theme', { container: 'Collapsible__container--preview' });
     });
   });
