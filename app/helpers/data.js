@@ -16,6 +16,21 @@ function compare(a, b) {
   return -1;
 }
 
+function dataURItoBlob(literal) {
+  const dataURI = literal.value;
+  const filename = literal.datatype.value.split('filename=').pop();
+  const [preamble, data] = dataURI.split(',');
+  const byteString = atob(data);
+  const ia = new Uint8Array(new ArrayBuffer(byteString.length));
+
+  for (let i = 0; i < byteString.length; i++) {
+    ia[i] = byteString.charCodeAt(i);
+  }
+  const b = new Blob([ia], { encoding: 'UTF-8', type: preamble.split(':').pop().split(';').shift() });
+
+  return new File([b], filename);
+}
+
 function convertKeysAtoB(obj) {
   const output = {};
   Object.entries(obj).forEach(([k, v]) => {
@@ -23,6 +38,8 @@ function convertKeysAtoB(obj) {
       output[atob(k)] = convertKeysAtoB(v);
     } else if (Array.isArray(v)) {
       output[atob(k)] = v.map(i => convertKeysAtoB(i));
+    } else if (v.datatype && v.datatype.value.startsWith('https://argu.co/ns/core#base64File')) {
+      output[atob(k)] = dataURItoBlob(v);
     } else {
       output[atob(k)] = v;
     }

@@ -4,9 +4,7 @@ import React from 'react';
 import Input from './Input';
 
 const propTypes = {
-  input: PropTypes.shape({
-    onChange: PropTypes.func,
-  }),
+  onChange: PropTypes.func,
 };
 
 class FileInput extends React.Component {
@@ -16,13 +14,19 @@ class FileInput extends React.Component {
   }
 
   onChange(e) {
-    const { input: { onChange } } = this.props;
+    const { onChange } = this.props;
     onChange(e.target.files[0]);
   }
 
   render() {
+    const {
+      value, // eslint-disable-line no-unused-vars, File inputs cannot be controlled.
+      ...rest
+    } = this.props;
+
     return (
       <Input
+        {...rest}
         type="file"
         onChange={this.onChange}
       />

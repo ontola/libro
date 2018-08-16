@@ -68,9 +68,6 @@ const propTypes = {
    * Set the fields' value to this if the type is hidden.
    */
   hiddenValue: PropTypes.string,
-  input: PropTypes.shape({
-    onChange: PropTypes.func,
-  }),
   inputMode: PropTypes.oneOf([
     'decimal',
     'email',
@@ -81,6 +78,7 @@ const propTypes = {
     'text',
     'url',
   ]),
+  onChange: PropTypes.func,
   spellCheck: PropTypes.bool,
   type: PropTypes.oneOf([
     'button',

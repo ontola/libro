@@ -5,6 +5,7 @@ import React from 'react';
 import { asField } from 'informed';
 
 import './FormField.scss';
+import FileInput from '../Input/FileInput';
 import TextEditor from '../TextEditor';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { Input } from '../Input';
@@ -103,8 +104,9 @@ function getBase64(file) {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => resolve(new Literal(
-      reader.result.slice(reader.result.indexOf('base64,') + 'base64,'.length),
-      NS.xsd('base64Binary')
+      reader.result,
+      undefined,
+      NS.argu(`base64File?filename=${encodeURIComponent(file.name)}`)
     ));
     reader.onerror = error => reject(error);
   });
@@ -131,7 +133,6 @@ class FormField extends React.Component {
       fieldApi,
       forwardedRef,
       id,
-      initialValue,
       minLength,
       name,
       onBlur,
@@ -145,37 +146,76 @@ class FormField extends React.Component {
       type,
     } = this.props;
 
-    const { touched, value } = this.props.fieldState;
+    const fieldTxt = field && atob(field);
+
+    const className = `Field__input Field__input--${type || 'text'}`;
+
+    const sharedProps = {
+      autoFocus: autofocus,
+      className,
+      id: id || fieldTxt,
+      name: name || fieldTxt,
+      onBlur: (e) => {
+        fieldApi.setTouched();
+        this.setState({
+          active: false,
+        });
+        if (onBlur) {
+          onBlur(e);
+        }
+      },
+      onChange: (e) => {
+        fieldApi.setValue(e.target.value);
+        if (onChange) {
+          onChange(e);
+        }
+        return undefined;
+      },
+      onFocus: () => {
+        this.setState({
+          active: true,
+        });
+      },
+      required,
+    };
 
     if (type === 'select') {
       return (
-        <select
-          className={`Field__input Field__input--${type || 'text'}`}
-          id={id}
-          required={required}
-          onBlur={(e) => {
-            fieldApi.setTouched();
-            this.setState({
-              active: false,
-            });
-            if (onBlur) {
-              onBlur(e);
-            }
-          }}
-          onChange={(e) => {
-            fieldApi.setValue(e.target.value);
-            if (onChange) {
-              onChange(e);
-            }
-          }}
-          onFocus={() => {
-            this.setState({
-              active: true,
-            });
-          }}
-        >
+        <select {...sharedProps}>
           {options.map(o => <option key={o.value} value={o.value}>{o.value}</option>)}
         </select>
+      );
+    }
+
+    if (type === 'file') {
+      return (
+        <FileInput
+          {...sharedProps}
+          onChange={e => new Promise(() => {
+            if (!e) {
+              fieldApi.setValue(undefined);
+              return onChange && onChange(undefined, undefined);
+            }
+
+            let file = e;
+
+            if (Array.isArray(e)) {
+              [file] = e;
+            }
+            if (Object.prototype.hasOwnProperty.call(e, 'target')
+              && Object.prototype.hasOwnProperty.call(e.target, 'files')) {
+              [file] = e.target.files;
+            }
+
+            return getBase64(file)
+              .then((enc) => {
+                fieldApi.setValue(enc);
+                if (onChange) {
+                  onChange(enc, e);
+                }
+              });
+          })}
+        />
       );
     }
 
@@ -188,57 +228,33 @@ class FormField extends React.Component {
         element = 'input';
     }
 
-    const fieldTxt = field && atob(field);
     return (
       <Input
+        {...sharedProps}
         autoComplete={autoComplete}
-        autoFocus={autofocus}
-        className={`Field__input Field__input--${type || 'text'}`}
         element={element}
-        id={id || fieldTxt}
         // TODO: [AOD-218] HTML only noscript
         // maxLength={maxLength}
         minLength={minLength}
-        name={name || fieldTxt}
         placeholder={placeholder}
         ref={forwardedRef}
         required={required}
         rows={rows}
         type={type}
-        value={!touched && !value && value !== 0 ? initialValue || '' : value}
-        onBlur={(e) => {
-          fieldApi.setTouched();
-          this.setState({
-            active: false,
-          });
-          if (onBlur) {
-            onBlur(e);
-          }
-        }}
-        onChange={(e) => {
-          if (type === 'file') {
-            return new Promise(() => getBase64(e.target.files[0])
-              .then((enc) => {
-                fieldApi.setValue(enc);
-                if (onChange) {
-                  onChange(enc, e);
-                }
-              }));
-          }
-          fieldApi.setValue(e.target.value);
-          if (onChange) {
-            onChange(e);
-          }
-          return undefined;
-        }}
-        onFocus={() => {
-          this.setState({
-            active: true,
-          });
-        }}
+        value={this.inputValue()}
         onKeyUp={onKeyUp}
       />
     );
+  }
+
+  inputValue() {
+    const { fieldState: { touched, value }, initialValue, type } = this.props;
+
+    if (type === 'file') {
+      return undefined;
+    }
+
+    return !touched && !value && value !== 0 ? initialValue || '' : value;
   }
 
   label(label) {

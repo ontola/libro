@@ -7095,9 +7095,9 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-link-lib@1.0.0-beta24:
-  version "1.0.0-beta24"
-  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-beta24.tgz#cc0542cfd48330217187829245c4c8278ae94fb3"
+link-lib@1.0.0-beta24.1:
+  version "1.0.0-beta24.1"
+  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-beta24.1.tgz#345f9c27534ca209de3bb50e7d696455f6efa32e"
 
 link-redux@1.0.0-beta31:
   version "1.0.0-beta31"
