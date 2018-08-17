@@ -1,8 +1,11 @@
 const path = require('path');
 
-const webpack = require('webpack');
+const CompressionPlugin = require('compression-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const TARGET = process.env.npm_lifecycle_event;
 process.env.BABEL_ENV = TARGET;
@@ -66,6 +69,22 @@ const common = {
       },
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
+    new HtmlWebpackPlugin({
+      filename: 'offline.html',
+      template: 'app/offline.html',
+    }),
+    new WorkboxPlugin.InjectManifest({
+      // importWorkboxFrom: 'disabled',
+      // importsDirectory: 'workbench',
+      swSrc: './app/sw.js',
+    }),
+    new CompressionPlugin({
+      algorithm: 'gzip',
+      filename: '[path].gz[query]',
+      minRatio: 1,
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 0,
+    }),
   ],
 
   resolve: {

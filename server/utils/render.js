@@ -6,7 +6,7 @@ import manifest from './manifest';
 export const renderFullPage = (html, devPort, domain, csrfToken, res, head) => {
   const bundleCSS = __DEVELOPMENT__
     ? ''
-    : `<link rel="stylesheet" type="text/css" href="${constants.ASSETS_HOST}${manifest['main.css']}" />`;
+    : `<link crossorigin="anonymous" rel="stylesheet" type="text/css" href="${constants.ASSETS_HOST}${manifest['main.css']}" />`;
 
   const bugsnagOpts = {
     apiKey: constants.bugsnagKey,
@@ -20,7 +20,7 @@ export const renderFullPage = (html, devPort, domain, csrfToken, res, head) => {
       <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="/static/preloader.css" />
-        <link rel="manifest" href="${constants.ASSETS_HOST}/static/manifest.json">
+        <link rel="manifest" href="${constants.ASSETS_HOST}${manifest['manifest.json']}">
 
         <meta property="og:type" content="website" />
         <meta name="mobile-web-app-capable" content="yes">
@@ -47,9 +47,9 @@ export const renderFullPage = (html, devPort, domain, csrfToken, res, head) => {
         <link rel="apple-touch-icon" type="image/png" sizes="72x72" href="/static/icon-small.png">
         ${head ? head.title.toString() : ''}
         ${head ? head.meta.toString() : ''}
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link crossorigin="anonymous" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
         ${bundleCSS}
-        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,Promise,Promise.prototype.finally|gated,fetch" async></script>
+        <script crossorigin="anonymous" src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,Promise,Promise.prototype.finally|gated,fetch" async></script>
       </head>
       <body>
         <div class="preloader">
@@ -73,9 +73,20 @@ export const renderFullPage = (html, devPort, domain, csrfToken, res, head) => {
           </div>
         </div>
         <div id="${constants.APP_ELEMENT}">${html || ''}</div>
+        <noscript>
+            <h1>Argu heeft javascript nodig om te werken</h1>
+            <p>Javascript staat momenteel uitgeschakeld, probeer een andere browser of in prive modus.</p>
+        </noscript>
         <script nonce="${res.locals.nonce.toString()}">document.body.className += ' Body--show-preloader';</script>
-        <script async src="${constants.ASSETS_HOST}${manifest['main.js']}"></script>
-        ${(manifest['vendors~main.js'] && `<script async src="${constants.ASSETS_HOST}${manifest['vendors~main.js']}"></script>`) || ''}
+        <script nonce="${res.locals.nonce.toString()}">
+          if ('serviceWorker' in navigator) {
+             window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js');
+             });
+           }
+        </script>
+        <script async crossorigin="anonymous" src="${constants.ASSETS_HOST}${manifest['main.js']}"></script>
+        ${(manifest['vendors~main.js'] && `<script async crossorigin="anonymous" src="${constants.ASSETS_HOST}${manifest['vendors~main.js']}"></script>`) || ''}
       </body>
     </html>`;
 };

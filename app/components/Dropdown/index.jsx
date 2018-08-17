@@ -1,6 +1,6 @@
 /* eslint-disable */
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import { default as onClickOutside } from 'react-onclickoutside';
 import { animated, Transition } from 'react-spring';
 
@@ -28,7 +28,7 @@ const propTypes = {
   ]),
 };
 
-class Dropdown extends Component {
+class Dropdown extends React.Component {
   constructor(props) {
     super(props);
     this.listeningToClick = true;

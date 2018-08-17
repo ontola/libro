@@ -3,14 +3,16 @@ const path = require('path');
 const BrotliPlugin = require('brotli-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
-const merge = require('webpack-merge');
 const webpack = require('webpack');
 const { BugsnagBuildReporterPlugin } = require('webpack-bugsnag-plugins');
+const ManifestPlugin = require('webpack-manifest-plugin');
+const merge = require('webpack-merge');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
 
 const pjson = require('../package.json');
 
 const common = require('./common.config');
+const manifest = require('./manifest.json');
 
 let bugsnagPlugin;
 if (process.env.SEMAHORE_DEPLOY_NUMBER) {
@@ -86,6 +88,7 @@ function createConfig(options) {
         fetch: 'isomorphic-fetch',
       }),
       new webpack.HashedModuleIdsPlugin(),
+      new WebpackPwaManifest(manifest),
       new ManifestPlugin({
         fileName: `../private/manifest.${options.buildName}.json`,
         publicPath: '/',

@@ -1,7 +1,9 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
 
 const common = require('./common.config');
+const manifest = require('./manifest.json');
 const version = require('./version');
 
 module.exports = merge(common, {
@@ -39,7 +41,7 @@ module.exports = merge(common, {
   output: {
     globalObject: "(typeof self !== 'undefined' ? self : this)",
     pathinfo: true,
-    publicPath: '/f_assets/',
+    publicPath: '/',
   },
 
   plugins: [
@@ -48,6 +50,10 @@ module.exports = merge(common, {
       'process.env.FRONTEND_HOSTNAME': JSON.stringify(process.env.FRONTEND_HOSTNAME),
     }),
     new webpack.HotModuleReplacementPlugin(),
+    new WebpackPwaManifest({
+      ...manifest,
+      filename: 'manifest.json',
+    }),
     new webpack.NoEmitOnErrorsPlugin(),
   ],
 });

@@ -12,6 +12,7 @@ import {
   SomeTerm,
   Statement,
 } from 'rdflib';
+import { ReactType } from 'react';
 
 import { FRONTEND_ACCEPT, FRONTEND_URL } from '../config';
 
@@ -30,7 +31,7 @@ const middleware: Array<MiddlewareFn<any>> = [
   ontolaMiddleware(history),
 ];
 
-const LRS = createStore({}, middleware);
+const LRS = createStore<ReactType>({}, middleware);
 
 // @ts-ignore TS2341
 transformers.forEach((t) => LRS.api.registerTransformer(t.transformer, t.mediaTypes, t.acceptValue));

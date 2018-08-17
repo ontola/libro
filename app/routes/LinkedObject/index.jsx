@@ -64,7 +64,7 @@ export default class LinkedObject extends React.PureComponent {
 
     return (
       <Page>
-        <LinkedResourceContainer subject={currentLocation(routedLocation)} />
+        <LinkedResourceContainer fetch subject={currentLocation(routedLocation)} />
       </Page>
     );
   }

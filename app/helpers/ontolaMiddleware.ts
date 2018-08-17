@@ -20,6 +20,7 @@ import { defineMessages } from 'react-intl';
 
 import { safeCredentials } from './arguHelpers';
 import { retrievePath } from './iris';
+import serviceWorkerCommunicator from './serviceWorkerCommunicator';
 
 const messages = defineMessages({
   copyFinished: {
@@ -152,6 +153,11 @@ const ontolaMiddleware = (history: History): MiddlewareFn<ReactType> =>
           method: 'POST',
         }))
           .then(() => {
+            try {
+              serviceWorkerCommunicator.clearCache();
+            } catch (e) {
+              // TODO: Bugsnag
+            }
             window.location.reload();
           }, () => {
             // TODO: bugsnag

@@ -10,6 +10,7 @@ import { createAction } from 'redux-actions';
 import { setMapAccessToken } from '../async/MapView/actions';
 import { FRONTEND_URL } from '../config';
 import { safeCredentials } from '../helpers/arguHelpers';
+import serviceWorkerCommunicator from '../helpers/serviceWorkerCommunicator';
 import {
   AFE_API_GET_MAP_ACCESS_TOKEN,
   AFE_API_LOGIN,
@@ -72,6 +73,7 @@ export default () => next => (action) => {
             case SIGN_IN_USER_CREATED:
             case SIGN_IN_LOGGED_IN: {
               let match;
+              serviceWorkerCommunicator.clearCache();
               const { r } = action.payload;
               if (r && r.startsWith(FRONTEND_URL)) {
                 match = r.split(FRONTEND_URL);

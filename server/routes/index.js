@@ -1,7 +1,6 @@
 /* eslint no-console: 0 */
 import bodyParser from 'body-parser';
 import csurf from 'csurf';
-import express from 'express';
 import expressStaticGzip from 'express-static-gzip';
 import { INTERNAL_SERVER_ERROR, NO_CONTENT } from 'http-status-codes';
 import morgan from 'morgan';
@@ -58,11 +57,11 @@ const PRELOAD_HEADERS = [
   __PRODUCTION__ && `<${constants.ASSETS_HOST}${manifest['main.css']}>; rel=preload; as=style`,
 ];
 
-const COMPRESSION_OPTS = {
+const compressionOpts = (fallthrough = false) => ({
   enableBrotli: true,
-  fallthrough: false,
+  fallthrough,
   orderPreference: ['br', 'gzip'],
-};
+});
 
 export default function routes(app, port) {
   app.use(morgan('dev'));
@@ -76,9 +75,9 @@ export default function routes(app, port) {
   app.use(csp);
 
   // Static directory for express
-  app.use('/static', expressStaticGzip('static', COMPRESSION_OPTS));
-  app.use('/f_assets', expressStaticGzip('dist/public/f_assets', COMPRESSION_OPTS));
-  app.use('/', express.static('dist/public'));
+  app.use('/static', expressStaticGzip('static', compressionOpts()));
+  app.use('/f_assets', expressStaticGzip('dist/public/f_assets', compressionOpts()));
+  app.use('/', expressStaticGzip('dist/public', compressionOpts(true)));
   app.get('/assets/*', backendProxy);
   app.get('/packs/*', backendProxy);
   app.get('/photos/*', backendProxy);
