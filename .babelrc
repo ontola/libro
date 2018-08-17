@@ -36,8 +36,13 @@
       ]
     },
     "test": {
+      "presets": [
+        "react",
+        "es2015"
+      ],
       "plugins": [
         [
+          "transform-class-properties",
           "babel-plugin-webpack-alias",
           { "config": "./webpack/test.config.js" }
         ],
