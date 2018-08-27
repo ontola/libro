@@ -36,7 +36,7 @@ const sideBars = handleActions({
   [SIDEBAR_CLOSE]: (state, { payload }) => closeSidebar(state, payload),
   [SIDEBAR_DOCK]: (state, { payload }) => updateRecordValue(state, payload, 'docked', true),
   [SIDEBAR_OPEN]: (state, { payload }) => updateRecordValue(state, payload, 'opened', true),
-  [SIDEBAR_SET_BASE_COLOR]: (state, { payload }) => state.set('baseColor', payload),
+  [SIDEBAR_SET_BASE_COLOR]: (state, { payload }) => state.set('baseColor', payload || colors.blue.base),
   [SIDEBAR_UNDOCK]: (state, { payload }) => updateRecordValue(state, payload, 'docked', false),
 }, initialState);
 

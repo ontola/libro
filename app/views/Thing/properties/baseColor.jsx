@@ -1,5 +1,4 @@
-import LinkedRenderStore from 'link-lib';
-import { linkedPropType } from 'link-redux';
+import { linkedPropType, register } from 'link-redux';
 import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { connect } from 'react-redux';
@@ -13,7 +12,24 @@ const propTypes = {
   onChange: PropTypes.func,
 };
 
+const colorDispatcher = connect(
+  null,
+  dispatch => ({
+    onChange: rgbColor => dispatch(setBaseColor(rgbColor)),
+  }),
+  null,
+  { pure: false }
+);
+
 class BaseColorDispatcher extends Component {
+  static type = [NS.schema('Thing'), NS.link('Document')];
+
+  static property = NS.argu('baseColor');
+
+  static topology = NS.argu('sidebar');
+
+  static hocs = [colorDispatcher];
+
   componentDidMount() {
     if (this.props.linkedProp) {
       this.props.onChange(hexToRgb(this.props.linkedProp.value));
@@ -21,7 +37,7 @@ class BaseColorDispatcher extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.linkedProp && this.props.linkedProp !== prevProps.linkedProp) {
+    if (this.props.linkedProp !== prevProps.linkedProp) {
       this.props.onChange(hexToRgb(this.props.linkedProp));
     }
   }
@@ -33,20 +49,4 @@ class BaseColorDispatcher extends Component {
 
 BaseColorDispatcher.propTypes = propTypes;
 
-const BaseColorDispatcherConnect = connect(
-  null,
-  dispatch => ({
-    onChange: rgbColor => dispatch(setBaseColor(rgbColor)),
-  }),
-  null,
-  { pure: false }
-)(BaseColorDispatcher);
-
-BaseColorDispatcherConnect.propTypes = propTypes;
-
-export default LinkedRenderStore.registerRenderer(
-  BaseColorDispatcherConnect,
-  [NS.schema('Thing'), NS.link('Document')],
-  NS.argu('baseColor'),
-  NS.argu('sidebar')
-);
+export default register(BaseColorDispatcher);

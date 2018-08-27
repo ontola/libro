@@ -80,7 +80,7 @@ class Contains extends PropertyBase {
         >
           {this.navbarSwitcher()}
           <Type reloadLinkedObject={reloadLinkedObject} />
-          <Property label={NS.argu('baseColor')} />
+          <Property forceRender label={NS.argu('baseColor')} />
         </LinkedResourceContainer>
       );
     }
