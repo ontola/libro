@@ -87,6 +87,7 @@ class SignInFormBase extends React.PureComponent {
             label="Jouw wachtwoord"
             type="password"
           />
+          {this.redirectField()}
         </CardContent>
       </CardRow>
     );

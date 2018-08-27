@@ -58,9 +58,9 @@ export default () => next => (action) => {
           const { r } = action.payload;
           if (r) {
             match = r.match(/^https:\/\/[\w*.]*argu\.(dev|localdev|co)([\w\W]*$)/);
+            const redirect = (match && match[PATH_MATCH]) || '/';
+            next(push(redirect));
           }
-          const redirect = (match && match[PATH_MATCH]) || '/';
-          next(push(redirect));
           window.location.reload();
           break;
         }
