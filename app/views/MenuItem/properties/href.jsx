@@ -37,7 +37,7 @@ const Href = ({
     hrefInner = (
       <SideBarLinkLink
         to={!action && retrievePath(href.value)}
-        onClick={handleClick || (() => lrs.exec(action, subject))}
+        onClick={handleClick || (action && (() => lrs.exec(action, subject)))}
       >
         {children}
       </SideBarLinkLink>
