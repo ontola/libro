@@ -5,8 +5,8 @@ import React, { PureComponent } from 'react';
 import { CardContent, CardRow, Columns } from '../../../components';
 import { allTopologiesExcept, NS } from '../../../helpers/LinkedRenderStore';
 
-function noArguments({ argumentsConCount, argumentsProCount }) {
-  return (Number(argumentsConCount) || 0) + (Number(argumentsProCount) || 0) === 0;
+function noArguments({ conArgumentsCount, proArgumentsCount }) {
+  return (Number(conArgumentsCount) || 0) + (Number(proArgumentsCount) || 0) === 0;
 }
 
 class Arguments extends PureComponent {
@@ -25,8 +25,8 @@ class Arguments extends PureComponent {
 }
 
 const argumentsData = link([
-  NS.argu('argumentsConCount'),
-  NS.argu('argumentsProCount'),
+  NS.argu('conArgumentsCount'),
+  NS.argu('proArgumentsCount'),
 ], { returnType: 'value' });
 
 export default [
