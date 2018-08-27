@@ -17,6 +17,7 @@ const actionsBarBlacklist = [
   /update$/,
   /trash$/,
   /untrash$/,
+  /delete$/,
   /destroy$/,
 ];
 
