@@ -81,6 +81,7 @@ class SignInFormBase extends React.PureComponent {
         <CardContent>
           {this.constructor.emailField()}
           <FormField
+            autofocus
             autoComplete="off"
             field={btoa('password')}
             key="password"
