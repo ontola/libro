@@ -26,9 +26,10 @@ function dataURItoBlob(literal) {
   for (let i = 0; i < byteString.length; i++) {
     ia[i] = byteString.charCodeAt(i);
   }
-  const b = new Blob([ia], { encoding: 'UTF-8', type: preamble.split(':').pop().split(';').shift() });
+  const options = { encoding: 'UTF-8', type: preamble.split(':').pop().split(';').shift() };
+  const b = new Blob([ia], options);
 
-  return new File([b], filename);
+  return new File([b], filename, options);
 }
 
 function convertKeysAtoB(obj) {
