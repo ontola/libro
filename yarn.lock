@@ -7095,13 +7095,13 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-link-lib@1.0.0-beta24.1:
-  version "1.0.0-beta24.1"
-  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-beta24.1.tgz#345f9c27534ca209de3bb50e7d696455f6efa32e"
+link-lib@1.0.0-beta25:
+  version "1.0.0-beta25"
+  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-beta25.tgz#fa498d324308aedfc5cf519e63ce58264e483962"
 
-link-redux@1.0.0-beta31:
-  version "1.0.0-beta31"
-  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-beta31.tgz#2a8ec24b9aa922575d68ef1b0203f3d1694fb79e"
+link-redux@1.0.0-beta31.6:
+  version "1.0.0-beta31.6"
+  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-beta31.6.tgz#daa1f8c0dce8d4303b878c7b34c8f2a627c6a7ce"
 
 lint-staged@^6.0.1:
   version "6.1.1"

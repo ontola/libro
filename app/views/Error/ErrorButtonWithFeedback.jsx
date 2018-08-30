@@ -29,7 +29,10 @@ class ErrorButtonWithFeedback extends React.Component {
 
   reload() {
     this.setState({ loading: true });
-    const disable = () => { this.setState({ loading: false }); };
+    const disable = () => {
+      this.props.reset();
+      this.setState({ loading: false });
+    };
     this
       .props
       .reloadLinkedObject()
