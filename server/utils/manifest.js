@@ -1,5 +1,7 @@
 import fs from 'fs';
 
+import { bundleName } from '../config';
+
 const manifest = {};
 
 let fileNames;
@@ -9,7 +11,7 @@ if (__DEVELOPMENT__) {
     'main.js': '/f_assets/main.bundle.js',
   };
 } else {
-  const manifestFile = fs.readFileSync('./dist/private/manifest.json');
+  const manifestFile = fs.readFileSync(`./dist/private/manifest.${bundleName}.json`);
   fileNames = JSON.parse(manifestFile);
 }
 

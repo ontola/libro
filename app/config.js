@@ -5,7 +5,7 @@ function getEnv(env, defaultVal, test) {
 
 export const ASSETS_HOST = getEnv('ASSETS_HOST', '', '');
 export const FRONTEND_ACCEPT = 'application/n-quads';
-export const FRONTEND_HOSTNAME = getEnv('FRONTEND_HOSTNAME', 'argu.co', 'argu.dev');
+export const FRONTEND_HOSTNAME = process.env.FRONTEND_HOSTNAME || getEnv('FRONTEND_HOSTNAME', 'argu.co', 'argu.dev');
 export const FRONTEND_URL = `https://${FRONTEND_HOSTNAME}`;
 export const PORT_DEVELOPMENT = getEnv('PORT_DEVELOPMENT', 3001, 3001);
 export const PORT_PRODUCTION = getEnv('PORT_PRODUCTION', 8080, 8080);

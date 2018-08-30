@@ -44,6 +44,9 @@ module.exports = merge(common, {
   },
 
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.FRONTEND_HOSTNAME': JSON.stringify(process.env.FRONTEND_HOSTNAME),
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
   ],

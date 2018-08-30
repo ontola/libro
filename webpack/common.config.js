@@ -58,10 +58,8 @@ const common = {
       __TEST__: process.env.NODE_ENV === 'test',
       'process.env': {
         ARGU_API_URL: JSON.stringify(process.env.ARGU_API_URL),
-        FRONTEND_HOSTNAME: JSON.stringify(process.env.FRONTEND_HOSTNAME),
         NODE_ENV: process.env.NODE_ENV === 'development' ? '"development"' : '"production"',
       },
-      'process.env.ELASTICSEARCH_URL': JSON.stringify(process.env.ELASTICSEARCH_URL),
     }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.optimize.ModuleConcatenationPlugin(),

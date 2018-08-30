@@ -17,82 +17,98 @@ if (process.env.SEMAHORE_DEPLOY_NUMBER) {
   });
 }
 
-module.exports = merge(common, {
-  devtool: 'source-map',
+function createConfig(options) {
+  return {
+    devtool: 'source-map',
 
-  entry: [
-    './app/index.jsx',
-  ],
-
-  module: {
-    rules: [
-      {
-        include: [
-          /app/,
-          /node_modules\/whatwg-url/,
-          /node_modules\/universal-url/,
-          /node_modules\/webidl-conversions/,
-          /node_modules\/ml-disjoint-set/,
-        ],
-        test: /(\.jsx\.js)?$/,
-        use: ['babel-loader'],
-      },
-
-      {
-        test: /\.(sa|sc|c)ss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-          'sass-loader',
-        ],
-      },
+    entry: [
+      './app/index.jsx',
     ],
-  },
 
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
+    module: {
+      rules: [
+        {
+          include: [
+            /app/,
+            /node_modules\/whatwg-url/,
+            /node_modules\/universal-url/,
+            /node_modules\/webidl-conversions/,
+            /node_modules\/ml-disjoint-set/,
+          ],
+          test: /(\.jsx\.js)?$/,
+          use: ['babel-loader'],
+        },
+
+        {
+          test: /\.(sa|sc|c)ss$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            'css-loader',
+            'postcss-loader',
+            'sass-loader',
+          ],
+        },
+      ],
     },
-  },
 
-  output: {
-    filename: 'bundle-[chunkhash].js',
-    publicPath: '/f_assets/',
-  },
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+      },
+    },
 
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: 'bundle-[contenthash].css',
-    }),
-    new webpack.DefinePlugin({
-      'process.env.ARGU_API_EXT_BASE': JSON.stringify(process.env.ARGU_API_EXT_BASE
-        || 'https://beta.argu.co/api/'),
-      'process.env.NODE_ENV': JSON.stringify('production'),
-    }),
-    new webpack.ProvidePlugin({
-      fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
-      xmlhttprequest: 'imports?this=>global!exports?global.XMLHttpRequest!global.XMLHttpRequest',
-    }),
-    new webpack.ProvidePlugin({
-      fetch: 'isomorphic-fetch',
-    }),
-    new webpack.HashedModuleIdsPlugin(),
-    new ManifestPlugin({
-      fileName: '../private/manifest.json',
+    output: {
+      filename: `bundle-[chunkhash].${options.buildName}.js`,
       publicPath: '/f_assets/',
-    }),
-    bugsnagPlugin,
-  ].filter(p => typeof p !== 'undefined'),
+    },
 
-  stats: {
-    // minimal logging
-    assets: false,
-    children: false,
-    chunkModules: false,
-    chunks: false,
-    colors: true,
-    timings: false,
-    version: false,
-  },
-});
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: `bundle-[contenthash].${options.buildName}.css`,
+      }),
+      new webpack.DefinePlugin({
+        'process.env.FRONTEND_HOSTNAME': JSON.stringify(options.hostname),
+        'process.env.NODE_ENV': JSON.stringify('production'),
+      }),
+      new webpack.ProvidePlugin({
+        fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
+        xmlhttprequest: 'imports?this=>global!exports?global.XMLHttpRequest!global.XMLHttpRequest',
+      }),
+      new webpack.ProvidePlugin({
+        fetch: 'isomorphic-fetch',
+      }),
+      new webpack.HashedModuleIdsPlugin(),
+      new ManifestPlugin({
+        fileName: `../private/manifest.${options.buildName}.json`,
+        publicPath: '/f_assets/',
+      }),
+      bugsnagPlugin,
+    ].filter(p => typeof p !== 'undefined'),
+
+    stats: {
+      // minimal logging
+      assets: false,
+      children: false,
+      chunkModules: false,
+      chunks: false,
+      colors: true,
+      timings: false,
+      version: false,
+    },
+  };
+}
+
+module.exports = [
+  merge(common, createConfig({
+    buildName: 'min',
+    hostname: process.env.FRONTEND_HOSTNAME || 'argu.co',
+  })),
+  merge(common, createConfig({
+    buildName: 'localtest',
+    hostname: 'app.argu.localtest',
+  })),
+  merge(common, createConfig({
+    buildName: 'localdev',
+    hostname: 'app.argu.localdev',
+  })),
+];

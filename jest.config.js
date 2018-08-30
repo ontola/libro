@@ -14,7 +14,6 @@ module.exports = {
     __PRODUCTION__: 'false',
     __TEST__: 'true',
     'process.env.ARGU_API_URL': '',
-    'process.env.ELASTICSEARCH_URL': '',
     'process.env.FRONTEND_HOSTNAME': '',
   },
   moduleNameMapper: {

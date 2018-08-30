@@ -1,4 +1,6 @@
 export * from '../app/config';
+
+export const bundleName = process.env.FE_BUNDLE_NAME || 'min';
 /**
  * DO NOT USE this value, since it really is secret.
  *
