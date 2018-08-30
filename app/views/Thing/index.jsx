@@ -35,6 +35,7 @@ import BaseColor from './properties/baseColor';
 import CoverPhoto from './properties/coverPhoto';
 import CreateAction from './properties/createAction';
 import DateCreated from './properties/dateCreated';
+import ExpiresAt from './properties/expiresAt';
 import IsPrimaryTopicOf from './properties/isPrimaryTopicOf';
 import IsPartOf from './properties/isPartOf';
 import Image from './properties/image';
@@ -73,6 +74,7 @@ const ThingPage = () => (
             <Property label={NS.schema('creator')} />
             <Property label={NS.schema('dateCreated')} />
             <Property label={NS.schema('location')} />
+            <Property label={NS.argu('expiresAt')} />
           </DetailsBar>
           <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
           <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
@@ -107,6 +109,7 @@ const ThingContainer = ({ highlighted, subject }) => (
       <DetailsBar>
         <Property label={NS.schema('creator')} />
         <Property label={NS.schema('dateCreated')} />
+        <Property label={NS.argu('expiresAt')} />
       </DetailsBar>
       <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
     </CardContent>
@@ -134,6 +137,7 @@ const ThingGrid = () => (
       <DetailsBar>
         <Property label={NS.schema('creator')} />
         <Property label={NS.schema('dateCreated')} />
+        <Property label={NS.argu('expiresAt')} />
       </DetailsBar>
       <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
     </CardContent>
@@ -243,6 +247,7 @@ export default [
   CoverPhoto,
   CreateAction,
   DateCreated,
+  ExpiresAt,
   IsPrimaryTopicOf,
   ...IsPartOf,
   Image,
