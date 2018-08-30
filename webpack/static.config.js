@@ -28,6 +28,7 @@ function createConfig(options) {
     module: {
       rules: [
         {
+          exclude: /node_modules/,
           include: [
             /app/,
             /node_modules\/whatwg-url/,

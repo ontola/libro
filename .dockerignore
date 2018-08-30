@@ -1,5 +1,4 @@
 .git
-app
 bin
 coverage
 node_modules
