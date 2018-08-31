@@ -11,17 +11,15 @@ import {
 import React from 'react';
 
 import {
-  Container,
   Dropdown,
   DropdownLink,
-  TabBar,
   Tab,
   Resource,
 } from '../../components';
 import { SideBarLinkIcon } from '../../components/SideBarLink';
 import { NS } from '../../helpers/LinkedRenderStore';
-import Card from '../../components/Card';
 
+import MenuItemPage from './MenuItemPage';
 import Href from './properties/href';
 import Label from './properties/label';
 import menuItemsComp from './properties/menuItems';
@@ -112,31 +110,6 @@ MenuItemDropdown.propTypes = {
   menuItems: linkType,
 };
 
-const MenuItemPage = ({ topLevel }) => (
-  <Resource>
-    {topLevel && (
-    <Container>
-      <Card>
-        <Property label={NS.schema('isPartOf')} />
-      </Card>
-    </Container>
-    )}
-    <Property label={NS.argu('parentMenu')} topLevel={false} />
-    <TabBar>
-      <Property label={NS.argu('menuItems')} />
-    </TabBar>
-    <Property label={NS.argu('href')} />
-  </Resource>
-);
-
-MenuItemPage.propTypes = {
-  topLevel: linkType,
-};
-
-MenuItemPage.defaultProps = {
-  topLevel: true,
-};
-
 const MenuItemTab = ({ name }) => (
   <Resource>
     <Tab
@@ -179,17 +152,7 @@ export default [
     RENDER_CLASS_NAME,
     NS.argu('cardFloat')
   ),
-  LinkedRenderStore.registerRenderer(
-    MenuItemPage,
-    [
-      NS.argu('MenuItem'),
-      NS.argu('MenuSection'),
-      NS.argu('SubMenu'),
-      NS.argu('Menu'),
-    ],
-    RENDER_CLASS_NAME,
-    undefined
-  ),
+  MenuItemPage,
   LinkedRenderStore.registerRenderer(
     link([
       NS.schema('name'),
