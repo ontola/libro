@@ -1,17 +1,17 @@
-import { ASSETS_HOST, STAGE } from '../../app/config';
 import pjson from '../../package.json';
+import * as constants from '../config';
 
 import manifest from './manifest';
 
 export const renderFullPage = (html, devPort, domain, csrfToken, initialState = {}, head) => {
-  const bundleCSS = process.env.NODE_ENV === 'production'
-    ? `<link rel="stylesheet" type="text/css" href="${ASSETS_HOST}${manifest['main.css']}" />`
-    : '';
+  const bundleCSS = __DEVELOPMENT__
+    ? ''
+    : `<link rel="stylesheet" type="text/css" href="${constants.ASSETS_HOST}${manifest['main.css']}" />`;
 
   const bugsnagOpts = {
-    apiKey: process.env.BUGSNAG_KEY,
+    apiKey: constants.bugsnagKey,
     appVersion: pjson.version,
-    releaseStage: STAGE,
+    releaseStage: constants.STAGE,
   };
 
   return `<!doctype html>
@@ -21,7 +21,7 @@ export const renderFullPage = (html, devPort, domain, csrfToken, initialState = 
         <meta charset="utf-8" />
         <meta property="og:type" content="website" />
         <link rel="stylesheet" href="/static/preloader.css" />
-        <link rel="manifest" href="${ASSETS_HOST}/static/manifest.json">
+        <link rel="manifest" href="${constants.ASSETS_HOST}/static/manifest.json">
 
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
@@ -74,8 +74,8 @@ export const renderFullPage = (html, devPort, domain, csrfToken, initialState = 
         </div>
         <div id="root">${html || ''}</div>
         <script>document.body.className += ' Body--show-preloader';</script>
-        <script async src="${ASSETS_HOST}${manifest['main.js']}"></script>
-        ${(manifest['vendors~main.js'] && `<script async src="${ASSETS_HOST}${manifest['vendors~main.js']}"></script>`) || ''}
+        <script async src="${constants.ASSETS_HOST}${manifest['main.js']}"></script>
+        ${(manifest['vendors~main.js'] && `<script async src="${constants.ASSETS_HOST}${manifest['vendors~main.js']}"></script>`) || ''}
         <script>
           window.__PRELOADED_STATE__ = ${JSON.stringify(initialState).replace(/</g, '\\\u003c')}
         </script>

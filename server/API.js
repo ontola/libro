@@ -5,14 +5,7 @@ import * as constants from '../app/config';
 import { createUserRequest } from './api/users';
 import processResponse from './api/internal/statusHandler';
 import { guestTokenRequest, userTokenRequest } from './api/tokens';
-
-const oAuthToken = process.env.RAILS_OAUTH_TOKEN;
-
-if (!oAuthToken) {
-  // eslint-disable-next-line no-console
-  console.error('NO OAUTH TOKEN');
-  process.exit(1);
-}
+import { oAuthToken } from './config';
 
 /**
  * Class for communicating with the Argu API & SPI.
@@ -105,7 +98,7 @@ class API {
           Authorization: `Bearer ${authToken}`,
           'X-Argu-Back': 'true',
         },
-        strictSSL: process.env.NODE_ENV !== 'development',
+        strictSSL: !__DEVELOPMENT__,
       }
     );
   }

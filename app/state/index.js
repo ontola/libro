@@ -27,7 +27,7 @@ const configureStore = (preloadedState) => {
     LogRocket.reduxMiddleware()
   );
 
-  if (process.env.NODE_ENV === 'production') {
+  if (__PRODUCTION__) {
     middleware = appliedMiddleware;
   } else {
     middleware = compose(

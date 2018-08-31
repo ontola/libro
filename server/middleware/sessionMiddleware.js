@@ -2,15 +2,7 @@ import connectRedis from 'connect-redis';
 import session from 'express-session';
 import Redis from 'ioredis';
 
-import { redisAddress } from '../config';
-
-const sessionSecret = process.env.SESSION_SECRET;
-
-if (!sessionSecret) {
-  // eslint-disable-next-line no-console
-  console.log('NO SESSION SECRET');
-  process.exit(1);
-}
+import { redisAddress, sessionSecret } from '../config';
 
 const client = new Redis(redisAddress);
 

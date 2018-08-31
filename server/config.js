@@ -1,18 +1,7 @@
 export * from '../app/config';
 
+export const bugsnagKey = process.env.BUGSNAG_KEY;
 export const bundleName = process.env.FE_BUNDLE_NAME || 'min';
-/**
- * DO NOT USE this value, since it really is secret.
- *
- * The OAuth client ID of this front-end instance.
- */
-export const clientID = process.env.RAILS_OAUTH_CLIENT_ID;
-/**
- * DO NOT USE this value, since it really is secret.
- *
- * The OAuth client secret of this front-end instance.
- */
-export const clientSecret = process.env.RAILS_OAUTH_CLIENT_SECRET;
 /**
  * DO NOT USE this value, since it really is secret.
  *
@@ -30,3 +19,14 @@ export const redisAddress = process.env.REDIS_ADDRESS;
  * The session encryption secret.
  */
 export const sessionSecret = process.env.SESSION_SECRET;
+
+if (!oAuthToken) {
+  // eslint-disable-next-line no-console
+  console.error('NO OAUTH TOKEN');
+  process.exit(1);
+}
+if (!sessionSecret) {
+  // eslint-disable-next-line no-console
+  console.log('NO SESSION SECRET');
+  process.exit(1);
+}
