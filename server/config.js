@@ -2,6 +2,15 @@ export * from '../app/config';
 
 export const bugsnagKey = process.env.BUGSNAG_KEY;
 export const bundleName = process.env.FE_BUNDLE_NAME || 'min';
+export const clusterDomain = process.env.CLUSTER_DOMAIN || 'cluster.local';
+export const defaultServicePort = process.env.DEFAULT_SERVICE_PORT || '3000';
+export const defaultServiceProto = process.env.DEFAULT_SERVICE_PROTO || 'http';
+export const namespace = process.env.NAMESPACE || '';
+export const svcDNSPrefix = process.env.SERVICE_DNS_PREFIX === undefined ? 'svc' : process.env.SERVICE_DNS_PREFIX;
+export const logLevel = process.env.LOG_LEVEL || 'info';
+
+export const clusterURLBase = process.env.CLUSTER_URL_BASE || `${namespace ? `.${namespace}` : ''}${svcDNSPrefix ? `.${svcDNSPrefix}` : ''}.${clusterDomain}`;
+
 /**
  * DO NOT USE this value, since it really is secret.
  *

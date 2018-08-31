@@ -5,7 +5,7 @@ import proxy from 'http-proxy-middleware';
 import HttpStatus from 'http-status-codes';
 import uuid from 'uuid';
 
-import * as constants from '../../app/config';
+import * as constants from '../config';
 
 export function isRedirect(status) {
   return status === HttpStatus.MULTIPLE_CHOICES
@@ -30,10 +30,39 @@ function setProxyResHeaders(proxyRes) {
 }
 /* eslint-enable no-param-reassign */
 
+const dekuMatch = /^\/\w*\/\w*\/od\/?.*$/;
+const emailMatch = /^\/email/;
+const subscribeMatch = /^\/subscribe/;
+const tokenMatch = /^\/tokens/;
+const voteCompareMatch = /^\/compare\/votes/;
+
+const defaultPort = constants.defaultServicePort ? `:${constants.defaultServicePort}` : '';
+
 export const backendProxy = proxy({
+  logLevel: constants.logLevel,
   onProxyReq: setProxyReqHeaders,
   onProxyRes: setProxyResHeaders,
   preserveHeaderKeyCase: true,
+  router: (req) => {
+    const path = new URL(req.url, constants.FRONTEND_URL).pathname;
+    let serviceName;
+
+    if (dekuMatch.test(path)) {
+      serviceName = 'deku';
+    } else if (emailMatch.test(path)) {
+      serviceName = 'email';
+    } else if (subscribeMatch.test(path)) {
+      serviceName = 'subscribe';
+    } else if (tokenMatch.test(path)) {
+      serviceName = 'token';
+    } else if (voteCompareMatch.test(path)) {
+      serviceName = 'vote_compare';
+    } else {
+      serviceName = 'argu';
+    }
+
+    return `${constants.defaultServiceProto}://${serviceName}${constants.clusterURLBase}${defaultPort}`;
+  },
   secure: process.env.NODE_ENV !== 'development',
   strictSSL: process.env.NODE_ENV !== 'development',
   target: constants.ARGU_API_URL,
