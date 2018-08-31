@@ -60,7 +60,7 @@ const NavBarContent = ({ actorType, orgColor }) => {
         <SideBarLink
           icon="close"
           label="Exit beta"
-          onClick={() => { document.cookie = 'beta=false;path=/'; window.location.reload(); }}
+          onClick={() => { window.location.host = window.location.host.split('app.').pop(); }}
         />
         <div className="NavBarContent__center-footer">
           <Link className="NavBarContent__logo" to={path.index()}>
