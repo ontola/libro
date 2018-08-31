@@ -31,9 +31,6 @@ if (__PRODUCTION__) {
 }
 const store = configureStore();
 
-// Fade out the preloader and fade in the interface
-document.getElementsByTagName('body')[0].classList.remove('Body--show-preloader');
-
 const indexContainer = Container => (
   <Container
     Router={ConnectedRouter}
@@ -73,3 +70,6 @@ if (typeof window !== 'undefined') {
     window.dev = new LinkDevTools('');
   }
 }
+
+// Fade out the preloader and fade in the interface
+document.getElementsByTagName('body')[0].classList.remove('Body--show-preloader');
