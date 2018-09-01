@@ -44,6 +44,7 @@ import Menus from './properties/menus';
 import Name from './properties/name';
 import Omniform from './properties/omniform';
 import Organization from './properties/organization';
+import PinnedAt from './properties/pinnedAt';
 import PotentialAction from './properties/potentialAction';
 import SuperEvent from './properties/superEvent';
 import Text from './properties/text';
@@ -75,6 +76,7 @@ const ThingPage = () => (
             <Property label={NS.schema('dateCreated')} />
             <Property label={NS.schema('location')} />
             <Property label={NS.argu('expiresAt')} />
+            <Property label={NS.argu('pinnedAt')} />
           </DetailsBar>
           <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
           <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
@@ -110,6 +112,7 @@ const ThingContainer = ({ highlighted, subject }) => (
         <Property label={NS.schema('creator')} />
         <Property label={NS.schema('dateCreated')} />
         <Property label={NS.argu('expiresAt')} />
+        <Property label={NS.argu('pinnedAt')} />
       </DetailsBar>
       <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
     </CardContent>
@@ -138,6 +141,7 @@ const ThingGrid = () => (
         <Property label={NS.schema('creator')} />
         <Property label={NS.schema('dateCreated')} />
         <Property label={NS.argu('expiresAt')} />
+        <Property label={NS.argu('pinnedAt')} />
       </DetailsBar>
       <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
     </CardContent>
@@ -256,6 +260,7 @@ export default [
   ...Name,
   ...Omniform,
   Organization,
+  PinnedAt,
   SuperEvent,
   ...PotentialAction,
   ...Text,

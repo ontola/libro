@@ -31,6 +31,9 @@ const MotionPage = () => (
             <Property label={NS.rdf('type')} />
             <Property label={NS.schema('creator')} />
             <Property label={NS.schema('dateCreated')} />
+            <Property label={NS.schema('location')} />
+            <Property label={NS.argu('expiresAt')} />
+            <Property label={NS.argu('pinnedAt')} />
           </DetailsBar>
           <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
           <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
