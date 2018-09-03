@@ -16,15 +16,23 @@ export function isRedirect(status) {
     || status === HttpStatus.PERMANENT_REDIRECT;
 }
 
-function setHeaders(proxyReq, req) {
+function setProxyReqHeaders(proxyReq, req) {
   if (typeof req.session !== 'undefined') {
     proxyReq.setHeader('Authorization', `Bearer ${req.session.arguToken.accessToken}`);
   }
   proxyReq.setHeader('X-Argu-Back', 'true');
 }
 
+/* eslint-disable no-param-reassign */
+function setProxyResHeaders(proxyRes) {
+  delete proxyRes.headers.vary;
+  proxyRes.headers.Vary = 'Accept,Accept-Encoding,Authorization,Content-Type';
+}
+/* eslint-enable no-param-reassign */
+
 export const backendProxy = proxy({
-  onProxyReq: setHeaders,
+  onProxyReq: setProxyReqHeaders,
+  onProxyRes: setProxyResHeaders,
   preserveHeaderKeyCase: true,
   secure: process.env.NODE_ENV !== 'development',
   strictSSL: process.env.NODE_ENV !== 'development',
@@ -36,7 +44,7 @@ export const backendProxy = proxy({
 export const iframeProxy = proxy({
   onProxyReq: (proxyReq, req) => {
     if (req.method === 'GET' || req.method === 'OPTIONS') {
-      setHeaders(proxyReq, req);
+      setProxyReqHeaders(proxyReq, req);
       if (typeof session.iframeToken === 'undefined') {
         session.iframeToken = uuid.v4();
       }
@@ -45,7 +53,7 @@ export const iframeProxy = proxy({
     } else {
       const csrfToken = req.headers['x-iframe-csrf-token'];
       if (typeof csrfToken !== 'undefined' && csrfToken === session.iframeToken) {
-        setHeaders(proxyReq, req);
+        setProxyReqHeaders(proxyReq, req);
       } else {
         throw new Error('Invalid CSRF token');
       }

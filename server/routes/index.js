@@ -76,7 +76,7 @@ export default function routes(app, port) {
           `<${constants.ASSETS_HOST}${manifest['main.css']}>; rel=preload; as=style`,
         ]
       );
-      res.setHeader('Vary', 'Accept,Accept-Encoding,Content-Type');
+      res.setHeader('Vary', 'Accept,Accept-Encoding,Authorization,Content-Type');
       handleRender(req, res, port, domain);
       return undefined;
     }).catch((e) => {
