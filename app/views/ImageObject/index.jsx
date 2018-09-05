@@ -9,6 +9,7 @@ import { CoverImage } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 
 import thumbnail from './properties/thumbnail';
+import ImageObjectCardList from './ImageObjectCardList';
 
 const propTypes = {
   imagePositionY: PropTypes.instanceOf(Literal).isRequired,
@@ -45,7 +46,6 @@ export default [
     NS.schema('ImageObject'),
     RENDER_CLASS_NAME,
     [
-      undefined,
       NS.argu('card'),
       NS.argu('cardFixed'),
       NS.argu('cardMain'),
@@ -53,7 +53,10 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     ImageObject,
-    NS.schema('ImageObject'),
+    [
+      NS.schema('ImageObject'),
+      NS.schema('VideoObject'),
+    ],
     RENDER_CLASS_NAME,
     [
       NS.argu('collection'),
@@ -61,7 +64,6 @@ export default [
       NS.argu('dropdownContent'),
       NS.argu('formFooter'),
       NS.argu('header'),
-      NS.argu('cardList'),
       NS.argu('sidebar'),
       NS.argu('voteBubble'),
       NS.argu('voteEventSide'),
@@ -78,4 +80,5 @@ export default [
     [NS.argu('sidebar')]
   ),
   ...thumbnail,
+  ImageObjectCardList,
 ];

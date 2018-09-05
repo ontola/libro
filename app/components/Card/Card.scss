@@ -143,6 +143,10 @@
   color: color('blue', 'power');
 }
 
+.CardList {
+  display: flex;
+}
+
 .CardMicroRow {
   font-size: .9em;
   padding: .3rem 1.3rem;

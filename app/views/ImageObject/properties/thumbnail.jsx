@@ -13,7 +13,7 @@ const propTypes = {
   linkedProp: linkedPropType.isRequired,
 };
 
-const createThumbnail = (override) => {
+export const createThumbnail = (override) => {
   const ImageProp = ({ ariaLabel, linkedProp }) => (
     <Image
       ariaLabel={ariaLabel}
@@ -31,19 +31,19 @@ const createThumbnail = (override) => {
 export default [
   LinkedRenderStore.registerRenderer(
     createThumbnail(SideBarLinkImage),
-    NS.schema('ImageObject'),
+    [NS.schema('ImageObject'), NS.schema('VideoObject')],
     NS.schema('thumbnail'),
-    allTopologiesExcept(NS.argu('detail'), NS.argu('formFooter'))
+    allTopologiesExcept(NS.argu('cardList'), NS.argu('detail'), NS.argu('formFooter'))
   ),
   LinkedRenderStore.registerRenderer(
     createThumbnail(DetailImage),
-    NS.schema('ImageObject'),
+    [NS.schema('ImageObject'), NS.schema('VideoObject')],
     NS.schema('thumbnail'),
     NS.argu('detail')
   ),
   LinkedRenderStore.registerRenderer(
     createThumbnail(FormFooterImage),
-    NS.schema('ImageObject'),
+    [NS.schema('ImageObject'), NS.schema('VideoObject')],
     NS.schema('thumbnail'),
     NS.argu('formFooter')
   ),

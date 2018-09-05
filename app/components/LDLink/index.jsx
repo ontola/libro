@@ -6,6 +6,7 @@ import RouterTypes from 'react-router-prop-types';
 import { subjectType, withLinkCtx } from 'link-redux';
 
 import { retrievePath } from '../../helpers/iris';
+import { absoluteRouterLocation } from '../../helpers/paths';
 
 import './LDLink.scss';
 
@@ -50,12 +51,8 @@ const LDLink = ({
 LDLink.defaultProps = defaultProps;
 LDLink.propTypes = propTypes;
 
-const mapStateToProps = (state) => {
-  const location = state.getIn(['router', 'location']);
-
-  return {
-    location: location && location.get('pathname') + location.get('search') + location.get('hash'),
-  };
-};
+const mapStateToProps = state => ({
+  location: absoluteRouterLocation(state),
+});
 
 export default withLinkCtx(connect(mapStateToProps)(LDLink));

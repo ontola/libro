@@ -1,24 +1,71 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { link } from 'link-redux';
+import { link, linkType, register } from 'link-redux';
+import React from 'react';
 
 import { Attachment } from '../../components';
+import AttachmentPreview from '../../components/AttachmentPreview';
+import { imageRepresentationUrl } from '../../helpers/attachments';
 import { NS } from '../../helpers/LinkedRenderStore';
 
+import MediaObjectPage from './MediaObjectPage';
+
+class MediaObjectPreview extends React.PureComponent {
+  static type = NS.schema('MediaObject');
+
+  static topology = NS.argu('cardList');
+
+  static mapDataToProps = {
+    caption: NS.schema('caption'),
+    encodingFormat: {
+      label: [
+        NS.schema('encodingFormat'),
+        NS.schema('fileFormat'),
+      ],
+    },
+    filename: NS.dbo('filename'),
+  };
+
+  static propTypes = {
+    caption: linkType,
+    encodingFormat: linkType,
+    filename: linkType,
+  };
+
+  render() {
+    const {
+      caption,
+      filename,
+      encodingFormat,
+    } = this.props;
+
+    return (
+      <AttachmentPreview
+        caption={caption}
+        filename={filename}
+        thumbnailURL={imageRepresentationUrl({ encodingFormat })}
+      />
+    );
+  }
+}
+
 export default [
+  MediaObjectPage,
   LinkedRenderStore.registerRenderer(
-    link([
-      NS.schema('name'),
-      NS.schema('contentUrl'),
-      NS.schema('fileFormat'),
-      NS.schema('fileSize'),
-    ], { returnType: 'value' })(Attachment),
+    link({
+      contentUrl: NS.schema('contentUrl'),
+      encodingFormat: {
+        label: [NS.schema('encodingFormat'), NS.schema('fileFormat')],
+      },
+      fileSize: NS.schema('fileSize'),
+      name: NS.schema('name'),
+    }, { returnType: 'value' })(Attachment),
     NS.schema('MediaObject'),
     RENDER_CLASS_NAME,
     [
-      NS.argu('cardList'),
       NS.argu('cardRow'),
       NS.argu('card'),
       NS.argu('cardMain'),
     ]
   ),
+  register(MediaObjectPreview),
 ];

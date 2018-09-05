@@ -19,10 +19,10 @@ export const renderFullPage = (html, devPort, domain, csrfToken, initialState = 
     <html>
       <head>
         <meta charset="utf-8" />
-        <meta property="og:type" content="website" />
         <link rel="stylesheet" href="/static/preloader.css" />
         <link rel="manifest" href="${constants.ASSETS_HOST}/static/manifest.json">
 
+        <meta property="og:type" content="website" />
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="application-name" content="AOD">

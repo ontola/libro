@@ -4,6 +4,12 @@ export function currentLocation(location) {
   return NS.app(`${location.pathname.substr(1)}${location.search}${location.hash}`);
 }
 
+export function absoluteRouterLocation(state) {
+  const location = state.getIn(['router', 'location']);
+
+  return location && location.get('pathname') + location.get('search') + location.get('hash');
+}
+
 const path = {
   createVoteMatch() {
     return '/vote_matches/new';

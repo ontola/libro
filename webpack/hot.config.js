@@ -39,6 +39,7 @@ module.exports = merge(common, {
   },
 
   output: {
+    globalObject: "(typeof self !== 'undefined' ? self : this)",
     pathinfo: true,
     publicPath: '/f_assets/',
   },

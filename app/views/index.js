@@ -20,6 +20,7 @@ import RDFSClass from './RDFSClass';
 // import './LinkedRecord';
 import Loading from './Loading';
 import MediaObject from './MediaObject';
+import Meeting from './Meeting/properties/agenda';
 import MenuItem from './MenuItem';
 import MenuSection from './MenuSection';
 import Motion from './Motion';
@@ -54,6 +55,7 @@ LRS.registerAll(
   ...InfiniteCollectionView,
   ...Loading,
   ...MediaObject,
+  Meeting,
   ...MenuItem,
   ...MenuSection,
   Motion,

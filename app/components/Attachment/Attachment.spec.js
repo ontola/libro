@@ -2,7 +2,7 @@ import Attachment from './index';
 
 argUnit(Attachment, () => {
   setProp('url', () => 'http://argu.co/');
-  setProp('title', () => 'Attachment label');
+  setProp('name', () => 'Attachment label');
 
   it('renders', () => {
     expect(subject).toMatchSnapshot();

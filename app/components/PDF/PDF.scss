@@ -21,10 +21,21 @@
 .PDFNav__page-input {
   border: 0;
   box-sizing: border-box;
+  font-family: $font-family;
   height: 100%;
   padding: .4em;
   text-align: center;
   width: 2.3em;
+}
+
+.PDFNav__page-total-pages {
+  border: 0;
+  box-sizing: border-box;
+  font-family: $font-family;
+  font-size: .8rem;
+  height: 100%;
+  padding: .4em;
+  text-align: center;
 }
 
 .PDFNav {

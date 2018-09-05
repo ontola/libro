@@ -28,6 +28,7 @@ LRS.namespaces.aod = memoizedNamespace('https://argu.co/ns/od#');
 LRS.namespaces.meeting = memoizedNamespace('https://argu.co/ns/meeting/');
 LRS.namespaces.sh = memoizedNamespace('http://www.w3.org/ns/shacl#');
 LRS.namespaces.opengov = memoizedNamespace('http://www.w3.org/ns/opengov#');
+LRS.namespaces.fa4 = memoizedNamespace('http://fontawesome.io/icon/');
 
 export const NS = LRS.namespaces;
 
@@ -193,6 +194,9 @@ const ontologicalData = [
   new Statement(NS.schema('MediaObject'), NS.schema('description'), new Literal('An attachment is a file which has been appended to a document to provide more information.', languages.en)),
   new Statement(NS.schema('MediaObject'), NS.schema('description'), new Literal('Een bijlage is een bestand dat bij een document gevoegd is om meer informatie te verschaffen.', languages.nl)),
   new Statement(NS.schema('MediaObject'), NS.schema('image'), new NamedNode('http://fontawesome.io/icon/file')),
+
+  new Statement(NS.schema('ImageObject'), NS.rdfs('subClassOf'), NS.schema('MediaObject')),
+  new Statement(NS.schema('VideoObject'), NS.rdfs('subClassOf'), NS.schema('MediaObject')),
 
   new Statement(NS.schema('Action'), NS.rdf('type'), NS.rdfs('Class')),
 

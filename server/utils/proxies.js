@@ -7,6 +7,10 @@ import uuid from 'uuid';
 
 import * as constants from '../config';
 
+export function isDownloadRequest(url) {
+  return new URL(url, 'https://example.com').searchParams.get('download') === 'true';
+}
+
 export function isRedirect(status) {
   return status === HttpStatus.MULTIPLE_CHOICES
     || status === HttpStatus.MOVED_PERMANENTLY
@@ -21,6 +25,7 @@ function setProxyReqHeaders(proxyReq, req) {
     proxyReq.setHeader('Authorization', `Bearer ${req.session.arguToken.accessToken}`);
   }
   proxyReq.setHeader('X-Argu-Back', 'true');
+  proxyReq.removeHeader('cookie');
 }
 
 /* eslint-disable no-param-reassign */
@@ -63,6 +68,23 @@ export const backendProxy = proxy({
 
     return `${constants.defaultServiceProto}://${serviceName}${constants.clusterURLBase}${defaultPort}`;
   },
+  secure: process.env.NODE_ENV !== 'development',
+  strictSSL: process.env.NODE_ENV !== 'development',
+  target: constants.ARGU_API_URL,
+  toProxy: true,
+  xfwd: true,
+});
+
+export const fileProxy = proxy({
+  onProxyReq: setProxyReqHeaders,
+  onProxyRes: (proxyRes, req) => {
+    setProxyResHeaders(proxyRes);
+    if (isDownloadRequest(req.url)) {
+      // eslint-disable-next-line no-param-reassign
+      proxyRes.headers['Content-Disposition'] = 'attachment';
+    }
+  },
+  preserveHeaderKeyCase: true,
   secure: process.env.NODE_ENV !== 'development',
   strictSSL: process.env.NODE_ENV !== 'development',
   target: constants.ARGU_API_URL,

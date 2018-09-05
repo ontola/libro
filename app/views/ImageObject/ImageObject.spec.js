@@ -19,18 +19,6 @@ const resources = {
 };
 
 describeView('ImageObject', components, resources, resource, () => {
-  it('renders a cover', () => {
-    expect(subject.find(marker('cover'))).toExist();
-  });
-
-  it('passed the Y position', () => {
-    expect(subject.find(marker('cover'))).toHaveProp('positionY', imagePositionY);
-  });
-
-  it('passed the url', () => {
-    expect(subject.find(marker('cover'))).toHaveProp('url', url);
-  });
-
   as(NS.argu('card'), () => {
     it('renders a thumbnail', () => {
       expect(subject.find(marker('cover'))).toExist();

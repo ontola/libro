@@ -101,6 +101,7 @@
         -1, 0, 1,
         100]
     }],
+    "no-restricted-syntax": 0,
     "no-shadow": "error",
     "no-invalid-this": "error",
     "no-unmodified-loop-condition": "error",

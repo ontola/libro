@@ -1,0 +1,69 @@
+@import '../../components/shared/config';
+
+.MediaObjectPage__infobar {
+  align-items: center;
+  background-color: color('transparent', 'xx-dark');
+  color: color('white');
+  display: flex;
+  height: 3em;
+  margin-bottom: 1em;
+  width: 100%;
+}
+
+.MediaObjectPage__infobar--download-button {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  min-height: 3em;
+  min-width: 3em;
+  width: 3em;
+}
+
+.MediaObjectPage__infobar--image {
+  font-size: 20em;
+  text-align: center;
+  width: 100%;
+}
+
+.MediaObjectPage__infobar--image--filename {
+  text-align: center;
+}
+
+.MediaObjectPage__infobar--is-part-of {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 3em;
+}
+
+.MediaObjectPage__infobar--label {
+  flex-grow: 1;
+  margin-bottom: -.8rem;
+}
+
+.MediaObjectPage__infobar--pdf {
+  height: calc(100% - 4em);
+  position: relative;
+}
+
+.MediaObjectPage__infobar--video-container {
+  height: 0;
+  padding-bottom: 56.25%;
+  position: relative;
+  width: 100%;
+}
+
+.MediaObjectPage__infobar--video-html {
+  margin-top: .5em;
+  width: 100%;
+}
+
+.MediaObjectPage__infobar--video-iframe {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}

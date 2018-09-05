@@ -25,6 +25,7 @@ function Image(props) {
         ariaLabel={ariaLabel || ''}
         className={className}
         name={linkedProp.value.split(FABase)[1]}
+        style={style}
       />
     );
   }

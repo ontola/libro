@@ -11,7 +11,13 @@ import errorHandlerMiddleware from '../middleware/errorHandlerMiddleware';
 import sessionMiddleware from '../middleware/sessionMiddleware';
 import { isAuthenticated, isBackend, isIframe } from '../utils/filters';
 import manifest from '../utils/manifest';
-import { backendProxy, iframeProxy, isRedirect } from '../utils/proxies';
+import {
+  backendProxy,
+  fileProxy,
+  iframeProxy,
+  isDownloadRequest,
+  isRedirect,
+} from '../utils/proxies';
 import { handleRender } from '../utils/render';
 
 import login from './login';
@@ -24,6 +30,19 @@ export function listen(app, port) {
     }
     console.info('==> 🌎 Listening on port %s. Open up %s in your browser.', port, constants.FRONTEND_URL);
   });
+}
+
+function isBinaryishRequest(req, res, next) {
+  const isBinaryIsh = req.headers.accept && !(
+    req.headers.accept.includes('text/html')
+    || req.headers.accept.includes('application/xhtml+xml')
+    || req.headers.accept.includes('application/xml'));
+
+  if (isBinaryIsh || isDownloadRequest(req.url)) {
+    return next();
+  }
+
+  return next('route');
 }
 
 export default function routes(app, port) {
@@ -52,6 +71,8 @@ export default function routes(app, port) {
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
   app.post('/login', login);
+
+  app.get('/media_objects/*', isBinaryishRequest, fileProxy);
 
   app.get(/.*/, (req, res) => {
     const domain = req.get('host').replace(/:.*/, '');

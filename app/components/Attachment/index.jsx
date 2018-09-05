@@ -10,30 +10,30 @@ import './Attachment.scss';
 const propTypes = {
   /** Link to the file */
   contentUrl: PropTypes.string.isRequired,
-  fileFormat: PropTypes.string,
+  encodingFormat: PropTypes.string,
   /** Filesize in bytes */
   fileSize: PropTypes.string,
   /** Label that is displayed */
-  title: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
-const previewableFileFormats = [
-  // 'application/pdf',
+const previewableEncodingFormats = [
+  'application/pdf',
 ];
 
 const Attachment = ({
-  title,
-  fileFormat,
+  name,
+  encodingFormat,
   fileSize,
   contentUrl,
 }) => (
   <div className="Attachment">
     <LDLink
       className="Attachment__primary"
-      title={title}
+      title={name}
     >
       <FontAwesome className="Attachment__icon" name="file" />
-      <div className="Attachment__text" data-test="Attachment-title">{title}</div>
+      <div className="Attachment__text" data-test="Attachment-title">{name}</div>
     </LDLink>
     <a
       download
@@ -46,7 +46,7 @@ const Attachment = ({
     >
       <FontAwesome className="Attachment__icon" name="download" />
     </a>
-    {previewableFileFormats.includes(fileFormat)
+    {previewableEncodingFormats.includes(encodingFormat)
       && (
       <a
         className="Attachment__inside-button"
