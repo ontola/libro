@@ -59,13 +59,13 @@ function createConfig(options) {
     },
 
     output: {
-      filename: `bundle-[chunkhash].${options.buildName}.js`,
+      filename: `f_assets/bundle-[chunkhash].${options.buildName}.js`,
       publicPath: '/f_assets/',
     },
 
     plugins: [
       new MiniCssExtractPlugin({
-        filename: `bundle-[contenthash].${options.buildName}.css`,
+        filename: `f_assets/bundle-[contenthash].${options.buildName}.css`,
       }),
       new webpack.DefinePlugin({
         'process.env.FRONTEND_HOSTNAME': JSON.stringify(options.hostname),
@@ -81,7 +81,7 @@ function createConfig(options) {
       new webpack.HashedModuleIdsPlugin(),
       new ManifestPlugin({
         fileName: `../private/manifest.${options.buildName}.json`,
-        publicPath: '/f_assets/',
+        publicPath: '/',
       }),
       bugsnagPlugin,
     ].filter(p => typeof p !== 'undefined'),

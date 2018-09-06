@@ -2,6 +2,7 @@ const path = require('path');
 
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const TARGET = process.env.npm_lifecycle_event;
 process.env.BABEL_ENV = TARGET;
@@ -37,6 +38,10 @@ const common = {
 
   plugins: [
     new CleanWebpackPlugin(),
+    new CopyWebpackPlugin([
+      'static/robots.txt',
+      'static/preloader.css',
+    ]),
     new webpack.ProvidePlugin({
       fetch: 'isomorphic-fetch',
       xmlhttprequest: 'imports-loader?this=>global!exports?global.XMLHttpRequest!global.XMLHttpRequest',
