@@ -4,11 +4,13 @@ import csurf from 'csurf';
 import express from 'express';
 import { INTERNAL_SERVER_ERROR } from 'http-status-codes';
 import morgan from 'morgan';
+import uuidv4 from 'uuid/v4';
 
 import * as constants from '../../app/config';
 import apiMiddleware from '../middleware/apiMiddleware';
 import errorHandlerMiddleware from '../middleware/errorHandlerMiddleware';
 import sessionMiddleware from '../middleware/sessionMiddleware';
+import csp from '../utils/csp';
 import { isAuthenticated, isBackend, isIframe } from '../utils/filters';
 import manifest from '../utils/manifest';
 import {
@@ -47,6 +49,13 @@ function isBinaryishRequest(req, res, next) {
 
 export default function routes(app, port) {
   app.use(morgan('dev'));
+
+  app.use((req, res, next) => {
+    res.locals.nonce = uuidv4();
+    next();
+  });
+
+  app.use(csp);
 
   // Static directory for express
   app.use('/static', express.static('static'));

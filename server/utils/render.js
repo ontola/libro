@@ -3,7 +3,7 @@ import * as constants from '../config';
 
 import manifest from './manifest';
 
-export const renderFullPage = (html, devPort, domain, csrfToken, initialState = {}, head) => {
+export const renderFullPage = (html, devPort, domain, csrfToken, res, head) => {
   const bundleCSS = __DEVELOPMENT__
     ? ''
     : `<link rel="stylesheet" type="text/css" href="${constants.ASSETS_HOST}${manifest['main.css']}" />`;
@@ -37,7 +37,7 @@ export const renderFullPage = (html, devPort, domain, csrfToken, initialState = 
         <meta name="csrf-param" content="authenticity_token">
         <meta name="csrf-token" content="${csrfToken}">
         <script src="//d2wy8f7a9ursnm.cloudfront.net/v4/bugsnag.min.js"></script>
-        <script>window.bugsnagClient = typeof bugsnag !== 'undefined' && bugsnag(${JSON.stringify(bugsnagOpts)})</script>
+        <script nonce="${res.locals.nonce.toString()}">window.bugsnagClient = typeof bugsnag !== 'undefined' && bugsnag(${JSON.stringify(bugsnagOpts)})</script>
 
         <link rel="icon" type="image/png" sizes="192x192" href="/static/icon-large.png">
         <link rel="apple-touch-icon" type="image/png" sizes="192x192" href="/static/icon-large.png">
@@ -73,17 +73,14 @@ export const renderFullPage = (html, devPort, domain, csrfToken, initialState = 
           </div>
         </div>
         <div id="root">${html || ''}</div>
-        <script>document.body.className += ' Body--show-preloader';</script>
+        <script nonce="${res.locals.nonce.toString()}">document.body.className += ' Body--show-preloader';</script>
         <script async src="${constants.ASSETS_HOST}${manifest['main.js']}"></script>
         ${(manifest['vendors~main.js'] && `<script async src="${constants.ASSETS_HOST}${manifest['vendors~main.js']}"></script>`) || ''}
-        <script>
-          window.__PRELOADED_STATE__ = ${JSON.stringify(initialState).replace(/</g, '\\\u003c')}
-        </script>
       </body>
     </html>`;
 };
 
 
 export function handleRender(req, res, port, domain) {
-  res.send(renderFullPage(undefined, port, domain, req.csrfToken(), {}));
+  res.send(renderFullPage(undefined, port, domain, req.csrfToken(), res));
 }
