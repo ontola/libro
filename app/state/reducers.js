@@ -3,7 +3,6 @@ export { default as collapsible } from './collapsible/reducer';
 export { default as closeable } from './closeable/reducer';
 export { default as communication } from './communication/reducer';
 export { default as form } from './form/reducer';
-export { default as iframe } from './iframe/reducer';
 export { linkReducer as linkedObjects } from 'link-redux';
 export { default as textEditor } from './textEditor/reducer';
 export { omniformReducer as omniform } from './omniform';

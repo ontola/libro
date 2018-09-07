@@ -11,12 +11,11 @@ import apiMiddleware from '../middleware/apiMiddleware';
 import errorHandlerMiddleware from '../middleware/errorHandlerMiddleware';
 import sessionMiddleware from '../middleware/sessionMiddleware';
 import csp from '../utils/csp';
-import { isAuthenticated, isBackend, isIframe } from '../utils/filters';
+import { isAuthenticated, isBackend } from '../utils/filters';
 import manifest from '../utils/manifest';
 import {
   backendProxy,
   fileProxy,
-  iframeProxy,
   isDownloadRequest,
   isRedirect,
 } from '../utils/proxies';
@@ -72,8 +71,6 @@ export default function routes(app, port) {
   app.use(apiMiddleware);
 
   app.use(csurf());
-
-  app.all('*', isIframe, isAuthenticated, iframeProxy);
 
   app.all('*', isBackend, isAuthenticated, backendProxy);
 

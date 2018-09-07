@@ -6,18 +6,11 @@ import { PDF } from '../components';
 
 import LinkedObject from './LinkedObject';
 import DevBrowser from './DevBrowser';
-import Iframe from './Iframe';
 import SignIn from './SignIn';
 // import { LinkVoteMatch } from './VoteMatch';
 
 const subRoutes = [
   <Route key="signin" path="/u/sign_in" component={SignIn} />,
-  <Route key="iframeRoutesTop" path="/(i|settings)/*" component={Iframe} />,
-  <Route
-    key="iframeRoutesNested"
-    path="*/(decision|statistics)"
-    component={Iframe}
-  />,
   <Route key="linkedResources" path="*" component={LinkedObject} />,
 ];
 

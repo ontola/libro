@@ -1,9 +1,7 @@
 import { URL } from 'url';
 
-import session from 'express-session';
 import proxy from 'http-proxy-middleware';
 import HttpStatus from 'http-status-codes';
-import uuid from 'uuid';
 
 import * as constants from '../config';
 
@@ -90,41 +88,4 @@ export const fileProxy = proxy({
   target: constants.ARGU_API_URL,
   toProxy: true,
   xfwd: true,
-});
-
-export const iframeProxy = proxy({
-  onProxyReq: (proxyReq, req) => {
-    if (req.method === 'GET' || req.method === 'OPTIONS') {
-      setProxyReqHeaders(proxyReq, req);
-      if (typeof session.iframeToken === 'undefined') {
-        session.iframeToken = uuid.v4();
-      }
-      proxyReq.setHeader('X-Iframe-Csrf-Token', session.iframeToken);
-      proxyReq.setHeader('X-Client-Csrf-Token', req.csrfToken());
-    } else {
-      const csrfToken = req.headers['x-iframe-csrf-token'];
-      if (typeof csrfToken !== 'undefined' && csrfToken === session.iframeToken) {
-        setProxyReqHeaders(proxyReq, req);
-      } else {
-        throw new Error('Invalid CSRF token');
-      }
-    }
-  },
-  onProxyRes: (proxyRes) => {
-    if (isRedirect(proxyRes.statusCode)) {
-      const location = new URL(proxyRes.headers.location);
-      location.searchParams.set('iframe', 'positive');
-      // eslint-disable-next-line no-param-reassign
-      proxyRes.headers.location = location.toString();
-    }
-  },
-  pathRewrite: (path, req) => {
-    const newPath = new URL(`https://${req.hostname}${path}`);
-    newPath.searchParams.set('iframe', 'true');
-    return newPath.toString().replace(newPath.origin, '');
-  },
-  secure: process.env.NODE_ENV !== 'development',
-  strictSSL: process.env.NODE_ENV !== 'development',
-  target: constants.ARGU_API_URL,
-  toProxy: true,
 });

@@ -84,11 +84,3 @@ export function isBackend(req, _res, next) {
   }
   return next('route');
 }
-
-export function isIframe(req, res, next) {
-  if (req.query.iframe === 'positive' || req.headers['x-iframe'] === 'positive') {
-    next();
-  } else {
-    next('route');
-  }
-}

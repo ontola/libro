@@ -9,7 +9,6 @@ import LogRocket from 'logrocket';
 import LinkedRenderStore from '../helpers/LinkedRenderStore';
 import history from '../helpers/history';
 import apiMiddleware from '../middleware/api';
-import iframeNavigation from '../middleware/iframeNavigation';
 
 import * as reducers from './reducers';
 import appMiddleware from './appMiddleware';
@@ -20,7 +19,6 @@ const configureStore = (preloadedState) => {
   const appliedMiddleware = applyMiddleware(
     thunk,
     apiMiddleware,
-    iframeNavigation,
     routerMiddleware(history),
     linkMiddleware(LinkedRenderStore),
     appMiddleware,
