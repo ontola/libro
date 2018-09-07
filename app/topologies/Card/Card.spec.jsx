@@ -6,7 +6,7 @@ import CardButton from './CardButton';
 import CardContent from './CardContent';
 import CardRow from './CardRow';
 
-import Card from './index';
+import Card from '.';
 
 describe('Card component', () => {
   it('Card should render', () => {

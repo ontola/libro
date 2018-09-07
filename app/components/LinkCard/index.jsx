@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Card, { CardContent } from '../Card';
+import Card, { CardContent } from '../../topologies/Card';
 import LDLink from '../LDLink';
 
 const propTypes = {

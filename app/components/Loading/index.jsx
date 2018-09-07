@@ -7,8 +7,8 @@ import Card, {
   CardMicroRow,
   CardRow,
   CardContent,
-} from '../Card';
-import Container from '../Container';
+} from '../../topologies/Card';
+import Container from '../../topologies/Container';
 import LDLink from '../LDLink';
 
 const LoadingInline = () => <div className="Loading__Paragraph Loading__Paragraph--inline Loading__background" />;

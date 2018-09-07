@@ -5,9 +5,9 @@ import React, { PureComponent } from 'react';
 import { push } from 'connected-react-router';
 import { connect } from 'react-redux';
 
-import { Container } from '../../components';
 import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
+import Container from '../../topologies/Container';
 
 const propTypes = {
   onDone: PropTypes.func,

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Button from '../Button';
-import { CardActions } from '../Card';
+import { CardActions } from '../../topologies/Card';
 
 import SignInFormBase from './SignInFormBase';
 

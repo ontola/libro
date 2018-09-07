@@ -4,7 +4,7 @@ import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router-dom';
 
 import Heading from '../Heading';
-import Card from '../Card';
+import Card from '../../topologies/Card';
 
 import './Widget.scss';
 

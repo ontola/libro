@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { Container } from '../../components';
 import SignInFormContainer from '../../containers/SignInFormContainer';
+import Container from '../../topologies/Container';
 
 const propTypes = {
   location: PropTypes.shape({

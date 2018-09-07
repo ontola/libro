@@ -19,13 +19,14 @@ import {
   getOmniformAction,
   omniformSetAction,
 } from '../../state/omniform';
+import FormFooter from '../../topologies/FormFooter/Footer';
 import EntryPointBase from '../../views/EntryPoint/EntryPointBase';
 import Button from '../Button';
-import { FormFooter, FormFooterRight } from '../Form';
+import { FormFooterRight } from '../Form';
 import { showSignInForm } from '../../state/form/actions';
+import OmniformFields from '../../topologies/OmniformFields/OmniformFields';
 
 import './Omniform.scss';
-import OmniformFields from './OmniformFields';
 
 const propTypes = {
   // The NamedNode of the currently selected form.

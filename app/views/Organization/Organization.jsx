@@ -4,8 +4,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { PageHeader } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import PageHeader from '../../topologies/PageHeader';
 
 class Organization extends React.PureComponent {
   static type = [NS.schema('Organization'), NS.argu('Page')];

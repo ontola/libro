@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 
-import './Widget.scss';
+import '../../components/Widget/Widget.scss';
 
 const propTypes = {
   children: PropTypes.node,

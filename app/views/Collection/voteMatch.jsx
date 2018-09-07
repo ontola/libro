@@ -3,11 +3,11 @@ import { PropertyBase } from 'link-redux';
 import React from 'react';
 
 import {
-  Container,
   Cover,
 } from '../../components';
 import VoteMatchVoteableContainer from '../../containers/VoteMatchVoteableContainer';
 import { NS } from '../../helpers/LinkedRenderStore';
+import Container from '../../topologies/Container';
 
 class Motions extends PropertyBase {
   static renderMotion(m, i) {

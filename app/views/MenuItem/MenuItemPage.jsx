@@ -9,13 +9,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import {
-  Container,
-  TabBar,
   Resource,
 } from '../../components';
 import { currentURL, retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
-import Card from '../../components/Card';
+import Card from '../../topologies/Card';
+import Container from '../../topologies/Container';
+import TabBar from '../../topologies/TabBar';
 
 const mapDispatchToProps = (dispatch, { lrs }) => ({
   goToFirstTab: (menuItems) => {

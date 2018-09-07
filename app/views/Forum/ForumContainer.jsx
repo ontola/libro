@@ -5,9 +5,9 @@ import { connectHighlighting, hightlightType } from '../../containers/Highlight'
 import {
   Card,
   CardContent,
-  DetailsBar,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import DetailsBar from '../../topologies/DetailsBar';
 
 class ForumContainer extends React.PureComponent {
   static type = NS.argu('Forum');

@@ -13,12 +13,12 @@ import { connect } from 'react-redux';
 
 import {
   CardList,
-  Container,
   Resource,
   CardHeader,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { getPage } from '../../state/pagination/selectors';
+import Container from '../../topologies/Container';
 
 import FilteredCollections from './properties/filteredCollections';
 import First from './properties/first';

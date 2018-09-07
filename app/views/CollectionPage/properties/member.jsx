@@ -3,8 +3,8 @@ import { LinkedResourceContainer, PropertyBase, link } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { Grid } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
+import Grid from '../../../topologies/Grid';
 import { CollectionViewTypes } from '../types';
 
 const propTypes = {

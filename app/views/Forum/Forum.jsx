@@ -2,8 +2,8 @@ import React from 'react';
 import { Property, register } from 'link-redux';
 
 import { NS } from '../../helpers/LinkedRenderStore';
-import { PageHeader } from '../../components';
-import Container from '../../components/Container/index';
+import Container from '../../topologies/Container/index';
+import PageHeader from '../../topologies/PageHeader';
 
 class ForumPage extends React.PureComponent {
   static type = NS.argu('Forum');

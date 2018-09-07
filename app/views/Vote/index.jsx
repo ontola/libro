@@ -10,11 +10,11 @@ import FontAwesome from 'react-fontawesome';
 import {
   Card,
   CardContent,
-  Container,
-  DetailsBar,
   HoverPopup,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import Container from '../../topologies/Container';
+import DetailsBar from '../../topologies/DetailsBar';
 
 const propTypes = {
   subject: linkedPropType,

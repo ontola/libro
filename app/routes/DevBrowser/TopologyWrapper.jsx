@@ -8,12 +8,12 @@ import {
   CardFixed,
   CardMain,
   CardRow,
-  Container,
-  DetailsBar,
-  Grid,
   Heading,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import Container from '../../topologies/Container';
+import DetailsBar from '../../topologies/DetailsBar';
+import Grid from '../../topologies/Grid';
 
 const propTypes = {
   pure: PropTypes.boolean,

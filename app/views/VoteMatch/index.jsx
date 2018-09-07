@@ -7,10 +7,10 @@ import {
   Button,
   Card,
   CardContent,
-  Container,
   Cover,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import Container from '../../topologies/Container';
 
 import './properties/motions';
 import './properties/voteCompareResult';

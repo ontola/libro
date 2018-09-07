@@ -7,10 +7,10 @@ import {
   CardContent,
   CardMain,
   CardHeader,
-  Container,
-  DetailsBar,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import Container from '../../topologies/Container';
+import DetailsBar from '../../topologies/DetailsBar';
 
 const MotionPage = () => (
   <div>

@@ -4,9 +4,9 @@ import Helmet from 'react-helmet';
 import {
   Card,
   CardContent,
-  Container,
   Heading,
-} from 'components';
+} from '../../components';
+import Container from '../../topologies/Container';
 
 const NotFound = () => (
   <Container size="small">

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import hoverBox, { propTypes } from './index';
+import hoverBox, { propTypes } from '.';
 
 const HoverBox = hoverBox();
 

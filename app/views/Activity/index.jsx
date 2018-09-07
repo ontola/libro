@@ -6,9 +6,9 @@ import { withRouter } from 'react-router-dom';
 import {
   Card,
   CardContent,
-  DetailsBar,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import DetailsBar from '../../topologies/DetailsBar';
 
 import ActivityName from './properties/name';
 

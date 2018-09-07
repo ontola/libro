@@ -12,11 +12,11 @@ import {
   Card,
   CardContent,
   Form,
-  FormFooter,
 } from '../../components';
 import FormFooterRight from '../../components/Form/FooterRight';
 import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
+import FormFooter from '../../topologies/FormFooter/Footer';
 
 import EntryPointBase from './EntryPointBase';
 

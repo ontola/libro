@@ -5,10 +5,10 @@ import React from 'react';
 import {
   CardContent,
   CardRow,
-} from '../Card';
+} from '../../topologies/Card';
 import Detail from '../Detail';
 import DetailDate from '../DetailDate';
-import DetailsBar from '../DetailsBar';
+import DetailsBar from '../../topologies/DetailsBar';
 import Markdown from '../Markdown';
 import Progress from '../Progress';
 

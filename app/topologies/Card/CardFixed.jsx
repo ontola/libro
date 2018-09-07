@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 import { NS } from '../../helpers/LinkedRenderStore';
-import Topology from '../Topology/index';
+import Topology from '../Topology';
 
 const propTypes = {
   children: PropTypes.node.isRequired,

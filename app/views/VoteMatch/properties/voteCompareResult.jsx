@@ -4,11 +4,11 @@ import React from 'react';
 
 import {
   Card,
-  Container,
   Cover,
   LDLink,
 } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
+import Container from '../../../topologies/Container';
 
 const propTypes = {
   linkedProp: linkedPropType.isRequired,

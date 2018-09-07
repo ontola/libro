@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
-import { sizes } from '../shared/config';
+import { sizes } from '../../components/shared/config';
 
 import './Container.scss';
 

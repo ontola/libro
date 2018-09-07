@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { LinkedResourceContainer, Type } from 'link-redux';
 
-import { Container } from 'components';
+import Container from '../../topologies/Container';
 
 const propTypes = {
   location: PropTypes.shape({

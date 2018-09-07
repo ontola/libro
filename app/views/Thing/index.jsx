@@ -15,10 +15,7 @@ import {
   CardMain,
   CardHeader,
   CardRow,
-  Container,
   Detail,
-  DetailsBar,
-  hoverBox,
   LDLink,
   Resource,
 } from '../../components';
@@ -29,6 +26,9 @@ import {
 } from '../../containers/Highlight';
 import SignInSwitcherContainer from '../../containers/SignInSwitcherContainer';
 import { NS } from '../../helpers/LinkedRenderStore';
+import hoverBox from '../../topologies/HoverBox';
+import Container from '../../topologies/Container';
+import DetailsBar from '../../topologies/DetailsBar';
 
 import Arguments from './properties/arguments';
 import BaseColor from './properties/baseColor';

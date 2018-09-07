@@ -8,12 +8,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import {
-  Container,
-  PageHeader,
-} from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { getOrganization } from '../../state/app/selectors';
+import Container from '../../topologies/Container';
+import PageHeader from '../../topologies/PageHeader';
 
 import Detail from './detail';
 import Section from './section';

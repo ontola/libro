@@ -4,7 +4,7 @@ import React from 'react';
 import CollapsibleContainer from 'containers/CollapsibleContainer';
 
 import Detail from '../Detail';
-import DetailsBar from '../DetailsBar';
+import DetailsBar from '../../topologies/DetailsBar';
 import DetailDate from '../DetailDate';
 import Heading from '../Heading';
 import Progress from '../Progress';

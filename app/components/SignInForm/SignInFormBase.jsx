@@ -4,7 +4,7 @@ import React from 'react';
 import validators, { combineValidators } from '../../helpers/validators';
 import { STEPS } from '../../state/form/reducer';
 import Button from '../Button';
-import { CardContent, CardLink, CardRow } from '../Card';
+import { CardContent, CardLink, CardRow } from '../../topologies/Card';
 import FormField from '../FormField';
 import CloseableContainer from '../../containers/CloseableContainer';
 

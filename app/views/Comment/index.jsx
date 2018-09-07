@@ -3,15 +3,15 @@ import { Property } from 'link-redux';
 import React from 'react';
 
 import {
-  ActionsBar,
   Card,
   CardAppendix,
   CardContent,
   CardMicroRow,
-  DetailsBar,
 } from '../../components';
 import { connectHighlighting, hightlightPropTypes } from '../../containers/Highlight';
 import { NS } from '../../helpers/LinkedRenderStore';
+import ActionsBar from '../../topologies/ActionsBar';
+import DetailsBar from '../../topologies/DetailsBar';
 
 const Comment = ({ highlighted }) => (
   <Card shine={highlighted}>

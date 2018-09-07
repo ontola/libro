@@ -13,7 +13,7 @@ import {
   updateMarkdown,
 } from '../../state/textEditor/actions';
 import Button from '../Button';
-import { CardDivider } from '../Card';
+import { CardDivider } from '../../topologies/Card';
 import Markdown from '../Markdown';
 
 import ToggleButton from './ToggleButton';

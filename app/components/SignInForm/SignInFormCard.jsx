@@ -9,7 +9,7 @@ import Card, {
   CardContent,
   CardDivider,
   CardRow,
-} from '../Card';
+} from '../../topologies/Card';
 import Heading from '../Heading';
 
 import SignInFormBase from './SignInFormBase';

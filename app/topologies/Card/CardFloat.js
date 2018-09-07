@@ -1,25 +1,25 @@
 import PropTypes from 'prop-types';
 
 import { NS } from '../../helpers/LinkedRenderStore';
-import Topology from '../Topology/index';
+import Topology from '../Topology';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
 };
 
 /**
- * Sets the cardList topology
+ * Sets the cardFloat topology
  * @returns {component} Component
  */
-class CardList extends Topology {
+class CardFloat extends Topology {
   constructor() {
     super();
 
-    this.className = 'CardList';
-    this.topology = NS.argu('cardList');
+    this.className = 'CardFloat';
+    this.topology = NS.argu('cardFloat');
   }
 }
 
-CardList.propTypes = propTypes;
+CardFloat.propTypes = propTypes;
 
-export default CardList;
+export default CardFloat;

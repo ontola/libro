@@ -10,7 +10,6 @@ import FontAwesome from 'react-fontawesome';
 import {
   Card,
   CardContent,
-  Container,
   Heading,
   LinkDuo,
 } from '../../components';
@@ -18,6 +17,7 @@ import SignInFormContainer from '../../containers/SignInFormContainer';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { currentLocation } from '../../helpers/paths';
 import { getCurrentUserType } from '../../state/app/selectors';
+import Container from '../../topologies/Container';
 
 import ErrorButtonWithFeedback from './ErrorButtonWithFeedback';
 import ErrorButtonInline from './ErrorButtonInline';

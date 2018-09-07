@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import LDLink from '../LDLink/index';
+import LDLink from '../../components/LDLink';
 
 const propTypes = {
   icon: PropTypes.node,

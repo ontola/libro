@@ -4,7 +4,7 @@ import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router-dom';
 
 import { Heading, PDF } from '../../components';
-import Container from '../../components/Container';
+import Container from '../../topologies/Container';
 import Image from '../../components/Image';
 import {
   downloadableAttachment,

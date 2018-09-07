@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
-import Button from '../Button';
+import Button from '../../components/Button';
 
 const MIN_PIXELS = 5;
 const REFRESH_RATE_MS = 66;
