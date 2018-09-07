@@ -11,76 +11,8 @@ export function absoluteRouterLocation(state) {
 }
 
 const path = {
-  createVoteMatch() {
-    return '/vote_matches/new';
-  },
-
-  event(id) {
-    return `/events/${id}`;
-  },
-
   index() {
     return '/';
-  },
-
-  info(id) {
-    return `/info/${id}`;
-  },
-
-  infoIndex() {
-    return '/info';
-  },
-
-  motionsIndex() {
-    return '/motions';
-  },
-
-  od(iri) {
-    return `/od?iri=${iri}`;
-  },
-
-  partiesIndex() {
-    return '/parties';
-  },
-
-  party(id) {
-    return `/parties/${id}`;
-  },
-
-  partyAbout(id) {
-    return `/parties/${id}/about`;
-  },
-
-  partyMembers(id) {
-    return `/parties/${id}/members`;
-  },
-
-  partyMotions(id) {
-    return `/parties/${id}/motions`;
-  },
-
-  politiciansIndex() {
-    return '/politicians';
-  },
-
-  profile(id) {
-    return `/profile/${id}`;
-  },
-
-  profileAbout(id) {
-    return `/profile/${id}/about`;
-  },
-
-  profileMotions(id) {
-    return `/profile/${id}/motions`;
-  },
-
-  search() {
-    return '/search';
-  },
-
-  settings() {
-    return '/settings';
   },
 
   /**

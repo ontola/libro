@@ -4,12 +4,6 @@ export function downloadableAttachment({ contentUrl, type }) {
   return type === NS.schema('VideoObject') || !contentUrl;
 }
 
-export function previewableAttachment({ encodingFormat, type }) {
-  return type === NS.schema('ImageObject')
-    || type === NS.schema('VideoObject')
-    || (encodingFormat && encodingFormat.value === 'application/pdf');
-}
-
 export function downloadUrl(contentUrl) {
   const downloadLink = new URL(contentUrl.value);
   downloadLink.searchParams.set('download', 'true');

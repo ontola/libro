@@ -4,6 +4,7 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 
 import webpackConfig from '../../webpack/hot.config';
+import { logLevel } from '../config';
 
 export default function (app) {
   if (__PRODUCTION__ === true) {
@@ -18,9 +19,9 @@ export default function (app) {
     headers: {
       'Access-Control-Allow-Origin': '*',
     },
-    noInfo: true,
+    noInfo: logLevel === 'debug',
     publicPath: webpackConfig.output.publicPath,
-    quiet: true,
+    quiet: logLevel !== 'debug',
   }));
 
   app.use(webpackHotMiddleware(compiler, compiler));

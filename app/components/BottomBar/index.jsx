@@ -39,11 +39,6 @@ const BottomBar = ({
         label="Overzicht"
         to={path.index()}
       />
-      <BottomBarButton
-        icon="search"
-        label="Zoeken"
-        to={path.search()}
-      />
     </div>
   );
 };
