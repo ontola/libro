@@ -24,8 +24,7 @@ const propTypes = {
 };
 
 class OmniformProp extends React.PureComponent {
-  /* We need to encode the IRI's to prevent redux-forms from parsing the dots as sub-resources */
-  reduxFormsSafeIRI() {
+  keynameSafeIRI() {
     return btoa(this.props.subject);
   }
 
@@ -35,7 +34,7 @@ class OmniformProp extends React.PureComponent {
         actions={new Set(this.props.potentialAction)}
         autofocusForm={this.props.autofocusForm}
         formFooterButtons={this.props.formFooterButtons}
-        parentIRI={this.reduxFormsSafeIRI()}
+        parentIRI={this.keynameSafeIRI()}
         onDone={this.props.onDone}
         onKeyUp={this.props.onKeyUp}
       />

@@ -8,8 +8,6 @@ import { CardActions } from '../Card';
 import SignInFormBase from './SignInFormBase';
 
 const propTypes = {
-  // Since this uses redux-form, you need to pass onSubmit instead of handleSubmit.
-  handleSubmit: PropTypes.func.isRequired,
   invalid: PropTypes.bool,
   reason: PropTypes.string,
   step: PropTypes.string,

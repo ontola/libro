@@ -10,7 +10,7 @@ import {
 } from '../action-types';
 
 export const emailTaken = createAction(SIGN_IN_EMAIL_TAKEN);
-export const showForm = createAction(SIGN_IN_SHOW_FORM, subject => subject);
+export const showSignInForm = createAction(SIGN_IN_SHOW_FORM, subject => subject);
 export const stepBack = createAction(SIGN_IN_STEP_BACK);
 export const unknownEmail = createAction(SIGN_IN_UNKNOWN_EMAIL);
 export const userCreated = createAction(SIGN_IN_USER_CREATED);

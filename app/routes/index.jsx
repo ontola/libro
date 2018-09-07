@@ -4,17 +4,11 @@ import { Route, Switch } from 'react-router';
 
 import { PDF } from '../components';
 
-// import CreateVoteMatch from './CreateVoteMatch';
 import LinkedObject from './LinkedObject';
 import DevBrowser from './DevBrowser';
 import Iframe from './Iframe';
-import Omniform from './OmniformRoute';
 import SignIn from './SignIn';
 // import { LinkVoteMatch } from './VoteMatch';
-
-const PDFDebugger = () => (
-  <PDF file="https://media.readthedocs.org/pdf/pymisp/master/pymisp.pdf" />
-);
 
 const subRoutes = [
   <Route key="signin" path="/u/sign_in" component={SignIn} />,
@@ -28,8 +22,11 @@ const subRoutes = [
 ];
 
 if (__DEVELOPMENT__) {
+  const PDFDebugger = () => (
+    <PDF file="https://media.readthedocs.org/pdf/pymisp/master/pymisp.pdf" />
+  );
+
   subRoutes.splice(-1, 0, <Route key="devbrowser" path="/d/browser" component={DevBrowser} />);
-  subRoutes.splice(-1, 0, <Route key="omniform" path="/d/omniform" component={Omniform} />);
   subRoutes.splice(-1, 0, <Route key="pdf" path="/d/pdf" component={PDFDebugger} />);
 }
 

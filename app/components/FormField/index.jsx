@@ -113,7 +113,7 @@ function getBase64(file) {
 }
 
 /**
- * Creates a field for forms. Use with redux-form Field if possible.
+ * Creates a field for forms.
  * @returns {component} Component
  */
 class FormField extends React.Component {

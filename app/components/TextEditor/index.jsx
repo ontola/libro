@@ -19,7 +19,6 @@ const propTypes = {
   id: PropTypes.string.isRequired,
   maxLength: PropTypes.string,
   minLength: PropTypes.string,
-  // Handle the blurring for redux-form
   onBlur: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   onFocus: PropTypes.func.isRequired,
@@ -89,7 +88,7 @@ class TextEditor extends Component {
           placeholder={placeholder}
           onBlur={(e) => {
             onBlur(e);
-            // Convert the DraftJS object to Markdown and store it in Redux-Form.
+            // Convert the DraftJS object to Markdown and pass it through.
             onChange({ target: { value: getMarkdownValue() } });
           }}
           onChange={this.debounce}

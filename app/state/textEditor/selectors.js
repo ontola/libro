@@ -45,8 +45,7 @@ export const getMarkdownTextPlain = (state, id) => {
   return content;
 };
 
-// The Markdown value is used as the 'source of truth' for redux-form, since it is what the server
-// accepts.
+// The Markdown value is used as the 'source of truth', since it is what the server accepts.
 export const getLatestMarkdown = (state, id) => {
   if (getEditorShowRich(state) === true) {
     return getMarkdownTextFromDraft(state, id);

@@ -5,7 +5,6 @@ import {
   PropertyBase,
 } from 'link-redux';
 import PropTypes from 'prop-types';
-import { SubmissionError } from 'redux-form/immutable';
 
 import { convertKeysAtoB } from '../../helpers/data';
 import { NS } from '../../helpers/LinkedRenderStore';
@@ -64,7 +63,7 @@ class EntryPointBase extends PropertyBase {
           .then((statements) => {
             const name = anyRDFValue(statements, NS.schema('text'));
             if (name) {
-              throw new SubmissionError(name.value);
+              throw new Error(name.value);
             }
             throw e;
           });
@@ -73,7 +72,6 @@ class EntryPointBase extends PropertyBase {
 }
 
 EntryPointBase.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
   invalid: PropTypes.bool,
   onStatusForbidden: PropTypes.func,
   submitHandler: PropTypes.func.isRequired,

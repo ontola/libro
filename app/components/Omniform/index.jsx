@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
 import React from 'react';
 import { Form } from 'informed';
-import { formValueSelector } from 'redux-form/immutable';
 import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
 
@@ -23,7 +22,7 @@ import {
 import EntryPointBase from '../../views/EntryPoint/EntryPointBase';
 import Button from '../Button';
 import { FormFooter, FormFooterRight } from '../Form';
-import { showForm } from '../../state/form/actions';
+import { showSignInForm } from '../../state/form/actions';
 
 import './Omniform.scss';
 import OmniformFields from './OmniformFields';
@@ -170,7 +169,6 @@ const mapStateToProps = (state, ownProps) => {
   return ({
     action,
     actions,
-    currentValue: formValueSelector(formName)(state, 'search'),
     form: formName,
   });
 };
@@ -183,7 +181,7 @@ const mapDispatchToProps = (dispatch, props) => ({
       parentIRI: props.parentIRI,
     }));
   },
-  onStatusForbidden: () => dispatch(showForm(atob(props.parentIRI))),
+  onStatusForbidden: () => dispatch(showSignInForm(atob(props.parentIRI))),
 });
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => Object.assign(

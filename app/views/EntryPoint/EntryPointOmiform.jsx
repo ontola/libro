@@ -32,10 +32,8 @@ class EntryPointOmniform extends EntryPointBase {
 }
 
 EntryPointOmniform.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
   invalid: PropTypes.bool,
   onStatusForbidden: PropTypes.func.isRequired,
-  submitHandler: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
   url: linkType,
 };
