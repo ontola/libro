@@ -3,7 +3,8 @@ import { linkedPropType } from 'link-redux';
 import React from 'react';
 
 import { DetailDate, LDLink } from '../../../components';
-import { allTopologies, NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
+import { allTopologies } from '../../../topologies';
 
 const propTypes = {
   linkedProp: linkedPropType,

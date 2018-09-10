@@ -7,7 +7,8 @@ import {
 import React from 'react';
 
 import { sort } from '../../../helpers/data';
-import { allTopologies, NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
+import { allTopologies } from '../../../topologies';
 import { CollectionTypes } from '../types';
 
 const ORDER = [

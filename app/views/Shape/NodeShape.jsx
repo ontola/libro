@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
 import React from 'react';
 
-import { allTopologies, NS } from '../../helpers/LinkedRenderStore';
+import { NS } from '../../helpers/LinkedRenderStore';
+import { allTopologies } from '../../topologies';
 
 const propTypes = {
   autofocusForm: PropTypes.bool,

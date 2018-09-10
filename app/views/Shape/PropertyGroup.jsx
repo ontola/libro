@@ -2,7 +2,8 @@ import { register, linkType, subjectType } from 'link-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { allTopologies, NS } from '../../helpers/LinkedRenderStore';
+import { NS } from '../../helpers/LinkedRenderStore';
+import { allTopologies } from '../../topologies';
 
 const propTypes = {
   label: linkType,

@@ -5,7 +5,8 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../../helpers/iris';
-import { allTopologies, NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
+import { allTopologies } from '../../../topologies';
 
 const propTypes = {
   ariaLabel: PropTypes.string,

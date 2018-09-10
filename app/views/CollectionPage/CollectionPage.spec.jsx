@@ -4,7 +4,7 @@ import { Literal } from 'rdflib';
 import React from 'react';
 
 import { NS } from '../../../tests';
-import { allTopologies } from '../../helpers/LinkedRenderStore';
+import { allTopologies } from '../../topologies';
 
 import components from './index';
 

@@ -5,36 +5,15 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import VoteData from '../../components/VoteData';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { VoteEventResult } from '../../topologies/VoteEventResult';
+import { voteEventSide } from '../../topologies/VoteEventSide';
 
 import { CollectionViewTypes } from './types';
 
 const HUNDRED_PERCENT = 100;
 const LOWER_LIMIT = 5;
 const THREE_SIDE_STALEMATE = 33;
-
-class VoteEventResult extends TopologyProvider {
-  constructor() {
-    super();
-
-    this.topology = NS.argu('voteEventResult');
-    this.card = false;
-  }
-
-  render() {
-    return this.wrap((
-      <VoteData card={this.card}>
-        <Property
-          label={NS.as('pages')}
-          limit={Infinity}
-          totalVotes={this.props.totalCount}
-          variant={this.props.variant}
-        />
-      </VoteData>
-    ));
-  }
-}
 
 class VoteEventResultCard extends VoteEventResult {
   constructor() {
@@ -48,7 +27,7 @@ class VoteEventSide extends TopologyProvider {
   constructor(props) {
     super(props);
 
-    this.topology = NS.argu('voteEventSide');
+    this.topology = voteEventSide;
   }
 
   percentages() {

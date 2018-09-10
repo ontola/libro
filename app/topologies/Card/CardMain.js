@@ -6,24 +6,26 @@ import Topology from '../Topology';
 
 import './Card.scss';
 
-const propTypes = {
-  children: PropTypes.node.isRequired,
-  fixed: PropTypes.bool,
-};
-
-const defaultProps = {
-  fixed: false,
-};
+export const cardMainTopology = NS.argu('cardMain');
 
 /**
  * Renders an empty Card without padding
  * @returns {component} Component
  */
 class CardMain extends Topology {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+    fixed: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    fixed: false,
+  };
+
   constructor() {
     super();
 
-    this.topology = NS.argu('cardMain');
+    this.topology = cardMainTopology;
   }
 
   getClassName() {
@@ -33,8 +35,5 @@ class CardMain extends Topology {
     });
   }
 }
-
-CardMain.propTypes = propTypes;
-CardMain.defaultProps = defaultProps;
 
 export default CardMain;

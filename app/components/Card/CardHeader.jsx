@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import CardFloat from './CardFloat';
+import CardFloat from '../../topologies/Card/CardFloat';
 
 const propTypes = {
   /** The children float to the top right */

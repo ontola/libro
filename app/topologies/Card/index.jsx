@@ -6,28 +6,30 @@ import Topology from '../Topology';
 
 import './Card.scss';
 
-const propTypes = {
-  children: PropTypes.node.isRequired,
-  fixed: PropTypes.bool,
-  shine: PropTypes.bool,
-  warn: PropTypes.bool,
-};
-
-const defaultProps = {
-  fixed: false,
-  shine: false,
-  warn: false,
-};
+export const cardTopology = NS.argu('card');
 
 /**
  * Renders an empty Card without padding
  * @returns {component} Component
  */
 class Card extends Topology {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+    fixed: PropTypes.bool,
+    shine: PropTypes.bool,
+    warn: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    fixed: false,
+    shine: false,
+    warn: false,
+  };
+
   constructor() {
     super();
 
-    this.topology = NS.argu('card');
+    this.topology = cardTopology;
   }
 
   getClassName() {
@@ -40,20 +42,17 @@ class Card extends Topology {
   }
 }
 
-Card.propTypes = propTypes;
-Card.defaultProps = defaultProps;
-
-export { default as CardActions } from './CardActions';
+export { default as CardActions } from '../../components/Card/CardActions';
 export { default as CardAppendix } from './CardAppendix';
-export { default as CardButton } from './CardButton';
-export { default as CardContent } from './CardContent';
-export { default as CardDivider } from './CardDivider';
+export { default as CardButton } from '../../components/Card/CardButton';
+export { default as CardContent } from '../../components/Card/CardContent';
+export { default as CardDivider } from '../../components/Card/CardDivider';
 export { default as CardFixed } from './CardFixed';
 export { default as CardFloat } from './CardFloat';
-export { default as CardLink } from './CardLink';
+export { default as CardLink } from '../../components/Card/CardLink';
 export { default as CardList } from './CardList';
 export { default as CardMicroRow } from './CardMicroRow';
-export { default as CardHeader } from './CardHeader';
+export { default as CardHeader } from '../../components/Card/CardHeader';
 export { default as CardRow } from './CardRow';
 export { default as CardMain } from './CardMain';
 export default Card;

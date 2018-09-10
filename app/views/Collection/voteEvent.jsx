@@ -1,13 +1,14 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
-  Property,
   link,
-  TopologyProvider, linkedPropType, subjectType,
+  linkedPropType,
+  Property,
+  subjectType,
 } from 'link-redux';
 import React from 'react';
 
-import VoteData from '../../components/VoteData';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { VoteEventResult } from '../../topologies/VoteEventResult/index';
 
 import { CollectionTypes } from './types';
 
@@ -15,32 +16,7 @@ const HUNDRED_PERCENT = 100;
 const LOWER_LIMIT = 5;
 const THREE_SIDE_STALEMATE = 33;
 
-class VoteEventResult extends TopologyProvider {
-  constructor(props) {
-    super(props);
-
-    this.topology = NS.argu('voteEventResult');
-    this.card = false;
-  }
-
-  render() {
-    if (this.props.totalItems.value === '0') {
-      return null;
-    }
-
-    return this.wrap((
-      <VoteData card={this.card}>
-        <Property
-          label={NS.argu('filteredCollections')}
-          totalVotes={this.props.totalItems}
-          variant={this.props.variant}
-        />
-      </VoteData>
-    ));
-  }
-}
-
-class VoteEventResultCard extends VoteEventResult {
+export class VoteEventResultCard extends VoteEventResult {
   constructor() {
     super();
 

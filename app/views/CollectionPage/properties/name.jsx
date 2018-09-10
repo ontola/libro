@@ -8,7 +8,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { Heading } from '../../../components';
-import { allTopologies, NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
+import { allTopologies } from '../../../topologies';
 import { CollectionViewTypes } from '../types';
 
 const propTypes = {

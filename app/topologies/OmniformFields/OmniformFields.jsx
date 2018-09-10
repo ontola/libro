@@ -3,11 +3,13 @@ import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 
+export const omniformFieldsTopology = NS.argu('omniformFields');
+
 class OmniformFields extends TopologyProvider {
   constructor() {
     super();
 
-    this.topology = NS.argu('omniformFields');
+    this.topology = omniformFieldsTopology;
   }
 
   render() {

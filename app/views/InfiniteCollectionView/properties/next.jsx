@@ -4,7 +4,8 @@ import { Literal, Statement } from 'rdflib';
 import React from 'react';
 
 import ButtonWithFeedback from '../../../components/ButtonWithFeedback';
-import { allTopologies, NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
+import { allTopologies } from '../../../topologies';
 
 class InfiniteCollectionNext extends PropertyBase {
   render() {

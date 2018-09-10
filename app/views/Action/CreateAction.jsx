@@ -10,8 +10,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { LDLink } from '../../components';
-import { NS, allTopologiesExcept } from '../../helpers/LinkedRenderStore';
+import { NS } from '../../helpers/LinkedRenderStore';
 import { omniformOpenInline, omniformSetAction } from '../../state/omniform';
+import { allTopologiesExcept } from '../../topologies';
 
 const propTypes = {
   children: PropTypes.element,

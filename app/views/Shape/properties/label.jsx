@@ -1,7 +1,8 @@
 import LinkedRenderStore from 'link-lib';
 import React from 'react';
 
-import { allTopologies, NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
+import { allTopologies } from '../../../topologies';
 
 export default LinkedRenderStore.registerRenderer(
   ({ linkedProp }) => (

@@ -1,9 +1,10 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 
-import CardActions from './CardActions';
-import CardButton from './CardButton';
-import CardContent from './CardContent';
+import CardActions from '../../components/Card/CardActions';
+import CardButton from '../../components/Card/CardButton';
+import CardContent from '../../components/Card/CardContent';
+
 import CardRow from './CardRow';
 
 import Card from '.';

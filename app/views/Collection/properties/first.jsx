@@ -4,9 +4,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { Button } from '../../../components';
-import { allTopologies, NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
 import { gotoPage } from '../../../state/pagination/actions';
 import { getPage } from '../../../state/pagination/selectors';
+import { allTopologies } from '../../../topologies';
 import { CollectionTypes } from '../types';
 
 /**

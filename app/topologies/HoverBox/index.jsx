@@ -12,7 +12,9 @@ export const propTypes = {
   hiddenChildren: PropTypes.node.isRequired,
 };
 
-export default function (topology = NS.argu('cardHover'), popout = false) {
+export const hoverBoxTopology = NS.argu('cardHover');
+
+export default function (topology = hoverBoxTopology, popout = false) {
   /**
    * Mouse-first component designed to add some extra info where requested. Since it uses 'hover'
    * state, make sure to add functionality for touch users.

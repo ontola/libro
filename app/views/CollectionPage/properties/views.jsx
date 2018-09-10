@@ -8,7 +8,8 @@ import {
 import React from 'react';
 
 import { Columns } from '../../../components';
-import { allTopologies, NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
+import { allTopologies } from '../../../topologies';
 import { CollectionViewTypes } from '../types';
 
 class Views extends PropertyBase {

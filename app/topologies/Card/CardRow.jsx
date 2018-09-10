@@ -3,27 +3,27 @@ import PropTypes from 'prop-types';
 import { NS } from '../../helpers/LinkedRenderStore';
 import Topology from '../Topology';
 
-const propTypes = {
-  children: PropTypes.node.isRequired,
-  showArrow: PropTypes.bool,
-};
+export const cardRowTopology = NS.argu('cardRow');
 
 /**
  * Used to divide a card in multiple rows
  * @returns {component} Component
  */
 class CardRow extends Topology {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+    showArrow: PropTypes.bool,
+  };
+
   constructor() {
     super();
 
-    this.topology = NS.argu('cardRow');
+    this.topology = cardRowTopology;
   }
 
   getClassName() {
     return `CardRow ${this.props.showArrow && 'CardRow--show-arrow'} ${this.props.backdrop && 'CardRow--backdrop'}`;
   }
 }
-
-CardRow.propTypes = propTypes;
 
 export default CardRow;

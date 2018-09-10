@@ -5,7 +5,8 @@ import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import { withRouter } from 'react-router-dom';
 
-import { NS, allTopologies, getTopologyNumber } from '../../helpers/LinkedRenderStore';
+import { NS } from '../../helpers/LinkedRenderStore';
+import { allTopologies, getTopologyNumber } from '../../topologies';
 
 import TopologyWrapper from './TopologyWrapper';
 import './DevBrowser.scss';

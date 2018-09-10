@@ -2,22 +2,27 @@ import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
 import Button from '../../components/Button';
+
+import { gridTopology } from './index';
 
 const MIN_PIXELS = 5;
 const REFRESH_RATE_MS = 66;
 const SCROLL_CORRECTION = 10;
 
-class Grid extends TopologyProvider {
-  constructor() {
-    super();
+class Carousel extends TopologyProvider {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+  };
+
+  constructor(props) {
+    super(props);
 
     this.state = {
       showLeftButton: false,
       showRightButton: false,
     };
-    this.topology = NS.argu('grid');
+    this.topology = gridTopology;
 
     this.checkDimensions = this.checkDimensions.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
@@ -137,8 +142,4 @@ class Grid extends TopologyProvider {
   }
 }
 
-Grid.propTypes = {
-  children: PropTypes.node.isRequired,
-};
-
-export default Grid;
+export default Carousel;

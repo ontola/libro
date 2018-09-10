@@ -1,7 +1,8 @@
 import LinkedRenderStore from 'link-lib';
 import { link } from 'link-redux';
 
-import { allTopologies, NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
+import { allTopologies } from '../../../topologies';
 import { getVoteButtons } from '../../VoteEvent/properties/currentVote';
 
 

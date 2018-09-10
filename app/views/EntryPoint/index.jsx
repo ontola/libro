@@ -5,8 +5,9 @@ import PropTypes from 'prop-types';
 
 import { Button } from '../../components';
 import ButtonWithFeedback from '../../components/ButtonWithFeedback';
-import { allTopologiesExcept, NS } from '../../helpers/LinkedRenderStore';
+import { NS } from '../../helpers/LinkedRenderStore';
 import { countInParentheses } from '../../helpers/numbers';
+import { allTopologiesExcept } from '../../topologies';
 
 import EntryPointButton from './EntryPointButton';
 import EntryPointContainer from './EntryPointContainer';

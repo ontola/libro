@@ -3,7 +3,8 @@ import { link, Property } from 'link-redux';
 import React, { PureComponent } from 'react';
 
 import { CardContent, CardRow, Columns } from '../../../components';
-import { allTopologiesExcept, NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
+import { allTopologiesExcept } from '../../../topologies';
 
 function noArguments({ conArgumentsCount, proArgumentsCount }) {
   return (Number(conArgumentsCount) || 0) + (Number(proArgumentsCount) || 0) === 0;

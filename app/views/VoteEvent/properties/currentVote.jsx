@@ -11,8 +11,9 @@ import { connect } from 'react-redux';
 
 import { SignInFormContainerCardRow } from '../../../containers/SignInFormContainer';
 import { currentURL, retrievePath } from '../../../helpers/iris';
-import { allTopologies, NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
 import { getCurrentUserType } from '../../../state/app/selectors';
+import { allTopologies } from '../../../topologies';
 
 class CurrentVote extends PropertyBase {
   shouldComponentUpdate(nextProps) {

@@ -8,26 +8,28 @@ import { sizes } from '../../components/shared/config';
 
 import './Container.scss';
 
-const propTypes = {
-  children: PropTypes.node.isRequired,
-  grid: PropTypes.bool,
-  size: PropTypes.oneOf(sizes),
-  spacing: PropTypes.oneOf(sizes),
-};
-
-const defaultProps = {
-  size: 'medium',
-};
+export const containerTopology = NS.argu('container');
 
 /**
  * Centers the content and defines width
  * @returns {component} Container with children
  */
 class Container extends TopologyProvider {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+    grid: PropTypes.bool,
+    size: PropTypes.oneOf(sizes),
+    spacing: PropTypes.oneOf(sizes),
+  };
+
+  static defaultProps = {
+    size: 'medium',
+  };
+
   constructor() {
     super();
 
-    this.topology = NS.argu('container');
+    this.topology = containerTopology;
   }
 
   render() {
@@ -45,8 +47,5 @@ class Container extends TopologyProvider {
     ));
   }
 }
-
-Container.propTypes = propTypes;
-Container.defaultProps = defaultProps;
 
 export default Container;

@@ -5,22 +5,22 @@ import Topology from '../Topology';
 
 import './Card.scss';
 
-const propTypes = {
-  children: PropTypes.node.isRequired,
-};
+export const cardAppendixTopology = NS.argu('cardAppendix');
 
 /**
  * Renders an empty CardAppendix
  * @returns {component} Component
  */
 class CardAppendix extends Topology {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+  };
+
   constructor(props) {
     super(props);
 
-    this.topology = NS.argu('cardAppendix');
+    this.topology = cardAppendixTopology;
   }
 }
-
-CardAppendix.propTypes = propTypes;
 
 export default CardAppendix;

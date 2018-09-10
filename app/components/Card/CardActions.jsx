@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import './Card.scss';
+import '../../topologies/Card/Card.scss';
 
 const propTypes = {
   alignRight: PropTypes.bool,

@@ -14,8 +14,9 @@ import {
   FormField,
   FormSection,
 } from '../../components';
-import { allTopologies, NS } from '../../helpers/LinkedRenderStore';
+import { NS } from '../../helpers/LinkedRenderStore';
 import validators, { combineValidators } from '../../helpers/validators';
+import { allTopologies } from '../../topologies';
 
 const MAX_STR_LEN = 255;
 const TEXTFIELD_ROWS = 3;

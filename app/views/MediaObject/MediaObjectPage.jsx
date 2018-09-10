@@ -136,7 +136,11 @@ class MediaObjectPage extends React.PureComponent {
   render() {
     const { caption, filename, isPartOf } = this.props;
 
-    const label = caption && caption.value ? caption.value : filename.value;
+    const label = caption && caption.value ? caption.value : (filename && filename.value);
+
+    if (!label) {
+      // TODO: bugsnag
+    }
 
     return (
       <React.Fragment>

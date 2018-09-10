@@ -4,7 +4,8 @@ import { link, linkedPropType, LinkedResourceContainer } from 'link-redux';
 import React from 'react';
 
 import { filterSort } from '../../../helpers/data';
-import { allTopologiesExcept, NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
+import { allTopologiesExcept } from '../../../topologies';
 
 const propTypes = {
   potentialAction: PropTypes.arrayOf(linkedPropType),

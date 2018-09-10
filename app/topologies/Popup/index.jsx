@@ -1,26 +1,34 @@
 import { LinkedResourceContainer, linkType } from 'link-redux';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import { getCurrentLocation, getCurrentPopup } from '../../state/popup/selectors';
 import { NS } from '../../helpers/LinkedRenderStore';
+import Topology from '../Topology';
 
-const propTypes = {
-  location: PropTypes.shape({
-    bottom: PropTypes.number,
-    left: PropTypes.number,
-  }),
-  popup: linkType,
-};
+export const popupTopology = NS.argu('popup');
 
-class LinkedPopup extends Component {
-  constructor() {
-    super();
+class Popup extends Topology {
+  static propTypes = {
+    location: PropTypes.shape({
+      bottom: PropTypes.number,
+      left: PropTypes.number,
+    }),
+    popup: linkType,
+  };
+
+  static stateTypes = {
+    show: PropTypes.boolean,
+  };
+
+  constructor(props) {
+    super(props);
 
     this.state = {
       show: false,
     };
+    this.topology = popupTopology;
   }
 
   render() {
@@ -32,7 +40,7 @@ class LinkedPopup extends Component {
       bottom, left,
     } = this.props.location;
 
-    return (
+    return this.wrap((
       <div
         style={{
           left,
@@ -42,23 +50,16 @@ class LinkedPopup extends Component {
       >
         <LinkedResourceContainer subject={this.props.popup} topology={NS.argu('popup')} />
       </div>
-    );
+    ));
   }
 }
 
-LinkedPopup.propTypes = propTypes;
-LinkedPopup.stateTypes = {
-  show: PropTypes.boolean,
-};
-
-const LinkedPopupConnect = connect(
+const ConnectedPopup = connect(
   state => ({
     location: getCurrentLocation(state),
     popup: getCurrentPopup(state),
   }),
   null
-)(LinkedPopup);
+)(Popup);
 
-LinkedPopupConnect.propTypes = propTypes;
-
-export default LinkedPopupConnect;
+export default ConnectedPopup;

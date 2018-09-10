@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Button from '../../components/Button';
+import Button from '../Button';
 
-import './Card.scss';
+import '../../topologies/Card/Card.scss';
 
 const propTypes = {
   action: PropTypes.func,

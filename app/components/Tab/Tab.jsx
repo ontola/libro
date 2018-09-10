@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import LDLink from '../../components/LDLink';
+import LDLink from '../LDLink';
+
+import './Tab.scss';
 
 const propTypes = {
   icon: PropTypes.node,

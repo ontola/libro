@@ -4,8 +4,8 @@ import { Literal, NamedNode, Statement } from 'rdflib';
 
 import { FRONTEND_ACCEPT, FRONTEND_URL } from '../config';
 
-import transformers from './transformers';
 import ontolaMiddleware from './ontolaMiddleware';
+import transformers from './transformers';
 
 const LRS = new LinkedRenderStore({
   middleware: [
@@ -31,64 +31,6 @@ LRS.namespaces.opengov = memoizedNamespace('http://www.w3.org/ns/opengov#');
 LRS.namespaces.fa4 = memoizedNamespace('http://fontawesome.io/icon/');
 
 export const NS = LRS.namespaces;
-
-export const allTopologies = [
-  undefined,
-  NS.argu('actionsBar'),
-  NS.argu('card'),
-  NS.argu('cardAppendix'),
-  NS.argu('cardFixed'),
-  /**
-   * In the top right corner of a card
-   */
-  NS.argu('cardFloat'),
-  NS.argu('cardHover'),
-  /**
-   * A list inside a CardContent
-   */
-  NS.argu('cardList'),
-  NS.argu('cardMain'),
-  NS.argu('cardRow'),
-  NS.argu('cardVoteEvent'),
-  NS.argu('collection'),
-  NS.argu('container'),
-  NS.argu('detail'),
-  NS.argu('dropdownContent'),
-  NS.argu('formFooter'),
-  NS.argu('grid'),
-  NS.argu('header'),
-  NS.argu('inline'),
-  NS.argu('omniformFields'),
-  NS.argu('parent'),
-  NS.argu('popup'),
-  NS.argu('sidebar'),
-  NS.argu('tabBar'),
-  NS.argu('voteBubble'),
-  NS.argu('voteEvent'),
-  NS.argu('voteEventResult'),
-  NS.argu('voteEventResultCard'),
-  NS.argu('voteEventSide'),
-  NS.argu('widget'),
-];
-
-export function allTopologiesExcept(...topologies) {
-  const filtered = allTopologies.slice();
-  topologies.forEach((t) => {
-    const i = filtered.indexOf(t);
-    if (i !== -1) {
-      filtered.splice(i, 1);
-    }
-  });
-
-  return filtered;
-}
-
-export const getTopologyNumber = topology => allTopologies.findIndex((item) => {
-  if (item) {
-    return item.term === topology.term;
-  }
-  return topology === item;
-});
 
 const languages = {
   en: 'en',

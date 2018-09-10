@@ -5,17 +5,19 @@ import { NS } from '../../helpers/LinkedRenderStore';
 
 import './Grid.scss';
 
+export const gridTopology = NS.argu('grid');
+
 class Grid extends TopologyProvider {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+  };
+
   constructor() {
     super();
 
-    this.topology = NS.argu('grid');
+    this.topology = gridTopology;
     this.className = 'Grid';
   }
 }
-
-Grid.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
 export default Grid;

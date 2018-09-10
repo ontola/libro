@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import { default as onClickOutside } from 'react-onclickoutside';
 
-import DropdownContent from './DropdownContent';
+import DropdownContent from '../../topologies/DropdownContent/index';
 import './Dropdown.scss';
 
 const CLICK_AND_HOLD_TIMEOUT = 1000;

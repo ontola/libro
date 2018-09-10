@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 
-const propTypes = {
-  children: PropTypes.node.isRequired,
-};
+export const formFooterTopology = NS.argu('formFooter');
 
 class FormFooter extends TopologyProvider {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+  };
+
   constructor() {
     super();
 
-    this.topology = NS.argu('formFooter');
+    this.topology = formFooterTopology;
     this.className = 'Form__footer';
   }
 }
-
-FormFooter.propTypes = propTypes;
 
 export default FormFooter;

@@ -6,7 +6,8 @@ import React from 'react';
 import { DetailImage, Image } from '../../../components';
 import FormFooterImage from '../../../components/Form/FooterImage';
 import SideBarLinkImage from '../../../components/SideBarLink/SideBarLinkImage';
-import { allTopologiesExcept, NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
+import { allTopologiesExcept } from '../../../topologies';
 
 const propTypes = {
   ariaLabel: PropTypes.string,

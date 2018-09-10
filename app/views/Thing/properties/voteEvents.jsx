@@ -2,7 +2,8 @@ import LinkedRenderStore from 'link-lib';
 import { LinkedResourceContainer, linkedPropType, Property } from 'link-redux';
 import React from 'react';
 
-import { allTopologies, NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
+import { allTopologies } from '../../../topologies';
 
 const propTypes = {
   linkedProp: linkedPropType,

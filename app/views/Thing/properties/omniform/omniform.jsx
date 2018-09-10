@@ -12,7 +12,8 @@ import {
   Card,
   Omniform,
 } from '../../../../components';
-import { allTopologiesExcept, NS } from '../../../../helpers/LinkedRenderStore';
+import { NS } from '../../../../helpers/LinkedRenderStore';
+import { allTopologiesExcept } from '../../../../topologies';
 
 const propTypes = {
   autofocusForm: PropTypes.bool,

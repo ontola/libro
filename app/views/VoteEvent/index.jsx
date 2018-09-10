@@ -1,18 +1,14 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { Property, TopologyProvider, withLinkCtx } from 'link-redux';
+import { Property, withLinkCtx } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import CardVoteEvent from '../../topologies/CardVoteEvent';
+import VoteEvent from '../../topologies/VoteEvent';
 
 import CurrentVote from './properties/currentVote';
 
-class VoteEventCard extends TopologyProvider {
-  constructor(props) {
-    super(props);
-
-    this.topology = NS.argu('cardVoteEvent');
-  }
-
+class VoteEventCard extends CardVoteEvent {
   render() {
     return this.wrap((
       <div itemScope>
@@ -24,13 +20,7 @@ class VoteEventCard extends TopologyProvider {
   }
 }
 
-class VoteEventContainer extends TopologyProvider {
-  constructor(props) {
-    super(props);
-
-    this.topology = NS.argu('voteEvent');
-  }
-
+class VoteEventContainer extends VoteEvent {
   render() {
     return this.wrap((
       <React.Fragment key="VoteEventContainer">

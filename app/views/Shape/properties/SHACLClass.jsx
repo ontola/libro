@@ -5,7 +5,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { allTopologies, NS } from '../../../helpers/LinkedRenderStore';
+import { NS } from '../../../helpers/LinkedRenderStore';
+import { allTopologies } from '../../../topologies';
 
 class SHACLClass extends PropertyBase {
   render() {

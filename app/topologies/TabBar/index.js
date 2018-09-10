@@ -5,21 +5,19 @@ import Topology from '../Topology';
 
 import './TabBar.scss';
 
-const propTypes = {
-  children: PropTypes.node.isRequired,
-};
+export const tabBarTopology = NS.argu('tabBar');
 
 class TabBar extends Topology {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+  };
+
   constructor(props) {
     super(props);
 
-    this.topology = NS.argu('tabBar');
+    this.topology = tabBarTopology;
     this.className = 'TabBar';
   }
 }
-
-TabBar.propTypes = propTypes;
-
-export { default as Tab } from './Tab';
 
 export default TabBar;

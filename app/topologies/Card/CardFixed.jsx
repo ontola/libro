@@ -3,29 +3,29 @@ import PropTypes from 'prop-types';
 import { NS } from '../../helpers/LinkedRenderStore';
 import Topology from '../Topology';
 
-const propTypes = {
-  children: PropTypes.node.isRequired,
-  fixed: PropTypes.bool,
-};
 
-const defaultProps = {
-  fixed: false,
-};
+export const cardFixedTopology = NS.argu('cardFixed');
 
 /**
  * Renders an empty Card without padding
  * @returns {component} Component
  */
 class CardFixed extends Topology {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+    fixed: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    fixed: false,
+  };
+
   constructor(props) {
     super(props);
 
-    this.topology = NS.argu('cardFixed');
+    this.topology = cardFixedTopology;
     this.className = 'Card Card--fixed';
   }
 }
-
-CardFixed.propTypes = propTypes;
-CardFixed.defaultProps = defaultProps;
 
 export default CardFixed;

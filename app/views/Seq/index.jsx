@@ -2,7 +2,8 @@ import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { LinkedResourceContainer, PropertyBase, withLinkCtx } from 'link-redux';
 import React from 'react';
 
-import { allTopologies, NS } from '../../helpers/LinkedRenderStore';
+import { NS } from '../../helpers/LinkedRenderStore';
+import { allTopologies } from '../../topologies';
 
 const base = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#_';
 const filter = /^http:\/\/www\.w3\.org\/1999\/02\/22-rdf-syntax-ns#_[\d]+$/;

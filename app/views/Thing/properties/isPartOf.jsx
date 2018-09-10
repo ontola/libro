@@ -3,6 +3,7 @@ import { LinkedResourceContainer, linkedPropType } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
+import Parent from '../../../topologies/Parent';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -14,13 +15,14 @@ const IsPartOf = ({ linkedProp }) => {
   }
 
   return (
-    <LinkedResourceContainer
-      fetch
-      forceRender
-      data-test="Thing-parent"
-      subject={linkedProp}
-      topology={NS.argu('parent')}
-    />
+    <Parent>
+      <LinkedResourceContainer
+        fetch
+        forceRender
+        data-test="Thing-parent"
+        subject={linkedProp}
+      />
+    </Parent>
   );
 };
 

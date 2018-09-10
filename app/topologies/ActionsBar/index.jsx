@@ -7,16 +7,18 @@ import { NS } from '../../helpers/LinkedRenderStore';
 
 import './ActionsBar.scss';
 
-const propTypes = {
-  small: PropTypes.bool,
-};
+export const actionsBarTopology = NS.argu('actionsBar');
 
 class ActionsBar extends TopologyProvider {
+  static propTypes = {
+    small: PropTypes.bool,
+  };
+
   constructor() {
     super();
 
     this.className = 'ActionsBar';
-    this.topology = NS.argu('actionsBar');
+    this.topology = actionsBarTopology;
   }
 
   render() {
@@ -32,7 +34,5 @@ class ActionsBar extends TopologyProvider {
     ));
   }
 }
-
-ActionsBar.propTypes = propTypes;
 
 export default ActionsBar;

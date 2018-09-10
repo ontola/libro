@@ -5,11 +5,13 @@ import { NS } from '../../helpers/LinkedRenderStore';
 
 import './DetailsBar.scss';
 
+export const detailsBarTopology = NS.argu('detail');
+
 class DetailsBar extends TopologyProvider {
   constructor() {
     super();
 
-    this.topology = NS.argu('detail');
+    this.topology = detailsBarTopology;
   }
 
   render() {

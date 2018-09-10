@@ -14,10 +14,10 @@ import {
   Dropdown,
   DropdownLink,
   Resource,
+  Tab,
 } from '../../components';
 import { SideBarLinkIcon } from '../../components/SideBarLink';
 import { NS } from '../../helpers/LinkedRenderStore';
-import Tab from '../../topologies/TabBar/Tab';
 
 import MenuItemPage from './MenuItemPage';
 import Href from './properties/href';

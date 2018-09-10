@@ -7,20 +7,22 @@ import { NS } from '../../helpers/LinkedRenderStore';
 
 import '../../components/Widget/Widget.scss';
 
-const propTypes = {
-  children: PropTypes.node,
-  width: PropTypes.number,
-};
-
-const defaultProps = {
-  width: 3,
-};
+export const widgetTopologyTopology = NS.argu('widget');
 
 class WidgetTopology extends TopologyProvider {
+  static propTypes = {
+    children: PropTypes.node,
+    width: PropTypes.number,
+  };
+
+  static defaultProps = {
+    width: 3,
+  };
+
   constructor() {
     super();
 
-    this.topology = NS.argu('widget');
+    this.topology = widgetTopologyTopology;
     this.className = 'Widget';
   }
 
@@ -39,8 +41,5 @@ class WidgetTopology extends TopologyProvider {
     ));
   }
 }
-
-WidgetTopology.propTypes = propTypes;
-WidgetTopology.defaultProps = defaultProps;
 
 export default WidgetTopology;
