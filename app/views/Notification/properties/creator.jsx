@@ -7,13 +7,19 @@ import {
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { cardTopology } from '../../../topologies/Card';
+import { cardMainTopology } from '../../../topologies/Card/CardMain';
+import { containerTopology } from '../../../topologies/Container';
+import { detailsBarTopology } from '../../../topologies/DetailsBar';
+import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
+import { sidebarTopology } from '../../../topologies/Sidebar';
 
 const propTypes = {
   linkedProp: linkedPropType,
 };
 
 const Creator = ({ linkedProp }) => (
-  <LinkedResourceContainer subject={linkedProp} topology={NS.argu('detail')}>
+  <LinkedResourceContainer subject={linkedProp} topology={detailsBarTopology}>
     <Property label={NS.schema('image')} />
   </LinkedResourceContainer>
 );
@@ -25,11 +31,11 @@ export default LinkedRenderStore.registerRenderer(
   NS.argu('Notification'),
   NS.schema('creator'),
   [
-    undefined,
-    NS.argu('card'),
-    NS.argu('cardMain'),
-    NS.argu('container'),
-    NS.argu('detail'),
-    NS.argu('sidebar'),
+    primaryResourceTopology,
+    cardTopology,
+    cardMainTopology,
+    containerTopology,
+    detailsBarTopology,
+    sidebarTopology,
   ]
 );

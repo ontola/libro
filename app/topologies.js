@@ -23,8 +23,8 @@ import { sidebarTopology } from './topologies/Sidebar/index';
 import { tabBarTopology } from './topologies/TabBar/index';
 import { voteBubbleTopology } from './topologies/VoteBubble/index';
 import { voteEventTopology } from './topologies/VoteEvent/index';
-import { voteEventResult } from './topologies/VoteEventResult/index';
-import { voteEventSide } from './topologies/VoteEventSide/index';
+import { voteEventResultTopology } from './topologies/VoteEventResult/index';
+import { voteEventSideTopology } from './topologies/VoteEventSide/index';
 import { widgetTopologyTopology } from './topologies/WidgetTopology/WidgetTopology';
 
 export const allTopologies = [
@@ -54,8 +54,8 @@ export const allTopologies = [
   tabBarTopology,
   voteBubbleTopology,
   voteEventTopology,
-  voteEventResult,
-  voteEventSide,
+  voteEventResultTopology,
+  voteEventSideTopology,
   widgetTopologyTopology,
 ];
 

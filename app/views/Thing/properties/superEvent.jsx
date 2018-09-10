@@ -4,6 +4,8 @@ import React from 'react';
 
 import { CardContent } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { cardTopology } from '../../../topologies/Card';
+import { cardMainTopology } from '../../../topologies/Card/CardMain';
 import CardRow from '../../../topologies/Card/CardRow';
 
 const propTypes = {
@@ -25,7 +27,7 @@ export default LinkedRenderStore.registerRenderer(
   NS.schema('Thing'),
   NS.schema('superEvent'),
   [
-    NS.argu('Card'),
-    NS.argu('cardMain'),
+    cardMainTopology,
+    cardTopology,
   ]
 );

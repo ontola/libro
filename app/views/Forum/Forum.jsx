@@ -5,12 +5,13 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import Container from '../../topologies/Container/index';
 import { pageTopology } from '../../topologies/Page';
 import PageHeader from '../../topologies/PageHeader';
+import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 
 class ForumPage extends React.PureComponent {
   static type = NS.argu('Forum');
 
   static topology = [
-    undefined,
+    primaryResourceTopology,
     pageTopology,
   ];
 

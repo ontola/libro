@@ -9,6 +9,8 @@ import React from 'react';
 
 import { Resource, SideBarCollapsible } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { formFooterTopology } from '../../topologies/FormFooter/Footer';
+import { sidebarTopology } from '../../topologies/Sidebar';
 
 import ActorType from './properties/actorType';
 import GuestUser from './GuestUser';
@@ -45,13 +47,13 @@ export default [
     withLinkCtx(CurrentActorSidebar),
     RegisteredTypes,
     RENDER_CLASS_NAME,
-    NS.argu('sidebar')
+    sidebarTopology
   ),
   LinkedRenderStore.registerRenderer(
     withLinkCtx(CurrentActorFooter),
     ActorTypes,
     RENDER_CLASS_NAME,
-    NS.argu('formFooter')
+    formFooterTopology
   ),
   ActorType,
   GuestUser,

@@ -6,6 +6,7 @@ import React from 'react';
 import { Button } from '../../components';
 import { normalizeFontAwesomeIRI } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { formFooterTopology } from '../../topologies/FormFooter/Footer';
 
 const propTypes = {
   current: PropTypes.bool,
@@ -47,5 +48,5 @@ export default LinkedRenderStore.registerRenderer(
   ])(RDFSClassFormFooter),
   NS.rdfs('Class'),
   RENDER_CLASS_NAME,
-  NS.argu('formFooter')
+  formFooterTopology
 );

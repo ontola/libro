@@ -3,6 +3,9 @@ import { LinkedResourceContainer, linkedPropType } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { detailsBarTopology } from '../../../topologies/DetailsBar';
+import { sidebarTopology } from '../../../topologies/Sidebar';
+import { voteBubbleTopology } from '../../../topologies/VoteBubble';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -11,7 +14,7 @@ const propTypes = {
 const PersonImageProp = ({ linkedProp }) => (
   <LinkedResourceContainer
     subject={linkedProp}
-    topology={NS.argu('voteBubble')}
+    topology={voteBubbleTopology}
   />
 );
 
@@ -22,7 +25,7 @@ export default [
     PersonImageProp,
     [NS.schema('Person'), NS.aod('Persons')],
     [NS.schema('image'), NS.dbo('thumbnail'), NS.wdt('P18')],
-    [NS.argu('detail'), NS.argu('voteBubble')]
+    [detailsBarTopology, voteBubbleTopology]
   ),
   LinkedRenderStore.registerRenderer(
     ({ linkedProp }) => (
@@ -30,6 +33,6 @@ export default [
     ),
     [NS.schema('Person'), NS.aod('Persons')],
     [NS.schema('image'), NS.dbo('thumbnail'), NS.wdt('P18')],
-    NS.argu('sidebar')
+    sidebarTopology
   ),
 ];

@@ -6,14 +6,16 @@ import {
   CardContent,
   Heading,
 } from '../../components';
-import { NS } from '../../helpers/LinkedRenderStore';
-import Card from '../../topologies/Card';
-import CardFixed from '../../topologies/Card/CardFixed';
-import CardMain from '../../topologies/Card/CardMain';
-import CardRow from '../../topologies/Card/CardRow';
-import Container from '../../topologies/Container';
-import DetailsBar from '../../topologies/DetailsBar';
-import Grid from '../../topologies/Grid';
+import Card, { cardTopology } from '../../topologies/Card';
+import CardFixed, { cardFixedTopology } from '../../topologies/Card/CardFixed';
+import CardMain, { cardMainTopology } from '../../topologies/Card/CardMain';
+import CardRow, { cardRowTopology } from '../../topologies/Card/CardRow';
+import Container, { containerTopology } from '../../topologies/Container';
+import DetailsBar, { detailsBarTopology } from '../../topologies/DetailsBar';
+import Grid, { gridTopology } from '../../topologies/Grid';
+import { inlineTopology } from '../../topologies/Inline';
+import { parentTopology } from '../../topologies/Parent';
+import { sidebarTopology } from '../../topologies/Sidebar';
 
 const propTypes = {
   pure: PropTypes.boolean,
@@ -34,7 +36,7 @@ const TopologyWrapper = ({ pure, topology, subject }) => {
 
   if ((typeof topology === 'undefined') || pure) {
     return <LRC />;
-  } else if (topology === NS.argu('container')) {
+  } else if (topology === containerTopology) {
     return (
       <Container>
         <Heading>
@@ -43,7 +45,7 @@ const TopologyWrapper = ({ pure, topology, subject }) => {
         <LRC />
       </Container>
     );
-  } else if (topology === NS.argu('detail')) {
+  } else if (topology === detailsBarTopology) {
     return (
       <Container>
         <Card>
@@ -56,7 +58,7 @@ const TopologyWrapper = ({ pure, topology, subject }) => {
         </Card>
       </Container>
     );
-  } else if (topology === NS.argu('card')) {
+  } else if (topology === cardTopology) {
     return (
       <Container>
         <Card>
@@ -67,7 +69,7 @@ const TopologyWrapper = ({ pure, topology, subject }) => {
         </Card>
       </Container>
     );
-  } else if (topology === NS.argu('cardMain')) {
+  } else if (topology === cardMainTopology) {
     return (
       <Container>
         <CardMain>
@@ -78,7 +80,7 @@ const TopologyWrapper = ({ pure, topology, subject }) => {
         </CardMain>
       </Container>
     );
-  } else if (topology === NS.argu('cardFixed')) {
+  } else if (topology === cardFixedTopology) {
     return (
       <Container>
         <CardFixed>
@@ -89,7 +91,7 @@ const TopologyWrapper = ({ pure, topology, subject }) => {
         </CardFixed>
       </Container>
     );
-  } else if (topology === NS.argu('cardRow')) {
+  } else if (topology === cardRowTopology) {
     return (
       <Container>
         <CardMain>
@@ -105,7 +107,7 @@ const TopologyWrapper = ({ pure, topology, subject }) => {
         </CardMain>
       </Container>
     );
-  } else if (topology === NS.argu('grid')) {
+  } else if (topology === gridTopology) {
     return (
       <Container>
         <Grid>
@@ -113,7 +115,7 @@ const TopologyWrapper = ({ pure, topology, subject }) => {
         </Grid>
       </Container>
     );
-  } else if (topology === NS.argu('inline')) {
+  } else if (topology === inlineTopology) {
     return (
       <Container>
         <Card>
@@ -127,7 +129,7 @@ const TopologyWrapper = ({ pure, topology, subject }) => {
         </Card>
       </Container>
     );
-  } else if (topology === NS.argu('parent')) {
+  } else if (topology === parentTopology) {
     return (
       <Container>
         <Card>
@@ -135,7 +137,7 @@ const TopologyWrapper = ({ pure, topology, subject }) => {
         </Card>
       </Container>
     );
-  } else if (topology === NS.argu('sidebar')) {
+  } else if (topology === sidebarTopology) {
     return (
       <div
         className="NavBarContent NavBarContent--white-text"

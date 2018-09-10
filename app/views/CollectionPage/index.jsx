@@ -13,8 +13,17 @@ import { connect } from 'react-redux';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import { getPage } from '../../state/pagination/selectors';
-import CardRow from '../../topologies/Card/CardRow';
+import { cardTopology } from '../../topologies/Card';
+import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
+import { cardFixedTopology } from '../../topologies/Card/CardFixed';
+import { cardListTopology } from '../../topologies/Card/CardList';
+import { cardMainTopology } from '../../topologies/Card/CardMain';
+import CardRow, { cardRowTopology } from '../../topologies/Card/CardRow';
+import { cardVoteEventTopology } from '../../topologies/CardVoteEvent';
+import { containerTopology } from '../../topologies/Container';
+import { gridTopology } from '../../topologies/Grid';
 import { pageTopology } from '../../topologies/Page';
+import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 
 import First from './properties/first';
 import Member from './properties/member';
@@ -71,7 +80,7 @@ const CollectionViewCardAppendix = ({ totalCount }) => {
 
   return (
     <CardRow backdrop>
-      <Property forceRender label={NS.as('items')} renderLimit={Infinity} topology={NS.argu('cardRow')} />
+      <Property forceRender label={NS.as('items')} renderLimit={Infinity} topology={cardRowTopology} />
     </CardRow>
   );
 };
@@ -85,7 +94,7 @@ const collectionViewSection = (shortCircuit = true) => {
     }
 
     return (
-      <Property forceRender label={NS.as('items')} renderLimit={Infinity} topology={NS.argu('cardList')} />
+      <Property forceRender label={NS.as('items')} renderLimit={Infinity} topology={cardListTopology} />
     );
   };
 
@@ -95,7 +104,7 @@ const collectionViewSection = (shortCircuit = true) => {
 };
 
 const CollectionViewFixedCards = () => (
-  <Property forceRender label={NS.as('items')} renderLimit={Infinity} topology={NS.argu('grid')} />
+  <Property forceRender label={NS.as('items')} renderLimit={Infinity} topology={gridTopology} />
 );
 
 const wrapUpdate = Component => withLinkCtx(Component);
@@ -112,11 +121,11 @@ export default [
     CollectionViewTypes,
     RENDER_CLASS_NAME,
     [
-      NS.argu('cardList'),
-      NS.argu('card'),
-      NS.argu('cardFixed'),
-      NS.argu('cardMain'),
-      NS.argu('cardRow'),
+      cardListTopology,
+      cardTopology,
+      cardFixedTopology,
+      cardMainTopology,
+      cardRowTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(
@@ -124,7 +133,7 @@ export default [
     CollectionViewTypes,
     RENDER_CLASS_NAME,
     [
-      NS.argu('cardVoteEvent'),
+      cardVoteEventTopology,
       NS.argu('voteEventCollection'),
     ]
   ),
@@ -132,15 +141,15 @@ export default [
     link(membersViewsCount)(CollectionViewCardAppendix),
     CollectionViewTypes,
     RENDER_CLASS_NAME,
-    NS.argu('cardAppendix')
+    cardAppendixTopology
   ),
   LinkedRenderStore.registerRenderer(
     wrapUpdate(CollectionViewFixedCards),
     CollectionViewTypes,
     RENDER_CLASS_NAME,
     [
-      NS.argu('grid'),
-      NS.argu('widget'),
+      gridTopology,
+      widgetTopologyTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(
@@ -150,7 +159,7 @@ export default [
     [
       undefined,
       pageTopology,
-      NS.argu('container'),
+      containerTopology,
     ]
   ),
   First,

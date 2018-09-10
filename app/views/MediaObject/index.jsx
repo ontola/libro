@@ -6,13 +6,17 @@ import { Attachment } from '../../components';
 import AttachmentPreview from '../../components/AttachmentPreview';
 import { imageRepresentationUrl } from '../../helpers/attachments';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { cardTopology } from '../../topologies/Card';
+import { cardListTopology } from '../../topologies/Card/CardList';
+import { cardMainTopology } from '../../topologies/Card/CardMain';
+import { cardRowTopology } from '../../topologies/Card/CardRow';
 
 import MediaObjectPage from './MediaObjectPage';
 
 class MediaObjectPreview extends React.PureComponent {
   static type = NS.schema('MediaObject');
 
-  static topology = NS.argu('cardList');
+  static topology = cardListTopology;
 
   static mapDataToProps = {
     caption: NS.schema('caption'),
@@ -62,9 +66,9 @@ export default [
     NS.schema('MediaObject'),
     RENDER_CLASS_NAME,
     [
-      NS.argu('cardRow'),
-      NS.argu('card'),
-      NS.argu('cardMain'),
+      cardRowTopology,
+      cardTopology,
+      cardMainTopology,
     ]
   ),
   register(MediaObjectPreview),

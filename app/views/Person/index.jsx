@@ -3,6 +3,8 @@ import { link, Property } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import { formFooterTopology } from '../../topologies/FormFooter/Footer';
+import { voteEventSideTopology } from '../../topologies/VoteEventSide';
 
 import Detail from './detail';
 import PersonPage from './PersonPage';
@@ -19,7 +21,7 @@ export default [
     )),
     [NS.schema('Person'), NS.aod('Persons')],
     RENDER_CLASS_NAME,
-    [NS.argu('voteEventSide'), NS.argu('voteBubble'), NS.argu('formFooter')]
+    [voteEventSideTopology, NS.argu('voteBubble'), formFooterTopology]
   ),
   Detail,
   Email,

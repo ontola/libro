@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { hexToRgb } from '../../../helpers/color';
 import { setBaseColor } from '../../../state/sideBars/actions';
+import { sidebarTopology } from '../../../topologies/Sidebar';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -26,7 +27,7 @@ class BaseColorDispatcher extends Component {
 
   static property = NS.argu('baseColor');
 
-  static topology = NS.argu('sidebar');
+  static topology = sidebarTopology;
 
   static hocs = [colorDispatcher];
 

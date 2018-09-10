@@ -7,12 +7,13 @@ import {
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import Card from '../../topologies/Card';
+import { containerTopology } from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
 
 class ForumContainer extends React.PureComponent {
   static type = NS.argu('Forum');
 
-  static topology = NS.argu('container');
+  static topology = containerTopology;
 
   static hocs = [connectHighlighting];
 

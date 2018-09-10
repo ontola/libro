@@ -5,6 +5,7 @@ import React from 'react';
 
 import { GeneratedIcon } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { containerTopology } from '../../topologies/Container';
 
 import './OpinionBubble.scss';
 import './properties/creator';
@@ -52,7 +53,7 @@ LinkedRenderStore.registerRenderer(
   Vote,
   [NS.argu('Vote'), NS.aod('Vote'), NS.aod('Count')],
   RENDER_CLASS_NAME,
-  NS.argu('container')
+  containerTopology
 );
 LinkedRenderStore.registerRenderer(
   Vote,

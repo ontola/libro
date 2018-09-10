@@ -6,6 +6,7 @@ import { CardContent } from '../../../components';
 import { formatDate } from '../../../helpers/date';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import Card from '../../../topologies/Card';
+import { containerTopology } from '../../../topologies/Container';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -25,5 +26,5 @@ export default LinkedRenderStore.registerRenderer(
   TrashedAt,
   NS.schema('Thing'),
   NS.argu('trashedAt'),
-  NS.argu('container')
+  containerTopology
 );

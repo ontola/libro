@@ -10,6 +10,8 @@ import PropTypes from 'prop-types';
 
 import { Button } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { cardFloatTopology } from '../../topologies/Card/CardFloat';
+import { cardListTopology } from '../../topologies/Card/CardList';
 
 const defaultTopology = NS.argu('cardList');
 
@@ -41,5 +43,5 @@ export default LinkedRenderStore.registerRenderer(
   link([NS.schema('name')])(EntryPointButton),
   NS.schema('EntryPoint'),
   RENDER_CLASS_NAME,
-  [NS.argu('cardFloat'), NS.argu('cardList')]
+  [cardFloatTopology, cardListTopology]
 );

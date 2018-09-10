@@ -4,6 +4,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
 
 class UpdateAction extends PropertyBase {
   render() {
@@ -18,5 +19,6 @@ class UpdateAction extends PropertyBase {
 export default LinkedRenderStore.registerRenderer(
   UpdateAction,
   NS.schema('Thing'),
-  NS.schema('updateAction')
+  NS.schema('updateAction'),
+  primaryResourceTopology
 );

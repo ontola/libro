@@ -3,6 +3,7 @@ import { Property } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import { sidebarTopology } from '../../topologies/Sidebar';
 
 import Label from './properties/label';
 import './MenuSection.scss';
@@ -22,7 +23,7 @@ export default[
     MenuSection,
     [NS.argu('MenuSection')],
     RENDER_CLASS_NAME,
-    NS.argu('sidebar')
+    sidebarTopology
   ),
   Label,
 ];

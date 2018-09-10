@@ -3,6 +3,7 @@ import { linkedPropType } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { sidebarTopology } from '../../../topologies/Sidebar';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -24,5 +25,5 @@ export default LinkedRenderStore.registerRenderer(
   MenuSectionLabel,
   NS.argu('MenuSection'),
   NS.schema('name'),
-  NS.argu('sidebar')
+  sidebarTopology
 );

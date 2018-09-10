@@ -4,6 +4,11 @@ import React from 'react';
 
 import { Heading } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { cardTopology } from '../../../topologies/Card';
+import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
+import { cardMainTopology } from '../../../topologies/Card/CardMain';
+import { containerTopology } from '../../../topologies/Container';
+import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -20,10 +25,10 @@ export default LinkedRenderStore.registerRenderer(
   NS.argu('Notification'),
   NS.schema('name'),
   [
-    undefined,
-    NS.argu('container'),
-    NS.argu('card'),
-    NS.argu('cardFixed'),
-    NS.argu('cardMain'),
+    primaryResourceTopology,
+    cardFixedTopology,
+    cardMainTopology,
+    cardTopology,
+    containerTopology,
   ]
 );

@@ -7,6 +7,20 @@ import {
   LDLink,
 } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { cardTopology } from '../../../topologies/Card';
+import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
+import { cardListTopology } from '../../../topologies/Card/CardList';
+import { cardMainTopology } from '../../../topologies/Card/CardMain';
+import { cardRowTopology } from '../../../topologies/Card/CardRow';
+import { containerTopology } from '../../../topologies/Container';
+import { hoverBoxTopology } from '../../../topologies/HoverBox';
+import { inlineTopology } from '../../../topologies/Inline';
+import { pageHeaderTopology } from '../../../topologies/PageHeader';
+import { parentTopology } from '../../../topologies/Parent';
+import { popupTopology } from '../../../topologies/Popup';
+import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
+import { sidebarTopology } from '../../../topologies/Sidebar';
+import { widgetTopologyTopology } from '../../../topologies/WidgetTopology/WidgetTopology';
 
 class ColoredHeading extends PropertyBase {
   getVariant() {
@@ -49,7 +63,7 @@ export default [
     props => <ColoredHeading data-test="Thing-name-small-title" size="4" {...props} />,
     NS.schema('Thing'),
     NamePredicates,
-    [undefined, NS.argu('parent')]
+    [primaryResourceTopology, parentTopology]
   ),
   LinkedRenderStore.registerRenderer(
     props => (
@@ -58,55 +72,55 @@ export default [
       </LDLink>),
     NS.schema('Thing'),
     NamePredicates,
-    [NS.argu('cardHover'), NS.argu('cardList')]
+    [hoverBoxTopology, cardListTopology]
   ),
   LinkedRenderStore.registerRenderer(
     props => <ColoredHeading data-test="Thing-name-card-main" size="1" {...props} />,
     NS.schema('Thing'),
     NamePredicates,
-    NS.argu('cardMain')
+    cardMainTopology
   ),
   LinkedRenderStore.registerRenderer(
     ({ linkedProp }) => <span data-test="Thing-name-sidebar">{linkedProp.value}</span>,
     NS.schema('Thing'),
     NamePredicates,
-    NS.argu('sidebar')
+    sidebarTopology
   ),
   LinkedRenderStore.registerRenderer(
     ({ linkedProp }) => <LDLink data-test="Thing-name-inline">{linkedProp.value}</LDLink>,
     NS.schema('Thing'),
     NamePredicates,
-    NS.argu('inline')
+    inlineTopology
   ),
   LinkedRenderStore.registerRenderer(
     props => <LDLink><ColoredHeading data-test="Thing-name-card" size="2" {...props} /></LDLink>,
     NS.schema('Thing'),
     NamePredicates,
     [
-      NS.argu('card'),
-      NS.argu('cardFixed'),
-      NS.argu('cardRow'),
-      NS.argu('container'),
-      NS.argu('parent'),
-      NS.argu('popup'),
+      cardTopology,
+      cardFixedTopology,
+      cardRowTopology,
+      containerTopology,
+      parentTopology,
+      popupTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(
     props => <ColoredHeading data-test="Thing-name-card" size="3" {...props} />,
     NS.schema('Thing'),
     NamePredicates,
-    NS.argu('parent')
+    parentTopology
   ),
   LinkedRenderStore.registerRenderer(
     props => <ColoredHeading data-test="Thing-name-widget" size="2" {...props} />,
     NS.schema('Thing'),
     NamePredicates,
-    NS.argu('widget')
+    widgetTopologyTopology
   ),
   LinkedRenderStore.registerRenderer(
     ({ linkedProp }) => <Heading data-test="Thing-name-header" size="1">{linkedProp.value}</Heading>,
     NS.schema('Thing'),
     NamePredicates,
-    NS.argu('header')
+    pageHeaderTopology
   ),
 ];

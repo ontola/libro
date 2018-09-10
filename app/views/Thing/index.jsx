@@ -15,12 +15,19 @@ import {
 } from '../../containers/Highlight';
 import SignInSwitcherContainer from '../../containers/SignInSwitcherContainer';
 import { NS } from '../../helpers/LinkedRenderStore';
-import Card from '../../topologies/Card';
+import Card, { cardTopology } from '../../topologies/Card';
 import CardAppendix from '../../topologies/Card/CardAppendix';
-import CardFixed from '../../topologies/Card/CardFixed';
-import CardRow from '../../topologies/Card/CardRow';
-import DetailsBar from '../../topologies/DetailsBar';
+import CardFixed, { cardFixedTopology } from '../../topologies/Card/CardFixed';
+import { cardListTopology } from '../../topologies/Card/CardList';
+import { cardMainTopology } from '../../topologies/Card/CardMain';
+import CardRow, { cardRowTopology } from '../../topologies/Card/CardRow';
+import { containerTopology } from '../../topologies/Container';
+import DetailsBar, { detailsBarTopology } from '../../topologies/DetailsBar';
+import { gridTopology } from '../../topologies/Grid';
 import hoverBox from '../../topologies/HoverBox';
+import { inlineTopology } from '../../topologies/Inline';
+import { parentTopology } from '../../topologies/Parent';
+import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 
 import Arguments from './properties/arguments';
 import BaseColor from './properties/baseColor';
@@ -135,22 +142,22 @@ export default [
     () => <Property label={[NS.schema('name'), NS.rdfs('label')]} />,
     NS.schema('Thing'),
     RENDER_CLASS_NAME,
-    NS.argu('inline')
+    inlineTopology
   ),
   LinkedRenderStore.registerRenderer(
     connectHighlighting(ThingSection),
     NS.schema('Thing'),
     RENDER_CLASS_NAME,
     [
-      NS.argu('cardRow'),
-      NS.argu('cardList'),
+      cardRowTopology,
+      cardListTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(
     ThingParent,
     NS.schema('Thing'),
     RENDER_CLASS_NAME,
-    NS.argu('parent')
+    parentTopology
   ),
   LinkedRenderStore.registerRenderer(
     link([NS.schema('name')])(({ name, theme }) => (
@@ -160,21 +167,21 @@ export default [
     )),
     NS.schema('Thing'),
     RENDER_CLASS_NAME,
-    NS.argu('detail')
+    detailsBarTopology
   ),
   LinkedRenderStore.registerRenderer(
     ThingGrid,
     NS.schema('Thing'),
     RENDER_CLASS_NAME,
-    NS.argu('grid')
+    gridTopology
   ),
   LinkedRenderStore.registerRenderer(
     connectHighlighting(ThingContainer),
     NS.schema('Thing'),
     RENDER_CLASS_NAME,
     [
-      undefined,
-      NS.argu('container'),
+      primaryResourceTopology,
+      containerTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(
@@ -182,9 +189,9 @@ export default [
     NS.schema('Thing'),
     RENDER_CLASS_NAME,
     [
-      NS.argu('card'),
-      NS.argu('cardFixed'),
-      NS.argu('cardMain'),
+      cardFixedTopology,
+      cardMainTopology,
+      cardTopology,
     ]
   ),
   ...Arguments,

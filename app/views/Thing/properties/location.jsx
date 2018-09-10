@@ -4,6 +4,7 @@ import React from 'react';
 
 import { Detail } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { detailsBarTopology } from '../../../topologies/DetailsBar';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -22,5 +23,5 @@ export default LinkedRenderStore.registerRenderer(
   LocationDetail,
   NS.schema('Thing'),
   NS.schema('location'),
-  NS.argu('detail')
+  detailsBarTopology
 );

@@ -4,7 +4,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { cardListTopology } from '../../../topologies/Card/CardList';
+import { containerTopology } from '../../../topologies/Container';
+import { gridTopology } from '../../../topologies/Grid';
 import Carousel from '../../../topologies/Grid/Carousel';
+import { widgetTopologyTopology } from '../../../topologies/WidgetTopology/WidgetTopology';
 import { CollectionTypes } from '../types';
 
 const propTypes = {
@@ -64,9 +68,9 @@ export default [
     CollectionTypes,
     NS.as('items'),
     [
-      NS.argu('cardList'),
-      NS.argu('widget'),
-      NS.argu('container'),
+      cardListTopology,
+      containerTopology,
+      widgetTopologyTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(
@@ -74,8 +78,8 @@ export default [
     CollectionTypes,
     NS.as('items'),
     [
-      NS.argu('grid'),
-      NS.argu('widget'),
+      gridTopology,
+      widgetTopologyTopology,
     ]
   ),
 ];

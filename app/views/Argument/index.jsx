@@ -10,6 +10,7 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import ActionsBar from '../../topologies/ActionsBar';
 import Card from '../../topologies/Card';
 import CardAppendix from '../../topologies/Card/CardAppendix';
+import { containerTopology } from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
 
 import CurrentVote from './properties/currentVote';
@@ -49,7 +50,7 @@ export default [
     ])(ArgumentContainer)),
     [NS.argu('Argument'), NS.argu('ConArgument'), NS.argu('ProArgument')],
     RENDER_CLASS_NAME,
-    NS.argu('container')
+    containerTopology
   ),
   CurrentVote,
 ];

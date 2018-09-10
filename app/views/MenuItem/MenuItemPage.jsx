@@ -15,6 +15,7 @@ import { currentURL, retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 import Card from '../../topologies/Card';
 import Container from '../../topologies/Container';
+import { pageTopology } from '../../topologies/Page';
 import TabBar from '../../topologies/TabBar';
 
 const mapDispatchToProps = (dispatch, { lrs }) => ({
@@ -33,6 +34,8 @@ class MenuItemPage extends React.PureComponent {
     NS.argu('SubMenu'),
     NS.argu('Menu'),
   ];
+
+  static topology = pageTopology;
 
   static mapDataToProps = [NS.argu('menuItems'), NS.argu('parentMenu')];
 
@@ -67,7 +70,6 @@ class MenuItemPage extends React.PureComponent {
 
   render() {
     const { topLevel } = this.props;
-
 
     return (
       <Resource>

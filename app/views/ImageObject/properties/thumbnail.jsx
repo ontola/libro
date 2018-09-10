@@ -8,6 +8,9 @@ import FormFooterImage from '../../../components/Form/FooterImage';
 import SideBarLinkImage from '../../../components/SideBarLink/SideBarLinkImage';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologiesExcept } from '../../../topologies';
+import { cardListTopology } from '../../../topologies/Card/CardList';
+import { detailsBarTopology } from '../../../topologies/DetailsBar';
+import { formFooterTopology } from '../../../topologies/FormFooter/Footer';
 
 const propTypes = {
   ariaLabel: PropTypes.string,
@@ -34,18 +37,18 @@ export default [
     createThumbnail(SideBarLinkImage),
     [NS.schema('ImageObject'), NS.schema('VideoObject')],
     NS.schema('thumbnail'),
-    allTopologiesExcept(NS.argu('cardList'), NS.argu('detail'), NS.argu('formFooter'))
+    allTopologiesExcept(cardListTopology, detailsBarTopology, formFooterTopology)
   ),
   LinkedRenderStore.registerRenderer(
     createThumbnail(DetailImage),
     [NS.schema('ImageObject'), NS.schema('VideoObject')],
     NS.schema('thumbnail'),
-    NS.argu('detail')
+    detailsBarTopology
   ),
   LinkedRenderStore.registerRenderer(
     createThumbnail(FormFooterImage),
     [NS.schema('ImageObject'), NS.schema('VideoObject')],
     NS.schema('thumbnail'),
-    NS.argu('formFooter')
+    formFooterTopology
   ),
 ];

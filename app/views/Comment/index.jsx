@@ -10,7 +10,10 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import ActionsBar from '../../topologies/ActionsBar';
 import Card from '../../topologies/Card';
 import CardAppendix from '../../topologies/Card/CardAppendix';
+import { cardListTopology } from '../../topologies/Card/CardList';
 import CardMicroRow from '../../topologies/Card/CardMicroRow';
+import { cardRowTopology } from '../../topologies/Card/CardRow';
+import { containerTopology } from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
 
 const Comment = ({ highlighted }) => (
@@ -35,7 +38,7 @@ Comment.propTypes = hightlightPropTypes;
 
 const CommentSection = ({ highlighted }) => (
   <CardMicroRow highlighted={highlighted}>
-    <Property label={NS.schema('creator')} topology={NS.argu('cardList')} />&#9;<Property label={NS.schema('text')} topology={NS.argu('cardList')} />
+    <Property label={NS.schema('creator')} topology={cardListTopology} />&#9;<Property label={NS.schema('text')} topology={cardListTopology} />
   </CardMicroRow>
 );
 
@@ -46,12 +49,12 @@ export default [
     connectHighlighting(Comment),
     [NS.schema('Comment'), NS.argu('Comment')],
     RENDER_CLASS_NAME,
-    NS.argu('container')
+    containerTopology
   ),
   LinkedRenderStore.registerRenderer(
     connectHighlighting(CommentSection),
     [NS.schema('Comment'), NS.argu('Comment')],
     RENDER_CLASS_NAME,
-    [NS.argu('cardList'), NS.argu('cardRow')]
+    [cardListTopology, cardRowTopology]
   ),
 ];

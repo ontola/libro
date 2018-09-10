@@ -4,6 +4,7 @@ import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { FRONTEND_URL } from '../../../config';
+import { allTopologies } from '../../../topologies';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -41,7 +42,8 @@ const linkedRecordWrapper = (component) => {
 LinkedRenderStore.registerRenderer(
   linkedRecordWrapper(VoteEventCollection),
   NS.argu('LinkedRecord'),
-  NS.argu('VoteEventCollection')
+  NS.argu('VoteEventCollection'),
+  allTopologies
 );
 
 export default VoteEventCollection;

@@ -10,6 +10,9 @@ import {
   omniformCloseInline,
   omniformOpenInline,
 } from '../../../../state/omniform';
+import { cardTopology } from '../../../../topologies/Card';
+import { cardAppendixTopology } from '../../../../topologies/Card/CardAppendix';
+import { cardMainTopology } from '../../../../topologies/Card/CardMain';
 import CardRow from '../../../../topologies/Card/CardRow';
 
 import { ConnectedOmniformProp } from './omniform';
@@ -98,5 +101,9 @@ export default LinkedRenderStore.registerRenderer(
   connect(mapInlineStateToProps, mapInlineDispatchToProps)(CollapsedOmniformProp),
   [NS.schema('Thing'), NS.link('Document')],
   NS.app('omniform'),
-  [NS.argu('card'), NS.argu('cardAppendix'), NS.argu('cardMain')]
+  [
+    cardAppendixTopology,
+    cardMainTopology,
+    cardTopology,
+  ]
 );

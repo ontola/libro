@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 
 import EntryPointBase from './EntryPointBase';
 
@@ -51,7 +52,7 @@ EntryPointOmniformWrapper.mapDataToProps = [
   NS.schema('url'),
   NS.schema('httpMethod'),
 ];
-EntryPointOmniformWrapper.topology = NS.argu('omniformFields');
+EntryPointOmniformWrapper.topology = omniformFieldsTopology;
 EntryPointOmniformWrapper.type = NS.schema('EntryPoint');
 
 export default register(EntryPointOmniformWrapper);

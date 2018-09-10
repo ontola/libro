@@ -3,8 +3,13 @@ import { Property, withLinkCtx } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import { cardTopology } from '../../topologies/Card';
+import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
+import { cardMainTopology } from '../../topologies/Card/CardMain';
 import CardVoteEvent from '../../topologies/CardVoteEvent';
-import VoteEvent from '../../topologies/VoteEvent';
+import { containerTopology } from '../../topologies/Container';
+import { primaryResourceTopology } from '../../topologies/PrimaryResource';
+import VoteEvent, { voteEventTopology } from '../../topologies/VoteEvent';
 
 import CurrentVote from './properties/currentVote';
 
@@ -38,11 +43,11 @@ export default [
     [NS.argu('VoteEvent'), NS.aod('VoteEvent')],
     RENDER_CLASS_NAME,
     [
-      undefined,
-      NS.argu('card'),
-      NS.argu('cardAppendix'),
-      NS.argu('container'),
-      NS.argu('voteEvent'),
+      cardAppendixTopology,
+      cardTopology,
+      containerTopology,
+      primaryResourceTopology,
+      voteEventTopology,
       NS.argu('voteEventCollection'),
     ]
   ),
@@ -50,7 +55,7 @@ export default [
     withLinkCtx(VoteEventCard),
     NS.argu('VoteEvent'),
     RENDER_CLASS_NAME,
-    NS.argu('cardMain')
+    cardMainTopology
   ),
   CurrentVote,
 ];

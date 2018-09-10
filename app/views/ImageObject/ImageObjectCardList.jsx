@@ -3,11 +3,12 @@ import React from 'react';
 
 import AttachmentPreview from '../../components/AttachmentPreview';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { cardListTopology } from '../../topologies/Card/CardList';
 
 class ImageObjectCardList extends React.PureComponent {
   static type = [NS.schema('ImageObject'), NS.schema('VideoObject')];
 
-  static topology = NS.argu('cardList');
+  static topology = cardListTopology;
 
   static mapDataToProps = {
     caption: NS.schema('caption'),

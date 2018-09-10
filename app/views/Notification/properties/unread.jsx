@@ -6,6 +6,12 @@ import {
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { cardTopology } from '../../../topologies/Card';
+import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
+import { cardMainTopology } from '../../../topologies/Card/CardMain';
+import { containerTopology } from '../../../topologies/Container';
+import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
+import { sidebarTopology } from '../../../topologies/Sidebar';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -48,11 +54,11 @@ export default LinkedRenderStore.registerRenderer(
   NS.argu('Notification'),
   NS.argu('unread'),
   [
-    undefined,
-    NS.argu('container'),
-    NS.argu('sidebar'),
-    NS.argu('card'),
-    NS.argu('cardFixed'),
-    NS.argu('cardMain'),
+    cardFixedTopology,
+    cardMainTopology,
+    cardTopology,
+    containerTopology,
+    sidebarTopology,
+    primaryResourceTopology,
   ]
 );

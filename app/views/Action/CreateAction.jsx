@@ -13,6 +13,9 @@ import { LDLink } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { omniformOpenInline, omniformSetAction } from '../../state/omniform';
 import { allTopologiesExcept } from '../../topologies';
+import { actionsBarTopology } from '../../topologies/ActionsBar';
+import { cardFloatTopology } from '../../topologies/Card/CardFloat';
+import { cardListTopology } from '../../topologies/Card/CardList';
 
 const propTypes = {
   children: PropTypes.element,
@@ -68,18 +71,18 @@ export default [
     CreateActionButton,
     NS.schema('CreateAction'),
     RENDER_CLASS_NAME,
-    allTopologiesExcept([NS.argu('actionsBar'), NS.argu('cardList'), NS.argu('cardFloat')])
+    allTopologiesExcept([actionsBarTopology, cardListTopology, cardFloatTopology])
   ),
   LinkedRenderStore.registerRenderer(
     link([NS.schema('object')])(connect(null, mapActionsBarDispatchToProps)(InlineCreateActionButton)),
     NS.argu('CreateAction'),
     RENDER_CLASS_NAME,
-    NS.argu('actionsBar')
+    actionsBarTopology
   ),
   LinkedRenderStore.registerRenderer(
     link([NS.schema('object')])(connect(null, mapCardListDispatchToProps)(InlineCreateActionButton)),
     NS.schema('CreateAction'),
     RENDER_CLASS_NAME,
-    [NS.argu('cardList'), NS.argu('cardFloat')]
+    [cardListTopology, cardFloatTopology]
   ),
 ];

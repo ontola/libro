@@ -9,6 +9,7 @@ import {
   LDLink,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { detailsBarTopology } from '../../topologies/DetailsBar';
 
 const propTypes = {
   name: PropTypes.instanceOf(Literal),
@@ -26,5 +27,5 @@ export default LinkedRenderStore.registerRenderer(
   link([NS.schema('name')])(PersonDetail),
   NS.schema('Person'),
   RENDER_CLASS_NAME,
-  NS.argu('detail')
+  detailsBarTopology
 );

@@ -3,6 +3,7 @@ import { LinkedResourceContainer, linkedPropType } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { containerTopology } from '../../../topologies/Container';
 import Parent from '../../../topologies/Parent';
 
 const propTypes = {
@@ -33,12 +34,12 @@ export default [
     IsPartOf,
     NS.schema('Thing'),
     [NS.argu('parent'), NS.schema('isPartOf')],
-    NS.argu('container')
+    containerTopology
   ),
   LinkedRenderStore.registerRenderer(
     IsPartOf,
     [NS.schema('Action'), NS.argu('TrashAction'), NS.argu('UntrashAction')],
     NS.schema('object'),
-    NS.argu('container')
+    containerTopology
   ),
 ];

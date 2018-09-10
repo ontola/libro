@@ -5,6 +5,7 @@ import React, { PureComponent } from 'react';
 import { CardContent, Columns } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologiesExcept } from '../../../topologies';
+import { cardAppendixTopology } from '../../../topologies/Card/CardAppendix';
 import CardRow from '../../../topologies/Card/CardRow';
 
 function noArguments({ conArgumentsCount, proArgumentsCount }) {
@@ -36,7 +37,7 @@ export default [
     argumentsData(Arguments),
     NS.schema('Thing'),
     NS.argu('arguments'),
-    allTopologiesExcept(NS.argu('cardAppendix'))
+    allTopologiesExcept(cardAppendixTopology)
   ),
   LinkedRenderStore.registerRenderer(
     argumentsData(props => noArguments(props) || (
@@ -48,6 +49,6 @@ export default [
     )),
     NS.schema('Thing'),
     NS.argu('arguments'),
-    NS.argu('cardAppendix')
+    cardAppendixTopology
   ),
 ];

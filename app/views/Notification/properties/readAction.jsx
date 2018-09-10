@@ -4,6 +4,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import LRS, { NS } from '../../../helpers/LinkedRenderStore';
+import { cardTopology } from '../../../topologies/Card';
+import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
+import { cardMainTopology } from '../../../topologies/Card/CardMain';
+import { containerTopology } from '../../../topologies/Container';
+import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
+import { sidebarTopology } from '../../../topologies/Sidebar';
 
 const propTypes = {
   children: PropTypes.node,
@@ -27,11 +33,11 @@ export default LinkedRenderStore.registerRenderer(
   NS.argu('Notification'),
   NS.argu('readAction'),
   [
-    undefined,
-    NS.argu('container'),
-    NS.argu('sidebar'),
-    NS.argu('card'),
-    NS.argu('cardFixed'),
-    NS.argu('cardMain'),
+    cardFixedTopology,
+    cardMainTopology,
+    cardTopology,
+    containerTopology,
+    primaryResourceTopology,
+    sidebarTopology,
   ]
 );

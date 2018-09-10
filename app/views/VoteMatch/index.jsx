@@ -1,4 +1,4 @@
-import LinkedRenderStore from 'link-lib';
+import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -11,6 +11,7 @@ import {
 import { NS } from '../../helpers/LinkedRenderStore';
 import Card from '../../topologies/Card';
 import Container from '../../topologies/Container';
+import { pageTopology } from '../../topologies/Page';
 
 import './properties/motions';
 import './properties/voteCompareResult';
@@ -45,5 +46,7 @@ VoteMatch.propTypes = propTypes;
 
 LinkedRenderStore.registerRenderer(
   VoteMatch,
-  NS.argu('VoteMatch')
+  NS.argu('VoteMatch'),
+  RENDER_CLASS_NAME,
+  pageTopology
 );

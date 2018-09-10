@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { detailsBarTopology } from '../../../topologies/DetailsBar';
 
 const propTypes = {
   type: PropTypes.instanceOf(Array),
@@ -41,5 +42,5 @@ export default LinkedRenderStore.registerRenderer(
   link([NS.rdf('type')], { limit: Infinity })(TypeDetail),
   NS.schema('Thing'),
   NS.rdf('type'),
-  NS.argu('detail')
+  detailsBarTopology
 );

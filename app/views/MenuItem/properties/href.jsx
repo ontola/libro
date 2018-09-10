@@ -14,6 +14,7 @@ import {
 } from '../../../components/SideBarLink';
 import { retrievePath } from '../../../helpers/iris';
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { sidebarTopology } from '../../../topologies/Sidebar';
 
 const propTypes = {
   action: linkedPropType,
@@ -57,5 +58,5 @@ export default LinkedRenderStore.registerRenderer(
   link([NS.argu('action'), NS.argu('href')])(Href),
   [NS.argu('Link'), NS.argu('MenuItem'), NS.argu('SubMenu')],
   NS.argu('href'),
-  NS.argu('sidebar')
+  sidebarTopology
 );

@@ -2,6 +2,7 @@ import { Property, linkedPropType, register } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { sidebarTopology } from '../../../topologies/Sidebar';
 
 import './name.scss';
 
@@ -14,7 +15,7 @@ class OrganizationName extends React.PureComponent {
     NS.foaf('name'),
   ];
 
-  static topology = NS.argu('sidebar');
+  static topology = sidebarTopology;
 
   static propTypes = {
     linkedProp: linkedPropType,

@@ -4,6 +4,7 @@ import React from 'react';
 
 import { Detail } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { detailsBarTopology } from '../../topologies/DetailsBar';
 import TypeDetail from '../Thing/properties/type';
 
 import FormFooter from './FormFooter';
@@ -32,7 +33,7 @@ export default [
     link([NS.schema('description'), NS.rdfs('label'), NS.schema('image')])(RDFSClass),
     NS.rdfs('Class'),
     RENDER_CLASS_NAME,
-    NS.argu('detail')
+    detailsBarTopology
   ),
   FormFooter,
   TypeDetail,

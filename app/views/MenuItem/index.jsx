@@ -18,6 +18,10 @@ import {
 } from '../../components';
 import { SideBarLinkIcon } from '../../components/SideBarLink';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { cardFloatTopology } from '../../topologies/Card/CardFloat';
+import { dropdownContentTopology } from '../../topologies/DropdownContent';
+import { sidebarTopology } from '../../topologies/Sidebar';
+import { tabBarTopology } from '../../topologies/TabBar';
 
 import MenuItemPage from './MenuItemPage';
 import Href from './properties/href';
@@ -101,7 +105,7 @@ const MenuItemDropdown = ({ menuItems }) => (
     <Dropdown
       trigger={<Property label={NS.schema('name')} />}
     >
-      <LinkedResourceContainer subject={menuItems} topology={NS.argu('dropdownContent')} />
+      <LinkedResourceContainer subject={menuItems} topology={dropdownContentTopology} />
     </Dropdown>
   </Resource>
 );
@@ -128,7 +132,7 @@ export default [
     MenuItemSidebar,
     [NS.argu('MenuItem'), NS.argu('SubMenu'), NS.argu('Menu')],
     RENDER_CLASS_NAME,
-    NS.argu('sidebar')
+    sidebarTopology
   ),
   LinkedRenderStore.registerRenderer(
     link([
@@ -139,7 +143,7 @@ export default [
     ])(MenuItemDropdownContent),
     NS.argu('MenuItem'),
     RENDER_CLASS_NAME,
-    NS.argu('dropdownContent')
+    dropdownContentTopology
   ),
   LinkedRenderStore.registerRenderer(
     link([NS.argu('menuItems')])(MenuItemDropdown),
@@ -150,7 +154,7 @@ export default [
       NS.argu('Menu'),
     ],
     RENDER_CLASS_NAME,
-    NS.argu('cardFloat')
+    cardFloatTopology
   ),
   MenuItemPage,
   LinkedRenderStore.registerRenderer(
@@ -164,7 +168,7 @@ export default [
       NS.argu('Menu'),
     ],
     RENDER_CLASS_NAME,
-    NS.argu('tabBar')
+    tabBarTopology
   ),
   Href,
   Label,

@@ -7,6 +7,17 @@ import React, { PureComponent } from 'react';
 import { SideBarLinkImageWrapper } from '../../components/SideBarLink';
 import { CoverImage } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { cardTopology } from '../../topologies/Card';
+import { cardFixedTopology } from '../../topologies/Card/CardFixed';
+import { cardMainTopology } from '../../topologies/Card/CardMain';
+import { detailsBarTopology } from '../../topologies/DetailsBar';
+import { dropdownContentTopology } from '../../topologies/DropdownContent';
+import { formFooterTopology } from '../../topologies/FormFooter/Footer';
+import { pageHeaderTopology } from '../../topologies/PageHeader';
+import { primaryResourceTopology } from '../../topologies/PrimaryResource';
+import { sidebarTopology } from '../../topologies/Sidebar';
+import { voteBubbleTopology } from '../../topologies/VoteBubble';
+import { voteEventSideTopology } from '../../topologies/VoteEventSide';
 
 import thumbnail from './properties/thumbnail';
 import ImageObjectCardList from './ImageObjectCardList';
@@ -15,10 +26,10 @@ class ImageObjectCover extends PureComponent {
   static type = NS.schema('ImageObject');
 
   static topology = [
-    undefined,
-    NS.argu('card'),
-    NS.argu('cardFixed'),
-    NS.argu('cardMain'),
+    primaryResourceTopology,
+    cardTopology,
+    cardFixedTopology,
+    cardMainTopology,
   ];
 
   static mapDataToProps = [
@@ -60,13 +71,13 @@ export default [
     ],
     RENDER_CLASS_NAME,
     [
-      NS.argu('detail'),
-      NS.argu('dropdownContent'),
-      NS.argu('formFooter'),
-      NS.argu('header'),
-      NS.argu('sidebar'),
-      NS.argu('voteBubble'),
-      NS.argu('voteEventSide'),
+      detailsBarTopology,
+      dropdownContentTopology,
+      formFooterTopology,
+      pageHeaderTopology,
+      sidebarTopology,
+      voteBubbleTopology,
+      voteEventSideTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(
@@ -77,7 +88,7 @@ export default [
     ),
     NS.schema('ImageObject'),
     RENDER_CLASS_NAME,
-    [NS.argu('sidebar')]
+    sidebarTopology
   ),
   ...thumbnail,
   ImageObjectCardList,

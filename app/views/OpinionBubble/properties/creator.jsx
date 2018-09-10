@@ -3,6 +3,7 @@ import { LinkedResourceContainer, linkedPropType } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { voteBubbleTopology } from '../../../topologies/VoteBubble';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -15,7 +16,7 @@ const Creator = ({ linkedProp }) => {
   return (
     <LinkedResourceContainer
       subject={object}
-      topology={NS.argu('voteBubble')}
+      topology={voteBubbleTopology}
     />
   );
 };

@@ -3,6 +3,8 @@ import { Property } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import { containerTopology } from '../../topologies/Container';
+import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 
 import Items from './properties/items';
 import Next from './properties/next';
@@ -13,7 +15,10 @@ export default [
     () => <Property label={NS.as('items')} />,
     NS.argu('InfiniteCollectionView'),
     RENDER_CLASS_NAME,
-    [NS.argu('container'), undefined]
+    [
+      containerTopology,
+      primaryResourceTopology,
+    ]
   ),
   ...Items,
   Next,

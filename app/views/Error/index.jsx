@@ -16,8 +16,23 @@ import SignInFormContainer from '../../containers/SignInFormContainer';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { currentLocation } from '../../helpers/paths';
 import { getCurrentUserType } from '../../state/app/selectors';
-import Card from '../../topologies/Card';
-import Container from '../../topologies/Container';
+import Card, { cardTopology } from '../../topologies/Card';
+import { cardFixedTopology } from '../../topologies/Card/CardFixed';
+import { cardListTopology } from '../../topologies/Card/CardList';
+import { cardMainTopology } from '../../topologies/Card/CardMain';
+import { cardRowTopology } from '../../topologies/Card/CardRow';
+import Container, { containerTopology } from '../../topologies/Container';
+import { detailsBarTopology } from '../../topologies/DetailsBar';
+import { dropdownContentTopology } from '../../topologies/DropdownContent';
+import { gridTopology } from '../../topologies/Grid';
+import { hoverBoxTopology } from '../../topologies/HoverBox';
+import { inlineTopology } from '../../topologies/Inline';
+import { pageTopology } from '../../topologies/Page';
+import { primaryResourceTopology } from '../../topologies/PrimaryResource';
+import { sidebarTopology } from '../../topologies/Sidebar';
+import { voteBubbleTopology } from '../../topologies/VoteBubble';
+import { voteEventResultTopology } from '../../topologies/VoteEventResult';
+import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 
 import ErrorButtonWithFeedback from './ErrorButtonWithFeedback';
 import ErrorButtonInline from './ErrorButtonInline';
@@ -149,40 +164,43 @@ ErrorSidebar.propTypes = {
 export default [
   LinkedRenderStore.registerRenderer(
     ErrorPage,
-    NS.ll('ErrorResource')
+    NS.ll('ErrorResource'),
+    RENDER_CLASS_NAME,
+    pageTopology
   ),
   LinkedRenderStore.registerRenderer(
     ErrorCard,
     NS.ll('ErrorResource'),
     RENDER_CLASS_NAME,
     [
-      NS.argu('container'),
-      NS.argu('dropdownContent'),
-      NS.argu('cardList'),
-      NS.argu('grid'),
-      NS.argu('widget'),
+      containerTopology,
+      dropdownContentTopology,
+      cardListTopology,
+      gridTopology,
+      primaryResourceTopology,
+      widgetTopologyTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(
     ErrorSidebar,
     NS.ll('ErrorResource'),
     RENDER_CLASS_NAME,
-    NS.argu('sidebar')
+    sidebarTopology
   ),
   LinkedRenderStore.registerRenderer(
     ErrorButtonInline,
     NS.ll('ErrorResource'),
     RENDER_CLASS_NAME,
     [
-      NS.argu('card'),
-      NS.argu('cardFixed'),
-      NS.argu('cardHover'),
-      NS.argu('cardMain'),
-      NS.argu('cardRow'),
-      NS.argu('detail'),
-      NS.argu('inline'),
-      NS.argu('voteBubble'),
-      NS.argu('voteEventResult'),
+      cardFixedTopology,
+      cardTopology,
+      cardMainTopology,
+      cardRowTopology,
+      detailsBarTopology,
+      hoverBoxTopology,
+      inlineTopology,
+      voteBubbleTopology,
+      voteEventResultTopology,
     ]
   ),
 ];

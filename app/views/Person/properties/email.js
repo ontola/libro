@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { setCurrentUserEmail } from '../../../state/app/actions';
+import { sidebarTopology } from '../../../topologies/Sidebar';
 
 
 const propTypes = {
@@ -49,5 +50,5 @@ export default LinkedRenderStore.registerRenderer(
   EmailDispatcherConnect,
   NS.schema('Person'),
   NS.schema('email'),
-  NS.argu('sidebar')
+  sidebarTopology
 );

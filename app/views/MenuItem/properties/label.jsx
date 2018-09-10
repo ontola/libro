@@ -4,6 +4,7 @@ import React from 'react';
 
 import { Image } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { cardFloatTopology } from '../../../topologies/Card/CardFloat';
 
 const propTypes = {
   image: linkedPropType,
@@ -24,5 +25,5 @@ export default LinkedRenderStore.registerRenderer(
     NS.argu('Menu'),
   ],
   NS.schema('name'),
-  NS.argu('cardFloat')
+  cardFloatTopology
 );

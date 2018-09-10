@@ -4,6 +4,7 @@ import React from 'react';
 import Detail from '../../../components/Detail';
 import { formatDateFromNow } from '../../../helpers/date';
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { detailsBarTopology } from '../../../topologies/DetailsBar';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -14,7 +15,7 @@ class ExpiresAt extends React.PureComponent {
 
   static property = NS.argu('expiresAt');
 
-  static topology = NS.argu('detail');
+  static topology = detailsBarTopology;
 
   static propTypes = propTypes;
 

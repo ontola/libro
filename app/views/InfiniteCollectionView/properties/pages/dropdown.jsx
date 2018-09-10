@@ -14,9 +14,10 @@ import {
   SideBarLink,
 } from '../../../../components';
 import { NS } from '../../../../helpers/LinkedRenderStore';
+import { sidebarTopology } from '../../../../topologies/Sidebar';
 
 const PagesDropdown = (props) => {
-  const label = <Property label={NS.schema('name')} topology={NS.argu('sidebar')} />;
+  const label = <Property label={NS.schema('name')} topology={sidebarTopology} />;
 
   return (
     <div style={{ display: 'flex' }}>
@@ -40,5 +41,5 @@ export default LinkedRenderStore.registerRenderer(
   withLinkCtx(PagesDropdown),
   NS.argu('InfiniteCollection'),
   NS.as('pages'),
-  NS.argu('sidebar')
+  sidebarTopology
 );

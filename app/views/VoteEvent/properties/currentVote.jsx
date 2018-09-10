@@ -14,6 +14,7 @@ import { currentURL, retrievePath } from '../../../helpers/iris';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { getCurrentUserType } from '../../../state/app/selectors';
 import { allTopologies } from '../../../topologies';
+import { cardVoteEventTopology } from '../../../topologies/CardVoteEvent';
 
 class CurrentVote extends PropertyBase {
   shouldComponentUpdate(nextProps) {
@@ -62,7 +63,7 @@ export const getVoteButtons = (options) => {
     constructor() {
       super();
 
-      this.topology = NS.argu('cardVoteEvent');
+      this.topology = cardVoteEventTopology;
     }
 
     signInFlow() {

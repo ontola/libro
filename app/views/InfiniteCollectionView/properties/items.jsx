@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { sidebarTopology } from '../../../topologies/Sidebar';
 
 const propTypes = {
   /** The amount of items to render. Leave undefined for all items */
@@ -73,6 +74,6 @@ export default [
     props => <Items divider direction="inverted" {...props} />,
     NS.argu('InfiniteCollection'),
     NS.as('items'),
-    NS.argu('sidebar')
+    sidebarTopology
   ),
 ];

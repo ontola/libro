@@ -5,6 +5,7 @@ import { Literal } from 'rdflib';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import { cardListTopology } from '../../topologies/Card/CardList';
 
 const propTypes = {
   name: PropTypes.instanceOf(Literal),
@@ -20,5 +21,5 @@ export default LinkedRenderStore.registerRenderer(
   link([NS.schema('name')])(PersonSection),
   NS.schema('Person'),
   RENDER_CLASS_NAME,
-  NS.argu('cardList')
+  cardListTopology
 );

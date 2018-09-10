@@ -3,6 +3,7 @@ import { LinkedResourceContainer, linkedPropType } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { inlineTopology } from '../../../topologies/Inline';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -11,7 +12,7 @@ const propTypes = {
 const ComparedBeta = ({ linkedProp }) => (
   <LinkedResourceContainer
     subject={linkedProp}
-    topology={NS.argu('inline')}
+    topology={inlineTopology}
   />
 );
 

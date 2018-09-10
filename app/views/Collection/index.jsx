@@ -18,8 +18,19 @@ import {
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { getPage } from '../../state/pagination/selectors';
-import CardList from '../../topologies/Card/CardList';
-import Container from '../../topologies/Container';
+import { cardTopology } from '../../topologies/Card';
+import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
+import { cardFixedTopology } from '../../topologies/Card/CardFixed';
+import CardList, { cardListTopology } from '../../topologies/Card/CardList';
+import { cardMainTopology } from '../../topologies/Card/CardMain';
+import { cardRowTopology } from '../../topologies/Card/CardRow';
+import { cardVoteEventTopology } from '../../topologies/CardVoteEvent';
+import Container, { containerTopology } from '../../topologies/Container';
+import { gridTopology } from '../../topologies/Grid';
+import { pageTopology } from '../../topologies/Page';
+import { primaryResourceTopology } from '../../topologies/PrimaryResource';
+import { voteEventTopology } from '../../topologies/VoteEvent';
+import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 
 import FilteredCollections from './properties/filteredCollections';
 import First from './properties/first';
@@ -145,7 +156,7 @@ const collectionSection = (shortCircuit = true) => {
 
 const CollectionFixedCards = () => (
   <Resource>
-    <Property forceRender label={NS.as('pages')} topology={NS.argu('grid')} />
+    <Property forceRender label={NS.as('pages')} topology={gridTopology} />
   </Resource>
 );
 
@@ -164,18 +175,22 @@ export default [
       renderWhenEmpty: true,
     }),
     CollectionTypes,
-    RENDER_CLASS_NAME
+    RENDER_CLASS_NAME,
+    [
+      primaryResourceTopology,
+      pageTopology,
+    ]
   ),
   LinkedRenderStore.registerRenderer(
     link(itemsCount)(collectionSection()),
     CollectionTypes,
     RENDER_CLASS_NAME,
     [
-      NS.argu('cardList'),
-      NS.argu('card'),
-      NS.argu('cardFixed'),
-      NS.argu('cardMain'),
-      NS.argu('cardRow'),
+      cardTopology,
+      cardFixedTopology,
+      cardListTopology,
+      cardMainTopology,
+      cardRowTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(
@@ -183,30 +198,30 @@ export default [
     CollectionTypes,
     RENDER_CLASS_NAME,
     [
-      NS.argu('cardVoteEvent'),
-      NS.argu('voteEventCollection'),
+      cardVoteEventTopology,
+      voteEventTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(
     link(itemsCount)(CollectionCardAppendix),
     CollectionTypes,
     RENDER_CLASS_NAME,
-    NS.argu('cardAppendix')
+    cardAppendixTopology
   ),
   LinkedRenderStore.registerRenderer(
     wrapUpdate(CollectionFixedCards),
     CollectionTypes,
     RENDER_CLASS_NAME,
     [
-      NS.argu('grid'),
-      NS.argu('widget'),
+      gridTopology,
+      widgetTopologyTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(
     getCollection({ renderWhenEmpty: false }),
     CollectionTypes,
     RENDER_CLASS_NAME,
-    NS.argu('container')
+    containerTopology
   ),
   ...FilteredCollections,
   First,

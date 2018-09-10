@@ -3,6 +3,7 @@ import React from 'react';
 
 import Detail from '../../../components/Detail';
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { detailsBarTopology } from '../../../topologies/DetailsBar';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -13,7 +14,7 @@ class PinnedAt extends React.PureComponent {
 
   static property = NS.argu('pinnedAt');
 
-  static topology = NS.argu('detail');
+  static topology = detailsBarTopology;
 
   static propTypes = propTypes;
 

@@ -6,6 +6,7 @@ import { LDLink } from '../../components';
 import SideBarLinkLabel from '../../components/SideBarLink/SideBarLinkLabel';
 import SidebarLinkIcon from '../../components/SideBarLink/SideBarLinkIcon';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { sidebarTopology } from '../../topologies/Sidebar';
 
 import './properties/name';
 
@@ -27,5 +28,5 @@ export default LinkedRenderStore.registerRenderer(
   CurrentActorSidebar,
   NS.schema('Person'),
   RENDER_CLASS_NAME,
-  NS.argu('sidebar')
+  sidebarTopology
 );

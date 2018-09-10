@@ -4,6 +4,8 @@ import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { LDLink } from '../../../components';
+import { cardTopology } from '../../../topologies/Card';
+import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -22,7 +24,7 @@ export default LinkedRenderStore.registerRenderer(
   NS.schema('Thing'),
   NS.argu('coverPhoto'),
   [
-    NS.argu('card'),
-    NS.argu('cardFixed'),
+    cardTopology,
+    cardFixedTopology,
   ]
 );

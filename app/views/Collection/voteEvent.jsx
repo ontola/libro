@@ -8,7 +8,10 @@ import {
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
-import { VoteEventResult } from '../../topologies/VoteEventResult/index';
+import { cardVoteEventTopology } from '../../topologies/CardVoteEvent';
+import { voteEventTopology } from '../../topologies/VoteEvent';
+import { VoteEventResult, voteEventResultTopology } from '../../topologies/VoteEventResult/index';
+import { voteEventSideTopology } from '../../topologies/VoteEventSide';
 
 import { CollectionTypes } from './types';
 
@@ -67,24 +70,24 @@ export default [
     link([NS.as('totalItems')])(VoteEventResult),
     CollectionTypes,
     RENDER_CLASS_NAME,
-    NS.argu('voteEvent')
+    voteEventTopology
   ),
   LinkedRenderStore.registerRenderer(
     link([NS.as('totalItems')])(VoteEventResultCard),
     CollectionTypes,
     RENDER_CLASS_NAME,
-    NS.argu('cardVoteEvent')
+    cardVoteEventTopology
   ),
   LinkedRenderStore.registerRenderer(
     link([NS.argu('parentView'), NS.as('totalItems')])(VoteEventSide),
     CollectionTypes,
     RENDER_CLASS_NAME,
-    NS.argu('voteEventResult')
+    voteEventResultTopology
   ),
   LinkedRenderStore.registerRenderer(
     () => <Property label={NS.as('items')} />,
     CollectionTypes,
     RENDER_CLASS_NAME,
-    NS.argu('voteEventSide')
+    voteEventSideTopology
   ),
 ];

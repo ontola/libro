@@ -5,6 +5,8 @@ import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { SideBarCollapsible } from '../../../components';
+import { dropdownContentTopology } from '../../../topologies/DropdownContent';
+import { sidebarTopology } from '../../../topologies/Sidebar';
 
 const propTypes = {
   children: linkedPropType,
@@ -53,5 +55,5 @@ export default LinkedRenderStore.registerRenderer(
   menuItems,
   [NS.argu('MenuItem'), NS.argu('SubMenu'), NS.argu('MenuSection')],
   NS.argu('menuItems'),
-  [NS.argu('sidebar'), NS.argu('dropdownContent')]
+  [sidebarTopology, dropdownContentTopology]
 );

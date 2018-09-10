@@ -1,4 +1,4 @@
-import LinkedRenderStore from 'link-lib';
+import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
 import React from 'react';
 
@@ -11,6 +11,7 @@ import CardAppendix from '../../topologies/Card/CardAppendix';
 import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
+import { pageTopology } from '../../topologies/Page';
 
 const MotionPage = () => (
   <div>
@@ -57,4 +58,9 @@ const MotionPage = () => (
   </div>
 );
 
-export default LinkedRenderStore.registerRenderer(MotionPage, NS.argu('Motion'));
+export default LinkedRenderStore.registerRenderer(
+  MotionPage,
+  NS.argu('Motion'),
+  RENDER_CLASS_NAME,
+  pageTopology
+);

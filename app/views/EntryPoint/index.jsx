@@ -8,6 +8,10 @@ import ButtonWithFeedback from '../../components/ButtonWithFeedback';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { countInParentheses } from '../../helpers/numbers';
 import { allTopologiesExcept } from '../../topologies';
+import { cardFloatTopology } from '../../topologies/Card/CardFloat';
+import { cardListTopology } from '../../topologies/Card/CardList';
+import { containerTopology } from '../../topologies/Container';
+import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 
 import EntryPointButton from './EntryPointButton';
 import EntryPointContainer from './EntryPointContainer';
@@ -70,10 +74,10 @@ export default [
     NS.schema('EntryPoint'),
     RENDER_CLASS_NAME,
     allTopologiesExcept(
-      NS.argu('container'),
-      NS.argu('omniformFields'),
-      NS.argu('cardFloat'),
-      NS.argu('cardList')
+      containerTopology,
+      omniformFieldsTopology,
+      cardFloatTopology,
+      cardListTopology
     )
   ),
 ];

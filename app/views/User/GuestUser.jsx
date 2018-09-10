@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { SideBarLink } from '../../components';
 import path from '../../helpers/paths';
+import { sidebarTopology } from '../../topologies/Sidebar';
 
 const propTypes = {
   redirectURL: PropTypes.string,
@@ -33,5 +34,5 @@ export default LinkedRenderStore.registerRenderer(
   GuestUserActorConnected,
   NS.argu('GuestUser'),
   RENDER_CLASS_NAME,
-  NS.argu('sidebar')
+  sidebarTopology
 );

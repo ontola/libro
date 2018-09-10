@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import { cardListTopology } from '../../topologies/Card/CardList';
+import { voteEventTopology } from '../../topologies/VoteEvent';
 
 const propTypes = {
   optionCounts: PropTypes.objectOf({
@@ -27,7 +29,7 @@ LinkedRenderStore.registerRenderer(
   VoteEventCollection,
   NS.as('Collection'),
   RENDER_CLASS_NAME,
-  NS.argu('voteEvent')
+  voteEventTopology
 );
 
 /**
@@ -54,7 +56,7 @@ LinkedRenderStore.registerRenderer(
   VoteEvent,
   [NS.argu('VoteEvent'), NS.aod('VoteEvent')],
   RENDER_CLASS_NAME,
-  [NS.argu('cardList'), NS.argu('voteEventCollection')]
+  [cardListTopology, NS.argu('voteEventCollection')]
 );
 
 export default VoteEventCollection;

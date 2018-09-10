@@ -13,7 +13,9 @@ import {
 } from '../../../../components';
 import { NS } from '../../../../helpers/LinkedRenderStore';
 import { allTopologiesExcept } from '../../../../topologies';
-import Card from '../../../../topologies/Card';
+import Card, { cardTopology } from '../../../../topologies/Card';
+import { cardAppendixTopology } from '../../../../topologies/Card/CardAppendix';
+import { cardMainTopology } from '../../../../topologies/Card/CardMain';
 
 const propTypes = {
   autofocusForm: PropTypes.bool,
@@ -58,5 +60,5 @@ export default LinkedRenderStore.registerRenderer(
   ),
   [NS.schema('Thing'), NS.link('Document')],
   NS.app('omniform'),
-  allTopologiesExcept(NS.argu('card'), NS.argu('cardMain'), NS.argu('cardAppendix'))
+  allTopologiesExcept(cardTopology, cardMainTopology, cardAppendixTopology)
 );

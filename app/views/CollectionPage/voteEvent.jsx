@@ -6,8 +6,10 @@ import {
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
-import { VoteEventResult } from '../../topologies/VoteEventResult';
-import { voteEventSide } from '../../topologies/VoteEventSide';
+import { cardVoteEventTopology } from '../../topologies/CardVoteEvent';
+import { voteEventTopology } from '../../topologies/VoteEvent';
+import { VoteEventResult, voteEventResultTopology } from '../../topologies/VoteEventResult';
+import { voteEventSideTopology } from '../../topologies/VoteEventSide';
 
 import { CollectionViewTypes } from './types';
 
@@ -27,7 +29,7 @@ class VoteEventSide extends TopologyProvider {
   constructor(props) {
     super(props);
 
-    this.topology = voteEventSide;
+    this.topology = voteEventSideTopology;
   }
 
   percentages() {
@@ -72,24 +74,24 @@ export default [
     link([NS.as('totalItems')])(VoteEventResult),
     CollectionViewTypes,
     RENDER_CLASS_NAME,
-    NS.argu('voteEvent')
+    voteEventTopology
   ),
   LinkedRenderStore.registerRenderer(
     link([NS.as('totalItems')])(VoteEventResultCard),
     CollectionViewTypes,
     RENDER_CLASS_NAME,
-    NS.argu('cardVoteEvent')
+    cardVoteEventTopology
   ),
   LinkedRenderStore.registerRenderer(
     link([NS.argu('parentView'), NS.as('partOf'), NS.as('totalItems')])(VoteEventSide),
     CollectionViewTypes,
     RENDER_CLASS_NAME,
-    NS.argu('voteEventResult')
+    voteEventResultTopology
   ),
   LinkedRenderStore.registerRenderer(
     () => <Property label={NS.as('items')} />,
     CollectionViewTypes,
     RENDER_CLASS_NAME,
-    NS.argu('voteEventSide')
+    voteEventSideTopology
   ),
 ];

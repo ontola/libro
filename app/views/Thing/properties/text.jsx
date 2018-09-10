@@ -9,6 +9,15 @@ import React from 'react';
 
 import { CollapseText, Markdown, MarkdownFixedPreview } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { cardTopology } from '../../../topologies/Card';
+import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
+import { cardListTopology } from '../../../topologies/Card/CardList';
+import { cardMainTopology } from '../../../topologies/Card/CardMain';
+import { cardRowTopology } from '../../../topologies/Card/CardRow';
+import { containerTopology } from '../../../topologies/Container';
+import { hoverBoxTopology } from '../../../topologies/HoverBox';
+import { popupTopology } from '../../../topologies/Popup';
+import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -51,8 +60,8 @@ export default [
     NS.schema('Thing'),
     NS.schema('text'),
     [
-      undefined,
-      NS.argu('cardMain'),
+      primaryResourceTopology,
+      cardMainTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(
@@ -60,25 +69,25 @@ export default [
     NS.schema('Thing'),
     NS.schema('text'),
     [
-      NS.argu('card'),
-      NS.argu('cardRow'),
-      NS.argu('container'),
+      cardRowTopology,
+      cardTopology,
+      containerTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(
     TextInline,
     NS.schema('Thing'),
     NS.schema('text'),
-    NS.argu('cardList')
+    cardListTopology
   ),
   LinkedRenderStore.registerRenderer(
     TextCutoff,
     NS.schema('Thing'),
     NS.schema('text'),
     [
-      NS.argu('cardFixed'),
-      NS.argu('cardHover'),
-      NS.argu('popup'),
+      cardFixedTopology,
+      hoverBoxTopology,
+      popupTopology,
     ]
   ),
 ];

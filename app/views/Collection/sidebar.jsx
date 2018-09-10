@@ -9,6 +9,7 @@ import React from 'react';
 import { SideBarLink } from '../../components';
 import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { sidebarTopology } from '../../topologies/Sidebar';
 
 import { CollectionTypes } from './types';
 
@@ -39,5 +40,5 @@ export default LinkedRenderStore.registerRenderer(
   ConnectedCollection,
   CollectionTypes,
   RENDER_CLASS_NAME,
-  NS.argu('sidebar')
+  sidebarTopology
 );

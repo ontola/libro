@@ -16,6 +16,7 @@ import FormFooterRight from '../../components/Form/FooterRight';
 import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 import Card from '../../topologies/Card';
+import { containerTopology } from '../../topologies/Container';
 import FormFooter from '../../topologies/FormFooter/Footer';
 
 import EntryPointBase from './EntryPointBase';
@@ -93,5 +94,5 @@ export default LinkedRenderStore.registerRenderer(
   )),
   NS.schema('EntryPoint'),
   RENDER_CLASS_NAME,
-  NS.argu('container')
+  containerTopology
 );

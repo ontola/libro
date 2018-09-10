@@ -11,6 +11,8 @@ import {
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import Card from '../../topologies/Card';
+import { containerTopology } from '../../topologies/Container';
+import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 
 import Sidebar from './sidebar';
 import Creator from './properties/creator';
@@ -57,8 +59,8 @@ export default [
     NS.argu('Notification'),
     RENDER_CLASS_NAME,
     [
-      undefined,
-      NS.argu('container'),
+      primaryResourceTopology,
+      containerTopology,
     ]
   ),
   Sidebar,

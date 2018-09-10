@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { Heading } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologiesExcept } from '../../../topologies';
+import { sidebarTopology } from '../../../topologies/Sidebar';
 import { CollectionTypes } from '../types';
 
 const propTypes = {
@@ -37,5 +38,5 @@ export default LinkedRenderStore.registerRenderer(
   withLinkCtx(CollectionName),
   CollectionTypes,
   NS.as('name'),
-  allTopologiesExcept(NS.argu('sidebar'))
+  allTopologiesExcept(sidebarTopology)
 );

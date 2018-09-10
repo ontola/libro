@@ -6,6 +6,7 @@ import React from 'react';
 import { filterSort } from '../../../helpers/data';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologiesExcept } from '../../../topologies';
+import { actionsBarTopology } from '../../../topologies/ActionsBar';
 
 const propTypes = {
   potentialAction: PropTypes.arrayOf(linkedPropType),
@@ -49,7 +50,7 @@ export default [
     })(potentialAction([])),
     [NS.schema('Thing'), NS.rdfs('Resource')],
     NS.schema('potentialAction'),
-    allTopologiesExcept(NS.argu('actionsBar'))
+    allTopologiesExcept(actionsBarTopology)
   ),
   LinkedRenderStore.registerRenderer(
     link({
@@ -60,6 +61,6 @@ export default [
     })(potentialAction(actionsBarBlacklist)),
     [NS.schema('Thing'), NS.rdfs('Resource')],
     NS.schema('potentialAction'),
-    NS.argu('actionsBar')
+    actionsBarTopology
   ),
 ];

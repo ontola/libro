@@ -15,6 +15,8 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import Card from '../../topologies/Card';
 import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
+import { popupTopology } from '../../topologies/Popup';
+import { voteEventSideTopology } from '../../topologies/VoteEventSide';
 
 const propTypes = {
   subject: linkedPropType,
@@ -75,12 +77,12 @@ export default [
     link([NS.schema('option'), NS.schema('text')], { returnType: 'value' })(VoteSidePage),
     NS.argu('Vote'),
     RENDER_CLASS_NAME,
-    NS.argu('voteEventSide')
+    voteEventSideTopology
   ),
   LinkedRenderStore.registerRenderer(
     link([NS.schema('option'), NS.schema('text')], { returnType: 'value' })(ThingHoverBoxHidden),
     NS.argu('Vote'),
     RENDER_CLASS_NAME,
-    NS.argu('popup')
+    popupTopology
   ),
 ];

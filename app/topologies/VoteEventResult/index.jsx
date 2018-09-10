@@ -7,13 +7,13 @@ import { NS } from '../../helpers/LinkedRenderStore';
 /**
  * @deprecated
  */
-export const voteEventResult = NS.argu('voteEventResult');
+export const voteEventResultTopology = NS.argu('voteEventResultTopology');
 
 export class VoteEventResult extends TopologyProvider {
   constructor(props) {
     super(props);
 
-    this.topology = voteEventResult;
+    this.topology = voteEventResultTopology;
     this.card = false;
   }
 

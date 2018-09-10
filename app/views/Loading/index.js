@@ -12,25 +12,43 @@ import {
   LoadingParent,
   LoadingRow,
 } from '../../components';
+import { cardTopology } from '../../topologies/Card';
+import { cardFixedTopology } from '../../topologies/Card/CardFixed';
+import { cardListTopology } from '../../topologies/Card/CardList';
+import { cardMainTopology } from '../../topologies/Card/CardMain';
+import { cardRowTopology } from '../../topologies/Card/CardRow';
+import { containerTopology } from '../../topologies/Container';
+import { detailsBarTopology } from '../../topologies/DetailsBar';
+import { dropdownContentTopology } from '../../topologies/DropdownContent';
+import { gridTopology } from '../../topologies/Grid';
+import { hoverBoxTopology } from '../../topologies/HoverBox';
+import { inlineTopology } from '../../topologies/Inline';
+import { pageTopology } from '../../topologies/Page';
+import { parentTopology } from '../../topologies/Parent';
+import { sidebarTopology } from '../../topologies/Sidebar';
+import { voteBubbleTopology } from '../../topologies/VoteBubble';
+import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 
 export default [
   LinkedRenderStore.registerRenderer(
     LoadingPage,
-    NS.ll('LoadingResource')
+    NS.ll('LoadingResource'),
+    RENDER_CLASS_NAME,
+    pageTopology
   ),
   LinkedRenderStore.registerRenderer(
     LoadingParent,
     NS.ll('LoadingResource'),
     RENDER_CLASS_NAME,
-    NS.argu('parent')
+    parentTopology
   ),
   LinkedRenderStore.registerRenderer(
     LoadingCard,
     NS.ll('LoadingResource'),
     RENDER_CLASS_NAME,
     [
-      NS.argu('container'),
-      NS.argu('cardList'),
+      containerTopology,
+      cardListTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(
@@ -38,27 +56,25 @@ export default [
     NS.ll('LoadingResource'),
     RENDER_CLASS_NAME,
     [
-      NS.argu('grid'),
-      NS.argu('widget'),
+      gridTopology,
+      widgetTopologyTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(
     LoadingMicroRow,
     NS.ll('LoadingResource'),
     RENDER_CLASS_NAME,
-    [
-      NS.argu('cardRow'),
-    ]
+    cardRowTopology
   ),
   LinkedRenderStore.registerRenderer(
     LoadingRow,
     NS.ll('LoadingResource'),
     RENDER_CLASS_NAME,
     [
-      NS.argu('card'),
-      NS.argu('cardFixed'),
-      NS.argu('cardHover'),
-      NS.argu('cardMain'),
+      cardTopology,
+      cardFixedTopology,
+      cardMainTopology,
+      hoverBoxTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(
@@ -66,25 +82,25 @@ export default [
     NS.ll('LoadingResource'),
     RENDER_CLASS_NAME,
     [
-      NS.argu('dropdownContent'),
-      NS.argu('sidebar'),
+      dropdownContentTopology,
+      sidebarTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(
     LoadingDetail,
     NS.ll('LoadingResource'),
     RENDER_CLASS_NAME,
-    NS.argu('detail')
+    detailsBarTopology
   ),
   LinkedRenderStore.registerRenderer(
     Loading,
     NS.ll('LoadingResource'),
     RENDER_CLASS_NAME,
     [
-      NS.argu('cardList'),
-      NS.argu('inline'),
-      NS.argu('voteBubble'),
-      NS.argu('cardMain'),
+      cardListTopology,
+      cardMainTopology,
+      inlineTopology,
+      voteBubbleTopology,
     ]
   ),
 ];
