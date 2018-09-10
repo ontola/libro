@@ -36,7 +36,12 @@ const scriptSrc = [
   'https://d2wy8f7a9ursnm.cloudfront.net',
   'https://cdn.logrocket.io',
 ];
-const styleSrc = ["'self'", 'maxcdn.bootstrapcdn.com'];
+const styleSrc = [
+  "'self'",
+  // Due to using inline css with background-image url()
+  "'unsafe-inline'",
+  'maxcdn.bootstrapcdn.com',
+];
 const workerSrc = [
   "'self'",
 ];
@@ -46,7 +51,7 @@ if (ASSETS_HOST) {
 
 if (__DEVELOPMENT__) {
   scriptSrc.push("'unsafe-inline'", "'unsafe-eval'", 'blob:');
-  styleSrc.push("'unsafe-inline'", 'blob:');
+  styleSrc.push('blob:');
   workerSrc.push('blob:');
 }
 
