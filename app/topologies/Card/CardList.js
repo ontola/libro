@@ -15,13 +15,17 @@ export const cardListTopology = NS.argu('cardList');
 class CardList extends Topology {
   static propTypes = {
     children: PropTypes.node.isRequired,
+    direction: PropTypes.oneOf(['column']),
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
-    this.className = 'CardList';
     this.topology = cardListTopology;
+  }
+
+  getClassName() {
+    return `CardList ${this.props.direction === 'column' ? 'CardList--column' : ''}`;
   }
 }
 

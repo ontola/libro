@@ -18,8 +18,8 @@ class Arguments extends PureComponent {
 
     return (
       <Columns>
-        <Property key="pro" label={NS.argu('proArguments')} />
-        <Property key="con" label={NS.argu('conArguments')} />
+        <Property direction="column" key="pro" label={NS.argu('proArguments')} />
+        <Property direction="column" key="con" label={NS.argu('conArguments')} />
       </Columns>
     );
   }

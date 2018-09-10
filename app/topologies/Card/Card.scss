@@ -145,7 +145,10 @@
 
 .CardList {
   display: flex;
-  flex-direction: column;
+
+  &.CardList--column {
+    flex-direction: column;
+  }
 }
 
 .CardMicroRow {
