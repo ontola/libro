@@ -46,10 +46,7 @@ export default [
     connectHighlighting(Comment),
     [NS.schema('Comment'), NS.argu('Comment')],
     RENDER_CLASS_NAME,
-    [
-      NS.argu('collection'),
-      NS.argu('container'),
-    ]
+    NS.argu('container')
   ),
   LinkedRenderStore.registerRenderer(
     connectHighlighting(CommentSection),

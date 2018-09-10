@@ -188,12 +188,6 @@ const ThingCard = () => (
 export default [
   LinkedRenderStore.registerRenderer(ThingPage, NS.schema('Thing')),
   LinkedRenderStore.registerRenderer(
-    ThingPage,
-    NS.schema('Thing'),
-    RENDER_CLASS_NAME,
-    NS.argu('collection')
-  ),
-  LinkedRenderStore.registerRenderer(
     () => <Property label={[NS.schema('name'), NS.rdfs('label')]} />,
     NS.schema('Thing'),
     RENDER_CLASS_NAME,

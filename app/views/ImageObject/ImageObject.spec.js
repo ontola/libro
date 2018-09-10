@@ -37,12 +37,6 @@ describeView('ImageObject', components, resources, resource, () => {
     });
   });
 
-  as(NS.argu('collection'), () => {
-    it('renders a thumbnail', () => {
-      expect(subject.find(marker('ImageObjectThumbnail'))).toExist();
-    });
-  });
-
   as(NS.argu('detail'), () => {
     it('renders a thumbnail', () => {
       expect(subject.find(marker('ImageObjectThumbnail'))).toExist();

@@ -7,6 +7,7 @@ import {
   linkedPropType,
   withLinkCtx,
 } from 'link-redux';
+import PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -123,18 +124,21 @@ const CollectionCardAppendix = ({ totalItems }) => {
 CollectionCardAppendix.propTypes = mvcPropTypes;
 
 const collectionSection = (shortCircuit = true) => {
-  const CollectionSection = ({ totalItems }) => {
+  const CollectionSection = ({ direction, totalItems }) => {
     const pagesShouldRender = !shortCircuit || totalItems.value !== '0';
 
     return (
-      <CardList>
+      <CardList direction={direction}>
         {pagesShouldRender && <Property forceRender label={NS.as('pages')} />}
         <Property label={NS.argu('createAction')} />
       </CardList>
     );
   };
 
-  CollectionSection.propTypes = mvcPropTypes;
+  CollectionSection.propTypes = {
+    direction: PropTypes.oneOf(['column']),
+    totalItems: linkedPropType,
+  };
 
   return CollectionSection;
 };
@@ -203,11 +207,6 @@ export default [
     CollectionTypes,
     RENDER_CLASS_NAME,
     NS.argu('container')
-  ),
-  LinkedRenderStore.registerRenderer(
-    getCollection(),
-    CollectionTypes,
-    NS.argu('collection')
   ),
   ...FilteredCollections,
   First,

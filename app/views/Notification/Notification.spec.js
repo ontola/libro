@@ -45,8 +45,8 @@ const resources = {
 };
 
 describeView('Notification', components, resources, resource, () => {
-  as(NS.argu('collection'), () => {
-    set('topology', () => NS.argu('collection'));
+  as(NS.argu('container'), () => {
+    set('topology', () => NS.argu('container'));
 
     it('renders', () => {
       expect(subject.find(marker('notification'))).toExist();

@@ -59,7 +59,6 @@ export default [
     ],
     RENDER_CLASS_NAME,
     [
-      NS.argu('collection'),
       NS.argu('detail'),
       NS.argu('dropdownContent'),
       NS.argu('formFooter'),

@@ -156,7 +156,6 @@ export default [
     NS.ll('ErrorResource'),
     RENDER_CLASS_NAME,
     [
-      NS.argu('collection'),
       NS.argu('container'),
       NS.argu('dropdownContent'),
       NS.argu('cardList'),

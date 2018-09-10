@@ -151,11 +151,6 @@ export default [
       NS.argu('container'),
     ]
   ),
-  LinkedRenderStore.registerRenderer(
-    ConnectedCollectionView,
-    CollectionViewTypes,
-    NS.argu('collection')
-  ),
   First,
   ...Member,
   Name,

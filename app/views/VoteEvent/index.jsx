@@ -39,7 +39,6 @@ export default [
     RENDER_CLASS_NAME,
     [
       undefined,
-      NS.argu('collection'),
       NS.argu('card'),
       NS.argu('cardAppendix'),
       NS.argu('container'),

@@ -1,4 +1,4 @@
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
+import LinkedRenderStore from 'link-lib';
 import { Property } from 'link-redux';
 import React from 'react';
 
@@ -18,9 +18,3 @@ const VoteCompareRows = () => (
 );
 
 LinkedRenderStore.registerRenderer(VoteCompareRows, NS.argu('CompareRow'));
-LinkedRenderStore.registerRenderer(
-  VoteCompareRows,
-  NS.argu('CompareRow'),
-  RENDER_CLASS_NAME,
-  NS.argu('collection')
-);

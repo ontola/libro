@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
-import { collectionTopology } from '../../../topologies/Collection';
 
 const propTypes = {
   /** The amount of items to render. Leave undefined for all items */
@@ -18,7 +17,7 @@ class ItemsComp extends PropertyBase {
       divider,
       limit,
       subject,
-      topology = collectionTopology,
+      topology,
     } = this.props;
 
     const list = prop.slice(0, limit);

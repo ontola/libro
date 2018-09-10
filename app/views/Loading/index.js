@@ -29,7 +29,6 @@ export default [
     NS.ll('LoadingResource'),
     RENDER_CLASS_NAME,
     [
-      NS.argu('collection'),
       NS.argu('container'),
       NS.argu('cardList'),
     ]

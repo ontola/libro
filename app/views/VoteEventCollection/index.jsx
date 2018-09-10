@@ -58,4 +58,3 @@ LinkedRenderStore.registerRenderer(
 );
 
 export default VoteEventCollection;
-export { default as Views } from './properties/views';

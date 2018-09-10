@@ -86,7 +86,6 @@ export default [
       NS.argu('card'),
       NS.argu('cardFixed'),
       NS.argu('cardRow'),
-      NS.argu('collection'),
       NS.argu('container'),
       NS.argu('parent'),
       NS.argu('popup'),

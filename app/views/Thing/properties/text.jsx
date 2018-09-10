@@ -62,7 +62,6 @@ export default [
     [
       NS.argu('card'),
       NS.argu('cardRow'),
-      NS.argu('collection'),
       NS.argu('container'),
     ]
   ),

@@ -8,7 +8,6 @@ import { cardMainTopology } from './topologies/Card/CardMain';
 import { cardMicroRowTopology } from './topologies/Card/CardMicroRow';
 import { cardRowTopology } from './topologies/Card/CardRow';
 import { cardVoteEventTopology } from './topologies/CardVoteEvent/index';
-import { collectionTopology } from './topologies/Collection/index';
 import { containerTopology } from './topologies/Container/index';
 import { detailsBarTopology } from './topologies/DetailsBar/index';
 import { dropdownContentTopology } from './topologies/DropdownContent/index';
@@ -40,7 +39,6 @@ export const allTopologies = [
   cardMicroRowTopology,
   cardRowTopology,
   cardVoteEventTopology,
-  collectionTopology,
   containerTopology,
   detailsBarTopology,
   dropdownContentTopology,
