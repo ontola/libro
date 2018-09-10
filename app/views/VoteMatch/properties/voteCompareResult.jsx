@@ -3,11 +3,11 @@ import { LinkedResourceContainer, linkedPropType } from 'link-redux';
 import React from 'react';
 
 import {
-  Card,
   Cover,
   LDLink,
 } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
+import Card from '../../../topologies/Card';
 import Container from '../../../topologies/Container';
 
 const propTypes = {

@@ -13,12 +13,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import {
-  CardList,
   Resource,
   CardHeader,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { getPage } from '../../state/pagination/selectors';
+import CardList from '../../topologies/Card/CardList';
 import Container from '../../topologies/Container';
 
 import FilteredCollections from './properties/filteredCollections';

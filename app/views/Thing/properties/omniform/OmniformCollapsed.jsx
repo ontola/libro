@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Button, CardRow, OmniformPreview } from '../../../../components';
+import { Button, OmniformPreview } from '../../../../components';
 import { NS } from '../../../../helpers/LinkedRenderStore';
 import {
   getOmniformOpenState,
   omniformCloseInline,
   omniformOpenInline,
 } from '../../../../state/omniform';
+import CardRow from '../../../../topologies/Card/CardRow';
 
 import { ConnectedOmniformProp } from './omniform';
 

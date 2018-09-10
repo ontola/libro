@@ -8,11 +8,11 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import {
-  Card,
   CardContent,
   HoverPopup,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import Card from '../../topologies/Card';
 import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
 

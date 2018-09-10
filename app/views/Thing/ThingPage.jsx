@@ -2,12 +2,12 @@ import { Property, register } from 'link-redux';
 import React, { PureComponent } from 'react';
 
 import {
-  CardAppendix,
   CardContent,
   CardHeader,
-  CardMain,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import CardAppendix from '../../topologies/Card/CardAppendix';
+import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
 import { pageTopology } from '../../topologies/Page';

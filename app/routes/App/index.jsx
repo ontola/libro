@@ -15,12 +15,12 @@ import { getErrorBool, getErrorMsg, getLoadingBool } from 'state/communication/s
 import Routes from '..';
 
 import {
-  LinkedPopup,
   Notification,
   SkipNavigation,
   Spinner,
 } from '../../components';
 import '../../components/shared/init.scss';
+import Popup from '../../topologies/Popup/index';
 import ErrorButtonWithFeedback from '../../views/Error/ErrorButtonWithFeedback';
 import HoverHelper from '../DevBrowser/HoverHelper';
 import { defaultKeymap, devKeymap } from '../../helpers/keyboard';
@@ -101,7 +101,7 @@ class App extends React.PureComponent {
             <BottomBarContainer />
             {error && renderErrorMessage(error, errorMessage, reset)}
           </SideBarContainer>
-          <LinkedPopup />
+          <Popup />
         </HoverHelper>
       </HotKeys>
     );

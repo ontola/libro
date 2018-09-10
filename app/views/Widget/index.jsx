@@ -3,7 +3,7 @@ import { Property } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
-import { WidgetTopology } from '../../components';
+import WidgetTopology from '../../topologies/WidgetTopology/WidgetTopology';
 
 
 const Widget = () => (

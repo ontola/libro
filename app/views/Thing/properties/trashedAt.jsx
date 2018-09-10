@@ -2,9 +2,10 @@ import LinkedRenderStore from 'link-lib';
 import { linkedPropType } from 'link-redux';
 import React from 'react';
 
-import { Card, CardContent } from '../../../components';
+import { CardContent } from '../../../components';
 import { formatDate } from '../../../helpers/date';
 import { NS } from '../../../helpers/LinkedRenderStore';
+import Card from '../../../topologies/Card';
 
 const propTypes = {
   linkedProp: linkedPropType,

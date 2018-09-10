@@ -11,9 +11,9 @@ import { NamedNode } from 'rdflib';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { CardRow } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { getPage } from '../../state/pagination/selectors';
+import CardRow from '../../topologies/Card/CardRow';
 import { pageTopology } from '../../topologies/Page';
 
 import First from './properties/first';

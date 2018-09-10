@@ -3,10 +3,10 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 import {
-  Card,
   CardContent,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import Card from '../../topologies/Card';
 import DetailsBar from '../../topologies/DetailsBar';
 
 import ActivityName from './properties/name';

@@ -3,12 +3,12 @@ import { Property } from 'link-redux';
 import React from 'react';
 
 import {
-  CardAppendix,
   CardContent,
-  CardMain,
   CardHeader,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import CardAppendix from '../../topologies/Card/CardAppendix';
+import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
 

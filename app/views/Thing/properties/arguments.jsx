@@ -2,9 +2,10 @@ import LinkedRenderStore from 'link-lib';
 import { link, Property } from 'link-redux';
 import React, { PureComponent } from 'react';
 
-import { CardContent, CardRow, Columns } from '../../../components';
+import { CardContent, Columns } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologiesExcept } from '../../../topologies';
+import CardRow from '../../../topologies/Card/CardRow';
 
 function noArguments({ conArgumentsCount, proArgumentsCount }) {
   return (Number(conArgumentsCount) || 0) + (Number(proArgumentsCount) || 0) === 0;

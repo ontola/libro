@@ -2,8 +2,9 @@ import LinkedRenderStore from 'link-lib';
 import { linkedPropType, LinkedResourceContainer } from 'link-redux';
 import React from 'react';
 
-import { CardRow, CardContent } from '../../../components';
+import { CardContent } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
+import CardRow from '../../../topologies/Card/CardRow';
 
 const propTypes = {
   linkedProp: linkedPropType,

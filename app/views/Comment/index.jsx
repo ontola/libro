@@ -3,14 +3,14 @@ import { Property } from 'link-redux';
 import React from 'react';
 
 import {
-  Card,
-  CardAppendix,
   CardContent,
-  CardMicroRow,
 } from '../../components';
 import { connectHighlighting, hightlightPropTypes } from '../../containers/Highlight';
 import { NS } from '../../helpers/LinkedRenderStore';
 import ActionsBar from '../../topologies/ActionsBar';
+import Card from '../../topologies/Card';
+import CardAppendix from '../../topologies/Card/CardAppendix';
+import CardMicroRow from '../../topologies/Card/CardMicroRow';
 import DetailsBar from '../../topologies/DetailsBar';
 
 const Comment = ({ highlighted }) => (

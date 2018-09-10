@@ -8,7 +8,6 @@ import { withRouter } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
 
 import {
-  Card,
   CardContent,
   Heading,
   LinkDuo,
@@ -17,6 +16,7 @@ import SignInFormContainer from '../../containers/SignInFormContainer';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { currentLocation } from '../../helpers/paths';
 import { getCurrentUserType } from '../../state/app/selectors';
+import Card from '../../topologies/Card';
 import Container from '../../topologies/Container';
 
 import ErrorButtonWithFeedback from './ErrorButtonWithFeedback';

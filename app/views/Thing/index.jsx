@@ -4,11 +4,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import {
-  Card,
-  CardAppendix,
   CardContent,
-  CardFixed,
-  CardRow,
   Detail,
   LDLink,
 } from '../../components';
@@ -19,6 +15,10 @@ import {
 } from '../../containers/Highlight';
 import SignInSwitcherContainer from '../../containers/SignInSwitcherContainer';
 import { NS } from '../../helpers/LinkedRenderStore';
+import Card from '../../topologies/Card';
+import CardAppendix from '../../topologies/Card/CardAppendix';
+import CardFixed from '../../topologies/Card/CardFixed';
+import CardRow from '../../topologies/Card/CardRow';
 import DetailsBar from '../../topologies/DetailsBar';
 import hoverBox from '../../topologies/HoverBox';
 

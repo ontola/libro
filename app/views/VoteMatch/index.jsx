@@ -5,11 +5,11 @@ import React from 'react';
 
 import {
   Button,
-  Card,
   CardContent,
   Cover,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import Card from '../../topologies/Card';
 import Container from '../../topologies/Container';
 
 import './properties/motions';

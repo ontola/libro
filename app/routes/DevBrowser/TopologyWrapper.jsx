@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { LinkedResourceContainer, subjectType, topologyType } from 'link-redux';
 
 import {
-  Card,
   CardContent,
-  CardFixed,
-  CardMain,
-  CardRow,
   Heading,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import Card from '../../topologies/Card';
+import CardFixed from '../../topologies/Card/CardFixed';
+import CardMain from '../../topologies/Card/CardMain';
+import CardRow from '../../topologies/Card/CardRow';
 import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
 import Grid from '../../topologies/Grid';

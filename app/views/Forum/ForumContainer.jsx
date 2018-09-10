@@ -3,10 +3,10 @@ import { Property, register, subjectType } from 'link-redux';
 
 import { connectHighlighting, hightlightType } from '../../containers/Highlight';
 import {
-  Card,
   CardContent,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import Card from '../../topologies/Card';
 import DetailsBar from '../../topologies/DetailsBar';
 
 class ForumContainer extends React.PureComponent {

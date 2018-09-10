@@ -9,11 +9,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import {
-  Card,
   Omniform,
 } from '../../../../components';
 import { NS } from '../../../../helpers/LinkedRenderStore';
 import { allTopologiesExcept } from '../../../../topologies';
+import Card from '../../../../topologies/Card';
 
 const propTypes = {
   autofocusForm: PropTypes.bool,

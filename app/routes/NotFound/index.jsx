@@ -2,10 +2,10 @@ import React from 'react';
 import Helmet from 'react-helmet';
 
 import {
-  Card,
   CardContent,
   Heading,
 } from '../../components';
+import Card from '../../topologies/Card';
 import Container from '../../topologies/Container';
 
 const NotFound = () => (

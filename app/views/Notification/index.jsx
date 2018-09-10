@@ -7,10 +7,10 @@ import {
 import React from 'react';
 
 import {
-  Card,
   CardContent,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import Card from '../../topologies/Card';
 
 import Sidebar from './sidebar';
 import Creator from './properties/creator';

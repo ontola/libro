@@ -9,13 +9,13 @@ import React from 'react';
 
 import {
   Button,
-  Card,
   CardContent,
   Form,
 } from '../../components';
 import FormFooterRight from '../../components/Form/FooterRight';
 import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
+import Card from '../../topologies/Card';
 import FormFooter from '../../topologies/FormFooter/Footer';
 
 import EntryPointBase from './EntryPointBase';

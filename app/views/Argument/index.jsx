@@ -3,13 +3,13 @@ import { link, linkedPropType, Property } from 'link-redux';
 import React from 'react';
 
 import {
-  Card,
-  CardAppendix,
   CardContent,
 } from '../../components';
 import { connectHighlighting, hightlightType } from '../../containers/Highlight';
 import { NS } from '../../helpers/LinkedRenderStore';
 import ActionsBar from '../../topologies/ActionsBar';
+import Card from '../../topologies/Card';
+import CardAppendix from '../../topologies/Card/CardAppendix';
 import DetailsBar from '../../topologies/DetailsBar';
 
 import CurrentVote from './properties/currentVote';
