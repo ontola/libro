@@ -3,10 +3,16 @@ import { Property, register } from 'link-redux';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import Container from '../../topologies/Container/index';
+import { pageTopology } from '../../topologies/Page';
 import PageHeader from '../../topologies/PageHeader';
 
 class ForumPage extends React.PureComponent {
   static type = NS.argu('Forum');
+
+  static topology = [
+    undefined,
+    pageTopology,
+  ];
 
   render() {
     return (

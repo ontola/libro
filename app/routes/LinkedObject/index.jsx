@@ -3,42 +3,69 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { currentLocation } from '../../helpers/paths';
-
-const propTypes = {
-  location: PropTypes.shape({
-    href: PropTypes.string,
-  }),
-};
+import { Page } from '../../topologies/Page';
+import ErrorButtonWithFeedback from '../../views/Error/ErrorButtonWithFeedback';
 
 const wildcardMap = new Map();
 wildcardMap.set('/media_objects/', ['page']);
 
-const LinkedObject = ({ location }) => {
-  let routedLocation = location;
+export default class LinkedObject extends React.PureComponent {
+  static propTypes = {
+    location: PropTypes.shape({
+      pathname: PropTypes.string,
+      search: PropTypes.string,
+    }),
+  };
 
-  for (const pathMatch of wildcardMap.keys()) {
-    if (typeof pathMatch === 'string') {
-      if (location.pathname.startsWith(pathMatch)) {
-        const search = new URLSearchParams(location.search);
-        wildcardMap.get(pathMatch).forEach(v => search.delete(v));
+  constructor(props) {
+    super(props);
 
-        routedLocation = {
-          ...location,
-          search: search.toString() ? `?${search.toString()}` : '',
-        };
-        break;
-      }
-    }
+    this.retry = this.retry.bind(this);
+    this.state = {
+      caughtError: undefined,
+    };
   }
 
-  return (
-    <LinkedResourceContainer subject={currentLocation(routedLocation)} />
-  );
-};
+  componentDidCatch(error, ignored) {
+    this.setState({ caughtError: error });
+    // TODO: bugsnag
+  }
 
-LinkedObject.propTypes = propTypes;
+  retry() {
+    this.setState({
+      caughtError: undefined,
+    });
 
-export default LinkedObject;
+    return Promise.resolve();
+  }
 
-export { default as LinkedObjectByID } from './LinkedObjectByID';
-export { default as LinkPage } from './LinkPage';
+  render() {
+    const { location } = this.props;
+    let routedLocation = location;
+
+    if (typeof this.state.caughtError !== 'undefined') {
+      return <ErrorButtonWithFeedback reloadLinkedObject={this.retry} />;
+    }
+
+    for (const pathMatch of wildcardMap.keys()) {
+      if (typeof pathMatch === 'string') {
+        if (location.pathname.startsWith(pathMatch)) {
+          const search = new URLSearchParams(location.search);
+          wildcardMap.get(pathMatch).forEach(v => search.delete(v));
+
+          routedLocation = {
+            ...location,
+            search: search.toString() ? `?${search.toString()}` : '',
+          };
+          break;
+        }
+      }
+    }
+
+    return (
+      <Page>
+        <LinkedResourceContainer subject={currentLocation(routedLocation)} />
+      </Page>
+    );
+  }
+}

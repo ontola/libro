@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 import { CardRow } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { getPage } from '../../state/pagination/selectors';
+import { pageTopology } from '../../topologies/Page';
 
 import First from './properties/first';
 import Member from './properties/member';
@@ -148,6 +149,7 @@ export default [
     RENDER_CLASS_NAME,
     [
       undefined,
+      pageTopology,
       NS.argu('container'),
     ]
   ),

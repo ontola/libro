@@ -172,7 +172,7 @@ export function headerForStatus(requestStatus, lang = 'nl') {
 }
 
 export function titleForStatus(requestStatus, lang = 'nl') {
-  if (!requestStatus.requested) {
+  if (!requestStatus || !requestStatus.requested) {
     return null;
   }
   const err = errors[lang][requestStatus.status];

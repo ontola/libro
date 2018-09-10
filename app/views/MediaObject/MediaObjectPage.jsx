@@ -4,7 +4,6 @@ import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router-dom';
 
 import { Heading, PDF } from '../../components';
-import Container from '../../topologies/Container';
 import Image from '../../components/Image';
 import {
   downloadableAttachment,
@@ -13,6 +12,8 @@ import {
 } from '../../helpers/attachments';
 import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
+import Container from '../../topologies/Container';
+import { pageTopology } from '../../topologies/Page';
 
 import './MediaObjectPage.scss';
 
@@ -24,6 +25,8 @@ class MediaObjectPage extends React.PureComponent {
     NS.schema('ImageObject'),
     NS.schema('VideoObject'),
   ];
+
+  static topology = pageTopology;
 
   static mapDataToProps = {
     caption: NS.schema('caption'),

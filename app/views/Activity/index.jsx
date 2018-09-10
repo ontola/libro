@@ -1,5 +1,4 @@
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { Property } from 'link-redux';
+import { Property, register } from 'link-redux';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
@@ -12,30 +11,33 @@ import DetailsBar from '../../topologies/DetailsBar';
 
 import ActivityName from './properties/name';
 
-const Activity = () => (
-  <Card>
-    <CardContent>
-      <DetailsBar
-        right={<Property label={NS.schema('dateCreated')} />}
-      >
-        <Property label={NS.schema('name')} />
-      </DetailsBar>
-    </CardContent>
-    <Property label={NS.as('object')} />
-  </Card>
-);
+class Activity extends React.PureComponent {
+  static type = NS.as('Activity');
 
-const ConnectedActivity = withRouter(Activity);
+  static topology = [
+    undefined,
+    NS.argu('container'),
+  ];
+
+  static hocs = [withRouter];
+
+  render() {
+    return (
+      <Card>
+        <CardContent>
+          <DetailsBar
+            right={<Property label={NS.schema('dateCreated')} />}
+          >
+            <Property label={NS.schema('name')} />
+          </DetailsBar>
+        </CardContent>
+        <Property label={NS.as('object')} />
+      </Card>
+    );
+  }
+}
 
 export default [
-  LinkedRenderStore.registerRenderer(
-    ConnectedActivity,
-    NS.as('Activity'),
-    RENDER_CLASS_NAME,
-    [
-      undefined,
-      NS.argu('container'),
-    ]
-  ),
+  register(Activity),
   ActivityName,
 ];

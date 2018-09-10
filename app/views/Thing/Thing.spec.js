@@ -1,6 +1,7 @@
 import { Literal, NamedNode } from 'rdflib';
 
 import { NS } from '../../../tests';
+import { pageTopology } from '../../topologies/Page';
 
 import components from './index';
 
@@ -21,20 +22,22 @@ const resources = {
 };
 
 describeView('Thing', components, resources, resource, () => {
-  it('renders a Thing', () => {
-    expect(subject.find(marker('thing'))).toExist();
-  });
+  as(pageTopology, () => {
+    it('renders a Thing', () => {
+      expect(subject.find(marker('thing'))).toExist();
+    });
 
-  it('renders the name', () => {
-    expect(subject.find(marker('name', 'card', 'main'))).toExist();
-  });
+    it('renders the name', () => {
+      expect(subject.find(marker('name', 'card', 'main'))).toExist();
+    });
 
-  it('renders the text', () => {
-    expect(subject.find(marker('text'))).toExist();
-  });
+    it('renders the text', () => {
+      expect(subject.find(marker('text'))).toExist();
+    });
 
-  it('renders the parent', () => {
-    expect(subject.find(marker('parent'))).toExist();
+    it('renders the parent', () => {
+      expect(subject.find(marker('parent'))).toExist();
+    });
   });
 
   as(NS.argu('card'), () => {

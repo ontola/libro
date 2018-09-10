@@ -1,6 +1,7 @@
 import { Literal, NamedNode } from 'rdflib';
 
 import { NS } from '../../../tests';
+import { pageTopology } from '../../topologies/Page';
 
 import components from './index';
 
@@ -20,23 +21,25 @@ const resources = {
 };
 
 describeView('MediaObject', components, resources, resource, () => {
-  it('renders the parent link', () => {
-    expect(subject.find(marker('isPartOf'))).toExist();
-  });
+  as(pageTopology, () => {
+    it('renders the parent link', () => {
+      expect(subject.find(marker('isPartOf'))).toExist();
+    });
 
-  it('displays the filename if no caption is present', () => {
-    expect(subject.find(marker('heading'))).toHaveText(filename);
-  });
+    it('displays the filename if no caption is present', () => {
+      expect(subject.find(marker('heading'))).toHaveText(filename);
+    });
 
-  it('displays the download button', () => {
-    expect(subject.find(marker('download'))).toExist();
-  });
+    it('displays the download button', () => {
+      expect(subject.find(marker('download'))).toExist();
+    });
 
-  it('links the download button to an content-disposition attachment link', () => {
-    expect(subject.find(marker('download'))).toHaveProp('href', `${contentUrl}?download=true`);
-  });
+    it('links the download button to an content-disposition attachment link', () => {
+      expect(subject.find(marker('download'))).toHaveProp('href', `${contentUrl}?download=true`);
+    });
 
-  it('displays the image viewer component', () => {
-    expect(subject.find(marker('viewer', 'image')).prop('linkedProp').value).toEqual(contentUrl);
+    it('displays the image viewer component', () => {
+      expect(subject.find(marker('viewer', 'image')).prop('linkedProp').value).toEqual(contentUrl);
+    });
   });
 });

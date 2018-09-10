@@ -1,5 +1,5 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { link, Property } from 'link-redux';
+import { Property, register } from 'link-redux';
 import PropTypes from 'prop-types';
 import { Literal, NamedNode } from 'rdflib';
 import React, { PureComponent } from 'react';
@@ -11,12 +11,26 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import thumbnail from './properties/thumbnail';
 import ImageObjectCardList from './ImageObjectCardList';
 
-const propTypes = {
-  imagePositionY: PropTypes.instanceOf(Literal).isRequired,
-  url: PropTypes.instanceOf(NamedNode).isRequired,
-};
+class ImageObjectCover extends PureComponent {
+  static type = NS.schema('ImageObject');
 
-class ImageObjectCoverComp extends PureComponent {
+  static topology = [
+    undefined,
+    NS.argu('card'),
+    NS.argu('cardFixed'),
+    NS.argu('cardMain'),
+  ];
+
+  static mapDataToProps = [
+    NS.schema('url'),
+    NS.argu('imagePositionY'),
+  ];
+
+  static propTypes = {
+    imagePositionY: PropTypes.instanceOf(Literal).isRequired,
+    url: PropTypes.instanceOf(NamedNode).isRequired,
+  };
+
   render() {
     const { imagePositionY, url } = this.props;
     return (
@@ -29,10 +43,6 @@ class ImageObjectCoverComp extends PureComponent {
   }
 }
 
-ImageObjectCoverComp.propTypes = propTypes;
-
-const ImageObjectCover = link([NS.schema('url'), NS.argu('imagePositionY')])(ImageObjectCoverComp);
-
 const ImageObject = ({ ariaLabel }) => <Property ariaLabel={ariaLabel} label={NS.schema('thumbnail')} />;
 
 ImageObject.propTypes = {
@@ -41,16 +51,7 @@ ImageObject.propTypes = {
 };
 
 export default [
-  LinkedRenderStore.registerRenderer(
-    ImageObjectCover,
-    NS.schema('ImageObject'),
-    RENDER_CLASS_NAME,
-    [
-      NS.argu('card'),
-      NS.argu('cardFixed'),
-      NS.argu('cardMain'),
-    ]
-  ),
+  register(ImageObjectCover),
   LinkedRenderStore.registerRenderer(
     ImageObject,
     [

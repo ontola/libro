@@ -1,9 +1,5 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import {
-  link,
-  Property,
-  subjectType,
-} from 'link-redux';
+import { link, Property, subjectType } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
@@ -12,12 +8,9 @@ import {
   CardAppendix,
   CardContent,
   CardFixed,
-  CardMain,
-  CardHeader,
   CardRow,
   Detail,
   LDLink,
-  Resource,
 } from '../../components';
 import {
   connectHighlighting,
@@ -26,9 +19,8 @@ import {
 } from '../../containers/Highlight';
 import SignInSwitcherContainer from '../../containers/SignInSwitcherContainer';
 import { NS } from '../../helpers/LinkedRenderStore';
-import hoverBox from '../../topologies/HoverBox';
-import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
+import hoverBox from '../../topologies/HoverBox';
 
 import Arguments from './properties/arguments';
 import BaseColor from './properties/baseColor';
@@ -36,9 +28,9 @@ import CoverPhoto from './properties/coverPhoto';
 import CreateAction from './properties/createAction';
 import DateCreated from './properties/dateCreated';
 import ExpiresAt from './properties/expiresAt';
-import IsPrimaryTopicOf from './properties/isPrimaryTopicOf';
-import IsPartOf from './properties/isPartOf';
 import Image from './properties/image';
+import IsPartOf from './properties/isPartOf';
+import IsPrimaryTopicOf from './properties/isPrimaryTopicOf';
 import Location from './properties/location';
 import Menus from './properties/menus';
 import Name from './properties/name';
@@ -51,57 +43,9 @@ import Text from './properties/text';
 import TrashedAt from './properties/trashedAt';
 import UpdateAction from './properties/updateAction';
 import VoteEvents from './properties/voteEvents';
+import ThingPage from './ThingPage';
 
 const CardHoverBox = hoverBox();
-
-const ThingPage = () => (
-  <Resource>
-    <Property label={NS.argu('coverPhoto')} />
-    <Container>
-      <Property label={NS.schema('isPartOf')} />
-      <Property label={NS.argu('trashedAt')} />
-      <CardMain data-test="Thing-thing">
-        <Property label={NS.schema('superEvent')} />
-        <CardContent noSpacing>
-          <CardHeader
-            header={<Property label={[NS.schema('name'), NS.rdfs('label')]} />}
-          >
-            <Property label={NS.argu('followMenu')} />
-            <Property label={NS.argu('shareMenu')} />
-            <Property label={NS.argu('actionsMenu')} />
-          </CardHeader>
-          <DetailsBar>
-            <Property label={NS.rdf('type')} />
-            <Property label={NS.schema('creator')} />
-            <Property label={NS.schema('dateCreated')} />
-            <Property label={NS.schema('location')} />
-            <Property label={NS.argu('expiresAt')} />
-            <Property label={NS.argu('pinnedAt')} />
-          </DetailsBar>
-          <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
-          <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
-          <Property label={NS.foaf('isPrimaryTopicOf')} />
-          <Property label={NS.meeting('attachment')} />
-          <Property label={NS.argu('attachments')} />
-        </CardContent>
-        <Property label={NS.meeting('agenda')} />
-        <CardAppendix>
-          <Property forceRender label={NS.app('omniform')} />
-        </CardAppendix>
-      </CardMain>
-      <Property label={NS.argu('voteEvents')} />
-      <Property label={NS.argu('blogPosts')} />
-      <Property label={NS.argu('motions')} />
-    </Container>
-    <Container size="large">
-      <Property forceRender label={NS.argu('arguments')} />
-    </Container>
-    <Container>
-      <Property label={NS.schema('comments')} />
-      <Property forceRender label={NS.app('omniform')} />
-    </Container>
-  </Resource>
-);
 
 const ThingContainer = ({ highlighted, subject }) => (
   <Card about={subject.value} shine={highlighted}>
@@ -186,7 +130,7 @@ const ThingCard = () => (
 );
 
 export default [
-  LinkedRenderStore.registerRenderer(ThingPage, NS.schema('Thing')),
+  ThingPage,
   LinkedRenderStore.registerRenderer(
     () => <Property label={[NS.schema('name'), NS.rdfs('label')]} />,
     NS.schema('Thing'),
@@ -228,7 +172,10 @@ export default [
     connectHighlighting(ThingContainer),
     NS.schema('Thing'),
     RENDER_CLASS_NAME,
-    NS.argu('container')
+    [
+      undefined,
+      NS.argu('container'),
+    ]
   ),
   LinkedRenderStore.registerRenderer(
     ThingCard,
