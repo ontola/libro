@@ -85,7 +85,7 @@ export const errors = {
     },
     [HttpStatus.UNAUTHORIZED]: {
       body: 'Je moet ingelogd zijn om dit te kunnen zien.',
-      header: 'Niet ingelogt',
+      header: 'Niet ingelogd',
     },
     [HttpStatus.FORBIDDEN]: {
       body: 'Mogelijk is het zichtbaar na te hebben ingelogt.',

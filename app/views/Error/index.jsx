@@ -105,7 +105,8 @@ const ErrorPageComp = (props) => {
     </ErrorButtonWithFeedback>
   );
 
-  if (linkRequestStatus.status === HttpStatus.FORBIDDEN && userType === 'GuestUser') {
+  if (userType === 'GuestUser'
+    && [HttpStatus.UNAUTHORIZED, HttpStatus.FORBIDDEN].includes(linkRequestStatus.status)) {
     cardAction = (
       <SignInFormContainer r={currentLocation(location).value} />
     );
