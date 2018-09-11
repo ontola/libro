@@ -21,7 +21,7 @@ const RDFSClass = ({
   <Detail
     linkedImage
     text={label.value}
-    title={description.value}
+    title={description && description.value}
   />
 );
 
