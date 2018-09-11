@@ -1,5 +1,4 @@
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { link } from 'link-redux';
+import { register } from 'link-redux';
 import PropTypes from 'prop-types';
 import { Literal } from 'rdflib';
 import React from 'react';
@@ -11,21 +10,26 @@ import {
 import { NS } from '../../helpers/LinkedRenderStore';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 
-const propTypes = {
-  name: PropTypes.instanceOf(Literal),
-};
+class PersonDetail extends React.PureComponent {
+  static type = NS.schema('Person');
 
-const PersonDetail = ({ name }) => (
-  <LDLink>
-    <Detail linkedImage text={name.value} />
-  </LDLink>
-);
+  static topology = detailsBarTopology;
 
-PersonDetail.propTypes = propTypes;
+  static mapDataToProps = [NS.schema('name')];
 
-export default LinkedRenderStore.registerRenderer(
-  link([NS.schema('name')])(PersonDetail),
-  NS.schema('Person'),
-  RENDER_CLASS_NAME,
-  detailsBarTopology
-);
+  static propTypes = {
+    name: PropTypes.instanceOf(Literal),
+  };
+
+  render() {
+    const { name } = this.props;
+
+    return (
+      <LDLink>
+        <Detail linkedImage text={name.value} />
+      </LDLink>
+    );
+  }
+}
+
+export default register(PersonDetail);

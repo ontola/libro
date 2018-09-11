@@ -1,29 +1,33 @@
-import LinkedRenderStore from 'link-lib';
-import { linkedPropType } from 'link-redux';
+import { linkedPropType, register } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { sidebarTopology } from '../../../topologies/Sidebar';
 
-const propTypes = {
-  linkedProp: linkedPropType,
-};
+class MenuSectionLabel extends React.PureComponent {
+  static type = NS.argu('MenuSection');
 
-const MenuSectionLabel = ({ linkedProp }) => (
-  <div className="MenuSectionLabel" data-test="MenuSection-MenuSectionLabel">
-    <div className="MenuSectionLabel__bar" />
-    <div className="MenuSectionLabel__text">
-      {linkedProp.value}
-    </div>
-    <div className="MenuSectionLabel__bar" />
-  </div>
-);
+  static property = NS.schema('name');
 
-MenuSectionLabel.propTypes = propTypes;
+  static topology = sidebarTopology;
 
-export default LinkedRenderStore.registerRenderer(
-  MenuSectionLabel,
-  NS.argu('MenuSection'),
-  NS.schema('name'),
-  sidebarTopology
-);
+  static propTypes = {
+    linkedProp: linkedPropType,
+  };
+
+  render() {
+    const { linkedProp } = this.props;
+
+    return (
+      <div className="MenuSectionLabel" data-test="MenuSection-MenuSectionLabel">
+        <div className="MenuSectionLabel__bar" />
+        <div className="MenuSectionLabel__text">
+          {linkedProp.value}
+        </div>
+        <div className="MenuSectionLabel__bar" />
+      </div>
+    );
+  }
+}
+
+export default register(MenuSectionLabel);

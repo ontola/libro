@@ -1,5 +1,4 @@
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { Property } from 'link-redux';
+import { Property, register } from 'link-redux';
 import React from 'react';
 
 import { LDLink } from '../../components';
@@ -10,23 +9,26 @@ import { sidebarTopology } from '../../topologies/Sidebar';
 
 import './properties/name';
 
-const CurrentActorSidebar = () => (
-  <div className="SideBarLink">
-    <LDLink className="SideBarLink__link">
-      <SidebarLinkIcon>
-        <Property label={NS.schema('image')} />
-      </SidebarLinkIcon>
-      <SideBarLinkLabel>
-        <Property label={NS.schema('name')} />
-      </SideBarLinkLabel>
-    </LDLink>
-    <Property label={NS.schema('email')} />
-  </div>
-);
+class CurrentActorSidebar extends React.PureComponent {
+  static type = NS.schema('Person');
 
-export default LinkedRenderStore.registerRenderer(
-  CurrentActorSidebar,
-  NS.schema('Person'),
-  RENDER_CLASS_NAME,
-  sidebarTopology
-);
+  static topology = sidebarTopology;
+
+  render() {
+    return (
+      <div className="SideBarLink">
+        <LDLink className="SideBarLink__link">
+          <SidebarLinkIcon>
+            <Property label={NS.schema('image')} />
+          </SidebarLinkIcon>
+          <SideBarLinkLabel>
+            <Property label={NS.schema('name')} />
+          </SideBarLinkLabel>
+        </LDLink>
+        <Property label={NS.schema('email')} />
+      </div>
+    );
+  }
+}
+
+export default register(CurrentActorSidebar);

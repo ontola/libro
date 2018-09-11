@@ -1,9 +1,9 @@
-import LinkedRenderStore from 'link-lib';
 import {
   LinkedResourceContainer,
   PropertyBase,
   linkedPropType,
   linkType,
+  register,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -13,13 +13,26 @@ import { SideBarCollapsible } from '../../../components';
 import { dropdownContentTopology } from '../../../topologies/DropdownContent';
 import { sidebarTopology } from '../../../topologies/Sidebar';
 
-const propTypes = {
-  children: linkType,
-  labelComp: PropTypes.node,
-  linkedProp: linkedPropType,
-};
+class MenuItems extends PropertyBase {
+  static type = [
+    NS.argu('MenuItem'),
+    NS.argu('SubMenu'),
+    NS.argu('MenuSection'),
+  ];
 
-class menuItems extends PropertyBase {
+  static property = NS.argu('menuItems');
+
+  static topology = [
+    sidebarTopology,
+    dropdownContentTopology,
+  ];
+
+  static propTypes = {
+    children: linkType,
+    labelComp: PropTypes.node,
+    linkedProp: linkedPropType,
+  };
+
   render() {
     const rawProp = this.getLinkedObjectPropertyRaw();
     if (rawProp.length === 0) {
@@ -54,11 +67,4 @@ class menuItems extends PropertyBase {
   }
 }
 
-menuItems.propTypes = propTypes;
-
-export default LinkedRenderStore.registerRenderer(
-  menuItems,
-  [NS.argu('MenuItem'), NS.argu('SubMenu'), NS.argu('MenuSection')],
-  NS.argu('menuItems'),
-  [sidebarTopology, dropdownContentTopology]
-);
+export default register(MenuItems);

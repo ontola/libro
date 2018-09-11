@@ -5,13 +5,23 @@ import PropTypes from 'prop-types';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../topologies';
 
-const propTypes = {
-  label: linkType,
-  properties: PropTypes.node,
-  subject: subjectType,
-};
-
 class PropertyGroup extends React.PureComponent {
+  static type = NS.sh('PropertyGroup');
+
+  static topology = allTopologies;
+
+  static mapDataToProps = [NS.rdfs('label')];
+
+  static linkOpts = {
+    forceRender: true,
+  };
+
+  static propTypes = {
+    label: linkType,
+    properties: PropTypes.node,
+    subject: subjectType,
+  };
+
   render() {
     const { properties, label, subject } = this.props;
 
@@ -36,14 +46,5 @@ class PropertyGroup extends React.PureComponent {
     );
   }
 }
-
-PropertyGroup.propTypes = propTypes;
-
-PropertyGroup.type = NS.sh('PropertyGroup');
-PropertyGroup.topology = allTopologies;
-PropertyGroup.mapDataToProps = [NS.rdfs('label')];
-PropertyGroup.linkOpts = {
-  forceRender: true,
-};
 
 export default register(PropertyGroup);

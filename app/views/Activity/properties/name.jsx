@@ -1,8 +1,8 @@
-import LinkedRenderStore, { namedNodeByIRI } from 'link-lib';
+import { namedNodeByIRI } from 'link-lib';
 import {
-  link,
   LinkedResourceContainer,
   PropertyBase,
+  register,
 } from 'link-redux';
 import React from 'react';
 
@@ -14,6 +14,23 @@ const uriMatch = /{{[\w:/#.?=]+}}/g;
 const HANDLEBAR_LENGTH = 2;
 
 class ActivityName extends PropertyBase {
+  static type = NS.schema('Thing');
+
+  static property = [
+    NS.schema('name'),
+    NS.as('name'),
+    NS.rdfs('label'),
+    NS.foaf('name'),
+  ];
+
+  static topology = allTopologies;
+
+  static mapDataToProps = [
+    NS.as('actor'),
+    NS.schema('name'),
+    NS.as('target'),
+  ];
+
   render() {
     const { name } = this.props;
 
@@ -38,20 +55,4 @@ class ActivityName extends PropertyBase {
   }
 }
 
-const NamePredicates = [
-  NS.schema('name'),
-  NS.as('name'),
-  NS.rdfs('label'),
-  NS.foaf('name'),
-];
-
-export default LinkedRenderStore.registerRenderer(
-  link([
-    NS.as('actor'),
-    NS.schema('name'),
-    NS.as('target'),
-  ])(ActivityName),
-  NS.schema('Thing'),
-  NamePredicates,
-  allTopologies
-);
+export default register(ActivityName);

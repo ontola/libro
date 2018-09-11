@@ -1,30 +1,14 @@
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
-  link,
   linkType,
   LinkedResourceContainer,
   PropertyBase,
-  subjectType,
+  subjectType, register,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../topologies';
-
-const propTypes = {
-  count: linkType,
-  /**
-   * The vote cast by the user if present.
-   *
-   * This property is not available for arguments since they render hydra:operation, which doesn't
-   * has this property in it's API.
-   */
-  currentVote: linkType,
-  subject: subjectType,
-  target: linkType,
-  variant: PropTypes.string,
-};
 
 /**
  * Renders the vote actions
@@ -33,6 +17,34 @@ const propTypes = {
  * those aren't based on the vote but rather on the argument (see {propTypes}).
  */
 class CreateVote extends PropertyBase {
+  static type = [
+    NS.argu('CreateVote'),
+    NS.argu('CreateVoteAction'),
+    NS.argu('DestroyVoteAction'),
+  ];
+
+  static topology = allTopologies;
+
+  static mapDataToProps = {
+    object: NS.schema('object'),
+    target: NS.schema('target'),
+    type: { label: NS.rdf('type'), limit: Infinity },
+  };
+
+  static propTypes = {
+    count: linkType,
+    /**
+     * The vote cast by the user if present.
+     *
+     * This property is not available for arguments since they render hydra:operation, which doesn't
+     * has this property in it's API.
+     */
+    currentVote: linkType,
+    subject: subjectType,
+    target: linkType,
+    variant: PropTypes.string,
+  };
+
   shouldComponentUpdate() {
     return true;
   }
@@ -100,15 +112,5 @@ class CreateVote extends PropertyBase {
     );
   }
 }
-CreateVote.propTypes = propTypes;
 
-export default LinkedRenderStore.registerRenderer(
-  link({
-    object: NS.schema('object'),
-    target: NS.schema('target'),
-    type: { label: NS.rdf('type'), limit: Infinity },
-  })(CreateVote),
-  [NS.argu('CreateVote'), NS.argu('CreateVoteAction'), NS.argu('DestroyVoteAction')],
-  RENDER_CLASS_NAME,
-  allTopologies
-);
+export default register(CreateVote);
