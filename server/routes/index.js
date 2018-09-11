@@ -29,7 +29,7 @@ export function listen(app, port) {
     if (err) {
       console.log(err);
     }
-    console.info('==> 🌎 Listening on port %s. Open up %s in your browser.', port, constants.FRONTEND_URL);
+    console.info(`[${__VERSION__}]==> 🌍 Listening on port ${port}. Open up ${constants.FRONTEND_URL} in your browser.`);
   });
 }
 
@@ -51,6 +51,7 @@ export default function routes(app, port) {
 
   app.use((req, res, next) => {
     res.locals.nonce = uuidv4();
+    res.setHeader('X-FE-Version', __VERSION__);
     next();
   });
 

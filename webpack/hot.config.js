@@ -1,10 +1,8 @@
-// const path = require('path');
-
-// require('react-hot-loader/patch');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 
 const common = require('./common.config');
+const version = require('./version');
 
 module.exports = merge(common, {
   cache: true,
@@ -46,6 +44,7 @@ module.exports = merge(common, {
 
   plugins: [
     new webpack.DefinePlugin({
+      __VERSION__: JSON.stringify(version),
       'process.env.FRONTEND_HOSTNAME': JSON.stringify(process.env.FRONTEND_HOSTNAME),
     }),
     new webpack.HotModuleReplacementPlugin(),

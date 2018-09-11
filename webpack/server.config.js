@@ -5,6 +5,8 @@ const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const StringReplacePlugin = require('string-replace-webpack-plugin');
 
+const version = require('./version');
+
 const TARGET = process.env.npm_lifecycle_event;
 process.env.BABEL_ENV = TARGET;
 
@@ -72,6 +74,7 @@ const config = {
       __CLIENT__: true,
       __DEVELOPMENT__: process.env.NODE_ENV === 'development',
       __PRODUCTION__: process.env.NODE_ENV === 'production',
+      __VERSION__: JSON.stringify(version),
       "import devMiddleware from './utils/devMiddleware';": 'undefined',
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production'),
     }),
