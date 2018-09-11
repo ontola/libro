@@ -7,7 +7,7 @@ import { retrievePath } from '../../helpers/iris';
 import Image from '../Image';
 
 const propTypes = {
-  action: linkType,
+  action: PropTypes.func,
   children: PropTypes.node,
   icon: linkType,
   url: linkType,

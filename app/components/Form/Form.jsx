@@ -6,36 +6,40 @@ import { Input } from '../Input';
 
 const propTypes = {
   action: PropTypes.string,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.node,
+  ]).isRequired,
   method: PropTypes.string,
-  onSubmit: PropTypes.func,
+  onSubmit: PropTypes.func.isRequired,
+};
+
+const defaultProps = {
+  method: 'post',
 };
 
 class Form extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      submitting: false,
-    };
     this.onSubmit = this.onSubmit.bind(this);
+    this.state = { submitting: false };
   }
 
   onSubmit(...args) {
     this.setState({ submitting: true });
-    const res = this.props.onSubmit(...args);
-    if (res && typeof res.finally === 'function') {
-      return res.finally(() => {
+    return this
+      .props
+      .onSubmit(...args)
+      .finally(() => {
         this.setState({ submitting: false });
       });
-    }
-    this.setState({ submitting: false });
-    return res;
   }
 
   render() {
     const {
       action,
       children,
+      className,
       method,
       onSubmit,
       ...rest
@@ -48,7 +52,13 @@ class Form extends React.Component {
     const formMethod = lowerMethod === 'get' ? 'get' : 'post';
 
     return (
-      <Inform action={action} className="Form" method={formMethod} {...rest} onSubmit={controlledSubmit}>
+      <Inform
+        action={action}
+        className={className || 'Form'}
+        method={formMethod}
+        {...rest}
+        onSubmit={controlledSubmit}
+      >
         {renderFunc ? children(this.state) : children}
         {methodInput}
       </Inform>
@@ -56,6 +66,7 @@ class Form extends React.Component {
   }
 }
 
+Form.defaultProps = defaultProps;
 Form.propTypes = propTypes;
 
 export default Form;

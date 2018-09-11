@@ -24,7 +24,7 @@ const propTypes = {
   }),
   /** @private Contains data from informed */
   fieldState: PropTypes.shape({
-    error: PropTypes.bool,
+    error: PropTypes.arrayOf(PropTypes.string),
     touched: PropTypes.bool,
     value: PropTypes.string,
   }),
@@ -57,7 +57,11 @@ const propTypes = {
   // HTML input type, e.g. 'email'
   type: PropTypes.string,
   // Modify te look and feel of the FormField
-  variant: PropTypes.oneOf(['material', 'preview']),
+  variant: PropTypes.oneOf([
+    'default',
+    'material',
+    'preview',
+  ]),
 };
 
 const defaultProps = {
@@ -68,8 +72,14 @@ const defaultProps = {
 
 const MessagesProps = {
   bottom: PropTypes.bool,
-  error: PropTypes.string,
-  warning: PropTypes.string,
+  error: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
+  warning: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
 };
 
 const MessagesDefaultProps = {
@@ -77,14 +87,16 @@ const MessagesDefaultProps = {
 };
 
 const Messages = ({ error, warning, bottom }) => {
-  const err = error && (
+  const errMsg = Array.isArray(error) ? error.pop() : error;
+  const err = errMsg && (
     <span className="Field__error">
-      {error}
+      {errMsg}
     </span>
   );
-  const warn = (!error && warning) && (
+  const warnMsg = !errMsg && Array.isArray(warning) ? warning.pop() : warning;
+  const warn = warnMsg && (
     <span className="Field__warning">
-      {warning}
+      {warnMsg}
     </span>
   );
 

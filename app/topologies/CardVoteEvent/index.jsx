@@ -7,7 +7,7 @@ export const cardVoteEventTopology = NS.argu('cardVoteEvent');
 
 class CardVoteEvent extends Topology {
   static propTypes = {
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
   };
 
   constructor(props) {

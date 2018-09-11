@@ -10,8 +10,8 @@ import { convertKeysAtoB } from '../../helpers/data';
 import { NS } from '../../helpers/LinkedRenderStore';
 
 class EntryPointBase extends PropertyBase {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.submitHandler = this.submitHandler.bind(this);
   }
@@ -75,7 +75,6 @@ EntryPointBase.propTypes = {
   invalid: PropTypes.bool,
   onStatusForbidden: PropTypes.func,
   submitHandler: PropTypes.func.isRequired,
-  submitting: PropTypes.bool.isRequired,
   url: linkType,
 };
 

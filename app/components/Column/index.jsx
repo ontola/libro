@@ -10,7 +10,6 @@ const propTypes = {
     PropTypes.node,
   ]).isRequired,
   flexBasis: PropTypes.string,
-  key: PropTypes.string,
 };
 
 const defaultProps = {
@@ -20,11 +19,9 @@ const defaultProps = {
 const Column = ({
   children,
   flexBasis,
-  key,
 }) => (
   <div
     className="Column"
-    key={key}
     style={{ flexBasis }}
   >
     {children}

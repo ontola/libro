@@ -68,7 +68,7 @@ class MenuItemDropdownContent extends React.PureComponent {
 
     return (
       <DropdownLink
-        action={this.props.action && this.action}
+        action={this.props.action ? this.action : undefined}
         icon={image}
         lrs={lrs}
         subject={subject}

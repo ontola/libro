@@ -32,7 +32,7 @@ class SignInFormCardRow extends SignInFormBase {
 
     return (
       <Form validateOnBlur onSubmit={onSubmit}>
-        {() => (
+        {({ submitting }) => (
           <React.Fragment>
             {formFields}
             {(this.backButton() || buttonText) && (
@@ -42,7 +42,7 @@ class SignInFormCardRow extends SignInFormBase {
                   <Button
                     disabled={invalid}
                     icon="arrow-right"
-                    loading={false}
+                    loading={submitting}
                     theme="default"
                     type="submit"
                   >

@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import RouterTypes from 'react-router-prop-types';
 import { subjectType, withLinkCtx } from 'link-redux';
 
 import { retrievePath } from '../../helpers/iris';
@@ -13,7 +12,7 @@ import './LDLink.scss';
 const propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  location: RouterTypes.location.isRequired,
+  location: PropTypes.string,
   subject: subjectType,
   theme: PropTypes.oneOf([
     'default',

@@ -22,12 +22,6 @@ import FormFooter from '../../topologies/FormFooter/Footer';
 import EntryPointBase from './EntryPointBase';
 
 class EntryPointContainer extends EntryPointBase {
-  constructor(props) {
-    super(props);
-
-    this.submitHandler = this.submitHandler.bind(this);
-  }
-
   render() {
     const {
       httpMethod,

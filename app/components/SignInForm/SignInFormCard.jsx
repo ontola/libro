@@ -110,7 +110,7 @@ class SignInFormCard extends SignInFormBase {
             action="/users"
             onSubmit={onSubmit}
           >
-            {() => (
+            {({ submitting }) => (
               <React.Fragment>
                 {formFields}
                 <CardRow>
@@ -119,7 +119,7 @@ class SignInFormCard extends SignInFormBase {
                     <Button
                       disabled={invalid}
                       icon="arrow-right"
-                      loading={false}
+                      loading={submitting}
                       theme="box"
                       type="submit"
                     >

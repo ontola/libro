@@ -100,6 +100,7 @@ const propTypes = {
     'submit',
     'tel',
     'text',
+    'textarea',
     'time',
     'url',
     'week',

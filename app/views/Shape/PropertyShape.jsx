@@ -15,6 +15,7 @@ import {
   FormSection,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { tryParseInt } from '../../helpers/numbers';
 import validators, { combineValidators } from '../../helpers/validators';
 import { allTopologies } from '../../topologies';
 
@@ -140,8 +141,8 @@ class PropertyShape extends PropertyBase {
           field={fieldName}
           initialValue={(t && t.value) || defaultValue}
           label={name && name.value}
-          maxLength={maxLength}
-          minLength={minLength}
+          maxLength={tryParseInt(maxLength)}
+          minLength={tryParseInt(minLength)}
           options={this.props.in && listToArr(this.props.lrs, [], this.props.in)}
           placeholder={description && description.value}
           required={required}

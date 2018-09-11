@@ -33,3 +33,11 @@ export function byteToSize(byte) {
 
   return `${Math.round(byte / (BYTE_SIZE_TO_KBYTE ** i))} ${SIZES[i]}`;
 }
+
+export function tryParseInt(linkedProp) {
+  if (!linkedProp || Number.isNaN(linkedProp.value)) {
+    return undefined;
+  }
+
+  return Number.parseInt(linkedProp.value, 10);
+}

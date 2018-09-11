@@ -8,7 +8,6 @@ import {
 import PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
 import React from 'react';
-import { Form } from 'informed';
 import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
 
@@ -22,7 +21,7 @@ import {
 import FormFooter from '../../topologies/FormFooter/Footer';
 import EntryPointBase from '../../views/EntryPoint/EntryPointBase';
 import Button from '../Button';
-import { FormFooterRight } from '../Form';
+import { Form, FormFooterRight } from '../Form';
 import { showSignInForm } from '../../state/form/actions';
 import OmniformFields from '../../topologies/OmniformFields/OmniformFields';
 
@@ -32,6 +31,7 @@ const propTypes = {
   // The NamedNode of the currently selected form.
   action: subjectType,
   actions: PropTypes.instanceOf(Set).isRequired,
+  autofocusForm: PropTypes.bool,
   error: PropTypes.string,
   // Unique name of the form
   form: PropTypes.string.isRequired,
@@ -130,31 +130,35 @@ class Omniform extends EntryPointBase {
 
     return (
       <Form className="Form Omniform" onSubmit={this.submitHandler}>
-        {error && (
-        <div className="Omniform__error">
-          <FontAwesome name="exclamation-triangle" />
-          {error}
-        </div>
+        {({ submitting }) => (
+          <React.Fragment>
+            {error && (
+              <div className="Omniform__error">
+                <FontAwesome name="exclamation-triangle" />
+                {error}
+              </div>
+            )}
+            <OmniformFields>
+              {this.linkedFieldset()}
+            </OmniformFields>
+            <FormFooter>
+              <LinkedResourceContainer subject={NS.app('c_a')} />
+              {this.types()}
+              <FormFooterRight>
+                {this.props.formFooterButtons}
+                <Button
+                  disabled={invalid}
+                  icon="send"
+                  loading={submitting}
+                  theme="submit"
+                  type="submit"
+                >
+                  Opslaan
+                </Button>
+              </FormFooterRight>
+            </FormFooter>
+          </React.Fragment>
         )}
-        <OmniformFields>
-          {this.linkedFieldset()}
-        </OmniformFields>
-        <FormFooter>
-          <LinkedResourceContainer subject={NS.app('c_a')} />
-          {this.types()}
-          <FormFooterRight>
-            {this.props.formFooterButtons}
-            <Button
-              disabled={invalid}
-              icon="send"
-              loading={false}
-              theme="submit"
-              type="submit"
-            >
-              Opslaan
-            </Button>
-          </FormFooterRight>
-        </FormFooter>
       </Form>
     );
   }

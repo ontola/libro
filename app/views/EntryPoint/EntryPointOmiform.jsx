@@ -1,5 +1,4 @@
 import {
-  linkType,
   Property,
   register,
   withLRS,
@@ -13,31 +12,30 @@ import { omniformFieldsTopology } from '../../topologies/OmniformFields/Omniform
 import EntryPointBase from './EntryPointBase';
 
 class EntryPointOmniform extends EntryPointBase {
-  constructor(props) {
-    super(props);
-
-    this.submitHandler = this.submitHandler.bind(this);
-  }
+  static propTypes = {
+    autofocusForm: PropTypes.bool,
+    onKeyUp: PropTypes.func,
+    whitelist: PropTypes.arrayOf(PropTypes.object),
+  };
 
   render() {
+    const {
+      autofocusForm,
+      onKeyUp,
+      whitelist,
+    } = this.props;
+
     return (
       <Property
-        autofocusForm={this.props.autofocusForm}
+        autofocusForm={autofocusForm}
         label={NS.ll('actionBody')}
         theme="omniform"
-        whitelist={this.props.whitelist}
-        onKeyUp={this.props.onKeyUp}
+        whitelist={whitelist}
+        onKeyUp={onKeyUp}
       />
     );
   }
 }
-
-EntryPointOmniform.propTypes = {
-  invalid: PropTypes.bool,
-  onStatusForbidden: PropTypes.func.isRequired,
-  submitting: PropTypes.bool.isRequired,
-  url: linkType,
-};
 
 const EntryPointOmniformWrapper = withLRS(props => (
   <EntryPointOmniform
