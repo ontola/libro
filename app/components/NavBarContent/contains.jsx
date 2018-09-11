@@ -5,7 +5,7 @@ import {
   Property,
   Type,
   link,
-  linkedPropType,
+  linkType,
   subjectType,
   PropertyBase,
 } from 'link-redux';
@@ -19,8 +19,8 @@ import LDLink from '../LDLink';
 import SideBarCollapsibleDefault from '../SideBarCollapsible';
 
 const propTypes = {
-  contains: linkedPropType,
-  lastOrganization: linkedPropType,
+  contains: linkType,
+  lastOrganization: linkType,
   subject: subjectType,
 };
 

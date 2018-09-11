@@ -4,7 +4,7 @@ import {
   LinkedResourceContainer,
   Property,
   PropertyBase,
-  linkedPropType,
+  linkType,
   withLinkCtx,
 } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -43,7 +43,7 @@ import sidebar from './sidebar';
 import voteEvent from './voteEvent';
 
 const mvcPropTypes = {
-  totalItems: linkedPropType,
+  totalItems: linkType,
 };
 
 function getCollection({ WrappingElement = Resource, renderWhenEmpty = true } = {}) {
@@ -148,7 +148,7 @@ const collectionSection = (shortCircuit = true) => {
 
   CollectionSection.propTypes = {
     direction: PropTypes.oneOf(['column']),
-    totalItems: linkedPropType,
+    totalItems: linkType,
   };
 
   return CollectionSection;

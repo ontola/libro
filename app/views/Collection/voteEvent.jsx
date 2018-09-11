@@ -1,7 +1,7 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   link,
-  linkedPropType,
+  linkType,
   Property,
   subjectType,
 } from 'link-redux';
@@ -61,8 +61,8 @@ class VoteEventSide extends React.PureComponent {
 
 VoteEventSide.propTypes = {
   subject: subjectType,
-  totalItems: linkedPropType,
-  totalVotes: linkedPropType,
+  totalItems: linkType,
+  totalVotes: linkType,
 };
 
 export default [

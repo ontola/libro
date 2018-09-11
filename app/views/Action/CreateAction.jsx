@@ -1,7 +1,7 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   link,
-  linkedPropType,
+  linkType,
   Property,
   subjectType,
 } from 'link-redux';
@@ -61,7 +61,7 @@ const InlineCreateActionButton = ({ isPartOf, onClick, subject }) => (
 );
 
 InlineCreateActionButton.propTypes = {
-  isPartOf: linkedPropType,
+  isPartOf: linkType,
   onClick: PropTypes.func,
   subject: subjectType,
 };

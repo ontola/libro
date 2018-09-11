@@ -4,7 +4,7 @@ import {
   LinkedResourceContainer,
   Property,
   PropertyBase,
-  linkedPropType,
+  linkType,
   withLinkCtx,
 } from 'link-redux';
 import { NamedNode } from 'rdflib';
@@ -33,7 +33,7 @@ import { CollectionViewTypes } from './types';
 import voteEvent from './voteEvent';
 
 const mvcPropTypes = {
-  totalCount: linkedPropType,
+  totalCount: linkType,
 };
 
 class CollectionPage extends PropertyBase {

@@ -1,7 +1,7 @@
 import LinkedRenderStore from 'link-lib';
 import {
   link,
-  linkedPropType,
+  linkType,
   LinkedResourceContainer,
   subjectType,
 } from 'link-redux';
@@ -12,7 +12,7 @@ import { allTopologies } from '../../../topologies';
 
 const propTypes = {
   createAction: subjectType,
-  isPartOf: linkedPropType,
+  isPartOf: linkType,
 };
 
 const CreateAction = ({ createAction, isPartOf }) => (

@@ -1,5 +1,5 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { link, linkedPropType } from 'link-redux';
+import { link, linkType } from 'link-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -57,12 +57,12 @@ const EntryPoint = ({
 };
 
 EntryPoint.propTypes = {
-  count: linkedPropType,
-  httpMethod: linkedPropType,
-  image: linkedPropType,
-  name: linkedPropType,
+  count: linkType,
+  httpMethod: linkType,
+  image: linkType,
+  name: linkType,
   onClick: PropTypes.func,
-  url: linkedPropType,
+  url: linkType,
 };
 
 export default [

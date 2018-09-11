@@ -1,7 +1,9 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
-  link, linkedPropType,
+  link,
+  linkType,
   Property,
+  subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -19,8 +21,8 @@ import { popupTopology } from '../../topologies/Popup';
 import { voteEventSideTopology } from '../../topologies/VoteEventSide';
 
 const propTypes = {
-  subject: linkedPropType,
-  text: linkedPropType,
+  subject: subjectType,
+  text: linkType,
 };
 
 const VoteSidePage = ({ subject, text }) => {

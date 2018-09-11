@@ -1,7 +1,7 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   link,
-  linkedPropType,
+  linkType,
   LinkedResourceContainer,
   PropertyBase,
   subjectType,
@@ -13,16 +13,16 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../topologies';
 
 const propTypes = {
-  count: linkedPropType,
+  count: linkType,
   /**
    * The vote cast by the user if present.
    *
    * This property is not available for arguments since they render hydra:operation, which doesn't
    * has this property in it's API.
    */
-  currentVote: linkedPropType,
+  currentVote: linkType,
   subject: subjectType,
-  target: linkedPropType,
+  target: linkType,
   variant: PropTypes.string,
 };
 

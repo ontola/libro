@@ -1,5 +1,5 @@
 import LinkedRenderStore from 'link-lib';
-import { link, linkedPropType } from 'link-redux';
+import { link, linkType } from 'link-redux';
 import React from 'react';
 
 import { Image } from '../../../components';
@@ -7,8 +7,8 @@ import { NS } from '../../../helpers/LinkedRenderStore';
 import { cardFloatTopology } from '../../../topologies/Card/CardFloat';
 
 const propTypes = {
-  image: linkedPropType,
-  label: linkedPropType,
+  image: linkType,
+  label: linkType,
 };
 
 const MenuItemLabel = ({ image, label }) => (

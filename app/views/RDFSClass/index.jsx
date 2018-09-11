@@ -1,5 +1,5 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { link, linkedPropType } from 'link-redux';
+import { link, linkType } from 'link-redux';
 import React from 'react';
 
 import { Detail } from '../../components';
@@ -10,8 +10,8 @@ import TypeDetail from '../Thing/properties/type';
 import FormFooter from './FormFooter';
 
 const propTypes = {
-  description: linkedPropType,
-  label: linkedPropType,
+  description: linkType,
+  label: linkType,
 };
 
 const RDFSClass = ({

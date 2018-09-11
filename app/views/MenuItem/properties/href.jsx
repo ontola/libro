@@ -1,7 +1,7 @@
 import LinkedRenderStore from 'link-lib';
 import {
   link,
-  linkedPropType,
+  linkType,
   lrsType,
   subjectType,
 } from 'link-redux';
@@ -17,10 +17,10 @@ import { NS } from '../../../helpers/LinkedRenderStore';
 import { sidebarTopology } from '../../../topologies/Sidebar';
 
 const propTypes = {
-  action: linkedPropType,
+  action: linkType,
   children: PropTypes.node,
   handleClick: PropTypes.func,
-  href: linkedPropType,
+  href: linkType,
   lrs: lrsType,
   subject: subjectType,
 };

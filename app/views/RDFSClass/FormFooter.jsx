@@ -1,5 +1,5 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { link, linkedPropType } from 'link-redux';
+import { link, linkType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -10,9 +10,9 @@ import { formFooterTopology } from '../../topologies/FormFooter/Footer';
 
 const propTypes = {
   current: PropTypes.bool,
-  description: linkedPropType,
-  image: linkedPropType,
-  label: linkedPropType,
+  description: linkType,
+  image: linkType,
+  label: linkType,
   onClick: PropTypes.func,
 };
 

@@ -2,7 +2,7 @@ import { Set } from 'immutable';
 import LinkedRenderStore from 'link-lib';
 import {
   link,
-  linkedPropType,
+  linkType,
   subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -22,7 +22,7 @@ const propTypes = {
   formFooterButtons: PropTypes.node,
   onDone: PropTypes.func,
   onKeyUp: PropTypes.func,
-  potentialAction: linkedPropType,
+  potentialAction: linkType,
   subject: subjectType,
 };
 

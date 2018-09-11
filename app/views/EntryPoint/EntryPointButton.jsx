@@ -1,7 +1,7 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   link,
-  linkedPropType,
+  linkType,
   subjectType,
   topologyType,
 } from 'link-redux';
@@ -33,7 +33,7 @@ const EntryPointButton = ({
 };
 
 EntryPointButton.propTypes = {
-  name: linkedPropType,
+  name: linkType,
   onClick: PropTypes.func,
   subject: subjectType,
   topology: topologyType,

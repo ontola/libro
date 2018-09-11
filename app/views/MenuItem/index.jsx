@@ -4,7 +4,6 @@ import {
   linkType,
   LinkedResourceContainer,
   Property,
-  linkedPropType,
   lrsType,
   subjectType,
 } from 'link-redux';
@@ -86,7 +85,7 @@ MenuItemDropdownContent.propTypes = {
   href: linkType,
   image: linkType,
   lrs: lrsType,
-  name: linkedPropType,
+  name: linkType,
   subject: subjectType,
 };
 

@@ -1,5 +1,10 @@
 import LinkedRenderStore from 'link-lib';
-import { LinkedResourceContainer, PropertyBase, linkedPropType } from 'link-redux';
+import {
+  LinkedResourceContainer,
+  PropertyBase,
+  linkedPropType,
+  linkType,
+} from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -9,7 +14,7 @@ import { dropdownContentTopology } from '../../../topologies/DropdownContent';
 import { sidebarTopology } from '../../../topologies/Sidebar';
 
 const propTypes = {
-  children: linkedPropType,
+  children: linkType,
   labelComp: PropTypes.node,
   linkedProp: linkedPropType,
 };

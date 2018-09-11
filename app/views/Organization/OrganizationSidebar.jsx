@@ -1,7 +1,7 @@
 import {
   LinkedResourceContainer,
   Property,
-  linkedPropType,
+  linkType,
   register,
 } from 'link-redux';
 import React from 'react';
@@ -17,7 +17,7 @@ class OrganizationSidebar extends React.PureComponent {
   static mapDataToProps = [NS.argu('navigationsMenu')];
 
   static propTypes = {
-    navigationsMenu: linkedPropType,
+    navigationsMenu: linkType,
   };
 
   render() {
