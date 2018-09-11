@@ -12,28 +12,31 @@ class ImageObjectCardList extends React.PureComponent {
 
   static mapDataToProps = {
     caption: NS.schema('caption'),
+    contentUrl: NS.schema('contentUrl'),
     filename: NS.dbo('filename'),
-    thumbnailURL: NS.schema('thumbnail'),
+    thumbnailUrl: NS.schema('thumbnail'),
   };
 
   static propTypes = {
     caption: linkType,
+    contentUrl: linkType,
     filename: linkType,
-    thumbnailURL: linkType,
+    thumbnailUrl: linkType,
   };
 
   render() {
     const {
       caption,
+      contentUrl,
       filename,
-      thumbnailURL,
+      thumbnailUrl,
     } = this.props;
 
     return (
       <AttachmentPreview
         caption={caption}
         filename={filename}
-        thumbnailURL={thumbnailURL}
+        thumbnailURL={thumbnailUrl || contentUrl}
       />
     );
   }

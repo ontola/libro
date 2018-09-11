@@ -8,14 +8,12 @@ import * as PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import {
-  Resource,
-} from '../../components';
 import { currentURL, retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 import Card from '../../topologies/Card';
 import Container from '../../topologies/Container';
 import { pageTopology } from '../../topologies/Page';
+import PrimaryResource from '../../topologies/PrimaryResource';
 import TabBar from '../../topologies/TabBar';
 
 const mapDispatchToProps = (dispatch, { lrs }) => ({
@@ -72,7 +70,7 @@ class MenuItemPage extends React.PureComponent {
     const { topLevel } = this.props;
 
     return (
-      <Resource>
+      <PrimaryResource>
         {topLevel && (
         <Container>
           <Card>
@@ -85,7 +83,7 @@ class MenuItemPage extends React.PureComponent {
           <Property label={NS.argu('menuItems')} />
         </TabBar>
         <Property label={NS.argu('href')} />
-      </Resource>
+      </PrimaryResource>
     );
   }
 }

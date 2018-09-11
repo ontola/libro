@@ -9,6 +9,7 @@ import Card, {
   CardContent,
 } from '../../topologies/Card';
 import Container from '../../topologies/Container';
+import PrimaryResource from '../../topologies/PrimaryResource';
 import LDLink from '../LDLink';
 
 const LoadingInline = () => <div className="Loading__Paragraph Loading__Paragraph--inline Loading__background" />;
@@ -42,10 +43,12 @@ export const LoadingCardFixed = () => (
 );
 
 export const LoadingPage = () => (
-  <Container>
-    <LoadingParent />
-    <LoadingCard />
-  </Container>
+  <PrimaryResource>
+    <Container>
+      <LoadingParent />
+      <LoadingCard />
+    </Container>
+  </PrimaryResource>
 );
 
 export const LoadingDetail = () => (

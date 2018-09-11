@@ -1,5 +1,4 @@
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { link, linkType } from 'link-redux';
+import { linkType, register } from 'link-redux';
 import React from 'react';
 
 import { Detail } from '../../components';
@@ -9,32 +8,39 @@ import TypeDetail from '../Thing/properties/type';
 
 import FormFooter from './FormFooter';
 
-const propTypes = {
-  description: linkType,
-  label: linkType,
-};
+class RDFSClass extends React.PureComponent {
+  static type = NS.rdfs('Class');
 
-const RDFSClass = ({
-  description,
-  label,
-}) => (
-  <Detail
-    linkedImage
-    text={label.value}
-    title={description && description.value}
-  />
-);
+  static topology = detailsBarTopology;
 
-RDFSClass.displayName = 'RDFSClass';
-RDFSClass.propTypes = propTypes;
+  static mapDataToProps = [
+    NS.schema('description'),
+    NS.rdfs('label'),
+  ];
+
+  static propTypes = {
+    description: linkType.isRequired,
+    label: linkType.isRequired,
+  };
+
+  render() {
+    const {
+      description,
+      label,
+    } = this.props;
+
+    return (
+      <Detail
+        linkedImage
+        text={label.value}
+        title={description && description.value}
+      />
+    );
+  }
+}
 
 export default [
-  LinkedRenderStore.registerRenderer(
-    link([NS.schema('description'), NS.rdfs('label'), NS.schema('image')])(RDFSClass),
-    NS.rdfs('Class'),
-    RENDER_CLASS_NAME,
-    detailsBarTopology
-  ),
+  register(RDFSClass),
   FormFooter,
   TypeDetail,
 ];

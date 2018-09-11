@@ -14,6 +14,7 @@ import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 import Container from '../../topologies/Container';
 import { pageTopology } from '../../topologies/Page';
+import PrimaryResource from '../../topologies/PrimaryResource';
 
 import './MediaObjectPage.scss';
 
@@ -50,7 +51,7 @@ class MediaObjectPage extends React.PureComponent {
     encodingFormat: linkType,
     filename: linkType,
     isPartOf: linkType,
-    type: linkType,
+    type: linkType.isRequired,
   };
 
   viewerComponent() {
@@ -146,7 +147,7 @@ class MediaObjectPage extends React.PureComponent {
     }
 
     return (
-      <React.Fragment>
+      <PrimaryResource>
         <div className="MediaObjectPage__infobar" data-test="MediaObject">
           <Link
             className="MediaObjectPage__infobar--is-part-of"
@@ -163,7 +164,7 @@ class MediaObjectPage extends React.PureComponent {
           </div>
         </div>
         {this.viewerComponent()}
-      </React.Fragment>
+      </PrimaryResource>
     );
   }
 }
