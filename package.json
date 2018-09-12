@@ -52,7 +52,7 @@
     "react-modal": "^3.5.1",
     "react-pdf": "^4.0.0-beta.4",
     "react-router-scroll": "^0.4.4",
-    "react-textarea-autosize": "^5.0.7",
+    "react-textarea-autosize": "^7.0.4",
     "redux-search": "^2.3.2",
     "request": "^2.88.0",
     "rimraf": "^2.6.2",

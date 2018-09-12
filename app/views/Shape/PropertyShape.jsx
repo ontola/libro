@@ -20,7 +20,7 @@ import validators, { combineValidators } from '../../helpers/validators';
 import { allTopologies } from '../../topologies';
 
 const MAX_STR_LEN = 255;
-const TEXTFIELD_ROWS = 3;
+const TEXTFIELD_MIN_ROWS = 3;
 
 const propTypes = {
   autofocus: PropTypes.bool,
@@ -143,10 +143,10 @@ class PropertyShape extends PropertyBase {
           label={name && name.value}
           maxLength={tryParseInt(maxLength)}
           minLength={tryParseInt(minLength)}
+          minRows={this.props.maxLength > MAX_STR_LEN ? TEXTFIELD_MIN_ROWS : undefined}
           options={this.props.in && listToArr(this.props.lrs, [], this.props.in)}
           placeholder={description && description.value}
           required={required}
-          rows={this.props.maxLength > MAX_STR_LEN ? TEXTFIELD_ROWS : undefined}
           theme={theme}
           type={this.inputType()}
           validate={combineValidators(validate)}

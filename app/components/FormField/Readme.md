@@ -16,7 +16,7 @@ Use the "Field--preview" classname to show them in a minimal, pretty fashion in 
         id="ArgumentProDescription"
         name="text"
         placeholder="Title"
-        rows={1}
+        minRows={1}
         variant="preview"
       />
       <FormField
@@ -24,7 +24,7 @@ Use the "Field--preview" classname to show them in a minimal, pretty fashion in 
         id="ArgumentProDescription"
         name="text"
         placeholder="Description (optional)..."
-        rows={3}
+        minRows={3}
         variant="preview"
       />
     </Card>

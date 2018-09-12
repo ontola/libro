@@ -1,8 +1,9 @@
 import classNames from 'classnames';
+import { asField } from 'informed';
 import PropTypes from 'prop-types';
 import { Literal } from 'rdflib';
 import React from 'react';
-import { asField } from 'informed';
+import Textarea from 'react-textarea-autosize';
 
 import './FormField.scss';
 import FileInput from '../Input/FileInput';
@@ -39,6 +40,8 @@ const propTypes = {
   // Text above input field
   label: PropTypes.string,
   minLength: PropTypes.number,
+  // Minimal number of rows for textAreas
+  minRows: PropTypes.number,
   // Name of the input, defaults to the field name
   name: PropTypes.string,
   onBlur: PropTypes.func,
@@ -51,8 +54,6 @@ const propTypes = {
   required: PropTypes.bool,
   // Enables the rich (markdown) text editor
   rich: PropTypes.bool,
-  // Number of rows for textAreas
-  rows: PropTypes.number,
   theme: PropTypes.string,
   // HTML input type, e.g. 'email'
   type: PropTypes.string,
@@ -154,7 +155,7 @@ class FormField extends React.Component {
       placeholder,
       required,
       rich,
-      rows,
+      minRows,
       type,
     } = this.props;
 
@@ -234,7 +235,7 @@ class FormField extends React.Component {
     let element;
     switch (type) {
       case 'textarea':
-        element = rich ? TextEditor : 'textarea';
+        element = rich ? TextEditor : Textarea;
         break;
       default:
         element = 'input';
@@ -248,10 +249,10 @@ class FormField extends React.Component {
         // TODO: [AOD-218] HTML only noscript
         // maxLength={maxLength}
         minLength={minLength}
+        minRows={minRows}
         placeholder={placeholder}
         ref={forwardedRef}
         required={required}
-        rows={rows}
         type={type}
         value={this.inputValue()}
         onKeyUp={onKeyUp}
