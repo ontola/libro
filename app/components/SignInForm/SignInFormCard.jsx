@@ -36,6 +36,12 @@ const defaultProps = {
  * @returns {component} Component
  */
 class SignInFormCard extends SignInFormBase {
+  constructor(props) {
+    super(props);
+
+    this.fieldSettings[STEPS.signUp].emailField.autofocus = true;
+  }
+
   contentHeader() {
     if (STEPS.signUp !== this.props.step) {
       return null;

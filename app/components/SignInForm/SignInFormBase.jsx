@@ -23,21 +23,17 @@ const propTypes = {
  * @returns {component} Component
  */
 class SignInFormBase extends React.PureComponent {
-  static emailField() {
-    return (
-      <FormField
-        autoComplete="off"
-        field={btoa('email')}
-        key="email"
-        label="Uw e-mailadres"
-        placeholder="email@example.com"
-        type="email"
-        validate={combineValidators(
-          validators.required,
-          validators.isEmail
-        )}
-      />
-    );
+  constructor(props) {
+    super(props);
+
+    this.fieldSettings = {};
+    Object.values(STEPS).forEach((s) => {
+      this.fieldSettings[s] = {
+        emailField: {
+          autofocus: false,
+        },
+      };
+    });
   }
 
   confirmFields() {
@@ -49,7 +45,7 @@ class SignInFormBase extends React.PureComponent {
             en de
             <CardLink to="/privacy"> privacy policy</CardLink>.
           </p>
-          {this.constructor.emailField()}
+          {this.emailField()}
           <FormField
             defaultValue="true"
             field={btoa('acceptTerms')}
@@ -61,6 +57,24 @@ class SignInFormBase extends React.PureComponent {
           {this.redirectField()}
         </CardContent>
       </CardRow>
+    );
+  }
+
+  emailField() {
+    return (
+      <FormField
+        autoComplete="off"
+        autofocus={this.fieldSettings[this.props.step].emailField.autofocus}
+        field={btoa('email')}
+        key="email"
+        label="Uw e-mailadres"
+        placeholder="email@example.com"
+        type="email"
+        validate={combineValidators(
+          validators.required,
+          validators.isEmail
+        )}
+      />
     );
   }
 
@@ -79,7 +93,7 @@ class SignInFormBase extends React.PureComponent {
     return (
       <CardRow>
         <CardContent>
-          {this.constructor.emailField()}
+          {this.emailField()}
           <FormField
             autofocus
             autoComplete="off"
@@ -115,7 +129,7 @@ class SignInFormBase extends React.PureComponent {
       <CardRow>
         <CardContent>
           <p>{this.props.reason}</p>
-          {this.constructor.emailField()}
+          {this.emailField()}
           <FormField
             field={btoa('password')}
             key="password"
