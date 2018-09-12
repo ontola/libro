@@ -1,4 +1,3 @@
-// @flow
 import PropTypes from 'prop-types';
 import React from 'react';
 import AnimateOnChange from 'react-animate-on-change';

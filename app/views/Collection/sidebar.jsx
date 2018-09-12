@@ -18,10 +18,10 @@ const propTypes = {
 };
 
 const label = (
-  <span>
+  <React.Fragment>
     <Property label={NS.as('name')} />
     <Property label={NS.argu('unreadCount')} />
-  </span>
+  </React.Fragment>
 );
 
 const CollectionSidebar = ({ subject }) => (

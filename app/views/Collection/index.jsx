@@ -228,7 +228,7 @@ export default [
   ...Member,
   Name,
   sidebar,
-  UnreadCount,
+  ...UnreadCount,
   ...Pages,
   ...voteEvent,
 ];
