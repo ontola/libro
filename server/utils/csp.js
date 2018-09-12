@@ -15,6 +15,7 @@ const imgSrc = [
 ];
 if (AWS_BUCKET) {
   imgSrc.push(`https://${AWS_BUCKET}.s3.amazonaws.com`);
+  imgSrc.push(`https://${AWS_BUCKET}.s3.eu-central-1.amazonaws.com`);
 }
 if (ASSETS_HOST) {
   imgSrc.push(ASSETS_HOST);
