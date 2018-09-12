@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import MenuSectionLabel from '../MenuSectionLabel';
 import SideBarLink from '../SideBarLink';
 import { checkLuminance } from '../../helpers/color';
 import path from '../../helpers/paths';
@@ -47,6 +48,7 @@ const NavBarContent = ({ actorType, orgColor }) => {
         </LinkedResourceContainer>
       </div>
       <div className="NavBarContent__footer">
+        <MenuSectionLabel name="Mijn Argu" />
         <LinkedResourceContainer subject={NS.app('c_a')} topology={NS.argu('sidebar')} />
         {actorType !== 'GuestUser' && <LinkedResourceContainer subject={NS.app('n')} topology={NS.argu('sidebar')} />}
         <LinkedResourceContainer subject={NS.app('menus/info')} topology={NS.argu('sidebar')} />

@@ -5,8 +5,7 @@ import React from 'react';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { sidebarTopology } from '../../topologies/Sidebar';
 
-import Label from './properties/label';
-import './MenuSection.scss';
+import MenuSectionName from './properties/name';
 
 const MenuSection = () => (
   <div data-test="MenuSection-menu-section">
@@ -25,5 +24,5 @@ export default[
     RENDER_CLASS_NAME,
     sidebarTopology
   ),
-  Label,
+  MenuSectionName,
 ];

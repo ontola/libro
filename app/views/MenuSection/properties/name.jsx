@@ -1,10 +1,11 @@
 import { linkedPropType, register } from 'link-redux';
 import React from 'react';
 
+import MenuSectionLabel from '../../../components/MenuSectionLabel';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { sidebarTopology } from '../../../topologies/Sidebar';
 
-class MenuSectionLabel extends React.PureComponent {
+class MenuSectionName extends React.PureComponent {
   static type = NS.argu('MenuSection');
 
   static property = NS.schema('name');
@@ -18,16 +19,8 @@ class MenuSectionLabel extends React.PureComponent {
   render() {
     const { linkedProp } = this.props;
 
-    return (
-      <div className="MenuSectionLabel" data-test="MenuSection-MenuSectionLabel">
-        <div className="MenuSectionLabel__bar" />
-        <div className="MenuSectionLabel__text">
-          {linkedProp.value}
-        </div>
-        <div className="MenuSectionLabel__bar" />
-      </div>
-    );
+    return <MenuSectionLabel linkedProp={linkedProp} />;
   }
 }
 
-export default register(MenuSectionLabel);
+export default register(MenuSectionName);
