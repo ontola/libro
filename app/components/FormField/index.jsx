@@ -5,11 +5,12 @@ import { Literal } from 'rdflib';
 import React from 'react';
 import Textarea from 'react-textarea-autosize';
 
-import './FormField.scss';
 import FileInput from '../Input/FileInput';
-import TextEditor from '../TextEditor';
+import TextEditor from '../../containers/TextEditor';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { Input } from '../Input';
+
+import './FormField.scss';
 
 const propTypes = {
   autoComplete: PropTypes.string,
@@ -52,8 +53,6 @@ const propTypes = {
   })),
   placeholder: PropTypes.string,
   required: PropTypes.bool,
-  // Enables the rich (markdown) text editor
-  rich: PropTypes.bool,
   theme: PropTypes.string,
   // HTML input type, e.g. 'email'
   type: PropTypes.string,
@@ -67,7 +66,6 @@ const propTypes = {
 
 const defaultProps = {
   autofocus: false,
-  rich: false,
   variant: 'default',
 };
 
@@ -154,7 +152,6 @@ class FormField extends React.Component {
       options,
       placeholder,
       required,
-      rich,
       minRows,
       type,
     } = this.props;
@@ -235,7 +232,10 @@ class FormField extends React.Component {
     let element;
     switch (type) {
       case 'textarea':
-        element = rich ? TextEditor : Textarea;
+        element = Textarea;
+        break;
+      case 'markdown':
+        element = TextEditor;
         break;
       default:
         element = 'input';

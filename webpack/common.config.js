@@ -10,10 +10,13 @@ process.env.BABEL_ENV = TARGET;
 const common = {
   externals: {
     URL: 'self.URL',
+    fetch: 'self.fetch',
+    'isomorphic-fetch': 'self.fetch',
     jsonld: '{}',
     'solid-auth-client': 'self.fetch',
     'universal-url': '{URL: self.URL}',
     'whatwg-url': 'self.URL',
+    xmldom: '{}',
     xmlhttprequest: 'self.XMLHttpRequest',
   },
 
@@ -43,8 +46,7 @@ const common = {
       'static/preloader.css',
     ]),
     new webpack.ProvidePlugin({
-      fetch: 'isomorphic-fetch',
-      xmlhttprequest: 'imports-loader?this=>global!exports?global.XMLHttpRequest!global.XMLHttpRequest',
+      xmlhttprequest: 'imports-loader?this=>global!exports-loader?global.XMLHttpRequest!global.XMLHttpRequest',
     }),
     new webpack.DefinePlugin({
       __CLIENT__: true,

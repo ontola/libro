@@ -76,6 +76,8 @@ class PropertyShape extends PropertyBase {
         return 'number';
       case NS.ll('blob'):
         return 'file';
+      case NS.fhir('markdown'):
+        return 'markdown';
       default:
         if (this.maxLength() > MAX_STR_LEN) {
           return 'textarea';

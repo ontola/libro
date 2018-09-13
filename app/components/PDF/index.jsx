@@ -58,7 +58,8 @@ class PDFViewer extends React.Component {
   }
 
   async componentDidMount() {
-    const { Document, Page } = await import('react-pdf/dist/entry.webpack');
+    // eslint-disable-next-line no-inline-comments
+    const { Document, Page } = await import(/* webpackChunkName: 'PDF' */'react-pdf/dist/entry.webpack');
 
     this.setState({
       Document,

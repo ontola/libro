@@ -1,5 +1,3 @@
-import assert from 'assert';
-
 import classNames from 'classnames';
 import { PropertyBase, subjectType } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -31,7 +29,6 @@ const defaultProps = {
 
 export class ProfileCard extends PropertyBase {
   getLegacyProperty(ldprop, prop) {
-    assert(ldprop, 'ldprop is required');
     if (typeof this.props.subject === 'undefined') {
       return this.props[prop];
     }

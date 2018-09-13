@@ -36,11 +36,27 @@ const configureStore = (preloadedState) => {
     );
   }
 
-  return createStore(
-    enableBatching(connectRouter(history)(combineReducers(reducers))),
+  const createReducer = (asyncReducers = {}) => combineReducers({
+    ...reducers,
+    ...asyncReducers,
+  });
+
+  const store = createStore(
+    enableBatching(connectRouter(history)(createReducer())),
     preloadedState,
     middleware
   );
+
+  store.asyncReducers = {};
+  store.injectReducer = (key, reducer) => {
+    if (store.asyncReducers[key] !== reducer) {
+      store.asyncReducers[key] = reducer;
+      store.replaceReducer(createReducer(store.asyncReducers));
+    }
+    return store;
+  };
+
+  return store;
 };
 
 export default configureStore;

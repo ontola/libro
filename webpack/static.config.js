@@ -21,9 +21,9 @@ function createConfig(options) {
   return {
     devtool: 'source-map',
 
-    entry: [
-      './app/index.jsx',
-    ],
+    entry: {
+      main: './app/index.jsx',
+    },
 
     module: {
       rules: [
@@ -55,24 +55,24 @@ function createConfig(options) {
     optimization: {
       splitChunks: {
         chunks: 'all',
+        maxAsyncRequests: 8,
       },
     },
 
     output: {
-      filename: `f_assets/bundle-[chunkhash].${options.buildName}.js`,
+      filename: `f_assets/[name]-[chunkhash].${options.buildName}.js`,
       publicPath: '/f_assets/',
     },
 
     plugins: [
       new MiniCssExtractPlugin({
-        filename: `f_assets/bundle-[contenthash].${options.buildName}.css`,
+        filename: `f_assets/[name]-[contenthash].${options.buildName}.css`,
       }),
       new webpack.DefinePlugin({
         'process.env.FRONTEND_HOSTNAME': JSON.stringify(options.hostname),
         'process.env.NODE_ENV': JSON.stringify('production'),
       }),
       new webpack.ProvidePlugin({
-        fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
         xmlhttprequest: 'imports?this=>global!exports?global.XMLHttpRequest!global.XMLHttpRequest',
       }),
       new webpack.ProvidePlugin({

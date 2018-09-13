@@ -4,7 +4,6 @@ export { default as closeable } from './closeable/reducer';
 export { default as communication } from './communication/reducer';
 export { default as form } from './form/reducer';
 export { linkReducer as linkedObjects } from 'link-redux';
-export { default as textEditor } from './textEditor/reducer';
 export { omniformReducer as omniform } from './omniform';
 export { default as pagination } from './pagination/reducer';
 export { default as PDFViewer } from './PDFViewer/reducer';

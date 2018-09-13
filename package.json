@@ -11,7 +11,6 @@
     "node": ">=8.1.3"
   },
   "dependencies": {
-    "assert": "^1.4.1",
     "babel-eslint": "7.2.3",
     "babel-plugin-transform-runtime": "^6.23.0",
     "body-parser": "^1.18.2",
@@ -37,9 +36,9 @@
     "link-redux": "1.0.0-beta31.9",
     "logrocket": "^0.6.16",
     "logrocket-react": "^1.0.0",
-    "markdown-draft-js": "^0.6.2",
+    "markdown-draft-js": "^1.1.6",
     "material-color-hash": "^0.1.4",
-    "megadraft": "^0.4.37",
+    "megadraft": "^0.5.2",
     "morgan": "^1.9.1",
     "n3": "^1.0.0-beta.1",
     "prop-types": "^15.6.0",
@@ -48,7 +47,7 @@
     "react-animate-on-change": "^1.0.1",
     "react-hotkeys": "^1.1.4",
     "react-html5video": "^2.5.1",
-    "react-markdown": "^2.4.2",
+    "react-markdown": "^3.6.0",
     "react-modal": "^3.5.1",
     "react-pdf": "^4.0.0-beta.4",
     "react-router-scroll": "^0.4.4",

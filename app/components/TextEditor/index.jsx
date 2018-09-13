@@ -2,11 +2,13 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import withReducer from '../../containers/withReducer';
+import isMobile from '../../helpers/isMobile';
+import reducer from '../../state/textEditor/reducer';
 import {
   getEditorShowRich,
   getLatestMarkdown,
 } from '../../state/textEditor/selectors';
-import isMobile from '../../helpers/isMobile';
 
 import PlainEditor from './PlainEditor';
 import RichEditor from './RichEditor';
@@ -126,4 +128,4 @@ const mapStateToProps = (state, ownProps) => ({
 
 const ConnectedTextEditor = connect(mapStateToProps)(TextEditor);
 
-export default ConnectedTextEditor;
+export default withReducer('textEditor', reducer)(ConnectedTextEditor);
