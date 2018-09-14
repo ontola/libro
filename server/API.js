@@ -6,6 +6,7 @@ import { createUserRequest } from './api/users';
 import processResponse from './api/internal/statusHandler';
 import { guestTokenRequest, userTokenRequest } from './api/tokens';
 import { oAuthToken } from './config';
+import logging from './utils/logging';
 
 /**
  * Class for communicating with the Argu API & SPI.
@@ -97,6 +98,8 @@ class API {
 
   fetchRaw(authToken, { path, ...opts }) {
     const { headers, ...rest } = opts;
+
+    logging.debug(`[API] Request '${path}'`);
 
     return fetch(
       new URL(path, this.base).toString(),

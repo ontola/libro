@@ -2,6 +2,7 @@
 import HttpStatus from 'http-status-codes';
 
 import * as errors from '../utils/errors';
+import logging from '../utils/logging';
 
 const errMsg = 'Internal error escaped into userspace, please catch in the appropriate function';
 
@@ -22,7 +23,7 @@ export default function errorHandlerMiddleware(err, req, res, next) {
   if (err.internal === true) {
     console.warn(err.devMessage);
     console.error(errMsg);
-    console.debug(err.stack);
+    logging.debug(err.stack);
     res.sendStatus(HttpStatus.INTERNAL_SERVER_ERROR).end();
     return;
   }
