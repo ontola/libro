@@ -1,6 +1,6 @@
 import { namedNodeByIRI } from 'link-lib';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { HotKeys } from 'react-hotkeys';
 
 import { expandPath } from '../../helpers/iris';
@@ -11,7 +11,7 @@ const propTypes = {
 
 const TRIGGER_KEYS = ['Alt', 'AltGraph'];
 
-class HoverHelper extends Component {
+class HoverHelper extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {

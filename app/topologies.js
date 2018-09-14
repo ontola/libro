@@ -19,6 +19,7 @@ import { omniformFieldsTopology } from './topologies/OmniformFields/OmniformFiel
 import { pageHeaderTopology } from './topologies/PageHeader/index';
 import { parentTopology } from './topologies/Parent/index';
 import { popupTopology } from './topologies/Popup/index';
+import { selectTopology } from './topologies/Select';
 import { sidebarTopology } from './topologies/Sidebar/index';
 import { tabBarTopology } from './topologies/TabBar/index';
 import { voteBubbleTopology } from './topologies/VoteBubble/index';
@@ -50,6 +51,7 @@ export const allTopologies = [
   parentTopology,
   pageHeaderTopology,
   popupTopology,
+  selectTopology,
   sidebarTopology,
   tabBarTopology,
   voteBubbleTopology,

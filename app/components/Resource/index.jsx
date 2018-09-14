@@ -2,26 +2,34 @@ import { withLinkCtx, subjectType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 
-const propTypes = {
-  children: PropTypes.node,
-  subject: subjectType,
-};
-
 /**
  * Sets an RDFa resource tag using Link.
  */
 class Resource extends PureComponent {
+  static propTypes = {
+    children: PropTypes.node,
+    element: PropTypes.string,
+    subject: subjectType,
+    wrapperProps: PropTypes.shape(),
+  };
+
+  static defaultProps = {
+    wrapperProps: {},
+  };
+
   render() {
-    const { subject } = this.props;
+    const {
+      element: Element = 'div',
+      subject,
+      wrapperProps,
+    } = this.props;
 
     return (
-      <div resource={subject.value}>
+      <Element resource={subject.value} {...wrapperProps}>
         {this.props.children}
-      </div>
+      </Element>
     );
   }
 }
-
-Resource.propTypes = propTypes;
 
 export default withLinkCtx(Resource);

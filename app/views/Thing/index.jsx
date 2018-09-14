@@ -51,6 +51,7 @@ import TrashedAt from './properties/trashedAt';
 import UpdateAction from './properties/updateAction';
 import VoteEvents from './properties/voteEvents';
 import ThingPage from './ThingPage';
+import ThingSelect from './ThingSelect';
 
 const CardHoverBox = hoverBox();
 
@@ -138,6 +139,7 @@ const ThingCard = () => (
 
 export default [
   ThingPage,
+  ThingSelect,
   LinkedRenderStore.registerRenderer(
     () => <Property label={[NS.schema('name'), NS.rdfs('label')]} />,
     NS.schema('Thing'),

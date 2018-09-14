@@ -1,15 +1,16 @@
 import classNames from 'classnames';
 import { asField } from 'informed';
 import PropTypes from 'prop-types';
-import { Literal } from 'rdflib';
+import { Literal, NamedNode } from 'rdflib';
 import React from 'react';
 import Textarea from 'react-textarea-autosize';
 import DateTimePicker from 'react-datetime-picker';
 
-import FileInput from '../Input/FileInput';
 import TextEditor from '../../containers/TextEditor';
 import { NS } from '../../helpers/LinkedRenderStore';
+import FileInput from '../Input/FileInput';
 import { Input } from '../Input';
+import SelectInput from '../SelectInput';
 
 import './DateTime.scss';
 import './FormField.scss';
@@ -30,7 +31,11 @@ const propTypes = {
   fieldState: PropTypes.shape({
     error: PropTypes.arrayOf(PropTypes.string),
     touched: PropTypes.bool,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.instanceOf(Literal),
+      PropTypes.instanceOf(NamedNode),
+    ]),
   }),
   /** @private */
   forwardedRef: PropTypes.shape({ value: PropTypes.instanceOf(HTMLInputElement) }),
@@ -208,9 +213,10 @@ class FormField extends React.Component {
 
     if (type === 'select') {
       return (
-        <select {...sharedProps}>
-          {options.map(o => <option key={o.value} value={o.value}>{o.value}</option>)}
-        </select>
+        <SelectInput
+          options={options}
+          sharedProps={sharedProps}
+        />
       );
     }
 

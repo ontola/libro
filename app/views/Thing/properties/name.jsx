@@ -20,6 +20,7 @@ import { pageHeaderTopology } from '../../../topologies/PageHeader';
 import { parentTopology } from '../../../topologies/Parent';
 import { popupTopology } from '../../../topologies/Popup';
 import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
+import { selectTopology } from '../../../topologies/Select';
 import { sidebarTopology } from '../../../topologies/Sidebar';
 import { widgetTopologyTopology } from '../../../topologies/WidgetTopology/WidgetTopology';
 
@@ -107,7 +108,10 @@ export default [
     ({ linkedProp }) => <LDLink data-test="Thing-name-inline">{linkedProp.value}</LDLink>,
     NS.schema('Thing'),
     NamePredicates,
-    inlineTopology
+    [
+      inlineTopology,
+      selectTopology,
+    ]
   ),
   LinkedRenderStore.registerRenderer(
     () => <LDLink><ConnectedHeading data-test="Thing-name-card" size="2" /></LDLink>,
