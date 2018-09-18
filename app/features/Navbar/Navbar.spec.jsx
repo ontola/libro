@@ -130,11 +130,11 @@ describeView('Navbar', components, resources, resource, () => {
 
     it('renders the forum items', () => {
       const forumSection = subject.find('.NavBarContent__top MenuSection');
-      expect(forumSection.find('MenuItemSidebar[data-test="Seq-0"] SideBarLinkLink Link'))
+      expect(forumSection.find('MenuItemSidebar[data-test="Seq-0-https://argu.dev/nederland/menus/navigations#forums.overview"] SideBarLinkLink Link'))
         .toHaveText('Overzicht');
-      expect(forumSection.find('MenuItemSidebar[data-test="Seq-1"] SideBarLinkLink Link'))
+      expect(forumSection.find('MenuItemSidebar[data-test="Seq-1-https://argu.dev/nederland/menus/navigations#forums.new_discussion"] SideBarLinkLink Link'))
         .toHaveText('Nieuwe discussie');
-      expect(forumSection.find('MenuItemSidebar[data-test="Seq-2"] SideBarLinkLink Link'))
+      expect(forumSection.find('MenuItemSidebar[data-test="Seq-2-https://argu.dev/nederland/menus/navigations#forums.activity"] SideBarLinkLink Link'))
         .toHaveText('Activiteit');
     });
   });

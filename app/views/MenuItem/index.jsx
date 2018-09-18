@@ -2,7 +2,6 @@ import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   link,
   linkType,
-  LinkedResourceContainer,
   Property,
   lrsType,
   subjectType,
@@ -10,31 +9,21 @@ import {
 import React from 'react';
 
 import {
-  Dropdown,
   DropdownLink,
   Resource,
   Tab,
 } from '../../components';
-import { SideBarLinkIcon } from '../../components/SideBarLink';
 import { NS } from '../../helpers/LinkedRenderStore';
-import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { dropdownContentTopology } from '../../topologies/DropdownContent';
-import { sidebarTopology } from '../../topologies/Sidebar';
 import { tabBarTopology } from '../../topologies/TabBar';
 
+import MenuItemDropdown from './MenuItemDropdown';
 import MenuItemPage from './MenuItemPage';
+import MenuItemSidebar from './MenuItemSidebar';
 import Href from './properties/href';
 import Label from './properties/label';
 import menuItemsComp from './properties/menuItems';
 
-const MenuItemLabel = (
-  <Property forceRender data-test="MenuItem-MenuItemLabel" label={NS.argu('href')}>
-    <SideBarLinkIcon>
-      <Property label={NS.schema('image')} />
-    </SideBarLinkIcon>
-    <Property label={NS.schema('name')} />
-  </Property>
-);
 class MenuItemDropdownContent extends React.PureComponent {
   constructor() {
     super();
@@ -89,30 +78,6 @@ MenuItemDropdownContent.propTypes = {
   subject: subjectType,
 };
 
-const MenuItemSidebar = () => (
-  <Resource>
-    <Property
-      forceRender
-      label={NS.argu('menuItems')}
-      labelComp={MenuItemLabel}
-    />
-  </Resource>
-);
-
-const MenuItemDropdown = ({ menuItems }) => (
-  <Resource>
-    <Dropdown
-      trigger={<Property label={NS.schema('name')} />}
-    >
-      <LinkedResourceContainer subject={menuItems} topology={dropdownContentTopology} />
-    </Dropdown>
-  </Resource>
-);
-
-MenuItemDropdown.propTypes = {
-  menuItems: linkType,
-};
-
 const MenuItemTab = ({ name }) => (
   <Resource>
     <Tab
@@ -127,12 +92,9 @@ MenuItemTab.propTypes = {
 };
 
 export default [
-  LinkedRenderStore.registerRenderer(
-    MenuItemSidebar,
-    [NS.argu('MenuItem'), NS.argu('SubMenu'), NS.argu('Menu')],
-    RENDER_CLASS_NAME,
-    sidebarTopology
-  ),
+  MenuItemDropdown,
+  MenuItemPage,
+  MenuItemSidebar,
   LinkedRenderStore.registerRenderer(
     link([
       NS.argu('action'),
@@ -144,18 +106,6 @@ export default [
     RENDER_CLASS_NAME,
     dropdownContentTopology
   ),
-  LinkedRenderStore.registerRenderer(
-    link([NS.argu('menuItems')])(MenuItemDropdown),
-    [
-      NS.argu('MenuItem'),
-      NS.argu('MenuSection'),
-      NS.argu('SubMenu'),
-      NS.argu('Menu'),
-    ],
-    RENDER_CLASS_NAME,
-    cardFloatTopology
-  ),
-  MenuItemPage,
   LinkedRenderStore.registerRenderer(
     link([
       NS.schema('name'),

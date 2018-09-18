@@ -13,7 +13,7 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import Card from '../../topologies/Card';
 import Container from '../../topologies/Container';
 import { pageTopology } from '../../topologies/Page';
-import PrimaryResource from '../../topologies/PrimaryResource';
+import PrimaryResource, { primaryResourceTopology } from '../../topologies/PrimaryResource';
 import TabBar from '../../topologies/TabBar';
 
 const mapDispatchToProps = (dispatch, { lrs }) => ({
@@ -33,7 +33,10 @@ class MenuItemPage extends React.PureComponent {
     NS.argu('Menu'),
   ];
 
-  static topology = pageTopology;
+  static topology = [
+    pageTopology,
+    primaryResourceTopology,
+  ];
 
   static mapDataToProps = [NS.argu('menuItems'), NS.argu('parentMenu')];
 

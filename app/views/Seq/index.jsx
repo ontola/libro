@@ -31,7 +31,7 @@ export class Seq extends PropertyBase {
       sequences.map((s, i) => (
         <LinkedResourceContainer
           count={sequences.length}
-          data-test={`Seq-${i}`}
+          data-test={`Seq-${i}-${s.object.value}`}
           first={sequences[0].object}
           key={`${this.props.subject}-${s.object}`}
           last={sequences[sequences.length - 1].object}

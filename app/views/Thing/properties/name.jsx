@@ -1,5 +1,6 @@
 import LinkedRenderStore from 'link-lib';
-import { PropertyBase } from 'link-redux';
+import { link, linkType } from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import {
@@ -22,9 +23,22 @@ import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
 import { sidebarTopology } from '../../../topologies/Sidebar';
 import { widgetTopologyTopology } from '../../../topologies/WidgetTopology/WidgetTopology';
 
-class ColoredHeading extends PropertyBase {
+const NamePredicates = [
+  NS.schema('name'),
+  NS.as('name'),
+  NS.rdfs('label'),
+  NS.foaf('name'),
+];
+
+class ColoredHeading extends React.PureComponent {
+  static propTypes = {
+    name: linkType,
+    size: PropTypes.string,
+    type: linkType,
+  };
+
   getVariant() {
-    switch (this.getLinkedObjectProperty(NS.rdf('type')).value) {
+    switch (this.props.type) {
       case 'https://argu.co/ns/core#ConArgument':
         return 'con';
       case 'https://argu.co/ns/core#ProArgument':
@@ -39,43 +53,46 @@ class ColoredHeading extends PropertyBase {
   }
 
   render() {
-    const { size } = this.props;
+    const { name, size } = this.props;
+
     return (
       <Heading
         size={size}
         variant={this.getVariant()}
       >
-        {this.getLinkedObjectProperty().value}
+        {name}
       </Heading>
     );
   }
 }
 
-const NamePredicates = [
-  NS.schema('name'),
-  NS.as('name'),
-  NS.rdfs('label'),
-  NS.foaf('name'),
-];
+const ConnectedHeading = link({
+  name: {
+    label: NamePredicates,
+  },
+  type: {
+    label: NS.rdf('type'),
+  },
+}, { returnType: 'value' })(ColoredHeading);
 
 export default [
   LinkedRenderStore.registerRenderer(
-    props => <ColoredHeading data-test="Thing-name-small-title" size="4" {...props} />,
+    () => <ConnectedHeading data-test="Thing-name-small-title" size="4" />,
     NS.schema('Thing'),
     NamePredicates,
     [primaryResourceTopology, parentTopology]
   ),
   LinkedRenderStore.registerRenderer(
-    props => (
+    () => (
       <LDLink>
-        <ColoredHeading data-test="Thing-name-card-preview" size="4" {...props} />
+        <ConnectedHeading data-test="Thing-name-card-preview" size="4" />
       </LDLink>),
     NS.schema('Thing'),
     NamePredicates,
     [hoverBoxTopology, cardListTopology]
   ),
   LinkedRenderStore.registerRenderer(
-    props => <ColoredHeading data-test="Thing-name-card-main" size="1" {...props} />,
+    () => <ConnectedHeading data-test="Thing-name-card-main" size="1" />,
     NS.schema('Thing'),
     NamePredicates,
     cardMainTopology
@@ -93,7 +110,7 @@ export default [
     inlineTopology
   ),
   LinkedRenderStore.registerRenderer(
-    props => <LDLink><ColoredHeading data-test="Thing-name-card" size="2" {...props} /></LDLink>,
+    () => <LDLink><ConnectedHeading data-test="Thing-name-card" size="2" /></LDLink>,
     NS.schema('Thing'),
     NamePredicates,
     [
@@ -106,13 +123,13 @@ export default [
     ]
   ),
   LinkedRenderStore.registerRenderer(
-    props => <ColoredHeading data-test="Thing-name-card" size="3" {...props} />,
+    () => <ConnectedHeading data-test="Thing-name-card" size="3" />,
     NS.schema('Thing'),
     NamePredicates,
     parentTopology
   ),
   LinkedRenderStore.registerRenderer(
-    props => <ColoredHeading data-test="Thing-name-widget" size="2" {...props} />,
+    () => <ConnectedHeading data-test="Thing-name-widget" size="2" />,
     NS.schema('Thing'),
     NamePredicates,
     widgetTopologyTopology
