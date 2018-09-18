@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import CollapsibleContainer from 'containers/CollapsibleContainer';
-
-import Detail from '../Detail';
+import CollapsibleContainer from '../../containers/CollapsibleContainer';
 import DetailsBar from '../../topologies/DetailsBar';
+import Detail from '../Detail';
 import DetailDate from '../DetailDate';
 import Heading from '../Heading';
 import Progress from '../Progress';

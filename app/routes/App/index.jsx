@@ -6,9 +6,6 @@ import { withRouter } from 'react-router';
 import ScrollMemory from 'react-router-scroll-memory';
 import { HotKeys } from 'react-hotkeys';
 
-import SideBarContainer from 'containers/SideBarContainer';
-import NavbarContainer from 'containers/NavbarContainer';
-
 import Routes from '..';
 
 import {
@@ -16,6 +13,8 @@ import {
   Spinner,
 } from '../../components';
 import '../../components/shared/init.scss';
+import SideBarContainer from '../../containers/SideBarContainer';
+import NavbarContainer from '../../containers/NavbarContainer';
 import Popup from '../../topologies/Popup/index';
 import ErrorButtonWithFeedback from '../../views/Error/ErrorButtonWithFeedback';
 import HoverHelper from '../DevBrowser/HoverHelper';

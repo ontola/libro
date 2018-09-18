@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { voteMatchTransitionTo } from 'state/voteMatch/actions';
+import { voteMatchTransitionTo } from '../state/voteMatch/actions';
 
 const propTypes = {
   step: PropTypes.number,

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { statuses } from 'components/shared/config';
+import { statuses } from '../shared/config';
 
 import './VoteChart.scss';
 

@@ -2,13 +2,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { voteMatchAddVoteable, voteMatchRemoveVoteable } from 'state/voteMatch/actions';
-import { isVoteablePresentInVoteMatch } from 'state/voteMatch/selectors';
-
 import {
   Button,
   Detail,
 } from '../components';
+import { voteMatchAddVoteable, voteMatchRemoveVoteable } from '../state/voteMatch/actions';
+import { isVoteablePresentInVoteMatch } from '../state/voteMatch/selectors';
 
 const propTypes = {
   onAddVoteMatchVoteable: PropTypes.func.isRequired,

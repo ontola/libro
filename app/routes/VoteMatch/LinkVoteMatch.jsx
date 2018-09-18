@@ -3,8 +3,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 
-import { ProgressBar } from 'components';
-
+import { ProgressBar } from '../../components';
 import LinkVoteMatchContainer from '../../containers/LinkVoteMatchContainer';
 
 const propTypes = {

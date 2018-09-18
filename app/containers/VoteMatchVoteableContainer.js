@@ -1,7 +1,7 @@
 import { LinkedResourceContainer } from 'link-redux';
 import { connect } from 'react-redux';
 
-import { voteMatchNextMotion } from 'state/voteMatch/actions';
+import { voteMatchNextMotion } from '../state/voteMatch/actions';
 
 export default connect(
   undefined,

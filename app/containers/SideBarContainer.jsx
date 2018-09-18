@@ -2,20 +2,19 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { SideBar } from '../components';
 import {
   closeSideBar,
   dockSideBar,
   initializeSideBar,
   openSideBar,
   undockSideBar,
-} from 'state/sideBars/actions';
+} from '../state/sideBars/actions';
 import {
   getSideBarColor,
   getSideBarDocked,
   getSideBarOpened,
-} from 'state/sideBars/selectors';
-
-import { SideBar } from '../components';
+} from '../state/sideBars/selectors';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
