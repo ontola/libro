@@ -1,5 +1,5 @@
 /* eslint no-console: 0 */
-import LinkedRenderStore, { memoizedNamespace } from 'link-lib';
+import { createStore, memoizedNamespace } from 'link-lib';
 import { Literal, NamedNode, Statement } from 'rdflib';
 
 import { FRONTEND_ACCEPT, FRONTEND_URL } from '../config';
@@ -7,15 +7,15 @@ import { FRONTEND_ACCEPT, FRONTEND_URL } from '../config';
 import ontolaMiddleware from './ontolaMiddleware';
 import transformers from './transformers';
 
-const LRS = new LinkedRenderStore({
-  middleware: [
-    () => next => (a, o) => {
+const LRS = createStore({}, [
+  () => next => (a, o) => {
+    if (!__PRODUCTION__) {
       console.log('Link action:', a, o);
-      return next(a, o);
-    },
-    ontolaMiddleware,
-  ],
-});
+    }
+    return next(a, o);
+  },
+  ontolaMiddleware,
+]);
 
 transformers
   .transformers

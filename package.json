@@ -32,7 +32,7 @@
     "ioredis": "^4.0.0",
     "is-url-external": "^1.0.3",
     "isomorphic-fetch": "^2.2.1",
-    "link-lib": "1.0.0-beta25.1",
+    "link-lib": "1.0.0-beta26",
     "link-redux": "1.0.0-beta31.9",
     "logrocket": "^0.6.16",
     "logrocket-react": "^1.0.0",
