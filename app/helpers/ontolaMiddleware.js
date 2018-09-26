@@ -26,6 +26,19 @@ const ontolaMiddleware = (store) => {
         .then(() => Promise.resolve('Gekopieerd...'));
     }
 
+    if (iri.value.startsWith(store.namespaces.ontola('actions/redirect').value)) {
+      const value = new URL(iri.value).searchParams.get('location');
+
+      window.location.href = value;
+      return undefined;
+    }
+
+    if (iri.value.startsWith(store.namespaces.ontola('actions/toast').value)) {
+      const value = new URL(iri.value).searchParams.get('text');
+
+      return window.alert(value);
+    }
+
     return next(iri, opts);
   };
 };
