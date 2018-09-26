@@ -13,6 +13,7 @@ import { getLinkedObjectClass } from 'link-redux';
 import rdf from 'rdflib';
 
 import { NS } from './LinkedRenderStore';
+import SHACL from './shacl';
 
 function tryShorten(iri) {
   if (iri.startsWith(':')) {
@@ -279,6 +280,11 @@ class LinkDevTools {
       return this.$r.props.reloadLinkedObject();
     }
     return console.warn('No node or wrong node type selected.');
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  get shacl() {
+    return SHACL;
   }
 
   get topology() {

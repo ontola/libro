@@ -6,6 +6,7 @@ import {
   CardHeader,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import ActionsBar from '../../topologies/ActionsBar';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
@@ -49,6 +50,9 @@ class ThingPage extends PureComponent {
               <Property label={NS.meeting('attachment')} />
               <Property label={NS.argu('attachments')} />
             </CardContent>
+            <ActionsBar>
+              <Property label={NS.schema('potentialAction')} />
+            </ActionsBar>
             <Property label={NS.meeting('agenda')} />
             <CardAppendix>
               <Property forceRender label={NS.app('omniform')} />

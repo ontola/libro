@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 
 import { Button } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { cardListTopology } from '../../topologies/Card/CardList';
 
@@ -43,5 +44,9 @@ export default LinkedRenderStore.registerRenderer(
   link([NS.schema('name')])(EntryPointButton),
   NS.schema('EntryPoint'),
   RENDER_CLASS_NAME,
-  [cardFloatTopology, cardListTopology]
+  [
+    actionsBarTopology,
+    cardFloatTopology,
+    cardListTopology,
+  ]
 );
