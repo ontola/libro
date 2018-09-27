@@ -1,9 +1,8 @@
 import {
   LinkedResourceContainer,
-  PropertyBase,
-  linkedPropType,
   linkType,
   register,
+  subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -13,7 +12,7 @@ import { SideBarCollapsible } from '../../../components';
 import { dropdownContentTopology } from '../../../topologies/DropdownContent';
 import { sidebarTopology } from '../../../topologies/Sidebar';
 
-class MenuItems extends PropertyBase {
+class MenuItems extends React.PureComponent {
   static type = [
     NS.argu('MenuItem'),
     NS.argu('SubMenu'),
@@ -27,14 +26,21 @@ class MenuItems extends PropertyBase {
     dropdownContentTopology,
   ];
 
+  static mapDataToProps = {
+    menuItems: {
+      label: NS.argu('menuItems'),
+      limit: Infinity,
+    },
+  };
+
   static propTypes = {
-    children: linkType,
     labelComp: PropTypes.node,
-    linkedProp: linkedPropType,
+    menuItems: linkType,
+    subject: subjectType,
   };
 
   render() {
-    const rawProp = this.getLinkedObjectPropertyRaw();
+    const rawProp = this.props.menuItems;
     if (rawProp.length === 0) {
       return this.props.labelComp;
     }
@@ -42,8 +48,8 @@ class MenuItems extends PropertyBase {
     const items = rawProp
       .map(item => (
         <LinkedResourceContainer
-          key={`menu-${item.object}`}
-          subject={item.object}
+          key={`menu-${item}`}
+          subject={item}
         />
       ));
 

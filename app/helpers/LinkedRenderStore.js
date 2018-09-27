@@ -202,10 +202,4 @@ const ontologicalData = [
 LRS.addOntologySchematics(ontologicalData);
 LRS.store.addStatements(ontologicalData);
 
-try {
-  LRS.getEntity(new NamedNode(window.location.href));
-} catch (e) {
-  console.error('preload failed');
-}
-
 export default LRS;

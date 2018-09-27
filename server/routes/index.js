@@ -2,7 +2,7 @@
 import bodyParser from 'body-parser';
 import csurf from 'csurf';
 import express from 'express';
-import { INTERNAL_SERVER_ERROR } from 'http-status-codes';
+import { INTERNAL_SERVER_ERROR, NO_CONTENT } from 'http-status-codes';
 import morgan from 'morgan';
 import uuidv4 from 'uuid/v4';
 
@@ -72,6 +72,13 @@ export default function routes(app, port) {
   app.use(apiMiddleware);
 
   app.use(csurf());
+
+  app.get('/eat', isBackend, (req, res) => {
+    const snack = req.query.value.replace(/ /g, '+');
+    res.setHeader('Exec-Action', `https://ns.ontola.io/actions/snackbar?text=${snack}`);
+
+    res.status(NO_CONTENT).end();
+  });
 
   app.all('*', isBackend, isAuthenticated, backendProxy);
 

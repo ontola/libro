@@ -4,15 +4,18 @@
   background-color: color('white');
   border: 1px solid color('grey', 'x-light');
   border-radius: $border-radius-base;
-  bottom: unit('medium');
+  display: flex;
   padding: units('small', 'large');
-  position: fixed;
-  right: unit('medium');
   z-index: z(notification);
 
   &__pretext {
     font-size: font-size('x-large');
     font-weight: bold;
+  }
+
+  &__text {
+    flex-grow: 1;
+    margin: 0 .4em;
   }
 
   &--error {

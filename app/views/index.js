@@ -30,6 +30,8 @@ import Organization from './Organization/index';
 import Person from './Person';
 import SeqComp from './Seq';
 import Shape from './Shape';
+import Snackbar from './Snackbar';
+import SnackbarManager from './SnackbarManager';
 import SubMenu from './SubMenu';
 import User from './User';
 import Vote from './Vote';
@@ -65,6 +67,8 @@ LRS.registerAll(
   ...RDFSClass,
   SeqComp,
   ...Shape,
+  Snackbar,
+  SnackbarManager,
   ...SubMenu,
   ...User,
   ...Vote,

@@ -1,3 +1,4 @@
+import { LinkedResourceContainer } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Helmet from 'react-helmet';
@@ -24,6 +25,7 @@ import Popup from '../../topologies/Popup/index';
 import ErrorButtonWithFeedback from '../../views/Error/ErrorButtonWithFeedback';
 import HoverHelper from '../DevBrowser/HoverHelper';
 import { defaultKeymap, devKeymap } from '../../helpers/keyboard';
+import { NS } from '../../helpers/LinkedRenderStore';
 
 const renderErrorMessage = (error, errorMessage, reset) => (!error ? false : (
   <Notification reset={reset} type="error">{errorMessage}</Notification>
@@ -99,6 +101,7 @@ class App extends React.PureComponent {
               {Routes}
             </div>
             <BottomBarContainer />
+            <LinkedResourceContainer subject={NS.ontola('snackbar/manager')} />
             {error && renderErrorMessage(error, errorMessage, reset)}
           </SideBarContainer>
           <Popup />

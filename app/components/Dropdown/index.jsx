@@ -1,8 +1,8 @@
 /* eslint-disable */
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import ReactTransitionGroup from 'react-addons-transition-group';
 import { default as onClickOutside } from 'react-onclickoutside';
+import { animated, Transition } from 'react-spring';
 
 import DropdownContent from '../../topologies/DropdownContent/index';
 import './Dropdown.scss';
@@ -21,7 +21,7 @@ const propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
-  dropdownClass: PropTypes.string,
+  contentClassName: PropTypes.string,
   trigger: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,
@@ -33,8 +33,9 @@ class Dropdown extends Component {
     super(props);
     this.listeningToClick = true;
     this.openedByClick = false;
+    this.referenceElem = React.createRef();
     this.state = {
-      dropdownElement: {},
+      calculated: false,
       openState: false,
       renderLeft: false,
     };
@@ -45,12 +46,21 @@ class Dropdown extends Component {
     this.onMouseLeave = this.onMouseLeave.bind(this);
   }
 
-  calculateRenderLeft() {
-    this.referenceDropdownElement().style.left = '0';
-    this.referenceDropdownElement().style.right = 'auto';
-    const elemRect = this.referenceDropdownElement().getBoundingClientRect();
+  calculateRenderLeft(force = false) {
+    if (!this.state.calculated && !force) {
+      return undefined;
+    }
+
+    const elem = this.referenceElem.current;
+    elem.style.left = '0';
+    elem.style.right = 'auto';
+    const elemRect = elem.getBoundingClientRect();
     const shouldRenderLeft = (elemRect.width + elemRect.left) > window.innerWidth;
-    this.setState({ renderLeft: shouldRenderLeft });
+    this.setState({
+      calculated: true,
+      openState: true,
+      renderLeft: shouldRenderLeft,
+    });
   }
 
   close() {
@@ -60,14 +70,7 @@ class Dropdown extends Component {
   }
 
   componentDidMount() {
-    /* eslint-disable */
-    this.setState({
-      referenceDropdownElement: this.node.getElementsByClassName('Dropdown__content')[0],
-      dropdownElement: this.node.getElementsByClassName('Dropdown__content')[1]
-    });
-    /* eslint-enable */
     window.addEventListener('resize', this.handleResize);
-    window.requestAnimationFrame(this.calculateRenderLeft);
   }
 
   componentWillUnmount() {
@@ -97,7 +100,9 @@ class Dropdown extends Component {
   }
 
   handleResize() {
-    this.calculateRenderLeft();
+    if (this.state.openState) {
+      this.calculateRenderLeft(true);
+    }
   }
 
   mouseEnterTimeoutCallback() {
@@ -127,18 +132,8 @@ class Dropdown extends Component {
   }
 
   open() {
+    this.calculateRenderLeft(true);
     this.setState({ openState: true });
-  }
-
-  // Used to calculate the width of a dropdown content menu
-  referenceDropdownElement() {
-    let refDropdown;
-    if (typeof this.state.referenceDropdownElement !== 'undefined') {
-      refDropdown = this.state.referenceDropdownElement;
-    } else {
-      [refDropdown] = this.node.getElementsByClassName('Dropdown__content');
-    }
-    return refDropdown;
   }
 
   render() {
@@ -148,7 +143,6 @@ class Dropdown extends Component {
     const trigger = (
       <div
         className="Dropdown__trigger"
-        data-turbolinks="false"
         tabIndex="0"
         onClick={this.handleClick}
         onKeyUp={this.handleClick}
@@ -157,31 +151,27 @@ class Dropdown extends Component {
       </div>
     );
 
-    const dropdownClass = `Dropdown ${(openState
-      ? 'Dropdown-active'
-      : '')} ${this.props.dropdownClass}`;
-
-    const dropdownContent = (
-      <DropdownContent
-        close={this.close}
-        renderLeft={renderLeft}
-        {...this.props}
-        key="required"
-      >
-        {children}
-      </DropdownContent>
+    const dropdownContent = style => (
+      <animated.div style={style}>
+        <DropdownContent
+          close={this.close}
+          contentClassName={this.props.contentClassName}
+          key="required"
+          renderLeft={renderLeft}
+        >
+          {children}
+        </DropdownContent>
+      </animated.div>
     );
 
     return (
       <div
-        className={dropdownClass}
-        ref={(node) => { this.node = node; }}
+        className={`Dropdown ${(openState ? 'Dropdown-active' : '')}`}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
       >
         {trigger}
         <div
-          className="reference-elem"
           style={{
             overflow: 'hidden',
             pointerEvents: 'none',
@@ -189,11 +179,20 @@ class Dropdown extends Component {
             visibility: 'hidden',
           }}
         >
-          {dropdownContent}
+          <DropdownContent contentClassName={this.props.contentClassName}>
+            <div ref={this.referenceElem}>
+              {children}
+            </div>
+          </DropdownContent>
         </div>
-        <ReactTransitionGroup transitionAppear component="div" transitionName="dropdown">
+        <Transition
+          native
+          enter={{ opacity: 1, transform: 'translate3d(0, 0, 0)' }}
+          from={{ opacity: 0, transform: 'translate3d(0, 1em, 0)' }}
+          leave={{ opacity: 0, pointerEvents: 'none', transform: 'translate3d(0, 1em, 0)' }}
+        >
           {openState && dropdownContent}
-        </ReactTransitionGroup>
+        </Transition>
       </div>
     );
   }
