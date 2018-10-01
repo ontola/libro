@@ -4,6 +4,7 @@ import { Literal, NamedNode, Statement } from 'rdflib';
 
 import { FRONTEND_ACCEPT, FRONTEND_URL } from '../config';
 
+import history from './history';
 import ontolaMiddleware from './ontolaMiddleware';
 import transformers from './transformers';
 
@@ -14,7 +15,7 @@ const LRS = createStore({}, [
     }
     return next(a, o);
   },
-  ontolaMiddleware,
+  ontolaMiddleware(history),
 ]);
 
 transformers

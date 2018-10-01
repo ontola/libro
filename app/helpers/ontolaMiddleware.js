@@ -8,8 +8,9 @@ import {
 } from 'rdflib';
 
 import { safeCredentials } from './arguHelpers';
+import { retrievePath } from './iris';
 
-const ontolaMiddleware = (store) => {
+const ontolaMiddleware = history => (store) => {
   const ontola = memoizedNamespace('https://ns.ontola.io/');
   // eslint-disable-next-line no-param-reassign
   store.namespaces.ontola = ontola;
@@ -84,12 +85,20 @@ const ontolaMiddleware = (store) => {
 
     if (iri.value.startsWith(store.namespaces.ontola('actions/redirect').value)) {
       const value = new URL(iri.value).searchParams.get('location');
+      const reload = new URL(iri.value).searchParams.get('reload');
 
       if (!value) {
         throw new Error('No redirect path was given in action');
       }
 
-      window.location.href = value;
+      const location = new URL(value, window.location.origin).toString();
+
+      if (reload) {
+        window.location.href = location;
+      } else {
+        // TODO: connect to router
+        history.push(retrievePath(location));
+      }
       return undefined;
     }
 

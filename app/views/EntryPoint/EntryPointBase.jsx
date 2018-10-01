@@ -31,13 +31,15 @@ class EntryPointBase extends PropertyBase {
 
         this.responseCallback(response);
 
-        // TODO: This is shit.
+        // [AOD-303] TODO: This is shit.
         const u = new URL(targetCollection.value);
         const type = u.searchParams.get('type');
         u.searchParams.delete('type');
         u.searchParams.set('page', '1');
         if (type) {
           u.searchParams.set('type', type);
+        } else {
+          u.searchParams.set('type', 'paginated');
         }
         const first = namedNodeByIRI(u.toString());
         lrs.getEntity(targetCollection, { reload: true });
