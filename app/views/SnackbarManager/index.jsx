@@ -28,7 +28,10 @@ class SnackbarManager extends React.PureComponent {
       const next = queue.shift();
 
       child = style => (
-        <animated.div style={style}>
+        <animated.div
+          className="Snackbar__item"
+          style={style}
+        >
           <LinkedResourceContainer
             close={() => this.forceUpdate()}
             subject={next}
@@ -40,9 +43,9 @@ class SnackbarManager extends React.PureComponent {
     return (
       <Transition
         native
-        enter={{ bottom: '3rem', position: 'fixed', right: '1rem' }}
-        from={{ bottom: '-6rem', position: 'fixed', right: '1rem' }}
-        leave={{ bottom: '-6rem', position: 'fixed', right: '1rem' }}
+        enter={{ bottom: '3rem', opacity: 1 }}
+        from={{ bottom: '-2rem', opacity: 0 }}
+        leave={{ bottom: '-2rem', opacity: 0 }}
       >
         {child}
       </Transition>

@@ -4,7 +4,7 @@ import React from 'react';
 
 import Button from '../Button';
 
-import './Notification.scss';
+import './Snackbar.scss';
 
 const propTypes = {
   children: PropTypes.string,
@@ -19,26 +19,26 @@ const defaultProps = {
   type: 'message',
 };
 
-const Notification = ({
+const SnackbarComponent = ({
   reset,
   children,
   type,
 }) => {
   const className = classNames({
-    Notification: true,
-    [`Notification--${type}`]: true,
+    Snackbar: true,
+    [`Snackbar--${type}`]: true,
   });
 
   return (
     <div className={className}>
-      <Button small theme="subtle" onClick={reset}>x</Button>
-      {type === 'error' && <div className="Notification__pretext">Error:</div>}
-      <div className="Notification__text">{children}</div>
+      {type === 'error' && <div className="Snackbar__pretext">Error:</div>}
+      <div className="Snackbar__text">{children}</div>
+      <Button plain className="Button--snackbar" onClick={reset}>Dismiss</Button>
     </div>
   );
 };
 
-Notification.propTypes = propTypes;
-Notification.defaultProps = defaultProps;
+SnackbarComponent.propTypes = propTypes;
+SnackbarComponent.defaultProps = defaultProps;
 
-export default Notification;
+export default SnackbarComponent;

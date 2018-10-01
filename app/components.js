@@ -68,7 +68,6 @@ export {
 export { default as Markdown } from './components/Markdown/index';
 export { default as MarkdownFixedPreview } from './components/MarkdownFixedPreview/index';
 export { default as NavBarContent } from './components/NavBarContent/index';
-export { default as Notification } from './components/Notification/index';
 export { default as Omniform } from './components/Omniform/index';
 export { default as OmniformPreview } from './components/Omniform/OmniformPreview';
 export { default as OrgSwitcher } from './components/OrgSwitcher/index';
@@ -86,6 +85,7 @@ export {
   SignInFormCardRow,
 } from './components/SignInForm/index';
 export { default as SkipNavigation } from './components/SkipNavigation/index';
+export { default as Snackbar } from './components/Snackbar/index';
 export { default as Spinner } from './components/Spinner/index';
 export { default as Tab } from './components/Tab/Tab';
 export { default as Tag } from './components/Tag/index';

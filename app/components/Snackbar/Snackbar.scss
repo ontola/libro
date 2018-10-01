@@ -1,9 +1,9 @@
 @import '../shared/config';
 
-.Notification {
-  background-color: color('white');
-  border: 1px solid color('grey', 'x-light');
+.Snackbar {
+  background-color: color('grey', 'mid-dark');
   border-radius: $border-radius-base;
+  box-shadow: $box-shadow--intense;
   display: flex;
   padding: units('small', 'large');
   z-index: z(notification);
@@ -14,6 +14,7 @@
   }
 
   &__text {
+    color: color('white');
     flex-grow: 1;
     margin: 0 .4em;
   }
@@ -23,7 +24,9 @@
     color: color('brown');
   }
 
-  @include large {
-    max-width: 50%;
+  &__item {
+    max-width: 30rem;
+    position: absolute;
+    right: 1rem;
   }
 }

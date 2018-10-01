@@ -2,11 +2,11 @@ import { linkType, register } from 'link-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Notification from '../../components/Notification';
+import SnackbarComponent from '../../components/Snackbar';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../topologies';
 
-class Snackbar extends React.PureComponent {
+class SnackbarView extends React.PureComponent {
   static type = NS.ontola('snackbar/Snackbar');
 
   static topology = allTopologies;
@@ -22,11 +22,11 @@ class Snackbar extends React.PureComponent {
 
   render() {
     return (
-      <Notification reset={this.props.close}>
+      <SnackbarComponent reset={this.props.close}>
         {this.props.text}
-      </Notification>
+      </SnackbarComponent>
     );
   }
 }
 
-export default register(Snackbar);
+export default register(SnackbarView);

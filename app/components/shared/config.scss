@@ -49,7 +49,7 @@ $colors: (
   'red': (
     'dark': darken($color-base-red, 20%),
     'base': $color-base-red,
-    'light': lighten($color-base-red, 60%),
+    'light': lighten($color-base-red, 30%),
     'x-light': rgba($color-base-red, .2),
   ),
   'transparent': (
