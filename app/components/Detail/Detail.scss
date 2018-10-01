@@ -6,8 +6,7 @@
   margin-right: unit('small');
 }
 
-.Detail--link {
-  &:hover {
+  a &:hover {
     .Detail__text {
       color: color('grey', 'mid-dark');
     }

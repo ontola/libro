@@ -14,6 +14,7 @@ import { containerTopology } from '../../topologies/Container';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 
 import EntryPointButton from './EntryPointButton';
+import EntryPointCardFloat from './EntryPointCardFloat';
 import EntryPointContainer from './EntryPointContainer';
 import EntryPointOmiform from './EntryPointOmiform';
 
@@ -67,6 +68,7 @@ EntryPoint.propTypes = {
 
 export default [
   EntryPointButton,
+  EntryPointCardFloat,
   EntryPointContainer,
   EntryPointOmiform,
   LinkedRenderStore.registerRenderer(

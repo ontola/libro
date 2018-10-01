@@ -12,5 +12,8 @@
     &:hover {
       color: color('grey', 'dark');
     }
+    transition: background-color .1s;
+    margin: 0 .2em;
+    font-weight: bold;
   }
 }

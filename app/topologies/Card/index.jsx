@@ -35,7 +35,6 @@ class Card extends Topology {
   getClassName() {
     return classNames({
       Card: true,
-      'Card--fixed': this.props.fixed,
       'Card--shine': this.props.shine,
       'Card--warn': this.props.warn,
     });

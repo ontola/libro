@@ -1,45 +1,29 @@
-import LinkedRenderStore from 'link-lib';
-import { LinkedResourceContainer, linkedPropType } from 'link-redux';
+import { linkedPropType, register, LinkedResourceContainer } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
-import { containerTopology } from '../../../topologies/Container';
-import Parent from '../../../topologies/Parent';
+import { BreadcrumbsBar } from '../../../components';
 
-const propTypes = {
-  linkedProp: linkedPropType,
-};
+class IsPartOfPage extends React.PureComponent {
+  static type = NS.schema('Thing');
 
-const IsPartOf = ({ linkedProp }) => {
-  if (linkedProp && Object.keys(linkedProp).length === 0 && linkedProp.constructor === Object) {
-    return <div data-test="Thing-parent">parent</div>;
+  static topology = NS.argu('container');
+
+  static property = NS.schema('isPartOf');
+
+  static propTypes = {
+    linkedProp: linkedPropType,
+  };
+
+  render() {
+    const { linkedProp } = this.props;
+
+    return (
+      <BreadcrumbsBar>
+        <LinkedResourceContainer subject={linkedProp} />
+      </BreadcrumbsBar>
+    );
   }
+}
 
-  return (
-    <Parent>
-      <LinkedResourceContainer
-        fetch
-        forceRender
-        data-test="Thing-parent"
-        subject={linkedProp}
-      />
-    </Parent>
-  );
-};
-
-IsPartOf.propTypes = propTypes;
-
-export default [
-  LinkedRenderStore.registerRenderer(
-    IsPartOf,
-    NS.schema('Thing'),
-    [NS.argu('parent'), NS.schema('isPartOf')],
-    containerTopology
-  ),
-  LinkedRenderStore.registerRenderer(
-    IsPartOf,
-    [NS.schema('Action'), NS.argu('TrashAction'), NS.argu('UntrashAction')],
-    NS.schema('object'),
-    containerTopology
-  ),
-];
+export default register(IsPartOfPage);

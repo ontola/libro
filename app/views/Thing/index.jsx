@@ -1,7 +1,6 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { link, Property, subjectType } from 'link-redux';
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
 
 import {
   CardContent,
@@ -27,7 +26,6 @@ import { alertDialogTopology } from '../../topologies/Dialog';
 import { gridTopology } from '../../topologies/Grid';
 import hoverBox from '../../topologies/HoverBox';
 import { inlineTopology } from '../../topologies/Inline';
-import { parentTopology } from '../../topologies/Parent';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 
 import Arguments from './properties/arguments';
@@ -55,6 +53,7 @@ import TrashedAt from './properties/trashedAt';
 import UpdateAction from './properties/updateAction';
 import VoteEvents from './properties/voteEvents';
 import ThingPage from './ThingPage';
+import ThingParent from './ThingParent';
 import ThingPopup from './ThingPopup';
 import ThingSelect from './ThingSelect';
 
@@ -117,15 +116,6 @@ const ThingHoverBoxHidden = () => (
   </React.Fragment>
 );
 
-const ThingParent = () => (
-  <LDLink>
-    <div data-test="Thing-parent" style={{ alignItems: 'center', display: 'inline-flex', padding: '1em 1em 0em 1em' }}>
-      <FontAwesome name="arrow-up" style={{ marginRight: '.5em' }} />
-      <Property data-test="Thing-parent" label={[NS.schema('name'), NS.rdfs('label')]} />
-    </div>
-  </LDLink>
-);
-
 const ThingSection = ({ highlighted }) => (
   <CardHoverBox hiddenChildren={<ThingHoverBoxHidden />} shine={highlighted}>
     <Property label={NS.schema('name')} />
@@ -147,6 +137,7 @@ const ThingCard = () => (
 export default [
   ThingPage,
   ThingSelect,
+  ThingParent,
   ThingPopup,
   LinkedRenderStore.registerRenderer(
     () => <Property label={[NS.schema('name'), NS.rdfs('label')]} />,
@@ -162,12 +153,6 @@ export default [
       cardRowTopology,
       cardListTopology,
     ]
-  ),
-  LinkedRenderStore.registerRenderer(
-    ThingParent,
-    NS.schema('Thing'),
-    RENDER_CLASS_NAME,
-    parentTopology
   ),
   LinkedRenderStore.registerRenderer(
     link([NS.schema('name')])(({ name, theme }) => (
@@ -214,7 +199,7 @@ export default [
   ExpiresAt,
   FollowsCount,
   IsPrimaryTopicOf,
-  ...IsPartOf,
+  IsPartOf,
   Image,
   Location,
   Menus,

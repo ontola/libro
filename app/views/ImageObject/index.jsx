@@ -12,6 +12,7 @@ import { pageHeaderTopology } from '../../topologies/PageHeader';
 import { sidebarTopology } from '../../topologies/Sidebar';
 import { voteBubbleTopology } from '../../topologies/VoteBubble';
 import { voteEventSideTopology } from '../../topologies/VoteEventSide';
+import { parentTopology } from '../../topologies/Parent';
 
 import ImageObjectCardList from './ImageObjectCardList';
 import ImageObjectCover from './ImageObjectCover';
@@ -28,6 +29,7 @@ class ImageObject extends React.PureComponent {
     dropdownContentTopology,
     formFooterTopology,
     pageHeaderTopology,
+    parentTopology,
     sidebarTopology,
     voteBubbleTopology,
     voteEventSideTopology,

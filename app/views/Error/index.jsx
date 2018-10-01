@@ -33,6 +33,7 @@ import { sidebarTopology } from '../../topologies/Sidebar';
 import { voteBubbleTopology } from '../../topologies/VoteBubble';
 import { voteEventResultTopology } from '../../topologies/VoteEventResult';
 import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
+import { parentTopology } from '../../topologies/Parent';
 
 import ErrorButtonWithFeedback from './ErrorButtonWithFeedback';
 import ErrorButtonInline from './ErrorButtonInline';
@@ -200,6 +201,7 @@ export default [
       detailsBarTopology,
       hoverBoxTopology,
       inlineTopology,
+      parentTopology,
       voteBubbleTopology,
       voteEventResultTopology,
     ]

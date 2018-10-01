@@ -144,7 +144,7 @@ export default [
     parentTopology
   ),
   LinkedRenderStore.registerRenderer(
-    () => <ConnectedHeading data-test="Thing-name-widget" size="2" />,
+    props => <ConnectedHeading data-test="Thing-name-widget" size="2" {...props} />,
     NS.schema('Thing'),
     NamePredicates,
     widgetTopologyTopology

@@ -3,6 +3,8 @@ export { default as Attachment } from './components/Attachment/index';
 export { default as BackButton } from './components/BackButton/index';
 export { default as Button } from './components/Button/index';
 export { default as BlurButton } from './components/BlurButton/index';
+export { default as Breadcrumb } from './components/Breadcrumbs/Breadcrumb';
+export { default as BreadcrumbsBar } from './components/Breadcrumbs/BreadcrumbsBar';
 export { default as CardActions } from './components/Card/CardActions';
 export { default as CardButton } from './components/Card/CardButton';
 export { default as CardContent } from './components/Card/CardContent';
