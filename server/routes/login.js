@@ -11,7 +11,7 @@ async function login(req, res, next) {
     const json = await response.json();
 
     const expiresAt = new Date((json.created_at * MILLISECONDS) + (json.expires_in * MILLISECONDS));
-    if (json.token_type === 'bearer' && expiresAt > Date.now()) {
+    if (json.token_type === 'Bearer' && expiresAt > Date.now()) {
       req.session.arguToken = {
         accessToken: json.access_token,
         expiresAt,

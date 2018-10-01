@@ -20,7 +20,7 @@ async function getGuestToken(req) {
     return Promise.reject(new errors.InternalServerErrorError());
   }
   const expiresAt = new Date((body.created_at * MILLISECONDS) + (body.expires_in * MILLISECONDS));
-  if (body.token_type !== 'bearer') {
+  if (body.token_type !== 'Bearer') {
     return Promise.reject(new errors.UnauthorizedError());
   }
   if (expiresAt < Date.now()) {
