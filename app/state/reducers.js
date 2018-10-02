@@ -1,7 +1,6 @@
 export { default as app } from './app/reducer';
 export { default as collapsible } from './collapsible/reducer';
 export { default as closeable } from './closeable/reducer';
-export { default as communication } from './communication/reducer';
 export { default as form } from './form/reducer';
 export { linkReducer as linkedObjects } from 'link-redux';
 export { omniformReducer as omniform } from './omniform';
