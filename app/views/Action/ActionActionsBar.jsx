@@ -46,7 +46,7 @@ class ActionActionsBar extends PureComponent {
   }
 
   exec() {
-    this.props.lrs.exec(
+    return this.props.lrs.exec(
       this.props.subject,
       SHACL.actionToObject(this.props.lrs, this.props.subject)
     );
