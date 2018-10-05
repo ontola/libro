@@ -188,7 +188,12 @@ class Dropdown extends Component {
         <Transition
           native
           enter={{ opacity: 1, transform: 'translate3d(0, 0, 0)' }}
-          from={{ opacity: 0, transform: 'translate3d(0, 1em, 0)' }}
+          from={{
+            opacity: 0,
+            position: "relative",
+            transform: 'translate3d(0, 1em, 0)',
+            willChange: "opacity, transform, pointer-events",
+          }}
           leave={{ opacity: 0, pointerEvents: 'none', transform: 'translate3d(0, 1em, 0)' }}
         >
           {openState && dropdownContent}

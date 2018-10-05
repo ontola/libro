@@ -1,19 +1,8 @@
 @import '../shared/config';
 
-//@mixin closed-state {
-//  opacity: 0;
-//  transform: translate3d(0, 1em, 0);
-//  transition: transform .2s, opacity .2s;
-//}
-//
-//@mixin opened-state {
-//  opacity: 1;
-//  transform: translate3d(0, 0, 0);
-//  transition: transform .2s, opacity .2s;
-//}
-
 .Dropdown {
   position: relative;
+  z-index: 1;
 
   &:focus {
     outline: none;
@@ -45,7 +34,7 @@
   background-color: color('white');
   border-radius: $border-radius-base;
   border-top: 0;
-  box-shadow: $box-shadow;
+  box-shadow: $box-shadow--intense;
   display: flex;
   flex-direction: column;
   font-size: 1em;
@@ -60,8 +49,6 @@
   top: 100%;
   will-change: transform, opacity;
   z-index: 10;
-
-  //@include closed-state;
 
   li {
     min-width: 100%;
@@ -141,25 +128,6 @@
   text-transform: uppercase;
   width: 100%;
 }
-
-//.Dropdown--enter {
-//  @include closed-state;
-//
-//  &.Dropdown--enter-active {
-//    &.Dropdown__content {
-//      @include opened-state;
-//    }
-//  }
-//}
-//
-//.Dropdown--leave {
-//  @include opened-state;
-//
-//  &.Dropdown--leave-active {
-//    @include closed-state;
-//    pointer-events: none;
-//  }
-//}
 
 .Dropdown__divider {
   border-top: solid 1px color('grey', 'light');
