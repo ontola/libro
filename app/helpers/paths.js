@@ -11,8 +11,16 @@ export function absoluteRouterLocation(state) {
 }
 
 const path = {
+  confirmation() {
+    return '/users/confirmation/new';
+  },
+
   index() {
     return '/';
+  },
+
+  newPassword() {
+    return '/users/password/new';
   },
 
   /**

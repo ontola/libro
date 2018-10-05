@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Form } from 'informed';
+import { Link } from 'react-router-dom';
 
 import { STEPS } from '../../state/form/reducer';
 import Button from '../Button';
@@ -11,6 +12,7 @@ import Card, {
   CardRow,
 } from '../../topologies/Card';
 import Heading from '../Heading';
+import path from '../../helpers/paths';
 
 import SignInFormBase from './SignInFormBase';
 
@@ -139,8 +141,8 @@ class SignInFormCard extends SignInFormBase {
         </Card>
         <ul>
           <li>{this.getFooterText()}</li>
-          <li>Forgot password?</li>
-          <li>Confirmation instructions?</li>
+          <Link to={path.newPassword()}>Forgot password?</Link>
+          <Link to={path.confirmation()}>Resend confirmation link?</Link>
         </ul>
       </React.Fragment>
     );
