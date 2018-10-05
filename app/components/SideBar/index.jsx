@@ -54,7 +54,6 @@ class SideBar extends Component {
       sidebar: {
         overflowY: 'visible',
         width: '17rem',
-        // To overlap the BottomBar
         zIndex: '3',
       },
     };
@@ -92,7 +91,6 @@ class SideBar extends Component {
     });
     const buttonClassNames = classNames({
       'SideBar__switch-wrapper': true,
-      'SideBar__switch-wrapper--hidden': !this.props.isWideWindow,
       'SideBar__switch-wrapper--right': this.props.pullRight,
     });
 

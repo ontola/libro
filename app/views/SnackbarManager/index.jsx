@@ -43,7 +43,7 @@ class SnackbarManager extends React.PureComponent {
     return (
       <Transition
         native
-        enter={{ bottom: '3rem', opacity: 1 }}
+        enter={{ bottom: '1rem', opacity: 1 }}
         from={{ bottom: '-2rem', opacity: 0 }}
         leave={{ bottom: '-2rem', opacity: 0 }}
       >

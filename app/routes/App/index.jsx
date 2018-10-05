@@ -7,7 +7,6 @@ import ScrollMemory from 'react-router-scroll-memory';
 import { HotKeys } from 'react-hotkeys';
 
 import SideBarContainer from 'containers/SideBarContainer';
-import BottomBarContainer from 'containers/BottomBarContainer';
 import NavbarContainer from 'containers/NavbarContainer';
 
 import Routes from '..';
@@ -82,7 +81,6 @@ class App extends React.PureComponent {
               <ScrollMemory elementId="start-of-content" />
               {Routes}
             </div>
-            <BottomBarContainer />
             <LinkedResourceContainer subject={NS.ontola('snackbar/manager')} />
           </SideBarContainer>
           <Popup />
