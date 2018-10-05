@@ -9,6 +9,7 @@
   margin: 0;
   padding: units('x-small', 'large');
   transition: .1s box-shadow, .1s background-color;
+  white-space: nowrap;
 
   &:hover {
     cursor: pointer;
@@ -169,6 +170,7 @@ a {
 
 .Button--omniform-switcher {
   color: color('grey', 'mid-light');
+  overflow: hidden;
   padding-left: .8em;
   padding-right: .8em;
   position: relative;
@@ -183,6 +185,12 @@ a {
     position: absolute;
     right: 0;
     top: 0;
+  }
+
+  @include small-only {
+    .Button__label {
+      display: none;
+    }
   }
 }
 
