@@ -53,8 +53,8 @@ a {
   }
 
   &.Button--has-children {
-    .Button__icon {
-      margin-right: 4px;
+    .Button__label {
+      margin-left: 4px;
     }
   }
 }
@@ -215,7 +215,16 @@ a {
   color: color('red', 'light');
   font-size: .8em;
   font-weight: bold;
+  padding: unit('small');
   text-transform: uppercase;
+
+  &:hover {
+    background: color('transparent', 'x-light');
+  }
+
+  &:active {
+    background: color('transparent', 'light');
+  }
 }
 
 // Variants - maintain default style

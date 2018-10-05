@@ -52,9 +52,28 @@ function listToArr(lrs, acc, rest) {
   return acc;
 }
 
+const inputsPreferringPlaceholder = [
+  'text',
+  'textarea',
+];
+
 class PropertyShape extends PropertyBase {
+  descriptionValue() {
+    if (inputsPreferringPlaceholder.includes(this.inputType())) {
+      return null;
+    }
+    return this.props.description && this.props.description.value;
+  }
+
   shouldComponentUpdate() {
     return true;
+  }
+
+  placeholderValue() {
+    if (!inputsPreferringPlaceholder.includes(this.inputType())) {
+      return null;
+    }
+    return this.props.description && this.props.description.value;
   }
 
   inputType() {
@@ -96,7 +115,6 @@ class PropertyShape extends PropertyBase {
       autofocus,
       datatype,
       defaultValue,
-      description,
       maxLength,
       minCount,
       minLength,
@@ -140,6 +158,7 @@ class PropertyShape extends PropertyBase {
         <FormField
           validateOnChange
           autofocus={autofocus}
+          description={this.descriptionValue()}
           field={fieldName}
           initialValue={(t && t.value) || defaultValue}
           label={name && name.value}
@@ -147,7 +166,7 @@ class PropertyShape extends PropertyBase {
           minLength={tryParseInt(minLength)}
           minRows={this.props.maxLength > MAX_STR_LEN ? TEXTFIELD_MIN_ROWS : undefined}
           options={this.props.in && listToArr(this.props.lrs, [], this.props.in)}
-          placeholder={description && description.value}
+          placeholder={this.placeholderValue()}
           required={required}
           theme={theme}
           type={this.inputType()}

@@ -136,6 +136,12 @@ class FormField extends React.Component {
     };
   }
 
+  description() {
+    return this.props.description && (
+      <div className="Field__description">{this.props.description}</div>
+    );
+  }
+
   inputElement() {
     const {
       autoComplete,
@@ -323,6 +329,7 @@ class FormField extends React.Component {
       <div className={`Field ${className} ${classes}`}>
         {renderMessages && messagesAboveLabel && <Messages error={error} warning={warning} />}
         {this.label(label)}
+        {this.description()}
         {this.inputElement()}
         {renderMessages && !messagesAboveLabel && (
           <Messages bottom error={error} warning={warning} />
