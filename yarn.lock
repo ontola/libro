@@ -3475,6 +3475,11 @@ destroy@~1.0.4:
   resolved "https://registry.yarnpkg.com/destroy/-/destroy-1.0.4.tgz#978857442c44749e4206613e37946205826abd80"
   integrity sha1-l4hXRCxEdJ5CBmE+N5RiBYJqvYA=
 
+detect-element-overflow@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/detect-element-overflow/-/detect-element-overflow-1.1.1.tgz#771c50ec9d69f487477fef9728db0766a8f6962d"
+  integrity sha512-07f/EWuaPHU2JqPLg1JPuNaf47h+A5dt70EHO+X+U1zzSuAsgmI5qAU3kP1bCMICYmuvMrcqEZOIxiLB9d8zdg==
+
 detect-indent@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/detect-indent/-/detect-indent-4.0.0.tgz#f76d064352cdf43a1cb6ce619c4ee3a9475de208"
@@ -5096,6 +5101,13 @@ get-stream@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/get-stream/-/get-stream-3.0.0.tgz#8e943d1358dc37555054ecbe2edb05aa174ede14"
   integrity sha1-jpQ9E1jcN1VQVOy+LtsFqhdO3hQ=
+
+get-user-locale@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/get-user-locale/-/get-user-locale-1.1.1.tgz#edff0a8bbd6aa3ed0ca30cc441e1acd111543b7f"
+  integrity sha512-KuA+vMhsY+rSPK8hrmOvf7xXIMTs+L06RkgZ83jawZHSEqPLafZtQ63d3waXW3r8z6EQ49I/trraNncWM+s/2g==
+  dependencies:
+    lodash.once "^4.1.1"
 
 get-value@^2.0.3, get-value@^2.0.6:
   version "2.0.6"
@@ -10405,6 +10417,24 @@ react-animate-on-change@^2.1.1:
   resolved "https://registry.yarnpkg.com/react-animate-on-change/-/react-animate-on-change-2.1.1.tgz#18090e362fad1ecdb88348fa4a11b2a71cddba9b"
   integrity sha512-SSU92nzniNoATeAK1d1OC351GZirrnb+9zQoEtYIuPt0bNn2qptyHQaib0LGWMCG3AtWiTxYSKU6gKaWfB5X0w==
 
+react-calendar@^2.17.3:
+  version "2.17.4"
+  resolved "https://registry.yarnpkg.com/react-calendar/-/react-calendar-2.17.4.tgz#95aeb1545159b97727f152f091ef563624dfd70c"
+  integrity sha512-rNpq5R6awa3Krb8rcgBsD6/KkGKvAUGL/jcBvO9f3ikzrRAsBPwQrsu7stiahup0khFfAPRNT5DKaMMNS2bAgQ==
+  dependencies:
+    get-user-locale "^1.1.1"
+    merge-class-names "^1.1.1"
+    prop-types "^15.6.0"
+    react-lifecycles-compat "^3.0.4"
+
+react-clock@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/react-clock/-/react-clock-2.3.0.tgz#de5c328c7bdcec58348da5c2ccd8d8ca4fc10b76"
+  integrity sha1-3lwyjHvc7Fg0jaXCzNjYyk/BC3Y=
+  dependencies:
+    merge-class-names "^1.1.1"
+    prop-types "^15.6.0"
+
 react-codemirror2@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/react-codemirror2/-/react-codemirror2-5.1.0.tgz#62de4460178adea40eb52eabf7491669bf3794b8"
@@ -10416,6 +10446,33 @@ react-collapse@^5.0.0-alpha.0:
   integrity sha512-h3u5YN7XzgePCIKpJMt7V+PbIHuqh6Y/acx35bUG7MyXm0IVsl55XSb0IBK04hYry4J0FTk1MQK8djR1KWbR5w==
   dependencies:
     prop-types "^15.6.0"
+
+react-date-picker@^6.12.1:
+  version "6.12.1"
+  resolved "https://registry.yarnpkg.com/react-date-picker/-/react-date-picker-6.12.1.tgz#6fbae39b14ae2a0b204f4be78de8fd8a946230a1"
+  integrity sha512-QAA+genPqrcx8SP4Dzw8FuwNXbxWmzKVuujM5oSuaAbja6ZE3FGUkWrq5+2uI0mlaKeUCDa5gqicekMmZP28yw==
+  dependencies:
+    detect-element-overflow "^1.1.1"
+    get-user-locale "^1.1.1"
+    merge-class-names "^1.1.1"
+    prop-types "^15.6.0"
+    react-calendar "^2.17.3"
+    react-lifecycles-compat "^3.0.4"
+
+react-datetime-picker@^1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/react-datetime-picker/-/react-datetime-picker-1.6.1.tgz#c4391cd05c7e02f90e7f55490b16224afe888d83"
+  integrity sha512-6NGxy6EpIbE6XErLp69gTWvtcrgI+5BZ5Ju3Dg/e8YYLwEBl/83WMlu01LPwu0OWIseYKnb4fBkOR7TjpVAIvw==
+  dependencies:
+    detect-element-overflow "^1.1.1"
+    get-user-locale "^1.1.1"
+    merge-class-names "^1.1.1"
+    prop-types "^15.6.0"
+    react-calendar "^2.17.3"
+    react-clock "^2.3.0"
+    react-date-picker "^6.12.1"
+    react-lifecycles-compat "^3.0.4"
+    react-time-picker "^2.7.2"
 
 react-dev-utils@^5.0.1:
   version "5.0.2"
@@ -10785,6 +10842,18 @@ react-textarea-autosize@^7.0.4:
   integrity sha512-1cC8pFSrIVH92aE+UKxGQ2Gqq43qdIcMscJKScEFeBNemn6gHa+NwKqdXkHxxg5H6uuvW+cPpJPTes6zh90M+A==
   dependencies:
     prop-types "^15.6.0"
+
+react-time-picker@^2.7.2:
+  version "2.7.2"
+  resolved "https://registry.yarnpkg.com/react-time-picker/-/react-time-picker-2.7.2.tgz#f1426b284e10ecbf4114d0a4246b3cb0d94f1000"
+  integrity sha512-AaDjAZ+3V1xlMG4YMQ91N1cj4haF4eVVhynJveI80ONXSzQLivoXRIyQ1NTAB5sZljEgvWcKvo92CBnr830/uQ==
+  dependencies:
+    detect-element-overflow "^1.1.1"
+    get-user-locale "^1.1.1"
+    merge-class-names "^1.1.1"
+    prop-types "^15.6.0"
+    react-clock "^2.3.0"
+    react-lifecycles-compat "^3.0.4"
 
 react@16, react@^16.5.2:
   version "16.5.2"

@@ -45,6 +45,7 @@
     "rdflib": "^0.19.0",
     "react-addons-shallow-compare": "^15.6.2",
     "react-animate-on-change": "^2.1.1",
+    "react-datetime-picker": "^1.6.1",
     "react-hotkeys": "^1.1.4",
     "react-html5video": "^2.5.1",
     "react-markdown": "^3.6.0",

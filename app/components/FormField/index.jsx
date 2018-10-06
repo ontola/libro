@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 import { Literal } from 'rdflib';
 import React from 'react';
 import Textarea from 'react-textarea-autosize';
+import DateTimePicker from 'react-datetime-picker';
 
 import FileInput from '../Input/FileInput';
 import TextEditor from '../../containers/TextEditor';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { Input } from '../Input';
 
+import './DateTime.scss';
 import './FormField.scss';
 
 const propTypes = {
@@ -194,6 +196,15 @@ class FormField extends React.Component {
       },
       required,
     };
+
+    if (type === 'datetime-local') {
+      return (
+        <DateTimePicker
+          value={this.inputValue()}
+          onChange={e => fieldApi.setValue(e)}
+        />
+      );
+    }
 
     if (type === 'select') {
       return (
