@@ -29,7 +29,7 @@ class ActionButton extends React.PureComponent {
 
     const parsedURL = new URL(subject.value);
     const href = parsedURL && parsedURL.pathname + parsedURL.search;
-    const className = topology === defaultTopology ? 'CardList' : 'CardFloat';
+    const className = topology === defaultTopology ? 'card-list' : 'card-float';
 
     return (
       <Button plain className={`Button--${className}`} href={href} onClick={onClick}>

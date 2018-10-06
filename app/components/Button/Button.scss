@@ -291,8 +291,8 @@ $google-color: #4285f4;
   z-index: 1;
 }
 
-.Button--CardList,
-.Button--CardFloat {
+.Button--card-float,
+.Button--card-list {
   color: color('grey', 'base');
   font-weight: bold;
 
@@ -305,7 +305,7 @@ $google-color: #4285f4;
   }
 }
 
-.Button--CardList {
+.Button--card-list {
   font-size: .8rem;
   margin-bottom: .7rem;
 }

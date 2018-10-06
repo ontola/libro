@@ -22,10 +22,11 @@ class SnackbarManager extends React.PureComponent {
 
   render() {
     const queue = this.props['snackbar/queue'];
-    let child;
+    let child, key;
 
     if (queue && queue.elements.length > 0) {
       const next = queue.shift();
+      key = next.value;
 
       child = style => (
         <animated.div
@@ -45,6 +46,7 @@ class SnackbarManager extends React.PureComponent {
         native
         enter={{ bottom: '1rem', opacity: 1 }}
         from={{ bottom: '-2rem', opacity: 0 }}
+        key={key}
         leave={{ bottom: '-2rem', opacity: 0 }}
       >
         {child}

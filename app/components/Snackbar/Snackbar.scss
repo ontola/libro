@@ -5,12 +5,8 @@
   border-radius: $border-radius-base;
   box-shadow: $box-shadow--intense;
   display: flex;
+  position: relative;
   z-index: z(notification);
-
-  &__pretext {
-    font-size: font-size('x-large');
-    font-weight: bold;
-  }
 
   &__text {
     color: color('white');
@@ -27,5 +23,17 @@
     max-width: 30rem;
     position: absolute;
     right: 1rem;
+  }
+
+  &__progress-bar {
+    background-color: color('red', 'light');
+    border-bottom-left-radius: $border-radius-base;
+    border-bottom-right-radius: $border-radius-base;
+    bottom: 0;
+    height: 2px;
+    left: 0;
+    position: absolute;
+    right: 100%;
+    will-change: width;
   }
 }

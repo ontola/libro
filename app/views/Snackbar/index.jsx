@@ -22,7 +22,7 @@ class SnackbarView extends React.PureComponent {
 
   render() {
     return (
-      <SnackbarComponent reset={this.props.close}>
+      <SnackbarComponent close={this.props.close}>
         {this.props.text}
       </SnackbarComponent>
     );
