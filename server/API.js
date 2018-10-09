@@ -11,10 +11,17 @@ import { oAuthToken } from './config';
  * Class for communicating with the Argu API & SPI.
  */
 class API {
-  constructor({ userToken }) {
+  constructor({ req, userToken }) {
     this.base = constants.ARGU_API_URL;
+    this.req = req;
     this.serviceToken = oAuthToken;
     this.userToken = userToken;
+  }
+
+  proxySafeHeaders(req = this.req) {
+    return {
+      'Accept-Language': req.headers['accept-language'],
+    };
   }
 
   /**
@@ -36,6 +43,7 @@ class API {
     return this.fetchRaw(this.userToken, {
       headers: {
         Accept: constants.FRONTEND_ACCEPT,
+        ...this.proxySafeHeaders(req),
       },
       method: 'HEAD',
       path: req.url,
@@ -78,6 +86,7 @@ class API {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
+          ...this.proxySafeHeaders(),
         },
         method: 'POST',
         path,
