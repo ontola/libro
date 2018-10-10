@@ -5,6 +5,8 @@ import HttpStatus from 'http-status-codes';
 
 import * as constants from '../config';
 
+import { hasAction, setActionParam } from './actions';
+
 export function isDownloadRequest(url) {
   return new URL(url, 'https://example.com').searchParams.get('download') === 'true';
 }
@@ -27,9 +29,22 @@ function setProxyReqHeaders(proxyReq, req) {
 }
 
 /* eslint-disable no-param-reassign */
-function setProxyResHeaders(proxyRes) {
+function setProxyResHeaders(proxyRes, req) {
   delete proxyRes.headers.vary;
   proxyRes.headers.Vary = 'Accept,Accept-Encoding,Authorization,Content-Type';
+  const auth = proxyRes.headers['new-authorization'];
+  if (auth) {
+    delete proxyRes.headers['new-authorization'];
+    req.session.arguToken.accessToken = auth;
+    req.api.userToken = auth;
+    if (!isRedirect(proxyRes.statusCode)) {
+      if (hasAction(proxyRes, 'https://ns.ontola.io/actions/redirect')) {
+        proxyRes.headers['Exec-Action'] = setActionParam(proxyRes, 'https://ns.ontola.io/actions/redirect', 'reload', 'true');
+      } else {
+        proxyRes.headers['Exec-Action'] = 'https://ns.ontola.io/actions/refresh';
+      }
+    }
+  }
 }
 /* eslint-enable no-param-reassign */
 

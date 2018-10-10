@@ -65,15 +65,23 @@ const ontolaMiddleware = history => (store) => {
       return next(iri, opts);
     }
 
-    if (iri === store.namespaces.ontola('actions/logout')) {
-      return fetch(store.namespaces.app('logout').value, safeCredentials({
-        method: 'POST',
-      }))
-        .then(() => {
-          window.location.reload();
-        }, () => {
-          // TODO: bugsnag
-        });
+    switch (iri) {
+      case store.namespaces.ontola('actions/logout'):
+        return fetch(store.namespaces.app('logout').value, safeCredentials({
+          method: 'POST',
+        }))
+          .then(() => {
+            window.location.reload();
+          }, () => {
+            // TODO: bugsnag
+          });
+      case store.namespaces.ontola('actions/refresh'):
+        window.location.reload();
+        return Promise.resolve();
+      case store.namespaces.ontola('actions/reload'):
+        window.location.reload(true);
+        return Promise.resolve();
+      default:
     }
 
     if (iri.value.startsWith(store.namespaces.ontola('actions/copyToClipboard').value)) {
