@@ -1,4 +1,5 @@
-import { register } from 'link-redux';
+import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
+import { link } from 'link-redux';
 import PropTypes from 'prop-types';
 import { Literal, NamedNode } from 'rdflib';
 import React, { PureComponent } from 'react';
@@ -10,21 +11,7 @@ import { cardFixedTopology } from '../../topologies/Card/CardFixed';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 
-class ImageObjectCover extends PureComponent {
-  static type = NS.schema('ImageObject');
-
-  static topology = [
-    primaryResourceTopology,
-    cardTopology,
-    cardFixedTopology,
-    cardMainTopology,
-  ];
-
-  static mapDataToProps = [
-    NS.schema('url'),
-    NS.argu('imagePositionY'),
-  ];
-
+class ImageObjectBackgroundCover extends PureComponent {
   static propTypes = {
     imagePositionY: PropTypes.instanceOf(Literal).isRequired,
     url: PropTypes.instanceOf(NamedNode).isRequired,
@@ -48,4 +35,27 @@ class ImageObjectCover extends PureComponent {
   }
 }
 
-export default register(ImageObjectCover);
+export default [
+  LinkedRenderStore.registerRenderer(
+    link({
+      imagePositionY: NS.argu('imagePositionY'),
+      url: NS.argu('imgUrl1500x600'),
+    })(ImageObjectBackgroundCover),
+    NS.schema('ImageObject'),
+    RENDER_CLASS_NAME,
+    primaryResourceTopology
+  ),
+  LinkedRenderStore.registerRenderer(
+    link({
+      imagePositionY: NS.argu('imagePositionY'),
+      url: NS.argu('imgUrl568x400'),
+    })(ImageObjectBackgroundCover),
+    NS.schema('ImageObject'),
+    RENDER_CLASS_NAME,
+    [
+      cardTopology,
+      cardFixedTopology,
+      cardMainTopology,
+    ]
+  ),
+];

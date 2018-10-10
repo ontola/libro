@@ -47,7 +47,7 @@ class ImageObject extends React.PureComponent {
 
 export default [
   register(ImageObject),
-  ImageObjectCover,
+  ...ImageObjectCover,
   LinkedRenderStore.registerRenderer(
     () => (
       <SideBarLinkImageWrapper data-test="ImageObject-sidebar">
