@@ -8,10 +8,11 @@ import uuidv4 from 'uuid/v4';
 
 import * as constants from '../../app/config';
 import apiMiddleware from '../middleware/apiMiddleware';
+import authenticationMiddleware from '../middleware/authenticationMiddleware';
 import errorHandlerMiddleware from '../middleware/errorHandlerMiddleware';
 import sessionMiddleware from '../middleware/sessionMiddleware';
 import csp from '../utils/csp';
-import { isAuthenticated, isBackend } from '../utils/filters';
+import isBackend from '../utils/filters';
 import manifest from '../utils/manifest';
 import {
   backendProxy,
@@ -80,7 +81,9 @@ export default function routes(app, port) {
     res.status(NO_CONTENT).end();
   });
 
-  app.all('*', isBackend, isAuthenticated, backendProxy);
+  app.use(authenticationMiddleware);
+
+  app.all('*', isBackend, backendProxy);
 
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
