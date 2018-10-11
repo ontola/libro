@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import {
+  ActionButton,
   Heading,
   LDLink,
 } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { cardTopology } from '../../../topologies/Card';
 import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
+import { cardFloatTopology } from '../../../topologies/Card/CardFloat';
 import { cardListTopology } from '../../../topologies/Card/CardList';
 import { cardMainTopology } from '../../../topologies/Card/CardMain';
 import { cardRowTopology } from '../../../topologies/Card/CardRow';
@@ -91,6 +93,12 @@ export default [
     NS.schema('Thing'),
     NamePredicates,
     [hoverBoxTopology, cardListTopology]
+  ),
+  LinkedRenderStore.registerRenderer(
+    link([NS.schema('name')])(ActionButton),
+    NS.schema('Thing'),
+    NamePredicates,
+    cardFloatTopology
   ),
   LinkedRenderStore.registerRenderer(
     () => <ConnectedHeading data-test="Thing-name-card-main" size="1" />,

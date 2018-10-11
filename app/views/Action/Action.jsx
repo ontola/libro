@@ -31,6 +31,7 @@ class Action extends PureComponent {
   render() {
     return (
       <Container>
+        <Property label={NS.schema('name')} />
         <Property
           action={this.props.subject}
           label={NS.schema('target')}

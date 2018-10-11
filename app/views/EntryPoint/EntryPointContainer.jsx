@@ -26,6 +26,7 @@ class EntryPointContainer extends EntryPointBase {
     const {
       httpMethod,
       invalid,
+      name,
       url,
     } = this.props;
 
@@ -38,7 +39,6 @@ class EntryPointContainer extends EntryPointBase {
       >
         {({ submitting }) => (
           <React.Fragment>
-            <Property label={NS.schema('name')} />
             <Card>
               <CardContent>
                 <Property label={NS.schema('text')} />
@@ -60,7 +60,7 @@ class EntryPointContainer extends EntryPointBase {
                     theme="submit"
                     type="submit"
                   >
-                    Opslaan
+                    {name.value}
                   </Button>
                 </FormFooterRight>
               </FormFooter>

@@ -1,3 +1,4 @@
+export { default as ActionButton } from './components/ActionButton/index';
 export { default as Attachment } from './components/Attachment/index';
 export { default as BackButton } from './components/BackButton/index';
 export { default as Button } from './components/Button/index';

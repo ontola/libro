@@ -29,7 +29,7 @@ class CreateActionButton extends Component {
 
     return (
       <LDLink>
-        <Property label={NS.schema('target')} />
+        <Property label={NS.schema('name')} />
       </LDLink>
     );
   }
@@ -56,7 +56,7 @@ const mapCardListDispatchToProps = (dispatch, ownProps) => ({
 
 const InlineCreateActionButton = ({ isPartOf, onClick, subject }) => (
   <CreateActionButton isPartOf={isPartOf} subject={subject}>
-    <Property label={NS.schema('target')} onClick={onClick} />
+    <Property label={NS.schema('name')} onClick={onClick} />
   </CreateActionButton>
 );
 
