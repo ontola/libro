@@ -113,13 +113,16 @@ export default [
     sidebarTopology
   ),
   LinkedRenderStore.registerRenderer(
+    ({ linkedProp }) => <span data-test="Thing-name-select">{linkedProp.value}</span>,
+    NS.schema('Thing'),
+    NamePredicates,
+    selectTopology
+  ),
+  LinkedRenderStore.registerRenderer(
     ({ linkedProp }) => <LDLink data-test="Thing-name-inline">{linkedProp.value}</LDLink>,
     NS.schema('Thing'),
     NamePredicates,
-    [
-      inlineTopology,
-      selectTopology,
-    ]
+    inlineTopology
   ),
   LinkedRenderStore.registerRenderer(
     () => <LDLink><ConnectedHeading data-test="Thing-name-card" size="2" /></LDLink>,
