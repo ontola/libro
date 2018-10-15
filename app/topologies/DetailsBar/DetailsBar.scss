@@ -1,9 +1,75 @@
+@import '../../components/shared/config';
+
 .DetailsBar {
+  -webkit-overflow-scrolling: touch;
   align-items: flex-start;
+  background-color: color('grey', 'xx-light');
+  border-bottom: solid 1px color('grey', 'x-light');
+  border-top-left-radius: $border-radius-base;
+  border-top-right-radius: $border-radius-base;
   display: flex;
-  flex-wrap: wrap;
+  height: 2.3rem;
+
+  .CardContent & {
+    background: none;
+    border: 0;
+  }
+
+  .Card--fixed & {
+    // Prevents shrinking detailsbar in fixed cards
+    flex-shrink: 0;
+    margin-top: auto;
+  }
+
+  .VerticalScroller__scroll {
+    padding-left: unit('large');
+  }
+}
+
+.DetailsBar__hider {
+  // Older browser support
+  background-color: color('grey', 'xx-light');// sass-lint:disable-line property-sort-order
+  background: linear-gradient(to left, color('grey', 'xx-light'), rgba(248, 248, 248, 0)); // sass-lint:disable-line no-color-literals property-sort-order
+  height: 100%;
+  margin-right: -1.5rem;
+  pointer-events: none;
+  position: relative;
+  right: 1.5rem;
+  width: 3rem;
+
+  .CardContent & {
+    display: none;
+    padding-left: 0;
+  }
+}
+
+.DetailsBar__left {
+  display: flex;
+  height: 100%;
+  overflow-x: auto;
+  padding-left: unit('large');
+  position: relative;
+  width: 100%;
+  white-space: nowrap;
+
+  // hide scrollbar in edge
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  // hide scrollbar in firefox
+  overflow-x: -moz-hidden-unscrollable !important; // sass-lint:disable-line no-important no-duplicate-properties
+
+  .CardContent & {
+    padding-left: 0;
+  }
 }
 
 .DetailsBar__right {
+  align-self: flex-end;
+  display: flex;
+  height: 100%;
   margin-left: auto;
+  margin-right: .5rem;
+
+  .CardContent & {
+    margin-right: -.5rem;
+  }
 }

@@ -1,0 +1,43 @@
+@import '../shared/config';
+
+.VerticalScroller {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+
+  // hide scrollbar in webkit browsers
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  &--open {
+    // flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  &__scroll {
+    display: flex;
+    height: 100%;
+    overflow-x: auto;
+    position: relative;
+    width: 100%;
+    white-space: nowrap;
+
+    // hide scrollbar in edge
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    // hide scrollbar in firefox
+    overflow-x: -moz-hidden-unscrollable !important; // sass-lint:disable-line no-important no-duplicate-properties
+  }
+
+  &__hider {
+    // Older browser support
+    background-color: color('grey', 'xx-light');// sass-lint:disable-line property-sort-order
+    background: linear-gradient(to left, color('grey', 'xx-light'), rgba(248, 248, 248, 0)); // sass-lint:disable-line no-color-literals property-sort-order
+    display: flex;
+    margin-right: -3rem;
+    pointer-events: none;
+    position: relative;
+    right: 3rem;
+    width: 3rem;
+  }
+}

@@ -57,11 +57,11 @@ const ThingHoverBoxHidden = ({ text, option }) => {
   return (
     <Container size="small">
       <Card>
+        <DetailsBar>
+          <Property label={NS.schema('creator')} />
+          <Property label={NS.schema('dateCreated')} />
+        </DetailsBar>
         <CardContent>
-          <DetailsBar>
-            <Property label={NS.schema('creator')} />
-            <Property label={NS.schema('dateCreated')} />
-          </DetailsBar>
           <p><FontAwesome name={icon} style={{ margin: '.2em' }} />{text}</p>
         </CardContent>
       </Card>

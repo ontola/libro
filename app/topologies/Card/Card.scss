@@ -41,6 +41,8 @@
     }
 
     & .CardContent {
+      // Prevents shrinking detailsbar
+      flex-shrink: 1;
       // [AOD-174][AOD-179] Hides overflowing text, should not flex due to rendering in Chrome
       overflow: hidden;
     }
@@ -202,6 +204,8 @@
 .CardHeader {
   display: flex;
   margin-bottom: .5rem;
+  padding-left: unit('large');
+  padding-right: unit('large');
 
   .Card & {
     margin-right: -.7rem;
@@ -218,6 +222,6 @@
 
 
 .CardFloat {
-  align-items: start;
+  align-items: center;
   display: flex;
 }

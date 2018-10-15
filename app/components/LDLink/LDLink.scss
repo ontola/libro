@@ -1,23 +1,15 @@
 @import '../shared/config';
 
 .LDLink {
-
   &__default {
     display: inline-flex;
   }
 
   &__parent {
-    background-color: color('grey', 'x-light');
-    border-radius: 999px;
     color: color('grey', 'base');
     display: inline-flex;
-    font-weight: bold;
-    padding: 0 .5em;
-    margin: 0 .2em;
-    transition: background-color .1s;
 
     &:hover {
-      background-color: color('grey', 'light');
       color: color('grey', 'dark');
     }
   }

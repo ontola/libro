@@ -78,13 +78,13 @@
 
   &:hover,
   &:focus {
-    background-color: color('transparent', 'dark');
+    background-color: color('grey', 'xx-light');
     color: color('grey', 'dark');
     text-decoration: none;
   }
 
   &:active {
-    background-color: color('transparent', 'x-dark');
+    background-color: color('grey', 'x-light');
     transition: none;
   }
 

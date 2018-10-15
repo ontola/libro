@@ -44,7 +44,7 @@ class MenuItemPage extends React.PureComponent {
     goToFirstTab: PropTypes.func,
     menuItems: linkType,
     subject: subjectType,
-    topLevel: linkType,
+    topLevel: PropTypes.bool,
   };
 
   static defaultProps = {

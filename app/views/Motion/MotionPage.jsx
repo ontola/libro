@@ -3,7 +3,6 @@ import React from 'react';
 
 import {
   CardContent,
-  CardHeader,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import CardAppendix from '../../topologies/Card/CardAppendix';
@@ -26,22 +25,24 @@ class MotionPage extends React.PureComponent {
           <Property label={NS.schema('isPartOf')} />
           <Property label={NS.argu('trashedAt')} />
           <CardMain data-test="Thing-thing">
+            <DetailsBar
+              right={(
+                <React.Fragment>
+                  <Property label={NS.argu('followMenu')} />
+                  <Property label={NS.argu('shareMenu')} />
+                  <Property label={NS.argu('actionsMenu')} />
+                </React.Fragment>
+              )}
+            >
+              <Property label={NS.rdf('type')} />
+              <Property label={NS.schema('creator')} />
+              <Property label={NS.schema('dateCreated')} />
+              <Property label={NS.schema('location')} />
+              <Property label={NS.argu('expiresAt')} />
+              <Property label={NS.argu('pinnedAt')} />
+            </DetailsBar>
             <CardContent noSpacing>
-              <CardHeader
-                header={<Property label={[NS.schema('name'), NS.rdfs('label')]} />}
-              >
-                <Property label={NS.argu('followMenu')} />
-                <Property label={NS.argu('shareMenu')} />
-                <Property label={NS.argu('actionsMenu')} />
-              </CardHeader>
-              <DetailsBar>
-                <Property label={NS.rdf('type')} />
-                <Property label={NS.schema('creator')} />
-                <Property label={NS.schema('dateCreated')} />
-                <Property label={NS.schema('location')} />
-                <Property label={NS.argu('expiresAt')} />
-                <Property label={NS.argu('pinnedAt')} />
-              </DetailsBar>
+              <Property label={[NS.schema('name'), NS.rdfs('label')]} />
               <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
               <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
             </CardContent>

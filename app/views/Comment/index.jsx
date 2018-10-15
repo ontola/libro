@@ -19,7 +19,11 @@ import DetailsBar from '../../topologies/DetailsBar';
 const Comment = ({ highlighted }) => (
   <Card shine={highlighted}>
     <CardContent>
-      <DetailsBar>
+      <DetailsBar
+        right={(
+          <Property label={NS.argu('actionsMenu')} />
+        )}
+      >
         <Property label={NS.schema('creator')} />
         <Property label={NS.schema('dateCreated')} />
       </DetailsBar>

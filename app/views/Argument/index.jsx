@@ -11,7 +11,6 @@ import ActionsBar from '../../topologies/ActionsBar';
 import Card from '../../topologies/Card';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import { containerTopology } from '../../topologies/Container';
-import DetailsBar from '../../topologies/DetailsBar';
 
 import CurrentVote from './properties/currentVote';
 
@@ -20,10 +19,6 @@ const ArgumentContainer = ({ highlighted, votesProCount }) => (
     <Property label={NS.argu('coverPhoto')} />
     <CardContent noSpacing>
       <Property label={[NS.schema('name'), NS.rdfs('label')]} />
-      <DetailsBar>
-        <Property label={NS.schema('creator')} />
-        <Property label={NS.schema('dateCreated')} />
-      </DetailsBar>
       <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
     </CardContent>
     <ActionsBar>

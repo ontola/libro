@@ -6,7 +6,6 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { DetailText } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../../topologies';
 
@@ -44,7 +43,7 @@ class ActivityName extends PropertyBase {
         return previousValue.concat(<LinkedResourceContainer subject={this.props[term]} theme="parent" />);
       }
 
-      return previousValue.concat(<DetailText>{currentValue}</DetailText>);
+      return previousValue;
     }, []);
 
     return (

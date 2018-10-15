@@ -63,7 +63,6 @@ class SignInFormBase extends React.PureComponent {
   emailField() {
     return (
       <FormField
-        autoComplete="off"
         autofocus={this.fieldSettings[this.props.step].emailField.autofocus}
         field={btoa('email')}
         key="email"

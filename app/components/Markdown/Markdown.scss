@@ -33,10 +33,11 @@
   // Required to overwrite styling for megaDraft component
   // sass-lint:disable class-name-format
   .public-DraftStyleDefault-pre {
-    background-color: color('transparent', 'dark');
+    background-color: color('grey', 'xx-light');
     border: solid 1px color('grey', 'x-light');
     display: block;
     font-family: monospace;
+    font-size: .9em;
     margin-bottom: 1em;
     overflow: auto;
     padding: .2em .3em;

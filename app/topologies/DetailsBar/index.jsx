@@ -2,6 +2,8 @@ import { TopologyProvider } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import { CardFloat } from '../Card';
+import { VerticalScroller } from '../../components';
 
 import './DetailsBar.scss';
 
@@ -17,10 +19,16 @@ class DetailsBar extends TopologyProvider {
   render() {
     return this.wrap((
       <div className="DetailsBar">
-        {this.props.children}
+        <VerticalScroller>
+          {this.props.children}
+        </VerticalScroller>
+        {this.props.right && (
         <div className="DetailsBar__right">
-          {this.props.right}
+          <CardFloat>
+            {this.props.right}
+          </CardFloat>
         </div>
+        )}
       </div>
     ));
   }

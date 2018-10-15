@@ -60,12 +60,6 @@ const ThingContainer = ({ highlighted, subject }) => (
     <Property label={NS.argu('coverPhoto')} />
     <CardContent noSpacing>
       <Property label={[NS.schema('name'), NS.rdfs('label')]} />
-      <DetailsBar>
-        <Property label={NS.schema('creator')} />
-        <Property label={NS.schema('dateCreated')} />
-        <Property label={NS.argu('expiresAt')} />
-        <Property label={NS.argu('pinnedAt')} />
-      </DetailsBar>
       <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
     </CardContent>
     <Property label={NS.argu('voteableVoteEvent')} />
@@ -89,14 +83,14 @@ const ThingGrid = () => (
     <Property label={NS.argu('coverPhoto')} />
     <CardContent noSpacing>
       <Property label={[NS.schema('name'), NS.rdfs('label')]} />
-      <DetailsBar>
-        <Property label={NS.schema('creator')} />
-        <Property label={NS.schema('dateCreated')} />
-        <Property label={NS.argu('expiresAt')} />
-        <Property label={NS.argu('pinnedAt')} />
-      </DetailsBar>
       <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
     </CardContent>
+    <DetailsBar>
+      <Property label={NS.schema('creator')} />
+      <Property label={NS.schema('dateCreated')} />
+      <Property label={NS.argu('expiresAt')} />
+      <Property label={NS.argu('pinnedAt')} />
+    </DetailsBar>
   </CardFixed>
 );
 

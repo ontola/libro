@@ -2,10 +2,13 @@
 
 .AttachmentPreview {
   align-items: center;
+  box-shadow: $box-shadow;
+  border-radius: $border-radius-base;
   display: inline-flex;
   flex-direction: column;
   height: 5.2em;
-  margin: .5em;
+  margin-bottom: 1rem;
+  margin-right: .5em;
   position: relative;
   width: 5.2em;
 

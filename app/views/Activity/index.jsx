@@ -2,9 +2,6 @@ import { Property, register } from 'link-redux';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-import {
-  CardContent,
-} from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import Card from '../../topologies/Card';
 import DetailsBar from '../../topologies/DetailsBar';
@@ -24,13 +21,11 @@ class Activity extends React.PureComponent {
   render() {
     return (
       <Card>
-        <CardContent>
-          <DetailsBar
-            right={<Property label={NS.schema('dateCreated')} />}
-          >
-            <Property label={NS.schema('name')} />
-          </DetailsBar>
-        </CardContent>
+        <DetailsBar
+          right={<Property label={NS.schema('dateCreated')} />}
+        >
+          <Property label={NS.schema('name')} />
+        </DetailsBar>
         <Property label={NS.as('object')} />
       </Card>
     );

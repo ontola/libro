@@ -3,10 +3,7 @@
 .Detail {
   align-items: center;
   display: inline-flex;
-  line-height: unit('large');
-  margin-bottom: unit('xx-small');
-  margin-right: unit('x-small');
-  min-height: unit('large');
+  margin-right: unit('small');
 }
 
 .Detail--link {
@@ -24,6 +21,7 @@
 }
 
 .Detail__text {
+  align-self: center;
   color: color('grey', 'mid-light');
   font-size: font-size('small');
   line-height: unit('large');

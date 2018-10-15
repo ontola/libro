@@ -60,6 +60,10 @@
 h1.Heading {
   font-size: font-size('xx-large');
   font-weight: bold;
+
+  @include small-only {
+    font-size: font-size('x-large');
+  }
 }
 
 h2.Heading {
