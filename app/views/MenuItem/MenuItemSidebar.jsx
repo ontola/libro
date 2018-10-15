@@ -1,4 +1,3 @@
-import { isDifferentOrigin } from 'link-lib';
 import {
   LinkedResourceContainer, linkType,
   Property,
@@ -12,6 +11,7 @@ import {
   SideBarCollapsible,
 } from '../../components';
 import SideBarLinkIcon from '../../components/SideBarLink/SideBarLinkIcon';
+import { isDifferentOrigin } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { sidebarTopology } from '../../topologies/Sidebar';
 

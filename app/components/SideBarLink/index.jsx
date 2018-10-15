@@ -1,9 +1,9 @@
-import { isDifferentOrigin } from 'link-lib';
 import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import CountBubble from '../CountBubble';
+import { isDifferentOrigin } from '../../helpers/iris';
 
 import './SideBarLink.scss';
 import SideBarLinkIcon from './SideBarLinkIcon';

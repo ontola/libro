@@ -1,10 +1,9 @@
-import { isDifferentOrigin } from 'link-lib';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Link } from 'react-router-dom';
 
-import { expandPath, retrievePath } from '../../helpers/iris';
+import { expandPath, isDifferentOrigin, retrievePath } from '../../helpers/iris';
 
 import './Markdown.scss';
 

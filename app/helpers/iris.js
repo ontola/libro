@@ -1,3 +1,5 @@
+import { isDifferentOrigin as checkOrigin } from 'link-lib';
+
 const FABase = 'http://fontawesome.io/icon/';
 
 export function isFontAwesomeIRI(iri) {
@@ -33,13 +35,18 @@ export function iris(window) {
       return new URL(pathString, window.location.origin).href;
     },
 
+    isDifferentOrigin(iri) {
+      const t = typeof iri === 'string' ? new URL(iri, window.location.origin).toString() : iri;
+      return checkOrigin(t);
+    },
+
     /**
      * Returns only the pathname and beyond. Useful for relative navigation.
      * @param {string} iriString The IRI to process.
      * @returns {undefined|string} The pathname or undefined if invalid.
      */
     retrievePath(iriString) {
-      const iri = iriString && new URL(iriString, window.origin);
+      const iri = iriString && new URL(iriString, window.location.origin);
       return iri && iri.pathname + iri.search + iri.hash;
     },
   };
@@ -50,6 +57,7 @@ const windowBound = iris(typeof window !== 'undefined' ? window : undefined);
 export const {
   currentURL,
   expandPath,
+  isDifferentOrigin,
   retrievePath,
 } = windowBound;
 

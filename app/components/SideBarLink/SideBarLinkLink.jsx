@@ -1,10 +1,9 @@
-import { isDifferentOrigin } from 'link-lib';
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
 
-import { retrievePath } from '../../helpers/iris';
+import { isDifferentOrigin, retrievePath } from '../../helpers/iris';
 import { closeSideBar } from '../../state/sideBars/actions';
 
 const propTypes = {

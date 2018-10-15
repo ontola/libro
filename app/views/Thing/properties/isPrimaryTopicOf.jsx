@@ -1,7 +1,8 @@
-import LinkedRenderStore, { isDifferentOrigin } from 'link-lib';
+import LinkedRenderStore from 'link-lib';
 import { linkedPropType } from 'link-redux';
 import React from 'react';
 
+import { isDifferentOrigin } from '../../../helpers/iris';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../../topologies';
 
