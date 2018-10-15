@@ -7,7 +7,6 @@ import {
 import React from 'react';
 
 import { SideBarLink } from '../../components';
-import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { sidebarTopology } from '../../topologies/Sidebar';
 
@@ -28,7 +27,7 @@ const CollectionSidebar = ({ subject }) => (
   <SideBarLink
     icon="bell"
     label={label}
-    to={retrievePath(subject.value)}
+    to={subject.value}
   />
 );
 

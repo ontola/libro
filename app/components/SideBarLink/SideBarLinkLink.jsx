@@ -1,8 +1,10 @@
+import { isDifferentOrigin } from 'link-lib';
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
 
+import { retrievePath } from '../../helpers/iris';
 import { closeSideBar } from '../../state/sideBars/actions';
 
 const propTypes = {
@@ -32,12 +34,25 @@ class SideBarLinkLink extends PureComponent {
       );
     }
 
+    if (isDifferentOrigin(to)) {
+      return (
+        <a
+          className="SideBarLink__link"
+          href={to}
+          rel="nofollow noopener noreferrer"
+          target="_blank"
+        >
+          {children}
+        </a>
+      );
+    }
+
     return (
       <NavLink
         activeClassName="SideBarLink--active"
         className="SideBarLink__link"
         exact={isIndex}
-        to={to}
+        to={retrievePath(to)}
         onClick={onClick}
       >
         {children}

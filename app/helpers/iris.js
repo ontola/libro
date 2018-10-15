@@ -39,7 +39,7 @@ export function iris(window) {
      * @returns {undefined|string} The pathname or undefined if invalid.
      */
     retrievePath(iriString) {
-      const iri = iriString && new URL(iriString);
+      const iri = iriString && new URL(iriString, window.origin);
       return iri && iri.pathname + iri.search + iri.hash;
     },
   };

@@ -1,9 +1,11 @@
+import { isDifferentOrigin } from 'link-lib';
 import {
   LinkedResourceContainer, linkType,
   Property,
   register, subjectType,
 } from 'link-redux';
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
 
 import {
   Resource,
@@ -23,6 +25,7 @@ class MenuItemSidebar extends React.PureComponent {
   static topology = sidebarTopology;
 
   static mapDataToProps = {
+    href: NS.argu('href'),
     menuItems: {
       label: NS.argu('menuItems'),
       limit: Infinity,
@@ -31,17 +34,22 @@ class MenuItemSidebar extends React.PureComponent {
   };
 
   static propTypes = {
+    href: linkType,
     menuItems: linkType,
     subject: subjectType,
   };
 
   render() {
-    const { menuItems, subject } = this.props;
+    const { href, menuItems, subject } = this.props;
+
+    const icon = href && isDifferentOrigin(href)
+      ? <FontAwesome name="external-link" />
+      : <Property label={NS.schema('image')} />;
 
     const MenuItemLabel = (
       <Property forceRender data-test="MenuItem-MenuItemLabel" label={NS.argu('href')}>
         <SideBarLinkIcon>
-          <Property label={NS.schema('image')} />
+          {icon}
         </SideBarLinkIcon>
         <Property label={NS.schema('name')} />
       </Property>
