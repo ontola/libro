@@ -1,5 +1,5 @@
 import { memoizedNamespace } from 'link-lib';
-import { Literal, BlankNode } from 'rdflib';
+import { BlankNode, Literal, NamedNode } from 'rdflib';
 
 import { NS } from '../../../tests';
 
@@ -22,37 +22,37 @@ const resources = {
   [testNS('menus/info#about')]: {
     [NS.rdf('type')]: NS.argu('MenuItem'),
     [NS.schema('isPartOf')]: testNS('menus/info'),
-    [NS.argu('href')]: new Literal('https://argu.dev/i/about'),
+    [NS.argu('href')]: new NamedNode('https://argu.dev/i/about'),
     [NS.schema('name')]: new Literal('Over Argu'),
   },
   [testNS('menus/info#team')]: {
     [NS.rdf('type')]: NS.argu('MenuItem'),
     [NS.schema('isPartOf')]: testNS('menus/info'),
-    [NS.argu('href')]: new Literal('https://argu.dev/i/team'),
+    [NS.argu('href')]: new NamedNode('https://argu.dev/i/team'),
     [NS.schema('name')]: new Literal('Ons team'),
   },
   [testNS('menus/info#governments')]: {
     [NS.rdf('type')]: NS.argu('MenuItem'),
     [NS.schema('isPartOf')]: testNS('menus/info'),
-    [NS.argu('href')]: new Literal('https://argu.dev/i/governments'),
+    [NS.argu('href')]: new NamedNode('https://argu.dev/i/governments'),
     [NS.schema('name')]: new Literal('Argu voor overheden'),
   },
   [testNS('menus/info#press_media')]: {
     [NS.rdf('type')]: NS.argu('MenuItem'),
     [NS.schema('isPartOf')]: testNS('menus/info'),
-    [NS.argu('href')]: new Literal('https://argu.pr.co'),
+    [NS.argu('href')]: new NamedNode('https://argu.pr.co'),
     [NS.schema('name')]: new Literal('Pers & media'),
   },
   [testNS('menus/info#support')]: {
     [NS.rdf('type')]: NS.argu('MenuItem'),
     [NS.schema('isPartOf')]: testNS('menus/info'),
-    [NS.argu('href')]: new Literal('https://argu.freshdesk.com/support/home'),
+    [NS.argu('href')]: new NamedNode('https://argu.freshdesk.com/support/home'),
     [NS.schema('name')]: new Literal('Help & support'),
   },
   [testNS('menus/info#contact')]: {
     [NS.rdf('type')]: NS.argu('MenuItem'),
     [NS.schema('isPartOf')]: testNS('menus/info'),
-    [NS.argu('href')]: new Literal('https://argu.dev/i/contact'),
+    [NS.argu('href')]: new NamedNode('https://argu.dev/i/contact'),
     [NS.schema('name')]: new Literal('Contact'),
   },
 };

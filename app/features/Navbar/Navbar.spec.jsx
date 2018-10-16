@@ -60,7 +60,7 @@ const resources = {
     [NS.schema('image')]: new NamedNode('http://fontawesome.io/icon/gear'),
     [NS.schema('name')]: new Literal('Instellingen'),
     [NS.dc('identifier')]: NS.app('nederland/menus/navigations#settings'),
-    [NS.argu('href')]: new Literal('https://argu.localdev/nederland/settings'),
+    [NS.argu('href')]: new NamedNode('https://argu.localdev/nederland/settings'),
     [NS.rdf('type')]: NS.argu('MenuItem'),
   },
   [NS.app('nederland/menus/navigations#forums')]: {
