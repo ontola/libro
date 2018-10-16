@@ -64,10 +64,14 @@ class API {
    * Request a new access token from login credentials
    * @param {String} login The users' email or username.
    * @param {String} password The users' password.
+   * @param {String} redirect URL of the resource the user was working with before loggin in.
    * @return {Promise} The raw fetch response promise
    */
-  requestUserToken(login, password) {
-    return this.fetch(this.serviceToken, userTokenRequest(login, password));
+  requestUserToken(login, password, redirect = undefined) {
+    return this.fetch(
+      this.serviceToken,
+      userTokenRequest(login, password, this.userToken, redirect)
+    );
   }
 
   /**

@@ -7,7 +7,7 @@ const MILLISECONDS = 1000;
 
 async function login(req, res, next) {
   try {
-    const response = await req.api.requestUserToken(req.body.email, req.body.password);
+    const response = await req.api.requestUserToken(req.body.email, req.body.password, req.body.r);
     const json = await response.json();
 
     const expiresAt = new Date((json.created_at * MILLISECONDS) + (json.expires_in * MILLISECONDS));
