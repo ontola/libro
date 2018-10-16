@@ -46,7 +46,9 @@ export function iris(window) {
      * @returns {undefined|string} The pathname or undefined if invalid.
      */
     retrievePath(iriString) {
-      const iri = iriString && new URL(iriString, window.location.origin);
+      // TODO: https://github.com/linkeddata/rdflib.js/issues/265
+      const bugNormalized = iriString.replace(`${window.location.origin}//`, `${window.location.origin}/`);
+      const iri = iriString && new URL(bugNormalized, window.location.origin);
       return iri && iri.pathname + iri.search + iri.hash;
     },
   };

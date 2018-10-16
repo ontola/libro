@@ -45,7 +45,7 @@ class EntryPointBase extends PropertyBase {
         lrs.getEntity(targetCollection, { reload: true });
         lrs.getEntity(first, { reload: true });
         if (this.props.onDone) {
-          this.props.onDone();
+          this.props.onDone(response);
         }
         return Promise.resolve();
       }).catch((e) => {

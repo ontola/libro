@@ -1,11 +1,18 @@
+import { push } from 'connected-react-router';
 import { Property, register, subjectType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 
+import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 import Container from '../../topologies/Container';
 import { pageTopology } from '../../topologies/Page';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
+
+const mapDispatchToProps = dispatch => ({
+  navigate: iri => dispatch(push(retrievePath(iri))),
+});
 
 class Action extends PureComponent {
   static type = [
@@ -23,10 +30,22 @@ class Action extends PureComponent {
 
   static mapDataToProps = [NS.schema('object')];
 
+  static hocs = [connect(null, mapDispatchToProps)];
+
   static propTypes = {
-    onDone: PropTypes.func,
+    navigate: PropTypes.func,
     subject: subjectType,
   };
+
+  constructor(props) {
+    super(props);
+
+    this.onDoneHandler = this.onDoneHandler.bind(this);
+  }
+
+  onDoneHandler(response) {
+    this.props.navigate(response.iri.value);
+  }
 
   render() {
     return (
@@ -35,7 +54,7 @@ class Action extends PureComponent {
         <Property
           action={this.props.subject}
           label={NS.schema('target')}
-          onDone={this.props.onDone}
+          onDone={this.onDoneHandler}
         />
       </Container>
     );
