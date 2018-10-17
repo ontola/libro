@@ -23,7 +23,7 @@ config.module.rules.push({
     /node_modules\/webidl-conversions/,
     /node_modules\/ml-disjoint-set/,
   ],
-  test: /\.((t|j)sx?)$/,
+  test: /\.(m?(t|j)sx?)$/,
   use: ['babel-loader'],
 });
 

@@ -4,6 +4,7 @@ import { LinkedResourceContainer, Property, RenderStoreProvider } from 'link-red
 import PropTypes from 'prop-types';
 import rdf from 'rdflib';
 import React from 'react';
+import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
 
@@ -90,15 +91,17 @@ export const loc = ({
   return (
     <Provider store={ctx.store}>
       <RenderStoreProvider value={ctx.lrs}>
-        <StaticRouter context={{}}>
-          <LinkedResourceContainer
-            forceRender
-            subject={subject}
-            topology={topology}
-          >
-            {children}
-          </LinkedResourceContainer>
-        </StaticRouter>
+        <IntlProvider locale="en">
+          <StaticRouter context={{}}>
+            <LinkedResourceContainer
+              forceRender
+              subject={subject}
+              topology={topology}
+            >
+              {children}
+            </LinkedResourceContainer>
+          </StaticRouter>
+        </IntlProvider>
       </RenderStoreProvider>
     </Provider>
   );

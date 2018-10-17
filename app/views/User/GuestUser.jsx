@@ -2,6 +2,7 @@ import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { NS } from '../../helpers/LinkedRenderStore';
@@ -13,16 +14,26 @@ const propTypes = {
   redirectURL: PropTypes.string,
 };
 
-const GuestUserActor = ({ redirectURL }) => (
-  <React.Fragment>
-    <SideBarLink
-      icon="sign-in"
-      label="Log in / registreer"
-      to={path.signIn(redirectURL)}
+const GuestUserActor = ({ redirectURL }) => {
+  const label = (
+    <FormattedMessage
+      defaultMessage="Log in / sign up"
+      description="Link to the page for signing in or registering"
+      id="https://app.argu.co/i18n/auth/newSessionLink"
     />
-    <Property label={NS.argu('actorType')} />
-  </React.Fragment>
-);
+  );
+
+  return (
+    <React.Fragment>
+      <SideBarLink
+        icon="sign-in"
+        label={label}
+        to={path.signIn(redirectURL)}
+      />
+      <Property label={NS.argu('actorType')} />
+    </React.Fragment>
+  );
+};
 
 GuestUserActor.propTypes = propTypes;
 

@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import { Button } from '../../components';
 
 import ErrorButtonWithFeedback from './ErrorButtonWithFeedback';
-import { titleForStatus, errors } from './ErrorMessages';
+import { titleForStatus } from './ErrorMessages';
 
 const propTypes = {
   linkRequestStatus: PropTypes.shape({
@@ -27,7 +28,10 @@ class ErrorButtonSideBar extends ErrorButtonWithFeedback {
         title={titleForStatus(linkRequestStatus)}
         onClick={this.reload}
       >
-        {errors.nl.error}
+        <FormattedMessage
+          defaultMessage="Retry"
+          id="https://app.argu.co/i18n/errors/inlineButton/label"
+        />
       </Button>
     );
   }

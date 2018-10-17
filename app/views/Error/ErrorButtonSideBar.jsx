@@ -1,13 +1,21 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
 import { BlurButton } from '../../components';
 import SideBarLinkIcon from '../../components/SideBarLink/SideBarLinkIcon';
 import SideBarLinkLabel from '../../components/SideBarLink/SideBarLinkLabel';
 
 import ErrorButtonWithFeedback from './ErrorButtonWithFeedback';
-import { titleForStatus, errors } from './ErrorMessages';
+import { titleForStatus } from './ErrorMessages';
+
+defineMessages({
+  clickRetry: {
+    defaultMessage: 'Click to retry',
+    id: 'https://app.argu.co/i18n/errors/clickToRetry/label',
+  },
+});
 
 const propTypes = {
   linkRequestStatus: PropTypes.shape({
@@ -19,16 +27,17 @@ const propTypes = {
 
 class ErrorButtonSideBar extends ErrorButtonWithFeedback {
   render() {
-    const { linkRequestStatus } = this.props;
+    const { intl, linkRequestStatus } = this.props;
+
+    const retryText = intl.formatMessage('https://app.argu.co/i18n/errors/clickToRetry/label');
 
     return (
-
       <BlurButton
         className="SideBarLink"
         style={{
           cursor: 'pointer',
         }}
-        title={`${titleForStatus(linkRequestStatus)} ${errors.nl.click_to_retry}`}
+        title={`${titleForStatus(linkRequestStatus)} ${retryText}`}
         onClick={this.reload}
       >
         <SideBarLinkIcon>
@@ -38,7 +47,7 @@ class ErrorButtonSideBar extends ErrorButtonWithFeedback {
           />
         </SideBarLinkIcon>
         <SideBarLinkLabel>
-          {errors.nl.error}
+          <FormattedMessage id="https://app.argu.co/i18n/errors/inlineButton/label" />
         </SideBarLinkLabel>
       </BlurButton>
     );
@@ -47,4 +56,4 @@ class ErrorButtonSideBar extends ErrorButtonWithFeedback {
 
 ErrorButtonSideBar.propTypes = propTypes;
 
-export default ErrorButtonSideBar;
+export default injectIntl(ErrorButtonSideBar);

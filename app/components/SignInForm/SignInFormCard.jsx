@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Form } from 'informed';
+import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 
 import { STEPS } from '../../state/form/reducer';
@@ -15,6 +16,21 @@ import Heading from '../Heading';
 import path from '../../helpers/paths';
 
 import SignInFormBase from './SignInFormBase';
+
+defineMessages({
+  login: {
+    defaultMessage: 'login',
+    id: 'https://app.argu.co/i18n/forms/session/login',
+  },
+  or: {
+    defaultMessage: 'or',
+    id: 'https://app.argu.co/i18n/forms/session/or',
+  },
+  register: {
+    defaultMessage: 'register',
+    id: 'https://app.argu.co/i18n/forms/session/register',
+  },
+});
 
 const propTypes = {
   // From redux-form
@@ -69,7 +85,7 @@ class SignInFormCard extends SignInFormBase {
             <p />
           </Form>
         </CardContent>
-        <CardDivider text="of" />
+        <CardDivider text={this.props.intl.formatMessage({ id: 'https://app.argu.co/i18n/forms/session/or' })} />
       </React.Fragment>
     );
   }
@@ -84,8 +100,8 @@ class SignInFormCard extends SignInFormBase {
   }
 
   getHeaderText() {
-    let login = 'inloggen';
-    let register = 'registreren';
+    let login = this.props.intl.formatMessage({ id: 'https://app.argu.co/i18n/forms/session/login' });
+    let register = this.props.intl.formatMessage({ id: 'https://app.argu.co/i18n/forms/session/register' });
     if ([STEPS.signIn].includes(this.props.step)) {
       login = <b>{login}</b>;
     }
@@ -94,7 +110,13 @@ class SignInFormCard extends SignInFormBase {
     }
 
     return (
-      <React.Fragment>{login} of {register}</React.Fragment>
+      <React.Fragment>
+        {login}
+        {' '}
+        <FormattedMessage id="https://app.argu.co/i18n/forms/session/or" />
+        {' '}
+        {register}
+      </React.Fragment>
     );
   }
 
@@ -141,8 +163,22 @@ class SignInFormCard extends SignInFormBase {
         </Card>
         <ul>
           <li>{this.getFooterText()}</li>
-          <Link to={path.newPassword()}>Forgot password?</Link>
-          <Link to={path.confirmation()}>Resend confirmation link?</Link>
+          <li>
+            <Link to={path.newPassword()}>
+              <FormattedMessage
+                defaultMessage="Forgot password?"
+                id="https://app.argu.co/i18n/forms/session/forgotLink/label"
+              />
+            </Link>
+          </li>
+          <li>
+            <Link to={path.confirmation()}>
+              <FormattedMessage
+                defaultMessage="Resend confirmation link?"
+                id="https://app.argu.co/i18n/forms/session/confirmationLink/label"
+              />
+            </Link>
+          </li>
         </ul>
       </React.Fragment>
     );
@@ -152,4 +188,4 @@ class SignInFormCard extends SignInFormBase {
 SignInFormCard.propTypes = propTypes;
 SignInFormCard.defaultProps = defaultProps;
 
-export default SignInFormCard;
+export default injectIntl(SignInFormCard);

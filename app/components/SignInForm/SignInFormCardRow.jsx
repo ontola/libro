@@ -1,6 +1,7 @@
 import { Form } from 'informed';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { injectIntl } from 'react-intl';
 
 import Button from '../Button';
 import { CardActions } from '../../topologies/Card';
@@ -61,4 +62,4 @@ class SignInFormCardRow extends SignInFormBase {
 SignInFormCardRow.propTypes = propTypes;
 SignInFormCardRow.defaultProps = defaultProps;
 
-export default SignInFormCardRow;
+export default injectIntl(SignInFormCardRow);

@@ -106,7 +106,9 @@ exports[`Navbar current_actor logged out renders the correct representation 1`] 
       <span
         className="SideBarLink__truncated-label"
       >
-        Log in / registreer
+        <span>
+          Log in / sign up
+        </span>
       </span>
     </div>
   </a>

@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
 import Button from '../Button';
@@ -49,11 +50,27 @@ const CollapseText = ({
         <Button
           plain
           className="CollapseText__toggle"
-          title="Menu uitvouwen of inklappen"
+          title={(
+            <FormattedMessage
+              defaultMessage="Expand or collapse menu"
+              id="https://app.argu.co/i18n/collapsible/expandOrCollapseMenu"
+            />
+          )}
           onClick={() => onClickToggle()}
         >
-          {open && 'Inklappen '}
-          {!open && 'Lees meer '}
+          {open && (
+            <FormattedMessage
+              defaultMessage="Collapse"
+              id="https://app.argu.co/i18n/collapsible/collapse"
+            />
+          )}
+          {!open && (
+            <FormattedMessage
+              defaultMessage="Read more"
+              id="https://app.argu.co/i18n/collapsible/expand"
+            />
+          )}
+          {' '}
           <FontAwesome name="caret-down" />
         </Button>
       </div>

@@ -1,6 +1,7 @@
 import { LinkedResourceContainer } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 
 import MenuSectionLabel from '../MenuSectionLabel';
@@ -51,7 +52,14 @@ class NavBarContent extends React.PureComponent {
           </LinkedResourceContainer>
         </div>
         <div className="NavBarContent__footer">
-          <MenuSectionLabel name="Mijn Argu" />
+          <MenuSectionLabel
+            name={(
+              <FormattedMessage
+                defaultMessage="My Argu"
+                id="https://app.argu.co/i18n/sidebar/myArgu"
+              />
+            )}
+          />
           <LinkedResourceContainer subject={NS.app('c_a')} topology={NS.argu('sidebar')} />
           {actorType !== 'GuestUser' && <LinkedResourceContainer subject={NS.app('n')} topology={NS.argu('sidebar')} />}
           <LinkedResourceContainer subject={NS.app('menus/info')} topology={NS.argu('sidebar')} />

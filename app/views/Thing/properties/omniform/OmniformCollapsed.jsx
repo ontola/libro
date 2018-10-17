@@ -1,6 +1,7 @@
 import { linkType, register } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { Button, OmniformPreview } from '../../../../components';
@@ -97,7 +98,7 @@ class CollapsedOmniformProp extends Component {
           theme="transparant"
           onClick={closeForm}
         >
-          Annuleren
+          <FormattedMessage id="https://app.argu.co/i18n/forms/actions/cancel" />
         </Button>
       );
 

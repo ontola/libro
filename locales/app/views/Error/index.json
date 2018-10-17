@@ -1,0 +1,14 @@
+[
+  {
+    "id": "https://app.argu.co/i18n/errors/retryButton/label",
+    "defaultMessage": "Try again"
+  },
+  {
+    "id": "https://app.argu.co/i18n/errors/mistaken",
+    "defaultMessage": "Is this an error?"
+  },
+  {
+    "id": "https://app.argu.co/i18n/errors/informRequest",
+    "defaultMessage": "Let us know."
+  }
+]

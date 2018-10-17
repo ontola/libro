@@ -30,7 +30,7 @@ const config = {
     rules: [
       {
         exclude: /node_modules/,
-        test: /\.((t|j)sx?)$/,
+        test: /\.(m?(t|j)sx?)$/,
         use: [
           {
             loader: 'babel-loader',
@@ -52,7 +52,7 @@ const config = {
         ],
       },
       {
-        test: /(\.jsx|\.js)+$/,
+        test: /\.m?jsx?$/,
         use: StringReplacePlugin.replace({
           replacements,
         }),

@@ -22,7 +22,10 @@
     "@babel/proposal-class-properties",
     "@babel/syntax-dynamic-import",
     "@babel/transform-new-target",
-    "add-react-displayname"
+    "add-react-displayname",
+    ["react-intl", {
+      "messagesDir": "./locales"
+    }]
   ],
   "env": {
     "development": {

@@ -1,0 +1,21 @@
+{
+  "srcPaths": [
+    "app"
+  ],
+  "srcExtensions": [
+    ".js",
+    ".jsx"
+  ],
+  "langs": [
+    "nl",
+    "en"
+  ],
+  "originalLang": "en",
+  "msgFunctionNames": [],
+  "msgRegexps": [],
+  "fMinify": false,
+  "fJsOutput": false,
+  "fJsonOutput": false,
+  "fReactIntlOutput": true,
+  "dbVersion": 2
+}

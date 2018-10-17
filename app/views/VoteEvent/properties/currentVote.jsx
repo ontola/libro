@@ -7,6 +7,7 @@ import {
   withLinkCtx,
 } from 'link-redux';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { SignInFormContainerCardRow } from '../../../containers/SignInFormContainer';
@@ -75,7 +76,12 @@ export const getVoteButtons = (options) => {
       return (
         <SignInFormContainerCardRow
           r={currentURL()}
-          reason="BEVESTIG JOUW STEM VIA EMAIL:"
+          reason={(
+            <FormattedMessage
+              defaultMessage="Confirm your vote via e-mail:"
+              id="https://app.argu.co/i18n/voteFlow/confirmMessage"
+            />
+          )}
         />
       );
     }

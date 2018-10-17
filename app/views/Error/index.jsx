@@ -3,6 +3,7 @@ import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { subjectType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
@@ -38,7 +39,7 @@ import { tabPaneTopology } from '../../topologies/TabPane';
 
 import ErrorButtonWithFeedback from './ErrorButtonWithFeedback';
 import ErrorButtonInline from './ErrorButtonInline';
-import { bodyForStatus, errors, headerForStatus } from './ErrorMessages';
+import { bodyForStatus, headerForStatus } from './ErrorMessages';
 import ErrorButtonSideBar from './ErrorButtonSideBar';
 
 const withUserType = Comp => connect(state => ({
@@ -65,7 +66,10 @@ const ErrorCardComp = (props) => {
 
   let mainAction = (
     <ErrorButtonWithFeedback theme="box" {...props}>
-      Opnieuw proberen
+      <FormattedMessage
+        defaultMessage="Try again"
+        id="https://app.argu.co/i18n/errors/retryButton/label"
+      />
     </ErrorButtonWithFeedback>
   );
   if (shouldShowSignIn(userType, linkRequestStatus.status)) {
@@ -128,12 +132,18 @@ const ErrorPageComp = (props) => {
           {caughtError && <p>{caughtError.message}</p>}
           {__DEVELOPMENT__ && caughtError && <pre>{caughtError.stack}</pre>}
           <p>
-            {`${errors.nl.mistaken} `}
+            <FormattedMessage
+              defaultMessage="Is this an error?"
+              id="https://app.argu.co/i18n/errors/mistaken"
+            />
             <LinkDuo
               style={{ textDecoration: 'underline' }}
               to="https://argu.freshdesk.com/support/tickets/new"
             >
-              {errors.nl.let_us_know}
+              <FormattedMessage
+                defaultMessage="Let us know."
+                id="https://app.argu.co/i18n/errors/informRequest"
+              />
             </LinkDuo>
           </p>
         </CardContent>

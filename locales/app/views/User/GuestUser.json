@@ -1,0 +1,7 @@
+[
+  {
+    "id": "https://app.argu.co/i18n/auth/newSessionLink",
+    "description": "Link to the page for signing in or registering",
+    "defaultMessage": "Log in / sign up"
+  }
+]

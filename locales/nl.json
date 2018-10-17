@@ -1,0 +1,443 @@
+{
+  "d60ff73c-9eb5-4325-8d50-3d0ba37e91a1": {
+    "id": "d60ff73c-9eb5-4325-8d50-3d0ba37e91a1",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "gesloten op {date}",
+    "keyId": "Q2xvc2VkIG9uIHtkYXRlfQ=="
+  },
+  "a7c139dc-524f-4e5f-96d3-1bdc60fb0c57": {
+    "id": "a7c139dc-524f-4e5f-96d3-1bdc60fb0c57",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "gesloten",
+    "keyId": "Y2xvc2Vk"
+  },
+  "ccaf44ad-6846-40c2-aa93-6b8c548a11dd": {
+    "id": "ccaf44ad-6846-40c2-aa93-6b8c548a11dd",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "sluit op {date}",
+    "keyId": "Q2xvc2luZyBvbiB7ZGF0ZX0="
+  },
+  "2b46ddbf-005d-4046-aa5e-c02ec2ee2fcf": {
+    "id": "2b46ddbf-005d-4046-aa5e-c02ec2ee2fcf",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "sluit {relativeDate}",
+    "keyId": "RHVlIHtyZWxhdGl2ZURhdGV9"
+  },
+  "210c5a5a-de2a-402f-bc74-3ba130cf5155": {
+    "id": "210c5a5a-de2a-402f-bc74-3ba130cf5155",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Log in / registreer",
+    "keyId": "TG9nIGluIC8gc2lnbiB1cA=="
+  },
+  "67dedb98-3985-49b0-ad66-b7f4f511ae31": {
+    "id": "67dedb98-3985-49b0-ad66-b7f4f511ae31",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Mijn Argu",
+    "keyId": "TXkgQXJndQ=="
+  },
+  "bc187a14-f932-4e68-bbe9-e3dd608be238": {
+    "id": "bc187a14-f932-4e68-bbe9-e3dd608be238",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Lees meer",
+    "keyId": "UmVhZCBtb3Jl"
+  },
+  "af0d7b27-5913-41ba-b739-7b49b66ae3f1": {
+    "id": "af0d7b27-5913-41ba-b739-7b49b66ae3f1",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Inklappen",
+    "keyId": "Q29sbGFwc2U="
+  },
+  "c6c89a54-6840-4038-890e-872544f15eda": {
+    "id": "c6c89a54-6840-4038-890e-872544f15eda",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Menu uitvouwen of inklappen",
+    "keyId": "RXhwYW5kIG9yIGNvbGxhcHNlIG1lbnU="
+  },
+  "bb452707-6af4-45c0-bdd4-854c738e59a6": {
+    "id": "bb452707-6af4-45c0-bdd4-854c738e59a6",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Plaats jouw reactie...",
+    "keyId": "U2hhcmUgeW91ciByZXNwb25zZS4uLg=="
+  },
+  "fd21ef98-f933-4beb-b175-12b5cd44683f": {
+    "id": "fd21ef98-f933-4beb-b175-12b5cd44683f",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "opslaan",
+    "keyId": "c2F2ZQ=="
+  },
+  "83a83f07-4e27-4624-ace2-2541d43bffbf": {
+    "id": "83a83f07-4e27-4624-ace2-2541d43bffbf",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "email@voorbeeld.nl",
+    "keyId": "ZW1haWxAZXhhbXBsZS5jb20="
+  },
+  "a03335aa-e0cf-4d91-8101-bc939cd72c8a": {
+    "id": "a03335aa-e0cf-4d91-8101-bc939cd72c8a",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Vergeet niet je stem te bevestigen door op de link te klikken die we je hebben gemaild naar {email}",
+    "keyId": "UGxlYXNlIGNvbmZpcm0geW91ciB2b3RlIGJ5IGNsaWNraW5nIHRoZSBsaW5rIHdlJ3ZlIHNlbmQgdG8ge2VtYWlsfQ=="
+  },
+  "b2dfd12b-f56c-45cb-8271-ee80a1e6d008": {
+    "id": "b2dfd12b-f56c-45cb-8271-ee80a1e6d008",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Jouw e-mail adres",
+    "keyId": "WW91ciBlbWFpbCBhZGRyZXNz"
+  },
+  "7cd63774-9ba7-4cf1-8f49-9c119699c9ec": {
+    "id": "7cd63774-9ba7-4cf1-8f49-9c119699c9ec",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Jouw wachtwoord",
+    "keyId": "WW91ciBwYXNzd29yZA=="
+  },
+  "792d88a2-69ce-40a5-9023-cf96d7b429d4": {
+    "id": "792d88a2-69ce-40a5-9023-cf96d7b429d4",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Bevestig",
+    "keyId": "Q29uZmlybQ=="
+  },
+  "e3cd9861-d7cd-4154-8bf4-c2e0b11b4428": {
+    "id": "e3cd9861-d7cd-4154-8bf4-c2e0b11b4428",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Ga verder",
+    "keyId": "Q29udGludWU="
+  },
+  "cdec9fb6-bc0c-467a-956c-c9ca5e1862cd": {
+    "id": "cdec9fb6-bc0c-467a-956c-c9ca5e1862cd",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Overwachtse staat",
+    "keyId": "VW5leHBlY3RlZCBzdGF0ZQ=="
+  },
+  "dc70851e-0c72-4740-8053-6a42d0cf2651": {
+    "id": "dc70851e-0c72-4740-8053-6a42d0cf2651",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "terug",
+    "keyId": "YmFjaw=="
+  },
+  "5e832d5b-5c04-4745-a9b7-42dedd0f5855": {
+    "id": "5e832d5b-5c04-4745-a9b7-42dedd0f5855",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "of",
+    "keyId": "b3I="
+  },
+  "4ea2e774-9e9f-4399-b655-ff0340e6708d": {
+    "id": "4ea2e774-9e9f-4399-b655-ff0340e6708d",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Wachtwoord vergeten?",
+    "keyId": "Rm9yZ290IHBhc3N3b3JkPw=="
+  },
+  "515dae1d-3a73-42b9-8e46-fc7bc33bc97a": {
+    "id": "515dae1d-3a73-42b9-8e46-fc7bc33bc97a",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Bevestigingslink opnieuw sturen?",
+    "keyId": "UmVzZW5kIGNvbmZpcm1hdGlvbiBsaW5rPw=="
+  },
+  "2f331053-b7f0-4a4e-b0f0-d37698ca3153": {
+    "id": "2f331053-b7f0-4a4e-b0f0-d37698ca3153",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "inloggen",
+    "keyId": "bG9naW4="
+  },
+  "d69871e8-c17e-4900-873f-cbd9b62b892f": {
+    "id": "d69871e8-c17e-4900-873f-cbd9b62b892f",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "registreren",
+    "keyId": "cmVnaXN0ZXI="
+  },
+  "0cb9fde9-addf-436d-9b5e-e9b84e20a721": {
+    "id": "0cb9fde9-addf-436d-9b5e-e9b84e20a721",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "annuleren",
+    "keyId": "Y2FuY2Vs"
+  },
+  "9a82d2b1-0089-4b9a-89ff-725fa17c0c40": {
+    "id": "9a82d2b1-0089-4b9a-89ff-725fa17c0c40",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Bevestig jouw stem via e-mail",
+    "keyId": "Q29uZmlybSB5b3VyIHZvdGUgdmlhIGUtbWFpbDo="
+  },
+  "3d9c3170-4b1f-4b9f-9dca-923860ea644b": {
+    "id": "3d9c3170-4b1f-4b9f-9dca-923860ea644b",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Fout in het verzoek (400 Bad Request)",
+    "keyId": "QmFkIHJlcXVlc3QgKDQwMCBCYWQgUmVxdWVzdCk="
+  },
+  "13e0b442-6c4d-4f0a-91e7-420917d150d4": {
+    "id": "13e0b442-6c4d-4f0a-91e7-420917d150d4",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Slechte doorgang",
+    "keyId": "QmFkIGdhdGV3YXk="
+  },
+  "cc09bee1-c14b-483d-abde-1214d121b962": {
+    "id": "cc09bee1-c14b-483d-abde-1214d121b962",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Conflict",
+    "keyId": "Q29uZmxpY3Q="
+  },
+  "ca66988a-32d1-4beb-af61-441ec0f37055": {
+    "id": "ca66988a-32d1-4beb-af61-441ec0f37055",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Er ging iets aan onze kant fout, probeer het later nog eens",
+    "keyId": "QW4gZXJyb3Igb2NjdXJyZWQgb24gb3VyIHNpZGUsIHBsZWFzZSB0cnkgYWdhaW4gbGF0ZXIu"
+  },
+  "263608fd-f773-42b6-b1bd-322029ad4399": {
+    "id": "263608fd-f773-42b6-b1bd-322029ad4399",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Doorgang stilgevallen",
+    "keyId": "R2F0ZXdheSB0aW1lb3V0"
+  },
+  "f3f9e4e9-d742-4943-8552-ba023082021e": {
+    "id": "f3f9e4e9-d742-4943-8552-ba023082021e",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Item verwijderd",
+    "keyId": "R29uZQ=="
+  },
+  "1f4c43dd-bf70-4fac-8ff3-2235bf19887c": {
+    "id": "1f4c43dd-bf70-4fac-8ff3-2235bf19887c",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Interne serverfout",
+    "keyId": "SW50ZXJuYWwgc2VydmVyIGVycm9y"
+  },
+  "fef26b7c-af65-48fb-a076-d4b0c26e0618": {
+    "id": "fef26b7c-af65-48fb-a076-d4b0c26e0618",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Je maakt te veel verzoeken, probeer het over halve minuut nog eens.",
+    "keyId": "WW91J3JlIG1ha2luZyB0b28gbWFueSByZXF1ZXN0LCB0cnkgYWdhaW4gaW4gaGFsZiBhIG1pbnV0ZS4="
+  },
+  "695e06dd-5d36-400c-8656-2b72e1696f57": {
+    "id": "695e06dd-5d36-400c-8656-2b72e1696f57",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Mogelijk is het zichtbaar na te hebben ingelogt.",
+    "keyId": "TWF5YmUgaXQncyB2aXNpYmxlIGFmdGVyIGxvZ2dpbmcgaW4u"
+  },
+  "9cb33757-7997-40e4-9a8b-f6f667a2c3a1": {
+    "id": "9cb33757-7997-40e4-9a8b-f6f667a2c3a1",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Misschien is het item dat je zoekt verwijderd of heeft het nooit bestaan.",
+    "keyId": "TWF5YmUgdGhlIGl0ZW0geW91IGFyZSBsb29raW5nIGZvciBpcyBkZWxldGVkIG9yIG5ldmVyIGV4aXN0ZWQu"
+  },
+  "bbf8b256-58ed-4bdf-888b-2e71c998afb4": {
+    "id": "bbf8b256-58ed-4bdf-888b-2e71c998afb4",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Dit resource kan niet worden bekeken in dit formaat.",
+    "keyId": "Tm90IGFjY2VwdGFibGU="
+  },
+  "f4503998-22fa-4087-b26b-04d351ffc77b": {
+    "id": "f4503998-22fa-4087-b26b-04d351ffc77b",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Deze functionaliteit is niet geïmplementeerd, probeer het later nog eens.",
+    "keyId": "Tm90IGltcGxlbWVudGVk"
+  },
+  "1b32f46b-2509-407d-98c3-2088d0bc0b19": {
+    "id": "1b32f46b-2509-407d-98c3-2088d0bc0b19",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Probleem met de browser",
+    "keyId": "UHJvYmxlbSB3aXRoIHRoZSBicm93c2Vy"
+  },
+  "37b852a5-3f4f-48c1-8311-20b9fb9f557d": {
+    "id": "37b852a5-3f4f-48c1-8311-20b9fb9f557d",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Verzoek te groot",
+    "keyId": "UmVxdWVzdCBlbnRpdHkgdG9vIGxhcmdlICg0MTMgUGF5bG9hZCBUb28gTGFyZ2Up"
+  },
+  "61cd8cdc-15d5-450c-b30a-e003aab5e789": {
+    "id": "61cd8cdc-15d5-450c-b30a-e003aab5e789",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Verzoek stilgevallen",
+    "keyId": "UmVxdWVzdCB0aW1lb3V0"
+  },
+  "fae38379-4ad1-42f4-adf7-d38d8e6232e7": {
+    "id": "fae38379-4ad1-42f4-adf7-d38d8e6232e7",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Service niet beschikbaar",
+    "keyId": "U2VydmljZSB1bmF2YWlsYWJsZQ=="
+  },
+  "41731f5d-e518-4f88-ba98-950151c16bd2": {
+    "id": "41731f5d-e518-4f88-ba98-950151c16bd2",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "De verandering kon niet worden doorgevoerd omdat het item bewerkt is sinds deze lokaal was geopend.",
+    "keyId": "VGhlIGNoYW5nZSBjb3VsZCBub3QgYmUgcGVyc2lzdGVkIGJlY2F1c2UgdGhlIHJlc291cmNlIHdhcyBlZGl0ZWQgc2luY2UgaXQgd2FzIG9wZW5lZCBsb2NhbGx5Lg=="
+  },
+  "c4def241-658b-4b8c-9bc2-cf42b8935a23": {
+    "id": "c4def241-658b-4b8c-9bc2-cf42b8935a23",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Het item dat je probeert aan te maken kan niet worden verwerkt.",
+    "keyId": "VGhlIGl0ZW0gdGhhdCB5b3UgYXJlIHRyeWluZyB0byBjcmVhdGUgY2Fubm90IGJlIHByb2Nlc3NlZC4="
+  },
+  "82b1d3c7-b0db-415e-afa6-a456116864b9": {
+    "id": "82b1d3c7-b0db-415e-afa6-a456116864b9",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Het item dat je probeert te verzenden is te groot. Ga terug en probeer een kleiner bestand.",
+    "keyId": "VGhlIGl0ZW0gdGhhdCB5b3UgYXJlIHVwbG9hZGluZyBpcyB0b28gbGFyZ2UuIEdvIGJhY2sgYW5kIHRyeSBhIHNtYWxsZXIgZmlsZS4="
+  },
+  "18f32ad7-ffb2-4e7a-90c4-2d6377f6b9d7": {
+    "id": "18f32ad7-ffb2-4e7a-90c4-2d6377f6b9d7",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Het verzoek bevat een fout waardoor deze niet verwerkt kan worden, check de URL parameters en probeer de pagina welke naar deze verwees te herladen.",
+    "keyId": "VGhlIHJlcXVlc3QgbWFkZSBjYW5ub3QgYmUgZnVsZmlsbGVkIGJlY2F1c2UgaXQgY29udGFpbnMgYmFkIHN5bnRheCwgY2hlY2sgeW91ciBVUkwgcGFyYW1ldGVycyBvciByZWZyZXNoIHRoZSBwYWdlIHRoYXQgbGlua2VkIHRvIHRoaXMgcmVzb3VyY2Uu"
+  },
+  "70885d05-64e5-4e31-9e55-f40672381656": {
+    "id": "70885d05-64e5-4e31-9e55-f40672381656",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Het verzoek duurde te lang, probeer het opnieuw of later nog eens.",
+    "keyId": "VGhlIHJlcXVlc3QgdG9vayB0b28gbG9uZywgcmVmcmVzaCB0aGUgcGFnZSBvciB0cnkgYWdhaW4gbGF0ZXIu"
+  },
+  "cdbe191b-4271-47d2-b5c3-182ed216091d": {
+    "id": "cdbe191b-4271-47d2-b5c3-182ed216091d",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Dit item is permanent verwijderd.",
+    "keyId": "VGhlIHJlc291cmNlIGhhcyBiZWVuIGRlbGV0ZWQgcGVybWFuZW50bHku"
+  },
+  "e1ad3446-a4b5-4465-8981-4b6064036b63": {
+    "id": "e1ad3446-a4b5-4465-8981-4b6064036b63",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Er was een (netwerk) probleem voor dit verzoek, controleer de internet verbinding, probeer het later nog eens of in een andere browser.",
+    "keyId": "VGhlcmUgd2FzIGEgKG5ldHdvcmspIGlzc3VlIGR1cmluZyB0aGlzIHJlcXVlc3QsIGNoZWNrIHRoZSBpbnRlcm5ldCBjb25uZWN0aW9uLCBwbGVhc2UgcmV0cnkgb3IgdHJ5IGEgZGlmZmVyZW50IGJyb3dzZXIu"
+  },
+  "7ff684d3-9747-451d-8549-8624f02b2c1c": {
+    "id": "7ff684d3-9747-451d-8549-8624f02b2c1c",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Er was een netwerkprobleem voor dit verzoek, probeer het opnieuw of later nog eens.",
+    "keyId": "VGhlcmUgd2FzIGEgbmV0d29ya2luZyBpc3N1ZSBkdXJpbmcgdGhpcyByZXF1ZXN0LCBwbGVhc2UgcmV0cnkgb3IgdHJ5IGFnYWluIGxhdGVy"
+  },
+  "8c9f566a-a337-4513-aca9-2d26e6cc1d44": {
+    "id": "8c9f566a-a337-4513-aca9-2d26e6cc1d44",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Deze functionaliteit is niet geïmplementeerd, probeer het later nog eens.",
+    "keyId": "VGhpcyBmZWF0dXJlIGlzbid0IGltcGxlbWVudGVkLCBwbGVhc2UgdHJ5IGFnYWluIGxhdGVyLg=="
+  },
+  "e630cc7c-991d-47a6-aff2-b60fe2db93fd": {
+    "id": "e630cc7c-991d-47a6-aff2-b60fe2db93fd",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Dit item is verborgen",
+    "keyId": "VGhpcyBpdGVtIGlzIGhpZGRlbg=="
+  },
+  "84f1d1f3-4241-451f-b421-9dd2c4517f6e": {
+    "id": "84f1d1f3-4241-451f-b421-9dd2c4517f6e",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Dit item is niet gevonden",
+    "keyId": "VGhpcyBpdGVtIGlzIG5vdCBmb3VuZA=="
+  },
+  "6280ed4c-ebc3-463b-a8a3-172e9b7d8d8b": {
+    "id": "6280ed4c-ebc3-463b-a8a3-172e9b7d8d8b",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Dit resource kan niet bekeken worden in dit formaat.",
+    "keyId": "VGhpcyByZXNvdXJjZSBjYW5ub3QgYmUgdmlld2VkIGluIHRoZSBjdXJyZW50IGZvcm1hdC4="
+  },
+  "d64346ed-c53c-478d-927c-9ab93a7808d3": {
+    "id": "d64346ed-c53c-478d-927c-9ab93a7808d3",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Te veel verzoeken",
+    "keyId": "VG9vIG1hbnkgcmVxdWVzdHM="
+  },
+  "bc1a77a2-4d8b-451f-a1f4-81601689d6ac": {
+    "id": "bc1a77a2-4d8b-451f-a1f4-81601689d6ac",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Niet ingelogd",
+    "keyId": "VW5hdXRob3JpemVk"
+  },
+  "32e2fbe9-7466-4b30-9ea7-58b41e99acaf": {
+    "id": "32e2fbe9-7466-4b30-9ea7-58b41e99acaf",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Het item kan niet worden verwerkt",
+    "keyId": "VW5wcm9jZXNzYWJsZSBFbnRpdHk="
+  },
+  "26166151-3792-4f13-9d25-c68627345f68": {
+    "id": "26166151-3792-4f13-9d25-c68627345f68",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Je moet ingelogd zijn om dit te kunnen zien.",
+    "keyId": "WW91IGhhdmUgdG8gYmUgbG9nZ2VkIGluIHRvIHZpZXcgdGhpcyByZXNvdXJjZS4="
+  },
+  "0da1f632-5cd1-42d0-9567-855b1799fb04": {
+    "id": "0da1f632-5cd1-42d0-9567-855b1799fb04",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Klik om het opnieuw te proberen.",
+    "keyId": "Q2xpY2sgdG8gcmV0cnk="
+  },
+  "e838fe91-0c2b-4295-a227-2010aaed7bcb": {
+    "id": "e838fe91-0c2b-4295-a227-2010aaed7bcb",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Is dit een fout?",
+    "keyId": "SXMgdGhpcyBhbiBlcnJvcj8="
+  },
+  "016a02e4-e3f9-4092-b015-420a543090f7": {
+    "id": "016a02e4-e3f9-4092-b015-420a543090f7",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Laat het ons weten.",
+    "keyId": "TGV0IHVzIGtub3cu"
+  },
+  "735562f9-741d-44a6-a8e1-d730771e424f": {
+    "id": "735562f9-741d-44a6-a8e1-d730771e424f",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Opnieuw",
+    "keyId": "UmV0cnk="
+  },
+  "176ec96e-d46c-4138-bbdd-a0d274ee18f6": {
+    "id": "176ec96e-d46c-4138-bbdd-a0d274ee18f6",
+    "isDeleted": false,
+    "lang": "nl",
+    "translation": "Probeer opnieuw",
+    "keyId": "VHJ5IGFnYWlu"
+  }
+}

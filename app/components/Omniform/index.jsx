@@ -8,6 +8,7 @@ import {
 import PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
 
@@ -170,7 +171,10 @@ class Omniform extends EntryPointBase {
                   theme="submit"
                   type="submit"
                 >
-                  Opslaan
+                  <FormattedMessage
+                    defaultMessage="save"
+                    id="https://app.argu.co/i18n/actions/labels/save"
+                  />
                 </Button>
               </FormFooterRight>
             </FormFooter>

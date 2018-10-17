@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import validators, { combineValidators } from '../../helpers/validators';
 import { STEPS } from '../../state/form/reducer';
@@ -8,9 +9,20 @@ import { CardContent, CardLink, CardRow } from '../../topologies/Card';
 import FormField from '../FormField';
 import CloseableContainer from '../../containers/CloseableContainer';
 
+defineMessages({
+  emailPlaceholder: {
+    context: 'Placeholder for the email field when signing in',
+    defaultMessage: 'email@example.com',
+    id: 'https://app.argu.co/i18n/forms/session/email/placeholder',
+  },
+});
+
 const propTypes = {
   hasBack: PropTypes.bool,
   initialValues: PropTypes.objectOf(PropTypes.string),
+  intl: PropTypes.shape({
+    formatMessage: PropTypes.func,
+  }),
   r: PropTypes.string,
   reason: PropTypes.string,
   registeredEmail: PropTypes.string,
@@ -66,8 +78,15 @@ class SignInFormBase extends React.PureComponent {
         autofocus={this.fieldSettings[this.props.step].emailField.autofocus}
         field={btoa('email')}
         key="email"
-        label="Uw e-mailadres"
-        placeholder="email@example.com"
+        label={(
+          <FormattedMessage
+            defaultMessage="Your email address"
+            id="https://app.argu.co/i18n/forms/session/email/label"
+          />
+        )}
+        placeholder={this.props.intl.formatMessage({
+          id: 'https://app.argu.co/i18n/forms/session/email/placeholder',
+        })}
         type="email"
         validate={combineValidators(
           validators.required,
@@ -98,7 +117,12 @@ class SignInFormBase extends React.PureComponent {
             autoComplete="off"
             field={btoa('password')}
             key="password"
-            label="Jouw wachtwoord"
+            label={(
+              <FormattedMessage
+                defaultMessage="Your password"
+                id="https://app.argu.co/i18n/forms/session/password/label"
+              />
+            )}
             type="password"
           />
           {this.redirectField()}
@@ -118,7 +142,10 @@ class SignInFormBase extends React.PureComponent {
         theme="transparant"
         onClick={this.props.stepBack}
       >
-        Terug
+        <FormattedMessage
+          defaultMessage="back"
+          id="https://app.argu.co/i18n/forms/session/back"
+        />
       </Button>
     );
   }
@@ -146,8 +173,13 @@ class SignInFormBase extends React.PureComponent {
         <CardRow backdrop>
           <CardContent>
             <p>
-              Vergeet niet je stem te bevestigen door op de link te klikken die we je hebben gemaild
-              naar <b>{this.props.registeredEmail}</b>
+              <FormattedMessage
+                defaultMessage="Please confirm your vote by clicking the link we've send to {email}"
+                id="https://app.argu.co/i18n/forms/session/emailConfirmationReminder"
+                values={{
+                  email: <b>{this.props.registeredEmail}</b>,
+                }}
+              />
             </p>
           </CardContent>
         </CardRow>
@@ -160,15 +192,30 @@ class SignInFormBase extends React.PureComponent {
     switch (this.props.step) {
       case STEPS.confirm:
         formFields = this.confirmFields();
-        buttonText = 'Bevestig';
+        buttonText = (
+          <FormattedMessage
+            defaultMessage="Confirm"
+            id="https://app.argu.co/i18n/session/confirmLabel"
+          />
+        );
         break;
       case STEPS.signIn:
         formFields = this.signInFields();
-        buttonText = 'Verder';
+        buttonText = (
+          <FormattedMessage
+            defaultMessage="Continue"
+            id="https://app.argu.co/i18n/session/continueLabel"
+          />
+        );
         break;
       case STEPS.signUp:
         formFields = this.registerFields();
-        buttonText = 'Ga verder';
+        buttonText = (
+          <FormattedMessage
+            defaultMessage="Confirm"
+            id="https://app.argu.co/i18n/session/confirmLabel"
+          />
+        );
         break;
       case STEPS.signUpCompleted:
         formFields = this.signUpCompleted();
@@ -176,7 +223,12 @@ class SignInFormBase extends React.PureComponent {
         break;
       default:
         // TODO: bugsnag
-        buttonText = 'Onverwachtse staat';
+        buttonText = (
+          <FormattedMessage
+            defaultMessage="Unexpected state"
+            id="https://app.argu.co/i18n/session/unexpectedStateLabel"
+          />
+        );
     }
 
     return {

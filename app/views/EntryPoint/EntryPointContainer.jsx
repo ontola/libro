@@ -6,6 +6,7 @@ import {
   withLRS,
 } from 'link-redux';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import {
   Button,
@@ -39,9 +40,13 @@ class EntryPointContainer extends EntryPointBase {
           onDone(e);
         })}
       >
-        Annuleren
+        <FormattedMessage
+          defaultMessage="cancel"
+          id="https://app.argu.co/i18n/forms/actions/cancel"
+        />
       </Button>
     );
+
     return (
       <Form
         validateOnChange
@@ -59,7 +64,7 @@ class EntryPointContainer extends EntryPointBase {
               <FormFooter>
                 <LinkedResourceContainer subject={NS.app('c_a')} />
                 <FormFooterRight>
-                  { cancelButton }
+                  {cancelButton}
                   <Button
                     disabled={invalid}
                     icon="send"

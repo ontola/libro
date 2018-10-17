@@ -21,7 +21,7 @@ module.exports = merge(common, {
     rules: [
       {
         exclude: /node_modules/,
-        test: /\.((t|j)sx?)$/,
+        test: /\.(m?(t|j)sx?)$/,
         use: ['babel-loader'],
       },
       {

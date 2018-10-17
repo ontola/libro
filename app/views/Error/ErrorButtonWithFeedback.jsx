@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import { Button } from '../../components';
 
-import { titleForStatus, errors } from './ErrorMessages';
+import { titleForStatus } from './ErrorMessages';
 
 const propTypes = {
   children: PropTypes.node,
@@ -52,7 +53,7 @@ class ErrorButtonWithFeedback extends React.Component {
         onClick={this.reload}
         {...this.props}
       >
-        {this.props.children || errors.nl.again}
+        {this.props.children || <FormattedMessage id="https://app.argu.co/i18n/errors/inlineButton/label" />}
       </Button>
     );
   }
