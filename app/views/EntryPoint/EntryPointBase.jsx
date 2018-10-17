@@ -59,8 +59,8 @@ class EntryPointBase extends PropertyBase {
           throw e;
         }
 
-        return lrs.api
-          .processor
+        return lrs
+          .api
           .feedResponse(e.response)
           .then((statements) => {
             const name = anyRDFValue(statements, NS.schema('text'));
