@@ -72,7 +72,7 @@ const ThingContainer = ({ highlighted, subject }) => (
     <CardAppendix>
       <SignInSwitcherContainer subject={subject}>
         <Property forceRender label={NS.argu('arguments')} />
-        <Property label={NS.schema('comments')} />
+        <Property label={NS.argu('topComment')} />
         <Property forceRender label={NS.app('omniform')} />
       </SignInSwitcherContainer>
     </CardAppendix>

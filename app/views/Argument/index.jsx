@@ -31,7 +31,7 @@ const ArgumentContainer = ({ highlighted, votesProCount }) => (
     </ActionsBar>
     <CardAppendix>
       <Property label={NS.argu('voteableVoteEvent')} />
-      <Property label={NS.schema('comments')} />
+      <Property label={NS.argu('topComment')} />
       <Property clickToOpen forceRender label={NS.app('omniform')} />
     </CardAppendix>
   </Card>

@@ -9,7 +9,7 @@ import { connectHighlighting, hightlightPropTypes } from '../../containers/Highl
 import { NS } from '../../helpers/LinkedRenderStore';
 import ActionsBar from '../../topologies/ActionsBar';
 import Card from '../../topologies/Card';
-import CardAppendix from '../../topologies/Card/CardAppendix';
+import CardAppendix, { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
 import { cardListTopology } from '../../topologies/Card/CardList';
 import CardMicroRow from '../../topologies/Card/CardMicroRow';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
@@ -55,6 +55,6 @@ export default [
     connectHighlighting(CommentSection),
     [NS.schema('Comment'), NS.argu('Comment')],
     RENDER_CLASS_NAME,
-    [cardListTopology, cardRowTopology]
+    [cardAppendixTopology, cardListTopology, cardRowTopology]
   ),
 ];
