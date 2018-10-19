@@ -1,30 +1,38 @@
-import LinkedRenderStore from 'link-lib';
-import { linkedPropType } from 'link-redux';
+import { linkedPropType, register } from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import { CardContent } from '../../../components';
-import { formatDate } from '../../../helpers/date';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import Card from '../../../topologies/Card';
 import { containerTopology } from '../../../topologies/Container';
 
-const propTypes = {
-  linkedProp: linkedPropType,
-};
 
-const TrashedAt = ({ linkedProp }) => (
-  <Card warn>
-    <CardContent endSpacing>
-      Dit item is verwijderd op {formatDate(linkedProp.value)}
-    </CardContent>
-  </Card>
-);
+class TrashedAt extends React.PureComponent {
+  static type = NS.schema('Thing');
 
-TrashedAt.propTypes = propTypes;
+  static property = NS.argu('trashedAt');
 
-export default LinkedRenderStore.registerRenderer(
-  TrashedAt,
-  NS.schema('Thing'),
-  NS.argu('trashedAt'),
-  containerTopology
-);
+  static topology = containerTopology;
+
+  static propTypes = {
+    intl: PropTypes.shape({
+      formatTime: PropTypes.func,
+    }),
+    linkedProp: linkedPropType,
+  };
+
+  render() {
+    const { intl: { formatTime }, linkedProp } = this.props;
+
+    return (
+      <Card warn>
+        <CardContent endSpacing>
+          Dit item is verwijderd op {formatTime(linkedProp.value)}
+        </CardContent>
+      </Card>
+    );
+  }
+}
+
+export default register(TrashedAt);

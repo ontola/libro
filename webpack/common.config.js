@@ -65,7 +65,6 @@ const common = {
         NODE_ENV: process.env.NODE_ENV === 'development' ? '"development"' : '"production"',
       },
     }),
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.optimize.ModuleConcatenationPlugin(),
   ],
 

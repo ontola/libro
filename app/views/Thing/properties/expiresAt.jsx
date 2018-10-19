@@ -9,7 +9,7 @@ import {
 } from 'react-intl';
 
 import Detail from '../../../components/Detail';
-import { isPastDate } from '../../../helpers/date';
+import isPastDate from '../../../helpers/date';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
 

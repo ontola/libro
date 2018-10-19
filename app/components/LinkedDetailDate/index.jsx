@@ -5,14 +5,13 @@ import {
 import PropTypes from 'prop-types';
 import { Literal } from 'rdflib';
 import React from 'react';
-import moment from 'moment';
+import { injectIntl } from 'react-intl';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import Detail from '../Detail';
 import '../DetailDate/DetailDate.scss';
 
 const propTypes = {
-  asHours: PropTypes.bool,
   dateCreated: PropTypes.instanceOf(Literal),
   dateUpdated: PropTypes.instanceOf(Literal),
   duration: PropTypes.instanceOf(Literal),
@@ -38,7 +37,7 @@ class LinkedDetailDate extends PropertyBase {
 
   render() {
     const {
-      asHours,
+      intl: { formatRelative },
       floatRight,
       hideIcon,
     } = this.props;
@@ -47,18 +46,12 @@ class LinkedDetailDate extends PropertyBase {
 
     const hoverText = `${processItem('startDate')}${processItem('endDate')}${processItem('dateCreated')}${processItem('dateUpdated')}${processItem('duration')}.`;
 
-    const displayValue = () => {
-      if (asHours) {
-        return moment(this.mostImportantDate()).format('LT');
-      }
-      return moment(this.mostImportantDate()).fromNow();
-    };
     return (
       <Detail
         linkedImage
         floatRight={floatRight}
         hideIcon={hideIcon}
-        text={displayValue()}
+        text={formatRelative(this.mostImportantDate())}
         title={hoverText}
       />
     );
@@ -73,4 +66,4 @@ export default link([
   NS.schema('dateCreated'),
   NS.schema('dateUpdated'),
   NS.schema('duration'),
-])(LinkedDetailDate);
+])(injectIntl(LinkedDetailDate));

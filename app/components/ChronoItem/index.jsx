@@ -55,7 +55,6 @@ const ChronoItem = ({
           )}
           {startDate && endDate && (
           <DetailDate
-            asHours
             floatRight
             hideIcon
             currentDate={currentDate}

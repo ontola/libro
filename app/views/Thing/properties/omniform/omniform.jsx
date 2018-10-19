@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Heading from '../../../../components/Heading';
-import { isPastDate } from '../../../../helpers/date';
+import isPastDate from '../../../../helpers/date';
 import { NS } from '../../../../helpers/LinkedRenderStore';
 import { allTopologiesExcept } from '../../../../topologies';
 import Card, { cardTopology } from '../../../../topologies/Card';

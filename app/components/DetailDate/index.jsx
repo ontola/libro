@@ -1,17 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { injectIntl } from 'react-intl';
 
 import Detail from '../Detail';
-import {
-  durationToHumanizedString,
-  formatDate,
-  formatDateCalendar,
-} from '../../helpers/date';
 
 import './DetailDate.scss';
 
 const propTypes = {
-  asHours: PropTypes.bool,
   createdAt: PropTypes.instanceOf(Date),
   /** Deprecated - Try not to use Date,
   *   since it does not tell anything about what this date means.
@@ -20,6 +15,11 @@ const propTypes = {
   endDate: PropTypes.instanceOf(Date),
   floatRight: PropTypes.bool,
   hideIcon: PropTypes.bool,
+  intl: PropTypes.shape({
+    formatDate: PropTypes.func,
+    formatRelative: PropTypes.func,
+    formatTime: PropTypes.func,
+  }),
   startDate: PropTypes.instanceOf(Date),
   submittedAt: PropTypes.instanceOf(Date),
   updatedDate: PropTypes.instanceOf(Date),
@@ -32,21 +32,25 @@ const DetailDate = ({
   date,
   endDate,
   floatRight,
+  intl: {
+    formatDate,
+    formatRelative,
+    formatTime,
+  },
   startDate,
   updatedDate,
-  asHours,
   hideIcon,
   submittedAt,
   url,
 }) => {
   const hoverTextItems = [
-    (date && `${formatDate(date)}`),
-    (startDate && `Begin: ${formatDate(startDate)}`),
-    (endDate && `Einde: ${formatDate(endDate)}`),
-    (createdAt && `Aangemaakt: ${formatDate(createdAt)}`),
-    (submittedAt && `Ingediend: ${formatDate(submittedAt)}`),
-    (updatedDate && `Bijgewerkt: ${formatDate(updatedDate)}`),
-    (endDate && startDate && `Duur: ${durationToHumanizedString(Math.abs(endDate - startDate))}`),
+    (date && `${formatTime(date)}`),
+    (startDate && `Begin: ${formatTime(startDate)}`),
+    (endDate && `Einde: ${formatTime(endDate)}`),
+    (createdAt && `Aangemaakt: ${formatTime(createdAt)}`),
+    (submittedAt && `Ingediend: ${formatTime(submittedAt)}`),
+    (updatedDate && `Bijgewerkt: ${formatTime(updatedDate)}`),
+    (endDate && startDate && `Duur: ${formatRelative(startDate, { now: endDate })}`),
   ];
 
   const hoverText = hoverTextItems
@@ -54,17 +58,11 @@ const DetailDate = ({
     .join('. \n')
     .concat('.');
 
-  const mostImportantDate = () => (date || startDate || createdAt || submittedAt);
-
-  const displayValue = asHours
-    ? formatDate(mostImportantDate(), 'LT')
-    : formatDateCalendar(mostImportantDate());
-
   return (
     <Detail
       floatRight={floatRight}
       hideIcon={hideIcon}
-      text={displayValue}
+      text={formatDate(date || startDate || createdAt || submittedAt)}
       title={hoverText}
       url={url}
     />
@@ -72,4 +70,4 @@ const DetailDate = ({
 };
 DetailDate.propTypes = propTypes;
 
-export default DetailDate;
+export default injectIntl(DetailDate);

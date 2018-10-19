@@ -24,7 +24,6 @@ export { default as Detail } from './components/Detail/index';
 export { default as DetailText } from './components/Detail/text';
 export { default as DetailImage } from './components/Detail/image';
 export { default as DetailDate } from './components/DetailDate/index';
-// export { default as DetailDuration } from './components/DetailDuration/index';
 export { default as DetailStatus } from './components/DetailStatus/index';
 export { default as DetailType } from './components/DetailType/index';
 export { default as DetailVotedFor } from './components/DetailVotedFor/index';
