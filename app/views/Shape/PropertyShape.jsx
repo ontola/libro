@@ -140,7 +140,7 @@ class PropertyShape extends PropertyBase {
         );
 
       return (
-        <FormSection name={fieldName}>
+        <FormSection name={fieldName} path={path}>
           <label>{name && theme !== 'omniform' && name.value}</label>
           {child}
         </FormSection>
