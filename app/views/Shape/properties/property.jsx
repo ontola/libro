@@ -104,7 +104,7 @@ class ShProperty extends PropertyBase {
       .getLinkedObjectPropertyRaw()
       .forEach((s) => {
         const group = lrs.store.anyStatementMatching(s.object, NS.sh('group'));
-        if (group && !groups.has(group.object.value)) {
+        if (group && !groups.has(group.object)) {
           groups.set(group.object, []);
         }
 
@@ -144,10 +144,10 @@ class ShProperty extends PropertyBase {
 
     return (
       <React.Fragment>
-        <div className="grouped">
+        <div className="ungrouped">
           {this.renderPropOrGroup(propsCompact, focusNode)}
         </div>
-        <div>
+        <div className="grouped">
           {this.renderPropOrGroup(unorderedPropsCompact, focusNode)}
         </div>
       </React.Fragment>
