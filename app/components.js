@@ -10,8 +10,6 @@ export { default as CardButton } from './components/Card/CardButton';
 export { default as CardContent } from './components/Card/CardContent';
 export { default as CardDivider } from './components/Card/CardDivider';
 export { default as CardHeader } from './components/Card/CardHeader';
-// export { default as ChronoFeed } from './components/ChronoFeed/index';
-// export { default as ChronoItem } from './components/ChronoItem/index';
 export { default as Collapsible } from './components/Collapsible/index';
 export { default as CollapseText } from './components/CollapseText/index';
 export { default as Column } from './components/Column/index';
