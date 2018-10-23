@@ -22,6 +22,9 @@ class ForumPage extends React.PureComponent {
           <Property label={NS.schema('name')} />
           <Property label={[NS.schema('description'), NS.rdfs('label')]} />
         </PageHeader>
+        <Container>
+          <Property label={NS.argu('blogPosts')} />
+        </Container>
         <Container grid>
           <Property label={NS.argu('widgets')} />
         </Container>
