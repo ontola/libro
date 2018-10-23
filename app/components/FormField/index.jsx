@@ -188,7 +188,7 @@ class FormField extends React.Component {
         }
       },
       onChange: (e) => {
-        fieldApi.setValue(e.target.value);
+        fieldApi.setValue(type === 'checkbox' ? e.target.checked : e.target.value);
         if (onChange) {
           onChange(e);
         }
@@ -290,7 +290,14 @@ class FormField extends React.Component {
       return undefined;
     }
 
-    return !touched && !value && value !== 0 ? initialValue || '' : value;
+    const currentValue = !touched && !value && value !== 0 ? initialValue || '' : value;
+
+    if (type === 'checkbox') {
+      const boolNormalized = Literal.fromBoolean(currentValue);
+      return boolNormalized && boolNormalized.value === '1';
+    }
+
+    return currentValue;
   }
 
   label(label) {
