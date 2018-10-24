@@ -13,7 +13,6 @@ import {
   Form,
 } from '../../components';
 import FormFooterRight from '../../components/Form/FooterRight';
-import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 import Card from '../../topologies/Card';
 import { containerTopology } from '../../topologies/Container';
@@ -25,11 +24,12 @@ class EntryPointContainer extends EntryPointBase {
   render() {
     const {
       httpMethod,
+      cancelPath,
       invalid,
       name,
       url,
     } = this.props;
-
+    const cancelButton = cancelPath && <Button href={cancelPath} theme="transparant"> Annuleren </Button>;
     return (
       <Form
         validateOnChange
@@ -47,12 +47,7 @@ class EntryPointContainer extends EntryPointBase {
               <FormFooter>
                 <LinkedResourceContainer subject={NS.app('c_a')} />
                 <FormFooterRight>
-                  <Button
-                    href={retrievePath(url.value)}
-                    theme="transparant"
-                  >
-                    Annuleren
-                  </Button>
+                  { cancelButton }
                   <Button
                     disabled={invalid}
                     icon="send"

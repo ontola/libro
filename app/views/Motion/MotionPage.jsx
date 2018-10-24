@@ -53,6 +53,7 @@ class MotionPage extends React.PureComponent {
               <Property forceRender label={NS.app('omniform')} />
             </CardAppendix>
           </CardMain>
+          <Property label={NS.argu('publishAction')} />
           <Property label={NS.argu('blogPosts')} />
         </Container>
         <Container size="large">

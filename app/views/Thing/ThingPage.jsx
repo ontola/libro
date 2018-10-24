@@ -59,6 +59,7 @@ class ThingPage extends PureComponent {
               <Property forceRender label={NS.app('omniform')} />
             </CardAppendix>
           </CardMain>
+          <Property label={NS.argu('publishAction')} />
           <Property label={NS.argu('voteEvents')} />
           <Property label={NS.argu('blogPosts')} />
           <Property label={NS.argu('motions')} />
