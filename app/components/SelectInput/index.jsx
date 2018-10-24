@@ -1,5 +1,6 @@
 import Downshift from 'downshift';
-import { linkedPropType, LinkedResourceContainer } from 'link-redux';
+import { LinkedRenderStore } from 'link-lib';
+import { linkedPropType, LinkedResourceContainer, withLRS } from 'link-redux';
 import React from 'react';
 import VirtualList from 'react-tiny-virtual-list';
 import PropTypes from 'prop-types';
@@ -7,6 +8,7 @@ import PropTypes from 'prop-types';
 import normalizedLower from '../../helpers/i18n';
 import Select from '../../topologies/Select';
 import { Input } from '../Input';
+import { NS } from '../../helpers/LinkedRenderStore';
 
 const DEFAULT_HEIGHT = 200;
 const ITEM_HEIGHT = 42;
@@ -15,6 +17,7 @@ const WIDTH = 300;
 
 class SelectInput extends React.Component {
   static propTypes = {
+    lrs: PropTypes.instanceOf(LinkedRenderStore),
     options: PropTypes.arrayOf(PropTypes.oneOfType([
       PropTypes.string,
       linkedPropType,
@@ -41,6 +44,8 @@ class SelectInput extends React.Component {
 
   onUserAction(changes) {
     this.setState((prevState) => {
+      const { stateChangeTypes } = Downshift;
+
       let selectedItem = changes.selectedItem || prevState.selectedItem;
       const isClosingMenu = Object.hasOwnProperty.call(changes, 'isOpen') && !changes.isOpen;
 
@@ -50,15 +55,15 @@ class SelectInput extends React.Component {
         shouldClose,
       } = prevState;
 
-      if (changes.type === Downshift.stateChangeTypes.keyDownEscape
+      if (changes.type === stateChangeTypes.keyDownEscape
         && !isClosingMenu) {
         selectedItem = '';
-      } else if (changes.type === Downshift.stateChangeTypes.clickItem) {
+      } else if ([stateChangeTypes.clickItem, stateChangeTypes.mouseUp].includes(changes.type)) {
         shouldClose = true;
       }
 
       if (Object.hasOwnProperty.call(changes, 'inputValue')) {
-        if (changes.type === Downshift.stateChangeTypes.keyDownEscape) {
+        if (changes.type === stateChangeTypes.keyDownEscape) {
           inputValue = this.userInputtedValue;
         } else {
           const nextVal = changes.inputValue;
@@ -69,14 +74,18 @@ class SelectInput extends React.Component {
       }
 
       const compareValue = inputValue && normalizedLower(typeof inputValue === 'string' ? inputValue : inputValue.value);
-      itemsToShow = inputValue && this.props.options.length > MAX_ITEMS
-        ? this.props.options.filter(item => normalizedLower(item.value).includes(compareValue))
-        : this.props.options;
+      if (inputValue && inputValue !== selectedItem && this.props.options.length > MAX_ITEMS) {
+        itemsToShow = this
+          .props
+          .options
+          .filter(item => normalizedLower(item.value).includes(compareValue));
+      } else {
+        itemsToShow = this.props.options;
+      }
 
       if (Object.hasOwnProperty.call(changes, 'highlightedIndex')
-        && (changes.type === Downshift.stateChangeTypes.keyDownArrowUp
-        || changes.type === Downshift.stateChangeTypes.keyDownArrowDown)
-      ) {
+        && (changes.type === stateChangeTypes.keyDownArrowUp
+        || changes.type === stateChangeTypes.keyDownArrowDown)) {
         inputValue = itemsToShow[changes.highlightedIndex];
       }
 
@@ -121,8 +130,7 @@ class SelectInput extends React.Component {
             item: itemsToShow[index],
             key: itemsToShow[index].value,
             style: {
-              backgroundColor:
-                highlightedIndex === index ? 'lightgray' : 'white',
+              backgroundColor: highlightedIndex === index ? 'lightgray' : 'white',
               fontWeight: selectedItem === itemsToShow[index] ? 'bold' : 'normal',
               height: ITEM_HEIGHT,
               ...style,
@@ -161,14 +169,34 @@ class SelectInput extends React.Component {
   }
 
   render() {
-    const { sharedProps } = this.props;
+    const {
+      initialHighlightedIndex,
+      initialSelectedItem,
+      sharedProps,
+    } = this.props;
+
+    const itemToString = (item) => {
+      if (!item) {
+        return '';
+      }
+
+      if (item.termType && (item.termType === 'NamedNode' || item.termType === 'BlankNode')) {
+        const name = this.props.lrs.getResourceProperty(item, NS.schema('name'));
+        return name ? name.value : item.value;
+      }
+
+      return item.value || item;
+    };
 
     return (
       <Downshift
-        itemToString={item => (item ? item.value : '')}
+        initialHighlightedIndex={initialHighlightedIndex}
+        initialInputValue={itemToString(initialSelectedItem)}
+        initialSelectedItem={initialSelectedItem}
+        itemToString={itemToString}
         {...sharedProps}
         onChange={v => sharedProps.onChange({ target: { value: v } })}
-        onUserAction={this.onUserAction}
+        onStateChange={this.onUserAction}
       >
         {(downshiftOpts) => {
           const {
@@ -210,4 +238,4 @@ class SelectInput extends React.Component {
   }
 }
 
-export default SelectInput;
+export default withLRS(SelectInput);

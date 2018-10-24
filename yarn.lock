@@ -26,7 +26,7 @@
     core-js "^2.5.7"
     regenerator-runtime "^0.12.0"
 
-"@babel/runtime@>=7.0.0-beta.56", "@babel/runtime@^7.0.0":
+"@babel/runtime@>=7.0.0-beta.56", "@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2":
   version "7.1.2"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.1.2.tgz#81c89935f4647706fc54541145e6b4ecfef4b8e3"
   integrity sha512-Y3SCjmhSupzFB6wcv1KmmFucH6gDVnI30WjOcicV10ju0cZjak3Jcs67YLIXBrmZYw1xCrVeJPbycFwrqNyxpg==
@@ -2774,7 +2774,7 @@ compression@^1.5.2:
     safe-buffer "5.1.2"
     vary "~1.1.2"
 
-compute-scroll-into-view@^1.0.2:
+compute-scroll-into-view@^1.0.9:
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/compute-scroll-into-view/-/compute-scroll-into-view-1.0.11.tgz#7ff0a57f9aeda6314132d8994cce7aeca794fecf"
   integrity sha512-uUnglJowSe0IPmWOdDtrlHXof5CTIJitfJEyITHBW6zDVOGu9Pjk5puaLM73SLcwak0L4hEjO7Td88/a6P5i7A==
@@ -3676,13 +3676,15 @@ double-ended-queue@^2.1.0-0:
   resolved "https://registry.yarnpkg.com/double-ended-queue/-/double-ended-queue-2.1.0-0.tgz#103d3527fd31528f40188130c841efdd78264e5c"
   integrity sha1-ED01J/0xUo9AGIEwyEHv3XgmTlw=
 
-downshift@^2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/downshift/-/downshift-2.2.3.tgz#85187568455134e72025fbddd40bb9cf96c55eed"
-  integrity sha512-SXFgGq5QYT9mxbaSsYdp4Ng0tP87F5z33PD+tZ2kyK0qIBYd1rcPe90+ykCOYqsWHsb/gcrjaAav2Jpa6qNbQg==
+downshift@^3.1.4:
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/downshift/-/downshift-3.1.4.tgz#4c99e62b39a58f021935ec1d6ef64ace15b9c6b3"
+  integrity sha512-BR8qqszmRoCHGhFi9TLleV1o0ATo18CJhxjBncnIebscCVRk29WoLxrHUWgG8ND8Tl5CeH+Tc86ATYyZefikAw==
   dependencies:
-    compute-scroll-into-view "^1.0.2"
+    "@babel/runtime" "^7.1.2"
+    compute-scroll-into-view "^1.0.9"
     prop-types "^15.6.0"
+    react-is "^16.5.2"
 
 draft-js@0.10.5:
   version "0.10.5"

@@ -156,6 +156,7 @@ class FormField extends React.Component {
       field,
       fieldApi,
       forwardedRef,
+      initialValue,
       id,
       minLength,
       name,
@@ -214,8 +215,11 @@ class FormField extends React.Component {
     if (type === 'select') {
       return (
         <SelectInput
+          initialHighlightedIndex={options.indexOf(initialValue)}
+          initialSelectedItem={initialValue}
           options={options}
           sharedProps={sharedProps}
+          value={this.inputValue()}
         />
       );
     }

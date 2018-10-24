@@ -160,7 +160,7 @@ class PropertyShape extends PropertyBase {
           autofocus={autofocus}
           description={this.descriptionValue()}
           field={fieldName}
-          initialValue={(t && t.value) || defaultValue}
+          initialValue={t || defaultValue}
           label={name && name.value}
           maxLength={tryParseInt(maxLength)}
           minLength={tryParseInt(minLength)}
