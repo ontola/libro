@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-import { retrievePath } from '../../helpers/iris';
+import { isDifferentOrigin, retrievePath } from '../../helpers/iris';
 import Image from '../Image';
 
 const propTypes = {
@@ -27,6 +27,18 @@ const DropdownLink = ({
   );
 
   if (!action && url) {
+    if (isDifferentOrigin(url.value)) {
+      return (
+        <a
+          className="DropdownLink"
+          href={url.value}
+          rel="nofollow noopener noreferrer"
+          target="_blank"
+        >
+          {inner}
+        </a>
+      );
+    }
     return <Link className="DropdownLink" to={retrievePath(url.value)}>{inner}</Link>;
   }
 
