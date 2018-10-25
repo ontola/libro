@@ -2,7 +2,7 @@ import Detail from './index';
 
 argUnit(Detail, () => {
   it('should be a div', () => {
-    expect(subject).toHaveTagName('div');
+    expect(subject).toHaveDisplayName('div');
   });
 
   it('should not render an image', () => {
@@ -21,7 +21,7 @@ argUnit(Detail, () => {
     setProp('url', () => 'http://example.org/');
 
     it('should be an anchor', () => {
-      expect(subject).toHaveTagName('a');
+      expect(subject).toHaveDisplayName('a');
     });
 
     it('should be styled as an anchor', () => {
@@ -33,7 +33,7 @@ argUnit(Detail, () => {
     setProp('text', () => 'Some text');
 
     it('should be a div', () => {
-      expect(subject).toHaveTagName('div');
+      expect(subject).toHaveDisplayName('div');
     });
 
     it('should not render an image', () => {
@@ -54,7 +54,7 @@ argUnit(Detail, () => {
     setProp('title', () => 'A description');
 
     it('should be a div', () => {
-      expect(subject).toHaveTagName('div');
+      expect(subject).toHaveDisplayName('div');
     });
 
     it('should render an image', () => {
@@ -82,7 +82,7 @@ argUnit(Detail, () => {
     setProp('icon', () => 'http://example.org/photo.ico');
 
     it('should be a div', () => {
-      expect(subject).toHaveTagName('div');
+      expect(subject).toHaveDisplayName('div');
     });
 
     it('should not render an image', () => {
