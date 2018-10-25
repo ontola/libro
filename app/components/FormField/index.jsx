@@ -215,7 +215,6 @@ class FormField extends React.Component {
     if (type === 'select') {
       return (
         <SelectInput
-          initialHighlightedIndex={options.indexOf(initialValue)}
           initialSelectedItem={initialValue}
           options={options}
           sharedProps={sharedProps}

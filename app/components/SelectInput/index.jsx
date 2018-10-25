@@ -5,6 +5,7 @@ import React from 'react';
 import VirtualList from 'react-tiny-virtual-list';
 import PropTypes from 'prop-types';
 
+import { listToArr } from '../../helpers/data';
 import normalizedLower from '../../helpers/i18n';
 import Select from '../../topologies/Select';
 import { Input } from '../Input';
@@ -31,6 +32,34 @@ class SelectInput extends React.Component {
     }).isRequired,
   };
 
+  static calculateItemsToShow(state) {
+    const { inputValue, options, selectedItem } = state;
+
+    const compareValue = inputValue && normalizedLower(typeof inputValue === 'string' ? inputValue : inputValue.value);
+    if (inputValue && inputValue !== selectedItem && options.length > MAX_ITEMS) {
+      return options
+        .filter(item => normalizedLower(item.value).includes(compareValue));
+    }
+
+    return options;
+  }
+
+  static updateOptions(state, props) {
+    const nextOptions = Array.isArray(props.options)
+      ? props.options
+      : listToArr(props.lrs, [], props.options);
+
+    return {
+      itemsToShow: SelectInput.calculateItemsToShow({
+        inputValue: state.inputValue,
+        options: nextOptions,
+        selectedItem: state.selectedItem,
+      }),
+      loading: false,
+      options: nextOptions,
+    };
+  }
+
   constructor(props) {
     super(props);
 
@@ -42,18 +71,36 @@ class SelectInput extends React.Component {
     };
   }
 
+  componentDidMount() {
+    const { lrs, options } = this.props;
+
+    if (!Array.isArray(options)) {
+      const isUnloadedNode = options.termType === 'NamedNode' && lrs.tryEntity(options);
+      if (isUnloadedNode) {
+        lrs.getEntity(options).then(() => this.setState(SelectInput.updateOptions));
+        return this.setState({
+          loading: true,
+        });
+      }
+    }
+
+    const nextState = SelectInput.updateOptions(this.state, this.props);
+
+    return this.setState(nextState);
+  }
+
   onUserAction(changes) {
     this.setState((prevState) => {
       const { stateChangeTypes } = Downshift;
-
-      let selectedItem = changes.selectedItem || prevState.selectedItem;
-      const isClosingMenu = Object.hasOwnProperty.call(changes, 'isOpen') && !changes.isOpen;
-
+      const { options } = prevState;
       let {
         inputValue,
         itemsToShow,
         shouldClose,
       } = prevState;
+
+      let selectedItem = changes.selectedItem || prevState.selectedItem;
+      const isClosingMenu = Object.hasOwnProperty.call(changes, 'isOpen') && !changes.isOpen;
 
       if (changes.type === stateChangeTypes.keyDownEscape
         && !isClosingMenu) {
@@ -73,15 +120,11 @@ class SelectInput extends React.Component {
         }
       }
 
-      const compareValue = inputValue && normalizedLower(typeof inputValue === 'string' ? inputValue : inputValue.value);
-      if (inputValue && inputValue !== selectedItem && this.props.options.length > MAX_ITEMS) {
-        itemsToShow = this
-          .props
-          .options
-          .filter(item => normalizedLower(item.value).includes(compareValue));
-      } else {
-        itemsToShow = this.props.options;
-      }
+      itemsToShow = SelectInput.calculateItemsToShow({
+        inputValue,
+        options,
+        selectedItem,
+      });
 
       if (Object.hasOwnProperty.call(changes, 'highlightedIndex')
         && (changes.type === stateChangeTypes.keyDownArrowUp
@@ -108,7 +151,11 @@ class SelectInput extends React.Component {
     highlightedIndex,
     selectedItem,
   }) {
-    const { itemsToShow } = this.state;
+    let { itemsToShow } = this.state;
+
+    if (this.state.loading) {
+      itemsToShow = ['Loading'];
+    }
 
     if (itemsToShow.length === 0) {
       itemsToShow.push('Geen matchende items');
@@ -170,7 +217,6 @@ class SelectInput extends React.Component {
 
   render() {
     const {
-      initialHighlightedIndex,
       initialSelectedItem,
       sharedProps,
     } = this.props;
@@ -190,7 +236,6 @@ class SelectInput extends React.Component {
 
     return (
       <Downshift
-        initialHighlightedIndex={initialHighlightedIndex}
         initialInputValue={itemToString(initialSelectedItem)}
         initialSelectedItem={initialSelectedItem}
         itemToString={itemToString}

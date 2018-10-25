@@ -37,21 +37,6 @@ const propTypes = {
   theme: PropTypes.string,
 };
 
-function listToArr(lrs, acc, rest) {
-  if (Array.isArray(rest)) {
-    return rest;
-  }
-  if (!rest || rest === NS.rdf('nil')) {
-    return acc;
-  }
-
-  const first = lrs.store.anyStatementMatching(rest, NS.rdf('first'));
-  acc.push(first.object);
-  listToArr(lrs, acc, lrs.store.anyStatementMatching(rest, NS.rdf('rest')).object);
-
-  return acc;
-}
-
 const inputsPreferringPlaceholder = [
   'text',
   'textarea',
@@ -165,7 +150,7 @@ class PropertyShape extends PropertyBase {
           maxLength={tryParseInt(maxLength)}
           minLength={tryParseInt(minLength)}
           minRows={this.props.maxLength > MAX_STR_LEN ? TEXTFIELD_MIN_ROWS : undefined}
-          options={this.props.in && listToArr(this.props.lrs, [], this.props.in)}
+          options={this.props.in}
           placeholder={this.placeholderValue()}
           required={required}
           theme={theme}

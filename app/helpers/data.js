@@ -1,3 +1,5 @@
+import { NS } from './LinkedRenderStore';
+
 function filterFind(op) {
   return (bV) => {
     if (Object.prototype.hasOwnProperty.call(bV, 'termType')) {
@@ -49,6 +51,27 @@ function convertKeysAtoB(obj) {
   return output;
 }
 
+function listToArr(lrs, acc, rest) {
+  if (Array.isArray(rest)) {
+    return rest;
+  }
+  if (!rest || rest === NS.rdf('nil')) {
+    return acc;
+  }
+
+  let first;
+  if (rest.termType === 'BlankNode') {
+    const firstStatement = lrs.store.anyStatementMatching(rest, NS.rdf('first'));
+    first = firstStatement && firstStatement.object;
+  } else {
+    first = lrs.getResourceProperty(rest, NS.rdf('first'));
+  }
+  acc.push(first);
+  listToArr(lrs, acc, lrs.store.anyStatementMatching(rest, NS.rdf('rest')).object);
+
+  return acc;
+}
+
 function sort(order) {
   return (a, b) => {
     const oA = order.findIndex(o => a.value.includes(o));
@@ -96,6 +119,7 @@ export {
   convertKeysAtoB,
   filter,
   filterSort,
+  listToArr,
   sort,
   sortIRIS,
 };
