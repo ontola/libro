@@ -151,19 +151,6 @@ class Dropdown extends Component {
       </div>
     );
 
-    const dropdownContent = style => (
-      <animated.div style={style}>
-        <DropdownContent
-          close={this.close}
-          contentClassName={this.props.contentClassName}
-          key="required"
-          renderLeft={renderLeft}
-        >
-          {children}
-        </DropdownContent>
-      </animated.div>
-    );
-
     return (
       <div
         className={`Dropdown ${(openState ? 'Dropdown-active' : '')}`}
@@ -194,9 +181,21 @@ class Dropdown extends Component {
             transform: 'translate3d(0, 1em, 0)',
             willChange: "opacity, transform, pointer-events",
           }}
+          items={openState && children}
           leave={{ opacity: 0, pointerEvents: 'none', transform: 'translate3d(0, 1em, 0)' }}
         >
-          {openState && dropdownContent}
+          {item => style => (
+            <animated.div style={style}>
+              <DropdownContent
+                close={this.close}
+                contentClassName={this.props.contentClassName}
+                key="required"
+                renderLeft={renderLeft}
+              >
+                {item}
+              </DropdownContent>
+            </animated.div>
+          )}
         </Transition>
       </div>
     );

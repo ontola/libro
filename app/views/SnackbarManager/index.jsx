@@ -1,8 +1,9 @@
 import {
   LinkedResourceContainer,
-  linkType,
   register,
 } from 'link-redux';
+import PropTypes from 'prop-types';
+import { Collection } from 'rdflib';
 import React from 'react';
 import { animated, Transition } from 'react-spring';
 
@@ -17,28 +18,16 @@ class SnackbarManager extends React.PureComponent {
   static mapDataToProps = [NS.ontola('snackbar/queue')];
 
   static propTypes = {
-    'snackbar/queue': linkType,
+    'snackbar/queue': PropTypes.instanceOf(Collection),
   };
 
   render() {
     const queue = this.props['snackbar/queue'];
-    let child, key;
+    let items = [];
 
     if (queue && queue.elements.length > 0) {
       const next = queue.shift();
-      key = next.value;
-
-      child = style => (
-        <animated.div
-          className="Snackbar__item"
-          style={style}
-        >
-          <LinkedResourceContainer
-            close={() => this.forceUpdate()}
-            subject={next}
-          />
-        </animated.div>
-      );
+      items = [next];
     }
 
     return (
@@ -46,10 +35,20 @@ class SnackbarManager extends React.PureComponent {
         native
         enter={{ bottom: '1rem', opacity: 1 }}
         from={{ bottom: '-2rem', opacity: 0 }}
-        key={key}
+        items={items}
         leave={{ bottom: '-2rem', opacity: 0 }}
       >
-        {child}
+        {item => props => (
+          <animated.div
+            className="Snackbar__item"
+            style={props}
+          >
+            <LinkedResourceContainer
+              close={() => this.forceUpdate()}
+              subject={item}
+            />
+          </animated.div>
+        )}
       </Transition>
     );
   }

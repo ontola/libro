@@ -2,7 +2,6 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { animated, Spring } from 'react-spring';
-import { TimingAnimation, Easing } from 'react-spring/dist/addons.cjs';
 
 import Button from '../Button';
 
@@ -29,9 +28,8 @@ class SnackbarComponent extends React.PureComponent {
     return (
       <Spring
         native
-        config={{ duration: this.props.countdownTime, easing: Easing.linear }}
+        config={{ duration: this.props.countdownTime }}
         from={{ width: '0%' }}
-        impl={TimingAnimation}
         to={{ width: '100%' }}
         onRest={this.props.close}
       >
