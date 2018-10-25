@@ -95,70 +95,84 @@ class PropertyShape extends PropertyBase {
     return this.props.maxLength && Number.parseInt(this.props.maxLength.value, 10);
   }
 
-  render() {
+  renderDataField(fieldName) {
     const {
       autofocus,
-      datatype,
       defaultValue,
       maxLength,
       minCount,
       minLength,
+      name,
+      path,
+      targetNode,
+      theme,
+      onKeyUp,
+    } = this.props;
+    const t = targetNode && this.props.lrs.getResourceProperty(targetNode, path);
+    const required = minCount && Number(minCount.value) > 0;
+    const validate = [
+      maxLength && validators.maxLength(maxLength),
+      required && validators.required,
+      minLength && validators.minLength(minLength),
+    ];
+
+    return (
+      <FormField
+        validateOnChange
+        autofocus={autofocus}
+        description={this.descriptionValue()}
+        field={fieldName}
+        initialValue={t || defaultValue}
+        label={name && name.value}
+        maxLength={tryParseInt(maxLength)}
+        minLength={tryParseInt(minLength)}
+        minRows={this.props.maxLength > MAX_STR_LEN ? TEXTFIELD_MIN_ROWS : undefined}
+        options={this.props.in}
+        placeholder={this.placeholderValue()}
+        required={required}
+        theme={theme}
+        type={this.inputType()}
+        validate={combineValidators(validate)}
+        onKeyUp={onKeyUp}
+      />
+    );
+  }
+
+  renderNestedResource(fieldName) {
+    const {
       name,
       onKeyUp,
       path,
       targetNode,
       theme,
     } = this.props;
-    const fieldName = btoa(this.props.path.value);
+    const targetShape = this.props.lrs.store.anyStatementMatching(null, NS.sh('targetClass'), this.props.class);
 
-    if (this.props.class) {
-      const targetShape = this.props.lrs.store.anyStatementMatching(null, NS.sh('targetClass'), this.props.class);
-
-      const child = !targetShape
-        ? <Property label={NS.sh('class')} targetNode={targetNode} theme={theme} onKeyUp={onKeyUp} />
-        : (
-          <LinkedResourceContainer
-            subject={targetShape.subject}
-            theme={theme}
-            onKeyUp={onKeyUp}
-          />
-        );
-
-      return (
-        <FormSection name={fieldName} path={path}>
-          <label>{name && theme !== 'omniform' && name.value}</label>
-          {child}
-        </FormSection>
-      );
-    } else if (datatype) {
-      const t = targetNode && this.props.lrs.getResourceProperty(targetNode, path);
-      const required = minCount && Number(minCount.value) > 0;
-      const validate = [
-        maxLength && validators.maxLength(maxLength),
-        required && validators.required,
-        minLength && validators.minLength(minLength),
-      ];
-
-      return (
-        <FormField
-          validateOnChange
-          autofocus={autofocus}
-          description={this.descriptionValue()}
-          field={fieldName}
-          initialValue={t || defaultValue}
-          label={name && name.value}
-          maxLength={tryParseInt(maxLength)}
-          minLength={tryParseInt(minLength)}
-          minRows={this.props.maxLength > MAX_STR_LEN ? TEXTFIELD_MIN_ROWS : undefined}
-          options={this.props.in}
-          placeholder={this.placeholderValue()}
-          required={required}
+    const child = !targetShape
+      ? <Property label={NS.sh('class')} targetNode={targetNode} theme={theme} onKeyUp={onKeyUp} />
+      : (
+        <LinkedResourceContainer
+          subject={targetShape.subject}
           theme={theme}
-          type={this.inputType()}
-          validate={combineValidators(validate)}
           onKeyUp={onKeyUp}
         />
       );
+
+    return (
+      <FormSection name={fieldName} path={path}>
+        <label>{name && theme !== 'omniform' && name.value}</label>
+        {child}
+      </FormSection>
+    );
+  }
+
+  render() {
+    const fieldName = btoa(this.props.path.value);
+
+    if (this.props.class) {
+      return this.renderNestedResource(fieldName);
+    } else if (this.props.datatype) {
+      return this.renderDataField(fieldName);
     }
 
     return null;
