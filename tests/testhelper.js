@@ -1,7 +1,7 @@
-require('babel-register')({
-  ignore(filename) {
-    return !filename.match(/node_modules\/link-redux/);
-  },
+require('@babel/register')({
+  ignore: [
+    filename => !filename.match(/node_modules\/link-redux/),
+  ],
 });
 require('raf/polyfill');
 const { JSDOM } = require('jsdom');

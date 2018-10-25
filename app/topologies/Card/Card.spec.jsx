@@ -44,7 +44,7 @@ describe('Card component', () => {
 
   it('CardRow should render', () => {
     const tree = mount(<CardRow showArrow>Content</CardRow>);
-    expect(tree.find('CardRow')).toExist();
+    expect(tree.find('.CardRow')).toExist();
     expect(tree.find('.CardRow')).toHaveText('Content');
     expect(tree.find('.CardRow')).toHaveClassName('CardRow--show-arrow');
   });
