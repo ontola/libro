@@ -1,5 +1,9 @@
 /* eslint no-console: 0 */
-import { createStore, memoizedNamespace } from 'link-lib';
+import {
+  createStore,
+  memoizedNamespace,
+  MiddlewareFn,
+} from 'link-lib';
 import { Literal, NamedNode, Statement } from 'rdflib';
 
 import { FRONTEND_ACCEPT, FRONTEND_URL } from '../config';
@@ -8,20 +12,23 @@ import history from './history';
 import ontolaMiddleware from './ontolaMiddleware';
 import transformers from './transformers';
 
-const LRS = createStore({}, [
-  () => next => (a, o) => {
+const middleware: Array<MiddlewareFn<any>> = [
+  () => (next) => (a, o) => {
     if (!__PRODUCTION__) {
+      // tslint:disable-next-line no-console
       console.log('Link action:', a, o);
     }
     return next(a, o);
   },
   ontolaMiddleware(history),
-]);
+];
 
-transformers
-  .transformers
-  .forEach(t => LRS.api.registerTransformer(t.transformer, t.mediaTypes, t.acceptValue));
+const LRS = createStore({}, middleware);
 
+// @ts-ignore TS2341
+transformers.forEach((t) => LRS.api.registerTransformer(t.transformer, t.mediaTypes, t.acceptValue));
+
+// @ts-ignore TS2341
 LRS.api.setAcceptForHost(FRONTEND_URL, FRONTEND_ACCEPT);
 
 LRS.namespaces.app = memoizedNamespace(FRONTEND_URL.endsWith('/') ? FRONTEND_URL : `${FRONTEND_URL}/`);
@@ -38,6 +45,7 @@ const languages = {
   nl: 'nl',
 };
 
+// tslint:disable max-line-length
 const ontologicalData = [
   new Statement(NS.rdfs('Resource'), NS.rdfs('subClassOf'), NS.schema('Thing')),
   new Statement(NS.owl('Thing'), NS.owl('sameAs'), NS.schema('Thing')),
@@ -199,8 +207,10 @@ const ontologicalData = [
   new Statement(NS.meeting('AgendaItem'), NS.schema('description'), new Literal('Een Agendapunt is een onderwerp dat wordt besproken tijdens een vergadering.', languages.nl)),
   new Statement(NS.meeting('AgendaItem'), NS.schema('image'), new NamedNode('http://fontawesome.io/icon/list')),
 ];
+// tslint:enable max-line-length
 
 LRS.addOntologySchematics(ontologicalData);
+// @ts-ignore TS2341
 LRS.store.addStatements(ontologicalData);
 
 export default LRS;

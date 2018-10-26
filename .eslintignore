@@ -5,3 +5,5 @@ node_modules/*
 bin/*
 builds/*
 docs/
+*.ts
+*.tsx

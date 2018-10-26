@@ -30,7 +30,7 @@ const config = {
     rules: [
       {
         exclude: /node_modules/,
-        test: /(\.jsx|\.js)+$/,
+        test: /\.((t|j)sx?)$/,
         use: [
           {
             loader: 'babel-loader',
@@ -40,6 +40,7 @@ const config = {
               compact: true,
               minified: true,
               presets: [
+                '@babel/preset-typescript',
                 ['@babel/preset-env', {
                   targets: {
                     node: '10',

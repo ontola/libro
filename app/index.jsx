@@ -5,6 +5,7 @@ import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { ConnectedRouter } from 'connected-react-router/immutable';
 
+import './helpers/typescript';
 import LinkDevTools from './helpers/LinkDevTools';
 import LinkedRenderStore from './helpers/LinkedRenderStore';
 import './views';

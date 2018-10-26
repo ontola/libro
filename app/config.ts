@@ -1,7 +1,13 @@
 /* eslint no-magic-numbers: 0 */
-function getEnv(env, defaultVal, test) {
-  return process.env.NODE_ENV === 'test' ? test : process.env[env] || defaultVal;
-}
+
+/** Retrieves an ENV var with fallbacks and test support */
+const getEnv = (
+  env: string,
+  defaultVal: string | number,
+  test: string | number,
+): string | number => (
+  process.env.NODE_ENV === 'test' ? test : process.env[env] || defaultVal
+);
 
 export const ASSETS_HOST = getEnv('ASSETS_HOST', '', '');
 export const AWS_BUCKET = getEnv('AWS_BUCKET', '', '');

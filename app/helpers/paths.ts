@@ -1,25 +1,28 @@
+import { Map } from 'immutable';
+import { NamedNode } from 'rdflib';
+
 import { NS } from './LinkedRenderStore';
 
-export function currentLocation(location) {
+export function currentLocation(location: Location): NamedNode {
   return NS.app(`${location.pathname.substr(1)}${location.search}${location.hash}`);
 }
 
-export function absoluteRouterLocation(state) {
-  const location = state.getIn(['router', 'location']);
+export function absoluteRouterLocation(state: Map<string, Map<string, any>>): string {
+  const location: Map<string, any> = state.getIn(['router', 'location']);
 
   return location && location.get('pathname') + location.get('search') + location.get('hash');
 }
 
 const path = {
-  confirmation() {
+  confirmation(): string {
     return '/users/confirmation/new';
   },
 
-  index() {
+  index(): string {
     return '/';
   },
 
-  newPassword() {
+  newPassword(): string {
     return '/users/password/new';
   },
 
@@ -28,7 +31,7 @@ const path = {
    * @param {string} r The URL to return to after signing in/up
    * @returns {string} The URL.
    */
-  signIn(r) {
+  signIn(r: string): string {
     const url = '/u/sign_in';
     return r ? `${url}?r=${encodeURIComponent(r)}` : url;
   },
