@@ -1,43 +1,45 @@
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
+  linkType,
   Property,
+  register,
   subjectType,
-  withLinkCtx,
 } from 'link-redux';
 import React from 'react';
 
 import { SideBarLink } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { tryParseInt } from '../../helpers/numbers';
 import { sidebarTopology } from '../../topologies/Sidebar';
 
 import { CollectionTypes } from './types';
 
-const propTypes = {
-  subject: subjectType,
-};
+class CollectionSidebar extends React.PureComponent {
+  static type = CollectionTypes;
 
-const label = (
-  <React.Fragment>
-    <Property label={NS.as('name')} />
-    <Property label={NS.argu('unreadCount')} />
-  </React.Fragment>
-);
+  static topology = sidebarTopology;
 
-const CollectionSidebar = ({ subject }) => (
-  <SideBarLink
-    icon="bell"
-    label={label}
-    to={subject.value}
-  />
-);
+  static mapDataToProps = [
+    NS.argu('unreadCount'),
+    NS.schema('name'),
+  ];
 
-CollectionSidebar.propTypes = propTypes;
+  static propTypes = {
+    subject: subjectType,
+    unreadCount: linkType,
+  };
 
-const ConnectedCollection = withLinkCtx(CollectionSidebar);
+  render() {
+    const { subject, unreadCount } = this.props;
 
-export default LinkedRenderStore.registerRenderer(
-  ConnectedCollection,
-  CollectionTypes,
-  RENDER_CLASS_NAME,
-  sidebarTopology
-);
+    return (
+      <SideBarLink
+        count={tryParseInt(unreadCount)}
+        icon="bell"
+        label={<Property label={NS.as('name')} />}
+        to={subject.value}
+      />
+    );
+  }
+}
+
+export default register(CollectionSidebar);

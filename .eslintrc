@@ -114,7 +114,7 @@
     "new-cap": [
       "error",
       {
-        "capIsNewExceptions": ["Alert", "Record", "Namespace"]
+        "capIsNewExceptions": ["Alert", "Record", "Namespace", "Spring"]
       }
     ],
     "react/jsx-one-expression-per-line": 0,
