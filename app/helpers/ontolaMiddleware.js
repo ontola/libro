@@ -6,9 +6,18 @@ import {
   Literal,
   Statement,
 } from 'rdflib';
+import { defineMessages } from 'react-intl';
 
 import { safeCredentials } from './arguHelpers';
 import { retrievePath } from './iris';
+
+defineMessages({
+  copyFinished: {
+    context: 'The (inline) message to indicate the value was copied to their clipboard',
+    defaultMessage: 'Copied...',
+    id: 'https://ns.ontola.io/actions/copyToClipboard/copySuccessMessage',
+  },
+});
 
 const ontolaMiddleware = history => (store) => {
   const ontola = memoizedNamespace('https://ns.ontola.io/');
@@ -150,7 +159,9 @@ const ontolaMiddleware = history => (store) => {
       const value = new URL(iri.value).searchParams.get('value');
 
       return clipboardCopy(value)
-        .then(() => Promise.resolve('Gekopieerd...'));
+        .then(() => Promise.resolve(store.intl.formatMessage({
+          id: 'https://ns.ontola.io/actions/copyToClipboard/copySuccessMessage',
+        })));
     }
 
     if (iri.value.startsWith(store.namespaces.ontola('actions/redirect').value)) {

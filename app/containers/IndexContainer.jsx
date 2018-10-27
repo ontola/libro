@@ -2,7 +2,7 @@ import LinkedRenderStore from 'link-lib';
 import { RenderStoreProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { addLocaleData, IntlProvider } from 'react-intl';
+import { addLocaleData, injectIntl, IntlProvider } from 'react-intl';
 import enLocaleData from 'react-intl/locale-data/en';
 import nlLocaleData from 'react-intl/locale-data/nl';
 import { Provider } from 'react-redux';
@@ -40,15 +40,24 @@ const IndexContainer = ({
   const selectedLang = lrs.store.langPrefs[0];
   const messages = selectedLang.includes('nl') ? dutchMessages : englishMessages;
 
+  const UpdateLRSIntl = injectIntl(({ children, intl }) => {
+    // eslint-disable-next-line no-param-reassign
+    lrs.intl = intl;
+
+    return children;
+  });
+
   return (
     <Provider store={store}>
-      <RenderStoreProvider value={lrs}>
-        <IntlProvider locale={selectedLang} messages={messages}>
-          <Router history={history}>
-            <AppFrame />
-          </Router>
-        </IntlProvider>
-      </RenderStoreProvider>
+      <IntlProvider locale={selectedLang} messages={messages}>
+        <RenderStoreProvider value={lrs}>
+          <UpdateLRSIntl>
+            <Router history={history}>
+              <AppFrame />
+            </Router>
+          </UpdateLRSIntl>
+        </RenderStoreProvider>
+      </IntlProvider>
     </Provider>
   );
 };
