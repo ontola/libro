@@ -72,7 +72,7 @@ export const renderFullPage = (html, devPort, domain, csrfToken, res, head) => {
             <div class="rect5"></div>
           </div>
         </div>
-        <div id="root">${html || ''}</div>
+        <div id="${constants.APP_ELEMENT}">${html || ''}</div>
         <script nonce="${res.locals.nonce.toString()}">document.body.className += ' Body--show-preloader';</script>
         <script async src="${constants.ASSETS_HOST}${manifest['main.js']}"></script>
         ${(manifest['vendors~main.js'] && `<script async src="${constants.ASSETS_HOST}${manifest['vendors~main.js']}"></script>`) || ''}

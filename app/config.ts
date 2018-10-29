@@ -21,3 +21,5 @@ export const STAGE = process.env.NODE_ENV === 'production' ? 'production' : 'sta
 
 // Used internally in the router as a reverse proxy
 export const ARGU_API_URL = getEnv('ARGU_API_URL', 'https://argu.co', 'https://argu.localdev');
+
+export const APP_ELEMENT = 'root';

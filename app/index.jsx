@@ -5,6 +5,7 @@ import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { ConnectedRouter } from 'connected-react-router/immutable';
 
+import { APP_ELEMENT } from './config';
 import './helpers/typescript';
 import LinkDevTools from './helpers/LinkDevTools';
 import LinkedRenderStore from './helpers/LinkedRenderStore';
@@ -46,7 +47,7 @@ if (__DEVELOPMENT__ && module.hot) {
     <AppContainer>
       {indexContainer(IndexContainer)}
     </AppContainer>,
-    document.getElementById('root')
+    document.getElementById(APP_ELEMENT)
   );
 
   module.hot.accept('./containers/IndexContainer', () => {
@@ -55,13 +56,13 @@ if (__DEVELOPMENT__ && module.hot) {
       <AppContainer>
         {indexContainer(NextIndexContainer)}
       </AppContainer>,
-      document.getElementById('root')
+      document.getElementById(APP_ELEMENT)
     );
   });
 } else {
   render(
     indexContainer(IndexContainer),
-    document.getElementById('root')
+    document.getElementById(APP_ELEMENT)
   );
 }
 

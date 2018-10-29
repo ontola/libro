@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 
+import { APP_ELEMENT } from '../../config';
 import Button from '../Button';
 import Markdown from '../Markdown';
 
 import './Modal.scss';
 import instructions from './instructions';
 
-if (document.querySelector('#root')) {
-  ReactModal.setAppElement('#root');
-}
+ReactModal.setAppElement(document.getElementById(APP_ELEMENT));
 
 const getParent = () => document.querySelector('#start-of-content');
 
