@@ -5,6 +5,7 @@ import React from 'react';
 import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 import Container from '../../topologies/Container';
+import { alertDialogTopology } from '../../topologies/Dialog';
 import { pageTopology } from '../../topologies/Page';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 
@@ -20,6 +21,7 @@ class Action extends NavigatableAction {
   ];
 
   static topology = [
+    alertDialogTopology,
     pageTopology,
     primaryResourceTopology,
   ];
@@ -37,7 +39,7 @@ class Action extends NavigatableAction {
   render() {
     return (
       <Container>
-        <Property label={NS.schema('name')} />
+        {(this.props.topology || this.props.topologyCtx) !== alertDialogTopology && <Property label={NS.schema('name')} />}
         <Property
           action={this.props.subject}
           cancelPath={retrievePath(this.props.object.value)}

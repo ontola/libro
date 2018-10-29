@@ -14,6 +14,7 @@ export const bindNavigateProp = connect(null, mapDispatchToProps);
 class NavigatableAction extends React.PureComponent {
   static propTypes = {
     navigate: PropTypes.func.isRequired,
+    onDone: PropTypes.func,
   };
 
   constructor(props) {
@@ -23,7 +24,11 @@ class NavigatableAction extends React.PureComponent {
   }
 
   onDoneHandler(response) {
-    this.props.navigate(response.iri.value);
+    if (this.props.onDone) {
+      this.props.onDone(response.iri);
+    } else {
+      this.props.navigate(response.iri.value);
+    }
   }
 }
 

@@ -27,9 +27,21 @@ class EntryPointContainer extends EntryPointBase {
       cancelPath,
       invalid,
       name,
+      onDone,
       url,
     } = this.props;
-    const cancelButton = cancelPath && <Button href={cancelPath} theme="transparant"> Annuleren </Button>;
+    const cancelButton = cancelPath && (
+      <Button
+        href={cancelPath}
+        theme="transparant"
+        onClick={onDone && ((e) => {
+          e.preventDefault();
+          onDone(e);
+        })}
+      >
+        Annuleren
+      </Button>
+    );
     return (
       <Form
         validateOnChange

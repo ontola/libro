@@ -1,4 +1,5 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
+import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import {
@@ -11,6 +12,7 @@ import {
   LoadingPage,
   LoadingParent,
   LoadingRow,
+  Spinner,
 } from '../../components';
 import { cardTopology } from '../../topologies/Card';
 import { cardFixedTopology } from '../../topologies/Card/CardFixed';
@@ -19,6 +21,7 @@ import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
 import { containerTopology } from '../../topologies/Container';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
+import { alertDialogTopology } from '../../topologies/Dialog';
 import { dropdownContentTopology } from '../../topologies/DropdownContent';
 import { gridTopology } from '../../topologies/Grid';
 import { hoverBoxTopology } from '../../topologies/HoverBox';
@@ -102,5 +105,11 @@ export default [
       inlineTopology,
       voteBubbleTopology,
     ]
+  ),
+  LinkedRenderStore.registerRenderer(
+    () => <Spinner loading />,
+    NS.ll('LoadingResource'),
+    RENDER_CLASS_NAME,
+    alertDialogTopology
   ),
 ];
