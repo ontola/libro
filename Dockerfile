@@ -1,4 +1,4 @@
-FROM node:10 as builder
+FROM node:11 as builder
 WORKDIR /usr/src/app
 
 COPY package.json yarn.lock ./
@@ -9,7 +9,7 @@ ENV FRONTEND_HOSTNAME $FRONTEND_HOSTNAME
 RUN yarn run build:server
 RUN yarn run build:bundle
 
-FROM node:10-alpine
+FROM node:11-alpine
 WORKDIR /usr/src/app
 
 COPY package.json /usr/src/app/package.json

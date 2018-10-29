@@ -125,6 +125,7 @@
     "moment": "^2.14.1",
     "moment-duration-format": "^1.3.0",
     "nock": "^10.0.1",
+    "node": "^11.0.0",
     "node-sass": "^4.9.4",
     "npm-run-all": "^4.1.3",
     "null-loader": "^0.1.1",
@@ -194,14 +195,14 @@
     "dev": "npm-run-all -p start styleguide-server",
     "lint": "tsc && tslint --project tsconfig.json && ./node_modules/.bin/eslint --ext .jsx,.js .",
     "lint:style": "sass-lint ./app/**/*.scss -v -q",
-    "precommit": "lint-staged",
     "secure": "nsp check && retire",
     "start": "cross-env NODE_ENV=development yarn run build:server && cross-env NODE_ENV=development node --use-openssl-ca ./dist/private/server.js",
     "start:prod": "cross-env NODE_ENV=production node --use-openssl-ca ./dist/private/server.js",
     "stats:bundle": "cross-env NODE_ENV=production webpack -p --config ./webpack/static.config.js --json > stats.json",
     "styleguide-build": "styleguidist build",
     "styleguide-server": "styleguidist server",
-    "test": "NODE_ENV=test jest"
+    "test": "NODE_ENV=test jest",
+    "ts-compile-check":  "tsc -p tsconfig.json --noEmit"
   },
   "moduleRoots": [
     "./app"
@@ -216,15 +217,18 @@
       "git add"
     ],
     "*.ts": [
-      "tsc",
       "tslint --project tsconfig.json --fix",
       "git add"
     ],
     "*.tsx": [
-      "tsc",
       "tslint --project tsconfig.json --fix",
       "git add"
     ],
     "*.scss": "sass-lint ./app/**/*.scss -q"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn run ts-compile-check && lint-staged"
+    }
   }
 }

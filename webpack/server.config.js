@@ -43,7 +43,7 @@ const config = {
                 '@babel/preset-typescript',
                 ['@babel/preset-env', {
                   targets: {
-                    node: '10',
+                    node: '11',
                   },
                 }],
               ],
