@@ -1,5 +1,5 @@
 import clipboardCopy from 'clipboard-copy';
-import { memoizedNamespace } from 'link-lib';
+import { memoizedNamespace, namedNodeByIRI } from 'link-lib';
 import {
   BlankNode,
   Collection,
@@ -15,9 +15,22 @@ const ontolaMiddleware = history => (store) => {
   // eslint-disable-next-line no-param-reassign
   store.namespaces.ontola = ontola;
 
+  const currentLocation = () => {
+    const l = history.location;
+    const caller = [
+      [l.pathname, l.search].filter(Boolean).join('?'),
+      l.hash,
+    ].filter(Boolean).join('#');
+
+    return store.namespaces.app(caller);
+  };
+
+  /**
+   * Ontola snackbar setup
+   */
+
   const snackbarQueue = new Collection();
 
-  // Set up snackbar
   store.processDelta([
     new Statement(
       ontola('snackbar/manager'),
@@ -59,6 +72,55 @@ const ontolaMiddleware = history => (store) => {
       ),
     ];
   };
+
+
+  /**
+   * Ontola dialog setup
+   */
+
+  const dialogManager = ontola('dialog/manager');
+
+  store.processDelta([
+    new Statement(
+      dialogManager,
+      store.namespaces.rdf('type'),
+      ontola('dialog/Manager'),
+      store.namespaces.ll('add')
+    ),
+  ]);
+
+  const hideDialog = () => [
+    new Statement(
+      dialogManager,
+      ontola('dialog/resource'),
+      ontola('dialog/rm'),
+      store.namespaces.ll('remove')
+    ),
+  ];
+
+  const showDialog = value => [
+    new Statement(
+      dialogManager,
+      ontola('dialog/resource'),
+      namedNodeByIRI(value),
+      store.namespaces.ll('replace')
+    ),
+    new Statement(
+      dialogManager,
+      ontola('dialog/opener'),
+      currentLocation(),
+      store.namespaces.ll('replace')
+    ),
+  ];
+
+  history.listen((_location, action) => {
+    if (['POP', 'PUSH'].includes(action)) {
+      const dialog = store.getResourceProperty(dialogManager, ontola('dialog/resource'));
+      if (dialog) {
+        store.exec(ontola('actions/dialog/close'));
+      }
+    }
+  });
 
   return next => (iri, opts) => {
     if (!iri.value.startsWith(store.namespaces.ontola('actions/').value)) {
@@ -108,6 +170,17 @@ const ontolaMiddleware = history => (store) => {
         history.push(retrievePath(location));
       }
       return undefined;
+    }
+
+    if (iri === store.namespaces.ontola('actions/dialog/close')) {
+      return store.processDelta(hideDialog());
+    }
+
+    if (iri.value.startsWith(store.namespaces.ontola('actions/dialog/alert').value)) {
+      const resource = new URL(iri.value).searchParams.get('resource');
+
+      history.push(currentLocation());
+      return store.processDelta(showDialog(resource));
     }
 
     if (iri.value.startsWith(store.namespaces.ontola('actions/snackbar').value)) {

@@ -81,6 +81,7 @@ class App extends React.PureComponent {
               {Routes}
             </div>
             <LinkedResourceContainer subject={NS.ontola('snackbar/manager')} />
+            <LinkedResourceContainer subject={NS.ontola('dialog/manager')} />
           </SideBarContainer>
           <Popup />
         </HoverHelper>

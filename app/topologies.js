@@ -10,6 +10,7 @@ import { cardRowTopology } from './topologies/Card/CardRow';
 import { cardVoteEventTopology } from './topologies/CardVoteEvent/index';
 import { containerTopology } from './topologies/Container/index';
 import { detailsBarTopology } from './topologies/DetailsBar/index';
+import { alertDialogTopology } from './topologies/Dialog/index';
 import { dropdownContentTopology } from './topologies/DropdownContent/index';
 import { formFooterTopology } from './topologies/FormFooter/Footer';
 import { gridTopology } from './topologies/Grid/index';
@@ -42,6 +43,7 @@ export const allTopologies = [
   cardVoteEventTopology,
   containerTopology,
   detailsBarTopology,
+  alertDialogTopology,
   dropdownContentTopology,
   formFooterTopology,
   gridTopology,

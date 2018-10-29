@@ -11,6 +11,7 @@ import CollectionPage from './CollectionPage';
 import Comment from './Comment';
 import Action from './Action/index';
 import Argument from './Argument/index';
+import DialogManager from './DialogManager';
 import EntryPoint from './EntryPoint';
 import Error from './Error';
 import Forum from './Forum/index';
@@ -50,6 +51,7 @@ LRS.registerAll(
   ...Collection,
   ...CollectionPage,
   ...Comment,
+  ...DialogManager,
   ...EntryPoint,
   ...Error,
   ...Forum,

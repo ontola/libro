@@ -92,7 +92,9 @@ class Omniform extends EntryPointBase {
   }
 
   responseCallback(response) {
-    this.props.highlightResource(response.iri);
+    if (response.iri) {
+      this.props.highlightResource(response.iri);
+    }
   }
 
   types() {

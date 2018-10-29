@@ -23,6 +23,7 @@ import { cardMainTopology } from '../../topologies/Card/CardMain';
 import CardRow, { cardRowTopology } from '../../topologies/Card/CardRow';
 import { containerTopology } from '../../topologies/Container';
 import DetailsBar, { detailsBarTopology } from '../../topologies/DetailsBar';
+import { alertDialogTopology } from '../../topologies/Dialog';
 import { gridTopology } from '../../topologies/Grid';
 import hoverBox from '../../topologies/HoverBox';
 import { inlineTopology } from '../../topologies/Inline';
@@ -176,6 +177,7 @@ export default [
     NS.schema('Thing'),
     RENDER_CLASS_NAME,
     [
+      alertDialogTopology,
       primaryResourceTopology,
       containerTopology,
     ]
