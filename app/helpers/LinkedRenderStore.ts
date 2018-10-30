@@ -77,6 +77,7 @@ const ontologicalData = [
   new Statement(NS.schema('Thing'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.schema('Thing'), NS.rdfs('comment'), new Literal('The most generic type of item.')),
   new Statement(NS.schema('Thing'), NS.rdfs('label'), new Literal('Thing', languages.en)),
+  new Statement(NS.schema('Thing'), NS.ontola('forms/inputs/select/displayProp'), NS.schema('name')),
 
   new Statement(NS.schema('Person'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.schema('Person'), NS.dc('source'), new NamedNode('http://www.w3.org/wiki/WebSchemas/SchemaDotOrgSources#source_rNews')),
@@ -206,6 +207,10 @@ const ontologicalData = [
   new Statement(NS.meeting('AgendaItem'), NS.schema('description'), new Literal('An Agenda Item is a topic that is discussed during a meeeting.', languages.en)),
   new Statement(NS.meeting('AgendaItem'), NS.schema('description'), new Literal('Een Agendapunt is een onderwerp dat wordt besproken tijdens een vergadering.', languages.nl)),
   new Statement(NS.meeting('AgendaItem'), NS.schema('image'), new NamedNode('http://fontawesome.io/icon/list')),
+
+  new Statement(NS.argu('EmailAddress'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('EmailAddress'), NS.rdfs('subClassOf'), NS.schema('Thing')),
+  new Statement(NS.argu('EmailAddress'), NS.ontola('forms/inputs/select/displayProp'), NS.schema('email')),
 ];
 // tslint:enable max-line-length
 

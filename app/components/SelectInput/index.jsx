@@ -227,8 +227,18 @@ class SelectInput extends React.Component {
       }
 
       if (item.termType && (item.termType === 'NamedNode' || item.termType === 'BlankNode')) {
-        const name = this.props.lrs.getResourceProperty(item, NS.schema('name'));
-        return name ? name.value : item.value;
+        const itemClass = this.props.lrs.getResourceProperty(item, NS.rdf('type'));
+        const classDisplayProp = this.props.lrs.getResourceProperty(
+          itemClass,
+          NS.ontola('forms/inputs/select/displayProp')
+        );
+        let label = this.props.lrs.getResourceProperty(item, classDisplayProp);
+        if (!label) {
+          // TODO: bugsnag
+          label = this.props.lrs.getResourceProperty(item, NS.schema('name'));
+        }
+
+        return label ? label.value : item.value;
       }
 
       return item.value || item;
