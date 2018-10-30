@@ -54,6 +54,7 @@ class MotionPage extends React.PureComponent {
             </CardAppendix>
           </CardMain>
           <Property label={NS.argu('publishAction')} />
+          <Property label={NS.argu('decision')} />
           <Property label={NS.argu('blogPosts')} />
         </Container>
         <Container size="large">
