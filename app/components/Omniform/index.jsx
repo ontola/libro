@@ -11,7 +11,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
 
-import { filterSort } from '../../helpers/data';
+import { allowSort } from '../../helpers/data';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { highlightResource } from '../../state/app/actions';
 import {
@@ -43,11 +43,10 @@ const propTypes = {
 };
 
 const FILTER = [
-  /\/v\/new$/,
-  /\/actions\/destroy_vote$/,
-  /\/actions\/create_vote/,
-  /\/blog\/new$/,
-  /\/v\/delete$/,
+  /\/m\/new$/,
+  /\/c\/new$/,
+  /\/pros\/new/,
+  /\/cons\/new$/,
 ];
 const ORDER = [
   '/m/new',
@@ -169,7 +168,7 @@ class Omniform extends EntryPointBase {
 Omniform.propTypes = propTypes;
 
 const mapStateToProps = (state, ownProps) => {
-  const actions = filterSort(ownProps.actions, FILTER, ORDER);
+  const actions = allowSort(ownProps.actions, FILTER, ORDER);
   const formName = `Omniform-${ownProps.parentIRI}`;
   const action = getOmniformAction(state, ownProps.parentIRI) || actions.first();
 
