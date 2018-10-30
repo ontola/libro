@@ -30,7 +30,7 @@ const Comment = ({ highlighted }) => (
       <Property label={NS.schema('text')} />
     </CardContent>
     <ActionsBar small>
-      <Property label={NS.schema('potentialAction')} />
+      <Property label={NS.argu('favoriteAction')} />
     </ActionsBar>
     <CardAppendix>
       <Property forceRender clickToOpen={false} label={NS.app('omniform')} />

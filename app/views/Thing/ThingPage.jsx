@@ -52,7 +52,7 @@ class ThingPage extends PureComponent {
               <Property label={NS.argu('attachments')} />
             </CardContent>
             <ActionsBar>
-              <Property label={NS.schema('potentialAction')} />
+              <Property label={NS.argu('favoriteAction')} />
             </ActionsBar>
             <Property label={NS.meeting('agenda')} />
             <CardAppendix>
