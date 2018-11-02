@@ -11,7 +11,7 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 
 class PersonDetail extends React.PureComponent {
-  static type = NS.schema('Person');
+  static type = [NS.schema('Person'), NS.argu('Page')];
 
   static topology = detailsBarTopology;
 

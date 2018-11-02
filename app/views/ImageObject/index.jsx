@@ -41,7 +41,7 @@ class ImageObject extends React.PureComponent {
   render() {
     const { ariaLabel } = this.props;
 
-    return <Property ariaLabel={ariaLabel} label={NS.schema('thumbnail')} />;
+    return <Property ariaLabel={ariaLabel} label={[NS.schema('thumbnail'), NS.argu('imgUrl64x64')]} />;
   }
 }
 
@@ -51,7 +51,7 @@ export default [
   LinkedRenderStore.registerRenderer(
     () => (
       <SideBarLinkImageWrapper data-test="ImageObject-sidebar">
-        <Property label={NS.schema('thumbnail')} />
+        <Property label={[NS.schema('thumbnail'), NS.argu('imgUrl64x64')]} />
       </SideBarLinkImageWrapper>
     ),
     NS.schema('ImageObject'),

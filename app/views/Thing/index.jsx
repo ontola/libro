@@ -36,11 +36,13 @@ import CoverPhoto from './properties/coverPhoto';
 import CreateAction from './properties/createAction';
 import DateCreated from './properties/dateCreated';
 import ExpiresAt from './properties/expiresAt';
+import FollowsCount from './properties/followsCount';
 import Image from './properties/image';
 import IsPartOf from './properties/isPartOf';
 import IsPrimaryTopicOf from './properties/isPrimaryTopicOf';
 import Location from './properties/location';
 import Menus from './properties/menus';
+import MotionsCount from './properties/motionsCount';
 import Name from './properties/name';
 import Omniform from './properties/omniform';
 import Organization from './properties/organization';
@@ -87,10 +89,18 @@ const ThingGrid = () => (
       <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
     </CardContent>
     <DetailsBar>
-      <Property label={NS.schema('creator')} />
-      <Property label={NS.schema('dateCreated')} />
-      <Property label={NS.argu('expiresAt')} />
       <Property label={NS.argu('pinnedAt')} />
+      <Property short label={NS.argu('expiresAt')} />
+      <Property label={NS.schema('creator')}>
+        <LDLink>
+          <div className="Detail">
+            <Property label={NS.schema('image')} />
+          </div>
+        </LDLink>
+      </Property>
+      <Property label={NS.argu('followsCount')} />
+      <Property label={NS.argu('motionsCount')} />
+      <Property label={NS.schema('dateCreated')} />
     </DetailsBar>
   </CardFixed>
 );
@@ -198,11 +208,13 @@ export default [
   CreateAction,
   DateCreated,
   ExpiresAt,
+  FollowsCount,
   IsPrimaryTopicOf,
   ...IsPartOf,
   Image,
   Location,
   Menus,
+  MotionsCount,
   ...Name,
   ...Omniform,
   Organization,

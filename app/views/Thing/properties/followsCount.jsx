@@ -9,10 +9,10 @@ const propTypes = {
   linkedProp: linkedPropType,
 };
 
-class PinnedAt extends React.PureComponent {
+class FollowsCount extends React.PureComponent {
   static type = NS.schema('Thing');
 
-  static property = NS.argu('pinnedAt');
+  static property = NS.argu('followsCount');
 
   static topology = detailsBarTopology;
 
@@ -21,13 +21,18 @@ class PinnedAt extends React.PureComponent {
   render() {
     const { linkedProp } = this.props;
 
+    if (linkedProp.value === '0') {
+      return null;
+    }
+
     return (
       <Detail
-        icon="thumb-tack"
-        title={`Vastgezet op ${new Date(linkedProp.value).toLocaleString()}`}
+        icon="user-o"
+        text={linkedProp.value}
+        title={`${linkedProp.value} volgers`}
       />
     );
   }
 }
 
-export default register(PinnedAt);
+export default register(FollowsCount);

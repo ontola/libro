@@ -1,4 +1,5 @@
 import { linkedPropType, register } from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import Detail from '../../../components/Detail';
@@ -8,6 +9,7 @@ import { detailsBarTopology } from '../../../topologies/DetailsBar';
 
 const propTypes = {
   linkedProp: linkedPropType,
+  short: PropTypes.bool,
 };
 
 class ExpiresAt extends React.PureComponent {
@@ -20,7 +22,7 @@ class ExpiresAt extends React.PureComponent {
   static propTypes = propTypes;
 
   render() {
-    const { linkedProp } = this.props;
+    const { linkedProp, short } = this.props;
 
     const d = new Date(linkedProp.value);
 
@@ -28,7 +30,7 @@ class ExpiresAt extends React.PureComponent {
       return (
         <Detail
           icon="lock"
-          text="Gesloten"
+          text={short ? '' : 'Gesloten'}
           title={`Gesloten op ${d.toLocaleString()}`}
         />
       );
