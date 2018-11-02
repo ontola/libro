@@ -11,7 +11,7 @@ import { containerTopology } from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
 
 class ForumContainer extends React.PureComponent {
-  static type = NS.argu('Forum');
+  static type = [NS.argu('Forum'), NS.argu('ORIForum')];
 
   static topology = containerTopology;
 
