@@ -35,6 +35,7 @@ class CloseableContainer extends Component {
           corner
           plain
           icon="close"
+          title="Sluiten"
           onClick={this.props.onClick}
         />
         {this.props.children}

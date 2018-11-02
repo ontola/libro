@@ -108,10 +108,6 @@ const ThingGrid = () => (
 
 const ThingHoverBoxHidden = () => (
   <React.Fragment>
-    <DetailsBar>
-      <Property label={NS.schema('creator')} />
-      <Property label={NS.schema('dateCreated')} />
-    </DetailsBar>
     <Property label={NS.schema('text')} />
   </React.Fragment>
 );

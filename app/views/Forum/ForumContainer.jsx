@@ -8,7 +8,6 @@ import {
 import { NS } from '../../helpers/LinkedRenderStore';
 import Card from '../../topologies/Card';
 import { containerTopology } from '../../topologies/Container';
-import DetailsBar from '../../topologies/DetailsBar';
 
 class ForumContainer extends React.PureComponent {
   static type = [NS.argu('Forum'), NS.argu('ORIForum')];
@@ -30,11 +29,8 @@ class ForumContainer extends React.PureComponent {
         <Property label={NS.argu('coverPhoto')} />
         <CardContent noSpacing>
           <Property label={[NS.schema('name'), NS.rdfs('label')]} />
-          <DetailsBar>
-            <Property label={NS.schema('creator')} />
-            <Property label={NS.schema('dateCreated')} />
-          </DetailsBar>
           <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
+          <Property label={NS.argu('discussions')} />
         </CardContent>
       </Card>
     );

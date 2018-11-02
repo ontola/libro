@@ -36,10 +36,10 @@ class ThingPage extends PureComponent {
                 </React.Fragment>
               )}
             >
-              <Property label={NS.rdf('type')} />
               <Property label={NS.argu('pinnedAt')} />
               <Property label={NS.argu('expiresAt')} />
               <Property label={NS.schema('creator')} />
+              <Property label={NS.rdf('type')} />
               <Property label={NS.argu('followsCount')} />
               <Property label={NS.argu('motionsCount')} />
               <Property label={NS.schema('location')} />

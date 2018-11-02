@@ -1,5 +1,4 @@
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { link, linkType } from 'link-redux';
+import { linkType, register } from 'link-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -10,6 +9,7 @@ import { countInParentheses } from '../../helpers/numbers';
 import { allTopologiesExcept } from '../../topologies';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { cardListTopology } from '../../topologies/Card/CardList';
+import { cardVoteEventTopology } from '../../topologies/CardVoteEvent';
 import { containerTopology } from '../../topologies/Container';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 
@@ -20,66 +20,79 @@ import EntryPointOmiform from './EntryPointOmiform';
 
 const FABase = 'http://fontawesome.io/icon/';
 
-const EntryPoint = ({
-  count,
-  httpMethod,
-  image,
-  name,
-  onClick,
-  url,
-  ...props
-}) => {
-  const label = `${name.value} ${countInParentheses(count)}`;
+class EntryPoint extends React.PureComponent {
+  static type = NS.schema('EntryPoint');
 
-  const icon = image && image.value.startsWith(FABase) ? image.value.slice(FABase.length) : 'plus';
+  static mapDataToProps = [
+    NS.schema('image'),
+    NS.schema('name'),
+    NS.schema('url'),
+    NS.schema('httpMethod'),
+  ];
 
-  if (httpMethod && httpMethod.value !== 'get') {
+  static topology = allTopologiesExcept(
+    containerTopology,
+    omniformFieldsTopology,
+    cardFloatTopology,
+    cardListTopology
+  );
+
+  static propTypes = {
+    count: linkType,
+    httpMethod: linkType,
+    image: linkType,
+    name: linkType,
+    onClick: PropTypes.func,
+    url: linkType,
+  };
+
+  render() {
+    const {
+      count,
+      httpMethod,
+      image,
+      name,
+      onClick,
+      topology,
+      url,
+      ...rest
+    } = this.props;
+
+    const label = `${name.value} ${countInParentheses(count)}`;
+
+    const icon = image && image.value.startsWith(FABase) ? image.value.slice(FABase.length) : 'plus';
+
+    if (httpMethod && httpMethod.value !== 'get') {
+      const largeButton = topology === cardVoteEventTopology ? ' Button--stretched' : '';
+
+      return (
+        <ButtonWithFeedback
+          className={`Button--has-icon${largeButton}`}
+          icon={icon}
+          theme="transparant"
+          onClick={onClick}
+          {...rest}
+        >
+          <span>{label}</span>
+        </ButtonWithFeedback>
+      );
+    }
+
+    const parsedURL = new URL(url.value);
+    const href = parsedURL && parsedURL.pathname + parsedURL.search;
+
     return (
-      <ButtonWithFeedback
-        className="Button--has-icon"
-        icon={icon}
-        theme="transparant"
-        onClick={onClick}
-        {...props}
-      >
+      <Button className="Button--has-icon" href={href} icon={icon} theme="transparant">
         <span>{label}</span>
-      </ButtonWithFeedback>
+      </Button>
     );
   }
-
-  const parsedURL = new URL(url.value);
-  const href = parsedURL && parsedURL.pathname + parsedURL.search;
-
-  return (
-    <Button className="Button--has-icon" href={href} icon={icon} theme="transparant">
-      <span>{label}</span>
-    </Button>
-  );
-};
-
-EntryPoint.propTypes = {
-  count: linkType,
-  httpMethod: linkType,
-  image: linkType,
-  name: linkType,
-  onClick: PropTypes.func,
-  url: linkType,
-};
+}
 
 export default [
   EntryPointButton,
   EntryPointCardFloat,
   EntryPointContainer,
   EntryPointOmiform,
-  LinkedRenderStore.registerRenderer(
-    link([NS.schema('image'), NS.schema('name'), NS.schema('url'), NS.schema('httpMethod')])(EntryPoint),
-    NS.schema('EntryPoint'),
-    RENDER_CLASS_NAME,
-    allTopologiesExcept(
-      containerTopology,
-      omniformFieldsTopology,
-      cardFloatTopology,
-      cardListTopology
-    )
-  ),
+  register(EntryPoint),
 ];

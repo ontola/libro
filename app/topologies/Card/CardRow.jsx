@@ -11,6 +11,7 @@ export const cardRowTopology = NS.argu('cardRow');
  */
 class CardRow extends Topology {
   static propTypes = {
+    backdrop: PropTypes.bool,
     children: PropTypes.node.isRequired,
     showArrow: PropTypes.bool,
   };

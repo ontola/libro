@@ -138,7 +138,7 @@ export default [
     ]
   ),
   LinkedRenderStore.registerRenderer(
-    () => <ConnectedHeading data-test="Thing-name-card" size="3" />,
+    ({ linkedProp }) => <span>{linkedProp.value}</span>,
     NS.schema('Thing'),
     NamePredicates,
     parentTopology

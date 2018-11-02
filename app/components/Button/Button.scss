@@ -243,14 +243,7 @@ $google-color: #4285f4;
 // These are for colored buttons that can be toggled
 @each $variant, $color in $button-variants-colors {
   .Button--variant-#{$variant} {
-    align-items: center;
     color: color($color);
-    display: flex;
-    justify-content: center;
-    padding: 0;
-    padding-bottom: unit('small');
-    padding-top: unit('small');
-    transition: box-shadow .2s;
 
     .Button__label {
       box-shadow: inset 0 -2px 0 0 transaprent;
@@ -277,6 +270,16 @@ $google-color: #4285f4;
       // sass-lint:disable no-important
       background-color: color('grey', 'x-light') !important;
       // sass-lint:enable no-important
+    }
+
+    &.Button--stretched {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      padding: 0;
+      padding-bottom: unit('small');
+      padding-top: unit('small');
+      transition: box-shadow .2s;
     }
 
     &.Button--active {

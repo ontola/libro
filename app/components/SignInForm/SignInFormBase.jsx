@@ -143,7 +143,7 @@ class SignInFormBase extends React.PureComponent {
   signUpCompleted() {
     return (
       <CloseableContainer id="ConfirmEmail">
-        <CardRow>
+        <CardRow backdrop>
           <CardContent>
             <p>
               Vergeet niet je stem te bevestigen door op de link te klikken die we je hebben gemaild
