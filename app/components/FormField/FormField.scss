@@ -100,7 +100,7 @@
 
   .Field__input {
     background-color: color('grey', 'xx-light');
-    border: solid 1px color('grey', 'x-light');
+    border: $grey-border;
     border-radius: 5px;
     margin-left: 0;
     margin-right: 0;

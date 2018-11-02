@@ -24,8 +24,12 @@
   &--opened,
   &:hover,
   &:focus {
-    background-color: color('grey', 'xx-light');
+    background-color: color('transparent', 'mid-dark');
     color: color('grey', 'dark');
+  }
+
+  &:active {
+    background-color: color('transparent', 'dark');
   }
 }
 

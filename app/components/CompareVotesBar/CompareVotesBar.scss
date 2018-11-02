@@ -1,10 +1,10 @@
 @import '../shared/config';
 
 .CompareVotesBar__collapsible-children {
-  border-top: solid 1px color('grey', 'x-light');
+  border-top: $grey-border;
   padding: .5em;
 }
 
 .CompareVotesBar {
-  border-bottom: solid 1px color('grey', 'x-light');
+  border-bottom: $grey-border;
 }

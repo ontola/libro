@@ -1,7 +1,7 @@
 @import '../shared/config';
 
 .EventItemShow {
-  border-bottom: $box-divider;
+  border-bottom: $grey-border;
   padding: unit('x-small') unit('large') 0;
   position: relative;
 }

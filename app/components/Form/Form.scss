@@ -21,7 +21,7 @@
   background-color: color('grey', 'xx-light');
   border-bottom-left-radius: $border-radius-base;
   border-bottom-right-radius: $border-radius-base;
-  border-top: solid 1px color('grey', 'x-light');
+  border-top: $grey-border;
   display: flex;
   flex-direction: row;
   // For animating the Omniform preview on hover

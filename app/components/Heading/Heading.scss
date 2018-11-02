@@ -62,7 +62,11 @@ h1.Heading {
   font-weight: bold;
 
   @include small-only {
-    font-size: font-size('x-large');
+    font-size: 1.5rem;
+  }
+
+  @include smallest-only {
+    font-size: 1.3rem;
   }
 }
 

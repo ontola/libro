@@ -9,10 +9,12 @@
 }
 
 .Breadcrumb {
+  // Similar to Detail
   align-items: center;
   background-color: color('grey', 'xx-light');
-  border-right: solid 1px color('grey', 'x-light');
-  color: color('grey', 'mid-dark');
+  border-right: $grey-border;
+  box-sizing: border-box;
+  color: color('grey', 'base');
   display: inline-flex;
   // Shrink all breadcrumbs
   flex: 0 100000 auto;
@@ -20,12 +22,13 @@
   height: unit('x-large');
   min-width: 1.4em;
   overflow: hidden;
-  padding: .3rem .4rem;
+  padding-left: unit('x-small');
+  padding-right: unit('x-small');
   white-space: nowrap;
 
   &:hover {
     background-color: color('white');
-    color: color('grey', 'dark');
+    color: color('grey', 'mid-dark');
   }
 
   &:first-child {

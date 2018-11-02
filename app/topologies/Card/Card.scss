@@ -165,8 +165,8 @@
 }
 
 .CardRow {
-  border-bottom: solid 1px color('grey', 'x-light');
-  border-top: solid 1px color('grey', 'x-light');
+  border-bottom: $grey-border;
+  border-top: $grey-border;
   position: relative;
 
   + .CardRow {
@@ -225,7 +225,6 @@
     }
   }
 }
-
 
 .CardFloat {
   align-items: center;

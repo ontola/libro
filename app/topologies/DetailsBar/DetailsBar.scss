@@ -4,11 +4,16 @@
   -webkit-overflow-scrolling: touch;
   align-items: flex-start;
   background-color: color('grey', 'xx-light');
-  border-bottom: solid 1px color('grey', 'x-light');
+  border-bottom: $grey-border;
   border-top-left-radius: $border-radius-base;
   border-top-right-radius: $border-radius-base;
+  box-sizing: border-box;
   display: flex;
-  height: 2.3rem;
+  height: unit('x-large');
+
+  + .CardRow {
+    border-top: 0;
+  }
 
   .CardContent & {
     background: none;
@@ -22,7 +27,7 @@
   }
 
   .VerticalScroller__scroll {
-    padding-left: unit('large');
+    padding-left: unit('x-small');
   }
 }
 

@@ -2,7 +2,7 @@
 
 .Tag {
   background-color: color('grey', 'xx-light');
-  border: solid 1px color('grey', 'x-light');
+  border: $grey-border;
   border-radius: $border-radius-base;
   color: color('grey', 'mid-dark');
   display: inline-flex;

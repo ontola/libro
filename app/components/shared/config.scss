@@ -142,7 +142,8 @@ $box-shadow--intense: 0 2px 8px rgba(0, 0, 0, .2);
 $box-shadow--inside: 0 2px 8px rgba(0, 0, 0, .2) inset;
 $box-shadow--crazy: 0 0 20px 1px rgba(0, 0, 0, .3);
 
-$box-divider: solid 1px color('grey', 'x-light');
+
+$grey-border: solid 1px color('grey', 'x-light');
 $background-color: color('blue', 'x-light');
 $grid-margin: 1rem;
 $nav-transition-time: .3s;

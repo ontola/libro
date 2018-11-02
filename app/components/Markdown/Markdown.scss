@@ -34,7 +34,7 @@
   // sass-lint:disable class-name-format
   .public-DraftStyleDefault-pre {
     background-color: color('grey', 'xx-light');
-    border: solid 1px color('grey', 'x-light');
+    border: $grey-border;
     display: block;
     font-family: monospace;
     font-size: .9em;

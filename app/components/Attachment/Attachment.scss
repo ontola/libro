@@ -1,7 +1,7 @@
 @import '../shared/config';
 
 .Attachment {
-  border: solid 1px color('grey', 'x-light');
+  border: $grey-border;
   border-radius: $border-radius-base;
   display: flex;
   max-width: 20em;
@@ -36,7 +36,7 @@
 
 .Attachment__inside-button {
   align-items: center;
-  border-left: solid 1px color('grey', 'x-light');
+  border-left: $grey-border;
   display: flex;
   flex-grow: 0;
   flex-shrink: 0;

@@ -4,12 +4,16 @@
   align-items: center;
   display: inline-flex;
   margin-right: unit('small');
-}
 
   a &:hover {
     .Detail__text {
       color: color('grey', 'mid-dark');
     }
+  }
+
+  .fa { // sass-lint:disable-line class-name-format
+    color: color('grey', 'mid-dark');
+    margin-right: unit('xx-small');
   }
 }
 
@@ -21,10 +25,11 @@
 
 .Detail__text {
   align-self: center;
-  color: color('grey', 'mid-light');
+  color: color('grey', 'base');
   font-size: font-size('small');
   line-height: unit('large');
   min-height: unit('large');
+  white-space: nowrap;
 }
 
 .Detail__icon {

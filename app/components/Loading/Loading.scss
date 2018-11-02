@@ -47,6 +47,7 @@
 }
 
 .Loading__Paragraph--detail {
+  align-self: center;
   height: 1em;
   margin: 0;
   margin-right: 1em;
@@ -71,7 +72,7 @@
   animation-iteration-count: infinite;
   animation-name: LoadingBackgroundAnimation;
   animation-timing-function: linear;
-  background-image: linear-gradient(to right, color('transparent', 'dark') 8%, color('transparent', 'x-dark') 18%, color('transparent', 'dark') 33%);
+  background-image: linear-gradient(to right, color('transparent', 'dark') 8%, color('transparent', 'mid-dark') 18%, color('transparent', 'dark') 33%);
   background-size: 400px;
   border-radius: $border-radius-base;
   color: transparent;
@@ -79,5 +80,5 @@
 }
 
 .Loading__background--inverse {
-  background-image: linear-gradient(to right, color('transparent', 'light') 8%, color('transparent', 'mid-light') 18%, color('transparent', 'light') 33%);
+  background-image: linear-gradient(to right, color('transparent', 'x-light') 8%, color('transparent', 'mid-light') 18%, color('transparent', 'light') 33%);
 }
