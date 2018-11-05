@@ -11,7 +11,7 @@ class TextEditorLoader extends React.Component {
 
   async componentDidMount() {
     // eslint-disable-next-line no-inline-comments
-    const TextEditor = import(/* webpackChunkName: 'TextEditor' */ '../components/TextEditor/index');
+    const TextEditor = import(/* webpackChunkName: 'TextEditor' */ '../async/TextEditor/index');
 
     this.setState({
       TextEditor,

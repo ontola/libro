@@ -12,9 +12,9 @@ import {
   doShowPreview,
   updateMarkdown,
 } from '../../state/textEditor/actions';
-import Button from '../Button';
+import Button from '../../components/Button';
 import { CardDivider } from '../../topologies/Card';
-import Markdown from '../Markdown';
+import Markdown from '../../components/Markdown';
 
 import ToggleButton from './ToggleButton';
 import MarkdownInstructions from './MarkdownInstructions';

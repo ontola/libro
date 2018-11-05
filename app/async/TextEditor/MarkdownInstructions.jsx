@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 
 import { APP_ELEMENT } from '../../config';
-import Button from '../Button';
-import Markdown from '../Markdown';
+import Button from '../../components/Button';
+import Markdown from '../../components/Markdown';
 
 import './Modal.scss';
 import instructions from './instructions';

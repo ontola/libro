@@ -7,7 +7,7 @@ import {
   showDraftEditor,
   showMarkdownEditor,
 } from '../../state/textEditor/actions';
-import Button from '../Button';
+import Button from '../../components/Button';
 
 const propTypes = {
   onShowPlainEditor: PropTypes.func.isRequired,

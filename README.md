@@ -94,6 +94,13 @@ in the browser console.
 ### Security
 Uses [NSP](https://github.com/nodesecurity/nsp) and [Retire.js](https://github.com/RetireJS/retire.js). Run tests using `npm run secure`.
 
+### Async
+Components which are to be resolved via webpack async functionality. They shouldn't be loaded 
+directly in the code, use their loaders instead, which should be in either components or containers.
+
+These may not contain all async-loaded components (e.g. The pdf component is loaded directly from 
+the dependency).
+
 ### Components
 - In this project, `components` are merely [presentational](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0) / display / UI components that should not represent any specific kind of concept. You can compare them to bootstrap components. Components should not fetch any data and should not be connected to redux. They also should not contain any components that fetch data. That's what Containers and Resources are responsible for.
 - Name them as abstract as possible. That makes the component more re-usable.
