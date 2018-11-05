@@ -25,7 +25,7 @@ class CurrentVote extends PropertyBase {
   }
 
   getEntryPoint() {
-    const base = new URL(this.props.base);
+    const base = new URL(this.props.base.replace('/od/', '/lr/'));
     base.searchParams.set('filter[]', `option=${this.props.side.term}`);
     return this.props.lrs.getResourceProperty(
       NS.app(`${retrievePath(base.toString()).slice(1)}`),
