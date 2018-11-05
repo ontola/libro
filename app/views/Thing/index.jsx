@@ -32,6 +32,7 @@ import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 
 import Arguments from './properties/arguments';
 import BaseColor from './properties/baseColor';
+import ArguLocation from './properties/arguLocation';
 import CoverPhoto from './properties/coverPhoto';
 import CreateAction from './properties/createAction';
 import DateCreated from './properties/dateCreated';
@@ -54,6 +55,7 @@ import TrashedAt from './properties/trashedAt';
 import UpdateAction from './properties/updateAction';
 import VoteEvents from './properties/voteEvents';
 import ThingPage from './ThingPage';
+import ThingPopup from './ThingPopup';
 import ThingSelect from './ThingSelect';
 
 const CardHoverBox = hoverBox();
@@ -145,6 +147,7 @@ const ThingCard = () => (
 export default [
   ThingPage,
   ThingSelect,
+  ThingPopup,
   LinkedRenderStore.registerRenderer(
     () => <Property label={[NS.schema('name'), NS.rdfs('label')]} />,
     NS.schema('Thing'),
@@ -203,6 +206,7 @@ export default [
     ]
   ),
   ...Arguments,
+  ArguLocation,
   BaseColor,
   CoverPhoto,
   CreateAction,

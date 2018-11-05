@@ -13,6 +13,8 @@ export const cardFixedTopology = NS.argu('cardFixed');
 class CardFixed extends Topology {
   static propTypes = {
     children: PropTypes.node.isRequired,
+    /** Let the parent define the size entirely. */
+    fill: PropTypes.bool,
     fixed: PropTypes.bool,
   };
 
@@ -24,7 +26,10 @@ class CardFixed extends Topology {
     super(props);
 
     this.topology = cardFixedTopology;
-    this.className = 'Card Card--fixed';
+  }
+
+  getClassName() {
+    return `Card Card--fixed${this.props.fill ? ' Card--fill' : ''}`;
   }
 }
 

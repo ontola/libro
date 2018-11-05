@@ -1,6 +1,11 @@
 import csp from 'helmet-csp';
 
-import { ASSETS_HOST, AWS_BUCKET } from '../../app/config';
+import {
+  ASSETS_HOST,
+  AWS_BUCKET,
+  MAPBOX_TILE_API_BASE,
+} from '../../app/config';
+import { mapboxKey } from '../config';
 
 const defaultSrc = ["'self'"];
 
@@ -19,6 +24,9 @@ if (AWS_BUCKET) {
 }
 if (ASSETS_HOST) {
   imgSrc.push(ASSETS_HOST);
+}
+if (mapboxKey) {
+  imgSrc.push(MAPBOX_TILE_API_BASE);
 }
 const objectSrc = ["'none'"];
 const sandbox = [

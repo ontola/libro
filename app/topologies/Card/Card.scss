@@ -56,6 +56,12 @@
     }
   }
 
+  &--fill {
+    height: 100%;
+    margin: 0;
+    width: 100%;
+  }
+
   &--warn {
     border: 2px solid color('red', 'dark');
   }

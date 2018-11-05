@@ -24,6 +24,7 @@ import { handleRender } from '../utils/render';
 
 import login from './login';
 import logout from './logout';
+import maps from './maps';
 
 export function listen(app, port) {
   app.listen(port, (err) => {
@@ -88,6 +89,7 @@ export default function routes(app, port) {
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
   app.post('/login', login);
+  app.get('/api/maps/accessToken', maps);
 
   app.get('/media_objects/*', isBinaryishRequest, fileProxy);
 

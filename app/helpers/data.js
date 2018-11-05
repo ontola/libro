@@ -65,6 +65,10 @@ function listToArr(lrs, acc, rest) {
     first = firstStatement && firstStatement.object;
   } else {
     first = lrs.getResourceProperty(rest, NS.rdf('first'));
+
+    if (!first) {
+      return lrs.getEntity(rest);
+    }
   }
   acc.push(first);
   listToArr(lrs, acc, lrs.store.anyStatementMatching(rest, NS.rdf('rest')).object);
