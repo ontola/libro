@@ -36,6 +36,7 @@ LRS.namespaces.aod = memoizedNamespace('https://argu.co/ns/od#');
 LRS.namespaces.meeting = memoizedNamespace('https://argu.co/ns/meeting/');
 LRS.namespaces.sh = memoizedNamespace('http://www.w3.org/ns/shacl#');
 LRS.namespaces.opengov = memoizedNamespace('http://www.w3.org/ns/opengov#');
+LRS.namespaces.person = memoizedNamespace('http://www.w3.org/ns/person#');
 LRS.namespaces.fa4 = memoizedNamespace('http://fontawesome.io/icon/');
 
 export const NS = LRS.namespaces;
@@ -97,6 +98,10 @@ const ontologicalData = [
   new Statement(NS.argu('Motion'), NS.schema('description'), new Literal('An idea is a proposal on which people can vote and add pro- or con arguments.', languages.en)),
   new Statement(NS.argu('Motion'), NS.schema('description'), new Literal('Een idee is een voorstel waar je voor of tegen kan zijn.', languages.nl)),
   new Statement(NS.argu('Motion'), NS.schema('image'), new NamedNode('http://fontawesome.io/icon/lightbulb-o')),
+
+  new Statement(NS.opengov('Motion'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.opengov('Motion'), NS.rdfs('label'), new Literal('Motion', languages.en)),
+  new Statement(NS.opengov('Motion'), NS.rdfs('label'), new Literal('Motie', languages.nl)),
 
   new Statement(NS.argu('Argument'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.argu('Argument'), NS.rdfs('label'), new Literal('Argument', languages.en)),

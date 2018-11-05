@@ -11,11 +11,18 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 
 class PersonDetail extends React.PureComponent {
-  static type = [NS.schema('Person'), NS.argu('Page')];
+  static type = [NS.schema('Person'), NS.person('Person'), NS.argu('Page')];
 
   static topology = detailsBarTopology;
 
-  static mapDataToProps = [NS.schema('name')];
+  static mapDataToProps = {
+    name: {
+      label: [
+        NS.schema('name'),
+        NS.foaf('name'),
+      ],
+    },
+  };
 
   static propTypes = {
     name: PropTypes.instanceOf(Literal),
