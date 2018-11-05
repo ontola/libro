@@ -21,6 +21,7 @@ const propTypes = {
   floatRight: PropTypes.bool,
   hideIcon: PropTypes.bool,
   startDate: PropTypes.instanceOf(Date),
+  submittedAt: PropTypes.instanceOf(Date),
   updatedDate: PropTypes.instanceOf(Date),
   // For linking to an event, like a meeting
   url: PropTypes.string,
@@ -35,6 +36,7 @@ const DetailDate = ({
   updatedDate,
   asHours,
   hideIcon,
+  submittedAt,
   url,
 }) => {
   const hoverTextItems = [
@@ -42,6 +44,7 @@ const DetailDate = ({
     (startDate && `Begin: ${formatDate(startDate)}`),
     (endDate && `Einde: ${formatDate(endDate)}`),
     (createdAt && `Aangemaakt: ${formatDate(createdAt)}`),
+    (submittedAt && `Ingediend: ${formatDate(submittedAt)}`),
     (updatedDate && `Bijgewerkt: ${formatDate(updatedDate)}`),
     (endDate && startDate && `Duur: ${durationToHumanizedString(Math.abs(endDate - startDate))}`),
   ];
@@ -51,7 +54,7 @@ const DetailDate = ({
     .join('. \n')
     .concat('.');
 
-  const mostImportantDate = () => (date || startDate || createdAt);
+  const mostImportantDate = () => (date || startDate || createdAt || submittedAt);
 
   const displayValue = asHours
     ? formatDate(mostImportantDate(), 'LT')

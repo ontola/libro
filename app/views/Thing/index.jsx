@@ -34,6 +34,7 @@ import ArguLocation from './properties/arguLocation';
 import CoverPhoto from './properties/coverPhoto';
 import CreateAction from './properties/createAction';
 import DateCreated from './properties/dateCreated';
+import DateSubmitted from './properties/dateSubmitted';
 import ExpiresAt from './properties/expiresAt';
 import FollowsCount from './properties/followsCount';
 import Image from './properties/image';
@@ -192,6 +193,7 @@ export default [
   CoverPhoto,
   CreateAction,
   DateCreated,
+  DateSubmitted,
   ExpiresAt,
   FollowsCount,
   IsPrimaryTopicOf,

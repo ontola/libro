@@ -13,7 +13,7 @@ import { pageTopology } from '../../topologies/Page';
 import PrimaryResource from '../../topologies/PrimaryResource';
 
 class MotionPage extends React.PureComponent {
-  static type = NS.argu('Motion');
+  static type = [NS.argu('Motion'), NS.opengov('Motion')];
 
   static topology = pageTopology;
 
@@ -42,6 +42,7 @@ class MotionPage extends React.PureComponent {
               <Property label={NS.rdf('type')} />
               <Property label={NS.schema('location')} />
               <Property label={NS.schema('dateCreated')} />
+              <Property label={NS.schema('dateSubmitted')} />
             </DetailsBar>
             <CardContent noSpacing>
               <Property label={[NS.schema('name'), NS.rdfs('label')]} />
