@@ -7,7 +7,5 @@ export { omniformReducer as omniform } from './omniform';
 export { default as pagination } from './pagination/reducer';
 export { default as PDFViewer } from './PDFViewer/reducer';
 export { default as popup } from './popup/reducer';
-export { default as router } from './router/reducer';
-// export { default as searchElastic } from './searchElastic/reducer';
 export { default as sideBars } from './sideBars/reducer';
 // export { default as voteMatch } from './voteMatch/reducer';

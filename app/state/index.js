@@ -37,12 +37,13 @@ const configureStore = (preloadedState) => {
   }
 
   const createReducer = (asyncReducers = {}) => combineReducers({
+    router: connectRouter(history),
     ...reducers,
     ...asyncReducers,
   });
 
   const store = createStore(
-    enableBatching(connectRouter(history)(createReducer())),
+    enableBatching(createReducer()),
     preloadedState,
     middleware
   );
