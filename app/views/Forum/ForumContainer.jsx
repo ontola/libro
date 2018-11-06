@@ -30,7 +30,7 @@ class ForumContainer extends React.PureComponent {
         <CardContent noSpacing>
           <Property label={[NS.schema('name'), NS.rdfs('label')]} />
           <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
-          <Property label={NS.argu('discussions')} />
+          <Property direction="column" label={NS.argu('discussions')} />
         </CardContent>
       </Card>
     );
