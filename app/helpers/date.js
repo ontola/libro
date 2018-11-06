@@ -57,6 +57,8 @@ const durationToHumanizedString = milliSeconds => moment.duration(milliSeconds, 
  */
 const formatDateFromNow = milliSeconds => moment(milliSeconds).fromNow();
 
+const isPastDate = date => ((date && date.termType) ? new Date(date.value) : date) < Date.now();
+
 
 export {
   durationToString,
@@ -64,4 +66,5 @@ export {
   formatDate,
   formatDateCalendar,
   formatDateFromNow,
+  isPastDate,
 };

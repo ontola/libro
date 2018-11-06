@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Detail from '../../../components/Detail';
-import { formatDateFromNow } from '../../../helpers/date';
+import { formatDateFromNow, isPastDate } from '../../../helpers/date';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
 
@@ -26,7 +26,7 @@ class ExpiresAt extends React.PureComponent {
 
     const d = new Date(linkedProp.value);
 
-    if (d < Date.now()) {
+    if (isPastDate(d)) {
       return (
         <Detail
           icon="lock"

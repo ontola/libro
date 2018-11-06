@@ -41,7 +41,7 @@ class MemberComp extends PropertyBase {
   render() {
     const prop = this.getLinkedObjectPropertyRaw();
     if (this.getLinkedObjectProperty(NS.as('totalItems')).value === '0') {
-      return <div>Nog geen items</div>;
+      return <div>Geen items geplaatst</div>;
     } else if (Array.isArray(prop) && prop.length === 0) {
       return null;
     } else if (Array.isArray(prop)) {

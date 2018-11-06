@@ -27,7 +27,7 @@ class ActionButton extends React.PureComponent {
       topology,
     } = this.props;
 
-    const parsedURL = new URL(subject.value);
+    const parsedURL = subject && new URL(subject.value);
     const href = parsedURL && parsedURL.pathname + parsedURL.search;
     const className = topology === defaultTopology ? 'card-list' : 'card-float';
 

@@ -8,6 +8,7 @@ export const headingVariants = [
   'error',
   'light',
   'motion',
+  'notice',
   'pro',
   'pro',
   'question',

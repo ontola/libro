@@ -54,6 +54,12 @@
   &--inherit {
     display: inherit;
   }
+
+  &--notice {
+    color: color('grey', 'mid-light');
+    font-style: italic;
+    text-align: center;
+  }
 }
 
 // sass-lint:disable no-qualifying-elements force-element-nesting

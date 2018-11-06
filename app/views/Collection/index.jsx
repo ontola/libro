@@ -81,7 +81,7 @@ function getCollection({
 
     render() {
       const { totalItems } = this.props;
-      if (!renderWhenEmpty && totalItems && totalItems.value === '0') {
+      if (!this.props.renderWhenEmpty && totalItems && totalItems.value === '0') {
         return null;
       }
 
@@ -110,9 +110,9 @@ function getCollection({
     }
   }
 
-  const ReduxCollection = connect((state, { subject }) => ({
+  const ReduxCollection = connect((state, { renderWhenEmpty: rwe, subject }) => ({
     currentPage: getPage(state, subject.value),
-    renderWhenEmpty,
+    renderWhenEmpty: rwe || renderWhenEmpty,
   }))(Collection);
 
   return link({

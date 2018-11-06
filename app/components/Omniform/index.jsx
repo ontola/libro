@@ -42,7 +42,7 @@ const propTypes = {
   onKeyUp: PropTypes.func,
 };
 
-const FILTER = [
+export const FILTER = [
   /\/m\/new$/,
   /\/c\/new$/,
   /\/pros\/new/,
