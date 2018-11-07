@@ -44,6 +44,9 @@ const withUserType = Comp => connect(state => ({
   userType: getCurrentUserType(state),
 }))(Comp);
 
+const shouldShowSignIn = (userType, status) => userType === 'GuestUser'
+  && [HttpStatus.UNAUTHORIZED, HttpStatus.FORBIDDEN].includes(status);
+
 const propTypes = {
   caughtError: PropTypes.instanceOf(Error),
   linkRequestStatus: PropTypes.shape({
@@ -64,8 +67,7 @@ const ErrorCardComp = (props) => {
       Opnieuw proberen
     </ErrorButtonWithFeedback>
   );
-
-  if (linkRequestStatus.status === HttpStatus.FORBIDDEN && userType === 'GuestUser') {
+  if (shouldShowSignIn(userType, linkRequestStatus.status)) {
     mainAction = (
       <Container size="small">
         <SignInFormContainer r={currentLocation(location).value} />
@@ -106,8 +108,7 @@ const ErrorPageComp = (props) => {
     </ErrorButtonWithFeedback>
   );
 
-  if (userType === 'GuestUser'
-    && [HttpStatus.UNAUTHORIZED, HttpStatus.FORBIDDEN].includes(linkRequestStatus.status)) {
+  if (shouldShowSignIn(userType, linkRequestStatus.status)) {
     cardAction = (
       <SignInFormContainer r={currentLocation(location).value} />
     );
