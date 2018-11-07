@@ -5,7 +5,6 @@ import {
   Property,
   PropertyBase,
   linkType,
-  withLinkCtx,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
@@ -46,7 +45,11 @@ const mvcPropTypes = {
   totalItems: linkType,
 };
 
-function getCollection({ WrappingElement = Resource, renderWhenEmpty = true } = {}) {
+function getCollection({
+  WrappingElement = Resource,
+  renderWhenEmpty = true,
+  fullPage = true,
+} = {}) {
   class Collection extends PropertyBase {
     pagination() {
       const { defaultType, pages } = this.props;
@@ -88,7 +91,7 @@ function getCollection({ WrappingElement = Resource, renderWhenEmpty = true } = 
       } else {
         children = <Property forceRender label={NS.as('pages')} />;
       }
-      const name = pages.length > 0 ? <Property label={NS.as('name')} /> : null;
+      const name = fullPage && pages.length > 0 ? <Property label={NS.as('name')} /> : null;
       const newButton = <Property label={NS.argu('createAction')} />;
 
       return (
@@ -154,14 +157,6 @@ const collectionSection = (shortCircuit = true) => {
   return CollectionSection;
 };
 
-const CollectionFixedCards = () => (
-  <Resource>
-    <Property forceRender label={NS.as('pages')} topology={gridTopology} />
-  </Resource>
-);
-
-const wrapUpdate = Component => withLinkCtx(Component);
-
 const itemsCount = {
   totalItems: {
     label: NS.as('totalItems'),
@@ -209,7 +204,10 @@ export default [
     cardAppendixTopology
   ),
   LinkedRenderStore.registerRenderer(
-    wrapUpdate(CollectionFixedCards),
+    getCollection({
+      fullPage: false,
+      renderWhenEmpty: true,
+    }),
     CollectionTypes,
     RENDER_CLASS_NAME,
     [

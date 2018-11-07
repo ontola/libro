@@ -103,10 +103,6 @@ const collectionViewSection = (shortCircuit = true) => {
   return CollectionViewSection;
 };
 
-const CollectionViewFixedCards = () => (
-  <Property forceRender label={NS.as('items')} renderLimit={Infinity} topology={gridTopology} />
-);
-
 const wrapUpdate = Component => withLinkCtx(Component);
 
 const membersViewsCount = {
@@ -144,7 +140,7 @@ export default [
     cardAppendixTopology
   ),
   LinkedRenderStore.registerRenderer(
-    wrapUpdate(CollectionViewFixedCards),
+    wrapUpdate(ConnectedCollectionView),
     CollectionViewTypes,
     RENDER_CLASS_NAME,
     [
