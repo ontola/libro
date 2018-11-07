@@ -83,7 +83,7 @@ export default [
     () => <ConnectedHeading data-test="Thing-name-small-title" size="4" />,
     NS.schema('Thing'),
     NamePredicates,
-    [primaryResourceTopology, parentTopology]
+    primaryResourceTopology
   ),
   LinkedRenderStore.registerRenderer(
     () => (
@@ -133,7 +133,6 @@ export default [
       cardFixedTopology,
       cardRowTopology,
       containerTopology,
-      parentTopology,
       popupTopology,
     ]
   ),

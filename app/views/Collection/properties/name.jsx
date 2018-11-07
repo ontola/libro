@@ -12,6 +12,7 @@ import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologiesExcept } from '../../../topologies';
 import { sidebarTopology } from '../../../topologies/Sidebar';
 import { CollectionTypes } from '../types';
+import { parentTopology } from '../../../topologies/Parent';
 
 const propTypes = {
   label: labelType,
@@ -38,5 +39,5 @@ export default LinkedRenderStore.registerRenderer(
   withLinkCtx(CollectionName),
   CollectionTypes,
   NS.as('name'),
-  allTopologiesExcept(sidebarTopology)
+  allTopologiesExcept(parentTopology, sidebarTopology)
 );

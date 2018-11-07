@@ -10,7 +10,11 @@ class ThingParent extends React.PureComponent {
 
   static topology = parentTopology;
 
-  static mapDataToProps = [NS.schema('name')];
+  static mapDataToProps = {
+    name: {
+      label: [NS.schema('name'), NS.as('name')],
+    },
+  };
 
   static propTypes = {
     name: linkType,
@@ -22,7 +26,7 @@ class ThingParent extends React.PureComponent {
         <Property label={NS.schema('isPartOf')} />
         <Breadcrumb
           data-test="Thing-parent"
-          label={<Property label={NS.schema('name')} />}
+          label={<Property label={[NS.schema('name'), NS.as('name')]} />}
           title={this.props.name.value}
         />
       </React.Fragment>

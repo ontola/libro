@@ -47,8 +47,9 @@ const mvcPropTypes = {
 
 function getCollection({
   WrappingElement = Resource,
-  renderWhenEmpty = true,
   fullPage = true,
+  renderParent = false,
+  renderWhenEmpty = true,
 } = {}) {
   class Collection extends PropertyBase {
     pagination() {
@@ -97,6 +98,7 @@ function getCollection({
       return (
         <WrappingElement>
           <Resource>
+            {renderParent && <Property label={NS.schema('isPartOf')} />}
             <CardHeader header={name}>
               {newButton}
             </CardHeader>
@@ -167,6 +169,7 @@ export default [
   LinkedRenderStore.registerRenderer(
     getCollection({
       WrappingElement: Container,
+      renderParent: true,
       renderWhenEmpty: true,
     }),
     CollectionTypes,
