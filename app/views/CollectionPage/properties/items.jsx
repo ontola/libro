@@ -12,9 +12,9 @@ const propTypes = {
   renderLimit: PropTypes.number,
 };
 
-class MemberComp extends PropertyBase {
+class ItemsComp extends PropertyBase {
   memberList() {
-    return this.props.members
+    return this.props.items
       .slice(0, this.props.renderLimit)
       .map(iri => (
         <LinkedResourceContainer
@@ -37,38 +37,38 @@ class MemberComp extends PropertyBase {
   }
 
   render() {
-    const { members, totalCount } = this.props;
+    const { items, totalCount } = this.props;
     if (totalCount.value === '0') {
       return <div>Nog geen items</div>;
-    } else if (Array.isArray(members) && members.length === 0) {
+    } else if (Array.isArray(items) && items.length === 0) {
       return null;
-    } else if (Array.isArray(members)) {
+    } else if (Array.isArray(items)) {
       return this.styleWrapper(this.memberList());
-    } else if (typeof members.toArray !== 'undefined') {
+    } else if (typeof items.toArray !== 'undefined') {
       return this.styleWrapper(this.memberList().toKeyedSeq());
     }
     return <LinkedResourceContainer subject={this.getLinkedObjectProperty()} />;
   }
 }
 
-MemberComp.propTypes = propTypes;
+ItemsComp.propTypes = propTypes;
 
-const Member = link({
-  members: {
+const Items = link({
+  items: {
     label: NS.as('items'),
     limit: Infinity,
   },
   totalCount: NS.as('totalItems'),
-})(MemberComp);
+})(ItemsComp);
 
 export default [
   LinkedRenderStore.registerRenderer(
-    Member,
+    Items,
     CollectionViewTypes,
     NS.as('items')
   ),
   LinkedRenderStore.registerRenderer(
-    Member,
+    Items,
     CollectionViewTypes,
     NS.as('items'),
     [
@@ -78,7 +78,7 @@ export default [
     ]
   ),
   LinkedRenderStore.registerRenderer(
-    props => <Grid><Member {...props} /></Grid>,
+    props => <Grid><Items {...props} /></Grid>,
     CollectionViewTypes,
     NS.as('items'),
     [

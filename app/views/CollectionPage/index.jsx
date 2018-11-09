@@ -26,7 +26,7 @@ import { pageTopology } from '../../topologies/Page';
 import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 
 import First from './properties/first';
-import Member from './properties/member';
+import Items from './properties/items';
 import Name from './properties/name';
 import Views from './properties/views';
 import { CollectionViewTypes } from './types';
@@ -159,7 +159,7 @@ export default [
     ]
   ),
   First,
-  ...Member,
+  ...Items,
   Name,
   ...Views,
   ...voteEvent,
