@@ -5,6 +5,7 @@ import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { sidebarTopology } from '../../../topologies/Sidebar';
+import { collectionDisplayWrapper } from '../../CollectionPage/properties/items';
 
 const propTypes = {
   /** The amount of items to render. Leave undefined for all items */
@@ -40,24 +41,29 @@ class ItemsComp extends PropertyBase {
 
   render() {
     const prop = this.getLinkedObjectPropertyRaw();
+    let children;
+
     if (this.getLinkedObjectProperty(NS.as('totalItems')).value === '0') {
-      return <div>Nog geen items</div>;
+      children = <div>Nog geen items</div>;
     } else if (Array.isArray(prop) && prop.length === 0) {
-      return null;
+      children = null;
     } else if (Array.isArray(prop)) {
-      return (
+      children = (
         <div style={this.props.style}>
           {this.memberList(prop)}
         </div>
       );
     } else if (typeof prop.toArray !== 'undefined') {
-      return (
+      children = (
         <div style={this.props.style}>
           {this.memberList(prop).toKeyedSeq()}
         </div>
       );
+    } else {
+      children = <LinkedResourceContainer subject={this.getLinkedObjectProperty()} />;
     }
-    return <LinkedResourceContainer subject={this.getLinkedObjectProperty()} />;
+
+    return collectionDisplayWrapper(this.props.collectionDisplay, children, this.props.topology);
   }
 }
 

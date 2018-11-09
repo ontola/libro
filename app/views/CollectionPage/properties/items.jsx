@@ -6,10 +6,32 @@ import React from 'react';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import Grid from '../../../topologies/Grid';
 import { CollectionViewTypes } from '../types';
+import Container, { containerTopology } from '../../../topologies/Container';
+import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
 
 const propTypes = {
   /** The amount of items to render. Leave undefined for all items */
   renderLimit: PropTypes.number,
+};
+
+export const collectionDisplayWrapper = (collectionDisplay, memberList, topology) => {
+  if (collectionDisplay === NS.argu('collectionDisplay/grid')) {
+    return (
+      <Grid>
+        {memberList}
+      </Grid>
+    );
+  }
+
+  if (collectionDisplay === NS.argu('collectionDisplay/default') && topology !== containerTopology) {
+    return (
+      <Container>
+        {memberList}
+      </Container>
+    );
+  }
+
+  return memberList;
 };
 
 class ItemsComp extends PropertyBase {
@@ -33,21 +55,27 @@ class ItemsComp extends PropertyBase {
         </div>
       );
     }
-    return memberList;
+
+    return collectionDisplayWrapper(this.props.collectionDisplay, memberList, this.props.topology);
   }
 
   render() {
     const { items, totalCount } = this.props;
+    let children = null;
+
     if (totalCount.value === '0') {
-      return <div>Nog geen items</div>;
+      children = <div>Nog geen items</div>;
     } else if (Array.isArray(items) && items.length === 0) {
-      return null;
+      children = null;
     } else if (Array.isArray(items)) {
-      return this.styleWrapper(this.memberList());
+      children = this.memberList();
     } else if (typeof items.toArray !== 'undefined') {
-      return this.styleWrapper(this.memberList().toKeyedSeq());
+      children = this.memberList().toKeyedSeq();
+    } else {
+      children = <LinkedResourceContainer subject={this.getLinkedObjectProperty()} />;
     }
-    return <LinkedResourceContainer subject={this.getLinkedObjectProperty()} />;
+
+    return this.styleWrapper(children);
   }
 }
 
@@ -65,25 +93,13 @@ export default [
   LinkedRenderStore.registerRenderer(
     Items,
     CollectionViewTypes,
-    NS.as('items')
-  ),
-  LinkedRenderStore.registerRenderer(
-    Items,
-    CollectionViewTypes,
     NS.as('items'),
     [
+      undefined,
+      primaryResourceTopology,
       NS.argu('cardList'),
       NS.argu('widget'),
       NS.argu('container'),
-    ]
-  ),
-  LinkedRenderStore.registerRenderer(
-    props => <Grid><Items {...props} /></Grid>,
-    CollectionViewTypes,
-    NS.as('items'),
-    [
-      NS.argu('grid'),
-      NS.argu('widget'),
     ]
   ),
 ];
