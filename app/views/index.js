@@ -17,7 +17,7 @@ import EntryPoint from './EntryPoint';
 import Error from './Error';
 import Forum from './Forum/index';
 import ImageObject from './ImageObject';
-import InfiniteCollectionView from './InfiniteCollectionView';
+import InfiniteCollectionPage from './InfiniteCollectionPage';
 import RDFSClass from './RDFSClass';
 // import './LinkedRecord';
 import Loading from './Loading';
@@ -58,7 +58,7 @@ LRS.registerAll(
   ...Error,
   ...Forum,
   ...ImageObject,
-  ...InfiniteCollectionView,
+  ...InfiniteCollectionPage,
   ...Loading,
   ...MediaObject,
   Meeting,
