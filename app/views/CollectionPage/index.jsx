@@ -33,6 +33,7 @@ import { CollectionViewTypes } from './types';
 import voteEvent from './voteEvent';
 
 const mvcPropTypes = {
+  collectionDisplay: linkType,
   totalCount: linkType,
 };
 
@@ -55,7 +56,14 @@ class CollectionPage extends PropertyBase {
     if (this.props.currentPage) {
       children = <LinkedResourceContainer subject={new NamedNode(this.props.currentPage)} />;
     } else {
-      children = <Property forceRender label={NS.as('items')} renderLimit={Infinity} />;
+      children = (
+        <Property
+          forceRender
+          collectionDisplay={this.props.collectionDisplay}
+          label={NS.as('items')}
+          renderLimit={Infinity}
+        />
+      );
     }
     const pagination = views.length === 0 ? this.pagination() : null;
 
@@ -73,14 +81,20 @@ const ReduxCollectionPage = connect((state, { subject }) => ({
 }))(CollectionPage);
 const ConnectedCollectionView = withLinkCtx(ReduxCollectionPage);
 
-const CollectionViewCardAppendix = ({ totalCount }) => {
+const CollectionViewCardAppendix = ({ collectionDisplay, totalCount }) => {
   if (totalCount.value === '0') {
     return null;
   }
 
   return (
     <CardRow backdrop>
-      <Property forceRender label={NS.as('items')} renderLimit={Infinity} topology={cardRowTopology} />
+      <Property
+        forceRender
+        collectionDisplay={collectionDisplay}
+        label={NS.as('items')}
+        renderLimit={Infinity}
+        topology={cardRowTopology}
+      />
     </CardRow>
   );
 };
@@ -88,13 +102,19 @@ const CollectionViewCardAppendix = ({ totalCount }) => {
 CollectionViewCardAppendix.propTypes = mvcPropTypes;
 
 const collectionViewSection = (shortCircuit = true) => {
-  const CollectionViewSection = ({ totalCount }) => {
+  const CollectionViewSection = ({ collectionDisplay, totalCount }) => {
     if (shortCircuit && totalCount.value === '0') {
       return null;
     }
 
     return (
-      <Property forceRender label={NS.as('items')} renderLimit={Infinity} topology={cardListTopology} />
+      <Property
+        forceRender
+        collectionDisplay={collectionDisplay}
+        label={NS.as('items')}
+        renderLimit={Infinity}
+        topology={cardListTopology}
+      />
     );
   };
 

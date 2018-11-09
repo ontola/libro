@@ -11,7 +11,7 @@ import Pages from './properties/pages';
 
 export default [
   LinkedRenderStore.registerRenderer(
-    () => <Property label={NS.as('items')} />,
+    ({ collectionDisplay }) => <Property collectionDisplay={collectionDisplay} label={NS.as('items')} />,
     NS.argu('InfiniteCollectionView'),
     RENDER_CLASS_NAME,
     allTopologies

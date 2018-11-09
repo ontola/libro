@@ -16,9 +16,23 @@ class Pages extends PropertyBase {
     const prop = this.getLinkedObjectPropertyRaw(this.props.label);
 
     if (prop.length === 1) {
-      return <LinkedResourceContainer forceRender subject={prop[0].object} />;
+      return (
+        <LinkedResourceContainer
+          forceRender
+          collectionDisplay={this.props.collectionDisplay}
+          subject={prop[0].object}
+        />
+      );
     }
-    const obs = prop.map(iri => <LinkedResourceContainer key={`pages-${iri.object.value}`} subject={iri.object} />);
+
+    const obs = prop.map(iri => (
+      <LinkedResourceContainer
+        collectionDisplay={this.props.collectionDisplay}
+        key={`pages-${iri.object.value}`}
+        subject={iri.object}
+      />
+    ));
+
     if (obs) {
       return (
         <React.Fragment>
