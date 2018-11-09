@@ -33,7 +33,6 @@ import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTo
 
 import FilteredCollections from './properties/filteredCollections';
 import First from './properties/first';
-import Member from './properties/member';
 import Name from './properties/name';
 import UnreadCount from './properties/unreadCount';
 import Pages from './properties/pages';
@@ -80,7 +79,7 @@ function getCollection({
     }
 
     render() {
-      const { totalItems } = this.props;
+      const { collectionDisplay, totalItems } = this.props;
       if (!this.props.renderWhenEmpty && totalItems && totalItems.value === '0') {
         return null;
       }
@@ -88,9 +87,14 @@ function getCollection({
       let children;
       const pages = this.getLinkedObjectPropertyRaw(NS.as('pages'));
       if (this.props.currentPage) {
-        children = <LinkedResourceContainer subject={new NamedNode(this.props.currentPage)} />;
+        children = (
+          <LinkedResourceContainer
+            collectionDisplay={collectionDisplay}
+            subject={new NamedNode(this.props.currentPage)}
+          />
+        );
       } else {
-        children = <Property forceRender label={NS.as('pages')} />;
+        children = <Property forceRender collectionDisplay={collectionDisplay} label={NS.as('pages')} />;
       }
       const name = fullPage && pages.length > 0 ? <Property label={NS.as('name')} /> : null;
       const newButton = <Property label={NS.argu('createAction')} />;
@@ -116,6 +120,7 @@ function getCollection({
   }))(Collection);
 
   return link({
+    collectionDisplay: NS.argu('collectionDisplay'),
     defaultType: NS.argu('defaultType'),
     pages: {
       label: NS.as('pages'),
@@ -226,7 +231,6 @@ export default [
   ),
   ...FilteredCollections,
   First,
-  ...Member,
   Name,
   sidebar,
   ...UnreadCount,
