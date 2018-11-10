@@ -1,4 +1,4 @@
-import LinkedRenderStore, { memoizedNamespace } from 'link-lib';
+import LinkedRenderStore from 'link-lib';
 import { LinkedResourceContainer, Property, RenderStoreProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 import rdf from 'rdflib';
@@ -9,7 +9,7 @@ import { StaticRouter } from 'react-router';
 
 import { defaultContext } from './utilities';
 
-const exNS = memoizedNamespace('http://example.org/');
+const exNS = rdf.Namespace('http://example.org/');
 
 const context = (iri, lrs, store) => defaultContext({
   lrs: lrs || true,
@@ -20,6 +20,7 @@ const context = (iri, lrs, store) => defaultContext({
 function chargeLRS(id, obj, store) {
   const lrs = new LinkedRenderStore();
   lrs.store.addStatements(obj);
+  lrs.store.flush();
   return context(exNS(id), lrs, store);
 }
 

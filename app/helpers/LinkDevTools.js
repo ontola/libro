@@ -5,9 +5,6 @@ import { ACCEPTED, BAD_REQUEST } from 'http-status-codes';
 import {
   allRDFValues,
   defaultNS,
-  memoizedNamespace,
-  namedNodeByIRI,
-  namedNodeByStoreIndex,
 } from 'link-lib';
 import { getLinkedObjectClass } from 'link-redux';
 import rdf from 'rdflib';
@@ -422,9 +419,8 @@ class LinkDevTools {
   }
 
   utilities = {
-    memoizedNamespace,
-    namedNodeByIRI,
-    namedNodeByStoreIndex,
+    namedNodeByIRI: rdf.Term.namedNodeByIRI,
+    namedNodeByStoreIndex: rdf.Term.namedNodeByStoreIndex,
   };
 
   get help() {

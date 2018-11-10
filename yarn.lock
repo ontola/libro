@@ -7644,15 +7644,15 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-link-lib@=1.0.0-beta29:
-  version "1.0.0-beta29"
-  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-beta29.tgz#09b5f6e6a748c1792fdf99ed5b766676f1fed13c"
-  integrity sha512-jk4FMI6vrvSPSy6g3ycn+LH/pbVNs5x7u6u9a0VHGw+ts0DCPOhiyItWsLDl/y/rBX4w2HktiAccGsnQLzwj0A==
+link-lib@=1.0.0-beta29-20190109T134619:
+  version "1.0.0-beta29-20190109T134619"
+  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-beta29-20190109T134619.tgz#66b0f9414755d7d3597b2b726940dd9aae711652"
+  integrity sha512-cfFTLMBQxeUbVT7Xhz6120QSa7teAIFXSe9l1HxKjfz1V0A5fTz1D3TLj6Bs0/mTTzfzM1kiu5OWn4kAfGYsag==
 
-link-redux@1.0.0-beta33:
-  version "1.0.0-beta33"
-  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-beta33.tgz#def54b726acaf3e022973ac422d4bc783d86a859"
-  integrity sha512-ttnGh9TjMlfojIjrFLg7FMz/RmLh8Ldh25+gI+IGvmAF8wCXM7q6fv25EQ/vISsvEsSOvKJ2T86TnkqlLmAp+w==
+link-redux@1.0.0-beta33-20190108T160727:
+  version "1.0.0-beta33-20190108T160727"
+  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-beta33-20190108T160727.tgz#24a86d65b0e2906f803d3f14570092de866b9d92"
+  integrity sha512-gc0xBqls2aAwsh82K9V3vcskxMrugkGwtqHtfQaIVNOF6RI+huDFZR/uucaoORt8V9CcR0aQ+8D7oeSd4wYBQw==
 
 lint-staged@^7.3.0:
   version "7.3.0"
@@ -10447,10 +10447,10 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7, rc@^1.2.8:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-rdflib@^0.19.1:
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/rdflib/-/rdflib-0.19.1.tgz#66141051902c7e7e407b4b61d075461cc0c0a28c"
-  integrity sha512-O7osObhO5o++hsUPGOLTxdNwXRaI6O+uyL98E7yBmqWrQm0AfqUHFBiASb4gN9fYcLD2LLHBxfhJTIWl8VZHUg==
+"rdflib@npm:link-rdflib@0.19.1-20190108T221552":
+  version "0.19.1-20190108T221552"
+  resolved "https://registry.yarnpkg.com/link-rdflib/-/link-rdflib-0.19.1-20190108T221552.tgz#6d8563bfc52a48f8524ff829095675bf2887bf84"
+  integrity sha512-4LcnaNZIfKC1VhRS6o28iLv638/LpIMmpOA+K5t3KSF5bX4lfdolr2HEE4Nnp5hVv8MUVy1Dp3Bnsh9XkJwTyQ==
   dependencies:
     async "^0.9.x"
     jsonld "^0.4.5"

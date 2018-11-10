@@ -1,5 +1,9 @@
-import { memoizedNamespace } from 'link-lib';
-import { BlankNode, Literal, NamedNode } from 'rdflib';
+import {
+  BlankNode,
+  Literal,
+  NamedNode,
+  Namespace,
+} from 'rdflib';
 
 import { NS } from '../../../tests';
 
@@ -7,7 +11,7 @@ import components from './index';
 
 const resource = new BlankNode('g70120412320900');
 
-const testNS = memoizedNamespace('https://argu.dev/');
+const testNS = Namespace('https://argu.dev/');
 
 const resources = {
   [resource]: {

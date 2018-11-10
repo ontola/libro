@@ -1,19 +1,19 @@
 import clipboardCopy from 'clipboard-copy';
 import { History } from 'history';
 import {
-    memoizedNamespace,
     MiddlewareActionHandler,
     MiddlewareFn,
     MiddlewareWithBoundLRS,
-    namedNodeByIRI,
 } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 import {
-    BlankNode,
-    Collection,
-    Literal,
-    NamedNode,
-    Statement,
+  BlankNode,
+  Collection,
+  Literal,
+  NamedNode,
+  Namespace,
+  Statement,
+  Term,
 } from 'rdflib';
 import { ReactType } from 'react';
 import { defineMessages } from 'react-intl';
@@ -34,7 +34,7 @@ const messages = defineMessages({
 const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWorkerCommunicator):
     MiddlewareFn<ReactType> => (store: LinkReduxLRSType): MiddlewareWithBoundLRS => {
 
-  const ontola = memoizedNamespace('https://ns.ontola.io/');
+  const ontola = Namespace('https://ns.ontola.io/');
   // eslint-disable-next-line no-param-reassign
   store.namespaces.ontola = ontola;
 
@@ -123,7 +123,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     new Statement(
       dialogManager,
       ontola('dialog/resource'),
-      namedNodeByIRI(value),
+      Term.namedNodeByIRI(value),
       store.namespaces.ll('replace'),
     ),
     new Statement(
