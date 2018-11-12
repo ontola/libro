@@ -8,6 +8,7 @@ import Container from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { pageTopology } from '../../topologies/Page';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
+import { tabPaneTopology } from '../../topologies/TabPane';
 
 import NavigatableAction, { bindNavigateProp } from './NavigatableAction';
 
@@ -24,6 +25,7 @@ class Action extends NavigatableAction {
     alertDialogTopology,
     pageTopology,
     primaryResourceTopology,
+    tabPaneTopology,
   ];
 
   static mapDataToProps = [NS.schema('object')];

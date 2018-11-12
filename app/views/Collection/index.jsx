@@ -28,6 +28,7 @@ import Container, { containerTopology } from '../../topologies/Container';
 import { gridTopology } from '../../topologies/Grid';
 import { pageTopology } from '../../topologies/Page';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
+import { tabPaneTopology } from '../../topologies/TabPane';
 import { voteEventTopology } from '../../topologies/VoteEvent';
 import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 
@@ -228,6 +229,15 @@ export default [
     CollectionTypes,
     RENDER_CLASS_NAME,
     containerTopology
+  ),
+  LinkedRenderStore.registerRenderer(
+    getCollection({
+      WrappingElement: Container,
+      renderWhenEmpty: true,
+    }),
+    CollectionTypes,
+    RENDER_CLASS_NAME,
+    tabPaneTopology
   ),
   ...FilteredCollections,
   First,

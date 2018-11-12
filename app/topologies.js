@@ -21,7 +21,11 @@ import { pageHeaderTopology } from './topologies/PageHeader/index';
 import { parentTopology } from './topologies/Parent/index';
 import { popupTopology } from './topologies/Popup/index';
 import { selectTopology } from './topologies/Select';
+import { tableTopology } from './topologies/Table';
+import { tableCellTopology } from './topologies/TableCell';
+import { tableRowTopology } from './topologies/TableRow';
 import { sidebarTopology } from './topologies/Sidebar/index';
+import { tabPaneTopology } from './topologies/TabPane/index';
 import { tabBarTopology } from './topologies/TabBar/index';
 import { voteBubbleTopology } from './topologies/VoteBubble/index';
 import { voteEventTopology } from './topologies/VoteEvent/index';
@@ -54,7 +58,11 @@ export const allTopologies = [
   pageHeaderTopology,
   popupTopology,
   selectTopology,
+  tableTopology,
+  tableRowTopology,
+  tableCellTopology,
   sidebarTopology,
+  tabPaneTopology,
   tabBarTopology,
   voteBubbleTopology,
   voteEventTopology,

@@ -15,6 +15,7 @@ import Container from '../../topologies/Container';
 import { pageTopology } from '../../topologies/Page';
 import PrimaryResource, { primaryResourceTopology } from '../../topologies/PrimaryResource';
 import TabBar from '../../topologies/TabBar';
+import TabPane from '../../topologies/TabPane';
 
 const mapDispatchToProps = (dispatch, { lrs }) => ({
   goToFirstTab: (menuItems) => {
@@ -85,7 +86,9 @@ class MenuItemPage extends React.PureComponent {
         <TabBar>
           <Property label={NS.argu('menuItems')} />
         </TabBar>
-        <Property label={NS.argu('href')} />
+        <TabPane>
+          <Property label={NS.argu('href')} />
+        </TabPane>
       </PrimaryResource>
     );
   }
