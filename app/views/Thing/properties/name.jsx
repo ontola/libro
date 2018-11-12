@@ -23,6 +23,8 @@ import { parentTopology } from '../../../topologies/Parent';
 import { popupTopology } from '../../../topologies/Popup';
 import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
 import { selectTopology } from '../../../topologies/Select';
+import { settingsTableRowTopology } from '../../../topologies/SettingsTableRow';
+import SettingsTableCell from '../../../topologies/SettingsTableCell';
 import { sidebarTopology } from '../../../topologies/Sidebar';
 import { widgetTopologyTopology } from '../../../topologies/WidgetTopology/WidgetTopology';
 
@@ -141,6 +143,12 @@ export default [
     NS.schema('Thing'),
     NamePredicates,
     parentTopology
+  ),
+  LinkedRenderStore.registerRenderer(
+    ({ linkedProp }) => <SettingsTableCell><LDLink>{linkedProp.value}</LDLink></SettingsTableCell>,
+    NS.schema('Thing'),
+    NamePredicates,
+    settingsTableRowTopology
   ),
   LinkedRenderStore.registerRenderer(
     props => <ConnectedHeading data-test="Thing-name-widget" size="2" {...props} />,

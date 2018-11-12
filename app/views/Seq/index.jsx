@@ -30,6 +30,7 @@ export class Seq extends PropertyBase {
     return (
       sequences.map((s, i) => (
         <LinkedResourceContainer
+          columns={this.props.columns}
           count={sequences.length}
           data-test={`Seq-${i}-${s.object.value}`}
           first={sequences[0].object}

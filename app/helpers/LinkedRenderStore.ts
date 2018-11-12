@@ -43,6 +43,7 @@ LRS.namespaces.aod = memoizedNamespace('https://argu.co/ns/od#');
 LRS.namespaces.meeting = memoizedNamespace('https://argu.co/ns/meeting/');
 LRS.namespaces.sh = memoizedNamespace('http://www.w3.org/ns/shacl#');
 LRS.namespaces.opengov = memoizedNamespace('http://www.w3.org/ns/opengov#');
+LRS.namespaces.org = memoizedNamespace('http://www.w3.org/ns/org#');
 LRS.namespaces.person = memoizedNamespace('http://www.w3.org/ns/person#');
 LRS.namespaces.fa4 = memoizedNamespace('http://fontawesome.io/icon/');
 

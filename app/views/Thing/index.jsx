@@ -58,6 +58,8 @@ import ThingPage from './ThingPage';
 import ThingParent from './ThingParent';
 import ThingPopup from './ThingPopup';
 import ThingSelect from './ThingSelect';
+import ThingTable from './ThingTable';
+import ThingTableRow from './ThingTableRow';
 
 const CardHoverBox = hoverBox();
 
@@ -136,6 +138,8 @@ const ThingCard = () => (
 export default [
   ThingPage,
   ThingSelect,
+  ThingTable,
+  ThingTableRow,
   ThingParent,
   ThingPopup,
   LinkedRenderStore.registerRenderer(

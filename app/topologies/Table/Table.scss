@@ -1,0 +1,23 @@
+@import '../../components/shared/config';
+
+.Table {
+  width: 100%;
+
+  td {
+    padding: .2em;
+
+    a {
+      margin: 0 .1rem;
+    }
+
+    .fa {
+      color: color('grey', 'base');
+    }
+  }
+
+  tr {
+    &:nth-child(even) {
+      background-color: color('grey', 'x-light');
+    }
+  }
+}

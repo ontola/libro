@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
+import Card from '../../../topologies/Card';
 import Grid from '../../../topologies/Grid';
 import { CollectionViewTypes } from '../types';
 import Container, { containerTopology } from '../../../topologies/Container';
 import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
+import SettingsTable from '../../../topologies/SettingsTable';
 
 const propTypes = {
   /** The amount of items to render. Leave undefined for all items */
@@ -23,6 +25,18 @@ export const collectionDisplayWrapper = (collectionDisplay, memberList, topology
     );
   }
 
+  if (collectionDisplay === NS.argu('collectionDisplay/settingsTable')) {
+    return (
+      <Card>
+        <SettingsTable>
+          <tbody>
+            {memberList}
+          </tbody>
+        </SettingsTable>
+      </Card>
+    );
+  }
+
   if (collectionDisplay === NS.argu('collectionDisplay/default') && topology !== containerTopology) {
     return (
       <Container>
@@ -35,11 +49,21 @@ export const collectionDisplayWrapper = (collectionDisplay, memberList, topology
 };
 
 class ItemsComp extends PropertyBase {
+  columns() {
+    if (this.props.collectionDisplay === NS.argu('collectionDisplay/settingsTable')) {
+      return [
+        [NS.schema('name'), NS.rdfs('label')],
+      ];
+    }
+    return undefined;
+  }
+
   memberList() {
     return this.props.items
       .slice(0, this.props.renderLimit)
       .map(iri => (
         <LinkedResourceContainer
+          columns={this.columns()}
           key={`${this.props.subject}:${iri.value}`}
           subject={iri}
           topology={this.context.topology}
