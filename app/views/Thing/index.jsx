@@ -35,12 +35,15 @@ import CoverPhoto from './properties/coverPhoto';
 import CreateAction from './properties/createAction';
 import DateCreated from './properties/dateCreated';
 import DateSubmitted from './properties/dateSubmitted';
+import Email from './properties/email';
 import ExpiresAt from './properties/expiresAt';
 import FollowsCount from './properties/followsCount';
 import Image from './properties/image';
 import IsPartOf from './properties/isPartOf';
 import IsPrimaryTopicOf from './properties/isPrimaryTopicOf';
 import Location from './properties/location';
+import MakePrimaryAction from './properties/makePrimaryAction';
+import Member from './properties/member';
 import Menus from './properties/menus';
 import MotionsCount from './properties/motionsCount';
 import Name from './properties/name';
@@ -49,6 +52,7 @@ import Organization from './properties/organization';
 import PinnedAt from './properties/pinnedAt';
 import PotentialAction from './properties/potentialAction';
 import PublishAction from './properties/publishAction';
+import SendConfirmationAction from './properties/sendConfirmationAction';
 import SuperEvent from './properties/superEvent';
 import Text from './properties/text';
 import TrashedAt from './properties/trashedAt';
@@ -200,18 +204,22 @@ export default [
   CreateAction,
   DateCreated,
   DateSubmitted,
+  Email,
   ExpiresAt,
   FollowsCount,
   IsPrimaryTopicOf,
   IsPartOf,
   Image,
   Location,
+  MakePrimaryAction,
+  Member,
   Menus,
   MotionsCount,
   ...Name,
   ...Omniform,
   Organization,
   PinnedAt,
+  SendConfirmationAction,
   SuperEvent,
   ...PotentialAction,
   PublishAction,

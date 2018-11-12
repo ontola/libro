@@ -9,6 +9,7 @@ import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { dropdownContentTopology } from '../../topologies/DropdownContent';
 import { formFooterTopology } from '../../topologies/FormFooter/Footer';
 import { pageHeaderTopology } from '../../topologies/PageHeader';
+import { tableCellTopology } from '../../topologies/TableCell';
 import { sidebarTopology } from '../../topologies/Sidebar';
 import { voteBubbleTopology } from '../../topologies/VoteBubble';
 import { voteEventSideTopology } from '../../topologies/VoteEventSide';
@@ -30,6 +31,7 @@ class ImageObject extends React.PureComponent {
     formFooterTopology,
     pageHeaderTopology,
     parentTopology,
+    tableCellTopology,
     sidebarTopology,
     voteBubbleTopology,
     voteEventSideTopology,

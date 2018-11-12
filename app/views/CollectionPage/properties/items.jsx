@@ -9,12 +9,27 @@ import Grid from '../../../topologies/Grid';
 import { CollectionViewTypes } from '../types';
 import Container, { containerTopology } from '../../../topologies/Container';
 import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
-import SettingsTable from '../../../topologies/SettingsTable';
+import Table from '../../../topologies/Table';
 
 const propTypes = {
   /** The amount of items to render. Leave undefined for all items */
   renderLimit: PropTypes.number,
 };
+
+const settingsTableColumns = [
+  NS.argu('alias'),
+  NS.argu('shortnameable'),
+  [NS.schema('name'), NS.rdfs('label')],
+  NS.schema('email'),
+  NS.org('member'),
+  NS.argu('grantSet'),
+  NS.argu('followsCount'),
+  NS.org('hasMember'),
+  NS.argu('makePrimaryAction'),
+  NS.argu('sendConfirmationAction'),
+  [NS.argu('settingsMenu'), NS.argu('updateAction')],
+  NS.argu('destroyAction'),
+];
 
 export const collectionDisplayWrapper = (collectionDisplay, memberList, topology) => {
   if (collectionDisplay === NS.argu('collectionDisplay/grid')) {
@@ -28,11 +43,11 @@ export const collectionDisplayWrapper = (collectionDisplay, memberList, topology
   if (collectionDisplay === NS.argu('collectionDisplay/settingsTable')) {
     return (
       <Card>
-        <SettingsTable>
+        <Table>
           <tbody>
             {memberList}
           </tbody>
-        </SettingsTable>
+        </Table>
       </Card>
     );
   }
@@ -51,9 +66,7 @@ export const collectionDisplayWrapper = (collectionDisplay, memberList, topology
 class ItemsComp extends PropertyBase {
   columns() {
     if (this.props.collectionDisplay === NS.argu('collectionDisplay/settingsTable')) {
-      return [
-        [NS.schema('name'), NS.rdfs('label')],
-      ];
+      return settingsTableColumns;
     }
     return undefined;
   }

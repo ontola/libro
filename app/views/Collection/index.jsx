@@ -40,6 +40,7 @@ import Pages from './properties/pages';
 import { CollectionTypes } from './types';
 import sidebar from './sidebar';
 import voteEvent from './voteEvent';
+import CollectionTableRow from './CollectionTableRow';
 
 const mvcPropTypes = {
   totalItems: linkType,
@@ -172,6 +173,7 @@ const itemsCount = {
 };
 
 export default [
+  CollectionTableRow,
   LinkedRenderStore.registerRenderer(
     getCollection({
       WrappingElement: Container,

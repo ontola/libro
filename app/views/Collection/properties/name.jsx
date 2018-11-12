@@ -13,6 +13,7 @@ import { allTopologiesExcept } from '../../../topologies';
 import { sidebarTopology } from '../../../topologies/Sidebar';
 import { CollectionTypes } from '../types';
 import { parentTopology } from '../../../topologies/Parent';
+import { tableRowTopology } from '../../../topologies/TableRow';
 
 const propTypes = {
   label: labelType,
@@ -35,9 +36,17 @@ class CollectionName extends PropertyBase {
 
 CollectionName.propTypes = propTypes;
 
-export default LinkedRenderStore.registerRenderer(
-  withLinkCtx(CollectionName),
-  CollectionTypes,
-  NS.as('name'),
-  allTopologiesExcept(parentTopology, sidebarTopology)
-);
+export default [
+  LinkedRenderStore.registerRenderer(
+    withLinkCtx(CollectionName),
+    CollectionTypes,
+    NS.as('name'),
+    allTopologiesExcept(parentTopology, sidebarTopology, tableRowTopology)
+  ),
+  LinkedRenderStore.registerRenderer(
+    ({ linkedProp }) => linkedProp.value,
+    CollectionTypes,
+    NS.as('name'),
+    tableRowTopology
+  ),
+];
