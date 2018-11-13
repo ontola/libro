@@ -26,12 +26,14 @@ class CreateVote extends PropertyBase {
   static topology = allTopologies;
 
   static mapDataToProps = {
+    actionStatus: NS.schema('actionStatus'),
     object: NS.schema('object'),
     target: NS.schema('target'),
     type: { label: NS.rdf('type'), limit: Infinity },
   };
 
   static propTypes = {
+    actionStatus: linkType,
     count: linkType,
     /**
      * The vote cast by the user if present.
@@ -40,6 +42,7 @@ class CreateVote extends PropertyBase {
      * has this property in it's API.
      */
     currentVote: linkType,
+    name: linkType,
     subject: subjectType,
     target: linkType,
     variant: PropTypes.string,
@@ -82,6 +85,7 @@ class CreateVote extends PropertyBase {
 
   render() {
     const {
+      actionStatus,
       count,
       subject,
       target,
@@ -99,13 +103,19 @@ class CreateVote extends PropertyBase {
       return null;
     }
 
+    const disabled = actionStatus === NS.argu('DisabledActionStatus');
+    const expired = actionStatus === NS.argu('ExpiredActionStatus');
+    const title = (disabled || expired) && `Stemmen is niet ${expired ? 'langer ' : ''}mogelijk`;
+
     return (
       <LinkedResourceContainer
         active={this.isCurrent()}
         count={count}
+        disabled={disabled || expired}
         grow={this.props.current !== undefined}
         subject={target}
         theme="transparant"
+        title={title}
         variant={this.variant()}
         onClick={handleClick}
       />

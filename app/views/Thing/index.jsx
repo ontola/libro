@@ -48,6 +48,7 @@ import Omniform from './properties/omniform';
 import Organization from './properties/organization';
 import PinnedAt from './properties/pinnedAt';
 import PotentialAction from './properties/potentialAction';
+import PublishAction from './properties/publishAction';
 import SuperEvent from './properties/superEvent';
 import Text from './properties/text';
 import TrashedAt from './properties/trashedAt';
@@ -208,6 +209,7 @@ export default [
   PinnedAt,
   SuperEvent,
   ...PotentialAction,
+  PublishAction,
   ...Text,
   TrashedAt,
   UpdateAction,
