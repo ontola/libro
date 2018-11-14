@@ -94,13 +94,13 @@ export default [
       </LDLink>),
     NS.schema('Thing'),
     NamePredicates,
-    [hoverBoxTopology, cardListTopology]
+    hoverBoxTopology
   ),
   LinkedRenderStore.registerRenderer(
     link([NS.schema('name')])(ActionButton),
     NS.schema('Thing'),
     NamePredicates,
-    cardFloatTopology
+    [cardFloatTopology, cardListTopology]
   ),
   LinkedRenderStore.registerRenderer(
     () => <ConnectedHeading data-test="Thing-name-card-main" size="1" />,
