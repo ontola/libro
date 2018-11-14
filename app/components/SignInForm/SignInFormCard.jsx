@@ -17,7 +17,7 @@ import path from '../../helpers/paths';
 
 import SignInFormBase from './SignInFormBase';
 
-defineMessages({
+const messages = defineMessages({
   login: {
     defaultMessage: 'login',
     id: 'https://app.argu.co/i18n/forms/session/login',
@@ -85,7 +85,7 @@ class SignInFormCard extends SignInFormBase {
             <p />
           </Form>
         </CardContent>
-        <CardDivider text={this.props.intl.formatMessage({ id: 'https://app.argu.co/i18n/forms/session/or' })} />
+        <CardDivider text={this.props.intl.formatMessage(messages.or)} />
       </React.Fragment>
     );
   }
@@ -100,8 +100,8 @@ class SignInFormCard extends SignInFormBase {
   }
 
   getHeaderText() {
-    let login = this.props.intl.formatMessage({ id: 'https://app.argu.co/i18n/forms/session/login' });
-    let register = this.props.intl.formatMessage({ id: 'https://app.argu.co/i18n/forms/session/register' });
+    let login = this.props.intl.formatMessage(messages.login);
+    let register = this.props.intl.formatMessage(messages.register);
     if ([STEPS.signIn].includes(this.props.step)) {
       login = <b>{login}</b>;
     }

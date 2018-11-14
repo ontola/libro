@@ -23,8 +23,6 @@ export { default as DetailText } from './components/Detail/text';
 export { default as DetailImage } from './components/Detail/image';
 export { default as DetailDate } from './components/DetailDate/index';
 export { default as DetailStatus } from './components/DetailStatus/index';
-export { default as DetailType } from './components/DetailType/index';
-export { default as DetailVotedFor } from './components/DetailVotedFor/index';
 export { default as Drawer } from './components/Drawer/index';
 export { default as Dropdown } from './components/Dropdown/index';
 export { default as DropdownLink } from './components/Dropdown/DropdownLink';

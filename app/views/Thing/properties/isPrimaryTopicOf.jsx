@@ -1,6 +1,7 @@
 import LinkedRenderStore from 'link-lib';
 import { linkedPropType } from 'link-redux';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import { isDifferentOrigin } from '../../../helpers/iris';
 import { NS } from '../../../helpers/LinkedRenderStore';
@@ -16,7 +17,12 @@ const IsPrimaryTopicOf = ({ linkedProp }) => {
   }
   const target = isDifferentOrigin(linkedProp) ? '_blank' : undefined;
   return (
-    <a href={linkedProp.value} target={target}>External information</a>
+    <a href={linkedProp.value} target={target}>
+      <FormattedMessage
+        defaultMessage="External information"
+        id="https://app.argu.co/i18n/schema:Thing/foaf:isPrimaryTopicOf/externalLabel"
+      />
+    </a>
   );
 };
 

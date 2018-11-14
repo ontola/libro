@@ -11,7 +11,7 @@ import { defineMessages } from 'react-intl';
 import { safeCredentials } from './arguHelpers';
 import { retrievePath } from './iris';
 
-defineMessages({
+const messages = defineMessages({
   copyFinished: {
     context: 'The (inline) message to indicate the value was copied to their clipboard',
     defaultMessage: 'Copied...',
@@ -81,7 +81,6 @@ const ontolaMiddleware = history => (store) => {
       ),
     ];
   };
-
 
   /**
    * Ontola dialog setup
@@ -159,9 +158,7 @@ const ontolaMiddleware = history => (store) => {
       const value = new URL(iri.value).searchParams.get('value');
 
       return clipboardCopy(value)
-        .then(() => Promise.resolve(store.intl.formatMessage({
-          id: 'https://ns.ontola.io/actions/copyToClipboard/copySuccessMessage',
-        })));
+        .then(() => Promise.resolve(store.intl.formatMessage(messages.copyFinished)));
     }
 
     if (iri.value.startsWith(store.namespaces.ontola('actions/redirect').value)) {

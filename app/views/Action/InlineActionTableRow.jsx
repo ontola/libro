@@ -8,6 +8,7 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../topologies';
@@ -66,7 +67,12 @@ export default [
   LinkedRenderStore.registerRenderer(
     link(mapDataToProps)(props => (
       <InlineActionTableRow
-        completed="Primair e-mail adres"
+        completed={(
+          <FormattedMessage
+            defaultMessage="Primary e-mail address"
+            id="https://app.argu.co/i18n/actions/MakePrimaryAction/defaultEmailLabel"
+          />
+        )}
         {...props}
       />
     )),
@@ -75,7 +81,17 @@ export default [
     allTopologies
   ),
   LinkedRenderStore.registerRenderer(
-    link(mapDataToProps)(props => <InlineActionTableRow completed="Is bevestigd" {...props} />),
+    link(mapDataToProps)(props => (
+      <InlineActionTableRow
+        completed={(
+          <FormattedMessage
+            defaultMessage="Is confirmed"
+            id="https://app.argu.co/i18n/actions/SendConfirmationAction/confirmedLabel"
+          />
+        )}
+        {...props}
+      />
+    )),
     NS.argu('SendConfirmationAction'),
     RENDER_CLASS_NAME,
     allTopologies

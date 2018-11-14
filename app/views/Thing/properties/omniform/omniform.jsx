@@ -4,6 +4,7 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import Heading from '../../../../components/Heading';
 import isPastDate from '../../../../helpers/date';
@@ -70,7 +71,10 @@ class OmniformProp extends React.PureComponent {
     if (this.selfOrParentExpired()) {
       return (
         <Heading variant="notice">
-          Het is niet meer mogelijk om te reageren
+          <FormattedMessage
+            defaultMessage="Responding is no longer possible"
+            id="https://app.argu.co/i18n/expireable/states/closed/closedMessage"
+          />
         </Heading>
       );
     }

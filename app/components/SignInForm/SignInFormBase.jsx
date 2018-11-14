@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage, intlShape } from 'react-intl';
 
 import validators, { combineValidators } from '../../helpers/validators';
 import { STEPS } from '../../state/form/reducer';
@@ -9,7 +9,7 @@ import { CardContent, CardLink, CardRow } from '../../topologies/Card';
 import FormField from '../FormField';
 import CloseableContainer from '../../containers/CloseableContainer';
 
-defineMessages({
+const messages = defineMessages({
   emailPlaceholder: {
     context: 'Placeholder for the email field when signing in',
     defaultMessage: 'email@example.com',
@@ -20,9 +20,7 @@ defineMessages({
 const propTypes = {
   hasBack: PropTypes.bool,
   initialValues: PropTypes.objectOf(PropTypes.string),
-  intl: PropTypes.shape({
-    formatMessage: PropTypes.func,
-  }),
+  intl: intlShape,
   r: PropTypes.string,
   reason: PropTypes.string,
   registeredEmail: PropTypes.string,
@@ -84,9 +82,7 @@ class SignInFormBase extends React.PureComponent {
             id="https://app.argu.co/i18n/forms/session/email/label"
           />
         )}
-        placeholder={this.props.intl.formatMessage({
-          id: 'https://app.argu.co/i18n/forms/session/email/placeholder',
-        })}
+        placeholder={this.props.intl.formatMessage(messages.emailPlaceholder)}
         type="email"
         validate={combineValidators(
           validators.required,

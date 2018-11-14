@@ -8,8 +8,8 @@ import nlLocaleData from 'react-intl/locale-data/nl';
 import { Provider } from 'react-redux';
 
 import AppFrame from '../routes/App';
-import englishMessages from '../../locales/en.reactIntl.json';
-import dutchMessages from '../../locales/nl.reactIntl.json';
+import englishMessages from '../translations/en.json';
+import dutchMessages from '../translations/nl.json';
 
 const propTypes = {
   Router: PropTypes.func,

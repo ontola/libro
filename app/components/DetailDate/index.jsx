@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { injectIntl } from 'react-intl';
+import { injectIntl, intlShape } from 'react-intl';
 
 import Detail from '../Detail';
 
@@ -15,11 +15,7 @@ const propTypes = {
   endDate: PropTypes.instanceOf(Date),
   floatRight: PropTypes.bool,
   hideIcon: PropTypes.bool,
-  intl: PropTypes.shape({
-    formatDate: PropTypes.func,
-    formatRelative: PropTypes.func,
-    formatTime: PropTypes.func,
-  }),
+  intl: intlShape,
   startDate: PropTypes.instanceOf(Date),
   submittedAt: PropTypes.instanceOf(Date),
   updatedDate: PropTypes.instanceOf(Date),

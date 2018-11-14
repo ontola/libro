@@ -110,7 +110,8 @@ export const getVoteButtons = (options) => {
   }
 
   return connect((state, ownProps) => ({
-    showSignInFlow: ownProps.currentVote && ['GuestUser', 'UnconfirmedUser'].includes(getCurrentUserType(state)),
+    showSignInFlow: ownProps.currentVote
+      && ['GuestUser', 'UnconfirmedUser'].includes(getCurrentUserType(state)),
     voteExpiryHack: ownProps.currentVote && state.get('linkedObjects')[ownProps.currentVote.value],
   }))(withLinkCtx(VoteButtons));
 };

@@ -27,7 +27,13 @@ const Text = ({ linkedProp }) => <Markdown data-test="Thing-text" text={linkedPr
 
 Text.propTypes = propTypes;
 
-const TextInline = ({ linkedProp }) => <Markdown inline data-test="Thing-text" text={linkedProp.value} />;
+const TextInline = ({ linkedProp }) => (
+  <Markdown
+    inline
+    data-test="Thing-text"
+    text={linkedProp.value}
+  />
+);
 
 TextInline.propTypes = propTypes;
 
@@ -50,7 +56,13 @@ const propTypesCollection = {
   subject: subjectType,
 };
 
-const TextCollapsed = ({ linkedProp, subject }) => <CollapseText data-test="Thing-text-card" id={subject.value} text={linkedProp.value} />;
+const TextCollapsed = ({ linkedProp, subject }) => (
+  <CollapseText
+    data-test="Thing-text-card"
+    id={subject.value}
+    text={linkedProp.value}
+  />
+);
 
 TextCollapsed.propTypes = propTypesCollection;
 

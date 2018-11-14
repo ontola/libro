@@ -6,6 +6,7 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../topologies';
@@ -105,7 +106,22 @@ class CreateVote extends PropertyBase {
 
     const disabled = actionStatus === NS.argu('DisabledActionStatus');
     const expired = actionStatus === NS.argu('ExpiredActionStatus');
-    const title = (disabled || expired) && `Stemmen is niet ${expired ? 'langer ' : ''}mogelijk`;
+    let title;
+    if (expired) {
+      title = (
+        <FormattedMessage
+          defaultMessage="Voting no longer possible"
+          id="https://app.argu.co/i18n/votes/expireable/states/closed/message"
+        />
+      );
+    } else if (disabled) {
+      title = (
+        <FormattedMessage
+          defaultMessage="Voting not possible"
+          id="https://app.argu.co/i18n/votes/expireable/states/disabled/message"
+        />
+      );
+    }
 
     return (
       <LinkedResourceContainer

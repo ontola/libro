@@ -1,6 +1,7 @@
 import LinkedRenderStore from 'link-lib';
 import { linkedPropType, LinkedResourceContainer } from 'link-redux';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import { CardContent } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
@@ -15,7 +16,11 @@ const propTypes = {
 const superEventCard = ({ linkedProp }) => (
   <CardRow>
     <CardContent>
-      Besproken in: <LinkedResourceContainer subject={linkedProp} />
+      <FormattedMessage
+        defaultMessage="Discussed in:"
+        id="https://app.argu.co/i18n/schema:Thing/schema:superEvent/discussedInLabel"
+      />
+      <LinkedResourceContainer subject={linkedProp} />
     </CardContent>
   </CardRow>
 );

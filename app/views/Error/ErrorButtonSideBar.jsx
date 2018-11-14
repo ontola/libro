@@ -10,7 +10,7 @@ import SideBarLinkLabel from '../../components/SideBarLink/SideBarLinkLabel';
 import ErrorButtonWithFeedback from './ErrorButtonWithFeedback';
 import { titleForStatus } from './ErrorMessages';
 
-defineMessages({
+const messages = defineMessages({
   clickRetry: {
     defaultMessage: 'Click to retry',
     id: 'https://app.argu.co/i18n/errors/clickToRetry/label',
@@ -29,7 +29,7 @@ class ErrorButtonSideBar extends ErrorButtonWithFeedback {
   render() {
     const { intl, linkRequestStatus } = this.props;
 
-    const retryText = intl.formatMessage('https://app.argu.co/i18n/errors/clickToRetry/label');
+    const retryText = intl.formatMessage(messages.clickRetry);
 
     return (
       <BlurButton

@@ -8,7 +8,12 @@ class VoteCompareCells extends PropertyBase {
   render() {
     const cells = this
       .getLinkedObjectPropertyRaw()
-      .map(link => <LinkedResourceContainer key={`vote-comp-cell-${getValueOrID(link)}`} subject={link.object} />);
+      .map(link => (
+        <LinkedResourceContainer
+          key={`vote-comp-cell-${getValueOrID(link)}`}
+          subject={link.object}
+        />
+      ));
 
     return (
       <div>

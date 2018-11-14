@@ -1,8 +1,10 @@
 import LinkedRenderStore from 'link-lib';
 import { PropertyBase, withLinkCtx } from 'link-redux';
 import React from 'react';
+import { injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 
+import { messages } from '../../CollectionPage/properties/first';
 import { Button } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { gotoPage } from '../../../state/pagination/actions';
@@ -15,6 +17,7 @@ import { CollectionTypes } from '../types';
  */
 class First extends PropertyBase {
   allPages() {
+    const { intl: formatMessage } = this.props;
     const pageProp = 'page';
     const baseUrl = new URL(this.props.linkedProp.value);
     const firstPage = Number.parseInt(baseUrl.searchParams.get(pageProp), 10);
@@ -63,7 +66,7 @@ class First extends PropertyBase {
           icon="arrow-right"
           key={`${this.props.collectionIRI}-page-switcher-next`}
           theme="pagination"
-          title="volgende"
+          title={formatMessage(messages.next)}
           onClick={() => this.props.dispatch(action)}
         />
       ));
@@ -76,7 +79,9 @@ class First extends PropertyBase {
           icon="arrow-left"
           key={`${this.props.collectionIRI}-page-switcher-previous`}
           theme="pagination"
-          title="vorige"
+          title={formatMessage({
+            id: 'https://app.argu.co/i18n/as:CollectionPage/as:previous/label',
+          })}
           onClick={() => this.props.dispatch(action)}
         />
       ));
@@ -104,7 +109,7 @@ const ConnectedFirst = connect((state, { collectionIRI, linkedProp }) => ({
 }))(First);
 
 export default LinkedRenderStore.registerRenderer(
-  withLinkCtx(ConnectedFirst),
+  withLinkCtx(injectIntl(ConnectedFirst)),
   CollectionTypes,
   NS.as('first'),
   allTopologies

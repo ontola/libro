@@ -1,7 +1,7 @@
 import React from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
-defineMessages({
+const messages = defineMessages({
   '400/body': {
     defaultMessage: 'The request made cannot be fulfilled because it contains bad syntax, check your URL parameters or refresh the page that linked to this resource.',
     id: 'https://app.argu.co/i18n/errors/request/200/body',
@@ -140,29 +140,12 @@ defineMessages({
   },
 });
 
-export const errors = {
-  en: {
-    again: 'Try again',
-    click_to_retry: 'Click to retry',
-    error: 'Error',
-    let_us_know: 'Let us know.',
-    mistaken: 'Is this an error?',
-  },
-  nl: {
-    again: 'Opnieuw',
-    click_to_retry: 'Klik om het nogmaals te proberen.',
-    error: 'Fout',
-    let_us_know: 'Laat het ons weten.',
-    mistaken: 'Is dit een fout?',
-  },
-};
-
 export function bodyForStatus(requestStatus) {
   if (!requestStatus.requested) {
     return null;
   }
 
-  return <FormattedMessage id={`https://app.argu.co/i18n/errors/request/${requestStatus.status}/body`} />;
+  return <FormattedMessage id={messages[`${requestStatus.status}/body`]} />;
 }
 
 export function headerForStatus(requestStatus) {
@@ -170,7 +153,7 @@ export function headerForStatus(requestStatus) {
     return null;
   }
 
-  return <FormattedMessage id={`https://app.argu.co/i18n/errors/request/${requestStatus.status}/header`} />;
+  return <FormattedMessage id={messages[`${requestStatus.status}/header`]} />;
 }
 
 export function titleForStatus(requestStatus) {

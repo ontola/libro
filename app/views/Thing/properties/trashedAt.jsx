@@ -1,12 +1,11 @@
 import { linkedPropType, register } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
+import { FormattedMessage, intlShape } from 'react-intl';
 
 import { CardContent } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import Card from '../../../topologies/Card';
 import { containerTopology } from '../../../topologies/Container';
-
 
 class TrashedAt extends React.PureComponent {
   static type = NS.schema('Thing');
@@ -16,9 +15,7 @@ class TrashedAt extends React.PureComponent {
   static topology = containerTopology;
 
   static propTypes = {
-    intl: PropTypes.shape({
-      formatTime: PropTypes.func,
-    }),
+    intl: intlShape,
     linkedProp: linkedPropType,
   };
 
@@ -28,7 +25,13 @@ class TrashedAt extends React.PureComponent {
     return (
       <Card warn>
         <CardContent endSpacing>
-          Dit item is verwijderd op {formatTime(linkedProp.value)}
+          <FormattedMessage
+            defaultMessage="This resource has been deleted on {date}"
+            id="https://app.argu.co/i18n/trashable/deletedNotice"
+            values={{
+              date: formatTime(linkedProp.value),
+            }}
+          />
         </CardContent>
       </Card>
     );
