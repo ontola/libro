@@ -49,6 +49,7 @@ const mvcPropTypes = {
 function getCollection({
   WrappingElement = Resource,
   fullPage = true,
+  omniform = false,
   renderParent = false,
   renderWhenEmpty = true,
 } = {}) {
@@ -99,7 +100,7 @@ function getCollection({
         children = <Property forceRender collectionDisplay={collectionDisplay} label={NS.as('pages')} />;
       }
       const name = fullPage && pages.length > 0 ? <Property label={NS.as('name')} /> : null;
-      const newButton = <Property label={NS.argu('createAction')} />;
+      const newButton = <Property label={NS.argu('createAction')} omniform={omniform} />;
 
       return (
         <WrappingElement>
@@ -146,14 +147,14 @@ const CollectionCardAppendix = ({ totalItems }) => {
 
 CollectionCardAppendix.propTypes = mvcPropTypes;
 
-const collectionSection = (shortCircuit = true) => {
+const collectionSection = ({ omniform = false, renderWhenEmpty = false } = {}) => {
   const CollectionSection = ({ direction, totalItems }) => {
-    const pagesShouldRender = !shortCircuit || totalItems.value !== '0';
+    const pagesShouldRender = renderWhenEmpty || totalItems.value !== '0';
 
     return (
       <CardList direction={direction}>
         {pagesShouldRender && <Property forceRender label={NS.as('pages')} />}
-        <Property label={NS.argu('createAction')} />
+        <Property label={NS.argu('createAction')} omniform={omniform} />
       </CardList>
     );
   };
@@ -188,7 +189,7 @@ export default [
     ]
   ),
   LinkedRenderStore.registerRenderer(
-    link(itemsCount)(collectionSection()),
+    link(itemsCount)(collectionSection({ omniform: true })),
     CollectionTypes,
     RENDER_CLASS_NAME,
     [
@@ -227,7 +228,7 @@ export default [
     ]
   ),
   LinkedRenderStore.registerRenderer(
-    getCollection({ renderWhenEmpty: false }),
+    getCollection({ omniform: true, renderWhenEmpty: false }),
     CollectionTypes,
     RENDER_CLASS_NAME,
     containerTopology

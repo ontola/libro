@@ -33,14 +33,19 @@ const mapCardListDispatchToProps = (dispatch, ownProps) => ({
   },
 });
 
-const InlineCreateActionButton = ({ actionStatus, onClick, subject }) => {
+const InlineCreateActionButton = ({
+  actionStatus,
+  omniform,
+  onClick,
+  subject,
+}) => {
   if (invalidStatuses.includes(actionStatus)) {
     return null;
   }
 
   return (
     <LDLink subject={subject}>
-      <Property label={NS.schema('name')} onClick={onClick} />
+      <Property label={NS.schema('name')} onClick={omniform && onClick} />
     </LDLink>
   );
 };
@@ -48,6 +53,7 @@ const InlineCreateActionButton = ({ actionStatus, onClick, subject }) => {
 InlineCreateActionButton.displayName = 'InlineCreateActionButton';
 InlineCreateActionButton.propTypes = {
   actionStatus: linkType,
+  omniform: PropTypes.bool,
   onClick: PropTypes.func,
   subject: subjectType,
 };
