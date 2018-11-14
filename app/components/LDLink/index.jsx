@@ -9,49 +9,51 @@ import { absoluteRouterLocation } from '../../helpers/paths';
 
 import './LDLink.scss';
 
-const propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  location: PropTypes.string,
-  subject: subjectType,
-  theme: PropTypes.oneOf([
-    'default',
-    'parent',
-  ]),
-  title: PropTypes.string,
-};
+class LDLink extends React.PureComponent {
+  static propTypes = {
+    children: PropTypes.node,
+    className: PropTypes.string,
+    location: PropTypes.string,
+    subject: subjectType,
+    theme: PropTypes.oneOf([
+      'default',
+      'parent',
+    ]),
+    title: PropTypes.string,
+  };
 
-const defaultProps = {
-  theme: 'default',
-};
+  static defaultProps = {
+    theme: 'default',
+  };
 
-const LDLink = ({
-  className,
-  children,
-  location,
-  subject,
-  theme,
-  title,
-}) => {
-  if (!subject) return 'LDLINK NO SUBJECT';
-  const href = retrievePath(subject.value);
+  render() {
+    const {
+      className,
+      children,
+      location,
+      subject,
+      theme,
+      title,
+    } = this.props;
 
-  return (
-    <Link
-      className={`${className || `LDLink__${theme}`} ${location === href ? 'LDLink__active' : ''}`}
-      title={title}
-      to={href}
-    >
-      {children}
-    </Link>
-  );
-};
+    // TODO: bugsnag
+    if (!subject) return 'LDLINK NO SUBJECT';
+    const href = retrievePath(subject.value);
 
-LDLink.defaultProps = defaultProps;
-LDLink.propTypes = propTypes;
+    return (
+      <Link
+        className={`${className || `LDLink__${theme}`} ${location === href ? 'LDLink__active' : ''}`}
+        title={title}
+        to={href}
+      >
+        {children}
+      </Link>
+    );
+  }
+}
 
 const mapStateToProps = state => ({
   location: absoluteRouterLocation(state),
 });
 
-export default withLinkCtx(connect(mapStateToProps)(LDLink));
+export default connect(mapStateToProps)(withLinkCtx(LDLink));

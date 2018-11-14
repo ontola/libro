@@ -4,7 +4,7 @@ exports[`Attachment renders 1`] = `
 <div
   className="Attachment"
 >
-  <withLinkCtxWrapper
+  <Connect(withLinkCtxWrapper)
     className="Attachment__primary"
     title="Attachment label"
   >
@@ -18,7 +18,7 @@ exports[`Attachment renders 1`] = `
     >
       Attachment label
     </div>
-  </withLinkCtxWrapper>
+  </Connect(withLinkCtxWrapper)>
   <a
     className="Attachment__inside-button"
     data-test="Attachment-download"
