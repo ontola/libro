@@ -1,4 +1,4 @@
-import { Property, register, subjectType } from 'link-redux';
+import { LinkedResourceContainer, register, subjectType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -6,7 +6,6 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import { containerTopology } from '../../topologies/Container';
 
 import NavigatableAction, { bindNavigateProp } from './NavigatableAction';
-
 
 class ActionContainer extends NavigatableAction {
   static type = [
@@ -21,6 +20,11 @@ class ActionContainer extends NavigatableAction {
     containerTopology,
   ];
 
+  static mapDataToProps = [
+    NS.schema('actionStatus'),
+    NS.schema('target'),
+  ];
+
   static hocs = [bindNavigateProp];
 
   static propTypes = {
@@ -29,10 +33,16 @@ class ActionContainer extends NavigatableAction {
   };
 
   render() {
+    const { actionStatus, subject, target } = this.props;
+
+    if (actionStatus && actionStatus !== NS.schema('PotentialActionStatus')) {
+      return null;
+    }
+
     return (
-      <Property
-        action={this.props.subject}
-        label={NS.schema('target')}
+      <LinkedResourceContainer
+        action={subject}
+        subject={target}
         onDone={this.onDoneHandler}
       />
     );

@@ -1,7 +1,6 @@
 import {
   linkedPropType,
   LinkedResourceContainer,
-  lrsType,
   register,
 } from 'link-redux';
 import React from 'react';
@@ -18,15 +17,10 @@ class PublishAction extends React.PureComponent {
 
   static propTypes = {
     linkedProp: linkedPropType,
-    lrs: lrsType,
   };
 
   render() {
-    const { linkedProp, lrs } = this.props;
-
-    if (lrs.getResourceProperty(linkedProp, NS.schema('actionStatus')) !== NS.schema('PotentialActionStatus')) {
-      return null;
-    }
+    const { linkedProp } = this.props;
 
     return <LinkedResourceContainer subject={linkedProp} />;
   }
