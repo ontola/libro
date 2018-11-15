@@ -125,6 +125,7 @@ ThingSection.propTypes = hightlightPropTypes;
 const ThingCard = () => (
   <CardRow>
     <CardContent>
+      <Property label={NS.argu('opinion')} />
       <Property label={[NS.schema('name'), NS.rdfs('label'), NS.schema('name')]} />
       <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
       <Property label={NS.meeting('attachment')} />

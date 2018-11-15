@@ -107,6 +107,7 @@
   flex-direction: column;
   padding: units('small', 'large');
   padding-bottom: 0;
+  position: relative;
 
   &--align-end {
     align-self: flex-end;

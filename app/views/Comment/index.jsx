@@ -27,6 +27,7 @@ const Comment = ({ highlighted }) => (
       <Property label={NS.schema('dateCreated')} />
     </DetailsBar>
     <CardContent>
+      <Property label={NS.argu('opinion')} />
       <Property label={NS.schema('text')} />
     </CardContent>
     <ActionsBar small>

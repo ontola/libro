@@ -20,6 +20,8 @@ import DetailsBar from '../../topologies/DetailsBar';
 import { popupTopology } from '../../topologies/Popup';
 import { voteEventSideTopology } from '../../topologies/VoteEventSide';
 
+import Opinion from './Opinion';
+
 const propTypes = {
   subject: subjectType,
   text: linkType,
@@ -75,6 +77,7 @@ ThingHoverBoxHidden.propTypes = {
 };
 
 export default [
+  Opinion,
   LinkedRenderStore.registerRenderer(
     link([NS.schema('option'), NS.schema('text')], { returnType: 'value' })(VoteSidePage),
     NS.argu('Vote'),
