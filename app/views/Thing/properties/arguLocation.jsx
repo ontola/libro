@@ -21,13 +21,13 @@ const mapDispatchToProps = dispatch => ({
 class ArguLocation extends React.Component {
   static type = NS.schema('Thing');
 
-  static property = NS.argu('location');
+  static property = NS.schema('location');
 
   static topology = containerTopology;
 
   static mapDataToProps = [
     NS.argu('childrenPlacements'),
-    NS.argu('location'),
+    NS.schema('location'),
   ];
 
   static hocs = [connect(null, mapDispatchToProps)];

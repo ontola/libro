@@ -64,7 +64,7 @@ class ThingPage extends PureComponent {
           <Property label={NS.argu('publishAction')} />
           <Property label={NS.argu('voteEvents')} />
           <Property label={NS.argu('blogPosts')} />
-          <Property label={NS.argu('location')} />
+          <Property label={NS.schema('location')} />
           <Property label={NS.argu('motions')} />
         </Container>
         <Container size="large">

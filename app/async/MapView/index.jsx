@@ -196,7 +196,7 @@ class Map extends React.Component {
 
     const { lrs, subject } = this.props;
 
-    const subjectPlacement = subject && lrs.getResourceProperty(subject, NS.argu('location'));
+    const subjectPlacement = subject && lrs.getResourceProperty(subject, NS.schema('location'));
     const center = this.resolvePlacement(subjectPlacement);
 
     if (!center) {
