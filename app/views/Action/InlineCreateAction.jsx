@@ -1,14 +1,13 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
-  link, linkType,
+  link,
+  linkType,
   Property,
-  subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { LDLink } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { omniformOpenInline, omniformSetAction } from '../../state/omniform';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
@@ -37,16 +36,13 @@ const InlineCreateActionButton = ({
   actionStatus,
   omniform,
   onClick,
-  subject,
 }) => {
   if (invalidStatuses.includes(actionStatus)) {
     return null;
   }
 
   return (
-    <LDLink subject={subject}>
-      <Property label={NS.schema('name')} onClick={omniform && onClick} />
-    </LDLink>
+    <Property label={NS.schema('name')} onClick={omniform && onClick} />
   );
 };
 
@@ -55,7 +51,6 @@ InlineCreateActionButton.propTypes = {
   actionStatus: linkType,
   omniform: PropTypes.bool,
   onClick: PropTypes.func,
-  subject: subjectType,
 };
 
 export default [
