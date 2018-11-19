@@ -1,17 +1,11 @@
-import chai from 'chai';
-import chaiEnzyme from 'chai-enzyme';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import sinonChai from 'sinon-chai';
 import LinkedRenderStore from 'link-lib';
 import { applyMiddleware, createStore } from 'redux';
 import { combineReducers } from 'redux-immutable';
 import { linkMiddleware as lrMiddleware, linkReducer } from 'link-redux';
 
 Enzyme.configure({ adapter: new Adapter() });
-
-chai.use(chaiEnzyme());
-chai.use(sinonChai);
 
 export const generateStore = (lrs, initialState = undefined) => createStore(
   combineReducers({ linkedObjects: linkReducer }),
@@ -43,6 +37,5 @@ function defaultContext(properties = {}, initialState = undefined) {
 }
 
 export {
-  chai,
   defaultContext,
 };

@@ -1,5 +1,3 @@
-/* eslint no-magic-numbers: 0 */
-import { assert } from 'chai';
 import { mount } from 'enzyme';
 import React from 'react';
 
@@ -15,8 +13,9 @@ describe('ChronoFeed component', () => {
         Content
       </ChronoFeed>
     ));
-    assert.equal(comp.find('.ChronoFeed').length, 1, 'ChronoFeed does not render');
-    assert.equal(comp.find('.ChronoFeed .List').length, 1, 'A list should render');
-    assert.equal(comp.find('.ChronoFeed .List > div').length, 3, 'List does not have enough items');
+
+    expect(comp.find('.ChronoFeed')).toExist();
+    expect(comp.find('.ChronoFeed .List')).toExist();
+    expect(comp.find('.ChronoFeed .List > div')).toExist();
   });
 });
