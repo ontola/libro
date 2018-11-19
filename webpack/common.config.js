@@ -36,14 +36,20 @@ const common = {
 
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(`${__dirname}/../dist/public/`),
+    path: path.resolve(__dirname, '..', 'dist', 'public'),
   },
 
   plugins: [
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin([
-      'static/robots.txt',
-      'static/preloader.css',
+      {
+        from: 'static/robots.txt',
+        to: path.resolve(__dirname, '..', 'dist', 'public'),
+      },
+      {
+        from: 'static/preloader.css',
+        to: path.resolve(__dirname, '..', 'dist', 'public'),
+      },
     ]),
     new webpack.ProvidePlugin({
       xmlhttprequest: 'imports-loader?this=>global!exports-loader?global.XMLHttpRequest!global.XMLHttpRequest',

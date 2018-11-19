@@ -60,7 +60,8 @@ export default function routes(app, port) {
   app.use(csp);
 
   // Static directory for express
-  app.use('/static', express.static('static'));
+  app.use('/static', express.static('static', { fallthrough: false }));
+  app.use('/f_assets', express.static('dist/public/f_assets', { fallthrough: false }));
   app.use('/', express.static('dist/public'));
   app.get('/assets/*', backendProxy);
   app.get('/packs/*', backendProxy);

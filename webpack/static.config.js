@@ -1,3 +1,5 @@
+const path = require('path');
+
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const merge = require('webpack-merge');
@@ -61,12 +63,15 @@ function createConfig(options) {
 
     output: {
       filename: `f_assets/[name]-[chunkhash].${options.buildName}.js`,
-      publicPath: '/f_assets/',
+      path: path.resolve(__dirname, '..', 'dist', 'public'),
+      publicPath: '/',
     },
 
     plugins: [
       new MiniCssExtractPlugin({
         filename: `f_assets/[name]-[contenthash].${options.buildName}.css`,
+        path: path.resolve(__dirname, '..', 'dist', 'public'),
+        publicPath: '/',
       }),
       new webpack.DefinePlugin({
         'process.env.FRONTEND_HOSTNAME': JSON.stringify(options.hostname),
