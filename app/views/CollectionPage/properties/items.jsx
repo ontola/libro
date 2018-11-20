@@ -1,5 +1,9 @@
-import LinkedRenderStore from 'link-lib';
-import { LinkedResourceContainer, PropertyBase, link } from 'link-redux';
+import {
+  LinkedResourceContainer,
+  PropertyBase,
+  linkType,
+  register,
+} from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -10,11 +14,6 @@ import { CollectionViewTypes } from '../types';
 import Container, { containerTopology } from '../../../topologies/Container';
 import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
 import Table from '../../../topologies/Table';
-
-const propTypes = {
-  /** The amount of items to render. Leave undefined for all items */
-  renderLimit: PropTypes.number,
-};
 
 const settingsTableColumns = [
   NS.argu('alias'),
@@ -31,11 +30,11 @@ const settingsTableColumns = [
   NS.argu('destroyAction'),
 ];
 
-export const collectionDisplayWrapper = (collectionDisplay, memberList, topology) => {
+export const collectionDisplayWrapper = (collectionDisplay, itemList, topology) => {
   if (collectionDisplay === NS.argu('collectionDisplay/grid')) {
     return (
       <Grid>
-        {memberList}
+        {itemList}
       </Grid>
     );
   }
@@ -45,7 +44,7 @@ export const collectionDisplayWrapper = (collectionDisplay, memberList, topology
       <Card>
         <Table>
           <tbody>
-            {memberList}
+            {itemList}
           </tbody>
         </Table>
       </Card>
@@ -55,15 +54,42 @@ export const collectionDisplayWrapper = (collectionDisplay, memberList, topology
   if (collectionDisplay === NS.argu('collectionDisplay/default') && topology !== containerTopology) {
     return (
       <Container>
-        {memberList}
+        {itemList}
       </Container>
     );
   }
 
-  return memberList;
+  return itemList;
 };
 
-class ItemsComp extends PropertyBase {
+class Items extends PropertyBase {
+  static type = CollectionViewTypes;
+
+  static property = NS.as('items');
+
+  static topology = [
+    undefined,
+    primaryResourceTopology,
+    NS.argu('cardList'),
+    NS.argu('widget'),
+    NS.argu('container'),
+  ];
+
+  static mapDataToProps = {
+    items: {
+      label: NS.as('items'),
+      limit: Infinity,
+    },
+    totalCount: NS.as('totalItems'),
+  };
+
+  static propTypes = {
+    items: linkType,
+    /** The amount of items to render. Leave undefined for all items */
+    renderLimit: PropTypes.number,
+    totalCount: linkType,
+  };
+
   columns() {
     if (this.props.collectionDisplay === NS.argu('collectionDisplay/settingsTable')) {
       return settingsTableColumns;
@@ -71,7 +97,7 @@ class ItemsComp extends PropertyBase {
     return undefined;
   }
 
-  memberList() {
+  itemList() {
     return this.props.items
       .slice(0, this.props.renderLimit)
       .map(iri => (
@@ -84,16 +110,16 @@ class ItemsComp extends PropertyBase {
       ));
   }
 
-  styleWrapper(memberList) {
+  styleWrapper(itemList) {
     if (this.props.style && this.props.style !== {}) {
       return (
         <div style={this.props.style}>
-          {memberList}
+          {itemList}
         </div>
       );
     }
 
-    return collectionDisplayWrapper(this.props.collectionDisplay, memberList, this.props.topology);
+    return collectionDisplayWrapper(this.props.collectionDisplay, itemList, this.props.topology);
   }
 
   render() {
@@ -105,9 +131,9 @@ class ItemsComp extends PropertyBase {
     } else if (Array.isArray(items) && items.length === 0) {
       children = null;
     } else if (Array.isArray(items)) {
-      children = this.memberList();
+      children = this.itemList();
     } else if (typeof items.toArray !== 'undefined') {
-      children = this.memberList().toKeyedSeq();
+      children = this.itemList().toKeyedSeq();
     } else {
       children = <LinkedResourceContainer subject={this.getLinkedObjectProperty()} />;
     }
@@ -116,27 +142,4 @@ class ItemsComp extends PropertyBase {
   }
 }
 
-ItemsComp.propTypes = propTypes;
-
-const Items = link({
-  items: {
-    label: NS.as('items'),
-    limit: Infinity,
-  },
-  totalCount: NS.as('totalItems'),
-})(ItemsComp);
-
-export default [
-  LinkedRenderStore.registerRenderer(
-    Items,
-    CollectionViewTypes,
-    NS.as('items'),
-    [
-      undefined,
-      primaryResourceTopology,
-      NS.argu('cardList'),
-      NS.argu('widget'),
-      NS.argu('container'),
-    ]
-  ),
-];
+export default register(Items);
