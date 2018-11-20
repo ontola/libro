@@ -13,13 +13,7 @@ import { tabPaneTopology } from '../../topologies/TabPane';
 import NavigatableAction, { bindNavigateProp } from './NavigatableAction';
 
 class Action extends NavigatableAction {
-  static type = [
-    NS.schema('Action'),
-    NS.schema('UpdateAction'),
-    NS.schema('CreateAction'),
-    NS.argu('TrashAction'),
-    NS.argu('UntrashAction'),
-  ];
+  static type = NS.schema('Action');
 
   static topology = [
     alertDialogTopology,

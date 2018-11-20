@@ -7,13 +7,7 @@ import { tableCellTopology } from '../../topologies/TableCell';
 import { invalidStatuses } from '../Thing/properties/omniform/helpers';
 
 class ActionTableCell extends React.PureComponent {
-  static type = [
-    NS.schema('Action'),
-    NS.schema('UpdateAction'),
-    NS.schema('CreateAction'),
-    NS.argu('TrashAction'),
-    NS.argu('UntrashAction'),
-  ];
+  static type = NS.schema('Action');
 
   static topology = tableCellTopology;
 
