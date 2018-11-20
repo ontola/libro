@@ -35,11 +35,14 @@ export function listen(app, port) {
   });
 }
 
+function isHTMLHeader(headers) {
+  return headers.accept.includes('text/html')
+    || headers.accept.includes('application/xhtml+xml')
+    || headers.accept.includes('application/xml');
+}
+
 function isBinaryishRequest(req, res, next) {
-  const isBinaryIsh = req.headers.accept && !(
-    req.headers.accept.includes('text/html')
-    || req.headers.accept.includes('application/xhtml+xml')
-    || req.headers.accept.includes('application/xml'));
+  const isBinaryIsh = req.headers.accept && !isHTMLHeader(req.headers);
 
   if (isBinaryIsh || isDownloadRequest(req.url)) {
     return next();
@@ -109,14 +112,16 @@ export default function routes(app, port) {
         return res.end();
       }
 
-      res.setHeader(
-        'Link',
-        [
-          `<${constants.FRONTEND_URL}/static/preloader.css>; rel=preload; as=style`,
-          `<${constants.ASSETS_HOST}${manifest['main.js']}>; rel=preload; as=script`,
-          `<${constants.ASSETS_HOST}${manifest['main.css']}>; rel=preload; as=style`,
-        ]
-      );
+      if (isHTMLHeader(req.headers)) {
+        res.setHeader(
+          'Link',
+          [
+            `<${constants.FRONTEND_URL}/static/preloader.css>; rel=preload; as=style`,
+            `<${constants.ASSETS_HOST}${manifest['main.js']}>; rel=preload; as=script`,
+            `<${constants.ASSETS_HOST}${manifest['main.css']}>; rel=preload; as=style`,
+          ]
+        );
+      }
       res.setHeader('Vary', 'Accept,Accept-Encoding,Authorization,Content-Type');
       handleRender(req, res, port, domain);
       return undefined;
