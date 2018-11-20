@@ -4,7 +4,14 @@ import {
   memoizedNamespace,
   MiddlewareFn,
 } from 'link-lib';
-import { Literal, NamedNode, Statement } from 'rdflib';
+import {
+  Formula,
+  Literal,
+  NamedNode,
+  Node,
+  SomeTerm,
+  Statement,
+} from 'rdflib';
 
 import { FRONTEND_ACCEPT, FRONTEND_URL } from '../config';
 
@@ -46,10 +53,37 @@ const languages = {
   nl: 'nl',
 };
 
+const THING_TYPES = [
+    NS.schema('Thing'),
+    NS.rdfs('Resource'),
+    NS.owl('Thing'),
+    NS.link('Document'),
+];
+
+// @ts-ignore TS2341
+LRS.store.store.newPropertyAction(NS.rdf('type'), (
+    _: Formula,
+    __: SomeTerm,
+    ___: NamedNode,
+    obj: SomeTerm,
+    ____: Node,
+): boolean => {
+  if (THING_TYPES.includes(obj as NamedNode)) {
+    return false;
+  }
+  // @ts-ignore TS2341
+  LRS.schema.addStatement(new Statement(obj, NS.rdfs('subClassOf'), NS.schema('Thing')));
+  return false;
+});
+
 // tslint:disable max-line-length
 const ontologicalData = [
-  new Statement(NS.rdfs('Resource'), NS.rdfs('subClassOf'), NS.schema('Thing')),
+  new Statement(NS.schema('Thing'), NS.rdfs('subClassOf'), NS.rdfs('Resource')),
   new Statement(NS.owl('Thing'), NS.owl('sameAs'), NS.schema('Thing')),
+
+  new Statement(NS.as('Collection'), NS.rdfs('subClassOf'), NS.rdfs('Resource')),
+
+  new Statement(NS.argu('Collection'), NS.rdfs('subClassOf'), NS.as('Collection')),
 
   new Statement(NS.schema('CreativeWork'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.schema('CreativeWork'), NS.dc('source'), new NamedNode('http://www.w3.org/wiki/WebSchemas/SchemaDotOrgSources#source_rNews')),
@@ -190,9 +224,6 @@ const ontologicalData = [
 
   new Statement(NS.argu('UntrashAction'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.argu('UntrashAction'), NS.rdfs('subClassOf'), NS.schema('Action')),
-
-  new Statement(NS.argu('InfiniteCollectionView'), NS.rdf('type'), NS.rdfs('Class')),
-  new Statement(NS.argu('InfiniteCollectionView'), NS.rdfs('subClassOf'), NS.as('CollectionPage')),
 
   new Statement(NS.meeting('Meeting'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.meeting('Meeting'), NS.rdfs('subClassOf'), NS.schema('Thing')),
