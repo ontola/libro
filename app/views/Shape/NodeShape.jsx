@@ -11,6 +11,7 @@ const propTypes = {
   autofocusForm: PropTypes.bool,
   onKeyUp: PropTypes.func,
   targetNode: PropTypes.instanceOf(NamedNode),
+  targetValue: PropTypes.instanceOf(NamedNode),
   theme: PropTypes.string,
   whitelist: PropTypes.arrayOf(PropTypes.object),
 };
@@ -21,6 +22,7 @@ const defaultProps = {
 
 const NodeShape = ({
   autofocusForm,
+  targetValue,
   targetNode,
   theme,
   onKeyUp,
@@ -32,6 +34,7 @@ const NodeShape = ({
       autofocusForm={autofocusForm}
       label={NS.sh('property')}
       targetNode={targetNode}
+      targetValue={targetValue}
       theme={theme}
       whitelist={whitelist}
       onKeyUp={onKeyUp}

@@ -24,6 +24,7 @@ class ShProperty extends PropertyBase {
       blacklist,
       onKeyUp,
       autofocusForm,
+      targetValue,
       targetNode,
       theme,
       whitelist,
@@ -70,6 +71,7 @@ class ShProperty extends PropertyBase {
                   key={p.value}
                   subject={p}
                   targetNode={targetNode}
+                  targetValue={targetValue}
                   theme={theme}
                   onKeyUp={onKeyUp}
                 />
@@ -86,6 +88,7 @@ class ShProperty extends PropertyBase {
           key={s.value}
           subject={s}
           targetNode={targetNode}
+          targetValue={targetValue}
           theme={theme}
           onKeyUp={onKeyUp}
         />

@@ -34,6 +34,7 @@ const propTypes = {
   onKeyUp: PropTypes.func,
   path: linkType,
   targetNode: subjectType,
+  targetValue: linkType,
   theme: PropTypes.string,
 };
 
@@ -95,7 +96,7 @@ class PropertyShape extends PropertyBase {
     return this.props.maxLength && Number.parseInt(this.props.maxLength.value, 10);
   }
 
-  renderDataField(fieldName) {
+  renderDataField(fieldName, targetValue) {
     const {
       autofocus,
       defaultValue,
@@ -103,12 +104,9 @@ class PropertyShape extends PropertyBase {
       minCount,
       minLength,
       name,
-      path,
-      targetNode,
       theme,
       onKeyUp,
     } = this.props;
-    const t = targetNode && this.props.lrs.getResourceProperty(targetNode, path);
     const required = minCount && Number(minCount.value) > 0;
     const validate = [
       maxLength && validators.maxLength(maxLength),
@@ -122,7 +120,7 @@ class PropertyShape extends PropertyBase {
         autofocus={autofocus}
         description={this.descriptionValue()}
         field={fieldName}
-        initialValue={t || defaultValue}
+        initialValue={targetValue || defaultValue}
         label={name && name.value}
         maxLength={tryParseInt(maxLength)}
         minLength={tryParseInt(minLength)}
@@ -138,7 +136,7 @@ class PropertyShape extends PropertyBase {
     );
   }
 
-  renderNestedResource(fieldName) {
+  renderNestedResource(fieldName, targetValue) {
     const {
       name,
       onKeyUp,
@@ -149,10 +147,19 @@ class PropertyShape extends PropertyBase {
     const targetShape = this.props.lrs.store.anyStatementMatching(null, NS.sh('targetClass'), this.props.class);
 
     const child = !targetShape
-      ? <Property label={NS.sh('class')} targetNode={targetNode} theme={theme} onKeyUp={onKeyUp} />
+      ? (
+        <Property
+          label={NS.sh('class')}
+          targetNode={targetNode}
+          targetValue={targetValue}
+          theme={theme}
+          onKeyUp={onKeyUp}
+        />
+      )
       : (
         <LinkedResourceContainer
           subject={targetShape.subject}
+          targetValue={targetValue}
           theme={theme}
           onKeyUp={onKeyUp}
         />
@@ -167,12 +174,20 @@ class PropertyShape extends PropertyBase {
   }
 
   render() {
-    const fieldName = btoa(this.props.path.value);
+    const {
+      lrs,
+      path,
+      targetNode,
+    } = this.props;
+
+    const fieldName = btoa(path.value);
+    const currentTarget = targetNode || this.props.targetValue;
+    const targetValue = currentTarget && lrs.getResourceProperty(currentTarget, path);
 
     if (this.props.class) {
-      return this.renderNestedResource(fieldName);
+      return this.renderNestedResource(fieldName, targetValue);
     } else if (this.props.datatype) {
-      return this.renderDataField(fieldName);
+      return this.renderDataField(fieldName, targetValue);
     }
 
     return null;
