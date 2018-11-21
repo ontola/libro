@@ -12,6 +12,8 @@ import { allTopologiesExcept } from '../../topologies';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { cardListTopology } from '../../topologies/Card/CardList';
+import { alertDialogTopology } from '../../topologies/Dialog';
+import { tabPaneTopology } from '../../topologies/TabPane';
 
 const propTypes = {
   actionStatus: linkType,
@@ -38,5 +40,11 @@ export default LinkedRenderStore.registerRenderer(
   CreateActionButton,
   NS.schema('CreateAction'),
   RENDER_CLASS_NAME,
-  allTopologiesExcept([actionsBarTopology, cardListTopology, cardFloatTopology])
+  allTopologiesExcept(
+    actionsBarTopology,
+    alertDialogTopology,
+    cardListTopology,
+    cardFloatTopology,
+    tabPaneTopology
+  )
 );
