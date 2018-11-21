@@ -86,6 +86,9 @@ const ontologicalData = [
 
   new Statement(NS.argu('Collection'), NS.rdfs('subClassOf'), NS.as('Collection')),
 
+  new Statement(NS.argu('InfiniteCollectionView'), NS.rdfs('subClassOf'), NS.as('CollectionPage')),
+  new Statement(NS.argu('PaginatedCollectionView'), NS.rdfs('subClassOf'), NS.as('CollectionPage')),
+
   new Statement(NS.schema('CreativeWork'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.schema('CreativeWork'), NS.dc('source'), new NamedNode('http://www.w3.org/wiki/WebSchemas/SchemaDotOrgSources#source_rNews')),
   new Statement(NS.schema('CreativeWork'), NS.rdfs('comment'), new Literal('The most generic kind of creative work, including books, movies, photographs, software programs, etc.', languages.en)),
