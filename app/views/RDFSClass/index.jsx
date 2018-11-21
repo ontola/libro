@@ -33,7 +33,7 @@ class RDFSClass extends React.PureComponent {
       <Detail
         linkedImage
         text={label.value}
-        title={description && description.value}
+        title={description ? description.value : undefined}
       />
     );
   }
