@@ -18,7 +18,7 @@ import { allTopologies } from '../../topologies';
  */
 class CreateVote extends PropertyBase {
   static type = [
-    NS.argu('CreateVote'),
+    NS.argu('Create::Vote'),
     NS.argu('CreateVoteAction'),
     NS.argu('DestroyVoteAction'),
   ];
