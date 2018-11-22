@@ -34,6 +34,7 @@ import { voteBubbleTopology } from '../../topologies/VoteBubble';
 import { voteEventResultTopology } from '../../topologies/VoteEventResult';
 import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 import { parentTopology } from '../../topologies/Parent';
+import { tabPaneTopology } from '../../topologies/TabPane';
 
 import ErrorButtonWithFeedback from './ErrorButtonWithFeedback';
 import ErrorButtonInline from './ErrorButtonInline';
@@ -177,6 +178,7 @@ export default [
     RENDER_CLASS_NAME,
     [
       containerTopology,
+      tabPaneTopology,
       dropdownContentTopology,
       cardListTopology,
       gridTopology,
