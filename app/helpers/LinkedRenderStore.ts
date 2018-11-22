@@ -199,29 +199,32 @@ const ontologicalData = [
   new Statement(NS.schema('UpdateAction'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.schema('UpdateAction'), NS.rdfs('subClassOf'), NS.schema('Action')),
 
-  new Statement(NS.argu('CreateAction'), NS.rdf('type'), NS.rdfs('Class')),
-  new Statement(NS.argu('CreateAction'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
+  new Statement(NS.schema('CreateAction'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.schema('CreateAction'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
 
   new Statement(NS.argu('CreateComment'), NS.rdf('type'), NS.rdfs('Class')),
-  new Statement(NS.argu('CreateComment'), NS.rdfs('subClassOf'), NS.argu('CreateAction')),
+  new Statement(NS.argu('CreateComment'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
 
   new Statement(NS.argu('CreateProArgument'), NS.rdf('type'), NS.rdfs('Class')),
-  new Statement(NS.argu('CreateProArgument'), NS.rdfs('subClassOf'), NS.argu('CreateAction')),
+  new Statement(NS.argu('CreateProArgument'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
 
   new Statement(NS.argu('CreateConArgument'), NS.rdf('type'), NS.rdfs('Class')),
-  new Statement(NS.argu('CreateConArgument'), NS.rdfs('subClassOf'), NS.argu('CreateAction')),
+  new Statement(NS.argu('CreateConArgument'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
 
   new Statement(NS.argu('CreateBlogPost'), NS.rdf('type'), NS.rdfs('Class')),
-  new Statement(NS.argu('CreateBlogPost'), NS.rdfs('subClassOf'), NS.argu('CreateAction')),
+  new Statement(NS.argu('CreateBlogPost'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
 
   new Statement(NS.argu('CreateComment'), NS.rdf('type'), NS.rdfs('Class')),
-  new Statement(NS.argu('CreateComment'), NS.rdfs('subClassOf'), NS.argu('CreateAction')),
+  new Statement(NS.argu('CreateComment'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
 
   new Statement(NS.argu('CreateMotion'), NS.rdf('type'), NS.rdfs('Class')),
-  new Statement(NS.argu('CreateMotion'), NS.rdfs('subClassOf'), NS.argu('CreateAction')),
+  new Statement(NS.argu('CreateMotion'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
+
+  new Statement(NS.argu('CreateQuestion'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('CreateQuestion'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
 
   new Statement(NS.argu('CreateVote'), NS.rdf('type'), NS.rdfs('Class')),
-  new Statement(NS.argu('CreateVote'), NS.rdfs('subClassOf'), NS.argu('CreateAction')),
+  new Statement(NS.argu('CreateVote'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
 
   new Statement(NS.argu('TrashAction'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.argu('TrashAction'), NS.rdfs('subClassOf'), NS.schema('Action')),

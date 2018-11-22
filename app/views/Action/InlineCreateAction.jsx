@@ -59,7 +59,7 @@ export default [
       NS.schema('object'),
       NS.schema('actionStatus'),
     ])(connect(null, mapActionsBarDispatchToProps)(InlineCreateActionButton)),
-    NS.argu('CreateAction'),
+    NS.schema('CreateAction'),
     RENDER_CLASS_NAME,
     actionsBarTopology
   ),
