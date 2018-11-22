@@ -277,10 +277,11 @@ class SelectInput extends React.Component {
                 onClick={openMenu}
               />
               <Select
+                scrollIntoView
                 {...getMenuProps()}
                 style={{
                   maxHeight: '20em',
-                  position: 'fixed',
+                  position: 'absolute',
                 }}
               >
                 {list}

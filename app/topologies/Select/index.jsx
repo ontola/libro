@@ -12,6 +12,24 @@ class Select extends Topology {
     super(props);
 
     this.topology = selectTopology;
+    this.ref = React.createRef();
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.componentDidUpdate = this.componentDidUpdate.bind(this);
+  }
+
+  componentDidMount() {
+    this.tryScroll();
+  }
+
+  componentDidUpdate() {
+    this.tryScroll();
+  }
+
+  tryScroll() {
+    const { current } = this.ref;
+    if (this.props.scrollIntoView && current) {
+      current.scrollIntoViewIfNeeded();
+    }
   }
 
   render() {
@@ -21,7 +39,7 @@ class Select extends Topology {
     } = this.props;
 
     return this.wrap((
-      <ul {...props}>
+      <ul {...props} ref={this.ref}>
         {children}
       </ul>
     ));

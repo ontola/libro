@@ -65,6 +65,22 @@ class Omniform extends EntryPointBase {
     return true;
   }
 
+  footerGroup() {
+    const { action, lrs } = this.props;
+
+    const footerGroup = lrs.findSubject(
+      action,
+      [NS.schema('target'), NS.ll('actionBody'), NS.sh('property'), NS.sh('group')],
+      NS.ontola('footerGroup')
+    );
+
+    if (!footerGroup) {
+      return null;
+    }
+
+    return <LinkedResourceContainer subject={footerGroup.pop()} />;
+  }
+
   linkedFieldset() {
     const { action, form, onKeyUp } = this.props;
     if (!(action instanceof NamedNode)) {
@@ -143,7 +159,7 @@ class Omniform extends EntryPointBase {
               {this.linkedFieldset()}
             </OmniformFields>
             <FormFooter>
-              <LinkedResourceContainer subject={NS.app('c_a')} />
+              {this.footerGroup()}
               {this.types()}
               <FormFooterRight>
                 {this.props.formFooterButtons}

@@ -98,6 +98,10 @@
 .Field--variant-default {
   margin-bottom: 1em;
 
+  .Form__footer & {
+    margin-bottom: 0;
+  }
+
   .Field__input {
     background-color: color('grey', 'xx-light');
     border: $grey-border;
