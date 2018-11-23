@@ -180,7 +180,7 @@
     "url": "https://git@bitbucket.org/arguweb/aod_demo.git"
   },
   "scripts": {
-    "build": "rimraf ./dist/* && tsc && build:translations && yarn run build:bundle && yarn run build:server",
+    "build": "rimraf ./dist/* && tsc && yarn build:translations && yarn run build:bundle && yarn run build:server",
     "build:analyze": "webpack -p --progress --verbose --display-error-details --config ./webpack/static.config --profile --json  > stats.json",
     "build:bundle": "cross-env NODE_ENV=production parallel-webpack -p --progress --config ./webpack/static.config",
     "build:server": "webpack --config ./webpack/server.config.js",
