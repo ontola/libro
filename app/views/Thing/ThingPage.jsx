@@ -3,6 +3,7 @@ import React, { PureComponent } from 'react';
 
 import {
   CardContent,
+  LinkedDetailDate,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import ActionsBar from '../../topologies/ActionsBar';
@@ -43,7 +44,7 @@ class ThingPage extends PureComponent {
               <Property label={NS.argu('followsCount')} />
               <Property label={NS.argu('motionsCount')} />
               <Property label={NS.schema('location')} />
-              <Property label={NS.schema('dateCreated')} />
+              <LinkedDetailDate />
             </DetailsBar>
             <CardContent noSpacing>
               <Property label={[NS.schema('name'), NS.rdfs('label')]} />

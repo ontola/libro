@@ -1,19 +1,18 @@
 import {
-  PropertyBase,
   link,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import { Literal } from 'rdflib';
 import React from 'react';
-import { injectIntl } from 'react-intl';
 
 import { NS } from '../../helpers/LinkedRenderStore';
-import Detail from '../Detail';
-import '../DetailDate/DetailDate.scss';
+import DetailDate from '../DetailDate';
 
 const propTypes = {
   dateCreated: PropTypes.instanceOf(Literal),
-  dateUpdated: PropTypes.instanceOf(Literal),
+  dateModified: PropTypes.instanceOf(Literal),
+  datePublished: PropTypes.instanceOf(Literal),
+  dateSubmitted: PropTypes.instanceOf(Literal),
   duration: PropTypes.instanceOf(Literal),
   endDate: PropTypes.instanceOf(Literal),
   floatRight: PropTypes.bool,
@@ -21,38 +20,25 @@ const propTypes = {
   startDate: PropTypes.instanceOf(Literal),
 };
 
-const prefixMap = {
-  dateCreated: 'Aangemaakt',
-  dateUpdated: 'Bijgewerkt',
-  duration: 'Duur',
-  endDate: 'Einde',
-  startDate: 'Begin',
-};
-
-class LinkedDetailDate extends PropertyBase {
-  mostImportantDate() {
-    const date = this.props.startDate || this.props.dateCreated;
-    return date && date.value;
-  }
-
+class LinkedDetailDate extends React.PureComponent {
   render() {
     const {
-      intl: { formatRelative },
       floatRight,
       hideIcon,
     } = this.props;
 
-    const processItem = item => (this.getP(item) ? `${prefixMap[item]}: ${this.props[item.value]}` : '');
-
-    const hoverText = `${processItem('startDate')}${processItem('endDate')}${processItem('dateCreated')}${processItem('dateUpdated')}${processItem('duration')}.`;
-
     return (
-      <Detail
+      <DetailDate
         linkedImage
+        dateCreated={this.props.dateCreated && new Date(this.props.dateCreated.value)}
+        dateModified={this.props.dateModified && new Date(this.props.dateModified.value)}
+        datePublished={this.props.datePublished && new Date(this.props.datePublished.value)}
+        dateSubmitted={this.props.dateSubmitted && new Date(this.props.dateSubmitted.value)}
+        duration={this.props.duration && new Date(this.props.duration.value)}
+        endDate={this.props.endDate && new Date(this.props.endDate.value)}
         floatRight={floatRight}
         hideIcon={hideIcon}
-        text={formatRelative(this.mostImportantDate())}
-        title={hoverText}
+        startDate={this.props.startDate && new Date(this.props.startDate.value)}
       />
     );
   }
@@ -64,6 +50,9 @@ export default link([
   NS.schema('startDate'),
   NS.schema('endDate'),
   NS.schema('dateCreated'),
-  NS.schema('dateUpdated'),
+  NS.schema('datePublished'),
+  NS.schema('dateModified'),
   NS.schema('duration'),
-])(injectIntl(LinkedDetailDate));
+  NS.schema('endDate'),
+  NS.schema('startDate'),
+])(LinkedDetailDate);

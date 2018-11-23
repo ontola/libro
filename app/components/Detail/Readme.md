@@ -4,7 +4,7 @@ When using a detail, you'll probably want to use wrapper component, such as Deta
 
 Date detail
 
-      <DetailDate date={new Date(1475498663892)} />
+      <DetailDate dateCreated={new Date(1475498663892)} />
 
 User detail
 

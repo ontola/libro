@@ -28,7 +28,7 @@ class DateSubmitted extends React.Component {
 
     return (
       <LDLink>
-        <DetailDate submittedAt={new Date(dateSubmitted.value)} />
+        <DetailDate dateSubmitted={new Date(dateSubmitted.value)} />
       </LDLink>
     );
   }

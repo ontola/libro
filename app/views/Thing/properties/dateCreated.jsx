@@ -12,7 +12,7 @@ const propTypes = {
 
 const DateCreated = ({ linkedProp }) => (
   <LDLink>
-    <DetailDate createdAt={new Date(linkedProp.value)} />
+    <DetailDate dateCreated={new Date(linkedProp.value)} />
   </LDLink>
 );
 
