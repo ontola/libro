@@ -11,6 +11,8 @@ import {
   SIGN_IN_WRONG_PASSWORD,
 } from '../action-types';
 
+import messages from './messages';
+
 export const STEPS = {
   confirm: 'confirm',
   signIn: 'signIn',
@@ -18,10 +20,11 @@ export const STEPS = {
   signUpCompleted: 'signUpCompleted',
 };
 
-function transitionTo(state, step) {
+function transitionTo(state, step, errors = new Map()) {
   return state
     .set('stepChain', (state.get('stepChain') || new List()).push(step))
-    .set('step', step);
+    .set('step', step)
+    .set('errors', errors);
 }
 
 export default combineReducers({
@@ -66,7 +69,9 @@ export default combineReducers({
         return transitionTo(state, STEPS.signIn);
       }
 
-      return state.set();
+      return state.set('errors', new Map({
+        password: [messages.invalidPassword],
+      }));
     },
   }, transitionTo(new Map(), STEPS.signUp)),
 });

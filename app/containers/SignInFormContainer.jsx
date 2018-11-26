@@ -1,3 +1,4 @@
+import { injectIntl } from 'react-intl';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
@@ -13,11 +14,13 @@ import {
 } from '../state/app/selectors';
 import { stepBack } from '../state/form/actions';
 import {
+  signInGetErrors,
   signInGetStep,
   signInHasBack,
 } from '../state/form/selectors';
 
 const mapStateToProps = (state, props) => ({
+  errors: signInGetErrors(state),
   form: 'signIn',
   hasBack: signInHasBack(state),
   initialValues: {
@@ -41,6 +44,6 @@ const SignInFormContainer = withRouter(connect(
 export const SignInFormContainerCardRow = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(SignInFormCardRow));
+)(injectIntl(SignInFormCardRow)));
 
 export default SignInFormContainer;

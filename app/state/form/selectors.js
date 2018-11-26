@@ -2,6 +2,7 @@ import { getCurrentUserType } from '../app/selectors';
 
 import { STEPS } from './reducer';
 
+export const signInGetErrors = state => state.getIn(['form', 'signIn', 'errors']);
 export const signInGetStepRaw = state => state.getIn(['form', 'signIn', 'step']);
 export const signInGetStep = state => (getCurrentUserType(state) === 'GuestUser' ? signInGetStepRaw(state) : STEPS.signUpCompleted);
 export const signInHasBack = (state) => {

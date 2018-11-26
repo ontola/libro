@@ -6,6 +6,10 @@ const messages = defineMessages({
     defaultMessage: 'email@example.com',
     id: 'https://app.argu.co/i18n/forms/session/email/placeholder',
   },
+  invalidPassword: {
+    defaultMessage: 'Invalid password',
+    id: 'https://app.argu.co/i18n/forms/session/password/invalid',
+  },
   login: {
     defaultMessage: 'login',
     id: 'https://app.argu.co/i18n/forms/session/login',

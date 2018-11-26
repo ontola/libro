@@ -20,6 +20,7 @@ const propTypes = {
   autofocus: PropTypes.bool,
   // Preferably use variants to style this component.
   className: PropTypes.string,
+  customErrors: PropTypes.arrayOf(PropTypes.string),
   // Unique identifier. Used to link label to input.
   field: PropTypes.string.isRequired,
   /** @private */
@@ -326,6 +327,7 @@ class FormField extends React.Component {
 
   render() {
     const {
+      customErrors,
       className,
       label,
       type,
@@ -333,6 +335,7 @@ class FormField extends React.Component {
 
     const { active } = this.state;
     const { error, touched, value } = this.props.fieldState;
+    const allErrs = customErrors || error;
     const warning = error;
     const variant = this.variant();
 
@@ -341,25 +344,25 @@ class FormField extends React.Component {
       [`Field--variant-${variant}`]: variant,
       'Field--active': active,
       'Field--dirty': touched && value,
-      'Field--error': error,
+      'Field--error': allErrs,
       'Field--hidden': (type === 'hidden'),
       'Field--textarea': (type === 'textarea'),
       'Field--warning': warning,
       className,
     });
 
-    const renderMessages = touched && (error || warning);
+    const renderMessages = touched && (allErrs || warning);
 
     const messagesAboveLabel = (variant !== 'material');
 
     return (
       <div className={`Field ${className} ${classes}`}>
-        {renderMessages && messagesAboveLabel && <Messages error={error} warning={warning} />}
+        {renderMessages && messagesAboveLabel && <Messages error={allErrs} warning={warning} />}
         {this.label(label)}
         {this.description()}
         {this.inputElement()}
         {renderMessages && !messagesAboveLabel && (
-          <Messages bottom error={error} warning={warning} />
+          <Messages bottom error={allErrs} warning={warning} />
         )}
       </div>
     );

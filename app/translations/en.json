@@ -63,6 +63,7 @@
   "https://app.argu.co/i18n/forms/session/forgotLink/label": "Forgot password?",
   "https://app.argu.co/i18n/forms/session/login": "login",
   "https://app.argu.co/i18n/forms/session/or": "or",
+  "https://app.argu.co/i18n/forms/session/password/invalid": "Wrong or invalid password",
   "https://app.argu.co/i18n/forms/session/password/label": "Your password",
   "https://app.argu.co/i18n/forms/session/register": "register",
   "https://app.argu.co/i18n/pinnable/states/pinned/pinnedAtLabel": "Pinned at {date}",

@@ -63,6 +63,7 @@
   "https://app.argu.co/i18n/forms/session/forgotLink/label": "Wachtwoord vergeten?",
   "https://app.argu.co/i18n/forms/session/login": "inloggen",
   "https://app.argu.co/i18n/forms/session/or": "of",
+  "https://app.argu.co/i18n/forms/session/password/invalid": "Fout of ongeldig wachtwoord",
   "https://app.argu.co/i18n/forms/session/password/label": "Jouw wachtwoord",
   "https://app.argu.co/i18n/forms/session/register": "registreren",
   "https://app.argu.co/i18n/pinnable/states/pinned/pinnedAtLabel": "Vastgezet op {date}",
