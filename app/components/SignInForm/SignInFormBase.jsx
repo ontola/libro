@@ -1,23 +1,17 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { defineMessages, FormattedMessage, intlShape } from 'react-intl';
+import { FormattedMessage, intlShape } from 'react-intl';
 
-import validators, { combineValidators } from '../../helpers/validators';
-import { STEPS } from '../../state/form/reducer';
 import Button from '../Button';
-import { CardContent, CardLink, CardRow } from '../../topologies/Card';
 import FormField from '../FormField';
 import CloseableContainer from '../../containers/CloseableContainer';
-
-const messages = defineMessages({
-  emailPlaceholder: {
-    context: 'Placeholder for the email field when signing in',
-    defaultMessage: 'email@example.com',
-    id: 'https://app.argu.co/i18n/forms/session/email/placeholder',
-  },
-});
+import validators, { combineValidators } from '../../helpers/validators';
+import { CardContent, CardLink, CardRow } from '../../topologies/Card';
+import { STEPS } from '../../state/form/reducer';
+import messages from '../../state/form/messages';
 
 const propTypes = {
+  errors: PropTypes.instanceOf(Map),
   hasBack: PropTypes.bool,
   initialValues: PropTypes.objectOf(PropTypes.string),
   intl: intlShape,
@@ -44,6 +38,10 @@ class SignInFormBase extends React.PureComponent {
         },
       };
     });
+  }
+
+  errorsForField(fieldName) {
+    return this.props.errors.get(fieldName)?.map(msg => this.props.intl.formatMessage(msg));
   }
 
   confirmFields() {
@@ -111,6 +109,7 @@ class SignInFormBase extends React.PureComponent {
           <FormField
             autofocus
             autoComplete="off"
+            customErrors={this.errorsForField('password')}
             field={btoa('password')}
             key="password"
             label={(

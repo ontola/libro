@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Form } from 'informed';
-import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 
 import { STEPS } from '../../state/form/reducer';
@@ -14,23 +14,9 @@ import Card, {
 } from '../../topologies/Card';
 import Heading from '../Heading';
 import path from '../../helpers/paths';
+import messages from '../../state/form/messages';
 
 import SignInFormBase from './SignInFormBase';
-
-const messages = defineMessages({
-  login: {
-    defaultMessage: 'login',
-    id: 'https://app.argu.co/i18n/forms/session/login',
-  },
-  or: {
-    defaultMessage: 'or',
-    id: 'https://app.argu.co/i18n/forms/session/or',
-  },
-  register: {
-    defaultMessage: 'register',
-    id: 'https://app.argu.co/i18n/forms/session/register',
-  },
-});
 
 const propTypes = {
   // From redux-form
