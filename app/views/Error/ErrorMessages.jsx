@@ -145,7 +145,7 @@ export function bodyForStatus(requestStatus) {
     return null;
   }
 
-  return <FormattedMessage id={messages[`${requestStatus.status}/body`]} />;
+  return <FormattedMessage {...messages[`${requestStatus.status}/body`]} />;
 }
 
 export function headerForStatus(requestStatus) {
@@ -153,7 +153,7 @@ export function headerForStatus(requestStatus) {
     return null;
   }
 
-  return <FormattedMessage id={messages[`${requestStatus.status}/header`]} />;
+  return <FormattedMessage {...messages[`${requestStatus.status}/header`]} />;
 }
 
 export function titleForStatus(requestStatus) {
