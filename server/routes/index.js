@@ -51,6 +51,12 @@ function isBinaryishRequest(req, res, next) {
   return next('route');
 }
 
+const PRELOAD_HEADERS = [
+  `<${constants.FRONTEND_URL}/static/preloader.css>; rel=preload; as=style`,
+  `<${constants.ASSETS_HOST}${manifest['main.js']}>; rel=preload; as=script`,
+  __PRODUCTION__ && `<${constants.ASSETS_HOST}${manifest['main.css']}>; rel=preload; as=style`,
+];
+
 export default function routes(app, port) {
   app.use(morgan('dev'));
 
@@ -113,14 +119,7 @@ export default function routes(app, port) {
       }
 
       if (isHTMLHeader(req.headers)) {
-        res.setHeader(
-          'Link',
-          [
-            `<${constants.FRONTEND_URL}/static/preloader.css>; rel=preload; as=style`,
-            `<${constants.ASSETS_HOST}${manifest['main.js']}>; rel=preload; as=script`,
-            `<${constants.ASSETS_HOST}${manifest['main.css']}>; rel=preload; as=style`,
-          ]
-        );
+        res.setHeader('Link', PRELOAD_HEADERS);
       }
       res.setHeader('Vary', 'Accept,Accept-Encoding,Authorization,Content-Type');
       handleRender(req, res, port, domain);
