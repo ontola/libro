@@ -833,6 +833,11 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.5.6.tgz#9c03d3fed70a8d517c191b7734da2879b50ca26c"
   integrity sha512-ZBFR7TROLVzCkswA3Fmqq+IIJt62/T7aY/Dmz+QkU7CaW2QFqAitCE8Ups7IzmGhcN1YWMBT4Qcoc07jU9hOJQ==
 
+"@types/react-intl@^2.3.13":
+  version "2.3.13"
+  resolved "https://registry.yarnpkg.com/@types/react-intl/-/react-intl-2.3.13.tgz#79c775c4abbb451734c6f85b1ac69f20a60cd25c"
+  integrity sha512-yhMQl7CFKbeAnKuS47uxg3H2PauetwBoDlqfJkHJPm7pqtFIrp3xyvfd31vkNcrhJAgl36kBCwCzj6j/EuuTRA==
+
 "@types/react-redux@^6.0.9":
   version "6.0.10"
   resolved "https://registry.yarnpkg.com/@types/react-redux/-/react-redux-6.0.10.tgz#80a3003a7d50112c65692a8b41752f623217a17c"

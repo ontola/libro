@@ -28,6 +28,6 @@ module.exports = {
   setupTestFrameworkScriptFile: '<rootDir>/tests/testhelper.js',
   testURL: 'https://argu.dev/o/1',
   transform: {
-    '^.+\\.jsx?$': 'babel-jest',
+    '^.+\\.m?(j|t)sx?$': 'babel-jest',
   },
 };

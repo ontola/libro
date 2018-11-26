@@ -73,7 +73,7 @@ const common = {
       react: path.resolve('node_modules/react'),
       static: path.resolve('./static'),
     },
-    extensions: ['.js', '.jsx', '.ts'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     modules: ['./node_modules'],
   },
 };

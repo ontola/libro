@@ -1,15 +1,16 @@
 import { isDifferentOrigin as checkOrigin } from 'link-lib';
+import { NamedNode } from 'rdflib';
 
 const FABase = 'http://fontawesome.io/icon/';
 
-export function isFontAwesomeIRI(iri) {
+export function isFontAwesomeIRI(iri: string) {
   return iri.startsWith(FABase);
 }
 
-export function normalizeFontAwesomeIRI(stringOrIRI) {
-  const string = typeof stringOrIRI !== 'string' ? stringOrIRI.value : stringOrIRI;
+export function normalizeFontAwesomeIRI(stringOrIRI: string | NamedNode) {
+  const str = typeof stringOrIRI !== 'string' ? stringOrIRI.value : stringOrIRI;
 
-  return isFontAwesomeIRI(string) ? string.split(FABase).pop() : string;
+  return isFontAwesomeIRI(str) ? str.split(FABase).pop() : str;
 }
 
 /**
@@ -17,7 +18,7 @@ export function normalizeFontAwesomeIRI(stringOrIRI) {
  * @param {Window} window The window object.
  * @returns {Object} Window-bound functions object.
  */
-export function iris(window) {
+export function iris(window: Window) {
   return {
     currentURL() {
       if (typeof window !== 'undefined') {
@@ -30,12 +31,12 @@ export function iris(window) {
      * @param {string} pathString The path to process, e.g. `/path`.
      * @returns {undefined|string} The fully qualified URL.
      */
-    expandPath(pathString) {
-      if (!pathString) return undefined;
+    expandPath(pathString: string | undefined) {
+      if (!pathString) { return undefined; }
       return new URL(pathString, window.location.origin).href;
     },
 
-    isDifferentOrigin(iri) {
+    isDifferentOrigin(iri: string | any) {
       const t = typeof iri === 'string' ? new URL(iri, window.location.origin).toString() : iri;
       return checkOrigin(t);
     },
@@ -45,7 +46,7 @@ export function iris(window) {
      * @param {string} iriString The IRI to process.
      * @returns {undefined|string} The pathname or undefined if invalid.
      */
-    retrievePath(iriString) {
+    retrievePath(iriString: string) {
       // TODO: https://github.com/linkeddata/rdflib.js/issues/265
       const bugNormalized = iriString.replace(`${window.location.origin}//`, `${window.location.origin}/`);
       const iri = iriString && new URL(bugNormalized, window.location.origin);
@@ -54,7 +55,7 @@ export function iris(window) {
   };
 }
 
-const windowBound = iris(typeof window !== 'undefined' ? window : undefined);
+const windowBound = iris(typeof window !== 'undefined' ? window : undefined!);
 
 export const {
   currentURL,

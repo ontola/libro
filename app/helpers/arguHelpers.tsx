@@ -10,7 +10,7 @@ import React from 'react';
  * @param {Object} props The props of the imageable element.
  * @returns {ReactElement|undefined} Proper image element.
  */
-export function image(props) {
+export function image(props: any) {
   if (props.image) {
     return <img alt={props.image.title} className={props.image.className} src={props.image.url} />;
   } else if (props.fa) {
@@ -21,14 +21,14 @@ export function image(props) {
 
 image.propTypes = {
   fa: PropTypes.string,
-  image: PropTypes.objectOf({
+  image: PropTypes.shape({
     className: PropTypes.string,
     title: PropTypes.string,
     url: PropTypes.string,
   }),
 };
 
-export function errorMessageForStatus(status) {
+export function errorMessageForStatus(status: number) {
   if (status === HttpStatus.UNAUTHORIZED) {
     return {
       fallback: 'Je moet ingelogd zijn voor deze actie.',
@@ -73,17 +73,19 @@ export function errorMessageForStatus(status) {
   };
 }
 
-export function json(response) {
-  if (typeof response !== 'undefined' && response.status !== HttpStatus.NO_CONTENT && response.status !== HttpStatus.NOT_MODIFIED) {
+export function json(response: Response) {
+  if (typeof response !== 'undefined'
+      && response.status !== HttpStatus.NO_CONTENT
+      && response.status !== HttpStatus.NOT_MODIFIED) {
     return response.json();
   }
   return Promise.resolve();
 }
 
-export function getMetaContent(name) {
+export function getMetaContent(name: string) {
   const header = __CLIENT__
-    ? document.querySelector(`meta[name="${name}"]`)
-    : 'TODO: REPLACE ME';
+    ? document.querySelector<HTMLMetaElement>(`meta[name="${name}"]`)
+    : undefined;
   return header && header.content;
 }
 
@@ -91,7 +93,7 @@ export function getAuthenticityToken() {
   return getMetaContent('csrf-token');
 }
 
-export function authenticityHeader(options) {
+export function authenticityHeader(options?: object) {
   return Object.assign({}, options || {}, {
     'X-CSRF-Token': getAuthenticityToken(),
     'X-Requested-With': 'XMLHttpRequest',
@@ -103,9 +105,9 @@ export function authenticityHeader(options) {
  * @param {Object} options Object to be merged with jsonHeader options.
  * @returns {Object} The merged object.
  */
-export function jsonHeader(options) {
+export function jsonHeader(options?: object) {
   return Object.assign({}, options || {}, {
-    Accept: 'application/vnd.api+json',
+    'Accept': 'application/vnd.api+json',
     'Content-Type': 'application/json',
   });
 }
@@ -117,7 +119,7 @@ export function jsonHeader(options) {
  * @param {Object} options Object to be merged with safeCredentials options.
  * @returns {Object} The merged object.
  */
-export function safeCredentials(options = {}) {
+export function safeCredentials(options: any = {}) {
   return Object.assign({}, options, {
     credentials: 'include',
     headers: Object.assign({}, authenticityHeader(), jsonHeader(), options.headers),
@@ -125,7 +127,7 @@ export function safeCredentials(options = {}) {
   });
 }
 
-export function statusSuccess(response) {
+export function statusSuccess(response: Response) {
   if ((response.status >= HttpStatus.OK
       && response.status < HttpStatus.MULTIPLE_CHOICES)
       || response.status === HttpStatus.NOT_MODIFIED) {
@@ -134,11 +136,11 @@ export function statusSuccess(response) {
   return Promise.reject(response);
 }
 
-export function tryLogin(response) {
+export function tryLogin(response: Response) {
   if (response.status === HttpStatus.UNAUTHORIZED) {
     /* eslint no-alert: 0 */
     if (window.confirm(errorMessageForStatus(response.status).fallback)) {
-      window.location = `${window.location.origin}/u/sign_in?r=${encodeURIComponent(window.location.href)}`;
+      window.location.href = `${window.location.origin}/u/sign_in?r=${encodeURIComponent(window.location.href)}`;
     } else {
       return Promise.reject(errorMessageForStatus(response.status).fallback);
     }

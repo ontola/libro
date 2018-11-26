@@ -1,11 +1,21 @@
 import clipboardCopy from 'clipboard-copy';
-import { memoizedNamespace, namedNodeByIRI } from 'link-lib';
+import { History } from 'history';
 import {
-  BlankNode,
-  Collection,
-  Literal,
-  Statement,
+    memoizedNamespace,
+    MiddlewareActionHandler,
+    MiddlewareFn,
+    MiddlewareWithBoundLRS,
+    namedNodeByIRI,
+} from 'link-lib';
+import { LinkReduxLRSType } from 'link-redux';
+import {
+    BlankNode,
+    Collection,
+    Literal,
+    NamedNode,
+    Statement,
 } from 'rdflib';
+import { ReactType } from 'react';
 import { defineMessages } from 'react-intl';
 
 import { safeCredentials } from './arguHelpers';
@@ -19,12 +29,14 @@ const messages = defineMessages({
   },
 });
 
-const ontolaMiddleware = history => (store) => {
+const ontolaMiddleware = (history: History): MiddlewareFn<ReactType> =>
+    (store: LinkReduxLRSType): MiddlewareWithBoundLRS => {
+
   const ontola = memoizedNamespace('https://ns.ontola.io/');
   // eslint-disable-next-line no-param-reassign
   store.namespaces.ontola = ontola;
 
-  const currentLocation = () => {
+  const currentLocation = (): NamedNode => {
     const l = history.location;
     const caller = [
       [l.pathname, l.search].filter(Boolean).join('?'),
@@ -45,17 +57,17 @@ const ontolaMiddleware = history => (store) => {
       ontola('snackbar/manager'),
       store.namespaces.rdf('type'),
       ontola('snackbar/Manager'),
-      store.namespaces.ll('add')
+      store.namespaces.ll('add'),
     ),
     new Statement(
       ontola('snackbar/manager'),
       ontola('snackbar/queue'),
       snackbarQueue,
-      store.namespaces.ll('add')
+      store.namespaces.ll('add'),
     ),
   ]);
 
-  const queueSnackbar = (text) => {
+  const queueSnackbar = (text: string) => {
     const s = new BlankNode();
 
     const queue = store.getResourceProperty(ontola('snackbar/manager'), ontola('snackbar/queue'));
@@ -65,19 +77,20 @@ const ontolaMiddleware = history => (store) => {
         s,
         store.namespaces.rdf('type'),
         ontola('snackbar/Snackbar'),
-        store.namespaces.ll('add')
+        store.namespaces.ll('add'),
       ),
       new Statement(
         s,
         store.namespaces.schema('text'),
         Literal.fromValue(text),
-        store.namespaces.ll('add')
+        store.namespaces.ll('add'),
       ),
       new Statement(
         ontola('snackbar/manager'),
         ontola('snackbar/queue'),
+        // @ts-ignore
         Collection.fromValue([...queue.elements, s]),
-        store.namespaces.ll('replace')
+        store.namespaces.ll('replace'),
       ),
     ];
   };
@@ -93,7 +106,7 @@ const ontolaMiddleware = history => (store) => {
       dialogManager,
       store.namespaces.rdf('type'),
       ontola('dialog/Manager'),
-      store.namespaces.ll('add')
+      store.namespaces.ll('add'),
     ),
   ]);
 
@@ -102,26 +115,26 @@ const ontolaMiddleware = history => (store) => {
       dialogManager,
       ontola('dialog/resource'),
       ontola('dialog/rm'),
-      store.namespaces.ll('remove')
+      store.namespaces.ll('remove'),
     ),
   ];
 
-  const showDialog = value => [
+  const showDialog = (value: string) => [
     new Statement(
       dialogManager,
       ontola('dialog/resource'),
       namedNodeByIRI(value),
-      store.namespaces.ll('replace')
+      store.namespaces.ll('replace'),
     ),
     new Statement(
       dialogManager,
       ontola('dialog/opener'),
       currentLocation(),
-      store.namespaces.ll('replace')
+      store.namespaces.ll('replace'),
     ),
   ];
 
-  history.listen((_location, action) => {
+  history.listen((_, action) => {
     if (['POP', 'PUSH'].includes(action)) {
       const dialog = store.getResourceProperty(dialogManager, ontola('dialog/resource'));
       if (dialog) {
@@ -130,7 +143,7 @@ const ontolaMiddleware = history => (store) => {
     }
   });
 
-  return next => (iri, opts) => {
+  return (next: MiddlewareActionHandler) => (iri: NamedNode, opts: any): Promise<any> => {
     if (!iri.value.startsWith(store.namespaces.ontola('actions/').value)) {
       return next(iri, opts);
     }
@@ -157,8 +170,12 @@ const ontolaMiddleware = history => (store) => {
     if (iri.value.startsWith(store.namespaces.ontola('actions/copyToClipboard').value)) {
       const value = new URL(iri.value).searchParams.get('value');
 
+      if (!value) {
+        throw new Error("Argument 'value' was missing.");
+      }
+
       return clipboardCopy(value)
-        .then(() => Promise.resolve(store.intl.formatMessage(messages.copyFinished)));
+        .then(() => Promise.resolve((store as any).intl.formatMessage(messages.copyFinished)));
     }
 
     if (iri.value.startsWith(store.namespaces.ontola('actions/redirect').value)) {
@@ -177,24 +194,34 @@ const ontolaMiddleware = history => (store) => {
         // TODO: connect to router
         history.push(retrievePath(location));
       }
-      return undefined;
+      return Promise.resolve();
     }
 
     if (iri === store.namespaces.ontola('actions/dialog/close')) {
-      return store.processDelta(hideDialog());
+      store.processDelta(hideDialog());
+      return Promise.resolve();
     }
 
     if (iri.value.startsWith(store.namespaces.ontola('actions/dialog/alert').value)) {
       const resource = new URL(iri.value).searchParams.get('resource');
 
-      history.push(currentLocation());
-      return store.processDelta(showDialog(resource));
+      history.push(currentLocation().value);
+      if (!resource) {
+          throw new Error("Argument 'value' was missing.");
+      }
+      store.processDelta(showDialog(resource));
+
+      return Promise.resolve();
     }
 
     if (iri.value.startsWith(store.namespaces.ontola('actions/snackbar').value)) {
       const value = new URL(iri.value).searchParams.get('text');
+      if (!value) {
+          throw new Error("Argument 'value' was missing.");
+      }
+      store.processDelta(queueSnackbar(value));
 
-      return store.processDelta(queueSnackbar(value));
+      return Promise.resolve();
     }
 
     return next(iri, opts);
