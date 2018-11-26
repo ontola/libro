@@ -19,6 +19,7 @@
   ],
   "plugins": [
     "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-proposal-optional-chaining",
     "@babel/proposal-class-properties",
     "@babel/syntax-dynamic-import",
     "@babel/transform-new-target",
