@@ -1,5 +1,7 @@
 const path = require('path');
 
+const BrotliPlugin = require('brotli-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const merge = require('webpack-merge');
@@ -88,6 +90,10 @@ function createConfig(options) {
         fileName: `../private/manifest.${options.buildName}.json`,
         publicPath: '/',
       }),
+      new CompressionPlugin({
+        minRatio: 0.9,
+      }),
+      new BrotliPlugin(),
       bugsnagPlugin,
     ].filter(p => typeof p !== 'undefined'),
 
