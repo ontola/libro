@@ -1,6 +1,7 @@
 import React from 'react';
 
 import CollapsibleContainer from '../../containers/CollapsibleContainer';
+import Button from '../Button';
 
 import { SideBarCollapsible } from './index';
 
@@ -24,7 +25,8 @@ describe('SideBarCollapsible package', () => {
     });
 
     it('should display the label and the button', () => {
-      expect(subject.find(marker('label'))).toHaveText(`${label}<Button />`);
+      expect(subject.find(marker('label'))).toHaveText(label);
+      expect(subject.find(marker('label')).find(Button)).toExist();
     });
 
     it('should start closed', () => {
@@ -48,8 +50,9 @@ describe('SideBarCollapsible package', () => {
       setProp('open', () => true);
 
       it('should start opened', () => {
-        expect(subject).toHaveClassName('SideBarCollapsible--open');
+        expect(subject.find(marker('sideBarCollapsible')))
+          .toHaveClassName('SideBarCollapsible--open');
       });
     });
-  });
+  }, { intl: 'inject' });
 });

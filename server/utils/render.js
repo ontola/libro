@@ -3,7 +3,7 @@ import * as constants from '../config';
 
 import manifest from './manifest';
 
-export const renderFullPage = (html, devPort, domain, csrfToken, res, head) => {
+export const renderFullPage = (html, devPort, domain, csrfToken, res) => {
   const bundleCSS = __DEVELOPMENT__
     ? ''
     : `<link crossorigin="anonymous" rel="stylesheet" type="text/css" href="${constants.ASSETS_HOST}${manifest['main.css']}" />`;
@@ -16,27 +16,28 @@ export const renderFullPage = (html, devPort, domain, csrfToken, res, head) => {
 
   return `<!doctype html>
     <meta charset="utf-8">
-    <html>
+    <html lang="nl">
       <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="/static/preloader.css" />
         <link rel="manifest" href="${constants.ASSETS_HOST}${manifest['manifest.json']}">
+        <title>Argu</title>
 
         <meta property="og:type" content="website" />
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="application-name" content="AOD">
-        <meta name="apple-mobile-web-app-title" content="AOD">
+        <meta name="application-name" content="Argu">
+        <meta name="apple-mobile-web-app-title" content="Argu">
         <meta name="theme-color" content="#60707F">
         <meta name="msapplication-navbutton-color" content="#60707F">
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
         <meta name="msapplication-starturl" content="/">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0, maximum-scale=5.0" />
 
         <meta name="csrf-param" content="authenticity_token">
         <meta name="csrf-token" content="${csrfToken}">
-        <script src="//d2wy8f7a9ursnm.cloudfront.net/v4/bugsnag.min.js"></script>
+        <script async src="//d2wy8f7a9ursnm.cloudfront.net/v5/bugsnag.min.js"></script>
         <script nonce="${res.locals.nonce.toString()}">window.bugsnagClient = typeof bugsnag !== 'undefined' && bugsnag(${JSON.stringify(bugsnagOpts)})</script>
 
         <link rel="icon" type="image/png" sizes="192x192" href="/static/icon-large.png">
@@ -45,8 +46,6 @@ export const renderFullPage = (html, devPort, domain, csrfToken, res, head) => {
         <link rel="apple-touch-icon" type="image/png" sizes="128x128" href="/static/icon-medium.png">
         <link rel="icon" type="image/png" sizes="72x72" href="/static/icon-small.png">
         <link rel="apple-touch-icon" type="image/png" sizes="72x72" href="/static/icon-small.png">
-        ${head ? head.title.toString() : ''}
-        ${head ? head.meta.toString() : ''}
         <link crossorigin="anonymous" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
         ${bundleCSS}
         <script crossorigin="anonymous" src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,Promise,Promise.prototype.finally|gated,fetch" async></script>

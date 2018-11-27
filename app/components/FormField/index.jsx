@@ -307,10 +307,10 @@ class FormField extends React.Component {
   label(label) {
     const { field, id, theme } = this.props;
 
-    if (label && theme !== 'omniform') {
+    if (label) {
       return (
         <label
-          className="Field__label"
+          className={`Field__label${theme === 'omniform' ? ' AriaHidden' : ''}`}
           htmlFor={id || (field && atob(field))}
         >
           {label}

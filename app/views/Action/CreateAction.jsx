@@ -1,7 +1,7 @@
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   linkType,
   Property,
+  register,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
@@ -16,18 +16,37 @@ import { alertDialogTopology } from '../../topologies/Dialog';
 import { tabPaneTopology } from '../../topologies/TabPane';
 
 const propTypes = {
-  actionStatus: linkType,
-  children: PropTypes.element,
 };
 
 export class CreateActionButton extends Component {
+  static type = NS.schema('CreateAction');
+
+  static topology = allTopologiesExcept(
+    actionsBarTopology,
+    alertDialogTopology,
+    cardListTopology,
+    cardFloatTopology,
+    tabPaneTopology
+  );
+
+  static mapDataToProps = [NS.schema('name')];
+
+  static propTypes = {
+    actionStatus: linkType,
+    children: PropTypes.element,
+    name: linkType,
+  };
+
   render() {
     if (this.props.children) {
       return this.props.children;
     }
 
     return (
-      <LDLink disabled={!!this.props.actionStatus}>
+      <LDLink
+        disabled={!!this.props.actionStatus}
+        title={this.props.name && this.props.name.toString()}
+      >
         <Property label={NS.schema('name')} />
       </LDLink>
     );
@@ -36,15 +55,4 @@ export class CreateActionButton extends Component {
 
 CreateActionButton.propTypes = propTypes;
 
-export default LinkedRenderStore.registerRenderer(
-  CreateActionButton,
-  NS.schema('CreateAction'),
-  RENDER_CLASS_NAME,
-  allTopologiesExcept(
-    actionsBarTopology,
-    alertDialogTopology,
-    cardListTopology,
-    cardFloatTopology,
-    tabPaneTopology
-  )
-);
+export default register(CreateActionButton);

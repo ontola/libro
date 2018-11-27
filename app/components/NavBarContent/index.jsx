@@ -76,9 +76,10 @@ class NavBarContent extends React.PureComponent {
             onClick={() => { window.location.host = window.location.host.split('app.').pop(); }}
           />
           <div className="NavBarContent__center-footer">
-            <Link className="NavBarContent__logo" to={path.index()}>
+            <Link className="NavBarContent__logo" title="Homepage" to={path.index()}>
               {/* eslint-disable max-len */}
               <svg height="28" viewBox="0 0 211 108" width="37" xmlns="http://www.w3.org/2000/svg">
+                <title>Argu logo</title>
                 <rect height="8.3" width="51.2" x="159.8" y="86.4" />
                 <rect height="8.4" width="86.9" y="86.2" />
                 <rect height="8.4" width="211" y="14.3" />

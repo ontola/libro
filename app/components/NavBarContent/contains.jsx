@@ -10,6 +10,7 @@ import {
   PropertyBase,
 } from 'link-redux';
 import React from 'react';
+import { defineMessages, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { NS } from '../../helpers/LinkedRenderStore';
@@ -17,6 +18,13 @@ import { setOrganization } from '../../state/app/actions';
 import { getOrganization } from '../../state/app/selectors';
 import LDLink from '../LDLink';
 import SideBarCollapsibleDefault from '../SideBarCollapsible';
+
+const messages = defineMessages({
+  orgSwitcherLabel: {
+    defaultMessage: 'Show or hide organization switcher',
+    id: 'https://app.argu.co/i18n/menus/organization/collapseLabel',
+  },
+});
 
 const propTypes = {
   contains: linkType,
@@ -51,6 +59,7 @@ class Contains extends PropertyBase {
     return (
       <div className="NavBarContent__switcher">
         <SideBarCollapsibleDefault
+          collapseLabel={this.props.intl.formatMessage(messages.orgSwitcherLabel)}
           id={`${this.props.subject}-menu-items`}
           labelComp={label}
         >
@@ -106,4 +115,4 @@ const mapDispatchToProps = dispatch => ({
 export default link(
   [defaultNS.argu('contains')],
   { forceRender: true }
-)(connect(mapStateToProps, mapDispatchToProps)(Contains));
+)(connect(mapStateToProps, mapDispatchToProps)(injectIntl(Contains)));

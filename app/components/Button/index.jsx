@@ -22,6 +22,8 @@ const buttonThemes = [
 const propTypes = {
   /** Should be true when the button is toggleable and toggled. */
   active: PropTypes.bool,
+  /** Additional aria label */
+  ariaLabel: PropTypes.string,
   /** Label of the button */
   children: PropTypes.node,
   /** Should be avoided. Try to use the 'theme' prop or wrap it in some other element for styling
@@ -81,6 +83,7 @@ const defaultProps = {
  */
 const Button = ({
   active,
+  ariaLabel,
   children,
   className,
   corner,
@@ -125,6 +128,7 @@ const Button = ({
   if (typeof href !== 'undefined') {
     return (
       <LinkDuo
+        aria-label={ariaLabel}
         className={btnClass}
         data-test="Button-link"
         disabled={disabled || loading}
@@ -150,6 +154,7 @@ const Button = ({
   }
   return (
     <BlurButton
+      aria-label={ariaLabel}
       className={btnClass}
       data-test="Button-button"
       disabled={disabled || loading}

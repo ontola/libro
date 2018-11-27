@@ -48,6 +48,7 @@ exports[`Navbar current_actor logged in renders the correct representation 1`] =
         </a>
       </div>
       <button
+        aria-label="Show or hide user menu"
         className="Button Button--has-children Button--plain Button--default SideBarCollapsible__toggle"
         data-test="Button-button"
         onClick={[Function]}
@@ -72,7 +73,7 @@ exports[`Navbar current_actor logged in renders the correct representation 1`] =
       />
       <div>
         <div
-          aria-hidden={-1}
+          aria-hidden={true}
           className="Collapsible__invisible-content"
           hidden={false}
         />

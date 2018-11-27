@@ -70,7 +70,7 @@ const config = {
       fetch: 'isomorphic-fetch',
     }),
     new webpack.DefinePlugin({
-      __CLIENT__: true,
+      __CLIENT__: false,
       __DEVELOPMENT__: process.env.NODE_ENV === 'development',
       __PRODUCTION__: process.env.NODE_ENV === 'production',
       __VERSION__: JSON.stringify(version),

@@ -17,14 +17,14 @@ import { ReactType } from 'react';
 import { FRONTEND_ACCEPT, FRONTEND_URL } from '../config';
 
 import history from './history';
+import { log } from './logging';
 import ontolaMiddleware from './ontolaMiddleware';
 import transformers from './transformers';
 
 const middleware: Array<MiddlewareFn<any>> = [
   () => (next) => (a, o) => {
     if (!__PRODUCTION__) {
-      // tslint:disable-next-line no-console
-      console.log('Link action:', a, o);
+      log('Link action:', a, o);
     }
     return next(a, o);
   },

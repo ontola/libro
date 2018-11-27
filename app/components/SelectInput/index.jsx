@@ -265,6 +265,12 @@ class SelectInput extends React.Component {
 
           if (isOpen) {
             list = this.renderList(downshiftOpts);
+          } else {
+            list = (
+              <React.Fragment>
+                <option aria-selected="false" className="AriaHidden">Focus to show items</option>
+              </React.Fragment>
+            );
           }
 
           return (

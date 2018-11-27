@@ -5,6 +5,7 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 const { BugsnagBuildReporterPlugin } = require('webpack-bugsnag-plugins');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const merge = require('webpack-merge');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
@@ -97,6 +98,7 @@ function createConfig(options) {
         minRatio: 0.9,
       }),
       new BrotliPlugin(),
+      // new BundleAnalyzerPlugin(),
       bugsnagPlugin,
     ].filter(p => typeof p !== 'undefined'),
 

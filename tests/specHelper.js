@@ -1,5 +1,6 @@
 import LinkedRenderStore from 'link-lib';
 import { RenderStoreProvider } from 'link-redux';
+import { injectIntl, IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
 
@@ -127,16 +128,19 @@ function argUnit(comp, func, opts = {}) {
   const props = Object.keys(opts.propTypes || comp.propTypes);
 
   const render = (p) => {
-    const method = opts.mount === true ? mount : shallow;
-    let element = React.createElement(comp, p);
+    const method = (opts.mount === true || opts.intl) ? mount : shallow;
+    let element = React.createElement(opts.intl === 'inject' ? injectIntl(comp) : comp, p);
     const lrs = new LinkedRenderStore();
     if (opts.link || opts.redux) {
       element = React.createElement(RenderStoreProvider, { value: lrs }, element);
     }
-    if (opts.redux) {
+    if (opts.redux || opts.intl) {
       element = React.createElement(Provider, { store: generateStore(lrs) }, element);
     }
-    if (opts.router) {
+    if (opts.intl) {
+      element = React.createElement(IntlProvider, { locale: 'en' }, element);
+    }
+    if (opts.router || opts.intl) {
       element = React.createElement(StaticRouter, {}, element);
     }
     return method(element);

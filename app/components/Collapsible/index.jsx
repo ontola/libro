@@ -101,7 +101,7 @@ class Collapsible extends React.PureComponent {
           theme={preview ? { container: 'Collapsible__container--preview' } : undefined}
         >
           <div
-            aria-hidden={tabIndex()}
+            aria-hidden={tabIndex() === -1 ? true : tabIndex()}
             className="Collapsible__invisible-content"
             hidden={!alwaysMountChildren && hideChildren}
           >

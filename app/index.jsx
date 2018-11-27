@@ -7,6 +7,7 @@ import { ConnectedRouter } from 'connected-react-router/immutable';
 
 import { APP_ELEMENT } from './config';
 import './helpers/typescript';
+import { handle } from './helpers/logging';
 import LinkDevTools from './helpers/LinkDevTools';
 import LinkedRenderStore from './helpers/LinkedRenderStore';
 import './helpers/serviceWorkerCommunicator';
@@ -24,12 +25,7 @@ if (__PRODUCTION__) {
     LogRocket.init('argu/aod');
     setupLogRocketReact(LogRocket);
   } catch (e) {
-    if (window.bugsnagClient !== undefined) {
-      window.bugsnagClient.notify(e);
-    } else {
-      // eslint-disable-next-line no-console
-      console.error(e);
-    }
+    handle(e);
   }
 }
 

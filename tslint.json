@@ -4,6 +4,7 @@
     "exclude": ["**/*.js", "**/*.jsx"]
   },
   "rules": {
+    "interface-name": false,
     "quotemark": [true, "single", "avoid-escape", "jsx-double"]
   }
 }

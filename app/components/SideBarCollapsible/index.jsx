@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import FontAwesome from 'react-fontawesome';
+import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import { connect } from 'react-redux';
 
 import CollapsibleContainer from '../../containers/CollapsibleContainer';
@@ -11,11 +12,24 @@ import Button from '../Button';
 
 import './SideBarCollapsible.scss';
 
+const messages = defineMessages({
+  defaultMessage: {
+    defaultMessage: 'Toggle submenu contents',
+    id: 'https://app.argu.co/i18n/menus/defaultCollapseLabel',
+  },
+});
+
 const propTypes = {
   alwaysMountChildren: PropTypes.bool,
   // A collection of SideBarLinks
   children: PropTypes.node,
+  /**
+   * Aria label for the collapsible caret elem
+   * This should contain the menu's function as well as that it's a toggle
+   */
+  collapseLabel: PropTypes.string,
   id: PropTypes.string.isRequired,
+  intl: intlShape,
   labelComp: PropTypes.node.isRequired,
   onClickToggle: PropTypes.func.isRequired,
   open: PropTypes.bool,
@@ -26,7 +40,9 @@ export class SideBarCollapsible extends PureComponent {
     const {
       alwaysMountChildren,
       children,
+      collapseLabel,
       id,
+      intl: { formatMessage },
       labelComp,
       onClickToggle,
       open,
@@ -43,7 +59,7 @@ export class SideBarCollapsible extends PureComponent {
           {labelComp}
           <Button
             plain
-            alt="Menu uitvouwen of inklappen"
+            ariaLabel={collapseLabel || formatMessage(messages.defaultMessage)}
             className="SideBarCollapsible__toggle"
             data-test="SideBarCollapsible-toggle"
             onClick={onClickToggle}
@@ -86,4 +102,4 @@ export default connect(
       onClickToggle: stateProps.open ? dispatchProps.onClose : dispatchProps.onOpen,
     }
   )
-)(SideBarCollapsible);
+)(injectIntl(SideBarCollapsible));

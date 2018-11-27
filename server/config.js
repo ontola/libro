@@ -1,5 +1,9 @@
 export * from '../app/config';
 
+if (__CLIENT__) {
+  throw new Error('Server code in client');
+}
+
 export const bugsnagKey = process.env.BUGSNAG_KEY;
 export const bundleName = process.env.FE_BUNDLE_NAME || 'min';
 export const clusterDomain = process.env.CLUSTER_DOMAIN || 'cluster.local';

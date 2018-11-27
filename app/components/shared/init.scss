@@ -46,3 +46,13 @@ p {
     bottom: 3em;
   }
 }
+
+// Hides elements for regular users, but should maintain visibility for assistance technology
+.AriaHidden {
+  height: 1px;
+  left: -10000px;
+  overflow: hidden;
+  position: absolute;
+  top: auto;
+  width: 1px;
+}
