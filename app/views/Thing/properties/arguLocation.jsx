@@ -48,7 +48,23 @@ class ArguLocation extends React.Component {
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    if (this.resolveChildren().length > 0) {
+      return this.loadView();
+    }
+
+    return undefined;
+  }
+
+  componentDidUpdate() {
+    if (this.resolveChildren().length > 0) {
+      return this.loadView();
+    }
+
+    return undefined;
+  }
+
+  async loadView() {
     // eslint-disable-next-line no-inline-comments
     const MapView = await import(/* webpackChunkName: 'MapView' */ '../../../async/MapView/index');
 
