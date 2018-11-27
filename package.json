@@ -180,7 +180,7 @@
     "build:analyze": "webpack -p --progress --verbose --display-error-details --config ./webpack/static.config --profile --json  > stats.json",
     "build:bundle": "cross-env NODE_ENV=production parallel-webpack -p --progress --config ./webpack/static.config",
     "build:server": "webpack --config ./webpack/server.config.js",
-    "build:translations": "extract-messages -l=en,nl -o app/translations -d en --flat true 'app/**/!(*.spec).{t,j}s{x,}'",
+    "build:translations": "NODE_ENV=development extract-messages -l=en,nl -o app/translations -d en --flat true 'app/**/!(*.spec).{t,j}s{x,}'",
     "build:verbose": "rimraf ./dist && NODE_ENV=production webpack -p --progress --verbose --display-error-details --config ./webpack/static.config",
     "coverage": "jest --coverage",
     "doc:style": "sassdoc ./app -d ./docs/sass",
