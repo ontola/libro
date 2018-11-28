@@ -36,14 +36,12 @@ const ontolaMiddleware = (history: History): MiddlewareFn<ReactType> =>
   // eslint-disable-next-line no-param-reassign
   store.namespaces.ontola = ontola;
 
-  const currentLocation = (): NamedNode => {
+  const currentPath = (): string => {
     const l = history.location;
-    const caller = [
+    return [
       [l.pathname, l.search].filter(Boolean).join('?'),
       l.hash,
     ].filter(Boolean).join('#');
-
-    return store.namespaces.app(caller);
   };
 
   /**
@@ -129,7 +127,7 @@ const ontolaMiddleware = (history: History): MiddlewareFn<ReactType> =>
     new Statement(
       dialogManager,
       ontola('dialog/opener'),
-      currentLocation(),
+      store.namespaces.app(currentPath().slice(1)),
       store.namespaces.ll('replace'),
     ),
   ];
@@ -205,7 +203,7 @@ const ontolaMiddleware = (history: History): MiddlewareFn<ReactType> =>
     if (iri.value.startsWith(store.namespaces.ontola('actions/dialog/alert').value)) {
       const resource = new URL(iri.value).searchParams.get('resource');
 
-      history.push(currentLocation().value);
+      history.push(currentPath());
       if (!resource) {
           throw new Error("Argument 'value' was missing.");
       }
