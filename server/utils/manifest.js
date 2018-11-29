@@ -4,13 +4,17 @@ import { bundleName } from '../config';
 
 const manifest = {};
 
-let fileNames;
+let fileNames = {};
 if (__DEVELOPMENT__) {
-  fileNames = {
-    'main.css': '/main.bundle.css',
-    'main.js': '/main.bundle.js',
-    'manifest.json': '/manifest.json',
-  };
+  [
+    ['main.css', 'main.bundle.css'],
+    ['main.js', 'main.bundle.js'],
+    ['manifest.json', 'manifest.json'],
+  ].forEach(([key, bundle]) => {
+    Object.defineProperty(manifest, key, {
+      get: () => `/${bundle}?q=${Math.random()}`,
+    });
+  });
 } else {
   const manifestFile = fs.readFileSync(`./dist/private/manifest.${bundleName}.json`);
   fileNames = JSON.parse(manifestFile);
