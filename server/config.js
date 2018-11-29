@@ -31,6 +31,14 @@ export const mapboxUsername = process.env.MAPBOX_USERNAME || '';
  */
 export const oAuthToken = process.env.RAILS_OAUTH_TOKEN;
 /**
+ * DO NOT USE this value, since it really is super secret.
+ *
+ * This allows us to verify whether JWT's are actually created by the back-end.
+ * We currently use symmetric encryption, so this is very secret until we switch to asym, since it'd
+ * allow users to spoof sessions.
+ */
+export const jwtEncryptionToken = process.env.JWT_ENCRYPTION_TOKEN;
+/**
  * A redis connection FQ-URL.
  */
 export const redisAddress = process.env.REDIS_ADDRESS;

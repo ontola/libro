@@ -1,9 +1,11 @@
+import jwt from 'jsonwebtoken';
+
 import pjson from '../../package.json';
 import * as constants from '../config';
 
 import manifest from './manifest';
 
-export const renderFullPage = (html, devPort, domain, csrfToken, res) => {
+export const renderFullPage = (html, devPort, domain, req, res) => {
   const bundleCSS = __DEVELOPMENT__
     ? ''
     : `<link crossorigin="anonymous" rel="stylesheet" type="text/css" href="${constants.ASSETS_HOST}${manifest['main.css']}" />`;
@@ -14,9 +16,16 @@ export const renderFullPage = (html, devPort, domain, csrfToken, res) => {
     releaseStage: constants.STAGE,
   };
 
+  const csrfToken = req.csrfToken();
+  const tokenPayload = jwt.verify(
+    req.session.arguToken.accessToken,
+    constants.jwtEncryptionToken
+  );
+  const { language } = tokenPayload.user;
+
   return `<!doctype html>
     <meta charset="utf-8">
-    <html lang="nl">
+    <html lang="${language}">
       <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="/static/preloader.css" />
@@ -92,5 +101,5 @@ export const renderFullPage = (html, devPort, domain, csrfToken, res) => {
 
 
 export function handleRender(req, res, port, domain) {
-  res.send(renderFullPage(undefined, port, domain, req.csrfToken(), res));
+  res.send(renderFullPage(undefined, port, domain, req, res));
 }

@@ -66,7 +66,6 @@ class App extends React.PureComponent {
         <HoverHelper>
           <Helmet
             defaultTitle="Argu"
-            htmlAttributes={{ lang: 'nl' }}
             titleTemplate="%s - Argu"
           />
           <Spinner loading={loading} />

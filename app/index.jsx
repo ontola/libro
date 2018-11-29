@@ -40,6 +40,10 @@ const indexContainer = Container => (
   />
 );
 
+if (document.documentElement.lang) {
+  LinkedRenderStore.store.langPrefs.unshift(document.documentElement.lang);
+}
+
 if (__DEVELOPMENT__ && module.hot) {
   render(
     <AppContainer>
