@@ -75,11 +75,11 @@ class Omniform extends EntryPointBase {
       NS.ontola('footerGroup')
     );
 
-    if (!footerGroup) {
+    if (footerGroup.length === 0) {
       return null;
     }
 
-    return <LinkedResourceContainer subject={footerGroup.pop()} />;
+    return <LinkedResourceContainer subject={footerGroup.pop()} theme="omniform" />;
   }
 
   linkedFieldset() {
