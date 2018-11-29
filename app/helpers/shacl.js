@@ -66,7 +66,11 @@ class SHACL {
 
   static actionToObject(lrs, action) {
     const target = lrs.getResourceProperty(action, NS.schema('target'));
-    const shapeEntry = lrs.getResourceProperty(target, NS.ll('actionBody'));
+    const shapeEntry = target && lrs.getResourceProperty(target, NS.ll('actionBody'));
+
+    if (!shapeEntry) {
+      return {};
+    }
 
     return this.processSHACLResource(lrs, shapeEntry, target);
   }

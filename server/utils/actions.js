@@ -2,7 +2,7 @@ const HEADER_NAME = 'exec-action';
 const SPLIT_MARKER = ', ';
 
 export function getActions(req) {
-  return req.headers[HEADER_NAME] && req.headers[HEADER_NAME].split(SPLIT_MARKER);
+  return (req.headers[HEADER_NAME] && req.headers[HEADER_NAME].split(SPLIT_MARKER)) || [];
 }
 
 export function getAction(req, wanted) {

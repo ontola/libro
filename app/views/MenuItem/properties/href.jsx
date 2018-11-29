@@ -12,6 +12,7 @@ import {
   SideBarLinkWrapper,
 } from '../../../components/SideBarLink';
 import { NS } from '../../../helpers/LinkedRenderStore';
+import SHACL from '../../../helpers/shacl';
 import { sidebarTopology } from '../../../topologies/Sidebar';
 
 class Href extends React.PureComponent {
@@ -50,11 +51,13 @@ class Href extends React.PureComponent {
     } = this.props;
 
     let hrefInner = children;
-    if (href) {
+    if (href || action) {
       hrefInner = (
         <SideBarLinkLink
           to={!action ? href.value : '#'}
-          onClick={handleClick || (action && (() => lrs.exec(action, subject)))}
+          onClick={
+            handleClick || (action && (() => lrs.exec(action, SHACL.actionToObject(lrs, subject))))
+          }
         >
           {children}
         </SideBarLinkLink>
