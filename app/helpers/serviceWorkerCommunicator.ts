@@ -4,7 +4,7 @@ import { Statement } from 'rdflib';
 import LinkedRenderStore from './LinkedRenderStore';
 
 class ServiceWorkerCommunicator {
-  private readonly controller!: ServiceWorker | null;
+  private controller!: ServiceWorker | null;
   private readonly lrs!: LinkReduxLRSType;
   private readonly updatesChannel!: BroadcastChannel;
 
@@ -19,6 +19,11 @@ class ServiceWorkerCommunicator {
     }
 
     this.controller = navigator.serviceWorker.controller;
+    navigator.serviceWorker.ready.then((serviceWorkerRegistration) => {
+      if (serviceWorkerRegistration.active) {
+        this.controller = serviceWorkerRegistration.active;
+      }
+    });
     this.lrs = LinkedRenderStore;
     this.updatesChannel = new BroadcastChannel('data-updates');
     this.updatesChannel.addEventListener('message', this.dataUpdate.bind(this));
