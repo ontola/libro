@@ -9,6 +9,7 @@ import {
   LDLink,
 } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { actionsBarTopology } from '../../../topologies/ActionsBar';
 import { cardTopology } from '../../../topologies/Card';
 import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
 import { cardFloatTopology } from '../../../topologies/Card/CardFloat';
@@ -100,7 +101,11 @@ export default [
     link([NS.schema('name')])(ActionButton),
     NS.schema('Thing'),
     NamePredicates,
-    [cardFloatTopology, cardListTopology]
+    [
+      actionsBarTopology,
+      cardFloatTopology,
+      cardListTopology,
+    ]
   ),
   LinkedRenderStore.registerRenderer(
     () => <ConnectedHeading data-test="Thing-name-card-main" size="1" />,

@@ -7744,10 +7744,10 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-link-lib@1.0.0-beta27.9:
-  version "1.0.0-beta27.9"
-  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-beta27.9.tgz#491686a4d11aee4074a1ddf27aa844e44ef3b6e7"
-  integrity sha512-jWpsMMZoGt7WouRlT0lIBkWCzUjBkThAWp+8eHfQjXhDxKSywm7YOVgu7SA2qlSZqAeJbWq/rBrXhCalCteHiw==
+link-lib@1.0.0-beta27.10:
+  version "1.0.0-beta27.10"
+  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-beta27.10.tgz#d9353da938446130f26e00f29f95423c85d602cc"
+  integrity sha512-BS6XOrABGfX/3KYC880KzafzZRPbjbuGo+6yOJYmZnhLOYqBp3e8zQdsFdFYh0oqv/Z0wHDK2Xp55nMzYYX8dQ==
 
 link-redux@1.0.0-beta32:
   version "1.0.0-beta32"

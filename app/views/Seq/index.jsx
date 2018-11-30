@@ -33,6 +33,7 @@ export class Seq extends PropertyBase {
           columns={this.props.columns}
           count={sequences.length}
           data-test={`Seq-${i}-${s.object.value}`}
+          depth={this.props.depth}
           first={sequences[0].object}
           key={`${this.props.subject}-${s.object}`}
           last={sequences[sequences.length - 1].object}

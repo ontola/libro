@@ -54,12 +54,18 @@ class CollectionPage extends PropertyBase {
     let children;
     const views = this.getLinkedObjectPropertyRaw(NS.as('pages'));
     if (this.props.currentPage) {
-      children = <LinkedResourceContainer subject={new NamedNode(this.props.currentPage)} />;
+      children = (
+        <LinkedResourceContainer
+          depth={this.props.depth}
+          subject={new NamedNode(this.props.currentPage)}
+        />
+      );
     } else {
       children = (
         <Property
           forceRender
           collectionDisplay={this.props.collectionDisplay}
+          depth={this.props.depth}
           label={NS.as('items')}
           renderLimit={Infinity}
         />
@@ -68,10 +74,10 @@ class CollectionPage extends PropertyBase {
     const pagination = views.length === 0 ? this.pagination() : null;
 
     return (
-      <div>
+      <React.Fragment>
         {children}
         {pagination}
-      </div>
+      </React.Fragment>
     );
   }
 }

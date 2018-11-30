@@ -13,7 +13,7 @@ const uriMatch = /{{[\w:/#.?=]+}}/g;
 const HANDLEBAR_LENGTH = 2;
 
 class ActivityName extends PropertyBase {
-  static type = NS.schema('Thing');
+  static type = NS.as('Activity');
 
   static property = [
     NS.schema('name'),

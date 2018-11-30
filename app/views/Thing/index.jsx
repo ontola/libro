@@ -55,6 +55,7 @@ import PublishAction from './properties/publishAction';
 import SendConfirmationAction from './properties/sendConfirmationAction';
 import SuperEvent from './properties/superEvent';
 import Text from './properties/text';
+import TopComment from './properties/topComment';
 import TrashedAt from './properties/trashedAt';
 import UpdateAction from './properties/updateAction';
 import VoteEvents from './properties/voteEvents';
@@ -224,6 +225,7 @@ export default [
   ...PotentialAction,
   PublishAction,
   ...Text,
+  TopComment,
   TrashedAt,
   UpdateAction,
   VoteEvents,

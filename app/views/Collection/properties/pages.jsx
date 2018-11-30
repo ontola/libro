@@ -5,6 +5,7 @@ import {
   PropertyBase,
   subjectType,
 } from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
@@ -20,6 +21,7 @@ class Pages extends PropertyBase {
         <LinkedResourceContainer
           forceRender
           collectionDisplay={this.props.collectionDisplay}
+          depth={this.props.depth}
           subject={prop[0].object}
         />
       );
@@ -28,6 +30,7 @@ class Pages extends PropertyBase {
     const obs = prop.map(iri => (
       <LinkedResourceContainer
         collectionDisplay={this.props.collectionDisplay}
+        depth={this.props.depth}
         key={`pages-${iri.object.value}`}
         subject={iri.object}
       />
@@ -46,6 +49,7 @@ class Pages extends PropertyBase {
 }
 
 Pages.propTypes = {
+  depth: PropTypes.number,
   label: labelType.isRequired,
   subject: subjectType,
 };

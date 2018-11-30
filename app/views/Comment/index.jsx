@@ -8,7 +8,7 @@ import {
 import { connectHighlighting, hightlightPropTypes } from '../../containers/Highlight';
 import { NS } from '../../helpers/LinkedRenderStore';
 import ActionsBar from '../../topologies/ActionsBar';
-import Card, { CardRow } from '../../topologies/Card';
+import Card from '../../topologies/Card';
 import CardAppendix, { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
 import { cardListTopology } from '../../topologies/Card/CardList';
 import CardMicroRow from '../../topologies/Card/CardMicroRow';
@@ -16,37 +16,44 @@ import { cardRowTopology } from '../../topologies/Card/CardRow';
 import { containerTopology } from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
 
-const Comment = ({ highlighted }) => (
-  <Card shine={highlighted}>
-    <DetailsBar
-      right={(
-        <Property label={NS.argu('actionsMenu')} />
-      )}
-    >
-      <Property label={NS.schema('creator')} />
-      <Property label={NS.schema('dateCreated')} />
-    </DetailsBar>
-    <CardContent>
-      <Property label={NS.argu('opinion')} />
-      <Property label={NS.schema('text')} />
-    </CardContent>
-    <ActionsBar small>
-      <Property label={NS.argu('favoriteAction')} />
-    </ActionsBar>
-    <CardAppendix>
-      <Property forceRender clickToOpen={false} label={NS.app('omniform')} />
-    </CardAppendix>
-  </Card>
+const Comment = ({ depth = 0, highlighted }) => (
+  <React.Fragment>
+    <Card shine={highlighted}>
+      <DetailsBar
+        right={(
+          <Property label={NS.argu('actionsMenu')} />
+        )}
+      >
+        <Property label={NS.schema('creator')} />
+        <Property label={NS.schema('dateCreated')} />
+      </DetailsBar>
+      <CardContent>
+        <Property label={NS.argu('opinion')} />
+        <Property label={NS.schema('text')} />
+      </CardContent>
+      <ActionsBar small>
+        <Property label={NS.argu('favoriteAction')} />
+        <Property label={NS.schema('comments')}>
+          <Property omniform label={NS.argu('createAction')} />
+        </Property>
+      </ActionsBar>
+      <CardAppendix>
+        <Property forceRender clickToOpen={false} label={NS.app('omniform')} />
+      </CardAppendix>
+    </Card>
+    <Property clickToOpen depth={depth + 1} label={NS.schema('comments')} />
+  </React.Fragment>
 );
 
 Comment.propTypes = hightlightPropTypes;
 
 const CommentSection = ({ highlighted }) => (
-  <CardRow backdrop>
-    <CardMicroRow highlighted={highlighted}>
-      <Property label={NS.schema('creator')} topology={cardListTopology} />&#9;<Property label={NS.schema('text')} topology={cardListTopology} />
-    </CardMicroRow>
-  </CardRow>
+  <CardMicroRow highlighted={highlighted}>
+    <Property
+      label={NS.schema('creator')}
+      topology={cardListTopology}
+    />&#9;<Property label={NS.schema('text')} topology={cardListTopology} />
+  </CardMicroRow>
 );
 
 CommentSection.propTypes = hightlightPropTypes;

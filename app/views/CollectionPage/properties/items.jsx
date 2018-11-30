@@ -84,6 +84,7 @@ class Items extends PropertyBase {
   };
 
   static propTypes = {
+    depth: PropTypes.number,
     items: linkType,
     /** The amount of items to render. Leave undefined for all items */
     renderLimit: PropTypes.number,
@@ -103,9 +104,9 @@ class Items extends PropertyBase {
       .map(iri => (
         <LinkedResourceContainer
           columns={this.columns()}
+          depth={this.props.depth}
           key={`${this.props.subject}:${iri.value}`}
           subject={iri}
-          topology={this.context.topology}
         />
       ));
   }
@@ -135,7 +136,12 @@ class Items extends PropertyBase {
     } else if (typeof items.toArray !== 'undefined') {
       children = this.itemList().toKeyedSeq();
     } else {
-      children = <LinkedResourceContainer subject={this.getLinkedObjectProperty()} />;
+      children = (
+        <LinkedResourceContainer
+          depth={this.props.depth}
+          subject={this.getLinkedObjectProperty()}
+        />
+      );
     }
 
     return this.styleWrapper(children);

@@ -1,8 +1,7 @@
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
-  link,
   linkType,
   Property,
+  register,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -14,10 +13,6 @@ import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { cardListTopology } from '../../topologies/Card/CardList';
 import { invalidStatuses } from '../Thing/properties/omniform/helpers';
-
-const mapActionsBarDispatchToProps = (dispatch, ownProps) => ({
-  onClick: () => Promise.resolve(dispatch(omniformOpenInline(ownProps.isPartOf))),
-});
 
 const mapCardListDispatchToProps = (dispatch, ownProps) => ({
   onClick: (e) => {
@@ -32,44 +27,51 @@ const mapCardListDispatchToProps = (dispatch, ownProps) => ({
   },
 });
 
-const InlineCreateActionButton = ({
-  actionStatus,
-  omniform,
-  onClick,
-}) => {
-  if (invalidStatuses.includes(actionStatus)) {
-    return null;
+class InlineCreateAction extends React.PureComponent {
+  static type = NS.schema('CreateAction');
+
+  static topology = [
+    actionsBarTopology,
+    cardListTopology,
+    cardFloatTopology,
+  ];
+
+  static mapDataToProps = [
+    NS.schema('object'),
+    NS.schema('actionStatus'),
+  ];
+
+  static hocs = [connect(null, mapCardListDispatchToProps)];
+
+  static displayName = 'InlineCreateActionButton';
+
+  static propTypes = {
+    actionStatus: linkType,
+    count: linkType,
+    omniform: PropTypes.bool,
+    onClick: PropTypes.func,
+  };
+
+  render() {
+    const {
+      actionStatus,
+      count,
+      omniform,
+      onClick,
+    } = this.props;
+
+    if (invalidStatuses.includes(actionStatus)) {
+      return null;
+    }
+
+    return (
+      <Property
+        count={count}
+        label={NS.schema('name')}
+        onClick={omniform ? onClick : undefined}
+      />
+    );
   }
+}
 
-  return (
-    <Property label={NS.schema('name')} onClick={omniform && onClick} />
-  );
-};
-
-InlineCreateActionButton.displayName = 'InlineCreateActionButton';
-InlineCreateActionButton.propTypes = {
-  actionStatus: linkType,
-  omniform: PropTypes.bool,
-  onClick: PropTypes.func,
-};
-
-export default [
-  LinkedRenderStore.registerRenderer(
-    link([
-      NS.schema('object'),
-      NS.schema('actionStatus'),
-    ])(connect(null, mapActionsBarDispatchToProps)(InlineCreateActionButton)),
-    NS.schema('CreateAction'),
-    RENDER_CLASS_NAME,
-    actionsBarTopology
-  ),
-  LinkedRenderStore.registerRenderer(
-    link([
-      NS.schema('object'),
-      NS.schema('actionStatus'),
-    ])(connect(null, mapCardListDispatchToProps)(InlineCreateActionButton)),
-    NS.schema('CreateAction'),
-    RENDER_CLASS_NAME,
-    [cardListTopology, cardFloatTopology]
-  ),
-];
+export default register(InlineCreateAction);

@@ -16,6 +16,6 @@ export default [
   ActionActionsBar,
   ActionTableCell,
   ActionTableRow,
-  ...InlineCreateAction,
+  InlineCreateAction,
   ...InlineActionTableRow,
 ];
