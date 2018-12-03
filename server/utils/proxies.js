@@ -49,7 +49,7 @@ function setProxyResHeaders(proxyRes, req) {
 /* eslint-enable no-param-reassign */
 
 const dekuMatch = /^\/\w*\/\w*\/od\/?.*$/;
-const emailMatch = /^\/email/;
+const emailMatch = /^\/email\//;
 const subscribeMatch = /^\/subscribe/;
 const tokenMatch = /^\/tokens/;
 const voteCompareMatch = /^\/compare\/votes/;
