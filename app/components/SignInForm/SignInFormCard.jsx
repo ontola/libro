@@ -99,7 +99,7 @@ class SignInFormCard extends SignInFormBase {
       <React.Fragment>
         {login}
         {' '}
-        <FormattedMessage id="https://app.argu.co/i18n/forms/session/or" />
+        <FormattedMessage {...messages.or} />
         {' '}
         {register}
       </React.Fragment>
