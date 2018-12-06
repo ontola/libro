@@ -1822,9 +1822,9 @@ base64-js@^1.0.2, base64-js@^1.1.2:
   integrity sha512-ccav/yGvoa80BQDljCxsmmQ3Xvx60/UpBIij5QN21W3wBi/hhIC9OoO+KLpu9IJTS9j4DRVJ3aDDF9cMSoa2lw==
 
 base64url@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/base64url/-/base64url-3.0.0.tgz#f2ba30b15f80413d88e3e6116c4f3f7f61e28a2a"
-  integrity sha512-LIVmqIrIWuiqTvn4RzcrwCOuHo2DD6tKmKBPXXlr4p4n4l6BZBkwFTIa3zu1XkX5MbZgro4a6BvPi+n2Mns5Gg==
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/base64url/-/base64url-3.0.1.tgz#6399d572e2bc3f90a9a8b22d5dbb0a32d33f788d"
+  integrity sha512-ir1UPr3dkwexU7FdV8qBBbNDRUhMmIekYMFZfi+C/sLNnRESKPl23nB9b2pltqfOQNnGzsDdId90AEtG5tCx4A==
 
 base@^0.11.1:
   version "0.11.2"
@@ -7788,10 +7788,10 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-link-lib@1.0.0-beta27.10:
-  version "1.0.0-beta27.10"
-  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-beta27.10.tgz#d9353da938446130f26e00f29f95423c85d602cc"
-  integrity sha512-BS6XOrABGfX/3KYC880KzafzZRPbjbuGo+6yOJYmZnhLOYqBp3e8zQdsFdFYh0oqv/Z0wHDK2Xp55nMzYYX8dQ==
+link-lib@1.0.0-beta27.12:
+  version "1.0.0-beta27.12"
+  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-beta27.12.tgz#4f06d6c4ab1991bbb788a15695ddd2f400c72286"
+  integrity sha512-TrVh7ZotR89JbJPnag3c0rxmUvXp5GVpxk/pTdysVGXD9qKO/W03zhOWr+aYB/0hifPiP+j7VWRmWTaZhFHHXA==
 
 link-redux@1.0.0-beta32:
   version "1.0.0-beta32"
@@ -12620,9 +12620,9 @@ sockjs@0.3.19:
     uuid "^3.0.1"
 
 solid-auth-client@^2.2.3:
-  version "2.2.13"
-  resolved "https://registry.yarnpkg.com/solid-auth-client/-/solid-auth-client-2.2.13.tgz#ecc9fc1c1f6b315c96b2a728609089b677388253"
-  integrity sha512-r9edtl0SNEgsLVwjKp3HDcx90H4sb2yAjOpMta5E7OxXfaQTnhMIMjXVwNZDvadWQqIBjGryGf0oYItFTTKO7Q==
+  version "2.2.14"
+  resolved "https://registry.yarnpkg.com/solid-auth-client/-/solid-auth-client-2.2.14.tgz#e856707bb7f2674fdc55ee41ab77ea700f164101"
+  integrity sha512-gv8NrNrdg1VFZlzxLydRrztcSNlG0ArZdQe5DZQ5+/SXcgVyZSxpmo+ZkagKLRrIBwH0u/SGNzURpNLnxYmC+Q==
   dependencies:
     "@babel/runtime" "^7.0.0"
     "@solid/oidc-rp" "^0.8.0"
