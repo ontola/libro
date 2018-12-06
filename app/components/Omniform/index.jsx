@@ -8,23 +8,20 @@ import {
 import PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import FontAwesome from 'react-fontawesome';
 
 import { allowSort } from '../../helpers/data';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { highlightResource } from '../../state/app/actions';
-import {
-  getOmniformAction,
-  omniformSetAction,
-} from '../../state/omniform';
+import { showSignInForm } from '../../state/form/actions';
+import { getOmniformAction, omniformSetAction } from '../../state/omniform';
 import FormFooter from '../../topologies/FormFooter/Footer';
+import OmniformFields from '../../topologies/OmniformFields/OmniformFields';
 import EntryPointBase from '../../views/EntryPoint/EntryPointBase';
 import Button from '../Button';
 import { Form, FormFooterRight } from '../Form';
-import { showSignInForm } from '../../state/form/actions';
-import OmniformFields from '../../topologies/OmniformFields/OmniformFields';
 
 import './Omniform.scss';
 
@@ -64,22 +61,6 @@ class Omniform extends EntryPointBase {
   shouldComponentUpdate() {
     // TODO
     return true;
-  }
-
-  footerGroup() {
-    const { action, lrs } = this.props;
-
-    const footerGroup = lrs.findSubject(
-      action,
-      [NS.schema('target'), NS.ll('actionBody'), NS.sh('property'), NS.sh('group')],
-      NS.ontola('footerGroup')
-    );
-
-    if (footerGroup.length === 0) {
-      return null;
-    }
-
-    return <LinkedResourceContainer subject={footerGroup.pop()} theme="omniform" />;
   }
 
   linkedFieldset() {

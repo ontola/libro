@@ -1,10 +1,5 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import {
-  link,
-  LinkedResourceContainer,
-  Property,
-  withLRS,
-} from 'link-redux';
+import { link, Property, withLRS } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -62,7 +57,7 @@ class EntryPointContainer extends EntryPointBase {
                 <Property label={NS.ll('actionBody')} />
               </CardContent>
               <FormFooter>
-                <LinkedResourceContainer subject={NS.app('c_a')} />
+                {this.footerGroup()}
                 <FormFooterRight>
                   {cancelButton}
                   <Button

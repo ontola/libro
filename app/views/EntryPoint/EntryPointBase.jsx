@@ -1,10 +1,8 @@
 import HttpStatus from 'http-status-codes';
 import { anyRDFValue, namedNodeByIRI } from 'link-lib';
-import {
-  linkType,
-  PropertyBase,
-} from 'link-redux';
+import { LinkedResourceContainer, linkType, PropertyBase } from 'link-redux';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 import { convertKeysAtoB } from '../../helpers/data';
 import { NS } from '../../helpers/LinkedRenderStore';
@@ -14,6 +12,7 @@ class EntryPointBase extends PropertyBase {
     super(props);
 
     this.submitHandler = this.submitHandler.bind(this);
+    this.footerGroupTheme = 'omniform';
   }
 
   responseCallback() {} // eslint-disable-line class-methods-use-this
@@ -70,6 +69,22 @@ class EntryPointBase extends PropertyBase {
             throw e;
           });
       });
+  }
+
+  footerGroup() {
+    const { action, lrs } = this.props;
+
+    const footerGroup = lrs.findSubject(
+      action,
+      [NS.schema('target'), NS.ll('actionBody'), NS.sh('property'), NS.sh('group')],
+      NS.ontola('footerGroup')
+    );
+
+    if (footerGroup.length === 0) {
+      return null;
+    }
+
+    return <LinkedResourceContainer subject={footerGroup.pop()} theme={this.footerGroupTheme} />;
   }
 }
 
