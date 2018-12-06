@@ -10,6 +10,7 @@ import { createAction } from 'redux-actions';
 import { setMapAccessToken } from '../async/MapView/actions';
 import { FRONTEND_URL } from '../config';
 import { safeCredentials } from '../helpers/arguHelpers';
+import { handle } from '../helpers/logging';
 import serviceWorkerCommunicator from '../helpers/serviceWorkerCommunicator';
 import {
   AFE_API_GET_MAP_ACCESS_TOKEN,
@@ -91,7 +92,7 @@ export default () => next => (action) => {
         });
     }
     default: {
-      // TODO: bugsnag
+      handle(new Error(`Unknown client API action '${action.type}'`));
       return undefined;
     }
   }

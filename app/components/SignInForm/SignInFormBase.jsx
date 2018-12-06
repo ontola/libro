@@ -5,6 +5,7 @@ import { FormattedMessage, intlShape } from 'react-intl';
 import Button from '../Button';
 import FormField from '../FormField';
 import CloseableContainer from '../../containers/CloseableContainer';
+import { handle } from '../../helpers/logging';
 import validators, { combineValidators } from '../../helpers/validators';
 import { CardContent, CardLink, CardRow } from '../../topologies/Card';
 import { STEPS } from '../../state/form/reducer';
@@ -217,7 +218,7 @@ class SignInFormBase extends React.PureComponent {
         buttonText = null;
         break;
       default:
-        // TODO: bugsnag
+        handle(new Error(`Unexpected state '${this.props.step}' for SignIn`));
         buttonText = (
           <FormattedMessage
             defaultMessage="Unexpected state"

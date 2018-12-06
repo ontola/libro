@@ -6,6 +6,7 @@ import {
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { handle } from '../../../helpers/logging';
 import { allTopologies } from '../../../topologies';
 
 const DECIMAL = 10;
@@ -25,7 +26,7 @@ class Agenda extends PropertyBase {
   }
 
   render() {
-    const { lrs } = this.props;
+    const { lrs, subject } = this.props;
 
     const ordered = [];
     const unordered = [];
@@ -43,7 +44,7 @@ class Agenda extends PropertyBase {
       });
 
     if (ordered.length + unordered.length === 0) {
-      // TODO: bugsnag
+      handle(new Error(`Rendered prop agenda for ${subject} without items`));
       return null;
     }
 

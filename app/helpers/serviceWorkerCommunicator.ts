@@ -2,6 +2,7 @@ import { LinkReduxLRSType } from 'link-redux';
 import { Statement } from 'rdflib';
 
 import LinkedRenderStore from './LinkedRenderStore';
+import { handle } from './logging';
 
 class ServiceWorkerCommunicator {
   private controller!: ServiceWorker | null;
@@ -57,8 +58,8 @@ class ServiceWorkerCommunicator {
 
   private postMessage(message: any, transfer?: Transferable[]) {
     if (!this.controller) {
-      // TODO: bugsnag
-      throw new Error('Controller not defined');
+      handle(new Error('SW Controller not defined'));
+      return;
     }
 
     this.controller.postMessage(message, transfer);

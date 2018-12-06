@@ -26,6 +26,12 @@ window.logging = {
   logs: [],
 };
 
+// Prevent memory overflows
+window.setInterval(() => {
+  window.logging.errors = [];
+  window.logging.logs = [];
+}, 3600 * 1000);
+
 export function error(...msg: any[]) {
   window.logging.errors.push(...msg);
   if (!__PRODUCTION__) {
@@ -35,9 +41,7 @@ export function error(...msg: any[]) {
 }
 
 export function handle(exception: Error) {
-  if (!__PRODUCTION__) {
-    error(exception);
-  }
+  error(exception);
   client.notify(exception);
 }
 

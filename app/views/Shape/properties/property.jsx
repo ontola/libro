@@ -7,6 +7,7 @@ import React from 'react';
 
 import { allow, filter, sortIRIS } from '../../../helpers/data';
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { handle } from '../../../helpers/logging';
 import { allTopologies } from '../../../topologies';
 
 const DECIMAL = 10;
@@ -97,7 +98,7 @@ class ShProperty extends PropertyBase {
   }
 
   render() {
-    const { lrs } = this.props;
+    const { lrs, subject } = this.props;
 
     const groups = new Map();
     const props = [];
@@ -136,7 +137,7 @@ class ShProperty extends PropertyBase {
     });
 
     if (props.length + unorderedProps.length === 0) {
-      // TODO: bugsnag
+      handle(new Error(`Rendered SHACL::property for ${subject} without properties`));
       return null;
     }
 

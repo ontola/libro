@@ -6,6 +6,7 @@ import {
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { handle } from '../../../helpers/logging';
 import { allTopologies } from '../../../topologies';
 
 class SHACLClass extends PropertyBase {
@@ -18,7 +19,7 @@ class SHACLClass extends PropertyBase {
     );
 
     if (!targetShape) {
-      // TODO: bugsnag
+      handle(new Error(`Rendered SHACL::Class for ${this.props.subject} without targetShape`));
       return null;
     }
 

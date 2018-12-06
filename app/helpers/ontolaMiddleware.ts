@@ -20,6 +20,7 @@ import { defineMessages } from 'react-intl';
 
 import { safeCredentials } from './arguHelpers';
 import { retrievePath } from './iris';
+import { handle } from './logging';
 import serviceWorkerCommunicator from './serviceWorkerCommunicator';
 
 const messages = defineMessages({
@@ -156,11 +157,11 @@ const ontolaMiddleware = (history: History): MiddlewareFn<ReactType> =>
             try {
               serviceWorkerCommunicator.clearCache();
             } catch (e) {
-              // TODO: Bugsnag
+              handle(e);
             }
             window.location.reload();
           }, () => {
-            // TODO: bugsnag
+            handle(new Error('User logout action failed'));
           });
       case store.namespaces.ontola('actions/refresh'):
         window.location.reload();

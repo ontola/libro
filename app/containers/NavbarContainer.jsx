@@ -3,6 +3,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { NavBarContent } from '../components';
+import { handle } from '../helpers/logging';
 import { getCurrentUserType } from '../state/app/selectors';
 import { getSideBarColor } from '../state/sideBars/selectors';
 
@@ -22,9 +23,9 @@ class NavbarContainer extends React.PureComponent {
     };
   }
 
-  componentDidCatch(error, ignored) {
-    this.setState({ caughtError: error });
-    // TODO: bugsnag
+  componentDidCatch(e, ignored) {
+    handle(e);
+    this.setState({ caughtError: e });
   }
 
   render() {

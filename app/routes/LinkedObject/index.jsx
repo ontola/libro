@@ -2,6 +2,7 @@ import { LinkedResourceContainer } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { handle } from '../../helpers/logging';
 import { currentLocation } from '../../helpers/paths';
 import { Page } from '../../topologies/Page';
 import ErrorButtonWithFeedback from '../../views/Error/ErrorButtonWithFeedback';
@@ -26,9 +27,9 @@ export default class LinkedObject extends React.PureComponent {
     };
   }
 
-  componentDidCatch(error, ignored) {
-    this.setState({ caughtError: error });
-    // TODO: bugsnag
+  componentDidCatch(e, ignored) {
+    handle(e);
+    this.setState({ caughtError: e });
   }
 
   retry() {

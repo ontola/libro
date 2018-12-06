@@ -38,6 +38,7 @@ import { MAPBOX_TILE_API_BASE } from '../../config';
 import withReducer from '../../containers/withReducer';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { handle } from '../../helpers/logging';
 import { tryParseFloat } from '../../helpers/numbers';
 import { popupTopology } from '../../topologies/Popup';
 
@@ -200,7 +201,7 @@ class Map extends React.Component {
     const center = this.resolvePlacement(subjectPlacement);
 
     if (!center) {
-      // TODO: bugsnag
+      handle(new Error(`Map has no center (${subject})`));
       return;
     }
 

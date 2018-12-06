@@ -6,6 +6,7 @@ import React, { PureComponent } from 'react';
 
 import { CoverImage } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { handle } from '../../helpers/logging';
 import { cardTopology } from '../../topologies/Card';
 import { cardFixedTopology } from '../../topologies/Card/CardFixed';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
@@ -21,7 +22,7 @@ class ImageObjectBackgroundCover extends PureComponent {
     const { imagePositionY, url } = this.props;
 
     if (!url) {
-      // TODO: bugsnag
+      handle(new Error(`Image ${url} has no imagePositionY`));
       return null;
     }
 

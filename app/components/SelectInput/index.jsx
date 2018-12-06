@@ -10,6 +10,7 @@ import normalizedLower from '../../helpers/i18n';
 import Select from '../../topologies/Select';
 import { Input } from '../Input';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { handle } from '../../helpers/logging';
 
 const DEFAULT_HEIGHT = 200;
 const ITEM_HEIGHT = 42;
@@ -234,7 +235,7 @@ class SelectInput extends React.Component {
         );
         let label = this.props.lrs.getResourceProperty(item, classDisplayProp);
         if (!label) {
-          // TODO: bugsnag
+          handle(new TypeError(`Resource ${item} has no property ${classDisplayProp}`));
           label = this.props.lrs.getResourceProperty(item, NS.schema('name'));
         }
 

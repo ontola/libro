@@ -1,4 +1,4 @@
-import { linkType, register } from 'link-redux';
+import { linkType, register, subjectType } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router-dom';
@@ -12,6 +12,7 @@ import {
 } from '../../helpers/attachments';
 import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { handle } from '../../helpers/logging';
 import Container from '../../topologies/Container';
 import { pageTopology } from '../../topologies/Page';
 import PrimaryResource from '../../topologies/PrimaryResource';
@@ -51,6 +52,7 @@ class MediaObjectPage extends React.PureComponent {
     encodingFormat: linkType,
     filename: linkType,
     isPartOf: linkType,
+    subject: subjectType,
     type: linkType.isRequired,
   };
 
@@ -143,7 +145,7 @@ class MediaObjectPage extends React.PureComponent {
     const label = caption && caption.value ? caption.value : (filename && filename.value);
 
     if (!label) {
-      // TODO: bugsnag
+      handle(new Error(`MediaObject ${this.props.subject} has no label`));
     }
 
     return (

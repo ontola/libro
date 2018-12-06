@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { subjectType, withLinkCtx } from 'link-redux';
 
 import { retrievePath } from '../../helpers/iris';
+import { handle } from '../../helpers/logging';
 import { absoluteRouterLocation } from '../../helpers/paths';
 
 import './LDLink.scss';
@@ -36,8 +37,10 @@ class LDLink extends React.PureComponent {
       title,
     } = this.props;
 
-    // TODO: bugsnag
-    if (!subject) return 'LDLINK NO SUBJECT';
+    if (!subject) {
+      handle(new Error('LDLINK NO SUBJECT'));
+      return '';
+    }
     const href = retrievePath(subject.value);
 
     return (

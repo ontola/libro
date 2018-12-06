@@ -9,6 +9,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import { handle } from '../../helpers/logging';
 import { allTopologies } from '../../topologies';
 
 /**
@@ -97,7 +98,7 @@ class CreateVote extends PropertyBase {
       .lrs
       .execActionByIRI(subject)
       .catch((e) => {
-        throw e;
+        handle(e);
       });
 
     if (!target) {

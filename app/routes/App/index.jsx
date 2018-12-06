@@ -20,6 +20,7 @@ import ErrorButtonWithFeedback from '../../views/Error/ErrorButtonWithFeedback';
 import HoverHelper from '../DevBrowser/HoverHelper';
 import { defaultKeymap, devKeymap } from '../../helpers/keyboard';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { handle } from '../../helpers/logging';
 
 class App extends React.PureComponent {
   static propTypes = {
@@ -35,9 +36,9 @@ class App extends React.PureComponent {
     };
   }
 
-  componentDidCatch(error, ignored) {
-    this.setState({ caughtError: error });
-    // TODO: bugsnag
+  componentDidCatch(e, ignored) {
+    handle(e);
+    this.setState({ caughtError: e });
   }
 
   retry() {

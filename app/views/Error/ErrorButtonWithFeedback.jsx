@@ -3,6 +3,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { Button } from '../../components';
+import { handle } from '../../helpers/logging';
 
 import { titleForStatus } from './ErrorMessages';
 
@@ -38,8 +39,10 @@ class ErrorButtonWithFeedback extends React.Component {
       .props
       .reloadLinkedObject()
       .then(disable)
-      // TODO: bugsnag
-      .catch(disable);
+      .catch((e) => {
+        handle(e);
+        return disable();
+      });
   }
 
   render() {
