@@ -6,10 +6,7 @@ import HttpStatus from 'http-status-codes';
 import * as constants from '../config';
 
 import { hasAction, setActionParam } from './actions';
-
-export function isDownloadRequest(url) {
-  return new URL(url, 'https://example.com').searchParams.get('download') === 'true';
-}
+import { isDownloadRequest } from './http';
 
 export function isRedirect(status) {
   return status === HttpStatus.MULTIPLE_CHOICES

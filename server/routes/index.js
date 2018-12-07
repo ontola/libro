@@ -2,7 +2,7 @@
 import bodyParser from 'body-parser';
 import csurf from 'csurf';
 import expressStaticGzip from 'express-static-gzip';
-import { INTERNAL_SERVER_ERROR, NO_CONTENT } from 'http-status-codes';
+import { NO_CONTENT } from 'http-status-codes';
 import morgan from 'morgan';
 import uuidv4 from 'uuid/v4';
 
@@ -13,16 +13,11 @@ import errorHandlerMiddleware from '../middleware/errorHandlerMiddleware';
 import sessionMiddleware from '../middleware/sessionMiddleware';
 import csp from '../utils/csp';
 import isBackend from '../utils/filters';
-import manifest from '../utils/manifest';
-import {
-  backendProxy,
-  fileProxy,
-  isDownloadRequest,
-  isRedirect,
-} from '../utils/proxies';
-import { handleRender } from '../utils/render';
+import { isDownloadRequest, isHTMLHeader } from '../utils/http';
 import { bugsnagMiddleware } from '../utils/logging';
+import { backendProxy, fileProxy } from '../utils/proxies';
 
+import application from './application';
 import login from './login';
 import logout from './logout';
 import maps from './maps';
@@ -36,12 +31,6 @@ export function listen(app, port) {
   });
 }
 
-function isHTMLHeader(headers) {
-  return headers.accept.includes('text/html')
-    || headers.accept.includes('application/xhtml+xml')
-    || headers.accept.includes('application/xml');
-}
-
 function isBinaryishRequest(req, res, next) {
   const isBinaryIsh = req.headers.accept && !isHTMLHeader(req.headers);
 
@@ -51,12 +40,6 @@ function isBinaryishRequest(req, res, next) {
 
   return next('route');
 }
-
-const PRELOAD_HEADERS = [
-  `<${constants.FRONTEND_URL}/static/preloader.css>; rel=preload; as=style`,
-  `<${constants.ASSETS_HOST}${manifest['main.js']}>; rel=preload; as=script`,
-  __PRODUCTION__ && `<${constants.ASSETS_HOST}${manifest['main.css']}>; rel=preload; as=style`,
-];
 
 const compressionOpts = (fallthrough = false) => ({
   enableBrotli: true,
@@ -111,33 +94,7 @@ export default function routes(app, port) {
 
   app.get('/media_objects/*', isBinaryishRequest, fileProxy);
 
-  app.get(/.*/, (req, res) => {
-    const domain = req.get('host').replace(/:.*/, '');
-
-    req.api.headRequest(req).then((serverRes) => {
-      res.status(serverRes.status);
-      if (isRedirect(serverRes.status)) {
-        const location = serverRes.headers.get('Location');
-        if (!location) {
-          // TODO: bugsnag
-        }
-
-        res.set('Location', location);
-        return res.end();
-      }
-
-      if (isHTMLHeader(req.headers)) {
-        res.setHeader('Link', PRELOAD_HEADERS);
-      }
-      res.setHeader('Vary', 'Accept,Accept-Encoding,Authorization,Content-Type');
-      handleRender(req, res, port, domain);
-      return undefined;
-    }).catch((e) => {
-      console.log(e);
-      // TODO: bugsnag
-      res.sendStatus(INTERNAL_SERVER_ERROR).end();
-    });
-  });
+  app.get(/.*/, application(port));
 
   app.use(errorHandlerMiddleware);
   app.use(bugsnagMiddleware.errorHandler);
