@@ -78,7 +78,7 @@ class EntryPoint extends React.PureComponent {
       );
     }
 
-    const parsedURL = new URL(url.value);
+    const parsedURL = url && new URL(url.value);
     const href = parsedURL && parsedURL.pathname + parsedURL.search;
 
     return (

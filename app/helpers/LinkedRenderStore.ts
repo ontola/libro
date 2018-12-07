@@ -209,6 +209,9 @@ const ontologicalData = [
   new Statement(NS.argu('Create::ConArgument'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.argu('Create::ConArgument'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
 
+  new Statement(NS.argu('Create::BearerToken'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('Create::BearerToken'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
+
   new Statement(NS.argu('Create::BlogPost'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.argu('Create::BlogPost'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
 
@@ -217,6 +220,9 @@ const ontologicalData = [
 
   new Statement(NS.argu('Create::EmailAddress'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.argu('Create::EmailAddress'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
+
+  new Statement(NS.argu('Create::EmailToken'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('Create::EmailToken'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
 
   new Statement(NS.argu('Create::Motion'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.argu('Create::Motion'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),

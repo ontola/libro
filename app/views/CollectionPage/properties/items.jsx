@@ -16,6 +16,9 @@ import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
 import Table from '../../../topologies/Table';
 
 const settingsTableColumns = [
+  NS.argu('invitee'),
+  NS.argu('applyLink'),
+  NS.argu('redirectUrl'),
   NS.argu('alias'),
   NS.argu('shortnameable'),
   [NS.schema('name'), NS.rdfs('label')],

@@ -14,6 +14,8 @@ import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { cardListTopology } from '../../topologies/Card/CardList';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { tabPaneTopology } from '../../topologies/TabPane';
+import { tableCellTopology } from '../../topologies/TableCell';
+import { tableRowTopology } from '../../topologies/TableRow';
 
 const propTypes = {
 };
@@ -26,7 +28,9 @@ export class CreateActionButton extends Component {
     alertDialogTopology,
     cardListTopology,
     cardFloatTopology,
-    tabPaneTopology
+    tabPaneTopology,
+    tableCellTopology,
+    tableRowTopology
   );
 
   static mapDataToProps = [NS.schema('name')];

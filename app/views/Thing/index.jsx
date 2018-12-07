@@ -28,9 +28,10 @@ import hoverBox from '../../topologies/HoverBox';
 import { inlineTopology } from '../../topologies/Inline';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 
+import ApplyLink from './properties/applyLink';
+import ArguLocation from './properties/arguLocation';
 import Arguments from './properties/arguments';
 import BaseColor from './properties/baseColor';
-import ArguLocation from './properties/arguLocation';
 import CoverPhoto from './properties/coverPhoto';
 import CreateAction from './properties/createAction';
 import DateCreated from './properties/dateCreated';
@@ -39,6 +40,7 @@ import Email from './properties/email';
 import ExpiresAt from './properties/expiresAt';
 import FollowsCount from './properties/followsCount';
 import Image from './properties/image';
+import Invitee from './properties/invitee';
 import IsPartOf from './properties/isPartOf';
 import IsPrimaryTopicOf from './properties/isPrimaryTopicOf';
 import Location from './properties/location';
@@ -198,6 +200,7 @@ export default [
       cardTopology,
     ]
   ),
+  ApplyLink,
   ...Arguments,
   ArguLocation,
   BaseColor,
@@ -211,6 +214,7 @@ export default [
   IsPrimaryTopicOf,
   IsPartOf,
   Image,
+  Invitee,
   Location,
   MakePrimaryAction,
   Member,
