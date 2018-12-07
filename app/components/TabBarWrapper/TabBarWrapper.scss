@@ -1,0 +1,10 @@
+@import '../../components/shared/config';
+
+.TabBarWrapper {
+  background-color: color('white');
+
+  .TabBar {
+    margin: auto;
+    max-width: map-get($container-width, 'large');
+  }
+}

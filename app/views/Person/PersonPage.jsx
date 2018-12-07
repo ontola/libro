@@ -1,4 +1,4 @@
-import { LinkedResourceContainer, Property, register } from 'link-redux';
+import { LinkedResourceContainer, register } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -38,10 +38,7 @@ class PersonPage extends React.PureComponent {
 
     return (
       <PrimaryResource>
-        <PageHeader>
-          <Property label={NS.schema('name')} />
-          <Property label={NS.schema('description')} />
-        </PageHeader>
+        <PageHeader />
         <Container>
           <LinkedResourceContainer subject={feedIRI} />
         </Container>

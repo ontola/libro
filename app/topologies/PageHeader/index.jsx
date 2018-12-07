@@ -1,4 +1,5 @@
-import { TopologyProvider } from 'link-redux';
+import { TopologyProvider, Type } from 'link-redux';
+import React from 'react';
 
 import './PageHeader.scss';
 
@@ -11,11 +12,21 @@ export const pageHeaderTopology = NS.argu('header');
  * @returns {component} Component
  */
 class PageHeader extends TopologyProvider {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.className = 'PageHeader';
     this.topology = pageHeaderTopology;
+  }
+
+  render() {
+    return this.wrap((
+      <div className={this.className}>
+        <div className="PageHeader__container">
+          {this.props.children || <Type />}
+        </div>
+      </div>
+    ));
   }
 }
 

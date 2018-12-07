@@ -8,11 +8,11 @@ import * as PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
+import TabBarWrapper from '../../components/TabBarWrapper';
 import { currentURL, retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
-import Card from '../../topologies/Card';
-import Container from '../../topologies/Container';
 import { pageTopology } from '../../topologies/Page';
+import PageHeader from '../../topologies/PageHeader';
 import PrimaryResource, { primaryResourceTopology } from '../../topologies/PrimaryResource';
 import TabBar from '../../topologies/TabBar';
 import TabPane from '../../topologies/TabPane';
@@ -76,16 +76,16 @@ class MenuItemPage extends React.PureComponent {
     return (
       <PrimaryResource>
         {topLevel && (
-        <Container>
-          <Card>
+          <PageHeader>
             <Property label={NS.schema('isPartOf')} />
-          </Card>
-        </Container>
+          </PageHeader>
         )}
         <Property label={NS.argu('parentMenu')} topLevel={false} />
-        <TabBar>
-          <Property label={NS.argu('menuItems')} />
-        </TabBar>
+        <TabBarWrapper>
+          <TabBar>
+            <Property label={NS.argu('menuItems')} />
+          </TabBar>
+        </TabBarWrapper>
         <TabPane>
           <Property label={NS.argu('href')} />
         </TabPane>

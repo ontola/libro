@@ -2,7 +2,40 @@
 
 .PageHeader {
   background-color: color('white');
-  box-sizing: border-box;
-  padding: 3.3em;
-  width: 100%;
+  padding-top: 2rem;
+
+  &__circle {
+    background: color('grey');
+    border-radius: 999px;
+    flex-shrink: 0;
+    height: 4rem;
+    margin-right: 1rem;
+    overflow: hidden;
+    width: 4rem;
+  }
+
+  &__container {
+    margin: auto;
+    max-width: map-get($container-width, 'large');
+    padding-left: $container-padding-main;
+    padding-right: $container-padding-main;
+    position: relative;
+
+    @include small-only {
+      padding-left: unit('large');
+      padding-right: unit('large');
+    }
+  }
+
+  &__image-and-text-wrapper {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 1;
+    justify-content: center;
+  }
 }

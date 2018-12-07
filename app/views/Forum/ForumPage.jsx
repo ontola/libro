@@ -18,10 +18,7 @@ class ForumPage extends React.PureComponent {
   render() {
     return (
       <div>
-        <PageHeader>
-          <Property label={NS.schema('name')} />
-          <Property label={[NS.schema('description'), NS.rdfs('label')]} />
-        </PageHeader>
+        <PageHeader />
         <Container grid>
           <Property label={NS.argu('widgets')} />
         </Container>

@@ -36,6 +36,7 @@ import CoverPhoto from './properties/coverPhoto';
 import CreateAction from './properties/createAction';
 import DateCreated from './properties/dateCreated';
 import DateSubmitted from './properties/dateSubmitted';
+import description from './properties/description';
 import Email from './properties/email';
 import ExpiresAt from './properties/expiresAt';
 import FollowsCount from './properties/followsCount';
@@ -62,6 +63,7 @@ import TrashedAt from './properties/trashedAt';
 import UpdateAction from './properties/updateAction';
 import VoteEvents from './properties/voteEvents';
 import ThingPage from './ThingPage';
+import ThingPageHeader from './ThingPageHeader';
 import ThingParent from './ThingParent';
 import ThingPopup from './ThingPopup';
 import ThingSelect from './ThingSelect';
@@ -144,6 +146,7 @@ const ThingCard = () => (
 
 export default [
   ThingPage,
+  ThingPageHeader,
   ThingSelect,
   ThingTable,
   ThingTableRow,
@@ -208,6 +211,7 @@ export default [
   CreateAction,
   DateCreated,
   DateSubmitted,
+  description,
   Email,
   ExpiresAt,
   FollowsCount,

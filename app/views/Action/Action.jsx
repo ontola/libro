@@ -32,10 +32,19 @@ class Action extends NavigatableAction {
     subject: subjectType,
   };
 
+  name() {
+    const top = (this.props.topology || this.props.topologyCtx);
+    if ([alertDialogTopology, tabPaneTopology].includes(top)) {
+      return null;
+    }
+
+    return <Property label={NS.schema('name')} />;
+  }
+
   render() {
     return (
       <Container>
-        {(this.props.topology || this.props.topologyCtx) !== alertDialogTopology && <Property label={NS.schema('name')} />}
+        {this.name()}
         <Property
           action={this.props.subject}
           cancelPath={retrievePath(this.props.object.value)}

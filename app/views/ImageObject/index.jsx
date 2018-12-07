@@ -17,6 +17,7 @@ import { parentTopology } from '../../topologies/Parent';
 
 import ImageObjectCardList from './ImageObjectCardList';
 import ImageObjectCover from './ImageObjectCover';
+import ImageObjectPageHeader from './ImageObjectPageHeader';
 import thumbnail from './properties/thumbnail';
 
 class ImageObject extends React.PureComponent {
@@ -52,6 +53,7 @@ class ImageObject extends React.PureComponent {
 export default [
   register(ImageObject),
   ...ImageObjectCover,
+  ImageObjectPageHeader,
   LinkedRenderStore.registerRenderer(
     () => (
       <SideBarLinkImageWrapper data-test="ImageObject-sidebar">

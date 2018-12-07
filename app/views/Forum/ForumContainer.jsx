@@ -7,6 +7,7 @@ import {
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import Card from '../../topologies/Card';
+import CardRow from '../../topologies/Card/CardRow';
 import { containerTopology } from '../../topologies/Container';
 
 class ForumContainer extends React.PureComponent {
@@ -30,8 +31,12 @@ class ForumContainer extends React.PureComponent {
         <CardContent noSpacing>
           <Property label={[NS.schema('name'), NS.rdfs('label')]} />
           <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
-          <Property direction="column" label={NS.argu('discussions')} />
         </CardContent>
+        <CardRow backdrop>
+          <CardContent>
+            <Property direction="column" label={NS.argu('discussions')} />
+          </CardContent>
+        </CardRow>
       </Card>
     );
   }

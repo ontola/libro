@@ -18,7 +18,7 @@
     min-height: 60vh;
 
     @include small-only {
-      max-width: container-width('large');
+      max-width: map-get($container-width, 'large');
     }
   }
 

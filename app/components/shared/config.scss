@@ -117,10 +117,11 @@ $sizes-margin: (
 
 // CONTAINER WIDTHS
 $container-width: (
-  'small': 35em,
-  'medium': 50em,
-  'large': 75em
+  'small': 35rem,
+  'medium': 50rem,
+  'large': 70rem
 );
+$container-padding-main: 2rem;
 
 // Z-INDICES
 $zindex-1: 100;
