@@ -1,8 +1,8 @@
-export * from '../app/config';
-
 if (__CLIENT__) {
   throw new Error('Server code in client');
 }
+
+export * from '../app/config';
 
 export const bugsnagKey = process.env.BUGSNAG_KEY;
 export const bundleName = process.env.FE_BUNDLE_NAME || 'min';

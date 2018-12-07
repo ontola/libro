@@ -65,6 +65,11 @@ if (__DEVELOPMENT__) {
   workerSrc.push('blob:');
 }
 
+if (__PRODUCTION__) {
+  connectSrc.push('https://notify.bugsnag.com');
+  connectSrc.push('https://sessions.bugsnag.com');
+}
+
 export default csp({
   browserSniff: true,
   directives: {

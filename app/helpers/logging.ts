@@ -1,12 +1,22 @@
 import { Client } from '@bugsnag/browser/dist/types/bugsnag-core';
 import bugsnag from '@bugsnag/js';
 
-import { BUGSNAG_KEY } from '../config';
+import { BUGSNAG_KEY, RELEASE_STAGE } from '../config';
 
 let client: Client;
 if (BUGSNAG_KEY) {
   client = bugsnag({
     apiKey: BUGSNAG_KEY,
+    appType: 'fe_client',
+    appVersion: __VERSION__,
+    collectUserIp: false,
+    filters: [
+        'password',
+        'access_token',
+        'accessToken',
+        'Authorization',
+    ],
+    releaseStage: RELEASE_STAGE,
   });
 } else {
   client = {

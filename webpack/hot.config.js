@@ -4,7 +4,6 @@ const WebpackPwaManifest = require('webpack-pwa-manifest');
 
 const common = require('./common.config');
 const manifest = require('./manifest.json');
-const version = require('./version');
 
 module.exports = merge(common, {
   cache: true,
@@ -46,7 +45,6 @@ module.exports = merge(common, {
 
   plugins: [
     new webpack.DefinePlugin({
-      __VERSION__: JSON.stringify(version),
       'process.env.FRONTEND_HOSTNAME': JSON.stringify(process.env.FRONTEND_HOSTNAME),
     }),
     new webpack.HotModuleReplacementPlugin(),

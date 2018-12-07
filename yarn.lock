@@ -777,23 +777,23 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@bugsnag/browser@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@bugsnag/browser/-/browser-5.0.0.tgz#f6dd8cdf7d4db31010c2a42cc365f866aa1d6835"
-  integrity sha512-TVwqRMC4YwB/f4HgODD+fzsKeLapcGRSXKh2GpV3Zy6T5Fiqp1sqZAgTnK889hkJNWzel4jn9fCnDhJgkDAbvA==
+"@bugsnag/browser@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@bugsnag/browser/-/browser-5.0.2.tgz#6fcabdd622da82a586428f4b599c9a3fbc664167"
+  integrity sha512-uhjfoMU8MGRHdsIE8QqGclhopxcrlGgbwrZVLsWVgtiet2H/phGdwJl/6DTw+W9rTK1SmW1CpzAUCN+XfVI+JA==
 
-"@bugsnag/js@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@bugsnag/js/-/js-5.0.0.tgz#83f81cfc4a60aca516a0f74dc3f496214882d4f9"
-  integrity sha512-PmZK7eyLYDxAMIFVNJ1LMA/fOXt6AZGGwQkbTgq2OHNYZDnNdBJIJTpyQyVrqw6+0GkmA+AVHwD737p13Q8sgw==
+"@bugsnag/js@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@bugsnag/js/-/js-5.0.2.tgz#5bfffca3ed87a27e4ba898a9f46c4e377c3d65e1"
+  integrity sha512-CdilcBCrP2vdosbtoMzEjORX4/BDGTOVp1+WrYY58KbjFoSDc1fUmjPjqAmHxdZKty7oi5PAQeQv0fh3nsdtgQ==
   dependencies:
-    "@bugsnag/browser" "^5.0.0"
-    "@bugsnag/node" "^5.0.0"
+    "@bugsnag/browser" "^5.0.2"
+    "@bugsnag/node" "^5.0.2"
 
-"@bugsnag/node@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@bugsnag/node/-/node-5.0.0.tgz#8aac9b90c1b955bb6a10720a8e79451a41908c29"
-  integrity sha512-4Xo/k6Wm2VXoXh9TUAdVAy++K9daPzqCX2l7l8i5ZMqd0Io/1VcLton1/oeFWc1gQVfItR3tY9H0dsgKk6KF+Q==
+"@bugsnag/node@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@bugsnag/node/-/node-5.0.2.tgz#7d762f4c5d416cdfe01df86eff8d7cc53401d0e5"
+  integrity sha512-ad1lR6cE8mXOzFVV9wt/pP8fxZ2gfCvR+p7BIm4c+urSaw+0UnW+/ej6uozbYmhlKTpp8KE1SXU/lr16EM2vvA==
   dependencies:
     byline "^5.0.0"
     error-stack-parser "^2.0.2"
@@ -801,6 +801,13 @@
     pump "^3.0.0"
     request "^2.87.0"
     stack-generator "^2.0.3"
+
+"@bugsnag/plugin-express@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@bugsnag/plugin-express/-/plugin-express-5.0.2.tgz#f8ff851b725028dd31012cc561471e6408c6aa24"
+  integrity sha512-lX3EOWVXSzGKplhDMUJyiXcXdLjBHAvX0uu978ZmwNZDcDpaxSD0wzEOfiDKRi8D9WNo6HAg/WYJZ8S35Le+Og==
+  dependencies:
+    iserror "^0.0.2"
 
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"

@@ -21,6 +21,7 @@ import {
   isRedirect,
 } from '../utils/proxies';
 import { handleRender } from '../utils/render';
+import { bugsnagMiddleware } from '../utils/logging';
 
 import login from './login';
 import logout from './logout';
@@ -65,6 +66,7 @@ const compressionOpts = (fallthrough = false) => ({
 
 export default function routes(app, port) {
   app.use(morgan('dev'));
+  app.use(bugsnagMiddleware.requestHandler);
 
   app.use((req, res, next) => {
     res.locals.nonce = uuidv4();
@@ -138,4 +140,5 @@ export default function routes(app, port) {
   });
 
   app.use(errorHandlerMiddleware);
+  app.use(bugsnagMiddleware.errorHandler);
 }

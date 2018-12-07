@@ -20,6 +20,11 @@ export default function errorHandlerMiddleware(err, req, res, next) {
   if (!(err instanceof errors.ArguError)) {
     next(err);
   }
+  req.bugsnag.notify(err, {
+    request: req,
+    severity: 'error',
+    unhandled: false,
+  });
   if (err.internal === true) {
     console.warn(err.devMessage);
     console.error(errMsg);

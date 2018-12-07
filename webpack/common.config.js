@@ -7,6 +7,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 
+const version = require('./version');
+
 const TARGET = process.env.npm_lifecycle_event;
 process.env.BABEL_ENV = TARGET;
 
@@ -63,6 +65,7 @@ const common = {
       __ORIGIN__: JSON.stringify(`https://${process.env.FRONTEND_HOSTNAME}`),
       __PRODUCTION__: process.env.NODE_ENV === 'production',
       __TEST__: process.env.NODE_ENV === 'test',
+      __VERSION__: JSON.stringify(version),
       'process.env': {
         ARGU_API_URL: JSON.stringify(process.env.ARGU_API_URL),
         NODE_ENV: process.env.NODE_ENV === 'development' ? '"development"' : '"production"',

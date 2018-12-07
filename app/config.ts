@@ -11,6 +11,7 @@ const getEnv = (
 
 export const ASSETS_HOST = getEnv('ASSETS_HOST', '', '');
 export const AWS_BUCKET = getEnv('AWS_BUCKET', '', '');
+export const RELEASE_STAGE = process.env.RAILS_ENV;
 export const BUGSNAG_KEY = process.env.BUGSNAG_KEY;
 export const FRONTEND_ACCEPT = 'application/n-quads';
 export const FRONTEND_HOSTNAME = process.env.FRONTEND_HOSTNAME || getEnv('FRONTEND_HOSTNAME', 'argu.co', 'argu.dev');
