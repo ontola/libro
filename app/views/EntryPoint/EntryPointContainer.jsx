@@ -23,16 +23,16 @@ class EntryPointContainer extends EntryPointBase {
       cancelPath,
       invalid,
       name,
-      onDone,
+      onCancel,
       url,
     } = this.props;
     const cancelButton = cancelPath && (
       <Button
         href={cancelPath}
         theme="transparant"
-        onClick={onDone && ((e) => {
+        onClick={onCancel && ((e) => {
           e.preventDefault();
-          onDone(e);
+          onCancel(e);
         })}
       >
         <FormattedMessage
