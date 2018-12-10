@@ -106,7 +106,6 @@ class CollapsedOmniformProp extends Component {
         <CardRow>
           <OmniformConnector
             formFooterButtons={backButton}
-            onCancel={this.toggle}
             onDone={this.toggle}
             onKeyUp={this.handleKey}
             {...this.props}

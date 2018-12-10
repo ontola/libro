@@ -1,7 +1,8 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { link, Property, withLRS } from 'link-redux';
+import { link, Property } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import { withRouter } from 'react-router';
 
 import {
   Button,
@@ -17,23 +18,37 @@ import FormFooter from '../../topologies/FormFooter/Footer';
 import EntryPointBase from './EntryPointBase';
 
 class EntryPointContainer extends EntryPointBase {
+  constructor(props) {
+    super(props);
+
+    this.onCancel = this.onCancel.bind(this);
+  }
+
+  onCancel(e) {
+    e.preventDefault();
+
+    const { history, onCancel } = this.props;
+
+    if (!onCancel || history.length > 1) {
+      history.goBack();
+    } else {
+      onCancel(e);
+    }
+  }
+
   render() {
     const {
       httpMethod,
       cancelPath,
       invalid,
       name,
-      onCancel,
       url,
     } = this.props;
     const cancelButton = cancelPath && (
       <Button
         href={cancelPath}
         theme="transparant"
-        onClick={onCancel && ((e) => {
-          e.preventDefault();
-          onCancel(e);
-        })}
+        onClick={this.onCancel}
       >
         <FormattedMessage
           defaultMessage="cancel"
@@ -87,7 +102,7 @@ const EntryPointContainerForm = link([
 ])(EntryPointContainer);
 
 export default LinkedRenderStore.registerRenderer(
-  withLRS(props => (
+  withRouter(props => (
     <EntryPointContainerForm
       form={props.subject.value}
       {...props}
