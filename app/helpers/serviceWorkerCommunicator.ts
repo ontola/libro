@@ -26,8 +26,15 @@ class ServiceWorkerCommunicator {
       }
     });
     this.lrs = LinkedRenderStore;
-    this.updatesChannel = new BroadcastChannel('data-updates');
-    this.updatesChannel.addEventListener('message', this.dataUpdate.bind(this));
+    navigator.serviceWorker.addEventListener('controllerchange', (e) => {
+      this.controller = (e.target as unknown as ServiceWorkerCommunicator).controller;
+    });
+    if (typeof BroadcastChannel !== 'undefined') {
+      this.updatesChannel = new BroadcastChannel('data-updates');
+      this.updatesChannel.addEventListener('message', this.dataUpdate.bind(this));
+    } else {
+      handle(new Error('Browser without BroadcastChannel'));
+    }
   }
 
   public clearCache() {
