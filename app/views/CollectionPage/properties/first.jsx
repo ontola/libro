@@ -89,7 +89,7 @@ class CollectionPageFirst extends React.PureComponent {
       pages.push((
         <Button
           small
-          alt={formatMessage(messages.next)}
+          alt={formatMessage(messages.nextLabel)}
           icon="arrow-right"
           key={`${partOf}-page-switcher-next`}
           theme="pagination"
@@ -102,7 +102,7 @@ class CollectionPageFirst extends React.PureComponent {
       pages.unshift((
         <Button
           small
-          alt={formatMessage(messages.previous)}
+          alt={formatMessage(messages.previousLabel)}
           icon="arrow-left"
           key={`${partOf}-page-switcher-previous`}
           theme="pagination"
