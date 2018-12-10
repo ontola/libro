@@ -1,6 +1,8 @@
 import React from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
+import { handle } from '../../helpers/logging';
+
 const messages = defineMessages({
   '400/body': {
     defaultMessage: 'The request made cannot be fulfilled because it contains bad syntax, check your URL parameters or refresh the page that linked to this resource.',
@@ -145,7 +147,13 @@ export function bodyForStatus(requestStatus) {
     return null;
   }
 
-  return <FormattedMessage {...messages[`${requestStatus.status}/body`]} />;
+  const msg = messages[`${requestStatus.status}/body`];
+  if (!msg) {
+    handle(new Error(`translation missing for ${requestStatus.status}/body`));
+    return null;
+  }
+
+  return <FormattedMessage {...msg} />;
 }
 
 export function headerForStatus(requestStatus) {
@@ -153,7 +161,13 @@ export function headerForStatus(requestStatus) {
     return null;
   }
 
-  return <FormattedMessage {...messages[`${requestStatus.status}/header`]} />;
+  const msg = messages[`${requestStatus.status}/header`];
+  if (!msg) {
+    handle(new Error(`translation missing for ${requestStatus.status}/header`));
+    return null;
+  }
+
+  return <FormattedMessage {...msg} />;
 }
 
 export function titleForStatus(requestStatus) {
