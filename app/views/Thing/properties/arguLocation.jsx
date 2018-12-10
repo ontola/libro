@@ -49,7 +49,7 @@ class ArguLocation extends React.Component {
   }
 
   componentDidMount() {
-    if (this.resolveChildren().length > 0) {
+    if (this.resolveChildren().length > 0 && !this.state.MapView) {
       return this.loadView();
     }
 
@@ -57,7 +57,7 @@ class ArguLocation extends React.Component {
   }
 
   componentDidUpdate() {
-    if (this.resolveChildren().length > 0) {
+    if (this.resolveChildren().length > 0 && !this.state.MapView) {
       return this.loadView();
     }
 
