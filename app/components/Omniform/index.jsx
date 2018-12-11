@@ -45,8 +45,12 @@ export const FILTER = [
   /\/c\/new$/,
   /\/pros\/new/,
   /\/cons\/new$/,
+  /\/actions\/create_opinion/,
+  /\/actions\/update_opinion/,
 ];
 const ORDER = [
+  '/actions/create_opinion',
+  '/actions/update_opinion',
   '/m/new',
   '/c/new',
   '/pros/new',
@@ -72,6 +76,7 @@ class Omniform extends EntryPointBase {
     const PROPS_WHITELIST = [
       NS.schema('name'),
       NS.schema('text'),
+      NS.argu('isOpinion'),
     ];
 
     return (

@@ -179,6 +179,27 @@ const ontologicalData = [
   new Statement(NS.argu('BlogPost'), NS.schema('description'), new Literal('Een Blogpost is een bericht of artikel waarin iets wordt gedeeld.', languages.nl)),
   new Statement(NS.argu('BlogPost'), NS.schema('image'), new NamedNode('http://fontawesome.io/icon/bullhorn')),
 
+  new Statement(NS.argu('ConOpinion'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('ConOpinion'), NS.rdfs('label'), new Literal('Opinion', languages.en)),
+  new Statement(NS.argu('ConOpinion'), NS.rdfs('label'), new Literal('Mening', languages.nl)),
+  new Statement(NS.argu('ConOpinion'), NS.schema('description'), new Literal('An opinion is an explanation of why you are for or against something.', languages.en)),
+  new Statement(NS.argu('ConOpinion'), NS.schema('description'), new Literal('Een opinion is een toelichting op jouw stem voor of tegen iets.', languages.nl)),
+  new Statement(NS.argu('ConOpinion'), NS.schema('image'), new NamedNode('http://fontawesome.io/icon/thumbs-down')),
+
+  new Statement(NS.argu('NeutralOpinion'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('NeutralOpinion'), NS.rdfs('label'), new Literal('Opinion', languages.en)),
+  new Statement(NS.argu('NeutralOpinion'), NS.rdfs('label'), new Literal('Mening', languages.nl)),
+  new Statement(NS.argu('NeutralOpinion'), NS.schema('description'), new Literal('An opinion is an explanation of why you are for or against something.', languages.en)),
+  new Statement(NS.argu('NeutralOpinion'), NS.schema('description'), new Literal('Een opinion is een toelichting op jouw stem voor of tegen iets.', languages.nl)),
+  new Statement(NS.argu('NeutralOpinion'), NS.schema('image'), new NamedNode('http://fontawesome.io/icon/pause')),
+
+  new Statement(NS.argu('ProOpinion'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('ProOpinion'), NS.rdfs('label'), new Literal('Opinion', languages.en)),
+  new Statement(NS.argu('ProOpinion'), NS.rdfs('label'), new Literal('Mening', languages.nl)),
+  new Statement(NS.argu('ProOpinion'), NS.schema('description'), new Literal('An opinion is an explanation of why you are for or against something.', languages.en)),
+  new Statement(NS.argu('ProOpinion'), NS.schema('description'), new Literal('Een opinion is een toelichting op jouw stem voor of tegen iets.', languages.nl)),
+  new Statement(NS.argu('ProOpinion'), NS.schema('image'), new NamedNode('http://fontawesome.io/icon/thumbs-up')),
+
   new Statement(NS.aod('title'), NS.owl('sameAs'), NS.schema('name')),
 
   new Statement(NS.schema('MediaObject'), NS.rdf('type'), NS.rdfs('Class')),
@@ -226,6 +247,9 @@ const ontologicalData = [
 
   new Statement(NS.argu('Create::Motion'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.argu('Create::Motion'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
+
+  new Statement(NS.argu('Create::Opinion'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('Create::Opinion'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
 
   new Statement(NS.argu('Create::Question'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.argu('Create::Question'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),

@@ -7,10 +7,31 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
 
+import { omniformOpenInline, omniformSetAction } from '../../state/omniform';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { handle } from '../../helpers/logging';
 import { allTopologies } from '../../topologies';
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  openOmniform: () => {
+    const isPartOf = ownProps.lrs.getResourceProperty(ownProps.subjectCtx, NS.schema('isPartOf'));
+    const createOpinion = ownProps.lrs.getResourceProperty(isPartOf, NS.argu('create_opinion'));
+    const updateOpinion = ownProps.lrs.getResourceProperty(isPartOf, NS.argu('update_opinion'));
+    return Promise.all([
+      dispatch(omniformOpenInline(isPartOf)),
+      dispatch(omniformSetAction({
+        action: createOpinion,
+        parentIRI: btoa(isPartOf),
+      })),
+      dispatch(omniformSetAction({
+        action: updateOpinion,
+        parentIRI: btoa(isPartOf),
+      })),
+    ]);
+  },
+});
 
 /**
  * Renders the vote actions
@@ -27,8 +48,13 @@ class CreateVote extends PropertyBase {
 
   static topology = allTopologies;
 
+  static hocs = [
+    connect(null, mapDispatchToProps),
+  ];
+
   static mapDataToProps = {
     actionStatus: NS.schema('actionStatus'),
+    isPartOf: NS.schema('isPartOf'),
     object: NS.schema('object'),
     target: NS.schema('target'),
     type: { label: NS.rdf('type'), limit: Infinity },
@@ -97,6 +123,7 @@ class CreateVote extends PropertyBase {
       .props
       .lrs
       .execActionByIRI(subject)
+      .then(this.props.openOmniform)
       .catch((e) => {
         handle(e);
       });
