@@ -4,7 +4,7 @@ import { LinkedResourceContainer, linkType, PropertyBase } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { convertKeysAtoB } from '../../helpers/data';
+import { convertKeysAtoB, processDelta } from '../../helpers/data';
 import { NS } from '../../helpers/LinkedRenderStore';
 
 class EntryPointBase extends PropertyBase {
@@ -28,6 +28,7 @@ class EntryPointBase extends PropertyBase {
         const target = lrs.getResourceProperty(action, NS.schema('target'));
         const targetCollection = lrs.getResourceProperty(target, NS.schema('url'));
 
+        processDelta(lrs, response);
         this.responseCallback(response);
 
         // [AOD-303] TODO: This is shit.

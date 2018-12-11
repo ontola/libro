@@ -76,6 +76,29 @@ function listToArr(lrs, acc, rest) {
   return acc;
 }
 
+function processRemove(lrs, response) {
+  response
+    .data
+    .filter(s => s.why.sameTerm(NS.argu('remove')))
+    .forEach((s) => {
+      lrs.store.removeStatements(
+        [lrs.store.anyStatementMatching(s.subject, s.predicate, s.object)].filter(Boolean)
+      );
+    });
+}
+
+function processReplace(lrs, response) {
+  const replaceables = response
+    .data
+    .filter(s => s.why.sameTerm(NS.argu('replace')) && lrs.store.anyStatementMatching(s.subject, s.predicate));
+  lrs.store.replaceMatches(replaceables);
+}
+
+function processDelta(lrs, response) {
+  processRemove(lrs, response);
+  processReplace(lrs, response);
+}
+
 function sort(order) {
   return (a, b) => {
     const oA = order.findIndex(o => a.value.includes(o));
@@ -124,6 +147,9 @@ export {
   filter,
   filterSort,
   listToArr,
+  processDelta,
+  processRemove,
+  processReplace,
   sort,
   sortIRIS,
 };

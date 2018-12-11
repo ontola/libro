@@ -10,6 +10,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { omniformOpenInline, omniformSetAction } from '../../state/omniform';
+import { processDelta } from '../../helpers/data';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { handle } from '../../helpers/logging';
 import { allTopologies } from '../../topologies';
@@ -115,14 +116,14 @@ class CreateVote extends PropertyBase {
     const {
       actionStatus,
       count,
+      lrs,
       subject,
       target,
     } = this.props;
 
-    const handleClick = () => this
-      .props
-      .lrs
+    const handleClick = () => lrs
       .execActionByIRI(subject)
+      .then(response => processDelta(lrs, response))
       .then(this.props.openOmniform)
       .catch((e) => {
         handle(e);
