@@ -216,23 +216,19 @@
   ],
   "lint-staged": {
     "*.js": [
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
     ],
     "app/translations/*.json": [
       "yarn lint:translations"
     ],
     "*.jsx": [
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
     ],
     "*.ts": [
-      "tslint --project tsconfig.json --fix",
-      "git add"
+      "tslint --project tsconfig.json --fix"
     ],
     "*.tsx": [
-      "tslint --project tsconfig.json --fix",
-      "git add"
+      "tslint --project tsconfig.json --fix"
     ],
     "*.scss": "sass-lint ./app/**/*.scss -q"
   },
