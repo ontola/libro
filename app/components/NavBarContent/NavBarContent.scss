@@ -28,10 +28,15 @@
       }
     }
   }
-}
 
-.NavBarContent__top {
-  flex: 1;
+  &__top {
+    flex: 1;
+  }
+
+  &__footer {
+    background-color: inherit;
+    z-index: 1;
+  }
 }
 
 .NavBarContent__center-footer {

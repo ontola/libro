@@ -1,3 +1,5 @@
+import './helpers/polyfills';
+
 import LogRocket from 'logrocket';
 import setupLogRocketReact from 'logrocket-react';
 import React from 'react';
@@ -15,10 +17,6 @@ import './views';
 import IndexContainer from './containers/IndexContainer';
 import history from './helpers/history';
 import configureStore from './state';
-
-// Removes the rubber banding in iOS
-require('inobounce');
-require('smoothscroll-polyfill').polyfill();
 
 if (__PRODUCTION__) {
   try {

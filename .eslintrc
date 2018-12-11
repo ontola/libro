@@ -9,6 +9,7 @@
     "__CLIENT__": true,
     "__DEV__": true,
     "__DEVELOPMENT__": true,
+    "__LEGACY__": true,
     "__ORIGIN__": true,
     "__PRODUCTION__": true,
     "__SERVER__": true,

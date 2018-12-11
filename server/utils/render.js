@@ -1,11 +1,55 @@
 import jwt from 'jsonwebtoken';
+import useragent from 'useragent';
 
+import { bundles, moduleBrowserVersions } from '../../bundleConfig';
 import pjson from '../../package.json';
 import * as constants from '../config';
 
-import manifest from './manifest';
+import manifests from './manifest';
+
+function isModule(header) {
+  const agent = useragent.is(header);
+
+  return !(
+    agent.ie
+    || (agent.chrome && agent.version >= moduleBrowserVersions.chrome)
+    || (agent.safari && agent.version >= moduleBrowserVersions.safari)
+    || (agent.ios && agent.version >= moduleBrowserVersions.ios)
+    || (agent.firefox && agent.version >= moduleBrowserVersions.firefox)
+    || (agent.edge && agent.version >= moduleBrowserVersions.edge)
+    || (agent.opera && agent.version >= moduleBrowserVersions.opera)
+  );
+}
+
+const requiredFeatures = [
+  'default',
+  'Array.prototype.findIndex',
+  'Array.prototype.find',
+  'Array.prototype.includes',
+  'Array.prototype.values',
+  'fetch',
+  'Intl|always|gated',
+  'Intl.~en-US|always|gated',
+  'Intl.~nl-NL|always|gated',
+  'Number.isFinite',
+  'Number.isInteger',
+  'Number.MAX_SAFE_INTEGER',
+  'Number.parseInt',
+  'Number.parseFloat',
+  'Object.entries',
+  'Object.values',
+  'Promise',
+  'Promise.prototype.finally|gated',
+  'Symbol',
+];
+const polyfillTag = `<script crossorigin="anonymous" src="https://cdn.polyfill.io/v2/polyfill.js?features=${requiredFeatures.join(',')}"></script>`;
 
 export const renderFullPage = (html, devPort, domain, req, res) => {
+  const bundleVersion = isModule(req.headers['user-agent'])
+    ? bundles.module
+    : bundles.legacy;
+  const manifest = manifests[bundleVersion];
+
   const bundleCSS = __DEVELOPMENT__
     ? ''
     : `<link crossorigin="anonymous" rel="stylesheet" type="text/css" href="${constants.ASSETS_HOST}${manifest['main.css']}" />`;
@@ -23,8 +67,9 @@ export const renderFullPage = (html, devPort, domain, req, res) => {
   );
   const { language } = tokenPayload.user;
 
+  const polyfill = bundleVersion === 'legacy' ? polyfillTag : '';
+
   return `<!doctype html>
-    <meta charset="utf-8">
     <html lang="${language}">
       <head>
         <meta charset="utf-8" />
@@ -57,7 +102,7 @@ export const renderFullPage = (html, devPort, domain, req, res) => {
         <link rel="apple-touch-icon" type="image/png" sizes="72x72" href="/static/icon-small.png">
         <link crossorigin="anonymous" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
         ${bundleCSS}
-        <script crossorigin="anonymous" src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,Promise,Promise.prototype.finally|gated,fetch" async></script>
+        ${polyfill}
       </head>
       <body>
         <div class="preloader">
@@ -88,7 +133,7 @@ export const renderFullPage = (html, devPort, domain, req, res) => {
         <script nonce="${res.locals.nonce.toString()}">document.body.className += ' Body--show-preloader';</script>
         <script nonce="${res.locals.nonce.toString()}">
           if ('serviceWorker' in navigator) {
-             window.addEventListener('load', () => {
+             window.addEventListener('load', function() {
                 navigator.serviceWorker.register('/sw.js');
              });
            }
@@ -98,7 +143,6 @@ export const renderFullPage = (html, devPort, domain, req, res) => {
       </body>
     </html>`;
 };
-
 
 export function handleRender(req, res, port, domain) {
   res.send(renderFullPage(undefined, port, domain, req, res));

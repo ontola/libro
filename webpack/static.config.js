@@ -11,6 +11,8 @@ const merge = require('webpack-merge');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 
 const pjson = require('../package.json');
+const babelrc = require('../.babelrc');
+const { bundles } = require('../bundleConfig');
 
 const common = require('./common.config');
 const manifest = require('./manifest.json');
@@ -24,7 +26,64 @@ if (process.env.SEMAHORE_DEPLOY_NUMBER) {
   });
 }
 
+const babelEnvOpts = {
+  legacy: {
+    env: {
+      modules: false,
+      targets: {
+        browsers: [
+          '> 1%',
+          'last 2 versions',
+          'Firefox ESR',
+        ],
+      },
+      useBuiltIns: 'entry',
+    },
+    plugins: [
+      ['@babel/transform-runtime', {
+        regenerator: true,
+      }],
+    ],
+  },
+  module: {
+    env: {
+      modules: false,
+      targets: {
+        browsers: [
+          'Chrome >= 60',
+          'Safari >= 10.1',
+          'iOS >= 10.3',
+          'Firefox >= 54',
+          'Edge >= 15',
+        ],
+      },
+      useBuiltIns: false,
+    },
+    plugins: [],
+  },
+};
+
 function createConfig(options) {
+  let babelLoader = ['babel-loader'];
+  if (babelEnvOpts[options.bundle]) {
+    babelLoader = [{
+      loader: 'babel-loader',
+      options: {
+        ...babelrc,
+        babelrc: false,
+        plugins: [
+          ...babelEnvOpts[options.bundle].plugins,
+          ...babelrc.plugins,
+        ],
+        presets: [
+          '@babel/preset-react',
+          '@babel/preset-typescript',
+          ['@babel/preset-env', babelEnvOpts[options.bundle].env],
+        ],
+      },
+    }];
+  }
+
   return {
     devtool: 'source-map',
 
@@ -35,16 +94,17 @@ function createConfig(options) {
     module: {
       rules: [
         {
-          exclude: /node_modules/,
           include: [
-            /app/,
-            /node_modules\/whatwg-url/,
-            /node_modules\/universal-url/,
-            /node_modules\/webidl-conversions/,
-            /node_modules\/ml-disjoint-set/,
+            path.resolve(__dirname, '../app'),
+            path.resolve(__dirname, '../node_modules/whatwg-url'),
+            path.resolve(__dirname, '../node_modules/universal-url'),
+            path.resolve(__dirname, '../node_modules/webidl-conversions'),
+            path.resolve(__dirname, '../node_modules/ml-disjoint-set'),
+            path.resolve(__dirname, '../node_modules/link-lib'),
+            path.resolve(__dirname, '../node_modules/link-redux'),
           ],
           test: /\.(m?(t|j)sx?)$/,
-          use: ['babel-loader'],
+          use: babelLoader,
         },
 
         {
@@ -79,6 +139,7 @@ function createConfig(options) {
         publicPath: '/',
       }),
       new webpack.DefinePlugin({
+        __LEGACY__: options.bundle === bundles.legacy,
         'process.env.FRONTEND_HOSTNAME': JSON.stringify(options.hostname),
         'process.env.NODE_ENV': JSON.stringify('production'),
       }),
@@ -117,15 +178,23 @@ function createConfig(options) {
 
 module.exports = [
   merge(common, createConfig({
-    buildName: 'min',
+    buildName: `min-${bundles.module}`,
+    bundle: bundles.module,
     hostname: process.env.FRONTEND_HOSTNAME || 'argu.co',
   })),
   merge(common, createConfig({
-    buildName: 'localtest',
+    buildName: `min-${bundles.legacy}`,
+    bundle: bundles.legacy,
+    hostname: process.env.FRONTEND_HOSTNAME || 'argu.co',
+  })),
+  merge(common, createConfig({
+    buildName: `localtest-${bundles.module}`,
+    bundle: bundles.module,
     hostname: 'app.argu.localtest',
   })),
   merge(common, createConfig({
-    buildName: 'localdev',
+    buildName: `localdev-${bundles.module}`,
+    bundle: bundles.module,
     hostname: 'app.argu.localdev',
   })),
 ];
