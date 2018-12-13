@@ -40,7 +40,13 @@ class ActivityName extends PropertyBase {
       if (currentValue === '') {
         const iri = matches.shift().slice(HANDLEBAR_LENGTH, -HANDLEBAR_LENGTH);
         const { term } = namedNodeByIRI(iri);
-        return previousValue.concat(<LinkedResourceContainer subject={this.props[term]} theme="parent" />);
+        return previousValue.concat((
+          <LinkedResourceContainer
+            key={this.props[term]}
+            subject={this.props[term]}
+            theme="parent"
+          />
+        ));
       }
 
       return previousValue;

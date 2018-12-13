@@ -2,7 +2,12 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { FormattedMessage } from 'react-intl';
+import {
+  defineMessages,
+  FormattedMessage,
+  injectIntl,
+  intlShape,
+} from 'react-intl';
 import { connect } from 'react-redux';
 
 import Button from '../Button';
@@ -13,8 +18,16 @@ import { getCollapsibleOpened } from '../../state/collapsible/selectors';
 
 import './CollapseText.scss';
 
+const messages = defineMessages({
+  expandOrCollapseTitle: {
+    defaultMessage: 'Expand or collapse menu',
+    id: 'https://app.argu.co/i18n/collapsible/expandOrCollapseMenu',
+  },
+});
+
 const propTypes = {
   id: PropTypes.string.isRequired,
+  intl: intlShape,
   minCharacters: PropTypes.number,
   onClickToggle: PropTypes.func.isRequired,
   open: PropTypes.bool,
@@ -27,6 +40,7 @@ const defaultProps = {
 
 const CollapseText = ({
   id,
+  intl,
   onClickToggle,
   minCharacters,
   open,
@@ -50,12 +64,7 @@ const CollapseText = ({
         <Button
           plain
           className="CollapseText__toggle"
-          title={(
-            <FormattedMessage
-              defaultMessage="Expand or collapse menu"
-              id="https://app.argu.co/i18n/collapsible/expandOrCollapseMenu"
-            />
-          )}
+          title={intl.formatMessage(messages.expandOrCollapseTitle)}
           onClick={() => onClickToggle()}
         >
           {open && (
@@ -93,4 +102,4 @@ export default connect(
     onClickToggle: () => dispatch(toggleOne(id)),
     onInitializeCollapsible: data => dispatch(initializeCollapsible(data)),
   })
-)(CollapseText);
+)(injectIntl(CollapseText));

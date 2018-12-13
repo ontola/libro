@@ -45,13 +45,22 @@ class Collapsible extends React.PureComponent {
   componentDidUpdate() {
     if (!this.props.opened && !this.props.hideChildren) {
       if (typeof window !== 'undefined') {
-        window.setTimeout(this.props.notOpened, REACT_COLLAPSE_TRANSITION_TIME_MS);
+        if (this.timeout) {
+          window.clearTimeout(this.timeout);
+        }
+        this.timeout = window.setTimeout(this.props.notOpened, REACT_COLLAPSE_TRANSITION_TIME_MS);
       } else {
         this.props.notOpened();
       }
     }
 
     return null;
+  }
+
+  componentWillUnmount() {
+    if (typeof window !== 'undefined') {
+      window.clearTimeout(this.timeout);
+    }
   }
 
   render() {
