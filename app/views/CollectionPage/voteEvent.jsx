@@ -35,7 +35,7 @@ class VoteEventSide extends TopologyProvider {
   percentages() {
     const sideCount = Number.parseInt(this.props.totalCount.value, 10);
     const voteEventCountRaw = this
-      .context
+      .props
       .lrs
       .getResourceProperty(
         this.props.isViewOf,

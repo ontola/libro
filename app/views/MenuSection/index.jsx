@@ -17,7 +17,7 @@ const MenuSection = () => (
   </div>
 );
 
-export default[
+export default [
   LinkedRenderStore.registerRenderer(
     MenuSection,
     [NS.argu('MenuSection')],
