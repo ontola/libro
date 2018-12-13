@@ -257,6 +257,9 @@ const ontologicalData = [
   new Statement(NS.argu('Create::Users::Confirmation'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.argu('Create::Users::Confirmation'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
 
+  new Statement(NS.argu('ConnectIdentityAction'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('ConnectIdentityAction'), NS.rdfs('subClassOf'), NS.schema('UpdateAction')),
+
   new Statement(NS.argu('Create::Users::Password'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.argu('Create::Users::Password'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
 
