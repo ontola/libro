@@ -14,6 +14,7 @@ import Card, {
 } from '../../topologies/Card';
 import Heading from '../Heading';
 import path from '../../helpers/paths';
+import { expandPath } from '../../helpers/iris';
 import messages from '../../state/form/messages';
 
 import SignInFormBase from './SignInFormBase';
@@ -54,9 +55,9 @@ class SignInFormCard extends SignInFormBase {
     return (
       <React.Fragment>
         <CardContent>
-          <Form
+          <form
             validateOnBlur
-            action={`https://argu.co/users/auth/facebook?r=${this.props.redirect}`}
+            action={expandPath('/users/auth/facebook')}
             method="GET"
             style={{ display: 'inline' }}
           >
@@ -69,7 +70,7 @@ class SignInFormCard extends SignInFormBase {
               Facebook login
             </Button>
             <p />
-          </Form>
+          </form>
         </CardContent>
         <CardDivider text={this.props.intl.formatMessage(messages.or)} />
       </React.Fragment>

@@ -10,7 +10,7 @@ import { mapboxKey } from '../config';
 const defaultSrc = ["'self'"];
 
 const childSrc = ['https://youtube.com', 'https://www.youtube.com'];
-const connectSrc = ["'self'", 'https://api.notubiz.nl'];
+const connectSrc = ["'self'", 'https://api.notubiz.nl', 'https://www.facebook.com'];
 const fontSrc = ["'self'", 'https://maxcdn.bootstrapcdn.com', 'https://fonts.gstatic.com'];
 const frameSrc = ['https://youtube.com', 'https://www.youtube.com'];
 const imgSrc = [
