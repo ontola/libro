@@ -17,13 +17,18 @@ const ITEM_HEIGHT = 42;
 const MAX_ITEMS = 5;
 const WIDTH = 300;
 
+export const optionsType = PropTypes.oneOfType([
+  linkedPropType,
+  PropTypes.arrayOf(PropTypes.oneOfType([
+    PropTypes.string,
+    linkedPropType,
+  ])),
+]);
+
 class SelectInput extends React.Component {
   static propTypes = {
     lrs: PropTypes.instanceOf(LinkedRenderStore),
-    options: PropTypes.arrayOf(PropTypes.oneOfType([
-      PropTypes.string,
-      linkedPropType,
-    ])).isRequired,
+    options: optionsType.isRequired,
     sharedProps: PropTypes.shape({
       autoFocus: PropTypes.bool,
       className: PropTypes.string,

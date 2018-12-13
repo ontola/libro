@@ -24,9 +24,9 @@ export default function getCollection({
 } = {}) {
   class Collection extends React.Component {
     static propTypes = {
-      collectionDisplay: PropTypes.number,
+      collectionDisplay: linkType,
       currentPage: PropTypes.string,
-      defaultType: PropTypes.number,
+      defaultType: linkType,
       depth: PropTypes.number,
       linkVersion: linkType,
       linkedProp: linkedPropType,

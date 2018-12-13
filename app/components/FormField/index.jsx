@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { asField } from 'informed';
+import { linkType } from 'link-redux';
 import PropTypes from 'prop-types';
 import { Literal, NamedNode } from 'rdflib';
 import React from 'react';
@@ -10,7 +11,7 @@ import TextEditor from '../../containers/TextEditor';
 import { NS } from '../../helpers/LinkedRenderStore';
 import FileInput from '../Input/FileInput';
 import { Input } from '../Input';
-import SelectInput from '../SelectInput';
+import SelectInput, { optionsType } from '../SelectInput';
 
 import './DateTime.scss';
 import './FormField.scss';
@@ -45,6 +46,7 @@ const propTypes = {
   initialValue: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
+    linkType,
   ]),
   // Text above input field
   label: PropTypes.string,
@@ -56,9 +58,7 @@ const propTypes = {
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   onKeyUp: PropTypes.func,
-  options: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.string,
-  })),
+  options: optionsType,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   theme: PropTypes.string,
@@ -260,9 +260,11 @@ class FormField extends React.Component {
     switch (type) {
       case 'textarea':
         element = Textarea;
+        sharedProps.minRows = minRows;
         break;
       case 'markdown':
         element = TextEditor;
+        sharedProps.minRows = minRows;
         break;
       default:
         element = 'input';
@@ -276,7 +278,6 @@ class FormField extends React.Component {
         // TODO: [AOD-218] HTML only noscript
         // maxLength={maxLength}
         minLength={minLength}
-        minRows={minRows}
         placeholder={placeholder}
         ref={forwardedRef}
         required={required}
@@ -299,6 +300,12 @@ class FormField extends React.Component {
     if (type === 'checkbox') {
       const boolNormalized = Literal.fromBoolean(currentValue);
       return boolNormalized && boolNormalized.value === '1';
+    }
+
+    if (type === 'textarea') {
+      return currentValue && Object.prototype.hasOwnProperty.call(currentValue, 'termType')
+        ? currentValue.value
+        : currentValue;
     }
 
     return currentValue;

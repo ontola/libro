@@ -19,7 +19,7 @@ const propTypes = {
   imageUrl: PropTypes.string,
   linkedImage: PropTypes.bool,
   spin: PropTypes.bool,
-  text: PropTypes.string,
+  text: PropTypes.node,
   /** HTML title attribute */
   title: PropTypes.string,
   url: PropTypes.string,

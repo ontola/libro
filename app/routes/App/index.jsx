@@ -1,5 +1,4 @@
 import { LinkedResourceContainer } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 import Helmet from 'react-helmet';
 import { withRouter } from 'react-router';
@@ -8,10 +7,7 @@ import { HotKeys } from 'react-hotkeys';
 
 import Routes from '..';
 
-import {
-  SkipNavigation,
-  Spinner,
-} from '../../components';
+import { SkipNavigation } from '../../components';
 import '../../components/shared/init.scss';
 import SideBarContainer from '../../containers/SideBarContainer';
 import NavbarContainer from '../../containers/NavbarContainer';
@@ -23,10 +19,6 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import { handle } from '../../helpers/logging';
 
 class App extends React.PureComponent {
-  static propTypes = {
-    loading: PropTypes.bool.isRequired,
-  };
-
   constructor(props) {
     super(props);
 
@@ -50,10 +42,6 @@ class App extends React.PureComponent {
   }
 
   render() {
-    const {
-      loading,
-    } = this.props;
-
     if (typeof this.state.caughtError !== 'undefined') {
       return <ErrorButtonWithFeedback reloadLinkedObject={this.retry} />;
     }
@@ -69,7 +57,6 @@ class App extends React.PureComponent {
             defaultTitle="Argu"
             titleTemplate="%s - Argu"
           />
-          <Spinner loading={loading} />
           <SkipNavigation />
           <SideBarContainer
             slim

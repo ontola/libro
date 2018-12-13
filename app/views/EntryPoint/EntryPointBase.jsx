@@ -91,7 +91,6 @@ class EntryPointBase extends PropertyBase {
 EntryPointBase.propTypes = {
   invalid: PropTypes.bool,
   onStatusForbidden: PropTypes.func,
-  submitHandler: PropTypes.func.isRequired,
   url: linkType,
 };
 

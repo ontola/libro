@@ -7,7 +7,7 @@ import './MenuSection.scss';
 class MenuSectionLabel extends React.PureComponent {
   static propTypes = {
     linkedProp: linkedPropType,
-    name: PropTypes.string,
+    name: PropTypes.node,
   };
 
   render() {

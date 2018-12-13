@@ -35,6 +35,7 @@ class Select extends Topology {
   render() {
     const {
       children,
+      scrollIntoView, // eslint-disable-line no-unused-vars
       ...props
     } = this.props;
 

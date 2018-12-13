@@ -1,5 +1,8 @@
-import { LinkedResourceContainer, register } from 'link-redux';
-import PropTypes from 'prop-types';
+import {
+  LinkedResourceContainer,
+  register,
+  subjectType,
+} from 'link-redux';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -28,7 +31,7 @@ class PersonPage extends React.PureComponent {
   static topology = pageTopology;
 
   static propTypes = {
-    feedIRI: PropTypes.string,
+    feedIRI: subjectType,
   };
 
   static hocs = [connect(mapStateToProps)];

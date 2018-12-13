@@ -1,3 +1,4 @@
+import { linkType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -106,6 +107,7 @@ const propTypes = {
     'week',
   ]),
   value: PropTypes.oneOfType([
+    linkType,
     PropTypes.bool,
     PropTypes.string,
   ]),

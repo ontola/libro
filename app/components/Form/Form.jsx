@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Literal } from 'rdflib';
 import React from 'react';
 import { Form as Inform } from 'informed';
 
@@ -10,7 +11,10 @@ const propTypes = {
     PropTypes.func,
     PropTypes.node,
   ]).isRequired,
-  method: PropTypes.string,
+  method: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.instanceOf(Literal),
+  ]),
   onSubmit: PropTypes.func.isRequired,
 };
 
