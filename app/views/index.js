@@ -1,4 +1,5 @@
 import LRS from '../helpers/LinkedRenderStore';
+import { error } from '../helpers/logging';
 
 /**
  * This document is purely for including all the views into the code.
@@ -44,38 +45,64 @@ import VoteEvent from './VoteEvent';
 // import './VoteMatch';
 import Widget from './Widget';
 
-LRS.registerAll(
-  ...Activity,
-  ...Thing,
-  ...Action,
-  ...Argument,
-  ...Collection,
-  ...CollectionPage,
-  ...Comment,
-  Document,
-  ...DialogManager,
-  ...EntryPoint,
-  ...Error,
-  ...Forum,
-  ...ImageObject,
-  ...InfiniteCollectionPage,
-  ...Loading,
-  ...MediaObject,
-  Meeting,
-  ...MenuItem,
-  ...MenuSection,
-  Motion,
-  ...Notification,
-  ...Organization,
-  ...Person,
-  ...RDFSClass,
-  SeqComp,
-  ...Shape,
-  Snackbar,
-  SnackbarManager,
-  ...SubMenu,
-  ...User,
-  ...Vote,
-  ...VoteEvent,
-  Widget
-);
+function register() {
+  LRS.registerAll(
+    ...Activity,
+    ...Thing,
+    ...Action,
+    ...Argument,
+    ...Collection,
+    ...CollectionPage,
+    ...Comment,
+    Document,
+    ...DialogManager,
+    ...EntryPoint,
+    ...Error,
+    ...Forum,
+    ...ImageObject,
+    ...InfiniteCollectionPage,
+    ...Loading,
+    ...MediaObject,
+    Meeting,
+    ...MenuItem,
+    ...MenuSection,
+    Motion,
+    ...Notification,
+    ...Organization,
+    ...Person,
+    ...RDFSClass,
+    SeqComp,
+    ...Shape,
+    Snackbar,
+    SnackbarManager,
+    ...SubMenu,
+    ...User,
+    ...Vote,
+    ...VoteEvent,
+    Widget
+  );
+}
+
+if (module.hot) {
+  module.hot.accept();
+
+  module.hot.dispose(() => {
+    LRS.mapping.lookupCache = {};
+    LRS.mapping.mapping = [];
+  });
+
+  module.hot.addStatusHandler((status) => {
+    if (status !== 'ready') {
+      return;
+    }
+
+    module.hot.apply()
+      .then(() => {
+        register();
+      }).catch(() => {
+        error('app/views hot reload failed');
+      });
+  });
+}
+
+register();

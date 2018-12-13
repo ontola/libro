@@ -2,6 +2,7 @@ import LinkedRenderStore from 'link-lib';
 import { RenderStoreProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { hot } from 'react-hot-loader/root';
 import { addLocaleData, injectIntl, IntlProvider } from 'react-intl';
 import enLocaleData from 'react-intl/locale-data/en';
 import nlLocaleData from 'react-intl/locale-data/nl';
@@ -64,4 +65,4 @@ const IndexContainer = ({
 
 IndexContainer.propTypes = propTypes;
 
-export default IndexContainer;
+export default hot(IndexContainer);

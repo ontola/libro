@@ -12,7 +12,6 @@ module.exports = merge(common, {
 
   entry: [
     'webpack-hot-middleware/client',
-    'react-hot-loader/patch',
     './app/index.jsx',
   ],
 
