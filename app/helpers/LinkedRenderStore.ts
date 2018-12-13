@@ -132,6 +132,7 @@ const ontologicalData = [
   new Statement(NS.schema('Person'), NS.rdfs('label'), new Literal('Person', languages.en)),
   new Statement(NS.schema('Person'), NS.rdfs('label'), new Literal('Persoon', languages.nl)),
   new Statement(NS.schema('Person'), NS.rdfs('subClassOf'), NS.schema('Thing')),
+  new Statement(NS.schema('Person'), NS.ontola('forms/inputs/select/displayProp'), NS.schema('name')),
 
   new Statement(NS.foaf('name'), NS.owl('sameAs'), NS.schema('name')),
   new Statement(NS.aod('title'), NS.owl('sameAs'), NS.schema('name')),
