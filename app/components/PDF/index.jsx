@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { HotKeys } from 'react-hotkeys';
 import { connect } from 'react-redux';
-import { push } from 'connected-react-router';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
+import { withRouter } from 'react-router';
 
 import { FRONTEND_URL } from '../../config';
 import { absoluteRouterLocation } from '../../helpers/paths';
@@ -222,7 +222,7 @@ const MapStateToProps = (state, ownProps) => ({
 });
 
 const MapDispatchToProps = (dispatch, ownProps) => ({
-  navigate: url => dispatch(push(url)),
+  navigate: url => ownProps.history.push(url),
   onDocumentLoadSuccess: success => dispatch(setNumPages({
     id: ownProps.file,
     numPages: success.numPages,
@@ -237,4 +237,4 @@ const MapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
   MapStateToProps,
   MapDispatchToProps
-)(PDFViewer);
+)(withRouter(PDFViewer));

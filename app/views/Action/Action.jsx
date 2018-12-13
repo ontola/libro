@@ -1,6 +1,7 @@
 import { Property, register, subjectType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { withRouter } from 'react-router';
 
 import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
@@ -10,7 +11,7 @@ import { pageTopology } from '../../topologies/Page';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 import { tabPaneTopology } from '../../topologies/TabPane';
 
-import NavigatableAction, { bindNavigateProp } from './NavigatableAction';
+import NavigatableAction from './NavigatableAction';
 
 class Action extends NavigatableAction {
   static type = NS.schema('Action');
@@ -24,7 +25,7 @@ class Action extends NavigatableAction {
 
   static mapDataToProps = [NS.schema('object')];
 
-  static hocs = [bindNavigateProp];
+  static hocs = [withRouter];
 
   static propTypes = {
     navigate: PropTypes.func,

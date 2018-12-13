@@ -1,4 +1,3 @@
-import { push } from 'connected-react-router';
 import {
   linkType,
   lrsType,
@@ -7,16 +6,12 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
 import { listToArr } from '../../../helpers/data';
 import { retrievePath } from '../../../helpers/iris';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { containerTopology } from '../../../topologies/Container';
-
-const mapDispatchToProps = dispatch => ({
-  navigate: resource => dispatch(push(retrievePath(resource.value))),
-});
 
 class ArguLocation extends React.Component {
   static type = NS.schema('Thing');
@@ -30,13 +25,13 @@ class ArguLocation extends React.Component {
     NS.schema('location'),
   ];
 
-  static hocs = [connect(null, mapDispatchToProps)];
+  static hocs = [withRouter];
 
   static propTypes = {
     childrenPlacements: linkType,
+    history: PropTypes.instanceOf(History),
     location: linkType,
     lrs: lrsType,
-    navigate: PropTypes.func,
     subject: subjectType,
   };
 
@@ -97,9 +92,9 @@ class ArguLocation extends React.Component {
     }
 
     const {
+      history,
       location,
       lrs,
-      navigate,
       subject,
     } = this.props;
 
@@ -109,7 +104,7 @@ class ArguLocation extends React.Component {
       <MapView
         location={location}
         lrs={lrs}
-        navigate={navigate}
+        navigate={resource => history.push(retrievePath(resource.value))}
         placements={placements}
         subject={subject}
       />

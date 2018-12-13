@@ -1,4 +1,5 @@
 import {
+  linkType,
   lrsType,
   Property,
   register,
@@ -6,17 +7,12 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
-import { push } from 'connected-react-router';
-import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
 import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 import SHACL from '../../helpers/shacl';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
-
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  onDone: () => dispatch(push(retrievePath(ownProps.object.value))),
-});
 
 class ActionActionsBar extends PureComponent {
   static type = NS.schema('Action');
@@ -25,11 +21,12 @@ class ActionActionsBar extends PureComponent {
 
   static mapDataToProps = [NS.schema('object')];
 
-  static hocs = [connect(null, mapDispatchToProps)];
+  static hocs = [withRouter];
 
   static propTypes = {
+    history: PropTypes.instanceOf(History),
     lrs: lrsType,
-    onDone: PropTypes.func,
+    object: linkType,
     subject: subjectType,
   };
 
@@ -47,12 +44,17 @@ class ActionActionsBar extends PureComponent {
   }
 
   render() {
+    const {
+      history,
+      object,
+      subject,
+    } = this.props;
     return (
       <Property
-        action={this.props.subject}
+        action={subject}
         label={NS.schema('target')}
         onClick={this.exec}
-        onDone={this.props.onDone}
+        onDone={() => history.push(retrievePath(object.value))}
       />
     );
   }

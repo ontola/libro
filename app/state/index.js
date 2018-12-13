@@ -18,7 +18,7 @@ const configureStore = (preloadedState) => {
 
   const appliedMiddleware = applyMiddleware(
     thunk,
-    apiMiddleware,
+    apiMiddleware(history),
     routerMiddleware(history),
     linkMiddleware(LinkedRenderStore),
     appMiddleware,

@@ -4,7 +4,6 @@
  * @module API
  */
 
-import { goBack, push } from 'connected-react-router';
 import { createAction } from 'redux-actions';
 
 import { setMapAccessToken } from '../async/MapView/actions';
@@ -31,7 +30,7 @@ const PATH_MATCH = 1;
 
 export const apiLogin = createAction(AFE_API_LOGIN);
 
-export default () => next => (action) => {
+export default history => () => next => (action) => {
   if (!action.type.startsWith('@AFE_API/')) {
     return next(action);
   }
@@ -79,9 +78,9 @@ export default () => next => (action) => {
               if (r && r.startsWith(FRONTEND_URL)) {
                 match = r.split(FRONTEND_URL);
                 const redirect = (match && match[PATH_MATCH]) || '/';
-                next(push(redirect));
+                history.push(redirect);
               } else {
-                next(goBack());
+                history.goBack();
               }
               window.location.reload();
               break;

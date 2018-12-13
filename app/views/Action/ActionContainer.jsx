@@ -1,11 +1,12 @@
 import { LinkedResourceContainer, register, subjectType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { withRouter } from 'react-router';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import { containerTopology } from '../../topologies/Container';
 
-import NavigatableAction, { bindNavigateProp } from './NavigatableAction';
+import NavigatableAction from './NavigatableAction';
 
 class ActionContainer extends NavigatableAction {
   static type = NS.schema('Action');
@@ -19,7 +20,7 @@ class ActionContainer extends NavigatableAction {
     NS.schema('target'),
   ];
 
-  static hocs = [bindNavigateProp];
+  static hocs = [withRouter];
 
   static propTypes = {
     navigate: PropTypes.func,
