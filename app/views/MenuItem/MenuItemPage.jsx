@@ -1,4 +1,6 @@
+import { namedNodeByIRI } from 'link-lib';
 import {
+  LinkedResourceContainer,
   linkType,
   lrsType,
   Property,
@@ -48,39 +50,57 @@ class MenuItemPage extends React.PureComponent {
     const { lrs, menuItems, subject } = this.props;
 
     if (menuItems && currentURL() === subject.value) {
-      const firstTab = lrs.getResourceProperty(menuItems, NS.rdf('_0')).value;
-      return retrievePath(firstTab);
+      const firstTab = lrs.getResourceProperty(menuItems, NS.rdf('_0'));
+      return firstTab;
     }
 
     return undefined;
+  }
+
+  isPrimaryResource() {
+    return this.props.topLevel && !this.props.menuItems;
   }
 
   render() {
     const { topLevel } = this.props;
 
     const r = this.redirectTarget();
-    if (r) {
-      return (
-        <Redirect to={r} />
+    let body;
+
+    if (!r && (this.isPrimaryResource() || !topLevel)) {
+      body = (
+        <React.Fragment>
+          <Property label={NS.argu('parentMenu')} topLevel={false} />
+          <TabPane>
+            <Property label={NS.argu('href')} />
+          </TabPane>
+        </React.Fragment>
+      );
+    } else if (topLevel) {
+      body = (
+        <LinkedResourceContainer
+          subject={r || namedNodeByIRI(currentURL())}
+          topLevel={false}
+        />
       );
     }
 
     return (
       <PrimaryResource>
+        {topLevel && r && <Redirect to={retrievePath(r.value)} />}
         {topLevel && (
-          <PageHeader>
-            <Property label={NS.schema('isPartOf')} />
-          </PageHeader>
+          <React.Fragment>
+            <PageHeader>
+              <Property label={NS.schema('isPartOf')} />
+            </PageHeader>
+            <TabBarWrapper>
+              <TabBar>
+                <Property label={NS.argu('menuItems')} />
+              </TabBar>
+            </TabBarWrapper>
+          </React.Fragment>
         )}
-        <Property label={NS.argu('parentMenu')} topLevel={false} />
-        <TabBarWrapper>
-          <TabBar>
-            <Property label={NS.argu('menuItems')} />
-          </TabBar>
-        </TabBarWrapper>
-        <TabPane>
-          <Property label={NS.argu('href')} />
-        </TabPane>
+        {body}
       </PrimaryResource>
     );
   }

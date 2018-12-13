@@ -3,11 +3,11 @@ import { NamedNode } from 'rdflib';
 
 import { NS } from './LinkedRenderStore';
 
-export function currentLocation(location: Location): NamedNode {
+export function currentLocation(location: Location, fragment = true): NamedNode {
   const path = location.pathname;
   const normalizedPath = path.slice(1, path.length - (path.endsWith('/') ? 1 : 0));
 
-  return NS.app(`${normalizedPath}${location.search}${location.hash}`);
+  return NS.app(`${normalizedPath}${location.search}${fragment ? location.hash : ''}`);
 }
 
 export function absoluteRouterLocation(state: Map<string, Map<string, any>>): string {
