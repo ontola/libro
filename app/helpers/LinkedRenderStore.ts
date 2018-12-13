@@ -16,6 +16,8 @@ import { ReactType } from 'react';
 
 import { FRONTEND_ACCEPT, FRONTEND_URL } from '../config';
 
+// @ts-ignore
+import { processDelta } from './data';
 import history from './history';
 import { log } from './logging';
 import ontolaMiddleware from './ontolaMiddleware';
@@ -32,6 +34,10 @@ const middleware: Array<MiddlewareFn<any>> = [
 ];
 
 const LRS = createStore<ReactType>({}, middleware);
+
+// @monkey
+const dispatch = LRS.dispatch;
+LRS.dispatch = (action: NamedNode, args: any) => dispatch(action, args).then((response) => processDelta(LRS, response));
 
 // @ts-ignore TS2341
 transformers.forEach((t) => LRS.api.registerTransformer(t.transformer, t.mediaTypes, t.acceptValue));

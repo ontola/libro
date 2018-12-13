@@ -46,7 +46,7 @@ class InlineActionTableRow extends React.PureComponent {
     }
 
     const handleClick = () => lrs
-      .execActionByIRI(subject)
+      .exec(subject)
       .catch((e) => {
         handle(e);
       });
