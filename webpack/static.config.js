@@ -193,6 +193,11 @@ module.exports = [
     hostname: 'app.argu.localtest',
   })),
   merge(common, createConfig({
+    buildName: `localtest-${bundles.legacy}`,
+    bundle: bundles.legacy,
+    hostname: 'app.argu.localtest',
+  })),
+  merge(common, createConfig({
     buildName: `localdev-${bundles.module}`,
     bundle: bundles.module,
     hostname: 'app.argu.localdev',
