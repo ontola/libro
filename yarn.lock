@@ -7800,10 +7800,10 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-link-lib@1.0.0-beta27.13:
-  version "1.0.0-beta27.13"
-  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-beta27.13.tgz#1f7fce08a3f2f04b41d9e09733a20b8bfd30f8ee"
-  integrity sha512-bMpl/ancKhMr0BGspUyX45m4qhOk3feAJEcLA4vqTZ5cq14Prdsp0enffW6ipVZONOWd7v2m/cKiM4944cKsRQ==
+link-lib@1.0.0-beta28:
+  version "1.0.0-beta28"
+  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-beta28.tgz#ceab2346074b2067cab9e8e80a4b481d7f2dd9f8"
+  integrity sha512-2Ft69iawqmVf1cuiR4RZyR6oBzGFxlG6jYMcejmeeKK3sQK1F1Em29F3bHy9FxHOFI7KEngjoUI1YKbrab0D+A==
 
 link-redux@1.0.0-beta32:
   version "1.0.0-beta32"

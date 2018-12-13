@@ -103,7 +103,7 @@
     "jest-plugins-recommended": "^2.9.0",
     "jest-plugins-rspec": "^2.9.0",
     "jsdom": "^13.0.0",
-    "link-lib": "1.0.0-beta27.13",
+    "link-lib": "1.0.0-beta28",
     "link-redux": "1.0.0-beta32",
     "lint-staged": "^7.3.0",
     "logrocket": "^0.6.17",
