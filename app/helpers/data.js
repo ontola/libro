@@ -95,8 +95,12 @@ function processReplace(lrs, response) {
 }
 
 function processDelta(lrs, response) {
-  processRemove(lrs, response);
-  processReplace(lrs, response);
+  if (typeof response === 'object'
+    && Object.hasOwnProperty.call(response, 'data')
+    && Array.isArray(response.data)) {
+    processRemove(lrs, response);
+    processReplace(lrs, response);
+  }
 }
 
 function sort(order) {
