@@ -56,6 +56,12 @@ const ORDER = [
   '/pros/new',
   '/cons/new',
 ];
+const PROPS_WHITELIST = [
+  NS.schema('name'),
+  NS.schema('text'),
+  NS.argu('isOpinion'),
+  NS.ontola('hiddenGroup'),
+];
 
 class Omniform extends EntryPointBase {
   action() {
@@ -73,11 +79,6 @@ class Omniform extends EntryPointBase {
       return null;
     }
 
-    const PROPS_WHITELIST = [
-      NS.schema('name'),
-      NS.schema('text'),
-      NS.argu('isOpinion'),
-    ];
 
     return (
       <LinkedResourceContainer subject={action}>
