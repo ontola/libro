@@ -13,21 +13,40 @@ import { omniformOpenInline, omniformSetAction } from '../../state/omniform';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { handle } from '../../helpers/logging';
 import { allTopologies } from '../../topologies';
+import { CollectionTypes } from '../Collection/types';
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   openOmniform: () => {
-    const isPartOf = ownProps.lrs.getResourceProperty(ownProps.subjectCtx, NS.schema('isPartOf'));
-    const createOpinion = ownProps.lrs.getResourceProperty(isPartOf, NS.argu('create_opinion'));
-    const updateOpinion = ownProps.lrs.getResourceProperty(isPartOf, NS.argu('update_opinion'));
+    const isVoteEventVote = ownProps.lrs.findSubject(
+      ownProps.subject,
+      [NS.schema('object'), NS.rdf('type')],
+      CollectionTypes
+    );
+    const inlineFormTarget = isVoteEventVote.length > 0
+      ? ownProps.lrs.getResourceProperty(ownProps.subjectCtx, NS.schema('isPartOf'))
+      : ownProps.subjectCtx;
+    const hasOpinionAction = ownProps.lrs.findSubject(
+      inlineFormTarget,
+      [NS.schema('potentialAction'), NS.rdf('type')],
+      [NS.argu('Create::Opinion'), NS.argu('Update::Opinion')]
+    );
+
+    if (!hasOpinionAction) {
+      return undefined;
+    }
+
+    const createOpinion = ownProps.lrs.getResourceProperty(inlineFormTarget, NS.argu('create_opinion'));
+    const updateOpinion = ownProps.lrs.getResourceProperty(inlineFormTarget, NS.argu('update_opinion'));
+
     return Promise.all([
-      dispatch(omniformOpenInline(isPartOf)),
+      dispatch(omniformOpenInline(inlineFormTarget)),
       dispatch(omniformSetAction({
         action: createOpinion,
-        parentIRI: btoa(isPartOf),
+        parentIRI: btoa(inlineFormTarget),
       })),
       dispatch(omniformSetAction({
         action: updateOpinion,
-        parentIRI: btoa(isPartOf),
+        parentIRI: btoa(inlineFormTarget),
       })),
     ]);
   },
