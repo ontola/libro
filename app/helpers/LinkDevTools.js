@@ -106,10 +106,15 @@ class LinkDevTools {
     if (typeof comp === 'undefined') {
       return console.error('No component selected in react devtools (check the value of `$r`)');
     }
-    if (typeof comp.props === 'undefined') {
-      return LinkDevTools.returnWithError('Object has no props');
+    let subject;
+    if (comp instanceof rdf.NamedNode || comp instanceof rdf.BlankNode) {
+      subject = comp;
+    } else {
+      if (typeof comp.props === 'undefined') {
+        return LinkDevTools.returnWithError('Object has no props');
+      }
+      subject = comp.props.object || comp.props.subject;
     }
-    let subject = comp.props.object || comp.props.subject;
     if (typeof subject === 'undefined') {
       return LinkDevTools.returnWithError('No subject or object found (check the value of `$r`)');
     }
