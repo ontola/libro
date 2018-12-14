@@ -101,6 +101,8 @@ function processDelta(lrs, response) {
     processRemove(lrs, response);
     processReplace(lrs, response);
   }
+
+  return response;
 }
 
 function sort(order) {
