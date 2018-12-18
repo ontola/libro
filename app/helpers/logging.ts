@@ -26,8 +26,8 @@ if (BUGSNAG_KEY) {
 declare global {
   interface Window {
     logging: {
-      errors: string[],
-      logs: string[],
+      errors: any[],
+      logs: any[],
     };
   }
 }
@@ -43,7 +43,7 @@ window.setInterval(() => {
 }, 3600 * 1000);
 
 export function error(...msg: any[]) {
-  window.logging.errors.push(...msg);
+  window.logging.errors.push(msg);
   if (!__PRODUCTION__) {
     // tslint:disable-next-line no-console
     console.error(...msg);
@@ -56,9 +56,9 @@ export function handle(exception: Error) {
 }
 
 export function log(...msg: any[]) {
+  window.logging.logs.push(msg);
   if (!__PRODUCTION__) {
     // tslint:disable-next-line no-console
     console.log(...msg);
   }
-  window.logging.logs.push(...msg);
 }
