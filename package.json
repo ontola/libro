@@ -205,7 +205,7 @@
     "lint:style": "sass-lint ./app/**/*.scss -v -q",
     "lint:translations": "./bin/lint-translations.sh",
     "secure": "nsp check && retire",
-    "start": "cross-env NODE_ENV=development yarn run build:server && cross-env NODE_ENV=development node --use-openssl-ca ./dist/private/server.js",
+    "start": "cross-env NODE_ENV=development yarn run build:server && cross-env NODE_ENV=development node --use-openssl-ca $NODE_DEBUG_OPTION ./dist/private/server.js",
     "start:prod": "cross-env NODE_ENV=production node --use-openssl-ca ./dist/private/server.js",
     "stats:bundle": "cross-env NODE_ENV=production webpack -p --config ./webpack/static.config.js --json > stats.json",
     "styleguide-build": "styleguidist build",
