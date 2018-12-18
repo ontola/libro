@@ -20,18 +20,18 @@ class ArguLocation extends React.Component {
 
   static topology = containerTopology;
 
-  static mapDataToProps = [
-    NS.argu('childrenPlacements'),
-    NS.schema('location'),
-  ];
+  static mapDataToProps = {
+    childrenPlacements: NS.argu('childrenPlacements'),
+    schemaLocation: NS.schema('location'),
+  };
 
   static hocs = [withRouter];
 
   static propTypes = {
     childrenPlacements: linkType,
     history: PropTypes.instanceOf(History),
-    location: linkType,
     lrs: lrsType,
+    schemaLocation: linkType,
     subject: subjectType,
   };
 
@@ -44,7 +44,7 @@ class ArguLocation extends React.Component {
   }
 
   componentDidMount() {
-    if (this.resolveChildren().length > 0 && !this.state.MapView) {
+    if (this.resolvePlacements().length > 0 && !this.state.MapView) {
       return this.loadView();
     }
 
@@ -52,7 +52,7 @@ class ArguLocation extends React.Component {
   }
 
   componentDidUpdate() {
-    if (this.resolveChildren().length > 0 && !this.state.MapView) {
+    if (this.resolvePlacements().length > 0 && !this.state.MapView) {
       return this.loadView();
     }
 
@@ -68,8 +68,12 @@ class ArguLocation extends React.Component {
     });
   }
 
-  resolveChildren() {
-    const { childrenPlacements, lrs } = this.props;
+  resolvePlacements() {
+    const { childrenPlacements, schemaLocation, lrs } = this.props;
+
+    if (!childrenPlacements) {
+      return [schemaLocation];
+    }
 
     const children = listToArr(lrs, [], childrenPlacements);
 
@@ -93,16 +97,16 @@ class ArguLocation extends React.Component {
 
     const {
       history,
-      location,
+      schemaLocation,
       lrs,
       subject,
     } = this.props;
 
-    const placements = this.resolveChildren();
+    const placements = this.resolvePlacements();
 
     return (
       <MapView
-        location={location}
+        location={schemaLocation}
         lrs={lrs}
         navigate={resource => history.push(retrievePath(resource.value))}
         placements={placements}

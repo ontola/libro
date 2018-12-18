@@ -59,6 +59,7 @@ class MotionPage extends React.PureComponent {
           <Property label={NS.argu('publishAction')} />
           <Property label={NS.argu('decision')} />
           <Property label={NS.argu('blogPosts')} />
+          <Property label={NS.schema('location')} />
         </Container>
         <Container size="large">
           <Property forceRender label={NS.argu('arguments')} />
