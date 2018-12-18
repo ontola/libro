@@ -21,17 +21,21 @@ import { processDelta } from './data';
 import history from './history';
 import { log } from './logging';
 import ontolaMiddleware from './ontolaMiddleware';
+import ServiceWorkerCommunicator from './ServiceWorkerCommunicator';
 import transformers from './transformers';
+
+export const serviceWorkerCommunicator = new ServiceWorkerCommunicator();
 
 const middleware: Array<MiddlewareFn<any>> = [
   () => (next) => (a, o) => {
     log('Link action:', a, o);
     return next(a, o);
   },
-  ontolaMiddleware(history),
+  ontolaMiddleware(history, serviceWorkerCommunicator),
 ];
 
 const LRS = createStore<ReactType>({}, middleware);
+serviceWorkerCommunicator.linkedRenderStore = LRS;
 
 // @monkey
 const dispatch = LRS.dispatch;

@@ -6,7 +6,7 @@ import { combineReducers } from 'redux-immutable';
 import thunk from 'redux-thunk';
 import LogRocket from 'logrocket';
 
-import LinkedRenderStore from '../helpers/LinkedRenderStore';
+import LinkedRenderStore, { serviceWorkerCommunicator } from '../helpers/LinkedRenderStore';
 import history from '../helpers/history';
 import apiMiddleware from '../middleware/api';
 
@@ -18,7 +18,7 @@ const configureStore = (preloadedState) => {
 
   const appliedMiddleware = applyMiddleware(
     thunk,
-    apiMiddleware(history),
+    apiMiddleware(history, serviceWorkerCommunicator),
     routerMiddleware(history),
     linkMiddleware(LinkedRenderStore),
     appMiddleware,

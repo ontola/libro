@@ -11,7 +11,6 @@ import './helpers/typescript';
 import { handle } from './helpers/logging';
 import LinkDevTools from './helpers/LinkDevTools';
 import LinkedRenderStore from './helpers/LinkedRenderStore';
-import './helpers/serviceWorkerCommunicator';
 import './views';
 import IndexContainer from './containers/IndexContainer';
 import history from './helpers/history';

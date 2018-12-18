@@ -10,7 +10,6 @@ import { setMapAccessToken } from '../async/MapView/actions';
 import { FRONTEND_URL } from '../config';
 import { safeCredentials } from '../helpers/arguHelpers';
 import { handle } from '../helpers/logging';
-import serviceWorkerCommunicator from '../helpers/serviceWorkerCommunicator';
 import {
   AFE_API_GET_MAP_ACCESS_TOKEN,
   AFE_API_LOGIN,
@@ -30,7 +29,7 @@ const PATH_MATCH = 1;
 
 export const apiLogin = createAction(AFE_API_LOGIN);
 
-export default history => () => next => (action) => {
+export default (history, swc) => () => next => (action) => {
   if (!action.type.startsWith('@AFE_API/')) {
     return next(action);
   }
@@ -73,7 +72,7 @@ export default history => () => next => (action) => {
             case SIGN_IN_USER_CREATED:
             case SIGN_IN_LOGGED_IN: {
               let match;
-              serviceWorkerCommunicator.clearCache();
+              swc.clearCache();
               const { r } = action.payload;
               if (r && r.startsWith(FRONTEND_URL)) {
                 match = r.split(FRONTEND_URL);

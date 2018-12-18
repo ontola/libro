@@ -6,7 +6,7 @@ import { handle } from './logging';
 
 class ServiceWorkerCommunicator {
   private controller!: ServiceWorker | null;
-  private readonly lrs!: LinkReduxLRSType;
+  private lrs?: LinkReduxLRSType;
   private readonly updatesChannel!: BroadcastChannel;
 
   constructor() {
@@ -25,7 +25,6 @@ class ServiceWorkerCommunicator {
         this.controller = serviceWorkerRegistration.active;
       }
     });
-    this.lrs = LinkedRenderStore;
     navigator.serviceWorker.addEventListener('controllerchange', (e) => {
       this.controller = (e.target as unknown as ServiceWorkerCommunicator).controller;
     });
@@ -37,6 +36,10 @@ class ServiceWorkerCommunicator {
     }
   }
 
+  public set linkedRenderStore(value: LinkReduxLRSType) {
+    this.lrs = value;
+  }
+
   public clearCache() {
     this.postMessage({
       meta: 'ontola-request',
@@ -45,6 +48,10 @@ class ServiceWorkerCommunicator {
   }
 
   public async dataUpdate(event: MessageEvent) {
+    if (!this.lrs) {
+      throw new Error('Invariant violation: lrs must be set before receiving data updates');
+    }
+
     const { cacheName, updatedUrl } = event.data.payload;
 
     // Do something with cacheName and updatedUrl.
@@ -55,7 +62,6 @@ class ServiceWorkerCommunicator {
 
     (this.lrs as any)
       .api
-      .processor
       .feedResponse(updatedResponse)
       .then((statements: Statement[]) => {
         (LinkedRenderStore as any).store.processDelta(statements);
@@ -73,4 +79,4 @@ class ServiceWorkerCommunicator {
   }
 }
 
-export default new ServiceWorkerCommunicator();
+export default ServiceWorkerCommunicator;

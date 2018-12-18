@@ -21,7 +21,7 @@ import { defineMessages } from 'react-intl';
 import { safeCredentials } from './arguHelpers';
 import { retrievePath } from './iris';
 import { handle } from './logging';
-import serviceWorkerCommunicator from './serviceWorkerCommunicator';
+import ServiceWorkerCommunicator from './ServiceWorkerCommunicator';
 
 const messages = defineMessages({
   copyFinished: {
@@ -31,8 +31,8 @@ const messages = defineMessages({
   },
 });
 
-const ontolaMiddleware = (history: History): MiddlewareFn<ReactType> =>
-    (store: LinkReduxLRSType): MiddlewareWithBoundLRS => {
+const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWorkerCommunicator):
+    MiddlewareFn<ReactType> => (store: LinkReduxLRSType): MiddlewareWithBoundLRS => {
 
   const ontola = memoizedNamespace('https://ns.ontola.io/');
   // eslint-disable-next-line no-param-reassign
