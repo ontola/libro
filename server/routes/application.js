@@ -12,9 +12,9 @@ const BACKEND_TIMEOUT = 3000;
 export default function application(port) {
   const PRELOAD_HEADERS = [
     `<${constants.FRONTEND_URL}/static/preloader.css>; rel=preload; as=style`,
-    `<${constants.ASSETS_HOST}${manifest['main.js']}>; rel=preload; as=script`,
-    __PRODUCTION__ && `<${constants.ASSETS_HOST}${manifest['main.css']}>; rel=preload; as=style`,
-  ];
+    manifest['main.js'] && `<${constants.ASSETS_HOST}${manifest['main.js']}>; rel=preload; as=script`,
+    __PRODUCTION__ && manifest['main.css'] && `<${constants.ASSETS_HOST}${manifest['main.css']}>; rel=preload; as=style`,
+  ].filter(Boolean);
 
   const sendResponse = (req, res, domain) => {
     if (isHTMLHeader(req.headers)) {
