@@ -25,9 +25,7 @@ import transformers from './transformers';
 
 const middleware: Array<MiddlewareFn<any>> = [
   () => (next) => (a, o) => {
-    if (!__PRODUCTION__) {
-      log('Link action:', a, o);
-    }
+    log('Link action:', a, o);
     return next(a, o);
   },
   ontolaMiddleware(history),
