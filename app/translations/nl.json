@@ -75,6 +75,7 @@
   "https://app.argu.co/i18n/schema:Person/showProfileText": "Toon profiel van {name}",
   "https://app.argu.co/i18n/schema:Thing/argu:topComment/showAllLabel": "Toon alle {count} reacties...",
   "https://app.argu.co/i18n/schema:Thing/foaf:isPrimaryTopicOf/externalLabel": "External information",
+  "https://app.argu.co/i18n/schema:Thing/schema:location/detailLabel": "Bekijk locatie",
   "https://app.argu.co/i18n/schema:Thing/schema:superEvent/discussedInLabel": "Besproken in:",
   "https://app.argu.co/i18n/schema:dateCreated/label": "Aangemaakt: {date}",
   "https://app.argu.co/i18n/schema:dateModified/label": "Bijgewerkt: {date}",

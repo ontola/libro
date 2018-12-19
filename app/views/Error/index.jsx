@@ -24,6 +24,7 @@ import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
 import Container, { containerTopology } from '../../topologies/Container';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
+import { alertDialogTopology } from '../../topologies/Dialog';
 import { dropdownContentTopology } from '../../topologies/DropdownContent';
 import { gridTopology } from '../../topologies/Grid';
 import { hoverBoxTopology } from '../../topologies/HoverBox';
@@ -187,6 +188,7 @@ export default [
     NS.ll('ErrorResource'),
     RENDER_CLASS_NAME,
     [
+      alertDialogTopology,
       containerTopology,
       tabPaneTopology,
       dropdownContentTopology,

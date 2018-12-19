@@ -15,6 +15,7 @@ class LDLink extends React.PureComponent {
     children: PropTypes.node,
     className: PropTypes.string,
     location: PropTypes.string,
+    onClick: PropTypes.func,
     subject: subjectType,
     theme: PropTypes.oneOf([
       'default',
@@ -32,6 +33,7 @@ class LDLink extends React.PureComponent {
       className,
       children,
       location,
+      onClick,
       subject,
       theme,
       title,
@@ -48,6 +50,7 @@ class LDLink extends React.PureComponent {
         className={`${className || `LDLink__${theme}`} ${location === href ? 'LDLink__active' : ''}`}
         title={title}
         to={href}
+        onClick={onClick}
       >
         {children}
       </Link>

@@ -60,8 +60,15 @@ class Map extends React.Component {
     getAccessToken: PropTypes.func,
     lrs: lrsType,
     navigate: PropTypes.func,
+    /** Placements to render on the map. */
     placements: PropTypes.arrayOf(PropTypes.instanceOf(NamedNode)),
+    /** Placeable to center on, it should have its own placement. */
     subject: subjectType,
+    /**
+     * A placement to center on.
+     * Takes precedence over {subject}
+     */
+    subjectPlacement: subjectType,
   };
 
   static generateMarkerImage(image, highlight = false) {
@@ -195,10 +202,11 @@ class Map extends React.Component {
       return;
     }
 
-    const { lrs, subject } = this.props;
+    const { lrs, subject, subjectPlacement } = this.props;
 
-    const subjectPlacement = subject && lrs.getResourceProperty(subject, NS.schema('location'));
-    const center = this.resolvePlacement(subjectPlacement);
+    const centerPlacement = subjectPlacement
+      || (subject && lrs.getResourceProperty(subject, NS.schema('location')));
+    const center = this.resolvePlacement(centerPlacement);
 
     if (!center) {
       handle(new Error(`Map has no center (${subject})`));

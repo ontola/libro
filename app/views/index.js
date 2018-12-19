@@ -31,6 +31,7 @@ import Notification from './Notification';
 // import './OpinionBubble';
 import Organization from './Organization/index';
 import Person from './Person';
+import Placement from './Placement';
 import SeqComp from './Seq';
 import Shape from './Shape';
 import Snackbar from './Snackbar';
@@ -70,6 +71,7 @@ function register() {
     ...Notification,
     ...Organization,
     ...Person,
+    Placement,
     ...RDFSClass,
     SeqComp,
     ...Shape,

@@ -75,6 +75,7 @@
   "https://app.argu.co/i18n/schema:Person/showProfileText": "Show {name}'s profile",
   "https://app.argu.co/i18n/schema:Thing/argu:topComment/showAllLabel": "View all {count} reactions...",
   "https://app.argu.co/i18n/schema:Thing/foaf:isPrimaryTopicOf/externalLabel": "External information",
+  "https://app.argu.co/i18n/schema:Thing/schema:location/detailLabel": "View location",
   "https://app.argu.co/i18n/schema:Thing/schema:superEvent/discussedInLabel": "Discussed in:",
   "https://app.argu.co/i18n/schema:dateCreated/label": "created: {date}",
   "https://app.argu.co/i18n/schema:dateModified/label": "edited: {date}",
