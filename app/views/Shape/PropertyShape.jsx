@@ -83,6 +83,8 @@ class PropertyShape extends PropertyBase {
         return 'file';
       case NS.fhir('markdown'):
         return 'markdown';
+      case NS.ontola('datatype/password'):
+        return 'password';
       default:
         if (this.maxLength() > MAX_STR_LEN) {
           return 'textarea';
