@@ -42,12 +42,18 @@ class MenuItemSidebar extends React.PureComponent {
   render() {
     const { href, menuItems, subject } = this.props;
 
+    const id = `${subject}-menu-items`;
     const icon = href && isDifferentOrigin(href)
       ? <FontAwesome name="external-link" />
       : <Property label={NS.schema('image')} />;
 
     const MenuItemLabel = (
-      <Property forceRender data-test="MenuItem-MenuItemLabel" label={NS.argu('href')}>
+      <Property
+        forceRender
+        data-test="MenuItem-MenuItemLabel"
+        id={id}
+        label={NS.argu('href')}
+      >
         <SideBarLinkIcon>
           {icon}
         </SideBarLinkIcon>
@@ -72,7 +78,7 @@ class MenuItemSidebar extends React.PureComponent {
         <Resource>
           <SideBarCollapsible
             data-test="MenuItem-menuItems-collapsible"
-            id={`${subject}-menu-items`}
+            id={id}
             labelComp={MenuItemLabel}
           >
             {items}

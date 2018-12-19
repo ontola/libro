@@ -92,7 +92,7 @@ export const loc = ({
     <Provider store={ctx.store}>
       <RenderStoreProvider value={ctx.lrs}>
         <IntlProvider locale="en">
-          <StaticRouter context={{}}>
+          <StaticRouter context={{}} location="/current_page">
             <LinkedResourceContainer
               forceRender
               subject={subject}

@@ -36,6 +36,10 @@ export function iris(window: Window) {
       return new URL(pathString, window.location.origin).href;
     },
 
+    isLocalAnchor(iriString: string) {
+      return iriString === '#';
+    },
+
     isDifferentOrigin(iri: string | any) {
       const t = typeof iri === 'string' ? new URL(iri, window.location.origin).toString() : iri;
       return checkOrigin(t);
@@ -47,6 +51,9 @@ export function iris(window: Window) {
      * @returns {undefined|string} The pathname or undefined if invalid.
      */
     retrievePath(iriString: string) {
+      if (isLocalAnchor(iriString)) {
+        return iriString;
+      }
       // TODO: https://github.com/linkeddata/rdflib.js/issues/265
       const bugNormalized = iriString.replace(`${window.location.origin}//`, `${window.location.origin}/`);
       const iri = iriString && new URL(bugNormalized, window.location.origin);
@@ -61,6 +68,7 @@ export const {
   currentURL,
   expandPath,
   isDifferentOrigin,
+  isLocalAnchor,
   retrievePath,
 } = windowBound;
 

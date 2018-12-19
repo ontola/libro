@@ -81,18 +81,28 @@ export class SideBarCollapsible extends PureComponent {
 
 SideBarCollapsible.propTypes = propTypes;
 
-export default connect(
+export const withSideBarCollapsibleActions = connect(
   (state, ownProps) => ({
     open: getCollapsibleOpened(state, ownProps.id),
   }),
   (dispatch, { id }) => ({
-    onClose: () => dispatch(closeOne({
-      identifier: id,
-    })),
-    onOpen: () => dispatch(openInGrouped({
-      group: 'Navbar',
-      identifier: id,
-    })),
+    onClose: (e) => {
+      if (e) {
+        e.preventDefault();
+      }
+      dispatch(closeOne({
+        identifier: id,
+      }));
+    },
+    onOpen: (e) => {
+      if (e) {
+        e.preventDefault();
+      }
+      dispatch(openInGrouped({
+        group: 'Navbar',
+        identifier: id,
+      }));
+    },
   }),
   (stateProps, dispatchProps, ownProps) => Object.assign(
     {},
@@ -102,4 +112,6 @@ export default connect(
       onClickToggle: stateProps.open ? dispatchProps.onClose : dispatchProps.onOpen,
     }
   )
-)(injectIntl(SideBarCollapsible));
+);
+
+export default withSideBarCollapsibleActions(injectIntl(SideBarCollapsible));

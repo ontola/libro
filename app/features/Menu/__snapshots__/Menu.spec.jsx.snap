@@ -26,15 +26,22 @@ exports[`Menu https://argu.co/ns/core#sidebar renders a menu 1`] = `
     <div
       className="SideBarLink"
     >
-      <div
-        className="SideBarLink__icon"
+      <a
+        activeClassName="SideBarLink--active"
+        className="SideBarLink__link"
+        href="/current_page"
+        onClick={[Function]}
       >
-        <span
-          aria-hidden={true}
-          className="fa fa-lightbulb-o"
-        />
-      </div>
-      Ideeën
+        <div
+          className="SideBarLink__icon"
+        >
+          <span
+            aria-hidden={true}
+            className="fa fa-lightbulb-o"
+          />
+        </div>
+        Ideeën
+      </a>
     </div>
   </div>
   <div
@@ -43,15 +50,22 @@ exports[`Menu https://argu.co/ns/core#sidebar renders a menu 1`] = `
     <div
       className="SideBarLink"
     >
-      <div
-        className="SideBarLink__icon"
+      <a
+        activeClassName="SideBarLink--active"
+        className="SideBarLink__link"
+        href="/current_page"
+        onClick={[Function]}
       >
-        <span
-          aria-hidden={true}
-          className="fa fa-question"
-        />
-      </div>
-      Vraagstukken
+        <div
+          className="SideBarLink__icon"
+        >
+          <span
+            aria-hidden={true}
+            className="fa fa-question"
+          />
+        </div>
+        Vraagstukken
+      </a>
     </div>
   </div>
   <div
@@ -60,15 +74,22 @@ exports[`Menu https://argu.co/ns/core#sidebar renders a menu 1`] = `
     <div
       className="SideBarLink"
     >
-      <div
-        className="SideBarLink__icon"
+      <a
+        activeClassName="SideBarLink--active"
+        className="SideBarLink__link"
+        href="/current_page"
+        onClick={[Function]}
       >
-        <span
-          aria-hidden={true}
-          className="fa fa-gear"
-        />
-      </div>
-      Instellingen
+        <div
+          className="SideBarLink__icon"
+        >
+          <span
+            aria-hidden={true}
+            className="fa fa-gear"
+          />
+        </div>
+        Instellingen
+      </a>
     </div>
   </div>
 </div>

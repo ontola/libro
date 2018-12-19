@@ -21,6 +21,10 @@ describe('helpers', () => {
       it('should return query parameters', () => {
         expect(retrievePath('http://example.com/5?test=true')).toEqual('/5?test=true');
       });
+
+      it('should preserve non-navigation links', () => {
+        expect(retrievePath('#')).toEqual('#');
+      });
     });
 
     describe('currentURL', () => {

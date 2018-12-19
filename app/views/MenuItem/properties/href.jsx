@@ -7,6 +7,7 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { withSideBarCollapsibleActions } from '../../../components/SideBarCollapsible';
 import {
   SideBarLinkLink,
   SideBarLinkWrapper,
@@ -31,42 +32,54 @@ class Href extends React.PureComponent {
     NS.argu('href'),
   ];
 
+  static hocs = [withSideBarCollapsibleActions];
+
   static propTypes = {
     action: linkType,
     children: PropTypes.node,
     handleClick: PropTypes.func,
     href: linkType,
     lrs: lrsType,
+    onClickToggle: PropTypes.func,
     subject: subjectType,
   };
 
-  render() {
+  clickHandler() {
     const {
       action,
-      children,
-      handleClick,
       href,
       lrs,
       subject,
+      onClickToggle,
     } = this.props;
 
-    let hrefInner = children;
-    if (href || action) {
-      hrefInner = (
-        <SideBarLinkLink
-          to={!action ? href.value : '#'}
-          onClick={
-            handleClick || (action && (() => lrs.exec(action, SHACL.actionToObject(lrs, subject))))
-          }
-        >
-          {children}
-        </SideBarLinkLink>
-      );
+    if (action) {
+      return (e) => {
+        if (e) {
+          e.preventDefault();
+        }
+
+        return lrs.exec(action, SHACL.actionToObject(lrs, subject));
+      };
     }
+    return !href && onClickToggle;
+  }
+
+  render() {
+    const {
+      children,
+      handleClick,
+      href,
+    } = this.props;
 
     return (
       <SideBarLinkWrapper>
-        {hrefInner}
+        <SideBarLinkLink
+          to={href ? href.value : '#'}
+          onClick={handleClick || this.clickHandler()}
+        >
+          {children}
+        </SideBarLinkLink>
       </SideBarLinkWrapper>
     );
   }

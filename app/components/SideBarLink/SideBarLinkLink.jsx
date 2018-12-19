@@ -1,9 +1,13 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { NavLink, withRouter } from 'react-router-dom';
+import { Link, NavLink, withRouter } from 'react-router-dom';
 
-import { isDifferentOrigin, retrievePath } from '../../helpers/iris';
+import {
+  isDifferentOrigin,
+  isLocalAnchor,
+  retrievePath,
+} from '../../helpers/iris';
 import { closeSideBar } from '../../state/sideBars/actions';
 
 const propTypes = {
@@ -46,16 +50,19 @@ class SideBarLinkLink extends PureComponent {
       );
     }
 
+    const path = retrievePath(to);
+    const LinkComp = isLocalAnchor(path) ? Link : NavLink;
+
     return (
-      <NavLink
+      <LinkComp
         activeClassName="SideBarLink--active"
         className="SideBarLink__link"
         exact={isIndex}
-        to={retrievePath(to)}
+        to={path}
         onClick={onClick}
       >
         {children}
-      </NavLink>
+      </LinkComp>
     );
   }
 }
