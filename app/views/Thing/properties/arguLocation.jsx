@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withRouter } from 'react-router';
 
+import MapView from '../../../containers/MapView';
 import { listToArr } from '../../../helpers/data';
 import { retrievePath } from '../../../helpers/iris';
 import { NS } from '../../../helpers/LinkedRenderStore';
@@ -35,39 +36,6 @@ class ArguLocation extends React.Component {
     subject: subjectType,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      MapView: undefined,
-    };
-  }
-
-  componentDidMount() {
-    if (this.resolvePlacements().length > 0 && !this.state.MapView) {
-      return this.loadView();
-    }
-
-    return undefined;
-  }
-
-  componentDidUpdate() {
-    if (this.resolvePlacements().length > 0 && !this.state.MapView) {
-      return this.loadView();
-    }
-
-    return undefined;
-  }
-
-  async loadView() {
-    // eslint-disable-next-line no-inline-comments
-    const MapView = await import(/* webpackChunkName: 'MapView' */ '../../../async/MapView/index');
-
-    this.setState({
-      MapView: MapView.default,
-    });
-  }
-
   resolvePlacements() {
     const { childrenPlacements, schemaLocation, lrs } = this.props;
 
@@ -89,12 +57,6 @@ class ArguLocation extends React.Component {
   }
 
   render() {
-    const { MapView } = this.state;
-
-    if (!MapView) {
-      return null;
-    }
-
     const {
       history,
       schemaLocation,
@@ -103,6 +65,10 @@ class ArguLocation extends React.Component {
     } = this.props;
 
     const placements = this.resolvePlacements();
+
+    if (placements === 0) {
+      return null;
+    }
 
     return (
       <MapView
