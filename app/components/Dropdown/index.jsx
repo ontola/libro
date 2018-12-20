@@ -18,10 +18,13 @@ function isTouchDevice() {
 
 const propTypes = {
   children: PropTypes.oneOfType([
+    PropTypes.func,
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
   contentClassName: PropTypes.string,
+  /** Mount on open, requires children to be a render prop */
+  lazy: PropTypes.bool,
   trigger: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,
@@ -138,7 +141,7 @@ class Dropdown extends React.Component {
 
   render() {
     const { openState, renderLeft } = this.state;
-    const { children } = this.props;
+    const { children, lazy } = this.props;
 
     const trigger = (
       <div
@@ -150,6 +153,11 @@ class Dropdown extends React.Component {
         {this.props.trigger}
       </div>
     );
+
+    let renderItem = children;
+    if (lazy) {
+      renderItem = openState ? children() : null;
+    }
 
     return (
       <div
@@ -168,7 +176,7 @@ class Dropdown extends React.Component {
         >
           <DropdownContent contentClassName={this.props.contentClassName}>
             <div ref={this.referenceElem}>
-              {children}
+              {renderItem}
             </div>
           </DropdownContent>
         </div>
@@ -181,7 +189,7 @@ class Dropdown extends React.Component {
             transform: 'translate3d(0, 1em, 0)',
             willChange: "opacity, transform, pointer-events",
           }}
-          items={openState && children}
+          items={openState && renderItem}
           leave={{ opacity: 0, pointerEvents: 'none', transform: 'translate3d(0, 1em, 0)' }}
         >
           {item => style => (

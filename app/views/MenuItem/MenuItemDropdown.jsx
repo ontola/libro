@@ -36,9 +36,10 @@ class MenuItemDropdown extends React.PureComponent {
     return (
       <Resource>
         <Dropdown
+          lazy
           trigger={<Property label={NS.schema('name')} />}
         >
-          <LinkedResourceContainer subject={menuItems} topology={dropdownContentTopology} />
+          {() => <LinkedResourceContainer subject={menuItems} topology={dropdownContentTopology} />}
         </Dropdown>
       </Resource>
     );
