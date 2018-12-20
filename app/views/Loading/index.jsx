@@ -77,6 +77,7 @@ export default [
       cardTopology,
       cardFixedTopology,
       cardMainTopology,
+      dropdownContentTopology,
       hoverBoxTopology,
     ]
   ),
@@ -84,10 +85,7 @@ export default [
     LoadingSideBarLink,
     NS.ll('LoadingResource'),
     RENDER_CLASS_NAME,
-    [
-      dropdownContentTopology,
-      sidebarTopology,
-    ]
+    sidebarTopology
   ),
   LinkedRenderStore.registerRenderer(
     LoadingDetail,
