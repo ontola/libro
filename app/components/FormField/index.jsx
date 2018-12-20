@@ -266,7 +266,11 @@ class FormField extends React.Component {
         element = TextEditor;
         sharedProps.minRows = minRows;
         break;
-      default:
+      case 'checkbox': {
+        const currentValue = fieldApi.getValue();
+        sharedProps.checked = currentValue && (currentValue === true || currentValue.value === 'true');
+        break;
+      } default:
         element = 'input';
     }
 
