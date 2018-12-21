@@ -51,9 +51,12 @@ async function authenticationMiddleware(req, res, next) {
     if (t && !expired) {
       return next();
     }
-    res.status = HttpStatus.UNAUTHORIZED;
-    const status = expired ? 'SESSION_EXPIRED' : 'UNAUTHORIZED';
-    return res.send({ status }).end();
+    if (!expired) {
+      res.status = HttpStatus.UNAUTHORIZED;
+      return res
+        .send({ status: 'UNAUTHORIZED' })
+        .end();
+    }
   }
 
   await getGuestToken(req);
