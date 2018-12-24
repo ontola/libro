@@ -23,7 +23,7 @@ class OrganizationPage extends React.PureComponent {
       <PrimaryResource>
         <PageHeader />
         <Container>
-          <Property label={NS.argu('forums')} />
+          <Property label={NS.argu('widgets')} />
         </Container>
       </PrimaryResource>
     );
