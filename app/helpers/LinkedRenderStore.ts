@@ -228,6 +228,9 @@ const ontologicalData = [
   new Statement(NS.schema('CreateAction'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.schema('CreateAction'), NS.rdfs('subClassOf'), NS.schema('Action')),
 
+  new Statement(NS.argu('Create::Vote'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('Create::Vote'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
+
   new Statement(NS.schema('UpdateAction'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.schema('UpdateAction'), NS.rdfs('subClassOf'), NS.schema('Action')),
 
