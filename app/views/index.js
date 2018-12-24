@@ -10,6 +10,7 @@ import Thing from './Thing';
 import Collection from './Collection';
 import CollectionPage from './CollectionPage';
 import Comment from './Comment';
+import CreativeWork from './CreativeWork';
 import Action from './Action/index';
 import Argument from './Argument/index';
 import DialogManager from './DialogManager';
@@ -56,6 +57,7 @@ function register() {
     ...Collection,
     ...CollectionPage,
     ...Comment,
+    ...CreativeWork,
     Document,
     ...DialogManager,
     ...EntryPoint,

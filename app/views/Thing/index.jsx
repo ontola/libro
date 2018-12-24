@@ -27,6 +27,7 @@ import { gridTopology } from '../../topologies/Grid';
 import hoverBox from '../../topologies/HoverBox';
 import { inlineTopology } from '../../topologies/Inline';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
+import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 
 import ApplyLink from './properties/applyLink';
 import ArguLocation from './properties/arguLocation';
@@ -191,6 +192,7 @@ export default [
       alertDialogTopology,
       primaryResourceTopology,
       containerTopology,
+      widgetTopologyTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(
