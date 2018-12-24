@@ -32,6 +32,7 @@ import Notification from './Notification';
 import Organization from './Organization/index';
 import Person from './Person';
 import Placement from './Placement';
+import PropertyQuery from './PropertyQuery';
 import SeqComp from './Seq';
 import Shape from './Shape';
 import Snackbar from './Snackbar';
@@ -72,6 +73,7 @@ function register() {
     ...Organization,
     ...Person,
     Placement,
+    PropertyQuery,
     ...RDFSClass,
     SeqComp,
     ...Shape,

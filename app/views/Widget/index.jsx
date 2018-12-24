@@ -1,23 +1,30 @@
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { Property } from 'link-redux';
-import React from 'react';
+import { Property, register } from 'link-redux';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import { containerTopology } from '../../topologies/Container';
 import WidgetTopology from '../../topologies/WidgetTopology/WidgetTopology';
 
 
-const Widget = () => (
-  <WidgetTopology>
-    <Property label={NS.schema('name')} />
-    <Property label={NS.schema('text')} />
-    <Property label={NS.schema('url')} />
-  </WidgetTopology>
-);
+class Widget extends PureComponent {
+  static type = NS.argu('Widget');
 
-export default LinkedRenderStore.registerRenderer(
-  Widget,
-  NS.argu('Widget'),
-  RENDER_CLASS_NAME,
-  containerTopology
-);
+  static mapDataToProps = [NS.argu('widgetSize')];
+
+  static topology = containerTopology;
+
+  static propTypes = {
+    widgetSize: PropTypes.number,
+  };
+
+  render() {
+    return (
+      <WidgetTopology width={this.props.widgetSize}>
+        <Property label={NS.argu('widgetResource')} />
+      </WidgetTopology>
+    );
+  }
+}
+
+export default register(Widget);
