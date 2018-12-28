@@ -27,7 +27,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     padding: 2rem;
-    justify-content: center;
+    max-width: 70rem;
   }
 
   @include small-only {
