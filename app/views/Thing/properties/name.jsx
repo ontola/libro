@@ -141,6 +141,7 @@ export default [
       cardRowTopology,
       containerTopology,
       popupTopology,
+      widgetTopologyTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(
@@ -154,12 +155,6 @@ export default [
     NS.schema('Thing'),
     NamePredicates,
     tableRowTopology
-  ),
-  LinkedRenderStore.registerRenderer(
-    props => <ConnectedHeading data-test="Thing-name-widget" size="2" {...props} />,
-    NS.schema('Thing'),
-    NamePredicates,
-    widgetTopologyTopology
   ),
   LinkedRenderStore.registerRenderer(
     ({ linkedProp }) => <Heading data-test="Thing-name-header" size="1">{linkedProp.value}</Heading>,
