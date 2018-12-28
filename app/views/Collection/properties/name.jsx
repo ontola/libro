@@ -10,8 +10,8 @@ import { Link } from 'react-router-dom';
 import { Heading } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologiesExcept } from '../../../topologies';
-import { sidebarTopology } from '../../../topologies/Sidebar';
 import { CollectionTypes } from '../types';
+import { headerTopology } from '../../../topologies/Header';
 import { parentTopology } from '../../../topologies/Parent';
 import { tableRowTopology } from '../../../topologies/TableRow';
 
@@ -41,7 +41,7 @@ export default [
     withLinkCtx(CollectionName),
     CollectionTypes,
     NS.as('name'),
-    allTopologiesExcept(parentTopology, sidebarTopology, tableRowTopology)
+    allTopologiesExcept(headerTopology, parentTopology, tableRowTopology)
   ),
   LinkedRenderStore.registerRenderer(
     ({ linkedProp }) => linkedProp.value,

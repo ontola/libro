@@ -5,14 +5,14 @@ import { LDLink } from '../../components';
 import SideBarLinkLabel from '../../components/SideBarLink/SideBarLinkLabel';
 import SidebarLinkIcon from '../../components/SideBarLink/SideBarLinkIcon';
 import { NS } from '../../helpers/LinkedRenderStore';
-import { sidebarTopology } from '../../topologies/Sidebar';
+import { headerTopology } from '../../topologies/Header';
 
 import './properties/name';
 
 class CurrentActorSidebar extends React.PureComponent {
   static type = NS.schema('Person');
 
-  static topology = sidebarTopology;
+  static topology = headerTopology;
 
   render() {
     return (

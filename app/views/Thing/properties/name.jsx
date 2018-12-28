@@ -26,7 +26,7 @@ import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
 import { selectTopology } from '../../../topologies/Select';
 import { tableRowTopology } from '../../../topologies/TableRow';
 import TableCell from '../../../topologies/TableCell';
-import { sidebarTopology } from '../../../topologies/Sidebar';
+import { headerTopology } from '../../../topologies/Header';
 import { widgetTopologyTopology } from '../../../topologies/WidgetTopology/WidgetTopology';
 
 const NamePredicates = [
@@ -118,7 +118,7 @@ export default [
     ({ linkedProp }) => <span data-test="Thing-name-sidebar">{linkedProp.value}</span>,
     NS.schema('Thing'),
     NamePredicates,
-    sidebarTopology
+    headerTopology
   ),
   LinkedRenderStore.registerRenderer(
     ({ linkedProp }) => <span data-test="Thing-name-select">{linkedProp.value}</span>,

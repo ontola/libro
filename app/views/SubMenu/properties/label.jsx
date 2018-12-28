@@ -4,7 +4,7 @@ import React from 'react';
 
 import SideBarLinkLabel from '../../../components/SideBarLink/SideBarLinkLabel';
 import { NS } from '../../../helpers/LinkedRenderStore';
-import { sidebarTopology } from '../../../topologies/Sidebar';
+import { headerTopology } from '../../../topologies/Header';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -22,5 +22,5 @@ export default LinkedRenderStore.registerRenderer(
   SubMenuLabelProp,
   [NS.argu('SubMenu'), NS.argu('MenuItem'), NS.argu('Menu')],
   NS.schema('name'),
-  sidebarTopology
+  headerTopology
 );

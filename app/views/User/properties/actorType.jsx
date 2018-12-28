@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { setCurrentUser } from '../../../state/app/actions';
-import { sidebarTopology } from '../../../topologies/Sidebar';
+import { headerTopology } from '../../../topologies/Header';
 
 const propTypes = {
   action: PropTypes.shape({
@@ -63,5 +63,5 @@ export default LinkedRenderStore.registerRenderer(
   ], { returnType: 'value' })(ActorTypeDispatcherConnect),
   [NS.argu('ConfirmedUser'), NS.argu('UnconfirmedUser'), NS.argu('GuestUser')],
   NS.argu('actorType'),
-  sidebarTopology
+  headerTopology
 );

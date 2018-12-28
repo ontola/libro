@@ -4,7 +4,7 @@ import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
-import { sidebarTopology } from '../../../topologies/Sidebar';
+import { headerTopology } from '../../../topologies/Header';
 import { voteBubbleTopology } from '../../../topologies/VoteBubble';
 
 const propTypes = {
@@ -33,6 +33,6 @@ export default [
     ),
     [NS.schema('Person'), NS.aod('Persons')],
     [NS.schema('image'), NS.dbo('thumbnail'), NS.wdt('P18')],
-    sidebarTopology
+    headerTopology
   ),
 ];

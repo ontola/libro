@@ -7,12 +7,12 @@ import {
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
-import { sidebarTopology } from '../../topologies/Sidebar';
+import { headerTopology } from '../../topologies/Header';
 
 class OrganizationSidebar extends React.PureComponent {
   static type = [NS.schema('Organization'), NS.argu('Page')];
 
-  static topology = sidebarTopology;
+  static topology = headerTopology;
 
   static mapDataToProps = [NS.argu('navigationsMenu')];
 

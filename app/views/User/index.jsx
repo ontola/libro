@@ -11,7 +11,7 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import { Resource, SideBarCollapsible } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { formFooterTopology } from '../../topologies/FormFooter/Footer';
-import { sidebarTopology } from '../../topologies/Sidebar';
+import { headerTopology } from '../../topologies/Header';
 
 import ActorType from './properties/actorType';
 import GuestUser from './GuestUser';
@@ -57,7 +57,7 @@ export default [
     withLinkCtx(injectIntl(CurrentActorSidebar)),
     RegisteredTypes,
     RENDER_CLASS_NAME,
-    sidebarTopology
+    headerTopology
   ),
   LinkedRenderStore.registerRenderer(
     withLinkCtx(CurrentActorFooter),

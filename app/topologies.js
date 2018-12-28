@@ -14,6 +14,7 @@ import { alertDialogTopology } from './topologies/Dialog/index';
 import { dropdownContentTopology } from './topologies/DropdownContent/index';
 import { formFooterTopology } from './topologies/FormFooter/Footer';
 import { gridTopology } from './topologies/Grid/index';
+import { headerTopology } from './topologies/Header/index';
 import { hoverBoxTopology } from './topologies/HoverBox/index';
 import { inlineTopology } from './topologies/Inline/index';
 import { omniformFieldsTopology } from './topologies/OmniformFields/OmniformFields';
@@ -24,7 +25,6 @@ import { selectTopology } from './topologies/Select';
 import { tableTopology } from './topologies/Table';
 import { tableCellTopology } from './topologies/TableCell';
 import { tableRowTopology } from './topologies/TableRow';
-import { sidebarTopology } from './topologies/Sidebar/index';
 import { tabPaneTopology } from './topologies/TabPane/index';
 import { tabBarTopology } from './topologies/TabBar/index';
 import { voteBubbleTopology } from './topologies/VoteBubble/index';
@@ -51,6 +51,7 @@ export const allTopologies = [
   dropdownContentTopology,
   formFooterTopology,
   gridTopology,
+  headerTopology,
   hoverBoxTopology,
   inlineTopology,
   omniformFieldsTopology,
@@ -61,7 +62,6 @@ export const allTopologies = [
   tableTopology,
   tableRowTopology,
   tableCellTopology,
-  sidebarTopology,
   tabPaneTopology,
   tabBarTopology,
   voteBubbleTopology,

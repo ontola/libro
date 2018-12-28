@@ -13,7 +13,7 @@ import {
 import SideBarLinkIcon from '../../components/SideBarLink/SideBarLinkIcon';
 import { isDifferentOrigin } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
-import { sidebarTopology } from '../../topologies/Sidebar';
+import { headerTopology } from '../../topologies/Header';
 
 class MenuItemSidebar extends React.PureComponent {
   static type = [
@@ -22,7 +22,7 @@ class MenuItemSidebar extends React.PureComponent {
     NS.argu('Menu'),
   ];
 
-  static topology = sidebarTopology;
+  static topology = headerTopology;
 
   static mapDataToProps = {
     href: NS.argu('href'),

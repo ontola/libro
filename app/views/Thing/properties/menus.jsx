@@ -3,7 +3,7 @@ import { LinkedResourceContainer, linkedPropType } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
-import { sidebarTopology } from '../../../topologies/Sidebar';
+import { headerTopology } from '../../../topologies/Header';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -12,7 +12,7 @@ const propTypes = {
 const ThingMenusProp = ({ linkedProp }) => (
   <LinkedResourceContainer
     subject={linkedProp}
-    topology={sidebarTopology}
+    topology={headerTopology}
   />
 );
 
@@ -22,5 +22,5 @@ export default LinkedRenderStore.registerRenderer(
   ThingMenusProp,
   NS.schema('Thing'),
   [NS.argu('menus'), NS.argu('navigationsMenu')],
-  sidebarTopology
+  headerTopology
 );

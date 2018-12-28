@@ -10,7 +10,7 @@ import { dropdownContentTopology } from '../../topologies/DropdownContent';
 import { formFooterTopology } from '../../topologies/FormFooter/Footer';
 import { pageHeaderTopology } from '../../topologies/PageHeader';
 import { tableCellTopology } from '../../topologies/TableCell';
-import { sidebarTopology } from '../../topologies/Sidebar';
+import { headerTopology } from '../../topologies/Header';
 import { voteBubbleTopology } from '../../topologies/VoteBubble';
 import { voteEventSideTopology } from '../../topologies/VoteEventSide';
 import { parentTopology } from '../../topologies/Parent';
@@ -33,7 +33,7 @@ class ImageObject extends React.PureComponent {
     pageHeaderTopology,
     parentTopology,
     tableCellTopology,
-    sidebarTopology,
+    headerTopology,
     voteBubbleTopology,
     voteEventSideTopology,
   ];
@@ -62,7 +62,7 @@ export default [
     ),
     NS.schema('ImageObject'),
     RENDER_CLASS_NAME,
-    sidebarTopology
+    headerTopology
   ),
   ...thumbnail,
   ImageObjectCardList,

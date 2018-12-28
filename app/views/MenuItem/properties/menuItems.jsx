@@ -10,7 +10,7 @@ import React from 'react';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { SideBarCollapsible } from '../../../components';
 import { dropdownContentTopology } from '../../../topologies/DropdownContent';
-import { sidebarTopology } from '../../../topologies/Sidebar';
+import { headerTopology } from '../../../topologies/Header';
 
 class MenuItems extends React.PureComponent {
   static type = [
@@ -22,7 +22,7 @@ class MenuItems extends React.PureComponent {
   static property = NS.argu('menuItems');
 
   static topology = [
-    sidebarTopology,
+    headerTopology,
     dropdownContentTopology,
   ];
 

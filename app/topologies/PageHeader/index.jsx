@@ -5,7 +5,7 @@ import './PageHeader.scss';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 
-export const pageHeaderTopology = NS.argu('header');
+export const pageHeaderTopology = NS.argu('pageHeader');
 
 /**
  * Page filler with title and nav items at the top of a page

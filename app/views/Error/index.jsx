@@ -32,7 +32,7 @@ import { inlineTopology } from '../../topologies/Inline';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 import { pageTopology } from '../../topologies/Page';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
-import { sidebarTopology } from '../../topologies/Sidebar';
+import { headerTopology } from '../../topologies/Header';
 import { voteBubbleTopology } from '../../topologies/VoteBubble';
 import { voteEventResultTopology } from '../../topologies/VoteEventResult';
 import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
@@ -203,7 +203,7 @@ export default [
     ErrorSidebar,
     NS.ll('ErrorResource'),
     RENDER_CLASS_NAME,
-    sidebarTopology
+    headerTopology
   ),
   LinkedRenderStore.registerRenderer(
     ErrorButtonInline,

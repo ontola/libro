@@ -9,7 +9,7 @@ import React, { PureComponent } from 'react';
 import { SideBarCollapsible } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { SideBarLinkIcon } from '../../components/SideBarLink/index';
-import { sidebarTopology } from '../../topologies/Sidebar';
+import { headerTopology } from '../../topologies/Header';
 
 import Label from './properties/label';
 
@@ -48,7 +48,7 @@ export default [
     SubMenuSideBarComplete,
     NS.argu('SubMenu'),
     RENDER_CLASS_NAME,
-    sidebarTopology
+    headerTopology
   ),
   Label,
 ];

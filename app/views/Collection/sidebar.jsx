@@ -9,14 +9,14 @@ import React from 'react';
 import { SideBarLink } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { tryParseInt } from '../../helpers/numbers';
-import { sidebarTopology } from '../../topologies/Sidebar';
+import { headerTopology } from '../../topologies/Header';
 
 import { CollectionTypes } from './types';
 
 class CollectionSidebar extends React.PureComponent {
   static type = CollectionTypes;
 
-  static topology = sidebarTopology;
+  static topology = headerTopology;
 
   static mapDataToProps = [
     NS.argu('unreadCount'),

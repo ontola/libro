@@ -14,7 +14,7 @@ import {
 } from '../../../components/SideBarLink';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import SHACL from '../../../helpers/shacl';
-import { sidebarTopology } from '../../../topologies/Sidebar';
+import { headerTopology } from '../../../topologies/Header';
 
 class Href extends React.PureComponent {
   static type = [
@@ -25,7 +25,7 @@ class Href extends React.PureComponent {
 
   static property = NS.argu('href');
 
-  static topology = sidebarTopology;
+  static topology = headerTopology;
 
   static mapDataToProps = [
     NS.argu('action'),

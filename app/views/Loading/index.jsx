@@ -28,7 +28,7 @@ import { hoverBoxTopology } from '../../topologies/HoverBox';
 import { inlineTopology } from '../../topologies/Inline';
 import { pageTopology } from '../../topologies/Page';
 import { parentTopology } from '../../topologies/Parent';
-import { sidebarTopology } from '../../topologies/Sidebar';
+import { headerTopology } from '../../topologies/Header';
 import { voteBubbleTopology } from '../../topologies/VoteBubble';
 import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 
@@ -85,7 +85,7 @@ export default [
     LoadingSideBarLink,
     NS.ll('LoadingResource'),
     RENDER_CLASS_NAME,
-    sidebarTopology
+    headerTopology
   ),
   LinkedRenderStore.registerRenderer(
     LoadingDetail,
