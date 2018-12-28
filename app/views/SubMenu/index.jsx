@@ -8,7 +8,7 @@ import React, { PureComponent } from 'react';
 
 import { SideBarCollapsible } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
-import { SideBarLinkIcon } from '../../components/SideBarLink/index';
+import { HeaderLinkIcon } from '../../components/HeaderLink/index';
 import { headerTopology } from '../../topologies/Header';
 
 import Label from './properties/label';
@@ -23,7 +23,7 @@ class SubMenuSideBar extends PureComponent {
 
     const label = (
       <Property forSubMenu label={NS.argu('href')}>
-        <SideBarLinkIcon />
+        <HeaderLinkIcon />
         <Property label={NS.schema('name')} />
       </Property>
     );

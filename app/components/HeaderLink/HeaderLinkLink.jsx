@@ -17,7 +17,7 @@ const propTypes = {
   to: PropTypes.string,
 };
 
-class SideBarLinkLink extends PureComponent {
+class HeaderLinkLink extends PureComponent {
   render() {
     const {
       children,
@@ -29,7 +29,7 @@ class SideBarLinkLink extends PureComponent {
     if (to === undefined) {
       return (
         <button
-          className="SideBarLink__link"
+          className="HeaderLink__link"
           onClick={onClick}
         >
           {children}
@@ -40,7 +40,7 @@ class SideBarLinkLink extends PureComponent {
     if (isDifferentOrigin(to)) {
       return (
         <a
-          className="SideBarLink__link"
+          className="HeaderLink__link"
           href={to}
           rel="nofollow noopener noreferrer"
           target="_blank"
@@ -55,8 +55,8 @@ class SideBarLinkLink extends PureComponent {
 
     return (
       <LinkComp
-        activeClassName="SideBarLink--active"
-        className="SideBarLink__link"
+        activeClassName="HeaderLink--active"
+        className="HeaderLink__link"
         exact={isIndex}
         to={path}
         onClick={onClick}
@@ -67,7 +67,7 @@ class SideBarLinkLink extends PureComponent {
   }
 }
 
-SideBarLinkLink.propTypes = propTypes;
+HeaderLinkLink.propTypes = propTypes;
 
 const defaultAction = dispatch => () => dispatch(closeSideBar('Navbar'));
 
@@ -75,4 +75,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   closeBarOnClick: (ownProps.onClick || defaultAction(dispatch)),
 });
 
-export default withRouter(connect(null, mapDispatchToProps)(SideBarLinkLink));
+export default withRouter(connect(null, mapDispatchToProps)(HeaderLinkLink));

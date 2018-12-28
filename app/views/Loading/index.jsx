@@ -4,7 +4,7 @@ import React from 'react';
 import { NS } from '../../helpers/LinkedRenderStore';
 import {
   Loading,
-  LoadingSideBarLink,
+  LoadingHeaderLink,
   LoadingCard,
   LoadingCardFixed,
   LoadingMicroRow,
@@ -82,7 +82,7 @@ export default [
     ]
   ),
   LinkedRenderStore.registerRenderer(
-    LoadingSideBarLink,
+    LoadingHeaderLink,
     NS.ll('LoadingResource'),
     RENDER_CLASS_NAME,
     headerTopology

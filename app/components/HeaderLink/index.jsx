@@ -5,14 +5,14 @@ import FontAwesome from 'react-fontawesome';
 import CountBubble from '../CountBubble';
 import { isDifferentOrigin } from '../../helpers/iris';
 
-import './SideBarLink.scss';
-import SideBarLinkIcon from './SideBarLinkIcon';
-import SideBarLinkImage, { SideBarLinkImageWrapper } from './SideBarLinkImage';
-import SideBarLinkLabel from './SideBarLinkLabel';
-import SideBarLinkLink from './SideBarLinkLink';
-import SideBarLinkWrapper from './SideBarLinkWrapper';
+import './HeaderLink.scss';
+import HeaderLinkIcon from './HeaderLinkIcon';
+import HeaderLinkImage, { HeaderLinkImageWrapper } from './HeaderLinkImage';
+import HeaderLinkLabel from './HeaderLinkLabel';
+import HeaderLinkLink from './HeaderLinkLink';
+import HeaderLinkWrapper from './HeaderLinkWrapper';
 
-class SideBarLink extends React.PureComponent {
+class HeaderLink extends React.PureComponent {
   static propTypes = {
     bold: PropTypes.bool,
     closeBarOnClick: PropTypes.func,
@@ -45,40 +45,40 @@ class SideBarLink extends React.PureComponent {
     const presentationIcon = to && isDifferentOrigin(to) ? 'external-link' : icon;
 
     return (
-      <SideBarLinkWrapper bold={bold}>
-        <SideBarLinkLink
+      <HeaderLinkWrapper bold={bold}>
+        <HeaderLinkLink
           exact={isIndex}
           to={to}
           onClick={onClick || closeBarOnClick}
         >
           {presentationIcon && (
-            <SideBarLinkIcon>
+            <HeaderLinkIcon>
               <FontAwesome name={presentationIcon} />
-            </SideBarLinkIcon>
+            </HeaderLinkIcon>
           )}
           {imageUrl && (
-            <SideBarLinkImageWrapper>
-              <SideBarLinkImage imageUrl={imageUrl} />
-            </SideBarLinkImageWrapper>
+            <HeaderLinkImageWrapper>
+              <HeaderLinkImage imageUrl={imageUrl} />
+            </HeaderLinkImageWrapper>
           )}
-          <SideBarLinkLabel>
+          <HeaderLinkLabel>
             {label}
-          </SideBarLinkLabel>
+          </HeaderLinkLabel>
           {(count !== undefined && count > 0) && (
-            <div className="SideBarLink__count-wrapper">
+            <div className="HeaderLink__count-wrapper">
               <CountBubble count={count} />
             </div>
           )}
-        </SideBarLinkLink>
-      </SideBarLinkWrapper>
+        </HeaderLinkLink>
+      </HeaderLinkWrapper>
     );
   }
 }
 
-export default SideBarLink;
+export default HeaderLink;
 export {
-  SideBarLinkIcon,
-  SideBarLinkImageWrapper,
-  SideBarLinkLink,
-  SideBarLinkWrapper,
+  HeaderLinkIcon,
+  HeaderLinkImageWrapper,
+  HeaderLinkLink,
+  HeaderLinkWrapper,
 };

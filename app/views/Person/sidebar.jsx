@@ -2,8 +2,8 @@ import { Property, register } from 'link-redux';
 import React from 'react';
 
 import { LDLink } from '../../components';
-import SideBarLinkLabel from '../../components/SideBarLink/SideBarLinkLabel';
-import SidebarLinkIcon from '../../components/SideBarLink/SideBarLinkIcon';
+import HeaderLinkLabel from '../../components/HeaderLink/HeaderLinkLabel';
+import SidebarLinkIcon from '../../components/HeaderLink/HeaderLinkIcon';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { headerTopology } from '../../topologies/Header';
 
@@ -16,14 +16,14 @@ class CurrentActorSidebar extends React.PureComponent {
 
   render() {
     return (
-      <div className="SideBarLink">
-        <LDLink className="SideBarLink__link">
+      <div className="HeaderLink">
+        <LDLink className="HeaderLink__link">
           <SidebarLinkIcon>
             <Property label={NS.schema('image')} />
           </SidebarLinkIcon>
-          <SideBarLinkLabel>
+          <HeaderLinkLabel>
             <Property label={NS.schema('name')} />
-          </SideBarLinkLabel>
+          </HeaderLinkLabel>
         </LDLink>
         <Property label={NS.schema('email')} />
       </div>

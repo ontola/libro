@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 
 import MenuSectionLabel from '../MenuSectionLabel';
-import SideBarLink from '../SideBarLink';
+import HeaderLink from '../HeaderLink';
 import { checkLuminance } from '../../helpers/color';
 import path from '../../helpers/paths';
 import { currentURL } from '../../helpers/iris';
@@ -64,13 +64,13 @@ class NavBarContent extends React.PureComponent {
           {actorType !== 'GuestUser' && <LinkedResourceContainer subject={NS.app('n')} topology={NS.argu('sidebar')} />}
           <LinkedResourceContainer subject={NS.app('apex/menus/info')} topology={NS.argu('sidebar')} />
           {__DEVELOPMENT__ && (
-            <SideBarLink
+            <HeaderLink
               icon="gears"
               label="DevBrowser"
               to={`/d/browser?iri=${encodeURI(currentURL())}`}
             />
           )}
-          <SideBarLink
+          <HeaderLink
             icon="close"
             label="Exit beta"
             onClick={() => { window.location.host = window.location.host.split('app.').pop(); }}

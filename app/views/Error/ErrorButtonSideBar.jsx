@@ -4,8 +4,8 @@ import FontAwesome from 'react-fontawesome';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
 import { BlurButton } from '../../components';
-import SideBarLinkIcon from '../../components/SideBarLink/SideBarLinkIcon';
-import SideBarLinkLabel from '../../components/SideBarLink/SideBarLinkLabel';
+import HeaderLinkIcon from '../../components/HeaderLink/HeaderLinkIcon';
+import HeaderLinkLabel from '../../components/HeaderLink/HeaderLinkLabel';
 
 import ErrorButtonWithFeedback from './ErrorButtonWithFeedback';
 import { titleForStatus } from './ErrorMessages';
@@ -33,22 +33,22 @@ class ErrorButtonSideBar extends ErrorButtonWithFeedback {
 
     return (
       <BlurButton
-        className="SideBarLink"
+        className="HeaderLink"
         style={{
           cursor: 'pointer',
         }}
         title={`${titleForStatus(linkRequestStatus)} ${retryText}`}
         onClick={this.reload}
       >
-        <SideBarLinkIcon>
+        <HeaderLinkIcon>
           <FontAwesome
             name={this.state.loading ? 'spinner' : 'exclamation-triangle'}
             spin={this.state.loading}
           />
-        </SideBarLinkIcon>
-        <SideBarLinkLabel>
+        </HeaderLinkIcon>
+        <HeaderLinkLabel>
           <FormattedMessage id="https://app.argu.co/i18n/errors/inlineButton/label" />
-        </SideBarLinkLabel>
+        </HeaderLinkLabel>
       </BlurButton>
     );
   }

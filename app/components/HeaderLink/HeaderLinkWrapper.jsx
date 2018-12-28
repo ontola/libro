@@ -7,19 +7,19 @@ const propTypes = {
   children: PropTypes.node,
 };
 
-class SideBarLinkWrapper extends PureComponent {
+class HeaderLinkWrapper extends PureComponent {
   render() {
     const { children, bold } = this.props;
 
     const classes = classNames({
-      SideBarLink: true,
-      'SideBarLink--bold': bold,
+      HeaderLink: true,
+      'HeaderLink--bold': bold,
     });
 
     return <div className={classes}>{children}</div>;
   }
 }
 
-SideBarLinkWrapper.propTypes = propTypes;
+HeaderLinkWrapper.propTypes = propTypes;
 
-export default SideBarLinkWrapper;
+export default HeaderLinkWrapper;

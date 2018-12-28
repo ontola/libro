@@ -9,9 +9,9 @@ import React from 'react';
 
 import { withSideBarCollapsibleActions } from '../../../components/SideBarCollapsible';
 import {
-  SideBarLinkLink,
-  SideBarLinkWrapper,
-} from '../../../components/SideBarLink';
+  HeaderLinkLink,
+  HeaderLinkWrapper,
+} from '../../../components/HeaderLink';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import SHACL from '../../../helpers/shacl';
 import { headerTopology } from '../../../topologies/Header';
@@ -73,14 +73,14 @@ class Href extends React.PureComponent {
     } = this.props;
 
     return (
-      <SideBarLinkWrapper>
-        <SideBarLinkLink
+      <HeaderLinkWrapper>
+        <HeaderLinkLink
           to={href ? href.value : '#'}
           onClick={handleClick || this.clickHandler()}
         >
           {children}
-        </SideBarLinkLink>
-      </SideBarLinkWrapper>
+        </HeaderLinkLink>
+      </HeaderLinkWrapper>
     );
   }
 }

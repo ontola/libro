@@ -3,7 +3,7 @@ import { Property, register } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { SideBarLinkImageWrapper } from '../../components/SideBarLink';
+import { HeaderLinkImageWrapper } from '../../components/HeaderLink';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { dropdownContentTopology } from '../../topologies/DropdownContent';
@@ -56,9 +56,9 @@ export default [
   ImageObjectPageHeader,
   LinkedRenderStore.registerRenderer(
     () => (
-      <SideBarLinkImageWrapper data-test="ImageObject-sidebar">
+      <HeaderLinkImageWrapper data-test="ImageObject-sidebar">
         <Property label={[NS.schema('thumbnail'), NS.argu('imgUrl64x64')]} />
-      </SideBarLinkImageWrapper>
+      </HeaderLinkImageWrapper>
     ),
     NS.schema('ImageObject'),
     RENDER_CLASS_NAME,

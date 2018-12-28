@@ -21,7 +21,7 @@ const messages = defineMessages({
 
 const propTypes = {
   alwaysMountChildren: PropTypes.bool,
-  // A collection of SideBarLinks
+  // A collection of HeaderLinks
   children: PropTypes.node,
   /**
    * Aria label for the collapsible caret elem

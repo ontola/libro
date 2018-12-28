@@ -60,7 +60,7 @@ export {
   LoadingPage,
   LoadingParent,
   LoadingRow,
-  LoadingSideBarLink,
+  LoadingHeaderLink,
 } from './components/Loading/index';
 export { default as Markdown } from './components/Markdown/index';
 export { default as MarkdownFixedPreview } from './components/MarkdownFixedPreview/index';
@@ -75,7 +75,7 @@ export { default as Progress } from './components/Progress/index';
 export { default as ProgressBar } from './components/ProgressBar/index';
 export { default as Resource } from './components/Resource/index';
 export { default as SideBar } from './components/SideBar/index';
-export { default as SideBarLink } from './components/SideBarLink/index';
+export { default as HeaderLink } from './components/HeaderLink/index';
 export { default as SideBarCollapsible } from './components/SideBarCollapsible/index';
 export {
   SignInFormCard,

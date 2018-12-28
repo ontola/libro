@@ -1,6 +1,6 @@
 @import '../shared/config';
 
-.SideBarLink {
+.HeaderLink {
   align-content: center;
   align-items: center;
   display: flex;
@@ -21,7 +21,7 @@
     width: .3em;
   }
 
-  .SideBarLink__link {
+  .HeaderLink__link {
     align-items: center;
     display: flex;
     flex-grow: 1;
@@ -34,20 +34,20 @@
   }
 
   &--bold {
-    .SideBarLink__label {
+    .HeaderLink__label {
       font-weight: bold;
       padding-left: 2em;
     }
   }
 }
 
-.SideBarLink--active {
+.HeaderLink--active {
   &::after {
     background-color: color('transparent', 'mid-light');
   }
 }
 
-.SideBarLink__icon {
+.HeaderLink__icon {
   align-items: center;
   display: flex;
   flex-shrink: 1;
@@ -57,7 +57,7 @@
   width: 1.5em;
 }
 
-.SideBarLink__image {
+.HeaderLink__image {
   background-size: cover;
   border-radius: 100%;
   height: 1.5em;
@@ -69,7 +69,7 @@
   }
 }
 
-.SideBarLink__label {
+.HeaderLink__label {
   align-items: center;
   display: flex;
   flex: 1;
@@ -78,19 +78,19 @@
   white-space: nowrap;
 }
 
-.SideBarLink__count-wrapper {
+.HeaderLink__count-wrapper {
   position: absolute;
   right: .5rem;
   top: .35rem;
 }
 
-.SideBarLink__truncated-label,
-.SideBarLink__truncated-label * {
+.HeaderLink__truncated-label,
+.HeaderLink__truncated-label * {
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.SideBarLink__link,
+.HeaderLink__link,
 .SideBarCollapsible__toggle {
   &:focus,
   &:hover {

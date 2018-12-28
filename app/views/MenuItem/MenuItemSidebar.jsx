@@ -10,7 +10,7 @@ import {
   Resource,
   SideBarCollapsible,
 } from '../../components';
-import SideBarLinkIcon from '../../components/SideBarLink/SideBarLinkIcon';
+import HeaderLinkIcon from '../../components/HeaderLink/HeaderLinkIcon';
 import { isDifferentOrigin } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { headerTopology } from '../../topologies/Header';
@@ -54,9 +54,9 @@ class MenuItemSidebar extends React.PureComponent {
         id={id}
         label={NS.argu('href')}
       >
-        <SideBarLinkIcon>
+        <HeaderLinkIcon>
           {icon}
-        </SideBarLinkIcon>
+        </HeaderLinkIcon>
         <Property label={NS.schema('name')} />
       </Property>
     );

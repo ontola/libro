@@ -6,7 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { SideBarLink } from '../../components';
+import { HeaderLink } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { tryParseInt } from '../../helpers/numbers';
 import { headerTopology } from '../../topologies/Header';
@@ -32,7 +32,7 @@ class CollectionSidebar extends React.PureComponent {
     const { subject, unreadCount } = this.props;
 
     return (
-      <SideBarLink
+      <HeaderLink
         count={tryParseInt(unreadCount)}
         icon="bell"
         label={<Property label={NS.as('name')} />}

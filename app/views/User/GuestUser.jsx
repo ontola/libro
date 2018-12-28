@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { NS } from '../../helpers/LinkedRenderStore';
-import { SideBarLink } from '../../components';
+import { HeaderLink } from '../../components';
 import path from '../../helpers/paths';
 import { headerTopology } from '../../topologies/Header';
 
@@ -25,7 +25,7 @@ const GuestUserActor = ({ redirectURL }) => {
 
   return (
     <React.Fragment>
-      <SideBarLink
+      <HeaderLink
         icon="sign-in"
         label={label}
         to={path.signIn(redirectURL)}

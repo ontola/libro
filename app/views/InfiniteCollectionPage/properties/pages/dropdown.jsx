@@ -11,7 +11,7 @@ import FontAwesome from 'react-fontawesome';
 
 import {
   Dropdown,
-  SideBarLink,
+  HeaderLink,
 } from '../../../../components';
 import { NS } from '../../../../helpers/LinkedRenderStore';
 import { headerTopology } from '../../../../topologies/Header';
@@ -27,7 +27,7 @@ const PagesDropdown = (props) => {
       >
         <LinkedResourceContainer subject={props.linkedProp} />
       </Dropdown>
-      <SideBarLink label={label} to={props.subject} />
+      <HeaderLink label={label} to={props.subject} />
     </div>
   );
 };

@@ -2,7 +2,7 @@ import LinkedRenderStore from 'link-lib';
 import { linkedPropType } from 'link-redux';
 import React from 'react';
 
-import SideBarLinkLabel from '../../../components/SideBarLink/SideBarLinkLabel';
+import HeaderLinkLabel from '../../../components/HeaderLink/HeaderLinkLabel';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { headerTopology } from '../../../topologies/Header';
 
@@ -11,9 +11,9 @@ const propTypes = {
 };
 
 const SubMenuLabelProp = ({ linkedProp }) => (
-  <SideBarLinkLabel>
+  <HeaderLinkLabel>
     {linkedProp.value}
-  </SideBarLinkLabel>
+  </HeaderLinkLabel>
 );
 
 SubMenuLabelProp.propTypes = propTypes;
