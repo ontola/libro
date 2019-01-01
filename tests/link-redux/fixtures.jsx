@@ -1,4 +1,3 @@
-import Immutable from 'immutable';
 import LinkedRenderStore, { memoizedNamespace } from 'link-lib';
 import { LinkedResourceContainer, Property, RenderStoreProvider } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -12,16 +11,16 @@ import { defaultContext } from './utilities';
 
 const exNS = memoizedNamespace('http://example.org/');
 
-const context = (iri, lrs, store, initialState = undefined) => defaultContext({
+const context = (iri, lrs, store) => defaultContext({
   lrs: lrs || true,
   store: store || true,
   subject: iri,
-}, initialState);
+});
 
-function chargeLRS(id, obj, store, initialState) {
+function chargeLRS(id, obj, store) {
   const lrs = new LinkedRenderStore();
   lrs.store.addStatements(obj);
-  return context(exNS(id), lrs, store, initialState);
+  return context(exNS(id), lrs, store);
 }
 
 function getSubject(obj, subject) {
@@ -52,11 +51,9 @@ export function toArr(obj) {
   return statements;
 }
 
-export const generateCtx = (obj, subject = null, initialState = undefined) => chargeLRS(
+export const generateCtx = (obj, subject = null) => chargeLRS(
   getSubject(obj, subject),
-  toArr(obj),
-  undefined,
-  initialState
+  toArr(obj)
 );
 
 export const empty = (id = '0', store = false) => chargeLRS(id, [], store);
@@ -81,9 +78,7 @@ export const loc = ({
     throw new Error('No subject nor resources given');
   }
 
-  const versions = Object.keys(resources).reduce((acc, k, i) => ({ [k]: `test${i}`, ...acc }), {});
-  const initialState = new Immutable.Map().set('linkedObjects', versions);
-  const ctx = generateCtx(resources, subject, initialState);
+  const ctx = generateCtx(resources, subject);
   if (Array.isArray(components)) {
     ctx.lrs.registerAll(...components);
   }

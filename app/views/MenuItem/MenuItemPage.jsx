@@ -33,7 +33,11 @@ class MenuItemPage extends React.PureComponent {
     primaryResourceTopology,
   ];
 
-  static mapDataToProps = [NS.argu('menuItems'), NS.argu('parentMenu')];
+  static mapDataToProps = {
+    dataSubjects: NS.argu('menuItems'),
+    menuItems: NS.argu('menuItems'),
+    parentMenu: NS.argu('parentMenu'),
+  };
 
   static propTypes = {
     lrs: lrsType,
@@ -50,8 +54,7 @@ class MenuItemPage extends React.PureComponent {
     const { lrs, menuItems, subject } = this.props;
 
     if (menuItems && currentURL() === subject.value) {
-      const firstTab = lrs.getResourceProperty(menuItems, NS.rdf('_0'));
-      return firstTab;
+      return lrs.getResourceProperty(menuItems, NS.rdf('_0'));
     }
 
     return undefined;

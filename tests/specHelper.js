@@ -135,7 +135,7 @@ function argUnit(comp, func, opts = {}) {
       element = React.createElement(RenderStoreProvider, { value: lrs }, element);
     }
     if (opts.redux || opts.intl) {
-      element = React.createElement(Provider, { store: generateStore(lrs) }, element);
+      element = React.createElement(Provider, { store: generateStore() }, element);
     }
     if (opts.intl) {
       element = React.createElement(IntlProvider, { locale: 'en' }, element);

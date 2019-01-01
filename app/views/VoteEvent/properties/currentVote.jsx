@@ -21,8 +21,7 @@ class CurrentVote extends PropertyBase {
   shouldComponentUpdate(nextProps) {
     return this.props.subject !== nextProps.subject
       || this.props.linkVersion !== nextProps.linkVersion
-      || this.props.currentVote !== nextProps.currentVote
-      || this.props.voteExpiryHack !== nextProps.voteExpiryHack;
+      || this.props.currentVote !== nextProps.currentVote;
   }
 
   getEntryPoint() {
@@ -91,10 +90,10 @@ export const getVoteButtons = (options) => {
         <CurrentVote
           base={this.props.votes.value}
           currentVote={this.props.currentVote}
+          dataSubjects={this.props.dataSubjects}
           key={side}
           lrs={this.props.lrs}
           side={side}
-          voteExpiryHack={this.props.voteExpiryHack}
         />
       ));
 
@@ -112,15 +111,15 @@ export const getVoteButtons = (options) => {
   return connect((state, ownProps) => ({
     showSignInFlow: ownProps.currentVote
       && ['GuestUser', 'UnconfirmedUser'].includes(getCurrentUserType(state)),
-    voteExpiryHack: ownProps.currentVote && state.get('linkedObjects')[ownProps.currentVote.value],
   }))(withLinkCtx(VoteButtons));
 };
 
 export default LinkedRenderStore.registerRenderer(
-  link([
-    NS.argu('currentVote'),
-    NS.argu('votes'),
-  ])(getVoteButtons([NS.argu('yes'), NS.argu('other'), NS.argu('no')])),
+  link({
+    currentVote: NS.argu('currentVote'),
+    dataSubjects: NS.argu('currentVote'),
+    votes: NS.argu('votes'),
+  })(getVoteButtons([NS.argu('yes'), NS.argu('other'), NS.argu('no')])),
   NS.argu('VoteEvent'),
   NS.argu('currentVote'),
   allTopologies

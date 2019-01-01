@@ -35,6 +35,7 @@ const propTypes = {
 class Contains extends PropertyBase {
   shouldComponentUpdate(nextProps) {
     return this.props.subject !== nextProps.subject
+      || this.props.contains !== nextProps.contains
       || this.props.linkVersion !== nextProps.linkVersion
       || this.props.lastOrganization !== nextProps.lastOrganization;
   }
@@ -42,7 +43,7 @@ class Contains extends PropertyBase {
   currentOrg() {
     const { lastOrganization, contains } = this.props;
 
-    if (contains && this.props.lrs.tryEntity(contains)) {
+    if (contains && this.props.lrs.store.changeTimestamps[contains.sI]) {
       return contains;
     }
 
