@@ -43,7 +43,6 @@ const scriptSrc = [
   'https://cdn.polyfill.io',
   // Bugsnag CDN
   'https://d2wy8f7a9ursnm.cloudfront.net',
-  'https://cdn.logrocket.io',
   'https://storage.googleapis.com',
 ];
 const styleSrc = [

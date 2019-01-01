@@ -8254,19 +8254,6 @@ loglevel@^1.4.1:
   resolved "https://registry.yarnpkg.com/loglevel/-/loglevel-1.6.1.tgz#e0fc95133b6ef276cdc8887cdaf24aa6f156f8fa"
   integrity sha1-4PyVEztu8nbNyIh82vJKpvFW+Po=
 
-logrocket-react@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/logrocket-react/-/logrocket-react-1.0.0.tgz#088b7773bd85ca44a25a5471529849d9e3fdf50b"
-  integrity sha1-CIt3c72FykSiWlRxUphJ2eP99Qs=
-  dependencies:
-    react "16"
-    react-dom "16"
-
-logrocket@^0.6.17:
-  version "0.6.17"
-  resolved "https://registry.yarnpkg.com/logrocket/-/logrocket-0.6.17.tgz#4a9b6deed53a9c798204dd30203ed0dadd89c41c"
-  integrity sha512-w6ljir3vO5ONHMOdl/yfpJhWGH8O+22sdtMbB58CA9eS/oKIE1+0c3r6Xq0sCIyizlYsRbo98lHl3VpTqteDFQ==
-
 longest-streak@^2.0.1:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/longest-streak/-/longest-streak-2.0.2.tgz#2421b6ba939a443bb9ffebf596585a50b4c38e2e"

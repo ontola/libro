@@ -1,29 +1,17 @@
 import './helpers/polyfills';
 
-import LogRocket from 'logrocket';
-import setupLogRocketReact from 'logrocket-react';
 import React from 'react';
 import { render } from 'react-dom';
 import { ConnectedRouter } from 'connected-react-router/immutable';
 
 import { APP_ELEMENT } from './config';
 import './helpers/typescript';
-import { handle } from './helpers/logging';
 import LinkDevTools from './helpers/LinkDevTools';
 import LinkedRenderStore from './helpers/LinkedRenderStore';
 import './views';
 import IndexContainer from './containers/IndexContainer';
 import history from './helpers/history';
 import configureStore from './state';
-
-if (__PRODUCTION__) {
-  try {
-    LogRocket.init('argu/aod');
-    setupLogRocketReact(LogRocket);
-  } catch (e) {
-    handle(e);
-  }
-}
 
 const store = configureStore();
 
