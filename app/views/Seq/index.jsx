@@ -44,9 +44,11 @@ export class Seq extends PropertyBase {
   }
 }
 
-export default LinkedRenderStore.registerRenderer(
-  withLinkCtx(Seq),
-  NS.rdf('Seq'),
-  RENDER_CLASS_NAME,
-  allTopologies
-);
+export default [
+  LinkedRenderStore.registerRenderer(
+    withLinkCtx(Seq),
+    NS.rdf('Seq'),
+    RENDER_CLASS_NAME,
+    allTopologies
+  ),
+];

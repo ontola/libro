@@ -32,4 +32,6 @@ class DocumentPage extends React.PureComponent {
   }
 }
 
-export default register(DocumentPage);
+export default [
+  register(DocumentPage),
+];

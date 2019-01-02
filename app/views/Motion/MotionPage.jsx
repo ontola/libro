@@ -73,4 +73,6 @@ class MotionPage extends React.PureComponent {
   }
 }
 
-export default register(MotionPage);
+export default [
+  register(MotionPage),
+];

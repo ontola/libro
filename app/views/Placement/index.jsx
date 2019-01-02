@@ -31,4 +31,6 @@ class PlacementAlertDialog extends React.PureComponent {
   }
 }
 
-export default register(PlacementAlertDialog);
+export default [
+  register(PlacementAlertDialog),
+];

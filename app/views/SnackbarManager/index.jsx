@@ -54,4 +54,6 @@ class SnackbarManager extends React.PureComponent {
   }
 }
 
-export default register(SnackbarManager);
+export default [
+  register(SnackbarManager),
+];

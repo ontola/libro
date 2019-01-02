@@ -64,4 +64,6 @@ class Agenda extends PropertyBase {
   }
 }
 
-export default register(Agenda);
+export default [
+  register(Agenda),
+];

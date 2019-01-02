@@ -6,7 +6,6 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import { containerTopology } from '../../topologies/Container';
 import WidgetTopology from '../../topologies/WidgetTopology/WidgetTopology';
 
-
 class Widget extends PureComponent {
   static type = NS.argu('Widget');
 
@@ -27,4 +26,6 @@ class Widget extends PureComponent {
   }
 }
 
-export default register(Widget);
+export default [
+  register(Widget),
+];

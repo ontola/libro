@@ -29,4 +29,6 @@ class SnackbarView extends React.PureComponent {
   }
 }
 
-export default register(SnackbarView);
+export default [
+  register(SnackbarView),
+];

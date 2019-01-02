@@ -12,5 +12,5 @@ export default [
   ...Menu,
   ...organization,
   ...SidebarCollections,
-  Sequence,
+  ...Sequence,
 ];

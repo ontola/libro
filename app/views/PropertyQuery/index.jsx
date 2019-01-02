@@ -32,4 +32,6 @@ class PropertyQuery extends React.PureComponent {
   }
 }
 
-export default register(PropertyQuery);
+export default [
+  register(PropertyQuery),
+];
