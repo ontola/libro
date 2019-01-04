@@ -34,35 +34,39 @@ const settingsTableColumns = [
 ];
 
 export const collectionDisplayWrapper = (collectionDisplay, itemList, topology) => {
-  if (collectionDisplay === NS.argu('collectionDisplay/grid')) {
-    return (
-      <Grid>
-        {itemList}
-      </Grid>
-    );
-  }
-
-  if (collectionDisplay === NS.argu('collectionDisplay/settingsTable')) {
-    return (
-      <Card>
-        <Table>
-          <tbody>
+  switch (collectionDisplay) {
+    case NS.argu('collectionDisplay/grid'):
+      return (
+        <Grid>
+          {itemList}
+        </Grid>
+      );
+    case NS.argu('collectionDisplay/settingsTable'):
+      return (
+        <Card>
+          <Table>
+            <tbody>
+              {itemList}
+            </tbody>
+          </Table>
+        </Card>
+      );
+    case NS.argu('collectionDisplay/card'):
+      return (
+        <Card>
+          {itemList}
+        </Card>
+      );
+    default:
+      if (topology !== containerTopology) {
+        return (
+          <Container>
             {itemList}
-          </tbody>
-        </Table>
-      </Card>
-    );
+          </Container>
+        );
+      }
+      return itemList;
   }
-
-  if (collectionDisplay === NS.argu('collectionDisplay/default') && topology !== containerTopology) {
-    return (
-      <Container>
-        {itemList}
-      </Container>
-    );
-  }
-
-  return itemList;
 };
 
 class Items extends PropertyBase {
