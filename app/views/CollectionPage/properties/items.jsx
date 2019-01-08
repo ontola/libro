@@ -58,7 +58,7 @@ export const collectionDisplayWrapper = (collectionDisplay, itemList, topology) 
         </Card>
       );
     default:
-      if (topology !== containerTopology) {
+      if (collectionDisplay === NS.argu('collectionDisplay/default') && topology !== containerTopology) {
         return (
           <Container>
             {itemList}
