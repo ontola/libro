@@ -1,52 +1,20 @@
 @import '../shared/config';
 
 .BreadcrumbsBar {
-  border-radius: $border-radius-base;
-  box-shadow: $box-shadow;
-  display: inline-flex;
-  margin-top: 1rem;
-  max-width: 100%;
+  margin: auto;
+  max-width: 70rem;
 }
 
 .Breadcrumb {
-  // Similar to Detail
-  align-items: center;
-  background-color: color('grey', 'xx-light');
-  border-right: $grey-border;
-  box-sizing: border-box;
-  color: color('grey', 'xx-light-foreground-small');
-  display: inline-flex;
-  // Shrink all breadcrumbs
-  flex: 0 100000 auto;
-  font-size: font-size('small');
-  height: unit('x-large');
-  min-width: 1.4em;
-  overflow: hidden;
-  padding-left: unit('x-small');
-  padding-right: unit('x-small');
+  color: color('grey');
+  display: inline-block;
+  font-size: .85em;
+  line-height: 2rem;
+  -ms-flex: 0 100000 auto;
+  -ms-flex-align: center;
+  padding-left: .5rem;
+  padding-right: .5rem;
   white-space: nowrap;
-
-  &:hover {
-    background-color: color('white');
-    color: color('grey', 'mid-dark');
-  }
-
-  &:first-child {
-    border-bottom-left-radius: $border-radius-base;
-    border-top-left-radius: $border-radius-base;
-  }
-
-  &:last-child {
-    border-bottom-right-radius: $border-radius-base;
-    border-right: 0;
-    border-top-right-radius: $border-radius-base;
-    flex-grow: 1;
-    // Don't shrink the last breadcrumb
-    flex-shrink: 1;
-    max-width: none;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
 
   .Breadcrumb__text {
     overflow: hidden;
