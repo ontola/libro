@@ -15,7 +15,7 @@ import csp from '../utils/csp';
 import isBackend from '../utils/filters';
 import { isDownloadRequest, isHTMLHeader } from '../utils/http';
 import { bugsnagMiddleware } from '../utils/logging';
-import { backendProxy, fileProxy } from '../utils/proxies';
+import { backendProxy, bulkProxy, fileProxy } from '../utils/proxies';
 
 import application from './application';
 import login from './login';
@@ -85,6 +85,7 @@ export default function routes(app, port) {
 
   app.use(authenticationMiddleware);
 
+  app.all('/link-lib/bulk', isBackend, bulkProxy);
   app.all('*', isBackend, backendProxy);
 
   app.use(bodyParser.urlencoded({ extended: false }));

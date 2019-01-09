@@ -37,6 +37,7 @@ const middleware: Array<MiddlewareFn<any>> = [
 
 const LRS = createStore<ReactType>({}, middleware);
 serviceWorkerCommunicator.linkedRenderStore = LRS;
+(LRS as any).bulkFetch = true;
 
 // @monkey
 const dispatch = LRS.dispatch;
