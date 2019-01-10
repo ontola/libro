@@ -13,7 +13,8 @@ FROM node:11-alpine
 WORKDIR /usr/src/app
 
 COPY package.json /usr/src/app/package.json
-RUN npm i -q --production
+# The packages are needed to build shrink-ray-current's native extensions
+RUN apk add python alpine-sdk && npm i -q --production && apk del python alpine-sdk
 COPY --from=builder /usr/src/app/dist /usr/src/app/dist
 COPY --from=builder /usr/src/app/static /usr/src/app/static
 

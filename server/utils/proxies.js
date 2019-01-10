@@ -102,6 +102,8 @@ export const backendProxy = proxy({
 });
 
 export const bulkProxy = (req, res) => {
+  res.append('Content-Type', 'application/n-quads; charset=utf-8');
+
   const bulkUrl = new URL(req.url, constants.FRONTEND_URL);
   const requests = [];
   const resources = bulkUrl
@@ -153,7 +155,6 @@ export const bulkProxy = (req, res) => {
 
           writeStream.on('end', () => {
             res.write(buff);
-            res.flush();
             resolve();
           });
         });
@@ -170,11 +171,10 @@ export const bulkProxy = (req, res) => {
         reject(e);
       }
     }));
-  res.append('Content-Type', 'application/n-quads; charset=utf-8');
-  res.status(HttpStatus.OK);
 
   Promise.all(resources)
     .then(() => {
+      res.status(HttpStatus.OK);
       res.end();
     }).catch((e) => {
       logging.error(e);

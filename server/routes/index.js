@@ -2,8 +2,8 @@
 import bodyParser from 'body-parser';
 import csurf from 'csurf';
 import expressStaticGzip from 'express-static-gzip';
-import { NO_CONTENT } from 'http-status-codes';
 import morgan from 'morgan';
+import * as shrinkRay from 'shrink-ray-current';
 import uuidv4 from 'uuid/v4';
 
 import * as constants from '../../app/config';
@@ -41,11 +41,18 @@ function isBinaryishRequest(req, res, next) {
   return next('route');
 }
 
-const compressionOpts = (fallthrough = false) => ({
+const staticCompressionOpts = (fallthrough = false) => ({
   enableBrotli: true,
   fallthrough,
   orderPreference: ['br', 'gzip'],
 });
+
+const compressionOpts = {
+  filter: (req, res) => {
+    const type = res.getHeader('Content-Type');
+    return (type && type.startsWith('application/n-')) || shrinkRay.filter(req, res);
+  },
+};
 
 export default function routes(app, port) {
   app.use(morgan('dev'));
@@ -60,9 +67,9 @@ export default function routes(app, port) {
   app.use(csp);
 
   // Static directory for express
-  app.use('/static', expressStaticGzip('static', compressionOpts()));
-  app.use('/f_assets', expressStaticGzip('dist/public/f_assets', compressionOpts()));
-  app.use('/', expressStaticGzip('dist/public', compressionOpts(true)));
+  app.use('/static', expressStaticGzip('static', staticCompressionOpts()));
+  app.use('/f_assets', expressStaticGzip('dist/public/f_assets', staticCompressionOpts()));
+  app.use('/', expressStaticGzip('dist/public', staticCompressionOpts(true)));
   app.get('/assets/*', backendProxy);
   app.get('/packs/*', backendProxy);
   app.get('/photos/*', backendProxy);
@@ -76,14 +83,9 @@ export default function routes(app, port) {
 
   app.use(csurf());
 
-  app.get('/eat', isBackend, (req, res) => {
-    const snack = req.query.value.replace(/ /g, '+');
-    res.setHeader('Exec-Action', `https://ns.ontola.io/actions/snackbar?text=${snack}`);
-
-    res.status(NO_CONTENT).end();
-  });
-
   app.use(authenticationMiddleware);
+
+  app.use(shrinkRay(compressionOpts));
 
   app.all('/link-lib/bulk', isBackend, bulkProxy);
   app.all('*', isBackend, backendProxy);
