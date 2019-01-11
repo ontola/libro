@@ -419,8 +419,8 @@ class LinkDevTools {
   }
 
   utilities = {
-    namedNodeByIRI: rdf.Term.namedNodeByIRI,
-    namedNodeByStoreIndex: rdf.Term.namedNodeByStoreIndex,
+    namedNodeByIRI: rdf.NamedNode.find,
+    namedNodeByStoreIndex: rdf.NamedNode.findByStoreIndex,
   };
 
   get help() {

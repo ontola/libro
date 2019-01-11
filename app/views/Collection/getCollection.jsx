@@ -28,7 +28,7 @@ export default function getCollection({
       currentPage: PropTypes.string,
       defaultType: linkType,
       depth: PropTypes.number,
-      linkVersion: linkType,
+      linkVersion: PropTypes.number,
       linkedProp: linkedPropType,
       pages: linkType,
       renderWhenEmpty: PropTypes.bool,

@@ -2,10 +2,12 @@ import LinkedRenderStore from 'link-lib';
 import {
   link,
   LinkedResourceContainer,
-  PropertyBase,
+  linkType,
+  lrsType,
   TopologyProvider,
   withLinkCtx,
 } from 'link-redux';
+import * as PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
@@ -17,12 +19,14 @@ import { getCurrentUserType } from '../../../state/app/selectors';
 import { allTopologies } from '../../../topologies';
 import { cardVoteEventTopology } from '../../../topologies/CardVoteEvent';
 
-class CurrentVote extends PropertyBase {
-  shouldComponentUpdate(nextProps) {
-    return this.props.subject !== nextProps.subject
-      || this.props.linkVersion !== nextProps.linkVersion
-      || this.props.currentVote !== nextProps.currentVote;
-  }
+class CurrentVote extends React.PureComponent {
+  static propTypes = {
+    base: PropTypes.string,
+    lrs: lrsType,
+    option: linkType,
+    side: linkType,
+    subject: linkType,
+  };
 
   getEntryPoint() {
     const base = new URL(this.props.base.replace('/od/', '/lr/'));
@@ -34,30 +38,27 @@ class CurrentVote extends PropertyBase {
   }
 
   render() {
-    const entrypoint = this.getEntryPoint();
+    const entryPoint = this.getEntryPoint();
 
-    if (!entrypoint) {
+    if (!entryPoint) {
       return null;
-    }
-
-    let option;
-    if (this.props.currentVote) {
-      option = this
-        .props
-        .lrs
-        .getResourceProperty(this.props.currentVote, NS.schema('option'));
     }
 
     return (
       <LinkedResourceContainer
-        current={option !== undefined && option === this.props.side}
-        currentVote={this.props.currentVote}
-        subject={entrypoint}
+        current={this.props.option !== undefined && this.props.option === this.props.side}
+        currentVote={this.props.subject}
+        subject={entryPoint}
         variant={this.props.side.term}
       />
     );
   }
 }
+
+const CurrentVoteConnected = link(
+  [NS.schema('option')],
+  { forceRender: true }
+)(CurrentVote);
 
 export const getVoteButtons = (options) => {
   class VoteButtons extends TopologyProvider {
@@ -86,16 +87,24 @@ export const getVoteButtons = (options) => {
     }
 
     render() {
-      const voteButtons = options.map(side => (
-        <CurrentVote
-          base={this.props.votes.value}
-          currentVote={this.props.currentVote}
-          dataSubjects={this.props.dataSubjects}
-          key={side}
-          lrs={this.props.lrs}
-          side={side}
-        />
-      ));
+      const voteButtons = options.map((side) => {
+        const voteComp = (
+          <CurrentVoteConnected
+            base={this.props.votes.value}
+            key={side}
+            side={side}
+          />
+        );
+        if (this.props.currentVote) {
+          return (
+            <LinkedResourceContainer subject={this.props.currentVote}>
+              {voteComp}
+            </LinkedResourceContainer>
+          );
+        }
+
+        return voteComp;
+      });
 
       return this.wrap((
         <React.Fragment>
@@ -117,7 +126,6 @@ export const getVoteButtons = (options) => {
 export default LinkedRenderStore.registerRenderer(
   link({
     currentVote: NS.argu('currentVote'),
-    dataSubjects: NS.argu('currentVote'),
     votes: NS.argu('votes'),
   })(getVoteButtons([NS.argu('yes'), NS.argu('other'), NS.argu('no')])),
   NS.argu('VoteEvent'),

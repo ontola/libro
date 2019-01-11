@@ -13,7 +13,6 @@ import {
   NamedNode,
   Namespace,
   Statement,
-  Term,
 } from 'rdflib';
 import { ReactType } from 'react';
 import { defineMessages } from 'react-intl';
@@ -123,7 +122,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     new Statement(
       dialogManager,
       ontola('dialog/resource'),
-      Term.namedNodeByIRI(value),
+      NamedNode.find(value),
       store.namespaces.ll('replace'),
     ),
     new Statement(
