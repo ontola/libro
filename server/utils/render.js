@@ -43,6 +43,17 @@ const requiredFeatures = [
   'Symbol',
 ];
 const polyfillTag = `<script crossorigin="anonymous" src="https://cdn.polyfill.io/v2/polyfill.js?features=${requiredFeatures.join(',')}"></script>`;
+const deferredStyles = '    var loadDeferredStyles = function() {\n'
+  + '        var addStylesNode = document.getElementById(\'deferred-styles\');\n'
+  + '        var replacement = document.createElement("div");\n'
+  + '        replacement.innerHTML = addStylesNode.textContent;\n'
+  + '        document.body.appendChild(replacement);\n'
+  + '        addStylesNode.parentElement.removeChild(addStylesNode);\n'
+  + '    };\n'
+  + '    var raf = requestAnimationFrame || mozRequestAnimationFrame ||\n'
+  + '      webkitRequestAnimationFrame || msRequestAnimationFrame;\n'
+  + '    if (raf) raf(function() {window.setTimeout(loadDeferredStyles, 0);});\n'
+  + '    else window.addEventListener(\'load\', loadDeferredStyles);\n';
 
 export const renderFullPage = (html, devPort, domain, req, res) => {
   const bundleVersion = isModule(req.headers['user-agent'])
@@ -100,8 +111,10 @@ export const renderFullPage = (html, devPort, domain, req, res) => {
         <link rel="apple-touch-icon" type="image/png" sizes="128x128" href="/static/icon-medium.png">
         <link rel="icon" type="image/png" sizes="72x72" href="/static/icon-small.png">
         <link rel="apple-touch-icon" type="image/png" sizes="72x72" href="/static/icon-small.png">
-        <link crossorigin="anonymous" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-        ${bundleCSS}
+        <noscript id="deferred-styles">
+            ${bundleCSS}
+            <link crossorigin="anonymous" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        </noscript>
         ${polyfill}
       </head>
       <body>
@@ -140,6 +153,9 @@ export const renderFullPage = (html, devPort, domain, req, res) => {
         </script>
         <script async crossorigin="anonymous" src="${constants.ASSETS_HOST}${manifest['main.js']}"></script>
         ${(manifest['vendors~main.js'] && `<script async crossorigin="anonymous" src="${constants.ASSETS_HOST}${manifest['vendors~main.js']}"></script>`) || ''}
+        <script async nonce="${res.locals.nonce.toString()}">
+            ${deferredStyles}
+        </script>
       </body>
     </html>`;
 };
