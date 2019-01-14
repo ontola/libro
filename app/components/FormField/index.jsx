@@ -4,7 +4,7 @@ import { linkType } from 'link-redux';
 import PropTypes from 'prop-types';
 import { Literal, NamedNode } from 'rdflib';
 import React from 'react';
-import Textarea from 'react-textarea-autosize';
+import Textarea from 'react-autosize-textarea';
 import DateTimePicker from 'react-datetime-picker';
 
 import TextEditor from '../../containers/TextEditor';
@@ -260,7 +260,8 @@ class FormField extends React.Component {
     switch (type) {
       case 'textarea':
         element = Textarea;
-        sharedProps.minRows = minRows;
+        sharedProps.async = true;
+        sharedProps.rows = minRows;
         break;
       case 'markdown':
         element = TextEditor;

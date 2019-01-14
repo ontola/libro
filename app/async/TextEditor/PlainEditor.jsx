@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import Textarea from 'react-textarea-autosize';
+import Textarea from 'react-autosize-textarea';
 
 import {
   getEditorShowPreview,
