@@ -37,6 +37,8 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
   // eslint-disable-next-line no-param-reassign
   store.namespaces.ontola = ontola;
 
+  const ontolaActionPrefix = store.namespaces.ontola('actions/').value;
+
   const currentPath = (): string => {
     const l = history.location;
     return [
@@ -94,6 +96,21 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     ];
   };
 
+  const shiftSnackbar = () => {
+    const queue = store.getResourceProperty(ontola('snackbar/manager'), ontola('snackbar/queue')) as Collection;
+    queue.shift();
+
+    return [
+      new Statement(
+          ontola('snackbar/manager'),
+          ontola('snackbar/queue'),
+          // @ts-ignore
+          Collection.fromValue(queue.elements),
+          store.namespaces.ll('replace'),
+      ),
+    ];
+  };
+
   /**
    * Ontola dialog setup
    */
@@ -143,7 +160,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
   });
 
   return (next: MiddlewareActionHandler) => (iri: NamedNode, opts: any): Promise<any> => {
-    if (!iri.value.startsWith(store.namespaces.ontola('actions/').value)) {
+    if (!iri.value.startsWith(ontolaActionPrefix)) {
       return next(iri, opts);
     }
 
@@ -215,6 +232,11 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       }
       store.processDelta(showDialog(resource));
 
+      return Promise.resolve();
+    }
+
+    if (iri.value.startsWith(store.namespaces.ontola('actions/snackbar/finished').value)) {
+      store.processDelta(shiftSnackbar());
       return Promise.resolve();
     }
 

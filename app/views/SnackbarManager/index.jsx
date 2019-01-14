@@ -1,5 +1,6 @@
 import {
   LinkedResourceContainer,
+  lrsType,
   register,
 } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -18,6 +19,7 @@ class SnackbarManager extends React.PureComponent {
   static mapDataToProps = [NS.ontola('snackbar/queue')];
 
   static propTypes = {
+    lrs: lrsType,
     'snackbar/queue': PropTypes.instanceOf(Collection),
   };
 
@@ -26,8 +28,7 @@ class SnackbarManager extends React.PureComponent {
     let items = [];
 
     if (queue && queue.elements.length > 0) {
-      const next = queue.shift();
-      items = [next];
+      items = [queue.elements[0]];
     }
 
     return (
@@ -44,7 +45,7 @@ class SnackbarManager extends React.PureComponent {
             style={props}
           >
             <LinkedResourceContainer
-              close={() => this.forceUpdate()}
+              close={() => this.props.lrs.exec(NS.ontola('actions/snackbar/finished'))}
               subject={item}
             />
           </animated.div>
