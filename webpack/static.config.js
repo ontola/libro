@@ -3,6 +3,8 @@ const path = require('path');
 const BrotliPlugin = require('brotli-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 const { BugsnagBuildReporterPlugin } = require('webpack-bugsnag-plugins');
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -120,6 +122,10 @@ function createConfig(options) {
     },
 
     optimization: {
+      minimizer: [
+        new TerserPlugin(),
+        new OptimizeCSSAssetsPlugin({}),
+      ],
       splitChunks: {
         chunks: 'all',
         maxAsyncRequests: 8,
