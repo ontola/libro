@@ -21,3 +21,4 @@ nginx.key
 .env
 v8-compile-cache*
 yarn-error.log
+package-lock.json

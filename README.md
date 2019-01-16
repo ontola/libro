@@ -102,7 +102,7 @@ The unit (components) tests generally consist of two components:
 Since the underlying architecture/structure is still in early development, the exact requirements of
 tests are still ill-defined, so the following files can be used for reference for the creation of
 additional specs;
-- Feature tests: `app/features/Navbar/*.spec.jsx`
+- Feature tests: TBD
 - View tests: `app/views/MenuItem/MenuItem.spec.js`
 - Unit tests: `app/components/Button/Button.spec.js`
 
