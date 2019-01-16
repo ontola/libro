@@ -1,4 +1,4 @@
-import { linkType, register } from 'link-redux';
+import { linkType, lrsType, register } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -53,6 +53,7 @@ class CollapsedOmniformProp extends Component {
   static propTypes = {
     clickToOpen: PropTypes.bool,
     closeForm: PropTypes.func,
+    lrs: lrsType,
     openForm: PropTypes.func,
     opened: PropTypes.bool.isRequired,
     potentialAction: linkType,

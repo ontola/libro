@@ -10,6 +10,7 @@ const propTypes = {
   group: PropTypes.string,
   id: PropTypes.string.isRequired,
   onInitializeCollapsible: PropTypes.func.isRequired,
+  opened: PropTypes.bool,
   startOpened: PropTypes.bool,
 };
 

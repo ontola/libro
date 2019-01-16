@@ -92,7 +92,8 @@ export default [
     () => (
       <LDLink>
         <ConnectedHeading data-test="Thing-name-card-preview" size="4" />
-      </LDLink>),
+      </LDLink>
+    ),
     NS.schema('Thing'),
     NamePredicates,
     hoverBoxTopology

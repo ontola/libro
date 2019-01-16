@@ -11,6 +11,7 @@ const propTypes = {
     PropTypes.func,
     PropTypes.node,
   ]).isRequired,
+  className: PropTypes.string,
   method: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.instanceOf(Literal),

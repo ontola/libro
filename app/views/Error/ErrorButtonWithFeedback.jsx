@@ -16,6 +16,7 @@ const propTypes = {
     pathname: PropTypes.string,
   }),
   reloadLinkedObject: PropTypes.func.isRequired,
+  reset: PropTypes.func,
 };
 
 class ErrorButtonWithFeedback extends React.Component {

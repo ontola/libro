@@ -38,8 +38,6 @@ const propTypes = {
 
 const defaultProps = {
   autoFocus: false,
-  id: 'defaultId',
-  showRichEditor: true,
 };
 
 /* eslint react/prop-types: 0 */

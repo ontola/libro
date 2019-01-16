@@ -1,4 +1,5 @@
-import { register } from 'link-redux';
+import { linkType, register, subjectType } from 'link-redux';
+import * as PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -19,6 +20,13 @@ class CollectionContainer extends React.PureComponent {
   static topology = containerTopology;
 
   static mapDataToProps = [NS.as('totalItems')];
+
+  static propTypes = {
+    clickToOpen: PropTypes.bool,
+    depth: PropTypes.number,
+    subject: subjectType,
+    totalItems: linkType,
+  };
 
   constructor(props) {
     super(props);

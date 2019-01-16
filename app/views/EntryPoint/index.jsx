@@ -43,6 +43,7 @@ class EntryPoint extends React.PureComponent {
     image: linkType,
     name: linkType,
     onClick: PropTypes.func,
+    topology: linkType,
     url: linkType,
   };
 

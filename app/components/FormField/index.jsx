@@ -22,6 +22,7 @@ const propTypes = {
   // Preferably use variants to style this component.
   className: PropTypes.string,
   customErrors: PropTypes.arrayOf(PropTypes.string),
+  description: PropTypes.string,
   // Unique identifier. Used to link label to input.
   field: PropTypes.string.isRequired,
   /** @private */

@@ -1,6 +1,11 @@
 import Downshift from 'downshift';
 import { LinkedRenderStore } from 'link-lib';
-import { linkedPropType, LinkedResourceContainer, withLRS } from 'link-redux';
+import {
+  linkedPropType,
+  LinkedResourceContainer,
+  linkType,
+  withLRS,
+} from 'link-redux';
 import React from 'react';
 import VirtualList from 'react-tiny-virtual-list';
 import PropTypes from 'prop-types';
@@ -27,6 +32,7 @@ export const optionsType = PropTypes.oneOfType([
 
 class SelectInput extends React.Component {
   static propTypes = {
+    initialSelectedItem: linkType,
     lrs: PropTypes.instanceOf(LinkedRenderStore),
     options: optionsType.isRequired,
     sharedProps: PropTypes.shape({
