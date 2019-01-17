@@ -66,7 +66,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       snackbarQueue,
       store.namespaces.ll('add'),
     ),
-  ]);
+  ], true);
 
   const queueSnackbar = (text: string) => {
     const s = new BlankNode();
@@ -124,7 +124,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       ontola('dialog/Manager'),
       store.namespaces.ll('add'),
     ),
-  ]);
+  ], true);
 
   const hideDialog = () => [
     new Statement(
@@ -219,7 +219,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     }
 
     if (iri === store.namespaces.ontola('actions/dialog/close')) {
-      store.processDelta(hideDialog());
+      store.processDelta(hideDialog(), true);
       return Promise.resolve();
     }
 
@@ -230,13 +230,13 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       if (!resource) {
           throw new Error("Argument 'value' was missing.");
       }
-      store.processDelta(showDialog(resource));
+      store.processDelta(showDialog(resource), true);
 
       return Promise.resolve();
     }
 
     if (iri.value.startsWith(store.namespaces.ontola('actions/snackbar/finished').value)) {
-      store.processDelta(shiftSnackbar());
+      store.processDelta(shiftSnackbar(), true);
       return Promise.resolve();
     }
 
@@ -245,7 +245,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       if (!value) {
           throw new Error("Argument 'value' was missing.");
       }
-      store.processDelta(queueSnackbar(value));
+      store.processDelta(queueSnackbar(value), true);
 
       return Promise.resolve();
     }

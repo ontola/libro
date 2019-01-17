@@ -1,5 +1,7 @@
 import {
-  linkType, lrsType, register,
+  linkType,
+  lrsType,
+  register,
   subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';

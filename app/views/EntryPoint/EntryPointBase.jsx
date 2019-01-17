@@ -1,7 +1,8 @@
 import HttpStatus from 'http-status-codes';
-import { anyRDFValue, namedNodeByIRI } from 'link-lib';
+import { anyRDFValue } from 'link-lib';
 import { LinkedResourceContainer, linkType, PropertyBase } from 'link-redux';
 import PropTypes from 'prop-types';
+import { NamedNode } from 'rdflib';
 import React from 'react';
 
 import { convertKeysAtoB } from '../../helpers/data';
@@ -40,7 +41,7 @@ class EntryPointBase extends PropertyBase {
         } else {
           u.searchParams.set('type', 'paginated');
         }
-        const first = namedNodeByIRI(u.toString());
+        const first = NamedNode.find(u.toString());
         lrs.getEntity(targetCollection, { reload: true });
         lrs.getEntity(first, { reload: true });
         if (this.props.onDone) {

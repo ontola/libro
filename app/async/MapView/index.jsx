@@ -1,5 +1,4 @@
 import * as fa from 'fontawesome';
-import { namedNodeByIRI } from 'link-lib';
 import {
   LinkedResourceContainer,
   lrsType,
@@ -176,7 +175,7 @@ class Map extends React.Component {
 
     if (feature) {
       const id = feature.getId();
-      selected = lrs.getResourceProperty(namedNodeByIRI(id), NS.argu('placeable'));
+      selected = lrs.getResourceProperty(NamedNode.find(id), NS.argu('placeable'));
       position = feature.getGeometry().getCoordinates();
     }
 
@@ -264,7 +263,7 @@ class Map extends React.Component {
   highlightFeature(e) {
     const update = highlight => (feature) => {
       const image = this.props.lrs.getResourceProperty(
-        namedNodeByIRI(feature.getId()),
+        NamedNode.find(feature.getId()),
         NS.schema('image')
       );
       feature.setStyle(Map.generateMarkerImage(image.value, highlight));

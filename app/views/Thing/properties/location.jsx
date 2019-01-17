@@ -1,5 +1,6 @@
-import LinkedRenderStore, { namedNodeByIRI } from 'link-lib';
+import LinkedRenderStore from 'link-lib';
 import { linkedPropType, lrsType } from 'link-redux';
+import { NamedNode } from 'rdflib';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -17,7 +18,7 @@ const LocationDetail = ({ lrs, linkedProp }) => (
     to={linkedProp.value}
     onClick={(e) => {
       e.preventDefault();
-      lrs.exec(namedNodeByIRI(`${NS.ontola('actions/dialog/alert').value}?resource=${encodeURIComponent(linkedProp.value)}`));
+      lrs.exec(NamedNode.find(`${NS.ontola('actions/dialog/alert').value}?resource=${encodeURIComponent(linkedProp.value)}`));
     }}
   >
     <Detail

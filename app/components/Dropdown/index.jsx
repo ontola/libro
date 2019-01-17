@@ -1,7 +1,6 @@
 /* eslint-disable */
 import PropTypes from 'prop-types';
 import React from 'react';
-import { default as onClickOutside } from 'react-onclickoutside';
 import { animated, Transition } from 'react-spring';
 
 import DropdownContent from '../../topologies/DropdownContent/index';
@@ -43,6 +42,7 @@ class Dropdown extends React.Component {
       renderLeft: false,
     };
     this.calculateRenderLeft = this.calculateRenderLeft.bind(this);
+    this.close = this.close.bind(this);
     this.handleResize = this.handleResize.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.onMouseEnter = this.onMouseEnter.bind(this);
@@ -93,12 +93,6 @@ class Dropdown extends React.Component {
     } else {
       this.openedByClick = true;
       this.listeningToClick = true;
-    }
-  }
-
-  handleClickOutside() {
-    if (this.state.openState === true) {
-      this.close();
     }
   }
 
@@ -174,7 +168,10 @@ class Dropdown extends React.Component {
             visibility: 'hidden',
           }}
         >
-          <DropdownContent contentClassName={this.props.contentClassName}>
+          <DropdownContent
+            contentClassName={this.props.contentClassName}
+            disableOnClickOutside={true}
+          >
             <div ref={this.referenceElem}>
               {renderItem}
             </div>
@@ -197,6 +194,7 @@ class Dropdown extends React.Component {
               <DropdownContent
                 close={this.close}
                 contentClassName={this.props.contentClassName}
+                enableOnClickOutside={openState}
                 key="required"
                 renderLeft={renderLeft}
               >
@@ -213,4 +211,4 @@ class Dropdown extends React.Component {
 Dropdown.propTypes = propTypes;
 
 export { default as DropdownLink } from './DropdownLink';
-export default onClickOutside(Dropdown);
+export default Dropdown;

@@ -13,6 +13,15 @@ const resource = new BlankNode('g70120412320900');
 
 const testNS = Namespace('https://argu.dev/');
 
+const seq = [
+  testNS('menus/info#about'),
+  testNS('menus/info#team'),
+  testNS('menus/info#governments'),
+  testNS('menus/info#press_media'),
+  testNS('menus/info#support'),
+  testNS('menus/info#contact'),
+];
+
 const resources = {
   [resource]: {
     [NS.rdf('type')]: NS.rdf('Seq'),
@@ -70,14 +79,16 @@ describeView('Seq', components, resources, resource, () => {
 
   describe('#sequences', () => {
     it('filters its data', () => {
-      const result = subject.find('Seq').instance().sequences();
+      const result = subject.find('Seq > LinkedResourceContainer');
       expect(result).toHaveLength(children);
     });
 
     it('orders its data', () => {
-      const result = subject.find('Seq').instance().sequences();
+      const results = subject.find('Seq > LinkedResourceContainer');
+
+      expect(results).toHaveLength(seq.length);
       for (let i = 0; i < children; i++) {
-        expect(result[i].predicate.value).toEqual(NS.rdf(`_${i}`).value);
+        expect(results.at(i)).toHaveProp('subject', seq[i]);
       }
     });
   });

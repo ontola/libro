@@ -3,13 +3,13 @@ import {
   link,
   LinkedResourceContainer,
   Property,
-  PropertyBase,
   linkType,
   withLinkCtx,
 } from 'link-redux';
 import { NamedNode } from 'rdflib';
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import { getPage } from '../../state/pagination/selectors';
@@ -37,50 +37,55 @@ const mvcPropTypes = {
   totalCount: linkType,
 };
 
-class CollectionPage extends PropertyBase {
-  pagination() {
-    const collectionIRI = this.getLinkedObjectProperty(NS.as('partOf'));
-    return <Property collectionIRI={collectionIRI} label={NS.as('first')} />;
-  }
-
-  shouldComponentUpdate(nextProps) {
-    return this.props.linkedProp !== nextProps.linkedProp
-      || this.props.currentPage !== nextProps.currentPage
-      || this.props.linkVersion !== nextProps.linkVersion
-      || this.props.subject !== nextProps.subject;
-  }
-
-  render() {
-    let children;
-    const views = this.getLinkedObjectPropertyRaw(NS.as('pages'));
-    if (this.props.currentPage) {
-      children = (
-        <LinkedResourceContainer
-          depth={this.props.depth}
-          subject={new NamedNode(this.props.currentPage)}
-        />
-      );
-    } else {
-      children = (
-        <Property
-          forceRender
-          collectionDisplay={this.props.collectionDisplay}
-          depth={this.props.depth}
-          label={NS.as('items')}
-          renderLimit={Infinity}
-        />
-      );
-    }
-    const pagination = views.length === 0 ? this.pagination() : null;
-
-    return (
-      <React.Fragment>
-        {children}
-        {pagination}
-      </React.Fragment>
+const CollectionPage = (props) => {
+  let children;
+  if (props.currentPage) {
+    children = (
+      <LinkedResourceContainer
+        depth={props.depth}
+        subject={new NamedNode(props.currentPage)}
+      />
+    );
+  } else {
+    children = (
+      <Property
+        forceRender
+        collectionDisplay={props.collectionDisplay}
+        depth={props.depth}
+        label={NS.as('items')}
+        renderLimit={Infinity}
+      />
     );
   }
-}
+
+  let pagination = null;
+  if (props.views && props.views.length === 0) {
+    pagination = <Property collectionIRI={props.collectionIRI} label={NS.as('first')} />;
+  }
+
+  return (
+    <React.Fragment>
+      {children}
+      {pagination}
+    </React.Fragment>
+  );
+};
+
+CollectionPage.mapDataToProps = {
+  collectionIRI: NS.as('partOf'),
+  views: {
+    label: NS.as('pages'),
+    limit: Infinity,
+    returnType: 'statement',
+  },
+};
+CollectionPage.propTypes = {
+  collectionDisplay: linkType,
+  collectionIRI: linkType,
+  currentPage: PropTypes.string,
+  depth: PropTypes.number,
+  views: PropTypes.arrayOf(linkType),
+};
 
 const ReduxCollectionPage = connect((state, { subject }) => ({
   currentPage: getPage(state, subject),
@@ -129,8 +134,6 @@ const collectionViewSection = (shortCircuit = true) => {
   return CollectionViewSection;
 };
 
-const wrapUpdate = Component => withLinkCtx(Component);
-
 const membersViewsCount = {
   totalCount: {
     label: NS.as('totalItems'),
@@ -166,7 +169,7 @@ export default [
     cardAppendixTopology
   ),
   LinkedRenderStore.registerRenderer(
-    wrapUpdate(ConnectedCollectionView),
+    ConnectedCollectionView,
     CollectionViewTypes,
     RENDER_CLASS_NAME,
     [
@@ -175,7 +178,7 @@ export default [
     ]
   ),
   LinkedRenderStore.registerRenderer(
-    wrapUpdate(ConnectedCollectionView),
+    ConnectedCollectionView,
     CollectionViewTypes,
     RENDER_CLASS_NAME,
     [

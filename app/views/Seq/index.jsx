@@ -1,5 +1,12 @@
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { LinkedResourceContainer, PropertyBase, withLinkCtx } from 'link-redux';
+import {
+  LinkedResourceContainer,
+  register,
+  subjectType,
+  useDataInvalidation,
+  useLinkContext,
+} from 'link-redux';
+import PropTypes from 'prop-types';
+import { NamedNode } from 'rdflib';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
@@ -14,41 +21,43 @@ function numAsc(a, b) {
   return aP - bP;
 }
 
-export class Seq extends PropertyBase {
-  sequences() {
-    return this
-      .props
-      .lrs
-      .tryEntity(this.props.subject)
-      .filter(s => s && s.predicate.value.match(filter) !== null)
-      .sort(numAsc);
-  }
+export function Seq({ columns, depth, subject }) {
+  const context = useLinkContext();
+  const sequences = context
+    .lrs
+    .tryEntity(subject)
+    .filter(s => s && s.predicate.value.match(filter) !== null)
+    .sort(numAsc)
+    .map(s => s.object);
 
-  render() {
-    const sequences = this.sequences();
+  useDataInvalidation({ dataSubjects: sequences, subject }, context);
 
-    return (
-      sequences.map((s, i) => (
+  return (
+    <React.Fragment>
+      {sequences.map((s, i) => (
         <LinkedResourceContainer
-          columns={this.props.columns}
+          columns={columns}
           count={sequences.length}
-          data-test={`Seq-${i}-${s.object.value}`}
-          depth={this.props.depth}
+          data-test={`Seq-${i}-${s.value}`}
+          depth={depth}
           first={sequences[0].object}
-          key={`${this.props.subject}-${s.object}`}
+          key={`${subject}-${s}`}
           last={sequences[sequences.length - 1].object}
-          subject={s.object}
+          subject={s}
         />
-      ))
-    );
-  }
+      ))}
+    </React.Fragment>
+  );
 }
 
+Seq.propTypes = {
+  columns: PropTypes.arrayOf(NamedNode),
+  depth: PropTypes.number,
+  subject: subjectType,
+};
+Seq.type = NS.rdf('Seq');
+Seq.topology = allTopologies;
+
 export default [
-  LinkedRenderStore.registerRenderer(
-    withLinkCtx(Seq),
-    NS.rdf('Seq'),
-    RENDER_CLASS_NAME,
-    allTopologies
-  ),
+  register(Seq),
 ];

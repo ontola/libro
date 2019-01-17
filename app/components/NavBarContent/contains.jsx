@@ -8,6 +8,7 @@ import {
   linkType,
   subjectType,
   PropertyBase,
+  withLRS,
 } from 'link-redux';
 import React from 'react';
 import { defineMessages, injectIntl } from 'react-intl';
@@ -116,4 +117,4 @@ const mapDispatchToProps = dispatch => ({
 export default link(
   [defaultNS.argu('contains')],
   { forceRender: true }
-)(connect(mapStateToProps, mapDispatchToProps)(injectIntl(Contains)));
+)(connect(mapStateToProps, mapDispatchToProps)(injectIntl(withLRS(Contains))));

@@ -418,11 +418,6 @@ class LinkDevTools {
     return console.groupEnd();
   }
 
-  utilities = {
-    namedNodeByIRI: rdf.NamedNode.find,
-    namedNodeByStoreIndex: rdf.NamedNode.findByStoreIndex,
-  };
-
   get help() {
     function helpTableObj(method, desc) {
       return {
@@ -467,7 +462,6 @@ class LinkDevTools {
       helpTableObj('types', ''),
       helpTableObj('typeRenderers', 'Returns all registered type renderers.'),
       helpTableObj('propertyRenderers', 'Returns all registered property renderers (including type renderers).'),
-      helpTableObj('utilities', 'Some of the link utility methods for IRIs/namespaces.'),
     ];
     console.table(devTools, ['method', 'desc']);
     console.groupEnd();

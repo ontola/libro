@@ -1,4 +1,3 @@
-import { namedNodeByIRI } from 'link-lib';
 import {
   LinkedResourceContainer,
   linkType,
@@ -8,6 +7,7 @@ import {
   subjectType,
 } from 'link-redux';
 import * as PropTypes from 'prop-types';
+import { NamedNode } from 'rdflib';
 import React from 'react';
 import { Redirect } from 'react-router';
 
@@ -82,7 +82,7 @@ class MenuItemPage extends React.PureComponent {
     } else if (topLevel) {
       body = (
         <LinkedResourceContainer
-          subject={r || namedNodeByIRI(currentURL())}
+          subject={r || NamedNode.find(currentURL())}
           topLevel={false}
         />
       );

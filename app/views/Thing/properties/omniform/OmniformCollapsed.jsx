@@ -1,4 +1,8 @@
-import { linkType, lrsType, register } from 'link-redux';
+import {
+  linkType,
+  lrsType,
+  register,
+} from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';

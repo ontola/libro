@@ -1,8 +1,10 @@
-import LinkedRenderStore from 'link-lib';
 import {
   LinkedResourceContainer,
+  linkType,
+  register,
+  withLRS,
   labelType,
-  PropertyBase,
+  lrsType,
   subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -12,9 +14,20 @@ import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../../topologies';
 import { CollectionTypes } from '../types';
 
-class Pages extends PropertyBase {
+class Pages extends React.PureComponent {
+  static type = CollectionTypes;
+
+  static property = NS.as('pages');
+
+  static topology = allTopologies;
+
+  static hocs = [withLRS];
+
   render() {
-    const prop = this.getLinkedObjectPropertyRaw(this.props.label);
+    const prop = this.props.lrs.getResourcePropertyRaw(
+      this.props.subject,
+      this.props.label
+    );
 
     if (prop.length === 1) {
       return (
@@ -49,16 +62,11 @@ class Pages extends PropertyBase {
 }
 
 Pages.propTypes = {
+  collectionDisplay: linkType,
   depth: PropTypes.number,
-  label: labelType.isRequired,
+  label: labelType,
+  lrs: lrsType,
   subject: subjectType,
 };
 
-export default [
-  LinkedRenderStore.registerRenderer(
-    Pages,
-    CollectionTypes,
-    NS.as('pages'),
-    allTopologies
-  ),
-];
+export default [register(Pages)];

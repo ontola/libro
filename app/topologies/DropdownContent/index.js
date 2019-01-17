@@ -1,6 +1,7 @@
 /* eslint react/jsx-no-bind: 0 */
 /* eslint react/no-find-dom-node: 0 */
 import PropTypes from 'prop-types';
+import onClickOutside from 'react-onclickoutside';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import Topology from '../Topology';
@@ -30,6 +31,10 @@ class DropdownContent extends Topology {
 
     return `Dropdown__content ${collapseClass}${contentClassName}`;
   }
+
+  handleClickOutside() {
+    this.props.close();
+  }
 }
 
-export default DropdownContent;
+export default onClickOutside(DropdownContent);

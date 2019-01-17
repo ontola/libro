@@ -17,7 +17,7 @@ import { ReactType } from 'react';
 import { FRONTEND_ACCEPT, FRONTEND_URL } from '../config';
 
 // @ts-ignore
-import { processDelta } from './data';
+import { arguDeltaProcessor } from './data';
 import history from './history';
 import { log } from './logging';
 import ontolaMiddleware from './ontolaMiddleware';
@@ -38,9 +38,7 @@ const LRS = createStore<ReactType>({}, middleware);
 serviceWorkerCommunicator.linkedRenderStore = LRS;
 (LRS as any).bulkFetch = true;
 
-// @monkey
-const dispatch = LRS.dispatch;
-LRS.dispatch = (action: NamedNode, args: any) => dispatch(action, args).then((response) => processDelta(LRS, response));
+LRS.deltaProcessors.push(arguDeltaProcessor(LRS));
 
 transformers(LRS).forEach((t) =>
 // @ts-ignore TS2341

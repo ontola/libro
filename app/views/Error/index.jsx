@@ -29,6 +29,7 @@ import { dropdownContentTopology } from '../../topologies/DropdownContent';
 import { gridTopology } from '../../topologies/Grid';
 import { hoverBoxTopology } from '../../topologies/HoverBox';
 import { inlineTopology } from '../../topologies/Inline';
+import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 import { pageTopology } from '../../topologies/Page';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 import { sidebarTopology } from '../../topologies/Sidebar';
@@ -216,6 +217,7 @@ export default [
       detailsBarTopology,
       hoverBoxTopology,
       inlineTopology,
+      omniformFieldsTopology,
       parentTopology,
       voteBubbleTopology,
       voteEventResultTopology,

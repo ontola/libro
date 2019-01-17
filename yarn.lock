@@ -2994,10 +2994,10 @@ connect-redis@^3.4.0:
     debug "^4.0.1"
     redis "^2.8.0"
 
-connected-react-router@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/connected-react-router/-/connected-react-router-5.0.1.tgz#8379854fad7e027b1e27652c00ad534f8ad244b3"
-  integrity sha512-0QwWYPRGZQ7f284lmqc5kwC4T3iW3zrAH3zzi6uUMzTOxbA+mn38tAgMOoVo9m3pbskvONFtXiajgVkCElE9EQ==
+connected-react-router@^6.2.1:
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/connected-react-router/-/connected-react-router-6.2.1.tgz#c9088d7c26b3267bf0a0168df3105ddfc090dea6"
+  integrity sha512-7QFs0wPYvwrzA7NptHx0DgblNA/nVErX0TUjTiOCwXSaqj/1Ng+nEmEczrfdA8gw7kIzFIa08WJGMymdb7bAZA==
   dependencies:
     immutable "^3.8.1"
     seamless-immutable "^7.1.3"
@@ -5924,7 +5924,7 @@ hoist-non-react-statics@^2.5.0, hoist-non-react-statics@^2.5.5:
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
   integrity sha512-rqcy4pJo55FTTLWt+bU8ukscqHeE/e9KWvsOW2b/a3afxQZhwkQdT1rPPCJ0rYXdj4vNcasY8zHTH+jF/qStxw==
 
-hoist-non-react-statics@^3.1.0:
+hoist-non-react-statics@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.2.1.tgz#c09c0555c84b38a7ede6912b61efddafd6e75e1e"
   integrity sha512-TFsu3TV3YLY+zFTZDrN8L2DTFanObwmBLpWvJs1qfUuEQ5bTAdFcwfx2T/bsCXfM9QHSLvjfP+nihEl0yvozxw==
@@ -8033,15 +8033,15 @@ line-height@^0.3.1:
   dependencies:
     computed-style "~0.1.3"
 
-link-lib@=1.0.0-beta29-20190117T100020:
-  version "1.0.0-beta29-20190117T100020"
-  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-beta29-20190117T100020.tgz#fde94f8da0174efa480838ed0efadc6032af214f"
-  integrity sha512-3pwoYFf/fyo1+Akfpr58XYO2wHkizInh8RvobY6bxXVmujfA4FRvDWQUl6gUFx00XrMXXqqHPqdIjBea2+VmPg==
+link-lib@=1.0.0-beta29-20190124T144209:
+  version "1.0.0-beta29-20190124T144209"
+  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-beta29-20190124T144209.tgz#b72d5e8eefc9433183b621753e8a1d7ba6e7cac1"
+  integrity sha512-QKqA0zFUK8i7xSYKqxlswVDV00d/wB4HvG/8qLftSJEJuOU2L6F3HNZ3plRt75PkyT8V/BOdE1YAQgzXwfUrSA==
 
-link-redux@1.0.0-beta33-20190116T155442:
-  version "1.0.0-beta33-20190116T155442"
-  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-beta33-20190116T155442.tgz#d8579618289ea8e85329a69fcabe112c132b5a6c"
-  integrity sha512-1zzLwhnZss94RG3dZz3r0ZaznHnjU2OMzCX1kS4lxjMUS9uHHf2ADOsBxPMV85rdDmrkYCFPIQDz3VGj0elreg==
+link-redux@1.0.0-beta33-20190124T144209:
+  version "1.0.0-beta33-20190124T144209"
+  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-beta33-20190124T144209.tgz#a49407355a91973cb2b680d0d3817ff896eda8e2"
+  integrity sha512-DWjcc7369H21sGSnPolnaQBPkCoxLAQrp4DECHr+iZVsC94qJUBxLQjA9cz5f7KSxA6XaEUjQUfEeiaAaZm20A==
 
 lint-staged@^7.3.0:
   version "7.3.0"
@@ -11182,10 +11182,10 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7, rc@^1.2.8:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-"rdflib@npm:link-rdflib@0.19.1-20190116T155442":
-  version "0.19.1-20190116T155442"
-  resolved "https://registry.yarnpkg.com/link-rdflib/-/link-rdflib-0.19.1-20190116T155442.tgz#1d8efb2926e5467c1a03a5bfaa96b8556f37a665"
-  integrity sha512-Cmbfs3T7LC/rFjiEK/yrJ6ciEldBguhIBFShlZVl/1NXDSY3LHy6xUW0DGXrfHqOuWKlaSvUCJJ7m57XF5nI0Q==
+"rdflib@npm:link-rdflib@0.19.1-20190124T144209":
+  version "0.19.1-20190124T144209"
+  resolved "https://registry.yarnpkg.com/link-rdflib/-/link-rdflib-0.19.1-20190124T144209.tgz#16d9fb40a7609f156981b14e53631c4d6eb46053"
+  integrity sha512-g35E/W/kJSVFZ1LJtn42O0GmfIUhP2KhQP5D/TJsD/5k4B/csnHJbe5N/qqSxV74thPDYjD56WtzaPQWxFkSjw==
   dependencies:
     async "^0.9.x"
     jsonld "^0.4.5"
@@ -11425,7 +11425,7 @@ react-intl@^2.7.2:
     intl-relativeformat "^2.1.0"
     invariant "^2.1.1"
 
-react-is@^16.3.2, react-is@^16.5.2, react-is@^16.6.0, react-is@^16.6.1, react-is@^16.7.0:
+react-is@^16.3.2, react-is@^16.5.2, react-is@^16.6.1, react-is@^16.6.3, react-is@^16.7.0:
   version "16.7.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.7.0.tgz#c1bd21c64f1f1364c6f70695ec02d69392f41bfa"
   integrity sha512-Z0VRQdF4NPDoI0tsXVMLkJLiwEBa+RP66g0xDHxgxysxSoCUccSten4RTF/UFvZF1dZvZ9Zu1sx+MDXwcOR34g==
@@ -11491,18 +11491,17 @@ react-portal-stateless@^1.0.3:
   dependencies:
     prop-types "^15.5.8"
 
-react-redux@^5.0.7:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-5.1.1.tgz#88e368682c7fa80e34e055cd7ac56f5936b0f52f"
-  integrity sha512-LE7Ned+cv5qe7tMV5BPYkGQ5Lpg8gzgItK07c67yHvJ8t0iaD9kPFPAli/mYkiyJYrs2pJgExR2ZgsGqlrOApg==
+react-redux@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-6.0.0.tgz#09e86eeed5febb98e9442458ad2970c8f1a173ef"
+  integrity sha512-EmbC3uLl60pw2VqSSkj6HpZ6jTk12RMrwXMBdYtM6niq0MdEaRq9KYCwpJflkOZj349BLGQm1MI/JO1W96kLWQ==
   dependencies:
-    "@babel/runtime" "^7.1.2"
-    hoist-non-react-statics "^3.1.0"
+    "@babel/runtime" "^7.2.0"
+    hoist-non-react-statics "^3.2.1"
     invariant "^2.2.4"
-    loose-envify "^1.1.0"
-    prop-types "^15.6.1"
-    react-is "^16.6.0"
-    react-lifecycles-compat "^3.0.0"
+    loose-envify "^1.4.0"
+    prop-types "^15.6.2"
+    react-is "^16.6.3"
 
 react-router-dom@^4.3.1:
   version "4.3.1"

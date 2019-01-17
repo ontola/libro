@@ -1,5 +1,5 @@
-import { namedNodeByIRI } from 'link-lib';
 import PropTypes from 'prop-types';
+import { NamedNode } from 'rdflib';
 import React, { PureComponent } from 'react';
 import { HotKeys } from 'react-hotkeys';
 
@@ -33,7 +33,7 @@ class HoverHelper extends PureComponent {
         || expandPath(currentElement.getAttribute('href'));
       if (resourceLink) {
         /* global dev:true */
-        const trips = dev.getLRS().tryEntity(namedNodeByIRI(resourceLink));
+        const trips = dev.getLRS().tryEntity(NamedNode.find(resourceLink));
         console.log(dev.toObject(trips)); // eslint-disable-line no-console
         break;
       }

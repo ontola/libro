@@ -122,7 +122,8 @@ export const bulkProxy = (req, res) => {
         };
         let buff = Buffer.alloc(0);
         const backendReq = http.request(url, options, (backendRes) => {
-          res.write(`<${iri}> <http://www.w3.org/2011/http#statusCode> "${backendRes.statusCode}" <http://purl.org/link-lib/meta> .\r\n`);
+          const iriNT = iri.includes('://') ? `<${iri}>` : `_:${iri}`;
+          res.write(`${iriNT} <http://www.w3.org/2011/http#statusCode> "${backendRes.statusCode}" <http://purl.org/link-lib/meta> .\r\n`);
 
           let decoder;
           switch (backendRes.headers['content-encoding']) {

@@ -1,6 +1,6 @@
-import { namedNodeByIRI } from 'link-lib';
 import { lrsType, withLinkCtx } from 'link-redux';
 import PropTypes from 'prop-types';
+import { NamedNode } from 'rdflib';
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import { withRouter } from 'react-router-dom';
@@ -44,7 +44,7 @@ class DevBrowser extends Component {
     const params = new URLSearchParams(search);
 
     const resourceParam = params.get('iri').match(/^[a-z]+:\/\/[a-z]+/) ? params.get('iri') : NS.app('').value;
-    const resource = namedNodeByIRI(resourceParam);
+    const resource = NamedNode.find(resourceParam);
 
     const selectedTopology = params.get('topology') || 0;
     const pureString = params.get('pure');

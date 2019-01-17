@@ -1,9 +1,9 @@
-import { namedNodeByIRI } from 'link-lib';
 import {
   LinkedResourceContainer,
   PropertyBase,
   register,
 } from 'link-redux';
+import { NamedNode } from 'rdflib';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
@@ -39,7 +39,7 @@ class ActivityName extends PropertyBase {
     const elems = split.reduce((previousValue, currentValue) => {
       if (currentValue === '') {
         const iri = matches.shift().slice(HANDLEBAR_LENGTH, -HANDLEBAR_LENGTH);
-        const { term } = namedNodeByIRI(iri);
+        const { term } = NamedNode.find(iri);
         return previousValue.concat((
           <LinkedResourceContainer
             key={this.props[term]}

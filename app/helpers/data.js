@@ -76,33 +76,29 @@ function listToArr(lrs, acc, rest) {
   return acc;
 }
 
-function processRemove(lrs, response) {
-  response
-    .data
-    .filter(s => s.why.sameTerm(NS.argu('remove')))
-    .forEach((s) => {
+function processRemove(delta, lrs) {
+  delta
+    .filter(([, , , why]) => why === NS.argu('remove'))
+    .forEach(([s, p, o]) => {
       lrs.store.removeStatements(
-        [lrs.store.anyStatementMatching(s.subject, s.predicate, s.object)].filter(Boolean)
+        [lrs.store.anyStatementMatching(s, p, o)].filter(Boolean)
       );
     });
 }
 
-function processReplace(lrs, response) {
-  const replaceables = response
-    .data
-    .filter(s => s.why.sameTerm(NS.argu('replace')) && lrs.store.anyStatementMatching(s.subject, s.predicate));
-  lrs.store.replaceMatches(replaceables);
+function processReplace(delta, lrs) {
+  const replaceables = delta
+    .filter(([s, p, , g]) => g === NS.argu('replace') && lrs.store.anyStatementMatching(s, p));
+  return lrs.store.replaceMatches(replaceables);
 }
 
-function processDelta(lrs, response) {
-  if (typeof response === 'object'
-    && Object.hasOwnProperty.call(response, 'data')
-    && Array.isArray(response.data)) {
-    processRemove(lrs, response);
-    processReplace(lrs, response);
-  }
-
-  return response;
+function arguDeltaProcessor(lrs) {
+  return {
+    processDelta(delta) {
+      processRemove(delta, lrs);
+      return processReplace(delta, lrs);
+    },
+  };
 }
 
 function sort(order) {
@@ -149,11 +145,11 @@ function allowSort(arr, whitelist = [], order = []) {
 export {
   allow,
   allowSort,
+  arguDeltaProcessor,
   convertKeysAtoB,
   filter,
   filterSort,
   listToArr,
-  processDelta,
   processRemove,
   processReplace,
   sort,

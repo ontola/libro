@@ -6,6 +6,7 @@ import {
   lrsType,
   TopologyProvider,
   withLinkCtx,
+  withLRS,
 } from 'link-redux';
 import * as PropTypes from 'prop-types';
 import React from 'react';
@@ -58,7 +59,7 @@ class CurrentVote extends React.PureComponent {
 const CurrentVoteConnected = link(
   [NS.schema('option')],
   { forceRender: true }
-)(CurrentVote);
+)(withLRS(CurrentVote));
 
 export const getVoteButtons = (options) => {
   class VoteButtons extends TopologyProvider {
