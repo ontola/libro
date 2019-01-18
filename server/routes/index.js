@@ -14,7 +14,7 @@ import sessionMiddleware from '../middleware/sessionMiddleware';
 import csp from '../utils/csp';
 import isBackend from '../utils/filters';
 import { isDownloadRequest, isHTMLHeader } from '../utils/http';
-import { bugsnagMiddleware } from '../utils/logging';
+import { getErrorMiddleware } from '../utils/logging';
 import { backendProxy, bulkProxy, fileProxy } from '../utils/proxies';
 
 import application from './application';
@@ -53,10 +53,11 @@ const compressionOpts = {
     return (type && type.startsWith('application/n-')) || shrinkRay.filter(req, res);
   },
 };
+const errorMiddleware = getErrorMiddleware();
 
 export default function routes(app, port) {
   app.use(morgan('dev'));
-  app.use(bugsnagMiddleware.requestHandler);
+  app.use(errorMiddleware.requestHandler);
 
   app.use((req, res, next) => {
     res.locals.nonce = uuidv4();
@@ -101,5 +102,5 @@ export default function routes(app, port) {
   app.get(/.*/, application(port));
 
   app.use(errorHandlerMiddleware);
-  app.use(bugsnagMiddleware.errorHandler);
+  app.use(errorMiddleware.errorHandler);
 }

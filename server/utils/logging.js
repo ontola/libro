@@ -3,20 +3,24 @@ import bugsnagExpress from '@bugsnag/plugin-express';
 
 import * as config from '../config';
 
-const bugsnagClient = bugsnag({
-  apiKey: config.bugsnagKey,
-  appType: 'fe_back',
-  appVersion: __VERSION__,
-  autoCaptureSessions: false,
-  releaseStage: config.RELEASE_STAGE,
-});
-bugsnagClient.use(bugsnagExpress);
-const bugsnagMiddleware = bugsnagClient.getPlugin('express');
+export function getErrorMiddleware() {
+  if (process.env.NODE_ENV !== 'development') {
+    const bugsnagClient = bugsnag({
+      apiKey: config.bugsnagKey,
+      appType: 'fe_back',
+      appVersion: __VERSION__,
+      autoCaptureSessions: false,
+      releaseStage: config.RELEASE_STAGE,
+    });
+    bugsnagClient.use(bugsnagExpress);
+    return bugsnagClient.getPlugin('express');
+  }
 
-export {
-  bugsnagClient,
-  bugsnagMiddleware,
-};
+  return {
+    errorHandler: (req, res, next) => next(),
+    requestHandler: (req, res, next) => next(),
+  };
+}
 
 export default {
   debug(msg, ...params) {
