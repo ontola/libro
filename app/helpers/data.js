@@ -94,9 +94,25 @@ function processReplace(delta, lrs) {
 
 function arguDeltaProcessor(lrs) {
   return {
+    deltas: [],
+
+    flush() {
+      let statements = [];
+      for (const delta of this.deltas) {
+        statements = statements.concat(this.processDelta(delta));
+      }
+      this.deltas = [];
+
+      return statements;
+    },
+
     processDelta(delta) {
       processRemove(delta, lrs);
       return processReplace(delta, lrs);
+    },
+
+    queueDelta(delta) {
+      this.deltas.push(delta);
     },
   };
 }
