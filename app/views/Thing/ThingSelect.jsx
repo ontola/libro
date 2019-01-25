@@ -1,8 +1,8 @@
 import {
+  linkType,
   lrsType,
   Property,
   register,
-  subjectType,
 } from 'link-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -18,17 +18,21 @@ class ThingSelect extends React.PureComponent {
 
   static topology = selectTopology;
 
+  static mapDataToProps = {
+    itemClass: NS.rdf('type'),
+  };
+
   static propTypes = {
     'aria-selected': PropTypes.bool,
     className: PropTypes.string,
     id: PropTypes.string,
+    itemClass: linkType,
     lrs: lrsType,
     onClick: PropTypes.func,
     onMouseDown: PropTypes.func,
     onMouseMove: PropTypes.func,
     role: PropTypes.string,
     style: PropTypes.shape({}),
-    subject: subjectType,
     wrapperProps: PropTypes.shape({}),
   };
 
@@ -57,13 +61,12 @@ class ThingSelect extends React.PureComponent {
   }
 
   render() {
-    const { lrs, subject } = this.props;
+    const { lrs, itemClass } = this.props;
 
     const wrapperProps = this.props.wrapperProps || this.defaultWrapperProps();
 
     const labels = [NS.schema('name'), NS.rdfs('label')];
 
-    const itemClass = lrs.getResourceProperty(subject, NS.rdf('type'));
     const label = lrs.getResourceProperty(itemClass, NS.ontola('forms/inputs/select/displayProp'));
 
     if (label) {
