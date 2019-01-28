@@ -1,3 +1,4 @@
+require('../app/helpers/polyfills');
 require('@babel/register')({
   ignore: [
     filename => !filename.match(/node_modules\/link-redux/),
