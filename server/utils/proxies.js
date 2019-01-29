@@ -146,7 +146,7 @@ export const bulkProxy = (req, res) => {
           writeStream.on('data', (chunk) => {
             const statementTerminal = chunk.lastIndexOf('\n');
             if (statementTerminal === -1) {
-              buff = buff.concat(chunk);
+              buff = Buffer.concat([buff, chunk]);
             } else {
               res.write(buff);
               res.write(chunk.slice(0, statementTerminal + 1));
