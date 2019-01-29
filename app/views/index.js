@@ -21,7 +21,6 @@ import Forum from './Forum/index';
 import ImageObject from './ImageObject';
 import InfiniteCollectionPage from './InfiniteCollectionPage';
 import RDFSClass from './RDFSClass';
-// import './LinkedRecord';
 import Loading from './Loading';
 import MediaObject from './MediaObject';
 import Meeting from './Meeting/properties/agenda';
