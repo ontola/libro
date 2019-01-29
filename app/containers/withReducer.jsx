@@ -1,18 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { ReactReduxContext } from 'react-redux';
 
 const withReducer = (key, reducer) => (WrappedComponent) => {
-  const Extended = (props, context) => {
+  const Extended = (props) => {
+    const context = React.useContext(ReactReduxContext);
     context.store.injectReducer(key, reducer);
 
     return <WrappedComponent {...props} />;
-  };
-
-  Extended.contextTypes = {
-    store: PropTypes.shape({
-      asyncReducers: PropTypes.objectOf(PropTypes.string),
-      injectReducer: PropTypes.func,
-    }),
   };
 
   return Extended;

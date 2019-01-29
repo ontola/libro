@@ -23,6 +23,7 @@ class ArguLocation extends React.Component {
 
   static mapDataToProps = {
     childrenPlacements: NS.argu('childrenPlacements'),
+    dataSubjects: NS.argu('childrenPlacements'),
     schemaLocation: NS.schema('location'),
   };
 
@@ -46,10 +47,6 @@ class ArguLocation extends React.Component {
     const children = listToArr(lrs, [], childrenPlacements);
 
     if (!Array.isArray(children)) {
-      children.then(() => {
-        this.forceUpdate();
-      });
-
       return [];
     }
 

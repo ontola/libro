@@ -19,7 +19,7 @@ import { FRONTEND_ACCEPT, FRONTEND_URL } from '../config';
 // @ts-ignore
 import { arguDeltaProcessor } from './data';
 import history from './history';
-import { log } from './logging';
+import { handle, log } from './logging';
 import ontolaMiddleware from './ontolaMiddleware';
 import ServiceWorkerCommunicator from './ServiceWorkerCommunicator';
 import transformers from './transformers';
@@ -34,7 +34,7 @@ const middleware: Array<MiddlewareFn<any>> = [
   ontolaMiddleware(history, serviceWorkerCommunicator),
 ];
 
-const LRS = createStore<ReactType>({}, middleware);
+const LRS = createStore<ReactType>({ report: handle }, middleware);
 serviceWorkerCommunicator.linkedRenderStore = LRS;
 (LRS as any).bulkFetch = true;
 

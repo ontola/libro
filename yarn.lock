@@ -8033,15 +8033,15 @@ line-height@^0.3.1:
   dependencies:
     computed-style "~0.1.3"
 
-link-lib@=1.0.0-beta29-20190125T124625:
-  version "1.0.0-beta29-20190125T124625"
-  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-beta29-20190125T124625.tgz#d3bd834762b8b9bd2c694e13918e0c5b467224c4"
-  integrity sha512-WLGb3kgtM85RCdnJNB6uleVFJsh8hBWQNeOZKdoERFoZ94USKYmXdt+CF2Pkz3jBmAORSs1IMnWCWhUUvM+PjA==
+link-lib@=1.0.0-beta29-20190129T104942:
+  version "1.0.0-beta29-20190129T104942"
+  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-beta29-20190129T104942.tgz#cf0b6ad693ee9509a9ce7589d04845d42093ab4f"
+  integrity sha512-GwlL3nzu0tBVrPfbEAJJK4Moybhaorn4PqIOluQesGTB113wABLa9xOgTG4Hd2kHku2gsNVbsot8yHNHHBKnFQ==
 
-link-redux@1.0.0-beta33-20190124T144209:
-  version "1.0.0-beta33-20190124T144209"
-  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-beta33-20190124T144209.tgz#a49407355a91973cb2b680d0d3817ff896eda8e2"
-  integrity sha512-DWjcc7369H21sGSnPolnaQBPkCoxLAQrp4DECHr+iZVsC94qJUBxLQjA9cz5f7KSxA6XaEUjQUfEeiaAaZm20A==
+link-redux@1.0.0-beta33-20190129T104942:
+  version "1.0.0-beta33-20190129T104942"
+  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-beta33-20190129T104942.tgz#1ef08ae61cbb8ee8b072261a9d38f779d1c8bbc7"
+  integrity sha512-+VIUxfJm9qGReImKK8m93wMl4NnUBi1kaYMeRjl1DXEzyj8Gb8HsmeEmHNSTTazFNyuAnCxZjrRvX6G6Nxa2Gg==
 
 lint-staged@^7.3.0:
   version "7.3.0"

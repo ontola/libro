@@ -1,3 +1,4 @@
+import HttpStatus from 'http-status-codes';
 import React from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
@@ -143,7 +144,7 @@ const messages = defineMessages({
 });
 
 export function bodyForStatus(requestStatus) {
-  if (!requestStatus.requested) {
+  if (!requestStatus.requested || requestStatus < HttpStatus.MULTIPLE_CHOICES) {
     return null;
   }
 
@@ -157,7 +158,7 @@ export function bodyForStatus(requestStatus) {
 }
 
 export function headerForStatus(requestStatus) {
-  if (!requestStatus.requested) {
+  if (!requestStatus.requested || requestStatus < HttpStatus.MULTIPLE_CHOICES) {
     return null;
   }
 
