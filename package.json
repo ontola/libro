@@ -106,7 +106,7 @@
     "jest-plugins-recommended": "^2.9.0",
     "jest-plugins-rspec": "^2.9.0",
     "jsdom": "^13.0.0",
-    "link-lib": "=1.0.0-beta29-20190129T104942",
+    "link-lib": "=1.0.0-beta29-20190131T153333",
     "link-redux": "1.0.0-beta33-20190129T104942",
     "lint-staged": "^7.3.0",
     "markdown-draft-js": "^1.3.1",

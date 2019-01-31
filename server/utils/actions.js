@@ -1,8 +1,10 @@
-const HEADER_NAME = 'exec-action';
+export const EXEC_HEADER_NAME = 'Exec-Action';
+export const EXEC_HEADER_READ_NAME = 'exec-action';
 const SPLIT_MARKER = ', ';
 
 export function getActions(req) {
-  return (req.headers[HEADER_NAME] && req.headers[HEADER_NAME].split(SPLIT_MARKER)) || [];
+  return (req.headers[EXEC_HEADER_READ_NAME]
+    && req.headers[EXEC_HEADER_READ_NAME].split(SPLIT_MARKER)) || [];
 }
 
 export function getAction(req, wanted) {

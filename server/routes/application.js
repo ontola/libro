@@ -4,7 +4,7 @@ import * as constants from '../../app/config';
 import { isHTMLHeader } from '../utils/http';
 import logging from '../utils/logging';
 import manifest from '../utils/manifest';
-import { isRedirect } from '../utils/proxies';
+import { isRedirect } from '../utils/proxies/helpers';
 import { handleRender } from '../utils/render';
 
 const BACKEND_TIMEOUT = 3000;
