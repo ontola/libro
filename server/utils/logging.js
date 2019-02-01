@@ -18,7 +18,12 @@ export function getErrorMiddleware() {
 
   return {
     errorHandler: (req, res, next) => next(),
-    requestHandler: (req, res, next) => next(),
+    requestHandler: (req, res, next) => {
+      req.bugsnag = {
+        notify() {},
+      };
+      next();
+    },
   };
 }
 

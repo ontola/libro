@@ -8033,10 +8033,10 @@ line-height@^0.3.1:
   dependencies:
     computed-style "~0.1.3"
 
-link-lib@=1.0.0-beta29-20190131T153333:
-  version "1.0.0-beta29-20190131T153333"
-  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-beta29-20190131T153333.tgz#fd3fb2f34112219c1e482626a453cd067d1f8121"
-  integrity sha512-mp9yFhlCY23TLTvOoAe6c30Ozagc/JLF2MSBn6ln++0SE8hpj+iP9wY6uePtFmn5MuLTVCj7pt8K4gA7pEYO/g==
+link-lib@=1.0.0-beta29-20190201T114956:
+  version "1.0.0-beta29-20190201T114956"
+  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-beta29-20190201T114956.tgz#b59a6a1d86dcab7c4f4b1c4c6e3c395ad33a242f"
+  integrity sha512-favzz+pmO1eUxbvtwG1TEovbNePbCUnKU1ytzKe0EWqzz94EgxUp9tv+SUDvjMr72+yam3ECCJOZ3gZ8gfAz5A==
 
 link-redux@1.0.0-beta33-20190129T104942:
   version "1.0.0-beta33-20190129T104942"
