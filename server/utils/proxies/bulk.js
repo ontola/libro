@@ -13,7 +13,7 @@ import logging from '../logging';
 import {
   route,
   setProxyReqHeaders,
-  setBulkResHeaders,
+  setBulkResHeaders, newAuthorizationBulk,
 } from './helpers';
 
 export default (req, res) => {
@@ -46,6 +46,11 @@ export default (req, res) => {
             for (let i = 0; i < actions.length; i++) {
               res.write(`${iriNT} <http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}> "${actions[i]}" <http://purl.org/link-lib/meta> .\r\n`);
             }
+          }
+
+          const redirect = newAuthorizationBulk(req, backendRes);
+          if (redirect) {
+            res.write(`${iriNT} <http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}> "${redirect}" <http://purl.org/link-lib/meta> .\r\n`);
           }
 
           let decoder;

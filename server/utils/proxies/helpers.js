@@ -24,22 +24,30 @@ export function setProxyReqHeaders(proxyReq, req) {
 
 const VARY_HEADER = 'Accept,Accept-Encoding,Authorization,Content-Type';
 
+export function newAuthorizationBulk(req, backendRes) {
+  const auth = backendRes.headers['new-authorization'];
+  if (auth) {
+    req.session.arguToken.accessToken = auth;
+    req.api.userToken = auth;
+    if (!isRedirect(backendRes.statusCode)) {
+      if (hasAction(backendRes, 'https://ns.ontola.io/actions/redirect')) {
+        return setActionParam(backendRes, 'https://ns.ontola.io/actions/redirect', 'reload', 'true');
+      }
+
+      return 'https://ns.ontola.io/actions/refresh';
+    }
+  }
+
+  return undefined;
+}
+
 /* eslint-disable no-param-reassign */
 export function setProxyResHeaders(proxyRes, req) {
   delete proxyRes.headers.vary;
   proxyRes.headers.Vary = VARY_HEADER;
-  const auth = proxyRes.headers['new-authorization'];
-  if (auth) {
-    delete proxyRes.headers['new-authorization'];
-    req.session.arguToken.accessToken = auth;
-    req.api.userToken = auth;
-    if (!isRedirect(proxyRes.statusCode)) {
-      if (hasAction(proxyRes, 'https://ns.ontola.io/actions/redirect')) {
-        proxyRes.headers[EXEC_HEADER_NAME] = setActionParam(proxyRes, 'https://ns.ontola.io/actions/redirect', 'reload', 'true');
-      } else {
-        proxyRes.headers[EXEC_HEADER_NAME] = 'https://ns.ontola.io/actions/refresh';
-      }
-    }
+  const redirect = newAuthorizationBulk(req, proxyRes);
+  if (redirect) {
+    proxyRes.headers[EXEC_HEADER_NAME] = redirect;
   }
 }
 /* eslint-enable no-param-reassign */
