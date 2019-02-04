@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Literal } from 'rdflib';
 import React from 'react';
-import { Form as Inform } from 'informed';
+import { Form as FinalForm } from 'react-final-form';
 
 import { Input } from '../Input';
 
@@ -12,31 +12,40 @@ const propTypes = {
     PropTypes.node,
   ]).isRequired,
   className: PropTypes.string,
+  formID: PropTypes.string.isRequired,
   method: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.instanceOf(Literal),
   ]),
   onSubmit: PropTypes.func.isRequired,
+  validateOnBlur: PropTypes.bool,
 };
 
 const defaultProps = {
   method: 'post',
+  validateOnBlur: false,
 };
 
-class Form extends React.Component {
+export const FormContext = React.createContext();
+
+class Form extends React.PureComponent {
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
-    this.state = { submitting: false };
   }
 
   onSubmit(...args) {
-    this.setState({ submitting: true });
     return this
       .props
       .onSubmit(...args)
-      .finally(() => {
-        this.setState({ submitting: false });
+      .then(() => {
+        const formApi = args[1];
+
+        Object
+          .keys(sessionStorage)
+          .forEach(k => k.startsWith(this.props.formID) && sessionStorage.removeItem(k));
+
+        formApi.reset();
       });
   }
 
@@ -45,9 +54,10 @@ class Form extends React.Component {
       action,
       children,
       className,
+      formID,
       method,
       onSubmit,
-      ...rest
+      validateOnBlur,
     } = this.props;
 
     const renderFunc = typeof children === 'function';
@@ -57,16 +67,24 @@ class Form extends React.Component {
     const formMethod = lowerMethod === 'get' ? 'get' : 'post';
 
     return (
-      <Inform
-        action={action}
-        className={className || 'Form'}
-        method={formMethod}
-        {...rest}
-        onSubmit={controlledSubmit}
-      >
-        {renderFunc ? children(this.state) : children}
-        {methodInput}
-      </Inform>
+      <FormContext.Provider value={formID}>
+        <FinalForm
+          validateOnBlur={validateOnBlur}
+          onSubmit={controlledSubmit}
+        >
+          {({ handleSubmit, ...childProps }) => (
+            <form
+              action={action}
+              className={className || 'Form'}
+              method={formMethod}
+              onSubmit={handleSubmit}
+            >
+              {renderFunc ? children(childProps) : children}
+              {methodInput}
+            </form>
+          )}
+        </FinalForm>
+      </FormContext.Provider>
     );
   }
 }

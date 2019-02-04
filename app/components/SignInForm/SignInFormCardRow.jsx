@@ -1,6 +1,6 @@
-import { Form } from 'informed';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Form } from 'react-final-form';
 import { injectIntl } from 'react-intl';
 
 import Button from '../Button';
@@ -33,15 +33,15 @@ class SignInFormCardRow extends SignInFormBase {
 
     return (
       <Form validateOnBlur onSubmit={onSubmit}>
-        {({ submitting }) => (
-          <React.Fragment>
+        {({ handleSubmit, pristine, submitting }) => (
+          <form onSubmit={handleSubmit}>
             {formFields}
             {(this.backButton() || buttonText) && (
               <CardActions alignRight noSpacing>
                 {this.backButton()}
                 {buttonText && (
                   <Button
-                    disabled={invalid}
+                    disabled={invalid || pristine}
                     icon="arrow-right"
                     loading={submitting}
                     theme="default"
@@ -52,7 +52,7 @@ class SignInFormCardRow extends SignInFormBase {
                 )}
               </CardActions>
             )}
-          </React.Fragment>
+          </form>
         )}
       </Form>
     );

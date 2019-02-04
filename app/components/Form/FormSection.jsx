@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Scope } from 'informed';
 import { linkType } from 'link-redux';
 
 const propTypes = {
@@ -9,13 +8,20 @@ const propTypes = {
   path: linkType,
 };
 
-const FormSection = ({ children, name, path }) => (
-  <Scope component="fieldset" scope={name}>
-    <div property={path.value}>
-      {children}
-    </div>
-  </Scope>
-);
+export const FormSectionContext = React.createContext(undefined);
+
+const FormSection = ({ children, name, path }) => {
+  const formSectionContext = React.useContext(FormSectionContext);
+  const contextLabel = formSectionContext ? `${formSectionContext}.${name}` : name;
+
+  return (
+    <FormSectionContext.Provider value={contextLabel}>
+      <fieldset property={path.value}>
+        {children}
+      </fieldset>
+    </FormSectionContext.Provider>
+  );
+};
 
 FormSection.propTypes = propTypes;
 

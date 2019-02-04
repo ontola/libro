@@ -3,8 +3,8 @@ import {
   link,
   LinkedResourceContainer,
   linkType,
+  lrsType,
   Property,
-  PropertyBase,
   subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -14,6 +14,7 @@ import {
   FormField,
   FormSection,
 } from '../../components';
+import { FormContext } from '../../components/Form/Form';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { tryParseInt } from '../../helpers/numbers';
 import validators, { combineValidators } from '../../helpers/validators';
@@ -29,7 +30,10 @@ const propTypes = {
   defaultValue: linkType,
   description: linkType,
   in: linkType,
+  lrs: lrsType,
   maxLength: linkType,
+  minCount: linkType,
+  minLength: linkType,
   name: linkType,
   onKeyUp: PropTypes.func,
   path: linkType,
@@ -43,16 +47,18 @@ const inputsPreferringPlaceholder = [
   'textarea',
 ];
 
-class PropertyShape extends PropertyBase {
+class PropertyShape extends React.Component {
+  static contextType = FormContext;
+
+  shouldComponentUpdate() {
+    return true;
+  }
+
   descriptionValue() {
     if (inputsPreferringPlaceholder.includes(this.inputType())) {
       return null;
     }
     return this.props.description && this.props.description.value;
-  }
-
-  shouldComponentUpdate() {
-    return true;
   }
 
   placeholderValue() {
@@ -130,6 +136,7 @@ class PropertyShape extends PropertyBase {
         options={this.props.in}
         placeholder={this.placeholderValue()}
         required={required}
+        storeKey={`${this.context}.${fieldName}`}
         theme={theme}
         type={this.inputType()}
         validate={combineValidators(validate)}

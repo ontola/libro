@@ -1,14 +1,15 @@
 import classNames from 'classnames';
-import { asField } from 'informed';
 import { linkType } from 'link-redux';
 import PropTypes from 'prop-types';
 import { Literal, NamedNode } from 'rdflib';
 import React from 'react';
 import Textarea from 'react-autosize-textarea';
 import DateTimePicker from 'react-datetime-picker';
+import { Field } from 'react-final-form';
 
 import TextEditor from '../../containers/TextEditor';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { FormSectionContext } from '../Form/FormSection';
 import FileInput from '../Input/FileInput';
 import { Input } from '../Input';
 import SelectInput, { optionsType } from '../SelectInput';
@@ -30,16 +31,6 @@ const propTypes = {
     setTouched: PropTypes.func,
     setValue: PropTypes.func,
   }),
-  /** @private Contains data from informed */
-  fieldState: PropTypes.shape({
-    error: PropTypes.arrayOf(PropTypes.string),
-    touched: PropTypes.bool,
-    value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.instanceOf(Literal),
-      PropTypes.instanceOf(NamedNode),
-    ]),
-  }),
   /** @private */
   forwardedRef: PropTypes.shape({ value: PropTypes.instanceOf(HTMLInputElement) }),
   /** Ensure that it matches the label `for` attribute */
@@ -49,8 +40,27 @@ const propTypes = {
     PropTypes.number,
     linkType,
   ]),
+  /** @private Contains form-library specific data */
+  input: PropTypes.shape({
+    onBlur: PropTypes.func,
+    onChange: PropTypes.func,
+    onFocus: PropTypes.func,
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.instanceOf(Literal),
+      PropTypes.instanceOf(NamedNode),
+    ]),
+  }),
   // Text above input field
   label: PropTypes.string,
+  /** @private Contains form-library specific data */
+  meta: PropTypes.shape({
+    active: PropTypes.bool,
+    dirty: PropTypes.bool,
+    error: PropTypes.arrayOf(PropTypes.string),
+    invalid: PropTypes.bool,
+    touched: PropTypes.bool,
+  }),
   minLength: PropTypes.number,
   // Minimal number of rows for textAreas
   minRows: PropTypes.number,
@@ -62,9 +72,11 @@ const propTypes = {
   options: optionsType,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
+  storeKey: PropTypes.string.isRequired,
   theme: PropTypes.string,
   // HTML input type, e.g. 'email'
   type: PropTypes.string,
+  validate: PropTypes.func,
   // Modify te look and feel of the FormField
   variant: PropTypes.oneOf([
     'default',
@@ -136,13 +148,64 @@ function getBase64(file) {
  * Creates a field for forms.
  * @returns {component} Component
  */
-class FormField extends React.Component {
-  constructor(props) {
-    super(props);
+class FormField extends React.PureComponent {
+  static persistState(props, nextValue) {
+    const {
+      input: { value },
+      meta: { touched },
+      storeKey,
+      type,
+    } = props;
 
-    this.state = {
-      active: false,
-    };
+    if (!['password', 'hidden'].includes(type) && (touched || nextValue !== value)) {
+      sessionStorage.setItem(storeKey, nextValue || '');
+    }
+  }
+
+  componentDidMount() {
+    if (!this.props.input.value) {
+      this.props.input.onChange(this.inputValue());
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.field !== prevProps.field && !this.props.input.value) {
+      this.props.input.onChange(this.inputValue());
+    }
+  }
+
+  componentWillUnmount() {
+    this.props.input.onChange(undefined);
+  }
+
+  inputValue() {
+    const {
+      input: { value },
+      meta: { dirty },
+      initialValue,
+      storeKey,
+      type,
+    } = this.props;
+
+    if (type === 'file') {
+      return undefined;
+    }
+
+    const currentValue = dirty
+      ? value
+      : value || initialValue || sessionStorage.getItem(storeKey);
+
+    let nextValue = currentValue;
+    if (type === 'checkbox') {
+      const boolNormalized = Literal.fromBoolean(currentValue);
+      nextValue = boolNormalized && boolNormalized.value === '1';
+    } else if (type === 'textarea') {
+      nextValue = currentValue && Object.prototype.hasOwnProperty.call(currentValue, 'termType')
+        ? currentValue.value
+        : currentValue;
+    }
+
+    return nextValue || '';
   }
 
   description() {
@@ -156,9 +219,9 @@ class FormField extends React.Component {
       autoComplete,
       autofocus,
       field,
-      fieldApi,
       forwardedRef,
       initialValue,
+      input,
       id,
       minLength,
       name,
@@ -181,26 +244,19 @@ class FormField extends React.Component {
       className,
       id: id || fieldTxt,
       name: name || fieldTxt,
+      ...input,
       onBlur: (e) => {
-        fieldApi.setTouched();
-        this.setState({
-          active: false,
-        });
+        input.onBlur(e);
         if (onBlur) {
           onBlur(e);
         }
       },
       onChange: (e) => {
-        fieldApi.setValue(type === 'checkbox' ? e.target.checked : e.target.value);
+        this.saveInputValue(type === 'checkbox' ? e.target.checked : e.target.value);
         if (onChange) {
           onChange(e);
         }
         return undefined;
-      },
-      onFocus: () => {
-        this.setState({
-          active: true,
-        });
       },
       required,
     };
@@ -209,7 +265,7 @@ class FormField extends React.Component {
       return (
         <DateTimePicker
           value={this.inputValue()}
-          onChange={e => fieldApi.setValue(e)}
+          onChange={e => this.saveInputValue(e)}
         />
       );
     }
@@ -231,7 +287,7 @@ class FormField extends React.Component {
           {...sharedProps}
           onChange={e => new Promise(() => {
             if (!e) {
-              fieldApi.setValue(undefined);
+              field.onChange(undefined);
               return onChange && onChange(undefined, undefined);
             }
 
@@ -247,7 +303,7 @@ class FormField extends React.Component {
 
             return getBase64(file)
               .then((enc) => {
-                fieldApi.setValue(enc);
+                input.onChange(enc);
                 if (onChange) {
                   onChange(enc, e);
                 }
@@ -269,7 +325,7 @@ class FormField extends React.Component {
         sharedProps.minRows = minRows;
         break;
       case 'checkbox': {
-        const currentValue = fieldApi.getValue();
+        const currentValue = input.value;
         sharedProps.checked = currentValue && (currentValue === true || currentValue.value === 'true');
         break;
       } default:
@@ -294,29 +350,6 @@ class FormField extends React.Component {
     );
   }
 
-  inputValue() {
-    const { fieldState: { touched, value }, initialValue, type } = this.props;
-
-    if (type === 'file') {
-      return undefined;
-    }
-
-    const currentValue = !touched && !value && value !== 0 ? initialValue || '' : value;
-
-    if (type === 'checkbox') {
-      const boolNormalized = Literal.fromBoolean(currentValue);
-      return boolNormalized && boolNormalized.value === '1';
-    }
-
-    if (type === 'textarea') {
-      return currentValue && Object.prototype.hasOwnProperty.call(currentValue, 'termType')
-        ? currentValue.value
-        : currentValue;
-    }
-
-    return currentValue;
-  }
-
   label(label) {
     const { field, id, theme } = this.props;
 
@@ -334,6 +367,18 @@ class FormField extends React.Component {
     return null;
   }
 
+  saveInputValue(nextValue) {
+    const {
+      input: { onChange },
+      type,
+    } = this.props;
+
+    if (!['password', 'hidden'].includes(type)) {
+      FormField.persistState(this.props, nextValue);
+    }
+    onChange(nextValue);
+  }
+
   variant() {
     return this.props.theme === 'omniform' ? 'preview' : this.props.variant;
   }
@@ -346,8 +391,13 @@ class FormField extends React.Component {
       type,
     } = this.props;
 
-    const { active } = this.state;
-    const { error, touched, value } = this.props.fieldState;
+    const {
+      active,
+      dirty,
+      error,
+      invalid,
+      touched,
+    } = this.props.meta;
     const allErrs = customErrors || error;
     const warning = error;
     const variant = this.variant();
@@ -356,11 +406,11 @@ class FormField extends React.Component {
       Field: true,
       [`Field--variant-${variant}`]: variant,
       'Field--active': active,
-      'Field--dirty': touched && value,
-      'Field--error': allErrs,
+      'Field--dirty': dirty,
+      'Field--error': !!allErrs,
       'Field--hidden': (type === 'hidden'),
       'Field--textarea': (type === 'textarea'),
-      'Field--warning': warning,
+      'Field--warning': invalid,
       className,
     });
 
@@ -385,4 +435,25 @@ class FormField extends React.Component {
 FormField.propTypes = propTypes;
 FormField.defaultProps = defaultProps;
 
-export default asField(FormField);
+const FieldWrapper = (props) => {
+  const namePrefix = React.useContext(FormSectionContext);
+  const name = namePrefix ? `${namePrefix}.${props.field}` : props.field;
+
+  return (
+    <Field
+      name={name}
+      validate={props.validate}
+    >
+      {formProps => (
+        <FormField
+          {...props}
+          {...formProps}
+        />
+      )}
+    </Field>
+  );
+};
+
+FieldWrapper.propTypes = propTypes;
+
+export default FieldWrapper;

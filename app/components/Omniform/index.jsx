@@ -120,7 +120,6 @@ class Omniform extends EntryPointBase {
       actions,
       action,
       error,
-      invalid,
     } = this.props;
 
     if (actions.length === 0) {
@@ -134,8 +133,12 @@ class Omniform extends EntryPointBase {
     }
 
     return (
-      <Form className="Form Omniform" onSubmit={this.submitHandler}>
-        {({ submitting }) => (
+      <Form
+        className="Form Omniform"
+        formID={atob(this.props.parentIRI)}
+        onSubmit={this.submitHandler}
+      >
+        {({ invalid, pristine, submitting }) => (
           <React.Fragment>
             {error && (
               <div className="Omniform__error">
@@ -152,7 +155,7 @@ class Omniform extends EntryPointBase {
               <FormFooterRight>
                 {this.props.formFooterButtons}
                 <Button
-                  disabled={invalid}
+                  disabled={invalid || pristine}
                   icon="send"
                   loading={submitting}
                   theme="submit"

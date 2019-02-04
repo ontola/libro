@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Form } from 'informed';
+import { Form } from 'react-final-form';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 
@@ -124,17 +124,16 @@ class SignInFormCard extends SignInFormBase {
           {this.contentHeader()}
           <Form
             validateOnBlur
-            action="/users"
             onSubmit={onSubmit}
           >
-            {({ submitting }) => (
-              <React.Fragment>
+            {({ handleSubmit, pristine, submitting }) => (
+              <form action="/users" onSubmit={handleSubmit}>
                 {formFields}
                 <CardRow>
                   <CardActions noSpacing>
                     {this.backButton()}
                     <Button
-                      disabled={invalid}
+                      disabled={invalid || pristine}
                       icon="arrow-right"
                       loading={submitting}
                       theme="box"
@@ -144,7 +143,7 @@ class SignInFormCard extends SignInFormBase {
                     </Button>
                   </CardActions>
                 </CardRow>
-              </React.Fragment>
+              </form>
             )}
           </Form>
         </Card>

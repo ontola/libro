@@ -14,6 +14,7 @@ export function combineValidators(...validators) {
     const results = (Array.isArray(validators[0]) ? validators[0] : validators)
       .map(validator => validator && validator(value))
       .filter(validationRes => !!validationRes);
+
     return results.length > 0 ? results : undefined;
   };
 }
