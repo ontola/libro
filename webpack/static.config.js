@@ -87,7 +87,7 @@ function createConfig(options) {
   }
 
   return {
-    devtool: 'source-map',
+    devtool: 'cheap-source-map',
 
     entry: {
       main: './app/index.jsx',
@@ -123,7 +123,9 @@ function createConfig(options) {
 
     optimization: {
       minimizer: [
-        new TerserPlugin(),
+        new TerserPlugin({
+          sourceMap: true,
+        }),
         new OptimizeCSSAssetsPlugin({}),
       ],
       splitChunks: {
