@@ -5,15 +5,49 @@
     display: inline-flex;
   }
 
+  &__padded {
+    display: block;
+    padding: units('xx-small', 'large');
+  }
+
+  &__highlighted-darken {
+    &:hover {
+      background-color: color('transparent', 'x-dark');
+    }
+  }
+
+  &__highlighted-lighten {
+    &:hover {
+      background-color: color('transparent');
+    }
+  }
+
   &__parent {
     color: color('grey', 'xx-light-foreground-small');
     display: inline-flex;
+    font-weight: bold;
+    margin: 0 .2em;
+    transition: background-color .1s;
 
     &:hover {
       color: color('grey', 'dark');
     }
-    transition: background-color .1s;
-    margin: 0 .2em;
-    font-weight: bold;
+  }
+}
+
+.LDLink__active {
+  & .LDLinkLabel {
+    color: var(--base-color);
+    position: relative;
+
+    &::after {
+      background-color: var(--base-color);
+      bottom: -.3em;
+      content: '';
+      height: .3em;
+      left: 0;
+      position: absolute;
+      right: 0;
+    }
   }
 }

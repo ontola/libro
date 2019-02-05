@@ -14,8 +14,8 @@ import Container, { containerTopology } from '../../topologies/Container';
 import DetailsBar, { detailsBarTopology } from '../../topologies/DetailsBar';
 import Grid, { gridTopology } from '../../topologies/Grid';
 import { inlineTopology } from '../../topologies/Inline';
+import { navbarTopology } from '../../topologies/Navbar';
 import { parentTopology } from '../../topologies/Parent';
-import { headerTopology } from '../../topologies/Header';
 
 const propTypes = {
   pure: PropTypes.boolean,
@@ -137,7 +137,7 @@ const TopologyWrapper = ({ pure, topology, subject }) => {
         </Card>
       </Container>
     );
-  } else if (topology === headerTopology) {
+  } else if (topology === navbarTopology) {
     return (
       <div
         className="NavBarContent NavBarContent--white-text"

@@ -11,7 +11,7 @@ import { Heading } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologiesExcept } from '../../../topologies';
 import { CollectionTypes } from '../types';
-import { headerTopology } from '../../../topologies/Header';
+import { navbarTopology } from '../../../topologies/Navbar';
 import { parentTopology } from '../../../topologies/Parent';
 import { tableRowTopology } from '../../../topologies/TableRow';
 
@@ -41,7 +41,7 @@ export default [
     withLinkCtx(CollectionName),
     CollectionTypes,
     NS.as('name'),
-    allTopologiesExcept(headerTopology, parentTopology, tableRowTopology)
+    allTopologiesExcept(navbarTopology, parentTopology, tableRowTopology)
   ),
   LinkedRenderStore.registerRenderer(
     ({ linkedProp }) => linkedProp.value,

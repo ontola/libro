@@ -4,7 +4,7 @@ import React from 'react';
 import { NS } from '../../helpers/LinkedRenderStore';
 import {
   Loading,
-  LoadingHeaderLink,
+  LoadingNavbarLink,
   LoadingCard,
   LoadingCardFixed,
   LoadingMicroRow,
@@ -14,6 +14,7 @@ import {
   LoadingRow,
   Spinner,
 } from '../../components';
+import { appMenuTopology } from '../../topologies/AppMenu';
 import { cardTopology } from '../../topologies/Card';
 import { cardFixedTopology } from '../../topologies/Card/CardFixed';
 import { cardListTopology } from '../../topologies/Card/CardList';
@@ -26,9 +27,9 @@ import { dropdownContentTopology } from '../../topologies/DropdownContent';
 import { gridTopology } from '../../topologies/Grid';
 import { hoverBoxTopology } from '../../topologies/HoverBox';
 import { inlineTopology } from '../../topologies/Inline';
+import { navbarTopology } from '../../topologies/Navbar';
 import { pageTopology } from '../../topologies/Page';
 import { parentTopology } from '../../topologies/Parent';
-import { headerTopology } from '../../topologies/Header';
 import { voteBubbleTopology } from '../../topologies/VoteBubble';
 import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 
@@ -74,6 +75,7 @@ export default [
     NS.ll('LoadingResource'),
     RENDER_CLASS_NAME,
     [
+      appMenuTopology,
       cardTopology,
       cardFixedTopology,
       cardMainTopology,
@@ -82,10 +84,10 @@ export default [
     ]
   ),
   LinkedRenderStore.registerRenderer(
-    LoadingHeaderLink,
+    LoadingNavbarLink,
     NS.ll('LoadingResource'),
     RENDER_CLASS_NAME,
-    headerTopology
+    navbarTopology
   ),
   LinkedRenderStore.registerRenderer(
     LoadingDetail,

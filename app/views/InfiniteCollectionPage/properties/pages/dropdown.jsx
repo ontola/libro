@@ -11,13 +11,13 @@ import FontAwesome from 'react-fontawesome';
 
 import {
   Dropdown,
-  HeaderLink,
+  NavbarLink,
 } from '../../../../components';
 import { NS } from '../../../../helpers/LinkedRenderStore';
-import { headerTopology } from '../../../../topologies/Header';
+import { navbarTopology } from '../../../../topologies/Navbar';
 
 const PagesDropdown = (props) => {
-  const label = <Property label={NS.schema('name')} topology={headerTopology} />;
+  const label = <Property label={NS.schema('name')} topology={navbarTopology} />;
 
   return (
     <div style={{ display: 'flex' }}>
@@ -27,7 +27,7 @@ const PagesDropdown = (props) => {
       >
         <LinkedResourceContainer subject={props.linkedProp} />
       </Dropdown>
-      <HeaderLink label={label} to={props.subject} />
+      <NavbarLink label={label} to={props.subject} />
     </div>
   );
 };
@@ -41,5 +41,5 @@ export default LinkedRenderStore.registerRenderer(
   withLinkCtx(PagesDropdown),
   NS.argu('InfiniteCollection'),
   NS.as('pages'),
-  headerTopology
+  navbarTopology
 );

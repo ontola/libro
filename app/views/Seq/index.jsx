@@ -21,7 +21,18 @@ function numAsc(a, b) {
   return aP - bP;
 }
 
-export function Seq({ columns, depth, subject }) {
+export function Seq({
+  childProps,
+  columns,
+  depth,
+  gutter,
+  renderGutter,
+  subject,
+}) {
+  if (gutter === -1) {
+    return null;
+  }
+
   const context = useLinkContext();
   const sequences = context
     .lrs
@@ -30,12 +41,20 @@ export function Seq({ columns, depth, subject }) {
     .sort(numAsc)
     .map(s => s.object);
 
+  let primary = sequences;
+  let secondary;
+  if (sequences.length > gutter) {
+    primary = sequences.slice(0, gutter);
+    secondary = sequences.slice(gutter);
+  }
+
   useDataInvalidation({ dataSubjects: sequences, subject }, context);
 
   return (
     <React.Fragment>
-      {sequences.map((s, i) => (
+      {primary.map((s, i) => (
         <LinkedResourceContainer
+          {...childProps}
           columns={columns}
           count={sequences.length}
           data-test={`Seq-${i}-${s.value}`}
@@ -46,13 +65,17 @@ export function Seq({ columns, depth, subject }) {
           subject={s}
         />
       ))}
+      {secondary && renderGutter && renderGutter(secondary)}
     </React.Fragment>
   );
 }
 
 Seq.propTypes = {
+  childProps: PropTypes.objectOf(PropTypes.any),
   columns: PropTypes.arrayOf(NamedNode),
   depth: PropTypes.number,
+  gutter: PropTypes.number,
+  renderGutter: PropTypes.func,
   subject: subjectType,
 };
 Seq.type = NS.rdf('Seq');

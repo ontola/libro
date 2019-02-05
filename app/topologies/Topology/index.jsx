@@ -13,6 +13,7 @@ class Topology extends TopologyProvider {
     this.state = {
       error: undefined,
     };
+    this.style = undefined;
   }
 
   componentDidCatch(error, ignored) {
@@ -24,26 +25,42 @@ class Topology extends TopologyProvider {
     return this.className;
   }
 
-  render() {
-    if (this.state.error) {
-      const childProps = calculateChildProps(
-        this.props,
-        this.context,
-        {
-          helpers: {
-            reset: () => this.setState({ error: undefined }),
-          },
-        }
-      );
+  getStyle() {
+    return this.style;
+  }
 
-      return unstable.renderError(childProps, this.context, this.state.error);
-    }
+  renderError() {
+    const childProps = calculateChildProps(
+      this.props,
+      this.context,
+      {
+        helpers: {
+          reset: () => this.setState({ error: undefined }),
+        },
+      }
+    );
 
+    return unstable.renderError(childProps, this.context, this.state.error);
+  }
+
+  renderContent() {
     return this.wrap(subject => (
-      <div className={this.getClassName()} resource={subject && subject.value}>
+      <div
+        className={this.getClassName()}
+        resource={subject && subject.value}
+        style={this.getStyle()}
+      >
         {this.props.children}
       </div>
     ));
+  }
+
+  render() {
+    if (this.state.error) {
+      return this.renderError();
+    }
+
+    return this.renderContent();
   }
 }
 

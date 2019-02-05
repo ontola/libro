@@ -95,12 +95,12 @@ class MenuItemPage extends React.PureComponent {
           <React.Fragment>
             <PageHeader>
               <Property label={NS.schema('isPartOf')} />
+              <TabBarWrapper>
+                <TabBar>
+                  <Property label={NS.argu('menuItems')} />
+                </TabBar>
+              </TabBarWrapper>
             </PageHeader>
-            <TabBarWrapper>
-              <TabBar>
-                <Property label={NS.argu('menuItems')} />
-              </TabBar>
-            </TabBarWrapper>
           </React.Fragment>
         )}
         {body}

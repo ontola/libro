@@ -6,9 +6,9 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { NS } from '../../helpers/LinkedRenderStore';
-import { HeaderLink } from '../../components';
+import { NavbarLink } from '../../components';
 import path from '../../helpers/paths';
-import { headerTopology } from '../../topologies/Header';
+import { navbarTopology } from '../../topologies/Navbar';
 
 const propTypes = {
   redirectURL: PropTypes.string,
@@ -25,7 +25,7 @@ const GuestUserActor = ({ redirectURL }) => {
 
   return (
     <React.Fragment>
-      <HeaderLink
+      <NavbarLink
         icon="sign-in"
         label={label}
         to={path.signIn(redirectURL)}
@@ -45,5 +45,5 @@ export default LinkedRenderStore.registerRenderer(
   GuestUserActorConnected,
   NS.argu('GuestUser'),
   RENDER_CLASS_NAME,
-  headerTopology
+  navbarTopology
 );

@@ -21,9 +21,11 @@ class PageHeader extends TopologyProvider {
 
   render() {
     return this.wrap((
-      <div className={this.className}>
-        <div className="PageHeader__container">
-          {this.props.children || <Type />}
+      <div className="Container Container--size-large">
+        <div className={this.className}>
+          <div className="PageHeader__container">
+            {this.props.children || <Type />}
+          </div>
         </div>
       </div>
     ));

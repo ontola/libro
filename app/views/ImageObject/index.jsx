@@ -3,14 +3,14 @@ import { Property, register } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { HeaderLinkImageWrapper } from '../../components/HeaderLink';
+import { NavbarLinkImageWrapper } from '../../components/NavbarLink';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { dropdownContentTopology } from '../../topologies/DropdownContent';
 import { formFooterTopology } from '../../topologies/FormFooter/Footer';
+import { navbarTopology } from '../../topologies/Navbar';
 import { pageHeaderTopology } from '../../topologies/PageHeader';
 import { tableCellTopology } from '../../topologies/TableCell';
-import { headerTopology } from '../../topologies/Header';
 import { voteBubbleTopology } from '../../topologies/VoteBubble';
 import { voteEventSideTopology } from '../../topologies/VoteEventSide';
 import { parentTopology } from '../../topologies/Parent';
@@ -33,7 +33,7 @@ class ImageObject extends React.PureComponent {
     pageHeaderTopology,
     parentTopology,
     tableCellTopology,
-    headerTopology,
+    navbarTopology,
     voteBubbleTopology,
     voteEventSideTopology,
   ];
@@ -56,13 +56,13 @@ export default [
   ImageObjectPageHeader,
   LinkedRenderStore.registerRenderer(
     () => (
-      <HeaderLinkImageWrapper data-test="ImageObject-sidebar">
+      <NavbarLinkImageWrapper data-test="ImageObject-navbar">
         <Property label={[NS.schema('thumbnail'), NS.argu('imgUrl64x64')]} />
-      </HeaderLinkImageWrapper>
+      </NavbarLinkImageWrapper>
     ),
     NS.schema('ImageObject'),
     RENDER_CLASS_NAME,
-    headerTopology
+    navbarTopology
   ),
   ...thumbnail,
   ImageObjectCardList,

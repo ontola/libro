@@ -1,9 +1,6 @@
 @import '../../components/shared/config';
 
 .PageHeader {
-  background-color: color('white');
-  padding-top: 2rem;
-
   &__circle {
     background: color('grey');
     border-radius: 999px;
@@ -14,20 +11,8 @@
     width: 4rem;
   }
 
-  &__container {
-    margin: auto;
-    max-width: map-get($container-width, 'large');
-    padding-left: $container-padding-main;
-    padding-right: $container-padding-main;
-    position: relative;
-
-    @include small-only {
-      padding-left: unit('large');
-      padding-right: unit('large');
-    }
-  }
-
   &__image-and-text-wrapper {
+    margin-top: -2em;
     display: flex;
     flex-direction: row;
   }
@@ -37,5 +22,9 @@
     flex-direction: column;
     flex-shrink: 1;
     justify-content: center;
+  }
+
+  .DetailsBar__right {
+    min-height: 2em;
   }
 }

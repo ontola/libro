@@ -9,7 +9,6 @@ import {
   jsonHeader,
   safeCredentials,
   statusSuccess,
-  tryLogin,
 } from '../arguHelpers';
 
 describe('helpers', () => {
@@ -162,29 +161,6 @@ describe('helpers', () => {
           const response = { status };
           expect(statusSuccess(response)).rejects.toEqual(response);
         });
-      });
-    });
-
-    describe('tryLogin', () => {
-      describe('when unauthorized', () => {
-        it('should redirect the user if accepted', () => {
-          const response = { status: HttpStatus.UNAUTHORIZED };
-          global.confirm = () => true;
-          expect(tryLogin(response)).rejects.toBe(response);
-          global.confirm = undefined;
-        });
-
-        it('should reject with error if cancelled', () => {
-          const response = { status: HttpStatus.UNAUTHORIZED };
-          global.confirm = () => false;
-          expect(tryLogin(response)).rejects.toBe('Je moet ingelogd zijn voor deze actie.');
-          global.confirm = () => undefined;
-        });
-      });
-
-      it('should pass other responses', () => {
-        const response = { status: HttpStatus.OK };
-        expect(tryLogin(response)).rejects.toBe(response);
       });
     });
   });

@@ -1,7 +1,8 @@
 import { Map } from 'immutable';
 import { NamedNode } from 'rdflib';
+import { frontendPathname } from '../middleware/app';
 
-import { frontendPathname, NS } from './LinkedRenderStore';
+import { NS } from './LinkedRenderStore';
 
 export function currentLocation(location: Location, fragment = true, basePath = frontendPathname, ns = NS): NamedNode {
   const path = (basePath !== '/' && location.pathname.startsWith(basePath))
@@ -36,7 +37,7 @@ const paths = {
    * @param {string} r The URL to return to after signing in/up
    * @returns {string} The URL.
    */
-  signIn(r: string): string {
+  signIn(r?: string): string {
     const url = new URL(NS.app('u/sign_in').value).pathname;
     return r ? `${url}?r=${encodeURIComponent(r)}` : url;
   },

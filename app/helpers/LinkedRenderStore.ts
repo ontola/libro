@@ -1,8 +1,5 @@
 /* eslint no-console: 0 */
-import {
-  createStore,
-  MiddlewareFn,
-} from 'link-lib';
+import { createStore, MiddlewareFn } from 'link-lib';
 import {
   Formula,
   Literal,
@@ -15,12 +12,12 @@ import {
 import { ReactType } from 'react';
 
 import { FRONTEND_ACCEPT } from '../config';
-import {getMetaContent} from './arguHelpers';
-
+import { appMiddleware, website } from '../middleware/app';
+import execFilter from '../middleware/execFilter';
 // @ts-ignore
 import { arguDeltaProcessor } from './data';
 import history from './history';
-import { handle, log } from './logging';
+import { handle } from './logging';
 import ontolaMiddleware from './ontolaMiddleware';
 import ServiceWorkerCommunicator from './ServiceWorkerCommunicator';
 import transformers from './transformers';
@@ -28,11 +25,9 @@ import transformers from './transformers';
 export const serviceWorkerCommunicator = new ServiceWorkerCommunicator();
 
 const middleware: Array<MiddlewareFn<any>> = [
-  () => (next) => (a, o) => {
-    log('Link action:', a, o);
-    return next(a, o);
-  },
   ontolaMiddleware(history, serviceWorkerCommunicator),
+  appMiddleware(),
+  execFilter(),
 ];
 
 const LRS = createStore<ReactType>({ report: handle }, middleware);
@@ -46,20 +41,13 @@ transformers(LRS).forEach((t) =>
     LRS.api.registerTransformer(t.transformer, t.mediaTypes, t.acceptValue),
 );
 
-const website = getMetaContent('website-iri');
 if (!website) {
   handle(new Error('No website in head'));
 }
-export const frontendIRI = NamedNode.find(website!);
-const frontendIRIStr = frontendIRI.value;
-export const frontendPathname = new URL(frontendIRIStr).pathname;
-export const frontendOrigin = new URL(frontendIRIStr).origin;
 
 // @ts-ignore TS2341
 LRS.api.accept.default = FRONTEND_ACCEPT;
 
-LRS.namespaces.app = Namespace(frontendIRIStr.endsWith('/') ? frontendIRIStr : `${frontendIRIStr}/`);
-LRS.namespaces.appSlashless = Namespace(frontendIRIStr.slice(0, frontendIRIStr.endsWith('/') ? -1 : undefined));
 LRS.namespaces.aod = Namespace('https://argu.co/ns/od#');
 LRS.namespaces.meeting = Namespace('https://argu.co/ns/meeting/');
 LRS.namespaces.sh = Namespace('http://www.w3.org/ns/shacl#');

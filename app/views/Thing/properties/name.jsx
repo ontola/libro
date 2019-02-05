@@ -19,6 +19,7 @@ import { cardRowTopology } from '../../../topologies/Card/CardRow';
 import { containerTopology } from '../../../topologies/Container';
 import { hoverBoxTopology } from '../../../topologies/HoverBox';
 import { inlineTopology } from '../../../topologies/Inline';
+import { navbarTopology } from '../../../topologies/Navbar';
 import { pageHeaderTopology } from '../../../topologies/PageHeader';
 import { parentTopology } from '../../../topologies/Parent';
 import { popupTopology } from '../../../topologies/Popup';
@@ -26,7 +27,6 @@ import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
 import { selectTopology } from '../../../topologies/Select';
 import { tableRowTopology } from '../../../topologies/TableRow';
 import TableCell from '../../../topologies/TableCell';
-import { headerTopology } from '../../../topologies/Header';
 import { widgetTopologyTopology } from '../../../topologies/WidgetTopology/WidgetTopology';
 
 const NamePredicates = [
@@ -115,10 +115,10 @@ export default [
     cardMainTopology
   ),
   LinkedRenderStore.registerRenderer(
-    ({ linkedProp }) => <span data-test="Thing-name-sidebar">{linkedProp.value}</span>,
+    ({ linkedProp }) => <span data-test="Thing-name-header">{linkedProp.value}</span>,
     NS.schema('Thing'),
     NamePredicates,
-    headerTopology
+    navbarTopology
   ),
   LinkedRenderStore.registerRenderer(
     ({ linkedProp }) => <span data-test="Thing-name-select">{linkedProp.value}</span>,

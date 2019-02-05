@@ -1,15 +1,47 @@
 @import '../shared/config';
 
+.NavbarContainer--white-text {
+  span,
+  a {
+    color: color('white');
+    transition: $nav-transition-time color;
+  }
+
+  .DropdownLink {
+    color: color('grey', 'mid-dark');
+
+    span {
+      color: color('grey', 'mid-dark');
+    }
+  }
+}
+
+.NavbarContainer--dark-text {
+  border-bottom: 1px solid color('blue', 'x-light');
+
+  span,
+  a {
+    color: color('grey', 'dark');
+    transition: $nav-transition-time color;
+  }
+}
+
 .NavBarContent {
+  @include large {
+    padding: units('none', 'small');
+  }
+
   -webkit-overflow-scrolling: touch;
   -webkit-tap-highlight-color: color('transparent', 'transparent');
+  box-sizing: border-box;
   display: flex;
-  flex: 1;
-  flex-direction: column;
-  overflow-x: hidden;
-  overflow-y: auto;
+  flex-flow: row nowrap;
+  height: 100%;
+  justify-content: space-between;
+  margin: auto;
+  max-width: map-get($container-width, 'large');
+  position: relative;
   transition: $nav-transition-time background-color;
-  will-change: transform;
 
   &__logo {
     align-self: center;
@@ -39,25 +71,22 @@
   }
 }
 
-.NavBarContent__center-footer {
-  align-items: center;
+.NavBarContent__menus {
   display: flex;
-  flex-direction: column;
-  position: relative;
-}
+  flex-shrink: 1;
 
-.NavBarContent--white-text {
-  span,
-  a {
-    color: color('white');
-    transition: $nav-transition-time color;
+  & > div {
+    display: inline-block;
+    flex: auto;
+    width: auto;
   }
 }
 
-.NavBarContent--dark-text {
-  span,
-  a {
-    color: color('grey', 'dark');
-    transition: $nav-transition-time color;
-  }
+.NavBarContent__organization {
+  display: flex;
+  flex-grow: 1;
+}
+
+.NavBarContent__menu-items {
+  display: flex;
 }

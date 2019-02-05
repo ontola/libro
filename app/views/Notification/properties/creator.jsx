@@ -11,8 +11,8 @@ import { cardTopology } from '../../../topologies/Card';
 import { cardMainTopology } from '../../../topologies/Card/CardMain';
 import { containerTopology } from '../../../topologies/Container';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
+import { navbarTopology } from '../../../topologies/Navbar';
 import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
-import { headerTopology } from '../../../topologies/Header';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -36,6 +36,6 @@ export default LinkedRenderStore.registerRenderer(
     cardMainTopology,
     containerTopology,
     detailsBarTopology,
-    headerTopology,
+    navbarTopology,
   ]
 );

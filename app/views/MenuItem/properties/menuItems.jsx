@@ -1,16 +1,18 @@
 import {
   LinkedResourceContainer,
   linkType,
+  Property,
   register,
-  subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
-import { SideBarCollapsible } from '../../../components';
 import { dropdownContentTopology } from '../../../topologies/DropdownContent';
-import { headerTopology } from '../../../topologies/Header';
+import { navbarTopology } from '../../../topologies/Navbar';
+import {
+  Dropdown,
+} from '../../../components';
 
 class MenuItems extends React.PureComponent {
   static type = [
@@ -22,7 +24,7 @@ class MenuItems extends React.PureComponent {
   static property = NS.argu('menuItems');
 
   static topology = [
-    headerTopology,
+    navbarTopology,
     dropdownContentTopology,
   ];
 
@@ -34,9 +36,11 @@ class MenuItems extends React.PureComponent {
   };
 
   static propTypes = {
+    childProps: PropTypes.objectOf(PropTypes.any),
+    gutter: PropTypes.number,
     labelComp: PropTypes.node,
     menuItems: linkType,
-    subject: subjectType,
+    renderGutter: PropTypes.func,
   };
 
   render() {
@@ -44,32 +48,36 @@ class MenuItems extends React.PureComponent {
     if (rawProp.length === 0) {
       return this.props.labelComp;
     }
-
-    const items = rawProp
-      .map(item => (
-        <LinkedResourceContainer
-          key={`menu-${item}`}
-          subject={item}
-        />
-      ));
+    const childProps = this.props.childProps || {};
 
     if (!this.props.labelComp) {
-      return items;
+      return rawProp
+        .map(item => (
+          <LinkedResourceContainer
+            childProps={childProps}
+            gutter={this.props.gutter}
+            key={`menu-${item}`}
+            renderGutter={this.props.renderGutter}
+            subject={item}
+          />
+        ));
     }
 
-    if (items) {
-      return (
-        <SideBarCollapsible
-          data-test="MenuItem-menuItems-collapsible"
-          id={`${this.props.subject}-menu-items`}
-          labelComp={this.props.labelComp}
-        >
-          {items}
-        </SideBarCollapsible>
-      );
-    }
-
-    return this.props.labelComp;
+    return (
+      <Dropdown
+        lazy
+        trigger={<Property label={this.props.labelComp} />}
+      >
+        {() => (
+          <LinkedResourceContainer
+            childProps={childProps}
+            gutter={this.props.gutter}
+            subject={rawProp}
+            topology={dropdownContentTopology}
+          />
+        )}
+      </Dropdown>
+    );
   }
 }
 

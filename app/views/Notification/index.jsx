@@ -14,7 +14,7 @@ import Card from '../../topologies/Card';
 import { containerTopology } from '../../topologies/Container';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 
-import Sidebar from './sidebar';
+import NotificationHeader from './NotificationHeader';
 import Creator from './properties/creator';
 import Name from './properties/name';
 import ReadAction from './properties/readAction';
@@ -63,7 +63,7 @@ export default [
       containerTopology,
     ]
   ),
-  Sidebar,
+  NotificationHeader,
   Creator,
   Name,
   ReadAction,

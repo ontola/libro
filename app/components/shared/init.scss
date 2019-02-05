@@ -4,8 +4,6 @@
 html {
   // Removes 300ms touch delay on iOS safari
   touch-action: manipulation;
-  // Prevents rubber band scrolling on iOS safari
-  position: fixed;
   height: 100%;
   width: 100%;
 }

@@ -1,13 +1,13 @@
 import OrganizationPage from './OrganizationPage';
 import OrganizationParent from './OrganizationParent';
-import OrganizationSidebar from './OrganizationSidebar';
-import Name from './properties/name';
+import OrganizationHeader from './OrganizationHeader';
+import NameNavbar from './properties/nameNavbar';
 import NameParent from './properties/nameParent';
 
 export default [
   OrganizationPage,
   OrganizationParent,
-  OrganizationSidebar,
-  Name,
+  OrganizationHeader,
+  NameNavbar,
   NameParent,
 ];

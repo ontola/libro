@@ -7,13 +7,14 @@ import { formFooterTopology } from '../../topologies/FormFooter/Footer';
 import { voteEventSideTopology } from '../../topologies/VoteEventSide';
 
 import Detail from './detail';
+import PersonNavbar from './PersonNavbar';
 import PersonPage from './PersonPage';
 import Email from './properties/email';
 import Image from './properties/image';
 import Section from './section';
-import Sidebar from './sidebar';
 
 export default [
+  PersonNavbar,
   PersonPage,
   LinkedRenderStore.registerRenderer(
     link([NS.schema('name')], { returnType: 'value' })(({ name }) => (
@@ -27,5 +28,4 @@ export default [
   Email,
   Image,
   Section,
-  Sidebar,
 ];

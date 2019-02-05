@@ -128,7 +128,7 @@ export const renderFullPage = (domain, req, res, website) => {
         ${polyfill}
       </head>
       <body>
-        <div class="preloader">
+        <div class="preloader" id="preloader">
           <div class="preloader__logo">
             <svg xmlns="http://www.w3.org/2000/svg" width="37" height="28" viewBox="0 0 211 108">
               <rect class="preloader__logo__rect--con" x="159.8" y="86.4" width="51.2" height="8.3" />

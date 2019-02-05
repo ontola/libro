@@ -1,31 +1,26 @@
 import { defaultNS } from 'link-lib';
 import {
-  LinkedResourceContainer,
-  Property,
-  Type,
   link,
+  LinkedResourceContainer,
   linkType,
-  subjectType,
+  lrsType,
+  Property,
   PropertyBase,
+  subjectType,
+  Type,
   withLRS,
 } from 'link-redux';
 import React from 'react';
-import { defineMessages, injectIntl } from 'react-intl';
+import { injectIntl } from 'react-intl';
 
-import { frontendIRI, NS } from '../../helpers/LinkedRenderStore';
+import { NS } from '../../helpers/LinkedRenderStore';
+import { frontendIRI } from '../../middleware/app';
 import LDLink from '../LDLink';
-import SideBarCollapsibleDefault from '../SideBarCollapsible';
-
-const messages = defineMessages({
-  orgSwitcherLabel: {
-    defaultMessage: 'Show or hide organization switcher',
-    id: 'https://app.argu.co/i18n/menus/organization/collapseLabel',
-  },
-});
 
 const propTypes = {
   contains: linkType,
   lastOrganization: linkType,
+  lrs: lrsType,
   subject: subjectType,
 };
 
@@ -37,47 +32,25 @@ class Contains extends PropertyBase {
       || this.props.lastOrganization !== nextProps.lastOrganization;
   }
 
-  currentOrg() {
-    const { lastOrganization, contains } = this.props;
-
-    if (contains && this.props.lrs.store.changeTimestamps[contains.sI]) {
-      return contains;
-    }
-
-    return lastOrganization;
-  }
-
-  navbarSwitcher() {
-    const label = (
-      <LDLink>
-        <Property label={NS.schema('name')} />
-      </LDLink>
-    );
-
-    return (
-      <div className="NavBarContent__switcher">
-        <SideBarCollapsibleDefault
-          collapseLabel={this.props.intl.formatMessage(messages.orgSwitcherLabel)}
-          id={`${this.props.subject}-menu-items`}
-          labelComp={label}
-        >
-          <LinkedResourceContainer subject={NS.app('apex/menus/organizations')}>
-            <Property label={NS.argu('menuItems')} />
-          </LinkedResourceContainer>
-        </SideBarCollapsibleDefault>
-      </div>
-    );
-  }
-
   render() {
-    const { reloadLinkedObject } = this.props;
+    const {
+      contains,
+      lastOrganization,
+      reloadLinkedObject,
+    } = this.props;
+
+    if (contains && contains !== lastOrganization) {
+      this.props.onOrganizationChange(contains);
+    }
 
     return (
       <LinkedResourceContainer
         forceRender
         subject={frontendIRI}
       >
-        {this.navbarSwitcher()}
+        <LDLink>
+          <Property label={NS.schema('name')} />
+        </LDLink>
         <Type reloadLinkedObject={reloadLinkedObject} />
         <Property forceRender label={NS.argu('baseColor')} />
       </LinkedResourceContainer>

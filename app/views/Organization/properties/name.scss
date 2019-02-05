@@ -1,7 +1,7 @@
-.OrganizationName {
+.OrganizationNameNavbar {
   align-items: center;
   display: flex;
-  padding: 1em;
+  padding: .5em 1em .5em 0;
 
   &__value {
     color: inherit;
@@ -9,7 +9,7 @@
     margin-left: .4em;
   }
 
-  .HeaderLink__image {
+  .NavbarLink__image {
     height: 2.2em;
     margin-left: .3em;
     width: 2.2em;

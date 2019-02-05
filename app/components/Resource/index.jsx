@@ -25,7 +25,10 @@ class Resource extends PureComponent {
     } = this.props;
 
     return (
-      <Element resource={subject.value} {...wrapperProps}>
+      <Element
+        resource={subject.value}
+        {...wrapperProps}
+      >
         {this.props.children}
       </Element>
     );

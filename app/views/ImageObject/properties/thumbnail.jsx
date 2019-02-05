@@ -5,7 +5,7 @@ import React from 'react';
 
 import { DetailImage, Image } from '../../../components';
 import FormFooterImage from '../../../components/Form/FooterImage';
-import HeaderLinkImage from '../../../components/HeaderLink/HeaderLinkImage';
+import NavbarLinkImage from '../../../components/NavbarLink/NavbarLinkImage';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologiesExcept } from '../../../topologies';
 import { cardListTopology } from '../../../topologies/Card/CardList';
@@ -34,7 +34,7 @@ export const createThumbnail = (override) => {
 
 export default [
   LinkedRenderStore.registerRenderer(
-    createThumbnail(HeaderLinkImage),
+    createThumbnail(NavbarLinkImage),
     [NS.schema('ImageObject'), NS.schema('VideoObject')],
     [NS.schema('thumbnail'), NS.argu('imgUrl64x64')],
     allTopologiesExcept(cardListTopology, detailsBarTopology, formFooterTopology)

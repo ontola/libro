@@ -18,12 +18,9 @@ import {
   SIGN_IN_USER_CREATED,
   SIGN_IN_WRONG_PASSWORD,
 } from '../state/action-types';
-import {
-  emailTaken,
-  unknownEmail,
-  wrongPassword,
-} from '../state/form/actions';
-import { frontendIRI } from '../helpers/LinkedRenderStore';
+import { emailTaken, unknownEmail, wrongPassword } from '../state/form/actions';
+
+import { frontendIRI } from './app';
 
 export const apiLogin = createAction(AFE_API_LOGIN);
 

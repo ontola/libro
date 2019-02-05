@@ -7,14 +7,13 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { withSideBarCollapsibleActions } from '../../../components/SideBarCollapsible';
 import {
-  HeaderLinkLink,
-  HeaderLinkWrapper,
-} from '../../../components/HeaderLink';
+  NavbarLinkLink,
+  NavbarLinkWrapper,
+} from '../../../components/NavbarLink';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import SHACL from '../../../helpers/shacl';
-import { headerTopology } from '../../../topologies/Header';
+import { navbarTopology } from '../../../topologies/Navbar';
 
 class Href extends React.PureComponent {
   static type = [
@@ -25,14 +24,12 @@ class Href extends React.PureComponent {
 
   static property = NS.argu('href');
 
-  static topology = headerTopology;
+  static topology = navbarTopology;
 
   static mapDataToProps = [
     NS.argu('action'),
     NS.argu('href'),
   ];
-
-  static hocs = [withSideBarCollapsibleActions];
 
   static propTypes = {
     action: linkType,
@@ -62,7 +59,7 @@ class Href extends React.PureComponent {
         return lrs.exec(action, SHACL.actionToObject(lrs, subject));
       };
     }
-    return !href && onClickToggle;
+    return !href ? onClickToggle : undefined;
   }
 
   render() {
@@ -73,14 +70,15 @@ class Href extends React.PureComponent {
     } = this.props;
 
     return (
-      <HeaderLinkWrapper>
-        <HeaderLinkLink
+      <NavbarLinkWrapper>
+        <NavbarLinkLink
+          isIndex
           to={href ? href.value : '#'}
           onClick={handleClick || this.clickHandler()}
         >
           {children}
-        </HeaderLinkLink>
-      </HeaderLinkWrapper>
+        </NavbarLinkLink>
+      </NavbarLinkWrapper>
     );
   }
 }

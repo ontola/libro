@@ -1,26 +1,22 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { HotKeys } from 'react-hotkeys';
-import { connect } from 'react-redux';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
-import { frontendOrigin } from '../../helpers/LinkedRenderStore';
 import { absoluteRouterLocation } from '../../helpers/paths';
+import { frontendOrigin } from '../../middleware/app';
+import { setNumPages, setRotation, setZoomLevel } from '../../state/PDFViewer/actions';
 import {
   getNumPages,
-  getZoomlevel,
-  getShowComments,
   getRotation,
+  getShowComments,
+  getZoomlevel,
 } from '../../state/PDFViewer/selectors';
-import {
-  setNumPages,
-  setRotation,
-  setZoomLevel,
-} from '../../state/PDFViewer/actions';
 
-import PDFNav from './PDFNav';
 import PDFComments from './PDFComments';
+import PDFNav from './PDFNav';
 
 import './PDF.scss';
 

@@ -1,4 +1,5 @@
 import { actionsBarTopology } from './topologies/ActionsBar/index';
+import { appMenuTopology } from './topologies/AppMenu';
 import { cardTopology } from './topologies/Card/index';
 import { cardAppendixTopology } from './topologies/Card/CardAppendix';
 import { cardFixedTopology } from './topologies/Card/CardFixed';
@@ -14,9 +15,9 @@ import { alertDialogTopology } from './topologies/Dialog/index';
 import { dropdownContentTopology } from './topologies/DropdownContent/index';
 import { formFooterTopology } from './topologies/FormFooter/Footer';
 import { gridTopology } from './topologies/Grid/index';
-import { headerTopology } from './topologies/Header/index';
 import { hoverBoxTopology } from './topologies/HoverBox/index';
 import { inlineTopology } from './topologies/Inline/index';
+import { navbarTopology } from './topologies/Navbar';
 import { omniformFieldsTopology } from './topologies/OmniformFields/OmniformFields';
 import { pageHeaderTopology } from './topologies/PageHeader/index';
 import { parentTopology } from './topologies/Parent/index';
@@ -36,6 +37,7 @@ import { widgetTopologyTopology } from './topologies/WidgetTopology/WidgetTopolo
 export const allTopologies = [
   undefined,
   actionsBarTopology,
+  appMenuTopology,
   cardTopology,
   cardAppendixTopology,
   cardFixedTopology,
@@ -51,9 +53,9 @@ export const allTopologies = [
   dropdownContentTopology,
   formFooterTopology,
   gridTopology,
-  headerTopology,
   hoverBoxTopology,
   inlineTopology,
+  navbarTopology,
   omniformFieldsTopology,
   parentTopology,
   pageHeaderTopology,

@@ -17,11 +17,13 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import { dropdownContentTopology } from '../../topologies/DropdownContent';
 import { tabBarTopology } from '../../topologies/TabBar';
 
+import MenuItemAppMenu from './MenuItemAppMenu';
 import MenuItemDropdown from './MenuItemDropdown';
 import MenuItemPage from './MenuItemPage';
-import MenuItemSidebar from './MenuItemSidebar';
+import MenuItemHeader from './MenuItemNavbar';
 import Href from './properties/href';
-import Label from './properties/label';
+import LabelCard from './properties/labelCard';
+import LabelHeader from './properties/labelHeader';
 import menuItemsComp from './properties/menuItems';
 
 class MenuItemDropdownContent extends React.PureComponent {
@@ -92,9 +94,10 @@ MenuItemTab.propTypes = {
 };
 
 export default [
+  MenuItemAppMenu,
   MenuItemDropdown,
   MenuItemPage,
-  MenuItemSidebar,
+  MenuItemHeader,
   LinkedRenderStore.registerRenderer(
     link([
       NS.argu('action'),
@@ -120,6 +123,7 @@ export default [
     tabBarTopology
   ),
   Href,
-  Label,
+  LabelCard,
+  LabelHeader,
   menuItemsComp,
 ];

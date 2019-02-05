@@ -4,7 +4,7 @@ import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../../topologies';
-import { headerTopology } from '../../../topologies/Header';
+import { navbarTopology } from '../../../topologies/Navbar';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -13,7 +13,7 @@ const propTypes = {
 const ThingOrganizationProp = ({ linkedProp }) => (
   <LinkedResourceContainer
     subject={linkedProp}
-    topology={headerTopology}
+    topology={navbarTopology}
   />
 );
 

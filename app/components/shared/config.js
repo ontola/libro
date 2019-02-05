@@ -54,6 +54,23 @@ export const types = [
   'project',
 ];
 
+const mqBreakpoints = {
+  largeLowerBound: '900px',
+  microUpperBound: '320px',
+  smallLowerBound: '650px',
+  smallUpperBound: 'calc(900px - .5px)',
+  smallestLowerBound: 'calc(320px + .5px)',
+  smallestUpperBound: 'calc(650px - .5px)',
+};
+
+export const mediaQueries = {
+  largeAndAbove: `(min-width: ${mqBreakpoints.largeLowerBound})`,
+  micro: `(max-width: ${mqBreakpoints.microUpperBound})`,
+  smallAndBelow: `(max-width: ${mqBreakpoints.smallUpperBound})`,
+  smallOnly: `(min-width: ${mqBreakpoints.smallLowerBound}) and (max-width: ${mqBreakpoints.smallUpperBound})`,
+  smallestOnly: `(min-width: ${mqBreakpoints.smallestLowerBound})  and (max-width: ${mqBreakpoints.smallestUpperBound})`,
+};
+
 /* eslint-disable no-magic-numbers */
 // These should match /shared/config.scss
 export const colors = {

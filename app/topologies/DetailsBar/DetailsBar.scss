@@ -1,6 +1,8 @@
 @import '../../components/shared/config';
 
 .DetailsBar {
+  @include custom-prop(--theme-background, #{color('grey', 'xx-light')});
+
   -webkit-overflow-scrolling: touch;
   align-items: flex-start;
   background-color: color('grey', 'xx-light');
@@ -8,6 +10,7 @@
   border-top-left-radius: $border-radius-base;
   border-top-right-radius: $border-radius-base;
   box-sizing: border-box;
+  color: color('grey', 'xx-light-foreground-small');
   display: flex;
   height: unit('x-large');
 
@@ -69,6 +72,7 @@
 
 .DetailsBar__right {
   align-self: flex-end;
+  color: color('grey', 'xx-light-foreground-small');
   display: flex;
   height: 100%;
   margin-left: auto;

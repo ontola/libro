@@ -152,10 +152,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
 
   history.listen((_, action) => {
     if (['POP', 'PUSH'].includes(action)) {
-      const dialog = store.getResourceProperty(dialogManager, ontola('dialog/resource'));
-      if (dialog) {
-        store.exec(ontola('actions/dialog/close'));
-      }
+      store.exec(ontola(`actions/navigation/${action.toLowerCase()}`));
     }
   });
 
@@ -185,6 +182,13 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       case store.namespaces.ontola('actions/reload'):
         window.location.reload(true);
         return Promise.resolve();
+      case ontola(`actions/navigation/push`):
+      case ontola(`actions/navigation/pop`):
+        const dialog = store.getResourceProperty(dialogManager, ontola('dialog/resource'));
+        if (dialog) {
+          store.exec(ontola('actions/dialog/close'));
+        }
+        return next(iri, opts);
       default:
     }
 

@@ -29,10 +29,10 @@ import { dropdownContentTopology } from '../../topologies/DropdownContent';
 import { gridTopology } from '../../topologies/Grid';
 import { hoverBoxTopology } from '../../topologies/HoverBox';
 import { inlineTopology } from '../../topologies/Inline';
+import { navbarTopology } from '../../topologies/Navbar';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 import { pageTopology } from '../../topologies/Page';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
-import { headerTopology } from '../../topologies/Header';
 import { voteBubbleTopology } from '../../topologies/VoteBubble';
 import { voteEventResultTopology } from '../../topologies/VoteEventResult';
 import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
@@ -42,7 +42,7 @@ import { tabPaneTopology } from '../../topologies/TabPane';
 import ErrorButtonWithFeedback from './ErrorButtonWithFeedback';
 import ErrorButtonInline from './ErrorButtonInline';
 import { bodyForStatus, headerForStatus } from './ErrorMessages';
-import ErrorButtonSideBar from './ErrorButtonSideBar';
+import ErrorButtonHeader from './ErrorButtonHeader';
 
 const withUserType = Comp => connect(state => ({
   userType: getCurrentUserType(state),
@@ -159,17 +159,17 @@ ErrorPageComp.propTypes = propTypes;
 
 const ErrorPage = withRouter(withUserType(ErrorPageComp));
 
-const ErrorSidebar = (props) => {
+const ErrorNavbar = (props) => {
   if (props.subject === NS.app('n?type=infinite')) {
     return null;
   }
 
   return (
-    <ErrorButtonSideBar {...props} />
+    <ErrorButtonHeader {...props} />
   );
 };
 
-ErrorSidebar.propTypes = {
+ErrorNavbar.propTypes = {
   linkRequestStatus: PropTypes.shape({
     status: PropTypes.number,
   }),
@@ -200,10 +200,10 @@ export default [
     ]
   ),
   LinkedRenderStore.registerRenderer(
-    ErrorSidebar,
+    ErrorNavbar,
     NS.ll('ErrorResource'),
     RENDER_CLASS_NAME,
-    headerTopology
+    navbarTopology
   ),
   LinkedRenderStore.registerRenderer(
     ErrorButtonInline,

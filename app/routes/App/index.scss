@@ -1,0 +1,6 @@
+@import '../../components/shared/config';
+
+.MainContentWrapper {
+  min-height: calc(100vh - #{$navbar-height});
+  position: relative;
+}

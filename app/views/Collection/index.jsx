@@ -11,6 +11,7 @@ import {
   Resource,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { alertDialogTopology } from '../../topologies/Dialog';
 import { cardTopology } from '../../topologies/Card';
 import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
 import { cardFixedTopology } from '../../topologies/Card/CardFixed';
@@ -34,9 +35,9 @@ import Name from './properties/name';
 import UnreadCount from './properties/unreadCount';
 import Pages from './properties/pages';
 import { CollectionTypes } from './types';
-import sidebar from './sidebar';
 import voteEvent from './voteEvent';
 import CollectionContainer from './CollectionContainer';
+import CollectionNavbar from './CollectionNavbar';
 import CollectionTableRow from './CollectionTableRow';
 
 import './Collection.scss';
@@ -87,6 +88,7 @@ const itemsCount = {
 
 export default [
   CollectionContainer,
+  CollectionNavbar,
   CollectionTableRow,
   LinkedRenderStore.registerRenderer(
     getCollection({
@@ -97,6 +99,7 @@ export default [
     CollectionTypes,
     RENDER_CLASS_NAME,
     [
+      alertDialogTopology,
       primaryResourceTopology,
       pageTopology,
     ]
@@ -153,7 +156,6 @@ export default [
   ...FilteredCollections,
   First,
   Name,
-  sidebar,
   ...UnreadCount,
   ...Pages,
   ...voteEvent,

@@ -1,63 +1,53 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
-  LinkedResourceContainer,
+  lrsType,
   Property,
-  subjectType,
   withLinkCtx,
 } from 'link-redux';
 import React from 'react';
-import { defineMessages, injectIntl, intlShape } from 'react-intl';
 
-import { Resource, SideBarCollapsible } from '../../components';
+import { Resource } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { formFooterTopology } from '../../topologies/FormFooter/Footer';
-import { headerTopology } from '../../topologies/Header';
+import { navbarTopology } from '../../topologies/Navbar';
 
 import ActorType from './properties/actorType';
 import GuestUser from './GuestUser';
 
-const messages = defineMessages({
-  actorMenuLabel: {
-    defaultMessage: 'Show or hide user menu',
-    id: 'https://app.argu.co/i18n/menus/user/collapseLabel',
-  },
-});
-
 const propTypes = {
-  intl: intlShape,
-  subject: subjectType,
+  lrs: lrsType,
 };
 
 const CurrentActorFooter = () => (
   <Property label={NS.argu('actor')} />
 );
 
-const CurrentActorSidebar = ({ intl: { formatMessage }, subject }) => (
+const UserNavbar = ({ lrs }) => (
   <Resource>
-    <SideBarCollapsible
-      collapseLabel={formatMessage(messages.actorMenuLabel)}
-      id={`${subject}-sidebar-menu`}
-      labelComp={<Property label={NS.argu('actor')} />}
-    >
-      <Property label={NS.argu('actorType')} />
-      <LinkedResourceContainer subject={NS.app('apex/menus/user')}>
-        <Property label={NS.argu('menuItems')} />
-      </LinkedResourceContainer>
-    </SideBarCollapsible>
+    <Property label={NS.argu('actorType')} />
+    <Property
+      label={NS.argu('actor')}
+      onClick={(e) => {
+        if (e) {
+          e.preventDefault();
+        }
+        lrs.exec(NS.app('actions/menu/toggle'));
+      }}
+    />
   </Resource>
 );
 
-CurrentActorSidebar.propTypes = propTypes;
+UserNavbar.propTypes = propTypes;
 
 const RegisteredTypes = [NS.argu('ConfirmedUser'), NS.argu('UnconfirmedUser')];
 const ActorTypes = [...RegisteredTypes, NS.argu('GuestUser')];
 
 export default [
   LinkedRenderStore.registerRenderer(
-    withLinkCtx(injectIntl(CurrentActorSidebar)),
+    withLinkCtx(UserNavbar),
     RegisteredTypes,
     RENDER_CLASS_NAME,
-    headerTopology
+    navbarTopology
   ),
   LinkedRenderStore.registerRenderer(
     withLinkCtx(CurrentActorFooter),

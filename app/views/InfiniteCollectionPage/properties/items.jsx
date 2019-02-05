@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
-import { headerTopology } from '../../../topologies/Header';
+import { navbarTopology } from '../../../topologies/Navbar';
 import { collectionDisplayWrapper } from '../../CollectionPage/properties/items';
 
 const propTypes = {
@@ -80,6 +80,6 @@ export default [
     props => <Items divider direction="inverted" {...props} />,
     NS.argu('InfiniteCollection'),
     NS.as('items'),
-    headerTopology
+    navbarTopology
   ),
 ];

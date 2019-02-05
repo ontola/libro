@@ -1,0 +1,10 @@
+@import '../../components/shared/config';
+
+.Navbar {
+  background-clip: content-box;
+  background-color: color('white');
+  height: $navbar-height;
+  overflow: auto;
+  position: relative;
+  z-index: 200;
+}

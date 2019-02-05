@@ -24,6 +24,7 @@ import RDFSClass from './RDFSClass';
 import Loading from './Loading';
 import MediaObject from './MediaObject';
 import Meeting from './Meeting/properties/agenda';
+import Menu from './Menu';
 import MenuItem from './MenuItem';
 import MenuSection from './MenuSection';
 import Motion from './Motion';
@@ -37,7 +38,6 @@ import SeqComp from './Seq';
 import Shape from './Shape';
 import Snackbar from './Snackbar';
 import SnackbarManager from './SnackbarManager';
-import SubMenu from './SubMenu';
 import User from './User';
 import Vote from './Vote';
 // import './VoteCompareCells';
@@ -67,6 +67,7 @@ function register() {
     ...Loading,
     ...MediaObject,
     ...Meeting,
+    ...Menu,
     ...MenuItem,
     ...MenuSection,
     ...Motion,
@@ -80,7 +81,6 @@ function register() {
     ...Shape,
     ...Snackbar,
     ...SnackbarManager,
-    ...SubMenu,
     ...User,
     ...Vote,
     ...VoteEvent,

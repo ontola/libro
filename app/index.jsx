@@ -37,4 +37,9 @@ if (typeof window !== 'undefined') {
 }
 
 // Fade out the preloader and fade in the interface
+const preloaderTimeout = 1200;
 document.getElementsByTagName('body')[0].classList.remove('Body--show-preloader');
+window.setTimeout(() => {
+  const preloader = document.getElementById('preloader');
+  preloader.parentElement.removeChild(preloader);
+}, preloaderTimeout);

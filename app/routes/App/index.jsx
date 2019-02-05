@@ -1,16 +1,15 @@
 import { LinkedResourceContainer } from 'link-redux';
+import * as PropTypes from 'prop-types';
 import React from 'react';
 import Helmet from 'react-helmet';
-import { withRouter } from 'react-router';
-import ScrollMemory from 'react-router-scroll-memory';
 import { HotKeys } from 'react-hotkeys';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
-import Routes from '..';
-
-import { SkipNavigation } from '../../components';
+import { NavBarContent, SkipNavigation } from '../../components';
 import '../../components/shared/init.scss';
-import SideBarContainer from '../../containers/SideBarContainer';
-import NavbarContainer from '../../containers/NavbarContainer';
+import { getSideBarColor } from '../../state/sideBars/selectors';
+import Navbar from '../../topologies/Navbar/index';
 import Popup from '../../topologies/Popup/index';
 import ErrorButtonWithFeedback from '../../views/Error/ErrorButtonWithFeedback';
 import HoverHelper from '../DevBrowser/HoverHelper';
@@ -18,7 +17,14 @@ import { defaultKeymap, devKeymap } from '../../helpers/keyboard';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { handle } from '../../helpers/logging';
 
+import './index.scss';
+import MainContent from './MainContent';
+
 class App extends React.PureComponent {
+  static propTypes = {
+    baseColor: PropTypes.string,
+  };
+
   constructor(props) {
     super(props);
 
@@ -52,24 +58,21 @@ class App extends React.PureComponent {
         attach={window}
         keyMap={__DEVELOPMENT__ ? devKeymap : defaultKeymap}
       >
+        <style>
+          {`:root { --base-color: ${this.props.baseColor} }`}
+        </style>
         <HoverHelper>
           <Helmet
             defaultTitle="Argu"
             titleTemplate="%s - Argu"
           />
           <SkipNavigation />
-          <SideBarContainer
-            slim
-            id="Navbar"
-            sidebar={<NavbarContainer />}
-          >
-            <div className="MainContentWrapper" id="start-of-content">
-              <ScrollMemory elementId="start-of-content" />
-              {Routes}
-            </div>
-            <LinkedResourceContainer subject={NS.ontola('snackbar/manager')} />
-            <LinkedResourceContainer subject={NS.ontola('dialog/manager')} />
-          </SideBarContainer>
+          <Navbar>
+            <NavBarContent />
+          </Navbar>
+          <MainContent />
+          <LinkedResourceContainer subject={NS.ontola('snackbar/manager')} />
+          <LinkedResourceContainer subject={NS.ontola('dialog/manager')} />
           <Popup />
         </HoverHelper>
       </HotKeys>
@@ -77,4 +80,10 @@ class App extends React.PureComponent {
   }
 }
 
-export default withRouter(App);
+function mapDataToProps(state) {
+  return {
+    baseColor: getSideBarColor(state),
+  };
+}
+
+export default withRouter(connect(mapDataToProps)(App));

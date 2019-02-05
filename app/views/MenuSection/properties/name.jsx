@@ -3,14 +3,14 @@ import React from 'react';
 
 import MenuSectionLabel from '../../../components/MenuSectionLabel';
 import { NS } from '../../../helpers/LinkedRenderStore';
-import { headerTopology } from '../../../topologies/Header';
+import { navbarTopology } from '../../../topologies/Navbar';
 
 class MenuSectionName extends React.PureComponent {
   static type = NS.argu('MenuSection');
 
   static property = NS.schema('name');
 
-  static topology = headerTopology;
+  static topology = navbarTopology;
 
   static propTypes = {
     linkedProp: linkedPropType,

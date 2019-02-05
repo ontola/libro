@@ -1,0 +1,14 @@
+@import '../shared/config';
+
+.AppMenuGroup {
+  border-bottom: 1px solid color('grey', 'x-light');
+  padding: units('x-small');
+
+  &__footer {
+    background-color: color('grey', 'xx-light');
+    border-bottom: 0;
+    flex-grow: 1;
+    height: 100%;
+    padding: units('x-small');
+  }
+}

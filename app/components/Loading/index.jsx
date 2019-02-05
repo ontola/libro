@@ -14,9 +14,9 @@ import { Breadcrumb, BreadcrumbsBar } from '../Breadcrumbs';
 
 const LoadingInline = () => <div className="Loading__Paragraph Loading__Paragraph--inline Loading__background" />;
 
-export const LoadingHeaderLink = () => (
-  <div className="LoadingHeaderLink">
-    <div className="LoadingHeaderLink__content Loading__background Loading__background--inverse" />
+export const LoadingNavbarLink = () => (
+  <div className="LoadingNavbarLink">
+    <div className="LoadingNavbarLink__content Loading__background Loading__background--inverse" />
   </div>
 );
 

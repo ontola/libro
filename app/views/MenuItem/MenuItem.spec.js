@@ -1,6 +1,7 @@
 import { Literal, NamedNode } from 'rdflib';
 
 import { NS } from '../../../tests';
+import { appMenuTopology } from '../../topologies/AppMenu';
 
 import components from './index';
 
@@ -41,19 +42,15 @@ const resources = {
   },
 };
 
-describeView('MenuItem', components, resources, resource, () => {
-  as(NS.argu('sidebar'), () => {
-    describe('with children', () => {
-      it('renders the children', () => {
-        expect(subject.find(marker('menuItems', 'collapsible'))).toExist();
-      });
-    });
+describe('test', () => {
+  describeView('MenuItem', components, resources, resource, () => {
+    as(appMenuTopology, () => {
+      describe('without children', () => {
+        set('s', () => showResource);
 
-    describe('without children', () => {
-      set('s', () => showResource);
-
-      it('renders the label', () => {
-        expect(subject.find(marker('MenuItemLabel'))).toExist();
+        it('renders the label', () => {
+          expect(subject.find(marker('MenuItemLabel'))).toExist();
+        });
       });
     });
   });

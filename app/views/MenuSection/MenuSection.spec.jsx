@@ -1,6 +1,7 @@
 import { Literal, NamedNode } from 'rdflib';
 
 import { NS } from '../../../tests';
+import { navbarTopology } from '../../topologies/Navbar';
 
 import components from './index';
 
@@ -41,7 +42,7 @@ const resources = {
 };
 
 describeView('MenuSection', components, resources, resource, () => {
-  as(NS.argu('sidebar'), () => {
+  as(navbarTopology, () => {
     it('renders a MenuSection', () => {
       expect(subject.find(marker('menu-section'))).toExist();
     });

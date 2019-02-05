@@ -17,10 +17,9 @@ class VerticalScroller extends React.PureComponent {
   render() {
     return (
       <div className="VerticalScroller">
-        <div className="VerticalScroller__scroll">
+        <div className="VerticalScroller__scroll scrollbox theme">
           {this.props.children}
         </div>
-        <div className="VerticalScroller__hider" />
       </div>
     );
   }

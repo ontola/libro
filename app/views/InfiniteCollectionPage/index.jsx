@@ -7,7 +7,6 @@ import { allTopologies } from '../../topologies';
 
 import Items from './properties/items';
 import Next from './properties/next';
-import Pages from './properties/pages';
 
 export default [
   LinkedRenderStore.registerRenderer(
@@ -18,5 +17,4 @@ export default [
   ),
   ...Items,
   Next,
-  ...Pages,
 ];

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { HotKeys } from 'react-hotkeys';
 
 import { expandPath } from '../../helpers/iris';
@@ -11,7 +11,7 @@ const propTypes = {
 
 const TRIGGER_KEYS = ['Alt', 'AltGraph'];
 
-class HoverHelper extends PureComponent {
+class HoverHelper extends Component {
   constructor(props) {
     super(props);
     this.state = {

@@ -3,7 +3,7 @@ import { Property } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
-import { headerTopology } from '../../topologies/Header';
+import { navbarTopology } from '../../topologies/Navbar';
 
 import MenuSectionName from './properties/name';
 
@@ -22,7 +22,7 @@ export default [
     MenuSection,
     [NS.argu('MenuSection')],
     RENDER_CLASS_NAME,
-    headerTopology
+    navbarTopology
   ),
   MenuSectionName,
 ];
