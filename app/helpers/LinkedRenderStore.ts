@@ -14,7 +14,7 @@ import {
 } from 'rdflib';
 import { ReactType } from 'react';
 
-import { FRONTEND_ACCEPT, FRONTEND_URL } from '../config';
+import { FRONTEND_ACCEPT } from '../config';
 
 // @ts-ignore
 import { arguDeltaProcessor } from './data';
@@ -46,7 +46,7 @@ transformers(LRS).forEach((t) =>
 );
 
 // @ts-ignore TS2341
-LRS.api.setAcceptForHost(FRONTEND_URL, FRONTEND_ACCEPT);
+LRS.api.accept.default = FRONTEND_ACCEPT;
 
 LRS.namespaces.app = Namespace(FRONTEND_URL.endsWith('/') ? FRONTEND_URL : `${FRONTEND_URL}/`);
 LRS.namespaces.aod = Namespace('https://argu.co/ns/od#');
