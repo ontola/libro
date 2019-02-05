@@ -9,12 +9,13 @@ import {
   withLRS,
 } from 'link-redux';
 import * as PropTypes from 'prop-types';
+import { NamedNode } from 'rdflib';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { SignInFormContainerCardRow } from '../../../containers/SignInFormContainer';
-import { currentURL, retrievePath } from '../../../helpers/iris';
+import { currentURL } from '../../../helpers/iris';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { getCurrentUserType } from '../../../state/app/selectors';
 import { allTopologies } from '../../../topologies';
@@ -33,7 +34,7 @@ class CurrentVote extends React.PureComponent {
     const base = new URL(this.props.base.replace('/od/', '/lr/'));
     base.searchParams.set('filter[]', `option=${this.props.side.term}`);
     return this.props.lrs.getResourceProperty(
-      NS.app(`${retrievePath(base.toString()).slice(1)}`),
+      NamedNode.find(base),
       NS.argu('createAction')
     );
   }

@@ -15,6 +15,7 @@ import {
 import { ReactType } from 'react';
 
 import { FRONTEND_ACCEPT } from '../config';
+import {getMetaContent} from './arguHelpers';
 
 // @ts-ignore
 import { arguDeltaProcessor } from './data';
@@ -45,10 +46,20 @@ transformers(LRS).forEach((t) =>
     LRS.api.registerTransformer(t.transformer, t.mediaTypes, t.acceptValue),
 );
 
+const website = getMetaContent('website-iri');
+if (!website) {
+  handle(new Error('No website in head'));
+}
+export const frontendIRI = NamedNode.find(website!);
+const frontendIRIStr = frontendIRI.value;
+export const frontendPathname = new URL(frontendIRIStr).pathname;
+export const frontendOrigin = new URL(frontendIRIStr).origin;
+
 // @ts-ignore TS2341
 LRS.api.accept.default = FRONTEND_ACCEPT;
 
-LRS.namespaces.app = Namespace(FRONTEND_URL.endsWith('/') ? FRONTEND_URL : `${FRONTEND_URL}/`);
+LRS.namespaces.app = Namespace(frontendIRIStr.endsWith('/') ? frontendIRIStr : `${frontendIRIStr}/`);
+LRS.namespaces.appSlashless = Namespace(frontendIRIStr.slice(0, frontendIRIStr.endsWith('/') ? -1 : undefined));
 LRS.namespaces.aod = Namespace('https://argu.co/ns/od#');
 LRS.namespaces.meeting = Namespace('https://argu.co/ns/meeting/');
 LRS.namespaces.sh = Namespace('http://www.w3.org/ns/shacl#');

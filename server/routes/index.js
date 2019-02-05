@@ -6,7 +6,6 @@ import morgan from 'morgan';
 import * as shrinkRay from 'shrink-ray-current';
 import uuidv4 from 'uuid/v4';
 
-import * as constants from '../../app/config';
 import apiMiddleware from '../middleware/apiMiddleware';
 import authenticationMiddleware from '../middleware/authenticationMiddleware';
 import errorHandlerMiddleware from '../middleware/errorHandlerMiddleware';
@@ -27,7 +26,7 @@ export function listen(app, port) {
     if (err) {
       console.log(err);
     }
-    console.info(`[${__VERSION__}]==> 🌍 Listening on port ${port}. Open up ${constants.FRONTEND_URL} in your browser.`);
+    console.info(`[${__VERSION__}]==> 🌍 Listening on port ${port}.`);
   });
 }
 

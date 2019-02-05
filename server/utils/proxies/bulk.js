@@ -3,7 +3,6 @@ import * as zlib from 'zlib';
 
 import HttpStatus from 'http-status-codes';
 
-import * as constants from '../../config';
 import {
   EXEC_HEADER_NAME,
   getActions,
@@ -19,7 +18,7 @@ import {
 export default (req, res) => {
   res.append('Content-Type', 'application/n-quads; charset=utf-8');
 
-  const bulkUrl = new URL(req.url, constants.FRONTEND_URL);
+  const bulkUrl = new URL(req.url, 'https://example.org');
   const requests = [];
   const resources = bulkUrl
     .searchParams
@@ -32,6 +31,7 @@ export default (req, res) => {
           headers: {
             ...req.headers,
             'Content-Encoding': null,
+            'X-Forwarded-Host': req.headers.host,
           },
           method: 'GET',
           timeout: 30000,

@@ -11,17 +11,17 @@ const BACKEND_TIMEOUT = 3000;
 
 export default function application(port) {
   const PRELOAD_HEADERS = [
-    `<${constants.FRONTEND_URL}/static/preloader.css>; rel=preload; as=style`,
+    `<${constants.ASSETS_HOST}/static/preloader.css>; rel=preload; as=style`,
     manifest['main.js'] && `<${constants.ASSETS_HOST}${manifest['main.js']}>; rel=preload; as=script`,
     __PRODUCTION__ && manifest['main.css'] && `<${constants.ASSETS_HOST}${manifest['main.css']}>; rel=preload; as=style`,
   ].filter(Boolean);
 
-  const sendResponse = (req, res, domain) => {
+  const sendResponse = (req, res, domain, website) => {
     if (isHTMLHeader(req.headers)) {
       res.setHeader('Link', PRELOAD_HEADERS);
     }
     res.setHeader('Vary', 'Accept,Accept-Encoding,Authorization,Content-Type');
-    handleRender(req, res, port, domain);
+    handleRender(req, res, port, domain, website);
 
     return undefined;
   };
@@ -43,7 +43,7 @@ export default function application(port) {
         return res.end();
       }
 
-      return sendResponse(req, res, domain);
+      return sendResponse(req, res, domain, serverRes.headers.get('Tenant-Iri'));
     }).catch((e) => {
       if (typeof e === 'undefined') {
         // Timeout finished first
@@ -55,7 +55,7 @@ export default function application(port) {
         }
         res.status(INTERNAL_SERVER_ERROR);
       }
-      sendResponse(req, res, domain);
+      sendResponse(req, res, domain, `https://${req.get('host')}`);
     });
   };
 }

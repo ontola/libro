@@ -7,7 +7,6 @@
 import { createAction } from 'redux-actions';
 
 import { setMapAccessToken } from '../async/MapView/actions';
-import { FRONTEND_URL } from '../config';
 import { safeCredentials } from '../helpers/arguHelpers';
 import { handle } from '../helpers/logging';
 import {
@@ -24,8 +23,7 @@ import {
   unknownEmail,
   wrongPassword,
 } from '../state/form/actions';
-
-const PATH_MATCH = 1;
+import { frontendIRI } from '../helpers/LinkedRenderStore';
 
 export const apiLogin = createAction(AFE_API_LOGIN);
 
@@ -71,17 +69,14 @@ export default (history, swc) => () => next => (action) => {
               break;
             case SIGN_IN_USER_CREATED:
             case SIGN_IN_LOGGED_IN: {
-              let match;
               swc.clearCache();
               const { r } = action.payload;
-              if (r && r.startsWith(FRONTEND_URL)) {
-                match = r.split(FRONTEND_URL);
-                const redirect = (match && match[PATH_MATCH]) || '/';
-                history.push(redirect);
+              if (r && r.startsWith(frontendIRI.value)) {
+                window.location = r;
               } else {
                 history.goBack();
+                window.location.reload();
               }
-              window.location.reload();
               break;
             }
             default:

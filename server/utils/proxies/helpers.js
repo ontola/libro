@@ -65,7 +65,7 @@ const voteCompareMatch = /^\/compare\/votes/;
 const defaultPort = constants.defaultServicePort ? constants.defaultServicePort : undefined;
 
 export function route(requestUrl, full = false) {
-  const url = new URL(requestUrl, constants.FRONTEND_URL);
+  const url = new URL(requestUrl, 'https://example.com');
   const path = url.pathname;
   let serviceName;
 

@@ -1,6 +1,7 @@
 import HttpStatus from 'http-status-codes';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {NS} from './LinkedRenderStore';
 /**
  * @module arguHelpers
  * @summary Helpers from the main Argu codebase, do not use these methods in new components.
@@ -140,7 +141,7 @@ export function tryLogin(response: Response) {
   if (response.status === HttpStatus.UNAUTHORIZED) {
     /* eslint no-alert: 0 */
     if (window.confirm(errorMessageForStatus(response.status).fallback)) {
-      window.location.href = `${window.location.origin}/u/sign_in?r=${encodeURIComponent(window.location.href)}`;
+      window.location.href = NS.app(`u/sign_in?r=${encodeURIComponent(window.location.href)}`).value;
     } else {
       return Promise.reject(errorMessageForStatus(response.status).fallback);
     }

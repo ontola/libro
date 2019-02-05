@@ -15,7 +15,6 @@ export const RELEASE_STAGE = process.env.RAILS_ENV;
 export const BUGSNAG_KEY = process.env.BUGSNAG_KEY;
 export const FRONTEND_ACCEPT = 'application/n-quads';
 export const FRONTEND_HOSTNAME = process.env.FRONTEND_HOSTNAME || getEnv('FRONTEND_HOSTNAME', 'argu.co', 'argu.dev');
-export const FRONTEND_URL = `https://${FRONTEND_HOSTNAME}`;
 export const PORT_DEVELOPMENT = getEnv('PORT_DEVELOPMENT', 3001, 3001);
 export const PORT_PRODUCTION = getEnv('PORT_PRODUCTION', 8080, 8080);
 export const PORT = getEnv('PORT', (__DEVELOPMENT__ ? PORT_DEVELOPMENT : PORT_PRODUCTION), PORT_DEVELOPMENT);

@@ -9,7 +9,7 @@ import SideBarLink from '../SideBarLink';
 import { checkLuminance } from '../../helpers/color';
 import path from '../../helpers/paths';
 import { currentURL } from '../../helpers/iris';
-import { NS } from '../../helpers/LinkedRenderStore';
+import { frontendIRI, NS } from '../../helpers/LinkedRenderStore';
 
 import './NavBarContent.scss';
 import ContainsContainer from './contains';
@@ -45,7 +45,7 @@ class NavBarContent extends React.PureComponent {
         <div className="NavBarContent__top">
           <LinkedResourceContainer
             forceRender
-            subject={NS.app(`o/find?iri=${encodeURIComponent(currentURL())}`)}
+            subject={frontendIRI}
             topology={NS.argu('sidebar')}
           >
             <ContainsContainer />
@@ -62,7 +62,7 @@ class NavBarContent extends React.PureComponent {
           />
           <LinkedResourceContainer subject={NS.app('c_a')} topology={NS.argu('sidebar')} />
           {actorType !== 'GuestUser' && <LinkedResourceContainer subject={NS.app('n')} topology={NS.argu('sidebar')} />}
-          <LinkedResourceContainer subject={NS.app('menus/info')} topology={NS.argu('sidebar')} />
+          <LinkedResourceContainer subject={NS.app('apex/menus/info')} topology={NS.argu('sidebar')} />
           {__DEVELOPMENT__ && (
             <SideBarLink
               icon="gears"

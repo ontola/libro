@@ -5,26 +5,21 @@ require('@babel/register')({
   ],
 });
 require('raf/polyfill');
-const { JSDOM } = require('jsdom');
 require('jest-enzyme');
 require('whatwg-fetch');
 const whatwgURL = require('whatwg-url').URL; // eslint-disable-line import/order
 
-const jsdom = new JSDOM(
-  '<!doctype html><html><head><title></title><script src="whatwg-fetch.js"></head><body></body></html>',
-  {
-    userAgent: 'node.js',
-  }
-);
-const exposedProperties = ['window', 'navigator', 'document', 'fetch'];
-const { window } = jsdom;
+const siteName = global.window.document.createElement('meta');
+siteName.content = 'https://app.argu.co/freetown';
+siteName.name = 'website-iri';
+global.window.document.head.appendChild(siteName);
+// TODO: add removed script tag
 
-global.window = window;
-global.document = window.document;
+const exposedProperties = ['window', 'navigator', 'document', 'fetch'];
+
 // global.window.fetch = fetch;
 // global.fetch = fetch;
 global.URL = whatwgURL;
-
 Object.keys(global.document.defaultView).forEach((property) => {
   if (typeof global[property] === 'undefined') {
     exposedProperties.push(property);

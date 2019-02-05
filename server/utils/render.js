@@ -55,7 +55,7 @@ const deferredStyles = '    var loadDeferredStyles = function() {\n'
   + '    if (raf) raf(function() {window.setTimeout(loadDeferredStyles, 0);});\n'
   + '    else window.addEventListener(\'load\', loadDeferredStyles);\n';
 
-export const renderFullPage = (html, devPort, domain, req, res) => {
+export const renderFullPage = (domain, req, res, website) => {
   const bundleVersion = isModule(req.headers['user-agent'])
     ? bundles.module
     : bundles.legacy;
@@ -70,7 +70,6 @@ export const renderFullPage = (html, devPort, domain, req, res) => {
     appVersion: pjson.version,
     releaseStage: constants.STAGE,
   };
-
   const csrfToken = req.csrfToken();
   const tokenPayload = jwt.verify(
     req.session.arguToken.accessToken,
@@ -88,6 +87,7 @@ export const renderFullPage = (html, devPort, domain, req, res) => {
         <link rel="manifest" href="${constants.ASSETS_HOST}${manifest['manifest.json']}">
         <title>Argu</title>
 
+        <meta name="website-iri" content="${website || ''}" />
         <meta property="og:type" content="website" />
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
@@ -138,7 +138,7 @@ export const renderFullPage = (html, devPort, domain, req, res) => {
             <div class="rect5"></div>
           </div>
         </div>
-        <div id="${constants.APP_ELEMENT}">${html || ''}</div>
+        <div id="${constants.APP_ELEMENT}"></div>
         <noscript>
             <h1>Argu heeft javascript nodig om te werken</h1>
             <p>Javascript staat momenteel uitgeschakeld, probeer een andere browser of in prive modus.</p>
@@ -160,6 +160,6 @@ export const renderFullPage = (html, devPort, domain, req, res) => {
     </html>`;
 };
 
-export function handleRender(req, res, port, domain) {
-  res.send(renderFullPage(undefined, port, domain, req, res));
+export function handleRender(req, res, port, domain, website) {
+  res.send(renderFullPage(domain, req, res, website));
 }

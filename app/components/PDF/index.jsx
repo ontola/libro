@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import { withRouter } from 'react-router';
 
-import { FRONTEND_URL } from '../../config';
+import { frontendOrigin } from '../../helpers/LinkedRenderStore';
 import { absoluteRouterLocation } from '../../helpers/paths';
 import {
   getNumPages,
@@ -74,7 +74,7 @@ class PDFViewer extends React.Component {
   }
 
   getCurrentPage() {
-    const pageParam = new URL(this.props.location, FRONTEND_URL).searchParams.get('page');
+    const pageParam = new URL(this.props.location, frontendOrigin).searchParams.get('page');
 
     let currentPage = 1;
     const paramPage = parseInt(pageParam, 10);
@@ -116,7 +116,7 @@ class PDFViewer extends React.Component {
       numberOutput = numPages;
     }
 
-    const next = new URL(location, FRONTEND_URL);
+    const next = new URL(location, frontendOrigin);
     next.searchParams.set('page', numberOutput);
 
     this.props.navigate(next.toString().replace(next.origin, ''));

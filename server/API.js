@@ -44,6 +44,7 @@ class API {
     return this.fetchRaw(this.userToken, {
       headers: {
         Accept: constants.FRONTEND_ACCEPT,
+        'X-Forwarded-Host': req.headers.host,
         ...this.proxySafeHeaders(req),
       },
       method: 'HEAD',
