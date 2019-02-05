@@ -84,6 +84,7 @@ export default (req, res) => {
 
           writeStream.on('end', () => {
             res.write(buff);
+            res.write('\n');
             resolve();
           });
         });
