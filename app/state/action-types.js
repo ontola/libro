@@ -5,7 +5,6 @@ export const AFE_API_GET_MAP_ACCESS_TOKEN = '@AFE_API/GET_MAP_ACCESS_TOKEN';
 // App
 export const HIGHLIGHT_RESOURCE = 'HIGHLIGHT_RESOURCE';
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
-export const SET_ORGANIZATION = 'SET_ORGANIZATION';
 
 // Collapsibles
 export const COLL_ADD = 'COLL_ADD';

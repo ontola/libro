@@ -2,8 +2,7 @@ import { Map } from 'immutable';
 import { handleActions } from 'redux-actions';
 import { LOCATION_CHANGE } from 'connected-react-router';
 
-import { NS } from '../../helpers/LinkedRenderStore';
-import { SET_CURRENT_USER, SET_ORGANIZATION, HIGHLIGHT_RESOURCE } from '../action-types';
+import { SET_CURRENT_USER, HIGHLIGHT_RESOURCE } from '../action-types';
 
 const initialState = new Map({
   [SET_CURRENT_USER]: new Map({
@@ -11,7 +10,6 @@ const initialState = new Map({
     anonymousID: undefined,
     primaryEmail: undefined,
   }),
-  [SET_ORGANIZATION]: NS.app('argu'),
 });
 
 const collapsible = handleActions({
@@ -23,7 +21,6 @@ const collapsible = handleActions({
     SET_CURRENT_USER,
     state.get(SET_CURRENT_USER).merge(payload)
   ),
-  [SET_ORGANIZATION]: (state, { payload }) => state.set(SET_ORGANIZATION, payload),
 }, initialState);
 
 export default collapsible;

@@ -1,13 +1,15 @@
 import { Map } from 'immutable';
 import { NamedNode } from 'rdflib';
 
-import { NS } from './LinkedRenderStore';
+import { frontendPathname, NS } from './LinkedRenderStore';
 
-export function currentLocation(location: Location, fragment = true): NamedNode {
-  const path = location.pathname;
-  const normalizedPath = path.slice(1, path.length - (path.endsWith('/') ? 1 : 0));
+export function currentLocation(location: Location, fragment = true, basePath = frontendPathname, ns = NS): NamedNode {
+  const path = (basePath !== '/' && location.pathname.startsWith(basePath))
+      ? location.pathname.slice(basePath.length)
+      : location.pathname;
+  const normalizedPath = path.slice(0, (path.endsWith('/') ? -1 : undefined));
 
-  return NS.app(`${normalizedPath}${location.search}${fragment ? location.hash : ''}`);
+  return ns.appSlashless(`${normalizedPath}${location.search}${fragment ? location.hash : ''}`);
 }
 
 export function absoluteRouterLocation(state: Map<string, Map<string, any>>): string {
@@ -18,7 +20,7 @@ export function absoluteRouterLocation(state: Map<string, Map<string, any>>): st
 
 const paths = {
   confirmation(): string {
-    return '/users/confirmation/new';
+    return new URL(NS.app('/users/confirmation/new').value).pathname;
   },
 
   index(): string {
@@ -26,7 +28,7 @@ const paths = {
   },
 
   newPassword(): string {
-    return '/users/password/new';
+    return new URL(NS.app('users/password/new').value).pathname;
   },
 
   /**
@@ -35,7 +37,7 @@ const paths = {
    * @returns {string} The URL.
    */
   signIn(r: string): string {
-    const url = '/u/sign_in';
+    const url = new URL(NS.app('u/sign_in').value).pathname;
     return r ? `${url}?r=${encodeURIComponent(r)}` : url;
   },
 };

@@ -1,26 +1,13 @@
 import {
-  LinkedResourceContainer,
+  Property,
   register,
-  subjectType,
 } from 'link-redux';
 import React from 'react';
-import { connect } from 'react-redux';
 
 import { NS } from '../../helpers/LinkedRenderStore';
-import { getOrganization } from '../../state/app/selectors';
-import Container from '../../topologies/Container';
 import { pageTopology } from '../../topologies/Page';
 import PageHeader from '../../topologies/PageHeader';
 import PrimaryResource from '../../topologies/PrimaryResource';
-
-const mapStateToProps = (state, { subject }) => {
-  const site = subject.site().value;
-  const org = getOrganization(state);
-
-  return ({
-    feedIRI: subject && org && NS.app(`${org && org.term}/${subject.value.split(site).pop()}/feed`),
-  });
-};
 
 class PersonPage extends React.PureComponent {
   static type = [
@@ -30,21 +17,11 @@ class PersonPage extends React.PureComponent {
 
   static topology = pageTopology;
 
-  static propTypes = {
-    feedIRI: subjectType,
-  };
-
-  static hocs = [connect(mapStateToProps)];
-
   render() {
-    const { feedIRI } = this.props;
-
     return (
       <PrimaryResource>
         <PageHeader />
-        <Container>
-          <LinkedResourceContainer subject={feedIRI} />
-        </Container>
+        <Property label={NS.argu('feed')} />
       </PrimaryResource>
     );
   }

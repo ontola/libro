@@ -15,6 +15,3 @@ export const setCurrentUserEmail = createAction(
     primaryEmail: typeof primaryEmail === 'string' ? primaryEmail : primaryEmail.value,
   })
 );
-export const setOrganization = createAction(actions.SET_ORGANIZATION);
-
-export default setOrganization;

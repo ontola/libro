@@ -1,4 +1,3 @@
-import HttpStatus from 'http-status-codes';
 import { defaultNS } from 'link-lib';
 import {
   LinkedResourceContainer,
@@ -12,11 +11,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 import { defineMessages, injectIntl } from 'react-intl';
-import { connect } from 'react-redux';
 
-import { NS } from '../../helpers/LinkedRenderStore';
-import { setOrganization } from '../../state/app/actions';
-import { getOrganization } from '../../state/app/selectors';
+import { frontendIRI, NS } from '../../helpers/LinkedRenderStore';
 import LDLink from '../LDLink';
 import SideBarCollapsibleDefault from '../SideBarCollapsible';
 
@@ -65,7 +61,7 @@ class Contains extends PropertyBase {
           id={`${this.props.subject}-menu-items`}
           labelComp={label}
         >
-          <LinkedResourceContainer subject={NS.app('menus/organizations')}>
+          <LinkedResourceContainer subject={NS.app('apex/menus/organizations')}>
             <Property label={NS.argu('menuItems')} />
           </LinkedResourceContainer>
         </SideBarCollapsibleDefault>
@@ -74,47 +70,24 @@ class Contains extends PropertyBase {
   }
 
   render() {
-    const { contains, reloadLinkedObject } = this.props;
-
-    const status = this.props.lrs.api.getStatus(this.props.subject);
-    if (status.requested === true && status.status === HttpStatus.OK) {
-      this.props.onOrganizationChange(contains);
-    }
-
-    const currentOrg = this.currentOrg();
-
-    if (currentOrg) {
-      return (
-        <LinkedResourceContainer
-          forceRender
-          subject={currentOrg}
-        >
-          {this.navbarSwitcher()}
-          <Type reloadLinkedObject={reloadLinkedObject} />
-          <Property forceRender label={NS.argu('baseColor')} />
-        </LinkedResourceContainer>
-      );
-    }
+    const { reloadLinkedObject } = this.props;
 
     return (
-      <div>
+      <LinkedResourceContainer
+        forceRender
+        subject={frontendIRI}
+      >
         {this.navbarSwitcher()}
-      </div>
+        <Type reloadLinkedObject={reloadLinkedObject} />
+        <Property forceRender label={NS.argu('baseColor')} />
+      </LinkedResourceContainer>
     );
   }
 }
 
 Contains.propTypes = propTypes;
 
-const mapStateToProps = state => ({
-  lastOrganization: getOrganization(state),
-});
-
-const mapDispatchToProps = dispatch => ({
-  onOrganizationChange: iri => dispatch(setOrganization(iri)),
-});
-
 export default link(
   [defaultNS.argu('contains')],
   { forceRender: true }
-)(connect(mapStateToProps, mapDispatchToProps)(injectIntl(withLRS(Contains))));
+)(injectIntl(withLRS(Contains)));
