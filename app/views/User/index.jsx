@@ -40,7 +40,7 @@ const CurrentActorSidebar = ({ intl: { formatMessage }, subject }) => (
       labelComp={<Property label={NS.argu('actor')} />}
     >
       <Property label={NS.argu('actorType')} />
-      <LinkedResourceContainer subject={NS.app('menus/user')}>
+      <LinkedResourceContainer subject={NS.app('apex/menus/user')}>
         <Property label={NS.argu('menuItems')} />
       </LinkedResourceContainer>
     </SideBarCollapsible>

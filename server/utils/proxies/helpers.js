@@ -59,7 +59,7 @@ export function setBulkResHeaders(res) {
 const dekuMatch = /^\/\w*\/\w*\/od\/?.*$/;
 const emailMatch = /^\/email\//;
 const subscribeMatch = /^\/subscribe/;
-const tokenMatch = /^\/tokens/;
+const tokenMatch = /^(\/\w+)?\/tokens/;
 const voteCompareMatch = /^\/compare\/votes/;
 
 const defaultPort = constants.defaultServicePort ? constants.defaultServicePort : undefined;
