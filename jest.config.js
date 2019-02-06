@@ -25,7 +25,7 @@ module.exports = {
     'jest-plugin-context/setup',
     'jest-plugin-set/setup',
   ],
-  setupTestFrameworkScriptFile: '<rootDir>/tests/testhelper.js',
+  setupFilesAfterEnv: ['<rootDir>/tests/testhelper.js'],
   testEnvironment: 'jest-environment-jsdom-thirteen',
   testURL: 'https://argu.dev/o/1',
   transform: {

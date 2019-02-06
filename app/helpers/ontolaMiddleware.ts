@@ -24,8 +24,8 @@ import ServiceWorkerCommunicator from './ServiceWorkerCommunicator';
 
 const messages = defineMessages({
   copyFinished: {
-    context: 'The (inline) message to indicate the value was copied to their clipboard',
     defaultMessage: 'Copied...',
+    description: 'The (inline) message to indicate the value was copied to their clipboard',
     id: 'https://ns.ontola.io/actions/copyToClipboard/copySuccessMessage',
   },
 });

@@ -39,7 +39,7 @@ export default (req, res) => {
         let buff = Buffer.alloc(0);
         const backendReq = http.request(url, options, (backendRes) => {
           const iriNT = iri.includes('://') ? `<${iri}>` : `_:${iri}`;
-          res.write(`${iriNT} <http://www.w3.org/2011/http#statusCode> "${backendRes.statusCode}" <http://purl.org/link-lib/meta> .\r\n`);
+          res.write(`${iriNT} <http://www.w3.org/2011/http#statusCode> "${backendRes.statusCode}"^^<http://www.w3.org/2001/XMLSchema#integer> <http://purl.org/link-lib/meta> .\r\n`);
 
           const actions = getActions(backendRes);
           if (actions.length > 0) {
@@ -51,6 +51,10 @@ export default (req, res) => {
           const redirect = newAuthorizationBulk(req, backendRes);
           if (redirect) {
             res.write(`${iriNT} <http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}> "${redirect}" <http://purl.org/link-lib/meta> .\r\n`);
+          }
+
+          if (!backendRes.headers['content-type'].includes('application/n-quads')) {
+            return resolve();
           }
 
           let decoder;
@@ -87,6 +91,8 @@ export default (req, res) => {
             res.write('\n');
             resolve();
           });
+
+          return undefined;
         });
         requests.push(backendReq);
 

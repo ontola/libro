@@ -9,7 +9,7 @@ import {
 import { getLinkedObjectClass } from 'link-redux';
 import rdf from 'rdflib';
 
-import { NS } from './LinkedRenderStore';
+import { NS, serviceWorkerCommunicator } from './LinkedRenderStore';
 import SHACL from './shacl';
 
 function tryShorten(iri) {
@@ -287,6 +287,11 @@ class LinkDevTools {
   // eslint-disable-next-line class-methods-use-this
   get shacl() {
     return SHACL;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  get swc() {
+    return serviceWorkerCommunicator;
   }
 
   get topology() {

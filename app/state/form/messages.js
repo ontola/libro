@@ -2,8 +2,8 @@ import { defineMessages } from 'react-intl';
 
 const messages = defineMessages({
   emailPlaceholder: {
-    context: 'Placeholder for the email field when signing in',
     defaultMessage: 'email@example.com',
+    description: 'Placeholder for the email field when signing in',
     id: 'https://app.argu.co/i18n/forms/session/email/placeholder',
   },
   invalidPassword: {

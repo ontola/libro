@@ -5,7 +5,7 @@ import LinkedRenderStore from './LinkedRenderStore';
 import { handle } from './logging';
 
 class ServiceWorkerCommunicator {
-  private controller!: ServiceWorker | null;
+  private currentController!: ServiceWorker | null;
   private lrs?: LinkReduxLRSType;
   private readonly updatesChannel!: BroadcastChannel;
 
@@ -25,15 +25,55 @@ class ServiceWorkerCommunicator {
         this.controller = serviceWorkerRegistration.active;
       }
     });
-    navigator.serviceWorker.addEventListener('controllerchange', (e) => {
-      this.controller = (e.target as unknown as ServiceWorkerCommunicator).controller;
-    });
     if (typeof BroadcastChannel !== 'undefined') {
       this.updatesChannel = new BroadcastChannel('data-updates');
       this.updatesChannel.addEventListener('message', this.dataUpdate.bind(this));
     } else {
       handle(new Error('Browser without BroadcastChannel'));
     }
+
+    this.onControllerChange = this.onControllerChange.bind(this);
+  }
+
+  public get controller() {
+    if (!this.currentController) {
+      throw new TypeError('ServiceWorker controller called before load');
+    }
+    return this.currentController;
+  }
+
+  public set controller(value: ServiceWorker | null) {
+    if (!value && this.currentController) {
+      throw new TypeError("Can't unset serviceworker");
+    }
+    if (this.currentController) {
+      this.currentController.removeEventListener('controllerchange', this.onControllerChange);
+      this.currentController.removeEventListener('statechange', this.onControllerChange);
+      this.currentController.removeEventListener('error', (handle as any));
+    }
+
+    this.currentController = value;
+
+    if (!this.currentController) {
+      return;
+    }
+
+    if (this.currentController.state === 'redundant') {
+      navigator.serviceWorker
+          .getRegistration()
+          .then((reg) => {
+            if (reg && reg.active) {
+              this.controller = reg.active;
+            } else {
+              handle(new Error('Serviceworker redundant and registration undefined or not active'));
+            }
+          })
+          .catch(handle);
+    }
+
+    this.currentController.addEventListener('controllerchange', this.onControllerChange);
+    this.currentController.addEventListener('statechange', this.onControllerChange);
+    this.currentController.addEventListener('error', (handle as any));
   }
 
   public set linkedRenderStore(value: LinkReduxLRSType) {
@@ -67,6 +107,14 @@ class ServiceWorkerCommunicator {
         (LinkedRenderStore as any).store.processDelta(statements);
         (LinkedRenderStore as any).broadcast();
       });
+  }
+
+  private onControllerChange(e: Event): void {
+    if (e.type === 'statechange') {
+      this.controller = e.target as ServiceWorker | null;
+    } else {
+      this.controller = (e.target as unknown as ServiceWorkerCommunicator).controller;
+    }
   }
 
   private postMessage(message: any, transfer?: Transferable[]) {
