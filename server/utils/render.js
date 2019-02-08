@@ -99,6 +99,7 @@ export const renderFullPage = (domain, req, res, website) => {
         <meta name="msapplication-starturl" content="/">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="viewport" content="initial-scale=1.0, maximum-scale=5.0" />
+        <meta content="269911176456825" property="fb:app_id">
 
         <meta name="csrf-param" content="authenticity_token">
         <meta name="csrf-token" content="${csrfToken}">
