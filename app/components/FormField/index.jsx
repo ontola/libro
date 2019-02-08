@@ -262,9 +262,15 @@ class FormField extends React.PureComponent {
     };
 
     if (type === 'datetime-local') {
+      const inputValue = this.inputValue();
+      const value = inputValue && Object.prototype.hasOwnProperty.call(inputValue, 'termType')
+        ? inputValue.value
+        : inputValue;
+      const date = value && new Date(value);
+
       return (
         <DateTimePicker
-          value={this.inputValue()}
+          value={date}
           onChange={e => this.saveInputValue(e)}
         />
       );
