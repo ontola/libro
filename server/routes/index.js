@@ -44,7 +44,7 @@ const staticCompressionOpts = (fallthrough = false) => ({
   enableBrotli: true,
   fallthrough,
   index: false,
-  orderPreference: ['br', 'gzip'],
+  orderPreference: ['br', 'gzip', 'deflate', 'identity'],
 });
 
 const compressionOpts = {

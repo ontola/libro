@@ -105,12 +105,21 @@ export const renderFullPage = (domain, req, res, website) => {
         ${constants.bugsnagKey ? '<script async src="//d2wy8f7a9ursnm.cloudfront.net/v5/bugsnag.min.js"></script>' : ''}
         <script nonce="${res.locals.nonce.toString()}">window.bugsnagClient = typeof bugsnag !== 'undefined' && bugsnag(${JSON.stringify(bugsnagOpts)})</script>
 
-        <link rel="icon" type="image/png" sizes="192x192" href="/static/icon-large.png">
-        <link rel="apple-touch-icon" type="image/png" sizes="192x192" href="/static/icon-large.png">
-        <link rel="icon" type="image/png" sizes="128x128" href="/static/icon-medium.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/static/favicons/favicon-192x192.png">
+        <link rel="icon" type="image/png" sizes="160x160" href="/static/favicons/favicon-160x160.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/static/favicons/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/favicons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/favicons/favicon-16x16.png">
+        <link rel="apple-touch-icon" type="image/png" sizes="192x192" href="/static/favicons/favicon-192x192.png">
+        <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/static/favicons/apple-touch-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="120x120" href="/static/favicons/apple-touch-icon-120x120.png">
         <link rel="apple-touch-icon" type="image/png" sizes="128x128" href="/static/icon-medium.png">
-        <link rel="icon" type="image/png" sizes="72x72" href="/static/icon-small.png">
-        <link rel="apple-touch-icon" type="image/png" sizes="72x72" href="/static/icon-small.png">
+        <link rel="icon" type="image/png" sizes="72x72" href="/static/favicons/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" type="image/png" sizes="72x72" href="/static/favicons/apple-touch-icon-72x72.png">
+        <meta name="msapplication-TileColor" content="#475668">
+        <meta name="msapplication-TileImage" content="/static/favicons/mstile-310x310.png">
+        <meta name="msapplication-config" content="/static/favicons/browserconfig.xml">
+        
         <noscript id="deferred-styles">
             ${bundleCSS}
             <link crossorigin="anonymous" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
