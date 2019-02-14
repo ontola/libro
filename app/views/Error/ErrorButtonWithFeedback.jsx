@@ -1,5 +1,12 @@
+import { unstable, lrsType } from 'link-redux';
 import PropTypes from 'prop-types';
+import { NamedNode } from 'rdflib';
 import React from 'react';
+import {
+  INTERNAL_SERVER_ERROR,
+  PROXY_AUTHENTICATION_REQUIRED,
+  TOO_MANY_REQUESTS,
+} from 'http-status-codes';
 import { FormattedMessage } from 'react-intl';
 
 import { Button } from '../../components';
@@ -15,11 +22,19 @@ const propTypes = {
   location: PropTypes.shape({
     pathname: PropTypes.string,
   }),
+  lrs: lrsType,
   reloadLinkedObject: PropTypes.func.isRequired,
   reset: PropTypes.func,
 };
 
+const RETRYABLE_ERRORS = [
+  PROXY_AUTHENTICATION_REQUIRED,
+  TOO_MANY_REQUESTS,
+];
+
 class ErrorButtonWithFeedback extends React.Component {
+  static contextType = unstable.LinkCtx;
+
   constructor() {
     super();
 
@@ -36,6 +51,12 @@ class ErrorButtonWithFeedback extends React.Component {
       this.props.reset();
       this.setState({ loading: false });
     };
+
+    if (!this.props.reloadLinkedObject) {
+      this.setState({ loading: false });
+      return this.props.reset();
+    }
+
     this
       .props
       .reloadLinkedObject()
@@ -43,6 +64,17 @@ class ErrorButtonWithFeedback extends React.Component {
       .catch((e) => {
         handle(e);
         return disable();
+      });
+
+    return this
+      .context
+      .lrs
+      .api
+      .statusMap
+      .forEach((s, i) => {
+        if (s && (s.status >= INTERNAL_SERVER_ERROR || RETRYABLE_ERRORS.includes(s.status))) {
+          this.context.lrs.queueEntity(NamedNode.findByStoreIndex(i), { reload: true });
+        }
       });
   }
 
