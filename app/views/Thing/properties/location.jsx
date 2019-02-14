@@ -1,5 +1,5 @@
 import LinkedRenderStore from 'link-lib';
-import { linkedPropType, lrsType } from 'link-redux';
+import { linkedPropType, lrsType, withLRS } from 'link-redux';
 import { NamedNode } from 'rdflib';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -13,30 +13,38 @@ const propTypes = {
   lrs: lrsType,
 };
 
-const LocationDetail = ({ lrs, linkedProp }) => (
-  <LDLink
-    to={linkedProp.value}
-    onClick={(e) => {
-      e.preventDefault();
-      lrs.exec(NamedNode.find(`${NS.ontola('actions/dialog/alert').value}?resource=${encodeURIComponent(linkedProp.value)}`));
-    }}
-  >
-    <Detail
-      icon="map-marker"
-      text={(
-        <FormattedMessage
-          defaultMessage="View location"
-          id="https://app.argu.co/i18n/schema:Thing/schema:location/detailLabel"
-        />
-      )}
-    />
-  </LDLink>
-);
+const LocationDetail = ({ lrs, linkedProp }) => {
+  const placement = lrs.dig(linkedProp, [NS.as('pages'), NS.as('items'), NS.rdf('_1')]).pop();
+
+  if (!placement) {
+    return null;
+  }
+
+  return (
+    <LDLink
+      to={placement.value}
+      onClick={(e) => {
+        e.preventDefault();
+        lrs.exec(NamedNode.find(`${NS.ontola('actions/dialog/alert').value}?resource=${encodeURIComponent(placement.value)}`));
+      }}
+    >
+      <Detail
+        icon="map-marker"
+        text={(
+          <FormattedMessage
+            defaultMessage="View location"
+            id="https://app.argu.co/i18n/schema:Thing/schema:location/detailLabel"
+          />
+        )}
+      />
+    </LDLink>
+  );
+};
 
 LocationDetail.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
-  LocationDetail,
+  withLRS(LocationDetail),
   NS.schema('Thing'),
   NS.schema('location'),
   detailsBarTopology

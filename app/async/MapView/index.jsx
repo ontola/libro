@@ -1,22 +1,18 @@
 import * as fa from 'fontawesome';
-import {
-  LinkedResourceContainer,
-  lrsType,
-  subjectType,
-} from 'link-redux';
-import { defaults as defaultControls } from 'ol/control';
-import { click, pointerMove } from 'ol/events/condition';
+import { LinkedResourceContainer, lrsType, subjectType } from 'link-redux';
 import {
   Feature,
   Map as OLMap,
   Overlay,
   View,
 } from 'ol';
+import { defaults as defaultControls } from 'ol/control';
+import { click, pointerMove } from 'ol/events/condition';
 import Circle from 'ol/geom/Circle';
 import Point from 'ol/geom/Point';
 import Select from 'ol/interaction/Select';
-import VectorLayer from 'ol/layer/Vector';
 import TileLayer from 'ol/layer/Tile';
+import VectorLayer from 'ol/layer/Vector';
 import OverlayPositioning from 'ol/OverlayPositioning';
 import { fromLonLat } from 'ol/proj';
 import { toContext } from 'ol/render';
@@ -35,6 +31,7 @@ import { connect } from 'react-redux';
 import OverlayContainer from '../../components/OverlayContainer';
 import { MAPBOX_TILE_API_BASE } from '../../config';
 import withReducer from '../../containers/withReducer';
+import { collectionMembers } from '../../helpers/diggers';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { handle } from '../../helpers/logging';
@@ -153,12 +150,18 @@ class Map extends React.Component {
   }
 
   featureFromPlacement(placement) {
+    const values = this.resolvePlacement(placement);
+
+    if (!values) {
+      return undefined;
+    }
+
     const {
       id,
       lon,
       lat,
       image,
-    } = this.resolvePlacement(placement);
+    } = values;
 
     const f = new Feature(new Point(fromLonLat([lon, lat])));
     f.setId(id);
@@ -187,7 +190,8 @@ class Map extends React.Component {
     const features = this.props
       .placements
       .filter(Boolean)
-      .map(this.featureFromPlacement);
+      .map(this.featureFromPlacement)
+      .filter(Boolean);
 
     this.placementFeatureSource.clear(true);
     this.placementFeatureSource.addFeatures(features);
@@ -205,7 +209,7 @@ class Map extends React.Component {
 
     const centerPlacement = subjectPlacement
       || (subject && lrs.getResourceProperty(subject, NS.schema('location')));
-    const center = this.resolvePlacement(centerPlacement);
+    const center = this.resolvePlacement(lrs.dig(centerPlacement, collectionMembers).pop());
 
     if (!center) {
       handle(new Error(`Map has no center (${subject})`));
@@ -288,6 +292,8 @@ class Map extends React.Component {
     const zoom = lrs.getResourceProperty(place, NS.argu('zoomLevel'));
 
     if (!(lon && lat && zoom)) {
+      lrs.report(new TypeError(`Placement without coordinates: '${place.value}'`));
+
       return undefined;
     }
 

@@ -9,10 +9,11 @@ import React from 'react';
 import { withRouter } from 'react-router';
 
 import MapView from '../../../containers/MapView';
-import { listToArr } from '../../../helpers/data';
+import { collectionMembers } from '../../../helpers/diggers';
 import { retrievePath } from '../../../helpers/iris';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { containerTopology } from '../../../topologies/Container';
+import ErrorButtonWithFeedback from '../../Error/ErrorButtonWithFeedback';
 
 class ArguLocation extends React.Component {
   static type = NS.schema('Thing');
@@ -31,20 +32,39 @@ class ArguLocation extends React.Component {
 
   static propTypes = {
     childrenPlacements: linkType,
-    history: PropTypes.instanceOf(History),
+    history: PropTypes.shape({
+      push: PropTypes.func,
+    }),
     lrs: lrsType,
     schemaLocation: linkType,
     subject: subjectType,
   };
 
+  constructor(props) {
+    super(props);
+    this.state = { error: undefined };
+  }
+
+  componentDidCatch(error) {
+    this.props.lrs.report(error);
+    this.setState({
+      error,
+    });
+  }
+
   resolvePlacements() {
     const { childrenPlacements, schemaLocation, lrs } = this.props;
 
     if (!childrenPlacements) {
-      return [schemaLocation];
+      const length = lrs.getResourceProperty(schemaLocation, NS.as('totalItems'));
+      if (length && length.value === '0') {
+        return [];
+      }
+
+      return lrs.dig(schemaLocation, collectionMembers);
     }
 
-    const children = listToArr(lrs, [], childrenPlacements);
+    const children = lrs.dig(childrenPlacements, collectionMembers);
 
     if (!Array.isArray(children)) {
       return [];
@@ -61,9 +81,18 @@ class ArguLocation extends React.Component {
       subject,
     } = this.props;
 
+    if (this.state.error) {
+      return (
+        <ErrorButtonWithFeedback
+          reset={() => this.setState({ error: undefined })}
+          {...this.props}
+        />
+      );
+    }
+
     const placements = this.resolvePlacements();
 
-    if (placements === 0) {
+    if (placements.length === 0) {
       return null;
     }
 
