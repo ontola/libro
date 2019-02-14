@@ -6,13 +6,22 @@ const propTypes = {
   children: PropTypes.node,
   name: PropTypes.string,
   path: linkType,
+  propertyIndex: PropTypes.number,
 };
 
 export const FormSectionContext = React.createContext(undefined);
 
-const FormSection = ({ children, name, path }) => {
+const FormSection = ({
+  children,
+  name,
+  path,
+  propertyIndex,
+}) => {
   const formSectionContext = React.useContext(FormSectionContext);
-  const contextLabel = formSectionContext ? `${formSectionContext}.${name}` : name;
+  const sectionContext = formSectionContext ? `${formSectionContext}.` : '';
+  const index = propertyIndex !== undefined ? `${propertyIndex}.` : '';
+
+  const contextLabel = `${sectionContext}${index}${name}`;
 
   return (
     <FormSectionContext.Provider value={contextLabel}>

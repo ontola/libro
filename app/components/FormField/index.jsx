@@ -235,7 +235,7 @@ class FormField extends React.PureComponent {
       type,
     } = this.props;
 
-    const fieldTxt = field && atob(field);
+    const fieldTxt = this.plainFieldName();
 
     const className = `Field__input Field__input--${type || 'text'}`;
 
@@ -357,13 +357,13 @@ class FormField extends React.PureComponent {
   }
 
   label(label) {
-    const { field, id, theme } = this.props;
+    const { id, theme } = this.props;
 
     if (label) {
       return (
         <label
           className={`Field__label${theme === 'omniform' ? ' AriaHidden' : ''}`}
-          htmlFor={id || (field && atob(field))}
+          htmlFor={id || this.plainFieldName()}
         >
           {label}
         </label>
@@ -371,6 +371,18 @@ class FormField extends React.PureComponent {
     }
 
     return null;
+  }
+
+  plainFieldName() {
+    if (!this.props.field) {
+      return '';
+    }
+
+    return this.props
+      .field
+      .split('.')
+      .map(v => (Number.isNaN(Number.parseInt(v, 10)) ? atob(v) : v))
+      .join('.');
   }
 
   saveInputValue(nextValue) {

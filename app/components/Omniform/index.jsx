@@ -61,6 +61,9 @@ const PROPS_WHITELIST = [
   NS.schema('text'),
   NS.argu('isOpinion'),
   NS.ontola('hiddenGroup'),
+  NS.argu('attachments'),
+  NS.argu('coverPhoto'),
+  NS.schema('location'),
 ];
 
 class Omniform extends EntryPointBase {

@@ -106,7 +106,7 @@ class ShProperty extends PropertyBase {
   }
 
   renderGroup(s, focusNode) {
-    const { theme } = this.props;
+    const { propertyIndex, theme } = this.props;
 
     return (
       <LinkedResourceContainer
@@ -115,6 +115,7 @@ class ShProperty extends PropertyBase {
           .toCompactList(s.props)
           .map((p, i) => this.renderProp(p, focusNode, i === 0))
         }
+        propertyIndex={propertyIndex}
         subject={s.group}
         theme={theme}
       />
@@ -124,6 +125,7 @@ class ShProperty extends PropertyBase {
   renderProp(s, focusNode, couldAutoFocus = true) {
     const {
       autofocusForm,
+      propertyIndex,
       targetNode,
       targetValue,
       theme,
@@ -134,6 +136,7 @@ class ShProperty extends PropertyBase {
       <LinkedResourceContainer
         autofocus={couldAutoFocus && autofocusForm && s.value === focusNode.value}
         key={s.value}
+        propertyIndex={propertyIndex}
         subject={s}
         targetNode={targetNode}
         targetValue={targetValue}
@@ -154,14 +157,14 @@ class ShProperty extends PropertyBase {
     const focusNode = props.length ? props[0] : unorderedProps[0];
 
     return (
-      <React.Fragment>
+      <div style={{ flexGrow: '1' }}>
         <div className="ungrouped">
           {this.renderPropOrGroup(props, focusNode)}
         </div>
         <div className="grouped">
           {this.renderPropOrGroup(unorderedProps, focusNode)}
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 }

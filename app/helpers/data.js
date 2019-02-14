@@ -37,6 +37,10 @@ function dataURItoBlob(literal) {
 function convertKeysAtoB(obj) {
   const output = {};
   Object.entries(obj).forEach(([k, v]) => {
+    if (k === 'list_id') {
+      return;
+    }
+
     if (Object.prototype.toString.apply(v) === '[object Object]' && !Object.prototype.hasOwnProperty.call(v, 'termType')) {
       output[atob(k)] = convertKeysAtoB(v);
     } else if (Array.isArray(v)) {

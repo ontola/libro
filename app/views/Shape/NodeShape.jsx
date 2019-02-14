@@ -1,16 +1,23 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { link, Property } from 'link-redux';
 import PropTypes from 'prop-types';
-import { NamedNode } from 'rdflib';
+import { BlankNode, NamedNode } from 'rdflib';
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
 
+import Button from '../../components/Button';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../topologies';
 
 const propTypes = {
   autofocusForm: PropTypes.bool,
   onKeyUp: PropTypes.func,
-  targetNode: PropTypes.instanceOf(NamedNode),
+  propertyIndex: PropTypes.number,
+  removeItem: PropTypes.func,
+  targetNode: PropTypes.oneOfType([
+    PropTypes.instanceOf(BlankNode),
+    PropTypes.instanceOf(NamedNode),
+  ]),
   targetValue: PropTypes.instanceOf(NamedNode),
   theme: PropTypes.string,
   whitelist: PropTypes.arrayOf(PropTypes.object),
@@ -22,24 +29,37 @@ const defaultProps = {
 
 const NodeShape = ({
   autofocusForm,
+  propertyIndex,
+  removeItem,
   targetValue,
   targetNode,
   theme,
   onKeyUp,
   whitelist,
 }) => (
-  <React.Fragment>
+  <div style={removeItem ? { display: 'flex' } : undefined}>
     <Property label={NS.rdfs('label')} />
+    <Property label={NS.sh('targetClass')} />
     <Property
       autofocusForm={autofocusForm}
       label={NS.sh('property')}
+      propertyIndex={propertyIndex}
       targetNode={targetNode}
       targetValue={targetValue}
       theme={theme}
       whitelist={whitelist}
       onKeyUp={onKeyUp}
     />
-  </React.Fragment>
+    {removeItem && (
+      <Button
+        narrow
+        plain
+        onClick={removeItem}
+      >
+        <FontAwesome name="times" />
+      </Button>
+    )}
+  </div>
 );
 
 NodeShape.propTypes = propTypes;

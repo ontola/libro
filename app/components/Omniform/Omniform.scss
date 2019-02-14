@@ -1,5 +1,13 @@
 @import '../shared/config';
 
+.Omniform {
+  label {
+    color: color('grey');
+    font-weight: bold;
+    padding-left: unit('large');
+  }
+}
+
 .Omniform__preview {
   background-color: color('grey', 'xx-light');
   border-bottom-left-radius: $border-radius-base;

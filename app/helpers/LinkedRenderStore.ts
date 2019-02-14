@@ -89,7 +89,7 @@ LRS.store.store.newPropertyAction(NS.rdf('type'), (
 });
 
 // tslint:disable max-line-length
-const ontologicalData = [
+const ontologicalClassData = [
   new Statement(NS.schema('Thing'), NS.rdfs('subClassOf'), NS.rdfs('Resource')),
   new Statement(NS.owl('Thing'), NS.owl('sameAs'), NS.schema('Thing')),
 
@@ -259,8 +259,30 @@ const ontologicalData = [
 ];
 // tslint:enable max-line-length
 
-LRS.addOntologySchematics(ontologicalData);
+LRS.addOntologySchematics(ontologicalClassData);
 // @ts-ignore TS2341
-LRS.store.addStatements(ontologicalData);
+LRS.store.addStatements(ontologicalClassData);
+
+const ontologicalPropertyData = [
+    new Statement(NS.argu('attachments'), NS.rdf('type'), NS.rdf('Property')),
+    new Statement(NS.argu('attachments'), NS.rdfs('label'), Literal.find('Attachments', languages.en)),
+    new Statement(NS.argu('attachments'), NS.rdfs('label'), Literal.find('Bijlagen', languages.nl)),
+    new Statement(NS.argu('attachments'), NS.schema('image'), NamedNode.find('http://fontawesome.io/icon/paperclip')),
+
+    new Statement(NS.argu('coverPhoto'), NS.rdf('type'), NS.rdf('Property')),
+    new Statement(NS.argu('coverPhoto'), NS.rdfs('label'), Literal.find('Cover photo', languages.en)),
+    new Statement(NS.argu('coverPhoto'), NS.rdfs('label'), Literal.find('Achtergrondfoto', languages.nl)),
+    new Statement(NS.argu('coverPhoto'), NS.schema('image'), NamedNode.find('http://fontawesome.io/icon/file-image-o')),
+
+    new Statement(NS.schema('location'), NS.rdf('type'), NS.rdf('Property')),
+    new Statement(NS.schema('location'), NS.rdfs('label'), Literal.find('Location', languages.en)),
+    new Statement(NS.schema('location'), NS.rdfs('label'), Literal.find('Locatie', languages.nl)),
+    new Statement(NS.schema('location'), NS.schema('image'), NamedNode.find('http://fontawesome.io/icon/map-marker')),
+
+];
+
+LRS.addOntologySchematics(ontologicalPropertyData);
+// @ts-ignore TS2341
+LRS.store.addStatements(ontologicalPropertyData);
 
 export default LRS;

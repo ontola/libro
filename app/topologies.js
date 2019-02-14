@@ -19,6 +19,7 @@ import { hoverBoxTopology } from './topologies/HoverBox/index';
 import { inlineTopology } from './topologies/Inline/index';
 import { navbarTopology } from './topologies/Navbar';
 import { omniformFieldsTopology } from './topologies/OmniformFields/OmniformFields';
+import { omniformSupplementBarTopology } from './topologies/OmniformSupplementBar/OmniformSupplementBar';
 import { pageHeaderTopology } from './topologies/PageHeader/index';
 import { parentTopology } from './topologies/Parent/index';
 import { popupTopology } from './topologies/Popup/index';
@@ -57,6 +58,7 @@ export const allTopologies = [
   inlineTopology,
   navbarTopology,
   omniformFieldsTopology,
+  omniformSupplementBarTopology,
   parentTopology,
   pageHeaderTopology,
   popupTopology,

@@ -20,6 +20,7 @@ import Error from './Error';
 import Forum from './Forum/index';
 import ImageObject from './ImageObject';
 import InfiniteCollectionPage from './InfiniteCollectionPage';
+import RDFProperty from './RDFProperty';
 import RDFSClass from './RDFSClass';
 import Loading from './Loading';
 import MediaObject from './MediaObject';
@@ -76,6 +77,7 @@ function register() {
     ...Person,
     ...Placement,
     ...PropertyQuery,
+    ...RDFProperty,
     ...RDFSClass,
     ...SeqComp,
     ...Shape,
