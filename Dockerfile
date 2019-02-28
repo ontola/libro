@@ -2,7 +2,7 @@ FROM node:11 as builder
 WORKDIR /usr/src/app
 
 COPY package.json yarn.lock ./
-RUN yarn
+RUN yarn --non-interactive --frozen-lockfile
 COPY . ./
 ARG FRONTEND_HOSTNAME
 ENV FRONTEND_HOSTNAME $FRONTEND_HOSTNAME
@@ -14,7 +14,7 @@ WORKDIR /usr/src/app
 
 COPY package.json /usr/src/app/package.json
 # The packages are needed to build shrink-ray-current's native extensions
-RUN apk add python alpine-sdk && npm i -q --production && apk del python alpine-sdk
+RUN apk add python alpine-sdk && yarn install --production --frozen-lockfile --non-interactive && apk del python alpine-sdk
 COPY --from=builder /usr/src/app/dist /usr/src/app/dist
 COPY --from=builder /usr/src/app/static /usr/src/app/static
 
