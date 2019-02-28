@@ -67,13 +67,17 @@ class App extends React.PureComponent {
             titleTemplate="%s - Argu"
           />
           <SkipNavigation />
-          <Navbar>
-            <NavBarContent />
-          </Navbar>
-          <MainContent />
-          <LinkedResourceContainer subject={NS.ontola('snackbar/manager')} />
-          <LinkedResourceContainer subject={NS.ontola('dialog/manager')} />
-          <Popup />
+          <div className="App__container">
+            <div className="App__scroller">
+              <Navbar>
+                <NavBarContent />
+              </Navbar>
+              <MainContent />
+            </div>
+            <LinkedResourceContainer subject={NS.ontola('snackbar/manager')} />
+            <LinkedResourceContainer subject={NS.ontola('dialog/manager')} />
+            <Popup />
+          </div>
         </HoverHelper>
       </HotKeys>
     );

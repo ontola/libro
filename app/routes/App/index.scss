@@ -4,3 +4,17 @@
   min-height: calc(100vh - #{$navbar-height});
   position: relative;
 }
+
+.App {
+  &__container {
+    height: 100vh;
+    overflow-y: hidden;
+    position: relative;
+  }
+
+  &__scroller {
+    height: 100vh;
+    overflow-y: auto;
+    position: relative;
+  }
+}
