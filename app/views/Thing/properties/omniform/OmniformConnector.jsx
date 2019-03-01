@@ -21,7 +21,7 @@ class OmniformConnector extends React.PureComponent {
   };
 
   keynameSafeIRI() {
-    return btoa(this.props.subject);
+    return btoa(this.props.subject.value);
   }
 
   render() {

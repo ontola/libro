@@ -5,11 +5,10 @@ import { Literal, NamedNode } from 'rdflib';
 import React from 'react';
 import Textarea from 'react-autosize-textarea';
 import DateTimePicker from 'react-datetime-picker';
-import { Field } from 'react-final-form';
 
 import TextEditor from '../../containers/TextEditor';
 import { NS } from '../../helpers/LinkedRenderStore';
-import { FormSectionContext } from '../Form/FormSection';
+import formFieldWrapper from '../FormFieldWrapper';
 import FileInput from '../Input/FileInput';
 import { Input } from '../Input';
 import SelectInput, { optionsType } from '../SelectInput';
@@ -453,25 +452,4 @@ class FormField extends React.PureComponent {
 FormField.propTypes = propTypes;
 FormField.defaultProps = defaultProps;
 
-const FieldWrapper = (props) => {
-  const namePrefix = React.useContext(FormSectionContext);
-  const name = namePrefix ? `${namePrefix}.${props.field}` : props.field;
-
-  return (
-    <Field
-      name={name}
-      validate={props.validate}
-    >
-      {formProps => (
-        <FormField
-          {...props}
-          {...formProps}
-        />
-      )}
-    </Field>
-  );
-};
-
-FieldWrapper.propTypes = propTypes;
-
-export default FieldWrapper;
+export default formFieldWrapper(FormField);

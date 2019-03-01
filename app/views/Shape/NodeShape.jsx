@@ -1,5 +1,10 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { link, Property } from 'link-redux';
+import {
+  link,
+  lrsType,
+  Property,
+  subjectType,
+} from 'link-redux';
 import PropTypes from 'prop-types';
 import { BlankNode, NamedNode } from 'rdflib';
 import React from 'react';
@@ -11,9 +16,11 @@ import { allTopologies } from '../../topologies';
 
 const propTypes = {
   autofocusForm: PropTypes.bool,
+  lrs: lrsType,
   onKeyUp: PropTypes.func,
   propertyIndex: PropTypes.number,
   removeItem: PropTypes.func,
+  subject: subjectType,
   targetNode: PropTypes.oneOfType([
     PropTypes.instanceOf(BlankNode),
     PropTypes.instanceOf(NamedNode),
@@ -29,37 +36,52 @@ const defaultProps = {
 
 const NodeShape = ({
   autofocusForm,
+  lrs,
   propertyIndex,
   removeItem,
+  subject,
   targetValue,
   targetNode,
   theme,
   onKeyUp,
   whitelist,
 }) => (
-  <div style={removeItem ? { display: 'flex' } : undefined}>
-    <Property label={NS.rdfs('label')} />
-    <Property label={NS.sh('targetClass')} />
-    <Property
-      autofocusForm={autofocusForm}
-      label={NS.sh('property')}
-      propertyIndex={propertyIndex}
-      targetNode={targetNode}
-      targetValue={targetValue}
-      theme={theme}
-      whitelist={whitelist}
-      onKeyUp={onKeyUp}
-    />
-    {removeItem && (
-      <Button
-        narrow
-        plain
-        onClick={removeItem}
-      >
-        <FontAwesome name="times" />
-      </Button>
-    )}
-  </div>
+  <Property
+    autofocusForm={autofocusForm}
+    label={NS.sh('targetClass')}
+    lrs={lrs}
+    propertyIndex={propertyIndex}
+    removeItem={removeItem}
+    targetNode={targetNode}
+    targetValue={targetValue}
+    theme={theme}
+    whitelist={whitelist}
+    onKeyUp={onKeyUp}
+  >
+    <div style={removeItem ? { display: 'flex' } : undefined}>
+      <Property label={NS.rdfs('label')} />
+      <Property
+        autofocusForm={autofocusForm}
+        label={NS.sh('property')}
+        propertyIndex={propertyIndex}
+        subject={subject}
+        targetNode={targetNode}
+        targetValue={targetValue}
+        theme={theme}
+        whitelist={whitelist}
+        onKeyUp={onKeyUp}
+      />
+      {removeItem && (
+        <Button
+          narrow
+          plain
+          onClick={removeItem}
+        >
+          <FontAwesome name="times" />
+        </Button>
+      )}
+    </div>
+  </Property>
 );
 
 NodeShape.propTypes = propTypes;

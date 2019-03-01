@@ -14,7 +14,7 @@ import Select from 'ol/interaction/Select';
 import TileLayer from 'ol/layer/Tile';
 import VectorLayer from 'ol/layer/Vector';
 import OverlayPositioning from 'ol/OverlayPositioning';
-import { fromLonLat } from 'ol/proj';
+import { fromLonLat, toLonLat } from 'ol/proj';
 import { toContext } from 'ol/render';
 import VectorSource from 'ol/source/Vector';
 import XYZ from 'ol/source/XYZ';
@@ -49,15 +49,29 @@ const ICON_X = 7;
 const ICON_Y = 19;
 const ANCHOR_X_CENTER = 0.5;
 const ANCHOR_Y_BOTTOM = 1;
+const DEFAULT_CENTER = {
+  lat: 52.1344,
+  lon: 5.1917,
+  zoom: 6.8,
+};
 
-class Map extends React.Component {
+class MapView extends React.Component {
   static propTypes = {
     accessToken: PropTypes.string,
     getAccessToken: PropTypes.func,
     lrs: lrsType,
     navigate: PropTypes.func,
+    onMapClick: PropTypes.func,
     /** Placements to render on the map. */
-    placements: PropTypes.arrayOf(PropTypes.instanceOf(NamedNode)),
+    placements: PropTypes.arrayOf(PropTypes.oneOfType([
+      PropTypes.instanceOf(NamedNode),
+      PropTypes.shape({
+        id: PropTypes.string,
+        image: PropTypes.instanceOf(NamedNode),
+        lat: PropTypes.number,
+        lon: PropTypes.number,
+      }),
+    ])),
     /** Placeable to center on, it should have its own placement. */
     subject: subjectType,
     /**
@@ -121,6 +135,9 @@ class Map extends React.Component {
     this.featureFromPlacement = this.featureFromPlacement.bind(this);
     this.highlightFeature = this.highlightFeature.bind(this);
     this.showFeatureResourceInOverlay = this.showFeatureResourceInOverlay.bind(this);
+    this.onMapClick = props.onMapClick
+      ? e => props.onMapClick(toLonLat(e.coordinate))
+      : undefined;
 
     this.state = {
       selected: undefined,
@@ -139,12 +156,18 @@ class Map extends React.Component {
     this.updateFeatures();
   }
 
+  componentWillUnmount() {
+    if (this.map && this.onMapClick) {
+      this.map.removeEventListener('click', this.onMapClick);
+    }
+  }
+
   getImage(image) {
     if (this.iconStyles[image]) {
       return this.iconStyles[image];
     }
 
-    this.iconStyles[image] = Map.generateMarkerImage(image);
+    this.iconStyles[image] = MapView.generateMarkerImage(image);
 
     return this.iconStyles[image];
   }
@@ -187,7 +210,8 @@ class Map extends React.Component {
   }
 
   updateFeatures() {
-    const features = this.props
+    const features = this
+      .props
       .placements
       .filter(Boolean)
       .map(this.featureFromPlacement)
@@ -209,11 +233,11 @@ class Map extends React.Component {
 
     const centerPlacement = subjectPlacement
       || (subject && lrs.getResourceProperty(subject, NS.schema('location')));
-    const center = this.resolvePlacement(lrs.dig(centerPlacement, collectionMembers).pop());
+    let center = this.resolvePlacement(lrs.dig(centerPlacement, collectionMembers).pop());
 
     if (!center) {
       handle(new Error(`Map has no center (${subject})`));
-      return;
+      center = DEFAULT_CENTER;
     }
 
     const { lon, lat, zoom } = center;
@@ -248,6 +272,9 @@ class Map extends React.Component {
         zoom,
       }),
     });
+    if (this.onMapClick) {
+      this.map.addEventListener('click', this.onMapClick);
+    }
 
     this.select = new Select({
       condition: click,
@@ -270,7 +297,7 @@ class Map extends React.Component {
         NamedNode.find(feature.getId()),
         NS.schema('image')
       );
-      feature.setStyle(Map.generateMarkerImage(image.value, highlight));
+      feature.setStyle(MapView.generateMarkerImage(image.value, highlight));
     };
 
     e.selected.map(update(true));
@@ -278,6 +305,10 @@ class Map extends React.Component {
   }
 
   resolvePlacement(placement) {
+    if (!placement || !placement.termType) {
+      return placement;
+    }
+
     const { lrs } = this.props;
 
     const place = placement && lrs.getResourceProperty(placement, NS.schema('geo'));
@@ -337,6 +368,6 @@ const mapDispatchToProps = dispatch => ({
   getAccessToken: () => dispatch(getMapAccessToken()),
 });
 
-const ConnectedMap = connect(mapStateToProps, mapDispatchToProps)(Map);
+const ConnectedMap = connect(mapStateToProps, mapDispatchToProps)(MapView);
 
 export default withReducer(MapReducerKey, reducer)(ConnectedMap);

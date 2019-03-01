@@ -1,12 +1,15 @@
 import {
   lrsType,
-  register, subjectType,
+  register,
+  subjectType,
 } from 'link-redux';
 import React from 'react';
 
 import MapView from '../../containers/MapView';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { alertDialogTopology } from '../../topologies/Dialog';
+
+import PlacementOmniformFields from './PlacementOmniformFields';
 
 class PlacementAlertDialog extends React.PureComponent {
   static type = NS.argu('Placement');
@@ -32,5 +35,6 @@ class PlacementAlertDialog extends React.PureComponent {
 }
 
 export default [
+  PlacementOmniformFields,
   register(PlacementAlertDialog),
 ];
