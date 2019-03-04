@@ -7,7 +7,6 @@ import { LinkReduxLRSType } from 'link-redux';
 import { NamedNode, Namespace, Statement } from 'rdflib';
 
 import { getMetaContent } from '../helpers/arguHelpers';
-import { log } from '../helpers/logging';
 
 export const website = getMetaContent('website-iri');
 export const frontendIRI = NamedNode.find(website!);
@@ -49,7 +48,6 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
   ];
 
   return (next: MiddlewareActionHandler) => (iri: NamedNode, opts: any): Promise<any> => {
-    log('Link action:', iri, opts);
 
     if ([
         store.namespaces.ontola(`actions/navigation/push`),

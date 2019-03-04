@@ -14,6 +14,7 @@ import { ReactType } from 'react';
 import { FRONTEND_ACCEPT } from '../config';
 import { appMiddleware, website } from '../middleware/app';
 import execFilter from '../middleware/execFilter';
+import logging from '../middleware/logging';
 // @ts-ignore
 import { arguDeltaProcessor } from './data';
 import history from './history';
@@ -25,6 +26,7 @@ import transformers from './transformers';
 export const serviceWorkerCommunicator = new ServiceWorkerCommunicator();
 
 const middleware: Array<MiddlewareFn<any>> = [
+  logging(),
   ontolaMiddleware(history, serviceWorkerCommunicator),
   appMiddleware(),
   execFilter(),
