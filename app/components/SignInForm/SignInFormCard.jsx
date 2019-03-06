@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Form } from 'react-final-form';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import { Link } from 'react-router-dom';
 
+import Link from '../Link';
 import { STEPS } from '../../state/form/reducer';
 import Button from '../Button';
 import Card, {

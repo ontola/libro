@@ -2,8 +2,8 @@ import memoize from 'memoize-one';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import { Link } from 'react-router-dom';
 
+import Link from '../Link';
 import { expandPath, isDifferentOrigin, retrievePath } from '../../helpers/iris';
 
 import './Markdown.scss';

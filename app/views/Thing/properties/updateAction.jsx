@@ -1,8 +1,8 @@
 import LinkedRenderStore from 'link-lib';
 import { PropertyBase } from 'link-redux';
 import React from 'react';
-import { Link } from 'react-router-dom';
 
+import Link from '../../../components/Link';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
 

@@ -15,6 +15,7 @@ import {
 import { NS } from '../../helpers/LinkedRenderStore';
 import { dropdownContentTopology } from '../../topologies/DropdownContent';
 import { navbarTopology } from '../../topologies/Navbar';
+import { NavbarLinkLink, NavbarLinkWrapper } from '../../components/NavbarLink';
 
 class MenuItemNavbar extends React.PureComponent {
   static type = [
@@ -43,15 +44,18 @@ class MenuItemNavbar extends React.PureComponent {
     const id = `${subject}-menu-items`;
 
     const MenuItemLabel = (
-      <Property
-        forceRender
-        data-test="MenuItem-MenuItemLabel"
-        id={id}
-        label={NS.argu('href')}
-      >
-        {showImage && <Property label={NS.schema('image')} />}
-        <Property label={NS.schema('name')} />
-      </Property>
+      <NavbarLinkWrapper>
+        <Property
+          forceRender
+          component={NavbarLinkLink}
+          data-test="MenuItem-MenuItemLabel"
+          id={id}
+          label={NS.argu('href')}
+        >
+          {showImage && <Property label={NS.schema('image')} />}
+          <Property label={NS.schema('name')} />
+        </Property>
+      </NavbarLinkWrapper>
     );
 
     if (menuItems) {

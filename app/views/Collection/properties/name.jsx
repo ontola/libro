@@ -5,9 +5,8 @@ import {
   withLinkCtx,
 } from 'link-redux';
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-import { Heading } from '../../../components';
+import { Heading, Link } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologiesExcept } from '../../../topologies';
 import { CollectionTypes } from '../types';

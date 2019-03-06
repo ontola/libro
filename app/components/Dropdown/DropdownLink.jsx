@@ -1,8 +1,8 @@
 import { linkType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
 
+import Link from '../Link';
 import { isDifferentOrigin, retrievePath } from '../../helpers/iris';
 import Image from '../Image';
 

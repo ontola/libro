@@ -1,8 +1,9 @@
 @import '../shared/config';
 
-.LDLink {
+.Link {
   &__default {
     display: inline-flex;
+    white-space: pre-wrap;
   }
 
   &__padded {
@@ -35,8 +36,8 @@
   }
 }
 
-.LDLink__active {
-  & .LDLinkLabel {
+.LinkLabel {
+  .Link__active & {
     color: var(--base-color);
     position: relative;
 

@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import CollapsibleContainer from '../../containers/CollapsibleContainer';
 import { percentageToRedOrGreen } from '../../helpers/color';
 import LabelValueBar from '../LabelValueBar';
+import Link from '../Link';
 import List from '../List';
 import Tag from '../Tag';
 

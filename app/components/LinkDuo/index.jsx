@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import isExternal from 'is-url-external';
+
+import Link from '../Link';
 
 const propTypes = {
   children: PropTypes.node.isRequired,

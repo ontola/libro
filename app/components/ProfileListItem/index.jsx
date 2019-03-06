@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import Heading from '../Heading';
+import Link from '../Link';
 
 import './ProfileListItem.scss';
 

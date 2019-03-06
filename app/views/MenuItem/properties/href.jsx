@@ -7,13 +7,11 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {
-  NavbarLinkLink,
-  NavbarLinkWrapper,
-} from '../../../components/NavbarLink';
+import Link from '../../../components/Link';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import SHACL from '../../../helpers/shacl';
 import { navbarTopology } from '../../../topologies/Navbar';
+import { appMenuTopology } from '../../../topologies/AppMenu';
 
 class Href extends React.PureComponent {
   static type = [
@@ -24,7 +22,10 @@ class Href extends React.PureComponent {
 
   static property = NS.argu('href');
 
-  static topology = navbarTopology;
+  static topology = [
+    appMenuTopology,
+    navbarTopology,
+  ];
 
   static mapDataToProps = [
     NS.argu('action'),
@@ -34,6 +35,14 @@ class Href extends React.PureComponent {
   static propTypes = {
     action: linkType,
     children: PropTypes.node,
+    component: PropTypes.func,
+    features: PropTypes.arrayOf([
+      PropTypes.oneOf([
+        'highlighted-darken',
+        'highlighted-lighten',
+      ]),
+      'padded',
+    ]),
     handleClick: PropTypes.func,
     href: linkType,
     lrs: lrsType,
@@ -65,20 +74,23 @@ class Href extends React.PureComponent {
   render() {
     const {
       children,
+      component,
+      features,
       handleClick,
       href,
     } = this.props;
 
+    const LinkComponent = component || Link;
+
     return (
-      <NavbarLinkWrapper>
-        <NavbarLinkLink
-          isIndex
-          to={href ? href.value : '#'}
-          onClick={handleClick || this.clickHandler()}
-        >
-          {children}
-        </NavbarLinkLink>
-      </NavbarLinkWrapper>
+      <LinkComponent
+        isIndex
+        features={features}
+        to={href ? href.value : '#'}
+        onClick={handleClick || this.clickHandler()}
+      >
+        {children}
+      </LinkComponent>
     );
   }
 }

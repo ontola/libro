@@ -1,17 +1,20 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
-import { connect } from 'react-redux';
-import { Link, NavLink, withRouter } from 'react-router-dom';
 
+import Link from '../Link';
 import {
-  isDifferentOrigin,
-  isLocalAnchor,
   retrievePath,
 } from '../../helpers/iris';
-import { closeSideBar } from '../../state/sideBars/actions';
 
 const propTypes = {
   children: PropTypes.node,
+  features: PropTypes.arrayOf([
+    PropTypes.oneOf([
+      'highlighted-darken',
+      'highlighted-lighten',
+    ]),
+    'padded',
+  ]),
   isIndex: PropTypes.bool,
   onClick: PropTypes.func,
   to: PropTypes.string,
@@ -21,6 +24,7 @@ class NavbarLinkLink extends PureComponent {
   render() {
     const {
       children,
+      features,
       isIndex,
       onClick,
       to,
@@ -37,42 +41,23 @@ class NavbarLinkLink extends PureComponent {
       );
     }
 
-    if (isDifferentOrigin(to)) {
-      return (
-        <a
-          className="NavbarLink__link"
-          href={to}
-          rel="nofollow noopener noreferrer"
-          target="_blank"
-        >
-          {children}
-        </a>
-      );
-    }
-
     const path = retrievePath(to);
-    const LinkComp = isLocalAnchor(path) ? Link : NavLink;
 
     return (
-      <LinkComp
+      <Link
         activeClassName="NavbarLink--active"
         className="NavbarLink__link"
         exact={isIndex}
+        features={features}
         to={path}
         onClick={onClick}
       >
         {children}
-      </LinkComp>
+      </Link>
     );
   }
 }
 
 NavbarLinkLink.propTypes = propTypes;
 
-const defaultAction = dispatch => () => dispatch(closeSideBar('Navbar'));
-
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  closeBarOnClick: (ownProps.onClick || defaultAction(dispatch)),
-});
-
-export default withRouter(connect(null, mapDispatchToProps)(NavbarLinkLink));
+export default NavbarLinkLink;

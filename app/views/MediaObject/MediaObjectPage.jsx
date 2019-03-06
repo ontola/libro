@@ -1,9 +1,8 @@
 import { linkType, register, subjectType } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { Link } from 'react-router-dom';
 
-import { Heading, PDF } from '../../components';
+import { Heading, Link, PDF } from '../../components';
 import Image from '../../components/Image';
 import {
   downloadableAttachment,
