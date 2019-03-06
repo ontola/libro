@@ -8,6 +8,8 @@ import React from 'react';
 import { convertKeysAtoB } from '../../helpers/data';
 import { NS } from '../../helpers/LinkedRenderStore';
 
+const HTTP_RETRY_WITH = 449;
+
 class EntryPointBase extends PropertyBase {
   constructor(props) {
     super(props);
@@ -51,6 +53,13 @@ class EntryPointBase extends PropertyBase {
       }).catch((e) => {
         if (!e.response) {
           throw e;
+        }
+        if (e.response.status === HTTP_RETRY_WITH) {
+          const actionsHeader = e.response.headers.get('Exec-Action');
+          sessionStorage.setItem(`app.storedActions.${action.value}`, JSON.stringify({ action, formData }));
+          return lrs
+            .api
+            .execExecHeader(actionsHeader);
         }
         if (this.props.onStatusForbidden && e.response.status === HttpStatus.UNAUTHORIZED) {
           return this.props.onStatusForbidden();

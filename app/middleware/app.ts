@@ -59,6 +59,19 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
       store.processDelta(changeMenu(nextState), true);
     }
 
+    if (iri.value.startsWith(app('').value)) {
+      const actionKey = `app.storedActions.${iri.value}`;
+      const storedAction = sessionStorage.getItem(actionKey);
+      if (storedAction) {
+        const parsedAction = storedAction && JSON.parse(storedAction);
+        return store
+            .execActionByIRI(NamedNode.find(parsedAction.action.value), parsedAction.formData)
+            .then(() => {
+              sessionStorage.removeItem(actionKey);
+            });
+      }
+    }
+
     switch (iri) {
       case app('actions/menu/open'):
         return store.processDelta(changeMenu(menuStates.open), true);
