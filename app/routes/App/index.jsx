@@ -1,7 +1,7 @@
 import { LinkedResourceContainer } from 'link-redux';
 import * as PropTypes from 'prop-types';
 import React from 'react';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import { HotKeys } from 'react-hotkeys';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
