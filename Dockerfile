@@ -6,6 +6,8 @@ RUN yarn --non-interactive --frozen-lockfile
 COPY . ./
 ARG FRONTEND_HOSTNAME
 ENV FRONTEND_HOSTNAME $FRONTEND_HOSTNAME
+ARG TEST_BUILD
+ENV TEST_BUILD $TEST_BUILD
 RUN yarn run build:server
 RUN yarn run build:bundle
 
