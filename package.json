@@ -112,7 +112,7 @@
     "jsdom": "^13.2.0",
     "link-lib": "=1.0.0-beta29-20190218T122859",
     "link-rdflib": "npm:link-rdflib@0.19.1-20190124T144209",
-    "link-redux": "1.0.0-beta33-20190129T104942",
+    "link-redux": "1.0.0-beta33-20190305T152902",
     "lint-staged": "^8.1.4",
     "markdown-draft-js": "^1.4.1",
     "megadraft": "^0.6.3",

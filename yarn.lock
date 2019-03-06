@@ -8014,10 +8014,10 @@ link-lib@=1.0.0-beta29-20190218T122859:
     solid-auth-client "^2.2.3"
     xmldom "^0.1.22"
 
-link-redux@1.0.0-beta33-20190129T104942:
-  version "1.0.0-beta33-20190129T104942"
-  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-beta33-20190129T104942.tgz#1ef08ae61cbb8ee8b072261a9d38f779d1c8bbc7"
-  integrity sha512-+VIUxfJm9qGReImKK8m93wMl4NnUBi1kaYMeRjl1DXEzyj8Gb8HsmeEmHNSTTazFNyuAnCxZjrRvX6G6Nxa2Gg==
+link-redux@1.0.0-beta33-20190305T152902:
+  version "1.0.0-beta33-20190305T152902"
+  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-beta33-20190305T152902.tgz#c5b4c5abd3606b6fdd616de83bfd79b2d00d719c"
+  integrity sha512-0DNNskq5jehhoSfpTQHHsfLJ3CUg/bU8lvBhyRywHVwhEnvktFQmwWpxNLKa0PMopej5MLySTPcFyCIAxU5lyQ==
 
 lint-staged@^8.1.4:
   version "8.1.5"
