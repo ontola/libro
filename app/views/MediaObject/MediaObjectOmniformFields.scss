@@ -1,0 +1,43 @@
+@import '../../components/shared/config';
+
+.MediaObjectOmniformFields {
+  border: 2px dashed color('grey');
+  color: color('grey');
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: units('medium', 'medium');
+  width: 100%;
+
+  &:hover {
+    border-style: dotted;
+  }
+
+  &__active {
+    border-style: solid;
+  }
+
+  // There is some weird behaviour in regards to button and border-box which caused undue overflow
+  &__button-spacer {
+    box-sizing: border-box;
+    display: block;
+    margin: units('medium', 'medium');
+    position: relative;
+  }
+
+  &__messages {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__icon {
+    &.fa {
+      font-size: 3rem;
+    }
+  }
+
+  &__input {
+    display: none;
+  }
+}

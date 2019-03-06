@@ -193,6 +193,10 @@ class MapView extends React.Component {
     return f;
   }
 
+  isInMemoryFeature(feature) {
+    return this.props.placements.find(p => p.id === feature.getId());
+  }
+
   showFeatureResourceInOverlay(e) {
     const { lrs } = this.props;
     const [feature] = e.selected;
@@ -201,7 +205,10 @@ class MapView extends React.Component {
 
     if (feature) {
       const id = feature.getId();
-      selected = lrs.getResourceProperty(NamedNode.find(id), NS.argu('placeable'));
+      selected = lrs.getResourceProperty(
+        id.termType ? id : NamedNode.find(id),
+        NS.argu('placeable')
+      );
       position = feature.getGeometry().getCoordinates();
     }
 
@@ -293,10 +300,16 @@ class MapView extends React.Component {
 
   highlightFeature(e) {
     const update = highlight => (feature) => {
-      const image = this.props.lrs.getResourceProperty(
-        NamedNode.find(feature.getId()),
-        NS.schema('image')
-      );
+      const local = this.isInMemoryFeature(feature);
+      let image;
+      if (local) {
+        ({ image } = local);
+      } else {
+        image = this.props.lrs.getResourceProperty(
+          NamedNode.find(feature.getId()),
+          NS.schema('image')
+        );
+      }
       feature.setStyle(MapView.generateMarkerImage(image.value, highlight));
     };
 

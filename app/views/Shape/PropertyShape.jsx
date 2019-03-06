@@ -17,6 +17,7 @@ import {
 } from '../../components';
 import Button from '../../components/Button';
 import { FormContext } from '../../components/Form/Form';
+import { calculateFieldName } from '../../helpers/forms';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { tryParseInt } from '../../helpers/numbers';
 import validators, { combineValidators } from '../../helpers/validators';
@@ -79,6 +80,109 @@ class PropertyShape extends React.Component {
     return true;
   }
 
+  oneToManyRenderer() {
+    const {
+      maxCount,
+      minCount,
+      theme,
+    } = this.props;
+
+    return ({ input }) => {
+      const allValues = Array.isArray(input.value) ? input.value : [];
+
+      const showAddButton = maxCount
+        ? allValues.length < tryParseInt(maxCount)
+        : true;
+
+      const addItem = () => {
+        const next = input.value ? [...input.value] : [];
+        next.push({
+          list_id: new BlankNode().id,
+        });
+        input.onChange(next);
+      };
+
+      const showRemoveItem = minCount
+        ? tryParseInt(minCount) > allValues.length
+        : true;
+
+      const removeItem = index => (e) => {
+        if (e && typeof e.preventDefault === 'function') {
+          e.preventDefault();
+        }
+        const next = input.value.filter((_, i) => i !== index);
+        input.onChange(next);
+      };
+
+      const children = allValues
+        .map((v, index) => this.nestedResourceView({
+          key: v.list_id || index,
+          propertyIndex: index,
+          removeItem: showRemoveItem && removeItem(index),
+          targetValue: v,
+        }));
+
+      return (
+        <React.Fragment>
+          {this.labelComponent(theme !== 'omniform' || allValues.length > 0)}
+          {children}
+          {showAddButton && this.addButton(addItem)}
+        </React.Fragment>
+      );
+    };
+  }
+
+  oneToOneRenderer() {
+    const { minCount, theme } = this.props;
+
+    return ({ input }) => {
+      const inputAlwaysVisible = theme !== 'omniform';
+
+      const showAddButton = !inputAlwaysVisible && !input.value;
+      const addItem = () => {
+        input.onChange({
+          list_id: new BlankNode().id,
+        });
+      };
+
+      const present = input.value?.termType || Object.values(input.value || {}).find(Boolean);
+      const showRemoveItem = (present || !inputAlwaysVisible)
+        && (minCount ? tryParseInt(minCount) === 0 : true);
+      const removeItem = (e) => {
+        if (e && typeof e.preventDefault === 'function') {
+          e.preventDefault();
+        }
+        input.onChange(undefined);
+      };
+
+      return (
+        <React.Fragment>
+          {this.labelComponent(theme !== 'omniform' || !!input.value)}
+          {(input.value || inputAlwaysVisible) && this.nestedResourceView({
+            removeItem: showRemoveItem && removeItem,
+            targetValue: input.value,
+          })}
+          {showAddButton && this.addButton(addItem)}
+        </React.Fragment>
+      );
+    };
+  }
+
+  addButton(addItem) {
+    return (
+      <Button
+        small
+        theme="transparant"
+        onClick={addItem}
+      >
+        <LinkedResourceContainer
+          subject={this.props.path}
+          topology={omniformSupplementBarTopology}
+        />
+      </Button>
+    );
+  }
+
   descriptionValue() {
     if (inputsPreferringPlaceholder.includes(this.inputType())) {
       return null;
@@ -117,7 +221,7 @@ class PropertyShape extends React.Component {
       case NS.ontola('datatype/password'):
         return 'password';
       default:
-        if (this.maxLength() > MAX_STR_LEN) {
+        if (tryParseInt(this.props.maxLength) > MAX_STR_LEN) {
           return 'textarea';
         }
 
@@ -125,8 +229,58 @@ class PropertyShape extends React.Component {
     }
   }
 
-  maxLength() {
-    return this.props.maxLength && Number.parseInt(this.props.maxLength.value, 10);
+  labelComponent(showLabel) {
+    const { name } = this.props;
+
+    if (name) {
+      return (
+        <label style={{ display: showLabel ? '' : 'none' }}>
+          {name.value}
+        </label>
+      );
+    }
+
+    return null;
+  }
+
+  nestedResourceView(props) {
+    const {
+      lrs,
+      targetNode,
+      theme,
+      onKeyUp,
+    } = this.props;
+
+    const targetShape = lrs.store.anyStatementMatching(
+      null,
+      NS.sh('targetClass'),
+      this.props.class
+    );
+
+    const children = !targetShape
+      ? (
+        <Property
+          label={NS.sh('class')}
+          targetNode={targetNode}
+          theme={theme}
+          onKeyUp={onKeyUp}
+          {...props}
+        />
+      )
+      : (
+        <LinkedResourceContainer
+          subject={targetShape.subject}
+          theme={theme}
+          onKeyUp={onKeyUp}
+          {...props}
+        />
+      );
+
+    return (
+      <React.Fragment>
+        {children}
+      </React.Fragment>
+    );
   }
 
   renderDataField(fieldName, targetValues) {
@@ -153,7 +307,7 @@ class PropertyShape extends React.Component {
         autofocus={autofocus}
         description={this.descriptionValue()}
         field={fieldName}
-        initialValue={(targetValues && targetValues[0]) || defaultValue}
+        initialValue={targetValues?.[0] || defaultValue}
         label={name && name.value}
         maxLength={tryParseInt(maxLength)}
         minLength={tryParseInt(minLength)}
@@ -172,102 +326,27 @@ class PropertyShape extends React.Component {
 
   renderNestedResource(fieldName, targetValues) {
     const {
-      name,
-      onKeyUp,
       path,
-      targetNode,
       maxCount,
-      theme,
+      minCount,
     } = this.props;
-    const targetShape = this.props.lrs.store.anyStatementMatching(
-      null,
-      NS.sh('targetClass'),
-      this.props.class
-    );
+
+    const isOneToMany = !maxCount || tryParseInt(maxCount) > 1 || tryParseInt(minCount) > 1;
+
+    const fieldView = isOneToMany
+      ? this.oneToManyRenderer()
+      : this.oneToOneRenderer();
+    const initialValue = isOneToMany
+      ? targetValues
+      : targetValues?.[0];
 
     return (
       <FormSection name={fieldName} path={path}>
-        <Field name={fieldName}>
-          {({ input }) => {
-            const allValues = [];
-
-            if (targetValues) {
-              allValues.push(...targetValues);
-            }
-
-            if (input.value) {
-              allValues.push(...input.value);
-            }
-
-            const showAddButton = maxCount
-              ? allValues.length < Number.parseInt(maxCount.value, 10)
-              : true;
-
-            const showLabel = theme !== 'omniform' || allValues.length > 0;
-
-            const addItem = () => {
-              const next = input.value ? [...input.value] : [];
-              next.push({
-                list_id: new BlankNode().id,
-              });
-              input.onChange(next);
-            };
-
-            const removeItem = index => (e) => {
-              if (e && typeof e.preventDefault === 'function') {
-                e.preventDefault();
-              }
-              const next = input.value.filter((_, i) => i !== index);
-              input.onChange(next);
-            };
-
-            const children = allValues.map((v, index) => (
-              !targetShape
-                ? (
-                  <Property
-                    key={v.list_id || index}
-                    label={NS.sh('class')}
-                    propertyIndex={index}
-                    removeItem={removeItem(index)}
-                    targetNode={targetNode}
-                    targetValue={v}
-                    theme={theme}
-                    onKeyUp={onKeyUp}
-                  />
-                )
-                : (
-                  <LinkedResourceContainer
-                    key={v.list_id || index}
-                    propertyIndex={index}
-                    removeItem={removeItem(index)}
-                    subject={targetShape.subject}
-                    targetValue={v}
-                    theme={theme}
-                    onKeyUp={onKeyUp}
-                  />
-                )
-            ));
-
-            return (
-              <React.Fragment>
-                {name && <label style={{ display: showLabel ? '' : 'none' }}>{name.value}</label>}
-                {children}
-                {showAddButton && (
-                  <Button
-                    small
-                    theme="transparant"
-                    onClick={addItem}
-                  >
-                    <LinkedResourceContainer
-                      subject={this.props.path}
-                      topology={omniformSupplementBarTopology}
-                    />
-                  </Button>
-                )}
-              </React.Fragment>
-            );
-          }}
-        </Field>
+        <Field
+          initialValue={initialValue}
+          name={fieldName}
+          render={fieldView}
+        />
       </FormSection>
     );
   }
@@ -280,7 +359,7 @@ class PropertyShape extends React.Component {
       targetNode,
     } = this.props;
 
-    const fieldName = `${propertyIndex !== undefined ? `${propertyIndex}.` : ''}${btoa(path.value)}`;
+    const fieldName = calculateFieldName(undefined, propertyIndex, path);
     const targetObject = targetNode || this.props.targetValue;
     const targetIRI = targetObject && targetObject instanceof Term && targetObject;
     const targetValues = targetIRI && lrs.getResourceProperties(targetIRI, path);

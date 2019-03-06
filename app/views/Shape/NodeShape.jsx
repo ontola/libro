@@ -47,6 +47,7 @@ const NodeShape = ({
   whitelist,
 }) => (
   <Property
+    forceRender
     autofocusForm={autofocusForm}
     label={NS.sh('targetClass')}
     lrs={lrs}
@@ -60,6 +61,7 @@ const NodeShape = ({
   >
     <div style={removeItem ? { display: 'flex' } : undefined}>
       <Property label={NS.rdfs('label')} />
+      <Property label={NS.sh('targetClass')} />
       <Property
         autofocusForm={autofocusForm}
         label={NS.sh('property')}
