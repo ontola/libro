@@ -156,7 +156,7 @@ class FormField extends React.PureComponent {
       type,
     } = props;
 
-    if (!['password', 'hidden'].includes(type) && (touched || nextValue !== value)) {
+    if (storeKey && !['password', 'hidden'].includes(type) && (touched || nextValue !== value)) {
       sessionStorage.setItem(`${storeKey}.${name}`, nextValue || '');
     }
   }
