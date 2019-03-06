@@ -33,7 +33,7 @@ class SignInFormCardRow extends SignInFormBase {
 
     return (
       <Form validateOnBlur onSubmit={onSubmit}>
-        {({ handleSubmit, pristine, submitting }) => (
+        {({ handleSubmit, submitting }) => (
           <form onSubmit={handleSubmit}>
             {formFields}
             {(this.backButton() || buttonText) && (
@@ -41,7 +41,7 @@ class SignInFormCardRow extends SignInFormBase {
                 {this.backButton()}
                 {buttonText && (
                   <Button
-                    disabled={invalid || pristine}
+                    disabled={invalid}
                     icon="arrow-right"
                     loading={submitting}
                     theme="default"

@@ -64,7 +64,7 @@ class EntryPointContainer extends EntryPointBase {
         method={httpMethod}
         onSubmit={this.submitHandler}
       >
-        {({ pristine, submitting }) => (
+        {({ submitting }) => (
           <React.Fragment>
             <Card>
               <CardContent>
@@ -76,7 +76,7 @@ class EntryPointContainer extends EntryPointBase {
                 <FormFooterRight>
                   {cancelButton}
                   <Button
-                    disabled={invalid || pristine}
+                    disabled={invalid}
                     icon="send"
                     loading={submitting}
                     theme="submit"

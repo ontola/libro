@@ -125,14 +125,14 @@ class SignInFormCard extends SignInFormBase {
           <Form
             onSubmit={onSubmit}
           >
-            {({ handleSubmit, pristine, submitting }) => (
+            {({ handleSubmit, submitting }) => (
               <form action="/users" onSubmit={handleSubmit}>
                 {formFields}
                 <CardRow>
                   <CardActions noSpacing>
                     {this.backButton()}
                     <Button
-                      disabled={invalid || pristine}
+                      disabled={invalid}
                       icon="arrow-right"
                       loading={submitting}
                       theme="box"
