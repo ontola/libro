@@ -36,6 +36,9 @@ async function login(req, res, next) {
       }
 
       switch (json.code) {
+        case 'ACCOUNT_LOCKED':
+          res.send({ status: 'SIGN_IN_ACCOUNT_LOCKED' }).end();
+          break;
         case 'WRONG_PASSWORD':
           res.send({ status: 'SIGN_IN_WRONG_PASSWORD' }).end();
           break;

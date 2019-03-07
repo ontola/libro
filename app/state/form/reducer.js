@@ -9,6 +9,7 @@ import {
   SIGN_IN_SHOW_FORM,
   SIGN_IN_STEP_BACK,
   SIGN_IN_WRONG_PASSWORD,
+  SIGN_IN_ACCOUNT_LOCKED,
 } from '../action-types';
 
 import messages from './messages';
@@ -54,6 +55,15 @@ export default combineReducers({
           return state;
       }
     },
+    [SIGN_IN_ACCOUNT_LOCKED]: (state) => {
+      if (state.get('step') !== STEPS.signIn) {
+        return transitionTo(state, STEPS.signIn);
+      }
+
+      return state.set('errors', new Map({
+        [btoa('email')]: [messages.accountLocked],
+      }));
+    },
     [SIGN_IN_EMAIL_TAKEN]: state => transitionTo(state, STEPS.signIn),
     [SIGN_IN_SHOW_FORM]: (state, { payload }) => transitionTo(state, STEPS.signUp)
       .set('subject', payload),
@@ -70,7 +80,7 @@ export default combineReducers({
       }
 
       return state.set('errors', new Map({
-        password: [messages.invalidPassword],
+        [btoa('password')]: [messages.invalidPassword],
       }));
     },
   }, transitionTo(new Map(), STEPS.signUp)),

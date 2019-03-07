@@ -1,6 +1,10 @@
 import { defineMessages } from 'react-intl';
 
 const messages = defineMessages({
+  accountLocked: {
+    defaultMessage: 'Account locked due to too many failed login attempts',
+    id: 'https://app.argu.co/i18n/forms/session/accountLocked',
+  },
   emailPlaceholder: {
     defaultMessage: 'email@example.com',
     description: 'Placeholder for the email field when signing in',

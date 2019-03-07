@@ -12,13 +12,19 @@ import { handle } from '../helpers/logging';
 import {
   AFE_API_GET_MAP_ACCESS_TOKEN,
   AFE_API_LOGIN,
+  SIGN_IN_ACCOUNT_LOCKED,
   SIGN_IN_EMAIL_TAKEN,
   SIGN_IN_LOGGED_IN,
   SIGN_IN_UNKNOWN_EMAIL,
   SIGN_IN_USER_CREATED,
   SIGN_IN_WRONG_PASSWORD,
 } from '../state/action-types';
-import { emailTaken, unknownEmail, wrongPassword } from '../state/form/actions';
+import {
+  accountLocked,
+  emailTaken,
+  unknownEmail,
+  wrongPassword,
+} from '../state/form/actions';
 
 import { frontendIRI } from './app';
 
@@ -55,6 +61,9 @@ export default (history, swc) => () => next => (action) => {
         .then(res => res.json())
         .then((json) => {
           switch (json.status) {
+            case SIGN_IN_ACCOUNT_LOCKED:
+              next(accountLocked());
+              break;
             case SIGN_IN_UNKNOWN_EMAIL:
               next(unknownEmail());
               break;

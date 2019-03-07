@@ -32,6 +32,10 @@ const paths = {
     return new URL(NS.app('users/password/new').value).pathname;
   },
 
+  newUnlock(): string {
+    return new URL(NS.app('users/unlock/new').value).pathname;
+  },
+
   /**
    * Sign-in / registration entrance route
    * @param {string} r The URL to return to after signing in/up

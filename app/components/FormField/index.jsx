@@ -106,13 +106,13 @@ const MessagesDefaultProps = {
 };
 
 const Messages = ({ error, warning, bottom }) => {
-  const errMsg = Array.isArray(error) ? error.pop() : error;
+  const errMsg = Array.isArray(error) ? error[0] : error;
   const err = errMsg && (
     <span className="Field__error">
       {errMsg}
     </span>
   );
-  const warnMsg = !errMsg && Array.isArray(warning) ? warning.pop() : warning;
+  const warnMsg = !errMsg && Array.isArray(warning) ? warning[0] : warning;
   const warn = warnMsg && (
     <span className="Field__warning">
       {warnMsg}
@@ -356,7 +356,7 @@ class FormField extends React.PureComponent {
   }
 
   label(label) {
-    const { id, theme } = this.props;
+    const { id, required, theme } = this.props;
 
     if (label) {
       return (
@@ -365,6 +365,7 @@ class FormField extends React.PureComponent {
           htmlFor={id || this.plainFieldName()}
         >
           {label}
+          {required && <span className="Field__label-required">*</span>}
         </label>
       );
     }

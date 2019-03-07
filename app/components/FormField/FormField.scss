@@ -81,6 +81,7 @@
 .Field__error,
 .Field__warning {
   color: $alert-color;
+  display: block;
 }
 
 // Props
@@ -126,6 +127,10 @@
   .Field__label {
     margin: 0;
     padding-bottom: .3rem;
+
+    &-required {
+      color: color('red');
+    }
   }
 
   .Field__messages {

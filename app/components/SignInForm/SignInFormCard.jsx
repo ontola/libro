@@ -123,7 +123,6 @@ class SignInFormCard extends SignInFormBase {
         <Card>
           {this.contentHeader()}
           <Form
-            validateOnBlur
             onSubmit={onSubmit}
           >
             {({ handleSubmit, pristine, submitting }) => (
@@ -162,6 +161,14 @@ class SignInFormCard extends SignInFormBase {
               <FormattedMessage
                 defaultMessage="Resend confirmation link?"
                 id="https://app.argu.co/i18n/forms/session/confirmationLink/label"
+              />
+            </Link>
+          </li>
+          <li>
+            <Link to={path.newUnlock()}>
+              <FormattedMessage
+                defaultMessage="Account locked?"
+                id="https://app.argu.co/i18n/forms/session/accountLocked/label"
               />
             </Link>
           </li>

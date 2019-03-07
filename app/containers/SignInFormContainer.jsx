@@ -1,4 +1,3 @@
-import { injectIntl } from 'react-intl';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
@@ -44,6 +43,6 @@ const SignInFormContainer = withRouter(connect(
 export const SignInFormContainerCardRow = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(injectIntl(SignInFormCardRow)));
+)(SignInFormCardRow));
 
 export default SignInFormContainer;

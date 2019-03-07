@@ -58,6 +58,8 @@
   "https://app.argu.co/i18n/forms/dropzone/hoverText": "Release to select this file",
   "https://app.argu.co/i18n/forms/dropzone/passiveText": "Drag & Drop your file here or click to select a file",
   "https://app.argu.co/i18n/forms/omniform/newResponsePreview": "Share your response...",
+  "https://app.argu.co/i18n/forms/session/accountLocked": "Account locked due to too many failed login attempts",
+  "https://app.argu.co/i18n/forms/session/accountLocked/label": "Account locked?",
   "https://app.argu.co/i18n/forms/session/back": "back",
   "https://app.argu.co/i18n/forms/session/confirmationLink/label": "Resend confirmation link?",
   "https://app.argu.co/i18n/forms/session/email/label": "Your email address",

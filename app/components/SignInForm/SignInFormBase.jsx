@@ -42,7 +42,7 @@ class SignInFormBase extends React.PureComponent {
   }
 
   errorsForField(fieldName) {
-    return this.props.errors.get(fieldName)?.map(msg => this.props.intl.formatMessage(msg));
+    return this.props.errors.get(btoa(fieldName))?.map(msg => this.props.intl.formatMessage(msg));
   }
 
   confirmFields() {
@@ -72,7 +72,9 @@ class SignInFormBase extends React.PureComponent {
   emailField() {
     return (
       <FormField
+        required
         autofocus={this.fieldSettings[this.props.step].emailField.autofocus}
+        customErrors={this.errorsForField('email')}
         field={btoa('email')}
         key="email"
         label={(

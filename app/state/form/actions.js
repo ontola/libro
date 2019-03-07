@@ -1,6 +1,7 @@
 import { createAction } from 'redux-actions';
 
 import {
+  SIGN_IN_ACCOUNT_LOCKED,
   SIGN_IN_EMAIL_TAKEN,
   SIGN_IN_SHOW_FORM,
   SIGN_IN_STEP_BACK,
@@ -9,6 +10,7 @@ import {
   SIGN_IN_WRONG_PASSWORD,
 } from '../action-types';
 
+export const accountLocked = createAction(SIGN_IN_ACCOUNT_LOCKED);
 export const emailTaken = createAction(SIGN_IN_EMAIL_TAKEN);
 export const showSignInForm = createAction(SIGN_IN_SHOW_FORM, subject => subject);
 export const stepBack = createAction(SIGN_IN_STEP_BACK);
