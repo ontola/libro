@@ -10,7 +10,7 @@ import SignIn from './SignIn';
 // import { LinkVoteMatch } from './VoteMatch';
 
 const subRoutes = [
-  <Route key="signin" path="/*/u/sign_in" component={SignIn} />,
+  <Route key="signin" path={['/u/sign_in', '/*/u/sign_in']} component={SignIn} />,
   <Route key="linkedResources" path="*" component={LinkedObject} />,
 ];
 

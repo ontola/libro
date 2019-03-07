@@ -77,8 +77,8 @@ export default function routes(app, port) {
 
   app.use(sessionMiddleware);
 
-  app.get('/*/logout', logout);
-  app.post('/*/logout', logout);
+  app.get(['/logout', '/*/logout'], logout);
+  app.post(['/logout', '/*/logout'], logout);
 
   app.use(apiMiddleware);
 
@@ -94,10 +94,10 @@ export default function routes(app, port) {
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
   app.post('/login', login);
-  app.get('/*/users/auth/*', backendProxy);
+  app.get(['/users/auth/*', '/*/users/auth/*'], backendProxy);
   app.get('/api/maps/accessToken', maps);
 
-  app.get('/*/media_objects/*', isBinaryishRequest, fileProxy);
+  app.get(['/media_objects/*', '/*/media_objects/*'], isBinaryishRequest, fileProxy);
 
   app.get(/.*/, application(port));
 

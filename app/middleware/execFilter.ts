@@ -14,11 +14,11 @@ export const frontendIRI = NamedNode.find(website!);
 
 const execFilter = () => (): MiddlewareWithBoundLRS => {
   const executableSites = [
-    frontendIRI.site(),
+    NamedNode.find(new URL(frontendIRI.value).origin),
   ];
 
   return (next: MiddlewareActionHandler) => (iri: NamedNode, opts: any): Promise<any> => {
-    if (executableSites.includes(iri.site())) {
+    if (executableSites.includes(NamedNode.find(new URL(iri.value).origin))) {
       return next(iri, opts);
     }
 
