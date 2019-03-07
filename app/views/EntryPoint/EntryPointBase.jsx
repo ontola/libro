@@ -2,10 +2,10 @@ import HttpStatus from 'http-status-codes';
 import { anyRDFValue } from 'link-lib';
 import { LinkedResourceContainer, linkType, PropertyBase } from 'link-redux';
 import PropTypes from 'prop-types';
-import { NamedNode } from 'rdflib';
 import React from 'react';
 
 import { convertKeysAtoB } from '../../helpers/data';
+import { purgeCollection } from '../../helpers/monkeys';
 import { NS } from '../../helpers/LinkedRenderStore';
 
 const HTTP_RETRY_WITH = 449;
@@ -28,24 +28,10 @@ class EntryPointBase extends PropertyBase {
     return lrs
       .exec(action, formData)
       .then((response) => {
-        const target = lrs.getResourceProperty(action, NS.schema('target'));
-        const targetCollection = lrs.getResourceProperty(target, NS.schema('url'));
-
         this.responseCallback(response);
 
-        // [AOD-303] TODO: This is shit.
-        const u = new URL(targetCollection.value);
-        const type = u.searchParams.get('type');
-        u.searchParams.delete('type');
-        u.searchParams.set('page', '1');
-        if (type) {
-          u.searchParams.set('type', type);
-        } else {
-          u.searchParams.set('type', 'paginated');
-        }
-        const first = NamedNode.find(u.toString());
-        lrs.getEntity(targetCollection, { reload: true });
-        lrs.getEntity(first, { reload: true });
+        purgeCollection(lrs, action);
+
         if (this.props.onDone) {
           this.props.onDone(response);
         }
