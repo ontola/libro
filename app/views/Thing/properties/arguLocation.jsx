@@ -92,7 +92,7 @@ class ArguLocation extends React.Component {
 
     const placements = this.resolvePlacements();
 
-    if (placements.length === 0) {
+    if (!schemaLocation && placements.length === 0) {
       return null;
     }
 
@@ -103,6 +103,7 @@ class ArguLocation extends React.Component {
         navigate={resource => history.push(retrievePath(resource.value))}
         placements={placements}
         subject={subject}
+        subjectPlacement={placements ? undefined : subject}
       />
     );
   }

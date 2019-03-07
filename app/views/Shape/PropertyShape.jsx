@@ -17,7 +17,12 @@ import {
 } from '../../components';
 import Button from '../../components/Button';
 import { FormContext } from '../../components/Form/Form';
-import { calculateFieldName } from '../../helpers/forms';
+import { collectionMembers } from '../../helpers/diggers';
+import {
+  calculateFormFieldName,
+  markForRemove,
+  retrieveIdFromValue,
+} from '../../helpers/forms';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { tryParseInt } from '../../helpers/numbers';
 import validators, { combineValidators } from '../../helpers/validators';
@@ -87,36 +92,44 @@ class PropertyShape extends React.Component {
       theme,
     } = this.props;
 
-    return ({ input }) => {
-      const allValues = Array.isArray(input.value) ? input.value : [];
-
+    return ({ input: { onChange, value } }) => {
       const showAddButton = maxCount
-        ? allValues.length < tryParseInt(maxCount)
+        ? value.length < tryParseInt(maxCount)
         : true;
 
       const addItem = () => {
-        const next = input.value ? [...input.value] : [];
+        const next = value ? [...value] : [];
         next.push({
-          list_id: new BlankNode().id,
+          '@id': new BlankNode(),
         });
-        input.onChange(next);
+        onChange(next);
       };
 
       const showRemoveItem = minCount
-        ? tryParseInt(minCount) > allValues.length
+        ? tryParseInt(minCount) > value.length
         : true;
 
       const removeItem = index => (e) => {
         if (e && typeof e.preventDefault === 'function') {
           e.preventDefault();
         }
-        const next = input.value.filter((_, i) => i !== index);
-        input.onChange(next);
+        const next = value.map((v, i) => {
+          if (i !== index) {
+            return v;
+          }
+          return markForRemove(v);
+        });
+
+        if (next.filter(Boolean).length === 0) {
+          onChange([]);
+        } else {
+          onChange(next);
+        }
       };
 
-      const children = allValues
+      const children = value
         .map((v, index) => this.nestedResourceView({
-          key: v.list_id || index,
+          key: v?.['@id'] || index,
           propertyIndex: index,
           removeItem: showRemoveItem && removeItem(index),
           targetValue: v,
@@ -124,7 +137,7 @@ class PropertyShape extends React.Component {
 
       return (
         <React.Fragment>
-          {this.labelComponent(theme !== 'omniform' || allValues.length > 0)}
+          {this.labelComponent(theme !== 'omniform' || value.length > 0)}
           {children}
           {showAddButton && this.addButton(addItem)}
         </React.Fragment>
@@ -141,7 +154,7 @@ class PropertyShape extends React.Component {
       const showAddButton = !inputAlwaysVisible && !input.value;
       const addItem = () => {
         input.onChange({
-          list_id: new BlankNode().id,
+          '@id': new BlankNode(),
         });
       };
 
@@ -152,7 +165,7 @@ class PropertyShape extends React.Component {
         if (e && typeof e.preventDefault === 'function') {
           e.preventDefault();
         }
-        input.onChange(undefined);
+        input.onChange(markForRemove(input.value));
       };
 
       return (
@@ -160,7 +173,7 @@ class PropertyShape extends React.Component {
           {this.labelComponent(theme !== 'omniform' || !!input.value)}
           {(input.value || inputAlwaysVisible) && this.nestedResourceView({
             removeItem: showRemoveItem && removeItem,
-            targetValue: input.value,
+            targetValue: input.value ?? { '@id': input.value },
           })}
           {showAddButton && this.addButton(addItem)}
         </React.Fragment>
@@ -336,13 +349,16 @@ class PropertyShape extends React.Component {
     const fieldView = isOneToMany
       ? this.oneToManyRenderer()
       : this.oneToOneRenderer();
+    const dataObjects = targetValues.map(iri => ({ '@id': iri }));
     const initialValue = isOneToMany
-      ? targetValues
-      : targetValues?.[0];
+      ? dataObjects
+      : dataObjects?.[0];
 
     return (
       <FormSection name={fieldName} path={path}>
         <Field
+          allowNull
+          format={null}
           initialValue={initialValue}
           name={fieldName}
           render={fieldView}
@@ -359,10 +375,16 @@ class PropertyShape extends React.Component {
       targetNode,
     } = this.props;
 
-    const fieldName = calculateFieldName(undefined, propertyIndex, path);
-    const targetObject = targetNode || this.props.targetValue;
+    const fieldName = calculateFormFieldName(propertyIndex, path);
+    const targetObject = targetNode || retrieveIdFromValue(this.props.targetValue);
     const targetIRI = targetObject && targetObject instanceof Term && targetObject;
-    const targetValues = targetIRI && lrs.getResourceProperties(targetIRI, path);
+    let targetValues = targetIRI && lrs.getResourceProperties(targetIRI, path);
+    const isCollection = targetValues?.length === 1
+      && lrs.findSubject(targetValues[0], [NS.rdf('type')], NS.as('Collection')).length > 0;
+
+    if (isCollection) {
+      targetValues = lrs.dig(targetValues[0], collectionMembers);
+    }
 
     if (this.props.class) {
       return this.renderNestedResource(fieldName, targetValues);

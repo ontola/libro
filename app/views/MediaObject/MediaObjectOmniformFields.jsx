@@ -1,4 +1,10 @@
-import { LinkedResourceContainer, linkType, register } from 'link-redux';
+import {
+  LinkedResourceContainer,
+  linkType,
+  lrsType,
+  register,
+  subjectType,
+} from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Dropzone from 'react-dropzone';
@@ -8,7 +14,8 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 
 import { FormSectionContext } from '../../components/Form/FormSection';
 import OmniformRemoveButton from '../../components/Omniform/OmniformRemoveButton';
-import { calculateFieldName } from '../../helpers/forms';
+import { listToArr } from '../../helpers/data';
+import { calculateFormFieldName, isMarkedForRemove } from '../../helpers/forms';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 
@@ -28,14 +35,24 @@ defineMessages({
 });
 
 const MediaObjectOmniformFields = ({
+  lrs,
   propertyIndex,
   removeItem,
+  subject,
   targetValue,
 }) => {
   const formContext = React.useContext(FormSectionContext);
   const inputRef = React.createRef();
-  const fieldName = NS.schema('contentUrl');
-  const fieldId = calculateFieldName(formContext, propertyIndex, fieldName);
+  const resourceId = calculateFormFieldName(formContext, propertyIndex);
+  const encodingFormatShape = lrs.findSubject(
+    subject,
+    [NS.sh('property'), NS.sh('path')],
+    NS.schema('encodingFormat')
+  ).pop();
+  const encodingFormatTypes = encodingFormatShape
+    && listToArr(lrs, [], lrs.getResourceProperty(encodingFormatShape, NS.sh('in')))
+      ?.map(lit => lit.value)
+      ?.join(', ');
 
   const openDialog = () => {
     const { current } = inputRef;
@@ -47,10 +64,23 @@ const MediaObjectOmniformFields = ({
     current.click();
   };
 
+  if (isMarkedForRemove(targetValue)) {
+    return null;
+  }
+
+  if (targetValue?.['@id']?.termType === 'NamedNode') {
+    return (
+      <div className="MediaObjectOmniformFields__button-spacer">
+        <OmniformRemoveButton removeItem={removeItem} />
+        <LinkedResourceContainer subject={targetValue['@id']} />
+      </div>
+    );
+  }
+
   return (
     <Field
       initialValue={targetValue}
-      name={fieldId}
+      name={resourceId}
       render={({ input: { value, ...input } }) => {
         if (value && value.termType) {
           return (
@@ -61,39 +91,53 @@ const MediaObjectOmniformFields = ({
           );
         }
 
-        const onChange = e => input.onChange(e[0]);
+        const fieldName = NS.schema('contentUrl');
+        const fieldId = calculateFormFieldName(formContext, propertyIndex, fieldName);
 
         return (
-          <Dropzone onDrop={onChange}>
-            {({ getInputProps, getRootProps, isDragActive }) => (
-              <div className="MediaObjectOmniformFields__button-spacer">
-                <OmniformRemoveButton removeItem={removeItem} />
-                <button
-                  {...getRootProps({
-                    className: `MediaObjectOmniformFields ${isDragActive ? 'MediaObjectOmniformFields__active' : ''}`,
-                    onClick: openDialog,
-                    type: 'button',
-                  })}
+          <Field
+            name={fieldId}
+            render={({ input: { onChange: onContentUrlChange, value: contentUrl } }) => {
+              const onChange = e => onContentUrlChange(e[0]);
+
+              return (
+                <Dropzone
+                  accept={encodingFormatTypes}
+                  multiple={false}
+                  onDrop={onChange}
                 >
-                  <div className="MediaObjectOmniformFields__messages">
-                    <FontAwesome className="MediaObjectOmniformFields__icon" name="cloud-upload" />
-                    {isDragActive
-                      ? <FormattedMessage id="https://app.argu.co/i18n/forms/dropzone/hoverText" />
-                      : <FormattedMessage id="https://app.argu.co/i18n/forms/dropzone/passiveText" />
-                    }
-                    <div>{value?.name}</div>
-                  </div>
-                  <input
-                    {...input}
-                    {...getInputProps()}
-                    className="MediaObjectOmniformFields__input"
-                    ref={inputRef}
-                    type="file"
-                  />
-                </button>
-              </div>
-            )}
-          </Dropzone>
+                  {({ getInputProps, getRootProps, isDragActive }) => (
+                    <div className="MediaObjectOmniformFields__button-spacer">
+                      <OmniformRemoveButton removeItem={removeItem} />
+                      <button
+                        {...getRootProps({
+                          className: `MediaObjectOmniformFields ${isDragActive ? 'MediaObjectOmniformFields__active' : ''}`,
+                          onClick: openDialog,
+                          type: 'button',
+                        })}
+                      >
+                        <div className="MediaObjectOmniformFields__messages">
+                          <FontAwesome className="MediaObjectOmniformFields__icon" name="cloud-upload" />
+                          {isDragActive
+                            ? <FormattedMessage id="https://app.argu.co/i18n/forms/dropzone/hoverText" />
+                            : <FormattedMessage id="https://app.argu.co/i18n/forms/dropzone/passiveText" />
+                          }
+                          <div>{contentUrl?.name}</div>
+                        </div>
+                        <input
+                          {...input}
+                          {...getInputProps()}
+                          className="MediaObjectOmniformFields__input"
+                          ref={inputRef}
+                          type="file"
+                        />
+                      </button>
+                    </div>
+                  )}
+                </Dropzone>
+              );
+            }}
+          />
         );
       }}
     />
@@ -110,11 +154,13 @@ MediaObjectOmniformFields.type = [
 MediaObjectOmniformFields.topology = omniformFieldsTopology;
 
 MediaObjectOmniformFields.propTypes = {
+  lrs: lrsType,
   propertyIndex: PropTypes.number,
   reactFinalForm: PropTypes.shape({
     change: PropTypes.func,
   }),
   removeItem: PropTypes.func,
+  subject: subjectType,
   targetValue: linkType,
 };
 

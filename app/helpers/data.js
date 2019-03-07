@@ -37,14 +37,13 @@ function dataURItoBlob(literal) {
 function convertKeysAtoB(obj) {
   const output = {};
   Object.entries(obj).forEach(([k, v]) => {
-    if (k === 'list_id') {
-      return;
-    }
-
-    if (Object.prototype.toString.apply(v) === '[object Object]' && !Object.prototype.hasOwnProperty.call(v, 'termType')) {
+    if (k === '@id') {
+      output[k] = v;
+    } else if (Object.prototype.toString.apply(v) === '[object Object]' && !Object.prototype.hasOwnProperty.call(v, 'termType')) {
       output[atob(k)] = convertKeysAtoB(v);
     } else if (Array.isArray(v)) {
-      output[atob(k)] = v.map(i => convertKeysAtoB(i));
+      // eslint-disable-next-line no-use-before-define
+      output[atob(k)] = v.map(i => serializableValue(i));
     } else if (v.datatype && v.datatype.value.startsWith('https://argu.co/ns/core#base64File')) {
       output[atob(k)] = dataURItoBlob(v);
     } else {
@@ -53,6 +52,18 @@ function convertKeysAtoB(obj) {
   });
 
   return output;
+}
+
+function serializableValue(v) {
+  if (Object.prototype.toString.apply(v) === '[object Object]' && !Object.prototype.hasOwnProperty.call(v, 'termType')) {
+    return convertKeysAtoB(v);
+  } else if (Array.isArray(v)) {
+    return v.map(i => serializableValue(i));
+  } else if (v.datatype && v.datatype.value.startsWith('https://argu.co/ns/core#base64File')) {
+    return dataURItoBlob(v);
+  }
+
+  return v;
 }
 
 function listToArr(lrs, acc, rest) {

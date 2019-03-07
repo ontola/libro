@@ -1,5 +1,10 @@
 import * as fa from 'fontawesome';
-import { LinkedResourceContainer, lrsType, subjectType } from 'link-redux';
+import {
+  LinkedResourceContainer,
+  linkType,
+  lrsType,
+  subjectType,
+} from 'link-redux';
 import {
   Feature,
   Map as OLMap,
@@ -59,6 +64,8 @@ class MapView extends React.Component {
   static propTypes = {
     accessToken: PropTypes.string,
     getAccessToken: PropTypes.func,
+    /** Additional placement to render on the map */
+    location: linkType,
     lrs: lrsType,
     navigate: PropTypes.func,
     onMapClick: PropTypes.func,
@@ -224,6 +231,11 @@ class MapView extends React.Component {
       .map(this.featureFromPlacement)
       .filter(Boolean);
 
+    const location = this.featureFromPlacement(this.props.location);
+    if (location) {
+      features.push(location);
+    }
+
     this.placementFeatureSource.clear(true);
     this.placementFeatureSource.addFeatures(features);
   }
@@ -240,7 +252,10 @@ class MapView extends React.Component {
 
     const centerPlacement = subjectPlacement
       || (subject && lrs.getResourceProperty(subject, NS.schema('location')));
-    let center = this.resolvePlacement(lrs.dig(centerPlacement, collectionMembers).pop());
+    let center = centerPlacement && this.resolvePlacement(
+      lrs.dig(centerPlacement, collectionMembers).pop()
+      || centerPlacement
+    );
 
     if (!center) {
       handle(new Error(`Map has no center (${subject})`));

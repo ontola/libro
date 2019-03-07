@@ -1,9 +1,10 @@
 import {
+  linkType,
   lrsType,
   register,
 } from 'link-redux';
 import PropTypes from 'prop-types';
-import { BlankNode, NamedNode } from 'rdflib';
+import { NamedNode } from 'rdflib';
 import React from 'react';
 import { withReactFinalForm } from 'react-final-form';
 
@@ -11,7 +12,7 @@ import { FormContext } from '../../components/Form/Form';
 import { FormSectionContext } from '../../components/Form/FormSection';
 import OmniformRemoveButton from '../../components/Omniform/OmniformRemoveButton';
 import MapView from '../../containers/MapView';
-import { calculateFieldName } from '../../helpers/forms';
+import { calculateFormFieldName, isMarkedForRemove } from '../../helpers/forms';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 
@@ -22,34 +23,40 @@ const PlacementOmniformFields = ({
   propertyIndex,
   reactFinalForm,
   removeItem,
+  targetValue,
 }) => {
   const formID = React.useContext(FormContext);
   const formContext = React.useContext(FormSectionContext);
-  // TODO: Store the coordinates in the form state.
-  const [coordinate, setCoordinate] = React.useState(undefined);
+
+  if (isMarkedForRemove(targetValue)) {
+    return null;
+  }
+
   const placements = [];
 
-  if (coordinate) {
-    placements.push({
-      id: new BlankNode(),
-      image: NS.fa4('map-marker'),
-      lat: coordinate[1],
-      lon: coordinate[0],
-    });
+  if (targetValue) {
+    const lat = targetValue[calculateFormFieldName(NS.schema('latitude'))];
+    const lon = targetValue[calculateFormFieldName(NS.schema('longitude'))];
+
+    if (lat && lon) {
+      placements.push({
+        id: targetValue['@id'],
+        image: NS.fa4('map-marker'),
+        lat,
+        lon,
+      });
+    }
   }
 
   const storeCoordinates = (e) => {
-    // TODO: Extract and use logic from PropertyShape etc, should make `setCoordinate` superfluous
     reactFinalForm.change(
-      calculateFieldName(formContext, propertyIndex, NS.schema('latitude')),
+      calculateFormFieldName(formContext, propertyIndex, NS.schema('latitude')),
       e[1]
     );
     reactFinalForm.change(
-      calculateFieldName(formContext, propertyIndex, NS.schema('longitude')),
+      calculateFormFieldName(formContext, propertyIndex, NS.schema('longitude')),
       e[0]
     );
-
-    setCoordinate(e);
   };
 
   return (
@@ -78,6 +85,7 @@ PlacementOmniformFields.propTypes = {
     change: PropTypes.func,
   }),
   removeItem: PropTypes.func,
+  targetValue: linkType,
 };
 
 export default register(PlacementOmniformFields);
