@@ -378,7 +378,7 @@ class PropertyShape extends React.Component {
     const fieldName = calculateFormFieldName(propertyIndex, path);
     const targetObject = targetNode || retrieveIdFromValue(this.props.targetValue);
     const targetIRI = targetObject && targetObject instanceof Term && targetObject;
-    let targetValues = targetIRI && lrs.getResourceProperties(targetIRI, path);
+    let targetValues = targetIRI && lrs.getResourceProperties(targetIRI, path) ?? [];
     const isCollection = targetValues?.length === 1
       && lrs.findSubject(targetValues[0], [NS.rdf('type')], NS.as('Collection')).length > 0;
 

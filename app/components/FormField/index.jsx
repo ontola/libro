@@ -270,7 +270,7 @@ class FormField extends React.PureComponent {
       return (
         <DateTimePicker
           value={date}
-          onChange={e => this.saveInputValue(e)}
+          onChange={e => this.saveInputValue(e === null ? Literal.find('') : e)}
         />
       );
     }

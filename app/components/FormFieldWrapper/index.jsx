@@ -1,3 +1,4 @@
+import { linkType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Field } from 'react-final-form';
@@ -6,6 +7,7 @@ import { FormSectionContext } from '../Form/FormSection';
 
 const propTypes = {
   field: PropTypes.string.isRequired,
+  initialValue: linkType,
   validate: PropTypes.func,
 };
 
@@ -16,6 +18,7 @@ const formFieldWrapper = (Component) => {
 
     return (
       <Field
+        initialValue={props.initialValue}
         name={name}
         validate={props.validate}
       >
