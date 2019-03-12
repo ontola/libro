@@ -9,7 +9,7 @@ import React from 'react';
 import { withRouter } from 'react-router';
 
 import MapView from '../../../containers/MapView';
-import { collectionMembers } from '../../../helpers/diggers';
+import { listToArr } from '../../../helpers/data';
 import { retrievePath } from '../../../helpers/iris';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { containerTopology } from '../../../topologies/Container';
@@ -56,15 +56,10 @@ class ArguLocation extends React.Component {
     const { childrenPlacements, schemaLocation, lrs } = this.props;
 
     if (!childrenPlacements) {
-      const length = lrs.getResourceProperty(schemaLocation, NS.as('totalItems'));
-      if (length && length.value === '0') {
-        return [];
-      }
-
-      return lrs.dig(schemaLocation, collectionMembers);
+      return [schemaLocation];
     }
 
-    const children = lrs.dig(childrenPlacements, collectionMembers);
+    const children = listToArr(lrs, [], childrenPlacements);
 
     if (!Array.isArray(children)) {
       return [];
