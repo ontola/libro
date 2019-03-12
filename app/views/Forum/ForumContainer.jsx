@@ -11,7 +11,7 @@ import CardRow from '../../topologies/Card/CardRow';
 import { containerTopology } from '../../topologies/Container';
 
 class ForumContainer extends React.PureComponent {
-  static type = [NS.argu('Forum'), NS.argu('ORIForum')];
+  static type = [NS.argu('ContainerNode')];
 
   static topology = containerTopology;
 

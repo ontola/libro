@@ -256,6 +256,15 @@ const ontologicalClassData = [
   new Statement(NS.argu('EmailAddress'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.argu('EmailAddress'), NS.rdfs('subClassOf'), NS.schema('Thing')),
   new Statement(NS.argu('EmailAddress'), NS.ontola('forms/inputs/select/displayProp'), NS.schema('email')),
+
+  new Statement(NS.argu('Forum'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('Forum'), NS.rdfs('subClassOf'), NS.argu('ContainerNode')),
+
+  new Statement(NS.argu('OpenDataPortal'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('OpenDataPortal'), NS.rdfs('subClassOf'), NS.argu('ContainerNode')),
+
+  new Statement(NS.argu('Blog'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('Blog'), NS.rdfs('subClassOf'), NS.argu('ContainerNode')),
 ];
 // tslint:enable max-line-length
 

@@ -8,7 +8,7 @@ import PageHeader from '../../topologies/PageHeader';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 
 class ForumPage extends React.PureComponent {
-  static type = [NS.argu('Forum'), NS.argu('ORIForum')];
+  static type = [NS.argu('ContainerNode')];
 
   static topology = [
     primaryResourceTopology,
