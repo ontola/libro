@@ -37,13 +37,13 @@ const defaultProps = {
 const NodeShape = ({
   autofocusForm,
   lrs,
+  onKeyUp,
   propertyIndex,
   removeItem,
   subject,
   targetValue,
   targetNode,
   theme,
-  onKeyUp,
   whitelist,
 }) => (
   <Property

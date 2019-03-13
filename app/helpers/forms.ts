@@ -6,7 +6,7 @@ interface JSONLDObject {
     [key: string]: any;
 }
 
-const destroyFieldName = btoa(NS.ontola('_destroy').value);
+export const destroyFieldName = btoa(NS.ontola('_destroy').value);
 
 export function calculateFormFieldName(...segments: Array<string | number | SomeNode | JSONLDObject | undefined>) {
     return segments
@@ -25,6 +25,16 @@ export function calculateFormFieldName(...segments: Array<string | number | Some
         })
         .filter((v) => typeof v === 'number' || Boolean(v))
         .join('.');
+}
+
+export function clearRemoval(value: JSONLDObject | undefined): JSONLDObject | undefined {
+    if (!value) {
+        return value;
+    }
+
+    const { [destroyFieldName]: ignore, ...rest } = value;
+
+    return rest as JSONLDObject;
 }
 
 export function retrieveIdFromValue(value: JSONLDObject | SomeNode | undefined): SomeNode | undefined {
@@ -52,6 +62,6 @@ export function markForRemove(value: JSONLDObject): object | undefined {
 
     return {
         '@id': value['@id'],
-        [calculateFormFieldName(NS.ontola('_destroy'))]: Literal.fromBoolean(true),
+        [destroyFieldName]: Literal.fromBoolean(true),
     };
 }

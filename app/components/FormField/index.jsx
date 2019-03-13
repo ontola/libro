@@ -150,14 +150,14 @@ function getBase64(file) {
 class FormField extends React.PureComponent {
   static persistState(props, nextValue) {
     const {
-      input: { value },
+      input: { name, value },
       meta: { touched },
       storeKey,
       type,
     } = props;
 
     if (!['password', 'hidden'].includes(type) && (touched || nextValue !== value)) {
-      sessionStorage.setItem(storeKey, nextValue || '');
+      sessionStorage.setItem(`${storeKey}.${name}`, nextValue || '');
     }
   }
 
@@ -179,7 +179,7 @@ class FormField extends React.PureComponent {
 
   inputValue() {
     const {
-      input: { value },
+      input: { name, value },
       meta: { dirty },
       initialValue,
       storeKey,
@@ -192,7 +192,7 @@ class FormField extends React.PureComponent {
 
     const currentValue = dirty
       ? value
-      : value || initialValue || sessionStorage.getItem(storeKey);
+      : value || initialValue || sessionStorage.getItem(`${storeKey}.${name}`);
 
     let nextValue = currentValue;
     if (type === 'checkbox') {
