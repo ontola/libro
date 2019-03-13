@@ -53,10 +53,10 @@ class ArguLocation extends React.Component {
   }
 
   resolvePlacements() {
-    const { childrenPlacements, schemaLocation, lrs } = this.props;
+    const { childrenPlacements, lrs } = this.props;
 
     if (!childrenPlacements) {
-      return [schemaLocation];
+      return [];
     }
 
     const children = listToArr(lrs, [], childrenPlacements);
@@ -93,7 +93,7 @@ class ArguLocation extends React.Component {
 
     return (
       <MapView
-        location={schemaLocation}
+        renderSubject
         lrs={lrs}
         navigate={resource => history.push(retrievePath(resource.value))}
         placements={placements}

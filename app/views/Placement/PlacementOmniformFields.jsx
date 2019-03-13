@@ -32,6 +32,7 @@ const PlacementOmniformFields = ({
     return null;
   }
 
+  let renderSubject = false;
   const placements = [];
 
   if (targetValue) {
@@ -45,10 +46,13 @@ const PlacementOmniformFields = ({
         lat,
         lon,
       });
+    } else if (targetValue['@id'].termType === 'NamedNode') {
+      renderSubject = true;
     }
   }
 
   const storeCoordinates = (e) => {
+    reactFinalForm.change(calculateFormFieldName(formContext, propertyIndex), targetValue);
     reactFinalForm.change(
       calculateFormFieldName(formContext, propertyIndex, NS.schema('latitude')),
       e[1]
@@ -65,6 +69,7 @@ const PlacementOmniformFields = ({
       <MapView
         lrs={lrs}
         placements={placements}
+        renderSubject={renderSubject}
         subject={NamedNode.find(formID)}
         onMapClick={storeCoordinates}
       />

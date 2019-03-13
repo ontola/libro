@@ -20,6 +20,7 @@ import { FormContext } from '../../components/Form/Form';
 import { collectionMembers } from '../../helpers/diggers';
 import {
   calculateFormFieldName,
+  isMarkedForRemove,
   markForRemove,
   retrieveIdFromValue,
 } from '../../helpers/forms';
@@ -151,7 +152,13 @@ class PropertyShape extends React.Component {
     return ({ input }) => {
       const inputAlwaysVisible = theme !== 'omniform';
 
-      const showAddButton = !inputAlwaysVisible && !input.value;
+      /* Render an inline dummy if the current object is removed. The input field has no new button
+       *  be always visible.
+       */
+      const displayValue = isMarkedForRemove(input.value) ? { '@id': new BlankNode() } : undefined;
+
+      const showAddButton = !inputAlwaysVisible && (!input.value || isMarkedForRemove(input.value));
+
       const addItem = () => {
         input.onChange({
           '@id': new BlankNode(),
@@ -159,7 +166,7 @@ class PropertyShape extends React.Component {
       };
 
       const present = input.value?.termType || Object.values(input.value || {}).find(Boolean);
-      const showRemoveItem = (present || !inputAlwaysVisible)
+      const showRemoveItem = !displayValue && (present || !inputAlwaysVisible)
         && (minCount ? tryParseInt(minCount) === 0 : true);
       const removeItem = (e) => {
         if (e && typeof e.preventDefault === 'function') {
@@ -173,7 +180,7 @@ class PropertyShape extends React.Component {
           {this.labelComponent(theme !== 'omniform' || !!input.value)}
           {(input.value || inputAlwaysVisible) && this.nestedResourceView({
             removeItem: showRemoveItem && removeItem,
-            targetValue: input.value ?? { '@id': input.value },
+            targetValue: displayValue ?? input.value ?? { '@id': input.value },
           })}
           {showAddButton && this.addButton(addItem)}
         </React.Fragment>

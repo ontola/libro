@@ -79,6 +79,8 @@ class MapView extends React.Component {
         lon: PropTypes.number,
       }),
     ])),
+    /** Enable to render the subject's placement */
+    renderSubject: PropTypes.bool,
     /** Placeable to center on, it should have its own placement. */
     subject: subjectType,
     /**
@@ -224,16 +226,28 @@ class MapView extends React.Component {
   }
 
   updateFeatures() {
-    const features = this
-      .props
-      .placements
+    const {
+      location,
+      lrs,
+      placements,
+      renderSubject,
+      subject,
+    } = this.props;
+
+    const features = placements
       .filter(Boolean)
       .map(this.featureFromPlacement)
       .filter(Boolean);
 
-    const location = this.featureFromPlacement(this.props.location);
-    if (location) {
-      features.push(location);
+    const locationFeature = this.featureFromPlacement(location);
+    if (locationFeature) {
+      features.push(locationFeature);
+    }
+    const subjectLocation = renderSubject && lrs.getResourceProperty(subject, NS.schema('location'));
+    if (subjectLocation) {
+      const subjectPlacement = this.resolvePlacement(subjectLocation);
+      const subjectFeature = this.featureFromPlacement(subjectPlacement);
+      features.push(subjectFeature);
     }
 
     this.placementFeatureSource.clear(true);
