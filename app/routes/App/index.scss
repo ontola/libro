@@ -7,12 +7,17 @@
 
 .App {
   &__container {
+    bottom: 0;
     height: 100vh;
+    left: 0;
     overflow-y: hidden;
-    position: relative;
+    position: fixed;
+    right: 0;
+    top: 0;
   }
 
   &__scroller {
+    -webkit-overflow-scrolling: touch;
     height: 100vh;
     overflow-y: auto;
     position: relative;
