@@ -63,7 +63,10 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
     if (iri.value.startsWith(app('').value)) {
       const actionKey = `app.storedActions.${iri.value}`;
       const storedAction = sessionStorage.getItem(actionKey);
-      if (storedAction) {
+      if (storedAction && opts) {
+          // The action came from a form, so the stored data is probably stale.
+          sessionStorage.removeItem(actionKey);
+      } else if (storedAction) {
         const parsedAction = storedAction && JSON.parse(storedAction);
         const action = NamedNode.find(parsedAction.action.value);
         return store
