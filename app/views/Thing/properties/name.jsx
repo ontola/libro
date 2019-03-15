@@ -83,7 +83,7 @@ const ConnectedHeading = link({
 
 export default [
   LinkedRenderStore.registerRenderer(
-    () => <ConnectedHeading data-test="Thing-name-small-title" size="4" />,
+    () => <ConnectedHeading data-test="Thing-name-small-title" size="1" />,
     NS.schema('Thing'),
     NamePredicates,
     primaryResourceTopology

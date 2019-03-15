@@ -13,6 +13,7 @@ import Comment from './Comment';
 import CreativeWork from './CreativeWork';
 import Action from './Action/index';
 import Argument from './Argument/index';
+import DataCube from './DataCube';
 import DialogManager from './DialogManager';
 import Document from './Document';
 import EntryPoint from './EntryPoint';
@@ -58,6 +59,7 @@ function register() {
     ...CollectionPage,
     ...Comment,
     ...CreativeWork,
+    ...DataCube,
     ...Document,
     ...DialogManager,
     ...EntryPoint,

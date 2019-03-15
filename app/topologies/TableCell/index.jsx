@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 
+import './TableCell.scss';
+
 export const tableCellTopology = NS.argu('tableCell');
 
 class TableCell extends TopologyProvider {
