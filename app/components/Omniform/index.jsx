@@ -48,7 +48,7 @@ export const FILTER = [
   /\/actions\/create_opinion/,
   /\/actions\/update_opinion/,
 ];
-const ORDER = [
+export const ORDER = [
   '/actions/create_opinion',
   '/actions/update_opinion',
   '/m/new',

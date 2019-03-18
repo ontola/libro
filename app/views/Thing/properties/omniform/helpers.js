@@ -1,8 +1,8 @@
-import { FILTER } from '../../../../components/Omniform';
-import { allow } from '../../../../helpers/data';
+import { FILTER, ORDER } from '../../../../components/Omniform';
+import { allowSort } from '../../../../helpers/data';
 import { NS } from '../../../../helpers/LinkedRenderStore';
 
-export const filterActions = potentialAction => allow(potentialAction, FILTER);
+export const filterActions = potentialAction => allowSort(potentialAction, FILTER, ORDER);
 
 export const invalidStatuses = [NS.argu('DisabledActionStatus'), NS.argu('ExpiredActionStatus')];
 

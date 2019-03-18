@@ -127,7 +127,11 @@ class CollapsedOmniformProp extends Component {
 
     return (
       <CardRow>
-        <OmniformPreview onClick={this.toggle} />
+        <OmniformPreview
+          lrs={lrs}
+          primaryAction={items[0]}
+          onClick={this.toggle}
+        />
       </CardRow>
     );
   }
