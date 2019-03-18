@@ -27,6 +27,12 @@ export default class LinkedObject extends React.PureComponent {
     };
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.caughtError && this.props.location.pathname !== prevProps.location.pathname) {
+      this.retry();
+    }
+  }
+
   componentDidCatch(e, ignored) {
     handle(e);
     this.setState({ caughtError: e });
