@@ -1,7 +1,6 @@
 import { LinkedResourceContainer } from 'link-redux';
 import React from 'react';
 import MediaQuery from 'react-responsive';
-import ScrollMemory from 'react-router-scroll-memory';
 
 import { mediaQueries } from '../../components/shared/config';
 import { NS } from '../../helpers/LinkedRenderStore';
@@ -19,7 +18,6 @@ const MainContent = () => {
             subject={NS.app('menu')}
             updateOpenState={setOpenState}
           />
-          <ScrollMemory elementId="start-of-content" />
           <div
             style={(openState && matches)
               ? { height: 'calc(100vh - 3.5em)', overflow: 'hidden' }

@@ -18,6 +18,7 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import { handle } from '../../helpers/logging';
 
 import './index.scss';
+import AppScroller from './AppScroller';
 import MainContent from './MainContent';
 
 class App extends React.PureComponent {
@@ -68,12 +69,12 @@ class App extends React.PureComponent {
           />
           <SkipNavigation />
           <div className="App__container">
-            <div className="App__scroller">
+            <AppScroller>
               <Navbar>
                 <NavBarContent />
               </Navbar>
               <MainContent />
-            </div>
+            </AppScroller>
             <LinkedResourceContainer subject={NS.ontola('snackbar/manager')} />
             <LinkedResourceContainer subject={NS.ontola('dialog/manager')} />
             <Popup />
