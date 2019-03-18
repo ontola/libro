@@ -8,6 +8,7 @@ import { withRouter } from 'react-router';
 
 import { NavBarContent, SkipNavigation } from '../../components';
 import '../../components/shared/init.scss';
+import NetworkStatusIndicator from '../../components/NetworkStatusIndicator';
 import { getSideBarColor } from '../../state/sideBars/selectors';
 import Navbar from '../../topologies/Navbar/index';
 import Popup from '../../topologies/Popup/index';
@@ -73,6 +74,7 @@ class App extends React.PureComponent {
               <Navbar>
                 <NavBarContent />
               </Navbar>
+              <NetworkStatusIndicator />
               <MainContent />
             </AppScroller>
             <LinkedResourceContainer subject={NS.ontola('snackbar/manager')} />

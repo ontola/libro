@@ -11,6 +11,7 @@
   "https://app.argu.co/i18n/collapsible/expandOrCollapseMenu": "Menu uitvouwen of inklappen",
   "https://app.argu.co/i18n/collections/showRepliesLabel": "Toon {count} verborgen reacties...",
   "https://app.argu.co/i18n/errors/clickToRetry/label": "Klik om het opnieuw te proberen.",
+  "https://app.argu.co/i18n/errors/client/offline/header": "Netwerkverbinding verbroken",
   "https://app.argu.co/i18n/errors/informRequest": "Laat het ons weten.",
   "https://app.argu.co/i18n/errors/inlineButton/label": "Opnieuw",
   "https://app.argu.co/i18n/errors/mistaken": "Is dit een fout?",

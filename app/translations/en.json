@@ -11,6 +11,7 @@
   "https://app.argu.co/i18n/collapsible/expandOrCollapseMenu": "Expand or collapse menu",
   "https://app.argu.co/i18n/collections/showRepliesLabel": "Show {count} additional replies...",
   "https://app.argu.co/i18n/errors/clickToRetry/label": "Click to retry",
+  "https://app.argu.co/i18n/errors/client/offline/header": "Network connection lost",
   "https://app.argu.co/i18n/errors/informRequest": "Let us know.",
   "https://app.argu.co/i18n/errors/inlineButton/label": "Retry",
   "https://app.argu.co/i18n/errors/mistaken": "Is this an error?",

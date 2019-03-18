@@ -5,7 +5,7 @@ import { withRouter } from 'react-router';
 const AppScroller = ({ children, location }) => {
   const scrollerRef = React.createRef();
 
-  React.useEffect(
+  React.useLayoutEffect(
     () => {
       if (scrollerRef.current) {
         scrollerRef.current.scrollTo(0, 0);
