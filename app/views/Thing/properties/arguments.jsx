@@ -1,62 +1,92 @@
 import LinkedRenderStore from 'link-lib';
-import { link, Property } from 'link-redux';
-import React, { PureComponent } from 'react';
+import {
+  link,
+  linkType,
+  Property,
+  useDataInvalidation,
+  useLinkContext,
+} from 'link-redux';
+import React from 'react';
 
 import { CardContent, Columns } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { tryParseInt } from '../../../helpers/numbers';
 import { allTopologiesExcept } from '../../../topologies';
 import { cardAppendixTopology } from '../../../topologies/Card/CardAppendix';
 import CardRow from '../../../topologies/Card/CardRow';
 
-function noArguments({ conArgumentsCount, proArgumentsCount }) {
-  return (Number(conArgumentsCount) || 0) + (Number(proArgumentsCount) || 0) === 0;
+function noArguments(conArgumentsCount, proArgumentsCount) {
+  return (tryParseInt(conArgumentsCount) || 0) + (tryParseInt(proArgumentsCount) || 0) === 0;
 }
 
-class Arguments extends PureComponent {
-  render() {
-    if (noArguments(this.props)) {
-      return null;
-    }
+const ArgumentColumns = () => (
+  <Columns>
+    <Property
+      renderWhenEmpty
+      direction="column"
+      key="pro"
+      label={NS.argu('proArguments')}
+    />
+    <Property
+      renderWhenEmpty
+      direction="column"
+      key="con"
+      label={NS.argu('conArguments')}
+    />
+  </Columns>
+);
 
-    return (
-      <Columns>
-        <Property
-          renderWhenEmpty
-          direction="column"
-          key="pro"
-          label={NS.argu('proArguments')}
-        />
-        <Property
-          renderWhenEmpty
-          direction="column"
-          key="con"
-          label={NS.argu('conArguments')}
-        />
-      </Columns>
-    );
+const Arguments = ({
+  children,
+  conArguments,
+  conArgumentsCount,
+  proArguments,
+  proArgumentsCount,
+}) => {
+  const ctx = useLinkContext();
+  useDataInvalidation({
+    dataSubjects: [conArguments, proArguments].filter(Boolean),
+    subject: ctx.subject,
+  }, ctx);
+
+  if (noArguments(conArgumentsCount, proArgumentsCount)) {
+    return null;
   }
-}
 
-const argumentsData = link([
+  return children || <ArgumentColumns />;
+};
+
+Arguments.propTypes = {
+  conArguments: linkType,
+  conArgumentsCount: linkType,
+  proArguments: linkType,
+  proArgumentsCount: linkType,
+};
+
+const ArgumentsData = link([
   NS.argu('conArgumentsCount'),
   NS.argu('proArgumentsCount'),
-], { returnType: 'value' });
+  NS.argu('proArguments'),
+  NS.argu('conArguments'),
+])(Arguments);
 
 export default [
   LinkedRenderStore.registerRenderer(
-    argumentsData(Arguments),
+    ArgumentsData,
     NS.schema('Thing'),
     NS.argu('arguments'),
     allTopologiesExcept(cardAppendixTopology)
   ),
   LinkedRenderStore.registerRenderer(
-    argumentsData(props => noArguments(props) || (
-      <CardRow backdrop>
-        <CardContent>
-          <Arguments {...props} />
-        </CardContent>
-      </CardRow>
-    )),
+    props => (
+      <ArgumentsData {...props}>
+        <CardRow backdrop>
+          <CardContent>
+            <ArgumentColumns />
+          </CardContent>
+        </CardRow>
+      </ArgumentsData>
+    ),
     NS.schema('Thing'),
     NS.argu('arguments'),
     cardAppendixTopology
