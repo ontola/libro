@@ -23,19 +23,31 @@ import { cardVoteEventTopology } from '../../../topologies/CardVoteEvent';
 
 class CurrentVote extends React.PureComponent {
   static propTypes = {
-    base: PropTypes.string,
+    base: PropTypes.instanceOf(NamedNode),
     lrs: lrsType,
     option: linkType,
     side: linkType,
     subject: linkType,
   };
 
-  getEntryPoint() {
-    const base = new URL(this.props.base.replace('/od/', '/lr/'));
+  getBaseCollection() {
+    const base = new URL(this.props.base.value.replace('/od/', '/lr/'));
     base.searchParams.set('filter[]', `option=${this.props.side.term}`);
+
+    return NamedNode.find(base);
+  }
+
+  getEntryPoint() {
     return this.props.lrs.getResourceProperty(
-      NamedNode.find(base),
+      this.getBaseCollection(),
       NS.argu('createAction')
+    );
+  }
+
+  getSideVoteCount() {
+    return this.props.lrs.getResourceProperty(
+      this.getBaseCollection(),
+      NS.as('totalItems')
     );
   }
 
@@ -48,6 +60,7 @@ class CurrentVote extends React.PureComponent {
 
     return (
       <LinkedResourceContainer
+        count={this.getSideVoteCount()}
         current={this.props.option !== undefined && this.props.option === this.props.side}
         currentVote={this.props.subject}
         subject={entryPoint}
@@ -92,7 +105,7 @@ export const getVoteButtons = (options) => {
       const voteButtons = options.map((side) => {
         const voteComp = (
           <CurrentVoteConnected
-            base={this.props.votes.value}
+            base={this.props.votes}
             key={side}
             side={side}
           />
