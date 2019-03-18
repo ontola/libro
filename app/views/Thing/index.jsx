@@ -1,5 +1,5 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { link, Property, subjectType } from 'link-redux';
+import { link, Property } from 'link-redux';
 import React from 'react';
 
 import {
@@ -10,24 +10,17 @@ import {
 import {
   connectHighlighting,
   hightlightPropTypes,
-  hightlightType,
 } from '../../containers/Highlight';
-import SignInSwitcherContainer from '../../containers/SignInSwitcherContainer';
 import { NS } from '../../helpers/LinkedRenderStore';
-import Card, { cardTopology } from '../../topologies/Card';
-import CardAppendix from '../../topologies/Card/CardAppendix';
+import { cardTopology } from '../../topologies/Card';
 import CardFixed, { cardFixedTopology } from '../../topologies/Card/CardFixed';
 import { cardListTopology } from '../../topologies/Card/CardList';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import CardRow, { cardRowTopology } from '../../topologies/Card/CardRow';
-import { containerTopology } from '../../topologies/Container';
 import DetailsBar, { detailsBarTopology } from '../../topologies/DetailsBar';
-import { alertDialogTopology } from '../../topologies/Dialog';
 import { gridTopology } from '../../topologies/Grid';
 import hoverBox from '../../topologies/HoverBox';
 import { inlineTopology } from '../../topologies/Inline';
-import { primaryResourceTopology } from '../../topologies/PrimaryResource';
-import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 
 import ApplyLink from './properties/applyLink';
 import ArguLocation from './properties/arguLocation';
@@ -63,6 +56,7 @@ import TopComment from './properties/topComment';
 import TrashedAt from './properties/trashedAt';
 import UpdateAction from './properties/updateAction';
 import VoteEvents from './properties/voteEvents';
+import ThingContainer from './ThingContainer';
 import ThingPage from './ThingPage';
 import ThingPageHeader from './ThingPageHeader';
 import ThingParent from './ThingParent';
@@ -72,29 +66,6 @@ import ThingTable from './ThingTable';
 import ThingTableRow from './ThingTableRow';
 
 const CardHoverBox = hoverBox();
-
-const ThingContainer = ({ highlighted, subject }) => (
-  <Card about={subject.value} shine={highlighted}>
-    <Property label={NS.argu('coverPhoto')} />
-    <CardContent noSpacing>
-      <Property label={[NS.schema('name'), NS.rdfs('label')]} />
-      <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
-    </CardContent>
-    <Property label={NS.argu('voteableVoteEvent')} />
-    <CardAppendix>
-      <SignInSwitcherContainer subject={subject}>
-        <Property forceRender label={NS.argu('arguments')} />
-        <Property label={NS.argu('topComment')} />
-        <Property forceRender label={NS.app('omniform')} />
-      </SignInSwitcherContainer>
-    </CardAppendix>
-  </Card>
-);
-
-ThingContainer.propTypes = {
-  highlighted: hightlightType,
-  subject: subjectType,
-};
 
 const ThingGrid = () => (
   <CardFixed>
@@ -146,6 +117,7 @@ const ThingCard = () => (
 );
 
 export default [
+  ThingContainer,
   ThingPage,
   ThingPageHeader,
   ThingSelect,
@@ -183,17 +155,6 @@ export default [
     NS.schema('Thing'),
     RENDER_CLASS_NAME,
     gridTopology
-  ),
-  LinkedRenderStore.registerRenderer(
-    connectHighlighting(ThingContainer),
-    NS.schema('Thing'),
-    RENDER_CLASS_NAME,
-    [
-      alertDialogTopology,
-      primaryResourceTopology,
-      containerTopology,
-      widgetTopologyTopology,
-    ]
   ),
   LinkedRenderStore.registerRenderer(
     ThingCard,
