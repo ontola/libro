@@ -32,11 +32,9 @@
     height: 100%;
     overflow-x: auto;
     position: relative;
+    scrollbar-width: none; // sass-lint:disable-line no-misspelled-properties
     white-space: nowrap;
     width: 100%;
-
-    // hide scrollbar in firefox
-    overflow-x: -moz-hidden-unscrollable !important; // sass-lint:disable-line no-important no-duplicate-properties
   }
 
   &__hider {
