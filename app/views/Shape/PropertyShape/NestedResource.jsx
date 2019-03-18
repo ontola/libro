@@ -11,6 +11,7 @@ import React from 'react';
 import { Field, FormSpy } from 'react-final-form';
 
 import Button from '../../../components/Button';
+import FieldLabel from '../../../components/FieldLabel';
 import { FormContext } from '../../../components/Form/Form';
 import FormSection from '../../../components/Form/FormSection';
 import {
@@ -224,9 +225,10 @@ class NestedResource extends React.Component {
 
     if (name) {
       return (
-        <label style={{ display: showLabel ? '' : 'none' }}>
-          {name.value}
-        </label>
+        <FieldLabel
+          hidden={!showLabel}
+          label={name.value}
+        />
       );
     }
 

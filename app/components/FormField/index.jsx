@@ -8,6 +8,7 @@ import DateTimePicker from 'react-datetime-picker';
 
 import TextEditor from '../../containers/TextEditor';
 import { NS } from '../../helpers/LinkedRenderStore';
+import FieldLabel from '../FieldLabel';
 import formFieldWrapper from '../FormFieldWrapper';
 import FileInput from '../Input/FileInput';
 import { Input } from '../Input';
@@ -360,13 +361,12 @@ class FormField extends React.PureComponent {
 
     if (label) {
       return (
-        <label
-          className={`Field__label${theme === 'omniform' ? ' AriaHidden' : ''}`}
+        <FieldLabel
+          hidden={theme === 'omniform'}
           htmlFor={id || this.plainFieldName()}
-        >
-          {label}
-          {required && <span className="Field__label-required">*</span>}
-        </label>
+          label={label}
+          required={required}
+        />
       );
     }
 
@@ -437,7 +437,7 @@ class FormField extends React.PureComponent {
     const messagesAboveLabel = (variant !== 'material');
 
     return (
-      <div className={`Field ${className} ${classes}`}>
+      <div className={`Field ${className ?? ''} ${classes}`}>
         {renderMessages && messagesAboveLabel && <Messages error={allErrs} warning={warning} />}
         {this.label(label)}
         {this.description()}
