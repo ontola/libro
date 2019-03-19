@@ -19,6 +19,7 @@ const formFieldWrapper = (Component) => {
     return (
       <Field
         allowNull
+        format={null}
         initialValue={props.initialValue}
         name={name}
         parse={null}

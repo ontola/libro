@@ -1,0 +1,25 @@
+@import '../shared/config';
+
+.FieldHelper {
+  color: color('grey');
+  display: flex;
+  font-size: .8em;
+  height: 1rem;
+  justify-content: space-between;
+  padding: 5px 20px 0 10px;
+
+  .Field--checkbox & {
+    margin-left: .9em;
+    padding-top: 0;
+  }
+
+  &--preview {
+    bottom: 0;
+    padding: 5px 20px 0;
+    position: absolute;
+  }
+
+  &__right {
+    margin-left: auto;
+  }
+}

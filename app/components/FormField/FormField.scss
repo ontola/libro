@@ -3,30 +3,52 @@
 .Field {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .Field__input {
+  display: flex;
+  font-family: $font-family;
+  font-size: 1em;
+  margin: 0;
+  padding: 10px;
+
+  &--trailing-icon {
+    align-self: center;
+    font-size: 1rem;
+    padding-right: .1em;
+  }
+
   &,
   input {
-    -webkit-appearance: none;
     box-sizing: border-box;
-    font-family: $font-family;
-    font-size: 1em;
-    margin: 10px;
-    margin-bottom: 0;
-    padding: 10px;
-    width: calc(100% - 20px);
+    width: 100%;
 
     &--checkbox {
-      -moz-appearance: checkbox;
-      -webkit-appearance: checkbox;
-      width: auto;
+      & > input {
+        -moz-appearance: checkbox;
+        -webkit-appearance: checkbox;
+        margin-right: .5em;
+        position: relative;
+        top: 1px;
+        width: auto;
+      }
     }
 
     &--select {
-      -moz-appearance: menulist;
-      -webkit-appearance: menulist;
+      -moz-appearance: menulist-button;
+      -webkit-appearance: menulist-button;
+      padding: 0;
       width: auto;
+
+      & > div {
+        width: 100%;
+      }
+
+      & input {
+        padding: 10px;
+        width: 100%;
+      }
     }
 
     &:focus {
@@ -37,6 +59,11 @@
       border: 0;
       display: none;
     }
+  }
+
+  & > textarea {
+    resize: vertical;
+    width: 100%;
   }
 }
 
@@ -66,17 +93,6 @@
   padding: 0 2px;
 }
 
-.Field__messages {
-  font-size: .8em;
-  padding: 0 20px;
-  padding-top: 10px;
-
-  &--bottom {
-    padding-bottom: 10px;
-    padding-top: 0;
-  }
-}
-
 .Field__error,
 .Field__warning {
   color: $alert-color;
@@ -86,12 +102,6 @@
 // Props
 .Field--hidden {
   display: none;
-}
-
-.Field--textarea {
-  .Field__input {
-    resize: vertical;
-  }
 }
 
 // Variants
@@ -106,6 +116,7 @@
     background-color: color('grey', 'xx-light');
     border: $grey-border;
     border-radius: 5px;
+    flex-grow: 1;
     margin-left: 0;
     margin-right: 0;
     margin-top: 0;
@@ -116,10 +127,24 @@
       border-color: color('grey', 'light');
     }
 
-    &:focus,
-    &.Field--active & {
+    &--checkbox {
+      align-items: baseline;
+      background-color: inherit;
+      border: 0;
+      padding-bottom: 0;
+      padding-left: 0;
+
+      .Field__label {
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  &.Field--active {
+    .Field__input {
       background-color: color('white');
       border-color: color('grey', 'light');
+      outline-offset: 2px;
     }
   }
 
@@ -151,8 +176,8 @@
       box-shadow: inset 5px 0 0 color('grey', 'light');
     }
 
-    &:focus {
-      box-shadow: inset 5px 0 0 color('grey');
+    &--select {
+      padding: 0;
     }
   }
 
@@ -167,6 +192,8 @@
       box-shadow: inset 5px 0 0 $alert-color;
     }
   }
+
+
 
   &.Field--pro {
     .Field__input {

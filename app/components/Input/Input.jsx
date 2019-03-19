@@ -2,6 +2,8 @@ import { linkType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import './Input.scss';
+
 const propTypes = {
   autoComplete: PropTypes.oneOf([
     'off',
@@ -60,6 +62,7 @@ const propTypes = {
   ]),
   autoFocus: PropTypes.bool,
   capture: PropTypes.bool,
+  className: PropTypes.string,
   element: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.node,
@@ -119,12 +122,13 @@ const defaultProps = {
 
 const Input = ({
   element,
+  className,
   ...props
 }) => {
   const Element = element;
 
   return (
-    <Element {...props} />
+    <Element className={`Input ${className ?? ''}`} {...props} />
   );
 };
 

@@ -1,0 +1,9 @@
+@import '../shared/config';
+
+.CharCounter {
+  color: color('grey');
+
+  &--error {
+    color: color('red', 'dark');
+  }
+}

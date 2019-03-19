@@ -56,7 +56,6 @@ class SignInFormCard extends SignInFormBase {
       <React.Fragment>
         <CardContent>
           <form
-            validateOnBlur
             action={expandPath('/users/auth/facebook')}
             method="GET"
             style={{ display: 'inline' }}
@@ -123,6 +122,7 @@ class SignInFormCard extends SignInFormBase {
         <Card>
           {this.contentHeader()}
           <Form
+            validateOnBlur
             onSubmit={onSubmit}
           >
             {({ handleSubmit, submitting }) => (

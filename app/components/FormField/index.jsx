@@ -5,6 +5,7 @@ import { Literal, NamedNode } from 'rdflib';
 import React from 'react';
 import Textarea from 'react-autosize-textarea';
 import DateTimePicker from 'react-datetime-picker';
+import { FormattedMessage } from 'react-intl';
 
 import TextEditor from '../../containers/TextEditor';
 import { NS } from '../../helpers/LinkedRenderStore';
@@ -13,6 +14,9 @@ import formFieldWrapper from '../FormFieldWrapper';
 import FileInput from '../Input/FileInput';
 import { Input } from '../Input';
 import SelectInput, { optionsType } from '../SelectInput';
+
+import CharCounter from './CharCounter';
+import FieldHelper from './FieldHelper';
 
 import './DateTime.scss';
 import './FormField.scss';
@@ -53,6 +57,7 @@ const propTypes = {
   }),
   // Text above input field
   label: PropTypes.string,
+  maxLength: PropTypes.number,
   /** @private Contains form-library specific data */
   meta: PropTypes.shape({
     active: PropTypes.bool,
@@ -90,46 +95,6 @@ const defaultProps = {
   variant: 'default',
 };
 
-const MessagesProps = {
-  bottom: PropTypes.bool,
-  error: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-  ]),
-  warning: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-  ]),
-};
-
-const MessagesDefaultProps = {
-  bottom: false,
-};
-
-const Messages = ({ error, warning, bottom }) => {
-  const errMsg = Array.isArray(error) ? error[0] : error;
-  const err = errMsg && (
-    <span className="Field__error">
-      {errMsg}
-    </span>
-  );
-  const warnMsg = !errMsg && Array.isArray(warning) ? warning[0] : warning;
-  const warn = warnMsg && (
-    <span className="Field__warning">
-      {warnMsg}
-    </span>
-  );
-
-  return (
-    <div className={`Field__messages ${bottom ? 'Field__messages--bottom' : ''}`}>
-      {err}
-      {warn}
-    </div>
-  );
-};
-
-Messages.propTypes = MessagesProps;
-Messages.defaultProps = MessagesDefaultProps;
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -208,13 +173,73 @@ class FormField extends React.PureComponent {
     return nextValue || '';
   }
 
+  charCounter() {
+    const {
+      maxLength,
+    } = this.props;
+
+    const value = this.inputValue();
+    const currentLength = value instanceof Literal ? value.value.length : value?.length;
+
+    return (
+      <CharCounter
+        currentLength={currentLength}
+        maxLength={maxLength}
+      />
+    );
+  }
+
   description() {
     return this.props.description && (
       <div className="Field__description">{this.props.description}</div>
     );
   }
 
-  inputElement() {
+  helper() {
+    const {
+      customErrors,
+      description,
+      meta: {
+        error,
+        touched,
+      },
+      required,
+      type,
+    } = this.props;
+
+    const renderHelper = type === 'checkbox'
+      ? !!description
+      : this.variant() !== 'preview' || (touched && (customErrors || error));
+    const renderCharCounter = this.variant() !== 'preview';
+
+    if (!renderHelper) {
+      return null;
+    }
+
+    let helperText;
+
+    if (type === 'checkbox') {
+      helperText = description;
+    } else if (required) {
+      helperText = (
+        <FormattedMessage
+          defaultMessage="*Required"
+          id="https://app.argu.co/i18n/forms/required/helperText"
+        />
+      );
+    }
+
+    return (
+      <FieldHelper
+        error={customErrors || error}
+        helperText={helperText}
+        right={renderCharCounter && this.charCounter()}
+        variant={this.variant()}
+      />
+    );
+  }
+
+  inputElement(errors) {
     const {
       autoComplete,
       autofocus,
@@ -223,6 +248,7 @@ class FormField extends React.PureComponent {
       initialValue,
       input,
       id,
+      meta: { active, touched },
       minLength,
       name,
       onBlur,
@@ -237,11 +263,15 @@ class FormField extends React.PureComponent {
 
     const fieldTxt = this.plainFieldName();
 
-    const className = `Field__input Field__input--${type || 'text'}`;
+    const className = classNames({
+      Field__input: true,
+      [`Field__input--${type || 'text'}`]: true,
+      'Field__input--active': active,
+    });
 
     const sharedProps = {
       autoFocus: autofocus,
-      className,
+      errors,
       id: id || fieldTxt,
       name: name || fieldTxt,
       ...input,
@@ -278,12 +308,14 @@ class FormField extends React.PureComponent {
 
     if (type === 'select') {
       return (
-        <SelectInput
-          initialSelectedItem={initialValue}
-          options={options}
-          sharedProps={sharedProps}
-          value={this.inputValue()}
-        />
+        <div className={className}>
+          <SelectInput
+            initialSelectedItem={initialValue}
+            options={options}
+            sharedProps={sharedProps}
+            value={this.inputValue()}
+          />
+        </div>
       );
     }
 
@@ -325,6 +357,7 @@ class FormField extends React.PureComponent {
         element = Textarea;
         sharedProps.async = true;
         sharedProps.rows = minRows;
+        sharedProps.maxRows = 50;
         break;
       case 'markdown':
         element = TextEditor;
@@ -338,26 +371,52 @@ class FormField extends React.PureComponent {
         element = 'input';
     }
 
+    let trailer = null;
+
+    if (type === 'checkbox') {
+      trailer = this.label();
+    } else if (errors && touched) {
+      trailer = (
+        <span
+          className="Field__input--trailing-icon fa fa-exclamation-circle"
+          style={{
+            color: '#c81414',
+          }}
+          title={errors[0]}
+        />
+      );
+    } else if (this.variant() === 'preview') {
+      trailer = this.charCounter();
+    }
+
     return (
-      <Input
-        {...sharedProps}
-        autoComplete={autoComplete}
-        element={element}
-        // TODO: [AOD-218] HTML only noscript
-        // maxLength={maxLength}
-        minLength={minLength}
-        placeholder={placeholder}
-        ref={forwardedRef}
-        required={required}
-        type={type}
-        value={this.inputValue()}
-        onKeyUp={onKeyUp}
-      />
+      <div className={className}>
+        <Input
+          {...sharedProps}
+          autoComplete={autoComplete}
+          element={element}
+          // TODO: [AOD-218] HTML only noscript
+          // maxLength={maxLength}
+          minLength={minLength}
+          placeholder={placeholder}
+          ref={forwardedRef}
+          required={required}
+          type={type}
+          value={this.inputValue()}
+          onKeyUp={onKeyUp}
+        />
+        {trailer}
+      </div>
     );
   }
 
-  label(label) {
-    const { id, required, theme } = this.props;
+  label() {
+    const {
+      id,
+      label,
+      required,
+      theme,
+    } = this.props;
 
     if (label) {
       return (
@@ -405,7 +464,6 @@ class FormField extends React.PureComponent {
     const {
       customErrors,
       className,
-      label,
       type,
     } = this.props;
 
@@ -414,10 +472,8 @@ class FormField extends React.PureComponent {
       dirty,
       error,
       invalid,
-      touched,
     } = this.props.meta;
     const allErrs = customErrors || error;
-    const warning = error;
     const variant = this.variant();
 
     const classes = classNames({
@@ -426,25 +482,17 @@ class FormField extends React.PureComponent {
       'Field--active': active,
       'Field--dirty': dirty,
       'Field--error': !!allErrs,
-      'Field--hidden': (type === 'hidden'),
-      'Field--textarea': (type === 'textarea'),
+      [`Field--${type}`]: type,
       'Field--warning': invalid,
       className,
     });
 
-    const renderMessages = touched && (allErrs || warning);
-
-    const messagesAboveLabel = (variant !== 'material');
-
     return (
       <div className={`Field ${className ?? ''} ${classes}`}>
-        {renderMessages && messagesAboveLabel && <Messages error={allErrs} warning={warning} />}
-        {this.label(label)}
-        {this.description()}
-        {this.inputElement()}
-        {renderMessages && !messagesAboveLabel && (
-          <Messages bottom error={allErrs} warning={warning} />
-        )}
+        {type !== 'checkbox' && this.label()}
+        {type !== 'checkbox' && this.description()}
+        {this.inputElement(allErrs)}
+        {this.helper()}
       </div>
     );
   }
