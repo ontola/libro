@@ -18,7 +18,7 @@ const TargetClass = ({ children, linkedProp, ...props }) => {
     return <View {...props} />;
   }
 
-  return children;
+  return children || null;
 };
 
 TargetClass.type = NS.sh('NodeShape');

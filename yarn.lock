@@ -943,6 +943,16 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@hot-loader/react-dom@^16.8.4":
+  version "16.8.4"
+  resolved "https://registry.yarnpkg.com/@hot-loader/react-dom/-/react-dom-16.8.4.tgz#aefe598ca26005c1ec3ac11d92d54ff3c1cd219c"
+  integrity sha512-S+5x4HJEMV7p2FzgUBEzrgiNJJeN4m5auTL3rZbmGsuyGt3Tgg8zgz6Mt1Udj8dKDxaryixDSNh0d/63TMqizg==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+    scheduler "^0.13.4"
+
 "@jest/console@^24.3.0":
   version "24.3.0"
   resolved "https://registry.yarnpkg.com/@jest/console/-/console-24.3.0.tgz#7bd920d250988ba0bf1352c4493a48e1cb97671e"
@@ -8457,10 +8467,10 @@ link-lib@=1.0.0-beta29-20190315T081232:
     solid-auth-client "^2.2.3"
     xmldom "^0.1.22"
 
-link-redux@1.0.0-beta33-20190315T130611:
-  version "1.0.0-beta33-20190315T130611"
-  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-beta33-20190315T130611.tgz#dffc5dcb877ae325bcdb6ab44b0bc290501702e5"
-  integrity sha512-jCJBi2Ua5rFv1bCavBEtwR83xGpC4qpqm32X2zSJFTvxqWWF6+ReZr+rmALQCuU+HOnxF23UBEJaUW3HwbcfCw==
+link-redux@1.0.0-beta33-20190320T111614:
+  version "1.0.0-beta33-20190320T111614"
+  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-beta33-20190320T111614.tgz#49be09d7af8c3a117228b70d8e61b6355eaf7351"
+  integrity sha512-Ydx65gLpq5xRpbqZgLhTkVBuHNBbyeqO449SgM4imYGmwrFW7qXrjPzFxWld3pqaRmIBmBmpg6i/I9SN+2Bylg==
 
 lint-staged@^8.1.5:
   version "8.1.5"

@@ -1,5 +1,4 @@
 import LRS from '../helpers/LinkedRenderStore';
-import { error } from '../helpers/logging';
 
 /**
  * This document is purely for including all the views into the code.
@@ -95,22 +94,18 @@ function register() {
 if (module.hot) {
   module.hot.accept();
 
-  module.hot.dispose(() => {
-    LRS.mapping.lookupCache = {};
-    LRS.mapping.mapping = [];
-  });
-
   module.hot.addStatusHandler((status) => {
-    if (status !== 'ready') {
-      return;
-    }
-
-    module.hot.apply()
-      .then(() => {
+    switch (status) {
+      case 'prepare':
+        LRS.mapping.lookupCache = {};
+        LRS.mapping.mapping = [];
+        break;
+      case 'apply':
         register();
-      }).catch(() => {
-        error('app/views hot reload failed');
-      });
+        break;
+      default:
+        break;
+    }
   });
 }
 

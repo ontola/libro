@@ -54,4 +54,10 @@ module.exports = merge(common, {
     }),
     new webpack.NoEmitOnErrorsPlugin(),
   ],
+
+  resolve: {
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
+    },
+  },
 });
