@@ -59,7 +59,7 @@ const CollectionPage = (props) => {
   }
 
   let pagination = null;
-  if (props.views && props.views.length === 0) {
+  if (!props.views || props.views.length === 0) {
     pagination = <Property collectionIRI={props.collectionIRI} label={NS.as('first')} />;
   }
 
