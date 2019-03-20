@@ -31,6 +31,8 @@ import Style from 'ol/style/Style';
 import PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
+import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
 import OverlayContainer from '../../components/OverlayContainer';
@@ -397,6 +399,15 @@ class MapView extends React.Component {
             />
           )}
         </OverlayContainer>
+        <div className="Map--map-indicator">
+          <FontAwesome name="map-o" />
+          <span>
+            <FormattedMessage
+              defaultMessage="Error loading map"
+              id="https://app.argu.co/i18n/errors/map/loadError"
+            />
+          </span>
+        </div>
       </div>
     );
   }

@@ -14,6 +14,7 @@
   "https://app.argu.co/i18n/errors/client/offline/header": "Netwerkverbinding verbroken",
   "https://app.argu.co/i18n/errors/informRequest": "Laat het ons weten.",
   "https://app.argu.co/i18n/errors/inlineButton/label": "Opnieuw",
+  "https://app.argu.co/i18n/errors/map/loadError": "Fout tijdens het laden van de kaart",
   "https://app.argu.co/i18n/errors/mistaken": "Is dit een fout?",
   "https://app.argu.co/i18n/errors/request/200/body": "Het verzoek bevat een fout waardoor deze niet verwerkt kan worden, check de URL parameters en probeer de pagina welke naar deze verwees te herladen.",
   "https://app.argu.co/i18n/errors/request/200/header": "Fout in het verzoek (400 Bad Request)",

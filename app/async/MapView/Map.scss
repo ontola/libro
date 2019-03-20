@@ -3,13 +3,35 @@
 
 // The OpenLayers class names cannot be renamed (as of v5)
 .Map {
-  .Map--map-container {
+  background-color: color('grey', 'xx-light');
+  color: color('black');
+
+  &--map-container {
     max-height: 70vh;
     min-height: 16rem;
+    position: relative;
+    z-index: 10;
+  }
+
+  &--map-indicator {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    z-index: 1;
+
+    & .fa {
+      font-size: 2em;
+    }
   }
 
   .ol-compass { // sass-lint:disable-line class-name-format
     display: inline-block;
+    z-index: 11;
   }
 
   .ol-control { // sass-lint:disable-line class-name-format
@@ -17,6 +39,7 @@
     display: inline-block;
     left: 2px;
     position: absolute;
+    z-index: 11;
 
     button {
       align-self: flex-start;
