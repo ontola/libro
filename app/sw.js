@@ -1,17 +1,18 @@
 /* globals workbox */
 /* eslint-disable */
 
-workbox.skipWaiting();
-workbox.clientsClaim();
+workbox.core.skipWaiting();
+workbox.core.clientsClaim();
 workbox.navigationPreload.enable();
 workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
+workbox.precaching.cleanupOutdatedCaches();
 
 /**
  * Assets caching
  */
 workbox.routing.registerRoute(
   /\.(?:js|css|gz)$/,
-  workbox.strategies.staleWhileRevalidate()
+  new workbox.strategies.StaleWhileRevalidate()
 );
 
 /**
@@ -22,7 +23,7 @@ const ONE_MONTH = 30 * 24 * 60 * 60; // eslint-disable-line no-magic-numbers
 
 workbox.routing.registerRoute(
   /\.(?:png|gif|jpg|jpeg|svg)$/,
-  workbox.strategies.cacheFirst({
+  new workbox.strategies.CacheFirst({
     cacheName: 'images',
     plugins: [
       new workbox.expiration.Plugin({
@@ -58,7 +59,7 @@ workbox.routing.registerRoute(
       || accept.includes('application/vnd.api+json')
       || accept.includes('application/json')));
   },
-  workbox.strategies.staleWhileRevalidate({
+  new workbox.strategies.StaleWhileRevalidate({
     plugins: [
       new workbox.broadcastUpdate.Plugin('data-updates'),
     ],
@@ -70,7 +71,7 @@ workbox.routing.registerRoute(
  * Serves a fallback html page if offline.
  */
 
-const networkFirstHandler = workbox.strategies.networkFirst({
+const networkFirstHandler = new workbox.strategies.NetworkFirst({
   cacheName: 'default',
   plugins: [
     new workbox.expiration.Plugin({
@@ -82,11 +83,12 @@ const networkFirstHandler = workbox.strategies.networkFirst({
   ],
 });
 
+const offlineCacheKey = workbox.precaching.getCacheKeyForURL('/offline.html');
 workbox.routing.registerRoute(
   ({ event }) => event.request.mode === 'navigate',
   args => networkFirstHandler
     .handle(args)
-    .then(response => ((!response) ? caches.match('/offline.html') : response))
+    .then(response => ((!response) ? caches.match(offlineCacheKey) : response))
 );
 
 /**
