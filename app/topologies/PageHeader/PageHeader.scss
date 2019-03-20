@@ -6,15 +6,28 @@
     border-radius: 999px;
     flex-shrink: 0;
     height: 4rem;
+    margin-bottom: 1em;
     margin-right: 1rem;
     overflow: hidden;
     width: 4rem;
   }
 
+  &__container {
+    background-color: color('white');
+    min-height: 5.5em;
+  }
+
   &__image-and-text-wrapper {
-    margin-top: -2em;
     display: flex;
     flex-direction: row;
+  }
+
+  &__menuitems {
+    align-items: flex-end;
+    color: color('grey');
+    display: flex;
+    flex-direction: column;
+    min-height: 2em;
   }
 
   &__text {
@@ -22,9 +35,5 @@
     flex-direction: column;
     flex-shrink: 1;
     justify-content: center;
-  }
-
-  .DetailsBar__right {
-    min-height: 2em;
   }
 }

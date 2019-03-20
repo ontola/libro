@@ -22,7 +22,7 @@ class OrganizationPage extends React.PureComponent {
     return (
       <PrimaryResource>
         <PageHeader />
-        <Container>
+        <Container grid>
           <Property label={NS.argu('widgets')} />
         </Container>
       </PrimaryResource>

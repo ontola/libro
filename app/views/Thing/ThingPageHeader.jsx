@@ -3,7 +3,12 @@ import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import { CardFloat } from '../../topologies/Card';
-import { pageHeaderTopology } from '../../topologies/PageHeader';
+import {
+  PageHeaderText,
+  PageHeaderImageAndTextWrapper,
+  PageHeaderMenuItems,
+  pageHeaderTopology,
+} from '../../topologies/PageHeader';
 
 class ThingPageHeader extends React.PureComponent {
   static type = NS.schema('Thing');
@@ -12,21 +17,21 @@ class ThingPageHeader extends React.PureComponent {
 
   render() {
     return (
-      <div className="Card">
-        <div className="DetailsBar__right">
+      <div className="ThingPageHeader">
+        <PageHeaderMenuItems>
           <CardFloat>
             <Property label={NS.argu('followMenu')} />
             <Property label={NS.argu('shareMenu')} />
             <Property label={NS.argu('actionsMenu')} />
           </CardFloat>
-        </div>
-        <div className="CardContent PageHeader__image-and-text-wrapper">
+        </PageHeaderMenuItems>
+        <PageHeaderImageAndTextWrapper>
           <Property label={NS.schema('image')} />
-          <div className="PageHeader__text">
+          <PageHeaderText>
             <Property label={NS.schema('name')} />
             <Property label={NS.schema('description')} />
-          </div>
-        </div>
+          </PageHeaderText>
+        </PageHeaderImageAndTextWrapper>
       </div>
     );
   }

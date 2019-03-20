@@ -5,7 +5,7 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import Container from '../../topologies/Container/index';
 import { pageTopology } from '../../topologies/Page';
 import PageHeader from '../../topologies/PageHeader';
-import { primaryResourceTopology } from '../../topologies/PrimaryResource';
+import PrimaryResource, { primaryResourceTopology } from '../../topologies/PrimaryResource';
 
 class ForumPage extends React.PureComponent {
   static type = [NS.argu('ContainerNode')];
@@ -17,12 +17,12 @@ class ForumPage extends React.PureComponent {
 
   render() {
     return (
-      <div>
+      <PrimaryResource>
         <PageHeader />
         <Container grid>
           <Property label={NS.argu('widgets')} />
         </Container>
-      </div>
+      </PrimaryResource>
     );
   }
 }

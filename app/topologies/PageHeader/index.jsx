@@ -4,6 +4,12 @@ import React from 'react';
 import './PageHeader.scss';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import Container from '../Container';
+
+export { default as PageHeaderImage } from './PageHeaderImage';
+export { default as PageHeaderImageAndTextWrapper } from './PageHeaderImageAndTextWrapper';
+export { default as PageHeaderMenuItems } from './PageHeaderMenuItems';
+export { default as PageHeaderText } from './PageHeaderText';
 
 export const pageHeaderTopology = NS.argu('pageHeader');
 
@@ -20,15 +26,17 @@ class PageHeader extends TopologyProvider {
   }
 
   render() {
-    return this.wrap((
-      <div className="Container Container--size-large">
-        <div className={this.className}>
-          <div className="PageHeader__container">
-            {this.props.children || <Type />}
-          </div>
+    return (
+      <div className={this.className}>
+        <div className="PageHeader__container">
+          <Container size="large">
+            {this.wrap((
+              this.props.children || <Type />
+            ))}
+          </Container>
         </div>
       </div>
-    ));
+    );
   }
 }
 
