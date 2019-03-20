@@ -1,6 +1,5 @@
 export { default as ActionButton } from './components/ActionButton/index';
 export { default as Attachment } from './components/Attachment/index';
-export { default as BackButton } from './components/BackButton/index';
 export { default as Button } from './components/Button/index';
 export { default as BlurButton } from './components/BlurButton/index';
 export { default as Breadcrumb } from './components/Breadcrumbs/Breadcrumb';
@@ -50,7 +49,6 @@ export { default as LDLink } from './components/LDLink/index';
 export { default as HoverPopup } from './components/HoverPopup/HoverPopup';
 export { default as LinkCard } from './components/LinkCard/index';
 export { default as LinkDuo } from './components/LinkDuo/index';
-export { default as LinkList } from './components/LinkList/index';
 export { default as List } from './components/List/index';
 export {
   default as Loading,

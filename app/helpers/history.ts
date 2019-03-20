@@ -1,6 +1,5 @@
-import { createMemoryHistory } from 'history';
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory, createMemoryHistory } from 'history';
 
-const history = __CLIENT__ ? createHistory() : createMemoryHistory();
+const history = __CLIENT__ ? createBrowserHistory() : createMemoryHistory();
 
 export default history;
