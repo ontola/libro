@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { isDifferentOrigin } from '../../helpers/iris';
+import { isDifferentWebsite } from '../../helpers/iris';
 
 import './NavbarLink.scss';
 import NavbarLinkCount from './NavbarLinkCount';
@@ -42,7 +42,7 @@ class NavbarLink extends React.PureComponent {
       to,
     } = this.props;
 
-    const presentationIcon = to && isDifferentOrigin(to) ? 'external-link' : icon;
+    const presentationIcon = to && isDifferentWebsite(to) ? 'external-link' : icon;
 
     return (
       <NavbarLinkWrapper bold={bold}>

@@ -3,7 +3,7 @@ import { linkedPropType } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { isDifferentOrigin } from '../../../helpers/iris';
+import { isDifferentWebsite } from '../../../helpers/iris';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../../topologies';
 
@@ -15,7 +15,7 @@ const IsPrimaryTopicOf = ({ linkedProp }) => {
   if (!linkedProp) {
     return null;
   }
-  const target = isDifferentOrigin(linkedProp) ? '_blank' : undefined;
+  const target = isDifferentWebsite(linkedProp) ? '_blank' : undefined;
   return (
     <a href={linkedProp.value} target={target}>
       <FormattedMessage

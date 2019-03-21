@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 import { Link as DomLink, NavLink } from 'react-router-dom';
 
 import {
-  isDifferentOrigin,
+  isDifferentWebsite,
   isLocalAnchor,
   retrievePath,
 } from '../../helpers/iris';
@@ -63,7 +63,7 @@ class Link extends PureComponent {
     const themeClass = `Link__${theme}`;
     const featuresClass = features ? features.map(f => `Link__${f}`).join(' ') : '';
 
-    if (isDifferentOrigin(to)) {
+    if (isDifferentWebsite(to)) {
       return (
         <a
           className={`${className} ${themeClass} ${featuresClass}`}

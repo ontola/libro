@@ -4,7 +4,7 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 
 import Link from '../Link';
-import { expandPath, isDifferentOrigin, retrievePath } from '../../helpers/iris';
+import { expandPath, isDifferentWebsite, retrievePath } from '../../helpers/iris';
 
 import './Markdown.scss';
 
@@ -13,7 +13,7 @@ const MIN_LENGTH_TO_ADD_HIGHLIGHT = 1;
 const routerLink = tabIndex => (link) => {
   const extendedLink = expandPath(link.href);
 
-  if (!isDifferentOrigin(extendedLink)) {
+  if (!isDifferentWebsite(extendedLink)) {
     return (
       <Link
         tabIndex={tabIndex}

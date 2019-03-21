@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 
 import Link from '../Link';
-import { isDifferentOrigin, retrievePath } from '../../helpers/iris';
+import { isDifferentWebsite, retrievePath } from '../../helpers/iris';
 import Image from '../Image';
 
 const propTypes = {
@@ -27,7 +27,7 @@ const DropdownLink = ({
   );
 
   if (!action && url) {
-    if (isDifferentOrigin(url.value)) {
+    if (isDifferentWebsite(url.value)) {
       return (
         <a
           className="DropdownLink"

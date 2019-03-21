@@ -1,6 +1,8 @@
 import { isDifferentOrigin as checkOrigin } from 'link-lib';
 import { NamedNode } from 'rdflib';
 
+import { frontendPathname } from '../middleware/app';
+
 const FABase = 'http://fontawesome.io/icon/';
 
 export function isFontAwesomeIRI(iri: string) {
@@ -19,6 +21,11 @@ export function normalizeFontAwesomeIRI(stringOrIRI: string | NamedNode) {
  * @returns {Object} Window-bound functions object.
  */
 export function iris(window: Window) {
+  const isDifferentOrigin = (iri: string | any): boolean => {
+    const t = typeof iri === 'string' ? new URL(iri, window.location.origin).toString() : iri;
+    return checkOrigin(t);
+  };
+
   return {
     currentURL() {
       if (typeof window !== 'undefined') {
@@ -40,9 +47,23 @@ export function iris(window: Window) {
       return iriString === '#';
     },
 
-    isDifferentOrigin(iri: string | any) {
-      const t = typeof iri === 'string' ? new URL(iri, window.location.origin).toString() : iri;
-      return checkOrigin(t);
+    isDifferentOrigin,
+
+    isDifferentWebsite(iri: string | NamedNode | URL) {
+      if (isDifferentOrigin(iri)) {
+        return true;
+      }
+
+      let url: string | NamedNode | URL = iri;
+      if (typeof url !== 'string') {
+        if (url instanceof URL) {
+          url = url.toString();
+        } else {
+          url = url.value;
+        }
+      }
+
+      return !new URL(url, window.location.origin).pathname.startsWith(frontendPathname);
     },
 
     /**
@@ -67,7 +88,7 @@ const windowBound = iris(typeof window !== 'undefined' ? window : undefined!);
 export const {
   currentURL,
   expandPath,
-  isDifferentOrigin,
+  isDifferentWebsite,
   isLocalAnchor,
   retrievePath,
 } = windowBound;
