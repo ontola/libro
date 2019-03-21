@@ -70,6 +70,7 @@ class Link extends PureComponent {
           href={to}
           rel="nofollow noopener noreferrer"
           target="_blank"
+          onClick={onClick}
         >
           {children}
         </a>

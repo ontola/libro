@@ -53,7 +53,6 @@ class Href extends React.PureComponent {
   clickHandler() {
     const {
       action,
-      href,
       lrs,
       subject,
       onClickToggle,
@@ -68,7 +67,7 @@ class Href extends React.PureComponent {
         return lrs.exec(action, SHACL.actionToObject(lrs, subject));
       };
     }
-    return !href ? onClickToggle : undefined;
+    return onClickToggle;
   }
 
   render() {
