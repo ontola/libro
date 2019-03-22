@@ -1,7 +1,12 @@
 @import '../shared/config';
 
 .Link {
+  &__bold {
+    font-weight: 600;
+  }
+
   &__default {
+    align-items: baseline;
     display: inline-flex;
     white-space: pre-wrap;
   }

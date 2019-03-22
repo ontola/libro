@@ -20,7 +20,6 @@ import CardRow, { cardRowTopology } from '../../topologies/Card/CardRow';
 import DetailsBar, { detailsBarTopology } from '../../topologies/DetailsBar';
 import { gridTopology } from '../../topologies/Grid';
 import hoverBox from '../../topologies/HoverBox';
-import { inlineTopology } from '../../topologies/Inline';
 
 import ApplyLink from './properties/applyLink';
 import ArguLocation from './properties/arguLocation';
@@ -57,6 +56,7 @@ import TrashedAt from './properties/trashedAt';
 import UpdateAction from './properties/updateAction';
 import VoteEvents from './properties/voteEvents';
 import ThingContainer from './ThingContainer';
+import ThingInline from './ThingInline';
 import ThingPage from './ThingPage';
 import ThingPageHeader from './ThingPageHeader';
 import ThingParent from './ThingParent';
@@ -127,12 +127,7 @@ export default [
   ThingTableRow,
   ThingParent,
   ThingPopup,
-  LinkedRenderStore.registerRenderer(
-    () => <Property label={[NS.schema('name'), NS.rdfs('label')]} />,
-    NS.schema('Thing'),
-    RENDER_CLASS_NAME,
-    inlineTopology
-  ),
+  ThingInline,
   LinkedRenderStore.registerRenderer(
     connectHighlighting(ThingSection),
     NS.schema('Thing'),

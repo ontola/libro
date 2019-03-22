@@ -17,6 +17,7 @@ import { tabPaneTopology } from '../../topologies/TabPane';
 import { tableCellTopology } from '../../topologies/TableCell';
 import { tableRowTopology } from '../../topologies/TableRow';
 import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
+import { pageTopology } from '../../topologies/Page';
 
 const propTypes = {
 };
@@ -25,10 +26,12 @@ export class CreateActionButton extends Component {
   static type = NS.schema('CreateAction');
 
   static topology = allTopologiesExcept(
+    undefined,
     actionsBarTopology,
     alertDialogTopology,
     cardListTopology,
     cardFloatTopology,
+    pageTopology,
     tabPaneTopology,
     tableCellTopology,
     tableRowTopology,

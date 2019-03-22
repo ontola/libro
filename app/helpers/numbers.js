@@ -43,9 +43,9 @@ export function tryParseFloat(linkedProp) {
 }
 
 export function tryParseInt(linkedProp) {
-  if (!linkedProp || Number.isNaN(linkedProp.value)) {
+  if (!linkedProp || Number.isNaN((linkedProp.value || linkedProp))) {
     return undefined;
   }
 
-  return Number.parseInt(linkedProp.value, 10);
+  return Number.parseInt((linkedProp.value || linkedProp), 10);
 }

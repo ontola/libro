@@ -1,0 +1,42 @@
+@import '../../components/shared/config';
+
+.SearchResult {
+  &__header {
+    font-size: 1rem;
+    padding: units('small', 'none');
+
+    & > a {
+      margin-left: .5rem;
+    }
+  }
+
+  &__form {
+    display: flex;
+
+    & &-submit {
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+    }
+
+    &-input {
+      -webkit-appearance: none;
+      border: 0;
+      border-bottom-left-radius: $border-radius-base;
+      border-top-left-radius: $border-radius-base;
+      box-shadow: $box-shadow;
+      flex: 1 0 8em;
+      font-size: font-size('medium');
+      padding: units('none', 'large');
+    }
+  }
+
+  &__pagination {
+    padding-bottom: unit('large');
+  }
+
+  &__query-info {
+    margin-bottom: 0;
+    margin-left: 1.3rem;
+    margin-top: 1rem;
+  }
+}

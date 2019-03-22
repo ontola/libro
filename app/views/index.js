@@ -35,6 +35,7 @@ import Organization from './Organization/index';
 import Person from './Person';
 import Placement from './Placement';
 import PropertyQuery from './PropertyQuery';
+import SearchResult from './SearchResult';
 import SeqComp from './Seq';
 import Shape from './Shape';
 import Snackbar from './Snackbar';
@@ -80,6 +81,7 @@ function register() {
     ...PropertyQuery,
     ...RDFProperty,
     ...RDFSClass,
+    ...SearchResult,
     ...SeqComp,
     ...Shape,
     ...Snackbar,

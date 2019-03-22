@@ -1,4 +1,5 @@
 import { linkedPropType, register, LinkedResourceContainer } from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
@@ -13,14 +14,15 @@ class IsPartOfPage extends React.PureComponent {
 
   static propTypes = {
     linkedProp: linkedPropType,
+    showAncestors: PropTypes.bool,
   };
 
   render() {
-    const { linkedProp } = this.props;
+    const { linkedProp, showAncestors } = this.props;
 
     return (
       <BreadcrumbsBar>
-        <LinkedResourceContainer subject={linkedProp} />
+        <LinkedResourceContainer showAncestors={showAncestors} subject={linkedProp} />
       </BreadcrumbsBar>
     );
   }

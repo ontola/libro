@@ -127,12 +127,6 @@ export default [
     selectTopology
   ),
   LinkedRenderStore.registerRenderer(
-    ({ linkedProp }) => <LDLink data-test="Thing-name-inline">{linkedProp.value}</LDLink>,
-    NS.schema('Thing'),
-    NamePredicates,
-    inlineTopology
-  ),
-  LinkedRenderStore.registerRenderer(
     () => <ConnectedHeading data-test="Thing-name-card" size="2" />,
     NS.schema('Thing'),
     NamePredicates,
@@ -156,10 +150,13 @@ export default [
     cardFixedTopology
   ),
   LinkedRenderStore.registerRenderer(
-    ({ linkedProp }) => <span>{linkedProp.value}</span>,
+    ({ linkedProp }) => <span data-test="Thing-name-inline">{linkedProp.value}</span>,
     NS.schema('Thing'),
     NamePredicates,
-    parentTopology
+    [
+      inlineTopology,
+      parentTopology,
+    ]
   ),
   LinkedRenderStore.registerRenderer(
     ({ linkedProp }) => <TableCell><LDLink>{linkedProp.value}</LDLink></TableCell>,
