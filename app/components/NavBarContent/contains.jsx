@@ -21,6 +21,7 @@ const propTypes = {
   contains: linkType,
   lastOrganization: linkType,
   lrs: lrsType,
+  primaryContainerNode: subjectType,
   subject: subjectType,
 };
 
@@ -36,6 +37,7 @@ class Contains extends PropertyBase {
     const {
       contains,
       lastOrganization,
+      primaryContainerNode,
       reloadLinkedObject,
     } = this.props;
 
@@ -48,7 +50,7 @@ class Contains extends PropertyBase {
         forceRender
         subject={frontendIRI}
       >
-        <LDLink>
+        <LDLink to={primaryContainerNode}>
           <Property label={NS.schema('name')} />
         </LDLink>
         <Type reloadLinkedObject={reloadLinkedObject} />
@@ -61,6 +63,6 @@ class Contains extends PropertyBase {
 Contains.propTypes = propTypes;
 
 export default link(
-  [defaultNS.argu('contains')],
+  [defaultNS.argu('contains'), defaultNS.argu('primaryContainerNode')],
   { forceRender: true }
 )(injectIntl(withLRS(Contains)));

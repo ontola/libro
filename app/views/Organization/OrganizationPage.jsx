@@ -1,11 +1,11 @@
 import {
+  linkType,
   Property,
   register,
 } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
-import Container from '../../topologies/Container';
 import { pageTopology } from '../../topologies/Page';
 import PageHeader from '../../topologies/PageHeader';
 import PrimaryResource, { primaryResourceTopology } from '../../topologies/PrimaryResource';
@@ -18,13 +18,27 @@ class OrganizationPage extends React.PureComponent {
     pageTopology,
   ];
 
+  static mapDataToProps = [
+    NS.argu('primaryContainerNode'),
+    NS.schema('name'),
+  ];
+
+  static propTypes = {
+    primaryContainerNode: linkType,
+  };
+
   render() {
+    const { primaryContainerNode } = this.props;
+
+    if (primaryContainerNode) {
+      return (
+        <Property label={NS.argu('primaryContainerNode')} />
+      );
+    }
+
     return (
       <PrimaryResource>
         <PageHeader />
-        <Container grid>
-          <Property label={NS.argu('widgets')} />
-        </Container>
       </PrimaryResource>
     );
   }
