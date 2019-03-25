@@ -26,7 +26,6 @@ class ThingPageHeader extends React.PureComponent {
           </CardFloat>
         </PageHeaderMenuItems>
         <PageHeaderImageAndTextWrapper>
-          <Property label={NS.schema('image')} />
           <PageHeaderText>
             <Property label={NS.schema('name')} />
             <Property label={NS.schema('description')} />
