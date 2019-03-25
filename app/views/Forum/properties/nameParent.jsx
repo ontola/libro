@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { getSideBarColor } from '../../../state/sideBars/selectors';
-import { parentTopology } from '../../../topologies/Parent/index';
+import { parentTopology } from '../../../topologies/Parent';
 
 const mapStateToProps = state => ({ color: getSideBarColor(state) });
 
-class OrganizationNameParent extends React.PureComponent {
-  static type = [NS.schema('Organization'), NS.argu('Page')];
+class ForumNameParent extends React.PureComponent {
+  static type = [NS.argu('ContainerNode')];
 
   static property = [
     NS.schema('name'),
@@ -45,4 +45,4 @@ class OrganizationNameParent extends React.PureComponent {
   }
 }
 
-export default register(OrganizationNameParent);
+export default register(ForumNameParent);
