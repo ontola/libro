@@ -153,6 +153,14 @@ const ontologicalClassData = [
   new Statement(NS.opengov('Motion'), NS.rdfs('label'), Literal.find('Motion', languages.en)),
   new Statement(NS.opengov('Motion'), NS.rdfs('label'), Literal.find('Motie', languages.nl)),
 
+  new Statement(NS.argu('Topic'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('Topic'), NS.rdfs('label'), Literal.find('Topic', languages.en)),
+  new Statement(NS.argu('Topic'), NS.rdfs('label'), Literal.find('Topic', languages.nl)),
+  new Statement(NS.argu('Topic'), NS.rdfs('subClassOf'), NS.schema('CreativeWork')),
+  new Statement(NS.argu('Topic'), NS.rdfs('description'), Literal.find('A topic is a general discussion about a specific subject.', languages.en)),
+  new Statement(NS.argu('Topic'), NS.rdfs('description'), Literal.find('Een topic is een gesprek over een specifiek onderwerp.', languages.nl)),
+  new Statement(NS.argu('Topic'), NS.schema('image'), NamedNode.find('http://fontawesome.io/icon/comments')),
+
   new Statement(NS.argu('Argument'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.argu('Argument'), NS.rdfs('label'), Literal.find('Argument', languages.en)),
   new Statement(NS.argu('Argument'), NS.rdfs('label'), Literal.find('Argument', languages.nl)),
@@ -164,7 +172,7 @@ const ontologicalClassData = [
   new Statement(NS.argu('ConArgument'), NS.rdfs('label'), new Literal('Argument against', languages.en)),
   new Statement(NS.argu('ConArgument'), NS.rdfs('label'), new Literal('Argument tegen', languages.nl)),
   new Statement(NS.argu('ConArgument'), NS.rdfs('subClassOf'), NS.argu('Argument')),
-  new Statement(NS.argu('ConArgument'), NS.schema('description'), new Literal('A con argumen is a reason to be against something.', languages.en)),
+  new Statement(NS.argu('ConArgument'), NS.schema('description'), new Literal('A con argument is a reason to be against something.', languages.en)),
   new Statement(NS.argu('ConArgument'), NS.schema('description'), new Literal('Een tegenargument is een reden om ergens voor.', languages.nl)),
   new Statement(NS.argu('ConArgument'), NS.schema('image'), new NamedNode('http://fontawesome.io/icon/minus')),
 
