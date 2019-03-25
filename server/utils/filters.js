@@ -29,7 +29,7 @@ export default function isBackend(req, _res, next) {
     return next();
   }
 
-  const extension = req.url.split('/').pop()?.split('.')?.pop();
+  const extension = req.url.split('/').pop()?.split('.')?.pop()?.split('?')?.shift();
   if (extension && dataExtensions.includes(extension)) {
     return next();
   }
