@@ -1,6 +1,6 @@
 import { linkedPropType, register } from 'link-redux';
 import React from 'react';
-import { FormattedMessage, intlShape } from 'react-intl';
+import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 
 import { CardContent } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
@@ -13,6 +13,8 @@ class TrashedAt extends React.PureComponent {
   static property = NS.argu('trashedAt');
 
   static topology = containerTopology;
+
+  static hocs = [injectIntl];
 
   static propTypes = {
     intl: intlShape,

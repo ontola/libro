@@ -1,4 +1,9 @@
-import { lrsType, register, subjectType } from 'link-redux';
+import {
+  lrsType,
+  register,
+  subjectType,
+  withLRS,
+} from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
@@ -13,6 +18,8 @@ class DocumentPage extends React.PureComponent {
   static type = NS.link('Document');
 
   static topology = pageTopology;
+
+  static hocs = [withLRS];
 
   static propTypes = {
     lrs: lrsType,
