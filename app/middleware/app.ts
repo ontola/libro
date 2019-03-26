@@ -51,8 +51,8 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
   return (next: MiddlewareActionHandler) => (iri: NamedNode, opts: any): Promise<any> => {
 
     if ([
-        store.namespaces.ontola(`actions/navigation/push`),
-        store.namespaces.ontola(`actions/navigation/pop`),
+        store.namespaces.ontola('actions/navigation/push'),
+        store.namespaces.ontola('actions/navigation/pop'),
     ].includes(iri)) {
       const nextState = store.getResourceProperty(app('menu'), app('openState')) === menuStates.open
           ? menuStates.closing
