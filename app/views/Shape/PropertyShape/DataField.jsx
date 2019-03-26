@@ -31,9 +31,11 @@ class DataField extends React.Component {
     minLength: linkType,
     name: linkType,
     onKeyUp: PropTypes.func,
-    targetValues: PropTypes.shape({
-      '@id': PropTypes.string,
-    }),
+    targetValues: PropTypes.arrayOf(
+      PropTypes.shape({
+        '@id': linkType,
+      })
+    ),
     theme: PropTypes.string,
   };
 

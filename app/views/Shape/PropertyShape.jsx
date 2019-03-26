@@ -58,7 +58,9 @@ class PropertyShape extends React.Component {
     path: linkType,
     propertyIndex: PropTypes.number,
     targetNode: subjectType,
-    targetValue: linkType,
+    targetValue: PropTypes.shape({
+      '@id': linkType,
+    }),
     theme: PropTypes.string,
   };
 

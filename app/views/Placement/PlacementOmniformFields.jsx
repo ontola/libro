@@ -90,7 +90,9 @@ PlacementOmniformFields.propTypes = {
     change: PropTypes.func,
   }),
   removeItem: PropTypes.func,
-  targetValue: linkType,
+  targetValue: PropTypes.shape({
+    '@id': linkType,
+  }),
 };
 
 export default register(PlacementOmniformFields);

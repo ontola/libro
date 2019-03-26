@@ -1,8 +1,8 @@
-import { Property, register } from 'link-redux';
+import { linkType, Property, register } from 'link-redux';
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import { tryParseInt } from '../../helpers/numbers';
 import { containerTopology } from '../../topologies/Container';
 import WidgetTopology from '../../topologies/WidgetTopology/WidgetTopology';
 
@@ -14,12 +14,12 @@ class Widget extends PureComponent {
   static topology = containerTopology;
 
   static propTypes = {
-    widgetSize: PropTypes.number,
+    widgetSize: linkType,
   };
 
   render() {
     return (
-      <WidgetTopology width={this.props.widgetSize}>
+      <WidgetTopology width={tryParseInt(this.props.widgetSize)}>
         <Property label={NS.argu('widgetResource')} />
       </WidgetTopology>
     );

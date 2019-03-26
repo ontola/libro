@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { Resource } from '../../components';
-import { LDLinkLabel } from '../../components/LDLink';
+import LinkLabel from '../../components/Link/LinkLabel';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { appMenuTopology } from '../../topologies/AppMenu';
 
@@ -38,9 +38,9 @@ const MenuItemAppMenu = ({
         label={NS.argu('href')}
         onClickToggle={() => lrs.exec(NS.app('actions/menu/close'))}
       >
-        <LDLinkLabel>
+        <LinkLabel>
           {name.value}
-        </LDLinkLabel>
+        </LinkLabel>
       </Property>
     </Resource>
   );

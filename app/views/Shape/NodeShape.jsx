@@ -1,6 +1,7 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   link,
+  linkType,
   lrsType,
   Property,
   subjectType,
@@ -25,7 +26,9 @@ const propTypes = {
     PropTypes.instanceOf(BlankNode),
     PropTypes.instanceOf(NamedNode),
   ]),
-  targetValue: PropTypes.instanceOf(NamedNode),
+  targetValue: PropTypes.shape({
+    '@id': linkType,
+  }),
   theme: PropTypes.string,
   whitelist: PropTypes.arrayOf(PropTypes.object),
 };

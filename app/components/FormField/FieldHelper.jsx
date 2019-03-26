@@ -8,7 +8,10 @@ const propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
   ]),
-  helperText: PropTypes.string,
+  helperText: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.string,
+  ]),
   right: PropTypes.element,
   variant: PropTypes.oneOf([
     'default',

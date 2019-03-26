@@ -27,7 +27,7 @@ const Metadata = ({
 };
 
 Metadata.propTypes = {
-  coverPhoto: PropTypes.string.isRequired,
+  coverPhoto: PropTypes.string,
   identifier: PropTypes.string.isRequired,
   lrs: lrsType,
   name: PropTypes.string.isRequired,

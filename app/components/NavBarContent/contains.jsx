@@ -3,66 +3,56 @@ import {
   link,
   LinkedResourceContainer,
   linkType,
-  lrsType,
   Property,
-  PropertyBase,
   subjectType,
   Type,
-  withLRS,
 } from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
-import { injectIntl } from 'react-intl';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import { frontendIRI } from '../../middleware/app';
-import LDLink from '../LDLink';
+import LDLink from '../LDLink/index';
 
 const propTypes = {
   contains: linkType,
   lastOrganization: linkType,
-  lrs: lrsType,
+  onOrganizationChange: PropTypes.func,
   primaryContainerNode: subjectType,
-  subject: subjectType,
+  reloadLinkedObject: PropTypes.func,
 };
 
-class Contains extends PropertyBase {
-  shouldComponentUpdate(nextProps) {
-    return this.props.subject !== nextProps.subject
-      || this.props.contains !== nextProps.contains
-      || this.props.linkVersion !== nextProps.linkVersion
-      || this.props.lastOrganization !== nextProps.lastOrganization;
+const Contains = ({
+  contains,
+  lastOrganization,
+  onOrganizationChange,
+  primaryContainerNode,
+  reloadLinkedObject,
+}) => {
+  if (contains && contains !== lastOrganization) {
+    onOrganizationChange(contains);
   }
 
-  render() {
-    const {
-      contains,
-      lastOrganization,
-      primaryContainerNode,
-      reloadLinkedObject,
-    } = this.props;
-
-    if (contains && contains !== lastOrganization) {
-      this.props.onOrganizationChange(contains);
-    }
-
-    return (
-      <LinkedResourceContainer
-        forceRender
-        subject={frontendIRI}
-      >
-        <LDLink to={primaryContainerNode}>
-          <Property label={NS.schema('name')} />
-        </LDLink>
-        <Type reloadLinkedObject={reloadLinkedObject} />
-        <Property forceRender label={NS.argu('baseColor')} />
-      </LinkedResourceContainer>
-    );
-  }
-}
+  return (
+    <LinkedResourceContainer
+      forceRender
+      subject={frontendIRI}
+    >
+      <LDLink to={primaryContainerNode}>
+        <Property label={NS.schema('name')} />
+      </LDLink>
+      <Type reloadLinkedObject={reloadLinkedObject} />
+      <Property forceRender label={NS.argu('baseColor')} />
+    </LinkedResourceContainer>
+  );
+};
 
 Contains.propTypes = propTypes;
 
 export default link(
   [defaultNS.argu('contains'), defaultNS.argu('primaryContainerNode')],
-  { forceRender: true }
-)(injectIntl(withLRS(Contains)));
+  {
+    forceRender: true,
+    helpers: {},
+  }
+)(Contains);

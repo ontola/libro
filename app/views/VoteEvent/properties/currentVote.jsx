@@ -112,7 +112,7 @@ export const getVoteButtons = (options) => {
         );
         if (this.props.currentVote) {
           return (
-            <LinkedResourceContainer subject={this.props.currentVote}>
+            <LinkedResourceContainer key={side} subject={this.props.currentVote}>
               {voteComp}
             </LinkedResourceContainer>
           );

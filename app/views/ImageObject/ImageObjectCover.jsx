@@ -1,5 +1,5 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { link } from 'link-redux';
+import { link, subjectType } from 'link-redux';
 import PropTypes from 'prop-types';
 import { Literal, NamedNode } from 'rdflib';
 import React, { PureComponent } from 'react';
@@ -7,6 +7,7 @@ import React, { PureComponent } from 'react';
 import { CoverImage } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { handle } from '../../helpers/logging';
+import { tryParseInt } from '../../helpers/numbers';
 import { cardTopology } from '../../topologies/Card';
 import { cardFixedTopology } from '../../topologies/Card/CardFixed';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
@@ -14,22 +15,23 @@ import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 
 class ImageObjectBackgroundCover extends PureComponent {
   static propTypes = {
-    imagePositionY: PropTypes.instanceOf(Literal).isRequired,
+    imagePositionY: PropTypes.instanceOf(Literal),
+    subject: subjectType,
     url: PropTypes.instanceOf(NamedNode).isRequired,
   };
 
   render() {
-    const { imagePositionY, url } = this.props;
+    const { imagePositionY, subject, url } = this.props;
 
     if (!url) {
-      handle(new Error(`Image ${url} has no imagePositionY`));
+      handle(new Error(`Image '${subject}' has no url`));
       return null;
     }
 
     return (
       <CoverImage
         data-test="ImageObject-cover"
-        positionY={Number.parseInt(imagePositionY, 10)}
+        positionY={tryParseInt(imagePositionY)}
         url={url.value}
       />
     );

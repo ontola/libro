@@ -37,9 +37,11 @@ class NestedResource extends React.Component {
     onKeyUp: PropTypes.func,
     path: linkType,
     targetNode: subjectType,
-    targetValues: PropTypes.shape({
-      '@id': PropTypes.string,
-    }),
+    targetValues: PropTypes.arrayOf(
+      PropTypes.shape({
+        '@id': linkType,
+      })
+    ),
     theme: PropTypes.string,
   };
 
@@ -89,7 +91,7 @@ class NestedResource extends React.Component {
         .map((v, index) => this.nestedResourceView({
           key: v?.['@id'] || index,
           propertyIndex: index,
-          removeItem: showRemoveItem && removeItem(index),
+          removeItem: showRemoveItem ? removeItem(index) : undefined,
           targetValue: v,
         }));
 
@@ -137,7 +139,7 @@ class NestedResource extends React.Component {
         <React.Fragment>
           {this.labelComponent(theme !== 'omniform' || !!input.value)}
           {(input.value || inputAlwaysVisible) && this.nestedResourceView({
-            removeItem: showRemoveItem && removeItem,
+            removeItem: showRemoveItem ? removeItem : undefined,
             targetValue: displayValue ?? input.value ?? { '@id': input.value },
           })}
           <FormSpy

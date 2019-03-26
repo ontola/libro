@@ -21,7 +21,7 @@ const CoverImage = ({
       className="CoverImage__child"
       style={{
         backgroundImage: `url(${url})`,
-        backgroundPositionY: `${positionY}%`,
+        backgroundPositionY: positionY ? `${positionY}%` : undefined,
       }}
     />
   </div>

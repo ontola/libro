@@ -170,6 +170,7 @@ class Dropdown extends React.Component {
         >
           <DropdownContent
             contentClassName={this.props.contentClassName}
+            close={this.close}
             disableOnClickOutside={true}
           >
             <div ref={this.referenceElem}>

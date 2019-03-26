@@ -161,7 +161,9 @@ MediaObjectOmniformFields.propTypes = {
   }),
   removeItem: PropTypes.func,
   subject: subjectType,
-  targetValue: linkType,
+  targetValue: PropTypes.shape({
+    '@id': linkType,
+  }),
 };
 
 export default register(MediaObjectOmniformFields);
