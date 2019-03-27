@@ -8,7 +8,7 @@ import NavbarLinkIcon from '../../components/NavbarLink/NavbarLinkIcon';
 import NavbarLinkLabel from '../../components/NavbarLink/NavbarLinkLabel';
 
 import ErrorButtonWithFeedback from './ErrorButtonWithFeedback';
-import { titleForStatus } from './ErrorMessages';
+import { messageBodyForStatus } from './ErrorMessages';
 
 const messages = defineMessages({
   clickRetry: {
@@ -30,6 +30,10 @@ class ErrorButtonHeader extends ErrorButtonWithFeedback {
     const { intl, linkRequestStatus } = this.props;
 
     const retryText = intl.formatMessage(messages.clickRetry);
+    let bodyText = messageBodyForStatus(linkRequestStatus);
+    if (bodyText) {
+      bodyText = intl.formatMessage(bodyText);
+    }
 
     return (
       <BlurButton
@@ -37,7 +41,7 @@ class ErrorButtonHeader extends ErrorButtonWithFeedback {
         style={{
           cursor: 'pointer',
         }}
-        title={`${titleForStatus(linkRequestStatus)} ${retryText}`}
+        title={`${bodyText} ${retryText}`}
         onClick={this.reload}
       >
         <NavbarLinkIcon>
