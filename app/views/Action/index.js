@@ -1,6 +1,7 @@
-import Action from './Action';
+import Actions from './Action';
 import ActionContainer from './ActionContainer';
 import ActionActionsBar from './ActionActionsBar';
+import ActionPage from './ActionPage';
 import ActionTableCell from './ActionTableCell';
 import ActionTableRow from './ActionTableRow';
 import ActionWidget from './ActionWidget';
@@ -12,9 +13,10 @@ import InlineActionTableRow from './InlineActionTableRow';
 export default [
   CreateAction,
   CreateVote,
-  Action,
+  Actions,
   ActionContainer,
   ActionActionsBar,
+  ActionPage,
   ActionTableCell,
   ActionTableRow,
   ActionWidget,

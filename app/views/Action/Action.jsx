@@ -7,18 +7,16 @@ import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 import Container from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
-import { pageTopology } from '../../topologies/Page';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 import { tabPaneTopology } from '../../topologies/TabPane';
 
 import NavigatableAction from './NavigatableAction';
 
-class Action extends NavigatableAction {
+export class Action extends NavigatableAction {
   static type = NS.schema('Action');
 
   static topology = [
     alertDialogTopology,
-    pageTopology,
     primaryResourceTopology,
     tabPaneTopology,
   ];
@@ -33,7 +31,7 @@ class Action extends NavigatableAction {
     subject: subjectType,
   };
 
-  name() {
+  header() {
     const top = (this.props.topology || this.props.topologyCtx);
     if ([alertDialogTopology, tabPaneTopology].includes(top)) {
       return null;
@@ -45,7 +43,7 @@ class Action extends NavigatableAction {
   render() {
     return (
       <Container>
-        {this.name()}
+        {this.header()}
         <Property
           action={this.props.subject}
           cancelPath={retrievePath(this.props.object.value)}
