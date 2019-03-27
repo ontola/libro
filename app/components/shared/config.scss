@@ -129,6 +129,7 @@ $zindex-2: 200;
 $zindex-3: 300;
 $zindex-4: 400;
 $zindex-5: 500;
+$zindex-55: 550;
 $zindex-6: 600;
 
 $z-layers: (
@@ -137,6 +138,7 @@ $z-layers: (
   'notification': $zindex-1,
   'progressbar': $zindex-1,
   'dropdown': $zindex-5,
+  'app-menu': $zindex-55,
   'tooltip': $zindex-6,
 );
 
