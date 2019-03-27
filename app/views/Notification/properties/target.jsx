@@ -16,10 +16,15 @@ import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
 const propTypes = {
   children: PropTypes.node,
   linkedProp: linkedPropType,
+  onClick: PropTypes.func,
 };
 
-const Target = ({ children = null, linkedProp }) => (
-  <Link style={{ display: 'flex', flexGrow: 1, paddingTop: '.5em' }} to={retrievePath(linkedProp.value)}>
+const Target = ({ children = null, linkedProp, onClick }) => (
+  <Link
+    style={{ display: 'flex', flexGrow: 1, paddingTop: '.5em' }}
+    to={retrievePath(linkedProp.value)}
+    onClick={onClick}
+  >
     {children}
   </Link>
 );

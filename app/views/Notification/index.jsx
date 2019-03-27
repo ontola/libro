@@ -2,13 +2,16 @@ import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   link,
   linkType,
+  lrsType,
   Property,
+  subjectType,
 } from 'link-redux';
 import React from 'react';
 
 import {
   CardContent,
 } from '../../components';
+import { actionType } from '../../helpers/diggers';
 import { NS } from '../../helpers/LinkedRenderStore';
 import Card from '../../topologies/Card';
 import { containerTopology } from '../../topologies/Container';
@@ -22,14 +25,18 @@ import Target from './properties/target';
 import Unread from './properties/unread';
 
 const propTypes = {
+  lrs: lrsType,
+  subject: subjectType,
   target: linkType,
 };
 
-const Notification = ({ target }) => {
+const Notification = ({ lrs, subject, target }) => {
   let content = <Property label={NS.schema('name')} />;
   if (target) {
+    const readAction = lrs.findSubject(subject, actionType, NS.schema('ReadAction')).pop();
+
     content = (
-      <Property label={NS.schema('target')}>
+      <Property label={NS.schema('target')} onClick={() => readAction && lrs.exec(readAction)}>
         <Property label={NS.schema('creator')} />
         <div style={{ width: '100%' }}>
           <Property label={NS.schema('name')} />
