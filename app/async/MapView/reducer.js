@@ -7,12 +7,14 @@ export const MapReducerKey = 'MapView';
 
 const initialState = new Map({
   accessToken: '',
+  error: undefined,
   expiresAt: '',
 });
 
 const reducer = handleActions({
   [actions.MAP_SET_ACCESS_TOKEN]: (state, { payload }) => state
     .set('accessToken', payload.accessToken)
+    .set('error', payload.error)
     .set('expiresAt', payload.expiresAt),
 }, initialState);
 

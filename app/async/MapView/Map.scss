@@ -5,6 +5,7 @@
 .Map {
   background-color: color('grey', 'xx-light');
   color: color('black');
+  position: relative;
 
   &--map-container {
     max-height: 70vh;
@@ -15,6 +16,7 @@
 
   &--map-indicator {
     align-items: center;
+    color: color('grey');
     display: flex;
     flex-direction: column;
     left: 0;

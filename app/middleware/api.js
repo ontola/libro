@@ -46,6 +46,12 @@ export default (history, swc) => () => next => (action) => {
             accessToken: json.accessToken,
             expiresAt: expiry,
           }));
+        }).catch((e) => {
+          handle(e);
+          next(setMapAccessToken({
+            accessToken: null,
+            error: e,
+          }));
         });
     }
     case AFE_API_LOGIN: {

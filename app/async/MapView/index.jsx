@@ -48,7 +48,7 @@ import { popupTopology } from '../../topologies/Popup';
 import './Map.scss';
 import { getMapAccessToken } from './actions';
 import reducer, { MapReducerKey } from './reducer';
-import { getAccessToken } from './selectors';
+import { getAccessToken, getAccessTokenError } from './selectors';
 
 const IMG_SIZE = 24;
 const CIRCLE_SIZE = 12;
@@ -65,6 +65,7 @@ const DEFAULT_CENTER = {
 class MapView extends React.Component {
   static propTypes = {
     accessToken: PropTypes.string,
+    error: PropTypes.instanceOf(Error),
     getAccessToken: PropTypes.func,
     /** Additional placement to render on the map */
     location: linkType,
@@ -143,6 +144,12 @@ class MapView extends React.Component {
     this.overlayRef = document.createElement('div');
     this.placementFeatureSource = new VectorSource();
 
+    this.hover = undefined;
+    this.map = undefined;
+    this.overlay = undefined;
+    this.select = undefined;
+    this.tileSource = undefined;
+
     this.featureFromPlacement = this.featureFromPlacement.bind(this);
     this.highlightFeature = this.highlightFeature.bind(this);
     this.showFeatureResourceInOverlay = this.showFeatureResourceInOverlay.bind(this);
@@ -150,7 +157,11 @@ class MapView extends React.Component {
       ? e => props.onMapClick(toLonLat(e.coordinate))
       : undefined;
 
+    this.onError = this.onError.bind(this);
+    this.onLoad = this.onLoad.bind(this);
+
     this.state = {
+      error: undefined,
       selected: undefined,
     };
   }
@@ -168,8 +179,26 @@ class MapView extends React.Component {
   }
 
   componentWillUnmount() {
+    if (this.tileSource) {
+      this.tileSource.removeEventListener('tileloaderr', this.onError);
+    }
     if (this.map && this.onMapClick) {
       this.map.removeEventListener('click', this.onMapClick);
+    }
+  }
+
+  onError(e) {
+    handle(e);
+    this.setState({
+      error: true,
+    });
+  }
+
+  onLoad() {
+    if (this.state.error) {
+      this.setState({
+        error: undefined,
+      });
     }
   }
 
@@ -280,11 +309,19 @@ class MapView extends React.Component {
 
     const { lon, lat, zoom } = center;
 
+    if (this.tileSource) {
+      this.tileSource.removeEventListener('tileloadend', this.onLoad);
+      this.tileSource.removeEventListener('tileloaderr', this.onError);
+    }
+    this.tileSource = new XYZ({
+      url: `${MAPBOX_TILE_API_BASE}mapbox.streets/{z}/{x}/{y}.png?access_token=${accessToken}`,
+    });
+    this.tileSource.addEventListener('tileloadend', this.onLoad);
+    this.tileSource.addEventListener('tileloaderr', this.onError);
+
     const layers = [
       new TileLayer({
-        source: new XYZ({
-          url: `${MAPBOX_TILE_API_BASE}mapbox.streets/{z}/{x}/{y}.png?access_token=${accessToken}`,
-        }),
+        source: this.tileSource,
       }),
       new VectorLayer({
         source: this.placementFeatureSource,
@@ -385,6 +422,15 @@ class MapView extends React.Component {
     const handleClick = e => e.target.className !== 'click-ignore'
       && this.props.navigate(this.state.selected);
 
+    const errorMessage = (this.props.error || this.state.error) && (
+      <span>
+        <FormattedMessage
+          defaultMessage="Error loading map"
+          id="https://app.argu.co/i18n/errors/map/loadError"
+        />
+      </span>
+    );
+
     return (
       <div className="Map">
         <div className="Map--map-container" ref={this.mapRef} />
@@ -401,12 +447,7 @@ class MapView extends React.Component {
         </OverlayContainer>
         <div className="Map--map-indicator">
           <FontAwesome name="map-o" />
-          <span>
-            <FormattedMessage
-              defaultMessage="Error loading map"
-              id="https://app.argu.co/i18n/errors/map/loadError"
-            />
-          </span>
+          {errorMessage}
         </div>
       </div>
     );
@@ -415,6 +456,7 @@ class MapView extends React.Component {
 
 const mapStateToProps = state => ({
   accessToken: getAccessToken(state),
+  error: getAccessTokenError(state),
 });
 
 const mapDispatchToProps = dispatch => ({
