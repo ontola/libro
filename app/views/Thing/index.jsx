@@ -69,11 +69,13 @@ const CardHoverBox = hoverBox();
 
 const ThingGrid = () => (
   <CardFixed>
-    <Property label={NS.argu('coverPhoto')} />
-    <CardContent noSpacing>
-      <Property label={[NS.schema('name'), NS.rdfs('label')]} />
-      <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
-    </CardContent>
+    <LDLink>
+      <Property label={NS.argu('coverPhoto')} />
+      <CardContent noSpacing>
+        <Property label={[NS.schema('name'), NS.rdfs('label')]} />
+        <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
+      </CardContent>
+    </LDLink>
     <DetailsBar>
       <Property label={NS.argu('pinnedAt')} />
       <Property short label={NS.argu('expiresAt')} />

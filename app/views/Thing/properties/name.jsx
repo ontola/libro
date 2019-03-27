@@ -138,12 +138,17 @@ export default [
     NamePredicates,
     [
       cardTopology,
-      cardFixedTopology,
       cardRowTopology,
       containerTopology,
       popupTopology,
       widgetTopologyTopology,
     ]
+  ),
+  LinkedRenderStore.registerRenderer(
+    () => <ConnectedHeading data-test="Thing-name-card-fixed" size="2" />,
+    NS.schema('Thing'),
+    NamePredicates,
+    cardFixedTopology
   ),
   LinkedRenderStore.registerRenderer(
     ({ linkedProp }) => <span>{linkedProp.value}</span>,
