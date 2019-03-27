@@ -12,22 +12,22 @@
   }
 
   &--spacing-large {
+    @include small-only {
+      max-width: map-get($container-width, 'large');
+    }
+
     align-items: center;
     display: flex;
     justify-content: center;
     min-height: 60vh;
-
-    @include small-only {
-      max-width: map-get($container-width, 'large');
-    }
   }
 
   &--grid {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 2rem 0;
     max-width: 70rem;
+    padding: 2rem 0;
   }
 
   @include small-only {

@@ -13,8 +13,17 @@
   }
 
   &__container {
+    @include small-only {
+      padding: unit('medium');
+      padding-top: 0;
+    }
+
     background-color: color('white');
     min-height: 5.5em;
+
+    & > .Container--size-large {
+      overflow-x: visible;
+    }
   }
 
   &__image-and-text-wrapper {
