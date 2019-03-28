@@ -11,12 +11,12 @@ import {
 } from '../../components';
 import FormFooterRight from '../../components/Form/FooterRight';
 import { NS } from '../../helpers/LinkedRenderStore';
-import { cardTopology } from '../../topologies/Card';
+import { cardMainTopology } from '../../topologies/Card/CardMain';
 import FormFooter from '../../topologies/FormFooter/Footer';
 
 import EntryPointBase from './EntryPointBase';
 
-class EntryPointContainer extends EntryPointBase {
+class EntryPointCardMain extends EntryPointBase {
   constructor(props) {
     super(props);
 
@@ -92,21 +92,21 @@ class EntryPointContainer extends EntryPointBase {
   }
 }
 
-const EntryPointContainerForm = link([
+const EntryPointCardMainForm = link([
   NS.schema('image'),
   NS.schema('name'),
   NS.schema('url'),
   NS.schema('httpMethod'),
-])(EntryPointContainer);
+])(EntryPointCardMain);
 
 export default LinkedRenderStore.registerRenderer(
   withRouter(props => (
-    <EntryPointContainerForm
+    <EntryPointCardMainForm
       form={props.subject.value}
       {...props}
     />
   )),
   NS.schema('EntryPoint'),
   RENDER_CLASS_NAME,
-  cardTopology
+  cardMainTopology
 );

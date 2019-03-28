@@ -127,7 +127,7 @@ export default [
     selectTopology
   ),
   LinkedRenderStore.registerRenderer(
-    () => <ConnectedHeading data-test="Thing-name-card" size="2" />,
+    () => <LDLink><ConnectedHeading data-test="Thing-name-card" size="2" /></LDLink>,
     NS.schema('Thing'),
     NamePredicates,
     cardTopology

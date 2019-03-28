@@ -7,15 +7,15 @@ import ButtonWithFeedback from '../../components/ButtonWithFeedback';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { countInParentheses } from '../../helpers/numbers';
 import { allTopologiesExcept } from '../../topologies';
-import { cardTopology } from '../../topologies/Card';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { cardListTopology } from '../../topologies/Card/CardList';
+import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { cardVoteEventTopology } from '../../topologies/CardVoteEvent';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 
 import EntryPointButton from './EntryPointButton';
 import EntryPointCardFloat from './EntryPointCardFloat';
-import EntryPointContainer from './EntryPointContainer';
+import EntryPointContainer from './EntryPointCardMain';
 import EntryPointOmiform from './EntryPointOmiform';
 
 const FABase = 'http://fontawesome.io/icon/';
@@ -31,7 +31,7 @@ class EntryPoint extends React.PureComponent {
   ];
 
   static topology = allTopologiesExcept(
-    cardTopology,
+    cardMainTopology,
     omniformFieldsTopology,
     cardFloatTopology,
     cardListTopology

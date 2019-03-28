@@ -6,7 +6,7 @@ import { withRouter } from 'react-router';
 import CardContent from '../../components/Card/CardContent';
 import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
-import Card from '../../topologies/Card';
+import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
@@ -46,7 +46,7 @@ export class Action extends NavigatableAction {
     return (
       <Container>
         {this.header()}
-        <Card>
+        <CardMain>
           <CardContent>
             <Property label={NS.schema('name')} />
           </CardContent>
@@ -57,7 +57,7 @@ export class Action extends NavigatableAction {
             label={NS.schema('target')}
             onDone={this.onDoneHandler}
           />
-        </Card>
+        </CardMain>
       </Container>
     );
   }
