@@ -117,6 +117,10 @@
   &--end-spacing {
     padding-bottom: unit('small');
   }
+
+  &--no-start-spacing {
+    padding-top: 0;
+  }
 }
 
 .CardActions {

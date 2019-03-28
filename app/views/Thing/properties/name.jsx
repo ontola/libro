@@ -133,11 +133,16 @@ export default [
     inlineTopology
   ),
   LinkedRenderStore.registerRenderer(
-    () => <LDLink><ConnectedHeading data-test="Thing-name-card" size="2" /></LDLink>,
+    () => <ConnectedHeading data-test="Thing-name-card" size="2" />,
+    NS.schema('Thing'),
+    NamePredicates,
+    cardTopology
+  ),
+  LinkedRenderStore.registerRenderer(
+    () => <LDLink><ConnectedHeading data-test="Thing-name-card-link" size="2" /></LDLink>,
     NS.schema('Thing'),
     NamePredicates,
     [
-      cardTopology,
       cardRowTopology,
       containerTopology,
       popupTopology,

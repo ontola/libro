@@ -14,6 +14,7 @@ const propTypes = {
   children: PropTypes.node,
   endSpacing: PropTypes.bool,
   noSpacing: PropTypes.bool,
+  noStartSpacing: PropTypes.bool,
 };
 
 /**
@@ -24,6 +25,7 @@ const CardContent = ({
   alignEnd,
   children,
   endSpacing,
+  noStartSpacing,
   noSpacing,
 }) => {
   if (typeof children === 'undefined') {
@@ -35,6 +37,7 @@ const CardContent = ({
     'CardContent--align-end': alignEnd,
     'CardContent--end-spacing': endSpacing,
     'CardContent--no-spacing': noSpacing,
+    'CardContent--no-start-spacing': noStartSpacing,
   });
 
   return (

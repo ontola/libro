@@ -42,7 +42,7 @@ describeView('Thing', components, resources, resource, () => {
 
   as(NS.argu('card'), () => {
     it('renders the name', () => {
-      expect(subject.find(marker('name', 'card'))).toExist();
+      expect(subject.find(marker('name', 'card', 'link'))).toExist();
     });
 
     it('renders the text', () => {

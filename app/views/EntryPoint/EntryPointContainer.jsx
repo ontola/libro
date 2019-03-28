@@ -11,8 +11,7 @@ import {
 } from '../../components';
 import FormFooterRight from '../../components/Form/FooterRight';
 import { NS } from '../../helpers/LinkedRenderStore';
-import Card from '../../topologies/Card';
-import { containerTopology } from '../../topologies/Container';
+import { cardTopology } from '../../topologies/Card';
 import FormFooter from '../../topologies/FormFooter/Footer';
 
 import EntryPointBase from './EntryPointBase';
@@ -40,6 +39,7 @@ class EntryPointContainer extends EntryPointBase {
     const {
       httpMethod,
       cancelPath,
+      header,
       invalid,
       name,
       url,
@@ -66,27 +66,25 @@ class EntryPointContainer extends EntryPointBase {
       >
         {({ submitting }) => (
           <React.Fragment>
-            <Card>
-              <CardContent>
-                <Property label={NS.schema('text')} />
-                <Property label={NS.ll('actionBody')} />
-              </CardContent>
-              <FormFooter>
-                {this.footerGroup()}
-                <FormFooterRight>
-                  {cancelButton}
-                  <Button
-                    disabled={invalid}
-                    icon="send"
-                    loading={submitting}
-                    theme="submit"
-                    type="submit"
-                  >
-                    {name.value}
-                  </Button>
-                </FormFooterRight>
-              </FormFooter>
-            </Card>
+            <CardContent noStartSpacing={header}>
+              <Property label={NS.schema('text')} />
+              <Property label={NS.ll('actionBody')} />
+            </CardContent>
+            <FormFooter>
+              {this.footerGroup()}
+              <FormFooterRight>
+                {cancelButton}
+                <Button
+                  disabled={invalid}
+                  icon="send"
+                  loading={submitting}
+                  theme="submit"
+                  type="submit"
+                >
+                  {name.value}
+                </Button>
+              </FormFooterRight>
+            </FormFooter>
           </React.Fragment>
         )}
       </Form>
@@ -110,5 +108,5 @@ export default LinkedRenderStore.registerRenderer(
   )),
   NS.schema('EntryPoint'),
   RENDER_CLASS_NAME,
-  containerTopology
+  cardTopology
 );

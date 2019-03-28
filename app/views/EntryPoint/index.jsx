@@ -7,10 +7,10 @@ import ButtonWithFeedback from '../../components/ButtonWithFeedback';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { countInParentheses } from '../../helpers/numbers';
 import { allTopologiesExcept } from '../../topologies';
+import { cardTopology } from '../../topologies/Card';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { cardListTopology } from '../../topologies/Card/CardList';
 import { cardVoteEventTopology } from '../../topologies/CardVoteEvent';
-import { containerTopology } from '../../topologies/Container';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 
 import EntryPointButton from './EntryPointButton';
@@ -31,7 +31,7 @@ class EntryPoint extends React.PureComponent {
   ];
 
   static topology = allTopologiesExcept(
-    containerTopology,
+    cardTopology,
     omniformFieldsTopology,
     cardFloatTopology,
     cardListTopology
