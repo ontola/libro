@@ -28,7 +28,7 @@ rules:
   no-css-comments: 2
   no-debug: 2
   no-disallowed-properties: 2
-  no-duplicate-properties: 2
+  no-duplicate-properties: 1
   no-empty-rulesets: 2
   no-extends: 2
   no-ids: 2

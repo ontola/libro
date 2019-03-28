@@ -61,7 +61,9 @@ a {
 }
 
 .Button--default {
+  // IE11 Fallback
   background-color: color('pink');
+  background-color: var(--base-color);
   border-radius: $border-radius-base;
   color: color('white');
 }
