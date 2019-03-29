@@ -48,6 +48,7 @@ class PersonDetail extends React.PureComponent {
 
     return (
       <LDLink
+        features={['centered']}
         title={formatMessage(messages.showProfile, { name })}
       >
         <Detail

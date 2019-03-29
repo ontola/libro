@@ -37,8 +37,9 @@
     > a {
       display: flex;
       // [AOD-179] Stretch to fill parent
-      flex: 1;
+      flex: 1 1;
       flex-direction: column;
+      overflow: hidden;
     }
 
     & .CardContent {
