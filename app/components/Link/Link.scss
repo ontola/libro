@@ -9,6 +9,10 @@
     align-items: baseline;
     display: inline-flex;
     white-space: pre-wrap;
+
+    &.Link__centered {
+      align-items: center;
+    }
   }
 
   &__padded {

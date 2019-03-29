@@ -16,6 +16,7 @@ const propTypes = {
   className: PropTypes.string,
   features: PropTypes.arrayOf([
     'bold',
+    'centered',
     PropTypes.oneOf([
       'highlighted-darken',
       'highlighted-lighten',

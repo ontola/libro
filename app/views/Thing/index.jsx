@@ -80,7 +80,7 @@ const ThingGrid = () => (
       <Property label={NS.argu('pinnedAt')} />
       <Property short label={NS.argu('expiresAt')} />
       <Property label={NS.schema('creator')}>
-        <LDLink>
+        <LDLink features={['centered']}>
           <div className="Detail">
             <Property label={NS.schema('image')} />
           </div>
@@ -139,7 +139,7 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     link([NS.schema('name')])(({ name, theme }) => (
-      <LDLink data-test="Thing-parent" theme={theme}>
+      <LDLink data-test="Thing-parent" features={['centered']} theme={theme}>
         <Detail text={name.value} />
       </LDLink>
     )),

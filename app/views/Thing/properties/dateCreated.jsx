@@ -11,7 +11,7 @@ const propTypes = {
 };
 
 const DateCreated = ({ linkedProp }) => (
-  <LDLink>
+  <LDLink features={['centered']}>
     <DetailDate dateCreated={new Date(linkedProp.value)} />
   </LDLink>
 );
