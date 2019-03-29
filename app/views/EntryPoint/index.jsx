@@ -11,12 +11,15 @@ import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { cardListTopology } from '../../topologies/Card/CardList';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { cardVoteEventTopology } from '../../topologies/CardVoteEvent';
+import { containerTopology } from '../../topologies/Container';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
+import { cardTopology } from '../../topologies/Card';
 
 import EntryPointButton from './EntryPointButton';
 import EntryPointCardFloat from './EntryPointCardFloat';
-import EntryPointContainer from './EntryPointCardMain';
+import EntryPointCardMain from './EntryPointCardMain';
 import EntryPointOmiform from './EntryPointOmiform';
+import EntryPointContainer from './EntryPointContainer';
 
 const FABase = 'http://fontawesome.io/icon/';
 
@@ -31,10 +34,12 @@ class EntryPoint extends React.PureComponent {
   ];
 
   static topology = allTopologiesExcept(
+    cardTopology,
     cardMainTopology,
-    omniformFieldsTopology,
     cardFloatTopology,
-    cardListTopology
+    cardListTopology,
+    containerTopology,
+    omniformFieldsTopology
   );
 
   static propTypes = {
@@ -93,6 +98,7 @@ class EntryPoint extends React.PureComponent {
 export default [
   EntryPointButton,
   EntryPointCardFloat,
+  EntryPointCardMain,
   EntryPointContainer,
   EntryPointOmiform,
   register(EntryPoint),

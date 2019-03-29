@@ -13,6 +13,7 @@ import FormFooterRight from '../../components/Form/FooterRight';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import FormFooter from '../../topologies/FormFooter/Footer';
+import { cardTopology } from '../../topologies/Card';
 
 import EntryPointBase from './EntryPointBase';
 
@@ -108,5 +109,8 @@ export default LinkedRenderStore.registerRenderer(
   )),
   NS.schema('EntryPoint'),
   RENDER_CLASS_NAME,
-  cardMainTopology
+  [
+    cardTopology,
+    cardMainTopology,
+  ]
 );
