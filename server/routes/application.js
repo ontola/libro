@@ -1,10 +1,12 @@
+import Stream from 'stream';
+
 import { INTERNAL_SERVER_ERROR, SERVICE_UNAVAILABLE } from 'http-status-codes';
 
 import * as constants from '../../app/config';
 import { isHTMLHeader } from '../utils/http';
 import logging from '../utils/logging';
 import manifest from '../utils/manifest';
-import { isRedirect } from '../utils/proxies/helpers';
+import { bulkResourceRequest, isRedirect, route } from '../utils/proxies/helpers';
 import { handleRender } from '../utils/render';
 
 const BACKEND_TIMEOUT = 3000;
@@ -16,12 +18,12 @@ export default function application(port) {
     __PRODUCTION__ && manifest['main.css'] && `<${constants.ASSETS_HOST}${manifest['main.css']}>; rel=preload; as=style`,
   ].filter(Boolean);
 
-  const sendResponse = (req, res, domain, website) => {
+  const sendResponse = (req, res, domain, websiteMeta, data) => {
     if (isHTMLHeader(req.headers)) {
       res.setHeader('Link', PRELOAD_HEADERS);
     }
     res.setHeader('Vary', 'Accept,Accept-Encoding,Authorization,Content-Type');
-    handleRender(req, res, port, domain, website);
+    handleRender(req, res, port, domain, websiteMeta, data);
 
     return undefined;
   };
@@ -43,7 +45,43 @@ export default function application(port) {
         return res.end();
       }
 
-      return sendResponse(req, res, domain, serverRes.headers.get('Tenant-Iri'));
+      const websiteMetaHeader = serverRes.headers.get('Website-Meta');
+      const websiteMetaParams = new URLSearchParams(websiteMetaHeader);
+      const websiteMeta = {
+        accentBackgroundColor: websiteMetaParams.get('accent_background_color'),
+        accentColor: websiteMetaParams.get('accent_color'),
+        navbarBackground: websiteMetaParams.get('navbar_background'),
+        navbarColor: websiteMetaParams.get('navbar_color'),
+        website: websiteMetaParams.get('iri'),
+      };
+
+      let responseData = Buffer.alloc(0);
+      const responseStream = new Stream.Writable();
+      // eslint-disable-next-line no-underscore-dangle
+      responseStream._write = (chunk, encoding, next) => {
+        responseData = Buffer.concat([responseData, chunk]);
+        next();
+      };
+      const dataHeaders = { ...req.headers, accept: 'application/n-quads' };
+      const reqForData = {
+        headers: dataHeaders,
+        session: req.session,
+        status: 200,
+      };
+      const resources = [
+        `${websiteMeta.website}`,
+        `${websiteMeta.website}/c_a`,
+        `${websiteMeta.website}/n`,
+        `${websiteMeta.website}/search`,
+        `${websiteMeta.website}/menus`,
+        `${websiteMeta.website}/apex/menus`,
+      ];
+
+      return Promise
+        .all(resources.map(
+          iri => bulkResourceRequest(reqForData, iri, route(iri, true), responseStream)
+        ))
+        .then(() => sendResponse(req, res, domain, websiteMeta, responseData));
     }).catch((e) => {
       if (typeof e === 'undefined') {
         // Timeout finished first
@@ -55,7 +93,7 @@ export default function application(port) {
         }
         res.status(INTERNAL_SERVER_ERROR);
       }
-      sendResponse(req, res, domain, `https://${req.get('host')}`);
+      sendResponse(req, res, domain, `https://${req.get('host')}`, '');
     });
   };
 }

@@ -12,7 +12,8 @@ import logging from '../logging';
 import {
   route,
   setProxyReqHeaders,
-  setBulkResHeaders, newAuthorizationBulk,
+  setBulkResHeaders,
+  newAuthorizationBulk,
 } from './helpers';
 
 export default (req, res) => {

@@ -1,8 +1,10 @@
 @import '../../components/shared/config';
 
 .Navbar {
+  background: var(--navbar-background);
   background-clip: content-box;
-  background-color: color('white');
+  background-color: var(--navbar-background-color);
+  color: var(--navbar-color);
   height: $navbar-height;
   overflow: auto;
   position: relative;

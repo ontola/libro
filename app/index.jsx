@@ -19,15 +19,32 @@ if (document.documentElement.lang) {
   LinkedRenderStore.store.langPrefs.unshift(document.documentElement.lang);
 }
 
-render(
-  <IndexContainer
-    Router={ConnectedRouter}
-    history={history}
-    lrs={LinkedRenderStore}
-    store={store}
-  />,
-  document.getElementById(APP_ELEMENT)
-);
+function mount() {
+  render(
+    <IndexContainer
+      Router={ConnectedRouter}
+      history={history}
+      lrs={LinkedRenderStore}
+      store={store}
+    />,
+    document.getElementById(APP_ELEMENT)
+  );
+}
+
+new Promise((resolve) => {
+  if (typeof window.INITIAL__DATA !== 'undefined') {
+    const seedRequest = new Response(
+      window.INITIAL__DATA,
+      { headers: new Headers({ 'Content-Type': 'application/n-quads' }) }
+    );
+
+    LinkedRenderStore.api
+      .feedResponse(seedRequest, true)
+      .then(resolve);
+  }
+})
+  .then(mount)
+  .catch(mount);
 
 if (typeof window !== 'undefined') {
   window.LRS = LinkedRenderStore;
@@ -37,11 +54,13 @@ if (typeof window !== 'undefined') {
 }
 
 // Fade out the preloader and fade in the interface
-const preloaderTimeout = 1200;
+const preloaderTimeout = 2500;
 document.getElementsByTagName('body')[0].classList.remove('Body--show-preloader');
 window.setTimeout(() => {
-  const preloader = document.getElementById('preloader');
-  if (preloader) {
-    preloader.parentElement.removeChild(preloader);
-  }
+  ['preloader', 'navbar-preview'].forEach((id) => {
+    const elem = document.getElementById(id);
+    if (elem) {
+      elem.parentElement.removeChild(elem);
+    }
+  });
 }, preloaderTimeout);

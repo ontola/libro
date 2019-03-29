@@ -42,7 +42,6 @@ const Contains = ({
         <Property label={NS.schema('name')} />
       </LDLink>
       <Type reloadLinkedObject={reloadLinkedObject} />
-      <Property forceRender label={NS.argu('baseColor')} />
     </LinkedResourceContainer>
   );
 };

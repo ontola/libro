@@ -24,7 +24,6 @@ import hoverBox from '../../topologies/HoverBox';
 import ApplyLink from './properties/applyLink';
 import ArguLocation from './properties/arguLocation';
 import Arguments from './properties/arguments';
-import BaseColor from './properties/baseColor';
 import CoverPhoto from './properties/coverPhoto';
 import CreateAction from './properties/createAction';
 import DateCreated from './properties/dateCreated';
@@ -166,7 +165,6 @@ export default [
   ApplyLink,
   ...Arguments,
   ArguLocation,
-  BaseColor,
   CoverPhoto,
   CreateAction,
   DateCreated,

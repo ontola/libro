@@ -47,12 +47,13 @@
 
 .LinkLabel {
   .Link__active & {
-    color: var(--base-color);
+    color: var(--accent-background-color);
     position: relative;
 
     &::after {
-      background-color: var(--base-color);
+      background-color: var(--accent-background-color);
       bottom: -.3em;
+      color: var(--accent-color);
       content: '';
       height: .3em;
       left: 0;

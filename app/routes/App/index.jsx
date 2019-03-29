@@ -1,15 +1,12 @@
 import { LinkedResourceContainer } from 'link-redux';
-import * as PropTypes from 'prop-types';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { HotKeys } from 'react-hotkeys';
-import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
 import { NavBarContent, SkipNavigation } from '../../components';
 import '../../components/shared/init.scss';
 import NetworkStatusIndicator from '../../components/NetworkStatusIndicator';
-import { getSideBarColor } from '../../state/sideBars/selectors';
 import Navbar from '../../topologies/Navbar/index';
 import Popup from '../../topologies/Popup/index';
 import ErrorButtonWithFeedback from '../../views/Error/ErrorButtonWithFeedback';
@@ -23,10 +20,6 @@ import AppScroller from './AppScroller';
 import MainContent from './MainContent';
 
 class App extends React.PureComponent {
-  static propTypes = {
-    baseColor: PropTypes.string,
-  };
-
   constructor(props) {
     super(props);
 
@@ -60,9 +53,6 @@ class App extends React.PureComponent {
         attach={window}
         keyMap={__DEVELOPMENT__ ? devKeymap : defaultKeymap}
       >
-        <style>
-          {`:root { --base-color: ${this.props.baseColor} }`}
-        </style>
         <HoverHelper>
           <Helmet
             defaultTitle="Argu"
@@ -87,10 +77,4 @@ class App extends React.PureComponent {
   }
 }
 
-function mapDataToProps(state) {
-  return {
-    baseColor: getSideBarColor(state),
-  };
-}
-
-export default withRouter(connect(mapDataToProps)(App));
+export default withRouter(App);
