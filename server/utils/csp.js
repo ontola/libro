@@ -50,6 +50,7 @@ const styleSrc = [
   // Due to using inline css with background-image url()
   "'unsafe-inline'",
   'maxcdn.bootstrapcdn.com',
+  'fonts.googleapis.com',
 ];
 const workerSrc = [
   "'self'",
