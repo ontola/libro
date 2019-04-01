@@ -66,6 +66,7 @@ const mqBreakpoints = {
 export const mediaQueries = {
   largeAndAbove: `(min-width: ${mqBreakpoints.largeLowerBound})`,
   micro: `(max-width: ${mqBreakpoints.microUpperBound})`,
+  smallAndAbove: `(min-width: ${mqBreakpoints.smallestUpperBound})`,
   smallAndBelow: `(max-width: ${mqBreakpoints.smallUpperBound})`,
   smallOnly: `(min-width: ${mqBreakpoints.smallLowerBound}) and (max-width: ${mqBreakpoints.smallUpperBound})`,
   smallestOnly: `(min-width: ${mqBreakpoints.smallestLowerBound})  and (max-width: ${mqBreakpoints.smallestUpperBound})`,

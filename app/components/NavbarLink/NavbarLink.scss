@@ -53,7 +53,7 @@
   width: 1.5em;
 
   &--padded {
-    padding: 0 .5em;
+    padding: units('none', 'small');
   }
 }
 

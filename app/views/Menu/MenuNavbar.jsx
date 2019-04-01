@@ -4,15 +4,17 @@ import {
   register,
 } from 'link-redux';
 import React from 'react';
+import MediaQuery from 'react-responsive';
 
 import Button from '../../components/Button';
+import { mediaQueries } from '../../components/shared/config';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { menuStates } from '../../middleware/app';
 import { navbarTopology } from '../../topologies/Navbar';
 
 import './Menu.scss';
 
-class Menu extends React.PureComponent {
+class MenuNavbar extends React.PureComponent {
   static type = NS.app('Menu');
 
   static topology = navbarTopology;
@@ -42,17 +44,21 @@ class Menu extends React.PureComponent {
     }
 
     return (
-      <Button
-        narrow
-        plain
-        className="Menu__button"
-        icon={buttonSettings.icon}
-        onClick={() => lrs.exec(NS.app(buttonSettings.action))}
-      >
-        menu
-      </Button>
+      <MediaQuery query={mediaQueries.smallAndAbove}>
+        {matches => (
+          <Button
+            narrow
+            plain
+            className="Menu__button"
+            icon={buttonSettings.icon}
+            onClick={() => lrs.exec(NS.app(buttonSettings.action))}
+          >
+            {matches ? 'menu' : undefined}
+          </Button>
+        )}
+      </MediaQuery>
     );
   }
 }
 
-export default register(Menu);
+export default register(MenuNavbar);

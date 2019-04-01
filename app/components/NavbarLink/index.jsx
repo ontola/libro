@@ -52,7 +52,7 @@ class NavbarLink extends React.PureComponent {
           onClick={onClick || closeBarOnClick}
         >
           {presentationIcon && (
-            <NavbarLinkIcon>
+            <NavbarLinkIcon features={label ? undefined : 'padded'}>
               <FontAwesome name={presentationIcon} />
             </NavbarLinkIcon>
           )}
@@ -61,9 +61,11 @@ class NavbarLink extends React.PureComponent {
               <NavbarLinkImage imageUrl={imageUrl} />
             </NavbarLinkImageWrapper>
           )}
-          <NavbarLinkLabel>
-            {label}
-          </NavbarLinkLabel>
+          {label && (
+            <NavbarLinkLabel>
+              {label}
+            </NavbarLinkLabel>
+          )}
           <NavbarLinkCount count={count} />
         </NavbarLinkLink>
       </NavbarLinkWrapper>

@@ -3,7 +3,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import MediaQuery from 'react-responsive';
 
+import { mediaQueries } from '../../components/shared/config';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { navbarTopology } from '../../topologies/Navbar';
 import { NavbarLink } from '../../components';
@@ -17,11 +19,15 @@ const SearchResultNavbar = () => {
   );
 
   return (
-    <NavbarLink
-      icon="search"
-      label={label}
-      to={NS.app('search').value}
-    />
+    <MediaQuery query={mediaQueries.smallAndAbove}>
+      {matches => (
+        <NavbarLink
+          icon="search"
+          label={matches && label}
+          to={NS.app('search').value}
+        />
+      )}
+    </MediaQuery>
   );
 };
 

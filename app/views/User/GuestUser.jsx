@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
+import MediaQuery from 'react-responsive';
 
+import { mediaQueries } from '../../components/shared/config';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { NavbarLink } from '../../components';
 import path from '../../helpers/paths';
@@ -24,14 +26,18 @@ const GuestUserActor = ({ redirectURL }) => {
   );
 
   return (
-    <React.Fragment>
-      <NavbarLink
-        icon="sign-in"
-        label={label}
-        to={path.signIn(redirectURL)}
-      />
-      <Property label={NS.argu('actorType')} />
-    </React.Fragment>
+    <MediaQuery query={mediaQueries.smallAndAbove}>
+      {matches => (
+        <React.Fragment>
+          <NavbarLink
+            icon="sign-in"
+            label={matches && label}
+            to={path.signIn(redirectURL)}
+          />
+          <Property label={NS.argu('actorType')} />
+        </React.Fragment>
+      )}
+    </MediaQuery>
   );
 };
 
