@@ -11,6 +11,7 @@ import LinkedRenderStore from './helpers/LinkedRenderStore';
 import './views';
 import IndexContainer from './containers/IndexContainer';
 import history from './helpers/history';
+import { handle } from './helpers/logging';
 import configureStore from './state';
 
 const store = configureStore();
@@ -44,7 +45,10 @@ new Promise((resolve) => {
   }
 })
   .then(mount)
-  .catch(mount);
+  .catch((e) => {
+    handle(e);
+    mount();
+  });
 
 if (typeof window !== 'undefined') {
   window.LRS = LinkedRenderStore;
