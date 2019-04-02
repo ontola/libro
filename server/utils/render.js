@@ -131,7 +131,6 @@ export const renderFullPage = (domain, req, res, websiteMeta, data) => {
       <body>
         <style id="theme-config">
           :root {
-            --base-color: ${websiteMeta.accentBacgColor}; 
             --accent-background-color: ${websiteMeta.accentBackgroundColor}; 
             --accent-color: ${websiteMeta.accentColor}; 
             --navbar-background: ${websiteMeta.navbarBackground}; 
@@ -160,7 +159,8 @@ export const renderFullPage = (domain, req, res, websiteMeta, data) => {
         </div>
         <div 
             id="navbar-preview" 
-            style="height: 3.2rem; background: var(--navbar-background); background-color: var(--base-color); z-index: -1;"
+            class="accent-background-color navbar-background navbar-color"
+            style="height: 3.2rem; z-index: -1;"
         ></div>
         <div id="${constants.APP_ELEMENT}"></div>
         <noscript>
