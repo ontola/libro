@@ -3,7 +3,6 @@ import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { tableRowTopology } from '../../../topologies/TableRow';
-import TableCell from '../../../topologies/TableCell';
 
 class ApplyLink extends React.PureComponent {
   static type = NS.schema('Thing');
@@ -20,9 +19,7 @@ class ApplyLink extends React.PureComponent {
     const { linkedProp } = this.props;
 
     return (
-      <TableCell>
-        <input readOnly value={linkedProp.value} />
-      </TableCell>
+      <input readOnly value={linkedProp?.value} />
     );
   }
 }

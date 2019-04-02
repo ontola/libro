@@ -51,6 +51,7 @@ const CollectionPage = (props) => {
       <Property
         forceRender
         collectionDisplay={props.collectionDisplay}
+        columns={props.columns}
         depth={props.depth}
         label={NS.as('items')}
         renderLimit={Infinity}
@@ -82,6 +83,7 @@ CollectionPage.mapDataToProps = {
 CollectionPage.propTypes = {
   collectionDisplay: linkType,
   collectionIRI: linkType,
+  columns: linkType,
   currentPage: PropTypes.string,
   depth: PropTypes.number,
   views: PropTypes.arrayOf(linkType),

@@ -7,7 +7,8 @@ import {
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
-import { allTopologies } from '../../topologies';
+import { allTopologiesExcept } from '../../topologies';
+import { tableHeaderRowTopology } from '../../topologies/TableHeaderRow';
 
 const RDFProperty = ({ name, subject }) => (
   <span>
@@ -17,7 +18,7 @@ const RDFProperty = ({ name, subject }) => (
 );
 
 RDFProperty.type = NS.rdf('Property');
-RDFProperty.topology = allTopologies;
+RDFProperty.topology = allTopologiesExcept(tableHeaderRowTopology);
 RDFProperty.mapDataToProps = {
   name: { label: [NS.schema('name'), NS.rdfs('label')] },
 };

@@ -26,7 +26,6 @@ import { popupTopology } from '../../../topologies/Popup';
 import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
 import { selectTopology } from '../../../topologies/Select';
 import { tableRowTopology } from '../../../topologies/TableRow';
-import TableCell from '../../../topologies/TableCell';
 import { widgetTopologyTopology } from '../../../topologies/WidgetTopology/WidgetTopology';
 
 const NamePredicates = [
@@ -159,7 +158,7 @@ export default [
     ]
   ),
   LinkedRenderStore.registerRenderer(
-    ({ linkedProp }) => <TableCell><LDLink>{linkedProp.value}</LDLink></TableCell>,
+    ({ linkedProp }) => <LDLink features={['bold']}>{linkedProp?.value}</LDLink>,
     NS.schema('Thing'),
     NamePredicates,
     tableRowTopology

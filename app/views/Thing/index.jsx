@@ -29,16 +29,12 @@ import CreateAction from './properties/createAction';
 import DateCreated from './properties/dateCreated';
 import DateSubmitted from './properties/dateSubmitted';
 import description from './properties/description';
-import Email from './properties/email';
 import ExpiresAt from './properties/expiresAt';
 import FollowsCount from './properties/followsCount';
 import Image from './properties/image';
-import Invitee from './properties/invitee';
 import IsPartOf from './properties/isPartOf';
 import IsPrimaryTopicOf from './properties/isPrimaryTopicOf';
 import Location from './properties/location';
-import MakePrimaryAction from './properties/makePrimaryAction';
-import Member from './properties/member';
 import Menus from './properties/menus';
 import MotionsCount from './properties/motionsCount';
 import Name from './properties/name';
@@ -46,8 +42,8 @@ import Omniform from './properties/omniform';
 import Organization from './properties/organization';
 import PinnedAt from './properties/pinnedAt';
 import PotentialAction from './properties/potentialAction';
+import Predicate from './properties/predicate';
 import PublishAction from './properties/publishAction';
-import SendConfirmationAction from './properties/sendConfirmationAction';
 import SuperEvent from './properties/superEvent';
 import Text from './properties/text';
 import TopComment from './properties/topComment';
@@ -62,7 +58,9 @@ import ThingParent from './ThingParent';
 import ThingPopup from './ThingPopup';
 import ThingSelect from './ThingSelect';
 import ThingTable from './ThingTable';
+import ThingTableCell from './ThingTableCell';
 import ThingTableRow from './ThingTableRow';
+import ThingTableHeaderRow from './ThingTableHeaderRow';
 
 const CardHoverBox = hoverBox();
 
@@ -123,6 +121,8 @@ export default [
   ThingPageHeader,
   ThingSelect,
   ThingTable,
+  ThingTableCell,
+  ThingTableHeaderRow,
   ThingTableRow,
   ThingParent,
   ThingPopup,
@@ -170,23 +170,19 @@ export default [
   DateCreated,
   DateSubmitted,
   description,
-  Email,
   ExpiresAt,
   FollowsCount,
   IsPrimaryTopicOf,
   IsPartOf,
   Image,
-  Invitee,
   Location,
-  MakePrimaryAction,
-  Member,
   Menus,
   MotionsCount,
   ...Name,
   ...Omniform,
   Organization,
   PinnedAt,
-  SendConfirmationAction,
+  Predicate,
   SuperEvent,
   ...PotentialAction,
   PublishAction,

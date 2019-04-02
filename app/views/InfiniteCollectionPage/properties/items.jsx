@@ -5,7 +5,7 @@ import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { navbarTopology } from '../../../topologies/Navbar';
-import { collectionDisplayWrapper } from '../../CollectionPage/properties/items';
+import { CollectionDisplayWrapper } from '../../CollectionPage/properties/items';
 
 const propTypes = {
   /** The amount of items to render. Leave undefined for all items */
@@ -63,7 +63,13 @@ class ItemsComp extends PropertyBase {
       children = <LinkedResourceContainer subject={this.getLinkedObjectProperty()} />;
     }
 
-    return collectionDisplayWrapper(this.props.collectionDisplay, children, this.props.topology);
+    return (
+      <CollectionDisplayWrapper
+        collectionDisplay={this.props.collectionDisplay}
+        itemList={children}
+        topology={this.props.topology}
+      />
+    );
   }
 }
 

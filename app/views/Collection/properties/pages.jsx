@@ -12,6 +12,7 @@ import { CollectionTypes } from '../types';
 
 const Pages = ({
   collectionDisplay,
+  columns,
   depth,
   pages,
 }) => {
@@ -20,6 +21,7 @@ const Pages = ({
       <LinkedResourceContainer
         forceRender
         collectionDisplay={collectionDisplay}
+        columns={columns}
         depth={depth}
         subject={pages[0]}
       />
@@ -29,6 +31,7 @@ const Pages = ({
   const obs = pages.map(iri => (
     <LinkedResourceContainer
       collectionDisplay={collectionDisplay}
+      columns={columns}
       depth={depth}
       key={`pages-${iri.value}`}
       subject={iri}
@@ -61,6 +64,7 @@ Pages.mapDataToProps = {
 
 Pages.propTypes = {
   collectionDisplay: linkType,
+  columns: linkType,
   depth: PropTypes.number,
   pages: linkType,
 };

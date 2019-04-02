@@ -1,6 +1,6 @@
 {
   "https://app.argu.co/i18n/actions/MakePrimaryAction/defaultEmailLabel": "Primair e-mail adres",
-  "https://app.argu.co/i18n/actions/SendConfirmationAction/confirmedLabel": "Is bevestigd",
+  "https://app.argu.co/i18n/actions/SendConfirmationAction/confirmedLabel": "Reeds bevestigd",
   "https://app.argu.co/i18n/actions/labels/save": "opslaan",
   "https://app.argu.co/i18n/argu:Motion/argu:motionsCount/label": "{count} ideeën",
   "https://app.argu.co/i18n/as:CollectionPage/as:next/label": "volgende",

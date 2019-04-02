@@ -1,4 +1,4 @@
-import { Property, register } from 'link-redux';
+import { Property, register, subjectType } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
@@ -15,9 +15,13 @@ class ThingPageHeader extends React.PureComponent {
 
   static topology = pageHeaderTopology;
 
+  static propTypes = {
+    subject: subjectType,
+  };
+
   render() {
     return (
-      <div className="ThingPageHeader">
+      <div about={this.props.subject?.value} className="ThingPageHeader">
         <PageHeaderMenuItems>
           <CardFloat>
             <Property label={NS.argu('followMenu')} />

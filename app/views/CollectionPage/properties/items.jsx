@@ -7,33 +7,20 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { listToArr } from '../../../helpers/data';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import Card from '../../../topologies/Card';
 import Grid from '../../../topologies/Grid';
-import { CollectionViewTypes } from '../types';
 import Container, { containerTopology } from '../../../topologies/Container';
 import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
 import Table from '../../../topologies/Table';
+import TableHead from '../../../topologies/TableHead';
+import TableHeaderRow from '../../../topologies/TableHeaderRow';
+import { CollectionViewTypes } from '../types';
 
-const settingsTableColumns = [
-  NS.argu('invitee'),
-  NS.argu('applyLink'),
-  NS.argu('redirectUrl'),
-  NS.argu('alias'),
-  NS.argu('shortnameable'),
-  [NS.schema('name'), NS.rdfs('label')],
-  NS.schema('email'),
-  NS.org('member'),
-  NS.argu('grantSet'),
-  NS.argu('followsCount'),
-  NS.org('hasMember'),
-  NS.argu('makePrimaryAction'),
-  NS.argu('sendConfirmationAction'),
-  [NS.argu('settingsMenu'), NS.argu('updateAction')],
-  NS.argu('destroyAction'),
-];
-
-export const collectionDisplayWrapper = (collectionDisplay, itemList, topology) => {
+export const CollectionDisplayWrapper = ({
+  collectionDisplay, itemList, columns, topology,
+}) => {
   switch (collectionDisplay) {
     case NS.argu('collectionDisplay/grid'):
       return (
@@ -45,6 +32,17 @@ export const collectionDisplayWrapper = (collectionDisplay, itemList, topology) 
       return (
         <Card>
           <Table>
+            <TableHead>
+              <TableHeaderRow>
+                {columns.map(property => (
+                  <LinkedResourceContainer
+                    forceRender
+                    key={property.value}
+                    subject={property}
+                  />
+                ))}
+              </TableHeaderRow>
+            </TableHead>
             <tbody>
               {itemList}
             </tbody>
@@ -98,19 +96,12 @@ class Items extends PropertyBase {
     totalCount: linkType,
   };
 
-  columns() {
-    if (this.props.collectionDisplay === NS.argu('collectionDisplay/settingsTable')) {
-      return settingsTableColumns;
-    }
-    return undefined;
-  }
-
-  itemList() {
+  itemList(columns) {
     return this.props.items
       .slice(0, this.props.renderLimit)
       .map(iri => (
         <LinkedResourceContainer
-          columns={this.columns()}
+          columns={columns}
           depth={this.props.depth}
           key={`${this.props.subject}:${iri.value}`}
           subject={iri}
@@ -118,7 +109,7 @@ class Items extends PropertyBase {
       ));
   }
 
-  styleWrapper(itemList) {
+  styleWrapper(itemList, columns) {
     if (this.props.style && this.props.style !== {}) {
       return (
         <div style={this.props.style}>
@@ -127,11 +118,25 @@ class Items extends PropertyBase {
       );
     }
 
-    return collectionDisplayWrapper(this.props.collectionDisplay, itemList, this.props.topology);
+    return (
+      <CollectionDisplayWrapper
+        collectionDisplay={this.props.collectionDisplay}
+        columns={columns}
+        itemList={itemList}
+        topology={this.props.topology}
+      />
+    );
   }
 
   render() {
-    const { items, totalCount } = this.props;
+    const {
+      columns,
+      items,
+      lrs,
+      totalCount,
+    } = this.props;
+    const resolvedColumns = columns ? listToArr(lrs, [], columns) : undefined;
+
     let children = null;
 
     if (totalCount.value === '0') {
@@ -139,9 +144,9 @@ class Items extends PropertyBase {
     } else if (Array.isArray(items) && items.length === 0) {
       children = null;
     } else if (Array.isArray(items)) {
-      children = this.itemList();
+      children = this.itemList(resolvedColumns);
     } else if (typeof items.toArray !== 'undefined') {
-      children = this.itemList().toKeyedSeq();
+      children = this.itemList(resolvedColumns).toKeyedSeq();
     } else {
       children = (
         <LinkedResourceContainer
@@ -151,7 +156,7 @@ class Items extends PropertyBase {
       );
     }
 
-    return this.styleWrapper(children);
+    return this.styleWrapper(children, resolvedColumns || []);
   }
 }
 

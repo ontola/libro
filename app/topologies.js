@@ -35,6 +35,7 @@ import { voteEventTopology } from './topologies/VoteEvent/index';
 import { voteEventResultTopology } from './topologies/VoteEventResult/index';
 import { voteEventSideTopology } from './topologies/VoteEventSide/index';
 import { widgetTopologyTopology } from './topologies/WidgetTopology/WidgetTopology';
+import { tableHeaderRowTopology } from './topologies/TableHeaderRow';
 
 export const allTopologies = [
   undefined,
@@ -65,6 +66,7 @@ export const allTopologies = [
   pageHeaderTopology,
   popupTopology,
   selectTopology,
+  tableHeaderRowTopology,
   tableTopology,
   tableRowTopology,
   tableCellTopology,

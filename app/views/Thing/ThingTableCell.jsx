@@ -1,4 +1,4 @@
-import { register, topologyType } from 'link-redux';
+import { register } from 'link-redux';
 import PropTypes from 'prop-types';
 import { Literal } from 'rdflib';
 import React from 'react';
@@ -9,20 +9,19 @@ import {
   LDLink,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
-import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { tableCellTopology } from '../../topologies/TableCell';
 
 const messages = defineMessages({
   showProfile: {
     defaultMessage: "Show {name}'s profile",
-    id: 'https://app.argu.co/i18n/schema:Person/showProfileText',
+    id: 'https://app.argu.co/i18n/schema:Thing/showResourceText',
   },
 });
 
-class PersonDetail extends React.PureComponent {
-  static type = [NS.schema('Person'), NS.person('Person'), NS.argu('Page')];
+class ThingTableCell extends React.PureComponent {
+  static type = [NS.schema('Thing'), NS.rdfs('Resource')];
 
-  static topology = [detailsBarTopology, tableCellTopology];
+  static topology = [tableCellTopology];
 
   static mapDataToProps = {
     name: {
@@ -38,28 +37,27 @@ class PersonDetail extends React.PureComponent {
   static propTypes = {
     intl: intlShape,
     name: PropTypes.instanceOf(Literal),
-    topology: topologyType,
   };
 
   render() {
     const {
       intl: { formatMessage },
       name,
-      topology,
     } = this.props;
 
     return (
       <LDLink
-        features={['centered', topology === tableCellTopology ? 'bold' : '']}
-        title={formatMessage(messages.showProfile, { name })}
+        features={['bold', 'centered']}
+        property={NS.schema('name').value}
+        title={formatMessage(messages.showProfile, { name: name?.value })}
       >
         <Detail
           linkedImage
-          text={name.value}
+          text={name?.value}
         />
       </LDLink>
     );
   }
 }
 
-export default register(PersonDetail);
+export default register(ThingTableCell);

@@ -273,6 +273,9 @@ const ontologicalClassData = [
 
   new Statement(NS.argu('Blog'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.argu('Blog'), NS.rdfs('subClassOf'), NS.argu('ContainerNode')),
+
+  new Statement(NS.argu('MenuItem'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('MenuItem'), NS.rdfs('subClassOf'), NS.argu('Thing')),
 ];
 // tslint:enable max-line-length
 
@@ -281,6 +284,58 @@ LRS.addOntologySchematics(ontologicalClassData);
 LRS.store.addStatements(ontologicalClassData);
 
 const ontologicalPropertyData = [
+    new Statement(NS.schema('email'), NS.rdf('type'), NS.rdf('Property')),
+    new Statement(NS.schema('email'), NS.rdfs('label'), Literal.find('Email', languages.en)),
+    new Statement(NS.schema('email'), NS.rdfs('label'), Literal.find('E-mail', languages.nl)),
+
+    new Statement(NS.schema('name'), NS.rdf('type'), NS.rdf('Property')),
+    new Statement(NS.schema('name'), NS.rdfs('label'), Literal.find('Name', languages.en)),
+    new Statement(NS.schema('name'), NS.rdfs('label'), Literal.find('Naam', languages.nl)),
+
+    new Statement(NS.argu('followsCount'), NS.rdf('type'), NS.rdf('Property')),
+    new Statement(NS.argu('followsCount'), NS.rdfs('label'), Literal.find('Followers', languages.en)),
+    new Statement(NS.argu('followsCount'), NS.rdfs('label'), Literal.find('Volgers', languages.nl)),
+
+    new Statement(NS.argu('updateAction'), NS.rdf('type'), NS.rdf('Property')),
+    new Statement(NS.argu('updateAction'), NS.rdfs('label'), Literal.find('Bewerken', languages.en)),
+    new Statement(NS.argu('updateAction'), NS.rdfs('label'), Literal.find('Edit', languages.nl)),
+
+    new Statement(NS.argu('destroyAction'), NS.rdf('type'), NS.rdf('Property')),
+    new Statement(NS.argu('destroyAction'), NS.rdfs('label'), Literal.find('Delete', languages.en)),
+    new Statement(NS.argu('destroyAction'), NS.rdfs('label'), Literal.find('Verwijderen', languages.nl)),
+
+    new Statement(NS.argu('makePrimaryAction'), NS.rdf('type'), NS.rdf('Property')),
+    new Statement(NS.argu('makePrimaryAction'), NS.rdfs('label'), Literal.find('Make primary', languages.en)),
+    new Statement(NS.argu('makePrimaryAction'), NS.rdfs('label'), Literal.find('Maak primair', languages.nl)),
+
+    new Statement(NS.argu('sendConfirmationAction'), NS.rdf('type'), NS.rdf('Property')),
+    new Statement(NS.argu('sendConfirmationAction'), NS.rdfs('label'), Literal.find('Send confirmation', languages.en)),
+    new Statement(
+        NS.argu('sendConfirmationAction'),
+        NS.rdfs('label'),
+        Literal.find('Verstuur bevestiging', languages.nl),
+    ),
+
+    new Statement(NS.argu('grantSet'), NS.rdf('type'), NS.rdf('Property')),
+    new Statement(NS.argu('grantSet'), NS.rdfs('label'), Literal.find('Permission set', languages.en)),
+    new Statement(NS.argu('grantSet'), NS.rdfs('label'), Literal.find('Rechtenset', languages.nl)),
+
+    new Statement(NS.argu('settingsMenu'), NS.rdf('type'), NS.rdf('Property')),
+    new Statement(NS.argu('settingsMenu'), NS.rdfs('label'), Literal.find('Name', languages.en)),
+    new Statement(NS.argu('settingsMenu'), NS.rdfs('label'), Literal.find('Naam', languages.nl)),
+
+    new Statement(NS.argu('alias'), NS.rdf('type'), NS.rdf('Property')),
+    new Statement(NS.argu('alias'), NS.rdfs('label'), Literal.find('Alias', languages.en)),
+    new Statement(NS.argu('alias'), NS.rdfs('label'), Literal.find('Alias', languages.nl)),
+
+    new Statement(NS.argu('shortnameable'), NS.rdf('type'), NS.rdf('Property')),
+    new Statement(NS.argu('shortnameable'), NS.rdfs('label'), Literal.find('Target', languages.en)),
+    new Statement(NS.argu('shortnameable'), NS.rdfs('label'), Literal.find('Doel', languages.nl)),
+
+    new Statement(NS.org('member'), NS.rdf('type'), NS.rdf('Property')),
+    new Statement(NS.org('member'), NS.rdfs('label'), Literal.find('Member', languages.en)),
+    new Statement(NS.org('member'), NS.rdfs('label'), Literal.find('Lid', languages.nl)),
+
     new Statement(NS.argu('attachments'), NS.rdf('type'), NS.rdf('Property')),
     new Statement(NS.argu('attachments'), NS.rdfs('label'), Literal.find('Attachments', languages.en)),
     new Statement(NS.argu('attachments'), NS.rdfs('label'), Literal.find('Bijlagen', languages.nl)),

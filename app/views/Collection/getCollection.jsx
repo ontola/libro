@@ -25,6 +25,7 @@ export default function getCollection({
   class Collection extends React.Component {
     static propTypes = {
       collectionDisplay: linkType,
+      columns: linkType,
       currentPage: PropTypes.string,
       defaultType: linkType,
       depth: PropTypes.number,
@@ -66,6 +67,7 @@ export default function getCollection({
     render() {
       const {
         collectionDisplay,
+        columns,
         depth,
         pages,
         totalItems,
@@ -79,6 +81,7 @@ export default function getCollection({
         children = (
           <LinkedResourceContainer
             collectionDisplay={collectionDisplay}
+            columns={columns}
             depth={depth}
             subject={new NamedNode(this.props.currentPage)}
           />
@@ -88,6 +91,7 @@ export default function getCollection({
           <Property
             forceRender
             collectionDisplay={collectionDisplay}
+            columns={columns}
             depth={depth}
             label={NS.as('pages')}
           />
@@ -119,6 +123,7 @@ export default function getCollection({
 
   return link({
     collectionDisplay: NS.argu('collectionDisplay'),
+    columns: NS.argu('columns'),
     defaultType: NS.argu('defaultType'),
     pages: {
       label: NS.as('pages'),
