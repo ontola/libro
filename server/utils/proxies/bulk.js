@@ -2,7 +2,6 @@ import * as http from 'http';
 import * as zlib from 'zlib';
 
 import HttpStatus from 'http-status-codes';
-import { normalizeType } from 'link-lib';
 
 import {
   EXEC_HEADER_NAME,
@@ -15,6 +14,7 @@ import {
   setProxyReqHeaders,
   setBulkResHeaders,
   newAuthorizationBulk,
+  normalizeType,
 } from './helpers';
 
 export default (req, res) => {

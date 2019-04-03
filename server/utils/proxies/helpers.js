@@ -48,6 +48,10 @@ export function newAuthorizationBulk(req, backendRes) {
   return undefined;
 }
 
+export function normalizeType(type) {
+  return Array.isArray(type) ? type : [type];
+}
+
 /* eslint-disable no-param-reassign */
 export function setProxyResHeaders(proxyRes, req) {
   delete proxyRes.headers.vary;
