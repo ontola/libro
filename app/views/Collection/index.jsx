@@ -10,6 +10,7 @@ import React from 'react';
 import {
   Resource,
 } from '../../components';
+import CardContent from '../../components/Card/CardContent';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { cardTopology } from '../../topologies/Card';
@@ -65,10 +66,12 @@ const collectionSection = ({ omniform = false, renderWhenEmpty = false } = {}) =
     const pagesShouldRender = renderWhenEmpty || totalItems.value !== '0';
 
     return (
-      <CardList direction={direction}>
-        {pagesShouldRender && <Property forceRender label={NS.as('pages')} />}
-        <Property label={NS.argu('createAction')} omniform={omniform} />
-      </CardList>
+      <CardContent noStartSpacing>
+        <CardList direction={direction}>
+          {pagesShouldRender && <Property forceRender label={NS.as('pages')} />}
+          <Property label={NS.argu('createAction')} omniform={omniform} />
+        </CardList>
+      </CardContent>
     );
   };
 
