@@ -1,5 +1,6 @@
 import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 
@@ -14,9 +15,17 @@ class Table extends TopologyProvider {
 
   constructor() {
     super();
-    this.className = 'Table';
-    this.elementType = 'table';
     this.topology = tableTopology;
+  }
+
+  render() {
+    return this.wrap((
+      <div className="Table Table__wrapper">
+        <table className="Table Table__table">
+          {this.props.children}
+        </table>
+      </div>
+    ));
   }
 }
 

@@ -1,21 +1,28 @@
 @import '../../components/shared/config';
 
 .Table {
-  width: 100%;
-
-  td {
-    a {
-      margin: 0 .1rem;
-    }
-
-    .fa {
-      color: color('grey', 'xx-light-foreground-small');
-    }
+  &__wrapper {
+    max-width: 100%;
+    overflow-x: auto;
   }
 
-  tr {
-    &:nth-child(even) {
-      background-color: color('grey', 'x-light');
+  &__table {
+    width: 100%;
+
+    td {
+      a {
+        margin: 0 .1rem;
+      }
+
+      .fa {
+        color: color('grey', 'xx-light-foreground-small');
+      }
+    }
+
+    tr {
+      &:nth-child(even) {
+        background-color: color('grey', 'x-light');
+      }
     }
   }
 }
