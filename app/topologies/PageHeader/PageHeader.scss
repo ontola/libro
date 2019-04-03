@@ -14,7 +14,7 @@
 
   &__container {
     @include small-only {
-      padding: unit('medium');
+      padding: units('none', 'medium');
       padding-top: 0;
     }
 

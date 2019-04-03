@@ -2,6 +2,7 @@
 
 .TabBar {
   background-color: color('white');
+  @include custom-prop(--vertical-scroller-background, #{color('white')});
   display: flex;
   flex-direction: row;
 
