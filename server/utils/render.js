@@ -131,9 +131,11 @@ export const renderFullPage = (domain, req, res, websiteMeta, data) => {
       <body>
         <style id="theme-config">
           :root {
-            --accent-background-color: ${websiteMeta.accentBackgroundColor}; 
-            --accent-color: ${websiteMeta.accentColor}; 
-            --navbar-background: ${websiteMeta.navbarBackground}; 
+            --accent-background-color:${websiteMeta.accentBackgroundColor}; 
+            --accent-color:${websiteMeta.accentColor}; 
+            --navbar-background:${websiteMeta.navbarBackground}; 
+            --navbar-color:${websiteMeta.navbarColor}; 
+            --navbar-color-hover:${websiteMeta.navbarColor}12; 
           }
           .accent-background-color {
             background-color: ${websiteMeta.accentBackgroundColor};

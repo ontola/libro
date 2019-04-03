@@ -16,16 +16,6 @@
   }
 }
 
-.NavbarContainer--dark-text {
-  border-bottom: 1px solid color('blue', 'x-light');
-
-  span,
-  a {
-    color: color('grey', 'dark');
-    transition: $nav-transition-time color;
-  }
-}
-
 .NavBarContent {
   @include large {
     padding: units('none', 'small');
@@ -48,17 +38,9 @@
     align-self: center;
     color: color('white');
 
-    & .NavBarContent--dark-text {
-      color: color('grey', 'dark');
-    }
-
     path,
     rect {
       fill: color('white');
-
-      & .NavBarContent--dark-text {
-        color: color('grey', 'dark');
-      }
     }
   }
 
@@ -69,6 +51,18 @@
   &__footer {
     background-color: inherit;
     z-index: 1;
+  }
+
+  &__items {
+    display: flex;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    max-height: 100%;
+    overflow: hidden;
+
+    @include mobile-s-only {
+      display: none;
+    }
   }
 }
 

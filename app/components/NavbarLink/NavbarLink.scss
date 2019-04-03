@@ -35,13 +35,28 @@
 
 .NavbarLink--active {
   &::after {
-    background-color: color('transparent', 'mid-light');
     bottom: 0;
     content: '';
     height: .3em;
     left: 0;
     position: absolute;
     right: 0;
+  }
+}
+
+.Navbar--white-text {
+  .NavbarLink--active {
+    &::after {
+      background-color: var(--navbar-color);
+    }
+  }
+}
+
+.Navbar--dark-text {
+  .NavbarLink--active {
+    &::after {
+      background-color: var(--accent-background-color);
+    }
   }
 }
 
@@ -96,7 +111,7 @@
 .SideBarCollapsible__toggle {
   &:focus,
   &:hover {
-    background-color: color('transparent', 'x-light');
+    background-color: var(--navbar-color-hover);
   }
 
   &:active {

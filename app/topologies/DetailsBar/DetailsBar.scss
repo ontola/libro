@@ -1,8 +1,6 @@
 @import '../../components/shared/config';
 
 .DetailsBar {
-  @include custom-prop(--navbar-background-color, #{color('grey', 'xx-light')});
-
   -webkit-overflow-scrolling: touch;
   align-items: flex-start;
   background-color: color('grey', 'xx-light');

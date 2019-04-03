@@ -8,6 +8,11 @@
 // BREAKPOINTS
 $responsive-small-breakpoint: 900px;
 $responsive-smallest-breakpoint: 650px;
+$responsive-mobile-s-breakpoint: 320px;
+$responsive-mobile-m-breakpoint: 375px;
+$responsive-mobile-l-breakpoint: 425px;
+$responsive-tablet-breakpoint: 768px;
+$responsive-laptop-breakpoint: 1024px;
 
 @mixin large {
   @media (min-width: #{$responsive-small-breakpoint}) {
@@ -23,6 +28,36 @@ $responsive-smallest-breakpoint: 650px;
 
 @mixin smallest-only {
   @media (max-width: #{$responsive-smallest-breakpoint}) {
+    @content;
+  }
+}
+
+@mixin mobile-s-only {
+  @media (max-width: #{$responsive-mobile-s-breakpoint}) {
+    @content;
+  }
+}
+
+@mixin mobile-m-only {
+  @media (min-width: #{$responsive-mobile-s-breakpoint}) and (max-width: #{$responsive-mobile-m-breakpoint}) {
+    @content;
+  }
+}
+
+@mixin mobile-l-only {
+  @media (min-width: #{$responsive-mobile-m-breakpoint}) and (max-width: #{$responsive-mobile-l-breakpoint}) {
+    @content;
+  }
+}
+
+@mixin tablet-only {
+  @media (min-width: #{$responsive-mobile-l-breakpoint}) and (max-width: #{$responsive-mobile-l-breakpoint}) {
+    @content;
+  }
+}
+
+@mixin laptop-only {
+  @media (min-width: #{$responsive-tablet-breakpoint}) and (max-width: #{$responsive-mobile-l-breakpoint}) {
     @content;
   }
 }

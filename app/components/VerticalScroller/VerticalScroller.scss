@@ -20,8 +20,8 @@
     -ms-overflow-style: -ms-autohiding-scrollbar;
 
     background-attachment: local, local, scroll, scroll;
-    background-image: linear-gradient(to right, var(--navbar-background-color), transparent)
-    , linear-gradient(to right, transparent, var(--navbar-background-color))
+    background-image: linear-gradient(to right, color('grey', 'xx-light'), transparent)
+    , linear-gradient(to right, transparent, color('grey', 'xx-light'))
     , linear-gradient(to right, color('transparent', 'x-dark'), color('transparent', 'transparent'))
     , linear-gradient(to left, color('transparent', 'x-dark'), color('transparent', 'transparent'));
     background-position: left center, right center, left center, right center;

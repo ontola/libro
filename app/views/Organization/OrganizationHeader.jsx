@@ -2,14 +2,12 @@ import {
   LinkedResourceContainer,
   Property,
   linkType,
-  register, lrsType,
+  register,
 } from 'link-redux';
 import React from 'react';
 import MediaQuery from 'react-responsive';
 
-import Button from '../../components/Button';
 import { mediaQueries } from '../../components/shared/config';
-import VerticalScroller from '../../components/VerticalScroller';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { navbarTopology } from '../../topologies/Navbar';
 
@@ -40,33 +38,22 @@ class OrganizationNavbar extends React.PureComponent {
   static mapDataToProps = [NS.argu('navigationsMenu')];
 
   static propTypes = {
-    lrs: lrsType,
     navigationsMenu: linkType,
   };
 
-  renderMenuItems({ gutterCount, mq }) {
+  static renderMenuItems({ gutterCount, mq }) {
     if (gutterCount === -1) {
       return null;
     }
 
     return (
       <MediaQuery query={mq}>
-        <VerticalScroller>
+        <div className="NavBarContent__items">
           <Property
             gutter={gutterCount}
             label={NS.argu('menuItems')}
-            renderGutter={() => (
-              <Button
-                narrow
-                plain
-                className="Menu__button"
-                onClick={() => this.props.lrs.exec(NS.app('actions/menu/open'))}
-              >
-                ...
-              </Button>
-            )}
           />
-        </VerticalScroller>
+        </div>
       </MediaQuery>
     );
   }
@@ -76,10 +63,10 @@ class OrganizationNavbar extends React.PureComponent {
 
     return (
       <LinkedResourceContainer subject={navigationsMenu}>
-        {this.renderMenuItems(layouts.micro)}
-        {this.renderMenuItems(layouts.smallestOnly)}
-        {this.renderMenuItems(layouts.smallOnly)}
-        {this.renderMenuItems(layouts.largeAndAbove)}
+        {OrganizationNavbar.renderMenuItems(layouts.micro)}
+        {OrganizationNavbar.renderMenuItems(layouts.smallestOnly)}
+        {OrganizationNavbar.renderMenuItems(layouts.smallOnly)}
+        {OrganizationNavbar.renderMenuItems(layouts.largeAndAbove)}
       </LinkedResourceContainer>
     );
   }
