@@ -112,7 +112,7 @@
     "jest-plugins-recommended": "^2.9.0",
     "jest-plugins-rspec": "^2.9.0",
     "jsdom": "^14.0.0",
-    "link-lib": "=1.0.0-beta29-20190327T110141",
+    "link-lib": "=1.0.0-beta29-20190403T091842",
     "link-rdflib": "npm:link-rdflib@0.19.1-20190124T144209",
     "link-redux": "1.0.0-beta33-20190325T154126",
     "lint-staged": "^8.1.5",

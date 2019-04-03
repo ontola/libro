@@ -88,7 +88,7 @@ export default function routes(app, port) {
 
   app.use(shrinkRay(compressionOpts));
 
-  app.all('/link-lib/bulk', isBackend, bulkProxy);
+  app.post('/link-lib/bulk', isBackend, bodyParser.urlencoded({ extended: false }), bulkProxy);
   app.all('*', isBackend, backendProxy);
 
   app.use(bodyParser.urlencoded({ extended: false }));

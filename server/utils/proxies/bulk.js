@@ -2,6 +2,7 @@ import * as http from 'http';
 import * as zlib from 'zlib';
 
 import HttpStatus from 'http-status-codes';
+import { normalizeType } from 'link-lib';
 
 import {
   EXEC_HEADER_NAME,
@@ -19,25 +20,36 @@ import {
 export default (req, res) => {
   res.append('Content-Type', 'application/n-quads; charset=utf-8');
 
-  const bulkUrl = new URL(req.url, 'https://example.org');
+  const agent = new http.Agent({
+    keepAlive: true,
+    maxSockets: 3,
+    timeout: 30000,
+  });
+
   const requests = [];
-  const resources = bulkUrl
-    .searchParams
-    .getAll('resource')
+  const resources = normalizeType(req.body['resource[]'])
     .reduce((acc, iri) => (acc.includes(iri) ? acc : acc.concat(iri)), [])
     .map(iri => [decodeURIComponent(iri), route(decodeURIComponent(iri), true)])
     .map(([iri, url]) => new Promise((resolve, reject) => {
       try {
         const options = {
+          agent,
           headers: {
-            ...req.headers,
-            'Content-Encoding': null,
+            Accept: req.headers.accept,
+            'Accept-Language': req.headers['accept-language'],
+            Connection: 'keep-alive',
+            'Content-Length': 0,
+            Origin: req.headers.origin,
+            Referer: req.headers.referer,
+            'User-Agent': req.headers['user-agent'],
             'X-Forwarded-Host': req.headers.host,
+            'X-Requested-With': req.headers['x-requested-with'],
           },
           method: 'GET',
           timeout: 30000,
         };
         let buff = Buffer.alloc(0);
+
         const backendReq = http.request(url, options, (backendRes) => {
           const iriNT = iri.includes('://') ? `<${iri}>` : `_:${iri}`;
           res.write(`${iriNT} <http://www.w3.org/2011/http#statusCode> "${backendRes.statusCode}"^^<http://www.w3.org/2001/XMLSchema#integer> <http://purl.org/link-lib/meta> .\r\n`);
@@ -99,7 +111,8 @@ export default (req, res) => {
 
         backendReq.on('error', (e) => {
           backendReq.end();
-          reject(e);
+          logging.error(e);
+          resolve(e);
         });
 
         setProxyReqHeaders(backendReq, req);
@@ -115,10 +128,12 @@ export default (req, res) => {
     .then(() => {
       res.status(HttpStatus.OK);
       res.end();
+      agent.destroy();
     }).catch((e) => {
       logging.error(e);
       requests.map(r => r.abort());
       res.status(HttpStatus.INTERNAL_SERVER_ERROR);
       res.end();
+      agent.destroy();
     });
 };
