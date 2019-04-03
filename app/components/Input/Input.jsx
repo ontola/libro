@@ -123,12 +123,13 @@ const defaultProps = {
 const Input = ({
   element,
   className,
+  value,
   ...props
 }) => {
   const Element = element;
 
   return (
-    <Element className={`Input ${className ?? ''}`} {...props} />
+    <Element className={`Input ${className ?? ''}`} value={value || ''} {...props} />
   );
 };
 

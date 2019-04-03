@@ -122,7 +122,6 @@ class SignInFormCard extends SignInFormBase {
         <Card>
           {this.contentHeader()}
           <Form
-            validateOnBlur
             onSubmit={onSubmit}
           >
             {({ handleSubmit, submitting }) => (

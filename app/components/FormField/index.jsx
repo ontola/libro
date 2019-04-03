@@ -170,7 +170,7 @@ class FormField extends React.PureComponent {
         : currentValue;
     }
 
-    return nextValue || '';
+    return nextValue || undefined;
   }
 
   charCounter() {

@@ -32,7 +32,7 @@ class SignInFormCardRow extends SignInFormBase {
     const { buttonText, formFields } = this.currentFields();
 
     return (
-      <Form validateOnBlur onSubmit={onSubmit}>
+      <Form onSubmit={onSubmit}>
         {({ handleSubmit, submitting }) => (
           <form onSubmit={handleSubmit}>
             {formFields}
