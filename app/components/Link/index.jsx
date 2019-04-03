@@ -17,10 +17,8 @@ const propTypes = {
   features: PropTypes.arrayOf([
     'bold',
     'centered',
-    PropTypes.oneOf([
-      'highlighted-darken',
-      'highlighted-lighten',
-    ]),
+    'highlighted-darken',
+    'highlighted-lighten',
     'padded',
   ]),
   isIndex: PropTypes.bool,
