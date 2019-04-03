@@ -21,7 +21,7 @@ export function absoluteRouterLocation(state: Map<string, Map<string, any>>): st
 
 const paths = {
   confirmation(): string {
-    return new URL(NS.app('/users/confirmation/new').value).pathname;
+    return new URL(NS.app('users/confirmation/new').value).pathname;
   },
 
   index(): string {
