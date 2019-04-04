@@ -1,0 +1,34 @@
+@import '../shared/config';
+
+.Modal__overlay {
+  align-items: center;
+  background-color: color('transparent', 'xx-dark');
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  overflow: scroll;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: z('modal-drop');
+}
+
+.Modal {
+  background: none;
+  border: 0;
+  bottom: auto;
+  left: auto;
+  max-height: 100%;
+  overflow: visible;
+  padding: 0;
+  right: auto;
+  top: auto;
+  z-index: z('modal');
+}
+
+.Modal__close {
+  position: absolute;
+  right: 0;
+  top: 0;
+}

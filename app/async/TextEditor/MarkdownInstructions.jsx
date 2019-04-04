@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import ReactModal from 'react-modal';
 
-import { APP_ELEMENT } from '../../config';
 import Button from '../../components/Button';
 import Markdown from '../../components/Markdown';
+import Modal from '../../components/Modal';
 
-import './Modal.scss';
 import instructions from './instructions';
-
-ReactModal.setAppElement(document.getElementById(APP_ELEMENT));
 
 const getParent = () => document.querySelector('#start-of-content');
 
@@ -42,11 +38,9 @@ class MarkdownInstructions extends Component {
         >
         Markdown hulp
         </Button>
-        <ReactModal
-          className="Modal"
+        <Modal
           contentLabel="onRequestClose Example"
           isOpen={this.state.showModal}
-          overlayClassName="Modal__overlay"
           parentSelector={getParent}
           onRequestClose={this.handleCloseModal}
         >
@@ -61,7 +55,7 @@ class MarkdownInstructions extends Component {
           <Markdown
             text={instructions}
           />
-        </ReactModal>
+        </Modal>
       </div>
     );
   }
