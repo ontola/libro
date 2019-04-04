@@ -2,6 +2,7 @@
 import bodyParser from 'body-parser';
 import csurf from 'csurf';
 import expressStaticGzip from 'express-static-gzip';
+import * as HttpStatus from 'http-status-codes';
 import morgan from 'morgan';
 import * as shrinkRay from 'shrink-ray-current';
 import uuidv4 from 'uuid/v4';
@@ -70,6 +71,17 @@ export default function routes(app, port) {
   // Static directory for express
   app.use('/static', expressStaticGzip('static', staticCompressionOpts()));
   app.use('/f_assets', expressStaticGzip('dist/public/f_assets', staticCompressionOpts()));
+  app.get('/robots.txt', (req, res) => {
+    if (req.host === 'demogemeente.nl') {
+      return res.status(HttpStatus.NOT_FOUND).end();
+    }
+
+    return res
+      .header('Content-Type', 'text/plain')
+      .status(HttpStatus.OK)
+      .send('User-agent: *\r\nDisallow: /\r\n')
+      .end();
+  });
   app.use('/', expressStaticGzip('dist/public', staticCompressionOpts(true)));
   app.get('/assets/*', backendProxy);
   app.get('/packs/*', backendProxy);

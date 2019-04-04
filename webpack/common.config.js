@@ -48,10 +48,6 @@ const common = {
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin([
       {
-        from: 'static/robots.txt',
-        to: path.resolve(__dirname, '..', 'dist', 'public'),
-      },
-      {
         from: 'static/preloader.css',
         to: path.resolve(__dirname, '..', 'dist', 'public'),
       },
