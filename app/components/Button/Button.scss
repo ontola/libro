@@ -199,12 +199,6 @@ a {
     right: 0;
     top: 0;
   }
-
-  @include small-only {
-    .Button__label {
-      display: none;
-    }
-  }
 }
 
 .Button--omniform-switcher--current {

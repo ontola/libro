@@ -1,8 +1,10 @@
 import { linkType, register } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
+import MediaQuery from 'react-responsive';
 
 import { Button } from '../../components';
+import { mediaQueries } from '../../components/shared/config';
 import { normalizeFontAwesomeIRI } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { formFooterTopology } from '../../topologies/FormFooter/Footer';
@@ -46,7 +48,9 @@ class RDFSClassFormFooter extends React.PureComponent {
         title={description.value}
         onClick={onClick}
       >
-        {label.value}
+        <MediaQuery query={mediaQueries.smallAndAbove}>
+          {label.value}
+        </MediaQuery>
       </Button>
     );
   }
