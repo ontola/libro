@@ -8,13 +8,22 @@ import {
 
 const propTypes = {
   children: PropTypes.node,
-  features: PropTypes.arrayOf([
-    'highlighted-darken',
-    'highlighted-lighten',
-    'padded',
-  ]),
+  features: PropTypes.arrayOf(
+    PropTypes.oneOf([
+      'highlighted-darken',
+      'highlighted-lighten',
+      'padded',
+    ])
+  ),
   isIndex: PropTypes.bool,
   onClick: PropTypes.func,
+  target: PropTypes.oneOf([
+    '_blank',
+    '_self',
+    '_parent',
+    '_top',
+    'modal',
+  ]),
   to: PropTypes.string,
 };
 
@@ -25,6 +34,7 @@ class NavbarLinkLink extends PureComponent {
       features,
       isIndex,
       onClick,
+      target,
       to,
     } = this.props;
 
@@ -47,6 +57,7 @@ class NavbarLinkLink extends PureComponent {
         className="NavbarLink__link"
         exact={isIndex}
         features={features}
+        target={target}
         to={path}
         onClick={onClick}
       >

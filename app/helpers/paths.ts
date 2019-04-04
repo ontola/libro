@@ -21,7 +21,7 @@ export function absoluteRouterLocation(state: Map<string, Map<string, any>>): st
 
 const paths = {
   confirmation(): string {
-    return new URL(NS.app('users/confirmation/new').value).pathname;
+    return NS.app('users/confirmation/new').value;
   },
 
   index(): string {
@@ -29,11 +29,11 @@ const paths = {
   },
 
   newPassword(): string {
-    return new URL(NS.app('users/password/new').value).pathname;
+    return NS.app('users/password/new').value;
   },
 
   newUnlock(): string {
-    return new URL(NS.app('users/unlock/new').value).pathname;
+    return NS.app('users/unlock/new').value;
   },
 
   /**
@@ -42,7 +42,7 @@ const paths = {
    * @returns {string} The URL.
    */
   signIn(r?: string): string {
-    const url = new URL(NS.app('u/sign_in').value).pathname;
+    const url = NS.app('u/sign_in').value;
     return r ? `${url}?r=${encodeURIComponent(r)}` : url;
   },
 };

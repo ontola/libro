@@ -4,7 +4,6 @@ import React from 'react';
 import { subjectType, useLinkContext } from 'link-redux';
 
 import Link from '../Link';
-import { retrievePath } from '../../helpers/iris';
 import { handle } from '../../helpers/logging';
 
 const LDLink = ({
@@ -18,7 +17,7 @@ const LDLink = ({
     handle(new Error('LDLINK NO SUBJECT'));
     return '';
   }
-  const href = retrievePath(to ? to.value : subject.value);
+  const href = to ? to.value : subject.value;
 
   return (
     <Link
@@ -36,6 +35,13 @@ LDLink.propTypes = {
   location: PropTypes.string,
   onClick: PropTypes.func,
   subject: subjectType,
+  target: PropTypes.oneOf([
+    '_blank',
+    '_self',
+    '_parent',
+    '_top',
+    'modal',
+  ]),
   title: PropTypes.string,
   /** Overrides the url */
   to: PropTypes.instanceOf(NamedNode),

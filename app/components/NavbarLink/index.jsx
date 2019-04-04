@@ -26,6 +26,13 @@ class NavbarLink extends React.PureComponent {
       PropTypes.node,
     ]),
     onClick: PropTypes.func,
+    target: PropTypes.oneOf([
+      '_blank',
+      '_self',
+      '_parent',
+      '_top',
+      'modal',
+    ]),
     to: PropTypes.string,
   };
 
@@ -39,6 +46,7 @@ class NavbarLink extends React.PureComponent {
       isIndex,
       closeBarOnClick,
       onClick,
+      target,
       to,
     } = this.props;
 
@@ -48,6 +56,7 @@ class NavbarLink extends React.PureComponent {
       <NavbarLinkWrapper bold={bold}>
         <NavbarLinkLink
           exact={isIndex}
+          target={target}
           to={to}
           onClick={onClick || closeBarOnClick}
         >

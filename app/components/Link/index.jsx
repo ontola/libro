@@ -1,4 +1,6 @@
+import { lrsType, withLRS } from 'link-redux';
 import PropTypes from 'prop-types';
+import { NamedNode } from 'rdflib';
 import React, { PureComponent } from 'react';
 import { Link as DomLink, NavLink } from 'react-router-dom';
 
@@ -14,22 +16,31 @@ const propTypes = {
   activeClassName: PropTypes.string,
   children: PropTypes.node,
   className: PropTypes.string,
-  features: PropTypes.arrayOf([
-    'bold',
-    'centered',
-    'highlighted-darken',
-    'highlighted-lighten',
-    'padded',
-  ]),
+  features: PropTypes.arrayOf(
+    PropTypes.oneOf([
+      'bold',
+      'centered',
+      'highlighted-darken',
+      'highlighted-lighten',
+      'padded',
+    ])
+  ),
   isIndex: PropTypes.bool,
+  lrs: lrsType,
   onClick: PropTypes.func,
+  target: PropTypes.oneOf([
+    '_blank',
+    '_self',
+    '_parent',
+    '_top',
+    'modal',
+  ]),
   theme: PropTypes.oneOf([
     'default',
     'parent',
   ]),
   to: PropTypes.string,
 };
-
 
 const defaultProps = {
   className: 'Link',
@@ -45,7 +56,11 @@ class Link extends PureComponent {
   }
 
   isActive(match, location) {
-    return match || (this.props.to === location.pathname + location.search + location.hash);
+    const relative = retrievePath(this.props.to);
+
+    return match
+      || (!isDifferentWebsite(this.props.to)
+        && relative === location.pathname + location.search + location.hash);
   }
 
   render() {
@@ -55,7 +70,9 @@ class Link extends PureComponent {
       className,
       features,
       isIndex,
+      lrs,
       onClick,
+      target,
       theme,
       to,
     } = this.props;
@@ -80,14 +97,25 @@ class Link extends PureComponent {
     const path = retrievePath(to);
     const LinkComp = isLocalAnchor(path) ? DomLink : NavLink;
 
+    const clickHandler = target !== 'modal'
+      ? onClick
+      : (e) => {
+        e.preventDefault();
+        lrs.actions.ontola.showDialog(NamedNode.find(to));
+        if (typeof onClick === 'function') {
+          onClick(e);
+        }
+      };
+
     return (
       <LinkComp
         activeClassName={activeClassName || 'Link__active'}
         className={`${className} ${themeClass} ${featuresClass}`}
         exact={isIndex}
         isActive={this.isActive}
+        target={target}
         to={path}
-        onClick={onClick}
+        onClick={clickHandler}
       >
         {children}
       </LinkComp>
@@ -98,4 +126,4 @@ class Link extends PureComponent {
 Link.defaultProps = defaultProps;
 Link.propTypes = propTypes;
 
-export default Link;
+export default withLRS(Link);

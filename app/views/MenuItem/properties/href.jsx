@@ -36,11 +36,13 @@ class Href extends React.PureComponent {
     action: linkType,
     children: PropTypes.node,
     component: PropTypes.func,
-    features: PropTypes.arrayOf([
-      'highlighted-darken',
-      'highlighted-lighten',
-      'padded',
-    ]),
+    features: PropTypes.arrayOf(
+      PropTypes.oneOf([
+        'highlighted-darken',
+        'highlighted-lighten',
+        'padded',
+      ])
+    ),
     handleClick: PropTypes.func,
     href: linkType,
     lrs: lrsType,
