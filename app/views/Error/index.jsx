@@ -1,6 +1,6 @@
 import HttpStatus from 'http-status-codes';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { subjectType } from 'link-redux';
+import { subjectType, Type } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -13,9 +13,9 @@ import {
   Heading,
   LinkDuo,
 } from '../../components';
-import SignInFormContainer from '../../containers/SignInFormContainer';
+import Button from '../../components/Button';
+import { SignInFormLink } from '../../components/SignInForm';
 import { NS } from '../../helpers/LinkedRenderStore';
-import { currentLocation } from '../../helpers/paths';
 import { getCurrentUserType } from '../../state/app/selectors';
 import Card, { cardTopology } from '../../topologies/Card';
 import { cardFixedTopology } from '../../topologies/Card/CardFixed';
@@ -64,7 +64,7 @@ const propTypes = {
 };
 
 const ErrorCardComp = (props) => {
-  const { linkRequestStatus, location, userType } = props;
+  const { linkRequestStatus, userType } = props;
 
   let mainAction = (
     <ErrorButtonWithFeedback theme="box" {...props}>
@@ -76,23 +76,21 @@ const ErrorCardComp = (props) => {
   );
   if (shouldShowSignIn(userType, linkRequestStatus.status)) {
     mainAction = (
-      <Container size="small">
-        <SignInFormContainer r={currentLocation(location).value} />
-      </Container>
+      <SignInFormLink Component={Button} />
     );
   }
 
   return (
     <Card>
-      <CardContent>
+      <CardContent endSpacing>
         <Heading size="2" variant="alert">
           <FontAwesome name="exclamation-triangle" />
           {' '}
           {headerForStatus(linkRequestStatus)}
         </Heading>
         <p>{bodyForStatus(linkRequestStatus)}</p>
+        {mainAction}
       </CardContent>
-      {mainAction}
     </Card>
   );
 };
@@ -105,7 +103,6 @@ const ErrorPageComp = (props) => {
   const {
     caughtError,
     linkRequestStatus,
-    location,
     userType,
   } = props;
 
@@ -117,7 +114,7 @@ const ErrorPageComp = (props) => {
 
   if (shouldShowSignIn(userType, linkRequestStatus.status)) {
     cardAction = (
-      <SignInFormContainer r={currentLocation(location).value} />
+      <SignInFormLink Component={Button} />
     );
   }
 
@@ -157,7 +154,7 @@ const ErrorPageComp = (props) => {
 
 ErrorPageComp.propTypes = propTypes;
 
-const ErrorPage = withRouter(withUserType(ErrorPageComp));
+const ErrorPage = withUserType(ErrorPageComp);
 
 const ErrorNavbar = (props) => {
   if (props.subject === NS.app('n?type=infinite')) {
@@ -185,17 +182,28 @@ export default [
     pageTopology
   ),
   LinkedRenderStore.registerRenderer(
+    () => (
+      <Container>
+        <Type />
+      </Container>
+    ),
+    NS.ll('ErrorResource'),
+    RENDER_CLASS_NAME,
+    [
+      primaryResourceTopology,
+      tabPaneTopology,
+    ]
+  ),
+  LinkedRenderStore.registerRenderer(
     ErrorCard,
     NS.ll('ErrorResource'),
     RENDER_CLASS_NAME,
     [
       alertDialogTopology,
       containerTopology,
-      tabPaneTopology,
       dropdownContentTopology,
       cardListTopology,
       gridTopology,
-      primaryResourceTopology,
       widgetTopologyTopology,
     ]
   ),

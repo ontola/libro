@@ -1,22 +1,25 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { Property } from 'link-redux';
+import { lrsType, Property, withLRS } from 'link-redux';
 import PropTypes from 'prop-types';
+import { NamedNode } from 'rdflib';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import MediaQuery from 'react-responsive';
 
 import { mediaQueries } from '../../components/shared/config';
+import { SignInFormLink } from '../../components/SignInForm/index';
 import { NS } from '../../helpers/LinkedRenderStore';
-import { NavbarLink } from '../../components';
+import NavbarLink from '../../components/NavbarLink';
 import path from '../../helpers/paths';
 import { navbarTopology } from '../../topologies/Navbar';
 
 const propTypes = {
+  lrs: lrsType,
   redirectURL: PropTypes.string,
 };
 
-const GuestUserActor = ({ redirectURL }) => {
+const GuestUserActor = ({ lrs, redirectURL }) => {
   const label = (
     <FormattedMessage
       defaultMessage="Log in / sign up"
@@ -29,10 +32,15 @@ const GuestUserActor = ({ redirectURL }) => {
     <MediaQuery query={mediaQueries.smallAndAbove}>
       {matches => (
         <React.Fragment>
-          <NavbarLink
+          <SignInFormLink
+            Component={NavbarLink}
             icon="sign-in"
             label={matches && label}
             to={path.signIn(redirectURL)}
+            onClick={(e) => {
+              e.preventDefault();
+              lrs.actions.app.startSignIn(NamedNode.find(path.signIn(redirectURL)));
+            }}
           />
           <Property label={NS.argu('actorType')} />
         </React.Fragment>
@@ -45,7 +53,7 @@ GuestUserActor.propTypes = propTypes;
 
 const GuestUserActorConnected = connect(() => ({
   redirectURL: window.location.href,
-}))(GuestUserActor);
+}))(withLRS(GuestUserActor));
 
 export default LinkedRenderStore.registerRenderer(
   GuestUserActorConnected,

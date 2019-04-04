@@ -3,7 +3,6 @@ import React from 'react';
 import { Form } from 'react-final-form';
 import { FormattedMessage, injectIntl } from 'react-intl';
 
-import Link from '../Link';
 import { STEPS } from '../../state/form/reducer';
 import Button from '../Button';
 import Card, {
@@ -13,9 +12,9 @@ import Card, {
   CardRow,
 } from '../../topologies/Card';
 import Heading from '../Heading';
-import path from '../../helpers/paths';
 import { expandPath } from '../../helpers/iris';
 import messages from '../../state/form/messages';
+import { AccountHelpers } from '../../views/Action/SignInHelperFormsModal';
 
 import SignInFormBase from './SignInFormBase';
 
@@ -76,15 +75,6 @@ class SignInFormCard extends SignInFormBase {
     );
   }
 
-  getFooterText() {
-    if (this.props.step === STEPS.signIn) {
-      return 'Something something sign up';
-    } else if (this.props.step === STEPS.confirm) {
-      return 'Something something sign in';
-    }
-    return null;
-  }
-
   getHeaderText() {
     let login = this.props.intl.formatMessage(messages.login);
     let register = this.props.intl.formatMessage(messages.register);
@@ -116,10 +106,12 @@ class SignInFormCard extends SignInFormBase {
 
     return (
       <React.Fragment>
-        <Heading variant="column">
-          {this.getHeaderText()}
-        </Heading>
         <Card>
+          <CardContent>
+            <Heading size="1">
+              {this.getHeaderText()}
+            </Heading>
+          </CardContent>
           {this.contentHeader()}
           <Form
             onSubmit={onSubmit}
@@ -145,33 +137,7 @@ class SignInFormCard extends SignInFormBase {
             )}
           </Form>
         </Card>
-        <ul>
-          <li>{this.getFooterText()}</li>
-          <li>
-            <Link to={path.newPassword()}>
-              <FormattedMessage
-                defaultMessage="Forgot password?"
-                id="https://app.argu.co/i18n/forms/session/forgotLink/label"
-              />
-            </Link>
-          </li>
-          <li>
-            <Link to={path.confirmation()}>
-              <FormattedMessage
-                defaultMessage="Resend confirmation link?"
-                id="https://app.argu.co/i18n/forms/session/confirmationLink/label"
-              />
-            </Link>
-          </li>
-          <li>
-            <Link to={path.newUnlock()}>
-              <FormattedMessage
-                defaultMessage="Account locked?"
-                id="https://app.argu.co/i18n/forms/session/accountLocked/label"
-              />
-            </Link>
-          </li>
-        </ul>
+        <AccountHelpers />
       </React.Fragment>
     );
   }

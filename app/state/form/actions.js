@@ -3,7 +3,6 @@ import { createAction } from 'redux-actions';
 import {
   SIGN_IN_ACCOUNT_LOCKED,
   SIGN_IN_EMAIL_TAKEN,
-  SIGN_IN_SHOW_FORM,
   SIGN_IN_STEP_BACK,
   SIGN_IN_USER_CREATED,
   SIGN_IN_UNKNOWN_EMAIL,
@@ -12,7 +11,6 @@ import {
 
 export const accountLocked = createAction(SIGN_IN_ACCOUNT_LOCKED);
 export const emailTaken = createAction(SIGN_IN_EMAIL_TAKEN);
-export const showSignInForm = createAction(SIGN_IN_SHOW_FORM, subject => subject);
 export const stepBack = createAction(SIGN_IN_STEP_BACK);
 export const unknownEmail = createAction(SIGN_IN_UNKNOWN_EMAIL);
 export const userCreated = createAction(SIGN_IN_USER_CREATED);

@@ -15,7 +15,6 @@ import { connect } from 'react-redux';
 import { allowSort } from '../../helpers/data';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { highlightResource } from '../../state/app/actions';
-import { showSignInForm } from '../../state/form/actions';
 import { getOmniformAction, omniformSetAction } from '../../state/omniform';
 import FormFooter from '../../topologies/FormFooter/Footer';
 import OmniformFields from '../../topologies/OmniformFields/OmniformFields';
@@ -81,7 +80,6 @@ class Omniform extends EntryPointBase {
     if (!(action instanceof NamedNode)) {
       return null;
     }
-
 
     return (
       <LinkedResourceContainer subject={action}>
@@ -200,7 +198,7 @@ const mapDispatchToProps = (dispatch, props) => ({
       parentIRI: props.parentIRI,
     }));
   },
-  onStatusForbidden: () => dispatch(showSignInForm(atob(props.parentIRI))),
+  onStatusForbidden: () => props.lrs.actions.app.startSignIn(NamedNode.find(atob(props.parentIRI))),
 });
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => Object.assign(
@@ -210,10 +208,10 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => Object.assign(
   dispatchProps
 );
 
-const OmniformContainer = connect(
+const OmniformContainer = withLRS(connect(
   mapStateToProps,
   mapDispatchToProps,
   mergeProps
-)(withLRS(Omniform));
+)(Omniform));
 
 export default OmniformContainer;

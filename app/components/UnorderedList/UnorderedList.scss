@@ -1,0 +1,8 @@
+@import '../../components/shared/config';
+
+.UnorderedList {
+  .Modal > div > div >.Container > &,
+  .Modal > div > & {
+    color: color('white');
+  }
+}

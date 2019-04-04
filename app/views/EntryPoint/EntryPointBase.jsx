@@ -2,6 +2,7 @@ import HttpStatus from 'http-status-codes';
 import { anyRDFValue } from 'link-lib';
 import { LinkedResourceContainer, linkType, PropertyBase } from 'link-redux';
 import PropTypes from 'prop-types';
+import { NamedNode } from 'rdflib';
 import React from 'react';
 
 import { convertKeysAtoB } from '../../helpers/data';
@@ -47,8 +48,12 @@ class EntryPointBase extends PropertyBase {
             .api
             .execExecHeader(actionsHeader);
         }
-        if (this.props.onStatusForbidden && e.response.status === HttpStatus.UNAUTHORIZED) {
-          return this.props.onStatusForbidden();
+        if (e.response.status === HttpStatus.UNAUTHORIZED) {
+          if (this.props.onStatusForbidden) {
+            return this.props.onStatusForbidden();
+          }
+
+          return this.props.lrs.actions.app.startSignIn(NamedNode.find(this.props.form));
         }
         if (e.response.status !== HttpStatus.UNPROCESSABLE_ENTITY) {
           throw e;

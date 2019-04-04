@@ -4,7 +4,7 @@
 
 import { MiddlewareActionHandler, MiddlewareWithBoundLRS } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
-import { NamedNode, Namespace, Statement } from 'rdflib';
+import { Literal, NamedNode, Namespace, Statement } from 'rdflib';
 
 import { getMetaContent } from '../helpers/arguHelpers';
 import { purgeCollection } from '../helpers/monkeys';
@@ -50,6 +50,43 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
         store.namespaces.ll('replace'),
       ),
   ];
+
+  /**
+   * App sign in
+   */
+  const signInLink = (r?: NamedNode) => {
+    const postFix = r ? `?r=${encodeURIComponent(r.value)}` : '';
+    return app('u/sign_in' + postFix);
+  };
+
+  const createSignIn = (r?: NamedNode) => {
+    const resourceIRI = signInLink(r);
+
+    return store.processDelta([
+      new Statement(
+          resourceIRI,
+          store.namespaces.rdf('type'),
+          app('AppSignIn'),
+          store.namespaces.ll('add'),
+      ),
+      new Statement(
+          resourceIRI,
+          store.namespaces.schema('name'),
+          new Literal('test'),
+          store.namespaces.ll('add'),
+      ),
+    ], true);
+  };
+
+  createSignIn();
+
+  (store as any).actions.app.startSignIn = (r?: NamedNode) => {
+    const resourceIRI = signInLink(r);
+    createSignIn(r)
+        .then(() => {
+          (store as any).actions.ontola.showDialog(resourceIRI);
+        });
+  };
 
   return (next: MiddlewareActionHandler) => (iri: NamedNode, opts: any): Promise<any> => {
 

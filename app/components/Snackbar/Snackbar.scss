@@ -6,7 +6,7 @@
   box-shadow: $box-shadow--intense;
   display: flex;
   position: relative;
-  z-index: z(notification);
+  z-index: z(snackbar);
 
   &__text {
     color: color('white');

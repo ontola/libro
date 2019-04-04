@@ -5,6 +5,7 @@ import LRS from '../helpers/LinkedRenderStore';
  * Please properly include each file when access to the code is needed.
  */
 import Activity from './Activity';
+import AppSignIn from './AppSignIn';
 import Thing from './Thing';
 import Collection from './Collection';
 import CollectionPage from './CollectionPage';
@@ -52,6 +53,7 @@ import Widget from './Widget';
 function register() {
   LRS.registerAll(
     ...Activity,
+    ...AppSignIn,
     ...Thing,
     ...Action,
     ...Argument,

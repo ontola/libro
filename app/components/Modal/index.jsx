@@ -2,11 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ReactModal from 'react-modal';
 
-import { APP_ELEMENT } from '../../config';
+import { CONTAINER_ELEMENT, CONTENT_ELEMENT } from '../../config';
 
 import './Modal.scss';
 
-ReactModal.setAppElement(document.getElementById(APP_ELEMENT));
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -15,19 +14,23 @@ const propTypes = {
   }),
 };
 
-const Modal = ({ modalAnimationProps, ...rest }) => (
-  <ReactModal
-    {...rest}
-    className="Modal"
-    overlayClassName="Modal__overlay"
-    portalClassName="Modal__portal"
-    style={{
-      content: modalAnimationProps,
-      overlay: modalAnimationProps,
-    }}
-  />
-);
+const Modal = ({ modalAnimationProps, ...rest }) => {
+  ReactModal.setAppElement(`#${CONTENT_ELEMENT}`);
 
+  return (
+    <ReactModal
+      {...rest}
+      className="Modal"
+      overlayClassName="Modal__overlay"
+      parentSelector={() => document.getElementById(CONTAINER_ELEMENT)}
+      portalClassName="Modal__portal"
+      style={{
+        content: modalAnimationProps,
+        overlay: modalAnimationProps,
+      }}
+    />
+  );
+};
 
 Modal.propTypes = propTypes;
 

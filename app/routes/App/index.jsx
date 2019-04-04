@@ -7,6 +7,7 @@ import { withRouter } from 'react-router';
 import { NavBarContent, SkipNavigation } from '../../components';
 import '../../components/shared/init.scss';
 import NetworkStatusIndicator from '../../components/NetworkStatusIndicator';
+import { CONTAINER_ELEMENT } from '../../config';
 import Navbar from '../../topologies/Navbar/index';
 import Popup from '../../topologies/Popup/index';
 import ErrorButtonWithFeedback from '../../views/Error/ErrorButtonWithFeedback';
@@ -59,7 +60,7 @@ class App extends React.PureComponent {
             titleTemplate="%s - Argu"
           />
           <SkipNavigation />
-          <div className="App__container">
+          <div className="App__container" id={CONTAINER_ELEMENT}>
             <AppScroller>
               <Navbar>
                 <NavBarContent />

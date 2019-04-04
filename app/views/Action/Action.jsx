@@ -33,19 +33,9 @@ export class Action extends NavigatableAction {
     subject: subjectType,
   };
 
-  header() {
-    const top = (this.props.topology || this.props.topologyCtx);
-    if ([alertDialogTopology, tabPaneTopology].includes(top)) {
-      return null;
-    }
-
-    return <Property label={NS.schema('name')} />;
-  }
-
   render() {
     return (
       <Container>
-        {this.header()}
         <CardMain>
           <CardContent>
             <Property label={NS.schema('name')} />

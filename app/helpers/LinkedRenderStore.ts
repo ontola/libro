@@ -239,6 +239,15 @@ const ontologicalClassData = [
   new Statement(NS.schema('CreateAction'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.schema('CreateAction'), NS.rdfs('subClassOf'), NS.schema('Action')),
 
+  new Statement(NS.argu('Create::Users::Password'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('Create::Users::Password'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
+
+  new Statement(NS.argu('Create::Users::Confirmation'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('Create::Users::Confirmation'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
+
+  new Statement(NS.argu('Create::Users::Unlock'), NS.rdf('type'), NS.rdfs('Class')),
+  new Statement(NS.argu('Create::Users::Unlock'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
+
   new Statement(NS.argu('Create::Vote'), NS.rdf('type'), NS.rdfs('Class')),
   new Statement(NS.argu('Create::Vote'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
 

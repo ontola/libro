@@ -133,17 +133,18 @@ $zindex-55: 550;
 $zindex-6: 600;
 $zindex-65: 650;
 $zindex-7: 700;
+$zindex-8: 800;
 
 $z-layers: (
   'cover': $zindex-4,
   'hoverbox': $zindex-1,
-  'notification': $zindex-1,
   'progressbar': $zindex-1,
-  'dropdown': $zindex-5,
-  'app-menu': $zindex-55,
-  'modal-drop': $zindex-6,
-  'modal': $zindex-65,
-  'tooltip': $zindex-7,
+  'app-menu': $zindex-4,
+  'modal-drop': $zindex-5,
+  'modal': $zindex-55,
+  'snackbar': $zindex-6,
+  'dropdown': $zindex-7,
+  'tooltip': $zindex-8,
 );
 
 // OTHERS
