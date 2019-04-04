@@ -15,11 +15,12 @@ import { FRONTEND_ACCEPT } from '../config';
 import { appMiddleware, website } from '../middleware/app';
 import execFilter from '../middleware/execFilter';
 import logging from '../middleware/logging';
+import ontolaMiddleware from '../middleware/ontolaMiddleware';
+
 // @ts-ignore
 import { arguDeltaProcessor } from './data';
 import history from './history';
 import { handle } from './logging';
-import ontolaMiddleware from './ontolaMiddleware';
 import ServiceWorkerCommunicator from './ServiceWorkerCommunicator';
 import transformers from './transformers';
 

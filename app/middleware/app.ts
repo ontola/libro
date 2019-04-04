@@ -25,6 +25,9 @@ export const menuStates = {
 };
 
 export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoundLRS => {
+
+  (store as any).actions.app = {};
+
   // eslint-disable-next-line no-param-reassign
   store.namespaces.app = app;
   // eslint-disable-next-line no-param-reassign

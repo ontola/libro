@@ -1,9 +1,12 @@
 import { MiddlewareActionHandler, MiddlewareWithBoundLRS } from 'link-lib';
+import { LinkReduxLRSType } from 'link-redux';
 import { NamedNode } from 'rdflib';
 
 import { log } from '../helpers/logging';
 
-const logging = () => (): MiddlewareWithBoundLRS => {
+const logging = () => (store: LinkReduxLRSType): MiddlewareWithBoundLRS => {
+  (store as any).actions = {};
+
   return (next: MiddlewareActionHandler) => (iri: NamedNode, opts: any): Promise<any> => {
     log('Link action:', iri, opts);
 

@@ -17,10 +17,10 @@ import {
 import { ReactType } from 'react';
 import { defineMessages } from 'react-intl';
 
-import { safeCredentials } from './arguHelpers';
-import { retrievePath } from './iris';
-import { handle } from './logging';
-import ServiceWorkerCommunicator from './ServiceWorkerCommunicator';
+import { safeCredentials } from '../helpers/arguHelpers';
+import { retrievePath } from '../helpers/iris';
+import { handle } from '../helpers/logging';
+import ServiceWorkerCommunicator from '../helpers/ServiceWorkerCommunicator';
 
 const messages = defineMessages({
   copyFinished: {
@@ -32,6 +32,8 @@ const messages = defineMessages({
 
 const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWorkerCommunicator):
     MiddlewareFn<ReactType> => (store: LinkReduxLRSType): MiddlewareWithBoundLRS => {
+
+  (store as any).actions.ontola = {};
 
   const ontola = Namespace('https://ns.ontola.io/');
   // eslint-disable-next-line no-param-reassign
@@ -149,6 +151,14 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       store.namespaces.ll('replace'),
     ),
   ];
+
+  (store as any).actions.ontola.showDialog = (resource: NamedNode) => {
+    store.exec(store.namespaces.ontola(`actions/dialog/alert?resource=${encodeURIComponent(resource.value)}`));
+  };
+
+  /**
+   * Miscellaneous
+   */
 
   history.listen((_, action) => {
     if (['POP', 'PUSH'].includes(action)) {
