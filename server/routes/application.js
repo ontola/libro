@@ -71,6 +71,7 @@ export default function application(port) {
       };
       const dataHeaders = { ...req.headers, accept: 'application/n-quads' };
       const reqForData = {
+        api: req.api,
         headers: dataHeaders,
         session: req.session,
         status: 200,
