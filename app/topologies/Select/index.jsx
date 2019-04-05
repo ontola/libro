@@ -28,7 +28,7 @@ class Select extends Topology {
   tryScroll() {
     const { current } = this.ref;
     if (this.props.scrollIntoView && current) {
-      current.scrollIntoView();
+      current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   }
 
