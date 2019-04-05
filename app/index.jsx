@@ -59,7 +59,7 @@ if (typeof window !== 'undefined') {
 
 // Fade out the preloader and fade in the interface
 const preloaderTimeout = 2500;
-document.getElementsByTagName('body')[0].classList.remove('Body--show-preloader');
+document.body.className = document.body.className.replace('Body--show-preloader', '');
 window.setTimeout(() => {
   ['preloader', 'navbar-preview'].forEach((id) => {
     const elem = document.getElementById(id);

@@ -43,7 +43,9 @@ const getLuminance = (rgb) => {
   const coefficients = [aR, aG, aB];
   let rgbArray;
 
-  if (!Array.isArray(rgb)) {
+  if (!rgb) {
+    return undefined;
+  } else if (!Array.isArray(rgb)) {
     rgbArray = rgbToArray(rgb);
   } else {
     rgbArray = rgb;

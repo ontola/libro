@@ -31,12 +31,14 @@ if (process.env.SEMAHORE_DEPLOY_NUMBER) {
 const babelEnvOpts = {
   legacy: {
     env: {
+      corejs: 3,
       modules: false,
       targets: {
         browsers: [
           '> 1%',
           'last 2 versions',
           'Firefox ESR',
+          'ie 11',
         ],
       },
       useBuiltIns: 'entry',
@@ -104,6 +106,7 @@ function createConfig(options) {
             path.resolve(__dirname, '../node_modules/ml-disjoint-set'),
             path.resolve(__dirname, '../node_modules/link-lib'),
             path.resolve(__dirname, '../node_modules/link-redux'),
+            path.resolve(__dirname, '../node_modules/n-quads-parser'),
           ],
           test: /\.(m?(t|j)sx?)$/,
           use: babelLoader,

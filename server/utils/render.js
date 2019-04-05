@@ -28,6 +28,7 @@ const requiredFeatures = [
   'Array.prototype.includes',
   'Array.prototype.values',
   'fetch',
+  'DOMTokenList',
   'Intl|always|gated',
   'Intl.~en-US|always|gated',
   'Intl.~nl-NL|always|gated',
@@ -42,7 +43,7 @@ const requiredFeatures = [
   'Promise.prototype.finally|gated',
   'Symbol',
 ];
-const polyfillTag = `<script crossorigin="anonymous" src="https://cdn.polyfill.io/v2/polyfill.js?features=${requiredFeatures.join(',')}"></script>`;
+const polyfillSrc = `https://cdn.polyfill.io/v2/polyfill.js?unknown=polyfill&features=${requiredFeatures.join(',')}`;
 const deferredStyles = '    var loadDeferredStyles = function() {\n'
   + '        var addStylesNode = document.getElementById(\'deferred-styles\');\n'
   + '        var replacement = document.createElement("div");\n'
@@ -71,13 +72,14 @@ export const renderFullPage = (domain, req, res, websiteMeta, data) => {
     releaseStage: constants.STAGE,
   };
   const csrfToken = req.csrfToken();
+  const nonceStr = res.locals.nonce.toString();
   const tokenPayload = jwt.verify(
     req.session.arguToken.accessToken,
     constants.jwtEncryptionToken
   );
   const { language } = tokenPayload.user;
 
-  const polyfill = bundleVersion === 'legacy' ? polyfillTag : '';
+  const polyfill = bundleVersion === 'legacy' ? `<script crossorigin="anonymous" nonce="${nonceStr}" src="${polyfillSrc}"></script>` : '';
 
   return `<!doctype html>
     <html lang="${language}">
@@ -104,7 +106,7 @@ export const renderFullPage = (domain, req, res, websiteMeta, data) => {
         <meta name="csrf-param" content="authenticity_token">
         <meta name="csrf-token" content="${csrfToken}">
         ${constants.bugsnagKey ? '<script async src="//d2wy8f7a9ursnm.cloudfront.net/v5/bugsnag.min.js"></script>' : ''}
-        <script nonce="${res.locals.nonce.toString()}">window.bugsnagClient = typeof bugsnag !== 'undefined' && bugsnag(${JSON.stringify(bugsnagOpts)})</script>
+        <script nonce="${nonceStr}">window.bugsnagClient = typeof bugsnag !== 'undefined' && bugsnag(${JSON.stringify(bugsnagOpts)})</script>
 
         <link rel="icon" type="image/png" sizes="192x192" href="/static/favicons/favicon-192x192.png">
         <link rel="icon" type="image/png" sizes="160x160" href="/static/favicons/favicon-160x160.png">
@@ -169,23 +171,25 @@ export const renderFullPage = (domain, req, res, websiteMeta, data) => {
             <h1>Argu heeft javascript nodig om te werken</h1>
             <p>Javascript staat momenteel uitgeschakeld, probeer een andere browser of in prive modus.</p>
         </noscript>
-        <script nonce="${res.locals.nonce.toString()}">document.body.className += ' Body--show-preloader';</script>
-        <script nonce="${res.locals.nonce.toString()}">
+        <script nonce="${nonceStr}">document.body.className = (document.body.className || '') + ' Body--show-preloader';</script>
+        <script nonce="${nonceStr}">
           if ('serviceWorker' in navigator) {
              window.addEventListener('load', function() {
                 navigator.serviceWorker.register('/sw.js');
              });
            }
         </script>
-        <script async crossorigin="anonymous" src="${constants.ASSETS_HOST}${manifest['main.js']}"></script>
-        ${(manifest['vendors~main.js'] && `<script async crossorigin="anonymous" src="${constants.ASSETS_HOST}${manifest['vendors~main.js']}"></script>`) || ''}
-        <script async nonce="${res.locals.nonce.toString()}">
+        <script async crossorigin="anonymous" type="module" src="${constants.ASSETS_HOST}${manifests[bundles.module]['main.js']}"></script>
+        <script async nomodule crossorigin="anonymous" type="application/javascript" src="${constants.ASSETS_HOST}${manifests[bundles.legacy]['main.js']}"></script>
+        ${(manifests[bundles.module]?.['vendors~main.js'] && `<script async crossorigin="anonymous" type="module" src="${constants.ASSETS_HOST}${manifests[bundles.module]['vendors~main.js']}"></script>`) || ''}
+        ${(manifests[bundles.legacy]?.['vendors~main.js'] && `<script async nomodule crossorigin="anonymous" type="application/javascript" src="${constants.ASSETS_HOST}${manifests[bundles.legacy]['vendors~main.js']}"></script>`) || ''}
+        <script async nonce="${nonceStr}">
             ${deferredStyles}
         </script>
-        <script nonce="${res.locals.nonce.toString()}">
-            window.INITIAL__DATA = \`
-              ${data ? data.toString('utf-8').replace(/`/g, '\\`') : ''}
-            \`;
+        <script id="seed" nonce="${nonceStr}" type="application/n-quads">${data?.toString('utf-8') ?? ''}</script>
+        <script nonce="${nonceStr}" type="application/javascript">
+            var seed = document.getElementById('seed');
+            window.INITIAL__DATA = seed ? seed.textContent : '';
         </script>
       </body>
     </html>`;
