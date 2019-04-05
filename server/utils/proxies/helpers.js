@@ -136,7 +136,7 @@ export function bulkResourceRequest(req, iri, url, outputStream) {
           outputStream.write(`${iriNT} <http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}> "${redirect}" <http://purl.org/link-lib/meta> .\r\n`);
         }
 
-        if (!backendRes.headers['content-type'].includes('application/n-quads')) {
+        if (!backendRes.headers['content-type']?.includes('application/n-quads')) {
           return resolve();
         }
 
