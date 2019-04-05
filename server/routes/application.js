@@ -46,6 +46,9 @@ export default function application(port) {
       }
 
       const websiteMetaHeader = serverRes.headers.get('Website-Meta');
+      if (!websiteMetaHeader) {
+        throw new Error('No Website-Meta header in response');
+      }
       const websiteMetaParams = new URLSearchParams(websiteMetaHeader);
       const websiteMeta = {
         accentBackgroundColor: websiteMetaParams.get('accent_background_color'),
@@ -54,6 +57,10 @@ export default function application(port) {
         navbarColor: websiteMetaParams.get('navbar_color'),
         website: websiteMetaParams.get('iri'),
       };
+
+      if (!websiteMeta.website) {
+        throw new Error(`No website iri in head, got status '${serverRes.status}' and header '${websiteMetaHeader}'`);
+      }
 
       let responseData = Buffer.alloc(0);
       const responseStream = new Stream.Writable();
@@ -76,11 +83,15 @@ export default function application(port) {
         `${websiteMeta.website}/menus`,
         `${websiteMeta.website}/apex/menus`,
       ];
+      if (req.path?.length > 1) {
+        const { origin } = new URL(websiteMeta.website);
+        resources.unshift(origin + req.path);
+      }
 
       return Promise
-        .all(resources.map(
-          iri => bulkResourceRequest(reqForData, iri, route(iri, true), responseStream)
-        ))
+        .all(resources
+          .reduce((acc, iri) => (acc.includes(iri) ? acc : acc.concat(iri)), [])
+          .map(iri => bulkResourceRequest(reqForData, iri, route(iri, true), responseStream)))
         .then(() => sendResponse(req, res, domain, websiteMeta, responseData));
     }).catch((e) => {
       if (typeof e === 'undefined') {
