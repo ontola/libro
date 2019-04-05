@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import './Loading.scss';
@@ -31,8 +32,8 @@ export const LoadingCard = () => (
   </Card>
 );
 
-export const LoadingCardFixed = () => (
-  <CardFixed>
+export const LoadingCardFixed = ({ fill }) => (
+  <CardFixed fill={fill}>
     <CardContent>
       <div className="Loading__Header Loading__background" />
       <div className="Loading__Paragraph Loading__background" />
@@ -41,6 +42,10 @@ export const LoadingCardFixed = () => (
     </CardContent>
   </CardFixed>
 );
+
+LoadingCardFixed.propTypes = {
+  fill: PropTypes.bool,
+};
 
 export const LoadingPage = () => (
   <PrimaryResource>

@@ -33,6 +33,27 @@ import { parentTopology } from '../../topologies/Parent';
 import { voteBubbleTopology } from '../../topologies/VoteBubble';
 import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 
+// We always throw, so the implicit return value is void
+// eslint-disable-next-line react/require-render-return
+class SuspendedLoader extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.resolve = undefined;
+    this.promise = new Promise((resolve) => {
+      this.resolve = resolve;
+    });
+  }
+
+  componentWillUnmount() {
+    this.resolve();
+  }
+
+  render() {
+    throw this.promise;
+  }
+}
+
 export default [
   LinkedRenderStore.registerRenderer(
     LoadingPage,
@@ -61,6 +82,13 @@ export default [
     RENDER_CLASS_NAME,
     [
       gridTopology,
+    ]
+  ),
+  LinkedRenderStore.registerRenderer(
+    SuspendedLoader,
+    NS.ll('LoadingResource'),
+    RENDER_CLASS_NAME,
+    [
       widgetTopologyTopology,
     ]
   ),
