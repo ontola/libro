@@ -3,14 +3,14 @@ import React from 'react';
 
 import { LDLink } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
-import { tableRowTopology } from '../../topologies/TableRow';
+import { tableCellTopology } from '../../topologies/TableCell';
 
 import { CollectionTypes } from './types';
 
-class CollectionTableRow extends React.PureComponent {
+class CollectionTableCell extends React.PureComponent {
   static type = CollectionTypes;
 
-  static topology = tableRowTopology;
+  static topology = tableCellTopology;
 
   render() {
     return (
@@ -24,4 +24,4 @@ class CollectionTableRow extends React.PureComponent {
   }
 }
 
-export default register(CollectionTableRow);
+export default register(CollectionTableCell);

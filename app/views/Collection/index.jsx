@@ -39,7 +39,7 @@ import { CollectionTypes } from './types';
 import voteEvent from './voteEvent';
 import CollectionContainer from './CollectionContainer';
 import CollectionNavbar from './CollectionNavbar';
-import CollectionTableRow from './CollectionTableRow';
+import CollectionTableCell from './CollectionTableCell';
 
 import './Collection.scss';
 
@@ -92,7 +92,7 @@ const itemsCount = {
 export default [
   CollectionContainer,
   CollectionNavbar,
-  CollectionTableRow,
+  CollectionTableCell,
   LinkedRenderStore.registerRenderer(
     getCollection({
       WrappingElement: Container,
