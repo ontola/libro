@@ -86,7 +86,7 @@ export default [
       <InlineActionTableRow
         completed={(
           <FormattedMessage
-            defaultMessage="Is confirmed"
+            defaultMessage="Already confirmed"
             id="https://app.argu.co/i18n/actions/SendConfirmationAction/confirmedLabel"
           />
         )}
