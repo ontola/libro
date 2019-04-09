@@ -2,7 +2,7 @@ import logging from './logging';
 
 const FRONTEND_ROUTES = /^\/(login)(\/|$)/;
 
-const dataExtensions = ['json', 'n-quads', 'n-triples', 'n3', 'rdf', 'ttl'];
+const dataExtensions = ['json', 'nq', 'nt', 'n3', 'rdf', 'ttl'];
 
 export default function isBackend(req, _res, next) {
   if (req.originalUrl.match(FRONTEND_ROUTES)) {
