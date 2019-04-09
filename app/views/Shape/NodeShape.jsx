@@ -62,7 +62,7 @@ const NodeShape = ({
     whitelist={whitelist}
     onKeyUp={onKeyUp}
   >
-    <div style={removeItem ? { display: 'flex' } : undefined}>
+    <div className="NodeShape" style={removeItem ? { display: 'flex' } : undefined}>
       <Property label={NS.rdfs('label')} />
       <Property label={NS.sh('targetClass')} />
       <Property
