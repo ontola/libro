@@ -78,6 +78,7 @@ export default function application(port) {
       };
       const resources = [
         `${websiteMeta.website}`,
+        `${websiteMeta.website}/ns/core`,
         `${websiteMeta.website}/c_a`,
         `${websiteMeta.website}/n`,
         `${websiteMeta.website}/search`,
