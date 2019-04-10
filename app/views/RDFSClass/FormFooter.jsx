@@ -43,9 +43,9 @@ class RDFSClassFormFooter extends React.PureComponent {
     return (
       <Button
         className={`Button--omniform-switcher Button--omniform-switcher-- ${curClass}`}
-        icon={normalizeFontAwesomeIRI(image)}
+        icon={image && normalizeFontAwesomeIRI(image)}
         theme="transparant"
-        title={description.value}
+        title={description?.value}
         onClick={onClick}
       >
         <MediaQuery query={mediaQueries.smallAndAbove}>
