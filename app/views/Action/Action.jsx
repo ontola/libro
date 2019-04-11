@@ -36,6 +36,7 @@ export class Action extends NavigatableAction {
   render() {
     return (
       <Container>
+        <Property label={NS.schema('isPartOf')} />
         <CardMain>
           <CardContent>
             <Property label={NS.schema('name')} />
