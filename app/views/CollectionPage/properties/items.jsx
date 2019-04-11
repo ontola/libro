@@ -29,6 +29,7 @@ export const CollectionDisplayWrapper = ({
         </Grid>
       );
     case NS.argu('collectionDisplay/settingsTable'):
+    case NS.argu('collectionDisplay/table'):
       return (
         <Card>
           <Table>
