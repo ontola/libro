@@ -1,7 +1,6 @@
-import { isDifferentOrigin as checkOrigin } from 'link-lib';
-import { NamedNode } from 'rdflib';
+import { BlankNode, NamedNode } from 'rdflib';
 
-import { frontendPathname } from '../middleware/app';
+import { frontendOrigin, frontendPathname } from '../middleware/app';
 
 const FABase = 'http://fontawesome.io/icon/';
 
@@ -22,8 +21,14 @@ export function normalizeFontAwesomeIRI(stringOrIRI: string | NamedNode) {
  */
 export function iris(window: Window) {
   const isDifferentOrigin = (iri: string | any): boolean => {
-    const t = typeof iri === 'string' ? new URL(iri, window.location.origin).toString() : iri;
-    return checkOrigin(t);
+    const href = typeof iri === 'string' ? new URL(iri, frontendOrigin).toString() : iri;
+
+    if (href instanceof BlankNode) {
+      return false;
+    }
+    const origin = href instanceof NamedNode ? href.value : href;
+
+    return !origin.startsWith(frontendOrigin + '/');
   };
 
   return {
@@ -40,7 +45,7 @@ export function iris(window: Window) {
      */
     expandPath(pathString: string | undefined) {
       if (!pathString) { return undefined; }
-      return new URL(pathString, window.location.origin).href;
+      return new URL(pathString, frontendOrigin).href;
     },
 
     isLocalAnchor(iriString: string) {
@@ -63,7 +68,7 @@ export function iris(window: Window) {
         }
       }
 
-      return !new URL(url, window.location.origin).pathname.startsWith(frontendPathname);
+      return !new URL(url, frontendOrigin).pathname.startsWith(frontendPathname);
     },
 
     /**
@@ -76,8 +81,8 @@ export function iris(window: Window) {
         return iriString;
       }
       // TODO: https://github.com/linkeddata/rdflib.js/issues/265
-      const bugNormalized = iriString.replace(`${window.location.origin}//`, `${window.location.origin}/`);
-      const iri = iriString && new URL(bugNormalized, window.location.origin);
+      const bugNormalized = iriString.replace(`${frontendOrigin}//`, `${frontendOrigin}/`);
+      const iri = iriString && new URL(bugNormalized, frontendOrigin);
       return iri && iri.pathname + iri.search + iri.hash;
     },
   };

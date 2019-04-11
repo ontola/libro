@@ -69,7 +69,7 @@ const common = {
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new HtmlWebpackPlugin({
-      filename: 'offline.html',
+      filename: 'public/offline.html',
       template: 'app/offline.html',
     }),
     new WorkboxPlugin.InjectManifest({

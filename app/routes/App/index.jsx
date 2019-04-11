@@ -1,6 +1,6 @@
 import { LinkedResourceContainer } from 'link-redux';
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { HotKeys } from 'react-hotkeys';
 import { withRouter } from 'react-router';
 
@@ -51,7 +51,7 @@ class App extends React.PureComponent {
     return (
       <HotKeys
         focused
-        attach={window}
+        attach={__CLIENT__ ? window : {}}
         keyMap={__DEVELOPMENT__ ? devKeymap : defaultKeymap}
       >
         <HoverHelper>

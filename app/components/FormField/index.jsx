@@ -35,8 +35,6 @@ const propTypes = {
     setTouched: PropTypes.func,
     setValue: PropTypes.func,
   }),
-  /** @private */
-  forwardedRef: PropTypes.shape({ value: PropTypes.instanceOf(HTMLInputElement) }),
   /** Ensure that it matches the label `for` attribute */
   id: PropTypes.string,
   initialValue: PropTypes.oneOfType([
@@ -123,7 +121,9 @@ class FormField extends React.PureComponent {
     } = props;
 
     if (storeKey && !['password', 'hidden'].includes(type) && (touched || nextValue !== value)) {
-      sessionStorage.setItem(`${storeKey}.${name}`, nextValue || '');
+      if (__CLIENT__) {
+        sessionStorage.setItem(`${storeKey}.${name}`, nextValue || '');
+      }
     }
   }
 
@@ -158,7 +158,7 @@ class FormField extends React.PureComponent {
 
     const currentValue = dirty
       ? value
-      : value || initialValue || sessionStorage.getItem(`${storeKey}.${name}`);
+      : value || initialValue || (__CLIENT__ ? sessionStorage.getItem(`${storeKey}.${name}`) : undefined);
 
     let nextValue = currentValue;
     if (type === 'checkbox') {
@@ -244,7 +244,6 @@ class FormField extends React.PureComponent {
       autoComplete,
       autofocus,
       field,
-      forwardedRef,
       initialValue,
       input,
       id,
@@ -399,7 +398,6 @@ class FormField extends React.PureComponent {
           // maxLength={maxLength}
           minLength={minLength}
           placeholder={placeholder}
-          ref={forwardedRef}
           required={required}
           type={type}
           value={this.inputValue()}

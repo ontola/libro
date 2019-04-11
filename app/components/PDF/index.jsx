@@ -230,7 +230,9 @@ const MapDispatchToProps = (dispatch, ownProps) => ({
   onSetZoomLevel: zoomLevel => dispatch(setZoomLevel(zoomLevel)),
 });
 
-export default connect(
+const PDF = connect(
   MapStateToProps,
   MapDispatchToProps
 )(withRouter(PDFViewer));
+
+export default PDF;

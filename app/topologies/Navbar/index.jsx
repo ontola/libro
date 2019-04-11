@@ -1,7 +1,9 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
 import { checkLuminance, hexToRgb } from '../../helpers/color';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { currentLocation } from '../../helpers/paths';
 import { getCurrentUserType } from '../../state/app/selectors';
 import Topology from '../Topology';
 
@@ -13,7 +15,9 @@ class Navbar extends Topology {
   constructor(props) {
     super(props);
 
-    const textColor = getComputedStyle(document.body).getPropertyValue('--navbar-color');
+    const textColor = __CLIENT__
+      ? getComputedStyle(document.body).getPropertyValue('--navbar-color')
+      : 'black';
     this.className = [
       'Navbar',
       'navbar-background',
@@ -26,11 +30,11 @@ class Navbar extends Topology {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   return {
     actorType: getCurrentUserType(state),
-    redirectUrl: window.location.href,
+    redirectUrl: currentLocation(ownProps.location),
   };
 }
 
-export default connect(mapStateToProps)(Navbar);
+export default withRouter(connect(mapStateToProps)(Navbar));

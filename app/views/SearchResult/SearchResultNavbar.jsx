@@ -7,6 +7,7 @@ import MediaQuery from 'react-responsive';
 
 import { mediaQueries } from '../../components/shared/config';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { values } from '../../helpers/ssr';
 import { navbarTopology } from '../../topologies/Navbar';
 import { NavbarLink } from '../../components';
 
@@ -19,7 +20,7 @@ const SearchResultNavbar = () => {
   );
 
   return (
-    <MediaQuery query={mediaQueries.smallAndAbove}>
+    <MediaQuery query={mediaQueries.smallAndAbove} values={values}>
       {matches => (
         <NavbarLink
           icon="search"

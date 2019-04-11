@@ -43,7 +43,13 @@ class EntryPointBase extends PropertyBase {
         }
         if (e.response.status === HTTP_RETRY_WITH) {
           const actionsHeader = e.response.headers.get('Exec-Action');
-          sessionStorage.setItem(`app.storedActions.${action.value}`, JSON.stringify({ action, formData }));
+          if (__CLIENT__) {
+            sessionStorage.setItem(
+              `app.storedActions.${action.value}`,
+              JSON.stringify({ action, formData })
+            );
+          }
+
           return lrs
             .api
             .execExecHeader(actionsHeader);

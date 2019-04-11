@@ -9,6 +9,7 @@ import MediaQuery from 'react-responsive';
 
 import { mediaQueries } from '../../components/shared/config';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { values } from '../../helpers/ssr';
 import { navbarTopology } from '../../topologies/Navbar';
 
 const layouts = {
@@ -47,7 +48,7 @@ class OrganizationNavbar extends React.PureComponent {
     }
 
     return (
-      <MediaQuery query={mq}>
+      <MediaQuery query={mq} values={values}>
         <div className="NavBarContent__items">
           <Property
             gutter={gutterCount}

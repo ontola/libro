@@ -7,6 +7,7 @@ import { Button } from '../../components';
 import { mediaQueries } from '../../components/shared/config';
 import { normalizeFontAwesomeIRI } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { values } from '../../helpers/ssr';
 import { formFooterTopology } from '../../topologies/FormFooter/Footer';
 
 
@@ -48,7 +49,7 @@ class RDFSClassFormFooter extends React.PureComponent {
         title={description?.value}
         onClick={onClick}
       >
-        <MediaQuery query={mediaQueries.smallAndAbove}>
+        <MediaQuery query={mediaQueries.smallAndAbove} values={values}>
           {label.value}
         </MediaQuery>
       </Button>

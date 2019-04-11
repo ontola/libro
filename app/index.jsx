@@ -2,32 +2,23 @@ import './helpers/polyfills';
 
 import React from 'react';
 import { render } from 'react-dom';
-import { ConnectedRouter } from 'connected-react-router/immutable';
 
 import { APP_ELEMENT } from './config';
 import './helpers/typescript';
+import { getMetaContent } from './helpers/arguHelpers';
 import LinkDevTools from './helpers/LinkDevTools';
 import LinkedRenderStore from './helpers/LinkedRenderStore';
-import './views';
-import IndexContainer from './containers/IndexContainer';
-import history from './helpers/history';
 import { handle } from './helpers/logging';
-import configureStore from './state';
-
-const store = configureStore();
+import app from './App';
 
 if (document.documentElement.lang) {
   LinkedRenderStore.store.langPrefs.unshift(document.documentElement.lang);
 }
 
 function mount() {
+  const App = app(LinkedRenderStore);
   render(
-    <IndexContainer
-      Router={ConnectedRouter}
-      history={history}
-      lrs={LinkedRenderStore}
-      store={store}
-    />,
+    <App website={getMetaContent('website-iri')} />,
     document.getElementById(APP_ELEMENT)
   );
 }

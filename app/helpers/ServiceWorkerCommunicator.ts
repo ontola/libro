@@ -10,7 +10,7 @@ class ServiceWorkerCommunicator {
   private readonly updatesChannel!: BroadcastChannel;
 
   constructor() {
-    if (!('serviceWorker' in navigator)) {
+    if (!(typeof navigator === 'object' && 'serviceWorker' in navigator)) {
       // Mock the communicator for browsers which don't have service workers
       return {
         clearCache() { return void(0); },

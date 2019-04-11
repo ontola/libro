@@ -1,3 +1,6 @@
-require('dotenv').config();
-global.URL = require('url').URL;
-require('./server');
+import URL from 'url';
+
+import './server';
+
+// global.btoa = function (str) { return Buffer.from(str).toString('base64'); };
+global.URL = URL.URL;

@@ -2,7 +2,7 @@ import { link, lrsType } from 'link-redux';
 import PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 

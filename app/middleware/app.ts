@@ -9,7 +9,7 @@ import { Literal, NamedNode, Namespace, Statement } from 'rdflib';
 import { getMetaContent } from '../helpers/arguHelpers';
 import { purgeCollection } from '../helpers/monkeys';
 
-export const website = getMetaContent('website-iri');
+export const website = getMetaContent('website-iri') || 'https://example.com';
 export const frontendIRI = NamedNode.find(website!);
 export const frontendIRIStr = frontendIRI.value;
 export const frontendPathname = new URL(frontendIRIStr).pathname;
@@ -101,20 +101,22 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
     }
 
     if (iri.value.startsWith(app('').value)) {
-      const actionKey = `app.storedActions.${iri.value}`;
-      const storedAction = sessionStorage.getItem(actionKey);
-      if (storedAction && opts) {
-          // The action came from a form, so the stored data is probably stale.
-          sessionStorage.removeItem(actionKey);
-      } else if (storedAction) {
-        const parsedAction = storedAction && JSON.parse(storedAction);
-        const action = NamedNode.find(parsedAction.action.value);
-        return store
-            .execActionByIRI(action, parsedAction.formData)
-            .then(() => {
-              purgeCollection(store, action);
-              sessionStorage.removeItem(actionKey);
-            });
+      if (__CLIENT__) {
+        const actionKey = `app.storedActions.${iri.value}`;
+        const storedAction = sessionStorage.getItem(actionKey);
+        if (storedAction && opts) {
+            // The action came from a form, so the stored data is probably stale.
+            sessionStorage.removeItem(actionKey);
+        } else if (storedAction) {
+          const parsedAction = storedAction && JSON.parse(storedAction);
+          const action = NamedNode.find(parsedAction.action.value);
+          return store
+              .execActionByIRI(action, parsedAction.formData)
+              .then(() => {
+                purgeCollection(store, action);
+                sessionStorage.removeItem(actionKey);
+              });
+        }
       }
     }
 

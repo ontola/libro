@@ -34,6 +34,10 @@ export default function isBackend(req, _res, next) {
     return next();
   }
 
+  if (req.url === '/favicon.ico') {
+    return next();
+  }
+
   logging.debug('[ROUTING] isBackend: false');
   return next('route');
 }

@@ -1,20 +1,24 @@
-import { LinkedResourceContainer } from 'link-redux';
+import { LinkedResourceContainer, withLRS } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import { handle } from '../../helpers/logging';
 import { currentLocation } from '../../helpers/paths';
+import { withWebsiteCtx } from '../../location';
 import { Page } from '../../topologies/Page';
 import ErrorButtonWithFeedback from '../../views/Error/ErrorButtonWithFeedback';
 
 const wildcardMap = new Map();
 wildcardMap.set('/media_objects/', ['page']);
 
-export default class LinkedObject extends React.PureComponent {
+class LinkedObject extends React.PureComponent {
   static propTypes = {
     location: PropTypes.shape({
       pathname: PropTypes.string,
       search: PropTypes.string,
+    }),
+    websiteCtx: PropTypes.shape({
+      websitePathname: PropTypes.string,
     }),
   };
 
@@ -47,7 +51,8 @@ export default class LinkedObject extends React.PureComponent {
   }
 
   render() {
-    const { location } = this.props;
+    const { location, websiteCtx } = this.props;
+    const { websitePathname } = websiteCtx;
     let routedLocation = location;
 
     if (typeof this.state.caughtError !== 'undefined') {
@@ -73,10 +78,12 @@ export default class LinkedObject extends React.PureComponent {
       <Page>
         <LinkedResourceContainer
           fetch
-          invalidate={currentLocation(routedLocation, true)}
-          subject={currentLocation(routedLocation, false)}
+          invalidate={currentLocation(routedLocation, true, websitePathname, websiteCtx)}
+          subject={currentLocation(routedLocation, false, websitePathname, websiteCtx)}
         />
       </Page>
     );
   }
 }
+
+export default withLRS(withWebsiteCtx(LinkedObject));

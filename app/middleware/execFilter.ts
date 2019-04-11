@@ -9,7 +9,7 @@ import { NamedNode } from 'rdflib';
 
 import { getMetaContent } from '../helpers/arguHelpers';
 
-export const website = getMetaContent('website-iri');
+export const website = getMetaContent('website-iri') || 'https://example.com';
 export const frontendIRI = NamedNode.find(website!);
 
 const execFilter = () => (): MiddlewareWithBoundLRS => {

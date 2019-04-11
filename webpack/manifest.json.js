@@ -6,6 +6,7 @@ module.exports = {
   filename: 'manifest.json',
   icons: [
     {
+      destination: path.join('f_assets', 'icons'),
       sizes: [96, 128, 192, 256, 384, 512, 1024], // eslint-disable-line no-magic-numbers
       src: path.resolve('app/assets/logo-social.png'),
       type: 'image/png',

@@ -8,7 +8,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 const { BugsnagBuildReporterPlugin } = require('webpack-bugsnag-plugins');
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const ManifestPlugin = require('webpack-manifest-plugin');
+const ManifestPlugin = require('webpack-assets-manifest');
 const merge = require('webpack-merge');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 
@@ -98,6 +98,21 @@ function createConfig(options) {
     module: {
       rules: [
         {
+          test: /\.(sa|sc|c)ss$/,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                hmr: process.env.NODE_ENV === 'development',
+                publicPath: '/',
+              },
+            },
+            'css-loader',
+            'postcss-loader',
+            'sass-loader',
+          ],
+        },
+        {
           include: [
             path.resolve(__dirname, '../app'),
             path.resolve(__dirname, '../node_modules/whatwg-url'),
@@ -110,16 +125,6 @@ function createConfig(options) {
           ],
           test: /\.(m?(t|j)sx?)$/,
           use: babelLoader,
-        },
-
-        {
-          test: /\.(sa|sc|c)ss$/,
-          use: [
-            MiniCssExtractPlugin.loader,
-            'css-loader',
-            'postcss-loader',
-            'sass-loader',
-          ],
         },
       ],
     },
@@ -139,15 +144,15 @@ function createConfig(options) {
 
     output: {
       filename: `f_assets/[name]-[chunkhash].${options.buildName}.js`,
-      path: path.resolve(__dirname, '..', 'dist', 'public'),
+      path: path.resolve(__dirname, '..', 'dist'),
       publicPath: '/',
     },
 
     plugins: [
       new MiniCssExtractPlugin({
+        chunkFilename: `f_assets/[name]-[id]-[contenthash].${options.buildName}.css`,
         filename: `f_assets/[name]-[contenthash].${options.buildName}.css`,
-        path: path.resolve(__dirname, '..', 'dist', 'public'),
-        publicPath: '/',
+        path: path.resolve(__dirname, '..', 'dist'),
       }),
       new webpack.DefinePlugin({
         __LEGACY__: options.bundle === bundles.legacy,
@@ -163,7 +168,7 @@ function createConfig(options) {
       new webpack.HashedModuleIdsPlugin(),
       new WebpackPwaManifest(manifest),
       new ManifestPlugin({
-        fileName: `../private/manifest.${options.buildName}.json`,
+        output: `private/manifest.${options.buildName}.json`,
         publicPath: '/',
       }),
       new CompressionPlugin({

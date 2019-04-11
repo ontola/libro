@@ -50,8 +50,8 @@ import VoteEvent from './VoteEvent';
 // import './VoteMatch';
 import Widget from './Widget';
 
-function register() {
-  LRS.registerAll(
+export default function register(lrs) {
+  const views = [
     ...Activity,
     ...AppSignIn,
     ...Thing,
@@ -91,8 +91,9 @@ function register() {
     ...User,
     ...Vote,
     ...VoteEvent,
-    ...Widget
-  );
+    ...Widget,
+  ];
+  lrs.registerAll(...views);
 }
 
 if (module.hot) {
@@ -105,12 +106,10 @@ if (module.hot) {
         LRS.mapping.mapping = [];
         break;
       case 'apply':
-        register();
+        register(LRS);
         break;
       default:
         break;
     }
   });
 }
-
-register();

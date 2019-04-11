@@ -7,14 +7,16 @@ import { CONTENT_ELEMENT } from '../../config';
 const AppScroller = ({ children, location }) => {
   const scrollerRef = React.createRef();
 
-  React.useLayoutEffect(
-    () => {
-      if (scrollerRef.current) {
-        scrollerRef.current.scrollTo(0, 0);
-      }
-    },
-    [location?.pathname]
-  );
+  if (__CLIENT__) {
+    React.useLayoutEffect(
+      () => {
+        if (scrollerRef.current) {
+          scrollerRef.current.scrollTo(0, 0);
+        }
+      },
+      [location?.pathname]
+    );
+  }
 
   return (
     <div

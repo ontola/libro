@@ -4,22 +4,27 @@ import PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { connect } from 'react-redux';
 import MediaQuery from 'react-responsive';
+import { withRouter } from 'react-router';
 
 import { mediaQueries } from '../../components/shared/config';
 import { SignInFormLink } from '../../components/SignInForm/index';
 import { NS } from '../../helpers/LinkedRenderStore';
 import NavbarLink from '../../components/NavbarLink';
-import path from '../../helpers/paths';
+import path, { currentLocation } from '../../helpers/paths';
+import { values } from '../../helpers/ssr';
 import { navbarTopology } from '../../topologies/Navbar';
 
 const propTypes = {
+  location: PropTypes.shape({
+    path: PropTypes.string,
+  }),
   lrs: lrsType,
-  redirectURL: PropTypes.string,
 };
 
-const GuestUserActor = ({ lrs, redirectURL }) => {
+const GuestUserActor = ({ location, lrs }) => {
+  const redirectURL = currentLocation(location);
+
   const label = (
     <FormattedMessage
       defaultMessage="Log in / sign up"
@@ -29,7 +34,7 @@ const GuestUserActor = ({ lrs, redirectURL }) => {
   );
 
   return (
-    <MediaQuery query={mediaQueries.smallAndAbove}>
+    <MediaQuery query={mediaQueries.smallAndAbove} values={values}>
       {matches => (
         <React.Fragment>
           <SignInFormLink
@@ -51,9 +56,7 @@ const GuestUserActor = ({ lrs, redirectURL }) => {
 
 GuestUserActor.propTypes = propTypes;
 
-const GuestUserActorConnected = connect(() => ({
-  redirectURL: window.location.href,
-}))(withLRS(GuestUserActor));
+const GuestUserActorConnected = withRouter(withLRS(GuestUserActor));
 
 export default LinkedRenderStore.registerRenderer(
   GuestUserActorConnected,

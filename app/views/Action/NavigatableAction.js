@@ -1,3 +1,4 @@
+import { History } from 'history';
 import PropTypes from 'prop-types';
 import React from 'react';
 

@@ -1,5 +1,0 @@
---require tests/testhelper
---compilers js:babel-register
---compilers jsx:babel-register
---es_staging
---harmony

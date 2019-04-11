@@ -41,9 +41,11 @@ class Form extends React.PureComponent {
       .then(() => {
         const formApi = args[1];
 
-        Object
-          .keys(sessionStorage)
-          .forEach(k => k.startsWith(this.props.formID) && sessionStorage.removeItem(k));
+        if (__CLIENT__) {
+          Object
+            .keys(sessionStorage)
+            .forEach(k => k.startsWith(this.props.formID) && sessionStorage.removeItem(k));
+        }
 
         formApi.reset();
       });

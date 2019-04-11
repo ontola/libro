@@ -1,3 +1,4 @@
+
 export const defaultKeymap = {
   exit: 'escape',
   next: ['k', 'right'],

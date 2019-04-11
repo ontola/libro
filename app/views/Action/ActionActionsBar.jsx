@@ -1,3 +1,4 @@
+import { History } from 'history';
 import {
   linkType,
   lrsType,

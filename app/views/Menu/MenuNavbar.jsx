@@ -9,6 +9,7 @@ import MediaQuery from 'react-responsive';
 import Button from '../../components/Button';
 import { mediaQueries } from '../../components/shared/config';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { values } from '../../helpers/ssr';
 import { menuStates } from '../../middleware/app';
 import { navbarTopology } from '../../topologies/Navbar';
 
@@ -44,7 +45,7 @@ class MenuNavbar extends React.PureComponent {
     }
 
     return (
-      <MediaQuery query={mediaQueries.smallAndAbove}>
+      <MediaQuery query={mediaQueries.smallAndAbove} values={values}>
         {matches => (
           <Button
             narrow

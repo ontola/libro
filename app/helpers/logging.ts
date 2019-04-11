@@ -3,6 +3,8 @@ import bugsnag from '@bugsnag/js';
 
 import { BUGSNAG_KEY, RELEASE_STAGE } from '../config';
 
+const globalThis = typeof window !== 'undefined' ? window : (global as unknown as Window);
+
 let client: Client;
 if (BUGSNAG_KEY) {
   client = bugsnag({
@@ -23,6 +25,7 @@ if (BUGSNAG_KEY) {
     notify(_: Error) { return void(0); },
   } as unknown as Client;
 }
+
 declare global {
   interface Window {
     logging: {
@@ -31,19 +34,19 @@ declare global {
     };
   }
 }
-window.logging = {
+globalThis.logging = {
   errors: [],
   logs: [],
 };
 
 // Prevent memory overflows
-window.setInterval(() => {
-  window.logging.errors = [];
-  window.logging.logs = [];
+globalThis.setInterval(() => {
+  globalThis.logging.errors = [];
+  globalThis.logging.logs = [];
 }, 3600 * 1000);
 
 export function error(...msg: any[]) {
-  window.logging.errors.push(msg);
+  globalThis.logging.errors.push(msg);
   if (!__PRODUCTION__) {
     // tslint:disable-next-line no-console
     console.error(...msg);
@@ -56,7 +59,7 @@ export function handle(exception: Error) {
 }
 
 export function log(...msg: any[]) {
-  window.logging.logs.push(msg);
+  globalThis.logging.logs.push(msg);
   if (!__PRODUCTION__) {
     // tslint:disable-next-line no-console
     console.log(...msg);

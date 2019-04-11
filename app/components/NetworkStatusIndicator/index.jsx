@@ -4,19 +4,21 @@ import { FormattedMessage } from 'react-intl';
 import './NetworkStatusIndicator.scss';
 
 const NetworkStatusIndicator = () => {
-  const [onLine, setOnLine] = React.useState(navigator.onLine);
+  const [onLine, setOnLine] = React.useState(__CLIENT__ ? navigator.onLine : true);
 
-  React.useEffect(() => {
-    const onLineListener = () => setOnLine(true);
-    const offLineListener = () => setOnLine(false);
-    window.addEventListener('online', onLineListener);
-    window.addEventListener('offline', offLineListener);
+  if (__CLIENT__) {
+    React.useEffect(() => {
+      const onLineListener = () => setOnLine(true);
+      const offLineListener = () => setOnLine(false);
+      window.addEventListener('online', onLineListener);
+      window.addEventListener('offline', offLineListener);
 
-    return () => {
-      window.removeEventListener('online', onLineListener);
-      window.removeEventListener('offline', offLineListener);
-    };
-  });
+      return () => {
+        window.removeEventListener('online', onLineListener);
+        window.removeEventListener('offline', offLineListener);
+      };
+    });
+  }
 
   if (onLine) {
     return null;

@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import isExternal from 'is-url-external';
 
 import Link from '../Link';
+import { isDifferentWebsite } from '../../helpers/iris';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -15,7 +15,7 @@ const propTypes = {
 // eslint-disable-next-line react/prefer-stateless-function
 export default class LinkDuo extends Component {
   render() {
-    if (isExternal(this.props.to)) {
+    if (isDifferentWebsite(this.props.to)) {
       const {
         children,
         ...rest

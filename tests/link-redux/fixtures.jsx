@@ -3,9 +3,13 @@ import { LinkedResourceContainer, Property, RenderStoreProvider } from 'link-red
 import PropTypes from 'prop-types';
 import rdf from 'rdflib';
 import React from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
+
+import { getWebsiteContextFromWebsite } from '../../app/helpers/app';
+import { WebsiteContext } from '../../app/location';
 
 import { defaultContext } from './utilities';
 
@@ -83,22 +87,27 @@ export const loc = ({
   if (Array.isArray(components)) {
     ctx.lrs.registerAll(...components);
   }
+  const websiteCtxValue = getWebsiteContextFromWebsite('https://example.com/');
 
   return (
     <Provider store={ctx.store}>
-      <RenderStoreProvider value={ctx.lrs}>
-        <IntlProvider locale="en">
-          <StaticRouter context={{}} location="/current_page">
-            <LinkedResourceContainer
-              forceRender
-              subject={subject}
-              topology={topology}
-            >
-              {children}
-            </LinkedResourceContainer>
-          </StaticRouter>
-        </IntlProvider>
-      </RenderStoreProvider>
+      <WebsiteContext.Provider value={websiteCtxValue}>
+        <HelmetProvider context={{}}>
+          <RenderStoreProvider value={ctx.lrs}>
+            <IntlProvider locale="en">
+              <StaticRouter context={{}} location="/current_page">
+                <LinkedResourceContainer
+                  forceRender
+                  subject={subject}
+                  topology={topology}
+                >
+                  {children}
+                </LinkedResourceContainer>
+              </StaticRouter>
+            </IntlProvider>
+          </RenderStoreProvider>
+        </HelmetProvider>
+      </WebsiteContext.Provider>
     </Provider>
   );
 };

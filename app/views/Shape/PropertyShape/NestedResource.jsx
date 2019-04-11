@@ -133,7 +133,11 @@ class NestedResource extends React.Component {
         if (e && typeof e.preventDefault === 'function') {
           e.preventDefault();
         }
-        Object.keys(input.value).map(field => sessionStorage.removeItem(`${this.context}.${field}`));
+        if (__CLIENT__) {
+          Object
+            .keys(input.value)
+            .map(field => sessionStorage.removeItem(`${this.context}.${field}`));
+        }
         input.onChange(markForRemove(input.value));
       };
 

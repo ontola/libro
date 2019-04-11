@@ -14,13 +14,6 @@ import dutchMessages from '../translations/nl.json';
 
 const propTypes = {
   Router: PropTypes.func,
-  history: PropTypes.shape({
-    go: PropTypes.func,
-    goBack: PropTypes.func,
-    push: PropTypes.func,
-    replace: PropTypes.func,
-    transitionTo: PropTypes.func,
-  }).isRequired,
   lrs: PropTypes.instanceOf(LinkedRenderStore).isRequired,
   store: PropTypes.shape({
     dispatch: PropTypes.func.isRequired,
@@ -34,7 +27,6 @@ addLocaleData(nlLocaleData);
 
 const IndexContainer = ({
   Router,
-  history,
   lrs,
   store,
 }) => {
@@ -53,7 +45,7 @@ const IndexContainer = ({
       <IntlProvider locale={selectedLang} messages={messages}>
         <RenderStoreProvider value={lrs}>
           <UpdateLRSIntl>
-            <Router history={history}>
+            <Router>
               <AppFrame />
             </Router>
           </UpdateLRSIntl>
