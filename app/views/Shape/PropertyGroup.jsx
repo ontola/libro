@@ -10,20 +10,26 @@ class PropertyGroup extends React.PureComponent {
 
   static topology = allTopologies;
 
-  static mapDataToProps = [NS.rdfs('label')];
+  static mapDataToProps = [NS.rdfs('label'), NS.sh('description')];
 
   static linkOpts = {
     forceRender: true,
   };
 
   static propTypes = {
+    description: linkType,
     label: linkType,
     properties: PropTypes.node,
     subject: subjectType,
   };
 
   render() {
-    const { properties, label, subject } = this.props;
+    const {
+      description,
+      properties,
+      label,
+      subject,
+    } = this.props;
 
     if (subject === NS.ontola('hiddenGroup')) {
       return (
@@ -40,6 +46,7 @@ class PropertyGroup extends React.PureComponent {
     return (
       <fieldset>
         <legend>{label.value}</legend>
+        {description && <div>{description.value}</div>}
         <hr />
         {properties}
       </fieldset>
