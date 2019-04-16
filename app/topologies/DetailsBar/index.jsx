@@ -18,7 +18,7 @@ class DetailsBar extends TopologyProvider {
 
   render() {
     return this.wrap((
-      <div className="DetailsBar theme">
+      <div className={`DetailsBar theme ${this.props.className || ''}`}>
         <VerticalScroller>
           {this.props.children}
         </VerticalScroller>

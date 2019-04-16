@@ -8,6 +8,8 @@ import DetailsBar from '../../topologies/DetailsBar';
 
 import ActivityName from './properties/name';
 
+import './Activity.scss';
+
 class Activity extends React.PureComponent {
   static type = NS.as('Activity');
 
@@ -22,6 +24,7 @@ class Activity extends React.PureComponent {
     return (
       <Card>
         <DetailsBar
+          className="ActivityDetail"
           right={<Property label={NS.schema('dateCreated')} />}
         >
           <Property label={NS.schema('name')} />

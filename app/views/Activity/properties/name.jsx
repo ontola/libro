@@ -6,6 +6,7 @@ import {
 import { NamedNode } from 'rdflib';
 import React from 'react';
 
+import { DetailText } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../../topologies';
 
@@ -28,6 +29,7 @@ class ActivityName extends PropertyBase {
     NS.as('actor'),
     NS.schema('name'),
     NS.as('target'),
+    NS.as('object'),
   ];
 
   render() {
@@ -36,20 +38,20 @@ class ActivityName extends PropertyBase {
     const template = name.value;
     const matches = template.match(uriMatch);
     const split = template.split(uriMatch);
-    const elems = split.reduce((previousValue, currentValue) => {
-      if (currentValue === '') {
-        const iri = matches.shift().slice(HANDLEBAR_LENGTH, -HANDLEBAR_LENGTH);
-        const { term } = NamedNode.find(iri);
-        return previousValue.concat((
+
+    const elems = split.reduce((previousValue, currentValue, index) => {
+      const iri = matches[index]?.slice(HANDLEBAR_LENGTH, -HANDLEBAR_LENGTH);
+      const term = iri && NamedNode.find(iri).term;
+      return previousValue.concat(
+        <DetailText>{currentValue}</DetailText>,
+        term && (
           <LinkedResourceContainer
             key={this.props[term]}
             subject={this.props[term]}
-            theme="parent"
+            theme={term === NS.as('actor').term ? 'default' : 'parent'}
           />
-        ));
-      }
-
-      return previousValue;
+        )
+      );
     }, []);
 
     return (

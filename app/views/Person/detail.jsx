@@ -38,6 +38,7 @@ class PersonDetail extends React.PureComponent {
   static propTypes = {
     intl: intlShape,
     name: PropTypes.instanceOf(Literal),
+    theme: PropTypes.string,
     topology: topologyType,
   };
 
@@ -45,12 +46,14 @@ class PersonDetail extends React.PureComponent {
     const {
       intl: { formatMessage },
       name,
+      theme,
       topology,
     } = this.props;
 
     return (
       <LDLink
         features={['centered', topology === tableCellTopology ? 'bold' : '']}
+        theme={theme}
         title={formatMessage(messages.showProfile, { name })}
       >
         <Detail
