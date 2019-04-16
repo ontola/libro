@@ -29,6 +29,7 @@ class NestedResource extends React.Component {
 
   static propTypes = {
     class: linkType,
+    description: linkType,
     fieldName: PropTypes.string,
     lrs: lrsType,
     maxCount: linkType,
@@ -98,6 +99,7 @@ class NestedResource extends React.Component {
       return (
         <React.Fragment>
           {this.labelComponent(theme !== 'omniform' || value.length > 0)}
+          {this.descriptionComponent()}
           {children}
           {showAddButton && this.addButton(addItem)}
         </React.Fragment>
@@ -138,6 +140,7 @@ class NestedResource extends React.Component {
       return (
         <React.Fragment>
           {this.labelComponent(theme !== 'omniform' || !!input.value)}
+          {this.descriptionComponent()}
           {(input.value || inputAlwaysVisible) && this.nestedResourceView({
             removeItem: showRemoveItem ? removeItem : undefined,
             targetValue: displayValue ?? input.value ?? { '@id': input.value },
@@ -224,6 +227,16 @@ class NestedResource extends React.Component {
         />
       </Button>
     );
+  }
+
+  descriptionComponent() {
+    const { description } = this.props;
+
+    if (description) {
+      return <div>{description.value}</div>;
+    }
+
+    return null;
   }
 
   labelComponent(showLabel) {
