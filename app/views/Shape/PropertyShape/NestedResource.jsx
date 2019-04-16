@@ -175,6 +175,10 @@ class NestedResource extends React.Component {
       onKeyUp,
     } = this.props;
 
+    if (typeof props.targetValue === 'undefined') {
+      return null;
+    }
+
     const targetShape = lrs.store.anyStatementMatching(
       null,
       NS.sh('targetClass'),
