@@ -23,6 +23,7 @@ import { omniformSupplementBarTopology } from './topologies/OmniformSupplementBa
 import { pageTopology } from './topologies/Page';
 import { pageHeaderTopology } from './topologies/PageHeader/index';
 import { parentTopology } from './topologies/Parent/index';
+import { primaryCallToActionTopology } from './topologies/PrimaryCallToAction/index';
 import { popupTopology } from './topologies/Popup/index';
 import { selectTopology } from './topologies/Select';
 import { tableTopology } from './topologies/Table';
@@ -65,6 +66,7 @@ export const allTopologies = [
   pageTopology,
   pageHeaderTopology,
   popupTopology,
+  primaryCallToActionTopology,
   selectTopology,
   tableHeaderRowTopology,
   tableTopology,

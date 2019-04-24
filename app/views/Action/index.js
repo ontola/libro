@@ -2,6 +2,7 @@ import Actions from './Action';
 import ActionContainer from './ActionContainer';
 import ActionActionsBar from './ActionActionsBar';
 import ActionPage from './ActionPage';
+import ActionPrimaryCallToAction from './ActionPrimaryCallToAction';
 import ActionTableCell from './ActionTableCell';
 import ActionTableRow from './ActionTableRow';
 import ActionWidget from './ActionWidget';
@@ -18,6 +19,7 @@ export default [
   ActionContainer,
   ActionActionsBar,
   ActionPage,
+  ActionPrimaryCallToAction,
   ActionTableCell,
   ActionTableRow,
   ActionWidget,
