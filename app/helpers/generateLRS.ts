@@ -117,6 +117,12 @@ function generateLRS() {
     new Statement(NS.schema('CreateAction'), NS.rdf('type'), NS.rdfs('Class')),
     new Statement(NS.schema('CreateAction'), NS.rdfs('subClassOf'), NS.schema('Action')),
 
+    new Statement(NS.schema('WebPage'), NS.rdf('type'), NS.rdfs('Class')),
+    new Statement(NS.schema('WebPage'), NS.rdfs('subClassOf'), NS.schema('Thing')),
+
+    new Statement(NS.schema('WebSite'), NS.rdf('type'), NS.rdfs('Class')),
+    new Statement(NS.schema('WebSite'), NS.rdfs('subClassOf'), NS.schema('Thing')),
+
     new Statement(NS.ontola('Create::Users::Password'), NS.rdf('type'), NS.rdfs('Class')),
     new Statement(NS.ontola('Create::Users::Password'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
 
@@ -128,6 +134,9 @@ function generateLRS() {
 
     new Statement(NS.ontola('Create::Vote'), NS.rdf('type'), NS.rdfs('Class')),
     new Statement(NS.ontola('Create::Vote'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
+
+    new Statement(NS.ontola('VideoPage'), NS.rdf('type'), NS.rdfs('Class')),
+    new Statement(NS.ontola('VideoPage'), NS.rdfs('subClassOf'), NS.schema('WebPage')),
 
     new Statement(NS.schema('UpdateAction'), NS.rdf('type'), NS.rdfs('Class')),
     new Statement(NS.schema('UpdateAction'), NS.rdfs('subClassOf'), NS.schema('Action')),

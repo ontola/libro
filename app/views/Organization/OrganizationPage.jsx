@@ -11,7 +11,7 @@ import PageHeader from '../../topologies/PageHeader';
 import PrimaryResource, { primaryResourceTopology } from '../../topologies/PrimaryResource';
 
 class OrganizationPage extends React.PureComponent {
-  static type = [NS.schema('Organization'), NS.argu('Page')];
+  static type = [NS.schema('Organization'), NS.argu('Page'), NS.schema('WebSite')];
 
   static topology = [
     primaryResourceTopology,

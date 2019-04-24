@@ -43,6 +43,7 @@ import Shape from './Shape';
 import Snackbar from './Snackbar';
 import SnackbarManager from './SnackbarManager';
 import User from './User';
+import VideoPage from './VideoPage';
 import Vote from './Vote';
 // import './VoteCompareCells';
 // import './VoteCompareRows';
@@ -91,6 +92,7 @@ export function getViews() {
     ...Snackbar,
     ...SnackbarManager,
     ...User,
+    ...VideoPage,
     ...Vote,
     ...VoteEvent,
     ...Widget,

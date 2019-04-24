@@ -1,4 +1,5 @@
 import { linkType, register, subjectType } from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
@@ -45,30 +46,67 @@ class MediaObjectPage extends React.PureComponent {
   };
 
   static propTypes = {
+    autoPlay: PropTypes.bool,
     caption: linkType,
     contentUrl: linkType,
     embedUrl: linkType,
     encodingFormat: linkType,
     filename: linkType,
+    fullPage: PropTypes.bool,
     isPartOf: linkType,
+    loop: PropTypes.bool,
+    muted: PropTypes.bool,
     subject: subjectType,
     type: linkType.isRequired,
   };
 
+  headerComponent() {
+    const { caption, filename, isPartOf } = this.props;
+
+    const label = caption && caption.value ? caption.value : (filename && filename.value);
+
+    if (!label) {
+      handle(new Error(`MediaObject ${this.props.subject} has no label`));
+    }
+
+    return (
+      <div className="MediaObjectPage__infobar" data-test="MediaObject">
+        <Link
+          className="MediaObjectPage__infobar--is-part-of"
+          data-test="MediaObject-isPartOf"
+          to={retrievePath(isPartOf.value)}
+        >
+          <FontAwesome name="arrow-left" />
+        </Link>
+        <div className="MediaObjectPage__infobar--label">
+          {label && <Heading data-test="MediaObject-heading" variant="light">{label}</Heading>}
+        </div>
+        <div>
+          {this.downloadButton()}
+        </div>
+      </div>
+    );
+  }
+
   viewerComponent() {
     const {
+      autoPlay,
       contentUrl,
       encodingFormat,
       embedUrl,
       filename,
+      fullPage,
+      loop,
+      muted,
       type,
     } = this.props;
 
+    const classes = fullPage ? 'MediaObjectPage--full-page' : '';
     if (type === NS.schema('VideoObject')) {
       if (embedUrl && YOUTUBE_TEST.test(embedUrl.value)) {
         return (
           <Container>
-            <div className="MediaObjectPage__infobar--video-container">
+            <div className={`MediaObjectPage__infobar--video-container ${classes}`}>
               <iframe
                 allowFullScreen
                 allow="encrypted-media"
@@ -87,8 +125,11 @@ class MediaObjectPage extends React.PureComponent {
       return (
         <Container>
           <video
-            className="MediaObjectPage__infobar--video-html"
+            autoPlay={autoPlay}
+            className={`MediaObjectPage__infobar--video-html ${classes}`}
             data-test="MediaObject-viewer-video-html"
+            loop={loop}
+            muted={muted}
             src={contentUrl.value}
           />
         </Container>
@@ -96,7 +137,7 @@ class MediaObjectPage extends React.PureComponent {
       /* eslint-enable jsx-a11y/media-has-caption */
     } else if (encodingFormat.value === 'application/pdf') {
       return (
-        <div className="MediaObjectPage__infobar--pdf">
+        <div className={`MediaObjectPage__infobar--pdf ${classes}`}>
           <PDF data-test="MediaObject-viewer-pdf" file={contentUrl.value} />
         </div>
       );
@@ -109,7 +150,7 @@ class MediaObjectPage extends React.PureComponent {
     return (
       <Container>
         <Image
-          className="MediaObjectPage__infobar--image"
+          className={`MediaObjectPage__infobar--image ${classes}`}
           data-test="MediaObject-viewer-image"
           linkedProp={imageLink}
         />
@@ -139,31 +180,11 @@ class MediaObjectPage extends React.PureComponent {
   }
 
   render() {
-    const { caption, filename, isPartOf } = this.props;
-
-    const label = caption && caption.value ? caption.value : (filename && filename.value);
-
-    if (!label) {
-      handle(new Error(`MediaObject ${this.props.subject} has no label`));
-    }
+    const { fullPage } = this.props;
 
     return (
       <PrimaryResource>
-        <div className="MediaObjectPage__infobar" data-test="MediaObject">
-          <Link
-            className="MediaObjectPage__infobar--is-part-of"
-            data-test="MediaObject-isPartOf"
-            to={retrievePath(isPartOf.value)}
-          >
-            <FontAwesome name="arrow-left" />
-          </Link>
-          <div className="MediaObjectPage__infobar--label">
-            {label && <Heading data-test="MediaObject-heading" variant="light">{label}</Heading>}
-          </div>
-          <div>
-            {this.downloadButton()}
-          </div>
-        </div>
+        {!fullPage && this.headerComponent()}
         {this.viewerComponent()}
       </PrimaryResource>
     );
