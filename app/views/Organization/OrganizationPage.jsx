@@ -19,20 +19,20 @@ class OrganizationPage extends React.PureComponent {
   ];
 
   static mapDataToProps = [
-    NS.argu('primaryContainerNode'),
+    NS.foaf('homepage'),
     NS.schema('name'),
   ];
 
   static propTypes = {
-    primaryContainerNode: linkType,
+    homepage: linkType,
   };
 
   render() {
-    const { primaryContainerNode } = this.props;
+    const { homepage } = this.props;
 
-    if (primaryContainerNode) {
+    if (homepage) {
       return (
-        <Property label={NS.argu('primaryContainerNode')} />
+        <Property label={NS.foaf('homepage')} />
       );
     }
 

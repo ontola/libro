@@ -49,7 +49,7 @@ const Contains = ({
 Contains.propTypes = propTypes;
 
 export default link(
-  [defaultNS.argu('contains'), defaultNS.argu('primaryContainerNode')],
+  [defaultNS.argu('contains'), defaultNS.foaf('homepage')],
   {
     forceRender: true,
     helpers: {},
