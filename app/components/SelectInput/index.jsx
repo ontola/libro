@@ -6,7 +6,7 @@ import {
   linkType,
   useDataFetching,
   useDataInvalidation,
-  useLinkContext,
+  useLRS,
 } from 'link-redux';
 import React from 'react';
 import VirtualList from 'react-tiny-virtual-list';
@@ -44,10 +44,10 @@ function calculateItemsToShow(state) {
   return options;
 }
 
-function updateOptions(state, props, context) {
+function updateOptions(state, props, lrs) {
   const nextOptions = Array.isArray(props.options)
     ? props.options
-    : listToArr(context.lrs, [], props.options);
+    : listToArr(lrs, [], props.options);
 
   if (nextOptions instanceof Promise || typeof nextOptions.then !== 'undefined') {
     return {
@@ -214,12 +214,12 @@ function SelectInput(props) {
     shouldClose: false,
   });
 
-  const context = useLinkContext();
+  const lrs = useLRS();
   const subject = Array.isArray(options) ? undefined : options;
-  const version = useDataInvalidation({ subject }, context);
-  useDataFetching({ subject }, context);
+  const version = useDataInvalidation({ subject });
+  useDataFetching({ subject }, version);
   React.useEffect(() => {
-    setState(updateOptions(state, props, context));
+    setState(updateOptions(state, props, lrs));
   }, [options, version]);
 
   const itemToString = (item) => {
@@ -228,15 +228,15 @@ function SelectInput(props) {
     }
 
     if (item.termType && (item.termType === 'NamedNode' || item.termType === 'BlankNode')) {
-      const itemClass = context.lrs.getResourceProperty(item, NS.rdf('type'));
-      const classDisplayProp = context.lrs.getResourceProperty(
+      const itemClass = lrs.getResourceProperty(item, NS.rdf('type'));
+      const classDisplayProp = lrs.getResourceProperty(
         itemClass,
         NS.ontola('forms/inputs/select/displayProp')
       ) || NS.schema('name');
-      let label = context.lrs.getResourceProperty(item, classDisplayProp);
+      let label = lrs.getResourceProperty(item, classDisplayProp);
       if (!label) {
         handle(new TypeError(`Resource ${item} has no property ${classDisplayProp}`));
-        label = context.lrs.getResourceProperty(item, NS.schema('name'));
+        label = lrs.getResourceProperty(item, NS.schema('name'));
       }
 
       return label ? label.value : item.value;

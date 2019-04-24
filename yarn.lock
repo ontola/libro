@@ -8299,10 +8299,10 @@ line-height@^0.3.1:
   dependencies:
     computed-style "~0.1.3"
 
-link-lib@=1.0.0-beta29-20190408T101626:
-  version "1.0.0-beta29-20190408T101626"
-  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-beta29-20190408T101626.tgz#f733929bf8b3245c54a5a204e0dbd0de9c88c52b"
-  integrity sha512-Xih5sg0LDueAtUoWbtXFqWMAcik+04uJuEVHKTHoyqYfF+9BgsDMLVM37/XEf6IPI1aMF9kaCzJhK8pS2+siHQ==
+link-lib@=1.0.0-rc1:
+  version "1.0.0-rc1"
+  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-rc1.tgz#d8a946b2aad6f30424399823115b08deee35c23a"
+  integrity sha512-7xetbHuzr7sS6bQjKoOwlDlEvjLkFnkMHAlKNx3PJL+oelpaP/rW9JAy6d1vABmeLIVPaUGiJYnwrTq5RHc7bg==
 
 "link-rdflib@npm:link-rdflib@0.19.1-20190124T144209", "rdflib@npm:link-rdflib@0.19.1-20190124T144209":
   version "0.19.1-20190124T144209"
@@ -8316,10 +8316,12 @@ link-lib@=1.0.0-beta29-20190408T101626:
     solid-auth-client "^2.2.3"
     xmldom "^0.1.22"
 
-link-redux@1.0.0-beta33-20190325T154126:
-  version "1.0.0-beta33-20190325T154126"
-  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-beta33-20190325T154126.tgz#db62e767c9efc3e1524e648fd1c0bac32af60b4d"
-  integrity sha512-dKwMIALPjNnA1Ceq9wawrGobfbdcgF9Id11Qabiw5OwabFKBxdK+JEHzYftgJhzewzl4yjB+yb8/aZky7Vjriw==
+link-redux@=1.0.0-rc1:
+  version "1.0.0-rc1"
+  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-rc1.tgz#ea3e692423181531932c2340849cfd61828c36b2"
+  integrity sha512-XrxDr2rT4e4ZBIqPgyEdjN+R9LnH4y8e1XN/NE4Uyoi4e2q5u5dvYtWmS76+BbJrmMXyAlR6EY6UwZ/oCSKKBQ==
+  dependencies:
+    link-rdflib "npm:link-rdflib@0.19.1-20190124T144209"
 
 lint-staged@^8.1.5:
   version "8.1.5"

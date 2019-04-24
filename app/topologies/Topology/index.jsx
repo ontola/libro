@@ -1,11 +1,10 @@
 import { TopologyProvider, unstable } from 'link-redux';
-import { calculateChildProps } from 'link-redux/dist/typings/components/withLinkCtx';
 import React from 'react';
 
 import { handle } from '../../helpers/logging';
 
 class Topology extends TopologyProvider {
-  static contextType = unstable.LinkCtx;
+  static contextType = unstable.LRSCtx;
 
   constructor(props) {
     super(props);
@@ -30,7 +29,7 @@ class Topology extends TopologyProvider {
   }
 
   renderError() {
-    const childProps = calculateChildProps(
+    const childProps = unstable.calculateChildProps(
       this.props,
       this.context,
       {

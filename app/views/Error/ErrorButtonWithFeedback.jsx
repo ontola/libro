@@ -33,7 +33,7 @@ const RETRYABLE_ERRORS = [
 ];
 
 class ErrorButtonWithFeedback extends React.Component {
-  static contextType = unstable.LinkCtx;
+  static contextType = unstable.LRSCtx;
 
   constructor() {
     super();
@@ -68,12 +68,11 @@ class ErrorButtonWithFeedback extends React.Component {
 
     return this
       .context
-      .lrs
       .api
       .statusMap
       .forEach((s, i) => {
         if (s && (s.status >= INTERNAL_SERVER_ERROR || RETRYABLE_ERRORS.includes(s.status))) {
-          this.context.lrs.queueEntity(NamedNode.findByStoreIndex(i), { reload: true });
+          this.context.queueEntity(NamedNode.findByStoreIndex(i), { reload: true });
         }
       });
   }

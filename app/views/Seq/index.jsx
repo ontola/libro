@@ -3,7 +3,7 @@ import {
   register,
   subjectType,
   useDataInvalidation,
-  useLinkContext,
+  useLRS,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
@@ -29,13 +29,13 @@ export function Seq({
   renderGutter,
   subject,
 }) {
+  const lrs = useLRS();
+
   if (gutter === -1) {
     return null;
   }
 
-  const context = useLinkContext();
-  const sequences = context
-    .lrs
+  const sequences = lrs
     .tryEntity(subject)
     .filter(s => s && s.predicate.value.match(filter) !== null)
     .sort(numAsc)
@@ -48,7 +48,7 @@ export function Seq({
     secondary = sequences.slice(gutter);
   }
 
-  useDataInvalidation({ dataSubjects: sequences, subject }, context);
+  useDataInvalidation({ dataSubjects: sequences, subject });
 
   return (
     <React.Fragment>

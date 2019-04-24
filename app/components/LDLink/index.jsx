@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
 import React from 'react';
-import { subjectType, useLinkContext } from 'link-redux';
+import { subjectType, useLinkRenderContext } from 'link-redux';
 
 import Link from '../Link';
 import { handle } from '../../helpers/logging';
@@ -11,7 +11,7 @@ const LDLink = ({
   to,
   ...rest
 }) => {
-  const { subject } = useLinkContext();
+  const { subject } = useLinkRenderContext();
 
   if (!subject) {
     handle(new Error('LDLINK NO SUBJECT'));

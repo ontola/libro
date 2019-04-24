@@ -4,7 +4,7 @@ import {
   linkType,
   Property,
   useDataInvalidation,
-  useLinkContext,
+  useLinkRenderContext,
 } from 'link-redux';
 import React from 'react';
 
@@ -43,11 +43,11 @@ const Arguments = ({
   proArguments,
   proArgumentsCount,
 }) => {
-  const ctx = useLinkContext();
+  const ctx = useLinkRenderContext();
   useDataInvalidation({
     dataSubjects: [conArguments, proArguments].filter(Boolean),
     subject: ctx.subject,
-  }, ctx);
+  });
 
   if (noArguments(conArgumentsCount, proArgumentsCount)) {
     return null;

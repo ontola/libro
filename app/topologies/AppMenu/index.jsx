@@ -37,7 +37,7 @@ class AppMenu extends Topology {
 
     return (
       <OutsideClickHandler
-        onOutsideClick={() => this.context.lrs.exec(NS.app('actions/menu/close'))}
+        onOutsideClick={() => this.context.exec(NS.app('actions/menu/close'))}
       >
         {this.renderContent()}
       </OutsideClickHandler>

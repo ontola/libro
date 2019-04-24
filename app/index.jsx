@@ -39,7 +39,8 @@ new Promise((resolve) => {
       { headers: new Headers({ 'Content-Type': 'application/n-quads' }) }
     );
 
-    LinkedRenderStore.api
+    LinkedRenderStore
+      .api
       .feedResponse(seedRequest, true)
       .then(resolve);
   }

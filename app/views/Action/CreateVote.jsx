@@ -4,7 +4,6 @@ import {
   subjectType,
   register,
   useDataFetching,
-  useLinkContext,
   lrsType,
   useDataInvalidation,
 } from 'link-redux';
@@ -98,6 +97,11 @@ const CreateVote = ({
       handle(e);
     });
 
+  const isCurrentOrVote = currentVote(current, object, lrs);
+  const vote = typeof isCurrentOrVote === 'object' ? isCurrentOrVote : undefined;
+  const lastUpdate = useDataInvalidation({ dataSubjects: [vote].filter(Boolean), subject });
+  useDataFetching({ subject: vote }, lastUpdate);
+
   if (!target) {
     return null;
   }
@@ -120,12 +124,6 @@ const CreateVote = ({
       />
     );
   }
-
-  const isCurrentOrVote = currentVote(current, object, lrs);
-  const vote = typeof isCurrentOrVote === 'object' ? isCurrentOrVote : undefined;
-  const context = useLinkContext();
-  useDataInvalidation({ dataSubjects: [vote].filter(Boolean), subject }, context);
-  useDataFetching({ subject: vote }, context);
 
   return (
     <LinkedResourceContainer
