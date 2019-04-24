@@ -12,6 +12,8 @@ export const defaultServiceProto = process.env.DEFAULT_SERVICE_PROTO || 'http';
 export const namespace = process.env.NAMESPACE || '';
 export const svcDNSPrefix = process.env.SERVICE_DNS_PREFIX === undefined ? 'svc' : process.env.SERVICE_DNS_PREFIX;
 export const logLevel = process.env.LOG_LEVEL || 'info';
+export const clientId = process.env.ARGU_APP_ID;
+export const clientSecret = process.env.ARGU_APP_SECRET;
 
 export const clusterURLBase = process.env.CLUSTER_URL_BASE || `${namespace ? `.${namespace}` : ''}${svcDNSPrefix ? `.${svcDNSPrefix}` : ''}.${clusterDomain}`;
 
