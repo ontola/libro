@@ -1,10 +1,10 @@
-import { TopologyProvider, unstable } from 'link-redux';
+import { TopologyProvider, unstable, useLRS } from 'link-redux';
 import React from 'react';
 
 import { handle } from '../../helpers/logging';
 
 class Topology extends TopologyProvider {
-  static contextType = unstable.LRSCtx;
+  static contextType = unstable.LinkRenderCtx;
 
   constructor(props) {
     super(props);
@@ -29,17 +29,24 @@ class Topology extends TopologyProvider {
   }
 
   renderError() {
-    const childProps = unstable.calculateChildProps(
-      this.props,
-      this.context,
-      {
-        helpers: {
-          reset: () => this.setState({ error: undefined }),
-        },
-      }
-    );
+    const ErrorRenderer = ({ context, props, reset }) => {
+      const lrs = useLRS();
+      const childProps = unstable.useCalculateChildProps(
+        props,
+        context,
+        { helpers: { reset } }
+      );
 
-    return unstable.renderError(childProps, this.context, this.state.error);
+      return unstable.renderError(childProps, lrs, this.state.error);
+    };
+
+    return (
+      <ErrorRenderer
+        context={this.context}
+        props={this.props}
+        reset={() => this.setState({ error: undefined })}
+      />
+    );
   }
 
   renderContent() {
