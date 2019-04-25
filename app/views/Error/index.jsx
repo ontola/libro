@@ -19,6 +19,7 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import { getCurrentUserType } from '../../state/app/selectors';
 import Card, { cardTopology } from '../../topologies/Card';
 import { cardFixedTopology } from '../../topologies/Card/CardFixed';
+import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { cardListTopology } from '../../topologies/Card/CardList';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
@@ -219,6 +220,7 @@ export default [
     RENDER_CLASS_NAME,
     [
       cardFixedTopology,
+      cardFloatTopology,
       cardTopology,
       cardMainTopology,
       cardRowTopology,
