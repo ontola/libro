@@ -10,7 +10,11 @@ import CardAppendix from '../../topologies/Card/CardAppendix';
 import { containerTopology } from '../../topologies/Container';
 
 class ArgumentContainer extends React.PureComponent {
-  static type = NS.argu('Argument');
+  static type = [
+    NS.argu('Argument'),
+    NS.argu('ProArgument'),
+    NS.argu('ConArgument'),
+  ];
 
   static topology = containerTopology;
 

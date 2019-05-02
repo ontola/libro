@@ -5,7 +5,11 @@ import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../../topologies';
 
 class FavoriteAction extends React.PureComponent {
-  static type = NS.argu('Argument');
+  static type = [
+    NS.argu('Argument'),
+    NS.argu('ProArgument'),
+    NS.argu('ConArgument'),
+  ];
 
   static property = NS.argu('favoriteAction');
 
