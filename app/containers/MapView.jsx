@@ -9,6 +9,10 @@ const MapView = React.lazy(
 
 class MapViewLoader extends React.Component {
   render() {
+    if (!__CLIENT__) {
+      return <Spinner loading />;
+    }
+
     return (
       <React.Suspense fallback={<Spinner loading />}>
         <MapView {...this.props} />

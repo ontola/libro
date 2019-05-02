@@ -35,6 +35,14 @@ class WidgetTopology extends TopologyProvider {
       [`Widget--width-${width}`]: width,
     });
 
+    if (!__CLIENT__) {
+      return (
+        <div className={classes}>
+          <LoadingCardFixed fill />
+        </div>
+      );
+    }
+
     return this.wrap((
       <div className={classes}>
         <React.Suspense fallback={<LoadingCardFixed fill />}>

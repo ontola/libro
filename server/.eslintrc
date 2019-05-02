@@ -10,7 +10,6 @@
     "__DEVELOPMENT__": true,
     "__ORIGIN__": true,
     "__PRODUCTION__": true,
-    "__SERVER__": true,
     "__VERSION__": true
   },
   "parserOptions": {

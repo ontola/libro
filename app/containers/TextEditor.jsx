@@ -9,6 +9,10 @@ const TextEditor = React.lazy(
 
 class TextEditorLoader extends React.Component {
   render() {
+    if (!__CLIENT__) {
+      return <Spinner loading />;
+    }
+
     return (
       <React.Suspense fallback={<Spinner loading />}>
         <TextEditor {...this.props} />
