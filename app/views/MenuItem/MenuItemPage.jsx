@@ -9,16 +9,17 @@ import {
 import * as PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
 import React from 'react';
-import { Redirect } from 'react-router';
+import { Redirect, withRouter } from 'react-router';
 
 import TabBarWrapper from '../../components/TabBarWrapper';
-import { currentURL, retrievePath } from '../../helpers/iris';
+import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { pageTopology } from '../../topologies/Page';
 import PageHeader from '../../topologies/PageHeader';
 import PrimaryResource, { primaryResourceTopology } from '../../topologies/PrimaryResource';
 import TabBar from '../../topologies/TabBar';
 import TabPane from '../../topologies/TabPane';
+import { currentLocation } from '../../helpers/paths';
 
 class MenuItemPage extends React.PureComponent {
   static type = [
@@ -39,7 +40,10 @@ class MenuItemPage extends React.PureComponent {
     parentMenu: NS.argu('parentMenu'),
   };
 
+  static hocs = [withRouter];
+
   static propTypes = {
+    location: PropTypes.shape({}),
     lrs: lrsType,
     menuItems: linkType,
     subject: subjectType,
@@ -51,9 +55,14 @@ class MenuItemPage extends React.PureComponent {
   };
 
   redirectTarget() {
-    const { lrs, menuItems, subject } = this.props;
+    const {
+      location,
+      lrs,
+      menuItems,
+      subject,
+    } = this.props;
 
-    if (menuItems && currentURL() === subject.value) {
+    if (menuItems && currentLocation(location) === subject) {
       return lrs.getResourceProperty(menuItems, NS.rdf('_0'));
     }
 
@@ -65,7 +74,7 @@ class MenuItemPage extends React.PureComponent {
   }
 
   render() {
-    const { topLevel } = this.props;
+    const { location, topLevel } = this.props;
 
     const r = this.redirectTarget();
     let body;
@@ -82,7 +91,7 @@ class MenuItemPage extends React.PureComponent {
     } else if (topLevel) {
       body = (
         <LinkedResourceContainer
-          subject={r || NamedNode.find(currentURL())}
+          subject={r || NamedNode.find(currentLocation(location))}
           topLevel={false}
         />
       );
