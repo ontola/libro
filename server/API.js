@@ -7,6 +7,7 @@ import processResponse from './api/internal/statusHandler';
 import { guestTokenRequest, userTokenRequest } from './api/tokens';
 import { oAuthToken } from './config';
 import logging from './utils/logging';
+import { route } from './utils/proxies/helpers';
 
 /**
  * Class for communicating with the Argu API & SPI.
@@ -107,7 +108,7 @@ class API {
     logging.debug(`[API] Request '${path}'`);
 
     return fetch(
-      new URL(path, this.base).toString(),
+      route(new URL(path, this.base).toString(), true),
       {
         ...rest,
         headers: {
