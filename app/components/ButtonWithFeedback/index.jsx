@@ -36,7 +36,7 @@ class ButtonWithFeedback extends React.Component {
     this
       .props
       .onClick()
-      .then(() => {
+      .finally(() => {
         this.setState({ feedback: false });
       });
   }
