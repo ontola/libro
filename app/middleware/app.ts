@@ -88,6 +88,19 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
         });
   };
 
+  /**
+   * App sign out
+   */
+  (store as any).actions.app.startSignOut = (redirect?: NamedNode) => {
+    if (redirect) {
+      store.exec(store.namespaces.ontola(`actions/redirect?location=${redirect.value}`));
+    }
+    store.exec(store.namespaces.ontola('actions/logout'));
+  };
+
+  /**
+   * Handler
+   */
   return (next: MiddlewareActionHandler) => (iri: NamedNode, opts: any): Promise<any> => {
 
     if ([

@@ -6,6 +6,7 @@ import LRS from '../helpers/LinkedRenderStore';
  */
 import Activity from './Activity';
 import AppSignIn from './AppSignIn';
+import AppSignOut from './AppSignOut';
 import Thing from './Thing';
 import Collection from './Collection';
 import CollectionPage from './CollectionPage';
@@ -54,6 +55,7 @@ export default function register(lrs) {
   const views = [
     ...Activity,
     ...AppSignIn,
+    ...AppSignOut,
     ...Thing,
     ...Action,
     ...Argument,

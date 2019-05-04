@@ -81,7 +81,11 @@ export default (history, swc) => () => next => (action) => {
               break;
             case SIGN_IN_USER_CREATED:
             case SIGN_IN_LOGGED_IN: {
-              swc.clearCache();
+              try {
+                swc.clearCache();
+              } catch (e) {
+                handle(e);
+              }
               const { r } = action.payload;
               if (r && r.startsWith(frontendIRI.value)) {
                 window.location = r;

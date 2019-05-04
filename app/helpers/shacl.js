@@ -7,7 +7,8 @@ class SHACL {
     const obj = {};
 
     for (let i = 0; i < property.length; i++) {
-      const [k, v] = this.processPropertyShape(lrs, property[i], shape);
+      const [path, v] = this.processPropertyShape(lrs, property[i], shape);
+      const k = path.value;
       if (v) {
         if (obj[k] && Array.isArray(obj[k])) {
           obj[k].push(v);
