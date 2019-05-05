@@ -91,6 +91,20 @@ function listToArr(lrs, acc, rest) {
   return acc;
 }
 
+function processInvalidate(delta, lrs) {
+  delta
+    .filter(([, , , why]) => why === NS.ontola('invalidate'))
+    .forEach(([s, p, o]) => {
+      lrs.store.match(
+        s === NS.sp('Variable') ? null : s,
+        p === NS.sp('Variable') ? null : p,
+        o === NS.sp('Variable') ? null : o
+      ).forEach((match) => {
+        lrs.removeResource(match.subject);
+      });
+    });
+}
+
 function processRemove(delta, lrs) {
   delta
     .filter(([, , , why]) => why === NS.ontola('remove'))
@@ -123,6 +137,7 @@ function arguDeltaProcessor(lrs) {
 
     processDelta(delta) {
       processRemove(delta, lrs);
+      processInvalidate(delta, lrs);
       return processReplace(delta, lrs);
     },
 

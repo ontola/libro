@@ -7,7 +7,6 @@ import { LinkReduxLRSType } from 'link-redux';
 import { Literal, NamedNode, Namespace, Statement } from 'rdflib';
 
 import { getMetaContent } from '../helpers/arguHelpers';
-import { purgeCollection } from '../helpers/monkeys';
 
 export const website = getMetaContent('website-iri') || 'https://example.com';
 export const frontendIRI = NamedNode.find(website!);
@@ -126,7 +125,6 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
           return store
               .execActionByIRI(action, parsedAction.formData)
               .then(() => {
-                purgeCollection(store, action);
                 sessionStorage.removeItem(actionKey);
               });
         }

@@ -58,6 +58,7 @@ function generateLRS() {
   LRS.namespaces.opengov = Namespace('http://www.w3.org/ns/opengov#');
   LRS.namespaces.org = Namespace('http://www.w3.org/ns/org#');
   LRS.namespaces.person = Namespace('http://www.w3.org/ns/person#');
+  LRS.namespaces.sp = Namespace('http://spinrdf.org/sp#');
   LRS.namespaces.fa4 = Namespace('http://fontawesome.io/icon/');
 
   const NS = LRS.namespaces;

@@ -6,7 +6,6 @@ import { NamedNode } from 'rdflib';
 import React from 'react';
 
 import { convertKeysAtoB } from '../../helpers/data';
-import { purgeCollection } from '../../helpers/monkeys';
 import { NS } from '../../helpers/LinkedRenderStore';
 
 const HTTP_RETRY_WITH = 449;
@@ -30,8 +29,6 @@ class EntryPointBase extends PropertyBase {
       .exec(action, formData)
       .then((response) => {
         this.responseCallback(response);
-
-        purgeCollection(lrs, action);
 
         if (this.props.onDone) {
           this.props.onDone(response);
