@@ -46,6 +46,8 @@ class API {
       headers: {
         Accept: constants.FRONTEND_ACCEPT,
         'X-Forwarded-Host': req.headers.host,
+        'X-Forwarded-Proto': 'https',
+        'X-Forwarded-Ssl': 'on',
         ...this.proxySafeHeaders(req),
       },
       method: 'HEAD',

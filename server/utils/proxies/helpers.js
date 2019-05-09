@@ -115,6 +115,8 @@ export function bulkResourceRequest(req, iri, url, outputStream) {
           ...req.headers,
           'Content-Encoding': null,
           'X-Forwarded-Host': req.headers.host,
+          'X-Forwarded-Proto': 'https',
+          'X-Forwarded-Ssl': 'on',
         },
         method: 'GET',
         timeout: 30000,
