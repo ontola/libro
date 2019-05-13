@@ -7,7 +7,7 @@ import { navbarTopology } from '../../../topologies/Navbar';
 
 class MenuItemLabelHeader extends React.PureComponent {
   static type = [
-    NS.argu('MenuItem'),
+    NS.ontola('MenuItem'),
     NS.argu('SubMenu'),
     NS.argu('Menu'),
   ];

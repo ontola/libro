@@ -20,7 +20,7 @@ const propTypes = {
 
 class CollectionName extends PropertyBase {
   render() {
-    const href = this.getLinkedObjectProperty(NS.argu('href'));
+    const href = this.getLinkedObjectProperty(NS.ontola('href'));
     const Wrapper = typeof href !== 'undefined' ? Link : 'div';
 
     return (

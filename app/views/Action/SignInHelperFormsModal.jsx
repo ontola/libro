@@ -59,9 +59,9 @@ export default [
       </PrimaryResource>
     ),
     [
-      NS.argu('Create::Users::Password'),
-      NS.argu('Create::Users::Confirmation'),
-      NS.argu('Create::Users::Unlock'),
+      NS.ontola('Create::Users::Password'),
+      NS.ontola('Create::Users::Confirmation'),
+      NS.ontola('Create::Users::Unlock'),
     ],
     RENDER_CLASS_NAME,
     alertDialogTopology

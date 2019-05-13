@@ -7,9 +7,9 @@ import { containerTopology } from '../../topologies/Container';
 import WidgetTopology from '../../topologies/WidgetTopology/WidgetTopology';
 
 class Widget extends PureComponent {
-  static type = NS.argu('Widget');
+  static type = NS.ontola('Widget');
 
-  static mapDataToProps = [NS.argu('widgetSize')];
+  static mapDataToProps = [NS.ontola('widgetSize')];
 
   static topology = containerTopology;
 
@@ -20,7 +20,7 @@ class Widget extends PureComponent {
   render() {
     return (
       <WidgetTopology width={tryParseInt(this.props.widgetSize)}>
-        <Property label={NS.argu('widgetResource')} />
+        <Property label={NS.ontola('widgetResource')} />
       </WidgetTopology>
     );
   }

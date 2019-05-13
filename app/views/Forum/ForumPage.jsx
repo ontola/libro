@@ -20,7 +20,7 @@ class ForumPage extends React.PureComponent {
       <PrimaryResource>
         <PageHeader />
         <Container grid>
-          <Property label={NS.argu('widgets')} />
+          <Property label={NS.ontola('widgets')} />
         </Container>
       </PrimaryResource>
     );

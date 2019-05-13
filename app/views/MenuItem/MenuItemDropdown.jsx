@@ -21,7 +21,7 @@ class MenuItemDropdown extends React.Component {
   static contextType = unstable.LinkRenderCtx;
 
   static type = [
-    NS.argu('MenuItem'),
+    NS.ontola('MenuItem'),
     NS.argu('MenuSection'),
     NS.argu('SubMenu'),
     NS.argu('Menu'),
@@ -29,7 +29,7 @@ class MenuItemDropdown extends React.Component {
 
   static topology = cardFloatTopology;
 
-  static mapDataToProps = [NS.argu('menuItems')];
+  static mapDataToProps = [NS.ontola('menuItems')];
 
   static propTypes = {
     menuItems: linkType,

@@ -34,7 +34,7 @@ class ArgumentContainer extends React.PureComponent {
           <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
         </CardContent>
         <ActionsBar>
-          <Property label={NS.argu('favoriteAction')} />
+          <Property label={NS.ontola('favoriteAction')} />
         </ActionsBar>
         <CardAppendix>
           <Property label={NS.argu('voteableVoteEvent')} />

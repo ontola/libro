@@ -47,7 +47,7 @@ const GuestUserActor = ({ location, lrs }) => {
               lrs.actions.app.startSignIn(NamedNode.find(path.signIn(redirectURL)));
             }}
           />
-          <Property label={NS.argu('actorType')} />
+          <Property label={NS.ontola('actorType')} />
         </React.Fragment>
       )}
     </MediaQuery>
@@ -60,7 +60,7 @@ const GuestUserActorConnected = withRouter(withLRS(GuestUserActor));
 
 export default LinkedRenderStore.registerRenderer(
   GuestUserActorConnected,
-  NS.argu('GuestUser'),
+  NS.ontola('GuestUser'),
   RENDER_CLASS_NAME,
   navbarTopology
 );

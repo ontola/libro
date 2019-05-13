@@ -24,12 +24,12 @@ const memberSequence = new BlankNode();
 
 const resources = {
   [collectionWithMembers]: {
-    [NS.rdf('type')]: NS.argu('InfiniteCollectionView'),
+    [NS.rdf('type')]: NS.ontola('InfiniteView'),
     [NS.schema('name')]: new Literal('Notifications'),
     [NS.schema('potentialAction')]: NS.app('n/actions/new?type=infinite&before=2018-02-10%2012%3A06%3A29'),
     [NS.as('first')]: NS.app('n?type=infinite&before=2018-02-10%2012%3A06%3A29'),
     [NS.as('items')]: memberResource,
-    [NS.argu('newAction')]: NS.app('n/actions/new?type=infinite&before=2018-02-10%2012%3A06%3A29'),
+    [NS.ontola('newAction')]: NS.app('n/actions/new?type=infinite&before=2018-02-10%2012%3A06%3A29'),
     [NS.as('next')]: NS.app('n?type=infinite&before=2017-09-16%2009%3A44%3A16'),
     [NS.argu('pageSize')]: Literal.fromNumber(PAGES),
     [NS.argu('parentView')]: NS.app('n?type=infinite'),
@@ -46,7 +46,7 @@ const resources = {
   },
 };
 
-describeView('InfiniteCollectionView', [testClass, ...components, ...Sequence], resources, collectionWithMembers, () => {
+describeView('InfiniteView', [testClass, ...components, ...Sequence], resources, collectionWithMembers, () => {
   it('renders the members through the views', () => {
     expect(subject.find('p.testComp')).toHaveText('Member name');
   });

@@ -31,7 +31,7 @@ ReadAction.propTypes = propTypes;
 export default LinkedRenderStore.registerRenderer(
   ReadAction,
   NS.argu('Notification'),
-  NS.argu('readAction'),
+  NS.ontola('readAction'),
   [
     cardFixedTopology,
     cardMainTopology,

@@ -22,14 +22,14 @@ export const CollectionDisplayWrapper = ({
   collectionDisplay, itemList, columns, topology,
 }) => {
   switch (collectionDisplay) {
-    case NS.argu('collectionDisplay/grid'):
+    case NS.ontola('collectionDisplay/grid'):
       return (
         <Grid>
           {itemList}
         </Grid>
       );
-    case NS.argu('collectionDisplay/settingsTable'):
-    case NS.argu('collectionDisplay/table'):
+    case NS.ontola('collectionDisplay/settingsTable'):
+    case NS.ontola('collectionDisplay/table'):
       return (
         <Card>
           <Table>
@@ -50,14 +50,14 @@ export const CollectionDisplayWrapper = ({
           </Table>
         </Card>
       );
-    case NS.argu('collectionDisplay/card'):
+    case NS.ontola('collectionDisplay/card'):
       return (
         <Card>
           {itemList}
         </Card>
       );
     default:
-      if (collectionDisplay === NS.argu('collectionDisplay/default') && topology !== containerTopology) {
+      if (collectionDisplay === NS.ontola('collectionDisplay/default') && topology !== containerTopology) {
         return (
           <Container>
             {itemList}

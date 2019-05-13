@@ -10,7 +10,7 @@ import { allTopologies } from '../../topologies';
 import { NS } from '../../helpers/LinkedRenderStore';
 
 class PropertyQuery extends React.PureComponent {
-  static type = NS.argu('PropertyQuery');
+  static type = NS.ontola('PropertyQuery');
 
   static topology = allTopologies;
 

@@ -25,7 +25,7 @@ export class VoteEventResult extends TopologyProvider {
     return this.wrap((
       <VoteData card={this.card}>
         <Property
-          label={NS.argu('filteredCollections')}
+          label={NS.ontola('filteredCollections')}
           totalVotes={this.props.totalItems}
           variant={this.props.variant}
         />

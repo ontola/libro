@@ -49,12 +49,12 @@ export default [
   LinkedRenderStore.registerRenderer(
     link({
       filteredCollections: {
-        label: NS.argu('filteredCollections'),
+        label: NS.ontola('filteredCollections'),
         limit: Infinity,
       },
     })(FilteredCollections),
     CollectionTypes,
-    NS.argu('filteredCollections'),
+    NS.ontola('filteredCollections'),
     allTopologies
   ),
 ];

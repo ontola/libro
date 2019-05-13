@@ -39,7 +39,7 @@ PagesDropdown.propTypes = {
 
 export default LinkedRenderStore.registerRenderer(
   withLinkCtx(PagesDropdown),
-  NS.argu('InfiniteCollection'),
+  NS.ontola('InfiniteCollection'),
   NS.as('pages'),
   navbarTopology
 );

@@ -31,9 +31,9 @@ class ThingPage extends PureComponent {
             <DetailsBar
               right={(
                 <React.Fragment>
-                  <Property label={NS.argu('followMenu')} />
-                  <Property label={NS.argu('shareMenu')} />
-                  <Property label={NS.argu('actionsMenu')} />
+                  <Property label={NS.ontola('followMenu')} />
+                  <Property label={NS.ontola('shareMenu')} />
+                  <Property label={NS.ontola('actionsMenu')} />
                 </React.Fragment>
               )}
             >
@@ -55,14 +55,14 @@ class ThingPage extends PureComponent {
               <Property label={NS.argu('attachments')} />
             </CardContent>
             <ActionsBar>
-              <Property label={NS.argu('favoriteAction')} />
+              <Property label={NS.ontola('favoriteAction')} />
             </ActionsBar>
             <Property label={NS.meeting('agenda')} />
             <CardAppendix>
               <Property forceRender label={NS.app('omniform')} />
             </CardAppendix>
           </CardMain>
-          <Property label={NS.argu('publishAction')} />
+          <Property label={NS.ontola('publishAction')} />
           <Property label={NS.argu('voteEvents')} />
           <Property label={NS.argu('blogPosts')} />
           <Property label={NS.schema('location')} />

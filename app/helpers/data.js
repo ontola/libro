@@ -93,7 +93,7 @@ function listToArr(lrs, acc, rest) {
 
 function processRemove(delta, lrs) {
   delta
-    .filter(([, , , why]) => why === NS.argu('remove'))
+    .filter(([, , , why]) => why === NS.ontola('remove'))
     .forEach(([s, p, o]) => {
       lrs.store.removeStatements(
         [lrs.store.anyStatementMatching(s, p, o)].filter(Boolean)
@@ -103,7 +103,7 @@ function processRemove(delta, lrs) {
 
 function processReplace(delta, lrs) {
   const replaceables = delta
-    .filter(([s, p, , g]) => g === NS.argu('replace') && lrs.store.anyStatementMatching(s, p));
+    .filter(([s, p, , g]) => g === NS.ontola('replace') && lrs.store.anyStatementMatching(s, p));
   return lrs.store.replaceMatches(replaceables);
 }
 

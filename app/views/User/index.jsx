@@ -19,14 +19,14 @@ const propTypes = {
 };
 
 const CurrentActorFooter = () => (
-  <Property label={NS.argu('actor')} />
+  <Property label={NS.ontola('actor')} />
 );
 
 const UserNavbar = ({ lrs }) => (
   <Resource>
-    <Property label={NS.argu('actorType')} />
+    <Property label={NS.ontola('actorType')} />
     <Property
-      label={NS.argu('actor')}
+      label={NS.ontola('actor')}
       onClick={(e) => {
         if (e) {
           e.preventDefault();
@@ -39,8 +39,8 @@ const UserNavbar = ({ lrs }) => (
 
 UserNavbar.propTypes = propTypes;
 
-const RegisteredTypes = [NS.argu('ConfirmedUser'), NS.argu('UnconfirmedUser')];
-const ActorTypes = [...RegisteredTypes, NS.argu('GuestUser')];
+const RegisteredTypes = [NS.ontola('ConfirmedUser'), NS.ontola('UnconfirmedUser')];
+const ActorTypes = [...RegisteredTypes, NS.ontola('GuestUser')];
 
 export default [
   LinkedRenderStore.registerRenderer(

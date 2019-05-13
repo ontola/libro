@@ -66,7 +66,7 @@ const Menu = ({
               <AppMenu fullScreen={fullScreen}>
                 <AppMenuGroup>
                   <LinkedResourceContainer subject={frontendIRI}>
-                    <Property darken label={NS.argu('navigationsMenu')} />
+                    <Property darken label={NS.ontola('navigationsMenu')} />
                   </LinkedResourceContainer>
                 </AppMenuGroup>
                 {showUserMenu && (

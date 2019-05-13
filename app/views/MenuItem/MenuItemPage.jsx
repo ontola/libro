@@ -23,7 +23,7 @@ import { currentLocation } from '../../helpers/paths';
 
 class MenuItemPage extends React.PureComponent {
   static type = [
-    NS.argu('MenuItem'),
+    NS.ontola('MenuItem'),
     NS.argu('MenuSection'),
     NS.argu('SubMenu'),
     NS.argu('Menu'),
@@ -35,9 +35,9 @@ class MenuItemPage extends React.PureComponent {
   ];
 
   static mapDataToProps = {
-    dataSubjects: NS.argu('menuItems'),
-    menuItems: NS.argu('menuItems'),
-    parentMenu: NS.argu('parentMenu'),
+    dataSubjects: NS.ontola('menuItems'),
+    menuItems: NS.ontola('menuItems'),
+    parentMenu: NS.ontola('parentMenu'),
   };
 
   static hocs = [withRouter];
@@ -82,9 +82,9 @@ class MenuItemPage extends React.PureComponent {
     if (!r && (this.isPrimaryResource() || !topLevel)) {
       body = (
         <React.Fragment>
-          <Property label={NS.argu('parentMenu')} topLevel={false} />
+          <Property label={NS.ontola('parentMenu')} topLevel={false} />
           <TabPane>
-            <Property label={NS.argu('href')} />
+            <Property label={NS.ontola('href')} />
           </TabPane>
         </React.Fragment>
       );
@@ -106,7 +106,7 @@ class MenuItemPage extends React.PureComponent {
               <Property label={NS.schema('isPartOf')} />
               <TabBarWrapper>
                 <TabBar>
-                  <Property label={NS.argu('menuItems')} />
+                  <Property label={NS.ontola('menuItems')} />
                 </TabBar>
               </TabBarWrapper>
             </PageHeader>

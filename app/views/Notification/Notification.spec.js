@@ -17,7 +17,7 @@ const resources = {
     [NS.schema('target')]: new NamedNode('https://argu.dev/m/2601'),
     [NS.argu('unread')]: Literal.fromBoolean(false),
     [NS.hydra('operation')]: new NamedNode('https://argu.dev/n/19314/actions/read'),
-    [NS.argu('readAction')]: new NamedNode('https://argu.dev/n/19314/actions/read'),
+    [NS.ontola('readAction')]: new NamedNode('https://argu.dev/n/19314/actions/read'),
     [NS.schema('creator')]: new NamedNode('https://argu.dev/u/1'),
   },
   [resource]: {
@@ -28,7 +28,7 @@ const resources = {
     [NS.schema('target')]: new NamedNode('https://argu.dev/m/2601'),
     [NS.argu('unread')]: Literal.fromBoolean(true),
     [NS.hydra('operation')]: new NamedNode('https://argu.dev/n/35464/actions/read'),
-    [NS.argu('readAction')]: new NamedNode('https://argu.dev/n/35464/actions/read'),
+    [NS.ontola('readAction')]: new NamedNode('https://argu.dev/n/35464/actions/read'),
     [NS.schema('creator')]: new NamedNode('https://argu.dev/u/1'),
   },
   [new NamedNode('https://argu.dev/u/1')]: {

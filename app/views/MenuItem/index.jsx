@@ -100,12 +100,12 @@ export default [
   MenuItemHeader,
   LinkedRenderStore.registerRenderer(
     link([
-      NS.argu('action'),
-      NS.argu('href'),
+      NS.ontola('action'),
+      NS.ontola('href'),
       NS.schema('name'),
       NS.schema('image'),
     ])(MenuItemDropdownContent),
-    NS.argu('MenuItem'),
+    NS.ontola('MenuItem'),
     RENDER_CLASS_NAME,
     dropdownContentTopology
   ),
@@ -114,7 +114,7 @@ export default [
       NS.schema('name'),
     ])(MenuItemTab),
     [
-      NS.argu('MenuItem'),
+      NS.ontola('MenuItem'),
       NS.argu('MenuSection'),
       NS.argu('SubMenu'),
       NS.argu('Menu'),

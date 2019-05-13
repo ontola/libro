@@ -4,7 +4,7 @@ import { NS } from '../../../../helpers/LinkedRenderStore';
 
 export const filterActions = potentialAction => allowSort(potentialAction, FILTER, ORDER);
 
-export const invalidStatuses = [NS.argu('DisabledActionStatus'), NS.argu('ExpiredActionStatus')];
+export const invalidStatuses = [NS.ontola('DisabledActionStatus'), NS.ontola('ExpiredActionStatus')];
 
 export const actionsAreAllDisabled = (items, lrs) => {
   const actionStatuses = items.map(a => lrs.getResourceProperty(a, NS.schema('actionStatus')));

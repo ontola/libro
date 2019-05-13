@@ -101,9 +101,9 @@ function generateLRS() {
     new Statement(NS.schema('Thing'), NS.ontola('forms/inputs/select/displayProp'), NS.schema('name')),
 
     new Statement(NS.as('Collection'), NS.rdfs('subClassOf'), NS.rdfs('Resource')),
-    new Statement(NS.argu('Collection'), NS.rdfs('subClassOf'), NS.as('Collection')),
-    new Statement(NS.argu('InfiniteCollectionView'), NS.rdfs('subClassOf'), NS.as('CollectionPage')),
-    new Statement(NS.argu('PaginatedCollectionView'), NS.rdfs('subClassOf'), NS.as('CollectionPage')),
+    new Statement(NS.ontola('Collection'), NS.rdfs('subClassOf'), NS.as('Collection')),
+    new Statement(NS.ontola('InfiniteView'), NS.rdfs('subClassOf'), NS.as('CollectionPage')),
+    new Statement(NS.ontola('PaginatedView'), NS.rdfs('subClassOf'), NS.as('CollectionPage')),
 
     new Statement(NS.opengov('Motion'), NS.rdf('type'), NS.rdfs('Class')),
     new Statement(NS.opengov('Motion'), NS.rdfs('label'), Literal.find('Motion', languages.en)),
@@ -117,17 +117,17 @@ function generateLRS() {
     new Statement(NS.schema('CreateAction'), NS.rdf('type'), NS.rdfs('Class')),
     new Statement(NS.schema('CreateAction'), NS.rdfs('subClassOf'), NS.schema('Action')),
 
-    new Statement(NS.argu('Create::Users::Password'), NS.rdf('type'), NS.rdfs('Class')),
-    new Statement(NS.argu('Create::Users::Password'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
+    new Statement(NS.ontola('Create::Users::Password'), NS.rdf('type'), NS.rdfs('Class')),
+    new Statement(NS.ontola('Create::Users::Password'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
 
-    new Statement(NS.argu('Create::Users::Confirmation'), NS.rdf('type'), NS.rdfs('Class')),
-    new Statement(NS.argu('Create::Users::Confirmation'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
+    new Statement(NS.ontola('Create::Users::Confirmation'), NS.rdf('type'), NS.rdfs('Class')),
+    new Statement(NS.ontola('Create::Users::Confirmation'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
 
-    new Statement(NS.argu('Create::Users::Unlock'), NS.rdf('type'), NS.rdfs('Class')),
-    new Statement(NS.argu('Create::Users::Unlock'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
+    new Statement(NS.ontola('Create::Users::Unlock'), NS.rdf('type'), NS.rdfs('Class')),
+    new Statement(NS.ontola('Create::Users::Unlock'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
 
-    new Statement(NS.argu('Create::Vote'), NS.rdf('type'), NS.rdfs('Class')),
-    new Statement(NS.argu('Create::Vote'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
+    new Statement(NS.ontola('Create::Vote'), NS.rdf('type'), NS.rdfs('Class')),
+    new Statement(NS.ontola('Create::Vote'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
 
     new Statement(NS.schema('UpdateAction'), NS.rdf('type'), NS.rdfs('Class')),
     new Statement(NS.schema('UpdateAction'), NS.rdfs('subClassOf'), NS.schema('Action')),
@@ -149,8 +149,8 @@ function generateLRS() {
     new Statement(NS.meeting('AgendaItem'), NS.schema('description'), Literal.find('Een Agendapunt is een onderwerp dat wordt besproken tijdens een vergadering.', languages.nl)),
     new Statement(NS.meeting('AgendaItem'), NS.schema('image'), NamedNode.find('http://fontawesome.io/icon/list')),
 
-    new Statement(NS.argu('MenuItem'), NS.rdf('type'), NS.rdfs('Class')),
-    new Statement(NS.argu('MenuItem'), NS.rdfs('subClassOf'), NS.argu('Thing')),
+    new Statement(NS.ontola('MenuItem'), NS.rdf('type'), NS.rdfs('Class')),
+    new Statement(NS.ontola('MenuItem'), NS.rdfs('subClassOf'), NS.argu('Thing')),
   ];
 // tslint:enable max-line-length
 
@@ -165,17 +165,17 @@ function generateLRS() {
     new Statement(NS.argu('applyLink'), NS.rdfs('label'), Literal.find('Link', languages.en)),
     new Statement(NS.argu('applyLink'), NS.rdfs('label'), Literal.find('Link', languages.nl)),
 
-    new Statement(NS.argu('destroyAction'), NS.rdf('type'), NS.rdf('Property')),
-    new Statement(NS.argu('destroyAction'), NS.rdfs('label'), Literal.find('Delete', languages.en)),
-    new Statement(NS.argu('destroyAction'), NS.rdfs('label'), Literal.find('Verwijderen', languages.nl)),
+    new Statement(NS.ontola('destroyAction'), NS.rdf('type'), NS.rdf('Property')),
+    new Statement(NS.ontola('destroyAction'), NS.rdfs('label'), Literal.find('Delete', languages.en)),
+    new Statement(NS.ontola('destroyAction'), NS.rdfs('label'), Literal.find('Verwijderen', languages.nl)),
 
     new Statement(NS.argu('invitee'), NS.rdf('type'), NS.rdf('Property')),
     new Statement(NS.argu('invitee'), NS.rdfs('label'), Literal.find('Invitee', languages.en)),
     new Statement(NS.argu('invitee'), NS.rdfs('label'), Literal.find('Uitgenodigde', languages.nl)),
 
-    new Statement(NS.argu('makePrimaryAction'), NS.rdf('type'), NS.rdf('Property')),
-    new Statement(NS.argu('makePrimaryAction'), NS.rdfs('label'), Literal.find('Make primary', languages.en)),
-    new Statement(NS.argu('makePrimaryAction'), NS.rdfs('label'), Literal.find('Maak primair', languages.nl)),
+    new Statement(NS.ontola('makePrimaryAction'), NS.rdf('type'), NS.rdf('Property')),
+    new Statement(NS.ontola('makePrimaryAction'), NS.rdfs('label'), Literal.find('Make primary', languages.en)),
+    new Statement(NS.ontola('makePrimaryAction'), NS.rdfs('label'), Literal.find('Maak primair', languages.nl)),
 
     new Statement(NS.argu('opened'), NS.rdf('type'), NS.rdf('Property')),
     new Statement(NS.argu('opened'), NS.rdfs('label'), Literal.find('Opened', languages.en)),
@@ -185,17 +185,21 @@ function generateLRS() {
     new Statement(NS.argu('redirectUrl'), NS.rdfs('label'), Literal.find('Redirect to', languages.en)),
     new Statement(NS.argu('redirectUrl'), NS.rdfs('label'), Literal.find('Redirect naar', languages.nl)),
 
-    new Statement(NS.argu('sendConfirmationAction'), NS.rdf('type'), NS.rdf('Property')),
-    new Statement(NS.argu('sendConfirmationAction'), NS.rdfs('label'), Literal.find('Send confirmation', languages.en)),
+    new Statement(NS.ontola('sendConfirmationAction'), NS.rdf('type'), NS.rdf('Property')),
     new Statement(
-        NS.argu('sendConfirmationAction'),
+        NS.ontola('sendConfirmationAction'),
+        NS.rdfs('label'),
+        Literal.find('Send confirmation', languages.en),
+    ),
+    new Statement(
+        NS.ontola('sendConfirmationAction'),
         NS.rdfs('label'),
         Literal.find('Verstuur bevestiging', languages.nl),
     ),
 
-    new Statement(NS.argu('updateAction'), NS.rdf('type'), NS.rdf('Property')),
-    new Statement(NS.argu('updateAction'), NS.rdfs('label'), Literal.find('Edit', languages.en)),
-    new Statement(NS.argu('updateAction'), NS.rdfs('label'), Literal.find('Bewerken', languages.nl)),
+    new Statement(NS.ontola('updateAction'), NS.rdf('type'), NS.rdf('Property')),
+    new Statement(NS.ontola('updateAction'), NS.rdfs('label'), Literal.find('Edit', languages.en)),
+    new Statement(NS.ontola('updateAction'), NS.rdfs('label'), Literal.find('Bewerken', languages.nl)),
 
     new Statement(NS.argu('usages'), NS.rdf('type'), NS.rdf('Property')),
     new Statement(NS.argu('usages'), NS.rdfs('label'), Literal.find('Used', languages.en)),

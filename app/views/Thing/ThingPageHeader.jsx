@@ -24,9 +24,9 @@ class ThingPageHeader extends React.PureComponent {
       <div about={this.props.subject?.value} className="ThingPageHeader">
         <PageHeaderMenuItems>
           <CardFloat>
-            <Property label={NS.argu('followMenu')} />
-            <Property label={NS.argu('shareMenu')} />
-            <Property label={NS.argu('actionsMenu')} />
+            <Property label={NS.ontola('followMenu')} />
+            <Property label={NS.ontola('shareMenu')} />
+            <Property label={NS.ontola('actionsMenu')} />
           </CardFloat>
         </PageHeaderMenuItems>
         <PageHeaderImageAndTextWrapper>

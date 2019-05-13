@@ -21,7 +21,7 @@ const Comment = ({ depth = 0, highlighted }) => (
     <Card shine={highlighted}>
       <DetailsBar
         right={(
-          <Property label={NS.argu('actionsMenu')} />
+          <Property label={NS.ontola('actionsMenu')} />
         )}
       >
         <Property label={NS.schema('creator')} />
@@ -32,9 +32,9 @@ const Comment = ({ depth = 0, highlighted }) => (
         <Property label={NS.schema('text')} />
       </CardContent>
       <ActionsBar small>
-        <Property label={NS.argu('favoriteAction')} />
+        <Property label={NS.ontola('favoriteAction')} />
         <Property label={NS.schema('comments')}>
-          <Property omniform label={NS.argu('createAction')} />
+          <Property omniform label={NS.ontola('createAction')} />
         </Property>
       </ActionsBar>
       <CardAppendix>

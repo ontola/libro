@@ -12,7 +12,7 @@ const MenuSection = () => (
     <Property label={NS.schema('name')} />
     <Property
       forceRender
-      label={NS.argu('menuItems')}
+      label={NS.ontola('menuItems')}
     />
   </div>
 );

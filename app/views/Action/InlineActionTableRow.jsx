@@ -38,7 +38,7 @@ class InlineActionTableRow extends React.PureComponent {
       target,
     } = this.props;
 
-    if (actionStatus === NS.argu('DisabledActionStatus')) {
+    if (actionStatus === NS.ontola('DisabledActionStatus')) {
       return null;
     }
     if (actionStatus === NS.schema('CompletedActionStatus')) {

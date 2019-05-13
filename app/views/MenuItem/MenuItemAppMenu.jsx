@@ -24,7 +24,7 @@ const MenuItemAppMenu = ({
       <Resource>
         <Property
           childProps={{ darken }}
-          label={NS.argu('menuItems')}
+          label={NS.ontola('menuItems')}
         />
       </Resource>
     );
@@ -35,7 +35,7 @@ const MenuItemAppMenu = ({
       <Property
         data-test="MenuItem-MenuItemLabel"
         features={['padded', darken ? 'highlighted-darken' : 'highlighted-lighten']}
-        label={NS.argu('href')}
+        label={NS.ontola('href')}
         onClickToggle={() => lrs.exec(NS.app('actions/menu/close'))}
       >
         <LinkLabel>
@@ -47,14 +47,14 @@ const MenuItemAppMenu = ({
 };
 
 MenuItemAppMenu.type = [
-  NS.argu('MenuItem'),
+  NS.ontola('MenuItem'),
   NS.argu('MenuSection'),
   NS.argu('SubMenu'),
   NS.argu('Menu'),
 ];
 
 MenuItemAppMenu.mapDataToProps = [
-  NS.argu('menuItems'),
+  NS.ontola('menuItems'),
   NS.schema('name'),
 ];
 

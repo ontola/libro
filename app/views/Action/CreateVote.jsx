@@ -31,7 +31,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     const hasOpinionAction = ownProps.lrs.findSubject(
       inlineFormTarget,
       [NS.schema('potentialAction'), NS.rdf('type')],
-      [NS.argu('Create::Opinion'), NS.argu('Update::Opinion')]
+      [NS.ontola('Create::Opinion'), NS.argu('Update::Opinion')]
     );
 
     if (!hasOpinionAction) {
@@ -106,8 +106,8 @@ const CreateVote = ({
     return null;
   }
 
-  const disabled = actionStatus === NS.argu('DisabledActionStatus');
-  const expired = actionStatus === NS.argu('ExpiredActionStatus');
+  const disabled = actionStatus === NS.ontola('DisabledActionStatus');
+  const expired = actionStatus === NS.ontola('ExpiredActionStatus');
   let title;
   if (expired) {
     title = (
@@ -141,9 +141,9 @@ const CreateVote = ({
 };
 
 CreateVote.type = [
-  NS.argu('Create::Vote'),
-  NS.argu('CreateVoteAction'),
-  NS.argu('DestroyVoteAction'),
+  NS.ontola('Create::Vote'),
+  NS.ontola('CreateVoteAction'),
+  NS.ontola('DestroyVoteAction'),
 ];
 
 CreateVote.topology = allTopologies;

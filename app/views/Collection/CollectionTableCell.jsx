@@ -18,7 +18,7 @@ class CollectionTableCell extends React.PureComponent {
         <LDLink>
           <Property label={NS.as('totalItems')} />
         </LDLink>
-        <Property label={NS.argu('createAction')} />
+        <Property label={NS.ontola('createAction')} />
       </span>
     );
   }

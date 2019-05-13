@@ -1,9 +1,9 @@
 import { NS } from '../../helpers/LinkedRenderStore';
 
 export const CollectionTypes = [
-  NS.argu('Collection'),
+  NS.ontola('Collection'),
   NS.as('Collection'),
-  NS.argu('FilteredCollection'),
+  NS.ontola('FilteredCollection'),
   NS.hydra('Collection'),
 ];
 

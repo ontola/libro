@@ -11,12 +11,12 @@ class FavoriteAction extends React.PureComponent {
     NS.argu('ConArgument'),
   ];
 
-  static property = NS.argu('favoriteAction');
+  static property = NS.ontola('favoriteAction');
 
   static topology = allTopologies;
 
   static mapDataToProps = [
-    NS.argu('favoriteAction'),
+    NS.ontola('favoriteAction'),
     NS.argu('votesProCount'),
   ];
 

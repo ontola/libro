@@ -98,7 +98,7 @@ export default function getCollection({
         );
       }
       const name = fullPage && pages.length > 0 ? <Property label={NS.as('name')} /> : null;
-      const newButton = <Property label={NS.argu('createAction')} omniform={omniform} />;
+      const newButton = <Property label={NS.ontola('createAction')} omniform={omniform} />;
       const header = (!depth || depth === 0) && (
         <CardHeader header={name}>
           {newButton}
@@ -122,9 +122,9 @@ export default function getCollection({
   }))(Collection);
 
   return link({
-    collectionDisplay: NS.argu('collectionDisplay'),
-    columns: NS.argu('columns'),
-    defaultType: NS.argu('defaultType'),
+    collectionDisplay: NS.ontola('collectionDisplay'),
+    columns: NS.ontola('columns'),
+    defaultType: NS.ontola('defaultType'),
     pages: {
       label: NS.as('pages'),
       limit: Infinity,

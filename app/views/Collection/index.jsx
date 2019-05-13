@@ -69,7 +69,7 @@ const collectionSection = ({ omniform = false, renderWhenEmpty = false } = {}) =
       <CardContent noStartSpacing>
         <CardList direction={direction}>
           {pagesShouldRender && <Property forceRender label={NS.as('pages')} />}
-          <Property label={NS.argu('createAction')} omniform={omniform} />
+          <Property label={NS.ontola('createAction')} omniform={omniform} />
         </CardList>
       </CardContent>
     );

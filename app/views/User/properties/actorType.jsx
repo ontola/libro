@@ -59,9 +59,9 @@ ActorTypeDispatcherConnect.propTypes = propTypes;
 export default LinkedRenderStore.registerRenderer(
   link([
     NS.argu('anonymousID'),
-    NS.argu('actorType'),
+    NS.ontola('actorType'),
   ], { returnType: 'value' })(ActorTypeDispatcherConnect),
-  [NS.argu('ConfirmedUser'), NS.argu('UnconfirmedUser'), NS.argu('GuestUser')],
-  NS.argu('actorType'),
+  [NS.ontola('ConfirmedUser'), NS.ontola('UnconfirmedUser'), NS.ontola('GuestUser')],
+  NS.ontola('actorType'),
   navbarTopology
 );

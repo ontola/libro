@@ -16,12 +16,12 @@ import {
 
 class MenuItems extends React.PureComponent {
   static type = [
-    NS.argu('MenuItem'),
+    NS.ontola('MenuItem'),
     NS.argu('SubMenu'),
     NS.argu('MenuSection'),
   ];
 
-  static property = NS.argu('menuItems');
+  static property = NS.ontola('menuItems');
 
   static topology = [
     navbarTopology,
@@ -30,7 +30,7 @@ class MenuItems extends React.PureComponent {
 
   static mapDataToProps = {
     menuItems: {
-      label: NS.argu('menuItems'),
+      label: NS.ontola('menuItems'),
       limit: Infinity,
     },
   };

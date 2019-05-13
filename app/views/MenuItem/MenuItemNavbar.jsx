@@ -19,7 +19,7 @@ import { NavbarLinkLink, NavbarLinkWrapper } from '../../components/NavbarLink';
 
 class MenuItemNavbar extends React.PureComponent {
   static type = [
-    NS.argu('MenuItem'),
+    NS.ontola('MenuItem'),
     NS.argu('SubMenu'),
     NS.argu('Menu'),
   ];
@@ -27,8 +27,8 @@ class MenuItemNavbar extends React.PureComponent {
   static topology = navbarTopology;
 
   static mapDataToProps = [
-    NS.argu('href'),
-    NS.argu('menuItems'),
+    NS.ontola('href'),
+    NS.ontola('menuItems'),
     NS.schema('name'),
   ];
 
@@ -50,7 +50,7 @@ class MenuItemNavbar extends React.PureComponent {
           component={NavbarLinkLink}
           data-test="MenuItem-MenuItemLabel"
           id={id}
-          label={NS.argu('href')}
+          label={NS.ontola('href')}
         >
           {showImage && <Property label={NS.schema('image')} />}
           <Property label={NS.schema('name')} />

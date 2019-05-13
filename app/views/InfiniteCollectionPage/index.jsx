@@ -11,7 +11,7 @@ import Next from './properties/next';
 export default [
   LinkedRenderStore.registerRenderer(
     ({ collectionDisplay }) => <Property collectionDisplay={collectionDisplay} label={NS.as('items')} />,
-    NS.argu('InfiniteCollectionView'),
+    NS.ontola('InfiniteView'),
     RENDER_CLASS_NAME,
     allTopologies
   ),

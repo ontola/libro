@@ -11,7 +11,7 @@ import { containerTopology } from '../../../topologies/Container';
 class PublishAction extends React.PureComponent {
   static type = NS.schema('Thing');
 
-  static property = NS.argu('publishAction');
+  static property = NS.ontola('publishAction');
 
   static topology = containerTopology;
 

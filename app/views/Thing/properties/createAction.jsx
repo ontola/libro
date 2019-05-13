@@ -24,8 +24,8 @@ const CreateAction = ({ createAction, isPartOf, omniform }) => (
 CreateAction.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
-  link([NS.argu('createAction'), NS.schema('isPartOf')])(CreateAction),
+  link([NS.ontola('createAction'), NS.schema('isPartOf')])(CreateAction),
   [NS.schema('Thing'), NS.link('Document')],
-  NS.argu('createAction'),
+  NS.ontola('createAction'),
   allTopologies
 );

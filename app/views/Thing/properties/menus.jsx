@@ -21,6 +21,6 @@ ThingMenusProp.propTypes = propTypes;
 export default LinkedRenderStore.registerRenderer(
   ThingMenusProp,
   NS.schema('Thing'),
-  [NS.argu('menus'), NS.argu('navigationsMenu')],
+  [NS.ontola('menus'), NS.ontola('navigationsMenu')],
   navbarTopology
 );

@@ -29,13 +29,13 @@ const sortBind = (potentialActions, props) => potentialActions
 class PotentialActionActionsBar extends React.PureComponent {
   static type = [NS.schema('Thing'), NS.rdfs('Resource')];
 
-  static property = NS.argu('favoriteAction');
+  static property = NS.ontola('favoriteAction');
 
   static topology = actionsBarTopology;
 
   static mapDataToProps = {
     potentialActions: {
-      label: NS.argu('favoriteAction'),
+      label: NS.ontola('favoriteAction'),
       limit: Infinity,
     },
   };
@@ -63,12 +63,12 @@ export default [
   LinkedRenderStore.registerRenderer(
     link({
       potentialActions: {
-        label: NS.argu('favoriteAction'),
+        label: NS.ontola('favoriteAction'),
         limit: Infinity,
       },
     })(({ potentialActions, ...props }) => sortBind(potentialActions, props)),
     [NS.schema('Thing'), NS.rdfs('Resource')],
-    NS.argu('favoriteAction'),
+    NS.ontola('favoriteAction'),
     allTopologiesExcept(actionsBarTopology)
   ),
   register(PotentialActionActionsBar),

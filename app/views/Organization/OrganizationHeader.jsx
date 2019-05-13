@@ -36,7 +36,7 @@ class OrganizationNavbar extends React.PureComponent {
 
   static topology = navbarTopology;
 
-  static mapDataToProps = [NS.argu('navigationsMenu')];
+  static mapDataToProps = [NS.ontola('navigationsMenu')];
 
   static propTypes = {
     navigationsMenu: linkType,
@@ -52,7 +52,7 @@ class OrganizationNavbar extends React.PureComponent {
         <div className="NavBarContent__items">
           <Property
             gutter={gutterCount}
-            label={NS.argu('menuItems')}
+            label={NS.ontola('menuItems')}
           />
         </div>
       </MediaQuery>

@@ -7,7 +7,7 @@ import { cardFloatTopology } from '../../../topologies/Card/CardFloat';
 
 class MenuItemLabelCard extends React.PureComponent {
   static type = [
-    NS.argu('MenuItem'),
+    NS.ontola('MenuItem'),
     NS.argu('SubMenu'),
     NS.argu('Menu'),
   ];

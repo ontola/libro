@@ -40,7 +40,7 @@ class CurrentVote extends React.PureComponent {
   getEntryPoint() {
     return this.props.lrs.getResourceProperty(
       this.getBaseCollection(),
-      NS.argu('createAction')
+      NS.ontola('createAction')
     );
   }
 

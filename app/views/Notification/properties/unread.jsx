@@ -26,7 +26,7 @@ const Unread = ({ linkedProp }) => {
   return (
     <Property
       forceRender
-      label={NS.argu('readAction')}
+      label={NS.ontola('readAction')}
     >
       <div
         data-test="Notification-Unread"

@@ -28,9 +28,9 @@ class MotionPage extends React.PureComponent {
             <DetailsBar
               right={(
                 <React.Fragment>
-                  <Property label={NS.argu('followMenu')} />
-                  <Property label={NS.argu('shareMenu')} />
-                  <Property label={NS.argu('actionsMenu')} />
+                  <Property label={NS.ontola('followMenu')} />
+                  <Property label={NS.ontola('shareMenu')} />
+                  <Property label={NS.ontola('actionsMenu')} />
                 </React.Fragment>
               )}
             >
@@ -56,7 +56,7 @@ class MotionPage extends React.PureComponent {
               <Property forceRender label={NS.app('omniform')} />
             </CardAppendix>
           </CardMain>
-          <Property label={NS.argu('publishAction')} />
+          <Property label={NS.ontola('publishAction')} />
           <Property label={NS.argu('decision')} />
           <Property label={NS.argu('blogPosts')} />
           <Property label={NS.schema('location')} />

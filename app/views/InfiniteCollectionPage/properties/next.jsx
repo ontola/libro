@@ -37,7 +37,7 @@ class InfiniteCollectionNext extends PropertyBase {
 
 export default LinkedRenderStore.registerRenderer(
   link([NS.as('partOf')], { returnType: 'statement' })(InfiniteCollectionNext),
-  NS.argu('InfiniteCollectionView'),
+  NS.ontola('InfiniteView'),
   NS.as('next'),
   allTopologies
 );

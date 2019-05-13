@@ -24,17 +24,17 @@ const resources = {
   [collectionWithPages]: {
     [NS.rdf('type')]: [
       NS.as('Collection'),
-      NS.argu('Collection'),
+      NS.ontola('Collection'),
     ],
     [NS.as('name')]: new Literal('Ideeën'),
-    [NS.argu('iriTemplate')]: new Literal('https://argu.localdev/nederland/q/75/m{?filter%5B%5D,page,page_size,type,before,sort%5B%5D}'),
+    [NS.ontola('iriTemplate')]: new Literal('https://argu.localdev/nederland/q/75/m{?filter%5B%5D,page,page_size,type,before,sort%5B%5D}'),
     [NS.schema('isPartOf')]: NS.app('nederland/q/75'),
     [NS.as('totalItems')]: Literal.fromNumber(ITEMS),
     [NS.schema('potentialAction')]: NS.app('nederland/q/75/m/new'),
-    [NS.argu('defaultType')]: new Literal('paginated'),
+    [NS.ontola('defaultType')]: new Literal('paginated'),
     [NS.as('pages')]: NS.app('nederland/q/75/m?page=1&type=paginated'),
     [NS.dc('identifier')]: NS.app('nederland/q/75/motions'),
-    [NS.argu('createAction')]: NS.app('nederland/q/75/m/new'),
+    [NS.ontola('createAction')]: NS.app('nederland/q/75/m/new'),
   },
   [memberResource]: {
     [NS.rdf('type')]: NS.example('TestClass'),

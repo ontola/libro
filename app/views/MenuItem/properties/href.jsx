@@ -16,11 +16,11 @@ import { appMenuTopology } from '../../../topologies/AppMenu';
 class Href extends React.PureComponent {
   static type = [
     NS.argu('Link'),
-    NS.argu('MenuItem'),
+    NS.ontola('MenuItem'),
     NS.argu('SubMenu'),
   ];
 
-  static property = NS.argu('href');
+  static property = NS.ontola('href');
 
   static topology = [
     appMenuTopology,
@@ -28,8 +28,8 @@ class Href extends React.PureComponent {
   ];
 
   static mapDataToProps = [
-    NS.argu('action'),
-    NS.argu('href'),
+    NS.ontola('action'),
+    NS.ontola('href'),
   ];
 
   static propTypes = {

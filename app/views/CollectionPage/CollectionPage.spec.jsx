@@ -24,7 +24,7 @@ const resources = {
   [collectionWithItems]: {
     [NS.rdf('type')]: [
       NS.as('CollectionPage'),
-      NS.argu('PaginatedCollectionView'),
+      NS.ontola('PaginatedView'),
     ],
     [NS.as('first')]: NS.app('nederland/q/75/m?page=1&type=paginated'),
     [NS.as('last')]: NS.app('nederland/q/75/m?page=1&type=paginated'),

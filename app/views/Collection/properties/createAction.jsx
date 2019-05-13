@@ -8,12 +8,12 @@ import { NS } from '../../../helpers/LinkedRenderStore';
 class CreateAction extends React.PureComponent {
   static type = NS.as('Collection');
 
-  static property = NS.argu('createAction');
+  static property = NS.ontola('createAction');
 
   static topology = actionsBarTopology;
 
   static mapDataToProps = [
-    NS.argu('createAction'),
+    NS.ontola('createAction'),
     NS.as('totalItems'),
     NS.schema('isPartOf'),
   ];

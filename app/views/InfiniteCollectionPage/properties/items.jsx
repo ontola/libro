@@ -79,12 +79,12 @@ const Items = withLinkCtx(ItemsComp);
 export default [
   LinkedRenderStore.registerRenderer(
     Items,
-    NS.argu('InfiniteCollection'),
+    NS.ontola('InfiniteCollection'),
     NS.as('items')
   ),
   LinkedRenderStore.registerRenderer(
     props => <Items divider direction="inverted" {...props} />,
-    NS.argu('InfiniteCollection'),
+    NS.ontola('InfiniteCollection'),
     NS.as('items'),
     navbarTopology
   ),
