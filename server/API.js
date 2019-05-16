@@ -5,7 +5,7 @@ import * as constants from '../app/config';
 import { createUserRequest } from './api/users';
 import processResponse from './api/internal/statusHandler';
 import { guestTokenRequest, userTokenRequest } from './api/tokens';
-import { oAuthToken } from './config';
+import { clientId, clientSecret, oAuthToken } from './config';
 import logging from './utils/logging';
 import { route } from './utils/proxies/helpers';
 
@@ -18,6 +18,24 @@ class API {
     this.req = req;
     this.serviceToken = oAuthToken;
     this.userToken = userToken;
+  }
+
+  logout(req = this.req) {
+    return this.fetchRaw(this.userToken, {
+      body: JSON.stringify({
+        client_id: clientId,
+        client_secret: clientSecret,
+        token: this.userToken,
+      }),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        ...this.proxySafeHeaders(req),
+      },
+      method: 'POST',
+      path: 'spi/oauth/revoke',
+      redirect: 'manual',
+    });
   }
 
   proxySafeHeaders(req = this.req) {

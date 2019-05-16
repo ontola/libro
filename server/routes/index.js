@@ -96,10 +96,10 @@ export default async function routes(app, port) {
 
   app.use(sessionMiddleware);
 
+  app.use(apiMiddleware);
+
   app.get(['/logout', '/*/logout'], logout);
   app.post(['/logout', '/*/logout'], logout);
-
-  app.use(apiMiddleware);
 
   app.use(csurf());
 
