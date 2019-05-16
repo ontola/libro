@@ -18,7 +18,7 @@ if (document.documentElement.lang) {
 function mount() {
   const App = app(LinkedRenderStore);
   render(
-    <App website={getMetaContent('website-iri')} />,
+    <App title={getMetaContent('application-name')} website={getMetaContent('website-iri')} />,
     document.getElementById(APP_ELEMENT)
   );
 }

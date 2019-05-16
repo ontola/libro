@@ -134,8 +134,8 @@ export const renderFullPage = (req, res, websiteMeta, data) => {
               <meta property="og:type" content="website" />
               <meta name="mobile-web-app-capable" content="yes">
               <meta name="apple-mobile-web-app-capable" content="yes">
-              <meta name="application-name" content="Argu">
-              <meta name="apple-mobile-web-app-title" content="Argu">
+              <meta name="application-name" content="${websiteMeta.title}">
+              <meta name="apple-mobile-web-app-title" content="${websiteMeta.title}">
               <meta name="theme-color" content="#60707F">
               <meta name="msapplication-navbutton-color" content="#60707F">
               <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">

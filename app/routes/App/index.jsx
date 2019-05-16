@@ -1,5 +1,6 @@
 import { LinkedResourceContainer } from 'link-redux';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet-async';
 import { HotKeys } from 'react-hotkeys';
 import { withRouter } from 'react-router';
@@ -21,6 +22,10 @@ import AppScroller from './AppScroller';
 import MainContent from './MainContent';
 
 class App extends React.PureComponent {
+  static propTypes = {
+    title: PropTypes.string,
+  };
+
   constructor(props) {
     super(props);
 
@@ -56,8 +61,8 @@ class App extends React.PureComponent {
       >
         <HoverHelper>
           <Helmet
-            defaultTitle="Argu"
-            titleTemplate="%s - Argu"
+            defaultTitle={this.props.title}
+            titleTemplate={this.props.title ? `%s - ${this.props.title}` : '%s'}
           />
           <SkipNavigation />
           <div className="App__container" id={CONTAINER_ELEMENT}>

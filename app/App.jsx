@@ -17,7 +17,12 @@ const store = configureStore();
 export default (lrs) => {
   register(lrs);
 
-  const App = ({ helmetContext, location, website }) => {
+  const App = ({
+    helmetContext,
+    location,
+    website,
+    title,
+  }) => {
     const websiteCtxValue = getWebsiteContextFromWebsite(website);
 
     let router;
@@ -42,6 +47,7 @@ export default (lrs) => {
             history={history}
             lrs={lrs || LinkedRenderStore}
             store={store}
+            title={title}
           />
         </HelmetProvider>
       </WebsiteContext.Provider>
@@ -51,6 +57,7 @@ export default (lrs) => {
   App.propTypes = {
     helmetContext: PropTypes.shape({}),
     location: PropTypes.shape({}),
+    title: PropTypes.string,
     website: PropTypes.shape({}),
   };
 

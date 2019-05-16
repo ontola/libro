@@ -20,6 +20,7 @@ const propTypes = {
     getState: PropTypes.func.isRequired,
     subscribe: PropTypes.func.isRequired,
   }).isRequired,
+  title: PropTypes.string,
 };
 
 addLocaleData(enLocaleData);
@@ -29,6 +30,7 @@ const IndexContainer = ({
   Router,
   lrs,
   store,
+  title,
 }) => {
   const selectedLang = lrs.store.langPrefs[0];
   const messages = selectedLang.includes('nl') ? dutchMessages : englishMessages;
@@ -46,7 +48,7 @@ const IndexContainer = ({
         <RenderStoreProvider value={lrs}>
           <UpdateLRSIntl>
             <Router>
-              <AppFrame />
+              <AppFrame title={title} />
             </Router>
           </UpdateLRSIntl>
         </RenderStoreProvider>
