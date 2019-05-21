@@ -22,7 +22,7 @@ class API {
 
   proxySafeHeaders(req = this.req) {
     return {
-      'Accept-Language': req.headers['accept-language'],
+      'Accept-Language': req.headers?.['accept-language'],
     };
   }
 

@@ -4,7 +4,7 @@ import Redis from 'ioredis';
 
 import { logLevel, redisAddress, sessionSecret } from '../config';
 
-const client = new Redis(redisAddress);
+export const client = new Redis(redisAddress);
 
 if (logLevel === 'debug') {
   client

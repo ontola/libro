@@ -18,6 +18,7 @@ import { getErrorMiddleware } from '../utils/logging';
 import { backendProxy, bulkProxy, fileProxy } from '../utils/proxies';
 
 import application from './application';
+import health from './health';
 import login from './login';
 import logout from './logout';
 import maps from './maps';
@@ -58,13 +59,16 @@ const errorMiddleware = getErrorMiddleware();
 
 export default function routes(app, port) {
   app.use(morgan('dev'));
-  app.use(errorMiddleware.requestHandler);
 
   app.use((req, res, next) => {
     res.locals.nonce = uuidv4();
     res.setHeader('X-FE-Version', __VERSION__);
     next();
   });
+
+  app.get('/d/health', health);
+
+  app.use(errorMiddleware.requestHandler);
 
   app.use(csp);
 
