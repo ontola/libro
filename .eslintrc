@@ -162,9 +162,12 @@
         "describeView": true,
         "c": true,
         "ch": true,
+        "list": true,
         "r": true,
         "s": true,
-        "t": true
+        "seq": true,
+        "t": true,
+        "within": true
       }
     }
   ]

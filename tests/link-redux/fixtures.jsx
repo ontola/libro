@@ -37,6 +37,9 @@ export function toArr(obj) {
   if (typeof obj === 'undefined') {
     return [];
   }
+  if (obj instanceof rdf.IndexedFormula) {
+    return obj.statements;
+  }
   const statements = [];
   Object.keys(obj).forEach((s) => {
     const resource = obj[s];

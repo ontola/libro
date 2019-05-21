@@ -51,8 +51,8 @@ import VoteEvent from './VoteEvent';
 // import './VoteMatch';
 import Widget from './Widget';
 
-export default function register(lrs) {
-  const views = [
+export function getViews() {
+  return [
     ...Activity,
     ...AppSignIn,
     ...AppSignOut,
@@ -95,7 +95,10 @@ export default function register(lrs) {
     ...VoteEvent,
     ...Widget,
   ];
-  lrs.registerAll(...views);
+}
+
+export default function register(lrs) {
+  lrs.registerAll(...getViews());
 }
 
 if (module.hot) {

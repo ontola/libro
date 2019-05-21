@@ -1,4 +1,4 @@
-import LinkedRenderStore from 'link-lib';
+import LinkedRenderStore, { list, seq } from 'link-lib';
 import { RenderStoreProvider } from 'link-redux';
 import { injectIntl, IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
@@ -6,6 +6,7 @@ import { StaticRouter } from 'react-router';
 
 import { generateStore } from './link-redux/utilities';
 import * as ctx from './link-redux/fixtures';
+import './link-matchers';
 
 const { mount, shallow } = require('enzyme');
 const React = require('react');
@@ -209,6 +210,25 @@ function setProp(key, block) {
   set(propName(key), block);
 }
 
+function has(prop, value) {
+  return Array.isArray(prop) ? prop.includes(value) : prop === value;
+}
+
+/**
+ * Traverse down in the tree.
+ * @note Can't be nested due to its use of implicit `subject`
+ */
+function within(target, callback) {
+  const targets = Array.isArray(target) ? target : [target];
+
+  const traverse = (prop, tree) => (Object.prototype.hasOwnProperty.call(prop, 'termType')
+    ? tree.findWhere(e => (e.name() && e.name().startsWith('TP(') && e.instance() && has(e.instance().topology, prop))
+      || (e.name() === 'LinkedResourceContainer' && has(e.prop('subject'), prop)))
+    : tree.find(prop));
+
+  return callback(targets.reduce((tree, t) => traverse(t, tree), subject));
+}
+
 export {
   argUnit,
   as,
@@ -216,7 +236,10 @@ export {
   declareProps,
   defineMarker,
   describeView,
+  list,
+  seq,
   marker,
   normalizeProps,
   setProp,
+  within,
 };

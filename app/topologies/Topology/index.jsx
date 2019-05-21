@@ -33,6 +33,18 @@ export const renderError = self => () => {
 class Topology extends TopologyProvider {
   static contextType = unstable.LinkRenderCtx;
 
+  static get displayName() {
+    if (this.name === 'Topology') {
+      return this.name;
+    }
+
+    return `TP(${this.name})`;
+  }
+
+  static set displayName(ignored) {
+    // ignore
+  }
+
   constructor(props) {
     super(props);
 
