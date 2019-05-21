@@ -55,7 +55,6 @@ function generateLRS() {
 
   LRS.namespaces.aod = Namespace('https://argu.co/ns/od#');
   LRS.namespaces.meeting = Namespace('https://argu.co/ns/meeting/');
-  LRS.namespaces.sh = Namespace('http://www.w3.org/ns/shacl#');
   LRS.namespaces.opengov = Namespace('http://www.w3.org/ns/opengov#');
   LRS.namespaces.org = Namespace('http://www.w3.org/ns/org#');
   LRS.namespaces.person = Namespace('http://www.w3.org/ns/person#');

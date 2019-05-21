@@ -2,15 +2,18 @@
 /* eslint no-console: 0 */
 
 import { ACCEPTED, BAD_REQUEST } from 'http-status-codes';
-import {
-  allRDFValues,
-  defaultNS,
-} from 'link-lib';
-import { getLinkedObjectClass } from 'link-redux';
+import * as LinkLib from 'link-lib';
+import * as LinkRedux from 'link-redux';
 import rdf from 'rdflib';
 
 import { NS, serviceWorkerCommunicator } from './LinkedRenderStore';
 import SHACL from './shacl';
+
+const {
+  allRDFValues,
+  defaultNS,
+} = LinkLib;
+const { getLinkedObjectClass } = LinkRedux.unstable;
 
 function tryShorten(iri) {
   if (iri.startsWith(':')) {
@@ -267,6 +270,16 @@ class LinkDevTools {
   get getPropRaw() {
     const propVal = this.getPropRawArr;
     return Array.isArray(propVal) ? this.toObject(propVal) : propVal;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  get linkLib() {
+    return LinkLib;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  get linkRedux() {
+    return LinkRedux;
   }
 
   // eslint-disable-next-line class-methods-use-this
