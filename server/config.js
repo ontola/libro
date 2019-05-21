@@ -49,12 +49,12 @@ export const redisAddress = process.env.REDIS_ADDRESS;
  */
 export const sessionSecret = process.env.SESSION_SECRET;
 
-if (!oAuthToken) {
+if (!oAuthToken && !__TEST__) {
   // eslint-disable-next-line no-console
   console.error('NO OAUTH TOKEN');
   process.exit(1);
 }
-if (!sessionSecret) {
+if (!sessionSecret && !__TEST__) {
   // eslint-disable-next-line no-console
   console.log('NO SESSION SECRET');
   process.exit(1);

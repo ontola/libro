@@ -18,6 +18,7 @@ config.module.rules.push({
     /node_modules\/link-redux/,
     /node_modules\/link-redux\/test/,
     /node_modules\/link-redux\/test\/fixtures/,
+    /node_modules\/ol/,
     /node_modules\/whatwg-url/,
     /node_modules\/universal-url/,
     /node_modules\/webidl-conversions/,

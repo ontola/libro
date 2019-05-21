@@ -101,6 +101,7 @@ const config = {
       __CLIENT__: false,
       __DEVELOPMENT__: process.env.NODE_ENV === 'development',
       __PRODUCTION__: process.env.NODE_ENV === 'production',
+      __TEST__: false,
       __VERSION__: JSON.stringify(version),
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production'),
     }),
