@@ -6,7 +6,7 @@ function getManifest(build) {
   const manifest = {};
 
   let fileNames = {};
-  if (__DEVELOPMENT__) {
+  if (__DEVELOPMENT__ || __TEST__) {
     [
       ['main.css', 'main.bundle.css'],
       ['main.js', 'main.bundle.js'],

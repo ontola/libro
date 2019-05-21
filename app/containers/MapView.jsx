@@ -9,7 +9,7 @@ const MapView = React.lazy(
 
 class MapViewLoader extends React.Component {
   render() {
-    if (!__CLIENT__) {
+    if (!__CLIENT__ || __TEST__) {
       return <Spinner loading />;
     }
 

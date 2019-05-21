@@ -82,7 +82,7 @@ class EntryPointCardMain extends EntryPointBase {
                   theme="submit"
                   type="submit"
                 >
-                  {name.value}
+                  {name?.value}
                 </Button>
               </FormFooterRight>
             </FormFooter>

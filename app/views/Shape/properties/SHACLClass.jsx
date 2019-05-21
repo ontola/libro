@@ -1,7 +1,8 @@
 import LinkedRenderStore from 'link-lib';
 import {
-  LinkedResourceContainer,
-  PropertyBase,
+  linkedPropType,
+  LinkedResourceContainer, subjectType,
+  useLRS,
 } from 'link-redux';
 import React from 'react';
 
@@ -9,25 +10,29 @@ import { NS } from '../../../helpers/LinkedRenderStore';
 import { handle } from '../../../helpers/logging';
 import { allTopologies } from '../../../topologies';
 
-class SHACLClass extends PropertyBase {
-  render() {
-    const targetShape = this.props.lrs.store.anyStatementMatching(
-      null,
-      NS.sh('targetClass'),
-      this.props.linkedProp,
-      null
-    );
+const SHACLClass = ({ linkedProp, subject }) => {
+  const lrs = useLRS();
+  const targetShape = lrs.store.anyStatementMatching(
+    null,
+    NS.sh('targetClass'),
+    linkedProp,
+    null
+  );
 
-    if (!targetShape) {
-      handle(new Error(`Rendered SHACL::Class for ${this.props.subject} without targetShape`));
-      return null;
-    }
-
-    return (
-      <LinkedResourceContainer subject={targetShape.subject} />
-    );
+  if (!targetShape) {
+    handle(new Error(`Rendered SHACL::Class for ${subject} without targetShape`));
+    return null;
   }
-}
+
+  return (
+    <LinkedResourceContainer subject={targetShape.subject} />
+  );
+};
+
+SHACLClass.propTypes = {
+  linkedProp: linkedPropType,
+  subject: subjectType,
+};
 
 export default LinkedRenderStore.registerRenderer(
   SHACLClass,

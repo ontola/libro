@@ -23,7 +23,7 @@ const messages = defineMessages({
   },
 });
 
-const SearchResultPage = ({
+export const SearchResultPage = ({
   history,
   intl: { formatMessage },
   location,
@@ -74,7 +74,7 @@ const SearchResultPage = ({
             history.push(`${location.pathname}${search ? `?${search}` : ''}${location.hash}`);
           }}
         />
-        {search.has('q') && (
+        {totalItems && took && (
           <p className="SearchResult__query-info">
             <FormattedMessage
               defaultMessage="{totalItems} results in {took}ms"

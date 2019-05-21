@@ -66,7 +66,7 @@ const deferredStyles = '    var loadDeferredStyles = function() {\n'
 //  in the assets manifest, so we have to define it manually.
 const manifestLocation = `${constants.ASSETS_HOST}/manifest.json`;
 
-export const renderFullPage = (domain, req, res, websiteMeta, data) => {
+export const renderFullPage = (req, res, websiteMeta, data) => {
   const bundleVersion = isModule(req.headers['user-agent'])
     ? bundles.module
     : bundles.legacy;
@@ -83,17 +83,22 @@ export const renderFullPage = (domain, req, res, websiteMeta, data) => {
   };
   const csrfToken = req.csrfToken();
   const nonceStr = res.locals.nonce.toString();
-  const tokenPayload = jwt.verify(
-    req.session.arguToken.accessToken,
-    constants.jwtEncryptionToken
-  );
-  const { language } = tokenPayload.user;
+  let language = '';
+  try {
+    const tokenPayload = jwt.verify(
+      req.session.arguToken.accessToken,
+      constants.jwtEncryptionToken
+    );
+    ({ language } = tokenPayload.user);
+  } catch (e) {
+    logging.error(e);
+  }
 
   const polyfill = bundleVersion === 'legacy' ? `<script crossorigin="anonymous" nonce="${nonceStr}" src="${polyfillSrc}"></script>` : '';
 
   const { LRS } = generateLRS();
   const App = getApp(LRS);
-  const { origin } = new URL(websiteMeta.website);
+  const { origin } = new URL(websiteMeta?.website || `${req.protocol}://${req.host}`);
   const resourceIRI = req.path?.length > 1 ? origin + req.path : origin;
   const seedRequest = {
     body: data?.toString('utf-8') ?? '',
@@ -123,7 +128,7 @@ export const renderFullPage = (domain, req, res, websiteMeta, data) => {
               <meta charset="utf-8" />
               <link rel="stylesheet" href="/static/preloader.css" />
               <link rel="manifest" href="${manifestLocation}">
-              ${headers.title.toString()}
+              ${headers?.title?.toString()}
       
               <meta name="website-iri" content="${websiteMeta.website || ''}" />
               <meta property="og:type" content="website" />
@@ -138,14 +143,14 @@ export const renderFullPage = (domain, req, res, websiteMeta, data) => {
               <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
               <meta name="viewport" content="initial-scale=1.0, maximum-scale=5.0" />
               <meta content="269911176456825" property="fb:app_id">
-              ${headers.meta.toString()}
+              ${headers?.meta?.toString()}
       
               <meta name="csrf-param" content="authenticity_token">
               <meta name="csrf-token" content="${csrfToken}">
               ${constants.bugsnagKey ? '<script async src="//d2wy8f7a9ursnm.cloudfront.net/v5/bugsnag.min.js"></script>' : ''}
               <script nonce="${nonceStr}">window.bugsnagClient = typeof bugsnag !== 'undefined' && bugsnag(${JSON.stringify(bugsnagOpts)})</script>
       
-              ${headers.link.toString()}
+              ${headers?.link?.toString()}
               <link rel="icon" type="image/png" sizes="192x192" href="/static/favicons/favicon-192x192.png">
               <link rel="icon" type="image/png" sizes="160x160" href="/static/favicons/favicon-160x160.png">
               <link rel="icon" type="image/png" sizes="96x96" href="/static/favicons/favicon-96x96.png">
@@ -236,7 +241,7 @@ export const renderFullPage = (domain, req, res, websiteMeta, data) => {
 };
 
 export function handleRender(req, res, port, domain, websiteMeta, data) {
-  return renderFullPage(domain, req, res, websiteMeta, data)
+  return renderFullPage(req, res, websiteMeta, data)
     .then((page) => {
       res.send(page);
     })
