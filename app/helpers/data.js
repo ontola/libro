@@ -110,7 +110,11 @@ function processRemove(delta, lrs) {
     .filter(([, , , why]) => why === NS.ontola('remove'))
     .forEach(([s, p, o]) => {
       lrs.store.removeStatements(
-        [lrs.store.anyStatementMatching(s, p, o)].filter(Boolean)
+        lrs.store.match(
+          s === NS.sp('Variable') ? null : s,
+          p === NS.sp('Variable') ? null : p,
+          o === NS.sp('Variable') ? null : o
+        )
       );
     });
 }
