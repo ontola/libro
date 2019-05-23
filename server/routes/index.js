@@ -12,7 +12,7 @@ import authenticationMiddleware from '../middleware/authenticationMiddleware';
 import errorHandlerMiddleware from '../middleware/errorHandlerMiddleware';
 import sessionMiddleware from '../middleware/sessionMiddleware';
 import csp from '../utils/csp';
-import isBackend from '../utils/filters';
+import isBackend, { isPlainAPI } from '../utils/filters';
 import { isDownloadRequest, isHTMLHeader } from '../utils/http';
 import { getErrorMiddleware } from '../utils/logging';
 import { backendProxy, bulkProxy, fileProxy } from '../utils/proxies';
@@ -57,7 +57,9 @@ const compressionOpts = {
 };
 const errorMiddleware = getErrorMiddleware();
 
-export default function routes(app, port) {
+export default async function routes(app, port) {
+  const isPlainAPIReq = await isPlainAPI();
+
   app.use(morgan('dev'));
 
   app.use((req, res, next) => {
@@ -69,6 +71,8 @@ export default function routes(app, port) {
   app.get('/d/health', health);
 
   app.use(errorMiddleware.requestHandler);
+
+  app.use(isPlainAPIReq, backendProxy);
 
   app.use(csp);
 

@@ -15,6 +15,8 @@ export const logLevel = process.env.LOG_LEVEL || 'info';
 
 export const clusterURLBase = process.env.CLUSTER_URL_BASE || `${namespace ? `.${namespace}` : ''}${svcDNSPrefix ? `.${svcDNSPrefix}` : ''}.${clusterDomain}`;
 
+export const redisSettingsNS = 'frontend';
+
 /**
  * Values from here really are secret.
  * DO NOT USE THESE

@@ -1,8 +1,39 @@
+import pathToRegexp from 'path-to-regexp';
+
+import { redisSettingsNS } from '../config';
+import { client } from '../middleware/sessionMiddleware';
+
 import logging from './logging';
 
 const FRONTEND_ROUTES = /^\/(login)(\/|$)/;
 
 const dataExtensions = ['json', 'nq', 'nt', 'n3', 'rdf', 'ttl'];
+
+const plainAPIEndpointsKey = [redisSettingsNS, 'runtime.plain_endpoints'].join('.');
+
+export async function isPlainAPI() {
+  try {
+    const endpoints = await client.lrange(plainAPIEndpointsKey, 0, -1);
+    const matchers = endpoints.map(e => pathToRegexp(e));
+    logging.debug(`[ROUTING] isPlainAPI: setting routes for endpoints: '${endpoints.join(', ')}'`);
+
+    return (req, res, next) => {
+      if (!matchers.find(matcher => matcher.test(req.url))) {
+        logging.debug(`[ROUTING] isPlainAPI: false for ${req.url}`);
+        return next('route');
+      }
+
+      logging.debug(`[ROUTING] isPlainAPI: true for ${req.url}`);
+      return next();
+    };
+  } catch (e) {
+    logging.error(e, 'Received error while determining plain API routes, skipping all');
+
+    return (req, res, next) => {
+      next('route');
+    };
+  }
+}
 
 export default function isBackend(req, _res, next) {
   if (req.originalUrl.match(FRONTEND_ROUTES)) {

@@ -9,8 +9,8 @@ const app = express();
 app.disable('x-powered-by');
 app.set('trust proxy', 1);
 
-function start() {
-  routes(app, PORT);
+async function start() {
+  await routes(app, PORT);
   listen(app, PORT);
 }
 
