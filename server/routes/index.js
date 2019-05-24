@@ -71,8 +71,7 @@ export default async function routes(app, port) {
   app.get('/d/health', health);
 
   app.use(errorMiddleware.requestHandler);
-
-  app.use(isPlainAPIReq, backendProxy);
+  app.all('*', isPlainAPIReq, backendProxy);
 
   app.use(csp);
 
