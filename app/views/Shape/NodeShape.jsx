@@ -73,7 +73,7 @@ const NodeShape = ({
         <Property label={NS.sh('targetClass')} />
         <Property
           autofocusForm={autofocusForm}
-          label={NS.sh('property')}
+          label={[NS.sh('property'), NS.ontola('formSteps')]}
           propertyIndex={propertyIndex}
           subject={subject}
           targetNode={targetNode}

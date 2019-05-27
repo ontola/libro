@@ -1,4 +1,4 @@
-import LinkedRenderStore from 'link-lib';
+import LinkedRenderStore, { normalizeType } from 'link-lib';
 import {
   LinkedResourceContainer,
   PropertyBase,
@@ -53,7 +53,9 @@ class ShProperty extends PropertyBase {
     const props = [];
     const unorderedProps = [];
 
-    const properties = this.getLinkedObjectPropertyRaw();
+    const properties = normalizeType(this.props.label)
+      .flatMap(label => this.getLinkedObjectPropertyRaw(label));
+
     for (let i = 0, maxLen = properties.length; i < maxLen; i++) {
       const prop = this.filterProp(properties[i] ? properties[i].object : undefined);
       if (prop) {
