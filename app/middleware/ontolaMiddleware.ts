@@ -191,7 +191,9 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
             handle(new Error('User logout action failed'));
           });
       case store.namespaces.ontola('actions/refresh'):
-        window.location.reload();
+        if (__CLIENT__) {
+          window.location.reload();
+        }
         return Promise.resolve();
       case store.namespaces.ontola('actions/reload'):
         window.location.reload(true);
@@ -227,7 +229,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
 
       const location = new URL(value, window.location.origin).toString();
 
-      if (reload) {
+      if (reload && __CLIENT__) {
         window.location.href = location;
       } else {
         // TODO: connect to router
