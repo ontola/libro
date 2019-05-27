@@ -53,6 +53,7 @@ export default function application(port) {
       const websiteMeta = {
         accentBackgroundColor: websiteMetaParams.get('accent_background_color'),
         accentColor: websiteMetaParams.get('accent_color'),
+        cssClass: websiteMetaParams.get('css_class'),
         navbarBackground: websiteMetaParams.get('navbar_background'),
         navbarColor: websiteMetaParams.get('navbar_color'),
         title: websiteMetaParams.get('application_name') || 'Argu',

@@ -209,7 +209,7 @@ export const renderFullPage = (req, res, websiteMeta, data) => {
                   class="accent-background-color navbar-background navbar-color"
                   style="height: 3.2rem; z-index: -1;"
               ></div>
-              <div id="${constants.APP_ELEMENT}"></div>
+              <div id="${constants.APP_ELEMENT}" class="${websiteMeta.cssClass}"></div>
               <noscript>
                   <h1>Argu heeft javascript nodig om te werken</h1>
                   <p>Javascript staat momenteel uitgeschakeld, probeer een andere browser of in prive modus.</p>
