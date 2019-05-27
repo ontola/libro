@@ -7,7 +7,7 @@ import { navbarTopology } from '../../../topologies/Navbar';
 import './name.scss';
 
 class OrganizationNameNavbar extends React.PureComponent {
-  static type = [NS.schema('Organization'), NS.argu('Page')];
+  static type = [NS.schema('Organization'), NS.argu('Page'), NS.schema('WebSite')];
 
   static property = [
     NS.schema('name'),
