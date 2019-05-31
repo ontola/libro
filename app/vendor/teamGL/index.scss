@@ -1,0 +1,29 @@
+@import '../../components/shared/config';
+
+// sass-lint:disable nesting-depth
+.teamGL {
+  .ActionsBar {
+    .Button {
+      text-transform: unset;
+      flex-grow: 1;
+      border: $grey-border;
+      background: color('grey', 'xx-light');
+      border-bottom: 0;
+      border-right: 0;
+
+      &:first-child {
+        border-left: 0;
+      }
+    }
+  }
+
+  h1,
+  h2,
+  .Button--default,
+  .NavBarContent {
+    font-family: 'Open Sans', 'Arial Black', 'sans-serif';
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+}
+// sass-lint:enable nesting-depth

@@ -168,7 +168,7 @@ export const renderFullPage = (req, res, websiteMeta, data) => {
               
               <noscript id="deferred-styles">
                   ${bundleCSS}
-                  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+                  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
                   <link crossorigin="anonymous" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
               </noscript>
               ${polyfill}
