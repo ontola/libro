@@ -172,7 +172,7 @@ class SignInFormBase extends React.PureComponent {
           <CardContent>
             <p>
               <FormattedMessage
-                defaultMessage="Please confirm your vote by clicking the link we've send to {email}"
+                defaultMessage="Please confirm your vote by clicking the link we've sent to {email}"
                 id="https://app.argu.co/i18n/forms/session/emailConfirmationReminder"
                 values={{
                   email: <b>{this.props.registeredEmail}</b>,

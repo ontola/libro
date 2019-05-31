@@ -68,7 +68,7 @@
   "https://app.argu.co/i18n/forms/session/confirmationLink/label": "Resend confirmation link?",
   "https://app.argu.co/i18n/forms/session/email/label": "Your email address",
   "https://app.argu.co/i18n/forms/session/email/placeholder": "email@example.com",
-  "https://app.argu.co/i18n/forms/session/emailConfirmationReminder": "Please confirm your vote by clicking the link we've send to {email}",
+  "https://app.argu.co/i18n/forms/session/emailConfirmationReminder": "Please confirm your vote by clicking the link we've sent to {email}",
   "https://app.argu.co/i18n/forms/session/forgotLink/label": "Forgot password?",
   "https://app.argu.co/i18n/forms/session/link/label": "Log in",
   "https://app.argu.co/i18n/forms/session/login": "login",
