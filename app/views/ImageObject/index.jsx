@@ -15,6 +15,7 @@ import { voteBubbleTopology } from '../../topologies/VoteBubble';
 import { voteEventSideTopology } from '../../topologies/VoteEventSide';
 import { parentTopology } from '../../topologies/Parent';
 
+import ImageObjectCardContent from './ImageObjectCardContent';
 import ImageObjectCardList from './ImageObjectCardList';
 import ImageObjectCover from './ImageObjectCover';
 import ImageObjectPageHeader from './ImageObjectPageHeader';
@@ -65,5 +66,6 @@ export default [
     navbarTopology
   ),
   ...thumbnail,
+  ImageObjectCardContent,
   ImageObjectCardList,
 ];

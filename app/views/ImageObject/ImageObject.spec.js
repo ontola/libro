@@ -16,6 +16,7 @@ const resources = {
     [NS.rdf('type')]: NS.schema('ImageObject'),
     [NS.schema('thumbnail')]: new NamedNode('http://example.com/image/1.ico'),
     [NS.schema('url')]: new NamedNode(url),
+    [NS.schema('contentUrl')]: new NamedNode(url),
     [NS.argu('url')]: new NamedNode(url),
     [NS.argu('imgUrl1500x600')]: new NamedNode(coverUrl),
     [NS.argu('imgUrl568x400')]: new NamedNode(boxUrl),
@@ -42,8 +43,8 @@ describeView('ImageObject', components, resources, resource, () => {
   });
 
   as(NS.argu('cardMain'), () => {
-    it('renders a small cover', () => {
-      expect(subject.find(marker('cover'))).toHaveProp('url', boxUrl);
+    it('renders an image', () => {
+      expect(subject.find(marker('image'))).toHaveProp('src', url);
     });
   });
 
