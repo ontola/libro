@@ -1,12 +1,11 @@
 .OrganizationNameNavbar {
   align-items: center;
   display: flex;
-  padding: .5em 1em .5em 0;
+  padding: .5em 1em;
 
   &__value {
     color: inherit;
     font-weight: bold;
-    margin-left: .4em;
   }
 
   .NavbarLink__image {
@@ -14,4 +13,8 @@
     margin-left: .3em;
     width: 2.2em;
   }
+}
+
+.NavbarLink__image-wrapper + .OrganizationNameNavbar__value {
+  margin-left: .4em;
 }
