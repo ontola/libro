@@ -54,6 +54,7 @@ function generateLRS() {
   LRS.api.accept.default = FRONTEND_ACCEPT;
 
   LRS.namespaces.aod = Namespace('https://argu.co/ns/od#');
+  LRS.namespaces.teamGL = Namespace('http://glapp.nl/tgl#');
   LRS.namespaces.meeting = Namespace('https://argu.co/ns/meeting/');
   LRS.namespaces.opengov = Namespace('http://www.w3.org/ns/opengov#');
   LRS.namespaces.org = Namespace('http://www.w3.org/ns/org#');
@@ -141,6 +142,9 @@ function generateLRS() {
 
     new Statement(NS.schema('UpdateAction'), NS.rdf('type'), NS.rdfs('Class')),
     new Statement(NS.schema('UpdateAction'), NS.rdfs('subClassOf'), NS.schema('Action')),
+
+    new Statement(NS.teamGL('ContactAction'), NS.rdf('type'), NS.rdfs('Class')),
+    new Statement(NS.teamGL('ContactAction'), NS.rdfs('subClassOf'), NS.schema('UpdateAction')),
 
     new Statement(NS.meeting('Meeting'), NS.rdf('type'), NS.rdfs('Class')),
     new Statement(NS.meeting('Meeting'), NS.rdfs('subClassOf'), NS.schema('Thing')),

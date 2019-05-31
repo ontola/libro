@@ -44,6 +44,7 @@ import Snackbar from './Snackbar';
 import SnackbarManager from './SnackbarManager';
 import User from './User';
 import VideoPage from './VideoPage';
+import Volunteer from './Volunteer';
 import Vote from './Vote';
 // import './VoteCompareCells';
 // import './VoteCompareRows';
@@ -93,6 +94,7 @@ export function getViews() {
     ...SnackbarManager,
     ...User,
     ...VideoPage,
+    ...Volunteer,
     ...Vote,
     ...VoteEvent,
     ...Widget,

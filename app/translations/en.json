@@ -103,5 +103,9 @@
   "https://app.argu.co/i18n/voteFlow/confirmMessage": "Confirm your vote via e-mail:",
   "https://app.argu.co/i18n/votes/expireable/states/closed/message": "Voting no longer possible",
   "https://app.argu.co/i18n/votes/expireable/states/disabled/message": "Voting not possible",
-  "https://ns.ontola.io/actions/copyToClipboard/copySuccessMessage": "Copied..."
+  "https://ns.ontola.io/actions/copyToClipboard/copySuccessMessage": "Copied...",
+  "https://team.groenlinks.nl/i18n/waiting/long": "🤔 Wacht al {diff} dagen",
+  "https://team.groenlinks.nl/i18n/waiting/short": "😀 Wacht enkele dagen",
+  "https://team.groenlinks.nl/i18n/waiting/veryLong": "😱 Wacht al {diff} dagen",
+  "https://team.groenlinks.nl/i18n/waiting/veryShort": "😬 Net aangemeld"
 }

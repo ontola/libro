@@ -73,6 +73,7 @@
     "rdflib": "npm:link-rdflib@0.19.1-20190515T091246",
     "react-autosize-textarea": "^6.0.0",
     "react-dropzone": "^10.0.5",
+    "react-easy-emoji": "^1.2.0",
     "react-helmet-async": "^1.0.2",
     "react-outside-click-handler": "^1.2.3",
     "request": "^2.88.0",

@@ -17,6 +17,7 @@ const imgSrc = [
   "'self'",
   'data:',
   'https://www.gravatar.com',
+  'https://twemoji.maxcdn.com',
 ];
 if (AWS_BUCKET) {
   imgSrc.push(`https://${AWS_BUCKET}.s3.amazonaws.com`);
