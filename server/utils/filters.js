@@ -7,7 +7,7 @@ import logging from './logging';
 
 const FRONTEND_ROUTES = /^\/(login)(\/|$)/;
 
-const dataExtensions = ['json', 'nq', 'nt', 'n3', 'rdf', 'ttl'];
+const dataExtensions = ['json', 'nq', 'nt', 'n3', 'rdf', 'ttl', 'png'];
 
 const plainAPIEndpointsKey = [redisSettingsNS, 'runtime.plain_endpoints'].join('.');
 
