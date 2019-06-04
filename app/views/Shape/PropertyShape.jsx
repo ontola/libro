@@ -40,7 +40,9 @@ const PropertyShape = (props) => {
   useDataInvalidation({ dataSubjects: targetValues, subject });
 
   if (!isCollection && targetValues?.length === 1 && targetValues[0].termType === 'NamedNode' && lrs.tryEntity(targetValues[0]).length === 0) {
-    lrs.queueEntity(targetValues[0]);
+    if (__CLIENT__) {
+      lrs.queueEntity(targetValues[0]);
+    }
     return null;
   }
 

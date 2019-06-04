@@ -32,6 +32,7 @@ class ThingPageHeader extends React.PureComponent {
         <PageHeaderImageAndTextWrapper>
           <PageHeaderText>
             <Property label={NS.schema('name')} />
+            <Property label={NS.argu('grantedGroups')} />
             <Property label={NS.schema('description')} />
           </PageHeaderText>
         </PageHeaderImageAndTextWrapper>

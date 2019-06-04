@@ -31,6 +31,7 @@ import DateSubmitted from './properties/dateSubmitted';
 import description from './properties/description';
 import ExpiresAt from './properties/expiresAt';
 import FollowsCount from './properties/followsCount';
+import GrantedGroups from './properties/grantedGroups';
 import Image from './properties/image';
 import IsPartOf from './properties/isPartOf';
 import IsPrimaryTopicOf from './properties/isPrimaryTopicOf';
@@ -173,6 +174,7 @@ export default [
   description,
   ExpiresAt,
   FollowsCount,
+  GrantedGroups,
   IsPrimaryTopicOf,
   IsPartOf,
   Image,

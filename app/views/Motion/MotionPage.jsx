@@ -41,6 +41,7 @@ class MotionPage extends React.PureComponent {
               <Property label={NS.schema('creator')} />
               <Property label={NS.rdf('type')} />
               <Property label={NS.schema('location')} />
+              <Property label={NS.argu('grantedGroups')} />
               <Property label={NS.schema('dateCreated')} />
               <Property label={NS.schema('dateSubmitted')} />
             </DetailsBar>
