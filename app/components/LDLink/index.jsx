@@ -1,23 +1,27 @@
 import PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
 import React from 'react';
-import { subjectType, useLinkRenderContext } from 'link-redux';
+import { subjectType, useLinkRenderContext, useLRS } from 'link-redux';
 
 import Link from '../Link';
 import { handle } from '../../helpers/logging';
+import { NS } from '../../helpers/LinkedRenderStore';
 
 const LDLink = ({
   children,
   to,
   ...rest
 }) => {
+  const lrs = useLRS();
   const { subject } = useLinkRenderContext();
 
   if (!subject) {
     handle(new Error('LDLINK NO SUBJECT'));
     return '';
   }
-  const href = to ? to.value : subject.value;
+  const href = to?.value
+    || lrs.getResourceProperty(subject, NS.schema('url'))?.value
+    || subject.value;
 
   return (
     <Link
