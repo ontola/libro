@@ -1,5 +1,12 @@
-import { LinkedResourceContainer, Property, register } from 'link-redux';
+import {
+  LinkedResourceContainer,
+  Property,
+  register,
+  subjectType,
+  useLRS,
+} from 'link-redux';
 import React from 'react';
+import { NamedNode } from 'rdflib';
 
 import { LDLink } from '../../components';
 import NavbarLinkIcon from '../../components/NavbarLink/NavbarLinkIcon';
@@ -8,28 +15,33 @@ import { navbarTopology } from '../../topologies/Navbar';
 
 import './properties/name';
 
-class PersonNavbar extends React.PureComponent {
-  static type = NS.schema('Person');
+const PersonNavbar = ({ subject }) => {
+  const lrs = useLRS();
+  const menuIri = lrs.getResourceProperty(subject, NS.ontola('profileMenu'));
 
-  static topology = navbarTopology;
-
-  render() {
-    return (
-      <div className="NavbarLink">
-        <LinkedResourceContainer showImage subject={NS.app('n')} topology={navbarTopology}>
-          <LDLink>
-            <Property label={NS.argu('unreadCount')} />
-          </LDLink>
-        </LinkedResourceContainer>
-        <LDLink className="NavbarLink__link">
-          <NavbarLinkIcon features="padded">
-            <Property label={NS.schema('image')} />
-          </NavbarLinkIcon>
+  return (
+    <div className="NavbarLink">
+      <LinkedResourceContainer showImage subject={NS.app('n')} topology={navbarTopology}>
+        <LDLink to={new NamedNode(`${menuIri.value}#notifications`)}>
+          <Property label={NS.argu('unreadCount')} />
         </LDLink>
-        <Property label={NS.schema('email')} />
-      </div>
-    );
-  }
-}
+      </LinkedResourceContainer>
+      <LDLink className="NavbarLink__link">
+        <NavbarLinkIcon features="padded">
+          <Property label={NS.schema('image')} />
+        </NavbarLinkIcon>
+      </LDLink>
+      <Property label={NS.schema('email')} />
+    </div>
+  );
+};
+
+PersonNavbar.type = NS.schema('Person');
+
+PersonNavbar.topology = navbarTopology;
+
+PersonNavbar.propTypes = {
+  subject: subjectType,
+};
 
 export default register(PersonNavbar);
