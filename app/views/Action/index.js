@@ -1,6 +1,7 @@
 import Actions from './Action';
 import ActionContainer from './ActionContainer';
 import ActionActionsBar from './ActionActionsBar';
+import ActionNested from './ActionNested';
 import ActionPage from './ActionPage';
 import ActionPrimaryCallToAction from './ActionPrimaryCallToAction';
 import ActionTableCell from './ActionTableCell';
@@ -18,6 +19,7 @@ export default [
   Actions,
   ActionContainer,
   ActionActionsBar,
+  ActionNested,
   ActionPage,
   ActionPrimaryCallToAction,
   ActionTableCell,

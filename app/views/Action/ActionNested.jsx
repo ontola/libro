@@ -8,18 +8,20 @@ import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
-import { primaryResourceTopology } from '../../topologies/PrimaryResource';
+import { alertDialogTopology } from '../../topologies/Dialog';
+import { tabPaneTopology } from '../../topologies/TabPane';
 
 import NavigatableAction from './NavigatableAction';
 
-export class Action extends NavigatableAction {
+class ActionNested extends NavigatableAction {
   static type = [
     NS.schema('Action'),
     NS.schema('UpdateAction'),
   ];
 
   static topology = [
-    primaryResourceTopology,
+    alertDialogTopology,
+    tabPaneTopology,
   ];
 
   static mapDataToProps = [NS.schema('object')];
@@ -35,7 +37,6 @@ export class Action extends NavigatableAction {
   render() {
     return (
       <Container>
-        <Property label={NS.schema('isPartOf')} />
         <CardMain>
           <CardContent>
             <Property label={NS.schema('name')} />
@@ -53,4 +54,4 @@ export class Action extends NavigatableAction {
   }
 }
 
-export default register(Action);
+export default register(ActionNested);
