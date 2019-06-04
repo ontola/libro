@@ -6,7 +6,6 @@ import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import { pageTopology } from '../../topologies/Page';
-import PageHeader from '../../topologies/PageHeader';
 import PrimaryResource from '../../topologies/PrimaryResource';
 
 class PersonPage extends React.PureComponent {
@@ -20,8 +19,7 @@ class PersonPage extends React.PureComponent {
   render() {
     return (
       <PrimaryResource>
-        <PageHeader />
-        <Property label={NS.argu('feed')} />
+        <Property label={NS.ontola('profileMenu')} />
       </PrimaryResource>
     );
   }
