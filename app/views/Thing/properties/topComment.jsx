@@ -36,7 +36,7 @@ class TopComment extends React.PureComponent {
     return (
       <CardRow backdrop>
         <LinkedResourceContainer subject={topComment} />
-        {count > 0 && (
+        {count > 1 && (
           <CardMicroRow>
             <LDLink>
               <FormattedMessage
