@@ -21,6 +21,7 @@ import Document from './Document';
 import EntryPoint from './EntryPoint';
 import Error from './Error';
 import Forum from './Forum/index';
+import Group from './Group';
 import ImageObject from './ImageObject';
 import InfiniteCollectionPage from './InfiniteCollectionPage';
 import RDFProperty from './RDFProperty';
@@ -73,6 +74,7 @@ export function getViews() {
     ...EntryPoint,
     ...Error,
     ...Forum,
+    ...Group,
     ...ImageObject,
     ...InfiniteCollectionPage,
     ...Loading,
