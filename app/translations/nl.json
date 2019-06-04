@@ -77,6 +77,7 @@
   "https://app.argu.co/i18n/forms/session/password/label": "Jouw wachtwoord",
   "https://app.argu.co/i18n/forms/session/register": "registreren",
   "https://app.argu.co/i18n/forms/session/signinregister/label": "Log in of registreer",
+  "https://app.argu.co/i18n/forms/signOut/link/label": "Uitloggen",
   "https://app.argu.co/i18n/navbar/search": "Zoeken",
   "https://app.argu.co/i18n/pinnable/states/pinned/pinnedAtLabel": "Vastgezet op {date}",
   "https://app.argu.co/i18n/schema:Person/showProfileText": "Toon profiel van {name}",

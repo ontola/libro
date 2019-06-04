@@ -77,6 +77,7 @@
   "https://app.argu.co/i18n/forms/session/password/label": "Your password",
   "https://app.argu.co/i18n/forms/session/register": "register",
   "https://app.argu.co/i18n/forms/session/signinregister/label": "Sign in or register",
+  "https://app.argu.co/i18n/forms/signOut/link/label": "Log out",
   "https://app.argu.co/i18n/navbar/search": "Search",
   "https://app.argu.co/i18n/pinnable/states/pinned/pinnedAtLabel": "Pinned at {date}",
   "https://app.argu.co/i18n/schema:Person/showProfileText": "Show {name}'s profile",
