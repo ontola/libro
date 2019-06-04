@@ -14,6 +14,8 @@ export function normalizeFontAwesomeIRI(stringOrIRI: string | NamedNode) {
   return isFontAwesomeIRI(str) ? str.split(FABase).pop() : str;
 }
 
+export const sequenceFilter = /^http:\/\/www\.w3\.org\/1999\/02\/22-rdf-syntax-ns#_[\d]+$/;
+
 /**
  * Helpers to aid in IRI processing.
  * @param {Window} window The window object.

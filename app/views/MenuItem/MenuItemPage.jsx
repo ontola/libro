@@ -4,7 +4,6 @@ import {
   lrsType,
   Property,
   register,
-  subjectType,
 } from 'link-redux';
 import * as PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
@@ -12,7 +11,7 @@ import React from 'react';
 import { Redirect, withRouter } from 'react-router';
 
 import TabBarWrapper from '../../components/TabBarWrapper';
-import { retrievePath } from '../../helpers/iris';
+import { retrievePath, sequenceFilter } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { pageTopology } from '../../topologies/Page';
 import PageHeader from '../../topologies/PageHeader';
@@ -46,7 +45,6 @@ class MenuItemPage extends React.PureComponent {
     location: PropTypes.shape({}),
     lrs: lrsType,
     menuItems: linkType,
-    subject: subjectType,
     topLevel: PropTypes.bool,
   };
 
@@ -59,11 +57,17 @@ class MenuItemPage extends React.PureComponent {
       location,
       lrs,
       menuItems,
-      subject,
     } = this.props;
 
-    if (menuItems && currentLocation(location) === subject) {
-      return lrs.getResourceProperty(menuItems, NS.rdf('_0'));
+    if (menuItems) {
+      const currentItem = lrs
+        .tryEntity(menuItems)
+        .filter(s => s && s.predicate.value.match(sequenceFilter) !== null)
+        .find(s => s.object === currentLocation(location));
+
+      if (!currentItem) {
+        return lrs.getResourceProperty(menuItems, NS.rdf('_0'));
+      }
     }
 
     return undefined;
@@ -99,7 +103,7 @@ class MenuItemPage extends React.PureComponent {
 
     return (
       <PrimaryResource>
-        {topLevel && r && <Redirect to={retrievePath(r.value)} />}
+        {topLevel && r && __CLIENT__ && <Redirect to={retrievePath(r.value)} />}
         {topLevel && (
           <React.Fragment>
             <PageHeader>

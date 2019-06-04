@@ -9,11 +9,11 @@ import PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
 import React from 'react';
 
+import { sequenceFilter } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../topologies';
 
 const base = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#_';
-const filter = /^http:\/\/www\.w3\.org\/1999\/02\/22-rdf-syntax-ns#_[\d]+$/;
 
 function numAsc(a, b) {
   const aP = Number.parseInt(a.predicate.value.slice(base.length), 10);
@@ -37,7 +37,7 @@ export function Seq({
 
   const sequences = lrs
     .tryEntity(subject)
-    .filter(s => s && s.predicate.value.match(filter) !== null)
+    .filter(s => s && s.predicate.value.match(sequenceFilter) !== null)
     .sort(numAsc)
     .map(s => s.object);
 
