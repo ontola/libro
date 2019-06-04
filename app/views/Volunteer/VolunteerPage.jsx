@@ -28,6 +28,7 @@ class VolunteerPage extends React.PureComponent {
           <CardMain>
             <DetailsBar>
               <Property label={NS.schema('dateCreated')} />
+              <Property label={NS.teamGL('department')} />
             </DetailsBar>
             <CardContent noSpacing>
               <Property label={[NS.schema('name'), NS.rdfs('label')]} />

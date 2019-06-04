@@ -15,6 +15,7 @@ import CreativeWork from './CreativeWork';
 import Action from './Action/index';
 import Argument from './Argument/index';
 import DataCube from './DataCube';
+import Department from './Department';
 import DialogManager from './DialogManager';
 import Document from './Document';
 import EntryPoint from './EntryPoint';
@@ -66,6 +67,7 @@ export function getViews() {
     ...Comment,
     ...CreativeWork,
     ...DataCube,
+    ...Department,
     ...Document,
     ...DialogManager,
     ...EntryPoint,

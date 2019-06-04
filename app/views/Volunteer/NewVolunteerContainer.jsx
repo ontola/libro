@@ -23,6 +23,7 @@ class NewVolunteerContainer extends React.PureComponent {
       <Card>
         <DetailsBar>
           <Property label={NS.schema('dateCreated')} />
+          <Property label={NS.teamGL('department')} />
         </DetailsBar>
         <CardContent noSpacing>
           <Property label={[NS.schema('name'), NS.rdfs('label')]} />

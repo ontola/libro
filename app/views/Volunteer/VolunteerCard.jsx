@@ -28,6 +28,7 @@ class VolunteerCard extends React.PureComponent {
           <Property label={[NS.schema('name'), NS.rdfs('label')]} />
           <DetailsBar>
             <Property label={NS.schema('dateCreated')} />
+            <Property label={NS.teamGL('department')} />
           </DetailsBar>
           <div className="Volunteer--contact-options">
             <Property label={NS.teamGL('telephone')} />
