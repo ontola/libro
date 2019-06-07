@@ -19,8 +19,4 @@ FormStep.type = NS.ontola('FormStep');
 
 FormStep.topology = allTopologies;
 
-FormStep.mapDataToProps = [
-  NS.schema('url'),
-];
-
 export default register(FormStep);
