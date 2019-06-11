@@ -44,6 +44,7 @@ class ThingPage extends PureComponent {
               <Property label={NS.argu('followsCount')} />
               <Property label={NS.argu('motionsCount')} />
               <Property label={NS.schema('location')} />
+              <Property label={NS.argu('grantedGroups')} />
               <LinkedDetailDate />
             </DetailsBar>
             <CardContent noSpacing>
