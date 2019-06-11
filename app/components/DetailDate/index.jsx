@@ -36,6 +36,10 @@ const messages = defineMessages({
     defaultMessage: 'end date: {date}',
     id: 'https://app.argu.co/i18n/schema:endDate/label',
   },
+  lastActivityAt: {
+    defaultMessage: 'last activity: {date}',
+    id: 'https://app.argu.co/i18n/argu:lastActivityAt/label',
+  },
   startDate: {
     defaultMessage: 'start date: {date}',
     id: 'https://app.argu.co/i18n/schema:startDate/label',
@@ -56,13 +60,15 @@ class DetailDate extends React.PureComponent {
     floatRight: PropTypes.bool,
     hideIcon: PropTypes.bool,
     intl: intlShape,
+    lastActivityAt: PropTypes.instanceOf(Date),
     startDate: PropTypes.instanceOf(Date),
     // For linking to an event, like a meeting
     url: PropTypes.string,
   };
 
   mostImportant() {
-    const date = this.props.startDate
+    const date = this.props.lastActivityAt
+      || this.props.startDate
       || this.props.datePublished
       || this.props.dateCreated
       || this.props.dateSubmitted
@@ -98,6 +104,7 @@ class DetailDate extends React.PureComponent {
     };
 
     const hoverText = [
+      format('argu:lastActivityAt'),
       format('schema:startDate'),
       format('schema:endDate'),
       format('schema:dateCreated'),

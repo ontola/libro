@@ -17,6 +17,7 @@ const propTypes = {
   endDate: PropTypes.instanceOf(Literal),
   floatRight: PropTypes.bool,
   hideIcon: PropTypes.bool,
+  lastActivityAt: PropTypes.instanceOf(Literal),
   startDate: PropTypes.instanceOf(Literal),
 };
 
@@ -38,6 +39,7 @@ class LinkedDetailDate extends React.PureComponent {
         endDate={this.props.endDate && new Date(this.props.endDate.value)}
         floatRight={floatRight}
         hideIcon={hideIcon}
+        lastActivityAt={this.props.lastActivityAt && new Date(this.props.lastActivityAt.value)}
         startDate={this.props.startDate && new Date(this.props.startDate.value)}
       />
     );
@@ -47,6 +49,7 @@ class LinkedDetailDate extends React.PureComponent {
 LinkedDetailDate.propTypes = propTypes;
 
 export default link([
+  NS.argu('lastActivityAt'),
   NS.schema('startDate'),
   NS.schema('endDate'),
   NS.schema('dateCreated'),

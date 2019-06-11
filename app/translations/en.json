@@ -3,6 +3,7 @@
   "https://app.argu.co/i18n/actions/SendConfirmationAction/confirmedLabel": "Already confirmed",
   "https://app.argu.co/i18n/actions/labels/save": "save",
   "https://app.argu.co/i18n/argu:Motion/argu:motionsCount/label": "{count} ideas",
+  "https://app.argu.co/i18n/argu:lastActivityAt/label": "Last activity: {date}",
   "https://app.argu.co/i18n/as:CollectionPage/as:next/label": "next",
   "https://app.argu.co/i18n/as:CollectionPage/as:previous/label": "previous",
   "https://app.argu.co/i18n/auth/newSessionLink": "Log in / sign up",
