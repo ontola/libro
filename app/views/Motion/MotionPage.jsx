@@ -3,6 +3,7 @@ import React from 'react';
 
 import {
   CardContent,
+  LinkedDetailDate,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import CardAppendix from '../../topologies/Card/CardAppendix';
@@ -34,16 +35,15 @@ class MotionPage extends React.PureComponent {
                 </React.Fragment>
               )}
             >
+              <Property label={NS.schema('creator')} />
+              <Property label={NS.rdf('type')} />
+              <LinkedDetailDate />
               <Property label={NS.argu('pinnedAt')} />
               <Property label={NS.argu('expiresAt')} />
               <Property label={NS.argu('followsCount')} />
               <Property label={NS.argu('motionsCount')} />
-              <Property label={NS.schema('creator')} />
-              <Property label={NS.rdf('type')} />
               <Property label={NS.schema('location')} />
               <Property label={NS.argu('grantedGroups')} />
-              <Property label={NS.schema('dateCreated')} />
-              <Property label={NS.schema('dateSubmitted')} />
             </DetailsBar>
             <CardContent noSpacing>
               <Property label={[NS.schema('name'), NS.rdfs('label')]} />

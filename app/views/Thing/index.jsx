@@ -6,6 +6,7 @@ import {
   CardContent,
   Detail,
   LDLink,
+  LinkedDetailDate,
 } from '../../components';
 import {
   connectHighlighting,
@@ -76,8 +77,6 @@ const ThingGrid = () => (
       </CardContent>
     </LDLink>
     <DetailsBar>
-      <Property label={NS.argu('pinnedAt')} />
-      <Property short label={NS.argu('expiresAt')} />
       <Property label={NS.schema('creator')}>
         <LDLink features={['centered']}>
           <div className="Detail">
@@ -85,9 +84,11 @@ const ThingGrid = () => (
           </div>
         </LDLink>
       </Property>
+      <LinkedDetailDate />
+      <Property label={NS.argu('pinnedAt')} />
+      <Property short label={NS.argu('expiresAt')} />
       <Property label={NS.argu('followsCount')} />
       <Property label={NS.argu('motionsCount')} />
-      <Property label={NS.schema('dateCreated')} />
     </DetailsBar>
   </CardFixed>
 );
