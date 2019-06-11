@@ -23,30 +23,23 @@ import { cardVoteEventTopology } from '../../../topologies/CardVoteEvent';
 
 class CurrentVote extends React.PureComponent {
   static propTypes = {
-    base: PropTypes.instanceOf(NamedNode),
+    baseCollection: PropTypes.instanceOf(NamedNode),
     lrs: lrsType,
     option: linkType,
     side: linkType,
     subject: linkType,
   };
 
-  getBaseCollection() {
-    const base = new URL(this.props.base.value.replace('/od/', '/lr/'));
-    base.searchParams.set('filter[]', `option=${this.props.side.term}`);
-
-    return NamedNode.find(base);
-  }
-
   getEntryPoint() {
     return this.props.lrs.getResourceProperty(
-      this.getBaseCollection(),
+      this.props.baseCollection,
       NS.ontola('createAction')
     );
   }
 
   getSideVoteCount() {
     return this.props.lrs.getResourceProperty(
-      this.getBaseCollection(),
+      this.props.baseCollection,
       NS.as('totalItems')
     );
   }
@@ -70,10 +63,27 @@ class CurrentVote extends React.PureComponent {
   }
 }
 
-const CurrentVoteConnected = link(
+const baseCollectionWrapper = (Comp) => {
+  const BaseCollectionListener = (props) => {
+    const base = new URL(props.base.value.replace('/od/', '/lr/'));
+    base.searchParams.set('filter[]', `option=${props.side.term}`);
+    const baseIRI = NamedNode.find(base);
+
+    return <Comp baseCollection={baseIRI} dataSubjects={[baseIRI]} {...props} />;
+  };
+
+  BaseCollectionListener.propTypes = {
+    base: PropTypes.instanceOf(NamedNode),
+    side: linkType,
+  };
+
+  return BaseCollectionListener;
+};
+
+const CurrentVoteConnected = baseCollectionWrapper(link(
   [NS.schema('option')],
   { forceRender: true }
-)(withLRS(CurrentVote));
+)(withLRS(CurrentVote)));
 
 export const getVoteButtons = (options) => {
   class VoteButtons extends TopologyProvider {
