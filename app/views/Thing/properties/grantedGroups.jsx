@@ -11,6 +11,7 @@ import { detailsBarTopology } from '../../../topologies/DetailsBar';
 import { pageHeaderTopology } from '../../../topologies/PageHeader';
 import { Detail } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { listToArr } from '../../../helpers/data';
 
 const publicGroupIRI = NS.app('g/-1');
 
@@ -26,15 +27,17 @@ const messages = defineMessages({
 });
 
 
-const GrantedGroups = ({ intl: { formatMessage }, dataSubjects }) => {
+const GrantedGroups = ({ intl: { formatMessage }, grantedGroups }) => {
   const lrs = useLRS();
 
-  if (__CLIENT__) {
-    dataSubjects.forEach(g => lrs.queueEntity(g));
+  const groups = __CLIENT__ && grantedGroups && listToArr(lrs, [], grantedGroups);
+
+  if (!Array.isArray(groups)) {
+    return null;
   }
 
-  if (dataSubjects.indexOf(publicGroupIRI) === -1) {
-    const groupNames = dataSubjects
+  if (groups.indexOf(publicGroupIRI) === -1) {
+    const groupNames = groups
       .map(group => lrs.getResourceProperty(group, lrs.namespaces.schema('name')))
       .filter(Boolean)
       .join(', ');
@@ -74,14 +77,12 @@ GrantedGroups.topology = [detailsBarTopology, pageHeaderTopology];
 GrantedGroups.property = NS.argu('grantedGroups');
 
 GrantedGroups.mapDataToProps = {
-  dataSubjects: {
-    label: NS.argu('grantedGroups'),
-    limit: Infinity,
-  },
+  dataSubjects: NS.argu('grantedGroups'),
+  grantedGroups: NS.argu('grantedGroups'),
 };
 
 GrantedGroups.propTypes = {
-  dataSubjects: linkType,
+  grantedGroups: linkType,
   intl: PropTypes.shape({
     formatMessage: PropTypes.func,
   }),
