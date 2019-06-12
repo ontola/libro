@@ -12,8 +12,8 @@ import { cardFixedTopology } from '../../topologies/Card/CardFixed';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import CardRow from '../../topologies/Card/CardRow';
 
-class NewVolunteerCard extends React.PureComponent {
-  static type = [NS.teamGL('Volunteer')];
+class VolunteerCard extends React.PureComponent {
+  static type = [NS.teamGL('NewVolunteer')];
 
   static topology = [
     cardFixedTopology,
@@ -25,6 +25,7 @@ class NewVolunteerCard extends React.PureComponent {
     return (
       <CardRow>
         <DetailsBar>
+          <Property label={NS.schema('dateCreated')} />
           <Property label={NS.teamGL('department')} />
         </DetailsBar>
         <CardContent>
@@ -39,4 +40,4 @@ class NewVolunteerCard extends React.PureComponent {
   }
 }
 
-export default register(NewVolunteerCard);
+export default register(VolunteerCard);

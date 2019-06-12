@@ -2,17 +2,42 @@ import LinkedRenderStore from 'link-lib';
 import { linkedPropType } from 'link-redux';
 import React from 'react';
 import emoji from 'react-easy-emoji';
-import { FormattedMessage } from 'react-intl';
+import {
+  defineMessages,
+  injectIntl,
+  intlShape,
+} from 'react-intl';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../../topologies';
 import { Detail } from '../../../components';
 
 const propTypes = {
+  intl: intlShape,
   linkedProp: linkedPropType,
 };
 
-const CreatedAt = ({ linkedProp }) => {
+const messages = defineMessages({
+  long: {
+    defaultMessage: '🤔 Wacht al {diff} dagen',
+    id: 'https://team.groenlinks.nl/i18n/waiting/long',
+  },
+  short: {
+    defaultMessage: '😀 Wacht enkele dagen',
+    id: 'https://team.groenlinks.nl/i18n/waiting/short',
+  },
+  veryLong: {
+    defaultMessage: '😱 Wacht al {diff} dagen',
+    id: 'https://team.groenlinks.nl/i18n/waiting/veryLong',
+  },
+  veryShort: {
+    defaultMessage: '😬 Net aangemeld',
+    id: 'https://team.groenlinks.nl/i18n/waiting/veryShort',
+  },
+});
+
+
+const CreatedAt = ({ intl: { formatMessage }, linkedProp }) => {
   const daySpan = 86400000;
   const diff = Math.floor((new Date() - new Date(linkedProp.value)) / (daySpan));
   const waitingVeryShort = 3;
@@ -21,43 +46,22 @@ const CreatedAt = ({ linkedProp }) => {
   let message;
 
   if (diff <= waitingVeryShort) {
-    message = (
-      <FormattedMessage
-        defaultMessage="😬 Net aangemeld"
-        id="https://team.groenlinks.nl/i18n/waiting/veryShort"
-      />
-    );
+    message = messages.veryShort;
   } else if (diff <= waitingShort) {
-    message = (
-      <FormattedMessage
-        defaultMessage="😀 Wacht enkele dagen"
-        id="https://team.groenlinks.nl/i18n/waiting/short"
-      />
-    );
+    message = messages.short;
   } else if (diff <= waitingLong) {
-    message = (
-      <FormattedMessage
-        defaultMessage="🤔 Wacht al {diff} dagen"
-        id="https://team.groenlinks.nl/i18n/waiting/long"
-        values={{ diff }}
-      />
-    );
+    message = messages.long;
   } else {
-    message = (
-      <FormattedMessage
-        defaultMessage="😱 Wacht al {diff} dagen"
-        id="https://team.groenlinks.nl/i18n/waiting/veryLong"
-        values={{ diff }}
-      />
-    );
+    message = messages.veryLong;
   }
-  return <Detail text={emoji(message)} />;
+
+  return <Detail text={emoji(formatMessage(message, { diff }))} />;
 };
 
 CreatedAt.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
-  CreatedAt,
+  injectIntl(CreatedAt),
   NS.teamGL('NewVolunteer'),
   NS.schema('dateCreated'),
   allTopologies

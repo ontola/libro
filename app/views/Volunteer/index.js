@@ -1,6 +1,7 @@
 import CreatedAt from './properties/createdAt';
 import Email from './properties/email';
 import Name from './properties/name';
+import NewVolunteerCard from './NewVolunteerCard';
 import NewVolunteerContainer from './NewVolunteerContainer';
 import VolunteerCard from './VolunteerCard';
 import VolunteerPage from './VolunteerPage';
@@ -12,6 +13,7 @@ export default [
   Email,
   CreatedAt,
   Name,
+  NewVolunteerCard,
   NewVolunteerContainer,
   VolunteerCard,
   VolunteerPage,
