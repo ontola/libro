@@ -2,6 +2,7 @@ import { Literal, NamedNode } from 'rdflib';
 
 import { NS } from '../../../tests';
 import { navbarTopology } from '../../topologies/Navbar';
+import ReadActionCard from '../Action/ReadActionCard';
 
 import components from './index';
 
@@ -43,9 +44,19 @@ const resources = {
     [NS.schema('url')]: new NamedNode('https://argu.dev/photos/825/profielfoto_Joep_Meindertsma.jpg'),
     [NS.schema('thumbnail')]: new NamedNode('https://argu-logos.s3.amazonaws.com/photos/825/icon_profielfoto_Joep_Meindertsma.jpg'),
   },
+  [new NamedNode('https://argu.dev/n/35464/actions/read')]: {
+    [NS.rdf('type')]: NS.schema('ReadAction'),
+    [NS.schema('target')]: new NamedNode('https://argu.dev/n/35464/actions/read#EntryPoint'),
+    [NS.schema('text')]: new Literal(''),
+    [NS.schema('actionStatus')]: NS.schema('PotentialActionStatus'),
+    [NS.schema('name')]: new Literal('Markeer als gelezen'),
+    [NS.schema('result')]: NS.argu('Notification'),
+    [NS.schema('object')]: resource,
+    [NS.schema('isPartOf')]: resource,
+  },
 };
 
-describeView('Notification', components, resources, resource, () => {
+describeView('Notification', [...components, ReadActionCard], resources, resource, () => {
   as(NS.argu('container'), () => {
     set('topology', () => NS.argu('container'));
 
@@ -55,7 +66,7 @@ describeView('Notification', components, resources, resource, () => {
 
     describe('when unread', () => {
       it('has an unread marker', () => {
-        expect(subject.find(marker('Unread'))).toExist();
+        expect(subject.find(marker('ReadAction'))).toExist();
       });
     });
 
@@ -63,7 +74,7 @@ describeView('Notification', components, resources, resource, () => {
       set('s', () => readResource);
 
       it('has no unread marker', () => {
-        expect(subject.find(marker('Unread'))).not.toExist();
+        expect(subject.find(marker('ReadAction'))).not.toExist();
       });
     });
   });

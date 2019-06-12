@@ -20,7 +20,6 @@ import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 import NotificationHeader from './NotificationHeader';
 import Creator from './properties/creator';
 import Name from './properties/name';
-import ReadAction from './properties/readAction';
 import Target from './properties/target';
 import Unread from './properties/unread';
 
@@ -73,7 +72,6 @@ export default [
   NotificationHeader,
   Creator,
   Name,
-  ReadAction,
   Target,
   Unread,
 ];

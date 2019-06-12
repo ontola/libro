@@ -11,6 +11,7 @@ import CreateAction from './CreateAction';
 import CreateVote from './CreateVote';
 import InlineCreateAction from './InlineCreateAction';
 import InlineActionTableRow from './InlineActionTableRow';
+import ReadActionCard from './ReadActionCard';
 import SignInHelperFormsModal from './SignInHelperFormsModal';
 
 export default [
@@ -27,5 +28,6 @@ export default [
   ActionWidget,
   InlineCreateAction,
   ...InlineActionTableRow,
+  ReadActionCard,
   ...SignInHelperFormsModal,
 ];
