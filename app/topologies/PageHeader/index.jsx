@@ -1,4 +1,4 @@
-import { TopologyProvider, Type } from 'link-redux';
+import { TopologyProvider, Type, link } from 'link-redux';
 import React from 'react';
 
 import './PageHeader.scss';
@@ -40,4 +40,4 @@ class PageHeader extends TopologyProvider {
   }
 }
 
-export default PageHeader;
+export default link([NS.schema.name])(PageHeader);
