@@ -20,7 +20,7 @@ const NavBarContent = () => (
         showImage
         subject={NS.app('c_a')}
       />
-      <LinkedResourceContainer subject={NS.app('search')} />
+      <LinkedResourceContainer subject={NS.app('search')} onError={() => null} />
       <LinkedResourceContainer subject={NS.app('menu')} />
     </div>
   </div>
