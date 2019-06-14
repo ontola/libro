@@ -4,6 +4,7 @@ import React from 'react';
 import { NS } from '../../helpers/LinkedRenderStore';
 import {
   Loading,
+  LoadingButton,
   LoadingNavbarLink,
   LoadingCard,
   LoadingCardFixed,
@@ -20,6 +21,7 @@ import { cardFixedTopology } from '../../topologies/Card/CardFixed';
 import { cardListTopology } from '../../topologies/Card/CardList';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
+import { cardVoteEventTopology } from '../../topologies/CardVoteEvent';
 import { containerTopology } from '../../topologies/Container';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { alertDialogTopology } from '../../topologies/Dialog';
@@ -122,6 +124,12 @@ export default [
     NS.ll('LoadingResource'),
     RENDER_CLASS_NAME,
     detailsBarTopology
+  ),
+  LinkedRenderStore.registerRenderer(
+    LoadingButton,
+    NS.ll('LoadingResource'),
+    RENDER_CLASS_NAME,
+    cardVoteEventTopology,
   ),
   LinkedRenderStore.registerRenderer(
     Loading,

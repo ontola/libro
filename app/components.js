@@ -52,6 +52,7 @@ export { default as LinkDuo } from './components/LinkDuo/index';
 export { default as List } from './components/List/index';
 export {
   default as Loading,
+  LoadingButton,
   LoadingCard,
   LoadingCardFixed,
   LoadingMicroRow,

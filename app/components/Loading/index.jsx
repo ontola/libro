@@ -21,6 +21,10 @@ export const LoadingNavbarLink = () => (
   </div>
 );
 
+export const LoadingButton = () => (
+  <div className="Loading__Button Loading__background" />
+);
+
 export const LoadingCard = () => (
   <Card>
     <CardContent>

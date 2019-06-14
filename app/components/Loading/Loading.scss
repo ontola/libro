@@ -82,3 +82,9 @@
 .Loading__background--inverse {
   background-image: linear-gradient(to right, color('transparent', 'x-light') 8%, color('transparent', 'mid-light') 18%, color('transparent', 'light') 33%);
 }
+
+.Loading__Button {
+  flex-grow: 1;
+  height: 1.5em;
+  margin: 1em;
+}
