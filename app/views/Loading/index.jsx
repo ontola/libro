@@ -18,6 +18,7 @@ import {
 import { appMenuTopology } from '../../topologies/AppMenu';
 import { cardTopology } from '../../topologies/Card';
 import { cardFixedTopology } from '../../topologies/Card/CardFixed';
+import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { cardListTopology } from '../../topologies/Card/CardList';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
@@ -123,13 +124,16 @@ export default [
     LoadingDetail,
     NS.ll('LoadingResource'),
     RENDER_CLASS_NAME,
-    detailsBarTopology
+    [
+      cardFloatTopology,
+      detailsBarTopology,
+    ]
   ),
   LinkedRenderStore.registerRenderer(
     LoadingButton,
     NS.ll('LoadingResource'),
     RENDER_CLASS_NAME,
-    cardVoteEventTopology,
+    cardVoteEventTopology
   ),
   LinkedRenderStore.registerRenderer(
     Loading,
