@@ -14,7 +14,6 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import { allTopologiesExcept } from '../../topologies';
 import { navbarTopology } from '../../topologies/Navbar';
 import Container from '../../topologies/Container';
-import Grid from '../../topologies/Grid';
 
 const messages = defineMessages({
   placeholder: {
@@ -24,6 +23,7 @@ const messages = defineMessages({
 });
 
 export const SearchResultPage = ({
+  collectionDisplay,
   history,
   intl: { formatMessage },
   location,
@@ -89,9 +89,7 @@ export const SearchResultPage = ({
         )}
       </Container>
       <Container size="large">
-        <Grid size="large">
-          <Property label={NS.as('items')} />
-        </Grid>
+        <Property collectionDisplay={collectionDisplay} label={NS.as('items')} />
         <Property label={NS.as('last')} />
       </Container>
     </React.Fragment>
@@ -108,9 +106,11 @@ SearchResultPage.mapDataToProps = [
   NS.argu('query'),
   NS.argu('took'),
   NS.as('totalItems'),
+  NS.ontola('collectionDisplay'),
 ];
 
 SearchResultPage.propTypes = {
+  collectionDisplay: linkType,
   history: PropTypes.shape({
     push: PropTypes.func,
   }),

@@ -69,7 +69,7 @@ export const CollectionDisplayWrapper = ({
 };
 
 class Items extends PropertyBase {
-  static type = CollectionViewTypes;
+  static type = [...CollectionViewTypes, NS.argu('SearchResult')];
 
   static property = NS.as('items');
 
