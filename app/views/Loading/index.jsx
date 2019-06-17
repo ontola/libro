@@ -16,6 +16,7 @@ import {
   Spinner,
 } from '../../components';
 import { appMenuTopology } from '../../topologies/AppMenu';
+import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { cardTopology } from '../../topologies/Card';
 import { cardFixedTopology } from '../../topologies/Card/CardFixed';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
@@ -133,7 +134,10 @@ export default [
     LoadingButton,
     NS.ll('LoadingResource'),
     RENDER_CLASS_NAME,
-    cardVoteEventTopology
+    [
+      actionsBarTopology,
+      cardVoteEventTopology,
+    ]
   ),
   LinkedRenderStore.registerRenderer(
     Loading,
