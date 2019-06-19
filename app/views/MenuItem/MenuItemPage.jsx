@@ -11,7 +11,8 @@ import React from 'react';
 import { Redirect, withRouter } from 'react-router';
 
 import TabBarWrapper from '../../components/TabBarWrapper';
-import { retrievePath, sequenceFilter } from '../../helpers/iris';
+import { seqToArr } from '../../helpers/data';
+import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { pageTopology } from '../../topologies/Page';
 import PageHeader from '../../topologies/PageHeader';
@@ -60,10 +61,9 @@ class MenuItemPage extends React.PureComponent {
     } = this.props;
 
     if (menuItems) {
-      const currentItem = lrs
-        .tryEntity(menuItems)
-        .filter(s => s && s.predicate.value.match(sequenceFilter) !== null)
-        .find(s => s.object === currentLocation(location));
+      const menuItemsArr = seqToArr(lrs, [], menuItems);
+
+      const currentItem = menuItemsArr.find(s => s === currentLocation(location));
 
       if (!currentItem) {
         return lrs.getResourceProperty(menuItems, NS.rdf('_0'));

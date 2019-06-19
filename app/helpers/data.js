@@ -1,4 +1,9 @@
+import { OK } from 'http-status-codes';
+
 import { NS } from './LinkedRenderStore';
+import { sequenceFilter } from './iris';
+
+const base = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#_';
 
 function filterFind(op) {
   return (bV) => {
@@ -54,6 +59,12 @@ function convertKeysAtoB(obj) {
   return output;
 }
 
+function numAsc(a, b) {
+  const aP = Number.parseInt(a.predicate.value.slice(base.length), 10);
+  const bP = Number.parseInt(b.predicate.value.slice(base.length), 10);
+  return aP - bP;
+}
+
 function serializableValue(v) {
   if (Object.prototype.toString.apply(v) === '[object Object]' && !Object.prototype.hasOwnProperty.call(v, 'termType')) {
     return convertKeysAtoB(v);
@@ -87,6 +98,43 @@ function listToArr(lrs, acc, rest) {
   }
   acc.push(first);
   listToArr(lrs, acc, lrs.store.anyStatementMatching(rest, NS.rdf('rest')).object);
+
+  return acc;
+}
+
+function seqToArr(lrs, acc, rest) {
+  if (Array.isArray(rest)) {
+    return rest;
+  }
+  if (!rest || rest === NS.rdf('nil')) {
+    return acc;
+  }
+
+  lrs
+    .tryEntity(rest)
+    .filter(s => s && s.predicate.value.match(sequenceFilter) !== null)
+    .sort(numAsc)
+    .map(s => acc.push(s.object));
+
+  return acc;
+}
+
+function containerToArr(lrs, acc, rest) {
+  if (Array.isArray(rest)) {
+    return rest;
+  }
+
+  // Detect loaded
+  const loaded = lrs.tryEntity(rest).length > 0 || lrs.getStatus(rest).status === OK;
+  if (!loaded) {
+    return lrs.getEntity(rest);
+  }
+
+  if (lrs.getResourceProperty(rest, NS.rdfs.member)) {
+    return seqToArr(lrs, acc, rest);
+  } else if (lrs.getResourceProperty(rest, NS.rdf('first'))) {
+    return listToArr(lrs, acc, rest);
+  }
 
   return acc;
 }
@@ -196,12 +244,14 @@ export {
   allow,
   allowSort,
   arguDeltaProcessor,
+  containerToArr,
   convertKeysAtoB,
   filter,
   filterSort,
   listToArr,
   processRemove,
   processReplace,
+  seqToArr,
   sort,
   sortIRIS,
 };

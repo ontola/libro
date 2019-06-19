@@ -12,7 +12,7 @@ import React from 'react';
 import VirtualList from 'react-tiny-virtual-list';
 import PropTypes from 'prop-types';
 
-import { listToArr } from '../../helpers/data';
+import { containerToArr } from '../../helpers/data';
 import normalizedLower from '../../helpers/i18n';
 import Select from '../../topologies/Select';
 import { Input } from '../Input';
@@ -47,7 +47,7 @@ function calculateItemsToShow(state) {
 function updateOptions(state, props, lrs) {
   const nextOptions = Array.isArray(props.options)
     ? props.options
-    : listToArr(lrs, [], props.options);
+    : containerToArr(lrs, [], props.options);
 
   if (nextOptions instanceof Promise || typeof nextOptions.then !== 'undefined') {
     return {

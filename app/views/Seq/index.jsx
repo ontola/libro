@@ -9,17 +9,9 @@ import PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
 import React from 'react';
 
-import { sequenceFilter } from '../../helpers/iris';
+import { seqToArr } from '../../helpers/data';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../topologies';
-
-const base = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#_';
-
-function numAsc(a, b) {
-  const aP = Number.parseInt(a.predicate.value.slice(base.length), 10);
-  const bP = Number.parseInt(b.predicate.value.slice(base.length), 10);
-  return aP - bP;
-}
 
 export function Seq({
   childProps,
@@ -35,11 +27,7 @@ export function Seq({
     return null;
   }
 
-  const sequences = lrs
-    .tryEntity(subject)
-    .filter(s => s && s.predicate.value.match(sequenceFilter) !== null)
-    .sort(numAsc)
-    .map(s => s.object);
+  const sequences = seqToArr(lrs, [], subject);
 
   let primary = sequences;
   let secondary;
