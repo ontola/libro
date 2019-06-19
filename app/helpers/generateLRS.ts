@@ -11,7 +11,7 @@ import {
 } from 'rdflib';
 import { ReactType } from 'react';
 
-import { FRONTEND_ACCEPT } from '../config';
+import { FRONTEND_ACCEPT, WEBSOCKET_PATH } from '../config';
 import { appMiddleware, website } from '../middleware/app';
 import execFilter from '../middleware/execFilter';
 import logging from '../middleware/logging';
@@ -23,6 +23,7 @@ import history from './history';
 import { handle } from './logging';
 import ServiceWorkerCommunicator from './ServiceWorkerCommunicator';
 import transformers from './transformers';
+import { initializeCable, subscribeDeltaChannel } from './websockets';
 
 export default
 function generateLRS() {
@@ -75,6 +76,12 @@ function generateLRS() {
     NS.owl('Thing'),
     NS.link('Document'),
   ];
+
+  if (__CLIENT__ && WEBSOCKET_PATH) {
+    initializeCable(LRS, WEBSOCKET_PATH).then(() => {
+      subscribeDeltaChannel(LRS, 'UserChannel');
+    });
+  }
 
 // @ts-ignore TS2341
   LRS.store.store.newPropertyAction(NS.rdf('type'), (

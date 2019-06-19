@@ -11,7 +11,7 @@
     ],
     "maxNodeModuleJsDepth":  0,
     "moduleResolution": "node",
-    "module": "es6",
+    "module": "esnext",
     "noEmit": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,

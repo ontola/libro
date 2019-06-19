@@ -14,10 +14,15 @@ import errorHandlerMiddleware from '../middleware/errorHandlerMiddleware';
 import sessionMiddleware from '../middleware/sessionMiddleware';
 import csp from '../utils/csp';
 import { deviceIdFromCookie, generateDeviceId } from '../utils/deviceId';
-import isBackend, { isPlainAPI } from '../utils/filters';
+import isBackend, { isPlainAPI, isWebsocket } from '../utils/filters';
 import { isDownloadRequest, isHTMLHeader } from '../utils/http';
 import { getErrorMiddleware } from '../utils/logging';
-import { backendProxy, bulkProxy, fileProxy } from '../utils/proxies';
+import {
+  backendProxy,
+  bulkProxy,
+  fileProxy,
+  websocketsProxy,
+} from '../utils/proxies';
 
 import application from './application';
 import health from './health';
@@ -28,11 +33,17 @@ import maps from './maps';
 const oneYearInMiliSec = 31536000000;
 
 export function listen(app, port) {
-  app.listen(port, (err) => {
+  const server = app.listen(port, (err) => {
     if (err) {
       console.log(err);
     }
     console.info(`[${__VERSION__}]==> 🌍 Listening on port ${port}.`);
+  });
+
+  server.on('upgrade', (req, socket) => {
+    sessionMiddleware(req, {}, () => {
+      websocketsProxy.upgrade(req, socket);
+    });
   });
 }
 
@@ -115,6 +126,8 @@ export default async function routes(app, port) {
   app.get('/photos/*', backendProxy);
 
   app.use(sessionMiddleware);
+
+  app.all('*', isWebsocket, websocketsProxy);
 
   app.use(apiMiddleware);
 

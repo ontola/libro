@@ -1095,6 +1095,11 @@
     node-rsa "^0.4.0"
     text-encoding "^0.6.1"
 
+"@types/actioncable@^5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@types/actioncable/-/actioncable-5.2.0.tgz#2d10187560be76e5b4d9ae6743d26a5f34ebf0a5"
+  integrity sha512-fsXlob3/mPO7z8iaTo0Li6QF9q4XY57kUsuL7ijxvLG/9v57K5vsAjULPyCUzWesVgwzmWqiTI+ATJC0+o7x2w==
+
 "@types/babel__core@^7.1.0":
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.1.tgz#ce9a9e5d92b7031421e1d0d74ae59f572ba48be6"
@@ -1513,6 +1518,11 @@ acorn@^6.0.1, acorn@^6.0.4, acorn@^6.0.5, acorn@^6.0.7:
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.1.1.tgz#7d25ae05bb8ad1f9b699108e1094ecd7884adc1f"
   integrity sha512-jPTiwtOxaHNaAPg/dmrJ/beuzLRnXtB0kQPQ8JpotKJgTB6rX6c8mlf315941pyjBSaPg8NHXS9fhP4u17DpGA==
+
+actioncable@^5.2.3:
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/actioncable/-/actioncable-5.2.3.tgz#639d98855b854b7bfe2059ab97d6e0ae8fd60a1d"
+  integrity sha512-KNdZHRDu92VDSO7SOEJS8Bf5G//LZZLz5e6m7mv8Wjafe9Svdp/DPJ/DpO7rJmPAlKcLAYwi/R7pNJ/VCHV1FQ==
 
 address@1.0.3, address@^1.0.1:
   version "1.0.3"

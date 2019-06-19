@@ -1,9 +1,10 @@
 import clipboardCopy from 'clipboard-copy';
 import { History } from 'history';
 import {
-    MiddlewareActionHandler,
-    MiddlewareFn,
-    MiddlewareWithBoundLRS,
+  MiddlewareActionHandler,
+  MiddlewareFn,
+  MiddlewareWithBoundLRS,
+  transformers,
 } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 import {
@@ -49,6 +50,13 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       l.hash,
     ].filter(Boolean).join('#');
   };
+
+  /**
+   * Websockets
+   */
+
+  const ontolaWebsocketsPrefix = store.namespaces.ontola('ws/').value;
+  const deltaTransformer = transformers.linkedDeltaProcessor(store);
 
   /**
    * Ontola snackbar setup
@@ -172,8 +180,18 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
   });
 
   return (next: MiddlewareActionHandler) => (iri: NamedNode, opts: any): Promise<any> => {
-    if (!iri.value.startsWith(ontolaActionPrefix)) {
+    const isWSAction = iri.value.startsWith(ontolaWebsocketsPrefix);
+
+    if (!iri.value.startsWith(ontolaActionPrefix) && !isWSAction) {
       return next(iri, opts);
+    }
+
+    if (isWSAction) {
+      if (iri.value.startsWith(`${ontolaWebsocketsPrefix}received`)) {
+        return deltaTransformer(new Response(opts));
+      }
+
+      return Promise.resolve();
     }
 
     switch (iri) {

@@ -22,7 +22,7 @@ export function isRedirect(status) {
 }
 
 export function setProxyReqHeaders(proxyReq, req) {
-  if (typeof req.session !== 'undefined') {
+  if (typeof req.session !== 'undefined' && typeof req.session.arguToken !== 'undefined') {
     proxyReq.setHeader('Authorization', `Bearer ${req.session.arguToken.accessToken}`);
   }
   if (typeof req.deviceId !== 'undefined') {

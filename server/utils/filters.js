@@ -35,6 +35,14 @@ export async function isPlainAPI() {
   }
 }
 
+export function isWebsocket(req, _res, next) {
+  if (req.get('Upgrade') === 'websocket') {
+    return next();
+  }
+
+  return next('route');
+}
+
 export default function isBackend(req, _res, next) {
   if (req.originalUrl.match(FRONTEND_ROUTES)) {
     logging.debug('[ROUTING] isBackend: false');
