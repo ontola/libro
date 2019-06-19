@@ -14,6 +14,7 @@ import formFieldWrapper from '../FormFieldWrapper';
 import FileInput from '../Input/FileInput';
 import { Input } from '../Input';
 import SelectInput, { optionsType } from '../SelectInput';
+import CheckboxesInput from '../CheckboxesInput';
 
 import CharCounter from './CharCounter';
 import FieldHelper from './FieldHelper';
@@ -302,6 +303,20 @@ class FormField extends React.PureComponent {
           value={date}
           onChange={e => this.saveInputValue(e === null ? Literal.find('') : e)}
         />
+      );
+    }
+
+    if (type === 'checkboxes') {
+      return (
+        <div className={className}>
+          <CheckboxesInput
+            initialSelectedItem={initialValue}
+            options={options}
+            sharedProps={sharedProps}
+            value={this.inputValue()}
+            onChange={values => this.saveInputValue(values)}
+          />
+        </div>
       );
     }
 

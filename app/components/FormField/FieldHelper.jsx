@@ -26,6 +26,11 @@ const FieldHelper = ({
   variant,
 }) => {
   const errMsg = Array.isArray(error) ? error[0] : error;
+
+  if (!helperText && !errMsg) {
+    return null;
+  }
+
   const err = errMsg && (
     <span className="Field__error">
       {errMsg}

@@ -26,6 +26,7 @@ class DataField extends React.Component {
     description: linkType,
     fieldName: PropTypes.string,
     in: linkType,
+    maxCount: linkType,
     maxLength: linkType,
     minCount: linkType,
     minLength: linkType,
@@ -41,6 +42,10 @@ class DataField extends React.Component {
 
   inputType() {
     if (this.props.in) {
+      const maxCount = tryParseInt(this.props.maxCount);
+      if (maxCount && maxCount > 1) {
+        return 'checkboxes';
+      }
       return 'select';
     }
 

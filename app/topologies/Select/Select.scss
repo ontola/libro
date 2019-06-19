@@ -2,9 +2,14 @@
 
 .SelectItem {
   align-items: center;
-  background-color: color('white');
   cursor: pointer;
   display: flex;
   flex-direction: row;
   padding: 0 2px;
+}
+
+.Field__input--select {
+  .SelectItem {
+    background-color: color('white');
+  }
 }
