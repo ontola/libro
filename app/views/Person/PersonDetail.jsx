@@ -1,4 +1,4 @@
-import { register, topologyType } from 'link-redux';
+import { Property, register, topologyType } from 'link-redux';
 import PropTypes from 'prop-types';
 import { Literal } from 'rdflib';
 import React from 'react';
@@ -13,6 +13,10 @@ import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { tableCellTopology } from '../../topologies/TableCell';
 
 const messages = defineMessages({
+  postedBy: {
+    defaultMessage: 'Posted by {name}',
+    id: 'https://app.argu.co/i18n/schema:Person/postedByText',
+  },
   showProfile: {
     defaultMessage: "Show {name}'s profile",
     id: 'https://app.argu.co/i18n/schema:Person/showProfileText',
@@ -36,29 +40,45 @@ class PersonDetail extends React.PureComponent {
   static hocs = [injectIntl];
 
   static propTypes = {
+    hideName: PropTypes.bool,
     intl: intlShape,
     name: PropTypes.instanceOf(Literal),
     theme: PropTypes.string,
+    titleKey: PropTypes.string,
     topology: topologyType,
   };
 
   render() {
     const {
+      hideName,
       intl: { formatMessage },
       name,
       theme,
+      titleKey,
       topology,
     } = this.props;
+
+    const title = formatMessage(messages[titleKey || 'showProfile'], { name });
+
+    if (hideName) {
+      return (
+        <LDLink features={['centered']}>
+          <div className="Detail" title={title}>
+            <Property label={NS.schema('image')} />
+          </div>
+        </LDLink>
+      );
+    }
 
     return (
       <LDLink
         features={['centered', topology === tableCellTopology ? 'bold' : '']}
         theme={theme}
-        title={formatMessage(messages.showProfile, { name })}
       >
         <Detail
           linkedImage
           text={name.value}
+          title={title}
         />
       </LDLink>
     );

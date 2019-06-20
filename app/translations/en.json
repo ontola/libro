@@ -88,6 +88,7 @@
   "https://app.argu.co/i18n/navbar/search": "Search",
   "https://app.argu.co/i18n/pages/closed": "This website is private. Only members are allowed to view its contents. Ask a member or the managers about how you can get access.",
   "https://app.argu.co/i18n/pinnable/states/pinned/pinnedAtLabel": "Pinned at {date}",
+  "https://app.argu.co/i18n/schema:Person/postedByText": "Posted by {name}",
   "https://app.argu.co/i18n/schema:Person/showProfileText": "Show {name}'s profile",
   "https://app.argu.co/i18n/schema:Thing/argu:topComment/showAllLabel": "View all {count} reactions...",
   "https://app.argu.co/i18n/schema:Thing/foaf:isPrimaryTopicOf/externalLabel": "External information",

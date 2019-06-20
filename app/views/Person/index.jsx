@@ -6,7 +6,7 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import { formFooterTopology } from '../../topologies/FormFooter/Footer';
 import { voteEventSideTopology } from '../../topologies/VoteEventSide';
 
-import Detail from './detail';
+import PersonDetail from './PersonDetail';
 import PersonNavbar from './PersonNavbar';
 import PersonPage from './PersonPage';
 import Email from './properties/email';
@@ -24,7 +24,7 @@ export default [
     RENDER_CLASS_NAME,
     [voteEventSideTopology, NS.argu('voteBubble'), formFooterTopology]
   ),
-  Detail,
+  PersonDetail,
   Email,
   Image,
   Section,

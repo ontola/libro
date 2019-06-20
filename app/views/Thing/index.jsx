@@ -27,6 +27,7 @@ import ArguLocation from './properties/arguLocation';
 import Arguments from './properties/arguments';
 import CoverPhoto from './properties/coverPhoto';
 import CreateAction from './properties/createAction';
+import Creator from './properties/creator';
 import DateCreated from './properties/dateCreated';
 import DateSubmitted from './properties/dateSubmitted';
 import description from './properties/description';
@@ -77,13 +78,7 @@ const ThingGrid = () => (
       </CardContent>
     </LDLink>
     <DetailsBar>
-      <Property label={NS.schema('creator')}>
-        <LDLink features={['centered']}>
-          <div className="Detail">
-            <Property label={NS.schema('image')} />
-          </div>
-        </LDLink>
-      </Property>
+      <Property hideName label={NS.schema('creator')} />
       <LinkedDetailDate />
       <Property label={NS.argu('pinnedAt')} />
       <Property short label={NS.argu('expiresAt')} />
@@ -170,6 +165,7 @@ export default [
   ArguLocation,
   CoverPhoto,
   CreateAction,
+  Creator,
   DateCreated,
   DateSubmitted,
   description,
