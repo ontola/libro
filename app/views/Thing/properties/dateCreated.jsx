@@ -2,7 +2,7 @@ import LinkedRenderStore from 'link-lib';
 import { linkedPropType } from 'link-redux';
 import React from 'react';
 
-import { DetailDate, LDLink } from '../../../components';
+import { DetailDate } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../../topologies';
 
@@ -11,9 +11,7 @@ const propTypes = {
 };
 
 const DateCreated = ({ linkedProp }) => (
-  <LDLink features={['centered']}>
-    <DetailDate dateCreated={new Date(linkedProp.value)} />
-  </LDLink>
+  <DetailDate dateCreated={new Date(linkedProp.value)} />
 );
 
 DateCreated.propTypes = propTypes;

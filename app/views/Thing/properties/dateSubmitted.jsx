@@ -4,7 +4,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { DetailDate, LDLink } from '../../../components';
+import { DetailDate } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../../topologies';
 
@@ -27,9 +27,7 @@ class DateSubmitted extends React.Component {
     const { dateSubmitted } = this.props;
 
     return (
-      <LDLink>
-        <DetailDate dateSubmitted={new Date(dateSubmitted.value)} />
-      </LDLink>
+      <DetailDate dateSubmitted={new Date(dateSubmitted.value)} />
     );
   }
 }
