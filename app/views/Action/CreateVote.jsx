@@ -9,7 +9,7 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { omniformOpenInline, omniformSetAction } from '../../state/omniform';
@@ -17,6 +17,17 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import { handle } from '../../helpers/logging';
 import { allTopologies } from '../../topologies';
 import { CollectionTypes } from '../Collection/types';
+
+const messages = defineMessages({
+  closedMessage: {
+    defaultMessage: 'Voting no longer possible',
+    id: 'https://app.argu.co/i18n/votes/expireable/states/closed/message',
+  },
+  disabledMessage: {
+    defaultMessage: 'Voting not possible',
+    id: 'https://app.argu.co/i18n/votes/expireable/states/disabled/message',
+  },
+});
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   openOmniform: () => {
@@ -83,6 +94,7 @@ const CreateVote = ({
   actionStatus,
   current,
   count,
+  intl: { formatMessage },
   lrs,
   object,
   openOmniform,
@@ -108,21 +120,12 @@ const CreateVote = ({
 
   const disabled = actionStatus === NS.ontola('DisabledActionStatus');
   const expired = actionStatus === NS.ontola('ExpiredActionStatus');
+
   let title;
   if (expired) {
-    title = (
-      <FormattedMessage
-        defaultMessage="Voting no longer possible"
-        id="https://app.argu.co/i18n/votes/expireable/states/closed/message"
-      />
-    );
+    title = formatMessage(messages.closedMessage);
   } else if (disabled) {
-    title = (
-      <FormattedMessage
-        defaultMessage="Voting not possible"
-        id="https://app.argu.co/i18n/votes/expireable/states/disabled/message"
-      />
-    );
+    title = formatMessage(messages.disabledMessage);
   }
 
   return (
@@ -148,7 +151,7 @@ CreateVote.type = [
 
 CreateVote.topology = allTopologies;
 
-CreateVote.hocs = [connect(null, mapDispatchToProps)];
+CreateVote.hocs = [connect(null, mapDispatchToProps), injectIntl];
 
 CreateVote.mapDataToProps = {
   actionStatus: NS.schema('actionStatus'),
@@ -162,6 +165,7 @@ CreateVote.propTypes = {
   actionStatus: linkType,
   count: linkType,
   current: PropTypes.bool,
+  intl: intlShape,
   lrs: lrsType,
   object: linkType,
   openOmniform: PropTypes.func,
