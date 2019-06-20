@@ -23,9 +23,21 @@ const messages = defineMessages({
     defaultMessage: 'Voting no longer possible',
     id: 'https://app.argu.co/i18n/votes/expireable/states/closed/message',
   },
+  conMessage: {
+    defaultMessage: 'Click to vote against this idea',
+    id: 'https://app.argu.co/i18n/votes/con/message',
+  },
   disabledMessage: {
     defaultMessage: 'Voting not possible',
     id: 'https://app.argu.co/i18n/votes/expireable/states/disabled/message',
+  },
+  neutralMessage: {
+    defaultMessage: 'Click to vote neutral on this idea',
+    id: 'https://app.argu.co/i18n/votes/neutral/message',
+  },
+  proMessage: {
+    defaultMessage: 'Click to vote for this idea',
+    id: 'https://app.argu.co/i18n/votes/pro/message',
   },
 });
 
@@ -122,6 +134,14 @@ const CreateVote = ({
   const expired = actionStatus === NS.ontola('ExpiredActionStatus');
 
   let title;
+  if (variant === 'yes') {
+    title = formatMessage(messages.proMessage);
+  } else if (variant === 'no') {
+    title = formatMessage(messages.conMessage);
+  } else if (variant === 'other') {
+    title = formatMessage(messages.neutralMessage);
+  }
+
   if (expired) {
     title = formatMessage(messages.closedMessage);
   } else if (disabled) {
