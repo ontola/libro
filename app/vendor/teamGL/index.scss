@@ -25,5 +25,9 @@
     font-weight: 700;
     text-transform: uppercase;
   }
+
+  .Button--submit {
+    background-color: var(--navbar-background);
+  }
 }
 // sass-lint:enable nesting-depth
