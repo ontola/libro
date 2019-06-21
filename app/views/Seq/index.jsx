@@ -17,6 +17,7 @@ export function Seq({
   childProps,
   columns,
   depth,
+  itemWrapper: ItemWrapper,
   gutter,
   renderGutter,
   subject,
@@ -41,33 +42,42 @@ export function Seq({
   return (
     <React.Fragment>
       {primary.map((s, i) => (
-        <LinkedResourceContainer
-          {...childProps}
-          columns={columns}
-          count={sequences.length}
-          data-test={`Seq-${i}-${s.value}`}
-          depth={depth}
-          first={sequences[0].object}
-          key={`${subject}-${s}`}
-          last={sequences[sequences.length - 1].object}
-          subject={s}
-        />
+        <ItemWrapper>
+          <LinkedResourceContainer
+            {...childProps}
+            columns={columns}
+            count={sequences.length}
+            data-test={`Seq-${i}-${s.value}`}
+            depth={depth}
+            first={sequences[0].object}
+            key={`${subject}-${s}`}
+            last={sequences[sequences.length - 1].object}
+            subject={s}
+          />
+        </ItemWrapper>
       ))}
       {secondary && renderGutter && renderGutter(secondary)}
     </React.Fragment>
   );
 }
 
+Seq.type = NS.rdf('Seq');
+
+Seq.topology = allTopologies;
+
+Seq.defaultProps = {
+  itemWrapper: React.Fragment,
+};
+
 Seq.propTypes = {
   childProps: PropTypes.objectOf(PropTypes.any),
   columns: PropTypes.arrayOf(NamedNode),
   depth: PropTypes.number,
   gutter: PropTypes.number,
+  itemWrapper: PropTypes.elementType,
   renderGutter: PropTypes.func,
   subject: subjectType,
 };
-Seq.type = NS.rdf('Seq');
-Seq.topology = allTopologies;
 
 export default [
   register(Seq),

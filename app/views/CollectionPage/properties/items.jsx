@@ -11,6 +11,7 @@ import { FormattedMessage } from 'react-intl';
 import { listToArr } from '../../../helpers/data';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import Card from '../../../topologies/Card';
+import CardRow from '../../../topologies/Card/CardRow';
 import Grid from '../../../topologies/Grid';
 import Container, { containerTopology } from '../../../topologies/Container';
 import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
@@ -99,12 +100,15 @@ class Items extends PropertyBase {
   };
 
   itemList(columns) {
+    const itemWrapper = this.props.collectionDisplay === NS.ontola('collectionDisplay/card') ? CardRow : React.Fragment;
+
     return this.props.items
       .slice(0, this.props.renderLimit)
       .map(iri => (
         <LinkedResourceContainer
           columns={columns}
           depth={this.props.depth}
+          itemWrapper={itemWrapper}
           key={`${this.props.subject}:${iri.value}`}
           subject={iri}
         />
