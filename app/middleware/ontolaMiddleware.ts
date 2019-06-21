@@ -122,6 +122,10 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     ];
   };
 
+  (store as any).actions.ontola.showSnackbar = (message: Literal | string) => {
+    store.exec(store.namespaces.ontola(`actions/snackbar?text=${encodeURIComponent(message.toString())}`));
+  };
+
   /**
    * Ontola dialog setup
    */
