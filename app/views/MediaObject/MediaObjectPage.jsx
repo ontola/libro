@@ -56,6 +56,7 @@ class MediaObjectPage extends React.PureComponent {
     isPartOf: linkType,
     loop: PropTypes.bool,
     muted: PropTypes.bool,
+    playsInline: PropTypes.bool,
     subject: subjectType,
     type: linkType.isRequired,
   };
@@ -98,6 +99,7 @@ class MediaObjectPage extends React.PureComponent {
       fullPage,
       loop,
       muted,
+      playsInline,
       type,
     } = this.props;
 
@@ -130,6 +132,7 @@ class MediaObjectPage extends React.PureComponent {
             data-test="MediaObject-viewer-video-html"
             loop={loop}
             muted={muted}
+            playsInline={playsInline}
             src={contentUrl.value}
           />
         </Container>

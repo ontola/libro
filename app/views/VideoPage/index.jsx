@@ -21,7 +21,7 @@ class VideoPagePage extends React.PureComponent {
     return (
       <React.Fragment>
         <Property label={NS.argu('navbarBackground')} />
-        <Property autoPlay fullPage loop muted label={NS.schema('video')} />
+        <Property autoPlay fullPage loop muted playsInline label={NS.schema('video')} />
         <PrimaryCallToAction>
           <Property label={NS.ontola('favoriteAction')} />
         </PrimaryCallToAction>
