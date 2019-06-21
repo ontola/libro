@@ -43,7 +43,7 @@ const CreatedAt = ({ intl: { formatMessage }, linkedProp }) => {
   const waitingVeryShort = 3;
   const waitingShort = 7;
   const waitingLong = 21;
-  let message;
+  let message, variant;
 
   if (diff <= waitingVeryShort) {
     message = messages.veryShort;
@@ -51,11 +51,13 @@ const CreatedAt = ({ intl: { formatMessage }, linkedProp }) => {
     message = messages.short;
   } else if (diff <= waitingLong) {
     message = messages.long;
+    variant = 'warning';
   } else {
     message = messages.veryLong;
+    variant = 'error';
   }
 
-  return <Detail text={emoji(formatMessage(message, { diff }))} />;
+  return <Detail text={emoji(formatMessage(message, { diff }))} variant={variant} />;
 };
 
 CreatedAt.propTypes = propTypes;

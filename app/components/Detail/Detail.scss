@@ -56,3 +56,11 @@
 .Detail--float-right {
   margin-left: auto;
 }
+
+@each $variant, $color in $detail-variants-colors {
+  .Detail--variant-#{$variant} {
+    .Detail__text {
+      color: color($color);
+    }
+  }
+}

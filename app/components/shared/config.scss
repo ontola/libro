@@ -6,6 +6,7 @@ $color-base-brown: rgb(134, 61, 61);
 $color-base-green: rgb(84, 127, 75);
 $color-base-blue: rgb(71, 86, 104);
 $color-base-red: rgb(200, 20, 20);
+$color-base-orange: rgb(161, 98, 37);
 
 $colors: (
   'black': (
@@ -71,6 +72,12 @@ $colors: (
   'white': (
     'base': rgb(255, 255, 255),
   ),
+  'orange': (
+    'dark': rgb(104, 93, 82),
+    'base': $color-base-orange,
+    'light': lighten($color-base-orange, 20%),
+    'x-light': rgba($color-base-orange, .05),
+  ),
 );
 
 $drawer-overlay-background: rgba(71, 86, 104, .3);
@@ -84,6 +91,11 @@ $button-variants-colors: (
   'success': 'green',
   'warning': 'orange',
   'error': 'brown',
+);
+$detail-variants-colors: (
+  'success': 'green',
+  'warning': 'orange',
+  'error': 'red',
 );
 
 // FONTS

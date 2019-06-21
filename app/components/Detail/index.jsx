@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { Property } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
@@ -23,6 +24,11 @@ const propTypes = {
   /** HTML title attribute */
   title: PropTypes.string,
   url: PropTypes.string,
+  variant: PropTypes.oneOf([
+    'success',
+    'warning',
+    'error',
+  ]),
 };
 
 const defaultProps = {
@@ -67,12 +73,21 @@ class Detail extends PureComponent {
       text,
       title,
       url,
+      variant,
     } = this.props;
     const Element = url ? 'a' : 'div';
 
+    const detailClass = classNames({
+      Detail: true,
+      'Detail--float-right': floatRight,
+      'Detail--link': url,
+      [`Detail--variant-${variant}`]: variant,
+      [className]: className,
+    });
+
     return (
       <Element
-        className={`Detail ${url ? 'Detail--link ' : ''}${floatRight ? 'Detail--float-right ' : ''} ${className || ''}`}
+        className={detailClass}
         data-test="Detail"
         href={url}
         title={title}
