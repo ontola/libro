@@ -33,5 +33,14 @@
   .Button--submit {
     background-color: var(--navbar-background);
   }
+
+  .Container > .CardHeader {
+    margin: 1rem 0;
+    padding: 0;
+  }
+
+  .Container--grid {
+    padding: 0;
+  }
 }
 // sass-lint:enable nesting-depth
