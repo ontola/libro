@@ -157,7 +157,6 @@ class Omniform extends EntryPointBase {
                 {this.props.formFooterButtons}
                 <Button
                   disabled={invalid}
-                  icon="send"
                   loading={submitting}
                   theme="submit"
                   type="submit"

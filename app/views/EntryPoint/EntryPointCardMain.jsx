@@ -77,7 +77,6 @@ class EntryPointCardMain extends EntryPointBase {
                 {cancelButton}
                 <Button
                   disabled={invalid}
-                  icon="send"
                   loading={submitting}
                   theme="submit"
                   type="submit"
