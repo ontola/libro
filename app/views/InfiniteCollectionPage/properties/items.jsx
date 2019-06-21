@@ -2,6 +2,7 @@ import LinkedRenderStore from 'link-lib';
 import { LinkedResourceContainer, PropertyBase, withLinkCtx } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { navbarTopology } from '../../../topologies/Navbar';
@@ -44,8 +45,18 @@ class ItemsComp extends PropertyBase {
     let children;
 
     if (this.getLinkedObjectProperty(NS.as('totalItems')).value === '0') {
-      children = <div>Nog geen items</div>;
-    } else if (Array.isArray(prop) && prop.length === 0) {
+      if (this.props.empty) {
+        return this.props.empty();
+      }
+      return (
+        <FormattedMessage
+          defaultMessage="No items yet"
+          id="https://app.argu.co/i18n/collection/empty/message"
+        />
+      );
+    }
+
+    if (Array.isArray(prop) && prop.length === 0) {
       children = null;
     } else if (Array.isArray(prop)) {
       children = (

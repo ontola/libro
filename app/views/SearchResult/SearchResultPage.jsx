@@ -89,7 +89,15 @@ export const SearchResultPage = ({
         )}
       </Container>
       <Container size="large">
-        <Property collectionDisplay={collectionDisplay} label={NS.as('items')} />
+        <Property
+          collectionDisplay={collectionDisplay}
+          empty={() => (
+            <div className="SearchResult__empty">
+              {formatMessage(messages.placeholder)}
+            </div>
+          )}
+          label={NS.as('items')}
+        />
         <Property label={NS.as('last')} />
       </Container>
     </React.Fragment>

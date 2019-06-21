@@ -1,6 +1,10 @@
 @import '../../components/shared/config';
 
 .SearchResult {
+  &__empty {
+    margin-top: 1em;
+  }
+
   &__header {
     font-size: 1rem;
     padding: units('small', 'none');

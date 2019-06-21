@@ -6,6 +6,7 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import { listToArr } from '../../../helpers/data';
 import { NS } from '../../../helpers/LinkedRenderStore';
@@ -141,8 +142,18 @@ class Items extends PropertyBase {
     let children = null;
 
     if (totalCount.value === '0') {
-      children = <div>Nog geen items</div>;
-    } else if (Array.isArray(items) && items.length === 0) {
+      if (this.props.empty) {
+        return this.props.empty();
+      }
+      return (
+        <FormattedMessage
+          defaultMessage="No items yet"
+          id="https://app.argu.co/i18n/collection/empty/message"
+        />
+      );
+    }
+
+    if (Array.isArray(items) && items.length === 0) {
       children = null;
     } else if (Array.isArray(items)) {
       children = this.itemList(resolvedColumns);
