@@ -15,6 +15,7 @@ import { route } from './utils/proxies/helpers';
 class API {
   constructor({ req, userToken }) {
     this.base = constants.ARGU_API_URL;
+    this.deviceId = req.deviceId;
     this.req = req;
     this.serviceToken = oAuthToken;
     this.userToken = userToken;
@@ -135,6 +136,7 @@ class API {
           ...headers,
           Authorization: `Bearer ${authToken}`,
           'X-Argu-Back': 'true',
+          'X-Device-Id': this.deviceId,
         },
         strictSSL: !__DEVELOPMENT__,
       }

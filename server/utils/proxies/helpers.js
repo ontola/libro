@@ -25,6 +25,9 @@ export function setProxyReqHeaders(proxyReq, req) {
   if (typeof req.session !== 'undefined') {
     proxyReq.setHeader('Authorization', `Bearer ${req.session.arguToken.accessToken}`);
   }
+  if (typeof req.deviceId !== 'undefined') {
+    proxyReq.setHeader('X-Device-Id', req.deviceId);
+  }
   proxyReq.setHeader('X-Argu-Back', 'true');
   proxyReq.removeHeader('cookie');
 }
@@ -114,6 +117,7 @@ export function bulkResourceRequest(req, iri, url, outputStream) {
         headers: {
           ...req.headers,
           'Content-Encoding': null,
+          'X-Device-Id': req.deviceId,
           'X-Forwarded-Host': req.headers.host,
           'X-Forwarded-Proto': 'https',
           'X-Forwarded-Ssl': 'on',

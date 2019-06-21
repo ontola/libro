@@ -1,5 +1,6 @@
 /* eslint no-console: 0 */
 import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 import csurf from 'csurf';
 import expressStaticGzip from 'express-static-gzip';
 import * as HttpStatus from 'http-status-codes';
@@ -12,6 +13,7 @@ import authenticationMiddleware from '../middleware/authenticationMiddleware';
 import errorHandlerMiddleware from '../middleware/errorHandlerMiddleware';
 import sessionMiddleware from '../middleware/sessionMiddleware';
 import csp from '../utils/csp';
+import { deviceIdFromCookie, generateDeviceId } from '../utils/deviceId';
 import isBackend, { isPlainAPI } from '../utils/filters';
 import { isDownloadRequest, isHTMLHeader } from '../utils/http';
 import { getErrorMiddleware } from '../utils/logging';
@@ -22,6 +24,8 @@ import health from './health';
 import login from './login';
 import logout from './logout';
 import maps from './maps';
+
+const oneYearInMiliSec = 31536000000;
 
 export function listen(app, port) {
   app.listen(port, (err) => {
@@ -65,6 +69,22 @@ export default async function routes(app, port) {
   app.use((req, res, next) => {
     res.locals.nonce = uuidv4();
     res.setHeader('X-FE-Version', __VERSION__);
+    next();
+  });
+
+  app.use(cookieParser());
+
+  app.use((req, res, next) => {
+    let deviceId = deviceIdFromCookie(req);
+    if (!deviceId) {
+      deviceId = generateDeviceId();
+      res.cookie('deviceId', deviceId, {
+        httpOnly: true,
+        maxAge: oneYearInMiliSec,
+        secure: true,
+      });
+    }
+    req.deviceId = deviceId;
     next();
   });
 
