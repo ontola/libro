@@ -1,4 +1,5 @@
 import { OK } from 'http-status-codes';
+import { normalizeType } from 'link-lib';
 
 import { NS } from './LinkedRenderStore';
 import { sequenceFilter } from './iris';
@@ -15,6 +16,28 @@ function filterFind(op) {
 
     throw new Error('Match on regex or IRI');
   };
+}
+
+function bestType(type) {
+  const normalizedType = normalizeType(type);
+  let best = null;
+
+  for (let i = 0; i < normalizedType.length; i++) {
+    switch (normalizedType[i].term) {
+      case 'Resource':
+      case 'Document':
+      case 'RDFDocument':
+        if (!best) {
+          best = normalizedType[i];
+        }
+        break;
+      default:
+        best = normalizedType[i];
+        break;
+    }
+  }
+
+  return best;
 }
 
 function compare(a, b) {
@@ -244,6 +267,7 @@ export {
   allow,
   allowSort,
   arguDeltaProcessor,
+  bestType,
   containerToArr,
   convertKeysAtoB,
   filter,

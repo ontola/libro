@@ -53,6 +53,9 @@ const propTypes = {
   title: PropTypes.string,
   type: PropTypes.string,
   variant: PropTypes.oneOf([
+    'success',
+    'warning',
+    'error',
     'yes',
     'pro',
     'neutral',

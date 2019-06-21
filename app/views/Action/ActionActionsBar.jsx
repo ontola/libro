@@ -14,13 +14,20 @@ import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 import SHACL from '../../helpers/shacl';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
+import { bestType } from '../../helpers/data';
 
 class ActionActionsBar extends PureComponent {
   static type = NS.schema('Action');
 
   static topology = actionsBarTopology;
 
-  static mapDataToProps = [NS.schema('object')];
+  static mapDataToProps = {
+    object: NS.schema.object,
+    type: {
+      label: NS.rdf.type,
+      limit: Infinity,
+    },
+  };
 
   static hocs = [withRouter];
 
@@ -29,12 +36,22 @@ class ActionActionsBar extends PureComponent {
     lrs: lrsType,
     object: linkType,
     subject: subjectType,
+    type: linkType,
   };
 
   constructor(props) {
     super(props);
 
     this.exec = this.exec.bind(this);
+  }
+
+  getVariant() {
+    switch (bestType(this.props.type)) {
+      case NS.teamGL('ContactedAction'):
+        return 'success';
+      default:
+        return undefined;
+    }
   }
 
   exec() {
@@ -50,10 +67,12 @@ class ActionActionsBar extends PureComponent {
       object,
       subject,
     } = this.props;
+
     return (
       <Property
         action={subject}
         label={NS.schema('target')}
+        variant={this.getVariant()}
         onClick={this.exec}
         onDone={() => history.push(retrievePath(object.value))}
       />

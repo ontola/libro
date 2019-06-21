@@ -5,34 +5,20 @@ import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
+import { bestType } from '../../../helpers/data';
 
 const propTypes = {
   type: PropTypes.instanceOf(Array),
 };
 
 const TypeDetail = ({ type }) => {
-  let bestType;
-  for (let i = 0; i < type.length; i++) {
-    switch (type[i].term) {
-      case 'Resource':
-      case 'Document':
-      case 'RDFDocument':
-        if (!bestType) {
-          bestType = type[i];
-        }
-        break;
-      default:
-        bestType = type[i];
-        break;
-    }
-  }
-
-  if (!bestType) {
+  const best = bestType(type);
+  if (best === null) {
     return null;
   }
 
   return (
-    <LinkedResourceContainer subject={bestType} />
+    <LinkedResourceContainer subject={best} />
   );
 };
 

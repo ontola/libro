@@ -50,6 +50,7 @@ class EntryPoint extends React.PureComponent {
     onClick: PropTypes.func,
     topology: linkType,
     url: linkType,
+    variant: PropTypes.string,
   };
 
   render() {
@@ -61,6 +62,7 @@ class EntryPoint extends React.PureComponent {
       onClick,
       topology,
       url,
+      variant,
       ...rest
     } = this.props;
 
@@ -76,6 +78,7 @@ class EntryPoint extends React.PureComponent {
           className={`Button--has-icon${largeButton}`}
           icon={icon}
           theme="transparant"
+          variant={variant}
           onClick={onClick}
           {...rest}
         >
@@ -88,7 +91,13 @@ class EntryPoint extends React.PureComponent {
     const href = parsedURL && parsedURL.pathname + parsedURL.search;
 
     return (
-      <Button className="Button--has-icon" href={href} icon={icon} theme="transparant">
+      <Button
+        className="Button--has-icon"
+        href={href}
+        icon={icon}
+        theme="transparant"
+        variant={variant}
+      >
         <span>{label}</span>
       </Button>
     );
