@@ -10,7 +10,7 @@ import PrimaryResource, { primaryResourceTopology } from '../../topologies/Prima
 import Container from '../../topologies/Container';
 import CardMain from '../../topologies/Card/CardMain';
 import { CardContent } from '../../components';
-import DetailsBar from '../../topologies/DetailsBar';
+import ContentDetails from '../../topologies/ContentDetails';
 
 class VolunteerPage extends React.PureComponent {
   static type = [NS.teamGL('Volunteer')];
@@ -26,12 +26,12 @@ class VolunteerPage extends React.PureComponent {
         <Container>
           <Property label={NS.schema('isPartOf')} />
           <CardMain>
-            <DetailsBar>
-              <Property label={NS.schema('dateCreated')} />
-              <Property label={NS.teamGL('department')} />
-            </DetailsBar>
             <CardContent noSpacing>
               <Property label={[NS.schema('name'), NS.rdfs('label')]} />
+              <ContentDetails>
+                <Property label={NS.teamGL('department')} />
+                <Property label={NS.schema('dateCreated')} />
+              </ContentDetails>
               <div className="Volunteer--contact-options">
                 <Property label={NS.teamGL('telephone')} />
                 <Property label={NS.teamGL('email')} />

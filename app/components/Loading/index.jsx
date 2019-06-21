@@ -63,7 +63,7 @@ export const LoadingPage = () => (
 );
 
 export const LoadingDetail = () => (
-  <div className="Loading__Paragraph Loading__Paragraph--detail Loading__background" />
+  <div className="Loading__Paragraph Loading__Paragraph--detail Loading__background Detail" />
 );
 
 export const LoadingParent = () => (

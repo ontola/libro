@@ -6,24 +6,17 @@ import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import { CardContent } from '../../components';
-import { cardTopology } from '../../topologies/Card';
-import { cardFixedTopology } from '../../topologies/Card/CardFixed';
-import { cardMainTopology } from '../../topologies/Card/CardMain';
-import CardRow from '../../topologies/Card/CardRow';
+import { cardRowTopology } from '../../topologies/Card/CardRow';
 import ContentDetails from '../../topologies/ContentDetails';
 
-class VolunteerCard extends React.PureComponent {
-  static type = [NS.teamGL('NewVolunteer')];
+class NewVolunteerCardRow extends React.PureComponent {
+  static type = [NS.teamGL('Volunteer')];
 
-  static topology = [
-    cardFixedTopology,
-    cardMainTopology,
-    cardTopology,
-  ];
+  static topology = cardRowTopology;
 
   render() {
     return (
-      <CardRow>
+      <React.Fragment>
         <CardContent>
           <Property label={[NS.schema('name'), NS.rdfs('label')]} />
           <ContentDetails>
@@ -35,9 +28,9 @@ class VolunteerCard extends React.PureComponent {
             <Property label={NS.teamGL('email')} />
           </div>
         </CardContent>
-      </CardRow>
+      </React.Fragment>
     );
   }
 }
 
-export default register(VolunteerCard);
+export default register(NewVolunteerCardRow);

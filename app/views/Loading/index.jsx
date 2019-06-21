@@ -25,6 +25,7 @@ import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
 import { cardVoteEventTopology } from '../../topologies/CardVoteEvent';
 import { containerTopology } from '../../topologies/Container';
+import { contentDetailsTopology } from '../../topologies/ContentDetails';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { dropdownContentTopology } from '../../topologies/DropdownContent';
@@ -128,6 +129,7 @@ export default [
     [
       cardFloatTopology,
       detailsBarTopology,
+      contentDetailsTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(
