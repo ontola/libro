@@ -40,6 +40,7 @@ import { tableTopology } from '../../topologies/Table';
 import { tableCellTopology } from '../../topologies/TableCell';
 import { voteBubbleTopology } from '../../topologies/VoteBubble';
 import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
+import { tabPaneTopology } from '../../topologies/TabPane';
 
 // We always throw, so the implicit return value is void
 // eslint-disable-next-line react/require-render-return
@@ -67,7 +68,10 @@ export default [
     LoadingPage,
     NS.ll('LoadingResource'),
     RENDER_CLASS_NAME,
-    pageTopology
+    [
+      pageTopology,
+      tabPaneTopology,
+    ]
   ),
   LinkedRenderStore.registerRenderer(
     LoadingParent,
