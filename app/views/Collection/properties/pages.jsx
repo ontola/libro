@@ -14,6 +14,7 @@ const Pages = ({
   collectionDisplay,
   columns,
   depth,
+  insideCollection,
   pages,
 }) => {
   if (pages.length === 1) {
@@ -23,6 +24,7 @@ const Pages = ({
         collectionDisplay={collectionDisplay}
         columns={columns}
         depth={depth}
+        insideCollection={insideCollection}
         subject={pages[0]}
       />
     );
@@ -33,6 +35,7 @@ const Pages = ({
       collectionDisplay={collectionDisplay}
       columns={columns}
       depth={depth}
+      insideCollection={insideCollection}
       key={`pages-${iri.value}`}
       subject={iri}
     />
@@ -66,6 +69,7 @@ Pages.propTypes = {
   collectionDisplay: linkType,
   columns: linkType,
   depth: PropTypes.number,
+  insideCollection: PropTypes.bool,
   pages: linkType,
 };
 

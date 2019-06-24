@@ -54,7 +54,7 @@ const CollectionCardAppendix = ({ totalItems }) => {
 
   return (
     <Resource>
-      <Property forceRender label={NS.as('pages')} />
+      <Property forceRender insideCollection label={NS.as('pages')} />
     </Resource>
   );
 };
@@ -68,7 +68,7 @@ const collectionSection = ({ omniform = false, renderWhenEmpty = false } = {}) =
     return (
       <CardContent noStartSpacing>
         <CardList direction={direction}>
-          {pagesShouldRender && <Property forceRender label={NS.as('pages')} />}
+          {pagesShouldRender && <Property forceRender insideCollection label={NS.as('pages')} />}
           <Property label={NS.ontola('createAction')} omniform={omniform} />
         </CardList>
       </CardContent>

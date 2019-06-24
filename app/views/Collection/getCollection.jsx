@@ -90,6 +90,7 @@ export default function getCollection({
         children = (
           <Property
             forceRender
+            insideCollection
             collectionDisplay={collectionDisplay}
             columns={columns}
             depth={depth}

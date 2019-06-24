@@ -11,6 +11,7 @@
   "https://app.argu.co/i18n/collapsible/expand": "Read more",
   "https://app.argu.co/i18n/collapsible/expandOrCollapseMenu": "Expand or collapse menu",
   "https://app.argu.co/i18n/collection/empty/message": "No items yet",
+  "https://app.argu.co/i18n/collection/readAll": "View all items",
   "https://app.argu.co/i18n/collections/showRepliesLabel": "Show {count} additional replies...",
   "https://app.argu.co/i18n/detail/argu:grantedGroups/private/text": "Private",
   "https://app.argu.co/i18n/detail/argu:grantedGroups/private/title": "Visible for {groupNames}",

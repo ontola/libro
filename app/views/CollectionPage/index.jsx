@@ -28,6 +28,7 @@ import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTo
 import First from './properties/first';
 import Items from './properties/items';
 import Name from './properties/name';
+import baseCollection from './properties/baseCollection';
 import Views from './properties/views';
 import { CollectionViewTypes } from './types';
 import voteEvent from './voteEvent';
@@ -192,6 +193,7 @@ export default [
   First,
   ...Items,
   Name,
+  ...baseCollection,
   ...Views,
   ...voteEvent,
 ];

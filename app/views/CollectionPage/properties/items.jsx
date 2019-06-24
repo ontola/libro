@@ -3,6 +3,7 @@ import {
   PropertyBase,
   linkType,
   register,
+  Property,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -92,6 +93,7 @@ class Items extends PropertyBase {
   };
 
   static propTypes = {
+    baseCollectionLink: PropTypes.bool,
     depth: PropTypes.number,
     items: linkType,
     /** The amount of items to render. Leave undefined for all items */
@@ -102,7 +104,7 @@ class Items extends PropertyBase {
   itemList(columns) {
     const itemWrapper = this.props.collectionDisplay === NS.ontola('collectionDisplay/card') ? CardRow : React.Fragment;
 
-    return this.props.items
+    const items = this.props.items
       .slice(0, this.props.renderLimit)
       .map(iri => (
         <LinkedResourceContainer
@@ -113,6 +115,21 @@ class Items extends PropertyBase {
           subject={iri}
         />
       ));
+
+    if (!this.props.baseCollectionLink) {
+      return items;
+    }
+
+    const nextLink = (
+      <div key={`${this.props.subject}:next`}>
+        <Property
+          label={NS.ontola('baseCollection')}
+          topology={this.props.topology}
+        />
+      </div>
+    );
+
+    return [...items, nextLink];
   }
 
   styleWrapper(itemList, columns) {
