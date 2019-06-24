@@ -31,11 +31,13 @@ class VolunteerPage extends React.PureComponent {
               <ContentDetails>
                 <Property label={NS.teamGL('department')} />
                 <Property label={NS.schema('dateCreated')} />
+                <Property label={NS.ontola('updateAction')} />
               </ContentDetails>
               <div className="Volunteer--contact-options">
                 <Property label={NS.teamGL('telephone')} />
                 <Property label={NS.teamGL('email')} />
               </div>
+              <Property label={NS.schema.text} />
             </CardContent>
           </CardMain>
         </Container>

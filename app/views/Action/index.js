@@ -1,6 +1,7 @@
 import Actions from './Action';
-import ActionContainer from './ActionContainer';
 import ActionActionsBar from './ActionActionsBar';
+import ActionContainer from './ActionContainer';
+import ActionDetail from './ActionDetail';
 import ActionNested from './ActionNested';
 import ActionPage from './ActionPage';
 import ActionPrimaryCallToAction from './ActionPrimaryCallToAction';
@@ -18,8 +19,9 @@ export default [
   CreateAction,
   CreateVote,
   Actions,
-  ActionContainer,
   ActionActionsBar,
+  ActionContainer,
+  ActionDetail,
   ActionNested,
   ActionPage,
   ActionPrimaryCallToAction,

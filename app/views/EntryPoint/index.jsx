@@ -12,12 +12,15 @@ import { cardListTopology } from '../../topologies/Card/CardList';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { cardVoteEventTopology } from '../../topologies/CardVoteEvent';
 import { containerTopology } from '../../topologies/Container';
+import { contentDetailsTopology } from '../../topologies/ContentDetails';
+import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 import { cardTopology } from '../../topologies/Card';
 
 import EntryPointButton from './EntryPointButton';
 import EntryPointCardFloat from './EntryPointCardFloat';
 import EntryPointCardMain from './EntryPointCardMain';
+import EntryPointDetail from './EntryPointDetail';
 import EntryPointOmiform from './EntryPointOmiform';
 import EntryPointContainer from './EntryPointContainer';
 
@@ -39,6 +42,8 @@ class EntryPoint extends React.PureComponent {
     cardFloatTopology,
     cardListTopology,
     containerTopology,
+    contentDetailsTopology,
+    detailsBarTopology,
     omniformFieldsTopology
   );
 
@@ -109,6 +114,7 @@ export default [
   EntryPointCardFloat,
   EntryPointCardMain,
   EntryPointContainer,
+  EntryPointDetail,
   EntryPointOmiform,
   register(EntryPoint),
 ];
