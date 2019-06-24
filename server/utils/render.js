@@ -140,8 +140,7 @@ export const renderFullPage = (req, res, websiteMeta, data) => {
               <meta name="msapplication-navbutton-color" content="#60707F">
               <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
               <meta name="msapplication-starturl" content="/">
-              <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-              <meta name="viewport" content="initial-scale=1.0, maximum-scale=5.0" />
+              <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=5.0" />
               <meta content="269911176456825" property="fb:app_id">
               ${headers?.meta?.toString()}
       
