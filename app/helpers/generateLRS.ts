@@ -146,6 +146,9 @@ function generateLRS() {
     new Statement(NS.teamGL('ContactedAction'), NS.rdf('type'), NS.rdfs('Class')),
     new Statement(NS.teamGL('ContactedAction'), NS.rdfs('subClassOf'), NS.schema('UpdateAction')),
 
+    new Statement(NS.teamGL('NewVolunteer'), NS.rdf('type'), NS.rdfs('Class')),
+    new Statement(NS.teamGL('NewVolunteer'), NS.rdfs('subClassOf'), NS.teamGL('Volunteer')),
+
     new Statement(NS.teamGL('TryAgainAction'), NS.rdf('type'), NS.rdfs('Class')),
     new Statement(NS.teamGL('TryAgainAction'), NS.rdfs('subClassOf'), NS.schema('UpdateAction')),
 
