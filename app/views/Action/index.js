@@ -14,6 +14,7 @@ import InlineCreateAction from './InlineCreateAction';
 import InlineActionTableRow from './InlineActionTableRow';
 import ReadActionCard from './ReadActionCard';
 import SignInHelperFormsModal from './SignInHelperFormsModal';
+import Name from './properties/name';
 
 export default [
   CreateAction,
@@ -32,4 +33,5 @@ export default [
   ...InlineActionTableRow,
   ReadActionCard,
   ...SignInHelperFormsModal,
+  Name,
 ];
