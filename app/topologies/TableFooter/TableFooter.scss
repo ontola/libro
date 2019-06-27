@@ -1,0 +1,17 @@
+@import '../../components/shared/config';
+
+.TableFooter {
+  color: color('grey', 'mid-dark');
+
+  tr > td {
+    background-color: color('grey', 'xx-light');
+
+    &:first-child {
+      border-top-left-radius: $border-radius-base;
+    }
+
+    &:last-child {
+      border-top-right-radius: $border-radius-base;
+    }
+  }
+}

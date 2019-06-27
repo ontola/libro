@@ -27,17 +27,20 @@ import { parentTopology } from './topologies/Parent/index';
 import { primaryCallToActionTopology } from './topologies/PrimaryCallToAction/index';
 import { popupTopology } from './topologies/Popup/index';
 import { selectTopology } from './topologies/Select';
-import { tableTopology } from './topologies/Table';
 import { tableCellTopology } from './topologies/TableCell';
+import { tableHeaderCellTopology } from './topologies/TableHeaderCell';
+import { tableHeaderRowTopology } from './topologies/TableHeaderRow';
+import { tableFooterCellTopology } from './topologies/TableFooterCell';
+import { tableFooterRowTopology } from './topologies/TableFooterRow';
 import { tableRowTopology } from './topologies/TableRow';
-import { tabPaneTopology } from './topologies/TabPane/index';
+import { tableTopology } from './topologies/Table';
 import { tabBarTopology } from './topologies/TabBar/index';
+import { tabPaneTopology } from './topologies/TabPane/index';
 import { voteBubbleTopology } from './topologies/VoteBubble/index';
 import { voteEventTopology } from './topologies/VoteEvent/index';
 import { voteEventResultTopology } from './topologies/VoteEventResult/index';
 import { voteEventSideTopology } from './topologies/VoteEventSide/index';
 import { widgetTopologyTopology } from './topologies/WidgetTopology/WidgetTopology';
-import { tableHeaderRowTopology } from './topologies/TableHeaderRow';
 
 export const allTopologies = [
   undefined,
@@ -70,7 +73,10 @@ export const allTopologies = [
   popupTopology,
   primaryCallToActionTopology,
   selectTopology,
+  tableHeaderCellTopology,
   tableHeaderRowTopology,
+  tableFooterCellTopology,
+  tableFooterRowTopology,
   tableTopology,
   tableRowTopology,
   tableCellTopology,
