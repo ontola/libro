@@ -3,18 +3,15 @@ import {
   link,
   Property,
   linkType,
+  register,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {
-  Resource,
-} from '../../components';
 import CardContent from '../../components/Card/CardContent';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { cardTopology } from '../../topologies/Card';
-import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
 import { cardFixedTopology } from '../../topologies/Card/CardFixed';
 import CardList, { cardListTopology } from '../../topologies/Card/CardList';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
@@ -30,36 +27,23 @@ import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTo
 
 import getCollection from './getCollection';
 import CreateAction from './properties/createAction';
+import CollectionFrame from './properties/collectionFrame';
 import FilteredCollections from './properties/filteredCollections';
-import First from './properties/first';
 import Name from './properties/name';
 import UnreadCount from './properties/unreadCount';
 import Pages from './properties/pages';
+import InfinitePagination from './properties/infinitePagination';
+import DefaultPagination from './properties/defaultPagination';
 import { CollectionTypes } from './types';
 import voteEvent from './voteEvent';
+import CollectionCardAppendix from './CollectionCardAppendix';
 import CollectionContainer from './CollectionContainer';
 import CollectionNavbar from './CollectionNavbar';
 import CollectionTableCell from './CollectionTableCell';
+import Header from './properties/header';
+import TotalItems from './properties/totalItems';
 
 import './Collection.scss';
-
-const mvcPropTypes = {
-  totalItems: linkType,
-};
-
-const CollectionCardAppendix = ({ totalItems }) => {
-  if (totalItems.value === '0') {
-    return null;
-  }
-
-  return (
-    <Resource>
-      <Property forceRender insideCollection label={NS.as('pages')} />
-    </Resource>
-  );
-};
-
-CollectionCardAppendix.propTypes = mvcPropTypes;
 
 const collectionSection = ({ omniform = false, renderWhenEmpty = false } = {}) => {
   const CollectionSection = ({ direction, totalItems }) => {
@@ -93,19 +77,18 @@ export default [
   CollectionContainer,
   CollectionNavbar,
   CollectionTableCell,
-  LinkedRenderStore.registerRenderer(
+  register(
     getCollection({
       WrappingElement: Container,
+      redirect: true,
       renderParent: true,
       renderWhenEmpty: true,
-    }),
-    CollectionTypes,
-    RENDER_CLASS_NAME,
-    [
-      alertDialogTopology,
-      primaryResourceTopology,
-      pageTopology,
-    ]
+      topology: [
+        alertDialogTopology,
+        primaryResourceTopology,
+        pageTopology,
+      ],
+    })
   ),
   LinkedRenderStore.registerRenderer(
     link(itemsCount)(collectionSection({ omniform: true })),
@@ -128,38 +111,34 @@ export default [
       voteEventTopology,
     ]
   ),
-  LinkedRenderStore.registerRenderer(
-    link(itemsCount)(CollectionCardAppendix),
-    CollectionTypes,
-    RENDER_CLASS_NAME,
-    cardAppendixTopology
-  ),
-  LinkedRenderStore.registerRenderer(
+  register(
     getCollection({
-      fullPage: false,
       renderWhenEmpty: true,
-    }),
-    CollectionTypes,
-    RENDER_CLASS_NAME,
-    [
-      gridTopology,
-      widgetTopologyTopology,
-    ]
+      topology: [
+        gridTopology,
+        widgetTopologyTopology,
+      ],
+    })
   ),
-  LinkedRenderStore.registerRenderer(
+  register(
     getCollection({
       WrappingElement: Container,
       renderWhenEmpty: true,
-    }),
-    CollectionTypes,
-    RENDER_CLASS_NAME,
-    tabPaneTopology
+      topology: [
+        tabPaneTopology,
+      ],
+    })
   ),
+  ...TotalItems,
+  CollectionCardAppendix,
+  ...CollectionFrame,
   CreateAction,
   ...FilteredCollections,
-  First,
+  ...Header,
   Name,
   ...UnreadCount,
   ...Pages,
+  ...InfinitePagination,
+  ...DefaultPagination,
   ...voteEvent,
 ];

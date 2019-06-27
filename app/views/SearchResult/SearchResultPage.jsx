@@ -2,6 +2,7 @@ import {
   linkType,
   Property,
   register,
+  subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -11,6 +12,7 @@ import { withRouter } from 'react-router';
 
 import Button from '../../components/Button';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { retrievePath } from '../../helpers/iris';
 import { allTopologiesExcept } from '../../topologies';
 import { navbarTopology } from '../../topologies/Navbar';
 import Container from '../../topologies/Container';
@@ -28,11 +30,28 @@ export const SearchResultPage = ({
   intl: { formatMessage },
   location,
   query,
+  subject,
   took,
   totalItems,
 }) => {
   const queryNormalized = query?.value ?? '';
   const search = new URLSearchParams(location.search);
+  const body = (
+    <Property
+      collectionDisplay={collectionDisplay}
+      empty={() => null}
+      label={NS.as('items')}
+    />
+  );
+  const pagination = (
+    <Property
+      forceRender
+      redirectPagination
+      currentPage={subject.value}
+      label={NS.ontola('defaultPagination')}
+      onPageChange={url => history.push(retrievePath(url))}
+    />
+  );
 
   return (
     <React.Fragment>
@@ -65,11 +84,13 @@ export const SearchResultPage = ({
               return;
             }
 
+            search.delete('page');
             if (q) {
               search.set('q', q);
             } else {
               search.delete('q');
             }
+            search.set('page', 1);
 
             history.push(`${location.pathname}${search ? `?${search}` : ''}${location.hash}`);
           }}
@@ -90,15 +111,11 @@ export const SearchResultPage = ({
       </Container>
       <Container size="large">
         <Property
-          collectionDisplay={collectionDisplay}
-          empty={() => (
-            <div className="SearchResult__empty">
-              {formatMessage(messages.placeholder)}
-            </div>
-          )}
-          label={NS.as('items')}
+          forceRender
+          body={body}
+          label={NS.ontola('collectionFrame')}
+          pagination={pagination}
         />
-        <Property label={NS.as('last')} />
       </Container>
     </React.Fragment>
   );
@@ -131,6 +148,7 @@ SearchResultPage.propTypes = {
     search: PropTypes.string,
   }),
   query: linkType,
+  subject: subjectType,
   took: linkType,
   totalItems: linkType,
 };

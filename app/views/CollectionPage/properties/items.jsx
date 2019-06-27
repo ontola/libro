@@ -3,86 +3,22 @@ import {
   PropertyBase,
   linkType,
   register,
-  Property,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { listToArr } from '../../../helpers/data';
 import { NS } from '../../../helpers/LinkedRenderStore';
-import Card from '../../../topologies/Card';
 import CardRow from '../../../topologies/Card/CardRow';
-import Grid from '../../../topologies/Grid';
-import Container, { containerTopology } from '../../../topologies/Container';
-import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
-import Table from '../../../topologies/Table';
-import TableHead from '../../../topologies/TableHead';
-import TableHeaderRow from '../../../topologies/TableHeaderRow';
 import { CollectionViewTypes } from '../types';
-
-export const CollectionDisplayWrapper = ({
-  collectionDisplay, itemList, columns, topology,
-}) => {
-  switch (collectionDisplay) {
-    case NS.ontola('collectionDisplay/grid'):
-      return (
-        <Grid>
-          {itemList}
-        </Grid>
-      );
-    case NS.ontola('collectionDisplay/settingsTable'):
-    case NS.ontola('collectionDisplay/table'):
-      return (
-        <Card>
-          <Table>
-            <TableHead>
-              <TableHeaderRow>
-                {columns.map(property => (
-                  <LinkedResourceContainer
-                    forceRender
-                    key={property.value}
-                    subject={property}
-                  />
-                ))}
-              </TableHeaderRow>
-            </TableHead>
-            <tbody>
-              {itemList}
-            </tbody>
-          </Table>
-        </Card>
-      );
-    case NS.ontola('collectionDisplay/card'):
-      return (
-        <Card>
-          {itemList}
-        </Card>
-      );
-    default:
-      if (collectionDisplay === NS.ontola('collectionDisplay/default') && topology !== containerTopology) {
-        return (
-          <Container>
-            {itemList}
-          </Container>
-        );
-      }
-      return itemList;
-  }
-};
+import { allTopologies } from '../../../topologies';
 
 class Items extends PropertyBase {
   static type = [...CollectionViewTypes, NS.argu('SearchResult')];
 
   static property = NS.as('items');
 
-  static topology = [
-    undefined,
-    primaryResourceTopology,
-    NS.argu('cardList'),
-    NS.argu('widget'),
-    NS.argu('container'),
-  ];
+  static topology = allTopologies;
 
   static mapDataToProps = {
     items: {
@@ -93,7 +29,6 @@ class Items extends PropertyBase {
   };
 
   static propTypes = {
-    baseCollectionLink: PropTypes.bool,
     depth: PropTypes.number,
     items: linkType,
     /** The amount of items to render. Leave undefined for all items */
@@ -102,37 +37,26 @@ class Items extends PropertyBase {
   };
 
   itemList(columns) {
-    const itemWrapper = this.props.collectionDisplay === NS.ontola('collectionDisplay/card') ? CardRow : React.Fragment;
+    const itemWrapper = this.props.collectionDisplay === NS.ontola('collectionDisplay/card')
+      ? CardRow
+      : React.Fragment;
 
-    const items = this.props.items
-      .slice(0, this.props.renderLimit)
-      .map(iri => (
-        <LinkedResourceContainer
-          columns={columns}
-          depth={this.props.depth}
-          itemWrapper={itemWrapper}
-          key={`${this.props.subject}:${iri.value}`}
-          subject={iri}
-        />
-      ));
-
-    if (!this.props.baseCollectionLink) {
-      return items;
-    }
-
-    const nextLink = (
-      <div key={`${this.props.subject}:next`}>
-        <Property
-          label={NS.ontola('baseCollection')}
-          topology={this.props.topology}
-        />
-      </div>
+    return (
+      this.props.items
+        .slice(0, this.props.renderLimit)
+        .map(iri => (
+          <LinkedResourceContainer
+            columns={columns}
+            depth={this.props.depth}
+            itemWrapper={itemWrapper}
+            key={`${this.props.subject}:${iri.value}`}
+            subject={iri}
+          />
+        ))
     );
-
-    return [...items, nextLink];
   }
 
-  styleWrapper(itemList, columns) {
+  styleWrapper(itemList) {
     if (this.props.style && this.props.style !== {}) {
       return (
         <div style={this.props.style}>
@@ -141,24 +65,15 @@ class Items extends PropertyBase {
       );
     }
 
-    return (
-      <CollectionDisplayWrapper
-        collectionDisplay={this.props.collectionDisplay}
-        columns={columns}
-        itemList={itemList}
-        topology={this.props.topology}
-      />
-    );
+    return itemList;
   }
 
   render() {
     const {
       columns,
       items,
-      lrs,
       totalCount,
     } = this.props;
-    const resolvedColumns = columns ? listToArr(lrs, [], columns) : undefined;
 
     let children = null;
 
@@ -177,9 +92,9 @@ class Items extends PropertyBase {
     if (Array.isArray(items) && items.length === 0) {
       children = null;
     } else if (Array.isArray(items)) {
-      children = this.itemList(resolvedColumns);
+      children = this.itemList(columns);
     } else if (typeof items.toArray !== 'undefined') {
-      children = this.itemList(resolvedColumns).toKeyedSeq();
+      children = this.itemList(columns).toKeyedSeq();
     } else {
       children = (
         <LinkedResourceContainer
@@ -189,7 +104,7 @@ class Items extends PropertyBase {
       );
     }
 
-    return this.styleWrapper(children, resolvedColumns || []);
+    return this.styleWrapper(children, columns || []);
   }
 }
 

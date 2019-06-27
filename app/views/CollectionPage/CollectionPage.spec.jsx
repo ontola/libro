@@ -5,6 +5,7 @@ import React from 'react';
 
 import { NS } from '../../../tests';
 import { allTopologies } from '../../topologies';
+import collectionComponents from '../Collection/index';
 
 import components from './index';
 
@@ -17,11 +18,33 @@ const testClass = LinkedRenderStore.registerRenderer(
 
 const ITEMS = 10;
 
-const collectionWithItems = NS.example('nederland/q/75/m?page=1&type=paginated');
+const collection = NS.example('nederland/q/75/m');
+const collectionPageWithItems = NS.app('current_page');
 const memberResource = NS.example('nederland/m/177');
 
 const resources = {
-  [collectionWithItems]: {
+  [collection]: {
+    [NS.rdf('type')]: [
+      NS.as('Collection'),
+      NS.ontola('Collection'),
+    ],
+    [NS.as('name')]: new Literal('Ideeën'),
+    [NS.ontola('iriTemplate')]: new Literal('https://argu.localdev/nederland/q/75/m{?filter%5B%5D,page,page_size,type,before,sort%5B%5D}'),
+    [NS.schema('isPartOf')]: NS.app('nederland/q/75'),
+    [NS.as('totalItems')]: Literal.fromNumber(ITEMS),
+    [NS.schema('potentialAction')]: NS.app('nederland/q/75/m/new'),
+    [NS.ontola('defaultType')]: new Literal('paginated'),
+    [NS.as('pages')]: collectionPageWithItems,
+    [NS.dc('identifier')]: NS.app('nederland/q/75/motions'),
+    [NS.ontola('createAction')]: NS.app('nederland/q/75/m/new'),
+    [NS.schema('url')]: collection,
+    [NS.ontola('baseCollection')]: NS.app('new_volunteers'),
+    [NS.ontola('collectionDisplay')]: NS.ontola('collectionDisplay/default'),
+    [NS.ontola('collectionType')]: NS.ontola('collectionType/paginated'),
+    [NS.as('first')]: collectionPageWithItems,
+    [NS.as('last')]: NS.app('nederland/q/75/m?page=2&type=paginated'),
+  },
+  [collectionPageWithItems]: {
     [NS.rdf('type')]: [
       NS.as('CollectionPage'),
       NS.ontola('PaginatedView'),
@@ -30,7 +53,7 @@ const resources = {
     [NS.as('last')]: NS.app('nederland/q/75/m?page=1&type=paginated'),
     [NS.as('totalItems')]: Literal.fromNumber(ITEMS),
     [NS.dc('identifier')]: NS.app('nederland/q/75/motions'),
-    [NS.as('partOf')]: NS.app('nederland/q/75/m'),
+    [NS.as('partOf')]: collection,
     [NS.as('items')]: [
       memberResource,
       NS.app('nederland/m/158'),
@@ -49,9 +72,10 @@ const resources = {
 };
 
 describe('Collection', () => {
-  describeView('CollectionPage', [testClass, ...components], resources, collectionWithItems, () => {
+  describeView('CollectionPage', [testClass, ...components, ...collectionComponents], resources, collectionPageWithItems, () => {
     it('renders the members', () => {
       expect(subject.find('CollectionPage').find('p.testComp')).toHaveText('Member name');
+      expect(subject.find('CollectionPage').find('.pagination-wrapper')).toExist();
     });
   });
 });

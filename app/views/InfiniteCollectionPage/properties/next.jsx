@@ -2,6 +2,7 @@ import LinkedRenderStore from 'link-lib';
 import { link, PropertyBase } from 'link-redux';
 import { Literal, Statement } from 'rdflib';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import ButtonWithFeedback from '../../../components/ButtonWithFeedback';
 import { NS } from '../../../helpers/LinkedRenderStore';
@@ -29,7 +30,10 @@ class InfiniteCollectionNext extends PropertyBase {
         theme="box"
         onClick={onClick}
       >
-        Load more
+        <FormattedMessage
+          defaultMessage="Load more"
+          id="https://app.argu.co/i18n/collection/loadMore"
+        />
       </ButtonWithFeedback>
     );
   }

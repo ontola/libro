@@ -6,21 +6,17 @@ import { FormattedMessage } from 'react-intl';
 import Heading from '../../components/Heading';
 import LinkDuo from '../../components/LinkDuo';
 import Resource from '../../components/Resource';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { containerTopology } from '../../topologies/Container';
 
 import getCollection from './getCollection';
-import { CollectionTypes } from './types';
 
-const ContainerCollection = getCollection({ omniform: true, renderWhenEmpty: false });
+const CollectionBase = getCollection({
+  omniform: true,
+  renderWhenEmpty: false,
+  topology: containerTopology,
+});
 
-class CollectionContainer extends React.PureComponent {
-  static type = CollectionTypes;
-
-  static topology = containerTopology;
-
-  static mapDataToProps = [NS.as('totalItems')];
-
+class CollectionContainer extends CollectionBase {
   static propTypes = {
     clickToOpen: PropTypes.bool,
     depth: PropTypes.number,
@@ -45,7 +41,7 @@ class CollectionContainer extends React.PureComponent {
     } = this.props;
 
     if (!depth || depth <= 1) {
-      return <ContainerCollection {...this.props} />;
+      return this.renderCollection();
     }
 
     if (clickToOpen && totalItems.value !== '0' && !this.state.opened) {
@@ -79,9 +75,7 @@ class CollectionContainer extends React.PureComponent {
       );
     }
 
-    return (
-      <ContainerCollection {...this.props} />
-    );
+    return this.renderCollection();
   }
 }
 

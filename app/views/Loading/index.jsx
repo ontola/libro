@@ -35,6 +35,7 @@ import { inlineTopology } from '../../topologies/Inline';
 import { navbarTopology } from '../../topologies/Navbar';
 import { pageTopology } from '../../topologies/Page';
 import { parentTopology } from '../../topologies/Parent';
+import { tableTopology } from '../../topologies/Table';
 import { voteBubbleTopology } from '../../topologies/VoteBubble';
 import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 
@@ -114,6 +115,7 @@ export default [
       cardMainTopology,
       dropdownContentTopology,
       hoverBoxTopology,
+      tableTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(

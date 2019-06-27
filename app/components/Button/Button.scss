@@ -152,10 +152,19 @@ a {
 
 .Button--pagination {
   &[disabled] {
-    color: color('grey', 'x-dark');
+    color: color('grey', 'light');
     cursor: initial;
     font-weight: bold;
     opacity: 1;
+
+    .fa {
+      color: color('grey', 'light');
+    }
+  }
+
+  &.Button--active {
+    background-color: unset;
+    color: color('grey', 'x-dark');
   }
 }
 

@@ -1,199 +1,95 @@
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
-  link,
-  LinkedResourceContainer,
-  Property,
   linkType,
-  withLinkCtx,
+  Property,
+  register,
+  subjectType,
 } from 'link-redux';
-import { NamedNode } from 'rdflib';
-import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import React from 'react';
+import { Redirect, withRouter } from 'react-router';
 
+import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
-import { getPage } from '../../state/pagination/selectors';
-import { cardTopology } from '../../topologies/Card';
-import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
-import { cardFixedTopology } from '../../topologies/Card/CardFixed';
-import { cardListTopology } from '../../topologies/Card/CardList';
-import { cardMainTopology } from '../../topologies/Card/CardMain';
-import CardRow, { cardRowTopology } from '../../topologies/Card/CardRow';
-import { cardVoteEventTopology } from '../../topologies/CardVoteEvent';
-import { containerTopology } from '../../topologies/Container';
-import { gridTopology } from '../../topologies/Grid';
+import { currentLocation } from '../../helpers/paths';
+import { allTopologiesExcept } from '../../topologies';
 import { pageTopology } from '../../topologies/Page';
-import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
+import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 
-import First from './properties/first';
 import Items from './properties/items';
 import Name from './properties/name';
-import baseCollection from './properties/baseCollection';
 import Views from './properties/views';
-import { CollectionViewTypes } from './types';
 import voteEvent from './voteEvent';
+import { CollectionViewTypes } from './types';
 
-const mvcPropTypes = {
-  collectionDisplay: linkType,
-  totalCount: linkType,
-};
+function getCollectionPage({ hidePagination = true, redirect = false, topology = [] } = {}) {
+  const CollectionPage = (props) => {
+    if (props.insideCollection) {
+      if (__CLIENT__ && props.redirectPagination) {
+        if (currentLocation(props.location) !== props.subject) {
+          return <Redirect to={retrievePath(props.subject.value)} />;
+        }
+      }
 
-const CollectionPage = (props) => {
-  let children;
-  if (props.currentPage) {
-    children = (
-      <LinkedResourceContainer
-        depth={props.depth}
-        subject={new NamedNode(props.currentPage)}
-      />
-    );
-  } else {
-    children = (
-      <Property
-        forceRender
-        collectionDisplay={props.collectionDisplay}
-        columns={props.columns}
-        depth={props.depth}
-        label={NS.as('items')}
-        renderLimit={Infinity}
-      />
-    );
-  }
-
-  let pagination = null;
-  if (!props.views || props.views.length === 0) {
-    pagination = <Property collectionIRI={props.collectionIRI} label={NS.as('first')} />;
-  }
-
-  return (
-    <React.Fragment>
-      {children}
-      {pagination}
-    </React.Fragment>
-  );
-};
-
-CollectionPage.mapDataToProps = {
-  collectionIRI: NS.as('partOf'),
-  views: {
-    label: NS.as('pages'),
-    limit: Infinity,
-    returnType: 'statement',
-  },
-};
-CollectionPage.propTypes = {
-  collectionDisplay: linkType,
-  collectionIRI: linkType,
-  columns: linkType,
-  currentPage: PropTypes.string,
-  depth: PropTypes.number,
-  views: PropTypes.arrayOf(linkType),
-};
-
-const ReduxCollectionPage = connect((state, { subject }) => ({
-  currentPage: getPage(state, subject),
-}))(CollectionPage);
-const ConnectedCollectionView = withLinkCtx(ReduxCollectionPage);
-
-const CollectionViewCardAppendix = ({ collectionDisplay, totalCount }) => {
-  if (totalCount.value === '0') {
-    return null;
-  }
-
-  return (
-    <CardRow backdrop>
-      <Property
-        forceRender
-        collectionDisplay={collectionDisplay}
-        label={NS.as('items')}
-        renderLimit={Infinity}
-        topology={cardRowTopology}
-      />
-    </CardRow>
-  );
-};
-
-CollectionViewCardAppendix.propTypes = mvcPropTypes;
-
-const collectionViewSection = (shortCircuit = true) => {
-  const CollectionViewSection = ({ collectionDisplay, totalCount }) => {
-    if (shortCircuit && totalCount.value === '0') {
-      return null;
+      return (
+        <Property
+          forceRender
+          collectionDisplay={props.collectionDisplay}
+          columns={props.columns}
+          depth={props.depth}
+          label={NS.as('items')}
+          renderLimit={Infinity}
+        />
+      );
     }
 
     return (
       <Property
-        forceRender
-        collectionDisplay={collectionDisplay}
-        label={NS.as('items')}
-        renderLimit={Infinity}
-        topology={cardListTopology}
+        currentPage={props.subject.value}
+        hidePagination={hidePagination}
+        label={NS.as('partOf')}
+        redirectPagination={redirect}
       />
     );
   };
 
-  CollectionViewSection.propTypes = mvcPropTypes;
+  CollectionPage.type = CollectionViewTypes;
 
-  return CollectionViewSection;
-};
+  CollectionPage.topology = topology;
 
-const membersViewsCount = {
-  totalCount: {
-    label: NS.as('totalItems'),
-  },
-};
+  CollectionPage.hocs = [withRouter];
+
+  CollectionPage.mapDataToProps = [NS.ontola('collectionDisplay')];
+
+  CollectionPage.propTypes = {
+    collectionDisplay: linkType,
+    columns: linkType,
+    depth: PropTypes.number,
+    insideCollection: PropTypes.bool,
+    location: PropTypes.shape({
+      pathname: PropTypes.string,
+    }),
+    redirectPagination: PropTypes.bool,
+    subject: subjectType,
+  };
+
+  return CollectionPage;
+}
+
+const DefaultCollectionPage = getCollectionPage({
+  topology: allTopologiesExcept(pageTopology, primaryResourceTopology),
+});
+
+const PageCollectionPage = getCollectionPage({
+  hidePagination: false,
+  redirect: true,
+  topology: [pageTopology, primaryResourceTopology],
+});
 
 export default [
-  LinkedRenderStore.registerRenderer(
-    link(membersViewsCount)(collectionViewSection()),
-    CollectionViewTypes,
-    RENDER_CLASS_NAME,
-    [
-      cardListTopology,
-      cardTopology,
-      cardFixedTopology,
-      cardMainTopology,
-      cardRowTopology,
-    ]
-  ),
-  LinkedRenderStore.registerRenderer(
-    link(membersViewsCount)(collectionViewSection(false)),
-    CollectionViewTypes,
-    RENDER_CLASS_NAME,
-    [
-      cardVoteEventTopology,
-      NS.argu('voteEventCollection'),
-    ]
-  ),
-  LinkedRenderStore.registerRenderer(
-    link(membersViewsCount)(CollectionViewCardAppendix),
-    CollectionViewTypes,
-    RENDER_CLASS_NAME,
-    cardAppendixTopology
-  ),
-  LinkedRenderStore.registerRenderer(
-    ConnectedCollectionView,
-    CollectionViewTypes,
-    RENDER_CLASS_NAME,
-    [
-      gridTopology,
-      widgetTopologyTopology,
-    ]
-  ),
-  LinkedRenderStore.registerRenderer(
-    ConnectedCollectionView,
-    CollectionViewTypes,
-    RENDER_CLASS_NAME,
-    [
-      undefined,
-      pageTopology,
-      containerTopology,
-    ]
-  ),
-  First,
+  register(DefaultCollectionPage),
+  register(PageCollectionPage),
   ...Items,
   Name,
-  ...baseCollection,
   ...Views,
   ...voteEvent,
 ];

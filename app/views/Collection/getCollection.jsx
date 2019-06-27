@@ -1,8 +1,8 @@
 import {
-  link,
   linkedPropType,
   LinkedResourceContainer,
   linkType,
+  lrsType,
   Property,
   subjectType,
 } from 'link-redux';
@@ -11,27 +11,64 @@ import { NamedNode } from 'rdflib';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { CardHeader, Resource } from '../../components';
+import { Resource } from '../../components';
+import { listToArr } from '../../helpers/data';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { gotoPage } from '../../state/pagination/actions';
 import { getPage } from '../../state/pagination/selectors';
+
+import { CollectionTypes } from './types';
 
 export default function getCollection({
   WrappingElement = Resource,
-  fullPage = true,
   omniform = false,
+  redirect = false,
   renderParent = false,
   renderWhenEmpty = true,
+  topology = [],
 } = {}) {
   class Collection extends React.Component {
+    static type = CollectionTypes;
+
+    static topology = topology;
+
+    static hocs = [
+      connect(
+        (state, { currentPage, renderWhenEmpty: rwe, subject }) => ({
+          currentPage: getPage(state, subject.value) || currentPage,
+          renderWhenEmpty: rwe || renderWhenEmpty,
+        }),
+        (dispatch, { subject }) => ({
+          onPageChange: url => dispatch(gotoPage(subject.value, url)),
+        })
+      ),
+    ];
+
+    static mapDataToProps = {
+      collectionDisplay: NS.ontola('collectionDisplay'),
+      collectionType: NS.ontola('collectionType'),
+      columns: NS.ontola('columns'),
+      defaultType: NS.ontola('defaultType'),
+      pages: {
+        label: NS.as('pages'),
+        limit: Infinity,
+      },
+      totalItems: NS.as('totalItems'),
+    };
+
     static propTypes = {
       collectionDisplay: linkType,
+      collectionType: linkType,
       columns: linkType,
       currentPage: PropTypes.string,
-      defaultType: linkType,
       depth: PropTypes.number,
+      hidePagination: PropTypes.bool,
       linkVersion: PropTypes.number,
       linkedProp: linkedPropType,
+      lrs: lrsType,
+      onPageChange: PropTypes.func,
       pages: linkType,
+      redirectPagination: PropTypes.bool,
       renderWhenEmpty: PropTypes.bool,
       subject: subjectType,
       totalItems: linkType,
@@ -45,91 +82,94 @@ export default function getCollection({
         || this.props.pages !== nextProps.pages;
     }
 
-    pagination() {
-      const { defaultType, pages } = this.props;
-      if (defaultType && defaultType.value === 'infinite') {
-        const lastPage = pages && pages[pages.length - 1];
-
-        if (!lastPage) {
-          return null;
-        }
-
+    body(columns) {
+      if (this.props.currentPage) {
         return (
-          <LinkedResourceContainer subject={lastPage}>
-            <Property label={NS.as('next')} />
-          </LinkedResourceContainer>
+          <LinkedResourceContainer
+            forceRender
+            insideCollection
+            collectionDisplay={this.props.collectionDisplay}
+            columns={columns}
+            depth={this.props.depth}
+            redirectPagination={redirect || this.props.redirectPagination}
+            subject={new NamedNode(this.props.currentPage)}
+          />
         );
       }
 
-      return null;
+      return (
+        <Property
+          forceRender
+          insideCollection
+          collectionDisplay={this.props.collectionDisplay}
+          columns={columns}
+          depth={this.props.depth}
+          label={NS.as('pages')}
+        />
+      );
     }
 
-    render() {
+    pagination() {
+      if (this.props.hidePagination) {
+        return <Property label={NS.as('totalItems')} />;
+      }
+
+      switch (this.props.collectionType) {
+        case NS.ontola('collectionType/infinite'):
+          return (
+            <Property
+              forceRender
+              currentPage={this.props.currentPage}
+              label={NS.ontola('infinitePagination')}
+              redirectPagination={this.props.redirectPagination}
+            />
+          );
+        default:
+          return (
+            <Property
+              forceRender
+              currentPage={this.props.currentPage}
+              label={NS.ontola('defaultPagination')}
+              redirectPagination={this.props.redirectPagination}
+              onPageChange={this.props.onPageChange}
+            />
+          );
+      }
+    }
+
+    renderCollection() {
       const {
-        collectionDisplay,
         columns,
         depth,
-        pages,
+        lrs,
         totalItems,
       } = this.props;
       if (!this.props.renderWhenEmpty && totalItems && totalItems.value === '0') {
         return null;
       }
 
-      let children;
-      if (this.props.currentPage) {
-        children = (
-          <LinkedResourceContainer
-            collectionDisplay={collectionDisplay}
-            columns={columns}
-            depth={depth}
-            subject={new NamedNode(this.props.currentPage)}
-          />
-        );
-      } else {
-        children = (
-          <Property
-            forceRender
-            insideCollection
-            collectionDisplay={collectionDisplay}
-            columns={columns}
-            depth={depth}
-            label={NS.as('pages')}
-          />
-        );
-      }
-      const name = fullPage && pages.length > 0 ? <Property label={NS.as('name')} /> : null;
-      const newButton = <Property label={NS.ontola('createAction')} omniform={omniform} />;
-      const header = (!depth || depth === 0) && (
-        <CardHeader header={name}>
-          {newButton}
-        </CardHeader>
-      );
+      const resolvedColumns = columns ? listToArr(lrs, [], columns) : undefined;
+      const header = (!depth || depth === 0) && <Property forceRender label={NS.ontola('header')} omniform={omniform} />;
 
       return (
         <WrappingElement wrapperProps={{ className: `Collection__Depth-${depth}` }}>
           {renderParent && <Property label={NS.schema('isPartOf')} />}
           {header}
-          {children}
-          {this.pagination()}
+          <Property
+            forceRender
+            body={this.body(resolvedColumns)}
+            columns={resolvedColumns}
+            label={NS.ontola('collectionFrame')}
+            pagination={this.pagination()}
+          />
         </WrappingElement>
       );
     }
+
+    render() {
+      return this.renderCollection();
+    }
   }
 
-  const ReduxCollection = connect((state, { renderWhenEmpty: rwe, subject }) => ({
-    currentPage: getPage(state, subject.value),
-    renderWhenEmpty: rwe || renderWhenEmpty,
-  }))(Collection);
-
-  return link({
-    collectionDisplay: NS.ontola('collectionDisplay'),
-    columns: NS.ontola('columns'),
-    defaultType: NS.ontola('defaultType'),
-    pages: {
-      label: NS.as('pages'),
-      limit: Infinity,
-    },
-    totalItems: NS.as('totalItems'),
-  })(ReduxCollection);
+  return Collection;
 }
