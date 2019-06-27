@@ -82,7 +82,6 @@ export {
 } from './components/SignInForm/index';
 export { default as SkipNavigation } from './components/SkipNavigation/index';
 export { default as Spinner } from './components/Spinner/index';
-export { default as Tab } from './components/Tab/Tab';
 export { default as Tag } from './components/Tag/index';
 export { default as VerticalScroller } from './components/VerticalScroller/index';
 // export { default as VideoPlayer } from './components/VideoPlayer/index';

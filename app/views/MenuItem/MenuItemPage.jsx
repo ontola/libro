@@ -1,3 +1,4 @@
+import AppBar from '@material-ui/core/AppBar';
 import {
   LinkedResourceContainer,
   linkType,
@@ -10,8 +11,7 @@ import { NamedNode } from 'rdflib';
 import React from 'react';
 import { Redirect, withRouter } from 'react-router';
 
-import TabBarWrapper from '../../components/TabBarWrapper';
-import { seqToArr } from '../../helpers/data';
+import { containerToArr, seqToArr } from '../../helpers/data';
 import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { pageTopology } from '../../topologies/Page';
@@ -52,6 +52,27 @@ class MenuItemPage extends React.PureComponent {
   static defaultProps = {
     topLevel: true,
   };
+
+  menuItemTabs() {
+    if (!__CLIENT__) {
+      return null;
+    }
+
+    const items = containerToArr(this.props.lrs, [], this.props.menuItems);
+
+    if (Object.prototype.hasOwnProperty.call(items, 'then')) {
+      // TODO: Loading
+      return null;
+    }
+
+    return items.map(iri => (
+      <LinkedResourceContainer
+        key={iri.value}
+        subject={iri}
+        value={iri.value}
+      />
+    ));
+  }
 
   redirectTarget() {
     const {
@@ -108,11 +129,11 @@ class MenuItemPage extends React.PureComponent {
           <React.Fragment>
             <PageHeader>
               <Property label={NS.schema('isPartOf')} />
-              <TabBarWrapper>
+              <AppBar color="inherit" elevation={0} position="static">
                 <TabBar>
-                  <Property label={NS.ontola('menuItems')} />
+                  {this.menuItemTabs()}
                 </TabBar>
-              </TabBarWrapper>
+              </AppBar>
             </PageHeader>
           </React.Fragment>
         )}

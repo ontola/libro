@@ -1,16 +1,9 @@
+import components from './components';
 import variables from './variables';
 
-const req = require.context('./components', false, /.js$/);
-let overrides = {};
+variables.theme.overrides = components.reduce(
+  (acc, component) => ({ ...acc, ...component(variables) }),
+  {}
+);
 
-req.keys().forEach((filename) => {
-  overrides = {
-    ...overrides,
-    ...req(filename).default(variables),
-  };
-});
-
-export default {
-  ...variables.theme,
-  overrides,
-};
+export default variables.theme;

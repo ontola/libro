@@ -2,7 +2,6 @@ import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   link,
   linkType,
-  Property,
   lrsType,
   subjectType,
 } from 'link-redux';
@@ -10,17 +9,15 @@ import React from 'react';
 
 import {
   DropdownLink,
-  Resource,
-  Tab,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { dropdownContentTopology } from '../../topologies/DropdownContent';
-import { tabBarTopology } from '../../topologies/TabBar';
 
 import MenuItemAppMenu from './MenuItemAppMenu';
 import MenuItemDropdown from './MenuItemDropdown';
 import MenuItemPage from './MenuItemPage';
 import MenuItemHeader from './MenuItemNavbar';
+import MenuItemTab from './MenuItemTab';
 import Href from './properties/href';
 import LabelCard from './properties/labelCard';
 import LabelHeader from './properties/labelHeader';
@@ -80,24 +77,12 @@ MenuItemDropdownContent.propTypes = {
   subject: subjectType,
 };
 
-const MenuItemTab = ({ name }) => (
-  <Resource>
-    <Tab
-      icon={<Property label={NS.schema('image')} />}
-      label={name.value}
-    />
-  </Resource>
-);
-
-MenuItemTab.propTypes = {
-  name: linkType,
-};
-
 export default [
   MenuItemAppMenu,
   MenuItemDropdown,
   MenuItemPage,
   MenuItemHeader,
+  MenuItemTab,
   LinkedRenderStore.registerRenderer(
     link([
       NS.ontola('action'),
@@ -108,19 +93,6 @@ export default [
     NS.ontola('MenuItem'),
     RENDER_CLASS_NAME,
     dropdownContentTopology
-  ),
-  LinkedRenderStore.registerRenderer(
-    link([
-      NS.schema('name'),
-    ])(MenuItemTab),
-    [
-      NS.ontola('MenuItem'),
-      NS.argu('MenuSection'),
-      NS.argu('SubMenu'),
-      NS.argu('Menu'),
-    ],
-    RENDER_CLASS_NAME,
-    tabBarTopology
   ),
   Href,
   LabelCard,
