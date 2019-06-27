@@ -7,7 +7,9 @@ import { addLocaleData, injectIntl, IntlProvider } from 'react-intl';
 import enLocaleData from 'react-intl/locale-data/en';
 import nlLocaleData from 'react-intl/locale-data/nl';
 import { Provider } from 'react-redux';
+import { ThemeProvider } from '@material-ui/styles';
 
+import theme from '../themes/common/theme';
 import AppFrame from '../routes/App';
 import englishMessages from '../translations/en.json';
 import dutchMessages from '../translations/nl.json';
@@ -47,9 +49,11 @@ const IndexContainer = ({
       <IntlProvider locale={selectedLang} messages={messages}>
         <RenderStoreProvider value={lrs}>
           <UpdateLRSIntl>
-            <Router>
-              <AppFrame title={title} />
-            </Router>
+            <ThemeProvider theme={theme}>
+              <Router>
+                <AppFrame title={title} />
+              </Router>
+            </ThemeProvider>
           </UpdateLRSIntl>
         </RenderStoreProvider>
       </IntlProvider>
