@@ -129,10 +129,13 @@ export default [
     connectHighlighting(ThingSection),
     NS.schema('Thing'),
     RENDER_CLASS_NAME,
-    [
-      cardRowTopology,
-      cardListTopology,
-    ]
+    cardListTopology
+  ),
+  LinkedRenderStore.registerRenderer(
+    connectHighlighting(props => <CardContent><ThingSection {...props} /></CardContent>),
+    NS.schema('Thing'),
+    RENDER_CLASS_NAME,
+    cardRowTopology
   ),
   LinkedRenderStore.registerRenderer(
     link([NS.schema('name')])(({ name, theme }) => (
