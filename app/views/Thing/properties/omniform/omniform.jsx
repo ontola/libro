@@ -81,7 +81,7 @@ class OmniformProp extends React.PureComponent {
       );
     }
 
-    const allDisabled = actionsAreAllDisabled(filterActions(potentialAction), lrs);
+    const allDisabled = actionsAreAllDisabled(filterActions(lrs, potentialAction), lrs);
     if (allDisabled) {
       return null;
     }

@@ -12,13 +12,13 @@ import FontAwesome from 'react-fontawesome';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
-import { allowSort } from '../../helpers/data';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { highlightResource } from '../../state/app/actions';
 import { getOmniformAction, omniformSetAction } from '../../state/omniform';
 import FormFooter from '../../topologies/FormFooter/Footer';
 import OmniformFields from '../../topologies/OmniformFields/OmniformFields';
 import EntryPointBase from '../../views/EntryPoint/EntryPointBase';
+import { filterActions } from '../../views/Thing/properties/omniform/helpers';
 import Button from '../Button';
 import { Form, FormFooterRight } from '../Form';
 
@@ -178,7 +178,8 @@ class Omniform extends EntryPointBase {
 Omniform.propTypes = propTypes;
 
 const mapStateToProps = (state, ownProps) => {
-  const actions = allowSort(ownProps.actions, FILTER, ORDER);
+  const actions = filterActions(ownProps.lrs, ownProps.actions);
+
   const formName = `Omniform-${ownProps.parentIRI}`;
   const action = getOmniformAction(state, ownProps.parentIRI) || actions.first();
 

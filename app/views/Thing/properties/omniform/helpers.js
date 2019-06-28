@@ -2,7 +2,16 @@ import { FILTER, ORDER } from '../../../../components/Omniform';
 import { allowSort } from '../../../../helpers/data';
 import { NS } from '../../../../helpers/LinkedRenderStore';
 
-export const filterActions = potentialAction => allowSort(potentialAction, FILTER, ORDER);
+export const filterActions = (lrs, potentialAction) => {
+  const actionCollection = potentialAction.find(action => /\/actions$/.test(action.value));
+  if (__CLIENT__ && actionCollection) {
+    lrs.getEntity(actionCollection);
+
+    return [];
+  }
+
+  return allowSort(potentialAction, FILTER, ORDER);
+};
 
 export const invalidStatuses = [NS.ontola('DisabledActionStatus'), NS.ontola('ExpiredActionStatus')];
 

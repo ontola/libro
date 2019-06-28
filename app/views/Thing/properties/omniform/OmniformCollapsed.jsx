@@ -119,7 +119,7 @@ class CollapsedOmniformProp extends Component {
       );
     }
 
-    const items = filterActions(potentialAction);
+    const items = filterActions(lrs, potentialAction);
 
     if (!clickToOpen || items.length === 0 || actionsAreAllDisabled(items, lrs)) {
       return null;
