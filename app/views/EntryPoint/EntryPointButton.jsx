@@ -6,6 +6,7 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { cardListTopology } from '../../topologies/Card/CardList';
+import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 
 export default LinkedRenderStore.registerRenderer(
   link([NS.schema('name')])(ActionButton),
@@ -15,5 +16,6 @@ export default LinkedRenderStore.registerRenderer(
     actionsBarTopology,
     cardFloatTopology,
     cardListTopology,
+    containerFloatTopology,
   ]
 );

@@ -9,13 +9,14 @@ import PropTypes from 'prop-types';
 import { Button } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
+import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 
 const defaultTopology = NS.argu('cardList');
 
 class EntryPointButton extends React.PureComponent {
   static type = NS.schema('EntryPoint');
 
-  static topology = cardFloatTopology;
+  static topology = [cardFloatTopology, containerFloatTopology];
 
   static propTypes = {
     name: linkType,

@@ -12,6 +12,7 @@ import { omniformOpenInline, omniformSetAction } from '../../state/omniform';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { cardListTopology } from '../../topologies/Card/CardList';
+import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 import { invalidStatuses } from '../Thing/properties/omniform/helpers';
 
 const mapCardListDispatchToProps = (dispatch, ownProps) => ({
@@ -34,6 +35,7 @@ class InlineCreateAction extends React.PureComponent {
     actionsBarTopology,
     cardListTopology,
     cardFloatTopology,
+    containerFloatTopology,
   ];
 
   static mapDataToProps = [

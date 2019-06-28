@@ -12,6 +12,7 @@ import { cardListTopology } from '../../topologies/Card/CardList';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { cardVoteEventTopology } from '../../topologies/CardVoteEvent';
 import { containerTopology } from '../../topologies/Container';
+import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 import { contentDetailsTopology } from '../../topologies/ContentDetails';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
@@ -42,6 +43,7 @@ class EntryPoint extends React.PureComponent {
     cardFloatTopology,
     cardListTopology,
     containerTopology,
+    containerFloatTopology,
     contentDetailsTopology,
     detailsBarTopology,
     omniformFieldsTopology

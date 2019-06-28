@@ -25,6 +25,7 @@ import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
 import { cardVoteEventTopology } from '../../topologies/CardVoteEvent';
 import { containerTopology } from '../../topologies/Container';
+import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 import { contentDetailsTopology } from '../../topologies/ContentDetails';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { alertDialogTopology } from '../../topologies/Dialog';
@@ -130,6 +131,7 @@ export default [
     RENDER_CLASS_NAME,
     [
       cardFloatTopology,
+      containerFloatTopology,
       detailsBarTopology,
       contentDetailsTopology,
     ]

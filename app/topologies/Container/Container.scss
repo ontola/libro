@@ -57,3 +57,21 @@
     }
   }
 }
+
+.ContainerHeader {
+  display: flex;
+  margin: 1rem 0;
+
+  &--header {
+    flex: 1;
+
+    .Heading {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.ContainerFloat {
+  align-items: center;
+  display: flex;
+}

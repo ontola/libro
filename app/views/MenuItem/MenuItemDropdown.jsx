@@ -13,6 +13,7 @@ import {
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
+import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 import { dropdownContentTopology } from '../../topologies/DropdownContent';
 import { handle } from '../../helpers/logging';
 import { renderError } from '../../topologies/Topology';
@@ -27,7 +28,7 @@ class MenuItemDropdown extends React.Component {
     NS.argu('Menu'),
   ];
 
-  static topology = cardFloatTopology;
+  static topology = [cardFloatTopology, containerFloatTopology];
 
   static mapDataToProps = [NS.ontola('menuItems')];
 

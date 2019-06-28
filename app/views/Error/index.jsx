@@ -24,6 +24,7 @@ import { cardListTopology } from '../../topologies/Card/CardList';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
 import Container, { containerTopology } from '../../topologies/Container';
+import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { dropdownContentTopology } from '../../topologies/DropdownContent';
@@ -224,6 +225,7 @@ export default [
       cardTopology,
       cardMainTopology,
       cardRowTopology,
+      containerFloatTopology,
       detailsBarTopology,
       hoverBoxTopology,
       inlineTopology,

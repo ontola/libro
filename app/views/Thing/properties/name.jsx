@@ -17,6 +17,7 @@ import { cardListTopology } from '../../../topologies/Card/CardList';
 import { cardMainTopology } from '../../../topologies/Card/CardMain';
 import { cardRowTopology } from '../../../topologies/Card/CardRow';
 import { containerTopology } from '../../../topologies/Container';
+import { containerFloatTopology } from '../../../topologies/Container/ContainerFloat';
 import { hoverBoxTopology } from '../../../topologies/HoverBox';
 import { inlineTopology } from '../../../topologies/Inline';
 import { navbarTopology } from '../../../topologies/Navbar';
@@ -105,6 +106,7 @@ export default [
       actionsBarTopology,
       cardFloatTopology,
       cardListTopology,
+      containerFloatTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(

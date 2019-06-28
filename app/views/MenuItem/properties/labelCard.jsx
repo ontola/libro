@@ -4,6 +4,7 @@ import React from 'react';
 import { Image } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { cardFloatTopology } from '../../../topologies/Card/CardFloat';
+import { containerFloatTopology } from '../../../topologies/Container/ContainerFloat';
 
 class MenuItemLabelCard extends React.PureComponent {
   static type = [
@@ -14,7 +15,7 @@ class MenuItemLabelCard extends React.PureComponent {
 
   static property = NS.schema('name');
 
-  static topology = cardFloatTopology;
+  static topology = [cardFloatTopology, containerFloatTopology];
 
   static mapDataToProps = [NS.schema('name'), NS.schema('image')];
 
