@@ -60,7 +60,7 @@ const getFrame = (Wrapper, topology) => {
               </tbody>
               <TableFooter>
                 <TableFooterRow>
-                  <TableFooterCell>
+                  <TableFooterCell colSpan={columns.length}>
                     {pagination}
                   </TableFooterCell>
                 </TableFooterRow>
