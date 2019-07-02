@@ -1,3 +1,7 @@
+
+import dayjs from 'dayjs';
+import 'dayjs/locale/nl';
+import 'dayjs/locale/en';
 import LinkedRenderStore from 'link-lib';
 import { RenderStoreProvider } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -35,7 +39,14 @@ const IndexContainer = ({
   title,
 }) => {
   const selectedLang = lrs.store.langPrefs[0];
-  const messages = selectedLang.includes('nl') ? dutchMessages : englishMessages;
+  let messages;
+  if (selectedLang.includes('nl')) {
+    messages = dutchMessages;
+    dayjs.locale('nl');
+  } else {
+    messages = englishMessages;
+    dayjs.locale('en');
+  }
 
   const UpdateLRSIntl = injectIntl(({ children, intl }) => {
     // eslint-disable-next-line no-param-reassign

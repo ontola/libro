@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { Literal, NamedNode } from 'rdflib';
 import React from 'react';
 import Textarea from 'react-autosize-textarea';
-import DateTimePicker from 'react-datetime-picker';
 import { FormattedMessage } from 'react-intl';
 
+import DateTimePicker from '../../containers/DateTimePicker';
 import TextEditor from '../../containers/TextEditor';
 import { NS } from '../../helpers/LinkedRenderStore';
 import FieldLabel from '../FieldLabel';
@@ -52,6 +52,7 @@ const propTypes = {
       PropTypes.string,
       PropTypes.instanceOf(Literal),
       PropTypes.instanceOf(NamedNode),
+      PropTypes.oneOf([null]),
     ]),
   }),
   // Text above input field
@@ -296,11 +297,10 @@ class FormField extends React.PureComponent {
       const value = inputValue && Object.prototype.hasOwnProperty.call(inputValue, 'termType')
         ? inputValue.value
         : inputValue;
-      const date = value && new Date(value);
 
       return (
         <DateTimePicker
-          value={date}
+          value={value || null}
           onChange={e => this.saveInputValue(e === null ? Literal.find('') : e)}
         />
       );
