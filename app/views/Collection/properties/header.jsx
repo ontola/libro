@@ -7,7 +7,6 @@ import { buildRegister } from '../../../helpers/buildRegister';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologiesExcept } from '../../../topologies';
 import { cardTopology } from '../../../topologies/Card';
-import { containerTopology } from '../../../topologies/Container';
 import ContainerHeader from '../../../components/Container/ContainerHeader';
 import { CollectionTypes } from '../types';
 
@@ -15,12 +14,6 @@ const propTypes = {
   omniform: PropTypes.bool,
   pages: linkType,
 };
-
-const defaultCollectionHeader = () => (
-  <React.Fragment>
-    <Property label={NS.as('name')} />
-  </React.Fragment>
-);
 
 const cardCollectionHeader = ({ omniform, pages }) => {
   const name = pages.length > 0 ? <Property label={NS.as('name')} /> : null;
@@ -57,9 +50,5 @@ const registerHeader = buildRegister({
 
 export default [
   registerHeader(cardCollectionHeader, { topology: cardTopology }),
-  registerHeader(containerCollectionHeader, { topology: containerTopology }),
-  registerHeader(defaultCollectionHeader, {
-    mapDataToProps: null,
-    topology: allTopologiesExcept(cardTopology, containerTopology),
-  }),
+  registerHeader(containerCollectionHeader, { topology: allTopologiesExcept(cardTopology) }),
 ];
