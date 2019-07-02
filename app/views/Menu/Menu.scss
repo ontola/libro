@@ -4,7 +4,7 @@
   flex-direction: column;
   position: absolute;
   width: 100%;
-  z-index: 150;
+  z-index: z(menu);
 
   &--positioner {
     &--floating {

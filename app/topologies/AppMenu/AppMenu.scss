@@ -9,7 +9,6 @@
   overflow-x: hidden;
   overflow-y: auto;
   pointer-events: all;
-  z-index: z(app-menu);
 
   &--floating {
     box-shadow: $box-shadow--intense;

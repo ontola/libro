@@ -6,6 +6,7 @@ import ReactDOMServer from 'react-dom/server';
 
 import getApp from '../../app/App';
 import generateLRS from '../../app/helpers/generateLRS';
+import spinner from '../../app/helpers/spinner';
 import { bundles, moduleBrowserVersions } from '../../bundleConfig';
 import pjson from '../../package.json';
 import * as constants from '../config';
@@ -195,13 +196,7 @@ export const renderFullPage = (req, res, websiteMeta, data) => {
                 }
               </style>
               <div class="preloader" id="preloader">
-                <div class="spinner">
-                  <div class="rect1"></div>
-                  <div class="rect2"></div>
-                  <div class="rect3"></div>
-                  <div class="rect4"></div>
-                  <div class="rect5"></div>
-                </div>
+                ${spinner}
               </div>
               <div 
                   id="navbar-preview" 

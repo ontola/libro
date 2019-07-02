@@ -144,22 +144,25 @@ $zindex-2: 200;
 $zindex-3: 300;
 $zindex-4: 400;
 $zindex-5: 500;
-$zindex-55: 550;
 $zindex-6: 600;
 $zindex-65: 650;
 $zindex-7: 700;
+$zindex-75: 750;
 $zindex-8: 800;
+$zindex-9: 900;
 
 $z-layers: (
-  'cover': $zindex-4,
   'hoverbox': $zindex-1,
   'progressbar': $zindex-1,
-  'app-menu': $zindex-4,
-  'modal-drop': $zindex-5,
-  'modal': $zindex-55,
-  'snackbar': $zindex-6,
-  'dropdown': $zindex-7,
-  'tooltip': $zindex-8,
+  'cover': $zindex-2,
+  'dropdown': $zindex-3,
+  'menu': $zindex-4,
+  'loader': $zindex-5,
+  'navbar': $zindex-6,
+  'modal-drop': $zindex-7,
+  'modal': $zindex-75,
+  'snackbar': $zindex-8,
+  'tooltip': $zindex-9,
 );
 
 // OTHERS

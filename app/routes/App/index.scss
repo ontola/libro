@@ -21,5 +21,12 @@
     height: 100vh;
     overflow-y: auto;
     position: relative;
+
+    .preloader {
+      opacity: 1;
+      background-color: $background-color;
+      top: 0;
+      z-index: z(loader);
+    }
   }
 }

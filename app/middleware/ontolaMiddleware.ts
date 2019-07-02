@@ -21,6 +21,7 @@ import { safeCredentials } from '../helpers/arguHelpers';
 import { retrievePath } from '../helpers/iris';
 import { handle } from '../helpers/logging';
 import ServiceWorkerCommunicator from '../helpers/ServiceWorkerCommunicator';
+import { redirectPage, reloadPage } from './reloading';
 
 const messages = defineMessages({
   copyFinished: {
@@ -186,17 +187,17 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
             } catch (e) {
               handle(e);
             }
-            window.location.reload();
+            reloadPage(false);
           }, () => {
             handle(new Error('User logout action failed'));
           });
       case store.namespaces.ontola('actions/refresh'):
         if (__CLIENT__) {
-          window.location.reload();
+          reloadPage(false);
         }
         return Promise.resolve();
       case store.namespaces.ontola('actions/reload'):
-        window.location.reload(true);
+        reloadPage(true);
         return Promise.resolve();
       case ontola(`actions/navigation/push`):
       case ontola(`actions/navigation/pop`):
@@ -230,7 +231,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       const location = new URL(value, window.location.origin).toString();
 
       if (reload && __CLIENT__) {
-        window.location.href = location;
+        redirectPage(location);
       } else {
         // TODO: connect to router
         history.push(retrievePath(location));

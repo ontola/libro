@@ -27,6 +27,7 @@ import {
 } from '../state/form/actions';
 
 import { frontendIRI } from './app';
+import { redirectPage, reloadPage } from './reloading';
 
 export const apiLogin = createAction(AFE_API_LOGIN);
 
@@ -88,10 +89,10 @@ export default (history, swc) => () => next => (action) => {
               }
               const { r } = action.payload;
               if (r && r.startsWith(frontendIRI.value)) {
-                window.location = r;
+                redirectPage(r);
               } else {
                 history.goBack();
-                window.location.reload();
+                reloadPage();
               }
               break;
             }
