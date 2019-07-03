@@ -11,6 +11,7 @@ import { allTopologiesExcept } from '../../../topologies';
 import { buildRegister } from '../../../helpers/buildRegister';
 import { CollectionTypes } from '../types';
 import CardRow from '../../../topologies/Card/CardRow';
+import { tableCellTopology } from '../../../topologies/TableCell';
 
 const propTypes = {
   linkedProp: linkType,
@@ -53,7 +54,7 @@ const registerTotalItems = buildRegister({
 
 export default [
   registerTotalItems(defaultCollectionTotalItems, {
-    topology: allTopologiesExcept(cardAppendixTopology),
+    topology: allTopologiesExcept(cardAppendixTopology, tableCellTopology),
   }),
   registerTotalItems(cardAppendixCollectionTotalItems, {
     topology: cardAppendixTopology,
