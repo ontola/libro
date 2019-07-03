@@ -7,7 +7,11 @@ import {
   PROXY_AUTHENTICATION_REQUIRED,
   TOO_MANY_REQUESTS,
 } from 'http-status-codes';
-import { FormattedMessage } from 'react-intl';
+import {
+  FormattedMessage,
+  injectIntl,
+  intlShape,
+} from 'react-intl';
 
 import { Button } from '../../components';
 import { handle } from '../../helpers/logging';
@@ -16,6 +20,7 @@ import { titleForStatus } from './ErrorMessages';
 
 const propTypes = {
   children: PropTypes.node,
+  intl: intlShape,
   linkRequestStatus: PropTypes.shape({
     status: PropTypes.number,
   }),
@@ -32,7 +37,7 @@ const RETRYABLE_ERRORS = [
   TOO_MANY_REQUESTS,
 ];
 
-class ErrorButtonWithFeedback extends React.Component {
+export class ErrorButtonWithFeedbackBase extends React.Component {
   static contextType = unstable.LRSCtx;
 
   constructor() {
@@ -78,13 +83,13 @@ class ErrorButtonWithFeedback extends React.Component {
   }
 
   render() {
-    const { linkRequestStatus } = this.props;
+    const { intl: { formatMessage }, linkRequestStatus } = this.props;
 
     return (
       <Button
         icon="refresh"
         loading={this.state.loading}
-        title={titleForStatus(linkRequestStatus)}
+        title={titleForStatus(formatMessage, linkRequestStatus)}
         onClick={this.reload}
         {...this.props}
       >
@@ -94,6 +99,6 @@ class ErrorButtonWithFeedback extends React.Component {
   }
 }
 
-ErrorButtonWithFeedback.propTypes = propTypes;
+ErrorButtonWithFeedbackBase.propTypes = propTypes;
 
-export default ErrorButtonWithFeedback;
+export default injectIntl(ErrorButtonWithFeedbackBase);

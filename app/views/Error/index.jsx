@@ -3,7 +3,11 @@ import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { subjectType, Type } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import {
+  FormattedMessage,
+  injectIntl,
+  intlShape,
+} from 'react-intl';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
@@ -55,6 +59,7 @@ const shouldShowSignIn = (userType, status) => userType === 'GuestUser'
 
 const propTypes = {
   caughtError: PropTypes.instanceOf(Error),
+  intl: intlShape,
   linkRequestStatus: PropTypes.shape({
     status: PropTypes.number,
   }),
@@ -66,7 +71,7 @@ const propTypes = {
 };
 
 const ErrorCardComp = (props) => {
-  const { linkRequestStatus, userType } = props;
+  const { intl: { formatMessage }, linkRequestStatus, userType } = props;
 
   let mainAction = (
     <ErrorButtonWithFeedback theme="box" {...props}>
@@ -88,9 +93,9 @@ const ErrorCardComp = (props) => {
         <Heading size="2" variant="alert">
           <FontAwesome name="exclamation-triangle" />
           {' '}
-          {headerForStatus(linkRequestStatus)}
+          {headerForStatus(formatMessage, linkRequestStatus)}
         </Heading>
-        <p>{bodyForStatus(linkRequestStatus)}</p>
+        <p>{bodyForStatus(formatMessage, linkRequestStatus)}</p>
         {mainAction}
       </CardContent>
     </Card>
@@ -99,11 +104,12 @@ const ErrorCardComp = (props) => {
 
 ErrorCardComp.propTypes = propTypes;
 
-const ErrorCard = withRouter(withUserType(ErrorCardComp));
+const ErrorCard = withRouter(withUserType(injectIntl(ErrorCardComp)));
 
 const ErrorPageComp = (props) => {
   const {
     caughtError,
+    intl: { formatMessage },
     linkRequestStatus,
     userType,
   } = props;
@@ -127,9 +133,9 @@ const ErrorPageComp = (props) => {
           <Heading size="1" variant="alert">
             <FontAwesome name="exclamation-triangle" />
             {' '}
-            {headerForStatus(linkRequestStatus) || (caughtError && caughtError.name)}
+            {headerForStatus(formatMessage, linkRequestStatus) || (caughtError && caughtError.name)}
           </Heading>
-          {bodyForStatus(linkRequestStatus)}
+          {bodyForStatus(formatMessage, linkRequestStatus)}
           {caughtError && <p>{caughtError.message}</p>}
           {__DEVELOPMENT__ && caughtError && <pre>{caughtError.stack}</pre>}
           <p>
@@ -156,7 +162,7 @@ const ErrorPageComp = (props) => {
 
 ErrorPageComp.propTypes = propTypes;
 
-const ErrorPage = withUserType(ErrorPageComp);
+const ErrorPage = withUserType(injectIntl(ErrorPageComp));
 
 const ErrorNavbar = (props) => {
   if (props.subject === NS.app('n?type=infinite')) {

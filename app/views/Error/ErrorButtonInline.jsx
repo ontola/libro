@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 
 import { Button } from '../../components';
 
-import ErrorButtonWithFeedback from './ErrorButtonWithFeedback';
+import { ErrorButtonWithFeedbackBase } from './ErrorButtonWithFeedback';
 import { titleForStatus } from './ErrorMessages';
 
 const propTypes = {
+  intl: intlShape,
   linkRequestStatus: PropTypes.shape({
     status: PropTypes.number,
   }),
@@ -15,9 +16,9 @@ const propTypes = {
   reloadLinkedObject: PropTypes.func.isRequired,
 };
 
-class ErrorButtonSideBar extends ErrorButtonWithFeedback {
+class ErrorButtonSideBar extends ErrorButtonWithFeedbackBase {
   render() {
-    const { linkRequestStatus } = this.props;
+    const { intl: { formatMessage }, linkRequestStatus } = this.props;
 
     return (
       <Button
@@ -25,7 +26,7 @@ class ErrorButtonSideBar extends ErrorButtonWithFeedback {
         icon="exclamation-triangle"
         loading={this.state.loading}
         theme="subtle"
-        title={titleForStatus(linkRequestStatus)}
+        title={titleForStatus(formatMessage, linkRequestStatus)}
         onClick={this.reload}
       >
         <FormattedMessage
@@ -39,4 +40,4 @@ class ErrorButtonSideBar extends ErrorButtonWithFeedback {
 
 ErrorButtonSideBar.propTypes = propTypes;
 
-export default ErrorButtonSideBar;
+export default injectIntl(ErrorButtonSideBar);

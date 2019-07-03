@@ -7,7 +7,7 @@ import { BlurButton } from '../../components';
 import NavbarLinkIcon from '../../components/NavbarLink/NavbarLinkIcon';
 import NavbarLinkLabel from '../../components/NavbarLink/NavbarLinkLabel';
 
-import ErrorButtonWithFeedback from './ErrorButtonWithFeedback';
+import { ErrorButtonWithFeedbackBase } from './ErrorButtonWithFeedback';
 import { messageBodyForStatus } from './ErrorMessages';
 
 const messages = defineMessages({
@@ -25,7 +25,7 @@ const propTypes = {
   reloadLinkedObject: PropTypes.func.isRequired,
 };
 
-class ErrorButtonHeader extends ErrorButtonWithFeedback {
+class ErrorButtonHeader extends ErrorButtonWithFeedbackBase {
   render() {
     const { intl, linkRequestStatus } = this.props;
 

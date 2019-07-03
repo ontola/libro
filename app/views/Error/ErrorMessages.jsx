@@ -1,6 +1,5 @@
 import HttpStatus from 'http-status-codes';
-import React from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 import { handle } from '../../helpers/logging';
 
@@ -158,16 +157,16 @@ export function messageBodyForStatus(requestStatus) {
   return msg;
 }
 
-export function bodyForStatus(requestStatus) {
+export function bodyForStatus(formatMessage, requestStatus) {
   const msg = messageBodyForStatus(requestStatus);
   if (!msg) {
     return null;
   }
 
-  return <FormattedMessage {...msg} />;
+  return formatMessage(msg);
 }
 
-export function headerForStatus(requestStatus) {
+export function headerForStatus(formatMessage, requestStatus) {
   if (!requestStatus.requested || requestStatus < HttpStatus.MULTIPLE_CHOICES) {
     return null;
   }
@@ -178,17 +177,13 @@ export function headerForStatus(requestStatus) {
     return null;
   }
 
-  return <FormattedMessage {...msg} />;
+  return formatMessage(msg);
 }
 
-export function titleForStatus(requestStatus) {
+export function titleForStatus(formatMessage, requestStatus) {
   if (!requestStatus || !requestStatus.requested) {
     return null;
   }
 
-  return (
-    <React.Fragment>
-      {headerForStatus(requestStatus)} - ${bodyForStatus(requestStatus)}
-    </React.Fragment>
-  );
+  return `${headerForStatus(formatMessage, requestStatus)} - ${bodyForStatus(formatMessage, requestStatus)}`;
 }
