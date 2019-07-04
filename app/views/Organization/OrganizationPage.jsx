@@ -1,6 +1,6 @@
 import {
+  LinkedResourceContainer,
   linkType,
-  Property,
   register,
 } from 'link-redux';
 import React from 'react';
@@ -13,51 +13,52 @@ import PrimaryResource, { primaryResourceTopology } from '../../topologies/Prima
 import Card from '../../topologies/Card';
 import CardContent from '../../components/Card/CardContent';
 import Container from '../../topologies/Container';
+import HomepageError from '../Error/HomepageError';
 
-class OrganizationPage extends React.PureComponent {
-  static type = [NS.schema('Organization'), NS.argu('Page'), NS.schema('WebSite')];
-
-  static topology = [
-    primaryResourceTopology,
-    pageTopology,
-  ];
-
-  static mapDataToProps = [
-    NS.foaf('homepage'),
-    NS.schema('name'),
-  ];
-
-  static propTypes = {
-    homepage: linkType,
-  };
-
-  render() {
-    const { homepage } = this.props;
-
-    if (homepage) {
-      return (
-        <Property label={NS.foaf('homepage')} />
-      );
-    }
-
-    return (
-      <PrimaryResource>
-        <PageHeader />
-        <Container>
-          <Card>
-            <CardContent>
-              <p>
-                <FormattedMessage
-                  defaultMessage="This website is private. Only members are allowed to view its contents. Ask a member or the managers about how you can get access."
-                  id="https://app.argu.co/i18n/pages/closed"
-                />
-              </p>
-            </CardContent>
-          </Card>
-        </Container>
-      </PrimaryResource>
-    );
+const OrganizationPage = ({ homepage, name }) => {
+  if (homepage) {
+    return <LinkedResourceContainer subject={homepage} onError={HomepageError} />;
   }
-}
+
+  return (
+    <PrimaryResource>
+      <PageHeader />
+      <Container>
+        <Card>
+          <CardContent>
+            <p>
+              <FormattedMessage
+                defaultMessage="Welcome to {name}!"
+                id="https://app.argu.co/i18n/pages/noHomepage"
+                values={{ name }}
+              />
+            </p>
+          </CardContent>
+        </Card>
+      </Container>
+    </PrimaryResource>
+  );
+};
+
+OrganizationPage.type = [
+  NS.schema('Organization'),
+  NS.argu('Page'),
+  NS.schema('WebSite'),
+];
+
+OrganizationPage.topology = [
+  primaryResourceTopology,
+  pageTopology,
+];
+
+OrganizationPage.mapDataToProps = [
+  NS.foaf('homepage'),
+  NS.schema('name'),
+];
+
+OrganizationPage.propTypes = {
+  homepage: linkType,
+  name: linkType,
+};
 
 export default register(OrganizationPage);

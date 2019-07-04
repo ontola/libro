@@ -162,7 +162,7 @@ const ErrorPageComp = (props) => {
 
 ErrorPageComp.propTypes = propTypes;
 
-const ErrorPage = withUserType(injectIntl(ErrorPageComp));
+export const ErrorPage = withUserType(injectIntl(ErrorPageComp));
 
 const ErrorNavbar = (props) => {
   if (props.subject === NS.app('n?type=infinite')) {
