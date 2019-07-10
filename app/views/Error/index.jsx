@@ -1,6 +1,6 @@
 import HttpStatus from 'http-status-codes';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { subjectType, Type } from 'link-redux';
+import { subjectType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
@@ -190,9 +190,9 @@ export default [
     pageTopology
   ),
   LinkedRenderStore.registerRenderer(
-    () => (
+    props => (
       <Container>
-        <Type />
+        <ErrorCard {...props} />
       </Container>
     ),
     NS.ll('ErrorResource'),
