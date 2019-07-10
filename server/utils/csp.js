@@ -2,10 +2,7 @@ import csp from 'helmet-csp';
 
 import {
   ASSETS_HOST,
-  AWS_BUCKET,
-  MAPBOX_TILE_API_BASE,
 } from '../../app/config';
-import { mapboxKey } from '../config';
 
 const defaultSrc = ["'self'"];
 
@@ -13,22 +10,7 @@ const childSrc = ['https://youtube.com', 'https://www.youtube.com'];
 const connectSrc = ["'self'", 'https://api.notubiz.nl', 'https://www.facebook.com'];
 const fontSrc = ["'self'", 'https://maxcdn.bootstrapcdn.com', 'https://fonts.gstatic.com'];
 const frameSrc = ['https://youtube.com', 'https://www.youtube.com'];
-const imgSrc = [
-  "'self'",
-  'data:',
-  'https://www.gravatar.com',
-  'https://twemoji.maxcdn.com',
-];
-if (AWS_BUCKET) {
-  imgSrc.push(`https://${AWS_BUCKET}.s3.amazonaws.com`);
-  imgSrc.push(`https://${AWS_BUCKET}.s3.eu-central-1.amazonaws.com`);
-}
-if (ASSETS_HOST) {
-  imgSrc.push(ASSETS_HOST);
-}
-if (mapboxKey) {
-  imgSrc.push(MAPBOX_TILE_API_BASE);
-}
+const imgSrc = ['*'];
 const objectSrc = ["'none'"];
 const sandbox = [
   'allow-forms',
