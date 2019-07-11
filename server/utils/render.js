@@ -147,6 +147,7 @@ export const renderFullPage = (req, res, websiteMeta, data) => {
       
               <meta name="csrf-param" content="authenticity_token">
               <meta name="csrf-token" content="${csrfToken}">
+              ${constants.websocketPath ? `<meta name="websocket-path" content="${constants.websocketPath}">` : ''}
               ${constants.bugsnagKey ? '<script async src="//d2wy8f7a9ursnm.cloudfront.net/v5/bugsnag.min.js"></script>' : ''}
               <script nonce="${nonceStr}">window.bugsnagClient = typeof bugsnag !== 'undefined' && bugsnag(${JSON.stringify(bugsnagOpts)})</script>
       

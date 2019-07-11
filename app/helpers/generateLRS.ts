@@ -11,11 +11,12 @@ import {
 } from 'rdflib';
 import { ReactType } from 'react';
 
-import { FRONTEND_ACCEPT, WEBSOCKET_PATH } from '../config';
+import { FRONTEND_ACCEPT } from '../config';
 import { appMiddleware, website } from '../middleware/app';
 import execFilter from '../middleware/execFilter';
 import logging from '../middleware/logging';
 import ontolaMiddleware from '../middleware/ontolaMiddleware';
+import { getMetaContent } from './arguHelpers';
 
 // @ts-ignore
 import { arguDeltaProcessor } from './data';
@@ -77,8 +78,10 @@ function generateLRS() {
     NS.link('Document'),
   ];
 
-  if (__CLIENT__ && WEBSOCKET_PATH) {
-    initializeCable(LRS, WEBSOCKET_PATH).then(() => {
+  const websocketPath = getMetaContent('websocket-path');
+
+  if (__CLIENT__ && websocketPath) {
+    initializeCable(LRS, websocketPath).then(() => {
       subscribeDeltaChannel(LRS, 'UserChannel');
     });
   }

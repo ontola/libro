@@ -65,7 +65,6 @@ const common = {
       'process.env': {
         ARGU_API_URL: JSON.stringify(process.env.ARGU_API_URL),
         NODE_ENV: process.env.NODE_ENV === 'development' ? '"development"' : '"production"',
-        WEBSOCKET_PATH: JSON.stringify(process.env.WEBSOCKET_PATH),
       },
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),

@@ -14,6 +14,7 @@ export const svcDNSPrefix = process.env.SERVICE_DNS_PREFIX === undefined ? 'svc'
 export const logLevel = process.env.LOG_LEVEL || 'info';
 export const clientId = process.env.ARGU_APP_ID;
 export const clientSecret = process.env.ARGU_APP_SECRET;
+export const websocketPath = process.env.WEBSOCKET_PATH;
 
 export const clusterURLBase = process.env.CLUSTER_URL_BASE || `${namespace ? `.${namespace}` : ''}${svcDNSPrefix ? `.${svcDNSPrefix}` : ''}.${clusterDomain}`;
 
