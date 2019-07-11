@@ -126,13 +126,13 @@ export const renderFullPage = (req, res, websiteMeta, data) => {
         `<!doctype html>
           <html lang="${language}">
             <head>
-              <meta charset="utf-8" />
-              <link rel="stylesheet" href="/static/preloader.css" />
+              <meta charset="utf-8">
+              <link rel="stylesheet" href="/static/preloader.css">
               <link rel="manifest" href="${manifestLocation}">
               ${headers?.title?.toString()}
       
-              <meta name="website-iri" content="${websiteMeta.website || ''}" />
-              <meta property="og:type" content="website" />
+              <meta name="website-iri" content="${websiteMeta.website || ''}">
+              <meta property="og:type" content="website">
               <meta name="mobile-web-app-capable" content="yes">
               <meta name="apple-mobile-web-app-capable" content="yes">
               <meta name="application-name" content="${websiteMeta.title}">
@@ -141,8 +141,9 @@ export const renderFullPage = (req, res, websiteMeta, data) => {
               <meta name="msapplication-navbutton-color" content="#60707F">
               <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
               <meta name="msapplication-starturl" content="/">
-              <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1, maximum-scale=1.0, user-scalable=yes" />
+              <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1, maximum-scale=1.0, user-scalable=yes">
               <meta content="269911176456825" property="fb:app_id">
+              <meta name="theme" content="${websiteMeta.cssClass}">
               ${headers?.meta?.toString()}
       
               <meta name="csrf-param" content="authenticity_token">
@@ -177,23 +178,23 @@ export const renderFullPage = (req, res, websiteMeta, data) => {
             <body style="margin: 0;">
               <style id="theme-config">
                 :root {
-                  --accent-background-color:${websiteMeta.accentBackgroundColor}; 
-                  --accent-color:${websiteMeta.accentColor}; 
-                  --navbar-background:${websiteMeta.navbarBackground}; 
-                  --navbar-color:${websiteMeta.navbarColor}; 
-                  --navbar-color-hover:${websiteMeta.navbarColor}12; 
+                  --accent-background-color:${websiteMeta.secondaryMain}; 
+                  --accent-color:${websiteMeta.secondaryText}; 
+                  --navbar-background:${websiteMeta.primaryMain}; 
+                  --navbar-color:${websiteMeta.primaryText}; 
+                  --navbar-color-hover:${websiteMeta.primaryText}12; 
                 }
                 .accent-background-color {
-                  background-color: ${websiteMeta.accentBackgroundColor};
+                  background-color: ${websiteMeta.secondaryMain};
                 }
                 .accent-color {
-                  color: ${websiteMeta.accentColor};
+                  color: ${websiteMeta.secondaryText};
                 }
                 .navbar-background {
-                  background: ${websiteMeta.navbarBackground};
+                  background: ${websiteMeta.primaryMain};
                 }
                 .navbar-color {
-                  color: ${websiteMeta.navbarColor};
+                  color: ${websiteMeta.primaryText};
                 }
               </style>
               <div class="preloader" id="preloader">
@@ -228,6 +229,9 @@ export const renderFullPage = (req, res, websiteMeta, data) => {
               <script nonce="${nonceStr}" type="application/javascript">
                   var seed = document.getElementById('seed');
                   window.INITIAL__DATA = seed ? seed.textContent : '';
+              </script>
+              <script nonce="${nonceStr}" type="application/javascript">
+                  window.WEBSITE_META = JSON.parse('${JSON.stringify(websiteMeta)}')
               </script>
             </body>
           </html>`

@@ -51,11 +51,11 @@ export default function application(port) {
       }
       const websiteMetaParams = new URLSearchParams(websiteMetaHeader);
       const websiteMeta = {
-        accentBackgroundColor: websiteMetaParams.get('accent_background_color'),
-        accentColor: websiteMetaParams.get('accent_color'),
         cssClass: websiteMetaParams.get('css_class'),
-        navbarBackground: websiteMetaParams.get('navbar_background'),
-        navbarColor: websiteMetaParams.get('navbar_color'),
+        primaryMain: websiteMetaParams.get('navbar_background'),
+        primaryText: websiteMetaParams.get('navbar_color'),
+        secondaryMain: websiteMetaParams.get('accent_background_color'),
+        secondaryText: websiteMetaParams.get('accent_color'),
         title: websiteMetaParams.get('application_name') || 'Argu',
         website: websiteMetaParams.get('iri'),
       };
