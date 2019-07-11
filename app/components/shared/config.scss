@@ -35,7 +35,6 @@ $colors: (
     'base': #707070,
   ),
   'grey': (
-    'x-dark': darken($color-base-grey, 80%),
     'dark': darken($color-base-grey, 50%),
     'mid-dark': darken($color-base-grey, 20%),
     'base': $color-base-grey,
