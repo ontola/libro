@@ -3,6 +3,7 @@ import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import { CardFloat } from '../../topologies/Card';
+import ContentDetails from '../../topologies/ContentDetails';
 import {
   PageHeaderText,
   PageHeaderImageAndTextWrapper,
@@ -32,7 +33,9 @@ class ThingPageHeader extends React.PureComponent {
         <PageHeaderImageAndTextWrapper>
           <PageHeaderText>
             <Property label={NS.schema('name')} />
-            <Property label={NS.argu('grantedGroups')} />
+            <ContentDetails>
+              <Property label={NS.argu('grantedGroups')} />
+            </ContentDetails>
             <Property label={NS.schema('description')} />
           </PageHeaderText>
         </PageHeaderImageAndTextWrapper>

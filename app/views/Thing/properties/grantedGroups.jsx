@@ -7,8 +7,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
+import { contentDetailsTopology } from '../../../topologies/ContentDetails';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
-import { pageHeaderTopology } from '../../../topologies/PageHeader';
 import { Detail } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { listToArr } from '../../../helpers/data';
@@ -72,7 +72,7 @@ const GrantedGroups = ({ intl: { formatMessage }, grantedGroups }) => {
 
 GrantedGroups.type = NS.schema('Thing');
 
-GrantedGroups.topology = [detailsBarTopology, pageHeaderTopology];
+GrantedGroups.topology = [detailsBarTopology, contentDetailsTopology];
 
 GrantedGroups.property = NS.argu('grantedGroups');
 
