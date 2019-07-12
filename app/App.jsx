@@ -56,7 +56,9 @@ export default (lrs) => {
 
   App.propTypes = {
     helmetContext: PropTypes.shape({}),
-    location: PropTypes.shape({}),
+    location: PropTypes.shape({
+      replace: PropTypes.func,
+    }),
     title: PropTypes.string,
     website: PropTypes.shape({}),
   };

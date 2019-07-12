@@ -89,7 +89,6 @@ const DateTimePickerComponent = (props) => {
   );
 };
 
-
 DateTimePickerComponent.propTypes = propTypes;
 DateTimePickerComponent.defaultProps = defaultProps;
 

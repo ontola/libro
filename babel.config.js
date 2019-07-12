@@ -1,6 +1,6 @@
 const babelrc = require('./.babelrc');
 
-module.exports = function (api) {
+module.exports = (api) => {
   api.cache(true);
 
   const presets = [

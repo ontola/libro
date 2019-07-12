@@ -137,6 +137,7 @@ CheckboxesInput.propTypes = {
   sharedProps: PropTypes.shape({
     autoFocus: PropTypes.bool,
     className: PropTypes.string,
+    name: PropTypes.string,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
     onFocus: PropTypes.func,

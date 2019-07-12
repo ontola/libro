@@ -39,22 +39,6 @@ const propTypes = {
   onKeyUp: PropTypes.func,
 };
 
-export const FILTER = [
-  /\/m\/new$/,
-  /\/c\/new$/,
-  /\/pros\/new/,
-  /\/cons\/new$/,
-  /\/actions\/create_opinion/,
-  /\/actions\/update_opinion/,
-];
-export const ORDER = [
-  '/actions/create_opinion',
-  '/actions/update_opinion',
-  '/m/new',
-  '/c/new',
-  '/pros/new',
-  '/cons/new',
-];
 const PROPS_WHITELIST = [
   NS.schema('name'),
   NS.schema('text'),

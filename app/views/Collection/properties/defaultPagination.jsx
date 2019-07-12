@@ -92,6 +92,16 @@ const getPagination = (Wrapper, topology) => {
       );
     };
 
+    paginationButton.propTypes = {
+      active: PropTypes.bool,
+      alt: PropTypes.string,
+      disabled: PropTypes.bool,
+      icon: PropTypes.string,
+      key: PropTypes.string,
+      label: PropTypes.string,
+      url: PropTypes.string,
+    };
+
     const singlePageButton = (page) => {
       baseUrl.searchParams.set(pageProp, page);
       const isCurrent = currentOrFirst === baseUrl.toString();

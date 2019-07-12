@@ -45,6 +45,7 @@ const propTypes = {
   ]),
   /** @private Contains form-library specific data */
   input: PropTypes.shape({
+    name: PropTypes.string,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
     onFocus: PropTypes.func,

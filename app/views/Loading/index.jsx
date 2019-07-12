@@ -43,7 +43,6 @@ import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTo
 import { tabPaneTopology } from '../../topologies/TabPane';
 
 // We always throw, so the implicit return value is void
-// eslint-disable-next-line react/require-render-return
 class SuspendedLoader extends React.Component {
   constructor(props) {
     super(props);
@@ -58,6 +57,7 @@ class SuspendedLoader extends React.Component {
     this.resolve();
   }
 
+  // eslint-disable-next-line react/require-render-return
   render() {
     throw this.promise;
   }
