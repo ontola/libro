@@ -1,4 +1,6 @@
+import CssBaseline from '@material-ui/core/CssBaseline';
 import createPalette from '@material-ui/core/styles/createPalette';
+import { ThemeProvider } from '@material-ui/styles';
 import dayjs from 'dayjs';
 import 'dayjs/locale/nl';
 import 'dayjs/locale/en';
@@ -11,13 +13,12 @@ import { addLocaleData, injectIntl, IntlProvider } from 'react-intl';
 import enLocaleData from 'react-intl/locale-data/en';
 import nlLocaleData from 'react-intl/locale-data/nl';
 import { Provider } from 'react-redux';
-import { ThemeProvider } from '@material-ui/styles';
 
-import themes from '../themes/index';
+import { getMetaContent } from '../helpers/arguHelpers';
 import AppFrame from '../routes/App';
+import themes from '../themes/index';
 import englishMessages from '../translations/en.json';
 import dutchMessages from '../translations/nl.json';
-import { getMetaContent } from '../helpers/arguHelpers';
 
 const propTypes = {
   Router: PropTypes.func,
@@ -83,6 +84,7 @@ const IndexContainer = ({
         <RenderStoreProvider value={lrs}>
           <UpdateLRSIntl>
             <ThemeProvider theme={theme}>
+              <CssBaseline />
               <Router>
                 <AppFrame title={title} />
               </Router>
