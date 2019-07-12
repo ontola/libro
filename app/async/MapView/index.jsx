@@ -50,9 +50,10 @@ import { getMapAccessToken } from './actions';
 import reducer, { MapReducerKey } from './reducer';
 import { getAccessToken, getAccessTokenError } from './selectors';
 
-const IMG_SIZE = 24;
-const CIRCLE_SIZE = 12;
-const ICON_X = 7;
+const IMG_SIZE = 26;
+const CIRCLE_RADIUS = 12;
+const CIRCLE_SIZE = 13;
+const ICON_X = 8;
 const ICON_Y = 19;
 const ANCHOR_X_CENTER = 0.5;
 const ANCHOR_Y_BOTTOM = 1;
@@ -101,7 +102,7 @@ class MapView extends React.Component {
 
     const canvas = document.createElement('canvas');
     const canvasCtx = canvas.getContext('2d');
-    const vectorContext = toContext(canvasCtx, { size: [100, 100] });
+    const vectorContext = toContext(canvasCtx, { pixelRatio: 1, size: [100, 100] });
 
     const fill = new Fill({ color: highlight ? '#92a1b5' : '#475668' });
     const stroke = new Stroke({
@@ -118,7 +119,7 @@ class MapView extends React.Component {
       stroke,
     });
 
-    const circle = new Circle([CIRCLE_SIZE, CIRCLE_SIZE], CIRCLE_SIZE);
+    const circle = new Circle([CIRCLE_SIZE, CIRCLE_SIZE], CIRCLE_RADIUS);
 
     vectorContext.setStyle(circleStyle);
     vectorContext.drawGeometry(circle);
