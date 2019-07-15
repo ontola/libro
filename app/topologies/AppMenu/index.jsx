@@ -1,3 +1,4 @@
+import { lrsType, withLRS } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
@@ -18,6 +19,7 @@ class AppMenu extends Topology {
     close: PropTypes.func,
     contentClassName: PropTypes.string,
     fullScreen: PropTypes.bool,
+    lrs: lrsType,
   };
 
   constructor(props) {
@@ -37,7 +39,7 @@ class AppMenu extends Topology {
 
     return (
       <OutsideClickHandler
-        onOutsideClick={() => this.context.exec(NS.app('actions/menu/close'))}
+        onOutsideClick={() => this.props.lrs.exec(NS.app('actions/menu/close'))}
       >
         {this.renderContent()}
       </OutsideClickHandler>
@@ -45,4 +47,4 @@ class AppMenu extends Topology {
   }
 }
 
-export default AppMenu;
+export default withLRS(AppMenu);
