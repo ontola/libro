@@ -36,6 +36,8 @@ const routerLink = tabIndex => (link) => {
   );
 };
 
+const stylizedPlaintextLink = link => <u>{link.children}</u>;
+
 const codePre = code => <code className="Markdown__inline-code">{code.children}</code>;
 
 class Markdown extends React.PureComponent {
@@ -44,6 +46,8 @@ class Markdown extends React.PureComponent {
     highlightedText: PropTypes.string,
     /** Renders all children inline */
     inline: PropTypes.bool,
+    /** Disable creation of anchor elements in the output */
+    noLinks: PropTypes.bool,
     /** Makes all links tabbable. */
     tabbable: PropTypes.bool,
     /** The content of the item */
@@ -67,15 +71,16 @@ class Markdown extends React.PureComponent {
 
   render() {
     const {
-      inline,
       highlightedText,
+      inline,
+      noLinks,
       tabbable,
       text,
     } = this.props;
 
     const customRenderers = {
-      Code: codePre,
-      Link: routerLink(tabbable ? undefined : -1),
+      code: codePre,
+      link: noLinks ? stylizedPlaintextLink : routerLink(tabbable ? undefined : -1),
     };
 
     return (

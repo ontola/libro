@@ -16,7 +16,11 @@ const MarkdownFixedPreview = ({
   text,
 }) => (
   <div className="MarkdownFixedPreview">
-    <Markdown data-test="Thing-text" text={text.slice(0, STRING_LENGTH)} />
+    <Markdown
+      noLinks
+      data-test="Thing-text"
+      text={text.slice(0, STRING_LENGTH)}
+    />
     {text.length > STRING_LENGTH && <div className="MarkdownFixedPreview__footer" />}
   </div>
 );

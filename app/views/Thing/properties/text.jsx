@@ -37,7 +37,11 @@ const TextInline = ({ linkedProp }) => (
 
 TextInline.propTypes = propTypes;
 
-/** Only displays text when there is no cover image, and does not overflow. */
+/**
+ * Only displays text when there is no cover image, and does not overflow.
+ * Note: It doesn't render inline anchor elements since it should always be wrapped in an outer
+ * anchor.
+ */
 class TextCutoff extends PropertyBase {
   render() {
     if (!this.getLinkedObjectProperty() || this.getLinkedObjectProperty(NS.argu('coverPhoto'))) {
