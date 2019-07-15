@@ -42,15 +42,18 @@ class ActivityName extends PropertyBase {
     const elems = split.reduce((previousValue, currentValue, index) => {
       const iri = matches[index]?.slice(HANDLEBAR_LENGTH, -HANDLEBAR_LENGTH);
       const term = iri && NamedNode.find(iri).term;
+
       return previousValue.concat(
-        <DetailText>{currentValue}</DetailText>,
-        term && (
-          <LinkedResourceContainer
-            key={this.props[term]}
-            subject={this.props[term]}
-            theme={term === NS.as('actor').term ? 'default' : 'parent'}
-          />
-        )
+        <React.Fragment key={`${iri}-${currentValue}`}>
+          <DetailText>{currentValue}</DetailText>
+          {term && (
+            <LinkedResourceContainer
+              key={this.props[term]}
+              subject={this.props[term]}
+              theme={term === NS.as('actor').term ? 'default' : 'parent'}
+            />
+          )}
+        </React.Fragment>
       );
     }, []);
 
