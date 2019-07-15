@@ -3,7 +3,7 @@ import { Property } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import FontAwesome from 'react-fontawesome';
-import { browserHistory } from 'react-router';
+import { withRouter } from 'react-router';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 
@@ -16,6 +16,9 @@ const propTypes = {
   *   detail at the very end of a DetailsBar. */
   floatRight: PropTypes.bool,
   hideIcon: PropTypes.bool,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }),
   icon: PropTypes.string,
   imageUrl: PropTypes.string,
   linkedImage: PropTypes.bool,
@@ -36,7 +39,7 @@ const defaultProps = {
   title: '',
 };
 
-class Detail extends PureComponent {
+export class DetailComp extends PureComponent {
   getImage() {
     if (this.props.linkedImage === true) {
       return <Property data-test="Detail-linked-image" label={NS.schema('image')} />;
@@ -56,7 +59,7 @@ class Detail extends PureComponent {
     if (url) {
       return (e) => {
         e.preventDefault();
-        if (url) browserHistory.push(url);
+        if (url) this.props.history.push(url);
       };
     }
     return undefined;
@@ -96,9 +99,9 @@ class Detail extends PureComponent {
         {this.getImage()}
 
         {!imageUrl && icon && !hideIcon && (
-        <span className="Detail__icon" data-test="Detail-icon">
-          <FontAwesome name={icon} spin={spin} />
-        </span>
+          <span className="Detail__icon" data-test="Detail-icon">
+            <FontAwesome name={icon} spin={spin} />
+          </span>
         )}
         <DetailText data-test="Detail-DetailText">
           {text}
@@ -108,7 +111,8 @@ class Detail extends PureComponent {
   }
 }
 
-Detail.defaultProps = defaultProps;
-Detail.propTypes = propTypes;
+DetailComp.displayName = 'Detail';
+DetailComp.defaultProps = defaultProps;
+DetailComp.propTypes = propTypes;
 
-export default Detail;
+export default withRouter(DetailComp);

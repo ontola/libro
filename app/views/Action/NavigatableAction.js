@@ -1,7 +1,7 @@
-import { History } from 'history';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { History } from '../../helpers/history';
 import { retrievePath } from '../../helpers/iris';
 
 class NavigatableAction extends React.PureComponent {

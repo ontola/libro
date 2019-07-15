@@ -1,4 +1,3 @@
-import { History } from 'history';
 import {
   linkType,
   lrsType,
@@ -10,11 +9,12 @@ import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import { withRouter } from 'react-router';
 
+import { bestType } from '../../helpers/data';
+import { History } from '../../helpers/history';
 import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 import SHACL from '../../helpers/shacl';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
-import { bestType } from '../../helpers/data';
 
 class ActionActionsBar extends PureComponent {
   static type = NS.schema('Action');

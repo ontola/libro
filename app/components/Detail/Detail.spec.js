@@ -1,4 +1,4 @@
-import Detail from './index';
+import { DetailComp as Detail } from './index';
 
 argUnit(Detail, () => {
   it('should be a div', () => {
