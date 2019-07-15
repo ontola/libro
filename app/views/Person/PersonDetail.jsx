@@ -72,7 +72,7 @@ class PersonDetail extends React.PureComponent {
 
     return (
       <LDLink
-        features={['centered', topology === tableCellTopology ? 'bold' : '']}
+        features={['centered', topology === tableCellTopology && 'bold'].filter(Boolean)}
         theme={theme}
       >
         <Detail
