@@ -60,7 +60,7 @@ export default (lrs) => {
       replace: PropTypes.func,
     }),
     title: PropTypes.string,
-    website: PropTypes.shape({}),
+    website: PropTypes.string,
   };
 
   return App;
