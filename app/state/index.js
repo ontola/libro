@@ -24,9 +24,11 @@ const configureStore = (preloadedState) => {
   } else {
     middleware = compose(
       appliedMiddleware,
-      typeof window !== 'undefined' && window.devToolsExtension
-        ? window.devToolsExtension()
+      /* eslint-disable no-underscore-dangle */
+      typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__
+        ? window.__REDUX_DEVTOOLS_EXTENSION__()
         : f => f
+      /* eslint-enable no-underscore-dangle */
     );
   }
 
