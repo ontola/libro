@@ -27,7 +27,7 @@ const Heading = ({
   const headingClass = classNames({
     Heading: true,
     [`Heading--${variant}`]: variant,
-    [display === 'inherit' ? 'Heading--inherit' : null]: true,
+    [display === 'inherit' ? 'Heading--inherit' : '']: true,
   });
 
   return (
