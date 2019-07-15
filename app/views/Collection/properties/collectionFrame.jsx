@@ -102,7 +102,7 @@ const getFrame = (Wrapper, topology) => {
   collectionFrame.propTypes = {
     body: PropTypes.node,
     collectionDisplay: linkType,
-    columns: PropTypes.arrayOf(NamedNode),
+    columns: PropTypes.arrayOf(PropTypes.instanceOf(NamedNode)),
     pagination: PropTypes.node,
     topology: topologyType,
   };

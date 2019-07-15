@@ -71,7 +71,7 @@ Seq.defaultProps = {
 
 Seq.propTypes = {
   childProps: PropTypes.objectOf(PropTypes.any),
-  columns: PropTypes.arrayOf(NamedNode),
+  columns: PropTypes.arrayOf(PropTypes.instanceOf(NamedNode)),
   depth: PropTypes.number,
   gutter: PropTypes.number,
   itemWrapper: PropTypes.elementType,

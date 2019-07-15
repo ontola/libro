@@ -119,11 +119,11 @@ loc.propTypes = {
   children: PropTypes.node,
   components: PropTypes.arrayOf(PropTypes.shape({
     component: PropTypes.arrayOf(PropTypes.func),
-    properties: PropTypes.arrayOf(rdf.NamedNode),
-    topologies: PropTypes.arrayOf(rdf.NamedNode),
-    types: PropTypes.arrayOf(rdf.NamedNode),
+    properties: PropTypes.arrayOf(PropTypes.instanceOf(rdf.NamedNode)),
+    topologies: PropTypes.arrayOf(PropTypes.instanceOf(rdf.NamedNode)),
+    types: PropTypes.arrayOf(PropTypes.instanceOf(rdf.NamedNode)),
   })),
-  resources: PropTypes.arrayOf(rdf.Statement),
+  resources: PropTypes.arrayOf(PropTypes.instanceOf(rdf.Statement)),
   subject: PropTypes.instanceOf(rdf.NamedNode),
   topology: PropTypes.instanceOf(rdf.NamedNode),
 };
