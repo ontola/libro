@@ -11,7 +11,7 @@ import { detailsBarTopology } from '../../../topologies/DetailsBar';
 
 const propTypes = {
   children: PropTypes.node,
-  hideName: PropTypes.string,
+  hideName: PropTypes.bool,
   linkedProp: linkedPropType,
 };
 
