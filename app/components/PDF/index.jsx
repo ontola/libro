@@ -181,7 +181,6 @@ class PDFViewer extends React.Component {
           onSetPage={this.handleSetPage}
         />
         <HotKeys
-          focused
           attach={window}
           handlers={handlers}
           tabIndex={0}

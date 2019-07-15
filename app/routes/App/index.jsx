@@ -55,7 +55,6 @@ class App extends React.PureComponent {
 
     return (
       <HotKeys
-        focused
         attach={__CLIENT__ ? window : {}}
         keyMap={__DEVELOPMENT__ ? devKeymap : defaultKeymap}
       >

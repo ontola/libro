@@ -6,7 +6,7 @@ import { pageTopology } from '../../topologies/Page';
 
 import { Action } from './Action';
 
-class ActionPage extends Action {
+export class ActionPage extends Action {
   static topology = pageTopology;
 
   // False positive due to inheritance

@@ -19,7 +19,6 @@ module.exports = {
     '@babel/proposal-class-properties',
     '@babel/syntax-dynamic-import',
     '@babel/transform-new-target',
-    'add-react-displayname',
   ],
   env: {
     development: {

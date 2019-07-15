@@ -21,7 +21,7 @@ module.exports = {
     '\\.(scss|css|less)$': 'identity-obj-proxy',
   },
   setupFilesAfterEnv: ['<rootDir>/../tests/testhelper.js'],
-  testEnvironment: 'jest-environment-jsdom-fourteen',
+  testEnvironment: 'jest-environment-jsdom-fifteen',
   testURL: 'https://argu.dev/o/1',
   transform: {
     '^.+\\.m?(j|t)sx?$': 'babel-jest',

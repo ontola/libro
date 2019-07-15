@@ -3,7 +3,7 @@ import ActionActionsBar from './ActionActionsBar';
 import ActionContainer from './ActionContainer';
 import ActionDetail from './ActionDetail';
 import ActionNested from './ActionNested';
-import ActionPage from './ActionPage';
+import ActionPageReg from './ActionPage';
 import ActionPrimaryCallToAction from './ActionPrimaryCallToAction';
 import ActionTableCell from './ActionTableCell';
 import ActionTableRow from './ActionTableRow';
@@ -24,7 +24,7 @@ export default [
   ActionContainer,
   ActionDetail,
   ActionNested,
-  ActionPage,
+  ActionPageReg,
   ActionPrimaryCallToAction,
   ActionTableCell,
   ActionTableRow,

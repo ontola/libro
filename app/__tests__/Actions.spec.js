@@ -4,7 +4,7 @@ import { describeView } from '../../tests/specHelper';
 import { cardMainTopology } from '../topologies/Card/CardMain';
 import { pageTopology } from '../topologies/Page';
 import { getViews } from '../views';
-import { Action } from '../views/Action/Action';
+import { ActionPage } from '../views/Action/ActionPage';
 
 describe('Actions', () => {
   const testIRI = NS.ex('test');
@@ -91,7 +91,7 @@ describe('Actions', () => {
         within([cardMainTopology, 'CardContent'], (subject) => {
           expect(subject).toRenderProperty(NS.schema.name, 'Edit object');
         });
-        expect(subject).toRenderView(Action);
+        expect(subject).toRenderView(ActionPage);
       });
 
       it('renders a text input field for strings', () => {
