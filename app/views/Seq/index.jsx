@@ -42,7 +42,7 @@ export function Seq({
   return (
     <React.Fragment>
       {primary.map((s, i) => (
-        <ItemWrapper>
+        <ItemWrapper key={s.toString()}>
           <LinkedResourceContainer
             {...childProps}
             columns={columns}
