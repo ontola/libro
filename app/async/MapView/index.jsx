@@ -1,4 +1,5 @@
 import * as fa from 'fontawesome';
+import { OK } from 'http-status-codes';
 import {
   LinkedResourceContainer,
   linkType,
@@ -308,6 +309,10 @@ class MapView extends React.Component {
       center = DEFAULT_CENTER;
     }
 
+    if (Promise.resolve(center) === center) {
+      return;
+    }
+
     const { lon, lat, zoom } = center;
 
     if (this.tileSource) {
@@ -392,6 +397,13 @@ class MapView extends React.Component {
     }
 
     const { lrs } = this.props;
+
+    const loaded = lrs.tryEntity(placement).length > 0
+      || lrs.getStatus(placement).status === OK;
+
+    if (__CLIENT__ && !loaded) {
+      return lrs.getEntity(placement);
+    }
 
     const place = placement && lrs.getResourceProperty(placement, NS.schema('geo'));
     const image = lrs.getResourceProperty(placement, NS.schema('image'));
