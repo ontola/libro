@@ -2,7 +2,7 @@ import { Property, register, topologyType } from 'link-redux';
 import PropTypes from 'prop-types';
 import { Literal } from 'rdflib';
 import React from 'react';
-import { defineMessages, injectIntl, intlShape } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 
 import {
   Detail,
@@ -23,66 +23,64 @@ const messages = defineMessages({
   },
 });
 
-class PersonDetail extends React.PureComponent {
-  static type = [NS.schema('Person'), NS.person('Person'), NS.argu('Page')];
+const PersonDetail = ({
+  hideName,
+  name,
+  theme,
+  titleKey,
+  topology,
+}) => {
+  const { formatMessage } = useIntl();
 
-  static topology = [detailsBarTopology, tableCellTopology];
+  const title = formatMessage(messages[titleKey || 'showProfile'], { name });
 
-  static mapDataToProps = {
-    name: {
-      label: [
-        NS.schema('name'),
-        NS.foaf('name'),
-      ],
-    },
-  };
-
-  static hocs = [injectIntl];
-
-  static propTypes = {
-    hideName: PropTypes.bool,
-    intl: intlShape,
-    name: PropTypes.instanceOf(Literal),
-    theme: PropTypes.string,
-    titleKey: PropTypes.string,
-    topology: topologyType,
-  };
-
-  render() {
-    const {
-      hideName,
-      intl: { formatMessage },
-      name,
-      theme,
-      titleKey,
-      topology,
-    } = this.props;
-
-    const title = formatMessage(messages[titleKey || 'showProfile'], { name });
-
-    if (hideName) {
-      return (
-        <LDLink features={['centered']}>
-          <div className="Detail" title={title}>
-            <Property label={NS.schema('image')} />
-          </div>
-        </LDLink>
-      );
-    }
-
+  if (hideName) {
     return (
-      <LDLink
-        features={['centered', topology === tableCellTopology && 'bold'].filter(Boolean)}
-        theme={theme}
-      >
-        <Detail
-          linkedImage
-          text={name.value}
-          title={title}
-        />
+      <LDLink features={['centered']}>
+        <div className="Detail" title={title}>
+          <Property label={NS.schema('image')} />
+        </div>
       </LDLink>
     );
   }
-}
+
+  return (
+    <LDLink
+      features={['centered', topology === tableCellTopology && 'bold'].filter(Boolean)}
+      theme={theme}
+    >
+      <Detail
+        linkedImage
+        text={name.value}
+        title={title}
+      />
+    </LDLink>
+  );
+};
+
+PersonDetail.type = [
+  NS.schema('Person'),
+  NS.person('Person'),
+  NS.argu('Page'),
+];
+
+PersonDetail.topology = [detailsBarTopology, tableCellTopology];
+
+PersonDetail.mapDataToProps = {
+  name: {
+    label: [
+      NS.schema('name'),
+      NS.foaf('name'),
+    ],
+  },
+};
+
+PersonDetail.propTypes = {
+  hideName: PropTypes.bool,
+  name: PropTypes.instanceOf(Literal),
+  theme: PropTypes.string,
+  titleKey: PropTypes.string,
+  topology: topologyType,
+};
 
 export default register(PersonDetail);

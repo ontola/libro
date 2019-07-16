@@ -7,7 +7,7 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Field, Form } from 'react-final-form';
-import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import { withRouter } from 'react-router';
 
 import Button from '../../components/Button';
@@ -27,13 +27,14 @@ const messages = defineMessages({
 export const SearchResultPage = ({
   collectionDisplay,
   history,
-  intl: { formatMessage },
   location,
   query,
   subject,
   took,
   totalItems,
 }) => {
+  const { formatMessage } = useIntl();
+
   const queryNormalized = query?.value ?? '';
   const search = new URLSearchParams(location.search);
   const body = (
@@ -125,7 +126,7 @@ SearchResultPage.type = NS.argu('SearchResult');
 
 SearchResultPage.topology = allTopologiesExcept(navbarTopology);
 
-SearchResultPage.hocs = [injectIntl, withRouter];
+SearchResultPage.hocs = [withRouter];
 
 SearchResultPage.mapDataToProps = [
   NS.argu('query'),

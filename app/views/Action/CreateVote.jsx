@@ -9,7 +9,7 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { defineMessages, injectIntl, intlShape } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { omniformOpenInline, omniformSetAction } from '../../state/omniform';
@@ -106,7 +106,6 @@ const CreateVote = ({
   actionStatus,
   current,
   count,
-  intl: { formatMessage },
   lrs,
   object,
   openOmniform,
@@ -114,6 +113,7 @@ const CreateVote = ({
   target,
   variant,
 }) => {
+  const { formatMessage } = useIntl();
   const handleClick = () => lrs
     .exec(subject)
     .then(openOmniform)
@@ -171,7 +171,7 @@ CreateVote.type = [
 
 CreateVote.topology = allTopologies;
 
-CreateVote.hocs = [connect(null, mapDispatchToProps), injectIntl];
+CreateVote.hocs = [connect(null, mapDispatchToProps)];
 
 CreateVote.mapDataToProps = {
   actionStatus: NS.schema('actionStatus'),
@@ -185,7 +185,6 @@ CreateVote.propTypes = {
   actionStatus: linkType,
   count: linkType,
   current: PropTypes.bool,
-  intl: intlShape,
   lrs: lrsType,
   object: linkType,
   openOmniform: PropTypes.func,

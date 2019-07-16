@@ -2,7 +2,7 @@ import { register } from 'link-redux';
 import PropTypes from 'prop-types';
 import { Literal } from 'rdflib';
 import React from 'react';
-import { defineMessages, injectIntl, intlShape } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 
 import {
   Detail,
@@ -18,46 +18,38 @@ const messages = defineMessages({
   },
 });
 
-class ThingTableCell extends React.PureComponent {
-  static type = [NS.schema('Thing'), NS.rdfs('Resource')];
+const ThingTableCell = ({ name }) => {
+  const { formatMessage } = useIntl();
 
-  static topology = [tableCellTopology];
+  return (
+    <LDLink
+      features={['bold', 'centered']}
+      property={NS.schema('name').value}
+      title={formatMessage(messages.showProfile, { name: name?.value })}
+    >
+      <Detail
+        linkedImage
+        text={name?.value}
+      />
+    </LDLink>
+  );
+};
 
-  static mapDataToProps = {
-    name: {
-      label: [
-        NS.schema('name'),
-        NS.foaf('name'),
-      ],
-    },
-  };
+ThingTableCell.type = [NS.schema('Thing'), NS.rdfs('Resource')];
 
-  static hocs = [injectIntl];
+ThingTableCell.topology = [tableCellTopology];
 
-  static propTypes = {
-    intl: intlShape,
-    name: PropTypes.instanceOf(Literal),
-  };
+ThingTableCell.mapDataToProps = {
+  name: {
+    label: [
+      NS.schema('name'),
+      NS.foaf('name'),
+    ],
+  },
+};
 
-  render() {
-    const {
-      intl: { formatMessage },
-      name,
-    } = this.props;
-
-    return (
-      <LDLink
-        features={['bold', 'centered']}
-        property={NS.schema('name').value}
-        title={formatMessage(messages.showProfile, { name: name?.value })}
-      >
-        <Detail
-          linkedImage
-          text={name?.value}
-        />
-      </LDLink>
-    );
-  }
-}
+ThingTableCell.propTypes = {
+  name: PropTypes.instanceOf(Literal),
+};
 
 export default register(ThingTableCell);

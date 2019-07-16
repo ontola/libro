@@ -7,11 +7,7 @@ import {
   PROXY_AUTHENTICATION_REQUIRED,
   TOO_MANY_REQUESTS,
 } from 'http-status-codes';
-import {
-  FormattedMessage,
-  injectIntl,
-  intlShape,
-} from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 
 import { Button } from '../../components';
 import { handle } from '../../helpers/logging';
@@ -20,7 +16,9 @@ import { titleForStatus } from './ErrorMessages';
 
 const propTypes = {
   children: PropTypes.node,
-  intl: intlShape,
+  intl: PropTypes.shape({
+    formatMessage: PropTypes.func,
+  }),
   linkRequestStatus: PropTypes.shape({
     status: PropTypes.number,
   }),

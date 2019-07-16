@@ -5,8 +5,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {
   FormattedMessage,
-  injectIntl,
-  intlShape,
+  useIntl,
 } from 'react-intl';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -59,7 +58,6 @@ const shouldShowSignIn = (userType, status) => userType === 'GuestUser'
 
 const propTypes = {
   caughtError: PropTypes.instanceOf(Error),
-  intl: intlShape,
   linkRequestStatus: PropTypes.shape({
     status: PropTypes.number,
   }),
@@ -71,7 +69,8 @@ const propTypes = {
 };
 
 const ErrorCardComp = (props) => {
-  const { intl: { formatMessage }, linkRequestStatus, userType } = props;
+  const { formatMessage } = useIntl();
+  const { linkRequestStatus, userType } = props;
 
   let mainAction = (
     <ErrorButtonWithFeedback theme="box" {...props}>
@@ -104,12 +103,12 @@ const ErrorCardComp = (props) => {
 
 ErrorCardComp.propTypes = propTypes;
 
-const ErrorCard = withRouter(withUserType(injectIntl(ErrorCardComp)));
+const ErrorCard = withRouter(withUserType(ErrorCardComp));
 
 const ErrorPageComp = (props) => {
+  const { formatMessage } = useIntl();
   const {
     caughtError,
-    intl: { formatMessage },
     linkRequestStatus,
     userType,
   } = props;
@@ -162,7 +161,7 @@ const ErrorPageComp = (props) => {
 
 ErrorPageComp.propTypes = propTypes;
 
-export const ErrorPage = withUserType(injectIntl(ErrorPageComp));
+export const ErrorPage = withUserType(ErrorPageComp);
 
 const ErrorNavbar = (props) => {
   if (props.subject === NS.app('n?type=infinite')) {

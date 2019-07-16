@@ -9,9 +9,7 @@ import { RenderStoreProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { hot } from 'react-hot-loader/root';
-import { addLocaleData, injectIntl, IntlProvider } from 'react-intl';
-import enLocaleData from 'react-intl/locale-data/en';
-import nlLocaleData from 'react-intl/locale-data/nl';
+import { IntlProvider, useIntl } from 'react-intl';
 import { Provider } from 'react-redux';
 
 import { getMetaContent } from '../helpers/arguHelpers';
@@ -31,9 +29,6 @@ const propTypes = {
   title: PropTypes.string,
 };
 
-addLocaleData(enLocaleData);
-addLocaleData(nlLocaleData);
-
 const IndexContainer = ({
   Router,
   lrs,
@@ -50,12 +45,12 @@ const IndexContainer = ({
     dayjs.locale('en');
   }
 
-  const UpdateLRSIntl = injectIntl(({ children, intl }) => {
+  const UpdateLRSIntl = ({ children }) => {
     // eslint-disable-next-line no-param-reassign
-    lrs.intl = intl;
+    lrs.intl = useIntl();
 
     return children;
-  });
+  };
 
   const themeName = getMetaContent('theme');
   let theme = themes[themeName] || themes.common;

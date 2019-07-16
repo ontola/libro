@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 
 import { Button } from '../../components';
 
@@ -8,7 +8,9 @@ import { ErrorButtonWithFeedbackBase } from './ErrorButtonWithFeedback';
 import { titleForStatus } from './ErrorMessages';
 
 const propTypes = {
-  intl: intlShape,
+  intl: PropTypes.shape({
+    formatMessage: PropTypes.func,
+  }),
   linkRequestStatus: PropTypes.shape({
     status: PropTypes.number,
   }),

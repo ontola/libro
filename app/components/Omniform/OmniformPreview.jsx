@@ -6,8 +6,7 @@ import React from 'react';
 import {
   defineMessages,
   FormattedMessage,
-  injectIntl,
-  intlShape,
+  useIntl,
 } from 'react-intl';
 
 import { NS } from '../../helpers/LinkedRenderStore';
@@ -22,7 +21,6 @@ const messages = defineMessages({
 });
 
 const propTypes = {
-  intl: intlShape,
   lrs: lrsType,
   onClick: PropTypes.func.isRequired,
   primaryAction: PropTypes.instanceOf(NamedNode),
@@ -30,10 +28,11 @@ const propTypes = {
 
 const OmniformPreview = ({
   onClick,
-  intl,
   lrs,
   primaryAction,
 }) => {
+  const intl = useIntl();
+
   const actionLabel = getTermBestLang(
     lrs.dig(primaryAction, [NS.schema('result'), NS.rdfs('label')]),
     lrs.store.langPrefs
@@ -63,4 +62,4 @@ const OmniformPreview = ({
 
 OmniformPreview.propTypes = propTypes;
 
-export default injectIntl(OmniformPreview);
+export default OmniformPreview;

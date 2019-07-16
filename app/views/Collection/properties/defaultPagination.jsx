@@ -5,7 +5,7 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { defineMessages, injectIntl, intlShape } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 
 import { Button } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
@@ -31,11 +31,12 @@ const getPagination = (Wrapper, topology) => {
     const {
       currentPage,
       first,
-      intl: { formatMessage },
       last,
       onPageChange,
       subject,
     } = props;
+    const { formatMessage } = useIntl();
+
     if (!first) {
       return null;
     }
@@ -171,12 +172,9 @@ const getPagination = (Wrapper, topology) => {
     last: NS.as('last'),
   };
 
-  DefaultPagination.hocs = [injectIntl];
-
   DefaultPagination.propTypes = {
     currentPage: PropTypes.string,
     first: linkType,
-    intl: intlShape,
     last: linkType,
     onPageChange: PropTypes.func,
     subject: subjectType,

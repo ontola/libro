@@ -1,6 +1,6 @@
 import { linkedPropType, register } from 'link-redux';
 import React from 'react';
-import { defineMessages, injectIntl, intlShape } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 
 import Detail from '../../../components/Detail';
 import { NS } from '../../../helpers/LinkedRenderStore';
@@ -13,38 +13,34 @@ const messages = defineMessages({
   },
 });
 
-class MotionsCount extends React.PureComponent {
-  static type = NS.schema('Thing');
+const MotionsCount = ({ linkedProp }) => {
+  const { formatMessage } = useIntl();
 
-  static property = NS.argu('motionsCount');
-
-  static topology = detailsBarTopology;
-
-  static hocs = [injectIntl];
-
-  static propTypes = {
-    intl: intlShape,
-    linkedProp: linkedPropType,
-  };
-
-  render() {
-    const { intl: { formatMessage }, linkedProp } = this.props;
-
-    if (linkedProp.value === '0') {
-      return null;
-    }
-
-    return (
-      <Detail
-        icon="lightbulb-o"
-        text={linkedProp.value}
-        title={formatMessage(
-          messages.motionsCount,
-          { count: linkedProp.value }
-        )}
-      />
-    );
+  if (linkedProp.value === '0') {
+    return null;
   }
-}
+
+  return (
+    <Detail
+      icon="lightbulb-o"
+      text={linkedProp.value}
+      title={formatMessage(
+        messages.motionsCount,
+        { count: linkedProp.value }
+      )}
+    />
+  );
+};
+
+MotionsCount.type = NS.schema('Thing');
+
+MotionsCount.property = NS.argu('motionsCount');
+
+MotionsCount.topology = detailsBarTopology;
+
+MotionsCount.propTypes = {
+  linkedProp: linkedPropType,
+};
+
 
 export default register(MotionsCount);

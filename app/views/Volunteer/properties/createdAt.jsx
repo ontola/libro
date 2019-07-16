@@ -1,11 +1,9 @@
-import LinkedRenderStore from 'link-lib';
-import { linkedPropType } from 'link-redux';
+import { linkedPropType, register } from 'link-redux';
 import React from 'react';
 import emoji from 'react-easy-emoji';
 import {
   defineMessages,
-  injectIntl,
-  intlShape,
+  useIntl,
 } from 'react-intl';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
@@ -13,7 +11,6 @@ import { allTopologies } from '../../../topologies';
 import { Detail } from '../../../components';
 
 const propTypes = {
-  intl: intlShape,
   linkedProp: linkedPropType,
 };
 
@@ -36,8 +33,9 @@ const messages = defineMessages({
   },
 });
 
+const CreatedAt = ({ linkedProp }) => {
+  const { formatMessage } = useIntl();
 
-const CreatedAt = ({ intl: { formatMessage }, linkedProp }) => {
   const daySpan = 86400000;
   const diff = Math.floor((new Date() - new Date(linkedProp.value)) / (daySpan));
   const waitingVeryShort = 3;
@@ -57,14 +55,20 @@ const CreatedAt = ({ intl: { formatMessage }, linkedProp }) => {
     variant = 'error';
   }
 
-  return <Detail text={emoji(formatMessage(message, { diff }))} variant={variant} />;
+  return (
+    <Detail
+      text={emoji(formatMessage(message, { diff }))}
+      variant={variant}
+    />
+  );
 };
+
+CreatedAt.type = NS.teamGL('NewVolunteer');
+
+CreatedAt.property = NS.schema('dateCreated');
+
+CreatedAt.topology = allTopologies;
 
 CreatedAt.propTypes = propTypes;
 
-export default LinkedRenderStore.registerRenderer(
-  injectIntl(CreatedAt),
-  NS.teamGL('NewVolunteer'),
-  NS.schema('dateCreated'),
-  allTopologies
-);
+export default register(CreatedAt);

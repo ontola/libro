@@ -1,6 +1,4 @@
-import {
-  link,
-} from 'link-redux';
+import { link } from 'link-redux';
 import PropTypes from 'prop-types';
 import { Literal } from 'rdflib';
 import React from 'react';
@@ -21,30 +19,32 @@ const propTypes = {
   startDate: PropTypes.instanceOf(Literal),
 };
 
-class LinkedDetailDate extends React.PureComponent {
-  render() {
-    const {
-      floatRight,
-      hideIcon,
-    } = this.props;
-
-    return (
-      <DetailDate
-        linkedImage
-        dateCreated={this.props.dateCreated && new Date(this.props.dateCreated.value)}
-        dateModified={this.props.dateModified && new Date(this.props.dateModified.value)}
-        datePublished={this.props.datePublished && new Date(this.props.datePublished.value)}
-        dateSubmitted={this.props.dateSubmitted && new Date(this.props.dateSubmitted.value)}
-        duration={this.props.duration && new Date(this.props.duration.value)}
-        endDate={this.props.endDate && new Date(this.props.endDate.value)}
-        floatRight={floatRight}
-        hideIcon={hideIcon}
-        lastActivityAt={this.props.lastActivityAt && new Date(this.props.lastActivityAt.value)}
-        startDate={this.props.startDate && new Date(this.props.startDate.value)}
-      />
-    );
-  }
-}
+const LinkedDetailDate = ({
+  dateCreated,
+  dateModified,
+  datePublished,
+  dateSubmitted,
+  duration,
+  endDate,
+  floatRight,
+  hideIcon,
+  lastActivityAt,
+  startDate,
+}) => (
+  <DetailDate
+    linkedImage
+    dateCreated={dateCreated && new Date(dateCreated.value)}
+    dateModified={dateModified && new Date(dateModified.value)}
+    datePublished={datePublished && new Date(datePublished.value)}
+    dateSubmitted={dateSubmitted && new Date(dateSubmitted.value)}
+    duration={duration && new Date(duration.value)}
+    endDate={endDate && new Date(endDate.value)}
+    floatRight={floatRight}
+    hideIcon={hideIcon}
+    lastActivityAt={lastActivityAt && new Date(lastActivityAt.value)}
+    startDate={startDate && new Date(startDate.value)}
+  />
+);
 
 LinkedDetailDate.propTypes = propTypes;
 

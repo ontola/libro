@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {
   defineMessages,
-  FormattedRelative,
-  injectIntl,
-  intlShape,
+  FormattedRelativeTime,
+  useIntl,
 } from 'react-intl';
 
+import { relativeTimeDestructure } from '../../helpers/date';
 import Detail from '../Detail';
 
 import './DetailDate.scss';
@@ -48,85 +48,83 @@ const messages = defineMessages({
 
 const FORMAT = { day: 'numeric', month: 'long', year: 'numeric' };
 
-class DetailDate extends React.PureComponent {
-  static propTypes = {
-    dateCreated: PropTypes.instanceOf(Date),
-    dateModified: PropTypes.instanceOf(Date),
-    datePublished: PropTypes.instanceOf(Date),
-    dateSubmitted: PropTypes.instanceOf(Date),
-    // eslint-disable-next-line react/no-unused-prop-types
-    duration: PropTypes.instanceOf(Date),
-    endDate: PropTypes.instanceOf(Date),
-    floatRight: PropTypes.bool,
-    hideIcon: PropTypes.bool,
-    intl: intlShape,
-    lastActivityAt: PropTypes.instanceOf(Date),
-    startDate: PropTypes.instanceOf(Date),
-    // For linking to an event, like a meeting
-    url: PropTypes.string,
+const DetailDate = (props) => {
+  const {
+    dateCreated,
+    dateModified,
+    datePublished,
+    dateSubmitted,
+    endDate,
+    floatRight,
+    hideIcon,
+    lastActivityAt,
+    url,
+    startDate,
+  } = props;
+  const intl = useIntl();
+
+  const format = (prop) => {
+    const p = prop.split(':').pop();
+    if (!props[p]) {
+      return '';
+    }
+
+    return intl.formatMessage(
+      messages[p],
+      { date: intl.formatTime(props[p], FORMAT) }
+    );
   };
 
-  mostImportant() {
-    const date = this.props.lastActivityAt
-      || this.props.startDate
-      || this.props.datePublished
-      || this.props.dateCreated
-      || this.props.dateSubmitted
-      || this.props.dateModified;
+  const mostImportant = () => {
+    const date = lastActivityAt
+      || startDate
+      || datePublished
+      || dateCreated
+      || dateSubmitted
+      || dateModified;
 
-    return <FormattedRelative value={date} />;
-  }
+    return <FormattedRelativeTime {...relativeTimeDestructure(date)} />;
+  };
 
-  render() {
-    const {
-      endDate,
-      floatRight,
-      intl: {
-        formatMessage,
-        formatRelative,
-        formatTime,
-      },
-      startDate,
-      hideIcon,
-      url,
-    } = this.props;
+  const hoverText = [
+    format('argu:lastActivityAt'),
+    format('schema:startDate'),
+    format('schema:endDate'),
+    format('schema:dateCreated'),
+    format('schema:datePublished'),
+    format('schema:dateSubmitted'),
+    format('schema:dateModified'),
+    (endDate && startDate && `Duur: ${intl.formatRelativeTime(startDate, 'day', { initialNow: endDate })}`),
+  ]
+    .filter(Boolean)
+    .join('. \n')
+    .concat('.');
 
-    const format = (prop) => {
-      const p = prop.split(':').pop();
-      if (!this.props[p]) {
-        return '';
-      }
+  return (
+    <Detail
+      floatRight={floatRight}
+      hideIcon={hideIcon}
+      text={mostImportant()}
+      title={hoverText}
+      url={url}
+    />
+  );
+};
 
-      return formatMessage(
-        messages[p],
-        { date: formatTime(this.props[p], FORMAT) }
-      );
-    };
+DetailDate.propTypes = {
+  dateCreated: PropTypes.instanceOf(Date),
+  dateModified: PropTypes.instanceOf(Date),
+  datePublished: PropTypes.instanceOf(Date),
+  dateSubmitted: PropTypes.instanceOf(Date),
+  // eslint-disable-next-line react/no-unused-prop-types
+  duration: PropTypes.instanceOf(Date),
+  endDate: PropTypes.instanceOf(Date),
+  floatRight: PropTypes.bool,
+  hideIcon: PropTypes.bool,
+  lastActivityAt: PropTypes.instanceOf(Date),
+  startDate: PropTypes.instanceOf(Date),
+  // For linking to an event, like a meeting
+  url: PropTypes.string,
+};
 
-    const hoverText = [
-      format('argu:lastActivityAt'),
-      format('schema:startDate'),
-      format('schema:endDate'),
-      format('schema:dateCreated'),
-      format('schema:datePublished'),
-      format('schema:dateSubmitted'),
-      format('schema:dateModified'),
-      (endDate && startDate && `Duur: ${formatRelative(startDate, { now: endDate })}`),
-    ]
-      .filter(Boolean)
-      .join('. \n')
-      .concat('.');
-
-    return (
-      <Detail
-        floatRight={floatRight}
-        hideIcon={hideIcon}
-        text={this.mostImportant()}
-        title={hoverText}
-        url={url}
-      />
-    );
-  }
-}
-
-export default injectIntl(DetailDate);
+export default DetailDate;

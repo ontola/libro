@@ -1,6 +1,6 @@
 import { linkedPropType, register } from 'link-redux';
 import React from 'react';
-import { defineMessages, injectIntl, intlShape } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 
 import Detail from '../../../components/Detail';
 import { NS } from '../../../helpers/LinkedRenderStore';
@@ -13,33 +13,37 @@ const messages = defineMessages({
   },
 });
 
-class PinnedAt extends React.PureComponent {
-  static type = NS.schema('Thing');
+const PinnedAt = ({ linkedProp }) => {
+  const { formatDate, formatMessage } = useIntl();
 
-  static property = NS.argu('pinnedAt');
+  return (
+    <Detail
+      icon="thumb-tack"
+      title={formatMessage(
+        messages.pinnedAtLabel,
+        {
+          date: formatDate(
+            new Date(linkedProp.value),
+            {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric',
+            }
+          ),
+        }
+      )}
+    />
+  );
+};
 
-  static topology = detailsBarTopology;
+PinnedAt.type = NS.schema('Thing');
 
-  static hocs = [injectIntl];
+PinnedAt.property = NS.argu('pinnedAt');
 
-  static propTypes = {
-    intl: intlShape,
-    linkedProp: linkedPropType,
-  };
+PinnedAt.topology = detailsBarTopology;
 
-  render() {
-    const { intl: { formatDate, formatMessage }, linkedProp } = this.props;
-
-    return (
-      <Detail
-        icon="thumb-tack"
-        title={formatMessage(
-          messages.pinnedAtLabel,
-          { date: formatDate(new Date(linkedProp.value)) }
-        )}
-      />
-    );
-  }
-}
+PinnedAt.propTypes = {
+  linkedProp: linkedPropType,
+};
 
 export default register(PinnedAt);

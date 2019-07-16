@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { FormattedMessage, intlShape } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import Button from '../Button';
 import FormField from '../FormField';
@@ -15,7 +15,9 @@ const propTypes = {
   errors: PropTypes.instanceOf(Map),
   hasBack: PropTypes.bool,
   initialValues: PropTypes.objectOf(PropTypes.string),
-  intl: intlShape,
+  intl: PropTypes.shape({
+    formatMessage: PropTypes.func,
+  }),
   r: PropTypes.string,
   reason: PropTypes.string,
   registeredEmail: PropTypes.string,

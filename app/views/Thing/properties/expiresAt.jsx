@@ -4,9 +4,9 @@ import React from 'react';
 import {
   defineMessages,
   FormattedMessage,
-  FormattedRelative,
+  FormattedRelativeTime,
   injectIntl,
-  intlShape,
+  useIntl,
 } from 'react-intl';
 
 import Detail from '../../../components/Detail';
@@ -25,65 +25,59 @@ const messages = defineMessages({
   },
 });
 
-const propTypes = {
-  intl: intlShape,
-  linkedProp: linkedPropType,
-  short: PropTypes.bool,
-};
+const ExpiresAt = ({ linkedProp, short }) => {
+  const intl = useIntl();
+  const d = new Date(linkedProp.value);
 
-class ExpiresAt extends React.PureComponent {
-  static type = NS.schema('Thing');
-
-  static property = NS.argu('expiresAt');
-
-  static topology = detailsBarTopology;
-
-  static hocs = [injectIntl];
-
-  static propTypes = propTypes;
-
-  render() {
-    const { intl, linkedProp, short } = this.props;
-
-    const d = new Date(linkedProp.value);
-
-    if (isPastDate(d)) {
-      return (
-        <Detail
-          icon="lock"
-          text={short && (
-            <FormattedMessage
-              defaultMessage="closed"
-              id="https://app.argu.co/i18n/expireable/states/closed/label"
-            />
-          )}
-          title={intl.formatMessage(
-            messages.closedTooltip,
-            { date: intl.formatDate(d) }
-          )}
-        />
-      );
-    }
-
+  if (isPastDate(d)) {
     return (
       <Detail
-        icon="exclamation"
-        text={(
+        icon="lock"
+        text={short && (
           <FormattedMessage
-            defaultMessage="Due {relativeDate}"
-            id="https://app.argu.co/i18n/expireable/states/expiring/label"
-            values={{
-              relativeDate: <FormattedRelative format="numeric" value={d} />,
-            }}
+            defaultMessage="closed"
+            id="https://app.argu.co/i18n/expireable/states/closed/label"
           />
         )}
         title={intl.formatMessage(
-          messages.expiringTooltip,
+          messages.closedTooltip,
           { date: intl.formatDate(d) }
         )}
       />
     );
   }
-}
+
+  return (
+    <Detail
+      icon="exclamation"
+      text={(
+        <FormattedMessage
+          defaultMessage="Due {relativeDate}"
+          id="https://app.argu.co/i18n/expireable/states/expiring/label"
+          values={{
+            relativeDate: <FormattedRelativeTime numeric="auto" value={d} />,
+          }}
+        />
+      )}
+      title={intl.formatMessage(
+        messages.expiringTooltip,
+        { date: intl.formatDate(d) }
+      )}
+    />
+  );
+};
+
+ExpiresAt.type = NS.schema('Thing');
+
+ExpiresAt.property = NS.argu('expiresAt');
+
+ExpiresAt.topology = detailsBarTopology;
+
+ExpiresAt.hocs = [injectIntl];
+
+ExpiresAt.propTypes = {
+  linkedProp: linkedPropType,
+  short: PropTypes.bool,
+};
 
 export default register(ExpiresAt);

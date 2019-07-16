@@ -44,7 +44,8 @@
   },
   "resolutions": {
     "//": "Force some upstream dependencies to use the latest contextType compatible version",
-    "hoist-non-react-statics": "3.3.0"
+    "hoist-non-react-statics": "3.3.0",
+    "babel-plugin-react-intl": "3.0.1"
   },
   "dependencies": {
     "@babel/runtime": "^7.5.4",
@@ -105,13 +106,13 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
     "@babel/register": "^7.4.4",
+    "@formatjs/intl-relativetimeformat": "^2.4.0",
     "@hot-loader/react-dom": "^16.8.6",
     "@types/actioncable": "^5.2.0",
     "@types/history": "^4.7.2",
     "@types/ioredis": "^4.0.13",
     "@types/jest": "^24.0.15",
     "@types/react": "^16.8.23",
-    "@types/react-intl": "^2.3.18",
     "@types/react-redux": "^7.1.1",
     "@types/redux-actions": "^2.6.1",
     "actioncable": "^5.2.3",
@@ -144,7 +145,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.2",
     "exports-loader": "^0.7.0",
-    "extract-react-intl-messages": "^0.13.0",
+    "extract-react-intl-messages": "^1.0.2",
     "file-loader": "^4.0.0",
     "final-form": "^4.17.0",
     "fontawesome": "^4.7.2",
@@ -194,7 +195,7 @@
     "react-hot-loader": "^4.12.6",
     "react-hotkeys": "^2.0.0",
     "react-html5video": "^2.5.1",
-    "react-intl": "^2.9.0",
+    "react-intl": "^3.0.0-beta.18",
     "react-markdown": "^4.1.0",
     "react-modal": "^3.9.1",
     "react-motion": "^0.5.2",

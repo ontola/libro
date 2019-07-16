@@ -5,7 +5,7 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { contentDetailsTopology } from '../../../topologies/ContentDetails';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
@@ -26,8 +26,8 @@ const messages = defineMessages({
   },
 });
 
-
-const GrantedGroups = ({ intl: { formatMessage }, grantedGroups }) => {
+const GrantedGroups = ({ grantedGroups }) => {
+  const { formatMessage } = useIntl();
   const lrs = useLRS();
 
   const groups = __CLIENT__ && grantedGroups && listToArr(lrs, [], grantedGroups);
@@ -87,7 +87,5 @@ GrantedGroups.propTypes = {
     formatMessage: PropTypes.func,
   }),
 };
-
-GrantedGroups.hocs = [injectIntl];
 
 export default register(GrantedGroups);

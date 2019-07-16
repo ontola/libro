@@ -3,7 +3,7 @@ import { DateTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import PropTypes from 'prop-types';
 import { Literal, NamedNode } from 'rdflib';
 import React from 'react';
-import { defineMessages, injectIntl, intlShape } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 
 const messages = defineMessages({
   cancelLabel: {
@@ -41,7 +41,6 @@ const messages = defineMessages({
 });
 
 const propTypes = {
-  intl: intlShape,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.oneOfType([
     PropTypes.string,
@@ -59,8 +58,8 @@ const DateTimePickerComponent = (props) => {
   const {
     value,
     onChange,
-    intl,
   } = props;
+  const intl = useIntl();
 
   return (
     <MuiPickersUtilsProvider
@@ -92,4 +91,4 @@ const DateTimePickerComponent = (props) => {
 DateTimePickerComponent.propTypes = propTypes;
 DateTimePickerComponent.defaultProps = defaultProps;
 
-export default injectIntl(DateTimePickerComponent);
+export default DateTimePickerComponent;

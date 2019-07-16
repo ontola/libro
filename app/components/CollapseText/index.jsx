@@ -5,8 +5,7 @@ import FontAwesome from 'react-fontawesome';
 import {
   defineMessages,
   FormattedMessage,
-  injectIntl,
-  intlShape,
+  useIntl,
 } from 'react-intl';
 import { connect } from 'react-redux';
 
@@ -27,7 +26,6 @@ const messages = defineMessages({
 
 const propTypes = {
   id: PropTypes.string.isRequired,
-  intl: intlShape,
   minCharacters: PropTypes.number,
   onClickToggle: PropTypes.func.isRequired,
   open: PropTypes.bool,
@@ -40,12 +38,13 @@ const defaultProps = {
 
 const CollapseText = ({
   id,
-  intl,
   onClickToggle,
   minCharacters,
   open,
   text,
 }) => {
+  const intl = useIntl();
+
   const classes = classNames({
     CollapseText: true,
     'CollapseText--open': open,
@@ -102,4 +101,4 @@ export default connect(
     onClickToggle: () => dispatch(toggleOne(id)),
     onInitializeCollapsible: data => dispatch(initializeCollapsible(data)),
   })
-)(injectIntl(CollapseText));
+)(CollapseText);
