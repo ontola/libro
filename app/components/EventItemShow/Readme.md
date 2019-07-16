@@ -1,1 +1,0 @@
-An EventItem is part of an Event. EventItems are ordered, hence the index prop. It is expandable by clicking on the title. If an EventItem is selected during a meeting, a progress bar is shown to indicate how much time is left. The same progress bar is also shown when watching a replay of a meeting for the EventItem that is discussed in the video.

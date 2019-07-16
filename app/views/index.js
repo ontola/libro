@@ -34,7 +34,6 @@ import MenuItem from './MenuItem';
 import MenuSection from './MenuSection';
 import Motion from './Motion';
 import Notification from './Notification';
-// import './OpinionBubble';
 import Organization from './Organization/index';
 import Person from './Person';
 import Placement from './Placement';
@@ -48,11 +47,7 @@ import User from './User';
 import VideoPage from './VideoPage';
 import Volunteer from './Volunteer';
 import Vote from './Vote';
-// import './VoteCompareCells';
-// import './VoteCompareRows';
 import VoteEvent from './VoteEvent';
-// import './VoteEventCollection';
-// import './VoteMatch';
 import Widget from './Widget';
 
 export function getViews() {

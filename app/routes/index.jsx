@@ -7,7 +7,6 @@ import { PDF } from '../components';
 import LinkedObject from './LinkedObject';
 import DevBrowser from './DevBrowser';
 import SignIn from './SignIn';
-// import { LinkVoteMatch } from './VoteMatch';
 
 const subRoutes = [
   <Route key="signin" path={['/u/sign_in', '/*/u/sign_in']} component={SignIn} />,
