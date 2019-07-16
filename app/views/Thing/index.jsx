@@ -166,7 +166,7 @@ export default [
   ApplyLink,
   ...Arguments,
   ArguLocation,
-  CoverPhoto,
+  ...CoverPhoto,
   CreateAction,
   Creator,
   DateCreated,

@@ -56,6 +56,7 @@ export {
   LoadingButton,
   LoadingCard,
   LoadingCardFixed,
+  LoadingCoverPhoto,
   LoadingMicroRow,
   LoadingDetail,
   LoadingPage,

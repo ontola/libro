@@ -86,4 +86,10 @@ export const LoadingMicroRow = () => (
   </CardMicroRow>
 );
 
+export const LoadingCoverPhoto = () => (
+  <div className="CoverImage__wrapper">
+    <div className="CoverImage__child Loading__background" />
+  </div>
+);
+
 export default LoadingInline;
