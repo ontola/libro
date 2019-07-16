@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Form } from 'react-final-form';
 import { FormattedMessage, injectIntl } from 'react-intl';
+import { Redirect } from 'react-router';
 
 import { STEPS } from '../../state/form/reducer';
 import Button from '../Button';
@@ -25,10 +26,12 @@ const propTypes = {
     PropTypes.number,
     PropTypes.string,
   ])),
+  fullPage: PropTypes.bool,
   invalid: PropTypes.bool,
   onSubmit: PropTypes.func,
   r: PropTypes.string,
   step: PropTypes.string.isRequired,
+  userType: PropTypes.oneOf(['GuestUser', 'ConfirmedUser', 'UnconfirmedUser']),
 };
 
 const defaultProps = {
@@ -98,11 +101,18 @@ class SignInFormCard extends SignInFormBase {
 
   render() {
     const {
+      fullPage,
       invalid,
       onSubmit,
+      r,
+      userType,
     } = this.props;
 
     const { buttonText, formFields } = this.currentFields();
+
+    if (fullPage && ['ConfirmedUser', 'UnconfirmedUser'].includes(userType)) {
+      return <Redirect to={r} />;
+    }
 
     return (
       <React.Fragment>
