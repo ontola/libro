@@ -40,17 +40,19 @@ export default (lrs) => {
     }
 
     return (
-      <WebsiteContext.Provider value={websiteCtxValue}>
-        <HelmetProvider context={helmetContext}>
-          <IndexContainer
-            Router={router}
-            history={history}
-            lrs={lrs || LinkedRenderStore}
-            store={store}
-            title={title}
-          />
-        </HelmetProvider>
-      </WebsiteContext.Provider>
+      <React.StrictMode>
+        <WebsiteContext.Provider value={websiteCtxValue}>
+          <HelmetProvider context={helmetContext}>
+            <IndexContainer
+              Router={router}
+              history={history}
+              lrs={lrs || LinkedRenderStore}
+              store={store}
+              title={title}
+            />
+          </HelmetProvider>
+        </WebsiteContext.Provider>
+      </React.StrictMode>
     );
   };
 
