@@ -8,7 +8,7 @@ const manifest = require('./manifest.json');
 module.exports = merge(common, {
   cache: true,
 
-  devtool: 'inline-source-map',
+  devtool: 'cheap-eval-source-map',
 
   entry: [
     'webpack-hot-middleware/client',
