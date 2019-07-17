@@ -10,11 +10,11 @@ import {
 import logging from '../logging';
 
 import {
-  route,
-  setProxyReqHeaders,
-  setBulkResHeaders,
   newAuthorizationBulk,
   normalizeType,
+  route,
+  setBulkResHeaders,
+  setProxyReqHeaders,
 } from './helpers';
 
 export default (req, res) => {

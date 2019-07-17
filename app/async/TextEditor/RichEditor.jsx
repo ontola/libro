@@ -4,9 +4,9 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
 import {
-  getEditorShowRich,
-  getEditorShowPreview,
   getDraftState,
+  getEditorShowPreview,
+  getEditorShowRich,
 } from '../../state/textEditor/selectors';
 import { updateDraft } from '../../state/textEditor/actions';
 

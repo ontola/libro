@@ -1,6 +1,6 @@
 import {
-  retrievePath,
   iris,
+  retrievePath,
 } from '../iris';
 
 describe('helpers', () => {

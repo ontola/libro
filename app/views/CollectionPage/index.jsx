@@ -1,6 +1,6 @@
 import {
-  linkType,
   Property,
+  linkType,
   register,
   subjectType,
 } from 'link-redux';

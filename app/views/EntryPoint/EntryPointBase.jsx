@@ -1,6 +1,6 @@
 import HttpStatus from 'http-status-codes';
 import { anyRDFValue } from 'link-lib';
-import { LinkedResourceContainer, linkType, PropertyBase } from 'link-redux';
+import { LinkedResourceContainer, PropertyBase, linkType } from 'link-redux';
 import PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
 import React from 'react';

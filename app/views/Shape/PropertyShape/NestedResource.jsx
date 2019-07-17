@@ -1,8 +1,8 @@
 import {
   LinkedResourceContainer,
+  Property,
   linkType,
   lrsType,
-  Property,
   subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';

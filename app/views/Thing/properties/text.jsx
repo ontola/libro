@@ -1,8 +1,8 @@
 import LinkedRenderStore from 'link-lib';
 import {
+  PropertyBase,
   linkedPropType,
   subjectType,
-  PropertyBase,
   withLinkCtx,
 } from 'link-redux';
 import React from 'react';

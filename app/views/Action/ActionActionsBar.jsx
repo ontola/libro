@@ -1,7 +1,7 @@
 import {
+  Property,
   linkType,
   lrsType,
-  Property,
   register,
   subjectType,
 } from 'link-redux';

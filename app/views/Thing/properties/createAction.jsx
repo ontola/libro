@@ -1,8 +1,8 @@
 import LinkedRenderStore from 'link-lib';
 import {
+  LinkedResourceContainer,
   link,
   linkType,
-  LinkedResourceContainer,
   subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';

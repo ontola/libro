@@ -1,8 +1,8 @@
 import LinkedRenderStore from 'link-lib';
 import {
+  Property,
   link,
   linkType,
-  Property,
   useDataInvalidation,
   useLinkRenderContext,
 } from 'link-redux';

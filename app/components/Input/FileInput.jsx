@@ -19,8 +19,9 @@ class FileInput extends React.Component {
   }
 
   render() {
+    // File inputs can't be controlled
     const {
-      // eslint-disable-next-line no-unused-vars, react/prop-types, File inputs can't be controlled
+      // eslint-disable-next-line no-unused-vars, react/prop-types
       value,
       ...rest
     } = this.props;

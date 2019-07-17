@@ -1,7 +1,7 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
-  lrsType,
   Property,
+  lrsType,
   withLinkCtx,
 } from 'link-redux';
 import React from 'react';

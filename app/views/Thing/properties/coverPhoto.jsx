@@ -1,8 +1,8 @@
 import { ACCEPTED } from 'http-status-codes';
 import LinkedRenderStore from 'link-lib';
 import {
-  linkedPropType,
   LinkedResourceContainer,
+  linkedPropType,
   register,
   useDataInvalidation,
   useLRS,

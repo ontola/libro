@@ -10,7 +10,7 @@ import React from 'react';
 import Dropzone from 'react-dropzone';
 import { Field } from 'react-final-form';
 import FontAwesome from 'react-fontawesome';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { FormattedMessage, defineMessages } from 'react-intl';
 
 import { FormSectionContext } from '../../components/Form/FormSection';
 import OmniformRemoveButton from '../../components/Omniform/OmniformRemoveButton';

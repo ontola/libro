@@ -1,5 +1,5 @@
 import LinkedRenderStore from 'link-lib';
-import { linkedPropType, LinkedResourceContainer } from 'link-redux';
+import { LinkedResourceContainer, linkedPropType } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 

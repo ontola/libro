@@ -2,10 +2,10 @@ import { createAction, handleActions } from 'redux-actions';
 import { Map, Record } from 'immutable';
 
 import {
-  OMNIFORM_SET_ACTION,
-  OMNIFORM_INITIALIZE,
   OMNIFORM_CLOSE_INLINE,
+  OMNIFORM_INITIALIZE,
   OMNIFORM_OPEN_INLINE,
+  OMNIFORM_SET_ACTION,
 } from './action-types';
 
 // Factory

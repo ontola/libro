@@ -1,11 +1,11 @@
 import {
+  linkType,
   register,
   useLRS,
-  linkType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
+import { FormattedMessage, defineMessages, useIntl } from 'react-intl';
 
 import { contentDetailsTopology } from '../../../topologies/ContentDetails';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';

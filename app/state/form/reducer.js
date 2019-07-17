@@ -1,15 +1,15 @@
-import { Map, List } from 'immutable';
+import { List, Map } from 'immutable';
 import { LOCATION_CHANGE } from 'connected-react-router';
 import { handleActions } from 'redux-actions';
 import { combineReducers } from 'redux-immutable';
 
 import {
+  SIGN_IN_ACCOUNT_LOCKED,
   SIGN_IN_EMAIL_TAKEN,
-  SIGN_IN_UNKNOWN_EMAIL,
   SIGN_IN_SHOW_FORM,
   SIGN_IN_STEP_BACK,
+  SIGN_IN_UNKNOWN_EMAIL,
   SIGN_IN_WRONG_PASSWORD,
-  SIGN_IN_ACCOUNT_LOCKED,
 } from '../action-types';
 
 import messages from './messages';

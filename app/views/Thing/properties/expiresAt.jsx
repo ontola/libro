@@ -2,9 +2,9 @@ import { linkedPropType, register } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-  defineMessages,
   FormattedMessage,
   FormattedRelativeTime,
+  defineMessages,
   injectIntl,
   useIntl,
 } from 'react-intl';

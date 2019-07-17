@@ -1,13 +1,13 @@
 import {
   LinkedResourceContainer,
-  linkType, lrsType,
   Property,
+  linkType, lrsType,
   register,
 } from 'link-redux';
 import * as PropTypes from 'prop-types';
 import React from 'react';
 import { ReactHeight } from 'react-height';
-import { animated, Spring } from 'react-spring';
+import { Spring, animated } from 'react-spring';
 import { connect } from 'react-redux';
 
 import AppMenuGroup from '../../components/AppMenuGroup';

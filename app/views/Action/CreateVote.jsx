@@ -1,10 +1,10 @@
 import {
-  linkType,
   LinkedResourceContainer,
-  subjectType,
-  register,
-  useDataFetching,
+  linkType,
   lrsType,
+  register,
+  subjectType,
+  useDataFetching,
   useDataInvalidation,
 } from 'link-redux';
 import PropTypes from 'prop-types';

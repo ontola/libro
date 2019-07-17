@@ -1,8 +1,9 @@
 import {
-  linkedPropType,
   LinkedResourceContainer,
+  linkedPropType,
   lrsType,
-  register, withLRS,
+  register,
+  withLRS,
 } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';

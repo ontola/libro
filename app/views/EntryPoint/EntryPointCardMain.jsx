@@ -1,5 +1,5 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { link, Property } from 'link-redux';
+import { Property, link } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router';

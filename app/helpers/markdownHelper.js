@@ -1,4 +1,4 @@
-import { markdownToDraft, draftToMarkdown } from 'markdown-draft-js';
+import { draftToMarkdown, markdownToDraft } from 'markdown-draft-js';
 import { editorStateFromRaw } from 'megadraft';
 import { convertToRaw } from 'draft-js';
 

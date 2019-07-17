@@ -2,7 +2,7 @@ import { Map } from 'immutable';
 import { handleActions } from 'redux-actions';
 import { LOCATION_CHANGE } from 'connected-react-router';
 
-import { SET_CURRENT_USER, HIGHLIGHT_RESOURCE } from '../action-types';
+import { HIGHLIGHT_RESOURCE, SET_CURRENT_USER } from '../action-types';
 
 const initialState = new Map({
   [SET_CURRENT_USER]: new Map({

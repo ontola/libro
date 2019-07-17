@@ -2,8 +2,8 @@ import Tab from '@material-ui/core/Tab';
 import {
   LinkedResourceContainer,
   Property,
-  subjectType,
   register,
+  subjectType,
 } from 'link-redux';
 import React from 'react';
 

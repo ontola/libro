@@ -1,5 +1,5 @@
 import LinkedRenderStore from 'link-lib';
-import { link, PropertyBase } from 'link-redux';
+import { PropertyBase, link } from 'link-redux';
 import { Literal, Statement } from 'rdflib';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';

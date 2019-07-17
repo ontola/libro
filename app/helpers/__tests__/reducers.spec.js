@@ -3,9 +3,9 @@ import { Map, Record } from 'immutable';
 import {
   deleteRecord,
   increaseValue,
-  updateRecordValue,
   setRecord,
   toggleValue,
+  updateRecordValue,
 } from '../reducers';
 
 const TestRecord = new Record({

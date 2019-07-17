@@ -1,4 +1,4 @@
-import { withLinkCtx, subjectType } from 'link-redux';
+import { subjectType, withLinkCtx } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 

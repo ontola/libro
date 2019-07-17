@@ -1,7 +1,7 @@
 import {
-  register,
   LinkedResourceContainer,
   Property,
+  register,
   subjectType,
 } from 'link-redux';
 import React from 'react';

@@ -1,7 +1,7 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
-  link,
   Property,
+  link,
   linkType,
   register,
 } from 'link-redux';

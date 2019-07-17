@@ -1,7 +1,7 @@
 import {
-  linkedPropType,
   LinkedResourceContainer,
   linkType,
+  linkedPropType,
   useDataFetching,
   useDataInvalidation,
   useLRS,

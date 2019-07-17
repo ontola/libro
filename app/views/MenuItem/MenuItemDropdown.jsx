@@ -1,7 +1,7 @@
 import {
-  linkType,
   LinkedResourceContainer,
   Property,
+  linkType,
   register,
   unstable,
 } from 'link-redux';

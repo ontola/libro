@@ -1,4 +1,4 @@
-import { register, Type } from 'link-redux';
+import { Type, register } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';

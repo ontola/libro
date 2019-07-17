@@ -1,6 +1,6 @@
 import {
-  linkedPropType,
   LinkedResourceContainer,
+  linkedPropType,
   register,
 } from 'link-redux';
 import PropTypes from 'prop-types';

@@ -1,6 +1,6 @@
 import LinkedRenderStore, { list, seq } from 'link-lib';
 import { RenderStoreProvider } from 'link-redux';
-import { injectIntl, IntlProvider } from 'react-intl';
+import { IntlProvider, injectIntl } from 'react-intl';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
 

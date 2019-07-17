@@ -1,10 +1,10 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
-  linkType,
   LinkedResourceContainer,
-  subjectType,
   link,
+  linkType,
   lrsType,
+  subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';

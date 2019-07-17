@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
 import React from 'react';
 import {
-  defineMessages,
   FormattedMessage,
+  defineMessages,
   useIntl,
 } from 'react-intl';
 

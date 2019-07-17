@@ -1,8 +1,8 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
+  Property,
   link,
   linkType,
-  Property,
   subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';

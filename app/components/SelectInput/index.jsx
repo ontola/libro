@@ -1,9 +1,9 @@
 import Downshift from 'downshift';
 import { LinkedRenderStore } from 'link-lib';
 import {
-  linkedPropType,
   LinkedResourceContainer,
   linkType,
+  linkedPropType,
   useDataFetching,
   useDataInvalidation,
   useLRS,

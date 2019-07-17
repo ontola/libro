@@ -1,7 +1,7 @@
 import {
-  linkType,
   LinkedResourceContainer,
   Property,
+  linkType,
   register,
   subjectType,
 } from 'link-redux';

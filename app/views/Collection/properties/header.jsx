@@ -1,4 +1,4 @@
-import { linkType, Property } from 'link-redux';
+import { Property, linkType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 

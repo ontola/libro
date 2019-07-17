@@ -8,8 +8,8 @@ import {
   getMarkdownTextPlain,
 } from '../../state/textEditor/selectors';
 import {
-  hidePreview,
   doShowPreview,
+  hidePreview,
   updateMarkdown,
 } from '../../state/textEditor/actions';
 import Button from '../../components/Button';

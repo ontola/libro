@@ -1,11 +1,11 @@
 import { defaultNS } from 'link-lib';
 import {
-  link,
   LinkedResourceContainer,
-  linkType,
   Property,
-  subjectType,
   Type,
+  link,
+  linkType,
+  subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';

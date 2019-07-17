@@ -6,8 +6,8 @@ import FontAwesome from 'react-fontawesome';
 import { Heading, Link, PDF } from '../../components';
 import Image from '../../components/Image';
 import {
-  downloadableAttachment,
   downloadUrl,
+  downloadableAttachment,
   imageRepresentationUrl,
 } from '../../helpers/attachments';
 import { retrievePath } from '../../helpers/iris';

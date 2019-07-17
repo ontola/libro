@@ -1,7 +1,7 @@
 import LinkedRenderStore from 'link-lib';
 import {
-  link,
   LinkedResourceContainer,
+  link,
   linkType,
   lrsType,
   register,

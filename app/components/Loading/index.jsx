@@ -4,10 +4,10 @@ import React from 'react';
 import './Loading.scss';
 
 import Card, {
+  CardContent,
   CardFixed,
   CardMicroRow,
   CardRow,
-  CardContent,
 } from '../../topologies/Card';
 import Container from '../../topologies/Container';
 import PrimaryResource from '../../topologies/PrimaryResource';

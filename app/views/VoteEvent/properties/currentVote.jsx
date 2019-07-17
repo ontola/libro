@@ -1,12 +1,12 @@
 import LinkedRenderStore from 'link-lib';
 import {
-  link,
   LinkedResourceContainer,
+  TopologyProvider,
+  link,
   linkType,
   lrsType,
-  TopologyProvider,
-  withLinkCtx,
   withLRS,
+  withLinkCtx,
 } from 'link-redux';
 import * as PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';

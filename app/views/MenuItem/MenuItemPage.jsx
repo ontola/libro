@@ -1,9 +1,9 @@
 import AppBar from '@material-ui/core/AppBar';
 import {
   LinkedResourceContainer,
+  Property,
   linkType,
   lrsType,
-  Property,
   register,
 } from 'link-redux';
 import * as PropTypes from 'prop-types';

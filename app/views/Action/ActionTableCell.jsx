@@ -1,4 +1,4 @@
-import { linkType, Property, register } from 'link-redux';
+import { Property, linkType, register } from 'link-redux';
 import React from 'react';
 
 import { LDLink } from '../../components';

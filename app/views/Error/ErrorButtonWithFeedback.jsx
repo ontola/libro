@@ -1,4 +1,4 @@
-import { unstable, lrsType } from 'link-redux';
+import { lrsType, unstable } from 'link-redux';
 import PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
 import React from 'react';

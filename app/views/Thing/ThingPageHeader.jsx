@@ -5,9 +5,9 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import { CardFloat } from '../../topologies/Card';
 import ContentDetails from '../../topologies/ContentDetails';
 import {
-  PageHeaderText,
   PageHeaderImageAndTextWrapper,
   PageHeaderMenuItems,
+  PageHeaderText,
   pageHeaderTopology,
 } from '../../topologies/PageHeader';
 
