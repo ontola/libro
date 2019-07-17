@@ -3,6 +3,9 @@
     "react",
     "jsx-a11y"
   ],
+  "env": {
+    "shared-node-browser": true
+  },
   "extends": "airbnb",
   "root": true,
   "globals": {
@@ -27,9 +30,10 @@
   "settings": {
     "react": {
       "pragma": "React",
-      "version": "16.4.1"
+      "version": "16.8.6"
     },
     "import/resolver": {
+      "node": {},
       "webpack": {
         "config": "./webpack/common.config.js"
       }
@@ -79,7 +83,7 @@
     "import/no-extraneous-dependencies": ["error", {
       "devDependencies": true
     }],
-    "import/prefer-default-export": "warning",
+    "import/prefer-default-export": 1,
     "import/first": "error",
     "import/order": ["error", {
       "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
@@ -92,6 +96,7 @@
       "callbacksLast": true,
       "shorthandFirst": true
     }],
+    "sort-imports": ["error", { "ignoreDeclarationSort": true }],
     "sort-keys": ["error", "asc", { "natural": true }],
     "space-unary-ops": ["error", { "words": true, "nonwords": false }],
     "no-console": "error",
@@ -132,7 +137,7 @@
       }
     },
     {
-      "files": "server/*",
+      "files": ["server/*", "webpack/*"],
       "env": {
         "node": true
       }
