@@ -4,7 +4,7 @@ import Spinner from '../components/Spinner';
 
 const MapView = React.lazy(
   // eslint-disable-next-line no-inline-comments
-  () => import(/* webpackChunkName: 'TextEditor' */ '../async/MapView/index')
+  () => import(/* webpackChunkName: "TextEditor" */ '../async/MapView/index')
 );
 
 class MapViewLoader extends React.Component {

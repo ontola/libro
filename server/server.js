@@ -15,7 +15,8 @@ async function start() {
 }
 
 if (__DEVELOPMENT__) {
-  import('./middleware/devMiddleware')
+  // eslint-disable-next-line no-inline-comments
+  import(/* webpackChunkName: "devMiddleware" */ './middleware/devMiddleware')
     .then(({ default: devMiddleware }) => {
       devMiddleware(app);
       start();

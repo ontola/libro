@@ -80,15 +80,18 @@
     "jsx-a11y/scope": 2,
     "jsx-a11y/tabindex-no-positive": 2,
     // Code style
+    "import/dynamic-import-chunkname": "error",
+    "import/first": "error",
+    "import/newline-after-import": "error",
     "import/no-extraneous-dependencies": ["error", {
       "devDependencies": true
     }],
-    "import/prefer-default-export": 1,
-    "import/first": "error",
+    "import/no-duplicates": "error",
     "import/order": ["error", {
       "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
       "newlines-between": "always"
     }],
+    "import/prefer-default-export": 1,
     "one-var-declaration-per-line": ["error", "initializations"],
     "one-var": ["error", { "uninitialized": "always" }],
     "react/button-has-type": "warn",
