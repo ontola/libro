@@ -6,6 +6,7 @@ import { combineReducers } from 'redux-immutable';
 import {
   SIGN_IN_ACCOUNT_LOCKED,
   SIGN_IN_EMAIL_TAKEN,
+  SIGN_IN_NO_PASSWORD,
   SIGN_IN_SHOW_FORM,
   SIGN_IN_STEP_BACK,
   SIGN_IN_UNKNOWN_EMAIL,
@@ -16,6 +17,7 @@ import messages from './messages';
 
 export const STEPS = {
   confirm: 'confirm',
+  noPassword: 'noPassword',
   signIn: 'signIn',
   signUp: 'signUp',
   signUpCompleted: 'signUpCompleted',
@@ -65,6 +67,7 @@ export default combineReducers({
       }));
     },
     [SIGN_IN_EMAIL_TAKEN]: state => transitionTo(state, STEPS.signIn),
+    [SIGN_IN_NO_PASSWORD]: state => transitionTo(state, STEPS.noPassword),
     [SIGN_IN_SHOW_FORM]: (state, { payload }) => transitionTo(state, STEPS.signUp)
       .set('subject', payload),
     [SIGN_IN_STEP_BACK]: (state) => {

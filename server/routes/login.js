@@ -42,6 +42,9 @@ async function login(req, res, next) {
         case 'WRONG_PASSWORD':
           res.send({ status: 'SIGN_IN_WRONG_PASSWORD' }).end();
           break;
+        case 'NO_PASSWORD':
+          res.send({ status: 'SIGN_IN_NO_PASSWORD' }).end();
+          break;
         case 'UNKNOWN_EMAIL':
           res.send({ status: 'SIGN_IN_UNKNOWN_EMAIL' }).end();
           break;

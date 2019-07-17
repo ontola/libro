@@ -15,6 +15,7 @@ import {
   SIGN_IN_ACCOUNT_LOCKED,
   SIGN_IN_EMAIL_TAKEN,
   SIGN_IN_LOGGED_IN,
+  SIGN_IN_NO_PASSWORD,
   SIGN_IN_UNKNOWN_EMAIL,
   SIGN_IN_USER_CREATED,
   SIGN_IN_WRONG_PASSWORD,
@@ -22,6 +23,7 @@ import {
 import {
   accountLocked,
   emailTaken,
+  noPassword,
   unknownEmail,
   wrongPassword,
 } from '../state/form/actions';
@@ -76,6 +78,9 @@ export default (history, swc) => () => next => (action) => {
               break;
             case SIGN_IN_EMAIL_TAKEN:
               next(emailTaken());
+              break;
+            case SIGN_IN_NO_PASSWORD:
+              next(noPassword());
               break;
             case SIGN_IN_WRONG_PASSWORD:
               next(wrongPassword());

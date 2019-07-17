@@ -199,6 +199,17 @@ class SignInFormBase extends React.PureComponent {
           />
         );
         break;
+      case STEPS.noPassword:
+        formFields = (
+          <CardContent endSpacing>
+            <FormattedMessage
+              defaultMessage="You account does not have a password yet. We've just send you a new email to set a password. Please check your inbox before continuing."
+              id="https://app.argu.co/i18n/session/noPassword"
+            />
+          </CardContent>
+        );
+        buttonText = null;
+        break;
       case STEPS.signIn:
         formFields = this.signInFields();
         buttonText = (
