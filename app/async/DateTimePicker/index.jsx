@@ -34,7 +34,7 @@ const messages = defineMessages({
     defaultMessage: 'ok',
     id: 'https://app.argu.co/i18n/forms/actions/ok',
   },
-  showTodayLabel: {
+  todayLabel: {
     defaultMessage: 'now',
     id: 'https://app.argu.co/i18n/forms/actions/showToday',
   },
@@ -67,11 +67,11 @@ const DateTimePickerComponent = (props) => {
     >
       <DateTimePicker
         autoOk
-        clearable
         showTodayButton
         ampm={false}
         cancelLabel={intl.formatMessage(messages.cancelLabel)}
         clearLabel={intl.formatMessage(messages.clearLabel)}
+        clearable={!!value}
         format="D MMMM YYYY HH:mm"
         inputVariant="outlined"
         invalidDateMessage={intl.formatMessage(messages.invalidDateMessage)}
@@ -80,9 +80,9 @@ const DateTimePickerComponent = (props) => {
         maxDateMessage={intl.formatMessage(messages.maxDateMessage)}
         minDateMessage={intl.formatMessage(messages.minDateMessage)}
         okLabel={intl.formatMessage(messages.okLabel)}
-        showTodayLabel={intl.formatMessage(messages.showTodayLabel)}
+        todayLabel={intl.formatMessage(messages.todayLabel)}
         value={value}
-        onChange={e => onChange(e.format())}
+        onChange={e => onChange(e === null ? null : e?.format())}
       />
     </MuiPickersUtilsProvider>
   );

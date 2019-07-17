@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/nl';
 import 'dayjs/locale/en';
 import LinkedRenderStore from 'link-lib';
-import { RenderStoreProvider } from 'link-redux';
+import { RenderStoreProvider, useLRS } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { hot } from 'react-hot-loader/root';
@@ -29,6 +29,15 @@ const propTypes = {
   title: PropTypes.string,
 };
 
+const UpdateLRSIntl = ({ children }) => {
+  const lrs = useLRS();
+  // eslint-disable-next-line no-param-reassign
+  const intl = useIntl();
+  lrs.intl = intl;
+
+  return children;
+};
+
 const IndexContainer = ({
   Router,
   lrs,
@@ -44,14 +53,6 @@ const IndexContainer = ({
     messages = englishMessages;
     dayjs.locale('en');
   }
-
-  const UpdateLRSIntl = ({ children }) => {
-    // eslint-disable-next-line no-param-reassign
-    lrs.intl = useIntl();
-
-    return children;
-  };
-
   const themeName = getMetaContent('theme');
   let theme = themes[themeName] || themes.common;
 

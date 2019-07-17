@@ -1,3 +1,4 @@
+import equal from 'fast-deep-equal';
 import PropTypes from 'prop-types';
 import { Literal } from 'rdflib';
 import React from 'react';
@@ -71,6 +72,7 @@ class Form extends React.PureComponent {
     return (
       <FormContext.Provider value={formID}>
         <FinalForm
+          initialValuesEqual={equal}
           validateOnBlur={validateOnBlur}
           onSubmit={controlledSubmit}
         >

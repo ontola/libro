@@ -6,7 +6,7 @@ import {
 import PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
 import React from 'react';
-import { withReactFinalForm } from 'react-final-form';
+import { useForm } from 'react-final-form';
 
 import { FormContext } from '../../components/Form/Form';
 import { FormSectionContext } from '../../components/Form/FormSection';
@@ -21,12 +21,12 @@ import './PlacementOmniformFields.scss';
 const PlacementOmniformFields = ({
   lrs,
   propertyIndex,
-  reactFinalForm,
   removeItem,
   targetValue,
 }) => {
   const formID = React.useContext(FormContext);
   const formContext = React.useContext(FormSectionContext);
+  const reactFinalForm = useForm();
 
   if (isMarkedForRemove(targetValue)) {
     return null;
@@ -80,8 +80,6 @@ const PlacementOmniformFields = ({
 PlacementOmniformFields.type = NS.argu('Placement');
 
 PlacementOmniformFields.topology = omniformFieldsTopology;
-
-PlacementOmniformFields.hocs = [withReactFinalForm];
 
 PlacementOmniformFields.propTypes = {
   lrs: lrsType,

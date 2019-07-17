@@ -1,3 +1,4 @@
+import equal from 'fast-deep-equal';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Form } from 'react-final-form';
@@ -32,7 +33,10 @@ class SignInFormCardRow extends SignInFormBase {
     const { buttonText, formFields } = this.currentFields();
 
     return (
-      <Form onSubmit={onSubmit}>
+      <Form
+        initialValuesEqual={equal}
+        onSubmit={onSubmit}
+      >
         {({ handleSubmit, submitting }) => (
           <form onSubmit={handleSubmit}>
             {formFields}

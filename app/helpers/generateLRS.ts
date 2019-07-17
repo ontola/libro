@@ -16,18 +16,16 @@ import { appMiddleware, website } from '../middleware/app';
 import execFilter from '../middleware/execFilter';
 import logging from '../middleware/logging';
 import ontolaMiddleware from '../middleware/ontolaMiddleware';
+import arguDeltaProcessor from './arguDeltaProcessor';
 import { getMetaContent } from './arguHelpers';
 
-// @ts-ignore
-import { arguDeltaProcessor } from './data';
 import history from './history';
 import { handle } from './logging';
 import ServiceWorkerCommunicator from './ServiceWorkerCommunicator';
 import transformers from './transformers';
 import { initializeCable, subscribeDeltaChannel } from './websockets';
 
-export default
-function generateLRS() {
+export default function generateLRS() {
   const serviceWorkerCommunicator = new ServiceWorkerCommunicator();
 
   const middleware: Array<MiddlewareFn<any>> = [

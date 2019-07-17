@@ -282,7 +282,7 @@ class NestedResource extends React.Component {
       <FormSection name={fieldName} path={path}>
         <Field
           allowNull
-          format={null}
+          format={i => i}
           initialValue={initialValue}
           name={fieldName}
           render={fieldView}

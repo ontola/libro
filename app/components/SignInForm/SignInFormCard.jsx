@@ -1,3 +1,4 @@
+import equal from 'fast-deep-equal';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Form } from 'react-final-form';
@@ -125,6 +126,7 @@ class SignInFormCard extends SignInFormBase {
           </CardContent>
           {this.contentHeader()}
           <Form
+            initialValuesEqual={equal}
             onSubmit={onSubmit}
           >
             {({ handleSubmit, submitting }) => (

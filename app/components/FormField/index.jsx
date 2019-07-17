@@ -22,6 +22,8 @@ import FieldHelper from './FieldHelper';
 import './DateTime.scss';
 import './FormField.scss';
 
+const CHAR_COUNTER_THRESHOLD = 0.8;
+
 const propTypes = {
   autoComplete: PropTypes.string,
   autofocus: PropTypes.bool,
@@ -50,6 +52,7 @@ const propTypes = {
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
     value: PropTypes.oneOfType([
+      PropTypes.bool,
       PropTypes.string,
       PropTypes.instanceOf(Literal),
       PropTypes.instanceOf(NamedNode),
@@ -65,6 +68,7 @@ const propTypes = {
     dirty: PropTypes.bool,
     error: PropTypes.arrayOf(PropTypes.string),
     invalid: PropTypes.bool,
+    pristine: PropTypes.bool,
     touched: PropTypes.bool,
   }),
   minLength: PropTypes.number,
@@ -184,6 +188,10 @@ class FormField extends React.PureComponent {
     const value = this.inputValue();
     const currentLength = value instanceof Literal ? value.value.length : value?.length;
 
+    if (!currentLength || (currentLength / maxLength) <= CHAR_COUNTER_THRESHOLD) {
+      return null;
+    }
+
     return (
       <CharCounter
         currentLength={currentLength}
@@ -204,7 +212,7 @@ class FormField extends React.PureComponent {
       description,
       meta: {
         error,
-        touched,
+        pristine,
       },
       required,
       type,
@@ -212,7 +220,7 @@ class FormField extends React.PureComponent {
 
     const renderHelper = type === 'checkbox'
       ? !!description
-      : this.variant() !== 'preview' || (touched && (customErrors || error));
+      : this.variant() !== 'preview' || (!pristine && (customErrors || error));
     const renderCharCounter = this.variant() !== 'preview';
 
     if (!renderHelper) {
@@ -234,9 +242,9 @@ class FormField extends React.PureComponent {
 
     return (
       <FieldHelper
-        error={customErrors || error}
+        error={pristine ? undefined : customErrors || error}
         helperText={helperText}
-        right={renderCharCounter && this.charCounter()}
+        right={renderCharCounter ? this.charCounter() : undefined}
         variant={this.variant()}
       />
     );
@@ -250,7 +258,7 @@ class FormField extends React.PureComponent {
       initialValue,
       input,
       id,
-      meta: { active, touched },
+      meta: { active, pristine },
       minLength,
       name,
       onBlur,
@@ -392,7 +400,7 @@ class FormField extends React.PureComponent {
 
     if (type === 'checkbox') {
       trailer = this.label();
-    } else if (errors && touched) {
+    } else if (errors && !pristine && !active) {
       trailer = (
         <span
           className="Field__input--trailing-icon fa fa-exclamation-circle"

@@ -16,126 +16,137 @@ const inputsPreferringPlaceholder = [
   'textarea',
 ];
 
-class DataField extends React.Component {
-  static contextType = FormContext;
+const determineInputType = (
+  datatype,
+  shIn,
+  maxCount,
+  maxLength
+) => {
+  if (shIn) {
+    if (tryParseInt(maxCount) > 1) {
+      return 'checkboxes';
+    }
 
-  static propTypes = {
-    autofocus: PropTypes.bool,
-    datatype: linkType,
-    defaultValue: linkType,
-    description: linkType,
-    fieldName: PropTypes.string,
-    in: linkType,
-    maxCount: linkType,
-    maxLength: linkType,
-    minCount: linkType,
-    minLength: linkType,
-    name: linkType,
-    onKeyUp: PropTypes.func,
-    targetValues: PropTypes.arrayOf(
-      PropTypes.shape({
-        '@id': linkType,
-      })
-    ),
-    theme: PropTypes.string,
-  };
+    return 'select';
+  }
 
-  inputType() {
-    if (this.props.in) {
-      const maxCount = tryParseInt(this.props.maxCount);
-      if (maxCount && maxCount > 1) {
-        return 'checkboxes';
+  switch (datatype) {
+    case NS.xsd('boolean'):
+      return 'checkbox';
+    case NS.xsd('dateTime'):
+      return 'datetime-local';
+    case NS.xsd('integer'):
+    case NS.xsd('long'):
+    case NS.xsd('int'):
+    case NS.xsd('short'):
+    case NS.xsd('byte'):
+    case NS.xsd('decimal'):
+      return 'number';
+    case NS.ll('blob'):
+      return 'file';
+    case NS.fhir('markdown'):
+      return 'markdown';
+    case NS.ontola('datatype/password'):
+      return 'password';
+    default:
+      if (tryParseInt(maxLength) > MAX_STR_LEN) {
+        return 'textarea';
       }
 
-      return 'select';
-    }
+      return 'text';
+  }
+};
 
-    switch (this.props.datatype) {
-      case NS.xsd('boolean'):
-        return 'checkbox';
-      case NS.xsd('dateTime'):
-        return 'datetime-local';
-      case NS.xsd('integer'):
-      case NS.xsd('long'):
-      case NS.xsd('int'):
-      case NS.xsd('short'):
-      case NS.xsd('byte'):
-      case NS.xsd('decimal'):
-        return 'number';
-      case NS.ll('blob'):
-        return 'file';
-      case NS.fhir('markdown'):
-        return 'markdown';
-      case NS.ontola('datatype/password'):
-        return 'password';
-      default:
-        if (tryParseInt(this.props.maxLength) > MAX_STR_LEN) {
-          return 'textarea';
-        }
-
-        return 'text';
-    }
+const descriptionValue = (description, inputType) => {
+  if (inputsPreferringPlaceholder.includes(inputType)) {
+    return null;
   }
 
-  descriptionValue() {
-    if (inputsPreferringPlaceholder.includes(this.inputType())) {
-      return null;
-    }
+  return description?.value;
+};
 
-    return this.props.description?.value;
+const placeholderValue = (description, inputType) => {
+  if (!inputsPreferringPlaceholder.includes(inputType)) {
+    return null;
   }
 
-  placeholderValue() {
-    if (!inputsPreferringPlaceholder.includes(this.inputType())) {
-      return null;
-    }
+  return description?.value;
+};
 
-    return this.props.description?.value;
-  }
+const DataField = (props) => {
+  const {
+    fieldName,
+    autofocus,
+    datatype,
+    description,
+    defaultValue,
+    in: shIn,
+    maxCount,
+    maxLength,
+    minCount,
+    minLength,
+    name,
+    onKeyUp,
+    targetValues,
+    theme,
+  } = props;
 
-  render() {
-    const {
-      fieldName,
-      targetValues,
-      autofocus,
-      defaultValue,
-      maxLength,
-      minCount,
-      minLength,
-      name,
-      theme,
-      onKeyUp,
-    } = this.props;
+  const storeKey = React.useContext(FormContext);
+  const inputType = determineInputType(
+    datatype,
+    shIn,
+    maxCount,
+    maxLength
+  );
+  const required = minCount && Number(minCount.value) > 0;
+  const validate = [
+    maxLength && validators.maxLength(maxLength),
+    required && validators.required,
+    minLength && validators.minLength(minLength),
+  ];
 
-    const required = minCount && Number(minCount.value) > 0;
-    const validate = [
-      maxLength && validators.maxLength(maxLength),
-      required && validators.required,
-      minLength && validators.minLength(minLength),
-    ];
+  return (
+    <FormField
+      validateOnChange
+      autofocus={autofocus}
+      description={descriptionValue(description, inputType)}
+      field={fieldName}
+      initialValue={targetValues?.[0] || defaultValue}
+      label={name && name.value}
+      maxLength={tryParseInt(maxLength)}
+      minLength={tryParseInt(minLength)}
+      minRows={maxLength > MAX_STR_LEN ? TEXTFIELD_MIN_ROWS : undefined}
+      options={shIn}
+      placeholder={placeholderValue(description, inputType)}
+      required={required}
+      storeKey={storeKey}
+      theme={theme}
+      type={inputType}
+      validate={combineValidators(validate)}
+      onKeyUp={onKeyUp}
+    />
+  );
+};
 
-    return (
-      <FormField
-        validateOnChange
-        autofocus={autofocus}
-        description={this.descriptionValue()}
-        field={fieldName}
-        initialValue={targetValues?.[0] || defaultValue}
-        label={name && name.value}
-        maxLength={tryParseInt(maxLength)}
-        minLength={tryParseInt(minLength)}
-        minRows={maxLength > MAX_STR_LEN ? TEXTFIELD_MIN_ROWS : undefined}
-        options={this.props.in}
-        placeholder={this.placeholderValue()}
-        required={required}
-        storeKey={this.context}
-        theme={theme}
-        type={this.inputType()}
-        validate={combineValidators(validate)}
-        onKeyUp={onKeyUp}
-      />
-    );
-  }
-}
+DataField.propTypes = {
+  autofocus: PropTypes.bool,
+  datatype: linkType,
+  defaultValue: linkType,
+  description: linkType,
+  fieldName: PropTypes.string,
+  in: linkType,
+  maxCount: linkType,
+  maxLength: linkType,
+  minCount: linkType,
+  minLength: linkType,
+  name: linkType,
+  onKeyUp: PropTypes.func,
+  targetValues: PropTypes.arrayOf(
+    PropTypes.shape({
+      '@id': linkType,
+    })
+  ),
+  theme: PropTypes.string,
+};
 
 export default DataField;

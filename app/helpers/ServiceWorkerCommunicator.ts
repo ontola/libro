@@ -1,7 +1,5 @@
 import { LinkReduxLRSType } from 'link-redux';
-import { Statement } from 'rdflib';
 
-import LinkedRenderStore from './LinkedRenderStore';
 import { handle } from './logging';
 
 class ServiceWorkerCommunicator {
@@ -100,12 +98,10 @@ class ServiceWorkerCommunicator {
     const cache = await caches.open(cacheName);
     const updatedResponse = await cache.match(updatedUrl);
 
-    (this.lrs as any)
-      .api
+    (this.lrs.api as any)
       .feedResponse(updatedResponse)
-      .then((statements: Statement[]) => {
-        (LinkedRenderStore as any).store.processDelta(statements);
-        (LinkedRenderStore as any).broadcast();
+      .then(() => {
+        (this.lrs as any).broadcast();
       });
   }
 

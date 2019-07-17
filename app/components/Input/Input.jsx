@@ -63,10 +63,7 @@ const propTypes = {
   autoFocus: PropTypes.bool,
   capture: PropTypes.bool,
   className: PropTypes.string,
-  element: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.node,
-  ]),
+  element: PropTypes.elementType,
   /**
    * @API custom
    * Set the fields' value to this if the type is hidden.
