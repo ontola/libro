@@ -8,9 +8,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import {
-  CardContent,
-} from '../../components';
+import { CardContent } from '../../components';
 import { actionType } from '../../helpers/diggers';
 import { NS } from '../../helpers/LinkedRenderStore';
 import Card from '../../topologies/Card';
@@ -29,7 +27,11 @@ const propTypes = {
   target: linkType,
 };
 
-const Notification = ({ lrs, subject, target }) => {
+const Notification = ({
+  lrs,
+  subject,
+  target,
+}) => {
   let content = <Property label={NS.schema('name')} />;
   if (target) {
     const readAction = lrs.findSubject(subject, actionType, NS.schema('ReadAction')).pop();

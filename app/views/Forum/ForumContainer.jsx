@@ -1,10 +1,12 @@
 import React from 'react';
-import { Property, register, subjectType } from 'link-redux';
+import {
+  Property,
+  register,
+  subjectType,
+} from 'link-redux';
 
 import { connectHighlighting, hightlightType } from '../../containers/Highlight';
-import {
-  CardContent,
-} from '../../components';
+import { CardContent } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import Card from '../../topologies/Card';
 import CardRow from '../../topologies/Card/CardRow';

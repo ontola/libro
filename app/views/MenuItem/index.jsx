@@ -7,9 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import {
-  DropdownLink,
-} from '../../components';
+import { DropdownLink } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { dropdownContentTopology } from '../../topologies/DropdownContent';
 

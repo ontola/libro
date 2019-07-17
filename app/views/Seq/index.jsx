@@ -37,7 +37,10 @@ export function Seq({
     secondary = sequences.slice(gutter);
   }
 
-  useDataInvalidation({ dataSubjects: sequences, subject });
+  useDataInvalidation({
+    dataSubjects: sequences,
+    subject,
+  });
 
   return (
     <React.Fragment>

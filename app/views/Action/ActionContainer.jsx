@@ -1,4 +1,8 @@
-import { LinkedResourceContainer, register, subjectType } from 'link-redux';
+import {
+  LinkedResourceContainer,
+  register,
+  subjectType,
+} from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { withRouter } from 'react-router';
@@ -28,7 +32,11 @@ class ActionContainer extends NavigatableAction {
   };
 
   render() {
-    const { actionStatus, subject, target } = this.props;
+    const {
+      actionStatus,
+      subject,
+      target,
+    } = this.props;
 
     if (actionStatus && actionStatus !== NS.schema('PotentialActionStatus')) {
       return null;

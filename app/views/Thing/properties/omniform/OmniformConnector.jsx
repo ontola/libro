@@ -6,9 +6,7 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {
-  Omniform,
-} from '../../../../components';
+import { Omniform } from '../../../../components';
 
 class OmniformConnector extends React.PureComponent {
   static propTypes = {

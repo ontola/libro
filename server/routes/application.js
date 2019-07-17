@@ -6,7 +6,11 @@ import * as constants from '../../app/config';
 import { isHTMLHeader } from '../utils/http';
 import logging from '../utils/logging';
 import manifest from '../utils/manifest';
-import { bulkResourceRequest, isRedirect, route } from '../utils/proxies/helpers';
+import {
+  bulkResourceRequest,
+  isRedirect,
+  route,
+} from '../utils/proxies/helpers';
 import { handleRender } from '../utils/render';
 
 const BACKEND_TIMEOUT = 3000;
@@ -71,7 +75,10 @@ export default function application(port) {
         responseData = Buffer.concat([responseData, chunk]);
         next();
       };
-      const dataHeaders = { ...req.headers, accept: 'application/n-quads' };
+      const dataHeaders = {
+        ...req.headers,
+        accept: 'application/n-quads',
+      };
       const reqForData = {
         api: req.api,
         deviceId: req.deviceId,

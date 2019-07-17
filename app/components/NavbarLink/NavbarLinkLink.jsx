@@ -2,9 +2,7 @@ import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 
 import Link from '../Link';
-import {
-  retrievePath,
-} from '../../helpers/iris';
+import { retrievePath } from '../../helpers/iris';
 
 const propTypes = {
   children: PropTypes.node,

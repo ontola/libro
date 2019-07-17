@@ -74,4 +74,8 @@ argUnit(HoverBox, () => {
       expect(subject.find(marker('sometimes'))).not.toExist();
     });
   });
-}, { link: true, mount: true, propTypes });
+}, {
+  link: true,
+  mount: true,
+  propTypes,
+});

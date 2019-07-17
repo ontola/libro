@@ -1,4 +1,8 @@
-import { linkType, subjectType, withLRS } from 'link-redux';
+import {
+  linkType,
+  subjectType,
+  withLRS,
+} from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';

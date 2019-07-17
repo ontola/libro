@@ -60,7 +60,11 @@ class Omniform extends EntryPointBase {
   }
 
   linkedFieldset() {
-    const { action, form, onKeyUp } = this.props;
+    const {
+      action,
+      form,
+      onKeyUp,
+    } = this.props;
     if (!(action instanceof NamedNode)) {
       return null;
     }

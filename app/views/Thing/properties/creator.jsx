@@ -15,7 +15,11 @@ const propTypes = {
   linkedProp: linkedPropType,
 };
 
-const Creator = ({ children, hideName, linkedProp }) => (
+const Creator = ({
+  children,
+  hideName,
+  linkedProp,
+}) => (
   <LinkedResourceContainer
     hideName={hideName}
     subject={linkedProp}

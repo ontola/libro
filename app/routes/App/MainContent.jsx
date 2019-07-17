@@ -21,7 +21,10 @@ const MainContent = () => {
           />
           <div
             style={(openState && matches)
-              ? { height: 'calc(100vh - 3.5em)', overflow: 'hidden' }
+              ? {
+                height: 'calc(100vh - 3.5em)',
+                overflow: 'hidden',
+              }
               : undefined
             }
           >

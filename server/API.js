@@ -5,7 +5,11 @@ import * as constants from '../app/config';
 import { createUserRequest } from './api/users';
 import processResponse from './api/internal/statusHandler';
 import { guestTokenRequest, userTokenRequest } from './api/tokens';
-import { clientId, clientSecret, oAuthToken } from './config';
+import {
+  clientId,
+  clientSecret,
+  oAuthToken,
+} from './config';
 import logging from './utils/logging';
 import { route } from './utils/proxies/helpers';
 

@@ -19,9 +19,17 @@ const propTypes = {
   onClick: PropTypes.func,
 };
 
-const Target = ({ children = null, linkedProp, onClick }) => (
+const Target = ({
+  children = null,
+  linkedProp,
+  onClick,
+}) => (
   <Link
-    style={{ display: 'flex', flexGrow: 1, paddingTop: '.5em' }}
+    style={{
+      display: 'flex',
+      flexGrow: 1,
+      paddingTop: '.5em',
+    }}
     to={retrievePath(linkedProp.value)}
     onClick={onClick}
   >

@@ -104,7 +104,10 @@ describe('helpers', () => {
 
       it('should resolve responses to json', () => {
         const jsonPromise = jest.fn().mockReturnValueOnce(Promise.resolve('{}'));
-        expect(json({ json: jsonPromise, status: HttpStatus.OK })).resolves.toEqual('{}');
+        expect(json({
+          json: jsonPromise,
+          status: HttpStatus.OK,
+        })).resolves.toEqual('{}');
         expect(jsonPromise).toHaveBeenCalled();
       });
     });

@@ -7,7 +7,11 @@ import { withRouter } from 'react-router';
 
 import { absoluteRouterLocation } from '../../helpers/paths';
 import { frontendOrigin } from '../../middleware/app';
-import { setNumPages, setRotation, setZoomLevel } from '../../state/PDFViewer/actions';
+import {
+  setNumPages,
+  setRotation,
+  setZoomLevel,
+} from '../../state/PDFViewer/actions';
 import {
   getNumPages,
   getRotation,

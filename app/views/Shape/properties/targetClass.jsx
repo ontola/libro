@@ -11,7 +11,11 @@ import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../../topologies';
 import { omniformFieldsTopology } from '../../../topologies/OmniformFields/OmniformFields';
 
-const TargetClass = ({ children, linkedProp, ...props }) => {
+const TargetClass = ({
+  children,
+  linkedProp,
+  ...props
+}) => {
   const View = linkedProp && useView(linkedProp, RENDER_CLASS_NAME, omniformFieldsTopology);
 
   if (View) {

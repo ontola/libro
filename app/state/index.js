@@ -1,5 +1,9 @@
 import { connectRouter, routerMiddleware } from 'connected-react-router/immutable';
-import { applyMiddleware, compose, createStore } from 'redux';
+import {
+  applyMiddleware,
+  compose,
+  createStore,
+} from 'redux';
 import { enableBatching } from 'redux-batched-actions';
 import { combineReducers } from 'redux-immutable';
 import thunk from 'redux-thunk';

@@ -7,7 +7,10 @@ export const highlightResource = createAction(actions.HIGHLIGHT_RESOURCE);
 
 export const setCurrentUser = createAction(
   actions.SET_CURRENT_USER,
-  ({ actorType, anonymousID }) => new Map({ actorType, anonymousID })
+  ({ actorType, anonymousID }) => new Map({
+    actorType,
+    anonymousID,
+  })
 );
 export const setCurrentUserEmail = createAction(
   actions.SET_CURRENT_USER,

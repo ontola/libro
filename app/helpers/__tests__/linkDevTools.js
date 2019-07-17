@@ -145,7 +145,12 @@ describe('helpers', () => {
         const mock = jest.fn().mockReturnValueOnce('ret');
         const mocklrs = jest.fn();
         devObj.getLRS = jest.fn().mockReturnValueOnce(mocklrs);
-        expect(devObj.showProp(mock)({ props: { label: 'b', subject: 'a' } })).toEqual('ret');
+        expect(devObj.showProp(mock)({
+          props: {
+            label: 'b',
+            subject: 'a',
+          },
+        })).toEqual('ret');
         expect(mock).toBeCalledWith('a', 'b');
       });
     });
@@ -326,7 +331,12 @@ describe('helpers', () => {
       });
 
       it('should null', () => {
-        devObj.rDevTools = { props: { topology: null, topologyCtx: 'mock' } };
+        devObj.rDevTools = {
+          props: {
+            topology: null,
+            topologyCtx: 'mock',
+          },
+        };
         expect(devObj.topology).toBeUndefined();
       });
     });

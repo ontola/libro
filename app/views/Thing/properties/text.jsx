@@ -7,7 +7,11 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { CollapseText, Markdown, MarkdownFixedPreview } from '../../../components';
+import {
+  CollapseText,
+  Markdown,
+  MarkdownFixedPreview,
+} from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { cardTopology } from '../../../topologies/Card';
 import { cardFixedTopology } from '../../../topologies/Card/CardFixed';

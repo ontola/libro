@@ -2,7 +2,11 @@ import connectRedis from 'connect-redis';
 import session from 'express-session';
 import Redis from 'ioredis';
 
-import { logLevel, redisAddress, sessionSecret } from '../config';
+import {
+  logLevel,
+  redisAddress,
+  sessionSecret,
+} from '../config';
 
 export const client = new Redis(redisAddress);
 

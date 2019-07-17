@@ -4,7 +4,10 @@ import * as actions from '../action-types';
 
 export const gotoPage = createAction(
   actions.GOTO_PAGE,
-  (collectionIRI, page) => ({ collectionIRI, page })
+  (collectionIRI, page) => ({
+    collectionIRI,
+    page,
+  })
 );
 
 export default gotoPage;

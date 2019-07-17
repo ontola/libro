@@ -1,6 +1,10 @@
 import HttpStatus from 'http-status-codes';
 import { anyRDFValue } from 'link-lib';
-import { LinkedResourceContainer, PropertyBase, linkType } from 'link-redux';
+import {
+  LinkedResourceContainer,
+  PropertyBase,
+  linkType,
+} from 'link-redux';
 import PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
 import React from 'react';
@@ -43,7 +47,10 @@ class EntryPointBase extends PropertyBase {
           if (__CLIENT__) {
             sessionStorage.setItem(
               `app.storedActions.${action.value}`,
-              JSON.stringify({ action, formData })
+              JSON.stringify({
+                action,
+                formData,
+              })
             );
           }
 

@@ -31,7 +31,10 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onSubmit: values => dispatch(apiLogin({ r: ownProps.r, ...convertKeysAtoB(values) })),
+  onSubmit: values => dispatch(apiLogin({
+    r: ownProps.r,
+    ...convertKeysAtoB(values),
+  })),
   stepBack: () => dispatch(stepBack()),
 });
 

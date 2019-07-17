@@ -123,7 +123,10 @@ const CreateVote = ({
 
   const isCurrentOrVote = currentVote(current, object, lrs);
   const vote = typeof isCurrentOrVote === 'object' ? isCurrentOrVote : undefined;
-  const lastUpdate = useDataInvalidation({ dataSubjects: [vote].filter(Boolean), subject });
+  const lastUpdate = useDataInvalidation({
+    dataSubjects: [vote].filter(Boolean),
+    subject,
+  });
   useDataFetching({ subject: vote }, lastUpdate);
 
   if (!target) {
@@ -178,7 +181,10 @@ CreateVote.mapDataToProps = {
   isPartOf: NS.schema('isPartOf'),
   object: NS.schema('object'),
   target: NS.schema('target'),
-  type: { label: NS.rdf('type'), limit: Infinity },
+  type: {
+    label: NS.rdf('type'),
+    limit: Infinity,
+  },
 };
 
 CreateVote.propTypes = {

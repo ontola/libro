@@ -10,7 +10,13 @@ export const defaultKeymap = {
 };
 
 export const devKeymap = {
-  startHoverHelper: { action: 'keydown', sequence: 'alt' },
-  stopHoverHelper: { action: 'keyup', sequence: 'alt' },
+  startHoverHelper: {
+    action: 'keydown',
+    sequence: 'alt',
+  },
+  stopHoverHelper: {
+    action: 'keyup',
+    sequence: 'alt',
+  },
   ...defaultKeymap,
 };

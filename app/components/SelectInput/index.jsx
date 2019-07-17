@@ -33,7 +33,11 @@ export const optionsType = PropTypes.oneOfType([
 ]);
 
 function calculateItemsToShow(state) {
-  const { inputValue, options, selectedItem } = state;
+  const {
+    inputValue,
+    options,
+    selectedItem,
+  } = state;
 
   const compareValue = inputValue && normalizedLower(typeof inputValue === 'string' ? inputValue : inputValue.value);
   if (inputValue && inputValue !== selectedItem && options.length > MAX_ITEMS) {

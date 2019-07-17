@@ -106,7 +106,11 @@ const MediaObjectOmniformFields = ({
                   multiple={false}
                   onDrop={onChange}
                 >
-                  {({ getInputProps, getRootProps, isDragActive }) => (
+                  {({
+                    getInputProps,
+                    getRootProps,
+                    isDragActive,
+                  }) => (
                     <div className="MediaObjectOmniformFields__button-spacer">
                       <OmniformRemoveButton removeItem={removeItem} />
                       <button
@@ -156,9 +160,7 @@ MediaObjectOmniformFields.topology = omniformFieldsTopology;
 MediaObjectOmniformFields.propTypes = {
   lrs: lrsType,
   propertyIndex: PropTypes.number,
-  reactFinalForm: PropTypes.shape({
-    change: PropTypes.func,
-  }),
+  reactFinalForm: PropTypes.shape({ change: PropTypes.func }),
   removeItem: PropTypes.func,
   subject: subjectType,
   targetValue: PropTypes.shape({

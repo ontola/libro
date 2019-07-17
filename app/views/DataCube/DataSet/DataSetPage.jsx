@@ -29,7 +29,11 @@ const orderComponents = (components, lrs) => components
     return 0;
   });
 
-const DataSetPage = ({ lrs, structure, subject }) => {
+const DataSetPage = ({
+  lrs,
+  structure,
+  subject,
+}) => {
   const components = lrs.getResourceProperties(structure, NS.qb('component'));
   const orderedComponents = orderComponents(components, lrs);
   const orderedMeasures = orderedComponents.map(comp => lrs.getResourceProperty(comp, NS.qb('measure')));

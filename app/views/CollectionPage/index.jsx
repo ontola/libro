@@ -21,7 +21,11 @@ import Views from './properties/views';
 import voteEvent from './voteEvent';
 import { CollectionViewTypes } from './types';
 
-function getCollectionPage({ hidePagination = true, redirect = false, topology = [] } = {}) {
+function getCollectionPage({
+  hidePagination = true,
+  redirect = false,
+  topology = [],
+} = {}) {
   const CollectionPage = (props) => {
     if (props.insideCollection) {
       if (__CLIENT__ && props.redirectPagination) {

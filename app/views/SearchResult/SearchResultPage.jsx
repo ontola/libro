@@ -7,7 +7,11 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Field, Form } from 'react-final-form';
-import { FormattedMessage, defineMessages, useIntl } from 'react-intl';
+import {
+  FormattedMessage,
+  defineMessages,
+  useIntl,
+} from 'react-intl';
 import { withRouter } from 'react-router';
 
 import Button from '../../components/Button';

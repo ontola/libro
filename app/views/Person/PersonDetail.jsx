@@ -1,4 +1,8 @@
-import { Property, register, topologyType } from 'link-redux';
+import {
+  Property,
+  register,
+  topologyType,
+} from 'link-redux';
 import PropTypes from 'prop-types';
 import { Literal } from 'rdflib';
 import React from 'react';

@@ -46,7 +46,11 @@ const messages = defineMessages({
   },
 });
 
-const FORMAT = { day: 'numeric', month: 'long', year: 'numeric' };
+const FORMAT = {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+};
 
 const DetailDate = (props) => {
   const {

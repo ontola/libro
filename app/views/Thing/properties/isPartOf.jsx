@@ -1,4 +1,8 @@
-import { LinkedResourceContainer, linkedPropType, register } from 'link-redux';
+import {
+  LinkedResourceContainer,
+  linkedPropType,
+  register,
+} from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 

@@ -4,7 +4,11 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 
 import Link from '../Link';
-import { expandPath, isDifferentWebsite, retrievePath } from '../../helpers/iris';
+import {
+  expandPath,
+  isDifferentWebsite,
+  retrievePath,
+} from '../../helpers/iris';
 
 import './Markdown.scss';
 

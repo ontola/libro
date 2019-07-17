@@ -7,9 +7,7 @@ import {
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  Resource,
-} from '../../components';
+import { Resource } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { selectTopology } from '../../topologies/Select';
 

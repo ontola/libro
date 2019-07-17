@@ -47,7 +47,11 @@ class OmniformProp extends React.PureComponent {
   };
 
   selfOrParentExpired() {
-    const { expiresAt, isPartOf, lrs } = this.props;
+    const {
+      expiresAt,
+      isPartOf,
+      lrs,
+    } = this.props;
 
     if (isPastDate(expiresAt)) {
       return true;

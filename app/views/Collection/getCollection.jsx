@@ -34,7 +34,11 @@ export default function getCollection({
 
     static hocs = [
       connect(
-        (state, { currentPage, renderWhenEmpty: rwe, subject }) => ({
+        (state, {
+          currentPage,
+          renderWhenEmpty: rwe,
+          subject,
+        }) => ({
           currentPage: getPage(state, subject.value) || currentPage,
           renderWhenEmpty: rwe || renderWhenEmpty,
         }),

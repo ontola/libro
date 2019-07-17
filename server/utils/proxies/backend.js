@@ -2,7 +2,11 @@ import proxy from 'http-proxy-middleware';
 
 import * as constants from '../../config';
 
-import { route, setProxyReqHeaders, setProxyResHeaders } from './helpers';
+import {
+  route,
+  setProxyReqHeaders,
+  setProxyResHeaders,
+} from './helpers';
 
 export default proxy({
   logLevel: constants.logLevel,

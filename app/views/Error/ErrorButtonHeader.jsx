@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
+import {
+  FormattedMessage,
+  defineMessages,
+  injectIntl,
+} from 'react-intl';
 
 import { BlurButton } from '../../components';
 import NavbarLinkIcon from '../../components/NavbarLink/NavbarLinkIcon';

@@ -33,14 +33,23 @@ class MenuNavbar extends React.PureComponent {
     let buttonSettings;
     switch (openState) {
       case menuStates.closing:
-        buttonSettings = { action: 'actions/menu/close', icon: 'bars' };
+        buttonSettings = {
+          action: 'actions/menu/close',
+          icon: 'bars',
+        };
         break;
       case menuStates.open:
-        buttonSettings = { action: 'actions/menu/close', icon: 'close' };
+        buttonSettings = {
+          action: 'actions/menu/close',
+          icon: 'close',
+        };
         break;
       case menuStates.closed:
       default:
-        buttonSettings = { action: 'actions/menu/open', icon: 'bars' };
+        buttonSettings = {
+          action: 'actions/menu/open',
+          icon: 'bars',
+        };
         break;
     }
 

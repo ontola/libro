@@ -13,7 +13,11 @@ const React = require('react');
 
 const VAR_PREFIX = '__argu_global_prop_';
 
-const define = ({ scope, name, block }) => {
+const define = ({
+  scope,
+  name,
+  block,
+}) => {
   let value;
   let isEvaluated = false;
 

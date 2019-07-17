@@ -103,7 +103,10 @@ class MapView extends React.Component {
 
     const canvas = document.createElement('canvas');
     const canvasCtx = canvas.getContext('2d');
-    const vectorContext = toContext(canvasCtx, { pixelRatio: 1, size: [100, 100] });
+    const vectorContext = toContext(canvasCtx, {
+      pixelRatio: 1,
+      size: [100, 100],
+    });
 
     const fill = new Fill({ color: highlight ? '#92a1b5' : '#475668' });
     const stroke = new Stroke({
@@ -295,7 +298,11 @@ class MapView extends React.Component {
       return;
     }
 
-    const { lrs, subject, subjectPlacement } = this.props;
+    const {
+      lrs,
+      subject,
+      subjectPlacement,
+    } = this.props;
 
     const centerPlacement = subjectPlacement
       || (subject && lrs.getResourceProperty(subject, NS.schema('location')));
@@ -313,7 +320,11 @@ class MapView extends React.Component {
       return;
     }
 
-    const { lon, lat, zoom } = center;
+    const {
+      lon,
+      lat,
+      zoom,
+    } = center;
 
     if (this.tileSource) {
       this.tileSource.removeEventListener('tileloadend', this.onLoad);

@@ -56,7 +56,10 @@ function dataURItoBlob(literal) {
   for (let i = 0; i < byteString.length; i++) {
     ia[i] = byteString.charCodeAt(i);
   }
-  const options = { encoding: 'UTF-8', type: preamble.split(':').pop().split(';').shift() };
+  const options = {
+    encoding: 'UTF-8',
+    type: preamble.split(':').pop().split(';').shift(),
+  };
   const b = new Blob([ia], options);
 
   return new File([b], filename, options);

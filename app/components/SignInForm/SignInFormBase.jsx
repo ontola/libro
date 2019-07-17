@@ -7,7 +7,11 @@ import FormField from '../FormField';
 import CloseableContainer from '../../containers/CloseableContainer';
 import { handle } from '../../helpers/logging';
 import validators, { combineValidators } from '../../helpers/validators';
-import { CardContent, CardLink, CardRow } from '../../topologies/Card';
+import {
+  CardContent,
+  CardLink,
+  CardRow,
+} from '../../topologies/Card';
 import { STEPS } from '../../state/form/reducer';
 import messages from '../../state/form/messages';
 

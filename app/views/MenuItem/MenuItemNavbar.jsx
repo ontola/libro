@@ -39,7 +39,11 @@ class MenuItemNavbar extends React.PureComponent {
   };
 
   render() {
-    const { menuItems, showImage, subject } = this.props;
+    const {
+      menuItems,
+      showImage,
+      subject,
+    } = this.props;
 
     const id = `${subject}-menu-items`;
 

@@ -79,7 +79,10 @@ class ShProperty extends PropertyBase {
     }
 
     groups.forEach((v, g) => {
-      const group = { group: g, props: v.map(p => this.filterProp(p)).filter(Boolean) };
+      const group = {
+        group: g,
+        props: v.map(p => this.filterProp(p)).filter(Boolean),
+      };
       if (group.props.length > 0) {
         const order = lrs.store.anyStatementMatching(g, NS.sh('order'));
         if (order) {

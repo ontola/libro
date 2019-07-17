@@ -1,8 +1,6 @@
 import csp from 'helmet-csp';
 
-import {
-  ASSETS_HOST,
-} from '../../app/config';
+import { ASSETS_HOST } from '../../app/config';
 
 const defaultSrc = ["'self'"];
 

@@ -1,4 +1,8 @@
-import { linkType, register, subjectType } from 'link-redux';
+import {
+  linkType,
+  register,
+  subjectType,
+} from 'link-redux';
 import * as PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -55,7 +59,10 @@ class CollectionContainer extends CollectionBase {
       return (
         <Resource
           element={Heading}
-          wrapperProps={{ className: `Collection__Depth-${depth}`, size: 5 }}
+          wrapperProps={{
+            className: `Collection__Depth-${depth}`,
+            size: 5,
+          }}
         >
           <LinkDuo
             className={`Collection__Depth-${depth + 1}`}

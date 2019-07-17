@@ -1,9 +1,7 @@
 import { Map, Record } from 'immutable';
 import { handleActions } from 'redux-actions';
 
-import {
-  setRecordIfNew,
-} from '../../helpers/reducers';
+import { setRecordIfNew } from '../../helpers/reducers';
 import {
   CLOSEABLE_ADD,
   CLOSEABLE_CLOSE,

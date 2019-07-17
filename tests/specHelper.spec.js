@@ -21,7 +21,11 @@ describe('specHelper', () => {
     });
 
     describe('with an object', () => {
-      declareProps({ arr: ['a', 'b'], prop: undefined, val: 'test' });
+      declareProps({
+        arr: ['a', 'b'],
+        prop: undefined,
+        val: 'test',
+      });
 
       it('declares the variables', () => {
         let caught = false;
@@ -49,7 +53,11 @@ describe('specHelper', () => {
 
     describe('with array', () => {
       set('subject', () => normalizeProps(['a', 'b', 'c']));
-      set('result', () => ({ a: undefined, b: undefined, c: undefined }));
+      set('result', () => ({
+        a: undefined,
+        b: undefined,
+        c: undefined,
+      }));
 
       it('normalizes the props', () => {
         expect(subject).toEqual(result);
@@ -57,9 +65,15 @@ describe('specHelper', () => {
     });
 
     describe('with mixed params', () => {
-      set('subject', () => normalizeProps({ a: 'aa', b: 'bb' }, 'c', 'd'));
+      set('subject', () => normalizeProps({
+        a: 'aa',
+        b: 'bb',
+      }, 'c', 'd'));
       set('result', () => ({
-        a: 'aa', b: 'bb', c: undefined, d: undefined,
+        a: 'aa',
+        b: 'bb',
+        c: undefined,
+        d: undefined,
       }));
 
       it('normalizes the props', () => {
@@ -68,8 +82,16 @@ describe('specHelper', () => {
     });
 
     describe('with object', () => {
-      set('subject', () => normalizeProps({ a: 'aa', b: 'bb', c: 'cc' }));
-      set('result', () => ({ a: 'aa', b: 'bb', c: 'cc' }));
+      set('subject', () => normalizeProps({
+        a: 'aa',
+        b: 'bb',
+        c: 'cc',
+      }));
+      set('result', () => ({
+        a: 'aa',
+        b: 'bb',
+        c: 'cc',
+      }));
 
       it('normalizes the props', () => {
         expect(subject).toEqual(result);

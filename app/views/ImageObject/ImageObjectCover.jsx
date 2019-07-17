@@ -21,7 +21,11 @@ class ImageObjectBackgroundCover extends PureComponent {
   };
 
   render() {
-    const { imagePositionY, subject, url } = this.props;
+    const {
+      imagePositionY,
+      subject,
+      url,
+    } = this.props;
 
     if (!url) {
       handle(new Error(`Image '${subject}' has no url`));

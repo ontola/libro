@@ -10,9 +10,7 @@ import React from 'react';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { dropdownContentTopology } from '../../../topologies/DropdownContent';
 import { navbarTopology } from '../../../topologies/Navbar';
-import {
-  Dropdown,
-} from '../../../components';
+import { Dropdown } from '../../../components';
 
 class MenuItems extends React.PureComponent {
   static type = [

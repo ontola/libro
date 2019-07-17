@@ -17,7 +17,11 @@ const propTypes = {
   omniform: PropTypes.bool,
 };
 
-const CreateAction = ({ createAction, isPartOf, omniform }) => (
+const CreateAction = ({
+  createAction,
+  isPartOf,
+  omniform,
+}) => (
   <LinkedResourceContainer isPartOf={isPartOf} omniform={omniform} subject={createAction} />
 );
 

@@ -2,7 +2,11 @@ import { mount } from 'enzyme';
 import { defaultNS } from 'link-lib';
 import { Property } from 'link-redux';
 
-import { loc, prop, toArr } from '../fixtures';
+import {
+  loc,
+  prop,
+  toArr,
+} from '../fixtures';
 
 describe('tests', () => {
   describe('link-redux', () => {

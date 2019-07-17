@@ -70,7 +70,11 @@ const PlainEditor = ({
   showPreview,
 }) => (
   <div>
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+    }}
+    >
       <Textarea
         autoFocus={autoFocus}
         className="Field__input"

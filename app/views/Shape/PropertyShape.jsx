@@ -37,7 +37,10 @@ const PropertyShape = (props) => {
   let targetValues = targetIRI && lrs.getResourceProperties(targetIRI, path) ?? [];
   const isCollection = targetValues?.length === 1
     && lrs.findSubject(targetValues[0], [NS.rdf('type')], NS.as('Collection')).length > 0;
-  useDataInvalidation({ dataSubjects: targetValues, subject });
+  useDataInvalidation({
+    dataSubjects: targetValues,
+    subject,
+  });
 
   if (!isCollection && targetValues?.length === 1 && targetValues[0].termType === 'NamedNode' && lrs.tryEntity(targetValues[0]).length === 0) {
     if (__CLIENT__) {

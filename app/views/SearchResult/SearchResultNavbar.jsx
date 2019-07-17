@@ -1,6 +1,4 @@
-import {
-  register,
-} from 'link-redux';
+import { register } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import MediaQuery from 'react-responsive';

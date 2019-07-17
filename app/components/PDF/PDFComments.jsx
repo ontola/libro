@@ -17,7 +17,11 @@ const demoComments = [
   },
 ];
 
-const PDFComments = ({ currentPage, rotate, scale }) => (
+const PDFComments = ({
+  currentPage,
+  rotate,
+  scale,
+}) => (
   <div
     className="PDFComments"
   >

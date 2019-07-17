@@ -1,5 +1,9 @@
 import LinkedRenderStore from 'link-lib';
-import { LinkedResourceContainer, Property, RenderStoreProvider } from 'link-redux';
+import {
+  LinkedResourceContainer,
+  Property,
+  RenderStoreProvider,
+} from 'link-redux';
 import PropTypes from 'prop-types';
 import rdf from 'rdflib';
 import React from 'react';
@@ -137,5 +141,8 @@ loc.propTypes = {
  */
 export const prop = ({ property, ...props }) => {
   const children = <Property label={property} />;
-  return loc({ children, ...props });
+  return loc({
+    children,
+    ...props,
+  });
 };

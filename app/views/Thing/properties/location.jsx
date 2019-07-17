@@ -1,5 +1,9 @@
 import LinkedRenderStore from 'link-lib';
-import { linkedPropType, lrsType, withLRS } from 'link-redux';
+import {
+  linkedPropType,
+  lrsType,
+  withLRS,
+} from 'link-redux';
 import { NamedNode } from 'rdflib';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';

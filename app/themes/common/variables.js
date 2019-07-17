@@ -1,4 +1,8 @@
-import { darken, fade, lighten } from '@material-ui/core/styles/colorManipulator';
+import {
+  darken,
+  fade,
+  lighten,
+} from '@material-ui/core/styles/colorManipulator';
 import { createMuiTheme } from '@material-ui/core';
 
 const colorBaseGrey = 'rgb(128, 128, 128)';

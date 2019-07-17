@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
 import React from 'react';
-import { subjectType, useLRS, useLinkRenderContext } from 'link-redux';
+import {
+  subjectType,
+  useLRS,
+  useLinkRenderContext,
+} from 'link-redux';
 
 import Link from '../Link';
 import { handle } from '../../helpers/logging';

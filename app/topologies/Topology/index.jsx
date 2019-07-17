@@ -1,4 +1,8 @@
-import { TopologyProvider, unstable, useLRS } from 'link-redux';
+import {
+  TopologyProvider,
+  unstable,
+  useLRS,
+} from 'link-redux';
 import React from 'react';
 
 import { handle } from '../../helpers/logging';

@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { LinkedResourceContainer, subjectType, topologyType } from 'link-redux';
+import {
+  LinkedResourceContainer,
+  subjectType,
+  topologyType,
+} from 'link-redux';
 
 import {
   CardContent,
@@ -24,7 +28,11 @@ const propTypes = {
 };
 
 /* Wraps a LRC in a suitable container */
-const TopologyWrapper = ({ pure, topology, subject }) => {
+const TopologyWrapper = ({
+  pure,
+  topology,
+  subject,
+}) => {
   if (subject === 'null') return null;
 
   const LRC = () => (

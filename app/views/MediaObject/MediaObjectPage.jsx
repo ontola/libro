@@ -1,9 +1,17 @@
-import { linkType, register, subjectType } from 'link-redux';
+import {
+  linkType,
+  register,
+  subjectType,
+} from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { Heading, Link, PDF } from '../../components';
+import {
+  Heading,
+  Link,
+  PDF,
+} from '../../components';
 import Image from '../../components/Image';
 import {
   downloadUrl,
@@ -62,7 +70,11 @@ class MediaObjectPage extends React.PureComponent {
   };
 
   headerComponent() {
-    const { caption, filename, isPartOf } = this.props;
+    const {
+      caption,
+      filename,
+      isPartOf,
+    } = this.props;
 
     const label = caption && caption.value ? caption.value : (filename && filename.value);
 
