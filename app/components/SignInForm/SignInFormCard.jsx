@@ -13,6 +13,7 @@ import Card, {
   CardRow,
 } from '../../topologies/Card';
 import Heading from '../Heading';
+import { getAuthenticityToken } from '../../helpers/arguHelpers';
 import { expandPath } from '../../helpers/iris';
 import messages from '../../state/form/messages';
 import { AccountHelpers } from '../../views/Action/SignInHelperFormsModal';
@@ -58,8 +59,8 @@ class SignInFormCard extends SignInFormBase {
       <React.Fragment>
         <CardContent>
           <form
-            action={expandPath('/users/auth/facebook')}
-            method="GET"
+            action={expandPath(`/users/auth/facebook?_csrf=${getAuthenticityToken()}`)}
+            method="POST"
             style={{ display: 'inline' }}
           >
             <Button
