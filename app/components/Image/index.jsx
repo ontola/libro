@@ -32,6 +32,7 @@ function Image(props) {
   if (typeof override !== 'undefined') {
     return override(props);
   }
+
   return (
     <img
       alt={ariaLabel || ''}

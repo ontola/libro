@@ -22,11 +22,13 @@ const ToggleEditor = ({
 }) => {
   const onClick = () => {
     if (showRichEditor) return onShowPlainEditor;
+
     return onShowRichEditor;
   };
 
   const icon = () => {
     if (showRichEditor) return 'check-square-o';
+
     return 'square-o';
   };
 

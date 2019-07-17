@@ -29,11 +29,13 @@ function chargeLRS(id, obj, store) {
   const lrs = new LinkedRenderStore();
   lrs.store.addStatements(obj);
   lrs.store.flush();
+
   return context(exNS(id), lrs, store);
 }
 
 function getSubject(obj, subject) {
   const keys = obj && Object.keys(obj);
+
   return subject || keys[0];
 }
 
@@ -60,6 +62,7 @@ export function toArr(obj) {
       }
     });
   });
+
   return statements;
 }
 
@@ -141,6 +144,7 @@ loc.propTypes = {
  */
 export const prop = ({ property, ...props }) => {
   const children = <Property label={property} />;
+
   return loc({
     children,
     ...props,

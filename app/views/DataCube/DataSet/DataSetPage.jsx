@@ -26,6 +26,7 @@ const orderComponents = (components, lrs) => components
 
     if (aOrder < bOrder) return -1;
     if (aOrder > bOrder) return 1;
+
     return 0;
   });
 

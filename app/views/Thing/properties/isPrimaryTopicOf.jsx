@@ -16,6 +16,7 @@ const IsPrimaryTopicOf = ({ linkedProp }) => {
     return null;
   }
   const target = isDifferentWebsite(linkedProp) ? '_blank' : undefined;
+
   return (
     <a href={linkedProp.value} target={target}>
       <FormattedMessage

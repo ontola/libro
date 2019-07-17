@@ -21,6 +21,7 @@ const LDLink = ({
 
   if (!subject) {
     handle(new Error('LDLINK NO SUBJECT'));
+
     return '';
   }
   const href = to?.value

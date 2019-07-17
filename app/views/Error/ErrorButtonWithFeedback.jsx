@@ -57,6 +57,7 @@ export class ErrorButtonWithFeedbackBase extends React.Component {
 
     if (!this.props.reloadLinkedObject) {
       this.setState({ loading: false });
+
       return this.props.reset();
     }
 
@@ -66,6 +67,7 @@ export class ErrorButtonWithFeedbackBase extends React.Component {
       .then(disable)
       .catch((e) => {
         handle(e);
+
         return disable();
       });
 

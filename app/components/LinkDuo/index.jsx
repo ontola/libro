@@ -20,6 +20,7 @@ export default class LinkDuo extends Component {
         children,
         ...rest
       } = this.props;
+
       return (
         <a
           href={this.props.to}

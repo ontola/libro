@@ -51,10 +51,12 @@ const getPagination = (Wrapper, topology) => {
 
     const nextPage = () => {
       currentPageUrl.searchParams.set(pageProp, currentPageNr + 1);
+
       return currentPageUrl.href;
     };
     const previousPage = () => {
       currentPageUrl.searchParams.set(pageProp, currentPageNr - 1);
+
       return currentPageUrl.href;
     };
     if (firstPage > lastPage || typeof lastPage === 'undefined') {

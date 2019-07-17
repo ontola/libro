@@ -44,6 +44,7 @@ export class DetailComp extends PureComponent {
     if (this.props.linkedImage === true) {
       return <Property data-test="Detail-linked-image" label={NS.schema('image')} />;
     }
+
     return this.props.imageUrl && (
       <img
         alt={this.props.title}
@@ -62,6 +63,7 @@ export class DetailComp extends PureComponent {
         if (url) this.props.history.push(url);
       };
     }
+
     return undefined;
   }
 

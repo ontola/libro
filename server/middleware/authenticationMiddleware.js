@@ -32,6 +32,7 @@ async function getGuestToken(req) {
     scope: body.scope,
   };
   req.api.userToken = body.access_token;
+
   return undefined;
 }
 
@@ -53,6 +54,7 @@ async function authenticationMiddleware(req, res, next) {
     }
     if (!expired) {
       res.status = HttpStatus.UNAUTHORIZED;
+
       return res
         .send({ status: 'UNAUTHORIZED' })
         .end();
@@ -60,6 +62,7 @@ async function authenticationMiddleware(req, res, next) {
   }
 
   await getGuestToken(req);
+
   return next();
 }
 

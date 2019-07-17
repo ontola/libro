@@ -23,5 +23,6 @@ export function setActionParam(req, action, param, value) {
     url.searchParams.set(param, value.trim().replace(/ /g, '+'));
     actions[toUpdate] = url.toString();
   }
+
   return actions.join(SPLIT_MARKER);
 }

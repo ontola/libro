@@ -20,10 +20,12 @@ export async function isPlainAPI() {
     return (req, res, next) => {
       if (!matchers.find(matcher => matcher.test(req.url))) {
         logging.debug(`[ROUTING] isPlainAPI: false for ${req.url}`);
+
         return next('route');
       }
 
       logging.debug(`[ROUTING] isPlainAPI: true for ${req.url}`);
+
       return next();
     };
   } catch (e) {
@@ -46,6 +48,7 @@ export function isWebsocket(req, _res, next) {
 export default function isBackend(req, _res, next) {
   if (req.originalUrl.match(FRONTEND_ROUTES)) {
     logging.debug('[ROUTING] isBackend: false');
+
     return next('route');
   }
 
@@ -65,6 +68,7 @@ export default function isBackend(req, _res, next) {
   const contentType = req.get('Content-Type');
   if (contentType && (contentType.includes('application/x-www-form-urlencoded'))) {
     logging.debug('[ROUTING] isBackend: true');
+
     return next();
   }
 
@@ -78,5 +82,6 @@ export default function isBackend(req, _res, next) {
   }
 
   logging.debug('[ROUTING] isBackend: false');
+
   return next('route');
 }

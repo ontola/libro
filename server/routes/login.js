@@ -18,6 +18,7 @@ async function login(req, res, next) {
         scope: json.scope,
       };
       res.send({ status: 'SIGN_IN_LOGGED_IN' }).end();
+
       return;
     }
     throw new errors.NotImplementedError('Non-valid tokens have not been implemented yet.');
@@ -26,12 +27,14 @@ async function login(req, res, next) {
       e.markAsSafe();
       if (!e.response || e.response.headers['Content-Type'] === 'application/json') {
         res.sendStatus(HttpStatus.INTERNAL_SERVER_ERROR).end();
+
         return;
       }
 
       const json = await e.response.json();
       if (!json) {
         res.sendStatus(HttpStatus.INTERNAL_SERVER_ERROR).end();
+
         return;
       }
 
@@ -54,6 +57,7 @@ async function login(req, res, next) {
         default:
           throw new Error('Unknown response 422 from backend');
       }
+
       return;
     }
     next(e);
@@ -93,5 +97,6 @@ export default (req, res, next) => {
   if (typeof req.body.acceptTerms === 'undefined') {
     return login(req, res, next);
   }
+
   return signUp(req, res, next);
 };

@@ -29,6 +29,7 @@ class ImageObjectBackgroundCover extends PureComponent {
 
     if (!url) {
       handle(new Error(`Image '${subject}' has no url`));
+
       return null;
     }
 

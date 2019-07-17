@@ -37,6 +37,7 @@ class EntryPointBase extends PropertyBase {
         if (this.props.onDone) {
           this.props.onDone(response);
         }
+
         return Promise.resolve();
       }).catch((e) => {
         if (!e.response) {

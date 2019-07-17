@@ -81,6 +81,7 @@ class Items extends PropertyBase {
       if (this.props.empty) {
         return this.props.empty();
       }
+
       return (
         <FormattedMessage
           defaultMessage="No items yet"

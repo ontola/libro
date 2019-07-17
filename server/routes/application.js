@@ -46,6 +46,7 @@ export default function application(port) {
         }
 
         res.set('Location', location);
+
         return res.end();
       }
 

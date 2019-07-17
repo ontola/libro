@@ -17,6 +17,7 @@ class ShProperty extends PropertyBase {
     const s = new Set(arr);
     s.delete(undefined);
     s.delete(null);
+
     return Array.from(s);
   }
 
@@ -156,6 +157,7 @@ class ShProperty extends PropertyBase {
 
     if (props.length + unorderedProps.length === 0) {
       handle(new Error(`Rendered SHACL::property for ${this.props.subject} without properties`));
+
       return null;
     }
 

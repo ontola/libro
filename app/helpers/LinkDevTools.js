@@ -81,6 +81,7 @@ class LinkDevTools {
     if (typeof $r !== 'undefined') {
       return $r;
     }
+
     return this.rDevTools;
   }
 
@@ -94,6 +95,7 @@ class LinkDevTools {
     if (typeof lrs === 'undefined') {
       console.warn('Component `lrs` prop is undefined, recovering by using global (you should still fix this)');
     }
+
     return lrs || window.LRS;
   }
 
@@ -122,6 +124,7 @@ class LinkDevTools {
       console.debug('Normalizing passed subject into NamedNode');
       subject = new rdf.NamedNode(subject);
     }
+
     return lrs.tryEntity(subject);
   }
 
@@ -142,6 +145,7 @@ class LinkDevTools {
       const lrs = this.getLRS(comp);
 
       console.debug('Using: ', comp.props.label, comp.props.subject, lrs ? 'local LRS' : 'global LRS');
+
       return func(comp.props.subject, comp.props.label);
     };
   }
@@ -152,6 +156,7 @@ class LinkDevTools {
     }
     if (arr.length === 0) {
       console.debug('No statements passed');
+
       return {};
     }
     const obj = {};
@@ -176,8 +181,10 @@ class LinkDevTools {
     const allKeys = Object.keys(obj);
     if (denormalize && allKeys.length === 1) {
       console.debug('Returning single subject;', allKeys[0]);
+
       return obj[allKeys[0]];
     }
+
     return obj;
   }
 
@@ -192,6 +199,7 @@ class LinkDevTools {
 
   snapshotNode(subject, comp) {
     const data = this.toObject(this.dataArr(comp), false);
+
     return Object.keys(data).map((s) => {
       const sVal = s.slice(1, -1);
       const attrs = Object.keys(data[s]).map((attrKey) => {
@@ -200,11 +208,14 @@ class LinkDevTools {
         const toNode = object => `    [${LinkDevTools.tryShorten(predicate)}]: ${object},`;
         if (Array.isArray(attrObj)) {
           const attrType = attrObj[0];
+
           return toNode(`[\n${attrObj.map(v => `      ${parseTerm(attrType, v.value)}`).join(',\n')},\n    ]`);
         }
+
         return toNode(parseTerm(attrObj, attrObj.value));
       });
       const keyVal = sVal === subject ? 'subject' : LinkDevTools.tryShorten(sVal);
+
       return (
         `[${keyVal}]: {\n${attrs.join('\n')}\n  },`
       );
@@ -216,6 +227,7 @@ class LinkDevTools {
       let resources = [];
       if (depth > maxDepth) {
         console.debug('Maximum stack depth reached');
+
         return resources;
       }
       if (comp !== undefined && comp !== null) {
@@ -225,8 +237,10 @@ class LinkDevTools {
         resources = resources.concat(innerTraverse(depth + 1, comp.child));
         resources = resources.concat(innerTraverse(depth + 1, comp.sibling));
       }
+
       return resources;
     };
+
     return innerTraverse(0, startComp);
   }
 
@@ -264,11 +278,13 @@ class LinkDevTools {
 
   get getProp() {
     const propVal = this.getPropArr;
+
     return Array.isArray(propVal) ? this.toObject(propVal) : propVal;
   }
 
   get getPropRaw() {
     const propVal = this.getPropRawArr;
+
     return Array.isArray(propVal) ? this.toObject(propVal) : propVal;
   }
 
@@ -292,8 +308,10 @@ class LinkDevTools {
       if (!this.$r.props.reloadLinkedObject) {
         return console.warn("Selected node doesn't seem to be a LOC");
       }
+
       return this.$r.props.reloadLinkedObject();
     }
+
     return console.warn('No node or wrong node type selected.');
   }
 
@@ -338,8 +356,10 @@ class LinkDevTools {
       console.debug('Resolved data;', compData);
       if (comp.onLoad()) {
         console.info('Loading component was resolved and will be rendered');
+
         return console.debug('Resolved loading component;', comp.onLoad());
       }
+
       return console.info('No loading component was resolved; rendering `null`');
     }
     const err = (comp.state && comp.state.hasCaughtError) || status >= BAD_REQUEST;
@@ -348,8 +368,10 @@ class LinkDevTools {
       console.debug(this.getPropArr(defaultNS.http('statusCodeValue')));
       if (comp.onError()) {
         console.info('An error component was resolved; rendering the error component');
+
         return console.debug('Resolved error component;', comp.onError());
       }
+
       return console.info('No error component was resolved; rendering `null`');
     }
     if (comp.props.children) {
@@ -376,6 +398,7 @@ class LinkDevTools {
     }
     console.info('Render class was resolved, rendering class with own props.');
     console.debug('Resolved class: ', renderClass);
+
     return console.debug('Given props: ', comp.props);
   }
 
@@ -406,6 +429,7 @@ class LinkDevTools {
     const klass = getLinkedObjectClass(comp.props);
     if (typeof klass !== 'undefined') {
       console.info(`Component will be rendered with matched class '${klass.name}'`);
+
       return console.debug('Matched component class reference:', klass);
     }
     console.info('No render class was found (is the property renderer registered?)');
@@ -417,6 +441,7 @@ class LinkDevTools {
         return console.info('Neither the value nor the property renderer is present, but forceRender was given; rendering `null`');
       }
     }
+
     return console.info('Value is present, but no class could be found; rendering a div with the value');
   }
 
@@ -433,6 +458,7 @@ class LinkDevTools {
     } else {
       console.warn(`Component seems of unknown type (${name})`);
     }
+
     return console.groupEnd();
   }
 
@@ -483,6 +509,7 @@ class LinkDevTools {
     ];
     console.table(devTools, ['method', 'desc']);
     console.groupEnd();
+
     return undefined;
   }
 

@@ -13,6 +13,7 @@ export function getErrorMiddleware() {
       releaseStage: config.RELEASE_STAGE,
     });
     bugsnagClient.use(bugsnagExpress);
+
     return bugsnagClient.getPlugin('express');
   }
 

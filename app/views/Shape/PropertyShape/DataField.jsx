@@ -46,6 +46,7 @@ class DataField extends React.Component {
       if (maxCount && maxCount > 1) {
         return 'checkboxes';
       }
+
       return 'select';
     }
 
@@ -80,6 +81,7 @@ class DataField extends React.Component {
     if (inputsPreferringPlaceholder.includes(this.inputType())) {
       return null;
     }
+
     return this.props.description?.value;
   }
 
@@ -87,6 +89,7 @@ class DataField extends React.Component {
     if (!inputsPreferringPlaceholder.includes(this.inputType())) {
       return null;
     }
+
     return this.props.description?.value;
   }
 

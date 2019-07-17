@@ -18,12 +18,14 @@ export const calcPercentage = (number, total) => {
   if (typeof number !== 'number' || typeof total !== 'number') {
     return undefined;
   }
+
   return Math.round((number / total) * PERCENTAGE);
 };
 
 export function countInParentheses(count) {
   if (!count) return '';
   const val = typeof count === 'number' ? count : Number.parseInt(count.value, 10);
+
   return val > 0 ? `(${val})` : '';
 }
 

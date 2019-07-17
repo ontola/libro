@@ -39,6 +39,7 @@ const DropdownLink = ({
         </a>
       );
     }
+
     return <Link className="DropdownLink" to={retrievePath(url.value)}>{inner}</Link>;
   }
 

@@ -115,6 +115,11 @@
     }],
     "one-var-declaration-per-line": ["error", "initializations"],
     "one-var": ["error", { "uninitialized": "always" }],
+    "padding-line-between-statements": ["error", {
+      "blankLine": "always",
+      "next": "return",
+      "prev": "*"
+    }],
     "react/button-has-type": "warn",
     "react/jsx-sort-props": ["error", {
       "callbacksLast": true,

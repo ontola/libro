@@ -288,6 +288,7 @@ class FormField extends React.PureComponent {
         if (onChange) {
           onChange(e);
         }
+
         return undefined;
       },
       required,
@@ -341,6 +342,7 @@ class FormField extends React.PureComponent {
           onChange={e => new Promise(() => {
             if (!e) {
               field.onChange(undefined);
+
               return onChange && onChange(undefined, undefined);
             }
 

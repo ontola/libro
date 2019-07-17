@@ -18,6 +18,7 @@ import { invalidStatuses } from '../Thing/properties/omniform/helpers';
 const mapCardListDispatchToProps = (dispatch, ownProps) => ({
   onClick: (e) => {
     e.preventDefault();
+
     return Promise.all([
       dispatch(omniformOpenInline(ownProps.isPartOf)),
       dispatch(omniformSetAction({

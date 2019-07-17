@@ -18,6 +18,7 @@ function redirectForLocation(location) {
   if (params.get('r')) {
     return params.get('r');
   }
+
   return '';
 }
 

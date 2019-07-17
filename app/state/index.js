@@ -54,6 +54,7 @@ const configureStore = (preloadedState) => {
       store.asyncReducers[key] = reducer;
       store.replaceReducer(createReducer(store.asyncReducers));
     }
+
     return store;
   };
 

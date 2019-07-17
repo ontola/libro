@@ -51,6 +51,7 @@ class TextCutoff extends PropertyBase {
     if (!this.getLinkedObjectProperty() || this.getLinkedObjectProperty(NS.argu('coverPhoto'))) {
       return null;
     }
+
     return (
       <MarkdownFixedPreview text={this.getLinkedObjectProperty().value} />
     );

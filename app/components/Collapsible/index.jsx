@@ -91,6 +91,7 @@ class Collapsible extends React.PureComponent {
       if (opened) {
         return undefined;
       }
+
       return -1;
     };
 

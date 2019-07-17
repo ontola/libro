@@ -46,6 +46,7 @@ const PropertyShape = (props) => {
     if (__CLIENT__) {
       lrs.queueEntity(targetValues[0]);
     }
+
     return null;
   }
 

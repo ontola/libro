@@ -67,6 +67,7 @@ class Markdown extends React.PureComponent {
     if (highlightedText && highlightedText.length > MIN_LENGTH_TO_ADD_HIGHLIGHT) {
       // Selects all strings. Case insensitive.
       const pattern = new RegExp(highlightedText, 'gi');
+
       return text.replace(pattern, `**${highlightedText.toUpperCase()}**`);
     }
 

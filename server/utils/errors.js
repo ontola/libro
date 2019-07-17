@@ -42,6 +42,7 @@ export class ArguError extends ExtendableError {
 
   get response() {
     if (!this.internal) throw new Error("Can't use response outside internal errors.");
+
     return this.responseObj;
   }
 

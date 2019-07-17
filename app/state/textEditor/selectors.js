@@ -10,6 +10,7 @@ const getDraftSlice = (stateSlice, id) => {
   if (instance === undefined) {
     return editorStateFromRaw();
   }
+
   return instance;
 };
 
@@ -24,6 +25,7 @@ export const getMarkdownTextFromDraft = (state, id) => {
   if (content !== undefined) {
     return createMarkdownFromDraft(content);
   }
+
   return '';
 };
 
@@ -32,6 +34,7 @@ export const getMarkdownTextPlainSlice = (stateSlice, id) => {
   if (content === undefined) {
     return getMarkdownTextFromDraft(stateSlice, id);
   }
+
   return content;
 };
 
@@ -42,6 +45,7 @@ export const getMarkdownTextPlain = (state, id) => {
   if (content === undefined) {
     content = getMarkdownTextFromDraft(state, id);
   }
+
   return content;
 };
 
@@ -50,5 +54,6 @@ export const getLatestMarkdown = (state, id) => {
   if (getEditorShowRich(state) === true) {
     return getMarkdownTextFromDraft(state, id);
   }
+
   return getMarkdownTextPlain(state, id);
 };

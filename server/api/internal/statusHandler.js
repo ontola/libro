@@ -32,5 +32,6 @@ export default function processResponse(response) {
   if (devMsg) {
     err.internal = true;
   }
+
   return Promise.reject(err);
 }

@@ -80,6 +80,7 @@ function declareTestProps(arr, ...params) {
     Object.keys(props).forEach((p) => {
       propMap[p] = global[propName(p)];
     });
+
     return propMap;
   });
 }
@@ -96,6 +97,7 @@ function defineMarker(ns) {
  */
 function marker(name, ...other) {
   const add = `${name || ''}${Array.isArray(other) ? ['', ...other].join('-') : ''}`;
+
   return `[data-test="${markerNS}${add.length > 0 ? `-${add}` : ''}"]`;
 }
 
@@ -148,6 +150,7 @@ function argUnit(comp, func, opts = {}) {
     if (opts.router || opts.intl) {
       element = React.createElement(StaticRouter, {}, element);
     }
+
     return method(element);
   };
 
@@ -162,6 +165,7 @@ function createContext(opts = {}) {
     s: subject,
     t: topology,
   } = opts;
+
   return ctx.loc({
     children: children || ch,
     components: components || c,

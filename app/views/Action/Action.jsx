@@ -39,6 +39,7 @@ export class Action extends NavigatableAction {
 
   render() {
     const Appendix = this.props.appendix;
+
     return (
       <Container>
         <Property label={NS.schema('isPartOf')} />

@@ -67,6 +67,7 @@ const staticCompressionOpts = (fallthrough = false) => ({
 const compressionOpts = {
   filter: (req, res) => {
     const type = res.getHeader('Content-Type');
+
     return (type && type.startsWith('application/n-')) || shrinkRay.filter(req, res);
   },
 };

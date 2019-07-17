@@ -22,6 +22,7 @@ const SHACLClass = ({ linkedProp, subject }) => {
 
   if (!targetShape) {
     handle(new Error(`Rendered SHACL::Class for ${subject} without targetShape`));
+
     return null;
   }
 

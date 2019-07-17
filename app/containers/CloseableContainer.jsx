@@ -29,6 +29,7 @@ class CloseableContainer extends Component {
     if (!this.props.opened) {
       return null;
     }
+
     return (
       <div style={{ position: 'relative' }}>
         <Button

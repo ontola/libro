@@ -107,5 +107,6 @@ export const getTopologyNumber = topology => allTopologies.findIndex((item) => {
   if (item) {
     return item.term === topology.term;
   }
+
   return topology === item;
 });

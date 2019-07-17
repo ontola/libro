@@ -151,6 +151,7 @@ export function messageBodyForStatus(requestStatus) {
 
   if (!msg) {
     handle(new Error(`translation missing for ${requestStatus.status}/body`));
+
     return null;
   }
 
@@ -174,6 +175,7 @@ export function headerForStatus(formatMessage, requestStatus) {
   const msg = messages[`${requestStatus.status}/header`];
   if (!msg) {
     handle(new Error(`translation missing for ${requestStatus.status}/header`));
+
     return null;
   }
 

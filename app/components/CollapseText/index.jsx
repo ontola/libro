@@ -84,6 +84,7 @@ const CollapseText = ({
       </div>
     );
   }
+
   return <Markdown text={text} />;
 };
 
@@ -92,6 +93,7 @@ CollapseText.propTypes = propTypes;
 export default connect(
   (state, ownProps) => {
     const minCharacters = ownProps.minCharacters || defaultProps.minCharacters;
+
     return ({
       minCharacters,
       open: ownProps.text.length > minCharacters && getCollapsibleOpened(state, ownProps.id),

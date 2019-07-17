@@ -51,6 +51,7 @@ const closeGroup = (state, group) => {
     .get('items')
     .filter(item => item.get('group') === group)
     .map(item => item.set('opened', false));
+
   return state.mergeIn(['items'], modifiedItems);
 };
 

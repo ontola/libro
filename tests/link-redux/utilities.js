@@ -26,5 +26,6 @@ export function defaultContext(properties = {}) {
       c[key] = properties[key];
     }
   });
+
   return c;
 }

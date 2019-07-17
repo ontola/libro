@@ -30,6 +30,7 @@ export default function errorHandlerMiddleware(err, req, res, next) {
     console.error(errMsg);
     logging.debug(err.stack);
     res.sendStatus(HttpStatus.INTERNAL_SERVER_ERROR).end();
+
     return;
   }
   console.warn(err);

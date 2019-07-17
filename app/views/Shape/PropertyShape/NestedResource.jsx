@@ -78,6 +78,7 @@ class NestedResource extends React.Component {
           if (i !== index) {
             return v;
           }
+
           return markForRemove(v);
         });
 

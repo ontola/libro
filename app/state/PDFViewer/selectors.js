@@ -7,6 +7,7 @@ export const getRotation = (state, id) => {
   if (rotation === undefined) {
     return 0;
   }
+
   return rotation;
 };
 

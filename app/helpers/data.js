@@ -43,6 +43,7 @@ function bestType(type) {
 function compare(a, b) {
   if (a < b) return -1;
   if (a > b) return 1;
+
   return 0;
 }
 
@@ -88,6 +89,7 @@ function convertKeysAtoB(obj) {
 function numAsc(a, b) {
   const aP = Number.parseInt(a.predicate.value.slice(base.length), 10);
   const bP = Number.parseInt(b.predicate.value.slice(base.length), 10);
+
   return aP - bP;
 }
 
@@ -196,6 +198,7 @@ function processRemove(delta, lrs) {
 function processReplace(delta, lrs) {
   const replaceables = delta
     .filter(([s, p, , g]) => g === NS.ontola('replace') && lrs.store.anyStatementMatching(s, p));
+
   return lrs.store.replaceMatches(replaceables);
 }
 
@@ -216,6 +219,7 @@ function arguDeltaProcessor(lrs) {
     processDelta(delta) {
       processRemove(delta, lrs);
       processInvalidate(delta, lrs);
+
       return processReplace(delta, lrs);
     },
 
@@ -233,12 +237,14 @@ function sort(order) {
     if (oA === -1 && oB === -1) return compare(a, b);
     if (oA === -1) return 1;
     if (oB === -1) return -1;
+
     return compare(oA, oB);
   };
 }
 
 function sortIRIS(order, attribute) {
   const orderNormalized = order.map(v => v.value);
+
   return (a, b) => {
     const oA = orderNormalized.indexOf(a[attribute].value);
     const oB = orderNormalized.indexOf(b[attribute].value);
@@ -246,6 +252,7 @@ function sortIRIS(order, attribute) {
     if (oA === -1 && oB === -1) return compare(a, b);
     if (oA === -1) return 1;
     if (oB === -1) return -1;
+
     return compare(oA, oB);
   };
 }

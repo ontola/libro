@@ -67,6 +67,7 @@ class Href extends React.PureComponent {
         return lrs.exec(action, SHACL.actionToObject(lrs, subject));
       };
     }
+
     return onClickToggle;
   }
 

@@ -52,6 +52,7 @@ const getLuminance = (rgb) => {
   }
 
   const all = coefficients.map((a, i) => (rgbArray[i] / LIMIT) * a);
+
   return all.reduce((prev, curr) => prev + curr).toFixed(DECIMALS);
 };
 
@@ -62,6 +63,7 @@ const getLuminance = (rgb) => {
  */
 function hexToRgb(hex) {
   const result = hexSplit.exec(hex);
+
   return result ? `rgb(${parseInt(result[R], 16)},${parseInt(result[G], 16)},${parseInt(result[B], 16)})` : null;
 }
 
@@ -85,6 +87,7 @@ const percentageToRedOrGreen = (percentage) => {
   const red = RGB_NUMBER - (RGB_NUMBER * (percentage / HUNDRED_PERCENT));
   const green = RGB_NUMBER * (percentage / HUNDRED_PERCENT);
   const blue = 0;
+
   return `rgb(${Math.floor(red)},${Math.floor(green)},${Math.floor(blue)})`;
 };
 

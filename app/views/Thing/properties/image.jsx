@@ -24,6 +24,7 @@ const ThingImageProp = ({ ariaLabel, linkedProp }) => {
   } else if (linkedProp.termType === 'NamedNode' && isFontAwesomeIRI(linkedProp.value)) {
     return <FontAwesome name={normalizeFontAwesomeIRI(linkedProp)} />;
   }
+
   return (
     <LinkedResourceContainer ariaLabel={ariaLabel} subject={linkedProp} />
   );

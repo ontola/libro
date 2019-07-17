@@ -28,6 +28,7 @@ class ActionWidget extends Component {
     if (this.props.children) {
       return this.props.children;
     }
+
     return (
       <div>
         <Button

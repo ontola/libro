@@ -108,6 +108,7 @@ export default (history, swc) => () => next => (action) => {
     }
     default: {
       handle(new Error(`Unknown client API action '${action.type}'`));
+
       return undefined;
     }
   }

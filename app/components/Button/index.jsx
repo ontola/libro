@@ -125,6 +125,7 @@ const Button = ({
     if (loading) {
       return 'spinner';
     }
+
     return icon;
   };
 
@@ -155,6 +156,7 @@ const Button = ({
       </LinkDuo>
     );
   }
+
   return (
     <BlurButton
       aria-label={ariaLabel}

@@ -73,6 +73,7 @@ export default combineReducers({
     [SIGN_IN_STEP_BACK]: (state) => {
       const prevChain = state.get('stepChain').pop();
       const subjectState = prevChain.size === 1 ? state.set('subject', undefined) : state;
+
       return transitionTo(subjectState, prevChain.last())
         .set('stepChain', prevChain);
     },

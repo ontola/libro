@@ -22,6 +22,7 @@ class Agenda extends PropertyBase {
     const s = new Set(arr);
     s.delete(undefined);
     s.delete(null);
+
     return Array.from(s);
   }
 
@@ -45,6 +46,7 @@ class Agenda extends PropertyBase {
 
     if (ordered.length + unordered.length === 0) {
       handle(new Error(`Rendered prop agenda for ${subject} without items`));
+
       return null;
     }
 

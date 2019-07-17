@@ -22,6 +22,7 @@ class SignInSwitcherContainer extends React.PureComponent {
         />
       );
     }
+
     return this.props.children;
   }
 }
