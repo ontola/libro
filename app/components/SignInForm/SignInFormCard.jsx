@@ -16,9 +16,9 @@ import Heading from '../Heading';
 import { getAuthenticityToken } from '../../helpers/arguHelpers';
 import { expandPath } from '../../helpers/iris';
 import messages from '../../state/form/messages';
-import { AccountHelpers } from '../../views/Action/SignInHelperFormsModal';
 
 import SignInFormBase from './SignInFormBase';
+import { AccountHelpersCardAppendix } from './SignInFormHelpers';
 
 const propTypes = {
   // From redux-form
@@ -133,22 +133,24 @@ class SignInFormCard extends SignInFormBase {
                 <CardRow>
                   <CardActions noSpacing>
                     {this.backButton()}
-                    <Button
-                      disabled={invalid}
-                      icon="arrow-right"
-                      loading={submitting}
-                      theme="box"
-                      type="submit"
-                    >
-                      {buttonText}
-                    </Button>
+                    {buttonText && (
+                      <Button
+                        disabled={invalid}
+                        icon="arrow-right"
+                        loading={submitting}
+                        theme="box"
+                        type="submit"
+                      >
+                        {buttonText}
+                      </Button>
+                    )}
                   </CardActions>
                 </CardRow>
               </form>
             )}
           </Form>
+          <AccountHelpersCardAppendix />
         </Card>
-        <AccountHelpers />
       </React.Fragment>
     );
   }

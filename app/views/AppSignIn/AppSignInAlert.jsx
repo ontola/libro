@@ -3,6 +3,7 @@ import React from 'react';
 
 import SignInFormContainer from '../../containers/SignInFormContainer';
 import { NS } from '../../helpers/LinkedRenderStore';
+import Container from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
 
 class AppSignInAlert extends React.PureComponent {
@@ -12,7 +13,9 @@ class AppSignInAlert extends React.PureComponent {
 
   render() {
     return (
-      <SignInFormContainer />
+      <Container>
+        <SignInFormContainer />
+      </Container>
     );
   }
 }

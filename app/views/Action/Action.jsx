@@ -27,12 +27,14 @@ export class Action extends NavigatableAction {
   static hocs = [withRouter];
 
   static propTypes = {
+    appendix: PropTypes.func,
     navigate: PropTypes.func,
     object: subjectType,
     subject: subjectType,
   };
 
   render() {
+    const Appendix = this.props.appendix;
     return (
       <Container>
         <Property label={NS.schema('isPartOf')} />
@@ -47,6 +49,7 @@ export class Action extends NavigatableAction {
             label={NS.schema('target')}
             onDone={this.onDoneHandler}
           />
+          {Appendix && <Appendix />}
         </CardMain>
       </Container>
     );
