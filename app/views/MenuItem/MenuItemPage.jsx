@@ -20,6 +20,7 @@ import PrimaryResource, { primaryResourceTopology } from '../../topologies/Prima
 import TabBar from '../../topologies/TabBar';
 import TabPane from '../../topologies/TabPane';
 import { currentLocation } from '../../helpers/paths';
+import { isPromise } from '../../helpers/types';
 
 class MenuItemPage extends React.PureComponent {
   static type = [
@@ -60,7 +61,7 @@ class MenuItemPage extends React.PureComponent {
 
     const items = containerToArr(this.props.lrs, [], this.props.menuItems);
 
-    if (Object.prototype.hasOwnProperty.call(items, 'then')) {
+    if (isPromise(items)) {
       // TODO: Loading
       return null;
     }
