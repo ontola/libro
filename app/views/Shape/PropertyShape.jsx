@@ -79,19 +79,22 @@ PropertyShape.type = NS.sh('PropertyShape');
 
 PropertyShape.topology = allTopologies;
 
-PropertyShape.mapDataToProps = [
-  NS.sh('class'),
-  NS.sh('datatype'),
-  NS.sh('description'),
-  NS.sh('defaultValue'),
-  NS.sh('in'),
-  NS.sh('maxCount'),
-  NS.sh('maxLength'),
-  NS.sh('minCount'),
-  NS.sh('minLength'),
-  NS.sh('name'),
-  NS.sh('path'),
-];
+PropertyShape.mapDataToProps = {
+  class: NS.sh('class'),
+  datatype: NS.sh('datatype'),
+  defaultValue: {
+    label: NS.sh('defaultValue'),
+    limit: Infinity,
+  },
+  description: NS.sh('description'),
+  in: NS.sh('in'),
+  maxCount: NS.sh('maxCount'),
+  maxLength: NS.sh('maxLength'),
+  minCount: NS.sh('minCount'),
+  minLength: NS.sh('minLength'),
+  name: NS.sh('name'),
+  path: NS.sh('path'),
+};
 
 PropertyShape.propTypes = {
   autofocus: PropTypes.bool,

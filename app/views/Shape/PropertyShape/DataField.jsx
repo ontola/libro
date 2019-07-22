@@ -90,6 +90,7 @@ const DataField = (props) => {
     theme,
   } = props;
 
+  const inputValues = targetValues.length > 0 ? targetValues : defaultValue;
   const inputType = determineInputType(
     datatype,
     shIn,
@@ -109,7 +110,7 @@ const DataField = (props) => {
       autofocus={autofocus}
       description={descriptionValue(description, inputType)}
       field={fieldName}
-      initialValue={targetValues?.[0] || defaultValue}
+      initialValue={inputType === 'checkboxes' ? inputValues : inputValues?.[0]}
       label={name && name.value}
       maxLength={tryParseInt(maxLength)}
       minLength={tryParseInt(minLength)}

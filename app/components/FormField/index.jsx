@@ -142,6 +142,12 @@ class FormField extends React.PureComponent {
     if (type === 'checkbox') {
       const boolNormalized = Literal.fromBoolean(currentValue);
       nextValue = boolNormalized && boolNormalized.value === '1';
+    } else if (type === 'checkboxes') {
+      if (Array.isArray(nextValue)) {
+        nextValue = currentValue.map(val => (Object.prototype.hasOwnProperty.call(val, 'termType') ? val.value : val));
+      } else if (nextValue) {
+        nextValue = currentValue.split(',');
+      }
     } else if (type === 'textarea') {
       nextValue = currentValue && Object.prototype.hasOwnProperty.call(currentValue, 'termType')
         ? currentValue.value
