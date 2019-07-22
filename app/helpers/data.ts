@@ -89,6 +89,10 @@ function convertKeysAtoB(obj: { [k: string]: any }): { [k: string]: any } {
   return output;
 }
 
+function entityIsLoaded(lrs: LinkReduxLRSType, iri: SomeNode) {
+  return lrs.tryEntity(iri).length > 0 || lrs.getStatus(iri).status === OK;
+}
+
 function numAsc(a: Statement, b: Statement) {
   const aP = Number.parseInt(a.predicate.value.slice(base.length), 10);
   const bP = Number.parseInt(b.predicate.value.slice(base.length), 10);
@@ -179,8 +183,7 @@ function containerToArr(
   }
 
   // Detect loaded
-  const loaded = lrs.tryEntity(rest).length > 0 || lrs.getStatus(rest).status === OK;
-  if (!loaded) {
+  if (__CLIENT__ && !entityIsLoaded(lrs, rest)) {
     return rest.termType === 'NamedNode'
         ? lrs.getEntity(rest)
         : Promise.reject(`Can't resolve a ${rest.termType}`);
@@ -230,6 +233,7 @@ export {
   bestType,
   containerToArr,
   convertKeysAtoB,
+  entityIsLoaded,
   filter,
   filterSort,
   listToArr,

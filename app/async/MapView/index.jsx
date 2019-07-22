@@ -1,5 +1,4 @@
 import * as fa from 'fontawesome';
-import { OK } from 'http-status-codes';
 import {
   LinkedResourceContainer,
   linkType,
@@ -42,6 +41,7 @@ import withReducer from '../../containers/withReducer';
 import { collectionMembers } from '../../helpers/diggers';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { entityIsLoaded } from '../../helpers/data';
 import { handle } from '../../helpers/logging';
 import { tryParseFloat } from '../../helpers/numbers';
 import { popupTopology } from '../../topologies/Popup';
@@ -409,10 +409,7 @@ class MapView extends React.Component {
 
     const { lrs } = this.props;
 
-    const loaded = lrs.tryEntity(placement).length > 0
-      || lrs.getStatus(placement).status === OK;
-
-    if (__CLIENT__ && !loaded) {
+    if (__CLIENT__ && !entityIsLoaded(lrs, placement)) {
       return lrs.getEntity(placement);
     }
 
