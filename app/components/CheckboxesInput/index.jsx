@@ -1,47 +1,15 @@
 import {
   LinkedResourceContainer,
   linkType,
-  linkedPropType,
-  useDataFetching,
-  useDataInvalidation,
-  useLRS,
 } from 'link-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
-import { containerToArr } from '../../helpers/data';
-import normalizedLower from '../../helpers/i18n';
 import Select from '../../topologies/Select';
 import { Input } from '../Input';
 import FieldLabel from '../FieldLabel';
-import LoadingInline from '../Loading';
-
-const MAX_ITEMS = 5;
-
-export const optionsType = PropTypes.oneOfType([
-  linkedPropType,
-  PropTypes.arrayOf(PropTypes.oneOfType([
-    PropTypes.string,
-    linkedPropType,
-  ])),
-]);
-
-function calculateItemsToShow(state) {
-  const {
-    inputValue,
-    options,
-    selectedItem,
-  } = state;
-
-  const compareValue = inputValue && normalizedLower(typeof inputValue === 'string' ? inputValue : inputValue.value);
-  if (inputValue && inputValue !== selectedItem && options.length > MAX_ITEMS) {
-    return options
-      .filter(item => normalizedLower(item.value).includes(compareValue));
-  }
-
-  return options;
-}
+import Spinner from '../Spinner';
 
 function handleChange(e, props) {
   const value = props.value?.slice() || [];
@@ -56,62 +24,22 @@ function handleChange(e, props) {
   props.onChange(value);
 }
 
-function updateOptions(state, props, lrs) {
-  const nextOptions = Array.isArray(props.options)
-    ? props.options
-    : containerToArr(lrs, [], props.options);
-
-  if (nextOptions instanceof Promise || typeof nextOptions.then !== 'undefined') {
-    return {
-      ...state,
-      itemsToShow: state.itemsToShow,
-      loading: true,
-    };
-  }
-
-  return {
-    ...state,
-    itemsToShow: calculateItemsToShow({
-      inputValue: state.inputValue,
-      options: nextOptions,
-      selectedItem: state.selectedItem,
-    }),
-    loading: false,
-    options: nextOptions,
-  };
-}
-
 function CheckboxesInput(props) {
   const {
+    loading,
     options,
     sharedProps,
   } = props;
 
-  const [state, setState] = React.useState({
-    itemsToShow: [],
-    loading: true,
-    shouldClose: false,
-  });
-
-  const lrs = useLRS();
-  const subject = Array.isArray(options) ? undefined : options;
-  const version = useDataInvalidation({ subject });
-  useDataFetching({ subject }, version);
-  React.useEffect(() => {
-    setState(updateOptions(state, props, lrs));
-  }, [options, version]);
-
-  const { itemsToShow } = state;
-
-  if (state.loading) {
-    return <LoadingInline />;
+  if (loading) {
+    return <Spinner loading />;
   }
 
-  if (itemsToShow.length === 0) {
+  if (options.length === 0) {
     return <FormattedMessage id="https://app.argu.co/i18n/collection/empty/message" />;
   }
 
-  const items = itemsToShow.map((item) => {
+  const items = options.map((item) => {
     const label = (
       <LinkedResourceContainer subject={item} />
     );
@@ -137,7 +65,8 @@ function CheckboxesInput(props) {
 }
 
 CheckboxesInput.propTypes = {
-  options: optionsType.isRequired,
+  loading: PropTypes.bool,
+  options: PropTypes.arrayOf(linkType),
   sharedProps: PropTypes.shape({
     autoFocus: PropTypes.bool,
     className: PropTypes.string,

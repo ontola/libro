@@ -87,13 +87,13 @@ PropertyShape.mapDataToProps = {
     limit: Infinity,
   },
   description: NS.sh('description'),
-  in: NS.sh('in'),
   maxCount: NS.sh('maxCount'),
   maxLength: NS.sh('maxLength'),
   minCount: NS.sh('minCount'),
   minLength: NS.sh('minLength'),
   name: NS.sh('name'),
   path: NS.sh('path'),
+  shIn: { label: NS.sh('in') },
 };
 
 PropertyShape.propTypes = {

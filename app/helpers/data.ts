@@ -20,6 +20,10 @@ function filterFind(op: SomeNode) {
   };
 }
 
+function arraysEqual(a: any[], b: any[]) {
+  return a.length === b.length && a.every((value, index) => value === b[index]);
+}
+
 function bestType(type: LazyNNArgument) {
   const normalizedTypes = normalizeType(type);
   let best = null;
@@ -230,6 +234,7 @@ function allowSort(arr: NamedNode[], whitelist = [], order = []) {
 export {
   allow,
   allowSort,
+  arraysEqual,
   bestType,
   containerToArr,
   convertKeysAtoB,

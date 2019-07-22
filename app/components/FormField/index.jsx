@@ -1,5 +1,8 @@
 import classNames from 'classnames';
-import { linkType } from 'link-redux';
+import {
+  linkType,
+  lrsType,
+} from 'link-redux';
 import PropTypes from 'prop-types';
 import { Literal, NamedNode } from 'rdflib';
 import React from 'react';
@@ -13,11 +16,12 @@ import FieldLabel from '../FieldLabel';
 import formFieldWrapper from '../FormFieldWrapper';
 import FileInput from '../Input/FileInput';
 import { Input } from '../Input';
-import SelectInput, { optionsType } from '../SelectInput';
+import { SelectInputWrapper } from '../SelectInput';
 import CheckboxesInput from '../CheckboxesInput';
 
 import CharCounter from './CharCounter';
 import FieldHelper from './FieldHelper';
+import OptionsWrapper, { optionsType } from './OptionsWrapper';
 
 import './DateTime.scss';
 import './FormField.scss';
@@ -61,6 +65,7 @@ const propTypes = {
   }),
   // Text above input field
   label: PropTypes.string,
+  lrs: lrsType,
   maxLength: PropTypes.number,
   /** @private Contains form-library specific data */
   meta: PropTypes.shape({
@@ -79,13 +84,13 @@ const propTypes = {
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   onKeyUp: PropTypes.func,
-  options: optionsType,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   sessionStorage: PropTypes.shape({
     getItem: PropTypes.func,
     setItem: PropTypes.func,
   }),
+  shIn: optionsType,
   theme: PropTypes.string,
   // HTML input type, e.g. 'email'
   type: PropTypes.string,
@@ -241,9 +246,9 @@ class FormField extends React.PureComponent {
       onBlur,
       onChange,
       onKeyUp,
-      options,
       placeholder,
       required,
+      shIn,
       minRows,
       type,
     } = this.props;
@@ -300,13 +305,16 @@ class FormField extends React.PureComponent {
     if (type === 'checkboxes') {
       return (
         <div className={className}>
-          <CheckboxesInput
+          <OptionsWrapper
+            Component={CheckboxesInput}
+            componentProps={{
+              initialSelectedItem: initialValue,
+              onChange: sharedProps.onChange,
+              sharedProps,
+              value: this.inputValue(),
+            }}
             data-testid={sharedProps.name}
-            initialSelectedItem={initialValue}
-            options={options}
-            sharedProps={sharedProps}
-            value={this.inputValue()}
-            onChange={sharedProps.onChange}
+            shIn={shIn}
           />
         </div>
       );
@@ -314,15 +322,17 @@ class FormField extends React.PureComponent {
 
     if (type === 'select') {
       return (
-        <div className={className}>
-          <SelectInput
-            data-testid={sharedProps.name}
-            initialSelectedItem={initialValue}
-            options={options}
-            sharedProps={sharedProps}
-            value={this.inputValue()}
-          />
-        </div>
+        <OptionsWrapper
+          Component={SelectInputWrapper}
+          componentProps={{
+            className,
+            initialValue,
+            inputValue: this.inputValue(),
+            sharedProps,
+          }}
+          data-testid={sharedProps.name}
+          shIn={shIn}
+        />
       );
     }
 

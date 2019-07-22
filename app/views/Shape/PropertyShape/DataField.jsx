@@ -74,18 +74,18 @@ const placeholderValue = (description, inputType) => {
 
 const DataField = (props) => {
   const {
-    fieldName,
     autofocus,
     datatype,
-    description,
     defaultValue,
-    in: shIn,
+    description,
+    fieldName,
     maxCount,
     maxLength,
     minCount,
     minLength,
     name,
     onKeyUp,
+    shIn,
     targetValues,
     theme,
   } = props;
@@ -115,9 +115,9 @@ const DataField = (props) => {
       maxLength={tryParseInt(maxLength)}
       minLength={tryParseInt(minLength)}
       minRows={maxLength > MAX_STR_LEN ? TEXTFIELD_MIN_ROWS : undefined}
-      options={shIn}
       placeholder={placeholderValue(description, inputType)}
       required={required}
+      shIn={shIn}
       theme={theme}
       type={inputType}
       validate={combineValidators(validate)}
@@ -132,13 +132,13 @@ DataField.propTypes = {
   defaultValue: linkType,
   description: linkType,
   fieldName: PropTypes.string,
-  in: linkType,
   maxCount: linkType,
   maxLength: linkType,
   minCount: linkType,
   minLength: linkType,
   name: linkType,
   onKeyUp: PropTypes.func,
+  shIn: linkType,
   targetValues: PropTypes.arrayOf(
     PropTypes.shape({
       '@id': linkType,
