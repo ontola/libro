@@ -89,6 +89,7 @@
     "request": "^2.88.0",
     "rimraf": "^2.6.3",
     "shrink-ray-current": "^4.0.0",
+    "uri-template": "^1.0.1",
     "useragent": "^2.3.0",
     "uuid": "^3.3.2"
   },

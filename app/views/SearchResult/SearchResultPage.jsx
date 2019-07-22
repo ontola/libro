@@ -22,6 +22,8 @@ import { allTopologiesExcept } from '../../topologies';
 import { navbarTopology } from '../../topologies/Navbar';
 import Container from '../../topologies/Container';
 
+import { searchIri } from './searchHelper';
+
 const messages = defineMessages({
   placeholder: {
     defaultMessage: 'Enter a query',
@@ -32,8 +34,8 @@ const messages = defineMessages({
 export const SearchResultPage = ({
   collectionDisplay,
   history,
-  location,
   query,
+  searchTemplate,
   subject,
   took,
   totalItems,
@@ -41,7 +43,6 @@ export const SearchResultPage = ({
   const { formatMessage } = useIntl();
 
   const queryNormalized = query?.value ?? '';
-  const search = new URLSearchParams(location.search);
   const body = (
     <Property
       collectionDisplay={collectionDisplay}
@@ -99,15 +100,7 @@ export const SearchResultPage = ({
               return;
             }
 
-            search.delete('page');
-            if (q) {
-              search.set('q', q);
-            } else {
-              search.delete('q');
-            }
-            search.set('page', 1);
-
-            history.push(`${location.pathname}${search ? `?${search}` : ''}${location.hash}`);
+            history.push(retrievePath(searchIri(searchTemplate.value, q, 1).value));
           }}
         />
         {totalItems && took && (
@@ -147,6 +140,7 @@ SearchResultPage.mapDataToProps = [
   NS.argu('took'),
   NS.as('totalItems'),
   NS.ontola('collectionDisplay'),
+  NS.ontola('searchTemplate'),
 ];
 
 SearchResultPage.propTypes = {
@@ -157,12 +151,8 @@ SearchResultPage.propTypes = {
   intl: PropTypes.shape({
     formatMessage: PropTypes.func,
   }),
-  location: PropTypes.shape({
-    hash: PropTypes.string,
-    pathname: PropTypes.string,
-    search: PropTypes.string,
-  }),
   query: linkType,
+  searchTemplate: PropTypes.string,
   subject: subjectType,
   took: linkType,
   totalItems: linkType,
