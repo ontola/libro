@@ -75,6 +75,7 @@ class Link extends PureComponent {
       target,
       theme,
       to,
+      ...other
     } = this.props;
 
     const themeClass = `Link__${theme}`;
@@ -83,6 +84,7 @@ class Link extends PureComponent {
     if (isDifferentWebsite(to)) {
       return (
         <a
+          {...other}
           className={`${className} ${themeClass} ${featuresClass}`}
           href={to}
           rel="nofollow noopener noreferrer"
@@ -109,6 +111,7 @@ class Link extends PureComponent {
 
     return (
       <LinkComp
+        {...other}
         activeClassName={activeClassName || 'Link__active'}
         className={`${className} ${themeClass} ${featuresClass}`}
         exact={isIndex}

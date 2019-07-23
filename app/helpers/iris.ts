@@ -22,10 +22,10 @@ export const sequenceFilter = /^http:\/\/www\.w3\.org\/1999\/02\/22-rdf-syntax-n
  * @returns {Object} Window-bound functions object.
  */
 export function iris(window: Window) {
-  const isDifferentOrigin = (iri: string | any): boolean => {
-    const href = typeof iri === 'string' ? new URL(iri, frontendOrigin).toString() : iri;
+  const isDifferentOrigin = (originIRI: string | any): boolean => {
+    const href = typeof originIRI === 'string' ? new URL(originIRI, frontendOrigin).toString() : originIRI;
 
-    if (href instanceof BlankNode) {
+    if (href instanceof BlankNode || !href) {
       return false;
     }
     const origin = href instanceof NamedNode ? href.value : href;
@@ -75,17 +75,18 @@ export function iris(window: Window) {
 
     /**
      * Returns only the pathname and beyond. Useful for relative navigation.
-     * @param {string} iriString The IRI to process.
+     * @param {string|NamedNode} iri The IRI to process.
      * @returns {undefined|string} The pathname or undefined if invalid.
      */
-    retrievePath(iriString: string) {
+    retrievePath(iri: NamedNode | string) {
+      const iriString = typeof iri === 'string' ? iri : iri.value;
       if (isLocalAnchor(iriString)) {
         return iriString;
       }
       // TODO: https://github.com/linkeddata/rdflib.js/issues/265
       const bugNormalized = iriString.replace(`${frontendOrigin}//`, `${frontendOrigin}/`);
-      const iri = iriString && new URL(bugNormalized, frontendOrigin);
-      return iri && iri.pathname + iri.search + iri.hash;
+      const url = iriString && new URL(bugNormalized, frontendOrigin);
+      return url && url.pathname + url.search + url.hash;
     },
   };
 }
