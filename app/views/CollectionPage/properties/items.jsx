@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
+import CardContent from '../../../components/Card/CardContent';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import CardRow from '../../../topologies/Card/CardRow';
 import { CollectionViewTypes } from '../types';
@@ -82,12 +83,18 @@ class Items extends PropertyBase {
         return this.props.empty();
       }
 
-      return (
+      const message = (
         <FormattedMessage
           defaultMessage="No items yet"
           id="https://app.argu.co/i18n/collection/empty/message"
         />
       );
+
+      if (this.props.collectionDisplay === NS.ontola('collectionDisplay/card')) {
+        return <CardContent endSpacing>{message}</CardContent>;
+      }
+
+      return message;
     }
 
     if (Array.isArray(items) && items.length === 0) {
