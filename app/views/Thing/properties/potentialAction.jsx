@@ -18,6 +18,8 @@ const order = [
   'destroy_vote',
   'create_comment',
   'destroy_comment',
+  'try_again',
+  'contacted',
 ];
 
 const sortBind = (potentialActions, props) => potentialActions
