@@ -17,34 +17,48 @@ const propTypes = {
   linkedProp: linkType,
 };
 
-const defaultCollectionTotalItems = ({ linkedProp }) => (
-  <LDLink>
-    <Heading size="4">
-      <FormattedMessage
-        defaultMessage="View all {count}..."
-        id="https://app.argu.co/i18n/collection/readAll"
-        values={{ count: linkedProp.value }}
-      />
-    </Heading>
-  </LDLink>
-);
+const defaultCollectionTotalItems = ({ linkedProp }) => {
+  if (linkedProp.value === '0') {
+    return null;
+  }
+
+  return (
+    <LDLink>
+      <Heading size="4">
+        <FormattedMessage
+          defaultMessage="View all {count}..."
+          id="https://app.argu.co/i18n/collection/readAll"
+          values={{ count: linkedProp.value }}
+        />
+      </Heading>
+    </LDLink>
+  );
+};
+
 defaultCollectionTotalItems.propTypes = propTypes;
 
-const cardAppendixCollectionTotalItems = ({ linkedProp }) => (
-  <CardRow backdrop>
-    <CardContent>
-      <LDLink>
-        <Heading size="4">
-          <FormattedMessage
-            defaultMessage="View all {count}..."
-            id="https://app.argu.co/i18n/collection/readAll"
-            values={{ count: linkedProp.value }}
-          />
-        </Heading>
-      </LDLink>
-    </CardContent>
-  </CardRow>
-);
+const cardAppendixCollectionTotalItems = ({ linkedProp }) => {
+  if (linkedProp.value === '0') {
+    return null;
+  }
+
+  return (
+    <CardRow backdrop>
+      <CardContent>
+        <LDLink>
+          <Heading size="4">
+            <FormattedMessage
+              defaultMessage="View all {count}..."
+              id="https://app.argu.co/i18n/collection/readAll"
+              values={{ count: linkedProp.value }}
+            />
+          </Heading>
+        </LDLink>
+      </CardContent>
+    </CardRow>
+  );
+};
+
 cardAppendixCollectionTotalItems.propTypes = propTypes;
 
 const registerTotalItems = buildRegister({
