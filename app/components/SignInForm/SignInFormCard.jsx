@@ -15,7 +15,7 @@ import Card, {
 } from '../../topologies/Card';
 import Heading from '../Heading';
 import { getAuthenticityToken } from '../../helpers/arguHelpers';
-import { expandPath } from '../../helpers/iris';
+import { expandPath, retrievePath } from '../../helpers/iris';
 import messages from '../../state/form/messages';
 
 import SignInFormBase from './SignInFormBase';
@@ -113,7 +113,7 @@ class SignInFormCard extends SignInFormBase {
     const { buttonText, formFields } = this.currentFields();
 
     if (fullPage && ['ConfirmedUser', 'UnconfirmedUser'].includes(userType)) {
-      return <Redirect to={r} />;
+      return <Redirect to={retrievePath(r)} />;
     }
 
     return (

@@ -199,20 +199,6 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     }
 
     switch (iri) {
-      case store.namespaces.ontola('actions/logout'):
-        return fetch(store.namespaces.app('logout').value, safeCredentials({
-          method: 'POST',
-        }))
-          .then(() => {
-            try {
-              serviceWorkerCommunicator.clearCache();
-            } catch (e) {
-              handle(e);
-            }
-            reloadPage(false);
-          }, () => {
-            handle(new Error('User logout action failed'));
-          });
       case store.namespaces.ontola('actions/refresh'):
         if (__CLIENT__) {
           reloadPage(false);
@@ -240,6 +226,28 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
 
       return clipboardCopy(value)
         .then(() => Promise.resolve((store as any).intl.formatMessage(messages.copyFinished)));
+    }
+
+    if (iri.value.startsWith(store.namespaces.ontola('actions/logout').value)) {
+      const location = new URL(iri.value).searchParams.get('location');
+
+      return fetch(store.namespaces.app('logout').value, safeCredentials({
+        method: 'POST',
+      }))
+        .then(() => {
+          try {
+            serviceWorkerCommunicator.clearCache();
+          } catch (e) {
+            handle(e);
+          }
+          if (location) {
+            redirectPage(location);
+          } else {
+            reloadPage(false);
+          }
+        }, () => {
+          handle(new Error('User logout action failed'));
+        });
     }
 
     if (iri.value.startsWith(store.namespaces.ontola('actions/redirect').value)) {

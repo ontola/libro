@@ -92,9 +92,10 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
    */
   (store as any).actions.app.startSignOut = (redirect?: NamedNode) => {
     if (redirect) {
-      store.exec(store.namespaces.ontola(`actions/redirect?location=${redirect.value}`));
+      store.exec(store.namespaces.ontola(`actions/logout?location=${redirect.value}`));
+    } else {
+      store.exec(store.namespaces.ontola('actions/logout'));
     }
-    store.exec(store.namespaces.ontola('actions/logout'));
   };
 
   /**
