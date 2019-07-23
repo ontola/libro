@@ -14,6 +14,7 @@ import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { cardListTopology } from '../../topologies/Card/CardList';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 import { invalidStatuses } from '../Thing/properties/omniform/helpers';
+import { getMetaContent } from '../../helpers/arguHelpers';
 
 const mapCardListDispatchToProps = (dispatch, ownProps) => ({
   onClick: (e) => {
@@ -71,7 +72,7 @@ class InlineCreateAction extends React.PureComponent {
       <Property
         count={count}
         label={NS.schema('name')}
-        onClick={omniform ? onClick : undefined}
+        onClick={omniform && getMetaContent('omniform') !== 'false' ? onClick : undefined}
       />
     );
   }
