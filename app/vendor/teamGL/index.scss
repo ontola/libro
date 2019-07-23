@@ -14,6 +14,30 @@
       &:first-child {
         border-left: 0;
       }
+
+      &--variant-success {
+        background-color: var(--navbar-background);
+
+        &:active {
+          // sass-lint:disable no-important
+          background-color: var(--navbar-background) !important;
+          // sass-lint:enable no-important
+        }
+
+        color: color('white');
+
+        .Button__label,
+        .Button__icon {
+          color: color('white');
+        }
+
+        &:hover,
+        &:focus {
+          .Button__label {
+            box-shadow: none;
+          }
+        }
+      }
     }
   }
 
@@ -36,6 +60,16 @@
 
   .Container--grid {
     padding: 0;
+
+    .Widget {
+      .Card {
+        margin-bottom: 0;
+      }
+
+      .ContainerHeader {
+        margin-top: 0;
+      }
+    }
   }
 }
 // sass-lint:enable nesting-depth
