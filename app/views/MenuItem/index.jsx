@@ -7,9 +7,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { DropdownLink } from '../../components';
+import { MenuItem } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
-import { dropdownContentTopology } from '../../topologies/DropdownContent';
+import { menuTopology } from '../../topologies/Menu';
 
 import MenuItemAppMenu from './MenuItemAppMenu';
 import MenuItemDropdown from './MenuItemDropdown';
@@ -31,7 +31,9 @@ class MenuItemDropdownContent extends React.PureComponent {
     };
   }
 
-  action() {
+  action(e) {
+    // eslint-disable-next-line no-unused-expressions
+    e?.preventDefault();
     this.props.lrs
       .exec(this.props.action)
       .then((msg) => {
@@ -53,7 +55,7 @@ class MenuItemDropdownContent extends React.PureComponent {
     } = this.props;
 
     return (
-      <DropdownLink
+      <MenuItem
         action={this.props.action ? this.action : undefined}
         icon={image}
         lrs={lrs}
@@ -61,7 +63,7 @@ class MenuItemDropdownContent extends React.PureComponent {
         url={href}
       >
         {this.state.nameOverride || name.value}
-      </DropdownLink>
+      </MenuItem>
     );
   }
 }
@@ -90,7 +92,7 @@ export default [
     ])(MenuItemDropdownContent),
     NS.ontola('MenuItem'),
     RENDER_CLASS_NAME,
-    dropdownContentTopology
+    menuTopology
   ),
   Href,
   LabelCard,

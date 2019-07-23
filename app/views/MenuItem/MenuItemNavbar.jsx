@@ -8,12 +8,9 @@ import {
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  Dropdown,
-  Resource,
-} from '../../components';
+import { Resource } from '../../components';
+import DropdownMenu from '../../components/DropdownMenu';
 import { NS } from '../../helpers/LinkedRenderStore';
-import { dropdownContentTopology } from '../../topologies/DropdownContent';
 import { navbarTopology } from '../../topologies/Navbar';
 import { NavbarLinkLink, NavbarLinkWrapper } from '../../components/NavbarLink';
 
@@ -47,12 +44,13 @@ class MenuItemNavbar extends React.PureComponent {
 
     const id = `${subject}-menu-items`;
 
-    const MenuItemLabel = (
+    const menuItemLabel = onClick => (
       <NavbarLinkWrapper>
         <Property
           forceRender
           component={NavbarLinkLink}
           data-test="MenuItem-MenuItemLabel"
+          handleClick={onClick}
           id={id}
           label={NS.ontola('href')}
         >
@@ -64,20 +62,15 @@ class MenuItemNavbar extends React.PureComponent {
 
     if (menuItems) {
       return (
-        <Dropdown
-          lazy
-          trigger={MenuItemLabel}
+        <DropdownMenu
+          trigger={menuItemLabel}
         >
-          {() => (
-            <Resource>
-              <LinkedResourceContainer subject={menuItems} topology={dropdownContentTopology} />
-            </Resource>
-          )}
-        </Dropdown>
+          <LinkedResourceContainer subject={menuItems} />
+        </DropdownMenu>
       );
     }
 
-    return <Resource>{MenuItemLabel}</Resource>;
+    return <Resource>{menuItemLabel()}</Resource>;
   }
 }
 

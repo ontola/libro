@@ -16,8 +16,7 @@ export { default as DetailImage } from './components/Detail/image';
 export { default as DetailDate } from './components/DetailDate/index';
 export { default as LinkedDetailDate } from './components/LinkedDetailDate/index';
 export { default as Link } from './components/Link/index';
-export { default as Dropdown } from './components/Dropdown/index';
-export { default as DropdownLink } from './components/Dropdown/DropdownLink';
+export { default as MenuItem } from './components/MenuItem';
 export { default as Error } from './components/Error/index';
 export {
   Form,

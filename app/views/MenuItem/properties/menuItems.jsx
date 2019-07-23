@@ -1,6 +1,5 @@
 import {
   LinkedResourceContainer,
-  Property,
   linkType,
   register,
 } from 'link-redux';
@@ -8,9 +7,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
-import { dropdownContentTopology } from '../../../topologies/DropdownContent';
+import { menuTopology } from '../../../topologies/Menu';
 import { navbarTopology } from '../../../topologies/Navbar';
-import { Dropdown } from '../../../components';
 
 class MenuItems extends React.PureComponent {
   static type = [
@@ -23,7 +21,7 @@ class MenuItems extends React.PureComponent {
 
   static topology = [
     navbarTopology,
-    dropdownContentTopology,
+    menuTopology,
   ];
 
   static mapDataToProps = {
@@ -48,34 +46,16 @@ class MenuItems extends React.PureComponent {
     }
     const childProps = this.props.childProps || {};
 
-    if (!this.props.labelComp) {
-      return rawProp
-        .map(item => (
-          <LinkedResourceContainer
-            childProps={childProps}
-            gutter={this.props.gutter}
-            key={`menu-${item}`}
-            renderGutter={this.props.renderGutter}
-            subject={item}
-          />
-        ));
-    }
-
-    return (
-      <Dropdown
-        lazy
-        trigger={<Property label={this.props.labelComp} />}
-      >
-        {() => (
-          <LinkedResourceContainer
-            childProps={childProps}
-            gutter={this.props.gutter}
-            subject={rawProp}
-            topology={dropdownContentTopology}
-          />
-        )}
-      </Dropdown>
-    );
+    return rawProp
+      .map(item => (
+        <LinkedResourceContainer
+          childProps={childProps}
+          gutter={this.props.gutter}
+          key={`menu-${item}`}
+          renderGutter={this.props.renderGutter}
+          subject={item}
+        />
+      ));
   }
 }
 

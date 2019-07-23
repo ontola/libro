@@ -14,7 +14,7 @@ import { containerFloatTopology } from './topologies/Container/ContainerFloat';
 import { contentDetailsTopology } from './topologies/ContentDetails/index';
 import { detailsBarTopology } from './topologies/DetailsBar/index';
 import { alertDialogTopology } from './topologies/Dialog/index';
-import { dropdownContentTopology } from './topologies/DropdownContent/index';
+import { menuTopology } from './topologies/Menu/index';
 import { formFooterTopology } from './topologies/FormFooter/Footer';
 import { gridTopology } from './topologies/Grid/index';
 import { hoverBoxTopology } from './topologies/HoverBox/index';
@@ -61,7 +61,7 @@ export const allTopologies = [
   contentDetailsTopology,
   detailsBarTopology,
   alertDialogTopology,
-  dropdownContentTopology,
+  menuTopology,
   formFooterTopology,
   gridTopology,
   hoverBoxTopology,

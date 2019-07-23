@@ -30,7 +30,7 @@ import Container, { containerTopology } from '../../topologies/Container';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { alertDialogTopology } from '../../topologies/Dialog';
-import { dropdownContentTopology } from '../../topologies/DropdownContent';
+import { menuTopology } from '../../topologies/Menu';
 import { gridTopology } from '../../topologies/Grid';
 import { hoverBoxTopology } from '../../topologies/HoverBox';
 import { inlineTopology } from '../../topologies/Inline';
@@ -208,7 +208,7 @@ export default [
     [
       alertDialogTopology,
       containerTopology,
-      dropdownContentTopology,
+      menuTopology,
       cardListTopology,
       gridTopology,
       widgetTopologyTopology,

@@ -6,7 +6,7 @@ import React from 'react';
 import { NavbarLinkImageWrapper } from '../../components/NavbarLink';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
-import { dropdownContentTopology } from '../../topologies/DropdownContent';
+import { menuTopology } from '../../topologies/Menu';
 import { formFooterTopology } from '../../topologies/FormFooter/Footer';
 import { navbarTopology } from '../../topologies/Navbar';
 import { pageHeaderTopology } from '../../topologies/PageHeader';
@@ -29,7 +29,7 @@ class ImageObject extends React.PureComponent {
 
   static topology = [
     detailsBarTopology,
-    dropdownContentTopology,
+    menuTopology,
     formFooterTopology,
     pageHeaderTopology,
     parentTopology,

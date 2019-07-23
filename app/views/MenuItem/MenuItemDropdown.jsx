@@ -1,73 +1,55 @@
+import IconButton from '@material-ui/core/IconButton';
 import {
   LinkedResourceContainer,
   Property,
   linkType,
   register,
-  unstable,
 } from 'link-redux';
 import React from 'react';
 
-import {
-  Dropdown,
-  Resource,
-} from '../../components';
+import DropdownMenu from '../../components/DropdownMenu';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
-import { dropdownContentTopology } from '../../topologies/DropdownContent';
-import { handle } from '../../helpers/logging';
-import { renderError } from '../../topologies/Topology';
 
-class MenuItemDropdown extends React.Component {
-  static contextType = unstable.LinkRenderCtx;
+const MenuItemDropdown = (props) => {
+  const {
+    menuItems,
+  } = props;
 
-  static type = [
-    NS.ontola('MenuItem'),
-    NS.argu('MenuSection'),
-    NS.argu('SubMenu'),
-    NS.argu('Menu'),
-  ];
+  const trigger = onClick => (
+    <IconButton
+      centerRipple
+      color="default"
+      size="small"
+      onClick={onClick}
+    >
+      <Property label={NS.schema('name')} />
+    </IconButton>
+  );
 
-  static topology = [cardFloatTopology, containerFloatTopology];
+  return (
+    <DropdownMenu
+      trigger={trigger}
+    >
+      <LinkedResourceContainer subject={menuItems} />
+    </DropdownMenu>
+  );
+};
 
-  static mapDataToProps = [NS.ontola('menuItems')];
+MenuItemDropdown.type = [
+  NS.ontola('MenuItem'),
+  NS.argu('MenuSection'),
+  NS.argu('SubMenu'),
+  NS.argu('Menu'),
+];
 
-  static propTypes = {
-    menuItems: linkType,
-  };
+MenuItemDropdown.topology = [cardFloatTopology, containerFloatTopology];
 
-  constructor(props) {
-    super(props);
+MenuItemDropdown.mapDataToProps = [NS.ontola('menuItems')];
 
-    this.renderError = renderError(this);
-    this.state = {
-      error: undefined,
-    };
-  }
-
-  componentDidCatch(error, ignored) {
-    handle(error);
-    this.setState({ error });
-  }
-
-  render() {
-    const { menuItems } = this.props;
-
-    if (this.state.error) {
-      return this.renderError();
-    }
-
-    return (
-      <Resource>
-        <Dropdown
-          lazy
-          trigger={<Property label={NS.schema('name')} />}
-        >
-          {() => <LinkedResourceContainer subject={menuItems} topology={dropdownContentTopology} />}
-        </Dropdown>
-      </Resource>
-    );
-  }
-}
+MenuItemDropdown.propTypes = {
+  menuItems: linkType,
+};
 
 export default register(MenuItemDropdown);
