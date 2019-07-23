@@ -14,7 +14,7 @@ const GroupPage = () => (
   </PrimaryResource>
 );
 
-GroupPage.type = [NS.argu('Group')];
+GroupPage.type = NS.argu('Group');
 
 GroupPage.topology = pageTopology;
 

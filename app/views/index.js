@@ -22,6 +22,7 @@ import EntryPoint from './EntryPoint';
 import Error from './Error';
 import Forum from './Forum/index';
 import Group from './Group';
+import GroupMembership from './GroupMembership';
 import ImageObject from './ImageObject';
 import InfiniteCollectionPage from './InfiniteCollectionPage';
 import RDFProperty from './RDFProperty';
@@ -70,6 +71,7 @@ export function getViews() {
     ...Error,
     ...Forum,
     ...Group,
+    ...GroupMembership,
     ...ImageObject,
     ...InfiniteCollectionPage,
     ...Loading,

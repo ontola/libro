@@ -45,6 +45,7 @@ class VolunteerPage extends React.PureComponent {
               <Property label={NS.schema.text} />
             </CardContent>
           </CardMain>
+          <Property renderWhenEmpty label={NS.org('hasMembership')} />
         </Container>
       </PrimaryResource>
     );
