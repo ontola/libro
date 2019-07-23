@@ -86,7 +86,6 @@ const colors = {
 };
 /* eslint-enable sort-keys, no-magic-numbers */
 
-
 const theme = createMuiTheme({
   // Palette defaults are overwritten by custom theming configuration
   palette: {
@@ -106,6 +105,9 @@ const theme = createMuiTheme({
     },
   },
   typography: {
+    body1: {
+      fontSize: '15px',
+    },
     fontFamily: "'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif",
     fontSize: 16,
   },
