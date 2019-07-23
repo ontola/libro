@@ -1,0 +1,8 @@
+.HeaderWithMenu {
+  display: flex;
+  flex-direction: row;
+
+  &__header {
+    flex-grow: 1;
+  }
+}

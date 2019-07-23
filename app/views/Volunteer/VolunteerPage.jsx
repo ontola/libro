@@ -11,6 +11,7 @@ import Container from '../../topologies/Container';
 import CardMain from '../../topologies/Card/CardMain';
 import { CardContent } from '../../components';
 import ContentDetails from '../../topologies/ContentDetails';
+import HeaderWithMenu from '../../components/HeaderWithMenu';
 
 class VolunteerPage extends React.PureComponent {
   static type = [NS.teamGL('Volunteer')];
@@ -27,11 +28,15 @@ class VolunteerPage extends React.PureComponent {
           <Property label={NS.schema('isPartOf')} />
           <CardMain>
             <CardContent noSpacing>
-              <Property label={[NS.schema('name'), NS.rdfs('label')]} />
+              <HeaderWithMenu
+                menu={(
+                  <Property label={NS.ontola('actionsMenu')} />
+                )}
+              >
+                <Property label={[NS.schema('name'), NS.rdfs('label')]} />
+              </HeaderWithMenu>
               <ContentDetails>
                 <Property label={NS.teamGL('department')} />
-                <Property label={NS.schema('dateCreated')} />
-                <Property label={NS.ontola('updateAction')} />
               </ContentDetails>
               <div className="Volunteer--contact-options">
                 <Property label={NS.teamGL('telephone')} />
