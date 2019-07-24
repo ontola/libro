@@ -17,8 +17,8 @@
     align-items: center;
     color: inherit;
     display: flex;
-    flex-grow: 1;
     height: $navbar-height;
+    min-width: 2rem;
 
     &:hover {
       cursor: pointer;

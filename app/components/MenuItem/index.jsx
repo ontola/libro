@@ -1,6 +1,7 @@
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import MaterialMenuItem from '@material-ui/core/MenuItem';
+import { ExpandLess, ExpandMore } from '@material-ui/icons';
 import { linkType, subjectType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -11,15 +12,21 @@ import Link from '../Link';
 const propTypes = {
   action: PropTypes.func,
   children: PropTypes.node,
+  expandOpen: PropTypes.bool,
   icon: linkType,
   subject: subjectType,
   url: linkType,
+};
+
+const defaultProps = {
+  expandOpen: null,
 };
 
 const MenuItem = ({
   action,
   children,
   icon,
+  expandOpen,
   subject,
   url,
 }) => {
@@ -50,9 +57,11 @@ const MenuItem = ({
       <ListItemText>
         {children}
       </ListItemText>
+      {expandOpen !== null && (expandOpen ? <ExpandLess /> : <ExpandMore />)}
     </MaterialMenuItem>
   );
 };
 MenuItem.propTypes = propTypes;
+MenuItem.defaultProps = defaultProps;
 
 export default MenuItem;

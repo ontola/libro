@@ -30,7 +30,7 @@ import RDFSClass from './RDFSClass';
 import Loading from './Loading';
 import MediaObject from './MediaObject';
 import Meeting from './Meeting/properties/agenda';
-import Menu from './Menu';
+import Menu from './MenuNavbar';
 import MenuItem from './MenuItem';
 import MenuSection from './MenuSection';
 import Motion from './Motion';

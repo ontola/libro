@@ -1,15 +1,12 @@
+import MaterialMenu from '@material-ui/core/Menu/Menu';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Fragment } from 'react';
 
-import { Resource } from '../../components';
-import Menu from '../../topologies/Menu';
-
-const DropdownMenu = (props) => {
-  const {
-    children,
-    trigger,
-  } = props;
-
+const DropdownMenu = ({
+  children,
+  className,
+  trigger,
+}) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -21,20 +18,35 @@ const DropdownMenu = (props) => {
   };
 
   return (
-    <Resource>
-      {trigger(handleClick)}
-      <Menu
+    <Fragment>
+      {trigger(handleClick, Boolean(anchorEl))}
+      <MaterialMenu
+        PaperProps={{
+          className,
+          square: true,
+        }}
         anchorEl={anchorEl}
+        anchorOrigin={{
+          horizontal: 'left',
+          vertical: 'bottom',
+        }}
+        getContentAnchorEl={null}
+        marginThreshold={0}
+        open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        {children}
-      </Menu>
-    </Resource>
+        {typeof children === 'function' ? children(handleClose) : children}
+      </MaterialMenu>
+    </Fragment>
   );
 };
 
 DropdownMenu.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.func,
+  ]),
+  className: PropTypes.string,
   trigger: PropTypes.func,
 };
 

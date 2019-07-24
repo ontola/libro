@@ -16,10 +16,10 @@ import HoverHelper from '../DevBrowser/HoverHelper';
 import { defaultKeymap, devKeymap } from '../../helpers/keyboard';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { handle } from '../../helpers/logging';
+import Routes from '../index';
 
 import './index.scss';
 import AppScroller from './AppScroller';
-import MainContent from './MainContent';
 
 class App extends React.PureComponent {
   static propTypes = {
@@ -70,7 +70,9 @@ class App extends React.PureComponent {
                 <NavBarContent />
               </Navbar>
               <NetworkStatusIndicator />
-              <MainContent />
+              <div className="MainContentWrapper" id="start-of-content">
+                {Routes}
+              </div>
             </AppScroller>
             <LinkedResourceContainer subject={NS.ontola('snackbar/manager')} />
             <LinkedResourceContainer subject={NS.ontola('dialog/manager')} />

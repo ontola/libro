@@ -1,35 +1,32 @@
 import { lrsType, withLRS } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import OutsideClickHandler from 'react-outside-click-handler';
 
+import DropdownMenu from '../../components/DropdownMenu';
 import { NS } from '../../helpers/LinkedRenderStore';
 import Topology from '../Topology';
 
-import './AppMenu.scss';
-
-export const appMenuTopology = NS.app('topologies/menu');
+export const appMenuTopology = NS.app('topologies/appMenu');
 
 class AppMenu extends Topology {
   static propTypes = {
     children: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
       PropTypes.node,
+      PropTypes.func,
     ]),
     close: PropTypes.func,
     contentClassName: PropTypes.string,
     fullScreen: PropTypes.bool,
     lrs: lrsType,
+    trigger: PropTypes.func,
   };
 
   constructor(props) {
     super(props);
 
     this.topology = appMenuTopology;
-  }
-
-  getClassName() {
-    return `AppMenu ${this.props.fullScreen ? 'AppMenu--full-screen' : 'AppMenu--floating'}`;
+    this.renderContent = this.renderContent.bind(this);
   }
 
   render() {
@@ -38,12 +35,26 @@ class AppMenu extends Topology {
     }
 
     return (
-      <OutsideClickHandler
-        onOutsideClick={() => this.props.lrs.exec(NS.app('actions/menu/close'))}
+      <DropdownMenu
+        className="AppMenu"
+        trigger={this.props.trigger}
       >
-        {this.renderContent()}
-      </OutsideClickHandler>
+        {handleClose => this.renderContent(handleClose)}
+      </DropdownMenu>
     );
+  }
+
+  renderContent(handleClose) {
+    return this.wrap((subject) => {
+      if (typeof this.props.children === 'function') {
+        return this.props.children({
+          handleClose,
+          subject,
+        });
+      }
+
+      return this.props.children;
+    });
   }
 }
 

@@ -17,12 +17,6 @@ export const frontendOrigin = new URL(frontendIRIStr).origin;
 const app = Namespace(frontendIRIStr.endsWith('/') ? frontendIRIStr : `${frontendIRIStr}/`);
 const appSlashless = Namespace(frontendIRIStr.slice(0, frontendIRIStr.endsWith('/') ? -1 : undefined));
 
-export const menuStates = {
-  closed: app('menu/openState/closed'),
-  closing: app('menu/openState/closing'),
-  open: app('menu/openState/open'),
-};
-
 export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoundLRS => {
 
   (store as any).actions.app = {};
@@ -38,17 +32,7 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
 
   store.processDelta([
       new Statement(app('menu'), store.namespaces.rdf('type'), app('Menu')),
-      new Statement(app('menu'), app('openState'), menuStates.closed),
   ], true);
-
-  const changeMenu = (state: NamedNode) => [
-      new Statement(
-        app('menu'),
-        app('openState'),
-        state,
-        store.namespaces.ll('replace'),
-      ),
-  ];
 
   /**
    * App sign in
@@ -103,16 +87,6 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
    */
   return (next: MiddlewareActionHandler) => (iri: NamedNode, opts: any): Promise<any> => {
 
-    if ([
-        store.namespaces.ontola('actions/navigation/push'),
-        store.namespaces.ontola('actions/navigation/pop'),
-    ].includes(iri)) {
-      const nextState = store.getResourceProperty(app('menu'), app('openState')) === menuStates.open
-          ? menuStates.closing
-          : menuStates.closed;
-      store.processDelta(changeMenu(nextState), true);
-    }
-
     if (iri.value.startsWith(app('').value)) {
       if (__CLIENT__) {
         const actionKey = `app.storedActions.${iri.value}`;
@@ -130,16 +104,6 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
               });
         }
       }
-    }
-
-    switch (iri) {
-      case app('actions/menu/open'):
-        return store.processDelta(changeMenu(menuStates.open), true);
-      case app('actions/menu/close'):
-        return store.processDelta(changeMenu(menuStates.closing), true);
-      case app('actions/menu/closed'):
-        return store.processDelta(changeMenu(menuStates.closed), true);
-      default:
     }
 
     return next(iri, opts);

@@ -1,20 +1,19 @@
-import MaterialMenu from '@material-ui/core/Menu';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import DropdownMenu from '../../components/DropdownMenu';
 import { NS } from '../../helpers/LinkedRenderStore';
 import Topology from '../Topology';
 
-export const menuTopology = NS.argu('material/menu');
+export const menuTopology = NS.argu('topologies/menu');
 
 class Menu extends Topology {
   static propTypes = {
-    anchorEl: __CLIENT__ ? PropTypes.instanceOf(Element) : PropTypes.oneOf([undefined]),
     children: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
       PropTypes.node,
     ]),
-    onClose: PropTypes.func,
+    trigger: PropTypes.func,
   };
 
   constructor(props) {
@@ -22,27 +21,20 @@ class Menu extends Topology {
     this.topology = menuTopology;
   }
 
-  render() {
+  renderContent() {
     const {
-      anchorEl,
       children,
-      onClose,
+      trigger,
     } = this.props;
 
-    return this.wrap(
-      <MaterialMenu
-        anchorEl={anchorEl}
-        anchorOrigin={{
-          horizontal: 'left',
-          vertical: 'bottom',
-        }}
-        getContentAnchorEl={null}
-        open={Boolean(anchorEl)}
-        onClose={onClose}
+    return this.wrap((
+      <DropdownMenu
+        className="Menu"
+        trigger={trigger}
       >
         {children}
-      </MaterialMenu>
-    );
+      </DropdownMenu>
+    ));
   }
 }
 

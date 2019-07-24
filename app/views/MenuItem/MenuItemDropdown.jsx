@@ -7,10 +7,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import DropdownMenu from '../../components/DropdownMenu';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
+import Menu from '../../topologies/Menu';
 
 const MenuItemDropdown = (props) => {
   const {
@@ -24,16 +24,16 @@ const MenuItemDropdown = (props) => {
       size="small"
       onClick={onClick}
     >
-      <Property label={NS.schema('name')} />
+      <Property label={NS.schema('image')} />
     </IconButton>
   );
 
   return (
-    <DropdownMenu
+    <Menu
       trigger={trigger}
     >
       <LinkedResourceContainer subject={menuItems} />
-    </DropdownMenu>
+    </Menu>
   );
 };
 

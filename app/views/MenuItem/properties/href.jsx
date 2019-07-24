@@ -11,7 +11,6 @@ import Link from '../../../components/Link';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import SHACL from '../../../helpers/shacl';
 import { navbarTopology } from '../../../topologies/Navbar';
-import { appMenuTopology } from '../../../topologies/AppMenu';
 
 class Href extends React.PureComponent {
   static type = [
@@ -23,7 +22,6 @@ class Href extends React.PureComponent {
   static property = NS.ontola('href');
 
   static topology = [
-    appMenuTopology,
     navbarTopology,
   ];
 

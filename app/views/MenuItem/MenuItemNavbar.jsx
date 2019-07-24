@@ -9,8 +9,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Resource } from '../../components';
-import DropdownMenu from '../../components/DropdownMenu';
 import { NS } from '../../helpers/LinkedRenderStore';
+import Menu from '../../topologies/Menu';
 import { navbarTopology } from '../../topologies/Navbar';
 import { NavbarLinkLink, NavbarLinkWrapper } from '../../components/NavbarLink';
 
@@ -23,13 +23,14 @@ class MenuItemNavbar extends React.PureComponent {
 
   static topology = navbarTopology;
 
-  static mapDataToProps = [
-    NS.ontola('href'),
-    NS.ontola('menuItems'),
-    NS.schema('name'),
-  ];
+  static mapDataToProps = {
+    href: NS.ontola('href'),
+    menuItems: NS.ontola('menuItems'),
+    name: NS.schema('name'),
+  };
 
   static propTypes = {
+    href: linkType,
     menuItems: linkType,
     showImage: PropTypes.bool,
     subject: subjectType,
@@ -37,12 +38,15 @@ class MenuItemNavbar extends React.PureComponent {
 
   render() {
     const {
+      href,
       menuItems,
       showImage,
       subject,
     } = this.props;
 
     const id = `${subject}-menu-items`;
+
+    const InnerWrapper = href ? React.Fragment : NavbarLinkLink;
 
     const menuItemLabel = onClick => (
       <NavbarLinkWrapper>
@@ -54,19 +58,26 @@ class MenuItemNavbar extends React.PureComponent {
           id={id}
           label={NS.ontola('href')}
         >
-          {showImage && <Property label={NS.schema('image')} />}
-          <Property label={NS.schema('name')} />
+          <InnerWrapper
+            onClick={onClick}
+          >
+            {showImage && <Property label={NS.schema('image')} />}
+            <Property label={NS.schema('name')} />
+          </InnerWrapper>
         </Property>
       </NavbarLinkWrapper>
     );
 
     if (menuItems) {
       return (
-        <DropdownMenu
-          trigger={menuItemLabel}
-        >
-          <LinkedResourceContainer subject={menuItems} />
-        </DropdownMenu>
+        <Menu trigger={menuItemLabel}>
+          {onClose => (
+            <LinkedResourceContainer
+              childProps={{ onClose }}
+              subject={menuItems}
+            />
+          )}
+        </Menu>
       );
     }
 
