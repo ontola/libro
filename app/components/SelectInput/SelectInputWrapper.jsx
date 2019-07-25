@@ -5,11 +5,14 @@ import {
   linkType,
   useLRS,
 } from 'link-redux';
+import { useDebouncedCallback } from 'use-debounce';
 
 import normalizedLower from '../../helpers/i18n';
 import { searchIri } from '../../views/SearchResult/searchHelper';
 
 import SelectInputField, { MAX_ITEMS, itemToString } from './SelectInputField';
+
+const DEBOUNCE_TIMER = 500;
 
 function calculateItemsToShow(inputValue, selectedItem, options, lrs) {
   const compareValue = inputValue && normalizedLower(typeof inputValue === 'string' ? inputValue : inputValue.value);
@@ -119,6 +122,17 @@ const SelectInputWrapper = ({
   React.useEffect(() => {
     setState(updateOptions(state, options, lrs));
   }, options);
+  const [debouncedCallback] = useDebouncedCallback(
+    changes => handleStateChange(
+      options,
+      changes,
+      setState,
+      lrs,
+      searchTemplate,
+      onOptionsChange
+    ),
+    searchTemplate ? DEBOUNCE_TIMER : 0
+  );
 
 
   return (
@@ -128,16 +142,7 @@ const SelectInputWrapper = ({
         items={state.itemsToShow}
         sharedProps={sharedProps}
         value={inputValue}
-        onStateChange={
-          changes => handleStateChange(
-            options,
-            changes,
-            setState,
-            lrs,
-            searchTemplate,
-            onOptionsChange
-          )
-        }
+        onStateChange={debouncedCallback}
       />
     </div>
   );
