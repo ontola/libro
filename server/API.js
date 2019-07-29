@@ -46,6 +46,9 @@ class API {
   proxySafeHeaders(req = this.req) {
     return {
       'Accept-Language': req.headers?.['accept-language'],
+      'X-Forwarded-Host': req.headers.host,
+      'X-Forwarded-Proto': 'https',
+      'X-Forwarded-Ssl': 'on',
     };
   }
 
@@ -68,9 +71,6 @@ class API {
     return this.fetchRaw(this.userToken, {
       headers: {
         Accept: constants.FRONTEND_ACCEPT,
-        'X-Forwarded-Host': req.headers.host,
-        'X-Forwarded-Proto': 'https',
-        'X-Forwarded-Ssl': 'on',
         ...this.proxySafeHeaders(req),
       },
       method: 'HEAD',
