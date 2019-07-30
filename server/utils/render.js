@@ -130,7 +130,7 @@ export const renderFullPage = (req, res, websiteMeta, data) => {
               <link rel="stylesheet" href="/static/preloader.css">
               <link rel="manifest" href="${manifestLocation}">
               ${headers?.title?.toString()}
-      
+
               <meta name="website-iri" content="${websiteMeta.website || ''}">
               <meta property="og:type" content="website">
               <meta name="mobile-web-app-capable" content="yes">
@@ -145,13 +145,13 @@ export const renderFullPage = (req, res, websiteMeta, data) => {
               <meta content="269911176456825" property="fb:app_id">
               <meta name="theme" content="${websiteMeta.cssClass}">
               ${headers?.meta?.toString()}
-      
+
               <meta name="csrf-param" content="authenticity_token">
               <meta name="csrf-token" content="${csrfToken}">
               ${constants.websocketPath ? `<meta name="websocket-path" content="${constants.websocketPath}">` : ''}
               ${constants.bugsnagKey ? '<script async src="//d2wy8f7a9ursnm.cloudfront.net/v5/bugsnag.min.js"></script>' : ''}
               <script nonce="${nonceStr}">window.bugsnagClient = typeof bugsnag !== 'undefined' && bugsnag(${JSON.stringify(bugsnagOpts)})</script>
-      
+
               ${headers?.link?.toString()}
               <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicons/favicon-192x192.png">
               <link rel="icon" type="image/png" sizes="160x160" href="/assets/favicons/favicon-160x160.png">
@@ -167,7 +167,7 @@ export const renderFullPage = (req, res, websiteMeta, data) => {
               <meta name="msapplication-TileColor" content="#475668">
               <meta name="msapplication-TileImage" content="/assets/favicons/mstile-310x310.png">
               <meta name="msapplication-config" content="/assets/favicons/browserconfig.xml">
-              
+
               <noscript id="deferred-styles">
                   ${bundleCSS}
                   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
@@ -178,11 +178,11 @@ export const renderFullPage = (req, res, websiteMeta, data) => {
             <body style="margin: 0;">
               <style id="theme-config">
                 :root {
-                  --accent-background-color:${websiteMeta.secondaryMain}; 
-                  --accent-color:${websiteMeta.secondaryText}; 
-                  --navbar-background:${websiteMeta.primaryMain}; 
-                  --navbar-color:${websiteMeta.primaryText}; 
-                  --navbar-color-hover:${websiteMeta.primaryText}12; 
+                  --accent-background-color:${websiteMeta.secondaryMain};
+                  --accent-color:${websiteMeta.secondaryText};
+                  --navbar-background:${websiteMeta.primaryMain};
+                  --navbar-color:${websiteMeta.primaryText};
+                  --navbar-color-hover:${websiteMeta.primaryText}12;
                 }
                 .accent-background-color {
                   background-color: ${websiteMeta.secondaryMain};
@@ -200,8 +200,8 @@ export const renderFullPage = (req, res, websiteMeta, data) => {
               <div class="preloader" id="preloader">
                 ${spinner}
               </div>
-              <div 
-                  id="navbar-preview" 
+              <div
+                  id="navbar-preview"
                   class="accent-background-color navbar-background navbar-color"
                   style="height: 3.2rem; z-index: -1;"
               ></div>
@@ -232,6 +232,17 @@ export const renderFullPage = (req, res, websiteMeta, data) => {
               </script>
               <script nonce="${nonceStr}" type="application/javascript">
                   window.WEBSITE_META = JSON.parse('${JSON.stringify(websiteMeta)}')
+              </script>
+              <!-- Tell users their browser is outdated https://browser-update.org/#install -->
+              <script nonce="${nonceStr}">
+                  var $buoop = {required:{e:-4,f:-3,o:-3,s:-1,c:-3},insecure:true,api:2019.07 };
+                  function $buo_f(){
+                  var e = document.createElement("script");
+                  e.src = "https://browser-update.org/update.min.js";
+                  document.body.appendChild(e);
+                  };
+                  try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
+                  catch(e){window.attachEvent("onload", $buo_f)}
               </script>
             </body>
           </html>`
