@@ -41,6 +41,7 @@ import { tableCellTopology } from '../../topologies/TableCell';
 import { voteBubbleTopology } from '../../topologies/VoteBubble';
 import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 import { tabPaneTopology } from '../../topologies/TabPane';
+import { LoadingCardFloat } from '../../components/Loading/index';
 
 // We always throw, so the implicit return value is void
 class SuspendedLoader extends React.Component {
@@ -135,12 +136,17 @@ export default [
     NS.ll('LoadingResource'),
     RENDER_CLASS_NAME,
     [
-      cardFloatTopology,
       containerFloatTopology,
       detailsBarTopology,
       contentDetailsTopology,
       tableCellTopology,
     ]
+  ),
+  LinkedRenderStore.registerRenderer(
+    LoadingCardFloat,
+    NS.ll('LoadingResource'),
+    RENDER_CLASS_NAME,
+    cardFloatTopology
   ),
   LinkedRenderStore.registerRenderer(
     LoadingButton,

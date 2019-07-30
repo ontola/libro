@@ -26,12 +26,12 @@ const Comment = ({ depth = 0, highlighted }) => (
         <Property label={NS.schema('dateCreated')} />
       </DetailsBar>
       <CardContent>
-        <Property label={NS.argu('opinion')} />
+        <Property label={NS.argu('opinion')} onLoad={() => null} />
         <Property label={NS.schema('text')} />
       </CardContent>
       <ActionsBar small>
-        <Property label={NS.ontola('favoriteAction')} />
-        <Property label={NS.schema('comments')}>
+        <Property label={NS.ontola('favoriteAction')} onLoad={() => null} />
+        <Property label={NS.schema('comments')} onLoad={() => null}>
           <Property omniform label={NS.ontola('createAction')} />
         </Property>
       </ActionsBar>
@@ -39,7 +39,7 @@ const Comment = ({ depth = 0, highlighted }) => (
         <Property forceRender clickToOpen={false} label={NS.app('omniform')} />
       </CardAppendix>
     </Card>
-    <Property clickToOpen depth={depth + 1} label={NS.schema('comments')} />
+    <Property clickToOpen depth={depth + 1} label={NS.schema('comments')} onLoad={() => null} />
   </React.Fragment>
 );
 
