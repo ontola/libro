@@ -110,6 +110,7 @@ class CollapsedOmniformProp extends Component {
       return (
         <CardRow>
           <OmniformConnector
+            autofocusForm
             formFooterButtons={backButton}
             onDone={this.toggle}
             onKeyUp={this.handleKey}

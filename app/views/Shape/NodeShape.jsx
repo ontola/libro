@@ -35,7 +35,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  autofocusForm: true,
+  autofocusForm: false,
 };
 
 const NodeShape = ({
