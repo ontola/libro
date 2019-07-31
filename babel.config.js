@@ -22,6 +22,7 @@ module.exports = (api) => {
   ];
 
   return {
+    env: babelrc.env,
     plugins,
     presets,
   };

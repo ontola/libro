@@ -1,3 +1,4 @@
+import equal from 'fast-deep-equal';
 import {
   Property,
   linkType,
@@ -66,8 +67,14 @@ export const SearchResultPage = ({
         </div>
         <Form
           initialValues={{ q: queryNormalized }}
+          initialValuesEqual={equal}
           render={({ handleSubmit }) => (
-            <form className="SearchResult__form" onSubmit={handleSubmit}>
+            <form
+              className="SearchResult__form"
+              data-testid="search-form"
+              role="search"
+              onSubmit={handleSubmit}
+            >
               <Field
                 autoFocus
                 className="SearchResult__form-input"
@@ -76,7 +83,10 @@ export const SearchResultPage = ({
                 placeholder={formatMessage(messages.placeholder)}
                 type="search"
               />
-              <Button className="SearchResult__form-submit" type="submit">
+              <Button
+                className="SearchResult__form-submit"
+                type="submit"
+              >
                 <FormattedMessage
                   defaultMessage="Search"
                   id="https://app.argu.co/i18n/search/button/label"

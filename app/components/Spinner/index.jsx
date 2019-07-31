@@ -8,7 +8,10 @@ const propTypes = {
 };
 
 const Spinner = ({ loading }) => (
-  <div className={`Spinner ${loading ? 'Spinner--loading' : ''}`} />
+  <div
+    className={`Spinner ${loading ? 'Spinner--loading' : ''}`}
+    data-testid={`spinner-${loading}`}
+  />
 );
 
 Spinner.propTypes = propTypes;

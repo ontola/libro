@@ -26,4 +26,7 @@ module.exports = {
   transform: {
     '^.+\\.m?(j|t)sx?$': 'babel-jest',
   },
+  transformIgnorePatterns: [
+    'node_modules/(?!(intl-messageformat|react-intl)/)',
+  ],
 };

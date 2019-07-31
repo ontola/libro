@@ -47,8 +47,19 @@ const MediaObjectOmniformDropzone = ({
             <div className="MediaObjectOmniformFields__messages">
               <FontAwesome className="MediaObjectOmniformFields__icon" name="cloud-upload" />
               {isDragActive
-                ? <FormattedMessage id="https://app.argu.co/i18n/forms/dropzone/hoverText" />
-                : <FormattedMessage id="https://app.argu.co/i18n/forms/dropzone/passiveText" />
+                ? (
+                  <FormattedMessage
+                    id="https://app.argu.co/i18n/forms/dropzone/hoverText"
+                    message="Release to select this file"
+                  />
+                )
+                : (
+                  <FormattedMessage
+                    id="https://app.argu.co/i18n/forms/dropzone/passiveText"
+                    message="Drag & Drop your file here or click to select a file"
+                  />
+                )
+
               }
               <div>{contentUrl?.name}</div>
             </div>

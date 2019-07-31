@@ -48,7 +48,7 @@ class Form extends React.PureComponent {
             .forEach(k => k.startsWith(this.props.formID) && sessionStorage.removeItem(k));
         }
 
-        formApi.reset();
+        window.setTimeout(() => formApi.reset(), 0);
       });
   }
 
@@ -80,6 +80,7 @@ class Form extends React.PureComponent {
             <form
               action={action}
               className={className || 'Form'}
+              data-testid={formID}
               method={formMethod}
               onSubmit={handleSubmit}
             >

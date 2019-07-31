@@ -17,7 +17,7 @@ import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 
 const ThingContainer = ({ highlighted, subject }) => (
-  <Card about={subject.value} shine={highlighted}>
+  <Card about={subject?.value} shine={highlighted}>
     <Property label={NS.argu('coverPhoto')} />
     <CardContent noSpacing>
       <Property label={[NS.schema('name'), NS.rdfs('label')]} />

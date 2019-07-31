@@ -37,7 +37,10 @@
       "webpack": {
         "config": "./webpack/common.config.js"
       }
-    }
+    },
+    "import/ignore": [
+      "test-utils"
+    ]
   },
   "rules": {
     "comma-dangle": ["error", {

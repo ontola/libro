@@ -24,10 +24,18 @@ module.exports = {
     'jest-plugin-context/setup',
     'jest-plugin-set/setup',
   ],
-  setupFilesAfterEnv: ['<rootDir>/../tests/testhelper.js'],
+  setupFilesAfterEnv: [
+    '<rootDir>/../tests/testhelper.js',
+    '@testing-library/jest-dom/extend-expect',
+  ],
   testEnvironment: 'jest-environment-jsdom-fifteen',
+  testPathIgnorePatterns: [
+    'app/__tests__/test-utils.jsx',
+    'app/__tests__/link-redux/fixtures.js',
+    'app/__tests__/link-redux/utilities.js',
+  ],
   testURL: 'https://argu.dev/o/1',
-  transform: {
-    '^.+\\.m?(j|t)sx?$': 'babel-jest',
-  },
+  transformIgnorePatterns: [
+    'node_modules/(?!(intl-messageformat|react-intl)/)',
+  ],
 };

@@ -1,33 +1,21 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 
-import Cover from '.';
+import { cleanup, render } from '../../test-utils';
 
+import Cover from './index';
 
 describe('Cover component', () => {
-  it('Cover should render', () => {
-    const comp = shallow(<Cover>Content</Cover>);
+  afterEach(cleanup);
 
-    expect(comp.find('.Cover')).toExist();
-    expect(comp.find('.Cover__content')).toHaveText('Content');
-    expect(comp.find('.Cover').first()).toHaveClassName('Cover--default');
+  it('should have no background by default', () => {
+    const { getByTestId } = render(<Cover>Content</Cover>);
 
-    expect(comp.find('.Cover').first()).toHaveStyle({
-      backgroundColor: 'undefined',
-      backgroundImage: 'none',
-    });
+    expect(getByTestId('cover')).toHaveStyle('background-image: none;');
+  });
 
-    comp.setProps({
-      image: 'http://placehold.it/50x50',
-      overlayColor: 'red',
-    });
+  it('should set a background url', () => {
+    const { getByTestId } = render(<Cover image="http://placehold.it/50x50">Content</Cover>);
 
-    expect(comp.find('.Cover__overlay')).toExist();
-    expect(comp.find('.Cover--image').first()).toHaveStyle({
-      backgroundColor: 'undefined',
-      backgroundImage: 'url(http://placehold.it/50x50)',
-    });
-
-    expect(comp.find('.Cover__overlay').first()).toHaveStyle({ backgroundColor: 'red' });
+    expect(getByTestId('cover')).toHaveStyle('background-image: url(http://placehold.it/50x50);');
   });
 });

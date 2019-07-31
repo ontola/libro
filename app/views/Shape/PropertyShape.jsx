@@ -38,7 +38,7 @@ const PropertyShape = (props) => {
   const isCollection = targetValues?.length === 1
     && lrs.findSubject(targetValues[0], [NS.rdf('type')], NS.as('Collection')).length > 0;
   useDataInvalidation({
-    dataSubjects: targetValues,
+    dataSubjects: targetValues.filter(s => ['NamedNode', 'TermType'].includes(s.termType)),
     subject,
   });
 

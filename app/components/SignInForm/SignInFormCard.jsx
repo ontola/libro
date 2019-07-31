@@ -130,7 +130,11 @@ class SignInFormCard extends SignInFormBase {
             onSubmit={onSubmit}
           >
             {({ handleSubmit, submitting }) => (
-              <form action="/users" onSubmit={handleSubmit}>
+              <form
+                action="/users"
+                data-testid="sign-in-form"
+                onSubmit={handleSubmit}
+              >
                 {formFields}
                 <CardRow>
                   <CardActions noSpacing>

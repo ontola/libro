@@ -49,6 +49,7 @@ const Cover = ({
   return (
     <section
       className={coverClass}
+      data-testid="cover"
       style={style}
     >
       {overlayColor && (

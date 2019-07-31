@@ -456,7 +456,7 @@ class MapView extends React.Component {
     );
 
     return (
-      <div className="Map">
+      <div className="Map" data-testid="map-view">
         <div className="Map--map-container" ref={this.mapRef} />
         <OverlayContainer
           clickHandler={handleClick}

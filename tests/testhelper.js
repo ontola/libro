@@ -4,6 +4,10 @@ require('@babel/register')({
     filename => !filename.match(/node_modules\/link-redux/),
   ],
 });
+
+global.fetch = require('jest-fetch-mock');
+
+// Remove from here after dropping enzyme
 require('raf/polyfill');
 require('jest-enzyme');
 require('whatwg-fetch');

@@ -8,7 +8,6 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useField } from 'react-final-form';
-import { defineMessages } from 'react-intl';
 
 import { FormSectionContext } from '../../components/Form/FormSection';
 import OmniformRemoveButton from '../../components/Omniform/OmniformRemoveButton';
@@ -19,19 +18,6 @@ import { omniformFieldsTopology } from '../../topologies/OmniformFields/Omniform
 
 import './MediaObjectOmniformFields.scss';
 import MediaObjectOmniformDropzone from './omniform/MediaObjectOmniformDropzone';
-
-defineMessages({
-  hoverText: {
-    defaultMessage: 'Release to select this file',
-    description: '',
-    id: 'https://app.argu.co/i18n/forms/dropzone/hoverText',
-  },
-  passiveText: {
-    defaultMessage: 'Drag & Drop your file here or click to select a file',
-    description: '',
-    id: 'https://app.argu.co/i18n/forms/dropzone/passiveText',
-  },
-});
 
 const MediaObjectOmniformFields = ({
   lrs,
