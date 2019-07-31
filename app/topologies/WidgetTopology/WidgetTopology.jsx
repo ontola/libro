@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 
-import { LoadingCardFixed } from '../../components/Loading';
+import { LoadingWidgetContent } from '../../components/Loading';
 import { NS } from '../../helpers/LinkedRenderStore';
 
 import '../../components/Widget/Widget.scss';
@@ -38,14 +38,14 @@ class WidgetTopology extends TopologyProvider {
     if (!__CLIENT__) {
       return (
         <div className={classes}>
-          <LoadingCardFixed fill />
+          <LoadingWidgetContent />
         </div>
       );
     }
 
     return this.wrap((
       <div className={classes}>
-        <React.Suspense fallback={<LoadingCardFixed fill />}>
+        <React.Suspense fallback={<LoadingWidgetContent />}>
           {this.props.children}
         </React.Suspense>
       </div>

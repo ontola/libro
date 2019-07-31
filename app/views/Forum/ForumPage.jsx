@@ -6,6 +6,7 @@ import Container from '../../topologies/Container/index';
 import { pageTopology } from '../../topologies/Page';
 import PageHeader from '../../topologies/PageHeader';
 import PrimaryResource, { primaryResourceTopology } from '../../topologies/PrimaryResource';
+import { LoadingFiller } from '../../components/Loading/index';
 
 class ForumPage extends React.PureComponent {
   static type = [NS.argu('ContainerNode'), NS.schema('WebPage')];
@@ -20,7 +21,7 @@ class ForumPage extends React.PureComponent {
       <PrimaryResource>
         <PageHeader />
         <Container grid>
-          <Property label={NS.ontola('widgets')} />
+          <Property label={NS.ontola('widgets')} onLoad={LoadingFiller} />
         </Container>
       </PrimaryResource>
     );

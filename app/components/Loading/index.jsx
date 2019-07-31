@@ -15,6 +15,8 @@ import { Breadcrumb, BreadcrumbsBar } from '../Breadcrumbs';
 
 const LoadingInline = () => <div className="Loading__Paragraph Loading__Paragraph--inline Loading__background" />;
 
+const LoadingParagraph = () => <div className="Loading__Paragraph Loading__background" />;
+
 export const LoadingNavbarLink = () => (
   <div className="LoadingNavbarLink">
     <div className="LoadingNavbarLink__content Loading__background Loading__background--inverse" />
@@ -29,8 +31,8 @@ export const LoadingCard = () => (
   <Card>
     <CardContent>
       <div className="Loading__Header Loading__background" />
-      <div className="Loading__Paragraph Loading__background" />
-      <div className="Loading__Paragraph Loading__background" />
+      <LoadingParagraph />
+      <LoadingParagraph />
       <div className="Loading__Paragraph--shorter Loading__background" />
     </CardContent>
   </Card>
@@ -40,8 +42,8 @@ export const LoadingCardFixed = ({ fill }) => (
   <CardFixed fill={fill}>
     <CardContent>
       <div className="Loading__Header Loading__background" />
-      <div className="Loading__Paragraph Loading__background" />
-      <div className="Loading__Paragraph Loading__background" />
+      <LoadingParagraph />
+      <LoadingParagraph />
       <div className="Loading__Paragraph--shorter Loading__background" />
     </CardContent>
   </CardFixed>
@@ -79,7 +81,7 @@ export const LoadingParent = () => (
 export const LoadingRow = () => (
   <CardRow>
     <CardContent>
-      <div className="Loading__Paragraph Loading__background" />
+      <LoadingParagraph />
     </CardContent>
   </CardRow>
 );
@@ -93,6 +95,28 @@ export const LoadingMicroRow = () => (
 export const LoadingCoverPhoto = () => (
   <div className="CoverImage__wrapper">
     <div className="CoverImage__child Loading__background" />
+  </div>
+);
+
+// Requires a wrapper that sets a widget topology
+export const LoadingWidgetContent = () => (
+  <React.Fragment>
+    <div className="Loading__Header Loading__background" />
+    <LoadingParagraph />
+    <LoadingParagraph />
+  </React.Fragment>
+);
+
+// Full page loader, same as the one that shows when the app is loading
+export const LoadingFiller = () => (
+  <div className="preloader">
+    <div className="spinner">
+      <div className="rect1" />
+      <div className="rect2" />
+      <div className="rect3" />
+      <div className="rect4" />
+      <div className="rect5" />
+    </div>
   </div>
 );
 

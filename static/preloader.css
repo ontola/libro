@@ -45,7 +45,11 @@ body.Body--show-preloader #root {
   position: fixed;
   -webkit-transition: 1s opacity;
   transition: 1s opacity;
-  width: 100vw;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .preloader__logo svg{

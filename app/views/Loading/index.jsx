@@ -6,7 +6,6 @@ import {
   Loading,
   LoadingButton,
   LoadingCard,
-  LoadingCardFixed,
   LoadingDetail,
   LoadingMicroRow,
   LoadingNavbarLink,
@@ -42,6 +41,7 @@ import { voteBubbleTopology } from '../../topologies/VoteBubble';
 import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 import { tabPaneTopology } from '../../topologies/TabPane';
 import { LoadingCardFloat } from '../../components/Loading/index';
+import { LoadingWidgetContent } from '../../components/Loading/index';
 
 // We always throw, so the implicit return value is void
 class SuspendedLoader extends React.Component {
@@ -90,7 +90,7 @@ export default [
     ]
   ),
   LinkedRenderStore.registerRenderer(
-    LoadingCardFixed,
+    LoadingWidgetContent,
     NS.ll('LoadingResource'),
     RENDER_CLASS_NAME,
     [
