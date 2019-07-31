@@ -8,27 +8,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { NS } from '../../helpers/LinkedRenderStore';
-import { omniformOpenInline, omniformSetAction } from '../../state/omniform';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { cardListTopology } from '../../topologies/Card/CardList';
-import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 import { invalidStatuses } from '../Thing/properties/omniform/helpers';
 import { getMetaContent } from '../../helpers/arguHelpers';
 
-const mapCardListDispatchToProps = (dispatch, ownProps) => ({
-  onClick: (e) => {
-    e.preventDefault();
-
-    return Promise.all([
-      dispatch(omniformOpenInline(ownProps.isPartOf)),
-      dispatch(omniformSetAction({
-        action: ownProps.subject,
-        parentIRI: btoa(ownProps.isPartOf),
-      })),
-    ]);
-  },
-});
+import mapCardListDispatchToProps from './helpers';
 
 class InlineCreateAction extends React.PureComponent {
   static type = NS.schema('CreateAction');
@@ -37,7 +23,6 @@ class InlineCreateAction extends React.PureComponent {
     actionsBarTopology,
     cardListTopology,
     cardFloatTopology,
-    containerFloatTopology,
   ];
 
   static mapDataToProps = [
