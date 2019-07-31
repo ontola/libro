@@ -25,14 +25,6 @@ $votebar-parts: (
   &-card {
     .VoteData__votebar-part {
       border-radius: unset;
-
-      &:first-child {
-        border-bottom-left-radius: $border-radius-base;
-      }
-
-      &:last-child {
-        border-bottom-right-radius: $border-radius-base;
-      }
     }
   }
 
