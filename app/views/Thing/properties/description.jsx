@@ -6,7 +6,11 @@ import { allTopologies } from '../../../topologies';
 
 export default LinkedRenderStore.registerRenderer(
   ({ linkedProp }) => <p>{linkedProp.value}</p>,
-  NS.schema('Thing'),
-  NS.schema('description'),
+  [
+    NS.schema('Thing'),
+    NS.sh('Shape'),
+    NS.sh('NodeShape'),
+  ],
+  [NS.schema('description'), NS.sh('description')],
   allTopologies
 );
