@@ -1,3 +1,4 @@
+import { makeStyles } from '@material-ui/styles';
 import IconButton from '@material-ui/core/IconButton';
 import {
   linkType,
@@ -14,6 +15,13 @@ import { invalidStatuses } from '../Thing/properties/omniform/helpers';
 
 import mapCardListDispatchToProps from './helpers';
 
+const useStyles = makeStyles(() => ({
+  buttonIcon: {
+    height: '1.2rem',
+    width: '1.2rem',
+  },
+}));
+
 const InlineCreateActionContainerFloat = ({
   actionStatus,
   name,
@@ -24,6 +32,8 @@ const InlineCreateActionContainerFloat = ({
     return null;
   }
 
+  const classes = useStyles();
+
   return (
     <IconButton
       size="small"
@@ -31,7 +41,10 @@ const InlineCreateActionContainerFloat = ({
       type="button"
       onClick={omniform ? onClick : undefined}
     >
-      <FontAwesome name="plus" />
+      <FontAwesome
+        className={classes.buttonIcon}
+        name="plus"
+      />
     </IconButton>
   );
 };
