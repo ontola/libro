@@ -86,6 +86,15 @@ export const LoadingRow = () => (
   </CardRow>
 );
 
+// Like a LoadingRow, but with a backdrop
+export const LoadingCardRowAppendix = () => (
+  <CardRow backdrop>
+    <CardContent>
+      <LoadingParagraph />
+    </CardContent>
+  </CardRow>
+);
+
 export const LoadingMicroRow = () => (
   <CardMicroRow>
     <div className="Loading__Paragraph Loading__Paragraph--micro-row Loading__background" />
@@ -107,7 +116,11 @@ export const LoadingWidgetContent = () => (
   </React.Fragment>
 );
 
-// Full page loader, same as the one that shows when the app is loading
+/**
+ * Full page loader, same JSX/HTML as the one that shows when the app is loading
+ *  @see {@link /app/spinner}
+ *  @return {void}
+ */
 export const LoadingFiller = () => (
   <div className="preloader">
     <div className="spinner">

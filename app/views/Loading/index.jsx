@@ -17,6 +17,7 @@ import {
 import { appMenuTopology } from '../../topologies/AppMenu';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { cardTopology } from '../../topologies/Card';
+import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
 import { cardFixedTopology } from '../../topologies/Card/CardFixed';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { cardListTopology } from '../../topologies/Card/CardList';
@@ -40,8 +41,11 @@ import { tableCellTopology } from '../../topologies/TableCell';
 import { voteBubbleTopology } from '../../topologies/VoteBubble';
 import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 import { tabPaneTopology } from '../../topologies/TabPane';
-import { LoadingCardFloat } from '../../components/Loading/index';
-import { LoadingWidgetContent } from '../../components/Loading/index';
+import {
+  LoadingCardFloat,
+  LoadingCardRowAppendix,
+  LoadingWidgetContent,
+} from '../../components/Loading/index';
 
 // We always throw, so the implicit return value is void
 class SuspendedLoader extends React.Component {
@@ -110,6 +114,12 @@ export default [
     NS.ll('LoadingResource'),
     RENDER_CLASS_NAME,
     cardRowTopology
+  ),
+  LinkedRenderStore.registerRenderer(
+    LoadingCardRowAppendix,
+    NS.ll('LoadingResource'),
+    RENDER_CLASS_NAME,
+    cardAppendixTopology
   ),
   LinkedRenderStore.registerRenderer(
     LoadingRow,
