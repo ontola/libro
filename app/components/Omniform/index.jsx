@@ -109,6 +109,7 @@ class Omniform extends EntryPointBase {
       actions,
       action,
       error,
+      formInstance,
     } = this.props;
 
     if (actions.length === 0) {
@@ -124,6 +125,7 @@ class Omniform extends EntryPointBase {
     return (
       <Form
         className="Form Omniform"
+        form={formInstance}
         formID={atob(this.props.parentIRI)}
         onSubmit={this.submitHandler}
       >

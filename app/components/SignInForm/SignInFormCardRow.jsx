@@ -11,7 +11,7 @@ import SignInFormBase from './SignInFormBase';
 
 const propTypes = {
   invalid: PropTypes.bool,
-  reason: PropTypes.string,
+  reason: PropTypes.element,
   step: PropTypes.string,
   submitting: PropTypes.bool.isRequired,
 };

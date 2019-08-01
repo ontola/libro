@@ -25,7 +25,7 @@ class RDFSClassFormFooter extends React.PureComponent {
   static propTypes = {
     current: PropTypes.bool,
     description: linkType.isRequired,
-    image: linkType.isRequired,
+    image: linkType,
     label: linkType.isRequired,
     onClick: PropTypes.func,
   };
@@ -41,6 +41,14 @@ class RDFSClassFormFooter extends React.PureComponent {
 
     const curClass = current ? ' Button--omniform-switcher--current' : '';
 
+    const children = !image
+      ? label.value
+      : (
+        <MediaQuery query={mediaQueries.smallAndAbove} values={values}>
+          {label.value}
+        </MediaQuery>
+      );
+
     return (
       <Button
         className={`Button--omniform-switcher Button--omniform-switcher-- ${curClass}`}
@@ -49,9 +57,7 @@ class RDFSClassFormFooter extends React.PureComponent {
         title={description?.value}
         onClick={onClick}
       >
-        <MediaQuery query={mediaQueries.smallAndAbove} values={values}>
-          {label.value}
-        </MediaQuery>
+        {children}
       </Button>
     );
   }

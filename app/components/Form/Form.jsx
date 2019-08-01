@@ -13,6 +13,8 @@ const propTypes = {
     PropTypes.node,
   ]).isRequired,
   className: PropTypes.string,
+  /** Override the form instance */
+  form: PropTypes.shape({}),
   formID: PropTypes.string.isRequired,
   method: PropTypes.oneOfType([
     PropTypes.string,
@@ -57,6 +59,7 @@ class Form extends React.PureComponent {
       action,
       children,
       className,
+      form,
       formID,
       method,
       onSubmit,
@@ -72,6 +75,7 @@ class Form extends React.PureComponent {
     return (
       <FormContext.Provider value={formID}>
         <FinalForm
+          form={form}
           initialValuesEqual={equal}
           validateOnBlur={validateOnBlur}
           onSubmit={controlledSubmit}

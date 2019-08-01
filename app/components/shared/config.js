@@ -59,9 +59,9 @@ const mqBreakpoints = {
   largeLowerBound: '900px',
   microUpperBound: '320px',
   smallLowerBound: '650px',
-  smallUpperBound: __CLIENT__ ? 'calc(900px - .5px)' : '900px',
-  smallestLowerBound: __CLIENT__ ? 'calc(320px + .5px)' : '320px',
-  smallestUpperBound: __CLIENT__ ? 'calc(650px - .5px)' : '650px',
+  smallUpperBound: __CLIENT__ ? '899.5px' : '900px',
+  smallestLowerBound: __CLIENT__ ? '319.5px' : '320px',
+  smallestUpperBound: __CLIENT__ ? '649.5px' : '650px',
 };
 
 export const mediaQueries = {

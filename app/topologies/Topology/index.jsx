@@ -15,13 +15,23 @@ export const renderError = self => () => {
     reset,
   }) => {
     const lrs = useLRS();
-    const childProps = unstable.useCalculateChildProps(
-      props,
-      context,
-      { helpers: { reset } }
-    );
+    try {
+      const childProps = unstable.useCalculateChildProps(
+        props,
+        context,
+        { helpers: { reset } }
+      );
 
-    return unstable.renderError(childProps, lrs, error);
+      return unstable.renderError(childProps, lrs, error);
+    } catch (e) {
+      handle(e);
+
+      return (
+        <button onClick={reset}>
+          Error
+        </button>
+      );
+    }
   };
 
   return (

@@ -126,7 +126,11 @@ const Input = ({
   const Element = element;
 
   return (
-    <Element className={`Input ${className ?? ''}`} value={value || ''} {...props} />
+    <Element
+      className={`Input ${className ?? ''}`}
+      value={value || ''}
+      {...props}
+    />
   );
 };
 

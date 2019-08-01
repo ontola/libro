@@ -82,7 +82,10 @@ const propTypes = {
   options: optionsType,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
-  storeKey: PropTypes.string.isRequired,
+  sessionStorage: PropTypes.shape({
+    getItem: PropTypes.func,
+    setItem: PropTypes.func,
+  }),
   theme: PropTypes.string,
   // HTML input type, e.g. 'email'
   type: PropTypes.string,
@@ -119,43 +122,11 @@ function getBase64(file) {
  * @returns {component} Component
  */
 class FormField extends React.PureComponent {
-  static persistState(props, nextValue) {
-    const {
-      input: { name, value },
-      meta: { touched },
-      storeKey,
-      type,
-    } = props;
-
-    if (storeKey && !['password', 'hidden'].includes(type) && (touched || nextValue !== value)) {
-      if (__CLIENT__) {
-        sessionStorage.setItem(`${storeKey}.${name}`, nextValue || '');
-      }
-    }
-  }
-
-  componentDidMount() {
-    if (!this.props.input.value) {
-      this.props.input.onChange(this.inputValue());
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.field !== prevProps.field && !this.props.input.value) {
-      this.props.input.onChange(this.inputValue());
-    }
-  }
-
-  componentWillUnmount() {
-    this.props.input.onChange(undefined);
-  }
-
   inputValue() {
     const {
-      input: { name, value },
+      input: { value },
       meta: { dirty },
       initialValue,
-      storeKey,
       type,
     } = this.props;
 
@@ -165,7 +136,7 @@ class FormField extends React.PureComponent {
 
     const currentValue = dirty
       ? value
-      : value || initialValue || (__CLIENT__ ? sessionStorage.getItem(`${storeKey}.${name}`) : undefined);
+      : value || initialValue;
 
     let nextValue = currentValue;
     if (type === 'checkbox') {
@@ -177,7 +148,7 @@ class FormField extends React.PureComponent {
         : currentValue;
     }
 
-    return nextValue || undefined;
+    return nextValue ?? undefined;
   }
 
   charCounter() {
@@ -292,12 +263,15 @@ class FormField extends React.PureComponent {
         }
       },
       onChange: (e) => {
-        this.saveInputValue(type === 'checkbox' ? e.target.checked : e.target.value);
+        if (e && Object.prototype.hasOwnProperty.call(e, 'target')) {
+          input.onChange(type === 'checkbox' ? e.target.checked : e.target.value);
+        } else {
+          input.onChange(e === null ? Literal.find('') : e);
+        }
+
         if (onChange) {
           onChange(e);
         }
-
-        return undefined;
       },
       required,
     };
@@ -310,8 +284,9 @@ class FormField extends React.PureComponent {
 
       return (
         <DateTimePicker
+          data-testid={sharedProps.name}
           value={value || null}
-          onChange={e => this.saveInputValue(e === null ? Literal.find('') : e)}
+          onChange={sharedProps.onChange}
         />
       );
     }
@@ -320,11 +295,12 @@ class FormField extends React.PureComponent {
       return (
         <div className={className}>
           <CheckboxesInput
+            data-testid={sharedProps.name}
             initialSelectedItem={initialValue}
             options={options}
             sharedProps={sharedProps}
             value={this.inputValue()}
-            onChange={values => this.saveInputValue(values)}
+            onChange={sharedProps.onChange}
           />
         </div>
       );
@@ -334,6 +310,7 @@ class FormField extends React.PureComponent {
       return (
         <div className={className}>
           <SelectInput
+            data-testid={sharedProps.name}
             initialSelectedItem={initialValue}
             options={options}
             sharedProps={sharedProps}
@@ -347,6 +324,7 @@ class FormField extends React.PureComponent {
       return (
         <FileInput
           {...sharedProps}
+          data-testid={sharedProps.name}
           onChange={e => new Promise(() => {
             if (!e) {
               field.onChange(undefined);
@@ -390,7 +368,11 @@ class FormField extends React.PureComponent {
         break;
       case 'checkbox': {
         const currentValue = input.value;
-        sharedProps.checked = currentValue && (currentValue === true || currentValue.value === 'true');
+        sharedProps.checked = currentValue && (
+          currentValue === true
+          || currentValue === 'true'
+          || currentValue.value === 'true'
+        );
         break;
       } default:
         element = 'input';
@@ -419,6 +401,7 @@ class FormField extends React.PureComponent {
         <Input
           {...sharedProps}
           autoComplete={autoComplete}
+          data-testid={sharedProps.name}
           element={element}
           // TODO: [AOD-218] HTML only noscript
           // maxLength={maxLength}
@@ -466,18 +449,6 @@ class FormField extends React.PureComponent {
       .split('.')
       .map(v => (Number.isNaN(Number.parseInt(v, 10)) ? atob(v) : v))
       .join('.');
-  }
-
-  saveInputValue(nextValue) {
-    const {
-      input: { onChange },
-      type,
-    } = this.props;
-
-    if (!['password', 'hidden'].includes(type)) {
-      FormField.persistState(this.props, nextValue);
-    }
-    onChange(nextValue);
   }
 
   variant() {

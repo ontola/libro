@@ -23,7 +23,7 @@ const propTypes = {
     formatMessage: PropTypes.func,
   }),
   r: PropTypes.string,
-  reason: PropTypes.string,
+  reason: PropTypes.element,
   registeredEmail: PropTypes.string,
   step: PropTypes.string,
   stepBack: PropTypes.func,

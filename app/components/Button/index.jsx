@@ -121,32 +121,30 @@ const Button = ({
     [className]: className,
   });
 
-  const currentIcon = () => {
-    if (loading) {
-      return 'spinner';
-    }
+  const currentIcon = loading ? 'spinner' : icon;
 
-    return icon;
+  const sharedProps = {
+    'aria-label': ariaLabel,
+    className: btnClass,
+    disabled: disabled || loading,
+    onClick,
+    title,
+    type,
   };
 
   if (typeof href !== 'undefined') {
     return (
       <LinkDuo
-        aria-label={ariaLabel}
-        className={btnClass}
         data-test="Button-link"
-        disabled={disabled || loading}
         role="button"
-        title={title}
         to={href}
-        type={type}
-        onClick={onClick}
+        {...sharedProps}
       >
-        {icon && (
+        {currentIcon && (
         <FontAwesome
           className="Button__icon"
           data-test="Button-icon"
-          name={currentIcon()}
+          name={currentIcon}
           spin={loading}
         />
         )}
@@ -159,19 +157,14 @@ const Button = ({
 
   return (
     <BlurButton
-      aria-label={ariaLabel}
-      className={btnClass}
       data-test="Button-button"
-      disabled={disabled || loading}
-      title={title}
-      type={type}
-      onClick={onClick}
+      {...sharedProps}
     >
-      {icon && (
+      {currentIcon && (
       <FontAwesome
         className="Button__icon"
         data-test="Button-icon"
-        name={currentIcon()}
+        name={currentIcon}
         spin={loading}
       />
       )}

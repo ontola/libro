@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { FormField } from '../../../components';
-import { FormContext } from '../../../components/Form/Form';
 import { tryParseInt } from '../../../helpers/numbers';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import validators, { combineValidators } from '../../../helpers/validators';
@@ -91,7 +90,6 @@ const DataField = (props) => {
     theme,
   } = props;
 
-  const storeKey = React.useContext(FormContext);
   const inputType = determineInputType(
     datatype,
     shIn,
@@ -119,7 +117,6 @@ const DataField = (props) => {
       options={shIn}
       placeholder={placeholderValue(description, inputType)}
       required={required}
-      storeKey={storeKey}
       theme={theme}
       type={inputType}
       validate={combineValidators(validate)}
