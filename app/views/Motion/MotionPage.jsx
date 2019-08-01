@@ -50,17 +50,17 @@ class MotionPage extends React.PureComponent {
               <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
               <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
             </CardContent>
-            <Property label={NS.argu('attachments')} />
-            <Property label={NS.meeting('attachment')} />
-            <Property label={NS.argu('voteableVoteEvent')} />
+            <Property label={NS.argu('attachments')} onLoad={() => null} />
+            <Property label={NS.meeting('attachment')} onLoad={() => null} />
+            <Property label={NS.argu('voteableVoteEvent')} onLoad={() => null} />
             <CardAppendix>
               <Property forceRender label={NS.app('omniform')} />
             </CardAppendix>
           </CardMain>
-          <Property label={NS.ontola('publishAction')} />
-          <Property label={NS.argu('decision')} />
-          <Property label={NS.argu('blogPosts')} />
-          <Property label={NS.schema('location')} />
+          <Property label={NS.ontola('publishAction')} onLoad={() => null} />
+          <Property label={NS.argu('decision')} onLoad={() => null} />
+          <Property label={NS.argu('blogPosts')} onLoad={() => null} />
+          <Property label={NS.schema('location')} onLoad={() => null} />
         </Container>
         <Container size="large">
           <Property forceRender label={NS.argu('arguments')} />

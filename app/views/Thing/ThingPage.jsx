@@ -51,23 +51,23 @@ class ThingPage extends PureComponent {
               <Property label={[NS.schema('name'), NS.rdfs('label')]} />
               <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
               <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
-              <Property label={NS.foaf('isPrimaryTopicOf')} />
-              <Property label={NS.meeting('attachment')} />
-              <Property label={NS.argu('attachments')} />
+              <Property label={NS.foaf('isPrimaryTopicOf')} onLoad={() => null} />
+              <Property label={NS.meeting('attachment')} onLoad={() => null} />
+              <Property label={NS.argu('attachments')} onLoad={() => null} />
             </CardContent>
             <ActionsBar>
-              <Property label={NS.ontola('favoriteAction')} />
+              <Property label={NS.ontola('favoriteAction')} onLoad={() => null} />
             </ActionsBar>
-            <Property label={NS.meeting('agenda')} />
+            <Property label={NS.meeting('agenda')} onLoad={() => null} />
             <CardAppendix>
               <Property forceRender label={NS.app('omniform')} />
             </CardAppendix>
           </CardMain>
-          <Property label={NS.ontola('publishAction')} />
-          <Property label={NS.argu('voteEvents')} />
-          <Property label={NS.argu('blogPosts')} />
-          <Property label={NS.schema('location')} />
-          <Property label={NS.argu('motions')} />
+          <Property label={NS.ontola('publishAction')} onLoad={() => null} />
+          <Property label={NS.argu('voteEvents')} onLoad={() => null} />
+          <Property label={NS.argu('blogPosts')} onLoad={() => null} />
+          <Property label={NS.schema('location')} onLoad={() => null} />
+          <Property label={NS.argu('motions')} onLoad={() => null} />
         </Container>
         <Container size="large">
           <Property forceRender label={NS.argu('arguments')} />

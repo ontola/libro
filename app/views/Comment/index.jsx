@@ -39,7 +39,12 @@ const Comment = ({ depth = 0, highlighted }) => (
         <Property forceRender clickToOpen={false} label={NS.app('omniform')} />
       </CardAppendix>
     </Card>
-    <Property clickToOpen depth={depth + 1} label={NS.schema('comments')} onLoad={() => null} />
+    <Property
+      clickToOpen
+      depth={depth + 1}
+      label={NS.schema('comments')}
+      onLoad={() => null}
+    />
   </React.Fragment>
 );
 
