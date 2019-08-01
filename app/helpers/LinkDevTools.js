@@ -264,6 +264,18 @@ class LinkDevTools {
     );
   }
 
+  obj(resource) {
+    const lrs = this.getLRS();
+    let node = resource;
+    if (typeof resource === 'number') {
+      node = rdf.Term.termByStoreIndex(resource);
+    } else if (typeof resource === 'string') {
+      node = new rdf.NamedNode(resource);
+    }
+
+    return this.toObject(lrs.tryEntity(node));
+  }
+
   get data() {
     return this.toObject(this.dataArr());
   }
@@ -478,6 +490,7 @@ class LinkDevTools {
       helpTableObj('onError', 'Returns the component to render on error'),
       helpTableObj('onLoad', 'Returns the component to render on load'),
       helpTableObj('data', 'Returns the currently available data (real-time, so render-time data theoretically might differ).'),
+      helpTableObj('obj', 'Same as data, but can be passed an argument.'),
       helpTableObj('objType', 'Returns the resolved type of the resource, defaults to the lrs value.'),
       helpTableObj('subject', 'Returns the normalized subject of the container'),
       helpTableObj('topology', 'Returns the current topology (or undefined when not present)'),
@@ -490,6 +503,7 @@ class LinkDevTools {
     const devTools = [
       helpTableObj('hasData', 'Returns whether the resource is considered to have data'),
       helpTableObj('data', 'Returns the currently available data as an object (real-time, so render-time data theoretically might differ).'),
+      helpTableObj('obj', 'Same as data, but can be passed an argument.'),
       helpTableObj('dataArr', 'Returns the raw currently available data (See also; `data`).'),
       helpTableObj('explain', 'Renders the sequence of decisions made by the component for rendering'),
       helpTableObj('getLinkedObjectProperty()', "Exposes link-redux's `getLinkedObjectProperty` method (used by `Property` and `PropertyBase`)."),
