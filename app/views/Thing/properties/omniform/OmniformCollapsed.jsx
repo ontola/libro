@@ -1,3 +1,4 @@
+import Collapse from '@material-ui/core/Collapse';
 import {
   linkType,
   lrsType,
@@ -122,18 +123,18 @@ class CollapsedOmniformProp extends Component {
 
     const items = filterActions(lrs, potentialAction);
 
-    if (!clickToOpen || items.length === 0 || actionsAreAllDisabled(items, lrs)) {
-      return null;
-    }
+    const shouldShow = !(!clickToOpen || items.length === 0 || actionsAreAllDisabled(items, lrs));
 
     return (
-      <CardRow>
-        <OmniformPreview
-          lrs={lrs}
-          primaryAction={items[0]}
-          onClick={this.toggle}
-        />
-      </CardRow>
+      <Collapse mountOnEnter in={shouldShow}>
+        <CardRow>
+          <OmniformPreview
+            lrs={lrs}
+            primaryAction={items[0]}
+            onClick={this.toggle}
+          />
+        </CardRow>
+      </Collapse>
     );
   }
 }
