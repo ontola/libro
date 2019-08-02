@@ -7,7 +7,12 @@ const MILLISECONDS = 1000;
 
 async function login(req, res, next) {
   try {
-    const response = await req.api.requestUserToken(req.body.email, req.body.password, req.body.r);
+    const response = await req.api.requestUserToken(
+      req.body.email,
+      req.body.password,
+      req.headers['website-iri'],
+      req.body.r
+    );
     const json = await response.json();
 
     const expiresAt = new Date((json.created_at * MILLISECONDS) + (json.expires_in * MILLISECONDS));
@@ -66,7 +71,11 @@ async function login(req, res, next) {
 
 async function signUp(req, res, next) {
   try {
-    const response = await req.api.createUser(req.body.email, req.body.acceptTerms);
+    const response = await req.api.createUser(
+      req.body.email,
+      req.body.acceptTerms,
+      req.headers['website-iri']
+    );
 
     if (response.status !== HttpStatus.CREATED) {
       throw new errors.NotImplementedError('Only the error-free login flow has been implemented');

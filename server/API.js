@@ -4,11 +4,12 @@ import * as constants from '../app/config';
 
 import { createUserRequest } from './api/users';
 import processResponse from './api/internal/statusHandler';
-import { guestTokenRequest, userTokenRequest } from './api/tokens';
+import { userTokenRequest } from './api/tokens';
 import {
   clientId,
   clientSecret,
   oAuthToken,
+  serviceGuestToken,
 } from './config';
 import logging from './utils/logging';
 import { route } from './utils/proxies/helpers';
@@ -22,6 +23,7 @@ class API {
     this.deviceId = req.deviceId;
     this.req = req;
     this.serviceToken = oAuthToken;
+    this.serviceGuestToken = serviceGuestToken;
     this.userToken = userToken;
   }
 
@@ -56,10 +58,11 @@ class API {
    * Create a new user.
    * @param {String} email The email address of the user
    * @param {Boolean} acceptTerms Whether the user has agreed with the terms
+   * @param {String} websiteIRI
    * @return {Promise} Raw fetch response promise
    */
-  createUser(email, acceptTerms) {
-    return this.fetch(this.userToken, createUserRequest(email, acceptTerms));
+  createUser(email, acceptTerms, websiteIRI) {
+    return this.fetch(this.userToken, createUserRequest(email, acceptTerms, websiteIRI));
   }
 
   /**
@@ -68,7 +71,7 @@ class API {
    * @return {Promise} The proxies response
    */
   headRequest(req) {
-    return this.fetchRaw(this.userToken, {
+    return this.fetchRaw(this.userToken || this.serviceGuestToken, {
       headers: {
         Accept: constants.FRONTEND_ACCEPT,
         ...this.proxySafeHeaders(req),
@@ -80,24 +83,17 @@ class API {
   }
 
   /**
-   * Request a new guest token from the backend
-   * @return {Promise} Raw fetch response promise
-   */
-  requestGuestToken() {
-    return this.fetch(this.serviceToken, guestTokenRequest);
-  }
-
-  /**
    * Request a new access token from login credentials
    * @param {String} login The users' email or username.
    * @param {String} password The users' password.
+   * @param {String} websiteIRI.
    * @param {String} redirect URL of the resource the user was working with before loggin in.
    * @return {Promise} The raw fetch response promise
    */
-  requestUserToken(login, password, redirect = undefined) {
+  requestUserToken(login, password, websiteIRI, redirect = undefined) {
     return this.fetch(
       this.serviceToken,
-      userTokenRequest(login, password, this.userToken, redirect)
+      userTokenRequest(login, password, this.userToken, websiteIRI, redirect)
     );
   }
 

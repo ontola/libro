@@ -1,40 +1,6 @@
 import HttpStatus from 'http-status-codes';
 
-import * as errors from '../utils/errors';
 import handleAsyncErrors from '../utils/handleAsyncErrors';
-
-const MILLISECONDS = 1000;
-
-/**
- * Fetches a new guest token from the server and stores it in the session.
- * @module
- * @param {function} req The request object to bind the token to.
- * @return {Promise.<Error>} true if the guest token was bound.
- */
-async function getGuestToken(req) {
-  const response = await req.api.requestGuestToken();
-  const body = await response.json();
-
-  if (response.status >= HttpStatus.MULTIPLE_CHOICES) {
-    return Promise.reject(new errors.InternalServerErrorError());
-  }
-  const expiresAt = new Date((body.created_at * MILLISECONDS) + (body.expires_in * MILLISECONDS));
-  if (body.token_type !== 'Bearer') {
-    return Promise.reject(new errors.UnauthorizedError());
-  }
-  if (expiresAt < Date.now()) {
-    return Promise.reject(new errors.UnauthorizedError());
-  }
-
-  req.session.arguToken = {
-    accessToken: body.access_token,
-    expiresAt,
-    scope: body.scope,
-  };
-  req.api.userToken = body.access_token;
-
-  return undefined;
-}
 
 /**
  * Requires the request to have valid authentication.
@@ -60,8 +26,6 @@ async function authenticationMiddleware(req, res, next) {
         .end();
     }
   }
-
-  await getGuestToken(req);
 
   return next();
 }

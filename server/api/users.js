@@ -1,11 +1,11 @@
-export const createUserRequest = (email, acceptTerms) => Object.freeze({
+export const createUserRequest = (email, acceptTerms, websiteIRI) => Object.freeze({
   body: {
     accept_terms: !!acceptTerms,
     user: {
       email,
     },
   },
-  path: 'users',
+  path: new URL(`${websiteIRI}/users`).pathname,
 });
 
 export default createUserRequest;

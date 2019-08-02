@@ -69,6 +69,12 @@ export default function application(port) {
         throw new Error(`No website iri in head, got status '${serverRes.status}' and header '${websiteMetaHeader}'`);
       }
 
+      const auth = serverRes.headers.get('new-authorization');
+      if (auth) {
+        req.session.arguToken = { accessToken: auth };
+        req.api.userToken = auth;
+      }
+
       let responseData = Buffer.alloc(0);
       const responseStream = new Stream.Writable();
       // eslint-disable-next-line no-underscore-dangle
@@ -115,6 +121,13 @@ export default function application(port) {
         if (req.bugsnag) {
           req.bugsnag.notify(e);
         }
+
+        const auth = e.headers.get('new-authorization');
+        if (auth) {
+          req.session.arguToken = { accessToken: auth };
+          req.api.userToken = auth;
+        }
+
         res.status(INTERNAL_SERVER_ERROR);
       }
       sendResponse(req, res, domain, `https://${req.get('host')}`, '');

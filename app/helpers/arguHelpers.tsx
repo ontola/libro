@@ -113,6 +113,12 @@ export function jsonHeader(options?: object) {
   });
 }
 
+export function websiteIRIHeader(options?: object) {
+  return Object.assign({}, options || {}, {
+    'Website-Iri': getMetaContent('website-iri'),
+  });
+}
+
 /**
  * Lets fetch include credentials in the request. This includes cookies and other possibly sensitive
  * data.
@@ -123,7 +129,7 @@ export function jsonHeader(options?: object) {
 export function safeCredentials(options: any = {}) {
   return Object.assign({}, options, {
     credentials: 'include',
-    headers: Object.assign({}, authenticityHeader(), jsonHeader(), options.headers),
+    headers: Object.assign({}, authenticityHeader(), jsonHeader(), websiteIRIHeader(), options.headers),
     mode: 'same-origin',
   });
 }

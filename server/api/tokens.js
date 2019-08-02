@@ -1,16 +1,4 @@
-import * as config from '../config';
-
-export const guestTokenRequest = Object.freeze({
-  body: {
-    client_id: config.clientId,
-    client_secret: config.clientSecret,
-    grant_type: 'client_credentials',
-    scope: 'guest',
-  },
-  path: 'spi/oauth/token',
-});
-
-export const userTokenRequest = (login, password, userToken, r) => Object.freeze({
+export const userTokenRequest = (login, password, userToken, websiteIRI, r) => Object.freeze({
   body: {
     grant_type: 'password',
     password,
@@ -19,5 +7,5 @@ export const userTokenRequest = (login, password, userToken, r) => Object.freeze
     userToken,
     username: login,
   },
-  path: 'spi/oauth/token',
+  path: new URL(`${websiteIRI}/spi/oauth/token`).pathname,
 });
