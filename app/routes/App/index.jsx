@@ -18,9 +18,6 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import { handle } from '../../helpers/logging';
 import Routes from '../index';
 
-import './index.scss';
-import AppScroller from './AppScroller';
-
 class App extends React.PureComponent {
   static propTypes = {
     title: PropTypes.string,
@@ -33,6 +30,12 @@ class App extends React.PureComponent {
     this.state = {
       caughtError: undefined,
     };
+  }
+
+  componentDidMount() {
+    if (__CLIENT__) {
+      window.scrollTo(0, 0);
+    }
   }
 
   componentDidCatch(e, ignored) {
@@ -65,16 +68,14 @@ class App extends React.PureComponent {
             titleTemplate={this.props.title ? `%s - ${this.props.title}` : '%s'}
           />
           <SkipNavigation />
-          <div className="App__container" id={CONTAINER_ELEMENT}>
-            <AppScroller>
-              <Navbar>
-                <NavBarContent />
-              </Navbar>
-              <NetworkStatusIndicator />
-              <div className="MainContentWrapper" id="start-of-content">
-                {Routes}
-              </div>
-            </AppScroller>
+          <div id={CONTAINER_ELEMENT}>
+            <Navbar>
+              <NavBarContent />
+            </Navbar>
+            <NetworkStatusIndicator />
+            <div id="start-of-content">
+              {Routes}
+            </div>
             <LinkedResourceContainer subject={NS.ontola('snackbar/manager')} />
             <LinkedResourceContainer subject={NS.ontola('dialog/manager')} />
             <Popup />

@@ -26,5 +26,4 @@ export const ARGU_API_URL = getEnv('ARGU_API_URL', 'https://argu.co', 'https://a
 
 export const APP_ELEMENT = 'root';
 export const CONTAINER_ELEMENT = 'App__container';
-export const CONTENT_ELEMENT = 'App__scroller';
 export const MAPBOX_TILE_API_BASE = 'https://api.tiles.mapbox.com/v4/';

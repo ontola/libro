@@ -1,3 +1,4 @@
+import { CONTAINER_ELEMENT } from '../config';
 import { handle } from '../helpers/logging';
 import spinner from '../helpers/spinner';
 
@@ -6,7 +7,7 @@ function showSpinner() {
     const preloader = document.createElement('div');
     preloader.innerHTML = spinner;
     preloader.classList.add('preloader');
-    const element = document.getElementById('App__scroller');
+    const element = document.getElementById(CONTAINER_ELEMENT);
 
     if (element) {
       element.appendChild(preloader);

@@ -13,7 +13,6 @@ body.Body--show-preloader .preloader {
 }
 
 body.Body--show-preloader #root {
-  background-color: red;
   opacity: 0;
 }
 
@@ -23,6 +22,16 @@ body.Body--show-preloader #root {
   -webkit-transition-delay: .5s;
           transition-delay: .5s;
   opacity: 1;
+}
+
+#root.preloader-fixed {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100vh;
+  overflow-y: hidden;
 }
 
 .preloader {

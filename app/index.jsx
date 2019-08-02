@@ -59,4 +59,5 @@ window.setTimeout(() => {
       elem.parentElement.removeChild(elem);
     }
   });
+  document.getElementById(APP_ELEMENT).classList.remove('preloader-fixed');
 }, preloaderTimeout);

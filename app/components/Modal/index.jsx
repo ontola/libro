@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ReactModal from 'react-modal';
 
-import { CONTAINER_ELEMENT, CONTENT_ELEMENT } from '../../config';
+import { CONTAINER_ELEMENT } from '../../config';
 
 import './Modal.scss';
 
@@ -15,7 +15,7 @@ const propTypes = {
 };
 
 const Modal = ({ modalAnimationProps, ...rest }) => {
-  ReactModal.setAppElement(`#${CONTENT_ELEMENT}`);
+  ReactModal.setAppElement(`#${CONTAINER_ELEMENT}`);
 
   return (
     <ReactModal
