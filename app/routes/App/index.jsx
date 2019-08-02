@@ -57,6 +57,7 @@ class App extends React.PureComponent {
       <HotKeys
         attach={__CLIENT__ ? window : {}}
         keyMap={__DEVELOPMENT__ ? devKeymap : defaultKeymap}
+        tabIndex={null}
       >
         <HoverHelper>
           <Helmet

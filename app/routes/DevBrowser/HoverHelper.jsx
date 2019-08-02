@@ -80,6 +80,7 @@ class HoverHelper extends Component {
     return (
       <HotKeys
         handlers={handlers}
+        tabIndex={null}
       >
         <div
           className={`${this.state.activated ? 'HoverHelper--show-borders' : ''}`}
