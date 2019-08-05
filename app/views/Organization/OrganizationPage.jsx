@@ -30,7 +30,7 @@ const OrganizationPage = ({ homepage, name }) => {
               <FormattedMessage
                 defaultMessage="Welcome to {name}!"
                 id="https://app.argu.co/i18n/pages/noHomepage"
-                values={{ name }}
+                values={{ name: name?.value }}
               />
             </p>
           </CardContent>
