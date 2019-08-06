@@ -21,20 +21,20 @@ const colors = {
   blue: {
     dark: darken(colorBaseBlue, 0.60),
     base: colorBaseBlue,
-    midLight: lighten(colorBaseBlue, 0.90),
-    light: lighten(colorBaseBlue, 0.40),
+    midLight: lighten(colorBaseBlue, 0.10),
+    light: lighten(colorBaseBlue, 0.60),
     xLight: 'rgb(238, 240, 242)',
     power: '#0060d3',
   },
   brown: {
     dark: 'rgb(104, 71, 71)',
     base: colorBaseBrown,
-    light: lighten(colorBaseBrown, 0.60),
+    light: lighten(colorBaseBrown, 0.40),
     xLight: fade(colorBaseBrown, 0.05),
   },
   green: {
     base: colorBaseGreen,
-    light: lighten(colorBaseGreen, 0.60),
+    light: lighten(colorBaseGreen, 0.40),
     xLight: fade(colorBaseGreen, 0.1),
   },
   greyVoteButton: {
@@ -44,11 +44,11 @@ const colors = {
     dark: darken(colorBaseGrey, 0.99),
     midDark: darken(colorBaseGrey, 0.60),
     base: colorBaseGrey,
-    midLight: lighten(colorBaseGrey, 0.80),
-    light: lighten(colorBaseGrey, 0.60),
-    // xLight: lighten(colorBaseGrey, 0.20),
+    midLight: lighten(colorBaseGrey, 0.20),
+    light: lighten(colorBaseGrey, 0.40),
+    // xLight: lighten(colorBaseGrey, 0.80),
     xLight: 'rgb(230, 230, 230)',
-    xxLight: lighten(colorBaseGrey, 0.06),
+    xxLight: lighten(colorBaseGrey, 0.94),
     xxLightForegroundSmall: '#707070',
     xxLightForegroundLarge: '#696969',
   },
@@ -60,7 +60,7 @@ const colors = {
   red: {
     dark: darken(colorBaseRed, 0.60),
     base: colorBaseRed,
-    light: lighten(colorBaseRed, 0.40),
+    light: lighten(colorBaseRed, 0.60),
     xLight: fade(colorBaseRed, 0.2),
   },
   transparent: {
@@ -80,13 +80,27 @@ const colors = {
   orange: {
     dark: 'rgb(104, 93, 82)',
     base: colorBaseOrange,
-    light: lighten(colorBaseOrange, 0.60),
+    light: lighten(colorBaseOrange, 0.40),
     xLight: fade(colorBaseOrange, 0.05),
   },
 };
 /* eslint-enable sort-keys, no-magic-numbers */
 
+//  6px = 0.375rem = 0.1875 * 2rem
+const SIX_PX = 0.1875;
+
 const theme = createMuiTheme({
+  breakpoints: {
+    /* eslint-disable sort-keys */
+    values: {
+      xs: 0,
+      sm: 320,
+      md: 650,
+      lg: 900,
+      xl: 1120,
+    },
+    /* eslint-enable sort-keys */
+  },
   // Palette defaults are overwritten by custom theming configuration
   palette: {
     background: {
@@ -104,12 +118,12 @@ const theme = createMuiTheme({
       secondary: colors.grey.midDark,
     },
   },
+  spacing: factor => `${SIX_PX * factor}rem`,
   typography: {
     body1: {
-      fontSize: '15px',
+      fontSize: '1rem',
     },
     fontFamily: "'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif",
-    fontSize: 16,
   },
 });
 

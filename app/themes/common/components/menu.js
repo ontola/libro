@@ -1,4 +1,4 @@
-export default () => ({
+export default ({ theme }) => ({
   MuiListItem: {
     root: {
       lineHeight: null,
@@ -10,10 +10,22 @@ export default () => ({
       minWidth: '30px',
     },
   },
+  MuiMenu: {
+    paper: {
+      [theme.breakpoints.down('sm')]: {
+        '&.AppMenu': {
+          maxWidth: '100%',
+          width: '100%',
+        },
+      },
+    },
+  },
   MuiMenuItem: {
     root: {
+      [theme.breakpoints.up('md')]: {
+        maxWidth: '14em',
+      },
       lineHeight: null,
-      maxWidth: '14em',
       minHeight: null,
       whiteSpace: null,
     },
