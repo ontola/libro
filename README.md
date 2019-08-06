@@ -4,7 +4,7 @@ Front-end application for [Argu](https://argu.co).
 ## Usage
 - `npm install` or `yarn` to install dependencies. [Yarn](https://yarnpkg.com) is similar to NPM, but better. Follow the [Yarn installation instructions](https://yarnpkg.com/en/docs/install) for your OS.
 - Create a [.env file](https://www.npmjs.com/package/dotenv) by copying `.env.template`.
-- `yarn run start` to start the server (or `yarn run dev` for added react-styleguidist component reference).
+- `yarn run start` to start the server.
 - Visit [http://localhost:3001/](http://localhost:3001/)
 
 ## Contributing
@@ -38,8 +38,6 @@ All tests and linters will be run automatically as a pre-commit hook.
 ### Styling
 Styling is done using SASS and React inline styles. Use [Harry Roberts'](https://en.bem.info/methodology/naming-convention/#alternative-naming-schemes) style naming with Component names as block name. For example `.Block__element--modifier` or `.ProfileCard__stat-value--light`.
 All styling must be done in its respective component. Don't use ClassNames from other components.
-
-[React-styleguidist styleguide](https://github.com/sapegin/react-styleguidist) can be used as a reference, and also to develop individual components. RUn `npm run dev` or `npm run styleguide-server` and visit http://localhost:5000/ to show the styleguide.
 
 ### Testing
 Tests are written using jest+enzyme with additional expect matcher packages and some of our own
@@ -78,14 +76,14 @@ uppercase      =  %x41-%x5A               ; A-Z
 The feature name casing generally is dependent on the origin of the word; eg: `Notification-Unread` or `Attachment-preview`
 
 ### I18n
-Internationalization is done via [react-intl](https://github.com/yahoo/react-intl). Translation 
+Internationalization is done via [react-intl](https://github.com/yahoo/react-intl). Translation
 extraction and file management is done with [extract-react-intl-messages](https://github.com/akameco/extract-react-intl-messages).
 
 To create and verify translations:
 * Run the `build:translations` script
 * Fill in any of the missing translations (run `lint:translations` or search for `""` in `app/translations`).
 
-***CAUTION:*** When deleting translations (e.g. removing a react-intl component), make sure to 
+***CAUTION:*** When deleting translations (e.g. removing a react-intl component), make sure to
 manually search/check and update the translations files to ensure consistency.
 
 #### Test structure
@@ -116,19 +114,18 @@ in the browser console.
 Uses [NSP](https://github.com/nodesecurity/nsp) and [Retire.js](https://github.com/RetireJS/retire.js). Run tests using `npm run secure`.
 
 ### Async
-Components which are to be resolved via webpack async functionality. They shouldn't be loaded 
+Components which are to be resolved via webpack async functionality. They shouldn't be loaded
 directly in the code, use their loaders instead, which should be in either components or containers.
 
-These may not contain all async-loaded components (e.g. The pdf component is loaded directly from 
+These may not contain all async-loaded components (e.g. The pdf component is loaded directly from
 the dependency).
 
 ### Components
 - In this project, `components` are merely [presentational](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0) / display / UI components that should not represent any specific kind of concept. You can compare them to bootstrap components. Components should not fetch any data and should not be connected to redux. They also should not contain any components that fetch data. That's what Containers and Resources are responsible for.
 - Name them as abstract as possible. That makes the component more re-usable.
 - Use stateless functional components whenever possible to enhance performance.
-- Use PropTypes and add a comment above non-obvious props `/** like this */` to provide a description that can be parsed by Styleguidist.
-- Add a Readme.md file to provide example usage that automatically appears in Styleguidist.
-- Document components like all other functions with JSdoc. Descriptions automatically appear in Styleguidist.
+- Use PropTypes and add a comment above non-obvious props `/** like this */`.
+- Document components like all other functions with JSdoc.
 
 ### Views (using Link)
 - Views represent real world concepts, such as a person, a document, an event or an organization.
@@ -139,7 +136,7 @@ the dependency).
   - **Container** - A large column, often with cards inside it. Used on the Question page, or the Argument columns.
   - **Card** - Inside a card.
   - **CardMain** - Inside the card of the resource from the current URL. Makes the title bigger.
-  - **CardFixed** - Inside a card with fixed dimensions. 
+  - **CardFixed** - Inside a card with fixed dimensions.
   - **Detail** - Shown in the DetailsBar, should be a small piece of metadata.
   - **Parent** - Shown on top of a page to convey the hierarchy of the site.
   - **Inline** - A text to appear in some other text. Can be a link.
@@ -150,7 +147,7 @@ the dependency).
 So, your Link View / Property isn't showing. Check the following:
 - Is the request handled correctly? Check the `network` tab in your browser's debugger view.
 - Is the data parsed correctly?
-- Is the component present in the virtual DOM? Use the react debugging tools to find the component. Does it contain the Property components that you expect it to have? 
+- Is the component present in the virtual DOM? Use the react debugging tools to find the component. Does it contain the Property components that you expect it to have?
 - If there is a component, check its contents by clicking its LinkedObjectContainer in the debugging tools and running `dev.data` in the console.
 - Is the View or the Property being registered correctly? Use LRS.
 

@@ -4,7 +4,6 @@ files:
   include: '**/*.scss'
   ignore:
     - './app/components/shared/reset.scss'
-    - './app/components/shared/styleguide.scss'
     - './app/components/shared/searchkit.scss'
 rules:
   # Extends

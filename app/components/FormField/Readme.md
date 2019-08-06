@@ -48,7 +48,7 @@ Use the 'material' variant to add some sexy minimalism. Currently requires JS an
       />
     </Card>
 
-Use with the Redux Form Field Component (not show in below code, because it does not work in Styleguidist) to enable errors and form validation.
+Use with the Redux Form Field Component to enable errors and form validation.
 
     <FormField
       id="ArgumentProDescription"
