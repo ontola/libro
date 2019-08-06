@@ -3,7 +3,6 @@ import Divider from '@material-ui/core/Divider';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import MenuClose from '@material-ui/icons/Close';
 import MenuOpen from '@material-ui/icons/Menu';
-
 import { makeStyles, useTheme } from '@material-ui/styles';
 import {
   LinkedResourceContainer,

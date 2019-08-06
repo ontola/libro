@@ -25,8 +25,8 @@ const defaultProps = {
 const MenuItem = ({
   action,
   children,
-  icon,
   expandOpen,
+  icon,
   subject,
   url,
 }) => {

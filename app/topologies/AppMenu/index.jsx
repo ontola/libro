@@ -1,4 +1,4 @@
-import { lrsType, withLRS } from 'link-redux';
+import { withLRS } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -15,10 +15,6 @@ class AppMenu extends Topology {
       PropTypes.node,
       PropTypes.func,
     ]),
-    close: PropTypes.func,
-    contentClassName: PropTypes.string,
-    fullScreen: PropTypes.bool,
-    lrs: lrsType,
     trigger: PropTypes.func,
   };
 

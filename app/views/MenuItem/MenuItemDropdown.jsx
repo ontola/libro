@@ -12,11 +12,9 @@ import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 import Menu from '../../topologies/Menu';
 
-const MenuItemDropdown = (props) => {
-  const {
-    menuItems,
-  } = props;
-
+const MenuItemDropdown = ({
+  menuItems,
+}) => {
   const trigger = onClick => (
     <IconButton
       centerRipple

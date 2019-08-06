@@ -2,6 +2,15 @@ import MaterialMenu from '@material-ui/core/Menu/Menu';
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 
+const propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.func,
+  ]),
+  className: PropTypes.string,
+  trigger: PropTypes.func,
+};
+
 const DropdownMenu = ({
   children,
   className,
@@ -41,13 +50,6 @@ const DropdownMenu = ({
   );
 };
 
-DropdownMenu.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.func,
-  ]),
-  className: PropTypes.string,
-  trigger: PropTypes.func,
-};
+DropdownMenu.propTypes = propTypes;
 
 export default DropdownMenu;
