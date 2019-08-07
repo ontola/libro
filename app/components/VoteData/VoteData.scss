@@ -42,17 +42,17 @@ $votebar-parts: (
   flex-grow: 1;
   justify-content: center;
   margin-right: 3px;
-  padding: .3em;
+  padding: .2rem;
   transition: width 200ms ease-in-out;
 
   &-container {
     display: inline-flex;
     flex-wrap: wrap;
-    height: 1.5em;
+    height: 1.5rem;
     overflow: hidden;
 
     & > * {
-      margin-right: .3em;
+      margin-right: .3rem;
     }
   }
 
@@ -63,7 +63,7 @@ $votebar-parts: (
 
 @each $variant, $color in $votebar-parts {
   .VoteData__votebar-part--#{$variant} {
-    background-color: color($color, 'light');
+    background-color: color($color, 'x-light');
 
     &:hover {
       background-color: color($color);
