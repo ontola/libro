@@ -69,7 +69,8 @@
 
 .Field__description {
   font-size: .8rem;
-  margin-top: -10px;
+  margin-bottom: .3rem;
+  margin-top: -.3rem;
 }
 
 .Field__label {
@@ -131,9 +132,8 @@
       align-items: baseline;
       background-color: inherit;
       border: 0;
-      padding-bottom: 0;
-      padding-left: 0;
-      padding-top: 0;
+      // TODO: check
+      padding: 0;
 
       .Field__label {
         padding-bottom: 0;
@@ -313,9 +313,10 @@
     border-radius: 5px;
     flex-grow: 1;
     margin: 0 0 1em;
+    padding: 1em;
+    padding-bottom: 0;
     transition: border-color .2s, background-color .2s;
     width: auto;
-    padding: 1em;
 
     .Field__input--select,
     .Field__input--text,
