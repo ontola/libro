@@ -27,6 +27,10 @@ class ActionsBar extends TopologyProvider {
       'ActionsBar--small': this.props.small,
     });
 
+    if (this.props.children === undefined) {
+      return null;
+    }
+
     return this.wrap((
       <div className={classes}>
         {this.props.children}
