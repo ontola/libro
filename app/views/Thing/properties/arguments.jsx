@@ -8,9 +8,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { CardContent, Columns } from '../../../components';
+import { Columns } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { tryParseInt } from '../../../helpers/numbers';
+import Margin from '../../Margin/Margin';
 import { allTopologiesExcept } from '../../../topologies';
 import { cardAppendixTopology } from '../../../topologies/Card/CardAppendix';
 import CardRow from '../../../topologies/Card/CardRow';
@@ -56,6 +57,15 @@ const Arguments = ({
   return children || <ArgumentColumns />;
 };
 
+const ArgumentsCardAppendix = props => (
+  <ArgumentsData {...props}>
+    <CardRow backdrop>
+      <Margin />
+      <ArgumentColumns />
+    </CardRow>
+  </ArgumentsData>
+);
+
 Arguments.propTypes = {
   conArguments: linkType,
   conArgumentsCount: linkType,
@@ -78,15 +88,7 @@ export default [
     allTopologiesExcept(cardAppendixTopology)
   ),
   LinkedRenderStore.registerRenderer(
-    props => (
-      <ArgumentsData {...props}>
-        <CardRow backdrop>
-          <CardContent>
-            <ArgumentColumns />
-          </CardContent>
-        </CardRow>
-      </ArgumentsData>
-    ),
+    ArgumentsCardAppendix,
     NS.schema('Thing'),
     NS.argu('arguments'),
     cardAppendixTopology
