@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useField } from 'react-final-form';
 
+import { usePersistence } from '../../hooks/usePersistence';
 import { FormContext } from '../Form/Form';
 import { FormSectionContext } from '../Form/FormSection';
 
@@ -25,9 +26,13 @@ const formFieldWrapper = (Component) => {
 
     const storageKey = `${storeKey}.${name}`;
 
-    const defaultValue = __CLIENT__
-      ? (props.sessionStorage || sessionStorage).getItem(storageKey) ?? undefined
-      : undefined;
+    const [defaultValue, _setValue] = usePersistence(
+      __CLIENT__ ? (props.sessionStorage || sessionStorage) : undefined,
+      storageKey
+    );
+    const setDefaultValue = ['password', 'hidden'].includes(props.type)
+      ? () => undefined
+      : _setValue;
 
     const formProps = useField(name, {
       allowNull: true,
@@ -46,14 +51,8 @@ const formFieldWrapper = (Component) => {
           ...formProps.input,
           onChange: (nextValue) => {
             if (storeKey
-              && !['password', 'hidden'].includes(props.type)
               && (formProps.meta.touched || nextValue !== formProps.input.value)) {
-              if (__CLIENT__) {
-                (props.sessionStorage || sessionStorage).setItem(
-                  storageKey,
-                  typeof nextValue === 'undefined' ? '' : nextValue
-                );
-              }
+              setDefaultValue(nextValue);
             }
             formProps.input.onChange(nextValue);
           },
@@ -67,5 +66,7 @@ const formFieldWrapper = (Component) => {
 
   return WrappedComp;
 };
+
+formFieldWrapper.displayName = 'formFieldWrapper';
 
 export default formFieldWrapper;

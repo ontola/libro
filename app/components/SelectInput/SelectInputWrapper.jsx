@@ -134,11 +134,10 @@ const SelectInputWrapper = ({
     searchTemplate ? DEBOUNCE_TIMER : 0
   );
 
-
   return (
     <div className={className}>
       <SelectInputField
-        initialSelectedItem={initialValue}
+        initialSelectedItem={inputValue || initialValue}
         items={state.itemsToShow}
         sharedProps={sharedProps}
         value={inputValue}

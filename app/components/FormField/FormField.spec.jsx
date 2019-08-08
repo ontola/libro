@@ -10,6 +10,20 @@ import Form from '../Form/Form';
 
 import FormField from './index';
 
+const mockStorage = () => {
+  const store = {};
+  const storage = {
+    getItem: key => (
+      Object.prototype.hasOwnProperty.call(storage, key)
+        ? store[key]
+        : null
+    ),
+    setItem: (key, value) => { store[key] = value; },
+  };
+
+  return [store, storage];
+};
+
 const renderWithTestForm = (ui, options = {}) => {
   const form = createForm({
     onSubmit: () => null,
@@ -58,7 +72,7 @@ describe('FormField', () => {
 
   it('retrieves an initial value from session storage', () => {
     const initial = {
-      [`test.${schemaName}`]: 'Test value',
+      [`test.${schemaName}`]: '"Test value"',
     };
     const { getByTestId, form } = renderWithTestForm((
       <FormField
@@ -77,7 +91,7 @@ describe('FormField', () => {
 
   it('toggles checkboxes', () => {
     const pinned = calculateFormFieldName(NS.argu('pinned'));
-    const storage = {};
+    const [store, storage] = mockStorage();
 
     const {
       getByTestId,
@@ -85,10 +99,7 @@ describe('FormField', () => {
     } = renderWithTestForm((
       <FormField
         field={pinned}
-        sessionStorage={{
-          getItem: key => storage[key],
-          setItem: (key, value) => { storage[key] = value; },
-        }}
+        sessionStorage={storage}
         type="checkbox"
       />
     ));
@@ -96,7 +107,7 @@ describe('FormField', () => {
     expect(getByTestId('test')).toHaveFormValues({
       [pinned]: false,
     });
-    expect(storage[pinned]).toBeFalsy();
+    expect(store[pinned]).toBeFalsy();
 
     fireEvent.click(getByTestId(pinned));
 
@@ -105,21 +116,18 @@ describe('FormField', () => {
     });
     expect(form.getFieldState(pinned).value).toEqual(true);
     expect(form.getFieldState(pinned).invalid).toBeFalsy();
-    expect(storage[`test.${pinned}`]).toBeTruthy();
+    expect(store[`test.${pinned}`]).toBeTruthy();
   });
 
   describe('persistence', () => {
     const testPersistence = (type, value) => {
       const field = calculateFormFieldName(NS.argu('field'));
-      const storage = {};
+      const [store, storage] = mockStorage();
 
       const { getByTestId } = renderWithTestForm((
         <FormField
           field={field}
-          sessionStorage={{
-            getItem: key => storage[key],
-            setItem: (key, v) => { storage[key] = v; },
-          }}
+          sessionStorage={storage}
           type={type}
         />
       ));
@@ -127,26 +135,30 @@ describe('FormField', () => {
       expect(getByTestId('test')).toHaveFormValues({
         [field]: '',
       });
-      expect(storage[field]).toBe(undefined);
+      expect(store[field]).toBe(undefined);
 
-      fireEvent.change(getByTestId(field), { target: { value: 'test' } });
+      fireEvent.change(getByTestId(field), { target: { value } });
 
       expect(getByTestId('test')).toHaveFormValues({
         [field]: 'test',
       });
-      expect(storage[`test.${field}`]).toBe(value);
+
+      return store[`test.${field}`];
     };
 
-    it('stores text fields', () => {
-      testPersistence('text', 'test');
+    it('stores values', () => {
+      const result = testPersistence('text', 'test');
+      expect(result).toEqual('"test"');
     });
 
     it("doesn't store passwords", () => {
-      testPersistence('password', undefined);
+      const result = testPersistence('password', 'test');
+      expect(result).toEqual(undefined);
     });
 
     it("doesn't store hidden fields", () => {
-      testPersistence('hidden', undefined);
+      const result = testPersistence('hidden', 'test');
+      expect(result).toEqual(undefined);
     });
   });
 });

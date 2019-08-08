@@ -86,10 +86,6 @@ const propTypes = {
   onKeyUp: PropTypes.func,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
-  sessionStorage: PropTypes.shape({
-    getItem: PropTypes.func,
-    setItem: PropTypes.func,
-  }),
   shIn: optionsType,
   theme: PropTypes.string,
   // HTML input type, e.g. 'email'
