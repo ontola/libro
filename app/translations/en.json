@@ -120,6 +120,7 @@
   "https://app.argu.co/i18n/session/continueLabel": "Continue",
   "https://app.argu.co/i18n/session/noPassword": "You account does not have a password yet. We've just send you a new email to set a password. Please check your inbox before continuing.",
   "https://app.argu.co/i18n/session/unexpectedStateLabel": "Unexpected state",
+  "https://app.argu.co/i18n/teamGL/volunteersCount": "{volunteerCount, number} {volunteerCount, plural, one {vrijwilliger} other {vrijwilligers}}",
   "https://app.argu.co/i18n/trashable/deletedNotice": "This resource has been deleted on {date}",
   "https://app.argu.co/i18n/voteFlow/confirmMessage": "Confirm your vote via e-mail:",
   "https://app.argu.co/i18n/votes/con/message": "Click to vote against this idea",

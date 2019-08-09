@@ -120,6 +120,7 @@
   "https://app.argu.co/i18n/session/continueLabel": "Ga verder",
   "https://app.argu.co/i18n/session/noPassword": "Dit account heeft nog geen wachtwoord. We hebben zojuist een nieuw email gestuurd waarmee een wachtwoord kan worden ingesteld. Doe dit eerst voor je verder kan gaan.",
   "https://app.argu.co/i18n/session/unexpectedStateLabel": "Overwachtse staat",
+  "https://app.argu.co/i18n/teamGL/volunteersCount": "{volunteerCount, number} {volunteerCount, plural, one {vrijwilliger} other {vrijwilligers}}",
   "https://app.argu.co/i18n/trashable/deletedNotice": " Dit item is verwijderd op {date}",
   "https://app.argu.co/i18n/voteFlow/confirmMessage": "Bevestig jouw stem via e-mail",
   "https://app.argu.co/i18n/votes/con/message": "Klik om tegen dit idee te stemmen",

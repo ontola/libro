@@ -12,8 +12,7 @@ import { Detail } from '../../../components';
 
 const messages = defineMessages({
   volunteerCount: {
-    defaultMessage: `{volunteerCount, number} 
-      {volunteerCount, plural, one {vrijwilliger} other {vrijwilligers}}`,
+    defaultMessage: '{volunteerCount, number} {volunteerCount, plural, one {vrijwilliger} other {vrijwilligers}}',
     id: 'https://app.argu.co/i18n/teamGL/volunteersCount',
   },
 });
