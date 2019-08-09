@@ -59,7 +59,9 @@
   }
 
   .Container--grid {
-    padding: 0;
+    &:first-child {
+      padding-top: 0;
+    }
 
     .Widget {
       .Card {
