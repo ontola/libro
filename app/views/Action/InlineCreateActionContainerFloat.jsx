@@ -9,6 +9,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
 
+import LDLink from '../../components/LDLink';
+import { getMetaContent } from '../../helpers/arguHelpers';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 import { invalidStatuses } from '../Thing/properties/omniform/helpers';
@@ -33,18 +35,22 @@ const InlineCreateActionContainerFloat = ({
   }
 
   const classes = useStyles();
+  const icon = (
+    <FontAwesome
+      className={classes.buttonIcon}
+      name="plus"
+    />
+  );
+  const useOmniform = omniform && getMetaContent('omniform') !== 'false';
 
   return (
     <IconButton
       size="small"
       title={name.value}
       type="button"
-      onClick={omniform ? onClick : undefined}
+      onClick={useOmniform ? onClick : undefined}
     >
-      <FontAwesome
-        className={classes.buttonIcon}
-        name="plus"
-      />
+      {useOmniform ? icon : <LDLink>{icon}</LDLink>}
     </IconButton>
   );
 };
