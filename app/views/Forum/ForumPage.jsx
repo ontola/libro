@@ -34,6 +34,8 @@ ForumPage.type = [NS.argu('ContainerNode'), NS.schema('WebPage')];
 ForumPage.mapDataToProps = [
   NS.argu('coverPhoto'),
   NS.argu('hideHeader'),
+  NS.ontola('widgets'),
+  NS.schema.name,
 ];
 
 ForumPage.propTypes = {

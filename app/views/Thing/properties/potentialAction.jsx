@@ -19,6 +19,7 @@ const order = [
   'create_comment',
   'destroy_comment',
   'try_again',
+  'not_available',
   'contacted',
 ];
 

@@ -38,6 +38,15 @@
           }
         }
       }
+
+      &--variant-error {
+        &:hover,
+        &:focus {
+          .Button__label {
+            box-shadow: none;
+          }
+        }
+      }
     }
   }
 

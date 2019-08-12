@@ -21,6 +21,7 @@ import Document from './Document';
 import Employment from './Employment';
 import EntryPoint from './EntryPoint';
 import Error from './Error';
+import Event from './Event';
 import FormOption from './FormOption';
 import Forum from './Forum/index';
 import Group from './Group';
@@ -42,6 +43,7 @@ import MenuSection from './MenuSection';
 import Motion from './Motion';
 import Notification from './Notification';
 import Organization from './Organization/index';
+import Participant from './Participant';
 import Person from './Person';
 import Placement from './Placement';
 import PropertyQuery from './PropertyQuery';
@@ -78,6 +80,7 @@ export function getViews() {
     ...Employment,
     ...EntryPoint,
     ...Error,
+    ...Event,
     ...FormOption,
     ...Forum,
     ...Group,
@@ -97,6 +100,7 @@ export function getViews() {
     ...Motion,
     ...Notification,
     ...Organization,
+    ...Participant,
     ...Person,
     ...Placement,
     ...PropertyQuery,

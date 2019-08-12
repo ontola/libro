@@ -49,6 +49,8 @@ class ActionActionsBar extends PureComponent {
     switch (bestType(this.props.type)) {
       case NS.teamGL('ContactedAction'):
         return 'success';
+      case NS.teamGL('NotAvailableAction'):
+        return 'error';
       default:
         return undefined;
     }

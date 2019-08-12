@@ -158,8 +158,17 @@ export default function generateLRS() {
     new Statement(NS.teamGL('NewVolunteer'), NS.rdf('type'), NS.rdfs('Class')),
     new Statement(NS.teamGL('NewVolunteer'), NS.rdfs('subClassOf'), NS.teamGL('Volunteer')),
 
+    new Statement(NS.teamGL('NotAvailableAction'), NS.rdf('type'), NS.rdfs('Class')),
+    new Statement(NS.teamGL('NotAvailableAction'), NS.rdfs('subClassOf'), NS.schema('UpdateAction')),
+
     new Statement(NS.teamGL('TryAgainAction'), NS.rdf('type'), NS.rdfs('Class')),
     new Statement(NS.teamGL('TryAgainAction'), NS.rdfs('subClassOf'), NS.schema('UpdateAction')),
+
+    new Statement(NS.teamGL('Participant'), NS.rdf('type'), NS.rdfs('Class')),
+    new Statement(NS.teamGL('Participant'), NS.rdfs('subClassOf'), NS.teamGL('Volunteer')),
+
+    new Statement(NS.teamGL('PotentialParticipant'), NS.rdf('type'), NS.rdfs('Class')),
+    new Statement(NS.teamGL('PotentialParticipant'), NS.rdfs('subClassOf'), NS.teamGL('Participant')),
 
     new Statement(NS.meeting('Meeting'), NS.rdf('type'), NS.rdfs('Class')),
     new Statement(NS.meeting('Meeting'), NS.rdfs('subClassOf'), NS.schema('Thing')),

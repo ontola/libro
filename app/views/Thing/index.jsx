@@ -50,6 +50,7 @@ import PotentialAction from './properties/potentialAction';
 import Predicate from './properties/predicate';
 import PublishAction from './properties/publishAction';
 import SuperEvent from './properties/superEvent';
+import StartDate from './properties/startDate';
 import Text from './properties/text';
 import TopComment from './properties/topComment';
 import TrashedAt from './properties/trashedAt';
@@ -194,6 +195,7 @@ export default [
   SuperEvent,
   ...PotentialAction,
   PublishAction,
+  StartDate,
   ...Text,
   TopComment,
   TrashedAt,

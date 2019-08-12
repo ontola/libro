@@ -14,7 +14,7 @@ import ContentDetails from '../../topologies/ContentDetails';
 import HeaderWithMenu from '../../components/HeaderWithMenu';
 
 class VolunteerPage extends React.PureComponent {
-  static type = [NS.teamGL('Volunteer')];
+  static type = NS.teamGL('Volunteer');
 
   static topology = [
     primaryResourceTopology,
@@ -46,6 +46,7 @@ class VolunteerPage extends React.PureComponent {
             </CardContent>
           </CardMain>
           <Property renderWhenEmpty label={NS.org('hasMembership')} />
+          <Property renderWhenEmpty label={NS.teamGL('events')} />
         </Container>
       </PrimaryResource>
     );
