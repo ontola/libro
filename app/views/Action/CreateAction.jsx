@@ -21,6 +21,7 @@ import { tableCellTopology } from '../../topologies/TableCell';
 import { tableRowTopology } from '../../topologies/TableRow';
 import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 import { pageTopology } from '../../topologies/Page';
+import { menuTopology } from '../../topologies/Menu';
 
 const propTypes = {
 };
@@ -37,6 +38,7 @@ export class CreateActionButton extends Component {
     cardMainTopology,
     containerFloatTopology,
     gridTopology,
+    menuTopology,
     pageTopology,
     tabPaneTopology,
     tableCellTopology,

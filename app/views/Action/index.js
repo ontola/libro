@@ -3,6 +3,7 @@ import ActionActionsBar from './ActionActionsBar';
 import ActionCardMain from './ActionCardMain';
 import ActionContainer from './ActionContainer';
 import ActionDetail from './ActionDetail';
+import ActionDropdownContent from './ActionDropdownContent';
 import ActionNested from './ActionNested';
 import ActionPageReg from './ActionPage';
 import ActionPrimaryCallToAction from './ActionPrimaryCallToAction';
@@ -26,6 +27,7 @@ export default [
   ActionCardMain,
   ActionContainer,
   ActionDetail,
+  ActionDropdownContent,
   ActionNested,
   ActionPageReg,
   ActionPrimaryCallToAction,
