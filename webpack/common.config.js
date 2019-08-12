@@ -18,6 +18,7 @@ const common = {
     fetch: 'self.fetch',
     'isomorphic-fetch': 'self.fetch',
     jsonld: '{}',
+    'solid-auth-cli': 'null',
     'solid-auth-client': 'self.fetch',
     'universal-url': '{URL: self.URL}',
     'whatwg-url': 'self.URL',

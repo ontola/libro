@@ -42,7 +42,7 @@ const GrantedGroups = ({ grantedGroups }) => {
 
   if (groups.indexOf(publicGroupIRI) === -1) {
     const groupNames = groups
-      .map(group => lrs.getResourceProperty(group, lrs.namespaces.schema('name')))
+      .map(group => lrs.getResourceProperty(group, lrs.namespaces.schema('name'))?.value)
       .filter(Boolean)
       .join(', ');
 
