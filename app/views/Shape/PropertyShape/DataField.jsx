@@ -33,6 +33,8 @@ const determineInputType = (
   switch (datatype) {
     case NS.xsd('boolean'):
       return 'checkbox';
+    case NS.xsd('date'):
+      return 'date';
     case NS.xsd('dateTime'):
       return 'datetime-local';
     case NS.xsd('integer'):

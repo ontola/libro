@@ -1,44 +1,36 @@
 import DayJSUtils from '@date-io/dayjs';
-import { DateTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import PropTypes from 'prop-types';
 import { Literal, NamedNode } from 'rdflib';
 import React from 'react';
-import { defineMessages, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 
-const messages = defineMessages({
+const messages = {
   cancelLabel: {
-    defaultMessage: 'cancel',
     id: 'https://app.argu.co/i18n/forms/actions/cancel',
   },
   clearLabel: {
-    defaultMessage: 'clear',
     id: 'https://app.argu.co/i18n/forms/actions/clear',
   },
   invalidDateMessage: {
-    defaultMessage: 'Invalid Date Format',
     id: 'https://app.argu.co/i18n/forms/datetimepicker/invalidDateMessage',
   },
   invalidLabel: {
-    defaultMessage: 'unknown',
     id: 'https://app.argu.co/i18n/forms/datetimepicker/invalidLabel',
   },
   maxDateMessage: {
-    defaultMessage: 'Date should not be after maximal date',
     id: 'https://app.argu.co/i18n/forms/datetimepicker/maxDateMessage',
   },
   minDateMessage: {
-    defaultMessage: 'Date should not be before minimal date',
     id: 'https://app.argu.co/i18n/forms/datetimepicker/minDateMessage',
   },
   okLabel: {
-    defaultMessage: 'ok',
     id: 'https://app.argu.co/i18n/forms/actions/ok',
   },
   todayLabel: {
-    defaultMessage: 'now',
     id: 'https://app.argu.co/i18n/forms/actions/showToday',
   },
-});
+};
 
 const propTypes = {
   id: PropTypes.string,
@@ -55,7 +47,7 @@ const defaultProps = {
   value: null,
 };
 
-const DateTimePickerComponent = (props) => {
+const DatePickerComponent = (props) => {
   const {
     id,
     value,
@@ -67,14 +59,13 @@ const DateTimePickerComponent = (props) => {
     <MuiPickersUtilsProvider
       utils={DayJSUtils}
     >
-      <DateTimePicker
+      <DatePicker
         autoOk
         showTodayButton
-        ampm={false}
         cancelLabel={intl.formatMessage(messages.cancelLabel)}
         clearLabel={intl.formatMessage(messages.clearLabel)}
         clearable={!!value}
-        format="D MMMM YYYY HH:mm"
+        format="D MMMM YYYY"
         id={id}
         inputVariant="outlined"
         invalidDateMessage={intl.formatMessage(messages.invalidDateMessage)}
@@ -91,7 +82,7 @@ const DateTimePickerComponent = (props) => {
   );
 };
 
-DateTimePickerComponent.propTypes = propTypes;
-DateTimePickerComponent.defaultProps = defaultProps;
+DatePickerComponent.propTypes = propTypes;
+DatePickerComponent.defaultProps = defaultProps;
 
-export default DateTimePickerComponent;
+export default DatePickerComponent;

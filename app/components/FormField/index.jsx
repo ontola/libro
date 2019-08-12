@@ -11,6 +11,7 @@ import Textarea from 'react-autosize-textarea';
 import { FormattedMessage } from 'react-intl';
 
 import DateTimePicker from '../../containers/DateTimePicker';
+import DatePicker from '../../containers/DatePicker';
 import TextEditor from '../../containers/TextEditor';
 import { NS } from '../../helpers/LinkedRenderStore';
 import FieldLabel from '../FieldLabel';
@@ -297,6 +298,23 @@ class FormField extends React.PureComponent {
 
       return (
         <DateTimePicker
+          {...sharedProps}
+          data-testid={sharedProps.name}
+          value={value || null}
+          onChange={sharedProps.onChange}
+        />
+      );
+    }
+
+    if (type === 'date') {
+      const inputValue = this.inputValue();
+      const value = inputValue && Object.prototype.hasOwnProperty.call(inputValue, 'termType')
+        ? inputValue.value
+        : inputValue;
+
+      return (
+        <DatePicker
+          {...sharedProps}
           data-testid={sharedProps.name}
           value={value || null}
           onChange={sharedProps.onChange}
