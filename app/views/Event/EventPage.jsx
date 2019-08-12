@@ -33,7 +33,7 @@ const EventPage = () => (
     </Container>
     <Container>
       <Property renderWhenEmpty label={NS.teamGL('potentialParticipants')}>
-        <Property singlePage collectionDisplay={NS.ontola('collectionDisplay/card')} label={NS.as('pages')} />
+        <Property renderWhenEmpty singlePage collectionDisplay={NS.ontola('collectionDisplay/card')} label={NS.as('pages')} />
       </Property>
       <Property renderWhenEmpty label={NS.teamGL('participants')}>
         <Property singlePage collectionDisplay={NS.ontola('collectionDisplay/card')} label={NS.as('pages')} />

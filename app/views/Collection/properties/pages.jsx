@@ -16,8 +16,10 @@ const Pages = ({
   depth,
   insideCollection,
   pages,
+  renderWhenEmpty,
+  singlePage,
 }) => {
-  if (pages.length === 1) {
+  if (singlePage || pages.length === 1) {
     return (
       <LinkedResourceContainer
         forceRender
@@ -25,6 +27,7 @@ const Pages = ({
         columns={columns}
         depth={depth}
         insideCollection={insideCollection}
+        renderWhenEmpty={renderWhenEmpty}
         subject={pages[0]}
       />
     );
@@ -37,6 +40,7 @@ const Pages = ({
       depth={depth}
       insideCollection={insideCollection}
       key={`pages-${iri.value}`}
+      renderWhenEmpty={renderWhenEmpty}
       subject={iri}
     />
   ));
@@ -71,6 +75,8 @@ Pages.propTypes = {
   depth: PropTypes.number,
   insideCollection: PropTypes.bool,
   pages: linkType,
+  renderWhenEmpty: PropTypes.bool,
+  singlePage: PropTypes.bool,
 };
 
 export default [register(Pages)];

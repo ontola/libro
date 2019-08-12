@@ -49,7 +49,7 @@ export default function getCollection({
     ];
 
     static mapDataToProps = {
-      collectionDisplay: NS.ontola('collectionDisplay'),
+      collectionDisplayFromData: NS.ontola('collectionDisplay'),
       collectionType: NS.ontola('collectionType'),
       columns: NS.ontola('columns'),
       defaultType: NS.ontola('defaultType'),
@@ -62,6 +62,7 @@ export default function getCollection({
 
     static propTypes = {
       collectionDisplay: linkType,
+      collectionDisplayFromData: linkType,
       collectionType: linkType,
       columns: linkType,
       currentPage: PropTypes.string,
@@ -92,7 +93,7 @@ export default function getCollection({
           <LinkedResourceContainer
             forceRender
             insideCollection
-            collectionDisplay={this.props.collectionDisplay}
+            collectionDisplay={this.props.collectionDisplay || this.props.collectionDisplayFromData}
             columns={columns}
             depth={this.props.depth}
             redirectPagination={redirect || this.props.redirectPagination}
@@ -105,7 +106,7 @@ export default function getCollection({
         <Property
           forceRender
           insideCollection
-          collectionDisplay={this.props.collectionDisplay}
+          collectionDisplay={this.props.collectionDisplay || this.props.collectionDisplayFromData}
           columns={columns}
           depth={this.props.depth}
           label={NS.as('pages')}
@@ -162,6 +163,7 @@ export default function getCollection({
           <Property
             forceRender
             body={this.body(resolvedColumns)}
+            collectionDisplay={this.props.collectionDisplay || this.props.collectionDisplayFromData}
             columns={resolvedColumns}
             label={NS.ontola('collectionFrame')}
             pagination={this.pagination()}

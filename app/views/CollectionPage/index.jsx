@@ -39,7 +39,7 @@ function getCollectionPage({
       return (
         <Property
           forceRender
-          collectionDisplay={props.collectionDisplay}
+          collectionDisplay={props.collectionDisplay || props.collectionDisplayFromData}
           columns={props.columns}
           depth={props.depth}
           label={NS.as('items')}
@@ -50,10 +50,12 @@ function getCollectionPage({
 
     return (
       <Property
+        collectionDisplay={props.collectionDisplay || props.collectionDisplayFromData}
         currentPage={props.subject.value}
         hidePagination={hidePagination}
         label={NS.as('partOf')}
         redirectPagination={redirect}
+        renderWhenEmpty={props.renderWhenEmpty}
       />
     );
   };
@@ -64,10 +66,13 @@ function getCollectionPage({
 
   CollectionPage.hocs = [withRouter];
 
-  CollectionPage.mapDataToProps = [NS.ontola('collectionDisplay')];
+  CollectionPage.mapDataToProps = {
+    collectionDisplayFromData: NS.ontola('collectionDisplay'),
+  };
 
   CollectionPage.propTypes = {
     collectionDisplay: linkType,
+    collectionDisplayFromData: linkType,
     columns: linkType,
     depth: PropTypes.number,
     insideCollection: PropTypes.bool,
@@ -75,6 +80,7 @@ function getCollectionPage({
       pathname: PropTypes.string,
     }),
     redirectPagination: PropTypes.bool,
+    renderWhenEmpty: PropTypes.bool,
     subject: subjectType,
   };
 

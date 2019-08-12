@@ -26,10 +26,11 @@ const getFrame = (Wrapper, topology) => {
   const collectionFrame = ({
     body,
     collectionDisplay,
+    collectionDisplayFromData,
     columns,
     pagination,
   }) => {
-    switch (collectionDisplay) {
+    switch (collectionDisplay || collectionDisplayFromData) {
       case NS.ontola('collectionDisplay/grid'):
         return (
           <React.Fragment>
@@ -97,11 +98,14 @@ const getFrame = (Wrapper, topology) => {
 
   collectionFrame.property = NS.ontola('collectionFrame');
 
-  collectionFrame.mapDataToProps = [NS.ontola('collectionDisplay')];
+  collectionFrame.mapDataToProps = {
+    collectionDisplayFromData: NS.ontola('collectionDisplay'),
+  };
 
   collectionFrame.propTypes = {
     body: PropTypes.node,
     collectionDisplay: linkType,
+    collectionDisplayFromData: linkType,
     columns: PropTypes.arrayOf(PropTypes.instanceOf(NamedNode)),
     pagination: PropTypes.node,
     topology: topologyType,
