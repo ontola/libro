@@ -45,7 +45,7 @@ const Arguments = ({
 }) => {
   const ctx = useLinkRenderContext();
   useDataInvalidation({
-    dataSubjects: [conArguments, proArguments].filter(Boolean),
+    dataSubjects: [conArguments, proArguments],
     subject: ctx.subject,
   });
 

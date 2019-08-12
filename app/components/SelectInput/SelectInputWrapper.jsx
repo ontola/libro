@@ -121,7 +121,7 @@ const SelectInputWrapper = ({
   });
   React.useEffect(() => {
     setState(updateOptions(state, options, lrs));
-  }, options);
+  }, [options]);
   const [debouncedCallback] = useDebouncedCallback(
     changes => handleStateChange(
       options,

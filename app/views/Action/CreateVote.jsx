@@ -124,7 +124,7 @@ const CreateVote = ({
   const isCurrentOrVote = currentVote(current, object, lrs);
   const vote = typeof isCurrentOrVote === 'object' ? isCurrentOrVote : undefined;
   const lastUpdate = useDataInvalidation({
-    dataSubjects: [vote].filter(Boolean),
+    dataSubjects: [vote],
     subject,
   });
   useDataFetching({ subject: vote }, lastUpdate);

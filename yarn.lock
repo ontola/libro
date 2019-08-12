@@ -8928,10 +8928,10 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
-link-lib@=1.0.0-rc3.pre1:
-  version "1.0.0-rc3.pre1"
-  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-rc3.pre1.tgz#e7d7bfd6acd5bf39ad39ea355043bd5691859296"
-  integrity sha512-dMM9bLWDmcQtAjjVZbwQXp4CDXXrcxRlgSTVLBn5Q2euBgBGwbtTynk6hMr4onStb4AVXZGbqk23FCnlsEyU9g==
+link-lib@=1.0.0-rc3:
+  version "1.0.0-rc3"
+  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-rc3.tgz#a8bd4d66370f26f07e3c42191efdb8cb15efe5fe"
+  integrity sha512-U8Z8mlGTjjMp5Z/D3Ml9qcg7+wghc5I2tLrveJOq09P0qZNtjrDKxlg0n+pK2L9mUW2Mj8k+qH08Fk6stCSOaw==
 
 "link-rdflib@npm:link-rdflib@0.19.1-20190124T144209":
   version "0.19.1-20190124T144209"
@@ -8957,10 +8957,10 @@ link-lib@=1.0.0-rc3.pre1:
     solid-auth-client "^2.2.3"
     xmldom "^0.1.22"
 
-link-redux@=1.0.0-rc3:
-  version "1.0.0-rc3"
-  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-rc3.tgz#07050ffb4f7b6b9224d30c80b942ed8b2f4a3c01"
-  integrity sha512-yeiKhq/XFS4WFHLk2zjY/f81C1cwIM6tjMf5MNsjPMDtqLM25QzyI3BrWu7f+kvJMuyj0raezNJnltVax5DO8w==
+link-redux@=1.0.0-rc4:
+  version "1.0.0-rc4"
+  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-rc4.tgz#713a6956b8f4303f7ef90675acd8b9ef2e7ea4c3"
+  integrity sha512-7UIEJIhqUfDC+oFl2Xfxi/vuMfDZxx5V2yCeg+Gi7A/o7j7dej1rdum4/c+ualKocdLoQfZOPKPudYf4URVi8g==
   dependencies:
     link-rdflib "npm:link-rdflib@0.19.1-20190124T144209"
 
