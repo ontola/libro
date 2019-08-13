@@ -201,11 +201,11 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     switch (iri) {
       case store.namespaces.ontola('actions/refresh'):
         if (__CLIENT__) {
-          reloadPage(false);
+          reloadPage(store, false);
         }
         return Promise.resolve();
       case store.namespaces.ontola('actions/reload'):
-        reloadPage(true);
+        reloadPage(store, true);
         return Promise.resolve();
       case ontola(`actions/navigation/push`):
       case ontola(`actions/navigation/pop`):
@@ -241,9 +241,9 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
             handle(e);
           }
           if (location) {
-            redirectPage(location);
+            redirectPage(store, location);
           } else {
-            reloadPage(false);
+            reloadPage(store, false);
           }
         }, () => {
           handle(new Error('User logout action failed'));
@@ -261,7 +261,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       const location = new URL(value, window.location.origin).toString();
 
       if (reload && __CLIENT__) {
-        redirectPage(location);
+        redirectPage(store, location);
       } else {
         // TODO: connect to router
         history.push(retrievePath(location));

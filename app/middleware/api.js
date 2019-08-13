@@ -33,7 +33,7 @@ import { redirectPage, reloadPage } from './reloading';
 
 export const apiLogin = createAction(AFE_API_LOGIN);
 
-export default (history, swc) => () => next => (action) => {
+export default (history, swc) => store => next => (action) => {
   if (!action.type.startsWith('@AFE_API/')) {
     return next(action);
   }
@@ -94,10 +94,10 @@ export default (history, swc) => () => next => (action) => {
               }
               const { r } = action.payload;
               if (r && r.startsWith(frontendIRI.value)) {
-                redirectPage(r);
+                redirectPage(store, r);
               } else {
                 history.goBack();
-                reloadPage();
+                reloadPage(store);
               }
               break;
             }

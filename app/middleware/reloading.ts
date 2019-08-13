@@ -1,3 +1,5 @@
+import { LinkReduxLRSType } from 'link-redux';
+
 import { CONTAINER_ELEMENT } from '../config';
 import { handle } from '../helpers/logging';
 import spinner from '../helpers/spinner';
@@ -17,14 +19,26 @@ function showSpinner() {
   }
 }
 
-export function reloadPage(forceGet: boolean) {
+function unloadPage(lrs: LinkReduxLRSType) {
   showSpinner();
+
+  if (lrs.api) {
+    try {
+      (lrs.api as any).channel.disconnect();
+    } catch (e) {
+      handle(e);
+    }
+  }
+}
+
+export function reloadPage(lrs: LinkReduxLRSType, forceGet: boolean) {
+  unloadPage(lrs);
 
   window.location.reload(forceGet);
 }
 
-export function redirectPage(location: string) {
-  showSpinner();
+export function redirectPage(lrs: LinkReduxLRSType, location: string) {
+  unloadPage(lrs);
 
   window.location.href = location;
 }
