@@ -39,6 +39,7 @@ export const itemToString = (item, lrs) => {
 };
 
 const SelectInputField = ({
+  emptyText,
   initialSelectedItem,
   items,
   loading,
@@ -69,6 +70,7 @@ const SelectInputField = ({
         if (isOpen) {
           list = (
             <SelectInputList
+              emptyText={emptyText}
               getItemProps={downshiftOpts.getItemProps}
               highlightedIndex={downshiftOpts.highlightedIndex}
               items={items}
@@ -113,6 +115,7 @@ const SelectInputField = ({
 };
 
 SelectInputField.propTypes = {
+  emptyText: PropTypes.string,
   initialSelectedItem: linkType,
   items: PropTypes.arrayOf(linkType),
   loading: PropTypes.bool,

@@ -78,6 +78,8 @@
   "https://app.argu.co/i18n/forms/omniform/newResponsePreview": "Plaats jouw {type}...",
   "https://app.argu.co/i18n/forms/radioGroup/noOptions": "Geen opties beschikbaar",
   "https://app.argu.co/i18n/forms/required/helperText": "*Vereist",
+  "https://app.argu.co/i18n/forms/select/noMatchingItems": "Geen matchende items",
+  "https://app.argu.co/i18n/forms/select/typeToSearch": "Typ om te zoeken",
   "https://app.argu.co/i18n/forms/session/accountLocked": "Account vergendeld door te veel mislukte login pogingen",
   "https://app.argu.co/i18n/forms/session/accountLocked/label": "Account vergrendeld?",
   "https://app.argu.co/i18n/forms/session/back": "terug",

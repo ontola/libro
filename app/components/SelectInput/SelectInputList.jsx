@@ -8,6 +8,7 @@ const ITEM_HEIGHT = 42;
 const WIDTH = 300;
 
 const SelectInputList = ({
+  emptyText,
   getItemProps,
   highlightedIndex,
   items,
@@ -22,7 +23,7 @@ const SelectInputList = ({
   }
 
   if (itemsToShow.length === 0) {
-    itemsToShow = ['Geen matchende items'];
+    itemsToShow = [emptyText];
   }
 
   const height = itemsToShow.length < maxItems
@@ -80,6 +81,7 @@ const SelectInputList = ({
 };
 
 SelectInputList.propTypes = {
+  emptyText: PropTypes.string,
   getItemProps: PropTypes.func,
   highlightedIndex: PropTypes.number,
   items: PropTypes.arrayOf(linkType),

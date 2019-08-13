@@ -7,6 +7,7 @@ import {
   topologyType,
   useLRS,
 } from 'link-redux';
+import { defineMessages, useIntl } from 'react-intl';
 import { useDebouncedCallback } from 'use-debounce';
 
 import { LoadingRow } from '../Loading';
@@ -24,6 +25,17 @@ const DEFAULT_RADIO_ITEM_LIMIT = 5;
 const MAX_RADIO_ITEMS = 20;
 const MAX_SELECT_LABEL_LENGTH = 60;
 
+const messages = defineMessages({
+  noMatchingItems: {
+    defaultMessage: 'No matching items',
+    id: 'https://app.argu.co/i18n/forms/select/noMatchingItems',
+  },
+  typeToSearch: {
+    defaultMessage: 'Type to start searching',
+    id: 'https://app.argu.co/i18n/forms/select/typeToSearch',
+  },
+});
+
 function calculateItemsToShow(inputValue, selectedItem, options, lrs) {
   const compareValue = inputValue && normalizedLower(typeof inputValue === 'string' ? inputValue : inputValue.value);
 
@@ -36,6 +48,16 @@ function calculateItemsToShow(inputValue, selectedItem, options, lrs) {
   }
 
   return options;
+}
+
+function emptyText(formatMessage, searchTemplate, inputValue) {
+  if (searchTemplate) {
+    return formatMessage(
+      messages[(inputValue && inputValue.length > 0) ? 'noMatchingItems' : 'typeToSearch']
+    );
+  }
+
+  return formatMessage(messages.noMatchingItems);
 }
 
 function handleStateChange(options, changes, setState, lrs, searchTemplate, onOptionsChange) {
@@ -70,7 +92,9 @@ function handleStateChange(options, changes, setState, lrs, searchTemplate, onOp
 
     if (searchTemplate) {
       const compareValue = inputValue && normalizedLower(typeof inputValue === 'string' ? inputValue : inputValue.value);
-      const searchResult = searchIri(searchTemplate.value, compareValue, 1, true);
+      const searchResult = (compareValue && compareValue.length > 0)
+        ? searchIri(searchTemplate.value, compareValue, 1, true)
+        : searchIri(searchTemplate.value, null, null, true);
       onOptionsChange(searchResult);
     }
 
@@ -143,7 +167,9 @@ const SelectInputWrapper = ({
   sharedProps,
   topology,
 }) => {
+  const { formatMessage } = useIntl();
   const lrs = useLRS();
+
   const [state, setState] = React.useState({
     itemsToShow: [],
     shouldClose: false,
@@ -186,6 +212,7 @@ const SelectInputWrapper = ({
   return (
     <div className={className}>
       <SelectInputField
+        emptyText={emptyText(formatMessage, searchTemplate, state.inputValue)}
         initialSelectedItem={initialSelectedItem}
         items={state.itemsToShow}
         loading={loading}
