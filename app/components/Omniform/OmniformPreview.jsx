@@ -33,7 +33,7 @@ const OmniformPreview = ({
 }) => {
   const intl = useIntl();
 
-  const actionLabel = getTermBestLang(
+  const actionLabel = primaryAction && getTermBestLang(
     lrs.dig(primaryAction, [NS.schema('result'), NS.rdfs('label')]),
     lrs.store.langPrefs
   )?.value;
