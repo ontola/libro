@@ -109,6 +109,7 @@ const SelectInputWrapper = ({
   className,
   initialValue,
   inputValue,
+  loading,
   onOptionsChange,
   options,
   searchTemplate,
@@ -121,7 +122,7 @@ const SelectInputWrapper = ({
   });
   React.useEffect(() => {
     setState(updateOptions(state, options, lrs));
-  }, [options]);
+  }, [loading, options]);
   const [debouncedCallback] = useDebouncedCallback(
     changes => handleStateChange(
       options,
@@ -131,7 +132,8 @@ const SelectInputWrapper = ({
       searchTemplate,
       onOptionsChange
     ),
-    searchTemplate ? DEBOUNCE_TIMER : 0
+    searchTemplate ? DEBOUNCE_TIMER : 0,
+    { leading: true }
   );
 
   return (
@@ -139,6 +141,7 @@ const SelectInputWrapper = ({
       <SelectInputField
         initialSelectedItem={inputValue || initialValue}
         items={state.itemsToShow}
+        loading={loading}
         sharedProps={sharedProps}
         value={inputValue}
         onStateChange={debouncedCallback}
@@ -155,6 +158,7 @@ SelectInputWrapper.propTypes = {
     PropTypes.number,
     linkType,
   ]),
+  loading: PropTypes.bool,
   onOptionsChange: PropTypes.func,
   options: PropTypes.arrayOf(linkType),
   searchTemplate: linkType,

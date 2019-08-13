@@ -6,10 +6,13 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useDebouncedCallback } from 'use-debounce';
 
 import { arraysEqual, containerToArr } from '../../helpers/data';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { isPromise } from '../../helpers/types';
+
+const DEBOUNCE_TIMER = 1000;
 
 export const optionsType = PropTypes.oneOfType([
   linkedPropType,
@@ -27,6 +30,15 @@ const OptionsWrapper = ({
   const lrs = useLRS();
   const [options, setOptions] = React.useState([]);
   const [shIn, setShIn] = React.useState(shInProp);
+  const [loading, setLoading] = React.useState(null);
+  const [debouncedCallback] = useDebouncedCallback(
+    () => {
+      setLoading(prevValue => (
+        (prevValue === shIn) ? null : shIn
+      ));
+    },
+    DEBOUNCE_TIMER
+  );
 
   useDataInvalidation({ subject: shIn });
   const searchTemplate = React.useMemo(
@@ -34,15 +46,23 @@ const OptionsWrapper = ({
     [shInProp]
   );
 
-  const optionsArray = Array.isArray(shIn)
-    ? shIn
-    : containerToArr(lrs, [], shIn);
+  React.useLayoutEffect(() => {
+    if (loading) {
+      return;
+    }
+    const optionsArray = Array.isArray(shIn)
+      ? shIn
+      : containerToArr(lrs, [], shIn);
 
-  if (Array.isArray(optionsArray) && !arraysEqual(optionsArray, options)) {
-    setOptions(optionsArray);
-  }
-
-  const loading = options.length === 0 && isPromise(optionsArray);
+    if (Array.isArray(optionsArray) && !arraysEqual(optionsArray, options)) {
+      setOptions(optionsArray);
+    } else if (isPromise(optionsArray)) {
+      if (!loading) {
+        setLoading(shIn);
+        optionsArray.then(debouncedCallback);
+      }
+    }
+  }, [loading, shIn]);
 
   return (
     <Component
