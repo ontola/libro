@@ -76,6 +76,7 @@ const common = {
     new WorkboxPlugin.InjectManifest({
       // importWorkboxFrom: 'disabled',
       // importsDirectory: 'workbench',
+      swDest: './public/sw.js',
       swSrc: './app/sw.js',
     }),
     new CompressionPlugin({
