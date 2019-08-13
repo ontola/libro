@@ -41,34 +41,30 @@ describe('Search', () => {
   };
 
   describe('within Page', () => {
-    const {
-      getByTestId,
-      getByText,
-    } = render(({ iri }) => (
-      <Page>
-        <LinkedResourceContainer forceRender subject={iri} />
-      </Page>
-    ), { resources });
+    it('renders the form components', () => {
+      const {
+        getByTestId,
+        getByText,
+      } = render(({ iri }) => (
+        <Page>
+          <LinkedResourceContainer forceRender subject={iri} />
+        </Page>
+      ), { resources });
 
-    const form = getByTestId('search-form');
+      const form = getByTestId('search-form');
 
-    it('renders the search form', () => {
+      // renders the search form
       expect(form).toHaveFormValues({
         q: 'keyword',
       });
-    });
 
-    it('renders the search button', () => {
-      const button = getByText('Search');
+      // renders the search button
+      expect(getByText('Search')).toBeVisible();
 
-      expect(button).toBeVisible();
-    });
-
-    it('renders the search info', () => {
+      // renders the search info
       expect(getByText('3 results in 240ms')).toBeVisible();
-    });
 
-    it('renders the search results', () => {
+      // renders the search results
       expect(getByText('Item 1')).toBeVisible();
       expect(getByText('Item 2')).toBeVisible();
       expect(getByText('Item 3')).toBeVisible();

@@ -18,22 +18,22 @@ describe('Registration', () => {
     '@id': testIRI.value,
     [NS.rdf.type]: NS.argu('SearchResult'),
   };
+  const renderOpts = {
+    location: '/u/sign_in',
+    resources,
+  };
 
   describe('within Page', () => {
-    const {
-      getByLabelText,
-      getByTestId,
-      getByText,
-    } = render(routes, {
-      location: '/u/sign_in',
-      resources,
-    });
+    it('renders all the components', () => {
+      const {
+        getByTestId,
+        getByText,
+      } = render(routes, renderOpts);
 
-    it('renders the sign in header', () => {
+      // renders the sign in header
       expect(getByText('login or register')).toBeVisible();
-    });
 
-    it('renders the sign in form', () => {
+      // renders the sign in form
       expect(getByTestId('sign-in-form')).toHaveFormValues({
         [btoa('email')]: '',
         [btoa('password')]: '',
@@ -41,6 +41,11 @@ describe('Registration', () => {
     });
 
     it('starts with only the email field visible', async () => {
+      const {
+        getByLabelText,
+        getByText,
+      } = render(routes, renderOpts);
+
       fetch.mockResponseOnce(() => Promise.resolve({ body: '{ "status": "SIGN_IN_EMAIL_TAKEN" }' }));
 
       const emailField = getByLabelText(/Your email address[*]+/);

@@ -73,7 +73,7 @@ describe('Actions', () => {
     },
   };
 
-  describe('within Page', () => {
+  it('renders a form within Page', () => {
     const {
       getByLabelText,
       getByTestId,
@@ -87,48 +87,41 @@ describe('Actions', () => {
       </Page>
     ), { resources });
 
-    const form = getByTestId(NS.example('endpoint').value);
     const fieldName = prop => btoa(prop.value);
 
-    it('renders the form title', () => {
-      const elem = getByText('Edit object');
+    // renders the form
+    const form = getByTestId(NS.example('endpoint').value);
+    expect(form).toBeVisible();
 
-      expect(elem).toBeVisible();
-      expect(elem).toHaveClass('Heading');
+    // renders the form title
+    const elem = getByText('Edit object');
+    expect(elem).toBeVisible();
+    expect(elem).toHaveClass('Heading');
+
+    // initializes an empty form
+    expect(form).toHaveFormValues({
+      [fieldName(NS.schema.name)]: '',
+      [fieldName(NS.argu('pin'))]: false,
     });
 
-    it('renders the form', () => {
-      expect(form).toBeVisible();
-    });
+    // shows a loading indicator for placements
+    const placementLoadingIndicator = getByTestId('spinner-true');
+    expect(placementLoadingIndicator).toBeVisible();
 
-    it('initializes an empty form', () => {
-      expect(form).toHaveFormValues({
-        [fieldName(NS.schema.name)]: '',
-        [fieldName(NS.argu('pin'))]: false,
-      });
-    });
+    // can edit the form values
+    fireEvent.change(
+      getByLabelText('Name'),
+      { target: { value: 'text' } }
+    );
 
-    it('shows a loading indicator for placements', () => {
-      const placementLoadingIndicator = getByTestId('spinner-true');
+    fireEvent.change(
+      getByLabelText('Pin'),
+      { target: { checked: true } }
+    );
 
-      expect(placementLoadingIndicator).toBeVisible();
-    });
-
-    it('can fill the form', () => {
-      fireEvent.change(
-        getByLabelText('Name'),
-        { target: { value: 'text' } }
-      );
-
-      fireEvent.change(
-        getByLabelText('Pin'),
-        { target: { checked: true } }
-      );
-
-      expect(form).toHaveFormValues({
-        [fieldName(NS.schema.name)]: 'text',
-        [fieldName(NS.argu('pin'))]: true,
-      });
+    expect(form).toHaveFormValues({
+      [fieldName(NS.schema.name)]: 'text',
+      [fieldName(NS.argu('pin'))]: true,
     });
   });
 });
