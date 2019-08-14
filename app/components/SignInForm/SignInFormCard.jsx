@@ -126,6 +126,7 @@ class SignInFormCard extends SignInFormBase {
           </CardContent>
           {this.contentHeader()}
           <Form
+            destroyOnUnregister
             initialValuesEqual={equal}
             onSubmit={onSubmit}
           >

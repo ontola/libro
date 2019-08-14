@@ -34,6 +34,7 @@ class SignInFormCardRow extends SignInFormBase {
 
     return (
       <Form
+        destroyOnUnregister
         initialValuesEqual={equal}
         onSubmit={onSubmit}
       >
