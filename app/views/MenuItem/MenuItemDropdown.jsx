@@ -7,6 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import Resource from '../../components/Resource';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
@@ -27,11 +28,13 @@ const MenuItemDropdown = ({
   );
 
   return (
-    <Menu
-      trigger={trigger}
-    >
-      <LinkedResourceContainer subject={menuItems} />
-    </Menu>
+    <Resource>
+      <Menu
+        trigger={trigger}
+      >
+        <LinkedResourceContainer subject={menuItems} />
+      </Menu>
+    </Resource>
   );
 };
 
