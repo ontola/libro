@@ -24,6 +24,7 @@ const sandbox = [
 ];
 const scriptSrc = [
   "'self'",
+  "'unsafe-eval'",
   (req, res) => `'nonce-${res.locals.nonce}'`,
   'https://cdn.polyfill.io',
   // Bugsnag CDN
