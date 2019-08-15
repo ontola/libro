@@ -30,11 +30,12 @@ const InlineCreateActionContainerFloat = ({
   omniform,
   onClick,
 }) => {
+  const classes = useStyles();
+
   if (invalidStatuses.includes(actionStatus)) {
     return null;
   }
 
-  const classes = useStyles();
   const icon = (
     <FontAwesome
       className={classes.buttonIcon}

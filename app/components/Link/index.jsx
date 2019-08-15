@@ -1,7 +1,9 @@
+import { makeStyles } from '@material-ui/styles';
+import clsx from 'clsx';
 import { lrsType, withLRS } from 'link-redux';
 import PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { Link as DomLink, NavLink } from 'react-router-dom';
 
 import {
@@ -10,9 +12,122 @@ import {
   retrievePath,
 } from '../../helpers/iris';
 
-import './Link.scss';
+const themeStyles = makeStyles(() => ({
+  default: {
+    alignItems: 'baseline',
+    display: 'inline-flex',
+    whiteSpace: 'pre-wrap',
+  },
+  parent: {
+    '&:hover': {
+      color: "color('grey', 'dark')",
+    },
+    color: "color('grey', 'xx-light-foreground-small')",
+    display: 'inline-flex',
+    fontWeight: 'bold',
+    margin: '0 .2em',
+    transition: 'background-color .1s',
+  },
+}));
 
-const propTypes = {
+const featureStyles = makeStyles(() => ({
+  bold: {
+    fontWeight: 600,
+  },
+  centered: {
+    alignItems: 'center',
+  },
+  'highlighted-darken': {
+    '&:hover': {
+      backgroundColor: "color('transparent', 'x-dark')",
+    },
+  },
+  'highlighted-lighten': {
+    '&:hover': {
+      backgroundColor: "color('transparent')",
+    },
+  },
+  padded: {
+    display: 'block',
+    padding: "units('xx-small', 'large')",
+  },
+}));
+
+const isActive = (to) => {
+  const relative = retrievePath(to);
+  const sameOrigin = !isDifferentWebsite(to);
+
+  return (match, location) => (
+    match || (sameOrigin && relative === location.pathname + location.search + location.hash)
+  );
+};
+
+const Link = ({
+  activeClassName,
+  children,
+  className,
+  features,
+  isIndex,
+  lrs,
+  onClick,
+  target,
+  theme,
+  to,
+  ...other
+}) => {
+  const themeClasses = themeStyles();
+  const featureClasses = featureStyles();
+  const componentClassName = clsx(
+    className,
+    themeClasses[theme],
+    ...features.map(f => featureClasses[f])
+  );
+
+  if (isDifferentWebsite(to)) {
+    return (
+      <a
+        {...other}
+        className={componentClassName}
+        href={to}
+        rel="nofollow noopener noreferrer"
+        target="_blank"
+        onClick={onClick}
+      >
+        {children}
+      </a>
+    );
+  }
+
+  const path = retrievePath(to);
+  const LinkComp = isLocalAnchor(path) ? DomLink : NavLink;
+
+  const clickHandler = target !== 'modal'
+    ? onClick
+    : (e) => {
+      e.preventDefault();
+      lrs.actions.ontola.showDialog(NamedNode.find(to));
+      if (typeof onClick === 'function') {
+        onClick(e);
+      }
+    };
+
+  return (
+    <LinkComp
+      {...other}
+      activeClassName={activeClassName || 'Link__active'}
+      className={componentClassName}
+      exact={isIndex}
+      isActive={isActive(to)}
+      target={target}
+      to={path}
+      onClick={clickHandler}
+    >
+      {children}
+    </LinkComp>
+  );
+};
+
+Link.propTypes = {
   activeClassName: PropTypes.string,
   children: PropTypes.node,
   className: PropTypes.string,
@@ -42,91 +157,12 @@ const propTypes = {
   to: PropTypes.string,
 };
 
-const defaultProps = {
+Link.defaultProps = {
   className: 'Link',
+  features: [],
   isIndex: true,
   theme: 'default',
 };
 
-class Link extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.isActive = this.isActive.bind(this);
-  }
-
-  isActive(match, location) {
-    const relative = retrievePath(this.props.to);
-
-    return match
-      || (!isDifferentWebsite(this.props.to)
-        && relative === location.pathname + location.search + location.hash);
-  }
-
-  render() {
-    const {
-      activeClassName,
-      children,
-      className,
-      features,
-      isIndex,
-      lrs,
-      onClick,
-      target,
-      theme,
-      to,
-      ...other
-    } = this.props;
-
-    const themeClass = `Link__${theme}`;
-    const featuresClass = features ? features.map(f => `Link__${f}`).join(' ') : '';
-
-    if (isDifferentWebsite(to)) {
-      return (
-        <a
-          {...other}
-          className={`${className} ${themeClass} ${featuresClass}`}
-          href={to}
-          rel="nofollow noopener noreferrer"
-          target="_blank"
-          onClick={onClick}
-        >
-          {children}
-        </a>
-      );
-    }
-
-    const path = retrievePath(to);
-    const LinkComp = isLocalAnchor(path) ? DomLink : NavLink;
-
-    const clickHandler = target !== 'modal'
-      ? onClick
-      : (e) => {
-        e.preventDefault();
-        lrs.actions.ontola.showDialog(NamedNode.find(to));
-        if (typeof onClick === 'function') {
-          onClick(e);
-        }
-      };
-
-    return (
-      <LinkComp
-        {...other}
-        activeClassName={activeClassName || 'Link__active'}
-        className={`${className} ${themeClass} ${featuresClass}`}
-        exact={isIndex}
-        isActive={this.isActive}
-        target={target}
-        to={path}
-        onClick={clickHandler}
-      >
-        {children}
-      </LinkComp>
-    );
-  }
-}
-
-Link.defaultProps = defaultProps;
-Link.propTypes = propTypes;
 
 export default withLRS(Link);

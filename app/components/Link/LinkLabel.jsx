@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import './Link.scss';
+import './LinkLabel.scss';
 
 const LinkLabel = ({ children }) => (
   <span className="LinkLabel">
