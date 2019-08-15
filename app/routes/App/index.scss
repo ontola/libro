@@ -1,0 +1,10 @@
+@import '../../components/shared/config';
+
+.App__container {
+  .preloader {
+    opacity: 1;
+    background-color: $background-color;
+    top: 0;
+    z-index: z(loader);
+  }
+}

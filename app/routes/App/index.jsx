@@ -18,6 +18,8 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import { handle } from '../../helpers/logging';
 import Routes from '../index';
 
+import './index.scss';
+
 class App extends React.PureComponent {
   static propTypes = {
     title: PropTypes.string,
@@ -68,7 +70,7 @@ class App extends React.PureComponent {
             titleTemplate={this.props.title ? `%s - ${this.props.title}` : '%s'}
           />
           <SkipNavigation />
-          <div id={CONTAINER_ELEMENT}>
+          <div className={CONTAINER_ELEMENT} id={CONTAINER_ELEMENT}>
             <Navbar>
               <NavBarContent />
             </Navbar>
