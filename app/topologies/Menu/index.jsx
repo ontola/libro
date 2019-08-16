@@ -10,8 +10,8 @@ export const menuTopology = NS.argu('topologies/menu');
 class Menu extends Topology {
   static propTypes = {
     children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.node,
+      PropTypes.element,
+      PropTypes.func,
     ]),
     trigger: PropTypes.func,
   };

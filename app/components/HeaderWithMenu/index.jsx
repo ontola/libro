@@ -18,8 +18,8 @@ const HeaderWithMenu = ({ children, menu }) => (
 );
 
 HeaderWithMenu.propTypes = {
-  children: PropTypes.elementType,
-  menu: PropTypes.elementType,
+  children: PropTypes.element,
+  menu: PropTypes.element,
 };
 
 export default HeaderWithMenu;
