@@ -23,20 +23,24 @@ const formFieldWrapper = (Component) => {
     const storeKey = React.useContext(FormContext);
     const namePrefix = React.useContext(FormSectionContext);
     const name = namePrefix ? `${namePrefix}.${props.field}` : props.field;
-
     const storageKey = `${storeKey}.${name}`;
 
-    const [defaultValue, _setValue] = usePersistence(
+    const [defaultStorageValue, setStorageValue] = usePersistence(
       __CLIENT__ ? (props.sessionStorage || sessionStorage) : undefined,
       storageKey
     );
+    const [currentDefaultValue, setCurrentDefaultValue] = React.useState(defaultStorageValue);
+
+    React.useEffect(() => {
+      setCurrentDefaultValue(defaultStorageValue);
+    }, [name]);
     const setDefaultValue = ['password', 'hidden'].includes(props.type)
       ? () => undefined
-      : _setValue;
+      : setStorageValue;
 
     const formProps = useField(name, {
       allowNull: true,
-      defaultValue,
+      defaultValue: currentDefaultValue,
       format: i => i,
       initialValue: props.initialValue,
       parse: i => i,
