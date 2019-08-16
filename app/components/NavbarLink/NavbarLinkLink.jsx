@@ -15,6 +15,10 @@ const propTypes = {
   ),
   isIndex: PropTypes.bool,
   onClick: PropTypes.func,
+  ref: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.elementType }),
+  ]),
   target: PropTypes.oneOf([
     '_blank',
     '_self',
@@ -34,6 +38,7 @@ class NavbarLinkLink extends PureComponent {
       onClick,
       target,
       to,
+      ref,
     } = this.props;
 
     if (to === undefined) {
@@ -55,6 +60,7 @@ class NavbarLinkLink extends PureComponent {
         className="NavbarLink__link"
         exact={isIndex}
         features={features}
+        ref={ref}
         target={target}
         to={path}
         onClick={onClick}

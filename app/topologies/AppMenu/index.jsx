@@ -35,7 +35,7 @@ class AppMenu extends Topology {
         className="AppMenu"
         trigger={this.props.trigger}
       >
-        {handleClose => this.renderContent(handleClose)}
+        {({ handleClose }) => this.renderContent(handleClose)}
       </DropdownMenu>
     );
   }

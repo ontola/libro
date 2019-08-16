@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/styles';
 import clsx from 'clsx';
-import { lrsType, withLRS } from 'link-redux';
+import { lrsType, useLRS } from 'link-redux';
 import PropTypes from 'prop-types';
 import { NamedNode } from 'rdflib';
 import React from 'react';
@@ -67,14 +67,15 @@ const Link = ({
   children,
   className,
   features,
+  innerRef,
   isIndex,
-  lrs,
   onClick,
   target,
   theme,
   to,
   ...other
 }) => {
+  const lrs = useLRS();
   const themeClasses = themeStyles();
   const featureClasses = featureStyles();
   const componentClassName = clsx(
@@ -89,6 +90,7 @@ const Link = ({
         {...other}
         className={componentClassName}
         href={to}
+        ref={innerRef}
         rel="nofollow noopener noreferrer"
         target="_blank"
         onClick={onClick}
@@ -117,6 +119,7 @@ const Link = ({
       activeClassName={activeClassName || 'Link__active'}
       className={componentClassName}
       exact={isIndex}
+      innerRef={innerRef}
       isActive={isActive(to)}
       target={target}
       to={path}
@@ -140,6 +143,7 @@ Link.propTypes = {
       'padded',
     ])
   ),
+  innerRef: PropTypes.func,
   isIndex: PropTypes.bool,
   lrs: lrsType,
   onClick: PropTypes.func,
@@ -164,5 +168,4 @@ Link.defaultProps = {
   theme: 'default',
 };
 
-
-export default withLRS(Link);
+export default React.forwardRef((props, ref) => <Link innerRef={ref} {...props} />);

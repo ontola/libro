@@ -11,6 +11,19 @@ const propTypes = {
   trigger: PropTypes.func,
 };
 
+const childComponent = (children, handleClose) => {
+  if (typeof children === 'function') {
+    const Comp = React.forwardRef((props, ref) => children({
+      handleClose,
+      ref,
+    }));
+
+    return <Comp />;
+  }
+
+  return children;
+};
+
 const DropdownMenu = ({
   children,
   className,
@@ -44,7 +57,7 @@ const DropdownMenu = ({
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        {typeof children === 'function' ? children(handleClose) : children}
+        {childComponent(children, handleClose)}
       </MaterialMenu>
     </Fragment>
   );

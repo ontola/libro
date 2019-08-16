@@ -14,12 +14,9 @@ const propTypes = {
   children: PropTypes.node,
   expandOpen: PropTypes.bool,
   icon: linkType,
+  innerRef: PropTypes.func,
   subject: subjectType,
   url: linkType,
-};
-
-const defaultProps = {
-  expandOpen: null,
 };
 
 const MenuItem = ({
@@ -27,26 +24,34 @@ const MenuItem = ({
   children,
   expandOpen,
   icon,
+  innerRef,
   subject,
   url,
 }) => {
   const isButton = !!(action || url);
-  const actionSafeURL = action && !url ? subject : url;
+  const actionSafeURL = action && !url ? subject.value : url;
   const component = !isButton
-    ? (props) => {
+    ? React.forwardRef((props, nestedRef) => {
       // eslint-disable-next-line no-unused-vars,react/prop-types
       const { tabIndex, ...otherProps } = props;
 
       return (
-        <li {...otherProps} />
+        <li ref={nestedRef} {...otherProps} />
       );
-    }
-    : props => <Link {...props} to={actionSafeURL} />;
+    })
+    : React.forwardRef((props, nestedRef) => (
+      <Link
+        ref={nestedRef}
+        {...props}
+        to={actionSafeURL}
+      />
+    ));
 
   return (
     <MaterialMenuItem
       button={isButton}
       component={component}
+      ref={innerRef}
       onClick={action}
     >
       {icon && (
@@ -61,7 +66,7 @@ const MenuItem = ({
     </MaterialMenuItem>
   );
 };
-MenuItem.propTypes = propTypes;
-MenuItem.defaultProps = defaultProps;
 
-export default MenuItem;
+MenuItem.propTypes = propTypes;
+
+export default React.forwardRef((props, ref) => <MenuItem innerRef={ref} {...props} />);

@@ -48,32 +48,37 @@ class MenuItemNavbar extends React.PureComponent {
 
     const InnerWrapper = href ? React.Fragment : NavbarLinkLink;
 
-    const menuItemLabel = onClick => (
-      <NavbarLinkWrapper>
-        <Property
-          forceRender
-          component={NavbarLinkLink}
-          data-test="MenuItem-MenuItemLabel"
-          handleClick={onClick}
-          id={id}
-          label={NS.ontola('href')}
-        >
-          <InnerWrapper
-            onClick={onClick}
+    const menuItemLabel = (onClick) => {
+      const wrapperProps = href ? {} : { onClick };
+
+      return (
+        <NavbarLinkWrapper>
+          <Property
+            forceRender
+            component={NavbarLinkLink}
+            data-test="MenuItem-MenuItemLabel"
+            handleClick={onClick}
+            id={id}
+            label={NS.ontola('href')}
           >
-            {showImage && <Property label={NS.schema('image')} />}
-            <Property label={NS.schema('name')} />
-          </InnerWrapper>
-        </Property>
-      </NavbarLinkWrapper>
-    );
+            <InnerWrapper {...wrapperProps}>
+              {showImage && <Property label={NS.schema('image')} />}
+              <Property label={NS.schema('name')} />
+            </InnerWrapper>
+          </Property>
+        </NavbarLinkWrapper>
+      );
+    };
 
     if (menuItems) {
       return (
         <Menu trigger={menuItemLabel}>
-          {onClose => (
+          {({ handleClose, ref }) => (
             <LinkedResourceContainer
-              childProps={{ onClose }}
+              childProps={{
+                onClose: handleClose,
+                ref,
+              }}
               subject={menuItems}
             />
           )}

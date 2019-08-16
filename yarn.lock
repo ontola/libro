@@ -8369,10 +8369,10 @@ link-lib@=1.0.0-rc3:
     solid-auth-client "^2.3.0"
     xmldom "^0.1.22"
 
-link-redux@=1.0.0-rc4.6:
-  version "1.0.0-rc4.6"
-  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-rc4.6.tgz#5d71a5de2fd6130f9d356f8316b74e96012ac9b4"
-  integrity sha512-gJD3TA+cOh2XPV+aqvsbbKUWQzMTzYzN2JKOVSdyRIYnLyxl+3Cy1Fggz+rnrIkpB8O5hwblnY+lblWYBes58w==
+link-redux@=1.0.0-rc4.8:
+  version "1.0.0-rc4.8"
+  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-rc4.8.tgz#b4725c91aa0ab6d08f69a4cfbde5600295bfb66b"
+  integrity sha512-rp1xcg3YOp37ys437dNUfB16qv50ZkD4PysY4/YiJWEjfWdaN5yiZjoiWtOHv6zPhcSEcqxMBlGWCq8DFiczwA==
   dependencies:
     link-rdflib "npm:link-rdflib@0.19.1-20190124T144209"
 

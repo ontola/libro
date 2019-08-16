@@ -15,11 +15,12 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import { appMenuTopology } from '../../topologies/AppMenu';
 import { menuTopology } from '../../topologies/Menu';
 
-const MenuItemDropdownContent = ({
+const MenuItemDropdownContentComp = ({
   action,
   hideIcon,
   href,
   image,
+  innerRef,
   lrs,
   menuItems,
   name,
@@ -27,11 +28,13 @@ const MenuItemDropdownContent = ({
   subject,
 }) => {
   const [nameOverride, setNameOverride] = React.useState(undefined);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(menuItems ? false : null);
 
   function handleClick(e) {
     e.preventDefault();
-    setOpen(!open);
+    if (open !== null) {
+      setOpen(!open);
+    }
   }
 
   function actionFunc(e) {
@@ -47,15 +50,21 @@ const MenuItemDropdownContent = ({
       });
   }
 
+  const sharedProps = {
+    expandOpen: open,
+    icon: hideIcon ? null : image,
+    lrs,
+    ref: innerRef,
+    subject,
+  };
+
   if (menuItems) {
     return (
       <Fragment>
         <MenuItem
           action={handleClick}
-          expandOpen={open}
-          icon={hideIcon ? null : image}
-          lrs={lrs}
           subject={subject}
+          {...sharedProps}
         >
           {nameOverride || name.value}
         </MenuItem>
@@ -77,15 +86,30 @@ const MenuItemDropdownContent = ({
   return (
     <MenuItem
       action={action ? actionFunc : onClose}
-      icon={hideIcon ? null : image}
-      lrs={lrs}
-      subject={subject}
       url={href && href.value}
+      {...sharedProps}
     >
       {nameOverride || name.value}
     </MenuItem>
   );
 };
+
+MenuItemDropdownContentComp.propTypes = {
+  action: linkType,
+  hideIcon: PropTypes.bool,
+  href: linkType,
+  image: linkType,
+  innerRef: PropTypes.func,
+  lrs: lrsType,
+  menuItems: linkType,
+  name: linkType,
+  onClose: PropTypes.func,
+  subject: subjectType,
+};
+
+const MenuItemDropdownContent = React.forwardRef(
+  (props, ref) => <MenuItemDropdownContentComp innerRef={ref} {...props} />
+);
 
 MenuItemDropdownContent.type = NS.ontola('MenuItem');
 
@@ -101,17 +125,5 @@ MenuItemDropdownContent.mapDataToProps = [
   NS.ontola('menuItems'),
   NS.schema('image'),
 ];
-
-MenuItemDropdownContent.propTypes = {
-  action: linkType,
-  hideIcon: PropTypes.bool,
-  href: linkType,
-  image: linkType,
-  lrs: lrsType,
-  menuItems: PropTypes.node,
-  name: linkType,
-  onClose: PropTypes.func,
-  subject: subjectType,
-};
 
 export default register(MenuItemDropdownContent);

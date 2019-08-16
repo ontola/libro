@@ -57,11 +57,12 @@ describe('MenuItem', () => {
           <button onClick={onClick}>Menu Trigger</button>
         )}
       >
-        {({ handleClose }) => (
+        {({ handleClose, ref }) => (
           <LinkedResourceContainer
             childProps={{
               hideIcon: true,
               onClose: handleClose,
+              ref,
             }}
             subject={menuIRI}
           />
