@@ -11,6 +11,7 @@ const TEXTFIELD_MIN_ROWS = 3;
 const MAX_STR_LEN = 255;
 
 const inputsPreferringPlaceholder = [
+  'markdown',
   'text',
   'textarea',
 ];
