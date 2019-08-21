@@ -1,6 +1,10 @@
 import Stream from 'stream';
 
-import { INTERNAL_SERVER_ERROR, SERVICE_UNAVAILABLE } from 'http-status-codes';
+import {
+  INTERNAL_SERVER_ERROR,
+  NOT_FOUND,
+  SERVICE_UNAVAILABLE,
+} from 'http-status-codes';
 
 import * as constants from '../../app/config';
 import { isHTMLHeader } from '../utils/http';
@@ -52,6 +56,8 @@ export default function application(port) {
 
       const websiteMetaHeader = serverRes.headers.get('Website-Meta');
       if (!websiteMetaHeader) {
+        res.status(NOT_FOUND).end();
+
         throw new Error('No Website-Meta header in response');
       }
       const websiteMetaParams = new URLSearchParams(websiteMetaHeader);
@@ -66,6 +72,8 @@ export default function application(port) {
       };
 
       if (!websiteMeta.website) {
+        res.status(NOT_FOUND).end();
+
         throw new Error(`No website iri in head, got status '${serverRes.status}' and header '${websiteMetaHeader}'`);
       }
 
@@ -122,7 +130,7 @@ export default function application(port) {
           req.bugsnag.notify(e);
         }
 
-        const auth = e.headers.get('new-authorization');
+        const auth = res.headers.get('new-authorization');
         if (auth) {
           req.session.arguToken = { accessToken: auth };
           req.api.userToken = auth;
