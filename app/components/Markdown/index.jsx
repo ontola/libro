@@ -40,9 +40,9 @@ const routerLink = tabIndex => (link) => {
   );
 };
 
-const stylizedPlaintextLink = link => <u>{link.children}</u>;
+const stylizedPlaintextLink = link => <u>{link.value}</u>;
 
-const codePre = code => <code className="Markdown__inline-code">{code.children}</code>;
+const codePre = link => <code className="Markdown__inline-code">{link.value}</code>;
 
 class Markdown extends React.PureComponent {
   static propTypes = {

@@ -169,7 +169,7 @@
     "link-redux": "=1.0.0-rc4.8",
     "lint-staged": "^9.2.0",
     "markdown-draft-js": "^1.4.1",
-    "megadraft": "^0.6.5",
+    "megadraft": "^0.6.7",
     "mini-css-extract-plugin": "^0.7.0",
     "n-quads-parser": "^2.0.3",
     "n3": "^1.0.4",

@@ -139,6 +139,16 @@
         padding-bottom: 0;
       }
     }
+
+    &--markdown {
+      background: none;
+      border: 0;
+      display: flex;
+      flex: 1;
+      padding: 0;
+      position: relative;
+      width: 100%;
+    }
   }
 
   &.Field--active {

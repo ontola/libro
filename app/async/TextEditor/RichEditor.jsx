@@ -54,13 +54,14 @@ class RichEditor extends PureComponent {
 
     return (
       <React.Fragment>
-        <div className="Field__input">
+        <div className="Field__input Markdown">
           <MegadraftEditor
             customStyleMap={styleMap}
             editorState={editorState}
             id={id}
             placeholder={placeholder}
             sidebarRendererFn={mySideBar}
+            softNewLines={false}
             onBlur={onBlur}
             onChange={(e) => {
               onSaveEditorState(e);

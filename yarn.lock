@@ -9077,7 +9077,7 @@ media-typer@0.3.0:
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
   integrity sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=
 
-megadraft@^0.6.5:
+megadraft@^0.6.7:
   version "0.6.7"
   resolved "https://registry.yarnpkg.com/megadraft/-/megadraft-0.6.7.tgz#8e2986735cc716f745bc93e872fa322edc5fdc65"
   integrity sha512-xCkqvgFotSpS2cE5/vJCPawmuufogGqU38rGSHIAzcK5TSuuW+o8fv6HBrP15li1Pd5evk2yhz/bWbujm3Ht8w==

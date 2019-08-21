@@ -1,65 +1,61 @@
-import React, { Component } from 'react';
+import Modal from '@material-ui/core/Modal';
+import { makeStyles } from '@material-ui/styles';
+import React, { useState } from 'react';
 
 import Button from '../../components/Button';
 import Markdown from '../../components/Markdown';
-import Modal from '../../components/Modal';
 
 import instructions from './instructions';
 
-const getParent = () => document.querySelector('#start-of-content');
+/* eslint-disable no-magic-numbers */
+const useStyles = makeStyles(theme => ({
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    margin: 'auto',
+    padding: theme.spacing(4, 4, 4),
+    position: 'relative',
+    top: '10vh',
+    width: 400,
+  },
+}));
+/* eslint-enable no-magic-numbers */
 
-class MarkdownInstructions extends Component {
-  constructor() {
-    super();
-    this.state = {
-      showModal: false,
-    };
+const MarkdownInstructions = () => {
+  const classes = useStyles();
+  const [showModal, setModal] = useState(false);
 
-    this.handleOpenModal = this.handleOpenModal.bind(this);
-    this.handleCloseModal = this.handleCloseModal.bind(this);
-  }
-
-  handleOpenModal() {
-    this.setState({ showModal: true });
-  }
-
-  handleCloseModal() {
-    this.setState({ showModal: false });
-  }
-
-  render() {
-    return (
-      <div>
-        <Button
-          small
-          icon="info"
-          theme="transparant"
-          onClick={this.handleOpenModal}
-        >
-        Markdown hulp
-        </Button>
-        <Modal
-          contentLabel="onRequestClose Example"
-          isOpen={this.state.showModal}
-          parentSelector={getParent}
-          onRequestClose={this.handleCloseModal}
-        >
+  return (
+    <div>
+      <Button
+        small
+        icon="info"
+        theme="transparant"
+        onClick={() => setModal(true)}
+      >
+      Markdown hulp
+      </Button>
+      <Modal
+        aria-labelledby="Instructies voor opmaak tonen"
+        open={showModal}
+        onClose={() => setModal(false)}
+      >
+        <div className={classes.paper}>
           <Button
             className="Modal__close"
             icon="times"
             theme="transparant"
-            onClick={this.handleCloseModal}
+            onClick={() => setModal(true)}
           >
             Sluiten
           </Button>
           <Markdown
             text={instructions}
           />
-        </Modal>
-      </div>
-    );
-  }
-}
-
+        </div>
+      </Modal>
+    </div>
+  );
+};
 
 export default MarkdownInstructions;

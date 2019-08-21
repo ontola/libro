@@ -82,7 +82,7 @@ class TextEditor extends Component {
     }
 
     return (
-      <div className="Markdown TextEditor">
+      <div className="TextEditor">
         {(showRichEditor && !disableRich) && (
         <RichEditor
           autoFocus={autoFocus}
