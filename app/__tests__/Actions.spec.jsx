@@ -30,7 +30,10 @@ describe('Actions', () => {
       [NS.schema.url]: NS.example('endpoint'),
       [NS.ll('actionBody')]: {
         [NS.rdf.type]: NS.sh.NodeShape,
-        [NS.sh.targetNode]: NS.example('resource'),
+        [NS.sh.targetNode]: {
+          '@id': NS.example('resource'),
+          [NS.rdf.type]: NS.schema.Thing,
+        },
         [NS.sh.property]: [
           {
             '@id': nameIRI,

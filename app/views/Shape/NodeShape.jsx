@@ -7,14 +7,20 @@ import {
   subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
-import { BlankNode, NamedNode } from 'rdflib';
+import {
+  BlankNode,
+  NamedNode,
+  Term,
+} from 'rdflib';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import Button from '../../components/Button';
+import { LoadingWidgetContent } from '../../components/Loading';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../topologies';
-import { isMarkedForRemove } from '../../helpers/forms';
+import { isMarkedForRemove, retrieveIdFromValue } from '../../helpers/forms';
+import { entityIsLoaded } from '../../helpers/data';
 
 const propTypes = {
   autofocusForm: PropTypes.bool,
@@ -52,6 +58,17 @@ const NodeShape = ({
 }) => {
   if (targetValue && isMarkedForRemove(targetValue)) {
     return null;
+  }
+
+  const targetObject = targetNode || retrieveIdFromValue(targetValue);
+  const targetIRI = targetObject && targetObject instanceof Term && targetObject;
+
+  if (targetIRI && targetIRI.termType !== 'BlankNode' && !entityIsLoaded(lrs, targetIRI)) {
+    if (__CLIENT__) {
+      lrs.getEntity(targetIRI);
+
+      return <LoadingWidgetContent />;
+    }
   }
 
   return (

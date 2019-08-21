@@ -9,16 +9,39 @@ import PropTypes from 'prop-types';
 import { Term } from 'rdflib';
 import React from 'react';
 
+import { LoadingRow } from '../../components/Loading';
 import { collectionMembers } from '../../helpers/diggers';
 import {
   calculateFormFieldName,
   retrieveIdFromValue,
 } from '../../helpers/forms';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { isPromise } from '../../helpers/types';
 import { allTopologies } from '../../topologies';
+import { entityIsLoaded } from '../../helpers/data';
 
 import DataField from './PropertyShape/DataField';
 import NestedResource from './PropertyShape/NestedResource';
+
+const getTargetValues = (lrs, rawTargetValues) => {
+  const isCollection = rawTargetValues?.length === 1
+    && lrs.findSubject(rawTargetValues[0], [NS.rdf('type')], NS.as('Collection')).length > 0;
+
+  if (!isCollection
+    && rawTargetValues?.length === 1
+    && rawTargetValues[0].termType === 'NamedNode'
+    && !entityIsLoaded(lrs, rawTargetValues[0])) {
+    if (__CLIENT__) {
+      return lrs.getEntity(rawTargetValues[0]);
+    }
+  }
+
+  if (isCollection) {
+    return lrs.dig(rawTargetValues[0], collectionMembers);
+  }
+
+  return rawTargetValues;
+};
 
 const PropertyShape = (props) => {
   const {
@@ -34,24 +57,18 @@ const PropertyShape = (props) => {
   const fieldName = calculateFormFieldName(propertyIndex, path);
   const targetObject = targetNode || retrieveIdFromValue(targetValue);
   const targetIRI = targetObject && targetObject instanceof Term && targetObject;
-  let targetValues = targetIRI && lrs.getResourceProperties(targetIRI, path) ?? [];
-  const isCollection = targetValues?.length === 1
-    && lrs.findSubject(targetValues[0], [NS.rdf('type')], NS.as('Collection')).length > 0;
+  const rawTargetValues = targetIRI && lrs.getResourceProperties(targetIRI, path) ?? [];
   useDataInvalidation({
-    dataSubjects: targetValues.filter(s => ['NamedNode', 'TermType'].includes(s.termType)),
+    dataSubjects: [
+      targetIRI,
+      ...(rawTargetValues || []).filter(s => ['NamedNode', 'TermType'].includes(s.termType)),
+    ],
     subject,
   });
+  const targetValues = getTargetValues(lrs, rawTargetValues);
 
-  if (!isCollection && targetValues?.length === 1 && targetValues[0].termType === 'NamedNode' && lrs.tryEntity(targetValues[0]).length === 0) {
-    if (__CLIENT__) {
-      lrs.queueEntity(targetValues[0]);
-    }
-
-    return null;
-  }
-
-  if (isCollection) {
-    targetValues = lrs.dig(targetValues[0], collectionMembers);
+  if (isPromise(targetValues)) {
+    return <LoadingRow />;
   }
 
   if (props.class) {

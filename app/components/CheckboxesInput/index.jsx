@@ -10,13 +10,15 @@ import Select from '../../topologies/Select';
 import { Input } from '../Input';
 import FieldLabel from '../FieldLabel';
 import Spinner from '../Spinner';
+import { parseForStorage } from '../../hooks/usePersistence';
 
 function handleChange(e, props) {
   const value = props.value?.slice() || [];
+  const parsedValue = parseForStorage(e.target.value);
   if (e.target.checked) {
-    value.push(e.target.id);
+    value.push(parsedValue);
   } else {
-    const index = value.indexOf(e.target.id);
+    const index = value.indexOf(parsedValue);
     if (index !== -1) {
       value.splice(index, 1);
     }
@@ -47,14 +49,15 @@ function CheckboxesInput(props) {
     return (
       <div className="Field__input Field__input--checkbox" key={`checkbox-${item.value}`}>
         <Input
-          checked={props.value && props.value.indexOf(item.value) !== -1}
-          id={item.value}
+          checked={props.value && props.value.indexOf(item) !== -1}
+          id={item}
           name={sharedProps.name}
           type="checkbox"
+          value={JSON.stringify(item)}
           onChange={e => handleChange(e, props)}
         />
         <FieldLabel
-          htmlFor={item.value}
+          htmlFor={item}
           label={label}
         />
       </div>
