@@ -33,6 +33,7 @@ const propTypes = {
   onPlainChange: PropTypes.func.isRequired,
   onShowPreview: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
+  rows: PropTypes.number,
   showPreview: PropTypes.bool.isRequired,
 };
 
@@ -67,6 +68,7 @@ const PlainEditor = ({
   onPlainChange,
   onShowPreview,
   placeholder,
+  rows,
   showPreview,
 }) => (
   <div>
@@ -82,6 +84,7 @@ const PlainEditor = ({
         maxLength={maxLength}
         minLength={minLength}
         placeholder={placeholder}
+        rows={rows}
         value={mdText}
         onBlur={onBlur}
         onChange={

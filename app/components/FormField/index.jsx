@@ -372,7 +372,7 @@ class FormField extends React.PureComponent {
         break;
       case 'markdown':
         element = TextEditor;
-        sharedProps.minRows = minRows;
+        sharedProps.rows = minRows;
         break;
       case 'checkbox': {
         const currentValue = input.value;

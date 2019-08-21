@@ -26,6 +26,7 @@ const propTypes = {
   onFocus: PropTypes.func.isRequired,
   onKeyUp: PropTypes.func,
   placeholder: PropTypes.string,
+  rows: PropTypes.number,
   showRichEditor: PropTypes.bool.isRequired,
 };
 
@@ -67,6 +68,7 @@ class TextEditor extends Component {
       maxLength,
       minLength,
       placeholder,
+      rows,
       showRichEditor,
       onBlur,
       onFocus,
@@ -106,6 +108,7 @@ class TextEditor extends Component {
           maxLength={maxLength}
           minLength={minLength}
           placeholder={placeholder}
+          rows={rows}
           onBlur={onBlur}
           onChange={onChange}
           onFocus={onFocus}
