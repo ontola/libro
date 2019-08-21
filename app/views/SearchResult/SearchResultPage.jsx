@@ -1,4 +1,3 @@
-import equal from 'fast-deep-equal';
 import {
   Property,
   linkType,
@@ -7,29 +6,16 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Field, Form } from 'react-final-form';
-import {
-  FormattedMessage,
-  defineMessages,
-  useIntl,
-} from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router';
 
-import Button from '../../components/Button';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { retrievePath } from '../../helpers/iris';
 import { allTopologiesExcept } from '../../topologies';
 import { navbarTopology } from '../../topologies/Navbar';
+import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 import Container from '../../topologies/Container';
-
-import { searchIri } from './searchHelper';
-
-const messages = defineMessages({
-  placeholder: {
-    defaultMessage: 'Enter a query',
-    id: 'https://app.argu.co/i18n/search/input/placeholder',
-  },
-});
+import SearchForm from '../../components/SearchForm';
 
 export const SearchResultPage = ({
   collectionDisplay,
@@ -40,9 +26,6 @@ export const SearchResultPage = ({
   took,
   totalItems,
 }) => {
-  const { formatMessage } = useIntl();
-
-  const queryNormalized = query?.value ?? '';
   const body = (
     <Property
       collectionDisplay={collectionDisplay}
@@ -66,42 +49,10 @@ export const SearchResultPage = ({
         <div className="SearchResult__header">
           <Property label={NS.schema('isPartOf')} />
         </div>
-        <Form
-          initialValues={{ q: queryNormalized }}
-          initialValuesEqual={equal}
-          render={({ handleSubmit }) => (
-            <form
-              className="SearchResult__form"
-              data-testid="search-form"
-              role="search"
-              onSubmit={handleSubmit}
-            >
-              <Field
-                autoFocus
-                className="SearchResult__form-input"
-                component="input"
-                name="q"
-                placeholder={formatMessage(messages.placeholder)}
-                type="search"
-              />
-              <Button
-                className="SearchResult__form-submit"
-                type="submit"
-              >
-                <FormattedMessage
-                  defaultMessage="Search"
-                  id="https://app.argu.co/i18n/search/button/label"
-                />
-              </Button>
-            </form>
-          )}
-          onSubmit={({ q }) => {
-            if (q === queryNormalized) {
-              return;
-            }
-
-            history.push(retrievePath(searchIri(searchTemplate.value, q, 1).value));
-          }}
+        <SearchForm
+          history={history}
+          query={query}
+          searchTemplate={searchTemplate}
         />
         {totalItems && took && (
           <p className="SearchResult__query-info">
@@ -131,7 +82,7 @@ export const SearchResultPage = ({
 
 SearchResultPage.type = NS.argu('SearchResult');
 
-SearchResultPage.topology = allTopologiesExcept(navbarTopology);
+SearchResultPage.topology = allTopologiesExcept(navbarTopology, widgetTopologyTopology);
 
 SearchResultPage.hocs = [withRouter];
 
