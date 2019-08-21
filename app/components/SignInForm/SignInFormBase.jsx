@@ -5,6 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import Button from '../Button';
 import FormField from '../FormField';
 import CloseableContainer from '../../containers/CloseableContainer';
+import { NS } from '../../helpers/LinkedRenderStore';
 import { handle } from '../../helpers/logging';
 import validators, { combineValidators } from '../../helpers/validators';
 import {
@@ -56,9 +57,9 @@ class SignInFormBase extends React.PureComponent {
       <CardRow>
         <CardContent>
           <p>Door je te registreren ga je akkoord met de
-            <CardLink to="/policy"> algemene voorwaarden </CardLink>
+            <CardLink to={NS.app('policy')}> algemene voorwaarden </CardLink>
             en de
-            <CardLink to="/privacy"> privacy policy</CardLink>.
+            <CardLink to={NS.app('privacy')}> privacy policy</CardLink>.
           </p>
           {this.emailField()}
           <FormField
