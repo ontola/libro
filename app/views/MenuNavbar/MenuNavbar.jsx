@@ -3,7 +3,7 @@ import Divider from '@material-ui/core/Divider';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import MenuClose from '@material-ui/icons/Close';
 import MenuOpen from '@material-ui/icons/Menu';
-import { makeStyles, useTheme } from '@material-ui/styles';
+import { useTheme } from '@material-ui/styles';
 import {
   LinkedResourceContainer,
   register,
@@ -14,24 +14,15 @@ import { connect } from 'react-redux';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import { getCurrentUserType } from '../../state/app/selectors';
-import variables from '../../themes/common/variables';
 import AppMenu from '../../topologies/AppMenu';
 import { navbarTopology } from '../../topologies/Navbar';
+
+import useStyles from './MenuNavbarStyles';
 
 const mapDataToProps = state => ({
   showUserMenu: ['ConfirmedUser', 'UnconfirmedUser'].includes(getCurrentUserType(state)),
 });
 
-const useStyles = makeStyles({
-  button: {
-    borderRadius: '0',
-    minWidth: 'auto',
-    padding: '.5rem 1rem',
-  },
-  root: {
-    backgroundColor: variables.grey.xxLight,
-  },
-});
 
 const MenuNavbar = ({
   showUserMenu,

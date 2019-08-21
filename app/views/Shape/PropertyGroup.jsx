@@ -1,6 +1,5 @@
 import Collapse from '@material-ui/core/Collapse';
 import { ButtonBase } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
 import {
   linkType,
   register,
@@ -13,30 +12,7 @@ import PropTypes from 'prop-types';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../topologies';
 
-const useStyles = makeStyles(() => ({
-  caret: {
-    alignSelf: 'flex-end',
-  },
-  description: {
-    flex: '1',
-  },
-  fieldSet: {
-    flex: '1',
-  },
-  hidden: {
-    display: 'none',
-  },
-  labelButton: {
-    display: 'flex',
-    flex: '1',
-    marginBottom: '1rem',
-    textAlign: 'left',
-    width: '100%',
-  },
-  legend: {
-    flex: '1',
-  },
-}));
+import useStyles from './PropertyGroupStyles';
 
 const PropertyGroup = ({
   description,

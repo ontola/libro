@@ -8,8 +8,6 @@ const propTypes = {
   children: PropTypes.node,
   features: PropTypes.arrayOf(
     PropTypes.oneOf([
-      'highlighted-darken',
-      'highlighted-lighten',
       'padded',
     ])
   ),

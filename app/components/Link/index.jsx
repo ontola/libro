@@ -1,4 +1,3 @@
-import { makeStyles } from '@material-ui/styles';
 import clsx from 'clsx';
 import { lrsType, useLRS } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -12,46 +11,8 @@ import {
   retrievePath,
 } from '../../helpers/iris';
 
-const themeStyles = makeStyles(() => ({
-  default: {
-    alignItems: 'baseline',
-    display: 'inline-flex',
-    whiteSpace: 'pre-wrap',
-  },
-  parent: {
-    '&:hover': {
-      color: "color('grey', 'dark')",
-    },
-    color: "color('grey', 'xx-light-foreground-small')",
-    display: 'inline-flex',
-    fontWeight: 'bold',
-    margin: '0 .2em',
-    transition: 'background-color .1s',
-  },
-}));
-
-const featureStyles = makeStyles(() => ({
-  bold: {
-    fontWeight: 600,
-  },
-  centered: {
-    alignItems: 'center',
-  },
-  'highlighted-darken': {
-    '&:hover': {
-      backgroundColor: "color('transparent', 'x-dark')",
-    },
-  },
-  'highlighted-lighten': {
-    '&:hover': {
-      backgroundColor: "color('transparent')",
-    },
-  },
-  padded: {
-    display: 'block',
-    padding: "units('xx-small', 'large')",
-  },
-}));
+import themeStyles from './ThemeStyles';
+import featureStyles from './FeatureStyles';
 
 const isActive = (to) => {
   const relative = retrievePath(to);
@@ -138,8 +99,6 @@ Link.propTypes = {
     PropTypes.oneOf([
       'bold',
       'centered',
-      'highlighted-darken',
-      'highlighted-lighten',
       'padded',
     ])
   ),

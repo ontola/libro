@@ -1,32 +1,36 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import './Breadcrumbs.scss';
 import LDLink from '../LDLink';
 
-const propTypes = {
-  image: PropTypes.node,
-  label: PropTypes.node,
-  title: PropTypes.string,
-};
+import './Breadcrumbs.scss';
+import breadcrumbStyles from './BreadcrumbStyles';
 
 /**
  * A single part of a BreadcrumbsBar
  * @returns {component} Component
  */
-class Breadcrumb extends React.PureComponent {
-  render() {
-    return (
-      <LDLink className="Breadcrumb" title={this.props.title}>
-        {this.props.image}
-        <div className="Breadcrumb__text">
-          {this.props.label}
-        </div>
-      </LDLink>
-    );
-  }
-}
+const Breadcrumb = ({
+  image,
+  label,
+  title,
+}) => {
+  const classes = breadcrumbStyles();
 
-Breadcrumb.propTypes = propTypes;
+  return (
+    <LDLink className={classes.default} title={title}>
+      {image}
+      <div className="Breadcrumb__text">
+        {label}
+      </div>
+    </LDLink>
+  );
+};
+
+Breadcrumb.propTypes = {
+  image: PropTypes.node,
+  label: PropTypes.node,
+  title: PropTypes.string,
+};
 
 export default Breadcrumb;
