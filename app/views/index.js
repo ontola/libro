@@ -39,6 +39,7 @@ import Organization from './Organization/index';
 import Person from './Person';
 import Placement from './Placement';
 import PropertyQuery from './PropertyQuery';
+import Risk from './Risk';
 import SearchResult from './SearchResult';
 import SeqComp from './Seq';
 import Shape from './Shape';
@@ -88,6 +89,7 @@ export function getViews() {
     ...PropertyQuery,
     ...RDFProperty,
     ...RDFSClass,
+    ...Risk,
     ...SearchResult,
     ...SeqComp,
     ...Shape,
