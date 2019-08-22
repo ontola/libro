@@ -190,6 +190,11 @@
     &--select {
       padding: 0;
     }
+
+    &.Field__input--markdown {
+      padding: 0;
+      margin: 0;
+    }
   }
 
   .Field--active {
@@ -203,8 +208,6 @@
       box-shadow: inset 5px 0 0 $alert-color;
     }
   }
-
-
 
   &.Field--pro {
     .Field__input {
