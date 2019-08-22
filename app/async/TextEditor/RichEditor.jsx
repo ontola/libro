@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
+import { createDraftFromMarkdown } from '../../helpers/markdownHelper';
 import {
   getDraftState,
   getEditorShowPreview,
@@ -24,6 +25,7 @@ const propTypes = {
   onKeyUp: PropTypes.func,
   onSaveEditorState: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
+  value: PropTypes.string,
 };
 
 // Same as Markdown.scss -> code
@@ -40,6 +42,12 @@ const styleMap = {
 const mySideBar = () => null;
 
 class RichEditor extends PureComponent {
+  componentDidMount() {
+    this.props.onSaveEditorState(
+      createDraftFromMarkdown(this.props.value)
+    );
+  }
+
   render() {
     const {
       editorState,
@@ -50,6 +58,7 @@ class RichEditor extends PureComponent {
       onKeyUp,
       onSaveEditorState,
       placeholder,
+      value,
     } = this.props;
 
     return (
@@ -62,6 +71,7 @@ class RichEditor extends PureComponent {
             placeholder={placeholder}
             sidebarRendererFn={mySideBar}
             softNewLines={false}
+            value={value}
             onBlur={onBlur}
             onChange={(e) => {
               onSaveEditorState(e);

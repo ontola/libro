@@ -28,6 +28,7 @@ const propTypes = {
   placeholder: PropTypes.string,
   rows: PropTypes.number,
   showRichEditor: PropTypes.bool.isRequired,
+  value: PropTypes.string,
 };
 
 const defaultProps = {
@@ -70,6 +71,7 @@ class TextEditor extends Component {
       placeholder,
       rows,
       showRichEditor,
+      value,
       onBlur,
       onFocus,
       onChange,
@@ -90,6 +92,7 @@ class TextEditor extends Component {
           autoFocus={autoFocus}
           id={id}
           placeholder={placeholder}
+          value={value}
           onBlur={(e) => {
             onBlur(e);
             // Convert the DraftJS object to Markdown and pass it through.
@@ -109,6 +112,7 @@ class TextEditor extends Component {
           minLength={minLength}
           placeholder={placeholder}
           rows={rows}
+          value={value}
           onBlur={onBlur}
           onChange={onChange}
           onFocus={onFocus}
