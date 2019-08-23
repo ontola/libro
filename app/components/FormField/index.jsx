@@ -64,7 +64,10 @@ const propTypes = {
     ]),
   }),
   // Text above input field
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
+  ]),
   lrs: lrsType,
   maxLength: PropTypes.number,
   /** @private Contains form-library specific data */
