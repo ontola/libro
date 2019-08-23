@@ -3,6 +3,7 @@ import {
   linkType,
   register,
 } from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -15,14 +16,18 @@ import CardContent from '../../components/Card/CardContent';
 import Container from '../../topologies/Container';
 import HomepageError from '../Error/HomepageError';
 
-const OrganizationPage = ({ homepage, name }) => {
+const OrganizationPage = ({
+  homepage,
+  name,
+  showHeader,
+}) => {
   if (homepage) {
     return <LinkedResourceContainer subject={homepage} onError={HomepageError} />;
   }
 
   return (
     <PrimaryResource>
-      <PageHeader />
+      {showHeader && <PageHeader />}
       <Container>
         <Card>
           <CardContent>
@@ -54,11 +59,13 @@ OrganizationPage.topology = [
 OrganizationPage.mapDataToProps = [
   NS.foaf('homepage'),
   NS.schema('name'),
+  NS.argu('showHeader'),
 ];
 
 OrganizationPage.propTypes = {
   homepage: linkType,
   name: linkType,
+  showHeader: PropTypes.bool,
 };
 
 export default register(OrganizationPage);
