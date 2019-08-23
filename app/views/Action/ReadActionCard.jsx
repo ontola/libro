@@ -1,4 +1,8 @@
-import { register, subjectType } from 'link-redux';
+import {
+  linkType,
+  register,
+  subjectType,
+} from 'link-redux';
 import React from 'react';
 
 import LRS, { NS } from '../../helpers/LinkedRenderStore';
@@ -7,10 +11,11 @@ import { cardFixedTopology } from '../../topologies/Card/CardFixed';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 
 const propTypes = {
+  name: linkType,
   subject: subjectType,
 };
 
-const ReadActionCard = ({ subject }) => (
+const ReadActionCard = ({ subject, name }) => (
   <div
     data-test="Notification-ReadAction"
     onClick={() => LRS.exec(subject)}
@@ -30,6 +35,7 @@ const ReadActionCard = ({ subject }) => (
         top: '-.6em',
         width: '1em',
       }}
+      title={name && name.value}
     />
   </div>
 );
@@ -41,6 +47,8 @@ ReadActionCard.topology = [
   cardMainTopology,
   cardTopology,
 ];
+
+ReadActionCard.mapDataToProps = [NS.schema.name];
 
 ReadActionCard.propTypes = propTypes;
 

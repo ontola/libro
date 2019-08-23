@@ -1,8 +1,11 @@
+import { ThemeProvider } from '@material-ui/styles';
 import LinkedRenderStore, { list, seq } from 'link-lib';
 import { RenderStoreProvider } from 'link-redux';
 import { IntlProvider, injectIntl } from 'react-intl';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
+
+import themes from '../app/themes';
 
 import { generateStore } from './link-redux/utilities';
 import * as ctx from './link-redux/fixtures';
@@ -146,6 +149,9 @@ function argUnit(comp, func, opts = {}) {
     }
     if (opts.intl) {
       element = React.createElement(IntlProvider, { locale: 'en' }, element);
+    }
+    if (opts.themeProvider) {
+      element = React.createElement(ThemeProvider, { theme: themes.common }, element);
     }
     if (opts.router || opts.intl) {
       element = React.createElement(StaticRouter, {}, element);

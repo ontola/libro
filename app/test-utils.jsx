@@ -1,3 +1,4 @@
+import { ThemeProvider } from '@material-ui/styles';
 import { render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { toGraph } from 'link-lib';
@@ -17,6 +18,7 @@ import { WebsiteContext } from './location';
 import configureStore from './state';
 import englishMessages from './translations/en';
 import { getViews } from './views';
+import themes from './themes';
 
 const wrapProviders = ({
   ctx,
@@ -39,9 +41,11 @@ const wrapProviders = ({
           <HelmetProvider context={{}}>
             <LRSProvider value={ctx?.lrs}>
               <IntlProvider locale="en" messages={englishMessages}>
-                <Router history={history}>
-                  {children}
-                </Router>
+                <ThemeProvider theme={themes.common}>
+                  <Router history={history}>
+                    {children}
+                  </Router>
+                </ThemeProvider>
               </IntlProvider>
             </LRSProvider>
           </HelmetProvider>

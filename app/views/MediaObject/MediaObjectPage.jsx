@@ -87,6 +87,7 @@ class MediaObjectPage extends React.PureComponent {
         <Link
           className="MediaObjectPage__infobar--is-part-of"
           data-test="MediaObject-isPartOf"
+          title="Back to parent"
           to={retrievePath(isPartOf.value)}
         >
           <FontAwesome name="arrow-left" />
@@ -165,6 +166,7 @@ class MediaObjectPage extends React.PureComponent {
     return (
       <Container>
         <Image
+          ariaLabel={filename && filename.value}
           className={`MediaObjectPage__infobar--image ${classes}`}
           data-test="MediaObject-viewer-image"
           linkedProp={imageLink}
