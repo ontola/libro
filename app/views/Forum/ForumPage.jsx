@@ -1,31 +1,36 @@
-import React from 'react';
 import { Property, register } from 'link-redux';
+import PropTypes from 'prop-types';
+import React from 'react';
 
+import { LoadingFiller } from '../../components/Loading/index';
 import { NS } from '../../helpers/LinkedRenderStore';
 import Container from '../../topologies/Container/index';
 import { pageTopology } from '../../topologies/Page';
 import PageHeader from '../../topologies/PageHeader';
 import PrimaryResource, { primaryResourceTopology } from '../../topologies/PrimaryResource';
-import { LoadingFiller } from '../../components/Loading/index';
 
-class ForumPage extends React.PureComponent {
-  static type = [NS.argu('ContainerNode'), NS.schema('WebPage')];
+const ForumPage = ({ showHeader }) => (
+  <PrimaryResource>
+    {showHeader && <PageHeader />}
+    <Container grid>
+      <Property label={NS.ontola('widgets')} onLoad={LoadingFiller} />
+    </Container>
+  </PrimaryResource>
+);
 
-  static topology = [
-    primaryResourceTopology,
-    pageTopology,
-  ];
+ForumPage.type = [NS.argu('ContainerNode'), NS.schema('WebPage')];
 
-  render() {
-    return (
-      <PrimaryResource>
-        <PageHeader />
-        <Container grid>
-          <Property label={NS.ontola('widgets')} onLoad={LoadingFiller} />
-        </Container>
-      </PrimaryResource>
-    );
-  }
-}
+ForumPage.mapDataToProps = [
+  NS.argu('showHeader'),
+];
+
+ForumPage.propTypes = {
+  showHeader: PropTypes.bool,
+};
+
+ForumPage.topology = [
+  primaryResourceTopology,
+  pageTopology,
+];
 
 export default register(ForumPage);
