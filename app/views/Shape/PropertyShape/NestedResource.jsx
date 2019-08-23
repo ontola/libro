@@ -266,7 +266,12 @@ class NestedResource extends React.Component {
       targetValues,
       maxCount,
       minCount,
+      theme,
     } = this.props;
+
+    if (theme === 'omniform') {
+      return null;
+    }
 
     const isOneToMany = !maxCount || tryParseInt(maxCount) > 1 || tryParseInt(minCount) > 1;
 
