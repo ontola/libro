@@ -25,6 +25,7 @@ import Group from './Group';
 import GroupMembership from './GroupMembership';
 import ImageObject from './ImageObject';
 import InfiniteCollectionPage from './InfiniteCollectionPage';
+import InterventionType from './InterventionType';
 import RDFProperty from './RDFProperty';
 import RDFSClass from './RDFSClass';
 import Loading from './Loading';
@@ -74,6 +75,7 @@ export function getViews() {
     ...Group,
     ...GroupMembership,
     ...ImageObject,
+    ...InterventionType,
     ...InfiniteCollectionPage,
     ...Loading,
     ...MediaObject,
