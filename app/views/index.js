@@ -46,6 +46,7 @@ import SeqComp from './Seq';
 import Shape from './Shape';
 import Snackbar from './Snackbar';
 import SnackbarManager from './SnackbarManager';
+import Token from './Token';
 import User from './User';
 import VideoPage from './VideoPage';
 import Volunteer from './Volunteer';
@@ -97,6 +98,7 @@ export function getViews() {
     ...Shape,
     ...Snackbar,
     ...SnackbarManager,
+    ...Token,
     ...User,
     ...VideoPage,
     ...Volunteer,
