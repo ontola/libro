@@ -38,6 +38,7 @@ import { CollectionTypes } from './types';
 import voteEvent from './voteEvent';
 import CollectionCardAppendix from './CollectionCardAppendix';
 import CollectionContainer from './CollectionContainer';
+import CollectionInline from './CollectionInline';
 import CollectionNavbar from './CollectionNavbar';
 import CollectionTableCell from './CollectionTableCell';
 import Header from './properties/header';
@@ -131,6 +132,7 @@ export default [
   ),
   ...TotalItems,
   CollectionCardAppendix,
+  CollectionInline,
   ...CollectionFrame,
   CreateAction,
   ...FilteredCollections,

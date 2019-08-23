@@ -20,6 +20,7 @@ export function Seq({
   itemWrapper: ItemWrapper,
   gutter,
   renderGutter,
+  separator,
   subject,
 }) {
   const lrs = useLRS();
@@ -42,23 +43,25 @@ export function Seq({
     subject,
   });
 
+  const elements = primary.map((s, i) => (
+    <ItemWrapper key={s.toString()}>
+      <LinkedResourceContainer
+        {...childProps}
+        columns={columns}
+        count={sequences.length}
+        data-test={`Seq-${i}-${s.value}`}
+        depth={depth}
+        first={sequences[0].object}
+        key={`${subject}-${s}`}
+        last={sequences[sequences.length - 1].object}
+        subject={s}
+      />
+    </ItemWrapper>
+  ));
+
   return (
     <React.Fragment>
-      {primary.map((s, i) => (
-        <ItemWrapper key={s.toString()}>
-          <LinkedResourceContainer
-            {...childProps}
-            columns={columns}
-            count={sequences.length}
-            data-test={`Seq-${i}-${s.value}`}
-            depth={depth}
-            first={sequences[0].object}
-            key={`${subject}-${s}`}
-            last={sequences[sequences.length - 1].object}
-            subject={s}
-          />
-        </ItemWrapper>
-      ))}
+      {separator ? elements.reduce((prev, curr) => [prev, separator, curr]) : elements}
       {secondary && renderGutter && renderGutter(secondary)}
     </React.Fragment>
   );
@@ -79,6 +82,7 @@ Seq.propTypes = {
   gutter: PropTypes.number,
   itemWrapper: PropTypes.elementType,
   renderGutter: PropTypes.func,
+  separator: PropTypes.string,
   subject: subjectType,
 };
 

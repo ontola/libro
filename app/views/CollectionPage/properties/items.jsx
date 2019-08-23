@@ -34,10 +34,11 @@ class Items extends PropertyBase {
     items: linkType,
     /** The amount of items to render. Leave undefined for all items */
     renderLimit: PropTypes.number,
+    separator: PropTypes.string,
     totalCount: linkType,
   };
 
-  itemList(columns) {
+  itemList(columns, separator) {
     const itemWrapper = this.props.collectionDisplay === NS.ontola('collectionDisplay/card')
       ? CardRow
       : React.Fragment;
@@ -51,6 +52,7 @@ class Items extends PropertyBase {
             depth={this.props.depth}
             itemWrapper={itemWrapper}
             key={`${this.props.subject}:${iri.value}`}
+            separator={separator}
             subject={iri}
           />
         ))
@@ -73,6 +75,7 @@ class Items extends PropertyBase {
     const {
       columns,
       items,
+      separator,
       totalCount,
     } = this.props;
 
@@ -100,9 +103,9 @@ class Items extends PropertyBase {
     if (Array.isArray(items) && items.length === 0) {
       children = null;
     } else if (Array.isArray(items)) {
-      children = this.itemList(columns);
+      children = this.itemList(columns, separator);
     } else if (typeof items.toArray !== 'undefined') {
-      children = this.itemList(columns).toKeyedSeq();
+      children = this.itemList(columns, separator).toKeyedSeq();
     } else {
       children = (
         <LinkedResourceContainer

@@ -12,9 +12,11 @@ import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { currentLocation } from '../../helpers/paths';
 import { allTopologiesExcept } from '../../topologies';
+import { inlineTopology } from '../../topologies/Inline';
 import { pageTopology } from '../../topologies/Page';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 
+import CollectionPageInline from './CollectionPageInline';
 import Items from './properties/items';
 import Name from './properties/name';
 import Views from './properties/views';
@@ -80,7 +82,7 @@ function getCollectionPage({
 }
 
 const DefaultCollectionPage = getCollectionPage({
-  topology: allTopologiesExcept(pageTopology, primaryResourceTopology),
+  topology: allTopologiesExcept(pageTopology, primaryResourceTopology, inlineTopology),
 });
 
 const PageCollectionPage = getCollectionPage({
@@ -92,6 +94,7 @@ const PageCollectionPage = getCollectionPage({
 export default [
   register(DefaultCollectionPage),
   register(PageCollectionPage),
+  CollectionPageInline,
   ...Items,
   Name,
   ...Views,
