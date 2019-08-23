@@ -4,6 +4,7 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { withRouter } from 'react-router';
 
 import SearchForm from '../../components/SearchForm';
 import { NS } from '../../helpers/LinkedRenderStore';
@@ -24,6 +25,8 @@ export const SearchResultWidget = ({
 SearchResultWidget.type = NS.argu('SearchResult');
 
 SearchResultWidget.topology = widgetTopologyTopology;
+
+SearchResultWidget.hocs = [withRouter];
 
 SearchResultWidget.mapDataToProps = [
   NS.argu('query'),
