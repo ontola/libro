@@ -83,7 +83,9 @@ async function signUp(req, res, next) {
     res.status = response.status;
     const json = await response.json();
     const auth = response.headers.get('New-Authorization');
-    req.session.arguToken.accessToken = auth;
+    if (req.session.arguToken) {
+      req.session.arguToken.accessToken = auth;
+    }
     req.api.userToken = auth;
     res.send({
       email: json.data.attributes.email,

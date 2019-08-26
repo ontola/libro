@@ -37,7 +37,7 @@ const VARY_HEADER = 'Accept,Accept-Encoding,Authorization,Content-Type';
 export function newAuthorizationBulk(req, backendRes) {
   const auth = backendRes.headers['new-authorization'];
   if (auth) {
-    req.session.arguToken.accessToken = auth;
+    req.session.arguToken = { accessToken: auth };
     req.api.userToken = auth;
     if (!isRedirect(backendRes.statusCode)) {
       if (hasAction(backendRes, 'https://ns.ontola.io/actions/redirect')) {
