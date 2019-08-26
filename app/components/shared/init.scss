@@ -18,6 +18,13 @@ body {
   margin: 0;
 }
 
+//sass-lint:disable no-ids
+#root {
+  height: 100%;
+  overflow-y: auto;
+}
+//sass-lint:enable no-ids
+
 a {
   // Prevents browser default color
   color: inherit;
