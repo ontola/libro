@@ -1,5 +1,8 @@
-import { Property, register } from 'link-redux';
-import PropTypes from 'prop-types';
+import {
+  Property,
+  linkType,
+  register,
+} from 'link-redux';
 import React from 'react';
 
 import { LoadingFiller } from '../../components/Loading/index';
@@ -11,7 +14,7 @@ import PrimaryResource, { primaryResourceTopology } from '../../topologies/Prima
 
 const ForumPage = ({ hideHeader }) => (
   <PrimaryResource>
-    {(!hideHeader?.value) && <PageHeader />}
+    {(hideHeader?.value !== 'true') && <PageHeader />}
     <Container grid>
       <Property label={NS.ontola('widgets')} onLoad={LoadingFiller} />
     </Container>
@@ -25,7 +28,7 @@ ForumPage.mapDataToProps = [
 ];
 
 ForumPage.propTypes = {
-  hideHeader: PropTypes.bool,
+  hideHeader: linkType,
 };
 
 ForumPage.topology = [

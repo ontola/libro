@@ -3,7 +3,6 @@ import {
   linkType,
   register,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -27,7 +26,7 @@ const OrganizationPage = ({
 
   return (
     <PrimaryResource>
-      {!hideHeader?.value && <PageHeader />}
+      {hideHeader?.value !== 'true' && <PageHeader />}
       <Container>
         <Card>
           <CardContent>
@@ -63,7 +62,7 @@ OrganizationPage.mapDataToProps = [
 ];
 
 OrganizationPage.propTypes = {
-  hideHeader: PropTypes.bool,
+  hideHeader: linkType,
   homepage: linkType,
   name: linkType,
 };
