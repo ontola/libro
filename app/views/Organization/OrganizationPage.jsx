@@ -19,7 +19,7 @@ import HomepageError from '../Error/HomepageError';
 const OrganizationPage = ({
   homepage,
   name,
-  showHeader,
+  hideHeader,
 }) => {
   if (homepage) {
     return <LinkedResourceContainer subject={homepage} onError={HomepageError} />;
@@ -27,7 +27,7 @@ const OrganizationPage = ({
 
   return (
     <PrimaryResource>
-      {showHeader && <PageHeader />}
+      {!hideHeader?.value && <PageHeader />}
       <Container>
         <Card>
           <CardContent>
@@ -59,13 +59,13 @@ OrganizationPage.topology = [
 OrganizationPage.mapDataToProps = [
   NS.foaf('homepage'),
   NS.schema('name'),
-  NS.argu('showHeader'),
+  NS.argu('hideHeader'),
 ];
 
 OrganizationPage.propTypes = {
+  hideHeader: PropTypes.bool,
   homepage: linkType,
   name: linkType,
-  showHeader: PropTypes.bool,
 };
 
 export default register(OrganizationPage);

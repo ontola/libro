@@ -9,9 +9,9 @@ import { pageTopology } from '../../topologies/Page';
 import PageHeader from '../../topologies/PageHeader';
 import PrimaryResource, { primaryResourceTopology } from '../../topologies/PrimaryResource';
 
-const ForumPage = ({ showHeader }) => (
+const ForumPage = ({ hideHeader }) => (
   <PrimaryResource>
-    {showHeader && <PageHeader />}
+    {(!hideHeader?.value) && <PageHeader />}
     <Container grid>
       <Property label={NS.ontola('widgets')} onLoad={LoadingFiller} />
     </Container>
@@ -21,11 +21,11 @@ const ForumPage = ({ showHeader }) => (
 ForumPage.type = [NS.argu('ContainerNode'), NS.schema('WebPage')];
 
 ForumPage.mapDataToProps = [
-  NS.argu('showHeader'),
+  NS.argu('hideHeader'),
 ];
 
 ForumPage.propTypes = {
-  showHeader: PropTypes.bool,
+  hideHeader: PropTypes.bool,
 };
 
 ForumPage.topology = [
