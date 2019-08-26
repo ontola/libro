@@ -3,6 +3,7 @@ import IconButton from '@material-ui/core/IconButton';
 import {
   linkType,
   register,
+  subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -10,10 +11,10 @@ import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
 
 import LDLink from '../../components/LDLink';
-import { getMetaContent } from '../../helpers/arguHelpers';
+import { filterFind } from '../../helpers/data';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
-import { invalidStatuses } from '../Thing/properties/omniform/helpers';
+import { OMNIFORM_FILTER, invalidStatuses } from '../Thing/properties/omniform/helpers';
 
 import mapCardListDispatchToProps from './helpers';
 
@@ -29,6 +30,7 @@ const InlineCreateActionContainerFloat = ({
   name,
   omniform,
   onClick,
+  subject,
 }) => {
   const classes = useStyles();
 
@@ -42,7 +44,7 @@ const InlineCreateActionContainerFloat = ({
       name="plus"
     />
   );
-  const useOmniform = omniform && getMetaContent('omniform') !== 'false';
+  const useOmniform = omniform && OMNIFORM_FILTER.find(filterFind(subject));
 
   return (
     <IconButton
@@ -77,6 +79,7 @@ InlineCreateActionContainerFloat.propTypes = {
   name: linkType,
   omniform: PropTypes.bool,
   onClick: PropTypes.func,
+  subject: subjectType,
 };
 
 export default register(InlineCreateActionContainerFloat);

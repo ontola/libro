@@ -240,6 +240,7 @@ export {
   convertKeysAtoB,
   entityIsLoaded,
   filter,
+  filterFind,
   filterSort,
   listToArr,
   seqToArr,

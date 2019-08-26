@@ -1,11 +1,11 @@
 import { allowSort } from '../../../../helpers/data';
 import { NS } from '../../../../helpers/LinkedRenderStore';
 
-const FILTER = [
-  /\/m\/new$/,
-  /\/c\/new$/,
+export const OMNIFORM_FILTER = [
+  /\/m\/new/,
+  /\/c\/new/,
   /\/pros\/new/,
-  /\/cons\/new$/,
+  /\/cons\/new/,
   /\/actions\/create_opinion/,
   /\/actions\/update_opinion/,
 ];
@@ -27,7 +27,7 @@ export const filterActions = (lrs, potentialAction) => {
     return [];
   }
 
-  return allowSort(potentialAction, FILTER, ORDER);
+  return allowSort(potentialAction, OMNIFORM_FILTER, ORDER);
 };
 
 export const invalidStatuses = [NS.ontola('DisabledActionStatus'), NS.ontola('ExpiredActionStatus')];

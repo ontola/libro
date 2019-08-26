@@ -2,17 +2,18 @@ import {
   Property,
   linkType,
   register,
+  subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { filterFind } from '../../helpers/data';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { cardListTopology } from '../../topologies/Card/CardList';
-import { invalidStatuses } from '../Thing/properties/omniform/helpers';
-import { getMetaContent } from '../../helpers/arguHelpers';
+import { OMNIFORM_FILTER, invalidStatuses } from '../Thing/properties/omniform/helpers';
 
 import mapCardListDispatchToProps from './helpers';
 
@@ -39,6 +40,7 @@ class InlineCreateAction extends React.PureComponent {
     count: linkType,
     omniform: PropTypes.bool,
     onClick: PropTypes.func,
+    subject: subjectType,
   };
 
   render() {
@@ -47,6 +49,7 @@ class InlineCreateAction extends React.PureComponent {
       count,
       omniform,
       onClick,
+      subject,
     } = this.props;
 
     if (invalidStatuses.includes(actionStatus)) {
@@ -57,7 +60,7 @@ class InlineCreateAction extends React.PureComponent {
       <Property
         count={count}
         label={NS.schema('name')}
-        onClick={omniform && getMetaContent('omniform') !== 'false' ? onClick : undefined}
+        onClick={omniform && OMNIFORM_FILTER.find(filterFind(subject)) ? onClick : undefined}
       />
     );
   }
