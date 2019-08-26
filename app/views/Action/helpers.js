@@ -8,7 +8,7 @@ const mapCardListDispatchToProps = (dispatch, ownProps) => ({
       dispatch(omniformOpenInline(ownProps.isPartOf)),
       dispatch(omniformSetAction({
         action: ownProps.subject,
-        parentIRI: btoa(ownProps.isPartOf),
+        parentIRI: btoa(ownProps.isPartOf.value),
       })),
     ]);
   },
