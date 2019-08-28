@@ -164,6 +164,9 @@ export default function generateLRS() {
     new Statement(NS.teamGL('TryAgainAction'), NS.rdf('type'), NS.rdfs('Class')),
     new Statement(NS.teamGL('TryAgainAction'), NS.rdfs('subClassOf'), NS.schema('UpdateAction')),
 
+    new Statement(NS.teamGL('UnsubscribeAction'), NS.rdf('type'), NS.rdfs('Class')),
+    new Statement(NS.teamGL('UnsubscribeAction'), NS.rdfs('subClassOf'), NS.schema('UpdateAction')),
+
     new Statement(NS.teamGL('Participant'), NS.rdf('type'), NS.rdfs('Class')),
     new Statement(NS.teamGL('Participant'), NS.rdfs('subClassOf'), NS.teamGL('Volunteer')),
 

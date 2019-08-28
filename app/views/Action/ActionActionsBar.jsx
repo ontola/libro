@@ -50,6 +50,7 @@ class ActionActionsBar extends PureComponent {
       case NS.teamGL('ContactedAction'):
         return 'success';
       case NS.teamGL('NotAvailableAction'):
+      case NS.teamGL('UnsubscribeAction'):
         return 'error';
       default:
         return undefined;
