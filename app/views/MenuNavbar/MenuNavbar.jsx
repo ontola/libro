@@ -8,25 +8,15 @@ import {
   LinkedResourceContainer,
   register,
 } from 'link-redux';
-import * as PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
-import { connect } from 'react-redux';
 
 import { NS } from '../../helpers/LinkedRenderStore';
-import { getCurrentUserType } from '../../state/app/selectors';
 import AppMenu from '../../topologies/AppMenu';
 import { navbarTopology } from '../../topologies/Navbar';
 
 import useStyles from './MenuNavbarStyles';
 
-const mapDataToProps = state => ({
-  showUserMenu: ['ConfirmedUser', 'UnconfirmedUser'].includes(getCurrentUserType(state)),
-});
-
-
-const MenuNavbar = ({
-  showUserMenu,
-}) => {
+const MenuNavbar = () => {
   const classes = useStyles();
 
   const theme = useTheme();
@@ -56,15 +46,13 @@ const MenuNavbar = ({
             subject={NS.app('menus/navigations/menus')}
           />
           <Divider />
-          {showUserMenu && (
-            <Fragment>
-              <LinkedResourceContainer
-                childProps={{ onClose: handleClose }}
-                subject={NS.app('apex/menus/user/menus')}
-              />
-              <Divider />
-            </Fragment>
-          )}
+          <Fragment>
+            <LinkedResourceContainer
+              childProps={{ onClose: handleClose }}
+              subject={NS.app('apex/menus/user/menus')}
+            />
+            <Divider />
+          </Fragment>
           <div className={classes.root}>
             <LinkedResourceContainer
               childProps={{
@@ -83,11 +71,5 @@ const MenuNavbar = ({
 MenuNavbar.type = NS.app('Menu');
 
 MenuNavbar.topology = navbarTopology;
-
-MenuNavbar.hocs = [connect(mapDataToProps)];
-
-MenuNavbar.propTypes = {
-  showUserMenu: PropTypes.bool,
-};
 
 export default register(MenuNavbar);
