@@ -58,6 +58,7 @@ const CreatedAt = ({ linkedProp }) => {
   return (
     <Detail
       text={emoji(formatMessage(message, { diff }))}
+      title={linkedProp.value.split('T').shift()}
       variant={variant}
     />
   );
