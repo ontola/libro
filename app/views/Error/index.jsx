@@ -59,6 +59,7 @@ const shouldShowSignIn = (userType, status) => userType === 'GuestUser'
 
 const propTypes = {
   caughtError: PropTypes.instanceOf(Error),
+  error: PropTypes.instanceOf(Error),
   linkRequestStatus: PropTypes.shape({
     status: PropTypes.number,
   }),
@@ -71,7 +72,14 @@ const propTypes = {
 
 const ErrorCardComp = (props) => {
   const { formatMessage } = useIntl();
-  const { linkRequestStatus, userType } = props;
+  const {
+    caughtError,
+    error,
+    linkRequestStatus,
+    userType,
+  } = props;
+
+  const err = caughtError || error;
 
   let mainAction = (
     <ErrorButtonWithFeedback theme="box" {...props}>
@@ -93,9 +101,11 @@ const ErrorCardComp = (props) => {
         <Heading size="2" variant="alert">
           <FontAwesome name="exclamation-triangle" />
           {' '}
-          {headerForStatus(formatMessage, linkRequestStatus)}
+          {headerForStatus(formatMessage, linkRequestStatus) || (err && err.name)}
         </Heading>
         <p>{bodyForStatus(formatMessage, linkRequestStatus)}</p>
+        {err && <p>{err.message}</p>}
+        {__DEVELOPMENT__ && err && <pre>{err.stack}</pre>}
         {mainAction}
       </CardContent>
     </Card>
@@ -110,9 +120,12 @@ const ErrorPageComp = (props) => {
   const { formatMessage } = useIntl();
   const {
     caughtError,
+    error,
     linkRequestStatus,
     userType,
   } = props;
+
+  const err = caughtError || error;
 
   let cardAction = (
     <ErrorButtonWithFeedback theme="box" {...props}>
@@ -133,11 +146,11 @@ const ErrorPageComp = (props) => {
           <Heading size="1" variant="alert">
             <FontAwesome name="exclamation-triangle" />
             {' '}
-            {headerForStatus(formatMessage, linkRequestStatus) || (caughtError && caughtError.name)}
+            {headerForStatus(formatMessage, linkRequestStatus) || (err && err.name)}
           </Heading>
           {bodyForStatus(formatMessage, linkRequestStatus)}
-          {caughtError && <p>{caughtError.message}</p>}
-          {__DEVELOPMENT__ && caughtError && <pre>{caughtError.stack}</pre>}
+          {err && <p>{err.message}</p>}
+          {__DEVELOPMENT__ && err && <pre>{err.stack}</pre>}
           <p>
             <FormattedMessage
               defaultMessage="Is this an error?"
