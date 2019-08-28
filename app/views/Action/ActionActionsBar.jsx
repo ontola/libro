@@ -57,6 +57,18 @@ class ActionActionsBar extends PureComponent {
   }
 
   exec() {
+    const target = this.props.lrs.getResourceProperty(this.props.subject, NS.schema('target'));
+    const httpMethod = target && this.props.lrs.getResourceProperty(target, NS.schema.httpMethod);
+
+    if (httpMethod && httpMethod.value === 'GET') {
+      return new Promise((resolve) => {
+        this.props.lrs.actions.ontola.showDialog(
+          this.props.lrs.getResourceProperty(target, NS.schema.url)
+        );
+        resolve();
+      });
+    }
+
     return this.props.lrs.exec(
       this.props.subject,
       SHACL.actionToObject(this.props.lrs, this.props.subject)
