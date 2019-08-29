@@ -5,7 +5,14 @@ import { ASSETS_HOST } from '../../app/config';
 const defaultSrc = ["'self'"];
 
 const childSrc = ['https://youtube.com', 'https://www.youtube.com'];
-const connectSrc = ["'self'", 'https://api.notubiz.nl', 'https://www.facebook.com'];
+const connectSrc = hostname => (
+  [
+    "'self'",
+    'https://api.notubiz.nl',
+    'https://www.facebook.com',
+    `ws://${hostname}`,
+  ]
+);
 const fontSrc = ["'self'", 'https://maxcdn.bootstrapcdn.com', 'https://fonts.gstatic.com'];
 const frameSrc = ['https://youtube.com', 'https://www.youtube.com'];
 const imgSrc = [
@@ -56,25 +63,27 @@ if (__PRODUCTION__) {
   connectSrc.push('https://sessions.bugsnag.com');
 }
 
-export default csp({
-  browserSniff: true,
-  directives: {
-    blockAllMixedContent: true,
-    childSrc,
-    connectSrc,
-    defaultSrc,
-    fontSrc,
-    frameSrc,
-    imgSrc,
-    objectSrc,
-    sandbox,
-    scriptSrc,
-    styleSrc,
-    upgradeInsecureRequests: true,
-    workerSrc,
-  },
-  disableAndroid: false,
-  loose: false,
-  reportOnly: false,
-  setAllHeaders: false,
-});
+export default (req, res, next) => (
+  csp({
+    browserSniff: true,
+    directives: {
+      blockAllMixedContent: true,
+      childSrc,
+      connectSrc: connectSrc(req.hostname),
+      defaultSrc,
+      fontSrc,
+      frameSrc,
+      imgSrc,
+      objectSrc,
+      sandbox,
+      scriptSrc,
+      styleSrc,
+      upgradeInsecureRequests: true,
+      workerSrc,
+    },
+    disableAndroid: false,
+    loose: false,
+    reportOnly: false,
+    setAllHeaders: false,
+  })(req, res, next)
+);
