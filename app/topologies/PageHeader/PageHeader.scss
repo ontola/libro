@@ -13,16 +13,31 @@
   }
 
   &__container {
-    @include small-only {
-      padding: units('none', 'medium');
-      padding-top: 0;
-    }
-
-    background-color: color('white');
-    min-height: 5.5em;
-
     & > .Container--size-large {
       overflow-x: visible;
+    }
+  }
+
+  &__background {
+    background-color: color('grey');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 20em;
+
+    @include large {
+      height: 35em;
+    }
+
+    .Container {
+      bottom: 0;
+      height: 100%;
+    }
+
+    .Card {
+      bottom: 0;
+      max-width: 35em;
+      position: absolute;
+      width: calc(100% - 1.5rem);
     }
   }
 
@@ -45,6 +60,5 @@
     flex-shrink: 1;
     justify-content: center;
     width: 100%;
-    margin-top: 1em;
   }
 }

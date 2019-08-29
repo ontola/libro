@@ -13,14 +13,16 @@ import { Redirect, withRouter } from 'react-router';
 
 import { containerToArr, seqToArr } from '../../helpers/data';
 import { retrievePath } from '../../helpers/iris';
+import { currentLocation } from '../../helpers/paths';
+import { isPromise } from '../../helpers/types';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { CardMain } from '../../topologies/Card';
+import CardContent from '../../components/Card/CardContent';
+import Container from '../../topologies/Container';
 import { pageTopology } from '../../topologies/Page';
-import PageHeader from '../../topologies/PageHeader';
 import PrimaryResource, { primaryResourceTopology } from '../../topologies/PrimaryResource';
 import TabBar from '../../topologies/TabBar';
 import TabPane from '../../topologies/TabPane';
-import { currentLocation } from '../../helpers/paths';
-import { isPromise } from '../../helpers/types';
 
 class MenuItemPage extends React.PureComponent {
   static type = [
@@ -127,16 +129,20 @@ class MenuItemPage extends React.PureComponent {
       <PrimaryResource>
         {topLevel && r && __CLIENT__ && <Redirect to={retrievePath(r.value)} />}
         {topLevel && (
-          <React.Fragment>
-            <PageHeader>
-              <Property label={NS.schema('isPartOf')} />
+          <Container>
+            <CardMain>
+              <CardContent>
+                <Property label={NS.schema('isPartOf')}>
+                  <Property label={NS.schema('name')} />
+                </Property>
+              </CardContent>
               <AppBar color="inherit" elevation={0} position="static">
                 <TabBar>
                   {this.menuItemTabs()}
                 </TabBar>
               </AppBar>
-            </PageHeader>
-          </React.Fragment>
+            </CardMain>
+          </Container>
         )}
         {body}
       </PrimaryResource>
