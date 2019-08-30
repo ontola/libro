@@ -79,7 +79,7 @@ export default [
   LinkedRenderStore.registerRenderer(
     Text,
     NS.schema('Thing'),
-    NS.schema('text'),
+    [NS.schema('text'), NS.schema('description')],
     [
       primaryResourceTopology,
       cardMainTopology,
@@ -88,7 +88,7 @@ export default [
   LinkedRenderStore.registerRenderer(
     withLinkCtx(TextCollapsed),
     NS.schema('Thing'),
-    NS.schema('text'),
+    [NS.schema('text'), NS.schema('description')],
     [
       cardRowTopology,
       cardTopology,
@@ -98,13 +98,13 @@ export default [
   LinkedRenderStore.registerRenderer(
     TextInline,
     NS.schema('Thing'),
-    NS.schema('text'),
+    [NS.schema('text'), NS.schema('description')],
     cardListTopology
   ),
   LinkedRenderStore.registerRenderer(
     TextCutoff,
     NS.schema('Thing'),
-    NS.schema('text'),
+    [NS.schema('text'), NS.schema('description')],
     [
       cardFixedTopology,
       hoverBoxTopology,
