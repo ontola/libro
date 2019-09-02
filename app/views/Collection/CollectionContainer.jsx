@@ -74,7 +74,7 @@ class CollectionContainer extends CollectionBase {
               defaultMessage="Show {count} additional replies..."
               id="https://app.argu.co/i18n/collections/showRepliesLabel"
               values={{
-                count: totalItems,
+                count: totalItems.value,
               }}
             />
           </LinkDuo>
