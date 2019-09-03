@@ -1,5 +1,6 @@
 import CreatedAt from './properties/createdAt';
 import Email from './properties/email';
+import Engagement from './properties/engagement';
 import Name from './properties/name';
 import NewVolunteerContainer from './NewVolunteerContainer';
 import VolunteerCardRow from './VolunteerCardRow';
@@ -11,6 +12,7 @@ import './index.scss';
 
 export default [
   Email,
+  Engagement,
   CreatedAt,
   Name,
   NewVolunteerContainer,

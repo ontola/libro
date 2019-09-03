@@ -16,6 +16,7 @@ const VolunteerContainer = () => (
       <Property label={[NS.schema('name'), NS.rdfs('label')]} />
       <ContentDetails>
         <Property label={NS.teamGL('department')} />
+        <Property label={NS.teamGL('engagement')} />
       </ContentDetails>
       <div className="Volunteer--contact-options">
         <Property label={NS.teamGL('telephone')} />

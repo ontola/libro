@@ -14,6 +14,7 @@ const VolunteerCardRow = () => (
     <Property label={[NS.schema('name'), NS.rdfs('label')]} />
     <ContentDetails>
       <Property label={NS.teamGL('department')} />
+      <Property label={NS.teamGL('engagement')} />
       <Property label={NS.schema('dateCreated')} />
     </ContentDetails>
     <Property label={NS.schema.text} />
