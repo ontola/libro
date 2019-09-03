@@ -900,6 +900,18 @@
   resolved "https://registry.yarnpkg.com/@formatjs/intl-relativetimeformat/-/intl-relativetimeformat-2.6.3.tgz#f272083821f7bc0c078b28c225aede758212611b"
   integrity sha512-sb3PcbTSNQfnL4HM2XKedt8Oopf2EwaoxyjeMbgvje6x1zQuf1oTAidLHT65Dkox7hfSql8ZjpAqWqnHJsLN9w==
 
+"@formatjs/intl-relativetimeformat@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-relativetimeformat/-/intl-relativetimeformat-3.0.2.tgz#09943f6e008aba611f973edab284e1051d977951"
+  integrity sha512-smy2oNh+gi/Gr7kPYL5EaRUW3lBjn3yaPfHyDAljzabN3ZVhZsVl8oZV78HlQYoXz1h1GFpj/GbO5xkjSzffPw==
+  dependencies:
+    "@formatjs/intl-utils" "^1.0.1"
+
+"@formatjs/intl-utils@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-utils/-/intl-utils-1.0.1.tgz#cc24ffbf36c05793ab9cd1eceee12ca95b1d7e08"
+  integrity sha512-Q9mHePkcnNkazb+89mZtYj01YMKxDO/VtsZI56MDzb2Cfed0dPugXZHpXgSXYPmd/4C6gp0M759xGEGFX3JS+w==
+
 "@hapi/address@2.x.x":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@hapi/address/-/address-2.0.0.tgz#9f05469c88cb2fd3dcd624776b54ee95c312126a"
@@ -6784,6 +6796,13 @@ intl-messageformat@^6.1.5:
     intl-format-cache "^4.1.10"
     intl-messageformat-parser "^3.0.7"
 
+intl-pluralrules@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/intl-pluralrules/-/intl-pluralrules-1.0.3.tgz#25438469f76fd13a4ac54a68a0ae4c0d30248a47"
+  integrity sha512-N+q+NmxJD5Pi+h7DoemDcNZN86e1dPSFUsWUtYtnSc/fKRen4vxCTcsmGveWOUgI9O9uSLTaiwJpC9f5xa2X4w==
+  dependencies:
+    make-plural "^4.3.0"
+
 invariant@2.2.4, invariant@^2.1.1, invariant@^2.2.1, invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
@@ -8975,6 +8994,13 @@ make-event-props@^1.1.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/make-event-props/-/make-event-props-1.2.0.tgz#96b87d88919533b8f8934b58b4c3d5679459a0cf"
   integrity sha512-BmWFkm/jZzVH9A0tEBdkjAARUz/eha+5IRyfOndeSMKRadkgR5DawoBHoRwLxkYmjJOI5bHkXKpaZocxj+dKgg==
+
+make-plural@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/make-plural/-/make-plural-4.3.0.tgz#f23de08efdb0cac2e0c9ba9f315b0dff6b4c2735"
+  integrity sha512-xTYd4JVHpSCW+aqDof6w/MebaMVNTVYBZhbB/vi513xXdiPT92JMVCo0Jq8W2UZnzYRFeVbQiQ+I25l13JuKvA==
+  optionalDependencies:
+    minimist "^1.2.0"
 
 makeerror@1.0.x:
   version "1.0.11"
