@@ -58,7 +58,7 @@ const InterventionTypePage = () => (
       <Property label={NS.ontola('publishAction')} onLoad={() => null} />
     </Container>
     <Container>
-      <Property forceRender label={NS.rivm('interventions')} />
+      <Property forceRender renderWhenEmpty label={NS.rivm('interventions')} />
     </Container>
     <Container>
       <Property label={NS.schema('comments')} />
