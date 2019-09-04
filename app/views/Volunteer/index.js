@@ -1,6 +1,7 @@
 import CreatedAt from './properties/createdAt';
 import Email from './properties/email';
 import Engagement from './properties/engagement';
+import GlappUsedAt from './properties/glapp_used_at';
 import Name from './properties/name';
 import NewVolunteerContainer from './NewVolunteerContainer';
 import VolunteerCardRow from './VolunteerCardRow';
@@ -14,6 +15,7 @@ export default [
   Email,
   Engagement,
   CreatedAt,
+  GlappUsedAt,
   Name,
   NewVolunteerContainer,
   VolunteerCardRow,

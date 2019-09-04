@@ -43,6 +43,7 @@ class VolunteerPage extends React.PureComponent {
                 <Property label={NS.teamGL('telephone')} />
                 <Property label={NS.teamGL('email')} />
               </div>
+              <Property forceRender label={NS.teamGL('glappUsedAt')} />
               <Property label={NS.schema.text} />
             </CardContent>
           </CardMain>
