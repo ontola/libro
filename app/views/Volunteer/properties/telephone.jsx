@@ -16,7 +16,11 @@ const Telephone = ({ linkedProp }) => (
       {emoji(`☎️ ${linkedProp.value}`)}
 
     </a>
-    <a href={`https://wa.me/${linkedProp.value}`}>
+    <a
+      href={`https://wa.me/${linkedProp.value}`}
+      rel="nofollow noopener noreferrer"
+      target="_blank"
+    >
       {emoji('💬 app')}
     </a>
   </div>
