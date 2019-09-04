@@ -15,7 +15,7 @@ import { pageTopology } from '../../topologies/Page';
 import PrimaryResource from '../../topologies/PrimaryResource';
 import { inlineTopology } from '../../topologies/Inline';
 
-const InterventionTypePage = () => (
+const InterventionPage = () => (
   <PrimaryResource>
     <Property label={NS.argu('coverPhoto')} />
     <Container>
@@ -42,7 +42,6 @@ const InterventionTypePage = () => (
         <CardContent noSpacing>
           <Property label={[NS.schema('name'), NS.rdfs('label')]} />
           <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
-          <Property label={NS.rivm('exampleOf')} topology={inlineTopology} />
           <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
           <Property label={NS.foaf('isPrimaryTopicOf')} onLoad={() => null} />
           <Property label={NS.meeting('attachment')} onLoad={() => null} />
@@ -58,17 +57,14 @@ const InterventionTypePage = () => (
       <Property label={NS.ontola('publishAction')} onLoad={() => null} />
     </Container>
     <Container>
-      <Property forceRender renderWhenEmpty label={NS.rivm('interventions')} />
-    </Container>
-    <Container>
       <Property label={NS.schema('comments')} />
       <Property forceRender label={NS.app('omniform')} />
     </Container>
   </PrimaryResource>
 );
 
-InterventionTypePage.type = NS.rivm('InterventionType');
+InterventionPage.type = NS.rivm('Intervention');
 
-InterventionTypePage.topology = pageTopology;
+InterventionPage.topology = pageTopology;
 
-export default register(InterventionTypePage);
+export default register(InterventionPage);
