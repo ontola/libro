@@ -13,7 +13,6 @@ import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
 import { pageTopology } from '../../topologies/Page';
 import PrimaryResource from '../../topologies/PrimaryResource';
-import { inlineTopology } from '../../topologies/Inline';
 
 const InterventionPage = () => (
   <PrimaryResource>
