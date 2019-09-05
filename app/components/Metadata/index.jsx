@@ -13,7 +13,7 @@ const Metadata = ({
   name,
 }) => {
   const coverURL = coverPhoto
-    && lrs.getResourceProperty(NamedNode.find(coverPhoto), NS.argu('imgUrl1500x600'));
+    && lrs.getResourceProperty(NamedNode.find(coverPhoto), NS.argu('imgUrl1500x2000'));
 
   return (
     <Helmet>

@@ -47,7 +47,7 @@ export default [
   LinkedRenderStore.registerRenderer(
     link({
       imagePositionY: NS.argu('imagePositionY'),
-      url: NS.argu('imgUrl1500x600'),
+      url: NS.argu('imgUrl1500x2000'),
     })(ImageObjectBackgroundCover),
     NS.schema('ImageObject'),
     RENDER_CLASS_NAME,

@@ -15,7 +15,7 @@ import PrimaryResource, { primaryResourceTopology } from '../../topologies/Prima
 
 const ForumPage = ({ coverPhoto, hideHeader }) => {
   const lrs = useLRS();
-  const coverPhotoUrl = coverPhoto && lrs.getResourceProperty(coverPhoto, NS.argu('imgUrl1500x600'));
+  const coverPhotoUrl = coverPhoto && lrs.getResourceProperty(coverPhoto, NS.argu('imgUrl1500x2000'));
   const positionY = coverPhoto && lrs.getResourceProperty(coverPhoto, NS.argu('imagePositionY'));
 
   return (

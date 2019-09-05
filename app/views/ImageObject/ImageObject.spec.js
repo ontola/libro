@@ -18,7 +18,7 @@ const resources = {
     [NS.schema('url')]: new NamedNode(url),
     [NS.schema('contentUrl')]: new NamedNode(url),
     [NS.argu('url')]: new NamedNode(url),
-    [NS.argu('imgUrl1500x600')]: new NamedNode(coverUrl),
+    [NS.argu('imgUrl1500x2000')]: new NamedNode(coverUrl),
     [NS.argu('imgUrl568x400')]: new NamedNode(boxUrl),
     [NS.schema('dateCreated')]: new Literal(Date.now()),
     [NS.argu('imagePositionY')]: Literal.fromValue(imagePositionY),
