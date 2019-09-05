@@ -7,10 +7,10 @@ import { inlineTopology } from '../../topologies/Inline';
 import { CollectionTypes } from './types';
 
 const CollectionInline = () => (
-  <div>
+  <p>
     <label><Property label={NS.as('name')} /> </label>
     <Property forceRender insideCollection label={NS.as('pages')} />
-  </div>
+  </p>
 );
 
 CollectionInline.type = CollectionTypes;
