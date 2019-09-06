@@ -18,7 +18,7 @@ function handleChange(e, props) {
   if (e.target.checked) {
     value.push(parsedValue);
   } else {
-    const index = value.indexOf(parsedValue);
+    const index = value.map(v => v.value).indexOf(parsedValue.value);
     if (index !== -1) {
       value.splice(index, 1);
     }
@@ -49,7 +49,7 @@ function CheckboxesInput(props) {
     return (
       <div className="Field__input Field__input--checkbox" key={`checkbox-${item.value}`}>
         <Input
-          checked={props.value && props.value.indexOf(item) !== -1}
+          checked={props.value && props.value.map(v => v.value).indexOf(item.value) !== -1}
           id={item}
           name={sharedProps.name}
           type="checkbox"
