@@ -15,7 +15,7 @@ export default LinkedRenderStore.registerRenderer(
       {linkedProp.value}
     </strong>
   ),
-  [NS.sh('Shape'), NS.sh('NodeShape')],
+  [NS.sh('Shape'), NS.sh('NodeShape'), NS.ontola('FormStep')],
   NS.rdfs('label'),
   allTopologies
 );

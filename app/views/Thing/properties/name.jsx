@@ -34,6 +34,7 @@ const NamePredicates = [
   NS.as('name'),
   NS.rdfs('label'),
   NS.foaf('name'),
+  NS.sh('name'),
 ];
 
 class ColoredHeading extends React.PureComponent {

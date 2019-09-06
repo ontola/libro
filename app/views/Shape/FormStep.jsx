@@ -9,7 +9,7 @@ import { allTopologies } from '../../topologies';
 
 const FormStep = () => (
   <React.Fragment>
-    <Property label={NS.sh('name')} />
+    <Property label={[NS.rdfs('label'), NS.sh('name')]} />
     <Property label={NS.sh('description')} />
     <div><Property label={NS.schema('url')} /></div>
   </React.Fragment>
