@@ -18,6 +18,7 @@ import DataCube from './DataCube';
 import Department from './Department';
 import DialogManager from './DialogManager';
 import Document from './Document';
+import Employment from './Employment';
 import EntryPoint from './EntryPoint';
 import Error from './Error';
 import FormOption from './FormOption';
@@ -31,6 +32,8 @@ import InterventionType from './InterventionType';
 import RDFProperty from './RDFProperty';
 import RDFSClass from './RDFSClass';
 import Loading from './Loading';
+import Measure from './Measure';
+import MeasureType from './MeasureType';
 import MediaObject from './MediaObject';
 import Meeting from './Meeting/properties/agenda';
 import Menu from './MenuNavbar';
@@ -72,6 +75,7 @@ export function getViews() {
     ...Department,
     ...Document,
     ...DialogManager,
+    ...Employment,
     ...EntryPoint,
     ...Error,
     ...FormOption,
@@ -83,6 +87,8 @@ export function getViews() {
     ...InterventionType,
     ...InfiniteCollectionPage,
     ...Loading,
+    ...Measure,
+    ...MeasureType,
     ...MediaObject,
     ...Meeting,
     ...Menu,

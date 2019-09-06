@@ -14,7 +14,7 @@ import DetailsBar from '../../topologies/DetailsBar';
 import { pageTopology } from '../../topologies/Page';
 import PrimaryResource from '../../topologies/PrimaryResource';
 
-const RiskPage = () => (
+const MeasurePage = () => (
   <PrimaryResource>
     <Property label={NS.argu('coverPhoto')} />
     <Container>
@@ -56,17 +56,14 @@ const RiskPage = () => (
       <Property label={NS.ontola('publishAction')} onLoad={() => null} />
     </Container>
     <Container>
-      <Property forceRender label={NS.rivm('measureTypes')} />
-    </Container>
-    <Container>
       <Property label={NS.schema('comments')} />
       <Property forceRender label={NS.app('omniform')} />
     </Container>
   </PrimaryResource>
 );
 
-RiskPage.type = NS.rivm('Risk');
+MeasurePage.type = NS.rivm('Measure');
 
-RiskPage.topology = pageTopology;
+MeasurePage.topology = pageTopology;
 
-export default register(RiskPage);
+export default register(MeasurePage);

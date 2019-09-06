@@ -13,8 +13,9 @@ import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
 import { pageTopology } from '../../topologies/Page';
 import PrimaryResource from '../../topologies/PrimaryResource';
+import { inlineTopology } from '../../topologies/Inline';
 
-const RiskPage = () => (
+const MeasureTypePage = () => (
   <PrimaryResource>
     <Property label={NS.argu('coverPhoto')} />
     <Container>
@@ -41,6 +42,7 @@ const RiskPage = () => (
         <CardContent noSpacing>
           <Property label={[NS.schema('name'), NS.rdfs('label')]} />
           <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
+          <Property label={NS.rivm('exampleOf')} topology={inlineTopology} />
           <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
           <Property label={NS.foaf('isPrimaryTopicOf')} onLoad={() => null} />
           <Property label={NS.meeting('attachment')} onLoad={() => null} />
@@ -56,7 +58,7 @@ const RiskPage = () => (
       <Property label={NS.ontola('publishAction')} onLoad={() => null} />
     </Container>
     <Container>
-      <Property forceRender label={NS.rivm('measureTypes')} />
+      <Property forceRender renderWhenEmpty label={NS.rivm('measures')} />
     </Container>
     <Container>
       <Property label={NS.schema('comments')} />
@@ -65,8 +67,8 @@ const RiskPage = () => (
   </PrimaryResource>
 );
 
-RiskPage.type = NS.rivm('Risk');
+MeasureTypePage.type = NS.rivm('MeasureType');
 
-RiskPage.topology = pageTopology;
+MeasureTypePage.topology = pageTopology;
 
-export default register(RiskPage);
+export default register(MeasureTypePage);

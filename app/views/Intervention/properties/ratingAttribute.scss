@@ -1,0 +1,16 @@
+.Rating {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  background-size: 1em;
+
+  .Rating--image-wrapper {
+    overflow: hidden;
+  }
+
+  img {
+    display: block;
+    max-height: 1em;
+    max-width: 1em;
+  }
+}
