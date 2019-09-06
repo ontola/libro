@@ -18,6 +18,9 @@ export default ({ theme }) => ({
           width: '100%',
         },
       },
+      '& .Loading__Paragraph': {
+        minWidth: '14em',
+      },
     },
   },
   MuiMenuItem: {
