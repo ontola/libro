@@ -25,6 +25,7 @@ import { pageHeaderTopology } from '../../../topologies/PageHeader';
 import { parentTopology } from '../../../topologies/Parent';
 import { popupTopology } from '../../../topologies/Popup';
 import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
+import { radioGroupTopology } from '../../../topologies/RadioGroup';
 import { selectTopology } from '../../../topologies/Select';
 import { tableRowTopology } from '../../../topologies/TableRow';
 import { widgetTopologyTopology } from '../../../topologies/WidgetTopology/WidgetTopology';
@@ -126,7 +127,7 @@ export default [
     ({ linkedProp }) => <span data-test="Thing-name-select">{linkedProp.value}</span>,
     NS.schema('Thing'),
     NamePredicates,
-    selectTopology
+    [radioGroupTopology, selectTopology]
   ),
   LinkedRenderStore.registerRenderer(
     () => <LDLink><ConnectedHeading data-test="Thing-name-card" size="2" /></LDLink>,

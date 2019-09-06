@@ -104,6 +104,7 @@ PropertyShape.mapDataToProps = {
     limit: Infinity,
   },
   description: NS.sh('description'),
+  inputFieldHint: NS.ontola('inputFieldHint'),
   maxCount: NS.sh('maxCount'),
   maxLength: NS.sh('maxLength'),
   minCount: NS.sh('minCount'),

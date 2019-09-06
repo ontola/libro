@@ -27,6 +27,7 @@ import { pageHeaderTopology } from './topologies/PageHeader/index';
 import { parentTopology } from './topologies/Parent/index';
 import { primaryCallToActionTopology } from './topologies/PrimaryCallToAction/index';
 import { popupTopology } from './topologies/Popup/index';
+import { radioGroupTopology } from './topologies/RadioGroup';
 import { selectTopology } from './topologies/Select';
 import { tableCellTopology } from './topologies/TableCell';
 import { tableHeaderCellTopology } from './topologies/TableHeaderCell';
@@ -74,6 +75,7 @@ export const allTopologies = [
   pageHeaderTopology,
   popupTopology,
   primaryCallToActionTopology,
+  radioGroupTopology,
   selectTopology,
   tableHeaderCellTopology,
   tableHeaderRowTopology,

@@ -1,4 +1,4 @@
-import { linkType } from 'link-redux';
+import { linkType, topologyType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -80,6 +80,7 @@ const DataField = (props) => {
     defaultValue,
     description,
     fieldName,
+    inputFieldHint,
     maxCount,
     maxLength,
     minCount,
@@ -89,6 +90,7 @@ const DataField = (props) => {
     shIn,
     targetValues,
     theme,
+    topology,
   } = props;
 
   const inputValues = targetValues.length > 0 ? targetValues : defaultValue;
@@ -112,6 +114,7 @@ const DataField = (props) => {
       description={descriptionValue(description, inputType)}
       field={fieldName}
       initialValue={inputType === 'checkboxes' ? inputValues : inputValues?.[0]}
+      inputFieldHint={inputFieldHint}
       label={name && name.value}
       maxLength={tryParseInt(maxLength)}
       minLength={tryParseInt(minLength)}
@@ -120,6 +123,7 @@ const DataField = (props) => {
       required={required}
       shIn={shIn}
       theme={theme}
+      topology={topology}
       type={inputType}
       validate={combineValidators(validate)}
       onKeyUp={onKeyUp}
@@ -133,6 +137,7 @@ DataField.propTypes = {
   defaultValue: linkType,
   description: linkType,
   fieldName: PropTypes.string,
+  inputFieldHint: linkType,
   maxCount: linkType,
   maxLength: linkType,
   minCount: linkType,
@@ -146,6 +151,7 @@ DataField.propTypes = {
     })
   ),
   theme: PropTypes.string,
+  topology: topologyType,
 };
 
 export default DataField;

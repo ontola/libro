@@ -11,6 +11,11 @@ export default () => ({
       minHeight: '3.2rem',
     },
   },
+  MuiFormControlLabel: {
+    label: {
+      fontSize: '1em',
+    },
+  },
   MuiIconButton: {
     root: {
       alignItems: 'center',
@@ -21,6 +26,18 @@ export default () => ({
     },
     sizeSmall: {
       fontSize: '1em',
+    },
+  },
+  MuiRadio: {
+    root: {
+      minHeight: '1em',
+      minWidth: '1em',
+      padding: '0 9px',
+    },
+  },
+  MuiSvgIcon: {
+    fontSizeSmall: {
+      fontSize: '1rem',
     },
   },
 });

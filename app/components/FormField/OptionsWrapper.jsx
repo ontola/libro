@@ -1,6 +1,7 @@
 import {
   linkType,
   linkedPropType,
+  topologyType,
   useDataInvalidation,
   useLRS,
 } from 'link-redux';
@@ -26,6 +27,7 @@ const OptionsWrapper = ({
   Component,
   componentProps,
   shIn: shInProp,
+  topology,
 }) => {
   const lrs = useLRS();
   const [options, setOptions] = React.useState([]);
@@ -69,6 +71,7 @@ const OptionsWrapper = ({
       loading={loading}
       options={options}
       searchTemplate={searchTemplate}
+      topology={topology}
       {...componentProps}
       onOptionsChange={setShIn}
     />
@@ -80,6 +83,7 @@ OptionsWrapper.propTypes = {
   componentProps: PropTypes.objectOf(PropTypes.any),
   options: optionsType,
   shIn: linkType,
+  topology: topologyType,
 };
 
 export default OptionsWrapper;

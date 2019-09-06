@@ -1,18 +1,28 @@
 import Downshift from 'downshift';
 import PropTypes from 'prop-types';
+import { NamedNode } from 'rdflib';
 import React from 'react';
 import {
   linkType,
+  topologyType,
   useLRS,
 } from 'link-redux';
 import { useDebouncedCallback } from 'use-debounce';
 
+import { LoadingRow } from '../Loading';
+import RadioGroup from '../../topologies/RadioGroup';
+import { entityIsLoaded } from '../../helpers/data';
 import normalizedLower from '../../helpers/i18n';
+import { NS } from '../../helpers/LinkedRenderStore';
+import { formFooterTopology } from '../../topologies/FormFooter/Footer';
 import { searchIri } from '../../views/SearchResult/searchHelper';
 
 import SelectInputField, { MAX_ITEMS, itemToString } from './SelectInputField';
 
 const DEBOUNCE_TIMER = 500;
+const DEFAULT_RADIO_ITEM_LIMIT = 5;
+const MAX_RADIO_ITEMS = 20;
+const MAX_SELECT_LABEL_LENGTH = 60;
 
 function calculateItemsToShow(inputValue, selectedItem, options, lrs) {
   const compareValue = inputValue && normalizedLower(typeof inputValue === 'string' ? inputValue : inputValue.value);
@@ -93,6 +103,22 @@ function handleStateChange(options, changes, setState, lrs, searchTemplate, onOp
   });
 }
 
+function renderAsRadioGroup(topology, items, lrs, inputFieldHint) {
+  if (inputFieldHint === NS.ontola('element/select') || topology === formFooterTopology) {
+    return false;
+  }
+  if (inputFieldHint === NS.ontola('element/input/radio') || items.length <= DEFAULT_RADIO_ITEM_LIMIT) {
+    return true;
+  }
+  if (items.length > MAX_RADIO_ITEMS) {
+    return false;
+  }
+
+  const labels = items.map(item => itemToString(item, lrs));
+
+  return labels.some(label => label.length > MAX_SELECT_LABEL_LENGTH);
+}
+
 function updateOptions(state, options, lrs) {
   return {
     ...state,
@@ -108,12 +134,14 @@ function updateOptions(state, options, lrs) {
 const SelectInputWrapper = ({
   className,
   initialValue,
+  inputFieldHint,
   inputValue,
   loading,
   onOptionsChange,
   options,
   searchTemplate,
   sharedProps,
+  topology,
 }) => {
   const lrs = useLRS();
   const [state, setState] = React.useState({
@@ -136,10 +164,29 @@ const SelectInputWrapper = ({
     { leading: true }
   );
 
+  const initialSelectedItem = inputValue || initialValue;
+
+  if (__CLIENT__ && initialSelectedItem && initialSelectedItem.termType === 'NamedNode' && !entityIsLoaded(lrs, initialSelectedItem)) {
+    lrs.getEntity(initialSelectedItem);
+
+    return <LoadingRow />;
+  }
+
+  if (!searchTemplate && renderAsRadioGroup(topology, options, lrs, inputFieldHint)) {
+    return (
+      <RadioGroup
+        items={options}
+        loading={loading}
+        value={inputValue?.value}
+        onChange={(event, v) => sharedProps.onChange({ target: { value: NamedNode.find(v) } })}
+      />
+    );
+  }
+
   return (
     <div className={className}>
       <SelectInputField
-        initialSelectedItem={inputValue || initialValue}
+        initialSelectedItem={initialSelectedItem}
         items={state.itemsToShow}
         loading={loading}
         sharedProps={sharedProps}
@@ -153,6 +200,7 @@ const SelectInputWrapper = ({
 SelectInputWrapper.propTypes = {
   className: PropTypes.string,
   initialValue: linkType,
+  inputFieldHint: linkType,
   inputValue: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
@@ -169,6 +217,7 @@ SelectInputWrapper.propTypes = {
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
   }).isRequired,
+  topology: topologyType,
 };
 
 export default SelectInputWrapper;

@@ -76,6 +76,7 @@
   "https://app.argu.co/i18n/forms/dropzone/passiveText": "Drag & Drop your file here or click to select a file",
   "https://app.argu.co/i18n/forms/omniform/defaultResponseType": "response",
   "https://app.argu.co/i18n/forms/omniform/newResponsePreview": "Share your response...",
+  "https://app.argu.co/i18n/forms/radioGroup/noOptions": "No options available",
   "https://app.argu.co/i18n/forms/required/helperText": "*Required",
   "https://app.argu.co/i18n/forms/session/accountLocked": "Account locked due to too many failed login attempts",
   "https://app.argu.co/i18n/forms/session/accountLocked/label": "Account locked?",

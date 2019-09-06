@@ -137,7 +137,15 @@
 
       .Field__label {
         padding-bottom: 0;
+        font-weight: normal;
+        color: color('grey', 'dark');
       }
+    }
+
+    &--checkboxes {
+      background: none;
+      padding: 0;
+      border: 0;
     }
 
     &--markdown {

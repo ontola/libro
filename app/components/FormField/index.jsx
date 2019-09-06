@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import {
   linkType,
   lrsType,
+  topologyType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import { Literal, NamedNode } from 'rdflib';
@@ -63,6 +64,7 @@ const propTypes = {
       PropTypes.oneOf([null]),
     ]),
   }),
+  inputFieldHint: linkType,
   // Text above input field
   label: PropTypes.oneOfType([
     PropTypes.string,
@@ -91,6 +93,7 @@ const propTypes = {
   required: PropTypes.bool,
   shIn: optionsType,
   theme: PropTypes.string,
+  topology: topologyType,
   // HTML input type, e.g. 'email'
   type: PropTypes.string,
   validate: PropTypes.func,
@@ -234,6 +237,7 @@ class FormField extends React.PureComponent {
       field,
       initialValue,
       input,
+      inputFieldHint,
       id,
       meta: { active, pristine },
       minLength,
@@ -245,6 +249,7 @@ class FormField extends React.PureComponent {
       required,
       shIn,
       minRows,
+      topology,
       type,
     } = this.props;
 
@@ -303,13 +308,13 @@ class FormField extends React.PureComponent {
           <OptionsWrapper
             Component={CheckboxesInput}
             componentProps={{
-              initialSelectedItem: initialValue,
               onChange: sharedProps.onChange,
               sharedProps,
               value: this.inputValue(),
             }}
             data-testid={sharedProps.name}
             shIn={shIn}
+            topology={topology}
           />
         </div>
       );
@@ -322,11 +327,13 @@ class FormField extends React.PureComponent {
           componentProps={{
             className,
             initialValue,
+            inputFieldHint,
             inputValue: this.inputValue(),
             sharedProps,
           }}
           data-testid={sharedProps.name}
           shIn={shIn}
+          topology={topology}
         />
       );
     }
