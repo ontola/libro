@@ -8,6 +8,7 @@ const propTypes = {
     PropTypes.func,
   ]),
   className: PropTypes.string,
+  disablePadding: PropTypes.boolean,
   trigger: PropTypes.func,
 };
 
@@ -27,6 +28,7 @@ const childComponent = (children, handleClose) => {
 const DropdownMenu = ({
   children,
   className,
+  disablePadding,
   trigger,
 }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -43,6 +45,7 @@ const DropdownMenu = ({
     <Fragment>
       {trigger(handleClick, Boolean(anchorEl))}
       <MaterialMenu
+        MenuListProps={{ disablePadding }}
         PaperProps={{
           className,
           square: true,

@@ -32,6 +32,7 @@ class AppMenu extends Topology {
 
     return (
       <DropdownMenu
+        disablePadding
         className="AppMenu"
         trigger={this.props.trigger}
       >
