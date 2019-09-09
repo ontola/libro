@@ -19,7 +19,7 @@ class NavigatableAction extends React.PureComponent {
   onDoneHandler(response) {
     if (this.props.onDone) {
       this.props.onDone(response.iri);
-    } else {
+    } else if (response.iri) {
       this.props.history.push(retrievePath(response.iri.value));
     }
   }
