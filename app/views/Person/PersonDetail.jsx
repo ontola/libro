@@ -36,7 +36,7 @@ const PersonDetail = ({
 }) => {
   const { formatMessage } = useIntl();
 
-  const title = formatMessage(messages[titleKey || 'showProfile'], { name });
+  const title = formatMessage(messages[titleKey || 'showProfile'], { name: name.value });
 
   if (hideName) {
     return (
