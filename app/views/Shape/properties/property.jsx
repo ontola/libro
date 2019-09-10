@@ -87,8 +87,8 @@ class ShProperty extends PropertyBase {
       if (group.props.length > 0) {
         const order = lrs.store.anyStatementMatching(g, NS.sh('order'));
         if (order) {
-          const i = Number.parseInt(order.object.value, DECIMAL);
-          props.splice(i, 0, group);
+          const orderNo = Number.parseInt(order.object.value, DECIMAL);
+          props[orderNo] = group;
         } else if (group) {
           unorderedProps.push(group);
         }
