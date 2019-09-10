@@ -20,6 +20,7 @@ import Button from '../../components/Button';
 import { SignInFormLink } from '../../components/SignInForm';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { getCurrentUserType } from '../../state/app/selectors';
+import { attributeListTopology } from '../../topologies/AttributeList';
 import Card, { cardTopology } from '../../topologies/Card';
 import { cardFixedTopology } from '../../topologies/Card/CardFixed';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
@@ -225,6 +226,7 @@ export default [
     NS.ll('ErrorResource'),
     RENDER_CLASS_NAME,
     [
+      attributeListTopology,
       cardFixedTopology,
       cardFloatTopology,
       cardTopology,

@@ -16,6 +16,7 @@ import {
 } from '../../components';
 import { appMenuTopology } from '../../topologies/AppMenu';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
+import { attributeListTopology } from '../../topologies/AttributeList';
 import { cardTopology } from '../../topologies/Card';
 import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
 import { cardFixedTopology } from '../../topologies/Card/CardFixed';
@@ -172,6 +173,7 @@ export default [
     NS.ll('LoadingResource'),
     RENDER_CLASS_NAME,
     [
+      attributeListTopology,
       cardListTopology,
       cardMainTopology,
       inlineTopology,

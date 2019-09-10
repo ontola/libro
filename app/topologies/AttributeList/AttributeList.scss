@@ -1,0 +1,33 @@
+@import '../../components/shared/config';
+
+.AttributeList {
+  margin-bottom: .6rem;
+
+  a {
+    color: color('blue', power);
+    font-weight: normal;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  label {
+    color: color('grey', 'mid-dark');
+  }
+
+  td {
+    &:first-child {
+      width: 15em;
+    }
+
+    padding: .3em 0;
+  }
+
+  th {
+    font-weight: 600;
+    text-align: left;
+    color: color('grey', 'mid-dark');
+  }
+}

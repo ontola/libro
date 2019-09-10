@@ -10,6 +10,7 @@ import {
 } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { actionsBarTopology } from '../../../topologies/ActionsBar';
+import { attributeListTopology } from '../../../topologies/AttributeList';
 import { cardTopology } from '../../../topologies/Card';
 import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
 import { cardFloatTopology } from '../../../topologies/Card/CardFloat';
@@ -157,6 +158,7 @@ export default [
     NS.schema('Thing'),
     NamePredicates,
     [
+      attributeListTopology,
       inlineTopology,
       parentTopology,
     ]

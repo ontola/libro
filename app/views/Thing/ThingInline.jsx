@@ -3,6 +3,7 @@ import React from 'react';
 
 import LDLink from '../../components/LDLink';
 import { NS } from '../../helpers/LinkedRenderStore';
+import { attributeListTopology } from '../../topologies/AttributeList';
 import { inlineTopology } from '../../topologies/Inline';
 
 class ThingInline extends React.PureComponent {
@@ -10,7 +11,7 @@ class ThingInline extends React.PureComponent {
 
   static mapDataToProps = [NS.rdf('type')];
 
-  static topology = inlineTopology;
+  static topology = [attributeListTopology, inlineTopology];
 
   render() {
     return (

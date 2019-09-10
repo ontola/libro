@@ -1,5 +1,6 @@
 import { actionsBarTopology } from './topologies/ActionsBar/index';
 import { appMenuTopology } from './topologies/AppMenu';
+import { attributeListTopology } from './topologies/AttributeList';
 import { cardTopology } from './topologies/Card/index';
 import { cardAppendixTopology } from './topologies/Card/CardAppendix';
 import { cardFixedTopology } from './topologies/Card/CardFixed';
@@ -48,6 +49,7 @@ export const allTopologies = [
   undefined,
   actionsBarTopology,
   appMenuTopology,
+  attributeListTopology,
   cardTopology,
   cardAppendixTopology,
   cardFixedTopology,
