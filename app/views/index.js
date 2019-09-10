@@ -20,6 +20,7 @@ import DialogManager from './DialogManager';
 import Document from './Document';
 import EntryPoint from './EntryPoint';
 import Error from './Error';
+import FormOption from './FormOption';
 import Forum from './Forum/index';
 import Group from './Group';
 import GroupMembership from './GroupMembership';
@@ -73,6 +74,7 @@ export function getViews() {
     ...DialogManager,
     ...EntryPoint,
     ...Error,
+    ...FormOption,
     ...Forum,
     ...Group,
     ...GroupMembership,
