@@ -6,6 +6,7 @@ import { HotKeys } from 'react-hotkeys';
 import { withRouter } from 'react-router';
 
 import { NavBarContent, SkipNavigation } from '../../components';
+import DutchGovernmentHeader from '../../components/Headers/DutchGovernmentHeader';
 import '../../components/shared/init.scss';
 import NetworkStatusIndicator from '../../components/NetworkStatusIndicator';
 import { CONTAINER_ELEMENT } from '../../config';
@@ -13,12 +14,17 @@ import Navbar from '../../topologies/Navbar/index';
 import Popup from '../../topologies/Popup/index';
 import ErrorButtonWithFeedback from '../../views/Error/ErrorButtonWithFeedback';
 import HoverHelper from '../DevBrowser/HoverHelper';
+import { getMetaContent } from '../../helpers/arguHelpers';
 import { defaultKeymap, devKeymap } from '../../helpers/keyboard';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { handle } from '../../helpers/logging';
 import Routes from '../index';
 
 import './index.scss';
+
+const headers = {
+  dutchGovernment: DutchGovernmentHeader,
+};
 
 class App extends React.PureComponent {
   static propTypes = {
@@ -58,6 +64,10 @@ class App extends React.PureComponent {
       return <ErrorButtonWithFeedback reloadLinkedObject={this.retry} />;
     }
 
+    const template = getMetaContent('template');
+    const templateOptions = getMetaContent('templateOpts');
+    const Header = headers[template];
+
     return (
       <HotKeys
         attach={__CLIENT__ ? window : {}}
@@ -71,6 +81,7 @@ class App extends React.PureComponent {
           />
           <SkipNavigation />
           <div className={CONTAINER_ELEMENT} id={CONTAINER_ELEMENT}>
+            {Header && <Header templateOptions={templateOptions} />}
             <Navbar>
               <NavBarContent />
             </Navbar>

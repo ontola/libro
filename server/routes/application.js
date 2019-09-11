@@ -67,6 +67,8 @@ export default function application(port) {
         primaryText: websiteMetaParams.get('navbar_color'),
         secondaryMain: websiteMetaParams.get('accent_background_color'),
         secondaryText: websiteMetaParams.get('accent_color'),
+        template: websiteMetaParams.get('template') || 'default',
+        templateOpts: websiteMetaParams.get('template_options'),
         title: websiteMetaParams.get('application_name') || 'Argu',
         website: websiteMetaParams.get('iri'),
       };

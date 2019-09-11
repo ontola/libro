@@ -144,6 +144,8 @@ export const renderFullPage = (req, res, websiteMeta, data) => {
               <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1, maximum-scale=1.0, user-scalable=yes">
               <meta content="269911176456825" property="fb:app_id">
               <meta name="theme" content="${websiteMeta.cssClass}">
+              <meta name="template" content="${websiteMeta.template}">
+              <meta name="templateOpts" content="${websiteMeta.templateOpts}">
               ${headers?.meta?.toString()}
 
               <meta name="csrf-param" content="authenticity_token">

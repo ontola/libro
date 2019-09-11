@@ -1,0 +1,73 @@
+@import '../shared/config';
+
+.DutchGovernmentHeader {
+  position: relative;
+  z-index: z(navbar);
+
+  header {
+    background: color('white');
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0;
+    min-height: 93px;
+    position: relative;
+  }
+
+  .Logo {
+    margin-top: -11px;
+    padding-left: 134px;
+    padding-right: 0;
+    text-decoration: none;
+
+    .Wordmark {
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
+      display: block;
+      float: right;
+      font-family: 'RO Serif', 'Times New Roman', Times, serif;
+      font-size: 11px;
+      letter-spacing: .001em;
+      line-height: 14px;
+      margin-left: 4px;
+      margin-right: 0;
+      padding-top: 34px;
+      width: 145px;
+    }
+
+    .Secondary {
+      display: block;
+      font-style: italic;
+      line-height: 14px;
+      padding-bottom: 14px;
+    }
+  }
+
+  @media (min-width: 576px) {
+    .Logo {
+      margin-top: 0;
+      min-height: 88px;
+      padding-left: 240px;
+      padding-right: 0;
+
+      .Wordmark {
+        font-size: 14px;
+        line-height: 14px;
+        margin-left: 9px;
+        margin-right: 21px;
+        width: 210px;
+      }
+    }
+  }
+
+  .NavBar--titlebar {
+    background-color: var(--navbar-background);
+    color: color('black');
+    font-size: 1.3rem;
+    line-height: 2rem;
+  }
+
+  .NavBar--titlebar--inner {
+    background-color: color('transparent', 'light-7');
+  }
+}
