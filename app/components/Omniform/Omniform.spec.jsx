@@ -89,6 +89,7 @@ describe('Omniform', () => {
 
   it('keeps modification across action switches', () => {
     const subject = NS.ex('5');
+    const omniformSelector = `${subject.value}.omniform`;
     const form = createForm({ onSubmit: () => undefined });
 
     const {
@@ -108,13 +109,13 @@ describe('Omniform', () => {
       </Card>
     ), { resources });
 
-    expect(getByTestId(subject.value)).toHaveFormValues({
+    expect(getByTestId(omniformSelector)).toHaveFormValues({
       [schemaText]: '',
     });
 
     fireEvent.change(getByLabelText(/prop pro/), { target: { value: 'test' } });
 
-    expect(getByTestId(subject.value)).toHaveFormValues({
+    expect(getByTestId(omniformSelector)).toHaveFormValues({
       [schemaText]: 'test',
     });
     expect(form.getFieldState(schemaText).dirty).toBeTruthy();
@@ -125,7 +126,7 @@ describe('Omniform', () => {
 
     expect(getByText('prop con')).toBeVisible();
 
-    expect(getByTestId(subject.value)).toHaveFormValues({
+    expect(getByTestId(omniformSelector)).toHaveFormValues({
       [schemaText]: 'test',
     });
     expect(form.getFieldState(schemaText).dirty).toBeTruthy();

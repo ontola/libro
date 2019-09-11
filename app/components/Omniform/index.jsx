@@ -126,7 +126,7 @@ class Omniform extends EntryPointBase {
       <Form
         className="Form Omniform"
         form={formInstance}
-        formID={atob(this.props.parentIRI)}
+        formID={`${atob(this.props.parentIRI)}.omniform`}
         onSubmit={this.submitHandler}
       >
         {({ invalid, submitting }) => (
