@@ -17,7 +17,7 @@ const Telephone = ({ linkedProp }) => (
 
     </a>
     <a
-      href={`https://wa.me/${linkedProp.value}`}
+      href={`https://wa.me/${linkedProp.value.replace(/^\D+/g, '')}`}
       rel="nofollow noopener noreferrer"
       target="_blank"
     >
