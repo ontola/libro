@@ -61,6 +61,7 @@ const formFieldWrapper = (Component) => {
             formProps.input.onChange(nextValue);
           },
         }}
+        storeKey={storeKey}
       />
     );
   };

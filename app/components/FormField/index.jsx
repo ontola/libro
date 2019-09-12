@@ -92,6 +92,7 @@ const propTypes = {
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   shIn: optionsType,
+  storeKey: PropTypes.string,
   theme: PropTypes.string,
   topology: topologyType,
   // HTML input type, e.g. 'email'
@@ -248,6 +249,7 @@ class FormField extends React.PureComponent {
       placeholder,
       required,
       shIn,
+      storeKey,
       minRows,
       topology,
       type,
@@ -382,6 +384,7 @@ class FormField extends React.PureComponent {
         break;
       case 'markdown':
         element = TextEditor;
+        sharedProps.id = `${storeKey}.${sharedProps.id}`;
         sharedProps.rows = minRows;
         break;
       case 'checkbox': {
