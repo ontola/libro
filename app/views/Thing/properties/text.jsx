@@ -22,6 +22,7 @@ import { containerTopology } from '../../../topologies/Container';
 import { hoverBoxTopology } from '../../../topologies/HoverBox';
 import { popupTopology } from '../../../topologies/Popup';
 import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
+import { widgetTopologyTopology } from '../../../topologies/WidgetTopology/WidgetTopology';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -83,6 +84,7 @@ export default [
     [
       primaryResourceTopology,
       cardMainTopology,
+      widgetTopologyTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(
