@@ -19,6 +19,7 @@ import ImageObjectCardContent from './ImageObjectCardContent';
 import ImageObjectCardList from './ImageObjectCardList';
 import ImageObjectCover from './ImageObjectCover';
 import ImageObjectPageHeader from './ImageObjectPageHeader';
+import boxImage from './properties/boxImage';
 import thumbnail from './properties/thumbnail';
 
 class ImageObject extends React.PureComponent {
@@ -65,6 +66,7 @@ export default [
     RENDER_CLASS_NAME,
     navbarTopology
   ),
+  ...boxImage,
   ...thumbnail,
   ImageObjectCardContent,
   ImageObjectCardList,
