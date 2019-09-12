@@ -46,7 +46,7 @@ const CoverPhotoOrLoading = ({ linkedProp }) => {
 
 CoverPhotoOrLoading.type = NS.schema('Thing');
 
-CoverPhotoOrLoading.property = NS.argu('coverPhoto');
+CoverPhotoOrLoading.property = NS.ontola('coverPhoto');
 
 CoverPhotoOrLoading.topology = cardFixedTopology;
 
@@ -57,7 +57,7 @@ export default [
   LinkedRenderStore.registerRenderer(
     ClickableCover,
     NS.schema('Thing'),
-    NS.argu('coverPhoto'),
+    NS.ontola('coverPhoto'),
     cardTopology
   ),
 ];

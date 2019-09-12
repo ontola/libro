@@ -48,7 +48,7 @@ TextInline.propTypes = propTypes;
  */
 class TextCutoff extends PropertyBase {
   render() {
-    if (!this.getLinkedObjectProperty() || this.getLinkedObjectProperty(NS.argu('coverPhoto'))) {
+    if (!this.getLinkedObjectProperty() || this.getLinkedObjectProperty(NS.ontola('coverPhoto'))) {
       return null;
     }
 

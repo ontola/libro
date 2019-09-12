@@ -46,8 +46,8 @@ class ImageObjectBackgroundCover extends PureComponent {
 export default [
   LinkedRenderStore.registerRenderer(
     link({
-      imagePositionY: NS.argu('imagePositionY'),
-      url: NS.argu('imgUrl1500x2000'),
+      imagePositionY: NS.ontola('imagePositionY'),
+      url: NS.ontola('imgUrl1500x2000'),
     })(ImageObjectBackgroundCover),
     NS.schema('ImageObject'),
     RENDER_CLASS_NAME,
@@ -55,8 +55,8 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     link({
-      imagePositionY: NS.argu('imagePositionY'),
-      url: NS.argu('imgUrl568x400'),
+      imagePositionY: NS.ontola('imagePositionY'),
+      url: NS.ontola('imgUrl568x400'),
     })(ImageObjectBackgroundCover),
     NS.schema('ImageObject'),
     RENDER_CLASS_NAME,

@@ -45,7 +45,7 @@ const PROPS_WHITELIST = [
   NS.argu('isOpinion'),
   NS.ontola('hiddenGroup'),
   NS.argu('attachments'),
-  NS.argu('coverPhoto'),
+  NS.ontola('coverPhoto'),
   NS.schema('location'),
 ];
 

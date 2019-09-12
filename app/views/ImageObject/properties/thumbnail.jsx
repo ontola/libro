@@ -36,19 +36,19 @@ export default [
   LinkedRenderStore.registerRenderer(
     createThumbnail(NavbarLinkImage),
     [NS.schema('ImageObject'), NS.schema('VideoObject')],
-    [NS.schema('thumbnail'), NS.argu('imgUrl64x64')],
+    [NS.schema('thumbnail'), NS.ontola('imgUrl64x64')],
     allTopologiesExcept(cardListTopology, detailsBarTopology, formFooterTopology)
   ),
   LinkedRenderStore.registerRenderer(
     createThumbnail(DetailImage),
     [NS.schema('ImageObject'), NS.schema('VideoObject')],
-    [NS.schema('thumbnail'), NS.argu('imgUrl64x64')],
+    [NS.schema('thumbnail'), NS.ontola('imgUrl64x64')],
     detailsBarTopology
   ),
   LinkedRenderStore.registerRenderer(
     createThumbnail(FormFooterImage),
     [NS.schema('ImageObject'), NS.schema('VideoObject')],
-    [NS.schema('thumbnail'), NS.argu('imgUrl64x64')],
+    [NS.schema('thumbnail'), NS.ontola('imgUrl64x64')],
     formFooterTopology
   ),
 ];

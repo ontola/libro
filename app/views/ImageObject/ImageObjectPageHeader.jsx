@@ -14,7 +14,7 @@ class ImageObjectPageHeader extends PureComponent {
   static topology = pageHeaderTopology;
 
   static mapDataToProps = [
-    NS.argu('imgUrl256x256'),
+    NS.ontola('imgUrl256x256'),
     NS.schema('description'),
   ];
 

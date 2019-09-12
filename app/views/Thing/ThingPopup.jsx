@@ -14,7 +14,7 @@ class ThingPopup extends React.PureComponent {
   render() {
     return (
       <CardFixed fill>
-        <Property label={NS.argu('coverPhoto')} />
+        <Property label={NS.ontola('coverPhoto')} />
         <CardContent noSpacing>
           <Property label={NS.schema('name')} />
         </CardContent>

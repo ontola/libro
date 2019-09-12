@@ -74,7 +74,7 @@ const CardHoverBox = hoverBox();
 const ThingGrid = () => (
   <CardFixed>
     <LDLink>
-      <Property label={NS.argu('coverPhoto')} />
+      <Property label={NS.ontola('coverPhoto')} />
       <CardContent noSpacing>
         <Property label={[NS.schema('name'), NS.rdfs('label')]} />
         <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />

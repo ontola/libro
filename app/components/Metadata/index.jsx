@@ -13,7 +13,7 @@ const Metadata = ({
   name,
 }) => {
   const coverURL = coverPhoto
-    && lrs.getResourceProperty(NamedNode.find(coverPhoto), NS.argu('imgUrl1500x2000'));
+    && lrs.getResourceProperty(NamedNode.find(coverPhoto), NS.ontola('imgUrl1500x2000'));
 
   return (
     <Helmet>
@@ -35,7 +35,7 @@ Metadata.propTypes = {
 
 export default link(
   {
-    coverPhoto: NS.argu('coverPhoto'),
+    coverPhoto: NS.ontola('coverPhoto'),
     identifier: NS.dc('identifier'),
     name: [NS.schema('name'), NS.rdfs('label')],
   },

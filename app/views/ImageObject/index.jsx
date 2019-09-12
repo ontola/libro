@@ -48,7 +48,7 @@ class ImageObject extends React.PureComponent {
   render() {
     const { ariaLabel } = this.props;
 
-    return <Property ariaLabel={ariaLabel} label={[NS.schema('thumbnail'), NS.argu('imgUrl64x64')]} />;
+    return <Property ariaLabel={ariaLabel} label={[NS.schema('thumbnail'), NS.ontola('imgUrl64x64')]} />;
   }
 }
 
@@ -59,7 +59,7 @@ export default [
   LinkedRenderStore.registerRenderer(
     () => (
       <NavbarLinkImageWrapper data-test="ImageObject-navbar">
-        <Property label={[NS.schema('thumbnail'), NS.argu('imgUrl64x64')]} />
+        <Property label={[NS.schema('thumbnail'), NS.ontola('imgUrl64x64')]} />
       </NavbarLinkImageWrapper>
     ),
     NS.schema('ImageObject'),

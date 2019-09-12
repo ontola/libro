@@ -12,7 +12,7 @@ import { attributeListTopology } from '../../topologies/AttributeList';
 const EmploymentAttributeListItem = ({ image }) => (
   <React.Fragment>
     <LinkedResourceContainer subject={image}>
-      <Property label={NS.argu('imgUrl568x400')} />
+      <Property label={NS.ontola('imgUrl568x400')} />
     </LinkedResourceContainer>
     <Property label={[NS.schema('name'), NS.rdfs('label')]} />
   </React.Fragment>

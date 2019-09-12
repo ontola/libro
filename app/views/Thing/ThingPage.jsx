@@ -22,7 +22,7 @@ class ThingPage extends PureComponent {
   render() {
     return (
       <PrimaryResource>
-        <Property label={NS.argu('coverPhoto')} />
+        <Property label={NS.ontola('coverPhoto')} />
         <Container>
           <Property label={NS.schema('isPartOf')} />
           <Property label={NS.argu('trashedAt')} />

@@ -14,7 +14,7 @@ boxImage.type = [NS.schema('ImageObject'), NS.schema('VideoObject')];
 
 boxImage.topology = allTopologies;
 
-boxImage.property = NS.argu('imgUrl568x400');
+boxImage.property = NS.ontola('imgUrl568x400');
 
 boxImage.propTypes = {
   linkedProp: linkedPropType.isRequired,

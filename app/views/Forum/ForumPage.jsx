@@ -15,8 +15,8 @@ import PrimaryResource, { primaryResourceTopology } from '../../topologies/Prima
 
 const ForumPage = ({ coverPhoto, hideHeader }) => {
   const lrs = useLRS();
-  const coverPhotoUrl = coverPhoto && lrs.getResourceProperty(coverPhoto, NS.argu('imgUrl1500x2000'));
-  const positionY = coverPhoto && lrs.getResourceProperty(coverPhoto, NS.argu('imagePositionY'));
+  const coverPhotoUrl = coverPhoto && lrs.getResourceProperty(coverPhoto, NS.ontola('imgUrl1500x2000'));
+  const positionY = coverPhoto && lrs.getResourceProperty(coverPhoto, NS.ontola('imagePositionY'));
 
   return (
     <PrimaryResource>
@@ -32,7 +32,7 @@ const ForumPage = ({ coverPhoto, hideHeader }) => {
 ForumPage.type = [NS.argu('ContainerNode'), NS.schema('WebPage')];
 
 ForumPage.mapDataToProps = [
-  NS.argu('coverPhoto'),
+  NS.ontola('coverPhoto'),
   NS.argu('hideHeader'),
   NS.ontola('widgets'),
   NS.schema.name,
