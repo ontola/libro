@@ -1,5 +1,6 @@
 import Actions from './Action';
 import ActionActionsBar from './ActionActionsBar';
+import ActionCardMain from './ActionCardMain';
 import ActionContainer from './ActionContainer';
 import ActionDetail from './ActionDetail';
 import ActionNested from './ActionNested';
@@ -22,6 +23,7 @@ export default [
   CreateVote,
   Actions,
   ActionActionsBar,
+  ActionCardMain,
   ActionContainer,
   ActionDetail,
   ActionNested,

@@ -199,6 +199,15 @@ function containerToArr(
     return listToArr(lrs, acc, rest);
   }
 
+  const pages = (lrs.getResourceProperty(rest, NS.as('pages')) as NamedNode);
+  if (pages) {
+    return containerToArr(lrs, acc, pages);
+  }
+  const items = (lrs.getResourceProperty(rest, NS.as('items')) as NamedNode);
+  if (items) {
+    return seqToArr(lrs, acc, items);
+  }
+
   return acc;
 }
 

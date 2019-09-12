@@ -1,4 +1,6 @@
 import {
+  LinkedResourceContainer,
+  Property,
   linkType,
   linkedPropType,
   topologyType,
@@ -64,17 +66,26 @@ const OptionsWrapper = ({
         optionsArray.then(debouncedCallback);
       }
     }
-  }, [loading, shIn]);
+  }, [loading, shIn, shIn && lrs.store.changeTimestamps[shIn.sI]]);
 
   return (
-    <Component
-      loading={loading}
-      options={options}
-      searchTemplate={searchTemplate}
-      topology={topology}
-      {...componentProps}
-      onOptionsChange={setShIn}
-    />
+    <React.Fragment>
+      <Component
+        loading={loading}
+        options={options}
+        searchTemplate={searchTemplate}
+        topology={topology}
+        {...componentProps}
+        onOptionsChange={setShIn}
+      />
+      {
+        shIn.termType === 'NamedNode' && (
+          <LinkedResourceContainer subject={shIn}>
+            <Property label={NS.ontola('createAction')} />
+          </LinkedResourceContainer>
+        )
+      }
+    </React.Fragment>
   );
 };
 

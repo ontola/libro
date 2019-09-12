@@ -12,6 +12,7 @@ import { allTopologiesExcept } from '../../topologies';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { cardListTopology } from '../../topologies/Card/CardList';
+import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { gridTopology } from '../../topologies/Grid';
@@ -33,6 +34,7 @@ export class CreateActionButton extends Component {
     alertDialogTopology,
     cardListTopology,
     cardFloatTopology,
+    cardMainTopology,
     containerFloatTopology,
     gridTopology,
     pageTopology,
