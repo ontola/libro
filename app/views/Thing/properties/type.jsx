@@ -18,7 +18,7 @@ const TypeDetail = ({ type }) => {
   }
 
   return (
-    <LinkedResourceContainer subject={best} />
+    <LinkedResourceContainer subject={best} onError={() => null} />
   );
 };
 
