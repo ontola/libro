@@ -3,18 +3,22 @@ import React from 'react';
 
 import Progress from '../../../components/Progress';
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { tryParseInt } from '../../../helpers/numbers';
 import { allTopologies } from '../../../topologies';
 
 const DesiredCount = ({ linkedProp, participantsCount }) => {
-  if (linkedProp.value === 0) {
+  const desired = tryParseInt(linkedProp.value);
+  const current = tryParseInt(participantsCount.value);
+
+  if (desired === 0) {
     return null;
   }
 
-  if (linkedProp.value <= participantsCount.value) {
-    return <p>{`Je hebt je doel van ${linkedProp.value} vrijwilligers gehaald!`}</p>;
+  if (desired <= current) {
+    return <p>{`Je hebt je doel van ${desired} vrijwilligers gehaald!`}</p>;
   }
 
-  return <Progress max={linkedProp.value} min={0} value={participantsCount.value} />;
+  return <Progress max={desired} min={0} value={current} />;
 };
 
 DesiredCount.type = [NS.teamGL('Event')];

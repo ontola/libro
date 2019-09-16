@@ -150,7 +150,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     ),
   ];
 
-  const showDialog = (value: string) => [
+  const showDialog = (value: string, opener?: string | null) => [
     new Statement(
       dialogManager,
       ontola('dialog/resource'),
@@ -160,13 +160,15 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     new Statement(
       dialogManager,
       ontola('dialog/opener'),
-      store.namespaces.app(currentPath().slice(1)),
+      opener ? NamedNode.find(opener) : store.namespaces.app(currentPath().slice(1)),
       store.namespaces.ll('replace'),
     ),
   ];
 
-  (store as any).actions.ontola.showDialog = (resource: NamedNode) => {
-    store.exec(store.namespaces.ontola(`actions/dialog/alert?resource=${encodeURIComponent(resource.value)}`));
+  (store as any).actions.ontola.showDialog = (resource: NamedNode, opener?: NamedNode) => {
+    const resourceValue = encodeURIComponent(resource.value);
+    const openerValue = opener ? encodeURIComponent(opener.value) : '';
+    store.exec(store.namespaces.ontola(`actions/dialog/alert?resource=${resourceValue}&opener=${openerValue}`));
   };
 
   (store as any).actions.ontola.navigate = (resource: NamedNode) => {
@@ -177,9 +179,18 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
    * Miscellaneous
    */
 
-  history.listen((_, action) => {
+  history.listen((opts, action) => {
     if (['POP', 'PUSH'].includes(action)) {
-      store.exec(ontola(`actions/navigation/${action.toLowerCase()}`));
+      store.exec(ontola(
+          `actions/navigation/${action.toLowerCase()}`),
+          {
+            hash: opts.hash || '',
+            key: opts.key || '',
+            pathname: opts.pathname || '',
+            search: opts.search || '',
+            state: opts.state || '',
+          },
+        );
     }
   });
 
@@ -210,7 +221,8 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       case ontola(`actions/navigation/push`):
       case ontola(`actions/navigation/pop`):
         const dialog = store.getResourceProperty(dialogManager, ontola('dialog/resource'));
-        if (dialog) {
+        const opener = store.getResourceProperty(dialogManager, ontola('dialog/opener'));
+        if (dialog && (!opener || retrievePath(opener.value) !== currentPath())) {
           store.exec(ontola('actions/dialog/close'));
         }
         return next(iri, opts);
@@ -269,19 +281,25 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       return Promise.resolve();
     }
 
-    if (iri === store.namespaces.ontola('actions/dialog/close')) {
-      store.processDelta(hideDialog(), true);
+    if (iri.value.startsWith(store.namespaces.ontola('actions/dialog/close').value)) {
+      const resource = new URL(iri.value).searchParams.get('resource');
+      const dialog = store.getResourceProperty(dialogManager, ontola('dialog/resource'));
+
+      if (!resource || (dialog && resource === dialog.value)) {
+        store.processDelta(hideDialog(), true);
+      }
       return Promise.resolve();
     }
 
     if (iri.value.startsWith(store.namespaces.ontola('actions/dialog/alert').value)) {
       const resource = new URL(iri.value).searchParams.get('resource');
+      const opener = new URL(iri.value).searchParams.get('opener');
 
       history.push(currentPath());
       if (!resource) {
           throw new Error("Argument 'value' was missing.");
       }
-      store.processDelta(showDialog(resource), true);
+      store.processDelta(showDialog(resource, opener), true);
 
       return Promise.resolve();
     }

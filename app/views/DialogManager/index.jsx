@@ -28,7 +28,9 @@ class SnackbarManager extends React.PureComponent {
   render() {
     const items = [this.props['dialog/resource']];
 
-    const close = () => this.props.lrs.exec(NS.ontola('actions/dialog/close'));
+    const close = item => (
+      () => this.props.lrs.exec(NS.ontola(`actions/dialog/close?resource=${encodeURIComponent(item.value)}`))
+    );
 
     return (
       <Transition
@@ -41,10 +43,10 @@ class SnackbarManager extends React.PureComponent {
           <Modal
             isOpen
             modalAnimationProps={props}
-            onRequestClose={close}
+            onRequestClose={close(item)}
           >
             <Dialog>
-              <LinkedResourceContainer subject={item} onDone={close} />
+              <LinkedResourceContainer subject={item} onDone={close(item)} />
             </Dialog>
           </Modal>
         )}
