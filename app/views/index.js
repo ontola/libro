@@ -8,6 +8,7 @@ import Activity from './Activity';
 import AppSignIn from './AppSignIn';
 import AppSignOut from './AppSignOut';
 import Thing from './Thing';
+import Badge from './Badge';
 import Collection from './Collection';
 import CollectionPage from './CollectionPage';
 import Comment from './Comment';
@@ -69,6 +70,7 @@ export function getViews() {
     ...Thing,
     ...Action,
     ...Argument,
+    ...Badge,
     ...Collection,
     ...CollectionPage,
     ...Comment,

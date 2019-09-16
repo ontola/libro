@@ -171,6 +171,10 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     store.exec(store.namespaces.ontola(`actions/dialog/alert?resource=${resourceValue}&opener=${openerValue}`));
   };
 
+  (store as any).actions.ontola.hideDialog = () => {
+    store.exec(store.namespaces.ontola('actions/dialog/close'));
+  };
+
   (store as any).actions.ontola.navigate = (resource: NamedNode) => {
     store.exec(store.namespaces.ontola(`actions/dialog/redirect?location=${encodeURIComponent(resource.value)}`));
   };
