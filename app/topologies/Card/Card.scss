@@ -122,6 +122,18 @@
   &--no-start-spacing {
     padding-top: 0;
   }
+
+  p {
+    a {
+      color: color('blue', power);
+      font-weight: normal;
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 }
 
 .CardActions {
