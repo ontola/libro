@@ -188,7 +188,12 @@ const mapDispatchToProps = (dispatch, props) => ({
       parentIRI: props.parentIRI,
     }));
   },
-  onStatusForbidden: () => props.lrs.actions.app.startSignIn(NamedNode.find(atob(props.parentIRI))),
+  onStatusForbidden: () => props
+    .lrs
+    .actions
+    .app
+    .startSignIn(NamedNode.find(atob(props.parentIRI)))
+    .then(Promise.reject),
 });
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => Object.assign(

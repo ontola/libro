@@ -64,7 +64,11 @@ class EntryPointBase extends PropertyBase {
             return this.props.onStatusForbidden();
           }
 
-          return this.props.lrs.actions.app.startSignIn(NamedNode.find(this.props.form));
+          return lrs
+            .actions
+            .app
+            .startSignIn(NamedNode.find(this.props.form))
+            .then(Promise.reject);
         }
         if (e.response.status !== HttpStatus.UNPROCESSABLE_ENTITY) {
           throw e;
