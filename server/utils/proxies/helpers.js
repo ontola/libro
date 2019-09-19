@@ -94,7 +94,7 @@ export function route(requestUrl, full = false) {
   } else if (voteCompareMatch.test(path)) {
     serviceName = 'vote_compare';
   } else {
-    serviceName = 'argu';
+    serviceName = constants.defaultBackendSVCName;
   }
 
   url.protocol = constants.defaultServiceProto;
