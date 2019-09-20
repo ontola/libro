@@ -15,6 +15,7 @@ const GroupContainer = () => (
     <CardContent>
       <Property label={NS.schema('name')} />
       <ContentDetails>
+        <Property label={NS.teamGL('department')} />
         <Property label={NS.teamGL('volunteerCount')} />
       </ContentDetails>
       <Property label={NS.schema('text')} />
