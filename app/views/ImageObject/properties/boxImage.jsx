@@ -7,7 +7,11 @@ import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../../topologies';
 
 const boxImage = ({ linkedProp, style }) => (
-  <Image linkedProp={linkedProp} style={style} />
+  <Image
+    data-test="ImageObject-ImageObjectBox"
+    linkedProp={linkedProp}
+    style={style}
+  />
 );
 
 boxImage.type = [NS.schema('ImageObject'), NS.schema('VideoObject')];

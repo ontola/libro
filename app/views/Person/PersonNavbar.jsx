@@ -28,7 +28,9 @@ const PersonNavbar = ({ subject }) => {
       </LinkedResourceContainer>
       <LDLink className="NavbarLink__link">
         <NavbarLinkIcon features="padded">
-          <Property label={NS.schema('image')} />
+          <Property label={NS.schema('image')}>
+            <Property label={[NS.schema('thumbnail'), NS.ontola('imgUrl64x64')]} />
+          </Property>
         </NavbarLinkIcon>
       </LDLink>
       <Property label={NS.schema('email')} />

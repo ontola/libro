@@ -57,17 +57,11 @@ describeView('ImageObject', components, resources, resource, () => {
   as(navbarTopology, () => {
     it('renders a thumbnail', () => {
       expect(subject.find(marker('navbar'))).toExist();
-      expect(subject.find(marker('ImageObjectThumbnail'))).toExist();
+      expect(subject.find(marker('ImageObjectBox'))).toExist();
     });
   });
 
   as(NS.argu('voteBubble'), () => {
-    it('renders a thumbnail', () => {
-      expect(subject.find(marker('ImageObjectThumbnail'))).toExist();
-    });
-  });
-
-  as(navbarTopology, () => {
     it('renders a thumbnail', () => {
       expect(subject.find(marker('ImageObjectThumbnail'))).toExist();
     });

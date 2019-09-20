@@ -59,7 +59,7 @@ export default [
   LinkedRenderStore.registerRenderer(
     () => (
       <NavbarLinkImageWrapper data-test="ImageObject-navbar">
-        <Property label={[NS.schema('thumbnail'), NS.ontola('imgUrl64x64')]} />
+        <Property label={NS.ontola('imgUrl568x400')} />
       </NavbarLinkImageWrapper>
     ),
     NS.schema('ImageObject'),

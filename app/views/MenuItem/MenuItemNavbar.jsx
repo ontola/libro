@@ -13,6 +13,7 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import Menu from '../../topologies/Menu';
 import { navbarTopology } from '../../topologies/Navbar';
 import { NavbarLinkLink, NavbarLinkWrapper } from '../../components/NavbarLink';
+import { isFontAwesomeIRI } from '../../helpers/iris';
 
 class MenuItemNavbar extends React.PureComponent {
   static type = [
@@ -25,12 +26,15 @@ class MenuItemNavbar extends React.PureComponent {
 
   static mapDataToProps = {
     href: NS.ontola('href'),
+    image: NS.schema('image'),
     menuItems: NS.ontola('menuItems'),
     name: NS.schema('name'),
   };
 
   static propTypes = {
     href: linkType,
+    image: linkType,
+    imageOnly: PropTypes.bool,
     menuItems: linkType,
     showImage: PropTypes.bool,
     subject: subjectType,
@@ -39,6 +43,8 @@ class MenuItemNavbar extends React.PureComponent {
   render() {
     const {
       href,
+      image,
+      imageOnly,
       menuItems,
       showImage,
       subject,
@@ -50,6 +56,7 @@ class MenuItemNavbar extends React.PureComponent {
 
     const menuItemLabel = (onClick) => {
       const wrapperProps = href ? {} : { onClick };
+      const hideLabel = image && (!isFontAwesomeIRI(image.value) || (showImage && imageOnly));
 
       return (
         <NavbarLinkWrapper>
@@ -62,8 +69,8 @@ class MenuItemNavbar extends React.PureComponent {
             label={NS.ontola('href')}
           >
             <InnerWrapper {...wrapperProps}>
-              {showImage && <Property label={NS.schema('image')} />}
-              <Property label={NS.schema('name')} />
+              <Property label={NS.schema('image')} />
+              {!hideLabel && <Property label={NS.schema('name')} />}
             </InnerWrapper>
           </Property>
         </NavbarLinkWrapper>

@@ -31,7 +31,7 @@ class OrganizationNameNavbar extends React.PureComponent {
     return (
       <div className="OrganizationNameNavbar">
         <Property label={NS.schema('image')} />
-        <span className="OrganizationNameNavbar__value">{linkedProp.value}</span>
+        <span className="OrganizationNameNavbar__value NavbarLink__label">{linkedProp.value}</span>
       </div>
     );
   }

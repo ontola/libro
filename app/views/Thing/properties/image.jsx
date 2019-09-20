@@ -10,10 +10,19 @@ import { allTopologies } from '../../../topologies';
 
 const propTypes = {
   ariaLabel: PropTypes.string,
+  children: PropTypes.node,
   linkedProp: linkedPropType,
 };
 
-const ThingImageProp = ({ ariaLabel, linkedProp }) => {
+const ThingImageProp = ({
+  ariaLabel,
+  children,
+  linkedProp,
+}) => {
+  if (children) {
+    return <LinkedResourceContainer subject={linkedProp}>{children}</LinkedResourceContainer>;
+  }
+
   if (!linkedProp) {
     return null;
   } else if (linkedProp
