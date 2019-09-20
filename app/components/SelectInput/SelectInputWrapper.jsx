@@ -90,7 +90,7 @@ function handleStateChange(options, changes, setState, lrs, searchTemplate, onOp
       }
     }
 
-    if (searchTemplate) {
+    if (searchTemplate && changes.inputValue && !changes.selectedItem) {
       const compareValue = inputValue && normalizedLower(typeof inputValue === 'string' ? inputValue : inputValue.value);
       const searchResult = (compareValue && compareValue.length > 0)
         ? searchIri(searchTemplate.value, compareValue, 1, true)
@@ -104,12 +104,6 @@ function handleStateChange(options, changes, setState, lrs, searchTemplate, onOp
       options,
       lrs
     );
-
-    if (Object.hasOwnProperty.call(changes, 'highlightedIndex')
-      && (changes.type === stateChangeTypes.keyDownArrowUp
-        || changes.type === stateChangeTypes.keyDownArrowDown)) {
-      inputValue = itemsToShow[changes.highlightedIndex];
-    }
 
     if (isClosingMenu && selectedItem) {
       inputValue = selectedItem;
