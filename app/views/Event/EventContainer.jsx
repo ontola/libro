@@ -18,6 +18,7 @@ const EventContainer = () => (
         <Property label={NS.teamGL('department')} />
         <Property label={NS.schema('startDate')} />
       </ContentDetails>
+      <Property label={NS.teamGL('desiredCount')} />
       <Property label={NS.schema('text')} />
     </CardContent>
   </Card>
