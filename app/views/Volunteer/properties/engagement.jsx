@@ -20,7 +20,7 @@ const messages = defineMessages({
     id: 'https://team.groenlinks.nl/i18n/engagement/active',
   },
   inactive: {
-    defaultMessage: '😴 inactief',
+    defaultMessage: '💤 inactief',
     id: 'https://team.groenlinks.nl/i18n/engagement/inactive',
   },
   veryActive: {
@@ -47,12 +47,11 @@ const Engagement = ({ linkedProp }) => {
   return (
     <Detail
       text={emoji(formatMessage(message))}
-      title={linkedProp.value}
     />
   );
 };
 
-Engagement.type = NS.teamGL('Volunteer');
+Engagement.type = [NS.teamGL('Volunteer'), NS.teamGL('Participant')];
 
 Engagement.property = NS.teamGL('engagement');
 

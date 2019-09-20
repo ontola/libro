@@ -16,11 +16,11 @@ const propTypes = {
 
 const messages = defineMessages({
   long: {
-    defaultMessage: '🤔 Wacht al {diff} dagen',
+    defaultMessage: '😞 Wacht al {diff} dagen',
     id: 'https://team.groenlinks.nl/i18n/waiting/long',
   },
   short: {
-    defaultMessage: '😀 Wacht enkele dagen',
+    defaultMessage: '🤔 Wacht enkele dagen',
     id: 'https://team.groenlinks.nl/i18n/waiting/short',
   },
   veryLong: {
@@ -28,7 +28,7 @@ const messages = defineMessages({
     id: 'https://team.groenlinks.nl/i18n/waiting/veryLong',
   },
   veryShort: {
-    defaultMessage: '😬 Net aangemeld',
+    defaultMessage: '😀 Net aangemeld',
     id: 'https://team.groenlinks.nl/i18n/waiting/veryShort',
   },
 });

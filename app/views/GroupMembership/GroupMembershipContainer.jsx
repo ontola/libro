@@ -24,6 +24,7 @@ const GroupMembershipContainer = () => (
       <Property label={NS.org('member')}>
         <ContentDetails>
           <Property label={NS.teamGL('department')} />
+          <Property label={NS.teamGL('engagement')} />
         </ContentDetails>
         <div className="Volunteer--contact-options">
           <Property label={NS.teamGL('telephone')} />

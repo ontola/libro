@@ -11,6 +11,7 @@ const defaultProps = {
 
 const propTypes = {
   alignEnd: PropTypes.bool,
+  centered: PropTypes.bool,
   children: PropTypes.node,
   endSpacing: PropTypes.bool,
   noSpacing: PropTypes.bool,
@@ -24,6 +25,7 @@ const propTypes = {
  */
 const CardContent = ({
   alignEnd,
+  centered,
   children,
   endSpacing,
   noStartSpacing,
@@ -37,6 +39,7 @@ const CardContent = ({
   const classes = classNames({
     CardContent: true,
     'CardContent--align-end': alignEnd,
+    'CardContent--centered': centered,
     'CardContent--end-spacing': endSpacing,
     'CardContent--no-spacing': noSpacing,
     'CardContent--no-start-spacing': noStartSpacing,

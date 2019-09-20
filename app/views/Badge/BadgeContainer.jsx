@@ -38,7 +38,7 @@ const BadgeContainer = ({
 
   return (
     <Card about={subject?.value}>
-      <CardContent noSpacing style={{ maxWidth: '25em' }}>
+      <CardContent centered noSpacing style={{ maxWidth: '25em' }}>
         <Property label={[NS.schema('name'), NS.rdfs('label')]} />
         <Image
           linkedProp={image}

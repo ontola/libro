@@ -8,6 +8,7 @@ const ProgressWithRadius = withStyles({
     borderRadius: 10,
     height: 10,
     marginBottom: '1em',
+    maxWidth: '10em',
   },
 })(LinearProgress);
 

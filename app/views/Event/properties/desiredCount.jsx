@@ -18,7 +18,12 @@ const DesiredCount = ({ linkedProp, participantsCount }) => {
     return <p>{`Je hebt je doel van ${desired} vrijwilligers gehaald!`}</p>;
   }
 
-  return <Progress max={desired} min={0} value={current} />;
+  return (
+    <React.Fragment>
+      {`${current}/${desired} deelnemers`}
+      <Progress max={desired} min={0} value={current} />
+    </React.Fragment>
+  );
 };
 
 DesiredCount.type = [NS.teamGL('Event')];

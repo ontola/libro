@@ -115,6 +115,14 @@
     align-self: flex-end;
   }
 
+  &--centered {
+    text-align: center;
+
+    .Heading {
+      width: 100%;
+    }
+  }
+
   &--end-spacing {
     padding-bottom: unit('small');
   }

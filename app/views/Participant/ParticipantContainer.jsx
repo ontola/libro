@@ -10,6 +10,7 @@ import { CardContent } from '../../components';
 import Card from '../../topologies/Card';
 import HeaderWithMenu from '../../components/HeaderWithMenu';
 import ActionsBar from '../../topologies/ActionsBar';
+import ContentDetails from '../../topologies/ContentDetails';
 
 const ParticipantContainer = () => (
   <Card>
@@ -21,6 +22,9 @@ const ParticipantContainer = () => (
           <Property label={NS.schema('name')} />
         </Property>
       </HeaderWithMenu>
+      <ContentDetails>
+        <Property label={NS.teamGL('engagement')} />
+      </ContentDetails>
       <Property label={NS.teamGL('volunteer')}>
         <div className="Volunteer--contact-options">
           <Property label={NS.teamGL('telephone')} />

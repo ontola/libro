@@ -27,7 +27,7 @@ class VolunteerPage extends React.PureComponent {
         <Container>
           <Property label={NS.schema('isPartOf')} />
           <CardMain>
-            <CardContent noSpacing>
+            <CardContent endSpacing>
               <HeaderWithMenu
                 menu={(
                   <Property label={NS.ontola('actionsMenu')} />
