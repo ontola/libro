@@ -38,12 +38,12 @@ class VolunteerPage extends React.PureComponent {
               <ContentDetails>
                 <Property label={NS.teamGL('department')} />
                 <Property label={NS.teamGL('engagement')} />
+                <Property forceRender label={NS.teamGL('glappUsedAt')} />
               </ContentDetails>
               <div className="Volunteer--contact-options">
                 <Property label={NS.teamGL('telephone')} />
                 <Property label={NS.teamGL('email')} />
               </div>
-              <Property forceRender label={NS.teamGL('glappUsedAt')} />
               <Property label={NS.schema.text} />
             </CardContent>
           </CardMain>

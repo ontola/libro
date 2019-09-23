@@ -14,17 +14,17 @@ const messages = defineMessages({
     id: 'https://app.argu.co/i18n/teamGL/glappNotUsed',
   },
   used: {
-    defaultMessage: '🚪 GLAPP voor het laatst gebruikt op {date}.',
+    defaultMessage: '🚪 GLAPP laatst gebruikt op {date}.',
     id: 'https://app.argu.co/i18n/teamGL/glappUsedAt',
   },
 });
 
 const GlappUsedAt = ({ linkedProp }) => {
-  const { formatMessage, intl } = useIntl();
+  const intl = useIntl();
 
   const message = linkedProp ? messages.used : messages.not_used;
   const text = emoji(
-    formatMessage(message, { date: linkedProp && intl.formatDate(new Date(linkedProp.value)) })
+    intl.formatMessage(message, { date: linkedProp && intl.formatDate(new Date(linkedProp.value)) })
   );
 
   return <Detail text={text} />;
