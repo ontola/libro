@@ -132,8 +132,8 @@
   "https://app.argu.co/i18n/votes/neutral/message": "Klik om neutraal op dit idee te stemmen",
   "https://app.argu.co/i18n/votes/pro/message": "Klik om voor dit idee te stemmen",
   "https://ns.ontola.io/actions/copyToClipboard/copySuccessMessage": "Gekopieerd...",
-  "https://team.groenlinks.nl/i18n/waiting/long": "😱 Wacht al {diff} dagen",
+  "https://team.groenlinks.nl/i18n/waiting/long": "😞 Wacht al {diff} dagen",
   "https://team.groenlinks.nl/i18n/waiting/short": "🤔 Wacht enkele dagen",
-  "https://team.groenlinks.nl/i18n/waiting/veryLong": "😞 Wacht al {diff} dagen",
+  "https://team.groenlinks.nl/i18n/waiting/veryLong": "😱 Wacht al {diff} dagen",
   "https://team.groenlinks.nl/i18n/waiting/veryShort": "😀 Net aangemeld"
 }
