@@ -65,7 +65,7 @@ const PlacementOmniformFields = ({
 
   return (
     <div className="PlacementOmniformFields">
-      <OmniformRemoveButton removeItem={removeItem} />
+      {removeItem && <OmniformRemoveButton removeItem={removeItem} />}
       <MapView
         lrs={lrs}
         placements={placements}

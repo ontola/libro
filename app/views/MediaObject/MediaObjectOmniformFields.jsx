@@ -1,5 +1,4 @@
 import {
-  LinkedResourceContainer,
   linkType,
   lrsType,
   register,
@@ -10,7 +9,6 @@ import React from 'react';
 import { useField } from 'react-final-form';
 
 import { FormSectionContext } from '../../components/Form/FormSection';
-import OmniformRemoveButton from '../../components/Omniform/OmniformRemoveButton';
 import { listToArr } from '../../helpers/data';
 import { calculateFormFieldName, isMarkedForRemove } from '../../helpers/forms';
 import { NS } from '../../helpers/LinkedRenderStore';
@@ -57,31 +55,21 @@ const MediaObjectOmniformFields = ({
     return null;
   }
 
-  if (targetValue?.['@id']?.termType === 'NamedNode') {
-    return (
-      <div className="MediaObjectOmniformFields__button-spacer">
-        <OmniformRemoveButton removeItem={removeItem} />
-        <LinkedResourceContainer subject={targetValue['@id']} />
-      </div>
-    );
-  }
-
-  const { input: { value, ...resourceInput } } = resourceField;
-
-  if (value && value.termType) {
-    return (
-      <div className="MediaObjectOmniformFields__button-spacer">
-        <OmniformRemoveButton removeItem={removeItem} />
-        <LinkedResourceContainer subject={value} />
-      </div>
-    );
-  }
-
   const fieldName = NS.schema('contentUrl');
   const fieldId = calculateFormFieldName(formContext, propertyIndex, fieldName);
+  const { input: { value, ...resourceInput } } = resourceField;
+
+  let current;
+  if (targetValue?.['@id']?.termType === 'NamedNode') {
+    current = targetValue['@id'];
+  }
+  if (value && value.termType) {
+    current = value;
+  }
 
   return (
     <MediaObjectOmniformDropzone
+      current={current}
       encodingFormatTypes={encodingFormatTypes}
       inputRef={inputRef}
       name={fieldId}

@@ -1,5 +1,6 @@
+import { LinkedResourceContainer, linkType } from 'link-redux';
 import * as PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Dropzone from 'react-dropzone';
 import { useField } from 'react-final-form';
 import FontAwesome from 'react-fontawesome';
@@ -7,7 +8,45 @@ import { FormattedMessage } from 'react-intl';
 
 import OmniformRemoveButton from '../../../components/Omniform/OmniformRemoveButton';
 
+const dropzoneInner = (file, current, isDragActive) => {
+  if (file) {
+    return (
+      <div>
+        <img src={file.url} />
+        <div>{file.name}</div>
+      </div>
+    );
+  }
+  if (current) {
+    return <LinkedResourceContainer subject={current} />;
+  }
+
+  return (
+    <div className="MediaObjectOmniformFields__messages">
+      <FontAwesome
+        className="MediaObjectOmniformFields__icon"
+        name="cloud-upload"
+      />
+      {
+        isDragActive
+          ? (
+            <FormattedMessage
+              id="https://app.argu.co/i18n/forms/dropzone/hoverText"
+              message="Release to select this file"
+            />
+          ) : (
+            <FormattedMessage
+              id="https://app.argu.co/i18n/forms/dropzone/passiveText"
+              message="Drag & Drop your file here or click to select a file"
+            />
+          )
+      }
+    </div>
+  );
+};
+
 const MediaObjectOmniformDropzone = ({
+  current,
   encodingFormatTypes,
   inputRef,
   name,
@@ -18,11 +57,29 @@ const MediaObjectOmniformDropzone = ({
   const {
     input: {
       onChange: onContentUrlChange,
-      value: contentUrl,
     },
   } = useField(name);
+  const [file, setFile] = useState();
+  useEffect(() => () => {
+    // Make sure to revoke the data uris to avoid memory leaks
+    if (file) {
+      URL.revokeObjectURL(file.url);
+    }
+  }, [file]);
 
-  const onChange = e => onContentUrlChange(e[0]);
+  const onChange = (acceptedFiles) => {
+    const acceptedFile = acceptedFiles[0];
+    setFile(acceptedFile && Object.assign(acceptedFile, {
+      url: URL.createObjectURL(acceptedFile),
+    }));
+
+    return onContentUrlChange(acceptedFile);
+  };
+
+  const onRemove = (e) => {
+    setFile(null);
+    removeItem(e);
+  };
 
   return (
     <Dropzone
@@ -36,7 +93,7 @@ const MediaObjectOmniformDropzone = ({
         isDragActive,
       }) => (
         <div className="MediaObjectOmniformFields__button-spacer">
-          <OmniformRemoveButton removeItem={removeItem} />
+          {(current || file) && removeItem && <OmniformRemoveButton removeItem={onRemove} />}
           <button
             {...getRootProps({
               className: `MediaObjectOmniformFields ${isDragActive ? 'MediaObjectOmniformFields__active' : ''}`,
@@ -44,25 +101,7 @@ const MediaObjectOmniformDropzone = ({
               type: 'button',
             })}
           >
-            <div className="MediaObjectOmniformFields__messages">
-              <FontAwesome className="MediaObjectOmniformFields__icon" name="cloud-upload" />
-              {isDragActive
-                ? (
-                  <FormattedMessage
-                    id="https://app.argu.co/i18n/forms/dropzone/hoverText"
-                    message="Release to select this file"
-                  />
-                )
-                : (
-                  <FormattedMessage
-                    id="https://app.argu.co/i18n/forms/dropzone/passiveText"
-                    message="Drag & Drop your file here or click to select a file"
-                  />
-                )
-
-              }
-              <div>{contentUrl?.name}</div>
-            </div>
+            {dropzoneInner(file, current, isDragActive)}
             <input
               {...resourceInput}
               {...getInputProps()}
@@ -78,6 +117,7 @@ const MediaObjectOmniformDropzone = ({
 };
 
 MediaObjectOmniformDropzone.propTypes = {
+  current: linkType,
   encodingFormatTypes: PropTypes.string,
   inputRef: PropTypes.shape({}),
   name: PropTypes.string,

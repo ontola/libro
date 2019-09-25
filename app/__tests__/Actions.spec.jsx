@@ -107,10 +107,6 @@ describe('Actions', () => {
       [fieldName(NS.argu('pin'))]: false,
     });
 
-    // shows a loading indicator for placements
-    const placementLoadingIndicator = getByTestId('spinner-true');
-    expect(placementLoadingIndicator).toBeVisible();
-
     // can edit the form values
     fireEvent.change(
       getByLabelText('Name'),

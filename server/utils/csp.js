@@ -17,6 +17,7 @@ const fontSrc = ["'self'", 'https://maxcdn.bootstrapcdn.com', 'https://fonts.gst
 const frameSrc = ['https://youtube.com', 'https://www.youtube.com'];
 const imgSrc = [
   "'self'",
+  'blob:',
   'data:',
   '*',
 ];
