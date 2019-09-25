@@ -15,7 +15,7 @@ const SignInFormLink = ({
   location,
   lrs,
 }) => {
-  const redirectURL = currentLocation(location);
+  const redirectURL = currentLocation(location).value;
 
   return (
     <Component
