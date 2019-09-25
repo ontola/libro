@@ -37,6 +37,7 @@ import { inlineTopology } from '../../topologies/Inline';
 import { navbarTopology } from '../../topologies/Navbar';
 import { pageTopology } from '../../topologies/Page';
 import { parentTopology } from '../../topologies/Parent';
+import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 import { tableTopology } from '../../topologies/Table';
 import { tableCellTopology } from '../../topologies/TableCell';
 import { voteBubbleTopology } from '../../topologies/VoteBubble';
@@ -76,6 +77,7 @@ export default [
     RENDER_CLASS_NAME,
     [
       pageTopology,
+      primaryResourceTopology,
       tabPaneTopology,
     ]
   ),
