@@ -1,4 +1,5 @@
 import InterventionContainer from './InterventionContainer';
+import InterventionGrid from './InterventionGrid';
 import InterventionPage from './InterventionPage';
 import DatePublished from './properties/datePublished';
 import EffectivityResearchMethod from './properties/effectivityResearchMethod';
@@ -12,6 +13,7 @@ export default [
   EffectivityResearchMethod,
   InterventionContainer,
   InterventionEffects,
+  InterventionGrid,
   InterventionPage,
   NatureOfCosts,
   SecurityImproved,
