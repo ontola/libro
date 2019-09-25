@@ -79,6 +79,7 @@
     "react-outside-click-handler": "^1.2.4",
     "react-svg-loader": "^3.0.3",
     "request": "^2.88.0",
+    "resolve-url-loader": "^3.1.0",
     "rimraf": "^2.6.3",
     "shrink-ray-current": "^4.0.0",
     "uri-template": "^1.0.1",

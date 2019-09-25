@@ -108,8 +108,15 @@ function createConfig(options) {
               },
             },
             'css-loader',
-            'postcss-loader',
-            'sass-loader',
+            'resolve-url-loader',
+            {
+              loader: 'postcss-loader',
+              options: { sourceMap: true },
+            },
+            {
+              loader: 'sass-loader',
+              options: { sourceMap: true },
+            },
           ],
         },
         {

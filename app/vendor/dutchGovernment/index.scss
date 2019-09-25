@@ -1,0 +1,86 @@
+@import '../../components/shared/config';
+
+@font-face {
+  font-family: 'RO Sans';
+  font-style: normal;
+  font-weight: normal;
+  src: url('./fonts/RijksoverheidSansText-Regular_2_0.otf');
+}
+
+@font-face {
+  font-family: 'RO Sans';
+  font-style: normal;
+  font-weight: bold;
+  src: url('./fonts/RijksoverheidSansText-Bold_2_0.otf');
+}
+
+@font-face {
+  font-family: 'RO Sans';
+  font-style: italic;
+  font-weight: normal;
+  src: url('./fonts/RijksoverheidSansText-Italic_2_0.otf');
+}
+
+@font-face {
+  font-family: 'RO Serif';
+  font-style: normal;
+  font-weight: normal;
+  src: url('./fonts/RijksoverheidSerif-Regular_2_0.otf');
+}
+
+@font-face {
+  font-family: 'RO Serif';
+  font-style: normal;
+  font-weight: bold;
+  src: url('./fonts/RijksoverheidSerif-Bold_2_0.otf');
+}
+
+@font-face {
+  font-family: 'RO Serif';
+  font-style: italic;
+  font-weight: normal;
+  src: url('./fonts/RijksoverheidSerif-Italic_2_0.otf');
+}
+
+.dutchGovernment {
+  font-family: 'RO Sans', Calibri, Verdana, sans-serif;
+  font-size: 16px;
+
+  .Navbar {
+    font-size: 1.125rem;
+    height: 2.8rem;
+  }
+
+  .NavbarLink {
+    .NavbarLink__link {
+      height: 2.8rem;
+
+      &:focus,
+      &:hover {
+        background: color('transparent', 'light-85');
+        color: color('black');
+      }
+
+      &:hover {
+        .NavbarLink__label {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    &--active {
+      background: color('transparent', 'light-85');
+      color: color('black');
+      font-weight: bold;
+
+      &::after {
+        content: none;
+      }
+    }
+  }
+
+
+  .MuiButton-sizeLarge {
+    min-height: 2.8rem;
+  }
+}

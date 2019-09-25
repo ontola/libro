@@ -20,7 +20,7 @@ const DutchGovernmentHeader = ({ templateOptions }) => {
             width={44}
           />
           <span className="Wordmark">
-            <span className="Primary">Rijksinstituut voor Volksgezondheid<br />en Milieu</span>
+            <span className="Primary">Rijksinstituut voor Volksgezondheid en Milieu</span>
             <span className="Secondary">Ministerie van Volksgezondheid,<br />Welzijn en Sport</span>
           </span>
         </div>
