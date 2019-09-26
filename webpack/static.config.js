@@ -10,14 +10,12 @@ const { BugsnagBuildReporterPlugin } = require('webpack-bugsnag-plugins');
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const ManifestPlugin = require('webpack-assets-manifest');
 const merge = require('webpack-merge');
-const WebpackPwaManifest = require('webpack-pwa-manifest');
 
 const pjson = require('../package.json');
 const babelrc = require('../.babelrc');
 const { bundles } = require('../bundleConfig');
 
 const common = require('./common.config');
-const manifest = require('./manifest.json');
 
 let bugsnagPlugin;
 if (process.env.SEMAHORE_DEPLOY_NUMBER) {
@@ -173,7 +171,6 @@ function createConfig(options) {
         fetch: 'isomorphic-fetch',
       }),
       new webpack.HashedModuleIdsPlugin(),
-      new WebpackPwaManifest(manifest),
       new ManifestPlugin({
         output: `private/manifest.${options.buildName}.json`,
         publicPath: '/',

@@ -18,7 +18,10 @@ function generateRenderParams() {
     },
   };
   const websiteMeta = {
-    website: 'https://app.argu.localtest/',
+    icons: [],
+    ontola: {},
+    scope: 'https://app.argu.localtest/',
+    serviceworker: {},
   };
 
   return [req, res, websiteMeta];

@@ -65,9 +65,8 @@ const deferredStyles = '    var loadDeferredStyles = function() {\n'
 
 // Due to WebpackPWAManifest not emitting a chunk, the (web) manifest.json file doesn't end up
 //  in the assets manifest, so we have to define it manually.
-const manifestLocation = `${constants.ASSETS_HOST}/manifest.json`;
 
-export const renderFullPage = (req, res, websiteMeta, data) => {
+export const renderFullPage = (req, res, manifestData, data) => {
   const bundleVersion = isModule(req.headers['user-agent'])
     ? bundles.module
     : bundles.legacy;
@@ -99,7 +98,7 @@ export const renderFullPage = (req, res, websiteMeta, data) => {
 
   const { LRS } = generateLRS();
   const App = getApp(LRS);
-  const { origin } = new URL(websiteMeta?.website || `${req.protocol}://${req.host}`);
+  const { origin } = new URL(manifestData?.scope || `${req.protocol}://${req.host}`);
   const resourceIRI = req.path?.length > 1 ? origin + req.path : origin;
   const seedRequest = {
     body: data?.toString('utf-8') ?? '',
@@ -117,10 +116,21 @@ export const renderFullPage = (req, res, websiteMeta, data) => {
         {
           helmetContext,
           location: resourceIRI,
-          website: websiteMeta.website,
+          website: manifestData.scope,
         }
       ));
       const { helmet: headers } = helmetContext;
+      const icons = manifestData?.icons?.map((icon) => {
+        if (icon.src.includes('favicon')) {
+          return `<link rel="icon" type="${icon.type}" sizes="${icon.sizes}" href="${icon.src}">`;
+        } else if (icon.src.includes('apple-touch-icon')) {
+          return `<link rel="apple-touch-icon" type="${icon.type}" sizes="${icon.sizes}" href="${icon.src}">`;
+        } else if (icon.src.includes('mstile-310x310.png')) {
+          return `<meta name="msapplication-TileImage" content="${icon.src}">`;
+        }
+
+        return null;
+      })?.filter(Boolean)?.join('\n');
 
       return (
         `<!doctype html>
@@ -128,24 +138,24 @@ export const renderFullPage = (req, res, websiteMeta, data) => {
             <head>
               <meta charset="utf-8">
               <link rel="stylesheet" href="/static/preloader.css">
-              <link rel="manifest" href="${manifestLocation}">
+              <link rel="manifest" href="${manifestData.scope}/manifest.json">
               ${headers?.title?.toString()}
 
-              <meta name="website-iri" content="${websiteMeta.website || ''}">
+              <meta name="website-iri" content="${manifestData.scope || ''}">
               <meta property="og:type" content="website">
               <meta name="mobile-web-app-capable" content="yes">
               <meta name="apple-mobile-web-app-capable" content="yes">
-              <meta name="application-name" content="${websiteMeta.title}">
-              <meta name="apple-mobile-web-app-title" content="${websiteMeta.title}">
-              <meta name="theme-color" content="#60707F">
-              <meta name="msapplication-navbutton-color" content="#60707F">
+              <meta name="application-name" content="${manifestData.short_name}">
+              <meta name="apple-mobile-web-app-title" content="${manifestData.short_name}">
+              <meta name="theme-color" content="${manifestData.theme_color}">
+              <meta name="msapplication-navbutton-color" content="${manifestData.theme_color}">
               <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-              <meta name="msapplication-starturl" content="/">
+              <meta name="msapplication-starturl" content="${manifestData.start_url}">
               <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1, maximum-scale=1.0, user-scalable=yes">
               <meta content="269911176456825" property="fb:app_id">
-              <meta name="theme" content="${websiteMeta.cssClass}">
-              <meta name="template" content="${websiteMeta.template}">
-              <meta name="templateOpts" content="${websiteMeta.templateOpts}">
+              <meta name="theme" content="${manifestData.ontola.css_class}">
+              <meta name="template" content="${manifestData.ontola.template}">
+              <meta name="templateOpts" content="${manifestData.ontola.template_options}">
               ${headers?.meta?.toString()}
 
               <meta name="csrf-param" content="authenticity_token">
@@ -155,19 +165,9 @@ export const renderFullPage = (req, res, websiteMeta, data) => {
               <script nonce="${nonceStr}">window.bugsnagClient = typeof bugsnag !== 'undefined' && bugsnag(${JSON.stringify(bugsnagOpts)})</script>
 
               ${headers?.link?.toString()}
-              <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicons/favicon-192x192.png">
-              <link rel="icon" type="image/png" sizes="160x160" href="/assets/favicons/favicon-160x160.png">
-              <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicons/favicon-96x96.png">
-              <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
-              <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
-              <link rel="apple-touch-icon" type="image/png" sizes="192x192" href="/assets/favicons/favicon-192x192.png">
-              <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/assets/favicons/apple-touch-icon-180x180.png">
-              <link rel="icon" type="image/png" sizes="120x120" href="/assets/favicons/apple-touch-icon-120x120.png">
-              <link rel="apple-touch-icon" type="image/png" sizes="128x128" href="/assets/icon-medium.png">
-              <link rel="icon" type="image/png" sizes="72x72" href="/assets/favicons/apple-touch-icon-72x72.png">
-              <link rel="apple-touch-icon" type="image/png" sizes="72x72" href="/assets/favicons/apple-touch-icon-72x72.png">
-              <meta name="msapplication-TileColor" content="#475668">
-              <meta name="msapplication-TileImage" content="/assets/favicons/mstile-310x310.png">
+              ${icons}
+              <meta name="msapplication-TileColor" content="${manifestData.theme_color}">
+              
               <meta name="msapplication-config" content="/assets/favicons/browserconfig.xml">
 
               <noscript id="deferred-styles">
@@ -180,23 +180,23 @@ export const renderFullPage = (req, res, websiteMeta, data) => {
             <body style="margin: 0;">
               <style id="theme-config">
                 :root {
-                  --accent-background-color:${websiteMeta.secondaryMain};
-                  --accent-color:${websiteMeta.secondaryText};
-                  --navbar-background:${websiteMeta.primaryMain};
-                  --navbar-color:${websiteMeta.primaryText};
-                  --navbar-color-hover:${websiteMeta.primaryText}12;
+                  --accent-background-color:${manifestData.ontola.secondary_main};
+                  --accent-color:${manifestData.ontola.secondary_text};
+                  --navbar-background:${manifestData.ontola.primary_main};
+                  --navbar-color:${manifestData.ontola.primary_text};
+                  --navbar-color-hover:${manifestData.ontola.primary_text}12;
                 }
                 .accent-background-color {
-                  background-color: ${websiteMeta.secondaryMain};
+                  background-color: ${manifestData.ontola.secondary_main};
                 }
                 .accent-color {
-                  color: ${websiteMeta.secondaryText};
+                  color: ${manifestData.ontola.secondary_text};
                 }
                 .navbar-background {
-                  background: ${websiteMeta.primaryMain};
+                  background: ${manifestData.ontola.primary_main};
                 }
                 .navbar-color {
-                  color: ${websiteMeta.primaryText};
+                  color: ${manifestData.ontola.primary_text};
                 }
               </style>
               <div class="preloader" id="preloader">
@@ -207,7 +207,7 @@ export const renderFullPage = (req, res, websiteMeta, data) => {
                   class="accent-background-color navbar-background navbar-color"
                   style="height: 3.2rem; z-index: -1;"
               ></div>
-              <div id="${constants.APP_ELEMENT}" class="${websiteMeta.cssClass} preloader-fixed"></div>
+              <div id="${constants.APP_ELEMENT}" class="${manifestData.ontola.css_class} preloader-fixed"></div>
               <noscript>
                   <h1>Argu heeft javascript nodig om te werken</h1>
                   <p>Javascript staat momenteel uitgeschakeld, probeer een andere browser of in prive modus.</p>
@@ -216,7 +216,7 @@ export const renderFullPage = (req, res, websiteMeta, data) => {
               <script nonce="${nonceStr}">
                 if ('serviceWorker' in navigator) {
                    window.addEventListener('load', function() {
-                      navigator.serviceWorker.register('/sw.js');
+                      navigator.serviceWorker.register('${manifestData.serviceworker.src}', { scope: ${manifestData.serviceworker.scope} });
                    });
                  }
               </script>
@@ -233,7 +233,7 @@ export const renderFullPage = (req, res, websiteMeta, data) => {
                   window.INITIAL__DATA = seed ? seed.textContent : '';
               </script>
               <script nonce="${nonceStr}" type="application/javascript">
-                  window.WEBSITE_META = JSON.parse('${JSON.stringify(websiteMeta)}')
+                  window.WEBSITE_META = JSON.parse('${JSON.stringify(manifestData.ontola)}')
               </script>
               <!-- Tell users their browser is outdated https://browser-update.org/#install -->
               <script nonce="${nonceStr}">
@@ -252,8 +252,8 @@ export const renderFullPage = (req, res, websiteMeta, data) => {
     });
 };
 
-export function handleRender(req, res, port, domain, websiteMeta, data) {
-  return renderFullPage(req, res, websiteMeta, data)
+export function handleRender(req, res, port, domain, manifestData, data) {
+  return renderFullPage(req, res, manifestData, data)
     .then((page) => {
       res.send(page);
     })

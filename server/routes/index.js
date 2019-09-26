@@ -28,6 +28,8 @@ import application from './application';
 import health from './health';
 import login from './login';
 import logout from './logout';
+import precacheManifest from './manifests';
+import serviceWorker from './service_workers';
 import maps from './maps';
 
 const oneYearInMiliSec = 31536000000;
@@ -103,6 +105,11 @@ export default async function routes(app, port) {
   app.get('/d/health', health);
 
   app.use(errorMiddleware.requestHandler);
+
+  app.use('(/*)?/sw.js*', serviceWorker);
+
+  app.use('/f_assets/precache-manifest.*.js*', precacheManifest);
+
   app.all('*', isPlainAPIReq, backendProxy);
 
   app.use(csp);

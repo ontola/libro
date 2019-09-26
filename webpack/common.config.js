@@ -85,7 +85,7 @@ const common = {
     }),
     new WorkboxPlugin.InjectManifest({
       // importWorkboxFrom: 'disabled',
-      // importsDirectory: 'workbench',
+      importsDirectory: 'f_assets',
       swDest: './public/sw.js',
       swSrc: './app/sw.js',
     }),

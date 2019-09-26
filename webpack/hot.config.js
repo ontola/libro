@@ -1,9 +1,7 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const WebpackPwaManifest = require('webpack-pwa-manifest');
 
 const common = require('./common.config');
-const manifest = require('./manifest.json');
 
 module.exports = merge(common, {
   cache: true,
@@ -64,10 +62,6 @@ module.exports = merge(common, {
       'process.env.FRONTEND_HOSTNAME': JSON.stringify(process.env.FRONTEND_HOSTNAME),
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new WebpackPwaManifest({
-      ...manifest,
-      filename: 'manifest.json',
-    }),
     new webpack.NoEmitOnErrorsPlugin(),
   ],
 

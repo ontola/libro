@@ -2,9 +2,8 @@ const path = require('path');
 
 const StringReplacePlugin = require('string-replace-webpack-plugin');
 const webpack = require('webpack');
-const WebpackPwaManifest = require('webpack-pwa-manifest');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
-const manifest = require('./webpack/manifest.json');
 const version = require('./webpack/version');
 
 const TARGET = process.env.npm_lifecycle_event;
@@ -113,9 +112,11 @@ const config = {
       __VERSION__: JSON.stringify(version),
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production'),
     }),
-    new WebpackPwaManifest({
-      ...manifest,
-      filename: 'public/manifest.json',
+    new WorkboxPlugin.InjectManifest({
+      exclude: [/^private\//],
+      importsDirectory: 'f_assets',
+      swDest: './public/sw.js',
+      swSrc: './app/sw.js',
     }),
   ],
 

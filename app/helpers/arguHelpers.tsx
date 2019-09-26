@@ -74,6 +74,11 @@ export function errorMessageForStatus(status: number) {
   };
 }
 
+export function isSuccess(status: number) {
+  return (status >= HttpStatus.OK && status < HttpStatus.MULTIPLE_CHOICES)
+      || status === HttpStatus.NOT_MODIFIED;
+}
+
 export function json(response: Response) {
   if (typeof response !== 'undefined'
       && response.status !== HttpStatus.NO_CONTENT
@@ -135,9 +140,7 @@ export function safeCredentials(options: any = {}) {
 }
 
 export function statusSuccess(response: Response) {
-  if ((response.status >= HttpStatus.OK
-      && response.status < HttpStatus.MULTIPLE_CHOICES)
-      || response.status === HttpStatus.NOT_MODIFIED) {
+  if (isSuccess(response.status)) {
     return Promise.resolve(response);
   }
   return Promise.reject(response);

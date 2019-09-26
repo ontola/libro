@@ -63,12 +63,12 @@ const IndexContainer = ({
       palette: createPalette({
         ...theme.palette,
         primary: {
-          contrastText: websiteMeta.primaryText,
-          main: websiteMeta.primaryMain,
+          contrastText: websiteMeta.primary_text,
+          main: websiteMeta.primary_main,
         },
         secondary: {
-          contrastText: websiteMeta.secondaryText,
-          main: websiteMeta.secondaryMain,
+          contrastText: websiteMeta.secondary_text,
+          main: websiteMeta.secondary_main,
         },
       }),
     };
