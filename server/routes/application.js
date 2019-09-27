@@ -132,12 +132,6 @@ export default function application(port) {
           req.bugsnag.notify(e);
         }
 
-        const auth = res.headers.get('new-authorization');
-        if (auth) {
-          req.session.arguToken = { accessToken: auth };
-          req.api.userToken = auth;
-        }
-
         res.status(INTERNAL_SERVER_ERROR);
       }
       sendResponse(req, res, domain, `https://${req.get('host')}`, '');
