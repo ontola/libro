@@ -2,7 +2,6 @@ import Stream from 'stream';
 
 import {
   INTERNAL_SERVER_ERROR,
-  NOT_FOUND,
   SERVICE_UNAVAILABLE,
 } from 'http-status-codes';
 
@@ -16,6 +15,7 @@ import {
   route,
 } from '../utils/proxies/helpers';
 import { handleRender } from '../utils/render';
+import { isSuccess } from '../../app/helpers/arguHelpers';
 
 const BACKEND_TIMEOUT = 3000;
 
@@ -56,10 +56,15 @@ export default function application(port) {
 
       const websiteMetaHeader = serverRes.headers.get('Website-Meta');
       if (!websiteMetaHeader) {
-        res.status(NOT_FOUND).end();
+        if (isSuccess(serverRes.status)) {
+          res.status(INTERNAL_SERVER_ERROR);
 
-        throw new Error('No Website-Meta header in response');
+          throw new Error('No Website-Meta header in response');
+        }
+
+        return res.end();
       }
+
       const websiteMetaParams = new URLSearchParams(websiteMetaHeader);
       const websiteMeta = {
         cssClass: websiteMetaParams.get('css_class'),
@@ -74,9 +79,13 @@ export default function application(port) {
       };
 
       if (!websiteMeta.website) {
-        res.status(NOT_FOUND).end();
+        if (isSuccess(serverRes.status)) {
+          res.status(INTERNAL_SERVER_ERROR);
 
-        throw new Error(`No website iri in head, got status '${serverRes.status}' and header '${websiteMetaHeader}'`);
+          throw new Error(`No website iri in head, got status '${serverRes.status}' and header '${websiteMetaHeader}'`);
+        }
+
+        return res.end();
       }
 
       const auth = serverRes.headers.get('new-authorization');
