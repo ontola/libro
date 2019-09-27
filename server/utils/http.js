@@ -5,7 +5,7 @@ export function isDownloadRequest(url) {
 }
 
 export function isHTMLHeader(headers) {
-  return headers.accept.includes('text/html')
+  return headers.accept && (headers.accept.includes('text/html')
     || headers.accept.includes('application/xhtml+xml')
-    || headers.accept.includes('application/xml');
+    || headers.accept.includes('application/xml'));
 }
