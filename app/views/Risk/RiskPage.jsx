@@ -60,7 +60,6 @@ const RiskPage = () => (
     </Container>
     <Container>
       <Property label={NS.schema('comments')} />
-      <Property forceRender label={NS.app('omniform')} />
     </Container>
   </PrimaryResource>
 );

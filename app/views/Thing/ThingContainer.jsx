@@ -29,7 +29,6 @@ const ThingContainer = ({ highlighted, subject }) => (
       <SignInSwitcherContainer subject={subject}>
         <Property forceRender label={NS.argu('arguments')} />
         <Property label={NS.argu('topComment')} />
-        <Property forceRender label={NS.app('omniform')} />
       </SignInSwitcherContainer>
     </CardAppendix>
   </Card>
