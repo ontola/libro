@@ -5,6 +5,7 @@ import {
   CardContent,
   LinkedDetailDate,
 } from '../../components';
+import Button from '../../components/Button';
 import { NS } from '../../helpers/LinkedRenderStore';
 import ActionsBar from '../../topologies/ActionsBar';
 import CardAppendix from '../../topologies/Card/CardAppendix';
@@ -62,6 +63,17 @@ const InterventionTypePage = () => (
     </Container>
     <Container>
       <Property label={NS.schema('comments')} />
+      <Property label={NS.ontola('createAction')}>
+        {(createActions) => {
+          const newInterventionAction = createActions.find(a => a.value.endsWith('/interventies/new'));
+
+          return newInterventionAction && (
+            <Button href={newInterventionAction}>
+              Heb jij dit interventietype toegepast? Deel je ervaring!
+            </Button>
+          );
+        }}
+      </Property>
     </Container>
   </PrimaryResource>
 );
