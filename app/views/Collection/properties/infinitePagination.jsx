@@ -38,7 +38,7 @@ const getPagination = (Wrapper, topology) => {
 
   InfinitePagination.mapDataToProps = {
     pages: {
-      label: NS.as('pages'),
+      label: NS.ontola('pages'),
       limit: Infinity,
     },
   };

@@ -39,7 +39,7 @@ export default [
   LinkedRenderStore.registerRenderer(
     Views,
     CollectionViewTypes,
-    NS.as('pages'),
+    NS.ontola('pages'),
     allTopologies
   ),
 ];

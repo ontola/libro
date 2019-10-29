@@ -18,7 +18,7 @@ const propTypes = {
 };
 
 const LocationDetail = ({ lrs, linkedProp }) => {
-  const placement = lrs.dig(linkedProp, [NS.as('pages'), NS.as('items'), NS.rdf('_1')]).pop();
+  const placement = lrs.dig(linkedProp, [NS.ontola('pages'), NS.as('items'), NS.rdf('_1')]).pop();
 
   if (!placement) {
     return null;

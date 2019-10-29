@@ -54,7 +54,7 @@ export default function getCollection({
       columns: NS.ontola('columns'),
       defaultType: NS.ontola('defaultType'),
       pages: {
-        label: NS.as('pages'),
+        label: NS.ontola('pages'),
         limit: Infinity,
       },
       totalItems: NS.as('totalItems'),
@@ -109,7 +109,7 @@ export default function getCollection({
           collectionDisplay={this.props.collectionDisplay || this.props.collectionDisplayFromData}
           columns={columns}
           depth={this.props.depth}
-          label={NS.as('pages')}
+          label={NS.ontola('pages')}
         />
       );
     }

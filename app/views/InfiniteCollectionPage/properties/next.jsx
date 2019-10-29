@@ -19,7 +19,7 @@ class InfiniteCollectionNext extends PropertyBase {
 
     const onClick = () => new Promise(() => {
       lrs.store.addStatements([
-        new Statement(partOf.object, NS.as('pages'), linkedProp),
+        new Statement(partOf.object, NS.ontola('pages'), linkedProp),
         new Statement(subject, NS.argu('void'), new Literal(0)),
       ]);
       lrs.broadcast();

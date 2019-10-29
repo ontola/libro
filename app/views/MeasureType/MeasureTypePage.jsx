@@ -61,7 +61,7 @@ const MeasureTypePage = () => (
       <Property forceRender renderWhenEmpty label={NS.rivm('measures')} />
     </Container>
     <Container>
-      <Property label={NS.schema('comments')} />
+      <Property label={NS.schema('comment')} />
     </Container>
   </PrimaryResource>
 );

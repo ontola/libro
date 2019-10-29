@@ -62,7 +62,7 @@ const InterventionTypePage = () => (
       <Property forceRender renderWhenEmpty label={NS.rivm('interventions')} />
     </Container>
     <Container>
-      <Property label={NS.schema('comments')} />
+      <Property label={NS.schema('comment')} />
       <Property label={NS.ontola('createAction')}>
         {(createActions) => {
           const newInterventionAction = createActions.find(a => a.value.endsWith('/interventies/new'));

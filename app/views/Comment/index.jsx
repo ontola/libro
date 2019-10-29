@@ -31,7 +31,7 @@ const Comment = ({ depth = 0, highlighted }) => (
       </CardContent>
       <ActionsBar small>
         <Property label={NS.ontola('favoriteAction')} onLoad={() => null} />
-        <Property label={NS.schema('comments')} onLoad={() => null}>
+        <Property label={NS.schema('comment')} onLoad={() => null}>
           <Property omniform label={NS.ontola('createAction')} />
         </Property>
       </ActionsBar>
@@ -42,7 +42,7 @@ const Comment = ({ depth = 0, highlighted }) => (
     <Property
       clickToOpen
       depth={depth + 1}
-      label={NS.schema('comments')}
+      label={NS.schema('comment')}
       onLoad={() => null}
     />
   </React.Fragment>

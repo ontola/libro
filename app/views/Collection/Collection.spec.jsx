@@ -40,7 +40,7 @@ describe('Collection', () => {
       [NS.as('totalItems')]: Literal.fromNumber(ITEMS),
       [NS.schema('potentialAction')]: NS.app('nederland/q/75/m/new'),
       [NS.ontola('defaultType')]: new Literal('paginated'),
-      [NS.as('pages')]: collectionWithItems,
+      [NS.ontola('pages')]: collectionWithItems,
       [NS.dc('identifier')]: NS.app('nederland/q/75/motions'),
       [NS.ontola('createAction')]: NS.app('nederland/q/75/m/new'),
       [NS.schema('url')]: collectionWithPages,

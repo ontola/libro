@@ -18,7 +18,7 @@ const CollectionCardAppendix = ({ totalItems }) => {
 
   return (
     <Resource>
-      <Property forceRender insideCollection label={NS.as('pages')} />
+      <Property forceRender insideCollection label={NS.ontola('pages')} />
     </Resource>
   );
 };

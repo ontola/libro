@@ -58,13 +58,13 @@ const Pages = ({
 
 Pages.type = CollectionTypes;
 
-Pages.property = NS.as('pages');
+Pages.property = NS.ontola('pages');
 
 Pages.topology = allTopologies;
 
 Pages.mapDataToProps = {
   pages: {
-    label: NS.as('pages'),
+    label: NS.ontola('pages'),
     limit: Infinity,
   },
 };

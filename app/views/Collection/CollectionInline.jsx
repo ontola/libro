@@ -9,7 +9,7 @@ import { CollectionTypes } from './types';
 const CollectionInline = () => (
   <p>
     <label><Property label={NS.as('name')} /> </label>
-    <Property forceRender insideCollection label={NS.as('pages')} />
+    <Property forceRender insideCollection label={NS.ontola('pages')} />
   </p>
 );
 

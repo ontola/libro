@@ -73,7 +73,7 @@ class ThingPage extends PureComponent {
           <Property forceRender label={NS.argu('arguments')} />
         </Container>
         <Container>
-          <Property label={NS.schema('comments')} />
+          <Property label={NS.schema('comment')} />
         </Container>
       </PrimaryResource>
     );

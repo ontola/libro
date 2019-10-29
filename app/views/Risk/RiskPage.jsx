@@ -59,7 +59,7 @@ const RiskPage = () => (
       <Property forceRender label={NS.rivm('measureTypes')} />
     </Container>
     <Container>
-      <Property label={NS.schema('comments')} />
+      <Property label={NS.schema('comment')} />
     </Container>
   </PrimaryResource>
 );

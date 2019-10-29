@@ -56,7 +56,7 @@ const MeasurePage = () => (
       <Property label={NS.ontola('publishAction')} onLoad={() => null} />
     </Container>
     <Container>
-      <Property label={NS.schema('comments')} />
+      <Property label={NS.schema('comment')} />
     </Container>
   </PrimaryResource>
 );

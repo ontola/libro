@@ -22,6 +22,6 @@ ThingOrganizationProp.propTypes = propTypes;
 export default LinkedRenderStore.registerRenderer(
   ThingOrganizationProp,
   NS.schema('Thing'),
-  NS.schema('organization'),
+  NS.ontola('organization'),
   allTopologies
 );
