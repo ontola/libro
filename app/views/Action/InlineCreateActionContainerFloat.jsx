@@ -7,11 +7,12 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
-import LDLink from '../../components/LDLink';
 import { filterFind } from '../../helpers/data';
+import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 import { OMNIFORM_FILTER, invalidStatuses } from '../Thing/properties/omniform/helpers';
@@ -27,6 +28,7 @@ const useStyles = makeStyles(() => ({
 
 const InlineCreateActionContainerFloat = ({
   actionStatus,
+  history,
   name,
   omniform,
   onClick,
@@ -51,9 +53,9 @@ const InlineCreateActionContainerFloat = ({
       size="small"
       title={name.value}
       type="button"
-      onClick={useOmniform ? onClick : undefined}
+      onClick={useOmniform ? onClick : () => history.push(retrievePath(subject.value))}
     >
-      {useOmniform ? icon : <LDLink>{icon}</LDLink>}
+      {icon}
     </IconButton>
   );
 };
@@ -70,12 +72,18 @@ InlineCreateActionContainerFloat.mapDataToProps = [
   NS.schema('name'),
 ];
 
-InlineCreateActionContainerFloat.hocs = [connect(null, mapCardListDispatchToProps)];
+InlineCreateActionContainerFloat.hocs = [
+  connect(null, mapCardListDispatchToProps),
+  withRouter,
+];
 
 InlineCreateActionContainerFloat.displayName = 'InlineCreateActionContainerFloatButton';
 
 InlineCreateActionContainerFloat.propTypes = {
   actionStatus: linkType,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }),
   name: linkType,
   omniform: PropTypes.bool,
   onClick: PropTypes.func,
