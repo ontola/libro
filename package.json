@@ -60,7 +60,7 @@
     "express-static-gzip": "^1.1.3",
     "fast-deep-equal": "^2.0.1",
     "helmet-csp": "^2.8.0",
-    "http-proxy-middleware": "^0.19.1",
+    "http-proxy-middleware": "^0.20.0",
     "http-status-codes": "^1.3.2",
     "ignore-styles": "^5.0.1",
     "intl-pluralrules": "^1.0.3",
