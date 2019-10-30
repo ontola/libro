@@ -16,7 +16,7 @@ import { alertDialogTopology } from '../../topologies/Dialog';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 
-const ThingContainer = ({ highlighted, subject }) => (
+const MotionContainer = ({ highlighted, subject }) => (
   <Card about={subject?.value} shine={highlighted}>
     <Property label={NS.argu('coverPhoto')} />
     <CardContent noSpacing>
@@ -24,28 +24,31 @@ const ThingContainer = ({ highlighted, subject }) => (
       <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
       <Property label={[NS.argu('attachments'), NS.meeting('attachment')]} />
     </CardContent>
+    <Property label={NS.argu('voteableVoteEvent')} />
     <CardAppendix>
       <SignInSwitcherContainer subject={subject}>
+        <Property forceRender label={NS.argu('arguments')} />
         <Property label={NS.argu('topComment')} />
+        <Property forceRender label={NS.app('omniform')} />
       </SignInSwitcherContainer>
     </CardAppendix>
   </Card>
 );
 
-ThingContainer.type = NS.schema('Thing');
+MotionContainer.type = [NS.argu('Motion'), NS.opengov('Motion')];
 
-ThingContainer.topology = [
+MotionContainer.topology = [
   alertDialogTopology,
   primaryResourceTopology,
   containerTopology,
   widgetTopologyTopology,
 ];
 
-ThingContainer.hocs = [connectHighlighting];
+MotionContainer.hocs = [connectHighlighting];
 
-ThingContainer.propTypes = {
+MotionContainer.propTypes = {
   highlighted: hightlightType,
   subject: subjectType,
 };
 
-export default register(ThingContainer);
+export default register(MotionContainer);
