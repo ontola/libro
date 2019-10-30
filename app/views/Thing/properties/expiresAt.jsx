@@ -1,3 +1,4 @@
+import { selectUnit } from '@formatjs/intl-utils';
 import { linkedPropType, register } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -47,6 +48,8 @@ const ExpiresAt = ({ linkedProp, short }) => {
     );
   }
 
+  const { value, unit } = selectUnit(d, Date.now());
+
   return (
     <Detail
       icon="exclamation"
@@ -55,7 +58,7 @@ const ExpiresAt = ({ linkedProp, short }) => {
           defaultMessage="Due {relativeDate}"
           id="https://app.argu.co/i18n/expireable/states/expiring/label"
           values={{
-            relativeDate: <FormattedRelativeTime numeric="auto" value={d} />,
+            relativeDate: <FormattedRelativeTime numeric="auto" unit={unit} value={value} />,
           }}
         />
       )}
