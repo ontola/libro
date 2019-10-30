@@ -10,12 +10,9 @@ import Button from '../Button';
 import Card, {
   CardActions,
   CardContent,
-  CardDivider,
-  CardRow,
 } from '../../topologies/Card';
 import Heading from '../Heading';
-import { getAuthenticityToken } from '../../helpers/arguHelpers';
-import { expandPath, retrievePath } from '../../helpers/iris';
+import { retrievePath } from '../../helpers/iris';
 import messages from '../../state/form/messages';
 
 import SignInFormBase from './SignInFormBase';
@@ -49,35 +46,6 @@ class SignInFormCard extends SignInFormBase {
     super(props);
 
     this.fieldSettings[STEPS.signUp].emailField.autofocus = true;
-  }
-
-  contentHeader() {
-    if (STEPS.signUp !== this.props.step) {
-      return null;
-    }
-
-    return (
-      <React.Fragment>
-        <CardContent>
-          <form
-            action={expandPath(`/users/auth/facebook?_csrf=${getAuthenticityToken()}`)}
-            method="POST"
-            style={{ display: 'inline' }}
-          >
-            <Button
-              small
-              icon="facebook"
-              type="submit"
-              variant="facebook"
-            >
-              Facebook login
-            </Button>
-            <p />
-          </form>
-        </CardContent>
-        <CardDivider text={this.props.intl.formatMessage(messages.or)} />
-      </React.Fragment>
-    );
   }
 
   getHeaderText() {
@@ -124,7 +92,6 @@ class SignInFormCard extends SignInFormBase {
               {this.getHeaderText()}
             </Heading>
           </CardContent>
-          {this.contentHeader()}
           <Form
             destroyOnUnregister
             initialValuesEqual={equal}
@@ -137,22 +104,20 @@ class SignInFormCard extends SignInFormBase {
                 onSubmit={handleSubmit}
               >
                 {formFields}
-                <CardRow>
-                  <CardActions noSpacing>
-                    {this.backButton()}
-                    {buttonText && (
-                      <Button
-                        disabled={invalid}
-                        icon="arrow-right"
-                        loading={submitting}
-                        theme="box"
-                        type="submit"
-                      >
-                        {buttonText}
-                      </Button>
-                    )}
-                  </CardActions>
-                </CardRow>
+                <CardActions noSpacing>
+                  {this.backButton()}
+                  {buttonText && (
+                    <Button
+                      disabled={invalid}
+                      icon="arrow-right"
+                      loading={submitting}
+                      theme="box"
+                      type="submit"
+                    >
+                      {buttonText}
+                    </Button>
+                  )}
+                </CardActions>
               </form>
             )}
           </Form>
