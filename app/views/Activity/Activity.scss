@@ -1,9 +1,13 @@
 .ActivityDetail {
   .Detail {
-    margin-right: 0;
+    margin-right: .2em;
   }
 
   .Link__default {
     margin-right: .2rem;
   }
+}
+
+.VerticalScroller + .DetailsBar__right {
+  margin-left: .5em;
 }

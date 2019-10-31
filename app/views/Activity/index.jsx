@@ -25,7 +25,16 @@ class Activity extends React.PureComponent {
       <Card>
         <DetailsBar
           className="ActivityDetail"
-          right={<Property label={NS.schema('dateCreated')} />}
+          right={(
+            <React.Fragment>
+              <Property label={NS.schema('dateCreated')} />
+              <Property label={NS.as('object')}>
+                <Property label={NS.ontola('followMenu')} />
+                <Property label={NS.ontola('shareMenu')} />
+                <Property label={NS.ontola('actionsMenu')} />
+              </Property>
+            </React.Fragment>
+          )}
         >
           <Property label={NS.schema('name')} />
         </DetailsBar>
