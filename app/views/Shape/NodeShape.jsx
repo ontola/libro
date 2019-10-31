@@ -24,6 +24,7 @@ import { entityIsLoaded } from '../../helpers/data';
 
 const propTypes = {
   autofocusForm: PropTypes.bool,
+  invalidFields: PropTypes.arrayOf(PropTypes.string),
   lrs: lrsType,
   onKeyUp: PropTypes.func,
   propertyIndex: PropTypes.number,
@@ -46,6 +47,7 @@ const defaultProps = {
 
 const NodeShape = ({
   autofocusForm,
+  invalidFields,
   lrs,
   onKeyUp,
   propertyIndex,
@@ -90,6 +92,7 @@ const NodeShape = ({
         <Property label={NS.sh('targetClass')} />
         <Property
           autofocusForm={autofocusForm}
+          invalidFields={invalidFields}
           label={[NS.sh('property'), NS.ontola('formSteps')]}
           propertyIndex={propertyIndex}
           subject={subject}

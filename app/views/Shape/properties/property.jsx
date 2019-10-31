@@ -21,6 +21,16 @@ class ShProperty extends PropertyBase {
     return Array.from(s);
   }
 
+  constructor(props) {
+    super(props);
+
+    this.renderProp = this.renderProp.bind(this);
+  }
+
+  shouldComponentUpdate() {
+    return true;
+  }
+
   /**
    * Filters a prop based on the black- and whitelist.
    * @param {SomeNode | undefined} propSubject The subject of the property object
@@ -112,16 +122,20 @@ class ShProperty extends PropertyBase {
   }
 
   renderGroup(s, focusNode) {
-    const { propertyIndex, theme } = this.props;
+    const {
+      invalidFields,
+      propertyIndex,
+      theme,
+    } = this.props;
 
     return (
       <LinkedResourceContainer
+        focusNode={focusNode}
+        invalidFields={invalidFields}
         key={s.group.value}
-        properties={ShProperty
-          .toCompactList(s.props)
-          .map((p, i) => this.renderProp(p, focusNode, i === 0))
-        }
+        properties={ShProperty.toCompactList(s.props)}
         propertyIndex={propertyIndex}
+        renderProp={this.renderProp}
         subject={s.group}
         theme={theme}
       />
