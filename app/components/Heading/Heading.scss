@@ -6,12 +6,6 @@
   margin-bottom: .6rem;
   word-break: break-word;
 
-  a {
-    &:hover {
-      color: color('grey', 'dark');
-    }
-  }
-
   b {
     color: color('grey', 'dark');
   }
@@ -63,6 +57,36 @@
     color: color('white');
   }
 }
+
+// sass-lint:disable nesting-depth
+a {
+  &:hover {
+    .Heading {
+      color: var(--accent-background-color);
+
+      &--motion {
+        color: color('blue', 'dark');
+      }
+
+      &--pro {
+        color: color('green', 'dark');
+      }
+
+      &--con {
+        color: color('brown', 'dark');
+      }
+
+      &--question {
+        color: color('brown', 'base');
+      }
+
+      &--alert {
+        color: color('red', 'dark');
+      }
+    }
+  }
+}
+// sass-lint:enable nesting-depth
 
 // sass-lint:disable no-qualifying-elements force-element-nesting
 h1.Heading {
