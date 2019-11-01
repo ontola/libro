@@ -1,5 +1,6 @@
 import Collapse from '@material-ui/core/Collapse';
 import List from '@material-ui/core/List';
+import HttpStatus from 'http-status-codes';
 import {
   Property,
   linkType,
@@ -46,6 +47,17 @@ const MenuItemDropdownContentComp = ({
       .then((msg) => {
         if (typeof msg === 'string') {
           setNameOverride(msg);
+        }
+      }).catch((error) => {
+        if (!error.response) {
+          throw error;
+        }
+        if (error.response.status === HttpStatus.UNAUTHORIZED) {
+          lrs
+            .actions
+            .app
+            .startSignIn()
+            .then(Promise.reject);
         }
       });
   }
