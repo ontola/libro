@@ -78,12 +78,25 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
 });
 
-function currentVote(current, object, lrs) {
+function currentVote(current, object, subject, lrs) {
   if (current !== undefined) {
     return current;
   }
 
-  return lrs.getResourceProperty(object, NS.argu('currentVote')) || false;
+  const vote = lrs.getResourceProperty(object, NS.argu('currentVote'));
+  const lastUpdate = useDataInvalidation({
+    dataSubjects: [vote],
+    subject,
+  });
+  useDataFetching({ subject: vote }, lastUpdate);
+
+  if (!vote) {
+    return false;
+  }
+
+  const currentOption = lrs.getResourceProperty(vote, NS.schema.option);
+
+  return currentOption && currentOption !== NS.argu('abstain');
 }
 
 function getVariant(current, variant, object, lrs) {
@@ -121,13 +134,7 @@ const CreateVote = ({
       handle(e);
     });
 
-  const isCurrentOrVote = currentVote(current, object, lrs);
-  const vote = typeof isCurrentOrVote === 'object' ? isCurrentOrVote : undefined;
-  const lastUpdate = useDataInvalidation({
-    dataSubjects: [vote],
-    subject,
-  });
-  useDataFetching({ subject: vote }, lastUpdate);
+  const isCurrentOrVote = currentVote(current, object, subject, lrs);
 
   if (!target) {
     return null;

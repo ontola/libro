@@ -98,6 +98,14 @@ export const getVoteButtons = (options) => {
         return null;
       }
 
+      const currentOption = this.props.lrs.getResourceProperty(
+        this.props.currentVote,
+        NS.schema.option
+      );
+      if (!currentOption || currentOption === NS.argu('abstain')) {
+        return null;
+      }
+
       return (
         <SignInFormContainerCardRow
           r={currentURL()}
@@ -151,6 +159,7 @@ export const getVoteButtons = (options) => {
 export default LinkedRenderStore.registerRenderer(
   link({
     currentVote: NS.argu('currentVote'),
+    dataSubjects: NS.argu('currentVote'),
     votes: NS.argu('votes'),
   })(getVoteButtons([NS.argu('yes'), NS.argu('other'), NS.argu('no')])),
   NS.argu('VoteEvent'),
