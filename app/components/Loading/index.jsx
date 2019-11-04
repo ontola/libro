@@ -108,6 +108,14 @@ export const LoadingCoverPhoto = () => (
 );
 
 // Requires a wrapper that sets a widget topology
+export const LoadingWidgetCard = () => (
+  <CardFixed>
+    <CardContent>
+      <LoadingWidgetContent />
+    </CardContent>
+  </CardFixed>
+);
+
 export const LoadingWidgetContent = () => (
   <React.Fragment>
     <div className="Loading__Header Loading__background" />

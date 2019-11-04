@@ -46,7 +46,7 @@ import { tabPaneTopology } from '../../topologies/TabPane';
 import {
   LoadingCardFloat,
   LoadingCardRowAppendix,
-  LoadingWidgetContent,
+  LoadingWidgetCard,
 } from '../../components/Loading/index';
 
 // We always throw, so the implicit return value is void
@@ -97,7 +97,7 @@ export default [
     ]
   ),
   LinkedRenderStore.registerRenderer(
-    LoadingWidgetContent,
+    LoadingWidgetCard,
     NS.ll('LoadingResource'),
     RENDER_CLASS_NAME,
     [

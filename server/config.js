@@ -16,7 +16,7 @@ export const clientId = process.env.ARGU_APP_ID;
 export const clientSecret = process.env.ARGU_APP_SECRET;
 export const websocketPath = process.env.WEBSOCKET_PATH;
 export const defaultBackendSVCName = process.env.DEFAULT_BACKEND_SVC_NAME || 'argu';
-
+export const cacheDirectory = process.env.CACHE_DIRECTORY;
 export const clusterURLBase = process.env.CLUSTER_URL_BASE || `${namespace ? `.${namespace}` : ''}${svcDNSPrefix ? `.${svcDNSPrefix}` : ''}.${clusterDomain}`;
 
 export const redisSettingsNS = 'frontend';

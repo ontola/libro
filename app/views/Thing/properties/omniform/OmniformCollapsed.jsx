@@ -5,11 +5,12 @@ import {
   register,
 } from 'link-redux';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { Button, OmniformPreview } from '../../../../components';
+import { entityIsLoaded } from '../../../../helpers/data';
 import { NS } from '../../../../helpers/LinkedRenderStore';
 import {
   getOmniformOpenState,
@@ -35,108 +36,110 @@ const mapInlineDispatchToProps = (dispatch, ownProps) => ({
   openForm: () => Promise.resolve(dispatch(omniformOpenInline(ownProps.subject))),
 });
 
-class CollapsedOmniformProp extends Component {
-  static type = [NS.schema('Thing'), NS.link('Document')];
+const CollapsedOmniformProp = (props) => {
+  const {
+    clickToOpen,
+    closeForm,
+    lrs,
+    openForm,
+    opened,
+    potentialAction,
+  } = props;
 
-  static property = NS.app('omniform');
-
-  static topology = [
-    cardAppendixTopology,
-    cardMainTopology,
-    cardTopology,
-  ];
-
-  static mapDataToProps = {
-    potentialAction: {
-      label: NS.schema('potentialAction'),
-      limit: Infinity,
-    },
-  };
-
-  static hocs = [connect(mapInlineStateToProps, mapInlineDispatchToProps)];
-
-  static propTypes = {
-    clickToOpen: PropTypes.bool,
-    closeForm: PropTypes.func,
-    lrs: lrsType,
-    openForm: PropTypes.func,
-    opened: PropTypes.bool.isRequired,
-    potentialAction: linkType,
-  };
-
-  static defaultProps = {
-    clickToOpen: true,
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.toggle = this.toggle.bind(this);
-    this.handleKey = this.handleKey.bind(this);
+  if (__CLIENT__) {
+    potentialAction.forEach((action) => {
+      if (!entityIsLoaded(lrs, action)) {
+        lrs.getEntity(action);
+      }
+    });
   }
 
-  toggle() {
-    if (this.props.opened) {
-      this.props.closeForm();
-    } else {
-      this.props.openForm();
-    }
-  }
-
-  handleKey(e) {
-    if (e.keyCode === KEY_ESCAPE) {
-      this.props.closeForm();
-    }
-  }
-
-  render() {
-    const {
-      clickToOpen,
-      closeForm,
-      lrs,
-      opened,
-      potentialAction,
-    } = this.props;
-
+  const toggle = () => {
     if (opened) {
-      const backButton = (
-        <Button
-          theme="transparant"
-          onClick={closeForm}
-        >
-          <FormattedMessage id="https://app.argu.co/i18n/forms/actions/cancel" />
-        </Button>
-      );
-
-      return (
-        <CardRow>
-          <OmniformConnector
-            autofocusForm
-            formFooterButtons={backButton}
-            onDone={this.toggle}
-            onKeyUp={this.handleKey}
-            {...this.props}
-          />
-        </CardRow>
-      );
+      closeForm();
+    } else {
+      openForm();
     }
+  };
 
-    const items = filterActions(lrs, potentialAction);
+  const handleKey = (e) => {
+    if (e.keyCode === KEY_ESCAPE) {
+      closeForm();
+    }
+  };
 
-    const shouldShow = !(!clickToOpen || items.length === 0 || actionsAreAllDisabled(items, lrs));
+  if (opened) {
+    const backButton = (
+      <Button
+        theme="transparant"
+        onClick={closeForm}
+      >
+        <FormattedMessage id="https://app.argu.co/i18n/forms/actions/cancel" />
+      </Button>
+    );
 
     return (
-      <Collapse mountOnEnter in={shouldShow}>
-        <CardRow>
-          <OmniformPreview
-            lrs={lrs}
-            primaryAction={items[0]}
-            onClick={this.toggle}
-          />
-        </CardRow>
-      </Collapse>
+      <CardRow>
+        <OmniformConnector
+          autofocusForm
+          formFooterButtons={backButton}
+          onDone={toggle}
+          onKeyUp={handleKey}
+          {...props}
+        />
+      </CardRow>
     );
   }
-}
+
+  const items = filterActions(lrs, potentialAction);
+
+  const shouldShow = !(!clickToOpen || items.length === 0 || actionsAreAllDisabled(items, lrs));
+
+  return (
+    <Collapse mountOnEnter in={shouldShow}>
+      <CardRow>
+        <OmniformPreview
+          lrs={lrs}
+          primaryAction={items[0]}
+          onClick={toggle}
+        />
+      </CardRow>
+    </Collapse>
+  );
+};
+
+CollapsedOmniformProp.type = [NS.schema('Thing'), NS.link('Document')];
+
+CollapsedOmniformProp.property = NS.app('omniform');
+
+CollapsedOmniformProp.topology = [
+  cardAppendixTopology,
+  cardMainTopology,
+  cardTopology,
+];
+
+CollapsedOmniformProp.mapDataToProps = {
+  potentialAction: {
+    label: NS.schema('potentialAction'),
+    limit: Infinity,
+  },
+};
+
+CollapsedOmniformProp.hocs = [
+  connect(mapInlineStateToProps, mapInlineDispatchToProps),
+];
+
+CollapsedOmniformProp.propTypes = {
+  clickToOpen: PropTypes.bool,
+  closeForm: PropTypes.func,
+  lrs: lrsType,
+  openForm: PropTypes.func,
+  opened: PropTypes.bool.isRequired,
+  potentialAction: linkType,
+};
+
+CollapsedOmniformProp.defaultProps = {
+  clickToOpen: true,
+};
 
 export default register(CollapsedOmniformProp);
