@@ -7,7 +7,6 @@ import {
   FormattedMessage,
   useIntl,
 } from 'react-intl';
-import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
 
@@ -19,7 +18,7 @@ import {
 import Button from '../../components/Button';
 import { SignInFormLink } from '../../components/SignInForm';
 import { NS } from '../../helpers/LinkedRenderStore';
-import { getCurrentUserType } from '../../state/app/selectors';
+import { useCurrentActor } from '../../hooks/useCurrentActor';
 import { attributeListTopology } from '../../topologies/AttributeList';
 import Card, { cardTopology } from '../../topologies/Card';
 import { cardFixedTopology } from '../../topologies/Card/CardFixed';
@@ -50,10 +49,6 @@ import ErrorButtonInline from './ErrorButtonInline';
 import { bodyForStatus, headerForStatus } from './ErrorMessages';
 import ErrorButtonHeader from './ErrorButtonHeader';
 
-const withUserType = Comp => connect(state => ({
-  userType: getCurrentUserType(state),
-}))(Comp);
-
 const shouldShowSignIn = (userType, status) => userType === 'GuestUser'
   && [HttpStatus.UNAUTHORIZED, HttpStatus.FORBIDDEN].includes(status);
 
@@ -76,8 +71,8 @@ const ErrorCardComp = (props) => {
     caughtError,
     error,
     linkRequestStatus,
-    userType,
   } = props;
+  const { actorType } = useCurrentActor();
 
   const err = caughtError || error;
 
@@ -89,7 +84,7 @@ const ErrorCardComp = (props) => {
       />
     </ErrorButtonWithFeedback>
   );
-  if (shouldShowSignIn(userType, linkRequestStatus.status)) {
+  if (shouldShowSignIn(actorType?.value, linkRequestStatus.status)) {
     mainAction = (
       <SignInFormLink Component={Button} />
     );
@@ -114,15 +109,15 @@ const ErrorCardComp = (props) => {
 
 ErrorCardComp.propTypes = propTypes;
 
-const ErrorCard = withRouter(withUserType(ErrorCardComp));
+const ErrorCard = withRouter(ErrorCardComp);
 
 const ErrorPageComp = (props) => {
+  const { actorType } = useCurrentActor();
   const { formatMessage } = useIntl();
   const {
     caughtError,
     error,
     linkRequestStatus,
-    userType,
   } = props;
 
   const err = caughtError || error;
@@ -133,7 +128,7 @@ const ErrorPageComp = (props) => {
     </ErrorButtonWithFeedback>
   );
 
-  if (shouldShowSignIn(userType, linkRequestStatus.status)) {
+  if (shouldShowSignIn(actorType?.value, linkRequestStatus.status)) {
     cardAction = (
       <SignInFormLink Component={Button} />
     );
@@ -175,7 +170,7 @@ const ErrorPageComp = (props) => {
 
 ErrorPageComp.propTypes = propTypes;
 
-export const ErrorPage = withUserType(ErrorPageComp);
+export const ErrorPage = ErrorPageComp;
 
 const ErrorNavbar = (props) => {
   if (props.subject === NS.app('n?type=infinite')) {

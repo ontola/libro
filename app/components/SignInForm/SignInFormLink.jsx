@@ -6,6 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router';
 
 import path, { currentLocation } from '../../helpers/paths';
+import { useCurrentActor } from '../../hooks/useCurrentActor';
 import Link from '../Link';
 
 const SignInFormLink = ({
@@ -15,7 +16,11 @@ const SignInFormLink = ({
   location,
   lrs,
 }) => {
+  const { actorType } = useCurrentActor();
   const redirectURL = currentLocation(location).value;
+  if (actorType?.value !== 'GuestUser') {
+    return null;
+  }
 
   return (
     <Component

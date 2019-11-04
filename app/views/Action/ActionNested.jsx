@@ -14,6 +14,9 @@ import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { tabPaneTopology } from '../../topologies/TabPane';
+import { invalidStatuses } from '../Thing/properties/omniform/helpers';
+import { SignInFormLink } from '../../components/SignInForm';
+import Button from '../../components/Button';
 
 import NavigatableAction from './NavigatableAction';
 
@@ -28,7 +31,10 @@ class ActionNested extends NavigatableAction {
     tabPaneTopology,
   ];
 
-  static mapDataToProps = [NS.schema('object')];
+  static mapDataToProps = [
+    NS.schema('actionStatus'),
+    NS.schema('object'),
+  ];
 
   static hocs = [withRouter];
 
@@ -39,6 +45,20 @@ class ActionNested extends NavigatableAction {
   };
 
   render() {
+    if (invalidStatuses.includes(this.props.actionStatus)) {
+      return (
+        <Container>
+          <CardMain>
+            <CardContent endSpacing>
+              <Property label={NS.schema('name')} />
+              <Property label={NS.schema.error} />
+              <SignInFormLink Component={Button} />
+            </CardContent>
+          </CardMain>
+        </Container>
+      );
+    }
+
     return (
       <Container>
         <CardMain>
