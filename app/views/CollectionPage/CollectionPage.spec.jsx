@@ -1,6 +1,7 @@
+import rdf from '@ontologies/core';
+import dcterms from '@ontologies/dcterms';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { link } from 'link-redux';
-import { Literal } from 'rdflib';
 import React from 'react';
 
 import { NS } from '../../../tests';
@@ -28,14 +29,14 @@ const resources = {
       NS.as('Collection'),
       NS.ontola('Collection'),
     ],
-    [NS.as('name')]: new Literal('Ideeën'),
-    [NS.ontola('iriTemplate')]: new Literal('https://argu.localdev/nederland/q/75/m{?filter%5B%5D,page,page_size,type,before,sort%5B%5D}'),
+    [NS.as('name')]: rdf.literal('Ideeën'),
+    [NS.ontola('iriTemplate')]: rdf.literal('https://argu.localdev/nederland/q/75/m{?filter%5B%5D,page,page_size,type,before,sort%5B%5D}'),
     [NS.schema('isPartOf')]: NS.app('nederland/q/75'),
-    [NS.as('totalItems')]: Literal.fromNumber(ITEMS),
+    [NS.as('totalItems')]: rdf.literal(ITEMS),
     [NS.schema('potentialAction')]: NS.app('nederland/q/75/m/new'),
-    [NS.ontola('defaultType')]: new Literal('paginated'),
+    [NS.ontola('defaultType')]: rdf.literal('paginated'),
     [NS.ontola('pages')]: collectionPageWithItems,
-    [NS.dc('identifier')]: NS.app('nederland/q/75/motions'),
+    [dcterms.identifier]: NS.app('nederland/q/75/motions'),
     [NS.ontola('createAction')]: NS.app('nederland/q/75/m/new'),
     [NS.schema('url')]: collection,
     [NS.ontola('baseCollection')]: NS.app('new_volunteers'),
@@ -51,8 +52,8 @@ const resources = {
     ],
     [NS.as('first')]: NS.app('nederland/q/75/m?page=1&type=paginated'),
     [NS.as('last')]: NS.app('nederland/q/75/m?page=1&type=paginated'),
-    [NS.as('totalItems')]: Literal.fromNumber(ITEMS),
-    [NS.dc('identifier')]: NS.app('nederland/q/75/motions'),
+    [NS.as('totalItems')]: rdf.literal(ITEMS),
+    [dcterms.identifier]: NS.app('nederland/q/75/motions'),
     [NS.as('partOf')]: collection,
     [NS.as('items')]: [
       memberResource,
@@ -66,8 +67,8 @@ const resources = {
   },
   [memberResource]: {
     [NS.rdf('type')]: NS.example('TestClass'),
-    [NS.as('name')]: new Literal('Member name'),
-    [NS.as('summary')]: new Literal('Member text'),
+    [NS.as('name')]: rdf.literal('Member name'),
+    [NS.as('summary')]: rdf.literal('Member text'),
   },
 };
 

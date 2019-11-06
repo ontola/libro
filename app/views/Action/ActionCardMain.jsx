@@ -1,3 +1,4 @@
+import rdf from '@ontologies/core';
 import {
   linkType,
   register,
@@ -5,7 +6,6 @@ import {
   useLRS,
 } from 'link-redux';
 import PropTypes from 'prop-types';
-import { NamedNode } from 'rdflib';
 import React from 'react';
 
 import Button from '../../components/Button';
@@ -36,7 +36,7 @@ const ActionCardMain = ({
         theme="transparant"
         onClick={(e) => {
           e.preventDefault();
-          lrs.exec(NamedNode.find(`${NS.ontola('actions/dialog/alert').value}?resource=${encodeURIComponent(subject.value)}`));
+          lrs.exec(rdf.namedNode(`${NS.ontola('actions/dialog/alert').value}?resource=${encodeURIComponent(subject.value)}`));
         }}
       >
         {name.value}

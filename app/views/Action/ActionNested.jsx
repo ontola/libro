@@ -1,3 +1,5 @@
+import rdf from '@ontologies/core';
+import schema from '@ontologies/schema';
 import {
   Property,
   register,
@@ -9,12 +11,11 @@ import { withRouter } from 'react-router';
 
 import CardContent from '../../components/Card/CardContent';
 import { retrievePath } from '../../helpers/iris';
-import { NS } from '../../helpers/LinkedRenderStore';
 import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { tabPaneTopology } from '../../topologies/TabPane';
-import { invalidStatuses } from '../Thing/properties/omniform/helpers';
+import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
 import { SignInFormLink } from '../../components/SignInForm';
 import Button from '../../components/Button';
 
@@ -22,8 +23,8 @@ import NavigatableAction from './NavigatableAction';
 
 class ActionNested extends NavigatableAction {
   static type = [
-    NS.schema('Action'),
-    NS.schema('UpdateAction'),
+    schema.Action,
+    schema.UpdateAction,
   ];
 
   static topology = [
@@ -32,8 +33,8 @@ class ActionNested extends NavigatableAction {
   ];
 
   static mapDataToProps = [
-    NS.schema('actionStatus'),
-    NS.schema('object'),
+    schema.actionStatus,
+    schema.object,
   ];
 
   static hocs = [withRouter];
@@ -45,13 +46,13 @@ class ActionNested extends NavigatableAction {
   };
 
   render() {
-    if (invalidStatuses.includes(this.props.actionStatus)) {
+    if (invalidStatusIds.includes(rdf.id(this.props.actionStatus))) {
       return (
         <Container>
           <CardMain>
             <CardContent endSpacing>
-              <Property label={NS.schema('name')} />
-              <Property label={NS.schema.error} />
+              <Property label={schema.name} />
+              <Property label={schema.error} />
               <SignInFormLink Component={Button} />
             </CardContent>
           </CardMain>
@@ -63,13 +64,13 @@ class ActionNested extends NavigatableAction {
       <Container>
         <CardMain>
           <CardContent>
-            <Property label={NS.schema('name')} />
+            <Property label={schema.name} />
           </CardContent>
           <Property
             header
             action={this.props.subject}
             cancelPath={retrievePath(this.props.object.value)}
-            label={NS.schema('target')}
+            label={schema.target}
             onDone={this.onDoneHandler}
           />
         </CardMain>

@@ -1,3 +1,4 @@
+import rdf from '@ontologies/core';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   Property,
@@ -5,7 +6,6 @@ import {
   withLRS,
 } from 'link-redux';
 import PropTypes from 'prop-types';
-import { NamedNode } from 'rdflib';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import MediaQuery from 'react-responsive';
@@ -48,7 +48,7 @@ const GuestUserActor = ({ location, lrs }) => {
             to={path.signIn(redirectURL)}
             onClick={(e) => {
               e.preventDefault();
-              lrs.actions.app.startSignIn(NamedNode.find(path.signIn(redirectURL)));
+              lrs.actions.app.startSignIn(rdf.namedNode(path.signIn(redirectURL)));
             }}
           />
           <Property label={NS.ontola('actorType')} />

@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   Property,
   register,
@@ -30,7 +31,7 @@ const GroupMembershipContainer = () => (
           <Property label={NS.teamGL('telephone')} />
           <Property label={NS.teamGL('email')} />
         </div>
-        <Property label={NS.schema.text} />
+        <Property label={schema.text} />
       </Property>
     </CardContent>
   </Card>

@@ -1,8 +1,8 @@
+import { namedNodeShape } from '@ontola/mash';
 import { normalizeType } from 'link-lib';
 import { Property, register } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { NamedNode } from 'rdflib';
 
 import Spinner from '../../components/Spinner';
 import { NS } from '../../helpers/LinkedRenderStore';
@@ -17,8 +17,8 @@ class ThingTable extends React.PureComponent {
   static propTypes = {
     columns: PropTypes.arrayOf(
       PropTypes.oneOfType([
-        PropTypes.instanceOf(NamedNode),
-        PropTypes.arrayOf(PropTypes.instanceOf(NamedNode)),
+        namedNodeShape,
+        PropTypes.arrayOf(namedNodeShape),
         PropTypes.instanceOf(Promise),
       ])
     ),

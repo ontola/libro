@@ -1,3 +1,4 @@
+import rdf from '@ontologies/core';
 import {
   LinkedResourceContainer,
   Property,
@@ -7,7 +8,6 @@ import {
   subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
-import { NamedNode } from 'rdflib';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -97,7 +97,7 @@ export default function getCollection({
             columns={columns}
             depth={this.props.depth}
             redirectPagination={redirect || this.props.redirectPagination}
-            subject={new NamedNode(this.props.currentPage)}
+            subject={rdf.namedNode(this.props.currentPage)}
           />
         );
       }
@@ -119,8 +119,8 @@ export default function getCollection({
         return <Property label={NS.as('totalItems')} />;
       }
 
-      switch (this.props.collectionType) {
-        case NS.ontola('collectionType/infinite'):
+      switch (rdf.id(this.props.collectionType)) {
+        case rdf.id(NS.ontola('collectionType/infinite')):
           return (
             <Property
               forceRender

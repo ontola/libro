@@ -1,4 +1,4 @@
-import { BlankNode, Literal } from 'rdflib';
+import rdf from '@ontologies/core';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import { cleanup } from '../../test-utils';
@@ -19,7 +19,7 @@ describe('persistence', () => {
     });
 
     it('serializes Literal with datatype string', () => {
-      const serialized = serializeForStorage(new Literal('test'));
+      const serialized = serializeForStorage(rdf.literal('test'));
 
       expect(serialized).toContain('"termType":"Literal"');
       expect(serialized).toContain('"value":"test"');
@@ -28,10 +28,9 @@ describe('persistence', () => {
     });
 
     it('serializes blank nodes', () => {
-      const serialized = serializeForStorage(new BlankNode('test'));
+      const serialized = serializeForStorage(rdf.blankNode('test'));
 
       expect(serialized).toContain('"termType":"BlankNode"');
-      expect(serialized).toContain('"id":"test"');
       expect(serialized).toContain('"value":"test"');
     });
   });

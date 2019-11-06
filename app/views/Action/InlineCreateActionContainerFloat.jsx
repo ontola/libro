@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/styles';
 import IconButton from '@material-ui/core/IconButton';
+import rdf from '@ontologies/core';
 import {
   linkType,
   register,
@@ -15,7 +16,7 @@ import { filterFind } from '../../helpers/data';
 import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
-import { OMNIFORM_FILTER, invalidStatuses } from '../Thing/properties/omniform/helpers';
+import { OMNIFORM_FILTER, invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
 import mapCardListDispatchToProps from './helpers';
 
@@ -36,7 +37,7 @@ const InlineCreateActionContainerFloat = ({
 }) => {
   const classes = useStyles();
 
-  if (invalidStatuses.includes(actionStatus)) {
+  if (invalidStatusIds.includes(rdf.id(actionStatus))) {
     return null;
   }
 

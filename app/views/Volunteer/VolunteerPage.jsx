@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   Property,
   register,
@@ -44,7 +45,7 @@ class VolunteerPage extends React.PureComponent {
                 <Property label={NS.teamGL('telephone')} />
                 <Property label={NS.teamGL('email')} />
               </div>
-              <Property label={NS.schema.text} />
+              <Property label={schema.text} />
             </CardContent>
           </CardMain>
           <Property renderWhenEmpty label={NS.org('hasMembership')} />

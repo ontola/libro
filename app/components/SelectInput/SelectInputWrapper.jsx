@@ -1,6 +1,6 @@
+import rdf from '@ontologies/core';
 import Downshift from 'downshift';
 import PropTypes from 'prop-types';
-import { NamedNode } from 'rdflib';
 import React from 'react';
 import {
   linkType,
@@ -122,10 +122,10 @@ function handleStateChange(options, changes, setState, lrs, searchTemplate, onOp
 }
 
 function renderAsRadioGroup(topology, items, lrs, inputFieldHint) {
-  if (inputFieldHint === NS.ontola('element/select') || topology === formFooterTopology) {
+  if (rdf.equals(inputFieldHint, NS.ontola('element/select')) || rdf.equals(topology, formFooterTopology)) {
     return false;
   }
-  if (inputFieldHint === NS.ontola('element/input/radio') || items.length <= DEFAULT_RADIO_ITEM_LIMIT) {
+  if (rdf.equals(inputFieldHint, NS.ontola('element/input/radio')) || items.length <= DEFAULT_RADIO_ITEM_LIMIT) {
     return true;
   }
   if (items.length > MAX_RADIO_ITEMS) {
@@ -198,7 +198,7 @@ const SelectInputWrapper = ({
         items={options}
         loading={loading}
         value={inputValue?.value}
-        onChange={(event, v) => sharedProps.onChange({ target: { value: NamedNode.find(v) } })}
+        onChange={(event, v) => sharedProps.onChange({ target: { value: rdf.namedNode(v) } })}
       />
     );
   }

@@ -1,3 +1,4 @@
+import rdf from '@ontologies/core';
 import {
   Property,
   linkType,
@@ -13,7 +14,7 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { cardListTopology } from '../../topologies/Card/CardList';
-import { OMNIFORM_FILTER, invalidStatuses } from '../Thing/properties/omniform/helpers';
+import { OMNIFORM_FILTER, invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
 import mapCardListDispatchToProps from './helpers';
 
@@ -52,7 +53,7 @@ class InlineCreateAction extends React.PureComponent {
       subject,
     } = this.props;
 
-    if (invalidStatuses.includes(actionStatus)) {
+    if (invalidStatusIds.includes(rdf.id(actionStatus))) {
       return null;
     }
 

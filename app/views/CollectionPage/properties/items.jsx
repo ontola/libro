@@ -1,3 +1,4 @@
+import rdf from '@ontologies/core';
 import {
   LinkedResourceContainer,
   PropertyBase,
@@ -26,7 +27,7 @@ class Items extends PropertyBase {
       label: NS.as('items'),
       limit: Infinity,
     },
-    totalCount: NS.as('totalItems'),
+    totalCount: { label: NS.as('totalItems') },
   };
 
   static propTypes = {
@@ -39,7 +40,7 @@ class Items extends PropertyBase {
   };
 
   itemList(columns, separator) {
-    const itemWrapper = this.props.collectionDisplay === NS.ontola('collectionDisplay/card')
+    const itemWrapper = rdf.equals(this.props.collectionDisplay, NS.ontola('collectionDisplay/card'))
       ? CardRow
       : React.Fragment;
 
@@ -93,7 +94,7 @@ class Items extends PropertyBase {
         />
       );
 
-      if (this.props.collectionDisplay === NS.ontola('collectionDisplay/card')) {
+      if (rdf.equals(this.props.collectionDisplay, NS.ontola('collectionDisplay/card'))) {
         return <CardContent endSpacing>{message}</CardContent>;
       }
 

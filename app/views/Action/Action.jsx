@@ -1,3 +1,5 @@
+import rdf from '@ontologies/core';
+import schema from '@ontologies/schema';
 import {
   Property,
   register,
@@ -7,7 +9,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withRouter } from 'react-router';
 
-import { invalidStatuses } from '../Thing/properties/omniform/helpers';
+import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
 import CardContent from '../../components/Card/CardContent';
 import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
@@ -46,14 +48,14 @@ export class Action extends NavigatableAction {
   render() {
     const Appendix = this.props.appendix;
 
-    if (invalidStatuses.includes(this.props.actionStatus)) {
+    if (invalidStatusIds.includes(rdf.id(this.props.actionStatus))) {
       return (
         <Container>
           <Property label={NS.schema('isPartOf')} />
           <CardMain>
             <CardContent endSpacing>
               <Property label={NS.schema('name')} />
-              <Property label={NS.schema.error} />
+              <Property label={schema.error} />
               <SignInFormLink Component={Button} />
             </CardContent>
           </CardMain>

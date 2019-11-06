@@ -1,11 +1,11 @@
-import { Literal, NamedNode } from 'rdflib';
+import rdf from '@ontologies/core';
 
 import { NS } from '../../../tests';
 import { navbarTopology } from '../../topologies/Navbar';
 
 import components from './index';
 
-const resource = new NamedNode('http://example.com/image/1');
+const resource = rdf.namedNode('http://example.com/image/1');
 const imagePositionY = 23;
 const url = 'http://example.com/image/1.jpg';
 const coverUrl = 'http://example.com/image/cover_1.jpg';
@@ -14,14 +14,14 @@ const boxUrl = 'http://example.com/image/box_1.jpg';
 const resources = {
   [resource]: {
     [NS.rdf('type')]: NS.schema('ImageObject'),
-    [NS.schema('thumbnail')]: new NamedNode('http://example.com/image/1.ico'),
-    [NS.schema('url')]: new NamedNode(url),
-    [NS.schema('contentUrl')]: new NamedNode(url),
-    [NS.argu('url')]: new NamedNode(url),
-    [NS.ontola('imgUrl1500x2000')]: new NamedNode(coverUrl),
-    [NS.ontola('imgUrl568x400')]: new NamedNode(boxUrl),
-    [NS.schema('dateCreated')]: new Literal(Date.now()),
-    [NS.argu('imagePositionY')]: Literal.fromValue(imagePositionY),
+    [NS.schema('thumbnail')]: rdf.namedNode('http://example.com/image/1.ico'),
+    [NS.schema('url')]: rdf.namedNode(url),
+    [NS.schema('contentUrl')]: rdf.namedNode(url),
+    [NS.argu('url')]: rdf.namedNode(url),
+    [NS.ontola('imgUrl1500x2000')]: rdf.namedNode(coverUrl),
+    [NS.ontola('imgUrl568x400')]: rdf.namedNode(boxUrl),
+    [NS.schema('dateCreated')]: rdf.literal(Date.now()),
+    [NS.argu('imagePositionY')]: rdf.literal(imagePositionY),
   },
 };
 

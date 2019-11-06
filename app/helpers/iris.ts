@@ -1,4 +1,4 @@
-import { BlankNode, NamedNode } from 'rdflib';
+import { isBlankNode, isNamedNode, NamedNode } from '@ontologies/core';
 
 import { frontendOrigin, frontendPathname } from '../middleware/app';
 
@@ -25,10 +25,10 @@ export function iris(window: Window) {
   const isDifferentOrigin = (originIRI: string | any): boolean => {
     const href = typeof originIRI === 'string' ? new URL(originIRI, frontendOrigin).toString() : originIRI;
 
-    if (href instanceof BlankNode || !href) {
+    if (isBlankNode(href) || !href) {
       return false;
     }
-    const origin = href instanceof NamedNode ? href.value : href;
+    const origin = isNamedNode(href) ? href.value : href;
 
     return !origin.startsWith(frontendOrigin + '/');
   };

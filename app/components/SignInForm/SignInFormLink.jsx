@@ -1,6 +1,6 @@
+import rdf from '@ontologies/core';
 import { lrsType, withLRS } from 'link-redux';
 import PropTypes from 'prop-types';
-import { NamedNode } from 'rdflib';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router';
@@ -29,7 +29,7 @@ const SignInFormLink = ({
       to={path.signIn(redirectURL)}
       onClick={(e) => {
         e.preventDefault();
-        lrs.actions.app.startSignIn(NamedNode.find(path.signIn(redirectURL)));
+        lrs.actions.app.startSignIn(rdf.namedNode(path.signIn(redirectURL)));
       }}
     >
       {children || (

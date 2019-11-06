@@ -1,3 +1,4 @@
+import rdf from '@ontologies/core';
 import {
   linkType,
   register,
@@ -17,7 +18,7 @@ import { Detail } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { listToArr } from '../../../helpers/data';
 
-const publicGroupIRI = NS.app('g/-1');
+const publicGroupIRI = rdf.id(NS.app('g/-1'));
 
 const messages = defineMessages({
   privateTitle: {
@@ -40,7 +41,7 @@ const GrantedGroups = ({ grantedGroups }) => {
     return null;
   }
 
-  if (groups.indexOf(publicGroupIRI) === -1) {
+  if (groups.findIndex(g => rdf.id(g) === publicGroupIRI) === -1) {
     const groupNames = groups
       .map(group => lrs.getResourceProperty(group, lrs.namespaces.schema('name'))?.value)
       .filter(Boolean)

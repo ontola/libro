@@ -1,7 +1,6 @@
+import { literalShape } from '@ontola/mash';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { link } from 'link-redux';
-import PropTypes from 'prop-types';
-import { Literal } from 'rdflib';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
@@ -9,7 +8,7 @@ import { cardListTopology } from '../../topologies/Card/CardList';
 import { cardMicroRowTopology } from '../../topologies/Card/CardMicroRow';
 
 const propTypes = {
-  name: PropTypes.instanceOf(Literal),
+  name: literalShape,
 };
 
 const PersonSection = ({ name }) => (
@@ -26,7 +25,7 @@ const PersonSection = ({ name }) => (
 PersonSection.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
-  link([NS.schema('name')])(PersonSection),
+  link({ name: NS.schema('name') })(PersonSection),
   NS.schema('Person'),
   RENDER_CLASS_NAME,
   [cardListTopology, cardMicroRowTopology]

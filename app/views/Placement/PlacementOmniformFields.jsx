@@ -1,10 +1,10 @@
+import rdf from '@ontologies/core';
 import {
   linkType,
   lrsType,
   register,
 } from 'link-redux';
 import PropTypes from 'prop-types';
-import { NamedNode } from 'rdflib';
 import React from 'react';
 import { useForm } from 'react-final-form';
 
@@ -70,7 +70,7 @@ const PlacementOmniformFields = ({
         lrs={lrs}
         placements={placements}
         renderSubject={renderSubject}
-        subject={NamedNode.find(formID)}
+        subject={rdf.namedNode(formID)}
         onMapClick={storeCoordinates}
       />
     </div>

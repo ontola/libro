@@ -1,6 +1,6 @@
+import rdf from '@ontologies/core';
 import { lrsType, unstable } from 'link-redux';
 import PropTypes from 'prop-types';
-import { NamedNode } from 'rdflib';
 import React from 'react';
 import {
   INTERNAL_SERVER_ERROR,
@@ -71,13 +71,11 @@ export class ErrorButtonWithFeedbackBase extends React.Component {
         return disable();
       });
 
-    return this
-      .context
-      .api
-      .statusMap
+    return Object
+      .entries(this.context.api.statusMap)
       .forEach((s, i) => {
         if (s && (s.status >= INTERNAL_SERVER_ERROR || RETRYABLE_ERRORS.includes(s.status))) {
-          this.context.queueEntity(NamedNode.findByStoreIndex(i), { reload: true });
+          this.context.queueEntity(rdf.fromId(i), { reload: true });
         }
       });
   }

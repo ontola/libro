@@ -26,7 +26,7 @@ const ActionWidget = ({
     <div>
       <Button
         href={retrievePath(href)}
-        title={name && name.toString()}
+        title={name.value}
       >
         {name.value}
       </Button>
@@ -38,10 +38,10 @@ ActionWidget.type = NS.schema('Action');
 
 ActionWidget.topology = widgetTopologyTopology;
 
-ActionWidget.mapDataToProps = [
-  NS.schema('name'),
-  NS.schema('url'),
-];
+ActionWidget.mapDataToProps = {
+  name: NS.schema('name'),
+  url: NS.schema('url'),
+};
 
 ActionWidget.propTypes = {
   children: PropTypes.element,

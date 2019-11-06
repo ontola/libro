@@ -1,22 +1,22 @@
+import { literalShape } from '@ontola/mash';
 import { link } from 'link-redux';
 import PropTypes from 'prop-types';
-import { Literal } from 'rdflib';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import DetailDate from '../DetailDate';
 
 const propTypes = {
-  dateCreated: PropTypes.instanceOf(Literal),
-  dateModified: PropTypes.instanceOf(Literal),
-  datePublished: PropTypes.instanceOf(Literal),
-  dateSubmitted: PropTypes.instanceOf(Literal),
-  duration: PropTypes.instanceOf(Literal),
-  endDate: PropTypes.instanceOf(Literal),
+  dateCreated: literalShape,
+  dateModified: literalShape,
+  datePublished: literalShape,
+  dateSubmitted: literalShape,
+  duration: literalShape,
+  endDate: literalShape,
   floatRight: PropTypes.bool,
   hideIcon: PropTypes.bool,
-  lastActivityAt: PropTypes.instanceOf(Literal),
-  startDate: PropTypes.instanceOf(Literal),
+  lastActivityAt: literalShape,
+  startDate: literalShape,
 };
 
 const LinkedDetailDate = ({

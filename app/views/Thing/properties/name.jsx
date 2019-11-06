@@ -1,3 +1,4 @@
+import rdfx from '@ontologies/rdf';
 import LinkedRenderStore from 'link-lib';
 import { link, linkType } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -76,12 +77,8 @@ class ColoredHeading extends React.PureComponent {
 }
 
 const ConnectedHeading = link({
-  name: {
-    label: NamePredicates,
-  },
-  type: {
-    label: NS.rdf('type'),
-  },
+  name: NamePredicates,
+  type: rdfx.type,
 }, { returnType: 'value' })(ColoredHeading);
 
 export default [

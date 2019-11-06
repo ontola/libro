@@ -1,3 +1,5 @@
+import { literalShape, namedNodeShape } from '@ontola/mash';
+import rdf, { isLiteral, isTerm } from '@ontologies/core';
 import classNames from 'classnames';
 import {
   linkType,
@@ -5,7 +7,6 @@ import {
   topologyType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
-import { Literal, NamedNode } from 'rdflib';
 import React from 'react';
 import Textarea from 'react-autosize-textarea';
 import { FormattedMessage } from 'react-intl';
@@ -60,8 +61,8 @@ const propTypes = {
     value: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.string,
-      PropTypes.instanceOf(Literal),
-      PropTypes.instanceOf(NamedNode),
+      literalShape,
+      namedNodeShape,
       PropTypes.oneOf([null]),
     ]),
   }),
@@ -117,7 +118,7 @@ function getBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = () => resolve(new Literal(
+    reader.onload = () => resolve(rdf.literal(
       reader.result,
       undefined,
       NS.argu(`base64File?filename=${encodeURIComponent(file.name)}`)
@@ -149,12 +150,12 @@ class FormField extends React.PureComponent {
 
     let nextValue = currentValue;
     if (type === 'checkbox') {
-      const boolNormalized = Literal.fromBoolean(currentValue);
+      const boolNormalized = rdf.literal(!!currentValue);
       nextValue = boolNormalized && boolNormalized.value === '1';
     } else if (type === 'checkboxes') {
       nextValue = currentValue;
-    } else if (type === 'textarea' || type === 'markdown') {
-      nextValue = currentValue && Object.prototype.hasOwnProperty.call(currentValue, 'termType')
+    } else if (type === 'text' || type === 'textarea' || type === 'markdown') {
+      nextValue = isTerm(currentValue)
         ? currentValue.value
         : currentValue;
     }
@@ -168,7 +169,7 @@ class FormField extends React.PureComponent {
     } = this.props;
 
     const value = this.inputValue();
-    const currentLength = value instanceof Literal ? value.value.length : value?.length;
+    const currentLength = isLiteral(value) ? value.value.length : value?.length;
 
     if (!currentLength || (currentLength / maxLength) <= CHAR_COUNTER_THRESHOLD) {
       return null;
@@ -280,7 +281,7 @@ class FormField extends React.PureComponent {
         if (e && Object.prototype.hasOwnProperty.call(e, 'target')) {
           input.onChange(type === 'checkbox' ? e.target.checked : e.target.value);
         } else {
-          input.onChange(e === null ? Literal.find('') : e);
+          input.onChange(e === null ? rdf.literal('') : e);
         }
 
         if (onChange) {

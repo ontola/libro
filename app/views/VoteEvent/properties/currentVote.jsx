@@ -1,3 +1,6 @@
+import { namedNodeShape, term } from '@ontola/mash';
+import rdf from '@ontologies/core';
+import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import {
   LinkedResourceContainer,
@@ -9,7 +12,6 @@ import {
   withLinkCtx,
 } from 'link-redux';
 import * as PropTypes from 'prop-types';
-import { NamedNode } from 'rdflib';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
@@ -23,7 +25,7 @@ import { cardVoteEventTopology } from '../../../topologies/CardVoteEvent';
 
 class CurrentVote extends React.PureComponent {
   static propTypes = {
-    baseCollection: PropTypes.instanceOf(NamedNode),
+    baseCollection: namedNodeShape,
     lrs: lrsType,
     option: linkType,
     side: linkType,
@@ -54,10 +56,10 @@ class CurrentVote extends React.PureComponent {
     return (
       <LinkedResourceContainer
         count={this.getSideVoteCount()}
-        current={this.props.option !== undefined && this.props.option === this.props.side}
+        current={this.props.option !== undefined && rdf.equals(this.props.option, this.props.side)}
         currentVote={this.props.subject}
         subject={entryPoint}
-        variant={this.props.side.term}
+        variant={term(this.props.side)}
       />
     );
   }
@@ -66,14 +68,17 @@ class CurrentVote extends React.PureComponent {
 const baseCollectionWrapper = (Comp) => {
   const BaseCollectionListener = (props) => {
     const base = new URL(props.base.value.replace('/od/', '/lr/'));
-    base.searchParams.set('filter[]', `option=${props.side.term}`);
-    const baseIRI = NamedNode.find(base);
+    base.searchParams.set('filter[]', `option=${term(props.side)}`);
+    const baseIRI = rdf.namedNode(base.toString());
 
     return <Comp baseCollection={baseIRI} dataSubjects={[baseIRI]} {...props} />;
   };
 
   BaseCollectionListener.propTypes = {
-    base: PropTypes.instanceOf(NamedNode),
+    base: PropTypes.shape({
+      termType: 'NamedNode',
+      value: PropTypes.string,
+    }),
     side: linkType,
   };
 
@@ -81,7 +86,7 @@ const baseCollectionWrapper = (Comp) => {
 };
 
 const CurrentVoteConnected = baseCollectionWrapper(link(
-  [NS.schema('option')],
+  [schema.option],
   { forceRender: true }
 )(withLRS(CurrentVote)));
 
@@ -100,9 +105,9 @@ export const getVoteButtons = (options) => {
 
       const currentOption = this.props.lrs.getResourceProperty(
         this.props.currentVote,
-        NS.schema.option
+        schema.option
       );
-      if (!currentOption || currentOption === NS.argu('abstain')) {
+      if (!currentOption || rdf.equals(currentOption, NS.argu('abstain'))) {
         return null;
       }
 

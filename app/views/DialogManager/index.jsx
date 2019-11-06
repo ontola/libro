@@ -1,10 +1,9 @@
+import { namedNodeShape } from '@ontola/mash';
 import {
   LinkedResourceContainer,
-  lrsType,
   register,
+  useLRS,
 } from 'link-redux';
-import PropTypes from 'prop-types';
-import { NamedNode } from 'rdflib';
 import React from 'react';
 import { Transition } from 'react-spring';
 
@@ -13,46 +12,46 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../topologies';
 import Dialog from '../../topologies/Dialog';
 
-class SnackbarManager extends React.PureComponent {
-  static type = NS.ontola('dialog/Manager');
+const DialogManager = ({ resource }) => {
+  const lrs = useLRS();
+  const items = [resource];
 
-  static topology = allTopologies;
+  const close = item => (
+    () => lrs.exec(NS.ontola(`actions/dialog/close?resource=${encodeURIComponent(item.value)}`))
+  );
 
-  static mapDataToProps = [NS.ontola('dialog/resource')];
+  return (
+    <Transition
+      enter={{ opacity: 1 }}
+      from={{ opacity: 0 }}
+      items={items}
+      leave={{ opacity: 0 }}
+    >
+      {item => props => (
+        <Modal
+          isOpen
+          modalAnimationProps={props}
+          onRequestClose={close(item)}
+        >
+          <Dialog>
+            <LinkedResourceContainer subject={item} onDone={close(item)} />
+          </Dialog>
+        </Modal>
+      )}
+    </Transition>
+  );
+};
 
-  static propTypes = {
-    'dialog/resource': PropTypes.instanceOf(NamedNode),
-    lrs: lrsType,
-  };
+DialogManager.type = NS.ontola('dialog/Manager');
 
-  render() {
-    const items = [this.props['dialog/resource']];
+DialogManager.topology = allTopologies;
 
-    const close = item => (
-      () => this.props.lrs.exec(NS.ontola(`actions/dialog/close?resource=${encodeURIComponent(item.value)}`))
-    );
+DialogManager.mapDataToProps = {
+  resource: NS.ontola('dialog/resource'),
+};
 
-    return (
-      <Transition
-        enter={{ opacity: 1 }}
-        from={{ opacity: 0 }}
-        items={items}
-        leave={{ opacity: 0 }}
-      >
-        {item => props => (
-          <Modal
-            isOpen
-            modalAnimationProps={props}
-            onRequestClose={close(item)}
-          >
-            <Dialog>
-              <LinkedResourceContainer subject={item} onDone={close(item)} />
-            </Dialog>
-          </Modal>
-        )}
-      </Transition>
-    );
-  }
-}
+DialogManager.propTypes = {
+  resource: namedNodeShape,
+};
 
-export default register(SnackbarManager);
+export default register(DialogManager);

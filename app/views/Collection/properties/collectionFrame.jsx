@@ -1,3 +1,5 @@
+import { namedNodeShape } from '@ontola/mash';
+import rdf from '@ontologies/core';
 import {
   LinkedResourceContainer,
   linkType,
@@ -5,7 +7,6 @@ import {
   topologyType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
-import { NamedNode } from 'rdflib';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
@@ -30,8 +31,8 @@ const getFrame = (Wrapper, topology) => {
     columns,
     pagination,
   }) => {
-    switch (collectionDisplay || collectionDisplayFromData) {
-      case NS.ontola('collectionDisplay/grid'):
+    switch (rdf.id(collectionDisplay || collectionDisplayFromData)) {
+      case rdf.id(NS.ontola('collectionDisplay/grid')):
         return (
           <React.Fragment>
             <Grid>
@@ -40,8 +41,8 @@ const getFrame = (Wrapper, topology) => {
             {pagination}
           </React.Fragment>
         );
-      case NS.ontola('collectionDisplay/settingsTable'):
-      case NS.ontola('collectionDisplay/table'):
+      case rdf.id(NS.ontola('collectionDisplay/settingsTable')):
+      case rdf.id(NS.ontola('collectionDisplay/table')):
         return (
           <Card>
             <Table>
@@ -69,7 +70,7 @@ const getFrame = (Wrapper, topology) => {
             </Table>
           </Card>
         );
-      case NS.ontola('collectionDisplay/card'):
+      case rdf.id(NS.ontola('collectionDisplay/card')):
         return (
           <Card>
             {body}
@@ -78,7 +79,7 @@ const getFrame = (Wrapper, topology) => {
             </CardAppendix>
           </Card>
         );
-      case NS.ontola('collectionDisplay/default'):
+      case rdf.id(NS.ontola('collectionDisplay/default')):
         return (
           <Wrapper>
             {body}
@@ -106,7 +107,7 @@ const getFrame = (Wrapper, topology) => {
     body: PropTypes.node,
     collectionDisplay: linkType,
     collectionDisplayFromData: linkType,
-    columns: PropTypes.arrayOf(PropTypes.instanceOf(NamedNode)),
+    columns: PropTypes.arrayOf(namedNodeShape),
     pagination: PropTypes.node,
     topology: topologyType,
   };

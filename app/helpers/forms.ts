@@ -1,14 +1,14 @@
-import { BlankNode, Literal, NamedNode, SomeNode } from 'rdflib';
+import rdf, { isNode, Node, TermType } from '@ontologies/core';
 import { NS } from './LinkedRenderStore';
 
 interface JSONLDObject {
-    '@id': SomeNode;
+    '@id': Node;
     [key: string]: any;
 }
 
 export const destroyFieldName = btoa(NS.ontola('_destroy').value);
 
-export function calculateFormFieldName(...segments: Array<string | number | SomeNode | JSONLDObject | undefined>) {
+export function calculateFormFieldName(...segments: Array<string | number | Node | JSONLDObject | undefined>): string {
     return segments
         .map((segment) => {
             if (typeof segment === 'undefined') {
@@ -37,8 +37,8 @@ export function clearRemoval(value: JSONLDObject | undefined): JSONLDObject | un
     return rest as JSONLDObject;
 }
 
-export function retrieveIdFromValue(value: JSONLDObject | SomeNode | undefined): SomeNode | undefined {
-    if (typeof value === 'undefined' ||  value instanceof NamedNode || value instanceof BlankNode) {
+export function retrieveIdFromValue(value: JSONLDObject | Node | undefined): Node | undefined {
+    if (typeof value === 'undefined' || isNode(value)) {
         return value;
     }
 
@@ -52,16 +52,16 @@ export function isMarkedForRemove(value: any): boolean {
 
     const hasStatement = Object.prototype.hasOwnProperty.call(value, destroyFieldName);
 
-    return hasStatement && value[destroyFieldName] === Literal.fromBoolean(true);
+    return hasStatement && rdf.equals(value[destroyFieldName], rdf.literal(true));
 }
 
 export function markForRemove(value: JSONLDObject): object | undefined {
-    if (value && value['@id'] && value['@id'].termType === 'BlankNode') {
+    if (value && value['@id'] && value['@id'].termType === TermType.BlankNode) {
         return undefined;
     }
 
     return {
         '@id': value['@id'],
-        [destroyFieldName]: Literal.fromBoolean(true),
+        [destroyFieldName]: rdf.literal(true),
     };
 }

@@ -1,3 +1,4 @@
+import rdf from '@ontologies/core';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -44,7 +45,7 @@ const TopologyWrapper = ({
 
   if ((typeof topology === 'undefined') || pure) {
     return <LRC />;
-  } else if (topology === containerTopology) {
+  } else if (rdf.equals(topology, containerTopology)) {
     return (
       <Container>
         <Heading>
@@ -53,7 +54,7 @@ const TopologyWrapper = ({
         <LRC />
       </Container>
     );
-  } else if (topology === detailsBarTopology) {
+  } else if (rdf.equals(topology, detailsBarTopology)) {
     return (
       <Container>
         <Card>
@@ -66,7 +67,7 @@ const TopologyWrapper = ({
         </Card>
       </Container>
     );
-  } else if (topology === cardTopology) {
+  } else if (rdf.equals(topology, cardTopology)) {
     return (
       <Container>
         <Card>
@@ -77,7 +78,7 @@ const TopologyWrapper = ({
         </Card>
       </Container>
     );
-  } else if (topology === cardMainTopology) {
+  } else if (rdf.equals(topology, cardMainTopology)) {
     return (
       <Container>
         <CardMain>
@@ -88,7 +89,7 @@ const TopologyWrapper = ({
         </CardMain>
       </Container>
     );
-  } else if (topology === cardFixedTopology) {
+  } else if (rdf.equals(topology, cardFixedTopology)) {
     return (
       <Container>
         <CardFixed>
@@ -99,7 +100,7 @@ const TopologyWrapper = ({
         </CardFixed>
       </Container>
     );
-  } else if (topology === cardRowTopology) {
+  } else if (rdf.equals(topology, cardRowTopology)) {
     return (
       <Container>
         <CardMain>
@@ -115,7 +116,7 @@ const TopologyWrapper = ({
         </CardMain>
       </Container>
     );
-  } else if (topology === gridTopology) {
+  } else if (rdf.equals(topology, gridTopology)) {
     return (
       <Container>
         <Grid>
@@ -123,7 +124,7 @@ const TopologyWrapper = ({
         </Grid>
       </Container>
     );
-  } else if (topology === inlineTopology) {
+  } else if (rdf.equals(topology, inlineTopology)) {
     return (
       <Container>
         <Card>
@@ -137,7 +138,7 @@ const TopologyWrapper = ({
         </Card>
       </Container>
     );
-  } else if (topology === parentTopology) {
+  } else if (rdf.equals(topology, parentTopology)) {
     return (
       <Container>
         <Card>
@@ -145,7 +146,7 @@ const TopologyWrapper = ({
         </Card>
       </Container>
     );
-  } else if (topology === navbarTopology) {
+  } else if (rdf.equals(topology, navbarTopology)) {
     return (
       <div
         className="NavBarContent NavBarContent--white-text"

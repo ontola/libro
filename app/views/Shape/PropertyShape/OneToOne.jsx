@@ -1,10 +1,7 @@
+import { literalShape, namedNodeShape } from '@ontola/mash';
+import rdf from '@ontologies/core';
 import { linkType } from 'link-redux';
 import PropTypes from 'prop-types';
-import {
-  BlankNode,
-  Literal,
-  NamedNode,
-} from 'rdflib';
 import React, { useEffect } from 'react';
 import { FormSpy } from 'react-final-form';
 
@@ -35,7 +32,7 @@ const OneToOneRenderer = ({
   const inputAlwaysVisible = minCount && tryParseInt(minCount) > 0;
   const addItem = () => {
     onChange({
-      '@id': new BlankNode(),
+      '@id': rdf.blankNode(),
     });
   };
 
@@ -102,8 +99,8 @@ OneToOneRenderer.propTypes = {
     value: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.string,
-      PropTypes.instanceOf(Literal),
-      PropTypes.instanceOf(NamedNode),
+      literalShape,
+      namedNodeShape,
       PropTypes.oneOf([null]),
     ]),
   }),

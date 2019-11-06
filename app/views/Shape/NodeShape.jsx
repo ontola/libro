@@ -1,3 +1,5 @@
+import { nodeType } from '@ontola/mash';
+import { isTerm } from '@ontologies/core';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   Property,
@@ -7,11 +9,6 @@ import {
   subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
-import {
-  BlankNode,
-  NamedNode,
-  Term,
-} from 'rdflib';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
@@ -30,10 +27,7 @@ const propTypes = {
   propertyIndex: PropTypes.number,
   removeItem: PropTypes.func,
   subject: subjectType,
-  targetNode: PropTypes.oneOfType([
-    PropTypes.instanceOf(BlankNode),
-    PropTypes.instanceOf(NamedNode),
-  ]),
+  targetNode: nodeType,
   targetValue: PropTypes.shape({
     '@id': linkType,
   }),
@@ -63,7 +57,7 @@ const NodeShape = ({
   }
 
   const targetObject = targetNode || retrieveIdFromValue(targetValue);
-  const targetIRI = targetObject && targetObject instanceof Term && targetObject;
+  const targetIRI = isTerm(targetObject) && targetObject;
 
   if (targetIRI && targetIRI.termType !== 'BlankNode' && !entityIsLoaded(lrs, targetIRI)) {
     if (__CLIENT__) {

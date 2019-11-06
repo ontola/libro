@@ -1,3 +1,4 @@
+import rdf from '@ontologies/core';
 import LinkedRenderStore, { normalizeType } from 'link-lib';
 import {
   LinkedResourceContainer,
@@ -33,8 +34,8 @@ class ShProperty extends PropertyBase {
 
   /**
    * Filters a prop based on the black- and whitelist.
-   * @param {SomeNode | undefined} propSubject The subject of the property object
-   * @return {SomeNode|undefined} The prop if allowed or undefined
+   * @param {Node | undefined} propSubject The subject of the property object
+   * @return {Node|undefined} The prop if allowed or undefined
    */
   filterProp(propSubject) {
     const {
@@ -48,8 +49,8 @@ class ShProperty extends PropertyBase {
 
       // The filter is on the blanknode id of the propshape, rather than its sh:path value
       const allowed = whitelist
-        ? paths.some(s => whitelist.includes(s.object))
-        : paths.filter(s => blacklist.includes(s.object));
+        ? paths.some(s => whitelist.includes(rdf.id(s.object)))
+        : paths.filter(s => blacklist.includes(rdf.id(s.object)));
 
       return allowed ? propSubject : undefined;
     }

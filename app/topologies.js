@@ -1,3 +1,5 @@
+import rdf from '@ontologies/core';
+
 import { actionsBarTopology } from './topologies/ActionsBar/index';
 import { appMenuTopology } from './topologies/AppMenu';
 import { attributeListTopology } from './topologies/AttributeList';
@@ -98,7 +100,7 @@ export const allTopologies = [
 export function allTopologiesExcept(...topologies) {
   const filtered = allTopologies.slice();
   topologies.forEach((t) => {
-    const i = filtered.indexOf(t);
+    const i = filtered.findIndex(f => rdf.equals(f, t));
     if (i !== -1) {
       filtered.splice(i, 1);
     }
@@ -107,10 +109,5 @@ export function allTopologiesExcept(...topologies) {
   return filtered;
 }
 
-export const getTopologyNumber = topology => allTopologies.findIndex((item) => {
-  if (item) {
-    return item.term === topology.term;
-  }
-
-  return topology === item;
-});
+export const getTopologyNumber = topology => allTopologies
+  .findIndex(item => rdf.equals(topology, item));

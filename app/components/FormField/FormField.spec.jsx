@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import { fireEvent } from '@testing-library/dom';
 import { createForm } from 'final-form';
 import React from 'react';
@@ -45,7 +46,7 @@ const renderWithTestForm = (ui, options = {}) => {
 describe('FormField', () => {
   afterEach(cleanup);
 
-  const schemaName = calculateFormFieldName(NS.schema.name);
+  const schemaName = calculateFormFieldName(schema.name);
 
   it('renders a plain input', () => {
     const { getByTestId } = renderWithTestForm((

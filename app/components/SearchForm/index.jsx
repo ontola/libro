@@ -1,3 +1,4 @@
+import rdf from '@ontologies/core';
 import equal from 'fast-deep-equal';
 import { linkType } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -59,7 +60,7 @@ const SearchForm = ({
         </form>
       )}
       onSubmit={({ q }) => {
-        if (q === queryNormalized) {
+        if (rdf.equals(q === queryNormalized)) {
           return;
         }
 

@@ -1,3 +1,4 @@
+import rdf from '@ontologies/core';
 import VirtualList from 'react-tiny-virtual-list';
 import { LinkedResourceContainer, linkType } from 'link-redux';
 import React from 'react';
@@ -43,7 +44,7 @@ const SelectInputList = ({
           key: itemsToShow[index].value,
           style: {
             backgroundColor: highlightedIndex === index ? 'lightgray' : 'white',
-            fontWeight: selectedItem === itemsToShow[index] ? 'bold' : 'normal',
+            fontWeight: rdf.equals(selectedItem, itemsToShow[index]) ? 'bold' : 'normal',
             height: ITEM_HEIGHT,
             ...style,
           },

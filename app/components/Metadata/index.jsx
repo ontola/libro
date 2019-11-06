@@ -1,6 +1,7 @@
+import rdf from '@ontologies/core';
+import dcterms from '@ontologies/dcterms';
 import { link, lrsType } from 'link-redux';
 import PropTypes from 'prop-types';
-import { NamedNode } from 'rdflib';
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
@@ -13,7 +14,7 @@ const Metadata = ({
   name,
 }) => {
   const coverURL = coverPhoto
-    && lrs.getResourceProperty(NamedNode.find(coverPhoto), NS.ontola('imgUrl1500x2000'));
+    && lrs.getResourceProperty(rdf.namedNode(coverPhoto), NS.ontola('imgUrl1500x2000'));
 
   return (
     <Helmet>
@@ -36,7 +37,7 @@ Metadata.propTypes = {
 export default link(
   {
     coverPhoto: NS.ontola('coverPhoto'),
-    identifier: NS.dc('identifier'),
+    identifier: dcterms.identifier,
     name: [NS.schema('name'), NS.rdfs('label')],
   },
   { returnType: 'value' }

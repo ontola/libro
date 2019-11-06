@@ -1,10 +1,10 @@
-import rdf from 'rdflib';
+import rdf, { createNS } from '@ontologies/core';
 
 import generateLRS from '../generateLRS';
 
 import { defaultContext } from './utilities';
 
-const exNS = rdf.Namespace('http://example.org/');
+const exNS = createNS('http://example.org/');
 
 const context = (iri, lrs, store) => defaultContext({
   lrs: lrs || true,
@@ -31,7 +31,7 @@ export function toArr(obj) {
   if (typeof obj === 'undefined') {
     return [];
   }
-  if (obj instanceof rdf.IndexedFormula) {
+  if (Object.prototype.hasOwnProperty.call(obj, 'statements')) {
     return obj.statements;
   }
   const statements = [];
@@ -39,14 +39,14 @@ export function toArr(obj) {
     const resource = obj[s];
     const subject = s.startsWith('_:')
       ? new rdf.BlankNode(s.slice('_:'.length))
-      : new rdf.NamedNode(s.slice(1, -1));
+      : rdf.namedNode(s.slice(1, -1));
     Object.keys(resource).forEach((p) => {
       const object = resource[p];
-      const predicate = new rdf.NamedNode(p.slice(1, -1));
+      const predicate = rdf.namedNode(p.slice(1, -1));
       if (Array.isArray(object)) {
-        object.forEach(iObject => statements.push(new rdf.Statement(subject, predicate, iObject)));
+        object.forEach(iObject => statements.push(rdf.quad(subject, predicate, iObject)));
       } else {
-        statements.push(new rdf.Statement(subject, predicate, object));
+        statements.push(rdf.quad(subject, predicate, object));
       }
     });
   });

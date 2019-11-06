@@ -2,20 +2,20 @@
  * LinkedRenderStore app middleware
  */
 
+import rdf, { createNS, NamedNode } from '@ontologies/core';
 import { MiddlewareActionHandler, MiddlewareWithBoundLRS } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
-import { Literal, NamedNode, Namespace, Statement } from 'rdflib';
 
 import { getMetaContent } from '../helpers/arguHelpers';
 
 export const website = getMetaContent('website-iri') || 'https://example.com';
-export const frontendIRI = NamedNode.find(website!);
+export const frontendIRI = rdf.namedNode(website!);
 export const frontendIRIStr = frontendIRI.value;
 export const frontendPathname = new URL(frontendIRIStr).pathname;
 export const frontendOrigin = new URL(frontendIRIStr).origin;
 
-const app = Namespace(frontendIRIStr.endsWith('/') ? frontendIRIStr : `${frontendIRIStr}/`);
-const appSlashless = Namespace(frontendIRIStr.slice(0, frontendIRIStr.endsWith('/') ? -1 : undefined));
+const app = createNS(frontendIRIStr.endsWith('/') ? frontendIRIStr : `${frontendIRIStr}/`);
+const appSlashless = createNS(frontendIRIStr.slice(0, frontendIRIStr.endsWith('/') ? -1 : undefined));
 
 export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoundLRS => {
 
@@ -31,7 +31,7 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
    */
 
   store.processDelta([
-      new Statement(app('menu'), store.namespaces.rdf('type'), app('Menu')),
+      rdf.quad(app('menu'), store.namespaces.rdf('type'), app('Menu')),
   ], true);
 
   /**
@@ -46,16 +46,16 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
     const resourceIRI = signInLink(r);
 
     return store.processDelta([
-      new Statement(
+      rdf.quad(
           resourceIRI,
           store.namespaces.rdf('type'),
           app('AppSignIn'),
           store.namespaces.ll('add'),
       ),
-      new Statement(
+      rdf.quad(
           resourceIRI,
           store.namespaces.schema('name'),
-          new Literal('test'),
+          rdf.literal('test'),
           store.namespaces.ll('add'),
       ),
     ], true);
@@ -96,7 +96,7 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
             sessionStorage.removeItem(actionKey);
         } else if (storedAction) {
           const parsedAction = storedAction && JSON.parse(storedAction);
-          const action = NamedNode.find(parsedAction.action.value);
+          const action = rdf.namedNode(parsedAction.action.value);
           return store
               .execActionByIRI(action, parsedAction.formData)
               .then(() => {

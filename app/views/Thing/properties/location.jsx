@@ -1,10 +1,10 @@
+import rdf from '@ontologies/core';
 import LinkedRenderStore from 'link-lib';
 import {
   linkedPropType,
   lrsType,
   withLRS,
 } from 'link-redux';
-import { NamedNode } from 'rdflib';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -29,7 +29,7 @@ const LocationDetail = ({ lrs, linkedProp }) => {
       to={placement.value}
       onClick={(e) => {
         e.preventDefault();
-        lrs.exec(NamedNode.find(`${NS.ontola('actions/dialog/alert').value}?resource=${encodeURIComponent(placement.value)}`));
+        lrs.exec(rdf.namedNode(`${NS.ontola('actions/dialog/alert').value}?resource=${encodeURIComponent(placement.value)}`));
       }}
     >
       <Detail

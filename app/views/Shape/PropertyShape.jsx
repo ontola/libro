@@ -1,3 +1,4 @@
+import { isTerm } from '@ontologies/core';
 import {
   linkType,
   lrsType,
@@ -6,7 +7,6 @@ import {
   useDataInvalidation,
 } from 'link-redux';
 import PropTypes from 'prop-types';
-import { Term } from 'rdflib';
 import React from 'react';
 
 import { LoadingRow } from '../../components/Loading';
@@ -56,8 +56,8 @@ const PropertyShape = (props) => {
 
   const fieldName = calculateFormFieldName(propertyIndex, path);
   const targetObject = targetNode || retrieveIdFromValue(targetValue);
-  const targetIRI = targetObject && targetObject instanceof Term && targetObject;
-  const rawTargetValues = (targetIRI && lrs.getResourceProperties(targetIRI, path)) ?? [];
+  const targetIRI = isTerm(targetObject) && targetObject;
+  const rawTargetValues = (targetIRI && lrs.getResourceProperties(targetIRI, path)) || [];
   useDataInvalidation({
     dataSubjects: [
       targetIRI,

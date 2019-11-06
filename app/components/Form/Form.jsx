@@ -1,6 +1,6 @@
+import { literalShape } from '@ontola/mash';
 import equal from 'fast-deep-equal';
 import PropTypes from 'prop-types';
-import { Literal } from 'rdflib';
 import React from 'react';
 import { Form as FinalForm } from 'react-final-form';
 
@@ -18,7 +18,7 @@ const propTypes = {
   formID: PropTypes.string.isRequired,
   method: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.instanceOf(Literal),
+    literalShape,
   ]),
   onSubmit: PropTypes.func.isRequired,
   validateOnBlur: PropTypes.bool,
@@ -68,7 +68,7 @@ class Form extends React.PureComponent {
 
     const renderFunc = typeof children === 'function';
     const controlledSubmit = renderFunc ? this.onSubmit : onSubmit;
-    const lowerMethod = method.toString().toLowerCase();
+    const lowerMethod = (typeof method === 'string' ? method : method.value).toLowerCase();
     const methodInput = !['get', 'post'].includes(lowerMethod) && <Input name="_method" type="hidden" value={method} />;
     const formMethod = lowerMethod === 'get' ? 'get' : 'post';
 

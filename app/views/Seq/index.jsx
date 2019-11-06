@@ -1,3 +1,4 @@
+import { namedNodeShape } from '@ontola/mash';
 import {
   LinkedResourceContainer,
   register,
@@ -6,7 +7,6 @@ import {
   useLRS,
 } from 'link-redux';
 import PropTypes from 'prop-types';
-import { NamedNode } from 'rdflib';
 import React from 'react';
 
 import { seqToArr } from '../../helpers/data';
@@ -77,7 +77,7 @@ Seq.defaultProps = {
 
 Seq.propTypes = {
   childProps: PropTypes.objectOf(PropTypes.any),
-  columns: PropTypes.arrayOf(PropTypes.instanceOf(NamedNode)),
+  columns: PropTypes.arrayOf(namedNodeShape),
   depth: PropTypes.number,
   gutter: PropTypes.number,
   itemWrapper: PropTypes.elementType,

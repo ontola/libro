@@ -1,3 +1,7 @@
+import { seqPush, seqShift } from '@ontola/mash';
+import rdf, { createNS, Literal, NamedNode, Node } from '@ontologies/core';
+import rdfx from '@ontologies/rdf';
+import schema from '@ontologies/schema';
 import clipboardCopy from 'clipboard-copy';
 import { History } from 'history';
 import {
@@ -7,14 +11,6 @@ import {
   transformers,
 } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
-import {
-  BlankNode,
-  Collection,
-  Literal,
-  NamedNode,
-  Namespace,
-  Statement,
-} from 'rdflib';
 import { ReactType } from 'react';
 import { defineMessages } from 'react-intl';
 
@@ -22,6 +18,7 @@ import { safeCredentials } from '../helpers/arguHelpers';
 import { retrievePath } from '../helpers/iris';
 import { handle } from '../helpers/logging';
 import ServiceWorkerCommunicator from '../helpers/ServiceWorkerCommunicator';
+import ld from '../ontology/ld';
 import { redirectPage, reloadPage } from './reloading';
 
 const messages = defineMessages({
@@ -37,7 +34,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
 
   (store as any).actions.ontola = {};
 
-  const ontola = Namespace('https://ns.ontola.io/');
+  const ontola = createNS('https://ns.ontola.io/');
   // eslint-disable-next-line no-param-reassign
   store.namespaces.ontola = ontola;
 
@@ -62,64 +59,61 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
    * Ontola snackbar setup
    */
 
-  const snackbarQueue = new Collection();
+  const snackbarQueue = rdf.blankNode();
 
   store.processDelta([
-    new Statement(
+    rdf.quad(
       ontola('snackbar/manager'),
-      store.namespaces.rdf('type'),
+      rdfx.type,
       ontola('snackbar/Manager'),
-      store.namespaces.ll('add'),
+      ld.add,
     ),
-    new Statement(
+    rdf.quad(
       ontola('snackbar/manager'),
       ontola('snackbar/queue'),
       snackbarQueue,
-      store.namespaces.ll('add'),
+      ld.add,
+    ),
+    rdf.quad(
+      snackbarQueue,
+      rdfx.type,
+      rdfx.Seq,
+      ld.add,
     ),
   ], true);
 
   const queueSnackbar = (text: string) => {
-    const s = new BlankNode();
+    const s = rdf.blankNode();
 
-    const queue = store.getResourceProperty(ontola('snackbar/manager'), ontola('snackbar/queue'));
+    const queue = store.getResourceProperty<Node>(
+      ontola('snackbar/manager'),
+      ontola('snackbar/queue'),
+    )!;
 
     return [
-      new Statement(
+      rdf.quad(
         s,
-        store.namespaces.rdf('type'),
+        rdfx.type,
         ontola('snackbar/Snackbar'),
-        store.namespaces.ll('add'),
+        ld.add,
       ),
-      new Statement(
+      rdf.quad(
         s,
-        store.namespaces.schema('text'),
-        Literal.fromValue(text),
-        store.namespaces.ll('add'),
+        schema.text,
+        rdf.literal(text),
+        ld.add,
       ),
-      new Statement(
-        ontola('snackbar/manager'),
-        ontola('snackbar/queue'),
-        // @ts-ignore
-        Collection.fromValue([...queue.elements, s]),
-        store.namespaces.ll('replace'),
-      ),
+      ...seqPush(store, queue, s),
     ];
   };
 
   const shiftSnackbar = () => {
-    const queue = store.getResourceProperty(ontola('snackbar/manager'), ontola('snackbar/queue')) as Collection;
-    queue.shift();
+    const queue = store.getResourceProperty<NamedNode>(
+      ontola('snackbar/manager'),
+      ontola('snackbar/queue'),
+    )!;
 
-    return [
-      new Statement(
-          ontola('snackbar/manager'),
-          ontola('snackbar/queue'),
-          // @ts-ignore
-          Collection.fromValue(queue.elements),
-          store.namespaces.ll('replace'),
-      ),
-    ];
+    return seqShift(store, queue);
   };
 
   (store as any).actions.ontola.showSnackbar = (message: Literal | string) => {
@@ -133,7 +127,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
   const dialogManager = ontola('dialog/manager');
 
   store.processDelta([
-    new Statement(
+    rdf.quad(
       dialogManager,
       store.namespaces.rdf('type'),
       ontola('dialog/Manager'),
@@ -142,7 +136,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
   ], true);
 
   const hideDialog = () => [
-    new Statement(
+    rdf.quad(
       dialogManager,
       ontola('dialog/resource'),
       ontola('dialog/rm'),
@@ -151,16 +145,16 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
   ];
 
   const showDialog = (value: string, opener?: string | null) => [
-    new Statement(
+    rdf.quad(
       dialogManager,
       ontola('dialog/resource'),
-      NamedNode.find(value),
+      rdf.namedNode(value),
       store.namespaces.ll('replace'),
     ),
-    new Statement(
+    rdf.quad(
       dialogManager,
       ontola('dialog/opener'),
-      opener ? NamedNode.find(opener) : store.namespaces.app(currentPath().slice(1)),
+      opener ? rdf.namedNode(opener) : store.namespaces.app(currentPath().slice(1)),
       store.namespaces.ll('replace'),
     ),
   ];
@@ -213,17 +207,17 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       return Promise.resolve();
     }
 
-    switch (iri) {
-      case store.namespaces.ontola('actions/refresh'):
+    switch (rdf.id(iri)) {
+      case rdf.id(store.namespaces.ontola('actions/refresh')):
         if (__CLIENT__) {
           reloadPage(store, false);
         }
         return Promise.resolve();
-      case store.namespaces.ontola('actions/reload'):
+      case rdf.id(store.namespaces.ontola('actions/reload')):
         reloadPage(store, true);
         return Promise.resolve();
-      case ontola(`actions/navigation/push`):
-      case ontola(`actions/navigation/pop`):
+      case rdf.id(ontola(`actions/navigation/push`)):
+      case rdf.id(ontola(`actions/navigation/pop`)):
         const dialog = store.getResourceProperty(dialogManager, ontola('dialog/resource'));
         const opener = store.getResourceProperty(dialogManager, ontola('dialog/opener'));
         if (dialog && (!opener || retrievePath(opener.value) !== currentPath())) {

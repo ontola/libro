@@ -1,3 +1,4 @@
+import rdf from '@ontologies/core';
 import {
   linkType,
   subjectType,
@@ -33,7 +34,7 @@ class ActionButton extends React.PureComponent {
     const label = `${name.value} ${countInParentheses(count)}`;
     const parsedURL = subject && new URL(subject.value);
     const href = parsedURL && parsedURL.pathname + parsedURL.search;
-    const className = topology === defaultTopology ? 'card-list' : 'card-float';
+    const className = rdf.equals(topology, defaultTopology) ? 'card-list' : 'card-float';
 
     return (
       <Button plain className={`Button--${className}`} href={href} onClick={onClick}>

@@ -1,7 +1,7 @@
+import rdf from '@ontologies/core';
 import clsx from 'clsx';
 import { lrsType, useLRS } from 'link-redux';
 import PropTypes from 'prop-types';
-import { NamedNode } from 'rdflib';
 import React from 'react';
 import { Link as DomLink, NavLink } from 'react-router-dom';
 
@@ -68,7 +68,7 @@ const Link = ({
     ? onClick
     : (e) => {
       e.preventDefault();
-      lrs.actions.ontola.showDialog(NamedNode.find(to));
+      lrs.actions.ontola.showDialog(rdf.namedNode(to));
       if (typeof onClick === 'function') {
         onClick(e);
       }

@@ -1,8 +1,7 @@
+import { literalShape, namedNodeShape } from '@ontola/mash';
+import rdf from '@ontologies/core';
 import { linkType } from 'link-redux';
 import PropTypes from 'prop-types';
-import {
-  BlankNode, Literal, NamedNode,
-} from 'rdflib';
 import React from 'react';
 
 import { tryParseInt } from '../../../helpers/numbers';
@@ -26,7 +25,7 @@ const OneToManyRenderer = ({
   const addItem = () => {
     const next = value ? [...value] : [];
     next.push({
-      '@id': new BlankNode(),
+      '@id': rdf.blankNode(),
     });
     onChange(next);
   };
@@ -81,8 +80,8 @@ OneToManyRenderer.propTypes = {
     value: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.string,
-      PropTypes.instanceOf(Literal),
-      PropTypes.instanceOf(NamedNode),
+      literalShape,
+      namedNodeShape,
       PropTypes.oneOf([null]),
     ]),
   }),

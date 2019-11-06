@@ -1,7 +1,7 @@
+import { namedNodeShape } from '@ontola/mash';
 import { getTermBestLang } from 'link-lib';
 import { LinkedResourceContainer, lrsType } from 'link-redux';
 import PropTypes from 'prop-types';
-import { NamedNode } from 'rdflib';
 import React from 'react';
 import {
   FormattedMessage,
@@ -23,7 +23,7 @@ const messages = defineMessages({
 const propTypes = {
   lrs: lrsType,
   onClick: PropTypes.func.isRequired,
-  primaryAction: PropTypes.instanceOf(NamedNode),
+  primaryAction: namedNodeShape,
 };
 
 const OmniformPreview = ({

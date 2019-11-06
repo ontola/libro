@@ -1,3 +1,9 @@
+import dcterms from '@ontologies/dcterms';
+import rdfx from '@ontologies/rdf';
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
+import sh from '@ontologies/shacl';
+import xsd from '@ontologies/xsd';
 import { defaultNS as NS } from 'link-lib';
 import { LinkedResourceContainer } from 'link-redux';
 import React from 'react';
@@ -19,56 +25,56 @@ describe('Actions', () => {
 
   const resources = {
     '@id': testIRI.value,
-    [NS.rdf.type]: NS.schema.UpdateAction,
-    [NS.dc.identifier]: testIRI,
-    [NS.schema.name]: 'Edit object',
-    [NS.schema.object]: NS.ex(''),
-    [NS.schema.target]: {
-      [NS.rdf.type]: NS.schema.EntryPoint,
-      [NS.schema.httpMethod]: 'PUT',
-      [NS.schema.name]: 'Update',
-      [NS.schema.url]: NS.example('endpoint'),
+    [rdfx.type]: schema.UpdateAction,
+    [dcterms.identifier]: testIRI,
+    [schema.name]: 'Edit object',
+    [schema.object]: NS.ex(''),
+    [schema.target]: {
+      [rdfx.type]: schema.EntryPoint,
+      [schema.httpMethod]: 'PUT',
+      [schema.name]: 'Update',
+      [schema.url]: NS.example('endpoint'),
       [NS.ll('actionBody')]: {
-        [NS.rdf.type]: NS.sh.NodeShape,
-        [NS.sh.targetNode]: {
+        [rdfx.type]: sh.NodeShape,
+        [sh.targetNode]: {
           '@id': NS.example('resource'),
-          [NS.rdf.type]: NS.schema.Thing,
+          [rdfx.type]: schema.Thing,
         },
-        [NS.sh.property]: [
+        [sh.property]: [
           {
             '@id': nameIRI,
-            [NS.rdf.type]: NS.sh.PropertyShape,
-            [NS.sh.datatype]: NS.xsd.string,
-            [NS.sh.maxCount]: 1,
-            [NS.sh.name]: 'Name',
-            [NS.sh.order]: 0,
-            [NS.sh.path]: NS.schema.name,
+            [rdfx.type]: sh.PropertyShape,
+            [sh.datatype]: xsd.string,
+            [sh.maxCount]: 1,
+            [sh.name]: 'Name',
+            [sh.order]: 0,
+            [sh.path]: schema.name,
           },
           {
             '@id': locationIRI,
-            [NS.rdf.type]: NS.sh.PropertyShape,
-            [NS.sh.class]: NS.argu('Placement'),
-            [NS.sh.maxCount]: 1,
-            [NS.sh.name]: 'Location',
-            [NS.sh.order]: 1,
-            [NS.sh.path]: NS.schema.location,
+            [rdfx.type]: sh.PropertyShape,
+            [sh.class]: NS.argu('Placement'),
+            [sh.maxCount]: 1,
+            [sh.name]: 'Location',
+            [sh.order]: 1,
+            [sh.path]: schema.location,
             [NS.argu('referredShapes')]: {
-              [NS.rdf.type]: NS.sh.NodeShape,
-              [NS.sh.targetClass]: NS.argu('Placement'),
+              [rdfx.type]: sh.NodeShape,
+              [sh.targetClass]: NS.argu('Placement'),
             },
           },
           {
             '@id': pinIRI,
-            [NS.rdf.type]: NS.sh.PropertyShape,
-            [NS.sh.datatype]: NS.xsd.boolean,
-            [NS.sh.maxCount]: 1,
-            [NS.sh.name]: 'Pin',
-            [NS.sh.description]: 'Pin to top of collection',
-            [NS.sh.order]: 2,
-            [NS.sh.path]: NS.argu('pin'),
-            [NS.sh.group]: {
-              [NS.rdf.type]: NS.sh.PropertyGroup,
-              [NS.rdfs.label]: 'Advanced',
+            [rdfx.type]: sh.PropertyShape,
+            [sh.datatype]: xsd.boolean,
+            [sh.maxCount]: 1,
+            [sh.name]: 'Pin',
+            [sh.description]: 'Pin to top of collection',
+            [sh.order]: 2,
+            [sh.path]: NS.argu('pin'),
+            [sh.group]: {
+              [rdfx.type]: sh.PropertyGroup,
+              [rdfs.label]: 'Advanced',
             },
           },
         ],
@@ -103,7 +109,7 @@ describe('Actions', () => {
 
     // initializes an empty form
     expect(form).toHaveFormValues({
-      [fieldName(NS.schema.name)]: '',
+      [fieldName(schema.name)]: '',
       [fieldName(NS.argu('pin'))]: false,
     });
 
@@ -119,7 +125,7 @@ describe('Actions', () => {
     );
 
     expect(form).toHaveFormValues({
-      [fieldName(NS.schema.name)]: 'text',
+      [fieldName(schema.name)]: 'text',
       [fieldName(NS.argu('pin'))]: true,
     });
   });

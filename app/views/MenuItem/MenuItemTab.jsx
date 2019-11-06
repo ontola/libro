@@ -1,4 +1,5 @@
 import Tab from '@material-ui/core/Tab';
+import schema from '@ontologies/schema';
 import {
   LinkedResourceContainer,
   Property,
@@ -15,13 +16,13 @@ const MenuItemTab = ({ subject }) => (
     href={subject.value}
     icon={(
       <LinkedResourceContainer subject={subject}>
-        <Property label={NS.schema.image} />
+        <Property label={schema.image} />
       </LinkedResourceContainer>
     )}
     key={subject.value}
     label={(
       <LinkedResourceContainer subject={subject}>
-        <Property label={NS.schema.name} />
+        <Property label={schema.name} />
       </LinkedResourceContainer>
     )}
     value={subject.value}

@@ -1,3 +1,5 @@
+import { namedNodeShape } from '@ontola/mash';
+import rdf from '@ontologies/core';
 import * as fa from 'fontawesome';
 import {
   LinkedResourceContainer,
@@ -29,7 +31,6 @@ import Icon from 'ol/style/Icon';
 import Stroke from 'ol/style/Stroke';
 import Style from 'ol/style/Style';
 import PropTypes from 'prop-types';
-import { NamedNode } from 'rdflib';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage } from 'react-intl';
@@ -76,10 +77,10 @@ class MapView extends React.Component {
     onMapClick: PropTypes.func,
     /** Placements to render on the map. */
     placements: PropTypes.arrayOf(PropTypes.oneOfType([
-      PropTypes.instanceOf(NamedNode),
+      namedNodeShape,
       PropTypes.shape({
         id: PropTypes.string,
-        image: PropTypes.instanceOf(NamedNode),
+        image: namedNodeShape,
         lat: PropTypes.number,
         lon: PropTypes.number,
       }),
@@ -251,7 +252,7 @@ class MapView extends React.Component {
     if (feature) {
       const id = feature.getId();
       selected = lrs.getResourceProperty(
-        id.termType ? id : NamedNode.find(id),
+        id.termType ? id : rdf.namedNode(id),
         NS.argu('placeable')
       );
       position = feature.getGeometry().getCoordinates();
@@ -391,7 +392,7 @@ class MapView extends React.Component {
         ({ image } = local);
       } else {
         image = this.props.lrs.getResourceProperty(
-          NamedNode.find(feature.getId()),
+          rdf.namedNode(feature.getId()),
           NS.schema('image')
         );
       }

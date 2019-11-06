@@ -42,7 +42,9 @@ SnackbarView.type = NS.ontola('snackbar/Snackbar');
 
 SnackbarView.topology = allTopologies;
 
-SnackbarView.mapDataToProps = [NS.schema('text')];
+SnackbarView.mapDataToProps = {
+  text: NS.schema('text'),
+};
 
 SnackbarView.linkOpts = { returnType: 'value' };
 

@@ -1,3 +1,4 @@
+import { term } from '@ontola/mash';
 import {
   Property,
   linkType,
@@ -16,7 +17,7 @@ import RDFPropertyAttributeList from './RDFPropertyAttributeList';
 const RDFProperty = ({ name, subject }) => (
   <span>
     <Property label={NS.schema('image')} />
-    {name ? name.value : subject.term}
+    {name ? name.value : term(subject)}
   </span>
 );
 

@@ -1,4 +1,4 @@
-import { BlankNode, Literal, NamedNode, SomeTerm } from 'rdflib';
+import rdf, { SomeTerm } from '@ontologies/core';
 import { handle } from '../helpers/logging';
 
 export const serializeForStorage = (value: SomeTerm | string ): string => {
@@ -11,16 +11,16 @@ export const parseForStorage = (valueFromStorage: string) => {
 
     switch (plain.termType) {
       case 'NamedNode':
-        return new NamedNode(plain.value);
+        return rdf.namedNode(plain.value);
       case 'BlankNode':
-        return new BlankNode(plain.value);
+        return rdf.blankNode(plain.value);
       case 'Literal': {
-        const datatype = plain.datatype ? new NamedNode(plain.datatype) : undefined;
+        const datatype = plain.datatype ? rdf.namedNode(plain.datatype) : undefined;
 
-        return new Literal(plain.value, plain.language, datatype);
+        return rdf.literal(plain.value, plain.language, datatype);
       }
       default:
-        return plain.value ? new Literal(plain.value) : plain;
+        return plain.value ? rdf.literal(plain.value) : plain;
     }
   } catch (e) {
     handle(e);

@@ -1,5 +1,7 @@
+import rdf from '@ontologies/core';
+import schema from '@ontologies/schema';
 import { LinkedResourceContainer } from 'link-redux';
-import { Literal, NamedNode } from 'rdflib';
+import dcterms from '@ontologies/dcterms';
 import React from 'react';
 
 import { NS } from '../../../tests';
@@ -15,8 +17,8 @@ import { Page } from '../../topologies/Page';
 describe('Thing', () => {
   afterAll(cleanup);
 
-  const parent = new NamedNode('http://example.com/page/1');
-  const resource = new NamedNode('http://example.com/thing/1');
+  const parent = rdf.namedNode('http://example.com/page/1');
+  const resource = rdf.namedNode('http://example.com/thing/1');
 
   const RESOURCE_NAME = 'Test item';
   const RESOURCE_TEXT = 'Body text';
@@ -24,15 +26,15 @@ describe('Thing', () => {
 
   const resources = {
     '@id': resource.value,
-    [NS.dc('identifier')]: resource,
-    [NS.rdf('type')]: NS.schema.Thing,
-    [NS.schema('name')]: new Literal(RESOURCE_NAME),
-    [NS.schema('text')]: new Literal(RESOURCE_TEXT),
+    [dcterms.identifier]: resource,
+    [NS.rdf('type')]: schema.Thing,
+    [NS.schema('name')]: rdf.literal(RESOURCE_NAME),
+    [NS.schema('text')]: rdf.literal(RESOURCE_TEXT),
     [NS.schema('isPartOf')]: {
       '@id': parent,
-      [NS.dc('identifier')]: parent,
-      [NS.rdf('type')]: NS.schema.Thing,
-      [NS.schema('name')]: new Literal(PARENT_NAME),
+      [dcterms.identifier]: parent,
+      [NS.rdf('type')]: schema.Thing,
+      [NS.schema('name')]: rdf.literal(PARENT_NAME),
     },
   };
 

@@ -1,3 +1,4 @@
+import rdfx from '@ontologies/rdf';
 import { defaultNS as NS } from 'link-lib';
 
 import routes from '../routes/index';
@@ -16,7 +17,7 @@ describe('Registration', () => {
 
   const resources = {
     '@id': testIRI.value,
-    [NS.rdf.type]: NS.argu('SearchResult'),
+    [rdfx.type]: NS.argu('SearchResult'),
   };
   const renderOpts = {
     location: '/u/sign_in',

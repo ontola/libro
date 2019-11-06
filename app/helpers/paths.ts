@@ -1,10 +1,14 @@
+import { NamedNode } from '@ontologies/core';
 import { Map } from 'immutable';
-import { NamedNode } from 'rdflib';
+import { NamespaceMap } from 'link-lib';
 import { frontendPathname } from '../middleware/app';
 
 import { NS } from './LinkedRenderStore';
 
-export function currentLocation(location: Location, fragment = true, basePath = frontendPathname, ns = NS): NamedNode {
+export function currentLocation(location: Location,
+                                fragment = true,
+                                basePath = frontendPathname,
+                                ns: NamespaceMap = NS): NamedNode {
   const path = (basePath !== '/' && location.pathname.startsWith(basePath))
       ? location.pathname.slice(basePath.length)
       : location.pathname;

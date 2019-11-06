@@ -1,3 +1,4 @@
+import rdf from '@ontologies/core';
 import Enzyme from 'enzyme';
 import { toExist, toIncludeText } from 'enzyme-matchers';
 
@@ -10,8 +11,8 @@ expect.extend({
     const elem = tree
       .findWhere(e => e.name() === 'Property' && (
         Array.isArray(e.prop('label'))
-          ? e.prop('label').includes(iri)
-          : e.prop('label') === iri
+          ? e.prop('label').some(label => rdf.equals(label, iri))
+          : rdf.equals(e.prop('label'), iri)
       ));
 
     const { pass } = content
@@ -32,13 +33,13 @@ expect.extend({
     if (typeof topology !== 'undefined') {
       return {
         message: () => `Expected resource ${iri} with topology ${topology} but found ${subject} with topology ${top} `,
-        pass: iri === subject && topology === top,
+        pass: rdf.equals(iri, subject) && rdf.equals(topology, top),
       };
     }
 
     return {
       message: () => `Expected resource ${iri} but found ${subject}`,
-      pass: iri === subject,
+      pass: rdf.equals(iri, subject),
     };
   },
 

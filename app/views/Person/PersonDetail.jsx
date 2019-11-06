@@ -1,10 +1,11 @@
+import { literalShape } from '@ontola/mash';
+import rdf from '@ontologies/core';
 import {
   Property,
   register,
   topologyType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
-import { Literal } from 'rdflib';
 import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
@@ -50,7 +51,7 @@ const PersonDetail = ({
 
   return (
     <LDLink
-      features={['centered', topology === tableCellTopology && 'bold'].filter(Boolean)}
+      features={['centered', rdf.equals(topology, tableCellTopology) && 'bold'].filter(Boolean)}
       theme={theme}
     >
       <Detail
@@ -81,7 +82,7 @@ PersonDetail.mapDataToProps = {
 
 PersonDetail.propTypes = {
   hideName: PropTypes.bool,
-  name: PropTypes.instanceOf(Literal),
+  name: literalShape,
   theme: PropTypes.string,
   titleKey: PropTypes.string,
   topology: topologyType,

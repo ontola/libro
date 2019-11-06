@@ -31,13 +31,13 @@ const dropzoneInner = (file, current, isDragActive) => {
         isDragActive
           ? (
             <FormattedMessage
+              defaultMessage="Release to select this file"
               id="https://app.argu.co/i18n/forms/dropzone/hoverText"
-              message="Release to select this file"
             />
           ) : (
             <FormattedMessage
+              defaultMessage="Drag & Drop your file here or click to select a file"
               id="https://app.argu.co/i18n/forms/dropzone/passiveText"
-              message="Drag & Drop your file here or click to select a file"
             />
           )
       }

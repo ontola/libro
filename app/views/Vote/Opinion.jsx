@@ -1,3 +1,4 @@
+import rdf from '@ontologies/core';
 import { linkType, register } from 'link-redux';
 import React, { Component } from 'react';
 
@@ -30,11 +31,11 @@ class Opinion extends Component {
     const { option, primaryVote } = this.props;
 
     let classes;
-    switch (option) {
-      case NS.argu('yes'):
+    switch (rdf.id(option)) {
+      case rdf.id(NS.argu('yes')):
         classes = 'fa-thumbs-up Opinion--icon-pro';
         break;
-      case NS.argu('no'):
+      case rdf.id(NS.argu('no')):
         classes = 'fa-thumbs-down Opinion--icon-con';
         break;
       default:

@@ -1,5 +1,5 @@
+import rdf from '@ontologies/core';
 import PropTypes from 'prop-types';
-import { NamedNode } from 'rdflib';
 import React, { Component } from 'react';
 import { HotKeys } from 'react-hotkeys';
 
@@ -33,7 +33,7 @@ class HoverHelper extends Component {
         || expandPath(currentElement.getAttribute('href'));
       if (resourceLink) {
         /* global dev:true */
-        const trips = dev.getLRS().tryEntity(NamedNode.find(resourceLink));
+        const trips = dev.getLRS().tryEntity(rdf.namedNode(resourceLink));
         console.log(dev.toObject(trips)); // eslint-disable-line no-console
         break;
       }

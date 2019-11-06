@@ -1,12 +1,13 @@
 import './helpers/polyfills';
+import './useFactory';
 
 import React from 'react';
 import { render } from 'react-dom';
+import LinkDevTools from '@ontola/link-devtools';
 
 import { APP_ELEMENT } from './config';
 import './helpers/typescript';
 import { getMetaContent } from './helpers/arguHelpers';
-import LinkDevTools from './helpers/LinkDevTools';
 import LinkedRenderStore from './helpers/LinkedRenderStore';
 import { handle } from './helpers/logging';
 import App from './App';

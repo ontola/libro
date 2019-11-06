@@ -1,3 +1,5 @@
+import rdf from '@ontologies/core';
+
 import { allowSort, entityIsLoaded } from '../../../../helpers/data';
 import { NS } from '../../../../helpers/LinkedRenderStore';
 
@@ -30,10 +32,13 @@ export const filterActions = (lrs, potentialAction) => {
   return allowSort(potentialAction, OMNIFORM_FILTER, ORDER);
 };
 
-export const invalidStatuses = [NS.ontola('DisabledActionStatus'), NS.ontola('ExpiredActionStatus')];
+export const invalidStatusIds = [
+  NS.ontola('DisabledActionStatus'),
+  NS.ontola('ExpiredActionStatus'),
+].map(s => rdf.id(s));
 
 export const actionsAreAllDisabled = (items, lrs) => {
-  const actionStatuses = items.map(a => lrs.getResourceProperty(a, NS.schema('actionStatus')));
+  const actionStatuses = items.map(a => rdf.id(lrs.getResourceProperty(a, NS.schema('actionStatus'))));
 
-  return actionStatuses.every(a => invalidStatuses.includes(a));
+  return actionStatuses.every(a => invalidStatusIds.includes(a));
 };

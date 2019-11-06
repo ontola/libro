@@ -1,3 +1,5 @@
+import schema from '@ontologies/schema';
+import rdfs from '@ontologies/rdfs';
 import {
   Property,
   linkType,
@@ -37,7 +39,7 @@ const ThingSelect = ({
     style,
   });
 
-  const labels = [NS.schema.name, NS.rdfs.label];
+  const labels = [schema.name, rdfs.label];
 
   const label = lrs.getResourceProperty(itemClass, NS.ontola('forms/inputs/select/displayProp'));
 
@@ -52,7 +54,7 @@ const ThingSelect = ({
   );
 };
 
-ThingSelect.type = NS.schema.Thing;
+ThingSelect.type = schema.Thing;
 
 ThingSelect.topology = selectTopology;
 

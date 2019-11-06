@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   linkType,
   register,
@@ -48,7 +49,7 @@ ReadActionCard.topology = [
   cardTopology,
 ];
 
-ReadActionCard.mapDataToProps = [NS.schema.name];
+ReadActionCard.mapDataToProps = [schema.name];
 
 ReadActionCard.propTypes = propTypes;
 

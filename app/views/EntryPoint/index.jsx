@@ -1,3 +1,4 @@
+import rdf from '@ontologies/core';
 import { linkType, register } from 'link-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -78,7 +79,7 @@ class EntryPoint extends React.PureComponent {
     const icon = image && image.value.startsWith(FABase) ? image.value.slice(FABase.length) : 'plus';
 
     if (httpMethod && httpMethod.value !== 'get') {
-      const largeButton = topology === cardVoteEventTopology ? ' Button--stretched' : '';
+      const largeButton = rdf.equals(topology, cardVoteEventTopology) ? ' Button--stretched' : '';
 
       return (
         <ButtonWithFeedback

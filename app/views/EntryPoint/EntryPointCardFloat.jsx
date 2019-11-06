@@ -1,3 +1,4 @@
+import rdf from '@ontologies/core';
 import {
   linkType,
   subjectType,
@@ -40,18 +41,19 @@ class EntryPointButton extends React.PureComponent {
 
     const parsedURL = new URL(subject.value);
     const href = parsedURL && parsedURL.pathname + parsedURL.search;
-    const className = topology === defaultTopology ? 'CardList' : 'CardFloat';
+    const className = rdf.equals(topology, defaultTopology) ? 'CardList' : 'CardFloat';
+    const isDefaultTopology = rdf.equals(topology, defaultTopology);
 
     return (
       <Button
         plain
         className={`Button--${className}`}
         href={href}
-        icon={topology === defaultTopology ? null : 'plus'}
+        icon={isDefaultTopology ? null : 'plus'}
         title={name.value}
         onClick={onClick}
       >
-        {topology === defaultTopology ? name.value : null }
+        {isDefaultTopology ? name.value : null }
       </Button>
     );
   }

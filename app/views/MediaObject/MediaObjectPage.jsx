@@ -1,3 +1,4 @@
+import rdf from '@ontologies/core';
 import {
   linkType,
   register,
@@ -117,7 +118,7 @@ class MediaObjectPage extends React.PureComponent {
     } = this.props;
 
     const classes = fullPage ? 'MediaObjectPage--full-page' : '';
-    if (type === NS.schema('VideoObject')) {
+    if (rdf.equals(type, NS.schema('VideoObject'))) {
       if (embedUrl && YOUTUBE_TEST.test(embedUrl.value)) {
         return (
           <Container>

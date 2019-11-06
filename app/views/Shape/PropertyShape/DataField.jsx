@@ -1,3 +1,5 @@
+import rdf from '@ontologies/core';
+import xsd from '@ontologies/xsd';
 import { linkType, topologyType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -30,25 +32,25 @@ const determineInputType = (
     return 'select';
   }
 
-  switch (datatype) {
-    case NS.xsd('boolean'):
+  switch (rdf.id(datatype)) {
+    case rdf.id(xsd.boolean):
       return 'checkbox';
-    case NS.xsd('date'):
+    case rdf.id(xsd.date):
       return 'date';
-    case NS.xsd('dateTime'):
+    case rdf.id(xsd.dateTime):
       return 'datetime-local';
-    case NS.xsd('integer'):
-    case NS.xsd('long'):
-    case NS.xsd('int'):
-    case NS.xsd('short'):
-    case NS.xsd('byte'):
-    case NS.xsd('decimal'):
+    case rdf.id(xsd.integer):
+    case rdf.id(xsd.long):
+    case rdf.id(xsd.int):
+    case rdf.id(xsd.short):
+    case rdf.id(xsd.byte):
+    case rdf.id(xsd.decimal):
       return 'number';
-    case NS.ll('blob'):
+    case rdf.id(NS.ll('blob')):
       return 'file';
-    case NS.fhir('markdown'):
+    case rdf.id(NS.fhir('markdown')):
       return 'markdown';
-    case NS.ontola('datatype/password'):
+    case rdf.id(NS.ontola('datatype/password')):
       return 'password';
     default:
       if (tryParseInt(maxLength) > MAX_STR_LEN) {

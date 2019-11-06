@@ -1,3 +1,4 @@
+import { DEFAULT_TOPOLOGY } from 'link-lib';
 import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -5,7 +6,7 @@ import React from 'react';
 import Topology from '../Topology';
 import Metadata from '../../components/Metadata';
 
-export const primaryResourceTopology = null;
+export const primaryResourceTopology = DEFAULT_TOPOLOGY;
 
 class PrimaryResource extends Topology {
   static displayName = 'PrimaryResource';

@@ -1,10 +1,10 @@
-import { Namespace } from 'rdflib';
+import { createNS } from '@ontologies/core';
 
 import path, { currentLocation } from '../paths';
 
 function getCurrentLocation(websiteIRI: string, pathname = '', search = '', hash = '') {
   const basePath = new URL(websiteIRI).pathname;
-  const ns = { appSlashless: Namespace(websiteIRI) };
+  const ns = { appSlashless: createNS(websiteIRI) };
   return currentLocation(
     {
       hash,

@@ -1,3 +1,7 @@
+import as from '@ontologies/as';
+import rdfx from '@ontologies/rdf';
+import schema from '@ontologies/schema';
+import dcterms from '@ontologies/dcterms';
 import {
   defaultNS as NS,
   seq,
@@ -16,26 +20,26 @@ describe('Search', () => {
 
   const resources = {
     '@id': testIRI.value,
-    [NS.rdf.type]: NS.argu('SearchResult'),
-    [NS.dc.identifier]: testIRI,
+    [rdfx.type]: NS.argu('SearchResult'),
+    [dcterms.identifier]: testIRI,
     [NS.argu('query')]: 'keyword',
     [NS.argu('took')]: 240,
-    [NS.as.totalItems]: 3,
-    [NS.as.items]: seq([
+    [as.totalItems]: 3,
+    [as.items]: seq([
       {
         '@id': NS.example('1'),
-        [NS.rdf.type]: NS.schema.CreativeWork,
-        [NS.schema.name]: 'Item 1',
+        [rdfx.type]: schema.CreativeWork,
+        [schema.name]: 'Item 1',
       },
       {
         '@id': NS.example('2'),
-        [NS.rdf.type]: NS.argu('Question'),
-        [NS.schema.name]: 'Item 2',
+        [rdfx.type]: NS.argu('Question'),
+        [schema.name]: 'Item 2',
       },
       {
         '@id': NS.example('3'),
-        [NS.rdf.type]: NS.schema.Thing,
-        [NS.schema.name]: 'Item 3',
+        [rdfx.type]: schema.Thing,
+        [schema.name]: 'Item 3',
       },
     ], seqIRI),
   };

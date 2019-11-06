@@ -1,3 +1,6 @@
+import rdf from '@ontologies/core';
+import schema from '@ontologies/schema';
+import rdfx from '@ontologies/rdf';
 import {
   Property,
   linkType,
@@ -22,9 +25,9 @@ class ActionActionsBar extends PureComponent {
   static topology = actionsBarTopology;
 
   static mapDataToProps = {
-    object: NS.schema.object,
+    object: schema.object,
     type: {
-      label: NS.rdf.type,
+      label: rdfx.type,
       limit: Infinity,
     },
   };
@@ -46,11 +49,11 @@ class ActionActionsBar extends PureComponent {
   }
 
   getVariant() {
-    switch (bestType(this.props.type)) {
-      case NS.teamGL('ContactedAction'):
+    switch (rdf.id(bestType(this.props.type))) {
+      case rdf.id(NS.teamGL('ContactedAction')):
         return 'success';
-      case NS.teamGL('NotAvailableAction'):
-      case NS.teamGL('UnsubscribeAction'):
+      case rdf.id(NS.teamGL('NotAvailableAction')):
+      case rdf.id(NS.teamGL('UnsubscribeAction')):
         return 'error';
       default:
         return undefined;
@@ -59,12 +62,12 @@ class ActionActionsBar extends PureComponent {
 
   exec() {
     const target = this.props.lrs.getResourceProperty(this.props.subject, NS.schema('target'));
-    const httpMethod = target && this.props.lrs.getResourceProperty(target, NS.schema.httpMethod);
+    const httpMethod = target && this.props.lrs.getResourceProperty(target, schema.httpMethod);
 
     if (httpMethod && httpMethod.value === 'GET') {
       return new Promise((resolve) => {
         this.props.lrs.actions.ontola.showDialog(
-          this.props.lrs.getResourceProperty(target, NS.schema.url)
+          this.props.lrs.getResourceProperty(target, schema.url)
         );
         resolve();
       });
@@ -86,7 +89,7 @@ class ActionActionsBar extends PureComponent {
     return (
       <Property
         action={subject}
-        label={NS.schema('target')}
+        label={schema.target}
         variant={this.getVariant()}
         onClick={this.exec}
         onDone={() => history.push(retrievePath(object.value))}

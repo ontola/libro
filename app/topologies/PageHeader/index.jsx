@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   TopologyProvider,
   Type,
@@ -64,4 +65,4 @@ PageHeader.propTypes = {
   positionY: PropTypes.number,
 };
 
-export default link([NS.schema.name])(PageHeader);
+export default link({ name: schema.name })(PageHeader);

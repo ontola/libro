@@ -4,21 +4,25 @@
  * Acts as a security filter as well, to prevent cross-site action injections.
  */
 
+import rdf, { NamedNode } from '@ontologies/core';
 import { MiddlewareActionHandler, MiddlewareWithBoundLRS } from 'link-lib';
-import { NamedNode } from 'rdflib';
 
 import { getMetaContent } from '../helpers/arguHelpers';
 
 export const website = getMetaContent('website-iri') || 'https://example.com';
-export const frontendIRI = NamedNode.find(website!);
+export const frontendIRI = rdf.namedNode(website!);
 
 const execFilter = () => (): MiddlewareWithBoundLRS => {
   const executableSites = [
-    NamedNode.find(new URL(frontendIRI.value).origin),
-  ];
+    rdf.namedNode(new URL(frontendIRI.value).origin),
+  ].map((t) => rdf.id(t));
 
   return (next: MiddlewareActionHandler) => (iri: NamedNode, opts: any): Promise<any> => {
-    if (executableSites.includes(NamedNode.find(new URL(iri.value).origin))) {
+    const origin = new URL(iri.value).origin;
+    if (!origin || origin === 'null') {
+      throw new Error(`IRI has no origin (was ${iri.value})`);
+    }
+    if (executableSites.includes(rdf.id(rdf.namedNode(origin)))) {
       return next(iri, opts);
     }
 

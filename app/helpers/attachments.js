@@ -1,7 +1,9 @@
+import rdf from '@ontologies/core';
+
 import { NS } from './LinkedRenderStore';
 
 export function downloadableAttachment({ contentUrl, type }) {
-  return type === NS.schema('VideoObject') || !contentUrl;
+  return rdf.equals(type, NS.schema('VideoObject')) || !contentUrl;
 }
 
 export function downloadUrl(contentUrl) {

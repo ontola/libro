@@ -1,3 +1,4 @@
+import rdf from '@ontologies/core';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   LinkedResourceContainer,
@@ -38,10 +39,10 @@ class InlineActionTableRow extends React.PureComponent {
       target,
     } = this.props;
 
-    if (actionStatus === NS.ontola('DisabledActionStatus')) {
+    if (rdf.equals(actionStatus, NS.ontola('DisabledActionStatus'))) {
       return null;
     }
-    if (actionStatus === NS.schema('CompletedActionStatus')) {
+    if (rdf.equals(actionStatus, NS.schema('CompletedActionStatus'))) {
       return <span>{completed}</span>;
     }
 

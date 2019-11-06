@@ -1,3 +1,5 @@
+import rdf from '@ontologies/core';
+
 import { NS } from './LinkedRenderStore';
 
 class SHACL {
@@ -52,12 +54,12 @@ class SHACL {
   static processSHACLResource(lrs, shape, resource) {
     const shapeEntry = lrs.getResourceProperty(shape, NS.rdf('type'));
 
-    switch (shapeEntry) {
-      case NS.sh('NodeShape'):
+    switch (rdf.id(shapeEntry)) {
+      case rdf.id(NS.sh('NodeShape')):
         return this.processNodeShape(lrs, shape);
-      case NS.sh('PropertyShape'):
+      case rdf.id(NS.sh('PropertyShape')):
         return this.processPropertyShape(lrs, shape, resource);
-      case NS.sh('PropertyGroup'):
+      case rdf.id(NS.sh('PropertyGroup')):
         // Groups are only relevant for display purposes
         return undefined;
       default:

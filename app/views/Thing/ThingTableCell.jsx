@@ -1,6 +1,5 @@
+import { literalShape } from '@ontola/mash';
 import { register } from 'link-redux';
-import PropTypes from 'prop-types';
-import { Literal } from 'rdflib';
 import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
@@ -49,7 +48,7 @@ ThingTableCell.mapDataToProps = {
 };
 
 ThingTableCell.propTypes = {
-  name: PropTypes.instanceOf(Literal),
+  name: literalShape,
 };
 
 export default register(ThingTableCell);

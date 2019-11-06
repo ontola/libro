@@ -1,4 +1,5 @@
 import AppBar from '@material-ui/core/AppBar';
+import rdf from '@ontologies/core';
 import {
   LinkedResourceContainer,
   Property,
@@ -7,7 +8,6 @@ import {
   register,
 } from 'link-redux';
 import * as PropTypes from 'prop-types';
-import { NamedNode } from 'rdflib';
 import React from 'react';
 import { Redirect, withRouter } from 'react-router';
 
@@ -87,7 +87,7 @@ class MenuItemPage extends React.PureComponent {
     if (menuItems) {
       const menuItemsArr = seqToArr(lrs, [], menuItems);
 
-      const currentItem = menuItemsArr.find(s => s === currentLocation(location));
+      const currentItem = menuItemsArr.find(s => rdf.equals(s, currentLocation(location)));
 
       if (!currentItem) {
         return lrs.getResourceProperty(menuItems, NS.rdf('_0'));
@@ -119,7 +119,7 @@ class MenuItemPage extends React.PureComponent {
     } else if (topLevel) {
       body = (
         <LinkedResourceContainer
-          subject={r || NamedNode.find(currentLocation(location))}
+          subject={r || currentLocation(location)}
           topLevel={false}
         />
       );

@@ -62,7 +62,7 @@ export class CreateActionButton extends Component {
     return (
       <LDLink
         disabled={!!this.props.actionStatus}
-        title={this.props.name && this.props.name.toString()}
+        title={this.props.name?.value}
       >
         <Property label={NS.schema('name')} />
       </LDLink>

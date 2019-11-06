@@ -1,9 +1,10 @@
+import { term } from '@ontola/mash';
+import rdf from '@ontologies/core';
 import {
   LinkedResourceContainer,
   PropertyBase,
   register,
 } from 'link-redux';
-import { NamedNode } from 'rdflib';
 import React from 'react';
 
 import { DetailText } from '../../../components';
@@ -41,16 +42,16 @@ class ActivityName extends PropertyBase {
 
     const elems = split.reduce((previousValue, currentValue, index) => {
       const iri = matches[index]?.slice(HANDLEBAR_LENGTH, -HANDLEBAR_LENGTH);
-      const term = iri && NamedNode.find(iri).term;
+      const iriTerm = iri && term(rdf.namedNode(iri));
 
       return previousValue.concat(
         <React.Fragment key={`${iri}-${currentValue}`}>
           <DetailText>{currentValue}</DetailText>
           {term && (
             <LinkedResourceContainer
-              key={this.props[term]}
-              subject={this.props[term]}
-              theme={term === NS.as('actor').term ? 'default' : 'parent'}
+              key={this.props[iriTerm]}
+              subject={this.props[iriTerm]}
+              theme={iriTerm === term(NS.as('actor')) ? 'default' : 'parent'}
             />
           )}
         </React.Fragment>

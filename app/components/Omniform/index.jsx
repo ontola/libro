@@ -1,3 +1,4 @@
+import rdf, { isNamedNode } from '@ontologies/core';
 import { Set } from 'immutable';
 import {
   LinkedResourceContainer,
@@ -6,7 +7,6 @@ import {
   withLRS,
 } from 'link-redux';
 import PropTypes from 'prop-types';
-import { NamedNode } from 'rdflib';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage } from 'react-intl';
@@ -47,7 +47,7 @@ const PROPS_WHITELIST = [
   NS.argu('attachments'),
   NS.ontola('coverPhoto'),
   NS.schema('location'),
-];
+].map(t => rdf.id(t));
 
 class Omniform extends EntryPointBase {
   action() {
@@ -65,7 +65,7 @@ class Omniform extends EntryPointBase {
       form,
       onKeyUp,
     } = this.props;
-    if (!(action instanceof NamedNode)) {
+    if (!isNamedNode(action)) {
       return null;
     }
 
@@ -96,7 +96,7 @@ class Omniform extends EntryPointBase {
       .map(iri => (
         <LinkedResourceContainer key={iri} subject={iri}>
           <Property
-            current={iri === this.props.action}
+            current={rdf.equals(iri, this.props.action)}
             label={NS.schema('result')}
             onClick={this.props.onActionChange(iri)}
           />
@@ -192,7 +192,7 @@ const mapDispatchToProps = (dispatch, props) => ({
     .lrs
     .actions
     .app
-    .startSignIn(NamedNode.find(atob(props.parentIRI)))
+    .startSignIn(rdf.namedNode(atob(props.parentIRI)))
     .then(Promise.reject),
 });
 

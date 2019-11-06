@@ -1,6 +1,7 @@
+import rdf from '@ontologies/core';
+import dcterms from '@ontologies/dcterms';
 import { seq } from 'link-lib';
 import { LinkedResourceContainer } from 'link-redux';
-import { Literal } from 'rdflib';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
@@ -25,7 +26,7 @@ describe('Collection', () => {
         NS.ontola('PaginatedView'),
       ],
       [NS.as('items')]: seq([memberResource]),
-      [NS.as('totalItems')]: Literal.fromNumber(1),
+      [NS.as('totalItems')]: rdf.literal(1),
       [NS.ontola('collectionDisplay')]: NS.ontola('collectionDisplay/default'),
     },
     [collectionWithPages]: {
@@ -34,14 +35,14 @@ describe('Collection', () => {
         NS.as('Collection'),
         NS.ontola('Collection'),
       ],
-      [NS.as('name')]: new Literal('Ideeën'),
-      [NS.ontola('iriTemplate')]: new Literal('https://argu.localdev/nederland/q/75/m{?filter%5B%5D,page,page_size,type,before,sort%5B%5D}'),
+      [NS.as('name')]: rdf.literal('Ideeën'),
+      [NS.ontola('iriTemplate')]: rdf.literal('https://argu.localdev/nederland/q/75/m{?filter%5B%5D,page,page_size,type,before,sort%5B%5D}'),
       [NS.schema('isPartOf')]: NS.app('nederland/q/75'),
-      [NS.as('totalItems')]: Literal.fromNumber(ITEMS),
+      [NS.as('totalItems')]: rdf.literal(ITEMS),
       [NS.schema('potentialAction')]: NS.app('nederland/q/75/m/new'),
-      [NS.ontola('defaultType')]: new Literal('paginated'),
+      [NS.ontola('defaultType')]: rdf.literal('paginated'),
       [NS.ontola('pages')]: collectionWithItems,
-      [NS.dc('identifier')]: NS.app('nederland/q/75/motions'),
+      [dcterms.identifier]: NS.app('nederland/q/75/motions'),
       [NS.ontola('createAction')]: NS.app('nederland/q/75/m/new'),
       [NS.schema('url')]: collectionWithPages,
       [NS.ontola('baseCollection')]: NS.app('new_volunteers'),
@@ -53,8 +54,8 @@ describe('Collection', () => {
     [memberResource]: {
       '@id': memberResource,
       [NS.rdf('type')]: NS.example('TestClass'),
-      [NS.schema('name')]: new Literal('Member name'),
-      [NS.schema('text')]: new Literal('Member text'),
+      [NS.schema('name')]: rdf.literal('Member name'),
+      [NS.schema('text')]: rdf.literal('Member text'),
     },
   };
 

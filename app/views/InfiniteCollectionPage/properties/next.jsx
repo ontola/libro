@@ -1,6 +1,6 @@
+import rdf from '@ontologies/core';
 import LinkedRenderStore from 'link-lib';
 import { PropertyBase, link } from 'link-redux';
-import { Literal, Statement } from 'rdflib';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -19,8 +19,8 @@ class InfiniteCollectionNext extends PropertyBase {
 
     const onClick = () => new Promise(() => {
       lrs.store.addStatements([
-        new Statement(partOf.object, NS.ontola('pages'), linkedProp),
-        new Statement(subject, NS.argu('void'), new Literal(0)),
+        rdf.quad(partOf.object, NS.ontola('pages'), linkedProp),
+        rdf.quad(subject, NS.argu('void'), rdf.literal(0)),
       ]);
       lrs.broadcast();
     });

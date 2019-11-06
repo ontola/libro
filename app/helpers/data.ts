@@ -1,15 +1,17 @@
+import rdf, { Literal, NamedNode, Node, Quad, SomeTerm } from '@ontologies/core';
+import rdfx from '@ontologies/rdf';
+import rdfs from '@ontologies/rdfs';
 import { OK } from 'http-status-codes';
 import { LazyNNArgument, normalizeType } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
-import { Literal, NamedNode, SomeNode, SomeTerm, Statement } from 'rdflib';
 
 import { sequenceFilter } from './iris';
 import { NS } from './LinkedRenderStore';
 
 const base = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#_';
 
-function filterFind(op: SomeNode) {
-  return (bV: SomeNode | RegExp) => {
+function filterFind(op: Node) {
+  return (bV: Node | RegExp) => {
     if (bV instanceof RegExp) {
       return bV.test(op.value);
     } else if (Object.prototype.hasOwnProperty.call(bV, 'termType')) {
@@ -29,7 +31,7 @@ function bestType(type: LazyNNArgument) {
   let best = null;
 
   for (const normalizedType of normalizedTypes) {
-    switch (normalizedType.term) {
+    switch (normalizedType.value.split('#').pop()) {
       case 'Resource':
       case 'Document':
       case 'RDFDocument':
@@ -93,11 +95,11 @@ function convertKeysAtoB(obj: { [k: string]: any }): { [k: string]: any } {
   return output;
 }
 
-function entityIsLoaded(lrs: LinkReduxLRSType, iri: SomeNode) {
+function entityIsLoaded(lrs: LinkReduxLRSType, iri: Node) {
   return lrs.tryEntity(iri).length > 0 || lrs.getStatus(iri).status === OK;
 }
 
-function numAsc(a: Statement, b: Statement) {
+function numAsc(a: Quad, b: Quad) {
   const aP = Number.parseInt(a.predicate.value.slice(base.length), 10);
   const bP = Number.parseInt(b.predicate.value.slice(base.length), 10);
 
@@ -120,13 +122,13 @@ function serializableValue(v: any): object | object[] | File {
 function listToArr(
     lrs: LinkReduxLRSType,
     acc: SomeTerm[],
-    rest: SomeNode | SomeNode[],
+    rest: Node | Node[],
 ): SomeTerm[] | Promise<void> {
 
   if (Array.isArray(rest)) {
     return rest;
   }
-  if (!rest || rest === NS.rdf('nil')) {
+  if (!rest || rdf.equals(rest, rdfx.nil)) {
     return acc;
   }
 
@@ -135,7 +137,7 @@ function listToArr(
     const firstStatement = lrs.store.anyStatementMatching(rest, NS.rdf('first'));
     first = firstStatement && firstStatement.object;
   } else {
-    first = lrs.getResourceProperty(rest, NS.rdf('first'));
+    first = lrs.getResourceProperty<Node>(rest, NS.rdf('first'));
 
     if (!first) {
       return lrs.getEntity(rest);
@@ -147,7 +149,7 @@ function listToArr(
   const nextRest = lrs.store.anyStatementMatching(rest, NS.rdf('rest'));
   if (nextRest) {
     const nextObj = nextRest.object;
-    if (nextObj.termType === 'Literal' || nextObj.termType === 'Collection') {
+    if (nextObj.termType === 'Literal' || (nextObj as any).termType === 'Collection') {
       throw new Error(`Rest value must be a resource, was ${nextObj.termType}`);
     }
     listToArr(lrs, acc, nextObj);
@@ -159,12 +161,12 @@ function listToArr(
 function seqToArr(
     lrs: LinkReduxLRSType,
     acc: SomeTerm[],
-    rest: SomeNode | SomeNode[],
+    rest: Node | Node[],
 ): SomeTerm[] {
   if (Array.isArray(rest)) {
     return rest;
   }
-  if (!rest || rest === NS.rdf('nil')) {
+  if (!rest || rdf.equals(rest, rdfx.nil)) {
     return acc;
   }
 
@@ -180,7 +182,7 @@ function seqToArr(
 function containerToArr(
     lrs: LinkReduxLRSType,
     acc: SomeTerm[],
-    rest: SomeNode | SomeNode[],
+    rest: Node | Node[],
 ): SomeTerm[] | Promise<void> {
   if (Array.isArray(rest)) {
     return rest;
@@ -193,17 +195,17 @@ function containerToArr(
         : Promise.reject(`Can't resolve a ${rest.termType}`);
   }
 
-  if (lrs.getResourceProperty(rest, NS.rdfs.member)) {
+  if (lrs.getResourceProperty(rest, rdfs.member)) {
     return seqToArr(lrs, acc, rest);
   } else if (lrs.getResourceProperty(rest, NS.rdf('first'))) {
     return listToArr(lrs, acc, rest);
   }
 
-  const pages = (lrs.getResourceProperty(rest, NS.ontola('pages')) as NamedNode);
+  const pages = lrs.getResourceProperty<NamedNode>(rest, NS.ontola('pages'));
   if (pages) {
     return containerToArr(lrs, acc, pages);
   }
-  const items = (lrs.getResourceProperty(rest, NS.as('items')) as NamedNode);
+  const items = lrs.getResourceProperty<NamedNode>(rest, NS.as('items'));
   if (items) {
     return seqToArr(lrs, acc, items);
   }
@@ -212,7 +214,7 @@ function containerToArr(
 }
 
 function sort(order: string[]) {
-  return (a: SomeNode, b: SomeNode) => {
+  return (a: Node, b: Node) => {
     const oA = order.findIndex((o) => a.value.includes(o));
     const oB = order.findIndex((o) => b.value.includes(o));
 

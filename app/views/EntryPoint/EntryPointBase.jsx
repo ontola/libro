@@ -1,3 +1,4 @@
+import rdf from '@ontologies/core';
 import HttpStatus from 'http-status-codes';
 import { anyRDFValue } from 'link-lib';
 import {
@@ -6,7 +7,6 @@ import {
   linkType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
-import { NamedNode } from 'rdflib';
 import React from 'react';
 
 import { convertKeysAtoB } from '../../helpers/data';
@@ -67,7 +67,7 @@ class EntryPointBase extends PropertyBase {
           return lrs
             .actions
             .app
-            .startSignIn(NamedNode.find(this.props.form))
+            .startSignIn(rdf.namedNode(this.props.form))
             .then(Promise.reject);
         }
         if (e.response.status !== HttpStatus.UNPROCESSABLE_ENTITY) {

@@ -1,6 +1,7 @@
+import { term } from '@ontola/mash';
+import rdf from '@ontologies/core';
 import { lrsType, withLinkCtx } from 'link-redux';
 import PropTypes from 'prop-types';
-import { NamedNode } from 'rdflib';
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { withRouter } from 'react-router-dom';
@@ -44,7 +45,7 @@ class DevBrowser extends Component {
     const params = new URLSearchParams(search);
 
     const resourceParam = params.get('iri').match(/^[a-z]+:\/\/[a-z]+/) ? params.get('iri') : NS.app('').value;
-    const resource = NamedNode.find(resourceParam);
+    const resource = rdf.namedNode(resourceParam);
 
     const selectedTopology = params.get('topology') || 0;
     const pureString = params.get('pure');
@@ -124,21 +125,21 @@ class DevBrowser extends Component {
                 key={(topology === undefined) ? 'default' : topology}
                 value={i}
               >
-                {(topology === undefined) ? 'default' : topology.term}
+                {(topology === undefined) ? 'default' : term(topology)}
               </option>
             ))}
           </select>
           {specialTopologies.map(topology => (
             <button
-              key={(topology === undefined) ? 'default' : topology.term}
+              key={(topology === undefined) ? 'default' : term(topology)}
               style={{
-                backgroundColor: (currentTopology === topology) ? '#d9d9d9' : 'transparent',
+                backgroundColor: rdf.equals(currentTopology, topology) ? '#d9d9d9' : 'transparent',
                 padding: '0 2px',
               }}
               value={getTopologyNumber(topology)}
               onClick={this.handleChangeTopology}
             >
-              {(topology === undefined) ? 'default' : topology.term}
+              {(topology === undefined) ? 'default' : term(topology)}
             </button>
           ))}
           <input

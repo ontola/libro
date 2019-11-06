@@ -1,5 +1,5 @@
+import { namedNodeShape } from '@ontola/mash';
 import PropTypes from 'prop-types';
-import { NamedNode } from 'rdflib';
 import React from 'react';
 import {
   subjectType,
@@ -53,7 +53,7 @@ LDLink.propTypes = {
   ]),
   title: PropTypes.string,
   /** Overrides the url */
-  to: PropTypes.instanceOf(NamedNode),
+  to: namedNodeShape,
 };
 
 export default LDLink;

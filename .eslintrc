@@ -50,9 +50,6 @@
       "exports": "always-multiline",
       "functions": "never"
     }],
-    "valid-jsdoc": ["warn", {
-      "requireReturnDescription": false
-    }],
     // Accessibility
     // The ones that are commented out resulted in errors. May be something wrong with the jsx-a11y plugin.
     // "jsx-a11y/anchor-has-content": 2,

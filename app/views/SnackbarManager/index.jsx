@@ -1,27 +1,27 @@
+import { blankNodeShape, firstTermOfSeq } from '@ontola/mash';
 import {
   LinkedResourceContainer,
-  lrsType,
   register,
+  useLRS,
 } from 'link-redux';
-import PropTypes from 'prop-types';
-import { Collection } from 'rdflib';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../topologies';
 
-const SnackbarManager = (props) => {
-  const queue = props['snackbar/queue'];
+const SnackbarManager = ({ queue }) => {
+  const lrs = useLRS();
+  const element = firstTermOfSeq(lrs, queue);
 
-  if (queue?.elements.length === 0) {
+  if (!element) {
     return null;
   }
 
   return (
     <LinkedResourceContainer
-      close={() => props.lrs.exec(NS.ontola('actions/snackbar/finished'))}
-      key={queue.elements[0].value}
-      subject={queue.elements[0]}
+      close={() => lrs.exec(NS.ontola('actions/snackbar/finished'))}
+      key={element.value}
+      subject={element}
     />
   );
 };
@@ -30,11 +30,13 @@ SnackbarManager.type = NS.ontola('snackbar/Manager');
 
 SnackbarManager.topology = allTopologies;
 
-SnackbarManager.mapDataToProps = [NS.ontola('snackbar/queue')];
+SnackbarManager.mapDataToProps = {
+  dataSubjects: NS.ontola('snackbar/queue'),
+  queue: NS.ontola('snackbar/queue'),
+};
 
 SnackbarManager.propTypes = {
-  lrs: lrsType,
-  'snackbar/queue': PropTypes.instanceOf(Collection),
+  queue: blankNodeShape,
 };
 
 export default [

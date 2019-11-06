@@ -1,6 +1,6 @@
+import { NamedNode } from '@ontologies/core';
 import { MiddlewareActionHandler, MiddlewareWithBoundLRS } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
-import { NamedNode } from 'rdflib';
 
 import { log } from '../helpers/logging';
 

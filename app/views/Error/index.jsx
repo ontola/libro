@@ -1,3 +1,4 @@
+import rdf from '@ontologies/core';
 import HttpStatus from 'http-status-codes';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { subjectType } from 'link-redux';
@@ -174,7 +175,7 @@ ErrorPageComp.propTypes = propTypes;
 export const ErrorPage = ErrorPageComp;
 
 const ErrorNavbar = (props) => {
-  if (props.subject === NS.app('n?type=infinite')) {
+  if (rdf.equals(props.subject, NS.app('n?type=infinite'))) {
     return null;
   }
 

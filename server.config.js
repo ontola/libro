@@ -48,6 +48,11 @@ const config = {
     'webpack-merge',
     'webpack-pwa-manifest',
     'workbox-webpack-plugin',
+
+    // Giant and unused libraries
+    'jsonld',
+    'solid-auth-client',
+    'solid-auth-cli',
   ],
 
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',

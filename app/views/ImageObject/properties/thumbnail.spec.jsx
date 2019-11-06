@@ -1,18 +1,18 @@
+import rdf from '@ontologies/core';
 import { Property } from 'link-redux';
-import { NamedNode } from 'rdflib';
 import React from 'react';
 
 import { NS } from '../../../../tests';
 
 import components from './thumbnail';
 
-const resource = new NamedNode('http://example.com/image/1');
+const resource = rdf.namedNode('http://example.com/image/1');
 
 const resources = {
   [resource]: {
     [NS.rdf('type')]: NS.schema('ImageObject'),
-    [NS.schema('thumbnail')]: new NamedNode('http://www.example.com/1.thumb.png'),
-    [NS.schema('url')]: new NamedNode('http://www.example.com/1.png'),
+    [NS.schema('thumbnail')]: rdf.namedNode('http://www.example.com/1.thumb.png'),
+    [NS.schema('url')]: rdf.namedNode('http://www.example.com/1.png'),
   },
 };
 

@@ -1,3 +1,6 @@
+import rdf from '@ontologies/core';
+import rdfx from '@ontologies/rdf';
+import schema from '@ontologies/schema';
 import {
   LinkedResourceContainer,
   linkType,
@@ -45,15 +48,15 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   openOmniform: () => {
     const isVoteEventVote = ownProps.lrs.findSubject(
       ownProps.subject,
-      [NS.schema('object'), NS.rdf('type')],
+      [schema.object, rdfx.type],
       CollectionTypes
     );
     const inlineFormTarget = isVoteEventVote.length > 0
-      ? ownProps.lrs.getResourceProperty(ownProps.subjectCtx, NS.schema('isPartOf'))
+      ? ownProps.lrs.getResourceProperty(ownProps.subjectCtx, schema.isPartOf)
       : ownProps.subjectCtx;
     const hasOpinionAction = ownProps.lrs.findSubject(
       inlineFormTarget,
-      [NS.schema('potentialAction'), NS.rdf('type')],
+      [schema.potentialAction, rdfx.type],
       [NS.ontola('Create::Opinion'), NS.argu('Update::Opinion')]
     );
 
@@ -94,7 +97,7 @@ function currentVote(current, object, subject, lrs) {
     return false;
   }
 
-  const currentOption = lrs.getResourceProperty(vote, NS.schema.option);
+  const currentOption = lrs.getResourceProperty(vote, schema.option);
 
   return currentOption && currentOption !== NS.argu('abstain');
 }
@@ -104,9 +107,9 @@ function getVariant(current, variant, object, lrs) {
     return variant;
   }
 
-  const parentType = lrs.getResourceProperty(object, NS.rdf('type'));
+  const parentType = lrs.getResourceProperty(object, rdfx.type);
 
-  return parentType === NS.argu('ProArgument') ? 'yes' : 'no';
+  return rdf.equals(parentType, NS.argu('ProArgument')) ? 'yes' : 'no';
 }
 
 /*
@@ -140,8 +143,8 @@ const CreateVote = ({
     return null;
   }
 
-  const disabled = actionStatus === NS.ontola('DisabledActionStatus');
-  const expired = actionStatus === NS.ontola('ExpiredActionStatus');
+  const disabled = rdf.equals(actionStatus, NS.ontola('DisabledActionStatus'));
+  const expired = rdf.equals(actionStatus, NS.ontola('ExpiredActionStatus'));
 
   let title;
   if (variant === 'yes') {
@@ -184,12 +187,12 @@ CreateVote.topology = allTopologies;
 CreateVote.hocs = [connect(null, mapDispatchToProps)];
 
 CreateVote.mapDataToProps = {
-  actionStatus: NS.schema('actionStatus'),
-  isPartOf: NS.schema('isPartOf'),
-  object: NS.schema('object'),
-  target: NS.schema('target'),
+  actionStatus: schema.actionStatus,
+  isPartOf: schema.isPartOf,
+  object: schema.object,
+  target: schema.target,
   type: {
-    label: NS.rdf('type'),
+    label: rdfx.type,
     limit: Infinity,
   },
 };

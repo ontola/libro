@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   Property,
   linkType,
@@ -45,7 +46,7 @@ ForumPage.mapDataToProps = [
   NS.ontola('coverPhoto'),
   NS.argu('hideHeader'),
   NS.ontola('widgets'),
-  NS.schema.name,
+  schema.name,
 ];
 
 ForumPage.propTypes = {

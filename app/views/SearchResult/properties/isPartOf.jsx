@@ -1,3 +1,4 @@
+import rdf from '@ontologies/core';
 import {
   LinkedResourceContainer,
   linkedPropType,
@@ -30,7 +31,7 @@ class IsPartOfPage extends React.PureComponent {
 
     const parentType = linkedProp && lrs.getResourceProperty(linkedProp, NS.rdf('type'));
 
-    if (parentType === NS.argu('Page')) {
+    if (rdf.equals(parentType, NS.argu('Page'))) {
       return null;
     }
 

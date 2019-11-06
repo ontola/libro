@@ -1,3 +1,4 @@
+import rdf from '@ontologies/core';
 import {
   LinkedResourceContainer,
   Property,
@@ -6,7 +7,6 @@ import {
   useLRS,
 } from 'link-redux';
 import React from 'react';
-import { NamedNode } from 'rdflib';
 
 import { LDLink } from '../../components';
 import NavbarLinkIcon from '../../components/NavbarLink/NavbarLinkIcon';
@@ -22,7 +22,7 @@ const PersonNavbar = ({ subject }) => {
   return (
     <div className="NavbarLink">
       <LinkedResourceContainer showImage subject={NS.app('n')} topology={navbarTopology}>
-        <LDLink to={new NamedNode(`${menuIri.value}#notifications`)}>
+        <LDLink to={rdf.namedNode(`${menuIri.value}#notifications`)}>
           <Property label={NS.argu('unreadCount')} />
         </LDLink>
       </LinkedResourceContainer>

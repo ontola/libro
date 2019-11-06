@@ -1,3 +1,6 @@
+import schema from '@ontologies/schema';
+import rdfx from '@ontologies/rdf';
+import rdfs from '@ontologies/rdfs';
 import {
   Property,
   linkType,
@@ -36,7 +39,7 @@ const PersonSelect = ({
     role,
     style,
   });
-  const labels = [NS.schema.name, NS.rdfs.label];
+  const labels = [schema.name, rdfs.label];
 
   const label = lrs.getResourceProperty(itemClass, NS.ontola('forms/inputs/select/displayProp'));
 
@@ -46,14 +49,14 @@ const PersonSelect = ({
 
   return (
     <Resource wrapperProps={wrapperProps || defaultWrapperProps()}>
-      <Property label={NS.schema('image')} />
+      <Property label={schema.image} />
       <Property label={labels} />
     </Resource>
   );
 };
 
 PersonSelect.type = [
-  NS.schema.Person,
+  schema.Person,
   NS.aod('Persons'),
   NS.argu('Page'),
 ];
@@ -61,7 +64,7 @@ PersonSelect.type = [
 PersonSelect.topology = selectTopology;
 
 PersonSelect.mapDataToProps = {
-  itemClass: NS.rdf('type'),
+  itemClass: rdfx.type,
 };
 
 PersonSelect.propTypes = {

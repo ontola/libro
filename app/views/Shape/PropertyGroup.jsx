@@ -1,3 +1,4 @@
+import rdf from '@ontologies/core';
 import Collapse from '@material-ui/core/Collapse';
 import { ButtonBase } from '@material-ui/core';
 import {
@@ -36,7 +37,7 @@ const PropertyGroup = ({
     setOpen(!open);
   }
 
-  if (subject === NS.ontola('hiddenGroup')) {
+  if (rdf.equals(subject, NS.ontola('hiddenGroup'))) {
     return (
       <fieldset className={classes.hidden}>
         {properties.map((p, i) => renderProp(p, focusNode, i === 0))}
