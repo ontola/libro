@@ -6,10 +6,35 @@
   display: flex;
   flex-direction: row;
   padding: 0 2px;
+
+  .NavbarLink__image {
+    margin-right: .1em;
+  }
 }
 
 .Field__input--select {
   .SelectItem {
     background-color: color('white');
+  }
+}
+
+.SelectInput--selected {
+  width: 100%;
+
+  .SelectItem {
+    background: none;
+    padding: .5rem 1.3rem;
+  }
+
+  .SelectPerson {
+    padding: .5rem 1rem .5rem .5rem;
+
+    .NavbarLink__image {
+      border: 0;
+    }
+
+    span {
+      display: none;
+    }
   }
 }

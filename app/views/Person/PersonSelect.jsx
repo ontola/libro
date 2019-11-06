@@ -11,7 +11,7 @@ import { Resource } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { selectTopology } from '../../topologies/Select';
 
-const ThingSelect = ({
+const PersonSelect = ({
   'aria-selected': ariaSelected,
   className,
   element,
@@ -27,7 +27,7 @@ const ThingSelect = ({
 }) => {
   const defaultWrapperProps = () => ({
     'aria-selected': ariaSelected,
-    className: `SelectItem ${className}`,
+    className: `SelectItem ${className} SelectPerson`,
     element: element || 'li',
     id,
     onClick,
@@ -36,7 +36,6 @@ const ThingSelect = ({
     role,
     style,
   });
-
   const labels = [NS.schema.name, NS.rdfs.label];
 
   const label = lrs.getResourceProperty(itemClass, NS.ontola('forms/inputs/select/displayProp'));
@@ -47,20 +46,25 @@ const ThingSelect = ({
 
   return (
     <Resource wrapperProps={wrapperProps || defaultWrapperProps()}>
+      <Property label={NS.schema('image')} />
       <Property label={labels} />
     </Resource>
   );
 };
 
-ThingSelect.type = NS.schema.Thing;
+PersonSelect.type = [
+  NS.schema.Person,
+  NS.aod('Persons'),
+  NS.argu('Page'),
+];
 
-ThingSelect.topology = selectTopology;
+PersonSelect.topology = selectTopology;
 
-ThingSelect.mapDataToProps = {
+PersonSelect.mapDataToProps = {
   itemClass: NS.rdf('type'),
 };
 
-ThingSelect.propTypes = {
+PersonSelect.propTypes = {
   'aria-selected': PropTypes.bool,
   className: PropTypes.string,
   element: PropTypes.string,
@@ -75,4 +79,4 @@ ThingSelect.propTypes = {
   wrapperProps: PropTypes.shape({}),
 };
 
-export default register(ThingSelect);
+export default register(PersonSelect);

@@ -14,6 +14,7 @@ import { tableCellTopology } from '../../topologies/TableCell';
 import { voteBubbleTopology } from '../../topologies/VoteBubble';
 import { voteEventSideTopology } from '../../topologies/VoteEventSide';
 import { parentTopology } from '../../topologies/Parent';
+import { selectTopology } from '../../topologies/Select';
 
 import ImageObjectCardContent from './ImageObjectCardContent';
 import ImageObjectCardList from './ImageObjectCardList';
@@ -22,35 +23,32 @@ import ImageObjectPageHeader from './ImageObjectPageHeader';
 import boxImage from './properties/boxImage';
 import thumbnail from './properties/thumbnail';
 
-class ImageObject extends React.PureComponent {
-  static type = [
-    NS.schema('ImageObject'),
-    NS.schema('VideoObject'),
-  ];
+const ImageObject = ({ ariaLabel }) => (
+  <Property ariaLabel={ariaLabel} label={[NS.schema('thumbnail'), NS.ontola('imgUrl64x64')]} />
+);
 
-  static topology = [
-    detailsBarTopology,
-    menuTopology,
-    formFooterTopology,
-    pageHeaderTopology,
-    parentTopology,
-    tableCellTopology,
-    navbarTopology,
-    voteBubbleTopology,
-    voteEventSideTopology,
-  ];
+ImageObject.type = [
+  NS.schema('ImageObject'),
+  NS.schema('VideoObject'),
+];
 
-  static propTypes = {
-    // Hover text to display.
-    ariaLabel: PropTypes.string,
-  };
+ImageObject.topology = [
+  detailsBarTopology,
+  menuTopology,
+  formFooterTopology,
+  pageHeaderTopology,
+  parentTopology,
+  tableCellTopology,
+  navbarTopology,
+  selectTopology,
+  voteBubbleTopology,
+  voteEventSideTopology,
+];
 
-  render() {
-    const { ariaLabel } = this.props;
-
-    return <Property ariaLabel={ariaLabel} label={[NS.schema('thumbnail'), NS.ontola('imgUrl64x64')]} />;
-  }
-}
+ImageObject.propTypes = {
+  // Hover text to display.
+  ariaLabel: PropTypes.string,
+};
 
 export default [
   register(ImageObject),

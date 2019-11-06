@@ -9,6 +9,7 @@ import { voteEventSideTopology } from '../../topologies/VoteEventSide';
 import PersonDetail from './PersonDetail';
 import PersonNavbar from './PersonNavbar';
 import PersonPage from './PersonPage';
+import PersonSelect from './PersonSelect';
 import Email from './properties/email';
 import Image from './properties/image';
 import Section from './section';
@@ -16,11 +17,12 @@ import Section from './section';
 export default [
   PersonNavbar,
   PersonPage,
+  PersonSelect,
   LinkedRenderStore.registerRenderer(
     link([NS.schema('name')], { returnType: 'value' })(({ name }) => (
       <Property ariaLabel={name} label={NS.schema('image')} />
     )),
-    [NS.schema('Person'), NS.aod('Persons')],
+    [NS.schema('Person'), NS.aod('Persons'), NS.argu('Page')],
     RENDER_CLASS_NAME,
     [voteEventSideTopology, NS.argu('voteBubble'), formFooterTopology]
   ),

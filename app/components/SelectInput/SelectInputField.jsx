@@ -1,13 +1,14 @@
 import Downshift from 'downshift';
 import { LinkedRenderStore } from 'link-lib';
 import {
+  LinkedResourceContainer,
   linkType,
   useLRS,
 } from 'link-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Select from '../../topologies/Select';
+import Select, { selectTopology } from '../../topologies/Select';
 import { Input } from '../Input';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { handle } from '../../helpers/logging';
@@ -66,6 +67,10 @@ const SelectInputField = ({
         } = downshiftOpts;
 
         let list = null;
+        const onFocus = (e) => {
+          e.target.select();
+          openMenu(e);
+        };
 
         if (isOpen) {
           list = (
@@ -87,15 +92,25 @@ const SelectInputField = ({
           );
         }
 
+        const renderClosed = () => (
+          <button className="SelectInput--selected" onClick={openMenu}>
+            {initialSelectedItem && <LinkedResourceContainer element="div" subject={initialSelectedItem} topology={selectTopology} />}
+          </button>
+        );
+
+        const renderOpen = () => {
+          const inputProps = {
+            ...sharedProps,
+            ...getInputProps({ onFocus }),
+            autoFocus: true,
+          };
+
+          return <Input {...inputProps} />;
+        };
+
         return (
           <div>
-            <Input
-              {...sharedProps}
-              {...getInputProps({
-                onFocus: openMenu,
-              })}
-              onClick={openMenu}
-            />
+            {isOpen ? renderOpen() : renderClosed()}
             <Select
               scrollIntoView={isOpen}
               {...getMenuProps()}
