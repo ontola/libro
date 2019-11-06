@@ -35,7 +35,7 @@ export default (req, res) => {
 
   const agent = new http.Agent({
     keepAlive: true,
-    maxSockets: 3,
+    maxSockets: 30,
     timeout: 30000,
   });
 
