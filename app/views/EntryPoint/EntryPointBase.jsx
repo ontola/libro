@@ -87,20 +87,32 @@ class EntryPointBase extends PropertyBase {
       });
   }
 
-  footerGroup() {
+  footerGroupProp() {
     const { action, lrs } = this.props;
 
-    const footerGroup = lrs.findSubject(
+    const footerGroupProps = lrs.findSubject(
       action,
       [NS.schema('target'), NS.ll('actionBody'), NS.sh('property'), NS.sh('group')],
       NS.ontola('footerGroup')
     );
 
-    if (footerGroup.length === 0) {
-      return null;
+    if (footerGroupProps.length > 0) {
+      return footerGroupProps.pop();
     }
 
-    return <LinkedResourceContainer subject={footerGroup.pop()} theme={this.footerGroupTheme} />;
+    const footerGroupSteps = lrs.findSubject(
+      action,
+      [NS.schema('target'), NS.ll('actionBody'), NS.ontola('formSteps'), NS.sh('group')],
+      NS.ontola('footerGroup')
+    );
+
+    return footerGroupSteps.pop();
+  }
+
+  footerGroup() {
+    const prop = this.footerGroupProp();
+
+    return prop && <LinkedResourceContainer subject={prop} theme={this.footerGroupTheme} />;
   }
 }
 
