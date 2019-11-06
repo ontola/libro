@@ -86,10 +86,15 @@ export default [
       renderParent: true,
       renderWhenEmpty: true,
       topology: [
-        alertDialogTopology,
         primaryResourceTopology,
         pageTopology,
       ],
+    })
+  ),
+  register(
+    getCollection({
+      WrappingElement: Container,
+      topology: alertDialogTopology,
     })
   ),
   LinkedRenderStore.registerRenderer(

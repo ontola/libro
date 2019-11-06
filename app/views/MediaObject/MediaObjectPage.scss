@@ -21,9 +21,12 @@
 }
 
 .MediaObjectPage__infobar--image {
-  font-size: 20em;
   text-align: center;
   width: 100%;
+
+  &.fa {
+    font-size: 10em;
+  }
 }
 
 .MediaObjectPage__infobar--image--filename {

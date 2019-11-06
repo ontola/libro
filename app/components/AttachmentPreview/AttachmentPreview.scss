@@ -4,11 +4,13 @@
   align-items: center;
   box-shadow: $box-shadow;
   border-radius: $border-radius-base;
+  cursor: pointer;
   display: inline-flex;
   flex-direction: column;
   height: 5.2em;
   margin-bottom: 1rem;
   margin-right: .5em;
+  outline: none;
   position: relative;
   width: 5.2em;
 

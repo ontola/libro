@@ -24,7 +24,7 @@ import { getPage } from '../../state/pagination/selectors';
 import { CollectionTypes } from './types';
 
 export default function getCollection({
-  WrappingElement = Resource,
+  WrappingElement = React.Fragment,
   omniform = false,
   redirect = false,
   renderParent = false,
@@ -182,17 +182,19 @@ export default function getCollection({
       );
 
       return (
-        <WrappingElement wrapperProps={{ className: `Collection__Depth-${depth}` }}>
-          {renderParent && <Property label={schema.isPartOf} />}
-          {header}
-          <Property
-            forceRender
-            body={this.body(resolvedColumns)}
-            collectionDisplay={collectionDisplay}
-            columns={resolvedColumns}
-            label={ontola.collectionFrame}
-            pagination={this.pagination()}
-          />
+        <WrappingElement>
+          <Resource wrapperProps={{ className: `Collection Collection__Depth-${depth}` }}>
+            {renderParent && <Property label={schema.isPartOf} />}
+            {header}
+            <Property
+              forceRender
+              body={this.body(resolvedColumns)}
+              collectionDisplay={collectionDisplay}
+              columns={resolvedColumns}
+              label={ontola.collectionFrame}
+              pagination={this.pagination()}
+            />
+          </Resource>
         </WrappingElement>
       );
     }

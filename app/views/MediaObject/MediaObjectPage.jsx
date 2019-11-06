@@ -15,6 +15,7 @@ import {
   Link,
 } from '../../components';
 import Image from '../../components/Image';
+import LDLink from '../../components/LDLink';
 import {
   downloadUrl,
   downloadableAttachment,
@@ -23,7 +24,7 @@ import {
 import { retrievePath } from '../../helpers/iris';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { handle } from '../../helpers/logging';
-import Container from '../../topologies/Container';
+import Container, { containerTopology } from '../../topologies/Container';
 import { pageTopology } from '../../topologies/Page';
 import PrimaryResource from '../../topologies/PrimaryResource';
 
@@ -38,7 +39,7 @@ class MediaObjectPage extends React.PureComponent {
     schema.VideoObject,
   ];
 
-  static topology = pageTopology;
+  static topology = [pageTopology, containerTopology];
 
   static mapDataToProps = {
     caption: schema.caption,
@@ -97,9 +98,8 @@ class MediaObjectPage extends React.PureComponent {
         <div className="MediaObjectPage__infobar--label">
           {label && <Heading data-test="MediaObject-heading" variant="light">{label}</Heading>}
         </div>
-        <div>
-          {this.downloadButton()}
-        </div>
+        {this.viewResourceButton()}
+        {this.downloadButton()}
       </div>
     );
   }
@@ -189,6 +189,24 @@ class MediaObjectPage extends React.PureComponent {
       >
         <FontAwesome name="download" />
       </a>
+    );
+  }
+
+  viewResourceButton() {
+    const { subject } = this.props;
+
+    if (typeof window !== 'undefined' && window.location.href === subject.value) {
+      return undefined;
+    }
+
+    return (
+      <LDLink
+        className="MediaObjectPage__infobar--download-button"
+        href={subject.value}
+        title="Bekijken"
+      >
+        <FontAwesome name="eye" />
+      </LDLink>
     );
   }
 

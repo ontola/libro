@@ -54,6 +54,7 @@ export function Seq({
         first={sequences[0].object}
         key={`${subject}-${s}`}
         last={sequences[sequences.length - 1].object}
+        sequenceIndex={i}
         subject={s}
       />
     </ItemWrapper>

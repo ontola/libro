@@ -5,6 +5,7 @@ import {
   linkType,
   register,
 } from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import { Attachment } from '../../components';
@@ -19,44 +20,46 @@ import { cardRowTopology } from '../../topologies/Card/CardRow';
 import MediaObjectOmniformFields from './MediaObjectOmniformFields';
 import MediaObjectPage from './MediaObjectPage';
 
-class MediaObjectPreview extends React.PureComponent {
-  static type = schema.MediaObject;
+const MediaObjectPreview = ({
+  caption,
+  filename,
+  encodingFormat,
+  isPartOf,
+  sequenceIndex,
+}) => (
+  <AttachmentPreview
+    caption={caption}
+    filename={filename}
+    isPartOf={isPartOf}
+    sequenceIndex={sequenceIndex}
+    thumbnailURL={imageRepresentationUrl({ encodingFormat })}
+  />
+);
 
-  static topology = cardListTopology;
+MediaObjectPreview.type = schema.MediaObject;
 
-  static mapDataToProps = {
-    caption: schema.caption,
-    encodingFormat: {
-      label: [
-        schema.encodingFormat,
-        schema.fileFormat,
-      ],
-    },
-    filename: NS.dbo('filename'),
-  };
+MediaObjectPreview.topology = cardListTopology;
 
-  static propTypes = {
-    caption: linkType,
-    encodingFormat: linkType,
-    filename: linkType,
-  };
+MediaObjectPreview.mapDataToProps = {
+  caption: schema.caption,
+  encodingFormat: {
+    label: [
+      schema.encodingFormat,
+      schema.fileFormat,
+    ],
+  },
+  filename: NS.dbo('filename'),
+  isPartOf: schema.isPartOf,
+};
 
-  render() {
-    const {
-      caption,
-      filename,
-      encodingFormat,
-    } = this.props;
+MediaObjectPreview.propTypes = {
+  caption: linkType,
+  encodingFormat: linkType,
+  filename: linkType,
+  isPartOf: linkType,
+  sequenceIndex: PropTypes.number,
+};
 
-    return (
-      <AttachmentPreview
-        caption={caption}
-        filename={filename}
-        thumbnailURL={imageRepresentationUrl({ encodingFormat })}
-      />
-    );
-  }
-}
 
 export default [
   MediaObjectOmniformFields,

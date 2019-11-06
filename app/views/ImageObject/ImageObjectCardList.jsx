@@ -1,46 +1,51 @@
 import schema from '@ontologies/schema';
-import { linkType, register } from 'link-redux';
+import {
+  linkType,
+  register,
+} from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import AttachmentPreview from '../../components/AttachmentPreview';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { cardListTopology } from '../../topologies/Card/CardList';
 
-class ImageObjectCardList extends React.PureComponent {
-  static type = [schema.ImageObject, schema.VideoObject];
+const ImageObjectCardList = ({
+  caption,
+  contentUrl,
+  filename,
+  isPartOf,
+  sequenceIndex,
+  thumbnailUrl,
+}) => (
+  <AttachmentPreview
+    caption={caption}
+    filename={filename}
+    isPartOf={isPartOf}
+    sequenceIndex={sequenceIndex}
+    thumbnailURL={thumbnailUrl || contentUrl}
+  />
+);
 
-  static topology = cardListTopology;
+ImageObjectCardList.type = [schema.ImageObject, schema.VideoObject];
 
-  static mapDataToProps = {
-    caption: schema.caption,
-    contentUrl: schema.contentUrl,
-    filename: NS.dbo('filename'),
-    thumbnailUrl: schema.thumbnail,
-  };
+ImageObjectCardList.topology = cardListTopology;
 
-  static propTypes = {
-    caption: linkType,
-    contentUrl: linkType,
-    filename: linkType,
-    thumbnailUrl: linkType,
-  };
+ImageObjectCardList.mapDataToProps = {
+  caption: schema.caption,
+  contentUrl: schema.contentUrl,
+  filename: NS.dbo('filename'),
+  isPartOf: schema.isPartOf,
+  thumbnailUrl: schema.thumbnail,
+};
 
-  render() {
-    const {
-      caption,
-      contentUrl,
-      filename,
-      thumbnailUrl,
-    } = this.props;
-
-    return (
-      <AttachmentPreview
-        caption={caption}
-        filename={filename}
-        thumbnailURL={thumbnailUrl || contentUrl}
-      />
-    );
-  }
-}
+ImageObjectCardList.propTypes = {
+  caption: linkType,
+  contentUrl: linkType,
+  filename: linkType,
+  isPartOf: linkType,
+  sequenceIndex: PropTypes.number,
+  thumbnailUrl: linkType,
+};
 
 export default register(ImageObjectCardList);

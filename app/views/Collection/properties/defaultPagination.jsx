@@ -90,7 +90,10 @@ const getPagination = (Wrapper, topology) => {
           icon={icon}
           key={`${key}-${subject.value}-page-switcher-${key}`}
           theme="pagination"
-          onClick={() => onPageChange(url)}
+          onClick={(e) => {
+            e.preventDefault();
+            onPageChange(url);
+          }}
         >
           {label}
         </Button>

@@ -13,6 +13,7 @@ import { retrievePath } from '../../helpers/iris';
 import { currentLocation } from '../../helpers/paths';
 import ontola from '../../ontology/ontola';
 import { allTopologiesExcept } from '../../topologies';
+import { alertDialogTopology } from '../../topologies/Dialog';
 import { inlineTopology } from '../../topologies/Inline';
 import { pageTopology } from '../../topologies/Page';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
@@ -89,7 +90,12 @@ function getCollectionPage({
 }
 
 const DefaultCollectionPage = getCollectionPage({
-  topology: allTopologiesExcept(pageTopology, primaryResourceTopology, inlineTopology),
+  topology: allTopologiesExcept(
+    alertDialogTopology,
+    pageTopology,
+    primaryResourceTopology,
+    inlineTopology
+  ),
 });
 
 const PageCollectionPage = getCollectionPage({
@@ -98,7 +104,13 @@ const PageCollectionPage = getCollectionPage({
   topology: [pageTopology, primaryResourceTopology],
 });
 
+const AlertPage = getCollectionPage({
+  hidePagination: false,
+  topology: alertDialogTopology,
+});
+
 export default [
+  register(AlertPage),
   register(DefaultCollectionPage),
   register(PageCollectionPage),
   CollectionPageInline,

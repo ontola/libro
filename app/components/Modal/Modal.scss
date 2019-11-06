@@ -20,11 +20,18 @@
   bottom: auto;
   left: auto;
   max-height: 100%;
+  outline: none;
   overflow: visible;
   padding: 0;
   right: auto;
   top: auto;
   z-index: z('modal');
+
+  .Collection {
+    background: $background-color;
+    border-radius: .5em;
+    padding: .1em 1em;
+  }
 }
 
 .Modal__close {
