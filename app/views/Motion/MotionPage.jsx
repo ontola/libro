@@ -67,7 +67,6 @@ class MotionPage extends React.PureComponent {
         </Container>
         <Container>
           <Property label={NS.schema('comment')} />
-          <Property clickToOpen forceRender label={NS.app('omniform')} />
         </Container>
       </PrimaryResource>
     );
