@@ -199,7 +199,7 @@ function containerToArr(
     return listToArr(lrs, acc, rest);
   }
 
-  const pages = (lrs.getResourceProperty(rest, NS.as('pages')) as NamedNode);
+  const pages = (lrs.getResourceProperty(rest, NS.ontola('pages')) as NamedNode);
   if (pages) {
     return containerToArr(lrs, acc, pages);
   }
