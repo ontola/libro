@@ -18,7 +18,7 @@ import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTo
 
 const ThingContainer = ({ highlighted, subject }) => (
   <Card about={subject?.value} shine={highlighted}>
-    <Property label={NS.argu('coverPhoto')} />
+    <Property label={NS.ontola('coverPhoto')} />
     <CardContent noSpacing>
       <Property label={[NS.schema('name'), NS.rdfs('label')]} />
       <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
