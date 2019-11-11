@@ -12,11 +12,18 @@ import Container from '../../topologies/Container/index';
 import { pageTopology } from '../../topologies/Page';
 import PageHeader from '../../topologies/PageHeader';
 import PrimaryResource, { primaryResourceTopology } from '../../topologies/PrimaryResource';
+import { entityIsLoaded } from '../../helpers/data';
 
 const ForumPage = ({ coverPhoto, hideHeader }) => {
   const lrs = useLRS();
-  const coverPhotoUrl = coverPhoto && lrs.getResourceProperty(coverPhoto, NS.ontola('imgUrl1500x2000'));
-  const positionY = coverPhoto && lrs.getResourceProperty(coverPhoto, NS.ontola('imagePositionY'));
+  let coverPhotoUrl, positionY;
+  if (coverPhoto) {
+    if (__CLIENT__ && !entityIsLoaded(lrs, coverPhoto)) {
+      lrs.getEntity(coverPhoto);
+    }
+    coverPhotoUrl = lrs.getResourceProperty(coverPhoto, NS.ontola('imgUrl1500x2000'));
+    positionY = lrs.getResourceProperty(coverPhoto, NS.ontola('imagePositionY'));
+  }
 
   return (
     <PrimaryResource>
