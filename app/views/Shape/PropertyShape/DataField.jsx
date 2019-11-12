@@ -112,6 +112,7 @@ const DataField = (props) => {
   return (
     <FormField
       validateOnChange
+      autoComplete="off"
       autofocus={autofocus}
       description={descriptionValue(description, inputType)}
       field={fieldName}
