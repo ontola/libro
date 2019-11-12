@@ -2,6 +2,7 @@ import {
   Property,
   linkType,
   register,
+  useDataInvalidation,
   useLRS,
 } from 'link-redux';
 import React from 'react';
@@ -18,6 +19,8 @@ const ForumPage = ({ coverPhoto, hideHeader }) => {
   const lrs = useLRS();
   let coverPhotoUrl, positionY;
   if (coverPhoto) {
+    useDataInvalidation({ subject: coverPhoto });
+
     if (__CLIENT__ && !entityIsLoaded(lrs, coverPhoto)) {
       lrs.getEntity(coverPhoto);
     }
