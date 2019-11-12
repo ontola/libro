@@ -1,15 +1,7 @@
-import * as HttpStatus from 'http-status-codes';
+export default (ctx) => {
+  ctx.response.set('Vary', 'Accept,Accept-Encoding,Content-Type');
 
-export default (req, res) => {
-  res.setHeader('Vary', 'Accept,Accept-Encoding,Content-Type');
+  ctx.api.logout();
 
-  req.api.logout();
-
-  req.session.destroy((err) => {
-    if (err) {
-      return res.sendStatus(HttpStatus.INTERNAL_SERVER_ERROR).end();
-    }
-
-    return res.sendStatus(HttpStatus.NO_CONTENT).end();
-  });
+  ctx.session = null;
 };

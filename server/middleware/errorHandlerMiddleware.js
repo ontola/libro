@@ -16,39 +16,46 @@ const errMsg = 'Internal error escaped into userspace, please catch in the appro
  * @param {Function} next The next error function in the middleware
  * @return {undefined}
  */
-export default function errorHandlerMiddleware(err, req, res, next) {
-  if (!(err instanceof errors.ArguError)) {
-    next(err);
-  }
-  req.bugsnag.notify(err, {
-    request: req,
-    severity: 'error',
-    unhandled: false,
-  });
-  if (err.internal === true) {
-    console.warn(err.devMessage);
-    console.error(errMsg);
-    logging.debug(err.stack);
-    res.sendStatus(HttpStatus.INTERNAL_SERVER_ERROR).end();
+export default async function backendErrorHandler(ctx, next) {
+  try {
+    await next();
+  } catch (err) {
+    if (!(err instanceof errors.ArguError)) {
+      throw err;
+    }
+    ctx.bugsnag.notify(err, {
+      request: ctx.request,
+      severity: 'error',
+      unhandled: false,
+    });
 
-    return;
+    if (err.internal === true) {
+      console.warn(err.devMessage);
+      console.error(errMsg);
+      logging.debug(err.stack);
+      ctx.response.status = HttpStatus.INTERNAL_SERVER_ERROR;
+
+      return;
+    }
+    console.warn(err);
+
+    if (__DEVELOPMENT__) {
+      console.warn(err.devMessage);
+      console.warn(err.stack);
+    }
+
+    let error;
+    switch (err.status) {
+      case errors.BadGatewayError.status:
+      case errors.ServiceUnavailableError.status:
+        error = new errors.ServiceUnavailableError();
+        break;
+      case errors.NotFoundError.status:
+        error = new errors.NotFoundError();
+        break;
+      default:
+        error = new errors.InternalServerErrorError();
+    }
+    ctx.response.status = error.status;
   }
-  console.warn(err);
-  if (__DEVELOPMENT__) {
-    console.warn(err.devMessage);
-    console.warn(err.stack);
-  }
-  let error;
-  switch (err.status) {
-    case errors.BadGatewayError.status:
-    case errors.ServiceUnavailableError.status:
-      error = new errors.ServiceUnavailableError();
-      break;
-    case errors.NotFoundError.status:
-      error = new errors.NotFoundError();
-      break;
-    default:
-      error = new errors.InternalServerErrorError();
-  }
-  res.sendStatus(error.status).end();
 }

@@ -12,9 +12,9 @@ import { route } from '../utils/proxies/helpers';
 const PREFIX = 'self.__precacheManifest = (self.__precacheManifest || []).concat(';
 const SUFFIX = ');';
 
-const precacheManifest = async (req, res) => {
+const precacheManifest = async (ctx) => {
   try {
-    const [url, params] = req.originalUrl.split('?');
+    const [url, params] = ctx.request.originalUrl.split('?');
 
     const manifestFile = fs
       .readFileSync(path.resolve('dist', 'f_assets', url.split('/').pop()))
@@ -31,7 +31,7 @@ const precacheManifest = async (req, res) => {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
-          'X-Forwarded-Host': req.headers.host,
+          'X-Forwarded-Host': ctx.request.headers.host,
           'X-Forwarded-Proto': 'https',
           'X-Forwarded-Ssl': 'on',
         },
@@ -46,14 +46,12 @@ const precacheManifest = async (req, res) => {
     manifest.push(({ url: manifestLocation }));
     manifest.push(...manifestData.icons.map(icon => ({ url: icon.src })));
 
-    res.setHeader('Content-Type', 'application/javascript');
-    res.write(PREFIX + JSON.stringify(manifest, null, 1) + SUFFIX);
-    res.status(HttpStatus.OK);
-    res.end();
+    ctx.response.set('Content-Type', 'application/javascript');
+    ctx.response.body = PREFIX + JSON.stringify(manifest, null, 1) + SUFFIX;
+    ctx.response.status = HttpStatus.OK;
   } catch (e) {
     logging.error(e);
-    res.status(HttpStatus.INTERNAL_SERVER_ERROR);
-    res.end();
+    ctx.response.status = HttpStatus.INTERNAL_SERVER_ERROR;
   }
 };
 

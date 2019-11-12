@@ -5,25 +5,21 @@ import HttpStatus from 'http-status-codes';
 
 import logging from '../utils/logging';
 
-const serviceWorker = async (req, res) => {
+const serviceWorker = async (ctx) => {
   try {
-    const [url, params] = req.originalUrl.split('?');
+    const [url, params] = ctx.request.originalUrl.split('?');
 
     const serviceWorkerFile = fs
       .readFileSync(path.resolve('dist', 'public', url.split('/').pop()))
       .toString();
 
-    res.setHeader('Content-Type', 'application/javascript');
-    res.write(
-      serviceWorkerFile
-        .replace(/f_assets\/precache-manifest\.[0-9a-z]+.js/gi, x => [x, params].join('?'))
-    );
-    res.status(HttpStatus.OK);
-    res.end();
+    ctx.response.set('Content-Type', 'application/javascript');
+    ctx.response.body = serviceWorkerFile
+      .replace(/f_assets\/precache-manifest\.[0-9a-z]+.js/gi, x => [x, params].join('?'));
+    ctx.response.status = HttpStatus.OK;
   } catch (e) {
     logging.error(e);
-    res.status(HttpStatus.INTERNAL_SERVER_ERROR);
-    res.end();
+    ctx.response.status = HttpStatus.INTERNAL_SERVER_ERROR;
   }
 };
 

@@ -1,5 +1,24 @@
 import uuidv4 from 'uuid/v4';
 
-export const deviceIdFromCookie = req => req.cookies.deviceId;
+const oneYearInMiliSec = 31536000000;
 
-export const generateDeviceId = () => uuidv4();
+const deviceIdFromCookie = ctx => ctx.cookies.get('deviceId');
+
+const generateDeviceId = () => uuidv4();
+
+const deviceIdMiddleware = async (ctx, next) => {
+  let deviceId = deviceIdFromCookie(ctx);
+  if (!deviceId) {
+    deviceId = generateDeviceId();
+    ctx.cookies.set('deviceId', deviceId, {
+      httpOnly: true,
+      maxAge: oneYearInMiliSec,
+      secure: true,
+    });
+  }
+  ctx.deviceId = deviceId;
+
+  return next();
+};
+
+export default deviceIdMiddleware;

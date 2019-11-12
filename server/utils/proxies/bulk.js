@@ -30,8 +30,9 @@ const fileFromCache = (iri) => {
   return undefined;
 };
 
-export default (req, res) => {
-  res.append('Content-Type', 'application/n-quads; charset=utf-8');
+export default (ctx) => {
+  ctx.response.append('Content-Type', 'application/n-quads; charset=utf-8');
+  ctx.response.body = '';
 
   const agent = new http.Agent({
     keepAlive: true,
@@ -39,10 +40,10 @@ export default (req, res) => {
     timeout: 30000,
   });
 
-  setBulkResHeaders(res);
+  setBulkResHeaders(ctx.response);
 
   const requests = [];
-  const resources = normalizeType(req.body['resource[]'])
+  const resources = normalizeType(ctx.request.body.resource)
     .reduce((acc, iri) => (acc.includes(iri) ? acc : acc.concat(iri)), [])
     .map(iri => [decodeURIComponent(iri), route(decodeURIComponent(iri), true)])
     .map(([iri, url]) => new Promise((resolve, reject) => {
@@ -51,19 +52,19 @@ export default (req, res) => {
         const options = {
           agent,
           headers: {
-            Accept: req.headers.accept,
-            'Accept-Language': req.headers['accept-language'] || null,
+            Accept: ctx.request.headers.accept,
+            'Accept-Language': ctx.request.headers['accept-language'] || null,
             Connection: 'keep-alive',
             'Content-Length': 0,
-            Origin: req.headers.origin || null,
-            Referer: req.headers.referer || null,
-            'User-Agent': req.headers['user-agent'] || null,
-            'X-Forwarded-For': req.headers['x-forwarded-for'] || null,
-            'X-Forwarded-Host': req.headers.host,
-            'X-Forwarded-Proto': req.headers['x-forwarded-proto'] || null,
-            'X-Forwarded-Ssl': req.headers['x-forwarded-ssl'] || null,
-            'X-Real-Ip': req.headers['x-real-ip'] || null,
-            'X-Requested-With': req.headers['x-requested-with'] || null,
+            Origin: ctx.request.headers.origin || null,
+            Referer: ctx.request.headers.referer || null,
+            'User-Agent': ctx.request.headers['user-agent'] || null,
+            'X-Forwarded-For': ctx.request.headers['x-forwarded-for'] || null,
+            'X-Forwarded-Host': ctx.request.headers.host,
+            'X-Forwarded-Proto': ctx.request.headers['x-forwarded-proto'] || null,
+            'X-Forwarded-Ssl': ctx.request.headers['x-forwarded-ssl'] || null,
+            'X-Real-Ip': ctx.request.headers['x-real-ip'] || null,
+            'X-Requested-With': ctx.request.headers['x-requested-with'] || null,
           },
           method: cachedFile ? 'HEAD' : 'GET',
           timeout: 30000,
@@ -72,19 +73,19 @@ export default (req, res) => {
 
         const backendReq = http.request(url, options, (backendRes) => {
           const iriNT = iri.includes('://') ? `<${iri}>` : `_:${iri}`;
-          res.write(`${iriNT} <http://www.w3.org/2011/http#statusCode> "${backendRes.statusCode}"^^<http://www.w3.org/2001/XMLSchema#integer> <http://purl.org/link-lib/meta> .\r\n`);
+          ctx.response.body += `${iriNT} <http://www.w3.org/2011/http#statusCode> "${backendRes.statusCode}"^^<http://www.w3.org/2001/XMLSchema#integer> <http://purl.org/link-lib/meta> .\r\n`;
           const serveFromCache = cachedFile && backendRes.statusCode === HttpStatus.OK;
 
           const actions = getActions(backendRes);
           if (actions.length > 0) {
             for (let i = 0; i < actions.length; i++) {
-              res.write(`${iriNT} <http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}> "${actions[i]}" <http://purl.org/link-lib/meta> .\r\n`);
+              ctx.response.body += `${iriNT} <http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}> "${actions[i]}" <http://purl.org/link-lib/meta> .\r\n`;
             }
           }
 
-          const redirect = newAuthorizationBulk(req, backendRes);
+          const redirect = newAuthorizationBulk(ctx, backendRes);
           if (redirect) {
-            res.write(`${iriNT} <http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}> "${redirect}" <http://purl.org/link-lib/meta> .\r\n`);
+            ctx.response.body += `${iriNT} <http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}> "${redirect}" <http://purl.org/link-lib/meta> .\r\n`;
           }
 
           if (!backendRes.headers['content-type']?.includes('application/n-quads')) {
@@ -93,8 +94,8 @@ export default (req, res) => {
 
           if (serveFromCache) {
             const file = fs.readFileSync(cachedFile);
-            res.write(Buffer.from(file, 'utf8'));
-            res.write(Buffer.from('\n', 'utf8'));
+            ctx.response.body += Buffer.from(file, 'utf8');
+            ctx.response.body += Buffer.from('\n', 'utf8');
             backendRes.destroy();
             resolve();
           } else {
@@ -120,15 +121,15 @@ export default (req, res) => {
               if (statementTerminal === -1) {
                 buff = Buffer.concat([buff, chunk]);
               } else {
-                res.write(buff);
-                res.write(chunk.slice(0, statementTerminal + 1));
+                ctx.response.body += buff;
+                ctx.response.body += chunk.slice(0, statementTerminal + 1);
                 buff = chunk.slice(statementTerminal + 1);
               }
             });
 
             writeStream.on('end', () => {
-              res.write(buff);
-              res.write(Buffer.from('\n', 'utf8'));
+              ctx.response.body += buff;
+              ctx.response.body += Buffer.from('\n', 'utf8');
               backendRes.destroy();
               resolve();
             });
@@ -150,23 +151,21 @@ export default (req, res) => {
           resolve(e);
         });
 
-        setProxyReqHeaders(backendReq, req);
+        setProxyReqHeaders(backendReq, ctx.req);
         backendReq.end();
       } catch (e) {
         reject(e);
       }
     }));
 
-  Promise.all(resources)
+  return Promise.all(resources)
     .then(() => {
-      res.status(HttpStatus.OK);
-      res.end();
+      ctx.response.status = HttpStatus.OK;
       agent.destroy();
     }).catch((e) => {
       logging.error(e);
       requests.map(r => r.abort());
-      res.status(HttpStatus.INTERNAL_SERVER_ERROR);
-      res.end();
+      ctx.response.status = HttpStatus.INTERNAL_SERVER_ERROR;
       agent.destroy();
     });
 };

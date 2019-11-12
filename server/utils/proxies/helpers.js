@@ -22,11 +22,12 @@ export function isRedirect(status) {
 }
 
 export function setProxyReqHeaders(proxyReq, req) {
-  if (typeof req.session !== 'undefined' && typeof req.session.arguToken !== 'undefined') {
-    proxyReq.setHeader('Authorization', `Bearer ${req.session.arguToken.accessToken}`);
+  const ctx = req.getCtx();
+  if (typeof ctx.session !== 'undefined' && typeof ctx.session.arguToken !== 'undefined') {
+    proxyReq.setHeader('Authorization', `Bearer ${ctx.session.arguToken.accessToken}`);
   }
-  if (typeof req.deviceId !== 'undefined') {
-    proxyReq.setHeader('X-Device-Id', req.deviceId);
+  if (typeof ctx.deviceId !== 'undefined') {
+    proxyReq.setHeader('X-Device-Id', ctx.deviceId);
   }
   proxyReq.setHeader('X-Argu-Back', 'true');
   proxyReq.removeHeader('cookie');
@@ -34,11 +35,11 @@ export function setProxyReqHeaders(proxyReq, req) {
 
 const VARY_HEADER = 'Accept,Accept-Encoding,Authorization,Content-Type';
 
-export function newAuthorizationBulk(req, backendRes) {
+export function newAuthorizationBulk(ctx, backendRes) {
   const auth = backendRes.headers['new-authorization'];
   if (auth) {
-    req.session.arguToken = { accessToken: auth };
-    req.api.userToken = auth;
+    ctx.session.arguToken = { accessToken: auth };
+    ctx.api.userToken = auth;
     if (!isRedirect(backendRes.statusCode)) {
       if (hasAction(backendRes, 'https://ns.ontola.io/actions/redirect')) {
         return setActionParam(backendRes, 'https://ns.ontola.io/actions/redirect', 'reload', 'true');
@@ -57,9 +58,10 @@ export function normalizeType(type) {
 
 /* eslint-disable no-param-reassign */
 export function setProxyResHeaders(proxyRes, req) {
+  const ctx = req.getCtx();
   delete proxyRes.headers.vary;
   proxyRes.headers.Vary = VARY_HEADER;
-  const redirect = newAuthorizationBulk(req, proxyRes);
+  const redirect = newAuthorizationBulk(ctx, proxyRes);
   if (redirect) {
     proxyRes.headers[EXEC_HEADER_NAME] = redirect;
   }
@@ -67,7 +69,7 @@ export function setProxyResHeaders(proxyRes, req) {
 /* eslint-enable no-param-reassign */
 
 export function setBulkResHeaders(res) {
-  res.setHeader('Vary', VARY_HEADER);
+  res.set('Vary', VARY_HEADER);
 }
 
 const dekuMatch = /^\/\w*\/\w*\/od\/?.*$/;
@@ -110,15 +112,15 @@ export function route(requestUrl, full = false) {
   return url.origin;
 }
 
-export function bulkResourceRequest(req, iri, url, outputStream) {
+export function bulkResourceRequest(ctx, iri, url, outputStream) {
   return new Promise((resolve, reject) => {
     try {
       const options = {
         headers: {
-          ...req.headers,
+          ...ctx.request.headers,
           'Content-Encoding': null,
-          'X-Device-Id': req.deviceId,
-          'X-Forwarded-Host': req.headers.host,
+          'X-Device-Id': ctx.deviceId,
+          'X-Forwarded-Host': ctx.request.headers.host,
           'X-Forwarded-Proto': 'https',
           'X-Forwarded-Ssl': 'on',
         },
@@ -137,7 +139,7 @@ export function bulkResourceRequest(req, iri, url, outputStream) {
           }
         }
 
-        const redirect = newAuthorizationBulk(req, backendRes);
+        const redirect = newAuthorizationBulk(ctx, backendRes);
         if (redirect) {
           outputStream.write(`${iriNT} <http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}> "${redirect}" <http://purl.org/link-lib/meta> .\r\n`);
         }
@@ -189,7 +191,7 @@ export function bulkResourceRequest(req, iri, url, outputStream) {
         reject(e);
       });
 
-      setProxyReqHeaders(backendReq, req);
+      setProxyReqHeaders(backendReq, ctx.req);
       backendReq.end();
     } catch (e) {
       reject(e);

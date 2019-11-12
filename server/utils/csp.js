@@ -1,18 +1,18 @@
 import csp from 'helmet-csp';
+import c2k from 'koa2-connect';
 
 import { ASSETS_HOST } from '../../app/config';
 
 const defaultSrc = ["'self'"];
 
 const childSrc = ['https://youtube.com', 'https://www.youtube.com'];
-const connectSrc = hostname => (
-  [
-    "'self'",
-    'https://api.notubiz.nl',
-    'https://www.facebook.com',
-    `ws://${hostname}`,
-  ]
-);
+const connectSrc = [
+  "'self'",
+  'https://api.notubiz.nl',
+  'https://www.facebook.com',
+  req => `ws://${req.hostname}`,
+];
+
 const fontSrc = ["'self'", 'https://maxcdn.bootstrapcdn.com', 'https://fonts.gstatic.com'];
 const frameSrc = ['https://youtube.com', 'https://www.youtube.com'];
 const imgSrc = [
@@ -64,13 +64,13 @@ if (__PRODUCTION__) {
   connectSrc.push('https://sessions.bugsnag.com');
 }
 
-export default (req, res, next) => (
-  csp({
+export default async (ctx, next) => (
+  c2k(csp({
     browserSniff: true,
     directives: {
       blockAllMixedContent: true,
       childSrc,
-      connectSrc: connectSrc(req.hostname),
+      connectSrc,
       defaultSrc,
       fontSrc,
       frameSrc,
@@ -86,5 +86,5 @@ export default (req, res, next) => (
     loose: false,
     reportOnly: false,
     setAllHeaders: false,
-  })(req, res, next)
+  }))(ctx, next)
 );

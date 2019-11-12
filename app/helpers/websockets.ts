@@ -1,7 +1,7 @@
 import { LinkReduxLRSType } from 'link-redux';
 
 export async function initializeCable(lrs: LinkReduxLRSType, websocketPath: string) {
-  const websocketAddress = lrs.namespaces.app(websocketPath).value.replace('https://', 'ws://');
+  const websocketAddress = lrs.namespaces.app(websocketPath).value.replace('https://', 'wss://');
   const ActionCable = await import('actioncable');
   (lrs.api as any).channel = ActionCable.createConsumer(websocketAddress);
 }

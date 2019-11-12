@@ -13,7 +13,7 @@ function oneHourFromNow() {
   return new Date(Date.now() + ONE_HOUR_MS).toISOString();
 }
 
-const MapsAPI = async (req, res) => {
+const MapsAPI = async (ctx) => {
   const expiresAt = oneHourFromNow();
 
   const resp = await fetch(keyReqURL, {
@@ -38,10 +38,11 @@ const MapsAPI = async (req, res) => {
     throw new Error('Map access token undefined or not temporary');
   }
 
-  return res.status(HttpStatus.OK).send({
+  ctx.response.status = HttpStatus.OK;
+  ctx.response.body = {
     accessToken: body.token,
     expiresAt,
-  }).end();
+  };
 };
 
 export default handleAsyncErrors(MapsAPI);

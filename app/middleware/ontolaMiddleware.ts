@@ -244,7 +244,8 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
         .then(() => Promise.resolve((store as any).intl.formatMessage(messages.copyFinished)));
     }
 
-    if (iri.value.startsWith(store.namespaces.ontola('actions/logout').value)) {
+    if (iri.value.startsWith(store.namespaces.ontola('actions/logout').value) ||
+        iri.value.startsWith(store.namespaces.ontola('actions/expireSession').value)) {
       const location = new URL(iri.value).searchParams.get('location');
 
       return fetch(store.namespaces.app('logout').value, safeCredentials({

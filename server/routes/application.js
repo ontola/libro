@@ -16,9 +16,134 @@ import {
 } from '../utils/proxies/helpers';
 import { handleRender } from '../utils/render';
 import processResponse from '../api/internal/statusHandler';
-import { isSuccess, json } from '../../app/helpers/arguHelpers';
+import { isSuccess } from '../../app/helpers/arguHelpers';
 
 const BACKEND_TIMEOUT = 3000;
+
+const getManifest = async (ctx, manifestHeader) => {
+  const headerRes = await ctx.api.fetchRaw(
+    ctx.api.userToken || ctx.api.serviceGuestToken,
+    {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        ...ctx.api.proxySafeHeaders(),
+      },
+      method: 'GET',
+      path: manifestHeader,
+      redirect: 'error',
+    }
+  );
+  const processed = await processResponse(headerRes);
+
+  return processed.json();
+};
+
+const getManifestData = async (ctx, manifestHeader) => {
+  if (!manifestHeader) {
+    if (isSuccess(ctx.response.status)) {
+      ctx.response.status = INTERNAL_SERVER_ERROR;
+    }
+    throw new Error('No Manifest url in head.');
+  }
+
+  return getManifest(ctx, manifestHeader);
+};
+
+const fetchPrerenderData = async (ctx, manifestData) => {
+  let responseData = Buffer.alloc(0);
+  const responseStream = new Stream.Writable();
+  // eslint-disable-next-line no-underscore-dangle
+  responseStream._write = (chunk, encoding, next) => {
+    responseData = Buffer.concat([responseData, chunk]);
+    next();
+  };
+  const dataHeaders = {
+    ...ctx.request.headers,
+    accept: 'application/n-quads',
+  };
+  const ctxForData = {
+    api: ctx.api,
+    deviceId: ctx.deviceId,
+    req: {
+      getCtx: () => ctx,
+    },
+    request: {
+      headers: dataHeaders,
+    },
+    session: ctx.session,
+  };
+  const resources = [
+    `${manifestData.scope}`,
+    `${manifestData.scope}/ns/core`,
+    `${manifestData.scope}/c_a`,
+    `${manifestData.scope}/n`,
+    `${manifestData.scope}/search`,
+    `${manifestData.scope}/menus`,
+    `${manifestData.scope}/apex/menus`,
+  ];
+  if (ctx.request.path?.length > 1) {
+    const { origin } = new URL(manifestData.scope);
+    resources.unshift(origin + ctx.request.path);
+  }
+
+  const resourceRequests = resources
+    .reduce((acc, iri) => (acc.includes(iri) ? acc : acc.concat(iri)), [])
+    .map(iri => bulkResourceRequest(ctxForData, iri, route(iri, true), responseStream));
+
+  await Promise.all(resourceRequests);
+
+  return responseData;
+};
+
+const handler = sendResponse => async (ctx) => {
+  const domain = ctx.request.headers.host.replace(/:.*/, '');
+
+  try {
+    const headResponse = await Promise.race([
+      ctx.api.headRequest(ctx.request),
+      new Promise((_, reject) => setTimeout(() => reject, BACKEND_TIMEOUT)),
+    ]);
+    ctx.response.status = headResponse.status;
+
+    if (isRedirect(headResponse.status)) {
+      const location = headResponse.headers.get('Location');
+      if (!location) {
+        throw new Error('Trying to redirect with missing Location header.');
+      }
+
+      ctx.response.set('Location', location);
+
+      return undefined;
+    }
+
+    const auth = headResponse.headers.get('new-authorization');
+    if (auth) {
+      ctx.session.arguToken = { accessToken: auth };
+      ctx.api.userToken = auth;
+    }
+
+    const manifestData = await getManifestData(ctx, headResponse.headers.get('Manifest'));
+    const responseData = await fetchPrerenderData(ctx, manifestData);
+
+    return sendResponse(ctx, domain, manifestData, responseData);
+  } catch (e) {
+    if (typeof e === 'undefined') {
+      // Timeout finished first
+      ctx.response.status = SERVICE_UNAVAILABLE;
+    } else {
+      logging.error(e, ctx.bugsnag ? 'Notifying' : 'Bugsnag client not present');
+      if (ctx.bugsnag) {
+        ctx.bugsnag.notify(e);
+      }
+
+      ctx.response.status = INTERNAL_SERVER_ERROR;
+    }
+
+    return sendResponse(ctx, domain, `https://${ctx.request.get('host')}`, '');
+  }
+};
+
 
 export default function application(port) {
   const PRELOAD_HEADERS = [
@@ -27,118 +152,14 @@ export default function application(port) {
     __PRODUCTION__ && manifest['main.css'] && `<${constants.ASSETS_HOST}${manifest['main.css']}>; rel=preload; as=style`,
   ].filter(Boolean);
 
-  const sendResponse = (req, res, domain, manifestData, data) => {
-    if (isHTMLHeader(req.headers)) {
-      res.setHeader('Link', PRELOAD_HEADERS);
+  const sendResponse = (ctx, domain, manifestData, data) => {
+    if (isHTMLHeader(ctx.request.headers)) {
+      ctx.set('Link', PRELOAD_HEADERS);
     }
-    res.setHeader('Vary', 'Accept,Accept-Encoding,Authorization,Content-Type');
-    handleRender(req, res, port, domain, manifestData, data);
+    ctx.set('Vary', 'Accept,Accept-Encoding,Authorization,Content-Type');
 
-    return undefined;
+    return handleRender(ctx, port, domain, manifestData, data);
   };
 
-  return (req, res) => {
-    const domain = req.get('host').replace(/:.*/, '');
-    Promise.race([
-      req.api.headRequest(req),
-      new Promise((_, reject) => setTimeout(reject, BACKEND_TIMEOUT)),
-    ]).then((serverRes) => {
-      res.status(serverRes.status);
-      if (isRedirect(serverRes.status)) {
-        const location = serverRes.headers.get('Location');
-        if (!location) {
-          // TODO: bugsnag
-        }
-
-        res.set('Location', location);
-
-        return res.end();
-      }
-
-      const auth = serverRes.headers.get('new-authorization');
-      if (auth) {
-        req.session.arguToken = { accessToken: auth };
-        req.api.userToken = auth;
-      }
-
-      const manifestHeader = serverRes.headers.get('Manifest');
-      if (!manifestHeader) {
-        if (isSuccess(serverRes.status)) {
-          res.status(INTERNAL_SERVER_ERROR);
-
-          throw new Error(`No website iri in head, got status '${serverRes.status}'`);
-        }
-
-        return res.end();
-      }
-
-      return req.api.fetchRaw(
-        req.api.userToken || req.api.serviceGuestToken,
-        {
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            ...req.api.proxySafeHeaders(),
-          },
-          method: 'GET',
-          path: manifestHeader,
-          redirect: 'error',
-        }
-      )
-        .then(processResponse)
-        .then(json)
-        .then((manifestData) => {
-          let responseData = Buffer.alloc(0);
-          const responseStream = new Stream.Writable();
-          // eslint-disable-next-line no-underscore-dangle
-          responseStream._write = (chunk, encoding, next) => {
-            responseData = Buffer.concat([responseData, chunk]);
-            next();
-          };
-          const dataHeaders = {
-            ...req.headers,
-            accept: 'application/n-quads',
-          };
-          const reqForData = {
-            api: req.api,
-            deviceId: req.deviceId,
-            headers: dataHeaders,
-            session: req.session,
-            status: 200,
-          };
-          const resources = [
-            `${manifestData.scope}`,
-            `${manifestData.scope}/ns/core`,
-            `${manifestData.scope}/c_a`,
-            `${manifestData.scope}/n`,
-            `${manifestData.scope}/search`,
-            `${manifestData.scope}/menus`,
-            `${manifestData.scope}/apex/menus`,
-          ];
-          if (req.path?.length > 1) {
-            const { origin } = new URL(manifestData.scope);
-            resources.unshift(origin + req.path);
-          }
-
-          return Promise
-            .all(resources
-              .reduce((acc, iri) => (acc.includes(iri) ? acc : acc.concat(iri)), [])
-              .map(iri => bulkResourceRequest(reqForData, iri, route(iri, true), responseStream)))
-            .then(() => sendResponse(req, res, domain, manifestData, responseData));
-        });
-    }).catch((e) => {
-      if (typeof e === 'undefined') {
-        // Timeout finished first
-        res.status(SERVICE_UNAVAILABLE);
-      } else {
-        logging.error(e, req.bugsnag ? 'Notifying' : 'Bugsnag client not present');
-        if (req.bugsnag) {
-          req.bugsnag.notify(e);
-        }
-
-        res.status(INTERNAL_SERVER_ERROR);
-      }
-      sendResponse(req, res, domain, `https://${req.get('host')}`, '');
-    });
-  };
+  return handler(sendResponse);
 }

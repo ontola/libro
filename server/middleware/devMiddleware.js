@@ -1,4 +1,5 @@
 /* eslint no-console: 0 */
+import c2k from 'koa2-connect';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
@@ -15,14 +16,14 @@ export default function (app) {
 
   const compiler = webpack(webpackConfig);
 
-  app.use(webpackDevMiddleware(compiler, {
+  app.use(c2k(webpackDevMiddleware(compiler, {
     headers: {
       'Access-Control-Allow-Origin': '*',
     },
     noInfo: logLevel === 'debug',
     publicPath: webpackConfig.output.publicPath,
     quiet: logLevel !== 'debug',
-  }));
+  })));
 
-  app.use(webpackHotMiddleware(compiler, compiler));
+  app.use(c2k(webpackHotMiddleware(compiler, compiler)));
 }

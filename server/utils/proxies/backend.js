@@ -1,4 +1,5 @@
 import proxy from 'http-proxy-middleware';
+import c2k from 'koa2-connect';
 
 import * as constants from '../../config';
 
@@ -8,7 +9,7 @@ import {
   setProxyResHeaders,
 } from './helpers';
 
-export default proxy({
+export default c2k(proxy({
   logLevel: constants.logLevel,
   onProxyReq: setProxyReqHeaders,
   onProxyRes: setProxyResHeaders,
@@ -19,4 +20,4 @@ export default proxy({
   target: constants.ARGU_API_URL,
   toProxy: true,
   xfwd: true,
-});
+}));

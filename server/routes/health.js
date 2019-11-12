@@ -3,7 +3,7 @@ import * as HttpStatus from 'http-status-codes';
 import API from '../API';
 import { client } from '../middleware/sessionMiddleware';
 
-export default async (req, res) => {
+export default async (ctx) => {
   try {
     // Check redis connection
     await client.get('');
@@ -12,8 +12,10 @@ export default async (req, res) => {
     const api = new API({ req: {} });
     await api.requestGuestToken();
 
-    return res.status(HttpStatus.OK).send('success').end();
+    ctx.response.status = HttpStatus.OK;
+    ctx.response.body = 'success';
   } catch (e) {
-    return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(e.toString()).end();
+    ctx.response.status = HttpStatus.INTERNAL_SERVER_ERROR;
+    ctx.response.body = e.toString();
   }
 };

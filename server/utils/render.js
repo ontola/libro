@@ -1,4 +1,4 @@
-import { INTERNAL_SERVER_ERROR } from 'http-status-codes';
+import HttpStatus from 'http-status-codes';
 import jwt from 'jsonwebtoken';
 import useragent from 'useragent';
 import React from 'react';
@@ -66,8 +66,8 @@ const deferredStyles = '    var loadDeferredStyles = function() {\n'
 // Due to WebpackPWAManifest not emitting a chunk, the (web) manifest.json file doesn't end up
 //  in the assets manifest, so we have to define it manually.
 
-export const renderFullPage = (req, res, manifestData, data) => {
-  const bundleVersion = isModule(req.headers['user-agent'])
+export const renderFullPage = (ctx, manifestData, data) => {
+  const bundleVersion = isModule(ctx.request.headers['user-agent'])
     ? bundles.module
     : bundles.legacy;
   const manifest = manifests[bundleVersion];
@@ -81,12 +81,12 @@ export const renderFullPage = (req, res, manifestData, data) => {
     appVersion: pjson.version,
     releaseStage: constants.STAGE,
   };
-  const csrfToken = req.csrfToken();
-  const nonceStr = res.locals.nonce.toString();
+  const csrfToken = ctx.csrf;
+  const nonceStr = ctx.res.locals.nonce.toString();
   let language = '';
   try {
     const tokenPayload = jwt.verify(
-      req.session.arguToken.accessToken,
+      ctx.session.arguToken.accessToken,
       constants.jwtEncryptionToken
     );
     ({ language } = tokenPayload.user);
@@ -252,13 +252,14 @@ export const renderFullPage = (req, res, manifestData, data) => {
     });
 };
 
-export function handleRender(req, res, port, domain, manifestData, data) {
-  return renderFullPage(req, res, manifestData, data)
+export function handleRender(ctx, port, domain, manifestData, data) {
+  return renderFullPage(ctx, manifestData, data)
     .then((page) => {
-      res.send(page);
+      ctx.response.status = HttpStatus.OK;
+      ctx.response.body = page;
     })
     .catch((e) => {
       logging.error(e);
-      res.status(INTERNAL_SERVER_ERROR).end();
+      ctx.response.status = HttpStatus.INTERNAL_SERVER_ERROR;
     });
 }

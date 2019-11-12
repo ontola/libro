@@ -1,14 +1,15 @@
 import proxy from 'http-proxy-middleware';
+import c2k from 'koa2-connect';
 
 import * as constants from '../../config';
 import { isDownloadRequest } from '../http';
 
 import { setProxyReqHeaders, setProxyResHeaders } from './helpers';
 
-export default proxy({
+export default c2k(proxy({
   onProxyReq: setProxyReqHeaders,
   onProxyRes: (proxyRes, req) => {
-    setProxyResHeaders(proxyRes);
+    setProxyResHeaders(proxyRes, req);
     if (isDownloadRequest(req.url)) {
       // eslint-disable-next-line no-param-reassign
       proxyRes.headers['Content-Disposition'] = 'attachment';
@@ -20,4 +21,4 @@ export default proxy({
   target: constants.ARGU_API_URL,
   toProxy: true,
   xfwd: true,
-});
+}));

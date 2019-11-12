@@ -1,21 +1,22 @@
 /* eslint no-console: 0 */
-import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
-import csurf from 'csurf';
-import expressStaticGzip from 'express-static-gzip';
-import * as HttpStatus from 'http-status-codes';
-import morgan from 'morgan';
-import shrinkRay from 'shrink-ray-current';
+import Router from '@koa/router';
+import bodyParser from 'koa-bodyparser';
+import CSRF from 'koa-csrf';
+import serveStatic from 'koa-static';
 import uuidv4 from 'uuid/v4';
+import logger from 'koa-logger';
 
 import apiMiddleware from '../middleware/apiMiddleware';
 import authenticationMiddleware from '../middleware/authenticationMiddleware';
-import errorHandlerMiddleware from '../middleware/errorHandlerMiddleware';
+import backendErrorHandler from '../middleware/errorHandlerMiddleware';
 import sessionMiddleware from '../middleware/sessionMiddleware';
 import csp from '../utils/csp';
-import { deviceIdFromCookie, generateDeviceId } from '../utils/deviceId';
-import isBackend, { isPlainAPI, isWebsocket } from '../utils/filters';
-import { isDownloadRequest, isHTMLHeader } from '../utils/http';
+import deviceIdMiddleware from '../utils/deviceId';
+import {
+  isBackend,
+  isBinaryishRequest,
+  isPlainAPI,
+} from '../utils/filters';
 import { getErrorMiddleware } from '../utils/logging';
 import {
   backendProxy,
@@ -31,8 +32,7 @@ import logout from './logout';
 import precacheManifest from './manifests';
 import serviceWorker from './service_workers';
 import maps from './maps';
-
-const oneYearInMiliSec = 31536000000;
+import robots from './robots';
 
 export function listen(app, port) {
   const server = app.listen(port, (err) => {
@@ -41,126 +41,93 @@ export function listen(app, port) {
     }
     console.info(`[${__VERSION__}]==> 🌍 Listening on port ${port}.`);
   });
+  const sessMiddleware = sessionMiddleware(app);
 
   server.on('upgrade', (req, socket) => {
-    sessionMiddleware(req, {}, () => {
+    const ctx = app.createContext(req, {});
+    ctx.req.getCtx = () => ctx;
+
+    return sessMiddleware(ctx, () => {
       websocketsProxy.upgrade(req, socket);
     });
   });
 }
 
-function isBinaryishRequest(req, res, next) {
-  const isBinaryIsh = req.headers.accept && !isHTMLHeader(req.headers);
-
-  if (isBinaryIsh || isDownloadRequest(req.url)) {
-    return next();
-  }
-
-  return next('route');
-}
-
-const staticCompressionOpts = (fallthrough = false) => ({
-  enableBrotli: true,
-  fallthrough,
+const staticCompressionOpts = {
+  br: true,
+  extensions: ['br', 'gzip', 'deflate', 'identity'],
   index: false,
-  orderPreference: ['br', 'gzip', 'deflate', 'identity'],
-});
-
-const compressionOpts = {
-  filter: (req, res) => {
-    const type = res.getHeader('Content-Type');
-
-    return (type && type.startsWith('application/n-')) || shrinkRay.filter(req, res);
-  },
 };
+
 const errorMiddleware = getErrorMiddleware();
 
-export default async function routes(app, port) {
+const routes = async function routes(app, port) {
   const isPlainAPIReq = await isPlainAPI();
-
-  app.use(morgan('dev'));
-
-  app.use((req, res, next) => {
-    res.locals.nonce = uuidv4();
-    res.setHeader('X-FE-Version', __VERSION__);
-    next();
-  });
-
-  app.use(cookieParser());
-
-  app.use((req, res, next) => {
-    let deviceId = deviceIdFromCookie(req);
-    if (!deviceId) {
-      deviceId = generateDeviceId();
-      res.cookie('deviceId', deviceId, {
-        httpOnly: true,
-        maxAge: oneYearInMiliSec,
-        secure: true,
-      });
-    }
-    req.deviceId = deviceId;
-    next();
-  });
-
-  app.get('/d/health', health);
+  const sessMiddleware = sessionMiddleware(app);
 
   app.use(errorMiddleware.requestHandler);
 
-  app.use('(/*)?/sw.js*', serviceWorker);
+  app.use(backendErrorHandler);
 
-  app.use('/f_assets/precache-manifest.*.js*', precacheManifest);
+  if (__DEVELOPMENT__) {
+    app.use(logger());
+  }
 
-  app.all('*', isPlainAPIReq, backendProxy);
+  app.use(async (ctx, next) => {
+    ctx.res.locals = { nonce: uuidv4() };
+    ctx.req.getCtx = () => ctx;
+    ctx.response.set('X-FE-Version', __VERSION__);
+
+    return next();
+  });
+
+  app.use(deviceIdMiddleware);
 
   app.use(csp);
 
-  // Static directory for express
-  app.use('/static', expressStaticGzip('static', staticCompressionOpts()));
-  app.use('/f_assets', expressStaticGzip('dist/f_assets', staticCompressionOpts()));
-  app.get('/robots.txt', (req, res) => {
-    if (req.host === 'demogemeente.nl') {
-      return res.status(HttpStatus.NOT_FOUND).end();
-    }
+  const router = new Router();
 
-    return res
-      .header('Content-Type', 'text/plain')
-      .status(HttpStatus.OK)
-      .send('User-agent: *\r\nDisallow: /\r\n')
-      .end();
-  });
-  app.use('/', expressStaticGzip('dist/public', staticCompressionOpts(true)));
-  app.get('/assets/*', backendProxy);
-  app.get('/packs/*', backendProxy);
-  app.get('/photos/*', backendProxy);
+  router.get('/d/health', health);
+  router.get('(/*)?/sw.js*', serviceWorker);
+  router.get('/f_assets/precache-manifest.*.js*', precacheManifest);
+  router.all('*', isPlainAPIReq(backendProxy));
+  router.get('/robots.txt', robots);
 
-  app.use(sessionMiddleware);
+  // Static files
+  router.get('/static/*', serveStatic('.', staticCompressionOpts), () => {});
+  router.get('/f_assets/*', serveStatic('./dist', staticCompressionOpts), () => {});
+  router.get('/assets/*', backendProxy);
+  router.get('/packs/*', backendProxy);
+  router.get('/photos/*', backendProxy);
 
-  app.all('*', isWebsocket, websocketsProxy);
+  router.use(sessMiddleware);
 
-  app.use(apiMiddleware);
+  router.use(apiMiddleware);
 
-  app.get(['/logout', '/*/logout'], logout);
-  app.post(['/logout', '/*/logout'], logout);
+  router.get(['/logout', '/*/logout'], logout);
+  router.post(['/logout', '/*/logout'], logout);
 
-  app.use(csurf());
+  router.use(new CSRF());
 
-  app.use(authenticationMiddleware);
+  router.use(authenticationMiddleware);
 
-  app.use(shrinkRay(compressionOpts));
+  router.post('/link-lib/bulk', bodyParser(), isBackend(bulkProxy));
+  router.all('*', isBackend(backendProxy));
 
-  app.post('/link-lib/bulk', isBackend, bodyParser.urlencoded({ extended: false }), bulkProxy);
-  app.all('*', isBackend, backendProxy);
+  router.use(bodyParser());
+  router.post('/login', login);
+  router.get(['/users/auth/*', '/*/users/auth/*'], backendProxy);
+  router.get('/api/maps/accessToken', maps);
 
-  app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(bodyParser.json());
-  app.post('/login', login);
-  app.get(['/users/auth/*', '/*/users/auth/*'], backendProxy);
-  app.get('/api/maps/accessToken', maps);
+  router.get('/*/media_objects/*', isBinaryishRequest(fileProxy));
 
-  app.get(['/media_objects/*', '/*/media_objects/*'], isBinaryishRequest, fileProxy);
+  router.get(/.*/, application(port));
 
-  app.get(/.*/, application(port));
+  app
+    .use(router.routes())
+    .use(router.allowedMethods());
 
-  app.use(errorHandlerMiddleware);
-  app.use(errorMiddleware.errorHandler);
-}
+  app.on('error', errorMiddleware.errorHandler);
+};
+
+export default routes;

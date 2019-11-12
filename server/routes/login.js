@@ -5,24 +5,24 @@ import * as errors from '../utils/errors';
 
 const MILLISECONDS = 1000;
 
-async function login(req, res, next) {
+async function login(ctx, next) {
   try {
-    const response = await req.api.requestUserToken(
-      req.body.email,
-      req.body.password,
-      req.headers['website-iri'],
-      req.body.r
+    const response = await ctx.api.requestUserToken(
+      ctx.request.body.email,
+      ctx.request.body.password,
+      ctx.request.headers['website-iri'],
+      ctx.request.body.r
     );
     const json = await response.json();
 
     const expiresAt = new Date((json.created_at * MILLISECONDS) + (json.expires_in * MILLISECONDS));
     if (json.token_type === 'Bearer' && expiresAt > Date.now()) {
-      req.session.arguToken = {
+      ctx.session.arguToken = {
         accessToken: json.access_token,
         expiresAt,
         scope: json.scope,
       };
-      res.send({ status: 'SIGN_IN_LOGGED_IN' }).end();
+      ctx.body = { status: 'SIGN_IN_LOGGED_IN' };
 
       return;
     }
@@ -31,33 +31,33 @@ async function login(req, res, next) {
     if (e && e.status === errors.UnprocessableEntityError.status) {
       e.markAsSafe();
       if (!e.response || e.response.headers['Content-Type'] === 'application/json') {
-        res.sendStatus(HttpStatus.INTERNAL_SERVER_ERROR).end();
+        ctx.response.status = HttpStatus.INTERNAL_SERVER_ERROR;
 
         return;
       }
 
       const json = await e.response.json();
       if (!json) {
-        res.sendStatus(HttpStatus.INTERNAL_SERVER_ERROR).end();
+        ctx.response.status = HttpStatus.INTERNAL_SERVER_ERROR;
 
         return;
       }
 
       switch (json.code) {
         case 'ACCOUNT_LOCKED':
-          res.send({ status: 'SIGN_IN_ACCOUNT_LOCKED' }).end();
+          ctx.response.body = { status: 'SIGN_IN_ACCOUNT_LOCKED' };
           break;
         case 'WRONG_PASSWORD':
-          res.send({ status: 'SIGN_IN_WRONG_PASSWORD' }).end();
+          ctx.response.body = { status: 'SIGN_IN_WRONG_PASSWORD' };
           break;
         case 'NO_PASSWORD':
-          res.send({ status: 'SIGN_IN_NO_PASSWORD' }).end();
+          ctx.response.body = { status: 'SIGN_IN_NO_PASSWORD' };
           break;
         case 'UNKNOWN_EMAIL':
-          res.send({ status: 'SIGN_IN_UNKNOWN_EMAIL' }).end();
+          ctx.response.body = { status: 'SIGN_IN_UNKNOWN_EMAIL' };
           break;
         case 'UNKNOWN_USERNAME':
-          res.send(json).end();
+          ctx.response.body = json;
           break;
         default:
           throw new Error('Unknown response 422 from backend');
@@ -69,33 +69,32 @@ async function login(req, res, next) {
   }
 }
 
-async function signUp(req, res, next) {
+async function signUp(ctx, next) {
   try {
-    const response = await req.api.createUser(
-      req.body.email,
-      req.body.acceptTerms,
-      req.headers['website-iri']
+    const response = await ctx.api.createUser(
+      ctx.request.body.email,
+      ctx.request.body.acceptTerms,
+      ctx.request.headers['website-iri']
     );
 
     if (response.status !== HttpStatus.CREATED) {
       throw new errors.NotImplementedError('Only the error-free login flow has been implemented');
     }
-    res.status = response.status;
+    ctx.response.status = response.status;
     const json = await response.json();
     const auth = response.headers.get('New-Authorization');
-    if (req.session.arguToken) {
-      req.session.arguToken.accessToken = auth;
+    if (ctx.session.arguToken) {
+      ctx.session.arguToken.accessToken = auth;
     }
-    req.api.userToken = auth;
-    res.send({
+    ctx.api.userToken = auth;
+    ctx.response.body = {
       email: json.data.attributes.email,
       status: 'SIGN_IN_USER_CREATED',
-    });
+    };
   } catch (e) {
     switch (e.constructor) {
       case errors.UnprocessableEntityError:
-        res.send({ status: 'SIGN_IN_EMAIL_TAKEN' });
-        res.end();
+        ctx.response.body = { status: 'SIGN_IN_EMAIL_TAKEN' };
         break;
       default:
         next(new errors.NotImplementedError('Only the error-free login flow has been implemented'));
@@ -103,11 +102,11 @@ async function signUp(req, res, next) {
   }
 }
 
-export default (req, res, next) => {
-  res.setHeader('Vary', 'Accept,Accept-Encoding,Content-Type');
-  if (typeof req.body.acceptTerms === 'undefined') {
-    return login(req, res, next);
+export default (ctx, next) => {
+  ctx.response.set('Vary', 'Accept,Accept-Encoding,Content-Type');
+  if (typeof ctx.request.body.acceptTerms === 'undefined') {
+    return login(ctx, next);
   }
 
-  return signUp(req, res, next);
+  return signUp(ctx, next);
 };
