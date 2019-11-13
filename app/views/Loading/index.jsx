@@ -23,6 +23,7 @@ import { cardFixedTopology } from '../../topologies/Card/CardFixed';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { cardListTopology } from '../../topologies/Card/CardList';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
+import { cardMicroRowTopology } from '../../topologies/Card/CardMicroRow';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
 import { cardVoteEventTopology } from '../../topologies/CardVoteEvent';
 import { containerTopology } from '../../topologies/Container';
@@ -178,6 +179,7 @@ export default [
       attributeListTopology,
       cardListTopology,
       cardMainTopology,
+      cardMicroRowTopology,
       inlineTopology,
       voteBubbleTopology,
     ]

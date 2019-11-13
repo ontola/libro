@@ -6,6 +6,7 @@ import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import { cardListTopology } from '../../topologies/Card/CardList';
+import { cardMicroRowTopology } from '../../topologies/Card/CardMicroRow';
 
 const propTypes = {
   name: PropTypes.instanceOf(Literal),
@@ -28,5 +29,5 @@ export default LinkedRenderStore.registerRenderer(
   link([NS.schema('name')])(PersonSection),
   NS.schema('Person'),
   RENDER_CLASS_NAME,
-  cardListTopology
+  [cardListTopology, cardMicroRowTopology]
 );

@@ -25,6 +25,7 @@ import { cardFixedTopology } from '../../topologies/Card/CardFixed';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { cardListTopology } from '../../topologies/Card/CardList';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
+import { cardMicroRowTopology } from '../../topologies/Card/CardMicroRow';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
 import Container, { containerTopology } from '../../topologies/Container';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
@@ -239,6 +240,7 @@ export default [
       cardFloatTopology,
       cardTopology,
       cardMainTopology,
+      cardMicroRowTopology,
       cardRowTopology,
       containerFloatTopology,
       detailsBarTopology,

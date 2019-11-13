@@ -9,7 +9,7 @@ import ActionsBar from '../../topologies/ActionsBar';
 import Card from '../../topologies/Card';
 import CardAppendix, { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
 import { cardListTopology } from '../../topologies/Card/CardList';
-import CardMicroRow from '../../topologies/Card/CardMicroRow';
+import CardMicroRow, { cardMicroRowTopology } from '../../topologies/Card/CardMicroRow';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
 import { containerTopology } from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
@@ -54,8 +54,7 @@ const CommentSection = ({ highlighted }) => (
   <CardMicroRow highlighted={highlighted}>
     <Property
       label={NS.schema('creator')}
-      topology={cardListTopology}
-    />&#9;<Property label={NS.schema('text')} topology={cardListTopology} />
+    />&#9;<Property label={NS.schema('text')} />
   </CardMicroRow>
 );
 
@@ -72,6 +71,6 @@ export default [
     connectHighlighting(CommentSection),
     [NS.schema('Comment'), NS.argu('Comment')],
     RENDER_CLASS_NAME,
-    [cardAppendixTopology, cardListTopology, cardRowTopology]
+    [cardAppendixTopology, cardListTopology, cardMicroRowTopology, cardRowTopology]
   ),
 ];
