@@ -1,5 +1,3 @@
-import LRS from '../helpers/LinkedRenderStore';
-
 /**
  * This document is purely for including all the views into the code.
  * Please properly include each file when access to the code is needed.
@@ -126,22 +124,4 @@ export function getViews() {
 
 export default function register(lrs) {
   lrs.registerAll(...getViews());
-}
-
-if (module.hot) {
-  module.hot.accept();
-
-  module.hot.addStatusHandler((status) => {
-    switch (status) {
-      case 'prepare':
-        LRS.mapping.lookupCache = {};
-        LRS.mapping.mapping = [];
-        break;
-      case 'apply':
-        register(LRS);
-        break;
-      default:
-        break;
-    }
-  });
 }

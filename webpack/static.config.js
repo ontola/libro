@@ -170,6 +170,7 @@ function createConfig(options) {
       new webpack.ProvidePlugin({
         fetch: 'isomorphic-fetch',
       }),
+      new webpack.optimize.ModuleConcatenationPlugin(),
       new webpack.HashedModuleIdsPlugin(),
       new ManifestPlugin({
         output: `private/manifest.${options.buildName}.json`,

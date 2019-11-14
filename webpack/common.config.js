@@ -78,7 +78,6 @@ const common = {
         NODE_ENV: process.env.NODE_ENV === 'development' ? '"development"' : '"production"',
       },
     }),
-    new webpack.optimize.ModuleConcatenationPlugin(),
     new HtmlWebpackPlugin({
       filename: 'public/offline.html',
       template: 'app/offline.html',

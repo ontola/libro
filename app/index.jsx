@@ -9,16 +9,19 @@ import { getMetaContent } from './helpers/arguHelpers';
 import LinkDevTools from './helpers/LinkDevTools';
 import LinkedRenderStore from './helpers/LinkedRenderStore';
 import { handle } from './helpers/logging';
-import app from './App';
+import App from './App';
 
 if (document.documentElement.lang) {
   LinkedRenderStore.store.langPrefs.unshift(document.documentElement.lang);
 }
 
 function mount() {
-  const App = app(LinkedRenderStore);
   render(
-    <App title={getMetaContent('application-name')} website={getMetaContent('website-iri')} />,
+    <App
+      lrs={LinkedRenderStore}
+      title={getMetaContent('application-name')}
+      website={getMetaContent('website-iri')}
+    />,
     document.getElementById(APP_ELEMENT)
   );
 }

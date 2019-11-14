@@ -8,7 +8,6 @@ import LinkedRenderStore from 'link-lib';
 import { RenderStoreProvider, useLRS } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { hot } from 'react-hot-loader/root';
 import { IntlProvider, useIntl } from 'react-intl';
 import { Provider } from 'react-redux';
 
@@ -94,4 +93,4 @@ const IndexContainer = ({
 
 IndexContainer.propTypes = propTypes;
 
-export default hot(IndexContainer);
+export default IndexContainer;

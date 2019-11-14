@@ -4,7 +4,7 @@ import useragent from 'useragent';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 
-import getApp from '../../app/App';
+import App from '../../app/App';
 import generateLRS from '../../app/helpers/generateLRS';
 import spinner from '../../app/helpers/spinner';
 import { bundles, moduleBrowserVersions } from '../../bundleConfig';
@@ -97,7 +97,6 @@ export const renderFullPage = (req, res, manifestData, data) => {
   const polyfill = bundleVersion === 'legacy' ? `<script crossorigin="anonymous" nonce="${nonceStr}" src="${polyfillSrc}"></script>` : '';
 
   const { LRS } = generateLRS();
-  const App = getApp(LRS);
   const { origin } = new URL(manifestData?.scope || `${req.protocol}://${req.host}`);
   const resourceIRI = req.path?.length > 1 ? origin + req.path : origin;
   const seedRequest = {
@@ -116,6 +115,7 @@ export const renderFullPage = (req, res, manifestData, data) => {
         {
           helmetContext,
           location: resourceIRI,
+          lrs: LRS,
           website: manifestData.scope,
         }
       ));
