@@ -25,10 +25,7 @@ module.exports = merge(common, {
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
-          {
-            loader: 'style-loader',
-            options: { sourceMap: true },
-          },
+          { loader: 'style-loader' },
           {
             loader: 'css-loader',
             options: { sourceMap: true },
@@ -50,9 +47,15 @@ module.exports = merge(common, {
     ],
   },
 
+  optimization: {
+    removeAvailableModules: false,
+    removeEmptyChunks: false,
+    splitChunks: false,
+  },
+
   output: {
     globalObject: "(typeof self !== 'undefined' ? self : this)",
-    pathinfo: true,
+    pathinfo: false,
     publicPath: '/',
   },
 

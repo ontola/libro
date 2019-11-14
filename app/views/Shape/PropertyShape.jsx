@@ -57,7 +57,7 @@ const PropertyShape = (props) => {
   const fieldName = calculateFormFieldName(propertyIndex, path);
   const targetObject = targetNode || retrieveIdFromValue(targetValue);
   const targetIRI = targetObject && targetObject instanceof Term && targetObject;
-  const rawTargetValues = targetIRI && lrs.getResourceProperties(targetIRI, path) ?? [];
+  const rawTargetValues = (targetIRI && lrs.getResourceProperties(targetIRI, path)) ?? [];
   useDataInvalidation({
     dataSubjects: [
       targetIRI,

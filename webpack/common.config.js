@@ -1,7 +1,5 @@
 const path = require('path');
 
-const CompressionPlugin = require('compression-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
@@ -56,7 +54,6 @@ const common = {
   },
 
   plugins: [
-    new CleanWebpackPlugin(),
     new CopyWebpackPlugin([
       {
         from: 'static/preloader.css',
@@ -87,13 +84,6 @@ const common = {
       importsDirectory: 'f_assets',
       swDest: './public/sw.js',
       swSrc: './app/sw.js',
-    }),
-    new CompressionPlugin({
-      algorithm: 'gzip',
-      filename: '[path].gz[query]',
-      minRatio: 1,
-      test: /\.js$|\.css$|\.html$/,
-      threshold: 0,
     }),
   ],
 

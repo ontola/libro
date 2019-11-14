@@ -1,6 +1,7 @@
 const path = require('path');
 
 const BrotliPlugin = require('brotli-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -154,6 +155,7 @@ function createConfig(options) {
     },
 
     plugins: [
+      new CleanWebpackPlugin(),
       new MiniCssExtractPlugin({
         chunkFilename: `f_assets/[name]-[id]-[contenthash].${options.buildName}.css`,
         filename: `f_assets/[name]-[contenthash].${options.buildName}.css`,
@@ -177,7 +179,11 @@ function createConfig(options) {
         publicPath: '/',
       }),
       new CompressionPlugin({
+        algorithm: 'gzip',
+        filename: '[path].gz[query]',
         minRatio: 0.9,
+        test: /\.js$|\.css$|\.html$/,
+        threshold: 0,
       }),
       new BrotliPlugin(),
       // new BundleAnalyzerPlugin(),
