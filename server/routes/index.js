@@ -16,13 +16,13 @@ import {
   isBackend,
   isBinaryishRequest,
   isPlainAPI,
+  isWebsocket,
 } from '../utils/filters';
 import { getErrorMiddleware } from '../utils/logging';
 import {
   backendProxy,
   bulkProxy,
   fileProxy,
-  websocketsProxy,
 } from '../utils/proxies';
 
 import application from './application';
@@ -35,21 +35,11 @@ import maps from './maps';
 import robots from './robots';
 
 export function listen(app, port) {
-  const server = app.listen(port, (err) => {
+  app.listen(port, (err) => {
     if (err) {
       console.log(err);
     }
     console.info(`[${__VERSION__}]==> 🌍 Listening on port ${port}.`);
-  });
-  const sessMiddleware = sessionMiddleware(app);
-
-  server.on('upgrade', (req, socket) => {
-    const ctx = app.createContext(req, {});
-    ctx.req.getCtx = () => ctx;
-
-    return sessMiddleware(ctx, () => {
-      websocketsProxy.upgrade(req, socket);
-    });
   });
 }
 
@@ -64,6 +54,7 @@ const errorMiddleware = getErrorMiddleware();
 const routes = async function routes(app, port) {
   const isPlainAPIReq = await isPlainAPI();
   const sessMiddleware = sessionMiddleware(app);
+  const backend = backendProxy(app);
 
   app.use(errorMiddleware.requestHandler);
 
@@ -90,15 +81,15 @@ const routes = async function routes(app, port) {
   router.get('/d/health', health);
   router.get('(/*)?/sw.js*', serviceWorker);
   router.get('/f_assets/precache-manifest.*.js*', precacheManifest);
-  router.all('*', isPlainAPIReq(backendProxy));
+  router.all('*', isPlainAPIReq(backend));
   router.get('/robots.txt', robots);
 
   // Static files
   router.get('/static/*', serveStatic('.', staticCompressionOpts), () => {});
   router.get('/f_assets/*', serveStatic('./dist', staticCompressionOpts), () => {});
-  router.get('/assets/*', backendProxy);
-  router.get('/packs/*', backendProxy);
-  router.get('/photos/*', backendProxy);
+  router.get('/assets/*', backend);
+  router.get('/packs/*', backend);
+  router.get('/photos/*', backend);
 
   router.use(sessMiddleware);
 
@@ -112,11 +103,12 @@ const routes = async function routes(app, port) {
   router.use(authenticationMiddleware);
 
   router.post('/link-lib/bulk', bodyParser(), isBackend(bulkProxy));
-  router.all('*', isBackend(backendProxy));
+  router.all('*', isWebsocket(backend));
+  router.all('*', isBackend(backend));
 
   router.use(bodyParser());
   router.post('/login', login);
-  router.get(['/users/auth/*', '/*/users/auth/*'], backendProxy);
+  router.get(['/users/auth/*', '/*/users/auth/*'], backend);
   router.get('/api/maps/accessToken', maps);
 
   router.get('/*/media_objects/*', isBinaryishRequest(fileProxy));

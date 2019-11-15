@@ -1,24 +1,20 @@
-import proxy from 'http-proxy-middleware';
-import c2k from 'koa2-connect';
+import proxy from 'koa-http2-proxy';
 
 import * as constants from '../../config';
 import { isDownloadRequest } from '../http';
 
 import { setProxyReqHeaders, setProxyResHeaders } from './helpers';
 
-export default c2k(proxy({
+export default proxy({
+  logLevel: constants.logLevel,
   onProxyReq: setProxyReqHeaders,
-  onProxyRes: (proxyRes, req) => {
-    setProxyResHeaders(proxyRes, req);
-    if (isDownloadRequest(req.url)) {
+  onProxyRes: (proxyRes, ctx) => {
+    setProxyResHeaders(proxyRes, ctx);
+    if (isDownloadRequest(ctx.req.url)) {
       // eslint-disable-next-line no-param-reassign
       proxyRes.headers['Content-Disposition'] = 'attachment';
     }
   },
-  preserveHeaderKeyCase: true,
-  secure: process.env.NODE_ENV !== 'development',
-  strictSSL: process.env.NODE_ENV !== 'development',
   target: constants.ARGU_API_URL,
-  toProxy: true,
   xfwd: true,
-}));
+});

@@ -21,8 +21,7 @@ export function isRedirect(status) {
     || status === HttpStatus.PERMANENT_REDIRECT;
 }
 
-export function setProxyReqHeaders(proxyReq, req) {
-  const ctx = req.getCtx();
+export function setProxyReqHeaders(proxyReq, ctx) {
   if (typeof ctx.session !== 'undefined' && typeof ctx.session.arguToken !== 'undefined') {
     proxyReq.setHeader('Authorization', `Bearer ${ctx.session.arguToken.accessToken}`);
   }
@@ -57,8 +56,7 @@ export function normalizeType(type) {
 }
 
 /* eslint-disable no-param-reassign */
-export function setProxyResHeaders(proxyRes, req) {
-  const ctx = req.getCtx();
+export function setProxyResHeaders(proxyRes, ctx) {
   delete proxyRes.headers.vary;
   proxyRes.headers.Vary = VARY_HEADER;
   const redirect = newAuthorizationBulk(ctx, proxyRes);
@@ -191,7 +189,7 @@ export function bulkResourceRequest(ctx, iri, url, outputStream) {
         reject(e);
       });
 
-      setProxyReqHeaders(backendReq, ctx.req);
+      setProxyReqHeaders(backendReq, ctx);
       backendReq.end();
     } catch (e) {
       reject(e);

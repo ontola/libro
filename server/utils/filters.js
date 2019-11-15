@@ -48,6 +48,16 @@ export async function isPlainAPI() {
   }
 }
 
+export function isWebsocket(next) {
+  return async (ctx, nextRoute) => {
+    if (ctx.request.get('Upgrade') === 'websocket') {
+      return next(ctx, nextRoute);
+    }
+
+    return nextRoute();
+  };
+}
+
 export function isBackend(next) {
   return async (ctx, nextRoute) => {
     if (ctx.request.originalUrl.match(FRONTEND_ROUTES)) {

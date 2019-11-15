@@ -151,7 +151,7 @@ export default (ctx) => {
           resolve(e);
         });
 
-        setProxyReqHeaders(backendReq, ctx.req);
+        setProxyReqHeaders(backendReq, ctx);
         backendReq.end();
       } catch (e) {
         reject(e);

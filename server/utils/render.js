@@ -97,8 +97,8 @@ export const renderFullPage = (ctx, manifestData, data) => {
   const polyfill = bundleVersion === 'legacy' ? `<script crossorigin="anonymous" nonce="${nonceStr}" src="${polyfillSrc}"></script>` : '';
 
   const { LRS } = generateLRS();
-  const { origin } = new URL(manifestData?.scope || `${req.protocol}://${req.host}`);
-  const resourceIRI = req.path?.length > 1 ? origin + req.path : origin;
+  const { origin } = new URL(manifestData?.scope || `${ctx.req.host}://${ctx.req.protocol}`);
+  const resourceIRI = ctx.req.path?.length > 1 ? origin + ctx.req.path : origin;
   const seedRequest = {
     body: data?.toString('utf-8') ?? '',
     headers: { 'Content-Type': 'application/n-quads' },

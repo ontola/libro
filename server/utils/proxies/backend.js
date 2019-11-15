@@ -1,7 +1,7 @@
-import proxy from 'http-proxy-middleware';
-import c2k from 'koa2-connect';
+import proxy from 'koa-http2-proxy';
 
 import * as constants from '../../config';
+import sessionMiddleware from '../../middleware/sessionMiddleware';
 
 import {
   route,
@@ -9,15 +9,20 @@ import {
   setProxyResHeaders,
 } from './helpers';
 
-export default c2k(proxy({
-  logLevel: constants.logLevel,
-  onProxyReq: setProxyReqHeaders,
-  onProxyRes: setProxyResHeaders,
-  preserveHeaderKeyCase: true,
-  router: req => route(req.url),
-  secure: process.env.NODE_ENV !== 'development',
-  strictSSL: process.env.NODE_ENV !== 'development',
-  target: constants.ARGU_API_URL,
-  toProxy: true,
-  xfwd: true,
-}));
+export default (app) => {
+  const sessMiddleware = sessionMiddleware(app);
+
+  return proxy({
+    app,
+    logLevel: constants.logLevel,
+    onProxyReq: setProxyReqHeaders,
+    onProxyRes: setProxyResHeaders,
+    onUpgrade: async (ctx) => {
+      await sessMiddleware(ctx, () => {});
+    },
+    router: req => route(req.url),
+    target: constants.ARGU_API_URL,
+    ws: true,
+    xfwd: true,
+  });
+};
