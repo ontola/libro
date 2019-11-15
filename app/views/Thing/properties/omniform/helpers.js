@@ -1,4 +1,4 @@
-import { allowSort } from '../../../../helpers/data';
+import { allowSort, entityIsLoaded } from '../../../../helpers/data';
 import { NS } from '../../../../helpers/LinkedRenderStore';
 
 export const OMNIFORM_FILTER = [
@@ -21,7 +21,7 @@ const ORDER = [
 
 export const filterActions = (lrs, potentialAction) => {
   const actionCollection = potentialAction.find(action => /\/actions$/.test(action.value));
-  if (__CLIENT__ && actionCollection) {
+  if (__CLIENT__ && actionCollection && !entityIsLoaded(lrs, actionCollection)) {
     lrs.getEntity(actionCollection);
 
     return [];
