@@ -128,7 +128,6 @@
   "https://app.argu.co/i18n/voteFlow/confirmMessage": "Confirm your vote via e-mail:",
   "https://app.argu.co/i18n/votes/con/message": "Click to vote against this idea",
   "https://app.argu.co/i18n/votes/expireable/states/closed/message": "Voting no longer possible",
-  "https://app.argu.co/i18n/votes/expireable/states/disabled/message": "Voting not possible",
   "https://app.argu.co/i18n/votes/neutral/message": "Click to vote neutral on this idea",
   "https://app.argu.co/i18n/votes/pro/message": "Click to vote for this idea",
   "https://ns.ontola.io/actions/copyToClipboard/copySuccessMessage": "Copied...",

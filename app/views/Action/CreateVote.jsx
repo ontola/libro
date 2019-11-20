@@ -30,10 +30,6 @@ const messages = defineMessages({
     defaultMessage: 'Click to vote against this idea',
     id: 'https://app.argu.co/i18n/votes/con/message',
   },
-  disabledMessage: {
-    defaultMessage: 'Voting not possible',
-    id: 'https://app.argu.co/i18n/votes/expireable/states/disabled/message',
-  },
   neutralMessage: {
     defaultMessage: 'Click to vote neutral on this idea',
     id: 'https://app.argu.co/i18n/votes/neutral/message',
@@ -146,6 +142,10 @@ const CreateVote = ({
   const disabled = rdf.equals(actionStatus, NS.ontola('DisabledActionStatus'));
   const expired = rdf.equals(actionStatus, NS.ontola('ExpiredActionStatus'));
 
+  if (disabled) {
+    return null;
+  }
+
   let title;
   if (variant === 'yes') {
     title = formatMessage(messages.proMessage);
@@ -157,8 +157,6 @@ const CreateVote = ({
 
   if (expired) {
     title = formatMessage(messages.closedMessage);
-  } else if (disabled) {
-    title = formatMessage(messages.disabledMessage);
   }
 
   return (
