@@ -85,27 +85,5 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
   /**
    * Handler
    */
-  return (next: MiddlewareActionHandler) => (iri: NamedNode, opts: any): Promise<any> => {
-
-    if (iri.value.startsWith(app('').value)) {
-      if (__CLIENT__) {
-        const actionKey = `app.storedActions.${iri.value}`;
-        const storedAction = sessionStorage.getItem(actionKey);
-        if (storedAction && opts) {
-            // The action came from a form, so the stored data is probably stale.
-            sessionStorage.removeItem(actionKey);
-        } else if (storedAction) {
-          const parsedAction = storedAction && JSON.parse(storedAction);
-          const action = rdf.namedNode(parsedAction.action.value);
-          return store
-              .execActionByIRI(action, parsedAction.formData)
-              .then(() => {
-                sessionStorage.removeItem(actionKey);
-              });
-        }
-      }
-    }
-
-    return next(iri, opts);
-  };
+  return (next: MiddlewareActionHandler) => next;
 };

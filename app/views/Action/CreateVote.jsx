@@ -16,6 +16,7 @@ import { defineMessages, useIntl } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { omniformOpenInline, omniformSetAction } from '../../state/omniform';
+import { HTTP_RETRY_WITH, handleHTTPRetry } from '../../helpers/errorHandling';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { handle } from '../../helpers/logging';
 import { allTopologies } from '../../topologies';
@@ -130,7 +131,11 @@ const CreateVote = ({
     .exec(subject)
     .then(openOmniform)
     .catch((e) => {
-      handle(e);
+      if (e.response.status === HTTP_RETRY_WITH) {
+        return handleHTTPRetry(lrs, e, () => handleClick());
+      }
+
+      return handle(e);
     });
 
   const isCurrentOrVote = currentVote(current, object, subject, lrs);

@@ -16,8 +16,8 @@ const DialogManager = ({ resource }) => {
   const lrs = useLRS();
   const items = [resource];
 
-  const close = item => (
-    () => lrs.exec(NS.ontola(`actions/dialog/close?resource=${encodeURIComponent(item.value)}`))
+  const close = (item, done) => (
+    () => lrs.exec(NS.ontola(`actions/dialog/close?resource=${encodeURIComponent(item.value)}`), { done })
   );
 
   return (
@@ -31,10 +31,10 @@ const DialogManager = ({ resource }) => {
         <Modal
           isOpen
           modalAnimationProps={props}
-          onRequestClose={close(item)}
+          onRequestClose={close(item, false)}
         >
           <Dialog>
-            <LinkedResourceContainer subject={item} onDone={close(item)} />
+            <LinkedResourceContainer subject={item} onDone={close(item, true)} />
           </Dialog>
         </Modal>
       )}

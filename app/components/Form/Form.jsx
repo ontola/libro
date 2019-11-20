@@ -40,7 +40,7 @@ class Form extends React.PureComponent {
   onSubmit(...args) {
     return this
       .props
-      .onSubmit(...args)
+      .onSubmit(this, ...args)
       .then(() => {
         const formApi = args[1];
 

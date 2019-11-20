@@ -11,8 +11,7 @@ import React from 'react';
 
 import { convertKeysAtoB } from '../../helpers/data';
 import { NS } from '../../helpers/LinkedRenderStore';
-
-const HTTP_RETRY_WITH = 449;
+import { HTTP_RETRY_WITH, handleHTTPRetry } from '../../helpers/errorHandling';
 
 class EntryPointBase extends PropertyBase {
   constructor(props) {
@@ -24,7 +23,7 @@ class EntryPointBase extends PropertyBase {
 
   responseCallback() {} // eslint-disable-line class-methods-use-this
 
-  submitHandler(values) {
+  submitHandler(form, values, ...args) {
     const formData = convertKeysAtoB(values);
 
     const { action, lrs } = this.props;
@@ -44,20 +43,7 @@ class EntryPointBase extends PropertyBase {
           throw e;
         }
         if (e.response.status === HTTP_RETRY_WITH) {
-          const actionsHeader = e.response.headers.get('Exec-Action');
-          if (__CLIENT__) {
-            sessionStorage.setItem(
-              `app.storedActions.${action.value}`,
-              JSON.stringify({
-                action,
-                formData,
-              })
-            );
-          }
-
-          return lrs
-            .api
-            .execExecHeader(actionsHeader);
+          return handleHTTPRetry(lrs, e, () => form.onSubmit(values, ...args));
         }
         if (e.response.status === HttpStatus.UNAUTHORIZED) {
           if (this.props.onStatusForbidden) {

@@ -29,6 +29,8 @@ const messages = defineMessages({
   },
 });
 
+const onDoneHandlers: { [key: string]: () => Promise<any> } = {};
+
 const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWorkerCommunicator):
     MiddlewareFn<ReactType> => (store: LinkReduxLRSType): MiddlewareWithBoundLRS => {
 
@@ -287,12 +289,24 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       if (!resource || (dialog && resource === dialog.value)) {
         store.processDelta(hideDialog(), true);
       }
+
+      if (resource && opts && opts.done) {
+        const onDone = onDoneHandlers[resource];
+
+        if (onDone) {
+          return onDone();
+        }
+      }
       return Promise.resolve();
     }
 
     if (iri.value.startsWith(store.namespaces.ontola('actions/dialog/alert').value)) {
       const resource = new URL(iri.value).searchParams.get('resource');
       const opener = new URL(iri.value).searchParams.get('opener');
+
+      if (resource && opts && opts.onDone) {
+        onDoneHandlers[resource] = opts.onDone;
+      }
 
       history.push(currentPath());
       if (!resource) {
