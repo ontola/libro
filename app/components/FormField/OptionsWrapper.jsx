@@ -1,3 +1,4 @@
+import rdf from '@ontologies/core';
 import {
   LinkedResourceContainer,
   Property,
@@ -66,7 +67,7 @@ const OptionsWrapper = ({
         optionsArray.then(debouncedCallback);
       }
     }
-  }, [loading, shIn, shIn && lrs.store.changeTimestamps[shIn.sI]]);
+  }, [loading, shIn, shIn && lrs.store.changeTimestamps[rdf.id(shIn)]]);
 
   return (
     <React.Fragment>
