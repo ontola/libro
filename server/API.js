@@ -18,9 +18,13 @@ import { route } from './utils/proxies/helpers';
  * Class for communicating with the Argu API & SPI.
  */
 class API {
-  constructor({ req, userToken }) {
+  constructor({
+    deviceId,
+    req,
+    userToken,
+  }) {
     this.base = constants.ARGU_API_URL;
-    this.deviceId = req.deviceId;
+    this.deviceId = deviceId;
     this.req = req;
     this.serviceToken = oAuthToken;
     this.serviceGuestToken = serviceGuestToken;
