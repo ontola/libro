@@ -40,7 +40,7 @@ export default function generateLRS() {
   serviceWorkerCommunicator.linkedRenderStore = LRS;
   (LRS as any).bulkFetch = true;
 
-  LRS.deltaProcessors.push(arguDeltaProcessor(LRS));
+  LRS.deltaProcessors.unshift(arguDeltaProcessor(LRS));
 
   transformers(LRS).forEach((t) =>
 // @ts-ignore TS2341
