@@ -154,7 +154,7 @@ class FormField extends React.PureComponent {
       nextValue = boolNormalized && boolNormalized.value === '1';
     } else if (type === 'checkboxes') {
       nextValue = currentValue;
-    } else if (type === 'text' || type === 'textarea' || type === 'markdown') {
+    } else if (type === 'text' || type === 'textarea' || type === 'markdown' || type === 'number') {
       nextValue = isTerm(currentValue)
         ? currentValue.value
         : currentValue;
