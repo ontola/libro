@@ -52,7 +52,7 @@
     "@material-ui/pickers": "^3.2.2",
     "@material-ui/styles": "^4.3.0",
     "@ontola/link-devtools": "^1.1.1",
-    "@ontola/memoized-hash-factory": "^1.1.1",
+    "@ontola/memoized-hash-factory": "^1.1.2",
     "@ontologies/as": "^1.0.3",
     "@ontologies/core": "=1.5.2-strict-20",
     "@ontologies/dcterms": "^1.0.0",

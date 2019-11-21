@@ -1809,10 +1809,10 @@
     typescript "^3.7.2"
     whatwg-url "^7.0.0"
 
-"@ontola/memoized-hash-factory@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@ontola/memoized-hash-factory/-/memoized-hash-factory-1.1.1.tgz#c9b9df851aaf52a97be81e9f19538157b054a453"
-  integrity sha512-A91NfO3tv0+NXTvc6u3QsDXMGI57n4mk9IML1Fu2oBypjL4hpolmFWHZSGdhVKVznoeJowXjtBZ2yaYIm5Vf3A==
+"@ontola/memoized-hash-factory@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@ontola/memoized-hash-factory/-/memoized-hash-factory-1.1.2.tgz#c9cb5699ab3ecb4ad110482d33fa1441635bc6a3"
+  integrity sha512-vS2z1KjyWLSxjwVx0PEaj972lBgh6MaKLQ6+ZLv3B4NEbxnG4gCu8dF1XhsmsMiema0e0Fk8pg2/a/2Se6sW/w==
   dependencies:
     murmurhash-js "^1.0.0"
 
