@@ -1,0 +1,18 @@
+@import '../../components/shared/config';
+
+// sass-lint:disable nesting-depth
+.groenlinks {
+  h1,
+  h2,
+  .Button--default,
+  .NavBarContent {
+    font-family: 'Open Sans', 'Arial Black', 'sans-serif';
+    font-weight: 700;
+  }
+
+  .Button--default,
+  .NavBarContent {
+    text-transform: uppercase;
+  }
+}
+// sass-lint:enable nesting-depth
