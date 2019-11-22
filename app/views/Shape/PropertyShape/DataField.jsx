@@ -123,7 +123,7 @@ const DataField = (props) => {
       label={name && name.value}
       maxLength={tryParseInt(maxLength)}
       minLength={tryParseInt(minLength)}
-      minRows={maxLength > MAX_STR_LEN ? TEXTFIELD_MIN_ROWS : undefined}
+      minRows={tryParseInt(maxLength) > MAX_STR_LEN ? TEXTFIELD_MIN_ROWS : undefined}
       placeholder={placeholderValue(description, inputType)}
       required={required}
       shIn={shIn}
