@@ -14,7 +14,10 @@ class PropertyQuery extends React.PureComponent {
 
   static topology = allTopologies;
 
-  static mapDataToProps = [NS.sh('path'), NS.sh('targetNode')];
+  static mapDataToProps = {
+    path: NS.sh('path'),
+    targetNode: NS.sh('targetNode'),
+  };
 
   static propTypes = {
     path: subjectType,

@@ -78,9 +78,9 @@ DataSetPage.type = NS.qb('DataSet');
 
 DataSetPage.topology = pageTopology;
 
-DataSetPage.mapDataToProps = [
-  NS.qb('structure'),
-];
+DataSetPage.mapDataToProps = {
+  structure: NS.qb('structure'),
+};
 
 DataSetPage.propTypes = {
   lrs: lrsType,

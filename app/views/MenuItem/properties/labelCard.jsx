@@ -17,7 +17,10 @@ class MenuItemLabelCard extends React.PureComponent {
 
   static topology = [cardFloatTopology, containerFloatTopology];
 
-  static mapDataToProps = [NS.schema('name'), NS.schema('image')];
+  static mapDataToProps = {
+    image: NS.schema('image'),
+    name: NS.schema('name'),
+  };
 
   static propTypes = {
     image: linkType,

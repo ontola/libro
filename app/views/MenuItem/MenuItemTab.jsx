@@ -38,9 +38,9 @@ MenuItemTab.type = [
 
 MenuItemTab.topology = tabBarTopology;
 
-MenuItemTab.mapDataToProps = [
-  NS.schema('name'),
-];
+MenuItemTab.mapDataToProps = {
+  name: NS.schema('name'),
+};
 
 MenuItemTab.propTypes = {
   subject: subjectType,

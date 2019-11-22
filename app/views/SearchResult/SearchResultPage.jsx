@@ -86,13 +86,13 @@ SearchResultPage.topology = allTopologiesExcept(navbarTopology, widgetTopologyTo
 
 SearchResultPage.hocs = [withRouter];
 
-SearchResultPage.mapDataToProps = [
-  NS.argu('query'),
-  NS.argu('took'),
-  NS.as('totalItems'),
-  NS.ontola('collectionDisplay'),
-  NS.ontola('searchTemplate'),
-];
+SearchResultPage.mapDataToProps = {
+  collectionDisplay: NS.ontola('collectionDisplay'),
+  query: NS.argu('query'),
+  searchTemplate: NS.ontola('searchTemplate'),
+  took: NS.argu('took'),
+  totalItems: NS.as('totalItems'),
+};
 
 SearchResultPage.propTypes = {
   collectionDisplay: linkType,

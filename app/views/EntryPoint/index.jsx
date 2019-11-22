@@ -31,13 +31,6 @@ const FABase = 'http://fontawesome.io/icon/';
 class EntryPoint extends React.PureComponent {
   static type = NS.schema('EntryPoint');
 
-  static mapDataToProps = [
-    NS.schema('image'),
-    NS.schema('name'),
-    NS.schema('url'),
-    NS.schema('httpMethod'),
-  ];
-
   static topology = allTopologiesExcept(
     cardTopology,
     cardMainTopology,
@@ -49,6 +42,13 @@ class EntryPoint extends React.PureComponent {
     detailsBarTopology,
     omniformFieldsTopology
   );
+
+  static mapDataToProps = {
+    httpMethod: NS.schema('httpMethod'),
+    image: NS.schema('image'),
+    name: NS.schema('name'),
+    url: NS.schema('url'),
+  };
 
   static propTypes = {
     count: linkType,

@@ -28,13 +28,13 @@ SearchResultWidget.topology = widgetTopologyTopology;
 
 SearchResultWidget.hocs = [withRouter];
 
-SearchResultWidget.mapDataToProps = [
-  NS.argu('query'),
-  NS.argu('took'),
-  NS.as('totalItems'),
-  NS.ontola('collectionDisplay'),
-  NS.ontola('searchTemplate'),
-];
+SearchResultWidget.mapDataToProps = {
+  collectionDisplay: NS.ontola('collectionDisplay'),
+  query: NS.argu('query'),
+  searchTemplate: NS.ontola('searchTemplate'),
+  took: NS.argu('took'),
+  totalItems: NS.as('totalItems'),
+};
 
 SearchResultWidget.propTypes = {
   history: PropTypes.shape({

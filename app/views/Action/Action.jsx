@@ -31,10 +31,10 @@ export class Action extends NavigatableAction {
     primaryResourceTopology,
   ];
 
-  static mapDataToProps = [
-    NS.schema('actionStatus'),
-    NS.schema('object'),
-  ];
+  static mapDataToProps = {
+    actionStatus: NS.schema('actionStatus'),
+    object: NS.schema('object'),
+  };
 
   static hocs = [withRouter];
 

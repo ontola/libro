@@ -13,9 +13,11 @@ import WidgetTopology from '../../topologies/WidgetTopology/WidgetTopology';
 class Widget extends PureComponent {
   static type = NS.ontola('Widget');
 
-  static mapDataToProps = [NS.ontola('widgetSize')];
-
   static topology = containerTopology;
+
+  static mapDataToProps = {
+    widgetSize: NS.ontola('widgetSize'),
+  };
 
   static propTypes = {
     widgetSize: linkType,

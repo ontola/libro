@@ -27,10 +27,10 @@ class InlineCreateAction extends React.PureComponent {
     cardFloatTopology,
   ];
 
-  static mapDataToProps = [
-    NS.schema('object'),
-    NS.schema('actionStatus'),
-  ];
+  static mapDataToProps = {
+    actionStatus: NS.schema('actionStatus'),
+    object: NS.schema('object'),
+  };
 
   static hocs = [connect(null, mapCardListDispatchToProps)];
 

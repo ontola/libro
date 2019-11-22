@@ -16,11 +16,13 @@ class ActionTableCell extends React.PureComponent {
 
   static topology = tableCellTopology;
 
-  static mapDataToProps = [NS.schema('actionStatus')];
+  static mapDataToProps = {
+    actionStatus: NS.schema('actionStatus'),
+  };
 
   static propTypes = {
     actionStatus: linkType,
-  }
+  };
 
   render() {
     if (invalidStatusIds.includes(rdf.id(this.props.actionStatus))) {

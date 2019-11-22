@@ -47,7 +47,9 @@ MenuItemDropdown.type = [
 
 MenuItemDropdown.topology = [cardFloatTopology, containerFloatTopology];
 
-MenuItemDropdown.mapDataToProps = [NS.ontola('menuItems')];
+MenuItemDropdown.mapDataToProps = {
+  menuItems: NS.ontola('menuItems'),
+};
 
 MenuItemDropdown.propTypes = {
   menuItems: linkType,

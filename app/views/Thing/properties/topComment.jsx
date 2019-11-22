@@ -19,10 +19,10 @@ class TopComment extends React.PureComponent {
 
   static property = NS.argu('topComment');
 
-  static mapDataToProps = [
-    NS.argu('topComment'),
-    NS.argu('commentsCount'),
-  ];
+  static mapDataToProps = {
+    commentsCount: NS.argu('commentsCount'),
+    topComment: NS.argu('topComment'),
+  };
 
   static propTypes = {
     commentsCount: linkType,

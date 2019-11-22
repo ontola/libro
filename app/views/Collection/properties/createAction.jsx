@@ -16,11 +16,11 @@ class CreateAction extends React.PureComponent {
 
   static topology = actionsBarTopology;
 
-  static mapDataToProps = [
-    NS.ontola('createAction'),
-    NS.as('totalItems'),
-    NS.schema('isPartOf'),
-  ];
+  static mapDataToProps = {
+    createAction: NS.ontola('createAction'),
+    isPartOf: NS.schema('isPartOf'),
+    totalItems: NS.as('totalItems'),
+  };
 
   static propTypes = {
     createAction: linkType,

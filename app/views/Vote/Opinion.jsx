@@ -16,10 +16,10 @@ class Opinion extends Component {
     cardRowTopology,
   ];
 
-  static mapDataToProps = [
-    NS.schema('option'),
-    NS.argu('primaryVote'),
-  ];
+  static mapDataToProps = {
+    option: NS.schema('option'),
+    primaryVote: NS.argu('primaryVote'),
+  };
 
   static propTypes = {
     option: linkType,

@@ -11,7 +11,9 @@ const FormOptionInline = () => (
 
 FormOptionInline.type = NS.ontola('FormOption');
 
-FormOptionInline.mapDataToProps = [NS.rdf('type')];
+FormOptionInline.mapDataToProps = {
+  type: NS.rdf('type'),
+};
 
 FormOptionInline.topology = [attributeListTopology, inlineTopology];
 

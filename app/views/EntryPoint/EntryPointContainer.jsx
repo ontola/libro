@@ -15,6 +15,8 @@ EntryPointContainer.type = NS.schema('EntryPoint');
 
 EntryPointContainer.topology = containerTopology;
 
-EntryPointContainer.mapDataToProps = [NS.schema('name')];
+EntryPointContainer.mapDataToProps = {
+  name: NS.schema('name'),
+};
 
 export default register(EntryPointContainer);

@@ -19,10 +19,10 @@ class ActionContainer extends NavigatableAction {
     containerTopology,
   ];
 
-  static mapDataToProps = [
-    NS.schema('actionStatus'),
-    NS.schema('target'),
-  ];
+  static mapDataToProps = {
+    actionStatus: NS.schema('actionStatus'),
+    target: NS.schema('target'),
+  };
 
   static hocs = [withRouter];
 

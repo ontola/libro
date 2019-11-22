@@ -26,9 +26,9 @@ ActionDropdownContent.type = NS.schema('Action');
 
 ActionDropdownContent.topology = menuTopology;
 
-ActionDropdownContent.mapDataToProps = [
-  NS.schema('name'),
-];
+ActionDropdownContent.mapDataToProps = {
+  name: NS.schema('name'),
+};
 
 ActionDropdownContent.propTypes = {
   name: linkType,

@@ -18,10 +18,10 @@ ThingTableHeaderRow.type = NS.schema('Thing');
 
 ThingTableHeaderRow.topology = tableHeaderRowTopology;
 
-ThingTableHeaderRow.mapDataToProps = [NS.schema('name')];
-
 ThingTableHeaderRow.mapDataToProps = {
-  name: { label: [NS.schema('name'), NS.rdfs('label')] },
+  name: {
+    label: [NS.schema('name'), NS.rdfs('label')],
+  },
 };
 
 ThingTableHeaderRow.propTypes = {

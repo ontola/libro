@@ -26,12 +26,12 @@ class ActivityName extends PropertyBase {
 
   static topology = allTopologies;
 
-  static mapDataToProps = [
-    NS.as('actor'),
-    NS.schema('name'),
-    NS.as('target'),
-    NS.as('object'),
-  ];
+  static mapDataToProps = {
+    actor: NS.as('actor'),
+    name: NS.schema('name'),
+    object: NS.as('object'),
+    target: NS.as('target'),
+  };
 
   render() {
     const { name } = this.props;

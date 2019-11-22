@@ -13,10 +13,10 @@ class RDFSClass extends React.PureComponent {
 
   static topology = detailsBarTopology;
 
-  static mapDataToProps = [
-    NS.schema('description'),
-    NS.rdfs('label'),
-  ];
+  static mapDataToProps = {
+    description: NS.schema('description'),
+    label: NS.rdfs('label'),
+  };
 
   static propTypes = {
     description: linkType.isRequired,

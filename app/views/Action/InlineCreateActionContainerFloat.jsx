@@ -67,11 +67,11 @@ InlineCreateActionContainerFloat.topology = [
   containerFloatTopology,
 ];
 
-InlineCreateActionContainerFloat.mapDataToProps = [
-  NS.schema('object'),
-  NS.schema('actionStatus'),
-  NS.schema('name'),
-];
+InlineCreateActionContainerFloat.mapDataToProps = {
+  actionStatus: NS.schema('actionStatus'),
+  name: NS.schema('name'),
+  object: NS.schema('object'),
+};
 
 InlineCreateActionContainerFloat.hocs = [
   connect(null, mapCardListDispatchToProps),

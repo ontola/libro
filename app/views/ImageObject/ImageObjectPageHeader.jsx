@@ -13,10 +13,10 @@ class ImageObjectPageHeader extends PureComponent {
 
   static topology = pageHeaderTopology;
 
-  static mapDataToProps = [
-    NS.ontola('imgUrl256x256'),
-    NS.schema('description'),
-  ];
+  static mapDataToProps = {
+    description: NS.schema('description'),
+    imgUrl256x256: NS.ontola('imgUrl256x256'),
+  };
 
   static linkOpts = {
     returnType: 'value',

@@ -49,7 +49,9 @@ ReadActionCard.topology = [
   cardTopology,
 ];
 
-ReadActionCard.mapDataToProps = [schema.name];
+ReadActionCard.mapDataToProps = {
+  name: schema.name,
+};
 
 ReadActionCard.propTypes = propTypes;
 

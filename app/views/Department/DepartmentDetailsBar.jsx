@@ -18,7 +18,9 @@ DepartmentDetailsBar.topology = [
   contentDetailsTopology,
 ];
 
-DepartmentDetailsBar.mapDataToProps = [NS.schema('name')];
+DepartmentDetailsBar.mapDataToProps = {
+  name: NS.schema('name'),
+};
 
 DepartmentDetailsBar.propTypes = {
   name: linkType,

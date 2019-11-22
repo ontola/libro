@@ -11,10 +11,10 @@ class AppSignOutActionsBar extends React.PureComponent {
 
   static topology = actionsBarTopology;
 
-  static mapDataToProps = [
-    NS.schema('name'),
-    NS.schema('url'),
-  ];
+  static mapDataToProps = {
+    name: NS.schema('name'),
+    url: NS.schema('url'),
+  };
 
   static propTypes = {
     name: linkType,

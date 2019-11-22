@@ -49,10 +49,10 @@ ActionCardMain.type = NS.schema('CreateAction');
 
 ActionCardMain.topology = cardMainTopology;
 
-ActionCardMain.mapDataToProps = [
-  NS.schema('actionStatus'),
-  NS.schema('name'),
-];
+ActionCardMain.mapDataToProps = {
+  actionStatus: NS.schema('actionStatus'),
+  name: NS.schema('name'),
+};
 
 ActionCardMain.propTypes = {
   actionStatus: linkType,

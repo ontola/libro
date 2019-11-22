@@ -27,9 +27,9 @@ CollectionCardAppendix.type = CollectionTypes;
 
 CollectionCardAppendix.topology = cardAppendixTopology;
 
-CollectionCardAppendix.mapDataToProps = [
-  NS.as('totalItems'),
-];
+CollectionCardAppendix.mapDataToProps = {
+  totalItems: NS.as('totalItems'),
+};
 
 CollectionCardAppendix.propTypes = {
   totalItems: linkType,

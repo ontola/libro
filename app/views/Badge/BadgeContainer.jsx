@@ -76,7 +76,9 @@ BadgeContainer.topology = [
   widgetTopologyTopology,
 ];
 
-BadgeContainer.mapDataToProps = [NS.schema('image')];
+BadgeContainer.mapDataToProps = {
+  image: NS.schema('image'),
+};
 
 BadgeContainer.propTypes = {
   image: linkType,

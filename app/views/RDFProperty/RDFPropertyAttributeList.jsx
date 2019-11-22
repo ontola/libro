@@ -11,7 +11,9 @@ const RDFPropertyAttributeList = () => (
 
 RDFPropertyAttributeList.type = NS.rdf('Property');
 
-RDFPropertyAttributeList.mapDataToProps = [NS.rdf('type')];
+RDFPropertyAttributeList.mapDataToProps = {
+  type: NS.rdf('type'),
+};
 
 RDFPropertyAttributeList.topology = [attributeListTopology, inlineTopology];
 

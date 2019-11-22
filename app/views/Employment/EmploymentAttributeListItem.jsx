@@ -22,10 +22,10 @@ EmploymentAttributeListItem.type = NS.rivm('Employment');
 
 EmploymentAttributeListItem.topology = [attributeListTopology];
 
-EmploymentAttributeListItem.mapDataToProps = [
-  NS.schema('image'),
-  NS.schema('name'),
-];
+EmploymentAttributeListItem.mapDataToProps = {
+  image: NS.schema('image'),
+  name: NS.schema('name'),
+};
 
 EmploymentAttributeListItem.propTypes = {
   image: linkType,

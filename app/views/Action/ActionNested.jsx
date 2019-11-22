@@ -32,10 +32,10 @@ class ActionNested extends NavigatableAction {
     tabPaneTopology,
   ];
 
-  static mapDataToProps = [
-    schema.actionStatus,
-    schema.object,
-  ];
+  static mapDataToProps = {
+    actionStatus: schema.actionStatus,
+    object: schema.object,
+  };
 
   static hocs = [withRouter];
 

@@ -17,10 +17,10 @@ class CollectionNavbar extends React.PureComponent {
 
   static topology = navbarTopology;
 
-  static mapDataToProps = [
-    NS.argu('unreadCount'),
-    NS.schema('name'),
-  ];
+  static mapDataToProps = {
+    name: NS.schema('name'),
+    unreadCount: NS.argu('unreadCount'),
+  };
 
   static propTypes = {
     subject: subjectType,

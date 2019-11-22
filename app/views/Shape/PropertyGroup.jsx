@@ -90,7 +90,10 @@ PropertyGroup.type = NS.sh('PropertyGroup');
 
 PropertyGroup.topology = allTopologies;
 
-PropertyGroup.mapDataToProps = [NS.rdfs('label'), NS.sh('description')];
+PropertyGroup.mapDataToProps = {
+  description: NS.sh('description'),
+  label: NS.rdfs('label'),
+};
 
 PropertyGroup.linkOpts = {
   forceRender: true,

@@ -42,12 +42,12 @@ const ForumPage = ({ coverPhoto, hideHeader }) => {
 
 ForumPage.type = [NS.argu('ContainerNode'), NS.schema('WebPage')];
 
-ForumPage.mapDataToProps = [
-  NS.ontola('coverPhoto'),
-  NS.argu('hideHeader'),
-  NS.ontola('widgets'),
-  schema.name,
-];
+ForumPage.mapDataToProps = {
+  coverPhoto: NS.ontola('coverPhoto'),
+  hideHeader: NS.argu('hideHeader'),
+  name: schema.name,
+  widgets: NS.ontola('widgets'),
+};
 
 ForumPage.propTypes = {
   coverPhoto: linkType,

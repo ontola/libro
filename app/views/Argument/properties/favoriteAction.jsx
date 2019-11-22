@@ -19,10 +19,10 @@ class FavoriteAction extends React.PureComponent {
 
   static topology = allTopologies;
 
-  static mapDataToProps = [
-    NS.ontola('favoriteAction'),
-    NS.argu('votesProCount'),
-  ];
+  static mapDataToProps = {
+    favoriteAction: NS.ontola('favoriteAction'),
+    votesProCount: NS.argu('votesProCount'),
+  };
 
   static propTypes = {
     favoriteAction: linkType,

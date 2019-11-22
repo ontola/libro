@@ -32,9 +32,9 @@ DesiredCount.topology = allTopologies;
 
 DesiredCount.property = NS.teamGL('desiredCount');
 
-DesiredCount.mapDataToProps = [
-  NS.teamGL('participantsCount'),
-];
+DesiredCount.mapDataToProps = {
+  participantsCount: NS.teamGL('participantsCount'),
+};
 
 DesiredCount.propTypes = {
   linkedProp: linkedPropType.isRequired,

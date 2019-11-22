@@ -165,10 +165,10 @@ InterventionPage.type = NS.rivm('Intervention');
 
 InterventionPage.topology = pageTopology;
 
-InterventionPage.mapDataToProps = [
-  NS.schema('isPartOf'),
-  NS.rivm('employment'),
-];
+InterventionPage.mapDataToProps = {
+  employment: NS.rivm('employment'),
+  isPartOf: NS.schema('isPartOf'),
+};
 
 InterventionPage.propTypes = {
   employment: linkType,

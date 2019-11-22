@@ -20,9 +20,9 @@ EntryPointDetail.topology = [
   detailsBarTopology,
 ];
 
-EntryPointDetail.mapDataToProps = [
-  NS.schema('image'),
-];
+EntryPointDetail.mapDataToProps = {
+  image: NS.schema('image'),
+};
 
 EntryPointDetail.propTypes = {
   image: linkType,

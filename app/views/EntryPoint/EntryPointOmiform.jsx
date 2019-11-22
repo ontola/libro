@@ -44,13 +44,15 @@ const EntryPointOmniformWrapper = withLRS(props => (
   />
 ));
 
-EntryPointOmniformWrapper.mapDataToProps = [
-  NS.schema('image'),
-  NS.schema('name'),
-  NS.schema('url'),
-  NS.schema('httpMethod'),
-];
-EntryPointOmniformWrapper.topology = omniformFieldsTopology;
 EntryPointOmniformWrapper.type = NS.schema('EntryPoint');
+
+EntryPointOmniformWrapper.topology = omniformFieldsTopology;
+
+EntryPointOmniformWrapper.mapDataToProps = {
+  httpMethod: NS.schema('httpMethod'),
+  image: NS.schema('image'),
+  name: NS.schema('name'),
+  url: NS.schema('url'),
+};
 
 export default register(EntryPointOmniformWrapper);

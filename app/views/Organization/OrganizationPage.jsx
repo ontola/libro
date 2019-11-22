@@ -55,11 +55,11 @@ OrganizationPage.topology = [
   pageTopology,
 ];
 
-OrganizationPage.mapDataToProps = [
-  NS.foaf('homepage'),
-  NS.schema('name'),
-  NS.argu('hideHeader'),
-];
+OrganizationPage.mapDataToProps = {
+  hideHeader: NS.argu('hideHeader'),
+  homepage: NS.foaf('homepage'),
+  name: NS.schema('name'),
+};
 
 OrganizationPage.propTypes = {
   hideHeader: linkType,

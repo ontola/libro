@@ -15,7 +15,9 @@ const CollectionInline = () => (
 
 CollectionInline.type = CollectionTypes;
 
-CollectionInline.mapDataToProps = [NS.rdf('type')];
+CollectionInline.mapDataToProps = {
+  type: NS.rdf('type'),
+};
 
 CollectionInline.topology = inlineTopology;
 

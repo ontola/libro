@@ -130,12 +130,12 @@ MenuItemDropdownContent.topology = [
   menuTopology,
 ];
 
-MenuItemDropdownContent.mapDataToProps = [
-  NS.ontola('action'),
-  NS.ontola('href'),
-  NS.schema('name'),
-  NS.ontola('menuItems'),
-  NS.schema('image'),
-];
+MenuItemDropdownContent.mapDataToProps = {
+  action: NS.ontola('action'),
+  href: NS.ontola('href'),
+  image: NS.schema('image'),
+  menuItems: NS.ontola('menuItems'),
+  name: NS.schema('name'),
+};
 
 export default register(MenuItemDropdownContent);

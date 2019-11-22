@@ -26,9 +26,9 @@ ActionDetail.topology = [
   detailsBarTopology,
 ];
 
-ActionDetail.mapDataToProps = [
-  NS.schema('name'),
-];
+ActionDetail.mapDataToProps = {
+  name: NS.schema('name'),
+};
 
 ActionDetail.propTypes = {
   name: linkType,

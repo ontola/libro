@@ -27,9 +27,9 @@ ActionPrimaryCallToAction.type = NS.schema('Action');
 
 ActionPrimaryCallToAction.topology = primaryCallToActionTopology;
 
-ActionPrimaryCallToAction.mapDataToProps = [
-  NS.schema('name'),
-  NS.schema('target'),
-];
+ActionPrimaryCallToAction.mapDataToProps = {
+  name: NS.schema('name'),
+  target: NS.schema('target'),
+};
 
 export default register(ActionPrimaryCallToAction);

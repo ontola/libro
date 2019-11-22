@@ -25,10 +25,10 @@ class Href extends React.PureComponent {
     navbarTopology,
   ];
 
-  static mapDataToProps = [
-    NS.ontola('action'),
-    NS.ontola('href'),
-  ];
+  static mapDataToProps = {
+    action: NS.ontola('action'),
+    href: NS.ontola('href'),
+  };
 
   static propTypes = {
     action: linkType,

@@ -9,7 +9,9 @@ import { inlineTopology } from '../../topologies/Inline';
 class ThingInline extends React.PureComponent {
   static type = NS.schema('Thing');
 
-  static mapDataToProps = [NS.rdf('type')];
+  static mapDataToProps = {
+    type: NS.rdf('type'),
+  };
 
   static topology = [attributeListTopology, inlineTopology];
 

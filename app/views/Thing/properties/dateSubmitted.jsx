@@ -15,9 +15,9 @@ class DateSubmitted extends React.Component {
 
   static topology = allTopologies;
 
-  static mapDataToProps = [
-    NS.schema('dateSubmitted'),
-  ];
+  static mapDataToProps = {
+    dateSubmitted: NS.schema('dateSubmitted'),
+  };
 
   static propTypes = {
     dateSubmitted: linkedPropType,

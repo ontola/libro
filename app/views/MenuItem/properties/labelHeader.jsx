@@ -16,7 +16,10 @@ class MenuItemLabelHeader extends React.PureComponent {
 
   static topology = navbarTopology;
 
-  static mapDataToProps = [NS.schema('name'), NS.schema('image')];
+  static mapDataToProps = {
+    image: NS.schema('image'),
+    name: NS.schema('name'),
+  };
 
   static propTypes = {
     linkedProp: linkType,

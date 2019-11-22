@@ -16,11 +16,11 @@ class RDFSClassFormFooter extends React.PureComponent {
 
   static topology = formFooterTopology;
 
-  static mapDataToProps = [
-    NS.schema('description'),
-    NS.rdfs('label'),
-    NS.schema('image'),
-  ];
+  static mapDataToProps = {
+    description: NS.schema('description'),
+    image: NS.schema('image'),
+    label: NS.rdfs('label'),
+  };
 
   static propTypes = {
     current: PropTypes.bool,

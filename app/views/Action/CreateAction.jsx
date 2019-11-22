@@ -46,7 +46,9 @@ export class CreateActionButton extends Component {
     widgetTopologyTopology
   );
 
-  static mapDataToProps = [NS.schema('name')];
+  static mapDataToProps = {
+    name: NS.schema('name'),
+  };
 
   static propTypes = {
     actionStatus: linkType,
