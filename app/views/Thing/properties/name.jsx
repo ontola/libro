@@ -99,7 +99,7 @@ export default [
     hoverBoxTopology
   ),
   LinkedRenderStore.registerRenderer(
-    link([NS.schema('name')])(ActionButton),
+    link({ name: NS.schema('name') })(ActionButton),
     NS.schema('Thing'),
     NamePredicates,
     [

@@ -57,6 +57,20 @@ const Arguments = ({
   return children || <ArgumentColumns />;
 };
 
+Arguments.propTypes = {
+  conArguments: linkType,
+  conArgumentsCount: linkType,
+  proArguments: linkType,
+  proArgumentsCount: linkType,
+};
+
+const ArgumentsData = link({
+  conArguments: NS.argu('conArguments'),
+  conArgumentsCount: NS.argu('conArgumentsCount'),
+  proArguments: NS.argu('proArguments'),
+  proArgumentsCount: NS.argu('proArgumentsCount'),
+})(Arguments);
+
 const ArgumentsCardAppendix = props => (
   <ArgumentsData {...props}>
     <CardRow backdrop>
@@ -65,20 +79,6 @@ const ArgumentsCardAppendix = props => (
     </CardRow>
   </ArgumentsData>
 );
-
-Arguments.propTypes = {
-  conArguments: linkType,
-  conArgumentsCount: linkType,
-  proArguments: linkType,
-  proArgumentsCount: linkType,
-};
-
-const ArgumentsData = link([
-  NS.argu('conArgumentsCount'),
-  NS.argu('proArgumentsCount'),
-  NS.argu('proArguments'),
-  NS.argu('conArguments'),
-])(Arguments);
 
 export default [
   LinkedRenderStore.registerRenderer(

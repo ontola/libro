@@ -25,7 +25,7 @@ const TypeDetail = ({ type }) => {
 TypeDetail.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
-  link([NS.rdf('type')], { limit: Infinity })(TypeDetail),
+  link({ type: NS.rdf('type') }, { limit: Infinity })(TypeDetail),
   NS.schema('Thing'),
   NS.rdf('type'),
   detailsBarTopology

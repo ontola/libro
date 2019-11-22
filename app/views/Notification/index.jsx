@@ -1,9 +1,8 @@
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   Property,
-  link,
   linkType,
   lrsType,
+  register,
   subjectType,
 } from 'link-redux';
 import React from 'react';
@@ -59,18 +58,22 @@ const Notification = ({
   );
 };
 
+Notification.type = NS.argu('Notification');
+
+Notification.topology = [
+  primaryResourceTopology,
+  containerTopology,
+];
+
+Notification.mapDataToProps = {
+  name: NS.schema('name'),
+  target: NS.schema('target'),
+};
+
 Notification.propTypes = propTypes;
 
 export default [
-  LinkedRenderStore.registerRenderer(
-    link([NS.schema('name'), NS.schema('target')])(Notification),
-    NS.argu('Notification'),
-    RENDER_CLASS_NAME,
-    [
-      primaryResourceTopology,
-      containerTopology,
-    ]
-  ),
+  register(Notification),
   NotificationHeader,
   Creator,
   Name,

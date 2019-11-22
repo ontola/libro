@@ -9,7 +9,7 @@ import { cardListTopology } from '../../topologies/Card/CardList';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 
 export default LinkedRenderStore.registerRenderer(
-  link([NS.schema('name')])(ActionButton),
+  link({ name: NS.schema('name') })(ActionButton),
   NS.schema('EntryPoint'),
   RENDER_CLASS_NAME,
   [

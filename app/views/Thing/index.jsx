@@ -142,7 +142,7 @@ export default [
     cardRowTopology
   ),
   LinkedRenderStore.registerRenderer(
-    link([NS.schema('name')])(({ name, theme }) => (
+    link({ name: NS.schema('name') })(({ name, theme }) => (
       <LDLink data-test="Thing-parent" features={['centered']} theme={theme}>
         <Detail text={name.value} />
       </LDLink>

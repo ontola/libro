@@ -48,14 +48,12 @@ const LinkedDetailDate = ({
 
 LinkedDetailDate.propTypes = propTypes;
 
-export default link([
-  NS.argu('lastActivityAt'),
-  NS.schema('startDate'),
-  NS.schema('endDate'),
-  NS.schema('dateCreated'),
-  NS.schema('datePublished'),
-  NS.schema('dateModified'),
-  NS.schema('duration'),
-  NS.schema('endDate'),
-  NS.schema('startDate'),
-])(LinkedDetailDate);
+export default link({
+  dateCreated: NS.schema('dateCreated'),
+  dateModified: NS.schema('dateModified'),
+  datePublished: NS.schema('datePublished'),
+  duration: NS.schema('duration'),
+  endDate: NS.schema('endDate'),
+  lastActivityAt: NS.argu('lastActivityAt'),
+  startDate: NS.schema('startDate'),
+})(LinkedDetailDate);

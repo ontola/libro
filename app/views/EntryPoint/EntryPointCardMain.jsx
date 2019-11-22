@@ -104,12 +104,12 @@ class EntryPointCardMain extends EntryPointBase {
   }
 }
 
-const EntryPointCardMainForm = link([
-  NS.schema('image'),
-  NS.schema('name'),
-  NS.schema('url'),
-  NS.schema('httpMethod'),
-])(EntryPointCardMain);
+const EntryPointCardMainForm = link({
+  httpMethod: NS.schema('httpMethod'),
+  image: NS.schema('image'),
+  name: NS.schema('name'),
+  url: NS.schema('url'),
+})(EntryPointCardMain);
 
 export default LinkedRenderStore.registerRenderer(
   withRouter(props => (

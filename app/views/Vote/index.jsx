@@ -76,16 +76,21 @@ ThingHoverBoxHidden.propTypes = {
   text: PropTypes.string,
 };
 
+const mappedProps = {
+  option: NS.schema('option'),
+  text: NS.schema('text'),
+};
+
 export default [
   Opinion,
   LinkedRenderStore.registerRenderer(
-    link([NS.schema('option'), NS.schema('text')], { returnType: 'value' })(VoteSidePage),
+    link(mappedProps, { returnType: 'value' })(VoteSidePage),
     NS.argu('Vote'),
     RENDER_CLASS_NAME,
     voteEventSideTopology
   ),
   LinkedRenderStore.registerRenderer(
-    link([NS.schema('option'), NS.schema('text')], { returnType: 'value' })(ThingHoverBoxHidden),
+    link(mappedProps, { returnType: 'value' })(ThingHoverBoxHidden),
     NS.argu('Vote'),
     RENDER_CLASS_NAME,
     popupTopology

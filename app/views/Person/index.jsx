@@ -19,7 +19,7 @@ export default [
   PersonPage,
   PersonSelect,
   LinkedRenderStore.registerRenderer(
-    link([NS.schema('name')], { returnType: 'value' })(({ name }) => (
+    link({ name: NS.schema('name') }, { returnType: 'value' })(({ name }) => (
       <Property ariaLabel={name} label={NS.schema('image')} />
     )),
     [NS.schema('Person'), NS.aod('Persons'), NS.argu('Page')],

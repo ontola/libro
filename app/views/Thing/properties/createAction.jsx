@@ -1,8 +1,7 @@
-import LinkedRenderStore from 'link-lib';
 import {
   LinkedResourceContainer,
-  link,
   linkType,
+  register,
   subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -10,12 +9,6 @@ import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../../topologies';
-
-const propTypes = {
-  createAction: subjectType,
-  isPartOf: linkType,
-  omniform: PropTypes.bool,
-};
 
 const CreateAction = ({
   createAction,
@@ -25,11 +18,24 @@ const CreateAction = ({
   <LinkedResourceContainer isPartOf={isPartOf} omniform={omniform} subject={createAction} />
 );
 
-CreateAction.propTypes = propTypes;
+CreateAction.type = [
+  NS.schema('Thing'),
+  NS.link('Document'),
+];
 
-export default LinkedRenderStore.registerRenderer(
-  link([NS.ontola('createAction'), NS.schema('isPartOf')])(CreateAction),
-  [NS.schema('Thing'), NS.link('Document')],
-  NS.ontola('createAction'),
-  allTopologies
-);
+CreateAction.property = NS.ontola('createAction');
+
+CreateAction.topology = allTopologies;
+
+CreateAction.mapDataToProps = {
+  createAction: NS.ontola('createAction'),
+  isPartOf: NS.schema('isPartOf'),
+};
+
+CreateAction.propTypes = {
+  createAction: subjectType,
+  isPartOf: linkType,
+  omniform: PropTypes.bool,
+};
+
+export default register(CreateAction);

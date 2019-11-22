@@ -12,7 +12,7 @@ import collectionPageComponents from '../CollectionPage/index';
 import components from './index';
 
 const testClass = LinkedRenderStore.registerRenderer(
-  link([NS.as('name')])(({ name }) => <p className="testComp">{name.value}</p>),
+  link({ name: NS.as('name') })(({ name }) => <p className="testComp">{name.value}</p>),
   NS.example('TestClass'),
   RENDER_CLASS_NAME,
   allTopologies

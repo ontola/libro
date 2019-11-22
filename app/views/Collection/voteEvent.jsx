@@ -65,21 +65,28 @@ VoteEventSide.propTypes = {
   totalVotes: linkType,
 };
 
+const totalItemsProp = {
+  totalItems: NS.as('totalItems'),
+};
+
 export default [
   LinkedRenderStore.registerRenderer(
-    link([NS.as('totalItems')])(VoteEventResult),
+    link(totalItemsProp)(VoteEventResult),
     CollectionTypes,
     RENDER_CLASS_NAME,
     voteEventTopology
   ),
   LinkedRenderStore.registerRenderer(
-    link([NS.as('totalItems')])(VoteEventResultCard),
+    link(totalItemsProp)(VoteEventResultCard),
     CollectionTypes,
     RENDER_CLASS_NAME,
     cardVoteEventTopology
   ),
   LinkedRenderStore.registerRenderer(
-    link([NS.argu('parentView'), NS.as('totalItems')])(VoteEventSide),
+    link({
+      parentView: NS.argu('parentView'),
+      ...totalItemsProp,
+    })(VoteEventSide),
     CollectionTypes,
     RENDER_CLASS_NAME,
     voteEventResultTopology

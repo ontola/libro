@@ -72,19 +72,27 @@ class VoteEventSide extends TopologyProvider {
 
 export default [
   LinkedRenderStore.registerRenderer(
-    link([NS.as('totalItems')])(VoteEventResult),
+    link({
+      totalItems: NS.as('totalItems'),
+    })(VoteEventResult),
     CollectionViewTypes,
     RENDER_CLASS_NAME,
     voteEventTopology
   ),
   LinkedRenderStore.registerRenderer(
-    link([NS.as('totalItems')])(VoteEventResultCard),
+    link({
+      totalItems: NS.as('totalItems'),
+    })(VoteEventResultCard),
     CollectionViewTypes,
     RENDER_CLASS_NAME,
     cardVoteEventTopology
   ),
   LinkedRenderStore.registerRenderer(
-    link([NS.argu('parentView'), NS.as('partOf'), NS.as('totalItems')])(VoteEventSide),
+    link({
+      parentView: NS.argu('parentView'),
+      partOf: NS.as('partOf'),
+      totalItems: NS.as('totalItems'),
+    })(VoteEventSide),
     CollectionViewTypes,
     RENDER_CLASS_NAME,
     voteEventResultTopology
