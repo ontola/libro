@@ -11,15 +11,10 @@ import React from 'react';
 
 import { Columns } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
-import { tryParseInt } from '../../../helpers/numbers';
 import Margin from '../../Margin/Margin';
 import { allTopologiesExcept } from '../../../topologies';
 import { cardAppendixTopology } from '../../../topologies/Card/CardAppendix';
 import CardRow from '../../../topologies/Card/CardRow';
-
-function noArguments(conArgumentsCount, proArgumentsCount) {
-  return (tryParseInt(conArgumentsCount) || 0) + (tryParseInt(proArgumentsCount) || 0) === 0;
-}
 
 const ArgumentColumns = () => (
   <Columns>
@@ -41,9 +36,7 @@ const ArgumentColumns = () => (
 const Arguments = ({
   children,
   conArguments,
-  conArgumentsCount,
   proArguments,
-  proArgumentsCount,
 }) => {
   const ctx = useLinkRenderContext();
   useDataInvalidation({
@@ -51,25 +44,17 @@ const Arguments = ({
     subject: ctx.subject,
   });
 
-  if (noArguments(conArgumentsCount, proArgumentsCount)) {
-    return null;
-  }
-
   return children || <ArgumentColumns />;
 };
 
 Arguments.propTypes = {
   conArguments: linkType,
-  conArgumentsCount: linkType,
   proArguments: linkType,
-  proArgumentsCount: linkType,
 };
 
 const ArgumentsData = link({
   conArguments: NS.argu('conArguments'),
-  conArgumentsCount: NS.argu('conArgumentsCount'),
   proArguments: NS.argu('proArguments'),
-  proArgumentsCount: NS.argu('proArgumentsCount'),
 })(Arguments);
 
 const ArgumentsCardAppendix = props => (
