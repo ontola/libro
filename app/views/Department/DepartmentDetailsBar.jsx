@@ -1,18 +1,26 @@
 import schema from '@ontologies/schema';
-import { linkType, register } from 'link-redux';
+import {
+  linkType,
+  register,
+  subjectType,
+} from 'link-redux';
 import React from 'react';
 import emoji from 'react-easy-emoji';
 
-import { NS } from '../../helpers/LinkedRenderStore';
 import { Detail } from '../../components';
+import teamGL from '../../ontology/teamGL';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { contentDetailsTopology } from '../../topologies/ContentDetails';
+import { retrievePath } from '../../helpers/iris';
 
-const DepartmentDetailsBar = ({ name }) => (
-  <Detail text={emoji(`🌍 ${name.value}`)} />
+const DepartmentDetailsBar = ({ name, subject }) => (
+  <Detail
+    text={emoji(`🌍 ${name.value}`)}
+    url={retrievePath(subject.value)}
+  />
 );
 
-DepartmentDetailsBar.type = NS.teamGL('Department');
+DepartmentDetailsBar.type = teamGL.Department;
 
 DepartmentDetailsBar.topology = [
   detailsBarTopology,
@@ -25,6 +33,7 @@ DepartmentDetailsBar.mapDataToProps = {
 
 DepartmentDetailsBar.propTypes = {
   name: linkType,
+  subject: subjectType,
 };
 
 export default register(DepartmentDetailsBar);

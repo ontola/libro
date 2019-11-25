@@ -19,6 +19,7 @@ import ontolaMiddleware from '../middleware/ontolaMiddleware';
 import ontola from '../ontology/ontola';
 import rivm from '../ontology/rivm';
 import sp from '../ontology/sp';
+import teamGL from '../ontology/teamGL';
 import arguDeltaProcessor from './arguDeltaProcessor';
 import { getMetaContent } from './arguHelpers';
 
@@ -119,7 +120,7 @@ export default function generateLRS() {
     person: createNS('http://www.w3.org/ns/person#'),
     rivm: rivm.ns,
     sp: sp.ns,
-    teamGL: createNS('http://glapp.nl/tgl#'),
+    teamGL: teamGL.ns,
   };
 
   const languages = {
