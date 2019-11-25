@@ -9,11 +9,9 @@ import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
 import { connectHighlighting, hightlightType } from '../../containers/Highlight';
-import SignInSwitcherContainer from '../../containers/SignInSwitcherContainer';
 import { NS } from '../../helpers/LinkedRenderStore';
 import rivm from '../../ontology/rivm';
 import Card from '../../topologies/Card';
-import CardAppendix from '../../topologies/Card/CardAppendix';
 import { containerTopology } from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
@@ -34,12 +32,6 @@ const InterventionContainer = ({ highlighted, subject }) => (
       </AttributeList>
       <Property label={[NS.argu('attachments'), NS.meeting('attachment')]} />
     </CardContent>
-    <CardAppendix>
-      <SignInSwitcherContainer subject={subject}>
-        <Property label={NS.argu('topComment')} />
-        <Property forceRender label={NS.app('omniform')} />
-      </SignInSwitcherContainer>
-    </CardAppendix>
   </Card>
 );
 
