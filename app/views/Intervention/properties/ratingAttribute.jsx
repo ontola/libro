@@ -5,7 +5,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import rivm from '../../../ontology/rivm';
 import { attributeListTopology } from '../../../topologies/AttributeList';
 import { tryParseFloat } from '../../../helpers/numbers';
 
@@ -14,9 +14,10 @@ import './ratingAttribute.scss';
 const ICON_COUNT = 5;
 
 const renderIcon = (value, index, src) => {
-  if (tryParseFloat(value) >= index) {
+  const float = tryParseFloat(value);
+  if (float >= index) {
     return (
-      <div className="Rating--image-wrapper" style={{ width: `${100 * (value - index)}%` }}>
+      <div className="Rating--image-wrapper" style={{ width: `${100 * (float - index)}%` }}>
         <img src={`${src}.png`} />
       </div>
     );
@@ -43,9 +44,9 @@ RatingAttribute.type = schema.Thing;
 RatingAttribute.topology = attributeListTopology;
 
 RatingAttribute.property = [
-  NS.rivm('securityImprovedScore'),
-  NS.rivm('oneOffCostsScore'),
-  NS.rivm('recurringCostsScore'),
+  rivm.securityImprovedScore,
+  rivm.oneOffCostsScore,
+  rivm.recurringCostsScore,
 ];
 
 RatingAttribute.propTypes = {

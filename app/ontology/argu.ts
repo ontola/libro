@@ -10,6 +10,7 @@ export default {
   ConArgument: argu('ConArgument'),
   ContainerNode: argu('ContainerNode'),
   ProArgument: argu('ProArgument'),
+  SearchResult: argu('SearchResult'),
 
   /* properties */
   attachments: argu('attachments'),

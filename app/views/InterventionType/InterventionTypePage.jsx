@@ -6,13 +6,17 @@ import { Property, register } from 'link-redux';
 import React from 'react';
 
 import {
+  AttributeListItem,
   CardContent,
   LinkedDetailDate,
 } from '../../components';
 import Button from '../../components/Button';
 import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
+import rivm from '../../ontology/rivm';
 import ActionsBar from '../../topologies/ActionsBar';
+import AttributeList from '../../topologies/AttributeList';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
@@ -26,7 +30,7 @@ const InterventionTypePage = () => (
     <Property label={ontola.coverPhoto} />
     <Container>
       <Property label={schema.isPartOf} />
-      <Property label={NS.argu('trashedAt')} />
+      <Property label={argu.trashedAt} />
       <CardMain>
         <DetailsBar
           right={(
@@ -39,20 +43,26 @@ const InterventionTypePage = () => (
         >
           <Property label={rdfx.type} />
           <LinkedDetailDate />
-          <Property label={NS.argu('pinnedAt')} />
-          <Property label={NS.argu('expiresAt')} />
-          <Property label={NS.argu('followsCount')} />
+          <Property label={argu.pinnedAt} />
+          <Property label={argu.expiresAt} />
+          <Property label={argu.followsCount} />
           <Property label={schema.location} />
-          <Property label={NS.argu('grantedGroups')} />
+          <Property label={argu.grantedGroups} />
         </DetailsBar>
         <CardContent noSpacing>
           <Property label={[schema.name, rdfs.label]} />
           <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
-          <Property label={NS.rivm('exampleOf')} topology={inlineTopology} />
+          <Property label={rivm.exampleOf} topology={inlineTopology} />
           <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
           <Property label={foaf.isPrimaryTopicOf} onLoad={() => null} />
+          <AttributeList>
+            <tr><th>Praktische ervaring</th><th>Aandrager</th></tr>
+            <AttributeListItem label={rivm.securityImprovedScore} />
+            <AttributeListItem label={rivm.oneOffCostsScore} />
+            <AttributeListItem label={rivm.recurringCostsScore} />
+          </AttributeList>
           <Property label={NS.meeting('attachment')} onLoad={() => null} />
-          <Property label={NS.argu('attachments')} onLoad={() => null} />
+          <Property label={argu.attachments} onLoad={() => null} />
         </CardContent>
         <ActionsBar>
           <Property label={ontola.favoriteAction} onLoad={() => null} />
@@ -64,7 +74,7 @@ const InterventionTypePage = () => (
       <Property label={ontola.publishAction} onLoad={() => null} />
     </Container>
     <Container>
-      <Property forceRender renderWhenEmpty label={NS.rivm('interventions')} />
+      <Property forceRender renderWhenEmpty label={rivm.interventions} />
     </Container>
     <Container>
       <Property label={schema.comment} />
@@ -83,7 +93,7 @@ const InterventionTypePage = () => (
   </PrimaryResource>
 );
 
-InterventionTypePage.type = NS.rivm('InterventionType');
+InterventionTypePage.type = rivm.InterventionType;
 
 InterventionTypePage.topology = pageTopology;
 

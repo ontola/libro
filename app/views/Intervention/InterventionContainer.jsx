@@ -11,6 +11,7 @@ import CardContent from '../../components/Card/CardContent';
 import { connectHighlighting, hightlightType } from '../../containers/Highlight';
 import SignInSwitcherContainer from '../../containers/SignInSwitcherContainer';
 import { NS } from '../../helpers/LinkedRenderStore';
+import rivm from '../../ontology/rivm';
 import Card from '../../topologies/Card';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import { containerTopology } from '../../topologies/Container';
@@ -27,9 +28,9 @@ const InterventionContainer = ({ highlighted, subject }) => (
       <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
       <AttributeList>
         <tr><th>Praktische ervaring</th><th>Aandrager</th></tr>
-        <AttributeListItem label={NS.rivm('securityImprovedScore')} />
-        <AttributeListItem label={NS.rivm('oneOffCostsScore')} />
-        <AttributeListItem label={NS.rivm('recurringCostsScore')} />
+        <AttributeListItem label={rivm.securityImprovedScore} />
+        <AttributeListItem label={rivm.oneOffCostsScore} />
+        <AttributeListItem label={rivm.recurringCostsScore} />
       </AttributeList>
       <Property label={[NS.argu('attachments'), NS.meeting('attachment')]} />
     </CardContent>
@@ -42,7 +43,7 @@ const InterventionContainer = ({ highlighted, subject }) => (
   </Card>
 );
 
-InterventionContainer.type = NS.rivm('Intervention');
+InterventionContainer.type = rivm.Intervention;
 
 InterventionContainer.topology = [
   alertDialogTopology,

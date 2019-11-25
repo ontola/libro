@@ -18,7 +18,9 @@ import {
   LinkedDetailDate,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
+import rivm from '../../ontology/rivm';
 import AttributeList from '../../topologies/AttributeList';
 import ActionsBar from '../../topologies/ActionsBar';
 import CardAppendix from '../../topologies/Card/CardAppendix';
@@ -43,7 +45,7 @@ const InterventionPage = ({
       <Property label={ontola.coverPhoto} />
       <Container>
         <Property label={schema.isPartOf} />
-        <Property label={NS.argu('trashedAt')} />
+        <Property label={argu.trashedAt} />
         <CardMain>
           <DetailsBar
             right={(
@@ -56,11 +58,11 @@ const InterventionPage = ({
           >
             <Property label={rdfx.type} />
             <LinkedDetailDate />
-            <Property label={NS.argu('pinnedAt')} />
-            <Property label={NS.argu('expiresAt')} />
-            <Property label={NS.argu('followsCount')} />
+            <Property label={argu.pinnedAt} />
+            <Property label={argu.expiresAt} />
+            <Property label={argu.followsCount} />
             <Property label={schema.location} />
-            <Property label={NS.argu('grantedGroups')} />
+            <Property label={argu.grantedGroups} />
           </DetailsBar>
           <CardContent noSpacing>
             <Property label={[schema.name, rdfs.label]} />
@@ -80,7 +82,7 @@ const InterventionPage = ({
               <LinkedResourceContainer subject={employment}>
                 <AttributeListItem label={schema.name} propertyLabel="Bedrijf" />
               </LinkedResourceContainer>
-              <AttributeListItem label={NS.rivm('businessSectionEmployees')} />
+              <AttributeListItem label={rivm.businessSectionEmployees} />
               <LinkedResourceContainer subject={employment}>
                 <AttributeListItem label={schema.industry} />
               </LinkedResourceContainer>
@@ -89,28 +91,28 @@ const InterventionPage = ({
             </AttributeList>
             <AttributeList>
               <tr><th>Praktische ervaring</th><th>Aandrager</th></tr>
-              <AttributeListItem label={NS.rivm('securityImprovedScore')} />
-              <AttributeListItem label={NS.rivm('oneOffCostsScore')} />
-              <AttributeListItem label={NS.rivm('recurringCostsScore')} />
+              <AttributeListItem label={rivm.securityImprovedScore} />
+              <AttributeListItem label={rivm.oneOffCostsScore} />
+              <AttributeListItem label={rivm.recurringCostsScore} />
             </AttributeList>
           </CardContent>
           <CardContent noSpacing>
             <Heading>Beschrijving</Heading>
             <LabeledAttribute label={schema.text} propertyLabel="Korte beschrijving" />
-            <LabeledAttribute label={NS.rivm('interventionGoal')} />
-            <LabeledAttribute label={NS.rivm('targetAudience')} />
-            <LabeledAttribute label={NS.rivm('interventionEffects')} />
+            <LabeledAttribute label={rivm.interventionGoal} />
+            <LabeledAttribute label={rivm.targetAudience} />
+            <LabeledAttribute label={rivm.interventionEffects} />
           </CardContent>
           <CardContent noSpacing>
             <Heading>Invoeren van de interventie</Heading>
             <AttributeList>
-              <AttributeListItem label={NS.rivm('continuous')} />
-              <AttributeListItem label={NS.rivm('independent')} />
-              <AttributeListItem label={NS.rivm('specificToolsRequired')} />
-              <AttributeListItem label={NS.rivm('managementInvolvement')} />
-              <AttributeListItem label={NS.rivm('trainingRequired')} />
+              <AttributeListItem label={rivm.continuous} />
+              <AttributeListItem label={rivm.independent} />
+              <AttributeListItem label={rivm.specificToolsRequired} />
+              <AttributeListItem label={rivm.managementInvolvement} />
+              <AttributeListItem label={rivm.trainingRequired} />
             </AttributeList>
-            <LabeledAttribute label={NS.rivm('additionalIntroductionInformation')} />
+            <LabeledAttribute label={rivm.additionalIntroductionInformation} />
           </CardContent>
           <CardContent noSpacing>
             <Heading>Kosten</Heading>
@@ -119,20 +121,20 @@ const InterventionPage = ({
                 Het invoeren en blijven uitvoeren van een interventie heeft bepaalde kosten.
                 De eenmalige kosten zijn ingeschat als{' '}
               </span>
-              <span style={{ textTransform: 'lowercase' }}><strong><Property label={NS.rivm('oneOffCosts')} topology={inlineTopology} /></strong></span>
+              <span style={{ textTransform: 'lowercase' }}><strong><Property label={rivm.oneOffCosts} topology={inlineTopology} /></strong></span>
               <span>. De doorlopende kosten zijn ingeschat als </span>
-              <span style={{ textTransform: 'lowercase' }}><strong><Property label={NS.rivm('recurringCosts')} topology={inlineTopology} /></strong></span>
+              <span style={{ textTransform: 'lowercase' }}><strong><Property label={rivm.recurringCosts} topology={inlineTopology} /></strong></span>
               <span>.</span>
             </p>
             <div className="Markdown">
-              <LabeledAttribute label={NS.rivm('natureOfCosts')} wrapper="ul" />
+              <LabeledAttribute label={rivm.natureOfCosts} wrapper="ul" />
             </div>
-            <LabeledAttribute label={NS.rivm('costExplanation')} />
+            <LabeledAttribute label={rivm.costExplanation} />
           </CardContent>
           <CardContent noSpacing>
             <Heading>Ervaren effectiviteit</Heading>
-            <Property label={NS.rivm('effectivityResearchMethod')} />
-            <LabeledAttribute label={NS.rivm('securityImprovementReason')} />
+            <Property label={rivm.effectivityResearchMethod} />
+            <LabeledAttribute label={rivm.securityImprovementReason} />
             <Heading size={4}>Andere ervaringen</Heading>
             {
               interventionType && (
@@ -147,7 +149,7 @@ const InterventionPage = ({
           </CardContent>
           <CardContent noSpacing>
             <Property label={NS.meeting('attachment')} onLoad={() => null} />
-            <Property label={NS.argu('attachments')} onLoad={() => null} />
+            <Property label={argu.attachments} onLoad={() => null} />
           </CardContent>
           <ActionsBar>
             <Property label={ontola.favoriteAction} onLoad={() => null} />
@@ -165,12 +167,12 @@ const InterventionPage = ({
   );
 };
 
-InterventionPage.type = NS.rivm('Intervention');
+InterventionPage.type = rivm.Intervention;
 
 InterventionPage.topology = pageTopology;
 
 InterventionPage.mapDataToProps = {
-  employment: NS.rivm('employment'),
+  employment: rivm.employment,
   isPartOf: schema.isPartOf,
 };
 
