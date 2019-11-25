@@ -1,3 +1,4 @@
+import as from '@ontologies/as';
 import {
   linkType,
   register,
@@ -170,8 +171,8 @@ const getPagination = (Wrapper, topology) => {
 
   DefaultPagination.mapDataToProps = {
     collectionType: NS.ontola('collectionType'),
-    first: NS.as('first'),
-    last: NS.as('last'),
+    first: as.first,
+    last: as.last,
   };
 
   DefaultPagination.propTypes = {

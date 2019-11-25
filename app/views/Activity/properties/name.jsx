@@ -1,5 +1,9 @@
 import { term } from '@ontola/mash';
+import as from '@ontologies/as';
 import rdf from '@ontologies/core';
+import foaf from '@ontologies/foaf';
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
 import {
   LinkedResourceContainer,
   PropertyBase,
@@ -8,29 +12,28 @@ import {
 import React from 'react';
 
 import { DetailText } from '../../../components';
-import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../../topologies';
 
 const uriMatch = /{{[\w:/#.?=]+}}/g;
 const HANDLEBAR_LENGTH = 2;
 
 class ActivityName extends PropertyBase {
-  static type = NS.as('Activity');
+  static type = as.Activity;
 
   static property = [
-    NS.schema('name'),
-    NS.as('name'),
-    NS.rdfs('label'),
-    NS.foaf('name'),
+    schema.name,
+    as.name,
+    rdfs.label,
+    foaf.name,
   ];
 
   static topology = allTopologies;
 
   static mapDataToProps = {
-    actor: NS.as('actor'),
-    name: NS.schema('name'),
-    object: NS.as('object'),
-    target: NS.as('target'),
+    actor: as.actor,
+    name: schema.name,
+    object: as.object,
+    target: as.target,
   };
 
   render() {
@@ -51,7 +54,7 @@ class ActivityName extends PropertyBase {
             <LinkedResourceContainer
               key={this.props[iriTerm]}
               subject={this.props[iriTerm]}
-              theme={iriTerm === term(NS.as('actor')) ? 'default' : 'parent'}
+              theme={iriTerm === term(as.actor) ? 'default' : 'parent'}
             />
           )}
         </React.Fragment>

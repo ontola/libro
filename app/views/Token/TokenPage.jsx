@@ -1,3 +1,5 @@
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
@@ -14,8 +16,8 @@ const TokenPage = () => (
     <Container>
       <CardMain>
         <CardContent noSpacing>
-          <Property label={[NS.schema('name'), NS.rdfs('label')]} />
-          <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
+          <Property label={[schema.name, rdfs.label]} />
+          <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
         </CardContent>
         <ActionsBar>
           <Property label={NS.ontola('favoriteAction')} onLoad={() => null} />

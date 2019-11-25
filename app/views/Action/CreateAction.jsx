@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   Property,
   linkType,
@@ -7,7 +8,6 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import { LDLink } from '../../components';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { allTopologiesExcept } from '../../topologies';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
@@ -27,7 +27,7 @@ const propTypes = {
 };
 
 export class CreateActionButton extends Component {
-  static type = NS.schema('CreateAction');
+  static type = schema.CreateAction;
 
   static topology = allTopologiesExcept(
     undefined,
@@ -47,7 +47,7 @@ export class CreateActionButton extends Component {
   );
 
   static mapDataToProps = {
-    name: NS.schema('name'),
+    name: schema.name,
   };
 
   static propTypes = {
@@ -66,7 +66,7 @@ export class CreateActionButton extends Component {
         disabled={!!this.props.actionStatus}
         title={this.props.name?.value}
       >
-        <Property label={NS.schema('name')} />
+        <Property label={schema.name} />
       </LDLink>
     );
   }

@@ -1,3 +1,4 @@
+import as from '@ontologies/as';
 import rdf, { Literal, NamedNode, Node, Quad, SomeTerm } from '@ontologies/core';
 import rdfx from '@ontologies/rdf';
 import rdfs from '@ontologies/rdfs';
@@ -134,10 +135,10 @@ function listToArr(
 
   let first;
   if (rest.termType === 'BlankNode') {
-    const firstStatement = lrs.store.anyStatementMatching(rest, NS.rdf('first'));
+    const firstStatement = lrs.store.anyStatementMatching(rest, rdfx.first);
     first = firstStatement && firstStatement.object;
   } else {
-    first = lrs.getResourceProperty<Node>(rest, NS.rdf('first'));
+    first = lrs.getResourceProperty<Node>(rest, rdfx.first);
 
     if (!first) {
       return lrs.getEntity(rest);
@@ -146,7 +147,7 @@ function listToArr(
   if (first) {
     acc.push(first);
   }
-  const nextRest = lrs.store.anyStatementMatching(rest, NS.rdf('rest'));
+  const nextRest = lrs.store.anyStatementMatching(rest, rdfx.rest);
   if (nextRest) {
     const nextObj = nextRest.object;
     if (nextObj.termType === 'Literal' || (nextObj as any).termType === 'Collection') {
@@ -197,7 +198,7 @@ function containerToArr(
 
   if (lrs.getResourceProperty(rest, rdfs.member)) {
     return seqToArr(lrs, acc, rest);
-  } else if (lrs.getResourceProperty(rest, NS.rdf('first'))) {
+  } else if (lrs.getResourceProperty(rest, rdfx.first)) {
     return listToArr(lrs, acc, rest);
   }
 
@@ -205,7 +206,7 @@ function containerToArr(
   if (pages) {
     return containerToArr(lrs, acc, pages);
   }
-  const items = lrs.getResourceProperty<NamedNode>(rest, NS.as('items'));
+  const items = lrs.getResourceProperty<NamedNode>(rest, as.items);
   if (items) {
     return seqToArr(lrs, acc, items);
   }

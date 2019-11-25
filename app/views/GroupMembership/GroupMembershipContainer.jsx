@@ -19,7 +19,7 @@ const GroupMembershipContainer = () => (
         menu={<Property label={NS.ontola('actionsMenu')} />}
       >
         <Property label={NS.org('member')}>
-          <Property label={NS.schema('name')} />
+          <Property label={schema.name} />
         </Property>
       </HeaderWithMenu>
       <Property label={NS.org('member')}>

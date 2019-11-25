@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
@@ -8,10 +9,10 @@ import ContentDetails from '../../topologies/ContentDetails';
 
 const EventSection = () => (
   <CardContent>
-    <Property label={NS.schema('name')} />
+    <Property label={schema.name} />
     <ContentDetails>
       <Property label={NS.teamGL('department')} />
-      <Property label={NS.schema('startDate')} />
+      <Property label={schema.startDate} />
     </ContentDetails>
   </CardContent>
 );

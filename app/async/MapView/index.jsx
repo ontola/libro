@@ -1,5 +1,6 @@
 import { namedNodeShape } from '@ontola/mash';
 import rdf from '@ontologies/core';
+import schema from '@ontologies/schema';
 import * as fa from 'fontawesome';
 import {
   LinkedResourceContainer,
@@ -280,7 +281,7 @@ class MapView extends React.Component {
     if (locationFeature) {
       features.push(locationFeature);
     }
-    const subjectLocation = renderSubject && lrs.getResourceProperty(subject, NS.schema('location'));
+    const subjectLocation = renderSubject && lrs.getResourceProperty(subject, schema.location);
     if (subjectLocation) {
       const subjectPlacement = this.resolvePlacement(subjectLocation);
       const subjectFeature = this.featureFromPlacement(subjectPlacement);
@@ -306,7 +307,7 @@ class MapView extends React.Component {
     } = this.props;
 
     const centerPlacement = subjectPlacement
-      || (subject && lrs.getResourceProperty(subject, NS.schema('location')));
+      || (subject && lrs.getResourceProperty(subject, schema.location));
     let center = centerPlacement && this.resolvePlacement(
       lrs.dig(centerPlacement, collectionMembers).pop()
       || centerPlacement
@@ -393,7 +394,7 @@ class MapView extends React.Component {
       } else {
         image = this.props.lrs.getResourceProperty(
           rdf.namedNode(feature.getId()),
-          NS.schema('image')
+          schema.image
         );
       }
       feature.setStyle(MapView.generateMarkerImage(image.value, highlight));
@@ -414,15 +415,15 @@ class MapView extends React.Component {
       return lrs.getEntity(placement);
     }
 
-    const place = placement && lrs.getResourceProperty(placement, NS.schema('geo'));
-    const image = lrs.getResourceProperty(placement, NS.schema('image'));
+    const place = placement && lrs.getResourceProperty(placement, schema.geo);
+    const image = lrs.getResourceProperty(placement, schema.image);
 
     if (!place) {
       return undefined;
     }
 
-    const lon = lrs.getResourceProperty(place, NS.schema('longitude'));
-    const lat = lrs.getResourceProperty(place, NS.schema('latitude'));
+    const lon = lrs.getResourceProperty(place, schema.longitude);
+    const lat = lrs.getResourceProperty(place, schema.latitude);
     const zoom = lrs.getResourceProperty(place, NS.argu('zoomLevel'));
 
     if (!(lon && lat && zoom)) {

@@ -1,3 +1,5 @@
+import as from '@ontologies/as';
+import schema from '@ontologies/schema';
 import {
   Property,
   linkType,
@@ -7,17 +9,16 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { Breadcrumb } from '../../components';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { parentTopology } from '../../topologies/Parent';
 
 class ThingParent extends React.PureComponent {
-  static type = NS.schema('Thing');
+  static type = schema.Thing;
 
   static topology = parentTopology;
 
   static mapDataToProps = {
     name: {
-      label: [NS.schema('name'), NS.as('name')],
+      label: [schema.name, as.name],
     },
   };
 
@@ -33,10 +34,10 @@ class ThingParent extends React.PureComponent {
   render() {
     return (
       <React.Fragment>
-        {this.props.showAncestors && <Property label={NS.schema('isPartOf')} />}
+        {this.props.showAncestors && <Property label={schema.isPartOf} />}
         <Breadcrumb
           data-test="Thing-parent"
-          label={<Property label={[NS.schema('name'), NS.as('name')]} />}
+          label={<Property label={[schema.name, as.name]} />}
           title={this.props.name.value}
         />
       </React.Fragment>

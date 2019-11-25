@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import rdf from '@ontologies/core';
 import {
   linkType,
@@ -15,7 +16,7 @@ import { containerFloatTopology } from '../../topologies/Container/ContainerFloa
 const defaultTopology = NS.argu('cardList');
 
 class EntryPointButton extends React.PureComponent {
-  static type = NS.schema('EntryPoint');
+  static type = schema.EntryPoint;
 
   static topology = [cardFloatTopology, containerFloatTopology];
 
@@ -28,7 +29,7 @@ class EntryPointButton extends React.PureComponent {
 
 
   static mapDataToProps = {
-    name: NS.schema('name'),
+    name: schema.name,
   };
 
   render() {

@@ -1,3 +1,4 @@
+import as from '@ontologies/as';
 import {
   LinkedResourceContainer,
   Property,
@@ -24,7 +25,7 @@ const getPagination = (Wrapper, topology) => {
     return (
       <LinkedResourceContainer subject={lastPage}>
         <Wrapper>
-          <Property label={NS.as('next')} />
+          <Property label={as.next} />
         </Wrapper>
       </LinkedResourceContainer>
     );

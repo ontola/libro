@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { Property, link } from 'link-redux';
 import React from 'react';
@@ -19,10 +20,10 @@ export default [
   PersonPage,
   PersonSelect,
   LinkedRenderStore.registerRenderer(
-    link({ name: NS.schema('name') }, { returnType: 'value' })(({ name }) => (
-      <Property ariaLabel={name} label={NS.schema('image')} />
+    link({ name: schema.name }, { returnType: 'value' })(({ name }) => (
+      <Property ariaLabel={name} label={schema.image} />
     )),
-    [NS.schema('Person'), NS.aod('Persons'), NS.argu('Page')],
+    [schema.Person, NS.aod('Persons'), NS.argu('Page')],
     RENDER_CLASS_NAME,
     [voteEventSideTopology, NS.argu('voteBubble'), formFooterTopology]
   ),

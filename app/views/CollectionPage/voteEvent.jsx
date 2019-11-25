@@ -1,3 +1,4 @@
+import as from '@ontologies/as';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   Property,
@@ -40,7 +41,7 @@ class VoteEventSide extends TopologyProvider {
       .lrs
       .getResourceProperty(
         this.props.isViewOf,
-        NS.as('totalItems')
+        as.totalItems
       ).value;
     const voteEventCount = Number.parseInt(voteEventCountRaw, 10);
 
@@ -73,7 +74,7 @@ class VoteEventSide extends TopologyProvider {
 export default [
   LinkedRenderStore.registerRenderer(
     link({
-      totalItems: NS.as('totalItems'),
+      totalItems: as.totalItems,
     })(VoteEventResult),
     CollectionViewTypes,
     RENDER_CLASS_NAME,
@@ -81,7 +82,7 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     link({
-      totalItems: NS.as('totalItems'),
+      totalItems: as.totalItems,
     })(VoteEventResultCard),
     CollectionViewTypes,
     RENDER_CLASS_NAME,
@@ -90,15 +91,15 @@ export default [
   LinkedRenderStore.registerRenderer(
     link({
       parentView: NS.argu('parentView'),
-      partOf: NS.as('partOf'),
-      totalItems: NS.as('totalItems'),
+      partOf: as.partOf,
+      totalItems: as.totalItems,
     })(VoteEventSide),
     CollectionViewTypes,
     RENDER_CLASS_NAME,
     voteEventResultTopology
   ),
   LinkedRenderStore.registerRenderer(
-    () => <Property label={NS.as('items')} />,
+    () => <Property label={as.items} />,
     CollectionViewTypes,
     RENDER_CLASS_NAME,
     voteEventSideTopology

@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   Property,
   register,
@@ -13,12 +14,12 @@ import Card from '../../../topologies/Card';
 const GroupContainer = () => (
   <Card>
     <CardContent>
-      <Property label={NS.schema('name')} />
+      <Property label={schema.name} />
       <ContentDetails>
         <Property label={NS.teamGL('department')} />
         <Property label={NS.teamGL('volunteerCount')} />
       </ContentDetails>
-      <Property label={NS.schema('text')} />
+      <Property label={schema.text} />
     </CardContent>
   </Card>
 );

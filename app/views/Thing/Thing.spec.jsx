@@ -1,10 +1,10 @@
 import rdf from '@ontologies/core';
+import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
 import { LinkedResourceContainer } from 'link-redux';
 import dcterms from '@ontologies/dcterms';
 import React from 'react';
 
-import { NS } from '../../../tests';
 import {
   cleanup,
   render,
@@ -27,14 +27,14 @@ describe('Thing', () => {
   const resources = {
     '@id': resource.value,
     [dcterms.identifier]: resource,
-    [NS.rdf('type')]: schema.Thing,
-    [NS.schema('name')]: rdf.literal(RESOURCE_NAME),
-    [NS.schema('text')]: rdf.literal(RESOURCE_TEXT),
-    [NS.schema('isPartOf')]: {
+    [rdfx.type]: schema.Thing,
+    [schema.name]: rdf.literal(RESOURCE_NAME),
+    [schema.text]: rdf.literal(RESOURCE_TEXT),
+    [schema.isPartOf]: {
       '@id': parent,
       [dcterms.identifier]: parent,
-      [NS.rdf('type')]: schema.Thing,
-      [NS.schema('name')]: rdf.literal(PARENT_NAME),
+      [rdfx.type]: schema.Thing,
+      [schema.name]: rdf.literal(PARENT_NAME),
     },
   };
 

@@ -1,21 +1,22 @@
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
 import { linkType, register } from 'link-redux';
 import React from 'react';
 
 import { Detail } from '../../components';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 import TypeDetail from '../Thing/properties/type';
 
 import FormFooter from './FormFooter';
 
 class RDFSClass extends React.PureComponent {
-  static type = NS.rdfs('Class');
+  static type = rdfs.Class;
 
   static topology = detailsBarTopology;
 
   static mapDataToProps = {
-    description: NS.schema('description'),
-    label: NS.rdfs('label'),
+    description: schema.description,
+    label: rdfs.label,
   };
 
   static propTypes = {

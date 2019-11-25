@@ -1,4 +1,5 @@
 import rdf from '@ontologies/core';
+import schema from '@ontologies/schema';
 import {
   linkType,
   register,
@@ -75,7 +76,7 @@ const GrantedGroups = ({ grantedGroups }) => {
   );
 };
 
-GrantedGroups.type = NS.schema('Thing');
+GrantedGroups.type = schema.Thing;
 
 GrantedGroups.topology = [detailsBarTopology, contentDetailsTopology];
 

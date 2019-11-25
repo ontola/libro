@@ -1,9 +1,9 @@
+import schema from '@ontologies/schema';
 import { linkType, register } from 'link-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import Detail from '../../components/Detail';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { contentDetailsTopology } from '../../topologies/ContentDetails/index';
 import { detailsBarTopology } from '../../topologies/DetailsBar/index';
 
@@ -13,7 +13,7 @@ const EntryPointDetail = ({ image, name }) => {
   return <Detail icon={icon} text={name} />;
 };
 
-EntryPointDetail.type = NS.schema('EntryPoint');
+EntryPointDetail.type = schema.EntryPoint;
 
 EntryPointDetail.topology = [
   contentDetailsTopology,
@@ -21,7 +21,7 @@ EntryPointDetail.topology = [
 ];
 
 EntryPointDetail.mapDataToProps = {
-  image: NS.schema('image'),
+  image: schema.image,
 };
 
 EntryPointDetail.propTypes = {

@@ -1,3 +1,5 @@
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
 import {
   Property,
   register,
@@ -21,8 +23,8 @@ import { AttributeListItem } from '../../components';
 const InterventionContainer = ({ highlighted, subject }) => (
   <Card about={subject?.value} shine={highlighted}>
     <CardContent noSpacing>
-      <Property label={[NS.schema('name'), NS.rdfs('label')]} />
-      <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
+      <Property label={[schema.name, rdfs.label]} />
+      <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
       <AttributeList>
         <tr><th>Praktische ervaring</th><th>Aandrager</th></tr>
         <AttributeListItem label={NS.rivm('securityImprovedScore')} />

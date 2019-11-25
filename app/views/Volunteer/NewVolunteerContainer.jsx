@@ -1,3 +1,5 @@
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
 import {
   Property,
   register,
@@ -22,10 +24,10 @@ class NewVolunteerContainer extends React.PureComponent {
     return (
       <Card>
         <CardContent noSpacing>
-          <Property label={[NS.schema('name'), NS.rdfs('label')]} />
+          <Property label={[schema.name, rdfs.label]} />
           <ContentDetails>
             <Property label={NS.teamGL('department')} />
-            <Property label={NS.schema('dateCreated')} />
+            <Property label={schema.dateCreated} />
           </ContentDetails>
           <div className="Volunteer--contact-options">
             <Property label={NS.teamGL('telephone')} />

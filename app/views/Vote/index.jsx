@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   Property,
@@ -29,12 +30,12 @@ const propTypes = {
 
 const VoteSidePage = ({ subject, text }) => {
   if (!text || text.length === 0) {
-    return <Property label={NS.schema('creator')} />;
+    return <Property label={schema.creator} />;
   }
 
   return (
     <HoverPopup subject={subject}>
-      <Property label={NS.schema('creator')} />
+      <Property label={schema.creator} />
     </HoverPopup>
   );
 };
@@ -60,8 +61,8 @@ const ThingHoverBoxHidden = ({ text, option }) => {
     <Container size="small">
       <Card>
         <DetailsBar>
-          <Property label={NS.schema('creator')} />
-          <Property label={NS.schema('dateCreated')} />
+          <Property label={schema.creator} />
+          <Property label={schema.dateCreated} />
         </DetailsBar>
         <CardContent>
           <p><FontAwesome name={icon} style={{ margin: '.2em' }} />{text}</p>
@@ -77,8 +78,8 @@ ThingHoverBoxHidden.propTypes = {
 };
 
 const mappedProps = {
-  option: NS.schema('option'),
-  text: NS.schema('text'),
+  option: schema.option,
+  text: schema.text,
 };
 
 export default [

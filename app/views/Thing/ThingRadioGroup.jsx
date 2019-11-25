@@ -1,3 +1,6 @@
+import rdfx from '@ontologies/rdf';
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
 import {
   Property,
   linkType,
@@ -16,7 +19,7 @@ const ThingRadioGroup = ({
   itemClass,
   wrapperProps,
 }) => {
-  const labels = [NS.schema('name'), NS.rdfs('label')];
+  const labels = [schema.name, rdfs.label];
 
   const label = lrs.getResourceProperty(itemClass, NS.ontola('forms/inputs/select/displayProp'));
 
@@ -31,12 +34,12 @@ const ThingRadioGroup = ({
   );
 };
 
-ThingRadioGroup.type = NS.schema('Thing');
+ThingRadioGroup.type = schema.Thing;
 
 ThingRadioGroup.topology = radioGroupTopology;
 
 ThingRadioGroup.mapDataToProps = {
-  itemClass: NS.rdf('type'),
+  itemClass: rdfx.type,
 };
 
 ThingRadioGroup.propTypes = {

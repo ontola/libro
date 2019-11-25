@@ -1,3 +1,5 @@
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
 import { linkType, register } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -6,20 +8,19 @@ import MediaQuery from 'react-responsive';
 import { Button } from '../../components';
 import { mediaQueries } from '../../components/shared/config';
 import { normalizeFontAwesomeIRI } from '../../helpers/iris';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { values } from '../../helpers/ssr';
 import { formFooterTopology } from '../../topologies/FormFooter/Footer';
 
 
 class RDFSClassFormFooter extends React.PureComponent {
-  static type = NS.rdfs('Class');
+  static type = rdfs.Class;
 
   static topology = formFooterTopology;
 
   static mapDataToProps = {
-    description: NS.schema('description'),
-    image: NS.schema('image'),
-    label: NS.rdfs('label'),
+    description: schema.description,
+    image: schema.image,
+    label: rdfs.label,
   };
 
   static propTypes = {

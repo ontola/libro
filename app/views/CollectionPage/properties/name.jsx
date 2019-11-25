@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import {
   PropertyBase,
@@ -35,6 +36,6 @@ CollectionName.propTypes = propTypes;
 export default LinkedRenderStore.registerRenderer(
   withLinkCtx(CollectionName),
   CollectionViewTypes,
-  NS.schema('name'),
+  schema.name,
   allTopologies
 );

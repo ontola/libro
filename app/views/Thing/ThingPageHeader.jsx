@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   Property,
   register,
@@ -17,7 +18,7 @@ import {
 } from '../../topologies/PageHeader';
 
 class ThingPageHeader extends React.PureComponent {
-  static type = NS.schema('Thing');
+  static type = schema.Thing;
 
   static topology = pageHeaderTopology;
 
@@ -41,12 +42,12 @@ class ThingPageHeader extends React.PureComponent {
                     </React.Fragment>
                   )}
                 >
-                  <Property label={NS.schema('name')} />
+                  <Property label={schema.name} />
                 </HeaderWithMenu>
                 <ContentDetails>
                   <Property label={NS.argu('grantedGroups')} />
                 </ContentDetails>
-                <Property label={NS.schema('description')} />
+                <Property label={schema.description} />
               </PageHeaderText>
             </PageHeaderImageAndTextWrapper>
           </CardContent>

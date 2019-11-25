@@ -1,4 +1,5 @@
 import { namedNodeShape, term } from '@ontola/mash';
+import as from '@ontologies/as';
 import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
@@ -42,7 +43,7 @@ class CurrentVote extends React.PureComponent {
   getSideVoteCount() {
     return this.props.lrs.getResourceProperty(
       this.props.baseCollection,
-      NS.as('totalItems')
+      as.totalItems
     );
   }
 

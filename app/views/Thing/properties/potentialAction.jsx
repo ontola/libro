@@ -1,3 +1,5 @@
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import {
   LinkedResourceContainer,
@@ -31,7 +33,7 @@ const sortBind = (potentialActions, props) => potentialActions
   ));
 
 class PotentialActionActionsBar extends React.PureComponent {
-  static type = [NS.schema('Thing'), NS.rdfs('Resource')];
+  static type = [schema.Thing, rdfs.Resource];
 
   static property = NS.ontola('favoriteAction');
 
@@ -71,7 +73,7 @@ export default [
         limit: Infinity,
       },
     })(({ potentialActions, ...props }) => sortBind(potentialActions, props)),
-    [NS.schema('Thing'), NS.rdfs('Resource')],
+    [schema.Thing, rdfs.Resource],
     NS.ontola('favoriteAction'),
     allTopologiesExcept(actionsBarTopology)
   ),

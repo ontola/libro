@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import { linkedPropType } from 'link-redux';
 import React from 'react';
@@ -22,6 +23,6 @@ Name.propTypes = propTypes;
 export default LinkedRenderStore.registerRenderer(
   Name,
   NS.teamGL('Volunteer'),
-  NS.schema('name'),
+  schema.name,
   allTopologiesExcept(selectTopology)
 );

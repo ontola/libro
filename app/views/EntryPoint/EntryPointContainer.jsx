@@ -1,7 +1,7 @@
+import schema from '@ontologies/schema';
 import { Type, register } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
 import { containerTopology } from '../../topologies/Container';
 import Card from '../../topologies/Card';
 
@@ -11,12 +11,12 @@ const EntryPointContainer = props => (
   </Card>
 );
 
-EntryPointContainer.type = NS.schema('EntryPoint');
+EntryPointContainer.type = schema.EntryPoint;
 
 EntryPointContainer.topology = containerTopology;
 
 EntryPointContainer.mapDataToProps = {
-  name: NS.schema('name'),
+  name: schema.name,
 };
 
 export default register(EntryPointContainer);

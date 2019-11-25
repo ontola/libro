@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   linkType,
   lrsType,
@@ -20,7 +21,7 @@ import { actionsAreAllDisabled, filterActions } from './helpers';
 import OmniformConnector from './OmniformConnector';
 
 class OmniformProp extends React.PureComponent {
-  static type = [NS.schema('Thing'), NS.link('Document')];
+  static type = [schema.Thing, NS.link('Document')];
 
   static property = NS.app('omniform');
 
@@ -28,9 +29,9 @@ class OmniformProp extends React.PureComponent {
 
   static mapDataToProps = {
     expiresAt: NS.argu('expiresAt'),
-    isPartOf: NS.schema('isPartOf'),
+    isPartOf: schema.isPartOf,
     potentialAction: {
-      label: NS.schema('potentialAction'),
+      label: schema.potentialAction,
       limit: Infinity,
     },
   };
@@ -62,7 +63,7 @@ class OmniformProp extends React.PureComponent {
         return true;
       }
 
-      const grandParent = lrs.getResourceProperty(isPartOf, NS.schema('isPartOf'));
+      const grandParent = lrs.getResourceProperty(isPartOf, schema.isPartOf);
       if (grandParent && isPastDate(lrs.getResourceProperty(grandParent, NS.argu('expiresAt')))) {
         return true;
       }

@@ -20,7 +20,7 @@ import SHACL from '../../helpers/shacl';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
 
 class ActionActionsBar extends PureComponent {
-  static type = NS.schema('Action');
+  static type = schema.Action;
 
   static topology = actionsBarTopology;
 
@@ -61,7 +61,7 @@ class ActionActionsBar extends PureComponent {
   }
 
   exec() {
-    const target = this.props.lrs.getResourceProperty(this.props.subject, NS.schema('target'));
+    const target = this.props.lrs.getResourceProperty(this.props.subject, schema.target);
     const httpMethod = target && this.props.lrs.getResourceProperty(target, schema.httpMethod);
 
     if (httpMethod && httpMethod.value === 'GET') {

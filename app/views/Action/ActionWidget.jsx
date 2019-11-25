@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   linkType,
   register,
@@ -7,7 +8,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { retrievePath } from '../../helpers/iris';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 import Button from '../../components/Button';
 
@@ -34,13 +34,13 @@ const ActionWidget = ({
   );
 };
 
-ActionWidget.type = NS.schema('Action');
+ActionWidget.type = schema.Action;
 
 ActionWidget.topology = widgetTopologyTopology;
 
 ActionWidget.mapDataToProps = {
-  name: NS.schema('name'),
-  url: NS.schema('url'),
+  name: schema.name,
+  url: schema.url,
 };
 
 ActionWidget.propTypes = {

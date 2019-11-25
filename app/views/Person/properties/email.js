@@ -1,10 +1,10 @@
+import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import { linkedPropType } from 'link-redux';
 import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
 import { setCurrentUserEmail } from '../../../state/app/actions';
 import { navbarTopology } from '../../../topologies/Navbar';
 
@@ -48,7 +48,7 @@ EmailDispatcherConnect.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
   EmailDispatcherConnect,
-  NS.schema('Person'),
-  NS.schema('email'),
+  schema.Person,
+  schema.email,
   navbarTopology
 );

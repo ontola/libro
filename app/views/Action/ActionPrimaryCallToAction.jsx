@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   Property,
   linkType,
@@ -6,7 +7,6 @@ import {
 import React from 'react';
 
 import { Button } from '../../components';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { primaryCallToActionTopology } from '../../topologies/PrimaryCallToAction';
 
 const ActionPrimaryCallToAction = ({ name, target }) => (
@@ -14,7 +14,7 @@ const ActionPrimaryCallToAction = ({ name, target }) => (
     href={target.value}
     title={name.value}
   >
-    <Property label={NS.schema('name')} />
+    <Property label={schema.name} />
   </Button>
 );
 
@@ -23,13 +23,13 @@ ActionPrimaryCallToAction.propTypes = {
   target: linkType,
 };
 
-ActionPrimaryCallToAction.type = NS.schema('Action');
+ActionPrimaryCallToAction.type = schema.Action;
 
 ActionPrimaryCallToAction.topology = primaryCallToActionTopology;
 
 ActionPrimaryCallToAction.mapDataToProps = {
-  name: NS.schema('name'),
-  target: NS.schema('target'),
+  name: schema.name,
+  target: schema.target,
 };
 
 export default register(ActionPrimaryCallToAction);

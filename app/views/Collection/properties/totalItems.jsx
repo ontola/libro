@@ -1,8 +1,8 @@
+import as from '@ontologies/as';
 import { linkType } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
 import LDLink from '../../../components/LDLink';
 import Heading from '../../../components/Heading';
 import CardContent from '../../../components/Card/CardContent';
@@ -62,7 +62,7 @@ const cardAppendixCollectionTotalItems = ({ linkedProp }) => {
 cardAppendixCollectionTotalItems.propTypes = propTypes;
 
 const registerTotalItems = buildRegister({
-  property: NS.as('totalItems'),
+  property: as.totalItems,
   type: CollectionTypes,
 });
 

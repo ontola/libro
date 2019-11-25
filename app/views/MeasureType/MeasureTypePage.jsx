@@ -1,3 +1,7 @@
+import foaf from '@ontologies/foaf';
+import rdfx from '@ontologies/rdf';
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
@@ -19,7 +23,7 @@ const MeasureTypePage = () => (
   <PrimaryResource>
     <Property label={NS.ontola('coverPhoto')} />
     <Container>
-      <Property label={NS.schema('isPartOf')} />
+      <Property label={schema.isPartOf} />
       <Property label={NS.argu('trashedAt')} />
       <CardMain>
         <DetailsBar
@@ -31,20 +35,20 @@ const MeasureTypePage = () => (
             </React.Fragment>
           )}
         >
-          <Property label={NS.rdf('type')} />
+          <Property label={rdfx.type} />
           <LinkedDetailDate />
           <Property label={NS.argu('pinnedAt')} />
           <Property label={NS.argu('expiresAt')} />
           <Property label={NS.argu('followsCount')} />
-          <Property label={NS.schema('location')} />
+          <Property label={schema.location} />
           <Property label={NS.argu('grantedGroups')} />
         </DetailsBar>
         <CardContent noSpacing>
-          <Property label={[NS.schema('name'), NS.rdfs('label')]} />
+          <Property label={[schema.name, rdfs.label]} />
           <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
           <Property label={NS.rivm('exampleOf')} topology={inlineTopology} />
-          <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
-          <Property label={NS.foaf('isPrimaryTopicOf')} onLoad={() => null} />
+          <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
+          <Property label={foaf.isPrimaryTopicOf} onLoad={() => null} />
           <Property label={NS.meeting('attachment')} onLoad={() => null} />
           <Property label={NS.argu('attachments')} onLoad={() => null} />
         </CardContent>
@@ -61,7 +65,7 @@ const MeasureTypePage = () => (
       <Property forceRender renderWhenEmpty label={NS.rivm('measures')} />
     </Container>
     <Container>
-      <Property label={NS.schema('comment')} />
+      <Property label={schema.comment} />
     </Container>
   </PrimaryResource>
 );

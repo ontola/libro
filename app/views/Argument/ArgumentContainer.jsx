@@ -1,3 +1,5 @@
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
 import {
   Property,
   register,
@@ -8,6 +10,7 @@ import React from 'react';
 import { CardContent } from '../../components';
 import { hightlightType } from '../../containers/Highlight';
 import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import ActionsBar from '../../topologies/ActionsBar';
 import Card from '../../topologies/Card';
 import CardAppendix from '../../topologies/Card/CardAppendix';
@@ -15,9 +18,9 @@ import { containerTopology } from '../../topologies/Container';
 
 class ArgumentContainer extends React.PureComponent {
   static type = [
-    NS.argu('Argument'),
-    NS.argu('ProArgument'),
-    NS.argu('ConArgument'),
+    argu.Argument,
+    argu.ProArgument,
+    argu.ConArgument,
   ];
 
   static topology = containerTopology;
@@ -34,8 +37,8 @@ class ArgumentContainer extends React.PureComponent {
       <Card about={subject.value} shine={highlighted}>
         <Property label={NS.ontola('coverPhoto')} />
         <CardContent noSpacing>
-          <Property label={[NS.schema('name'), NS.rdfs('label')]} />
-          <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
+          <Property label={[schema.name, rdfs.label]} />
+          <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
         </CardContent>
         <ActionsBar>
           <Property label={NS.ontola('favoriteAction')} />

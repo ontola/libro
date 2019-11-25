@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   LinkedResourceContainer,
   Property,
@@ -43,7 +44,7 @@ const DataSetPage = ({
     <PrimaryResource resource={subject.value}>
       <Container size="large">
         <Property
-          label={NS.schema('name')}
+          label={schema.name}
           topology={primaryResourceTopology}
         />
         <Card>

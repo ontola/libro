@@ -1,4 +1,5 @@
 import rdf from '@ontologies/core';
+import schema from '@ontologies/schema';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   LinkedResourceContainer,
@@ -16,9 +17,9 @@ import { handle } from '../../helpers/logging';
 import { allTopologies } from '../../topologies';
 
 const mapDataToProps = {
-  actionStatus: NS.schema('actionStatus'),
-  object: NS.schema('object'),
-  target: NS.schema('target'),
+  actionStatus: schema.actionStatus,
+  object: schema.object,
+  target: schema.target,
 };
 
 class InlineActionTableRow extends React.PureComponent {
@@ -42,7 +43,7 @@ class InlineActionTableRow extends React.PureComponent {
     if (rdf.equals(actionStatus, NS.ontola('DisabledActionStatus'))) {
       return null;
     }
-    if (rdf.equals(actionStatus, NS.schema('CompletedActionStatus'))) {
+    if (rdf.equals(actionStatus, schema.CompletedActionStatus)) {
       return <span>{completed}</span>;
     }
 

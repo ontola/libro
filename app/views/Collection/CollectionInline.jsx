@@ -1,3 +1,5 @@
+import as from '@ontologies/as';
+import rdfx from '@ontologies/rdf';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
@@ -8,7 +10,7 @@ import { CollectionTypes } from './types';
 
 const CollectionInline = () => (
   <p>
-    <label><Property label={NS.as('name')} /> </label>
+    <label><Property label={as.name} /> </label>
     <Property forceRender insideCollection label={NS.ontola('pages')} />
   </p>
 );
@@ -16,7 +18,7 @@ const CollectionInline = () => (
 CollectionInline.type = CollectionTypes;
 
 CollectionInline.mapDataToProps = {
-  type: NS.rdf('type'),
+  type: rdfx.type,
 };
 
 CollectionInline.topology = inlineTopology;

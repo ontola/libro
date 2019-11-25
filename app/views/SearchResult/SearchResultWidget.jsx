@@ -1,3 +1,4 @@
+import as from '@ontologies/as';
 import {
   linkType,
   register,
@@ -33,7 +34,7 @@ SearchResultWidget.mapDataToProps = {
   query: NS.argu('query'),
   searchTemplate: NS.ontola('searchTemplate'),
   took: NS.argu('took'),
-  totalItems: NS.as('totalItems'),
+  totalItems: as.totalItems,
 };
 
 SearchResultWidget.propTypes = {

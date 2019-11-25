@@ -1,9 +1,10 @@
+import rdfx from '@ontologies/rdf';
+import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import { LinkedResourceContainer, link } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
 import { bestType } from '../../../helpers/data';
 
@@ -25,8 +26,8 @@ const TypeDetail = ({ type }) => {
 TypeDetail.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
-  link({ type: NS.rdf('type') }, { limit: Infinity })(TypeDetail),
-  NS.schema('Thing'),
-  NS.rdf('type'),
+  link({ type: rdfx.type }, { limit: Infinity })(TypeDetail),
+  schema.Thing,
+  rdfx.type,
   detailsBarTopology
 );

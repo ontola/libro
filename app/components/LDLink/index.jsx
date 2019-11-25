@@ -1,4 +1,5 @@
 import { namedNodeShape } from '@ontola/mash';
+import schema from '@ontologies/schema';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
@@ -9,7 +10,6 @@ import {
 
 import Link from '../Link';
 import { handle } from '../../helpers/logging';
-import { NS } from '../../helpers/LinkedRenderStore';
 
 const LDLink = ({
   children,
@@ -25,7 +25,7 @@ const LDLink = ({
     return '';
   }
   const href = to?.value
-    || lrs.getResourceProperty(subject, NS.schema('url'))?.value
+    || lrs.getResourceProperty(subject, schema.url)?.value
     || subject.value;
 
   return (

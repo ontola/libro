@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   LinkedResourceContainer,
   Property,
@@ -26,9 +27,9 @@ class MenuItemNavbar extends React.PureComponent {
 
   static mapDataToProps = {
     href: NS.ontola('href'),
-    image: NS.schema('image'),
+    image: schema.image,
     menuItems: NS.ontola('menuItems'),
-    name: NS.schema('name'),
+    name: schema.name,
   };
 
   static propTypes = {
@@ -69,8 +70,8 @@ class MenuItemNavbar extends React.PureComponent {
             label={NS.ontola('href')}
           >
             <InnerWrapper {...wrapperProps}>
-              <Property label={NS.schema('image')} />
-              {!hideLabel && <Property label={NS.schema('name')} />}
+              <Property label={schema.image} />
+              {!hideLabel && <Property label={schema.name} />}
             </InnerWrapper>
           </Property>
         </NavbarLinkWrapper>

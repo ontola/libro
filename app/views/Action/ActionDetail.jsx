@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   Property,
   linkType,
@@ -6,20 +7,19 @@ import {
 import React from 'react';
 
 import LDLink from '../../components/LDLink';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { contentDetailsTopology } from '../../topologies/ContentDetails/index';
 import { detailsBarTopology } from '../../topologies/DetailsBar/index';
 
 const ActionDetail = ({ name }) => (
   <LDLink>
     <Property
-      label={NS.schema('target')}
+      label={schema.target}
       name={name.value}
     />
   </LDLink>
 );
 
-ActionDetail.type = NS.schema('Action');
+ActionDetail.type = schema.Action;
 
 ActionDetail.topology = [
   contentDetailsTopology,
@@ -27,7 +27,7 @@ ActionDetail.topology = [
 ];
 
 ActionDetail.mapDataToProps = {
-  name: NS.schema('name'),
+  name: schema.name,
 };
 
 ActionDetail.propTypes = {

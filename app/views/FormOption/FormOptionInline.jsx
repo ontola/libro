@@ -1,3 +1,6 @@
+import rdfx from '@ontologies/rdf';
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
@@ -6,13 +9,13 @@ import { attributeListTopology } from '../../topologies/AttributeList';
 import { inlineTopology } from '../../topologies/Inline';
 
 const FormOptionInline = () => (
-  <Property label={[NS.schema('name'), NS.rdfs('label')]} />
+  <Property label={[schema.name, rdfs.label]} />
 );
 
 FormOptionInline.type = NS.ontola('FormOption');
 
 FormOptionInline.mapDataToProps = {
-  type: NS.rdf('type'),
+  type: rdfx.type,
 };
 
 FormOptionInline.topology = [attributeListTopology, inlineTopology];

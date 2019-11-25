@@ -1,5 +1,6 @@
 import Collapse from '@material-ui/core/Collapse';
 import List from '@material-ui/core/List';
+import schema from '@ontologies/schema';
 import HttpStatus from 'http-status-codes';
 import {
   Property,
@@ -133,9 +134,9 @@ MenuItemDropdownContent.topology = [
 MenuItemDropdownContent.mapDataToProps = {
   action: NS.ontola('action'),
   href: NS.ontola('href'),
-  image: NS.schema('image'),
+  image: schema.image,
   menuItems: NS.ontola('menuItems'),
-  name: NS.schema('name'),
+  name: schema.name,
 };
 
 export default register(MenuItemDropdownContent);

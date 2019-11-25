@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   LinkedResourceContainer,
   linkedPropType,
@@ -10,11 +11,11 @@ import { NS } from '../../../helpers/LinkedRenderStore';
 import { BreadcrumbsBar } from '../../../components';
 
 class IsPartOfPage extends React.PureComponent {
-  static type = NS.schema('Thing');
+  static type = schema.Thing;
 
   static topology = NS.argu('container');
 
-  static property = NS.schema('isPartOf');
+  static property = schema.isPartOf;
 
   static propTypes = {
     linkedProp: linkedPropType,

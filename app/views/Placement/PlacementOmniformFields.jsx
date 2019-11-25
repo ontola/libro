@@ -1,4 +1,5 @@
 import rdf from '@ontologies/core';
+import schema from '@ontologies/schema';
 import {
   linkType,
   lrsType,
@@ -36,8 +37,8 @@ const PlacementOmniformFields = ({
   const placements = [];
 
   if (targetValue) {
-    const lat = targetValue[calculateFormFieldName(NS.schema('latitude'))];
-    const lon = targetValue[calculateFormFieldName(NS.schema('longitude'))];
+    const lat = targetValue[calculateFormFieldName(schema.latitude)];
+    const lon = targetValue[calculateFormFieldName(schema.longitude)];
 
     if (lat && lon) {
       placements.push({
@@ -54,11 +55,11 @@ const PlacementOmniformFields = ({
   const storeCoordinates = (e) => {
     reactFinalForm.change(calculateFormFieldName(formContext, propertyIndex), targetValue);
     reactFinalForm.change(
-      calculateFormFieldName(formContext, propertyIndex, NS.schema('latitude')),
+      calculateFormFieldName(formContext, propertyIndex, schema.latitude),
       e[1]
     );
     reactFinalForm.change(
-      calculateFormFieldName(formContext, propertyIndex, NS.schema('longitude')),
+      calculateFormFieldName(formContext, propertyIndex, schema.longitude),
       e[0]
     );
   };

@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import { linkedPropType } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -35,20 +36,20 @@ export const createThumbnail = (override) => {
 export default [
   LinkedRenderStore.registerRenderer(
     createThumbnail(NavbarLinkImage),
-    [NS.schema('ImageObject'), NS.schema('VideoObject')],
-    [NS.schema('thumbnail'), NS.ontola('imgUrl64x64')],
+    [schema.ImageObject, schema.VideoObject],
+    [schema.thumbnail, NS.ontola('imgUrl64x64')],
     allTopologiesExcept(cardListTopology, detailsBarTopology, formFooterTopology)
   ),
   LinkedRenderStore.registerRenderer(
     createThumbnail(DetailImage),
-    [NS.schema('ImageObject'), NS.schema('VideoObject')],
-    [NS.schema('thumbnail'), NS.ontola('imgUrl64x64')],
+    [schema.ImageObject, schema.VideoObject],
+    [schema.thumbnail, NS.ontola('imgUrl64x64')],
     detailsBarTopology
   ),
   LinkedRenderStore.registerRenderer(
     createThumbnail(FormFooterImage),
-    [NS.schema('ImageObject'), NS.schema('VideoObject')],
-    [NS.schema('thumbnail'), NS.ontola('imgUrl64x64')],
+    [schema.ImageObject, schema.VideoObject],
+    [schema.thumbnail, NS.ontola('imgUrl64x64')],
     formFooterTopology
   ),
 ];

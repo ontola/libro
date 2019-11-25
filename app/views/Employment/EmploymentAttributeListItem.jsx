@@ -1,3 +1,5 @@
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
 import {
   LinkedResourceContainer,
   Property,
@@ -14,7 +16,7 @@ const EmploymentAttributeListItem = ({ image }) => (
     <LinkedResourceContainer subject={image}>
       <Property label={NS.ontola('imgUrl568x400')} />
     </LinkedResourceContainer>
-    <Property label={[NS.schema('name'), NS.rdfs('label')]} />
+    <Property label={[schema.name, rdfs.label]} />
   </React.Fragment>
 );
 
@@ -23,8 +25,8 @@ EmploymentAttributeListItem.type = NS.rivm('Employment');
 EmploymentAttributeListItem.topology = [attributeListTopology];
 
 EmploymentAttributeListItem.mapDataToProps = {
-  image: NS.schema('image'),
-  name: NS.schema('name'),
+  image: schema.image,
+  name: schema.name,
 };
 
 EmploymentAttributeListItem.propTypes = {

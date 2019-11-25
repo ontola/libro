@@ -1,3 +1,5 @@
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
@@ -18,8 +20,8 @@ const InterventionGrid = () => (
     <LDLink>
       <Property label={NS.ontola('coverPhoto')} />
       <CardContent noSpacing>
-        <Property label={[NS.schema('name'), NS.rdfs('label')]} />
-        <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
+        <Property label={[schema.name, rdfs.label]} />
+        <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
         <AttributeList>
           <tr><th>Praktische ervaring</th><th>Aandrager</th></tr>
           <AttributeListItem label={NS.rivm('securityImprovedScore')} />
@@ -29,7 +31,7 @@ const InterventionGrid = () => (
       </CardContent>
     </LDLink>
     <DetailsBar>
-      <Property hideName label={NS.schema('creator')} />
+      <Property hideName label={schema.creator} />
       <LinkedDetailDate />
       <Property label={NS.argu('pinnedAt')} />
       <Property short label={NS.argu('expiresAt')} />

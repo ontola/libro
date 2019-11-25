@@ -1,4 +1,6 @@
+import as from '@ontologies/as';
 import rdf from '@ontologies/core';
+import schema from '@ontologies/schema';
 import {
   LinkedResourceContainer,
   Property,
@@ -57,7 +59,7 @@ export default function getCollection({
         label: NS.ontola('pages'),
         limit: Infinity,
       },
-      totalItems: NS.as('totalItems'),
+      totalItems: as.totalItems,
     };
 
     static propTypes = {
@@ -116,7 +118,7 @@ export default function getCollection({
 
     pagination() {
       if (this.props.hidePagination) {
-        return <Property label={NS.as('totalItems')} />;
+        return <Property label={as.totalItems} />;
       }
 
       switch (rdf.id(this.props.collectionType)) {
@@ -158,7 +160,7 @@ export default function getCollection({
 
       return (
         <WrappingElement wrapperProps={{ className: `Collection__Depth-${depth}` }}>
-          {renderParent && <Property label={NS.schema('isPartOf')} />}
+          {renderParent && <Property label={schema.isPartOf} />}
           {header}
           <Property
             forceRender

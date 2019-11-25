@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import { linkedPropType, register } from 'link-redux';
 import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
@@ -36,7 +37,7 @@ const PinnedAt = ({ linkedProp }) => {
   );
 };
 
-PinnedAt.type = NS.schema('Thing');
+PinnedAt.type = schema.Thing;
 
 PinnedAt.property = NS.argu('pinnedAt');
 

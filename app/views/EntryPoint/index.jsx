@@ -1,11 +1,11 @@
 import rdf from '@ontologies/core';
+import schema from '@ontologies/schema';
 import { linkType, register } from 'link-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Button } from '../../components';
 import ButtonWithFeedback from '../../components/ButtonWithFeedback';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { countInParentheses } from '../../helpers/numbers';
 import { allTopologiesExcept } from '../../topologies';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
@@ -29,7 +29,7 @@ import EntryPointContainer from './EntryPointContainer';
 const FABase = 'http://fontawesome.io/icon/';
 
 class EntryPoint extends React.PureComponent {
-  static type = NS.schema('EntryPoint');
+  static type = schema.EntryPoint;
 
   static topology = allTopologiesExcept(
     cardTopology,
@@ -44,10 +44,10 @@ class EntryPoint extends React.PureComponent {
   );
 
   static mapDataToProps = {
-    httpMethod: NS.schema('httpMethod'),
-    image: NS.schema('image'),
-    name: NS.schema('name'),
-    url: NS.schema('url'),
+    httpMethod: schema.httpMethod,
+    image: schema.image,
+    name: schema.name,
+    url: schema.url,
   };
 
   static propTypes = {

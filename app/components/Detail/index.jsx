@@ -1,11 +1,10 @@
+import schema from '@ontologies/schema';
 import classNames from 'classnames';
 import { Property } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { withRouter } from 'react-router';
-
-import { NS } from '../../helpers/LinkedRenderStore';
 
 import './Detail.scss';
 import DetailText from './text';
@@ -42,7 +41,7 @@ const defaultProps = {
 export class DetailComp extends PureComponent {
   getImage() {
     if (this.props.linkedImage === true) {
-      return <Property data-test="Detail-linked-image" label={NS.schema('image')} />;
+      return <Property data-test="Detail-linked-image" label={schema.image} />;
     }
 
     return this.props.imageUrl && (

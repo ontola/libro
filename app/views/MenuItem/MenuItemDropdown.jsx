@@ -1,4 +1,5 @@
 import IconButton from '@material-ui/core/IconButton';
+import schema from '@ontologies/schema';
 import {
   LinkedResourceContainer,
   Property,
@@ -23,7 +24,7 @@ const MenuItemDropdown = ({
       size="small"
       onClick={onClick}
     >
-      <Property label={NS.schema('image')} />
+      <Property label={schema.image} />
     </IconButton>
   );
 

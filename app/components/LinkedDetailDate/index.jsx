@@ -1,9 +1,10 @@
+import schema from '@ontologies/schema';
 import { literalShape } from '@ontola/mash';
 import { link } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import DetailDate from '../DetailDate';
 
 const propTypes = {
@@ -49,11 +50,11 @@ const LinkedDetailDate = ({
 LinkedDetailDate.propTypes = propTypes;
 
 export default link({
-  dateCreated: NS.schema('dateCreated'),
-  dateModified: NS.schema('dateModified'),
-  datePublished: NS.schema('datePublished'),
-  duration: NS.schema('duration'),
-  endDate: NS.schema('endDate'),
-  lastActivityAt: NS.argu('lastActivityAt'),
-  startDate: NS.schema('startDate'),
+  dateCreated: schema.dateCreated,
+  dateModified: schema.dateModified,
+  datePublished: schema.datePublished,
+  duration: schema.duration,
+  endDate: schema.endDate,
+  lastActivityAt: argu.lastActivityAt,
+  startDate: schema.startDate,
 })(LinkedDetailDate);

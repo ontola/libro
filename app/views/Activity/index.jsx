@@ -1,3 +1,5 @@
+import as from '@ontologies/as';
+import schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
@@ -11,7 +13,7 @@ import ActivityName from './properties/name';
 import './Activity.scss';
 
 class Activity extends React.PureComponent {
-  static type = NS.as('Activity');
+  static type = as.Activity;
 
   static topology = [
     undefined,
@@ -27,8 +29,8 @@ class Activity extends React.PureComponent {
           className="ActivityDetail"
           right={(
             <React.Fragment>
-              <Property label={NS.schema('dateCreated')} />
-              <Property label={NS.as('object')}>
+              <Property label={schema.dateCreated} />
+              <Property label={as.object}>
                 <Property label={NS.ontola('followMenu')} />
                 <Property label={NS.ontola('shareMenu')} />
                 <Property label={NS.ontola('actionsMenu')} />
@@ -36,9 +38,9 @@ class Activity extends React.PureComponent {
             </React.Fragment>
           )}
         >
-          <Property label={NS.schema('name')} />
+          <Property label={schema.name} />
         </DetailsBar>
-        <Property label={NS.as('object')} />
+        <Property label={as.object} />
       </Card>
     );
   }

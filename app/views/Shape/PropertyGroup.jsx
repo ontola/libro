@@ -1,6 +1,8 @@
 import rdf from '@ontologies/core';
 import Collapse from '@material-ui/core/Collapse';
 import { ButtonBase } from '@material-ui/core';
+import rdfs from '@ontologies/rdfs';
+import sh from '@ontologies/shacl';
 import {
   linkType,
   register,
@@ -50,7 +52,7 @@ const PropertyGroup = ({
   }
 
   const fieldNames = properties.map(prop => (
-    calculateFormFieldName(propertyIndex, lrs.getResourceProperty(prop, NS.sh('path')))
+    calculateFormFieldName(propertyIndex, lrs.getResourceProperty(prop, sh.path))
   ));
   const invalidCount = invalidFields.filter(i => fieldNames.indexOf(i) > -1).length;
 
@@ -86,13 +88,13 @@ const PropertyGroup = ({
   );
 };
 
-PropertyGroup.type = NS.sh('PropertyGroup');
+PropertyGroup.type = sh.PropertyGroup;
 
 PropertyGroup.topology = allTopologies;
 
 PropertyGroup.mapDataToProps = {
-  description: NS.sh('description'),
-  label: NS.rdfs('label'),
+  description: sh.description,
+  label: rdfs.label,
 };
 
 PropertyGroup.linkOpts = {

@@ -1,3 +1,5 @@
+import schema from '@ontologies/schema';
+import sh from '@ontologies/shacl';
 import {
   linkType,
   lrsType,
@@ -29,11 +31,11 @@ const MediaObjectOmniformFields = ({
   const resourceId = calculateFormFieldName(formContext, propertyIndex);
   const encodingFormatShape = lrs.findSubject(
     subject,
-    [NS.sh('property'), NS.sh('path')],
-    NS.schema('encodingFormat')
+    [sh.property, sh.path],
+    schema.encodingFormat
   ).pop();
   const encodingFormatTypes = encodingFormatShape
-    && listToArr(lrs, [], lrs.getResourceProperty(encodingFormatShape, NS.sh('in')))
+    && listToArr(lrs, [], lrs.getResourceProperty(encodingFormatShape, sh.in))
       ?.map(lit => lit.value)
       ?.join(', ');
 
@@ -55,7 +57,7 @@ const MediaObjectOmniformFields = ({
     return null;
   }
 
-  const fieldName = NS.schema('contentUrl');
+  const fieldName = schema.contentUrl;
   const fieldId = calculateFormFieldName(formContext, propertyIndex, fieldName);
   const { input: { value, ...resourceInput } } = resourceField;
 
@@ -82,9 +84,9 @@ const MediaObjectOmniformFields = ({
 
 MediaObjectOmniformFields.type = [
   NS.argu('MediaObject'),
-  NS.schema('MediaObject'),
-  NS.schema('ImageObject'),
-  NS.schema('VideoObject'),
+  schema.MediaObject,
+  schema.ImageObject,
+  schema.VideoObject,
 ];
 
 MediaObjectOmniformFields.topology = omniformFieldsTopology;

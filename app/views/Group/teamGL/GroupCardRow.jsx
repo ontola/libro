@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   Property,
   register,
@@ -11,11 +12,11 @@ import ContentDetails from '../../../topologies/ContentDetails';
 
 const GroupCardRow = () => (
   <CardContent>
-    <Property label={NS.schema('name')} />
+    <Property label={schema.name} />
     <ContentDetails>
       <Property label={NS.teamGL('volunteerCount')} />
     </ContentDetails>
-    <Property label={NS.schema('text')} />
+    <Property label={schema.text} />
   </CardContent>
 );
 

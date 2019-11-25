@@ -1,5 +1,7 @@
 import { nodeType } from '@ontola/mash';
+import rdfs from '@ontologies/rdfs';
 import { isTerm } from '@ontologies/core';
+import sh from '@ontologies/shacl';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   Property,
@@ -71,7 +73,7 @@ const NodeShape = ({
     <Property
       forceRender
       autofocusForm={autofocusForm}
-      label={NS.sh('targetClass')}
+      label={sh.targetClass}
       lrs={lrs}
       propertyIndex={propertyIndex}
       removeItem={removeItem}
@@ -82,12 +84,12 @@ const NodeShape = ({
       onKeyUp={onKeyUp}
     >
       <div className="NodeShape" style={removeItem ? { display: 'flex' } : undefined}>
-        <Property label={NS.rdfs('label')} />
-        <Property label={NS.sh('targetClass')} />
+        <Property label={rdfs.label} />
+        <Property label={sh.targetClass} />
         <Property
           autofocusForm={autofocusForm}
           invalidFields={invalidFields}
-          label={[NS.sh('property'), NS.ontola('formSteps')]}
+          label={[sh.property, NS.ontola('formSteps')]}
           propertyIndex={propertyIndex}
           subject={subject}
           targetNode={targetNode}
@@ -115,10 +117,10 @@ NodeShape.defaultProps = defaultProps;
 
 export default LinkedRenderStore.registerRenderer(
   link(
-    [NS.sh('targetNode')],
+    [sh.targetNode],
     { forceRender: true }
   )(NodeShape),
-  NS.sh('NodeShape'),
+  sh.NodeShape,
   RENDER_CLASS_NAME,
   allTopologies
 );

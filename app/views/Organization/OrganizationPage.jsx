@@ -1,3 +1,5 @@
+import foaf from '@ontologies/foaf';
+import schema from '@ontologies/schema';
 import {
   LinkedResourceContainer,
   linkType,
@@ -45,9 +47,9 @@ const OrganizationPage = ({
 };
 
 OrganizationPage.type = [
-  NS.schema('Organization'),
+  schema.Organization,
   NS.argu('Page'),
-  NS.schema('WebSite'),
+  schema.WebSite,
 ];
 
 OrganizationPage.topology = [
@@ -57,8 +59,8 @@ OrganizationPage.topology = [
 
 OrganizationPage.mapDataToProps = {
   hideHeader: NS.argu('hideHeader'),
-  homepage: NS.foaf('homepage'),
-  name: NS.schema('name'),
+  homepage: foaf.homepage,
+  name: schema.name,
 };
 
 OrganizationPage.propTypes = {

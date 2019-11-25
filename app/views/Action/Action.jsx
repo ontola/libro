@@ -12,7 +12,6 @@ import { withRouter } from 'react-router';
 import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
 import CardContent from '../../components/Card/CardContent';
 import { retrievePath } from '../../helpers/iris';
-import { NS } from '../../helpers/LinkedRenderStore';
 import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
@@ -23,8 +22,8 @@ import NavigatableAction from './NavigatableAction';
 
 export class Action extends NavigatableAction {
   static type = [
-    NS.schema('Action'),
-    NS.schema('UpdateAction'),
+    schema.Action,
+    schema.UpdateAction,
   ];
 
   static topology = [
@@ -32,8 +31,8 @@ export class Action extends NavigatableAction {
   ];
 
   static mapDataToProps = {
-    actionStatus: NS.schema('actionStatus'),
-    object: NS.schema('object'),
+    actionStatus: schema.actionStatus,
+    object: schema.object,
   };
 
   static hocs = [withRouter];
@@ -51,10 +50,10 @@ export class Action extends NavigatableAction {
     if (invalidStatusIds.includes(rdf.id(this.props.actionStatus))) {
       return (
         <Container>
-          <Property label={NS.schema('isPartOf')} />
+          <Property label={schema.isPartOf} />
           <CardMain>
             <CardContent endSpacing>
-              <Property label={NS.schema('name')} />
+              <Property label={schema.name} />
               <Property label={schema.error} />
               <SignInFormLink Component={Button} />
             </CardContent>
@@ -65,16 +64,16 @@ export class Action extends NavigatableAction {
 
     return (
       <Container>
-        <Property label={NS.schema('isPartOf')} />
+        <Property label={schema.isPartOf} />
         <CardMain>
           <CardContent>
-            <Property label={NS.schema('name')} />
+            <Property label={schema.name} />
           </CardContent>
           <Property
             header
             action={this.props.subject}
             cancelPath={retrievePath(this.props.object.value)}
-            label={NS.schema('target')}
+            label={schema.target}
             onDone={this.onDoneHandler}
           />
           {Appendix && <Appendix />}

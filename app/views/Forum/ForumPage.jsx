@@ -40,7 +40,7 @@ const ForumPage = ({ coverPhoto, hideHeader }) => {
   );
 };
 
-ForumPage.type = [NS.argu('ContainerNode'), NS.schema('WebPage')];
+ForumPage.type = [NS.argu('ContainerNode'), schema.WebPage];
 
 ForumPage.mapDataToProps = {
   coverPhoto: NS.ontola('coverPhoto'),

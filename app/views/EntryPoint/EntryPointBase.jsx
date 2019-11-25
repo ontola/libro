@@ -1,4 +1,6 @@
 import rdf from '@ontologies/core';
+import schema from '@ontologies/schema';
+import sh from '@ontologies/shacl';
 import HttpStatus from 'http-status-codes';
 import { anyRDFValue } from 'link-lib';
 import {
@@ -64,7 +66,7 @@ class EntryPointBase extends PropertyBase {
           .api
           .feedResponse(e.response)
           .then((statements) => {
-            const name = anyRDFValue(statements, NS.schema('text'));
+            const name = anyRDFValue(statements, schema.text);
             if (name) {
               throw new Error(name.value);
             }
@@ -78,7 +80,7 @@ class EntryPointBase extends PropertyBase {
 
     const footerGroupProps = lrs.findSubject(
       action,
-      [NS.schema('target'), NS.ll('actionBody'), NS.sh('property'), NS.sh('group')],
+      [schema.target, NS.ll('actionBody'), sh.property, sh.group],
       NS.ontola('footerGroup')
     );
 
@@ -88,7 +90,7 @@ class EntryPointBase extends PropertyBase {
 
     const footerGroupSteps = lrs.findSubject(
       action,
-      [NS.schema('target'), NS.ll('actionBody'), NS.ontola('formSteps'), NS.sh('group')],
+      [schema.target, NS.ll('actionBody'), NS.ontola('formSteps'), sh.group],
       NS.ontola('footerGroup')
     );
 

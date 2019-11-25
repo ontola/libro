@@ -1,3 +1,4 @@
+import sh from '@ontologies/shacl';
 import { RENDER_CLASS_NAME } from 'link-lib';
 import {
   linkedPropType,
@@ -7,7 +8,6 @@ import {
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../../topologies';
 import { omniformFieldsTopology } from '../../../topologies/OmniformFields/OmniformFields';
 
@@ -25,9 +25,9 @@ const TargetClass = ({
   return children || null;
 };
 
-TargetClass.type = NS.sh('NodeShape');
+TargetClass.type = sh.NodeShape;
 
-TargetClass.property = NS.sh('targetClass');
+TargetClass.property = sh.targetClass;
 
 TargetClass.topology = allTopologies;
 

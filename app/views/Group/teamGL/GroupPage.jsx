@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   Property,
   register,
@@ -21,12 +22,12 @@ const GroupPage = () => (
           <HeaderWithMenu
             menu={<Property label={NS.ontola('actionsMenu')} />}
           >
-            <Property label={NS.schema('name')} />
+            <Property label={schema.name} />
           </HeaderWithMenu>
           <ContentDetails>
             <Property label={NS.teamGL('department')} />
           </ContentDetails>
-          <Property label={NS.schema('text')} />
+          <Property label={schema.text} />
         </CardContent>
       </CardMain>
     </Container>

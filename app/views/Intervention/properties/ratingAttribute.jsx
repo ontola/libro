@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   linkedPropType,
   register,
@@ -37,7 +38,7 @@ const RatingAttribute = ({ label, linkedProp }) => {
   );
 };
 
-RatingAttribute.type = NS.schema('Thing');
+RatingAttribute.type = schema.Thing;
 
 RatingAttribute.topology = attributeListTopology;
 

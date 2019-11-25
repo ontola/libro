@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import { linkedPropType } from 'link-redux';
 import React from 'react';
@@ -23,7 +24,7 @@ NavbarBackground.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
   NavbarBackground,
-  NS.schema('Thing'),
+  schema.Thing,
   NS.argu('navbarBackground'),
   allTopologies
 );

@@ -1,3 +1,5 @@
+import schema from '@ontologies/schema';
+import rdfs from '@ontologies/rdfs';
 import {
   Property,
   linkType,
@@ -39,7 +41,7 @@ const BadgeContainer = ({
   return (
     <Card about={subject?.value}>
       <CardContent centered noSpacing style={{ maxWidth: '25em' }}>
-        <Property label={[NS.schema('name'), NS.rdfs('label')]} />
+        <Property label={[schema.name, rdfs.label]} />
         <Image
           linkedProp={image}
           style={{
@@ -48,8 +50,8 @@ const BadgeContainer = ({
             width: '300px',
           }}
         />
-        <Property label={NS.schema('description')} />
-        <Property label={NS.schema('text')} />
+        <Property label={schema.description} />
+        <Property label={schema.text} />
       </CardContent>
       <FormFooter>
         <FormFooterRight>
@@ -77,7 +79,7 @@ BadgeContainer.topology = [
 ];
 
 BadgeContainer.mapDataToProps = {
-  image: NS.schema('image'),
+  image: schema.image,
 };
 
 BadgeContainer.propTypes = {

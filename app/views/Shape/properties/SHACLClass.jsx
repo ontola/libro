@@ -1,4 +1,5 @@
 import LinkedRenderStore from 'link-lib';
+import sh from '@ontologies/shacl';
 import {
   LinkedResourceContainer,
   linkedPropType,
@@ -7,7 +8,6 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
 import { handle } from '../../../helpers/logging';
 import { allTopologies } from '../../../topologies';
 
@@ -15,7 +15,7 @@ const SHACLClass = ({ linkedProp, subject }) => {
   const lrs = useLRS();
   const targetShape = lrs.store.anyStatementMatching(
     null,
-    NS.sh('targetClass'),
+    sh.targetClass,
     linkedProp,
     null
   );
@@ -38,7 +38,7 @@ SHACLClass.propTypes = {
 
 export default LinkedRenderStore.registerRenderer(
   SHACLClass,
-  NS.sh('PropertyShape'),
-  NS.sh('class'),
+  sh.PropertyShape,
+  sh.class,
   allTopologies
 );

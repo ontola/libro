@@ -1,3 +1,4 @@
+import as from '@ontologies/as';
 import LinkedRenderStore from 'link-lib';
 import {
   PropertyBase,
@@ -39,13 +40,13 @@ export default [
   LinkedRenderStore.registerRenderer(
     withLinkCtx(CollectionName),
     CollectionTypes,
-    NS.as('name'),
+    as.name,
     allTopologiesExcept(navbarTopology, parentTopology, tableRowTopology)
   ),
   LinkedRenderStore.registerRenderer(
     ({ linkedProp }) => linkedProp.value,
     CollectionTypes,
-    NS.as('name'),
+    as.name,
     tableRowTopology
   ),
 ];

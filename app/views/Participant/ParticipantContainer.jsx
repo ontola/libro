@@ -20,7 +20,7 @@ const ParticipantContainer = () => (
         menu={<Property label={NS.ontola('actionsMenu')} />}
       >
         <Property label={NS.teamGL('volunteer')}>
-          <Property label={NS.schema('name')} />
+          <Property label={schema.name} />
         </Property>
       </HeaderWithMenu>
       <ContentDetails>

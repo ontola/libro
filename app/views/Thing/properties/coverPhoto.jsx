@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import { ACCEPTED } from 'http-status-codes';
 import LinkedRenderStore from 'link-lib';
 import {
@@ -44,7 +45,7 @@ const CoverPhotoOrLoading = ({ linkedProp }) => {
   return <LinkedResourceContainer subject={linkedProp} />;
 };
 
-CoverPhotoOrLoading.type = NS.schema('Thing');
+CoverPhotoOrLoading.type = schema.Thing;
 
 CoverPhotoOrLoading.property = NS.ontola('coverPhoto');
 
@@ -56,7 +57,7 @@ export default [
   register(CoverPhotoOrLoading),
   LinkedRenderStore.registerRenderer(
     ClickableCover,
-    NS.schema('Thing'),
+    schema.Thing,
     NS.ontola('coverPhoto'),
     cardTopology
   ),

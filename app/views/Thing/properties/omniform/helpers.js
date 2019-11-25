@@ -1,4 +1,5 @@
 import rdf from '@ontologies/core';
+import schema from '@ontologies/schema';
 
 import { allowSort, entityIsLoaded } from '../../../../helpers/data';
 import { NS } from '../../../../helpers/LinkedRenderStore';
@@ -38,7 +39,7 @@ export const invalidStatusIds = [
 ].map(s => rdf.id(s));
 
 export const actionsAreAllDisabled = (items, lrs) => {
-  const actionStatuses = items.map(a => rdf.id(lrs.getResourceProperty(a, NS.schema('actionStatus'))));
+  const actionStatuses = items.map(a => rdf.id(lrs.getResourceProperty(a, schema.actionStatus)));
 
   return actionStatuses.every(a => invalidStatusIds.includes(a));
 };

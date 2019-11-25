@@ -1,10 +1,11 @@
+import foaf from '@ontologies/foaf';
+import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import { linkedPropType } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { isDifferentWebsite } from '../../../helpers/iris';
-import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../../topologies';
 
 const propTypes = {
@@ -31,7 +32,7 @@ IsPrimaryTopicOf.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
   IsPrimaryTopicOf,
-  NS.schema('Thing'),
-  NS.foaf('isPrimaryTopicOf'),
+  schema.Thing,
+  foaf.isPrimaryTopicOf,
   allTopologies
 );

@@ -1,4 +1,6 @@
 import rdf, { createNS } from '@ontologies/core';
+import rdfx from '@ontologies/rdf';
+import schema from '@ontologies/schema';
 
 import { NS } from '../../../tests';
 
@@ -19,7 +21,7 @@ const seq = [
 
 const resources = {
   [resource]: {
-    [NS.rdf('type')]: NS.rdf('Seq'),
+    [rdfx.type]: rdfx.Seq,
     [NS.rdf('_5')]: testNS('menus/info#contact'),
     [NS.rdf('_2')]: testNS('menus/info#governments'),
     [NS.rdf('_0')]: testNS('menus/info#about'),
@@ -28,40 +30,40 @@ const resources = {
     [NS.rdf('_1')]: testNS('menus/info#team'),
   },
   [testNS('menus/info#about')]: {
-    [NS.rdf('type')]: NS.ontola('MenuItem'),
-    [NS.schema('isPartOf')]: testNS('menus/info'),
+    [rdfx.type]: NS.ontola('MenuItem'),
+    [schema.isPartOf]: testNS('menus/info'),
     [NS.ontola('href')]: rdf.namedNode('https://argu.dev/i/about'),
-    [NS.schema('name')]: rdf.literal('Over Argu'),
+    [schema.name]: rdf.literal('Over Argu'),
   },
   [testNS('menus/info#team')]: {
-    [NS.rdf('type')]: NS.ontola('MenuItem'),
-    [NS.schema('isPartOf')]: testNS('menus/info'),
+    [rdfx.type]: NS.ontola('MenuItem'),
+    [schema.isPartOf]: testNS('menus/info'),
     [NS.ontola('href')]: rdf.namedNode('https://argu.dev/i/team'),
-    [NS.schema('name')]: rdf.literal('Ons team'),
+    [schema.name]: rdf.literal('Ons team'),
   },
   [testNS('menus/info#governments')]: {
-    [NS.rdf('type')]: NS.ontola('MenuItem'),
-    [NS.schema('isPartOf')]: testNS('menus/info'),
+    [rdfx.type]: NS.ontola('MenuItem'),
+    [schema.isPartOf]: testNS('menus/info'),
     [NS.ontola('href')]: rdf.namedNode('https://argu.dev/i/governments'),
-    [NS.schema('name')]: rdf.literal('Argu voor overheden'),
+    [schema.name]: rdf.literal('Argu voor overheden'),
   },
   [testNS('menus/info#press_media')]: {
-    [NS.rdf('type')]: NS.ontola('MenuItem'),
-    [NS.schema('isPartOf')]: testNS('menus/info'),
+    [rdfx.type]: NS.ontola('MenuItem'),
+    [schema.isPartOf]: testNS('menus/info'),
     [NS.ontola('href')]: rdf.namedNode('https://argu.pr.co'),
-    [NS.schema('name')]: rdf.literal('Pers & media'),
+    [schema.name]: rdf.literal('Pers & media'),
   },
   [testNS('menus/info#support')]: {
-    [NS.rdf('type')]: NS.ontola('MenuItem'),
-    [NS.schema('isPartOf')]: testNS('menus/info'),
+    [rdfx.type]: NS.ontola('MenuItem'),
+    [schema.isPartOf]: testNS('menus/info'),
     [NS.ontola('href')]: rdf.namedNode('https://argu.freshdesk.com/support/home'),
-    [NS.schema('name')]: rdf.literal('Help & support'),
+    [schema.name]: rdf.literal('Help & support'),
   },
   [testNS('menus/info#contact')]: {
-    [NS.rdf('type')]: NS.ontola('MenuItem'),
-    [NS.schema('isPartOf')]: testNS('menus/info'),
+    [rdfx.type]: NS.ontola('MenuItem'),
+    [schema.isPartOf]: testNS('menus/info'),
     [NS.ontola('href')]: rdf.namedNode('https://argu.dev/i/contact'),
-    [NS.schema('name')]: rdf.literal('Contact'),
+    [schema.name]: rdf.literal('Contact'),
   },
 };
 

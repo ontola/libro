@@ -1,3 +1,4 @@
+import as from '@ontologies/as';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
@@ -16,7 +17,7 @@ class CollectionTableCell extends React.PureComponent {
     return (
       <span>
         <LDLink>
-          <Property label={NS.as('totalItems')} />
+          <Property label={as.totalItems} />
         </LDLink>
         <Property label={NS.ontola('createAction')} />
       </span>

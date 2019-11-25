@@ -1,4 +1,6 @@
 import rdf from '@ontologies/core';
+import rdfx from '@ontologies/rdf';
+import schema from '@ontologies/schema';
 import {
   linkType,
   register,
@@ -32,26 +34,26 @@ const YOUTUBE_TEST = /^(https:)?\/\/(www.)?youtube.com\/embed\//;
 
 class MediaObjectPage extends React.PureComponent {
   static type = [
-    NS.schema('MediaObject'),
-    NS.schema('ImageObject'),
-    NS.schema('VideoObject'),
+    schema.MediaObject,
+    schema.ImageObject,
+    schema.VideoObject,
   ];
 
   static topology = pageTopology;
 
   static mapDataToProps = {
-    caption: NS.schema('caption'),
-    contentUrl: NS.schema('contentUrl'),
-    embedUrl: NS.schema('embedUrl'),
+    caption: schema.caption,
+    contentUrl: schema.contentUrl,
+    embedUrl: schema.embedUrl,
     encodingFormat: {
       label: [
-        NS.schema('encodingFormat'),
-        NS.schema('fileFormat'),
+        schema.encodingFormat,
+        schema.fileFormat,
       ],
     },
     filename: NS.dbo('filename'),
-    isPartOf: NS.schema('isPartOf'),
-    type: NS.rdf('type'),
+    isPartOf: schema.isPartOf,
+    type: rdfx.type,
   };
 
   static propTypes = {
@@ -118,7 +120,7 @@ class MediaObjectPage extends React.PureComponent {
     } = this.props;
 
     const classes = fullPage ? 'MediaObjectPage--full-page' : '';
-    if (rdf.equals(type, NS.schema('VideoObject'))) {
+    if (rdf.equals(type, schema.VideoObject)) {
       if (embedUrl && YOUTUBE_TEST.test(embedUrl.value)) {
         return (
           <Container>

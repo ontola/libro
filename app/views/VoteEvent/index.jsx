@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { Property, withLinkCtx } from 'link-redux';
 import React from 'react';
@@ -18,7 +19,7 @@ class VoteEventCard extends CardVoteEvent {
     return this.wrap((
       <div itemScope>
         <Property forceRender label={NS.argu('currentVote')} />
-        <Property label={NS.schema('result')} />
+        <Property label={schema.result} />
         <Property label={NS.argu('votes')} />
       </div>
     ));
@@ -30,7 +31,7 @@ class VoteEventContainer extends VoteEvent {
     return this.wrap((
       <React.Fragment key="VoteEventContainer">
         <Property forceRender label={NS.argu('currentVote')} />
-        <Property label={NS.schema('result')} />
+        <Property label={schema.result} />
         <Property label={NS.argu('votes')} />
       </React.Fragment>
     ));

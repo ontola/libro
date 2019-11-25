@@ -1,4 +1,5 @@
 import rdf, { isNamedNode } from '@ontologies/core';
+import schema from '@ontologies/schema';
 import { Set } from 'immutable';
 import {
   LinkedResourceContainer,
@@ -40,13 +41,13 @@ const propTypes = {
 };
 
 const PROPS_WHITELIST = [
-  NS.schema('name'),
-  NS.schema('text'),
+  schema.name,
+  schema.text,
   NS.argu('isOpinion'),
   NS.ontola('hiddenGroup'),
   NS.argu('attachments'),
   NS.ontola('coverPhoto'),
-  NS.schema('location'),
+  schema.location,
 ].map(t => rdf.id(t));
 
 class Omniform extends EntryPointBase {
@@ -75,7 +76,7 @@ class Omniform extends EntryPointBase {
           forceRender
           autofocusForm={this.props.autofocusForm}
           formName={form}
-          label={NS.schema('target')}
+          label={schema.target}
           whitelist={PROPS_WHITELIST}
           onKeyUp={onKeyUp}
         />
@@ -97,7 +98,7 @@ class Omniform extends EntryPointBase {
         <LinkedResourceContainer key={iri} subject={iri}>
           <Property
             current={rdf.equals(iri, this.props.action)}
-            label={NS.schema('result')}
+            label={schema.result}
             onClick={this.props.onActionChange(iri)}
           />
         </LinkedResourceContainer>

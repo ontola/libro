@@ -1,4 +1,5 @@
 import rdf from '@ontologies/core';
+import schema from '@ontologies/schema';
 import {
   linkType,
   register,
@@ -20,7 +21,7 @@ const ActionCardMain = ({
 }) => {
   const lrs = useLRS();
 
-  if (actionStatus && actionStatus !== NS.schema('PotentialActionStatus')) {
+  if (actionStatus && actionStatus !== schema.PotentialActionStatus) {
     return null;
   }
 
@@ -45,13 +46,13 @@ const ActionCardMain = ({
   );
 };
 
-ActionCardMain.type = NS.schema('CreateAction');
+ActionCardMain.type = schema.CreateAction;
 
 ActionCardMain.topology = cardMainTopology;
 
 ActionCardMain.mapDataToProps = {
-  actionStatus: NS.schema('actionStatus'),
-  name: NS.schema('name'),
+  actionStatus: schema.actionStatus,
+  name: schema.name,
 };
 
 ActionCardMain.propTypes = {

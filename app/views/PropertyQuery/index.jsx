@@ -1,3 +1,4 @@
+import sh from '@ontologies/shacl';
 import {
   LinkedResourceContainer,
   Property,
@@ -15,8 +16,8 @@ class PropertyQuery extends React.PureComponent {
   static topology = allTopologies;
 
   static mapDataToProps = {
-    path: NS.sh('path'),
-    targetNode: NS.sh('targetNode'),
+    path: sh.path,
+    targetNode: sh.targetNode,
   };
 
   static propTypes = {

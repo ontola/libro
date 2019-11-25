@@ -1,4 +1,9 @@
+import as from '@ontologies/as';
+import foaf from '@ontologies/foaf';
 import rdfx from '@ontologies/rdf';
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
+import sh from '@ontologies/shacl';
 import LinkedRenderStore from 'link-lib';
 import { link, linkType } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -9,7 +14,6 @@ import {
   Heading,
   LDLink,
 } from '../../../components';
-import { NS } from '../../../helpers/LinkedRenderStore';
 import { actionsBarTopology } from '../../../topologies/ActionsBar';
 import { attributeListTopology } from '../../../topologies/AttributeList';
 import { cardTopology } from '../../../topologies/Card';
@@ -33,11 +37,11 @@ import { tableRowTopology } from '../../../topologies/TableRow';
 import { widgetTopologyTopology } from '../../../topologies/WidgetTopology/WidgetTopology';
 
 const NamePredicates = [
-  NS.schema('name'),
-  NS.as('name'),
-  NS.rdfs('label'),
-  NS.foaf('name'),
-  NS.sh('name'),
+  schema.name,
+  as.name,
+  rdfs.label,
+  foaf.name,
+  sh.name,
 ];
 
 class ColoredHeading extends React.PureComponent {
@@ -84,7 +88,7 @@ const ConnectedHeading = link({
 export default [
   LinkedRenderStore.registerRenderer(
     () => <ConnectedHeading data-test="Thing-name-small-title" size="1" />,
-    NS.schema('Thing'),
+    schema.Thing,
     NamePredicates,
     primaryResourceTopology
   ),
@@ -94,13 +98,13 @@ export default [
         <ConnectedHeading data-test="Thing-name-card-preview" size="4" />
       </LDLink>
     ),
-    NS.schema('Thing'),
+    schema.Thing,
     NamePredicates,
     hoverBoxTopology
   ),
   LinkedRenderStore.registerRenderer(
-    link({ name: NS.schema('name') })(ActionButton),
-    NS.schema('Thing'),
+    link({ name: schema.name })(ActionButton),
+    schema.Thing,
     NamePredicates,
     [
       actionsBarTopology,
@@ -111,31 +115,31 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     () => <ConnectedHeading data-test="Thing-name-card-main" size="1" />,
-    NS.schema('Thing'),
+    schema.Thing,
     NamePredicates,
     cardMainTopology
   ),
   LinkedRenderStore.registerRenderer(
     ({ linkedProp }) => <span data-test="Thing-name-header">{linkedProp.value}</span>,
-    NS.schema('Thing'),
+    schema.Thing,
     NamePredicates,
     navbarTopology
   ),
   LinkedRenderStore.registerRenderer(
     ({ linkedProp }) => <span data-test="Thing-name-select">{linkedProp.value}</span>,
-    NS.schema('Thing'),
+    schema.Thing,
     NamePredicates,
     [radioGroupTopology, selectTopology]
   ),
   LinkedRenderStore.registerRenderer(
     () => <LDLink><ConnectedHeading data-test="Thing-name-card" size="2" /></LDLink>,
-    NS.schema('Thing'),
+    schema.Thing,
     NamePredicates,
     cardTopology
   ),
   LinkedRenderStore.registerRenderer(
     () => <LDLink><ConnectedHeading data-test="Thing-name-card-link" size="2" /></LDLink>,
-    NS.schema('Thing'),
+    schema.Thing,
     NamePredicates,
     [
       cardRowTopology,
@@ -146,13 +150,13 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     () => <ConnectedHeading data-test="Thing-name-card-fixed" size="2" />,
-    NS.schema('Thing'),
+    schema.Thing,
     NamePredicates,
     cardFixedTopology
   ),
   LinkedRenderStore.registerRenderer(
     ({ linkedProp }) => <span data-test="Thing-name-inline">{linkedProp.value}</span>,
-    NS.schema('Thing'),
+    schema.Thing,
     NamePredicates,
     [
       attributeListTopology,
@@ -162,13 +166,13 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     ({ linkedProp }) => <LDLink features={['bold']}>{linkedProp?.value}</LDLink>,
-    NS.schema('Thing'),
+    schema.Thing,
     NamePredicates,
     tableRowTopology
   ),
   LinkedRenderStore.registerRenderer(
     ({ linkedProp }) => <Heading data-test="Thing-name-header" size="1">{linkedProp.value}</Heading>,
-    NS.schema('Thing'),
+    schema.Thing,
     NamePredicates,
     pageHeaderTopology
   ),

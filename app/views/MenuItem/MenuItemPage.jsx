@@ -1,5 +1,6 @@
 import AppBar from '@material-ui/core/AppBar';
 import rdf from '@ontologies/core';
+import schema from '@ontologies/schema';
 import {
   LinkedResourceContainer,
   Property,
@@ -132,8 +133,8 @@ class MenuItemPage extends React.PureComponent {
           <Container>
             <CardMain>
               <CardContent>
-                <Property label={NS.schema('isPartOf')}>
-                  <Property label={NS.schema('name')} />
+                <Property label={schema.isPartOf}>
+                  <Property label={schema.name} />
                 </Property>
               </CardContent>
               <AppBar color="inherit" elevation={0} position="static">

@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   link,
@@ -19,16 +20,16 @@ import MediaObjectOmniformFields from './MediaObjectOmniformFields';
 import MediaObjectPage from './MediaObjectPage';
 
 class MediaObjectPreview extends React.PureComponent {
-  static type = NS.schema('MediaObject');
+  static type = schema.MediaObject;
 
   static topology = cardListTopology;
 
   static mapDataToProps = {
-    caption: NS.schema('caption'),
+    caption: schema.caption,
     encodingFormat: {
       label: [
-        NS.schema('encodingFormat'),
-        NS.schema('fileFormat'),
+        schema.encodingFormat,
+        schema.fileFormat,
       ],
     },
     filename: NS.dbo('filename'),
@@ -62,14 +63,14 @@ export default [
   MediaObjectPage,
   LinkedRenderStore.registerRenderer(
     link({
-      contentUrl: NS.schema('contentUrl'),
+      contentUrl: schema.contentUrl,
       encodingFormat: {
-        label: [NS.schema('encodingFormat'), NS.schema('fileFormat')],
+        label: [schema.encodingFormat, schema.fileFormat],
       },
-      fileSize: NS.schema('fileSize'),
-      name: NS.schema('name'),
+      fileSize: schema.fileSize,
+      name: schema.name,
     }, { returnType: 'value' })(Attachment),
-    NS.schema('MediaObject'),
+    schema.MediaObject,
     RENDER_CLASS_NAME,
     [
       cardRowTopology,

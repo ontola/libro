@@ -1,3 +1,4 @@
+import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
 import {
   Property,
@@ -26,7 +27,7 @@ class VolunteerPage extends React.PureComponent {
     return (
       <PrimaryResource>
         <Container>
-          <Property label={NS.schema('isPartOf')} />
+          <Property label={schema.isPartOf} />
           <CardMain>
             <CardContent endSpacing>
               <HeaderWithMenu
@@ -34,7 +35,7 @@ class VolunteerPage extends React.PureComponent {
                   <Property label={NS.ontola('actionsMenu')} />
                 )}
               >
-                <Property label={[NS.schema('name'), NS.rdfs('label')]} />
+                <Property label={[schema.name, rdfs.label]} />
               </HeaderWithMenu>
               <ContentDetails>
                 <Property label={NS.teamGL('department')} />

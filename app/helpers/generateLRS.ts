@@ -126,9 +126,9 @@ export default function generateLRS() {
   };
 
   const THING_TYPES = [
-    NS.schema('Thing'),
-    NS.rdfs('Resource'),
-    NS.owl('Thing'),
+    schema.Thing,
+    rdfs.Resource,
+    owl.Thing,
     NS.link('Document'),
   ].map((t) => rdf.id(t));
 
@@ -140,7 +140,7 @@ export default function generateLRS() {
     });
   }
 
-  LRS.store.getInternalStore().newPropertyAction(NS.rdf('type'), (
+  LRS.store.getInternalStore().newPropertyAction(rdfx.type, (
       _: rdflib.Store,
       __: SomeTerm,
       ___: NamedNode,
@@ -151,101 +151,101 @@ export default function generateLRS() {
       return false;
     }
     // @ts-ignore TS2341
-    LRS.schema.addStatement(rdf.quad(obj, NS.rdfs('subClassOf'), NS.schema('Thing')));
+    LRS.schema.addStatement(rdf.quad(obj, rdfs.subClassOf, schema.Thing));
     return false;
   });
 
 // tslint:disable max-line-length
   const ontologicalClassData = [
-    rdf.quad(NS.schema('Thing'), NS.rdfs('subClassOf'), NS.rdfs('Resource')),
-    rdf.quad(NS.owl('Thing'), NS.owl('sameAs'), NS.schema('Thing')),
+    rdf.quad(schema.Thing, rdfs.subClassOf, rdfs.Resource),
+    rdf.quad(owl.Thing, owl.sameAs, schema.Thing),
 
-    rdf.quad(NS.schema('Thing'), NS.rdf('type'), NS.rdfs('Class')),
-    rdf.quad(NS.schema('Thing'), NS.rdfs('comment'), rdf.literal('The most generic type of item.')),
-    rdf.quad(NS.schema('Thing'), NS.rdfs('label'), rdf.literal('Thing', languages.en)),
-    rdf.quad(NS.schema('Thing'), NS.ontola('forms/inputs/select/displayProp'), NS.schema('name')),
+    rdf.quad(schema.Thing, rdfx.type, rdfs.Class),
+    rdf.quad(schema.Thing, rdfs.comment, rdf.literal('The most generic type of item.')),
+    rdf.quad(schema.Thing, rdfs.label, rdf.literal('Thing', languages.en)),
+    rdf.quad(schema.Thing, NS.ontola('forms/inputs/select/displayProp'), schema.name),
 
-    rdf.quad(NS.as('Collection'), NS.rdfs('subClassOf'), NS.rdfs('Resource')),
-    rdf.quad(NS.ontola('Collection'), NS.rdfs('subClassOf'), NS.as('Collection')),
-    rdf.quad(NS.ontola('InfiniteView'), NS.rdfs('subClassOf'), NS.as('CollectionPage')),
-    rdf.quad(NS.ontola('PaginatedView'), NS.rdfs('subClassOf'), NS.as('CollectionPage')),
+    rdf.quad(as.Collection, rdfs.subClassOf, rdfs.Resource),
+    rdf.quad(NS.ontola('Collection'), rdfs.subClassOf, as.Collection),
+    rdf.quad(NS.ontola('InfiniteView'), rdfs.subClassOf, as.CollectionPage),
+    rdf.quad(NS.ontola('PaginatedView'), rdfs.subClassOf, as.CollectionPage),
 
-    rdf.quad(NS.opengov('Motion'), NS.rdf('type'), NS.rdfs('Class')),
-    rdf.quad(NS.opengov('Motion'), NS.rdfs('label'), rdf.literal('Motion', languages.en)),
-    rdf.quad(NS.opengov('Motion'), NS.rdfs('label'), rdf.literal('Motie', languages.nl)),
+    rdf.quad(NS.opengov('Motion'), rdfx.type, rdfs.Class),
+    rdf.quad(NS.opengov('Motion'), rdfs.label, rdf.literal('Motion', languages.en)),
+    rdf.quad(NS.opengov('Motion'), rdfs.label, rdf.literal('Motie', languages.nl)),
 
-    rdf.quad(NS.schema('ImageObject'), NS.rdfs('subClassOf'), NS.schema('MediaObject')),
+    rdf.quad(schema.ImageObject, rdfs.subClassOf, schema.MediaObject),
 
-    rdf.quad(NS.schema('Action'), NS.rdf('type'), NS.rdfs('Class')),
-    rdf.quad(NS.schema('Action'), NS.rdfs('subClassOf'), NS.schema('Thing')),
+    rdf.quad(schema.Action, rdfx.type, rdfs.Class),
+    rdf.quad(schema.Action, rdfs.subClassOf, schema.Thing),
 
-    rdf.quad(NS.schema('CreateAction'), NS.rdf('type'), NS.rdfs('Class')),
-    rdf.quad(NS.schema('CreateAction'), NS.rdfs('subClassOf'), NS.schema('Action')),
+    rdf.quad(schema.CreateAction, rdfx.type, rdfs.Class),
+    rdf.quad(schema.CreateAction, rdfs.subClassOf, schema.Action),
 
-    rdf.quad(NS.schema('WebPage'), NS.rdf('type'), NS.rdfs('Class')),
-    rdf.quad(NS.schema('WebPage'), NS.rdfs('subClassOf'), NS.schema('Thing')),
+    rdf.quad(schema.WebPage, rdfx.type, rdfs.Class),
+    rdf.quad(schema.WebPage, rdfs.subClassOf, schema.Thing),
 
-    rdf.quad(NS.schema('WebSite'), NS.rdf('type'), NS.rdfs('Class')),
-    rdf.quad(NS.schema('WebSite'), NS.rdfs('subClassOf'), NS.schema('Thing')),
+    rdf.quad(schema.WebSite, rdfx.type, rdfs.Class),
+    rdf.quad(schema.WebSite, rdfs.subClassOf, schema.Thing),
 
-    rdf.quad(NS.ontola('Create::Users::Password'), NS.rdf('type'), NS.rdfs('Class')),
-    rdf.quad(NS.ontola('Create::Users::Password'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
+    rdf.quad(NS.ontola('Create::Users::Password'), rdfx.type, rdfs.Class),
+    rdf.quad(NS.ontola('Create::Users::Password'), rdfs.subClassOf, schema.CreateAction),
 
-    rdf.quad(NS.ontola('Create::Users::Confirmation'), NS.rdf('type'), NS.rdfs('Class')),
-    rdf.quad(NS.ontola('Create::Users::Confirmation'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
+    rdf.quad(NS.ontola('Create::Users::Confirmation'), rdfx.type, rdfs.Class),
+    rdf.quad(NS.ontola('Create::Users::Confirmation'), rdfs.subClassOf, schema.CreateAction),
 
-    rdf.quad(NS.ontola('Create::Users::Unlock'), NS.rdf('type'), NS.rdfs('Class')),
-    rdf.quad(NS.ontola('Create::Users::Unlock'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
+    rdf.quad(NS.ontola('Create::Users::Unlock'), rdfx.type, rdfs.Class),
+    rdf.quad(NS.ontola('Create::Users::Unlock'), rdfs.subClassOf, schema.CreateAction),
 
-    rdf.quad(NS.ontola('Create::Vote'), NS.rdf('type'), NS.rdfs('Class')),
-    rdf.quad(NS.ontola('Create::Vote'), NS.rdfs('subClassOf'), NS.schema('CreateAction')),
+    rdf.quad(NS.ontola('Create::Vote'), rdfx.type, rdfs.Class),
+    rdf.quad(NS.ontola('Create::Vote'), rdfs.subClassOf, schema.CreateAction),
 
-    rdf.quad(NS.ontola('VideoPage'), NS.rdf('type'), NS.rdfs('Class')),
-    rdf.quad(NS.ontola('VideoPage'), NS.rdfs('subClassOf'), NS.schema('WebPage')),
+    rdf.quad(NS.ontola('VideoPage'), rdfx.type, rdfs.Class),
+    rdf.quad(NS.ontola('VideoPage'), rdfs.subClassOf, schema.WebPage),
 
-    rdf.quad(NS.schema('UpdateAction'), NS.rdf('type'), NS.rdfs('Class')),
-    rdf.quad(NS.schema('UpdateAction'), NS.rdfs('subClassOf'), NS.schema('Action')),
+    rdf.quad(schema.UpdateAction, rdfx.type, rdfs.Class),
+    rdf.quad(schema.UpdateAction, rdfs.subClassOf, schema.Action),
 
-    rdf.quad(NS.teamGL('ContactedAction'), NS.rdf('type'), NS.rdfs('Class')),
-    rdf.quad(NS.teamGL('ContactedAction'), NS.rdfs('subClassOf'), NS.schema('UpdateAction')),
+    rdf.quad(NS.teamGL('ContactedAction'), rdfx.type, rdfs.Class),
+    rdf.quad(NS.teamGL('ContactedAction'), rdfs.subClassOf, schema.UpdateAction),
 
-    rdf.quad(NS.teamGL('NewVolunteer'), NS.rdf('type'), NS.rdfs('Class')),
-    rdf.quad(NS.teamGL('NewVolunteer'), NS.rdfs('subClassOf'), NS.teamGL('Volunteer')),
+    rdf.quad(NS.teamGL('NewVolunteer'), rdfx.type, rdfs.Class),
+    rdf.quad(NS.teamGL('NewVolunteer'), rdfs.subClassOf, NS.teamGL('Volunteer')),
 
-    rdf.quad(NS.teamGL('NotAvailableAction'), NS.rdf('type'), NS.rdfs('Class')),
-    rdf.quad(NS.teamGL('NotAvailableAction'), NS.rdfs('subClassOf'), NS.schema('UpdateAction')),
+    rdf.quad(NS.teamGL('NotAvailableAction'), rdfx.type, rdfs.Class),
+    rdf.quad(NS.teamGL('NotAvailableAction'), rdfs.subClassOf, schema.UpdateAction),
 
-    rdf.quad(NS.teamGL('TryAgainAction'), NS.rdf('type'), NS.rdfs('Class')),
-    rdf.quad(NS.teamGL('TryAgainAction'), NS.rdfs('subClassOf'), NS.schema('UpdateAction')),
+    rdf.quad(NS.teamGL('TryAgainAction'), rdfx.type, rdfs.Class),
+    rdf.quad(NS.teamGL('TryAgainAction'), rdfs.subClassOf, schema.UpdateAction),
 
-    rdf.quad(NS.teamGL('UnsubscribeAction'), NS.rdf('type'), NS.rdfs('Class')),
-    rdf.quad(NS.teamGL('UnsubscribeAction'), NS.rdfs('subClassOf'), NS.schema('UpdateAction')),
+    rdf.quad(NS.teamGL('UnsubscribeAction'), rdfx.type, rdfs.Class),
+    rdf.quad(NS.teamGL('UnsubscribeAction'), rdfs.subClassOf, schema.UpdateAction),
 
-    rdf.quad(NS.teamGL('Participant'), NS.rdf('type'), NS.rdfs('Class')),
-    rdf.quad(NS.teamGL('Participant'), NS.rdfs('subClassOf'), NS.teamGL('Volunteer')),
+    rdf.quad(NS.teamGL('Participant'), rdfx.type, rdfs.Class),
+    rdf.quad(NS.teamGL('Participant'), rdfs.subClassOf, NS.teamGL('Volunteer')),
 
-    rdf.quad(NS.teamGL('PotentialParticipant'), NS.rdf('type'), NS.rdfs('Class')),
-    rdf.quad(NS.teamGL('PotentialParticipant'), NS.rdfs('subClassOf'), NS.teamGL('Participant')),
+    rdf.quad(NS.teamGL('PotentialParticipant'), rdfx.type, rdfs.Class),
+    rdf.quad(NS.teamGL('PotentialParticipant'), rdfs.subClassOf, NS.teamGL('Participant')),
 
-    rdf.quad(NS.meeting('Meeting'), NS.rdf('type'), NS.rdfs('Class')),
-    rdf.quad(NS.meeting('Meeting'), NS.rdfs('subClassOf'), NS.schema('Thing')),
-    rdf.quad(NS.meeting('Meeting'), NS.rdfs('subClassOf'), rdf.namedNode('http://purl.org/NET/c4dm/event.owl#Event')),
-    rdf.quad(NS.meeting('Meeting'), NS.rdfs('label'), rdf.literal('Meeting', languages.en)),
-    rdf.quad(NS.meeting('Meeting'), NS.rdfs('label'), rdf.literal('Vergadering', languages.nl)),
-    rdf.quad(NS.meeting('Meeting'), NS.schema('description'), rdf.literal('A meeting is an event where people discuss things and make decisions.', languages.en)),
-    rdf.quad(NS.meeting('Meeting'), NS.schema('description'), rdf.literal('Een vergadering is een bijeenkomst waar mensen dingen bespreken en belsuiten nemen.', languages.nl)),
-    rdf.quad(NS.meeting('Meeting'), NS.schema('image'), rdf.namedNode('http://fontawesome.io/icon/calendar')),
+    rdf.quad(NS.meeting('Meeting'), rdfx.type, rdfs.Class),
+    rdf.quad(NS.meeting('Meeting'), rdfs.subClassOf, schema.Thing),
+    rdf.quad(NS.meeting('Meeting'), rdfs.subClassOf, rdf.namedNode('http://purl.org/NET/c4dm/event.owl#Event')),
+    rdf.quad(NS.meeting('Meeting'), rdfs.label, rdf.literal('Meeting', languages.en)),
+    rdf.quad(NS.meeting('Meeting'), rdfs.label, rdf.literal('Vergadering', languages.nl)),
+    rdf.quad(NS.meeting('Meeting'), schema.description, rdf.literal('A meeting is an event where people discuss things and make decisions.', languages.en)),
+    rdf.quad(NS.meeting('Meeting'), schema.description, rdf.literal('Een vergadering is een bijeenkomst waar mensen dingen bespreken en belsuiten nemen.', languages.nl)),
+    rdf.quad(NS.meeting('Meeting'), schema.image, rdf.namedNode('http://fontawesome.io/icon/calendar')),
 
-    rdf.quad(NS.meeting('AgendaItem'), NS.rdf('type'), NS.rdfs('Class')),
-    rdf.quad(NS.meeting('AgendaItem'), NS.rdfs('label'), rdf.literal('Agenda Item', languages.en)),
-    rdf.quad(NS.meeting('AgendaItem'), NS.rdfs('label'), rdf.literal('Agendapunt', languages.nl)),
-    rdf.quad(NS.meeting('AgendaItem'), NS.rdfs('subClassOf'), NS.schema('Thing')),
-    rdf.quad(NS.meeting('AgendaItem'), NS.schema('description'), rdf.literal('An Agenda Item is a topic that is discussed during a meeeting.', languages.en)),
-    rdf.quad(NS.meeting('AgendaItem'), NS.schema('description'), rdf.literal('Een Agendapunt is een onderwerp dat wordt besproken tijdens een vergadering.', languages.nl)),
-    rdf.quad(NS.meeting('AgendaItem'), NS.schema('image'), rdf.namedNode('http://fontawesome.io/icon/list')),
+    rdf.quad(NS.meeting('AgendaItem'), rdfx.type, rdfs.Class),
+    rdf.quad(NS.meeting('AgendaItem'), rdfs.label, rdf.literal('Agenda Item', languages.en)),
+    rdf.quad(NS.meeting('AgendaItem'), rdfs.label, rdf.literal('Agendapunt', languages.nl)),
+    rdf.quad(NS.meeting('AgendaItem'), rdfs.subClassOf, schema.Thing),
+    rdf.quad(NS.meeting('AgendaItem'), schema.description, rdf.literal('An Agenda Item is a topic that is discussed during a meeeting.', languages.en)),
+    rdf.quad(NS.meeting('AgendaItem'), schema.description, rdf.literal('Een Agendapunt is een onderwerp dat wordt besproken tijdens een vergadering.', languages.nl)),
+    rdf.quad(NS.meeting('AgendaItem'), schema.image, rdf.namedNode('http://fontawesome.io/icon/list')),
 
-    rdf.quad(NS.ontola('MenuItem'), NS.rdf('type'), NS.rdfs('Class')),
-    rdf.quad(NS.ontola('MenuItem'), NS.rdfs('subClassOf'), NS.argu('Thing')),
+    rdf.quad(NS.ontola('MenuItem'), rdfx.type, rdfs.Class),
+    rdf.quad(NS.ontola('MenuItem'), rdfs.subClassOf, NS.argu('Thing')),
   ];
 // tslint:enable max-line-length
 
@@ -254,51 +254,51 @@ export default function generateLRS() {
   LRS.store.addStatements(ontologicalClassData);
 
   const ontologicalPropertyData = [
-    rdf.quad(NS.foaf('name'), NS.owl('sameAs'), NS.schema('name')),
+    rdf.quad(foaf.name, owl.sameAs, schema.name),
 
-    rdf.quad(NS.argu('applyLink'), NS.rdf('type'), NS.rdf('Property')),
-    rdf.quad(NS.argu('applyLink'), NS.rdfs('label'), rdf.literal('Link', languages.en)),
-    rdf.quad(NS.argu('applyLink'), NS.rdfs('label'), rdf.literal('Link', languages.nl)),
+    rdf.quad(NS.argu('applyLink'), rdfx.type, rdfx.Property),
+    rdf.quad(NS.argu('applyLink'), rdfs.label, rdf.literal('Link', languages.en)),
+    rdf.quad(NS.argu('applyLink'), rdfs.label, rdf.literal('Link', languages.nl)),
 
-    rdf.quad(NS.ontola('destroyAction'), NS.rdf('type'), NS.rdf('Property')),
-    rdf.quad(NS.ontola('destroyAction'), NS.rdfs('label'), rdf.literal('Delete', languages.en)),
-    rdf.quad(NS.ontola('destroyAction'), NS.rdfs('label'), rdf.literal('Verwijderen', languages.nl)),
+    rdf.quad(NS.ontola('destroyAction'), rdfx.type, rdfx.Property),
+    rdf.quad(NS.ontola('destroyAction'), rdfs.label, rdf.literal('Delete', languages.en)),
+    rdf.quad(NS.ontola('destroyAction'), rdfs.label, rdf.literal('Verwijderen', languages.nl)),
 
-    rdf.quad(NS.argu('invitee'), NS.rdf('type'), NS.rdf('Property')),
-    rdf.quad(NS.argu('invitee'), NS.rdfs('label'), rdf.literal('Invitee', languages.en)),
-    rdf.quad(NS.argu('invitee'), NS.rdfs('label'), rdf.literal('Uitgenodigde', languages.nl)),
+    rdf.quad(NS.argu('invitee'), rdfx.type, rdfx.Property),
+    rdf.quad(NS.argu('invitee'), rdfs.label, rdf.literal('Invitee', languages.en)),
+    rdf.quad(NS.argu('invitee'), rdfs.label, rdf.literal('Uitgenodigde', languages.nl)),
 
-    rdf.quad(NS.ontola('makePrimaryAction'), NS.rdf('type'), NS.rdf('Property')),
-    rdf.quad(NS.ontola('makePrimaryAction'), NS.rdfs('label'), rdf.literal('Make primary', languages.en)),
-    rdf.quad(NS.ontola('makePrimaryAction'), NS.rdfs('label'), rdf.literal('Maak primair', languages.nl)),
+    rdf.quad(NS.ontola('makePrimaryAction'), rdfx.type, rdfx.Property),
+    rdf.quad(NS.ontola('makePrimaryAction'), rdfs.label, rdf.literal('Make primary', languages.en)),
+    rdf.quad(NS.ontola('makePrimaryAction'), rdfs.label, rdf.literal('Maak primair', languages.nl)),
 
-    rdf.quad(NS.argu('opened'), NS.rdf('type'), NS.rdf('Property')),
-    rdf.quad(NS.argu('opened'), NS.rdfs('label'), rdf.literal('Opened', languages.en)),
-    rdf.quad(NS.argu('opened'), NS.rdfs('label'), rdf.literal('Geopend', languages.nl)),
+    rdf.quad(NS.argu('opened'), rdfx.type, rdfx.Property),
+    rdf.quad(NS.argu('opened'), rdfs.label, rdf.literal('Opened', languages.en)),
+    rdf.quad(NS.argu('opened'), rdfs.label, rdf.literal('Geopend', languages.nl)),
 
-    rdf.quad(NS.argu('redirectUrl'), NS.rdf('type'), NS.rdf('Property')),
-    rdf.quad(NS.argu('redirectUrl'), NS.rdfs('label'), rdf.literal('Redirect to', languages.en)),
-    rdf.quad(NS.argu('redirectUrl'), NS.rdfs('label'), rdf.literal('Redirect naar', languages.nl)),
+    rdf.quad(NS.argu('redirectUrl'), rdfx.type, rdfx.Property),
+    rdf.quad(NS.argu('redirectUrl'), rdfs.label, rdf.literal('Redirect to', languages.en)),
+    rdf.quad(NS.argu('redirectUrl'), rdfs.label, rdf.literal('Redirect naar', languages.nl)),
 
-    rdf.quad(NS.ontola('sendConfirmationAction'), NS.rdf('type'), NS.rdf('Property')),
+    rdf.quad(NS.ontola('sendConfirmationAction'), rdfx.type, rdfx.Property),
     rdf.quad(
         NS.ontola('sendConfirmationAction'),
-        NS.rdfs('label'),
+        rdfs.label,
         rdf.literal('Send confirmation', languages.en),
     ),
     rdf.quad(
         NS.ontola('sendConfirmationAction'),
-        NS.rdfs('label'),
+        rdfs.label,
         rdf.literal('Verstuur bevestiging', languages.nl),
     ),
 
-    rdf.quad(NS.ontola('updateAction'), NS.rdf('type'), NS.rdf('Property')),
-    rdf.quad(NS.ontola('updateAction'), NS.rdfs('label'), rdf.literal('Edit', languages.en)),
-    rdf.quad(NS.ontola('updateAction'), NS.rdfs('label'), rdf.literal('Bewerken', languages.nl)),
+    rdf.quad(NS.ontola('updateAction'), rdfx.type, rdfx.Property),
+    rdf.quad(NS.ontola('updateAction'), rdfs.label, rdf.literal('Edit', languages.en)),
+    rdf.quad(NS.ontola('updateAction'), rdfs.label, rdf.literal('Bewerken', languages.nl)),
 
-    rdf.quad(NS.argu('usages'), NS.rdf('type'), NS.rdf('Property')),
-    rdf.quad(NS.argu('usages'), NS.rdfs('label'), rdf.literal('Used', languages.en)),
-    rdf.quad(NS.argu('usages'), NS.rdfs('label'), rdf.literal('Gebruikt', languages.nl)),
+    rdf.quad(NS.argu('usages'), rdfx.type, rdfx.Property),
+    rdf.quad(NS.argu('usages'), rdfs.label, rdf.literal('Used', languages.en)),
+    rdf.quad(NS.argu('usages'), rdfs.label, rdf.literal('Gebruikt', languages.nl)),
   ];
 
   LRS.addOntologySchematics(ontologicalPropertyData);

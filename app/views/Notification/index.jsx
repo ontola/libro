@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   Property,
   linkType,
@@ -31,16 +32,16 @@ const Notification = ({
   subject,
   target,
 }) => {
-  let content = <Property label={NS.schema('name')} />;
+  let content = <Property label={schema.name} />;
   if (target) {
-    const readAction = lrs.findSubject(subject, actionType, NS.schema('ReadAction')).pop();
+    const readAction = lrs.findSubject(subject, actionType, schema.ReadAction).pop();
 
     content = (
-      <Property label={NS.schema('target')} onClick={() => readAction && lrs.exec(readAction)}>
-        <Property label={NS.schema('creator')} />
+      <Property label={schema.target} onClick={() => readAction && lrs.exec(readAction)}>
+        <Property label={schema.creator} />
         <div style={{ width: '100%' }}>
-          <Property label={NS.schema('name')} />
-          <Property label={NS.schema('dateCreated')} style={{ display: 'block' }} />
+          <Property label={schema.name} />
+          <Property label={schema.dateCreated} style={{ display: 'block' }} />
         </div>
       </Property>
     );
@@ -66,8 +67,8 @@ Notification.topology = [
 ];
 
 Notification.mapDataToProps = {
-  name: NS.schema('name'),
-  target: NS.schema('target'),
+  name: schema.name,
+  target: schema.target,
 };
 
 Notification.propTypes = propTypes;

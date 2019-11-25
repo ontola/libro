@@ -1,4 +1,7 @@
+import as from '@ontologies/as';
 import { isTerm } from '@ontologies/core';
+import rdfx from '@ontologies/rdf';
+import sh from '@ontologies/shacl';
 import {
   linkType,
   lrsType,
@@ -25,7 +28,7 @@ import NestedResource from './PropertyShape/NestedResource';
 
 const getTargetValues = (lrs, rawTargetValues) => {
   const isCollection = rawTargetValues?.length === 1
-    && lrs.findSubject(rawTargetValues[0], [NS.rdf('type')], NS.as('Collection')).length > 0;
+    && lrs.findSubject(rawTargetValues[0], [rdfx.type], as.Collection).length > 0;
 
   if (!isCollection
     && rawTargetValues?.length === 1
@@ -92,26 +95,26 @@ const PropertyShape = (props) => {
   return null;
 };
 
-PropertyShape.type = NS.sh('PropertyShape');
+PropertyShape.type = sh.PropertyShape;
 
 PropertyShape.topology = allTopologies;
 
 PropertyShape.mapDataToProps = {
-  class: NS.sh('class'),
-  datatype: NS.sh('datatype'),
+  class: sh.class,
+  datatype: sh.datatype,
   defaultValue: {
-    label: NS.sh('defaultValue'),
+    label: sh.defaultValue,
     limit: Infinity,
   },
-  description: NS.sh('description'),
+  description: sh.description,
   inputFieldHint: NS.ontola('inputFieldHint'),
-  maxCount: NS.sh('maxCount'),
-  maxLength: NS.sh('maxLength'),
-  minCount: NS.sh('minCount'),
-  minLength: NS.sh('minLength'),
-  name: NS.sh('name'),
-  path: NS.sh('path'),
-  shIn: { label: NS.sh('in') },
+  maxCount: sh.maxCount,
+  maxLength: sh.maxLength,
+  minCount: sh.minCount,
+  minLength: sh.minLength,
+  name: sh.name,
+  path: sh.path,
+  shIn: { label: sh.in },
 };
 
 PropertyShape.propTypes = {

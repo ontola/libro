@@ -1,3 +1,4 @@
+import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
 import rdfs from '@ontologies/rdfs';
 import {
@@ -59,7 +60,7 @@ ThingSelect.type = schema.Thing;
 ThingSelect.topology = selectTopology;
 
 ThingSelect.mapDataToProps = {
-  itemClass: NS.rdf('type'),
+  itemClass: rdfx.type,
 };
 
 ThingSelect.propTypes = {

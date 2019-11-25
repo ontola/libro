@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   LinkedResourceContainer,
   linkType,
@@ -13,7 +14,7 @@ import CardMicroRow from '../../../topologies/Card/CardMicroRow';
 import CardRow from '../../../topologies/Card/CardRow';
 
 class TopComment extends React.PureComponent {
-  static type = NS.schema('Thing');
+  static type = schema.Thing;
 
   static topology = cardAppendixTopology;
 

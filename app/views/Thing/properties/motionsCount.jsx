@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import { linkedPropType, register } from 'link-redux';
 import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
@@ -32,7 +33,7 @@ const MotionsCount = ({ linkedProp }) => {
   );
 };
 
-MotionsCount.type = NS.schema('Thing');
+MotionsCount.type = schema.Thing;
 
 MotionsCount.property = NS.argu('motionsCount');
 

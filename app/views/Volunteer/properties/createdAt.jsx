@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import { linkedPropType, register } from 'link-redux';
 import React from 'react';
 import emoji from 'react-easy-emoji';
@@ -66,7 +67,7 @@ const CreatedAt = ({ linkedProp }) => {
 
 CreatedAt.type = NS.teamGL('NewVolunteer');
 
-CreatedAt.property = NS.schema('dateCreated');
+CreatedAt.property = schema.dateCreated;
 
 CreatedAt.topology = allTopologies;
 

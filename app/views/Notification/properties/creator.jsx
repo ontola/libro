@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import {
   LinkedResourceContainer,
@@ -20,7 +21,7 @@ const propTypes = {
 
 const Creator = ({ linkedProp }) => (
   <LinkedResourceContainer subject={linkedProp} topology={detailsBarTopology}>
-    <Property label={NS.schema('image')} />
+    <Property label={schema.image} />
   </LinkedResourceContainer>
 );
 
@@ -29,7 +30,7 @@ Creator.propTypes = propTypes;
 export default LinkedRenderStore.registerRenderer(
   Creator,
   NS.argu('Notification'),
-  NS.schema('creator'),
+  schema.creator,
   [
     primaryResourceTopology,
     cardTopology,

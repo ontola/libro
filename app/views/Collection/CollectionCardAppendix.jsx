@@ -1,3 +1,4 @@
+import as from '@ontologies/as';
 import {
   Property,
   linkType,
@@ -28,7 +29,7 @@ CollectionCardAppendix.type = CollectionTypes;
 CollectionCardAppendix.topology = cardAppendixTopology;
 
 CollectionCardAppendix.mapDataToProps = {
-  totalItems: NS.as('totalItems'),
+  totalItems: as.totalItems,
 };
 
 CollectionCardAppendix.propTypes = {

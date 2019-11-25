@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   LinkedResourceContainer,
   linkedPropType,
@@ -20,12 +21,12 @@ const IconAttribute = ({ linkedProp }) => (
   </div>
 );
 
-IconAttribute.type = NS.schema('Thing');
+IconAttribute.type = schema.Thing;
 
 IconAttribute.topology = allTopologies;
 
 IconAttribute.property = [
-  NS.schema('industry'),
+  schema.industry,
   NS.rivm('interventionEffects'),
   NS.rivm('targetAudience'),
 ];

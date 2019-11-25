@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import {
   Property,
@@ -83,13 +84,13 @@ const ArgumentsCardAppendix = props => (
 export default [
   LinkedRenderStore.registerRenderer(
     ArgumentsData,
-    NS.schema('Thing'),
+    schema.Thing,
     NS.argu('arguments'),
     allTopologiesExcept(cardAppendixTopology)
   ),
   LinkedRenderStore.registerRenderer(
     ArgumentsCardAppendix,
-    NS.schema('Thing'),
+    schema.Thing,
     NS.argu('arguments'),
     cardAppendixTopology
   ),

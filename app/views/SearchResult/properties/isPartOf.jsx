@@ -1,4 +1,6 @@
 import rdf from '@ontologies/core';
+import rdfx from '@ontologies/rdf';
+import schema from '@ontologies/schema';
 import {
   LinkedResourceContainer,
   linkedPropType,
@@ -17,7 +19,7 @@ class IsPartOfPage extends React.PureComponent {
 
   static topology = NS.argu('container');
 
-  static property = NS.schema('isPartOf');
+  static property = schema.isPartOf;
 
   static hocs = [withLRS];
 
@@ -29,7 +31,7 @@ class IsPartOfPage extends React.PureComponent {
   render() {
     const { linkedProp, lrs } = this.props;
 
-    const parentType = linkedProp && lrs.getResourceProperty(linkedProp, NS.rdf('type'));
+    const parentType = linkedProp && lrs.getResourceProperty(linkedProp, rdfx.type);
 
     if (rdf.equals(parentType, NS.argu('Page'))) {
       return null;

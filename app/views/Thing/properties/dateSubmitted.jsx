@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   linkedPropType,
   register,
@@ -5,18 +6,17 @@ import {
 import React from 'react';
 
 import { DetailDate } from '../../../components';
-import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../../topologies';
 
 class DateSubmitted extends React.Component {
-  static type = NS.schema('Thing');
+  static type = schema.Thing;
 
-  static property = NS.schema('dateSubmitted');
+  static property = schema.ns('dateSubmitted');
 
   static topology = allTopologies;
 
   static mapDataToProps = {
-    dateSubmitted: NS.schema('dateSubmitted'),
+    dateSubmitted: schema.ns('dateSubmitted'),
   };
 
   static propTypes = {

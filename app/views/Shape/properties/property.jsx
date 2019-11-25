@@ -1,4 +1,5 @@
 import rdf from '@ontologies/core';
+import sh from '@ontologies/shacl';
 import LinkedRenderStore, { normalizeType } from 'link-lib';
 import {
   LinkedResourceContainer,
@@ -7,7 +8,6 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
 import { handle } from '../../../helpers/logging';
 import { allTopologies } from '../../../topologies';
 
@@ -45,7 +45,7 @@ class ShProperty extends PropertyBase {
     } = this.props;
 
     if (propSubject && (whitelist || blacklist)) {
-      const paths = lrs.store.match(propSubject, NS.sh('path'));
+      const paths = lrs.store.match(propSubject, sh.path);
 
       // The filter is on the blanknode id of the propshape, rather than its sh:path value
       const allowed = whitelist
@@ -71,12 +71,12 @@ class ShProperty extends PropertyBase {
     for (let i = 0, maxLen = properties.length; i < maxLen; i++) {
       const prop = this.filterProp(properties[i] ? properties[i].object : undefined);
       if (prop) {
-        const group = lrs.store.anyStatementMatching(prop, NS.sh('group'));
+        const group = lrs.store.anyStatementMatching(prop, sh.group);
         if (group && !groups.has(group.object)) {
           groups.set(group.object, []);
         }
 
-        const order = lrs.store.anyStatementMatching(prop, NS.sh('order'));
+        const order = lrs.store.anyStatementMatching(prop, sh.order);
         if (order) {
           const orderNo = Number.parseInt(order.object.value, DECIMAL);
           if (group) {
@@ -96,7 +96,7 @@ class ShProperty extends PropertyBase {
         props: v.map(p => this.filterProp(p)).filter(Boolean),
       };
       if (group.props.length > 0) {
-        const order = lrs.store.anyStatementMatching(g, NS.sh('order'));
+        const order = lrs.store.anyStatementMatching(g, sh.order);
         if (order) {
           const orderNo = Number.parseInt(order.object.value, DECIMAL);
           props[orderNo] = group;
@@ -193,7 +193,7 @@ class ShProperty extends PropertyBase {
 
 export default LinkedRenderStore.registerRenderer(
   withLRS(ShProperty),
-  NS.sh('NodeShape'),
-  NS.sh('property'),
+  sh.NodeShape,
+  sh.property,
   allTopologies
 );

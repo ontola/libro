@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import {
   PropertyBase,
@@ -79,8 +80,8 @@ TextCollapsed.propTypes = propTypesCollection;
 export default [
   LinkedRenderStore.registerRenderer(
     Text,
-    NS.schema('Thing'),
-    [NS.schema('text'), NS.schema('description')],
+    schema.Thing,
+    [schema.text, schema.description],
     [
       primaryResourceTopology,
       cardMainTopology,
@@ -89,8 +90,8 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     withLinkCtx(TextCollapsed),
-    NS.schema('Thing'),
-    [NS.schema('text'), NS.schema('description')],
+    schema.Thing,
+    [schema.text, schema.description],
     [
       cardRowTopology,
       cardTopology,
@@ -99,14 +100,14 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     TextInline,
-    NS.schema('Thing'),
-    [NS.schema('text'), NS.schema('description')],
+    schema.Thing,
+    [schema.text, schema.description],
     cardListTopology
   ),
   LinkedRenderStore.registerRenderer(
     TextCutoff,
-    NS.schema('Thing'),
-    [NS.schema('text'), NS.schema('description')],
+    schema.Thing,
+    [schema.text, schema.description],
     [
       cardFixedTopology,
       hoverBoxTopology,

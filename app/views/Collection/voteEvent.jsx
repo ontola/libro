@@ -1,3 +1,4 @@
+import as from '@ontologies/as';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   Property,
@@ -66,7 +67,7 @@ VoteEventSide.propTypes = {
 };
 
 const totalItemsProp = {
-  totalItems: NS.as('totalItems'),
+  totalItems: as.totalItems,
 };
 
 export default [
@@ -92,7 +93,7 @@ export default [
     voteEventResultTopology
   ),
   LinkedRenderStore.registerRenderer(
-    () => <Property label={NS.as('items')} />,
+    () => <Property label={as.items} />,
     CollectionTypes,
     RENDER_CLASS_NAME,
     voteEventSideTopology

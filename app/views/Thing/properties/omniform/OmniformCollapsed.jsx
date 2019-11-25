@@ -1,4 +1,5 @@
 import Collapse from '@material-ui/core/Collapse';
+import schema from '@ontologies/schema';
 import {
   linkType,
   lrsType,
@@ -108,7 +109,7 @@ const CollapsedOmniformProp = (props) => {
   );
 };
 
-CollapsedOmniformProp.type = [NS.schema('Thing'), NS.link('Document')];
+CollapsedOmniformProp.type = [schema.Thing, NS.link('Document')];
 
 CollapsedOmniformProp.property = NS.app('omniform');
 
@@ -120,7 +121,7 @@ CollapsedOmniformProp.topology = [
 
 CollapsedOmniformProp.mapDataToProps = {
   potentialAction: {
-    label: NS.schema('potentialAction'),
+    label: schema.potentialAction,
     limit: Infinity,
   },
 };

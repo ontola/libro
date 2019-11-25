@@ -1,3 +1,5 @@
+import rdfs from '@ontologies/rdfs';
+import sh from '@ontologies/shacl';
 import LinkedRenderStore from 'link-lib';
 import React from 'react';
 
@@ -15,7 +17,7 @@ export default LinkedRenderStore.registerRenderer(
       {linkedProp.value}
     </strong>
   ),
-  [NS.sh('Shape'), NS.sh('NodeShape'), NS.ontola('FormStep')],
-  NS.rdfs('label'),
+  [sh.Shape, sh.NodeShape, NS.ontola('FormStep')],
+  rdfs.label,
   allTopologies
 );

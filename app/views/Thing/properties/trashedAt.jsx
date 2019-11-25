@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import { linkedPropType, register } from 'link-redux';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -25,7 +26,7 @@ const TrashedAt = ({ linkedProp }) => {
   );
 };
 
-TrashedAt.type = NS.schema('Thing');
+TrashedAt.type = schema.Thing;
 
 TrashedAt.property = NS.argu('trashedAt');
 

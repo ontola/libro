@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   linkType,
   lrsType,
@@ -16,16 +17,16 @@ import { containerTopology } from '../../../topologies/Container';
 import ErrorButtonWithFeedback from '../../Error/ErrorButtonWithFeedback';
 
 class ArguLocation extends React.Component {
-  static type = NS.schema('Thing');
+  static type = schema.Thing;
 
-  static property = NS.schema('location');
+  static property = schema.location;
 
   static topology = containerTopology;
 
   static mapDataToProps = {
     childrenPlacements: NS.argu('childrenPlacements'),
     dataSubjects: NS.argu('childrenPlacements'),
-    schemaLocation: NS.schema('location'),
+    schemaLocation: schema.location,
   };
 
   static hocs = [withRouter];

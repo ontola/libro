@@ -1,10 +1,11 @@
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
 import {
   linkType,
   register,
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
 import TableHeaderCell from '../../topologies/TableHeaderCell';
 import { tableHeaderRowTopology } from '../../topologies/TableHeaderRow';
 
@@ -14,13 +15,13 @@ const ThingTableHeaderRow = ({ name }) => (
   </TableHeaderCell>
 );
 
-ThingTableHeaderRow.type = NS.schema('Thing');
+ThingTableHeaderRow.type = schema.Thing;
 
 ThingTableHeaderRow.topology = tableHeaderRowTopology;
 
 ThingTableHeaderRow.mapDataToProps = {
   name: {
-    label: [NS.schema('name'), NS.rdfs('label')],
+    label: [schema.name, rdfs.label],
   },
 };
 

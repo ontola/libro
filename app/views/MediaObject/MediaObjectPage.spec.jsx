@@ -1,4 +1,5 @@
 import rdf from '@ontologies/core';
+import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
 import { LinkedResourceContainer } from 'link-redux';
 import dcterms from '@ontologies/dcterms';
@@ -23,16 +24,16 @@ describe('MediaObject', () => {
 
   const resources = {
     '@id': resource.value,
-    [NS.rdf('type')]: NS.schema('MediaObject'),
-    [NS.schema('encodingFormat')]: rdf.literal('image/png'),
+    [rdfx.type]: schema.MediaObject,
+    [schema.encodingFormat]: rdf.literal('image/png'),
     [NS.dbo('filename')]: rdf.literal(FILE_NAME),
-    [NS.schema('contentUrl')]: rdf.namedNode(CONTENT_URL),
-    [NS.schema('dateCreated')]: rdf.literal(Date.now()),
-    [NS.schema('isPartOf')]: {
+    [schema.contentUrl]: rdf.namedNode(CONTENT_URL),
+    [schema.dateCreated]: rdf.literal(Date.now()),
+    [schema.isPartOf]: {
       '@id': parent,
       [dcterms.identifier]: parent,
-      [NS.rdf('type')]: schema.Thing,
-      [NS.schema('name')]: rdf.literal(PARENT_NAME),
+      [rdfx.type]: schema.Thing,
+      [schema.name]: rdf.literal(PARENT_NAME),
     },
   };
 

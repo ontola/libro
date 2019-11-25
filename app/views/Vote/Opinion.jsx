@@ -1,4 +1,5 @@
 import rdf from '@ontologies/core';
+import schema from '@ontologies/schema';
 import { linkType, register } from 'link-redux';
 import React, { Component } from 'react';
 
@@ -17,7 +18,7 @@ class Opinion extends Component {
   ];
 
   static mapDataToProps = {
-    option: NS.schema('option'),
+    option: schema.option,
     primaryVote: NS.argu('primaryVote'),
   };
 

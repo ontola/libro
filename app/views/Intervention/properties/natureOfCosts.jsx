@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   LinkedResourceContainer,
   linkedPropType,
@@ -13,7 +14,7 @@ const IconAttribute = ({ linkedProp }) => (
   <li><LinkedResourceContainer subject={linkedProp} topology={inlineTopology} /></li>
 );
 
-IconAttribute.type = NS.schema('Thing');
+IconAttribute.type = schema.Thing;
 
 IconAttribute.topology = allTopologies;
 

@@ -1,4 +1,5 @@
 import { namedNodeShape } from '@ontola/mash';
+import rdfx from '@ontologies/rdf';
 import {
   LinkedResourceContainer,
   register,
@@ -10,7 +11,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { seqToArr } from '../../helpers/data';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../topologies';
 
 export function Seq({
@@ -67,7 +67,7 @@ export function Seq({
   );
 }
 
-Seq.type = NS.rdf('Seq');
+Seq.type = rdfx.Seq;
 
 Seq.topology = allTopologies;
 

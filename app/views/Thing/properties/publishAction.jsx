@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   LinkedResourceContainer,
   linkedPropType,
@@ -9,7 +10,7 @@ import { NS } from '../../../helpers/LinkedRenderStore';
 import { containerTopology } from '../../../topologies/Container';
 
 class PublishAction extends React.PureComponent {
-  static type = NS.schema('Thing');
+  static type = schema.Thing;
 
   static property = NS.ontola('publishAction');
 

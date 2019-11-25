@@ -1,4 +1,5 @@
 import { literalShape, namedNodeShape } from '@ontola/mash';
+import schema from '@ontologies/schema';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { link, subjectType } from 'link-redux';
 import React, { PureComponent } from 'react';
@@ -48,7 +49,7 @@ export default [
       imagePositionY: NS.ontola('imagePositionY'),
       url: NS.ontola('imgUrl1500x2000'),
     })(ImageObjectBackgroundCover),
-    NS.schema('ImageObject'),
+    schema.ImageObject,
     RENDER_CLASS_NAME,
     primaryResourceTopology
   ),
@@ -57,7 +58,7 @@ export default [
       imagePositionY: NS.ontola('imagePositionY'),
       url: NS.ontola('imgUrl568x400'),
     })(ImageObjectBackgroundCover),
-    NS.schema('ImageObject'),
+    schema.ImageObject,
     RENDER_CLASS_NAME,
     [
       cardTopology,

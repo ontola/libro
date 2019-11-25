@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import { linkedPropType, register } from 'link-redux';
 import React from 'react';
 
@@ -10,7 +11,7 @@ const propTypes = {
 };
 
 class FollowsCount extends React.PureComponent {
-  static type = NS.schema('Thing');
+  static type = schema.Thing;
 
   static property = NS.argu('followsCount');
 

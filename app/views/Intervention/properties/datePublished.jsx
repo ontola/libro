@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   linkedPropType,
   register,
@@ -14,7 +15,7 @@ DatePublished.type = NS.rivm('Intervention');
 
 DatePublished.topology = attributeListTopology;
 
-DatePublished.property = NS.schema('datePublished');
+DatePublished.property = schema.datePublished;
 
 DatePublished.propTypes = {
   linkedProp: linkedPropType,

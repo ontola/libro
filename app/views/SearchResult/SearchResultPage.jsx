@@ -1,3 +1,5 @@
+import as from '@ontologies/as';
+import schema from '@ontologies/schema';
 import {
   Property,
   linkType,
@@ -30,7 +32,7 @@ export const SearchResultPage = ({
     <Property
       collectionDisplay={collectionDisplay}
       empty={() => null}
-      label={NS.as('items')}
+      label={as.items}
     />
   );
   const pagination = (
@@ -47,7 +49,7 @@ export const SearchResultPage = ({
     <React.Fragment>
       <Container>
         <div className="SearchResult__header">
-          <Property label={NS.schema('isPartOf')} />
+          <Property label={schema.isPartOf} />
         </div>
         <SearchForm
           history={history}
@@ -91,7 +93,7 @@ SearchResultPage.mapDataToProps = {
   query: NS.argu('query'),
   searchTemplate: NS.ontola('searchTemplate'),
   took: NS.argu('took'),
-  totalItems: NS.as('totalItems'),
+  totalItems: as.totalItems,
 };
 
 SearchResultPage.propTypes = {

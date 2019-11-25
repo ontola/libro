@@ -1,3 +1,6 @@
+import foaf from '@ontologies/foaf';
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
 import {
   Property,
   linkedPropType,
@@ -11,12 +14,12 @@ import { navbarTopology } from '../../../topologies/Navbar';
 import './name.scss';
 
 class OrganizationNameNavbar extends React.PureComponent {
-  static type = [NS.schema('Organization'), NS.argu('Page'), NS.schema('WebSite')];
+  static type = [schema.Organization, NS.argu('Page'), schema.WebSite];
 
   static property = [
-    NS.schema('name'),
-    NS.rdfs('label'),
-    NS.foaf('name'),
+    schema.name,
+    rdfs.label,
+    foaf.name,
   ];
 
   static topology = navbarTopology;
@@ -30,7 +33,7 @@ class OrganizationNameNavbar extends React.PureComponent {
 
     return (
       <div className="OrganizationNameNavbar">
-        <Property label={NS.schema('image')} />
+        <Property label={schema.image} />
         <span className="OrganizationNameNavbar__value NavbarLink__label">{linkedProp.value}</span>
       </div>
     );

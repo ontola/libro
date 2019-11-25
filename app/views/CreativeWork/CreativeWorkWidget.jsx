@@ -1,3 +1,5 @@
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
 import {
   Property,
   register,
@@ -8,15 +10,15 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 
 class CreativeWorkWidget extends React.PureComponent {
-  static type = NS.schema('CreativeWork');
+  static type = schema.CreativeWork;
 
   static topology = widgetTopologyTopology;
 
   render() {
     return (
       <React.Fragment>
-        <Property label={[NS.schema('name'), NS.rdfs('label')]} />
-        <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
+        <Property label={[schema.name, rdfs.label]} />
+        <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
       </React.Fragment>
     );
   }

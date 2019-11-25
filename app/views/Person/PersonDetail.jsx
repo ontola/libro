@@ -1,5 +1,7 @@
 import { literalShape } from '@ontola/mash';
+import foaf from '@ontologies/foaf';
 import rdf from '@ontologies/core';
+import schema from '@ontologies/schema';
 import {
   Property,
   register,
@@ -43,7 +45,7 @@ const PersonDetail = ({
     return (
       <LDLink features={['centered']}>
         <div className="Detail" title={title}>
-          <Property label={NS.schema('image')} />
+          <Property label={schema.image} />
         </div>
       </LDLink>
     );
@@ -64,7 +66,7 @@ const PersonDetail = ({
 };
 
 PersonDetail.type = [
-  NS.schema('Person'),
+  schema.Person,
   NS.person('Person'),
   NS.argu('Page'),
 ];
@@ -74,8 +76,8 @@ PersonDetail.topology = [detailsBarTopology, tableCellTopology];
 PersonDetail.mapDataToProps = {
   name: {
     label: [
-      NS.schema('name'),
-      NS.foaf('name'),
+      schema.name,
+      foaf.name,
     ],
   },
 };

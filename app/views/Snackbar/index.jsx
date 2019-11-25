@@ -1,6 +1,7 @@
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import schema from '@ontologies/schema';
 import { linkType, register } from 'link-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -43,7 +44,7 @@ SnackbarView.type = NS.ontola('snackbar/Snackbar');
 SnackbarView.topology = allTopologies;
 
 SnackbarView.mapDataToProps = {
-  text: NS.schema('text'),
+  text: schema.text,
 };
 
 SnackbarView.linkOpts = { returnType: 'value' };

@@ -1,4 +1,6 @@
 import rdf from '@ontologies/core';
+import rdfx from '@ontologies/rdf';
+import schema from '@ontologies/schema';
 import { Property } from 'link-redux';
 import React from 'react';
 
@@ -10,14 +12,14 @@ const resource = rdf.namedNode('http://example.com/image/1');
 
 const resources = {
   [resource]: {
-    [NS.rdf('type')]: NS.schema('ImageObject'),
-    [NS.schema('thumbnail')]: rdf.namedNode('http://www.example.com/1.thumb.png'),
-    [NS.schema('url')]: rdf.namedNode('http://www.example.com/1.png'),
+    [rdfx.type]: schema.ImageObject,
+    [schema.thumbnail]: rdf.namedNode('http://www.example.com/1.thumb.png'),
+    [schema.url]: rdf.namedNode('http://www.example.com/1.png'),
   },
 };
 
 describeView('ImageObject', components, resources, resource, () => {
-  set('ch', () => <Property label={NS.schema('thumbnail')} />);
+  set('ch', () => <Property label={schema.thumbnail} />);
 
   it('renders a thumbnail', () => {
     expect(subject.find(marker('ImageObjectThumbnail'))).toExist();

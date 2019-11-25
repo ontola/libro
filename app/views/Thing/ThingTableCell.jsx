@@ -1,4 +1,7 @@
 import { literalShape } from '@ontola/mash';
+import foaf from '@ontologies/foaf';
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
 import { register } from 'link-redux';
 import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
@@ -7,7 +10,6 @@ import {
   Detail,
   LDLink,
 } from '../../components';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { tableCellTopology } from '../../topologies/TableCell';
 
 const messages = defineMessages({
@@ -23,7 +25,7 @@ const ThingTableCell = ({ name }) => {
   return (
     <LDLink
       features={['bold', 'centered']}
-      property={NS.schema('name').value}
+      property={schema.name.value}
       title={formatMessage(messages.showProfile, { name: name?.value })}
     >
       <Detail
@@ -34,15 +36,15 @@ const ThingTableCell = ({ name }) => {
   );
 };
 
-ThingTableCell.type = [NS.schema('Thing'), NS.rdfs('Resource')];
+ThingTableCell.type = [schema.Thing, rdfs.Resource];
 
 ThingTableCell.topology = [tableCellTopology];
 
 ThingTableCell.mapDataToProps = {
   name: {
     label: [
-      NS.schema('name'),
-      NS.foaf('name'),
+      schema.name,
+      foaf.name,
     ],
   },
 };

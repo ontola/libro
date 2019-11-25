@@ -1,16 +1,16 @@
 import { namedNodeShape } from '@ontola/mash';
+import schema from '@ontologies/schema';
 import { normalizeType } from 'link-lib';
 import { Property, register } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import Spinner from '../../components/Spinner';
-import { NS } from '../../helpers/LinkedRenderStore';
 import TableRow from '../../topologies/TableRow';
 import { tableTopology } from '../../topologies/Table';
 
 class ThingTable extends React.PureComponent {
-  static type = NS.schema('Thing');
+  static type = schema.Thing;
 
   static topology = tableTopology;
 

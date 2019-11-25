@@ -1,3 +1,4 @@
+import as from '@ontologies/as';
 import IconButton from '@material-ui/core/IconButton';
 import {
   LinkedResourceContainer,
@@ -85,7 +86,7 @@ const cardCollectionHeader = ({
   pages,
   subject,
 }) => {
-  const name = pages.length > 0 ? <Property label={NS.as('name')} /> : null;
+  const name = pages.length > 0 ? <Property label={as.name} /> : null;
 
   return (
     <CardHeader header={name}>
@@ -101,7 +102,7 @@ const containerCollectionHeader = ({
   pages,
   subject,
 }) => {
-  const name = pages.length > 0 ? <Property label={NS.as('name')} /> : null;
+  const name = pages.length > 0 ? <Property label={as.name} /> : null;
 
   return (
     <ContainerHeader header={name}>

@@ -1,3 +1,5 @@
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
 import {
   Property,
   register,
@@ -11,7 +13,7 @@ import ContentDetails from '../../topologies/ContentDetails';
 
 const ParticipantCardRow = () => (
   <CardContent>
-    <Property label={[NS.schema('name'), NS.rdfs('label')]} />
+    <Property label={[schema.name, rdfs.label]} />
     <ContentDetails>
       <Property label={NS.teamGL('engagement')} />
     </ContentDetails>

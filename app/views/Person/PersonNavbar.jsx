@@ -1,4 +1,5 @@
 import rdf from '@ontologies/core';
+import schema from '@ontologies/schema';
 import {
   LinkedResourceContainer,
   Property,
@@ -28,17 +29,17 @@ const PersonNavbar = ({ subject }) => {
       </LinkedResourceContainer>
       <LDLink className="NavbarLink__link">
         <NavbarLinkIcon features="padded">
-          <Property label={NS.schema('image')}>
-            <Property label={[NS.schema('thumbnail'), NS.ontola('imgUrl64x64')]} />
+          <Property label={schema.image}>
+            <Property label={[schema.thumbnail, NS.ontola('imgUrl64x64')]} />
           </Property>
         </NavbarLinkIcon>
       </LDLink>
-      <Property label={NS.schema('email')} />
+      <Property label={schema.email} />
     </div>
   );
 };
 
-PersonNavbar.type = NS.schema('Person');
+PersonNavbar.type = schema.Person;
 
 PersonNavbar.topology = navbarTopology;
 

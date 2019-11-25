@@ -1,8 +1,8 @@
+import schema from '@ontologies/schema';
 import { linkedPropType, register } from 'link-redux';
 import React from 'react';
 
 import { DetailDate } from '../../../components';
-import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../../topologies';
 
 const propTypes = {
@@ -13,9 +13,9 @@ const DateCreated = ({ linkedProp }) => (
   <DetailDate datePublished={new Date(linkedProp.value)} />
 );
 
-DateCreated.type = NS.schema('Thing');
+DateCreated.type = schema.Thing;
 
-DateCreated.property = NS.schema('datePublished');
+DateCreated.property = schema.datePublished;
 
 DateCreated.topology = allTopologies;
 

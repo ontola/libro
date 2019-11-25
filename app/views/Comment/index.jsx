@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { Property } from 'link-redux';
 import React from 'react';
@@ -22,16 +23,16 @@ const Comment = ({ depth = 0, highlighted }) => (
           <Property label={NS.ontola('actionsMenu')} />
         )}
       >
-        <Property label={NS.schema('creator')} />
-        <Property label={NS.schema('dateCreated')} />
+        <Property label={schema.creator} />
+        <Property label={schema.dateCreated} />
       </DetailsBar>
       <CardContent>
         <Property label={NS.argu('opinion')} onLoad={() => null} />
-        <Property label={NS.schema('text')} />
+        <Property label={schema.text} />
       </CardContent>
       <ActionsBar small>
         <Property label={NS.ontola('favoriteAction')} onLoad={() => null} />
-        <Property label={NS.schema('comment')} onLoad={() => null}>
+        <Property label={schema.comment} onLoad={() => null}>
           <Property omniform label={NS.ontola('createAction')} />
         </Property>
       </ActionsBar>
@@ -42,7 +43,7 @@ const Comment = ({ depth = 0, highlighted }) => (
     <Property
       clickToOpen
       depth={depth + 1}
-      label={NS.schema('comment')}
+      label={schema.comment}
       onLoad={() => null}
     />
   </React.Fragment>
@@ -53,8 +54,8 @@ Comment.propTypes = hightlightPropTypes;
 const CommentSection = ({ highlighted }) => (
   <CardMicroRow highlighted={highlighted}>
     <Property
-      label={NS.schema('creator')}
-    />&#9;<Property label={NS.schema('text')} />
+      label={schema.creator}
+    />&#9;<Property label={schema.text} />
   </CardMicroRow>
 );
 
@@ -63,13 +64,13 @@ CommentSection.propTypes = hightlightPropTypes;
 export default [
   LinkedRenderStore.registerRenderer(
     connectHighlighting(Comment),
-    [NS.schema('Comment'), NS.argu('Comment')],
+    [schema.Comment, NS.argu('Comment')],
     RENDER_CLASS_NAME,
     containerTopology
   ),
   LinkedRenderStore.registerRenderer(
     connectHighlighting(CommentSection),
-    [NS.schema('Comment'), NS.argu('Comment')],
+    [schema.Comment, NS.argu('Comment')],
     RENDER_CLASS_NAME,
     [cardAppendixTopology, cardListTopology, cardMicroRowTopology, cardRowTopology]
   ),

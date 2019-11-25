@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   LinkedResourceContainer,
   linkedPropType,
@@ -6,7 +7,6 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
 
 const propTypes = {
@@ -29,9 +29,9 @@ const Creator = ({
   </LinkedResourceContainer>
 );
 
-Creator.type = NS.schema('Thing');
+Creator.type = schema.Thing;
 
-Creator.property = NS.schema('creator');
+Creator.property = schema.creator;
 
 Creator.topology = detailsBarTopology;
 

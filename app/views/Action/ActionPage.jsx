@@ -1,7 +1,7 @@
+import schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
 import { pageTopology } from '../../topologies/Page';
 
 import { Action } from './Action';
@@ -13,8 +13,8 @@ export class ActionPage extends Action {
   // eslint-disable-next-line class-methods-use-this
   header() {
     return (
-      <Property label={NS.schema('object')}>
-        <Property label={NS.schema('isPartOf')} />
+      <Property label={schema.object}>
+        <Property label={schema.isPartOf} />
       </Property>
     );
   }

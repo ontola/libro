@@ -1,3 +1,4 @@
+import as from '@ontologies/as';
 import {
   Property,
   register,
@@ -5,7 +6,6 @@ import {
 import React from 'react';
 import { withRouter } from 'react-router';
 
-import { NS } from '../../helpers/LinkedRenderStore';
 import { inlineTopology } from '../../topologies/Inline';
 
 import { CollectionViewTypes } from './types';
@@ -13,7 +13,7 @@ import { CollectionViewTypes } from './types';
 const CollectionPageInline = () => (
   <Property
     forceRender
-    label={NS.as('items')}
+    label={as.items}
     renderLimit={Infinity}
     separator=", "
   />

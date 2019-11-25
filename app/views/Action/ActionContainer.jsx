@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   LinkedResourceContainer,
   register,
@@ -7,21 +8,20 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withRouter } from 'react-router';
 
-import { NS } from '../../helpers/LinkedRenderStore';
 import { containerTopology } from '../../topologies/Container';
 
 import NavigatableAction from './NavigatableAction';
 
 class ActionContainer extends NavigatableAction {
-  static type = NS.schema('Action');
+  static type = schema.Action;
 
   static topology = [
     containerTopology,
   ];
 
   static mapDataToProps = {
-    actionStatus: NS.schema('actionStatus'),
-    target: NS.schema('target'),
+    actionStatus: schema.actionStatus,
+    target: schema.target,
   };
 
   static hocs = [withRouter];
@@ -38,7 +38,7 @@ class ActionContainer extends NavigatableAction {
       target,
     } = this.props;
 
-    if (actionStatus && actionStatus !== NS.schema('PotentialActionStatus')) {
+    if (actionStatus && actionStatus !== schema.PotentialActionStatus) {
       return null;
     }
 

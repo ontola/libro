@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { Property, register } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -24,12 +25,12 @@ import boxImage from './properties/boxImage';
 import thumbnail from './properties/thumbnail';
 
 const ImageObject = ({ ariaLabel }) => (
-  <Property ariaLabel={ariaLabel} label={[NS.schema('thumbnail'), NS.ontola('imgUrl64x64')]} />
+  <Property ariaLabel={ariaLabel} label={[schema.thumbnail, NS.ontola('imgUrl64x64')]} />
 );
 
 ImageObject.type = [
-  NS.schema('ImageObject'),
-  NS.schema('VideoObject'),
+  schema.ImageObject,
+  schema.VideoObject,
 ];
 
 ImageObject.topology = [
@@ -60,7 +61,7 @@ export default [
         <Property label={NS.ontola('imgUrl568x400')} />
       </NavbarLinkImageWrapper>
     ),
-    NS.schema('ImageObject'),
+    schema.ImageObject,
     RENDER_CLASS_NAME,
     navbarTopology
   ),

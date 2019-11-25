@@ -1,3 +1,4 @@
+import as from '@ontologies/as';
 import rdf from '@ontologies/core';
 import LinkedRenderStore from 'link-lib';
 import { PropertyBase, link } from 'link-redux';
@@ -40,8 +41,8 @@ class InfiniteCollectionNext extends PropertyBase {
 }
 
 export default LinkedRenderStore.registerRenderer(
-  link({ partOf: NS.as('partOf') }, { returnType: 'statement' })(InfiniteCollectionNext),
+  link({ partOf: as.partOf }, { returnType: 'statement' })(InfiniteCollectionNext),
   NS.ontola('InfiniteView'),
-  NS.as('next'),
+  as.next,
   allTopologies
 );

@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   linkType,
   register,
@@ -18,7 +19,7 @@ class CollectionNavbar extends React.PureComponent {
   static topology = navbarTopology;
 
   static mapDataToProps = {
-    name: NS.schema('name'),
+    name: schema.name,
     unreadCount: NS.argu('unreadCount'),
   };
 

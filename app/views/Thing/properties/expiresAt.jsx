@@ -1,4 +1,5 @@
 import { selectUnit } from '@formatjs/intl-utils';
+import schema from '@ontologies/schema';
 import { linkedPropType, register } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -70,7 +71,7 @@ const ExpiresAt = ({ linkedProp, short }) => {
   );
 };
 
-ExpiresAt.type = NS.schema('Thing');
+ExpiresAt.type = schema.Thing;
 
 ExpiresAt.property = NS.argu('expiresAt');
 

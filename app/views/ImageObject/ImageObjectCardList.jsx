@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import { linkType, register } from 'link-redux';
 import React from 'react';
 
@@ -6,15 +7,15 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import { cardListTopology } from '../../topologies/Card/CardList';
 
 class ImageObjectCardList extends React.PureComponent {
-  static type = [NS.schema('ImageObject'), NS.schema('VideoObject')];
+  static type = [schema.ImageObject, schema.VideoObject];
 
   static topology = cardListTopology;
 
   static mapDataToProps = {
-    caption: NS.schema('caption'),
-    contentUrl: NS.schema('contentUrl'),
+    caption: schema.caption,
+    contentUrl: schema.contentUrl,
     filename: NS.dbo('filename'),
-    thumbnailUrl: NS.schema('thumbnail'),
+    thumbnailUrl: schema.thumbnail,
   };
 
   static propTypes = {

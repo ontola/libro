@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   LinkedResourceContainer,
   PropertyBase,
@@ -35,7 +36,7 @@ class Agenda extends PropertyBase {
     this
       .getLinkedObjectPropertyRaw()
       .forEach((s) => {
-        const order = lrs.store.anyStatementMatching(s.object, NS.schema('position'));
+        const order = lrs.store.anyStatementMatching(s.object, schema.position);
         if (order) {
           const i = Number.parseInt(order.object.value, DECIMAL);
           ordered[i] = s.object;

@@ -1,4 +1,6 @@
 import { namedNodeShape } from '@ontola/mash';
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
 import { getTermBestLang } from 'link-lib';
 import { LinkedResourceContainer, lrsType } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -34,7 +36,7 @@ const OmniformPreview = ({
   const intl = useIntl();
 
   const actionLabel = primaryAction && getTermBestLang(
-    lrs.dig(primaryAction, [NS.schema('result'), NS.rdfs('label')]),
+    lrs.dig(primaryAction, [schema.result, rdfs.label]),
     lrs.store.langPrefs
   )?.value;
 

@@ -1,3 +1,6 @@
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
+import sh from '@ontologies/shacl';
 import {
   Property,
   register,
@@ -9,9 +12,9 @@ import { allTopologies } from '../../topologies';
 
 const FormStep = () => (
   <React.Fragment>
-    <Property label={[NS.rdfs('label'), NS.sh('name')]} />
-    <Property label={NS.sh('description')} />
-    <div><Property label={NS.schema('url')} /></div>
+    <Property label={[rdfs.label, sh.name]} />
+    <Property label={sh.description} />
+    <div><Property label={schema.url} /></div>
   </React.Fragment>
 );
 

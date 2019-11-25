@@ -1,4 +1,5 @@
 import rdf from '@ontologies/core';
+import schema from '@ontologies/schema';
 import {
   Property,
   linkType,
@@ -7,17 +8,16 @@ import {
 import React from 'react';
 
 import { LDLink } from '../../components';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { tableCellTopology } from '../../topologies/TableCell';
 import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
 class ActionTableCell extends React.PureComponent {
-  static type = NS.schema('Action');
+  static type = schema.Action;
 
   static topology = tableCellTopology;
 
   static mapDataToProps = {
-    actionStatus: NS.schema('actionStatus'),
+    actionStatus: schema.actionStatus,
   };
 
   static propTypes = {
@@ -31,8 +31,8 @@ class ActionTableCell extends React.PureComponent {
 
     return (
       <LDLink>
-        <Property label={NS.schema('target')}>
-          <Property label={NS.schema('image')} />
+        <Property label={schema.target}>
+          <Property label={schema.image} />
         </Property>
       </LDLink>
     );

@@ -1,4 +1,6 @@
 import dcterms from '@ontologies/dcterms';
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
 import { linkType } from 'link-redux';
 import React from 'react';
 
@@ -18,10 +20,10 @@ MeasurePropertyTableRow.topology = tableRowTopology;
 
 MeasurePropertyTableRow.mapDataToProps = {
   name: {
-    label: [NS.schema('name'), dcterms.ns('label'), NS.rdfs('label')],
+    label: [schema.name, dcterms.ns('label'), rdfs.label],
   },
   text: {
-    label: [NS.schema('text'), dcterms.description],
+    label: [schema.text, dcterms.description],
   },
 };
 

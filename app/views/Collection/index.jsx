@@ -1,3 +1,4 @@
+import as from '@ontologies/as';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   Property,
@@ -70,7 +71,7 @@ const collectionSection = ({ omniform = false, renderWhenEmpty = false } = {}) =
 
 const itemsCount = {
   totalItems: {
-    label: NS.as('totalItems'),
+    label: as.totalItems,
   },
 };
 

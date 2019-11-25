@@ -1,5 +1,7 @@
 import rdf from '@ontologies/core';
 import dcterms from '@ontologies/dcterms';
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
 import { link, lrsType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -38,7 +40,7 @@ export default link(
   {
     coverPhoto: NS.ontola('coverPhoto'),
     identifier: dcterms.identifier,
-    name: [NS.schema('name'), NS.rdfs('label')],
+    name: [schema.name, rdfs.label],
   },
   { returnType: 'value' }
 )(Metadata);

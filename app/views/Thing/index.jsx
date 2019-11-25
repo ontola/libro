@@ -1,3 +1,5 @@
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { Property, link } from 'link-redux';
 import React from 'react';
@@ -76,12 +78,12 @@ const ThingGrid = () => (
     <LDLink>
       <Property label={NS.ontola('coverPhoto')} />
       <CardContent noSpacing>
-        <Property label={[NS.schema('name'), NS.rdfs('label')]} />
-        <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
+        <Property label={[schema.name, rdfs.label]} />
+        <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
       </CardContent>
     </LDLink>
     <DetailsBar>
-      <Property hideName label={NS.schema('creator')} />
+      <Property hideName label={schema.creator} />
       <LinkedDetailDate />
       <Property label={NS.argu('pinnedAt')} />
       <Property short label={NS.argu('expiresAt')} />
@@ -93,13 +95,13 @@ const ThingGrid = () => (
 
 const ThingHoverBoxHidden = () => (
   <React.Fragment>
-    <Property label={NS.schema('text')} />
+    <Property label={schema.text} />
   </React.Fragment>
 );
 
 const ThingSection = ({ highlighted }) => (
   <CardHoverBox hiddenChildren={<ThingHoverBoxHidden />} shine={highlighted}>
-    <Property label={NS.schema('name')} />
+    <Property label={schema.name} />
   </CardHoverBox>
 );
 
@@ -109,8 +111,8 @@ const ThingCard = () => (
   <CardRow>
     <CardContent>
       <Property label={NS.argu('opinion')} />
-      <Property label={[NS.schema('name'), NS.rdfs('label'), NS.schema('name')]} />
-      <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
+      <Property label={[schema.name, rdfs.label, schema.name]} />
+      <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
       <Property label={NS.meeting('attachment')} />
     </CardContent>
   </CardRow>
@@ -131,35 +133,35 @@ export default [
   ThingInline,
   LinkedRenderStore.registerRenderer(
     connectHighlighting(ThingSection),
-    NS.schema('Thing'),
+    schema.Thing,
     RENDER_CLASS_NAME,
     cardListTopology
   ),
   LinkedRenderStore.registerRenderer(
     connectHighlighting(props => <CardContent><ThingSection {...props} /></CardContent>),
-    NS.schema('Thing'),
+    schema.Thing,
     RENDER_CLASS_NAME,
     cardRowTopology
   ),
   LinkedRenderStore.registerRenderer(
-    link({ name: NS.schema('name') })(({ name, theme }) => (
+    link({ name: schema.name })(({ name, theme }) => (
       <LDLink data-test="Thing-parent" features={['centered']} theme={theme}>
         <Detail text={name.value} />
       </LDLink>
     )),
-    NS.schema('Thing'),
+    schema.Thing,
     RENDER_CLASS_NAME,
     detailsBarTopology
   ),
   LinkedRenderStore.registerRenderer(
     ThingGrid,
-    NS.schema('Thing'),
+    schema.Thing,
     RENDER_CLASS_NAME,
     gridTopology
   ),
   LinkedRenderStore.registerRenderer(
     ThingCard,
-    NS.schema('Thing'),
+    schema.Thing,
     RENDER_CLASS_NAME,
     [
       cardFixedTopology,

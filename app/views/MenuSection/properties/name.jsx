@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import { linkedPropType, register } from 'link-redux';
 import React from 'react';
 
@@ -8,7 +9,7 @@ import { navbarTopology } from '../../../topologies/Navbar';
 class MenuSectionName extends React.PureComponent {
   static type = NS.argu('MenuSection');
 
-  static property = NS.schema('name');
+  static property = schema.name;
 
   static topology = navbarTopology;
 

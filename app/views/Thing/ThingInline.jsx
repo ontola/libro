@@ -1,16 +1,18 @@
+import rdfx from '@ontologies/rdf';
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
 import LDLink from '../../components/LDLink';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { attributeListTopology } from '../../topologies/AttributeList';
 import { inlineTopology } from '../../topologies/Inline';
 
 class ThingInline extends React.PureComponent {
-  static type = NS.schema('Thing');
+  static type = schema.Thing;
 
   static mapDataToProps = {
-    type: NS.rdf('type'),
+    type: rdfx.type,
   };
 
   static topology = [attributeListTopology, inlineTopology];
@@ -18,7 +20,7 @@ class ThingInline extends React.PureComponent {
   render() {
     return (
       <LDLink features={['bold']}>
-        <Property label={[NS.schema('name'), NS.rdfs('label')]} />
+        <Property label={[schema.name, rdfs.label]} />
       </LDLink>
     );
   }

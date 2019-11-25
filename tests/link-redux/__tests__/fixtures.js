@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import { mount } from 'enzyme';
 import { defaultNS } from 'link-lib';
 import { Property } from 'link-redux';
@@ -13,13 +14,12 @@ describe('tests', () => {
     describe('fixtures', () => {
       describe('prop', () => {
         it('should raise without a subject', () => {
-          const name = defaultNS.schema('name');
           const tree = mount(prop({
-            property: name,
+            property: schema.name,
             resources: [],
             subject: defaultNS.argu('test'),
           }));
-          expect(tree.find(Property)).toHaveProp('label', name);
+          expect(tree.find(Property)).toHaveProp('label', schema.name);
         });
       });
 

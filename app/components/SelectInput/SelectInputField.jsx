@@ -1,3 +1,5 @@
+import rdfx from '@ontologies/rdf';
+import schema from '@ontologies/schema';
 import Downshift from 'downshift';
 import { LinkedRenderStore } from 'link-lib';
 import {
@@ -23,14 +25,14 @@ export const itemToString = (item, lrs) => {
   }
 
   if (item.termType && (item.termType === 'NamedNode' || item.termType === 'BlankNode')) {
-    const itemClass = lrs.getResourceProperty(item, NS.rdf('type'));
+    const itemClass = lrs.getResourceProperty(item, rdfx.type);
     const classDisplayProp = (
       itemClass && lrs.getResourceProperty(itemClass, NS.ontola('forms/inputs/select/displayProp'))
-    ) || NS.schema('name');
+    ) || schema.name;
     let label = lrs.getResourceProperty(item, classDisplayProp);
     if (!label) {
       handle(new TypeError(`Resource ${item} has no property ${classDisplayProp}`));
-      label = lrs.getResourceProperty(item, NS.schema('name'));
+      label = lrs.getResourceProperty(item, schema.name);
     }
 
     return label ? label.value : item.value;

@@ -1,3 +1,5 @@
+import as from '@ontologies/as';
+import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import {
   LinkedResourceContainer,
@@ -17,7 +19,7 @@ const VoteEvents = ({ linkedProp }) => (
   <LinkedResourceContainer
     subject={linkedProp}
   >
-    <Property label={NS.as('items')} />
+    <Property label={as.items} />
   </LinkedResourceContainer>
 );
 
@@ -25,7 +27,7 @@ VoteEvents.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
   VoteEvents,
-  NS.schema('Thing'),
+  schema.Thing,
   NS.argu('voteEvents'),
   allTopologies
 );

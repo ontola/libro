@@ -1,3 +1,4 @@
+import as from '@ontologies/as';
 import {
   Property,
   linkType,
@@ -42,7 +43,7 @@ function getCollectionPage({
           collectionDisplay={props.collectionDisplay || props.collectionDisplayFromData}
           columns={props.columns}
           depth={props.depth}
-          label={NS.as('items')}
+          label={as.items}
           renderLimit={Infinity}
         />
       );
@@ -53,7 +54,7 @@ function getCollectionPage({
         collectionDisplay={props.collectionDisplay || props.collectionDisplayFromData}
         currentPage={props.subject.value}
         hidePagination={hidePagination}
-        label={NS.as('partOf')}
+        label={as.partOf}
         redirectPagination={redirect}
         renderWhenEmpty={props.renderWhenEmpty}
       />

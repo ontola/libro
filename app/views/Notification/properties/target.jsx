@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import { linkedPropType } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -42,7 +43,7 @@ Target.propTypes = propTypes;
 export default LinkedRenderStore.registerRenderer(
   Target,
   NS.argu('Notification'),
-  NS.schema('target'),
+  schema.target,
   [
     cardFixedTopology,
     cardMainTopology,

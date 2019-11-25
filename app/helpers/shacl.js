@@ -1,10 +1,13 @@
 import rdf from '@ontologies/core';
+import rdfx from '@ontologies/rdf';
+import schema from '@ontologies/schema';
+import sh from '@ontologies/shacl';
 
 import { NS } from './LinkedRenderStore';
 
 class SHACL {
   static processNodeShape(lrs, shape) {
-    const property = lrs.getResourceProperties(shape, NS.sh('property'));
+    const property = lrs.getResourceProperties(shape, sh.property);
 
     const obj = {};
 
@@ -26,15 +29,18 @@ class SHACL {
   }
 
   static processPropertyShape(lrs, shape, nodeShape) {
-    const targetNode = lrs.getResourceProperty(nodeShape, NS.sh('targetNode'));
-    const klass = lrs.getResourceProperty(shape, NS.sh('class'));
-    const path = lrs.getResourceProperty(shape, NS.sh('path'));
+    const targetNode = lrs.getResourceProperty(nodeShape, sh.targetNode);
+    const klass = lrs.getResourceProperty(shape, sh.class);
+    const path = lrs.getResourceProperty(shape, sh.path);
 
     let value;
 
     if (path && klass) {
       const dataProperties = lrs.getResourceProperties(targetNode, path);
-      const dataPropertyShape = lrs.store.anyStatementMatching(null, NS.sh('targetClass'), klass, null).subject;
+      const dataPropertyShape = lrs
+        .store
+        .anyStatementMatching(null, sh.targetClass, klass, null)
+        .subject;
 
       value = [];
       for (let i = 0; i < dataProperties.length; i++) {
@@ -52,14 +58,14 @@ class SHACL {
   }
 
   static processSHACLResource(lrs, shape, resource) {
-    const shapeEntry = lrs.getResourceProperty(shape, NS.rdf('type'));
+    const shapeEntry = lrs.getResourceProperty(shape, rdfx.type);
 
     switch (rdf.id(shapeEntry)) {
-      case rdf.id(NS.sh('NodeShape')):
+      case rdf.id(sh.NodeShape):
         return this.processNodeShape(lrs, shape);
-      case rdf.id(NS.sh('PropertyShape')):
+      case rdf.id(sh.PropertyShape):
         return this.processPropertyShape(lrs, shape, resource);
-      case rdf.id(NS.sh('PropertyGroup')):
+      case rdf.id(sh.PropertyGroup):
         // Groups are only relevant for display purposes
         return undefined;
       default:
@@ -68,7 +74,7 @@ class SHACL {
   }
 
   static actionToObject(lrs, action) {
-    const target = lrs.getResourceProperty(action, NS.schema('target'));
+    const target = lrs.getResourceProperty(action, schema.target);
     const shapeEntry = target && lrs.getResourceProperty(target, NS.ll('actionBody'));
 
     if (!shapeEntry) {

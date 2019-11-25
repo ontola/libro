@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import { LinkedResourceContainer, linkedPropType } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -43,7 +44,7 @@ ThingImageProp.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
   ThingImageProp,
-  NS.schema('Thing'),
-  [NS.schema('image'), NS.dbo('thumbnail'), NS.wdt('P18')],
+  schema.Thing,
+  [schema.image, NS.dbo('thumbnail'), NS.wdt('P18')],
   allTopologies
 );

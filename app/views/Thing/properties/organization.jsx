@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import { LinkedResourceContainer, linkedPropType } from 'link-redux';
 import React from 'react';
@@ -21,7 +22,7 @@ ThingOrganizationProp.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
   ThingOrganizationProp,
-  NS.schema('Thing'),
+  schema.Thing,
   NS.ontola('organization'),
   allTopologies
 );

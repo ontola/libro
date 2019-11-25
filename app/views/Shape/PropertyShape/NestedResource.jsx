@@ -1,3 +1,4 @@
+import sh from '@ontologies/shacl';
 import {
   LinkedResourceContainer,
   Property,
@@ -13,7 +14,6 @@ import Button from '../../../components/Button';
 import FieldLabel from '../../../components/FieldLabel';
 import { FormContext } from '../../../components/Form/Form';
 import FormSection from '../../../components/Form/FormSection';
-import { NS } from '../../../helpers/LinkedRenderStore';
 import { tryParseInt } from '../../../helpers/numbers';
 import { omniformSupplementBarTopology } from '../../../topologies/OmniformSupplementBar/OmniformSupplementBar';
 
@@ -65,14 +65,14 @@ class NestedResource extends React.Component {
 
     const targetShape = lrs.store.anyStatementMatching(
       null,
-      NS.sh('targetClass'),
+      sh.targetClass,
       this.props.class
     );
 
     const children = !targetShape
       ? (
         <Property
-          label={NS.sh('class')}
+          label={sh.class}
           targetNode={targetNode}
           theme={theme}
           onKeyUp={onKeyUp}

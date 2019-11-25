@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import { linkedPropType, register } from 'link-redux';
 import React from 'react';
 import emoji from 'react-easy-emoji';
@@ -16,7 +17,7 @@ FollowUpActionName.type = NS.ontola('Create::FollowUp');
 
 FollowUpActionName.topology = cardMainTopology;
 
-FollowUpActionName.property = NS.schema('name');
+FollowUpActionName.property = schema.name;
 
 FollowUpActionName.propTypes = {
   linkedProp: linkedPropType,

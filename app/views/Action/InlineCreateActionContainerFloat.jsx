@@ -1,6 +1,7 @@
 import { makeStyles } from '@material-ui/styles';
 import IconButton from '@material-ui/core/IconButton';
 import rdf from '@ontologies/core';
+import schema from '@ontologies/schema';
 import {
   linkType,
   register,
@@ -14,7 +15,6 @@ import { withRouter } from 'react-router';
 
 import { filterFind } from '../../helpers/data';
 import { retrievePath } from '../../helpers/iris';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 import { OMNIFORM_FILTER, invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
@@ -61,16 +61,16 @@ const InlineCreateActionContainerFloat = ({
   );
 };
 
-InlineCreateActionContainerFloat.type = NS.schema('CreateAction');
+InlineCreateActionContainerFloat.type = schema.CreateAction;
 
 InlineCreateActionContainerFloat.topology = [
   containerFloatTopology,
 ];
 
 InlineCreateActionContainerFloat.mapDataToProps = {
-  actionStatus: NS.schema('actionStatus'),
-  name: NS.schema('name'),
-  object: NS.schema('object'),
+  actionStatus: schema.actionStatus,
+  name: schema.name,
+  object: schema.object,
 };
 
 InlineCreateActionContainerFloat.hocs = [

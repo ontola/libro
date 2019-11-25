@@ -1,9 +1,9 @@
+import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import { PropertyBase } from 'link-redux';
 import React from 'react';
 
 import Link from '../../../components/Link';
-import { NS } from '../../../helpers/LinkedRenderStore';
 import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
 
 class UpdateAction extends PropertyBase {
@@ -18,7 +18,7 @@ class UpdateAction extends PropertyBase {
 
 export default LinkedRenderStore.registerRenderer(
   UpdateAction,
-  NS.schema('Thing'),
-  NS.schema('updateAction'),
+  schema.Thing,
+  schema.updateAction,
   primaryResourceTopology
 );

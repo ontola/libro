@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   Property,
   register,
@@ -44,15 +45,15 @@ const EntryPointOmniformWrapper = withLRS(props => (
   />
 ));
 
-EntryPointOmniformWrapper.type = NS.schema('EntryPoint');
+EntryPointOmniformWrapper.type = schema.EntryPoint;
 
 EntryPointOmniformWrapper.topology = omniformFieldsTopology;
 
 EntryPointOmniformWrapper.mapDataToProps = {
-  httpMethod: NS.schema('httpMethod'),
-  image: NS.schema('image'),
-  name: NS.schema('name'),
-  url: NS.schema('url'),
+  httpMethod: schema.httpMethod,
+  image: schema.image,
+  name: schema.name,
+  url: schema.url,
 };
 
 export default register(EntryPointOmniformWrapper);

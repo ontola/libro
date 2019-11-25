@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   LinkedResourceContainer,
   linkType,
@@ -19,7 +20,7 @@ const CreateAction = ({
 );
 
 CreateAction.type = [
-  NS.schema('Thing'),
+  schema.Thing,
   NS.link('Document'),
 ];
 
@@ -29,7 +30,7 @@ CreateAction.topology = allTopologies;
 
 CreateAction.mapDataToProps = {
   createAction: NS.ontola('createAction'),
-  isPartOf: NS.schema('isPartOf'),
+  isPartOf: schema.isPartOf,
 };
 
 CreateAction.propTypes = {

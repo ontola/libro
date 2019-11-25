@@ -1,4 +1,6 @@
+import as from '@ontologies/as';
 import rdf from '@ontologies/core';
+import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import {
   linkedPropType,
@@ -18,7 +20,7 @@ const propTypes = {
 };
 
 const LocationDetail = ({ lrs, linkedProp }) => {
-  const placement = lrs.dig(linkedProp, [NS.ontola('pages'), NS.as('items'), NS.rdf('_1')]).pop();
+  const placement = lrs.dig(linkedProp, [NS.ontola('pages'), as.items, NS.rdf('_1')]).pop();
 
   if (!placement) {
     return null;
@@ -49,7 +51,7 @@ LocationDetail.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
   withLRS(LocationDetail),
-  NS.schema('Thing'),
-  NS.schema('location'),
+  schema.Thing,
+  schema.location,
   detailsBarTopology
 );

@@ -1,3 +1,5 @@
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
 import {
   Property,
   register,
@@ -20,8 +22,8 @@ const MotionContainer = ({ highlighted, subject }) => (
   <Card about={subject?.value} shine={highlighted}>
     <Property label={NS.ontola('coverPhoto')} />
     <CardContent noSpacing>
-      <Property label={[NS.schema('name'), NS.rdfs('label')]} />
-      <Property label={[NS.schema('text'), NS.schema('description'), NS.dbo('abstract')]} />
+      <Property label={[schema.name, rdfs.label]} />
+      <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
       <Property label={[NS.argu('attachments'), NS.meeting('attachment')]} />
     </CardContent>
     <Property label={NS.argu('voteableVoteEvent')} />

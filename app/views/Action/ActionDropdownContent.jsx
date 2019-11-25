@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import {
   linkType,
   register,
@@ -6,7 +7,6 @@ import {
 import React from 'react';
 
 import { MenuItem } from '../../components';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { menuTopology } from '../../topologies/Menu';
 
 const ActionDropdownContent = ({
@@ -22,12 +22,12 @@ const ActionDropdownContent = ({
   </MenuItem>
 );
 
-ActionDropdownContent.type = NS.schema('Action');
+ActionDropdownContent.type = schema.Action;
 
 ActionDropdownContent.topology = menuTopology;
 
 ActionDropdownContent.mapDataToProps = {
-  name: NS.schema('name'),
+  name: schema.name,
 };
 
 ActionDropdownContent.propTypes = {

@@ -1,16 +1,19 @@
+import foaf from '@ontologies/foaf';
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
 import { linkedPropType, register } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import argu from '../../../ontology/argu';
 import { parentTopology } from '../../../topologies/Parent';
 
 class ForumNameParent extends React.PureComponent {
-  static type = [NS.argu('ContainerNode')];
+  static type = argu.ContainerNode;
 
   static property = [
-    NS.schema('name'),
-    NS.rdfs('label'),
-    NS.foaf('name'),
+    schema.name,
+    rdfs.label,
+    foaf.name,
   ];
 
   static topology = parentTopology;

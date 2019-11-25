@@ -1,3 +1,5 @@
+import foaf from '@ontologies/foaf';
+import schema from '@ontologies/schema';
 import {
   Property,
   register,
@@ -10,8 +12,8 @@ import PrimaryResource from '../../topologies/PrimaryResource';
 
 class PersonPage extends React.PureComponent {
   static type = [
-    NS.schema('Person'),
-    NS.foaf('Person'),
+    schema.Person,
+    foaf.Person,
   ];
 
   static topology = pageTopology;

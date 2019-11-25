@@ -1,4 +1,6 @@
 import rdf from '@ontologies/core';
+import rdfx from '@ontologies/rdf';
+import schema from '@ontologies/schema';
 import { fireEvent } from '@testing-library/dom';
 import { LinkedResourceContainer } from 'link-redux';
 import React from 'react';
@@ -18,34 +20,34 @@ describe('MenuItem', () => {
 
   const resources = {
     '@id': menuIRI.value,
-    [NS.rdf('type')]: NS.rdf('Seq'),
-    [NS.schema('name')]: rdf.literal('Maarten van Scharendrecht'),
-    [NS.schema('isPartOf')]: rdf.namedNode('https://argu.dev/menus'),
+    [rdfx.type]: rdfx.Seq,
+    [schema.name]: rdf.literal('Maarten van Scharendrecht'),
+    [schema.isPartOf]: rdf.namedNode('https://argu.dev/menus'),
     [NS.rdf('_0')]: {
       '@id': NS.app('menus/user#show'),
-      [NS.rdf('type')]: NS.ontola('MenuItem'),
-      [NS.schema('name')]: rdf.literal('Gebruiker weergeven'),
+      [rdfx.type]: NS.ontola('MenuItem'),
+      [schema.name]: rdf.literal('Gebruiker weergeven'),
       [NS.ontola('href')]: rdf.namedNode('https://argu.dev/u/maartenvscharendrecht'),
-      [NS.schema('isPartOf')]: rdf.namedNode('https://argu.dev/menus/user'),
-      [NS.schema('image')]: rdf.namedNode('http://fontawesome.io/icon/user'),
+      [schema.isPartOf]: rdf.namedNode('https://argu.dev/menus/user'),
+      [schema.image]: rdf.namedNode('http://fontawesome.io/icon/user'),
       [NS.ontola('parentMenu')]: menuIRI,
     },
     [NS.rdf('_1')]: {
       '@id': NS.app('menus/user#profile'),
-      [NS.rdf('type')]: NS.ontola('MenuItem'),
-      [NS.schema('name')]: rdf.literal('Profiel bewerken'),
+      [rdfx.type]: NS.ontola('MenuItem'),
+      [schema.name]: rdf.literal('Profiel bewerken'),
       [NS.ontola('href')]: rdf.namedNode('https://argu.dev/settings?tab=profile'),
-      [NS.schema('isPartOf')]: rdf.namedNode('https://argu.dev/menus/user'),
-      [NS.schema('image')]: rdf.namedNode('http://fontawesome.io/icon/pencil'),
+      [schema.isPartOf]: rdf.namedNode('https://argu.dev/menus/user'),
+      [schema.image]: rdf.namedNode('http://fontawesome.io/icon/pencil'),
       [NS.ontola('parentMenu')]: menuIRI,
     },
     [NS.rdf('_2')]: {
       '@id': NS.app('menus/user#settings'),
-      [NS.rdf('type')]: NS.ontola('MenuItem'),
-      [NS.schema('name')]: rdf.literal('Gebruikersinstellingen'),
+      [rdfx.type]: NS.ontola('MenuItem'),
+      [schema.name]: rdf.literal('Gebruikersinstellingen'),
       [NS.ontola('href')]: rdf.namedNode('https://argu.dev/settings'),
-      [NS.schema('isPartOf')]: rdf.namedNode('https://argu.dev/menus/user'),
-      [NS.schema('image')]: rdf.namedNode('http://fontawesome.io/icon/gear'),
+      [schema.isPartOf]: rdf.namedNode('https://argu.dev/menus/user'),
+      [schema.image]: rdf.namedNode('http://fontawesome.io/icon/gear'),
       [NS.ontola('parentMenu')]: menuIRI,
     },
   };

@@ -1,4 +1,5 @@
 import rdf from '@ontologies/core';
+import schema from '@ontologies/schema';
 import {
   Property,
   linkType,
@@ -10,7 +11,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { filterFind } from '../../helpers/data';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { cardListTopology } from '../../topologies/Card/CardList';
@@ -19,7 +19,7 @@ import { OMNIFORM_FILTER, invalidStatusIds } from '../Thing/properties/omniform/
 import mapCardListDispatchToProps from './helpers';
 
 class InlineCreateAction extends React.PureComponent {
-  static type = NS.schema('CreateAction');
+  static type = schema.CreateAction;
 
   static topology = [
     actionsBarTopology,
@@ -28,8 +28,8 @@ class InlineCreateAction extends React.PureComponent {
   ];
 
   static mapDataToProps = {
-    actionStatus: NS.schema('actionStatus'),
-    object: NS.schema('object'),
+    actionStatus: schema.actionStatus,
+    object: schema.object,
   };
 
   static hocs = [connect(null, mapCardListDispatchToProps)];
@@ -60,7 +60,7 @@ class InlineCreateAction extends React.PureComponent {
     return (
       <Property
         count={count}
-        label={NS.schema('name')}
+        label={schema.name}
         onClick={omniform && OMNIFORM_FILTER.find(filterFind(subject)) ? onClick : undefined}
       />
     );

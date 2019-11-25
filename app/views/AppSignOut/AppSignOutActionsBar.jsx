@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import { linkType, register } from 'link-redux';
 import React from 'react';
 
@@ -12,8 +13,8 @@ class AppSignOutActionsBar extends React.PureComponent {
   static topology = actionsBarTopology;
 
   static mapDataToProps = {
-    name: NS.schema('name'),
-    url: NS.schema('url'),
+    name: schema.name,
+    url: schema.url,
   };
 
   static propTypes = {

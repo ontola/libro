@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import { linkType, register } from 'link-redux';
 import React from 'react';
 import emoji from 'react-easy-emoji';
@@ -19,7 +20,7 @@ DepartmentDetailsBar.topology = [
 ];
 
 DepartmentDetailsBar.mapDataToProps = {
-  name: NS.schema('name'),
+  name: schema.name,
 };
 
 DepartmentDetailsBar.propTypes = {

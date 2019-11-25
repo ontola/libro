@@ -1,3 +1,6 @@
+import rdfx from '@ontologies/rdf';
+import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
 import {
   LinkedResourceContainer,
   Property,
@@ -31,14 +34,14 @@ const InterventionPage = ({
   isPartOf,
 }) => {
   const lrs = useLRS();
-  const interventionType = lrs.getResourceProperty(isPartOf, NS.schema('name'));
-  const image = lrs.getResourceProperty(employment, NS.schema('image'));
+  const interventionType = lrs.getResourceProperty(isPartOf, schema.name);
+  const image = lrs.getResourceProperty(employment, schema.image);
 
   return (
     <PrimaryResource>
       <Property label={NS.ontola('coverPhoto')} />
       <Container>
-        <Property label={NS.schema('isPartOf')} />
+        <Property label={schema.isPartOf} />
         <Property label={NS.argu('trashedAt')} />
         <CardMain>
           <DetailsBar
@@ -50,17 +53,17 @@ const InterventionPage = ({
               </React.Fragment>
             )}
           >
-            <Property label={NS.rdf('type')} />
+            <Property label={rdfx.type} />
             <LinkedDetailDate />
             <Property label={NS.argu('pinnedAt')} />
             <Property label={NS.argu('expiresAt')} />
             <Property label={NS.argu('followsCount')} />
-            <Property label={NS.schema('location')} />
+            <Property label={schema.location} />
             <Property label={NS.argu('grantedGroups')} />
           </DetailsBar>
           <CardContent noSpacing>
-            <Property label={[NS.schema('name'), NS.rdfs('label')]} />
-            <p>Interventietype: <Property label={NS.schema('isPartOf')} topology={inlineTopology} /></p>
+            <Property label={[schema.name, rdfs.label]} />
+            <p>Interventietype: <Property label={schema.isPartOf} topology={inlineTopology} /></p>
             <Heading>Aandrager</Heading>
             {
               image && (
@@ -72,16 +75,16 @@ const InterventionPage = ({
               )
             }
             <AttributeList>
-              <AttributeListItem label={NS.schema('name')} propertyLabel="Interventie" />
+              <AttributeListItem label={schema.name} propertyLabel="Interventie" />
               <LinkedResourceContainer subject={employment}>
-                <AttributeListItem label={NS.schema('name')} propertyLabel="Bedrijf" />
+                <AttributeListItem label={schema.name} propertyLabel="Bedrijf" />
               </LinkedResourceContainer>
               <AttributeListItem label={NS.rivm('businessSectionEmployees')} />
               <LinkedResourceContainer subject={employment}>
-                <AttributeListItem label={NS.schema('industry')} />
+                <AttributeListItem label={schema.industry} />
               </LinkedResourceContainer>
-              <AttributeListItem label={NS.schema('creator')} propertyLabel="Contactpersoon" />
-              <AttributeListItem label={NS.schema('datePublished')} propertyLabel="Datum online" />
+              <AttributeListItem label={schema.creator} propertyLabel="Contactpersoon" />
+              <AttributeListItem label={schema.datePublished} propertyLabel="Datum online" />
             </AttributeList>
             <AttributeList>
               <tr><th>Praktische ervaring</th><th>Aandrager</th></tr>
@@ -92,7 +95,7 @@ const InterventionPage = ({
           </CardContent>
           <CardContent noSpacing>
             <Heading>Beschrijving</Heading>
-            <LabeledAttribute label={NS.schema('text')} propertyLabel="Korte beschrijving" />
+            <LabeledAttribute label={schema.text} propertyLabel="Korte beschrijving" />
             <LabeledAttribute label={NS.rivm('interventionGoal')} />
             <LabeledAttribute label={NS.rivm('targetAudience')} />
             <LabeledAttribute label={NS.rivm('interventionEffects')} />
@@ -155,7 +158,7 @@ const InterventionPage = ({
         <Property label={NS.ontola('publishAction')} onLoad={() => null} />
       </Container>
       <Container>
-        <Property label={NS.schema('comment')} />
+        <Property label={schema.comment} />
       </Container>
     </PrimaryResource>
   );
@@ -167,7 +170,7 @@ InterventionPage.topology = pageTopology;
 
 InterventionPage.mapDataToProps = {
   employment: NS.rivm('employment'),
-  isPartOf: NS.schema('isPartOf'),
+  isPartOf: schema.isPartOf,
 };
 
 InterventionPage.propTypes = {

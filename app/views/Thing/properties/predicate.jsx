@@ -1,8 +1,9 @@
+import rdfx from '@ontologies/rdf';
+import schema from '@ontologies/schema';
 import { labelType, register } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
 import TableCell from '../../../topologies/TableCell';
 import { tableRowTopology } from '../../../topologies/TableRow';
 
@@ -12,9 +13,9 @@ const ThingPredicateTableRow = ({ children, label }) => (
   </TableCell>
 );
 
-ThingPredicateTableRow.type = NS.schema('Thing');
+ThingPredicateTableRow.type = schema.Thing;
 
-ThingPredicateTableRow.property = NS.rdf('predicate');
+ThingPredicateTableRow.property = rdfx.predicate;
 
 ThingPredicateTableRow.topology = tableRowTopology;
 

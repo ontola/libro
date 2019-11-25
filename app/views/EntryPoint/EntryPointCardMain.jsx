@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { Property, link } from 'link-redux';
 import React from 'react';
@@ -79,7 +80,7 @@ class EntryPointCardMain extends EntryPointBase {
           return (
             <React.Fragment>
               <CardContent noStartSpacing={header}>
-                <Property label={NS.schema('text')} />
+                <Property label={schema.text} />
                 <Property invalidFields={this.state.invalidFields} label={NS.ll('actionBody')} />
               </CardContent>
               <FormFooter>
@@ -105,10 +106,10 @@ class EntryPointCardMain extends EntryPointBase {
 }
 
 const EntryPointCardMainForm = link({
-  httpMethod: NS.schema('httpMethod'),
-  image: NS.schema('image'),
-  name: NS.schema('name'),
-  url: NS.schema('url'),
+  httpMethod: schema.httpMethod,
+  image: schema.image,
+  name: schema.name,
+  url: schema.url,
 })(EntryPointCardMain);
 
 export default LinkedRenderStore.registerRenderer(
@@ -118,7 +119,7 @@ export default LinkedRenderStore.registerRenderer(
       {...props}
     />
   )),
-  NS.schema('EntryPoint'),
+  schema.EntryPoint,
   RENDER_CLASS_NAME,
   [
     cardTopology,

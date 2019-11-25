@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import { LinkedResourceContainer, linkedPropType } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -35,7 +36,7 @@ ThingMenusProp.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
   ThingMenusProp,
-  NS.schema('Thing'),
+  schema.Thing,
   [NS.ontola('menus'), NS.ontola('navigationsMenu')],
   navbarTopology
 );

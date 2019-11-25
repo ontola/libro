@@ -1,4 +1,6 @@
 import rdf from '@ontologies/core';
+import rdfx from '@ontologies/rdf';
+import schema from '@ontologies/schema';
 
 import { NS } from '../../../tests';
 import { navbarTopology } from '../../topologies/Navbar';
@@ -13,14 +15,14 @@ const boxUrl = 'http://example.com/image/box_1.jpg';
 
 const resources = {
   [resource]: {
-    [NS.rdf('type')]: NS.schema('ImageObject'),
-    [NS.schema('thumbnail')]: rdf.namedNode('http://example.com/image/1.ico'),
-    [NS.schema('url')]: rdf.namedNode(url),
-    [NS.schema('contentUrl')]: rdf.namedNode(url),
+    [rdfx.type]: schema.ImageObject,
+    [schema.thumbnail]: rdf.namedNode('http://example.com/image/1.ico'),
+    [schema.url]: rdf.namedNode(url),
+    [schema.contentUrl]: rdf.namedNode(url),
     [NS.argu('url')]: rdf.namedNode(url),
     [NS.ontola('imgUrl1500x2000')]: rdf.namedNode(coverUrl),
     [NS.ontola('imgUrl568x400')]: rdf.namedNode(boxUrl),
-    [NS.schema('dateCreated')]: rdf.literal(Date.now()),
+    [schema.dateCreated]: rdf.literal(Date.now()),
     [NS.argu('imagePositionY')]: rdf.literal(imagePositionY),
   },
 };

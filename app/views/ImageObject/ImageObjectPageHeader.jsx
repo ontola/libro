@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import { register } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
@@ -9,12 +10,12 @@ import {
 } from '../../topologies/PageHeader';
 
 class ImageObjectPageHeader extends PureComponent {
-  static type = NS.schema('ImageObject');
+  static type = schema.ImageObject;
 
   static topology = pageHeaderTopology;
 
   static mapDataToProps = {
-    description: NS.schema('description'),
+    description: schema.description,
     imgUrl256x256: NS.ontola('imgUrl256x256'),
   };
 

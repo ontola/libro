@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
@@ -7,7 +8,7 @@ import CardFixed from '../../topologies/Card/CardFixed';
 import { popupTopology } from '../../topologies/Popup';
 
 class ThingPopup extends React.PureComponent {
-  static type = NS.schema('Thing');
+  static type = schema.Thing;
 
   static topology = popupTopology;
 
@@ -16,7 +17,7 @@ class ThingPopup extends React.PureComponent {
       <CardFixed fill>
         <Property label={NS.ontola('coverPhoto')} />
         <CardContent noSpacing>
-          <Property label={NS.schema('name')} />
+          <Property label={schema.name} />
         </CardContent>
       </CardFixed>
     );

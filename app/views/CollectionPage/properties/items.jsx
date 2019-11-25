@@ -1,3 +1,4 @@
+import as from '@ontologies/as';
 import rdf from '@ontologies/core';
 import {
   LinkedResourceContainer,
@@ -18,16 +19,16 @@ import { allTopologies } from '../../../topologies';
 class Items extends PropertyBase {
   static type = [...CollectionViewTypes, NS.argu('SearchResult')];
 
-  static property = NS.as('items');
+  static property = as.items;
 
   static topology = allTopologies;
 
   static mapDataToProps = {
     items: {
-      label: NS.as('items'),
+      label: as.items,
       limit: Infinity,
     },
-    totalCount: { label: NS.as('totalItems') },
+    totalCount: { label: as.totalItems },
   };
 
   static propTypes = {
