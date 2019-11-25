@@ -11,13 +11,16 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import CardContent from '../../../components/Card/CardContent';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import argu from '../../../ontology/argu';
+import ontola from '../../../ontology/ontola';
 import CardRow from '../../../topologies/Card/CardRow';
 import { CollectionViewTypes } from '../types';
 import { allTopologies } from '../../../topologies';
+import TableRow from '../../../topologies/TableRow';
+import TableCell from '../../../topologies/TableCell';
 
 class Items extends PropertyBase {
-  static type = [...CollectionViewTypes, NS.argu('SearchResult')];
+  static type = [...CollectionViewTypes, argu.SearchResult];
 
   static property = as.items;
 
@@ -41,7 +44,7 @@ class Items extends PropertyBase {
   };
 
   itemList(columns, separator) {
-    const itemWrapper = rdf.equals(this.props.collectionDisplay, NS.ontola('collectionDisplay/card'))
+    const itemWrapper = rdf.equals(this.props.collectionDisplay, ontola['collectionDisplay/card'])
       ? CardRow
       : React.Fragment;
 
@@ -95,8 +98,13 @@ class Items extends PropertyBase {
         />
       );
 
-      if (rdf.equals(this.props.collectionDisplay, NS.ontola('collectionDisplay/card'))) {
+      if (rdf.equals(this.props.collectionDisplay, ontola['collectionDisplay/card'])) {
         return <CardContent endSpacing>{message}</CardContent>;
+      }
+
+      if (rdf.equals(this.props.collectionDisplay, ontola['collectionDisplay/table'])
+        || rdf.equals(this.props.collectionDisplay, ontola['collectionDisplay/settingsTable'])) {
+        return <TableRow><TableCell>{message}</TableCell></TableRow>;
       }
 
       return message;

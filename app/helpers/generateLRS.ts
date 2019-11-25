@@ -17,6 +17,7 @@ import execFilter from '../middleware/execFilter';
 import logging from '../middleware/logging';
 import ontolaMiddleware from '../middleware/ontolaMiddleware';
 import ontola from '../ontology/ontola';
+import rivm from '../ontology/rivm';
 import sp from '../ontology/sp';
 import arguDeltaProcessor from './arguDeltaProcessor';
 import { getMetaContent } from './arguHelpers';
@@ -116,7 +117,7 @@ export default function generateLRS() {
     opengov: createNS('http://www.w3.org/ns/opengov#'),
     org: createNS('http://www.w3.org/ns/org#'),
     person: createNS('http://www.w3.org/ns/person#'),
-    rivm: createNS('https://argu.co/ns/rivm#'),
+    rivm: rivm.ns,
     sp: sp.ns,
     teamGL: createNS('http://glapp.nl/tgl#'),
   };

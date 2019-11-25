@@ -12,5 +12,12 @@ export default {
   ProArgument: argu('ProArgument'),
 
   /* properties */
+  attachments: argu('attachments'),
+  expiresAt: argu('expiresAt'),
+  followsCount: argu('followsCount'),
+  grantedGroups: argu('grantedGroups'),
   lastActivityAt: argu('lastActivityAt'),
+  motionsCount: argu('motionsCount'),
+  pinnedAt: argu('pinnedAt'),
+  trashedAt: argu('trashedAt'),
 };
