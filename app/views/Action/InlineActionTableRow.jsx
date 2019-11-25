@@ -14,6 +14,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import { handle } from '../../helpers/logging';
+import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 
 const mapDataToProps = {
@@ -40,7 +41,7 @@ class InlineActionTableRow extends React.PureComponent {
       target,
     } = this.props;
 
-    if (rdf.equals(actionStatus, NS.ontola('DisabledActionStatus'))) {
+    if (rdf.equals(actionStatus, ontola.DisabledActionStatus)) {
       return null;
     }
     if (rdf.equals(actionStatus, schema.CompletedActionStatus)) {

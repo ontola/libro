@@ -6,12 +6,13 @@ import {
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { pageTopology } from '../../topologies/Page';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 import { PrimaryCallToAction } from '../../topologies/PrimaryCallToAction';
 
 class VideoPagePage extends React.PureComponent {
-  static type = [NS.ontola('VideoPage')];
+  static type = [ontola.VideoPage];
 
   static topology = [
     primaryResourceTopology,
@@ -24,7 +25,7 @@ class VideoPagePage extends React.PureComponent {
         <Property label={NS.argu('navbarBackground')} />
         <Property autoPlay fullPage loop muted playsInline label={schema.video} />
         <PrimaryCallToAction>
-          <Property label={NS.ontola('favoriteAction')} />
+          <Property label={ontola.favoriteAction} />
         </PrimaryCallToAction>
       </React.Fragment>
     );

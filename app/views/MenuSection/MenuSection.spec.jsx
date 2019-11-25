@@ -3,6 +3,7 @@ import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
 
 import { NS } from '../../../tests';
+import ontola from '../../ontology/ontola';
 import { navbarTopology } from '../../topologies/Navbar';
 
 import components from './index';
@@ -14,30 +15,30 @@ const resources = {
     [rdfx.type]: NS.argu('MenuSection'),
     [schema.name]: rdf.literal('Forum'),
     [schema.isPartOf]: rdf.namedNode('https://argu.dev/o/1/menus/navigations'),
-    [NS.ontola('menuItems')]: [
+    [ontola.menuItems]: [
       rdf.namedNode('https://argu.dev/o/1/menus/navigations#forums.motions'),
       rdf.namedNode('https://argu.dev/o/1/menus/navigations#forums.questions'),
       rdf.namedNode('https://argu.dev/o/1/menus/navigations#forums.settings'),
     ],
   },
   [rdf.namedNode('https://argu.dev/o/1/menus/navigations#forums.motions')]: {
-    [rdfx.type]: NS.ontola('MenuItem'),
+    [rdfx.type]: ontola.MenuItem,
     [schema.name]: rdf.literal('Ideeën'),
-    [NS.ontola('href')]: rdf.namedNode('https://argu.dev/f/utrecht/motions'),
+    [ontola.href]: rdf.namedNode('https://argu.dev/f/utrecht/motions'),
     [schema.isPartOf]: rdf.namedNode('https://argu.dev/o/1/menus/navigations#forums'),
     [schema.image]: rdf.namedNode('http://fontawesome.io/icon/lightbulb-o'),
   },
   [rdf.namedNode('https://argu.dev/o/1/menus/navigations#forums.questions')]: {
-    [rdfx.type]: NS.ontola('MenuItem'),
+    [rdfx.type]: ontola.MenuItem,
     [schema.name]: rdf.literal('Vraagstukken'),
-    [NS.ontola('href')]: rdf.namedNode('https://argu.dev/f/utrecht/questions'),
+    [ontola.href]: rdf.namedNode('https://argu.dev/f/utrecht/questions'),
     [schema.isPartOf]: rdf.namedNode('https://argu.dev/o/1/menus/navigations#forums'),
     [schema.image]: rdf.namedNode('http://fontawesome.io/icon/question'),
   },
   [rdf.namedNode('https://argu.dev/o/1/menus/navigations#forums.settings')]: {
-    [rdfx.type]: NS.ontola('MenuItem'),
+    [rdfx.type]: ontola.MenuItem,
     [schema.name]: rdf.literal('Instellingen'),
-    [NS.ontola('href')]: rdf.namedNode('https://argu.dev/utrecht/settings'),
+    [ontola.href]: rdf.namedNode('https://argu.dev/utrecht/settings'),
     [schema.isPartOf]: rdf.namedNode('https://argu.dev/o/1/menus/navigations#forums'),
     [schema.image]: rdf.namedNode('http://fontawesome.io/icon/gear'),
   },

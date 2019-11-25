@@ -10,8 +10,8 @@ import React from 'react';
 import { Redirect, withRouter } from 'react-router';
 
 import { retrievePath } from '../../helpers/iris';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { currentLocation } from '../../helpers/paths';
+import ontola from '../../ontology/ontola';
 import { allTopologiesExcept } from '../../topologies';
 import { inlineTopology } from '../../topologies/Inline';
 import { pageTopology } from '../../topologies/Page';
@@ -68,7 +68,7 @@ function getCollectionPage({
   CollectionPage.hocs = [withRouter];
 
   CollectionPage.mapDataToProps = {
-    collectionDisplayFromData: NS.ontola('collectionDisplay'),
+    collectionDisplayFromData: ontola.collectionDisplay,
   };
 
   CollectionPage.propTypes = {

@@ -10,6 +10,7 @@ import React from 'react';
 
 import Resource from '../../components/Resource';
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 import Menu from '../../topologies/Menu';
@@ -40,7 +41,7 @@ const MenuItemDropdown = ({
 };
 
 MenuItemDropdown.type = [
-  NS.ontola('MenuItem'),
+  ontola.MenuItem,
   NS.argu('MenuSection'),
   NS.argu('SubMenu'),
   NS.argu('Menu'),
@@ -49,7 +50,7 @@ MenuItemDropdown.type = [
 MenuItemDropdown.topology = [cardFloatTopology, containerFloatTopology];
 
 MenuItemDropdown.mapDataToProps = {
-  menuItems: NS.ontola('menuItems'),
+  menuItems: ontola.menuItems,
 };
 
 MenuItemDropdown.propTypes = {

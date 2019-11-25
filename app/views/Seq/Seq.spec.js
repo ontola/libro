@@ -3,6 +3,7 @@ import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
 
 import { NS } from '../../../tests';
+import ontola from '../../ontology/ontola';
 
 import components from './index';
 
@@ -30,39 +31,39 @@ const resources = {
     [NS.rdf('_1')]: testNS('menus/info#team'),
   },
   [testNS('menus/info#about')]: {
-    [rdfx.type]: NS.ontola('MenuItem'),
+    [rdfx.type]: ontola.MenuItem,
     [schema.isPartOf]: testNS('menus/info'),
-    [NS.ontola('href')]: rdf.namedNode('https://argu.dev/i/about'),
+    [ontola.href]: rdf.namedNode('https://argu.dev/i/about'),
     [schema.name]: rdf.literal('Over Argu'),
   },
   [testNS('menus/info#team')]: {
-    [rdfx.type]: NS.ontola('MenuItem'),
+    [rdfx.type]: ontola.MenuItem,
     [schema.isPartOf]: testNS('menus/info'),
-    [NS.ontola('href')]: rdf.namedNode('https://argu.dev/i/team'),
+    [ontola.href]: rdf.namedNode('https://argu.dev/i/team'),
     [schema.name]: rdf.literal('Ons team'),
   },
   [testNS('menus/info#governments')]: {
-    [rdfx.type]: NS.ontola('MenuItem'),
+    [rdfx.type]: ontola.MenuItem,
     [schema.isPartOf]: testNS('menus/info'),
-    [NS.ontola('href')]: rdf.namedNode('https://argu.dev/i/governments'),
+    [ontola.href]: rdf.namedNode('https://argu.dev/i/governments'),
     [schema.name]: rdf.literal('Argu voor overheden'),
   },
   [testNS('menus/info#press_media')]: {
-    [rdfx.type]: NS.ontola('MenuItem'),
+    [rdfx.type]: ontola.MenuItem,
     [schema.isPartOf]: testNS('menus/info'),
-    [NS.ontola('href')]: rdf.namedNode('https://argu.pr.co'),
+    [ontola.href]: rdf.namedNode('https://argu.pr.co'),
     [schema.name]: rdf.literal('Pers & media'),
   },
   [testNS('menus/info#support')]: {
-    [rdfx.type]: NS.ontola('MenuItem'),
+    [rdfx.type]: ontola.MenuItem,
     [schema.isPartOf]: testNS('menus/info'),
-    [NS.ontola('href')]: rdf.namedNode('https://argu.freshdesk.com/support/home'),
+    [ontola.href]: rdf.namedNode('https://argu.freshdesk.com/support/home'),
     [schema.name]: rdf.literal('Help & support'),
   },
   [testNS('menus/info#contact')]: {
-    [rdfx.type]: NS.ontola('MenuItem'),
+    [rdfx.type]: ontola.MenuItem,
     [schema.isPartOf]: testNS('menus/info'),
-    [NS.ontola('href')]: rdf.namedNode('https://argu.dev/i/contact'),
+    [ontola.href]: rdf.namedNode('https://argu.dev/i/contact'),
     [schema.name]: rdf.literal('Contact'),
   },
 };

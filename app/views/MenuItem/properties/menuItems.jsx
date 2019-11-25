@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
+import ontola from '../../../ontology/ontola';
 import { menuTopology } from '../../../topologies/Menu';
 import { navbarTopology } from '../../../topologies/Navbar';
 
@@ -31,12 +32,12 @@ const MenuItems = ({
 };
 
 MenuItems.type = [
-  NS.ontola('MenuItem'),
+  ontola.MenuItem,
   NS.argu('SubMenu'),
   NS.argu('MenuSection'),
 ];
 
-MenuItems.property = NS.ontola('menuItems');
+MenuItems.property = ontola.menuItems;
 
 MenuItems.topology = [
   navbarTopology,
@@ -45,7 +46,7 @@ MenuItems.topology = [
 
 MenuItems.mapDataToProps = {
   menuItems: {
-    label: NS.ontola('menuItems'),
+    label: ontola.menuItems,
     limit: Infinity,
   },
 };

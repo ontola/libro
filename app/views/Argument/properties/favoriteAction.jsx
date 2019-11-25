@@ -6,6 +6,7 @@ import {
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
+import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 
 class FavoriteAction extends React.PureComponent {
@@ -15,12 +16,12 @@ class FavoriteAction extends React.PureComponent {
     NS.argu('ConArgument'),
   ];
 
-  static property = NS.ontola('favoriteAction');
+  static property = ontola.favoriteAction;
 
   static topology = allTopologies;
 
   static mapDataToProps = {
-    favoriteAction: NS.ontola('favoriteAction'),
+    favoriteAction: ontola.favoriteAction,
     votesProCount: NS.argu('votesProCount'),
   };
 

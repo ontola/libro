@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
+import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 
 const CreateAction = ({
@@ -24,12 +25,12 @@ CreateAction.type = [
   NS.link('Document'),
 ];
 
-CreateAction.property = NS.ontola('createAction');
+CreateAction.property = ontola.createAction;
 
 CreateAction.topology = allTopologies;
 
 CreateAction.mapDataToProps = {
-  createAction: NS.ontola('createAction'),
+  createAction: ontola.createAction,
   isPartOf: schema.isPartOf,
 };
 

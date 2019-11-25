@@ -2,7 +2,7 @@ import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
 
 import { allowSort, entityIsLoaded } from '../../../../helpers/data';
-import { NS } from '../../../../helpers/LinkedRenderStore';
+import ontola from '../../../../ontology/ontola';
 
 export const OMNIFORM_FILTER = [
   /\/m\/new/,
@@ -34,8 +34,8 @@ export const filterActions = (lrs, potentialAction) => {
 };
 
 export const invalidStatusIds = [
-  NS.ontola('DisabledActionStatus'),
-  NS.ontola('ExpiredActionStatus'),
+  ontola.DisabledActionStatus,
+  ontola.ExpiredActionStatus,
 ].map(s => rdf.id(s));
 
 export const actionsAreAllDisabled = (items, lrs) => {

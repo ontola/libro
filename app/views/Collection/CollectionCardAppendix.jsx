@@ -7,7 +7,7 @@ import {
 import React from 'react';
 
 import { Resource } from '../../components';
-import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
 
 import { CollectionTypes } from './types';
@@ -19,7 +19,7 @@ const CollectionCardAppendix = ({ totalItems }) => {
 
   return (
     <Resource>
-      <Property forceRender insideCollection label={NS.ontola('pages')} />
+      <Property forceRender insideCollection label={ontola.pages} />
     </Resource>
   );
 };

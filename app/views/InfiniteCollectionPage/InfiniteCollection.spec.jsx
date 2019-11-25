@@ -8,6 +8,7 @@ import { link } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../../tests';
+import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 import collectionComponents from '../Collection/index';
 import collectionPageComponents from '../CollectionPage/index';
@@ -31,28 +32,28 @@ const resources = {
   [collection]: {
     [rdfx.type]: [
       as.Collection,
-      NS.ontola('Collection'),
+      ontola.Collection,
     ],
     [as.name]: rdf.literal('Ideeën'),
-    [NS.ontola('iriTemplate')]: rdf.literal('https://argu.localdev/nederland/q/75/m{?filter%5B%5D,page,page_size,type,before,sort%5B%5D}'),
+    [ontola.iriTemplate]: rdf.literal('https://argu.localdev/nederland/q/75/m{?filter%5B%5D,page,page_size,type,before,sort%5B%5D}'),
     [schema.isPartOf]: NS.app('nederland/q/75'),
     [as.totalItems]: rdf.literal(ITEMS),
     [schema.potentialAction]: NS.app('nederland/q/75/m/new'),
-    [NS.ontola('defaultType')]: rdf.literal('infinite'),
-    [NS.ontola('pages')]: collectionPageWithItems,
+    [ontola.defaultType]: rdf.literal('infinite'),
+    [ontola.pages]: collectionPageWithItems,
     [dcterms.identifier]: NS.app('nederland/q/75/motions'),
-    [NS.ontola('createAction')]: NS.app('nederland/q/75/m/new'),
+    [ontola.createAction]: NS.app('nederland/q/75/m/new'),
     [schema.url]: collection,
-    [NS.ontola('baseCollection')]: NS.app('new_volunteers'),
-    [NS.ontola('collectionDisplay')]: NS.ontola('collectionDisplay/default'),
-    [NS.ontola('collectionType')]: NS.ontola('collectionType/infinite'),
+    [ontola.baseCollection]: NS.app('new_volunteers'),
+    [ontola.collectionDisplay]: NS.ontola('collectionDisplay/default'),
+    [ontola.collectionType]: NS.ontola('collectionType/infinite'),
     [as.first]: collectionPageWithItems,
     [as.last]: NS.app('nederland/q/75/m?page=2&type=infinite'),
   },
   [collectionPageWithItems]: {
     [rdfx.type]: [
       as.CollectionPage,
-      NS.ontola('InfiniteView'),
+      ontola.InfiniteView,
     ],
     [as.next]: NS.app('nederland/q/75/m?type=infinite&before=2018-02-10%2011%3A18%3A19'),
     [as.totalItems]: rdf.literal(ITEMS),

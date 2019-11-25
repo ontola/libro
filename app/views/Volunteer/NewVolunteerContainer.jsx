@@ -7,6 +7,7 @@ import {
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { containerTopology } from '../../topologies/Container';
 import { CardContent } from '../../components';
 import Card from '../../topologies/Card';
@@ -35,7 +36,7 @@ class NewVolunteerContainer extends React.PureComponent {
           </div>
         </CardContent>
         <ActionsBar>
-          <Property label={NS.ontola('favoriteAction')} />
+          <Property label={ontola.favoriteAction} />
         </ActionsBar>
       </Card>
     );

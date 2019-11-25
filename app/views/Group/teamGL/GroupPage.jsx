@@ -6,6 +6,7 @@ import {
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
+import ontola from '../../../ontology/ontola';
 import { pageTopology } from '../../../topologies/Page';
 import PrimaryResource from '../../../topologies/PrimaryResource';
 import Container from '../../../topologies/Container';
@@ -20,7 +21,7 @@ const GroupPage = () => (
       <CardMain>
         <CardContent>
           <HeaderWithMenu
-            menu={<Property label={NS.ontola('actionsMenu')} />}
+            menu={<Property label={ontola.actionsMenu} />}
           >
             <Property label={schema.name} />
           </HeaderWithMenu>
@@ -32,7 +33,7 @@ const GroupPage = () => (
       </CardMain>
     </Container>
     <Container>
-      <Property renderWhenEmpty label={NS.ontola('memberships')} />
+      <Property renderWhenEmpty label={ontola.memberships} />
     </Container>
   </PrimaryResource>
 );

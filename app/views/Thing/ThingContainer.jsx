@@ -11,6 +11,7 @@ import CardContent from '../../components/Card/CardContent';
 import { connectHighlighting, hightlightType } from '../../containers/Highlight';
 import SignInSwitcherContainer from '../../containers/SignInSwitcherContainer';
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import Card from '../../topologies/Card';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import { containerTopology } from '../../topologies/Container';
@@ -20,7 +21,7 @@ import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTo
 
 const ThingContainer = ({ highlighted, subject }) => (
   <Card about={subject?.value} shine={highlighted}>
-    <Property label={NS.ontola('coverPhoto')} />
+    <Property label={ontola.coverPhoto} />
     <CardContent noSpacing>
       <Property label={[schema.name, rdfs.label]} />
       <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />

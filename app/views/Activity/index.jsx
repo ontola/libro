@@ -5,6 +5,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import Card from '../../topologies/Card';
 import DetailsBar from '../../topologies/DetailsBar';
 
@@ -31,9 +32,9 @@ class Activity extends React.PureComponent {
             <React.Fragment>
               <Property label={schema.dateCreated} />
               <Property label={as.object}>
-                <Property label={NS.ontola('followMenu')} />
-                <Property label={NS.ontola('shareMenu')} />
-                <Property label={NS.ontola('actionsMenu')} />
+                <Property label={ontola.followMenu} />
+                <Property label={ontola.shareMenu} />
+                <Property label={ontola.actionsMenu} />
               </Property>
             </React.Fragment>
           )}

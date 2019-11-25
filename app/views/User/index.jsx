@@ -8,6 +8,7 @@ import React from 'react';
 
 import { Resource } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { formFooterTopology } from '../../topologies/FormFooter/Footer';
 import { navbarTopology } from '../../topologies/Navbar';
 
@@ -19,14 +20,14 @@ const propTypes = {
 };
 
 const CurrentActorFooter = () => (
-  <Property label={NS.ontola('actor')} />
+  <Property label={ontola.actor} />
 );
 
 const UserNavbar = ({ lrs }) => (
   <Resource>
-    <Property label={NS.ontola('actorType')} />
+    <Property label={ontola.actorType} />
     <Property
-      label={NS.ontola('actor')}
+      label={ontola.actor}
       onClick={(e) => {
         if (e) {
           e.preventDefault();
@@ -39,8 +40,8 @@ const UserNavbar = ({ lrs }) => (
 
 UserNavbar.propTypes = propTypes;
 
-const RegisteredTypes = [NS.ontola('ConfirmedUser'), NS.ontola('UnconfirmedUser')];
-const ActorTypes = [...RegisteredTypes, NS.ontola('GuestUser')];
+const RegisteredTypes = [ontola.ConfirmedUser, ontola.UnconfirmedUser];
+const ActorTypes = [...RegisteredTypes, ontola.GuestUser];
 
 export default [
   LinkedRenderStore.registerRenderer(

@@ -9,6 +9,7 @@ import React from 'react';
 import CardContent from '../../components/Card/CardContent';
 import HeaderWithMenu from '../../components/HeaderWithMenu';
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { CardMain } from '../../topologies/Card';
 import ContentDetails from '../../topologies/ContentDetails';
 import {
@@ -36,9 +37,9 @@ class ThingPageHeader extends React.PureComponent {
                 <HeaderWithMenu
                   menu={(
                     <React.Fragment>
-                      <Property label={NS.ontola('followMenu')} />
-                      <Property label={NS.ontola('shareMenu')} />
-                      <Property label={NS.ontola('actionsMenu')} />
+                      <Property label={ontola.followMenu} />
+                      <Property label={ontola.shareMenu} />
+                      <Property label={ontola.actionsMenu} />
                     </React.Fragment>
                   )}
                 >

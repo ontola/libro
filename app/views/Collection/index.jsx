@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
-import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { cardTopology } from '../../topologies/Card';
 import { cardFixedTopology } from '../../topologies/Card/CardFixed';
@@ -54,8 +54,8 @@ const collectionSection = ({ omniform = false, renderWhenEmpty = false } = {}) =
     return (
       <CardContent noStartSpacing>
         <CardList direction={direction}>
-          {pagesShouldRender && <Property forceRender insideCollection label={NS.ontola('pages')} />}
-          <Property label={NS.ontola('createAction')} omniform={omniform} />
+          {pagesShouldRender && <Property forceRender insideCollection label={ontola.pages} />}
+          <Property label={ontola.createAction} omniform={omniform} />
         </CardList>
       </CardContent>
     );

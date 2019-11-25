@@ -8,7 +8,7 @@ import {
 import React from 'react';
 
 import { Heading, Link } from '../../../components';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
 import { CollectionTypes } from '../types';
 import { navbarTopology } from '../../../topologies/Navbar';
@@ -21,7 +21,7 @@ const propTypes = {
 
 class CollectionName extends PropertyBase {
   render() {
-    const href = this.getLinkedObjectProperty(NS.ontola('href'));
+    const href = this.getLinkedObjectProperty(ontola.href);
     const Wrapper = typeof href !== 'undefined' ? Link : 'div';
 
     return (

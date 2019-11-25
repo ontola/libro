@@ -11,7 +11,7 @@ import {
 import React from 'react';
 
 import { sort } from '../../../helpers/data';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
 import { actionsBarTopology } from '../../../topologies/ActionsBar';
 
@@ -35,13 +35,13 @@ const sortBind = (potentialActions, props) => potentialActions
 class PotentialActionActionsBar extends React.PureComponent {
   static type = [schema.Thing, rdfs.Resource];
 
-  static property = NS.ontola('favoriteAction');
+  static property = ontola.favoriteAction;
 
   static topology = actionsBarTopology;
 
   static mapDataToProps = {
     potentialActions: {
-      label: NS.ontola('favoriteAction'),
+      label: ontola.favoriteAction,
       limit: Infinity,
     },
   };
@@ -69,12 +69,12 @@ export default [
   LinkedRenderStore.registerRenderer(
     link({
       potentialActions: {
-        label: NS.ontola('favoriteAction'),
+        label: ontola.favoriteAction,
         limit: Infinity,
       },
     })(({ potentialActions, ...props }) => sortBind(potentialActions, props)),
     [schema.Thing, rdfs.Resource],
-    NS.ontola('favoriteAction'),
+    ontola.favoriteAction,
     allTopologiesExcept(actionsBarTopology)
   ),
   register(PotentialActionActionsBar),

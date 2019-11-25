@@ -6,6 +6,7 @@ import {
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { pageTopology } from '../../topologies/Page';
 import PrimaryResource from '../../topologies/PrimaryResource';
 import Container from '../../topologies/Container';
@@ -20,7 +21,7 @@ const EventPage = () => (
       <CardMain>
         <CardContent>
           <HeaderWithMenu
-            menu={<Property label={NS.ontola('actionsMenu')} />}
+            menu={<Property label={ontola.actionsMenu} />}
           >
             <Property label={schema.name} />
           </HeaderWithMenu>
@@ -35,10 +36,10 @@ const EventPage = () => (
     </Container>
     <Container>
       <Property renderWhenEmpty label={NS.teamGL('potentialParticipants')}>
-        <Property renderWhenEmpty singlePage collectionDisplay={NS.ontola('collectionDisplay/card')} label={NS.ontola('pages')} />
+        <Property renderWhenEmpty singlePage collectionDisplay={NS.ontola('collectionDisplay/card')} label={ontola.pages} />
       </Property>
       <Property renderWhenEmpty label={NS.teamGL('participants')}>
-        <Property singlePage collectionDisplay={NS.ontola('collectionDisplay/card')} label={NS.ontola('pages')} />
+        <Property singlePage collectionDisplay={NS.ontola('collectionDisplay/card')} label={ontola.pages} />
       </Property>
     </Container>
   </PrimaryResource>

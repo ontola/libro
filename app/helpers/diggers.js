@@ -7,9 +7,9 @@ import rdfx from '@ontologies/rdf';
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
 
-import { NS } from './LinkedRenderStore';
+import ontola from '../ontology/ontola';
 
-export const collectionMembers = [NS.ontola('pages'), as.items, rdfs.member];
+export const collectionMembers = [ontola.pages, as.items, rdfs.member];
 export const actionType = [schema.potentialAction, rdfx.type];
 
 export default collectionMembers;

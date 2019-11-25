@@ -5,9 +5,9 @@ import rdfs from '@ontologies/rdfs';
 import { OK } from 'http-status-codes';
 import { LazyNNArgument, normalizeType } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
+import ontola from '../ontology/ontola';
 
 import { sequenceFilter } from './iris';
-import { NS } from './LinkedRenderStore';
 
 const base = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#_';
 
@@ -202,7 +202,7 @@ function containerToArr(
     return listToArr(lrs, acc, rest);
   }
 
-  const pages = lrs.getResourceProperty<NamedNode>(rest, NS.ontola('pages'));
+  const pages = lrs.getResourceProperty<NamedNode>(rest, ontola.pages);
   if (pages) {
     return containerToArr(lrs, acc, pages);
   }

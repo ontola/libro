@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 
 import { Resource } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import Menu from '../../topologies/Menu';
 import { navbarTopology } from '../../topologies/Navbar';
 import { NavbarLinkLink, NavbarLinkWrapper } from '../../components/NavbarLink';
@@ -18,7 +19,7 @@ import { isFontAwesomeIRI } from '../../helpers/iris';
 
 class MenuItemNavbar extends React.PureComponent {
   static type = [
-    NS.ontola('MenuItem'),
+    ontola.MenuItem,
     NS.argu('SubMenu'),
     NS.argu('Menu'),
   ];
@@ -26,9 +27,9 @@ class MenuItemNavbar extends React.PureComponent {
   static topology = navbarTopology;
 
   static mapDataToProps = {
-    href: NS.ontola('href'),
+    href: ontola.href,
     image: schema.image,
-    menuItems: NS.ontola('menuItems'),
+    menuItems: ontola.menuItems,
     name: schema.name,
   };
 
@@ -67,7 +68,7 @@ class MenuItemNavbar extends React.PureComponent {
             data-test="MenuItem-MenuItemLabel"
             handleClick={onClick}
             id={id}
-            label={NS.ontola('href')}
+            label={ontola.href}
           >
             <InnerWrapper {...wrapperProps}>
               <Property label={schema.image} />

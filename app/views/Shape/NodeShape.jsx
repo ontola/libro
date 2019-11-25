@@ -16,7 +16,7 @@ import FontAwesome from 'react-fontawesome';
 
 import Button from '../../components/Button';
 import { LoadingWidgetContent } from '../../components/Loading';
-import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 import { isMarkedForRemove, retrieveIdFromValue } from '../../helpers/forms';
 import { entityIsLoaded } from '../../helpers/data';
@@ -89,7 +89,7 @@ const NodeShape = ({
         <Property
           autofocusForm={autofocusForm}
           invalidFields={invalidFields}
-          label={[sh.property, NS.ontola('formSteps')]}
+          label={[sh.property, ontola.formSteps]}
           propertyIndex={propertyIndex}
           subject={subject}
           targetNode={targetNode}

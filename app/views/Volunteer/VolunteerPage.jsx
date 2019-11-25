@@ -7,6 +7,7 @@ import {
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { pageTopology } from '../../topologies/Page';
 import PrimaryResource, { primaryResourceTopology } from '../../topologies/PrimaryResource';
 import Container from '../../topologies/Container';
@@ -32,7 +33,7 @@ class VolunteerPage extends React.PureComponent {
             <CardContent endSpacing>
               <HeaderWithMenu
                 menu={(
-                  <Property label={NS.ontola('actionsMenu')} />
+                  <Property label={ontola.actionsMenu} />
                 )}
               >
                 <Property label={[schema.name, rdfs.label]} />

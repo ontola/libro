@@ -6,6 +6,7 @@ import {
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { containerTopology } from '../../topologies/Container';
 import ContentDetails from '../../topologies/ContentDetails';
 import { CardContent } from '../../components';
@@ -16,7 +17,7 @@ const GroupMembershipContainer = () => (
   <Card>
     <CardContent noSpacing>
       <HeaderWithMenu
-        menu={<Property label={NS.ontola('actionsMenu')} />}
+        menu={<Property label={ontola.actionsMenu} />}
       >
         <Property label={NS.org('member')}>
           <Property label={schema.name} />

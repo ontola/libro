@@ -16,7 +16,7 @@ import {
   Resource,
 } from '../../../components';
 import { buildRegister } from '../../../helpers/buildRegister';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
 import { cardTopology } from '../../../topologies/Card';
 import ContainerHeader from '../../../components/Container/ContainerHeader';
@@ -34,7 +34,7 @@ const CreateActionButton = ({
   omniform,
   subject,
 }) => {
-  const createActions = lrs.getResourceProperties(subject, NS.ontola('createAction'));
+  const createActions = lrs.getResourceProperties(subject, ontola.createAction);
   const trigger = onClick => (
     <IconButton
       centerRipple
@@ -65,7 +65,7 @@ const CreateActionButton = ({
     );
   }
 
-  return <Property label={NS.ontola('createAction')} omniform={omniform} />;
+  return <Property label={ontola.createAction} omniform={omniform} />;
 };
 CreateActionButton.propTypes = {
   lrs: lrsType,
@@ -115,11 +115,11 @@ containerCollectionHeader.propTypes = propTypes;
 const registerHeader = buildRegister({
   mapDataToProps: {
     pages: {
-      label: NS.ontola('pages'),
+      label: ontola.pages,
       limit: Infinity,
     },
   },
-  property: NS.ontola('header'),
+  property: ontola.header,
   type: CollectionTypes,
 });
 

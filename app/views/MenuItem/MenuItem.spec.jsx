@@ -5,13 +5,14 @@ import { fireEvent } from '@testing-library/dom';
 import { LinkedResourceContainer } from 'link-redux';
 import React from 'react';
 
+import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import {
   cleanup,
   render,
 } from '../../test-utils';
 import button from '../../themes/common/components/button';
 import AppMenu from '../../topologies/AppMenu';
-import { NS } from '../../helpers/LinkedRenderStore';
 
 describe('MenuItem', () => {
   afterAll(cleanup);
@@ -25,30 +26,30 @@ describe('MenuItem', () => {
     [schema.isPartOf]: rdf.namedNode('https://argu.dev/menus'),
     [NS.rdf('_0')]: {
       '@id': NS.app('menus/user#show'),
-      [rdfx.type]: NS.ontola('MenuItem'),
+      [rdfx.type]: ontola.MenuItem,
       [schema.name]: rdf.literal('Gebruiker weergeven'),
-      [NS.ontola('href')]: rdf.namedNode('https://argu.dev/u/maartenvscharendrecht'),
+      [ontola.href]: rdf.namedNode('https://argu.dev/u/maartenvscharendrecht'),
       [schema.isPartOf]: rdf.namedNode('https://argu.dev/menus/user'),
       [schema.image]: rdf.namedNode('http://fontawesome.io/icon/user'),
-      [NS.ontola('parentMenu')]: menuIRI,
+      [ontola.parentMenu]: menuIRI,
     },
     [NS.rdf('_1')]: {
       '@id': NS.app('menus/user#profile'),
-      [rdfx.type]: NS.ontola('MenuItem'),
+      [rdfx.type]: ontola.MenuItem,
       [schema.name]: rdf.literal('Profiel bewerken'),
-      [NS.ontola('href')]: rdf.namedNode('https://argu.dev/settings?tab=profile'),
+      [ontola.href]: rdf.namedNode('https://argu.dev/settings?tab=profile'),
       [schema.isPartOf]: rdf.namedNode('https://argu.dev/menus/user'),
       [schema.image]: rdf.namedNode('http://fontawesome.io/icon/pencil'),
-      [NS.ontola('parentMenu')]: menuIRI,
+      [ontola.parentMenu]: menuIRI,
     },
     [NS.rdf('_2')]: {
       '@id': NS.app('menus/user#settings'),
-      [rdfx.type]: NS.ontola('MenuItem'),
+      [rdfx.type]: ontola.MenuItem,
       [schema.name]: rdf.literal('Gebruikersinstellingen'),
-      [NS.ontola('href')]: rdf.namedNode('https://argu.dev/settings'),
+      [ontola.href]: rdf.namedNode('https://argu.dev/settings'),
       [schema.isPartOf]: rdf.namedNode('https://argu.dev/menus/user'),
       [schema.image]: rdf.namedNode('http://fontawesome.io/icon/gear'),
-      [NS.ontola('parentMenu')]: menuIRI,
+      [ontola.parentMenu]: menuIRI,
     },
   };
 

@@ -13,10 +13,10 @@ import { withRouter } from 'react-router';
 
 import { mediaQueries } from '../../components/shared/config';
 import { SignInFormLink } from '../../components/SignInForm/index';
-import { NS } from '../../helpers/LinkedRenderStore';
 import NavbarLink from '../../components/NavbarLink';
 import path, { currentLocation } from '../../helpers/paths';
 import { values } from '../../helpers/ssr';
+import ontola from '../../ontology/ontola';
 import { navbarTopology } from '../../topologies/Navbar';
 
 const propTypes = {
@@ -51,7 +51,7 @@ const GuestUserActor = ({ location, lrs }) => {
               lrs.actions.app.startSignIn(rdf.namedNode(path.signIn(redirectURL)));
             }}
           />
-          <Property label={NS.ontola('actorType')} />
+          <Property label={ontola.actorType} />
         </React.Fragment>
       )}
     </MediaQuery>
@@ -64,7 +64,7 @@ const GuestUserActorConnected = withRouter(withLRS(GuestUserActor));
 
 export default LinkedRenderStore.registerRenderer(
   GuestUserActorConnected,
-  NS.ontola('GuestUser'),
+  ontola.GuestUser,
   RENDER_CLASS_NAME,
   navbarTopology
 );

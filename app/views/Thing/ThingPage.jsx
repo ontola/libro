@@ -10,6 +10,7 @@ import {
   LinkedDetailDate,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import ActionsBar from '../../topologies/ActionsBar';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import CardMain from '../../topologies/Card/CardMain';
@@ -26,7 +27,7 @@ class ThingPage extends PureComponent {
   render() {
     return (
       <PrimaryResource>
-        <Property label={NS.ontola('coverPhoto')} onLoad={() => null} />
+        <Property label={ontola.coverPhoto} onLoad={() => null} />
         <Container>
           <Property label={schema.isPartOf} />
           <Property label={NS.argu('trashedAt')} />
@@ -35,9 +36,9 @@ class ThingPage extends PureComponent {
             <DetailsBar
               right={(
                 <React.Fragment>
-                  <Property label={NS.ontola('followMenu')} />
-                  <Property label={NS.ontola('shareMenu')} />
-                  <Property label={NS.ontola('actionsMenu')} />
+                  <Property label={ontola.followMenu} />
+                  <Property label={ontola.shareMenu} />
+                  <Property label={ontola.actionsMenu} />
                 </React.Fragment>
               )}
             >
@@ -60,14 +61,14 @@ class ThingPage extends PureComponent {
               <Property label={NS.argu('attachments')} onLoad={() => null} />
             </CardContent>
             <ActionsBar>
-              <Property label={NS.ontola('favoriteAction')} onLoad={() => null} />
+              <Property label={ontola.favoriteAction} onLoad={() => null} />
             </ActionsBar>
             <Property label={NS.meeting('agenda')} onLoad={() => null} />
             <CardAppendix>
               <Property forceRender label={NS.app('omniform')} />
             </CardAppendix>
           </CardMain>
-          <Property label={NS.ontola('publishAction')} onLoad={() => null} />
+          <Property label={ontola.publishAction} onLoad={() => null} />
           <Property label={NS.argu('voteEvents')} onLoad={() => null} />
           <Property label={NS.argu('blogPosts')} onLoad={() => null} />
           <Property label={schema.location} onLoad={() => null} />

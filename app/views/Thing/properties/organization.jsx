@@ -3,7 +3,7 @@ import LinkedRenderStore from 'link-lib';
 import { LinkedResourceContainer, linkedPropType } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 import { navbarTopology } from '../../../topologies/Navbar';
 
@@ -23,6 +23,6 @@ ThingOrganizationProp.propTypes = propTypes;
 export default LinkedRenderStore.registerRenderer(
   ThingOrganizationProp,
   schema.Thing,
-  NS.ontola('organization'),
+  ontola.organization,
   allTopologies
 );

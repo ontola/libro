@@ -14,6 +14,7 @@ import React from 'react';
 import { convertKeysAtoB } from '../../helpers/data';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { HTTP_RETRY_WITH, handleHTTPRetry } from '../../helpers/errorHandling';
+import ontola from '../../ontology/ontola';
 
 class EntryPointBase extends PropertyBase {
   constructor(props) {
@@ -81,7 +82,7 @@ class EntryPointBase extends PropertyBase {
     const footerGroupProps = lrs.findSubject(
       action,
       [schema.target, NS.ll('actionBody'), sh.property, sh.group],
-      NS.ontola('footerGroup')
+      ontola.footerGroup
     );
 
     if (footerGroupProps.length > 0) {
@@ -90,8 +91,8 @@ class EntryPointBase extends PropertyBase {
 
     const footerGroupSteps = lrs.findSubject(
       action,
-      [schema.target, NS.ll('actionBody'), NS.ontola('formSteps'), sh.group],
-      NS.ontola('footerGroup')
+      [schema.target, NS.ll('actionBody'), ontola.formSteps, sh.group],
+      ontola.footerGroup
     );
 
     return footerGroupSteps.pop();

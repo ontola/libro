@@ -7,11 +7,11 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
-import { NS } from '../../helpers/LinkedRenderStore';
 
 class PropertyQuery extends React.PureComponent {
-  static type = NS.ontola('PropertyQuery');
+  static type = ontola.PropertyQuery;
 
   static topology = allTopologies;
 

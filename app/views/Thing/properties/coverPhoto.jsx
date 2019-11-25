@@ -10,9 +10,9 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
 import { LDLink } from '../../../components';
 import { LoadingCoverPhoto } from '../../../components/Loading';
+import ontola from '../../../ontology/ontola';
 import { cardTopology } from '../../../topologies/Card';
 import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
 
@@ -47,7 +47,7 @@ const CoverPhotoOrLoading = ({ linkedProp }) => {
 
 CoverPhotoOrLoading.type = schema.Thing;
 
-CoverPhotoOrLoading.property = NS.ontola('coverPhoto');
+CoverPhotoOrLoading.property = ontola.coverPhoto;
 
 CoverPhotoOrLoading.topology = cardFixedTopology;
 
@@ -58,7 +58,7 @@ export default [
   LinkedRenderStore.registerRenderer(
     ClickableCover,
     schema.Thing,
-    NS.ontola('coverPhoto'),
+    ontola.coverPhoto,
     cardTopology
   ),
 ];

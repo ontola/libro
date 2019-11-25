@@ -11,6 +11,7 @@ import { CardContent } from '../../components';
 import { hightlightType } from '../../containers/Highlight';
 import { NS } from '../../helpers/LinkedRenderStore';
 import argu from '../../ontology/argu';
+import ontola from '../../ontology/ontola';
 import ActionsBar from '../../topologies/ActionsBar';
 import Card from '../../topologies/Card';
 import CardAppendix from '../../topologies/Card/CardAppendix';
@@ -35,13 +36,13 @@ class ArgumentContainer extends React.PureComponent {
 
     return (
       <Card about={subject.value} shine={highlighted}>
-        <Property label={NS.ontola('coverPhoto')} />
+        <Property label={ontola.coverPhoto} />
         <CardContent noSpacing>
           <Property label={[schema.name, rdfs.label]} />
           <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
         </CardContent>
         <ActionsBar>
-          <Property label={NS.ontola('favoriteAction')} />
+          <Property label={ontola.favoriteAction} />
         </ActionsBar>
         <CardAppendix>
           <Property label={NS.argu('voteableVoteEvent')} />

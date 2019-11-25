@@ -14,7 +14,7 @@ import FontAwesome from 'react-fontawesome';
 import PropTypes from 'prop-types';
 
 import { calculateFormFieldName } from '../../helpers/forms';
-import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 
 import useStyles from './PropertyGroupStyles';
@@ -39,7 +39,7 @@ const PropertyGroup = ({
     setOpen(!open);
   }
 
-  if (rdf.equals(subject, NS.ontola('hiddenGroup'))) {
+  if (rdf.equals(subject, ontola.hiddenGroup)) {
     return (
       <fieldset className={classes.hidden}>
         {properties.map((p, i) => renderProp(p, focusNode, i === 0))}

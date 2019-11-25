@@ -10,24 +10,25 @@ import React from 'react';
 import Link from '../../../components/Link';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import SHACL from '../../../helpers/shacl';
+import ontola from '../../../ontology/ontola';
 import { navbarTopology } from '../../../topologies/Navbar';
 
 class Href extends React.PureComponent {
   static type = [
     NS.argu('Link'),
-    NS.ontola('MenuItem'),
+    ontola.MenuItem,
     NS.argu('SubMenu'),
   ];
 
-  static property = NS.ontola('href');
+  static property = ontola.href;
 
   static topology = [
     navbarTopology,
   ];
 
   static mapDataToProps = {
-    action: NS.ontola('action'),
-    href: NS.ontola('href'),
+    action: ontola.action,
+    href: ontola.href,
   };
 
   static propTypes = {

@@ -17,6 +17,7 @@ import { retrievePath } from '../../helpers/iris';
 import { currentLocation } from '../../helpers/paths';
 import { isPromise } from '../../helpers/types';
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { CardMain } from '../../topologies/Card';
 import CardContent from '../../components/Card/CardContent';
 import Container from '../../topologies/Container';
@@ -27,7 +28,7 @@ import TabPane from '../../topologies/TabPane';
 
 class MenuItemPage extends React.PureComponent {
   static type = [
-    NS.ontola('MenuItem'),
+    ontola.MenuItem,
     NS.argu('MenuSection'),
     NS.argu('SubMenu'),
     NS.argu('Menu'),
@@ -39,9 +40,9 @@ class MenuItemPage extends React.PureComponent {
   ];
 
   static mapDataToProps = {
-    dataSubjects: NS.ontola('menuItems'),
-    menuItems: NS.ontola('menuItems'),
-    parentMenu: NS.ontola('parentMenu'),
+    dataSubjects: ontola.menuItems,
+    menuItems: ontola.menuItems,
+    parentMenu: ontola.parentMenu,
   };
 
   static hocs = [withRouter];
@@ -111,9 +112,9 @@ class MenuItemPage extends React.PureComponent {
     if (!r && (this.isPrimaryResource() || !topLevel)) {
       body = (
         <React.Fragment>
-          <Property label={NS.ontola('parentMenu')} topLevel={false} />
+          <Property label={ontola.parentMenu} topLevel={false} />
           <TabPane>
-            <Property label={NS.ontola('href')} />
+            <Property label={ontola.href} />
           </TabPane>
         </React.Fragment>
       );

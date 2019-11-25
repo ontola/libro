@@ -13,7 +13,7 @@ import {
   Markdown,
   MarkdownFixedPreview,
 } from '../../../components';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import ontola from '../../../ontology/ontola';
 import { cardTopology } from '../../../topologies/Card';
 import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
 import { cardListTopology } from '../../../topologies/Card/CardList';
@@ -50,7 +50,7 @@ TextInline.propTypes = propTypes;
  */
 class TextCutoff extends PropertyBase {
   render() {
-    if (!this.getLinkedObjectProperty() || this.getLinkedObjectProperty(NS.ontola('coverPhoto'))) {
+    if (!this.getLinkedObjectProperty() || this.getLinkedObjectProperty(ontola.coverPhoto)) {
       return null;
     }
 

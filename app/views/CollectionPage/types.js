@@ -1,11 +1,11 @@
 import as from '@ontologies/as';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 
 export const CollectionViewTypes = [
   as.CollectionPage,
-  NS.ontola('CollectionView'),
-  NS.ontola('PaginatedView'),
+  ontola.CollectionView,
+  ontola.PaginatedView,
 ];
 
 export default CollectionViewTypes;

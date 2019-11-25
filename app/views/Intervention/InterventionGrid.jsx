@@ -3,7 +3,6 @@ import schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import CardFixed from '../../topologies/Card/CardFixed';
 import {
   AttributeListItem,
   CardContent,
@@ -11,6 +10,8 @@ import {
   LinkedDetailDate,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
+import CardFixed from '../../topologies/Card/CardFixed';
 import DetailsBar from '../../topologies/DetailsBar';
 import AttributeList from '../../topologies/AttributeList';
 import { gridTopology } from '../../topologies/Grid';
@@ -18,7 +19,7 @@ import { gridTopology } from '../../topologies/Grid';
 const InterventionGrid = () => (
   <CardFixed>
     <LDLink>
-      <Property label={NS.ontola('coverPhoto')} />
+      <Property label={ontola.coverPhoto} />
       <CardContent noSpacing>
         <Property label={[schema.name, rdfs.label]} />
         <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />

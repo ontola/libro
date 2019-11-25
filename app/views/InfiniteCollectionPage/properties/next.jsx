@@ -7,6 +7,7 @@ import { FormattedMessage } from 'react-intl';
 
 import ButtonWithFeedback from '../../../components/ButtonWithFeedback';
 import { NS } from '../../../helpers/LinkedRenderStore';
+import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 
 class InfiniteCollectionNext extends PropertyBase {
@@ -20,7 +21,7 @@ class InfiniteCollectionNext extends PropertyBase {
 
     const onClick = () => new Promise(() => {
       lrs.store.addStatements([
-        rdf.quad(partOf.object, NS.ontola('pages'), linkedProp),
+        rdf.quad(partOf.object, ontola.pages, linkedProp),
         rdf.quad(subject, NS.argu('void'), rdf.literal(0)),
       ]);
       lrs.broadcast();
@@ -42,7 +43,7 @@ class InfiniteCollectionNext extends PropertyBase {
 
 export default LinkedRenderStore.registerRenderer(
   link({ partOf: as.partOf }, { returnType: 'statement' })(InfiniteCollectionNext),
-  NS.ontola('InfiniteView'),
+  ontola.InfiniteView,
   as.next,
   allTopologies
 );

@@ -4,6 +4,7 @@ import { Property } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { navbarTopology } from '../../topologies/Navbar';
 
 import MenuSectionName from './properties/name';
@@ -13,7 +14,7 @@ const MenuSection = () => (
     <Property label={schema.name} />
     <Property
       forceRender
-      label={NS.ontola('menuItems')}
+      label={ontola.menuItems}
     />
   </div>
 );

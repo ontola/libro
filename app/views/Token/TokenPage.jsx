@@ -5,6 +5,7 @@ import React from 'react';
 
 import { CardContent } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import ActionsBar from '../../topologies/ActionsBar';
 import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
@@ -20,7 +21,7 @@ const TokenPage = () => (
           <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
         </CardContent>
         <ActionsBar>
-          <Property label={NS.ontola('favoriteAction')} onLoad={() => null} />
+          <Property label={ontola.favoriteAction} onLoad={() => null} />
         </ActionsBar>
       </CardMain>
     </Container>

@@ -9,6 +9,7 @@ import { withRouter } from 'react-router';
 
 import SearchForm from '../../components/SearchForm';
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 
 export const SearchResultWidget = ({
@@ -30,9 +31,9 @@ SearchResultWidget.topology = widgetTopologyTopology;
 SearchResultWidget.hocs = [withRouter];
 
 SearchResultWidget.mapDataToProps = {
-  collectionDisplay: NS.ontola('collectionDisplay'),
+  collectionDisplay: ontola.collectionDisplay,
   query: NS.argu('query'),
-  searchTemplate: NS.ontola('searchTemplate'),
+  searchTemplate: ontola.searchTemplate,
   took: NS.argu('took'),
   totalItems: as.totalItems,
 };

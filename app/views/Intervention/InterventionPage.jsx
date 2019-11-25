@@ -18,6 +18,7 @@ import {
   LinkedDetailDate,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import AttributeList from '../../topologies/AttributeList';
 import ActionsBar from '../../topologies/ActionsBar';
 import CardAppendix from '../../topologies/Card/CardAppendix';
@@ -39,7 +40,7 @@ const InterventionPage = ({
 
   return (
     <PrimaryResource>
-      <Property label={NS.ontola('coverPhoto')} />
+      <Property label={ontola.coverPhoto} />
       <Container>
         <Property label={schema.isPartOf} />
         <Property label={NS.argu('trashedAt')} />
@@ -47,9 +48,9 @@ const InterventionPage = ({
           <DetailsBar
             right={(
               <React.Fragment>
-                <Property label={NS.ontola('followMenu')} />
-                <Property label={NS.ontola('shareMenu')} />
-                <Property label={NS.ontola('actionsMenu')} />
+                <Property label={ontola.followMenu} />
+                <Property label={ontola.shareMenu} />
+                <Property label={ontola.actionsMenu} />
               </React.Fragment>
             )}
           >
@@ -149,13 +150,13 @@ const InterventionPage = ({
             <Property label={NS.argu('attachments')} onLoad={() => null} />
           </CardContent>
           <ActionsBar>
-            <Property label={NS.ontola('favoriteAction')} onLoad={() => null} />
+            <Property label={ontola.favoriteAction} onLoad={() => null} />
           </ActionsBar>
           <CardAppendix>
             <Property forceRender label={NS.app('omniform')} />
           </CardAppendix>
         </CardMain>
-        <Property label={NS.ontola('publishAction')} onLoad={() => null} />
+        <Property label={ontola.publishAction} onLoad={() => null} />
       </Container>
       <Container>
         <Property label={schema.comment} />

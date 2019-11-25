@@ -10,6 +10,7 @@ import { defineMessages, useIntl } from 'react-intl';
 
 import { Button } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
+import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
 import { CollectionTypes } from '../types';
 import { cardAppendixTopology } from '../../../topologies/Card/CardAppendix';
@@ -165,12 +166,12 @@ const getPagination = (Wrapper, topology) => {
 
   DefaultPagination.type = [...CollectionTypes, NS.argu('SearchResult')];
 
-  DefaultPagination.property = NS.ontola('defaultPagination');
+  DefaultPagination.property = ontola.defaultPagination;
 
   DefaultPagination.topology = topology;
 
   DefaultPagination.mapDataToProps = {
-    collectionType: NS.ontola('collectionType'),
+    collectionType: ontola.collectionType,
     first: as.first,
     last: as.last,
   };

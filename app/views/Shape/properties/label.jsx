@@ -3,7 +3,7 @@ import sh from '@ontologies/shacl';
 import LinkedRenderStore from 'link-lib';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 
 export default LinkedRenderStore.registerRenderer(
@@ -17,7 +17,7 @@ export default LinkedRenderStore.registerRenderer(
       {linkedProp.value}
     </strong>
   ),
-  [sh.Shape, sh.NodeShape, NS.ontola('FormStep')],
+  [sh.Shape, sh.NodeShape, ontola.FormStep],
   rdfs.label,
   allTopologies
 );

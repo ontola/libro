@@ -7,7 +7,7 @@ import {
 import React from 'react';
 
 import { sort } from '../../../helpers/data';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 import { CollectionTypes } from '../types';
 
@@ -49,12 +49,12 @@ export default [
   LinkedRenderStore.registerRenderer(
     link({
       filteredCollections: {
-        label: NS.ontola('filteredCollections'),
+        label: ontola.filteredCollections,
         limit: Infinity,
       },
     })(FilteredCollections),
     CollectionTypes,
-    NS.ontola('filteredCollections'),
+    ontola.filteredCollections,
     allTopologies
   ),
 ];

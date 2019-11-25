@@ -5,6 +5,7 @@ import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
+import ontola from '../../../ontology/ontola';
 import { setCurrentUser } from '../../../state/app/actions';
 import { navbarTopology } from '../../../topologies/Navbar';
 
@@ -58,14 +59,14 @@ ActorTypeDispatcherConnect.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
   link({
-    actorType: NS.ontola('actorType'),
+    actorType: ontola.actorType,
     anonymousID: NS.argu('anonymousID'),
   }, { returnType: 'value' })(ActorTypeDispatcherConnect),
   [
-    NS.ontola('ConfirmedUser'),
-    NS.ontola('UnconfirmedUser'),
-    NS.ontola('GuestUser'),
+    ontola.ConfirmedUser,
+    ontola.UnconfirmedUser,
+    ontola.GuestUser,
   ],
-  NS.ontola('actorType'),
+  ontola.actorType,
   navbarTopology
 );

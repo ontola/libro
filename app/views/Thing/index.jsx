@@ -15,6 +15,7 @@ import {
   hightlightPropTypes,
 } from '../../containers/Highlight';
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { cardTopology } from '../../topologies/Card';
 import CardFixed, { cardFixedTopology } from '../../topologies/Card/CardFixed';
 import { cardListTopology } from '../../topologies/Card/CardList';
@@ -76,7 +77,7 @@ const CardHoverBox = hoverBox();
 const ThingGrid = () => (
   <CardFixed>
     <LDLink>
-      <Property label={NS.ontola('coverPhoto')} />
+      <Property label={ontola.coverPhoto} />
       <CardContent noSpacing>
         <Property label={[schema.name, rdfs.label]} />
         <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />

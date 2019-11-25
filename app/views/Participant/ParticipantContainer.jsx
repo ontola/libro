@@ -6,6 +6,7 @@ import {
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { containerTopology } from '../../topologies/Container';
 import { CardContent } from '../../components';
 import Card from '../../topologies/Card';
@@ -17,7 +18,7 @@ const ParticipantContainer = () => (
   <Card>
     <CardContent noSpacing>
       <HeaderWithMenu
-        menu={<Property label={NS.ontola('actionsMenu')} />}
+        menu={<Property label={ontola.actionsMenu} />}
       >
         <Property label={NS.teamGL('volunteer')}>
           <Property label={schema.name} />
@@ -35,7 +36,7 @@ const ParticipantContainer = () => (
       </Property>
     </CardContent>
     <ActionsBar>
-      <Property label={NS.ontola('favoriteAction')} />
+      <Property label={ontola.favoriteAction} />
     </ActionsBar>
   </Card>
 );

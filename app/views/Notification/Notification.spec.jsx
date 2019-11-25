@@ -6,6 +6,7 @@ import { LinkedResourceContainer } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../../tests';
+import ontola from '../../ontology/ontola';
 import {
   cleanup,
   fireEvent,
@@ -33,7 +34,7 @@ describe('Notification', () => {
     [schema.target]: rdf.namedNode('https://app.argu.co/freetown/m/2601'),
     [NS.argu('unread')]: rdf.literal(false),
     [NS.hydra('operation')]: rdf.namedNode('https://app.argu.co/freetown/n/19314/actions/read'),
-    [NS.ontola('readAction')]: rdf.namedNode('https://app.argu.co/freetown/n/19314/actions/read'),
+    [ontola.readAction]: rdf.namedNode('https://app.argu.co/freetown/n/19314/actions/read'),
     [schema.creator]: {
       '@id': rdf.namedNode('https://app.argu.co/freetown/u/1'),
       [rdfx.type]: schema.Person,
@@ -57,7 +58,7 @@ describe('Notification', () => {
     [schema.target]: rdf.namedNode('https://app.argu.co/freetown/m/2601'),
     [NS.argu('unread')]: rdf.literal(true),
     [schema.potentialAction]: rdf.namedNode('https://app.argu.co/freetown/n/19314/actions/read'),
-    [NS.ontola('readAction')]: {
+    [ontola.readAction]: {
       '@id': rdf.namedNode('https://app.argu.co/freetown/n/19314/actions/read'),
       [rdfx.type]: schema.ReadAction,
       [schema.target]: {
@@ -127,7 +128,7 @@ describe('Notification', () => {
         queryByTitle,
       } = renderInContainer(unreadResources);
 
-      const delta = `${resource.toString()} ${NS.argu('unread').toString()} "false"^^<http://www.w3.org/2001/XMLSchema#boolean> ${NS.ontola('replace').toString()} .`;
+      const delta = `${resource.toString()} ${NS.argu('unread').toString()} "false"^^<http://www.w3.org/2001/XMLSchema#boolean> ${ontola.replace.toString()} .`;
       fetch.mockResponse(
         delta,
         {

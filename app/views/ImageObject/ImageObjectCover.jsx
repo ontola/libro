@@ -8,6 +8,7 @@ import { CoverImage } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { handle } from '../../helpers/logging';
 import { tryParseInt } from '../../helpers/numbers';
+import ontola from '../../ontology/ontola';
 import { cardTopology } from '../../topologies/Card';
 import { cardFixedTopology } from '../../topologies/Card/CardFixed';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
@@ -46,7 +47,7 @@ class ImageObjectBackgroundCover extends PureComponent {
 export default [
   LinkedRenderStore.registerRenderer(
     link({
-      imagePositionY: NS.ontola('imagePositionY'),
+      imagePositionY: ontola.imagePositionY,
       url: NS.ontola('imgUrl1500x2000'),
     })(ImageObjectBackgroundCover),
     schema.ImageObject,
@@ -55,7 +56,7 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     link({
-      imagePositionY: NS.ontola('imagePositionY'),
+      imagePositionY: ontola.imagePositionY,
       url: NS.ontola('imgUrl568x400'),
     })(ImageObjectBackgroundCover),
     schema.ImageObject,

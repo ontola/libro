@@ -15,10 +15,11 @@ import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 import { connect } from 'react-redux';
 
-import { omniformOpenInline, omniformSetAction } from '../../state/omniform';
 import { HTTP_RETRY_WITH, handleHTTPRetry } from '../../helpers/errorHandling';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { handle } from '../../helpers/logging';
+import ontola from '../../ontology/ontola';
+import { omniformOpenInline, omniformSetAction } from '../../state/omniform';
 import { allTopologies } from '../../topologies';
 import { CollectionTypes } from '../Collection/types';
 
@@ -54,7 +55,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     const hasOpinionAction = ownProps.lrs.findSubject(
       inlineFormTarget,
       [schema.potentialAction, rdfx.type],
-      [NS.ontola('Create::Opinion'), NS.argu('Update::Opinion')]
+      [ontola['Create::Opinion'], NS.argu('Update::Opinion')]
     );
 
     if (!hasOpinionAction) {
@@ -144,8 +145,8 @@ const CreateVote = ({
     return null;
   }
 
-  const disabled = rdf.equals(actionStatus, NS.ontola('DisabledActionStatus'));
-  const expired = rdf.equals(actionStatus, NS.ontola('ExpiredActionStatus'));
+  const disabled = rdf.equals(actionStatus, ontola.DisabledActionStatus);
+  const expired = rdf.equals(actionStatus, ontola.ExpiredActionStatus);
 
   if (disabled) {
     return null;
@@ -180,9 +181,9 @@ const CreateVote = ({
 };
 
 CreateVote.type = [
-  NS.ontola('Create::Vote'),
-  NS.ontola('CreateVoteAction'),
-  NS.ontola('DestroyVoteAction'),
+  ontola['Create::Vote'],
+  ontola.CreateVoteAction,
+  ontola.DestroyVoteAction,
 ];
 
 CreateVote.topology = allTopologies;

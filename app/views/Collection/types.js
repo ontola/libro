@@ -1,11 +1,12 @@
 import as from '@ontologies/as';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 
 export const CollectionTypes = [
-  NS.ontola('Collection'),
+  ontola.Collection,
   as.Collection,
-  NS.ontola('FilteredCollection'),
+  ontola.FilteredCollection,
   NS.hydra('Collection'),
 ];
 

@@ -6,6 +6,7 @@ import {
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
+import ontola from '../../../ontology/ontola';
 import { cardTopology } from '../../../topologies/Card';
 import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
 import { cardMainTopology } from '../../../topologies/Card/CardMain';
@@ -26,7 +27,7 @@ const Unread = ({ linkedProp }) => {
   return (
     <Property
       forceRender
-      label={NS.ontola('readAction')}
+      label={ontola.readAction}
     />
   );
 };

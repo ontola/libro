@@ -6,13 +6,13 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import ontola from '../../../ontology/ontola';
 import { containerTopology } from '../../../topologies/Container';
 
 class PublishAction extends React.PureComponent {
   static type = schema.Thing;
 
-  static property = NS.ontola('publishAction');
+  static property = ontola.publishAction;
 
   static topology = containerTopology;
 

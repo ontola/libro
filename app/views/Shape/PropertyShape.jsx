@@ -18,8 +18,8 @@ import {
   calculateFormFieldName,
   retrieveIdFromValue,
 } from '../../helpers/forms';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { isPromise } from '../../helpers/types';
+import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 import { entityIsLoaded } from '../../helpers/data';
 
@@ -107,7 +107,7 @@ PropertyShape.mapDataToProps = {
     limit: Infinity,
   },
   description: sh.description,
-  inputFieldHint: NS.ontola('inputFieldHint'),
+  inputFieldHint: ontola.inputFieldHint,
   maxCount: sh.maxCount,
   maxLength: sh.maxLength,
   minCount: sh.minCount,

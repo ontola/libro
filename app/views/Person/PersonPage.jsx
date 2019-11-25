@@ -6,7 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { pageTopology } from '../../topologies/Page';
 import PrimaryResource from '../../topologies/PrimaryResource';
 
@@ -21,7 +21,7 @@ class PersonPage extends React.PureComponent {
   render() {
     return (
       <PrimaryResource>
-        <Property label={NS.ontola('profileMenu')} />
+        <Property label={ontola.profileMenu} />
       </PrimaryResource>
     );
   }

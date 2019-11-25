@@ -13,8 +13,8 @@ import React from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
 import { arraysEqual, containerToArr } from '../../helpers/data';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { isPromise } from '../../helpers/types';
+import ontola from '../../ontology/ontola';
 
 const DEBOUNCE_TIMER = 1000;
 
@@ -47,7 +47,7 @@ const OptionsWrapper = ({
 
   useDataInvalidation({ subject: shIn });
   const searchTemplate = React.useMemo(
-    () => lrs.getResourceProperty(shInProp, NS.ontola('searchTemplate')),
+    () => lrs.getResourceProperty(shInProp, ontola.searchTemplate),
     [shInProp]
   );
 
@@ -82,7 +82,7 @@ const OptionsWrapper = ({
       {
         shIn.termType === 'NamedNode' && (
           <LinkedResourceContainer subject={shIn}>
-            <Property label={NS.ontola('createAction')} />
+            <Property label={ontola.createAction} />
           </LinkedResourceContainer>
         )
       }

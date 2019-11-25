@@ -14,6 +14,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { highlightResource } from '../../state/app/actions';
 import { getOmniformAction, omniformSetAction } from '../../state/omniform';
 import FormFooter from '../../topologies/FormFooter/Footer';
@@ -44,9 +45,9 @@ const PROPS_WHITELIST = [
   schema.name,
   schema.text,
   NS.argu('isOpinion'),
-  NS.ontola('hiddenGroup'),
+  ontola.hiddenGroup,
   NS.argu('attachments'),
-  NS.ontola('coverPhoto'),
+  ontola.coverPhoto,
   schema.location,
 ].map(t => rdf.id(t));
 

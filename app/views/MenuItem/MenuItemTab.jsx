@@ -9,6 +9,7 @@ import {
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { tabBarTopology } from '../../topologies/TabBar';
 
 const MenuItemTab = ({ subject }) => (
@@ -30,7 +31,7 @@ const MenuItemTab = ({ subject }) => (
 );
 
 MenuItemTab.type = [
-  NS.ontola('MenuItem'),
+  ontola.MenuItem,
   NS.argu('MenuSection'),
   NS.argu('SubMenu'),
   NS.argu('Menu'),

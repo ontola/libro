@@ -6,7 +6,7 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 import { CollectionTypes } from '../types';
 
@@ -58,13 +58,13 @@ const Pages = ({
 
 Pages.type = CollectionTypes;
 
-Pages.property = NS.ontola('pages');
+Pages.property = ontola.pages;
 
 Pages.topology = allTopologies;
 
 Pages.mapDataToProps = {
   pages: {
-    label: NS.ontola('pages'),
+    label: ontola.pages,
     limit: Infinity,
   },
 };

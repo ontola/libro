@@ -6,6 +6,7 @@ import React from 'react';
 import { CardContent } from '../../components';
 import { connectHighlighting, hightlightPropTypes } from '../../containers/Highlight';
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import ActionsBar from '../../topologies/ActionsBar';
 import Card from '../../topologies/Card';
 import CardAppendix, { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
@@ -20,7 +21,7 @@ const Comment = ({ depth = 0, highlighted }) => (
     <Card shine={highlighted}>
       <DetailsBar
         right={(
-          <Property label={NS.ontola('actionsMenu')} />
+          <Property label={ontola.actionsMenu} />
         )}
       >
         <Property label={schema.creator} />
@@ -31,9 +32,9 @@ const Comment = ({ depth = 0, highlighted }) => (
         <Property label={schema.text} />
       </CardContent>
       <ActionsBar small>
-        <Property label={NS.ontola('favoriteAction')} onLoad={() => null} />
+        <Property label={ontola.favoriteAction} onLoad={() => null} />
         <Property label={schema.comment} onLoad={() => null}>
-          <Property omniform label={NS.ontola('createAction')} />
+          <Property omniform label={ontola.createAction} />
         </Property>
       </ActionsBar>
       <CardAppendix>

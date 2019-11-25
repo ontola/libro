@@ -1,3 +1,4 @@
+import as from '@ontologies/as';
 import rdfx from '@ontologies/rdf';
 import rdf from '@ontologies/core';
 import dcterms from '@ontologies/dcterms';
@@ -7,6 +8,7 @@ import { LinkedResourceContainer } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { cleanup, render } from '../../test-utils';
 import { Page } from '../../topologies/Page';
 
@@ -25,31 +27,31 @@ describe('Collection', () => {
       '@id': collectionWithItems,
       [rdfx.type]: [
         as.CollectionPage,
-        NS.ontola('PaginatedView'),
+        ontola.PaginatedView,
       ],
       [as.items]: seq([memberResource]),
       [as.totalItems]: rdf.literal(1),
-      [NS.ontola('collectionDisplay')]: NS.ontola('collectionDisplay/default'),
+      [ontola.collectionDisplay]: NS.ontola('collectionDisplay/default'),
     },
     [collectionWithPages]: {
       '@id': collectionWithPages,
       [rdfx.type]: [
         as.Collection,
-        NS.ontola('Collection'),
+        ontola.Collection,
       ],
       [as.name]: rdf.literal('Ideeën'),
-      [NS.ontola('iriTemplate')]: rdf.literal('https://argu.localdev/nederland/q/75/m{?filter%5B%5D,page,page_size,type,before,sort%5B%5D}'),
+      [ontola.iriTemplate]: rdf.literal('https://argu.localdev/nederland/q/75/m{?filter%5B%5D,page,page_size,type,before,sort%5B%5D}'),
       [schema.isPartOf]: NS.app('nederland/q/75'),
       [as.totalItems]: rdf.literal(ITEMS),
       [schema.potentialAction]: NS.app('nederland/q/75/m/new'),
-      [NS.ontola('defaultType')]: rdf.literal('paginated'),
-      [NS.ontola('pages')]: collectionWithItems,
+      [ontola.defaultType]: rdf.literal('paginated'),
+      [ontola.pages]: collectionWithItems,
       [dcterms.identifier]: NS.app('nederland/q/75/motions'),
-      [NS.ontola('createAction')]: NS.app('nederland/q/75/m/new'),
+      [ontola.createAction]: NS.app('nederland/q/75/m/new'),
       [schema.url]: collectionWithPages,
-      [NS.ontola('baseCollection')]: NS.app('new_volunteers'),
-      [NS.ontola('collectionDisplay')]: NS.ontola('collectionDisplay/default'),
-      [NS.ontola('collectionType')]: NS.ontola('collectionType/paginated'),
+      [ontola.baseCollection]: NS.app('new_volunteers'),
+      [ontola.collectionDisplay]: NS.ontola('collectionDisplay/default'),
+      [ontola.collectionType]: NS.ontola('collectionType/paginated'),
       [as.first]: collectionWithItems,
       [as.last]: NS.app('nederland/q/75/m?page=2&type=paginated'),
     },

@@ -5,6 +5,7 @@ import MediaQuery from 'react-responsive';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { values } from '../../helpers/ssr';
 import { frontendIRI } from '../../middleware/app';
+import ontola from '../../ontology/ontola';
 import { mediaQueries } from '../shared/config';
 
 import './NavBarContent.scss';
@@ -17,14 +18,14 @@ const NavBarContent = () => (
     >
       <MediaQuery query={mediaQueries.smallAndAbove} values={values}>
         {matches => (
-          <Property label={NS.ontola('navigationsMenu')}>
+          <Property label={ontola.navigationsMenu}>
             <div className="NavBarContent__items">
               <Property
                 childProps={{
                   imageOnly: !matches,
                   showImage: true,
                 }}
-                label={NS.ontola('menuItems')}
+                label={ontola.menuItems}
               />
             </div>
           </Property>

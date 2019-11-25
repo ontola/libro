@@ -20,6 +20,7 @@ import { connect } from 'react-redux';
 import { SignInFormContainerCardRow } from '../../../containers/SignInFormContainer';
 import { currentURL } from '../../../helpers/iris';
 import { NS } from '../../../helpers/LinkedRenderStore';
+import ontola from '../../../ontology/ontola';
 import { getCurrentUserType } from '../../../state/app/selectors';
 import { allTopologies } from '../../../topologies';
 import { cardVoteEventTopology } from '../../../topologies/CardVoteEvent';
@@ -36,7 +37,7 @@ class CurrentVote extends React.PureComponent {
   getEntryPoint() {
     return this.props.lrs.getResourceProperty(
       this.props.baseCollection,
-      NS.ontola('createAction')
+      ontola.createAction
     );
   }
 

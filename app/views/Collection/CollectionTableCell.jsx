@@ -3,7 +3,7 @@ import { Property, register } from 'link-redux';
 import React from 'react';
 
 import { LDLink } from '../../components';
-import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { tableCellTopology } from '../../topologies/TableCell';
 
 import { CollectionTypes } from './types';
@@ -19,7 +19,7 @@ class CollectionTableCell extends React.PureComponent {
         <LDLink>
           <Property label={as.totalItems} />
         </LDLink>
-        <Property label={NS.ontola('createAction')} />
+        <Property label={ontola.createAction} />
       </span>
     );
   }

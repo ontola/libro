@@ -16,6 +16,7 @@ import { connect } from 'react-redux';
 import { Resource } from '../../components';
 import { listToArr } from '../../helpers/data';
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { gotoPage } from '../../state/pagination/actions';
 import { getPage } from '../../state/pagination/selectors';
 
@@ -51,12 +52,12 @@ export default function getCollection({
     ];
 
     static mapDataToProps = {
-      collectionDisplayFromData: NS.ontola('collectionDisplay'),
-      collectionType: NS.ontola('collectionType'),
-      columns: NS.ontola('columns'),
-      defaultType: NS.ontola('defaultType'),
+      collectionDisplayFromData: ontola.collectionDisplay,
+      collectionType: ontola.collectionType,
+      columns: ontola.columns,
+      defaultType: ontola.defaultType,
       pages: {
-        label: NS.ontola('pages'),
+        label: ontola.pages,
         limit: Infinity,
       },
       totalItems: as.totalItems,
@@ -111,7 +112,7 @@ export default function getCollection({
           collectionDisplay={this.props.collectionDisplay || this.props.collectionDisplayFromData}
           columns={columns}
           depth={this.props.depth}
-          label={NS.ontola('pages')}
+          label={ontola.pages}
         />
       );
     }
@@ -127,7 +128,7 @@ export default function getCollection({
             <Property
               forceRender
               currentPage={this.props.currentPage}
-              label={NS.ontola('infinitePagination')}
+              label={ontola.infinitePagination}
               redirectPagination={this.props.redirectPagination}
             />
           );
@@ -136,7 +137,7 @@ export default function getCollection({
             <Property
               forceRender
               currentPage={this.props.currentPage}
-              label={NS.ontola('defaultPagination')}
+              label={ontola.defaultPagination}
               redirectPagination={this.props.redirectPagination}
               onPageChange={this.props.onPageChange}
             />
@@ -156,7 +157,9 @@ export default function getCollection({
       }
 
       const resolvedColumns = columns ? listToArr(lrs, [], columns) : undefined;
-      const header = (!depth || depth === 0) && <Property forceRender label={NS.ontola('header')} omniform={omniform} />;
+      const header = (!depth || depth === 0) && (
+        <Property forceRender label={ontola.header} omniform={omniform} />
+      );
 
       return (
         <WrappingElement wrapperProps={{ className: `Collection__Depth-${depth}` }}>
@@ -167,7 +170,7 @@ export default function getCollection({
             body={this.body(resolvedColumns)}
             collectionDisplay={this.props.collectionDisplay || this.props.collectionDisplayFromData}
             columns={resolvedColumns}
-            label={NS.ontola('collectionFrame')}
+            label={ontola.collectionFrame}
             pagination={this.pagination()}
           />
         </WrappingElement>

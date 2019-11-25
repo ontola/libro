@@ -5,12 +5,13 @@ import {
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { pageTopology } from '../../topologies/Page';
 import PrimaryResource from '../../topologies/PrimaryResource';
 
 const GroupPage = () => (
   <PrimaryResource>
-    <Property label={NS.ontola('settingsMenu')} />
+    <Property label={ontola.settingsMenu} />
   </PrimaryResource>
 );
 

@@ -8,18 +8,18 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import ontola from '../../../ontology/ontola';
 import { actionsBarTopology } from '../../../topologies/ActionsBar';
-import { NS } from '../../../helpers/LinkedRenderStore';
 
 class CreateAction extends React.PureComponent {
   static type = as.Collection;
 
-  static property = NS.ontola('createAction');
+  static property = ontola.createAction;
 
   static topology = actionsBarTopology;
 
   static mapDataToProps = {
-    createAction: NS.ontola('createAction'),
+    createAction: ontola.createAction,
     isPartOf: schema.isPartOf,
     totalItems: as.totalItems,
   };

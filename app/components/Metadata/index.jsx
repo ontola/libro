@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 
 const Metadata = ({
   coverPhoto,
@@ -16,7 +16,7 @@ const Metadata = ({
   name,
 }) => {
   const coverURL = coverPhoto
-    && lrs.getResourceProperty(rdf.namedNode(coverPhoto), NS.ontola('imgUrl1500x2000'));
+    && lrs.getResourceProperty(rdf.namedNode(coverPhoto), ontola.imgUrl1500x2000);
 
   return (
     <Helmet>
@@ -38,7 +38,7 @@ Metadata.propTypes = {
 
 export default link(
   {
-    coverPhoto: NS.ontola('coverPhoto'),
+    coverPhoto: ontola.coverPhoto,
     identifier: dcterms.identifier,
     name: [schema.name, rdfs.label],
   },

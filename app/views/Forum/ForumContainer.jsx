@@ -10,6 +10,7 @@ import {
 import { connectHighlighting, hightlightType } from '../../containers/Highlight';
 import { CardContent } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import Card from '../../topologies/Card';
 import CardRow from '../../topologies/Card/CardRow';
 import { containerTopology } from '../../topologies/Container';
@@ -31,7 +32,7 @@ class ForumContainer extends React.PureComponent {
 
     return (
       <Card about={subject.value} shine={highlighted}>
-        <Property label={NS.ontola('coverPhoto')} />
+        <Property label={ontola.coverPhoto} />
         <CardContent noSpacing>
           <Property label={[schema.name, rdfs.label]} />
           <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />

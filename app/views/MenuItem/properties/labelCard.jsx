@@ -4,12 +4,13 @@ import React from 'react';
 
 import { Image } from '../../../components';
 import { NS } from '../../../helpers/LinkedRenderStore';
+import ontola from '../../../ontology/ontola';
 import { cardFloatTopology } from '../../../topologies/Card/CardFloat';
 import { containerFloatTopology } from '../../../topologies/Container/ContainerFloat';
 
 class MenuItemLabelCard extends React.PureComponent {
   static type = [
-    NS.ontola('MenuItem'),
+    ontola.MenuItem,
     NS.argu('SubMenu'),
     NS.argu('Menu'),
   ];

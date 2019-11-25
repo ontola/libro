@@ -8,7 +8,7 @@ import {
 import React from 'react';
 
 import { Columns } from '../../../components';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 import { CollectionViewTypes } from '../types';
 
@@ -39,7 +39,7 @@ export default [
   LinkedRenderStore.registerRenderer(
     Views,
     CollectionViewTypes,
-    NS.ontola('pages'),
+    ontola.pages,
     allTopologies
   ),
 ];

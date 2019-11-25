@@ -9,6 +9,7 @@ import {
   LinkedDetailDate,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
@@ -24,7 +25,7 @@ class MotionPage extends React.PureComponent {
   render() {
     return (
       <PrimaryResource>
-        <Property label={NS.ontola('coverPhoto')} />
+        <Property label={ontola.coverPhoto} />
         <Container>
           <Property label={schema.isPartOf} />
           <Property label={NS.argu('trashedAt')} />
@@ -32,9 +33,9 @@ class MotionPage extends React.PureComponent {
             <DetailsBar
               right={(
                 <React.Fragment>
-                  <Property label={NS.ontola('followMenu')} />
-                  <Property label={NS.ontola('shareMenu')} />
-                  <Property label={NS.ontola('actionsMenu')} />
+                  <Property label={ontola.followMenu} />
+                  <Property label={ontola.shareMenu} />
+                  <Property label={ontola.actionsMenu} />
                 </React.Fragment>
               )}
             >
@@ -60,7 +61,7 @@ class MotionPage extends React.PureComponent {
               <Property forceRender label={NS.app('omniform')} />
             </CardAppendix>
           </CardMain>
-          <Property label={NS.ontola('publishAction')} onLoad={() => null} />
+          <Property label={ontola.publishAction} onLoad={() => null} />
           <Property label={NS.argu('decision')} onLoad={() => null} />
           <Property label={NS.argu('blogPosts')} onLoad={() => null} />
           <Property label={schema.location} onLoad={() => null} />

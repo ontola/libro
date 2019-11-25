@@ -4,11 +4,12 @@ import React from 'react';
 
 import NavbarLinkLabel from '../../../components/NavbarLink/NavbarLinkLabel';
 import { NS } from '../../../helpers/LinkedRenderStore';
+import ontola from '../../../ontology/ontola';
 import { navbarTopology } from '../../../topologies/Navbar';
 
 class MenuItemLabelHeader extends React.PureComponent {
   static type = [
-    NS.ontola('MenuItem'),
+    ontola.MenuItem,
     NS.argu('SubMenu'),
     NS.argu('Menu'),
   ];

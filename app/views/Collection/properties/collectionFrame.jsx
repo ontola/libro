@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
+import ontola from '../../../ontology/ontola';
 import Card from '../../../topologies/Card';
 import CardAppendix from '../../../topologies/Card/CardAppendix';
 import Container, { containerTopology } from '../../../topologies/Container';
@@ -97,10 +98,10 @@ const getFrame = (Wrapper, topology) => {
 
   collectionFrame.topology = topology;
 
-  collectionFrame.property = NS.ontola('collectionFrame');
+  collectionFrame.property = ontola.collectionFrame;
 
   collectionFrame.mapDataToProps = {
-    collectionDisplayFromData: NS.ontola('collectionDisplay'),
+    collectionDisplayFromData: ontola.collectionDisplay,
   };
 
   collectionFrame.propTypes = {

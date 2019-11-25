@@ -10,6 +10,7 @@ import React from 'react';
 
 import { LoadingFiller } from '../../components/Loading/index';
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import Container from '../../topologies/Container/index';
 import { pageTopology } from '../../topologies/Page';
 import PageHeader from '../../topologies/PageHeader';
@@ -25,8 +26,8 @@ const ForumPage = ({ coverPhoto, hideHeader }) => {
     if (__CLIENT__ && !entityIsLoaded(lrs, coverPhoto)) {
       lrs.getEntity(coverPhoto);
     }
-    coverPhotoUrl = lrs.getResourceProperty(coverPhoto, NS.ontola('imgUrl1500x2000'));
-    positionY = lrs.getResourceProperty(coverPhoto, NS.ontola('imagePositionY'));
+    coverPhotoUrl = lrs.getResourceProperty(coverPhoto, ontola.imgUrl1500x2000);
+    positionY = lrs.getResourceProperty(coverPhoto, ontola.imagePositionY);
   }
 
   return (
@@ -34,7 +35,7 @@ const ForumPage = ({ coverPhoto, hideHeader }) => {
       {(hideHeader?.value !== 'true')
       && <PageHeader background={coverPhotoUrl?.value} positionY={positionY?.value} />}
       <Container grid>
-        <Property label={NS.ontola('widgets')} onLoad={LoadingFiller} />
+        <Property label={ontola.widgets} onLoad={LoadingFiller} />
       </Container>
     </PrimaryResource>
   );
@@ -43,10 +44,10 @@ const ForumPage = ({ coverPhoto, hideHeader }) => {
 ForumPage.type = [NS.argu('ContainerNode'), schema.WebPage];
 
 ForumPage.mapDataToProps = {
-  coverPhoto: NS.ontola('coverPhoto'),
+  coverPhoto: ontola.coverPhoto,
   hideHeader: NS.argu('hideHeader'),
   name: schema.name,
-  widgets: NS.ontola('widgets'),
+  widgets: ontola.widgets,
 };
 
 ForumPage.propTypes = {

@@ -7,7 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 
 const FormStep = () => (
@@ -18,7 +18,7 @@ const FormStep = () => (
   </React.Fragment>
 );
 
-FormStep.type = NS.ontola('FormStep');
+FormStep.type = ontola.FormStep;
 
 FormStep.topology = allTopologies;
 

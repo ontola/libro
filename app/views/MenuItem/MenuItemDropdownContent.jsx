@@ -13,7 +13,7 @@ import * as PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 
 import { MenuItem } from '../../components';
-import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { appMenuTopology } from '../../topologies/AppMenu';
 import { menuTopology } from '../../topologies/Menu';
 
@@ -88,7 +88,7 @@ const MenuItemDropdownContentComp = ({
                 hideIcon: true,
                 onClose: action ? actionFunc : onClose,
               }}
-              label={NS.ontola('menuItems')}
+              label={ontola.menuItems}
             />
           </List>
         </Collapse>
@@ -124,7 +124,7 @@ const MenuItemDropdownContent = React.forwardRef(
   (props, ref) => <MenuItemDropdownContentComp innerRef={ref} {...props} />
 );
 
-MenuItemDropdownContent.type = NS.ontola('MenuItem');
+MenuItemDropdownContent.type = ontola.MenuItem;
 
 MenuItemDropdownContent.topology = [
   appMenuTopology,
@@ -132,10 +132,10 @@ MenuItemDropdownContent.topology = [
 ];
 
 MenuItemDropdownContent.mapDataToProps = {
-  action: NS.ontola('action'),
-  href: NS.ontola('href'),
+  action: ontola.action,
+  href: ontola.href,
   image: schema.image,
-  menuItems: NS.ontola('menuItems'),
+  menuItems: ontola.menuItems,
   name: schema.name,
 };
 

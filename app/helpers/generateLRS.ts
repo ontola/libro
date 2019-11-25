@@ -16,6 +16,7 @@ import { appMiddleware, frontendIRIStr, website } from '../middleware/app';
 import execFilter from '../middleware/execFilter';
 import logging from '../middleware/logging';
 import ontolaMiddleware from '../middleware/ontolaMiddleware';
+import ontola from '../ontology/ontola';
 import sp from '../ontology/sp';
 import arguDeltaProcessor from './arguDeltaProcessor';
 import { getMetaContent } from './arguHelpers';
@@ -111,7 +112,7 @@ export default function generateLRS() {
     appSlashless: createNS(frontendIRIStr.slice(0, frontendIRIStr.endsWith('/') ? -1 : undefined)),
     fa4: createNS('http://fontawesome.io/icon/'),
     meeting: createNS('https://argu.co/ns/meeting/'),
-    ontola: createNS('https://ns.ontola.io/'),
+    ontola: ontola.ns,
     opengov: createNS('http://www.w3.org/ns/opengov#'),
     org: createNS('http://www.w3.org/ns/org#'),
     person: createNS('http://www.w3.org/ns/person#'),
@@ -163,12 +164,12 @@ export default function generateLRS() {
     rdf.quad(schema.Thing, rdfx.type, rdfs.Class),
     rdf.quad(schema.Thing, rdfs.comment, rdf.literal('The most generic type of item.')),
     rdf.quad(schema.Thing, rdfs.label, rdf.literal('Thing', languages.en)),
-    rdf.quad(schema.Thing, NS.ontola('forms/inputs/select/displayProp'), schema.name),
+    rdf.quad(schema.Thing, ontola['forms/inputs/select/displayProp'], schema.name),
 
     rdf.quad(as.Collection, rdfs.subClassOf, rdfs.Resource),
-    rdf.quad(NS.ontola('Collection'), rdfs.subClassOf, as.Collection),
-    rdf.quad(NS.ontola('InfiniteView'), rdfs.subClassOf, as.CollectionPage),
-    rdf.quad(NS.ontola('PaginatedView'), rdfs.subClassOf, as.CollectionPage),
+    rdf.quad(ontola.Collection, rdfs.subClassOf, as.Collection),
+    rdf.quad(ontola.InfiniteView, rdfs.subClassOf, as.CollectionPage),
+    rdf.quad(ontola.PaginatedView, rdfs.subClassOf, as.CollectionPage),
 
     rdf.quad(NS.opengov('Motion'), rdfx.type, rdfs.Class),
     rdf.quad(NS.opengov('Motion'), rdfs.label, rdf.literal('Motion', languages.en)),
@@ -188,20 +189,20 @@ export default function generateLRS() {
     rdf.quad(schema.WebSite, rdfx.type, rdfs.Class),
     rdf.quad(schema.WebSite, rdfs.subClassOf, schema.Thing),
 
-    rdf.quad(NS.ontola('Create::Users::Password'), rdfx.type, rdfs.Class),
-    rdf.quad(NS.ontola('Create::Users::Password'), rdfs.subClassOf, schema.CreateAction),
+    rdf.quad(ontola['Create::Users::Password'], rdfx.type, rdfs.Class),
+    rdf.quad(ontola['Create::Users::Password'], rdfs.subClassOf, schema.CreateAction),
 
-    rdf.quad(NS.ontola('Create::Users::Confirmation'), rdfx.type, rdfs.Class),
-    rdf.quad(NS.ontola('Create::Users::Confirmation'), rdfs.subClassOf, schema.CreateAction),
+    rdf.quad(ontola['Create::Users::Confirmation'], rdfx.type, rdfs.Class),
+    rdf.quad(ontola['Create::Users::Confirmation'], rdfs.subClassOf, schema.CreateAction),
 
-    rdf.quad(NS.ontola('Create::Users::Unlock'), rdfx.type, rdfs.Class),
-    rdf.quad(NS.ontola('Create::Users::Unlock'), rdfs.subClassOf, schema.CreateAction),
+    rdf.quad(ontola['Create::Users::Unlock'], rdfx.type, rdfs.Class),
+    rdf.quad(ontola['Create::Users::Unlock'], rdfs.subClassOf, schema.CreateAction),
 
-    rdf.quad(NS.ontola('Create::Vote'), rdfx.type, rdfs.Class),
-    rdf.quad(NS.ontola('Create::Vote'), rdfs.subClassOf, schema.CreateAction),
+    rdf.quad(ontola['Create::Vote'], rdfx.type, rdfs.Class),
+    rdf.quad(ontola['Create::Vote'], rdfs.subClassOf, schema.CreateAction),
 
-    rdf.quad(NS.ontola('VideoPage'), rdfx.type, rdfs.Class),
-    rdf.quad(NS.ontola('VideoPage'), rdfs.subClassOf, schema.WebPage),
+    rdf.quad(ontola.VideoPage, rdfx.type, rdfs.Class),
+    rdf.quad(ontola.VideoPage, rdfs.subClassOf, schema.WebPage),
 
     rdf.quad(schema.UpdateAction, rdfx.type, rdfs.Class),
     rdf.quad(schema.UpdateAction, rdfs.subClassOf, schema.Action),
@@ -244,8 +245,8 @@ export default function generateLRS() {
     rdf.quad(NS.meeting('AgendaItem'), schema.description, rdf.literal('Een Agendapunt is een onderwerp dat wordt besproken tijdens een vergadering.', languages.nl)),
     rdf.quad(NS.meeting('AgendaItem'), schema.image, rdf.namedNode('http://fontawesome.io/icon/list')),
 
-    rdf.quad(NS.ontola('MenuItem'), rdfx.type, rdfs.Class),
-    rdf.quad(NS.ontola('MenuItem'), rdfs.subClassOf, NS.argu('Thing')),
+    rdf.quad(ontola.MenuItem, rdfx.type, rdfs.Class),
+    rdf.quad(ontola.MenuItem, rdfs.subClassOf, NS.argu('Thing')),
   ];
 // tslint:enable max-line-length
 
@@ -260,17 +261,17 @@ export default function generateLRS() {
     rdf.quad(NS.argu('applyLink'), rdfs.label, rdf.literal('Link', languages.en)),
     rdf.quad(NS.argu('applyLink'), rdfs.label, rdf.literal('Link', languages.nl)),
 
-    rdf.quad(NS.ontola('destroyAction'), rdfx.type, rdfx.Property),
-    rdf.quad(NS.ontola('destroyAction'), rdfs.label, rdf.literal('Delete', languages.en)),
-    rdf.quad(NS.ontola('destroyAction'), rdfs.label, rdf.literal('Verwijderen', languages.nl)),
+    rdf.quad(ontola.destroyAction, rdfx.type, rdfx.Property),
+    rdf.quad(ontola.destroyAction, rdfs.label, rdf.literal('Delete', languages.en)),
+    rdf.quad(ontola.destroyAction, rdfs.label, rdf.literal('Verwijderen', languages.nl)),
 
     rdf.quad(NS.argu('invitee'), rdfx.type, rdfx.Property),
     rdf.quad(NS.argu('invitee'), rdfs.label, rdf.literal('Invitee', languages.en)),
     rdf.quad(NS.argu('invitee'), rdfs.label, rdf.literal('Uitgenodigde', languages.nl)),
 
-    rdf.quad(NS.ontola('makePrimaryAction'), rdfx.type, rdfx.Property),
-    rdf.quad(NS.ontola('makePrimaryAction'), rdfs.label, rdf.literal('Make primary', languages.en)),
-    rdf.quad(NS.ontola('makePrimaryAction'), rdfs.label, rdf.literal('Maak primair', languages.nl)),
+    rdf.quad(ontola.makePrimaryAction, rdfx.type, rdfx.Property),
+    rdf.quad(ontola.makePrimaryAction, rdfs.label, rdf.literal('Make primary', languages.en)),
+    rdf.quad(ontola.makePrimaryAction, rdfs.label, rdf.literal('Maak primair', languages.nl)),
 
     rdf.quad(NS.argu('opened'), rdfx.type, rdfx.Property),
     rdf.quad(NS.argu('opened'), rdfs.label, rdf.literal('Opened', languages.en)),
@@ -280,21 +281,21 @@ export default function generateLRS() {
     rdf.quad(NS.argu('redirectUrl'), rdfs.label, rdf.literal('Redirect to', languages.en)),
     rdf.quad(NS.argu('redirectUrl'), rdfs.label, rdf.literal('Redirect naar', languages.nl)),
 
-    rdf.quad(NS.ontola('sendConfirmationAction'), rdfx.type, rdfx.Property),
+    rdf.quad(ontola.sendConfirmationAction, rdfx.type, rdfx.Property),
     rdf.quad(
-        NS.ontola('sendConfirmationAction'),
+        ontola.sendConfirmationAction,
         rdfs.label,
         rdf.literal('Send confirmation', languages.en),
     ),
     rdf.quad(
-        NS.ontola('sendConfirmationAction'),
+        ontola.sendConfirmationAction,
         rdfs.label,
         rdf.literal('Verstuur bevestiging', languages.nl),
     ),
 
-    rdf.quad(NS.ontola('updateAction'), rdfx.type, rdfx.Property),
-    rdf.quad(NS.ontola('updateAction'), rdfs.label, rdf.literal('Edit', languages.en)),
-    rdf.quad(NS.ontola('updateAction'), rdfs.label, rdf.literal('Bewerken', languages.nl)),
+    rdf.quad(ontola.updateAction, rdfx.type, rdfx.Property),
+    rdf.quad(ontola.updateAction, rdfs.label, rdf.literal('Edit', languages.en)),
+    rdf.quad(ontola.updateAction, rdfs.label, rdf.literal('Bewerken', languages.nl)),
 
     rdf.quad(NS.argu('usages'), rdfx.type, rdfx.Property),
     rdf.quad(NS.argu('usages'), rdfs.label, rdf.literal('Used', languages.en)),

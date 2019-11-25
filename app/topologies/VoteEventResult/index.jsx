@@ -3,6 +3,7 @@ import React from 'react';
 
 import VoteData from '../../components/VoteData';
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 
 /**
  * @deprecated
@@ -25,7 +26,7 @@ export class VoteEventResult extends TopologyProvider {
     return this.wrap((
       <VoteData card={this.card}>
         <Property
-          label={NS.ontola('filteredCollections')}
+          label={ontola.filteredCollections}
           totalVotes={this.props.totalItems}
           variant={this.props.variant}
         />

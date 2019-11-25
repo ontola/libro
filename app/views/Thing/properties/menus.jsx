@@ -4,7 +4,7 @@ import { LinkedResourceContainer, linkedPropType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import ontola from '../../../ontology/ontola';
 import { navbarTopology } from '../../../topologies/Navbar';
 
 const propTypes = {
@@ -37,6 +37,6 @@ ThingMenusProp.propTypes = propTypes;
 export default LinkedRenderStore.registerRenderer(
   ThingMenusProp,
   schema.Thing,
-  [NS.ontola('menus'), NS.ontola('navigationsMenu')],
+  [ontola.menus, ontola.navigationsMenu],
   navbarTopology
 );

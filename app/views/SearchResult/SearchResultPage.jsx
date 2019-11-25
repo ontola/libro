@@ -13,6 +13,7 @@ import { withRouter } from 'react-router';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import { retrievePath } from '../../helpers/iris';
+import ontola from '../../ontology/ontola';
 import { allTopologiesExcept } from '../../topologies';
 import { navbarTopology } from '../../topologies/Navbar';
 import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
@@ -40,7 +41,7 @@ export const SearchResultPage = ({
       forceRender
       redirectPagination
       currentPage={subject.value}
-      label={NS.ontola('defaultPagination')}
+      label={ontola.defaultPagination}
       onPageChange={url => history.push(retrievePath(url))}
     />
   );
@@ -74,7 +75,7 @@ export const SearchResultPage = ({
         <Property
           forceRender
           body={body}
-          label={NS.ontola('collectionFrame')}
+          label={ontola.collectionFrame}
           pagination={pagination}
         />
       </Container>
@@ -89,9 +90,9 @@ SearchResultPage.topology = allTopologiesExcept(navbarTopology, widgetTopologyTo
 SearchResultPage.hocs = [withRouter];
 
 SearchResultPage.mapDataToProps = {
-  collectionDisplay: NS.ontola('collectionDisplay'),
+  collectionDisplay: ontola.collectionDisplay,
   query: NS.argu('query'),
-  searchTemplate: NS.ontola('searchTemplate'),
+  searchTemplate: ontola.searchTemplate,
   took: NS.argu('took'),
   totalItems: as.totalItems,
 };
