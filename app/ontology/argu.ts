@@ -20,5 +20,6 @@ export default {
   lastActivityAt: argu('lastActivityAt'),
   motionsCount: argu('motionsCount'),
   pinnedAt: argu('pinnedAt'),
+  redirectUrl: argu('redirectUrl'),
   trashedAt: argu('trashedAt'),
 };
