@@ -9,6 +9,7 @@ import {
   linkType,
   lrsType,
   subjectType,
+  useDataInvalidation,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -60,6 +61,8 @@ const NodeShape = ({
 
   const targetObject = targetNode || retrieveIdFromValue(targetValue);
   const targetIRI = isTerm(targetObject) && targetObject;
+
+  useDataInvalidation({ subject: targetIRI });
 
   if (targetIRI && targetIRI.termType !== 'BlankNode' && !entityIsLoaded(lrs, targetIRI)) {
     if (__CLIENT__) {
