@@ -5,7 +5,7 @@ import {
   useIntl,
 } from 'react-intl';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import teamGL from '../../../ontology/teamGL';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
 import { contentDetailsTopology } from '../../../topologies/ContentDetails';
 import { Detail } from '../../../components';
@@ -25,9 +25,9 @@ const VolunteerCountDetailsBar = ({ linkedProp }) => {
   );
 };
 
-VolunteerCountDetailsBar.type = NS.teamGL('Group');
+VolunteerCountDetailsBar.type = teamGL.Group;
 
-VolunteerCountDetailsBar.property = NS.teamGL('volunteerCount');
+VolunteerCountDetailsBar.property = teamGL.volunteersCount;
 
 VolunteerCountDetailsBar.topology = [
   detailsBarTopology,

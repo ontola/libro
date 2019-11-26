@@ -5,7 +5,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import teamGL from '../../../ontology/teamGL';
 import CardContent from '../../../components/Card/CardContent';
 import { containerTopology } from '../../../topologies/Container';
 import ContentDetails from '../../../topologies/ContentDetails';
@@ -16,15 +16,15 @@ const GroupContainer = () => (
     <CardContent>
       <Property label={schema.name} />
       <ContentDetails>
-        <Property label={NS.teamGL('department')} />
-        <Property label={NS.teamGL('volunteerCount')} />
+        <Property label={teamGL.department} />
+        <Property label={teamGL.volunteersCount} />
       </ContentDetails>
       <Property label={schema.text} />
     </CardContent>
   </Card>
 );
 
-GroupContainer.type = [NS.teamGL('Group')];
+GroupContainer.type = [teamGL.Group];
 
 GroupContainer.topology = [containerTopology];
 

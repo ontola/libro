@@ -15,7 +15,7 @@ const GroupCardRow = () => (
     <Property label={schema.name} />
     <ContentDetails>
       <Property label={teamGL.department} />
-      <Property label={teamGL.volunteerCount} />
+      <Property label={teamGL.volunteersCount} />
     </ContentDetails>
     <Property label={schema.text} />
   </CardContent>
