@@ -31,6 +31,7 @@ export default {
   Widget: ontola('Widget'),
 
   /* properties */
+  _destroy: ontola('_destroy'),
   action: ontola('action'),
   actionsMenu: ontola('actionsMenu'),
   actor: ontola('actor'),

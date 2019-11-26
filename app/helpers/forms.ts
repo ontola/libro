@@ -1,12 +1,13 @@
-import rdf, { isNode, Node, TermType } from '@ontologies/core';
-import { NS } from './LinkedRenderStore';
+import rdf, { isNode, Node } from '@ontologies/core';
+
+import ontola from '../ontology/ontola';
 
 interface JSONLDObject {
     '@id': Node;
     [key: string]: any;
 }
 
-export const destroyFieldName = btoa(NS.ontola('_destroy').value);
+export const destroyFieldName = btoa(ontola._destroy.value);
 
 export function calculateFormFieldName(...segments: Array<string | number | Node | JSONLDObject | undefined>): string {
     return segments
@@ -56,7 +57,7 @@ export function isMarkedForRemove(value: any): boolean {
 }
 
 export function markForRemove(value: JSONLDObject): object | undefined {
-    if (value && value['@id'] && value['@id'].termType === TermType.BlankNode) {
+    if (value && value['@id'] && value['@id'].termType === 'BlankNode') {
         return undefined;
     }
 
