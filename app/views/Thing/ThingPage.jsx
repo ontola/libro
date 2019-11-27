@@ -10,6 +10,7 @@ import {
   LinkedDetailDate,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import ActionsBar from '../../topologies/ActionsBar';
 import CardAppendix from '../../topologies/Card/CardAppendix';
@@ -30,7 +31,7 @@ class ThingPage extends PureComponent {
         <Property label={ontola.coverPhoto} onLoad={() => null} />
         <Container>
           <Property label={schema.isPartOf} />
-          <Property label={NS.argu('trashedAt')} />
+          <Property label={argu.trashedAt} />
           <CardMain data-test="Thing-thing">
             <Property label={schema.superEvent} />
             <DetailsBar
@@ -45,12 +46,12 @@ class ThingPage extends PureComponent {
               <Property label={schema.creator} />
               <Property label={rdfx.type} />
               <LinkedDetailDate />
-              <Property label={NS.argu('pinnedAt')} />
-              <Property label={NS.argu('expiresAt')} />
-              <Property label={NS.argu('followsCount')} />
-              <Property label={NS.argu('motionsCount')} />
+              <Property label={argu.pinnedAt} />
+              <Property label={argu.expiresAt} />
+              <Property label={argu.followsCount} />
+              <Property label={argu.motionsCount} />
               <Property label={schema.location} />
-              <Property label={NS.argu('grantedGroups')} />
+              <Property label={argu.grantedGroups} />
             </DetailsBar>
             <CardContent noSpacing>
               <Property label={[schema.name, rdfs.label]} />
@@ -58,7 +59,7 @@ class ThingPage extends PureComponent {
               <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
               <Property label={foaf.isPrimaryTopicOf} onLoad={() => null} />
               <Property label={NS.meeting('attachment')} onLoad={() => null} />
-              <Property label={NS.argu('attachments')} onLoad={() => null} />
+              <Property label={argu.attachments} onLoad={() => null} />
             </CardContent>
             <ActionsBar>
               <Property label={ontola.favoriteAction} onLoad={() => null} />
@@ -69,13 +70,13 @@ class ThingPage extends PureComponent {
             </CardAppendix>
           </CardMain>
           <Property label={ontola.publishAction} onLoad={() => null} />
-          <Property label={NS.argu('voteEvents')} onLoad={() => null} />
-          <Property label={NS.argu('blogPosts')} onLoad={() => null} />
+          <Property label={argu.voteEvents} onLoad={() => null} />
+          <Property label={argu.blogPosts} onLoad={() => null} />
           <Property label={schema.location} onLoad={() => null} />
-          <Property label={NS.argu('motions')} onLoad={() => null} />
+          <Property label={argu.motions} onLoad={() => null} />
         </Container>
         <Container size="large">
-          <Property forceRender label={NS.argu('arguments')} />
+          <Property forceRender label={argu.arguments} />
         </Container>
         <Container>
           <Property label={schema.comment} />

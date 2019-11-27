@@ -13,13 +13,20 @@ export default {
   SearchResult: argu('SearchResult'),
 
   /* properties */
+  arguments: argu('arguments'),
   attachments: argu('attachments'),
+  blogPosts: argu('blogPosts'),
+  decision: argu('decision'),
   expiresAt: argu('expiresAt'),
   followsCount: argu('followsCount'),
   grantedGroups: argu('grantedGroups'),
   lastActivityAt: argu('lastActivityAt'),
+  motions: argu('motions'),
   motionsCount: argu('motionsCount'),
   pinnedAt: argu('pinnedAt'),
   redirectUrl: argu('redirectUrl'),
+  trashActivity: argu('trashActivity'),
   trashedAt: argu('trashedAt'),
+  voteEvents: argu('voteEvents'),
+  voteableVoteEvent: argu('voteableVoteEvent'),
 };

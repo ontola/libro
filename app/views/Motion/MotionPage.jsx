@@ -9,6 +9,7 @@ import {
   LinkedDetailDate,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import CardMain from '../../topologies/Card/CardMain';
@@ -28,7 +29,7 @@ class MotionPage extends React.PureComponent {
         <Property label={ontola.coverPhoto} />
         <Container>
           <Property label={schema.isPartOf} />
-          <Property label={NS.argu('trashedAt')} />
+          <Property label={argu.trashedAt} />
           <CardMain data-test="Thing-thing">
             <DetailsBar
               right={(
@@ -42,32 +43,32 @@ class MotionPage extends React.PureComponent {
               <Property label={schema.creator} />
               <Property label={rdfx.type} />
               <LinkedDetailDate />
-              <Property label={NS.argu('pinnedAt')} />
-              <Property label={NS.argu('expiresAt')} />
-              <Property label={NS.argu('followsCount')} />
-              <Property label={NS.argu('motionsCount')} />
+              <Property label={argu.pinnedAt} />
+              <Property label={argu.expiresAt} />
+              <Property label={argu.followsCount} />
+              <Property label={argu.motionsCount} />
               <Property label={schema.location} />
-              <Property label={NS.argu('grantedGroups')} />
+              <Property label={argu.grantedGroups} />
             </DetailsBar>
             <CardContent noSpacing>
               <Property label={[schema.name, rdfs.label]} />
               <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
               <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
             </CardContent>
-            <Property label={NS.argu('attachments')} onLoad={() => null} />
+            <Property label={argu.attachments} onLoad={() => null} />
             <Property label={NS.meeting('attachment')} onLoad={() => null} />
-            <Property label={NS.argu('voteableVoteEvent')} onLoad={() => null} />
+            <Property label={argu.voteableVoteEvent} onLoad={() => null} />
             <CardAppendix>
               <Property forceRender label={NS.app('omniform')} />
             </CardAppendix>
           </CardMain>
           <Property label={ontola.publishAction} onLoad={() => null} />
-          <Property label={NS.argu('decision')} onLoad={() => null} />
-          <Property label={NS.argu('blogPosts')} onLoad={() => null} />
+          <Property label={argu.decision} onLoad={() => null} />
+          <Property label={argu.blogPosts} onLoad={() => null} />
           <Property label={schema.location} onLoad={() => null} />
         </Container>
         <Container size="large">
-          <Property forceRender label={NS.argu('arguments')} />
+          <Property forceRender label={argu.arguments} />
         </Container>
         <Container>
           <Property label={schema.comment} />
