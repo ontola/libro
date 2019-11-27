@@ -1,15 +1,22 @@
 import schema from '@ontologies/schema';
-import { linkedPropType, register } from 'link-redux';
+import {
+  LinkedResourceContainer,
+  Property,
+  linkType,
+  linkedPropType,
+  register,
+} from 'link-redux';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { CardContent } from '../../../components';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import argu from '../../../ontology/argu';
 import Card from '../../../topologies/Card';
 import { containerTopology } from '../../../topologies/Container';
+import { inlineTopology } from '../../../topologies/Inline';
 
-const TrashedAt = ({ linkedProp }) => {
-  const { formatTime } = useIntl();
+const TrashedAt = ({ linkedProp, trashActivity }) => {
+  const { formatDate } = useIntl();
 
   return (
     <Card warn>
@@ -18,9 +25,12 @@ const TrashedAt = ({ linkedProp }) => {
           defaultMessage="This resource has been deleted on {date}"
           id="https://app.argu.co/i18n/trashable/deletedNotice"
           values={{
-            date: formatTime(linkedProp.value),
+            date: formatDate(linkedProp.value),
           }}
         />
+        <LinkedResourceContainer subject={trashActivity}>
+          <div><Property label={schema.text} topology={inlineTopology} /></div>
+        </LinkedResourceContainer>
       </CardContent>
     </Card>
   );
@@ -28,12 +38,17 @@ const TrashedAt = ({ linkedProp }) => {
 
 TrashedAt.type = schema.Thing;
 
-TrashedAt.property = NS.argu('trashedAt');
+TrashedAt.property = argu.trashedAt;
 
 TrashedAt.topology = containerTopology;
 
+TrashedAt.mapDataToProps = {
+  trashActivity: argu.trashActivity,
+};
+
 TrashedAt.propTypes = {
   linkedProp: linkedPropType,
+  trashActivity: linkType,
 };
 
 export default register(TrashedAt);
