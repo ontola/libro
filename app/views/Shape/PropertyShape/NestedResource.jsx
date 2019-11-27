@@ -31,6 +31,7 @@ class NestedResource extends React.Component {
     maxCount: linkType,
     minCount: linkType,
     name: linkType,
+    nestedShape: PropTypes.bool,
     onKeyUp: PropTypes.func,
     path: linkType,
     targetNode: subjectType,
@@ -54,6 +55,7 @@ class NestedResource extends React.Component {
   nestedResourceView(props) {
     const {
       lrs,
+      nestedShape,
       targetNode,
       theme,
       onKeyUp,
@@ -73,6 +75,7 @@ class NestedResource extends React.Component {
       ? (
         <Property
           label={sh.class}
+          nestedShape={nestedShape}
           targetNode={targetNode}
           theme={theme}
           onKeyUp={onKeyUp}

@@ -56,6 +56,7 @@ const OneToManyRenderer = ({
   const children = value
     .map((v, index) => nestedResourceView({
       key: v?.['@id'] || index,
+      nestedShape: true,
       propertyIndex: index,
       removeItem: showRemoveItem ? removeItem(index) : undefined,
       targetValue: v,

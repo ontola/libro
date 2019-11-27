@@ -19,6 +19,7 @@ const OneToOneRenderer = ({
   descriptionComponent,
   input,
   labelComponent,
+  maxCount,
   minCount,
   nestedResourceView,
   theme,
@@ -28,8 +29,10 @@ const OneToOneRenderer = ({
     onChange,
     value,
   } = input;
+  const parsedMinCount = tryParseInt(minCount);
+  const parsedMaxCount = tryParseInt(maxCount);
   const showAddButton = (!value || isMarkedForRemove(value));
-  const inputAlwaysVisible = minCount && tryParseInt(minCount) > 0;
+  const inputAlwaysVisible = parsedMinCount && parsedMinCount > 0;
   const addItem = () => {
     onChange({
       '@id': rdf.blankNode(),
@@ -44,7 +47,7 @@ const OneToOneRenderer = ({
 
   const present = value?.termType || Object.values(value || {}).find(Boolean);
   const showRemoveItem = present
-    && (minCount ? tryParseInt(minCount) === 0 : true);
+    && (parsedMinCount ? parsedMinCount === 0 : true);
   const removeItem = (e) => {
     if (e && typeof e.preventDefault === 'function') {
       e.preventDefault();
@@ -62,6 +65,7 @@ const OneToOneRenderer = ({
       {labelComponent(theme !== 'omniform' || !!value)}
       {descriptionComponent()}
       {value && nestedResourceView({
+        nestedShape: parsedMaxCount !== 1 && parsedMinCount !== 1,
         removeItem: showRemoveItem ? removeItem : undefined,
         targetValue: value,
       })}
@@ -105,6 +109,7 @@ OneToOneRenderer.propTypes = {
     ]),
   }),
   labelComponent: PropTypes.func,
+  maxCount: linkType,
   minCount: linkType,
   nestedResourceView: PropTypes.func,
   theme: PropTypes.string,

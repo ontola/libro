@@ -26,6 +26,7 @@ const propTypes = {
   autofocusForm: PropTypes.bool,
   invalidFields: PropTypes.arrayOf(PropTypes.string),
   lrs: lrsType,
+  nestedShape: PropTypes.bool,
   onKeyUp: PropTypes.func,
   propertyIndex: PropTypes.number,
   removeItem: PropTypes.func,
@@ -46,6 +47,7 @@ const NodeShape = ({
   autofocusForm,
   invalidFields,
   lrs,
+  nestedShape,
   onKeyUp,
   propertyIndex,
   removeItem,
@@ -86,7 +88,7 @@ const NodeShape = ({
       whitelist={whitelist}
       onKeyUp={onKeyUp}
     >
-      <div className="NodeShape" style={removeItem ? { display: 'flex' } : undefined}>
+      <div className={`NodeShape ${nestedShape ? 'NestedShape' : ''}`} style={removeItem ? { display: 'flex' } : undefined}>
         <Property label={rdfs.label} />
         <Property label={sh.targetClass} />
         <Property

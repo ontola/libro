@@ -315,23 +315,21 @@
   }
 }
 
-.NodeShape {
-  .NodeShape {
-    background-color: color('grey', 'xx-light');
-    border: $grey-border;
-    border-radius: 5px;
-    flex-grow: 1;
-    margin: 0 0 1em;
-    padding: 1em;
-    padding-bottom: 0;
-    transition: border-color .2s, background-color .2s;
-    width: auto;
+.NestedShape {
+  background-color: color('grey', 'xx-light');
+  border: $grey-border;
+  border-radius: 5px;
+  flex-grow: 1;
+  margin: 0 0 1em;
+  padding: 1em;
+  padding-bottom: 0;
+  transition: border-color .2s, background-color .2s;
+  width: auto;
 
-    .Field__input--select,
-    .Field__input--text,
-    .Field__input--textarea {
-      background-color: color('white');
-    }
+  .Field__input--select,
+  .Field__input--text,
+  .Field__input--textarea {
+    background-color: color('white');
   }
 }
 
