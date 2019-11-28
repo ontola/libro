@@ -35,7 +35,7 @@ const DepartmentPage = () => (
         </CardContent>
       </CardMain>
     </Container>
-    <Container>
+    <Container size="large">
       <Property forceRender label={teamGL.subDepartments} />
     </Container>
     <Container>
