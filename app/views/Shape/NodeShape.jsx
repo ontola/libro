@@ -66,7 +66,7 @@ const NodeShape = ({
 
   if (targetIRI && targetIRI.termType !== 'BlankNode' && !entityIsLoaded(lrs, targetIRI)) {
     if (__CLIENT__) {
-      lrs.getEntity(targetIRI);
+      lrs.queueEntity(targetIRI);
 
       return <LoadingWidgetContent />;
     }

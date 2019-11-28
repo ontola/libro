@@ -25,7 +25,7 @@ const ORDER = [
 export const filterActions = (lrs, potentialAction) => {
   const actionCollection = potentialAction.find(action => /\/actions$/.test(action.value));
   if (__CLIENT__ && actionCollection && !entityIsLoaded(lrs, actionCollection)) {
-    lrs.getEntity(actionCollection);
+    lrs.queueEntity(actionCollection);
 
     return [];
   }

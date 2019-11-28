@@ -24,7 +24,7 @@ const ForumPage = ({ coverPhoto, hideHeader }) => {
     useDataInvalidation({ subject: coverPhoto });
 
     if (__CLIENT__ && !entityIsLoaded(lrs, coverPhoto)) {
-      lrs.getEntity(coverPhoto);
+      lrs.queueEntity(coverPhoto);
     }
     coverPhotoUrl = lrs.getResourceProperty(coverPhoto, ontola.imgUrl1500x2000);
     positionY = lrs.getResourceProperty(coverPhoto, ontola.imagePositionY);

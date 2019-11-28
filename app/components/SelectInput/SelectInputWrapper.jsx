@@ -187,7 +187,7 @@ const SelectInputWrapper = ({
   const initialSelectedItem = inputValue || initialValue;
 
   if (__CLIENT__ && initialSelectedItem && initialSelectedItem.termType === 'NamedNode' && !entityIsLoaded(lrs, initialSelectedItem)) {
-    lrs.getEntity(initialSelectedItem);
+    lrs.queueEntity(initialSelectedItem);
 
     return <LoadingRow />;
   }

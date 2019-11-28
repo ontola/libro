@@ -50,7 +50,7 @@ const CollapsedOmniformProp = (props) => {
   if (__CLIENT__) {
     potentialAction.forEach((action) => {
       if (!entityIsLoaded(lrs, action)) {
-        lrs.getEntity(action);
+        lrs.queueEntity(action);
       }
     });
   }
