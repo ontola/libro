@@ -167,7 +167,7 @@ export const renderFullPage = (ctx, manifestData, data) => {
               ${headers?.link?.toString() || ''}
               ${icons}
               <meta name="msapplication-TileColor" content="${manifestData.theme_color}">
-              
+
               <meta name="msapplication-config" content="/assets/favicons/browserconfig.xml">
 
               <noscript id="deferred-styles">
@@ -216,7 +216,7 @@ export const renderFullPage = (ctx, manifestData, data) => {
               <script nonce="${nonceStr}">
                 if ('serviceWorker' in navigator) {
                    window.addEventListener('load', function() {
-                      navigator.serviceWorker.register('${manifestData.serviceworker.src}', { scope: ${manifestData.serviceworker.scope} });
+                      navigator.serviceWorker.register('${manifestData.serviceworker.src}', { scope: '${manifestData.serviceworker.scope}' });
                    });
                  }
               </script>
