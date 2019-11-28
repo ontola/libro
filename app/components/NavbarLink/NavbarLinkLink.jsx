@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 
 import Link from '../Link';
-import { retrievePath } from '../../helpers/iris';
 
 const propTypes = {
   children: PropTypes.node,
@@ -50,8 +49,6 @@ class NavbarLinkLink extends PureComponent {
       );
     }
 
-    const path = retrievePath(to);
-
     return (
       <Link
         activeClassName="NavbarLink--active"
@@ -60,7 +57,7 @@ class NavbarLinkLink extends PureComponent {
         features={features}
         ref={ref}
         target={target}
-        to={path}
+        to={to}
         onClick={onClick}
       >
         {children}
