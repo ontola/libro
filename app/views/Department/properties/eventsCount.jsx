@@ -16,7 +16,7 @@ const EventsCount = ({ linkedProp }) => (
 
 EventsCount.type = teamGL.Department;
 
-EventsCount.property = teamGL.eventsCount;
+EventsCount.property = teamGL.futureEventsCount;
 
 EventsCount.topology = [
   detailsBarTopology,

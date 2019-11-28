@@ -11,13 +11,15 @@ export default {
     Group: teamGL('Group'),
 
     /* properties */
+    activeVolunteersCount: teamGL('activeVolunteersCount'),
     department: teamGL('department'),
     events: teamGL('events'),
-    eventsCount: teamGL('eventsCount'),
+    futureEventsCount: teamGL('futureEventsCount'),
     groups: teamGL('groups'),
     groupsCount: teamGL('groupsCount'),
+    inactiveVolunteersCount: teamGL('inactiveVolunteersCount'),
     newVolunteersCount: teamGL('newVolunteersCount'),
     subDepartments: teamGL('subDepartments'),
+    veryActiveVolunteersCount: teamGL('veryActiveVolunteersCount'),
     volunteersCount: teamGL('volunteersCount'),
-
 };

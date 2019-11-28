@@ -25,7 +25,10 @@ const DepartmentPage = () => (
           <ContentDetails>
             <Property label={teamGL.newVolunteersCount} />
             <Property label={teamGL.volunteersCount} />
-            <Property label={teamGL.eventsCount} />
+            <Property label={teamGL.inactiveVolunteersCount} />
+            <Property label={teamGL.activeVolunteersCount} />
+            <Property label={teamGL.veryActiveVolunteersCount} />
+            <Property label={teamGL.futureEventsCount} />
             <Property label={teamGL.groupsCount} />
             <LinkedDetailDate />
           </ContentDetails>
