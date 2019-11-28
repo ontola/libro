@@ -1809,12 +1809,10 @@
     typescript "^3.7.2"
     whatwg-url "^7.0.0"
 
-"@ontola/memoized-hash-factory@^1.1.2":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@ontola/memoized-hash-factory/-/memoized-hash-factory-1.1.2.tgz#c9cb5699ab3ecb4ad110482d33fa1441635bc6a3"
-  integrity sha512-vS2z1KjyWLSxjwVx0PEaj972lBgh6MaKLQ6+ZLv3B4NEbxnG4gCu8dF1XhsmsMiema0e0Fk8pg2/a/2Se6sW/w==
-  dependencies:
-    murmurhash-js "^1.0.0"
+"@ontola/memoized-factory@^1.0.0-2":
+  version "1.0.0-2"
+  resolved "https://registry.yarnpkg.com/@ontola/memoized-factory/-/memoized-factory-1.0.0-2.tgz#f3111335f3f0833457e28360286a17b0795c7973"
+  integrity sha512-DnnPKxh+Td8r7Vz6T7pH/w0IeJavXKCoxh5dQq4gZo/scbUBHyB9K4d8O0mA3j9kgs5kv/+Yta8YAwrCVombiA==
 
 "@ontologies/as@^1.0.3":
   version "1.0.3"
@@ -9496,10 +9494,10 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
-link-lib@=1.0.0-rc4-datafactory-19:
-  version "1.0.0-rc4-datafactory-19"
-  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-rc4-datafactory-19.tgz#f8f296343d721c8b432fe7cafdb51d40fccfd2b2"
-  integrity sha512-JP5gaeViEK8rs6soQmD6W6oB4hUsRRMz8zj86PL4DxARhEpxbQq0A/LYv0wS3Eh9PUlSQBabCb+Ha7y7ICweGg==
+link-lib@=1.0.0-rc4-datafactory-20:
+  version "1.0.0-rc4-datafactory-20"
+  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-rc4-datafactory-20.tgz#ac53ce570afb1c473b298541e045b577441b6189"
+  integrity sha512-uBzqn4Zabuv8nRowH2YVO0JU8t0T+nrvL8maEJCzQY2jrnVi/QFz17r1N6ePmH37kxJdhXSJIMIzZ/IUofg6Vw==
   dependencies:
     murmurhash-js "^1.0.0"
 
