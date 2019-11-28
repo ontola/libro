@@ -4,6 +4,7 @@ import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { link } from 'link-redux';
 import React from 'react';
 
+import argu from '../../ontology/argu';
 import { cardListTopology } from '../../topologies/Card/CardList';
 import { cardMicroRowTopology } from '../../topologies/Card/CardMicroRow';
 
@@ -26,7 +27,7 @@ PersonSection.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
   link({ name: schema.name })(PersonSection),
-  schema.Person,
+  [schema.Person, schema.Organization, argu.Page],
   RENDER_CLASS_NAME,
   [cardListTopology, cardMicroRowTopology]
 );

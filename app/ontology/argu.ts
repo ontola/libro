@@ -9,6 +9,7 @@ export default {
   Argument: argu('Argument'),
   ConArgument: argu('ConArgument'),
   ContainerNode: argu('ContainerNode'),
+  Page: argu('Page'),
   ProArgument: argu('ProArgument'),
   SearchResult: argu('SearchResult'),
 
