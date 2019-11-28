@@ -9496,10 +9496,10 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
-link-lib@=1.0.0-rc4-datafactory-16:
-  version "1.0.0-rc4-datafactory-16"
-  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-rc4-datafactory-16.tgz#e445aa526cac9aae1e1661f546df572134a37372"
-  integrity sha512-XSLf90R6KLTkDxsgA3OMuOU8Uz5LJTcOTQSHiT869Y9WPhDdw2L38srdbXQ5OMMdbYyEGCcCLJHVIbsJ0t+kyw==
+link-lib@=1.0.0-rc4-datafactory-18:
+  version "1.0.0-rc4-datafactory-18"
+  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-rc4-datafactory-18.tgz#e02124e437107928a9d8c25de714a35d97a950ee"
+  integrity sha512-VVdPy9pgbQbduTpAijDBvEtLj6lW42GHqph1q6FXRqeYpFPk49yVPnov18DphnMnObj9X08n+lZrifsOYB/1IA==
   dependencies:
     murmurhash-js "^1.0.0"
 
@@ -12666,10 +12666,10 @@ rdf-canonize@^1.0.2:
     node-forge "^0.8.1"
     semver "^5.6.0"
 
-rdflib@1.0.7-0:
-  version "1.0.7-0"
-  resolved "https://registry.yarnpkg.com/rdflib/-/rdflib-1.0.7-0.tgz#42139c81c7f498c192e32b09b1218b9f54287438"
-  integrity sha512-0mVSFBvS1zvmMw13QgAC113IS0XHnQuESjxoObftuk1zttrrFFcPQxLH3BR74EjHKwPyQ8fPSl5Fna8qYdEcRA==
+rdflib@1.0.7-1:
+  version "1.0.7-1"
+  resolved "https://registry.yarnpkg.com/rdflib/-/rdflib-1.0.7-1.tgz#391b13a98b79a86ed043e9db7b8d6561c156616c"
+  integrity sha512-TaD8GtqLTcLgSAZd0e6Ki+s4TT4UlGpnUyqiA3ozQRD7ity8b2MJyr9ZJDZTNdrGXW8TiUWh7FojqyYD00J0yw==
   dependencies:
     "@babel/runtime" "^7.5.5"
     async "^3.1.x"
