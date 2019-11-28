@@ -13,6 +13,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
 import { Resource } from '../../components';
 import { listToArr } from '../../helpers/data';
 import { NS } from '../../helpers/LinkedRenderStore';
@@ -150,10 +151,19 @@ export default function getCollection({
         columns,
         depth,
         lrs,
+        subject,
         totalItems,
       } = this.props;
-      if (!this.props.renderWhenEmpty && totalItems && totalItems.value === '0') {
-        return null;
+      if (totalItems && totalItems.value === '0') {
+        if (!this.props.renderWhenEmpty) {
+          return null;
+        }
+        const createAction = lrs.getResourceProperty(subject, ontola.createAction);
+        const actionStatus = createAction
+          && lrs.getResourceProperty(createAction, schema.actionStatus);
+        if (actionStatus && invalidStatusIds.includes(rdf.id(actionStatus))) {
+          return null;
+        }
       }
 
       const resolvedColumns = columns ? listToArr(lrs, [], columns) : undefined;
