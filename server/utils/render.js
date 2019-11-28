@@ -216,7 +216,7 @@ export const renderFullPage = (ctx, manifestData, data) => {
               <script nonce="${nonceStr}">
                 if ('serviceWorker' in navigator) {
                    window.addEventListener('load', function() {
-                      navigator.serviceWorker.register('${manifestData.serviceworker.src}', { scope: '${manifestData.serviceworker.scope}' });
+                      navigator.serviceWorker.register('${manifestData.serviceworker.src}', { scope: '${manifestData.serviceworker.scope}/' });
                    });
                  }
               </script>

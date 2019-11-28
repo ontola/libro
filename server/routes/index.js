@@ -79,8 +79,8 @@ const routes = async function routes(app, port) {
   const router = new Router();
 
   router.get('/d/health', health);
-  router.get('(/*)?/sw.js*', serviceWorker);
-  router.get('/f_assets/precache-manifest.*.js*', precacheManifest);
+  router.get('*/sw.js*', serviceWorker);
+  router.get('*/f_assets/precache-manifest.*.js*', precacheManifest);
   router.all('*', isPlainAPIReq(backend));
   router.get('/robots.txt', robots);
 
