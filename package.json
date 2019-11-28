@@ -185,7 +185,7 @@
     "jest-plugins-recommended": "^2.9.0",
     "jest-plugins-rspec": "^2.9.0",
     "jsdom": "^15.2.1",
-    "link-lib": "=1.0.0-rc4-datafactory-18",
+    "link-lib": "=1.0.0-rc4-datafactory-19",
     "link-redux": "=1.0.0-rc4-datafactory-11",
     "lint-staged": "^9.2.0",
     "markdown-draft-js": "^1.4.1",
