@@ -20,6 +20,7 @@ export default (app) => {
     onUpgrade: async (ctx) => {
       await sessMiddleware(ctx, () => {});
     },
+    protocol: 'https',
     router: req => route(req.url),
     target: constants.ARGU_API_URL,
     ws: true,
