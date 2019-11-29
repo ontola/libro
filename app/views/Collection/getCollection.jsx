@@ -83,12 +83,13 @@ export default function getCollection({
       totalItems: linkType,
     };
 
-    shouldComponentUpdate(nextProps) {
+    shouldComponentUpdate(nextProps, nextState) {
       return this.props.linkedProp !== nextProps.linkedProp
         || this.props.currentPage !== nextProps.currentPage
         || this.props.linkVersion !== nextProps.linkVersion
         || this.props.subject !== nextProps.subject
-        || this.props.pages !== nextProps.pages;
+        || this.props.pages !== nextProps.pages
+        || this.state.opened !== nextState.opened;
     }
 
     body(columns) {
