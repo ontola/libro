@@ -233,10 +233,14 @@ if (process.env.TEST_BUILD) {
       bundle: bundles.legacy,
       hostname: 'app.argu.localtest',
     })),
-    merge(common, createConfig({
-      buildName: `localdev-${bundles.module}`,
-      bundle: bundles.module,
-      hostname: 'app.argu.localdev',
-    })),
   ];
+  if (process.env.RAILS_ENV === 'staging') {
+    module.exports.push(
+      merge(common, createConfig({
+        buildName: `localdev-${bundles.module}`,
+        bundle: bundles.module,
+        hostname: 'app.argu.localdev',
+      }))
+    );
+  }
 }
