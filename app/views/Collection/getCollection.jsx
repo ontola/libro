@@ -89,7 +89,7 @@ export default function getCollection({
         || this.props.linkVersion !== nextProps.linkVersion
         || this.props.subject !== nextProps.subject
         || this.props.pages !== nextProps.pages
-        || this.state.opened !== nextState.opened;
+        || this.state?.opened !== nextState?.opened;
     }
 
     body(columns) {
