@@ -104,7 +104,7 @@ const DataField = (props) => {
     maxCount,
     maxLength
   );
-  const required = minCount && Number(minCount.value) > 0;
+  const required = tryParseInt(minCount) > 0;
   const validate = [
     maxLength && validators.maxLength(tryParseInt(maxLength)),
     required && validators.required,

@@ -9,6 +9,7 @@ import { FormattedMessage } from 'react-intl';
 
 import LDLink from '../../../components/LDLink';
 import { NS } from '../../../helpers/LinkedRenderStore';
+import { tryParseInt } from '../../../helpers/numbers';
 import { cardAppendixTopology } from '../../../topologies/Card/CardAppendix';
 import CardMicroRow from '../../../topologies/Card/CardMicroRow';
 import CardRow from '../../../topologies/Card/CardRow';
@@ -36,7 +37,7 @@ class TopComment extends React.PureComponent {
       topComment,
     } = this.props;
 
-    const count = Number(commentsCount);
+    const count = tryParseInt(commentsCount);
 
     return (
       <CardRow backdrop>
