@@ -2,8 +2,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
 
-import { PDF } from '../components';
-
 import LinkedObject from './LinkedObject';
 import DevBrowser from './DevBrowser';
 import SignIn from './SignIn';
@@ -15,12 +13,7 @@ const subRoutes = [
 ];
 
 if (__DEVELOPMENT__) {
-  const PDFDebugger = () => (
-    <PDF file="https://media.readthedocs.org/pdf/pymisp/master/pymisp.pdf" />
-  );
-
   subRoutes.splice(-1, 0, <Route key="devbrowser" path="/d/browser" component={DevBrowser} />);
-  subRoutes.splice(-1, 0, <Route key="pdf" path="/d/pdf" component={PDFDebugger} />);
   subRoutes.splice(-1, 0, <Route key="sandbox" path="/d/sandbox" component={Sandbox} />);
 }
 

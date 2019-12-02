@@ -13,7 +13,6 @@ import FontAwesome from 'react-fontawesome';
 import {
   Heading,
   Link,
-  PDF,
 } from '../../components';
 import Image from '../../components/Image';
 import {
@@ -154,12 +153,6 @@ class MediaObjectPage extends React.PureComponent {
         </Container>
       );
       /* eslint-enable jsx-a11y/media-has-caption */
-    } else if (encodingFormat.value === 'application/pdf') {
-      return (
-        <div className={`MediaObjectPage__infobar--pdf ${classes}`}>
-          <PDF data-test="MediaObject-viewer-pdf" file={contentUrl.value} />
-        </div>
-      );
     }
 
     const imageLink = encodingFormat.value.startsWith('image/')

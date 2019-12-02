@@ -41,7 +41,6 @@ const config = {
     'compression-webpack-plugin',
     'copy-webpack-plugin',
     'html-webpack-plugin',
-    'react-pdf/dist/entry.webpack',
     'webpack',
     'webpack-dev-middleware',
     'webpack-hot-middleware',

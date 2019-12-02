@@ -51,7 +51,6 @@ export { default as MarkdownFixedPreview } from './components/MarkdownFixedPrevi
 export { default as NavBarContent } from './components/NavBarContent/index';
 export { default as Omniform } from './components/Omniform/index';
 export { default as OmniformPreview } from './components/Omniform/OmniformPreview';
-export { default as PDF } from './components/PDF';
 export { default as Resource } from './components/Resource/index';
 export { default as NavbarLink } from './components/NavbarLink/index';
 export {

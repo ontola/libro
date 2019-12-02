@@ -10,20 +10,14 @@ import './Attachment.scss';
 const propTypes = {
   /** Link to the file */
   contentUrl: PropTypes.string.isRequired,
-  encodingFormat: PropTypes.string,
   /** Filesize in bytes */
   fileSize: PropTypes.string,
   /** Label that is displayed */
   name: PropTypes.string.isRequired,
 };
 
-const previewableEncodingFormats = [
-  'application/pdf',
-];
-
 const Attachment = ({
   name,
-  encodingFormat,
   fileSize,
   contentUrl,
 }) => (
@@ -46,18 +40,6 @@ const Attachment = ({
     >
       <FontAwesome className="Attachment__icon" name="download" />
     </a>
-    {previewableEncodingFormats.includes(encodingFormat)
-      && (
-      <a
-        className="Attachment__inside-button"
-        data-test="Attachment-preview"
-        href="/"
-        title="Bekijk voorbeeldweergave"
-      >
-        <FontAwesome className="Attachment__icon" name="caret-right" />
-      </a>
-      )
-    }
   </div>
 );
 
