@@ -1,6 +1,7 @@
+import foaf from '@ontologies/foaf';
 import rdfx from '@ontologies/rdf';
-import schema from '@ontologies/schema';
 import rdfs from '@ontologies/rdfs';
+import schema from '@ontologies/schema';
 import {
   Property,
   linkType,
@@ -40,7 +41,7 @@ const ThingSelect = ({
     style,
   });
 
-  const labels = [schema.name, rdfs.label];
+  const labels = [schema.name, rdfs.label, foaf.name];
 
   const label = lrs.getResourceProperty(itemClass, NS.ontola('forms/inputs/select/displayProp'));
 
