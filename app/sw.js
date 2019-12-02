@@ -83,7 +83,7 @@ const networkFirstHandler = new workbox.strategies.NetworkFirst({
   ],
 });
 
-const offlineCacheKey = workbox.precaching.getCacheKeyForURL('/offline.html');
+const offlineCacheKey = workbox.precaching.getCacheKeyForURL('/public/offline.html');
 workbox.routing.registerRoute(
   ({ event }) => event.request.mode === 'navigate',
   args => networkFirstHandler

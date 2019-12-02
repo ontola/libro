@@ -87,6 +87,7 @@ const routes = async function routes(app, port) {
   // Static files
   router.get('/static/*', serveStatic('.', staticCompressionOpts), () => {});
   router.get('/f_assets/*', serveStatic('./dist', staticCompressionOpts), () => {});
+  router.get('/public/*', serveStatic('./dist', staticCompressionOpts), () => {});
   router.get('/assets/*', backend);
   router.get('/packs/*', backend);
   router.get('/photos/*', backend);
