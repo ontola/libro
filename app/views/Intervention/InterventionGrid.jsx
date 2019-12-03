@@ -34,6 +34,7 @@ const InterventionGrid = () => (
     </LDLink>
     <DetailsBar>
       <Property hideName label={schema.creator} />
+      <Property label={schema.isPartOf} />
       <LinkedDetailDate />
       <Property label={NS.argu('pinnedAt')} />
       <Property short label={NS.argu('expiresAt')} />
