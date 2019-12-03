@@ -61,12 +61,12 @@ const determineInputType = (
   }
 };
 
-const descriptionValue = (description, inputType) => {
+const descriptionValue = (description, helperText, inputType) => {
   if (inputsPreferringPlaceholder.includes(inputType)) {
-    return null;
+    return helperText?.value;
   }
 
-  return description?.value;
+  return description?.value || helperText?.value;
 };
 
 const placeholderValue = (description, inputType) => {
@@ -84,6 +84,7 @@ const DataField = (props) => {
     defaultValue,
     description,
     fieldName,
+    helperText,
     inputFieldHint,
     maxCount,
     maxLength,
@@ -116,7 +117,7 @@ const DataField = (props) => {
       validateOnChange
       autoComplete="off"
       autofocus={autofocus}
-      description={descriptionValue(description, inputType)}
+      description={descriptionValue(description, helperText, inputType)}
       field={fieldName}
       initialValue={inputType === 'checkboxes' ? inputValues : inputValues?.[0]}
       inputFieldHint={inputFieldHint}
@@ -142,6 +143,7 @@ DataField.propTypes = {
   defaultValue: linkType,
   description: linkType,
   fieldName: PropTypes.string,
+  helperText: linkType,
   inputFieldHint: linkType,
   maxCount: linkType,
   maxLength: linkType,

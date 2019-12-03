@@ -58,6 +58,7 @@ export default {
   ['forms/inputs/select/displayProp']: ontola('forms/inputs/select/displayProp'),
   formSteps: ontola('formSteps'),
   header: ontola('header'),
+  helperText: ontola('helperText'),
   hiddenGroup: ontola('hiddenGroup'),
   href: ontola('href'),
   imagePositionY: ontola('imagePositionY'),
