@@ -7,17 +7,19 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { AttributeListItem } from '../../components';
 import CardContent from '../../components/Card/CardContent';
+import LDLink from '../../components/LDLink';
 import { connectHighlighting, hightlightType } from '../../containers/Highlight';
 import { NS } from '../../helpers/LinkedRenderStore';
 import rivm from '../../ontology/rivm';
+import ActionsBar from '../../topologies/ActionsBar';
+import AttributeList from '../../topologies/AttributeList';
 import Card from '../../topologies/Card';
 import { containerTopology } from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
-import AttributeList from '../../topologies/AttributeList';
-import { AttributeListItem } from '../../components';
 
 const InterventionContainer = ({ highlighted, subject }) => (
   <Card about={subject?.value} shine={highlighted}>
@@ -31,6 +33,9 @@ const InterventionContainer = ({ highlighted, subject }) => (
         <AttributeListItem label={rivm.recurringCostsScore} />
       </AttributeList>
       <Property label={[NS.argu('attachments'), NS.meeting('attachment')]} />
+      <ActionsBar small>
+        <LDLink>Lees meer</LDLink>
+      </ActionsBar>
     </CardContent>
   </Card>
 );
