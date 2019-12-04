@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
+import { normalizeFontAwesomeIRI } from '../../helpers/iris';
 import BlurButton from '../BlurButton';
 import LinkDuo from '../LinkDuo';
 
@@ -121,7 +122,7 @@ const Button = ({
     [className]: className,
   });
 
-  const currentIcon = loading ? 'spinner' : icon;
+  const currentIcon = loading ? 'spinner' : icon && normalizeFontAwesomeIRI(icon);
 
   const sharedProps = {
     'aria-label': ariaLabel,

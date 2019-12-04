@@ -18,6 +18,7 @@ const ActionCardMain = ({
   children,
   name,
   subject,
+  target,
 }) => {
   const lrs = useLRS();
 
@@ -29,11 +30,13 @@ const ActionCardMain = ({
     return children;
   }
 
+  const icon = target && lrs.getResourceProperty(target, schema.image);
+
   return (
     <span>
       <Button
         small
-        icon="plus"
+        icon={icon.value}
         theme="transparant"
         onClick={(e) => {
           e.preventDefault();
@@ -46,13 +49,14 @@ const ActionCardMain = ({
   );
 };
 
-ActionCardMain.type = schema.CreateAction;
+ActionCardMain.type = schema.Action;
 
 ActionCardMain.topology = cardMainTopology;
 
 ActionCardMain.mapDataToProps = {
   actionStatus: schema.actionStatus,
   name: schema.name,
+  target: schema.target,
 };
 
 ActionCardMain.propTypes = {
@@ -60,6 +64,7 @@ ActionCardMain.propTypes = {
   children: PropTypes.element,
   name: linkType,
   subject: subjectType,
+  target: linkType,
 };
 
 export default register(ActionCardMain);
