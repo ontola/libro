@@ -1050,23 +1050,23 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@bugsnag/browser@^6.3.2":
-  version "6.3.2"
-  resolved "https://registry.yarnpkg.com/@bugsnag/browser/-/browser-6.3.2.tgz#50488c7eb8df34781fcac8bfb9d9bfce77a06b10"
-  integrity sha512-w0+klWpNfF7OD3OMKTg2WuJndDAK5eoet7INN0wSqQYqUGK0l6sActBsIwU6iEiCdISMmKx3f+LupHPhgAFEDQ==
+"@bugsnag/browser@^6.4.3":
+  version "6.4.3"
+  resolved "https://registry.yarnpkg.com/@bugsnag/browser/-/browser-6.4.3.tgz#2f11163aa513e14215d3e409e713f90c9bb7aa33"
+  integrity sha512-BE87ikYMRmA9/1hg9v9ESukEaiOO6/rWbByGbonwjTRgK+hccQZXqF/9Uy7BtjNVuQVuhx0WTKp8pfw+s4r7QQ==
 
-"@bugsnag/js@^6.3.2":
-  version "6.3.2"
-  resolved "https://registry.yarnpkg.com/@bugsnag/js/-/js-6.3.2.tgz#74a99511d2360b2404af92f4e9545f07722ec316"
-  integrity sha512-WTVWitr2jOSuwaXaa/r4o0GTtugt2Bi3/JbmKR1dNKk/dcnYRHmb+OpCN82COmNyD/L1K+DBqRnULMrHUPONqg==
+"@bugsnag/js@^6.4.3":
+  version "6.4.3"
+  resolved "https://registry.yarnpkg.com/@bugsnag/js/-/js-6.4.3.tgz#6439c8b1f3fdae45a09f6f525a2e22999b8d0329"
+  integrity sha512-w/VjJbao+B9PCwxTypD35LPRWA96HUf30FzXSha7uXojVihQpCAycVrVp9nM/1UYFY7THnvwlw9C1SIQNlc/HQ==
   dependencies:
-    "@bugsnag/browser" "^6.3.2"
-    "@bugsnag/node" "^6.3.1"
+    "@bugsnag/browser" "^6.4.3"
+    "@bugsnag/node" "^6.4.2"
 
-"@bugsnag/node@^6.3.1":
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/@bugsnag/node/-/node-6.3.1.tgz#d9835a2ba68e80a30852f61703d252df0899ecba"
-  integrity sha512-KtFh3fR+Yzb3O4IgFLnxMK/yXqDyoR4fl1yl+EghwgkwDc4nETZ/NXpqroaMUtHYNOY+7cTpHaGqlaSTWLGp1Q==
+"@bugsnag/node@^6.4.2":
+  version "6.4.2"
+  resolved "https://registry.yarnpkg.com/@bugsnag/node/-/node-6.4.2.tgz#0ca3b155066f213d4bb7d331f0bdcc09ee2b275c"
+  integrity sha512-Z2IU8+edZQbZGRtyhqvObSWiYLbP9xC/agFLepGEDCipVapRfO+8isDwFGU1autb693wz71m3jBewV+2Vn9nVg==
   dependencies:
     byline "^5.0.0"
     error-stack-parser "^2.0.2"
@@ -1074,10 +1074,10 @@
     pump "^3.0.0"
     stack-generator "^2.0.3"
 
-"@bugsnag/plugin-express@^6.3.0":
-  version "6.3.0"
-  resolved "https://registry.yarnpkg.com/@bugsnag/plugin-express/-/plugin-express-6.3.0.tgz#b69470bd9be9aa7a839d137a7afb2048b7e71656"
-  integrity sha512-8FC3stuXs9iUV2eAJs6rRq45OawtF1LZNrBukquRtHIQlaAFawU9TZMnjG99va/B5Xll393t/6DAvYZxkZij7w==
+"@bugsnag/plugin-express@^6.4.1":
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/@bugsnag/plugin-express/-/plugin-express-6.4.1.tgz#cc4d20db7945acc2b26190d5aa607c4f2f26237e"
+  integrity sha512-7ppJNTYBqEjqIn/psZ2NUZ9a3gwi+xlllzuQDSs0N5WFR3ju3gPrjd7DLkARa1oXj+p/kISke+XY1nnex1wsIg==
   dependencies:
     iserror "^0.0.2"
 

@@ -10,16 +10,12 @@ const getEnv = (
 );
 
 export const ASSETS_HOST = getEnv('ASSETS_HOST', '', '');
-export const AWS_BUCKET = getEnv('AWS_BUCKET', '', '');
 export const RELEASE_STAGE = process.env.RAILS_ENV;
-export const BUGSNAG_KEY = process.env.BUGSNAG_KEY;
 export const FRONTEND_ACCEPT = 'application/n-quads';
-export const FRONTEND_HOSTNAME = process.env.FRONTEND_HOSTNAME || getEnv('FRONTEND_HOSTNAME', 'argu.co', 'argu.dev');
 export const PORT_DEVELOPMENT = getEnv('PORT_DEVELOPMENT', 3001, 3001);
 export const PORT_PRODUCTION = getEnv('PORT_PRODUCTION', 8080, 8080);
 export const PORT = getEnv('PORT', (__DEVELOPMENT__ ? PORT_DEVELOPMENT : PORT_PRODUCTION), PORT_DEVELOPMENT);
 export const STAGE = process.env.NODE_ENV === 'production' ? 'production' : 'staging';
-export const WEBSOCKET_PATH = process.env.WEBSOCKET_PATH;
 
 // Used internally in the router as a reverse proxy
 export const ARGU_API_URL = getEnv('ARGU_API_URL', 'https://argu.co', 'https://argu.localdev');

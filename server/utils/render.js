@@ -161,8 +161,7 @@ export const renderFullPage = (ctx, manifestData, data) => {
               <meta name="csrf-param" content="authenticity_token">
               <meta name="csrf-token" content="${csrfToken}">
               ${constants.websocketPath ? `<meta name="websocket-path" content="${constants.websocketPath}">` : ''}
-              ${constants.bugsnagKey ? '<script async src="//d2wy8f7a9ursnm.cloudfront.net/v5/bugsnag.min.js"></script>' : ''}
-              <script nonce="${nonceStr}">window.bugsnagClient = typeof bugsnag !== 'undefined' && bugsnag(${JSON.stringify(bugsnagOpts)})</script>
+              ${constants.bugsnagKey ? '<script async src="//d2wy8f7a9ursnm.cloudfront.net/v6/bugsnag.min.js"></script>' : ''}
 
               ${headers?.link?.toString() || ''}
               ${icons}
@@ -246,6 +245,7 @@ export const renderFullPage = (ctx, manifestData, data) => {
                   try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
                   catch(e){window.attachEvent("onload", $buo_f)}
               </script>
+              <script nonce="${nonceStr}">window.bugsnagClient = typeof bugsnag !== 'undefined' && bugsnag(${JSON.stringify(bugsnagOpts)})</script>
             </body>
           </html>`
       );

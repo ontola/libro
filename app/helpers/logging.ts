@@ -1,25 +1,16 @@
 import { Client } from '@bugsnag/browser/dist/types/bugsnag-core';
-import bugsnag from '@bugsnag/js';
-
-import { BUGSNAG_KEY, RELEASE_STAGE } from '../config';
 
 const globalThis = typeof window !== 'undefined' ? window : (global as unknown as Window);
 
+declare global {
+  interface Window {
+    bugsnagClient: Client | undefined;
+  }
+}
+
 let client: Client;
-if (BUGSNAG_KEY) {
-  client = bugsnag({
-    apiKey: BUGSNAG_KEY,
-    appType: 'fe_client',
-    appVersion: __VERSION__,
-    collectUserIp: false,
-    filters: [
-        'password',
-        'access_token',
-        'accessToken',
-        'Authorization',
-    ],
-    releaseStage: RELEASE_STAGE,
-  });
+if (typeof window !== 'undefined' && typeof window.bugsnagClient !== 'undefined') {
+  client = window.bugsnagClient;
 } else {
   client = {
     notify(_: Error) { return void(0); },

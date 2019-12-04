@@ -59,7 +59,7 @@ if (__DEVELOPMENT__) {
   workerSrc.push('blob:');
 }
 
-if (__PRODUCTION__) {
+if (process.env.NODE_ENV === 'production') {
   connectSrc.push('https://notify.bugsnag.com');
   connectSrc.push('https://sessions.bugsnag.com');
 }
