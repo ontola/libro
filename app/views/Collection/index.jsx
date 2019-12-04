@@ -100,7 +100,6 @@ export default [
       cardTopology,
       cardFixedTopology,
       cardListTopology,
-      cardMainTopology,
       cardRowTopology,
     ]
   ),
@@ -117,6 +116,7 @@ export default [
     getCollection({
       renderWhenEmpty: true,
       topology: [
+        cardMainTopology,
         gridTopology,
         widgetTopologyTopology,
       ],
