@@ -44,10 +44,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
 
   const currentPath = (): string => {
     const l = history.location;
-    return [
-      [l.pathname, l.search].filter(Boolean).join(''),
-      l.hash,
-    ].filter(Boolean).join('#');
+    return [l.pathname, l.search, l.hash].filter(Boolean).join('');
   };
 
   /**
