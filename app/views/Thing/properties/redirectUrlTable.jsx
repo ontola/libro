@@ -10,11 +10,17 @@ import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { tableRowTopology } from '../../../topologies/TableRow';
 
-const RedirectUrlTable = ({ linkedProp }) => (
-  <Link to={linkedProp.value}>
-    {linkedProp.value}
-  </Link>
-);
+const RedirectUrlTable = ({ linkedProp }) => {
+  if (!linkedProp) {
+    return null;
+  }
+
+  return (
+    <Link to={linkedProp.value}>
+      {linkedProp.value}
+    </Link>
+  );
+};
 
 RedirectUrlTable.type = schema.Thing;
 
