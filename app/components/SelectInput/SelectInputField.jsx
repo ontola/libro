@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 
 import Select, { selectTopology } from '../../topologies/Select';
 import { Input } from '../Input';
+import { entityIsLoaded } from '../../helpers/data';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { handle } from '../../helpers/logging';
 
@@ -22,6 +23,10 @@ export const MAX_ITEMS = 5;
 export const itemToString = (item, lrs) => {
   if (!item) {
     return '';
+  }
+
+  if (!entityIsLoaded(lrs, item)) {
+    return 'Loading';
   }
 
   if (item.termType && (item.termType === 'NamedNode' || item.termType === 'BlankNode')) {
