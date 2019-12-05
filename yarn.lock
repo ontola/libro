@@ -1074,13 +1074,6 @@
     pump "^3.0.0"
     stack-generator "^2.0.3"
 
-"@bugsnag/plugin-express@^6.4.1":
-  version "6.4.1"
-  resolved "https://registry.yarnpkg.com/@bugsnag/plugin-express/-/plugin-express-6.4.1.tgz#cc4d20db7945acc2b26190d5aa607c4f2f26237e"
-  integrity sha512-7ppJNTYBqEjqIn/psZ2NUZ9a3gwi+xlllzuQDSs0N5WFR3ju3gPrjd7DLkARa1oXj+p/kISke+XY1nnex1wsIg==
-  dependencies:
-    iserror "^0.0.2"
-
 "@bugsnag/plugin-koa@^6.4.1":
   version "6.4.1"
   resolved "https://registry.yarnpkg.com/@bugsnag/plugin-koa/-/plugin-koa-6.4.1.tgz#5d9b7b0ac110bc09258baebc190245e4eb146548"
