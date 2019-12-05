@@ -19,6 +19,7 @@ import ActionsBar from '../../topologies/ActionsBar';
 import AttributeList from '../../topologies/AttributeList';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import CardMain from '../../topologies/Card/CardMain';
+import CardRow from '../../topologies/Card/CardRow';
 import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
 import { pageTopology } from '../../topologies/Page';
@@ -61,9 +62,11 @@ const InterventionTypePage = () => (
             <AttributeListItem label={rivm.oneOffCostsScore} />
             <AttributeListItem label={rivm.recurringCostsScore} />
           </AttributeList>
-          <Property label={NS.meeting('attachment')} onLoad={() => null} />
-          <Property label={argu.attachments} onLoad={() => null} />
         </CardContent>
+        <CardRow noBorder>
+          <Property label={argu.attachments} onLoad={() => null} />
+          <Property label={NS.meeting('attachment')} onLoad={() => null} />
+        </CardRow>
         <ActionsBar>
           <Property label={ontola.favoriteAction} onLoad={() => null} />
         </ActionsBar>

@@ -13,6 +13,7 @@ import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import CardMain from '../../topologies/Card/CardMain';
+import CardRow from '../../topologies/Card/CardRow';
 import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
 import { pageTopology } from '../../topologies/Page';
@@ -55,8 +56,10 @@ class MotionPage extends React.PureComponent {
               <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
               <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
             </CardContent>
-            <Property label={argu.attachments} onLoad={() => null} />
-            <Property label={NS.meeting('attachment')} onLoad={() => null} />
+            <CardRow noBorder>
+              <Property label={argu.attachments} onLoad={() => null} />
+              <Property label={NS.meeting('attachment')} onLoad={() => null} />
+            </CardRow>
             <Property label={argu.voteableVoteEvent} onLoad={() => null} />
             <CardAppendix>
               <Property forceRender label={NS.app('omniform')} />

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import Topology from '../Topology';
@@ -13,6 +14,7 @@ class CardRow extends Topology {
   static propTypes = {
     backdrop: PropTypes.bool,
     children: PropTypes.node.isRequired,
+    noBorder: PropTypes.bool,
     showArrow: PropTypes.bool,
   };
 
@@ -23,7 +25,12 @@ class CardRow extends Topology {
   }
 
   getClassName() {
-    return `CardRow ${this.props.showArrow && 'CardRow--show-arrow'} ${this.props.backdrop && 'CardRow--backdrop'}`;
+    return classNames({
+      CardRow: true,
+      'CardRow--backdrop': this.props.backdrop,
+      'CardRow--no-border': this.props.noBorder,
+      'CardRow--show-arrow': this.props.showArrow,
+    });
   }
 }
 

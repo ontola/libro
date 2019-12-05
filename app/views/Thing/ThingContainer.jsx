@@ -13,6 +13,7 @@ import SignInSwitcherContainer from '../../containers/SignInSwitcherContainer';
 import { NS } from '../../helpers/LinkedRenderStore';
 import ontola from '../../ontology/ontola';
 import Card from '../../topologies/Card';
+import CardRow from '../../topologies/Card/CardRow';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import { containerTopology } from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
@@ -25,8 +26,10 @@ const ThingContainer = ({ highlighted, subject }) => (
     <CardContent noSpacing>
       <Property label={[schema.name, rdfs.label]} />
       <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
-      <Property label={[NS.argu('attachments'), NS.meeting('attachment')]} />
     </CardContent>
+    <CardRow noBorder>
+      <Property label={[NS.argu('attachments'), NS.meeting('attachment')]} />
+    </CardRow>
     <CardAppendix>
       <SignInSwitcherContainer subject={subject}>
         <Property label={NS.argu('topComment')} />

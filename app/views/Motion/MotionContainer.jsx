@@ -14,6 +14,7 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import ontola from '../../ontology/ontola';
 import Card from '../../topologies/Card';
 import CardAppendix from '../../topologies/Card/CardAppendix';
+import CardRow from '../../topologies/Card/CardRow';
 import { containerTopology } from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
@@ -25,8 +26,10 @@ const MotionContainer = ({ highlighted, subject }) => (
     <CardContent noSpacing>
       <Property label={[schema.name, rdfs.label]} />
       <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
-      <Property label={[NS.argu('attachments'), NS.meeting('attachment')]} />
     </CardContent>
+    <CardRow noBorder>
+      <Property label={[NS.argu('attachments'), NS.meeting('attachment')]} />
+    </CardRow>
     <Property label={NS.argu('voteableVoteEvent')} />
     <CardAppendix>
       <SignInSwitcherContainer subject={subject}>

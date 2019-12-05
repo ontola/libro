@@ -25,6 +25,7 @@ import AttributeList from '../../topologies/AttributeList';
 import ActionsBar from '../../topologies/ActionsBar';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import CardMain from '../../topologies/Card/CardMain';
+import CardRow from '../../topologies/Card/CardRow';
 import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
 import { pageTopology } from '../../topologies/Page';
@@ -147,10 +148,10 @@ const InterventionPage = ({
               )
             }
           </CardContent>
-          <CardContent noSpacing>
-            <Property label={NS.meeting('attachment')} onLoad={() => null} />
+          <CardRow noBorder>
             <Property label={argu.attachments} onLoad={() => null} />
-          </CardContent>
+            <Property label={NS.meeting('attachment')} onLoad={() => null} />
+          </CardRow>
           <ActionsBar>
             <Property label={ontola.favoriteAction} onLoad={() => null} />
           </ActionsBar>

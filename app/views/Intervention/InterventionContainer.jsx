@@ -16,6 +16,7 @@ import rivm from '../../ontology/rivm';
 import ActionsBar from '../../topologies/ActionsBar';
 import AttributeList from '../../topologies/AttributeList';
 import Card from '../../topologies/Card';
+import CardRow from '../../topologies/Card/CardRow';
 import { containerTopology } from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
@@ -32,11 +33,13 @@ const InterventionContainer = ({ highlighted, subject }) => (
         <AttributeListItem label={rivm.oneOffCostsScore} />
         <AttributeListItem label={rivm.recurringCostsScore} />
       </AttributeList>
-      <Property label={[NS.argu('attachments'), NS.meeting('attachment')]} />
-      <ActionsBar small>
-        <LDLink>Lees meer</LDLink>
-      </ActionsBar>
     </CardContent>
+    <CardRow noBorder>
+      <Property label={[NS.argu('attachments'), NS.meeting('attachment')]} />
+    </CardRow>
+    <ActionsBar small>
+      <LDLink>Lees meer</LDLink>
+    </ActionsBar>
   </Card>
 );
 

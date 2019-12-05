@@ -211,6 +211,10 @@
   &--backdrop {
     background-color: color('grey', 'xx-light');
   }
+
+  &--no-border {
+    border: 0;
+  }
 }
 
 .CardRow--show-arrow {

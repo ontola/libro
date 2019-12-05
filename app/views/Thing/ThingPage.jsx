@@ -15,6 +15,7 @@ import ontola from '../../ontology/ontola';
 import ActionsBar from '../../topologies/ActionsBar';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import CardMain from '../../topologies/Card/CardMain';
+import CardRow from '../../topologies/Card/CardRow';
 import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
 import { pageTopology } from '../../topologies/Page';
@@ -58,9 +59,11 @@ class ThingPage extends PureComponent {
               <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
               <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
               <Property label={foaf.isPrimaryTopicOf} onLoad={() => null} />
-              <Property label={NS.meeting('attachment')} onLoad={() => null} />
-              <Property label={argu.attachments} onLoad={() => null} />
             </CardContent>
+            <CardRow noBorder>
+              <Property label={argu.attachments} onLoad={() => null} />
+              <Property label={NS.meeting('attachment')} onLoad={() => null} />
+            </CardRow>
             <ActionsBar>
               <Property label={ontola.favoriteAction} onLoad={() => null} />
             </ActionsBar>
