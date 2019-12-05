@@ -7,11 +7,12 @@ function processRemove(delta: Quadruple[], lrs: LinkReduxLRSType) {
   delta
       .filter(([, , , why]) => rdf.equals(why, lrs.namespaces.ontola('remove')))
       .forEach(([s, p, o]) => {
-        lrs.store.removeStatements(
+        lrs.store.removeQuads(
             lrs.store.match(
                 rdf.equals(s, sp.Variable) ? null : s,
                 rdf.equals(p, sp.Variable) ? null : p,
                 rdf.equals(o, sp.Variable) ? null : o as Node,
+                null,
             ),
         );
       });
@@ -20,7 +21,7 @@ function processRemove(delta: Quadruple[], lrs: LinkReduxLRSType) {
 function processReplace(delta: Quadruple[], lrs: LinkReduxLRSType) {
   const replaceables = delta
       .filter(([s, , , g]) => rdf.equals(g, lrs.namespaces.ontola('replace'))
-          && lrs.store.anyStatementMatching(s));
+          && lrs.store.find(s, null, null, null));
 
   return lrs.store.replaceMatches(replaceables);
 }
@@ -41,7 +42,8 @@ function processInvalidate(delta: Quadruple[], lrs: LinkReduxLRSType) {
                   rdf.equals(s, sp.Variable) ? null : s,
                   rdf.equals(p, sp.Variable) ? null : p,
                   rdf.equals(o, sp.Variable) ? null : o as Node,
-              ).forEach((match) => {
+                  null,
+              ).forEach((match: Quad) => {
                   lrs.api.invalidate(match.subject);
                   lrs.store.removeResource(match.subject);
               });
@@ -56,7 +58,7 @@ function processSupplant(delta: Quadruple[], lrs: LinkReduxLRSType) {
         lrs.store.removeResource(s);
     });
     supplants.forEach(([s, p, o]) => {
-        lrs.store.addStatements([rdf.quad(s, p, o)]);
+        lrs.store.addQuads([rdf.quad(s, p, o)]);
     });
 }
 

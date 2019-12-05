@@ -65,7 +65,7 @@ class NestedResource extends React.Component {
       return null;
     }
 
-    const targetShape = lrs.store.anyStatementMatching(
+    const targetShape = lrs.store.find(
       null,
       sh.targetClass,
       this.props.class

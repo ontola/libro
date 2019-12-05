@@ -13,7 +13,7 @@ import { allTopologies } from '../../../topologies';
 
 const SHACLClass = ({ linkedProp, subject }) => {
   const lrs = useLRS();
-  const targetShape = lrs.store.anyStatementMatching(
+  const targetShape = lrs.store.find(
     null,
     sh.targetClass,
     linkedProp,

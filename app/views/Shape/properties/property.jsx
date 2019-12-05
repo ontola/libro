@@ -45,7 +45,7 @@ class ShProperty extends PropertyBase {
     } = this.props;
 
     if (propSubject && (whitelist || blacklist)) {
-      const paths = lrs.store.match(propSubject, sh.path);
+      const paths = lrs.store.match(propSubject, sh.path, null, null);
 
       // The filter is on the blanknode id of the propshape, rather than its sh:path value
       const allowed = whitelist
@@ -71,12 +71,12 @@ class ShProperty extends PropertyBase {
     for (let i = 0, maxLen = properties.length; i < maxLen; i++) {
       const prop = this.filterProp(properties[i] ? properties[i].object : undefined);
       if (prop) {
-        const group = lrs.store.anyStatementMatching(prop, sh.group);
+        const group = lrs.store.find(prop, sh.group);
         if (group && !groups.has(group.object)) {
           groups.set(group.object, []);
         }
 
-        const order = lrs.store.anyStatementMatching(prop, sh.order);
+        const order = lrs.store.find(prop, sh.order);
         if (order) {
           const orderNo = Number.parseInt(order.object.value, DECIMAL);
           if (group) {
@@ -96,7 +96,7 @@ class ShProperty extends PropertyBase {
         props: v.map(p => this.filterProp(p)).filter(Boolean),
       };
       if (group.props.length > 0) {
-        const order = lrs.store.anyStatementMatching(g, sh.order);
+        const order = lrs.store.find(g, sh.order);
         if (order) {
           const orderNo = Number.parseInt(order.object.value, DECIMAL);
           props[orderNo] = group;

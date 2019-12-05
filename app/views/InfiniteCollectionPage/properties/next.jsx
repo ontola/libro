@@ -20,7 +20,7 @@ class InfiniteCollectionNext extends PropertyBase {
     } = this.props;
 
     const onClick = () => new Promise(() => {
-      lrs.store.addStatements([
+      lrs.store.addQuads([
         rdf.quad(partOf.object, ontola.pages, linkedProp),
         rdf.quad(subject, NS.argu('void'), rdf.literal(0)),
       ]);

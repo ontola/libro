@@ -36,7 +36,7 @@ class Agenda extends PropertyBase {
     this
       .getLinkedObjectPropertyRaw()
       .forEach((s) => {
-        const order = lrs.store.anyStatementMatching(s.object, schema.position);
+        const order = lrs.store.find(s.object, schema.position);
         if (order) {
           const i = Number.parseInt(order.object.value, DECIMAL);
           ordered[i] = s.object;

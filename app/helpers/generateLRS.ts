@@ -1,13 +1,13 @@
 /* eslint no-console: 0 */
 import as from '@ontologies/as';
-import rdf, { createNS, NamedNode, Namespace, Node, SomeTerm, Term } from '@ontologies/core';
+import rdf, { createNS, Namespace, Quad } from '@ontologies/core';
 import foaf from '@ontologies/foaf';
 import owl from '@ontologies/owl';
 import rdfx from '@ontologies/rdf';
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
 import xsd from '@ontologies/xsd';
-import { createStore, MiddlewareFn, rdflib } from 'link-lib';
+import { createStore, MiddlewareFn } from 'link-lib';
 
 import { ReactType } from 'react';
 
@@ -144,18 +144,11 @@ export default function generateLRS() {
     });
   }
 
-  LRS.store.getInternalStore().newPropertyAction(rdfx.type, (
-      _: rdflib.Store,
-      __: SomeTerm,
-      ___: NamedNode,
-      obj: Term,
-      ____: Node,
-  ): boolean => {
-    if (THING_TYPES.includes(rdf.id(obj))) {
+  LRS.store.getInternalStore().newPropertyAction(rdfx.type, (q: Quad): boolean => {
+    if (THING_TYPES.includes(rdf.id(q.object))) {
       return false;
     }
-    // @ts-ignore TS2341
-    LRS.schema.addStatement(rdf.quad(obj, rdfs.subClassOf, schema.Thing));
+    LRS.schema.addQuads([rdf.quad(q.object, rdfs.subClassOf, schema.Thing)]);
     return false;
   });
 
@@ -254,8 +247,7 @@ export default function generateLRS() {
 // tslint:enable max-line-length
 
   LRS.addOntologySchematics(ontologicalClassData);
-// @ts-ignore TS2341
-  LRS.store.addStatements(ontologicalClassData);
+  LRS.store.addQuads(ontologicalClassData);
 
   const ontologicalPropertyData = [
     rdf.quad(foaf.name, owl.sameAs, schema.name),
@@ -306,8 +298,7 @@ export default function generateLRS() {
   ];
 
   LRS.addOntologySchematics(ontologicalPropertyData);
-// @ts-ignore TS2341
-  LRS.store.addStatements(ontologicalPropertyData);
+  LRS.store.addQuads(ontologicalPropertyData);
 
   return {
     LRS,

@@ -39,7 +39,7 @@ class SHACL {
       const dataProperties = lrs.getResourceProperties(targetNode, path);
       const dataPropertyShape = lrs
         .store
-        .anyStatementMatching(null, sh.targetClass, klass, null)
+        .find(null, sh.targetClass, klass, null)
         .subject;
 
       value = [];

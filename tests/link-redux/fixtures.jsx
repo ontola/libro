@@ -27,7 +27,7 @@ const context = (iri, lrs, store) => defaultContext({
 
 function chargeLRS(id, obj, store) {
   const lrs = new LinkedRenderStore();
-  lrs.store.addStatements(obj);
+  lrs.store.addQuads(obj);
   lrs.store.flush();
 
   return context(exNS(id), lrs, store);
@@ -43,8 +43,8 @@ export function toArr(obj) {
   if (typeof obj === 'undefined') {
     return [];
   }
-  if (Object.prototype.hasOwnProperty.call(obj, 'statements')) {
-    return obj.statements;
+  if (Object.prototype.hasOwnProperty.call(obj, 'quads')) {
+    return obj.quads;
   }
   const statements = [];
   Object.keys(obj).forEach((s) => {

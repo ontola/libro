@@ -15,7 +15,7 @@ const context = (iri, lrs, store) => defaultContext({
 
 function chargeLRS(id, obj, store) {
   const { LRS } = generateLRS();
-  LRS.store.addStatements(obj);
+  LRS.store.addQuads(obj);
   LRS.store.flush();
 
   return context(id ? exNS(id) : undefined, LRS, store);
@@ -31,14 +31,14 @@ export function toArr(obj) {
   if (typeof obj === 'undefined') {
     return [];
   }
-  if (Object.prototype.hasOwnProperty.call(obj, 'statements')) {
-    return obj.statements;
+  if (Object.prototype.hasOwnProperty.call(obj, 'quads')) {
+    return obj.quads;
   }
   const statements = [];
   Object.keys(obj).forEach((s) => {
     const resource = obj[s];
     const subject = s.startsWith('_:')
-      ? new rdf.BlankNode(s.slice('_:'.length))
+      ? rdf.blankNode(s.slice('_:'.length))
       : rdf.namedNode(s.slice(1, -1));
     Object.keys(resource).forEach((p) => {
       const object = resource[p];
