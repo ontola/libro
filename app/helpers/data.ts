@@ -135,7 +135,7 @@ function listToArr(
 
   let first;
   if (rest.termType === 'BlankNode') {
-    const firstStatement = lrs.store.find(rest, rdfx.first);
+    const firstStatement = lrs.store.find(rest, rdfx.first, null, null);
     first = firstStatement && firstStatement.object;
   } else {
     first = lrs.getResourceProperty<Node>(rest, rdfx.first);
@@ -147,7 +147,7 @@ function listToArr(
   if (first) {
     acc.push(first);
   }
-  const nextRest = lrs.store.find(rest, rdfx.rest);
+  const nextRest = lrs.store.find(rest, rdfx.rest, null, null);
   if (nextRest) {
     const nextObj = nextRest.object;
     if (nextObj.termType === 'Literal' || (nextObj as any).termType === 'Collection') {

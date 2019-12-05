@@ -87,7 +87,7 @@ const headersFromPrerender = (LRS, manifestData, resourceIRI) => {
   }
 };
 
-export const renderFullPage = (ctx, manifestData, data) => {
+export const renderFullPage = async (ctx, manifestData, data) => {
   const bundleVersion = isModule(ctx.request.headers['user-agent'])
     ? bundles.module
     : bundles.legacy;
@@ -126,142 +126,138 @@ export const renderFullPage = (ctx, manifestData, data) => {
     status: 200,
   };
 
-  return LRS
-    .api
-    .feedResponse(seedRequest, true)
-    .then(() => {
-      const headers = headersFromPrerender(LRS, manifestData, resourceIRI);
+  await LRS.api.feedResponse(seedRequest, true);
+  const headers = headersFromPrerender(LRS, manifestData, resourceIRI);
 
-      const icons = manifestData?.icons?.map((icon) => {
-        if (icon.src.includes('favicon')) {
-          return `<link rel="icon" type="${icon.type}" sizes="${icon.sizes}" href="${icon.src}">`;
-        } else if (icon.src.includes('apple-touch-icon')) {
-          return `<link rel="apple-touch-icon" type="${icon.type}" sizes="${icon.sizes}" href="${icon.src}">`;
-        } else if (icon.src.includes('mstile-310x310.png')) {
-          return `<meta name="msapplication-TileImage" content="${icon.src}">`;
-        }
+  const icons = manifestData?.icons?.map((icon) => {
+    if (icon.src.includes('favicon')) {
+      return `<link rel="icon" type="${icon.type}" sizes="${icon.sizes}" href="${icon.src}">`;
+    } else if (icon.src.includes('apple-touch-icon')) {
+      return `<link rel="apple-touch-icon" type="${icon.type}" sizes="${icon.sizes}" href="${icon.src}">`;
+    } else if (icon.src.includes('mstile-310x310.png')) {
+      return `<meta name="msapplication-TileImage" content="${icon.src}">`;
+    }
 
-        return null;
-      })?.filter(Boolean)?.join('\n');
+    return null;
+  })?.filter(Boolean)?.join('\n');
 
-      return (
-        `<!doctype html>
-          <html lang="${language}">
-            <head>
-              <meta charset="utf-8">
-              <link rel="stylesheet" href="/static/preloader.css">
-              <link rel="manifest" href="${manifestData.scope}/manifest.json">
-              ${headers?.title?.toString() || `<title data-rh="true">${manifestData.short_name}</title>`}
+  return (
+    `<!doctype html>
+      <html lang="${language}">
+        <head>
+          <meta charset="utf-8">
+          <link rel="stylesheet" href="/static/preloader.css">
+          <link rel="manifest" href="${manifestData.scope}/manifest.json">
+          ${headers?.title?.toString() || `<title data-rh="true">${manifestData.short_name}</title>`}
 
-              <meta name="website-iri" content="${manifestData.scope || ''}">
-              <meta property="og:type" content="website">
-              <meta name="mobile-web-app-capable" content="yes">
-              <meta name="apple-mobile-web-app-capable" content="yes">
-              <meta name="application-name" content="${manifestData.short_name}">
-              <meta name="apple-mobile-web-app-title" content="${manifestData.short_name}">
-              <meta name="theme-color" content="${manifestData.theme_color}">
-              <meta name="msapplication-navbutton-color" content="${manifestData.theme_color}">
-              <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-              <meta name="msapplication-starturl" content="${manifestData.start_url}">
-              <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1, maximum-scale=1.0, user-scalable=yes">
-              <meta content="269911176456825" property="fb:app_id">
-              <meta name="theme" content="${manifestData.ontola.css_class}">
-              <meta name="template" content="${manifestData.ontola.template}">
-              <meta name="templateOpts" content="${manifestData.ontola.template_options}">
-              ${headers?.meta?.toString() || `<meta content="${manifestData.short_name}" property="og:title"/>`}
+          <meta name="website-iri" content="${manifestData.scope || ''}">
+          <meta property="og:type" content="website">
+          <meta name="mobile-web-app-capable" content="yes">
+          <meta name="apple-mobile-web-app-capable" content="yes">
+          <meta name="application-name" content="${manifestData.short_name}">
+          <meta name="apple-mobile-web-app-title" content="${manifestData.short_name}">
+          <meta name="theme-color" content="${manifestData.theme_color}">
+          <meta name="msapplication-navbutton-color" content="${manifestData.theme_color}">
+          <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+          <meta name="msapplication-starturl" content="${manifestData.start_url}">
+          <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1, maximum-scale=1.0, user-scalable=yes">
+          <meta content="269911176456825" property="fb:app_id">
+          <meta name="theme" content="${manifestData.ontola.css_class}">
+          <meta name="template" content="${manifestData.ontola.template}">
+          <meta name="templateOpts" content="${manifestData.ontola.template_options}">
+          ${headers?.meta?.toString() || `<meta content="${manifestData.short_name}" property="og:title"/>`}
 
-              <meta name="csrf-param" content="authenticity_token">
-              <meta name="csrf-token" content="${csrfToken}">
-              ${constants.websocketPath ? `<meta name="websocket-path" content="${constants.websocketPath}">` : ''}
-              ${constants.bugsnagKey ? '<script async src="//d2wy8f7a9ursnm.cloudfront.net/v6/bugsnag.min.js"></script>' : ''}
+          <meta name="csrf-param" content="authenticity_token">
+          <meta name="csrf-token" content="${csrfToken}">
+          ${constants.websocketPath ? `<meta name="websocket-path" content="${constants.websocketPath}">` : ''}
+          ${constants.bugsnagKey ? '<script async src="//d2wy8f7a9ursnm.cloudfront.net/v6/bugsnag.min.js"></script>' : ''}
 
-              ${headers?.link?.toString() || ''}
-              ${icons}
-              <meta name="msapplication-TileColor" content="${manifestData.theme_color}">
+          ${headers?.link?.toString() || ''}
+          ${icons}
+          <meta name="msapplication-TileColor" content="${manifestData.theme_color}">
 
-              <meta name="msapplication-config" content="/assets/favicons/browserconfig.xml">
+          <meta name="msapplication-config" content="/assets/favicons/browserconfig.xml">
 
-              <noscript id="deferred-styles">
-                  ${bundleCSS}
-                  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
-                  <link crossorigin="anonymous" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-              </noscript>
-              ${polyfill}
-            </head>
-            <body style="margin: 0;">
-              <style id="theme-config">
-                :root {
-                  --accent-background-color:${manifestData.ontola.secondary_main};
-                  --accent-color:${manifestData.ontola.secondary_text};
-                  --navbar-background:${manifestData.ontola.primary_main};
-                  --navbar-color:${manifestData.ontola.primary_text};
-                  --navbar-color-hover:${manifestData.ontola.primary_text}12;
-                }
-                .accent-background-color {
-                  background-color: ${manifestData.ontola.secondary_main};
-                }
-                .accent-color {
-                  color: ${manifestData.ontola.secondary_text};
-                }
-                .navbar-background {
-                  background: ${manifestData.ontola.primary_main};
-                }
-                .navbar-color {
-                  color: ${manifestData.ontola.primary_text};
-                }
-              </style>
-              <div class="preloader" id="preloader">
-                ${spinner}
-              </div>
-              <div
-                  id="navbar-preview"
-                  class="accent-background-color navbar-background navbar-color"
-                  style="height: 3.2rem; z-index: -1;"
-              ></div>
-              <div id="${constants.APP_ELEMENT}" class="${manifestData.ontola.css_class} preloader-fixed"></div>
-              <noscript>
-                  <h1>Argu heeft javascript nodig om te werken</h1>
-                  <p>Javascript staat momenteel uitgeschakeld, probeer een andere browser of in prive modus.</p>
-              </noscript>
-              <script nonce="${nonceStr}">document.body.className = (document.body.className || '') + ' Body--show-preloader';</script>
-              <script nonce="${nonceStr}">
-                if ('serviceWorker' in navigator) {
-                   window.addEventListener('load', function() {
-                      navigator.serviceWorker.register('${manifestData.serviceworker.src}', { scope: '${manifestData.serviceworker.scope}/' });
-                   });
-                 }
-              </script>
-              <script async crossorigin="anonymous" type="module" src="${constants.ASSETS_HOST}${manifests[bundles.module]['main.js']}"></script>
-              <script async nomodule crossorigin="anonymous" type="application/javascript" src="${constants.ASSETS_HOST}${manifests[bundles.legacy]['main.js']}"></script>
-              ${(manifests[bundles.module]?.['vendors~main.js'] && `<script async crossorigin="anonymous" type="module" src="${constants.ASSETS_HOST}${manifests[bundles.module]['vendors~main.js']}"></script>`) || ''}
-              ${(manifests[bundles.legacy]?.['vendors~main.js'] && `<script async nomodule crossorigin="anonymous" type="application/javascript" src="${constants.ASSETS_HOST}${manifests[bundles.legacy]['vendors~main.js']}"></script>`) || ''}
-              <script async nonce="${nonceStr}">
-                  ${deferredStyles}
-              </script>
-              <script id="seed" nonce="${nonceStr}" type="application/n-quads">${data?.toString('utf-8') ?? ''}</script>
-              <script nonce="${nonceStr}" type="application/javascript">
-                  var seed = document.getElementById('seed');
-                  window.INITIAL__DATA = seed ? seed.textContent : '';
-              </script>
-              <script nonce="${nonceStr}" type="application/javascript">
-                  window.WEBSITE_META = JSON.parse('${JSON.stringify(manifestData.ontola)}')
-              </script>
-              <!-- Tell users their browser is outdated https://browser-update.org/#install -->
-              <script nonce="${nonceStr}">
-                  var $buoop = {required:{e:-4,f:-3,o:-3,s:-1,c:-3},insecure:true,api:2019.07 };
-                  function $buo_f(){
-                  var e = document.createElement("script");
-                  e.src = "https://browser-update.org/update.min.js";
-                  document.body.appendChild(e);
-                  };
-                  try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
-                  catch(e){window.attachEvent("onload", $buo_f)}
-              </script>
-              <script nonce="${nonceStr}">window.bugsnagClient = typeof bugsnag !== 'undefined' && bugsnag(${JSON.stringify(bugsnagOpts)})</script>
-            </body>
-          </html>`
-      );
-    });
+          <noscript id="deferred-styles">
+              ${bundleCSS}
+              <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+              <link crossorigin="anonymous" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+          </noscript>
+          ${polyfill}
+        </head>
+        <body style="margin: 0;">
+          <style id="theme-config">
+            :root {
+              --accent-background-color:${manifestData.ontola.secondary_main};
+              --accent-color:${manifestData.ontola.secondary_text};
+              --navbar-background:${manifestData.ontola.primary_main};
+              --navbar-color:${manifestData.ontola.primary_text};
+              --navbar-color-hover:${manifestData.ontola.primary_text}12;
+            }
+            .accent-background-color {
+              background-color: ${manifestData.ontola.secondary_main};
+            }
+            .accent-color {
+              color: ${manifestData.ontola.secondary_text};
+            }
+            .navbar-background {
+              background: ${manifestData.ontola.primary_main};
+            }
+            .navbar-color {
+              color: ${manifestData.ontola.primary_text};
+            }
+          </style>
+          <div class="preloader" id="preloader">
+            ${spinner}
+          </div>
+          <div
+              id="navbar-preview"
+              class="accent-background-color navbar-background navbar-color"
+              style="height: 3.2rem; z-index: -1;"
+          ></div>
+          <div id="${constants.APP_ELEMENT}" class="${manifestData.ontola.css_class} preloader-fixed"></div>
+          <noscript>
+              <h1>Argu heeft javascript nodig om te werken</h1>
+              <p>Javascript staat momenteel uitgeschakeld, probeer een andere browser of in prive modus.</p>
+          </noscript>
+          <script nonce="${nonceStr}">document.body.className = (document.body.className || '') + ' Body--show-preloader';</script>
+          <script nonce="${nonceStr}">
+            if ('serviceWorker' in navigator) {
+               window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('${manifestData.serviceworker.src}', { scope: '${manifestData.serviceworker.scope}/' });
+               });
+             }
+          </script>
+          <script async crossorigin="anonymous" type="module" src="${constants.ASSETS_HOST}${manifests[bundles.module]['main.js']}"></script>
+          <script async nomodule crossorigin="anonymous" type="application/javascript" src="${constants.ASSETS_HOST}${manifests[bundles.legacy]['main.js']}"></script>
+          ${(manifests[bundles.module]?.['vendors~main.js'] && `<script async crossorigin="anonymous" type="module" src="${constants.ASSETS_HOST}${manifests[bundles.module]['vendors~main.js']}"></script>`) || ''}
+          ${(manifests[bundles.legacy]?.['vendors~main.js'] && `<script async nomodule crossorigin="anonymous" type="application/javascript" src="${constants.ASSETS_HOST}${manifests[bundles.legacy]['vendors~main.js']}"></script>`) || ''}
+          <script async nonce="${nonceStr}">
+              ${deferredStyles}
+          </script>
+          <script id="seed" nonce="${nonceStr}" type="application/n-quads">${data?.toString('utf-8') ?? ''}</script>
+          <script nonce="${nonceStr}" type="application/javascript">
+              var seed = document.getElementById('seed');
+              window.INITIAL__DATA = seed ? seed.textContent : '';
+          </script>
+          <script nonce="${nonceStr}" type="application/javascript">
+              window.WEBSITE_META = JSON.parse('${JSON.stringify(manifestData.ontola)}')
+          </script>
+          <!-- Tell users their browser is outdated https://browser-update.org/#install -->
+          <script nonce="${nonceStr}">
+              var $buoop = {required:{e:-4,f:-3,o:-3,s:-1,c:-3},insecure:true,api:2019.07 };
+              function $buo_f(){
+              var e = document.createElement("script");
+              e.src = "https://browser-update.org/update.min.js";
+              document.body.appendChild(e);
+              };
+              try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
+              catch(e){window.attachEvent("onload", $buo_f)}
+          </script>
+          <script nonce="${nonceStr}">window.bugsnagClient = typeof bugsnag !== 'undefined' && bugsnag(${JSON.stringify(bugsnagOpts)})</script>
+        </body>
+      </html>`
+  );
 };
 
 export function handleRender(ctx, port, domain, manifestData, data) {
