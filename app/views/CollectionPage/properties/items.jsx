@@ -2,7 +2,6 @@ import as from '@ontologies/as';
 import rdf from '@ontologies/core';
 import {
   LinkedResourceContainer,
-  PropertyBase,
   linkType,
   register,
 } from 'link-redux';
@@ -19,114 +18,115 @@ import { allTopologies } from '../../../topologies';
 import TableRow from '../../../topologies/TableRow';
 import TableCell from '../../../topologies/TableCell';
 
-class Items extends PropertyBase {
-  static type = [...CollectionViewTypes, argu.SearchResult];
+const itemList = (props, columns, separator) => {
+  const itemWrapper = rdf.equals(props.collectionDisplay, ontola['collectionDisplay/card'])
+    ? CardRow
+    : React.Fragment;
 
-  static property = as.items;
+  return (
+    props.items
+      .slice(0, props.renderLimit)
+      .map(iri => (
+        <LinkedResourceContainer
+          columns={columns}
+          depth={props.depth}
+          itemWrapper={itemWrapper}
+          key={`${props.subject}:${iri.value}`}
+          separator={separator}
+          subject={iri}
+        />
+      ))
+  );
+};
 
-  static topology = allTopologies;
-
-  static mapDataToProps = {
-    items: {
-      label: as.items,
-      limit: Infinity,
-    },
-    totalCount: { label: as.totalItems },
-  };
-
-  static propTypes = {
-    depth: PropTypes.number,
-    items: linkType,
-    /** The amount of items to render. Leave undefined for all items */
-    renderLimit: PropTypes.number,
-    separator: PropTypes.string,
-    totalCount: linkType,
-  };
-
-  itemList(columns, separator) {
-    const itemWrapper = rdf.equals(this.props.collectionDisplay, ontola['collectionDisplay/card'])
-      ? CardRow
-      : React.Fragment;
-
+const styleWrapper = (props, itemListElem) => {
+  if (props.style && props.style !== {}) {
     return (
-      this.props.items
-        .slice(0, this.props.renderLimit)
-        .map(iri => (
-          <LinkedResourceContainer
-            columns={columns}
-            depth={this.props.depth}
-            itemWrapper={itemWrapper}
-            key={`${this.props.subject}:${iri.value}`}
-            separator={separator}
-            subject={iri}
-          />
-        ))
+      <div style={props.style}>
+        {itemListElem}
+      </div>
     );
   }
 
-  styleWrapper(itemList) {
-    if (this.props.style && this.props.style !== {}) {
-      return (
-        <div style={this.props.style}>
-          {itemList}
-        </div>
-      );
+  return itemListElem;
+};
+
+const Items = (props) => {
+  const {
+    columns,
+    collectionDisplay,
+    depth,
+    empty,
+    items,
+    linkedProp,
+    separator,
+    totalCount,
+  } = props;
+  let children = null;
+
+  if (totalCount.value === '0') {
+    if (empty) {
+      return empty();
     }
 
-    return itemList;
+    const message = (
+      <FormattedMessage
+        defaultMessage="No items yet"
+        id="https://app.argu.co/i18n/collection/empty/message"
+      />
+    );
+
+    if (rdf.equals(collectionDisplay, ontola['collectionDisplay/card'])) {
+      return <CardContent endSpacing>{message}</CardContent>;
+    }
+
+    if (rdf.equals(collectionDisplay, ontola['collectionDisplay/table'])
+      || rdf.equals(collectionDisplay, ontola['collectionDisplay/settingsTable'])) {
+      return <TableRow><TableCell>{message}</TableCell></TableRow>;
+    }
+
+    return message;
   }
 
-  render() {
-    const {
-      columns,
-      items,
-      separator,
-      totalCount,
-    } = this.props;
-
-    let children = null;
-
-    if (totalCount.value === '0') {
-      if (this.props.empty) {
-        return this.props.empty();
-      }
-
-      const message = (
-        <FormattedMessage
-          defaultMessage="No items yet"
-          id="https://app.argu.co/i18n/collection/empty/message"
-        />
-      );
-
-      if (rdf.equals(this.props.collectionDisplay, ontola['collectionDisplay/card'])) {
-        return <CardContent endSpacing>{message}</CardContent>;
-      }
-
-      if (rdf.equals(this.props.collectionDisplay, ontola['collectionDisplay/table'])
-        || rdf.equals(this.props.collectionDisplay, ontola['collectionDisplay/settingsTable'])) {
-        return <TableRow><TableCell>{message}</TableCell></TableRow>;
-      }
-
-      return message;
-    }
-
-    if (Array.isArray(items) && items.length === 0) {
-      children = null;
-    } else if (Array.isArray(items)) {
-      children = this.itemList(columns, separator);
-    } else if (typeof items.toArray !== 'undefined') {
-      children = this.itemList(columns, separator).toKeyedSeq();
-    } else {
-      children = (
-        <LinkedResourceContainer
-          depth={this.props.depth}
-          subject={this.getLinkedObjectProperty()}
-        />
-      );
-    }
-
-    return this.styleWrapper(children, columns || []);
+  if (Array.isArray(items) && items.length === 0) {
+    children = null;
+  } else if (Array.isArray(items)) {
+    children = itemList(props, columns, separator);
+  } else if (typeof items.toArray !== 'undefined') {
+    children = itemList(props, columns, separator).toKeyedSeq();
+  } else {
+    children = (
+      <LinkedResourceContainer
+        depth={depth}
+        subject={linkedProp}
+      />
+    );
   }
-}
+
+  return styleWrapper(props, children, columns || []);
+};
+
+Items.type = [...CollectionViewTypes, argu.SearchResult];
+
+Items.property = as.items;
+
+Items.topology = allTopologies;
+
+Items.mapDataToProps = {
+  items: {
+    label: as.items,
+    limit: Infinity,
+  },
+  totalCount: { label: as.totalItems },
+};
+
+Items.propTypes = {
+  depth: PropTypes.number,
+  items: linkType,
+  /** The amount of items to render. Leave undefined for all items */
+  renderLimit: PropTypes.number,
+  separator: PropTypes.string,
+  totalCount: linkType,
+};
 
 export default register(Items);

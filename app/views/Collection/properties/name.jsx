@@ -1,8 +1,9 @@
 import as from '@ontologies/as';
 import LinkedRenderStore from 'link-lib';
 import {
-  PropertyBase,
-  labelType,
+  linkedPropType,
+  subjectType,
+  useLRS,
   withLinkCtx,
 } from 'link-redux';
 import React from 'react';
@@ -16,23 +17,23 @@ import { parentTopology } from '../../../topologies/Parent';
 import { tableRowTopology } from '../../../topologies/TableRow';
 
 const propTypes = {
-  label: labelType,
+  linkedProp: linkedPropType,
+  subject: subjectType,
 };
 
-class CollectionName extends PropertyBase {
-  render() {
-    const href = this.getLinkedObjectProperty(ontola.href);
-    const Wrapper = typeof href !== 'undefined' ? Link : 'div';
+const CollectionName = ({ linkedProp, subject }) => {
+  const lrs = useLRS();
+  const href = lrs.getResourceProperty(subject, ontola.href);
+  const Wrapper = typeof href !== 'undefined' ? Link : 'div';
 
-    return (
-      <Wrapper to={href}>
-        <Heading size="2">
-          {this.props.linkedProp.value}
-        </Heading>
-      </Wrapper>
-    );
-  }
-}
+  return (
+    <Wrapper to={href}>
+      <Heading size="2">
+        {linkedProp.value}
+      </Heading>
+    </Wrapper>
+  );
+};
 
 CollectionName.propTypes = propTypes;
 

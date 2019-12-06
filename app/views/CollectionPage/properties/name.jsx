@@ -1,9 +1,9 @@
 import schema from '@ontologies/schema';
-import LinkedRenderStore from 'link-lib';
 import {
-  PropertyBase,
-  labelType,
-  withLinkCtx,
+  linkedPropType,
+  register,
+  subjectType,
+  useLRS,
 } from 'link-redux';
 import React from 'react';
 
@@ -12,30 +12,29 @@ import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 import { CollectionViewTypes } from '../types';
 
-const propTypes = {
-  label: labelType,
+const CollectionName = ({ linkedProp, subject }) => {
+  const lrs = useLRS();
+  const href = lrs.getResourceProperty(subject, ontola.href);
+  const Wrapper = typeof href !== 'undefined' ? Link : 'div';
+
+  return (
+    <Wrapper to={href}>
+      <Heading size="2">
+        {linkedProp.value}
+      </Heading>
+    </Wrapper>
+  );
 };
 
-class CollectionName extends PropertyBase {
-  render() {
-    const href = this.getLinkedObjectProperty(ontola.href);
-    const Wrapper = typeof href !== 'undefined' ? Link : 'div';
+CollectionName.type = CollectionViewTypes;
 
-    return (
-      <Wrapper to={href}>
-        <Heading size="2">
-          {this.props.linkedProp.value}
-        </Heading>
-      </Wrapper>
-    );
-  }
-}
+CollectionName.property = schema.name;
 
-CollectionName.propTypes = propTypes;
+CollectionName.topology = allTopologies;
 
-export default LinkedRenderStore.registerRenderer(
-  withLinkCtx(CollectionName),
-  CollectionViewTypes,
-  schema.name,
-  allTopologies
-);
+CollectionName.propTypes = {
+  linkedProp: linkedPropType,
+  subject: subjectType,
+};
+
+export default register(CollectionName);

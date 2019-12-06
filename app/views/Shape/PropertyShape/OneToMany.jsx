@@ -89,7 +89,14 @@ OneToManyRenderer.propTypes = {
   addButton: PropTypes.func,
   descriptionElement: PropTypes.element,
   fieldName: PropTypes.string,
-  initialValue: PropTypes.arrayOf(PropTypes.string),
+  initialValue: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.shape({
+        '@id': RDFTypes.nodeType,
+      }),
+    ])
+  ),
   input: PropTypes.shape({
     name: PropTypes.string,
     onChange: PropTypes.func,

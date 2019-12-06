@@ -111,7 +111,12 @@ OneToOneRenderer.propTypes = {
   context: linkType,
   descriptionElement: PropTypes.element,
   fieldName: PropTypes.string,
-  initialValue: PropTypes.string,
+  initialValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({
+      '@id': RDFTypes.nodeType,
+    }),
+  ]),
   input: PropTypes.shape({
     name: PropTypes.string,
     onChange: PropTypes.func,

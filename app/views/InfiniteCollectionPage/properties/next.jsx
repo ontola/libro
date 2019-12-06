@@ -1,7 +1,11 @@
 import as from '@ontologies/as';
 import rdf from '@ontologies/core';
-import LinkedRenderStore from 'link-lib';
-import { PropertyBase, link } from 'link-redux';
+import {
+  linkedPropType,
+  register,
+  subjectType,
+  useLRS,
+} from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -10,40 +14,51 @@ import { NS } from '../../../helpers/LinkedRenderStore';
 import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 
-class InfiniteCollectionNext extends PropertyBase {
-  render() {
-    const {
-      linkedProp,
-      lrs,
-      partOf,
-      subject,
-    } = this.props;
+const InfiniteCollectionNext = ({
+  linkedProp,
+  partOf,
+  subject,
+}) => {
+  const lrs = useLRS();
+  const onClick = () => new Promise(() => {
+    lrs.store.addQuads([
+      rdf.quad(partOf.object, ontola.pages, linkedProp),
+      rdf.quad(subject, NS.argu('void'), rdf.literal(0)),
+    ]);
+    lrs.broadcast();
+  });
 
-    const onClick = () => new Promise(() => {
-      lrs.store.addQuads([
-        rdf.quad(partOf.object, ontola.pages, linkedProp),
-        rdf.quad(subject, NS.argu('void'), rdf.literal(0)),
-      ]);
-      lrs.broadcast();
-    });
+  return (
+    <ButtonWithFeedback
+      theme="box"
+      onClick={onClick}
+    >
+      <FormattedMessage
+        defaultMessage="Load more"
+        id="https://app.argu.co/i18n/collection/loadMore"
+      />
+    </ButtonWithFeedback>
+  );
+};
 
-    return (
-      <ButtonWithFeedback
-        theme="box"
-        onClick={onClick}
-      >
-        <FormattedMessage
-          defaultMessage="Load more"
-          id="https://app.argu.co/i18n/collection/loadMore"
-        />
-      </ButtonWithFeedback>
-    );
-  }
-}
+InfiniteCollectionNext.type = ontola.InfiniteView;
 
-export default LinkedRenderStore.registerRenderer(
-  link({ partOf: as.partOf }, { returnType: 'statement' })(InfiniteCollectionNext),
-  ontola.InfiniteView,
-  as.next,
-  allTopologies
-);
+InfiniteCollectionNext.property = as.next;
+
+InfiniteCollectionNext.topology = allTopologies;
+
+InfiniteCollectionNext.mapDataToProps = {
+  partOf: as.partOf,
+};
+
+InfiniteCollectionNext.linkOpts = {
+  returnType: 'statement',
+};
+
+InfiniteCollectionNext.propTypes = {
+  linkedProp: linkedPropType,
+  partOf: linkedPropType,
+  subject: subjectType,
+};
+
+export default register(InfiniteCollectionNext);

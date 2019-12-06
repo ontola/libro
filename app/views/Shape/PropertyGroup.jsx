@@ -3,6 +3,7 @@ import Collapse from '@material-ui/core/Collapse';
 import { ButtonBase } from '@material-ui/core';
 import rdfs from '@ontologies/rdfs';
 import sh from '@ontologies/shacl';
+import RDFTypes from '@rdfdev/prop-types';
 import {
   linkType,
   register,
@@ -93,7 +94,7 @@ PropertyGroup.linkOpts = {
 
 PropertyGroup.propTypes = {
   description: linkType,
-  focusNode: PropTypes.node,
+  focusNode: RDFTypes.nodeType,
   label: linkType,
   properties: PropTypes.arrayOf(linkType),
   propertyIndex: PropTypes.number,

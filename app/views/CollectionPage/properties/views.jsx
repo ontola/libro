@@ -1,9 +1,9 @@
-import LinkedRenderStore from 'link-lib';
 import {
   LinkedResourceContainer,
-  PropertyBase,
   labelType,
+  register,
   subjectType,
+  useLRS,
 } from 'link-redux';
 import React from 'react';
 
@@ -12,34 +12,32 @@ import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 import { CollectionViewTypes } from '../types';
 
-class Views extends PropertyBase {
-  render() {
-    const prop = this.getLinkedObjectPropertyRaw(this.props.label);
+const Views = ({ label, subject }) => {
+  const lrs = useLRS();
+  const prop = lrs.getResourcePropertyRaw(subject, label);
 
-    if (prop.length === 1) {
-      return <LinkedResourceContainer forceRender subject={prop[0].object} />;
-    }
-    const obs = prop.map(iri => <LinkedResourceContainer key={`views-${iri.object.value}`} subject={iri.object} />);
-    if (obs && obs.length > 1) {
-      return <Columns>{obs}</Columns>;
-    } else if (obs) {
-      return obs;
-    }
-
-    return null;
+  if (prop.length === 1) {
+    return <LinkedResourceContainer forceRender subject={prop[0].object} />;
   }
-}
+  const obs = prop.map(iri => <LinkedResourceContainer key={`views-${iri.object.value}`} subject={iri.object} />);
+  if (obs && obs.length > 1) {
+    return <Columns>{obs}</Columns>;
+  } else if (obs) {
+    return obs;
+  }
+
+  return null;
+};
+
+Views.type = CollectionViewTypes;
+
+Views.property = ontola.pages;
+
+Views.topology = allTopologies;
 
 Views.propTypes = {
-  label: labelType.isRequired,
+  label: labelType,
   subject: subjectType,
 };
 
-export default [
-  LinkedRenderStore.registerRenderer(
-    Views,
-    CollectionViewTypes,
-    ontola.pages,
-    allTopologies
-  ),
-];
+export default register(Views);
