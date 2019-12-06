@@ -6,6 +6,7 @@ import {
   linkType,
   lrsType,
   subjectType,
+  topologyType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -15,14 +16,15 @@ import {
   CardHeader,
   Resource,
 } from '../../../components';
+import ContainerHeader from '../../../components/Container/ContainerHeader';
+import { sort } from '../../../helpers/data';
 import { buildRegister } from '../../../helpers/buildRegister';
 import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
 import { cardTopology } from '../../../topologies/Card';
-import ContainerHeader from '../../../components/Container/ContainerHeader';
-import { CollectionTypes } from '../types';
-import { sort } from '../../../helpers/data';
+import Container, { containerTopology } from '../../../topologies/Container';
 import Menu from '../../../topologies/Menu';
+import { CollectionTypes } from '../types';
 
 const ORDER = [
   '/participants/add_all',
@@ -73,13 +75,6 @@ CreateActionButton.propTypes = {
   subject: subjectType,
 };
 
-const propTypes = {
-  lrs: lrsType,
-  omniform: PropTypes.bool,
-  pages: linkType,
-  subject: subjectType,
-};
-
 const cardCollectionHeader = ({
   lrs,
   omniform,
@@ -94,23 +89,43 @@ const cardCollectionHeader = ({
     </CardHeader>
   );
 };
-cardCollectionHeader.propTypes = propTypes;
+cardCollectionHeader.propTypes = {
+  lrs: lrsType,
+  omniform: PropTypes.bool,
+  pages: linkType,
+  subject: subjectType,
+};
 
 const containerCollectionHeader = ({
+  collectionDisplay,
   lrs,
   omniform,
   pages,
   subject,
+  topology,
 }) => {
   const name = pages.length > 0 ? <Property label={as.name} /> : null;
+  let Wrapper = React.Fragment;
+  if (collectionDisplay === ontola['collectionDisplay/default'] && topology !== containerTopology) {
+    Wrapper = Container;
+  }
 
   return (
-    <ContainerHeader header={name}>
-      <CreateActionButton lrs={lrs} omniform={omniform} subject={subject} />
-    </ContainerHeader>
+    <Wrapper>
+      <ContainerHeader header={name}>
+        <CreateActionButton lrs={lrs} omniform={omniform} subject={subject} />
+      </ContainerHeader>
+    </Wrapper>
   );
 };
-containerCollectionHeader.propTypes = propTypes;
+containerCollectionHeader.propTypes = {
+  collectionDisplay: linkType,
+  lrs: lrsType,
+  omniform: PropTypes.bool,
+  pages: linkType,
+  subject: subjectType,
+  topology: topologyType,
+};
 
 const registerHeader = buildRegister({
   mapDataToProps: {

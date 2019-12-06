@@ -167,9 +167,16 @@ export default function getCollection({
         }
       }
 
+      const collectionDisplay = this.props.collectionDisplay
+        || this.props.collectionDisplayFromData;
       const resolvedColumns = columns ? listToArr(lrs, [], columns) : undefined;
       const header = (!depth || depth === 0) && (
-        <Property forceRender label={ontola.header} omniform={omniform} />
+        <Property
+          forceRender
+          collectionDisplay={collectionDisplay}
+          label={ontola.header}
+          omniform={omniform}
+        />
       );
 
       return (
@@ -179,7 +186,7 @@ export default function getCollection({
           <Property
             forceRender
             body={this.body(resolvedColumns)}
-            collectionDisplay={this.props.collectionDisplay || this.props.collectionDisplayFromData}
+            collectionDisplay={collectionDisplay}
             columns={resolvedColumns}
             label={ontola.collectionFrame}
             pagination={this.pagination()}

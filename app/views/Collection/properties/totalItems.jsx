@@ -13,12 +13,23 @@ import { CollectionTypes } from '../types';
 import CardRow from '../../../topologies/Card/CardRow';
 import { tableCellTopology } from '../../../topologies/TableCell';
 
+const mapDataToProps = {
+  first: as.first,
+  last: as.last,
+};
+
 const propTypes = {
+  first: linkType,
+  last: linkType,
   linkedProp: linkType,
 };
 
-const defaultCollectionTotalItems = ({ linkedProp }) => {
-  if (linkedProp.value === '0') {
+const defaultCollectionTotalItems = ({
+  first,
+  last,
+  linkedProp,
+}) => {
+  if (linkedProp.value === '0' || first === last) {
     return null;
   }
 
@@ -35,10 +46,16 @@ const defaultCollectionTotalItems = ({ linkedProp }) => {
   );
 };
 
+defaultCollectionTotalItems.mapDataToProps = mapDataToProps;
+
 defaultCollectionTotalItems.propTypes = propTypes;
 
-const cardAppendixCollectionTotalItems = ({ linkedProp }) => {
-  if (linkedProp.value === '0') {
+const cardAppendixCollectionTotalItems = ({
+  first,
+  last,
+  linkedProp,
+}) => {
+  if (linkedProp.value === '0' || first === last) {
     return null;
   }
 
@@ -58,6 +75,8 @@ const cardAppendixCollectionTotalItems = ({ linkedProp }) => {
     </CardRow>
   );
 };
+
+cardAppendixCollectionTotalItems.mapDataToProps = mapDataToProps;
 
 cardAppendixCollectionTotalItems.propTypes = propTypes;
 
