@@ -9,7 +9,7 @@ declare global {
 }
 
 let client: Client;
-if (typeof window !== 'undefined' && typeof window.bugsnagClient !== 'undefined') {
+if (typeof window !== 'undefined' && window.bugsnagClient) {
   client = window.bugsnagClient;
 } else {
   client = {
