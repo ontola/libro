@@ -1,4 +1,5 @@
 import Stream from 'stream';
+import * as http from 'http';
 
 import {
   INTERNAL_SERVER_ERROR,
@@ -8,47 +9,14 @@ import {
 import * as constants from '../../app/config';
 import { isHTMLHeader } from '../utils/http';
 import logging from '../utils/logging';
-import manifest from '../utils/manifest';
+import manifest, { getBackendManifest } from '../utils/manifest';
 import {
   bulkResourceRequest,
   isRedirect,
-  route,
 } from '../utils/proxies/helpers';
 import { handleRender } from '../utils/render';
-import processResponse from '../api/internal/statusHandler';
-import { isSuccess } from '../../app/helpers/arguHelpers';
 
 const BACKEND_TIMEOUT = 3000;
-
-const getManifest = async (ctx, manifestHeader) => {
-  const headerRes = await ctx.api.fetchRaw(
-    ctx.api.userToken || ctx.api.serviceGuestToken,
-    {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        ...ctx.api.proxySafeHeaders(),
-      },
-      method: 'GET',
-      path: manifestHeader,
-      redirect: 'error',
-    }
-  );
-  const processed = await processResponse(headerRes);
-
-  return processed.json();
-};
-
-const getManifestData = async (ctx, manifestHeader) => {
-  if (!manifestHeader) {
-    if (isSuccess(ctx.response.status)) {
-      ctx.response.status = INTERNAL_SERVER_ERROR;
-    }
-    throw new Error('No Manifest url in head.');
-  }
-
-  return getManifest(ctx, manifestHeader);
-};
 
 const fetchPrerenderData = async (ctx, manifestData) => {
   let responseData = Buffer.alloc(0);
@@ -86,12 +54,27 @@ const fetchPrerenderData = async (ctx, manifestData) => {
     const { origin } = new URL(manifestData.scope);
     resources.unshift(origin + ctx.request.path);
   }
+  const agent = new http.Agent({
+    keepAlive: true,
+    maxSockets: 30,
+    timeout: 30000,
+  });
 
-  const resourceRequests = resources
-    .reduce((acc, iri) => (acc.includes(iri) ? acc : acc.concat(iri)), [])
-    .map(iri => bulkResourceRequest(ctxForData, iri, route(iri, true), responseStream));
+  const [resourceRequests, requests] = bulkResourceRequest(
+    ctxForData,
+    resources.reduce((acc, iri) => (acc.includes(iri) ? acc : acc.concat(iri)), []),
+    agent,
+    (line) => { responseStream.write(line); }
+  );
 
-  await Promise.all(resourceRequests);
+  await Promise.all(resourceRequests)
+    .then(() => {
+      agent.destroy();
+    }).catch((e) => {
+      logging.error(e);
+      requests.map(r => r.abort());
+      agent.destroy();
+    });
 
   return responseData;
 };
@@ -123,7 +106,7 @@ const handler = sendResponse => async (ctx) => {
       ctx.api.userToken = auth;
     }
 
-    const manifestData = await getManifestData(ctx, headResponse.headers.get('Manifest'));
+    const manifestData = await getBackendManifest(ctx, headResponse.headers.get('Manifest'));
     const responseData = await fetchPrerenderData(ctx, manifestData);
 
     return sendResponse(ctx, domain, manifestData, responseData);

@@ -1,9 +1,11 @@
 import * as http from 'http';
+import fs from 'fs';
 import { URL } from 'url';
 import * as zlib from 'zlib';
 
 import HttpStatus from 'http-status-codes';
 
+import { fileFromCache } from '../cache';
 import * as constants from '../../config';
 import {
   EXEC_HEADER_NAME,
@@ -11,6 +13,7 @@ import {
   hasAction,
   setActionParam,
 } from '../actions';
+import logging from '../logging';
 
 export function isRedirect(status) {
   return status === HttpStatus.MULTIPLE_CHOICES
@@ -110,89 +113,123 @@ export function route(requestUrl, full = false) {
   return url.origin;
 }
 
-export function bulkResourceRequest(ctx, iri, url, outputStream) {
-  return new Promise((resolve, reject) => {
-    try {
-      const options = {
-        headers: {
-          ...ctx.request.headers,
-          'Content-Encoding': null,
-          'X-Device-Id': ctx.deviceId,
-          'X-Forwarded-Host': ctx.request.headers.host,
-          'X-Forwarded-Proto': 'https',
-          'X-Forwarded-Ssl': 'on',
-        },
-        method: 'GET',
-        timeout: 30000,
-      };
-      let buff = Buffer.alloc(0);
-      const backendReq = http.request(url, options, (backendRes) => {
-        const iriNT = iri.includes('://') ? `<${iri}>` : `_:${iri}`;
-        outputStream.write(`${iriNT} <http://www.w3.org/2011/http#statusCode> "${backendRes.statusCode}"^^<http://www.w3.org/2001/XMLSchema#integer> <http://purl.org/link-lib/meta> .\r\n`);
+export function bulkResourceRequest(ctx, iris, agent, write) {
+  const requests = [];
 
-        const actions = getActions(backendRes);
-        if (actions.length > 0) {
-          for (let i = 0; i < actions.length; i++) {
-            outputStream.write(`${iriNT} <http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}> "${actions[i]}" <http://purl.org/link-lib/meta> .\r\n`);
+  const resources = iris
+    .map(iri => [decodeURIComponent(iri), route(decodeURIComponent(iri), true)])
+    .map(([iri, url]) => new Promise((resolve, reject) => {
+      try {
+        const cachedFile = fileFromCache(iri);
+        const options = {
+          agent,
+          headers: {
+            Accept: ctx.request.headers.accept,
+            'Accept-Language': ctx.request.headers['accept-language'] || null,
+            Connection: 'keep-alive',
+            'Content-Length': 0,
+            Origin: ctx.request.headers.origin || null,
+            Referer: ctx.request.headers.referer || null,
+            'User-Agent': ctx.request.headers['user-agent'] || null,
+            'X-Forwarded-For': ctx.request.headers['x-forwarded-for'] || null,
+            'X-Forwarded-Host': ctx.request.headers.host,
+            'X-Forwarded-Proto': ctx.request.headers['x-forwarded-proto'] || null,
+            'X-Forwarded-Ssl': ctx.request.headers['x-forwarded-ssl'] || null,
+            'X-Real-Ip': ctx.request.headers['x-real-ip'] || null,
+            'X-Requested-With': ctx.request.headers['x-requested-with'] || null,
+          },
+          method: cachedFile ? 'HEAD' : 'GET',
+          timeout: 30000,
+        };
+        let buff = Buffer.alloc(0);
+        const backendReq = http.request(url, options, (backendRes) => {
+          const iriNT = iri.includes('://') ? `<${iri}>` : `_:${iri}`;
+          write(`${iriNT} <http://www.w3.org/2011/http#statusCode> "${backendRes.statusCode}"^^<http://www.w3.org/2001/XMLSchema#integer> <http://purl.org/link-lib/meta> .\r\n`);
+
+          const serveFromCache = cachedFile && backendRes.statusCode === HttpStatus.OK;
+
+          const actions = getActions(backendRes);
+          if (actions.length > 0) {
+            for (let i = 0; i < actions.length; i++) {
+              write(`${iriNT} <http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}> "${actions[i]}" <http://purl.org/link-lib/meta> .\r\n`);
+            }
           }
-        }
 
-        const redirect = newAuthorizationBulk(ctx, backendRes);
-        if (redirect) {
-          outputStream.write(`${iriNT} <http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}> "${redirect}" <http://purl.org/link-lib/meta> .\r\n`);
-        }
+          const redirect = newAuthorizationBulk(ctx, backendRes);
+          if (redirect) {
+            write(`${iriNT} <http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}> "${redirect}" <http://purl.org/link-lib/meta> .\r\n`);
+          }
 
-        if (!backendRes.headers['content-type']?.includes('application/n-quads')) {
-          return resolve();
-        }
+          if (!backendRes.headers['content-type']?.includes('application/n-quads')) {
+            return resolve();
+          }
 
-        let decoder;
-        switch (backendRes.headers['content-encoding']) {
-          case 'gzip':
-            decoder = zlib.createGunzip();
-            break;
-          case 'deflate':
-            decoder = zlib.createInflate();
-            break;
-          // TODO: brotli
-          default:
-            break;
-        }
-
-        let writeStream = backendRes;
-        if (decoder) {
-          writeStream = backendRes.pipe(decoder);
-        }
-
-        writeStream.on('data', (chunk) => {
-          const statementTerminal = chunk.lastIndexOf('\n');
-          if (statementTerminal === -1) {
-            buff = Buffer.concat([buff, chunk]);
+          if (serveFromCache) {
+            const file = fs.readFileSync(cachedFile);
+            write(Buffer.from(file, 'utf8'));
+            write(Buffer.from('\n', 'utf8'));
+            backendRes.destroy();
+            resolve();
           } else {
-            outputStream.write(buff);
-            outputStream.write(chunk.slice(0, statementTerminal + 1));
-            buff = chunk.slice(statementTerminal + 1);
+            let decoder;
+            switch (backendRes.headers['content-encoding']) {
+              case 'gzip':
+                decoder = zlib.createGunzip();
+                break;
+              case 'deflate':
+                decoder = zlib.createInflate();
+                break;
+              // TODO: brotli
+              default:
+                break;
+            }
+
+            let writeStream = backendRes;
+            if (decoder) {
+              writeStream = backendRes.pipe(decoder);
+            }
+
+            writeStream.on('data', (chunk) => {
+              const statementTerminal = chunk.lastIndexOf('\n');
+              if (statementTerminal === -1) {
+                buff = Buffer.concat([buff, chunk]);
+              } else {
+                write(buff);
+                write(chunk.slice(0, statementTerminal + 1));
+                buff = chunk.slice(statementTerminal + 1);
+              }
+            });
+
+            writeStream.on('end', () => {
+              write(buff);
+              write('\n');
+              backendRes.destroy();
+              resolve();
+            });
           }
+
+          return undefined;
+        });
+        requests.push(backendReq);
+
+        backendReq.on('error', (e) => {
+          backendReq.end();
+          logging.error(e);
+          resolve(e);
         });
 
-        writeStream.on('end', () => {
-          outputStream.write(buff);
-          outputStream.write('\n');
-          resolve();
+        backendReq.on('timeout', (e) => {
+          backendReq.end();
+          logging.error(e);
+          resolve(e);
         });
 
-        return undefined;
-      });
-
-      backendReq.on('error', (e) => {
+        setProxyReqHeaders(backendReq, ctx);
         backendReq.end();
+      } catch (e) {
         reject(e);
-      });
+      }
+    }));
 
-      setProxyReqHeaders(backendReq, ctx);
-      backendReq.end();
-    } catch (e) {
-      reject(e);
-    }
-  });
+  return [resources, requests];
 }
