@@ -80,7 +80,6 @@ const routes = async function routes(app, port) {
 
   router.get('/d/health', health);
   router.get('*/sw.js*', serviceWorker);
-  router.get('*/f_assets/precache-manifest.*.js*', precacheManifest);
   router.all('*', isPlainAPIReq(backend));
   router.get('/robots.txt', robots);
 
@@ -96,6 +95,7 @@ const routes = async function routes(app, port) {
 
   router.use(apiMiddleware);
 
+  router.get('*/f_assets/precache-manifest.*.js*', precacheManifest);
   router.get(['/logout', '/*/logout'], logout);
   router.post(['/logout', '/*/logout'], logout);
 
