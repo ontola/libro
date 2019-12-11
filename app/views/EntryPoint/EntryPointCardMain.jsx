@@ -44,6 +44,7 @@ class EntryPointCardMain extends EntryPointBase {
       header,
       invalid,
       name,
+      subject,
       url,
     } = this.props;
     const cancelButton = cancelPath && (
@@ -59,6 +60,9 @@ class EntryPointCardMain extends EntryPointBase {
       </Button>
     );
 
+    const formURL = new URL(subject.value);
+    const formID = [formURL.origin, formURL.pathname].join('');
+
     const content = (
       <CardContent noStartSpacing={header}>
         <Property label={schema.text} />
@@ -69,7 +73,7 @@ class EntryPointCardMain extends EntryPointBase {
     return (
       <Form
         action={new URL(url.value).pathname}
-        formID={url.value}
+        formID={formID}
         method={httpMethod}
         onSubmit={this.submitHandler}
       >

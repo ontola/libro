@@ -65,7 +65,7 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
 
   (store as any).actions.app.startSignIn = (r?: NamedNode) => {
     const resourceIRI = signInLink(r);
-    createSignIn(r)
+    return createSignIn(r)
         .then(() => {
           (store as any).actions.ontola.showDialog(resourceIRI);
         });

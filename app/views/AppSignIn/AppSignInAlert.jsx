@@ -1,4 +1,4 @@
-import { register } from 'link-redux';
+import { register, subjectType } from 'link-redux';
 import React from 'react';
 
 import SignInFormContainer from '../../containers/SignInFormContainer';
@@ -6,18 +6,22 @@ import app from '../../ontology/app';
 import Container from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
 
-class AppSignInAlert extends React.PureComponent {
-  static type = app.AppSignIn;
+const rFromIri = (iri) => (
+  new URL(iri).searchParams.get('r')
+);
 
-  static topology = alertDialogTopology;
+const AppSignInAlert = ({ subject }) => (
+  <Container>
+    <SignInFormContainer r={rFromIri(subject.value)} />
+  </Container>
+);
 
-  render() {
-    return (
-      <Container>
-        <SignInFormContainer />
-      </Container>
-    );
-  }
-}
+AppSignInAlert.type = app.AppSignIn;
+
+AppSignInAlert.topology = alertDialogTopology;
+
+AppSignInAlert.propTypes = {
+  subject: subjectType,
+};
 
 export default register(AppSignInAlert);

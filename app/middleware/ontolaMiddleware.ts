@@ -169,7 +169,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
   };
 
   (store as any).actions.ontola.navigate = (resource: NamedNode) => {
-    store.exec(store.namespaces.ontola(`actions/dialog/redirect?location=${encodeURIComponent(resource.value)}`));
+    store.exec(store.namespaces.ontola(`actions/redirect?location=${encodeURIComponent(resource.value)}`));
   };
 
   /**

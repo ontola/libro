@@ -23,6 +23,7 @@ describe('Actions', () => {
   afterAll(cleanup);
 
   const testIRI = ex.ns('test');
+  const entryPointIRI = example.ns('test/edit');
   const nameIRI = ex.ns('form/name');
   const pinIRI = ex.ns('form/pin');
   const locationIRI = ex.ns('form/location');
@@ -34,6 +35,7 @@ describe('Actions', () => {
     [schema.name]: 'Edit object',
     [schema.object]: ex.ns(''),
     [schema.target]: {
+      '@id': entryPointIRI,
       [rdfx.type]: schema.EntryPoint,
       [schema.httpMethod]: 'PUT',
       [schema.name]: 'Update',
@@ -100,7 +102,7 @@ describe('Actions', () => {
 
     await wait();
     // renders the form
-    const form = getByTestId(example.ns('endpoint').value);
+    const form = getByTestId(entryPointIRI.value);
     expect(form).toBeVisible();
 
     // renders the form title

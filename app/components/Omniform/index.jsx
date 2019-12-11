@@ -52,6 +52,20 @@ const PROPS_WHITELIST = [
   schema.location,
 ].map((t) => rdf.id(t));
 
+const convertFieldContext = (parentIRI, actionIRI) => {
+  const omniformKey = `${atob(parentIRI)}.omniform`;
+  Array(sessionStorage.length)
+    .fill(null)
+    .map((_, i) => sessionStorage.key(i))
+    .filter((key) => key.startsWith(omniformKey))
+    .forEach((key) => {
+      const newKey = key.replace(omniformKey, actionIRI.value);
+      const value = sessionStorage.getItem(key);
+      sessionStorage.setItem(newKey, value);
+      sessionStorage.removeItem(key);
+    });
+};
+
 class Omniform extends EntryPointBase {
   action() {
     return this.props.action;
@@ -175,6 +189,17 @@ const mapStateToProps = (state, ownProps) => {
     action,
     actions,
     form: formName,
+    onStatusForbidden: () => {
+      convertFieldContext(ownProps.parentIRI, action);
+      ownProps.lrs.actions.ontola.navigate(action);
+
+      return ownProps
+        .lrs
+        .actions
+        .app
+        .startSignIn(action)
+        .then(Promise.reject);
+    },
   });
 };
 
@@ -186,12 +211,6 @@ const mapDispatchToProps = (dispatch, props) => ({
       parentIRI: props.parentIRI,
     }));
   },
-  onStatusForbidden: () => props
-    .lrs
-    .actions
-    .app
-    .startSignIn(rdf.namedNode(atob(props.parentIRI)))
-    .then(Promise.reject),
 });
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => ({
