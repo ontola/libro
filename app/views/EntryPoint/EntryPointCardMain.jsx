@@ -11,7 +11,6 @@ import {
   Form,
 } from '../../components';
 import FormFooterRight from '../../components/Form/FooterRight';
-import { arraysEqual } from '../../helpers/data';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import FormFooter from '../../topologies/FormFooter/Footer';
@@ -22,10 +21,6 @@ import EntryPointBase from './EntryPointBase';
 class EntryPointCardMain extends EntryPointBase {
   constructor(props) {
     super(props);
-
-    this.state = {
-      invalidFields: [],
-    };
 
     this.onCancel = this.onCancel.bind(this);
   }
@@ -71,35 +66,28 @@ class EntryPointCardMain extends EntryPointBase {
         method={httpMethod}
         onSubmit={this.submitHandler}
       >
-        {({ errors, submitting }) => {
-          const invalidFields = Object.keys(errors);
-          if (!arraysEqual(invalidFields, this.state.invalidFields)) {
-            this.setState({ invalidFields });
-          }
-
-          return (
-            <React.Fragment>
-              <CardContent noStartSpacing={header}>
-                <Property label={schema.text} />
-                <Property invalidFields={this.state.invalidFields} label={NS.ll('actionBody')} />
-              </CardContent>
-              <FormFooter>
-                {this.footerGroup()}
-                <FormFooterRight>
-                  {cancelButton}
-                  <Button
-                    disabled={invalid}
-                    loading={submitting}
-                    theme="submit"
-                    type="submit"
-                  >
-                    {name?.value}
-                  </Button>
-                </FormFooterRight>
-              </FormFooter>
-            </React.Fragment>
-          );
-        }}
+        {({ submitting }) => (
+          <React.Fragment>
+            <CardContent noStartSpacing={header}>
+              <Property label={schema.text} />
+              <Property label={NS.ll('actionBody')} />
+            </CardContent>
+            <FormFooter>
+              {this.footerGroup()}
+              <FormFooterRight>
+                {cancelButton}
+                <Button
+                  disabled={invalid}
+                  loading={submitting}
+                  theme="submit"
+                  type="submit"
+                >
+                  {name?.value}
+                </Button>
+              </FormFooterRight>
+            </FormFooter>
+          </React.Fragment>
+        )}
       </Form>
     );
   }

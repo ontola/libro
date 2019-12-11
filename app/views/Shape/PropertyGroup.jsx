@@ -7,30 +7,26 @@ import {
   linkType,
   register,
   subjectType,
-  useLRS,
 } from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import PropTypes from 'prop-types';
 
-import { calculateFormFieldName } from '../../helpers/forms';
 import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 
+import FormGroupErrorCount from './FormGroupErrorCount';
 import useStyles from './PropertyGroupStyles';
 
 const PropertyGroup = ({
   description,
   focusNode,
-  invalidFields,
   properties,
   label,
   propertyIndex,
   renderProp,
   subject,
 }) => {
-  const lrs = useLRS();
-
   const [open, setOpen] = React.useState(false);
 
   const classes = useStyles();
@@ -51,11 +47,6 @@ const PropertyGroup = ({
     return null;
   }
 
-  const fieldNames = properties.map(prop => (
-    calculateFormFieldName(propertyIndex, lrs.getResourceProperty(prop, sh.path))
-  ));
-  const invalidCount = invalidFields.filter(i => fieldNames.indexOf(i) > -1).length;
-
   return (
     <fieldset className={classes.fieldSet}>
       <ButtonBase
@@ -65,12 +56,11 @@ const PropertyGroup = ({
         <legend className={classes.legend}>
           {label.value}
         </legend>
-        {invalidCount > 0 && (
-          <div className={classes.error}>
-            <FontAwesome name="exclamation-circle" />
-            {invalidCount}
-          </div>
-        )}
+        <FormGroupErrorCount
+          className={classes.error}
+          properties={properties}
+          propertyIndex={propertyIndex}
+        />
         <div className={classes.caret}>
           {open
             ? <FontAwesome name="caret-down" />
@@ -104,7 +94,6 @@ PropertyGroup.linkOpts = {
 PropertyGroup.propTypes = {
   description: linkType,
   focusNode: PropTypes.node,
-  invalidFields: PropTypes.arrayOf(PropTypes.string),
   label: linkType,
   properties: PropTypes.arrayOf(linkType),
   propertyIndex: PropTypes.number,

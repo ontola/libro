@@ -24,7 +24,6 @@ import { entityIsLoaded } from '../../helpers/data';
 
 const propTypes = {
   autofocusForm: PropTypes.bool,
-  invalidFields: PropTypes.arrayOf(PropTypes.string),
   lrs: lrsType,
   nestedShape: PropTypes.bool,
   onKeyUp: PropTypes.func,
@@ -45,7 +44,6 @@ const defaultProps = {
 
 const NodeShape = ({
   autofocusForm,
-  invalidFields,
   lrs,
   nestedShape,
   onKeyUp,
@@ -93,7 +91,6 @@ const NodeShape = ({
         <Property label={sh.targetClass} />
         <Property
           autofocusForm={autofocusForm}
-          invalidFields={invalidFields}
           label={[sh.property, ontola.formSteps]}
           propertyIndex={propertyIndex}
           subject={subject}

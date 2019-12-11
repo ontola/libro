@@ -124,7 +124,6 @@ class ShProperty extends PropertyBase {
 
   renderGroup(s, focusNode) {
     const {
-      invalidFields,
       propertyIndex,
       theme,
     } = this.props;
@@ -132,7 +131,6 @@ class ShProperty extends PropertyBase {
     return (
       <LinkedResourceContainer
         focusNode={focusNode}
-        invalidFields={invalidFields}
         key={s.group.value}
         properties={ShProperty.toCompactList(s.props)}
         propertyIndex={propertyIndex}

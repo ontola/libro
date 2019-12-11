@@ -31,6 +31,7 @@ function CheckboxesInput(props) {
     loading,
     options,
     sharedProps,
+    value,
   } = props;
 
   if (loading) {
@@ -49,7 +50,7 @@ function CheckboxesInput(props) {
     return (
       <div className="Field__input Field__input--checkbox" key={`checkbox-${item.value}`}>
         <Input
-          checked={props.value && props.value.map(v => v.value).indexOf(item.value) !== -1}
+          checked={value && value.map(v => v.value).indexOf(item.value) !== -1}
           id={item}
           name={sharedProps.name}
           type="checkbox"
