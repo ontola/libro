@@ -6,6 +6,7 @@ import { useField } from 'react-final-form';
 import { usePersistence } from '../../hooks/usePersistence';
 import { FormContext } from '../Form/Form';
 import { FormSectionContext } from '../Form/FormSection';
+import { arraysEqual } from '../../helpers/data';
 
 const propTypes = {
   field: PropTypes.string.isRequired,
@@ -47,6 +48,14 @@ const formFieldWrapper = (Component) => {
       validate: props.validate,
     });
 
+    const valueChanged = (oldValue, newValue) => {
+      if (Array.isArray(newValue)) {
+        return !arraysEqual(oldValue, newValue);
+      }
+
+      return oldValue !== newValue;
+    };
+
     return (
       <Component
         {...props}
@@ -55,7 +64,7 @@ const formFieldWrapper = (Component) => {
           ...formProps.input,
           onChange: (nextValue) => {
             if (storeKey
-              && (formProps.meta.touched || nextValue !== formProps.input.value)) {
+              && (formProps.meta.touched || valueChanged(nextValue, formProps.input.value))) {
               setDefaultValue(nextValue);
             }
             formProps.input.onChange(nextValue);
