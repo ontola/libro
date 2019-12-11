@@ -8,10 +8,13 @@ export default {
   /* classes */
   Argument: argu('Argument'),
   ConArgument: argu('ConArgument'),
+  ConfirmAction: argu('ConfirmAction'),
   ContainerNode: argu('ContainerNode'),
+  MakePrimaryAction: argu('MakePrimaryAction'),
   Page: argu('Page'),
   ProArgument: argu('ProArgument'),
   SearchResult: argu('SearchResult'),
+  SendConfirmationAction: argu('SendConfirmationAction'),
 
   /* properties */
   arguments: argu('arguments'),

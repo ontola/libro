@@ -12,8 +12,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { NS } from '../../helpers/LinkedRenderStore';
 import { handle } from '../../helpers/logging';
+import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 
@@ -80,7 +80,7 @@ export default [
         {...props}
       />
     )),
-    NS.argu('MakePrimaryAction'),
+    argu.MakePrimaryAction,
     RENDER_CLASS_NAME,
     allTopologies
   ),
@@ -96,7 +96,13 @@ export default [
         {...props}
       />
     )),
-    NS.argu('SendConfirmationAction'),
+    argu.SendConfirmationAction,
+    RENDER_CLASS_NAME,
+    allTopologies
+  ),
+  LinkedRenderStore.registerRenderer(
+    link(mapDataToProps)(props => <InlineActionTableRow {...props} />),
+    argu.ConfirmAction,
     RENDER_CLASS_NAME,
     allTopologies
   ),
