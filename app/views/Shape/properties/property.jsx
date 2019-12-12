@@ -1,10 +1,11 @@
 import rdf from '@ontologies/core';
 import sh from '@ontologies/shacl';
-import LinkedRenderStore, { normalizeType } from 'link-lib';
+import { normalizeType } from 'link-lib';
 import {
-  LinkedResourceContainer,
   PropertyBase,
-  withLRS,
+  Resource,
+  register,
+  subjectType,
 } from 'link-redux';
 import React from 'react';
 
@@ -129,7 +130,7 @@ class ShProperty extends PropertyBase {
     } = this.props;
 
     return (
-      <LinkedResourceContainer
+      <Resource
         focusNode={focusNode}
         key={s.group.value}
         properties={ShProperty.toCompactList(s.props)}
@@ -152,7 +153,7 @@ class ShProperty extends PropertyBase {
     } = this.props;
 
     return (
-      <LinkedResourceContainer
+      <Resource
         autofocus={couldAutoFocus && autofocusForm && s.value === focusNode.value}
         key={s.value}
         propertyIndex={propertyIndex}
@@ -189,9 +190,14 @@ class ShProperty extends PropertyBase {
   }
 }
 
-export default LinkedRenderStore.registerRenderer(
-  withLRS(ShProperty),
-  sh.NodeShape,
-  sh.property,
-  allTopologies
-);
+ShProperty.type = sh.NodeShape;
+
+ShProperty.property = sh.property;
+
+ShProperty.topology = allTopologies;
+
+ShProperty.propTypes = {
+  subject: subjectType,
+};
+
+export default register(ShProperty);

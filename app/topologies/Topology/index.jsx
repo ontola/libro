@@ -1,13 +1,15 @@
 import {
+  LinkRenderCtx,
   TopologyProvider,
-  unstable,
+  renderError,
+  useCalculateChildProps,
   useLRS,
 } from 'link-redux';
 import React from 'react';
 
 import { handle } from '../../helpers/logging';
 
-export const renderError = self => () => {
+export const renderErrorComp = self => () => {
   const ErrorRenderer = ({
     context,
     error,
@@ -16,13 +18,13 @@ export const renderError = self => () => {
   }) => {
     const lrs = useLRS();
     try {
-      const childProps = unstable.useCalculateChildProps(
+      const childProps = useCalculateChildProps(
         props,
         context,
         { helpers: { reset } }
       );
 
-      return unstable.renderError(childProps, lrs, error);
+      return renderError(childProps, lrs, error);
     } catch (e) {
       handle(e);
 
@@ -45,7 +47,7 @@ export const renderError = self => () => {
 };
 
 class Topology extends TopologyProvider {
-  static contextType = unstable.LinkRenderCtx;
+  static contextType = LinkRenderCtx;
 
   static get displayName() {
     if (this.name === 'Topology') {
@@ -62,7 +64,7 @@ class Topology extends TopologyProvider {
   constructor(props) {
     super(props);
 
-    this.renderError = renderError(this);
+    this.renderErrorComp = renderErrorComp(this);
     this.state = {
       error: undefined,
     };
@@ -96,7 +98,7 @@ class Topology extends TopologyProvider {
 
   render() {
     if (this.state.error) {
-      return this.renderError();
+      return this.renderErrorComp();
     }
 
     return this.renderContent();

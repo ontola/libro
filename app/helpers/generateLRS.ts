@@ -9,8 +9,6 @@ import schema from '@ontologies/schema';
 import xsd from '@ontologies/xsd';
 import { createStore, MiddlewareFn } from 'link-lib';
 
-import { ReactType } from 'react';
-
 import { FRONTEND_ACCEPT } from '../config';
 import { appMiddleware, frontendIRIStr, website } from '../middleware/app';
 import execFilter from '../middleware/execFilter';
@@ -40,7 +38,7 @@ export default function generateLRS() {
     execFilter(),
   ];
 
-  const LRS = createStore<ReactType>({ report: handle }, middleware);
+  const LRS = createStore<React.ComponentType<any>>({ report: handle }, middleware);
   serviceWorkerCommunicator.linkedRenderStore = LRS;
   (LRS as any).bulkFetch = true;
 

@@ -1,5 +1,5 @@
 import rdf from '@ontologies/core';
-import { lrsType, unstable } from 'link-redux';
+import { LRSCtx, lrsType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
@@ -36,7 +36,7 @@ const RETRYABLE_ERRORS = [
 ];
 
 export class ErrorButtonWithFeedbackBase extends React.Component {
-  static contextType = unstable.LRSCtx;
+  static contextType = LRSCtx;
 
   constructor() {
     super();

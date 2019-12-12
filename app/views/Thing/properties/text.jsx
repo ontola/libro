@@ -1,8 +1,8 @@
 import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import {
-  PropertyBase,
   linkedPropType,
+  register,
   subjectType,
   withLinkCtx,
 } from 'link-redux';
@@ -60,8 +60,25 @@ class TextCutoff extends PropertyBase {
     );
   }
 }
+TextCutoff.type = schema.Thing;
 
-TextCutoff.propTypes = propTypes;
+TextCutoff.property = [schema.text, schema.description];
+
+TextCutoff.topology = [
+  cardFixedTopology,
+  hoverBoxTopology,
+  popupTopology,
+];
+
+TextCutoff.mapDataToProps = {
+  coverPhoto: ontola.coverPhoto,
+  text: [schema.text, schema.description],
+};
+
+TextCutoff.propTypes = {
+  coverPhoto: linkedPropType,
+  text: linkedPropType,
+};
 
 const propTypesCollection = {
   linkedProp: linkedPropType,
@@ -114,14 +131,5 @@ export default [
     [schema.text, schema.description],
     cardListTopology
   ),
-  LinkedRenderStore.registerRenderer(
-    TextCutoff,
-    schema.Thing,
-    [schema.text, schema.description],
-    [
-      cardFixedTopology,
-      hoverBoxTopology,
-      popupTopology,
-    ]
-  ),
+  register(TextCutoff),
 ];

@@ -11,7 +11,7 @@ import {
   transformers,
 } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
-import { ReactType } from 'react';
+import React from 'react';
 import { defineMessages } from 'react-intl';
 
 import { safeCredentials } from '../helpers/arguHelpers';
@@ -32,7 +32,7 @@ const messages = defineMessages({
 const onDoneHandlers: { [key: string]: () => Promise<any> } = {};
 
 const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWorkerCommunicator):
-    MiddlewareFn<ReactType> => (store: LinkReduxLRSType): MiddlewareWithBoundLRS => {
+    MiddlewareFn<React.ComponentType<any>> => (store: LinkReduxLRSType): MiddlewareWithBoundLRS => {
 
   (store as any).actions.ontola = {};
 

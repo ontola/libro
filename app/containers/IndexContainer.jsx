@@ -29,10 +29,12 @@ const propTypes = {
 };
 
 const UpdateLRSIntl = ({ children }) => {
-  const lrs = useLRS();
-  // eslint-disable-next-line no-param-reassign
   const intl = useIntl();
-  lrs.intl = intl;
+  const lrs = useLRS();
+
+  React.useEffect(() => {
+    lrs.intl = intl;
+  }, [intl]);
 
   return children;
 };

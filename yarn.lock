@@ -9139,17 +9139,17 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
-link-lib@=1.0.0-rc4-light-5:
-  version "1.0.0-rc4-light-5"
-  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-rc4-light-5.tgz#2368fd4ffb9500bf710fe6de65245ad63886afb5"
-  integrity sha512-0MbdAUeNBiTOtlIPCPLskNulxPdsbdcz74Y5BlgXWhi8xvWryRUSLjt/ACXqtOq87A40NlQKLfj8z280vr0yrg==
+link-lib@=1.0.0-rc4-light-6:
+  version "1.0.0-rc4-light-6"
+  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-1.0.0-rc4-light-6.tgz#510da04fb6fc0157f1d1718c0b1f25f4baf7d930"
+  integrity sha512-9xSAS+EPfjn+8e491vsFPwCXXlZfFiqmvzk9JuFQ11H40jERWrbgr/aHrY/OrzWaKtEjxQQDY9RtE+QBQTThFQ==
   dependencies:
     murmurhash-js "^1.0.0"
 
-link-redux@=1.0.0-rc4.light.3:
-  version "1.0.0-rc4.light.3"
-  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-rc4.light.3.tgz#18f952f96e8a710932c592fb33a233165c6b28c9"
-  integrity sha512-OvADYhHpjBWhzCfrMYz51jCcopjzy3EuaZdEj0cqyMcwOmpppb76KPE83Ae7SldT9LCkdPkyhOZqfRDqWr8N4A==
+link-redux@=1.0.0-rc4.light.5:
+  version "1.0.0-rc4.light.5"
+  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-rc4.light.5.tgz#54c38e198f0041c44dd63f625a836ea29687949e"
+  integrity sha512-J9vf6KYom7+DgKuuUjBo5G8mFHeiVUig63/6n1mmMFryJj6YEUAPGoGh5gxmvAWwX2tpvkLsLlWHHqay/mB6cA==
 
 lint-staged@^9.2.0:
   version "9.2.1"
