@@ -2,7 +2,7 @@ import RDFTypes from '@rdfdev/prop-types';
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
 import { getTermBestLang } from 'link-lib';
-import { LinkedResourceContainer, lrsType } from 'link-redux';
+import { LinkedResourceContainer, useLRS } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
@@ -23,17 +23,16 @@ const messages = defineMessages({
 });
 
 const propTypes = {
-  lrs: lrsType,
   onClick: PropTypes.func.isRequired,
   primaryAction: RDFTypes.namedNode,
 };
 
 const OmniformPreview = ({
   onClick,
-  lrs,
   primaryAction,
 }) => {
   const intl = useIntl();
+  const lrs = useLRS();
 
   const actionLabel = primaryAction && getTermBestLang(
     lrs.dig(primaryAction, [schema.result, rdfs.label]),

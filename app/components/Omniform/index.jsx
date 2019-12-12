@@ -56,11 +56,6 @@ class Omniform extends EntryPointBase {
     return this.props.action;
   }
 
-  shouldComponentUpdate() {
-    // TODO
-    return true;
-  }
-
   linkedFieldset() {
     const {
       action,

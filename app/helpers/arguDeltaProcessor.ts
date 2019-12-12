@@ -68,10 +68,16 @@ function arguDeltaProcessor(lrs: LinkReduxLRSType) {
 
     flush() {
       let statements: Quad[] = [];
-      for (const delta of this.deltas) {
-        statements = statements.concat(this.processDelta(delta));
-      }
+      const nextDeltas = this.deltas;
       this.deltas = [];
+
+      for (const delta of nextDeltas) {
+        try {
+          statements = statements.concat(this.processDelta(delta));
+        } catch (e) {
+          lrs.report(e);
+        }
+      }
 
       return statements;
     },

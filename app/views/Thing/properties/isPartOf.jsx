@@ -13,9 +13,9 @@ import { BreadcrumbsBar } from '../../../components';
 class IsPartOfPage extends React.PureComponent {
   static type = schema.Thing;
 
-  static topology = NS.argu('container');
-
   static property = schema.isPartOf;
+
+  static topology = NS.argu('container');
 
   static propTypes = {
     linkedProp: linkedPropType,

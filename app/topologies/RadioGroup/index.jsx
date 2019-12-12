@@ -59,6 +59,7 @@ class RadioGroup extends Topology {
                   icon={<RadioButtonUncheckedIcon fontSize="small" />}
                 />
               )}
+              key={option.value}
               label={<LinkedResourceContainer subject={option} />}
               value={option.value}
             />

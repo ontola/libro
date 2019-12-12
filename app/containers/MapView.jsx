@@ -7,7 +7,7 @@ const MapView = React.lazy(
   () => import(/* webpackChunkName: "TextEditor" */ '../async/MapView/index')
 );
 
-class MapViewLoader extends React.Component {
+class MapViewLoader extends React.PureComponent {
   render() {
     if (!__CLIENT__ || __TEST__) {
       return <Spinner loading />;

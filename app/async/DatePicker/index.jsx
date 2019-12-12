@@ -63,8 +63,8 @@ const DatePickerComponent = (props) => {
         autoOk
         showTodayButton
         cancelLabel={intl.formatMessage(messages.cancelLabel)}
-        clearLabel={intl.formatMessage(messages.clearLabel)}
         clearable={!!value}
+        clearLabel={intl.formatMessage(messages.clearLabel)}
         format="D MMMM YYYY"
         id={id}
         inputVariant="outlined"

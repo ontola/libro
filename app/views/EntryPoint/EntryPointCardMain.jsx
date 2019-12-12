@@ -59,6 +59,13 @@ class EntryPointCardMain extends EntryPointBase {
       </Button>
     );
 
+    const content = (
+      <CardContent noStartSpacing={header}>
+        <Property label={schema.text} />
+        <Property label={NS.ll('actionBody')} />
+      </CardContent>
+    );
+
     return (
       <Form
         action={new URL(url.value).pathname}
@@ -68,10 +75,7 @@ class EntryPointCardMain extends EntryPointBase {
       >
         {({ submitting }) => (
           <React.Fragment>
-            <CardContent noStartSpacing={header}>
-              <Property label={schema.text} />
-              <Property label={NS.ll('actionBody')} />
-            </CardContent>
+            {content}
             <FormFooter>
               {this.footerGroup()}
               <FormFooterRight>

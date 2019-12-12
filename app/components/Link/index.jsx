@@ -1,6 +1,6 @@
 import rdf from '@ontologies/core';
 import clsx from 'clsx';
-import { lrsType, useLRS } from 'link-redux';
+import { useLRS } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link as DomLink, NavLink } from 'react-router-dom';
@@ -105,7 +105,6 @@ Link.propTypes = {
   ),
   innerRef: PropTypes.func,
   isIndex: PropTypes.bool,
-  lrs: lrsType,
   onClick: PropTypes.func,
   target: PropTypes.oneOf([
     '_blank',

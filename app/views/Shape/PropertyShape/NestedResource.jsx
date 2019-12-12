@@ -1,14 +1,11 @@
-import sh from '@ontologies/shacl';
+import { literal } from '@rdfdev/prop-types';
 import {
   LinkedResourceContainer,
-  Property,
   linkType,
-  lrsType,
   subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Field } from 'react-final-form';
 
 import Button from '../../../components/Button';
 import FieldLabel from '../../../components/FieldLabel';
@@ -17,175 +14,128 @@ import FormSection from '../../../components/Form/FormSection';
 import { tryParseInt } from '../../../helpers/numbers';
 import { omniformSupplementBarTopology } from '../../../topologies/OmniformSupplementBar/OmniformSupplementBar';
 
+import { NestedResourceView } from './components/NestedResourceView';
 import OneToOneRenderer from './OneToOne';
 import OneToManyRenderer from './OneToMany';
 
-class NestedResource extends React.Component {
-  static contextType = FormContext;
+const createAddButton = subject => addItem => (
+  <Button
+    small
+    theme="transparant"
+    onClick={addItem}
+  >
+    <LinkedResourceContainer
+      subject={subject}
+      topology={omniformSupplementBarTopology}
+    />
+  </Button>
+);
 
-  static propTypes = {
-    class: linkType,
-    description: linkType,
-    fieldName: PropTypes.string,
-    lrs: lrsType,
-    maxCount: linkType,
-    minCount: linkType,
-    name: linkType,
-    nestedShape: PropTypes.bool,
-    onKeyUp: PropTypes.func,
-    path: linkType,
-    targetNode: subjectType,
-    targetValues: PropTypes.arrayOf(
-      PropTypes.shape({
-        '@id': linkType,
-      })
-    ),
-    theme: PropTypes.string,
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.addButton = this.addButton.bind(this);
-    this.descriptionComponent = this.descriptionComponent.bind(this);
-    this.labelComponent = this.labelComponent.bind(this);
-    this.nestedResourceView = this.nestedResourceView.bind(this);
-  }
-
-  nestedResourceView(props) {
-    const {
-      lrs,
-      nestedShape,
-      targetNode,
-      theme,
-      onKeyUp,
-    } = this.props;
-
-    if (typeof props.targetValue === 'undefined') {
-      return null;
-    }
-
-    const targetShape = lrs.store.find(
-      null,
-      sh.targetClass,
-      this.props.class
-    );
-
-    const children = !targetShape
-      ? (
-        <Property
-          label={sh.class}
-          nestedShape={nestedShape}
-          targetNode={targetNode}
-          theme={theme}
-          onKeyUp={onKeyUp}
-          {...props}
-        />
-      )
-      : (
-        <LinkedResourceContainer
-          subject={targetShape.subject}
-          theme={theme}
-          onKeyUp={onKeyUp}
-          {...props}
-        />
-      );
-
-    return (
-      <React.Fragment>
-        {children}
-      </React.Fragment>
-    );
-  }
-
-  addButton(addItem) {
-    return (
-      <Button
-        small
-        theme="transparant"
-        onClick={addItem}
-      >
-        <LinkedResourceContainer
-          subject={this.props.path}
-          topology={omniformSupplementBarTopology}
-        />
-      </Button>
-    );
-  }
-
-  descriptionComponent() {
-    const { description } = this.props;
-
-    if (description) {
-      return <div>{description.value}</div>;
-    }
-
+const DescriptionComponent = ({ description }) => {
+  if (!description) {
     return null;
   }
 
-  labelComponent(showLabel) {
-    const { name } = this.props;
+  return <div>{description.value}</div>;
+};
 
-    if (name) {
-      return (
-        <FieldLabel
-          hidden={!showLabel}
-          label={name.value}
-        />
-      );
-    }
+DescriptionComponent.propTypes = {
+  description: literal,
+};
 
+const createLabelComponent = name => (showLabel) => {
+  if (!name) {
     return null;
   }
 
-  render() {
-    const {
-      path,
-      fieldName,
-      targetValues,
-      maxCount,
-      minCount,
-      theme,
-    } = this.props;
+  return (
+    <FieldLabel
+      hidden={!showLabel}
+      label={name.value}
+    />
+  );
+};
 
-    if (theme === 'omniform') {
-      return null;
-    }
 
-    const isOneToMany = !maxCount || tryParseInt(maxCount) > 1 || tryParseInt(minCount) > 1;
+const NestedResource = (props) => {
+  const {
+    description,
+    path,
+    fieldName,
+    targetNode,
+    targetValues,
+    maxCount,
+    minCount,
+    name,
+    nestedShape,
+    onKeyUp,
+    shClass,
+    theme,
+  } = props;
+  const context = React.useContext(FormContext);
+  const [dataObjects, setDataObjects] = React.useState(targetValues.map(iri => ({ '@id': iri })));
 
-    const FieldView = isOneToMany
-      ? OneToManyRenderer
-      : OneToOneRenderer;
-    const dataObjects = targetValues.map(iri => ({ '@id': iri }));
-    const initialValue = isOneToMany
-      ? dataObjects
-      : dataObjects?.[0];
+  React.useEffect(() => {
+    setDataObjects(targetValues.map(iri => ({ '@id': iri })));
+  }, [context, targetValues]);
 
-    return (
-      <FormSection name={fieldName} path={path}>
-        <Field
-          allowNull
-          format={i => i}
-          initialValue={initialValue}
-          name={fieldName}
-          render={({ input }) => (
-            <FieldView
-              addButton={this.addButton}
-              context={this.context}
-              descriptionComponent={this.descriptionComponent}
-              input={input}
-              labelComponent={this.labelComponent}
-              maxCount={maxCount}
-              minCount={minCount}
-              nestedResourceView={this.nestedResourceView}
-              theme={theme}
-            />
-          )}
-        />
-      </FormSection>
-    );
+  const isOneToMany = !maxCount || tryParseInt(maxCount) > 1 || tryParseInt(minCount) > 1;
+  const initialValue = isOneToMany
+    ? dataObjects
+    : dataObjects?.[0];
+
+  if (theme === 'omniform') {
+    return null;
   }
-}
+
+  const FieldView = isOneToMany
+    ? OneToManyRenderer
+    : OneToOneRenderer;
+
+  return (
+    <FormSection name={fieldName} path={path}>
+      <FieldView
+        NestedResourceView={nestedProps => (
+          <NestedResourceView
+            {...nestedProps}
+            nestedShape={nestedShape}
+            shClass={shClass}
+            targetNode={targetNode}
+            theme={theme}
+            onKeyUp={onKeyUp}
+          />
+        )}
+        addButton={createAddButton(path)}
+        context={context}
+        descriptionElement={<DescriptionComponent description={description} />}
+        fieldName={fieldName}
+        initialValue={initialValue}
+        labelComponent={createLabelComponent(name)}
+        maxCount={maxCount}
+        minCount={minCount}
+        theme={theme}
+      />
+    </FormSection>
+  );
+};
+
+NestedResource.propTypes = {
+  description: linkType,
+  fieldName: PropTypes.string,
+  maxCount: linkType,
+  minCount: linkType,
+  name: linkType,
+  nestedShape: PropTypes.bool,
+  onKeyUp: PropTypes.func,
+  path: linkType,
+  shClass: linkType,
+  targetNode: subjectType,
+  targetValues: PropTypes.arrayOf(
+    PropTypes.shape({
+      '@id': linkType,
+    })
+  ),
+  theme: PropTypes.string,
+};
 
 export default NestedResource;

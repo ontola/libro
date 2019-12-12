@@ -16,7 +16,7 @@ const TargetClass = ({
   linkedProp,
   ...props
 }) => {
-  const View = linkedProp && useView(linkedProp, RENDER_CLASS_NAME, omniformFieldsTopology);
+  const View = useView(linkedProp, RENDER_CLASS_NAME, omniformFieldsTopology);
 
   if (View) {
     return <View {...props} />;

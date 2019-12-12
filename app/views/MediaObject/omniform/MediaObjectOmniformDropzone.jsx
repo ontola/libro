@@ -59,6 +59,7 @@ const MediaObjectOmniformDropzone = ({
       onChange: onContentUrlChange,
     },
   } = useField(name);
+
   const [file, setFile] = useState();
   useEffect(() => () => {
     // Make sure to revoke the data uris to avoid memory leaks

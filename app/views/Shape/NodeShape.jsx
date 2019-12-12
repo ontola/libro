@@ -2,12 +2,11 @@ import rdfs from '@ontologies/rdfs';
 import { isTerm } from '@ontologies/core';
 import sh from '@ontologies/shacl';
 import { nodeType } from '@rdfdev/prop-types';
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   Property,
-  link,
   linkType,
   lrsType,
+  register,
   subjectType,
   useDataInvalidation,
 } from 'link-redux';
@@ -77,7 +76,6 @@ const NodeShape = ({
       forceRender
       autofocusForm={autofocusForm}
       label={sh.targetClass}
-      lrs={lrs}
       propertyIndex={propertyIndex}
       removeItem={removeItem}
       targetNode={targetNode}
@@ -114,15 +112,20 @@ const NodeShape = ({
   );
 };
 
+NodeShape.type = sh.NodeShape;
+
+NodeShape.topology = allTopologies;
+
+NodeShape.mapDataToProps = {
+  targetNode: sh.targetNode,
+};
+
+NodeShape.linkOpts = {
+  forceRender: true,
+};
+
 NodeShape.propTypes = propTypes;
+
 NodeShape.defaultProps = defaultProps;
 
-export default LinkedRenderStore.registerRenderer(
-  link(
-    [sh.targetNode],
-    { forceRender: true }
-  )(NodeShape),
-  sh.NodeShape,
-  RENDER_CLASS_NAME,
-  allTopologies
-);
+export default register(NodeShape);

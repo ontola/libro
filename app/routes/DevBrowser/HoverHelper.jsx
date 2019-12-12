@@ -12,13 +12,6 @@ const propTypes = {
 const TRIGGER_KEYS = ['Alt', 'AltGraph'];
 
 class HoverHelper extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activated: false,
-    };
-  }
-
   static getElement(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -43,6 +36,13 @@ class HoverHelper extends Component {
       }
       currentElement = currentElement.parentElement;
     }
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      activated: false,
+    };
   }
 
   handleKeyDown(e) {

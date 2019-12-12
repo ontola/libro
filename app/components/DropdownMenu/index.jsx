@@ -45,11 +45,6 @@ const DropdownMenu = ({
     <Fragment>
       {trigger(handleClick, Boolean(anchorEl))}
       <MaterialMenu
-        MenuListProps={{ disablePadding }}
-        PaperProps={{
-          className,
-          square: true,
-        }}
         anchorEl={anchorEl}
         anchorOrigin={{
           horizontal: 'left',
@@ -57,7 +52,12 @@ const DropdownMenu = ({
         }}
         getContentAnchorEl={null}
         marginThreshold={0}
+        MenuListProps={{ disablePadding }}
         open={Boolean(anchorEl)}
+        PaperProps={{
+          className,
+          square: true,
+        }}
         onClose={handleClose}
       >
         {childComponent(children, handleClose)}

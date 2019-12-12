@@ -20,16 +20,15 @@ class EntryPointButton extends React.PureComponent {
 
   static topology = [cardFloatTopology, containerFloatTopology];
 
+  static mapDataToProps = {
+    name: schema.name,
+  };
+
   static propTypes = {
     name: linkType,
     onClick: PropTypes.func,
     subject: subjectType,
     topology: topologyType,
-  };
-
-
-  static mapDataToProps = {
-    name: schema.name,
   };
 
   render() {

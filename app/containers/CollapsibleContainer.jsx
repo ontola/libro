@@ -28,6 +28,12 @@ class CollapsibleContainer extends Component {
     this.hideChildren = this.hideChildren.bind(this);
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    return {
+      hideChildren: !nextProps.opened && prevState ? prevState.hideChildren : false,
+    };
+  }
+
   componentDidMount() {
     if (this.props.id === undefined) {
       throw new Error();
@@ -38,12 +44,6 @@ class CollapsibleContainer extends Component {
       identifier: this.props.id,
       startOpened: this.props.startOpened,
     });
-  }
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return {
-      hideChildren: !nextProps.opened && prevState ? prevState.hideChildren : false,
-    };
   }
 
   hideChildren() {

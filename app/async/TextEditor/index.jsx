@@ -126,7 +126,6 @@ class TextEditor extends Component {
 
 TextEditor.propTypes = propTypes;
 TextEditor.defaultProps = defaultProps;
-TextEditor.contextTypes = {};
 
 const mapStateToProps = (state, ownProps) => ({
   getMarkdownValue: () => getLatestMarkdown(state, ownProps.id),

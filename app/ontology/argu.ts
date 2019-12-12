@@ -15,6 +15,7 @@ export default {
   Customer: argu('Customer'),
   Feature: argu('Feature'),
   MakePrimaryAction: argu('MakePrimaryAction'),
+  MediaObject: argu('MediaObject'),
   Motion: argu('Motion'),
   Page: argu('Page'),
   ProArgument: argu('ProArgument'),

@@ -6,8 +6,6 @@ import HttpStatus from 'http-status-codes';
 import { anyRDFValue } from 'link-lib';
 import {
   LinkedResourceContainer,
-  PropertyBase,
-  linkType,
   lrsType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -18,7 +16,7 @@ import { NS } from '../../helpers/LinkedRenderStore';
 import { HTTP_RETRY_WITH, handleHTTPRetry } from '../../helpers/errorHandling';
 import ontola from '../../ontology/ontola';
 
-class EntryPointBase extends PropertyBase {
+class EntryPointBase extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -110,11 +108,9 @@ class EntryPointBase extends PropertyBase {
 EntryPointBase.propTypes = {
   action: RDFTypes.namedNode,
   form: PropTypes.string,
-  invalid: PropTypes.bool,
   lrs: lrsType,
   onDone: PropTypes.func,
   onStatusForbidden: PropTypes.func,
-  url: linkType,
 };
 
 export default EntryPointBase;

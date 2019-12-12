@@ -7,6 +7,7 @@ import {
   linkType,
   lrsType,
   subjectType,
+  withLRS,
 } from 'link-redux';
 import {
   Feature,
@@ -492,6 +493,6 @@ const mapDispatchToProps = dispatch => ({
   getAccessToken: () => dispatch(getMapAccessToken()),
 });
 
-const ConnectedMap = connect(mapStateToProps, mapDispatchToProps)(MapView);
+const ConnectedMap = connect(mapStateToProps, mapDispatchToProps)(withLRS(MapView));
 
 export default withReducer(MapReducerKey, reducer)(ConnectedMap);

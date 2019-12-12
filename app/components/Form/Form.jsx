@@ -31,72 +31,60 @@ const defaultProps = {
 
 export const FormContext = React.createContext();
 
-class Form extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
+const Form = (props) => {
+  const {
+    action,
+    children,
+    className,
+    form,
+    formID,
+    method,
+    onSubmit,
+    validateOnBlur,
+  } = props;
 
-  onSubmit(...args) {
-    return this
-      .props
-      .onSubmit(this, ...args)
-      .then(() => {
-        const formApi = args[1];
+  const submitHandler = (...args) => onSubmit({ onSubmit: submitHandler }, ...args)
+    .then(() => {
+      const formApi = args[1];
 
-        if (__CLIENT__) {
-          Object
-            .keys(sessionStorage)
-            .forEach(k => k.startsWith(this.props.formID) && sessionStorage.removeItem(k));
-        }
+      if (__CLIENT__) {
+        Object
+          .keys(sessionStorage)
+          .forEach(k => k.startsWith(formID) && sessionStorage.removeItem(k));
+      }
 
-        window.setTimeout(() => formApi.reset(), 0);
-      });
-  }
+      window.setTimeout(() => formApi.reset(), 0);
+    });
 
-  render() {
-    const {
-      action,
-      children,
-      className,
-      form,
-      formID,
-      method,
-      onSubmit,
-      validateOnBlur,
-    } = this.props;
+  const renderFunc = typeof children === 'function';
+  const controlledSubmit = renderFunc ? submitHandler : onSubmit;
+  const lowerMethod = (typeof method === 'string' ? method : method.value).toLowerCase();
+  const methodInput = !['get', 'post'].includes(lowerMethod) && <Input name="_method" type="hidden" value={method} />;
+  const formMethod = lowerMethod === 'get' ? 'get' : 'post';
 
-    const renderFunc = typeof children === 'function';
-    const controlledSubmit = renderFunc ? this.onSubmit : onSubmit;
-    const lowerMethod = (typeof method === 'string' ? method : method.value).toLowerCase();
-    const methodInput = !['get', 'post'].includes(lowerMethod) && <Input name="_method" type="hidden" value={method} />;
-    const formMethod = lowerMethod === 'get' ? 'get' : 'post';
-
-    return (
-      <FormContext.Provider value={formID}>
-        <FinalForm
-          form={form}
-          initialValuesEqual={equal}
-          validateOnBlur={validateOnBlur}
-          onSubmit={controlledSubmit}
-        >
-          {({ handleSubmit, ...childProps }) => (
-            <form
-              action={action}
-              className={className || 'Form'}
-              data-testid={formID}
-              method={formMethod}
-              onSubmit={handleSubmit}
-            >
-              {renderFunc ? children(childProps) : children}
-              {methodInput}
-            </form>
-          )}
-        </FinalForm>
-      </FormContext.Provider>
-    );
-  }
-}
+  return (
+    <FinalForm
+      form={form}
+      initialValuesEqual={equal}
+      render={({ handleSubmit, ...childProps }) => (
+        <FormContext.Provider value={formID}>
+          <form
+            action={action}
+            className={className || 'Form'}
+            data-testid={formID}
+            method={formMethod}
+            onSubmit={handleSubmit}
+          >
+            {renderFunc ? children(childProps) : children}
+            {methodInput}
+          </form>
+        </FormContext.Provider>
+      )}
+      validateOnBlur={validateOnBlur}
+      onSubmit={controlledSubmit}
+    />
+  );
+};
 
 Form.defaultProps = defaultProps;
 Form.propTypes = propTypes;

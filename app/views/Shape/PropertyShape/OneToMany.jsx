@@ -3,20 +3,31 @@ import rdf from '@ontologies/core';
 import { linkType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useField } from 'react-final-form';
 
 import { tryParseInt } from '../../../helpers/numbers';
 import { markForRemove } from '../../../helpers/forms';
 
 const OneToManyRenderer = ({
+  NestedResourceView,
   addButton,
-  descriptionComponent,
-  input,
+  descriptionElement,
+  fieldName,
+  initialValue,
   labelComponent,
   maxCount,
   minCount,
-  nestedResourceView,
   theme,
 }) => {
+  const { input } = useField(
+    fieldName,
+    {
+      allowNull: true,
+      format: i => i,
+      initialValue,
+      name: fieldName,
+    }
+  );
   const { onChange, value } = input;
   const showAddButton = maxCount
     ? value.length < tryParseInt(maxCount)
@@ -53,19 +64,20 @@ const OneToManyRenderer = ({
     }
   };
 
-  const children = value
-    .map((v, index) => nestedResourceView({
-      key: v?.['@id'] || index,
-      nestedShape: true,
-      propertyIndex: index,
-      removeItem: showRemoveItem ? removeItem(index) : undefined,
-      targetValue: v,
-    }));
+  const children = value.map((v, index) => (
+    <NestedResourceView
+      nestedShape
+      key={v?.['@id'] || index}
+      propertyIndex={index}
+      removeItem={showRemoveItem ? removeItem(index) : undefined}
+      targetValue={v}
+    />
+  ));
 
   return (
     <React.Fragment>
       {labelComponent(theme !== 'omniform' || value.length > 0)}
-      {descriptionComponent()}
+      {descriptionElement}
       {children}
       {showAddButton && addButton(addItem)}
     </React.Fragment>
@@ -73,8 +85,11 @@ const OneToManyRenderer = ({
 };
 
 OneToManyRenderer.propTypes = {
+  NestedResourceView: PropTypes.elementType,
   addButton: PropTypes.func,
-  descriptionComponent: PropTypes.func,
+  descriptionElement: PropTypes.element,
+  fieldName: PropTypes.string,
+  initialValue: PropTypes.arrayOf(PropTypes.string),
   input: PropTypes.shape({
     name: PropTypes.string,
     onChange: PropTypes.func,
@@ -89,7 +104,6 @@ OneToManyRenderer.propTypes = {
   labelComponent: PropTypes.func,
   maxCount: linkType,
   minCount: linkType,
-  nestedResourceView: PropTypes.func,
   theme: PropTypes.string,
 };
 

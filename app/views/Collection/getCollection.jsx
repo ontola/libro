@@ -36,6 +36,18 @@ export default function getCollection({
 
     static topology = topology;
 
+    static mapDataToProps = {
+      collectionDisplayFromData: ontola.collectionDisplay,
+      collectionType: ontola.collectionType,
+      columns: ontola.columns,
+      defaultType: ontola.defaultType,
+      pages: {
+        label: ontola.pages,
+        limit: Infinity,
+      },
+      totalItems: as.totalItems,
+    };
+
     static hocs = [
       connect(
         (state, {
@@ -51,18 +63,6 @@ export default function getCollection({
         })
       ),
     ];
-
-    static mapDataToProps = {
-      collectionDisplayFromData: ontola.collectionDisplay,
-      collectionType: ontola.collectionType,
-      columns: ontola.columns,
-      defaultType: ontola.defaultType,
-      pages: {
-        label: ontola.pages,
-        limit: Infinity,
-      },
-      totalItems: as.totalItems,
-    };
 
     static propTypes = {
       collectionDisplay: linkType,

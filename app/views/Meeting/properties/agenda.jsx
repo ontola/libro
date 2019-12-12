@@ -1,8 +1,10 @@
 import schema from '@ontologies/schema';
 import {
   LinkedResourceContainer,
-  PropertyBase,
+  linkedPropType,
   register,
+  subjectType,
+  useLRS,
 } from 'link-redux';
 import React from 'react';
 
@@ -12,61 +14,68 @@ import { allTopologies } from '../../../topologies';
 
 const DECIMAL = 10;
 
-class Agenda extends PropertyBase {
-  static type = meeting.Meeting;
+function toCompactList(arr) {
+  const s = new Set(arr);
+  s.delete(undefined);
+  s.delete(null);
 
-  static property = meeting.agenda;
-
-  static topology = allTopologies;
-
-  static toCompactList(arr) {
-    const s = new Set(arr);
-    s.delete(undefined);
-    s.delete(null);
-
-    return Array.from(s);
-  }
-
-  render() {
-    const { lrs, subject } = this.props;
-
-    const ordered = [];
-    const unordered = [];
-
-    this
-      .getLinkedObjectPropertyRaw()
-      .forEach((s) => {
-        const order = lrs.store.find(s.object, schema.position);
-        if (order) {
-          const i = Number.parseInt(order.object.value, DECIMAL);
-          ordered[i] = s.object;
-        } else {
-          unordered.push(s.object);
-        }
-      });
-
-    if (ordered.length + unordered.length === 0) {
-      handle(new Error(`Rendered prop agenda for ${subject} without items`));
-
-      return null;
-    }
-
-    const orderedCompact = this.constructor.toCompactList(ordered);
-    const unorderedCompact = this.constructor.toCompactList(unordered);
-
-    return (
-      <React.Fragment>
-        <React.Fragment>
-          {orderedCompact.map(p => <LinkedResourceContainer subject={p} />)}
-        </React.Fragment>
-        <React.Fragment>
-          {unorderedCompact.map(p => <LinkedResourceContainer subject={p} />)}
-        </React.Fragment>
-      </React.Fragment>
-    );
-  }
+  return Array.from(s);
 }
 
-export default [
-  register(Agenda),
-];
+const Agenda = ({ agenda, subject }) => {
+  const lrs = useLRS();
+
+  const ordered = [];
+  const unordered = [];
+
+  agenda
+    .forEach((s) => {
+      const order = lrs.store.find(s.object, schema.position, null, null);
+      if (order) {
+        const i = Number.parseInt(order.object.value, DECIMAL);
+        ordered[i] = s.object;
+      } else {
+        unordered.push(s.object);
+      }
+    });
+
+  if (ordered.length + unordered.length === 0) {
+    handle(new Error(`Rendered prop agenda for ${subject} without items`));
+
+    return null;
+  }
+
+  const orderedCompact = toCompactList(ordered);
+  const unorderedCompact = toCompactList(unordered);
+
+  return (
+    <React.Fragment>
+      <React.Fragment>
+        {orderedCompact.map(p => <LinkedResourceContainer subject={p} />)}
+      </React.Fragment>
+      <React.Fragment>
+        {unorderedCompact.map(p => <LinkedResourceContainer subject={p} />)}
+      </React.Fragment>
+    </React.Fragment>
+  );
+};
+
+Agenda.type = meeting.Meeting;
+
+Agenda.property = meeting.agenda;
+
+Agenda.topology = allTopologies;
+
+Agenda.mapDataToProps = {
+  agenda: {
+    label: meeting.agenda,
+    returnType: 'statement',
+  },
+};
+
+Agenda.propTypes = {
+  agenda: linkedPropType,
+  subject: subjectType,
+};
+
+export default register(Agenda);

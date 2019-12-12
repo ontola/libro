@@ -72,8 +72,8 @@ const DateTimePickerComponent = (props) => {
         showTodayButton
         ampm={false}
         cancelLabel={intl.formatMessage(messages.cancelLabel)}
-        clearLabel={intl.formatMessage(messages.clearLabel)}
         clearable={!!value}
+        clearLabel={intl.formatMessage(messages.clearLabel)}
         format="D MMMM YYYY HH:mm"
         id={id}
         inputVariant="outlined"

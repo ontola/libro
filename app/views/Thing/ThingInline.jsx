@@ -12,11 +12,11 @@ import { inlineTopology } from '../../topologies/Inline';
 class ThingInline extends React.PureComponent {
   static type = schema.Thing;
 
+  static topology = [attributeListTopology, inlineTopology];
+
   static mapDataToProps = {
     type: rdfx.type,
   };
-
-  static topology = [attributeListTopology, inlineTopology];
 
   render() {
     return (

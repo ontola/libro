@@ -1,8 +1,8 @@
-import LinkedRenderStore from 'link-lib';
 import sh from '@ontologies/shacl';
 import {
   LinkedResourceContainer,
   linkedPropType,
+  register,
   subjectType,
   useLRS,
 } from 'link-redux';
@@ -13,12 +13,13 @@ import { allTopologies } from '../../../topologies';
 
 const SHACLClass = ({ linkedProp, subject }) => {
   const lrs = useLRS();
-  const targetShape = lrs.store.find(
+
+  const targetShape = React.useMemo(() => lrs.store.find(
     null,
     sh.targetClass,
     linkedProp,
     null
-  );
+  ), [linkedProp]);
 
   if (!targetShape) {
     handle(new Error(`Rendered SHACL::Class for ${subject} without targetShape`));
@@ -31,14 +32,15 @@ const SHACLClass = ({ linkedProp, subject }) => {
   );
 };
 
+SHACLClass.type = sh.PropertyShape;
+
+SHACLClass.property = sh.class;
+
+SHACLClass.topology = allTopologies;
+
 SHACLClass.propTypes = {
   linkedProp: linkedPropType,
   subject: subjectType,
 };
 
-export default LinkedRenderStore.registerRenderer(
-  SHACLClass,
-  sh.PropertyShape,
-  sh.class,
-  allTopologies
-);
+export default register(SHACLClass);

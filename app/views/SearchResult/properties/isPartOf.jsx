@@ -17,9 +17,9 @@ import { inlineTopology } from '../../../topologies/Inline';
 class IsPartOfPage extends React.PureComponent {
   static type = NS.argu('SearchResult');
 
-  static topology = NS.argu('container');
-
   static property = schema.isPartOf;
+
+  static topology = NS.argu('container');
 
   static hocs = [withLRS];
 

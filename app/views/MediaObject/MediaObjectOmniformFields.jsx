@@ -2,9 +2,9 @@ import schema from '@ontologies/schema';
 import sh from '@ontologies/shacl';
 import {
   linkType,
-  lrsType,
   register,
   subjectType,
+  useLRS,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -13,19 +13,19 @@ import { useField } from 'react-final-form';
 import { FormSectionContext } from '../../components/Form/FormSection';
 import { listToArr } from '../../helpers/data';
 import { calculateFormFieldName, isMarkedForRemove } from '../../helpers/forms';
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 
 import './MediaObjectOmniformFields.scss';
 import MediaObjectOmniformDropzone from './omniform/MediaObjectOmniformDropzone';
 
 const MediaObjectOmniformFields = ({
-  lrs,
   propertyIndex,
   removeItem,
   subject,
   targetValue,
 }) => {
+  const lrs = useLRS();
   const formContext = React.useContext(FormSectionContext);
   const inputRef = React.createRef();
   const resourceId = calculateFormFieldName(formContext, propertyIndex);
@@ -83,7 +83,7 @@ const MediaObjectOmniformFields = ({
 };
 
 MediaObjectOmniformFields.type = [
-  NS.argu('MediaObject'),
+  argu.MediaObject,
   schema.MediaObject,
   schema.ImageObject,
   schema.VideoObject,
@@ -92,7 +92,6 @@ MediaObjectOmniformFields.type = [
 MediaObjectOmniformFields.topology = omniformFieldsTopology;
 
 MediaObjectOmniformFields.propTypes = {
-  lrs: lrsType,
   propertyIndex: PropTypes.number,
   reactFinalForm: PropTypes.shape({ change: PropTypes.func }),
   removeItem: PropTypes.func,

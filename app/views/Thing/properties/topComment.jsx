@@ -17,9 +17,9 @@ import CardRow from '../../../topologies/Card/CardRow';
 class TopComment extends React.PureComponent {
   static type = schema.Thing;
 
-  static topology = cardAppendixTopology;
-
   static property = NS.argu('topComment');
+
+  static topology = cardAppendixTopology;
 
   static mapDataToProps = {
     commentsCount: NS.argu('commentsCount'),

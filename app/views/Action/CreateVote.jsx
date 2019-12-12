@@ -4,11 +4,11 @@ import schema from '@ontologies/schema';
 import {
   LinkedResourceContainer,
   linkType,
-  lrsType,
   register,
   subjectType,
   useDataFetching,
   useDataInvalidation,
+  useLRS,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -120,13 +120,13 @@ const CreateVote = ({
   actionStatus,
   current,
   count,
-  lrs,
   object,
   openOmniform,
   subject,
   target,
   variant,
 }) => {
+  const lrs = useLRS();
   const { formatMessage } = useIntl();
   const handleClick = () => lrs
     .exec(subject)
@@ -205,7 +205,6 @@ CreateVote.propTypes = {
   actionStatus: linkType,
   count: linkType,
   current: PropTypes.bool,
-  lrs: lrsType,
   object: linkType,
   openOmniform: PropTypes.func,
   subject: subjectType,

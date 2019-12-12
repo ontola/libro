@@ -1,9 +1,10 @@
 import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import {
+  labelType,
   linkedPropType,
   register,
-  subjectType,
+  subjectType, useLRS,
   withLinkCtx,
 } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -49,17 +50,19 @@ TextInline.propTypes = propTypes;
  * Note: It doesn't render inline anchor elements since it should always be wrapped in an outer
  * anchor.
  */
-class TextCutoff extends PropertyBase {
-  render() {
-    if (!this.getLinkedObjectProperty() || this.getLinkedObjectProperty(ontola.coverPhoto)) {
-      return null;
-    }
+const TextCutoff = ({ label, subject }) => {
+  const lrs = useLRS();
+  const prop = lrs.getResourceProperty(subject, label);
 
-    return (
-      <MarkdownFixedPreview text={this.getLinkedObjectProperty().value} />
-    );
+  if (!prop || lrs.getResourceProperty(subject, ontola.coverPhoto)) {
+    return null;
   }
-}
+
+  return (
+    <MarkdownFixedPreview text={prop.value} />
+  );
+};
+
 TextCutoff.type = schema.Thing;
 
 TextCutoff.property = [schema.text, schema.description];
@@ -76,8 +79,8 @@ TextCutoff.mapDataToProps = {
 };
 
 TextCutoff.propTypes = {
-  coverPhoto: linkedPropType,
-  text: linkedPropType,
+  label: labelType,
+  subject: subjectType,
 };
 
 const propTypesCollection = {

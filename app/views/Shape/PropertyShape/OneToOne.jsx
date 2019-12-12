@@ -3,7 +3,7 @@ import rdf from '@ontologies/core';
 import { linkType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
-import { FormSpy } from 'react-final-form';
+import { FormSpy, useField } from 'react-final-form';
 
 import {
   clearRemoval,
@@ -14,16 +14,26 @@ import {
 import { tryParseInt } from '../../../helpers/numbers';
 
 const OneToOneRenderer = ({
+  NestedResourceView,
   addButton,
   context,
-  descriptionComponent,
-  input,
+  descriptionElement,
+  fieldName,
+  initialValue,
   labelComponent,
   maxCount,
   minCount,
-  nestedResourceView,
   theme,
 }) => {
+  const { input } = useField(
+    fieldName,
+    {
+      allowNull: true,
+      format: i => i,
+      initialValue,
+      name: fieldName,
+    }
+  );
   const {
     name,
     onChange,
@@ -43,7 +53,7 @@ const OneToOneRenderer = ({
     if (isMarkedForRemove(value) && inputAlwaysVisible) {
       addItem();
     }
-  });
+  }, [isMarkedForRemove(value) && inputAlwaysVisible]);
 
   const present = value?.termType || Object.values(value || {}).find(Boolean);
   const showRemoveItem = present
@@ -63,12 +73,14 @@ const OneToOneRenderer = ({
   return (
     <React.Fragment>
       {labelComponent(theme !== 'omniform' || !!value)}
-      {descriptionComponent()}
-      {value && nestedResourceView({
-        nestedShape: parsedMaxCount !== 1 && parsedMinCount !== 1,
-        removeItem: showRemoveItem ? removeItem : undefined,
-        targetValue: value,
-      })}
+      {descriptionElement}
+      {value && (
+        <NestedResourceView
+          nestedShape={parsedMaxCount !== 1 && parsedMinCount !== 1}
+          removeItem={showRemoveItem ? removeItem : undefined}
+          targetValue={value}
+        />
+      )}
       <FormSpy
         subscription={{
           values: true,
@@ -94,9 +106,12 @@ const OneToOneRenderer = ({
 };
 
 OneToOneRenderer.propTypes = {
+  NestedResourceView: PropTypes.elementType,
   addButton: PropTypes.func,
   context: linkType,
-  descriptionComponent: PropTypes.func,
+  descriptionElement: PropTypes.element,
+  fieldName: PropTypes.string,
+  initialValue: PropTypes.string,
   input: PropTypes.shape({
     name: PropTypes.string,
     onChange: PropTypes.func,
@@ -111,7 +126,6 @@ OneToOneRenderer.propTypes = {
   labelComponent: PropTypes.func,
   maxCount: linkType,
   minCount: linkType,
-  nestedResourceView: PropTypes.func,
   theme: PropTypes.string,
 };
 

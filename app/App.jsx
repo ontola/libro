@@ -45,9 +45,9 @@ const App = ({
       <WebsiteContext.Provider value={websiteCtxValue}>
         <HelmetProvider context={helmetContext}>
           <IndexContainer
-            Router={router}
             history={history}
             lrs={lrs || LinkedRenderStore}
+            Router={router}
             store={store}
             title={title}
           />

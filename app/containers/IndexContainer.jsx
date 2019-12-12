@@ -31,10 +31,7 @@ const propTypes = {
 const UpdateLRSIntl = ({ children }) => {
   const intl = useIntl();
   const lrs = useLRS();
-
-  React.useEffect(() => {
-    lrs.intl = intl;
-  }, [intl]);
+  lrs.intl = intl;
 
   return children;
 };

@@ -32,6 +32,10 @@
       "pragma": "React",
       "version": "16.8.6"
     },
+    "import/extensions": ["error", {
+      "ts": "never",
+      "tsx": "never"
+    }],
     "import/resolver": {
       "node": {},
       "webpack": {
@@ -127,6 +131,22 @@
       "callbacksLast": true,
       "shorthandFirst": true
     }],
+    "react/sort-comp": [2, {
+      "order": [
+        "contextType",
+        "type",
+        "property",
+        "topology",
+        "mapDataToProps",
+        "linkOpts",
+        "hocs",
+        "propTypes",
+        "static-methods",
+        "lifecycle",
+        "everything-else",
+        "render"
+      ]
+    }],
     "sort-imports": ["error", { "ignoreDeclarationSort": true }],
     "sort-keys": ["error", "asc", { "natural": true }],
     "space-unary-ops": ["error", { "words": true, "nonwords": false }],
@@ -144,8 +164,8 @@
     "no-unmodified-loop-condition": "error",
     "no-undef-init": "error",
     "no-unused-vars": ["error", {
-      "argsIgnorePattern": "[iI]gnored",
-      "varsIgnorePattern": "[iI]gnored"
+      "argsIgnorePattern": "([iI]gnored|^_+)",
+      "varsIgnorePattern": "([iI]gnored|^_+)"
     }],
     "no-inline-comments": "error",
     "new-cap": [

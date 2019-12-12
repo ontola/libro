@@ -4,10 +4,10 @@ import rdfx from '@ontologies/rdf';
 import sh from '@ontologies/shacl';
 import {
   linkType,
-  lrsType,
   register,
   subjectType,
   useDataInvalidation,
+  useLRS,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -26,55 +26,57 @@ import { entityIsLoaded } from '../../helpers/data';
 import DataField from './PropertyShape/DataField';
 import NestedResource from './PropertyShape/NestedResource';
 
-const getTargetValues = (lrs, rawTargetValues) => {
-  const isCollection = rawTargetValues?.length === 1
-    && lrs.findSubject(rawTargetValues[0], [rdfx.type], as.Collection).length > 0;
+const useTargetValues = (targetObject, path) => {
+  const lrs = useLRS();
 
-  if (!isCollection
-    && rawTargetValues?.length === 1
-    && rawTargetValues[0].termType === 'NamedNode'
-    && !entityIsLoaded(lrs, rawTargetValues[0])) {
-    if (__CLIENT__) {
-      return lrs.getEntity(rawTargetValues[0]);
+  const targetIRI = isTerm(targetObject) && targetObject;
+  const rawTargetValues = (targetIRI && lrs.getResourceProperties(targetIRI, path)) || [];
+  const [targetValues, setTargetValues] = React.useState(Promise.resolve());
+  useDataInvalidation({
+    dataSubjects: (rawTargetValues || []).filter(s => ['NamedNode', 'TermType'].includes(s.termType)),
+    subject: targetIRI,
+  });
+
+  React.useEffect(() => {
+    const isCollection = rawTargetValues?.length === 1
+      && lrs.findSubject(rawTargetValues[0], [rdfx.type], as.Collection).length > 0;
+
+    if (!isCollection
+      && rawTargetValues?.length === 1
+      && rawTargetValues[0].termType === 'NamedNode'
+      && !entityIsLoaded(lrs, rawTargetValues[0])) {
+      if (__CLIENT__) {
+        setTargetValues(lrs.getEntity(rawTargetValues[0]));
+      }
+    } else if (isCollection) {
+      setTargetValues(lrs.dig(rawTargetValues[0], collectionMembers));
+    } else {
+      setTargetValues(rawTargetValues);
     }
-  }
+  }, []);
 
-  if (isCollection) {
-    return lrs.dig(rawTargetValues[0], collectionMembers);
-  }
-
-  return rawTargetValues;
+  return targetValues;
 };
 
 const PropertyShape = (props) => {
   const {
     datatype,
-    lrs,
     path,
     propertyIndex,
-    subject,
+    shClass,
     targetNode,
     targetValue,
   } = props;
 
   const fieldName = calculateFormFieldName(propertyIndex, path);
   const targetObject = targetNode || retrieveIdFromValue(targetValue);
-  const targetIRI = isTerm(targetObject) && targetObject;
-  const rawTargetValues = (targetIRI && lrs.getResourceProperties(targetIRI, path)) || [];
-  useDataInvalidation({
-    dataSubjects: [
-      targetIRI,
-      ...(rawTargetValues || []).filter(s => ['NamedNode', 'TermType'].includes(s.termType)),
-    ],
-    subject,
-  });
-  const targetValues = getTargetValues(lrs, rawTargetValues);
+  const targetValues = useTargetValues(targetObject, path);
 
   if (isPromise(targetValues)) {
     return <LoadingRow />;
   }
 
-  if (props.class) {
+  if (shClass) {
     return (
       <NestedResource
         {...props}
@@ -100,7 +102,6 @@ PropertyShape.type = sh.PropertyShape;
 PropertyShape.topology = allTopologies;
 
 PropertyShape.mapDataToProps = {
-  class: sh.class,
   datatype: sh.datatype,
   defaultValue: {
     label: sh.defaultValue,
@@ -115,18 +116,17 @@ PropertyShape.mapDataToProps = {
   minLength: sh.minLength,
   name: sh.name,
   path: sh.path,
+  shClass: sh.class,
   shIn: { label: sh.in },
 };
 
 PropertyShape.propTypes = {
   autofocus: PropTypes.bool,
-  class: linkType,
   datatype: linkType,
   defaultValue: linkType,
   description: linkType,
   helperText: linkType,
   in: linkType,
-  lrs: lrsType,
   maxCount: linkType,
   maxLength: linkType,
   minCount: linkType,
@@ -135,7 +135,7 @@ PropertyShape.propTypes = {
   onKeyUp: PropTypes.func,
   path: linkType,
   propertyIndex: PropTypes.number,
-  subject: subjectType,
+  shClass: linkType,
   targetNode: subjectType,
   targetValue: PropTypes.shape({
     '@id': linkType,
