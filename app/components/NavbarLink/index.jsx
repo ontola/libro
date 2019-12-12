@@ -55,7 +55,7 @@ class NavbarLink extends React.PureComponent {
     return (
       <NavbarLinkWrapper bold={bold}>
         <NavbarLinkLink
-          exact={isIndex}
+          isIndex={isIndex}
           target={target}
           to={to}
           onClick={onClick || closeBarOnClick}

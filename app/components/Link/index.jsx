@@ -63,6 +63,7 @@ const Link = ({
 
   const path = retrievePath(to);
   const LinkComp = isLocalAnchor(path) ? DomLink : NavLink;
+  const isExact = LinkComp === DomLink ? undefined : isIndex;
 
   const clickHandler = target !== 'modal'
     ? onClick
@@ -79,7 +80,7 @@ const Link = ({
       {...other}
       activeClassName={activeClassName || 'Link__active'}
       className={componentClassName}
-      exact={isIndex}
+      exact={isExact}
       innerRef={innerRef}
       isActive={isActive(to)}
       target={target}
