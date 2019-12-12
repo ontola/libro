@@ -92,7 +92,7 @@
     "react-autosize-textarea": "^7.0.0",
     "react-dropzone": "^10.1.7",
     "react-easy-emoji": "^1.2.0",
-    "react-helmet-async": "^1.0.2",
+    "react-helmet-async": "^1.0.4",
     "react-outside-click-handler": "^1.2.4",
     "react-svg-loader": "^3.0.3",
     "request": "^2.88.0",
