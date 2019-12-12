@@ -10,7 +10,7 @@ import './Modal.scss';
 const propTypes = {
   children: PropTypes.node.isRequired,
   modalAnimationProps: PropTypes.shape({
-    opacity: PropTypes.string,
+    opacity: PropTypes.number,
   }),
 };
 

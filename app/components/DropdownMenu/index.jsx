@@ -8,7 +8,7 @@ const propTypes = {
     PropTypes.func,
   ]),
   className: PropTypes.string,
-  disablePadding: PropTypes.boolean,
+  disablePadding: PropTypes.bool,
   trigger: PropTypes.func,
 };
 

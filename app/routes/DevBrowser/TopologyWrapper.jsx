@@ -23,7 +23,7 @@ import { navbarTopology } from '../../topologies/Navbar';
 import { parentTopology } from '../../topologies/Parent';
 
 const propTypes = {
-  pure: PropTypes.boolean,
+  pure: PropTypes.bool,
   subject: subjectType,
   topology: topologyType,
 };

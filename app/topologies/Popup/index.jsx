@@ -19,7 +19,7 @@ class Popup extends Topology {
   };
 
   static stateTypes = {
-    show: PropTypes.boolean,
+    show: PropTypes.bool,
   };
 
   constructor(props) {
