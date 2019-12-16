@@ -1,7 +1,7 @@
 import * as HttpStatus from 'http-status-codes';
 
 const robots = async (ctx) => {
-  if (ctx.request.host === 'demogemeente.nl') {
+  if (!ctx.request.host.includes('app.argu.co')) {
     ctx.response.status = HttpStatus.NOT_FOUND;
 
     return;
