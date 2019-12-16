@@ -8,6 +8,7 @@ import { Button } from '../../components';
 import ButtonWithFeedback from '../../components/ButtonWithFeedback';
 import { countInParentheses } from '../../helpers/numbers';
 import { allTopologiesExcept } from '../../topologies';
+import { cardTopology } from '../../topologies/Card';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { cardListTopology } from '../../topologies/Card/CardList';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
@@ -17,7 +18,7 @@ import { containerFloatTopology } from '../../topologies/Container/ContainerFloa
 import { contentDetailsTopology } from '../../topologies/ContentDetails';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
-import { cardTopology } from '../../topologies/Card';
+import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 
 import EntryPointButton from './EntryPointButton';
 import EntryPointCardFloat from './EntryPointCardFloat';
@@ -25,6 +26,7 @@ import EntryPointCardMain from './EntryPointCardMain';
 import EntryPointDetail from './EntryPointDetail';
 import EntryPointOmiform from './EntryPointOmiform';
 import EntryPointContainer from './EntryPointContainer';
+import EntryPointWidget from './EntryPointWidget';
 
 const FABase = 'http://fontawesome.io/icon/';
 
@@ -40,7 +42,8 @@ class EntryPoint extends React.PureComponent {
     containerFloatTopology,
     contentDetailsTopology,
     detailsBarTopology,
-    omniformFieldsTopology
+    omniformFieldsTopology,
+    widgetTopologyTopology
   );
 
   static mapDataToProps = {
@@ -119,5 +122,6 @@ export default [
   EntryPointContainer,
   EntryPointDetail,
   EntryPointOmiform,
+  EntryPointWidget,
   register(EntryPoint),
 ];
