@@ -4,6 +4,7 @@ import { Property } from 'link-redux';
 import React from 'react';
 
 import { CardContent } from '../../components';
+import { LoadingOpinion } from '../../components/Loading';
 import { connectHighlighting, hightlightPropTypes } from '../../containers/Highlight';
 import { NS } from '../../helpers/LinkedRenderStore';
 import ontola from '../../ontology/ontola';
@@ -28,7 +29,7 @@ const Comment = ({ depth = 0, highlighted }) => (
         <Property label={schema.dateCreated} />
       </DetailsBar>
       <CardContent>
-        <Property label={NS.argu('opinion')} onLoad={() => null} />
+        <Property label={NS.argu('opinion')} onError={() => null} onLoad={LoadingOpinion} />
         <Property label={schema.text} />
       </CardContent>
       <ActionsBar small>

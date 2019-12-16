@@ -72,6 +72,10 @@ export const LoadingCardFloat = () => (
   <div className="Loading__background Loading__CardFloat" />
 );
 
+export const LoadingOpinion = () => (
+  <div className="Opinion--icon Loading__background" />
+);
+
 export const LoadingParent = () => (
   <Breadcrumb
     label={<div className="Loading__Paragraph Loading__Paragraph--parent Loading__background" />}

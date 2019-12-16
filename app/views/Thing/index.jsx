@@ -10,6 +10,7 @@ import {
   LDLink,
   LinkedDetailDate,
 } from '../../components';
+import { LoadingOpinion } from '../../components/Loading';
 import {
   connectHighlighting,
   hightlightPropTypes,
@@ -112,7 +113,7 @@ ThingSection.propTypes = hightlightPropTypes;
 const ThingCard = () => (
   <CardRow>
     <CardContent>
-      <Property label={NS.argu('opinion')} />
+      <Property label={NS.argu('opinion')} onError={() => null} onLoad={LoadingOpinion} />
       <Property label={[schema.name, rdfs.label, schema.name]} />
       <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
       <Property label={NS.meeting('attachment')} />
