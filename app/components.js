@@ -45,6 +45,7 @@ export {
   LoadingParent,
   LoadingRow,
   LoadingNavbarLink,
+  SuspendedLoader,
 } from './components/Loading/index';
 export { default as Markdown } from './components/Markdown/index';
 export { default as MarkdownFixedPreview } from './components/MarkdownFixedPreview/index';

@@ -11,7 +11,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { DetailText } from '../../../components';
+import { DetailText, SuspendedLoader } from '../../../components';
 import { allTopologies } from '../../../topologies';
 
 const uriMatch = /{{[\w:/#.?=]+}}/g;
@@ -55,6 +55,7 @@ class ActivityName extends PropertyBase {
               key={this.props[iriTerm]}
               subject={this.props[iriTerm]}
               theme={iriTerm === term(as.actor) ? 'default' : 'parent'}
+              onLoad={SuspendedLoader}
             />
           )}
         </React.Fragment>

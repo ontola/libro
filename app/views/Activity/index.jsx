@@ -4,6 +4,7 @@ import { Property, register } from 'link-redux';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
+import { LoadingCard, SuspendedLoader } from '../../components/Loading';
 import { NS } from '../../helpers/LinkedRenderStore';
 import ontola from '../../ontology/ontola';
 import Card from '../../topologies/Card';
@@ -25,24 +26,26 @@ class Activity extends React.PureComponent {
 
   render() {
     return (
-      <Card>
-        <DetailsBar
-          className="ActivityDetail"
-          right={(
-            <React.Fragment>
-              <Property label={schema.dateCreated} />
-              <Property label={as.object}>
-                <Property label={ontola.followMenu} />
-                <Property label={ontola.shareMenu} />
-                <Property label={ontola.actionsMenu} />
-              </Property>
-            </React.Fragment>
-          )}
-        >
-          <Property label={schema.name} />
-        </DetailsBar>
-        <Property label={as.object} />
-      </Card>
+      <React.Suspense fallback={<LoadingCard />}>
+        <Card>
+          <DetailsBar
+            className="ActivityDetail"
+            right={(
+              <React.Fragment>
+                <Property label={schema.dateCreated} />
+                <Property label={as.object} onLoad={SuspendedLoader}>
+                  <Property label={ontola.followMenu} />
+                  <Property label={ontola.shareMenu} />
+                  <Property label={ontola.actionsMenu} />
+                </Property>
+              </React.Fragment>
+            )}
+          >
+            <Property label={schema.name} />
+          </DetailsBar>
+          <Property label={as.object} />
+        </Card>
+      </React.Suspense>
     );
   }
 }

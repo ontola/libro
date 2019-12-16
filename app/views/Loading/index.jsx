@@ -13,6 +13,7 @@ import {
   LoadingParent,
   LoadingRow,
   Spinner,
+  SuspendedLoader,
 } from '../../components';
 import { appMenuTopology } from '../../topologies/AppMenu';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
@@ -49,27 +50,6 @@ import {
   LoadingCardRowAppendix,
   LoadingWidgetCard,
 } from '../../components/Loading/index';
-
-// We always throw, so the implicit return value is void
-class SuspendedLoader extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.resolve = undefined;
-    this.promise = new Promise((resolve) => {
-      this.resolve = resolve;
-    });
-  }
-
-  componentWillUnmount() {
-    this.resolve();
-  }
-
-  // eslint-disable-next-line react/require-render-return
-  render() {
-    throw this.promise;
-  }
-}
 
 export default [
   LinkedRenderStore.registerRenderer(
