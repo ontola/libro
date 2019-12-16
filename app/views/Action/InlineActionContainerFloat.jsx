@@ -6,6 +6,8 @@ import {
   linkType,
   register,
   subjectType,
+  useDataInvalidation,
+  useLRS,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -13,8 +15,8 @@ import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
-import { filterFind } from '../../helpers/data';
-import { retrievePath } from '../../helpers/iris';
+import { entityIsLoaded, filterFind } from '../../helpers/data';
+import { normalizeFontAwesomeIRI, retrievePath } from '../../helpers/iris';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 import { OMNIFORM_FILTER, invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
@@ -27,24 +29,36 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const InlineCreateActionContainerFloat = ({
+const InlineActionContainerFloat = ({
   actionStatus,
   history,
   name,
   omniform,
   onClick,
   subject,
+  target,
 }) => {
   const classes = useStyles();
+  const lrs = useLRS();
 
   if (invalidStatusIds.includes(rdf.id(actionStatus))) {
     return null;
   }
 
+  let image;
+  if (target) {
+    useDataInvalidation({ subject: target });
+
+    if (__CLIENT__ && !entityIsLoaded(lrs, target)) {
+      lrs.queueEntity(target);
+    }
+    image = lrs.getResourceProperty(target, schema.image);
+  }
+
   const icon = (
     <FontAwesome
       className={classes.buttonIcon}
-      name="plus"
+      name={image && normalizeFontAwesomeIRI(image)}
     />
   );
   const useOmniform = omniform && OMNIFORM_FILTER.find(filterFind(subject));
@@ -61,26 +75,27 @@ const InlineCreateActionContainerFloat = ({
   );
 };
 
-InlineCreateActionContainerFloat.type = schema.CreateAction;
+InlineActionContainerFloat.type = schema.Action;
 
-InlineCreateActionContainerFloat.topology = [
+InlineActionContainerFloat.topology = [
   containerFloatTopology,
 ];
 
-InlineCreateActionContainerFloat.mapDataToProps = {
+InlineActionContainerFloat.mapDataToProps = {
   actionStatus: schema.actionStatus,
   name: schema.name,
   object: schema.object,
+  target: schema.target,
 };
 
-InlineCreateActionContainerFloat.hocs = [
+InlineActionContainerFloat.hocs = [
   connect(null, mapCardListDispatchToProps),
   withRouter,
 ];
 
-InlineCreateActionContainerFloat.displayName = 'InlineCreateActionContainerFloatButton';
+InlineActionContainerFloat.displayName = 'InlineActionContainerFloatButton';
 
-InlineCreateActionContainerFloat.propTypes = {
+InlineActionContainerFloat.propTypes = {
   actionStatus: linkType,
   history: PropTypes.shape({
     push: PropTypes.func,
@@ -89,6 +104,7 @@ InlineCreateActionContainerFloat.propTypes = {
   omniform: PropTypes.bool,
   onClick: PropTypes.func,
   subject: subjectType,
+  target: linkType,
 };
 
-export default register(InlineCreateActionContainerFloat);
+export default register(InlineActionContainerFloat);

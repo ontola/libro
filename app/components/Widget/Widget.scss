@@ -73,3 +73,15 @@
     }
   }
 }
+
+.WidgetHeader {
+  display: flex;
+
+  &--header {
+    flex: 1;
+
+    .Heading {
+      margin-bottom: 0;
+    }
+  }
+}

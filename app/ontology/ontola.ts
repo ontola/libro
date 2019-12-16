@@ -9,6 +9,7 @@ export default {
   Collection: ontola('Collection'),
   CollectionView: ontola('CollectionView'),
   ConfirmedUser: ontola('ConfirmedUser'),
+  ['Create::FollowUp']: ontola('Create::FollowUp'),
   ['Create::Opinion']: ontola('Create::Opinion'),
   ['Create::Users::Password']: ontola('Create::Users::Password'),
   ['Create::Users::Confirmation']: ontola('Create::Users::Confirmation'),

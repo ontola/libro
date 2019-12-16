@@ -12,12 +12,13 @@ import ActionTableRow from './ActionTableRow';
 import ActionWidget from './ActionWidget';
 import CreateAction from './CreateAction';
 import CreateVote from './CreateVote';
-import InlineCreateAction from './InlineCreateAction';
-import InlineCreateActionContainerFloat from './InlineCreateActionContainerFloat';
+import InlineAction from './InlineAction';
+import InlineActionContainerFloat from './InlineActionContainerFloat';
 import InlineActionTableRow from './InlineActionTableRow';
 import ReadActionCard from './ReadActionCard';
 import SignInHelperFormsModal from './SignInHelperFormsModal';
-import Name from './properties/name';
+import FollowUpName from './properties/followUpName';
+import WidgetName from './properties/widgetName';
 
 export default [
   CreateAction,
@@ -34,10 +35,11 @@ export default [
   ActionTableCell,
   ActionTableRow,
   ActionWidget,
-  InlineCreateAction,
-  InlineCreateActionContainerFloat,
+  InlineAction,
+  InlineActionContainerFloat,
   ...InlineActionTableRow,
   ReadActionCard,
   ...SignInHelperFormsModal,
-  Name,
+  FollowUpName,
+  WidgetName,
 ];

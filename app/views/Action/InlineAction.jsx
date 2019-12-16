@@ -18,8 +18,8 @@ import { OMNIFORM_FILTER, invalidStatusIds } from '../Thing/properties/omniform/
 
 import mapCardListDispatchToProps from './helpers';
 
-class InlineCreateAction extends React.PureComponent {
-  static type = schema.CreateAction;
+class InlineAction extends React.PureComponent {
+  static type = schema.Action;
 
   static topology = [
     actionsBarTopology,
@@ -34,7 +34,7 @@ class InlineCreateAction extends React.PureComponent {
 
   static hocs = [connect(null, mapCardListDispatchToProps)];
 
-  static displayName = 'InlineCreateActionButton';
+  static displayName = 'InlineActionButton';
 
   static propTypes = {
     actionStatus: linkType,
@@ -67,4 +67,4 @@ class InlineCreateAction extends React.PureComponent {
   }
 }
 
-export default register(InlineCreateAction);
+export default register(InlineAction);

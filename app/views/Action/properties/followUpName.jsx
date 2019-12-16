@@ -4,7 +4,7 @@ import React from 'react';
 import emoji from 'react-easy-emoji';
 
 import { Heading } from '../../../components';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import ontola from '../../../ontology/ontola';
 import { cardMainTopology } from '../../../topologies/Card/CardMain';
 
 const FollowUpActionName = ({ linkedProp }) => (
@@ -13,7 +13,7 @@ const FollowUpActionName = ({ linkedProp }) => (
   </Heading>
 );
 
-FollowUpActionName.type = NS.ontola('Create::FollowUp');
+FollowUpActionName.type = ontola['Create::FollowUp'];
 
 FollowUpActionName.topology = cardMainTopology;
 
