@@ -98,7 +98,7 @@ export const renderFullPage = (ctx, manifestData, data) => {
 
   const { LRS } = generateLRS();
   const { origin } = new URL(manifestData?.scope || `${ctx.req.host}://${ctx.req.protocol}`);
-  const resourceIRI = ctx.req.path?.length > 1 ? origin + ctx.req.path : origin;
+  const resourceIRI = ctx.req.url?.length > 1 ? origin + ctx.req.url : origin;
   const seedRequest = {
     body: data?.toString('utf-8') ?? '',
     headers: { 'Content-Type': 'application/n-quads' },
@@ -139,7 +139,7 @@ export const renderFullPage = (ctx, manifestData, data) => {
               <meta charset="utf-8">
               <link rel="stylesheet" href="/static/preloader.css">
               <link rel="manifest" href="${manifestData.scope}/manifest.json">
-              ${headers?.title?.toString() || ''}
+              ${headers?.title?.toString() || manifestData.short_name}
 
               <meta name="website-iri" content="${manifestData.scope || ''}">
               <meta property="og:type" content="website">
