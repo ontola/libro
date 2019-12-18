@@ -12,7 +12,7 @@ import ActionTableRow from './ActionTableRow';
 import ActionWidget from './ActionWidget';
 import CreateAction from './CreateAction';
 import CreateVote from './CreateVote';
-import InlineAction from './InlineAction';
+import InlineCreateAction from './InlineCreateAction';
 import InlineActionContainerFloat from './InlineActionContainerFloat';
 import InlineActionTableRow from './InlineActionTableRow';
 import ReadActionCard from './ReadActionCard';
@@ -35,7 +35,7 @@ export default [
   ActionTableCell,
   ActionTableRow,
   ActionWidget,
-  InlineAction,
+  InlineCreateAction,
   InlineActionContainerFloat,
   ...InlineActionTableRow,
   ReadActionCard,
