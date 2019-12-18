@@ -38,6 +38,7 @@ export {
   LoadingButton,
   LoadingCard,
   LoadingCardFixed,
+  LoadingCellRow,
   LoadingCoverPhoto,
   LoadingMicroRow,
   LoadingDetail,

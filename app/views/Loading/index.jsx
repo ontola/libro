@@ -6,6 +6,7 @@ import {
   Loading,
   LoadingButton,
   LoadingCard,
+  LoadingCellRow,
   LoadingDetail,
   LoadingMicroRow,
   LoadingNavbarLink,
@@ -116,6 +117,13 @@ export default [
       cardMainTopology,
       menuTopology,
       hoverBoxTopology,
+    ]
+  ),
+  LinkedRenderStore.registerRenderer(
+    LoadingCellRow,
+    NS.ll('LoadingResource'),
+    RENDER_CLASS_NAME,
+    [
       tableTopology,
     ]
   ),

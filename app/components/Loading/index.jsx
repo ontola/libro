@@ -11,6 +11,8 @@ import Card, {
 } from '../../topologies/Card';
 import Container from '../../topologies/Container';
 import PrimaryResource from '../../topologies/PrimaryResource';
+import TableCell from '../../topologies/TableCell';
+import TableRow from '../../topologies/TableRow';
 import { Breadcrumb, BreadcrumbsBar } from '../Breadcrumbs';
 
 const LoadingInline = () => <div className="Loading__Paragraph Loading__Paragraph--inline Loading__background" />;
@@ -52,6 +54,14 @@ export const LoadingCardFixed = ({ fill }) => (
 LoadingCardFixed.propTypes = {
   fill: PropTypes.bool,
 };
+
+export const LoadingCellRow = () => (
+  <TableRow>
+    <TableCell elementProps={{ colspan: 100 }}>
+      <div className="Loading__CellRow Loading__background" />
+    </TableCell>
+  </TableRow>
+);
 
 export const LoadingPage = () => (
   <PrimaryResource>
