@@ -53,7 +53,7 @@ const IndexContainer = ({
     dayjs.locale('en');
   }
   const themeName = getMetaContent('theme');
-  let theme = themes[themeName] || themes.common;
+  let theme = themes[themeName] || themes.argu;
 
   if (__CLIENT__ && window.WEBSITE_META) {
     const websiteMeta = window.WEBSITE_META;
