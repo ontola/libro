@@ -2,8 +2,6 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { navbarHeight } from '../shared/config';
-
 const useStyles = makeStyles((theme) => ({
   link: {
     '&:focus': {
@@ -11,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.primary.contrastText,
       fontWeight: 'bold',
       height: 'auto',
-      lineHeight: navbarHeight,
+      lineHeight: theme.appBar.height,
       padding: '0 10px',
       textAlign: 'center',
       textDecoration: 'none',

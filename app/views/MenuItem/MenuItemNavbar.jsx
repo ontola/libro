@@ -1,6 +1,5 @@
 import schema from '@ontologies/schema';
 import {
-  Property,
   Resource,
   linkType,
   register,
@@ -9,46 +8,30 @@ import {
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ResourceBoundary from '../../components/ResourceBoundary';
+import { NavbarLinkLink } from '../../components/NavbarLink';
+import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import Menu from '../../topologies/Menu';
 import { navbarTopology } from '../../topologies/Navbar';
-import { NavbarLinkLink, NavbarLinkWrapper } from '../../components/NavbarLink';
-import { isFontAwesomeIRI } from '../../helpers/iris';
 
 const MenuItemNavbar = ({
   href,
   image,
-  imageOnly,
+  name,
   menuItems,
-  showImage,
-  subject,
 }) => {
-  const id = `${subject}-menu-items`;
-
-  const InnerWrapper = href ? React.Fragment : NavbarLinkLink;
-
   const menuItemLabel = (onClick) => {
-    const wrapperProps = href ? {} : { onClick };
-    const hideLabel = image && (!isFontAwesomeIRI(image.value) || (showImage && imageOnly));
+    const icon = image && isFontAwesomeIRI(image.value) && image && normalizeFontAwesomeIRI(image);
 
     return (
-      <NavbarLinkWrapper>
-        <Property
-          forceRender
-          component={NavbarLinkLink}
-          data-test="MenuItem-MenuItemLabel"
-          handleClick={onClick}
-          id={id}
-          label={ontola.href}
-        >
-          <InnerWrapper {...wrapperProps}>
-            <Property label={schema.image} />
-            {!hideLabel && <Property label={schema.name} />}
-          </InnerWrapper>
-        </Property>
-      </NavbarLinkWrapper>
+      <NavbarLinkLink
+        icon={icon}
+        image={icon ? null : image}
+        label={name?.value}
+        to={href?.value}
+        onClick={onClick}
+      />
     );
   };
 
@@ -68,7 +51,7 @@ const MenuItemNavbar = ({
     );
   }
 
-  return <ResourceBoundary>{menuItemLabel()}</ResourceBoundary>;
+  return menuItemLabel();
 };
 
 MenuItemNavbar.type = [
@@ -91,7 +74,6 @@ MenuItemNavbar.propTypes = {
   image: linkType,
   imageOnly: PropTypes.bool,
   menuItems: linkType,
-  showImage: PropTypes.bool,
   subject: subjectType,
 };
 

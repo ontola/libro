@@ -69,23 +69,23 @@ export const renderFullPage = async (ctx, data) => {
           <meta charset="utf-8">
           <link rel="stylesheet" href="/static/preloader.css">
           <link rel="manifest" href="${manifest.scope}/manifest.json">
-          ${headers?.title?.toString() || `<title data-rh="true">${manifest.short_name}</title>`}
+          ${headers?.title?.toString() || `<title data-rh="true">${manifest.short_name || ''}</title>`}
 
           <meta name="website-iri" content="${manifest.scope || ''}">
           <meta property="og:type" content="website">
           <meta name="mobile-web-app-capable" content="yes">
           <meta name="apple-mobile-web-app-capable" content="yes">
-          <meta name="application-name" content="${manifest.short_name}">
-          <meta name="apple-mobile-web-app-title" content="${manifest.short_name}">
-          <meta name="theme-color" content="${manifest.theme_color}">
-          <meta name="msapplication-navbutton-color" content="${manifest.theme_color}">
+          <meta name="application-name" content="${manifest.short_name || ''}">
+          <meta name="apple-mobile-web-app-title" content="${manifest.short_name || ''}">
+          <meta name="theme-color" content="${manifest.theme_color || ''}">
+          <meta name="msapplication-navbutton-color" content="${manifest.theme_color || ''}">
           <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-          <meta name="msapplication-starturl" content="${manifest.start_url}">
+          <meta name="msapplication-starturl" content="${manifest.start_url || ''}">
           <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1, maximum-scale=1.0, user-scalable=yes">
           <meta content="269911176456825" property="fb:app_id">
           <meta name="theme" content="${manifest.ontola.theme || 'common'}">
-          <meta name="themeOpts" content="${manifest.ontola.theme_options}">
-          ${headers?.meta?.toString() || `<meta content="${manifest.short_name}" property="og:title"/>`}
+          <meta name="themeOpts" content="${manifest.ontola.theme_options || ''}">
+          ${headers?.meta?.toString() || `<meta content="${manifest.short_name || ''}" property="og:title"/>`}
 
           <meta name="csrf-param" content="authenticity_token">
           <meta name="csrf-token" content="${csrfToken}">
@@ -95,7 +95,7 @@ export const renderFullPage = async (ctx, data) => {
 
           ${headers?.link?.toString() || ''}
           ${icons(ctx) || ''}
-          <meta name="msapplication-TileColor" content="${manifest.theme_color}">
+          <meta name="msapplication-TileColor" content="${manifest.theme_color || ''}">
 
           <meta name="msapplication-config" content="/assets/favicons/browserconfig.xml">
 

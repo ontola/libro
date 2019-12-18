@@ -1,3 +1,4 @@
+import { makeStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -7,13 +8,22 @@ const propTypes = {
   count: PropTypes.number,
 };
 
+const useStyles = makeStyles(() => ({
+  wrapper: {
+    position: 'absolute',
+    right: 0,
+    top: 0,
+  },
+}));
+
 const NavbarLinkCount = ({ count }) => {
+  const classes = useStyles();
   if (!(count > 0)) {
     return null;
   }
 
   return (
-    <div className="NavbarLink__count-wrapper">
+    <div className={classes.wrapper}>
       <CountBubble count={count} />
     </div>
   );

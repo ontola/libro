@@ -8,14 +8,11 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import MediaQuery from 'react-responsive';
 import { withRouter } from 'react-router';
 
-import { mediaQueries } from '../../components/shared/config';
 import { SignInFormLink } from '../../components/SignInForm/index';
-import NavbarLink from '../../components/NavbarLink';
+import { NavbarLinkLink } from '../../components/NavbarLink';
 import path, { currentLocation } from '../../helpers/paths';
-import { values } from '../../helpers/ssr';
 import ontola from '../../ontology/ontola';
 import { navbarTopology } from '../../topologies/Navbar';
 
@@ -26,7 +23,7 @@ const propTypes = {
   lrs: lrsType,
 };
 
-const GuestUserActor = ({ location, lrs }) => {
+const GuestUserNavbar = ({ location, lrs }) => {
   const redirectURL = currentLocation(location).value;
 
   const label = (
@@ -38,32 +35,27 @@ const GuestUserActor = ({ location, lrs }) => {
   );
 
   return (
-    <MediaQuery query={mediaQueries.smallAndAbove} values={values}>
-      {(matches) => (
-        <React.Fragment>
-          <SignInFormLink
-            Component={NavbarLink}
-            icon="sign-in"
-            label={matches && label}
-            to={path.signIn(redirectURL)}
-            onClick={(e) => {
-              e.preventDefault();
-              lrs.actions.app.startSignIn(rdf.namedNode(redirectURL));
-            }}
-          />
-          <Property label={ontola.actorType} />
-        </React.Fragment>
-      )}
-    </MediaQuery>
+    <React.Fragment>
+      <SignInFormLink
+        Component={NavbarLinkLink}
+        label={label}
+        to={path.signIn(redirectURL)}
+        onClick={(e) => {
+          e.preventDefault();
+          lrs.actions.app.startSignIn(rdf.namedNode(redirectURL));
+        }}
+      />
+      <Property label={ontola.actorType} />
+    </React.Fragment>
   );
 };
 
-GuestUserActor.propTypes = propTypes;
+GuestUserNavbar.propTypes = propTypes;
 
-const GuestUserActorConnected = withRouter(withLRS(GuestUserActor));
+const GuestUserNavbarConnected = withRouter(withLRS(GuestUserNavbar));
 
 export default LinkedRenderStore.registerRenderer(
-  GuestUserActorConnected,
+  GuestUserNavbarConnected,
   ontola.GuestUser,
   RENDER_CLASS_NAME,
   navbarTopology

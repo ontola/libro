@@ -12,8 +12,16 @@ import {
 } from '../../helpers/iris';
 import app from '../../ontology/app';
 
+import ExternalLink from './ExternalLink';
 import themeStyles from './ThemeStyles';
 import featureStyles from './FeatureStyles';
+
+export const linkFeatures = PropTypes.arrayOf(
+  PropTypes.oneOf([
+    'bold',
+    'centered',
+  ])
+);
 
 const isActiveDefault = (to) => {
   const relative = retrievePath(to);
@@ -52,17 +60,14 @@ const Link = ({
   if (isDifferentWebsite(to)) {
     if (!allowExternal) {
       return (
-        <a
-          {...other}
+        <ExternalLink
           className={componentClassName}
           href={to}
           ref={innerRef}
-          rel="nofollow noopener noreferrer"
-          target="_blank"
           onClick={onClick}
         >
           {children}
-        </a>
+        </ExternalLink>
       );
     }
 
@@ -106,13 +111,7 @@ Link.propTypes = {
   allowExternal: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
-  features: PropTypes.arrayOf(
-    PropTypes.oneOf([
-      'bold',
-      'centered',
-      'padded',
-    ])
-  ),
+  features: linkFeatures,
   innerRef: PropTypes.func,
   isActive: PropTypes.func,
   isIndex: PropTypes.bool,

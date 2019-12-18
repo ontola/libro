@@ -21,7 +21,6 @@ import InfinitePagination from './properties/infinitePagination';
 import DefaultPagination from './properties/defaultPagination';
 import CollectionCardAppendix from './CollectionCardAppendix';
 import CollectionInline from './CollectionInline';
-import CollectionNavbar from './CollectionNavbar';
 import CollectionFullPage from './CollectionFullPage';
 import CollectionSection from './CollectionSection';
 import CollectionTableCell from './CollectionTableCell';
@@ -31,7 +30,6 @@ import TotalItems from './properties/totalItems';
 import './Collection.scss';
 
 export default [
-  CollectionNavbar,
   CollectionTableCell,
   register(
     getCollection('FullResourceCollection', {

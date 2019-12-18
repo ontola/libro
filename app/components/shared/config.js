@@ -91,5 +91,3 @@ export const colors = {
     'x-light': 'rgb(230, 230, 230)',
   },
 };
-
-export const navbarHeight = '3.2rem';

@@ -7,8 +7,4 @@ export default makeStyles(() => ({
   centered: {
     alignItems: 'center',
   },
-  padded: {
-    display: 'block',
-    padding: '.3rem 1.3rem',
-  },
 }));

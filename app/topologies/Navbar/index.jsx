@@ -1,7 +1,11 @@
+import AppBar from '@material-ui/core/AppBar';
+import Container from '@material-ui/core/Container';
+import Toolbar from '@material-ui/core/Toolbar';
+import { withTheme } from '@material-ui/styles';
+import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
-import { checkLuminance, hexToRgb } from '../../helpers/color';
 import { currentLocation } from '../../helpers/paths';
 import app from '../../ontology/app';
 import { getCurrentUserType } from '../../state/app/selectors';
@@ -15,18 +19,42 @@ class Navbar extends Topology {
   constructor(props) {
     super(props);
 
-    const textColor = __CLIENT__
-      ? getComputedStyle(document.body).getPropertyValue('--navbar-color')
-      : 'black';
-    this.className = [
-      'Navbar',
-      'navbar-background',
-      'navbar-color',
-      'theme',
-      checkLuminance(hexToRgb(textColor)) ? 'Navbar--dark-text' : 'Navbar--white-text',
-    ].join(' ');
-
     this.topology = navbarTopology;
+  }
+
+  renderContent() {
+    const {
+      background,
+      resolveColor,
+      height,
+      maxWidth,
+      position,
+    } = this.props.theme.appBar;
+    const color = resolveColor();
+
+    return this.wrap((subject) => (
+      <React.Fragment>
+        <AppBar
+          className={this.getClassName()}
+          color={background}
+          position={position}
+          resource={subject && subject.value}
+          style={{
+            color,
+          }}
+        >
+          <Container maxWidth={maxWidth}>
+            <Toolbar
+              disableGutters
+              variant="dense"
+            >
+              {this.props.children}
+            </Toolbar>
+          </Container>
+        </AppBar>
+        {position === 'fixed' && <div style={{ height }} />}
+      </React.Fragment>
+    ));
   }
 }
 
@@ -37,4 +65,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default withRouter(connect(mapStateToProps)(Navbar));
+export default withTheme(withRouter(connect(mapStateToProps)(Navbar)));

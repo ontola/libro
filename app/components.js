@@ -67,7 +67,6 @@ import CompNavbarLinkNavbarLinkIcon from './components/NavbarLink/NavbarLinkIcon
 import CompNavbarLinkNavbarLinkImage from './components/NavbarLink/NavbarLinkImage';
 import CompNavbarLinkNavbarLinkLabel from './components/NavbarLink/NavbarLinkLabel';
 import CompNavbarLinkNavbarLinkLink from './components/NavbarLink/NavbarLinkLink';
-import CompNavbarLinkNavbarLinkWrapper from './components/NavbarLink/NavbarLinkWrapper';
 import CompNetworkStatusIndicator from './components/NetworkStatusIndicator/index';
 import CompOmniform from './components/Omniform/index';
 import CompOmniformOmniformPreview from './components/Omniform/OmniformPreview';
@@ -160,7 +159,6 @@ export const componentMap = {
   [rdf.id(components.NavbarLinkNavbarLinkImage)]: CompNavbarLinkNavbarLinkImage,
   [rdf.id(components.NavbarLinkNavbarLinkLabel)]: CompNavbarLinkNavbarLinkLabel,
   [rdf.id(components.NavbarLinkNavbarLinkLink)]: CompNavbarLinkNavbarLinkLink,
-  [rdf.id(components.NavbarLinkNavbarLinkWrapper)]: CompNavbarLinkNavbarLinkWrapper,
   [rdf.id(components.NetworkStatusIndicator)]: CompNetworkStatusIndicator,
   [rdf.id(components.Omniform)]: CompOmniform,
   [rdf.id(components.OmniformOmniformPreview)]: CompOmniformOmniformPreview,

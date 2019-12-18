@@ -6,7 +6,7 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Link from '../../../components/Link';
+import Link, { linkFeatures } from '../../../components/Link';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { footerTopology } from '../../../topologies/Footer';
@@ -35,11 +35,7 @@ class Href extends React.PureComponent {
     action: linkType,
     children: PropTypes.node,
     component: PropTypes.func,
-    features: PropTypes.arrayOf(
-      PropTypes.oneOf([
-        'padded',
-      ])
-    ),
+    features: linkFeatures,
     handleClick: PropTypes.func,
     href: linkType,
     lrs: lrsType,

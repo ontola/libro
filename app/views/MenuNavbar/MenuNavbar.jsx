@@ -1,15 +1,13 @@
-import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import MenuClose from '@material-ui/icons/Close';
 import MenuOpen from '@material-ui/icons/Menu';
-import { useTheme } from '@material-ui/styles';
 import {
   Resource,
   register,
 } from 'link-redux';
 import React from 'react';
 
+import { NavbarLinkLink } from '../../components/NavbarLink';
 import app from '../../ontology/app';
 import AppMenu from '../../topologies/AppMenu';
 import { navbarTopology } from '../../topologies/Navbar';
@@ -19,20 +17,17 @@ import useStyles from './MenuNavbarStyles';
 const MenuNavbar = () => {
   const classes = useStyles();
 
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up('md'));
+  const trigger = (onClick, open) => {
+    const icon = open ? <MenuClose /> : <MenuOpen />;
 
-  const trigger = (onClick, open) => (
-    <Button
-      aria-label="open"
-      className={classes.button}
-      color="inherit"
-      size="large"
-      onClick={onClick}
-    >
-      {open ? <MenuClose /> : <MenuOpen />}{matches && ' Menu'}
-    </Button>
-  );
+    return (
+      <NavbarLinkLink
+        icon={icon}
+        label="Menu"
+        onClick={onClick}
+      />
+    );
+  };
 
   return (
     <AppMenu trigger={trigger}>

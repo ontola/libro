@@ -70,7 +70,6 @@ export const components = {
   NavbarLinkNavbarLinkImage: component('NavbarLink/NavbarLinkImage'),
   NavbarLinkNavbarLinkLabel: component('NavbarLink/NavbarLinkLabel'),
   NavbarLinkNavbarLinkLink: component('NavbarLink/NavbarLinkLink'),
-  NavbarLinkNavbarLinkWrapper: component('NavbarLink/NavbarLinkWrapper'),
   NetworkStatusIndicator: component('NetworkStatusIndicator'),
   Omniform: component('Omniform'),
   OmniformOmniformPreview: component('Omniform/OmniformPreview'),

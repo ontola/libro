@@ -13,7 +13,7 @@ import { formFooterTopology } from '../../topologies/FormFooter/Footer';
 import { navbarTopology } from '../../topologies/Navbar';
 
 import ActorType from './properties/actorType';
-import GuestUser from './GuestUser';
+import GuestUserNavbar from './GuestUserNavbar';
 import GuestUserParent from './GuestUserParent';
 
 const propTypes = {
@@ -58,6 +58,6 @@ export default [
     formFooterTopology
   ),
   ActorType,
-  GuestUser,
+  GuestUserNavbar,
   GuestUserParent,
 ];
