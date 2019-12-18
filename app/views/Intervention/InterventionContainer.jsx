@@ -12,6 +12,7 @@ import CardContent from '../../components/Card/CardContent';
 import LDLink from '../../components/LDLink';
 import { connectHighlighting, hightlightType } from '../../containers/Highlight';
 import { NS } from '../../helpers/LinkedRenderStore';
+import meeting from '../../ontology/meeting';
 import rivm from '../../ontology/rivm';
 import ActionsBar from '../../topologies/ActionsBar';
 import AttributeList from '../../topologies/AttributeList';
@@ -35,7 +36,7 @@ const InterventionContainer = ({ highlighted, subject }) => (
       </AttributeList>
     </CardContent>
     <CardRow noBorder>
-      <Property label={[NS.argu('attachments'), NS.meeting('attachment')]} />
+      <Property label={[NS.argu('attachments'), meeting.attachment]} />
     </CardRow>
     <ActionsBar small>
       <LDLink>Lees meer</LDLink>

@@ -10,6 +10,7 @@ import {
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import argu from '../../ontology/argu';
+import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import CardMain from '../../topologies/Card/CardMain';
@@ -58,7 +59,7 @@ class MotionPage extends React.PureComponent {
             </CardContent>
             <CardRow noBorder>
               <Property label={argu.attachments} onLoad={() => null} />
-              <Property label={NS.meeting('attachment')} onLoad={() => null} />
+              <Property label={meeting.attachment} onLoad={() => null} />
             </CardRow>
             <Property label={argu.voteableVoteEvent} onLoad={() => null} />
             <CardAppendix>

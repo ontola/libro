@@ -11,7 +11,9 @@ import {
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import argu from '../../ontology/argu';
+import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
+import rivm from '../../ontology/rivm';
 import ActionsBar from '../../topologies/ActionsBar';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import CardMain from '../../topologies/Card/CardMain';
@@ -53,7 +55,7 @@ const RiskPage = () => (
         </CardContent>
         <CardRow noBorder>
           <Property label={argu.attachments} onLoad={() => null} />
-          <Property label={NS.meeting('attachment')} onLoad={() => null} />
+          <Property label={meeting.attachment} onLoad={() => null} />
         </CardRow>
         <ActionsBar>
           <Property label={ontola.favoriteAction} onLoad={() => null} />
@@ -65,7 +67,13 @@ const RiskPage = () => (
       <Property label={ontola.publishAction} onLoad={() => null} />
     </Container>
     <Container>
-      <Property forceRender label={NS.rivm('measureTypes')} />
+      <Property forceRender renderWhenEmpty label={rivm.incidents} />
+    </Container>
+    <Container>
+      <Property forceRender renderWhenEmpty label={rivm.scenarios} />
+    </Container>
+    <Container>
+      <Property forceRender renderWhenEmpty label={rivm.measureTypes} />
     </Container>
     <Container>
       <Property label={schema.comment} />
@@ -73,7 +81,7 @@ const RiskPage = () => (
   </PrimaryResource>
 );
 
-RiskPage.type = NS.rivm('Risk');
+RiskPage.type = rivm.Risk;
 
 RiskPage.topology = pageTopology;
 

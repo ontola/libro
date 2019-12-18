@@ -16,6 +16,7 @@ import {
   hightlightPropTypes,
 } from '../../containers/Highlight';
 import { NS } from '../../helpers/LinkedRenderStore';
+import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
 import { cardTopology } from '../../topologies/Card';
 import CardFixed, { cardFixedTopology } from '../../topologies/Card/CardFixed';
@@ -116,7 +117,7 @@ const ThingCard = () => (
       <Property label={NS.argu('opinion')} onError={() => null} onLoad={LoadingOpinion} />
       <Property label={[schema.name, rdfs.label, schema.name]} />
       <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
-      <Property label={NS.meeting('attachment')} />
+      <Property label={meeting.attachment} />
     </CardContent>
   </CardRow>
 );

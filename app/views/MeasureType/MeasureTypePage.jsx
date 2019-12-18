@@ -11,6 +11,7 @@ import {
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import argu from '../../ontology/argu';
+import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
 import rivm from '../../ontology/rivm';
 import ActionsBar from '../../topologies/ActionsBar';
@@ -57,7 +58,7 @@ const MeasureTypePage = () => (
         </CardContent>
         <CardRow noBorder>
           <Property label={argu.attachments} onLoad={() => null} />
-          <Property label={NS.meeting('attachment')} onLoad={() => null} />
+          <Property label={meeting.attachment} onLoad={() => null} />
         </CardRow>
         <ActionsBar>
           <Property label={ontola.favoriteAction} onLoad={() => null} />

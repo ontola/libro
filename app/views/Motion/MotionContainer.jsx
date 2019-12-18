@@ -11,6 +11,7 @@ import CardContent from '../../components/Card/CardContent';
 import { connectHighlighting, hightlightType } from '../../containers/Highlight';
 import SignInSwitcherContainer from '../../containers/SignInSwitcherContainer';
 import { NS } from '../../helpers/LinkedRenderStore';
+import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
 import Card from '../../topologies/Card';
 import CardAppendix from '../../topologies/Card/CardAppendix';
@@ -28,7 +29,7 @@ const MotionContainer = ({ highlighted, subject }) => (
       <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
     </CardContent>
     <CardRow noBorder>
-      <Property label={[NS.argu('attachments'), NS.meeting('attachment')]} />
+      <Property label={[NS.argu('attachments'), meeting.attachment]} />
     </CardRow>
     <Property label={NS.argu('voteableVoteEvent')} />
     <CardAppendix>

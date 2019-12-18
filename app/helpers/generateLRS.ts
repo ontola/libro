@@ -16,6 +16,7 @@ import { appMiddleware, frontendIRIStr, website } from '../middleware/app';
 import execFilter from '../middleware/execFilter';
 import logging from '../middleware/logging';
 import ontolaMiddleware from '../middleware/ontolaMiddleware';
+import meeting from '../ontology/meeting';
 import ontola from '../ontology/ontola';
 import rivm from '../ontology/rivm';
 import sp from '../ontology/sp';
@@ -113,7 +114,7 @@ export default function generateLRS() {
     app: createNS(frontendIRIStr.endsWith('/') ? frontendIRIStr : `${frontendIRIStr}/`),
     appSlashless: createNS(frontendIRIStr.slice(0, frontendIRIStr.endsWith('/') ? -1 : undefined)),
     fa4: createNS('http://fontawesome.io/icon/'),
-    meeting: createNS('https://argu.co/ns/meeting/'),
+    meeting: meeting.ns,
     ontola: ontola.ns,
     opengov: createNS('http://www.w3.org/ns/opengov#'),
     org: createNS('http://www.w3.org/ns/org#'),
@@ -230,22 +231,22 @@ export default function generateLRS() {
     rdf.quad(NS.teamGL('PotentialParticipant'), rdfx.type, rdfs.Class),
     rdf.quad(NS.teamGL('PotentialParticipant'), rdfs.subClassOf, NS.teamGL('Participant')),
 
-    rdf.quad(NS.meeting('Meeting'), rdfx.type, rdfs.Class),
-    rdf.quad(NS.meeting('Meeting'), rdfs.subClassOf, schema.Thing),
-    rdf.quad(NS.meeting('Meeting'), rdfs.subClassOf, rdf.namedNode('http://purl.org/NET/c4dm/event.owl#Event')),
-    rdf.quad(NS.meeting('Meeting'), rdfs.label, rdf.literal('Meeting', languages.en)),
-    rdf.quad(NS.meeting('Meeting'), rdfs.label, rdf.literal('Vergadering', languages.nl)),
-    rdf.quad(NS.meeting('Meeting'), schema.description, rdf.literal('A meeting is an event where people discuss things and make decisions.', languages.en)),
-    rdf.quad(NS.meeting('Meeting'), schema.description, rdf.literal('Een vergadering is een bijeenkomst waar mensen dingen bespreken en belsuiten nemen.', languages.nl)),
-    rdf.quad(NS.meeting('Meeting'), schema.image, rdf.namedNode('http://fontawesome.io/icon/calendar')),
+    rdf.quad(meeting.Meeting, rdfx.type, rdfs.Class),
+    rdf.quad(meeting.Meeting, rdfs.subClassOf, schema.Thing),
+    rdf.quad(meeting.Meeting, rdfs.subClassOf, rdf.namedNode('http://purl.org/NET/c4dm/event.owl#Event')),
+    rdf.quad(meeting.Meeting, rdfs.label, rdf.literal('Meeting', languages.en)),
+    rdf.quad(meeting.Meeting, rdfs.label, rdf.literal('Vergadering', languages.nl)),
+    rdf.quad(meeting.Meeting, schema.description, rdf.literal('A meeting is an event where people discuss things and make decisions.', languages.en)),
+    rdf.quad(meeting.Meeting, schema.description, rdf.literal('Een vergadering is een bijeenkomst waar mensen dingen bespreken en belsuiten nemen.', languages.nl)),
+    rdf.quad(meeting.Meeting, schema.image, rdf.namedNode('http://fontawesome.io/icon/calendar')),
 
-    rdf.quad(NS.meeting('AgendaItem'), rdfx.type, rdfs.Class),
-    rdf.quad(NS.meeting('AgendaItem'), rdfs.label, rdf.literal('Agenda Item', languages.en)),
-    rdf.quad(NS.meeting('AgendaItem'), rdfs.label, rdf.literal('Agendapunt', languages.nl)),
-    rdf.quad(NS.meeting('AgendaItem'), rdfs.subClassOf, schema.Thing),
-    rdf.quad(NS.meeting('AgendaItem'), schema.description, rdf.literal('An Agenda Item is a topic that is discussed during a meeeting.', languages.en)),
-    rdf.quad(NS.meeting('AgendaItem'), schema.description, rdf.literal('Een Agendapunt is een onderwerp dat wordt besproken tijdens een vergadering.', languages.nl)),
-    rdf.quad(NS.meeting('AgendaItem'), schema.image, rdf.namedNode('http://fontawesome.io/icon/list')),
+    rdf.quad(meeting.AgendaItem, rdfx.type, rdfs.Class),
+    rdf.quad(meeting.AgendaItem, rdfs.label, rdf.literal('Agenda Item', languages.en)),
+    rdf.quad(meeting.AgendaItem, rdfs.label, rdf.literal('Agendapunt', languages.nl)),
+    rdf.quad(meeting.AgendaItem, rdfs.subClassOf, schema.Thing),
+    rdf.quad(meeting.AgendaItem, schema.description, rdf.literal('An Agenda Item is a topic that is discussed during a meeeting.', languages.en)),
+    rdf.quad(meeting.AgendaItem, schema.description, rdf.literal('Een Agendapunt is een onderwerp dat wordt besproken tijdens een vergadering.', languages.nl)),
+    rdf.quad(meeting.AgendaItem, schema.image, rdf.namedNode('http://fontawesome.io/icon/list')),
 
     rdf.quad(ontola.MenuItem, rdfx.type, rdfs.Class),
     rdf.quad(ontola.MenuItem, rdfs.subClassOf, NS.argu('Thing')),

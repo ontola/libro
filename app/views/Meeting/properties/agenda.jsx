@@ -6,16 +6,16 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
 import { handle } from '../../../helpers/logging';
+import meeting from '../../../ontology/meeting';
 import { allTopologies } from '../../../topologies';
 
 const DECIMAL = 10;
 
 class Agenda extends PropertyBase {
-  static type = NS.meeting('Meeting');
+  static type = meeting.Meeting;
 
-  static property = NS.meeting('agenda');
+  static property = meeting.agenda;
 
   static topology = allTopologies;
 
