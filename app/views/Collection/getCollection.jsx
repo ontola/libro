@@ -71,6 +71,7 @@ export default function getCollection({
       columns: linkType,
       currentPage: PropTypes.string,
       depth: PropTypes.number,
+      hideHeader: PropTypes.bool,
       hidePagination: PropTypes.bool,
       linkVersion: PropTypes.number,
       linkedProp: linkedPropType,
@@ -151,6 +152,7 @@ export default function getCollection({
       const {
         columns,
         depth,
+        hideHeader,
         lrs,
         subject,
         totalItems,
@@ -170,7 +172,7 @@ export default function getCollection({
       const collectionDisplay = this.props.collectionDisplay
         || this.props.collectionDisplayFromData;
       const resolvedColumns = columns ? listToArr(lrs, [], columns) : undefined;
-      const header = (!depth || depth === 0) && (
+      const header = (!depth || depth === 0) && !hideHeader && (
         <Property
           forceRender
           collectionDisplay={collectionDisplay}
