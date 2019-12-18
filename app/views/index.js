@@ -27,6 +27,7 @@ import Forum from './Forum/index';
 import Group from './Group';
 import GroupMembership from './GroupMembership';
 import ImageObject from './ImageObject';
+import Incident from './Incident';
 import InfiniteCollectionPage from './InfiniteCollectionPage';
 import Intervention from './Intervention';
 import InterventionType from './InterventionType';
@@ -48,6 +49,7 @@ import Person from './Person';
 import Placement from './Placement';
 import PropertyQuery from './PropertyQuery';
 import Risk from './Risk';
+import Scenario from './Scenario';
 import SearchResult from './SearchResult';
 import SeqComp from './Seq';
 import Shape from './Shape';
@@ -88,6 +90,7 @@ export function getViews() {
     ...Group,
     ...GroupMembership,
     ...ImageObject,
+    ...Incident,
     ...Intervention,
     ...InterventionType,
     ...InfiniteCollectionPage,
@@ -109,6 +112,7 @@ export function getViews() {
     ...RDFProperty,
     ...RDFSClass,
     ...Risk,
+    ...Scenario,
     ...SearchResult,
     ...SeqComp,
     ...Shape,
