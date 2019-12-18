@@ -6,6 +6,7 @@ import {
   subjectType,
   withLinkCtx,
 } from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import {
@@ -64,13 +65,19 @@ TextCutoff.propTypes = propTypes;
 
 const propTypesCollection = {
   linkedProp: linkedPropType,
+  noSpacing: PropTypes.bool,
   subject: subjectType,
 };
 
-const TextCollapsed = ({ linkedProp, subject }) => (
+const TextCollapsed = ({
+  linkedProp,
+  noSpacing,
+  subject,
+}) => (
   <CollapseText
     data-test="Thing-text-card"
     id={subject.value}
+    noSpacing={noSpacing}
     text={linkedProp.value}
   />
 );

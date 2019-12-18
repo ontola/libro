@@ -141,4 +141,10 @@
       display: inline;
     }
   }
+
+  &--no-spacing {
+    p {
+      margin-bottom: 0;
+    }
+  }
 }

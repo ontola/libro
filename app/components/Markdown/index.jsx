@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import memoize from 'memoize-one';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -52,6 +53,8 @@ class Markdown extends React.PureComponent {
     inline: PropTypes.bool,
     /** Disable creation of anchor elements in the output */
     noLinks: PropTypes.bool,
+    /** Remove padding */
+    noSpacing: PropTypes.bool,
     /** Makes all links tabbable. */
     tabbable: PropTypes.bool,
     /** The content of the item */
@@ -79,6 +82,7 @@ class Markdown extends React.PureComponent {
       highlightedText,
       inline,
       noLinks,
+      noSpacing,
       tabbable,
       text,
     } = this.props;
@@ -88,11 +92,17 @@ class Markdown extends React.PureComponent {
       link: noLinks ? stylizedPlaintextLink : routerLink(tabbable ? undefined : -1),
     };
 
+    const classes = classNames({
+      Markdown: true,
+      'Markdown--inline': inline,
+      'Markdown--no-spacing': noSpacing,
+    });
+
     return (
       <ReactMarkdown
         escapeHtml
         unwrapDisallowed
-        className={`Markdown ${inline ? 'Markdown--inline' : ''}`}
+        className={classes}
         renderers={customRenderers}
         softBreak="br"
         source={this.sourceText(highlightedText, text)}

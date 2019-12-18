@@ -27,6 +27,7 @@ const messages = defineMessages({
 const propTypes = {
   id: PropTypes.string.isRequired,
   minCharacters: PropTypes.number,
+  noSpacing: PropTypes.bool,
   onClickToggle: PropTypes.func.isRequired,
   open: PropTypes.bool,
   text: PropTypes.string,
@@ -40,6 +41,7 @@ const CollapseText = ({
   id,
   onClickToggle,
   minCharacters,
+  noSpacing,
   open,
   text,
 }) => {
@@ -58,7 +60,7 @@ const CollapseText = ({
           preview
           id={id}
         >
-          <Markdown tabbable={open} text={text} />
+          <Markdown noSpacing={noSpacing} tabbable={open} text={text} />
         </CollapsibleContainer>
         <Button
           plain
@@ -85,7 +87,7 @@ const CollapseText = ({
     );
   }
 
-  return <Markdown text={text} />;
+  return <Markdown noSpacing={noSpacing} text={text} />;
 };
 
 CollapseText.propTypes = propTypes;
