@@ -1,4 +1,4 @@
-import { namedNodeShape } from '@ontola/mash';
+import RDFTypes from '@rdfdev/prop-types';
 import schema from '@ontologies/schema';
 import { normalizeType } from 'link-lib';
 import { Property, register } from 'link-redux';
@@ -17,8 +17,8 @@ class ThingTable extends React.PureComponent {
   static propTypes = {
     columns: PropTypes.arrayOf(
       PropTypes.oneOfType([
-        namedNodeShape,
-        PropTypes.arrayOf(namedNodeShape),
+        RDFTypes.namedNode,
+        PropTypes.arrayOf(RDFTypes.namedNode),
         PropTypes.instanceOf(Promise),
       ])
     ),

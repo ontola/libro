@@ -1,4 +1,4 @@
-import { literalShape } from '@ontola/mash';
+import RDFTypes from '@rdfdev/prop-types';
 import schema from '@ontologies/schema';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { link } from 'link-redux';
@@ -9,7 +9,7 @@ import { cardListTopology } from '../../topologies/Card/CardList';
 import { cardMicroRowTopology } from '../../topologies/Card/CardMicroRow';
 
 const propTypes = {
-  name: literalShape,
+  name: RDFTypes.literal,
 };
 
 const PersonSection = ({ name }) => (

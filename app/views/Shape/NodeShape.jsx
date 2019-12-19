@@ -1,7 +1,7 @@
-import { nodeType } from '@ontola/mash';
 import rdfs from '@ontologies/rdfs';
 import { isTerm } from '@ontologies/core';
 import sh from '@ontologies/shacl';
+import { nodeType } from '@rdfdev/prop-types';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   Property,

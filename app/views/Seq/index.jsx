@@ -1,4 +1,4 @@
-import { namedNodeShape } from '@ontola/mash';
+import RDFTypes from '@rdfdev/prop-types';
 import rdfx from '@ontologies/rdf';
 import {
   LinkedResourceContainer,
@@ -78,7 +78,7 @@ Seq.defaultProps = {
 
 Seq.propTypes = {
   childProps: PropTypes.objectOf(PropTypes.any),
-  columns: PropTypes.arrayOf(namedNodeShape),
+  columns: PropTypes.arrayOf(RDFTypes.namedNode),
   depth: PropTypes.number,
   gutter: PropTypes.number,
   itemWrapper: PropTypes.elementType,

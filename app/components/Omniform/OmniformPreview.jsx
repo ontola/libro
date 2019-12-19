@@ -1,4 +1,4 @@
-import { namedNodeShape } from '@ontola/mash';
+import RDFTypes from '@rdfdev/prop-types';
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
 import { getTermBestLang } from 'link-lib';
@@ -25,7 +25,7 @@ const messages = defineMessages({
 const propTypes = {
   lrs: lrsType,
   onClick: PropTypes.func.isRequired,
-  primaryAction: namedNodeShape,
+  primaryAction: RDFTypes.namedNode,
 };
 
 const OmniformPreview = ({

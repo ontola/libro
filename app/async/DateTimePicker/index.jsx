@@ -1,6 +1,6 @@
 import DayJSUtils from '@date-io/dayjs';
 import { DateTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
-import { literalShape, namedNodeShape } from '@ontola/mash';
+import RDFTypes from '@rdfdev/prop-types';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
@@ -45,8 +45,8 @@ const propTypes = {
   onChange: PropTypes.func.isRequired,
   value: PropTypes.oneOfType([
     PropTypes.string,
-    literalShape,
-    namedNodeShape,
+    RDFTypes.literal,
+    RDFTypes.namedNode,
     PropTypes.oneOf([null]),
   ]),
 };

@@ -1,4 +1,4 @@
-import { literalShape } from '@ontola/mash';
+import RDFTypes from '@rdfdev/prop-types';
 import foaf from '@ontologies/foaf';
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
@@ -50,7 +50,7 @@ ThingTableCell.mapDataToProps = {
 };
 
 ThingTableCell.propTypes = {
-  name: literalShape,
+  name: RDFTypes.literal,
 };
 
 export default register(ThingTableCell);

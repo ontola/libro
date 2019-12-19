@@ -1,4 +1,4 @@
-import { literalShape, namedNodeShape } from '@ontola/mash';
+import RDFTypes from '@rdfdev/prop-types';
 import rdf from '@ontologies/core';
 import { linkType } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -103,8 +103,8 @@ OneToOneRenderer.propTypes = {
     value: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.string,
-      literalShape,
-      namedNodeShape,
+      RDFTypes.literal,
+      RDFTypes.namedNode,
       PropTypes.oneOf([null]),
     ]),
   }),

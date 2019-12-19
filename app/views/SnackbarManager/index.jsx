@@ -1,4 +1,5 @@
-import { blankNodeShape, firstTermOfSeq } from '@ontola/mash';
+import { firstTermOfSeq } from '@rdfdev/collections';
+import RDFTypes from '@rdfdev/prop-types';
 import {
   LinkedResourceContainer,
   register,
@@ -36,7 +37,7 @@ SnackbarManager.mapDataToProps = {
 };
 
 SnackbarManager.propTypes = {
-  queue: blankNodeShape,
+  queue: RDFTypes.blankNode,
 };
 
 export default [

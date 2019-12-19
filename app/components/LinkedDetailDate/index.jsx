@@ -1,5 +1,5 @@
 import schema from '@ontologies/schema';
-import { literalShape } from '@ontola/mash';
+import RDFTypes from '@rdfdev/prop-types';
 import { link } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -8,16 +8,16 @@ import argu from '../../ontology/argu';
 import DetailDate from '../DetailDate';
 
 const propTypes = {
-  dateCreated: literalShape,
-  dateModified: literalShape,
-  datePublished: literalShape,
-  dateSubmitted: literalShape,
-  duration: literalShape,
-  endDate: literalShape,
+  dateCreated: RDFTypes.literal,
+  dateModified: RDFTypes.literal,
+  datePublished: RDFTypes.literal,
+  dateSubmitted: RDFTypes.literal,
+  duration: RDFTypes.literal,
+  endDate: RDFTypes.literal,
   floatRight: PropTypes.bool,
   hideIcon: PropTypes.bool,
-  lastActivityAt: literalShape,
-  startDate: literalShape,
+  lastActivityAt: RDFTypes.literal,
+  startDate: RDFTypes.literal,
 };
 
 const LinkedDetailDate = ({

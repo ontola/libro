@@ -1,3 +1,4 @@
+import RDFTypes from '@rdfdev/prop-types';
 import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
 import sh from '@ontologies/shacl';
@@ -7,6 +8,7 @@ import {
   LinkedResourceContainer,
   PropertyBase,
   linkType,
+  lrsType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -106,7 +108,11 @@ class EntryPointBase extends PropertyBase {
 }
 
 EntryPointBase.propTypes = {
+  action: RDFTypes.namedNode,
+  form: PropTypes.string,
   invalid: PropTypes.bool,
+  lrs: lrsType,
+  onDone: PropTypes.func,
   onStatusForbidden: PropTypes.func,
   url: linkType,
 };

@@ -1,4 +1,4 @@
-import { namedNodeShape } from '@ontola/mash';
+import RDFTypes from '@rdfdev/prop-types';
 import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
 import * as fa from 'fontawesome';
@@ -78,10 +78,10 @@ class MapView extends React.Component {
     onMapClick: PropTypes.func,
     /** Placements to render on the map. */
     placements: PropTypes.arrayOf(PropTypes.oneOfType([
-      namedNodeShape,
+      RDFTypes.namedNode,
       PropTypes.shape({
         id: PropTypes.string,
-        image: namedNodeShape,
+        image: RDFTypes.namedNode,
         lat: PropTypes.number,
         lon: PropTypes.number,
       }),

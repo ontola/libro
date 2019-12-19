@@ -1,4 +1,4 @@
-import { literalShape, namedNodeShape } from '@ontola/mash';
+import RDFTypes from '@rdfdev/prop-types';
 import rdf, { isLiteral, isTerm } from '@ontologies/core';
 import classNames from 'classnames';
 import {
@@ -61,8 +61,8 @@ const propTypes = {
     value: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.string,
-      literalShape,
-      namedNodeShape,
+      RDFTypes.literal,
+      RDFTypes.namedNode,
       PropTypes.oneOf([null]),
     ]),
   }),

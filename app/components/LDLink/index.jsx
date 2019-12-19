@@ -1,4 +1,4 @@
-import { namedNodeShape } from '@ontola/mash';
+import RDFTypes from '@rdfdev/prop-types';
 import schema from '@ontologies/schema';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -53,7 +53,7 @@ LDLink.propTypes = {
   ]),
   title: PropTypes.string,
   /** Overrides the url */
-  to: namedNodeShape,
+  to: RDFTypes.namedNode,
 };
 
 export default LDLink;

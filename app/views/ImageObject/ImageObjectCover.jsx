@@ -1,4 +1,4 @@
-import { literalShape, namedNodeShape } from '@ontola/mash';
+import RDFTypes from '@rdfdev/prop-types';
 import schema from '@ontologies/schema';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { link, subjectType } from 'link-redux';
@@ -16,9 +16,9 @@ import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 
 class ImageObjectBackgroundCover extends PureComponent {
   static propTypes = {
-    imagePositionY: literalShape,
+    imagePositionY: RDFTypes.literal,
     subject: subjectType,
-    url: namedNodeShape.isRequired,
+    url: RDFTypes.namedNode.isRequired,
   };
 
   render() {

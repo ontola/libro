@@ -1,4 +1,4 @@
-import { literalShape } from '@ontola/mash';
+import RDFTypes from '@rdfdev/prop-types';
 import foaf from '@ontologies/foaf';
 import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
@@ -84,7 +84,7 @@ PersonDetail.mapDataToProps = {
 
 PersonDetail.propTypes = {
   hideName: PropTypes.bool,
-  name: literalShape,
+  name: RDFTypes.literal,
   theme: PropTypes.string,
   titleKey: PropTypes.string,
   topology: topologyType,

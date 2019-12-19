@@ -1,5 +1,5 @@
-import { term } from '@ontola/mash';
 import rdf from '@ontologies/core';
+import { term } from '@rdfdev/iri';
 import { lrsType, withLinkCtx } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';

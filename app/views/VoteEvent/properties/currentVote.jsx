@@ -1,4 +1,5 @@
-import { namedNodeShape, term } from '@ontola/mash';
+import { term } from '@rdfdev/iri';
+import RDFTypes from '@rdfdev/prop-types';
 import as from '@ontologies/as';
 import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
@@ -27,7 +28,7 @@ import { cardVoteEventTopology } from '../../../topologies/CardVoteEvent';
 
 class CurrentVote extends React.PureComponent {
   static propTypes = {
-    baseCollection: namedNodeShape,
+    baseCollection: RDFTypes.namedNode,
     lrs: lrsType,
     option: linkType,
     side: linkType,

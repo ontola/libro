@@ -1,5 +1,5 @@
 import Dialog from '@material-ui/core/Dialog';
-import { namedNodeShape } from '@ontola/mash';
+import RDFTypes from '@rdfdev/prop-types';
 import {
   LinkedResourceContainer,
   register,
@@ -21,8 +21,8 @@ const DialogManager = ({ resource }) => {
   return (
     <Dialog
       open
-      PaperComponent="div"
       maxWidth="md"
+      PaperComponent="div"
       onClose={close(resource, false)}
     >
       <DialogTopology>
@@ -41,7 +41,7 @@ DialogManager.mapDataToProps = {
 };
 
 DialogManager.propTypes = {
-  resource: namedNodeShape,
+  resource: RDFTypes.namedNode,
 };
 
 export default register(DialogManager);

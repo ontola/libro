@@ -1,9 +1,9 @@
-import { term } from '@ontola/mash';
 import as from '@ontologies/as';
 import rdf from '@ontologies/core';
 import foaf from '@ontologies/foaf';
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
+import { term } from '@rdfdev/iri';
 import {
   LinkedResourceContainer,
   PropertyBase,

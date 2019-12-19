@@ -1,4 +1,4 @@
-import { literalShape } from '@ontola/mash';
+import RDFTypes from '@rdfdev/prop-types';
 import equal from 'fast-deep-equal';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -18,7 +18,7 @@ const propTypes = {
   formID: PropTypes.string.isRequired,
   method: PropTypes.oneOfType([
     PropTypes.string,
-    literalShape,
+    RDFTypes.literal,
   ]),
   onSubmit: PropTypes.func.isRequired,
   validateOnBlur: PropTypes.bool,

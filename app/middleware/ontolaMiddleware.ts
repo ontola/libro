@@ -1,7 +1,7 @@
-import { seqPush, seqShift } from '@ontola/mash';
 import rdf, { createNS, Literal, NamedNode, Node } from '@ontologies/core';
 import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
+import { seqPush, seqShift } from '@rdfdev/collections';
 import clipboardCopy from 'clipboard-copy';
 import { History } from 'history';
 import {
@@ -102,7 +102,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
         rdf.literal(text),
         ld.add,
       ),
-      ...seqPush(store, queue, s),
+      ...seqPush(store.store, queue, s),
     ];
   };
 
@@ -112,7 +112,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       ontola('snackbar/queue'),
     )!;
 
-    return seqShift(store, queue);
+    return seqShift(store.store, queue);
   };
 
   (store as any).actions.ontola.showSnackbar = (message: Literal | string) => {
