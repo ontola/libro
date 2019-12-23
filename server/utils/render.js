@@ -66,6 +66,27 @@ const deferredStyles = '    var loadDeferredStyles = function() {\n'
 // Due to WebpackPWAManifest not emitting a chunk, the (web) manifest.json file doesn't end up
 //  in the assets manifest, so we have to define it manually.
 
+const headersFromPrerender = (LRS, manifestData, resourceIRI) => {
+  try {
+    const helmetContext = {};
+    ReactDOMServer.renderToStaticMarkup(React.createElement(
+      App,
+      {
+        helmetContext,
+        location: resourceIRI,
+        lrs: LRS,
+        website: manifestData.scope,
+      }
+    ));
+
+    return helmetContext.headers;
+  } catch (e) {
+    logging.error(e);
+
+    return {};
+  }
+};
+
 export const renderFullPage = (ctx, manifestData, data) => {
   const bundleVersion = isModule(ctx.request.headers['user-agent'])
     ? bundles.module
@@ -109,17 +130,8 @@ export const renderFullPage = (ctx, manifestData, data) => {
     .api
     .feedResponse(seedRequest, true)
     .then(() => {
-      const helmetContext = {};
-      ReactDOMServer.renderToStaticMarkup(React.createElement(
-        App,
-        {
-          helmetContext,
-          location: resourceIRI,
-          lrs: LRS,
-          website: manifestData.scope,
-        }
-      ));
-      const { helmet: headers } = helmetContext;
+      const headers = headersFromPrerender(LRS, manifestData, resourceIRI);
+
       const icons = manifestData?.icons?.map((icon) => {
         if (icon.src.includes('favicon')) {
           return `<link rel="icon" type="${icon.type}" sizes="${icon.sizes}" href="${icon.src}">`;
@@ -139,7 +151,7 @@ export const renderFullPage = (ctx, manifestData, data) => {
               <meta charset="utf-8">
               <link rel="stylesheet" href="/static/preloader.css">
               <link rel="manifest" href="${manifestData.scope}/manifest.json">
-              ${headers?.title?.toString() || manifestData.short_name}
+              ${headers.title?.toString() || `<title data-rh="true">${manifestData.short_name}</title>`}
 
               <meta name="website-iri" content="${manifestData.scope || ''}">
               <meta property="og:type" content="website">
@@ -156,14 +168,14 @@ export const renderFullPage = (ctx, manifestData, data) => {
               <meta name="theme" content="${manifestData.ontola.css_class}">
               <meta name="template" content="${manifestData.ontola.template}">
               <meta name="templateOpts" content="${manifestData.ontola.template_options}">
-              ${headers?.meta?.toString() || ''}
+              ${headers.meta?.toString() || `<meta content="${manifestData.short_name}" property="og:title"/>`}
 
               <meta name="csrf-param" content="authenticity_token">
               <meta name="csrf-token" content="${csrfToken}">
               ${constants.websocketPath ? `<meta name="websocket-path" content="${constants.websocketPath}">` : ''}
               ${constants.bugsnagKey ? '<script async src="//d2wy8f7a9ursnm.cloudfront.net/v6/bugsnag.min.js"></script>' : ''}
 
-              ${headers?.link?.toString() || ''}
+              ${headers.link?.toString() || ''}
               ${icons}
               <meta name="msapplication-TileColor" content="${manifestData.theme_color}">
 
