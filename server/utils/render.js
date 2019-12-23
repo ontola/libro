@@ -151,7 +151,7 @@ export const renderFullPage = (ctx, manifestData, data) => {
               <meta charset="utf-8">
               <link rel="stylesheet" href="/static/preloader.css">
               <link rel="manifest" href="${manifestData.scope}/manifest.json">
-              ${headers.title?.toString() || `<title data-rh="true">${manifestData.short_name}</title>`}
+              ${headers?.title?.toString() || `<title data-rh="true">${manifestData.short_name}</title>`}
 
               <meta name="website-iri" content="${manifestData.scope || ''}">
               <meta property="og:type" content="website">
@@ -168,14 +168,14 @@ export const renderFullPage = (ctx, manifestData, data) => {
               <meta name="theme" content="${manifestData.ontola.css_class}">
               <meta name="template" content="${manifestData.ontola.template}">
               <meta name="templateOpts" content="${manifestData.ontola.template_options}">
-              ${headers.meta?.toString() || `<meta content="${manifestData.short_name}" property="og:title"/>`}
+              ${headers?.meta?.toString() || `<meta content="${manifestData.short_name}" property="og:title"/>`}
 
               <meta name="csrf-param" content="authenticity_token">
               <meta name="csrf-token" content="${csrfToken}">
               ${constants.websocketPath ? `<meta name="websocket-path" content="${constants.websocketPath}">` : ''}
               ${constants.bugsnagKey ? '<script async src="//d2wy8f7a9ursnm.cloudfront.net/v6/bugsnag.min.js"></script>' : ''}
 
-              ${headers.link?.toString() || ''}
+              ${headers?.link?.toString() || ''}
               ${icons}
               <meta name="msapplication-TileColor" content="${manifestData.theme_color}">
 

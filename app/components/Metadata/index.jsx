@@ -8,6 +8,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 import ontola from '../../ontology/ontola';
+import { getMetaContent } from '../../helpers/arguHelpers';
 
 const Metadata = ({
   coverPhoto,
@@ -17,13 +18,14 @@ const Metadata = ({
 }) => {
   const coverURL = coverPhoto
     && lrs.getResourceProperty(rdf.namedNode(coverPhoto), ontola.imgUrl1500x2000);
+  const appName = getMetaContent('application-name');
 
   return (
     <Helmet>
-      <title>{name}</title>
+      <title>{name && name.length > 0 ? name : appName}</title>
       {identifier && <link href={identifier} itemProp="url" rel="canonical" />}
       {identifier && <meta content={identifier} property="og:url" />}
-      <meta content={`${name} | Argu`} property="og:title" />
+      <meta content={[name, appName].filter(Boolean).join(' | ')} property="og:title" />
       {coverURL && <meta content={coverURL.value} id="og:image" property="og:image" />}
     </Helmet>
   );
