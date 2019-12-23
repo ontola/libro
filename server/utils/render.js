@@ -79,7 +79,7 @@ const headersFromPrerender = (LRS, manifestData, resourceIRI) => {
       }
     ));
 
-    return helmetContext.headers;
+    return helmetContext.helmet;
   } catch (e) {
     logging.error(e);
 
