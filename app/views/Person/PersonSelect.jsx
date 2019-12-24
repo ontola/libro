@@ -1,3 +1,4 @@
+import foaf from '@ontologies/foaf';
 import schema from '@ontologies/schema';
 import rdfx from '@ontologies/rdf';
 import rdfs from '@ontologies/rdfs';
@@ -39,7 +40,7 @@ const PersonSelect = ({
     role,
     style,
   });
-  const labels = [schema.name, rdfs.label];
+  const labels = [schema.name, rdfs.label, foaf.name];
 
   const label = lrs.getResourceProperty(itemClass, NS.ontola('forms/inputs/select/displayProp'));
 

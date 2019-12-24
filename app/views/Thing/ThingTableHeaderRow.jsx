@@ -1,3 +1,4 @@
+import foaf from '@ontologies/foaf';
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
 import {
@@ -21,7 +22,7 @@ ThingTableHeaderRow.topology = tableHeaderRowTopology;
 
 ThingTableHeaderRow.mapDataToProps = {
   name: {
-    label: [schema.name, rdfs.label],
+    label: [schema.name, rdfs.label, foaf.name],
   },
 };
 

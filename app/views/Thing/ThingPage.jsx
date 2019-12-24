@@ -50,7 +50,7 @@ const ThingPage = () => (
           <Property label={argu.grantedGroups} />
         </DetailsBar>
         <CardContent noSpacing>
-          <Property label={[schema.name, rdfs.label]} />
+          <Property label={[schema.name, rdfs.label, foaf.name]} />
           <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
           <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
           <Property label={foaf.isPrimaryTopicOf} onLoad={() => null} />

@@ -1,3 +1,4 @@
+import foaf from '@ontologies/foaf';
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
 import {
@@ -25,7 +26,7 @@ const ThingContainer = ({ highlighted, subject }) => (
   <Card about={subject?.value} shine={highlighted}>
     <Property label={ontola.coverPhoto} />
     <CardContent noSpacing>
-      <Property label={[schema.name, rdfs.label]} />
+      <Property label={[schema.name, rdfs.label, foaf.name]} />
       <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
     </CardContent>
     <CardRow noBorder>

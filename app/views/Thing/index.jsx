@@ -1,3 +1,4 @@
+import foaf from '@ontologies/foaf';
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
@@ -82,7 +83,7 @@ const ThingGrid = () => (
     <LDLink>
       <Property label={ontola.coverPhoto} />
       <CardContent noSpacing>
-        <Property label={[schema.name, rdfs.label]} />
+        <Property label={[schema.name, rdfs.label, foaf.name]} />
         <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
       </CardContent>
     </LDLink>
@@ -115,7 +116,7 @@ const ThingCard = () => (
   <CardRow>
     <CardContent>
       <Property label={NS.argu('opinion')} onError={() => null} onLoad={LoadingOpinion} />
-      <Property label={[schema.name, rdfs.label, schema.name]} />
+      <Property label={[schema.name, rdfs.label, foaf.name]} />
       <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
       <Property label={meeting.attachment} />
     </CardContent>
