@@ -144,6 +144,22 @@ export function bulkResourceRequest(ctx, iris, agent, write) {
         let buff = Buffer.alloc(0);
         const backendReq = http.request(url, options, (backendRes) => {
           const iriNT = iri.includes('://') ? `<${iri}>` : `_:${iri}`;
+          if (!backendRes.headers['content-type']?.includes('application/n-quads')) {
+            if (isRedirect(backendRes.statusCode)) {
+              write(`${iriNT} <http://www.w3.org/2002/07/owl#sameAs> <${backendRes.headers.location}> <http://purl.org/link-lib/supplant> .\r\n`);
+              write(`${iriNT} <http://www.w3.org/2011/http#statusCode> "200"^^<http://www.w3.org/2001/XMLSchema#integer> <http://purl.org/link-lib/meta> .\r\n`);
+            } else {
+              const statusCode = backendRes.statusCode === HttpStatus.OK
+                ? HttpStatus.NOT_ACCEPTABLE
+                : backendRes.statusCode;
+              write(`${iriNT} <http://www.w3.org/2011/http#statusCode> "${statusCode}"^^<http://www.w3.org/2001/XMLSchema#integer> <http://purl.org/link-lib/meta> .\r\n`);
+            }
+            backendRes.destroy();
+            resolve();
+
+            return undefined;
+          }
+
           write(`${iriNT} <http://www.w3.org/2011/http#statusCode> "${backendRes.statusCode}"^^<http://www.w3.org/2001/XMLSchema#integer> <http://purl.org/link-lib/meta> .\r\n`);
 
           const serveFromCache = cachedFile && backendRes.statusCode === HttpStatus.OK;
@@ -158,10 +174,6 @@ export function bulkResourceRequest(ctx, iris, agent, write) {
           const redirect = newAuthorizationBulk(ctx, backendRes);
           if (redirect) {
             write(`${iriNT} <http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}> "${redirect}" <http://purl.org/link-lib/meta> .\r\n`);
-          }
-
-          if (!backendRes.headers['content-type']?.includes('application/n-quads')) {
-            return resolve();
           }
 
           if (serveFromCache) {

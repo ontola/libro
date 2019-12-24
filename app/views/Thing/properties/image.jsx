@@ -1,13 +1,20 @@
 import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
-import { LinkedResourceContainer, linkedPropType } from 'link-redux';
+import {
+  LinkedResourceContainer,
+  linkedPropType,
+  useDataInvalidation,
+  useLRS,
+} from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import { NOT_ACCEPTABLE } from 'http-status-codes';
 
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../../helpers/iris';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { allTopologies } from '../../../topologies';
+import Image from '../../../components/Image';
 
 const propTypes = {
   ariaLabel: PropTypes.string,
@@ -20,12 +27,19 @@ const ThingImageProp = ({
   children,
   linkedProp,
 }) => {
+  const lrs = useLRS();
+  if (linkedProp) {
+    useDataInvalidation({ subject: linkedProp });
+  }
+
   if (children) {
     return <LinkedResourceContainer subject={linkedProp}>{children}</LinkedResourceContainer>;
   }
 
   if (!linkedProp) {
     return null;
+  } else if (lrs.api.statusMap[linkedProp.id]?.status === NOT_ACCEPTABLE) {
+    return <Image ariaLabel={ariaLabel} linkedProp={linkedProp} />;
   } else if (linkedProp
     && Object.keys(linkedProp).length === 0
     && linkedProp.constructor === Object
