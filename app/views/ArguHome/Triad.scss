@@ -1,0 +1,528 @@
+@import '../../components/shared/config';
+
+$identify: rgb(71, 86, 104);
+$cocreate: #3d80a7;
+$newpro: #7cc07e;
+$newcon: #c66060;
+
+.Triad {
+  &--selector {
+    display: flex;
+    margin-right: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  &--sharkfin {
+    border-left: 1rem solid transparent;
+    border-right: 1rem solid transparent;
+    height: 0;
+    position: absolute;
+    top: -.7rem;
+    transition: .5s;
+    width: 0;
+  }
+
+  &--item {
+    align-items: center;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    color: color('white');
+    display: flex;
+    flex: 1;
+    height: 3rem;
+    justify-content: center;
+    margin-right: .5rem;
+    position: relative;
+
+    .Triad--selector &:hover {
+      cursor: pointer;
+    }
+
+    &:first-child {
+      z-index: 3;
+    }
+
+    &:nth-child(2) {
+      z-index: 2;
+    }
+
+    &:nth-child(3) {
+      z-index: 1;
+    }
+  }
+
+  &--background {
+    &.fa {
+      bottom: 1rem;
+      color: color('transparent', 'mid-light');
+      font-size: 7rem;
+      position: absolute;
+      right: 13rem;
+    }
+  }
+
+  &--text {
+    font-weight: bold;
+  }
+
+  &--icon {
+    &.fa {
+      font-size: 1.5rem;
+      margin-left: 1rem;
+      width: 2rem;
+    }
+  }
+
+  &--arrow {
+    border-bottom: 2rem solid transparent;
+    border-left-style: solid;
+    border-left-width: 2rem;
+    border-top: 2rem solid transparent;
+    height: 0;
+    left: 99%;
+    position: absolute;
+    width: 0;
+    z-index: 1;
+  }
+
+  &--arrow--left {
+    border-bottom: 2rem solid transparent;
+    border-left-color: color('blue', 'x-light');
+    border-left-style: solid;
+    border-left-width: 2rem;
+    border-top: 2rem solid transparent;
+    height: 0;
+    left: 0;
+    position: absolute;
+    width: 0;
+  }
+
+  &--current-triad {
+    border-radius: 5px;
+    display: flex;
+    margin-top: 1rem;
+    padding: 1rem;
+    position: relative;
+    transition: .5s background-color;
+
+    h2,
+    p {
+      color: color('white');
+    }
+
+    p {
+      font-size: 1.1em;
+      margin-bottom: 1rem;
+    }
+
+    .Triad--select {
+      flex-shrink: 1;
+      margin-right: 1rem;
+    }
+
+    .Triad--button {
+      bottom: 1rem;
+      position: absolute;
+    }
+  }
+
+  &--button {
+    outline: none;
+  }
+
+  &--animation {
+    align-self: flex-start;
+    background-color: color('white');
+    border-radius: 5px;
+    flex-shrink: 0;
+    height: 11rem;
+    justify-self: flex-end;
+    margin-left: auto;
+    position: relative;
+    width: 11rem;
+
+    .landanim {
+      &-identify {
+        opacity: 0;
+        transition: .5s opacity;
+      }
+
+      &-cocreate {
+        opacity: 0;
+        transition: .5s opacity;
+      }
+
+      &-decide {
+        opacity: 0;
+        transition: .5s opacity;
+      }
+
+      &-circle,
+      &-bar {
+        background: color('grey', 'x-light');
+        border-radius: 10px;
+        height: 1rem;
+        position: absolute;
+      }
+
+      &-circle {
+        left: 2rem;
+        width: 1rem;
+      }
+
+      &-circle-1 {
+        top: 2rem;
+      }
+
+      &-circle-2 {
+        top: 4rem;
+      }
+
+      &-circle-3 {
+        top: 6rem;
+      }
+
+      &-circle-4 {
+        top: 8rem;
+      }
+
+      &-challenge {
+        transition: .5s;
+        z-index: 1;
+      }
+
+      &-bar {
+        left: 4rem;
+        width: 1rem;
+      }
+
+      &-bar-1 {
+        top: 2rem;
+      }
+
+      &-bar-2 {
+        top: 4rem;
+      }
+
+      &-bar-3 {
+        top: 6rem;
+      }
+
+      &-bar-4 {
+        top: 8rem;
+      }
+
+      &-motionbox {
+        background: $cocreate;
+        border-radius: 5px;
+        height: 1.5rem;
+        left: 2rem;
+        opacity: 0;
+        position: absolute;
+        right: 2rem;
+        width: auto;
+      }
+
+      &-motionbox-1 {
+        top: 4rem;
+      }
+
+      &-motion {
+        top: 6rem;
+        transition: .5s;
+      }
+
+      &-motionbox-3 {
+        top: 8rem;
+      }
+
+      &-pro,
+      &-con {
+        border-radius: 5px;
+        height: 1.5rem;
+        opacity: 0;
+        position: absolute;
+        width: auto;
+      }
+
+      &-pro {
+        background: $newpro;
+        left: 1rem;
+        right: 6rem;
+      }
+
+      &-con {
+        background: $newcon;
+        left: 6rem;
+        right: 1rem;
+      }
+
+      &-pro-1 {
+        top: 4rem;
+      }
+
+      &-pro-2 {
+        top: 6rem;
+      }
+
+      &-pro-3 {
+        top: 8rem;
+      }
+
+      &-con-1 {
+        top: 4rem;
+      }
+
+      &-con-2 {
+        top: 6rem;
+      }
+    }
+
+    &-slide-0 {
+      .Triad--select--identify {
+        display: block;
+      }
+
+      .landanim-identify {
+        opacity: 1;
+      }
+
+      .landanim-bar-1 {
+        animation: 2s 1.4s both animation-bar-1;
+      }
+
+      .landanim-bar-2 {
+        animation: 1s 3s both animation-challengecolor, 2.7s 1.8s both animation-bar-2;
+        top: 4rem;
+        transition: .5s opacity;
+      }
+
+      .landanim-circle-2 {
+        animation: 1s 3s both animation-challengecolor;
+      }
+
+      .landanim-bar-3 {
+        animation: 2.2s 1s both animation-bar-3;
+      }
+
+      .landanim-bar-4 {
+        animation: 1.8s 2s both animation-bar-4;
+      }
+    }
+
+    &-slide-1 {
+      .Triad--triad-sharkfin {
+        left: 50%;
+      }
+
+      .Triad--select--cocreate {
+        display: block;
+      }
+
+      .landanim-cocreate {
+        opacity: 1;
+      }
+
+      .landanim-challenge {
+        background-color: $identify;
+        border-radius: 5px;
+        height: 2rem;
+        left: 2rem;
+        right: 2rem;
+        top: 1rem;
+        width: auto;
+      }
+
+      .landanim-motionbox-1 {
+        animation: .4s 1.4s both animation-appear;
+      }
+
+      .landanim-motionbox-2 {
+        animation: .4s 2s both animation-appear;
+      }
+
+      .landanim-motionbox-3 {
+        animation: .4s 2.6s both animation-appear;
+      }
+    }
+
+    &-slide-2 {
+      .Triad--triad-sharkfin {
+        left: 80%;
+      }
+
+      .landanim-motion {
+        border-radius: 5px;
+        height: 2rem;
+        left: 2rem;
+        opacity: 1;
+        right: 2rem;
+        top: 1rem;
+        width: auto;
+      }
+
+      .landanim-challenge {
+        background-color: $identify;
+        border-radius: 5px;
+        height: 0;
+        left: 2rem;
+        opacity: 0;
+        right: 2rem;
+        top: 0;
+        width: auto;
+      }
+
+      .Triad--select--decide {
+        display: block;
+      }
+
+      .landanim-decide {
+        opacity: 1;
+      }
+
+      .landanim-pro-1 {
+        animation: .4s 1.4s both animation-appear;
+      }
+
+      .landanim-pro-2 {
+        animation: .4s 2.3s both animation-appear;
+      }
+
+      .landanim-pro-3 {
+        animation: .4s 3.2s both animation-appear;
+      }
+
+      .landanim-con-1 {
+        animation: .4s 1.8s both animation-appear;
+      }
+
+      .landanim-con-2 {
+        animation: .4s 2s both animation-appear;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .Triad {
+    flex-direction: column;
+
+    &--arrow--left {
+      display: none;
+    }
+
+    &--current-triad {
+      flex-direction: column;
+    }
+
+    &--background {
+      &.fa {
+        bottom: 4rem;
+      }
+    }
+  }
+}
+
+@keyframes animation-appear {
+  0%   {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes animation-challengecolor {
+  0%   {
+    background-color: color('grey', 'x-light');
+  }
+
+  100% {
+    background-color: $identify;
+  }
+}
+
+@keyframes animation-bar-1 {
+  0%   {
+    width: 1rem;
+  }
+
+  100% {
+    width: 3.2rem;
+  }
+}
+
+
+@keyframes animation-bar-2 {
+  0%   {
+    width: 1rem;
+  }
+
+  100% {
+    width: 5rem;
+  }
+}
+
+
+@keyframes animation-bar-3 {
+  0%   {
+    width: 1rem;
+  }
+
+  100% {
+    width: 2rem;
+  }
+}
+
+@keyframes animation-bar-4 {
+  0%   {
+    width: 1rem;
+  }
+
+  100% {
+    width: 3rem;
+  }
+}
+
+@keyframes appear {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+
+  100% {
+    height: 1.6em;
+    opacity: 1;
+  }
+}
+
+@keyframes grow-1 {
+  0% {
+    width: 20%;
+  }
+
+  100% {
+    width: 60%;
+  }
+}
+
+@keyframes grow-2 {
+  0% {
+    width: 15%;
+  }
+
+  100% {
+    width: 50%;
+  }
+}
+
+@keyframes grow-3 {
+  0% {
+    width: 25%;
+  }
+
+  100% {
+    width: 30%;
+  }
+}

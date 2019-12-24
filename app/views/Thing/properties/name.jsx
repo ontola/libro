@@ -138,7 +138,13 @@ export default [
     cardTopology
   ),
   LinkedRenderStore.registerRenderer(
-    () => <LDLink><ConnectedHeading data-test="Thing-name-card-link" size="2" /></LDLink>,
+    ({ wrapper }) => {
+      const Wrapper = wrapper || LDLink;
+
+      return (
+        <Wrapper><ConnectedHeading data-test="Thing-name-card-link" size="2" /></Wrapper>
+      );
+    },
     schema.Thing,
     NamePredicates,
     [

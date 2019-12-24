@@ -1,0 +1,11 @@
+@import '../shared/config';
+
+.PageRow {
+  padding: 3em 0;
+
+  &--white {
+    background-color: color('white');
+    border-bottom: $grey-border;
+    border-top: $grey-border;
+  }
+}

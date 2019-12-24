@@ -65,18 +65,21 @@ TextCutoff.propTypes = propTypes;
 
 const propTypesCollection = {
   linkedProp: linkedPropType,
+  minCharacters: PropTypes.number,
   noSpacing: PropTypes.bool,
   subject: subjectType,
 };
 
 const TextCollapsed = ({
   linkedProp,
+  minCharacters,
   noSpacing,
   subject,
 }) => (
   <CollapseText
     data-test="Thing-text-card"
     id={subject.value}
+    minCharacters={minCharacters}
     noSpacing={noSpacing}
     text={linkedProp.value}
   />

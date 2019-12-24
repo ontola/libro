@@ -5,6 +5,7 @@
 import Activity from './Activity';
 import AppSignIn from './AppSignIn';
 import AppSignOut from './AppSignOut';
+import ArguHome from './ArguHome';
 import Thing from './Thing';
 import Badge from './Badge';
 import Category from './Category';
@@ -68,6 +69,7 @@ export function getViews() {
     ...Activity,
     ...AppSignIn,
     ...AppSignOut,
+    ...ArguHome,
     ...Thing,
     ...Action,
     ...Argument,
