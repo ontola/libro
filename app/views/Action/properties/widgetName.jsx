@@ -6,7 +6,7 @@ import { Heading } from '../../../components';
 import { widgetTopologyTopology } from '../../../topologies/WidgetTopology/WidgetTopology';
 
 const WidgetActionName = ({ linkedProp }) => (
-  <Heading size={2}>
+  <Heading size="2">
     {linkedProp.value}
   </Heading>
 );

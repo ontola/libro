@@ -8,7 +8,7 @@ import ontola from '../../../ontology/ontola';
 import { cardMainTopology } from '../../../topologies/Card/CardMain';
 
 const FollowUpActionName = ({ linkedProp }) => (
-  <Heading size={1}>
+  <Heading size="1">
     {emoji(linkedProp.value)}
   </Heading>
 );

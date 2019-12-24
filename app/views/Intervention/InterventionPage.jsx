@@ -146,7 +146,7 @@ const InterventionPage = ({
             <Heading>Ervaren effectiviteit</Heading>
             <Property label={rivm.effectivityResearchMethod} />
             <LabeledAttribute label={rivm.securityImprovementReason} />
-            <Heading size={4}>Andere ervaringen</Heading>
+            <Heading size="4">Andere ervaringen</Heading>
             {
               interventionType && (
                 <p>

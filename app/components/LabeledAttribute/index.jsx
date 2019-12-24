@@ -26,7 +26,7 @@ const LabeledAttribute = ({
 
   return (
     <Wrapper className="LabeledAttribute">
-      <Heading size={4}>{propertyLabel || <LinkedResourceContainer subject={label} />}</Heading>
+      <Heading size="4">{propertyLabel || <LinkedResourceContainer subject={label} />}</Heading>
       <Property label={label} limit={Infinity} />
     </Wrapper>
   );
