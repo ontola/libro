@@ -61,7 +61,6 @@ import StartDate from './properties/startDate';
 import Text from './properties/text';
 import TopComment from './properties/topComment';
 import TrashedAt from './properties/trashedAt';
-import UpdateAction from './properties/updateAction';
 import VoteEvents from './properties/voteEvents';
 import ThingContainer from './ThingContainer';
 import ThingInline from './ThingInline';
@@ -207,6 +206,5 @@ export default [
   ...Text,
   TopComment,
   TrashedAt,
-  UpdateAction,
   VoteEvents,
 ];
