@@ -2,6 +2,7 @@ import schema from '@ontologies/schema';
 import {
   linkedPropType,
   register,
+  useLRS,
 } from 'link-redux';
 import React from 'react';
 
@@ -26,13 +27,28 @@ const renderIcon = (value, index, src) => {
   return null;
 };
 
-const RatingAttribute = ({ label, linkedProp }) => {
+const RatingAttribute = ({
+  label,
+  labelFrom,
+  linkedProp,
+  subject,
+}) => {
+  let labelValue;
+  if (labelFrom) {
+    const lrs = useLRS();
+    const labelObj = lrs.getResourceProperty(subject, labelFrom);
+    labelValue = labelObj && lrs.getResourceProperty(labelObj, schema.name);
+  }
   const icon = label.value.includes('Costs') ? 'euro' : 'star';
   const src = `/assets/rivm/icons/${icon}`;
 
   return (
     Array(ICON_COUNT).fill().map((_, index) => (
-      <div className="Rating" style={{ backgroundImage: `url(${src}-bgr.png)` }}>
+      <div
+        className="Rating"
+        style={{ backgroundImage: `url(${src}-bgr.png)` }}
+        title={labelValue?.value}
+      >
         {renderIcon(linkedProp, index, src)}
       </div>
     ))

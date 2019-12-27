@@ -8,7 +8,11 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const AttributeListItem = ({ label, propertyLabel }) => {
+const AttributeListItem = ({
+  label,
+  propertyLabel,
+  ...otherProps
+}) => {
   const lrs = useLRS();
   const { subject } = useLinkRenderContext();
 
@@ -25,7 +29,7 @@ const AttributeListItem = ({ label, propertyLabel }) => {
             : <LinkedResourceContainer subject={label} />
         }
       </td>
-      <td><Property label={label} limit={Infinity} /></td>
+      <td><Property label={label} limit={Infinity} {...otherProps} /></td>
     </tr>
   );
 };

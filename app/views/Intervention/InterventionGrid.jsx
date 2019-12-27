@@ -26,9 +26,18 @@ const InterventionGrid = () => (
         <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
         <AttributeList>
           <tr><th>Praktische ervaring</th><th>Aandrager</th></tr>
-          <AttributeListItem label={rivm.securityImprovedScore} />
-          <AttributeListItem label={rivm.oneOffCostsScore} />
-          <AttributeListItem label={rivm.recurringCostsScore} />
+          <AttributeListItem
+            label={rivm.securityImprovedScore}
+            labelFrom={rivm.securityImproved}
+          />
+          <AttributeListItem
+            label={rivm.oneOffCostsScore}
+            labelFrom={rivm.oneOffCosts}
+          />
+          <AttributeListItem
+            label={rivm.recurringCostsScore}
+            labelFrom={rivm.recurringCosts}
+          />
         </AttributeList>
       </CardContent>
     </LDLink>

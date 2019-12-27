@@ -38,6 +38,7 @@ export default {
     recurringCosts: rivm('recurringCosts'),
     recurringCostsScore: rivm('recurringCostsScore'),
     scenarios: rivm('scenarios'),
+    securityImproved: rivm('securityImproved'),
     securityImprovedScore: rivm('securityImprovedScore'),
     securityImprovementReason: rivm('securityImprovementReason'),
     specificToolsRequired: rivm('specificToolsRequired'),
