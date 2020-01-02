@@ -233,6 +233,10 @@ class MapView extends React.Component {
       image,
     } = values;
 
+    if (!image) {
+      return undefined;
+    }
+
     const f = new Feature(new Point(fromLonLat([lon, lat])));
     f.setId(id);
     f.setStyle(this.getImage(image.value));
@@ -285,7 +289,9 @@ class MapView extends React.Component {
     if (subjectLocation) {
       const subjectPlacement = this.resolvePlacement(subjectLocation);
       const subjectFeature = this.featureFromPlacement(subjectPlacement);
-      features.push(subjectFeature);
+      if (subjectFeature) {
+        features.push(subjectFeature);
+      }
     }
 
     this.placementFeatureSource.clear(true);

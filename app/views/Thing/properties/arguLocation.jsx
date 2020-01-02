@@ -15,13 +15,14 @@ import { retrievePath } from '../../../helpers/iris';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import { containerTopology } from '../../../topologies/Container';
 import ErrorButtonWithFeedback from '../../Error/ErrorButtonWithFeedback';
+import { widgetTopologyTopology } from '../../../topologies/WidgetTopology/WidgetTopology';
 
 class ArguLocation extends React.Component {
   static type = schema.Thing;
 
   static property = schema.location;
 
-  static topology = containerTopology;
+  static topology = [containerTopology, widgetTopologyTopology];
 
   static mapDataToProps = {
     childrenPlacements: NS.argu('childrenPlacements'),
