@@ -18,7 +18,7 @@ import { handleRender } from '../utils/render';
 
 const BACKEND_TIMEOUT = 3000;
 
-const fetchPrerenderData = async (ctx, manifestData) => {
+const fetchPrerenderData = async (ctx, manifestData, includeResources) => {
   let responseData = Buffer.alloc(0);
   const responseStream = new Stream.Writable();
   // eslint-disable-next-line no-underscore-dangle
@@ -53,6 +53,9 @@ const fetchPrerenderData = async (ctx, manifestData) => {
   if (ctx.request.path?.length > 1) {
     const { origin } = new URL(manifestData.scope);
     resources.unshift(origin + ctx.request.path);
+  }
+  if (includeResources) {
+    resources.push(...includeResources.split(','));
   }
   const agent = new http.Agent({
     keepAlive: true,
@@ -107,7 +110,7 @@ const handler = sendResponse => async (ctx) => {
     }
 
     const manifestData = await getBackendManifest(ctx, headResponse.headers.get('Manifest'));
-    const responseData = await fetchPrerenderData(ctx, manifestData);
+    const responseData = await fetchPrerenderData(ctx, manifestData, headResponse.headers.get('Include-Resources'));
 
     return sendResponse(ctx, domain, manifestData, responseData);
   } catch (e) {
