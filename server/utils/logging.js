@@ -1,5 +1,6 @@
 import bugsnag from '@bugsnag/js';
 import bugsnagKoa from '@bugsnag/plugin-koa';
+import HttpStatus from 'http-status-codes';
 
 import * as config from '../config';
 
@@ -41,6 +42,17 @@ export function getErrorMiddleware() {
         await next();
       } catch (err) {
         logging.error(err);
+        if (!ctx.response.headerSent) {
+          ctx.response.status = err.status || HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+
+        try {
+          // this function will throw if you give it a non-error, but we still want
+          // to output that, so if it throws, pass it back what it threw (a TypeError)
+          ctx.app.onerror(err);
+        } catch (e) {
+          ctx.app.onerror(e);
+        }
       }
     },
   };
