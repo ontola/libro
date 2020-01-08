@@ -37,6 +37,7 @@ const fetchPrerenderData = async (ctx, manifestData, includeResources) => {
       getCtx: () => ctx,
     },
     request: {
+      get: () => {},
       headers: dataHeaders,
     },
     session: ctx.session,

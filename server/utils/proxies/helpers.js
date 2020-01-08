@@ -32,6 +32,9 @@ export function setProxyReqHeaders(proxyReq, ctx) {
     proxyReq.setHeader('X-Device-Id', ctx.deviceId);
   }
   proxyReq.setHeader('X-Argu-Back', 'true');
+  if (ctx.request.get('Upgrade') !== 'websocket') {
+    proxyReq.setHeader('Connection', 'keep-alive');
+  }
   proxyReq.removeHeader('cookie');
 }
 
