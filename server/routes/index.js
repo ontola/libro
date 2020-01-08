@@ -98,6 +98,7 @@ const routes = async function routes(app, port) {
   router.get('*/f_assets/precache-manifest.*.js*', precacheManifest);
   router.get(['/logout', '/*/logout'], logout);
   router.post(['/logout', '/*/logout'], logout);
+  router.post(['/follows/*', '/*/follows/*'], backend);
 
   router.use(new CSRF());
 
