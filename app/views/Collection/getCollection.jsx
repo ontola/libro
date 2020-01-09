@@ -14,7 +14,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
-import { Resource } from '../../components';
+import { ResourceBoundary } from '../../components';
 import { listToArr } from '../../helpers/data';
 import { NS } from '../../helpers/LinkedRenderStore';
 import ontola from '../../ontology/ontola';
@@ -183,7 +183,7 @@ export default function getCollection({
 
       return (
         <WrappingElement>
-          <Resource wrapperProps={{ className: `Collection Collection__Depth-${depth}` }}>
+          <ResourceBoundary wrapperProps={{ className: `Collection Collection__Depth-${depth}` }}>
             {renderParent && <Property label={schema.isPartOf} />}
             {header}
             <Property
@@ -194,7 +194,7 @@ export default function getCollection({
               label={ontola.collectionFrame}
               pagination={this.pagination()}
             />
-          </Resource>
+          </ResourceBoundary>
         </WrappingElement>
       );
     }

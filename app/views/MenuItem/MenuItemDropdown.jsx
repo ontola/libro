@@ -8,7 +8,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import Resource from '../../components/Resource';
+import ResourceBoundary from '../../components/ResourceBoundary';
 import { NS } from '../../helpers/LinkedRenderStore';
 import ontola from '../../ontology/ontola';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
@@ -30,13 +30,13 @@ const MenuItemDropdown = ({
   );
 
   return (
-    <Resource>
+    <ResourceBoundary>
       <Menu
         trigger={trigger}
       >
         <LinkedResourceContainer subject={menuItems} />
       </Menu>
-    </Resource>
+    </ResourceBoundary>
   );
 };
 

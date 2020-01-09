@@ -9,7 +9,7 @@ import {
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Resource } from '../../components';
+import { ResourceBoundary } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import ontola from '../../ontology/ontola';
 import Menu from '../../topologies/Menu';
@@ -95,7 +95,7 @@ class MenuItemNavbar extends React.PureComponent {
       );
     }
 
-    return <Resource>{menuItemLabel()}</Resource>;
+    return <ResourceBoundary>{menuItemLabel()}</ResourceBoundary>;
   }
 }
 

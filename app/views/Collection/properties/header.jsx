@@ -14,7 +14,7 @@ import FontAwesome from 'react-fontawesome';
 
 import {
   CardHeader,
-  Resource,
+  ResourceBoundary,
 } from '../../../components';
 import ContainerHeader from '../../../components/Container/ContainerHeader';
 import { sort } from '../../../helpers/data';
@@ -55,13 +55,13 @@ const CreateActionButton = ({
         trigger={trigger}
       >
         {() => (
-          <Resource>
+          <ResourceBoundary>
             {
               createActions.sort(sort(ORDER)).map(action => (
                 <LinkedResourceContainer subject={action} />
               ))
             }
-          </Resource>
+          </ResourceBoundary>
         )}
       </Menu>
     );

@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 /**
- * Sets an RDFa resource tag using Link.
+ * Sets an RDFa resource tag using the subject from the context.
  */
-const Resource = ({
+const ResourceBoundary = ({
   children,
   element: Element = 'div',
   wrapperProps,
@@ -22,15 +22,15 @@ const Resource = ({
   );
 };
 
-Resource.propTypes = {
+ResourceBoundary.propTypes = {
   children: PropTypes.node,
   element: PropTypes.string,
   subject: subjectType,
   wrapperProps: PropTypes.shape(),
 };
 
-Resource.defaultProps = {
+ResourceBoundary.defaultProps = {
   wrapperProps: {},
 };
 
-export default Resource;
+export default ResourceBoundary;

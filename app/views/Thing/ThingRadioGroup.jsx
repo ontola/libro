@@ -11,7 +11,7 @@ import {
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Resource } from '../../components';
+import { ResourceBoundary } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { radioGroupTopology } from '../../topologies/RadioGroup';
 
@@ -29,9 +29,9 @@ const ThingRadioGroup = ({
   }
 
   return (
-    <Resource element="span" wrapperProps={wrapperProps}>
+    <ResourceBoundary element="span" wrapperProps={wrapperProps}>
       <Property label={labels} />
-    </Resource>
+    </ResourceBoundary>
   );
 };
 

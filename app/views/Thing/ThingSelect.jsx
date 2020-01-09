@@ -11,7 +11,7 @@ import {
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Resource } from '../../components';
+import { ResourceBoundary } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { selectTopology } from '../../topologies/Select';
 
@@ -50,9 +50,9 @@ const ThingSelect = ({
   }
 
   return (
-    <Resource wrapperProps={wrapperProps || defaultWrapperProps()}>
+    <ResourceBoundary wrapperProps={wrapperProps || defaultWrapperProps()}>
       <Property label={labels} />
-    </Resource>
+    </ResourceBoundary>
   );
 };
 

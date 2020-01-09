@@ -6,7 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { Resource } from '../../components';
+import { ResourceBoundary } from '../../components';
 import ontola from '../../ontology/ontola';
 import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
 
@@ -18,9 +18,9 @@ const CollectionCardAppendix = ({ totalItems }) => {
   }
 
   return (
-    <Resource>
+    <ResourceBoundary>
       <Property forceRender insideCollection label={ontola.pages} />
-    </Resource>
+    </ResourceBoundary>
   );
 };
 

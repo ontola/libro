@@ -9,7 +9,7 @@ import { FormattedMessage } from 'react-intl';
 
 import Heading from '../../components/Heading';
 import LinkDuo from '../../components/LinkDuo';
-import Resource from '../../components/Resource';
+import ResourceBoundary from '../../components/ResourceBoundary';
 import { containerTopology } from '../../topologies/Container';
 
 import getCollection from './getCollection';
@@ -57,7 +57,7 @@ class CollectionContainer extends CollectionBase {
       };
 
       return (
-        <Resource
+        <ResourceBoundary
           element={Heading}
           wrapperProps={{
             className: `Collection__Depth-${depth}`,
@@ -78,7 +78,7 @@ class CollectionContainer extends CollectionBase {
               }}
             />
           </LinkDuo>
-        </Resource>
+        </ResourceBoundary>
       );
     }
 

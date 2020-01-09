@@ -6,7 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { Resource } from '../../components';
+import { ResourceBoundary } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
 import ontola from '../../ontology/ontola';
 import { formFooterTopology } from '../../topologies/FormFooter/Footer';
@@ -24,7 +24,7 @@ const CurrentActorFooter = () => (
 );
 
 const UserNavbar = ({ lrs }) => (
-  <Resource>
+  <ResourceBoundary>
     <Property label={ontola.actorType} />
     <Property
       label={ontola.actor}
@@ -35,7 +35,7 @@ const UserNavbar = ({ lrs }) => (
         lrs.exec(NS.app('actions/menu/toggle'));
       }}
     />
-  </Resource>
+  </ResourceBoundary>
 );
 
 UserNavbar.propTypes = propTypes;
