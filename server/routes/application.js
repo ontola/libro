@@ -110,9 +110,13 @@ const handler = sendResponse => async (ctx) => {
     }
 
     const manifestData = await getBackendManifest(ctx, headResponse.headers.get('Manifest'));
-    const responseData = await fetchPrerenderData(ctx, manifestData, headResponse.headers.get('Include-Resources'));
+    if (manifestData) {
+      const responseData = await fetchPrerenderData(ctx, manifestData, headResponse.headers.get('Include-Resources'));
 
-    return sendResponse(ctx, domain, manifestData, responseData);
+      return sendResponse(ctx, domain, manifestData, responseData);
+    }
+
+    return undefined;
   } catch (e) {
     if (typeof e === 'undefined') {
       // Timeout finished first

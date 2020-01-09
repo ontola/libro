@@ -24,12 +24,14 @@ const precacheManifest = async (ctx) => {
     const manifestLocation = new URLSearchParams(params).get('manifestLocation');
     const manifestData = await getBackendManifest(ctx, manifestLocation);
 
-    manifest.push(({ url: manifestLocation }));
-    manifest.push(...manifestData.icons.map(icon => ({ url: icon.src })));
+    if (manifestData) {
+      manifest.push(({ url: manifestLocation }));
+      manifest.push(...manifestData.icons.map(icon => ({ url: icon.src })));
 
-    ctx.response.set('Content-Type', 'application/javascript');
-    ctx.response.body = PREFIX + JSON.stringify(manifest, null, 1) + SUFFIX;
-    ctx.response.status = HttpStatus.OK;
+      ctx.response.set('Content-Type', 'application/javascript');
+      ctx.response.body = PREFIX + JSON.stringify(manifest, null, 1) + SUFFIX;
+      ctx.response.status = HttpStatus.OK;
+    }
   } catch (e) {
     logging.error(e);
     ctx.response.status = HttpStatus.INTERNAL_SERVER_ERROR;

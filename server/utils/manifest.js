@@ -37,8 +37,10 @@ export const getBackendManifest = (ctx, manifestLocation) => {
   if (!manifestLocation) {
     if (isSuccess(ctx.response.status)) {
       ctx.response.status = INTERNAL_SERVER_ERROR;
+      throw new Error('No Manifest url in head.');
     }
-    throw new Error('No Manifest url in head.');
+
+    return undefined;
   }
 
   return getBackendManifestJSON(ctx, manifestLocation);
