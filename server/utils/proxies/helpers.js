@@ -113,115 +113,139 @@ export function route(requestUrl, full = false) {
   return url.origin;
 }
 
+const handleNotAcceptable = (iriNT, backendRes, write) => {
+  if (isRedirect(backendRes.statusCode)) {
+    write(`${iriNT} <http://www.w3.org/2002/07/owl#sameAs> <${backendRes.headers.location}> <http://purl.org/link-lib/supplant> .\r\n`);
+    write(`${iriNT} <http://www.w3.org/2011/http#statusCode> "200"^^<http://www.w3.org/2001/XMLSchema#integer> <http://purl.org/link-lib/meta> .\r\n`);
+  } else {
+    const statusCode = backendRes.statusCode === HttpStatus.OK
+      ? HttpStatus.NOT_ACCEPTABLE
+      : backendRes.statusCode;
+    write(`${iriNT} <http://www.w3.org/2011/http#statusCode> "${statusCode}"^^<http://www.w3.org/2001/XMLSchema#integer> <http://purl.org/link-lib/meta> .\r\n`);
+  }
+};
+
+const writeResourceBody = (cachedFile, backendRes, write, resolve) => {
+  const serveFromCache = cachedFile && backendRes.statusCode === HttpStatus.OK;
+
+  try {
+    if (serveFromCache) {
+      const file = fs.readFileSync(cachedFile);
+      write(Buffer.from(file, 'utf8'));
+      write(Buffer.from('\n', 'utf8'));
+      backendRes.destroy();
+      resolve();
+
+      return true;
+    }
+
+    let buff = Buffer.alloc(0);
+
+    let decoder;
+    switch (backendRes.headers['content-encoding']) {
+      case 'gzip':
+        decoder = zlib.createGunzip();
+        break;
+      case 'deflate':
+        decoder = zlib.createInflate();
+        break;
+      // TODO: brotli
+      default:
+        break;
+    }
+
+    let writeStream = backendRes;
+    if (decoder) {
+      writeStream = backendRes.pipe(decoder);
+    }
+
+    writeStream.on('data', (chunk) => {
+      const statementTerminal = chunk.lastIndexOf('\n');
+      if (statementTerminal === -1) {
+        buff = Buffer.concat([buff, chunk]);
+      } else {
+        write(buff);
+        write(chunk.slice(0, statementTerminal + 1));
+        buff = chunk.slice(statementTerminal + 1);
+      }
+    });
+
+    writeStream.on('end', () => {
+      write(buff);
+      write('\n');
+      backendRes.destroy();
+      resolve();
+    });
+
+    return true;
+  } catch (e) {
+    logging.error(e);
+
+    return false;
+  }
+};
+
+const requestForBulk = (ctx, iri, agent, write, resolve) => {
+  const cachedFile = fileFromCache(iri);
+  const url = route(decodeURIComponent(iri), true);
+
+  const requestOptions = {
+    agent,
+    headers: {
+      Accept: ctx.request.headers.accept,
+      'Accept-Language': ctx.request.headers['accept-language'] || null,
+      Connection: 'keep-alive',
+      'Content-Length': 0,
+      Origin: ctx.request.headers.origin || null,
+      Referer: ctx.request.headers.referer || null,
+      'User-Agent': ctx.request.headers['user-agent'] || null,
+      'X-Forwarded-For': ctx.request.headers['x-forwarded-for'] || null,
+      'X-Forwarded-Host': ctx.request.headers.host,
+      'X-Forwarded-Proto': ctx.request.headers['x-forwarded-proto'] || null,
+      'X-Forwarded-Ssl': ctx.request.headers['x-forwarded-ssl'] || null,
+      'X-Real-Ip': ctx.request.headers['x-real-ip'] || null,
+      'X-Requested-With': ctx.request.headers['x-requested-with'] || null,
+    },
+    method: cachedFile ? 'HEAD' : 'GET',
+    timeout: 30000,
+  };
+
+  return http.request(url, requestOptions, (backendRes) => {
+    const iriNT = iri.includes('://') ? `<${iri}>` : `_:${iri}`;
+
+    if (!backendRes.headers['content-type']?.includes('application/n-quads')) {
+      handleNotAcceptable(iriNT, backendRes, write);
+      backendRes.destroy();
+      resolve();
+    } else if (writeResourceBody(cachedFile, backendRes, write, resolve)) {
+      write(`${iriNT} <http://www.w3.org/2011/http#statusCode> "${backendRes.statusCode}"^^<http://www.w3.org/2001/XMLSchema#integer> <http://purl.org/link-lib/meta> .\r\n`);
+      const actions = getActions(backendRes);
+      if (actions.length > 0) {
+        for (let i = 0; i < actions.length; i++) {
+          write(`${iriNT} <http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}> "${actions[i]}" <http://purl.org/link-lib/meta> .\r\n`);
+        }
+      }
+      const redirect = newAuthorizationBulk(ctx, backendRes);
+      if (redirect) {
+        write(`${iriNT} <http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}> "${redirect}" <http://purl.org/link-lib/meta> .\r\n`);
+      }
+    } else {
+      write(`${iriNT} <http://www.w3.org/2011/http#statusCode> "${HttpStatus.INTERNAL_SERVER_ERROR}"^^<http://www.w3.org/2001/XMLSchema#integer> <http://purl.org/link-lib/meta> .\r\n`);
+    }
+
+    return undefined;
+  });
+};
+
 export function bulkResourceRequest(ctx, iris, agent, write) {
   const requests = [];
 
   const resources = iris
-    .map(iri => [decodeURIComponent(iri), route(decodeURIComponent(iri), true)])
-    .map(([iri, url]) => new Promise((resolve, reject) => {
+    .map(iri => decodeURIComponent(iri))
+    .map(iri => new Promise((resolve, reject) => {
       try {
-        const cachedFile = fileFromCache(iri);
-        const options = {
-          agent,
-          headers: {
-            Accept: ctx.request.headers.accept,
-            'Accept-Language': ctx.request.headers['accept-language'] || null,
-            Connection: 'keep-alive',
-            'Content-Length': 0,
-            Origin: ctx.request.headers.origin || null,
-            Referer: ctx.request.headers.referer || null,
-            'User-Agent': ctx.request.headers['user-agent'] || null,
-            'X-Forwarded-For': ctx.request.headers['x-forwarded-for'] || null,
-            'X-Forwarded-Host': ctx.request.headers.host,
-            'X-Forwarded-Proto': ctx.request.headers['x-forwarded-proto'] || null,
-            'X-Forwarded-Ssl': ctx.request.headers['x-forwarded-ssl'] || null,
-            'X-Real-Ip': ctx.request.headers['x-real-ip'] || null,
-            'X-Requested-With': ctx.request.headers['x-requested-with'] || null,
-          },
-          method: cachedFile ? 'HEAD' : 'GET',
-          timeout: 30000,
-        };
-        let buff = Buffer.alloc(0);
-        const backendReq = http.request(url, options, (backendRes) => {
-          const iriNT = iri.includes('://') ? `<${iri}>` : `_:${iri}`;
-          if (!backendRes.headers['content-type']?.includes('application/n-quads')) {
-            if (isRedirect(backendRes.statusCode)) {
-              write(`${iriNT} <http://www.w3.org/2002/07/owl#sameAs> <${backendRes.headers.location}> <http://purl.org/link-lib/supplant> .\r\n`);
-              write(`${iriNT} <http://www.w3.org/2011/http#statusCode> "200"^^<http://www.w3.org/2001/XMLSchema#integer> <http://purl.org/link-lib/meta> .\r\n`);
-            } else {
-              const statusCode = backendRes.statusCode === HttpStatus.OK
-                ? HttpStatus.NOT_ACCEPTABLE
-                : backendRes.statusCode;
-              write(`${iriNT} <http://www.w3.org/2011/http#statusCode> "${statusCode}"^^<http://www.w3.org/2001/XMLSchema#integer> <http://purl.org/link-lib/meta> .\r\n`);
-            }
-            backendRes.destroy();
-            resolve();
+        const backendReq = requestForBulk(ctx, iri, agent, write, resolve);
 
-            return undefined;
-          }
-
-          write(`${iriNT} <http://www.w3.org/2011/http#statusCode> "${backendRes.statusCode}"^^<http://www.w3.org/2001/XMLSchema#integer> <http://purl.org/link-lib/meta> .\r\n`);
-
-          const serveFromCache = cachedFile && backendRes.statusCode === HttpStatus.OK;
-
-          const actions = getActions(backendRes);
-          if (actions.length > 0) {
-            for (let i = 0; i < actions.length; i++) {
-              write(`${iriNT} <http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}> "${actions[i]}" <http://purl.org/link-lib/meta> .\r\n`);
-            }
-          }
-
-          const redirect = newAuthorizationBulk(ctx, backendRes);
-          if (redirect) {
-            write(`${iriNT} <http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}> "${redirect}" <http://purl.org/link-lib/meta> .\r\n`);
-          }
-
-          if (serveFromCache) {
-            const file = fs.readFileSync(cachedFile);
-            write(Buffer.from(file, 'utf8'));
-            write(Buffer.from('\n', 'utf8'));
-            backendRes.destroy();
-            resolve();
-          } else {
-            let decoder;
-            switch (backendRes.headers['content-encoding']) {
-              case 'gzip':
-                decoder = zlib.createGunzip();
-                break;
-              case 'deflate':
-                decoder = zlib.createInflate();
-                break;
-              // TODO: brotli
-              default:
-                break;
-            }
-
-            let writeStream = backendRes;
-            if (decoder) {
-              writeStream = backendRes.pipe(decoder);
-            }
-
-            writeStream.on('data', (chunk) => {
-              const statementTerminal = chunk.lastIndexOf('\n');
-              if (statementTerminal === -1) {
-                buff = Buffer.concat([buff, chunk]);
-              } else {
-                write(buff);
-                write(chunk.slice(0, statementTerminal + 1));
-                buff = chunk.slice(statementTerminal + 1);
-              }
-            });
-
-            writeStream.on('end', () => {
-              write(buff);
-              write('\n');
-              backendRes.destroy();
-              resolve();
-            });
-          }
-
-          return undefined;
-        });
         requests.push(backendReq);
 
         backendReq.on('error', (e) => {
