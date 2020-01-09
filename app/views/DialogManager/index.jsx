@@ -1,7 +1,7 @@
 import Dialog from '@material-ui/core/Dialog';
 import RDFTypes from '@rdfdev/prop-types';
 import {
-  LinkedResourceContainer,
+  Resource,
   register,
   useLRS,
 } from 'link-redux';
@@ -26,7 +26,7 @@ const DialogManager = ({ resource }) => {
       onClose={close(resource, false)}
     >
       <DialogTopology>
-        <LinkedResourceContainer subject={resource} onDone={close(resource, true)} />
+        <Resource subject={resource} onDone={close(resource, true)} />
       </DialogTopology>
     </Dialog>
   );

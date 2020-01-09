@@ -4,7 +4,7 @@ import rdf from '@ontologies/core';
 import dcterms from '@ontologies/dcterms';
 import schema from '@ontologies/schema';
 import { seq } from 'link-lib';
-import { LinkedResourceContainer } from 'link-redux';
+import { Resource } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
@@ -65,7 +65,7 @@ describe('Collection', () => {
 
   const { getByText } = render((
     <Page>
-      <LinkedResourceContainer subject={collectionWithPages} />
+      <Resource subject={collectionWithPages} />
     </Page>
   ), { resources });
 

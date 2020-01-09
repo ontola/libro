@@ -1,4 +1,4 @@
-import { LinkedResourceContainer, withLRS } from 'link-redux';
+import { Resource, withLRS } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -76,7 +76,7 @@ class LinkedObject extends React.PureComponent {
 
     return (
       <Page>
-        <LinkedResourceContainer
+        <Resource
           fetch
           invalidate={currentLocation(routedLocation, true, websitePathname, websiteCtx)}
           subject={currentLocation(routedLocation, false, websitePathname, websiteCtx)}

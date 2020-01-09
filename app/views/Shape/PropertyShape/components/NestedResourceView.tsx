@@ -1,6 +1,6 @@
 import { Node } from '@ontologies/core';
 import sh from '@ontologies/shacl';
-import { LinkedResourceContainer, Property, useLRS } from 'link-redux';
+import { Property, Resource, useLRS } from 'link-redux';
 import React, { FC } from 'react';
 
 export interface Props {
@@ -47,7 +47,7 @@ export const NestedResourceView: FC<Props> = (props) => {
       />
     )
     : (
-      <LinkedResourceContainer
+      <Resource
         subject={targetShape.subject}
         {...props}
       />

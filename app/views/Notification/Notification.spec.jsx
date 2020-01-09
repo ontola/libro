@@ -2,7 +2,7 @@ import rdf from '@ontologies/core';
 import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
 import { waitForElementToBeRemoved } from '@testing-library/dom';
-import { LinkedResourceContainer } from 'link-redux';
+import { Resource } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../../tests';
@@ -96,7 +96,7 @@ describe('Notification', () => {
     const renderInContainer = resources => render(
       ({ iri }) => (
         <Container>
-          <LinkedResourceContainer forceRender subject={iri} />
+          <Resource forceRender subject={iri} />
         </Container>
       ),
       { resources }

@@ -1,6 +1,6 @@
 import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
-import { LinkedResourceContainer, linkedPropType } from 'link-redux';
+import { Resource, linkedPropType } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
@@ -13,7 +13,7 @@ const propTypes = {
 };
 
 const PersonImageProp = ({ linkedProp }) => (
-  <LinkedResourceContainer
+  <Resource
     subject={linkedProp}
     topology={voteBubbleTopology}
   />
@@ -30,7 +30,7 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     ({ linkedProp }) => (
-      <LinkedResourceContainer subject={linkedProp} />
+      <Resource subject={linkedProp} />
     ),
     [schema.Person, NS.aod('Persons')],
     [schema.image, NS.dbo('thumbnail'), NS.wdt('P18')],

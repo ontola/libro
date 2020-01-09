@@ -1,7 +1,7 @@
 import schema from '@ontologies/schema';
 import {
-  LinkedResourceContainer,
   Property,
+  Resource,
   linkType,
   register,
   subjectType,
@@ -83,7 +83,7 @@ class MenuItemNavbar extends React.PureComponent {
       return (
         <Menu trigger={menuItemLabel}>
           {({ handleClose, ref }) => (
-            <LinkedResourceContainer
+            <Resource
               childProps={{
                 onClose: handleClose,
                 ref,

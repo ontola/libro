@@ -2,7 +2,7 @@ import schema from '@ontologies/schema';
 import { ACCEPTED } from 'http-status-codes';
 import LinkedRenderStore from 'link-lib';
 import {
-  LinkedResourceContainer,
+  Resource,
   linkedPropType,
   register,
   useDataInvalidation,
@@ -22,7 +22,7 @@ const propTypes = {
 
 const ClickableCover = ({ linkedProp }) => (
   <LDLink>
-    <LinkedResourceContainer subject={linkedProp} />
+    <Resource subject={linkedProp} />
   </LDLink>
 );
 
@@ -36,13 +36,13 @@ const CoverPhotoOrLoading = ({ linkedProp }) => {
 
   if (status.status === ACCEPTED || lrs.shouldLoadResource(linkedProp)) {
     return (
-      <LinkedResourceContainer forceRender subject={linkedProp}>
+      <Resource forceRender subject={linkedProp}>
         <LoadingCoverPhoto />
-      </LinkedResourceContainer>
+      </Resource>
     );
   }
 
-  return <LinkedResourceContainer subject={linkedProp} />;
+  return <Resource subject={linkedProp} />;
 };
 
 CoverPhotoOrLoading.type = schema.Thing;

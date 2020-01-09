@@ -2,8 +2,8 @@ import as from '@ontologies/as';
 import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import {
-  LinkedResourceContainer,
   Property,
+  Resource,
   linkedPropType,
 } from 'link-redux';
 import React from 'react';
@@ -16,11 +16,11 @@ const propTypes = {
 };
 
 const VoteEvents = ({ linkedProp }) => (
-  <LinkedResourceContainer
+  <Resource
     subject={linkedProp}
   >
     <Property label={as.items} />
-  </LinkedResourceContainer>
+  </Resource>
 );
 
 VoteEvents.propTypes = propTypes;

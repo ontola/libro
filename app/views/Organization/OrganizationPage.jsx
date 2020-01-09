@@ -1,7 +1,7 @@
 import foaf from '@ontologies/foaf';
 import schema from '@ontologies/schema';
 import {
-  LinkedResourceContainer,
+  Resource,
   linkType,
   register,
 } from 'link-redux';
@@ -23,7 +23,7 @@ const OrganizationPage = ({
   hideHeader,
 }) => {
   if (homepage) {
-    return <LinkedResourceContainer subject={homepage} onError={HomepageError} />;
+    return <Resource subject={homepage} onError={HomepageError} />;
   }
 
   return (

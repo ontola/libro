@@ -237,7 +237,7 @@ function within(target, callback) {
 
   const traverse = (prop, tree) => (Object.prototype.hasOwnProperty.call(prop, 'termType')
     ? tree.findWhere(e => (e.name() && e.name().startsWith('TP(') && e.instance() && has(e.instance().topology, prop))
-      || (e.name() === 'LinkedResourceContainer' && has(e.prop('subject'), prop)))
+      || (e.name() === 'Resource' && has(e.prop('subject'), prop)))
     : tree.find(prop));
 
   return callback(targets.reduce((tree, t) => traverse(t, tree), subject));

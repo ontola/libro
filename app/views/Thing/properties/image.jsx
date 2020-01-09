@@ -1,7 +1,7 @@
 import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import {
-  LinkedResourceContainer,
+  Resource,
   linkedPropType,
   useDataInvalidation,
   useLRS,
@@ -33,7 +33,7 @@ const ThingImageProp = ({
   }
 
   if (children) {
-    return <LinkedResourceContainer subject={linkedProp}>{children}</LinkedResourceContainer>;
+    return <Resource subject={linkedProp}>{children}</Resource>;
   }
 
   if (!linkedProp) {
@@ -50,7 +50,7 @@ const ThingImageProp = ({
   }
 
   return (
-    <LinkedResourceContainer ariaLabel={ariaLabel} subject={linkedProp} />
+    <Resource ariaLabel={ariaLabel} subject={linkedProp} />
   );
 };
 

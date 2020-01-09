@@ -1,6 +1,6 @@
 import schema from '@ontologies/schema';
 import {
-  LinkedResourceContainer,
+  Resource,
   linkedPropType,
   register,
 } from 'link-redux';
@@ -27,7 +27,7 @@ class IsPartOfPage extends React.PureComponent {
 
     return (
       <BreadcrumbsBar>
-        <LinkedResourceContainer showAncestors={showAncestors} subject={linkedProp} />
+        <Resource showAncestors={showAncestors} subject={linkedProp} />
       </BreadcrumbsBar>
     );
   }

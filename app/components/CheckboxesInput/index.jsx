@@ -1,5 +1,5 @@
 import {
-  LinkedResourceContainer,
+  Resource,
   linkType,
 } from 'link-redux';
 import React from 'react';
@@ -44,7 +44,7 @@ function CheckboxesInput(props) {
 
   const items = options.map((item) => {
     const label = (
-      <LinkedResourceContainer subject={item} />
+      <Resource subject={item} />
     );
 
     return (

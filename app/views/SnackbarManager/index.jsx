@@ -1,7 +1,7 @@
 import { firstTermOfSeq } from '@rdfdev/collections';
 import RDFTypes from '@rdfdev/prop-types';
 import {
-  LinkedResourceContainer,
+  Resource,
   register,
   useLRS,
 } from 'link-redux';
@@ -19,7 +19,7 @@ const SnackbarManager = ({ queue }) => {
   }
 
   return (
-    <LinkedResourceContainer
+    <Resource
       close={() => lrs.exec(NS.ontola('actions/snackbar/finished'))}
       key={element.value}
       subject={element}

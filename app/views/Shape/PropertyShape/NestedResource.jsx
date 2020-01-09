@@ -1,6 +1,6 @@
 import { literal } from '@rdfdev/prop-types';
 import {
-  LinkedResourceContainer,
+  Resource,
   linkType,
   subjectType,
 } from 'link-redux';
@@ -24,7 +24,7 @@ const createAddButton = subject => addItem => (
     theme="transparant"
     onClick={addItem}
   >
-    <LinkedResourceContainer
+    <Resource
       subject={subject}
       topology={omniformSupplementBarTopology}
     />

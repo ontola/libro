@@ -1,6 +1,6 @@
 import {
-  LinkedResourceContainer,
   Property,
+  Resource,
   Type,
 } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -18,11 +18,11 @@ const propTypes = {
 
 const Forum = ({ location }) => (
   <Container>
-    <LinkedResourceContainer subject={currentLocation(location)}>
+    <Resource subject={currentLocation(location)}>
       <Type />
       <Property label={NS.argu('questions')} />
       <Property label={NS.argu('motions')} />
-    </LinkedResourceContainer>
+    </Resource>
   </Container>
 );
 

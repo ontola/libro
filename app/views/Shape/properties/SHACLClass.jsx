@@ -1,6 +1,6 @@
 import sh from '@ontologies/shacl';
 import {
-  LinkedResourceContainer,
+  Resource,
   linkedPropType,
   register,
   subjectType,
@@ -28,7 +28,7 @@ const SHACLClass = ({ linkedProp, subject }) => {
   }
 
   return (
-    <LinkedResourceContainer subject={targetShape.subject} />
+    <Resource subject={targetShape.subject} />
   );
 };
 

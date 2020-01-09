@@ -1,6 +1,6 @@
 import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
-import { LinkedResourceContainer, linkedPropType } from 'link-redux';
+import { Resource, linkedPropType } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -20,7 +20,7 @@ const superEventCard = ({ linkedProp }) => (
         defaultMessage="Discussed in:"
         id="https://app.argu.co/i18n/schema:Thing/schema:superEvent/discussedInLabel"
       />
-      <LinkedResourceContainer subject={linkedProp} />
+      <Resource subject={linkedProp} />
     </CardContent>
   </CardRow>
 );

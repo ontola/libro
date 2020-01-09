@@ -1,5 +1,5 @@
 import HttpStatus from 'http-status-codes';
-import { LinkedResourceContainer, subjectType } from 'link-redux';
+import { Resource, subjectType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -15,7 +15,7 @@ import { ErrorPage } from './index';
 const HomepageError = (props) => {
   if (props.linkRequestStatus.status === HttpStatus.NOT_FOUND) {
     return (
-      <LinkedResourceContainer subject={props.subject}>
+      <Resource subject={props.subject}>
         <PrimaryResource>
           <PageHeader />
           <Container>
@@ -31,7 +31,7 @@ const HomepageError = (props) => {
             </Card>
           </Container>
         </PrimaryResource>
-      </LinkedResourceContainer>
+      </Resource>
     );
   }
 

@@ -1,7 +1,7 @@
 import RDFTypes from '@rdfdev/prop-types';
 import rdfx from '@ontologies/rdf';
 import {
-  LinkedResourceContainer,
+  Resource,
   register,
   subjectType,
   useDataInvalidation,
@@ -45,7 +45,7 @@ export function Seq({
 
   const elements = primary.map((s, i) => (
     <ItemWrapper key={s.toString()}>
-      <LinkedResourceContainer
+      <Resource
         {...childProps}
         columns={columns}
         count={sequences.length}

@@ -1,8 +1,8 @@
 import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
 import {
-  LinkedResourceContainer,
   Property,
+  Resource,
   register,
   subjectType,
   useLRS,
@@ -23,11 +23,11 @@ const PersonNavbar = ({ subject }) => {
 
   return (
     <div className="NavbarLink">
-      <LinkedResourceContainer showImage subject={NS.app('n')} topology={navbarTopology}>
+      <Resource showImage subject={NS.app('n')} topology={navbarTopology}>
         <LDLink to={rdf.namedNode(`${menuIri.value}#notifications`)}>
           <Property label={NS.argu('unreadCount')} />
         </LDLink>
-      </LinkedResourceContainer>
+      </Resource>
       <LDLink className="NavbarLink__link">
         <NavbarLinkIcon features="padded">
           <Property label={schema.image}>

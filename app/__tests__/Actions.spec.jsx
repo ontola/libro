@@ -5,7 +5,7 @@ import schema from '@ontologies/schema';
 import sh from '@ontologies/shacl';
 import xsd from '@ontologies/xsd';
 import { defaultNS as NS } from 'link-lib';
-import { LinkedResourceContainer } from 'link-redux';
+import { Resource } from 'link-redux';
 import React from 'react';
 
 import { Page } from '../topologies/Page';
@@ -89,7 +89,7 @@ describe('Actions', () => {
       getByText,
     } = render(({ iri }) => (
       <Page>
-        <LinkedResourceContainer
+        <Resource
           forceRender
           subject={iri}
         />

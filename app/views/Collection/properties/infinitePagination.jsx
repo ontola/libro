@@ -1,7 +1,7 @@
 import as from '@ontologies/as';
 import {
-  LinkedResourceContainer,
   Property,
+  Resource,
   linkType,
   register,
 } from 'link-redux';
@@ -24,11 +24,11 @@ const getPagination = (Wrapper, topology) => {
     }
 
     return (
-      <LinkedResourceContainer subject={lastPage}>
+      <Resource subject={lastPage}>
         <Wrapper>
           <Property label={as.next} />
         </Wrapper>
-      </LinkedResourceContainer>
+      </Resource>
     );
   };
 

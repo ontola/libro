@@ -1,6 +1,6 @@
 import schema from '@ontologies/schema';
 import {
-  LinkedResourceContainer,
+  Resource,
   linkedPropType,
   register,
 } from 'link-redux';
@@ -20,13 +20,13 @@ const Creator = ({
   hideName,
   linkedProp,
 }) => (
-  <LinkedResourceContainer
+  <Resource
     hideName={hideName}
     subject={linkedProp}
     titleKey="postedBy"
   >
     {children}
-  </LinkedResourceContainer>
+  </Resource>
 );
 
 Creator.type = schema.Thing;

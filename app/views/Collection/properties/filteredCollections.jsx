@@ -1,6 +1,6 @@
 import LinkedRenderStore from 'link-lib';
 import {
-  LinkedResourceContainer,
+  Resource,
   link,
   linkType,
 } from 'link-redux';
@@ -34,7 +34,7 @@ class FilteredCollections extends React.PureComponent {
     return filteredCollections
       .sort(sort(ORDER))
       .map(iri => (
-        <LinkedResourceContainer
+        <Resource
           {...rest}
           key={iri.value}
           subject={iri}

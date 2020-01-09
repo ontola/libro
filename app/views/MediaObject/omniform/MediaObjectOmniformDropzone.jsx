@@ -1,4 +1,4 @@
-import { LinkedResourceContainer, linkType } from 'link-redux';
+import { Resource, linkType } from 'link-redux';
 import * as PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import Dropzone from 'react-dropzone';
@@ -18,7 +18,7 @@ const dropzoneInner = (file, current, isDragActive) => {
     );
   }
   if (current) {
-    return <LinkedResourceContainer subject={current} />;
+    return <Resource subject={current} />;
   }
 
   return (

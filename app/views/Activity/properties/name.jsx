@@ -6,7 +6,7 @@ import schema from '@ontologies/schema';
 import { term } from '@rdfdev/iri';
 import RDFTypes from '@rdfdev/prop-types';
 import {
-  LinkedResourceContainer,
+  Resource,
   register,
 } from 'link-redux';
 import React from 'react';
@@ -29,8 +29,8 @@ const ActivityName = (props) => {
     return previousValue.concat(
       <React.Fragment key={`${iri}-${currentValue}`}>
         <DetailText>{currentValue}</DetailText>
-        {term && (
-          <LinkedResourceContainer
+        {iriTerm && (
+          <Resource
             key={props[iriTerm]}
             subject={props[iriTerm]}
             theme={iriTerm === term(as.actor) ? 'default' : 'parent'}

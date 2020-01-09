@@ -5,7 +5,7 @@ import MenuClose from '@material-ui/icons/Close';
 import MenuOpen from '@material-ui/icons/Menu';
 import { useTheme } from '@material-ui/styles';
 import {
-  LinkedResourceContainer,
+  Resource,
   register,
 } from 'link-redux';
 import React, { Fragment } from 'react';
@@ -38,7 +38,7 @@ const MenuNavbar = () => {
     <AppMenu trigger={trigger}>
       {({ handleClose }) => (
         <Fragment>
-          <LinkedResourceContainer
+          <Resource
             childProps={{
               hideIcon: true,
               onClose: handleClose,
@@ -47,14 +47,14 @@ const MenuNavbar = () => {
           />
           <Divider />
           <Fragment>
-            <LinkedResourceContainer
+            <Resource
               childProps={{ onClose: handleClose }}
               subject={NS.app('apex/menus/user/menus')}
             />
             <Divider />
           </Fragment>
           <div className={classes.root}>
-            <LinkedResourceContainer
+            <Resource
               childProps={{
                 hideIcon: true,
                 onClose: handleClose,

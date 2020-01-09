@@ -1,9 +1,9 @@
 import rdf, { createNS } from '@ontologies/core';
 import LinkedRenderStore from 'link-lib';
 import {
-  LinkedResourceContainer,
   Property,
   RenderStoreProvider,
+  Resource,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -106,13 +106,13 @@ export const loc = ({
           <RenderStoreProvider value={ctx.lrs}>
             <IntlProvider locale="en">
               <StaticRouter context={{}} location="/current_page">
-                <LinkedResourceContainer
+                <Resource
                   forceRender
                   subject={subject}
                   topology={topology}
                 >
                   {children}
-                </LinkedResourceContainer>
+                </Resource>
               </StaticRouter>
             </IntlProvider>
           </RenderStoreProvider>

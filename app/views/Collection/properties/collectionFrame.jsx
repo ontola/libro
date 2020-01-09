@@ -1,7 +1,7 @@
 import RDFTypes from '@rdfdev/prop-types';
 import rdf from '@ontologies/core';
 import {
-  LinkedResourceContainer,
+  Resource,
   linkType,
   register,
   topologyType,
@@ -50,7 +50,7 @@ const getFrame = (Wrapper, topology) => {
               <TableHead>
                 <TableHeaderRow>
                   {columns.map(property => (
-                    <LinkedResourceContainer
+                    <Resource
                       forceRender
                       key={property.value}
                       subject={property}

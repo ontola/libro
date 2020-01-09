@@ -2,8 +2,8 @@ import AppBar from '@material-ui/core/AppBar';
 import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
 import {
-  LinkedResourceContainer,
   Property,
+  Resource,
   linkType,
   lrsType,
   register,
@@ -71,7 +71,7 @@ class MenuItemPage extends React.PureComponent {
     }
 
     return items.map(iri => (
-      <LinkedResourceContainer
+      <Resource
         key={iri.value}
         subject={iri}
         value={iri.value}
@@ -120,7 +120,7 @@ class MenuItemPage extends React.PureComponent {
       );
     } else if (topLevel) {
       body = (
-        <LinkedResourceContainer
+        <Resource
           subject={r || currentLocation(location)}
           topLevel={false}
         />

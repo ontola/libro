@@ -1,5 +1,5 @@
 import {
-  LinkedResourceContainer,
+  Resource,
   linkType,
   register,
 } from 'link-redux';
@@ -21,7 +21,7 @@ const Pages = ({
 }) => {
   if (singlePage || pages.length === 1) {
     return (
-      <LinkedResourceContainer
+      <Resource
         forceRender
         collectionDisplay={collectionDisplay}
         columns={columns}
@@ -34,7 +34,7 @@ const Pages = ({
   }
 
   const obs = pages.map(iri => (
-    <LinkedResourceContainer
+    <Resource
       collectionDisplay={collectionDisplay}
       columns={columns}
       depth={depth}

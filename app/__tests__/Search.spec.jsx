@@ -6,7 +6,7 @@ import {
   defaultNS as NS,
   seq,
 } from 'link-lib';
-import { LinkedResourceContainer } from 'link-redux';
+import { Resource } from 'link-redux';
 import React from 'react';
 
 import { Page } from '../topologies/Page';
@@ -51,7 +51,7 @@ describe('Search', () => {
         getByText,
       } = render(({ iri }) => (
         <Page>
-          <LinkedResourceContainer forceRender subject={iri} />
+          <Resource forceRender subject={iri} />
         </Page>
       ), { resources });
 

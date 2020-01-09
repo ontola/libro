@@ -1,7 +1,7 @@
 import rdf from '@ontologies/core';
 import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
-import { LinkedResourceContainer } from 'link-redux';
+import { Resource } from 'link-redux';
 import dcterms from '@ontologies/dcterms';
 import React from 'react';
 
@@ -46,7 +46,7 @@ describe('MediaObject', () => {
     } = render(
       ({ iri }) => (
         <Page>
-          <LinkedResourceContainer forceRender subject={iri} />
+          <Resource forceRender subject={iri} />
         </Page>
       ),
       { resources }

@@ -1,7 +1,7 @@
 import rdf from '@ontologies/core';
 import {
-  LinkedResourceContainer,
   Property,
+  Resource,
   linkType,
   linkedPropType,
   topologyType,
@@ -81,9 +81,9 @@ const OptionsWrapper = ({
       />
       {
         shIn.termType === 'NamedNode' && (
-          <LinkedResourceContainer subject={shIn}>
+          <Resource subject={shIn}>
             <Property label={ontola.createAction} />
-          </LinkedResourceContainer>
+          </Resource>
         )
       }
     </React.Fragment>

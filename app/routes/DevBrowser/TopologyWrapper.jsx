@@ -2,7 +2,7 @@ import rdf from '@ontologies/core';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  LinkedResourceContainer,
+  Resource,
   subjectType,
   topologyType,
 } from 'link-redux';
@@ -37,7 +37,7 @@ const TopologyWrapper = ({
   if (subject === 'null') return null;
 
   const LRC = () => (
-    <LinkedResourceContainer
+    <Resource
       subject={subject}
       topology={topology}
     />

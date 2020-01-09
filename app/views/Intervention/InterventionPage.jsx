@@ -2,8 +2,8 @@ import rdfx from '@ontologies/rdf';
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
 import {
-  LinkedResourceContainer,
   Property,
+  Resource,
   linkType,
   register,
   useLRS,
@@ -73,21 +73,21 @@ const InterventionPage = ({
             {
               image && (
                 <span>
-                  <LinkedResourceContainer subject={image}>
+                  <Resource subject={image}>
                     <Property label={NS.ontola('imgUrl568x400')} style={{ maxHeight: '10em' }} />
-                  </LinkedResourceContainer>
+                  </Resource>
                 </span>
               )
             }
             <AttributeList>
               <AttributeListItem label={schema.name} propertyLabel="Interventie" />
-              <LinkedResourceContainer subject={employment}>
+              <Resource subject={employment}>
                 <AttributeListItem label={schema.name} propertyLabel="Bedrijf" />
-              </LinkedResourceContainer>
+              </Resource>
               <AttributeListItem label={rivm.businessSectionEmployees} />
-              <LinkedResourceContainer subject={employment}>
+              <Resource subject={employment}>
                 <AttributeListItem label={schema.industry} />
-              </LinkedResourceContainer>
+              </Resource>
               <AttributeListItem label={schema.creator} propertyLabel="Contactpersoon" />
               <AttributeListItem label={schema.datePublished} propertyLabel="Datum online" />
             </AttributeList>

@@ -5,7 +5,7 @@ import sh from '@ontologies/shacl';
 import HttpStatus from 'http-status-codes';
 import { anyRDFValue } from 'link-lib';
 import {
-  LinkedResourceContainer,
+  Resource,
   lrsType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -101,7 +101,7 @@ class EntryPointBase extends React.PureComponent {
   footerGroup() {
     const prop = this.footerGroupProp();
 
-    return prop && <LinkedResourceContainer subject={prop} theme={this.footerGroupTheme} />;
+    return prop && <Resource subject={prop} theme={this.footerGroupTheme} />;
   }
 }
 

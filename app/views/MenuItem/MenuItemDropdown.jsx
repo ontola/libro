@@ -1,8 +1,8 @@
 import IconButton from '@material-ui/core/IconButton';
 import schema from '@ontologies/schema';
 import {
-  LinkedResourceContainer,
   Property,
+  Resource,
   linkType,
   register,
 } from 'link-redux';
@@ -34,7 +34,7 @@ const MenuItemDropdown = ({
       <Menu
         trigger={trigger}
       >
-        <LinkedResourceContainer subject={menuItems} />
+        <Resource subject={menuItems} />
       </Menu>
     </ResourceBoundary>
   );

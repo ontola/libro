@@ -1,6 +1,6 @@
 import rdf from '@ontologies/core';
 import VirtualList from 'react-tiny-virtual-list';
-import { LinkedResourceContainer, linkType } from 'link-redux';
+import { Resource, linkType } from 'link-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -65,7 +65,7 @@ const SelectInputList = ({
         }
 
         return (
-          <LinkedResourceContainer
+          <Resource
             {...itemProps}
             subject={itemsToShow[index]}
           />

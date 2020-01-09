@@ -77,12 +77,12 @@ describeView('Seq', components, resources, resource, () => {
 
   describe('#sequences', () => {
     it('filters its data', () => {
-      const result = subject.find('Seq > ForwardRef > LinkedResourceContainer');
+      const result = subject.find('Seq > ForwardRef > Resource');
       expect(result).toHaveLength(children);
     });
 
     it('orders its data', () => {
-      const results = subject.find('Seq > ForwardRef > LinkedResourceContainer');
+      const results = subject.find('Seq > ForwardRef > Resource');
 
       expect(results).toHaveLength(seq.length);
       for (let i = 0; i < children; i++) {

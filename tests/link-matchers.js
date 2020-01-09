@@ -3,7 +3,7 @@ import Enzyme from 'enzyme';
 import { toExist, toIncludeText } from 'enzyme-matchers';
 
 Enzyme.ReactWrapper.prototype.findSubject = function findSubject(iri) {
-  return this.find('LinkedResourceContainer').find({ subject: iri }).first();
+  return this.find('Resource').find({ subject: iri }).first();
 };
 
 expect.extend({

@@ -1,7 +1,7 @@
 import as from '@ontologies/as';
 import rdf from '@ontologies/core';
 import {
-  LinkedResourceContainer,
+  Resource,
   linkType,
   register,
 } from 'link-redux';
@@ -27,7 +27,7 @@ const itemList = (props, columns, separator) => {
     props.items
       .slice(0, props.renderLimit)
       .map(iri => (
-        <LinkedResourceContainer
+        <Resource
           columns={columns}
           depth={props.depth}
           itemWrapper={itemWrapper}
@@ -96,7 +96,7 @@ const Items = (props) => {
     children = itemList(props, columns, separator).toKeyedSeq();
   } else {
     children = (
-      <LinkedResourceContainer
+      <Resource
         depth={depth}
         subject={linkedProp}
       />

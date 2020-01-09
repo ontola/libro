@@ -1,5 +1,5 @@
 import {
-  LinkedResourceContainer,
+  Resource,
   linkType,
   register,
 } from 'link-redux';
@@ -34,7 +34,7 @@ class FavoriteAction extends React.PureComponent {
     const { favoriteAction, votesProCount } = this.props;
 
     return (
-      <LinkedResourceContainer
+      <Resource
         count={votesProCount}
         subject={favoriteAction}
       />

@@ -2,7 +2,7 @@ import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
-  LinkedResourceContainer,
+  Resource,
   link,
   linkType,
   lrsType,
@@ -59,7 +59,7 @@ class InlineActionTableRow extends React.PureComponent {
     }
 
     return (
-      <LinkedResourceContainer
+      <Resource
         subject={target}
         onClick={handleClick}
       />

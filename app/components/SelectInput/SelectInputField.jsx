@@ -3,7 +3,7 @@ import schema from '@ontologies/schema';
 import Downshift from 'downshift';
 import { LinkedRenderStore } from 'link-lib';
 import {
-  LinkedResourceContainer,
+  Resource,
   linkType,
   useLRS,
 } from 'link-redux';
@@ -101,7 +101,7 @@ const SelectInputField = ({
 
         const renderClosed = () => (
           <button className="SelectInput--selected" onClick={openMenu}>
-            {initialSelectedItem && <LinkedResourceContainer element="div" subject={initialSelectedItem} topology={selectTopology} />}
+            {initialSelectedItem && <Resource element="div" subject={initialSelectedItem} topology={selectTopology} />}
           </button>
         );
 

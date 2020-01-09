@@ -5,7 +5,7 @@ import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import {
-  LinkedResourceContainer,
+  Resource,
   TopologyProvider,
   link,
   linkType,
@@ -57,7 +57,7 @@ class CurrentVote extends React.PureComponent {
     }
 
     return (
-      <LinkedResourceContainer
+      <Resource
         count={this.getSideVoteCount()}
         current={this.props.option !== undefined && rdf.equals(this.props.option, this.props.side)}
         currentVote={this.props.subject}
@@ -138,9 +138,9 @@ export const getVoteButtons = (options) => {
         );
         if (this.props.currentVote) {
           return (
-            <LinkedResourceContainer key={side} subject={this.props.currentVote}>
+            <Resource key={side} subject={this.props.currentVote}>
               {voteComp}
-            </LinkedResourceContainer>
+            </Resource>
           );
         }
 

@@ -2,7 +2,7 @@ import RDFTypes from '@rdfdev/prop-types';
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
 import { getTermBestLang } from 'link-lib';
-import { LinkedResourceContainer, useLRS } from 'link-redux';
+import { Resource, useLRS } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
@@ -45,7 +45,7 @@ const OmniformPreview = ({
       type="button"
       onClick={onClick}
     >
-      <LinkedResourceContainer subject={NS.app('c_a')} topology={NS.argu('formFooter')} />
+      <Resource subject={NS.app('c_a')} topology={NS.argu('formFooter')} />
       <span className="Omniform__preview-text">
         <FormattedMessage
           defaultMessage="Share your response..."

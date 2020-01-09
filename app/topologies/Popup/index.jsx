@@ -1,4 +1,4 @@
-import { LinkedResourceContainer, linkType } from 'link-redux';
+import { Resource, linkType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -48,7 +48,7 @@ class Popup extends Topology {
           top: bottom,
         }}
       >
-        <LinkedResourceContainer subject={this.props.popup} topology={NS.argu('popup')} />
+        <Resource subject={this.props.popup} topology={NS.argu('popup')} />
       </div>
     ));
   }

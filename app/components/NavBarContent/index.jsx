@@ -1,4 +1,4 @@
-import { LinkedResourceContainer, Property } from 'link-redux';
+import { Property, Resource } from 'link-redux';
 import React from 'react';
 import MediaQuery from 'react-responsive';
 
@@ -12,7 +12,7 @@ import './NavBarContent.scss';
 
 const NavBarContent = () => (
   <div className="NavBarContent">
-    <LinkedResourceContainer
+    <Resource
       forceRender
       subject={frontendIRI}
     >
@@ -31,14 +31,14 @@ const NavBarContent = () => (
           </Property>
         )}
       </MediaQuery>
-    </LinkedResourceContainer>
+    </Resource>
     <div className="NavBarContent__menus">
-      <LinkedResourceContainer
+      <Resource
         showImage
         subject={NS.app('c_a')}
       />
-      <LinkedResourceContainer subject={NS.app('search')} onError={() => null} />
-      <LinkedResourceContainer subject={NS.app('menu')} />
+      <Resource subject={NS.app('search')} onError={() => null} />
+      <Resource subject={NS.app('menu')} />
     </div>
   </div>
 );

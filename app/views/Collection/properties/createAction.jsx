@@ -1,7 +1,7 @@
 import as from '@ontologies/as';
 import schema from '@ontologies/schema';
 import {
-  LinkedResourceContainer,
+  Resource,
   linkType,
   register,
 } from 'link-redux';
@@ -33,7 +33,7 @@ class CreateAction extends React.PureComponent {
 
   render() {
     return (
-      <LinkedResourceContainer
+      <Resource
         count={this.props.totalItems}
         isPartOf={this.props.isPartOf}
         omniform={this.props.omniform}

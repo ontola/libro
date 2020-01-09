@@ -2,7 +2,7 @@ import rdf from '@ontologies/core';
 import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
 import {
-  LinkedResourceContainer,
+  Resource,
   linkedPropType,
   lrsType,
   register,
@@ -43,7 +43,7 @@ class IsPartOfPage extends React.PureComponent {
           defaultMessage="Search in:"
           id="https://app.argu.co/i18n/search/header/prefix"
         />
-        <LinkedResourceContainer subject={linkedProp} topology={inlineTopology} />
+        <Resource subject={linkedProp} topology={inlineTopology} />
       </React.Fragment>
     );
   }

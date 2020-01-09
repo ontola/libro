@@ -1,6 +1,6 @@
 import schema from '@ontologies/schema';
 import {
-  LinkedResourceContainer,
+  Resource,
   linkedPropType,
   register,
   subjectType,
@@ -51,10 +51,10 @@ const Agenda = ({ agenda, subject }) => {
   return (
     <React.Fragment>
       <React.Fragment>
-        {orderedCompact.map(p => <LinkedResourceContainer subject={p} />)}
+        {orderedCompact.map(p => <Resource subject={p} />)}
       </React.Fragment>
       <React.Fragment>
-        {unorderedCompact.map(p => <LinkedResourceContainer subject={p} />)}
+        {unorderedCompact.map(p => <Resource subject={p} />)}
       </React.Fragment>
     </React.Fragment>
   );

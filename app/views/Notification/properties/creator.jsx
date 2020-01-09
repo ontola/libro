@@ -1,8 +1,8 @@
 import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import {
-  LinkedResourceContainer,
   Property,
+  Resource,
   linkedPropType,
 } from 'link-redux';
 import React from 'react';
@@ -20,9 +20,9 @@ const propTypes = {
 };
 
 const Creator = ({ linkedProp }) => (
-  <LinkedResourceContainer subject={linkedProp} topology={detailsBarTopology}>
+  <Resource subject={linkedProp} topology={detailsBarTopology}>
     <Property label={schema.image} />
-  </LinkedResourceContainer>
+  </Resource>
 );
 
 Creator.propTypes = propTypes;

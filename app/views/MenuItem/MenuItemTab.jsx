@@ -1,8 +1,8 @@
 import Tab from '@material-ui/core/Tab';
 import schema from '@ontologies/schema';
 import {
-  LinkedResourceContainer,
   Property,
+  Resource,
   register,
   subjectType,
 } from 'link-redux';
@@ -16,15 +16,15 @@ const MenuItemTab = ({ subject }) => (
   <Tab
     href={subject.value}
     icon={(
-      <LinkedResourceContainer subject={subject}>
+      <Resource subject={subject}>
         <Property label={schema.image} />
-      </LinkedResourceContainer>
+      </Resource>
     )}
     key={subject.value}
     label={(
-      <LinkedResourceContainer subject={subject}>
+      <Resource subject={subject}>
         <Property label={schema.name} />
-      </LinkedResourceContainer>
+      </Resource>
     )}
     value={subject.value}
   />

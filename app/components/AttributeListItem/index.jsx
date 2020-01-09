@@ -1,6 +1,6 @@
 import {
-  LinkedResourceContainer,
   Property,
+  Resource,
   linkType,
   useLRS,
   useLinkRenderContext,
@@ -26,7 +26,7 @@ const AttributeListItem = ({
         {
           propertyLabel
             ? <label>{propertyLabel}</label>
-            : <LinkedResourceContainer subject={label} />
+            : <Resource subject={label} />
         }
       </td>
       <td><Property label={label} limit={Infinity} {...otherProps} /></td>

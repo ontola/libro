@@ -1,6 +1,6 @@
 import schema from '@ontologies/schema';
 import {
-  LinkedResourceContainer,
+  Resource,
   linkType,
   register,
 } from 'link-redux';
@@ -41,7 +41,7 @@ class TopComment extends React.PureComponent {
 
     return (
       <CardRow backdrop>
-        <LinkedResourceContainer subject={topComment} />
+        <Resource subject={topComment} />
         {count > 1 && (
           <CardMicroRow>
             <LDLink>

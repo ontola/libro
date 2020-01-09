@@ -1,7 +1,7 @@
 import rdf from '@ontologies/core';
 import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
-import { LinkedResourceContainer } from 'link-redux';
+import { Resource } from 'link-redux';
 import dcterms from '@ontologies/dcterms';
 import React from 'react';
 
@@ -41,7 +41,7 @@ describe('Thing', () => {
   const renderAs = Topology => render(
     ({ iri }) => (
       <Topology>
-        <LinkedResourceContainer forceRender subject={iri} />
+        <Resource forceRender subject={iri} />
       </Topology>
     ),
     { resources }

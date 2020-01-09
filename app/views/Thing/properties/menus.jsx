@@ -1,6 +1,6 @@
 import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
-import { LinkedResourceContainer, linkedPropType } from 'link-redux';
+import { Resource, linkedPropType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -15,17 +15,17 @@ const propTypes = {
 const ThingMenusProp = ({ children, linkedProp }) => {
   if (children) {
     return (
-      <LinkedResourceContainer
+      <Resource
         subject={linkedProp}
         topology={navbarTopology}
       >
         {children}
-      </LinkedResourceContainer>
+      </Resource>
     );
   }
 
   return (
-    <LinkedResourceContainer
+    <Resource
       subject={linkedProp}
       topology={navbarTopology}
     />

@@ -1,6 +1,6 @@
 import schema from '@ontologies/schema';
 import {
-  LinkedResourceContainer,
+  Resource,
   linkedPropType,
   register,
 } from 'link-redux';
@@ -11,7 +11,7 @@ import { allTopologies } from '../../../topologies';
 import { inlineTopology } from '../../../topologies/Inline';
 
 const IconAttribute = ({ linkedProp }) => (
-  <li><LinkedResourceContainer subject={linkedProp} topology={inlineTopology} /></li>
+  <li><Resource subject={linkedProp} topology={inlineTopology} /></li>
 );
 
 IconAttribute.type = schema.Thing;

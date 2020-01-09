@@ -1,4 +1,4 @@
-import { LinkedResourceContainer } from 'link-redux';
+import { Resource } from 'link-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet-async';
@@ -89,8 +89,8 @@ class App extends React.PureComponent {
             <div id="start-of-content">
               {Routes}
             </div>
-            <LinkedResourceContainer subject={NS.ontola('snackbar/manager')} />
-            <LinkedResourceContainer subject={NS.ontola('dialog/manager')} />
+            <Resource subject={NS.ontola('snackbar/manager')} />
+            <Resource subject={NS.ontola('dialog/manager')} />
             <Popup />
           </div>
         </HoverHelper>

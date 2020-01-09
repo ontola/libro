@@ -1,6 +1,6 @@
 import schema from '@ontologies/schema';
 import {
-  LinkedResourceContainer,
+  Resource,
   linkedPropType,
   register,
 } from 'link-redux';
@@ -23,7 +23,7 @@ class PublishAction extends React.PureComponent {
   render() {
     const { linkedProp } = this.props;
 
-    return <LinkedResourceContainer subject={linkedProp} />;
+    return <Resource subject={linkedProp} />;
   }
 }
 

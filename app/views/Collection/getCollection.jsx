@@ -2,8 +2,8 @@ import as from '@ontologies/as';
 import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
 import {
-  LinkedResourceContainer,
   Property,
+  Resource,
   linkType,
   linkedPropType,
   lrsType,
@@ -96,7 +96,7 @@ export default function getCollection({
     body(columns) {
       if (this.props.currentPage) {
         return (
-          <LinkedResourceContainer
+          <Resource
             forceRender
             insideCollection
             collectionDisplay={this.props.collectionDisplay || this.props.collectionDisplayFromData}

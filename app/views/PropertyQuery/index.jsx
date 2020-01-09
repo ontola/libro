@@ -1,7 +1,7 @@
 import sh from '@ontologies/shacl';
 import {
-  LinkedResourceContainer,
   Property,
+  Resource,
   register,
   subjectType,
 } from 'link-redux';
@@ -29,9 +29,9 @@ class PropertyQuery extends React.PureComponent {
     const { path, targetNode } = this.props;
 
     return (
-      <LinkedResourceContainer subject={targetNode}>
+      <Resource subject={targetNode}>
         <Property label={path} />
-      </LinkedResourceContainer>
+      </Resource>
     );
   }
 }

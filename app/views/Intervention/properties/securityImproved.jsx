@@ -1,5 +1,5 @@
 import {
-  LinkedResourceContainer,
+  Resource,
   linkedPropType,
   register,
 } from 'link-redux';
@@ -17,7 +17,7 @@ const SecurityImproved = ({ linkedProp }) => {
   return (
     <React.Fragment>
       <span>De veiligheid is door het uitvoeren van de interventie naar inschatting </span>
-      <span style={{ textTransform: 'lowercase' }}><strong><LinkedResourceContainer subject={linkedProp} topology={inlineTopology} /></strong></span>
+      <span style={{ textTransform: 'lowercase' }}><strong><Resource subject={linkedProp} topology={inlineTopology} /></strong></span>
       <span> verbeterd.</span>
     </React.Fragment>
   );

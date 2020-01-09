@@ -1,7 +1,7 @@
 import schema from '@ontologies/schema';
 import {
-  LinkedResourceContainer,
   Property,
+  Resource,
   linkType,
   linkedPropType,
   register,
@@ -28,9 +28,9 @@ const TrashedAt = ({ linkedProp, trashActivity }) => {
             date: formatDate(linkedProp.value),
           }}
         />
-        <LinkedResourceContainer subject={trashActivity}>
+        <Resource subject={trashActivity}>
           <div><Property label={schema.text} topology={inlineTopology} /></div>
-        </LinkedResourceContainer>
+        </Resource>
       </CardContent>
     </Card>
   );

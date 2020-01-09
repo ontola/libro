@@ -1,6 +1,6 @@
 import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
-import { LinkedResourceContainer, linkedPropType } from 'link-redux';
+import { Resource, linkedPropType } from 'link-redux';
 import React from 'react';
 
 import ontola from '../../../ontology/ontola';
@@ -12,7 +12,7 @@ const propTypes = {
 };
 
 const ThingOrganizationProp = ({ linkedProp }) => (
-  <LinkedResourceContainer
+  <Resource
     subject={linkedProp}
     topology={navbarTopology}
   />

@@ -1,8 +1,8 @@
 import as from '@ontologies/as';
 import IconButton from '@material-ui/core/IconButton';
 import {
-  LinkedResourceContainer,
   Property,
+  Resource,
   linkType,
   lrsType,
   subjectType,
@@ -58,7 +58,7 @@ const CreateActionButton = ({
           <ResourceBoundary>
             {
               createActions.sort(sort(ORDER)).map(action => (
-                <LinkedResourceContainer subject={action} />
+                <Resource subject={action} />
               ))
             }
           </ResourceBoundary>

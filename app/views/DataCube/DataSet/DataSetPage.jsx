@@ -1,7 +1,7 @@
 import schema from '@ontologies/schema';
 import {
-  LinkedResourceContainer,
   Property,
+  Resource,
   linkType,
   lrsType,
   subjectType,
@@ -53,7 +53,7 @@ const DataSetPage = ({
               <TableHead>
                 <TableRow>
                   {orderedComponents.map(component => (
-                    <LinkedResourceContainer
+                    <Resource
                       key={component.value}
                       subject={component}
                     />

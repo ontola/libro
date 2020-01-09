@@ -3,7 +3,7 @@ import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
 import * as fa from 'fontawesome';
 import {
-  LinkedResourceContainer,
+  Resource,
   linkType,
   lrsType,
   subjectType,
@@ -469,7 +469,7 @@ class MapView extends React.Component {
           overlayRef={this.overlayRef}
         >
           {this.state.selected && (
-            <LinkedResourceContainer
+            <Resource
               subject={this.state.selected}
               topology={popupTopology}
             />

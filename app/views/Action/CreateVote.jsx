@@ -2,7 +2,7 @@ import rdf from '@ontologies/core';
 import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
 import {
-  LinkedResourceContainer,
+  Resource,
   linkType,
   register,
   subjectType,
@@ -166,7 +166,7 @@ const CreateVote = ({
   }
 
   return (
-    <LinkedResourceContainer
+    <Resource
       active={!!isCurrentOrVote}
       count={count}
       disabled={disabled || expired}

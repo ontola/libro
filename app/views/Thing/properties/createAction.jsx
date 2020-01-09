@@ -1,6 +1,6 @@
 import schema from '@ontologies/schema';
 import {
-  LinkedResourceContainer,
+  Resource,
   linkType,
   register,
   subjectType,
@@ -17,7 +17,7 @@ const CreateAction = ({
   isPartOf,
   omniform,
 }) => (
-  <LinkedResourceContainer isPartOf={isPartOf} omniform={omniform} subject={createAction} />
+  <Resource isPartOf={isPartOf} omniform={omniform} subject={createAction} />
 );
 
 CreateAction.type = [

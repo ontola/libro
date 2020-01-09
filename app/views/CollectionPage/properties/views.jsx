@@ -1,5 +1,5 @@
 import {
-  LinkedResourceContainer,
+  Resource,
   labelType,
   register,
   subjectType,
@@ -17,9 +17,9 @@ const Views = ({ label, subject }) => {
   const prop = lrs.getResourcePropertyRaw(subject, label);
 
   if (prop.length === 1) {
-    return <LinkedResourceContainer forceRender subject={prop[0].object} />;
+    return <Resource forceRender subject={prop[0].object} />;
   }
-  const obs = prop.map(iri => <LinkedResourceContainer key={`views-${iri.object.value}`} subject={iri.object} />);
+  const obs = prop.map(iri => <Resource key={`views-${iri.object.value}`} subject={iri.object} />);
   if (obs && obs.length > 1) {
     return <Columns>{obs}</Columns>;
   } else if (obs) {

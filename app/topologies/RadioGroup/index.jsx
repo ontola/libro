@@ -4,7 +4,7 @@ import MaterialRadioGroup from '@material-ui/core/RadioGroup';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import {
-  LinkedResourceContainer,
+  Resource,
   linkType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -60,7 +60,7 @@ class RadioGroup extends Topology {
                 />
               )}
               key={option.value}
-              label={<LinkedResourceContainer subject={option} />}
+              label={<Resource subject={option} />}
               value={option.value}
             />
           ))

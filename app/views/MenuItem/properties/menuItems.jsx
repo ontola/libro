@@ -1,5 +1,5 @@
 import {
-  LinkedResourceContainer,
+  Resource,
   linkType,
   register,
 } from 'link-redux';
@@ -23,7 +23,7 @@ const MenuItems = ({
 
   return rawProp
     .map(item => (
-      <LinkedResourceContainer
+      <Resource
         childProps={childProps}
         key={`menu-${item}`}
         subject={item}

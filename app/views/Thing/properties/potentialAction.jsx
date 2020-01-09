@@ -2,7 +2,7 @@ import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import {
-  LinkedResourceContainer,
+  Resource,
   link,
   linkType,
   lrsType,
@@ -29,7 +29,7 @@ const order = [
 const sortBind = (potentialActions, props) => potentialActions
   .sort(sort(order))
   .map(iri => (
-    <LinkedResourceContainer {...props} isPartOf={props.subject} key={iri} subject={iri} />
+    <Resource {...props} isPartOf={props.subject} key={iri} subject={iri} />
   ));
 
 class PotentialActionActionsBar extends React.PureComponent {

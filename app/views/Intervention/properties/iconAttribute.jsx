@@ -1,6 +1,6 @@
 import schema from '@ontologies/schema';
 import {
-  LinkedResourceContainer,
+  Resource,
   linkedPropType,
   register,
 } from 'link-redux';
@@ -17,7 +17,7 @@ const IconAttribute = ({ linkedProp }) => (
     <span className="img-wrapper">
       <img src={`/assets/rivm/icons/${linkedProp.value.split('form_option/')[1]}.png`} />
     </span>
-    <LinkedResourceContainer subject={linkedProp} topology={inlineTopology} />
+    <Resource subject={linkedProp} topology={inlineTopology} />
   </div>
 );
 

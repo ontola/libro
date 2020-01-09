@@ -1,8 +1,8 @@
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
 import {
-  LinkedResourceContainer,
   Property,
+  Resource,
   linkType,
   register,
 } from 'link-redux';
@@ -13,9 +13,9 @@ import { attributeListTopology } from '../../topologies/AttributeList';
 
 const EmploymentAttributeListItem = ({ image }) => (
   <React.Fragment>
-    <LinkedResourceContainer subject={image}>
+    <Resource subject={image}>
       <Property label={NS.ontola('imgUrl568x400')} />
-    </LinkedResourceContainer>
+    </Resource>
     <Property label={[schema.name, rdfs.label]} />
   </React.Fragment>
 );

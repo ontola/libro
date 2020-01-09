@@ -1,6 +1,6 @@
 import schema from '@ontologies/schema';
 import {
-  LinkedResourceContainer,
+  Resource,
   register,
   subjectType,
 } from 'link-redux';
@@ -43,7 +43,7 @@ class ActionContainer extends NavigatableAction {
     }
 
     return (
-      <LinkedResourceContainer
+      <Resource
         action={subject}
         subject={target}
         onDone={this.onDoneHandler}

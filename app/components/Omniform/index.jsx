@@ -2,8 +2,8 @@ import rdf, { isNamedNode } from '@ontologies/core';
 import schema from '@ontologies/schema';
 import { Set } from 'immutable';
 import {
-  LinkedResourceContainer,
   Property,
+  Resource,
   subjectType,
   withLRS,
 } from 'link-redux';
@@ -67,7 +67,7 @@ class Omniform extends EntryPointBase {
     }
 
     return (
-      <LinkedResourceContainer subject={action}>
+      <Resource subject={action}>
         <Property
           forceRender
           autofocusForm={this.props.autofocusForm}
@@ -76,7 +76,7 @@ class Omniform extends EntryPointBase {
           whitelist={PROPS_WHITELIST}
           onKeyUp={onKeyUp}
         />
-      </LinkedResourceContainer>
+      </Resource>
     );
   }
 
@@ -91,13 +91,13 @@ class Omniform extends EntryPointBase {
       .props
       .actions
       .map(iri => (
-        <LinkedResourceContainer key={iri} subject={iri}>
+        <Resource key={iri} subject={iri}>
           <Property
             current={rdf.equals(iri, this.props.action)}
             label={schema.result}
             onClick={this.props.onActionChange(iri)}
           />
-        </LinkedResourceContainer>
+        </Resource>
       ));
   }
 
