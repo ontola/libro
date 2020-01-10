@@ -11,9 +11,7 @@
 }
 
 .CountBubble--pop-out {
-  animation-duration: .3s;
-  animation-iteration-count: 1;
-  animation-name: popout;
+  animation: popout .4s 1s 1;
 }
 
 .CountBubble__number {

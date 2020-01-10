@@ -219,7 +219,6 @@
     "react-responsive": "^7.0.0",
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
-    "react-spring": "=7.2.1",
     "react-tiny-virtual-list": "^2.2.0",
     "redux": "^4.0.4",
     "redux-actions": "^2.6.5",
