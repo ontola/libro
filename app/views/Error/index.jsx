@@ -126,7 +126,10 @@ const ErrorPageComp = (props) => {
 
   let cardAction = (
     <ErrorButtonWithFeedback theme="box" {...props}>
-      Opnieuw proberen
+      <FormattedMessage
+        defaultMessage="Try again"
+        id="https://app.argu.co/i18n/errors/errors/retryButton/label"
+      />
     </ErrorButtonWithFeedback>
   );
 
