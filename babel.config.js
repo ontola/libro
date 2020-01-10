@@ -16,7 +16,6 @@ module.exports = (api) => {
     }],
   ];
   const plugins = [
-    'babel-plugin-dynamic-import-node',
     '@babel/plugin-transform-runtime',
     ...babelrc.plugins,
   ];

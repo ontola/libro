@@ -40,7 +40,8 @@
     "ts-compile-check": "tsc -p tsconfig.json --noEmit"
   },
   "resolutions": {
-    "draft-js": "^0.11.3"
+    "draft-js": "^0.11.3",
+    "draft-js/immutable": "3.8.2"
   },
   "dependencies": {
     "@babel/runtime": "^7.7.2",
@@ -112,7 +113,7 @@
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.4.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
     "@babel/plugin-proposal-optional-chaining": "^7.6.0",
-    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.7.4",
     "@babel/plugin-transform-modules-commonjs": "^7.7.0",
     "@babel/plugin-transform-new-target": "^7.4.4",
     "@babel/plugin-transform-runtime": "^7.6.2",
@@ -141,16 +142,15 @@
     "babel-eslint": "^10.0.3",
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
-    "babel-plugin-dynamic-import-node": "^2.3.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "brotli-webpack-plugin": "^1.1.0",
     "classnames": "^2.2.6",
     "clean-webpack-plugin": "^1.0.1",
     "clipboard-copy": "^3.0.0",
     "clsx": "^1.0.4",
-    "compression-webpack-plugin": "^3.0.0",
+    "compression-webpack-plugin": "^3.1.0",
     "connected-react-router": "^6.5.2",
-    "copy-webpack-plugin": "^5.0.5",
+    "copy-webpack-plugin": "^5.1.1",
     "core-js": "^3.1.4",
     "cross-env": "^5.2.0",
     "css-loader": "^3.2.0",
@@ -244,7 +244,7 @@
     "typescript": "^3.7.2",
     "universal-webpack": "^0.6.12",
     "use-debounce": "^2.2.1",
-    "webpack": "^4.41.2",
+    "webpack": "^4.41.5",
     "webpack-assets-manifest": "^3.1.1",
     "webpack-bugsnag-plugins": "^1.4.2",
     "webpack-bundle-analyzer": "^3.6.0",
