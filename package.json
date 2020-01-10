@@ -122,7 +122,7 @@
     "@babel/register": "^7.7.0",
     "@formatjs/intl-relativetimeformat": "^3.0.2",
     "@hot-loader/react-dom": "^16.11.0",
-    "@rdfdev/collections": "^1.0.0",
+    "@rdfdev/collections": "^1.0.2",
     "@rdfdev/iri": "^1.0.0",
     "@rdfdev/prop-types": "^1.0.0",
     "@testing-library/dom": "^6.10.1",

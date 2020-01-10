@@ -1586,10 +1586,10 @@
   resolved "https://registry.yarnpkg.com/@ontologies/xsd/-/xsd-1.0.0.tgz#07b797562703f39fa88e8cb4e32ce6144a8da280"
   integrity sha512-Z/mdaxUzuAAvwFCFzhqKvgHGpJd/j0LFsOq2x22KFIfmz09Xs4wjZOOMU4TjZ/rg/6HjWUoMAj0dyKlYiSG0ig==
 
-"@rdfdev/collections@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@rdfdev/collections/-/collections-1.0.0.tgz#d193414d5961623b76c893daecea451296cb1b49"
-  integrity sha512-RzVOk4FMHqSlFJRmxNyMSgYaHLW2NgnYSa8ssaBra4Xm2yUqJ2b2VLi7HA9kiIuyQOnx/7DRod3p1UlbarYC/w==
+"@rdfdev/collections@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@rdfdev/collections/-/collections-1.0.2.tgz#6c4c2b85198eea61afba43a35725dede0da75bb3"
+  integrity sha512-1h+ryfajr+T1bMkp5iJcVIJV4vZZcxIS5JLaL8RThKKzB3WUJlD0CbnpV3+2tSWTJipGXomUuTpTgl7S0avsqA==
 
 "@rdfdev/iri@^1.0.0":
   version "1.0.0"
