@@ -50,9 +50,9 @@ const fetchPrerenderData = async (ctx, manifestData, includeResources) => {
     `${manifestData.scope}/menus`,
     `${manifestData.scope}/apex/menus`,
   ];
-  if (ctx.request.path?.length > 1) {
+  if (ctx.request.url?.length > 1) {
     const { origin } = new URL(manifestData.scope);
-    resources.unshift(origin + ctx.request.path);
+    resources.unshift(origin + ctx.request.url);
   }
   if (includeResources) {
     resources.push(...includeResources.split(','));
