@@ -10,6 +10,7 @@ export const clusterDomain = process.env.CLUSTER_DOMAIN || 'cluster.local';
 export const defaultServicePort = process.env.DEFAULT_SERVICE_PORT || '3000';
 export const defaultServiceProto = process.env.DEFAULT_SERVICE_PROTO || 'http';
 export const namespace = process.env.NAMESPACE || '';
+export const serverName = process.env.SERVER_NAME;
 export const svcDNSPrefix = process.env.SERVICE_DNS_PREFIX === undefined ? 'svc' : process.env.SERVICE_DNS_PREFIX;
 export const logLevel = process.env.LOG_LEVEL || 'info';
 export const clientId = process.env.ARGU_APP_ID;

@@ -25,6 +25,7 @@ export function getErrorMiddleware() {
       appType: 'fe_back',
       appVersion: __VERSION__,
       autoCaptureSessions: false,
+      hostname: config.serverName,
       releaseStage: config.RELEASE_STAGE,
     });
     bugsnagClient.use(bugsnagKoa);
