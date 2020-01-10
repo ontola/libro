@@ -36,8 +36,8 @@ EmailDispatcher.propTypes = propTypes;
 
 const EmailDispatcherConnect = connect(
   null,
-  dispatch => ({
-    onChange: email => dispatch(setCurrentUserEmail(email)),
+  (dispatch) => ({
+    onChange: (email) => dispatch(setCurrentUserEmail(email)),
   }),
   null,
   { pure: false }

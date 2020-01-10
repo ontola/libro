@@ -18,7 +18,7 @@ import { NestedResourceView } from './components/NestedResourceView';
 import OneToOneRenderer from './OneToOne';
 import OneToManyRenderer from './OneToMany';
 
-const createAddButton = subject => addItem => (
+const createAddButton = (subject) => (addItem) => (
   <Button
     small
     theme="transparant"
@@ -43,7 +43,7 @@ DescriptionComponent.propTypes = {
   description: literal,
 };
 
-const createLabelComponent = name => (showLabel) => {
+const createLabelComponent = (name) => (showLabel) => {
   if (!name) {
     return null;
   }
@@ -73,10 +73,10 @@ const NestedResource = (props) => {
     theme,
   } = props;
   const context = React.useContext(FormContext);
-  const [dataObjects, setDataObjects] = React.useState(targetValues.map(iri => ({ '@id': iri })));
+  const [dataObjects, setDataObjects] = React.useState(targetValues.map((iri) => ({ '@id': iri })));
 
   React.useEffect(() => {
-    setDataObjects(targetValues.map(iri => ({ '@id': iri })));
+    setDataObjects(targetValues.map((iri) => ({ '@id': iri })));
   }, [context, targetValues]);
 
   const isOneToMany = !maxCount || tryParseInt(maxCount) > 1 || tryParseInt(minCount) > 1;
@@ -95,7 +95,15 @@ const NestedResource = (props) => {
   return (
     <FormSection name={fieldName} path={path}>
       <FieldView
-        NestedResourceView={nestedProps => (
+        addButton={createAddButton(path)}
+        context={context}
+        descriptionElement={<DescriptionComponent description={description} />}
+        fieldName={fieldName}
+        initialValue={initialValue}
+        labelComponent={createLabelComponent(name)}
+        maxCount={maxCount}
+        minCount={minCount}
+        NestedResourceView={(nestedProps) => (
           <NestedResourceView
             {...nestedProps}
             nestedShape={nestedShape}
@@ -105,14 +113,6 @@ const NestedResource = (props) => {
             onKeyUp={onKeyUp}
           />
         )}
-        addButton={createAddButton(path)}
-        context={context}
-        descriptionElement={<DescriptionComponent description={description} />}
-        fieldName={fieldName}
-        initialValue={initialValue}
-        labelComponent={createLabelComponent(name)}
-        maxCount={maxCount}
-        minCount={minCount}
         theme={theme}
       />
     </FormSection>

@@ -18,8 +18,8 @@ const initialState = new Immutable.Map({
 });
 
 const reducer = handleActions({
-  [actions.MARKDOWN_EDITOR_HIDE_PREVIEW]: state => state.set('showPreview', false),
-  [actions.MARKDOWN_EDITOR_SHOW_PREVIEW]: state => state.set('showPreview', true),
+  [actions.MARKDOWN_EDITOR_HIDE_PREVIEW]: (state) => state.set('showPreview', false),
+  [actions.MARKDOWN_EDITOR_SHOW_PREVIEW]: (state) => state.set('showPreview', true),
   [actions.TEXT_EDITOR_SWITCH_TO_DRAFT]: (state, { payload }) => state
     .set('showRichEditor', true)
     .set(payload.id, createDraftFromMarkdown(getMarkdownTextPlainSlice(state, payload.id))),

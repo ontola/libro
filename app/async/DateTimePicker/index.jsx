@@ -85,7 +85,7 @@ const DateTimePickerComponent = (props) => {
         okLabel={intl.formatMessage(messages.okLabel)}
         todayLabel={intl.formatMessage(messages.todayLabel)}
         value={value}
-        onChange={e => onChange(e === null ? null : e?.format())}
+        onChange={(e) => onChange(e === null ? null : e?.format())}
       />
     </MuiPickersUtilsProvider>
   );

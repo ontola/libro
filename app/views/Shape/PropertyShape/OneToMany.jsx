@@ -23,7 +23,7 @@ const OneToManyRenderer = ({
     fieldName,
     {
       allowNull: true,
-      format: i => i,
+      format: (i) => i,
       initialValue,
       name: fieldName,
     }
@@ -45,7 +45,7 @@ const OneToManyRenderer = ({
     ? tryParseInt(minCount) > value.length
     : true;
 
-  const removeItem = index => (e) => {
+  const removeItem = (index) => (e) => {
     if (e && typeof e.preventDefault === 'function') {
       e.preventDefault();
     }

@@ -26,7 +26,7 @@ const itemList = (props, columns, separator) => {
   return (
     props.items
       .slice(0, props.renderLimit)
-      .map(iri => (
+      .map((iri) => (
         <Resource
           columns={columns}
           depth={props.depth}

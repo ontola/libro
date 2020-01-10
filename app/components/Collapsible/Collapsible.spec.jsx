@@ -6,7 +6,7 @@ import Collapsible from '.';
 
 const spy = jest.fn();
 const notOpened = jest.fn();
-const getComp = props => mount((
+const getComp = (props) => mount((
   <Collapsible
     hideChildren={false}
     notOpened={notOpened}

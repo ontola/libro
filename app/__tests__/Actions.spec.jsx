@@ -96,7 +96,7 @@ describe('Actions', () => {
       </Page>
     ), { resources });
 
-    const fieldName = prop => btoa(prop.value);
+    const fieldName = (prop) => btoa(prop.value);
 
     // renders the form
     const form = getByTestId(NS.example('endpoint').value);

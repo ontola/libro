@@ -53,9 +53,9 @@ HoverPopup.propTypes = propTypes;
 
 const HoverPopupConnect = connect(
   null,
-  dispatch => ({
+  (dispatch) => ({
     setPopup: (subject, location) => dispatch(setPopupResource(subject, location)),
-    unsetPopup: subject => dispatch(unsetPopupResource(subject)),
+    unsetPopup: (subject) => dispatch(unsetPopupResource(subject)),
   }),
   null
 )(HoverPopup);

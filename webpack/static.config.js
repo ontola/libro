@@ -188,7 +188,7 @@ function createConfig(options) {
       new BrotliPlugin(),
       // new BundleAnalyzerPlugin(),
       bugsnagPlugin,
-    ].filter(p => typeof p !== 'undefined'),
+    ].filter((p) => typeof p !== 'undefined'),
 
     stats: {
       // minimal logging

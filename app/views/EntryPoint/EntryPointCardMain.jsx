@@ -105,7 +105,7 @@ const EntryPointCardMainForm = link({
 })(EntryPointCardMain);
 
 export default LinkedRenderStore.registerRenderer(
-  withRouter(props => (
+  withRouter((props) => (
     <EntryPointCardMainForm
       form={props.subject.value}
       {...props}

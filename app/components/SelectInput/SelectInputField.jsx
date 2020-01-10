@@ -60,9 +60,9 @@ const SelectInputField = ({
     <Downshift
       initialInputValue={itemToString(initialSelectedItem, lrs)}
       initialSelectedItem={initialSelectedItem}
-      itemToString={item => itemToString(item, lrs)}
+      itemToString={(item) => itemToString(item, lrs)}
       {...sharedProps}
-      onChange={v => sharedProps.onChange({ target: { value: v } })}
+      onChange={(v) => sharedProps.onChange({ target: { value: v } })}
       onStateChange={onStateChange}
     >
       {(downshiftOpts) => {

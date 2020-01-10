@@ -2,7 +2,7 @@ import uuidv4 from 'uuid/v4';
 
 const oneYearInMiliSec = 31536000000;
 
-const deviceIdFromCookie = ctx => ctx.cookies.get('deviceId');
+const deviceIdFromCookie = (ctx) => ctx.cookies.get('deviceId');
 
 const generateDeviceId = () => uuidv4();
 

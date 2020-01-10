@@ -27,11 +27,11 @@ export function isBinaryishRequest(next) {
 export async function isPlainAPI() {
   try {
     const endpoints = await client.lrange(plainAPIEndpointsKey, 0, -1);
-    const matchers = endpoints.map(e => pathToRegexp(e));
+    const matchers = endpoints.map((e) => pathToRegexp(e));
     logging.debug(`[ROUTING] isPlainAPI: setting routes for endpoints: '${endpoints.join(', ')}'`);
 
-    return next => async (ctx, nextRoute) => {
-      if (!matchers.find(matcher => matcher.test(ctx.request.url))) {
+    return (next) => async (ctx, nextRoute) => {
+      if (!matchers.find((matcher) => matcher.test(ctx.request.url))) {
         logging.debug(`[ROUTING] isPlainAPI: false for ${ctx.request.url}`);
 
         return nextRoute();

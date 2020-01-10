@@ -66,7 +66,7 @@ class HoverHelper extends Component {
       return this.props.children;
     }
 
-    const listeners = this.state.activated ? { onClick: e => HoverHelper.getElement(e) } : {};
+    const listeners = this.state.activated ? { onClick: (e) => HoverHelper.getElement(e) } : {};
 
     const handlers = {
       startHoverHelper: () => this.setState({

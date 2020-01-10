@@ -92,7 +92,7 @@ class DevBrowser extends Component {
         <Helmet title="DevBrowser" />
         <form
           style={{ display: 'flex' }}
-          onSubmit={e => e.preventDefault()}
+          onSubmit={(e) => e.preventDefault()}
         >
           <input
             style={{ flex: '1' }}
@@ -106,7 +106,7 @@ class DevBrowser extends Component {
             onBlur={this.handleChangeIri}
             onChange={this.handleChangeIri}
           >
-            {resourcesKeys.map(resource => (
+            {resourcesKeys.map((resource) => (
               <option
                 key={resource}
                 value={resource}
@@ -129,7 +129,7 @@ class DevBrowser extends Component {
               </option>
             ))}
           </select>
-          {specialTopologies.map(topology => (
+          {specialTopologies.map((topology) => (
             <button
               key={(topology === undefined) ? 'default' : term(topology)}
               style={{

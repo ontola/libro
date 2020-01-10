@@ -9,7 +9,7 @@ import React from 'react';
 
 import { handle } from '../../helpers/logging';
 
-export const renderErrorComp = self => () => {
+export const renderErrorComp = (self) => () => {
   const ErrorRenderer = ({
     context,
     error,
@@ -85,7 +85,7 @@ class Topology extends TopologyProvider {
   }
 
   renderContent() {
-    return this.wrap(subject => (
+    return this.wrap((subject) => (
       <div
         className={this.getClassName()}
         resource={subject && subject.value}

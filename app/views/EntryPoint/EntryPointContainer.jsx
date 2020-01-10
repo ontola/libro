@@ -5,7 +5,7 @@ import React from 'react';
 import { containerTopology } from '../../topologies/Container';
 import Card from '../../topologies/Card';
 
-const EntryPointContainer = props => (
+const EntryPointContainer = (props) => (
   <Card>
     <Type {...props} />
   </Card>

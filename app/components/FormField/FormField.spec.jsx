@@ -14,7 +14,7 @@ import FormField from './index';
 const mockStorage = () => {
   const store = {};
   const storage = {
-    getItem: key => (
+    getItem: (key) => (
       Object.prototype.hasOwnProperty.call(storage, key)
         ? store[key]
         : null
@@ -78,7 +78,7 @@ describe('FormField', () => {
     const { getByTestId, form } = renderWithTestForm((
       <FormField
         field={schemaName}
-        sessionStorage={{ getItem: key => initial[key] }}
+        sessionStorage={{ getItem: (key) => initial[key] }}
         validate={validatorMap.required}
       />
     ));

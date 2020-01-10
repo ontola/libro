@@ -50,7 +50,10 @@ class ButtonWithFeedback extends React.Component {
     } else if (this.state.feedback) {
       feedbackProps.icon = this.props.feedbackIcon;
     }
-    const buttonProps = Object.assign({}, this.props, feedbackProps);
+    const buttonProps = {
+      ...this.props,
+      ...feedbackProps,
+    };
 
 
     return <Button {...buttonProps} />;

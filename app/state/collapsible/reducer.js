@@ -43,14 +43,14 @@ const toggleAll = (state, group) => {
     return state.set('items', items);
   }
 
-  return state.set('items', state.get('items').map(coll => coll.set('opened', false)));
+  return state.set('items', state.get('items').map((coll) => coll.set('opened', false)));
 };
 
 const closeGroup = (state, group) => {
   const modifiedItems = state
     .get('items')
-    .filter(item => item.get('group') === group)
-    .map(item => item.set('opened', false));
+    .filter((item) => item.get('group') === group)
+    .map((item) => item.set('opened', false));
 
   return state.mergeIn(['items'], modifiedItems);
 };
@@ -65,7 +65,7 @@ const openOne = (state, payload) => state.setIn(['items', payload.identifier, 'o
 const closeOne = (state, payload) => state.setIn(['items', payload.identifier, 'opened'], false);
 
 const collapsible = handleActions({
-  '@@router/LOCATION_CHANGE': state => closeGroup(state, 'Navbar'),
+  '@@router/LOCATION_CHANGE': (state) => closeGroup(state, 'Navbar'),
 
   [COLL_ADD]: (state, { payload }) => setRecord(
     state,

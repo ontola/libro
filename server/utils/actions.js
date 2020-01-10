@@ -9,7 +9,7 @@ export function getActions(req) {
 }
 
 export function getAction(req, wanted) {
-  return getActions(req).find(action => action.startsWith(wanted));
+  return getActions(req).find((action) => action.startsWith(wanted));
 }
 
 export function hasAction(req, wanted) {
@@ -18,7 +18,7 @@ export function hasAction(req, wanted) {
 
 export function setActionParam(req, action, param, value) {
   const actions = getActions(req);
-  const toUpdate = actions.findIndex(a => a.startsWith(action));
+  const toUpdate = actions.findIndex((a) => a.startsWith(action));
   if (toUpdate >= 0) {
     const url = new URL(actions[toUpdate]);
     url.searchParams.set(param, value.trim().replace(/ /g, '+'));

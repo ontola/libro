@@ -49,7 +49,7 @@ const PROPS_WHITELIST = [
   NS.argu('attachments'),
   ontola.coverPhoto,
   schema.location,
-].map(t => rdf.id(t));
+].map((t) => rdf.id(t));
 
 class Omniform extends EntryPointBase {
   action() {
@@ -90,7 +90,7 @@ class Omniform extends EntryPointBase {
     return this
       .props
       .actions
-      .map(iri => (
+      .map((iri) => (
         <Resource key={iri} subject={iri}>
           <Property
             current={rdf.equals(iri, this.props.action)}
@@ -178,8 +178,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
-  highlightResource: iri => dispatch(highlightResource(iri.value)),
-  onActionChange: action => () => {
+  highlightResource: (iri) => dispatch(highlightResource(iri.value)),
+  onActionChange: (action) => () => {
     dispatch(omniformSetAction({
       action,
       parentIRI: props.parentIRI,
@@ -193,12 +193,11 @@ const mapDispatchToProps = (dispatch, props) => ({
     .then(Promise.reject),
 });
 
-const mergeProps = (stateProps, dispatchProps, ownProps) => Object.assign(
-  {},
-  ownProps,
-  stateProps,
-  dispatchProps
-);
+const mergeProps = (stateProps, dispatchProps, ownProps) => ({
+  ...ownProps,
+  ...stateProps,
+  ...dispatchProps,
+});
 
 const OmniformContainer = withLRS(connect(
   mapStateToProps,

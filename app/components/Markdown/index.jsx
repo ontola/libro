@@ -15,7 +15,7 @@ import './Markdown.scss';
 
 const MIN_LENGTH_TO_ADD_HIGHLIGHT = 1;
 
-const routerLink = tabIndex => (link) => {
+const routerLink = (tabIndex) => (link) => {
   const extendedLink = expandPath(link.href);
 
   if (!isDifferentWebsite(extendedLink)) {
@@ -41,9 +41,9 @@ const routerLink = tabIndex => (link) => {
   );
 };
 
-const stylizedPlaintextLink = link => <u>{link.value}</u>;
+const stylizedPlaintextLink = (link) => <u>{link.value}</u>;
 
-const codePre = link => <code className="Markdown__inline-code">{link.value}</code>;
+const codePre = (link) => <code className="Markdown__inline-code">{link.value}</code>;
 
 class Markdown extends React.PureComponent {
   static propTypes = {

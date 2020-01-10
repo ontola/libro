@@ -19,13 +19,13 @@ const FormGroupErrorCount = ({
     },
   });
 
-  const fieldNames = properties.map(prop => (
+  const fieldNames = properties.map((prop) => (
     calculateFormFieldName(propertyIndex, lrs.getResourceProperty(prop, sh.path))
   ));
 
   const invalidCount = Object
     .keys(formState.errors)
-    .filter(i => fieldNames.indexOf(i) > -1)
+    .filter((i) => fieldNames.indexOf(i) > -1)
     .length;
 
   if (invalidCount === 0) {

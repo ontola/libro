@@ -63,7 +63,7 @@ class LinkedObject extends React.PureComponent {
       if (typeof pathMatch === 'string') {
         if (location.pathname.startsWith(pathMatch)) {
           const search = new URLSearchParams(location.search);
-          wildcardMap.get(pathMatch).forEach(v => search.delete(v));
+          wildcardMap.get(pathMatch).forEach((v) => search.delete(v));
 
           routedLocation = {
             ...location,

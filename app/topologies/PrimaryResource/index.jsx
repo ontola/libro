@@ -25,7 +25,7 @@ class PrimaryResource extends Topology {
   wrap(children) {
     return TopologyProvider.prototype.wrap.call(
       this,
-      subject => (
+      (subject) => (
         <React.Fragment>
           <Metadata />
           {typeof children === 'function' ? children(subject) : children}

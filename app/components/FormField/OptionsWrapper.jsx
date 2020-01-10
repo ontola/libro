@@ -38,7 +38,7 @@ const OptionsWrapper = ({
   const [loading, setLoading] = React.useState(false);
   const [debouncedCallback] = useDebouncedCallback(
     () => {
-      setLoading(prevValue => (
+      setLoading((prevValue) => (
         (prevValue === shIn) ? null : shIn
       ));
     },

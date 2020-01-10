@@ -51,10 +51,10 @@ const Agenda = ({ agenda, subject }) => {
   return (
     <React.Fragment>
       <React.Fragment>
-        {orderedCompact.map(p => <Resource subject={p} />)}
+        {orderedCompact.map((p) => <Resource subject={p} />)}
       </React.Fragment>
       <React.Fragment>
-        {unorderedCompact.map(p => <Resource subject={p} />)}
+        {unorderedCompact.map((p) => <Resource subject={p} />)}
       </React.Fragment>
     </React.Fragment>
   );

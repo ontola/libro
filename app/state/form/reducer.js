@@ -66,8 +66,8 @@ export default combineReducers({
         [btoa('email')]: [messages.accountLocked],
       }));
     },
-    [SIGN_IN_EMAIL_TAKEN]: state => transitionTo(state, STEPS.signIn),
-    [SIGN_IN_NO_PASSWORD]: state => transitionTo(state, STEPS.noPassword),
+    [SIGN_IN_EMAIL_TAKEN]: (state) => transitionTo(state, STEPS.signIn),
+    [SIGN_IN_NO_PASSWORD]: (state) => transitionTo(state, STEPS.noPassword),
     [SIGN_IN_SHOW_FORM]: (state, { payload }) => transitionTo(state, STEPS.signUp)
       .set('subject', payload),
     [SIGN_IN_STEP_BACK]: (state) => {
@@ -77,7 +77,7 @@ export default combineReducers({
       return transitionTo(subjectState, prevChain.last())
         .set('stepChain', prevChain);
     },
-    [SIGN_IN_UNKNOWN_EMAIL]: state => transitionTo(state, STEPS.confirm),
+    [SIGN_IN_UNKNOWN_EMAIL]: (state) => transitionTo(state, STEPS.confirm),
     [SIGN_IN_WRONG_PASSWORD]: (state) => {
       if (state.get('step') !== STEPS.signIn) {
         return transitionTo(state, STEPS.signIn);

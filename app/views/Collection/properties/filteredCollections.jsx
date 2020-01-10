@@ -33,7 +33,7 @@ class FilteredCollections extends React.PureComponent {
 
     return filteredCollections
       .sort(sort(ORDER))
-      .map(iri => (
+      .map((iri) => (
         <Resource
           {...rest}
           key={iri.value}

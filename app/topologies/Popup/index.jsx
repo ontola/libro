@@ -55,7 +55,7 @@ class Popup extends Topology {
 }
 
 const ConnectedPopup = connect(
-  state => ({
+  (state) => ({
     location: getCurrentLocation(state),
     popup: getCurrentPopup(state),
   }),

@@ -28,7 +28,7 @@ class TabBar extends TopologyProvider {
       return null;
     }
 
-    return this.wrap(subject => (
+    return this.wrap((subject) => (
       <Tabs
         resource={subject?.value}
         scrollButtons="on"

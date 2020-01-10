@@ -53,6 +53,6 @@ export default connect(
   }),
   (dispatch, { id }) => ({
     onClick: () => dispatch(closeCloseable(id)),
-    onInitializeCloseable: data => dispatch(initializeCloseable(data)),
+    onInitializeCloseable: (data) => dispatch(initializeCloseable(data)),
   })
 )(CloseableContainer);

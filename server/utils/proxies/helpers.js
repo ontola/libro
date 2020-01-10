@@ -244,8 +244,8 @@ export function bulkResourceRequest(ctx, iris, agent, write) {
   const requests = [];
 
   const resources = iris
-    .map(iri => decodeURIComponent(iri))
-    .map(iri => new Promise((resolve, reject) => {
+    .map((iri) => decodeURIComponent(iri))
+    .map((iri) => new Promise((resolve, reject) => {
       try {
         const backendReq = requestForBulk(ctx, iri, agent, write, resolve);
 

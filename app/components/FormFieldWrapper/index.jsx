@@ -42,9 +42,9 @@ const formFieldWrapper = (Component) => {
     const formProps = useField(name, {
       allowNull: true,
       defaultValue: currentDefaultValue,
-      format: i => i,
+      format: (i) => i,
       initialValue: props.initialValue,
-      parse: i => i,
+      parse: (i) => i,
       validate: props.validate,
     });
 

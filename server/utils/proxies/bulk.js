@@ -36,7 +36,7 @@ export default (ctx) => {
       agent.destroy();
     }).catch((e) => {
       logging.error(e);
-      requests.map(r => r.abort());
+      requests.map((r) => r.abort());
       ctx.response.status = HttpStatus.INTERNAL_SERVER_ERROR;
       agent.destroy();
     });

@@ -9,9 +9,9 @@ Enzyme.ReactWrapper.prototype.findSubject = function findSubject(iri) {
 expect.extend({
   toRenderProperty(tree, iri, content) {
     const elem = tree
-      .findWhere(e => e.name() === 'Property' && (
+      .findWhere((e) => e.name() === 'Property' && (
         Array.isArray(e.prop('label'))
-          ? e.prop('label').some(label => rdf.equals(label, iri))
+          ? e.prop('label').some((label) => rdf.equals(label, iri))
           : rdf.equals(e.prop('label'), iri)
       ));
 

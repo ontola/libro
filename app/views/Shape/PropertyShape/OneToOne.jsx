@@ -29,7 +29,7 @@ const OneToOneRenderer = ({
     fieldName,
     {
       allowNull: true,
-      format: i => i,
+      format: (i) => i,
       initialValue,
       name: fieldName,
     }
@@ -65,7 +65,7 @@ const OneToOneRenderer = ({
     if (__CLIENT__) {
       Object
         .keys(value)
-        .map(field => sessionStorage.removeItem(`${context}.${field}`));
+        .map((field) => sessionStorage.removeItem(`${context}.${field}`));
     }
     onChange(markForRemove(value));
   };

@@ -19,7 +19,7 @@ const Views = ({ label, subject }) => {
   if (prop.length === 1) {
     return <Resource forceRender subject={prop[0].object} />;
   }
-  const obs = prop.map(iri => <Resource key={`views-${iri.object.value}`} subject={iri.object} />);
+  const obs = prop.map((iri) => <Resource key={`views-${iri.object.value}`} subject={iri.object} />);
   if (obs && obs.length > 1) {
     return <Columns>{obs}</Columns>;
   } else if (obs) {

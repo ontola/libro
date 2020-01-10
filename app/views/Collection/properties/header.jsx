@@ -37,7 +37,7 @@ const CreateActionButton = ({
   subject,
 }) => {
   const createActions = lrs.getResourceProperties(subject, ontola.createAction);
-  const trigger = onClick => (
+  const trigger = (onClick) => (
     <IconButton
       centerRipple
       color="default"
@@ -57,7 +57,7 @@ const CreateActionButton = ({
         {() => (
           <ResourceBoundary>
             {
-              createActions.sort(sort(ORDER)).map(action => (
+              createActions.sort(sort(ORDER)).map((action) => (
                 <Resource subject={action} />
               ))
             }

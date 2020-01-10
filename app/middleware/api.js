@@ -33,7 +33,7 @@ import { redirectPage, reloadPage } from './reloading';
 
 export const apiLogin = createAction(AFE_API_LOGIN);
 
-export default (history, swc) => store => next => (action) => {
+export default (history, swc) => (store) => (next) => (action) => {
   if (!action.type.startsWith('@AFE_API/')) {
     return next(action);
   }
@@ -41,7 +41,7 @@ export default (history, swc) => store => next => (action) => {
   switch (action.type) {
     case AFE_API_GET_MAP_ACCESS_TOKEN: {
       return fetch('/api/maps/accessToken')
-        .then(res => res.json())
+        .then((res) => res.json())
         .then((json) => {
           const expiry = Date.parse(json.expiresAt);
 
@@ -67,7 +67,7 @@ export default (history, swc) => store => next => (action) => {
         method: 'POST',
         redirect: 'manual',
       }))
-        .then(res => res.json())
+        .then((res) => res.json())
         .then((json) => {
           switch (json.status) {
             case SIGN_IN_ACCOUNT_LOCKED:

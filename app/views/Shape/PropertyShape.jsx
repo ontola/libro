@@ -33,7 +33,7 @@ const useTargetValues = (targetObject, path) => {
   const rawTargetValues = (targetIRI && lrs.getResourceProperties(targetIRI, path)) || [];
   const [targetValues, setTargetValues] = React.useState(Promise.resolve());
   useDataInvalidation({
-    dataSubjects: (rawTargetValues || []).filter(s => ['NamedNode', 'TermType'].includes(s.termType)),
+    dataSubjects: (rawTargetValues || []).filter((s) => ['NamedNode', 'TermType'].includes(s.termType)),
     subject: targetIRI,
   });
 

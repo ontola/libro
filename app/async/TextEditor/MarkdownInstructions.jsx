@@ -8,7 +8,7 @@ import Markdown from '../../components/Markdown';
 import instructions from './instructions';
 
 /* eslint-disable no-magic-numbers */
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],

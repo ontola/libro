@@ -49,7 +49,7 @@ const getFrame = (Wrapper, topology) => {
             <Table>
               <TableHead>
                 <TableHeaderRow>
-                  {columns.map(property => (
+                  {columns.map((property) => (
                     <Resource
                       forceRender
                       key={property.value}

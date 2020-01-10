@@ -19,7 +19,7 @@ const SearchResultNavbar = () => {
 
   return (
     <MediaQuery query={mediaQueries.smallAndAbove} values={values}>
-      {matches => (
+      {(matches) => (
         <NavbarLink
           icon="search"
           label={matches && label}

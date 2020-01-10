@@ -14,7 +14,7 @@ export const setCurrentUser = createAction(
 );
 export const setCurrentUserEmail = createAction(
   actions.SET_CURRENT_USER,
-  primaryEmail => new Map({
+  (primaryEmail) => new Map({
     primaryEmail: typeof primaryEmail === 'string' ? primaryEmail : primaryEmail.value,
   })
 );

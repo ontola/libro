@@ -69,7 +69,7 @@ class InlineActionTableRow extends React.PureComponent {
 
 export default [
   LinkedRenderStore.registerRenderer(
-    link(mapDataToProps)(props => (
+    link(mapDataToProps)((props) => (
       <InlineActionTableRow
         completed={(
           <FormattedMessage
@@ -85,7 +85,7 @@ export default [
     allTopologies
   ),
   LinkedRenderStore.registerRenderer(
-    link(mapDataToProps)(props => (
+    link(mapDataToProps)((props) => (
       <InlineActionTableRow
         completed={(
           <FormattedMessage
@@ -101,7 +101,7 @@ export default [
     allTopologies
   ),
   LinkedRenderStore.registerRenderer(
-    link(mapDataToProps)(props => <InlineActionTableRow {...props} />),
+    link(mapDataToProps)((props) => <InlineActionTableRow {...props} />),
     argu.ConfirmAction,
     RENDER_CLASS_NAME,
     allTopologies

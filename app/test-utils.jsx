@@ -16,7 +16,7 @@ import { retrievePath } from './helpers/iris';
 import { generateCtx } from './helpers/link-redux/fixtures';
 import { WebsiteContext } from './location';
 import configureStore from './state';
-import englishMessages from './translations/en';
+import englishMessages from './translations/en.json';
 import { getViews } from './views';
 import themes from './themes';
 

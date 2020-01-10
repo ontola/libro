@@ -51,7 +51,7 @@ class RadioGroup extends Topology {
         onChange={onChange}
       >
         {
-          items.map(option => (
+          items.map((option) => (
             <FormControlLabel
               control={(
                 <Radio

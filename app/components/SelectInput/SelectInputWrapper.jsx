@@ -41,7 +41,7 @@ function calculateItemsToShow(inputValue, selectedItem, options, lrs) {
 
   if (inputValue && inputValue !== selectedItem && options.length > MAX_ITEMS) {
     return options
-      .filter(item => (
+      .filter((item) => (
         normalizedLower(item.value).includes(compareValue)
           || normalizedLower(itemToString(item, lrs)).includes(compareValue)
       ));
@@ -132,9 +132,9 @@ function renderAsRadioGroup(topology, items, lrs, inputFieldHint) {
     return false;
   }
 
-  const labels = items.map(item => itemToString(item, lrs));
+  const labels = items.map((item) => itemToString(item, lrs));
 
-  return labels.some(label => label.length > MAX_SELECT_LABEL_LENGTH);
+  return labels.some((label) => label.length > MAX_SELECT_LABEL_LENGTH);
 }
 
 function updateOptions(state, options, lrs) {
@@ -172,7 +172,7 @@ const SelectInputWrapper = ({
     setState(updateOptions(state, options, lrs));
   }, [loading, options]);
   const [debouncedCallback] = useDebouncedCallback(
-    changes => handleStateChange(
+    (changes) => handleStateChange(
       options,
       changes,
       setState,

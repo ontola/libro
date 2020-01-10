@@ -17,7 +17,7 @@ const NavBarContent = () => (
       subject={frontendIRI}
     >
       <MediaQuery query={mediaQueries.smallAndAbove} values={values}>
-        {matches => (
+        {(matches) => (
           <Property label={ontola.navigationsMenu}>
             <div className="NavBarContent__items">
               <Property

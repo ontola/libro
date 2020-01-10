@@ -1,3 +1,5 @@
+/* eslint-disable max-classes-per-file */
+
 import as from '@ontologies/as';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {

@@ -203,7 +203,7 @@ export default [
     pageTopology
   ),
   LinkedRenderStore.registerRenderer(
-    props => (
+    (props) => (
       <Container>
         <ErrorCard {...props} />
       </Container>

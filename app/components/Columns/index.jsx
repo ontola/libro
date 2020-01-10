@@ -40,7 +40,7 @@ const Columns = ({
   });
 
   const normChildren = Array.isArray(children) ? children : [children];
-  const renderColumns = normChildren.map(child => (
+  const renderColumns = normChildren.map((child) => (
     <Column
       flexBasis={flexBasis}
       key={`col-${child.key}`}

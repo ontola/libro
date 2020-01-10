@@ -27,7 +27,7 @@ const BlurButton = ({
 }) => (
   <button
     {...props}
-    onClick={e => onClickAndBlur(e, onClick)}
+    onClick={(e) => onClickAndBlur(e, onClick)}
   >
     {children}
   </button>

@@ -76,14 +76,14 @@ const fetchPrerenderData = async (ctx, manifestData, includeResources) => {
       agent.destroy();
     }).catch((e) => {
       logging.error(e);
-      requests.map(r => r.abort());
+      requests.map((r) => r.abort());
       agent.destroy();
     });
 
   return responseData;
 };
 
-const handler = sendResponse => async (ctx) => {
+const handler = (sendResponse) => async (ctx) => {
   const domain = ctx.request.headers.host.replace(/:.*/, '');
 
   try {

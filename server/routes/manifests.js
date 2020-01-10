@@ -26,7 +26,7 @@ const precacheManifest = async (ctx) => {
 
     if (manifestData) {
       manifest.push(({ url: manifestLocation }));
-      manifest.push(...manifestData.icons.map(icon => ({ url: icon.src })));
+      manifest.push(...manifestData.icons.map((icon) => ({ url: icon.src })));
 
       ctx.response.set('Content-Type', 'application/javascript');
       ctx.response.body = PREFIX + JSON.stringify(manifest, null, 1) + SUFFIX;

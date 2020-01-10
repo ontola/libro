@@ -15,7 +15,7 @@ const serviceWorker = async (ctx) => {
 
     ctx.response.set('Content-Type', 'application/javascript');
     ctx.response.body = serviceWorkerFile
-      .replace(/f_assets\/precache-manifest\.[0-9a-z]+.js/gi, x => [x, params].join('?'));
+      .replace(/f_assets\/precache-manifest\.[0-9a-z]+.js/gi, (x) => [x, params].join('?'));
     ctx.response.status = HttpStatus.OK;
   } catch (e) {
     logging.error(e);

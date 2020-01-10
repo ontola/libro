@@ -23,7 +23,7 @@ const ORDER = [
 ];
 
 export const filterActions = (lrs, potentialAction) => {
-  const actionCollection = potentialAction.find(action => /\/actions$/.test(action.value));
+  const actionCollection = potentialAction.find((action) => /\/actions$/.test(action.value));
   if (__CLIENT__ && actionCollection && !entityIsLoaded(lrs, actionCollection)) {
     lrs.queueEntity(actionCollection);
 
@@ -36,10 +36,10 @@ export const filterActions = (lrs, potentialAction) => {
 export const invalidStatusIds = [
   ontola.DisabledActionStatus,
   ontola.ExpiredActionStatus,
-].map(s => rdf.id(s));
+].map((s) => rdf.id(s));
 
 export const actionsAreAllDisabled = (items, lrs) => {
-  const actionStatuses = items.map(a => rdf.id(lrs.getResourceProperty(a, schema.actionStatus)));
+  const actionStatuses = items.map((a) => rdf.id(lrs.getResourceProperty(a, schema.actionStatus)));
 
-  return actionStatuses.every(a => invalidStatusIds.includes(a));
+  return actionStatuses.every((a) => invalidStatusIds.includes(a));
 };

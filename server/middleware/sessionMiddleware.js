@@ -6,7 +6,7 @@ import { redisAddress } from '../config';
 
 export const client = new Redis(redisAddress);
 
-export default app => session({
+export default (app) => session({
   store: redisStore({
     client,
   }),

@@ -99,7 +99,7 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch, props) => ({
-  onSaveEditorState: editorState => dispatch(updateDraft(props.id, editorState)),
+  onSaveEditorState: (editorState) => dispatch(updateDraft(props.id, editorState)),
 });
 
 const ConnectedRichEditor = connect(

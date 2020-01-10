@@ -1,3 +1,5 @@
+/* eslint-disable max-classes-per-file */
+
 import HttpStatus from 'http-status-codes';
 
 /**

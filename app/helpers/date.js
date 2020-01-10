@@ -53,4 +53,4 @@ export const relativeTimeDestructure = (date, relative = Date.now()) => {
   };
 };
 
-export default date => ((date && date.termType) ? new Date(date.value) : date) < Date.now();
+export default (date) => ((date && date.termType) ? new Date(date.value) : date) < Date.now();

@@ -47,7 +47,7 @@ const define = ({
 function normalizeProps(arr, ...params) {
   let props = {};
   if (arr instanceof Object && arr.constructor === Object) {
-    props = Object.assign({}, arr);
+    props = { ...arr };
   } if (typeof arr === 'string') {
     props[arr] = undefined;
   }
@@ -236,7 +236,7 @@ function within(target, callback) {
   const targets = Array.isArray(target) ? target : [target];
 
   const traverse = (prop, tree) => (Object.prototype.hasOwnProperty.call(prop, 'termType')
-    ? tree.findWhere(e => (e.name() && e.name().startsWith('TP(') && e.instance() && has(e.instance().topology, prop))
+    ? tree.findWhere((e) => (e.name() && e.name().startsWith('TP(') && e.instance() && has(e.instance().topology, prop))
       || (e.name() === 'Resource' && has(e.prop('subject'), prop)))
     : tree.find(prop));
 

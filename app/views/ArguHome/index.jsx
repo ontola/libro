@@ -79,7 +79,7 @@ const ArguHomePage = ({ coverPhoto, subject }) => {
     coverPhotoUrl = lrs.getResourceProperty(coverPhoto, ontola.imgUrl1500x2000);
     positionY = lrs.getResourceProperty(coverPhoto, ontola.imagePositionY);
   }
-  const loaded = processSteps.every(processStep => entityIsLoaded(lrs, processStep));
+  const loaded = processSteps.every((processStep) => entityIsLoaded(lrs, processStep));
 
   return (
     <div className="ArguHome">

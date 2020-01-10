@@ -123,7 +123,7 @@ function getBase64(file) {
       undefined,
       NS.argu(`base64File?filename=${encodeURIComponent(file.name)}`)
     ));
-    reader.onerror = error => reject(error);
+    reader.onerror = (error) => reject(error);
   });
 }
 
@@ -364,7 +364,7 @@ class FormField extends React.PureComponent {
         <FileInput
           {...sharedProps}
           data-testid={sharedProps.name}
-          onChange={e => new Promise(() => {
+          onChange={(e) => new Promise(() => {
             if (!e) {
               field.onChange(undefined);
 
@@ -487,7 +487,7 @@ class FormField extends React.PureComponent {
     return this.props
       .field
       .split('.')
-      .map(v => (Number.isNaN(Number.parseInt(v, 10)) ? atob(v) : v))
+      .map((v) => (Number.isNaN(Number.parseInt(v, 10)) ? atob(v) : v))
       .join('.');
   }
 

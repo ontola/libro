@@ -33,7 +33,7 @@ const Pages = ({
     );
   }
 
-  const obs = pages.map(iri => (
+  const obs = pages.map((iri) => (
     <Resource
       collectionDisplay={collectionDisplay}
       columns={columns}

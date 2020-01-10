@@ -2,7 +2,7 @@ import { editorStateFromRaw } from 'megadraft';
 
 import { createMarkdownFromDraft } from '../../helpers/markdownHelper';
 
-const makeSlice = state => state.get('textEditor');
+const makeSlice = (state) => state.get('textEditor');
 
 const getDraftSlice = (stateSlice, id) => {
   const instance = stateSlice.get(id);
@@ -16,8 +16,8 @@ const getDraftSlice = (stateSlice, id) => {
 
 export const getDraftState = (state, id) => getDraftSlice(makeSlice(state), id);
 
-export const getEditorShowRich = state => state.getIn(['textEditor', 'showRichEditor']);
-export const getEditorShowPreview = state => state.getIn(['textEditor', 'showPreview']);
+export const getEditorShowRich = (state) => state.getIn(['textEditor', 'showRichEditor']);
+export const getEditorShowPreview = (state) => state.getIn(['textEditor', 'showPreview']);
 
 export const getMarkdownTextFromDraft = (state, id) => {
   const content = getDraftState(state, id);

@@ -18,7 +18,7 @@ import Menu from '../../topologies/Menu';
 const MenuItemDropdown = ({
   menuItems,
 }) => {
-  const trigger = onClick => (
+  const trigger = (onClick) => (
     <IconButton
       centerRipple
       color="default"

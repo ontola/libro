@@ -100,7 +100,7 @@ export const allTopologies = [
 export function allTopologiesExcept(...topologies) {
   const filtered = allTopologies.slice();
   topologies.forEach((t) => {
-    const i = filtered.findIndex(f => rdf.equals(f, t));
+    const i = filtered.findIndex((f) => rdf.equals(f, t));
     if (i !== -1) {
       filtered.splice(i, 1);
     }
@@ -109,5 +109,5 @@ export function allTopologiesExcept(...topologies) {
   return filtered;
 }
 
-export const getTopologyNumber = topology => allTopologies
-  .findIndex(item => rdf.equals(topology, item));
+export const getTopologyNumber = (topology) => allTopologies
+  .findIndex((item) => rdf.equals(topology, item));

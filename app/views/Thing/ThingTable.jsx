@@ -37,7 +37,7 @@ class ThingTable extends React.PureComponent {
 
     return (
       <TableRow>
-        {columns.map(column => (
+        {columns.map((column) => (
           <Property
             forceRender
             key={normalizeType(column)[0].value}

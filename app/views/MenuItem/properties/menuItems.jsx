@@ -22,7 +22,7 @@ const MenuItems = ({
   }
 
   return rawProp
-    .map(item => (
+    .map((item) => (
       <Resource
         childProps={childProps}
         key={`menu-${item}`}

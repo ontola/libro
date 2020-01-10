@@ -103,6 +103,6 @@ export default connect(
   },
   (dispatch, { id }) => ({
     onClickToggle: () => dispatch(toggleOne(id)),
-    onInitializeCollapsible: data => dispatch(initializeCollapsible(data)),
+    onInitializeCollapsible: (data) => dispatch(initializeCollapsible(data)),
   })
 )(CollapseText);

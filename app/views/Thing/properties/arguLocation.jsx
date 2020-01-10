@@ -97,7 +97,7 @@ class ArguLocation extends React.Component {
       <MapView
         renderSubject
         lrs={lrs}
-        navigate={resource => history.push(retrievePath(resource.value))}
+        navigate={(resource) => history.push(retrievePath(resource.value))}
         placements={placements}
         subject={subject}
         subjectPlacement={placements ? undefined : subject}

@@ -8,7 +8,7 @@ import {
   Resource,
   register,
 } from 'link-redux';
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import AppMenu from '../../topologies/AppMenu';
@@ -37,7 +37,7 @@ const MenuNavbar = () => {
   return (
     <AppMenu trigger={trigger}>
       {({ handleClose }) => (
-        <Fragment>
+        <React.Fragment>
           <Resource
             childProps={{
               hideIcon: true,
@@ -46,13 +46,13 @@ const MenuNavbar = () => {
             subject={NS.app('menus/navigations/menus')}
           />
           <Divider />
-          <Fragment>
+          <React.Fragment>
             <Resource
               childProps={{ onClose: handleClose }}
               subject={NS.app('apex/menus/user/menus')}
             />
             <Divider />
-          </Fragment>
+          </React.Fragment>
           <div className={classes.root}>
             <Resource
               childProps={{
@@ -62,7 +62,7 @@ const MenuNavbar = () => {
               subject={NS.app('apex/menus/info/menus')}
             />
           </div>
-        </Fragment>
+        </React.Fragment>
       )}
     </AppMenu>
   );

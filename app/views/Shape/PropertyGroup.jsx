@@ -65,8 +65,7 @@ const PropertyGroup = ({
         <div className={classes.caret}>
           {open
             ? <FontAwesome name="caret-down" />
-            : <FontAwesome name="caret-right" />
-          }
+            : <FontAwesome name="caret-right" />}
         </div>
       </ButtonBase>
       <Collapse in={open} timeout="auto">

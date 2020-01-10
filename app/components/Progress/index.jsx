@@ -17,7 +17,7 @@ const Progress = ({
   min,
   value,
 }) => (
-  <ProgressWithRadius value={100 * (value - min) / (max - min)} variant="determinate" />
+  <ProgressWithRadius value={100 * ((value - min) / (max - min))} variant="determinate" />
 );
 
 Progress.propTypes = {

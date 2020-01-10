@@ -56,7 +56,7 @@ export function toArr(obj) {
       const object = resource[p];
       const predicate = rdf.namedNode(p.slice(1, -1));
       if (Array.isArray(object)) {
-        object.forEach(iObject => statements.push(rdf.quad(subject, predicate, iObject)));
+        object.forEach((iObject) => statements.push(rdf.quad(subject, predicate, iObject)));
       } else {
         statements.push(rdf.quad(subject, predicate, object));
       }

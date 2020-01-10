@@ -1,3 +1,5 @@
+/* eslint-disable max-classes-per-file */
+
 import { term } from '@rdfdev/iri';
 import RDFTypes from '@rdfdev/prop-types';
 import as from '@ontologies/as';

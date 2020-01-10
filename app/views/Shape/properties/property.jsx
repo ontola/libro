@@ -38,8 +38,8 @@ const filterProp = (props, lrs, propSubject) => {
 
     // The filter is on the blanknode id of the propshape, rather than its sh:path value
     const allowed = whitelist
-      ? paths.some(s => whitelist.includes(rdf.id(s.object)))
-      : paths.filter(s => blacklist.includes(rdf.id(s.object)));
+      ? paths.some((s) => whitelist.includes(rdf.id(s.object)))
+      : paths.filter((s) => blacklist.includes(rdf.id(s.object)));
 
     return allowed ? propSubject : undefined;
   }
@@ -53,7 +53,7 @@ function orderProps(givenProps, lrs) {
   const unorderedProps = [];
 
   const properties = normalizeType(givenProps.label)
-    .flatMap(label => lrs.getResourcePropertyRaw(givenProps.subject, label));
+    .flatMap((label) => lrs.getResourcePropertyRaw(givenProps.subject, label));
 
   for (let i = 0, maxLen = properties.length; i < maxLen; i++) {
     const prop = filterProp(givenProps, lrs, properties[i] ? properties[i].object : undefined);
@@ -80,7 +80,7 @@ function orderProps(givenProps, lrs) {
   groups.forEach((v, g) => {
     const group = {
       group: g,
-      props: v.map(p => filterProp(givenProps, lrs, p)).filter(Boolean),
+      props: v.map((p) => filterProp(givenProps, lrs, p)).filter(Boolean),
     };
     if (group.props.length > 0) {
       const order = lrs.store.find(g, sh.order, null, null);

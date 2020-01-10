@@ -59,7 +59,7 @@ export default function getCollection({
           renderWhenEmpty: rwe || renderWhenEmpty,
         }),
         (dispatch, { subject }) => ({
-          onPageChange: url => dispatch(gotoPage(subject.value, url)),
+          onPageChange: (url) => dispatch(gotoPage(subject.value, url)),
         })
       ),
     ];

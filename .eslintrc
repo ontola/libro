@@ -32,10 +32,6 @@
       "pragma": "React",
       "version": "16.8.6"
     },
-    "import/extensions": ["error", {
-      "ts": "never",
-      "tsx": "never"
-    }],
     "import/resolver": {
       "node": {},
       "webpack": {
@@ -87,6 +83,13 @@
     "jsx-a11y/tabindex-no-positive": 2,
     // Code style
     "import/dynamic-import-chunkname": "error",
+    "import/extensions": ["error", {
+      "css": "always",
+      "json": "always",
+      "scss": "always",
+      "ts": "never",
+      "tsx": "never"
+    }],
     "import/first": "error",
     "import/newline-after-import": "error",
     "import/no-extraneous-dependencies": ["error", {
@@ -127,6 +130,7 @@
       "prev": "*"
     }],
     "react/button-has-type": "warn",
+    "react/jsx-props-no-spreading": 0,
     "react/jsx-sort-props": ["error", {
       "callbacksLast": true,
       "shorthandFirst": true
@@ -147,6 +151,7 @@
         "render"
       ]
     }],
+    "react/static-property-placement": 0,
     "sort-imports": ["error", { "ignoreDeclarationSort": true }],
     "sort-keys": ["error", "asc", { "natural": true }],
     "space-unary-ops": ["error", { "words": true, "nonwords": false }],
@@ -174,6 +179,7 @@
         "capIsNewExceptions": ["Alert", "Record", "Namespace", "Spring"]
       }
     ],
+    "react/jsx-fragments": ["error", "element"],
     "react/jsx-one-expression-per-line": 0,
     "react/require-default-props": 0,
     "react/destructuring-assignment": 0,

@@ -164,7 +164,7 @@ const ProcessStep = ({
                 <LinkedResourceContainer key={feature} subject={feature} onLoad={LoadingRow}>
                   <li className="ProcessStep--feature">
                     <h3 className={icons.length > 1 ? 'ProcessStep--two-icons' : ''}>
-                      {icons.map(featureIcon => <span className={`fa fa-${featureIcon.value}`} key={featureIcon.value} />)}
+                      {icons.map((featureIcon) => <span className={`fa fa-${featureIcon.value}`} key={featureIcon.value} />)}
                       <Heading size="4"><Property label={schema.name} topology={inlineTopology} /></Heading>
                     </h3>
                     <p><Property label={schema.text} topology={inlineTopology} /></p>

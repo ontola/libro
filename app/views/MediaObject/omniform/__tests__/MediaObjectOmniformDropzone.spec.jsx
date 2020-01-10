@@ -14,7 +14,7 @@ describe('MediaObjectOmniformDropzone', () => {
         {() => (
           <Field
             name="testfield"
-            render={props => (
+            render={(props) => (
               <MediaObjectOmniformDropzone
                 name="testfield"
                 {...props}

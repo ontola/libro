@@ -63,7 +63,10 @@ describe('helpers', () => {
       const faProp = {
         fa: 'fa-address-book',
       };
-      const imgMerged = Object.assign({}, imgProp, faProp);
+      const imgMerged = {
+        ...imgProp,
+        ...faProp,
+      };
       const expectedImage = React.createElement('img', {
         alt: imgProp.image.title,
         className: imgProp.image.className,

@@ -28,7 +28,7 @@ const order = [
 
 const sortBind = (potentialActions, props) => potentialActions
   .sort(sort(order))
-  .map(iri => (
+  .map((iri) => (
     <Resource {...props} isPartOf={props.subject} key={iri} subject={iri} />
   ));
 

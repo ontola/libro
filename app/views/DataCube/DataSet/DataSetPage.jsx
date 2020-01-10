@@ -38,7 +38,7 @@ const DataSetPage = ({
 }) => {
   const components = lrs.getResourceProperties(structure, NS.qb('component'));
   const orderedComponents = orderComponents(components, lrs);
-  const orderedMeasures = orderedComponents.map(comp => lrs.getResourceProperty(comp, NS.qb('measure')));
+  const orderedMeasures = orderedComponents.map((comp) => lrs.getResourceProperty(comp, NS.qb('measure')));
 
   return (
     <PrimaryResource resource={subject.value}>
@@ -52,7 +52,7 @@ const DataSetPage = ({
             <Table>
               <TableHead>
                 <TableRow>
-                  {orderedComponents.map(component => (
+                  {orderedComponents.map((component) => (
                     <Resource
                       key={component.value}
                       subject={component}

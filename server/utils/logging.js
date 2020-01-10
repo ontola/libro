@@ -34,7 +34,7 @@ export function getErrorMiddleware() {
   }
 
   return {
-    errorHandler: err => logging.error(err),
+    errorHandler: (err) => logging.error(err),
     requestHandler: async (ctx, next) => {
       ctx.bugsnag = {
         notify() {},

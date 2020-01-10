@@ -1,3 +1,5 @@
+/* eslint-disable max-classes-per-file */
+
 import schema from '@ontologies/schema';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { Property, withLinkCtx } from 'link-redux';

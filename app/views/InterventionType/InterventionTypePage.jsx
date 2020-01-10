@@ -84,7 +84,7 @@ const InterventionTypePage = () => (
       <Property label={schema.comment} />
       <Property label={ontola.createAction}>
         {(createActions) => {
-          const newInterventionAction = createActions.find(a => a.value.endsWith('/interventies/new'));
+          const newInterventionAction = createActions.find((a) => a.value.endsWith('/interventies/new'));
 
           return newInterventionAction && (
             <Button href={newInterventionAction}>

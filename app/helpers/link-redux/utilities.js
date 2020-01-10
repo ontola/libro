@@ -7,7 +7,7 @@ import { createStore } from 'redux';
 Enzyme.configure({ adapter: new Adapter() });
 
 export const generateStore = () => createStore(
-  state => state,
+  (state) => state,
   new Map()
 );
 

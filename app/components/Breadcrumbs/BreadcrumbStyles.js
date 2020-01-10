@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/styles';
 
 /* eslint-disable no-magic-numbers */
-export default makeStyles(theme => ({
+export default makeStyles((theme) => ({
   default: {
     '& .Breadcrumb__text': {
       overflow: 'hidden',

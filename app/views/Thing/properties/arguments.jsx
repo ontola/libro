@@ -57,7 +57,7 @@ const ArgumentsData = link({
   proArguments: NS.argu('proArguments'),
 })(Arguments);
 
-const ArgumentsCardAppendix = props => (
+const ArgumentsCardAppendix = (props) => (
   <ArgumentsData {...props}>
     <CardRow backdrop>
       <Margin />

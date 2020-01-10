@@ -1,6 +1,6 @@
 import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import Button from '../../components/Button';
 
@@ -98,7 +98,7 @@ class Carousel extends TopologyProvider {
 
     if (this.state.showLeftButton) {
       leftButton = (
-        <Fragment>
+        <React.Fragment>
           <div className="Carousel__gradient Carousel__gradient--left" />
           <Button
             plain
@@ -106,13 +106,13 @@ class Carousel extends TopologyProvider {
             icon="arrow-left"
             onClick={this.handleLeftButtonClick}
           />
-        </Fragment>
+        </React.Fragment>
       );
     }
 
     if (this.state.showRightButton) {
       rightButton = (
-        <Fragment>
+        <React.Fragment>
           <Button
             plain
             className="Carousel__scrollButton"
@@ -120,7 +120,7 @@ class Carousel extends TopologyProvider {
             onClick={this.handleRightButtonClick}
           />
           <div className="Carousel__gradient Carousel__gradient--right" />
-        </Fragment>
+        </React.Fragment>
       );
     }
 

@@ -36,7 +36,7 @@ const MediaObjectOmniformFields = ({
   ).pop();
   const encodingFormatTypes = encodingFormatShape
     && listToArr(lrs, [], lrs.getResourceProperty(encodingFormatShape, sh.in))
-      ?.map(lit => lit.value)
+      ?.map((lit) => lit.value)
       ?.join(', ');
 
   const resourceField = useField(resourceId, {

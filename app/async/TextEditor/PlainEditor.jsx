@@ -127,7 +127,7 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = (dispatch, props) => ({
   onHidePreview: () => dispatch(hidePreview()),
-  onPlainChange: event => dispatch(updateMarkdown(props.id, event.target.value)),
+  onPlainChange: (event) => dispatch(updateMarkdown(props.id, event.target.value)),
   onShowPreview: () => dispatch(doShowPreview()),
 });
 

@@ -39,7 +39,7 @@ const GuestUserActor = ({ location, lrs }) => {
 
   return (
     <MediaQuery query={mediaQueries.smallAndAbove} values={values}>
-      {matches => (
+      {(matches) => (
         <React.Fragment>
           <SignInFormLink
             Component={NavbarLink}

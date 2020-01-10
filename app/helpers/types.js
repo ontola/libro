@@ -1,3 +1,3 @@
-export const isPromise = obj => (
+export const isPromise = (obj) => (
   typeof obj?.then === 'function'
 );

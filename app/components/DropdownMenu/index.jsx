@@ -1,6 +1,6 @@
 import MaterialMenu from '@material-ui/core/Menu/Menu';
 import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
+import React from 'react';
 
 const propTypes = {
   children: PropTypes.oneOfType([
@@ -42,7 +42,7 @@ const DropdownMenu = ({
   };
 
   return (
-    <Fragment>
+    <React.Fragment>
       {trigger(handleClick, Boolean(anchorEl))}
       <MaterialMenu
         anchorEl={anchorEl}
@@ -62,7 +62,7 @@ const DropdownMenu = ({
       >
         {childComponent(children, handleClose)}
       </MaterialMenu>
-    </Fragment>
+    </React.Fragment>
   );
 };
 

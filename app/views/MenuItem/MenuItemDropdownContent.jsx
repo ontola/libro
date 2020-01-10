@@ -10,7 +10,7 @@ import {
   subjectType,
 } from 'link-redux';
 import * as PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import { MenuItem } from '../../components';
 import ontola from '../../ontology/ontola';
@@ -73,7 +73,7 @@ const MenuItemDropdownContentComp = ({
 
   if (menuItems) {
     return (
-      <Fragment>
+      <React.Fragment>
         <MenuItem
           action={handleClick}
           subject={subject}
@@ -92,7 +92,7 @@ const MenuItemDropdownContentComp = ({
             />
           </List>
         </Collapse>
-      </Fragment>
+      </React.Fragment>
     );
   }
 

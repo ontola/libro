@@ -93,7 +93,7 @@ describe('Notification', () => {
   };
 
   describe('in container', () => {
-    const renderInContainer = resources => render(
+    const renderInContainer = (resources) => render(
       ({ iri }) => (
         <Container>
           <Resource forceRender subject={iri} />

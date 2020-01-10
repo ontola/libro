@@ -50,7 +50,7 @@ const Form = (props) => {
       if (__CLIENT__) {
         Object
           .keys(sessionStorage)
-          .forEach(k => k.startsWith(formID) && sessionStorage.removeItem(k));
+          .forEach((k) => k.startsWith(formID) && sessionStorage.removeItem(k));
       }
 
       window.setTimeout(() => formApi.reset(), 0);

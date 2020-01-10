@@ -10,7 +10,7 @@ const connectSrc = [
   "'self'",
   'https://api.notubiz.nl',
   'https://www.facebook.com',
-  req => `ws://${req.hostname}`,
+  (req) => `ws://${req.hostname}`,
 ];
 
 const fontSrc = ["'self'", 'https://maxcdn.bootstrapcdn.com', 'https://fonts.gstatic.com'];

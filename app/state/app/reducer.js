@@ -14,7 +14,7 @@ const initialState = new Map({
 
 const collapsible = handleActions({
   [HIGHLIGHT_RESOURCE]: (state, { payload }) => state.set(HIGHLIGHT_RESOURCE, payload),
-  [LOCATION_CHANGE]: state => (state.get(HIGHLIGHT_RESOURCE)
+  [LOCATION_CHANGE]: (state) => (state.get(HIGHLIGHT_RESOURCE)
     ? state.set(HIGHLIGHT_RESOURCE, undefined)
     : state),
   [SET_CURRENT_USER]: (state, { payload }) => state.set(

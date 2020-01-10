@@ -70,7 +70,7 @@ class MenuItemPage extends React.PureComponent {
       return null;
     }
 
-    return items.map(iri => (
+    return items.map((iri) => (
       <Resource
         key={iri.value}
         subject={iri}
@@ -89,7 +89,7 @@ class MenuItemPage extends React.PureComponent {
     if (menuItems) {
       const menuItemsArr = seqToArr(lrs, [], menuItems);
 
-      const currentItem = menuItemsArr.find(s => rdf.equals(s, currentLocation(location)));
+      const currentItem = menuItemsArr.find((s) => rdf.equals(s, currentLocation(location)));
 
       if (!currentItem) {
         return lrs.getResourceProperty(menuItems, NS.rdf('_0'));

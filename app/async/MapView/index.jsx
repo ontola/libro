@@ -162,7 +162,7 @@ class MapView extends React.Component {
     this.highlightFeature = this.highlightFeature.bind(this);
     this.showFeatureResourceInOverlay = this.showFeatureResourceInOverlay.bind(this);
     this.onMapClick = props.onMapClick
-      ? e => props.onMapClick(toLonLat(e.coordinate))
+      ? (e) => props.onMapClick(toLonLat(e.coordinate))
       : undefined;
 
     this.onError = this.onError.bind(this);
@@ -246,7 +246,7 @@ class MapView extends React.Component {
   }
 
   isInMemoryFeature(feature) {
-    return this.props.placements.find(p => p.id === feature.getId());
+    return this.props.placements.find((p) => p.id === feature.getId());
   }
 
   showFeatureResourceInOverlay(e) {
@@ -393,7 +393,7 @@ class MapView extends React.Component {
   }
 
   highlightFeature(e) {
-    const update = highlight => (feature) => {
+    const update = (highlight) => (feature) => {
       const local = this.isInMemoryFeature(feature);
       let image;
       if (local) {
@@ -449,7 +449,7 @@ class MapView extends React.Component {
   }
 
   render() {
-    const handleClick = e => e.target.className !== 'click-ignore'
+    const handleClick = (e) => e.target.className !== 'click-ignore'
       && this.props.navigate(this.state.selected);
 
     const errorMessage = (this.props.error || this.state.error) && (
@@ -484,12 +484,12 @@ class MapView extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   accessToken: getAccessToken(state),
   error: getAccessTokenError(state),
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   getAccessToken: () => dispatch(getMapAccessToken()),
 });
 

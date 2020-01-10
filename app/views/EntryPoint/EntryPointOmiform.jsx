@@ -38,7 +38,7 @@ class EntryPointOmniform extends EntryPointBase {
   }
 }
 
-const EntryPointOmniformWrapper = withLRS(props => (
+const EntryPointOmniformWrapper = withLRS((props) => (
   <EntryPointOmniform
     form={props.subject.value}
     {...props}

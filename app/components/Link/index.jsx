@@ -42,7 +42,7 @@ const Link = ({
   const componentClassName = clsx(
     className,
     themeClasses[theme],
-    ...features.map(f => featureClasses[f])
+    ...features.map((f) => featureClasses[f])
   );
 
   if (isDifferentWebsite(to)) {

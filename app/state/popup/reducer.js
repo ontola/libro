@@ -16,7 +16,7 @@ const popup = handleActions({
     location: payload.location,
     resource: payload.resource,
   }),
-  [UNSET_POPUP_RESOURCE]: state => state.set('resource', undefined).set('location', {}),
+  [UNSET_POPUP_RESOURCE]: (state) => state.set('resource', undefined).set('location', {}),
 }, initialState);
 
 export default popup;

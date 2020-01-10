@@ -142,7 +142,7 @@ export default [
     cardListTopology
   ),
   LinkedRenderStore.registerRenderer(
-    connectHighlighting(props => <CardContent><ThingSection {...props} /></CardContent>),
+    connectHighlighting((props) => <CardContent><ThingSection {...props} /></CardContent>),
     schema.Thing,
     RENDER_CLASS_NAME,
     cardRowTopology

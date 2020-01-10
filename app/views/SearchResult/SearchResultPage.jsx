@@ -42,7 +42,7 @@ export const SearchResultPage = ({
       redirectPagination
       currentPage={subject.value}
       label={ontola.defaultPagination}
-      onPageChange={url => history.push(retrievePath(url))}
+      onPageChange={(url) => history.push(retrievePath(url))}
     />
   );
 

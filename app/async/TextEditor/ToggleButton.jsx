@@ -48,7 +48,7 @@ const ToggleEditor = ({
 
 ToggleEditor.propTypes = propTypes;
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   showRichEditor: getEditorShowRich(state),
 });
 

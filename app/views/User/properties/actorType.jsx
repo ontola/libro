@@ -39,19 +39,17 @@ ActorTypeDispatcher.propTypes = propTypes;
 
 const ActorTypeDispatcherConnect = connect(
   null,
-  dispatch => ({
-    onChange: payload => dispatch(setCurrentUser(payload)),
+  (dispatch) => ({
+    onChange: (payload) => dispatch(setCurrentUser(payload)),
   }),
-  (_sP, dispatchProps, ownProps) => Object.assign(
-    {},
-    dispatchProps,
-    {
-      action: {
-        actorType: ownProps.actorType,
-        anonymousID: ownProps.anonymousID,
-      },
-    }
-  ),
+  (_sP, dispatchProps, ownProps) => ({
+
+    ...dispatchProps,
+    action: {
+      actorType: ownProps.actorType,
+      anonymousID: ownProps.anonymousID,
+    },
+  }),
   { pure: false }
 )(ActorTypeDispatcher);
 
