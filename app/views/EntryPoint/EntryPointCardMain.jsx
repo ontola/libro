@@ -5,10 +5,10 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router';
 
+import Form from '../../containers/Form';
 import {
   Button,
   CardContent,
-  Form,
 } from '../../components';
 import FormFooterRight from '../../components/Form/FooterRight';
 import { NS } from '../../helpers/LinkedRenderStore';

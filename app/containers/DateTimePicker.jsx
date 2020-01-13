@@ -4,7 +4,7 @@ import { Input } from '../components/Input';
 
 const DateTimePicker = React.lazy(
   // eslint-disable-next-line no-inline-comments
-  () => import(/* webpackChunkName: "DateTimePicker" */ '../async/DateTimePicker/index')
+  () => import(/* webpackChunkName: "Forms" */ '../async/DateTimePicker/index')
 );
 
 const DateTimePickerLoader = (props) => {

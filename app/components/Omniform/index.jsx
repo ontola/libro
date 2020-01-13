@@ -13,6 +13,7 @@ import FontAwesome from 'react-fontawesome';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
+import Form from '../../containers/Form';
 import { NS } from '../../helpers/LinkedRenderStore';
 import ontola from '../../ontology/ontola';
 import { highlightResource } from '../../state/app/actions';
@@ -22,7 +23,7 @@ import OmniformFields from '../../topologies/OmniformFields/OmniformFields';
 import EntryPointBase from '../../views/EntryPoint/EntryPointBase';
 import { filterActions } from '../../views/Thing/properties/omniform/helpers';
 import Button from '../Button';
-import { Form, FormFooterRight } from '../Form';
+import { FormFooterRight } from '../Form';
 
 import './Omniform.scss';
 

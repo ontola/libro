@@ -13,6 +13,7 @@ import {
   cleanup,
   fireEvent,
   render,
+  waitForElement,
 } from '../../test-utils';
 import Card from '../../topologies/Card';
 
@@ -92,7 +93,7 @@ describe('Omniform', () => {
     },
   };
 
-  it('keeps modification across action switches', () => {
+  it('keeps modification across action switches', async () => {
     const subject = NS.ex('5');
     const omniformSelector = `${subject.value}.omniform`;
     const form = createForm({ onSubmit: () => undefined });
@@ -114,6 +115,7 @@ describe('Omniform', () => {
       </Card>
     ), { resources });
 
+    await waitForElement(() => getByTestId(btoa('http://schema.org/text')));
     expect(getByTestId(omniformSelector)).toHaveFormValues({
       [schemaText]: '',
     });

@@ -14,7 +14,7 @@ import { FormattedMessage } from 'react-intl';
 import DateTimePicker from '../../containers/DateTimePicker';
 import DatePicker from '../../containers/DatePicker';
 import TextEditor from '../../containers/TextEditor';
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import FieldLabel from '../FieldLabel';
 import formFieldWrapper from '../FormFieldWrapper';
 import FileInput from '../Input/FileInput';
@@ -121,7 +121,7 @@ function getBase64(file) {
     reader.onload = () => resolve(rdf.literal(
       reader.result,
       undefined,
-      NS.argu(`base64File?filename=${encodeURIComponent(file.name)}`)
+      argu.ns(`base64File?filename=${encodeURIComponent(file.name)}`)
     ));
     reader.onerror = (error) => reject(error);
   });
@@ -129,6 +129,9 @@ function getBase64(file) {
 
 /**
  * Creates a field for forms.
+ *
+ * Import with the async container.
+ *
  * @returns {component} Component
  */
 class FormField extends React.PureComponent {

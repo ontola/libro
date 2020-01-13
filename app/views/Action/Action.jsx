@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withRouter } from 'react-router';
 
+import Metadata from '../../components/Metadata';
 import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
 import CardContent from '../../components/Card/CardContent';
 import { retrievePath } from '../../helpers/iris';
@@ -64,6 +65,7 @@ export class Action extends NavigatableAction {
 
     return (
       <Container>
+        <Metadata />
         <Property label={schema.isPartOf} />
         <CardMain>
           <CardContent>

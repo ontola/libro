@@ -1,4 +1,5 @@
 import rdfx from '@ontologies/rdf';
+import '@testing-library/jest-dom/extend-expect';
 import { defaultNS as NS } from 'link-lib';
 
 import routes from '../routes/index';
@@ -25,7 +26,7 @@ describe('Registration', () => {
   };
 
   describe('within Page', () => {
-    it('renders all the components', () => {
+    it('renders all the components', async () => {
       const {
         getByTestId,
         getByText,
@@ -34,6 +35,7 @@ describe('Registration', () => {
       // renders the sign in header
       expect(getByText('login or register')).toBeVisible();
 
+      await wait();
       // renders the sign in form
       expect(getByTestId('sign-in-form')).toHaveFormValues({
         [btoa('email')]: '',

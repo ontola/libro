@@ -17,7 +17,7 @@ import argu from '../../ontology/argu';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 
 import './MediaObjectOmniformFields.scss';
-import MediaObjectOmniformDropzone from './omniform/MediaObjectOmniformDropzone';
+import MediaObjectOmniformDropzoneLoader from './omniform/MediaObjectOmniformDropzoneLoader';
 
 const MediaObjectOmniformFields = ({
   propertyIndex,
@@ -70,7 +70,7 @@ const MediaObjectOmniformFields = ({
   }
 
   return (
-    <MediaObjectOmniformDropzone
+    <MediaObjectOmniformDropzoneLoader
       current={current}
       encodingFormatTypes={encodingFormatTypes}
       inputRef={inputRef}

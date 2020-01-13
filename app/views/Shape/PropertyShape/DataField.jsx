@@ -4,7 +4,7 @@ import { linkType, topologyType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { FormField } from '../../../components';
+import FormField from '../../../containers/FormField';
 import { tryParseInt } from '../../../helpers/numbers';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import validators, { combineValidators } from '../../../helpers/validators';

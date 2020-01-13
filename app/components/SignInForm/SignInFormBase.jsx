@@ -3,7 +3,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Button from '../Button';
-import FormField from '../FormField';
+import FormField from '../../containers/FormField';
 import CloseableContainer from '../../containers/CloseableContainer';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { handle } from '../../helpers/logging';

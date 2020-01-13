@@ -19,11 +19,7 @@ export { default as LinkedDetailDate } from './components/LinkedDetailDate/index
 export { default as Link } from './components/Link/index';
 export { default as MenuItem } from './components/MenuItem';
 export { default as Error } from './components/Error/index';
-export {
-  Form,
-  FormSection,
-} from './components/Form/index';
-export { default as FormField } from './components/FormField/index';
+export { FormSection } from './components/Form/index';
 export { default as Heading } from './components/Heading/index';
 export { default as Image } from './components/Image/index';
 export {

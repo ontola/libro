@@ -76,6 +76,7 @@ const common = {
       },
     }),
     new HtmlWebpackPlugin({
+      chunksSortMode: 'none',
       filename: 'public/offline.html',
       template: 'app/offline.html',
     }),

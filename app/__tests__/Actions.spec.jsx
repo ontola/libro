@@ -13,6 +13,7 @@ import {
   cleanup,
   fireEvent,
   render,
+  wait,
 } from '../test-utils';
 
 describe('Actions', () => {
@@ -82,7 +83,7 @@ describe('Actions', () => {
     },
   };
 
-  it('renders a form within Page', () => {
+  it('renders a form within Page', async () => {
     const {
       getByLabelText,
       getByTestId,
@@ -98,6 +99,7 @@ describe('Actions', () => {
 
     const fieldName = (prop) => btoa(prop.value);
 
+    await wait();
     // renders the form
     const form = getByTestId(NS.example('endpoint').value);
     expect(form).toBeVisible();
@@ -107,6 +109,7 @@ describe('Actions', () => {
     expect(elem).toBeVisible();
     expect(elem).toHaveClass('Heading');
 
+    await wait();
     // initializes an empty form
     expect(form).toHaveFormValues({
       [fieldName(schema.name)]: '',
