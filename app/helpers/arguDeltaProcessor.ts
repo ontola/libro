@@ -1,11 +1,13 @@
 import rdf, { Node, Quad, Quadruple } from '@ontologies/core';
 import { LinkReduxLRSType } from 'link-redux';
 
+import ll from '../ontology/ll';
+import ontola from '../ontology/ontola';
 import sp from '../ontology/sp';
 
 function processRemove(delta: Quadruple[], lrs: LinkReduxLRSType) {
   delta
-      .filter(([, , , why]) => rdf.equals(why, lrs.namespaces.ontola('remove')))
+      .filter(([, , , why]) => rdf.equals(why, ontola.remove))
       .forEach(([s, p, o]) => {
         lrs.store.removeQuads(
             lrs.store.match(
@@ -20,7 +22,7 @@ function processRemove(delta: Quadruple[], lrs: LinkReduxLRSType) {
 
 function processReplace(delta: Quadruple[], lrs: LinkReduxLRSType) {
   const replaceables = delta
-      .filter(([s, , , g]) => rdf.equals(g, lrs.namespaces.ontola('replace'))
+      .filter(([s, , , g]) => rdf.equals(g, ontola.replace)
           && lrs.store.find(s, null, null, null));
 
   return lrs.store.replaceMatches(replaceables);
@@ -28,7 +30,7 @@ function processReplace(delta: Quadruple[], lrs: LinkReduxLRSType) {
 
 function processInvalidate(delta: Quadruple[], lrs: LinkReduxLRSType) {
   delta
-      .filter(([, , , why]) => rdf.equals(why, lrs.namespaces.ontola('invalidate')))
+      .filter(([, , , why]) => rdf.equals(why, ontola.invalidate))
       .forEach(([s, p, o]) => {
           if (s
               && !rdf.equals(s, sp.Variable)
@@ -52,7 +54,7 @@ function processInvalidate(delta: Quadruple[], lrs: LinkReduxLRSType) {
 }
 
 function processSupplant(delta: Quadruple[], lrs: LinkReduxLRSType) {
-    const supplants = delta.filter(([, , , why]) => rdf.equals(why, lrs.namespaces.ll('supplant')));
+    const supplants = delta.filter(([, , , why]) => rdf.equals(why, ll.supplant));
 
     supplants.forEach(([s]) => {
         lrs.store.removeResource(s);
