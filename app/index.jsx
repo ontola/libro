@@ -27,7 +27,7 @@ function mount() {
   );
 }
 
-new Promise((resolve) => {
+new Promise((resolve, reject) => {
   if (typeof window.INITIAL__DATA !== 'undefined') {
     const seedRequest = new Response(
       window.INITIAL__DATA,
@@ -37,7 +37,8 @@ new Promise((resolve) => {
     LinkedRenderStore
       .api
       .feedResponse(seedRequest, true)
-      .then(resolve);
+      .then(resolve)
+      .catch(reject);
   }
 })
   .then(mount)
