@@ -66,7 +66,7 @@ if (process.env.NODE_ENV === 'production') {
 
 export default async (ctx, next) => (
   c2k(csp({
-    browserSniff: true,
+    browserSniff: false,
     directives: {
       blockAllMixedContent: true,
       childSrc,
