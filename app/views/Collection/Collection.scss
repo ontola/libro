@@ -2,24 +2,32 @@
 
 $margin-left: 1rem;
 
-@for $i from 0 through 10 {
-  .Collection__Depth-#{$i} {
-    margin-left: $margin-left;
-    position: relative;
+.Collection {
+  @for $i from 0 through 10 {
+    &__Depth-#{$i} {
+      margin-left: $margin-left;
+      position: relative;
 
-    &::before {
-      background-color: color('grey', 'x-light');
-      bottom: 0;
-      content: '';
-      display: block;
-      left: -$margin-left;
-      position: absolute;
-      top: 0;
-      width: .3rem;
+      &::before {
+        background-color: color('grey', 'x-light');
+        bottom: 0;
+        content: '';
+        display: block;
+        left: -$margin-left;
+        position: absolute;
+        top: 0;
+        width: .3rem;
+      }
     }
   }
-}
 
-.pagination-wrapper {
-  margin-bottom: .75em;
+  .pagination-wrapper {
+    margin-bottom: .75em;
+  }
+
+  .MuiDialog-paper & {
+    background: $background-color;
+    border-radius: .5em;
+    padding: .1em 1em;
+  }
 }
