@@ -11,7 +11,7 @@ export default ({ theme, grey }) => ({
     },
     root: {
       textTransform: null,
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('sm')]: {
         minWidth: null,
       },
     },
