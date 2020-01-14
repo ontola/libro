@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Collapse } from 'react-collapse';
@@ -94,21 +95,23 @@ class Collapsible extends React.PureComponent {
 
       return -1;
     };
+    const classes = classNames({
+      Collapsible: true,
+      'Collapsible--preview': preview,
+    });
 
     return (
-      <div aria-expanded={opened} className="Collapsible">
+      <div aria-expanded={opened} className={classes}>
         {trigger && (
         <div className="Collapsible__trigger-wrapper">{triggerElem}</div>
         )}
         <div className="Collapsible__visible-content">{visibleContent}</div>
         <Collapse
-          forceInitialAnimation
-          isOpened={opened}
-          springConfig={{
-            damping: 30,
-            stiffness: 300,
+          initialStyle={{
+            height: '0px',
+            overflow: 'hidden',
           }}
-          theme={preview ? { container: 'Collapsible__container--preview' } : undefined}
+          isOpened={opened}
         >
           <div
             aria-hidden={tabIndex() === -1 ? true : tabIndex()}

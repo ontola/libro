@@ -13,6 +13,12 @@
   cursor: pointer;
 }
 
-.Collapsible__container--preview {
-  min-height: 100px;
+.ReactCollapse--collapse {
+  transition: height 500ms;
+}
+
+.Collapsible--preview {
+  .ReactCollapse--collapse {
+    min-height: 100px;
+  }
 }

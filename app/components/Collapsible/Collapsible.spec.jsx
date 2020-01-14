@@ -1,6 +1,5 @@
 import { mount } from 'enzyme';
 import React from 'react';
-import { Collapse } from 'react-collapse';
 
 import Collapsible from '.';
 
@@ -24,6 +23,7 @@ describe('Collapsible component', () => {
     const comp = getComp();
 
     expect(comp.find('.Collapsible')).toExist();
+    expect(comp.find('.Collapsible')).not.toHaveClassName('Collapsible--preview');
     expect(comp.find('.Collapsible__trigger span').first().html()).toEqual('<span>Click here</span>');
     expect(comp.find('.Collapsible__visible-content span').first().html()).toEqual('<span>Content</span>');
 
@@ -34,16 +34,12 @@ describe('Collapsible component', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should not display a preview', () => {
-    expect(getComp().find(Collapse)).toHaveProp('theme', undefined);
-  });
-
   describe('with preview', () => {
     it('should display a preview', () => {
       const comp = getComp({ preview: true });
 
-      expect(comp.find(Collapse))
-        .toHaveProp('theme', { container: 'Collapsible__container--preview' });
+      expect(comp.find('.Collapsible'))
+        .toHaveClassName('Collapsible--preview');
     });
   });
 });
