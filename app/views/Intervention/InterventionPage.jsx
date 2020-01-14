@@ -14,7 +14,6 @@ import {
   AttributeListItem,
   CardContent,
   Heading,
-  Link,
   LinkedDetailDate,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
@@ -24,6 +23,7 @@ import ontola from '../../ontology/ontola';
 import rivm from '../../ontology/rivm';
 import AttributeList from '../../topologies/AttributeList';
 import ActionsBar from '../../topologies/ActionsBar';
+import { CardDivider } from '../../topologies/Card';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import CardMain from '../../topologies/Card/CardMain';
 import CardRow from '../../topologies/Card/CardRow';
@@ -31,15 +31,11 @@ import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
 import { pageTopology } from '../../topologies/Page';
 import PrimaryResource from '../../topologies/PrimaryResource';
-import { inlineTopology } from '../../topologies/Inline';
-import LabeledAttribute from '../../components/LabeledAttribute';
 
 const InterventionPage = ({
   employment,
-  isPartOf,
 }) => {
   const lrs = useLRS();
-  const interventionType = lrs.getResourceProperty(isPartOf, schema.name);
   const image = lrs.getResourceProperty(employment, schema.image);
 
   return (
@@ -68,22 +64,18 @@ const InterventionPage = ({
           </DetailsBar>
           <CardContent noSpacing>
             <Property label={[schema.name, rdfs.label]} />
-            <p>Interventietype: <Property label={schema.isPartOf} topology={inlineTopology} /></p>
-            <Heading>Aandrager</Heading>
-            {
-              image && (
-                <span>
-                  <Resource subject={image}>
-                    <Property label={NS.ontola('imgUrl568x400')} style={{ maxHeight: '10em' }} />
-                  </Resource>
-                </span>
-              )
-            }
+            <Property label={schema.text} />
             <AttributeList>
+              <AttributeListItem label={schema.isPartOf} propertyLabel="Interventietype" />
               <AttributeListItem label={schema.name} propertyLabel="Interventie" />
               <Resource subject={employment}>
                 <AttributeListItem label={schema.name} propertyLabel="Bedrijf" />
               </Resource>
+              {image && (
+                <Resource subject={image}>
+                  <AttributeListItem label={ontola.imgUrl568x400} style={{ maxHeight: '10em' }} />
+                </Resource>
+              )}
               <AttributeListItem label={rivm.businessSectionEmployees} />
               <Resource subject={employment}>
                 <AttributeListItem label={schema.industry} />
@@ -92,12 +84,32 @@ const InterventionPage = ({
               <AttributeListItem label={argu.communicateAction} propertyLabel="Contact" />
               <AttributeListItem label={schema.datePublished} propertyLabel="Datum online" />
             </AttributeList>
+          </CardContent>
+          <CardDivider />
+          <CardContent noSpacing>
+            <Heading>Doelen &amp; doelgroepen</Heading>
             <AttributeList>
-              <tr><th>Praktische ervaring</th><th>Aandrager</th></tr>
-              <AttributeListItem
-                label={rivm.securityImprovedScore}
-                labelFrom={rivm.securityImproved}
-              />
+              <AttributeListItem label={rivm.targetAudience} />
+              <AttributeListItem label={rivm.interventionEffects} />
+            </AttributeList>
+            <p><Property label={rivm.interventionGoal} /></p>
+          </CardContent>
+          <CardDivider />
+          <CardContent noSpacing>
+            <Heading>Invoering</Heading>
+            <AttributeList>
+              <AttributeListItem label={rivm.continuous} />
+              <AttributeListItem label={rivm.independent} />
+              <AttributeListItem label={rivm.specificToolsRequired} />
+              <AttributeListItem label={rivm.managementInvolvement} />
+              <AttributeListItem label={rivm.trainingRequired} />
+            </AttributeList>
+            <p><Property label={rivm.additionalIntroductionInformation} /></p>
+          </CardContent>
+          <CardDivider />
+          <CardContent noSpacing>
+            <Heading>Kosten</Heading>
+            <AttributeList>
               <AttributeListItem
                 label={rivm.oneOffCostsScore}
                 labelFrom={rivm.oneOffCosts}
@@ -106,58 +118,22 @@ const InterventionPage = ({
                 label={rivm.recurringCostsScore}
                 labelFrom={rivm.recurringCosts}
               />
+              <AttributeListItem
+                label={rivm.natureOfCosts}
+              />
             </AttributeList>
+            <p><Property label={rivm.costExplanation} /></p>
           </CardContent>
+          <CardDivider />
           <CardContent noSpacing>
-            <Heading>Beschrijving</Heading>
-            <LabeledAttribute label={schema.text} propertyLabel="Korte beschrijving" />
-            <LabeledAttribute label={rivm.interventionGoal} />
-            <LabeledAttribute label={rivm.targetAudience} />
-            <LabeledAttribute label={rivm.interventionEffects} />
-          </CardContent>
-          <CardContent noSpacing>
-            <Heading>Invoeren van de interventie</Heading>
+            <Heading>Effectiviteit</Heading>
             <AttributeList>
-              <AttributeListItem label={rivm.continuous} />
-              <AttributeListItem label={rivm.independent} />
-              <AttributeListItem label={rivm.specificToolsRequired} />
-              <AttributeListItem label={rivm.managementInvolvement} />
-              <AttributeListItem label={rivm.trainingRequired} />
+              <AttributeListItem
+                label={rivm.securityImprovedScore}
+                labelFrom={rivm.securityImproved}
+              />
             </AttributeList>
-            <LabeledAttribute label={rivm.additionalIntroductionInformation} />
-          </CardContent>
-          <CardContent noSpacing>
-            <Heading>Kosten</Heading>
-            <p>
-              <span>
-                Het invoeren en blijven uitvoeren van een interventie heeft bepaalde kosten.
-                De eenmalige kosten zijn ingeschat als{' '}
-              </span>
-              <span style={{ textTransform: 'lowercase' }}><strong><Property label={rivm.oneOffCosts} topology={inlineTopology} /></strong></span>
-              <span>. De doorlopende kosten zijn ingeschat als </span>
-              <span style={{ textTransform: 'lowercase' }}><strong><Property label={rivm.recurringCosts} topology={inlineTopology} /></strong></span>
-              <span>.</span>
-            </p>
-            <div className="Markdown">
-              <LabeledAttribute label={rivm.natureOfCosts} wrapper="ul" />
-            </div>
-            <LabeledAttribute label={rivm.costExplanation} />
-          </CardContent>
-          <CardContent noSpacing>
-            <Heading>Ervaren effectiviteit</Heading>
-            <Property label={rivm.effectivityResearchMethod} />
-            <LabeledAttribute label={rivm.securityImprovementReason} />
-            <Heading size="4">Andere ervaringen</Heading>
-            {
-              interventionType && (
-                <p>
-                  Dit is een voorbeeld van een interventie van het type{' '}
-                  <strong>{interventionType.value}</strong>.
-                  Andere ervaringen met dit interventietype vindt u{' '}
-                  <Link to={isPartOf.value}>hier</Link>.
-                </p>
-              )
-            }
+            <p><Property label={rivm.securityImprovementReason} /></p>
           </CardContent>
           <CardRow noBorder>
             <Property label={argu.attachments} onLoad={() => null} />
@@ -185,12 +161,10 @@ InterventionPage.topology = pageTopology;
 
 InterventionPage.mapDataToProps = {
   employment: rivm.employment,
-  isPartOf: schema.isPartOf,
 };
 
 InterventionPage.propTypes = {
   employment: linkType,
-  isPartOf: linkType,
 };
 
 export default register(InterventionPage);

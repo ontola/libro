@@ -6,22 +6,22 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import rivm from '../../../ontology/rivm';
 import { allTopologies } from '../../../topologies';
 import { inlineTopology } from '../../../topologies/Inline';
 
-const IconAttribute = ({ linkedProp }) => (
-  <li><Resource subject={linkedProp} topology={inlineTopology} /></li>
+const NatureOfCost = ({ linkedProp }) => (
+  <div><Resource subject={linkedProp} topology={inlineTopology} /></div>
 );
 
-IconAttribute.type = schema.Thing;
+NatureOfCost.type = schema.Thing;
 
-IconAttribute.topology = allTopologies;
+NatureOfCost.topology = allTopologies;
 
-IconAttribute.property = NS.rivm('natureOfCosts');
+NatureOfCost.property = rivm.natureOfCosts;
 
-IconAttribute.propTypes = {
+NatureOfCost.propTypes = {
   linkedProp: linkedPropType,
 };
 
-export default register(IconAttribute);
+export default register(NatureOfCost);

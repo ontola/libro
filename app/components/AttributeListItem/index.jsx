@@ -22,13 +22,13 @@ const AttributeListItem = ({
 
   return (
     <tr>
-      <td>
+      <th>
         {
           propertyLabel
             ? <label>{propertyLabel}</label>
             : <Resource subject={label} />
         }
-      </td>
+      </th>
       <td><Property label={label} limit={Infinity} {...otherProps} /></td>
     </tr>
   );

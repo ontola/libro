@@ -64,6 +64,7 @@ export default {
   href: ontola('href'),
   imagePositionY: ontola('imagePositionY'),
   imgUrl1500x2000: ontola('imgUrl1500x2000'),
+  imgUrl568x400: ontola('imgUrl568x400'),
   infinitePagination: ontola('infinitePagination'),
   inputFieldHint: ontola('inputFieldHint'),
   invalidate: ontola('invalidate'),
