@@ -49,7 +49,7 @@ CloseableContainer.propTypes = propTypes;
 
 export default connect(
   (state, ownProps) => ({
-    opened: getCloseableOpened(state, ownProps.id),
+    opened: getCloseableOpened(state, ownProps.id) || false,
   }),
   (dispatch, { id }) => ({
     onClick: () => dispatch(closeCloseable(id)),

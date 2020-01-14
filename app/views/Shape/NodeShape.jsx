@@ -34,7 +34,8 @@ const propTypes = {
     '@id': linkType,
   }),
   theme: PropTypes.string,
-  whitelist: PropTypes.arrayOf(PropTypes.object),
+  /** The ids of the whitelisted properties */
+  whitelist: PropTypes.arrayOf(PropTypes.number),
 };
 
 const defaultProps = {

@@ -1,4 +1,5 @@
 import rdf, { Node, Quad, Quadruple } from '@ontologies/core';
+import { SomeNode } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
 import ll from '../ontology/ll';
@@ -56,9 +57,13 @@ function processInvalidate(delta: Quadruple[], lrs: LinkReduxLRSType) {
 function processSupplant(delta: Quadruple[], lrs: LinkReduxLRSType) {
     const supplants = delta.filter(([, , , why]) => rdf.equals(why, ll.supplant));
 
-    supplants.forEach(([s]) => {
+    supplants
+      .reduce<SomeNode[]>((acc, cur) => acc.includes(cur[0])
+        ? acc
+        : acc.concat(cur[0]), [])
+      .forEach((s) => {
         lrs.store.removeResource(s);
-    });
+      });
     supplants.forEach(([s, p, o]) => {
         lrs.store.addQuads([rdf.quad(s, p, o)]);
     });

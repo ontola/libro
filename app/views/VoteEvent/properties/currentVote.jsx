@@ -15,7 +15,6 @@ import {
   withLRS,
   withLinkCtx,
 } from 'link-redux';
-import * as PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
@@ -80,10 +79,7 @@ const baseCollectionWrapper = (Comp) => {
   };
 
   BaseCollectionListener.propTypes = {
-    base: PropTypes.shape({
-      termType: 'NamedNode',
-      value: PropTypes.string,
-    }),
+    base: RDFTypes.namedNode,
     side: linkType,
   };
 
@@ -91,7 +87,7 @@ const baseCollectionWrapper = (Comp) => {
 };
 
 const CurrentVoteConnected = baseCollectionWrapper(link(
-  [schema.option],
+  { option: schema.option },
   { forceRender: true }
 )(withLRS(CurrentVote)));
 

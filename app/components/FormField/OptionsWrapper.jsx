@@ -39,7 +39,7 @@ const OptionsWrapper = ({
   const [debouncedCallback] = useDebouncedCallback(
     () => {
       setLoading((prevValue) => (
-        (prevValue === shIn) ? null : shIn
+        (prevValue === shIn) ? false : !!shIn
       ));
     },
     DEBOUNCE_TIMER

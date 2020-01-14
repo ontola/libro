@@ -16,7 +16,8 @@ class EntryPointOmniform extends EntryPointBase {
   static propTypes = {
     autofocusForm: PropTypes.bool,
     onKeyUp: PropTypes.func,
-    whitelist: PropTypes.arrayOf(PropTypes.object),
+    /** The ids of the whitelisted properties */
+    whitelist: PropTypes.arrayOf(PropTypes.number),
   };
 
   render() {
