@@ -143,7 +143,7 @@ const messages = defineMessages({
 });
 
 export function messageBodyForStatus(requestStatus) {
-  if (!requestStatus.requested || requestStatus < HttpStatus.MULTIPLE_CHOICES) {
+  if (!requestStatus.requested || requestStatus.status < HttpStatus.MULTIPLE_CHOICES) {
     return null;
   }
 
@@ -168,7 +168,7 @@ export function bodyForStatus(formatMessage, requestStatus) {
 }
 
 export function headerForStatus(formatMessage, requestStatus) {
-  if (!requestStatus.requested || requestStatus < HttpStatus.MULTIPLE_CHOICES) {
+  if (!requestStatus.requested || requestStatus.status < HttpStatus.MULTIPLE_CHOICES) {
     return null;
   }
 
