@@ -128,7 +128,7 @@ const ErrorPageComp = (props) => {
     <ErrorButtonWithFeedback theme="box" {...props}>
       <FormattedMessage
         defaultMessage="Try again"
-        id="https://app.argu.co/i18n/errors/errors/retryButton/label"
+        id="https://app.argu.co/i18n/errors/retryButton/label"
       />
     </ErrorButtonWithFeedback>
   );
