@@ -102,7 +102,6 @@ export default [
     CollectionTypes,
     RENDER_CLASS_NAME,
     [
-      cardTopology,
       cardFixedTopology,
       cardListTopology,
       cardRowTopology,
@@ -121,6 +120,7 @@ export default [
     getCollection({
       renderWhenEmpty: true,
       topology: [
+        cardTopology,
         cardMainTopology,
         gridTopology,
         widgetTopologyTopology,

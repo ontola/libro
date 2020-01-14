@@ -10,14 +10,17 @@ import { containerTopology } from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
-import ContainerHeader from '../../components/Container/ContainerHeader';
+import CardContent from '../../components/Card/CardContent';
+import Card from '../../topologies/Card';
 
 const CategoryContainer = () => (
-  <React.Fragment>
-    <ContainerHeader header={<Property label={schema.name} />} />
-    <Property noSpacing label={schema.text} />
-    <Property hideHeader renderWhenEmpty label={rivm.measureTypes} />
-  </React.Fragment>
+  <Card>
+    <CardContent noSpacing>
+      <Property label={schema.name} />
+      <Property noSpacing label={schema.text} />
+      <Property renderWhenEmpty label={rivm.measureTypes} />
+    </CardContent>
+  </Card>
 );
 
 CategoryContainer.type = rivm.Category;

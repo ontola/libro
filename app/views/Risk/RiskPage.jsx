@@ -2,7 +2,10 @@ import foaf from '@ontologies/foaf';
 import rdfx from '@ontologies/rdf';
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
-import { Property, register } from 'link-redux';
+import {
+  Property,
+  register,
+} from 'link-redux';
 import React from 'react';
 
 import {
@@ -22,6 +25,7 @@ import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
 import { pageTopology } from '../../topologies/Page';
 import PrimaryResource from '../../topologies/PrimaryResource';
+import Collection from '../../components/Collection';
 
 const RiskPage = () => (
   <PrimaryResource>
@@ -67,13 +71,10 @@ const RiskPage = () => (
       <Property label={ontola.publishAction} onLoad={() => null} />
     </Container>
     <Container>
-      <Property forceRender renderWhenEmpty label={rivm.incidents} />
+      <Collection forceRender renderWhenEmpty display="table" label={rivm.incidents} />
     </Container>
     <Container>
-      <Property forceRender renderWhenEmpty label={rivm.scenarios} />
-    </Container>
-    <Container>
-      <Property forceRender renderWhenEmpty label={rivm.measureTypes} />
+      <Collection forceRender renderWhenEmpty display="table" label={rivm.measureTypes} />
     </Container>
     <Container>
       <Property label={schema.comment} />

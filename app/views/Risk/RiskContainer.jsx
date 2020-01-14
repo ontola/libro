@@ -9,52 +9,44 @@ import {
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
-import { connectHighlighting, hightlightType } from '../../containers/Highlight';
-import SignInSwitcherContainer from '../../containers/SignInSwitcherContainer';
+import Collection from '../../components/Collection';
 import { NS } from '../../helpers/LinkedRenderStore';
 import argu from '../../ontology/argu';
 import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
+import rivm from '../../ontology/rivm';
 import Card from '../../topologies/Card';
 import CardRow from '../../topologies/Card/CardRow';
-import CardAppendix from '../../topologies/Card/CardAppendix';
 import { containerTopology } from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 
-const ThingContainer = ({ highlighted, subject }) => (
-  <Card about={subject?.value} shine={highlighted}>
+const RiskContainer = ({ subject }) => (
+  <Card about={subject?.value}>
     <Property label={ontola.coverPhoto} />
     <CardContent noSpacing>
       <Property label={[schema.name, rdfs.label, foaf.name]} />
       <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
+      <Collection display="table" label={rivm.incidents} />
     </CardContent>
     <CardRow noBorder>
       <Property label={[argu.attachments, meeting.attachment]} />
     </CardRow>
-    <CardAppendix>
-      <SignInSwitcherContainer subject={subject}>
-        <Property label={argu.topComment} />
-      </SignInSwitcherContainer>
-    </CardAppendix>
   </Card>
 );
 
-ThingContainer.type = schema.Thing;
+RiskContainer.type = rivm.Risk;
 
-ThingContainer.topology = [
+RiskContainer.topology = [
   alertDialogTopology,
   primaryResourceTopology,
   containerTopology,
   widgetTopologyTopology,
 ];
 
-ThingContainer.hocs = [connectHighlighting];
-
-ThingContainer.propTypes = {
-  highlighted: hightlightType,
+RiskContainer.propTypes = {
   subject: subjectType,
 };
 
-export default register(ThingContainer);
+export default register(RiskContainer);
