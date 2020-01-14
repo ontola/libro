@@ -85,4 +85,5 @@ export const colors = {
   },
 };
 
+// TODO: remove when migrated to material
 export const navbarHeight = '3.2rem';

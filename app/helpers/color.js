@@ -71,7 +71,7 @@ function hexToRgb(hex) {
  * Checks whether an rgb color is luminous enough.
  * @param {RGBString} rgb A rgb color string
  * @param {number} threshold A decimal number
- * @return {bool} True if luminance is below threshold
+ * @return {boolean} True if luminance is below threshold
  */
 const checkLuminance = (
   rgb,

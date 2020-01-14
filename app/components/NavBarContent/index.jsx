@@ -11,7 +11,7 @@ import { mediaQueries } from '../shared/config';
 import './NavBarContent.scss';
 
 const NavBarContent = () => (
-  <div className="NavBarContent">
+  <React.Fragment>
     <Resource
       forceRender
       subject={frontendIRI}
@@ -32,6 +32,7 @@ const NavBarContent = () => (
         )}
       </MediaQuery>
     </Resource>
+    <div style={{ flexGrow: 1 }} />
     <div className="NavBarContent__menus">
       <Resource
         showImage
@@ -40,7 +41,7 @@ const NavBarContent = () => (
       <Resource subject={app.search} onError={() => null} />
       <Resource subject={app.menu} />
     </div>
-  </div>
+  </React.Fragment>
 );
 
 export default NavBarContent;

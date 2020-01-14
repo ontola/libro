@@ -3,6 +3,7 @@ import Container from './components/container';
 import Input from './components/input';
 import Menu from './components/menu';
 import Tabs from './components/tabs';
+import Typographyy from './components/typography';
 
 export default [
   Button,
@@ -10,4 +11,5 @@ export default [
   Input,
   Menu,
   Tabs,
+  Typographyy,
 ];

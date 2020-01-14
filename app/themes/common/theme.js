@@ -1,12 +1,5 @@
-import components from './components';
-import variables from './variables';
+/**
+ * Common data for all themes, but not a theme on its own.
+ */
 
-variables.theme.overrides = components.reduce(
-  (acc, component) => ({
-    ...acc,
-    ...component(variables),
-  }),
-  {}
-);
-
-export default variables.theme;
+throw new Error('Common components imported as a standalone theme');

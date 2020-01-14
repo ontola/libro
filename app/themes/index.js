@@ -1,5 +1,7 @@
-import common from './common/theme';
+import argu from './argu/theme';
+import dutchGovernment from './dutchGovernment/theme';
 
 export default {
-  common,
+  argu,
+  dutchGovernment,
 };
