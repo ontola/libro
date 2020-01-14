@@ -31,6 +31,7 @@ export default {
   blogPosts: argu('blogPosts'),
   caseTitle: argu('caseTitle'),
   cases: argu('cases'),
+  communicateAction: argu('communicateAction'),
   customers: argu('customers'),
   decision: argu('decision'),
   exampleClass: argu('exampleClass'),

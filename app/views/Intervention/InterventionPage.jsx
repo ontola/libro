@@ -89,6 +89,7 @@ const InterventionPage = ({
                 <AttributeListItem label={schema.industry} />
               </Resource>
               <AttributeListItem label={schema.creator} propertyLabel="Contactpersoon" />
+              <AttributeListItem label={argu.communicateAction} propertyLabel="Contact" />
               <AttributeListItem label={schema.datePublished} propertyLabel="Datum online" />
             </AttributeList>
             <AttributeList>
