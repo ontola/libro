@@ -26,12 +26,14 @@ export default {
   Survey: argu('Survey'),
 
   /* properties */
+  abstain: argu('abstain'),
   arguments: argu('arguments'),
   attachments: argu('attachments'),
   blogPosts: argu('blogPosts'),
   caseTitle: argu('caseTitle'),
   cases: argu('cases'),
   communicateAction: argu('communicateAction'),
+  currentVote: argu('currentVote'),
   customers: argu('customers'),
   decision: argu('decision'),
   exampleClass: argu('exampleClass'),

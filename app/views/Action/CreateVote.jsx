@@ -9,6 +9,7 @@ import {
   useDataFetching,
   useDataInvalidation,
   useLRS,
+  useResourceProperty,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -18,6 +19,7 @@ import { connect } from 'react-redux';
 import { HTTP_RETRY_WITH, handleHTTPRetry } from '../../helpers/errorHandling';
 import { NS } from '../../helpers/LinkedRenderStore';
 import { handle } from '../../helpers/logging';
+import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { omniformOpenInline, omniformSetAction } from '../../state/omniform';
 import { allTopologies } from '../../topologies';
@@ -79,25 +81,24 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
 });
 
-function currentVote(current, object, subject, lrs) {
-  if (current !== undefined) {
-    return current;
-  }
-
-  const vote = lrs.getResourceProperty(object, NS.argu('currentVote'));
+function useCurrentVote(current, object, subject) {
+  const [vote] = useResourceProperty(object, argu.currentVote);
   const lastUpdate = useDataInvalidation({
     dataSubjects: [vote],
     subject,
   });
   useDataFetching({ subject: vote }, lastUpdate);
+  const [currentOption] = useResourceProperty(vote, schema.option);
+
+  if (current !== undefined) {
+    return current;
+  }
 
   if (!vote) {
     return false;
   }
 
-  const currentOption = lrs.getResourceProperty(vote, schema.option);
-
-  return currentOption && currentOption !== NS.argu('abstain');
+  return currentOption && currentOption !== argu.abstain;
 }
 
 function getVariant(current, variant, object, lrs) {
@@ -128,6 +129,8 @@ const CreateVote = ({
 }) => {
   const lrs = useLRS();
   const { formatMessage } = useIntl();
+  const isCurrentOrVote = useCurrentVote(current, object, subject);
+
   const handleClick = () => lrs
     .exec(subject)
     .then(openOmniform)
@@ -138,8 +141,6 @@ const CreateVote = ({
 
       return handle(e);
     });
-
-  const isCurrentOrVote = currentVote(current, object, subject, lrs);
 
   if (!target) {
     return null;
