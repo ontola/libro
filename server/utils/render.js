@@ -8,11 +8,12 @@ import App from '../../app/App';
 import generateLRS from '../../app/helpers/generateLRS';
 import spinner from '../../app/helpers/spinner';
 import { bundles, moduleBrowserVersions } from '../../bundleConfig';
-import pjson from '../../package.json';
 import * as constants from '../config';
 
 import logging from './logging';
 import manifests from './manifest';
+
+const version = require('../../webpack/version');
 
 function isModule(header) {
   const agent = useragent.is(header);
@@ -99,8 +100,8 @@ export const renderFullPage = async (ctx, manifestData, data) => {
 
   const bugsnagOpts = {
     apiKey: constants.bugsnagKey,
-    appVersion: pjson.version,
-    releaseStage: constants.STAGE,
+    appVersion: version,
+    releaseStage: constants.RELEASE_STAGE,
   };
   const csrfToken = ctx.csrf;
   const nonceStr = ctx.res.locals.nonce.toString();
@@ -170,7 +171,8 @@ export const renderFullPage = async (ctx, manifestData, data) => {
           <meta name="csrf-param" content="authenticity_token">
           <meta name="csrf-token" content="${csrfToken}">
           ${constants.websocketPath ? `<meta name="websocket-path" content="${constants.websocketPath}">` : ''}
-          ${constants.bugsnagKey ? '<script async src="//d2wy8f7a9ursnm.cloudfront.net/v6/bugsnag.min.js"></script>' : ''}
+          ${constants.bugsnagKey ? '<script async src="https://d2wy8f7a9ursnm.cloudfront.net/v6/bugsnag.min.js"></script>' : ''}
+          <meta name="bugsnagConfig" content="${encodeURIComponent(JSON.stringify(bugsnagOpts))}">
 
           ${headers?.link?.toString() || ''}
           ${icons}
@@ -254,7 +256,6 @@ export const renderFullPage = async (ctx, manifestData, data) => {
               try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
               catch(e){window.attachEvent("onload", $buo_f)}
           </script>
-          <script nonce="${nonceStr}">window.bugsnagClient = typeof bugsnag !== 'undefined' && bugsnag(${JSON.stringify(bugsnagOpts)})</script>
         </body>
       </html>`
   );

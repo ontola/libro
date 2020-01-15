@@ -7,23 +7,23 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
-const { BugsnagBuildReporterPlugin } = require('webpack-bugsnag-plugins');
+const { BugsnagSourceMapUploaderPlugin } = require('webpack-bugsnag-plugins');
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const ManifestPlugin = require('webpack-assets-manifest');
 const merge = require('webpack-merge');
 
-const pjson = require('../package.json');
 const babelrc = require('../.babelrc');
 const { bundles } = require('../bundleConfig');
 
 const common = require('./common.config');
+const version = require('./version');
 
 let bugsnagPlugin;
 if (process.env.SEMAHORE_DEPLOY_NUMBER) {
-  bugsnagPlugin = new BugsnagBuildReporterPlugin({
+  bugsnagPlugin = new BugsnagSourceMapUploaderPlugin({
     apiKey: process.env.BUGSNAG_KEY,
-    appVersion: pjson.version,
-    releaseStage: process.env.SEMAPHORE_SERVER_NAME,
+    appVersion: version,
+    releaseStage: process.env.RAILS_ENV,
   });
 }
 

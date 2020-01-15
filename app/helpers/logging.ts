@@ -1,4 +1,5 @@
 import { Client } from '@bugsnag/browser/dist/types/bugsnag-core';
+import bugsnag from '@bugsnag/js';
 
 const globalThis = typeof window !== 'undefined' ? window : (global as unknown as Window);
 
@@ -6,15 +7,6 @@ declare global {
   interface Window {
     bugsnagClient: Client | undefined;
   }
-}
-
-let client: Client;
-if (typeof window !== 'undefined' && window.bugsnagClient) {
-  client = window.bugsnagClient;
-} else {
-  client = {
-    notify(_: Error) { return void(0); },
-  } as unknown as Client;
 }
 
 declare global {
@@ -29,6 +21,33 @@ globalThis.logging = {
   errors: [],
   logs: [],
 };
+
+function getClient() {
+  const mockReporter = {
+    notify(e: Error) {
+      globalThis.logging.errors.push(e);
+      return void(0);
+    },
+  } as unknown as Client;
+  try {
+    const raw = window.document.querySelector<HTMLMetaElement>('meta[name=bugsnagConfig]')?.content;
+    if (raw) {
+      const config = JSON.parse(decodeURIComponent(raw));
+      return bugsnag({
+        ...config,
+        beforeSend(report) {
+          globalThis.logging.errors.push(report);
+        },
+      });
+    } else {
+      return mockReporter;
+    }
+  } catch (e) {
+    error(e);
+    return mockReporter;
+  }
+}
+const client = getClient();
 
 // Prevent memory overflows
 globalThis.setInterval(() => {

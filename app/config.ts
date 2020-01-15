@@ -15,7 +15,6 @@ export const FRONTEND_ACCEPT = 'application/n-quads';
 export const PORT_DEVELOPMENT = getEnv('PORT_DEVELOPMENT', 3001, 3001);
 export const PORT_PRODUCTION = getEnv('PORT_PRODUCTION', 8080, 8080);
 export const PORT = getEnv('PORT', (__DEVELOPMENT__ ? PORT_DEVELOPMENT : PORT_PRODUCTION), PORT_DEVELOPMENT);
-export const STAGE = process.env.RAILS_ENV === 'production' ? 'production' : 'staging';
 
 // Used internally in the router as a reverse proxy
 export const ARGU_API_URL = getEnv('ARGU_API_URL', 'https://argu.co', 'https://argu.localdev');
