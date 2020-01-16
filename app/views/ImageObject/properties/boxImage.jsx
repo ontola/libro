@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { Image } from '../../../components';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 
 const boxImage = ({ linkedProp, style }) => (
@@ -19,7 +19,7 @@ boxImage.type = [schema.ImageObject, schema.VideoObject];
 
 boxImage.topology = allTopologies;
 
-boxImage.property = NS.ontola('imgUrl568x400');
+boxImage.property = ontola.imgUrl568x400;
 
 boxImage.propTypes = {
   linkedProp: linkedPropType.isRequired,

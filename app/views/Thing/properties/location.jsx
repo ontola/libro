@@ -32,7 +32,7 @@ const LocationDetail = ({ lrs, linkedProp }) => {
       to={placement.value}
       onClick={(e) => {
         e.preventDefault();
-        lrs.exec(rdf.namedNode(`${NS.ontola('actions/dialog/alert').value}?resource=${encodeURIComponent(placement.value)}`));
+        lrs.exec(rdf.namedNode(`${ontola.ns('actions/dialog/alert').value}?resource=${encodeURIComponent(placement.value)}`));
       }}
     >
       <Detail

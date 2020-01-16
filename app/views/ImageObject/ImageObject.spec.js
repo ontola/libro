@@ -2,8 +2,8 @@ import rdf from '@ontologies/core';
 import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
 
-import { NS } from '../../../tests';
 import argu from '../../ontology/argu';
+import ontola from '../../ontology/ontola';
 import { navbarTopology } from '../../topologies/Navbar';
 
 import components from './index';
@@ -21,8 +21,8 @@ const resources = {
     [schema.url]: rdf.namedNode(url),
     [schema.contentUrl]: rdf.namedNode(url),
     [argu.ns('url')]: rdf.namedNode(url),
-    [NS.ontola('imgUrl1500x2000')]: rdf.namedNode(coverUrl),
-    [NS.ontola('imgUrl568x400')]: rdf.namedNode(boxUrl),
+    [ontola.imgUrl1500x2000]: rdf.namedNode(coverUrl),
+    [ontola.imgUrl568x400]: rdf.namedNode(boxUrl),
     [schema.dateCreated]: rdf.literal(Date.now()),
     [argu.ns('imagePositionY')]: rdf.literal(imagePositionY),
   },

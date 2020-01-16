@@ -7,7 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 import DialogTopology from '../../topologies/Dialog';
 
@@ -15,7 +15,7 @@ const DialogManager = ({ resource }) => {
   const lrs = useLRS();
 
   const close = (item, done) => (
-    () => lrs.exec(NS.ontola(`actions/dialog/close?resource=${encodeURIComponent(item.value)}`), { done })
+    () => lrs.exec(ontola.ns(`actions/dialog/close?resource=${encodeURIComponent(item.value)}`), { done })
   );
 
   return (
@@ -32,12 +32,12 @@ const DialogManager = ({ resource }) => {
   );
 };
 
-DialogManager.type = NS.ontola('dialog/Manager');
+DialogManager.type = ontola.ns('dialog/Manager');
 
 DialogManager.topology = allTopologies;
 
 DialogManager.mapDataToProps = {
-  resource: NS.ontola('dialog/resource'),
+  resource: ontola.ns('dialog/resource'),
 };
 
 DialogManager.propTypes = {

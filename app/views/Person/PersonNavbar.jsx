@@ -32,7 +32,7 @@ const PersonNavbar = ({ subject }) => {
       <LDLink className="NavbarLink__link">
         <NavbarLinkIcon features="padded">
           <Property label={schema.image}>
-            <Property label={[schema.thumbnail, ontola.ns('imgUrl64x64')]} />
+            <Property label={[schema.thumbnail, ontola.imgUrl64x64]} />
           </Property>
         </NavbarLinkIcon>
       </LDLink>

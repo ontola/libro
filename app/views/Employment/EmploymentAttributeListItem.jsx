@@ -9,12 +9,13 @@ import {
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { attributeListTopology } from '../../topologies/AttributeList';
 
 const EmploymentAttributeListItem = ({ image }) => (
   <React.Fragment>
     <Resource subject={image}>
-      <Property label={NS.ontola('imgUrl568x400')} />
+      <Property label={ontola.imgUrl568x400} />
     </Resource>
     <Property label={[schema.name, rdfs.label]} />
   </React.Fragment>

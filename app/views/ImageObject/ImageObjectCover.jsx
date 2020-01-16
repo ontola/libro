@@ -5,7 +5,6 @@ import { link, subjectType } from 'link-redux';
 import React, { PureComponent } from 'react';
 
 import { CoverImage } from '../../components';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { handle } from '../../helpers/logging';
 import { tryParseInt } from '../../helpers/numbers';
 import ontola from '../../ontology/ontola';
@@ -48,7 +47,7 @@ export default [
   LinkedRenderStore.registerRenderer(
     link({
       imagePositionY: ontola.imagePositionY,
-      url: NS.ontola('imgUrl1500x2000'),
+      url: ontola.imgUrl1500x2000,
     })(ImageObjectBackgroundCover),
     schema.ImageObject,
     RENDER_CLASS_NAME,
@@ -57,7 +56,7 @@ export default [
   LinkedRenderStore.registerRenderer(
     link({
       imagePositionY: ontola.imagePositionY,
-      url: NS.ontola('imgUrl568x400'),
+      url: ontola.imgUrl568x400,
     })(ImageObjectBackgroundCover),
     schema.ImageObject,
     RENDER_CLASS_NAME,

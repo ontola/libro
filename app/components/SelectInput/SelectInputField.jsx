@@ -10,11 +10,11 @@ import {
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { entityIsLoaded } from '../../helpers/data';
+import { handle } from '../../helpers/logging';
+import ontola from '../../ontology/ontola';
 import Select, { selectTopology } from '../../topologies/Select';
 import { Input } from '../Input';
-import { entityIsLoaded } from '../../helpers/data';
-import { NS } from '../../helpers/LinkedRenderStore';
-import { handle } from '../../helpers/logging';
 
 import SelectInputList from './SelectInputList';
 
@@ -32,7 +32,7 @@ export const itemToString = (item, lrs) => {
   if (item.termType && (item.termType === 'NamedNode' || item.termType === 'BlankNode')) {
     const itemClass = lrs.getResourceProperty(item, rdfx.type);
     const classDisplayProp = (
-      itemClass && lrs.getResourceProperty(itemClass, NS.ontola('forms/inputs/select/displayProp'))
+      itemClass && lrs.getResourceProperty(itemClass, ontola.ns('forms/inputs/select/displayProp'))
     ) || schema.name;
     let label = lrs.getResourceProperty(item, classDisplayProp);
     if (!label) {

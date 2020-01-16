@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { NavbarLinkImageWrapper } from '../../components/NavbarLink';
-import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { menuTopology } from '../../topologies/Menu';
 import { formFooterTopology } from '../../topologies/FormFooter/Footer';
@@ -25,7 +25,7 @@ import boxImage from './properties/boxImage';
 import thumbnail from './properties/thumbnail';
 
 const ImageObject = ({ ariaLabel }) => (
-  <Property ariaLabel={ariaLabel} label={[schema.thumbnail, NS.ontola('imgUrl64x64')]} />
+  <Property ariaLabel={ariaLabel} label={[schema.thumbnail, ontola.imgUrl64x64]} />
 );
 
 ImageObject.type = [
@@ -58,7 +58,7 @@ export default [
   LinkedRenderStore.registerRenderer(
     () => (
       <NavbarLinkImageWrapper data-test="ImageObject-navbar">
-        <Property label={NS.ontola('imgUrl568x400')} />
+        <Property label={ontola.imgUrl568x400} />
       </NavbarLinkImageWrapper>
     ),
     schema.ImageObject,

@@ -1,9 +1,9 @@
-import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import Topology from '../Topology';
 
 import './PrimaryCallToAction.scss';
 
-export const primaryCallToActionTopology = NS.ontola('topologies/primaryCallToAction');
+export const primaryCallToActionTopology = ontola.ns('topologies/primaryCallToAction');
 
 export class PrimaryCallToAction extends Topology {
   constructor(props) {

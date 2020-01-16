@@ -5,7 +5,6 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
 import ontola from '../../ontology/ontola';
 import teamGL from '../../ontology/teamGL';
 import { pageTopology } from '../../topologies/Page';
@@ -37,10 +36,10 @@ const EventPage = () => (
     </Container>
     <Container>
       <Property renderWhenEmpty label={teamGL.potentialParticipants}>
-        <Property renderWhenEmpty singlePage collectionDisplay={NS.ontola('collectionDisplay/card')} label={ontola.pages} />
+        <Property renderWhenEmpty singlePage collectionDisplay={ontola.ns('collectionDisplay/card')} label={ontola.pages} />
       </Property>
       <Property renderWhenEmpty label={teamGL.participants}>
-        <Property singlePage collectionDisplay={NS.ontola('collectionDisplay/card')} label={ontola.pages} />
+        <Property singlePage collectionDisplay={ontola.ns('collectionDisplay/card')} label={ontola.pages} />
       </Property>
     </Container>
   </PrimaryResource>

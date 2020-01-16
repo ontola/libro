@@ -13,13 +13,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
 import { ResourceBoundary } from '../../components';
 import { listToArr } from '../../helpers/data';
-import { NS } from '../../helpers/LinkedRenderStore';
 import ontola from '../../ontology/ontola';
 import { gotoPage } from '../../state/pagination/actions';
 import { getPage } from '../../state/pagination/selectors';
+import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
 import { CollectionTypes } from './types';
 
@@ -126,7 +125,7 @@ export default function getCollection({
       }
 
       switch (rdf.id(this.props.collectionType)) {
-        case rdf.id(NS.ontola('collectionType/infinite')):
+        case rdf.id(ontola.ns('collectionType/infinite')):
           return (
             <Property
               forceRender

@@ -10,13 +10,13 @@ import {
 import { defineMessages, useIntl } from 'react-intl';
 import { useDebouncedCallback } from 'use-debounce';
 
-import { LoadingRow } from '../Loading';
-import RadioGroup from '../../topologies/RadioGroup';
 import { entityIsLoaded } from '../../helpers/data';
 import normalizedLower from '../../helpers/i18n';
-import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { formFooterTopology } from '../../topologies/FormFooter/Footer';
+import RadioGroup from '../../topologies/RadioGroup';
 import { searchIri } from '../../views/SearchResult/searchHelper';
+import { LoadingRow } from '../Loading';
 
 import SelectInputField, { MAX_ITEMS, itemToString } from './SelectInputField';
 
@@ -122,10 +122,10 @@ function handleStateChange(options, changes, setState, lrs, searchTemplate, onOp
 }
 
 function renderAsRadioGroup(topology, items, lrs, inputFieldHint) {
-  if (rdf.equals(inputFieldHint, NS.ontola('element/select')) || rdf.equals(topology, formFooterTopology)) {
+  if (rdf.equals(inputFieldHint, ontola.ns('element/select')) || rdf.equals(topology, formFooterTopology)) {
     return false;
   }
-  if (rdf.equals(inputFieldHint, NS.ontola('element/input/radio')) || items.length <= DEFAULT_RADIO_ITEM_LIMIT) {
+  if (rdf.equals(inputFieldHint, ontola.ns('element/input/radio')) || items.length <= DEFAULT_RADIO_ITEM_LIMIT) {
     return true;
   }
   if (items.length > MAX_RADIO_ITEMS) {

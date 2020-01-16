@@ -1,7 +1,7 @@
-import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import Topology from '../Topology';
 
-export const alertDialogTopology = NS.ontola('dialog/alert');
+export const alertDialogTopology = ontola.ns('dialog/alert');
 
 /**
  * Sets a dialog topology.
