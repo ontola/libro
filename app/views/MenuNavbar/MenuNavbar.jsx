@@ -10,7 +10,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import app from '../../ontology/app';
 import AppMenu from '../../topologies/AppMenu';
 import { navbarTopology } from '../../topologies/Navbar';
 
@@ -43,13 +43,13 @@ const MenuNavbar = () => {
               hideIcon: true,
               onClose: handleClose,
             }}
-            subject={NS.app('menus/navigations/menus')}
+            subject={app.ns('menus/navigations/menus')}
           />
           <Divider />
           <React.Fragment>
             <Resource
               childProps={{ onClose: handleClose }}
-              subject={NS.app('apex/menus/user/menus')}
+              subject={app.ns('apex/menus/user/menus')}
             />
             <Divider />
           </React.Fragment>
@@ -59,7 +59,7 @@ const MenuNavbar = () => {
                 hideIcon: true,
                 onClose: handleClose,
               }}
-              subject={NS.app('apex/menus/info/menus')}
+              subject={app.ns('apex/menus/info/menus')}
             />
           </div>
         </React.Fragment>
@@ -68,7 +68,7 @@ const MenuNavbar = () => {
   );
 };
 
-MenuNavbar.type = NS.app('Menu');
+MenuNavbar.type = app.ns('Menu');
 
 MenuNavbar.topology = navbarTopology;
 

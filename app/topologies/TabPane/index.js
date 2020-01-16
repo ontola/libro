@@ -1,7 +1,7 @@
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import TopologyProvider from '../Topology';
 
-export const tabPaneTopology = NS.argu('tabPane');
+export const tabPaneTopology = argu.ns('tabPane');
 
 class TabPane extends TopologyProvider {
   static displayName = 'TabPane';

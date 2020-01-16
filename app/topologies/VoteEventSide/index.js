@@ -1,6 +1,6 @@
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 
 /**
  * @deprecated
  */
-export const voteEventSideTopology = NS.argu('voteEventSide'); // eslint-disable-line import/prefer-default-export
+export const voteEventSideTopology = argu.ns('voteEventSide'); // eslint-disable-line import/prefer-default-export

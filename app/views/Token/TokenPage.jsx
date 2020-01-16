@@ -5,6 +5,7 @@ import React from 'react';
 
 import { CardContent } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import ActionsBar from '../../topologies/ActionsBar';
 import CardMain from '../../topologies/Card/CardMain';
@@ -28,7 +29,7 @@ const TokenPage = () => (
   </PrimaryResource>
 );
 
-TokenPage.type = [NS.argu('BearerToken'), NS.argu('EmailToken')];
+TokenPage.type = [argu.ns('BearerToken'), argu.ns('EmailToken')];
 
 TokenPage.topology = pageTopology;
 

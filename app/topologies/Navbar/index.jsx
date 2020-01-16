@@ -2,14 +2,14 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
 import { checkLuminance, hexToRgb } from '../../helpers/color';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { currentLocation } from '../../helpers/paths';
+import app from '../../ontology/app';
 import { getCurrentUserType } from '../../state/app/selectors';
 import Topology from '../Topology';
 
 import './Navbar.scss';
 
-export const navbarTopology = NS.app('topologies/navbar');
+export const navbarTopology = app.ns('topologies/navbar');
 
 class Navbar extends Topology {
   constructor(props) {

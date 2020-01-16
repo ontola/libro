@@ -6,8 +6,8 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
 import { currentLocation } from '../../helpers/paths';
+import argu from '../../ontology/argu';
 import Container from '../../topologies/Container';
 
 const propTypes = {
@@ -20,8 +20,8 @@ const Forum = ({ location }) => (
   <Container>
     <Resource subject={currentLocation(location)}>
       <Type />
-      <Property label={NS.argu('questions')} />
-      <Property label={NS.argu('motions')} />
+      <Property label={argu.ns('questions')} />
+      <Property label={argu.ns('motions')} />
     </Resource>
   </Container>
 );

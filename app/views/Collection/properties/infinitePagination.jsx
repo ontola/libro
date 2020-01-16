@@ -8,7 +8,7 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
 import { cardAppendixTopology } from '../../../topologies/Card/CardAppendix';
@@ -32,7 +32,7 @@ const getPagination = (Wrapper, topology) => {
     );
   };
 
-  InfinitePagination.type = [...CollectionTypes, NS.argu('SearchResult')];
+  InfinitePagination.type = [...CollectionTypes, argu.ns('SearchResult')];
 
   InfinitePagination.property = ontola.infinitePagination;
 

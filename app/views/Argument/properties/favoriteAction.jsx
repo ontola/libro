@@ -5,15 +5,15 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 
 class FavoriteAction extends React.PureComponent {
   static type = [
-    NS.argu('Argument'),
-    NS.argu('ProArgument'),
-    NS.argu('ConArgument'),
+    argu.ns('Argument'),
+    argu.ns('ProArgument'),
+    argu.ns('ConArgument'),
   ];
 
   static property = ontola.favoriteAction;
@@ -22,7 +22,7 @@ class FavoriteAction extends React.PureComponent {
 
   static mapDataToProps = {
     favoriteAction: ontola.favoriteAction,
-    votesProCount: NS.argu('votesProCount'),
+    votesProCount: argu.ns('votesProCount'),
   };
 
   static propTypes = {

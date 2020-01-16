@@ -12,7 +12,7 @@ import { withRouter } from 'react-router';
 import MapView from '../../../containers/MapView';
 import { listToArr } from '../../../helpers/data';
 import { retrievePath } from '../../../helpers/iris';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import argu from '../../../ontology/argu';
 import { containerTopology } from '../../../topologies/Container';
 import ErrorButtonWithFeedback from '../../Error/ErrorButtonWithFeedback';
 import { widgetTopologyTopology } from '../../../topologies/WidgetTopology/WidgetTopology';
@@ -25,8 +25,8 @@ class ArguLocation extends React.Component {
   static topology = [containerTopology, widgetTopologyTopology];
 
   static mapDataToProps = {
-    childrenPlacements: NS.argu('childrenPlacements'),
-    dataSubjects: NS.argu('childrenPlacements'),
+    childrenPlacements: argu.ns('childrenPlacements'),
+    dataSubjects: argu.ns('childrenPlacements'),
     schemaLocation: schema.location,
   };
 

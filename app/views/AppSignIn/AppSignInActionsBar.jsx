@@ -1,13 +1,13 @@
 import { register } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import app from '../../ontology/app';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { SignInFormLink } from '../../components/SignInForm';
 import Button from '../../components/Button';
 
 class AppSignInActionsBar extends React.PureComponent {
-  static type = NS.app('AppSignIn');
+  static type = app.AppSignIn;
 
   static topology = actionsBarTopology;
 

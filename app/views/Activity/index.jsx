@@ -5,7 +5,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 import { LoadingCard, SuspendedLoader } from '../../components/Loading';
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import Card from '../../topologies/Card';
 import DetailsBar from '../../topologies/DetailsBar';
@@ -19,7 +19,7 @@ class Activity extends React.PureComponent {
 
   static topology = [
     undefined,
-    NS.argu('container'),
+    argu.ns('container'),
   ];
 
   static hocs = [withRouter];

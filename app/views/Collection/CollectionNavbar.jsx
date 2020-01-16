@@ -7,8 +7,8 @@ import {
 import React from 'react';
 
 import { NavbarLink } from '../../components';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { tryParseInt } from '../../helpers/numbers';
+import argu from '../../ontology/argu';
 import { navbarTopology } from '../../topologies/Navbar';
 
 import { CollectionTypes } from './types';
@@ -20,7 +20,7 @@ class CollectionNavbar extends React.PureComponent {
 
   static mapDataToProps = {
     name: schema.name,
-    unreadCount: NS.argu('unreadCount'),
+    unreadCount: argu.ns('unreadCount'),
   };
 
   static propTypes = {

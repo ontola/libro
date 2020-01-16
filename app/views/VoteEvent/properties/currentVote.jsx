@@ -21,7 +21,7 @@ import { connect } from 'react-redux';
 
 import { SignInFormContainerCardRow } from '../../../containers/SignInFormContainer';
 import { currentURL } from '../../../helpers/iris';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { getCurrentUserType } from '../../../state/app/selectors';
 import { allTopologies } from '../../../topologies';
@@ -108,7 +108,7 @@ export const getVoteButtons = (options) => {
         this.props.currentVote,
         schema.option
       );
-      if (!currentOption || rdf.equals(currentOption, NS.argu('abstain'))) {
+      if (!currentOption || rdf.equals(currentOption, argu.ns('abstain'))) {
         return null;
       }
 
@@ -164,11 +164,11 @@ export const getVoteButtons = (options) => {
 
 export default LinkedRenderStore.registerRenderer(
   link({
-    currentVote: NS.argu('currentVote'),
-    dataSubjects: NS.argu('currentVote'),
-    votes: NS.argu('votes'),
-  })(getVoteButtons([NS.argu('yes'), NS.argu('other'), NS.argu('no')])),
-  NS.argu('VoteEvent'),
-  NS.argu('currentVote'),
+    currentVote: argu.ns('currentVote'),
+    dataSubjects: argu.ns('currentVote'),
+    votes: argu.ns('votes'),
+  })(getVoteButtons([argu.ns('yes'), argu.ns('other'), argu.ns('no')])),
+  argu.ns('VoteEvent'),
+  argu.ns('currentVote'),
   allTopologies
 );

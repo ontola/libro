@@ -17,6 +17,7 @@ import {
   hightlightPropTypes,
 } from '../../containers/Highlight';
 import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
 import { cardTopology } from '../../topologies/Card';
@@ -89,10 +90,10 @@ const ThingGrid = () => (
     <DetailsBar>
       <Property hideName label={schema.creator} />
       <LinkedDetailDate />
-      <Property label={NS.argu('pinnedAt')} />
-      <Property short label={NS.argu('expiresAt')} />
-      <Property label={NS.argu('followsCount')} />
-      <Property label={NS.argu('motionsCount')} />
+      <Property label={argu.ns('pinnedAt')} />
+      <Property short label={argu.ns('expiresAt')} />
+      <Property label={argu.ns('followsCount')} />
+      <Property label={argu.ns('motionsCount')} />
     </DetailsBar>
   </CardFixed>
 );
@@ -114,7 +115,7 @@ ThingSection.propTypes = hightlightPropTypes;
 const ThingCard = () => (
   <CardRow>
     <CardContent>
-      <Property label={NS.argu('opinion')} onError={() => null} onLoad={LoadingOpinion} />
+      <Property label={argu.ns('opinion')} onError={() => null} onLoad={LoadingOpinion} />
       <Property label={[schema.name, rdfs.label, foaf.name]} />
       <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
       <Property label={meeting.attachment} />

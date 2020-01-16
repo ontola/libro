@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import Topology from '../Topology';
 
-export const parentTopology = NS.argu('parent');
+export const parentTopology = argu.ns('parent');
 
 class Parent extends Topology {
   static propTypes = {

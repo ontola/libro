@@ -12,10 +12,10 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { LoadingRow } from '../../components/Loading';
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import Topology from '../Topology';
 
-export const radioGroupTopology = NS.argu('radioGroup');
+export const radioGroupTopology = argu.ns('radioGroup');
 
 class RadioGroup extends Topology {
   constructor(props) {

@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import DropdownMenu from '../../components/DropdownMenu';
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import Topology from '../Topology';
 
-export const menuTopology = NS.argu('topologies/menu');
+export const menuTopology = argu.ns('topologies/menu');
 
 class Menu extends Topology {
   static propTypes = {

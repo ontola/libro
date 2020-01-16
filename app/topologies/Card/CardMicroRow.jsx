@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import Topology from '../Topology';
 
-export const cardMicroRowTopology = NS.argu('cardMicroRow');
+export const cardMicroRowTopology = argu.ns('cardMicroRow');
 
 /**
  * Used to divide a card in multiple rows

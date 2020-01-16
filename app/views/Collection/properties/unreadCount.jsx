@@ -3,8 +3,8 @@ import { linkedPropType } from 'link-redux';
 import React from 'react';
 
 import NavbarLinkCount from '../../../components/NavbarLink/NavbarLinkCount';
-import { NS } from '../../../helpers/LinkedRenderStore';
 import { tryParseInt } from '../../../helpers/numbers';
+import argu from '../../../ontology/argu';
 import { navbarTopology } from '../../../topologies/Navbar';
 import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
 import { CollectionTypes } from '../types';
@@ -29,13 +29,13 @@ export default [
   LinkedRenderStore.registerRenderer(
     UnreadCount,
     CollectionTypes,
-    NS.argu('unreadCount'),
+    argu.ns('unreadCount'),
     primaryResourceTopology
   ),
   LinkedRenderStore.registerRenderer(
     UnreadCountHeader,
     CollectionTypes,
-    NS.argu('unreadCount'),
+    argu.ns('unreadCount'),
     navbarTopology
   ),
 ];

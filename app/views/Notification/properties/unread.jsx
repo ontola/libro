@@ -5,7 +5,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { cardTopology } from '../../../topologies/Card';
 import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
@@ -36,8 +36,8 @@ Unread.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
   Unread,
-  NS.argu('Notification'),
-  NS.argu('unread'),
+  argu.ns('Notification'),
+  argu.ns('unread'),
   [
     cardFixedTopology,
     cardMainTopology,

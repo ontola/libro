@@ -1,5 +1,6 @@
 import AppBar from '@material-ui/core/AppBar';
 import rdf from '@ontologies/core';
+import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
 import {
   Property,
@@ -16,7 +17,7 @@ import { containerToArr, seqToArr } from '../../helpers/data';
 import { retrievePath } from '../../helpers/iris';
 import { currentLocation } from '../../helpers/paths';
 import { isPromise } from '../../helpers/types';
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { CardMain } from '../../topologies/Card';
 import CardContent from '../../components/Card/CardContent';
@@ -29,9 +30,9 @@ import TabPane from '../../topologies/TabPane';
 class MenuItemPage extends React.PureComponent {
   static type = [
     ontola.MenuItem,
-    NS.argu('MenuSection'),
-    NS.argu('SubMenu'),
-    NS.argu('Menu'),
+    argu.ns('MenuSection'),
+    argu.ns('SubMenu'),
+    argu.ns('Menu'),
   ];
 
   static topology = [
@@ -92,7 +93,7 @@ class MenuItemPage extends React.PureComponent {
       const currentItem = menuItemsArr.find((s) => rdf.equals(s, currentLocation(location)));
 
       if (!currentItem) {
-        return lrs.getResourceProperty(menuItems, NS.rdf('_0'));
+        return lrs.getResourceProperty(menuItems, rdfx.ns('_0'));
       }
     }
 

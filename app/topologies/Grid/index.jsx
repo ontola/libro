@@ -1,11 +1,11 @@
 import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 
 import './Grid.scss';
 
-export const gridTopology = NS.argu('grid');
+export const gridTopology = argu.ns('grid');
 
 class Grid extends TopologyProvider {
   static propTypes = {

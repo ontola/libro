@@ -8,7 +8,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { tabBarTopology } from '../../topologies/TabBar';
 
@@ -32,9 +32,9 @@ const MenuItemTab = ({ subject }) => (
 
 MenuItemTab.type = [
   ontola.MenuItem,
-  NS.argu('MenuSection'),
-  NS.argu('SubMenu'),
-  NS.argu('Menu'),
+  argu.ns('MenuSection'),
+  argu.ns('SubMenu'),
+  argu.ns('Menu'),
 ];
 
 MenuItemTab.topology = tabBarTopology;

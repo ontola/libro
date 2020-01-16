@@ -11,7 +11,8 @@ import React from 'react';
 
 import { LDLink } from '../../components';
 import NavbarLinkIcon from '../../components/NavbarLink/NavbarLinkIcon';
-import { NS } from '../../helpers/LinkedRenderStore';
+import app from '../../ontology/app';
+import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { navbarTopology } from '../../topologies/Navbar';
 
@@ -23,15 +24,15 @@ const PersonNavbar = ({ subject }) => {
 
   return (
     <div className="NavbarLink">
-      <Resource showImage subject={NS.app('n')} topology={navbarTopology}>
+      <Resource showImage subject={app.n} topology={navbarTopology}>
         <LDLink to={rdf.namedNode(`${menuIri.value}#notifications`)}>
-          <Property label={NS.argu('unreadCount')} />
+          <Property label={argu.ns('unreadCount')} />
         </LDLink>
       </Resource>
       <LDLink className="NavbarLink__link">
         <NavbarLinkIcon features="padded">
           <Property label={schema.image}>
-            <Property label={[schema.thumbnail, NS.ontola('imgUrl64x64')]} />
+            <Property label={[schema.thumbnail, ontola.ns('imgUrl64x64')]} />
           </Property>
         </NavbarLinkIcon>
       </LDLink>

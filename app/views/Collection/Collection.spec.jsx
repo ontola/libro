@@ -8,6 +8,7 @@ import { Resource } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import app from '../../ontology/app';
 import ontola from '../../ontology/ontola';
 import { cleanup, render } from '../../test-utils';
 import { Page } from '../../topologies/Page';
@@ -18,8 +19,8 @@ describe('Collection', () => {
 
   const ITEMS = 10;
 
-  const collectionWithPages = NS.app('nederland/q/75/m');
-  const collectionWithItems = NS.app('nederland/q/75/m?page=1&type=paginated');
+  const collectionWithPages = app.ns('nederland/q/75/m');
+  const collectionWithItems = app.ns('nederland/q/75/m?page=1&type=paginated');
   const memberResource = NS.example('nederland/m/177');
 
   const resources = {
@@ -41,19 +42,19 @@ describe('Collection', () => {
       ],
       [as.name]: rdf.literal('Ideeën'),
       [ontola.iriTemplate]: rdf.literal('https://argu.localdev/nederland/q/75/m{?filter%5B%5D,page,page_size,type,before,sort%5B%5D}'),
-      [schema.isPartOf]: NS.app('nederland/q/75'),
+      [schema.isPartOf]: app.ns('nederland/q/75'),
       [as.totalItems]: rdf.literal(ITEMS),
-      [schema.potentialAction]: NS.app('nederland/q/75/m/new'),
+      [schema.potentialAction]: app.ns('nederland/q/75/m/new'),
       [ontola.defaultType]: rdf.literal('paginated'),
       [ontola.pages]: collectionWithItems,
-      [dcterms.identifier]: NS.app('nederland/q/75/motions'),
-      [ontola.createAction]: NS.app('nederland/q/75/m/new'),
+      [dcterms.identifier]: app.ns('nederland/q/75/motions'),
+      [ontola.createAction]: app.ns('nederland/q/75/m/new'),
       [schema.url]: collectionWithPages,
-      [ontola.baseCollection]: NS.app('new_volunteers'),
+      [ontola.baseCollection]: app.ns('new_volunteers'),
       [ontola.collectionDisplay]: NS.ontola('collectionDisplay/default'),
       [ontola.collectionType]: NS.ontola('collectionType/paginated'),
       [as.first]: collectionWithItems,
-      [as.last]: NS.app('nederland/q/75/m?page=2&type=paginated'),
+      [as.last]: app.ns('nederland/q/75/m?page=2&type=paginated'),
     },
     [memberResource]: {
       '@id': memberResource,

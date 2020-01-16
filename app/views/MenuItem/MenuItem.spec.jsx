@@ -5,7 +5,7 @@ import { fireEvent } from '@testing-library/dom';
 import { Resource } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import app from '../../ontology/app';
 import ontola from '../../ontology/ontola';
 import {
   cleanup,
@@ -17,15 +17,15 @@ import AppMenu from '../../topologies/AppMenu';
 describe('MenuItem', () => {
   afterAll(cleanup);
 
-  const menuIRI = NS.app('menus/user');
+  const menuIRI = app.ns('menus/user');
 
   const resources = {
     '@id': menuIRI.value,
     [rdfx.type]: rdfx.Seq,
     [schema.name]: rdf.literal('Maarten van Scharendrecht'),
     [schema.isPartOf]: rdf.namedNode('https://argu.dev/menus'),
-    [NS.rdf('_0')]: {
-      '@id': NS.app('menus/user#show'),
+    [rdfx.ns('_0')]: {
+      '@id': app.ns('menus/user#show'),
       [rdfx.type]: ontola.MenuItem,
       [schema.name]: rdf.literal('Gebruiker weergeven'),
       [ontola.href]: rdf.namedNode('https://argu.dev/u/maartenvscharendrecht'),
@@ -33,8 +33,8 @@ describe('MenuItem', () => {
       [schema.image]: rdf.namedNode('http://fontawesome.io/icon/user'),
       [ontola.parentMenu]: menuIRI,
     },
-    [NS.rdf('_1')]: {
-      '@id': NS.app('menus/user#profile'),
+    [rdfx.ns('_1')]: {
+      '@id': app.ns('menus/user#profile'),
       [rdfx.type]: ontola.MenuItem,
       [schema.name]: rdf.literal('Profiel bewerken'),
       [ontola.href]: rdf.namedNode('https://argu.dev/settings?tab=profile'),
@@ -42,8 +42,8 @@ describe('MenuItem', () => {
       [schema.image]: rdf.namedNode('http://fontawesome.io/icon/pencil'),
       [ontola.parentMenu]: menuIRI,
     },
-    [NS.rdf('_2')]: {
-      '@id': NS.app('menus/user#settings'),
+    [rdfx.ns('_2')]: {
+      '@id': app.ns('menus/user#settings'),
       [rdfx.type]: ontola.MenuItem,
       [schema.name]: rdf.literal('Gebruikersinstellingen'),
       [ontola.href]: rdf.namedNode('https://argu.dev/settings'),

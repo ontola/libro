@@ -9,7 +9,7 @@ import {
 import React from 'react';
 
 import { LoadingFiller } from '../../components/Loading/index';
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import Container from '../../topologies/Container/index';
 import { pageTopology } from '../../topologies/Page';
@@ -41,11 +41,11 @@ const ForumPage = ({ coverPhoto, hideHeader }) => {
   );
 };
 
-ForumPage.type = [NS.argu('ContainerNode'), schema.WebPage];
+ForumPage.type = [argu.ns('ContainerNode'), schema.WebPage];
 
 ForumPage.mapDataToProps = {
   coverPhoto: ontola.coverPhoto,
-  hideHeader: NS.argu('hideHeader'),
+  hideHeader: argu.ns('hideHeader'),
   name: schema.name,
   widgets: ontola.widgets,
 };

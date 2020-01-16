@@ -1,13 +1,13 @@
 import { TopologyProvider } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
 import { CardFloat } from '../Card';
 import { VerticalScroller } from '../../components';
+import argu from '../../ontology/argu';
 
 import './DetailsBar.scss';
 
-export const detailsBarTopology = NS.argu('detail');
+export const detailsBarTopology = argu.ns('detail');
 
 class DetailsBar extends TopologyProvider {
   constructor() {

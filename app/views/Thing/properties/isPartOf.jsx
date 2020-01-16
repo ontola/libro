@@ -7,15 +7,15 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
 import { BreadcrumbsBar } from '../../../components';
+import argu from '../../../ontology/argu';
 
 class IsPartOfPage extends React.PureComponent {
   static type = schema.Thing;
 
   static property = schema.isPartOf;
 
-  static topology = NS.argu('container');
+  static topology = argu.ns('container');
 
   static propTypes = {
     linkedProp: linkedPropType,

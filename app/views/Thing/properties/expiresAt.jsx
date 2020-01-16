@@ -13,7 +13,7 @@ import {
 
 import Detail from '../../../components/Detail';
 import isPastDate from '../../../helpers/date';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import argu from '../../../ontology/argu';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
 
 const messages = defineMessages({
@@ -73,7 +73,7 @@ const ExpiresAt = ({ linkedProp, short }) => {
 
 ExpiresAt.type = schema.Thing;
 
-ExpiresAt.property = NS.argu('expiresAt');
+ExpiresAt.property = argu.ns('expiresAt');
 
 ExpiresAt.topology = detailsBarTopology;
 

@@ -9,6 +9,7 @@ import React from 'react';
 
 import { calculateFormFieldName } from '../../helpers/forms';
 import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import {
   cleanup,
   fireEvent,
@@ -30,12 +31,12 @@ describe('Omniform', () => {
     [conAction]: {
       '@id': conAction,
       [rdfx.type]: schema.CreateAction,
-      [schema.result]: NS.argu('ConArgument'),
+      [schema.result]: argu.ns('ConArgument'),
       [schema.target]: {
         [rdfx.type]: schema.EntryPoint,
         [NS.ll('actionBody')]: {
           [rdfx.type]: sh.NodeShape,
-          [sh.targetClass]: NS.argu('Comment'),
+          [sh.targetClass]: argu.ns('Comment'),
           [sh.property]: [
             {
               [rdfx.type]: sh.PropertyShape,
@@ -56,12 +57,12 @@ describe('Omniform', () => {
     [proAction]: {
       '@id': proAction,
       [rdfx.type]: schema.CreateAction,
-      [schema.result]: NS.argu('ProArgument'),
+      [schema.result]: argu.ns('ProArgument'),
       [schema.target]: {
         [rdfx.type]: schema.EntryPoint,
         [NS.ll('actionBody')]: {
           [rdfx.type]: sh.NodeShape,
-          [sh.targetClass]: NS.argu('Comment'),
+          [sh.targetClass]: argu.ns('Comment'),
           [sh.property]: [
             {
               [rdfx.type]: sh.PropertyShape,
@@ -79,14 +80,14 @@ describe('Omniform', () => {
         },
       },
     },
-    [NS.argu('ProArgument')]: {
-      '@id': NS.argu('ProArgument'),
+    [argu.ns('ProArgument')]: {
+      '@id': argu.ns('ProArgument'),
       [rdfx.type]: rdfs.Class,
       [rdfs.label]: 'Pro',
       [schema.description]: 'Pro',
     },
-    [NS.argu('ConArgument')]: {
-      '@id': NS.argu('ConArgument'),
+    [argu.ns('ConArgument')]: {
+      '@id': argu.ns('ConArgument'),
       [rdfx.type]: rdfs.Class,
       [rdfs.label]: 'Con',
       [schema.description]: 'Con',

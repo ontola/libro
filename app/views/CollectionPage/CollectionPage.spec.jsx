@@ -8,6 +8,7 @@ import { link } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../../tests';
+import app from '../../ontology/app';
 import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 import collectionComponents from '../Collection/index';
@@ -24,7 +25,7 @@ const testClass = LinkedRenderStore.registerRenderer(
 const ITEMS = 10;
 
 const collection = NS.example('nederland/q/75/m');
-const collectionPageWithItems = NS.app('current_page');
+const collectionPageWithItems = app.ns('current_page');
 const memberResource = NS.example('nederland/m/177');
 
 const resources = {
@@ -35,38 +36,38 @@ const resources = {
     ],
     [as.name]: rdf.literal('Ideeën'),
     [ontola.iriTemplate]: rdf.literal('https://argu.localdev/nederland/q/75/m{?filter%5B%5D,page,page_size,type,before,sort%5B%5D}'),
-    [schema.isPartOf]: NS.app('nederland/q/75'),
+    [schema.isPartOf]: app.ns('nederland/q/75'),
     [as.totalItems]: rdf.literal(ITEMS),
-    [schema.potentialAction]: NS.app('nederland/q/75/m/new'),
+    [schema.potentialAction]: app.ns('nederland/q/75/m/new'),
     [ontola.defaultType]: rdf.literal('paginated'),
     [ontola.pages]: collectionPageWithItems,
-    [dcterms.identifier]: NS.app('nederland/q/75/motions'),
-    [ontola.createAction]: NS.app('nederland/q/75/m/new'),
+    [dcterms.identifier]: app.ns('nederland/q/75/motions'),
+    [ontola.createAction]: app.ns('nederland/q/75/m/new'),
     [schema.url]: collection,
-    [ontola.baseCollection]: NS.app('new_volunteers'),
+    [ontola.baseCollection]: app.ns('new_volunteers'),
     [ontola.collectionDisplay]: NS.ontola('collectionDisplay/default'),
     [ontola.collectionType]: NS.ontola('collectionType/paginated'),
     [as.first]: collectionPageWithItems,
-    [as.last]: NS.app('nederland/q/75/m?page=2&type=paginated'),
+    [as.last]: app.ns('nederland/q/75/m?page=2&type=paginated'),
   },
   [collectionPageWithItems]: {
     [rdfx.type]: [
       as.CollectionPage,
       ontola.PaginatedView,
     ],
-    [as.first]: NS.app('nederland/q/75/m?page=1&type=paginated'),
-    [as.last]: NS.app('nederland/q/75/m?page=1&type=paginated'),
+    [as.first]: app.ns('nederland/q/75/m?page=1&type=paginated'),
+    [as.last]: app.ns('nederland/q/75/m?page=1&type=paginated'),
     [as.totalItems]: rdf.literal(ITEMS),
-    [dcterms.identifier]: NS.app('nederland/q/75/motions'),
+    [dcterms.identifier]: app.ns('nederland/q/75/motions'),
     [as.partOf]: collection,
     [as.items]: [
       memberResource,
-      NS.app('nederland/m/158'),
-      NS.app('nederland/m/537'),
-      NS.app('nederland/m/175'),
-      NS.app('nederland/m/577'),
-      NS.app('nederland/m/253'),
-      NS.app('nederland/m/687'),
+      app.ns('nederland/m/158'),
+      app.ns('nederland/m/537'),
+      app.ns('nederland/m/175'),
+      app.ns('nederland/m/577'),
+      app.ns('nederland/m/253'),
+      app.ns('nederland/m/687'),
     ],
   },
   [memberResource]: {

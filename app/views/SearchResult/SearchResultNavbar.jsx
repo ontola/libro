@@ -4,8 +4,9 @@ import { FormattedMessage } from 'react-intl';
 import MediaQuery from 'react-responsive';
 
 import { mediaQueries } from '../../components/shared/config';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { values } from '../../helpers/ssr';
+import app from '../../ontology/app';
+import argu from '../../ontology/argu';
 import { navbarTopology } from '../../topologies/Navbar';
 import { NavbarLink } from '../../components';
 
@@ -23,14 +24,14 @@ const SearchResultNavbar = () => {
         <NavbarLink
           icon="search"
           label={matches && label}
-          to={NS.app('search').value}
+          to={app.search.value}
         />
       )}
     </MediaQuery>
   );
 };
 
-SearchResultNavbar.type = NS.argu('SearchResult');
+SearchResultNavbar.type = argu.ns('SearchResult');
 
 SearchResultNavbar.topology = navbarTopology;
 

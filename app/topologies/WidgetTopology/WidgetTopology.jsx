@@ -4,11 +4,11 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { LoadingWidgetContent } from '../../components/Loading';
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 
 import '../../components/Widget/Widget.scss';
 
-export const widgetTopologyTopology = NS.argu('widget');
+export const widgetTopologyTopology = argu.ns('widget');
 
 class WidgetTopology extends TopologyProvider {
   static propTypes = {

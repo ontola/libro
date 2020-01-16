@@ -8,16 +8,16 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Link from '../../../components/Link';
-import { NS } from '../../../helpers/LinkedRenderStore';
 import SHACL from '../../../helpers/shacl';
+import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { navbarTopology } from '../../../topologies/Navbar';
 
 class Href extends React.PureComponent {
   static type = [
-    NS.argu('Link'),
+    argu.ns('Link'),
     ontola.MenuItem,
-    NS.argu('SubMenu'),
+    argu.ns('SubMenu'),
   ];
 
   static property = ontola.href;

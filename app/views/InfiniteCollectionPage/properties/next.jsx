@@ -10,7 +10,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import ButtonWithFeedback from '../../../components/ButtonWithFeedback';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 
@@ -23,7 +23,7 @@ const InfiniteCollectionNext = ({
   const onClick = () => new Promise(() => {
     lrs.store.addQuads([
       rdf.quad(partOf.object, ontola.pages, linkedProp),
-      rdf.quad(subject, NS.argu('void'), rdf.literal(0)),
+      rdf.quad(subject, argu.ns('void'), rdf.literal(0)),
     ]);
     lrs.broadcast();
   });

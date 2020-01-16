@@ -14,6 +14,7 @@ import { appMiddleware, frontendIRIStr, website } from '../middleware/app';
 import execFilter from '../middleware/execFilter';
 import logging from '../middleware/logging';
 import ontolaMiddleware from '../middleware/ontolaMiddleware';
+import argu from '../ontology/argu';
 import meeting from '../ontology/meeting';
 import ontola from '../ontology/ontola';
 import rivm from '../ontology/rivm';
@@ -241,7 +242,7 @@ export default function generateLRS() {
     rdf.quad(meeting.AgendaItem, schema.image, rdf.namedNode('http://fontawesome.io/icon/list')),
 
     rdf.quad(ontola.MenuItem, rdfx.type, rdfs.Class),
-    rdf.quad(ontola.MenuItem, rdfs.subClassOf, NS.argu('Thing')),
+    rdf.quad(ontola.MenuItem, rdfs.subClassOf, argu.ns('Thing')),
   ];
 // tslint:enable max-line-length
 
@@ -251,29 +252,29 @@ export default function generateLRS() {
   const ontologicalPropertyData = [
     rdf.quad(foaf.name, owl.sameAs, schema.name),
 
-    rdf.quad(NS.argu('applyLink'), rdfx.type, rdfx.Property),
-    rdf.quad(NS.argu('applyLink'), rdfs.label, rdf.literal('Link', languages.en)),
-    rdf.quad(NS.argu('applyLink'), rdfs.label, rdf.literal('Link', languages.nl)),
+    rdf.quad(argu.ns('applyLink'), rdfx.type, rdfx.Property),
+    rdf.quad(argu.ns('applyLink'), rdfs.label, rdf.literal('Link', languages.en)),
+    rdf.quad(argu.ns('applyLink'), rdfs.label, rdf.literal('Link', languages.nl)),
 
     rdf.quad(ontola.destroyAction, rdfx.type, rdfx.Property),
     rdf.quad(ontola.destroyAction, rdfs.label, rdf.literal('Delete', languages.en)),
     rdf.quad(ontola.destroyAction, rdfs.label, rdf.literal('Verwijderen', languages.nl)),
 
-    rdf.quad(NS.argu('invitee'), rdfx.type, rdfx.Property),
-    rdf.quad(NS.argu('invitee'), rdfs.label, rdf.literal('Invitee', languages.en)),
-    rdf.quad(NS.argu('invitee'), rdfs.label, rdf.literal('Uitgenodigde', languages.nl)),
+    rdf.quad(argu.ns('invitee'), rdfx.type, rdfx.Property),
+    rdf.quad(argu.ns('invitee'), rdfs.label, rdf.literal('Invitee', languages.en)),
+    rdf.quad(argu.ns('invitee'), rdfs.label, rdf.literal('Uitgenodigde', languages.nl)),
 
     rdf.quad(ontola.makePrimaryAction, rdfx.type, rdfx.Property),
     rdf.quad(ontola.makePrimaryAction, rdfs.label, rdf.literal('Make primary', languages.en)),
     rdf.quad(ontola.makePrimaryAction, rdfs.label, rdf.literal('Maak primair', languages.nl)),
 
-    rdf.quad(NS.argu('opened'), rdfx.type, rdfx.Property),
-    rdf.quad(NS.argu('opened'), rdfs.label, rdf.literal('Opened', languages.en)),
-    rdf.quad(NS.argu('opened'), rdfs.label, rdf.literal('Geopend', languages.nl)),
+    rdf.quad(argu.ns('opened'), rdfx.type, rdfx.Property),
+    rdf.quad(argu.ns('opened'), rdfs.label, rdf.literal('Opened', languages.en)),
+    rdf.quad(argu.ns('opened'), rdfs.label, rdf.literal('Geopend', languages.nl)),
 
-    rdf.quad(NS.argu('redirectUrl'), rdfx.type, rdfx.Property),
-    rdf.quad(NS.argu('redirectUrl'), rdfs.label, rdf.literal('Redirect to', languages.en)),
-    rdf.quad(NS.argu('redirectUrl'), rdfs.label, rdf.literal('Redirect naar', languages.nl)),
+    rdf.quad(argu.ns('redirectUrl'), rdfx.type, rdfx.Property),
+    rdf.quad(argu.ns('redirectUrl'), rdfs.label, rdf.literal('Redirect to', languages.en)),
+    rdf.quad(argu.ns('redirectUrl'), rdfs.label, rdf.literal('Redirect naar', languages.nl)),
 
     rdf.quad(ontola.sendConfirmationAction, rdfx.type, rdfx.Property),
     rdf.quad(
@@ -291,9 +292,9 @@ export default function generateLRS() {
     rdf.quad(ontola.updateAction, rdfs.label, rdf.literal('Edit', languages.en)),
     rdf.quad(ontola.updateAction, rdfs.label, rdf.literal('Bewerken', languages.nl)),
 
-    rdf.quad(NS.argu('usages'), rdfx.type, rdfx.Property),
-    rdf.quad(NS.argu('usages'), rdfs.label, rdf.literal('Used', languages.en)),
-    rdf.quad(NS.argu('usages'), rdfs.label, rdf.literal('Gebruikt', languages.nl)),
+    rdf.quad(argu.ns('usages'), rdfx.type, rdfx.Property),
+    rdf.quad(argu.ns('usages'), rdfs.label, rdf.literal('Used', languages.en)),
+    rdf.quad(argu.ns('usages'), rdfs.label, rdf.literal('Gebruikt', languages.nl)),
   ];
 
   LRS.addOntologySchematics(ontologicalPropertyData);

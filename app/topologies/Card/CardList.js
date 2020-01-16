@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import Topology from '../Topology';
 
 /**
  * A list inside a CardContent
  */
-export const cardListTopology = NS.argu('cardList');
+export const cardListTopology = argu.ns('cardList');
 
 /**
  * Sets the cardList topology

@@ -10,7 +10,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import { cardVoteEventTopology } from '../../topologies/CardVoteEvent';
 import { voteEventTopology } from '../../topologies/VoteEvent';
 import { VoteEventResult, voteEventResultTopology } from '../../topologies/VoteEventResult/index';
@@ -87,7 +87,7 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     link({
-      parentView: NS.argu('parentView'),
+      parentView: argu.ns('parentView'),
       ...totalItemsProp,
     })(VoteEventSide),
     CollectionTypes,

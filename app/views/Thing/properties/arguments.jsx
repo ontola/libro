@@ -10,7 +10,7 @@ import {
 import React from 'react';
 
 import { Columns } from '../../../components';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import argu from '../../../ontology/argu';
 import Margin from '../../Margin/Margin';
 import { allTopologiesExcept } from '../../../topologies';
 import { cardAppendixTopology } from '../../../topologies/Card/CardAppendix';
@@ -22,13 +22,13 @@ const ArgumentColumns = () => (
       renderWhenEmpty
       direction="column"
       key="pro"
-      label={NS.argu('proArguments')}
+      label={argu.ns('proArguments')}
     />
     <Property
       renderWhenEmpty
       direction="column"
       key="con"
-      label={NS.argu('conArguments')}
+      label={argu.ns('conArguments')}
     />
   </Columns>
 );
@@ -53,8 +53,8 @@ Arguments.propTypes = {
 };
 
 const ArgumentsData = link({
-  conArguments: NS.argu('conArguments'),
-  proArguments: NS.argu('proArguments'),
+  conArguments: argu.ns('conArguments'),
+  proArguments: argu.ns('proArguments'),
 })(Arguments);
 
 const ArgumentsCardAppendix = (props) => (
@@ -70,13 +70,13 @@ export default [
   LinkedRenderStore.registerRenderer(
     ArgumentsData,
     schema.Thing,
-    NS.argu('arguments'),
+    argu.ns('arguments'),
     allTopologiesExcept(cardAppendixTopology)
   ),
   LinkedRenderStore.registerRenderer(
     ArgumentsCardAppendix,
     schema.Thing,
-    NS.argu('arguments'),
+    argu.ns('arguments'),
     cardAppendixTopology
   ),
 ];

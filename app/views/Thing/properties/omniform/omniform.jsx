@@ -12,6 +12,8 @@ import { FormattedMessage } from 'react-intl';
 import Heading from '../../../../components/Heading';
 import isPastDate from '../../../../helpers/date';
 import { NS } from '../../../../helpers/LinkedRenderStore';
+import app from '../../../../ontology/app';
+import argu from '../../../../ontology/argu';
 import { allTopologiesExcept } from '../../../../topologies';
 import Card, { cardTopology } from '../../../../topologies/Card';
 import { cardAppendixTopology } from '../../../../topologies/Card/CardAppendix';
@@ -23,12 +25,12 @@ import OmniformConnector from './OmniformConnector';
 class OmniformProp extends React.PureComponent {
   static type = [schema.Thing, NS.link('Document')];
 
-  static property = NS.app('omniform');
+  static property = app.omniform;
 
   static topology = allTopologiesExcept(cardTopology, cardMainTopology, cardAppendixTopology);
 
   static mapDataToProps = {
-    expiresAt: NS.argu('expiresAt'),
+    expiresAt: argu.ns('expiresAt'),
     isPartOf: schema.isPartOf,
     potentialAction: {
       label: schema.potentialAction,
@@ -59,12 +61,12 @@ class OmniformProp extends React.PureComponent {
     }
 
     if (isPartOf) {
-      if (isPastDate(lrs.getResourceProperty(isPartOf, NS.argu('expiresAt')))) {
+      if (isPastDate(lrs.getResourceProperty(isPartOf, argu.ns('expiresAt')))) {
         return true;
       }
 
       const grandParent = lrs.getResourceProperty(isPartOf, schema.isPartOf);
-      if (grandParent && isPastDate(lrs.getResourceProperty(grandParent, NS.argu('expiresAt')))) {
+      if (grandParent && isPastDate(lrs.getResourceProperty(grandParent, argu.ns('expiresAt')))) {
         return true;
       }
     }

@@ -1,12 +1,12 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import Topology from '../Topology';
 
 import './Card.scss';
 
-export const cardTopology = NS.argu('card');
+export const cardTopology = argu.ns('card');
 
 /**
  * Renders an empty Card without padding

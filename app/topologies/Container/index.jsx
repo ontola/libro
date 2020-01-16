@@ -2,13 +2,13 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
 import { sizes } from '../../components/shared/config';
+import argu from '../../ontology/argu';
 import Topology from '../Topology';
 
 import './Container.scss';
 
-export const containerTopology = NS.argu('container');
+export const containerTopology = argu.ns('container');
 
 /**
  * Centers the content and defines width

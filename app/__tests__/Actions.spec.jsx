@@ -8,6 +8,7 @@ import { defaultNS as NS } from 'link-lib';
 import { Resource } from 'link-redux';
 import React from 'react';
 
+import argu from '../ontology/argu';
 import { Page } from '../topologies/Page';
 import {
   cleanup,
@@ -54,14 +55,14 @@ describe('Actions', () => {
           {
             '@id': locationIRI,
             [rdfx.type]: sh.PropertyShape,
-            [sh.class]: NS.argu('Placement'),
+            [sh.class]: argu.ns('Placement'),
             [sh.maxCount]: 1,
             [sh.name]: 'Location',
             [sh.order]: 1,
             [sh.path]: schema.location,
-            [NS.argu('referredShapes')]: {
+            [argu.ns('referredShapes')]: {
               [rdfx.type]: sh.NodeShape,
-              [sh.targetClass]: NS.argu('Placement'),
+              [sh.targetClass]: argu.ns('Placement'),
             },
           },
           {
@@ -72,7 +73,7 @@ describe('Actions', () => {
             [sh.name]: 'Pin',
             [sh.description]: 'Pin to top of collection',
             [sh.order]: 2,
-            [sh.path]: NS.argu('pin'),
+            [sh.path]: argu.ns('pin'),
             [sh.group]: {
               [rdfx.type]: sh.PropertyGroup,
               [rdfs.label]: 'Advanced',
@@ -113,7 +114,7 @@ describe('Actions', () => {
     // initializes an empty form
     expect(form).toHaveFormValues({
       [fieldName(schema.name)]: '',
-      [fieldName(NS.argu('pin'))]: false,
+      [fieldName(argu.ns('pin'))]: false,
     });
 
     // can edit the form values
@@ -129,7 +130,7 @@ describe('Actions', () => {
 
     expect(form).toHaveFormValues({
       [fieldName(schema.name)]: 'text',
-      [fieldName(NS.argu('pin'))]: true,
+      [fieldName(argu.ns('pin'))]: true,
     });
   });
 });

@@ -6,7 +6,8 @@ import React, { Component } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { withRouter } from 'react-router-dom';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import app from '../../ontology/app';
+import argu from '../../ontology/argu';
 import { allTopologies, getTopologyNumber } from '../../topologies';
 
 import TopologyWrapper from './TopologyWrapper';
@@ -25,10 +26,10 @@ const propTypes = {
 
 const specialTopologies = [
   undefined,
-  NS.argu('container'),
-  NS.argu('grid'),
-  NS.argu('card'),
-  NS.argu('inline'),
+  argu.ns('container'),
+  argu.ns('grid'),
+  argu.ns('card'),
+  argu.ns('inline'),
 ];
 
 class DevBrowser extends Component {
@@ -44,7 +45,7 @@ class DevBrowser extends Component {
     const { search } = this.props.location;
     const params = new URLSearchParams(search);
 
-    const resourceParam = params.get('iri').match(/^[a-z]+:\/\/[a-z]+/) ? params.get('iri') : NS.app('').value;
+    const resourceParam = params.get('iri').match(/^[a-z]+:\/\/[a-z]+/) ? params.get('iri') : app.ns('').value;
     const resource = rdf.namedNode(resourceParam);
 
     const selectedTopology = params.get('topology') || 0;

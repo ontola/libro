@@ -11,15 +11,15 @@ import {
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import argu from '../../../ontology/argu';
 import { inlineTopology } from '../../../topologies/Inline';
 
 class IsPartOfPage extends React.PureComponent {
-  static type = NS.argu('SearchResult');
+  static type = argu.ns('SearchResult');
 
   static property = schema.isPartOf;
 
-  static topology = NS.argu('container');
+  static topology = argu.ns('container');
 
   static hocs = [withLRS];
 
@@ -33,7 +33,7 @@ class IsPartOfPage extends React.PureComponent {
 
     const parentType = linkedProp && lrs.getResourceProperty(linkedProp, rdfx.type);
 
-    if (rdf.equals(parentType, NS.argu('Page'))) {
+    if (rdf.equals(parentType, argu.ns('Page'))) {
       return null;
     }
 

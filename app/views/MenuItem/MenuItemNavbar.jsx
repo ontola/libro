@@ -10,7 +10,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { ResourceBoundary } from '../../components';
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import Menu from '../../topologies/Menu';
 import { navbarTopology } from '../../topologies/Navbar';
@@ -20,8 +20,8 @@ import { isFontAwesomeIRI } from '../../helpers/iris';
 class MenuItemNavbar extends React.PureComponent {
   static type = [
     ontola.MenuItem,
-    NS.argu('SubMenu'),
-    NS.argu('Menu'),
+    argu.ns('SubMenu'),
+    argu.ns('Menu'),
   ];
 
   static topology = navbarTopology;

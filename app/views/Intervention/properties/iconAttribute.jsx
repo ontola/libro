@@ -12,7 +12,7 @@ import { allTopologies } from '../../../topologies';
 import './iconAttribute.scss';
 
 const IconAttribute = ({ linkedProp }) => {
-  const [name] = useResourceProperty(linkedProp, schema.name)
+  const [name] = useResourceProperty(linkedProp, schema.name);
 
   return (
     <div className="IconAttribute">

@@ -8,7 +8,7 @@ import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
 import HeaderWithMenu from '../../components/HeaderWithMenu';
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { CardMain } from '../../topologies/Card';
 import ContentDetails from '../../topologies/ContentDetails';
@@ -46,7 +46,7 @@ class ThingPageHeader extends React.PureComponent {
                   <Property label={schema.name} />
                 </HeaderWithMenu>
                 <ContentDetails>
-                  <Property label={NS.argu('grantedGroups')} />
+                  <Property label={argu.ns('grantedGroups')} />
                 </ContentDetails>
                 <Property label={schema.description} />
               </PageHeaderText>

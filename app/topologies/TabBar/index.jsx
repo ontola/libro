@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withRouter } from 'react-router';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import TopologyProvider from '../Topology';
 import { currentLocation } from '../../helpers/paths';
 
-export const tabBarTopology = NS.argu('tabBar');
+export const tabBarTopology = argu.ns('tabBar');
 
 class TabBar extends TopologyProvider {
   static propTypes = {

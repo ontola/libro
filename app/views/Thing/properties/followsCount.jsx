@@ -3,7 +3,7 @@ import { linkedPropType, register } from 'link-redux';
 import React from 'react';
 
 import Detail from '../../../components/Detail';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import argu from '../../../ontology/argu';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
 
 const propTypes = {
@@ -13,7 +13,7 @@ const propTypes = {
 class FollowsCount extends React.PureComponent {
   static type = schema.Thing;
 
-  static property = NS.argu('followsCount');
+  static property = argu.ns('followsCount');
 
   static topology = detailsBarTopology;
 

@@ -9,11 +9,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Button } from '../../components';
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 
-const defaultTopology = NS.argu('cardList');
+const defaultTopology = argu.ns('cardList');
 
 class EntryPointButton extends React.PureComponent {
   static type = schema.EntryPoint;

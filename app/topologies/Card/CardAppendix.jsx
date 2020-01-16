@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import Topology from '../Topology';
 
 import './Card.scss';
 
-export const cardAppendixTopology = NS.argu('cardAppendix');
+export const cardAppendixTopology = argu.ns('cardAppendix');
 
 /**
  * Renders an empty CardAppendix

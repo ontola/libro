@@ -4,7 +4,7 @@ import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
 import Detail from '../../../components/Detail';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import argu from '../../../ontology/argu';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
 
 const messages = defineMessages({
@@ -39,7 +39,7 @@ const PinnedAt = ({ linkedProp }) => {
 
 PinnedAt.type = schema.Thing;
 
-PinnedAt.property = NS.argu('pinnedAt');
+PinnedAt.property = argu.ns('pinnedAt');
 
 PinnedAt.topology = detailsBarTopology;
 

@@ -6,6 +6,7 @@ import { Resource } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../../tests';
+import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import {
   cleanup,
@@ -27,12 +28,12 @@ describe('Notification', () => {
 
   const readResources = {
     '@id': readResource.value,
-    [rdfx.type]: NS.argu('Notification'),
+    [rdfx.type]: argu.ns('Notification'),
     [schema.dateCreated]: rdf.literal(new Date('2017-10-11T17:21:28+02:00')),
     [schema.dateModified]: rdf.literal(new Date('2017-11-17T11:34:21+01:00')),
     [schema.name]: rdf.literal(NOTIFICATION_TEXT),
     [schema.target]: rdf.namedNode('https://app.argu.co/freetown/m/2601'),
-    [NS.argu('unread')]: rdf.literal(false),
+    [argu.ns('unread')]: rdf.literal(false),
     [NS.hydra('operation')]: rdf.namedNode('https://app.argu.co/freetown/n/19314/actions/read'),
     [ontola.readAction]: rdf.namedNode('https://app.argu.co/freetown/n/19314/actions/read'),
     [schema.creator]: {
@@ -51,12 +52,12 @@ describe('Notification', () => {
   };
   const unreadResources = {
     '@id': resource.value,
-    [rdfx.type]: NS.argu('Notification'),
+    [rdfx.type]: argu.ns('Notification'),
     [schema.dateCreated]: rdf.literal(new Date('2017-10-11T17:21:28+02:00')),
     [schema.dateModified]: rdf.literal(new Date('2017-11-17T11:34:21+01:00')),
     [schema.name]: rdf.literal('Joep Meindertsma heeft een idee geplaatst in Argu Intern'),
     [schema.target]: rdf.namedNode('https://app.argu.co/freetown/m/2601'),
-    [NS.argu('unread')]: rdf.literal(true),
+    [argu.ns('unread')]: rdf.literal(true),
     [schema.potentialAction]: rdf.namedNode('https://app.argu.co/freetown/n/19314/actions/read'),
     [ontola.readAction]: {
       '@id': rdf.namedNode('https://app.argu.co/freetown/n/19314/actions/read'),
@@ -73,7 +74,7 @@ describe('Notification', () => {
       [schema.text]: rdf.literal(''),
       [schema.actionStatus]: schema.PotentialActionStatus,
       [schema.name]: rdf.literal(MARK_AS_READ_TEXT),
-      [schema.result]: NS.argu('Notification'),
+      [schema.result]: argu.ns('Notification'),
       [schema.object]: resource,
       [schema.isPartOf]: resource,
     },
@@ -128,7 +129,7 @@ describe('Notification', () => {
         queryByTitle,
       } = renderInContainer(unreadResources);
 
-      const delta = `${resource.toString()} ${NS.argu('unread').toString()} "false"^^<http://www.w3.org/2001/XMLSchema#boolean> ${ontola.replace.toString()} .`;
+      const delta = `${resource.toString()} ${argu.ns('unread').toString()} "false"^^<http://www.w3.org/2001/XMLSchema#boolean> ${ontola.replace.toString()} .`;
       fetch.mockResponse(
         delta,
         {

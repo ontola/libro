@@ -1,23 +1,23 @@
 import { register } from 'link-redux';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import argu from '../../../ontology/argu';
 import { allTopologies } from '../../../topologies';
 import { getVoteButtons } from '../../VoteEvent/properties/currentVote';
 
-const ArgumentCurrentVote = getVoteButtons([NS.argu('yes')]);
+const ArgumentCurrentVote = getVoteButtons([argu.ns('yes')]);
 
 ArgumentCurrentVote.type = [
-  NS.argu('ConArgument'),
-  NS.argu('ProArgument'),
+  argu.ns('ConArgument'),
+  argu.ns('ProArgument'),
 ];
 
-ArgumentCurrentVote.property = NS.argu('currentVote');
+ArgumentCurrentVote.property = argu.ns('currentVote');
 
 ArgumentCurrentVote.topology = allTopologies;
 
 ArgumentCurrentVote.mapDataToProps = {
-  currentVote: NS.argu('currentVote'),
-  votes: NS.argu('votes'),
+  currentVote: argu.ns('currentVote'),
+  votes: argu.ns('votes'),
 };
 
 export default register(ArgumentCurrentVote);

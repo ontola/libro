@@ -2,11 +2,11 @@ import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 
 import './Table.scss';
 
-export const tableTopology = NS.argu('table');
+export const tableTopology = argu.ns('table');
 
 class Table extends TopologyProvider {
   static propTypes = {

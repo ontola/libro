@@ -13,13 +13,14 @@ import {
   useIntl,
 } from 'react-intl';
 
+import app from '../../../ontology/app';
+import argu from '../../../ontology/argu';
 import { contentDetailsTopology } from '../../../topologies/ContentDetails';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
 import { Detail } from '../../../components';
-import { NS } from '../../../helpers/LinkedRenderStore';
 import { listToArr } from '../../../helpers/data';
 
-const publicGroupIRI = rdf.id(NS.app('g/-1'));
+const publicGroupIRI = rdf.id(app.ns('g/-1'));
 
 const messages = defineMessages({
   privateTitle: {
@@ -80,11 +81,11 @@ GrantedGroups.type = schema.Thing;
 
 GrantedGroups.topology = [detailsBarTopology, contentDetailsTopology];
 
-GrantedGroups.property = NS.argu('grantedGroups');
+GrantedGroups.property = argu.ns('grantedGroups');
 
 GrantedGroups.mapDataToProps = {
-  dataSubjects: NS.argu('grantedGroups'),
-  grantedGroups: NS.argu('grantedGroups'),
+  dataSubjects: argu.ns('grantedGroups'),
+  grantedGroups: argu.ns('grantedGroups'),
 };
 
 GrantedGroups.propTypes = {

@@ -2,13 +2,13 @@ import schema from '@ontologies/schema';
 import { linkType, register } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import app from '../../ontology/app';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { SignOutFormLink } from '../../components/SignOutForm';
 import Button from '../../components/Button';
 
 class AppSignOutActionsBar extends React.PureComponent {
-  static type = NS.app('AppSignOut');
+  static type = app.AppSignOut;
 
   static topology = actionsBarTopology;
 

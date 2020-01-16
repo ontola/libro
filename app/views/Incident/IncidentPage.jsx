@@ -7,6 +7,7 @@ import React from 'react';
 
 import { CardContent } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
@@ -55,7 +56,7 @@ const IncidentPage = () => (
         </ActionsBar>
         <Property label={meeting.agenda} onLoad={() => null} />
         <CardAppendix>
-          <Property forceRender label={NS.app('omniform')} />
+          <Property forceRender label={app.omniform} />
         </CardAppendix>
       </CardMain>
       <Property label={ontola.publishAction} onLoad={() => null} />

@@ -11,7 +11,8 @@ import {
   useIntl,
 } from 'react-intl';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import app from '../../ontology/app';
+import argu from '../../ontology/argu';
 
 import './Omniform.scss';
 
@@ -45,7 +46,7 @@ const OmniformPreview = ({
       type="button"
       onClick={onClick}
     >
-      <Resource subject={NS.app('c_a')} topology={NS.argu('formFooter')} />
+      <Resource subject={app.c_a} topology={argu.ns('formFooter')} />
       <span className="Omniform__preview-text">
         <FormattedMessage
           defaultMessage="Share your response..."

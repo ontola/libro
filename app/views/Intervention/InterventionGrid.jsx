@@ -10,6 +10,7 @@ import {
   LinkedDetailDate,
 } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import rivm from '../../ontology/rivm';
 import CardFixed from '../../topologies/Card/CardFixed';
@@ -45,10 +46,10 @@ const InterventionGrid = () => (
       <Property hideName label={schema.creator} />
       <Property label={schema.isPartOf} />
       <LinkedDetailDate />
-      <Property label={NS.argu('pinnedAt')} />
-      <Property short label={NS.argu('expiresAt')} />
-      <Property label={NS.argu('followsCount')} />
-      <Property label={NS.argu('motionsCount')} />
+      <Property label={argu.ns('pinnedAt')} />
+      <Property short label={argu.ns('expiresAt')} />
+      <Property label={argu.ns('followsCount')} />
+      <Property label={argu.ns('motionsCount')} />
     </DetailsBar>
   </CardFixed>
 );
