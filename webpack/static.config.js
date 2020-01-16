@@ -19,7 +19,7 @@ const common = require('./common.config');
 const version = require('./version');
 
 let bugsnagPlugin;
-if (process.env.SEMAHORE_DEPLOY_NUMBER) {
+if (process.env.SEMAPHORE_DEPLOY_NUMBER) {
   bugsnagPlugin = new BugsnagSourceMapUploaderPlugin({
     apiKey: process.env.BUGSNAG_KEY,
     appVersion: version,
