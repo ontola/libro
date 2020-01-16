@@ -15,7 +15,7 @@ import { Button } from '../../components';
 import CardContent from '../../components/Card/CardContent';
 import FormFooterRight from '../../components/Form/FooterRight';
 import Image from '../../components/Image';
-import { NS } from '../../helpers/LinkedRenderStore';
+import teamGL from '../../ontology/teamGL';
 import Card from '../../topologies/Card';
 import { containerTopology } from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
@@ -67,7 +67,7 @@ const BadgeContainer = ({
   );
 };
 
-BadgeContainer.type = NS.teamGL('Badge');
+BadgeContainer.type = teamGL.Badge;
 
 BadgeContainer.hocs = [withRouter];
 

@@ -5,8 +5,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
 import ontola from '../../ontology/ontola';
+import teamGL from '../../ontology/teamGL';
 import { containerTopology } from '../../topologies/Container';
 import { CardContent } from '../../components';
 import Card from '../../topologies/Card';
@@ -20,17 +20,17 @@ const ParticipantContainer = () => (
       <HeaderWithMenu
         menu={<Property label={ontola.actionsMenu} />}
       >
-        <Property label={NS.teamGL('volunteer')}>
+        <Property label={teamGL.volunteer}>
           <Property label={schema.name} />
         </Property>
       </HeaderWithMenu>
       <ContentDetails>
-        <Property label={NS.teamGL('engagement')} />
+        <Property label={teamGL.engagement} />
       </ContentDetails>
-      <Property label={NS.teamGL('volunteer')}>
+      <Property label={teamGL.volunteer}>
         <div className="Volunteer--contact-options">
-          <Property label={NS.teamGL('telephone')} />
-          <Property label={NS.teamGL('email')} />
+          <Property label={teamGL.telephone} />
+          <Property label={teamGL.email} />
         </div>
         <Property label={schema.text} />
       </Property>
@@ -41,7 +41,7 @@ const ParticipantContainer = () => (
   </Card>
 );
 
-ParticipantContainer.type = NS.teamGL('Participant');
+ParticipantContainer.type = teamGL.Participant;
 
 ParticipantContainer.topology = containerTopology;
 

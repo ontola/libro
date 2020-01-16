@@ -6,7 +6,7 @@ import {
   useIntl,
 } from 'react-intl';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import teamGL from '../../../ontology/teamGL';
 import { allTopologies } from '../../../topologies';
 import { Detail } from '../../../components';
 
@@ -51,9 +51,9 @@ const Engagement = ({ linkedProp }) => {
   );
 };
 
-Engagement.type = [NS.teamGL('Volunteer'), NS.teamGL('Participant')];
+Engagement.type = [teamGL.Volunteer, teamGL.Participant];
 
-Engagement.property = NS.teamGL('engagement');
+Engagement.property = teamGL.engagement;
 
 Engagement.topology = allTopologies;
 

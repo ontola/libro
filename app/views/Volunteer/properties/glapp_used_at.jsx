@@ -4,7 +4,7 @@ import emoji from 'react-easy-emoji';
 import { defineMessages, useIntl } from 'react-intl';
 
 import { Detail } from '../../../components';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import teamGL from '../../../ontology/teamGL';
 import { allTopologies } from '../../../topologies';
 
 
@@ -30,9 +30,9 @@ const GlappUsedAt = ({ linkedProp }) => {
   return <Detail text={text} />;
 };
 
-GlappUsedAt.type = NS.teamGL('Volunteer');
+GlappUsedAt.type = teamGL.Volunteer;
 
-GlappUsedAt.property = NS.teamGL('glappUsedAt');
+GlappUsedAt.property = teamGL.glappUsedAt;
 
 GlappUsedAt.topology = allTopologies;
 

@@ -5,8 +5,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
 import ontola from '../../../ontology/ontola';
+import teamGL from '../../../ontology/teamGL';
 import { pageTopology } from '../../../topologies/Page';
 import PrimaryResource from '../../../topologies/PrimaryResource';
 import Container from '../../../topologies/Container';
@@ -26,7 +26,7 @@ const GroupPage = () => (
             <Property label={schema.name} />
           </HeaderWithMenu>
           <ContentDetails>
-            <Property label={NS.teamGL('department')} />
+            <Property label={teamGL.department} />
           </ContentDetails>
           <Property label={schema.text} />
         </CardContent>
@@ -38,7 +38,7 @@ const GroupPage = () => (
   </PrimaryResource>
 );
 
-GroupPage.type = NS.teamGL('Group');
+GroupPage.type = teamGL.Group;
 
 GroupPage.topology = pageTopology;
 

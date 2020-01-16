@@ -7,6 +7,7 @@ import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import ontola from '../../ontology/ontola';
+import teamGL from '../../ontology/teamGL';
 import { containerTopology } from '../../topologies/Container';
 import ContentDetails from '../../topologies/ContentDetails';
 import { CardContent } from '../../components';
@@ -25,12 +26,12 @@ const GroupMembershipContainer = () => (
       </HeaderWithMenu>
       <Property label={NS.org('member')}>
         <ContentDetails>
-          <Property label={NS.teamGL('department')} />
-          <Property label={NS.teamGL('engagement')} />
+          <Property label={teamGL.department} />
+          <Property label={teamGL.engagement} />
         </ContentDetails>
         <div className="Volunteer--contact-options">
-          <Property label={NS.teamGL('telephone')} />
-          <Property label={NS.teamGL('email')} />
+          <Property label={teamGL.telephone} />
+          <Property label={teamGL.email} />
         </div>
         <Property label={schema.text} />
       </Property>

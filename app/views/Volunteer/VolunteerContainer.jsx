@@ -6,7 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import teamGL from '../../ontology/teamGL';
 import { containerTopology } from '../../topologies/Container';
 import { CardContent } from '../../components';
 import Card from '../../topologies/Card';
@@ -17,19 +17,19 @@ const VolunteerContainer = () => (
     <CardContent noSpacing>
       <Property label={[schema.name, rdfs.label]} />
       <ContentDetails>
-        <Property label={NS.teamGL('department')} />
-        <Property label={NS.teamGL('engagement')} />
+        <Property label={teamGL.department} />
+        <Property label={teamGL.engagement} />
       </ContentDetails>
       <div className="Volunteer--contact-options">
-        <Property label={NS.teamGL('telephone')} />
-        <Property label={NS.teamGL('email')} />
+        <Property label={teamGL.telephone} />
+        <Property label={teamGL.email} />
       </div>
       <Property label={schema.text} />
     </CardContent>
   </Card>
 );
 
-VolunteerContainer.type = NS.teamGL('Volunteer');
+VolunteerContainer.type = teamGL.Volunteer;
 
 VolunteerContainer.topology = containerTopology;
 

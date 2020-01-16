@@ -7,7 +7,7 @@ import {
   useIntl,
 } from 'react-intl';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import teamGL from '../../../ontology/teamGL';
 import { allTopologies } from '../../../topologies';
 import { Detail } from '../../../components';
 
@@ -65,7 +65,7 @@ const CreatedAt = ({ linkedProp }) => {
   );
 };
 
-CreatedAt.type = NS.teamGL('NewVolunteer');
+CreatedAt.type = teamGL.NewVolunteer;
 
 CreatedAt.property = schema.dateCreated;
 

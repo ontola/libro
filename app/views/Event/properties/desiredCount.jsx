@@ -2,8 +2,8 @@ import { linkedPropType, register } from 'link-redux';
 import React from 'react';
 
 import Progress from '../../../components/Progress';
-import { NS } from '../../../helpers/LinkedRenderStore';
 import { tryParseInt } from '../../../helpers/numbers';
+import teamGL from '../../../ontology/teamGL';
 import { allTopologies } from '../../../topologies';
 
 const DesiredCount = ({ linkedProp, participantsCount }) => {
@@ -26,14 +26,14 @@ const DesiredCount = ({ linkedProp, participantsCount }) => {
   );
 };
 
-DesiredCount.type = [NS.teamGL('Event')];
+DesiredCount.type = [teamGL.Event];
 
 DesiredCount.topology = allTopologies;
 
-DesiredCount.property = NS.teamGL('desiredCount');
+DesiredCount.property = teamGL.desiredCount;
 
 DesiredCount.mapDataToProps = {
-  participantsCount: NS.teamGL('participantsCount'),
+  participantsCount: teamGL.participantsCount,
 };
 
 DesiredCount.propTypes = {
