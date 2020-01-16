@@ -259,7 +259,7 @@ class MapView extends React.Component {
       const id = feature.getId();
       selected = lrs.getResourceProperty(
         id.termType ? id : rdf.namedNode(id),
-        argu.ns('placeable')
+        argu.placeable
       );
       position = feature.getGeometry().getCoordinates();
     }
@@ -431,7 +431,7 @@ class MapView extends React.Component {
 
     const lon = lrs.getResourceProperty(place, schema.longitude);
     const lat = lrs.getResourceProperty(place, schema.latitude);
-    const zoom = lrs.getResourceProperty(place, argu.ns('zoomLevel'));
+    const zoom = lrs.getResourceProperty(place, argu.zoomLevel);
 
     if (!(lon && lat && zoom)) {
       lrs.report(new TypeError(`Placement without coordinates: '${place.value}'`));

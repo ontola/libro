@@ -7,7 +7,7 @@ import argu from '../../ontology/argu';
 
 import './DetailsBar.scss';
 
-export const detailsBarTopology = argu.ns('detail');
+export const detailsBarTopology = argu.detail;
 
 class DetailsBar extends TopologyProvider {
   constructor() {

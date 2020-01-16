@@ -32,7 +32,7 @@ const getPagination = (Wrapper, topology) => {
     );
   };
 
-  InfinitePagination.type = [...CollectionTypes, argu.ns('SearchResult')];
+  InfinitePagination.type = [...CollectionTypes, argu.SearchResult];
 
   InfinitePagination.property = ontola.infinitePagination;
 

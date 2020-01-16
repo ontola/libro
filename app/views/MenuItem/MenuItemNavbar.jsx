@@ -20,8 +20,8 @@ import { isFontAwesomeIRI } from '../../helpers/iris';
 class MenuItemNavbar extends React.PureComponent {
   static type = [
     ontola.MenuItem,
-    argu.ns('SubMenu'),
-    argu.ns('Menu'),
+    argu.SubMenu,
+    argu.Menu,
   ];
 
   static topology = navbarTopology;

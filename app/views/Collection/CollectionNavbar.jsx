@@ -20,7 +20,7 @@ class CollectionNavbar extends React.PureComponent {
 
   static mapDataToProps = {
     name: schema.name,
-    unreadCount: argu.ns('unreadCount'),
+    unreadCount: argu.unreadCount,
   };
 
   static propTypes = {

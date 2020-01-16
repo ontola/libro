@@ -7,7 +7,7 @@ import argu from '../../ontology/argu';
 
 import './ActionsBar.scss';
 
-export const actionsBarTopology = argu.ns('actionsBar');
+export const actionsBarTopology = argu.actionsBar;
 
 class ActionsBar extends TopologyProvider {
   static propTypes = {

@@ -26,10 +26,10 @@ const propTypes = {
 
 const specialTopologies = [
   undefined,
-  argu.ns('container'),
-  argu.ns('grid'),
-  argu.ns('card'),
-  argu.ns('inline'),
+  argu.container,
+  argu.grid,
+  argu.card,
+  argu.inline,
 ];
 
 class DevBrowser extends Component {

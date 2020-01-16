@@ -21,9 +21,9 @@ class VoteEventCard extends CardVoteEvent {
   render() {
     return this.wrap((
       <div itemScope>
-        <Property forceRender label={argu.ns('currentVote')} />
+        <Property forceRender label={argu.currentVote} />
         <Property label={schema.result} />
-        <Property label={argu.ns('votes')} />
+        <Property label={argu.votes} />
       </div>
     ));
   }
@@ -33,9 +33,9 @@ class VoteEventContainer extends VoteEvent {
   render() {
     return this.wrap((
       <React.Fragment key="VoteEventContainer">
-        <Property forceRender label={argu.ns('currentVote')} />
+        <Property forceRender label={argu.currentVote} />
         <Property label={schema.result} />
-        <Property label={argu.ns('votes')} />
+        <Property label={argu.votes} />
       </React.Fragment>
     ));
   }
@@ -44,7 +44,7 @@ class VoteEventContainer extends VoteEvent {
 export default [
   LinkedRenderStore.registerRenderer(
     withLinkCtx(VoteEventContainer),
-    [argu.ns('VoteEvent'), NS.aod('VoteEvent')],
+    [argu.VoteEvent, NS.aod('VoteEvent')],
     RENDER_CLASS_NAME,
     [
       cardAppendixTopology,
@@ -52,12 +52,12 @@ export default [
       containerTopology,
       primaryResourceTopology,
       voteEventTopology,
-      argu.ns('voteEventCollection'),
+      argu.voteEventCollection,
     ]
   ),
   LinkedRenderStore.registerRenderer(
     withLinkCtx(VoteEventCard),
-    argu.ns('VoteEvent'),
+    argu.VoteEvent,
     RENDER_CLASS_NAME,
     cardMainTopology
   ),

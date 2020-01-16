@@ -167,7 +167,7 @@ const getPagination = (Wrapper, topology) => {
     );
   };
 
-  DefaultPagination.type = [...CollectionTypes, argu.ns('SearchResult')];
+  DefaultPagination.type = [...CollectionTypes, argu.SearchResult];
 
   DefaultPagination.property = ontola.defaultPagination;
 

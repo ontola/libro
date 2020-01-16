@@ -41,11 +41,11 @@ const ForumPage = ({ coverPhoto, hideHeader }) => {
   );
 };
 
-ForumPage.type = [argu.ns('ContainerNode'), schema.WebPage];
+ForumPage.type = [argu.ContainerNode, schema.WebPage];
 
 ForumPage.mapDataToProps = {
   coverPhoto: ontola.coverPhoto,
-  hideHeader: argu.ns('hideHeader'),
+  hideHeader: argu.hideHeader,
   name: schema.name,
   widgets: ontola.widgets,
 };

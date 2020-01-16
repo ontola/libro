@@ -32,9 +32,9 @@ const MenuItemTab = ({ subject }) => (
 
 MenuItemTab.type = [
   ontola.MenuItem,
-  argu.ns('MenuSection'),
-  argu.ns('SubMenu'),
-  argu.ns('Menu'),
+  argu.MenuSection,
+  argu.SubMenu,
+  argu.Menu,
 ];
 
 MenuItemTab.topology = tabBarTopology;

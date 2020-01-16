@@ -6,7 +6,7 @@ import Topology from '../Topology';
 /**
  * @deprecated
  */
-export const voteEventTopology = argu.ns('voteEvent');
+export const voteEventTopology = argu.voteEvent;
 
 class VoteEvent extends Topology {
   static propTypes = {

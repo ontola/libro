@@ -28,6 +28,6 @@ VoteEvents.propTypes = propTypes;
 export default LinkedRenderStore.registerRenderer(
   VoteEvents,
   schema.Thing,
-  argu.ns('voteEvents'),
+  argu.voteEvents,
   allTopologies
 );

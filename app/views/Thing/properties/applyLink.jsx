@@ -8,7 +8,7 @@ import { tableRowTopology } from '../../../topologies/TableRow';
 class ApplyLink extends React.PureComponent {
   static type = schema.Thing;
 
-  static property = argu.ns('applyLink');
+  static property = argu.applyLink;
 
   static topology = tableRowTopology;
 

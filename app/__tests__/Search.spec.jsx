@@ -21,10 +21,10 @@ describe('Search', () => {
 
   const resources = {
     '@id': testIRI.value,
-    [rdfx.type]: argu.ns('SearchResult'),
+    [rdfx.type]: argu.SearchResult,
     [dcterms.identifier]: testIRI,
-    [argu.ns('query')]: 'keyword',
-    [argu.ns('took')]: 240,
+    [argu.query]: 'keyword',
+    [argu.took]: 240,
     [as.totalItems]: 3,
     [as.items]: seq([
       {
@@ -34,7 +34,7 @@ describe('Search', () => {
       },
       {
         '@id': NS.example('2'),
-        [rdfx.type]: argu.ns('Question'),
+        [rdfx.type]: argu.Question,
         [schema.name]: 'Item 2',
       },
       {

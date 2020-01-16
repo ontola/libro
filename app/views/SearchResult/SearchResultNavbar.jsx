@@ -31,7 +31,7 @@ const SearchResultNavbar = () => {
   );
 };
 
-SearchResultNavbar.type = argu.ns('SearchResult');
+SearchResultNavbar.type = argu.SearchResult;
 
 SearchResultNavbar.topology = navbarTopology;
 

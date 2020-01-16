@@ -42,9 +42,9 @@ const MenuItemDropdown = ({
 
 MenuItemDropdown.type = [
   ontola.MenuItem,
-  argu.ns('MenuSection'),
-  argu.ns('SubMenu'),
-  argu.ns('Menu'),
+  argu.MenuSection,
+  argu.SubMenu,
+  argu.Menu,
 ];
 
 MenuItemDropdown.topology = [cardFloatTopology, containerFloatTopology];

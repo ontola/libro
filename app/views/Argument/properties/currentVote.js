@@ -4,20 +4,20 @@ import argu from '../../../ontology/argu';
 import { allTopologies } from '../../../topologies';
 import { getVoteButtons } from '../../VoteEvent/properties/currentVote';
 
-const ArgumentCurrentVote = getVoteButtons([argu.ns('yes')]);
+const ArgumentCurrentVote = getVoteButtons([argu.yes]);
 
 ArgumentCurrentVote.type = [
-  argu.ns('ConArgument'),
-  argu.ns('ProArgument'),
+  argu.ConArgument,
+  argu.ProArgument,
 ];
 
-ArgumentCurrentVote.property = argu.ns('currentVote');
+ArgumentCurrentVote.property = argu.currentVote;
 
 ArgumentCurrentVote.topology = allTopologies;
 
 ArgumentCurrentVote.mapDataToProps = {
-  currentVote: argu.ns('currentVote'),
-  votes: argu.ns('votes'),
+  currentVote: argu.currentVote,
+  votes: argu.votes,
 };
 
 export default register(ArgumentCurrentVote);

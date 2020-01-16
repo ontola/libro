@@ -12,7 +12,7 @@ import {
 } from 'react-intl';
 
 import app from '../../ontology/app';
-import argu from '../../ontology/argu';
+import { formFooterTopology } from '../../topologies/FormFooter/Footer';
 
 import './Omniform.scss';
 
@@ -46,7 +46,7 @@ const OmniformPreview = ({
       type="button"
       onClick={onClick}
     >
-      <Resource subject={app.c_a} topology={argu.ns('formFooter')} />
+      <Resource subject={app.c_a} topology={formFooterTopology} />
       <span className="Omniform__preview-text">
         <FormattedMessage
           defaultMessage="Share your response..."

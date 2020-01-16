@@ -6,7 +6,7 @@ import argu from '../../ontology/argu';
 import { parentTopology } from '../../topologies/Parent';
 
 class OrganizationParent extends React.PureComponent {
-  static type = [schema.Organization, argu.ns('Page')];
+  static type = [schema.Organization, argu.Page];
 
   static topology = parentTopology;
 

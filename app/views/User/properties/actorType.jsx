@@ -58,7 +58,7 @@ ActorTypeDispatcherConnect.propTypes = propTypes;
 export default LinkedRenderStore.registerRenderer(
   link({
     actorType: ontola.actorType,
-    anonymousID: argu.ns('anonymousID'),
+    anonymousID: argu.anonymousID,
   }, { returnType: 'value' })(ActorTypeDispatcherConnect),
   [
     ontola.ConfirmedUser,

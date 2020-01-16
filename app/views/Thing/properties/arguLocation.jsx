@@ -25,8 +25,8 @@ class ArguLocation extends React.Component {
   static topology = [containerTopology, widgetTopologyTopology];
 
   static mapDataToProps = {
-    childrenPlacements: argu.ns('childrenPlacements'),
-    dataSubjects: argu.ns('childrenPlacements'),
+    childrenPlacements: argu.childrenPlacements,
+    dataSubjects: argu.childrenPlacements,
     schemaLocation: schema.location,
   };
 

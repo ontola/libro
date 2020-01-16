@@ -108,7 +108,7 @@ export const getVoteButtons = (options) => {
         this.props.currentVote,
         schema.option
       );
-      if (!currentOption || rdf.equals(currentOption, argu.ns('abstain'))) {
+      if (!currentOption || rdf.equals(currentOption, argu.abstain)) {
         return null;
       }
 
@@ -164,11 +164,11 @@ export const getVoteButtons = (options) => {
 
 export default LinkedRenderStore.registerRenderer(
   link({
-    currentVote: argu.ns('currentVote'),
-    dataSubjects: argu.ns('currentVote'),
-    votes: argu.ns('votes'),
-  })(getVoteButtons([argu.ns('yes'), argu.ns('other'), argu.ns('no')])),
-  argu.ns('VoteEvent'),
-  argu.ns('currentVote'),
+    currentVote: argu.currentVote,
+    dataSubjects: argu.currentVote,
+    votes: argu.votes,
+  })(getVoteButtons([argu.yes, argu.other, argu.no])),
+  argu.VoteEvent,
+  argu.currentVote,
   allTopologies
 );

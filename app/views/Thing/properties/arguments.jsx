@@ -22,13 +22,13 @@ const ArgumentColumns = () => (
       renderWhenEmpty
       direction="column"
       key="pro"
-      label={argu.ns('proArguments')}
+      label={argu.proArguments}
     />
     <Property
       renderWhenEmpty
       direction="column"
       key="con"
-      label={argu.ns('conArguments')}
+      label={argu.conArguments}
     />
   </Columns>
 );
@@ -53,8 +53,8 @@ Arguments.propTypes = {
 };
 
 const ArgumentsData = link({
-  conArguments: argu.ns('conArguments'),
-  proArguments: argu.ns('proArguments'),
+  conArguments: argu.conArguments,
+  proArguments: argu.proArguments,
 })(Arguments);
 
 const ArgumentsCardAppendix = (props) => (
@@ -70,13 +70,13 @@ export default [
   LinkedRenderStore.registerRenderer(
     ArgumentsData,
     schema.Thing,
-    argu.ns('arguments'),
+    argu.arguments,
     allTopologiesExcept(cardAppendixTopology)
   ),
   LinkedRenderStore.registerRenderer(
     ArgumentsCardAppendix,
     schema.Thing,
-    argu.ns('arguments'),
+    argu.arguments,
     cardAppendixTopology
   ),
 ];

@@ -48,7 +48,7 @@ class Popup extends Topology {
           top: bottom,
         }}
       >
-        <Resource subject={this.props.popup} topology={argu.ns('popup')} />
+        <Resource subject={this.props.popup} topology={popupTopology} />
       </div>
     ));
   }

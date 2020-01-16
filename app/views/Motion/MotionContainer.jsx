@@ -31,20 +31,20 @@ const MotionContainer = ({ highlighted, subject }) => (
       <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
     </CardContent>
     <CardRow noBorder>
-      <Property label={[argu.ns('attachments'), meeting.attachment]} />
+      <Property label={[argu.attachments, meeting.attachment]} />
     </CardRow>
-    <Property label={argu.ns('voteableVoteEvent')} />
+    <Property label={argu.voteableVoteEvent} />
     <CardAppendix>
       <SignInSwitcherContainer subject={subject}>
-        <Property forceRender label={argu.ns('arguments')} />
-        <Property label={argu.ns('topComment')} />
+        <Property forceRender label={argu.arguments} />
+        <Property label={argu.topComment} />
         <Property forceRender label={app.omniform} />
       </SignInSwitcherContainer>
     </CardAppendix>
   </Card>
 );
 
-MotionContainer.type = [argu.ns('Motion'), NS.opengov('Motion')];
+MotionContainer.type = [argu.Motion, NS.opengov('Motion')];
 
 MotionContainer.topology = [
   alertDialogTopology,

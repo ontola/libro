@@ -91,7 +91,7 @@ describe('FormField', () => {
   });
 
   it('toggles checkboxes', () => {
-    const pinned = calculateFormFieldName(argu.ns('pinned'));
+    const pinned = calculateFormFieldName(argu.pinned);
     const [store, storage] = mockStorage();
 
     const {
@@ -122,7 +122,7 @@ describe('FormField', () => {
 
   describe('persistence', () => {
     const testPersistence = (type, value) => {
-      const field = calculateFormFieldName(argu.ns('field'));
+      const field = calculateFormFieldName(argu.field);
       const [store, storage] = mockStorage();
 
       const { getByTestId } = renderWithTestForm((

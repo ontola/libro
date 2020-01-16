@@ -23,7 +23,7 @@ Creator.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
   Creator,
-  argu.ns('Notification'),
+  argu.Notification,
   schema.name,
   [
     primaryResourceTopology,

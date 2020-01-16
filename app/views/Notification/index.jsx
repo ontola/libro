@@ -50,7 +50,7 @@ const Notification = ({
   return (
     <div data-test="Notification-notification" style={{ position: 'relative' }}>
       <Card>
-        <Property label={argu.ns('unread')} />
+        <Property label={argu.unread} />
         <CardContent>
           {content}
         </CardContent>
@@ -59,7 +59,7 @@ const Notification = ({
   );
 };
 
-Notification.type = argu.ns('Notification');
+Notification.type = argu.Notification;
 
 Notification.topology = [
   primaryResourceTopology,

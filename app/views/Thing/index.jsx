@@ -90,10 +90,10 @@ const ThingGrid = () => (
     <DetailsBar>
       <Property hideName label={schema.creator} />
       <LinkedDetailDate />
-      <Property label={argu.ns('pinnedAt')} />
-      <Property short label={argu.ns('expiresAt')} />
-      <Property label={argu.ns('followsCount')} />
-      <Property label={argu.ns('motionsCount')} />
+      <Property label={argu.pinnedAt} />
+      <Property short label={argu.expiresAt} />
+      <Property label={argu.followsCount} />
+      <Property label={argu.motionsCount} />
     </DetailsBar>
   </CardFixed>
 );
@@ -115,7 +115,7 @@ ThingSection.propTypes = hightlightPropTypes;
 const ThingCard = () => (
   <CardRow>
     <CardContent>
-      <Property label={argu.ns('opinion')} onError={() => null} onLoad={LoadingOpinion} />
+      <Property label={argu.opinion} onError={() => null} onLoad={LoadingOpinion} />
       <Property label={[schema.name, rdfs.label, foaf.name]} />
       <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
       <Property label={meeting.attachment} />

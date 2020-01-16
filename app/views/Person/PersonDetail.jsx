@@ -69,7 +69,7 @@ const PersonDetail = ({
 PersonDetail.type = [
   schema.Person,
   NS.person('Person'),
-  argu.ns('Page'),
+  argu.Page,
 ];
 
 PersonDetail.topology = [detailsBarTopology, tableCellTopology];

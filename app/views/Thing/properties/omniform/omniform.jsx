@@ -30,7 +30,7 @@ class OmniformProp extends React.PureComponent {
   static topology = allTopologiesExcept(cardTopology, cardMainTopology, cardAppendixTopology);
 
   static mapDataToProps = {
-    expiresAt: argu.ns('expiresAt'),
+    expiresAt: argu.expiresAt,
     isPartOf: schema.isPartOf,
     potentialAction: {
       label: schema.potentialAction,
@@ -61,12 +61,12 @@ class OmniformProp extends React.PureComponent {
     }
 
     if (isPartOf) {
-      if (isPastDate(lrs.getResourceProperty(isPartOf, argu.ns('expiresAt')))) {
+      if (isPastDate(lrs.getResourceProperty(isPartOf, argu.expiresAt))) {
         return true;
       }
 
       const grandParent = lrs.getResourceProperty(isPartOf, schema.isPartOf);
-      if (grandParent && isPastDate(lrs.getResourceProperty(grandParent, argu.ns('expiresAt')))) {
+      if (grandParent && isPastDate(lrs.getResourceProperty(grandParent, argu.expiresAt))) {
         return true;
       }
     }

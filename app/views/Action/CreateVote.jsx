@@ -56,15 +56,15 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     const hasOpinionAction = ownProps.lrs.findSubject(
       inlineFormTarget,
       [schema.potentialAction, rdfx.type],
-      [ontola['Create::Opinion'], argu.ns('Update::Opinion')]
+      [ontola['Create::Opinion'], argu['Update::Opinion']]
     );
 
     if (!hasOpinionAction) {
       return undefined;
     }
 
-    const createOpinion = ownProps.lrs.getResourceProperty(inlineFormTarget, argu.ns('create_opinion'));
-    const updateOpinion = ownProps.lrs.getResourceProperty(inlineFormTarget, argu.ns('update_opinion'));
+    const createOpinion = ownProps.lrs.getResourceProperty(inlineFormTarget, argu.create_opinion);
+    const updateOpinion = ownProps.lrs.getResourceProperty(inlineFormTarget, argu.update_opinion);
 
     return Promise.all([
       dispatch(omniformOpenInline(inlineFormTarget)),
@@ -107,7 +107,7 @@ function getVariant(current, variant, object, lrs) {
 
   const parentType = lrs.getResourceProperty(object, rdfx.type);
 
-  return rdf.equals(parentType, argu.ns('ProArgument')) ? 'yes' : 'no';
+  return rdf.equals(parentType, argu.ProArgument) ? 'yes' : 'no';
 }
 
 /*

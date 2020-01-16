@@ -3,4 +3,5 @@ import argu from '../../ontology/argu';
 /**
  * @deprecated
  */
-export const voteEventSideTopology = argu.ns('voteEventSide'); // eslint-disable-line import/prefer-default-export
+// eslint-disable-next-line import/prefer-default-export
+export const voteEventSideTopology = argu.voteEventSide;

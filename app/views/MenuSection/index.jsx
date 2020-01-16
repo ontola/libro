@@ -22,7 +22,7 @@ const MenuSection = () => (
 export default [
   LinkedRenderStore.registerRenderer(
     MenuSection,
-    [argu.ns('MenuSection')],
+    [argu.MenuSection],
     RENDER_CLASS_NAME,
     navbarTopology
   ),

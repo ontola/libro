@@ -1,7 +1,7 @@
 import argu from '../../ontology/argu';
 import TopologyProvider from '../Topology';
 
-export const tabPaneTopology = argu.ns('tabPane');
+export const tabPaneTopology = argu.tabPane;
 
 class TabPane extends TopologyProvider {
   static displayName = 'TabPane';

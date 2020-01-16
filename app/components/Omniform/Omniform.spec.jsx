@@ -32,12 +32,12 @@ describe('Omniform', () => {
     [conAction]: {
       '@id': conAction,
       [rdfx.type]: schema.CreateAction,
-      [schema.result]: argu.ns('ConArgument'),
+      [schema.result]: argu.ConArgument,
       [schema.target]: {
         [rdfx.type]: schema.EntryPoint,
         [ll.actionBody]: {
           [rdfx.type]: sh.NodeShape,
-          [sh.targetClass]: argu.ns('Comment'),
+          [sh.targetClass]: argu.Comment,
           [sh.property]: [
             {
               [rdfx.type]: sh.PropertyShape,
@@ -58,12 +58,12 @@ describe('Omniform', () => {
     [proAction]: {
       '@id': proAction,
       [rdfx.type]: schema.CreateAction,
-      [schema.result]: argu.ns('ProArgument'),
+      [schema.result]: argu.ProArgument,
       [schema.target]: {
         [rdfx.type]: schema.EntryPoint,
         [ll.actionBody]: {
           [rdfx.type]: sh.NodeShape,
-          [sh.targetClass]: argu.ns('Comment'),
+          [sh.targetClass]: argu.Comment,
           [sh.property]: [
             {
               [rdfx.type]: sh.PropertyShape,
@@ -81,14 +81,14 @@ describe('Omniform', () => {
         },
       },
     },
-    [argu.ns('ProArgument')]: {
-      '@id': argu.ns('ProArgument'),
+    [argu.ProArgument]: {
+      '@id': argu.ProArgument,
       [rdfx.type]: rdfs.Class,
       [rdfs.label]: 'Pro',
       [schema.description]: 'Pro',
     },
-    [argu.ns('ConArgument')]: {
-      '@id': argu.ns('ConArgument'),
+    [argu.ConArgument]: {
+      '@id': argu.ConArgument,
       [rdfx.type]: rdfs.Class,
       [rdfs.label]: 'Con',
       [schema.description]: 'Con',

@@ -10,7 +10,7 @@ import { cardRowTopology } from '../../topologies/Card/CardRow';
 import './Opinion.scss';
 
 class Opinion extends Component {
-  static type = argu.ns('Vote');
+  static type = argu.Vote;
 
   static topology = [
     cardTopology,
@@ -19,7 +19,7 @@ class Opinion extends Component {
 
   static mapDataToProps = {
     option: schema.option,
-    primaryVote: argu.ns('primaryVote'),
+    primaryVote: argu.primaryVote,
   };
 
   static propTypes = {
@@ -33,10 +33,10 @@ class Opinion extends Component {
 
     let classes;
     switch (rdf.id(option)) {
-      case rdf.id(argu.ns('yes')):
+      case rdf.id(argu.yes):
         classes = 'fa-thumbs-up Opinion--icon-pro';
         break;
-      case rdf.id(argu.ns('no')):
+      case rdf.id(argu.no):
         classes = 'fa-thumbs-down Opinion--icon-con';
         break;
       default:

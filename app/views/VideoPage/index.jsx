@@ -22,7 +22,7 @@ class VideoPagePage extends React.PureComponent {
   render() {
     return (
       <React.Fragment>
-        <Property label={argu.ns('navbarBackground')} />
+        <Property label={argu.navbarBackground} />
         <Property autoPlay fullPage loop muted playsInline label={schema.video} />
         <PrimaryCallToAction>
           <Property label={ontola.favoriteAction} />

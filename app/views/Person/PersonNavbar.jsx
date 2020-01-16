@@ -26,7 +26,7 @@ const PersonNavbar = ({ subject }) => {
     <div className="NavbarLink">
       <Resource showImage subject={app.n} topology={navbarTopology}>
         <LDLink to={rdf.namedNode(`${menuIri.value}#notifications`)}>
-          <Property label={argu.ns('unreadCount')} />
+          <Property label={argu.unreadCount} />
         </LDLink>
       </Resource>
       <LDLink className="NavbarLink__link">

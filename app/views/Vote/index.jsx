@@ -45,13 +45,13 @@ VoteSidePage.propTypes = propTypes;
 const ThingHoverBoxHidden = ({ text, option }) => {
   let icon;
   switch (option) {
-    case argu.ns('yes').value:
+    case argu.yes.value:
       icon = 'thumbs-up';
       break;
-    case argu.ns('no').value:
+    case argu.no.value:
       icon = 'thumbs-down';
       break;
-    case argu.ns('neutral').value:
+    case argu.neutral.value:
     default:
       icon = 'pause';
       break;
@@ -86,13 +86,13 @@ export default [
   Opinion,
   LinkedRenderStore.registerRenderer(
     link(mappedProps, { returnType: 'value' })(VoteSidePage),
-    argu.ns('Vote'),
+    argu.Vote,
     RENDER_CLASS_NAME,
     voteEventSideTopology
   ),
   LinkedRenderStore.registerRenderer(
     link(mappedProps, { returnType: 'value' })(ThingHoverBoxHidden),
-    argu.ns('Vote'),
+    argu.Vote,
     RENDER_CLASS_NAME,
     popupTopology
   ),

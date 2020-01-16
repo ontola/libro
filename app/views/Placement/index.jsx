@@ -12,7 +12,7 @@ import { alertDialogTopology } from '../../topologies/Dialog';
 import PlacementOmniformFields from './PlacementOmniformFields';
 
 class PlacementAlertDialog extends React.PureComponent {
-  static type = argu.ns('Placement');
+  static type = argu.Placement;
 
   static topology = alertDialogTopology;
 

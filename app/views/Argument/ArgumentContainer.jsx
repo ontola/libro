@@ -46,8 +46,8 @@ class ArgumentContainer extends React.PureComponent {
           <Property label={ontola.favoriteAction} />
         </ActionsBar>
         <CardAppendix>
-          <Property label={argu.ns('voteableVoteEvent')} />
-          <Property label={argu.ns('topComment')} />
+          <Property label={argu.voteableVoteEvent} />
+          <Property label={argu.topComment} />
           <Property clickToOpen forceRender label={app.omniform} />
         </CardAppendix>
       </Card>

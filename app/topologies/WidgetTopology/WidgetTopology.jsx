@@ -8,7 +8,7 @@ import argu from '../../ontology/argu';
 
 import '../../components/Widget/Widget.scss';
 
-export const widgetTopologyTopology = argu.ns('widget');
+export const widgetTopologyTopology = argu.widget;
 
 class WidgetTopology extends TopologyProvider {
   static propTypes = {

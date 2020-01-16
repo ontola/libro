@@ -56,15 +56,11 @@ describe('Actions', () => {
           {
             '@id': locationIRI,
             [rdfx.type]: sh.PropertyShape,
-            [sh.class]: argu.ns('Placement'),
+            [sh.class]: argu.Placement,
             [sh.maxCount]: 1,
             [sh.name]: 'Location',
             [sh.order]: 1,
             [sh.path]: schema.location,
-            [argu.ns('referredShapes')]: {
-              [rdfx.type]: sh.NodeShape,
-              [sh.targetClass]: argu.ns('Placement'),
-            },
           },
           {
             '@id': pinIRI,

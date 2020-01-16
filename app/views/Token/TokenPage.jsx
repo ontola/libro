@@ -29,7 +29,7 @@ const TokenPage = () => (
   </PrimaryResource>
 );
 
-TokenPage.type = [argu.ns('BearerToken'), argu.ns('EmailToken')];
+TokenPage.type = [argu.BearerToken, argu.EmailToken];
 
 TokenPage.topology = pageTopology;
 

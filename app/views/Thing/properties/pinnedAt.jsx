@@ -39,7 +39,7 @@ const PinnedAt = ({ linkedProp }) => {
 
 PinnedAt.type = schema.Thing;
 
-PinnedAt.property = argu.ns('pinnedAt');
+PinnedAt.property = argu.pinnedAt;
 
 PinnedAt.topology = detailsBarTopology;
 

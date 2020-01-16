@@ -18,7 +18,7 @@ export const useCurrentActor = () => {
 
     React.useEffect(() => {
         const aType = lrs.getResourceProperty(actorIRI, ontola.actorType);
-        const aId = lrs.getResourceProperty(actorIRI, argu.ns('anonymousID'));
+        const aId = lrs.getResourceProperty(actorIRI, argu.anonymousID);
 
         setActorType(aType);
         setAnonymousId(aId);

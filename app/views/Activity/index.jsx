@@ -19,7 +19,7 @@ class Activity extends React.PureComponent {
 
   static topology = [
     undefined,
-    argu.ns('container'),
+    argu.container,
   ];
 
   static hocs = [withRouter];

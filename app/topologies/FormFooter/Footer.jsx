@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import argu from '../../ontology/argu';
 
-export const formFooterTopology = argu.ns('formFooter');
+export const formFooterTopology = argu.formFooter;
 
 class FormFooter extends TopologyProvider {
   static propTypes = {

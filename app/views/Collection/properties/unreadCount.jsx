@@ -29,13 +29,13 @@ export default [
   LinkedRenderStore.registerRenderer(
     UnreadCount,
     CollectionTypes,
-    argu.ns('unreadCount'),
+    argu.unreadCount,
     primaryResourceTopology
   ),
   LinkedRenderStore.registerRenderer(
     UnreadCountHeader,
     CollectionTypes,
-    argu.ns('unreadCount'),
+    argu.unreadCount,
     navbarTopology
   ),
 ];

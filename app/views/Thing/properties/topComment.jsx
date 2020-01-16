@@ -17,13 +17,13 @@ import CardRow from '../../../topologies/Card/CardRow';
 class TopComment extends React.PureComponent {
   static type = schema.Thing;
 
-  static property = argu.ns('topComment');
+  static property = argu.topComment;
 
   static topology = cardAppendixTopology;
 
   static mapDataToProps = {
-    commentsCount: argu.ns('commentsCount'),
-    topComment: argu.ns('topComment'),
+    commentsCount: argu.commentsCount,
+    topComment: argu.topComment,
   };
 
   static propTypes = {

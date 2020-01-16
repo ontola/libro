@@ -73,7 +73,7 @@ const ExpiresAt = ({ linkedProp, short }) => {
 
 ExpiresAt.type = schema.Thing;
 
-ExpiresAt.property = argu.ns('expiresAt');
+ExpiresAt.property = argu.expiresAt;
 
 ExpiresAt.topology = detailsBarTopology;
 

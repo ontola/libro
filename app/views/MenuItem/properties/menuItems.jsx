@@ -33,8 +33,8 @@ const MenuItems = ({
 
 MenuItems.type = [
   ontola.MenuItem,
-  argu.ns('SubMenu'),
-  argu.ns('MenuSection'),
+  argu.SubMenu,
+  argu.MenuSection,
 ];
 
 MenuItems.property = ontola.menuItems;

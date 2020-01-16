@@ -19,7 +19,7 @@ describe('Registration', () => {
 
   const resources = {
     '@id': testIRI.value,
-    [rdfx.type]: argu.ns('SearchResult'),
+    [rdfx.type]: argu.SearchResult,
   };
   const renderOpts = {
     location: '/u/sign_in',

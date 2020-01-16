@@ -61,7 +61,7 @@ const PersonSelect = ({
 PersonSelect.type = [
   schema.Person,
   NS.aod('Persons'),
-  argu.ns('Page'),
+  argu.Page,
 ];
 
 PersonSelect.topology = selectTopology;

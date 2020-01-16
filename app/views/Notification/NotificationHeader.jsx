@@ -12,7 +12,7 @@ const NotificationHeader = () => (
 
 export default LinkedRenderStore.registerRenderer(
   NotificationHeader,
-  argu.ns('Notification'),
+  argu.Notification,
   RENDER_CLASS_NAME,
   navbarTopology
 );

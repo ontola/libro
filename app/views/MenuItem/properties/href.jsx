@@ -15,9 +15,9 @@ import { navbarTopology } from '../../../topologies/Navbar';
 
 class Href extends React.PureComponent {
   static type = [
-    argu.ns('Link'),
+    argu.Link,
     ontola.MenuItem,
-    argu.ns('SubMenu'),
+    argu.SubMenu,
   ];
 
   static property = ontola.href;

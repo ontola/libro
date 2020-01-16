@@ -23,7 +23,7 @@ const InfiniteCollectionNext = ({
   const onClick = () => new Promise(() => {
     lrs.store.addQuads([
       rdf.quad(partOf.object, ontola.pages, linkedProp),
-      rdf.quad(subject, argu.ns('void'), rdf.literal(0)),
+      rdf.quad(subject, argu.void, rdf.literal(0)),
     ]);
     lrs.broadcast();
   });

@@ -24,7 +24,7 @@ export const SearchResultWidget = ({
   />
 );
 
-SearchResultWidget.type = argu.ns('SearchResult');
+SearchResultWidget.type = argu.SearchResult;
 
 SearchResultWidget.topology = widgetTopologyTopology;
 
@@ -32,9 +32,9 @@ SearchResultWidget.hocs = [withRouter];
 
 SearchResultWidget.mapDataToProps = {
   collectionDisplay: ontola.collectionDisplay,
-  query: argu.ns('query'),
+  query: argu.query,
   searchTemplate: ontola.searchTemplate,
-  took: argu.ns('took'),
+  took: argu.took,
   totalItems: as.totalItems,
 };
 

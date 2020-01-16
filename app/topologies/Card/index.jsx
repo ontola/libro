@@ -6,7 +6,7 @@ import Topology from '../Topology';
 
 import './Card.scss';
 
-export const cardTopology = argu.ns('card');
+export const cardTopology = argu.card;
 
 /**
  * Renders an empty Card without padding

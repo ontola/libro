@@ -30,7 +30,7 @@ const Comment = ({ depth = 0, highlighted }) => (
         <Property label={schema.dateCreated} />
       </DetailsBar>
       <CardContent>
-        <Property label={argu.ns('opinion')} onError={() => null} onLoad={LoadingOpinion} />
+        <Property label={argu.opinion} onError={() => null} onLoad={LoadingOpinion} />
         <Property label={schema.text} />
       </CardContent>
       <ActionsBar small>
@@ -67,13 +67,13 @@ CommentSection.propTypes = hightlightPropTypes;
 export default [
   LinkedRenderStore.registerRenderer(
     connectHighlighting(Comment),
-    [schema.Comment, argu.ns('Comment')],
+    [schema.Comment, argu.Comment],
     RENDER_CLASS_NAME,
     containerTopology
   ),
   LinkedRenderStore.registerRenderer(
     connectHighlighting(CommentSection),
-    [schema.Comment, argu.ns('Comment')],
+    [schema.Comment, argu.Comment],
     RENDER_CLASS_NAME,
     [cardAppendixTopology, cardListTopology, cardMicroRowTopology, cardRowTopology]
   ),

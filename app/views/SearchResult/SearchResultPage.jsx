@@ -83,7 +83,7 @@ export const SearchResultPage = ({
   );
 };
 
-SearchResultPage.type = argu.ns('SearchResult');
+SearchResultPage.type = argu.SearchResult;
 
 SearchResultPage.topology = allTopologiesExcept(navbarTopology, widgetTopologyTopology);
 
@@ -91,9 +91,9 @@ SearchResultPage.hocs = [withRouter];
 
 SearchResultPage.mapDataToProps = {
   collectionDisplay: ontola.collectionDisplay,
-  query: argu.ns('query'),
+  query: argu.query,
   searchTemplate: ontola.searchTemplate,
-  took: argu.ns('took'),
+  took: argu.took,
   totalItems: as.totalItems,
 };
 

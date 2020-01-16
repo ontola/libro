@@ -11,7 +11,7 @@ import Button from '../Button';
 import { countInParentheses } from '../../helpers/numbers';
 import argu from '../../ontology/argu';
 
-const defaultTopology = argu.ns('cardList');
+const defaultTopology = argu.cardList;
 
 class ActionButton extends React.PureComponent {
   static propTypes = {

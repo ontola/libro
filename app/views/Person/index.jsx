@@ -24,9 +24,9 @@ export default [
     link({ name: schema.name }, { returnType: 'value' })(({ name }) => (
       <Property ariaLabel={name} label={schema.image} />
     )),
-    [schema.Person, NS.aod('Persons'), argu.ns('Page')],
+    [schema.Person, NS.aod('Persons'), argu.Page],
     RENDER_CLASS_NAME,
-    [voteEventSideTopology, argu.ns('voteBubble'), formFooterTopology]
+    [voteEventSideTopology, argu.voteBubble, formFooterTopology]
   ),
   PersonDetail,
   Email,

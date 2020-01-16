@@ -22,7 +22,7 @@ import { pageTopology } from '../../topologies/Page';
 import PrimaryResource from '../../topologies/PrimaryResource';
 
 class MotionPage extends React.PureComponent {
-  static type = [argu.ns('Motion'), NS.opengov('Motion')];
+  static type = [argu.Motion, NS.opengov('Motion')];
 
   static topology = pageTopology;
 

@@ -92,7 +92,7 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     link({
-      parentView: argu.ns('parentView'),
+      parentView: argu.parentView,
       partOf: as.partOf,
       totalItems: as.totalItems,
     })(VoteEventSide),

@@ -46,7 +46,7 @@ const InterventionContainer = ({ highlighted, subject }) => (
       </AttributeList>
     </CardContent>
     <CardRow noBorder>
-      <Property label={[argu.ns('attachments'), meeting.attachment]} />
+      <Property label={[argu.attachments, meeting.attachment]} />
     </CardRow>
     <ActionsBar small>
       <LDLink>Lees meer</LDLink>

@@ -12,7 +12,7 @@ const resource = rdf.namedNode('https://argu.dev/o/1/menus/navigations#forums');
 
 const resources = {
   [resource]: {
-    [rdfx.type]: argu.ns('MenuSection'),
+    [rdfx.type]: argu.MenuSection,
     [schema.name]: rdf.literal('Forum'),
     [schema.isPartOf]: rdf.namedNode('https://argu.dev/o/1/menus/navigations'),
     [ontola.menuItems]: [

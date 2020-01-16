@@ -11,9 +11,9 @@ import { allTopologies } from '../../../topologies';
 
 class FavoriteAction extends React.PureComponent {
   static type = [
-    argu.ns('Argument'),
-    argu.ns('ProArgument'),
-    argu.ns('ConArgument'),
+    argu.Argument,
+    argu.ProArgument,
+    argu.ConArgument,
   ];
 
   static property = ontola.favoriteAction;
@@ -22,7 +22,7 @@ class FavoriteAction extends React.PureComponent {
 
   static mapDataToProps = {
     favoriteAction: ontola.favoriteAction,
-    votesProCount: argu.ns('votesProCount'),
+    votesProCount: argu.votesProCount,
   };
 
   static propTypes = {

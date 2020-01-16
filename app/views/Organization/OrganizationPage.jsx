@@ -48,7 +48,7 @@ const OrganizationPage = ({
 
 OrganizationPage.type = [
   schema.Organization,
-  argu.ns('Page'),
+  argu.Page,
   schema.WebSite,
 ];
 
@@ -58,7 +58,7 @@ OrganizationPage.topology = [
 ];
 
 OrganizationPage.mapDataToProps = {
-  hideHeader: argu.ns('hideHeader'),
+  hideHeader: argu.hideHeader,
   homepage: foaf.homepage,
   name: schema.name,
 };

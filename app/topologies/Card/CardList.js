@@ -6,7 +6,7 @@ import Topology from '../Topology';
 /**
  * A list inside a CardContent
  */
-export const cardListTopology = argu.ns('cardList');
+export const cardListTopology = argu.cardList;
 
 /**
  * Sets the cardList topology

@@ -8,7 +8,7 @@ import Topology from '../Topology';
 
 import './Container.scss';
 
-export const containerTopology = argu.ns('container');
+export const containerTopology = argu.container;
 
 /**
  * Centers the content and defines width

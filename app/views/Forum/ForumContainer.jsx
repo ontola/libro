@@ -17,7 +17,7 @@ import CardRow from '../../topologies/Card/CardRow';
 import { containerTopology } from '../../topologies/Container';
 
 class ForumContainer extends React.PureComponent {
-  static type = [argu.ns('ContainerNode')];
+  static type = argu.ContainerNode;
 
   static topology = containerTopology;
 
@@ -40,7 +40,7 @@ class ForumContainer extends React.PureComponent {
         </CardContent>
         <CardRow backdrop>
           <CardContent>
-            <Property direction="column" label={argu.ns('discussions')} />
+            <Property direction="column" label={argu.discussions} />
           </CardContent>
         </CardRow>
       </Card>

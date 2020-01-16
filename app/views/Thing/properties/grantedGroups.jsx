@@ -81,11 +81,11 @@ GrantedGroups.type = schema.Thing;
 
 GrantedGroups.topology = [detailsBarTopology, contentDetailsTopology];
 
-GrantedGroups.property = argu.ns('grantedGroups');
+GrantedGroups.property = argu.grantedGroups;
 
 GrantedGroups.mapDataToProps = {
-  dataSubjects: argu.ns('grantedGroups'),
-  grantedGroups: argu.ns('grantedGroups'),
+  dataSubjects: argu.grantedGroups,
+  grantedGroups: argu.grantedGroups,
 };
 
 GrantedGroups.propTypes = {

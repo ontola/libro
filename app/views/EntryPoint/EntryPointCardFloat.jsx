@@ -13,7 +13,7 @@ import argu from '../../ontology/argu';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 
-const defaultTopology = argu.ns('cardList');
+const defaultTopology = argu.cardList;
 
 class EntryPointButton extends React.PureComponent {
   static type = schema.EntryPoint;

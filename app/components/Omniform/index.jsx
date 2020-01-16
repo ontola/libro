@@ -45,9 +45,9 @@ const propTypes = {
 const PROPS_WHITELIST = [
   schema.name,
   schema.text,
-  argu.ns('isOpinion'),
+  argu.isOpinion,
   ontola.hiddenGroup,
-  argu.ns('attachments'),
+  argu.attachments,
   ontola.coverPhoto,
   schema.location,
 ].map((t) => rdf.id(t));

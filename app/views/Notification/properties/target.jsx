@@ -42,7 +42,7 @@ Target.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
   Target,
-  argu.ns('Notification'),
+  argu.Notification,
   schema.target,
   [
     cardFixedTopology,

@@ -94,7 +94,7 @@ const getFrame = (Wrapper, topology) => {
     }
   };
 
-  collectionFrame.type = [...CollectionTypes, argu.ns('SearchResult')];
+  collectionFrame.type = [...CollectionTypes, argu.SearchResult];
 
   collectionFrame.topology = topology;
 

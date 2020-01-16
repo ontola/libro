@@ -87,7 +87,7 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     link({
-      parentView: argu.ns('parentView'),
+      parentView: argu.parentView,
       ...totalItemsProp,
     })(VoteEventSide),
     CollectionTypes,

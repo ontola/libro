@@ -36,8 +36,8 @@ Unread.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
   Unread,
-  argu.ns('Notification'),
-  argu.ns('unread'),
+  argu.Notification,
+  argu.unread,
   [
     cardFixedTopology,
     cardMainTopology,

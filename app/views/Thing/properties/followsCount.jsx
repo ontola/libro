@@ -13,7 +13,7 @@ const propTypes = {
 class FollowsCount extends React.PureComponent {
   static type = schema.Thing;
 
-  static property = argu.ns('followsCount');
+  static property = argu.followsCount;
 
   static topology = detailsBarTopology;
 

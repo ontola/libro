@@ -46,10 +46,10 @@ const InterventionGrid = () => (
       <Property hideName label={schema.creator} />
       <Property label={schema.isPartOf} />
       <LinkedDetailDate />
-      <Property label={argu.ns('pinnedAt')} />
-      <Property short label={argu.ns('expiresAt')} />
-      <Property label={argu.ns('followsCount')} />
-      <Property label={argu.ns('motionsCount')} />
+      <Property label={argu.pinnedAt} />
+      <Property short label={argu.expiresAt} />
+      <Property label={argu.followsCount} />
+      <Property label={argu.motionsCount} />
     </DetailsBar>
   </CardFixed>
 );

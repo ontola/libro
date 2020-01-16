@@ -20,8 +20,8 @@ const Forum = ({ location }) => (
   <Container>
     <Resource subject={currentLocation(location)}>
       <Type />
-      <Property label={argu.ns('questions')} />
-      <Property label={argu.ns('motions')} />
+      <Property label={argu.questions} />
+      <Property label={argu.motions} />
     </Resource>
   </Container>
 );

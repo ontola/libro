@@ -46,7 +46,7 @@ class ThingPageHeader extends React.PureComponent {
                   <Property label={schema.name} />
                 </HeaderWithMenu>
                 <ContentDetails>
-                  <Property label={argu.ns('grantedGroups')} />
+                  <Property label={argu.grantedGroups} />
                 </ContentDetails>
                 <Property label={schema.description} />
               </PageHeaderText>

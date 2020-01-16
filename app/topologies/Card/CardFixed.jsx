@@ -4,7 +4,7 @@ import argu from '../../ontology/argu';
 import Topology from '../Topology';
 
 
-export const cardFixedTopology = argu.ns('cardFixed');
+export const cardFixedTopology = argu.cardFixed;
 
 /**
  * Renders an empty Card without padding

@@ -25,6 +25,6 @@ NavbarBackground.propTypes = propTypes;
 export default LinkedRenderStore.registerRenderer(
   NavbarBackground,
   schema.Thing,
-  argu.ns('navbarBackground'),
+  argu.navbarBackground,
   allTopologies
 );

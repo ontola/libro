@@ -30,9 +30,9 @@ import TabPane from '../../topologies/TabPane';
 class MenuItemPage extends React.PureComponent {
   static type = [
     ontola.MenuItem,
-    argu.ns('MenuSection'),
-    argu.ns('SubMenu'),
-    argu.ns('Menu'),
+    argu.MenuSection,
+    argu.SubMenu,
+    argu.Menu,
   ];
 
   static topology = [

@@ -15,7 +15,7 @@ const GroupPage = () => (
   </PrimaryResource>
 );
 
-GroupPage.type = argu.ns('Group');
+GroupPage.type = argu.Group;
 
 GroupPage.topology = pageTopology;
 

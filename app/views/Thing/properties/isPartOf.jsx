@@ -15,7 +15,7 @@ class IsPartOfPage extends React.PureComponent {
 
   static property = schema.isPartOf;
 
-  static topology = argu.ns('container');
+  static topology = argu.container;
 
   static propTypes = {
     linkedProp: linkedPropType,

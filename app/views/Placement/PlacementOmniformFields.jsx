@@ -79,7 +79,7 @@ const PlacementOmniformFields = ({
   );
 };
 
-PlacementOmniformFields.type = argu.ns('Placement');
+PlacementOmniformFields.type = argu.Placement;
 
 PlacementOmniformFields.topology = omniformFieldsTopology;
 

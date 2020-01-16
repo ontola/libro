@@ -5,7 +5,7 @@ import argu from '../../ontology/argu';
 
 import './Grid.scss';
 
-export const gridTopology = argu.ns('grid');
+export const gridTopology = argu.grid;
 
 class Grid extends TopologyProvider {
   static propTypes = {

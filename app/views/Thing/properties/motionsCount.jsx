@@ -35,7 +35,7 @@ const MotionsCount = ({ linkedProp }) => {
 
 MotionsCount.type = schema.Thing;
 
-MotionsCount.property = argu.ns('motionsCount');
+MotionsCount.property = argu.motionsCount;
 
 MotionsCount.topology = detailsBarTopology;
 

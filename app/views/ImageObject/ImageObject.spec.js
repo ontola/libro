@@ -20,11 +20,11 @@ const resources = {
     [schema.thumbnail]: rdf.namedNode('http://example.com/image/1.ico'),
     [schema.url]: rdf.namedNode(url),
     [schema.contentUrl]: rdf.namedNode(url),
-    [argu.ns('url')]: rdf.namedNode(url),
+    [argu.url]: rdf.namedNode(url),
     [ontola.imgUrl1500x2000]: rdf.namedNode(coverUrl),
     [ontola.imgUrl568x400]: rdf.namedNode(boxUrl),
     [schema.dateCreated]: rdf.literal(Date.now()),
-    [argu.ns('imagePositionY')]: rdf.literal(imagePositionY),
+    [ontola.imagePositionY]: rdf.literal(imagePositionY),
   },
 };
 
@@ -33,25 +33,25 @@ describeView('ImageObject', components, resources, resource, () => {
     expect(subject.find(marker('cover'))).toHaveProp('url', coverUrl);
   });
 
-  as(argu.ns('card'), () => {
+  as(argu.card, () => {
     it('renders a small cover', () => {
       expect(subject.find(marker('cover'))).toHaveProp('url', boxUrl);
     });
   });
 
-  as(argu.ns('cardFixed'), () => {
+  as(argu.cardFixed, () => {
     it('renders a small cover', () => {
       expect(subject.find(marker('cover'))).toHaveProp('url', boxUrl);
     });
   });
 
-  as(argu.ns('cardMain'), () => {
+  as(argu.cardMain, () => {
     it('renders an image', () => {
       expect(subject.find(marker('image'))).toHaveProp('src', url);
     });
   });
 
-  as(argu.ns('detail'), () => {
+  as(argu.detail, () => {
     it('renders a thumbnail', () => {
       expect(subject.find(marker('ImageObjectThumbnail'))).toExist();
     });
@@ -64,7 +64,7 @@ describeView('ImageObject', components, resources, resource, () => {
     });
   });
 
-  as(argu.ns('voteBubble'), () => {
+  as(argu.voteBubble, () => {
     it('renders a thumbnail', () => {
       expect(subject.find(marker('ImageObjectThumbnail'))).toExist();
     });

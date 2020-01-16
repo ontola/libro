@@ -7,7 +7,7 @@ import argu from '../../../ontology/argu';
 import { navbarTopology } from '../../../topologies/Navbar';
 
 class MenuSectionName extends React.PureComponent {
-  static type = argu.ns('MenuSection');
+  static type = argu.MenuSection;
 
   static property = schema.name;
 
