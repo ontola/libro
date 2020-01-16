@@ -3,7 +3,7 @@ import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
 import sh from '@ontologies/shacl';
 
-import { NS } from './LinkedRenderStore';
+import ll from '../ontology/ll';
 
 class SHACL {
   static processNodeShape(lrs, shape) {
@@ -75,7 +75,7 @@ class SHACL {
 
   static actionToObject(lrs, action) {
     const target = lrs.getResourceProperty(action, schema.target);
-    const shapeEntry = target && lrs.getResourceProperty(target, NS.ll('actionBody'));
+    const shapeEntry = target && lrs.getResourceProperty(target, ll.actionBody);
 
     if (!shapeEntry) {
       return {};

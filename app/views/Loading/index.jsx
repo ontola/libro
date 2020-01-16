@@ -1,7 +1,6 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
 import {
   Loading,
   LoadingButton,
@@ -16,6 +15,7 @@ import {
   Spinner,
   SuspendedLoader,
 } from '../../components';
+import ll from '../../ontology/ll';
 import { appMenuTopology } from '../../topologies/AppMenu';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { attributeListTopology } from '../../topologies/AttributeList';
@@ -55,7 +55,7 @@ import {
 export default [
   LinkedRenderStore.registerRenderer(
     LoadingPage,
-    NS.ll('LoadingResource'),
+    ll.LoadingResource,
     RENDER_CLASS_NAME,
     [
       pageTopology,
@@ -65,13 +65,13 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     LoadingParent,
-    NS.ll('LoadingResource'),
+    ll.LoadingResource,
     RENDER_CLASS_NAME,
     parentTopology
   ),
   LinkedRenderStore.registerRenderer(
     LoadingCard,
-    NS.ll('LoadingResource'),
+    ll.LoadingResource,
     RENDER_CLASS_NAME,
     [
       containerTopology,
@@ -80,7 +80,7 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     LoadingWidgetCard,
-    NS.ll('LoadingResource'),
+    ll.LoadingResource,
     RENDER_CLASS_NAME,
     [
       gridTopology,
@@ -88,7 +88,7 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     SuspendedLoader,
-    NS.ll('LoadingResource'),
+    ll.LoadingResource,
     RENDER_CLASS_NAME,
     [
       widgetTopologyTopology,
@@ -96,19 +96,19 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     LoadingMicroRow,
-    NS.ll('LoadingResource'),
+    ll.LoadingResource,
     RENDER_CLASS_NAME,
     cardRowTopology
   ),
   LinkedRenderStore.registerRenderer(
     LoadingCardRowAppendix,
-    NS.ll('LoadingResource'),
+    ll.LoadingResource,
     RENDER_CLASS_NAME,
     cardAppendixTopology
   ),
   LinkedRenderStore.registerRenderer(
     LoadingRow,
-    NS.ll('LoadingResource'),
+    ll.LoadingResource,
     RENDER_CLASS_NAME,
     [
       appMenuTopology,
@@ -121,7 +121,7 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     LoadingCellRow,
-    NS.ll('LoadingResource'),
+    ll.LoadingResource,
     RENDER_CLASS_NAME,
     [
       tableTopology,
@@ -129,13 +129,13 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     LoadingNavbarLink,
-    NS.ll('LoadingResource'),
+    ll.LoadingResource,
     RENDER_CLASS_NAME,
     navbarTopology
   ),
   LinkedRenderStore.registerRenderer(
     LoadingDetail,
-    NS.ll('LoadingResource'),
+    ll.LoadingResource,
     RENDER_CLASS_NAME,
     [
       containerFloatTopology,
@@ -146,13 +146,13 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     LoadingCardFloat,
-    NS.ll('LoadingResource'),
+    ll.LoadingResource,
     RENDER_CLASS_NAME,
     cardFloatTopology
   ),
   LinkedRenderStore.registerRenderer(
     LoadingButton,
-    NS.ll('LoadingResource'),
+    ll.LoadingResource,
     RENDER_CLASS_NAME,
     [
       actionsBarTopology,
@@ -161,7 +161,7 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     Loading,
-    NS.ll('LoadingResource'),
+    ll.LoadingResource,
     RENDER_CLASS_NAME,
     [
       attributeListTopology,
@@ -174,7 +174,7 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     () => <Spinner loading />,
-    NS.ll('LoadingResource'),
+    ll.LoadingResource,
     RENDER_CLASS_NAME,
     alertDialogTopology
   ),

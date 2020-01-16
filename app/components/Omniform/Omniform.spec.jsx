@@ -10,6 +10,7 @@ import React from 'react';
 import { calculateFormFieldName } from '../../helpers/forms';
 import { NS } from '../../helpers/LinkedRenderStore';
 import argu from '../../ontology/argu';
+import ll from '../../ontology/ll';
 import {
   cleanup,
   fireEvent,
@@ -34,7 +35,7 @@ describe('Omniform', () => {
       [schema.result]: argu.ns('ConArgument'),
       [schema.target]: {
         [rdfx.type]: schema.EntryPoint,
-        [NS.ll('actionBody')]: {
+        [ll.actionBody]: {
           [rdfx.type]: sh.NodeShape,
           [sh.targetClass]: argu.ns('Comment'),
           [sh.property]: [
@@ -60,7 +61,7 @@ describe('Omniform', () => {
       [schema.result]: argu.ns('ProArgument'),
       [schema.target]: {
         [rdfx.type]: schema.EntryPoint,
-        [NS.ll('actionBody')]: {
+        [ll.actionBody]: {
           [rdfx.type]: sh.NodeShape,
           [sh.targetClass]: argu.ns('Comment'),
           [sh.property]: [

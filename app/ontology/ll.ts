@@ -7,10 +7,13 @@ export default {
 
   /* classes */
   ErrorResource: ll('ErrorResource'),
+  LoadingResource: ll('LoadingResource'),
 
   /* properties */
+  actionBody: ll('actionBody'),
   /** @deprecated use {ld.add} instead */
   add: ll('add'),
+  blob: ll('blob'),
   /** @deprecated use {ld.purge} instead */
   purge: ll('purge'),
   /** @deprecated use {ld.remove} instead */

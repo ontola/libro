@@ -9,6 +9,7 @@ import { Resource } from 'link-redux';
 import React from 'react';
 
 import argu from '../ontology/argu';
+import ll from '../ontology/ll';
 import { Page } from '../topologies/Page';
 import {
   cleanup,
@@ -36,7 +37,7 @@ describe('Actions', () => {
       [schema.httpMethod]: 'PUT',
       [schema.name]: 'Update',
       [schema.url]: NS.example('endpoint'),
-      [NS.ll('actionBody')]: {
+      [ll.actionBody]: {
         [rdfx.type]: sh.NodeShape,
         [sh.targetNode]: {
           '@id': NS.example('resource'),

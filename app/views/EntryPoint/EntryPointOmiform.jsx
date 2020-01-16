@@ -7,7 +7,7 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import ll from '../../ontology/ll';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 
 import EntryPointBase from './EntryPointBase';
@@ -30,7 +30,7 @@ class EntryPointOmniform extends EntryPointBase {
     return (
       <Property
         autofocusForm={autofocusForm}
-        label={NS.ll('actionBody')}
+        label={ll.actionBody}
         theme="omniform"
         whitelist={whitelist}
         onKeyUp={onKeyUp}
