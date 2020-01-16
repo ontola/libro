@@ -5,7 +5,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import rivm from '../../../ontology/rivm';
 import { cardMainTopology } from '../../../topologies/Card/CardMain';
 
 const EffectivityResearchMethod = ({ linkedProp }) => {
@@ -19,16 +19,16 @@ const EffectivityResearchMethod = ({ linkedProp }) => {
       <strong> {researched ? 'wel' : 'niet'} </strong>
       in kaart gebracht
       {researched ? `, door middel van ${researchMethod}` : ''}.
-      <Property label={NS.rivm('securityImproved')} />
+      <Property label={rivm.securityImproved} />
     </p>
   );
 };
 
-EffectivityResearchMethod.type = NS.rivm('Intervention');
+EffectivityResearchMethod.type = rivm.Intervention;
 
 EffectivityResearchMethod.topology = cardMainTopology;
 
-EffectivityResearchMethod.property = NS.rivm('effectivityResearchMethod');
+EffectivityResearchMethod.property = rivm.effectivityResearchMethod;
 
 EffectivityResearchMethod.propTypes = {
   linkedProp: linkedPropType,

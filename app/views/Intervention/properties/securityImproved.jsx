@@ -5,7 +5,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import rivm from '../../../ontology/rivm';
 import { cardMainTopology } from '../../../topologies/Card/CardMain';
 import { inlineTopology } from '../../../topologies/Inline';
 
@@ -23,11 +23,11 @@ const SecurityImproved = ({ linkedProp }) => {
   );
 };
 
-SecurityImproved.type = NS.rivm('Intervention');
+SecurityImproved.type = rivm.Intervention;
 
 SecurityImproved.topology = cardMainTopology;
 
-SecurityImproved.property = NS.rivm('securityImproved');
+SecurityImproved.property = rivm.securityImproved;
 
 SecurityImproved.propTypes = {
   linkedProp: linkedPropType,

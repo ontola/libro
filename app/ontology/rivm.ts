@@ -7,6 +7,7 @@ export default {
 
     /* classes */
     Category: rivm('Category'),
+    Employment: rivm('Employment'),
     Incident: rivm('Incident'),
     Intervention: rivm('Intervention'),
     InterventionType: rivm('InterventionType'),

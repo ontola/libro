@@ -8,8 +8,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
 import ontola from '../../ontology/ontola';
+import rivm from '../../ontology/rivm';
 import { attributeListTopology } from '../../topologies/AttributeList';
 
 const EmploymentAttributeListItem = ({ image }) => (
@@ -21,7 +21,7 @@ const EmploymentAttributeListItem = ({ image }) => (
   </React.Fragment>
 );
 
-EmploymentAttributeListItem.type = NS.rivm('Employment');
+EmploymentAttributeListItem.type = rivm.Employment;
 
 EmploymentAttributeListItem.topology = [attributeListTopology];
 

@@ -14,6 +14,7 @@ import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
+import rivm from '../../ontology/rivm';
 import ActionsBar from '../../topologies/ActionsBar';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import CardMain from '../../topologies/Card/CardMain';
@@ -72,7 +73,7 @@ const MeasurePage = () => (
   </PrimaryResource>
 );
 
-MeasurePage.type = NS.rivm('Measure');
+MeasurePage.type = rivm.Measure;
 
 MeasurePage.topology = pageTopology;
 

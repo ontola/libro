@@ -4,14 +4,14 @@ import {
   register,
 } from 'link-redux';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import rivm from '../../../ontology/rivm';
 import { attributeListTopology } from '../../../topologies/AttributeList';
 
 const DatePublished = ({ linkedProp }) => (
   linkedProp.value.split('T')[0]
 );
 
-DatePublished.type = NS.rivm('Intervention');
+DatePublished.type = rivm.Intervention;
 
 DatePublished.topology = attributeListTopology;
 
