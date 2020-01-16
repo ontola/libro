@@ -1517,10 +1517,10 @@
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
 
-"@ontola/link-devtools@^1.2.0-0":
-  version "1.2.0-0"
-  resolved "https://registry.yarnpkg.com/@ontola/link-devtools/-/link-devtools-1.2.0-0.tgz#8921955db07fbb08561ed815f41e25e75529255b"
-  integrity sha512-Tu5PRH2Hmlmr07vvfTWf75ua99mxR8xXpriIWK6OoVCEwDQQGEvXzH5ssqHXeIg/PCtsspfUKKxeNSQb4NH4qQ==
+"@ontola/link-devtools@^1.2.0-1":
+  version "1.2.0-1"
+  resolved "https://registry.yarnpkg.com/@ontola/link-devtools/-/link-devtools-1.2.0-1.tgz#8560c10703c9aa9da3b30c42d9a4ed9fc7227bed"
+  integrity sha512-SvTH+3fgnbgjoTbXUAGUGFPFMm7PVi8LnPbNk9aCl7yTdBAwuWhJTZK/VG+3p09EHq7mNTzD9rfw4JbfXExhPw==
   dependencies:
     type-zoo ">=3.4.1"
 
@@ -1534,17 +1534,10 @@
   resolved "https://registry.yarnpkg.com/@ontologies/as/-/as-1.0.3.tgz#607ef4426cce4303b3094033c1b79b480e769115"
   integrity sha512-61+J9mRsB4+A0TjhmCb6vLM8YEkKk8USWkVLjM2FVrarPqe4i4K5rIMFjTF3DDhPHiPnKcXKiPraoe7t/cAmzQ==
 
-"@ontologies/core@>=2.0.0-1":
-  version "2.0.0-3"
-  resolved "https://registry.yarnpkg.com/@ontologies/core/-/core-2.0.0-3.tgz#7eed274d04e718510bf1eacedece8a127569dc0a"
-  integrity sha512-wgA4HPSbYRAlYBwfoBm1399sW6roAIZfb1i9YC6elHQPBqqlDeFuuB/V0PD1B/xTlfplffUhpoH6RwbF8B5CDw==
-  dependencies:
-    "@ungap/global-this" "^0.3.1"
-
-"@ontologies/core@^2.0.0-5":
-  version "2.0.0-5"
-  resolved "https://registry.yarnpkg.com/@ontologies/core/-/core-2.0.0-5.tgz#15ae16c1cca5060a5f29579c23bd94b71986ceed"
-  integrity sha512-Ns8dhK/nKuhNnBbvrSxueYV/V/7URfIxPo1e4UotQen7hOlZEI5LQFWvD8QGcZZH3vJHUNWdQ3feDWY1MhFWWw==
+"@ontologies/core@>=2.0.0-2", "@ontologies/core@^2.0.0-6":
+  version "2.0.0-6"
+  resolved "https://registry.yarnpkg.com/@ontologies/core/-/core-2.0.0-6.tgz#31e90922eea315578c270bf5122932ea9798b40f"
+  integrity sha512-F9vP76XMM030RqDceIZWCI6DTZ8scfqHKQDiXkw2VZ4jsbKfE74g0goCTOwt74oh/FT09mJMUFvU/eJgsq94XQ==
   dependencies:
     "@ungap/global-this" "^0.3.1"
 
@@ -9221,10 +9214,10 @@ link-lib@^2.0.0-0.6:
   resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-2.0.0-0.6.tgz#2b64a7ba90220ea18008ccbccdb97a744a8d88ef"
   integrity sha512-ke41qreqrIto/qANqlqRxjDj5mJ9sHh09QK9l2advywrDflXS7PE8vyB6+kYxSBIsi6r1rZsrNQ5vHcY817SMg==
 
-link-redux@=1.0.0-rc4.light.7:
-  version "1.0.0-rc4.light.7"
-  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-1.0.0-rc4.light.7.tgz#f87c2668254cdfd10820937457081176227dccd7"
-  integrity sha512-2U01JnD87wXEOayunnGjBXy++0KLBxLt4FEUbfHd4vruKcYdbcsi1pd54CtGmLQWIL1oLrqo3O7yiJnXtAXwqw==
+link-redux@^2.0.0-0:
+  version "2.0.0-0"
+  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-2.0.0-0.tgz#33567ee1cda2d26c0797016a6c6751f52a0781cc"
+  integrity sha512-9sOuYA5O1JLrtzKH7aqVoaJe1149uAHFadxN6ZUh444CEBfyo2NkJiRZTwqC48m3ndEcogrD2jgRzjCfY+Cp2g==
 
 lint-staged@^9.5.0:
   version "9.5.0"
@@ -10426,12 +10419,12 @@ mz@^2.7.0:
     object-assign "^4.0.1"
     thenify-all "^1.0.0"
 
-n-quads-parser@^2.1.0-0:
-  version "2.1.0-0"
-  resolved "https://registry.yarnpkg.com/n-quads-parser/-/n-quads-parser-2.1.0-0.tgz#5ec5daf50b079f2ff4a03efe236f49dcdb8e32dd"
-  integrity sha512-RqkqJvcpIImhwfGhCGlecQdoU07qBb0mh6sUSE/wEQ5aW4jS5q6NFrIA+9X++EBu/Vva3EvLsiUyV4zQKa7GRg==
+n-quads-parser@^2.1.0-1:
+  version "2.1.0-1"
+  resolved "https://registry.yarnpkg.com/n-quads-parser/-/n-quads-parser-2.1.0-1.tgz#a144c8a8eba911aa664cf6a9a9e11af769fc9c7e"
+  integrity sha512-F1F61OpembTyBiWcLL21/4N6Y0LapW28TuqL8VZUNo1kWzAJjjd7bTOikTXTyAUKkJ1u7s2KHA5Ystklc10SBA==
   dependencies:
-    "@ontologies/core" ">=2.0.0-1"
+    "@ontologies/core" ">=2.0.0-2"
 
 nan@^2.12.1, nan@^2.13.2, nan@^2.14.0:
   version "2.14.0"

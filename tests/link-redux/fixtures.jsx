@@ -26,7 +26,10 @@ const context = (iri, lrs, store) => defaultContext({
 });
 
 function chargeLRS(id, obj, store) {
-  const lrs = new LinkedRenderStore();
+  const lrs = new LinkedRenderStore({
+    // eslint-disable-next-line no-console
+    report: console.error,
+  });
   lrs.store.addQuads(obj);
   lrs.store.flush();
 

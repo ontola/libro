@@ -1,6 +1,7 @@
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { Map } from 'immutable';
+import jest from 'jest';
 import LinkedRenderStore from 'link-lib';
 import { createStore } from 'redux';
 
@@ -15,7 +16,10 @@ export function defaultContext(properties = {}) {
   const keys = Object.keys(properties);
   const c = {};
   const defaults = {
-    lrs: new LinkedRenderStore(),
+    lrs: new LinkedRenderStore({
+      // eslint-disable-next-line no-console
+      report: console.error,
+    }),
     schemaObject: {},
     store: generateStore(),
   };
