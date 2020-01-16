@@ -2,7 +2,6 @@ import rdf, { createNS } from '@ontologies/core';
 import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
 
-import { NS } from '../../../tests';
 import ontola from '../../ontology/ontola';
 
 import components from './index';
@@ -23,12 +22,12 @@ const seq = [
 const resources = {
   [resource]: {
     [rdfx.type]: rdfx.Seq,
-    [NS.rdf('_5')]: testNS('menus/info#contact'),
-    [NS.rdf('_2')]: testNS('menus/info#governments'),
-    [NS.rdf('_0')]: testNS('menus/info#about'),
-    [NS.rdf('_3')]: testNS('menus/info#press_media'),
-    [NS.rdf('_4')]: testNS('menus/info#support'),
-    [NS.rdf('_1')]: testNS('menus/info#team'),
+    [rdfx.ns('_5')]: testNS('menus/info#contact'),
+    [rdfx.ns('_2')]: testNS('menus/info#governments'),
+    [rdfx.ns('_0')]: testNS('menus/info#about'),
+    [rdfx.ns('_3')]: testNS('menus/info#press_media'),
+    [rdfx.ns('_4')]: testNS('menus/info#support'),
+    [rdfx.ns('_1')]: testNS('menus/info#team'),
   },
   [testNS('menus/info#about')]: {
     [rdfx.type]: ontola.MenuItem,

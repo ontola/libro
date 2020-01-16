@@ -6,7 +6,6 @@ import owl from '@ontologies/owl';
 import rdfx from '@ontologies/rdf';
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
-import xsd from '@ontologies/xsd';
 import { createStore, MiddlewareFn } from 'link-lib';
 
 import { FRONTEND_ACCEPT } from '../config';
@@ -17,8 +16,6 @@ import ontolaMiddleware from '../middleware/ontolaMiddleware';
 import argu from '../ontology/argu';
 import meeting from '../ontology/meeting';
 import ontola from '../ontology/ontola';
-import rivm from '../ontology/rivm';
-import sp from '../ontology/sp';
 import teamGL from '../ontology/teamGL';
 import arguDeltaProcessor from './arguDeltaProcessor';
 import { getMetaContent } from './arguHelpers';
@@ -60,68 +57,29 @@ export default function generateLRS() {
   /** @deprecated */
   const NS = {
     ...LRS.namespaces as {
-      argu: Namespace;
-      as: Namespace;
-      bibo: Namespace;
-      cc: Namespace;
       dbo: Namespace;
-      dbp: Namespace;
-      dbpedia: Namespace;
-      dcat: Namespace;
-      dctype: Namespace;
       ex: Namespace;
       example: Namespace;
       fhir: Namespace;
-      fhir3: Namespace;
-      foaf: Namespace;
-      geo: Namespace;
-      http: Namespace;
-      http07: Namespace;
       httph: Namespace;
       hydra: Namespace;
-      ianalr: Namespace;
-      ld: Namespace;
       link: Namespace;
-      ll: Namespace;
-      owl: Namespace;
-      p: Namespace;
-      prov: Namespace;
       qb: Namespace;
-      rdf: Namespace;
-      rdfs: Namespace;
-      schema: Namespace;
-      sh: Namespace;
-      shacl: Namespace;
-      skos: Namespace;
-      wd: Namespace;
-      wdata: Namespace;
-      wdref: Namespace;
-      wds: Namespace;
       wdt: Namespace;
-      wdv: Namespace;
-      xmlns: Namespace;
     },
 
-    as: as.ns,
-    foaf: foaf.ns,
-    owl: owl.ns,
-    rdf: rdfx.ns,
-    rdfs: rdfs.ns,
-    schema: schema.ns,
-    xsd: xsd.ns,
-
+    /** @deprecated */
     aod: createNS('https://argu.co/ns/od#'),
-    app: createNS(frontendIRIStr.endsWith('/') ? frontendIRIStr : `${frontendIRIStr}/`),
+    /** @deprecated */
     appSlashless: createNS(frontendIRIStr.slice(0, frontendIRIStr.endsWith('/') ? -1 : undefined)),
+    /** @deprecated */
     fa4: createNS('http://fontawesome.io/icon/'),
-    meeting: meeting.ns,
-    ontola: ontola.ns,
+    /** @deprecated */
     opengov: createNS('http://www.w3.org/ns/opengov#'),
+    /** @deprecated */
     org: createNS('http://www.w3.org/ns/org#'),
+    /** @deprecated */
     person: createNS('http://www.w3.org/ns/person#'),
-    rivm: rivm.ns,
-    sp: sp.ns,
-    teamGL: teamGL.ns,
   };
 
   const languages = {

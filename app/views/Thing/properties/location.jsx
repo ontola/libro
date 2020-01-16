@@ -1,5 +1,6 @@
 import as from '@ontologies/as';
 import rdf from '@ontologies/core';
+import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import {
@@ -11,7 +12,6 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { Detail, LDLink } from '../../../components';
-import { NS } from '../../../helpers/LinkedRenderStore';
 import ontola from '../../../ontology/ontola';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
 
@@ -21,7 +21,7 @@ const propTypes = {
 };
 
 const LocationDetail = ({ lrs, linkedProp }) => {
-  const placement = lrs.dig(linkedProp, [ontola.pages, as.items, NS.rdf('_1')]).pop();
+  const placement = lrs.dig(linkedProp, [ontola.pages, as.items, rdfx.ns('_1')]).pop();
 
   if (!placement) {
     return null;
