@@ -2,9 +2,9 @@ import { Property, Resource } from 'link-redux';
 import React from 'react';
 import MediaQuery from 'react-responsive';
 
-import { NS } from '../../helpers/LinkedRenderStore';
 import { values } from '../../helpers/ssr';
 import { frontendIRI } from '../../middleware/app';
+import app from '../../ontology/app';
 import ontola from '../../ontology/ontola';
 import { mediaQueries } from '../shared/config';
 
@@ -35,10 +35,10 @@ const NavBarContent = () => (
     <div className="NavBarContent__menus">
       <Resource
         showImage
-        subject={NS.app('c_a')}
+        subject={app.c_a}
       />
-      <Resource subject={NS.app('search')} onError={() => null} />
-      <Resource subject={NS.app('menu')} />
+      <Resource subject={app.search} onError={() => null} />
+      <Resource subject={app.menu} />
     </div>
   </div>
 );

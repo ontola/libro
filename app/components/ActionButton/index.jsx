@@ -9,9 +9,9 @@ import PropTypes from 'prop-types';
 
 import Button from '../Button';
 import { countInParentheses } from '../../helpers/numbers';
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 
-const defaultTopology = NS.argu('cardList');
+const defaultTopology = argu.cardList;
 
 class ActionButton extends React.PureComponent {
   static propTypes = {

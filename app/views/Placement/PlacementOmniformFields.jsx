@@ -15,6 +15,7 @@ import OmniformRemoveButton from '../../components/Omniform/OmniformRemoveButton
 import MapView from '../../containers/MapView';
 import { calculateFormFieldName, isMarkedForRemove } from '../../helpers/forms';
 import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 
 import './PlacementOmniformFields.scss';
@@ -78,7 +79,7 @@ const PlacementOmniformFields = ({
   );
 };
 
-PlacementOmniformFields.type = NS.argu('Placement');
+PlacementOmniformFields.type = argu.Placement;
 
 PlacementOmniformFields.topology = omniformFieldsTopology;
 

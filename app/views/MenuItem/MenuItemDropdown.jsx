@@ -9,7 +9,7 @@ import {
 import React from 'react';
 
 import ResourceBoundary from '../../components/ResourceBoundary';
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
@@ -42,9 +42,9 @@ const MenuItemDropdown = ({
 
 MenuItemDropdown.type = [
   ontola.MenuItem,
-  NS.argu('MenuSection'),
-  NS.argu('SubMenu'),
-  NS.argu('Menu'),
+  argu.MenuSection,
+  argu.SubMenu,
+  argu.Menu,
 ];
 
 MenuItemDropdown.topology = [cardFloatTopology, containerFloatTopology];

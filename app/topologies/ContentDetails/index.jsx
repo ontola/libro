@@ -1,10 +1,10 @@
 import { TopologyProvider } from 'link-redux';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 
 import './ContentDetails.scss';
 
-export const contentDetailsTopology = NS.argu('contentDetails');
+export const contentDetailsTopology = argu.ns('contentDetails');
 
 class ContentDetails extends TopologyProvider {
   constructor() {

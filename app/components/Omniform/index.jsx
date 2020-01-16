@@ -14,7 +14,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
 import Form from '../../containers/Form';
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { highlightResource } from '../../state/app/actions';
 import { getOmniformAction, omniformSetAction } from '../../state/omniform';
@@ -45,9 +45,9 @@ const propTypes = {
 const PROPS_WHITELIST = [
   schema.name,
   schema.text,
-  NS.argu('isOpinion'),
+  argu.isOpinion,
   ontola.hiddenGroup,
-  NS.argu('attachments'),
+  argu.attachments,
   ontola.coverPhoto,
   schema.location,
 ].map((t) => rdf.id(t));

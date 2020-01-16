@@ -3,7 +3,7 @@ import { linkType, register } from 'link-redux';
 import React from 'react';
 
 import { Image } from '../../../components';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { cardFloatTopology } from '../../../topologies/Card/CardFloat';
 import { containerFloatTopology } from '../../../topologies/Container/ContainerFloat';
@@ -11,8 +11,8 @@ import { containerFloatTopology } from '../../../topologies/Container/ContainerF
 class MenuItemLabelCard extends React.PureComponent {
   static type = [
     ontola.MenuItem,
-    NS.argu('SubMenu'),
-    NS.argu('Menu'),
+    argu.SubMenu,
+    argu.Menu,
   ];
 
   static property = schema.name;

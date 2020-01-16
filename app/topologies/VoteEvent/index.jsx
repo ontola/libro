@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import Topology from '../Topology';
 
 /**
  * @deprecated
  */
-export const voteEventTopology = NS.argu('voteEvent');
+export const voteEventTopology = argu.voteEvent;
 
 class VoteEvent extends Topology {
   static propTypes = {

@@ -14,7 +14,7 @@ import {
   CardContent,
   HoverPopup,
 } from '../../components';
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import Card from '../../topologies/Card';
 import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
@@ -45,13 +45,13 @@ VoteSidePage.propTypes = propTypes;
 const ThingHoverBoxHidden = ({ text, option }) => {
   let icon;
   switch (option) {
-    case NS.argu('yes').value:
+    case argu.yes.value:
       icon = 'thumbs-up';
       break;
-    case NS.argu('no').value:
+    case argu.no.value:
       icon = 'thumbs-down';
       break;
-    case NS.argu('neutral').value:
+    case argu.neutral.value:
     default:
       icon = 'pause';
       break;
@@ -86,13 +86,13 @@ export default [
   Opinion,
   LinkedRenderStore.registerRenderer(
     link(mappedProps, { returnType: 'value' })(VoteSidePage),
-    NS.argu('Vote'),
+    argu.Vote,
     RENDER_CLASS_NAME,
     voteEventSideTopology
   ),
   LinkedRenderStore.registerRenderer(
     link(mappedProps, { returnType: 'value' })(ThingHoverBoxHidden),
-    NS.argu('Vote'),
+    argu.Vote,
     RENDER_CLASS_NAME,
     popupTopology
   ),

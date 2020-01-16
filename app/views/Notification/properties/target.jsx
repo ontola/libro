@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { Link } from '../../../components';
-import { NS } from '../../../helpers/LinkedRenderStore';
 import { retrievePath } from '../../../helpers/iris';
+import argu from '../../../ontology/argu';
 import { cardTopology } from '../../../topologies/Card';
 import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
 import { cardMainTopology } from '../../../topologies/Card/CardMain';
@@ -42,7 +42,7 @@ Target.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
   Target,
-  NS.argu('Notification'),
+  argu.Notification,
   schema.target,
   [
     cardFixedTopology,

@@ -3,11 +3,11 @@ import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 
 import './ActionsBar.scss';
 
-export const actionsBarTopology = NS.argu('actionsBar');
+export const actionsBarTopology = argu.actionsBar;
 
 class ActionsBar extends TopologyProvider {
   static propTypes = {

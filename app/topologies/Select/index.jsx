@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import Topology from '../Topology';
 
 import './Select.scss';
 
-export const selectTopology = NS.argu('select');
+export const selectTopology = argu.ns('select');
 
 class Select extends Topology {
   constructor(props) {

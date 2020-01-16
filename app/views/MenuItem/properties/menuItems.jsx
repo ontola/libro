@@ -6,7 +6,7 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { menuTopology } from '../../../topologies/Menu';
 import { navbarTopology } from '../../../topologies/Navbar';
@@ -33,8 +33,8 @@ const MenuItems = ({
 
 MenuItems.type = [
   ontola.MenuItem,
-  NS.argu('SubMenu'),
-  NS.argu('MenuSection'),
+  argu.SubMenu,
+  argu.MenuSection,
 ];
 
 MenuItems.property = ontola.menuItems;

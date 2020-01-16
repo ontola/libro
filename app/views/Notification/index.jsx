@@ -10,7 +10,7 @@ import React from 'react';
 
 import { CardContent } from '../../components';
 import { actionType } from '../../helpers/diggers';
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import Card from '../../topologies/Card';
 import { containerTopology } from '../../topologies/Container';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
@@ -50,7 +50,7 @@ const Notification = ({
   return (
     <div data-test="Notification-notification" style={{ position: 'relative' }}>
       <Card>
-        <Property label={NS.argu('unread')} />
+        <Property label={argu.unread} />
         <CardContent>
           {content}
         </CardContent>
@@ -59,7 +59,7 @@ const Notification = ({
   );
 };
 
-Notification.type = NS.argu('Notification');
+Notification.type = argu.Notification;
 
 Notification.topology = [
   primaryResourceTopology,

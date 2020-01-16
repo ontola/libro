@@ -9,6 +9,7 @@ import {
 import { Resource } from 'link-redux';
 import React from 'react';
 
+import argu from '../ontology/argu';
 import { Page } from '../topologies/Page';
 import { cleanup, render } from '../test-utils';
 
@@ -20,10 +21,10 @@ describe('Search', () => {
 
   const resources = {
     '@id': testIRI.value,
-    [rdfx.type]: NS.argu('SearchResult'),
+    [rdfx.type]: argu.SearchResult,
     [dcterms.identifier]: testIRI,
-    [NS.argu('query')]: 'keyword',
-    [NS.argu('took')]: 240,
+    [argu.query]: 'keyword',
+    [argu.took]: 240,
     [as.totalItems]: 3,
     [as.items]: seq([
       {
@@ -33,7 +34,7 @@ describe('Search', () => {
       },
       {
         '@id': NS.example('2'),
-        [rdfx.type]: NS.argu('Question'),
+        [rdfx.type]: argu.Question,
         [schema.name]: 'Item 2',
       },
       {

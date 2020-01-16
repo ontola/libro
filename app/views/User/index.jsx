@@ -7,7 +7,7 @@ import {
 import React from 'react';
 
 import { ResourceBoundary } from '../../components';
-import { NS } from '../../helpers/LinkedRenderStore';
+import app from '../../ontology/app';
 import ontola from '../../ontology/ontola';
 import { formFooterTopology } from '../../topologies/FormFooter/Footer';
 import { navbarTopology } from '../../topologies/Navbar';
@@ -32,7 +32,7 @@ const UserNavbar = ({ lrs }) => (
         if (e) {
           e.preventDefault();
         }
-        lrs.exec(NS.app('actions/menu/toggle'));
+        lrs.exec(app.ns('actions/menu/toggle'));
       }}
     />
   </ResourceBoundary>

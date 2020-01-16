@@ -8,8 +8,8 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import LDLink from '../../../components/LDLink';
-import { NS } from '../../../helpers/LinkedRenderStore';
 import { tryParseInt } from '../../../helpers/numbers';
+import argu from '../../../ontology/argu';
 import { cardAppendixTopology } from '../../../topologies/Card/CardAppendix';
 import CardMicroRow from '../../../topologies/Card/CardMicroRow';
 import CardRow from '../../../topologies/Card/CardRow';
@@ -17,13 +17,13 @@ import CardRow from '../../../topologies/Card/CardRow';
 class TopComment extends React.PureComponent {
   static type = schema.Thing;
 
-  static property = NS.argu('topComment');
+  static property = argu.topComment;
 
   static topology = cardAppendixTopology;
 
   static mapDataToProps = {
-    commentsCount: NS.argu('commentsCount'),
-    topComment: NS.argu('topComment'),
+    commentsCount: argu.commentsCount,
+    topComment: argu.topComment,
   };
 
   static propTypes = {

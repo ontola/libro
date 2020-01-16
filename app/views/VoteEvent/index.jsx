@@ -6,6 +6,7 @@ import { Property, withLinkCtx } from 'link-redux';
 import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import { cardTopology } from '../../topologies/Card';
 import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
@@ -20,9 +21,9 @@ class VoteEventCard extends CardVoteEvent {
   render() {
     return this.wrap((
       <div itemScope>
-        <Property forceRender label={NS.argu('currentVote')} />
+        <Property forceRender label={argu.currentVote} />
         <Property label={schema.result} />
-        <Property label={NS.argu('votes')} />
+        <Property label={argu.votes} />
       </div>
     ));
   }
@@ -32,9 +33,9 @@ class VoteEventContainer extends VoteEvent {
   render() {
     return this.wrap((
       <React.Fragment key="VoteEventContainer">
-        <Property forceRender label={NS.argu('currentVote')} />
+        <Property forceRender label={argu.currentVote} />
         <Property label={schema.result} />
-        <Property label={NS.argu('votes')} />
+        <Property label={argu.votes} />
       </React.Fragment>
     ));
   }
@@ -43,7 +44,7 @@ class VoteEventContainer extends VoteEvent {
 export default [
   LinkedRenderStore.registerRenderer(
     withLinkCtx(VoteEventContainer),
-    [NS.argu('VoteEvent'), NS.aod('VoteEvent')],
+    [argu.VoteEvent, NS.aod('VoteEvent')],
     RENDER_CLASS_NAME,
     [
       cardAppendixTopology,
@@ -51,12 +52,12 @@ export default [
       containerTopology,
       primaryResourceTopology,
       voteEventTopology,
-      NS.argu('voteEventCollection'),
+      argu.voteEventCollection,
     ]
   ),
   LinkedRenderStore.registerRenderer(
     withLinkCtx(VoteEventCard),
-    NS.argu('VoteEvent'),
+    argu.VoteEvent,
     RENDER_CLASS_NAME,
     cardMainTopology
   ),

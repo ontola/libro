@@ -10,13 +10,14 @@ import {
 import { connectHighlighting, hightlightType } from '../../containers/Highlight';
 import { CardContent } from '../../components';
 import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import Card from '../../topologies/Card';
 import CardRow from '../../topologies/Card/CardRow';
 import { containerTopology } from '../../topologies/Container';
 
 class ForumContainer extends React.PureComponent {
-  static type = [NS.argu('ContainerNode')];
+  static type = argu.ContainerNode;
 
   static topology = containerTopology;
 
@@ -39,7 +40,7 @@ class ForumContainer extends React.PureComponent {
         </CardContent>
         <CardRow backdrop>
           <CardContent>
-            <Property direction="column" label={NS.argu('discussions')} />
+            <Property direction="column" label={argu.discussions} />
           </CardContent>
         </CardRow>
       </Card>

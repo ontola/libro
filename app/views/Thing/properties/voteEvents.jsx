@@ -8,7 +8,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import argu from '../../../ontology/argu';
 import { allTopologies } from '../../../topologies';
 
 const propTypes = {
@@ -28,6 +28,6 @@ VoteEvents.propTypes = propTypes;
 export default LinkedRenderStore.registerRenderer(
   VoteEvents,
   schema.Thing,
-  NS.argu('voteEvents'),
+  argu.voteEvents,
   allTopologies
 );

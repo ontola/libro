@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 
 import './PageHeader.scss';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import Container from '../Container';
 
 export { default as PageHeaderImage } from './PageHeaderImage';
@@ -17,7 +17,7 @@ export { default as PageHeaderImageAndTextWrapper } from './PageHeaderImageAndTe
 export { default as PageHeaderMenuItems } from './PageHeaderMenuItems';
 export { default as PageHeaderText } from './PageHeaderText';
 
-export const pageHeaderTopology = NS.argu('pageHeader');
+export const pageHeaderTopology = argu.ns('pageHeader');
 
 const defaultPercentage = 50;
 

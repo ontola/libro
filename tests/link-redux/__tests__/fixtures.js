@@ -1,8 +1,8 @@
 import schema from '@ontologies/schema';
 import { mount } from 'enzyme';
-import { defaultNS } from 'link-lib';
 import { Property } from 'link-redux';
 
+import argu from '../../../app/ontology/argu';
 import {
   loc,
   prop,
@@ -17,7 +17,7 @@ describe('tests', () => {
           const tree = mount(prop({
             property: schema.name,
             resources: [],
-            subject: defaultNS.argu('test'),
+            subject: argu.ns('test'),
           }));
           expect(tree.find(Property)).toHaveProp('label', schema.name);
         });

@@ -4,7 +4,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { pageTopology } from '../../topologies/Page';
 import PrimaryResource from '../../topologies/PrimaryResource';
@@ -15,7 +15,7 @@ const GroupPage = () => (
   </PrimaryResource>
 );
 
-GroupPage.type = NS.argu('Group');
+GroupPage.type = argu.Group;
 
 GroupPage.topology = pageTopology;
 

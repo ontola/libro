@@ -1,9 +1,10 @@
 import { TopologyProvider, withLinkCtx } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import './HoverBox.scss';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
+
+import './HoverBox.scss';
 
 export const propTypes = {
   /** Always visible. Functions as a trigger that responds to hover or focus. */
@@ -12,7 +13,7 @@ export const propTypes = {
   hiddenChildren: PropTypes.node.isRequired,
 };
 
-export const hoverBoxTopology = NS.argu('cardHover');
+export const hoverBoxTopology = argu.ns('cardHover');
 
 export default function (topology = hoverBoxTopology, popout = false) {
   /**

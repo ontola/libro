@@ -3,6 +3,8 @@ import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
 
 import { NS } from '../../../tests';
+import argu from '../../ontology/argu';
+import ontola from '../../ontology/ontola';
 import { navbarTopology } from '../../topologies/Navbar';
 
 import components from './index';
@@ -19,11 +21,11 @@ const resources = {
     [schema.thumbnail]: rdf.namedNode('http://example.com/image/1.ico'),
     [schema.url]: rdf.namedNode(url),
     [schema.contentUrl]: rdf.namedNode(url),
-    [NS.argu('url')]: rdf.namedNode(url),
+    [argu.url]: rdf.namedNode(url),
     [NS.ontola('imgUrl1500x2000')]: rdf.namedNode(coverUrl),
     [NS.ontola('imgUrl568x400')]: rdf.namedNode(boxUrl),
     [schema.dateCreated]: rdf.literal(Date.now()),
-    [NS.argu('imagePositionY')]: rdf.literal(imagePositionY),
+    [ontola.imagePositionY]: rdf.literal(imagePositionY),
   },
 };
 
@@ -32,25 +34,25 @@ describeView('ImageObject', components, resources, resource, () => {
     expect(subject.find(marker('cover'))).toHaveProp('url', coverUrl);
   });
 
-  as(NS.argu('card'), () => {
+  as(argu.card, () => {
     it('renders a small cover', () => {
       expect(subject.find(marker('cover'))).toHaveProp('url', boxUrl);
     });
   });
 
-  as(NS.argu('cardFixed'), () => {
+  as(argu.cardFixed, () => {
     it('renders a small cover', () => {
       expect(subject.find(marker('cover'))).toHaveProp('url', boxUrl);
     });
   });
 
-  as(NS.argu('cardMain'), () => {
+  as(argu.cardMain, () => {
     it('renders an image', () => {
       expect(subject.find(marker('image'))).toHaveProp('src', url);
     });
   });
 
-  as(NS.argu('detail'), () => {
+  as(argu.detail, () => {
     it('renders a thumbnail', () => {
       expect(subject.find(marker('ImageObjectThumbnail'))).toExist();
     });
@@ -63,7 +65,7 @@ describeView('ImageObject', components, resources, resource, () => {
     });
   });
 
-  as(NS.argu('voteBubble'), () => {
+  as(argu.voteBubble, () => {
     it('renders a thumbnail', () => {
       expect(subject.find(marker('ImageObjectThumbnail'))).toExist();
     });

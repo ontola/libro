@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import Topology from '../Topology';
 
 /**
  * In the top right corner of a card
  */
-export const cardFloatTopology = NS.argu('cardFloat');
+export const cardFloatTopology = argu.ns('cardFloat');
 
 /**
  * Sets the cardFloat topology

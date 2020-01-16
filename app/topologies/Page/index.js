@@ -1,7 +1,7 @@
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import Topology from '../Topology';
 
-export const pageTopology = NS.argu('page');
+export const pageTopology = argu.ns('page');
 
 export class Page extends Topology {
   constructor(props) {

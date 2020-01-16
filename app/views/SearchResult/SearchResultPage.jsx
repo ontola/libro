@@ -11,8 +11,8 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router';
 
-import { NS } from '../../helpers/LinkedRenderStore';
 import { retrievePath } from '../../helpers/iris';
+import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { allTopologiesExcept } from '../../topologies';
 import { navbarTopology } from '../../topologies/Navbar';
@@ -83,7 +83,7 @@ export const SearchResultPage = ({
   );
 };
 
-SearchResultPage.type = NS.argu('SearchResult');
+SearchResultPage.type = argu.SearchResult;
 
 SearchResultPage.topology = allTopologiesExcept(navbarTopology, widgetTopologyTopology);
 
@@ -91,9 +91,9 @@ SearchResultPage.hocs = [withRouter];
 
 SearchResultPage.mapDataToProps = {
   collectionDisplay: ontola.collectionDisplay,
-  query: NS.argu('query'),
+  query: argu.query,
   searchTemplate: ontola.searchTemplate,
-  took: NS.argu('took'),
+  took: argu.took,
   totalItems: as.totalItems,
 };
 

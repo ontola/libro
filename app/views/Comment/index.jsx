@@ -6,7 +6,8 @@ import React from 'react';
 import { CardContent } from '../../components';
 import { LoadingOpinion } from '../../components/Loading';
 import { connectHighlighting, hightlightPropTypes } from '../../containers/Highlight';
-import { NS } from '../../helpers/LinkedRenderStore';
+import app from '../../ontology/app';
+import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import ActionsBar from '../../topologies/ActionsBar';
 import Card from '../../topologies/Card';
@@ -29,7 +30,7 @@ const Comment = ({ depth = 0, highlighted }) => (
         <Property label={schema.dateCreated} />
       </DetailsBar>
       <CardContent>
-        <Property label={NS.argu('opinion')} onError={() => null} onLoad={LoadingOpinion} />
+        <Property label={argu.opinion} onError={() => null} onLoad={LoadingOpinion} />
         <Property label={schema.text} />
       </CardContent>
       <ActionsBar small>
@@ -39,7 +40,7 @@ const Comment = ({ depth = 0, highlighted }) => (
         </Property>
       </ActionsBar>
       <CardAppendix>
-        <Property forceRender clickToOpen={false} label={NS.app('omniform')} />
+        <Property forceRender clickToOpen={false} label={app.omniform} />
       </CardAppendix>
     </Card>
     <Property
@@ -66,13 +67,13 @@ CommentSection.propTypes = hightlightPropTypes;
 export default [
   LinkedRenderStore.registerRenderer(
     connectHighlighting(Comment),
-    [schema.Comment, NS.argu('Comment')],
+    [schema.Comment, argu.Comment],
     RENDER_CLASS_NAME,
     containerTopology
   ),
   LinkedRenderStore.registerRenderer(
     connectHighlighting(CommentSection),
-    [schema.Comment, NS.argu('Comment')],
+    [schema.Comment, argu.Comment],
     RENDER_CLASS_NAME,
     [cardAppendixTopology, cardListTopology, cardMicroRowTopology, cardRowTopology]
   ),

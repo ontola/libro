@@ -3,15 +3,15 @@ import { linkType, register } from 'link-redux';
 import React from 'react';
 
 import NavbarLinkLabel from '../../../components/NavbarLink/NavbarLinkLabel';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { navbarTopology } from '../../../topologies/Navbar';
 
 class MenuItemLabelHeader extends React.PureComponent {
   static type = [
     ontola.MenuItem,
-    NS.argu('SubMenu'),
-    NS.argu('Menu'),
+    argu.SubMenu,
+    argu.Menu,
   ];
 
   static property = schema.name;

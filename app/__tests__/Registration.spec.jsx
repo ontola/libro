@@ -2,6 +2,7 @@ import rdfx from '@ontologies/rdf';
 import '@testing-library/jest-dom/extend-expect';
 import { defaultNS as NS } from 'link-lib';
 
+import argu from '../ontology/argu';
 import routes from '../routes/index';
 import {
   cleanup,
@@ -18,7 +19,7 @@ describe('Registration', () => {
 
   const resources = {
     '@id': testIRI.value,
-    [rdfx.type]: NS.argu('SearchResult'),
+    [rdfx.type]: argu.SearchResult,
   };
   const renderOpts = {
     location: '/u/sign_in',

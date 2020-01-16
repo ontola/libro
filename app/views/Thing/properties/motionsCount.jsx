@@ -4,7 +4,7 @@ import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
 import Detail from '../../../components/Detail';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import argu from '../../../ontology/argu';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
 
 const messages = defineMessages({
@@ -35,7 +35,7 @@ const MotionsCount = ({ linkedProp }) => {
 
 MotionsCount.type = schema.Thing;
 
-MotionsCount.property = NS.argu('motionsCount');
+MotionsCount.property = argu.motionsCount;
 
 MotionsCount.topology = detailsBarTopology;
 

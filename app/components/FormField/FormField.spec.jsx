@@ -4,8 +4,8 @@ import { createForm } from 'final-form';
 import React from 'react';
 
 import { calculateFormFieldName } from '../../helpers/forms';
-import { NS } from '../../helpers/LinkedRenderStore';
 import validatorMap from '../../helpers/validators';
+import argu from '../../ontology/argu';
 import { cleanup, render } from '../../test-utils';
 import Form from '../Form/Form';
 
@@ -91,7 +91,7 @@ describe('FormField', () => {
   });
 
   it('toggles checkboxes', () => {
-    const pinned = calculateFormFieldName(NS.argu('pinned'));
+    const pinned = calculateFormFieldName(argu.pinned);
     const [store, storage] = mockStorage();
 
     const {
@@ -122,7 +122,7 @@ describe('FormField', () => {
 
   describe('persistence', () => {
     const testPersistence = (type, value) => {
-      const field = calculateFormFieldName(NS.argu('field'));
+      const field = calculateFormFieldName(argu.field);
       const [store, storage] = mockStorage();
 
       const { getByTestId } = renderWithTestForm((

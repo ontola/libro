@@ -8,13 +8,13 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import argu from '../../../ontology/argu';
 import { navbarTopology } from '../../../topologies/Navbar';
 
 import './name.scss';
 
 class OrganizationNameNavbar extends React.PureComponent {
-  static type = [schema.Organization, NS.argu('Page'), schema.WebSite];
+  static type = [schema.Organization, argu.Page, schema.WebSite];
 
   static property = [
     schema.name,

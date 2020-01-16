@@ -1,7 +1,9 @@
 import { NamedNode } from '@ontologies/core';
 import { Map } from 'immutable';
 import { NamespaceMap } from 'link-lib';
+
 import { frontendPathname } from '../middleware/app';
+import app from '../ontology/app';
 
 import { NS } from './LinkedRenderStore';
 
@@ -25,7 +27,7 @@ export function absoluteRouterLocation(state: Map<string, Map<string, any>>): st
 
 const paths = {
   confirmation(): string {
-    return NS.app('users/confirmation/new').value;
+    return app.ns('users/confirmation/new').value;
   },
 
   index(): string {
@@ -33,11 +35,11 @@ const paths = {
   },
 
   newPassword(): string {
-    return NS.app('users/password/new').value;
+    return app.ns('users/password/new').value;
   },
 
   newUnlock(): string {
-    return NS.app('users/unlock/new').value;
+    return app.ns('users/unlock/new').value;
   },
 
   /**
@@ -46,7 +48,7 @@ const paths = {
    * @returns {string} The URL.
    */
   signIn(r?: string): string {
-    const url = NS.app('u/sign_in').value;
+    const url = app.ns('u/sign_in').value;
     return r ? `${url}?r=${encodeURIComponent(r)}` : url;
   },
 };

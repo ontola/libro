@@ -2,13 +2,13 @@ import schema from '@ontologies/schema';
 import { linkedPropType, register } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import argu from '../../../ontology/argu';
 import { tableRowTopology } from '../../../topologies/TableRow';
 
 class ApplyLink extends React.PureComponent {
   static type = schema.Thing;
 
-  static property = NS.argu('applyLink');
+  static property = argu.applyLink;
 
   static topology = tableRowTopology;
 

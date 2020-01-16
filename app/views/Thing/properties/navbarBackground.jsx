@@ -3,7 +3,7 @@ import LinkedRenderStore from 'link-lib';
 import { linkedPropType } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import argu from '../../../ontology/argu';
 import { allTopologies } from '../../../topologies';
 
 const propTypes = {
@@ -25,6 +25,6 @@ NavbarBackground.propTypes = propTypes;
 export default LinkedRenderStore.registerRenderer(
   NavbarBackground,
   schema.Thing,
-  NS.argu('navbarBackground'),
+  argu.navbarBackground,
   allTopologies
 );

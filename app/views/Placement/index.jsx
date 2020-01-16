@@ -6,13 +6,13 @@ import {
 import React from 'react';
 
 import MapView from '../../containers/MapView';
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import { alertDialogTopology } from '../../topologies/Dialog';
 
 import PlacementOmniformFields from './PlacementOmniformFields';
 
 class PlacementAlertDialog extends React.PureComponent {
-  static type = NS.argu('Placement');
+  static type = argu.Placement;
 
   static topology = alertDialogTopology;
 

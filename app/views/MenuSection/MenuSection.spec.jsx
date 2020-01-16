@@ -2,7 +2,7 @@ import rdf from '@ontologies/core';
 import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
 
-import { NS } from '../../../tests';
+import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { navbarTopology } from '../../topologies/Navbar';
 
@@ -12,7 +12,7 @@ const resource = rdf.namedNode('https://argu.dev/o/1/menus/navigations#forums');
 
 const resources = {
   [resource]: {
-    [rdfx.type]: NS.argu('MenuSection'),
+    [rdfx.type]: argu.MenuSection,
     [schema.name]: rdf.literal('Forum'),
     [schema.isPartOf]: rdf.namedNode('https://argu.dev/o/1/menus/navigations'),
     [ontola.menuItems]: [

@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import Topology from '../Topology';
 
-export const cardRowTopology = NS.argu('cardRow');
+export const cardRowTopology = argu.ns('cardRow');
 
 /**
  * Used to divide a card in multiple rows

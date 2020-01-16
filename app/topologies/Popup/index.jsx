@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
+import argu from '../../ontology/argu';
 import { getCurrentLocation, getCurrentPopup } from '../../state/popup/selectors';
-import { NS } from '../../helpers/LinkedRenderStore';
 import Topology from '../Topology';
 
-export const popupTopology = NS.argu('popup');
+export const popupTopology = argu.ns('popup');
 
 class Popup extends Topology {
   static propTypes = {
@@ -48,7 +48,7 @@ class Popup extends Topology {
           top: bottom,
         }}
       >
-        <Resource subject={this.props.popup} topology={NS.argu('popup')} />
+        <Resource subject={this.props.popup} topology={popupTopology} />
       </div>
     ));
   }

@@ -3,11 +3,11 @@ import { linkedPropType, register } from 'link-redux';
 import React from 'react';
 
 import MenuSectionLabel from '../../../components/MenuSectionLabel';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import argu from '../../../ontology/argu';
 import { navbarTopology } from '../../../topologies/Navbar';
 
 class MenuSectionName extends React.PureComponent {
-  static type = NS.argu('MenuSection');
+  static type = argu.MenuSection;
 
   static property = schema.name;
 

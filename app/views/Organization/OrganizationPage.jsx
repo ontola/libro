@@ -8,7 +8,7 @@ import {
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import { pageTopology } from '../../topologies/Page';
 import PageHeader from '../../topologies/PageHeader';
 import PrimaryResource, { primaryResourceTopology } from '../../topologies/PrimaryResource';
@@ -48,7 +48,7 @@ const OrganizationPage = ({
 
 OrganizationPage.type = [
   schema.Organization,
-  NS.argu('Page'),
+  argu.Page,
   schema.WebSite,
 ];
 
@@ -58,7 +58,7 @@ OrganizationPage.topology = [
 ];
 
 OrganizationPage.mapDataToProps = {
-  hideHeader: NS.argu('hideHeader'),
+  hideHeader: argu.hideHeader,
   homepage: foaf.homepage,
   name: schema.name,
 };

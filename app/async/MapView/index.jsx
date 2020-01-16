@@ -43,10 +43,10 @@ import { MAPBOX_TILE_API_BASE } from '../../config';
 import withReducer from '../../containers/withReducer';
 import { collectionMembers } from '../../helpers/diggers';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { entityIsLoaded } from '../../helpers/data';
 import { handle } from '../../helpers/logging';
 import { tryParseFloat } from '../../helpers/numbers';
+import argu from '../../ontology/argu';
 import { popupTopology } from '../../topologies/Popup';
 
 import './Map.scss';
@@ -259,7 +259,7 @@ class MapView extends React.Component {
       const id = feature.getId();
       selected = lrs.getResourceProperty(
         id.termType ? id : rdf.namedNode(id),
-        NS.argu('placeable')
+        argu.placeable
       );
       position = feature.getGeometry().getCoordinates();
     }
@@ -431,7 +431,7 @@ class MapView extends React.Component {
 
     const lon = lrs.getResourceProperty(place, schema.longitude);
     const lat = lrs.getResourceProperty(place, schema.latitude);
-    const zoom = lrs.getResourceProperty(place, NS.argu('zoomLevel'));
+    const zoom = lrs.getResourceProperty(place, argu.zoomLevel);
 
     if (!(lon && lat && zoom)) {
       lrs.report(new TypeError(`Placement without coordinates: '${place.value}'`));

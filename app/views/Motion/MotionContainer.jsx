@@ -11,6 +11,8 @@ import CardContent from '../../components/Card/CardContent';
 import { connectHighlighting, hightlightType } from '../../containers/Highlight';
 import SignInSwitcherContainer from '../../containers/SignInSwitcherContainer';
 import { NS } from '../../helpers/LinkedRenderStore';
+import app from '../../ontology/app';
+import argu from '../../ontology/argu';
 import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
 import Card from '../../topologies/Card';
@@ -29,20 +31,20 @@ const MotionContainer = ({ highlighted, subject }) => (
       <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
     </CardContent>
     <CardRow noBorder>
-      <Property label={[NS.argu('attachments'), meeting.attachment]} />
+      <Property label={[argu.attachments, meeting.attachment]} />
     </CardRow>
-    <Property label={NS.argu('voteableVoteEvent')} />
+    <Property label={argu.voteableVoteEvent} />
     <CardAppendix>
       <SignInSwitcherContainer subject={subject}>
-        <Property forceRender label={NS.argu('arguments')} />
-        <Property label={NS.argu('topComment')} />
-        <Property forceRender label={NS.app('omniform')} />
+        <Property forceRender label={argu.arguments} />
+        <Property label={argu.topComment} />
+        <Property forceRender label={app.omniform} />
       </SignInSwitcherContainer>
     </CardAppendix>
   </Card>
 );
 
-MotionContainer.type = [NS.argu('Motion'), NS.opengov('Motion')];
+MotionContainer.type = [argu.Motion, NS.opengov('Motion')];
 
 MotionContainer.topology = [
   alertDialogTopology,

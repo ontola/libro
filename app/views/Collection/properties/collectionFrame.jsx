@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { NS } from '../../../helpers/LinkedRenderStore';
+import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import Card from '../../../topologies/Card';
 import CardAppendix from '../../../topologies/Card/CardAppendix';
@@ -94,7 +95,7 @@ const getFrame = (Wrapper, topology) => {
     }
   };
 
-  collectionFrame.type = [...CollectionTypes, NS.argu('SearchResult')];
+  collectionFrame.type = [...CollectionTypes, argu.SearchResult];
 
   collectionFrame.topology = topology;
 

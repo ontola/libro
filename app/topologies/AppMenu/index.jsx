@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import DropdownMenu from '../../components/DropdownMenu';
-import { NS } from '../../helpers/LinkedRenderStore';
+import app from '../../ontology/app';
 import Topology from '../Topology';
 
-export const appMenuTopology = NS.app('topologies/appMenu');
+export const appMenuTopology = app.ns('topologies/appMenu');
 
 class AppMenu extends Topology {
   static propTypes = {

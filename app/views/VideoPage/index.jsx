@@ -5,7 +5,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { pageTopology } from '../../topologies/Page';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
@@ -22,7 +22,7 @@ class VideoPagePage extends React.PureComponent {
   render() {
     return (
       <React.Fragment>
-        <Property label={NS.argu('navbarBackground')} />
+        <Property label={argu.navbarBackground} />
         <Property autoPlay fullPage loop muted playsInline label={schema.video} />
         <PrimaryCallToAction>
           <Property label={ontola.favoriteAction} />

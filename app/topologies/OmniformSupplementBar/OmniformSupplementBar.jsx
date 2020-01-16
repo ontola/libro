@@ -1,9 +1,9 @@
 import { TopologyProvider } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 
-export const omniformSupplementBarTopology = NS.argu('omniformSupplementBar');
+export const omniformSupplementBarTopology = argu.ns('omniformSupplementBar');
 
 class OmniformSupplementBar extends TopologyProvider {
   constructor() {

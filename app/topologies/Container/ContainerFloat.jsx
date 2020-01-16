@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 import Topology from '../Topology';
 
 /**
  * In the top right corner of a container
  */
-export const containerFloatTopology = NS.argu('containerFloat');
+export const containerFloatTopology = argu.ns('containerFloat');
 
 /**
  * Sets the containerFloat topology

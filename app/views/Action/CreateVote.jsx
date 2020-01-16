@@ -17,7 +17,6 @@ import { defineMessages, useIntl } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { HTTP_RETRY_WITH, handleHTTPRetry } from '../../helpers/errorHandling';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { handle } from '../../helpers/logging';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
@@ -57,15 +56,15 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     const hasOpinionAction = ownProps.lrs.findSubject(
       inlineFormTarget,
       [schema.potentialAction, rdfx.type],
-      [ontola['Create::Opinion'], NS.argu('Update::Opinion')]
+      [ontola['Create::Opinion'], argu['Update::Opinion']]
     );
 
     if (!hasOpinionAction) {
       return undefined;
     }
 
-    const createOpinion = ownProps.lrs.getResourceProperty(inlineFormTarget, NS.argu('create_opinion'));
-    const updateOpinion = ownProps.lrs.getResourceProperty(inlineFormTarget, NS.argu('update_opinion'));
+    const createOpinion = ownProps.lrs.getResourceProperty(inlineFormTarget, argu.create_opinion);
+    const updateOpinion = ownProps.lrs.getResourceProperty(inlineFormTarget, argu.update_opinion);
 
     return Promise.all([
       dispatch(omniformOpenInline(inlineFormTarget)),
@@ -108,7 +107,7 @@ function getVariant(current, variant, object, lrs) {
 
   const parentType = lrs.getResourceProperty(object, rdfx.type);
 
-  return rdf.equals(parentType, NS.argu('ProArgument')) ? 'yes' : 'no';
+  return rdf.equals(parentType, argu.ProArgument) ? 'yes' : 'no';
 }
 
 /*

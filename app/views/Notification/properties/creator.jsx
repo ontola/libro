@@ -7,7 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import argu from '../../../ontology/argu';
 import { cardTopology } from '../../../topologies/Card';
 import { cardMainTopology } from '../../../topologies/Card/CardMain';
 import { containerTopology } from '../../../topologies/Container';
@@ -29,7 +29,7 @@ Creator.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
   Creator,
-  NS.argu('Notification'),
+  argu.Notification,
   schema.creator,
   [
     primaryResourceTopology,

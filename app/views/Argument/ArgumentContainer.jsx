@@ -10,6 +10,7 @@ import React from 'react';
 import { CardContent } from '../../components';
 import { hightlightType } from '../../containers/Highlight';
 import { NS } from '../../helpers/LinkedRenderStore';
+import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import ActionsBar from '../../topologies/ActionsBar';
@@ -45,9 +46,9 @@ class ArgumentContainer extends React.PureComponent {
           <Property label={ontola.favoriteAction} />
         </ActionsBar>
         <CardAppendix>
-          <Property label={NS.argu('voteableVoteEvent')} />
-          <Property label={NS.argu('topComment')} />
-          <Property clickToOpen forceRender label={NS.app('omniform')} />
+          <Property label={argu.voteableVoteEvent} />
+          <Property label={argu.topComment} />
+          <Property clickToOpen forceRender label={app.omniform} />
         </CardAppendix>
       </Card>
     );

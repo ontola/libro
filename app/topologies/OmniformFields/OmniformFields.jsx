@@ -1,9 +1,9 @@
 import { TopologyProvider } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import argu from '../../ontology/argu';
 
-export const omniformFieldsTopology = NS.argu('omniformFields');
+export const omniformFieldsTopology = argu.ns('omniformFields');
 
 class OmniformFields extends TopologyProvider {
   constructor() {
