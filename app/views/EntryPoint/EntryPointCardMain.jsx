@@ -11,7 +11,7 @@ import {
   CardContent,
 } from '../../components';
 import FormFooterRight from '../../components/Form/FooterRight';
-import { NS } from '../../helpers/LinkedRenderStore';
+import ll from '../../ontology/ll';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import FormFooter from '../../topologies/FormFooter/Footer';
 import { cardTopology } from '../../topologies/Card';
@@ -62,7 +62,7 @@ class EntryPointCardMain extends EntryPointBase {
     const content = (
       <CardContent noStartSpacing={header}>
         <Property label={schema.text} />
-        <Property label={NS.ll('actionBody')} />
+        <Property label={ll.actionBody} />
       </CardContent>
     );
 

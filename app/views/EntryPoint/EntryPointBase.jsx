@@ -12,8 +12,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { convertKeysAtoB } from '../../helpers/data';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { HTTP_RETRY_WITH, handleHTTPRetry } from '../../helpers/errorHandling';
+import ll from '../../ontology/ll';
 import ontola from '../../ontology/ontola';
 
 class EntryPointBase extends React.PureComponent {
@@ -81,7 +81,7 @@ class EntryPointBase extends React.PureComponent {
 
     const footerGroupProps = lrs.findSubject(
       action,
-      [schema.target, NS.ll('actionBody'), sh.property, sh.group],
+      [schema.target, ll.actionBody, sh.property, sh.group],
       ontola.footerGroup
     );
 
@@ -91,7 +91,7 @@ class EntryPointBase extends React.PureComponent {
 
     const footerGroupSteps = lrs.findSubject(
       action,
-      [schema.target, NS.ll('actionBody'), ontola.formSteps, sh.group],
+      [schema.target, ll.actionBody, ontola.formSteps, sh.group],
       ontola.footerGroup
     );
 

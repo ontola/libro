@@ -8,6 +8,7 @@ import FormField from '../../../containers/FormField';
 import { tryParseInt } from '../../../helpers/numbers';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import validators, { combineValidators } from '../../../helpers/validators';
+import ll from '../../../ontology/ll';
 import ontola from '../../../ontology/ontola';
 
 const TEXTFIELD_MIN_ROWS = 3;
@@ -47,7 +48,7 @@ const determineInputType = (
     case rdf.id(xsd.byte):
     case rdf.id(xsd.decimal):
       return 'number';
-    case rdf.id(NS.ll('blob')):
+    case rdf.id(ll.blob):
       return 'file';
     case rdf.id(NS.fhir('markdown')):
       return 'markdown';
