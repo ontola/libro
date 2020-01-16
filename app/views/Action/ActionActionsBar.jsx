@@ -15,8 +15,8 @@ import { withRouter } from 'react-router';
 import { bestType } from '../../helpers/data';
 import { History } from '../../helpers/history';
 import { retrievePath } from '../../helpers/iris';
-import { NS } from '../../helpers/LinkedRenderStore';
 import SHACL from '../../helpers/shacl';
+import teamGL from '../../ontology/teamGL';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
 
 class ActionActionsBar extends PureComponent {
@@ -50,10 +50,10 @@ class ActionActionsBar extends PureComponent {
 
   getVariant() {
     switch (rdf.id(bestType(this.props.type))) {
-      case rdf.id(NS.teamGL('ContactedAction')):
+      case rdf.id(teamGL.ContactedAction):
         return 'success';
-      case rdf.id(NS.teamGL('NotAvailableAction')):
-      case rdf.id(NS.teamGL('UnsubscribeAction')):
+      case rdf.id(teamGL.NotAvailableAction):
+      case rdf.id(teamGL.UnsubscribeAction):
         return 'error';
       default:
         return undefined;

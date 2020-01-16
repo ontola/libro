@@ -8,6 +8,7 @@ import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import ontola from '../../ontology/ontola';
+import teamGL from '../../ontology/teamGL';
 import { pageTopology } from '../../topologies/Page';
 import PrimaryResource, { primaryResourceTopology } from '../../topologies/PrimaryResource';
 import Container from '../../topologies/Container';
@@ -17,7 +18,7 @@ import ContentDetails from '../../topologies/ContentDetails';
 import HeaderWithMenu from '../../components/HeaderWithMenu';
 
 class VolunteerPage extends React.PureComponent {
-  static type = NS.teamGL('Volunteer');
+  static type = teamGL.Volunteer;
 
   static topology = [
     primaryResourceTopology,
@@ -39,19 +40,19 @@ class VolunteerPage extends React.PureComponent {
                 <Property label={[schema.name, rdfs.label]} />
               </HeaderWithMenu>
               <ContentDetails>
-                <Property label={NS.teamGL('department')} />
-                <Property label={NS.teamGL('engagement')} />
-                <Property forceRender label={NS.teamGL('glappUsedAt')} />
+                <Property label={teamGL.department} />
+                <Property label={teamGL.engagement} />
+                <Property forceRender label={teamGL.glappUsedAt} />
               </ContentDetails>
               <div className="Volunteer--contact-options">
-                <Property label={NS.teamGL('telephone')} />
-                <Property label={NS.teamGL('email')} />
+                <Property label={teamGL.telephone} />
+                <Property label={teamGL.email} />
               </div>
               <Property label={schema.text} />
             </CardContent>
           </CardMain>
           <Property renderWhenEmpty label={NS.org('hasMembership')} />
-          <Property renderWhenEmpty label={NS.teamGL('events')} />
+          <Property renderWhenEmpty label={teamGL.events} />
         </Container>
       </PrimaryResource>
     );

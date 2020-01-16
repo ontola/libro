@@ -6,8 +6,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
 import ontola from '../../ontology/ontola';
+import teamGL from '../../ontology/teamGL';
 import { containerTopology } from '../../topologies/Container';
 import { CardContent } from '../../components';
 import Card from '../../topologies/Card';
@@ -15,7 +15,7 @@ import ContentDetails from '../../topologies/ContentDetails';
 import ActionsBar from '../../topologies/ActionsBar';
 
 class NewVolunteerContainer extends React.PureComponent {
-  static type = [NS.teamGL('NewVolunteer')];
+  static type = [teamGL.NewVolunteer];
 
   static topology = [
     containerTopology,
@@ -27,12 +27,12 @@ class NewVolunteerContainer extends React.PureComponent {
         <CardContent noSpacing>
           <Property label={[schema.name, rdfs.label]} />
           <ContentDetails>
-            <Property label={NS.teamGL('department')} />
+            <Property label={teamGL.department} />
             <Property label={schema.dateCreated} />
           </ContentDetails>
           <div className="Volunteer--contact-options">
-            <Property label={NS.teamGL('telephone')} />
-            <Property label={NS.teamGL('email')} />
+            <Property label={teamGL.telephone} />
+            <Property label={teamGL.email} />
           </div>
         </CardContent>
         <ActionsBar>

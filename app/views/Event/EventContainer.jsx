@@ -5,8 +5,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
 import CardContent from '../../components/Card/CardContent';
+import teamGL from '../../ontology/teamGL';
 import { containerTopology } from '../../topologies/Container';
 import ContentDetails from '../../topologies/ContentDetails';
 import Card from '../../topologies/Card';
@@ -16,17 +16,17 @@ const EventContainer = () => (
     <CardContent>
       <Property label={schema.name} />
       <ContentDetails>
-        <Property label={NS.teamGL('department')} />
+        <Property label={teamGL.department} />
         <Property label={schema.startDate} />
       </ContentDetails>
-      <Property label={NS.teamGL('desiredCount')} />
+      <Property label={teamGL.desiredCount} />
       <Property label={schema.text} />
     </CardContent>
   </Card>
 );
 
-EventContainer.type = [NS.teamGL('Event')];
+EventContainer.type = teamGL.Event;
 
-EventContainer.topology = [containerTopology];
+EventContainer.topology = containerTopology;
 
 export default register(EventContainer);

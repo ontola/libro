@@ -203,26 +203,26 @@ export default function generateLRS() {
     rdf.quad(schema.UpdateAction, rdfx.type, rdfs.Class),
     rdf.quad(schema.UpdateAction, rdfs.subClassOf, schema.Action),
 
-    rdf.quad(NS.teamGL('ContactedAction'), rdfx.type, rdfs.Class),
-    rdf.quad(NS.teamGL('ContactedAction'), rdfs.subClassOf, schema.UpdateAction),
+    rdf.quad(teamGL.ContactedAction, rdfx.type, rdfs.Class),
+    rdf.quad(teamGL.ContactedAction, rdfs.subClassOf, schema.UpdateAction),
 
-    rdf.quad(NS.teamGL('NewVolunteer'), rdfx.type, rdfs.Class),
-    rdf.quad(NS.teamGL('NewVolunteer'), rdfs.subClassOf, NS.teamGL('Volunteer')),
+    rdf.quad(teamGL.NewVolunteer, rdfx.type, rdfs.Class),
+    rdf.quad(teamGL.NewVolunteer, rdfs.subClassOf, teamGL.Volunteer),
 
-    rdf.quad(NS.teamGL('NotAvailableAction'), rdfx.type, rdfs.Class),
-    rdf.quad(NS.teamGL('NotAvailableAction'), rdfs.subClassOf, schema.UpdateAction),
+    rdf.quad(teamGL.NotAvailableAction, rdfx.type, rdfs.Class),
+    rdf.quad(teamGL.NotAvailableAction, rdfs.subClassOf, schema.UpdateAction),
 
-    rdf.quad(NS.teamGL('TryAgainAction'), rdfx.type, rdfs.Class),
-    rdf.quad(NS.teamGL('TryAgainAction'), rdfs.subClassOf, schema.UpdateAction),
+    rdf.quad(teamGL.TryAgainAction, rdfx.type, rdfs.Class),
+    rdf.quad(teamGL.TryAgainAction, rdfs.subClassOf, schema.UpdateAction),
 
-    rdf.quad(NS.teamGL('UnsubscribeAction'), rdfx.type, rdfs.Class),
-    rdf.quad(NS.teamGL('UnsubscribeAction'), rdfs.subClassOf, schema.UpdateAction),
+    rdf.quad(teamGL.UnsubscribeAction, rdfx.type, rdfs.Class),
+    rdf.quad(teamGL.UnsubscribeAction, rdfs.subClassOf, schema.UpdateAction),
 
-    rdf.quad(NS.teamGL('Participant'), rdfx.type, rdfs.Class),
-    rdf.quad(NS.teamGL('Participant'), rdfs.subClassOf, NS.teamGL('Volunteer')),
+    rdf.quad(teamGL.Participant, rdfx.type, rdfs.Class),
+    rdf.quad(teamGL.Participant, rdfs.subClassOf, teamGL.Volunteer),
 
-    rdf.quad(NS.teamGL('PotentialParticipant'), rdfx.type, rdfs.Class),
-    rdf.quad(NS.teamGL('PotentialParticipant'), rdfs.subClassOf, NS.teamGL('Participant')),
+    rdf.quad(teamGL.PotentialParticipant, rdfx.type, rdfs.Class),
+    rdf.quad(teamGL.PotentialParticipant, rdfs.subClassOf, teamGL.Participant),
 
     rdf.quad(meeting.Meeting, rdfx.type, rdfs.Class),
     rdf.quad(meeting.Meeting, rdfs.subClassOf, schema.Thing),

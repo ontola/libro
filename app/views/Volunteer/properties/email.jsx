@@ -3,7 +3,7 @@ import { linkedPropType } from 'link-redux';
 import React from 'react';
 import emoji from 'react-easy-emoji';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import teamGL from '../../../ontology/teamGL';
 import { allTopologies } from '../../../topologies';
 
 const propTypes = {
@@ -22,7 +22,7 @@ Email.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
   Email,
-  NS.teamGL('Volunteer'),
-  NS.teamGL('email'),
+  teamGL.Volunteer,
+  teamGL.email,
   allTopologies
 );

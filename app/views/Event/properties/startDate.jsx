@@ -5,7 +5,7 @@ import emoji from 'react-easy-emoji';
 import { useIntl } from 'react-intl';
 
 import { Detail } from '../../../components';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import teamGL from '../../../ontology/teamGL';
 import { allTopologies } from '../../../topologies';
 
 const propTypes = {
@@ -27,7 +27,7 @@ const StartDate = ({ linkedProp }) => {
   );
 };
 
-StartDate.type = NS.teamGL('Event');
+StartDate.type = teamGL.Event;
 
 StartDate.property = schema.startDate;
 

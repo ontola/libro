@@ -4,7 +4,7 @@ import { linkedPropType } from 'link-redux';
 import React from 'react';
 
 import { Heading, LDLink } from '../../../components';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import teamGL from '../../../ontology/teamGL';
 import { allTopologiesExcept } from '../../../topologies';
 import { selectTopology } from '../../../topologies/Select';
 
@@ -22,7 +22,7 @@ Name.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
   Name,
-  NS.teamGL('Volunteer'),
+  teamGL.Volunteer,
   schema.name,
   allTopologiesExcept(selectTopology)
 );

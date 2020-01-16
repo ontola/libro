@@ -7,6 +7,7 @@ import React from 'react';
 
 import { NS } from '../../helpers/LinkedRenderStore';
 import ontola from '../../ontology/ontola';
+import teamGL from '../../ontology/teamGL';
 import { pageTopology } from '../../topologies/Page';
 import PrimaryResource from '../../topologies/PrimaryResource';
 import Container from '../../topologies/Container';
@@ -26,26 +27,26 @@ const EventPage = () => (
             <Property label={schema.name} />
           </HeaderWithMenu>
           <ContentDetails>
-            <Property label={NS.teamGL('department')} />
+            <Property label={teamGL.department} />
             <Property label={schema.startDate} />
           </ContentDetails>
-          <Property label={NS.teamGL('desiredCount')} />
+          <Property label={teamGL.desiredCount} />
           <Property label={schema.text} />
         </CardContent>
       </CardMain>
     </Container>
     <Container>
-      <Property renderWhenEmpty label={NS.teamGL('potentialParticipants')}>
+      <Property renderWhenEmpty label={teamGL.potentialParticipants}>
         <Property renderWhenEmpty singlePage collectionDisplay={NS.ontola('collectionDisplay/card')} label={ontola.pages} />
       </Property>
-      <Property renderWhenEmpty label={NS.teamGL('participants')}>
+      <Property renderWhenEmpty label={teamGL.participants}>
         <Property singlePage collectionDisplay={NS.ontola('collectionDisplay/card')} label={ontola.pages} />
       </Property>
     </Container>
   </PrimaryResource>
 );
 
-EventPage.type = NS.teamGL('Event');
+EventPage.type = teamGL.Event;
 
 EventPage.topology = pageTopology;
 
