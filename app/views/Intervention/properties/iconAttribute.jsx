@@ -2,6 +2,9 @@ import schema from '@ontologies/schema';
 import {
   linkedPropType,
   register,
+  subjectType,
+  useDataFetching,
+  useDataInvalidation,
   useResourceProperty,
 } from 'link-redux';
 import React from 'react';
@@ -11,8 +14,20 @@ import { allTopologies } from '../../../topologies';
 
 import './iconAttribute.scss';
 
-const IconAttribute = ({ linkedProp }) => {
+const IconAttribute = ({
+  linkedProp,
+  subject,
+}) => {
+  const lastUpdate = useDataInvalidation({
+    dataSubjects: [linkedProp],
+    subject,
+  });
+  useDataFetching({ subject: linkedProp }, lastUpdate);
+
   const [name] = useResourceProperty(linkedProp, schema.name);
+  if (!name) {
+    return null;
+  }
 
   return (
     <div className="IconAttribute">
@@ -38,6 +53,7 @@ IconAttribute.property = [
 
 IconAttribute.propTypes = {
   linkedProp: linkedPropType,
+  subject: subjectType,
 };
 
 export default register(IconAttribute);
