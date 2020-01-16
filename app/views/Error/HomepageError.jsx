@@ -10,7 +10,7 @@ import Container from '../../topologies/Container';
 import PrimaryResource from '../../topologies/PrimaryResource';
 import PageHeader from '../../topologies/PageHeader';
 
-import { ErrorPage } from './index';
+import { ErrorPage } from './ErrorPage';
 
 const HomepageError = (props) => {
   if (props.linkRequestStatus.status === HttpStatus.NOT_FOUND) {

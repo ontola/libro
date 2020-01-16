@@ -56,6 +56,7 @@ export default function generateLRS() {
 // @ts-ignore TS2341
   LRS.api.accept.default = FRONTEND_ACCEPT;
 
+  /** @deprecated */
   const NS = {
     ...LRS.namespaces as {
       argu: Namespace;
