@@ -3,7 +3,7 @@ import { register } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import {
   PageHeaderImage,
   pageHeaderTopology,
@@ -16,7 +16,7 @@ class ImageObjectPageHeader extends PureComponent {
 
   static mapDataToProps = {
     description: schema.description,
-    imgUrl256x256: NS.ontola('imgUrl256x256'),
+    imgUrl256x256: ontola.imgUrl256x256,
   };
 
   static linkOpts = {

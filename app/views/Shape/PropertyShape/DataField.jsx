@@ -8,6 +8,7 @@ import FormField from '../../../containers/FormField';
 import { tryParseInt } from '../../../helpers/numbers';
 import { NS } from '../../../helpers/LinkedRenderStore';
 import validators, { combineValidators } from '../../../helpers/validators';
+import ontola from '../../../ontology/ontola';
 
 const TEXTFIELD_MIN_ROWS = 3;
 const MAX_STR_LEN = 255;
@@ -50,7 +51,7 @@ const determineInputType = (
       return 'file';
     case rdf.id(NS.fhir('markdown')):
       return 'markdown';
-    case rdf.id(NS.ontola('datatype/password')):
+    case rdf.id(ontola.ns('datatype/password')):
       return 'password';
     default:
       if (tryParseInt(maxLength) > MAX_STR_LEN) {

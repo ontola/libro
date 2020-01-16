@@ -9,7 +9,6 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import Card from '../../../topologies/Card';
@@ -34,7 +33,7 @@ const getFrame = (Wrapper, topology) => {
     pagination,
   }) => {
     switch (rdf.id(collectionDisplay || collectionDisplayFromData)) {
-      case rdf.id(NS.ontola('collectionDisplay/grid')):
+      case rdf.id(ontola.ns('collectionDisplay/grid')):
         return (
           <React.Fragment>
             <Grid>
@@ -43,8 +42,8 @@ const getFrame = (Wrapper, topology) => {
             {pagination}
           </React.Fragment>
         );
-      case rdf.id(NS.ontola('collectionDisplay/settingsTable')):
-      case rdf.id(NS.ontola('collectionDisplay/table')):
+      case rdf.id(ontola.ns('collectionDisplay/settingsTable')):
+      case rdf.id(ontola.ns('collectionDisplay/table')):
         return (
           <Card>
             <Table>
@@ -72,7 +71,7 @@ const getFrame = (Wrapper, topology) => {
             </Table>
           </Card>
         );
-      case rdf.id(NS.ontola('collectionDisplay/card')):
+      case rdf.id(ontola.ns('collectionDisplay/card')):
         return (
           <Card>
             {body}
@@ -81,7 +80,7 @@ const getFrame = (Wrapper, topology) => {
             </CardAppendix>
           </Card>
         );
-      case rdf.id(NS.ontola('collectionDisplay/default')):
+      case rdf.id(ontola.ns('collectionDisplay/default')):
         return (
           <Wrapper>
             {body}

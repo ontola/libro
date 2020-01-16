@@ -7,7 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 
 const SnackbarManager = ({ queue }) => {
@@ -20,20 +20,20 @@ const SnackbarManager = ({ queue }) => {
 
   return (
     <Resource
-      close={() => lrs.exec(NS.ontola('actions/snackbar/finished'))}
+      close={() => lrs.exec(ontola.ns('actions/snackbar/finished'))}
       key={element.value}
       subject={element}
     />
   );
 };
 
-SnackbarManager.type = NS.ontola('snackbar/Manager');
+SnackbarManager.type = ontola.ns('snackbar/Manager');
 
 SnackbarManager.topology = allTopologies;
 
 SnackbarManager.mapDataToProps = {
-  dataSubjects: NS.ontola('snackbar/queue'),
-  queue: NS.ontola('snackbar/queue'),
+  dataSubjects: ontola.ns('snackbar/queue'),
+  queue: ontola.ns('snackbar/queue'),
 };
 
 SnackbarManager.propTypes = {

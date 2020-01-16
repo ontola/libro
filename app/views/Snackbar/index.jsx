@@ -6,7 +6,7 @@ import { linkType, register } from 'link-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 
 const SNACKBAR_TIMEOUT = 2750;
@@ -39,7 +39,7 @@ const SnackbarView = ({ close, text }) => {
   );
 };
 
-SnackbarView.type = NS.ontola('snackbar/Snackbar');
+SnackbarView.type = ontola.ns('snackbar/Snackbar');
 
 SnackbarView.topology = allTopologies;
 

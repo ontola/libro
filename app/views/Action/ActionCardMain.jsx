@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Button from '../../components/Button';
-import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 
 const ActionCardMain = ({
@@ -40,7 +40,7 @@ const ActionCardMain = ({
         theme="transparant"
         onClick={(e) => {
           e.preventDefault();
-          lrs.exec(rdf.namedNode(`${NS.ontola('actions/dialog/alert').value}?resource=${encodeURIComponent(subject.value)}`));
+          lrs.exec(rdf.namedNode(`${ontola.ns('actions/dialog/alert').value}?resource=${encodeURIComponent(subject.value)}`));
         }}
       >
         {name.value}

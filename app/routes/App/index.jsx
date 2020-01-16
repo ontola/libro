@@ -10,13 +10,13 @@ import DutchGovernmentHeader from '../../components/Headers/DutchGovernmentHeade
 import '../../components/shared/init.scss';
 import NetworkStatusIndicator from '../../components/NetworkStatusIndicator';
 import { CONTAINER_ELEMENT } from '../../config';
+import ontola from '../../ontology/ontola';
 import Navbar from '../../topologies/Navbar/index';
 import Popup from '../../topologies/Popup/index';
 import ErrorButtonWithFeedback from '../../views/Error/ErrorButtonWithFeedback';
 import HoverHelper from '../DevBrowser/HoverHelper';
 import { getMetaContent } from '../../helpers/arguHelpers';
 import { defaultKeymap, devKeymap } from '../../helpers/keyboard';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { handle } from '../../helpers/logging';
 import Routes from '../index';
 
@@ -89,8 +89,8 @@ class App extends React.PureComponent {
             <div id="start-of-content">
               {Routes}
             </div>
-            <Resource subject={NS.ontola('snackbar/manager')} />
-            <Resource subject={NS.ontola('dialog/manager')} />
+            <Resource subject={ontola.ns('snackbar/manager')} />
+            <Resource subject={ontola.ns('dialog/manager')} />
             <Popup />
           </div>
         </HoverHelper>

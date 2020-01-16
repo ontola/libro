@@ -7,7 +7,7 @@ import React from 'react';
 import { DetailImage, Image } from '../../../components';
 import FormFooterImage from '../../../components/Form/FooterImage';
 import NavbarLinkImage from '../../../components/NavbarLink/NavbarLinkImage';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
 import { cardListTopology } from '../../../topologies/Card/CardList';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
@@ -37,19 +37,19 @@ export default [
   LinkedRenderStore.registerRenderer(
     createThumbnail(NavbarLinkImage),
     [schema.ImageObject, schema.VideoObject],
-    [schema.thumbnail, NS.ontola('imgUrl64x64')],
+    [schema.thumbnail, ontola.imgUrl64x64],
     allTopologiesExcept(cardListTopology, detailsBarTopology, formFooterTopology)
   ),
   LinkedRenderStore.registerRenderer(
     createThumbnail(DetailImage),
     [schema.ImageObject, schema.VideoObject],
-    [schema.thumbnail, NS.ontola('imgUrl64x64')],
+    [schema.thumbnail, ontola.imgUrl64x64],
     detailsBarTopology
   ),
   LinkedRenderStore.registerRenderer(
     createThumbnail(FormFooterImage),
     [schema.ImageObject, schema.VideoObject],
-    [schema.thumbnail, NS.ontola('imgUrl64x64')],
+    [schema.thumbnail, ontola.imgUrl64x64],
     formFooterTopology
   ),
 ];

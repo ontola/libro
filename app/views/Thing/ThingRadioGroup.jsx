@@ -12,7 +12,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { ResourceBoundary } from '../../components';
-import { NS } from '../../helpers/LinkedRenderStore';
+import ontola from '../../ontology/ontola';
 import { radioGroupTopology } from '../../topologies/RadioGroup';
 
 const ThingRadioGroup = ({
@@ -22,7 +22,7 @@ const ThingRadioGroup = ({
 }) => {
   const labels = [schema.name, rdfs.label, foaf.name];
 
-  const label = lrs.getResourceProperty(itemClass, NS.ontola('forms/inputs/select/displayProp'));
+  const label = lrs.getResourceProperty(itemClass, ontola.ns('forms/inputs/select/displayProp'));
 
   if (label) {
     labels.unshift(label);
