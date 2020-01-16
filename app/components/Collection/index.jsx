@@ -17,7 +17,9 @@ import ontola from '../../ontology/ontola';
 const Collection = ({
   display,
   label,
+  page,
   pageSize,
+  type,
   ...otherProps
 }) => {
   const lrs = useLRS();
@@ -39,7 +41,9 @@ const Collection = ({
   const tmpl = parser.parse(iriTemplate.value);
   const collection = tmpl.expand({
     display,
+    page,
     page_size: pageSize,
+    type,
   });
 
   return (
@@ -50,7 +54,9 @@ const Collection = ({
 Collection.propTypes = {
   display: PropTypes.string,
   label: labelType,
+  page: PropTypes.number,
   pageSize: PropTypes.number,
+  type: PropTypes.string,
 };
 
 export default Collection;

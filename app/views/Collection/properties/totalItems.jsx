@@ -18,23 +18,18 @@ const mapDataToProps = {
   last: as.last,
 };
 
-const propTypes = {
-  first: linkType,
-  last: linkType,
-  linkedProp: linkType,
-};
-
 const defaultCollectionTotalItems = ({
   first,
   last,
   linkedProp,
+  to,
 }) => {
   if (linkedProp.value === '0' || first === last) {
     return null;
   }
 
   return (
-    <LDLink>
+    <LDLink to={to}>
       <Heading size="4">
         <FormattedMessage
           defaultMessage="View all {count}..."
@@ -48,7 +43,12 @@ const defaultCollectionTotalItems = ({
 
 defaultCollectionTotalItems.mapDataToProps = mapDataToProps;
 
-defaultCollectionTotalItems.propTypes = propTypes;
+defaultCollectionTotalItems.propTypes = {
+  first: linkType,
+  last: linkType,
+  linkedProp: linkType,
+  to: linkType,
+};
 
 const cardAppendixCollectionTotalItems = ({
   first,
@@ -78,7 +78,11 @@ const cardAppendixCollectionTotalItems = ({
 
 cardAppendixCollectionTotalItems.mapDataToProps = mapDataToProps;
 
-cardAppendixCollectionTotalItems.propTypes = propTypes;
+cardAppendixCollectionTotalItems.propTypes = {
+  first: linkType,
+  last: linkType,
+  linkedProp: linkType,
+};
 
 const registerTotalItems = buildRegister({
   property: as.totalItems,

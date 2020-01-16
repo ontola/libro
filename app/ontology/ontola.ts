@@ -46,6 +46,8 @@ export default {
   ['collectionDisplay/table']: ontola('collectionDisplay/table'),
   collectionFrame: ontola('collectionFrame'),
   collectionType: ontola('collectionType'),
+  ['collectionType/infinite']: ontola('collectionType/infinite'),
+  ['collectionType/paginated']: ontola('collectionType/paginated'),
   columns: ontola('columns'),
   coverPhoto: ontola('coverPhoto'),
   createAction: ontola('createAction'),

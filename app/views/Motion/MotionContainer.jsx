@@ -36,7 +36,7 @@ const MotionContainer = ({ highlighted, subject }) => (
     <Property label={argu.voteableVoteEvent} />
     <CardAppendix>
       <SignInSwitcherContainer subject={subject}>
-        <Property forceRender label={argu.arguments} />
+        <Property forceRender label={argu.arguments} pageSize={3} />
         <Property label={argu.topComment} />
         <Property forceRender label={app.omniform} />
       </SignInSwitcherContainer>

@@ -125,7 +125,7 @@ export default function getCollection({
       }
 
       switch (rdf.id(this.props.collectionType)) {
-        case rdf.id(ontola.ns('collectionType/infinite')):
+        case rdf.id(ontola['collectionType/infinite']):
           return (
             <Property
               forceRender

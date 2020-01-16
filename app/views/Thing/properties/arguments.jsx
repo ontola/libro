@@ -1,42 +1,55 @@
 import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import {
-  Property,
   link,
   linkType,
+  subjectType,
   useDataInvalidation,
   useLinkRenderContext,
 } from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import { Columns } from '../../../components';
-import argu from '../../../ontology/argu';
+import Collection from '../../../components/Collection';
 import Margin from '../../Margin/Margin';
+import argu from '../../../ontology/argu';
 import { allTopologiesExcept } from '../../../topologies';
 import { cardAppendixTopology } from '../../../topologies/Card/CardAppendix';
 import CardRow from '../../../topologies/Card/CardRow';
 
-const ArgumentColumns = () => (
+const ArgumentColumns = ({ pageSize, subject }) => (
   <Columns>
-    <Property
+    <Collection
       renderWhenEmpty
       direction="column"
       key="pro"
       label={argu.proArguments}
+      pageSize={pageSize}
+      to={subject}
     />
-    <Property
+    <Collection
       renderWhenEmpty
       direction="column"
       key="con"
       label={argu.conArguments}
+      pageSize={pageSize}
+      to={subject}
     />
   </Columns>
 );
 
+ArgumentColumns.propTypes = {
+  pageSize: PropTypes.number,
+  subject: subjectType,
+};
+
 const Arguments = ({
   children,
   conArguments,
+  pageSize,
   proArguments,
+  subject,
 }) => {
   const ctx = useLinkRenderContext();
   useDataInvalidation({
@@ -44,11 +57,12 @@ const Arguments = ({
     subject: ctx.subject,
   });
 
-  return children || <ArgumentColumns />;
+  return children || <ArgumentColumns pageSize={pageSize} subject={subject} />;
 };
 
 Arguments.propTypes = {
   conArguments: linkType,
+  pageSize: PropTypes.number,
   proArguments: linkType,
 };
 
@@ -57,14 +71,23 @@ const ArgumentsData = link({
   proArguments: argu.proArguments,
 })(Arguments);
 
-const ArgumentsCardAppendix = (props) => (
-  <ArgumentsData {...props}>
+const ArgumentsCardAppendix = ({
+  pageSize,
+  subject,
+  ...otherProps
+}) => (
+  <ArgumentsData {...otherProps}>
     <CardRow backdrop>
       <Margin />
-      <ArgumentColumns />
+      <ArgumentColumns pageSize={pageSize} subject={subject} />
     </CardRow>
   </ArgumentsData>
 );
+
+ArgumentsCardAppendix.propTypes = {
+  pageSize: PropTypes.number,
+  subject: subjectType,
+};
 
 export default [
   LinkedRenderStore.registerRenderer(
