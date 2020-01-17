@@ -1,16 +1,22 @@
 @import '../shared/config';
 
+.SkipNavigation {
+  position: fixed;
+  z-index: $zindex-11;
+}
+
 .SkipNavigation__link {
   clip: rect(1px, 1px, 1px, 1px);
   height: 1px;
   margin: 0;
   overflow: hidden;
-  position: fixed;
   width: 1px;
   will-change: transform;
+  position: fixed;
+  top: -100px;
 
   &:focus {
-    background: color('blue');
+    top: 0;
     clip: auto;
     color: color('white');
     font-weight: bold;
@@ -21,6 +27,5 @@
     text-decoration: none;
     top: 0;
     width: 100%;
-    z-index: 100;
   }
 }

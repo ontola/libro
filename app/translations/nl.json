@@ -112,6 +112,8 @@
   "https://app.argu.co/i18n/forms/session/signinregister/label": "Log in of registreer",
   "https://app.argu.co/i18n/forms/signOut/link/label": "Uitloggen",
   "https://app.argu.co/i18n/navbar/search": "Zoeken",
+  "https://app.argu.co/i18n/navbar/skipToMain": "Navigatie overslaan",
+  "https://app.argu.co/i18n/navbar/troubleNavigating": "Moeite met navigeren? Mail ons!",
   "https://app.argu.co/i18n/pages/closed": "Deze pagina is privé. Alleen leden kunnen de content bekijken. Vraag een lid of een van de managers hoe je toegang kan krijgen tot deze website.",
   "https://app.argu.co/i18n/pages/noHomepage": "Welkom bij {name}!",
   "https://app.argu.co/i18n/pinnable/states/pinned/pinnedAtLabel": "Vastgezet op {date}",
