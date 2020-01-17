@@ -6,7 +6,6 @@ import React from 'react';
 import { NS } from '../../helpers/LinkedRenderStore';
 import argu from '../../ontology/argu';
 import { formFooterTopology } from '../../topologies/FormFooter/Footer';
-import { voteEventSideTopology } from '../../topologies/VoteEventSide';
 
 import PersonDetail from './PersonDetail';
 import PersonNavbar from './PersonNavbar';
@@ -26,7 +25,7 @@ export default [
     )),
     [schema.Person, NS.aod('Persons'), argu.Page],
     RENDER_CLASS_NAME,
-    [voteEventSideTopology, argu.voteBubble, formFooterTopology]
+    [argu.voteBubble, formFooterTopology]
   ),
   PersonDetail,
   Email,

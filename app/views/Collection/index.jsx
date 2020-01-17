@@ -19,7 +19,6 @@ import UnreadCount from './properties/unreadCount';
 import Pages from './properties/pages';
 import InfinitePagination from './properties/infinitePagination';
 import DefaultPagination from './properties/defaultPagination';
-import voteEvent from './voteEvent';
 import CollectionCardAppendix from './CollectionCardAppendix';
 import CollectionContainer from './CollectionContainer';
 import CollectionInline from './CollectionInline';
@@ -86,5 +85,4 @@ export default [
   ...Pages,
   ...InfinitePagination,
   ...DefaultPagination,
-  ...voteEvent,
 ];

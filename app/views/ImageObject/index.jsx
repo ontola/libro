@@ -13,7 +13,6 @@ import { navbarTopology } from '../../topologies/Navbar';
 import { pageHeaderTopology } from '../../topologies/PageHeader';
 import { tableCellTopology } from '../../topologies/TableCell';
 import { voteBubbleTopology } from '../../topologies/VoteBubble';
-import { voteEventSideTopology } from '../../topologies/VoteEventSide';
 import { parentTopology } from '../../topologies/Parent';
 import { selectTopology } from '../../topologies/Select';
 
@@ -43,7 +42,6 @@ ImageObject.topology = [
   navbarTopology,
   selectTopology,
   voteBubbleTopology,
-  voteEventSideTopology,
 ];
 
 ImageObject.propTypes = {

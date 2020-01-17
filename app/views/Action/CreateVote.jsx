@@ -9,6 +9,7 @@ import {
   useDataFetching,
   useDataInvalidation,
   useLRS,
+  useProperty,
   useResourceProperty,
 } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -80,34 +81,73 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
 });
 
-function useCurrentVote(current, object, subject) {
-  const [vote] = useResourceProperty(object, argu.currentVote);
-  const lastUpdate = useDataInvalidation({
+function countAttribute(option) {
+  if (option === 'yes') {
+    return argu.votesProCount;
+  } else if (option === 'no') {
+    return argu.votesConCount;
+  }
+
+  return argu.votesNeutralCount;
+}
+
+function useCurrentOption(parent, object, subject) {
+  const [vote] = useResourceProperty(parent, argu.currentVote);
+  const lastParentUpdate = useDataInvalidation({
+    dataSubjects: [parent],
+    subject,
+  });
+  useDataFetching({ subject: parent }, lastParentUpdate);
+  const lastVoteUpdate = useDataInvalidation({
     dataSubjects: [vote],
     subject,
   });
-  useDataFetching({ subject: vote }, lastUpdate);
+  useDataFetching({ subject: vote }, lastVoteUpdate);
   const [currentOption] = useResourceProperty(vote, schema.option);
 
-  if (current !== undefined) {
-    return current;
-  }
-
-  if (!vote) {
-    return false;
-  }
-
-  return currentOption && currentOption !== argu.abstain;
+  return currentOption;
 }
 
-function getVariant(current, variant, object, lrs) {
-  if (current !== undefined) {
+function getTitle(variant, parentType, expired, formatMessage) {
+  if (expired) {
+    return formatMessage(messages.closedMessage);
+  }
+
+  if (rdf.equals(parentType, argu.ProArgument) || rdf.equals(parentType, argu.ConArgument)) {
+    return null;
+  }
+
+  if (variant === 'yes') {
+    return formatMessage(messages.proMessage);
+  } else if (variant === 'no') {
+    return formatMessage(messages.conMessage);
+  } else if (variant === 'other') {
+    return formatMessage(messages.neutralMessage);
+  }
+
+  return null;
+}
+
+function getOption(subject) {
+  const variant = new URL(subject.value).searchParams.get('filter[]')?.split('=')?.pop();
+
+  if (variant) {
     return variant;
   }
 
-  const parentType = lrs.getResourceProperty(object, rdfx.type);
+  return 'yes';
+}
 
-  return rdf.equals(parentType, argu.ProArgument) ? 'yes' : 'no';
+function getVariant(option, parentType) {
+  if (rdf.equals(parentType, argu.ProArgument)) {
+    return 'yes';
+  }
+
+  if (rdf.equals(parentType, argu.ConArgument)) {
+    return 'no';
+  }
+
+  return option;
 }
 
 /*
@@ -118,18 +158,18 @@ function getVariant(current, variant, object, lrs) {
  */
 const CreateVote = ({
   actionStatus,
-  current,
-  count,
   object,
   openOmniform,
   subject,
   target,
-  variant,
 }) => {
   const lrs = useLRS();
   const { formatMessage } = useIntl();
-  const isCurrentOrVote = useCurrentVote(current, object, subject);
-
+  const [isPartOf] = useProperty(schema.isPartOf);
+  const currentOption = useCurrentOption(isPartOf, object, subject);
+  const [parentType] = useResourceProperty(isPartOf, rdfx.type);
+  const option = getOption(subject, parentType);
+  const [count] = useResourceProperty(isPartOf, countAttribute(option));
   const handleClick = () => lrs
     .exec(subject)
     .then(openOmniform)
@@ -152,29 +192,17 @@ const CreateVote = ({
     return null;
   }
 
-  let title;
-  if (variant === 'yes') {
-    title = formatMessage(messages.proMessage);
-  } else if (variant === 'no') {
-    title = formatMessage(messages.conMessage);
-  } else if (variant === 'other') {
-    title = formatMessage(messages.neutralMessage);
-  }
-
-  if (expired) {
-    title = formatMessage(messages.closedMessage);
-  }
-
   return (
     <Resource
-      active={!!isCurrentOrVote}
+      active={rdf.equals(currentOption, argu[option])}
       count={count}
       disabled={disabled || expired}
-      grow={current !== undefined}
+      grow={rdf.equals(parentType, argu.VoteEvent)}
+      stretch={rdf.equals(parentType, argu.VoteEvent)}
       subject={target}
       theme="transparant"
-      title={title}
-      variant={getVariant(current, variant, object, lrs)}
+      title={getTitle(option, parentType, expired, formatMessage)}
+      variant={getVariant(option, parentType)}
       onClick={handleClick}
     />
   );
@@ -203,13 +231,10 @@ CreateVote.mapDataToProps = {
 
 CreateVote.propTypes = {
   actionStatus: linkType,
-  count: linkType,
-  current: PropTypes.bool,
   object: linkType,
   openOmniform: PropTypes.func,
   subject: subjectType,
   target: linkType,
-  variant: PropTypes.string,
 };
 
 export default register(CreateVote);

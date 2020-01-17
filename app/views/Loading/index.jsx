@@ -27,7 +27,6 @@ import { cardListTopology } from '../../topologies/Card/CardList';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { cardMicroRowTopology } from '../../topologies/Card/CardMicroRow';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
-import { cardVoteEventTopology } from '../../topologies/CardVoteEvent';
 import { containerTopology } from '../../topologies/Container';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 import { contentDetailsTopology } from '../../topologies/ContentDetails';
@@ -156,7 +155,6 @@ export default [
     RENDER_CLASS_NAME,
     [
       actionsBarTopology,
-      cardVoteEventTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(

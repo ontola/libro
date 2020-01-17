@@ -12,8 +12,6 @@ import ontola from '../../ontology/ontola';
 import CardList, { cardListTopology } from '../../topologies/Card/CardList';
 import { cardFixedTopology } from '../../topologies/Card/CardFixed';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
-import { cardVoteEventTopology } from '../../topologies/CardVoteEvent';
-import { voteEventTopology } from '../../topologies/VoteEvent';
 
 import { CollectionTypes } from './types';
 
@@ -62,13 +60,6 @@ export default [
       cardFixedTopology,
       cardListTopology,
       cardRowTopology,
-    ]
-  )),
-  register(collectionSection(
-    { renderWhenEmpty: false },
-    [
-      cardVoteEventTopology,
-      voteEventTopology,
     ]
   )),
 ];

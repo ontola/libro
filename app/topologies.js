@@ -11,7 +11,6 @@ import { cardListTopology } from './topologies/Card/CardList';
 import { cardMainTopology } from './topologies/Card/CardMain';
 import { cardMicroRowTopology } from './topologies/Card/CardMicroRow';
 import { cardRowTopology } from './topologies/Card/CardRow';
-import { cardVoteEventTopology } from './topologies/CardVoteEvent/index';
 import { containerTopology } from './topologies/Container/index';
 import { containerFloatTopology } from './topologies/Container/ContainerFloat';
 import { contentDetailsTopology } from './topologies/ContentDetails/index';
@@ -42,9 +41,6 @@ import { tableTopology } from './topologies/Table';
 import { tabBarTopology } from './topologies/TabBar/index';
 import { tabPaneTopology } from './topologies/TabPane/index';
 import { voteBubbleTopology } from './topologies/VoteBubble/index';
-import { voteEventTopology } from './topologies/VoteEvent/index';
-import { voteEventResultTopology } from './topologies/VoteEventResult/index';
-import { voteEventSideTopology } from './topologies/VoteEventSide/index';
 import { widgetTopologyTopology } from './topologies/WidgetTopology/WidgetTopology';
 
 export const allTopologies = [
@@ -60,7 +56,6 @@ export const allTopologies = [
   cardMainTopology,
   cardMicroRowTopology,
   cardRowTopology,
-  cardVoteEventTopology,
   containerTopology,
   containerFloatTopology,
   contentDetailsTopology,
@@ -91,9 +86,6 @@ export const allTopologies = [
   tabPaneTopology,
   tabBarTopology,
   voteBubbleTopology,
-  voteEventTopology,
-  voteEventResultTopology,
-  voteEventSideTopology,
   widgetTopologyTopology,
 ];
 

@@ -19,7 +19,6 @@ import { inlineTopology } from '../../topologies/Inline';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 import { parentTopology } from '../../topologies/Parent';
 import { voteBubbleTopology } from '../../topologies/VoteBubble';
-import { voteEventResultTopology } from '../../topologies/VoteEventResult';
 
 import { ErrorButtonWithFeedbackBase } from './ErrorButtonWithFeedback';
 import { titleForStatus } from './ErrorMessages';
@@ -74,7 +73,6 @@ ErrorButtonSideBar.topology = [
   omniformFieldsTopology,
   parentTopology,
   voteBubbleTopology,
-  voteEventResultTopology,
 ];
 
 ErrorButtonSideBar.hocs = [injectIntl];

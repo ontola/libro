@@ -3,44 +3,19 @@ import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   Property,
   link,
-  linkType,
-  subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import {
-  CardContent,
-  HoverPopup,
-} from '../../components';
+import { CardContent } from '../../components';
 import argu from '../../ontology/argu';
 import Card from '../../topologies/Card';
 import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
 import { popupTopology } from '../../topologies/Popup';
-import { voteEventSideTopology } from '../../topologies/VoteEventSide';
 
 import Opinion from './Opinion';
-
-const propTypes = {
-  subject: subjectType,
-  text: linkType,
-};
-
-const VoteSidePage = ({ subject, text }) => {
-  if (!text || text.length === 0) {
-    return <Property label={schema.creator} />;
-  }
-
-  return (
-    <HoverPopup subject={subject}>
-      <Property label={schema.creator} />
-    </HoverPopup>
-  );
-};
-
-VoteSidePage.propTypes = propTypes;
 
 const ThingHoverBoxHidden = ({ text, option }) => {
   let icon;
@@ -84,12 +59,6 @@ const mappedProps = {
 
 export default [
   Opinion,
-  LinkedRenderStore.registerRenderer(
-    link(mappedProps, { returnType: 'value' })(VoteSidePage),
-    argu.Vote,
-    RENDER_CLASS_NAME,
-    voteEventSideTopology
-  ),
   LinkedRenderStore.registerRenderer(
     link(mappedProps, { returnType: 'value' })(ThingHoverBoxHidden),
     argu.Vote,

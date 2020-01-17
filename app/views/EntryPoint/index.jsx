@@ -1,8 +1,8 @@
-import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
+import classNames from 'classnames';
 import { linkType, register } from 'link-redux';
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 import { Button } from '../../components';
 import ButtonWithFeedback from '../../components/ButtonWithFeedback';
@@ -12,7 +12,6 @@ import { cardTopology } from '../../topologies/Card';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { cardListTopology } from '../../topologies/Card/CardList';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
-import { cardVoteEventTopology } from '../../topologies/CardVoteEvent';
 import { containerTopology } from '../../topologies/Container';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 import { contentDetailsTopology } from '../../topologies/ContentDetails';
@@ -59,7 +58,7 @@ class EntryPoint extends React.PureComponent {
     image: linkType,
     name: linkType,
     onClick: PropTypes.func,
-    topology: linkType,
+    stretch: PropTypes.bool,
     url: linkType,
     variant: PropTypes.string,
   };
@@ -71,7 +70,7 @@ class EntryPoint extends React.PureComponent {
       image,
       name,
       onClick,
-      topology,
+      stretch,
       url,
       variant,
       ...rest
@@ -80,13 +79,15 @@ class EntryPoint extends React.PureComponent {
     const label = `${name.value} ${countInParentheses(count)}`;
 
     const icon = image && image.value.startsWith(FABase) ? image.value.slice(FABase.length) : 'plus';
+    const classes = classNames({
+      'Button--has-icon': true,
+      'Button--stretched': stretch,
+    });
 
     if (httpMethod && httpMethod.value !== 'get') {
-      const largeButton = rdf.equals(topology, cardVoteEventTopology) ? ' Button--stretched' : '';
-
       return (
         <ButtonWithFeedback
-          className={`Button--has-icon${largeButton}`}
+          className={classes}
           icon={icon}
           theme="transparant"
           variant={variant}

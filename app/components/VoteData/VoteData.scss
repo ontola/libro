@@ -6,6 +6,9 @@ $votebar-parts: (
   'abstain': 'grey',
   'neutral': 'grey',
   'other': 'grey',
+  'votesConCount': 'brown',
+  'votesNeutralCount': 'grey',
+  'votesProCount': 'green',
 );
 
 .VoteData__votebar {

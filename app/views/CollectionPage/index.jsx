@@ -22,7 +22,6 @@ import CollectionPageInline from './CollectionPageInline';
 import Items from './properties/items';
 import Name from './properties/name';
 import Views from './properties/views';
-import voteEvent from './voteEvent';
 import { CollectionViewTypes } from './types';
 
 function getCollectionPage({
@@ -117,5 +116,4 @@ export default [
   ...Items,
   Name,
   ...Views,
-  ...voteEvent,
 ];
