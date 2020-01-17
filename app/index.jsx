@@ -16,7 +16,13 @@ if (document.documentElement.lang) {
   LinkedRenderStore.store.langPrefs.unshift(document.documentElement.lang);
 }
 
+const BOOT_TIMEOUT = 10000;
+let timeout;
 function mount() {
+  if (typeof window !== 'undefined') {
+    window.clearTimeout(timeout);
+  }
+
   render(
     <App
       lrs={LinkedRenderStore}
@@ -33,6 +39,11 @@ new Promise((resolve, reject) => {
       window.INITIAL__DATA,
       { headers: new Headers({ 'Content-Type': 'application/n-quads' }) }
     );
+
+    timeout = window.setTimeout(() => {
+      handle(new Error('Forced mount'));
+      mount();
+    }, BOOT_TIMEOUT);
 
     LinkedRenderStore
       .api
