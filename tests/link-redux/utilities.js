@@ -1,7 +1,6 @@
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { Map } from 'immutable';
-import jest from 'jest';
 import LinkedRenderStore from 'link-lib';
 import { createStore } from 'redux';
 
