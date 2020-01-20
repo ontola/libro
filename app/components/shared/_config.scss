@@ -1,6 +1,8 @@
 @import 'mixins';
 @import 'functions';
 
+// DEPRECATED -- convert to makeStyles, and migrate values to ./config.js
+
 $color-base-grey: rgb(128, 128, 128);
 $color-base-brown: rgb(134, 61, 61);
 $color-base-green: rgb(84, 127, 75);

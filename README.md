@@ -35,9 +35,11 @@ All tests and linters will be run automatically as a pre-commit hook.
 * **tests** - Application wide tests only. Try to put tests in the folder of the respective module.
 * **webpack** - Configuration for your favorite bundler.
 
-### Styling
-Styling is done using SASS and React inline styles. Use [Harry Roberts'](https://en.bem.info/methodology/naming-convention/#alternative-naming-schemes) style naming with Component names as block name. For example `.Block__element--modifier` or `.ProfileCard__stat-value--light`.
-All styling must be done in its respective component. Don't use ClassNames from other components.
+### Styling & theming
+We're migrating our styles to `@material/styles` objects, using the [makeStyles hook](https://material-ui.com/styles/basics/).
+This enables us to use runtime-overwritable custom themes in combination with the Material-ui components.
+If you need to edit styles written in SCSS, convert them to makeStyles objects.
+If you need theme-dependent styles, use the theme object.
 
 ### Testing
 Tests are written using jest+enzyme with additional expect matcher packages and some of our own

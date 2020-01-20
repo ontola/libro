@@ -74,6 +74,7 @@ export const mediaQueries = {
 };
 
 /* eslint-disable no-magic-numbers */
+// Here come the shared styles!
 // These should match /shared/config.scss
 export const colors = {
   blue: {
@@ -83,3 +84,5 @@ export const colors = {
     'x-light': 'rgb(230, 230, 230)',
   },
 };
+
+export const navbarHeight = '3.2rem';

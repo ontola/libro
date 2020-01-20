@@ -2,6 +2,8 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { navbarHeight } from '../shared/config';
+
 const useStyles = makeStyles((theme) => ({
   link: {
     '&:focus': {
@@ -9,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.primary.contrastText,
       fontWeight: 'bold',
       height: 'auto',
-      lineHeight: '3.2rem',
+      lineHeight: navbarHeight,
       padding: '0 10px',
       textAlign: 'center',
       textDecoration: 'none',
@@ -17,6 +19,8 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
     },
     backgroundColor: theme.palette.primary.main,
+    // Most of the next styles are used to make the element
+    // both hidden, yet selectable across a large set of browsers
     clip: 'rect(1px, 1px, 1px, 1px)',
     height: '1px',
     margin: '0',
@@ -32,13 +36,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/**
+ * Enables keyboard-only users to quickly set focus to the main content.
+ * Is hidden for mouse users.
+ */
 const SkipNavigation = () => {
   const classes = useStyles();
 
   return (
-    <div className={`SkipNavigation ${classes.root}`}>
+    <div className={classes.root}>
       <a
-        className={`SkipNavigation__link ${classes.link}`}
+        className={classes.link}
         href="#start-of-content"
       >
         <FormattedMessage
@@ -47,7 +55,7 @@ const SkipNavigation = () => {
         />
       </a>
       <a
-        className={`SkipNavigation__link ${classes.link}`}
+        className={classes.link}
         href="mailto:info@argu.co?subject=Moeite met navigeren"
       >
         <FormattedMessage
