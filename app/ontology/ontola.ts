@@ -51,6 +51,7 @@ export default {
   columns: ontola('columns'),
   coverPhoto: ontola('coverPhoto'),
   createAction: ontola('createAction'),
+  createSubmissionAction: ontola('createSubmissionAction'),
   defaultPagination: ontola('defaultPagination'),
   defaultType: ontola('defaultType'),
   destroyAction: ontola('destroyAction'),

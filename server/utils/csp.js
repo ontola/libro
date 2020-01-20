@@ -14,7 +14,7 @@ const connectSrc = [
 ];
 
 const fontSrc = ["'self'", 'https://maxcdn.bootstrapcdn.com', 'https://fonts.gstatic.com'];
-const frameSrc = ['https://youtube.com', 'https://www.youtube.com'];
+const frameSrc = ['https://youtube.com', 'https://www.youtube.com', 'https://*.typeform.com/'];
 const imgSrc = [
   "'self'",
   'blob:',

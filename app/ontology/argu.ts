@@ -59,6 +59,7 @@ export default {
   discussions: argu('discussions'),
   exampleClass: argu('exampleClass'),
   expiresAt: argu('expiresAt'),
+  externalIRI: argu('externalIRI'),
   faq: argu('faq'),
   features: argu('features'),
   field: argu('field'),

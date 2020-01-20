@@ -56,6 +56,7 @@ import SeqComp from './Seq';
 import Shape from './Shape';
 import Snackbar from './Snackbar';
 import SnackbarManager from './SnackbarManager';
+import Survey from './Survey';
 import Token from './Token';
 import User from './User';
 import VideoPage from './VideoPage';
@@ -120,6 +121,7 @@ export function getViews() {
     ...Shape,
     ...Snackbar,
     ...SnackbarManager,
+    ...Survey,
     ...Token,
     ...User,
     ...VideoPage,
