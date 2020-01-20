@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet-async';
 import { HotKeys } from 'react-hotkeys';
 import { withRouter } from 'react-router';
+import ScrollMemory from 'react-router-scroll-memory';
 
 import { NavBarContent, SkipNavigation } from '../../components';
 import DutchGovernmentHeader from '../../components/Headers/DutchGovernmentHeader';
@@ -87,6 +88,7 @@ class App extends React.PureComponent {
             </Navbar>
             <NetworkStatusIndicator />
             <div id="start-of-content">
+              <ScrollMemory />
               {Routes}
             </div>
             <Resource subject={ontola.ns('snackbar/manager')} />
