@@ -10,7 +10,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import parser from 'uri-template';
 
-import { LoadingCard } from '../Loading';
 import { entityIsLoaded } from '../../helpers/data';
 import ontola from '../../ontology/ontola';
 
@@ -31,9 +30,7 @@ const Collection = ({
   }
 
   if (__CLIENT__ && !entityIsLoaded(lrs, baseCollection)) {
-    lrs.queueEntity(baseCollection);
-
-    return <LoadingCard />;
+    return <Resource subject={baseCollection} />;
   }
 
   const iriTemplate = lrs.getResourceProperty(baseCollection, ontola.iriTemplate);
