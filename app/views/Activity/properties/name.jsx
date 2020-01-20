@@ -67,7 +67,7 @@ ActivityName.mapDataToProps = {
 };
 
 ActivityName.propTypes = {
-  name: RDFTypes.namedNode,
+  name: RDFTypes.literal,
 };
 
 export default register(ActivityName);

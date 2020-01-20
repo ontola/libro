@@ -1534,7 +1534,7 @@
   resolved "https://registry.yarnpkg.com/@ontologies/as/-/as-1.0.3.tgz#607ef4426cce4303b3094033c1b79b480e769115"
   integrity sha512-61+J9mRsB4+A0TjhmCb6vLM8YEkKk8USWkVLjM2FVrarPqe4i4K5rIMFjTF3DDhPHiPnKcXKiPraoe7t/cAmzQ==
 
-"@ontologies/core@>=2.0.0-2", "@ontologies/core@^2.0.0-6":
+"@ontologies/core@>=2.0.0-6", "@ontologies/core@^2.0.0-6":
   version "2.0.0-6"
   resolved "https://registry.yarnpkg.com/@ontologies/core/-/core-2.0.0-6.tgz#31e90922eea315578c270bf5122932ea9798b40f"
   integrity sha512-F9vP76XMM030RqDceIZWCI6DTZ8scfqHKQDiXkw2VZ4jsbKfE74g0goCTOwt74oh/FT09mJMUFvU/eJgsq94XQ==
@@ -10419,12 +10419,12 @@ mz@^2.7.0:
     object-assign "^4.0.1"
     thenify-all "^1.0.0"
 
-n-quads-parser@^2.1.0-1:
-  version "2.1.0-1"
-  resolved "https://registry.yarnpkg.com/n-quads-parser/-/n-quads-parser-2.1.0-1.tgz#a144c8a8eba911aa664cf6a9a9e11af769fc9c7e"
-  integrity sha512-F1F61OpembTyBiWcLL21/4N6Y0LapW28TuqL8VZUNo1kWzAJjjd7bTOikTXTyAUKkJ1u7s2KHA5Ystklc10SBA==
+n-quads-parser@^2.1.0-2:
+  version "2.1.0-2"
+  resolved "https://registry.yarnpkg.com/n-quads-parser/-/n-quads-parser-2.1.0-2.tgz#d9d8b9cd9e05151798efdc11dfc42130f0f5de30"
+  integrity sha512-aU6RNywZ+tRF2c2OOIYkfRRgq72QRyFurEKARC3xCtJhkSdEkPA/iK0NSieDOC62KrYqWzjaDhZHNIt7l0sriw==
   dependencies:
-    "@ontologies/core" ">=2.0.0-2"
+    "@ontologies/core" ">=2.0.0-6"
 
 nan@^2.12.1, nan@^2.13.2, nan@^2.14.0:
   version "2.14.0"
