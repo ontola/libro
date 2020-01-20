@@ -12,7 +12,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { ResourceBoundary } from '../../components';
-import { NS } from '../../helpers/LinkedRenderStore';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { selectTopology } from '../../topologies/Select';
@@ -60,7 +59,6 @@ const PersonSelect = ({
 
 PersonSelect.type = [
   schema.Person,
-  NS.aod('Persons'),
   argu.Page,
 ];
 

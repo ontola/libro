@@ -24,7 +24,7 @@ PersonImageProp.propTypes = propTypes;
 export default [
   LinkedRenderStore.registerRenderer(
     PersonImageProp,
-    [schema.Person, NS.aod('Persons')],
+    [schema.Person],
     [schema.image, NS.dbo('thumbnail'), NS.wdt('P18')],
     [detailsBarTopology, voteBubbleTopology]
   ),
@@ -32,7 +32,7 @@ export default [
     ({ linkedProp }) => (
       <Resource subject={linkedProp} />
     ),
-    [schema.Person, NS.aod('Persons')],
+    [schema.Person],
     [schema.image, NS.dbo('thumbnail'), NS.wdt('P18')],
     navbarTopology
   ),

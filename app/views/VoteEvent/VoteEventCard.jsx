@@ -2,7 +2,6 @@ import { Property, register } from 'link-redux';
 import React from 'react';
 
 import VoteData from '../../components/VoteData';
-import { NS } from '../../helpers/LinkedRenderStore';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import ActionsBar from '../../topologies/ActionsBar';
@@ -22,7 +21,7 @@ const VoteEventCard = () => (
   </div>
 );
 
-VoteEventCard.type = [argu.VoteEvent, NS.aod('VoteEvent')];
+VoteEventCard.type = [argu.VoteEvent];
 
 VoteEventCard.topology = [
   cardMainTopology,

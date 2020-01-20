@@ -2,7 +2,6 @@ import { Property, register } from 'link-redux';
 import React from 'react';
 
 import VoteData from '../../components/VoteData';
-import { NS } from '../../helpers/LinkedRenderStore';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
@@ -25,7 +24,7 @@ const VoteEventContainer = () => (
   </React.Fragment>
 );
 
-VoteEventContainer.type = [argu.VoteEvent, NS.aod('VoteEvent')];
+VoteEventContainer.type = [argu.VoteEvent];
 
 VoteEventContainer.topology = [
   cardAppendixTopology,

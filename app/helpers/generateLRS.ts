@@ -69,8 +69,6 @@ export default function generateLRS() {
     },
 
     /** @deprecated */
-    aod: createNS('https://argu.co/ns/od#'),
-    /** @deprecated */
     appSlashless: createNS(frontendIRIStr.slice(0, frontendIRIStr.endsWith('/') ? -1 : undefined)),
     /** @deprecated */
     fa4: createNS('http://fontawesome.io/icon/'),

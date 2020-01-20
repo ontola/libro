@@ -5,7 +5,6 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
 import { tryParseInt } from '../../../helpers/numbers';
 import argu from '../../../ontology/argu';
 import { allTopologies } from '../../../topologies';
@@ -49,7 +48,7 @@ const VotePercentage = ({
   );
 };
 
-VotePercentage.type = [argu.VoteEvent, NS.aod('VoteEvent')];
+VotePercentage.type = [argu.VoteEvent];
 
 VotePercentage.topology = allTopologies;
 
