@@ -19,6 +19,7 @@ import FieldLabel from '../FieldLabel';
 import formFieldWrapper from '../FormFieldWrapper';
 import FileInput from '../Input/FileInput';
 import { Input } from '../Input';
+import Markdown from '../Markdown';
 import { SelectInputWrapper } from '../SelectInput';
 import CheckboxesInput from '../CheckboxesInput';
 
@@ -188,7 +189,7 @@ class FormField extends React.PureComponent {
 
   description() {
     return this.props.description && (
-      <div className="Field__description">{this.props.description}</div>
+      <div className="Field__description"><Markdown text={this.props.description} /></div>
     );
   }
 
