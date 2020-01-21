@@ -1,4 +1,5 @@
 import as from '@ontologies/as';
+import schema from '@ontologies/schema';
 import IconButton from '@material-ui/core/IconButton';
 import {
   Property,
@@ -7,6 +8,7 @@ import {
   lrsType,
   subjectType,
   topologyType,
+  useDataInvalidation,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -17,7 +19,7 @@ import {
   ResourceBoundary,
 } from '../../../components';
 import ContainerHeader from '../../../components/Container/ContainerHeader';
-import { sort } from '../../../helpers/data';
+import { entityIsLoaded, sort } from '../../../helpers/data';
 import { buildRegister } from '../../../helpers/buildRegister';
 import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
@@ -31,12 +33,30 @@ const ORDER = [
   '/participants/new',
 ];
 
+const actionIsValid = (lrs, action) => {
+  const status = lrs.getResourceProperty(action, schema.actionStatus);
+
+  return status === schema.PotentialActionStatus;
+};
+
 const CreateActionButton = ({
   lrs,
   omniform,
   subject,
 }) => {
   const createActions = lrs.getResourceProperties(subject, ontola.createAction);
+  useDataInvalidation({
+    dataSubjects: createActions,
+    subject,
+  });
+  if (__CLIENT__) {
+    createActions.forEach((action) => {
+      if (!entityIsLoaded(lrs, action)) {
+        lrs.queueEntity(action);
+      }
+    });
+  }
+
   const trigger = (onClick) => (
     <IconButton
       centerRipple
@@ -49,6 +69,16 @@ const CreateActionButton = ({
   );
 
   if (createActions.length > 1) {
+    const freshAction = createActions.find((action) => !entityIsLoaded(lrs, action));
+    if (freshAction) {
+      return <Resource subject={freshAction} />;
+    }
+
+    const validAction = createActions.find((action) => actionIsValid(lrs, action));
+    if (!validAction) {
+      return null;
+    }
+
     return (
       <Menu
         lazy
