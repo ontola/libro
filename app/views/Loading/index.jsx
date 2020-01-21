@@ -50,6 +50,7 @@ import {
   LoadingCardRowAppendix,
   LoadingWidgetCard,
 } from '../../components/Loading/index';
+import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 
 export default [
   LinkedRenderStore.registerRenderer(
@@ -114,8 +115,9 @@ export default [
       cardTopology,
       cardFixedTopology,
       cardMainTopology,
-      menuTopology,
       hoverBoxTopology,
+      menuTopology,
+      omniformFieldsTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(
