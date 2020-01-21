@@ -48,14 +48,6 @@ const CollapsedOmniformProp = (props) => {
     potentialAction,
   } = props;
 
-  if (__CLIENT__) {
-    potentialAction.forEach((action) => {
-      if (!entityIsLoaded(lrs, action)) {
-        lrs.queueEntity(action);
-      }
-    });
-  }
-
   const toggle = () => {
     if (opened) {
       closeForm();
@@ -91,6 +83,16 @@ const CollapsedOmniformProp = (props) => {
         />
       </CardRow>
     );
+  } else if (!clickToOpen) {
+    return null;
+  }
+
+  if (__CLIENT__) {
+    potentialAction.forEach((action) => {
+      if (!entityIsLoaded(lrs, action)) {
+        lrs.queueEntity(action);
+      }
+    });
   }
 
   const items = filterActions(lrs, potentialAction);
