@@ -9,22 +9,31 @@ import React from 'react';
 import ontola from '../../../ontology/ontola';
 import { containerTopology } from '../../../topologies/Container';
 
-class PublishAction extends React.PureComponent {
-  static type = schema.Thing;
-
-  static property = ontola.publishAction;
-
-  static topology = containerTopology;
-
-  static propTypes = {
-    linkedProp: linkedPropType,
-  };
-
-  render() {
-    const { linkedProp } = this.props;
-
-    return <Resource subject={linkedProp} />;
+const PublishAction = ({
+  datePublished,
+  linkedProp,
+}) => {
+  if (datePublished) {
+    return null;
   }
-}
+
+  return <Resource subject={linkedProp} />;
+};
+
+PublishAction.type = schema.Thing;
+
+PublishAction.property = ontola.publishAction;
+
+PublishAction.topology = containerTopology;
+
+PublishAction.mapDataToProps = {
+  datePublished: schema.datePublished,
+  linkedProp: ontola.publishAction,
+};
+
+PublishAction.propTypes = {
+  datePublished: linkedPropType,
+  linkedProp: linkedPropType,
+};
 
 export default register(PublishAction);
