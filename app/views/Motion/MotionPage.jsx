@@ -22,6 +22,7 @@ import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
 import { pageTopology } from '../../topologies/Page';
 import PrimaryResource from '../../topologies/PrimaryResource';
+import { defaultMenus } from '../common';
 
 class MotionPage extends React.PureComponent {
   static type = [argu.Motion, opengov.Motion];
@@ -36,15 +37,7 @@ class MotionPage extends React.PureComponent {
           <Property label={schema.isPartOf} />
           <Property label={argu.trashedAt} />
           <CardMain data-test="Thing-thing">
-            <DetailsBar
-              right={(
-                <React.Fragment>
-                  <Property label={ontola.followMenu} />
-                  <Property label={ontola.shareMenu} />
-                  <Property label={ontola.actionsMenu} />
-                </React.Fragment>
-              )}
-            >
+            <DetailsBar right={defaultMenus}>
               <Property label={schema.creator} />
               <Property label={rdfx.type} />
               <LinkedDetailDate />

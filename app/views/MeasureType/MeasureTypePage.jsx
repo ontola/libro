@@ -25,6 +25,7 @@ import DetailsBar from '../../topologies/DetailsBar';
 import { pageTopology } from '../../topologies/Page';
 import PrimaryResource from '../../topologies/PrimaryResource';
 import { inlineTopology } from '../../topologies/Inline';
+import { defaultMenus } from '../common';
 
 const MeasureTypePage = () => (
   <PrimaryResource>
@@ -33,15 +34,7 @@ const MeasureTypePage = () => (
       <Property label={schema.isPartOf} />
       <Property label={argu.trashedAt} />
       <CardMain>
-        <DetailsBar
-          right={(
-            <React.Fragment>
-              <Property label={ontola.followMenu} />
-              <Property label={ontola.shareMenu} />
-              <Property label={ontola.actionsMenu} />
-            </React.Fragment>
-          )}
-        >
+        <DetailsBar right={defaultMenus}>
           <Property label={rdfx.type} />
           <LinkedDetailDate />
           <Property label={argu.pinnedAt} />

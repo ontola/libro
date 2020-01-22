@@ -6,49 +6,43 @@ import { withRouter } from 'react-router-dom';
 
 import { LoadingCard, SuspendedLoader } from '../../components/Loading';
 import argu from '../../ontology/argu';
-import ontola from '../../ontology/ontola';
 import Card from '../../topologies/Card';
 import DetailsBar from '../../topologies/DetailsBar';
+import { defaultMenus } from '../common';
 
 import ActivityName from './properties/name';
 
 import './Activity.scss';
 
-class Activity extends React.PureComponent {
-  static type = as.Activity;
+const Activity = () => (
+  <React.Suspense fallback={<LoadingCard />}>
+    <Card>
+      <DetailsBar
+        className="ActivityDetail"
+        right={(
+          <React.Fragment>
+            <Property label={schema.dateCreated} />
+            <Property label={as.object} onLoad={SuspendedLoader}>
+              {defaultMenus}
+            </Property>
+          </React.Fragment>
+        )}
+      >
+        <Property label={schema.name} />
+      </DetailsBar>
+      <Property label={as.object} />
+    </Card>
+  </React.Suspense>
+);
 
-  static topology = [
-    undefined,
-    argu.container,
-  ];
+Activity.type = as.Activity;
 
-  static hocs = [withRouter];
+Activity.topology = [
+  undefined,
+  argu.container,
+];
 
-  render() {
-    return (
-      <React.Suspense fallback={<LoadingCard />}>
-        <Card>
-          <DetailsBar
-            className="ActivityDetail"
-            right={(
-              <React.Fragment>
-                <Property label={schema.dateCreated} />
-                <Property label={as.object} onLoad={SuspendedLoader}>
-                  <Property label={ontola.followMenu} />
-                  <Property label={ontola.shareMenu} />
-                  <Property label={ontola.actionsMenu} />
-                </Property>
-              </React.Fragment>
-            )}
-          >
-            <Property label={schema.name} />
-          </DetailsBar>
-          <Property label={as.object} />
-        </Card>
-      </React.Suspense>
-    );
-  }
-}
+Activity.hocs = [withRouter];
 
 export default [
   register(Activity),

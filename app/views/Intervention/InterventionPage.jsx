@@ -31,6 +31,7 @@ import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
 import { pageTopology } from '../../topologies/Page';
 import PrimaryResource from '../../topologies/PrimaryResource';
+import { defaultMenus } from '../common';
 
 const InterventionPage = ({
   employment,
@@ -45,15 +46,7 @@ const InterventionPage = ({
         <Property label={schema.isPartOf} />
         <Property label={argu.trashedAt} />
         <CardMain>
-          <DetailsBar
-            right={(
-              <React.Fragment>
-                <Property label={ontola.followMenu} />
-                <Property label={ontola.shareMenu} />
-                <Property label={ontola.actionsMenu} />
-              </React.Fragment>
-            )}
-          >
+          <DetailsBar right={defaultMenus}>
             <Property label={rdfx.type} />
             <LinkedDetailDate />
             <Property label={argu.pinnedAt} />

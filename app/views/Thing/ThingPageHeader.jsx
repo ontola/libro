@@ -9,7 +9,6 @@ import React from 'react';
 import CardContent from '../../components/Card/CardContent';
 import HeaderWithMenu from '../../components/HeaderWithMenu';
 import argu from '../../ontology/argu';
-import ontola from '../../ontology/ontola';
 import { CardMain } from '../../topologies/Card';
 import ContentDetails from '../../topologies/ContentDetails';
 import {
@@ -17,45 +16,34 @@ import {
   PageHeaderText,
   pageHeaderTopology,
 } from '../../topologies/PageHeader';
+import { defaultMenus } from '../common';
 
-class ThingPageHeader extends React.PureComponent {
-  static type = schema.Thing;
+const ThingPageHeader = ({ subject }) => (
+  <div about={subject?.value} className="ThingPageHeader">
+    <CardMain>
+      <CardContent>
+        <PageHeaderImageAndTextWrapper>
+          <PageHeaderText>
+            <HeaderWithMenu menu={defaultMenus}>
+              <Property label={schema.name} />
+            </HeaderWithMenu>
+            <ContentDetails>
+              <Property label={argu.grantedGroups} />
+            </ContentDetails>
+            <Property label={schema.description} />
+          </PageHeaderText>
+        </PageHeaderImageAndTextWrapper>
+      </CardContent>
+    </CardMain>
+  </div>
+);
 
-  static topology = pageHeaderTopology;
+ThingPageHeader.type = schema.Thing;
 
-  static propTypes = {
-    subject: subjectType,
-  };
+ThingPageHeader.topology = pageHeaderTopology;
 
-  render() {
-    return (
-      <div about={this.props.subject?.value} className="ThingPageHeader">
-        <CardMain>
-          <CardContent>
-            <PageHeaderImageAndTextWrapper>
-              <PageHeaderText>
-                <HeaderWithMenu
-                  menu={(
-                    <React.Fragment>
-                      <Property label={ontola.followMenu} />
-                      <Property label={ontola.shareMenu} />
-                      <Property label={ontola.actionsMenu} />
-                    </React.Fragment>
-                  )}
-                >
-                  <Property label={schema.name} />
-                </HeaderWithMenu>
-                <ContentDetails>
-                  <Property label={argu.grantedGroups} />
-                </ContentDetails>
-                <Property label={schema.description} />
-              </PageHeaderText>
-            </PageHeaderImageAndTextWrapper>
-          </CardContent>
-        </CardMain>
-      </div>
-    );
-  }
-}
+ThingPageHeader.propTypes = {
+  subject: subjectType,
+};
 
 export default register(ThingPageHeader);

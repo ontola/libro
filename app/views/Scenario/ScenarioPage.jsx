@@ -21,6 +21,7 @@ import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
 import { pageTopology } from '../../topologies/Page';
 import PrimaryResource from '../../topologies/PrimaryResource';
+import { defaultMenus } from '../common';
 
 const ScenarioPage = () => (
   <PrimaryResource>
@@ -30,15 +31,7 @@ const ScenarioPage = () => (
       <Property label={argu.trashedAt} />
       <CardMain data-test="Thing-thing">
         <Property label={schema.superEvent} />
-        <DetailsBar
-          right={(
-            <React.Fragment>
-              <Property label={ontola.followMenu} />
-              <Property label={ontola.shareMenu} />
-              <Property label={ontola.actionsMenu} />
-            </React.Fragment>
-          )}
-        >
+        <DetailsBar right={defaultMenus}>
           <Property label={rdfx.type} />
           <Property label={argu.grantedGroups} />
         </DetailsBar>
