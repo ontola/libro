@@ -1,4 +1,3 @@
-/* eslint no-console: 0 */
 import as from '@ontologies/as';
 import rdf, { Quad } from '@ontologies/core';
 import foaf from '@ontologies/foaf';
@@ -13,6 +12,7 @@ import { appMiddleware, website } from '../middleware/app';
 import execFilter from '../middleware/execFilter';
 import logging from '../middleware/logging';
 import ontolaMiddleware from '../middleware/ontolaMiddleware';
+import { appOntology } from '../ontology/app';
 import argu from '../ontology/argu';
 import link from '../ontology/link';
 import meeting from '../ontology/meeting';
@@ -45,8 +45,7 @@ export default function generateLRS() {
   LRS.deltaProcessors.unshift(arguDeltaProcessor(LRS));
 
   transformers(LRS).forEach((t) =>
-// @ts-ignore TS2341
-          LRS.api.registerTransformer(t.transformer, t.mediaTypes, t.acceptValue),
+    LRS.api.registerTransformer(t.transformer, t.mediaTypes, t.acceptValue),
   );
 
   if (!website) {
@@ -231,6 +230,12 @@ export default function generateLRS() {
 
   LRS.addOntologySchematics(ontologicalPropertyData);
   LRS.store.addQuads(ontologicalPropertyData);
+
+  const ontologyData = [
+    ...appOntology,
+  ];
+
+  LRS.store.addQuads(ontologyData);
 
   return {
     LRS,

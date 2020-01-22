@@ -1,87 +1,78 @@
 import foaf from '@ontologies/foaf';
 import rdfx from '@ontologies/rdf';
-import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
-import { Property, register } from 'link-redux';
-import React from 'react';
+import { register } from 'link-redux';
 
+import { component } from '../../components';
 import {
-  CardContent,
-  LinkedDetailDate,
-} from '../../components';
-import { NS } from '../../helpers/LinkedRenderStore';
+  forceRender,
+  useViewBuilderToolkit,
+  withoutLoading,
+} from '../../helpers/builder';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
-import ActionsBar from '../../topologies/ActionsBar';
-import CardAppendix from '../../topologies/Card/CardAppendix';
-import CardMain from '../../topologies/Card/CardMain';
-import CardRow from '../../topologies/Card/CardRow';
-import Container from '../../topologies/Container';
-import DetailsBar from '../../topologies/DetailsBar';
+import { actionsBarTopology } from '../../topologies/ActionsBar';
+import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
+import { cardMainTopology } from '../../topologies/Card/CardMain';
+import { cardRowTopology } from '../../topologies/Card/CardRow';
+import { containerTopology } from '../../topologies/Container';
+import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { pageTopology } from '../../topologies/Page';
-import PrimaryResource from '../../topologies/PrimaryResource';
+import { primaryResourceTopology } from '../../topologies/PrimaryResource';
+import { defaultMenus } from '../common';
 
-const ThingPage = () => (
-  <PrimaryResource>
-    <Property label={ontola.coverPhoto} onLoad={() => null} />
-    <Container>
-      <Property label={schema.isPartOf} />
-      <Property label={argu.trashedAt} />
-      <CardMain data-test="Thing-thing">
-        <Property label={schema.superEvent} />
-        <DetailsBar
-          right={(
-            <React.Fragment>
-              <Property label={ontola.followMenu} />
-              <Property label={ontola.shareMenu} />
-              <Property label={ontola.actionsMenu} />
-            </React.Fragment>
-          )}
-        >
-          <Property label={schema.creator} />
-          <Property label={rdfx.type} />
-          <LinkedDetailDate />
-          <Property label={argu.pinnedAt} />
-          <Property label={argu.expiresAt} />
-          <Property label={argu.followsCount} />
-          <Property label={argu.motionsCount} />
-          <Property label={schema.location} />
-          <Property label={argu.grantedGroups} />
-        </DetailsBar>
-        <CardContent noSpacing>
-          <Property label={[schema.name, rdfs.label, foaf.name]} />
-          <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
-          <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
-          <Property label={foaf.isPrimaryTopicOf} onLoad={() => null} />
-        </CardContent>
-        <CardRow noBorder>
-          <Property label={argu.attachments} onLoad={() => null} />
-          <Property label={meeting.attachment} onLoad={() => null} />
-        </CardRow>
-        <ActionsBar>
-          <Property label={ontola.favoriteAction} onLoad={() => null} />
-        </ActionsBar>
-        <Property label={meeting.agenda} onLoad={() => null} />
-        <CardAppendix>
-          <Property forceRender label={app.omniform} />
-        </CardAppendix>
-      </CardMain>
-      <Property label={ontola.publishAction} onLoad={() => null} />
-      <Property label={argu.voteEvents} onLoad={() => null} />
-      <Property label={argu.blogPosts} onLoad={() => null} />
-      <Property label={schema.location} onLoad={() => null} />
-      <Property label={argu.motions} onLoad={() => null} />
-    </Container>
-    <Container size="large">
-      <Property forceRender label={argu.arguments} />
-    </Container>
-    <Container>
-      <Property label={schema.comment} />
-    </Container>
-  </PrimaryResource>
-);
+const ThingPage = () => {
+  const { p, c } = useViewBuilderToolkit();
+
+  return (
+    c(primaryResourceTopology,
+      p(withoutLoading(ontola.coverPhoto)),
+      c(containerTopology,
+        p(schema.isPartOf),
+        p(argu.trashedAt),
+        c(cardMainTopology,
+          { 'data-test': 'Thing-thing' },
+          p(schema.superEvent),
+          c(detailsBarTopology,
+            { right: defaultMenus },
+            p(schema.creator),
+            p(rdfx.type),
+            c(component('LinkedDetailDate')),
+            p(argu.pinnedAt),
+            p(argu.expiresAt),
+            p(argu.followsCount),
+            p(argu.motionsCount),
+            p(schema.location),
+            p(argu.grantedGroups)),
+          c(component('Card/CardContent'),
+            { noSpacing: true },
+            p(app.title),
+            p(app.thumbnail),
+            p(app.contents),
+            p(withoutLoading(foaf.isPrimaryTopicOf))),
+          c(cardRowTopology,
+            { noBorder: true },
+            p(withoutLoading(argu.attachments)),
+            p(withoutLoading(meeting.attachments))),
+          c(actionsBarTopology,
+            p(withoutLoading(ontola.favoriteAction))),
+          p(withoutLoading(meeting.agenda)),
+          c(cardAppendixTopology,
+            p(forceRender(app.omniform)))),
+        p(withoutLoading(ontola.publishAction)),
+        p(withoutLoading(argu.voteEvents)),
+        p(withoutLoading(argu.blogPosts)),
+        p(withoutLoading(schema.location)),
+        p(withoutLoading(argu.motions))),
+      c(containerTopology,
+        { size: 'large' },
+        p(forceRender(argu.arguments))),
+      c(containerTopology,
+        p(schema.comment)))
+  );
+};
 
 ThingPage.type = schema.Thing;
 

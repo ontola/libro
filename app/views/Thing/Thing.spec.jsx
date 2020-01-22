@@ -8,6 +8,7 @@ import React from 'react';
 import {
   cleanup,
   render,
+  waitForElementToBeRemoved,
 } from '../../test-utils';
 import BreadcrumbsBar from '../../components/Breadcrumbs/BreadcrumbsBar';
 import Card from '../../topologies/Card';
@@ -47,10 +48,12 @@ describe('Thing', () => {
     { resources }
   );
 
-  it('renders as Page', () => {
+  it('renders as Page', async () => {
     const {
       queryByText,
+      queryAllByTestId,
     } = renderAs(Page);
+    await waitForElementToBeRemoved(() => queryAllByTestId('spinner'));
 
     expect(queryByText(RESOURCE_NAME)).toBeVisible();
     expect(queryByText(RESOURCE_TEXT)).toBeVisible();
