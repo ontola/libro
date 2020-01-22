@@ -11,7 +11,7 @@ import React from 'react';
 import { Attachment } from '../../components';
 import AttachmentPreview from '../../components/AttachmentPreview';
 import { imageRepresentationUrl } from '../../helpers/attachments';
-import { NS } from '../../helpers/LinkedRenderStore';
+import dbo from '../../ontology/dbo';
 import { cardTopology } from '../../topologies/Card';
 import { cardListTopology } from '../../topologies/Card/CardList';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
@@ -48,7 +48,7 @@ MediaObjectPreview.mapDataToProps = {
       schema.fileFormat,
     ],
   },
-  filename: NS.dbo('filename'),
+  filename: dbo.filename,
   isPartOf: schema.isPartOf,
 };
 

@@ -4,7 +4,7 @@ import schema from '@ontologies/schema';
 import { linkType } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import qb from '../../../ontology/qb';
 import TableHeaderCell from '../../../topologies/TableHeaderCell';
 import { tableRowTopology } from '../../../topologies/TableRow';
 
@@ -14,7 +14,7 @@ const MeasurePropertyTableRow = ({ name, text }) => (
   </TableHeaderCell>
 );
 
-MeasurePropertyTableRow.type = NS.qb('MeasureProperty');
+MeasurePropertyTableRow.type = qb.MeasureProperty;
 
 MeasurePropertyTableRow.topology = tableRowTopology;
 

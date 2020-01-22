@@ -12,7 +12,8 @@ import FontAwesome from 'react-fontawesome';
 import { NOT_ACCEPTABLE } from 'http-status-codes';
 
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../../helpers/iris';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import dbo from '../../../ontology/dbo';
+import wdt from '../../../ontology/wdt';
 import { allTopologies } from '../../../topologies';
 import Image from '../../../components/Image';
 
@@ -59,6 +60,6 @@ ThingImageProp.propTypes = propTypes;
 export default LinkedRenderStore.registerRenderer(
   ThingImageProp,
   schema.Thing,
-  [schema.image, NS.dbo('thumbnail'), NS.wdt('P18')],
+  [schema.image, dbo.thumbnail, wdt.ns('P18')],
   allTopologies
 );

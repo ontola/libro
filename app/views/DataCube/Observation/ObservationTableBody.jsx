@@ -5,7 +5,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import qb from '../../../ontology/qb';
 import { tableBodyTopology } from '../../../topologies/TableBody';
 import TableCell from '../../../topologies/TableCell';
 import TableRow from '../../../topologies/TableRow';
@@ -31,7 +31,7 @@ const ObservationTableBody = ({
   </TableRow>
 );
 
-ObservationTableBody.type = NS.qb('Observation');
+ObservationTableBody.type = qb.observation;
 
 ObservationTableBody.topology = tableBodyTopology;
 

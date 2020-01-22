@@ -8,7 +8,7 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import link from '../../../ontology/link';
 import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 
@@ -22,7 +22,7 @@ const CreateAction = ({
 
 CreateAction.type = [
   schema.Thing,
-  NS.link('Document'),
+  link.Document,
 ];
 
 CreateAction.property = ontola.createAction;

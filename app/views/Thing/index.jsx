@@ -16,8 +16,8 @@ import {
   connectHighlighting,
   hightlightPropTypes,
 } from '../../containers/Highlight';
-import { NS } from '../../helpers/LinkedRenderStore';
 import argu from '../../ontology/argu';
+import dbo from '../../ontology/dbo';
 import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
 import { cardTopology } from '../../topologies/Card';
@@ -84,7 +84,7 @@ const ThingGrid = () => (
       <Property label={ontola.coverPhoto} />
       <CardContent noSpacing>
         <Property label={[schema.name, rdfs.label, foaf.name]} />
-        <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
+        <Property label={[schema.text, schema.description, dbo.abstract]} />
       </CardContent>
     </LDLink>
     <DetailsBar>
@@ -117,7 +117,7 @@ const ThingCard = () => (
     <CardContent>
       <Property label={argu.opinion} onError={() => null} onLoad={LoadingOpinion} />
       <Property label={[schema.name, rdfs.label, foaf.name]} />
-      <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
+      <Property label={[schema.text, schema.description, dbo.abstract]} />
       <Property label={meeting.attachment} />
     </CardContent>
   </CardRow>

@@ -5,7 +5,7 @@ import { Resource } from 'link-redux';
 import dcterms from '@ontologies/dcterms';
 import React from 'react';
 
-import { NS } from '../../../tests';
+import dbo from '../../ontology/dbo';
 import {
   cleanup,
   render,
@@ -26,7 +26,7 @@ describe('MediaObject', () => {
     '@id': resource.value,
     [rdfx.type]: schema.MediaObject,
     [schema.encodingFormat]: rdf.literal('image/png'),
-    [NS.dbo('filename')]: rdf.literal(FILE_NAME),
+    [dbo.filename]: rdf.literal(FILE_NAME),
     [schema.contentUrl]: rdf.namedNode(CONTENT_URL),
     [schema.dateCreated]: rdf.literal(Date.now()),
     [schema.isPartOf]: {

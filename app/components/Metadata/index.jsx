@@ -12,9 +12,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
+import dbo from '../../ontology/dbo';
 import ontola from '../../ontology/ontola';
 import { getMetaContent } from '../../helpers/arguHelpers';
-import { NS } from '../../helpers/LinkedRenderStore';
 
 const Metadata = ({
   coverPhoto,
@@ -53,7 +53,7 @@ export default link(
     coverPhoto: ontola.coverPhoto,
     identifier: dcterms.identifier,
     name: [schema.name, rdfs.label],
-    text: [NS.dbo('abstract'), schema.description, schema.text],
+    text: [dbo.abstract, schema.description, schema.text],
   },
   { returnType: 'value' }
 )(Metadata);

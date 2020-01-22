@@ -3,6 +3,7 @@ import schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
+import dbo from '../../ontology/dbo';
 import CardFixed from '../../topologies/Card/CardFixed';
 import {
   AttributeListItem,
@@ -10,7 +11,6 @@ import {
   LDLink,
   LinkedDetailDate,
 } from '../../components';
-import { NS } from '../../helpers/LinkedRenderStore';
 import rivm from '../../ontology/rivm';
 import DetailsBar from '../../topologies/DetailsBar';
 import AttributeList from '../../topologies/AttributeList';
@@ -21,7 +21,7 @@ const InterventionTypeGrid = () => (
     <LDLink>
       <CardContent noSpacing>
         <Property label={[schema.name, rdfs.label]} />
-        <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
+        <Property label={[schema.text, schema.description, dbo.abstract]} />
         <AttributeList>
           <tr><th>Praktische ervaring</th><th>Aandrager</th></tr>
           <AttributeListItem label={rivm.securityImprovedScore} />

@@ -6,7 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import dbo from '../../ontology/dbo';
 import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 
 class CreativeWorkWidget extends React.PureComponent {
@@ -18,7 +18,7 @@ class CreativeWorkWidget extends React.PureComponent {
     return (
       <React.Fragment>
         <Property label={[schema.name, rdfs.label]} />
-        <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
+        <Property label={[schema.text, schema.description, dbo.abstract]} />
       </React.Fragment>
     );
   }

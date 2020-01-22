@@ -5,8 +5,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
 import ontola from '../../ontology/ontola';
+import org from '../../ontology/org';
 import teamGL from '../../ontology/teamGL';
 import { containerTopology } from '../../topologies/Container';
 import ContentDetails from '../../topologies/ContentDetails';
@@ -20,11 +20,11 @@ const GroupMembershipContainer = () => (
       <HeaderWithMenu
         menu={<Property label={ontola.actionsMenu} />}
       >
-        <Property label={NS.org('member')}>
+        <Property label={org.member}>
           <Property label={schema.name} />
         </Property>
       </HeaderWithMenu>
-      <Property label={NS.org('member')}>
+      <Property label={org.member}>
         <ContentDetails>
           <Property label={teamGL.department} />
           <Property label={teamGL.engagement} />
@@ -39,7 +39,7 @@ const GroupMembershipContainer = () => (
   </Card>
 );
 
-GroupMembershipContainer.type = NS.org('Membership');
+GroupMembershipContainer.type = org.Membership;
 
 GroupMembershipContainer.topology = containerTopology;
 

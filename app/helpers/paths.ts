@@ -5,12 +5,10 @@ import { NamespaceMap } from 'link-lib';
 import { frontendPathname } from '../middleware/app';
 import app from '../ontology/app';
 
-import { NS } from './LinkedRenderStore';
-
 export function currentLocation(location: Location,
                                 fragment = true,
                                 basePath = frontendPathname,
-                                ns: NamespaceMap = NS): NamedNode {
+                                ns: NamespaceMap = { appSlashless: app.nsSlashless }): NamedNode {
   const path = (basePath !== '/' && location.pathname.startsWith(basePath))
       ? location.pathname.slice(basePath.length)
       : location.pathname;

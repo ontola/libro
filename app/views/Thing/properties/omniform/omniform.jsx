@@ -11,9 +11,9 @@ import { FormattedMessage } from 'react-intl';
 
 import Heading from '../../../../components/Heading';
 import isPastDate from '../../../../helpers/date';
-import { NS } from '../../../../helpers/LinkedRenderStore';
 import app from '../../../../ontology/app';
 import argu from '../../../../ontology/argu';
+import link from '../../../../ontology/link';
 import { allTopologiesExcept } from '../../../../topologies';
 import Card, { cardTopology } from '../../../../topologies/Card';
 import { cardAppendixTopology } from '../../../../topologies/Card/CardAppendix';
@@ -23,7 +23,7 @@ import { actionsAreAllDisabled, filterActions } from './helpers';
 import OmniformConnector from './OmniformConnector';
 
 class OmniformProp extends React.PureComponent {
-  static type = [schema.Thing, NS.link('Document')];
+  static type = [schema.Thing, link.Document];
 
   static property = app.omniform;
 

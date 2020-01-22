@@ -14,8 +14,8 @@ import { FormSectionContext } from '../../components/Form/FormSection';
 import OmniformRemoveButton from '../../components/Omniform/OmniformRemoveButton';
 import MapView from '../../containers/MapView';
 import { calculateFormFieldName, isMarkedForRemove } from '../../helpers/forms';
-import { NS } from '../../helpers/LinkedRenderStore';
 import argu from '../../ontology/argu';
+import fa4 from '../../ontology/fa4';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 
 import './PlacementOmniformFields.scss';
@@ -44,7 +44,7 @@ const PlacementOmniformFields = ({
     if (lat && lon) {
       placements.push({
         id: targetValue['@id'],
-        image: NS.fa4('map-marker'),
+        image: fa4.ns('map-marker'),
         lat,
         lon,
       });

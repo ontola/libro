@@ -10,8 +10,8 @@ import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
 import Collection from '../../components/Collection';
-import { NS } from '../../helpers/LinkedRenderStore';
 import argu from '../../ontology/argu';
+import dbo from '../../ontology/dbo';
 import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
 import rivm from '../../ontology/rivm';
@@ -27,7 +27,7 @@ const RiskContainer = ({ subject }) => (
     <Property label={ontola.coverPhoto} />
     <CardContent noSpacing>
       <Property label={[schema.name, rdfs.label, foaf.name]} />
-      <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
+      <Property label={[schema.text, schema.description, dbo.abstract]} />
       <Collection display="table" label={rivm.incidents} />
     </CardContent>
     <CardRow noBorder>

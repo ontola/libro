@@ -4,14 +4,14 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import org from '../../ontology/org';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
 
 const GroupMembershipCardRow = () => (
-  <Property label={NS.org('organization')} />
+  <Property label={org.organization} />
 );
 
-GroupMembershipCardRow.type = NS.org('Membership');
+GroupMembershipCardRow.type = org.Membership;
 
 GroupMembershipCardRow.topology = cardRowTopology;
 

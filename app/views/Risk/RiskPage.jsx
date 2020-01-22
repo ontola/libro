@@ -12,12 +12,13 @@ import {
   CardContent,
   LinkedDetailDate,
 } from '../../components';
-import { NS } from '../../helpers/LinkedRenderStore';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
+import dbo from '../../ontology/dbo';
 import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
 import rivm from '../../ontology/rivm';
+import wdt from '../../ontology/wdt';
 import ActionsBar from '../../topologies/ActionsBar';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import CardMain from '../../topologies/Card/CardMain';
@@ -54,8 +55,8 @@ const RiskPage = () => (
         </DetailsBar>
         <CardContent noSpacing>
           <Property label={[schema.name, rdfs.label]} />
-          <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
-          <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
+          <Property label={[dbo.thumbnail, wdt.ns('P18')]} />
+          <Property label={[schema.text, schema.description, dbo.abstract]} />
           <Property label={foaf.isPrimaryTopicOf} onLoad={() => null} />
         </CardContent>
         <CardRow noBorder>

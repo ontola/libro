@@ -22,8 +22,8 @@ import {
   imageRepresentationUrl,
 } from '../../helpers/attachments';
 import { retrievePath } from '../../helpers/iris';
-import { NS } from '../../helpers/LinkedRenderStore';
 import { handle } from '../../helpers/logging';
+import dbo from '../../ontology/dbo';
 import Container, { containerTopology } from '../../topologies/Container';
 import { pageTopology } from '../../topologies/Page';
 import PrimaryResource from '../../topologies/PrimaryResource';
@@ -51,7 +51,7 @@ class MediaObjectPage extends React.PureComponent {
         schema.fileFormat,
       ],
     },
-    filename: NS.dbo('filename'),
+    filename: dbo.filename,
     isPartOf: schema.isPartOf,
     type: rdfx.type,
   };

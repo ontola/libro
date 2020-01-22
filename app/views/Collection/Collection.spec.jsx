@@ -7,8 +7,8 @@ import { seq } from 'link-lib';
 import { Resource } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
 import app from '../../ontology/app';
+import example from '../../ontology/example';
 import ontola from '../../ontology/ontola';
 import { cleanup, render } from '../../test-utils';
 import { Page } from '../../topologies/Page';
@@ -21,7 +21,7 @@ describe('Collection', () => {
 
   const collectionWithPages = app.ns('nederland/q/75/m');
   const collectionWithItems = app.ns('nederland/q/75/m?page=1&type=paginated');
-  const memberResource = NS.example('nederland/m/177');
+  const memberResource = example.ns('nederland/m/177');
 
   const resources = {
     [collectionWithItems]: {
@@ -58,7 +58,7 @@ describe('Collection', () => {
     },
     [memberResource]: {
       '@id': memberResource,
-      [rdfx.type]: NS.example('TestClass'),
+      [rdfx.type]: example.ns('TestClass'),
       [schema.name]: rdf.literal('Member name'),
       [schema.text]: rdf.literal('Member text'),
     },

@@ -9,8 +9,8 @@ import {
   LDLink,
   LinkedDetailDate,
 } from '../../components';
-import { NS } from '../../helpers/LinkedRenderStore';
 import argu from '../../ontology/argu';
+import dbo from '../../ontology/dbo';
 import ontola from '../../ontology/ontola';
 import rivm from '../../ontology/rivm';
 import CardFixed from '../../topologies/Card/CardFixed';
@@ -24,7 +24,7 @@ const InterventionGrid = () => (
       <Property label={ontola.coverPhoto} />
       <CardContent noSpacing>
         <Property label={[schema.name, rdfs.label]} />
-        <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
+        <Property label={[schema.text, schema.description, dbo.abstract]} />
         <AttributeList>
           <tr><th>Praktische ervaring</th><th>Aandrager</th></tr>
           <AttributeListItem

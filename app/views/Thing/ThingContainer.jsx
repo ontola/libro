@@ -11,8 +11,8 @@ import React from 'react';
 import CardContent from '../../components/Card/CardContent';
 import { connectHighlighting, hightlightType } from '../../containers/Highlight';
 import SignInSwitcherContainer from '../../containers/SignInSwitcherContainer';
-import { NS } from '../../helpers/LinkedRenderStore';
 import argu from '../../ontology/argu';
+import dbo from '../../ontology/dbo';
 import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
 import Card from '../../topologies/Card';
@@ -28,7 +28,7 @@ const ThingContainer = ({ highlighted, subject }) => (
     <Property label={ontola.coverPhoto} />
     <CardContent noSpacing>
       <Property label={[schema.name, rdfs.label, foaf.name]} />
-      <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
+      <Property label={[schema.text, schema.description, dbo.abstract]} />
     </CardContent>
     <CardRow noBorder>
       <Property label={[argu.attachments, meeting.attachment]} />

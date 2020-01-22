@@ -12,8 +12,8 @@ import { connect } from 'react-redux';
 
 import { Button, OmniformPreview } from '../../../../components';
 import { entityIsLoaded } from '../../../../helpers/data';
-import { NS } from '../../../../helpers/LinkedRenderStore';
 import app from '../../../../ontology/app';
+import link from '../../../../ontology/link';
 import {
   getOmniformOpenState,
   omniformCloseInline,
@@ -112,7 +112,7 @@ const CollapsedOmniformProp = (props) => {
   );
 };
 
-CollapsedOmniformProp.type = [schema.Thing, NS.link('Document')];
+CollapsedOmniformProp.type = [schema.Thing, link.Document];
 
 CollapsedOmniformProp.property = app.omniform;
 

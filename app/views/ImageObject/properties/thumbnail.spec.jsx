@@ -4,7 +4,7 @@ import schema from '@ontologies/schema';
 import { Property } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../../../tests';
+import example from '../../../ontology/example';
 
 import components from './thumbnail';
 
@@ -27,6 +27,6 @@ describeView('ImageObject', components, resources, resource, () => {
 
   it('passes the correct url', () => {
     expect(subject.find(marker('ImageObjectThumbnail')))
-      .toHaveProp('linkedProp', NS.example('1.thumb.png'));
+      .toHaveProp('linkedProp', example.ns('1.thumb.png'));
   });
 });

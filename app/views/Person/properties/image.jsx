@@ -3,7 +3,8 @@ import LinkedRenderStore from 'link-lib';
 import { Resource, linkedPropType } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../../helpers/LinkedRenderStore';
+import dbo from '../../../ontology/dbo';
+import wdt from '../../../ontology/wdt';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
 import { navbarTopology } from '../../../topologies/Navbar';
 import { voteBubbleTopology } from '../../../topologies/VoteBubble';
@@ -25,7 +26,7 @@ export default [
   LinkedRenderStore.registerRenderer(
     PersonImageProp,
     [schema.Person],
-    [schema.image, NS.dbo('thumbnail'), NS.wdt('P18')],
+    [schema.image, dbo.thumbnail, wdt.ns('P18')],
     [detailsBarTopology, voteBubbleTopology]
   ),
   LinkedRenderStore.registerRenderer(
@@ -33,7 +34,7 @@ export default [
       <Resource subject={linkedProp} />
     ),
     [schema.Person],
-    [schema.image, NS.dbo('thumbnail'), NS.wdt('P18')],
+    [schema.image, dbo.thumbnail, wdt.ns('P18')],
     navbarTopology
   ),
 ];

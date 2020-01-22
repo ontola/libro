@@ -9,8 +9,8 @@ import {
 
 import { connectHighlighting, hightlightType } from '../../containers/Highlight';
 import { CardContent } from '../../components';
-import { NS } from '../../helpers/LinkedRenderStore';
 import argu from '../../ontology/argu';
+import dbo from '../../ontology/dbo';
 import ontola from '../../ontology/ontola';
 import Card from '../../topologies/Card';
 import CardRow from '../../topologies/Card/CardRow';
@@ -36,7 +36,7 @@ class ForumContainer extends React.PureComponent {
         <Property label={ontola.coverPhoto} />
         <CardContent noSpacing>
           <Property label={[schema.name, rdfs.label]} />
-          <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
+          <Property label={[schema.text, schema.description, dbo.abstract]} />
         </CardContent>
         <CardRow backdrop>
           <CardContent>

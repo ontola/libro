@@ -1,6 +1,6 @@
 import rdf from '@ontologies/core';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import ex from '../../ontology/ex';
 import { cleanup } from '../../test-utils';
 import { serializeForStorage } from '../usePersistence';
 
@@ -13,7 +13,7 @@ describe('persistence', () => {
     });
 
     it('serializes named nodes', () => {
-      const serialized = serializeForStorage(NS.ex('5'));
+      const serialized = serializeForStorage(ex.ns('5'));
       expect(serialized).toContain('"termType":"NamedNode"');
       expect(serialized).toContain('"value":"http://example.com/ns#5"');
     });

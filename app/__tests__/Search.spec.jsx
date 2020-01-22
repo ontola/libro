@@ -2,22 +2,20 @@ import as from '@ontologies/as';
 import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
 import dcterms from '@ontologies/dcterms';
-import {
-  defaultNS as NS,
-  seq,
-} from 'link-lib';
+import { seq } from 'link-lib';
 import { Resource } from 'link-redux';
 import React from 'react';
 
 import argu from '../ontology/argu';
+import example from '../ontology/example';
 import { Page } from '../topologies/Page';
 import { cleanup, render } from '../test-utils';
 
 describe('Search', () => {
   afterAll(cleanup);
 
-  const testIRI = NS.example('test/search?q=keyword');
-  const seqIRI = NS.example('test/search/results');
+  const testIRI = example.ns('test/search?q=keyword');
+  const seqIRI = example.ns('test/search/results');
 
   const resources = {
     '@id': testIRI.value,
@@ -28,17 +26,17 @@ describe('Search', () => {
     [as.totalItems]: 3,
     [as.items]: seq([
       {
-        '@id': NS.example('1'),
+        '@id': example.ns('1'),
         [rdfx.type]: schema.CreativeWork,
         [schema.name]: 'Item 1',
       },
       {
-        '@id': NS.example('2'),
+        '@id': example.ns('2'),
         [rdfx.type]: argu.Question,
         [schema.name]: 'Item 2',
       },
       {
-        '@id': NS.example('3'),
+        '@id': example.ns('3'),
         [rdfx.type]: schema.Thing,
         [schema.name]: 'Item 3',
       },

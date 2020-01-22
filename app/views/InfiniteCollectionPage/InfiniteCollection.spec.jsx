@@ -7,8 +7,8 @@ import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { link } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../../tests';
 import app from '../../ontology/app';
+import example from '../../ontology/example';
 import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 import collectionComponents from '../Collection/index';
@@ -18,16 +18,16 @@ import components from './index';
 
 const testClass = LinkedRenderStore.registerRenderer(
   link({ name: as.name })(({ name }) => <p className="testComp">{name.value}</p>),
-  NS.example('TestClass'),
+  example.ns('TestClass'),
   RENDER_CLASS_NAME,
   allTopologies
 );
 
 const ITEMS = 10;
 
-const collection = NS.example('nederland/q/75/m');
+const collection = example.ns('nederland/q/75/m');
 const collectionPageWithItems = app.ns('current_page');
-const memberResource = NS.example('nederland/m/177');
+const memberResource = example.ns('nederland/m/177');
 
 const resources = {
   [collection]: {
@@ -71,7 +71,7 @@ const resources = {
     ],
   },
   [memberResource]: {
-    [rdfx.type]: NS.example('TestClass'),
+    [rdfx.type]: example.ns('TestClass'),
     [as.name]: rdf.literal('Member name'),
     [as.summary]: rdf.literal('Member text'),
   },

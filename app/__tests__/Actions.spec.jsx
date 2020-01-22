@@ -4,11 +4,12 @@ import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
 import sh from '@ontologies/shacl';
 import xsd from '@ontologies/xsd';
-import { defaultNS as NS } from 'link-lib';
 import { Resource } from 'link-redux';
 import React from 'react';
 
 import argu from '../ontology/argu';
+import ex from '../ontology/ex';
+import example from '../ontology/example';
 import ll from '../ontology/ll';
 import { Page } from '../topologies/Page';
 import {
@@ -21,26 +22,26 @@ import {
 describe('Actions', () => {
   afterAll(cleanup);
 
-  const testIRI = NS.ex('test');
-  const nameIRI = NS.ex('form/name');
-  const pinIRI = NS.ex('form/pin');
-  const locationIRI = NS.ex('form/location');
+  const testIRI = ex.ns('test');
+  const nameIRI = ex.ns('form/name');
+  const pinIRI = ex.ns('form/pin');
+  const locationIRI = ex.ns('form/location');
 
   const resources = {
     '@id': testIRI.value,
     [rdfx.type]: schema.UpdateAction,
     [dcterms.identifier]: testIRI,
     [schema.name]: 'Edit object',
-    [schema.object]: NS.ex(''),
+    [schema.object]: ex.ns(''),
     [schema.target]: {
       [rdfx.type]: schema.EntryPoint,
       [schema.httpMethod]: 'PUT',
       [schema.name]: 'Update',
-      [schema.url]: NS.example('endpoint'),
+      [schema.url]: example.ns('endpoint'),
       [ll.actionBody]: {
         [rdfx.type]: sh.NodeShape,
         [sh.targetNode]: {
-          '@id': NS.example('resource'),
+          '@id': example.ns('resource'),
           [rdfx.type]: schema.Thing,
         },
         [sh.property]: [
@@ -99,7 +100,7 @@ describe('Actions', () => {
 
     await wait();
     // renders the form
-    const form = getByTestId(NS.example('endpoint').value);
+    const form = getByTestId(example.ns('endpoint').value);
     expect(form).toBeVisible();
 
     // renders the form title

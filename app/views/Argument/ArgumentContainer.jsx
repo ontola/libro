@@ -9,9 +9,9 @@ import React from 'react';
 
 import { CardContent } from '../../components';
 import { hightlightType } from '../../containers/Highlight';
-import { NS } from '../../helpers/LinkedRenderStore';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
+import dbo from '../../ontology/dbo';
 import ontola from '../../ontology/ontola';
 import ActionsBar from '../../topologies/ActionsBar';
 import Card from '../../topologies/Card';
@@ -40,7 +40,7 @@ class ArgumentContainer extends React.PureComponent {
         <Property label={ontola.coverPhoto} />
         <CardContent noSpacing>
           <Property label={[schema.name, rdfs.label]} />
-          <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
+          <Property label={[schema.text, schema.description, dbo.abstract]} />
         </CardContent>
         <ActionsBar>
           <Property label={ontola.favoriteAction} />

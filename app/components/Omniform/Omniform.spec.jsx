@@ -8,8 +8,8 @@ import { Set } from 'immutable';
 import React from 'react';
 
 import { calculateFormFieldName } from '../../helpers/forms';
-import { NS } from '../../helpers/LinkedRenderStore';
 import argu from '../../ontology/argu';
+import ex from '../../ontology/ex';
 import ll from '../../ontology/ll';
 import {
   cleanup,
@@ -25,8 +25,8 @@ describe('Omniform', () => {
   afterEach(cleanup);
 
   const schemaText = calculateFormFieldName(schema.text);
-  const conAction = NS.ex('/cons/new');
-  const proAction = NS.ex('/pros/new');
+  const conAction = ex.ns('/cons/new');
+  const proAction = ex.ns('/pros/new');
 
   const resources = {
     [conAction]: {
@@ -96,7 +96,7 @@ describe('Omniform', () => {
   };
 
   it('keeps modification across action switches', async () => {
-    const subject = NS.ex('5');
+    const subject = ex.ns('5');
     const omniformSelector = `${subject.value}.omniform`;
     const form = createForm({ onSubmit: () => undefined });
 
@@ -108,8 +108,8 @@ describe('Omniform', () => {
       <Card>
         <Omniform
           actions={new Set([
-            NS.ex('/pros/new'),
-            NS.ex('/cons/new'),
+            ex.ns('/pros/new'),
+            ex.ns('/cons/new'),
           ])}
           formInstance={form}
           parentIRI={btoa(subject.value)}

@@ -11,8 +11,8 @@ import { AttributeListItem } from '../../components';
 import CardContent from '../../components/Card/CardContent';
 import LDLink from '../../components/LDLink';
 import { connectHighlighting, hightlightType } from '../../containers/Highlight';
-import { NS } from '../../helpers/LinkedRenderStore';
 import argu from '../../ontology/argu';
+import dbo from '../../ontology/dbo';
 import meeting from '../../ontology/meeting';
 import rivm from '../../ontology/rivm';
 import ActionsBar from '../../topologies/ActionsBar';
@@ -28,7 +28,7 @@ const InterventionContainer = ({ highlighted, subject }) => (
   <Card about={subject?.value} shine={highlighted}>
     <CardContent noSpacing>
       <Property label={[schema.name, rdfs.label]} />
-      <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
+      <Property label={[schema.text, schema.description, dbo.abstract]} />
       <AttributeList>
         <tr><th>Praktische ervaring</th><th>Aandrager</th></tr>
         <AttributeListItem

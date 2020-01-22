@@ -11,12 +11,13 @@ import {
   LinkedDetailDate,
 } from '../../components';
 import Button from '../../components/Button';
-import { NS } from '../../helpers/LinkedRenderStore';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
+import dbo from '../../ontology/dbo';
 import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
 import rivm from '../../ontology/rivm';
+import wdt from '../../ontology/wdt';
 import ActionsBar from '../../topologies/ActionsBar';
 import AttributeList from '../../topologies/AttributeList';
 import CardAppendix from '../../topologies/Card/CardAppendix';
@@ -54,9 +55,9 @@ const InterventionTypePage = () => (
         </DetailsBar>
         <CardContent noSpacing>
           <Property label={[schema.name, rdfs.label]} />
-          <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
+          <Property label={[dbo.thumbnail, wdt.ns('P18')]} />
           <Property label={rivm.exampleOf} topology={inlineTopology} />
-          <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
+          <Property label={[schema.text, schema.description, dbo.abstract]} />
           <Property label={foaf.isPrimaryTopicOf} onLoad={() => null} />
           <AttributeList>
             <tr><th>Praktische ervaring</th><th>Aandrager</th></tr>

@@ -8,8 +8,8 @@ import React from 'react';
 import rdfs from '@ontologies/rdfs';
 
 import { CardContent, LinkedDetailDate } from '../../components';
-import { NS } from '../../helpers/LinkedRenderStore';
 import argu from '../../ontology/argu';
+import dbo from '../../ontology/dbo';
 import ontola from '../../ontology/ontola';
 import { pageTopology } from '../../topologies/Page';
 import PrimaryResource, { primaryResourceTopology } from '../../topologies/PrimaryResource';
@@ -46,7 +46,7 @@ const SurveyPage = () => (
         </DetailsBar>
         <CardContent noSpacing>
           <Property label={[schema.name, rdfs.label]} />
-          <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
+          <Property label={[schema.text, schema.description, dbo.abstract]} />
         </CardContent>
         <ActionsBar>
           <Property label={argu.externalIRI} />

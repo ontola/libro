@@ -6,7 +6,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
+import httph from '../../ontology/httph';
+import link from '../../ontology/link';
 import { pageTopology } from '../../topologies/Page';
 
 /**
@@ -15,7 +16,7 @@ import { pageTopology } from '../../topologies/Page';
  * These generally are resources without body or in error state.
  */
 class DocumentPage extends React.PureComponent {
-  static type = NS.link('Document');
+  static type = link.Document;
 
   static topology = pageTopology;
 
@@ -29,7 +30,7 @@ class DocumentPage extends React.PureComponent {
   render() {
     const { lrs, subject } = this.props;
     const { lastResponseHeaders } = lrs.getStatus(subject);
-    const action = lastResponseHeaders && lrs.getResourceProperty(lastResponseHeaders, NS.httph('exec-action'));
+    const action = lastResponseHeaders && lrs.getResourceProperty(lastResponseHeaders, httph['exec-action']);
 
     if (action) {
       lrs.exec(action);

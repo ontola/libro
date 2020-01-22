@@ -9,7 +9,7 @@ import {
 import React from 'react';
 
 import ScrollContainer from '../../../components/ScrollContainer';
-import { NS } from '../../../helpers/LinkedRenderStore';
+import qb from '../../../ontology/qb';
 import { tryParseInt } from '../../../helpers/numbers';
 import Card from '../../../topologies/Card';
 import Container from '../../../topologies/Container';
@@ -22,8 +22,8 @@ import TableRow from '../../../topologies/TableRow';
 
 const orderComponents = (components, lrs) => components
   .sort((a, b) => {
-    const aOrder = tryParseInt(lrs.getResourceProperty(a, NS.qb('order')));
-    const bOrder = tryParseInt(lrs.getResourceProperty(b, NS.qb('order')));
+    const aOrder = tryParseInt(lrs.getResourceProperty(a, qb.order));
+    const bOrder = tryParseInt(lrs.getResourceProperty(b, qb.order));
 
     if (aOrder < bOrder) return -1;
     if (aOrder > bOrder) return 1;
@@ -36,9 +36,10 @@ const DataSetPage = ({
   structure,
   subject,
 }) => {
-  const components = lrs.getResourceProperties(structure, NS.qb('component'));
+  const components = lrs.getResourceProperties(structure, qb.component);
   const orderedComponents = orderComponents(components, lrs);
-  const orderedMeasures = orderedComponents.map((comp) => lrs.getResourceProperty(comp, NS.qb('measure')));
+  const orderedMeasures = orderedComponents
+    .map((comp) => lrs.getResourceProperty(comp, qb.measure));
 
   return (
     <PrimaryResource resource={subject.value}>
@@ -62,7 +63,7 @@ const DataSetPage = ({
               </TableHead>
               <TableBody>
                 <Property
-                  label={NS.qb('observation')}
+                  label={qb.observation}
                   limit={Infinity}
                   measures={orderedMeasures}
                 />
@@ -75,12 +76,12 @@ const DataSetPage = ({
   );
 };
 
-DataSetPage.type = NS.qb('DataSet');
+DataSetPage.type = qb.DataSet;
 
 DataSetPage.topology = pageTopology;
 
 DataSetPage.mapDataToProps = {
-  structure: NS.qb('structure'),
+  structure: qb.structure,
 };
 
 DataSetPage.propTypes = {

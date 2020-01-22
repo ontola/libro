@@ -1,8 +1,8 @@
 import rdfx from '@ontologies/rdf';
 import '@testing-library/jest-dom/extend-expect';
-import { defaultNS as NS } from 'link-lib';
 
 import argu from '../ontology/argu';
+import example from '../ontology/example';
 import routes from '../routes/index';
 import {
   cleanup,
@@ -15,7 +15,7 @@ describe('Registration', () => {
   afterEach(fetch.resetMocks);
   afterAll(cleanup);
 
-  const testIRI = NS.example('test/search?q=keyword');
+  const testIRI = example.ns('test/search?q=keyword');
 
   const resources = {
     '@id': testIRI.value,

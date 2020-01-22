@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import AttachmentPreview from '../../components/AttachmentPreview';
-import { NS } from '../../helpers/LinkedRenderStore';
+import dbo from '../../ontology/dbo';
 import { cardListTopology } from '../../topologies/Card/CardList';
 
 const ImageObjectCardList = ({
@@ -34,7 +34,7 @@ ImageObjectCardList.topology = cardListTopology;
 ImageObjectCardList.mapDataToProps = {
   caption: schema.caption,
   contentUrl: schema.contentUrl,
-  filename: NS.dbo('filename'),
+  filename: dbo.filename,
   isPartOf: schema.isPartOf,
   thumbnailUrl: schema.thumbnail,
 };

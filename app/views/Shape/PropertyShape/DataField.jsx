@@ -6,8 +6,8 @@ import React from 'react';
 
 import FormField from '../../../containers/FormField';
 import { tryParseInt } from '../../../helpers/numbers';
-import { NS } from '../../../helpers/LinkedRenderStore';
 import validators, { combineValidators } from '../../../helpers/validators';
+import fhir from '../../../ontology/fhir';
 import ll from '../../../ontology/ll';
 import ontola from '../../../ontology/ontola';
 
@@ -50,7 +50,7 @@ const determineInputType = (
       return 'number';
     case rdf.id(ll.blob):
       return 'file';
-    case rdf.id(NS.fhir('markdown')):
+    case rdf.id(fhir.markdown):
       return 'markdown';
     case rdf.id(ontola.ns('datatype/password')):
       return 'password';

@@ -6,8 +6,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../helpers/LinkedRenderStore';
 import ontola from '../../ontology/ontola';
+import org from '../../ontology/org';
 import teamGL from '../../ontology/teamGL';
 import { pageTopology } from '../../topologies/Page';
 import PrimaryResource, { primaryResourceTopology } from '../../topologies/PrimaryResource';
@@ -51,7 +51,7 @@ class VolunteerPage extends React.PureComponent {
               <Property label={schema.text} />
             </CardContent>
           </CardMain>
-          <Property renderWhenEmpty label={NS.org('hasMembership')} />
+          <Property renderWhenEmpty label={org.hasMembership} />
           <Property renderWhenEmpty label={teamGL.events} />
         </Container>
       </PrimaryResource>

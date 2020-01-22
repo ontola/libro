@@ -8,7 +8,7 @@ import {
 import React from 'react';
 
 import { CardContent } from '../../components';
-import { NS } from '../../helpers/LinkedRenderStore';
+import dbo from '../../ontology/dbo';
 import ontola from '../../ontology/ontola';
 import rivm from '../../ontology/rivm';
 import CardMain from '../../topologies/Card/CardMain';
@@ -34,7 +34,7 @@ const CategoryPage = () => (
         </DetailsBar>
         <CardContent noSpacing>
           <Property label={[schema.name, rdfs.label]} />
-          <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
+          <Property label={[schema.text, schema.description, dbo.abstract]} />
         </CardContent>
       </CardMain>
       <Property renderWhenEmpty label={rivm.measureTypes} />

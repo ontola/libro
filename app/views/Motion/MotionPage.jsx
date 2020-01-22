@@ -8,11 +8,13 @@ import {
   CardContent,
   LinkedDetailDate,
 } from '../../components';
-import { NS } from '../../helpers/LinkedRenderStore';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
+import dbo from '../../ontology/dbo';
 import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
+import opengov from '../../ontology/opengov';
+import wdt from '../../ontology/wdt';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import CardMain from '../../topologies/Card/CardMain';
 import CardRow from '../../topologies/Card/CardRow';
@@ -22,7 +24,7 @@ import { pageTopology } from '../../topologies/Page';
 import PrimaryResource from '../../topologies/PrimaryResource';
 
 class MotionPage extends React.PureComponent {
-  static type = [argu.Motion, NS.opengov('Motion')];
+  static type = [argu.Motion, opengov.Motion];
 
   static topology = pageTopology;
 
@@ -55,8 +57,8 @@ class MotionPage extends React.PureComponent {
             </DetailsBar>
             <CardContent noSpacing>
               <Property label={[schema.name, rdfs.label]} />
-              <Property label={[NS.dbo('thumbnail'), NS.wdt('P18')]} />
-              <Property label={[schema.text, schema.description, NS.dbo('abstract')]} />
+              <Property label={[dbo.thumbnail, wdt.ns('P18')]} />
+              <Property label={[schema.text, schema.description, dbo.abstract]} />
             </CardContent>
             <CardRow noBorder>
               <Property label={argu.attachments} onLoad={() => null} />

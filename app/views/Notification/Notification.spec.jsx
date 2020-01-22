@@ -5,8 +5,8 @@ import { waitForElementToBeRemoved } from '@testing-library/dom';
 import { Resource } from 'link-redux';
 import React from 'react';
 
-import { NS } from '../../../tests';
 import argu from '../../ontology/argu';
+import hydra from '../../ontology/hydra';
 import ontola from '../../ontology/ontola';
 import {
   cleanup,
@@ -34,7 +34,7 @@ describe('Notification', () => {
     [schema.name]: rdf.literal(NOTIFICATION_TEXT),
     [schema.target]: rdf.namedNode('https://app.argu.co/freetown/m/2601'),
     [argu.unread]: rdf.literal(false),
-    [NS.hydra('operation')]: rdf.namedNode('https://app.argu.co/freetown/n/19314/actions/read'),
+    [hydra.operation]: rdf.namedNode('https://app.argu.co/freetown/n/19314/actions/read'),
     [ontola.readAction]: rdf.namedNode('https://app.argu.co/freetown/n/19314/actions/read'),
     [schema.creator]: {
       '@id': rdf.namedNode('https://app.argu.co/freetown/u/1'),

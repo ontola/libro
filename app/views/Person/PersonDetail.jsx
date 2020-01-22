@@ -15,8 +15,8 @@ import {
   Detail,
   LDLink,
 } from '../../components';
-import { NS } from '../../helpers/LinkedRenderStore';
 import argu from '../../ontology/argu';
+import person from '../../ontology/person';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { tableCellTopology } from '../../topologies/TableCell';
 
@@ -68,7 +68,7 @@ const PersonDetail = ({
 
 PersonDetail.type = [
   schema.Person,
-  NS.person('Person'),
+  person.Person,
   argu.Page,
 ];
 

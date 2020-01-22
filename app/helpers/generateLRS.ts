@@ -1,6 +1,6 @@
 /* eslint no-console: 0 */
 import as from '@ontologies/as';
-import rdf, { createNS, Namespace, Quad } from '@ontologies/core';
+import rdf, { Quad } from '@ontologies/core';
 import foaf from '@ontologies/foaf';
 import owl from '@ontologies/owl';
 import rdfx from '@ontologies/rdf';
@@ -9,13 +9,15 @@ import schema from '@ontologies/schema';
 import { createStore, MiddlewareFn } from 'link-lib';
 
 import { FRONTEND_ACCEPT } from '../config';
-import { appMiddleware, frontendIRIStr, website } from '../middleware/app';
+import { appMiddleware, website } from '../middleware/app';
 import execFilter from '../middleware/execFilter';
 import logging from '../middleware/logging';
 import ontolaMiddleware from '../middleware/ontolaMiddleware';
 import argu from '../ontology/argu';
+import link from '../ontology/link';
 import meeting from '../ontology/meeting';
 import ontola from '../ontology/ontola';
+import opengov from '../ontology/opengov';
 import teamGL from '../ontology/teamGL';
 import arguDeltaProcessor from './arguDeltaProcessor';
 import { getMetaContent } from './arguHelpers';
@@ -54,32 +56,6 @@ export default function generateLRS() {
 // @ts-ignore TS2341
   LRS.api.accept.default = FRONTEND_ACCEPT;
 
-  /** @deprecated */
-  const NS = {
-    ...LRS.namespaces as {
-      dbo: Namespace;
-      ex: Namespace;
-      example: Namespace;
-      fhir: Namespace;
-      httph: Namespace;
-      hydra: Namespace;
-      link: Namespace;
-      qb: Namespace;
-      wdt: Namespace;
-    },
-
-    /** @deprecated */
-    appSlashless: createNS(frontendIRIStr.slice(0, frontendIRIStr.endsWith('/') ? -1 : undefined)),
-    /** @deprecated */
-    fa4: createNS('http://fontawesome.io/icon/'),
-    /** @deprecated */
-    opengov: createNS('http://www.w3.org/ns/opengov#'),
-    /** @deprecated */
-    org: createNS('http://www.w3.org/ns/org#'),
-    /** @deprecated */
-    person: createNS('http://www.w3.org/ns/person#'),
-  };
-
   const languages = {
     en: 'en',
     nl: 'nl',
@@ -89,7 +65,7 @@ export default function generateLRS() {
     schema.Thing,
     rdfs.Resource,
     owl.Thing,
-    NS.link('Document'),
+    link.Document,
   ].map((t) => rdf.id(t));
 
   const websocketPath = getMetaContent('websocket-path');
@@ -123,9 +99,9 @@ export default function generateLRS() {
     rdf.quad(ontola.InfiniteView, rdfs.subClassOf, as.CollectionPage),
     rdf.quad(ontola.PaginatedView, rdfs.subClassOf, as.CollectionPage),
 
-    rdf.quad(NS.opengov('Motion'), rdfx.type, rdfs.Class),
-    rdf.quad(NS.opengov('Motion'), rdfs.label, rdf.literal('Motion', languages.en)),
-    rdf.quad(NS.opengov('Motion'), rdfs.label, rdf.literal('Motie', languages.nl)),
+    rdf.quad(opengov.Motion, rdfx.type, rdfs.Class),
+    rdf.quad(opengov.Motion, rdfs.label, rdf.literal('Motion', languages.en)),
+    rdf.quad(opengov.Motion, rdfs.label, rdf.literal('Motie', languages.nl)),
 
     rdf.quad(schema.ImageObject, rdfs.subClassOf, schema.MediaObject),
 
@@ -258,7 +234,6 @@ export default function generateLRS() {
 
   return {
     LRS,
-    NS,
     serviceWorkerCommunicator,
   };
 }
