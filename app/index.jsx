@@ -9,8 +9,10 @@ import { APP_ELEMENT } from './config';
 import './helpers/typescript';
 import { getMetaContent } from './helpers/arguHelpers';
 import LinkedRenderStore from './helpers/LinkedRenderStore';
-import { handle } from './helpers/logging';
+import { handle, log } from './helpers/logging';
 import App from './App';
+
+log('Booting');
 
 if (document.documentElement.lang) {
   LinkedRenderStore.store.langPrefs.unshift(document.documentElement.lang);
@@ -19,6 +21,7 @@ if (document.documentElement.lang) {
 const BOOT_TIMEOUT = 10000;
 let timeout;
 function mount() {
+  log('Mounting app');
   if (typeof window !== 'undefined') {
     window.clearTimeout(timeout);
   }
@@ -35,6 +38,7 @@ function mount() {
 
 new Promise((resolve, reject) => {
   if (typeof window.INITIAL__DATA !== 'undefined') {
+    log('Seeding LRS');
     const seedRequest = new Response(
       window.INITIAL__DATA,
       { headers: new Headers({ 'Content-Type': 'application/n-quads' }) }
@@ -50,6 +54,8 @@ new Promise((resolve, reject) => {
       .feedResponse(seedRequest, true)
       .then(resolve)
       .catch(reject);
+  } else {
+    throw new Error(`No seed data present (was '${typeof window.INITIAL__DATA}')`);
   }
 })
   .then(mount)
