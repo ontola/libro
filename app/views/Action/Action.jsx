@@ -75,7 +75,7 @@ export class Action extends NavigatableAction {
           <Property
             header
             action={this.props.subject}
-            cancelPath={retrievePath(this.props.object.value)}
+            cancelPath={this.props.object && retrievePath(this.props.object.value)}
             label={schema.target}
             onDone={this.onDoneHandler}
           />

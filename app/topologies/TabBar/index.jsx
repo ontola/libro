@@ -22,7 +22,11 @@ class TabBar extends TopologyProvider {
   }
 
   render() {
-    const { children, location } = this.props;
+    const {
+      children,
+      location,
+      value,
+    } = this.props;
 
     if (!children) {
       return null;
@@ -32,7 +36,7 @@ class TabBar extends TopologyProvider {
       <Tabs
         resource={subject?.value}
         scrollButtons="on"
-        value={currentLocation(location).value}
+        value={value || currentLocation(location).value}
         variant="scrollable"
       >
         {children}

@@ -47,6 +47,8 @@ import Notification from './Notification';
 import Organization from './Organization/index';
 import Participant from './Participant';
 import Person from './Person';
+import Phase from './Phase';
+import Project from './Project';
 import Placement from './Placement';
 import PropertyQuery from './PropertyQuery';
 import Risk from './Risk';
@@ -110,6 +112,8 @@ export function getViews() {
     ...Organization,
     ...Participant,
     ...Person,
+    ...Phase,
+    ...Project,
     ...Placement,
     ...PropertyQuery,
     ...RDFProperty,

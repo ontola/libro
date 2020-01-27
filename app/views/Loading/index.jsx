@@ -50,6 +50,7 @@ import {
   SuspendedLoader,
 } from '../../components/Loading/index';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
+import { tabBarTopology } from '../../topologies/TabBar';
 
 export default [
   LinkedRenderStore.registerRenderer(
@@ -153,6 +154,7 @@ export default [
     RENDER_CLASS_NAME,
     [
       actionsBarTopology,
+      tabBarTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(
