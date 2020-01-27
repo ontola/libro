@@ -2,16 +2,11 @@ import foaf from '@ontologies/foaf';
 import rdfx from '@ontologies/rdf';
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
-import {
-  Property,
-  register,
-} from 'link-redux';
+import { Property, register } from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 
-import {
-  CardContent,
-  LinkedDetailDate,
-} from '../../components';
+import { CardContent } from '../../components';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
@@ -25,25 +20,18 @@ import CardMain from '../../topologies/Card/CardMain';
 import CardRow from '../../topologies/Card/CardRow';
 import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
-import { pageTopology } from '../../topologies/Page';
-import PrimaryResource from '../../topologies/PrimaryResource';
-import Collection from '../../components/Collection';
 import { defaultMenus } from '../common';
+import { fullResourceTopology } from '../../topologies/FullResource';
 
-const RiskPage = () => (
-  <PrimaryResource>
-    <Property label={ontola.coverPhoto} />
+const IncidentFull = ({ partOf }) => (
+  <React.Fragment>
     <Container>
-      <Property label={schema.isPartOf} />
+      {partOf && <Property label={schema.isPartOf} />}
       <Property label={argu.trashedAt} />
       <CardMain>
+        <Property label={schema.superEvent} />
         <DetailsBar right={defaultMenus}>
           <Property label={rdfx.type} />
-          <LinkedDetailDate />
-          <Property label={argu.pinnedAt} />
-          <Property label={argu.expiresAt} />
-          <Property label={argu.followsCount} />
-          <Property label={schema.location} />
           <Property label={argu.grantedGroups} />
         </DetailsBar>
         <CardContent noSpacing>
@@ -59,26 +47,32 @@ const RiskPage = () => (
         <ActionsBar>
           <Property label={ontola.favoriteAction} onLoad={() => null} />
         </ActionsBar>
+        <Property label={meeting.agenda} onLoad={() => null} />
         <CardAppendix>
           <Property forceRender label={app.omniform} />
         </CardAppendix>
       </CardMain>
       <Property label={ontola.publishAction} onLoad={() => null} />
+      <Property label={argu.voteEvents} onLoad={() => null} />
+      <Property label={argu.blogPosts} onLoad={() => null} />
+      <Property label={schema.location} onLoad={() => null} />
+      <Property label={argu.motions} onLoad={() => null} />
     </Container>
     <Container>
-      <Collection forceRender renderWhenEmpty display="table" label={rivm.incidents} />
-    </Container>
-    <Container>
-      <Collection forceRender renderWhenEmpty display="table" label={rivm.measureTypes} />
+      <Property forceRender renderWhenEmpty label={rivm.scenarios} />
     </Container>
     <Container>
       <Property label={schema.comment} />
     </Container>
-  </PrimaryResource>
+  </React.Fragment>
 );
 
-RiskPage.type = rivm.Risk;
+IncidentFull.type = rivm.Incident;
 
-RiskPage.topology = pageTopology;
+IncidentFull.topology = fullResourceTopology;
 
-export default register(RiskPage);
+IncidentFull.propTypes = {
+  partOf: PropTypes.bool,
+};
+
+export default register(IncidentFull);

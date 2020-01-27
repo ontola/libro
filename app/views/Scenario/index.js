@@ -1,4 +1,4 @@
-import ScenarioPage from './ScenarioPage';
+import ScenarioPage from './ScenarioFull';
 
 export default [
   ScenarioPage,

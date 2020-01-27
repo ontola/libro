@@ -14,6 +14,7 @@ import { sort } from '../../../helpers/data';
 import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
 import { actionsBarTopology } from '../../../topologies/ActionsBar';
+import { pageTopology } from '../../../topologies/Page';
 
 const order = [
   'create_vote',
@@ -78,7 +79,7 @@ export default [
     })(({ potentialActions, ...props }) => sortBind(potentialActions, props)),
     [schema.Thing, rdfs.Resource],
     ontola.favoriteAction,
-    allTopologiesExcept(actionsBarTopology)
+    allTopologiesExcept(actionsBarTopology, pageTopology)
   ),
   register(PotentialActionActionsBar),
 ];

@@ -13,7 +13,7 @@ import { actionType } from '../../helpers/diggers';
 import argu from '../../ontology/argu';
 import Card from '../../topologies/Card';
 import { containerTopology } from '../../topologies/Container';
-import { primaryResourceTopology } from '../../topologies/PrimaryResource';
+import { fullResourceTopology } from '../../topologies/FullResource';
 
 import NotificationHeader from './NotificationHeader';
 import Creator from './properties/creator';
@@ -62,7 +62,7 @@ const Notification = ({
 Notification.type = argu.Notification;
 
 Notification.topology = [
-  primaryResourceTopology,
+  fullResourceTopology,
   containerTopology,
 ];
 

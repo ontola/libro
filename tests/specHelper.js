@@ -5,6 +5,7 @@ import { IntlProvider, injectIntl } from 'react-intl';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
 
+import argu from '../app/ontology/argu';
 import themes from '../app/themes';
 
 import { generateStore } from './link-redux/utilities';
@@ -200,7 +201,7 @@ function describeView(desc, components, resources, subject, func) {
       c: components,
       r: resources,
       s: subject,
-      t: undefined,
+      t: argu.fullResource,
     });
     set('subject', () => mount(createContext()));
     func();

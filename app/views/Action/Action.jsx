@@ -15,7 +15,7 @@ import CardContent from '../../components/Card/CardContent';
 import { retrievePath } from '../../helpers/iris';
 import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
-import { primaryResourceTopology } from '../../topologies/PrimaryResource';
+import { fullResourceTopology } from '../../topologies/FullResource';
 import { SignInFormLink } from '../../components/SignInForm';
 import Button from '../../components/Button';
 
@@ -28,7 +28,7 @@ export class Action extends NavigatableAction {
   ];
 
   static topology = [
-    primaryResourceTopology,
+    fullResourceTopology,
   ];
 
   static mapDataToProps = {
@@ -42,6 +42,7 @@ export class Action extends NavigatableAction {
     appendix: PropTypes.func,
     navigate: PropTypes.func,
     object: subjectType,
+    partOf: PropTypes.bool,
     subject: subjectType,
   };
 
@@ -51,7 +52,7 @@ export class Action extends NavigatableAction {
     if (invalidStatusIds.includes(rdf.id(this.props.actionStatus))) {
       return (
         <Container>
-          <Property label={schema.isPartOf} />
+          {this.props.partOf && <Property label={schema.isPartOf} />}
           <CardMain>
             <CardContent endSpacing>
               <Property label={schema.name} />
@@ -66,7 +67,7 @@ export class Action extends NavigatableAction {
     return (
       <Container>
         <Metadata />
-        <Property label={schema.isPartOf} />
+        {this.props.partOf && <Property label={schema.isPartOf} />}
         <CardMain>
           <CardContent>
             <Property label={schema.name} />

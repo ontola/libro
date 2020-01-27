@@ -20,6 +20,7 @@ import { detailsBarTopology } from './topologies/DetailsBar/index';
 import { alertDialogTopology } from './topologies/Dialog/index';
 import { menuTopology } from './topologies/Menu/index';
 import { formFooterTopology } from './topologies/FormFooter/Footer';
+import { fullResourceTopology } from './topologies/FullResource';
 import { gridTopology } from './topologies/Grid/index';
 import { hoverBoxTopology } from './topologies/HoverBox/index';
 import { inlineTopology } from './topologies/Inline/index';
@@ -31,7 +32,6 @@ import { pageHeaderTopology } from './topologies/PageHeader/index';
 import { parentTopology } from './topologies/Parent/index';
 import { primaryCallToActionTopology } from './topologies/PrimaryCallToAction/index';
 import { popupTopology } from './topologies/Popup/index';
-import { primaryResourceTopology } from './topologies/PrimaryResource';
 import { radioGroupTopology } from './topologies/RadioGroup';
 import { selectTopology } from './topologies/Select';
 import { tableCellTopology } from './topologies/TableCell';
@@ -72,6 +72,7 @@ export const topologyComponentMap = {
   [rdf.id(alertDialogTopology)]: wrap(React.lazy(() => import('./topologies/Dialog/index'))),
   [rdf.id(menuTopology)]: wrap(React.lazy(() => import('./topologies/Menu/index'))),
   [rdf.id(formFooterTopology)]: wrap(React.lazy(() => import('./topologies/FormFooter/Footer'))),
+  [rdf.id(fullResourceTopology)]: wrap(React.lazy(() => import('./topologies/FullResource'))),
   [rdf.id(gridTopology)]: wrap(React.lazy(() => import('./topologies/Grid/index'))),
   [rdf.id(hoverBoxTopology)]: wrap(React.lazy(() => import('./topologies/HoverBox/index'))),
   [rdf.id(inlineTopology)]: wrap(React.lazy(() => import('./topologies/Inline/index'))),
@@ -83,7 +84,6 @@ export const topologyComponentMap = {
   [rdf.id(parentTopology)]: wrap(React.lazy(() => import('./topologies/Parent/index'))),
   [rdf.id(primaryCallToActionTopology)]: wrap(React.lazy(() => import('./topologies/PrimaryCallToAction/index'))),
   [rdf.id(popupTopology)]: wrap(React.lazy(() => import('./topologies/Popup/index'))),
-  [rdf.id(primaryResourceTopology)]: wrap(React.lazy(() => import('./topologies/PrimaryResource'))),
   [rdf.id(radioGroupTopology)]: wrap(React.lazy(() => import('./topologies/RadioGroup'))),
   [rdf.id(selectTopology)]: wrap(React.lazy(() => import('./topologies/Select'))),
   [rdf.id(tableCellTopology)]: wrap(React.lazy(() => import('./topologies/TableCell'))),
@@ -118,6 +118,7 @@ export const allTopologies = [
   alertDialogTopology,
   menuTopology,
   formFooterTopology,
+  fullResourceTopology,
   gridTopology,
   hoverBoxTopology,
   inlineTopology,

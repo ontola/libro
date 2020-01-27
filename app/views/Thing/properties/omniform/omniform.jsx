@@ -18,6 +18,7 @@ import { allTopologiesExcept } from '../../../../topologies';
 import Card, { cardTopology } from '../../../../topologies/Card';
 import { cardAppendixTopology } from '../../../../topologies/Card/CardAppendix';
 import { cardMainTopology } from '../../../../topologies/Card/CardMain';
+import { pageTopology } from '../../../../topologies/Page';
 
 import { actionsAreAllDisabled, filterActions } from './helpers';
 import OmniformConnector from './OmniformConnector';
@@ -27,7 +28,12 @@ class OmniformProp extends React.PureComponent {
 
   static property = app.omniform;
 
-  static topology = allTopologiesExcept(cardTopology, cardMainTopology, cardAppendixTopology);
+  static topology = allTopologiesExcept(
+    cardTopology,
+    cardMainTopology,
+    cardAppendixTopology,
+    pageTopology
+  );
 
   static mapDataToProps = {
     expiresAt: argu.expiresAt,

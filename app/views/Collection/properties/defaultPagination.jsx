@@ -15,6 +15,7 @@ import { allTopologiesExcept } from '../../../topologies';
 import { CollectionTypes } from '../types';
 import { cardAppendixTopology } from '../../../topologies/Card/CardAppendix';
 import CardRow from '../../../topologies/Card/CardRow';
+import { pageTopology } from '../../../topologies/Page';
 import CardContent from '../../../components/Card/CardContent';
 
 export const messages = defineMessages({
@@ -200,6 +201,6 @@ export const CardAppendixContent = ({ children }) => (
 CardAppendixContent.propTypes = { children: PropTypes.node };
 
 export default [
-  register(getPagination(React.Fragment, allTopologiesExcept(cardAppendixTopology))),
+  register(getPagination(React.Fragment, allTopologiesExcept(cardAppendixTopology, pageTopology))),
   register(getPagination(CardAppendixContent, cardAppendixTopology)),
 ];

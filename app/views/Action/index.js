@@ -5,7 +5,7 @@ import ActionContainer from './ActionContainer';
 import ActionDetail from './ActionDetail';
 import ActionDropdownContent from './ActionDropdownContent';
 import ActionNested from './ActionNested';
-import ActionPageReg from './ActionPage';
+import ActionPageReg from './ActionFull';
 import ActionPrimaryCallToAction from './ActionPrimaryCallToAction';
 import ActionTableCell from './ActionTableCell';
 import ActionTableRow from './ActionTableRow';

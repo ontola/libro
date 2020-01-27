@@ -64,6 +64,7 @@ export default {
   features: argu('features'),
   field: argu('field'),
   followsCount: argu('followsCount'),
+  fullResource: argu('fullResource'),
   grantedGroups: argu('grantedGroups'),
   hideHeader: argu('hideHeader'),
   icon: argu('icon'),

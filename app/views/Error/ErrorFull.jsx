@@ -3,22 +3,22 @@ import React from 'react';
 
 import ll from '../../ontology/ll';
 import Container from '../../topologies/Container';
-import { primaryResourceTopology } from '../../topologies/PrimaryResource';
+import { fullResourceTopology } from '../../topologies/FullResource';
 import { tabPaneTopology } from '../../topologies/TabPane';
 
 import { ErrorCard } from './ErrorCard';
 
-const ErrorPrimaryResource = (props) => (
+const ErrorFull = (props) => (
   <Container>
     <ErrorCard {...props} />
   </Container>
 );
 
-ErrorPrimaryResource.type = ll.ErrorResource;
+ErrorFull.type = ll.ErrorResource;
 
-ErrorPrimaryResource.topology = [
-  primaryResourceTopology,
+ErrorFull.topology = [
+  fullResourceTopology,
   tabPaneTopology,
 ];
 
-export default register(ErrorPrimaryResource);
+export default register(ErrorFull);

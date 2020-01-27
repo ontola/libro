@@ -6,6 +6,7 @@ import React from 'react';
 import { Heading, LDLink } from '../../../components';
 import teamGL from '../../../ontology/teamGL';
 import { allTopologiesExcept } from '../../../topologies';
+import { pageTopology } from '../../../topologies/Page';
 import { selectTopology } from '../../../topologies/Select';
 
 const propTypes = {
@@ -24,5 +25,5 @@ export default LinkedRenderStore.registerRenderer(
   Name,
   teamGL.Volunteer,
   schema.name,
-  allTopologiesExcept(selectTopology)
+  allTopologiesExcept(selectTopology, pageTopology)
 );

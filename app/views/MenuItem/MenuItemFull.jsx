@@ -22,12 +22,11 @@ import ontola from '../../ontology/ontola';
 import { CardMain } from '../../topologies/Card';
 import CardContent from '../../components/Card/CardContent';
 import Container from '../../topologies/Container';
-import { pageTopology } from '../../topologies/Page';
-import PrimaryResource, { primaryResourceTopology } from '../../topologies/PrimaryResource';
+import { fullResourceTopology } from '../../topologies/FullResource';
 import TabBar from '../../topologies/TabBar';
 import TabPane from '../../topologies/TabPane';
 
-class MenuItemPage extends React.PureComponent {
+class MenuItemFull extends React.PureComponent {
   static type = [
     ontola.MenuItem,
     argu.MenuSection,
@@ -35,10 +34,7 @@ class MenuItemPage extends React.PureComponent {
     argu.Menu,
   ];
 
-  static topology = [
-    pageTopology,
-    primaryResourceTopology,
-  ];
+  static topology = fullResourceTopology;
 
   static mapDataToProps = {
     dataSubjects: ontola.menuItems,
@@ -129,7 +125,7 @@ class MenuItemPage extends React.PureComponent {
     }
 
     return (
-      <PrimaryResource>
+      <React.Fragment>
         {topLevel && r && __CLIENT__ && <Redirect to={retrievePath(r.value)} />}
         {topLevel && (
           <Container>
@@ -148,9 +144,9 @@ class MenuItemPage extends React.PureComponent {
           </Container>
         )}
         {body}
-      </PrimaryResource>
+      </React.Fragment>
     );
   }
 }
 
-export default register(MenuItemPage);
+export default register(MenuItemFull);

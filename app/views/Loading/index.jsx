@@ -7,6 +7,7 @@ import {
   LoadingCard,
   LoadingCellRow,
   LoadingDetail,
+  LoadingFullResource,
   LoadingMicroRow,
   LoadingNavbarLink,
   LoadingPage,
@@ -31,14 +32,14 @@ import { containerFloatTopology } from '../../topologies/Container/ContainerFloa
 import { contentDetailsTopology } from '../../topologies/ContentDetails';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { alertDialogTopology } from '../../topologies/Dialog';
-import { menuTopology } from '../../topologies/Menu';
+import { fullResourceTopology } from '../../topologies/FullResource';
 import { gridTopology } from '../../topologies/Grid';
 import { hoverBoxTopology } from '../../topologies/HoverBox';
 import { inlineTopology } from '../../topologies/Inline';
+import { menuTopology } from '../../topologies/Menu';
 import { navbarTopology } from '../../topologies/Navbar';
 import { pageTopology } from '../../topologies/Page';
 import { parentTopology } from '../../topologies/Parent';
-import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 import { tableTopology } from '../../topologies/Table';
 import { tableCellTopology } from '../../topologies/TableCell';
 import { voteBubbleTopology } from '../../topologies/VoteBubble';
@@ -55,9 +56,14 @@ export default [
     LoadingPage,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
+    pageTopology
+  ),
+  LinkedRenderStore.registerRenderer(
+    LoadingFullResource,
+    ll.LoadingResource,
+    RENDER_CLASS_NAME,
     [
-      pageTopology,
-      primaryResourceTopology,
+      fullResourceTopology,
       tabPaneTopology,
     ]
   ),

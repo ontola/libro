@@ -23,7 +23,7 @@ import { cardRowTopology } from '../../../topologies/Card/CardRow';
 import { containerTopology } from '../../../topologies/Container';
 import { hoverBoxTopology } from '../../../topologies/HoverBox';
 import { popupTopology } from '../../../topologies/Popup';
-import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
+import { fullResourceTopology } from '../../../topologies/FullResource';
 import { gridTopology } from '../../../topologies/Grid';
 
 const propTypes = {
@@ -109,7 +109,7 @@ export default [
     schema.Thing,
     [schema.text, schema.description],
     [
-      primaryResourceTopology,
+      fullResourceTopology,
       cardMainTopology,
       gridTopology,
     ]

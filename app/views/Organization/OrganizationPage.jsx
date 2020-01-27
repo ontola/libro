@@ -9,12 +9,11 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import argu from '../../ontology/argu';
-import { pageTopology } from '../../topologies/Page';
 import PageHeader from '../../topologies/PageHeader';
-import PrimaryResource, { primaryResourceTopology } from '../../topologies/PrimaryResource';
 import Card from '../../topologies/Card';
 import CardContent from '../../components/Card/CardContent';
 import Container from '../../topologies/Container';
+import { pageTopology } from '../../topologies/Page';
 import HomepageError from '../Error/HomepageError';
 
 const OrganizationPage = ({
@@ -27,7 +26,7 @@ const OrganizationPage = ({
   }
 
   return (
-    <PrimaryResource>
+    <React.Fragment>
       {hideHeader?.value !== 'true' && <PageHeader />}
       <Container>
         <Card>
@@ -42,7 +41,7 @@ const OrganizationPage = ({
           </CardContent>
         </Card>
       </Container>
-    </PrimaryResource>
+    </React.Fragment>
   );
 };
 
@@ -52,10 +51,7 @@ OrganizationPage.type = [
   schema.WebSite,
 ];
 
-OrganizationPage.topology = [
-  primaryResourceTopology,
-  pageTopology,
-];
+OrganizationPage.topology = pageTopology;
 
 OrganizationPage.mapDataToProps = {
   hideHeader: argu.hideHeader,

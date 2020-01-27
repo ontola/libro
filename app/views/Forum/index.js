@@ -1,4 +1,4 @@
-import Forum from './ForumPage';
+import Forum from './ForumFull';
 import ForumContainer from './ForumContainer';
 import NameParent from './properties/nameParent';
 

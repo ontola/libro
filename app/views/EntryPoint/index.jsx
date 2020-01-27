@@ -18,6 +18,7 @@ import { contentDetailsTopology } from '../../topologies/ContentDetails';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { gridTopology } from '../../topologies/Grid';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
+import { pageTopology } from '../../topologies/Page';
 
 import EntryPointButton from './EntryPointButton';
 import EntryPointCardFloat from './EntryPointCardFloat';
@@ -42,7 +43,8 @@ class EntryPoint extends React.PureComponent {
     contentDetailsTopology,
     detailsBarTopology,
     gridTopology,
-    omniformFieldsTopology
+    omniformFieldsTopology,
+    pageTopology
   );
 
   static mapDataToProps = {

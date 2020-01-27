@@ -5,15 +5,10 @@ import React from 'react';
 import { AccountHelpersCardAppendix } from '../../components/SignInForm/SignInFormHelpers';
 import ontola from '../../ontology/ontola';
 import { alertDialogTopology } from '../../topologies/Dialog';
-import PrimaryResource from '../../topologies/PrimaryResource';
 
 export default [
   LinkedRenderStore.registerRenderer(
-    () => (
-      <PrimaryResource>
-        <Type appendix={AccountHelpersCardAppendix} />
-      </PrimaryResource>
-    ),
+    () => <Type appendix={AccountHelpersCardAppendix} />,
     [
       ontola.ns('Create::Users::Password'),
       ontola.ns('Create::Users::Confirmation'),

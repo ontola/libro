@@ -1,23 +1,21 @@
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import { CardContent, LinkedDetailDate } from '../../components';
 import argu from '../../ontology/argu';
-import ontola from '../../ontology/ontola';
 import teamGL from '../../ontology/teamGL';
 import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
-import { pageTopology } from '../../topologies/Page';
-import PrimaryResource from '../../topologies/PrimaryResource';
+import { fullResourceTopology } from '../../topologies/FullResource';
 import ContentDetails from '../../topologies/ContentDetails';
 
-const DepartmentPage = () => (
-  <PrimaryResource>
-    <Property label={ontola.coverPhoto} onLoad={() => null} />
+const DepartmentFull = ({ partOf }) => (
+  <React.Fragment>
     <Container>
-      <Property label={schema.isPartOf} />
+      {partOf && <Property label={schema.isPartOf} />}
       <Property label={argu.trashedAt} />
       <CardMain data-test="Thing-thing">
         <CardContent noSpacing>
@@ -44,12 +42,15 @@ const DepartmentPage = () => (
     <Container>
       <Property forceRender renderWhenEmpty label={teamGL.groups} />
     </Container>
-  </PrimaryResource>
+  </React.Fragment>
 );
 
-DepartmentPage.type = teamGL.Department;
+DepartmentFull.type = teamGL.Department;
 
-DepartmentPage.topology = pageTopology;
+DepartmentFull.topology = fullResourceTopology;
 
+DepartmentFull.propTypes = {
+  partOf: PropTypes.bool,
+};
 
-export default register(DepartmentPage);
+export default register(DepartmentFull);

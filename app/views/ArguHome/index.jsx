@@ -15,9 +15,8 @@ import PageRow from '../../components/PageRow';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import Container from '../../topologies/Container';
+import { fullResourceTopology } from '../../topologies/FullResource';
 import Grid from '../../topologies/Grid';
-import { pageTopology } from '../../topologies/Page';
-import PrimaryResource from '../../topologies/PrimaryResource';
 import PageHeader from '../../topologies/PageHeader';
 import { entityIsLoaded, seqToArr } from '../../helpers/data';
 
@@ -83,7 +82,7 @@ const ArguHomePage = ({ coverPhoto, subject }) => {
 
   return (
     <div className="ArguHome">
-      <PrimaryResource>
+      <React.Fragment>
         <PageHeader background={coverPhotoUrl?.value} positionY={positionY?.value} />
         <PageRow>
           <Container size="medium">
@@ -141,14 +140,14 @@ const ArguHomePage = ({ coverPhoto, subject }) => {
             </React.Fragment>
           )
         }
-      </PrimaryResource>
+      </React.Fragment>
     </div>
   );
 };
 
 ArguHomePage.type = argu.ArguHome;
 
-ArguHomePage.topology = pageTopology;
+ArguHomePage.topology = fullResourceTopology;
 
 ArguHomePage.mapDataToProps = {
   coverPhoto: ontola.coverPhoto,

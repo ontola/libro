@@ -6,7 +6,7 @@ import NavbarLinkCount from '../../../components/NavbarLink/NavbarLinkCount';
 import { tryParseInt } from '../../../helpers/numbers';
 import argu from '../../../ontology/argu';
 import { navbarTopology } from '../../../topologies/Navbar';
-import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
+import { fullResourceTopology } from '../../../topologies/FullResource';
 import { CollectionTypes } from '../types';
 
 const UnreadCount = ({ linkedProp }) => (
@@ -30,7 +30,7 @@ export default [
     UnreadCount,
     CollectionTypes,
     argu.unreadCount,
-    primaryResourceTopology
+    fullResourceTopology
   ),
   LinkedRenderStore.registerRenderer(
     UnreadCountHeader,

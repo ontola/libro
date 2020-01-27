@@ -18,7 +18,7 @@ import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
 
 import MediaObjectOmniformFields from './MediaObjectOmniformFields';
-import MediaObjectPage from './MediaObjectPage';
+import MediaObjectPage from './MediaObjectFull';
 
 const MediaObjectPreview = ({
   caption,

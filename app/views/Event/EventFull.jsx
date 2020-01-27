@@ -5,18 +5,17 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import CardContent from '../../components/Card/CardContent';
+import HeaderWithMenu from '../../components/HeaderWithMenu';
 import ontola from '../../ontology/ontola';
 import teamGL from '../../ontology/teamGL';
-import { pageTopology } from '../../topologies/Page';
-import PrimaryResource from '../../topologies/PrimaryResource';
-import Container from '../../topologies/Container';
 import CardMain from '../../topologies/Card/CardMain';
-import CardContent from '../../components/Card/CardContent';
+import Container from '../../topologies/Container';
 import ContentDetails from '../../topologies/ContentDetails';
-import HeaderWithMenu from '../../components/HeaderWithMenu';
+import { fullResourceTopology } from '../../topologies/FullResource';
 
-const EventPage = () => (
-  <PrimaryResource>
+const EventFull = () => (
+  <React.Fragment>
     <Container>
       <CardMain>
         <CardContent>
@@ -42,11 +41,11 @@ const EventPage = () => (
         <Property singlePage collectionDisplay={ontola.ns('collectionDisplay/card')} label={ontola.pages} />
       </Property>
     </Container>
-  </PrimaryResource>
+  </React.Fragment>
 );
 
-EventPage.type = teamGL.Event;
+EventFull.type = teamGL.Event;
 
-EventPage.topology = pageTopology;
+EventFull.topology = fullResourceTopology;
 
-export default register(EventPage);
+export default register(EventFull);

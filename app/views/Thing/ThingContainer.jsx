@@ -20,7 +20,7 @@ import CardRow from '../../topologies/Card/CardRow';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import { containerTopology } from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
-import { primaryResourceTopology } from '../../topologies/PrimaryResource';
+import { fullResourceTopology } from '../../topologies/FullResource';
 
 const ThingContainer = ({ highlighted, subject }) => (
   <Card about={subject?.value} shine={highlighted}>
@@ -44,7 +44,7 @@ ThingContainer.type = schema.Thing;
 
 ThingContainer.topology = [
   alertDialogTopology,
-  primaryResourceTopology,
+  fullResourceTopology,
   containerTopology,
 ];
 

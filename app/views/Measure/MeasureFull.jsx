@@ -3,9 +3,13 @@ import rdfx from '@ontologies/rdf';
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 
-import { CardContent } from '../../components';
+import {
+  CardContent,
+  LinkedDetailDate,
+} from '../../components';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
@@ -19,20 +23,22 @@ import CardMain from '../../topologies/Card/CardMain';
 import CardRow from '../../topologies/Card/CardRow';
 import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
-import { pageTopology } from '../../topologies/Page';
-import PrimaryResource from '../../topologies/PrimaryResource';
+import { fullResourceTopology } from '../../topologies/FullResource';
 import { defaultMenus } from '../common';
 
-const ScenarioPage = () => (
-  <PrimaryResource>
-    <Property label={ontola.coverPhoto} onLoad={() => null} />
+const MeasureFull = ({ partOf }) => (
+  <React.Fragment>
     <Container>
-      <Property label={schema.isPartOf} />
+      {partOf && <Property label={schema.isPartOf} />}
       <Property label={argu.trashedAt} />
-      <CardMain data-test="Thing-thing">
-        <Property label={schema.superEvent} />
+      <CardMain>
         <DetailsBar right={defaultMenus}>
           <Property label={rdfx.type} />
+          <LinkedDetailDate />
+          <Property label={argu.pinnedAt} />
+          <Property label={argu.expiresAt} />
+          <Property label={argu.followsCount} />
+          <Property label={schema.location} />
           <Property label={argu.grantedGroups} />
         </DetailsBar>
         <CardContent noSpacing>
@@ -48,28 +54,24 @@ const ScenarioPage = () => (
         <ActionsBar>
           <Property label={ontola.favoriteAction} onLoad={() => null} />
         </ActionsBar>
-        <Property label={meeting.agenda} onLoad={() => null} />
         <CardAppendix>
           <Property forceRender label={app.omniform} />
         </CardAppendix>
       </CardMain>
       <Property label={ontola.publishAction} onLoad={() => null} />
-      <Property label={argu.voteEvents} onLoad={() => null} />
-      <Property label={argu.blogPosts} onLoad={() => null} />
-      <Property label={schema.location} onLoad={() => null} />
-      <Property label={argu.motions} onLoad={() => null} />
-    </Container>
-    <Container size="large">
-      <Property forceRender label={argu.arguments} />
     </Container>
     <Container>
       <Property label={schema.comment} />
     </Container>
-  </PrimaryResource>
+  </React.Fragment>
 );
 
-ScenarioPage.type = rivm.Scenario;
+MeasureFull.type = rivm.Measure;
 
-ScenarioPage.topology = pageTopology;
+MeasureFull.topology = fullResourceTopology;
 
-export default register(ScenarioPage);
+MeasureFull.propTypes = {
+  partOf: PropTypes.bool,
+};
+
+export default register(MeasureFull);

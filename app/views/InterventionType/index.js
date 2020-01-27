@@ -1,5 +1,5 @@
 import InterventionTypeGrid from './InterventionTypeGrid';
-import InterventionTypePage from './InterventionTypePage';
+import InterventionTypePage from './InterventionTypeFull';
 
 export default [
   InterventionTypeGrid,

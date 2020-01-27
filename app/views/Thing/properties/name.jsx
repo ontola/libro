@@ -30,7 +30,7 @@ import { navbarTopology } from '../../../topologies/Navbar';
 import { pageHeaderTopology } from '../../../topologies/PageHeader';
 import { parentTopology } from '../../../topologies/Parent';
 import { popupTopology } from '../../../topologies/Popup';
-import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
+import { fullResourceTopology } from '../../../topologies/FullResource';
 import { radioGroupTopology } from '../../../topologies/RadioGroup';
 import { selectTopology } from '../../../topologies/Select';
 import { tableRowTopology } from '../../../topologies/TableRow';
@@ -90,7 +90,7 @@ export default [
     () => <ConnectedHeading data-test="Thing-name-small-title" size="1" />,
     schema.Thing,
     NamePredicates,
-    primaryResourceTopology
+    fullResourceTopology
   ),
   LinkedRenderStore.registerRenderer(
     () => (

@@ -17,6 +17,7 @@ import argu from '../../../ontology/argu';
 import { allTopologiesExcept } from '../../../topologies';
 import { cardAppendixTopology } from '../../../topologies/Card/CardAppendix';
 import CardRow from '../../../topologies/Card/CardRow';
+import { pageTopology } from '../../../topologies/Page';
 
 const ArgumentColumns = ({ pageSize, subject }) => (
   <Columns>
@@ -94,7 +95,7 @@ export default [
     ArgumentsData,
     schema.Thing,
     argu.arguments,
-    allTopologiesExcept(cardAppendixTopology)
+    allTopologiesExcept(cardAppendixTopology, pageTopology)
   ),
   LinkedRenderStore.registerRenderer(
     ArgumentsCardAppendix,

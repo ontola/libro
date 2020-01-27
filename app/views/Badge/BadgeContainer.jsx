@@ -20,7 +20,7 @@ import Card from '../../topologies/Card';
 import { containerTopology } from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import FormFooter from '../../topologies/FormFooter/Footer';
-import { primaryResourceTopology } from '../../topologies/PrimaryResource';
+import { fullResourceTopology } from '../../topologies/FullResource';
 
 const messages = defineMessages({
   continue: {
@@ -72,7 +72,7 @@ BadgeContainer.hocs = [withRouter];
 
 BadgeContainer.topology = [
   alertDialogTopology,
-  primaryResourceTopology,
+  fullResourceTopology,
   containerTopology,
 ];
 

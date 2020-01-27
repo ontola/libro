@@ -9,7 +9,7 @@ import { cardTopology } from '../../../topologies/Card';
 import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
 import { cardMainTopology } from '../../../topologies/Card/CardMain';
 import { containerTopology } from '../../../topologies/Container';
-import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
+import { fullResourceTopology } from '../../../topologies/FullResource';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -26,7 +26,7 @@ export default LinkedRenderStore.registerRenderer(
   argu.Notification,
   schema.name,
   [
-    primaryResourceTopology,
+    fullResourceTopology,
     cardFixedTopology,
     cardMainTopology,
     cardTopology,

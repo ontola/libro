@@ -13,6 +13,7 @@ import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
 import { CollectionTypes } from '../types';
 import { navbarTopology } from '../../../topologies/Navbar';
+import { pageTopology } from '../../../topologies/Page';
 import { parentTopology } from '../../../topologies/Parent';
 import { tableRowTopology } from '../../../topologies/TableRow';
 
@@ -42,7 +43,7 @@ export default [
     withLinkCtx(CollectionName),
     CollectionTypes,
     as.name,
-    allTopologiesExcept(navbarTopology, parentTopology, tableRowTopology)
+    allTopologiesExcept(navbarTopology, parentTopology, tableRowTopology, pageTopology)
   ),
   LinkedRenderStore.registerRenderer(
     ({ linkedProp }) => linkedProp.value,

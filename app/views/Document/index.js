@@ -1,3 +1,3 @@
-import DocumentPage from './DocumentPage';
+import DocumentPage from './DocumentFull';
 
 export default DocumentPage;

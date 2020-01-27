@@ -10,7 +10,7 @@ import Card, {
   CardRow,
 } from '../../topologies/Card';
 import Container from '../../topologies/Container';
-import PrimaryResource from '../../topologies/PrimaryResource';
+import FullResourceTopology from '../../topologies/FullResource';
 import TableCell from '../../topologies/TableCell';
 import TableRow from '../../topologies/TableRow';
 import { Breadcrumb, BreadcrumbsBar } from '../Breadcrumbs';
@@ -64,14 +64,22 @@ export const LoadingCellRow = () => (
 );
 
 export const LoadingPage = () => (
-  <PrimaryResource>
+  <FullResourceTopology>
     <Container>
       <BreadcrumbsBar>
         <LoadingParent />
       </BreadcrumbsBar>
       <LoadingCard />
     </Container>
-  </PrimaryResource>
+  </FullResourceTopology>
+);
+
+export const LoadingFullResource = () => (
+  <FullResourceTopology>
+    <Container>
+      <LoadingCard />
+    </Container>
+  </FullResourceTopology>
 );
 
 export const LoadingDetail = () => (

@@ -1,5 +1,5 @@
 import RiskContainer from './RiskContainer';
-import RiskPage from './RiskPage';
+import RiskPage from './RiskFull';
 
 export default [
   RiskContainer,

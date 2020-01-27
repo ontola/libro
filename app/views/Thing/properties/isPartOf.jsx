@@ -4,33 +4,25 @@ import {
   linkedPropType,
   register,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import { BreadcrumbsBar } from '../../../components';
-import argu from '../../../ontology/argu';
+import { containerTopology } from '../../../topologies/Container';
 
-class IsPartOfPage extends React.PureComponent {
-  static type = schema.Thing;
+const IsPartOfContainer = ({ linkedProp }) => (
+  <BreadcrumbsBar>
+    <Resource subject={linkedProp} />
+  </BreadcrumbsBar>
+);
 
-  static property = schema.isPartOf;
+IsPartOfContainer.type = schema.Thing;
 
-  static topology = argu.container;
+IsPartOfContainer.property = schema.isPartOf;
 
-  static propTypes = {
-    linkedProp: linkedPropType,
-    showAncestors: PropTypes.bool,
-  };
+IsPartOfContainer.topology = containerTopology;
 
-  render() {
-    const { linkedProp, showAncestors } = this.props;
+IsPartOfContainer.propTypes = {
+  linkedProp: linkedPropType,
+};
 
-    return (
-      <BreadcrumbsBar>
-        <Resource showAncestors={showAncestors} subject={linkedProp} />
-      </BreadcrumbsBar>
-    );
-  }
-}
-
-export default register(IsPartOfPage);
+export default register(IsPartOfContainer);

@@ -7,7 +7,7 @@ import ontola from '../../ontology/ontola';
 import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
 import { cardTopology } from '../../topologies/Card';
 import { containerTopology } from '../../topologies/Container';
-import { primaryResourceTopology } from '../../topologies/PrimaryResource';
+import { fullResourceTopology } from '../../topologies/FullResource';
 import ActionsBar from '../../topologies/ActionsBar';
 
 const VoteEventContainer = () => (
@@ -30,7 +30,7 @@ VoteEventContainer.topology = [
   cardAppendixTopology,
   cardTopology,
   containerTopology,
-  primaryResourceTopology,
+  fullResourceTopology,
 ];
 
 export default register(VoteEventContainer);

@@ -5,18 +5,17 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import CardContent from '../../../components/Card/CardContent';
+import HeaderWithMenu from '../../../components/HeaderWithMenu';
 import ontola from '../../../ontology/ontola';
 import teamGL from '../../../ontology/teamGL';
-import { pageTopology } from '../../../topologies/Page';
-import PrimaryResource from '../../../topologies/PrimaryResource';
 import Container from '../../../topologies/Container';
 import CardMain from '../../../topologies/Card/CardMain';
-import CardContent from '../../../components/Card/CardContent';
 import ContentDetails from '../../../topologies/ContentDetails';
-import HeaderWithMenu from '../../../components/HeaderWithMenu';
+import { fullResourceTopology } from '../../../topologies/FullResource';
 
-const GroupPage = () => (
-  <PrimaryResource>
+const GroupFull = () => (
+  <React.Fragment>
     <Container>
       <CardMain>
         <CardContent>
@@ -35,11 +34,11 @@ const GroupPage = () => (
     <Container>
       <Property renderWhenEmpty label={ontola.memberships} />
     </Container>
-  </PrimaryResource>
+  </React.Fragment>
 );
 
-GroupPage.type = teamGL.Group;
+GroupFull.type = teamGL.Group;
 
-GroupPage.topology = pageTopology;
+GroupFull.topology = fullResourceTopology;
 
-export default register(GroupPage);
+export default register(GroupFull);

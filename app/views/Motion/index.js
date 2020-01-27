@@ -1,5 +1,5 @@
 import MotionContainer from './MotionContainer';
-import MotionPage from './MotionPage';
+import MotionPage from './MotionFull';
 
 export default [
   MotionContainer,

@@ -15,6 +15,7 @@ import Card from '../../../topologies/Card';
 import CardAppendix from '../../../topologies/Card/CardAppendix';
 import Container, { LargeContainer, containerTopology } from '../../../topologies/Container';
 import Grid, { gridTopology } from '../../../topologies/Grid';
+import { pageTopology } from '../../../topologies/Page';
 import Table from '../../../topologies/Table';
 import TableFooter from '../../../topologies/TableFooter';
 import TableFooterCell from '../../../topologies/TableFooterCell';
@@ -136,6 +137,6 @@ const getFrame = (wrapper, topology) => {
 };
 
 export default [
-  register(getFrame(true, allTopologiesExcept(containerTopology, gridTopology))),
+  register(getFrame(true, allTopologiesExcept(containerTopology, gridTopology, pageTopology))),
   register(getFrame(false, [containerTopology, gridTopology])),
 ];

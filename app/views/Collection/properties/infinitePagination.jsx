@@ -13,6 +13,7 @@ import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
 import { cardAppendixTopology } from '../../../topologies/Card/CardAppendix';
 import CardRow from '../../../topologies/Card/CardRow';
+import { pageTopology } from '../../../topologies/Page';
 import { CollectionTypes } from '../types';
 
 const getPagination = (Wrapper, topology) => {
@@ -60,6 +61,6 @@ export const CardAppendixContent = ({ children }) => (
 CardAppendixContent.propTypes = { children: PropTypes.node };
 
 export default [
-  register(getPagination(React.Fragment, allTopologiesExcept(cardAppendixTopology))),
+  register(getPagination(React.Fragment, allTopologiesExcept(cardAppendixTopology, pageTopology))),
   register(getPagination(CardAppendixContent, cardAppendixTopology)),
 ];

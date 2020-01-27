@@ -1,64 +1,72 @@
 import schema from '@ontologies/schema';
 import { ACCEPTED } from 'http-status-codes';
-import LinkedRenderStore from 'link-lib';
 import {
   Resource,
   linkedPropType,
   register,
   useDataInvalidation,
   useLRS,
+  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 
-import { LDLink } from '../../../components';
+import { CoverImage } from '../../../components';
 import { LoadingCoverPhoto } from '../../../components/Loading';
 import ontola from '../../../ontology/ontola';
 import { cardTopology } from '../../../topologies/Card';
 import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
+import { tryParseInt } from '../../../helpers/numbers';
+import { cardMainTopology } from '../../../topologies/Card/CardMain';
+import { pageTopology } from '../../../topologies/Page';
 
-const propTypes = {
-  linkedProp: linkedPropType,
-};
+const registerCoverPhoto = (prop, topology) => {
+  const CoverPhotoOrLoading = ({
+    linkedProp,
+  }) => {
+    const lrs = useLRS();
+    useDataInvalidation({ subject: linkedProp });
+    const [imagePositionY] = useResourceProperty(linkedProp, ontola.imagePositionY);
+    const [url] = useResourceProperty(linkedProp, prop);
+    const status = lrs.getStatus(linkedProp);
 
-const ClickableCover = ({ linkedProp }) => (
-  <LDLink>
-    <Resource subject={linkedProp} />
-  </LDLink>
-);
+    if (status.status === ACCEPTED || lrs.shouldLoadResource(linkedProp)) {
+      return (
+        <Resource forceRender subject={linkedProp}>
+          <LoadingCoverPhoto />
+        </Resource>
+      );
+    }
 
-ClickableCover.propTypes = propTypes;
+    if (!url) {
+      return null;
+    }
 
-const CoverPhotoOrLoading = ({ linkedProp }) => {
-  useDataInvalidation({ subject: linkedProp });
-
-  const lrs = useLRS();
-  const status = lrs.getStatus(linkedProp);
-
-  if (status.status === ACCEPTED || lrs.shouldLoadResource(linkedProp)) {
     return (
-      <Resource forceRender subject={linkedProp}>
-        <LoadingCoverPhoto />
-      </Resource>
+      <CoverImage
+        positionY={tryParseInt(imagePositionY)}
+        url={url.value}
+      />
     );
-  }
+  };
 
-  return <Resource subject={linkedProp} />;
+  CoverPhotoOrLoading.type = schema.Thing;
+
+  CoverPhotoOrLoading.property = ontola.coverPhoto;
+
+  CoverPhotoOrLoading.topology = topology;
+
+  CoverPhotoOrLoading.propTypes = {
+    linkedProp: linkedPropType,
+  };
+
+  return register(CoverPhotoOrLoading);
 };
-
-CoverPhotoOrLoading.type = schema.Thing;
-
-CoverPhotoOrLoading.property = ontola.coverPhoto;
-
-CoverPhotoOrLoading.topology = cardFixedTopology;
-
-CoverPhotoOrLoading.propTypes = propTypes;
 
 export default [
-  register(CoverPhotoOrLoading),
-  LinkedRenderStore.registerRenderer(
-    ClickableCover,
-    schema.Thing,
-    ontola.coverPhoto,
-    cardTopology
-  ),
+  registerCoverPhoto(ontola.imgUrl1500x2000, [pageTopology]),
+  registerCoverPhoto(ontola.imgUrl568x400, [
+    cardTopology,
+    cardFixedTopology,
+    cardMainTopology,
+  ]),
 ];

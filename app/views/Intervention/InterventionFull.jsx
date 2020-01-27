@@ -8,6 +8,7 @@ import {
   register,
   useLRS,
 } from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import {
@@ -29,21 +30,20 @@ import CardMain from '../../topologies/Card/CardMain';
 import CardRow from '../../topologies/Card/CardRow';
 import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
-import { pageTopology } from '../../topologies/Page';
-import PrimaryResource from '../../topologies/PrimaryResource';
 import { defaultMenus } from '../common';
+import { fullResourceTopology } from '../../topologies/FullResource';
 
-const InterventionPage = ({
+const InterventionFull = ({
   employment,
+  partOf,
 }) => {
   const lrs = useLRS();
   const image = lrs.getResourceProperty(employment, schema.image);
 
   return (
-    <PrimaryResource>
-      <Property label={ontola.coverPhoto} />
+    <React.Fragment>
       <Container>
-        <Property label={schema.isPartOf} />
+        {partOf && <Property label={schema.isPartOf} />}
         <Property label={argu.trashedAt} />
         <CardMain>
           <DetailsBar right={defaultMenus}>
@@ -144,20 +144,21 @@ const InterventionPage = ({
       <Container>
         <Property label={schema.comment} />
       </Container>
-    </PrimaryResource>
+    </React.Fragment>
   );
 };
 
-InterventionPage.type = rivm.Intervention;
+InterventionFull.type = rivm.Intervention;
 
-InterventionPage.topology = pageTopology;
+InterventionFull.topology = fullResourceTopology;
 
-InterventionPage.mapDataToProps = {
+InterventionFull.mapDataToProps = {
   employment: rivm.employment,
 };
 
-InterventionPage.propTypes = {
+InterventionFull.propTypes = {
   employment: linkType,
+  partOf: PropTypes.bool,
 };
 
-export default register(InterventionPage);
+export default register(InterventionFull);

@@ -1,6 +1,7 @@
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import {
@@ -18,7 +19,7 @@ import DetailsBar from '../../topologies/DetailsBar';
 import AttributeList from '../../topologies/AttributeList';
 import { gridTopology } from '../../topologies/Grid';
 
-const InterventionGrid = () => (
+const InterventionGrid = ({ partOf }) => (
   <CardFixed>
     <LDLink>
       <Property label={ontola.coverPhoto} />
@@ -44,7 +45,7 @@ const InterventionGrid = () => (
     </LDLink>
     <DetailsBar>
       <Property hideName label={schema.creator} />
-      <Property label={schema.isPartOf} />
+      {partOf && <Property label={schema.isPartOf} />}
       <LinkedDetailDate />
       <Property label={argu.pinnedAt} />
       <Property short label={argu.expiresAt} />
@@ -57,5 +58,9 @@ const InterventionGrid = () => (
 InterventionGrid.type = rivm.Intervention;
 
 InterventionGrid.topology = gridTopology;
+
+InterventionGrid.propTypes = {
+  partOf: PropTypes.bool,
+};
 
 export default register(InterventionGrid);

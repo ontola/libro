@@ -14,11 +14,10 @@ import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import Container from '../../topologies/Container/index';
 import Grid from '../../topologies/Grid';
-import { pageTopology } from '../../topologies/Page';
+import { fullResourceTopology } from '../../topologies/FullResource';
 import PageHeader from '../../topologies/PageHeader';
-import PrimaryResource, { primaryResourceTopology } from '../../topologies/PrimaryResource';
 
-const ForumPage = ({ coverPhoto, hideHeader }) => {
+const ForumFull = ({ coverPhoto, hideHeader }) => {
   const lrs = useLRS();
   let coverPhotoUrl, positionY;
   if (coverPhoto) {
@@ -32,7 +31,7 @@ const ForumPage = ({ coverPhoto, hideHeader }) => {
   }
 
   return (
-    <PrimaryResource>
+    <React.Fragment>
       {(hideHeader?.value !== 'true')
       && <PageHeader background={coverPhotoUrl?.value} positionY={positionY?.value} />}
       <Container size="large">
@@ -40,32 +39,29 @@ const ForumPage = ({ coverPhoto, hideHeader }) => {
           <Property label={ontola.widgets} onLoad={LoadingFiller} />
         </Grid>
       </Container>
-    </PrimaryResource>
+    </React.Fragment>
   );
 };
 
-ForumPage.type = [argu.ContainerNode, schema.WebPage];
+ForumFull.type = [argu.ContainerNode, schema.WebPage];
 
-ForumPage.mapDataToProps = {
+ForumFull.mapDataToProps = {
   coverPhoto: ontola.coverPhoto,
   hideHeader: argu.hideHeader,
   name: schema.name,
   widgets: ontola.widgets,
 };
 
-ForumPage.propTypes = {
+ForumFull.propTypes = {
   coverPhoto: linkType,
   hideHeader: linkType,
 };
 
-ForumPage.topology = [
-  primaryResourceTopology,
-  pageTopology,
-];
+ForumFull.topology = fullResourceTopology;
 
-ForumPage.linkOpts = {
+ForumFull.linkOpts = {
   forceRender: true,
 };
 
 
-export default register(ForumPage);
+export default register(ForumFull);

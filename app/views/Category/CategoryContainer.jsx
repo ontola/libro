@@ -8,7 +8,7 @@ import React from 'react';
 import rivm from '../../ontology/rivm';
 import { containerTopology } from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
-import { primaryResourceTopology } from '../../topologies/PrimaryResource';
+import { fullResourceTopology } from '../../topologies/FullResource';
 import CardContent from '../../components/Card/CardContent';
 import Card from '../../topologies/Card';
 
@@ -26,7 +26,7 @@ CategoryContainer.type = rivm.Category;
 
 CategoryContainer.topology = [
   alertDialogTopology,
-  primaryResourceTopology,
+  fullResourceTopology,
   containerTopology,
 ];
 

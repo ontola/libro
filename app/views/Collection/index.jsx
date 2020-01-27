@@ -4,14 +4,14 @@ import { alertDialogTopology } from '../../topologies/Dialog';
 import { cardTopology } from '../../topologies/Card';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { gridTopology } from '../../topologies/Grid';
-import { pageTopology } from '../../topologies/Page';
-import { primaryResourceTopology } from '../../topologies/PrimaryResource';
+import { fullResourceTopology } from '../../topologies/FullResource';
 import { tabPaneTopology } from '../../topologies/TabPane';
 
 import getCollection from './getCollection';
 import CreateAction from './properties/createAction';
 import CollectionFrame from './properties/collectionFrame';
 import FilteredCollections from './properties/filteredCollections';
+import IsPartOf from './properties/isPartOf';
 import Name from './properties/name';
 import UnreadCount from './properties/unreadCount';
 import Pages from './properties/pages';
@@ -35,11 +35,9 @@ export default [
   register(
     getCollection({
       redirect: true,
-      renderParent: true,
       renderWhenEmpty: true,
       topology: [
-        primaryResourceTopology,
-        pageTopology,
+        fullResourceTopology,
       ],
     })
   ),
@@ -74,6 +72,7 @@ export default [
   CreateAction,
   ...FilteredCollections,
   ...Header,
+  ...IsPartOf,
   Name,
   ...UnreadCount,
   ...Pages,

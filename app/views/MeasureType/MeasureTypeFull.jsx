@@ -3,6 +3,7 @@ import rdfx from '@ontologies/rdf';
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import {
@@ -22,15 +23,14 @@ import CardMain from '../../topologies/Card/CardMain';
 import CardRow from '../../topologies/Card/CardRow';
 import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
-import { pageTopology } from '../../topologies/Page';
-import PrimaryResource from '../../topologies/PrimaryResource';
+import { inlineTopology } from '../../topologies/Inline';
 import { defaultMenus } from '../common';
+import { fullResourceTopology } from '../../topologies/FullResource';
 
-const MeasurePage = () => (
-  <PrimaryResource>
-    <Property label={ontola.coverPhoto} />
+const MeasureTypeFull = ({ partOf }) => (
+  <React.Fragment>
     <Container>
-      <Property label={schema.isPartOf} />
+      {partOf && <Property label={schema.isPartOf} />}
       <Property label={argu.trashedAt} />
       <CardMain>
         <DetailsBar right={defaultMenus}>
@@ -41,10 +41,12 @@ const MeasurePage = () => (
           <Property label={argu.followsCount} />
           <Property label={schema.location} />
           <Property label={argu.grantedGroups} />
+          <Property label={rivm.category} />
         </DetailsBar>
         <CardContent noSpacing>
           <Property label={[schema.name, rdfs.label]} />
           <Property label={[dbo.thumbnail, wdt.ns('P18')]} />
+          <Property label={rivm.exampleOf} topology={inlineTopology} />
           <Property label={[schema.text, schema.description, dbo.abstract]} />
           <Property label={foaf.isPrimaryTopicOf} onLoad={() => null} />
         </CardContent>
@@ -62,13 +64,20 @@ const MeasurePage = () => (
       <Property label={ontola.publishAction} onLoad={() => null} />
     </Container>
     <Container>
+      <Property forceRender renderWhenEmpty label={rivm.measures} />
+    </Container>
+    <Container>
       <Property label={schema.comment} />
     </Container>
-  </PrimaryResource>
+  </React.Fragment>
 );
 
-MeasurePage.type = rivm.Measure;
+MeasureTypeFull.type = rivm.MeasureType;
 
-MeasurePage.topology = pageTopology;
+MeasureTypeFull.topology = fullResourceTopology;
 
-export default register(MeasurePage);
+MeasureTypeFull.propTypes = {
+  partOf: PropTypes.bool,
+};
+
+export default register(MeasureTypeFull);

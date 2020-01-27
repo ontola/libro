@@ -1,4 +1,4 @@
-import TokenPage from './TokenPage';
+import TokenPage from './TokenFull';
 
 export default [
   TokenPage,

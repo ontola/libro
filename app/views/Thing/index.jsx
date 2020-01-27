@@ -1,5 +1,3 @@
-import foaf from '@ontologies/foaf';
-import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { Property, link } from 'link-redux';
@@ -10,19 +8,12 @@ import {
   Detail,
   LDLink,
 } from '../../components';
-import { LoadingOpinion } from '../../components/Loading';
 import {
   connectHighlighting,
   hightlightPropTypes,
 } from '../../containers/Highlight';
-import argu from '../../ontology/argu';
-import dbo from '../../ontology/dbo';
-import meeting from '../../ontology/meeting';
-import { cardTopology } from '../../topologies/Card';
-import { cardFixedTopology } from '../../topologies/Card/CardFixed';
 import { cardListTopology } from '../../topologies/Card/CardList';
-import { cardMainTopology } from '../../topologies/Card/CardMain';
-import CardRow, { cardRowTopology } from '../../topologies/Card/CardRow';
+import { cardRowTopology } from '../../topologies/Card/CardRow';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 import hoverBox from '../../topologies/HoverBox';
 
@@ -60,8 +51,10 @@ import Text from './properties/text';
 import TopComment from './properties/topComment';
 import TrashedAt from './properties/trashedAt';
 import VoteEvents from './properties/voteEvents';
+import ThingCard from './ThingCard';
 import ThingContainer from './ThingContainer';
 import ThingInline from './ThingInline';
+import ThingFullResource from './ThingFull';
 import ThingGrid from './ThingGrid';
 import ThingPage from './ThingPage';
 import ThingPageHeader from './ThingPageHeader';
@@ -90,19 +83,10 @@ const ThingSection = ({ highlighted }) => (
 
 ThingSection.propTypes = hightlightPropTypes;
 
-const ThingCard = () => (
-  <CardRow>
-    <CardContent>
-      <Property label={argu.opinion} onError={() => null} onLoad={LoadingOpinion} />
-      <Property label={[schema.name, rdfs.label, foaf.name]} />
-      <Property label={[schema.text, schema.description, dbo.abstract]} />
-      <Property label={meeting.attachment} />
-    </CardContent>
-  </CardRow>
-);
-
 export default [
+  ThingCard,
   ThingContainer,
+  ThingFullResource,
   ThingGrid,
   ThingPage,
   ThingPageHeader,
@@ -136,16 +120,6 @@ export default [
     schema.Thing,
     RENDER_CLASS_NAME,
     detailsBarTopology
-  ),
-  LinkedRenderStore.registerRenderer(
-    ThingCard,
-    schema.Thing,
-    RENDER_CLASS_NAME,
-    [
-      cardFixedTopology,
-      cardMainTopology,
-      cardTopology,
-    ]
   ),
   ApplyLink,
   ...Arguments,

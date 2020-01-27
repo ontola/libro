@@ -1,4 +1,4 @@
-import IncidentPage from './IncidentPage';
+import IncidentPage from './IncidentFull';
 
 export default [
   IncidentPage,

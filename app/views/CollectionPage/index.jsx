@@ -15,8 +15,8 @@ import ontola from '../../ontology/ontola';
 import { allTopologiesExcept } from '../../topologies';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { inlineTopology } from '../../topologies/Inline';
+import { fullResourceTopology } from '../../topologies/FullResource';
 import { pageTopology } from '../../topologies/Page';
-import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 
 import CollectionPageInline from './CollectionPageInline';
 import Items from './properties/items';
@@ -91,16 +91,16 @@ function getCollectionPage({
 const DefaultCollectionPage = getCollectionPage({
   topology: allTopologiesExcept(
     alertDialogTopology,
-    pageTopology,
-    primaryResourceTopology,
-    inlineTopology
+    fullResourceTopology,
+    inlineTopology,
+    pageTopology
   ),
 });
 
 const PageCollectionPage = getCollectionPage({
   hidePagination: false,
   redirect: true,
-  topology: [pageTopology, primaryResourceTopology],
+  topology: fullResourceTopology,
 });
 
 const AlertPage = getCollectionPage({

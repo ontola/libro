@@ -3,9 +3,15 @@ import rdfx from '@ontologies/rdf';
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 
-import { CardContent } from '../../components';
+import {
+  AttributeListItem,
+  CardContent,
+  LinkedDetailDate,
+} from '../../components';
+import Button from '../../components/Button';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
@@ -14,32 +20,43 @@ import ontola from '../../ontology/ontola';
 import rivm from '../../ontology/rivm';
 import wdt from '../../ontology/wdt';
 import ActionsBar from '../../topologies/ActionsBar';
+import AttributeList from '../../topologies/AttributeList';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import CardMain from '../../topologies/Card/CardMain';
 import CardRow from '../../topologies/Card/CardRow';
 import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
-import { pageTopology } from '../../topologies/Page';
-import PrimaryResource from '../../topologies/PrimaryResource';
+import { inlineTopology } from '../../topologies/Inline';
 import { defaultMenus } from '../common';
+import { fullResourceTopology } from '../../topologies/FullResource';
 
-const IncidentPage = () => (
-  <PrimaryResource>
-    <Property label={ontola.coverPhoto} onLoad={() => null} />
+const InterventionTypeFull = ({ partOf }) => (
+  <React.Fragment>
     <Container>
-      <Property label={schema.isPartOf} />
+      {partOf && <Property label={schema.isPartOf} />}
       <Property label={argu.trashedAt} />
       <CardMain>
-        <Property label={schema.superEvent} />
         <DetailsBar right={defaultMenus}>
           <Property label={rdfx.type} />
+          <LinkedDetailDate />
+          <Property label={argu.pinnedAt} />
+          <Property label={argu.expiresAt} />
+          <Property label={argu.followsCount} />
+          <Property label={schema.location} />
           <Property label={argu.grantedGroups} />
         </DetailsBar>
         <CardContent noSpacing>
           <Property label={[schema.name, rdfs.label]} />
           <Property label={[dbo.thumbnail, wdt.ns('P18')]} />
+          <Property label={rivm.exampleOf} topology={inlineTopology} />
           <Property label={[schema.text, schema.description, dbo.abstract]} />
           <Property label={foaf.isPrimaryTopicOf} onLoad={() => null} />
+          <AttributeList>
+            <tr><th>Praktische ervaring</th><th>Aandrager</th></tr>
+            <AttributeListItem label={rivm.securityImprovedScore} />
+            <AttributeListItem label={rivm.oneOffCostsScore} />
+            <AttributeListItem label={rivm.recurringCostsScore} />
+          </AttributeList>
         </CardContent>
         <CardRow noBorder>
           <Property label={argu.attachments} onLoad={() => null} />
@@ -48,28 +65,38 @@ const IncidentPage = () => (
         <ActionsBar>
           <Property label={ontola.favoriteAction} onLoad={() => null} />
         </ActionsBar>
-        <Property label={meeting.agenda} onLoad={() => null} />
         <CardAppendix>
           <Property forceRender label={app.omniform} />
         </CardAppendix>
       </CardMain>
       <Property label={ontola.publishAction} onLoad={() => null} />
-      <Property label={argu.voteEvents} onLoad={() => null} />
-      <Property label={argu.blogPosts} onLoad={() => null} />
-      <Property label={schema.location} onLoad={() => null} />
-      <Property label={argu.motions} onLoad={() => null} />
     </Container>
     <Container>
-      <Property forceRender renderWhenEmpty label={rivm.scenarios} />
+      <Property forceRender renderWhenEmpty label={rivm.interventions} />
     </Container>
     <Container>
       <Property label={schema.comment} />
+      <Property label={ontola.createAction}>
+        {(createActions) => {
+          const newInterventionAction = createActions.find((a) => a.value.endsWith('/interventies/new'));
+
+          return newInterventionAction && (
+            <Button href={newInterventionAction}>
+              Heb jij dit interventietype toegepast? Deel je ervaring!
+            </Button>
+          );
+        }}
+      </Property>
     </Container>
-  </PrimaryResource>
+  </React.Fragment>
 );
 
-IncidentPage.type = rivm.Incident;
+InterventionTypeFull.type = rivm.InterventionType;
 
-IncidentPage.topology = pageTopology;
+InterventionTypeFull.topology = fullResourceTopology;
 
-export default register(IncidentPage);
+InterventionTypeFull.propTypes = {
+  partOf: PropTypes.bool,
+};
+
+export default register(InterventionTypeFull);

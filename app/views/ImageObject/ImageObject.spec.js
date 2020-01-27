@@ -29,22 +29,6 @@ const resources = {
 };
 
 describeView('ImageObject', components, resources, resource, () => {
-  it('renders a large cover', () => {
-    expect(subject.find(marker('cover'))).toHaveProp('url', coverUrl);
-  });
-
-  as(argu.card, () => {
-    it('renders a small cover', () => {
-      expect(subject.find(marker('cover'))).toHaveProp('url', boxUrl);
-    });
-  });
-
-  as(argu.cardFixed, () => {
-    it('renders a small cover', () => {
-      expect(subject.find(marker('cover'))).toHaveProp('url', boxUrl);
-    });
-  });
-
   as(argu.cardMain, () => {
     it('renders an image', () => {
       expect(subject.find(marker('image'))).toHaveProp('src', url);

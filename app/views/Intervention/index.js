@@ -1,6 +1,6 @@
 import InterventionContainer from './InterventionContainer';
 import InterventionGrid from './InterventionGrid';
-import InterventionPage from './InterventionPage';
+import InterventionPage from './InterventionFull';
 import DatePublished from './properties/datePublished';
 import EffectivityResearchMethod from './properties/effectivityResearchMethod';
 import InterventionEffects from './properties/iconAttribute';

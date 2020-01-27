@@ -19,7 +19,7 @@ import Card from '../../topologies/Card';
 import CardRow from '../../topologies/Card/CardRow';
 import { containerTopology } from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
-import { primaryResourceTopology } from '../../topologies/PrimaryResource';
+import { fullResourceTopology } from '../../topologies/FullResource';
 
 const RiskContainer = ({ subject }) => (
   <Card about={subject?.value}>
@@ -39,7 +39,7 @@ RiskContainer.type = rivm.Risk;
 
 RiskContainer.topology = [
   alertDialogTopology,
-  primaryResourceTopology,
+  fullResourceTopology,
   containerTopology,
 ];
 

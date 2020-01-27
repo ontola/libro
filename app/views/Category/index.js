@@ -1,6 +1,6 @@
 import CategoryContainer from './CategoryContainer';
 import CategoryDetailsBar from './CategoryDetailsBar';
-import CategoryPage from './CategoryPage';
+import CategoryPage from './CategoryFull';
 
 export default [
   CategoryContainer,

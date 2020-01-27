@@ -5,7 +5,6 @@ import {
   linkType,
   register,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import { Breadcrumb } from '../../components';
@@ -24,17 +23,12 @@ class ThingParent extends React.PureComponent {
 
   static propTypes = {
     name: linkType,
-    showAncestors: PropTypes.bool,
-  };
-
-  static defaultProps = {
-    showAncestors: true,
   };
 
   render() {
     return (
       <React.Fragment>
-        {this.props.showAncestors && <Property label={schema.isPartOf} />}
+        <Property label={schema.isPartOf} />
         <Breadcrumb
           data-test="Thing-parent"
           label={<Property label={[schema.name, as.name]} />}

@@ -26,6 +26,7 @@ import { allTopologiesExcept } from '../../../topologies';
 import { cardTopology } from '../../../topologies/Card';
 import Container, { LargeContainer, containerTopology } from '../../../topologies/Container';
 import Menu from '../../../topologies/Menu';
+import { pageTopology } from '../../../topologies/Page';
 import { CollectionTypes } from '../types';
 
 const ORDER = [
@@ -176,5 +177,7 @@ const registerHeader = buildRegister({
 
 export default [
   registerHeader(cardCollectionHeader, { topology: cardTopology }),
-  registerHeader(containerCollectionHeader, { topology: allTopologiesExcept(cardTopology) }),
+  registerHeader(containerCollectionHeader, {
+    topology: allTopologiesExcept(cardTopology, pageTopology),
+  }),
 ];

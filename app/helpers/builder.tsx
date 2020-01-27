@@ -19,12 +19,20 @@ function isLabel(t: PropertyPropTypes | Node | Node[]): t is LabelType {
 }
 
 export function withoutLoading(label: NamedNode|NamedNode[]): PropertyPropTypes & PropertyProps {
+  if (typeof label === 'undefined') {
+    throw new TypeError('No label provided');
+  }
+
   return ({
     label,
     onLoad: () => null,
   });
 }
 export function forceRender(label: NamedNode|NamedNode[]): PropertyPropTypes & PropertyProps {
+  if (typeof label === 'undefined') {
+    throw new TypeError('No label provided');
+  }
+
   return ({
     forceRender: true,
     label,
@@ -37,13 +45,13 @@ interface DataProps {
 }
 
 const component = (_: LinkReduxLRSType) => {
-  function top<P = DataProps>(t: Node, props: PropertyProps & P, ...children: ReactComp[]): ReactComp;
-  function top<P = DataProps>(t: Node, ...children: ReactComp[]): ReactComp;
-  function top<P = DataProps>(t: Node, ...children: Array<(PropertyProps & P) | ReactComp>): ReactComp {
+  function top<P = DataProps>(t: Node, props?: PropertyProps & P, children?: ReactComp[]): ReactComp;
+  function top<P = DataProps>(t: Node, children?: ReactComp[]): ReactComp;
+  function top<P = DataProps>(t: Node, props?: (PropertyProps & P) | ReactComp[], children?: ReactComp[]): ReactComp {
     const Comp = topologyComponentMap[rdf.id(t)] || componentMap[rdf.id(t)];
-    const propsIsElem = ReactIs.isElement(children[0]);
-    const compProps = propsIsElem ? {} : children[0];
-    const childElems = propsIsElem ? children : children.slice(1, -1);
+    const propsIsChildren = Array.isArray(props);
+    const compProps = propsIsChildren ? {} : (props || {});
+    const childElems = propsIsChildren ? props : children;
 
     return React.createElement(
       Comp,
@@ -119,7 +127,7 @@ export const properties = (lrs?: LinkReduxLRSType) => (
 };
 
 export const resource = (_?: LinkReduxLRSType) => {
-  return (props: Node | ResourcePropTypes, ...children: ReactComp[]) => React.createElement(
+  return (props: Node | ResourcePropTypes, children: ReactComp[]) => React.createElement(
     Resource,
     isNode(props) ? { subject: props } : props,
     children.length === 0 ? null : children,

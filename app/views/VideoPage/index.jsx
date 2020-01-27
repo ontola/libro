@@ -7,17 +7,13 @@ import React from 'react';
 
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
-import { pageTopology } from '../../topologies/Page';
-import { primaryResourceTopology } from '../../topologies/PrimaryResource';
+import { fullResourceTopology } from '../../topologies/FullResource';
 import { PrimaryCallToAction } from '../../topologies/PrimaryCallToAction';
 
 class VideoPagePage extends React.PureComponent {
   static type = [ontola.VideoPage];
 
-  static topology = [
-    primaryResourceTopology,
-    pageTopology,
-  ];
+  static topology = fullResourceTopology;
 
   render() {
     return (

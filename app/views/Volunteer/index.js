@@ -6,7 +6,7 @@ import Name from './properties/name';
 import NewVolunteerContainer from './NewVolunteerContainer';
 import VolunteerCardRow from './VolunteerCardRow';
 import VolunteerContainer from './VolunteerContainer';
-import VolunteerPage from './VolunteerPage';
+import VolunteerPage from './VolunteerFull';
 import Telephone from './properties/telephone';
 
 import './index.scss';

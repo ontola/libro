@@ -18,7 +18,6 @@ import { selectTopology } from '../../topologies/Select';
 
 import ImageObjectCardContent from './ImageObjectCardContent';
 import ImageObjectCardList from './ImageObjectCardList';
-import ImageObjectCover from './ImageObjectCover';
 import ImageObjectPageHeader from './ImageObjectPageHeader';
 import boxImage from './properties/boxImage';
 import thumbnail from './properties/thumbnail';
@@ -51,7 +50,6 @@ ImageObject.propTypes = {
 
 export default [
   register(ImageObject),
-  ...ImageObjectCover,
   ImageObjectPageHeader,
   LinkedRenderStore.registerRenderer(
     () => (

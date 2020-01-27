@@ -21,7 +21,7 @@ import CardAppendix from '../../topologies/Card/CardAppendix';
 import CardRow from '../../topologies/Card/CardRow';
 import { containerTopology } from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
-import { primaryResourceTopology } from '../../topologies/PrimaryResource';
+import { fullResourceTopology } from '../../topologies/FullResource';
 
 const MotionContainer = ({ highlighted, subject }) => (
   <Card about={subject?.value} shine={highlighted}>
@@ -48,7 +48,7 @@ MotionContainer.type = [argu.Motion, opengov.Motion];
 
 MotionContainer.topology = [
   alertDialogTopology,
-  primaryResourceTopology,
+  fullResourceTopology,
   containerTopology,
 ];
 

@@ -41,6 +41,7 @@ export {
   LoadingCardFixed,
   LoadingCellRow,
   LoadingCoverPhoto,
+  LoadingFullResource,
   LoadingMicroRow,
   LoadingDetail,
   LoadingPage,

@@ -2,13 +2,18 @@ import foaf from '@ontologies/foaf';
 import rdfx from '@ontologies/rdf';
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
-import { Property, register } from 'link-redux';
+import {
+  Property,
+  register,
+} from 'link-redux';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {
   CardContent,
   LinkedDetailDate,
 } from '../../components';
+import Collection from '../../components/Collection';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
@@ -22,16 +27,13 @@ import CardMain from '../../topologies/Card/CardMain';
 import CardRow from '../../topologies/Card/CardRow';
 import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
-import { pageTopology } from '../../topologies/Page';
-import PrimaryResource from '../../topologies/PrimaryResource';
-import { inlineTopology } from '../../topologies/Inline';
+import { fullResourceTopology } from '../../topologies/FullResource';
 import { defaultMenus } from '../common';
 
-const MeasureTypePage = () => (
-  <PrimaryResource>
-    <Property label={ontola.coverPhoto} />
+const RiskFull = ({ partOf }) => (
+  <React.Fragment>
     <Container>
-      <Property label={schema.isPartOf} />
+      {partOf && <Property label={schema.isPartOf} />}
       <Property label={argu.trashedAt} />
       <CardMain>
         <DetailsBar right={defaultMenus}>
@@ -42,12 +44,10 @@ const MeasureTypePage = () => (
           <Property label={argu.followsCount} />
           <Property label={schema.location} />
           <Property label={argu.grantedGroups} />
-          <Property label={rivm.category} />
         </DetailsBar>
         <CardContent noSpacing>
           <Property label={[schema.name, rdfs.label]} />
           <Property label={[dbo.thumbnail, wdt.ns('P18')]} />
-          <Property label={rivm.exampleOf} topology={inlineTopology} />
           <Property label={[schema.text, schema.description, dbo.abstract]} />
           <Property label={foaf.isPrimaryTopicOf} onLoad={() => null} />
         </CardContent>
@@ -65,16 +65,23 @@ const MeasureTypePage = () => (
       <Property label={ontola.publishAction} onLoad={() => null} />
     </Container>
     <Container>
-      <Property forceRender renderWhenEmpty label={rivm.measures} />
+      <Collection forceRender renderWhenEmpty display="table" label={rivm.incidents} />
+    </Container>
+    <Container>
+      <Collection forceRender renderWhenEmpty display="table" label={rivm.measureTypes} />
     </Container>
     <Container>
       <Property label={schema.comment} />
     </Container>
-  </PrimaryResource>
+  </React.Fragment>
 );
 
-MeasureTypePage.type = rivm.MeasureType;
+RiskFull.type = rivm.Risk;
 
-MeasureTypePage.topology = pageTopology;
+RiskFull.topology = fullResourceTopology;
 
-export default register(MeasureTypePage);
+RiskFull.propTypes = {
+  partOf: PropTypes.bool,
+};
+
+export default register(RiskFull);

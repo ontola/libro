@@ -1,28 +1,27 @@
 import rdfx from '@ontologies/rdf';
+import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
 import {
   Property,
   register,
 } from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
-import rdfs from '@ontologies/rdfs';
 
 import { CardContent, LinkedDetailDate } from '../../components';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
 import ontola from '../../ontology/ontola';
-import { pageTopology } from '../../topologies/Page';
-import PrimaryResource, { primaryResourceTopology } from '../../topologies/PrimaryResource';
+import { fullResourceTopology } from '../../topologies/FullResource';
 import ActionsBar from '../../topologies/ActionsBar';
 import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
 
-const SurveyPage = () => (
-  <PrimaryResource>
-    <Property label={ontola.coverPhoto} />
+const SurveyFull = ({ partOf }) => (
+  <React.Fragment>
     <Container>
-      <Property label={schema.isPartOf} />
+      {partOf && <Property label={schema.isPartOf} />}
       <Property label={argu.trashedAt} />
       <CardMain data-test="Thing-thing">
         <DetailsBar
@@ -52,15 +51,17 @@ const SurveyPage = () => (
           <Property label={argu.externalIRI} />
         </ActionsBar>
       </CardMain>
+      <Property label={ontola.publishAction} onLoad={() => null} />
     </Container>
-  </PrimaryResource>
+  </React.Fragment>
 );
 
-SurveyPage.type = [argu.Survey];
+SurveyFull.type = [argu.Survey];
 
-SurveyPage.topology = [
-  primaryResourceTopology,
-  pageTopology,
-];
+SurveyFull.topology = fullResourceTopology;
 
-export default register(SurveyPage);
+SurveyFull.propTypes = {
+  partOf: PropTypes.bool,
+};
+
+export default register(SurveyFull);

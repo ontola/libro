@@ -2,12 +2,12 @@ import schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import { pageTopology } from '../../topologies/Page';
+import { fullResourceTopology } from '../../topologies/FullResource';
 
 import { Action } from './Action';
 
-export class ActionPage extends Action {
-  static topology = pageTopology;
+export class ActionFull extends Action {
+  static topology = fullResourceTopology;
 
   // False positive due to inheritance
   // eslint-disable-next-line class-methods-use-this
@@ -20,4 +20,4 @@ export class ActionPage extends Action {
   }
 }
 
-export default register(ActionPage);
+export default register(ActionFull);

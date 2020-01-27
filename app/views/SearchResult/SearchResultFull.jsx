@@ -19,8 +19,9 @@ import { allTopologiesExcept } from '../../topologies';
 import Container from '../../topologies/Container';
 import { gridTopology } from '../../topologies/Grid';
 import { navbarTopology } from '../../topologies/Navbar';
+import { pageTopology } from '../../topologies/Page';
 
-export const SearchResultPage = ({
+export const SearchResultFull = ({
   collectionDisplay,
   history,
   query,
@@ -83,13 +84,13 @@ export const SearchResultPage = ({
   );
 };
 
-SearchResultPage.type = argu.SearchResult;
+SearchResultFull.type = argu.SearchResult;
 
-SearchResultPage.topology = allTopologiesExcept(gridTopology, navbarTopology);
+SearchResultFull.topology = allTopologiesExcept(gridTopology, navbarTopology, pageTopology);
 
-SearchResultPage.hocs = [withRouter];
+SearchResultFull.hocs = [withRouter];
 
-SearchResultPage.mapDataToProps = {
+SearchResultFull.mapDataToProps = {
   collectionDisplay: ontola.collectionDisplay,
   query: argu.query,
   searchTemplate: ontola.searchTemplate,
@@ -97,7 +98,7 @@ SearchResultPage.mapDataToProps = {
   totalItems: as.totalItems,
 };
 
-SearchResultPage.propTypes = {
+SearchResultFull.propTypes = {
   collectionDisplay: linkType,
   history: PropTypes.shape({
     push: PropTypes.func,
@@ -112,4 +113,4 @@ SearchResultPage.propTypes = {
   totalItems: linkType,
 };
 
-export default register(SearchResultPage);
+export default register(SearchResultFull);

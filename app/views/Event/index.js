@@ -1,5 +1,5 @@
 import EventContainer from './EventContainer';
-import EventPage from './EventPage';
+import EventPage from './EventFull';
 import EventSection from './EventSection';
 import DesiredCount from './properties/desiredCount';
 import StartDate from './properties/startDate';

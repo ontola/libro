@@ -1,6 +1,6 @@
 import MenuItemDropdown from './MenuItemDropdown';
 import MenuItemDropdownContent from './MenuItemDropdownContent';
-import MenuItemPage from './MenuItemPage';
+import MenuItemPage from './MenuItemFull';
 import MenuItemHeader from './MenuItemNavbar';
 import MenuItemTab from './MenuItemTab';
 import Href from './properties/href';

@@ -11,8 +11,11 @@ import {
   waitForElementToBeRemoved,
 } from '../../test-utils';
 import BreadcrumbsBar from '../../components/Breadcrumbs/BreadcrumbsBar';
+import argu from '../../ontology/argu';
+import ontola from '../../ontology/ontola';
 import Card from '../../topologies/Card';
 import CardList from '../../topologies/Card/CardList';
+import Container from '../../topologies/Container';
 import { Page } from '../../topologies/Page';
 
 describe('Thing', () => {
@@ -20,6 +23,12 @@ describe('Thing', () => {
 
   const parent = rdf.namedNode('http://example.com/page/1');
   const resource = rdf.namedNode('http://example.com/thing/1');
+
+  const coverPhoto = rdf.namedNode('http://example.com/image/1');
+  const imagePositionY = 23;
+  const contentUrl = 'http://example.com/image/1.jpg';
+  const coverUrl = 'http://example.com/image/cover_1.jpg';
+  const boxUrl = 'http://example.com/image/box_1.jpg';
 
   const RESOURCE_NAME = 'Test item';
   const RESOURCE_TEXT = 'Body text';
@@ -37,6 +46,18 @@ describe('Thing', () => {
       [rdfx.type]: schema.Thing,
       [schema.name]: rdf.literal(PARENT_NAME),
     },
+    [ontola.coverPhoto]: {
+      '@id': coverPhoto,
+      [rdfx.type]: schema.ImageObject,
+      [schema.thumbnail]: rdf.namedNode('http://example.com/image/1.ico'),
+      [schema.url]: rdf.namedNode(contentUrl),
+      [schema.contentUrl]: rdf.namedNode(contentUrl),
+      [argu.url]: rdf.namedNode(contentUrl),
+      [ontola.imgUrl1500x2000]: rdf.namedNode(coverUrl),
+      [ontola.imgUrl568x400]: rdf.namedNode(boxUrl),
+      [schema.dateCreated]: rdf.literal(Date.now()),
+      [ontola.imagePositionY]: rdf.literal(imagePositionY),
+    },
   };
 
   const renderAs = (Topology) => render(
@@ -50,14 +71,32 @@ describe('Thing', () => {
 
   it('renders as Page', async () => {
     const {
-      queryByText,
       queryAllByTestId,
+      queryByText,
+      queryByTestId,
     } = renderAs(Page);
     await waitForElementToBeRemoved(() => queryAllByTestId('spinner'));
 
     expect(queryByText(RESOURCE_NAME)).toBeVisible();
     expect(queryByText(RESOURCE_TEXT)).toBeVisible();
     expect(queryByText(PARENT_NAME)).toBeVisible();
+    expect(queryByTestId('coverImage')).toHaveStyle(`
+      background-image: url(${coverUrl}); 
+      background-position-y: ${imagePositionY}%;
+    `);
+  });
+
+  it('renders as Container', async () => {
+    const {
+      queryByText,
+      queryByTestId,
+    } = renderAs(Container);
+    expect(queryByText(RESOURCE_NAME)).toBeVisible();
+    expect(queryByText(RESOURCE_TEXT)).toBeVisible();
+    expect(queryByTestId('coverImage')).toHaveStyle(`
+      background-image: url(${boxUrl}); 
+      background-position-y: ${imagePositionY}%;
+    `);
   });
 
   it('renders as Card', () => {

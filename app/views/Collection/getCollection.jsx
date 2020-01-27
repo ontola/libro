@@ -25,7 +25,6 @@ import { CollectionTypes } from './types';
 export default function getCollection({
   omniform = false,
   redirect = false,
-  renderParent = false,
   renderWhenEmpty = true,
   topology = [],
 } = {}) {
@@ -76,6 +75,7 @@ export default function getCollection({
       lrs: lrsType,
       onPageChange: PropTypes.func,
       pages: linkType,
+      partOf: PropTypes.bool,
       redirectPagination: PropTypes.bool,
       renderWhenEmpty: PropTypes.bool,
       subject: subjectType,
@@ -152,6 +152,7 @@ export default function getCollection({
         depth,
         hideHeader,
         lrs,
+        partOf,
         subject,
         totalItems,
       } = this.props;
@@ -181,7 +182,7 @@ export default function getCollection({
 
       return (
         <ResourceBoundary wrapperProps={{ className: `Collection Collection__Depth-${depth}` }}>
-          {renderParent && <Property label={schema.isPartOf} />}
+          {partOf && <Property label={schema.isPartOf} />}
           <Property
             forceRender
             body={this.body(resolvedColumns)}

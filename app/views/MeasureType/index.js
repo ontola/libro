@@ -1,4 +1,4 @@
-import MeasureTypePage from './MeasureTypePage';
+import MeasureTypePage from './MeasureTypeFull';
 
 export default [
   MeasureTypePage,

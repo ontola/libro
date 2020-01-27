@@ -12,6 +12,7 @@ import { allTopologiesExcept } from '../../../topologies';
 import { cardListTopology } from '../../../topologies/Card/CardList';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
 import { formFooterTopology } from '../../../topologies/FormFooter/Footer';
+import { pageTopology } from '../../../topologies/Page';
 
 const propTypes = {
   ariaLabel: PropTypes.string,
@@ -38,7 +39,7 @@ export default [
     createThumbnail(NavbarLinkImage),
     [schema.ImageObject, schema.VideoObject],
     [schema.thumbnail, ontola.imgUrl64x64],
-    allTopologiesExcept(cardListTopology, detailsBarTopology, formFooterTopology)
+    allTopologiesExcept(cardListTopology, detailsBarTopology, formFooterTopology, pageTopology)
   ),
   LinkedRenderStore.registerRenderer(
     createThumbnail(DetailImage),

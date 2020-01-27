@@ -19,6 +19,7 @@ const CoverImage = ({
   <div className="CoverImage__wrapper">
     <div
       className="CoverImage__child"
+      data-testid="coverImage"
       style={{
         backgroundImage: `url(${url})`,
         backgroundPositionY: positionY ? `${positionY}%` : undefined,

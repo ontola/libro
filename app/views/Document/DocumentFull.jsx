@@ -8,17 +8,17 @@ import React from 'react';
 
 import httph from '../../ontology/httph';
 import link from '../../ontology/link';
-import { pageTopology } from '../../topologies/Page';
+import { fullResourceTopology } from '../../topologies/FullResource';
 
 /**
  * Renders documents which don't have another type.
  *
  * These generally are resources without body or in error state.
  */
-class DocumentPage extends React.PureComponent {
+class DocumentFull extends React.PureComponent {
   static type = link.Document;
 
-  static topology = pageTopology;
+  static topology = fullResourceTopology;
 
   static hocs = [withLRS];
 
@@ -41,5 +41,5 @@ class DocumentPage extends React.PureComponent {
 }
 
 export default [
-  register(DocumentPage),
+  register(DocumentFull),
 ];

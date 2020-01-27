@@ -25,21 +25,20 @@ import { retrievePath } from '../../helpers/iris';
 import { handle } from '../../helpers/logging';
 import dbo from '../../ontology/dbo';
 import Container, { containerTopology } from '../../topologies/Container';
-import { pageTopology } from '../../topologies/Page';
-import PrimaryResource from '../../topologies/PrimaryResource';
+import { fullResourceTopology } from '../../topologies/FullResource';
 
 import './MediaObjectPage.scss';
 
 const YOUTUBE_TEST = /^(https:)?\/\/(www.)?youtube.com\/embed\//;
 
-class MediaObjectPage extends React.PureComponent {
+class MediaObjectFull extends React.PureComponent {
   static type = [
     schema.MediaObject,
     schema.ImageObject,
     schema.VideoObject,
   ];
 
-  static topology = [pageTopology, containerTopology];
+  static topology = [fullResourceTopology, containerTopology];
 
   static mapDataToProps = {
     caption: schema.caption,
@@ -214,12 +213,12 @@ class MediaObjectPage extends React.PureComponent {
     const { fullPage } = this.props;
 
     return (
-      <PrimaryResource>
+      <React.Fragment>
         {!fullPage && this.headerComponent()}
         {this.viewerComponent()}
-      </PrimaryResource>
+      </React.Fragment>
     );
   }
 }
 
-export default register(MediaObjectPage);
+export default register(MediaObjectFull);
