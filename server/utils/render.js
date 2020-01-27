@@ -230,17 +230,17 @@ export const renderFullPage = async (ctx, manifestData, data) => {
                });
              }
           </script>
+          <script id="seed" nonce="${nonceStr}" type="application/n-quads">${data?.toString('utf-8') ?? ''}</script>
+          <script nonce="${nonceStr}" type="application/javascript">
+              var seed = document.getElementById('seed');
+              window.INITIAL__DATA = seed ? seed.textContent : '';
+          </script>
           <script async crossorigin="anonymous" type="module" src="${constants.ASSETS_HOST}${manifests[bundles.module]['main.js']}"></script>
           <script async nomodule crossorigin="anonymous" type="application/javascript" src="${constants.ASSETS_HOST}${manifests[bundles.legacy]['main.js']}"></script>
           ${(manifests[bundles.module]?.['vendors~main.js'] && `<script async crossorigin="anonymous" type="module" src="${constants.ASSETS_HOST}${manifests[bundles.module]['vendors~main.js']}"></script>`) || ''}
           ${(manifests[bundles.legacy]?.['vendors~main.js'] && `<script async nomodule crossorigin="anonymous" type="application/javascript" src="${constants.ASSETS_HOST}${manifests[bundles.legacy]['vendors~main.js']}"></script>`) || ''}
           <script async nonce="${nonceStr}">
               ${deferredStyles}
-          </script>
-          <script id="seed" nonce="${nonceStr}" type="application/n-quads">${data?.toString('utf-8') ?? ''}</script>
-          <script nonce="${nonceStr}" type="application/javascript">
-              var seed = document.getElementById('seed');
-              window.INITIAL__DATA = seed ? seed.textContent : '';
           </script>
           <script nonce="${nonceStr}" type="application/javascript">
               window.WEBSITE_META = JSON.parse('${JSON.stringify(manifestData.ontola)}')
