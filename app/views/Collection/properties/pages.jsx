@@ -9,6 +9,7 @@ import React from 'react';
 import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 import { CollectionTypes } from '../types';
+import { LoadingGridContent } from '../../../components/Loading';
 
 const Pages = ({
   collectionDisplay,
@@ -34,15 +35,17 @@ const Pages = ({
   }
 
   const obs = pages.map((iri) => (
-    <Resource
-      collectionDisplay={collectionDisplay}
-      columns={columns}
-      depth={depth}
-      insideCollection={insideCollection}
-      key={`pages-${iri.value}`}
-      renderWhenEmpty={renderWhenEmpty}
-      subject={iri}
-    />
+    <React.Suspense fallback={<LoadingGridContent />}>
+      <Resource
+        collectionDisplay={collectionDisplay}
+        columns={columns}
+        depth={depth}
+        insideCollection={insideCollection}
+        key={`pages-${iri.value}`}
+        renderWhenEmpty={renderWhenEmpty}
+        subject={iri}
+      />
+    </React.Suspense>
   ));
 
   if (obs) {
