@@ -74,8 +74,8 @@ const CreateActionButton = ({
       return <Resource subject={freshAction} />;
     }
 
-    const validAction = createActions.find((action) => actionIsValid(lrs, action));
-    if (!validAction) {
+    const validActions = createActions.filter((action) => actionIsValid(lrs, action));
+    if (validActions.length === 0) {
       return null;
     }
 
@@ -87,7 +87,7 @@ const CreateActionButton = ({
         {() => (
           <ResourceBoundary>
             {
-              createActions.sort(sort(ORDER)).map((action) => (
+              validActions.sort(sort(ORDER)).map((action) => (
                 <Resource subject={action} />
               ))
             }
