@@ -91,6 +91,7 @@ export default {
   sendConfirmationAction: ontola('sendConfirmationAction'),
   settingsMenu: ontola('settingsMenu'),
   shareMenu: ontola('shareMenu'),
+  topology: ontola('topology'),
   updateAction: ontola('updateAction'),
   widgetResource: ontola('widgetResource'),
   widgetSize: ontola('widgetSize'),

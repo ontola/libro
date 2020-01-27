@@ -7,17 +7,34 @@ import React from 'react';
 
 import GridItem from '../../components/Grid/GridItem';
 import { tryParseInt } from '../../helpers/numbers';
+import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
+import Container from '../../topologies/Container';
+import FullResource from '../../topologies/FullResource';
 import { gridTopology } from '../../topologies/Grid';
 
-const Widget = ({ widgetSize }) => {
+const Widget = ({ topology, widgetSize }) => {
   const size = tryParseInt(widgetSize);
+
+  let Wrapper;
+  let wrapperOpts = {};
+  switch (topology) {
+    case argu.grid:
+      Wrapper = GridItem;
+      wrapperOpts = { size: 3 };
+      break;
+    case argu.container:
+      Wrapper = Container;
+      break;
+    default:
+      Wrapper = FullResource;
+  }
 
   return (
     <GridItem size={size}>
-      <GridItem size={3}>
+      <Wrapper {...wrapperOpts}>
         <Property label={ontola.widgetResource} />
-      </GridItem>
+      </Wrapper>
     </GridItem>
   );
 };
@@ -27,10 +44,12 @@ Widget.type = ontola.Widget;
 Widget.topology = gridTopology;
 
 Widget.mapDataToProps = {
+  topology: ontola.topology,
   widgetSize: ontola.widgetSize,
 };
 
 Widget.propTypes = {
+  topology: linkType,
   widgetSize: linkType,
 };
 
