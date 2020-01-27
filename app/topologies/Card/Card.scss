@@ -25,13 +25,11 @@
   margin: units('medium');
 
   &--fixed {
-    display: inline-flex;
-    flex-direction: column;
     height: 16em;
-    margin: $grid-margin;
     max-height: 16em;
     min-height: 16em;
-    width: calc(33.3% - #{2* $grid-margin});
+    margin: 0;
+    width: 100%;
 
     // Displaying clickable items directly in card
     > a {
@@ -47,14 +45,6 @@
       flex-shrink: 1;
       // [AOD-174][AOD-179] Hides overflowing text, should not flex due to rendering in Chrome
       overflow: hidden;
-    }
-
-    @include small-only {
-      width: calc(50% - #{2* $grid-margin});
-    }
-
-    @include smallest-only {
-      width: 100%;
     }
   }
 

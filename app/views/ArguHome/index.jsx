@@ -102,7 +102,9 @@ const ArguHomePage = ({ coverPhoto, subject }) => {
                 <Container size="large">
                   <Heading>{formatMessage(messages.casesHeader)}</Heading>
                   <p>{formatMessage(messages.casesBody)}</p>
-                  <Property label={argu.cases} limit={Infinity} />
+                  <Grid>
+                    <Property label={argu.cases} limit={Infinity} />
+                  </Grid>
                 </Container>
               </PageRow>
               <PageRow white>

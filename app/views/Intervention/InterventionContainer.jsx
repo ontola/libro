@@ -22,7 +22,6 @@ import CardRow from '../../topologies/Card/CardRow';
 import { containerTopology } from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
-import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 
 const InterventionContainer = ({ highlighted, subject }) => (
   <Card about={subject?.value} shine={highlighted}>
@@ -60,7 +59,6 @@ InterventionContainer.topology = [
   alertDialogTopology,
   primaryResourceTopology,
   containerTopology,
-  widgetTopologyTopology,
 ];
 
 InterventionContainer.hocs = [connectHighlighting];

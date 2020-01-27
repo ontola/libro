@@ -21,7 +21,6 @@ import { containerTopology } from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import FormFooter from '../../topologies/FormFooter/Footer';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
-import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 
 const messages = defineMessages({
   continue: {
@@ -75,7 +74,6 @@ BadgeContainer.topology = [
   alertDialogTopology,
   primaryResourceTopology,
   containerTopology,
-  widgetTopologyTopology,
 ];
 
 BadgeContainer.mapDataToProps = {

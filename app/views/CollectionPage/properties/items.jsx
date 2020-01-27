@@ -9,7 +9,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
+import { LoadingCardFixed } from '../../../components';
 import CardContent from '../../../components/Card/CardContent';
+import GridItem from '../../../components/Grid/GridItem';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import CardRow from '../../../topologies/Card/CardRow';
@@ -19,9 +21,16 @@ import TableRow from '../../../topologies/TableRow';
 import TableCell from '../../../topologies/TableCell';
 
 const itemList = (props, columns, separator) => {
-  const itemWrapper = rdf.equals(props.collectionDisplay, ontola['collectionDisplay/card'])
-    ? CardRow
-    : React.Fragment;
+  let itemWrapper = React.Fragment;
+  let itemWrapperOpts = {};
+
+  if (rdf.equals(props.collectionDisplay, ontola['collectionDisplay/card'])) {
+    itemWrapper = CardRow;
+  }
+  if (rdf.equals(props.collectionDisplay, ontola['collectionDisplay/grid'])) {
+    itemWrapper = GridItem;
+    itemWrapperOpts = { Fallback: LoadingCardFixed };
+  }
 
   return (
     props.items
@@ -31,6 +40,7 @@ const itemList = (props, columns, separator) => {
           columns={columns}
           depth={props.depth}
           itemWrapper={itemWrapper}
+          itemWrapperOpts={itemWrapperOpts}
           key={`${props.subject}:${iri.value}`}
           separator={separator}
           subject={iri}

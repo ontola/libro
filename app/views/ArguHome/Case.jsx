@@ -14,6 +14,7 @@ import { allTopologies } from '../../topologies';
 import CardFixed from '../../topologies/Card/CardFixed';
 import { inlineTopology } from '../../topologies/Inline';
 import './Case.scss';
+import GridItem from '../../components/Grid/GridItem';
 
 const messages = defineMessages({
   reactionsCount: {
@@ -30,28 +31,32 @@ const Case = ({ image }) => {
   const { formatMessage } = useIntl();
 
   return (
-    <div className="Case">
-      <CardFixed>
-        <div className="CoverImage__wrapper">
-          <div className="CoverImage__child" style={{ backgroundImage: `url("${image.value}")` }} />
+    <React.Fragment>
+      <GridItem size={1}>
+        <CardFixed>
+          <div className="CoverImage__wrapper">
+            <div className="CoverImage__child" style={{ backgroundImage: `url("${image.value}")` }} />
+          </div>
+          <CardContent>
+            <Heading size="4"><Property label={argu.caseTitle} topology={inlineTopology} /></Heading>
+          </CardContent>
+        </CardFixed>
+      </GridItem>
+      <GridItem size={2}>
+        <div className="Case--essence">
+          <Heading size="2"><Property label={schema.name} topology={inlineTopology} /></Heading>
+          <p><Property label={schema.text} topology={inlineTopology} /></p>
+          <p>
+            <b><Property label={argu.votesCount} topology={inlineTopology} /> </b>
+            {formatMessage(messages.votesCount)}
+          </p>
+          <p>
+            <b><Property label={argu.reactionsCount} topology={inlineTopology} /> </b>
+            {formatMessage(messages.reactionsCount)}
+          </p>
         </div>
-        <CardContent>
-          <Heading size="4"><Property label={argu.caseTitle} topology={inlineTopology} /></Heading>
-        </CardContent>
-      </CardFixed>
-      <div className="Case--essence">
-        <Heading size="2"><Property label={schema.name} topology={inlineTopology} /></Heading>
-        <p><Property label={schema.text} topology={inlineTopology} /></p>
-        <p>
-          <b><Property label={argu.votesCount} topology={inlineTopology} /> </b>
-          {formatMessage(messages.votesCount)}
-        </p>
-        <p>
-          <b><Property label={argu.reactionsCount} topology={inlineTopology} /> </b>
-          {formatMessage(messages.reactionsCount)}
-        </p>
-      </div>
-    </div>
+      </GridItem>
+    </React.Fragment>
   );
 };
 

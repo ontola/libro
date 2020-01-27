@@ -18,6 +18,7 @@ export function Seq({
   columns,
   depth,
   itemWrapper: ItemWrapper,
+  itemWrapperOpts,
   gutter,
   renderGutter,
   separator,
@@ -44,7 +45,7 @@ export function Seq({
   });
 
   const elements = primary.map((s, i) => (
-    <ItemWrapper key={s.toString()}>
+    <ItemWrapper key={s.toString()} {...itemWrapperOpts}>
       <Resource
         {...childProps}
         columns={columns}
@@ -74,6 +75,7 @@ Seq.topology = allTopologies;
 
 Seq.defaultProps = {
   itemWrapper: React.Fragment,
+  itemWrapperOpts: {},
 };
 
 Seq.propTypes = {
@@ -82,6 +84,7 @@ Seq.propTypes = {
   depth: PropTypes.number,
   gutter: PropTypes.number,
   itemWrapper: PropTypes.elementType,
+  itemWrapperOpts: PropTypes.objectOf(PropTypes.any),
   renderGutter: PropTypes.func,
   separator: PropTypes.string,
   subject: subjectType,

@@ -3,6 +3,8 @@ import React from 'react';
 
 import ContainerFloat from '../../topologies/Container/ContainerFloat';
 
+import './GridHeader.scss';
+
 const propTypes = {
   /** The children float to the top right */
   children: PropTypes.node,
@@ -14,18 +16,18 @@ const propTypes = {
  * Holds a header and menu items that float to the top right of the container
  * @returns {component} Component
  */
-const WidgetHeader = ({
+const GridHeader = ({
   children,
   header,
 }) => (
-  <div className="WidgetHeader">
-    {header && <div className="WidgetHeader--header">{header}</div>}
+  <div className="GridHeader">
+    {header && <div className="GridHeader--header">{header}</div>}
     <ContainerFloat>
       {children}
     </ContainerFloat>
   </div>
 );
 
-WidgetHeader.propTypes = propTypes;
+GridHeader.propTypes = propTypes;
 
-export default WidgetHeader;
+export default GridHeader;

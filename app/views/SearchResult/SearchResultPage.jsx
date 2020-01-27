@@ -11,14 +11,14 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router';
 
+import SearchForm from '../../components/SearchForm';
 import { retrievePath } from '../../helpers/iris';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { allTopologiesExcept } from '../../topologies';
-import { navbarTopology } from '../../topologies/Navbar';
-import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 import Container from '../../topologies/Container';
-import SearchForm from '../../components/SearchForm';
+import { gridTopology } from '../../topologies/Grid';
+import { navbarTopology } from '../../topologies/Navbar';
 
 export const SearchResultPage = ({
   collectionDisplay,
@@ -85,7 +85,7 @@ export const SearchResultPage = ({
 
 SearchResultPage.type = argu.SearchResult;
 
-SearchResultPage.topology = allTopologiesExcept(navbarTopology, widgetTopologyTopology);
+SearchResultPage.topology = allTopologiesExcept(gridTopology, navbarTopology);
 
 SearchResultPage.hocs = [withRouter];
 

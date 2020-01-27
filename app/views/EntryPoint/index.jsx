@@ -16,8 +16,8 @@ import { containerTopology } from '../../topologies/Container';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 import { contentDetailsTopology } from '../../topologies/ContentDetails';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
+import { gridTopology } from '../../topologies/Grid';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
-import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 
 import EntryPointButton from './EntryPointButton';
 import EntryPointCardFloat from './EntryPointCardFloat';
@@ -25,7 +25,7 @@ import EntryPointCardMain from './EntryPointCardMain';
 import EntryPointDetail from './EntryPointDetail';
 import EntryPointOmiform from './EntryPointOmiform';
 import EntryPointContainer from './EntryPointContainer';
-import EntryPointWidget from './EntryPointWidget';
+import EntryPointWidget from './EntryPointGrid';
 
 const FABase = 'http://fontawesome.io/icon/';
 
@@ -41,8 +41,8 @@ class EntryPoint extends React.PureComponent {
     containerFloatTopology,
     contentDetailsTopology,
     detailsBarTopology,
-    omniformFieldsTopology,
-    widgetTopologyTopology
+    gridTopology,
+    omniformFieldsTopology
   );
 
   static mapDataToProps = {

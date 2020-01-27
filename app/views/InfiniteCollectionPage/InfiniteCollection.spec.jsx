@@ -81,7 +81,7 @@ describe('Collection', () => {
   describeView('CollectionPage', [testClass, ...components, ...collectionComponents, ...collectionPageComponents], resources, collectionPageWithItems, () => {
     it('renders the members', () => {
       expect(subject.find('CollectionPage').find('p.testComp')).toHaveText('Member name');
-      expect(subject.find('.Container').find('button')).toHaveText('Load more');
+      expect(subject.find('.MuiContainer-root').find('button')).toHaveText('Load more');
     });
   });
 });

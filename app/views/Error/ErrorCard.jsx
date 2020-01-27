@@ -15,7 +15,6 @@ import { containerTopology } from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { gridTopology } from '../../topologies/Grid';
 import { menuTopology } from '../../topologies/Menu';
-import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 
 import ErrorButtonWithFeedback from './ErrorButtonWithFeedback';
 import { bodyForStatus, headerForStatus } from './ErrorMessages';
@@ -75,7 +74,6 @@ ErrorCard.topology = [
   menuTopology,
   cardListTopology,
   gridTopology,
-  widgetTopologyTopology,
 ];
 
 export default register(ErrorCard);

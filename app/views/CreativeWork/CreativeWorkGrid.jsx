@@ -7,12 +7,12 @@ import {
 import React from 'react';
 
 import dbo from '../../ontology/dbo';
-import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
+import { gridTopology } from '../../topologies/Grid';
 
-class CreativeWorkWidget extends React.PureComponent {
+class CreativeWorkGrid extends React.PureComponent {
   static type = schema.CreativeWork;
 
-  static topology = widgetTopologyTopology;
+  static topology = gridTopology;
 
   render() {
     return (
@@ -24,4 +24,4 @@ class CreativeWorkWidget extends React.PureComponent {
   }
 }
 
-export default register(CreativeWorkWidget);
+export default register(CreativeWorkGrid);

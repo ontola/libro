@@ -21,7 +21,6 @@ import CardAppendix from '../../topologies/Card/CardAppendix';
 import { containerTopology } from '../../topologies/Container';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
-import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 
 const ThingContainer = ({ highlighted, subject }) => (
   <Card about={subject?.value} shine={highlighted}>
@@ -47,7 +46,6 @@ ThingContainer.topology = [
   alertDialogTopology,
   primaryResourceTopology,
   containerTopology,
-  widgetTopologyTopology,
 ];
 
 ThingContainer.hocs = [connectHighlighting];

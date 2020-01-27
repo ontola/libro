@@ -16,12 +16,11 @@ import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { gridTopology } from '../../topologies/Grid';
+import { menuTopology } from '../../topologies/Menu';
+import { pageTopology } from '../../topologies/Page';
 import { tabPaneTopology } from '../../topologies/TabPane';
 import { tableCellTopology } from '../../topologies/TableCell';
 import { tableRowTopology } from '../../topologies/TableRow';
-import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
-import { pageTopology } from '../../topologies/Page';
-import { menuTopology } from '../../topologies/Menu';
 
 const propTypes = {
 };
@@ -42,8 +41,7 @@ export class CreateActionButton extends Component {
     pageTopology,
     tabPaneTopology,
     tableCellTopology,
-    tableRowTopology,
-    widgetTopologyTopology
+    tableRowTopology
   );
 
   static mapDataToProps = {

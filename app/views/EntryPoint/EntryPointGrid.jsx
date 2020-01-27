@@ -8,10 +8,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { retrievePath } from '../../helpers/iris';
-import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 import Button from '../../components/Button';
+import { gridTopology } from '../../topologies/Grid';
 
-const EntryPointWidget = ({
+const EntryPointGrid = ({
   children,
   name,
   subject,
@@ -32,20 +32,20 @@ const EntryPointWidget = ({
   );
 };
 
-EntryPointWidget.type = schema.EntryPoint;
+EntryPointGrid.type = schema.EntryPoint;
 
-EntryPointWidget.topology = widgetTopologyTopology;
+EntryPointGrid.topology = gridTopology;
 
-EntryPointWidget.mapDataToProps = {
+EntryPointGrid.mapDataToProps = {
   name: schema.name,
   url: schema.url,
 };
 
-EntryPointWidget.propTypes = {
+EntryPointGrid.propTypes = {
   children: PropTypes.element,
   name: linkType,
   subject: subjectType,
   url: linkType,
 };
 
-export default register(EntryPointWidget);
+export default register(EntryPointGrid);

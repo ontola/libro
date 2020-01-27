@@ -10,9 +10,9 @@ import { withRouter } from 'react-router';
 import SearchForm from '../../components/SearchForm';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
-import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
+import { gridTopology } from '../../topologies/Grid';
 
-export const SearchResultWidget = ({
+export const SearchResultGrid = ({
   history,
   query,
   searchTemplate,
@@ -24,13 +24,13 @@ export const SearchResultWidget = ({
   />
 );
 
-SearchResultWidget.type = argu.SearchResult;
+SearchResultGrid.type = argu.SearchResult;
 
-SearchResultWidget.topology = widgetTopologyTopology;
+SearchResultGrid.topology = gridTopology;
 
-SearchResultWidget.hocs = [withRouter];
+SearchResultGrid.hocs = [withRouter];
 
-SearchResultWidget.mapDataToProps = {
+SearchResultGrid.mapDataToProps = {
   collectionDisplay: ontola.collectionDisplay,
   query: argu.query,
   searchTemplate: ontola.searchTemplate,
@@ -38,7 +38,7 @@ SearchResultWidget.mapDataToProps = {
   totalItems: as.totalItems,
 };
 
-SearchResultWidget.propTypes = {
+SearchResultGrid.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }),
@@ -49,4 +49,4 @@ SearchResultWidget.propTypes = {
   searchTemplate: PropTypes.string,
 };
 
-export default register(SearchResultWidget);
+export default register(SearchResultGrid);

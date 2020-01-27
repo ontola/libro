@@ -14,7 +14,7 @@ import { seqToArr } from '../../helpers/data';
 import argu from '../../ontology/argu';
 import { inlineTopology } from '../../topologies/Inline';
 import Heading from '../../components/Heading';
-import { LoadingWidgetContent, SuspendedLoader } from '../../components/Loading';
+import { LoadingGridContent, SuspendedLoader } from '../../components/Loading';
 
 import './Triad.scss';
 
@@ -103,7 +103,7 @@ const Triad = ({ subject }) => {
   return (
     <div className="Triad">
       <Heading size="1">{formatMessage(messages.triadHeader)}</Heading>
-      <React.Suspense fallback={<LoadingWidgetContent />}>
+      <React.Suspense fallback={<LoadingGridContent />}>
         <div className="Triad--selector">
           {
               processSteps.map((processStep, index) => {

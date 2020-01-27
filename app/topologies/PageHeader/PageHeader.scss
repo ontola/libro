@@ -1,6 +1,8 @@
 @import '../../components/shared/config';
 
 .PageHeader {
+  position: relative;
+
   &__circle {
     background: color('grey');
     border-radius: 999px;
@@ -29,7 +31,7 @@
       height: 35em;
     }
 
-    .Container {
+    .MuiContainer-root {
       bottom: 0;
       height: 100%;
     }

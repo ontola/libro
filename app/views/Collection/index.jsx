@@ -3,12 +3,10 @@ import { register } from 'link-redux';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { cardTopology } from '../../topologies/Card';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
-import Container from '../../topologies/Container';
 import { gridTopology } from '../../topologies/Grid';
 import { pageTopology } from '../../topologies/Page';
 import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 import { tabPaneTopology } from '../../topologies/TabPane';
-import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 
 import getCollection from './getCollection';
 import CreateAction from './properties/createAction';
@@ -36,7 +34,6 @@ export default [
   CollectionTableCell,
   register(
     getCollection({
-      WrappingElement: Container,
       redirect: true,
       renderParent: true,
       renderWhenEmpty: true,
@@ -48,7 +45,6 @@ export default [
   ),
   register(
     getCollection({
-      WrappingElement: Container,
       topology: alertDialogTopology,
     })
   ),
@@ -59,13 +55,11 @@ export default [
         cardTopology,
         cardMainTopology,
         gridTopology,
-        widgetTopologyTopology,
       ],
     })
   ),
   register(
     getCollection({
-      WrappingElement: Container,
       renderWhenEmpty: true,
       topology: [
         tabPaneTopology,

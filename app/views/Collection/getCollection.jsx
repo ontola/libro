@@ -23,7 +23,6 @@ import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
 import { CollectionTypes } from './types';
 
 export default function getCollection({
-  WrappingElement = React.Fragment,
   omniform = false,
   redirect = false,
   renderParent = false,
@@ -181,20 +180,18 @@ export default function getCollection({
       );
 
       return (
-        <WrappingElement>
-          <ResourceBoundary wrapperProps={{ className: `Collection Collection__Depth-${depth}` }}>
-            {renderParent && <Property label={schema.isPartOf} />}
-            {header}
-            <Property
-              forceRender
-              body={this.body(resolvedColumns)}
-              collectionDisplay={collectionDisplay}
-              columns={resolvedColumns}
-              label={ontola.collectionFrame}
-              pagination={this.pagination()}
-            />
-          </ResourceBoundary>
-        </WrappingElement>
+        <ResourceBoundary wrapperProps={{ className: `Collection Collection__Depth-${depth}` }}>
+          {renderParent && <Property label={schema.isPartOf} />}
+          <Property
+            forceRender
+            body={this.body(resolvedColumns)}
+            collectionDisplay={collectionDisplay}
+            columns={resolvedColumns}
+            header={header}
+            label={ontola.collectionFrame}
+            pagination={this.pagination()}
+          />
+        </ResourceBoundary>
       );
     }
 

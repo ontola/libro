@@ -15,7 +15,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import Button from '../../components/Button';
-import { LoadingWidgetContent } from '../../components/Loading';
+import { LoadingGridContent } from '../../components/Loading';
 import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 import { isMarkedForRemove, retrieveIdFromValue } from '../../helpers/forms';
@@ -68,7 +68,7 @@ const NodeShape = ({
     if (__CLIENT__) {
       lrs.queueEntity(targetIRI);
 
-      return <LoadingWidgetContent />;
+      return <LoadingGridContent />;
     }
   }
 

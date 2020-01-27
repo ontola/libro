@@ -24,7 +24,7 @@ import { buildRegister } from '../../../helpers/buildRegister';
 import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
 import { cardTopology } from '../../../topologies/Card';
-import Container, { containerTopology } from '../../../topologies/Container';
+import Container, { LargeContainer, containerTopology } from '../../../topologies/Container';
 import Menu from '../../../topologies/Menu';
 import { CollectionTypes } from '../types';
 
@@ -141,6 +141,9 @@ const containerCollectionHeader = ({
   let Wrapper = React.Fragment;
   if (collectionDisplay === ontola['collectionDisplay/default'] && topology !== containerTopology) {
     Wrapper = Container;
+  }
+  if (collectionDisplay === ontola['collectionDisplay/grid'] && topology !== containerTopology) {
+    Wrapper = LargeContainer;
   }
 
   return (

@@ -118,6 +118,8 @@ export const componentMap = {
   [rdf.id(component('FormField'))]: wrap(React.lazy(() => import('./components/FormField/index'))),
   [rdf.id(component('FormField/OptionsWrapper'))]: wrap(React.lazy(() => import('./components/FormField/OptionsWrapper'))),
   [rdf.id(component('FormFieldWrapper'))]: wrap(React.lazy(() => import('./components/FormFieldWrapper/index'))),
+  [rdf.id(component('Grid/GridHeader'))]: wrap(React.lazy(() => import('./components/Grid/GridHeader'))),
+  [rdf.id(component('Grid/GridItem'))]: wrap(React.lazy(() => import('./components/Grid/GridItem'))),
   [rdf.id(component('Headers'))]: wrap(React.lazy(() => import('./components/Headers/DutchGovernmentHeader'))),
   [rdf.id(component('HeaderWithMenu'))]: wrap(React.lazy(() => import('./components/HeaderWithMenu/index'))),
   [rdf.id(component('Heading'))]: wrap(React.lazy(() => import('./components/Heading/index'))),
@@ -171,5 +173,4 @@ export const componentMap = {
   [rdf.id(component('VerticalScroller'))]: wrap(React.lazy(() => import('./components/VerticalScroller/index'))),
   [rdf.id(component('VoteChart'))]: wrap(React.lazy(() => import('./components/VoteChart/index'))),
   [rdf.id(component('VoteData'))]: wrap(React.lazy(() => import('./components/VoteData/index'))),
-  [rdf.id(component('Widget/WidgetHeader'))]: wrap(React.lazy(() => import('./components/Widget/WidgetHeader'))),
 };

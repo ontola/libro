@@ -9,13 +9,14 @@ import {
 import React from 'react';
 
 import { LoadingFiller } from '../../components/Loading/index';
+import { entityIsLoaded } from '../../helpers/data';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import Container from '../../topologies/Container/index';
+import Grid from '../../topologies/Grid';
 import { pageTopology } from '../../topologies/Page';
 import PageHeader from '../../topologies/PageHeader';
 import PrimaryResource, { primaryResourceTopology } from '../../topologies/PrimaryResource';
-import { entityIsLoaded } from '../../helpers/data';
 
 const ForumPage = ({ coverPhoto, hideHeader }) => {
   const lrs = useLRS();
@@ -34,8 +35,10 @@ const ForumPage = ({ coverPhoto, hideHeader }) => {
     <PrimaryResource>
       {(hideHeader?.value !== 'true')
       && <PageHeader background={coverPhotoUrl?.value} positionY={positionY?.value} />}
-      <Container grid>
-        <Property label={ontola.widgets} onLoad={LoadingFiller} />
+      <Container size="large">
+        <Grid container spacing={6}>
+          <Property label={ontola.widgets} onLoad={LoadingFiller} />
+        </Grid>
       </Container>
     </PrimaryResource>
   );

@@ -13,8 +13,8 @@ import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import Card from '../../../topologies/Card';
 import CardAppendix from '../../../topologies/Card/CardAppendix';
-import Container, { containerTopology } from '../../../topologies/Container';
-import Grid from '../../../topologies/Grid';
+import Container, { LargeContainer, containerTopology } from '../../../topologies/Container';
+import Grid, { gridTopology } from '../../../topologies/Grid';
 import Table from '../../../topologies/Table';
 import TableFooter from '../../../topologies/TableFooter';
 import TableFooterCell from '../../../topologies/TableFooterCell';
@@ -24,65 +24,84 @@ import TableHeaderRow from '../../../topologies/TableHeaderRow';
 import { allTopologiesExcept } from '../../../topologies';
 import { CollectionTypes } from '../types';
 
-const getFrame = (Wrapper, topology) => {
+const getFrame = (wrapper, topology) => {
   const collectionFrame = ({
     body,
     collectionDisplay,
     collectionDisplayFromData,
     columns,
+    header,
     pagination,
   }) => {
+    let Wrapper;
+
     switch (rdf.id(collectionDisplay || collectionDisplayFromData)) {
       case rdf.id(ontola.ns('collectionDisplay/grid')):
+        Wrapper = wrapper ? LargeContainer : React.Fragment;
+
         return (
-          <React.Fragment>
-            <Grid>
+          <Wrapper>
+            {header}
+            <Grid container>
               {body}
             </Grid>
             {pagination}
-          </React.Fragment>
+          </Wrapper>
         );
       case rdf.id(ontola.ns('collectionDisplay/settingsTable')):
       case rdf.id(ontola.ns('collectionDisplay/table')):
-        return (
-          <Card>
-            <Table>
-              <TableHead>
-                <TableHeaderRow>
-                  {columns.map((property) => (
-                    <Resource
-                      forceRender
-                      key={property.value}
-                      subject={property}
-                    />
-                  ))}
-                </TableHeaderRow>
-              </TableHead>
-              <tbody>
-                {body}
-              </tbody>
-              <TableFooter>
-                <TableFooterRow>
-                  <TableFooterCell colSpan={columns.length}>
-                    {pagination}
-                  </TableFooterCell>
-                </TableFooterRow>
-              </TableFooter>
-            </Table>
-          </Card>
-        );
-      case rdf.id(ontola.ns('collectionDisplay/card')):
-        return (
-          <Card>
-            {body}
-            <CardAppendix>
-              {pagination}
-            </CardAppendix>
-          </Card>
-        );
-      case rdf.id(ontola.ns('collectionDisplay/default')):
+        Wrapper = wrapper ? Container : React.Fragment;
+
         return (
           <Wrapper>
+            {header}
+            <Card>
+              <Table>
+                <TableHead>
+                  <TableHeaderRow>
+                    {columns.map((property) => (
+                      <Resource
+                        forceRender
+                        key={property.value}
+                        subject={property}
+                      />
+                    ))}
+                  </TableHeaderRow>
+                </TableHead>
+                <tbody>
+                  {body}
+                </tbody>
+                <TableFooter>
+                  <TableFooterRow>
+                    <TableFooterCell colSpan={columns.length}>
+                      {pagination}
+                    </TableFooterCell>
+                  </TableFooterRow>
+                </TableFooter>
+              </Table>
+            </Card>
+          </Wrapper>
+        );
+      case rdf.id(ontola.ns('collectionDisplay/card')):
+        Wrapper = wrapper ? Container : React.Fragment;
+
+        return (
+          <Wrapper>
+            {header}
+            <Card>
+              {body}
+              <CardAppendix>
+                {pagination}
+              </CardAppendix>
+            </Card>
+          </Wrapper>
+        );
+      case rdf.id(ontola.ns('collectionDisplay/default')):
+        Wrapper = wrapper ? Container : React.Fragment;
+
+        return (
+          <Wrapper>
+            {header}
             {body}
             <div style={{ marginBottom: '1em' }}>
               {pagination}
@@ -117,6 +136,6 @@ const getFrame = (Wrapper, topology) => {
 };
 
 export default [
-  register(getFrame(Container, allTopologiesExcept(containerTopology))),
-  register(getFrame(React.Fragment, containerTopology)),
+  register(getFrame(true, allTopologiesExcept(containerTopology, gridTopology))),
+  register(getFrame(false, [containerTopology, gridTopology])),
 ];

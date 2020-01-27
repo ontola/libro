@@ -1,12 +1,5 @@
 @import '../../components/shared/config';
 
-.Grid {
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: -#{unit('small')};
-  margin-right: -#{unit('small')};
-}
-
 .Carousel {
   display: flex;
   overflow-x: scroll;

@@ -13,7 +13,6 @@ import {
   LoadingParent,
   LoadingRow,
   Spinner,
-  SuspendedLoader,
 } from '../../components';
 import ll from '../../ontology/ll';
 import { appMenuTopology } from '../../topologies/AppMenu';
@@ -43,12 +42,11 @@ import { primaryResourceTopology } from '../../topologies/PrimaryResource';
 import { tableTopology } from '../../topologies/Table';
 import { tableCellTopology } from '../../topologies/TableCell';
 import { voteBubbleTopology } from '../../topologies/VoteBubble';
-import { widgetTopologyTopology } from '../../topologies/WidgetTopology/WidgetTopology';
 import { tabPaneTopology } from '../../topologies/TabPane';
 import {
   LoadingCardFloat,
   LoadingCardRowAppendix,
-  LoadingWidgetCard,
+  SuspendedLoader,
 } from '../../components/Loading/index';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 
@@ -79,19 +77,11 @@ export default [
     ]
   ),
   LinkedRenderStore.registerRenderer(
-    LoadingWidgetCard,
-    ll.LoadingResource,
-    RENDER_CLASS_NAME,
-    [
-      gridTopology,
-    ]
-  ),
-  LinkedRenderStore.registerRenderer(
     SuspendedLoader,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
     [
-      widgetTopologyTopology,
+      gridTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(

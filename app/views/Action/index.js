@@ -9,7 +9,7 @@ import ActionPageReg from './ActionPage';
 import ActionPrimaryCallToAction from './ActionPrimaryCallToAction';
 import ActionTableCell from './ActionTableCell';
 import ActionTableRow from './ActionTableRow';
-import ActionWidget from './ActionWidget';
+import ActionWidget from './ActionGrid';
 import CreateAction from './CreateAction';
 import CreateVote from './CreateVote';
 import InlineCreateAction from './InlineCreateAction';
@@ -18,7 +18,7 @@ import InlineActionTableRow from './InlineActionTableRow';
 import ReadActionCard from './ReadActionCard';
 import SignInHelperFormsModal from './SignInHelperFormsModal';
 import FollowUpName from './properties/followUpName';
-import WidgetName from './properties/widgetName';
+import WidgetName from './properties/gridName';
 
 export default [
   CreateAction,

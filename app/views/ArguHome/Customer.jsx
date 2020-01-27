@@ -8,13 +8,16 @@ import React from 'react';
 import argu from '../../ontology/argu';
 import { allTopologies } from '../../topologies';
 import './Customer.scss';
+import GridItem from '../../components/Grid/GridItem';
 
 const Customer = ({ name, image }) => (
-  <div
-    className="Customer"
-    style={{ backgroundImage: `url("${image.value}")` }}
-    title={name.value}
-  />
+  <GridItem>
+    <div
+      className="Customer"
+      style={{ backgroundImage: `url("${image.value}")` }}
+      title={name.value}
+    />
+  </GridItem>
 );
 
 Customer.type = argu.Customer;

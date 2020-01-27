@@ -1,6 +1,9 @@
+import { Grid as MaterialGrid } from '@material-ui/core';
 import { TopologyProvider } from 'link-redux';
 import PropTypes from 'prop-types';
+import React from 'react';
 
+import { LoadingFullResource } from '../../components/Loading';
 import argu from '../../ontology/argu';
 
 import './Grid.scss';
@@ -16,7 +19,18 @@ class Grid extends TopologyProvider {
     super();
 
     this.topology = gridTopology;
-    this.className = 'Grid';
+  }
+
+  render() {
+    const { children, ...otherProps } = this.props;
+
+    return this.wrap((
+      <React.Suspense fallback={<LoadingFullResource />}>
+        <MaterialGrid container spacing={6} {...otherProps}>
+          {children}
+        </MaterialGrid>
+      </React.Suspense>
+    ));
   }
 }
 

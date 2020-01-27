@@ -11,11 +11,11 @@ describe('Container component', () => {
       </Container>
     ));
 
-    expect(tree.find('.Container')).toExist();
-    expect(tree.find('.Container')).toHaveText('Content');
-    expect(tree.find('.Container')).toHaveClassName('Container--size-medium');
+    expect(tree.find('.MuiContainer-root')).toExist();
+    expect(tree.find('.MuiContainer-root')).toHaveText('Content');
+    expect(tree.find('.MuiContainer-root')).toHaveClassName('MuiContainer-maxWidthLg');
 
-    tree.setProps({ spacing: 'large' });
-    expect(tree.find('.Container')).toHaveClassName('Container--spacing-large');
+    tree.setProps({ size: 'large' });
+    expect(tree.find('.MuiContainer-root')).toHaveClassName('MuiContainer-maxWidthXl');
   });
 });

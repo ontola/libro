@@ -44,7 +44,6 @@ import { tableTopology } from './topologies/Table';
 import { tabBarTopology } from './topologies/TabBar/index';
 import { tabPaneTopology } from './topologies/TabPane/index';
 import { voteBubbleTopology } from './topologies/VoteBubble/index';
-import { widgetTopologyTopology } from './topologies/WidgetTopology/WidgetTopology';
 
 const wrap = (LazyComp) => (props) => (
   React.createElement(
@@ -97,7 +96,6 @@ export const topologyComponentMap = {
   [rdf.id(tabBarTopology)]: wrap(React.lazy(() => import('./topologies/TabBar/index'))),
   [rdf.id(tabPaneTopology)]: wrap(React.lazy(() => import('./topologies/TabPane/index'))),
   [rdf.id(voteBubbleTopology)]: wrap(React.lazy(() => import('./topologies/VoteBubble/index'))),
-  [rdf.id(widgetTopologyTopology)]: wrap(React.lazy(() => import('./topologies/WidgetTopology/WidgetTopology'))),
 };
 
 export const allTopologies = [
@@ -143,7 +141,6 @@ export const allTopologies = [
   tabPaneTopology,
   tabBarTopology,
   voteBubbleTopology,
-  widgetTopologyTopology,
 ];
 
 export function allTopologiesExcept(...topologies) {

@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import { Container as MaterialContainer } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -17,9 +17,7 @@ export const containerTopology = argu.container;
 class Container extends Topology {
   static propTypes = {
     children: PropTypes.node.isRequired,
-    grid: PropTypes.bool,
     size: PropTypes.oneOf(sizes),
-    spacing: PropTypes.oneOf(sizes),
   };
 
   static defaultProps = {
@@ -32,22 +30,30 @@ class Container extends Topology {
     this.topology = containerTopology;
   }
 
-  getClassName() {
-    return classNames({
-      Container: true,
-      'Container--grid': this.props.grid,
-      [`Container--size-${this.props.size}`]: !this.props.grid && this.props.size,
-      [`Container--spacing-${this.props.spacing}`]: this.props.spacing,
-    });
+  maxWidth() {
+    if (this.props.size === 'large') {
+      return 'xl';
+    }
+    if (this.props.size === 'small') {
+      return 'md';
+    }
+
+    return 'lg';
   }
 
   renderContent() {
     return this.wrap((
-      <div className={this.getClassName()}>
-        {this.props.children}
-      </div>
+      <MaterialContainer maxWidth={this.maxWidth()} {...this.props} />
     ));
   }
 }
+
+export const LargeContainer = ({ children }) => (
+  <Container size="large">{children}</Container>
+);
+
+LargeContainer.propTypes = {
+  children: PropTypes.node,
+};
 
 export default Container;

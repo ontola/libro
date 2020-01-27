@@ -34,7 +34,7 @@ import { primaryResourceTopology } from '../../../topologies/PrimaryResource';
 import { radioGroupTopology } from '../../../topologies/RadioGroup';
 import { selectTopology } from '../../../topologies/Select';
 import { tableRowTopology } from '../../../topologies/TableRow';
-import { widgetTopologyTopology } from '../../../topologies/WidgetTopology/WidgetTopology';
+import { gridTopology } from '../../../topologies/Grid';
 
 const NamePredicates = [
   schema.name,
@@ -151,7 +151,7 @@ export default [
       cardRowTopology,
       containerTopology,
       popupTopology,
-      widgetTopologyTopology,
+      gridTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(

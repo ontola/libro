@@ -9,7 +9,6 @@ import {
   CardContent,
   Detail,
   LDLink,
-  LinkedDetailDate,
 } from '../../components';
 import { LoadingOpinion } from '../../components/Loading';
 import {
@@ -19,14 +18,12 @@ import {
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
 import meeting from '../../ontology/meeting';
-import ontola from '../../ontology/ontola';
 import { cardTopology } from '../../topologies/Card';
-import CardFixed, { cardFixedTopology } from '../../topologies/Card/CardFixed';
+import { cardFixedTopology } from '../../topologies/Card/CardFixed';
 import { cardListTopology } from '../../topologies/Card/CardList';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import CardRow, { cardRowTopology } from '../../topologies/Card/CardRow';
-import DetailsBar, { detailsBarTopology } from '../../topologies/DetailsBar';
-import { gridTopology } from '../../topologies/Grid';
+import { detailsBarTopology } from '../../topologies/DetailsBar';
 import hoverBox from '../../topologies/HoverBox';
 
 import ApplyLink from './properties/applyLink';
@@ -65,6 +62,7 @@ import TrashedAt from './properties/trashedAt';
 import VoteEvents from './properties/voteEvents';
 import ThingContainer from './ThingContainer';
 import ThingInline from './ThingInline';
+import ThingGrid from './ThingGrid';
 import ThingPage from './ThingPage';
 import ThingPageHeader from './ThingPageHeader';
 import ThingParent from './ThingParent';
@@ -77,26 +75,6 @@ import ThingTableRow from './ThingTableRow';
 import ThingTableHeaderRow from './ThingTableHeaderRow';
 
 const CardHoverBox = hoverBox();
-
-const ThingGrid = () => (
-  <CardFixed>
-    <LDLink>
-      <Property label={ontola.coverPhoto} />
-      <CardContent noSpacing>
-        <Property label={[schema.name, rdfs.label, foaf.name]} />
-        <Property label={[schema.text, schema.description, dbo.abstract]} />
-      </CardContent>
-    </LDLink>
-    <DetailsBar>
-      <Property hideName label={schema.creator} />
-      <LinkedDetailDate />
-      <Property label={argu.pinnedAt} />
-      <Property short label={argu.expiresAt} />
-      <Property label={argu.followsCount} />
-      <Property label={argu.motionsCount} />
-    </DetailsBar>
-  </CardFixed>
-);
 
 const ThingHoverBoxHidden = () => (
   <React.Fragment>
@@ -125,6 +103,7 @@ const ThingCard = () => (
 
 export default [
   ThingContainer,
+  ThingGrid,
   ThingPage,
   ThingPageHeader,
   ThingRadioGroup,
@@ -157,12 +136,6 @@ export default [
     schema.Thing,
     RENDER_CLASS_NAME,
     detailsBarTopology
-  ),
-  LinkedRenderStore.registerRenderer(
-    ThingGrid,
-    schema.Thing,
-    RENDER_CLASS_NAME,
-    gridTopology
   ),
   LinkedRenderStore.registerRenderer(
     ThingCard,

@@ -1,4 +1,4 @@
-import CreativeWorkWidget from './CreativeWorkWidget';
+import CreativeWorkWidget from './CreativeWorkGrid';
 
 export default [
   CreativeWorkWidget,
