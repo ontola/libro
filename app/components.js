@@ -171,6 +171,5 @@ export const componentMap = {
   [rdf.id(component('VerticalScroller'))]: wrap(React.lazy(() => import('./components/VerticalScroller/index'))),
   [rdf.id(component('VoteChart'))]: wrap(React.lazy(() => import('./components/VoteChart/index'))),
   [rdf.id(component('VoteData'))]: wrap(React.lazy(() => import('./components/VoteData/index'))),
-  [rdf.id(component('Widget'))]: wrap(React.lazy(() => import('./components/Widget/index'))),
   [rdf.id(component('Widget/WidgetHeader'))]: wrap(React.lazy(() => import('./components/Widget/WidgetHeader'))),
 };
