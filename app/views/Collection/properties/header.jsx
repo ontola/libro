@@ -79,22 +79,25 @@ const CreateActionButton = ({
       return null;
     }
 
-    return (
-      <Menu
-        lazy
-        trigger={trigger}
-      >
-        {() => (
-          <ResourceBoundary>
-            {
-              validActions.sort(sort(ORDER)).map((action) => (
-                <Resource subject={action} />
-              ))
-            }
-          </ResourceBoundary>
-        )}
-      </Menu>
-    );
+    if (validActions.length > 1) {
+      return (
+        <Menu
+          lazy
+          trigger={trigger}
+        >
+          {() => (
+            <ResourceBoundary>
+              {
+                validActions.sort(sort(ORDER))
+                  .map((action) => (
+                    <Resource subject={action} />
+                  ))
+              }
+            </ResourceBoundary>
+          )}
+        </Menu>
+      );
+    }
   }
 
   return <Property label={ontola.createAction} omniform={omniform} />;
