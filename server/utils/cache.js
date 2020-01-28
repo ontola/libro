@@ -10,7 +10,7 @@ export const fileFromCache = (iri) => {
   [parsedURL.pathname] = parsedURL.pathname.split('.');
   const hashId = new MD5().update(parsedURL.toString()).digest('hex');
   const filePath = `${cacheDirectory}/latest/${hashId.match(/.{1,8}/g).join('/')}/latest/index.${format}`;
-  if (fs.existsSync(filePath)) {
+  if (fs.existsSync(filePath) && fs.statSync(filePath).size > 0) {
     return filePath;
   }
 
