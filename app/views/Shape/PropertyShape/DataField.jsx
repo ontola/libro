@@ -24,7 +24,8 @@ const determineInputType = (
   datatype,
   shIn,
   maxCount,
-  maxLength
+  maxLength,
+  theme
 ) => {
   if (shIn) {
     if (tryParseInt(maxCount) > 1) {
@@ -51,6 +52,10 @@ const determineInputType = (
     case rdf.id(ll.blob):
       return 'file';
     case rdf.id(fhir.markdown):
+      if (theme === 'omniform') {
+        return 'textarea';
+      }
+
       return 'markdown';
     case rdf.id(ontola.ns('datatype/password')):
       return 'password';
@@ -105,7 +110,8 @@ const DataField = (props) => {
     datatype,
     shIn,
     maxCount,
-    maxLength
+    maxLength,
+    theme
   );
   const required = tryParseInt(minCount) > 0;
   const validate = [
