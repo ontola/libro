@@ -1,10 +1,12 @@
 import schema from '@ontologies/schema';
 import rdfs from '@ontologies/rdfs';
 import foaf from '@ontologies/foaf';
+import HttpStatus from 'http-status-codes';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
 import { CardContent } from '../../components';
+import { handleErrorStatuses } from '../../components/Error';
 import { LoadingOpinion } from '../../components/Loading';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
@@ -17,7 +19,11 @@ import CardRow from '../../topologies/Card/CardRow';
 const ThingCard = () => (
   <CardRow>
     <CardContent>
-      <Property label={argu.opinion} onError={() => null} onLoad={LoadingOpinion} />
+      <Property
+        label={argu.opinion}
+        onError={handleErrorStatuses([HttpStatus.FORBIDDEN])}
+        onLoad={LoadingOpinion}
+      />
       <Property label={[schema.name, rdfs.label, foaf.name]} />
       <Property label={[schema.text, schema.description, dbo.abstract]} />
       <Property label={meeting.attachment} />

@@ -1,3 +1,4 @@
+import HttpStatus from 'http-status-codes';
 import {
   Property,
   linkType,
@@ -12,6 +13,7 @@ import ontola from '../../ontology/ontola';
 import Container from '../../topologies/Container';
 import FullResource from '../../topologies/FullResource';
 import { gridTopology } from '../../topologies/Grid';
+import { handleErrorStatuses } from '../../components/Error';
 
 const Widget = ({ topology, widgetSize }) => {
   const size = tryParseInt(widgetSize);
@@ -33,7 +35,10 @@ const Widget = ({ topology, widgetSize }) => {
   return (
     <GridItem size={size}>
       <Wrapper {...wrapperOpts}>
-        <Property label={ontola.widgetResource} />
+        <Property
+          childProps={{ onError: handleErrorStatuses([HttpStatus.FORBIDDEN]) }}
+          label={ontola.widgetResource}
+        />
       </Wrapper>
     </GridItem>
   );

@@ -1,8 +1,10 @@
 import schema from '@ontologies/schema';
+import HttpStatus from 'http-status-codes';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
 import { CardContent } from '../../components';
+import { handleErrorStatuses } from '../../components/Error';
 import { LoadingOpinion } from '../../components/Loading';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
@@ -26,7 +28,11 @@ const CommentContainer = ({ depth = 0, highlighted }) => (
         <Property label={schema.dateCreated} />
       </DetailsBar>
       <CardContent>
-        <Property label={argu.opinion} onError={() => null} onLoad={LoadingOpinion} />
+        <Property
+          label={argu.opinion}
+          onError={handleErrorStatuses([HttpStatus.FORBIDDEN])}
+          onLoad={LoadingOpinion}
+        />
         <Property label={schema.text} />
       </CardContent>
       <ActionsBar small>
