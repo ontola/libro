@@ -8,6 +8,7 @@ import schema from '@ontologies/schema';
 import { createStore, MiddlewareFn } from 'link-lib';
 
 import { FRONTEND_ACCEPT } from '../config';
+import analyticsMiddleware from '../middleware/analyticsMiddleware';
 import { appMiddleware, website } from '../middleware/app';
 import execFilter from '../middleware/execFilter';
 import logging from '../middleware/logging';
@@ -34,6 +35,7 @@ export default function generateLRS() {
   const middleware: Array<MiddlewareFn<any>> = [
     logging(),
     ontolaMiddleware(history, serviceWorkerCommunicator),
+    analyticsMiddleware(),
     appMiddleware(),
     execFilter(),
   ];

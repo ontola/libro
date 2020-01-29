@@ -1,8 +1,8 @@
 import HttpStatus from 'http-status-codes';
 import jwt from 'jsonwebtoken';
-import useragent from 'useragent';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
+import useragent from 'useragent';
 
 import App from '../../app/App';
 import generateLRS from '../../app/helpers/generateLRS';
@@ -12,6 +12,7 @@ import * as constants from '../config';
 
 import logging from './logging';
 import manifests from './manifest';
+import { googleAnalyticsScript, matomoScript } from './tracking';
 
 const version = require('../../webpack/version');
 
@@ -106,12 +107,15 @@ export const renderFullPage = async (ctx, manifestData, data) => {
   const csrfToken = ctx.csrf;
   const nonceStr = ctx.res.locals.nonce.toString();
   let language = '';
+  let type;
+  let isUser = false;
   try {
     const tokenPayload = jwt.verify(
       ctx.session.arguToken.accessToken,
       constants.jwtEncryptionToken
     );
-    ({ language } = tokenPayload.user);
+    ({ language, type } = tokenPayload.user);
+    isUser = (type === 'user');
   } catch (e) {
     logging.error(e);
   }
@@ -141,6 +145,19 @@ export const renderFullPage = async (ctx, manifestData, data) => {
 
     return null;
   })?.filter(Boolean)?.join('\n');
+
+  const matomoCode = matomoScript(
+    manifestData?.ontola?.matomoHostname,
+    manifestData?.ontola?.matomoPort,
+    manifestData?.ontola?.matomoSiteId,
+    isUser,
+    nonceStr
+  );
+
+  const googleAnalyticsCode = googleAnalyticsScript(
+    manifestData?.ontola?.googleAnalyticsUACode,
+    nonceStr
+  );
 
   return (
     `<!doctype html>
@@ -256,6 +273,8 @@ export const renderFullPage = async (ctx, manifestData, data) => {
               try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
               catch(e){window.attachEvent("onload", $buo_f)}
           </script>
+          ${matomoCode}
+          ${googleAnalyticsCode}
         </body>
       </html>`
   );

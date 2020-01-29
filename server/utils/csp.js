@@ -1,7 +1,11 @@
 import csp from 'helmet-csp';
 import c2k from 'koa2-connect';
 
-import { ASSETS_HOST } from '../../app/config';
+import {
+  ASSETS_HOST,
+  MATOMO_HOST,
+  MATOMO_PORT,
+} from '../../app/config';
 
 const defaultSrc = ["'self'"];
 
@@ -38,7 +42,12 @@ const scriptSrc = [
   // Bugsnag CDN
   'https://d2wy8f7a9ursnm.cloudfront.net',
   'https://storage.googleapis.com',
+  'https://www.googletagmanager.com',
 ];
+if (MATOMO_HOST) {
+  scriptSrc.push([MATOMO_HOST, MATOMO_PORT].filter(Boolean).join(':'));
+}
+
 const styleSrc = [
   "'self'",
   // Due to using inline css with background-image url()
