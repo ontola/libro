@@ -10,6 +10,7 @@ import {
 import { FormattedMessage, injectIntl } from 'react-intl';
 
 import { Button } from '../../components';
+import { isDifferentWebsite } from '../../helpers/iris';
 import { handle } from '../../helpers/logging';
 
 import { titleForStatus } from './ErrorMessages';
@@ -73,9 +74,13 @@ export class ErrorButtonWithFeedbackBase extends React.Component {
 
     return Object
       .entries(this.context.api.statusMap)
-      .forEach((s, i) => {
-        if (s && (s.status >= INTERNAL_SERVER_ERROR || RETRYABLE_ERRORS.includes(s.status))) {
-          this.context.queueEntity(rdf.fromId(i), { reload: true });
+      .forEach(([id, s]) => {
+        const iri = rdf.fromId(id);
+        if (!isDifferentWebsite(iri)
+          && (s?.requested === false
+          || s?.status >= (INTERNAL_SERVER_ERROR - 1)
+          || RETRYABLE_ERRORS.includes(s?.status))) {
+          this.context.queueEntity(iri, { reload: true });
         }
       });
   }
