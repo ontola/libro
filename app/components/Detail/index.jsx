@@ -6,6 +6,8 @@ import React, { PureComponent } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { withRouter } from 'react-router';
 
+import { isDifferentWebsite } from '../../helpers/iris';
+
 import './Detail.scss';
 import DetailText from './text';
 
@@ -56,7 +58,7 @@ export class DetailComp extends PureComponent {
 
   getClickBinding() {
     const { url } = this.props;
-    if (url) {
+    if (url && !isDifferentWebsite(url)) {
       return (e) => {
         e.preventDefault();
         if (url) this.props.history.push(url);
@@ -94,6 +96,7 @@ export class DetailComp extends PureComponent {
         className={detailClass}
         data-test="Detail"
         href={url}
+        target={url && isDifferentWebsite(url) ? '_blank' : null}
         title={title}
         onClick={this.getClickBinding()}
       >

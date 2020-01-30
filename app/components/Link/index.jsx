@@ -10,6 +10,7 @@ import {
   isLocalAnchor,
   retrievePath,
 } from '../../helpers/iris';
+import app from '../../ontology/app';
 
 import themeStyles from './ThemeStyles';
 import featureStyles from './FeatureStyles';
@@ -25,6 +26,7 @@ const isActive = (to) => {
 
 const Link = ({
   activeClassName,
+  allowExternal,
   children,
   className,
   features,
@@ -45,23 +47,29 @@ const Link = ({
     ...features.map((f) => featureClasses[f])
   );
 
+  let path;
   if (isDifferentWebsite(to)) {
-    return (
-      <a
-        {...other}
-        className={componentClassName}
-        href={to}
-        ref={innerRef}
-        rel="nofollow noopener noreferrer"
-        target="_blank"
-        onClick={onClick}
-      >
-        {children}
-      </a>
-    );
+    if (!allowExternal) {
+      return (
+        <a
+          {...other}
+          className={componentClassName}
+          href={to}
+          ref={innerRef}
+          rel="nofollow noopener noreferrer"
+          target="_blank"
+          onClick={onClick}
+        >
+          {children}
+        </a>
+      );
+    }
+
+    path = retrievePath(app.ns(`resource?iri=${encodeURIComponent(to)}`).value);
+  } else {
+    path = retrievePath(to);
   }
 
-  const path = retrievePath(to);
   const LinkComp = isLocalAnchor(path) ? DomLink : NavLink;
   const isExact = LinkComp === DomLink ? undefined : isIndex;
 
@@ -94,6 +102,7 @@ const Link = ({
 
 Link.propTypes = {
   activeClassName: PropTypes.string,
+  allowExternal: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
   features: PropTypes.arrayOf(
@@ -121,6 +130,7 @@ Link.propTypes = {
 };
 
 Link.defaultProps = {
+  allowExternal: true,
   className: 'Link',
   features: [],
   isIndex: true,

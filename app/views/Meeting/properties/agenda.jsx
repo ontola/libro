@@ -69,6 +69,7 @@ Agenda.topology = allTopologies;
 Agenda.mapDataToProps = {
   agenda: {
     label: meeting.agenda,
+    limit: Infinity,
     returnType: 'statement',
   },
 };

@@ -1,3 +1,4 @@
+import RDFTypes from '@rdfdev/prop-types';
 import { Resource, withLRS } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -13,6 +14,7 @@ wildcardMap.set('/media_objects/', ['page']);
 
 class LinkedObject extends React.PureComponent {
   static propTypes = {
+    iri: RDFTypes.namedNode,
     location: PropTypes.shape({
       pathname: PropTypes.string,
       search: PropTypes.string,
@@ -51,35 +53,47 @@ class LinkedObject extends React.PureComponent {
   }
 
   render() {
-    const { location, websiteCtx } = this.props;
-    const { websitePathname } = websiteCtx;
-    let routedLocation = location;
+    const {
+      location,
+      iri,
+      websiteCtx,
+    } = this.props;
+    let invalidateIRI = iri;
+    let resourceIRI = iri;
 
-    if (typeof this.state.caughtError !== 'undefined') {
-      return <ErrorButtonWithFeedback reloadLinkedObject={this.retry} />;
-    }
+    if (!iri) {
+      const { websitePathname } = websiteCtx;
+      let routedLocation = location;
 
-    for (const pathMatch of wildcardMap.keys()) {
-      if (typeof pathMatch === 'string') {
-        if (location.pathname.startsWith(pathMatch)) {
-          const search = new URLSearchParams(location.search);
-          wildcardMap.get(pathMatch).forEach((v) => search.delete(v));
+      if (typeof this.state.caughtError !== 'undefined') {
+        return <ErrorButtonWithFeedback reloadLinkedObject={this.retry} />;
+      }
 
-          routedLocation = {
-            ...location,
-            search: search.toString() ? `?${search.toString()}` : '',
-          };
-          break;
+      for (const pathMatch of wildcardMap.keys()) {
+        if (typeof pathMatch === 'string') {
+          if (location.pathname.startsWith(pathMatch)) {
+            const search = new URLSearchParams(location.search);
+            wildcardMap.get(pathMatch).forEach((v) => search.delete(v));
+
+            routedLocation = {
+              ...location,
+              search: search.toString() ? `?${search.toString()}` : '',
+            };
+            break;
+          }
         }
       }
+
+      invalidateIRI = currentLocation(routedLocation, true, websitePathname, websiteCtx);
+      resourceIRI = currentLocation(routedLocation, false, websitePathname, websiteCtx);
     }
 
     return (
       <Page>
         <Resource
           fetch
-          invalidate={currentLocation(routedLocation, true, websitePathname, websiteCtx)}
-          subject={currentLocation(routedLocation, false, websitePathname, websiteCtx)}
+          invalidate={invalidateIRI}
+          subject={resourceIRI}
         />
       </Page>
     );

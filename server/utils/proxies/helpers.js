@@ -1,4 +1,5 @@
 import * as http from 'http';
+import * as https from 'https';
 import fs from 'fs';
 import { URL } from 'url';
 import * as zlib from 'zlib';
@@ -190,49 +191,66 @@ const writeResourceBody = (cachedFile, backendRes, write, resolve) => {
   }
 };
 
+const getRequestOptions = ({
+  agent,
+  ctx,
+  external,
+  method,
+}) => ({
+  agent,
+  headers: {
+    Accept: ctx.request.headers.accept,
+    'Accept-Language': ctx.request.headers['accept-language'] || null,
+    Connection: 'keep-alive',
+    'Content-Length': 0,
+    Origin: external ? null : ctx.request.headers.origin || null,
+    Referer: ctx.request.headers.referer || null,
+    'User-Agent': ctx.request.headers['user-agent'] || null,
+    'X-Forwarded-For': ctx.request.headers['x-forwarded-for'] || null,
+    'X-Forwarded-Host': external ? null : ctx.request.headers.host || null,
+    'X-Forwarded-Proto': ctx.request.headers['x-forwarded-proto'] || null,
+    'X-Forwarded-Ssl': ctx.request.headers['x-forwarded-ssl'] || null,
+    'X-Real-Ip': ctx.request.headers['x-real-ip'] || null,
+    'X-Requested-With': ctx.request.headers['x-requested-with'] || null,
+  },
+  method,
+  timeout: 30000,
+});
+
 const requestForBulk = (ctx, iri, agent, write, resolve) => {
-  const cachedFile = fileFromCache(iri);
-  const url = route(decodeURIComponent(iri), true);
+  const { origin } = new URL(iri);
+  const external = origin !== ctx.request.origin;
+  const cachedFile = !external && fileFromCache(iri);
+  const iriHJ = iri.includes('://') ? iri : `_:${iri}`;
 
-  const requestOptions = {
-    agent,
-    headers: {
-      Accept: ctx.request.headers.accept,
-      'Accept-Language': ctx.request.headers['accept-language'] || null,
-      Connection: 'keep-alive',
-      'Content-Length': 0,
-      Origin: ctx.request.headers.origin || null,
-      Referer: ctx.request.headers.referer || null,
-      'User-Agent': ctx.request.headers['user-agent'] || null,
-      'X-Forwarded-For': ctx.request.headers['x-forwarded-for'] || null,
-      'X-Forwarded-Host': ctx.request.headers.host,
-      'X-Forwarded-Proto': ctx.request.headers['x-forwarded-proto'] || null,
-      'X-Forwarded-Ssl': ctx.request.headers['x-forwarded-ssl'] || null,
-      'X-Real-Ip': ctx.request.headers['x-real-ip'] || null,
-      'X-Requested-With': ctx.request.headers['x-requested-with'] || null,
-    },
+  const requestOptions = getRequestOptions({
+    agent: external ? null : agent,
+    ctx,
+    external,
     method: cachedFile ? 'HEAD' : 'GET',
-    timeout: 30000,
-  };
+  });
 
-  return http.request(url, requestOptions, (backendRes) => {
-    const iriHJ = iri.includes('://') ? iri : `_:${iri}`;
+  const httpAgent = external ? https : http;
+  const url = external ? decodeURIComponent(iri) : route(decodeURIComponent(iri), true);
 
+  return httpAgent.request(url, requestOptions, (backendRes) => {
     if (!backendRes.headers['content-type']?.includes('application/hex+x-ndjson')) {
       handleNotAcceptableHJson(iriHJ, backendRes, write);
       backendRes.destroy();
       resolve();
     } else if (writeResourceBody(cachedFile, backendRes, write, resolve)) {
       write([iriHJ, 'http://www.w3.org/2011/http#statusCode', backendRes.statusCode.toString(), xsd.integer.value, '', 'http://purl.org/link-lib/meta']);
-      const actions = getActions(backendRes);
-      if (actions.length > 0) {
-        for (let i = 0; i < actions.length; i++) {
-          write([iriHJ, `http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}`, actions[i].toString(), xsd.string.value, '', 'http://purl.org/link-lib/meta']);
+      if (!external) {
+        const actions = getActions(backendRes);
+        if (actions.length > 0) {
+          for (let i = 0; i < actions.length; i++) {
+            write([iriHJ, `http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}`, actions[i].toString(), xsd.string.value, '', 'http://purl.org/link-lib/meta']);
+          }
         }
-      }
-      const redirect = newAuthorizationBulk(ctx, backendRes);
-      if (redirect) {
-        write([iriHJ, `http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}`, redirect.toString(), xsd.string.value, '', 'http://purl.org/link-lib/meta']);
+        const redirect = newAuthorizationBulk(ctx, backendRes);
+        if (redirect) {
+          write([iriHJ, `http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}`, redirect.toString(), xsd.string.value, '', 'http://purl.org/link-lib/meta']);
+        }
       }
     } else {
       write([iriHJ, 'http://www.w3.org/2011/http#statusCode', HttpStatus.INTERNAL_SERVER_ERROR.toString(), xsd.integer.value, '', 'http://purl.org/link-lib/meta']);
@@ -250,6 +268,10 @@ export function bulkResourceRequest(ctx, iris, agent, write) {
     .map((iri) => new Promise((resolve, reject) => {
       try {
         const backendReq = requestForBulk(ctx, iri, agent, write, resolve);
+
+        if (typeof backendReq === 'undefined') {
+          return resolve();
+        }
 
         requests.push(backendReq);
 
@@ -270,6 +292,8 @@ export function bulkResourceRequest(ctx, iris, agent, write) {
       } catch (e) {
         reject(e);
       }
+
+      return undefined;
     }));
 
   return [resources, requests];

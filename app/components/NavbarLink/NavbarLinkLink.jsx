@@ -52,6 +52,7 @@ class NavbarLinkLink extends PureComponent {
     return (
       <Link
         activeClassName="NavbarLink--active"
+        allowExternal={false}
         className="NavbarLink__link"
         features={features}
         isIndex={isIndex}
