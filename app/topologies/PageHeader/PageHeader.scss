@@ -2,6 +2,8 @@
 
 .PageHeader {
   position: relative;
+  margin-top: - unit('medium');
+  margin-bottom: unit('large');
 
   &__circle {
     background: color('grey');

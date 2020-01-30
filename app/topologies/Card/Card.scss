@@ -22,7 +22,7 @@
   box-shadow: $box-shadow;
   display: flex;
   flex-direction: column;
-  margin: units('medium');
+  margin-bottom: unit('medium');
 
   &--fixed {
     height: 16em;

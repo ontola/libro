@@ -9,6 +9,10 @@
     right: 0;
     top: 0;
 
+    .Page > & {
+      margin-top: - unit('medium');
+    }
+
     .Card & {
       border-top-left-radius: $border-radius-base;
       border-top-right-radius: $border-radius-base;
