@@ -26,36 +26,45 @@ import { entityIsLoaded } from '../../helpers/data';
 import DataField from './PropertyShape/DataField';
 import NestedResource from './PropertyShape/NestedResource';
 
-const useTargetValues = (targetObject, path) => {
+const useTargetValues = (rawTargetValues, targetIRI) => {
   const lrs = useLRS();
 
-  const targetIRI = isTerm(targetObject) && targetObject;
-  const rawTargetValues = (targetIRI && lrs.getResourceProperties(targetIRI, path)) || [];
-  const [targetValues, setTargetValues] = React.useState(Promise.resolve());
   useDataInvalidation({
-    dataSubjects: (rawTargetValues || []).filter((s) => ['NamedNode', 'TermType'].includes(s.termType)),
+    dataSubjects: rawTargetValues.filter((s) => ['NamedNode', 'TermType'].includes(s.termType)),
     subject: targetIRI,
   });
 
-  React.useEffect(() => {
-    const isCollection = rawTargetValues?.length === 1
-      && lrs.findSubject(rawTargetValues[0], [rdfx.type], as.Collection).length > 0;
+  const isCollection = rawTargetValues?.length === 1
+    && lrs.findSubject(rawTargetValues[0], [rdfx.type], as.Collection).length > 0;
 
-    if (!isCollection
-      && rawTargetValues?.length === 1
-      && rawTargetValues[0].termType === 'NamedNode'
-      && !entityIsLoaded(lrs, rawTargetValues[0])) {
-      if (__CLIENT__) {
-        setTargetValues(lrs.getEntity(rawTargetValues[0]));
-      }
-    } else if (isCollection) {
-      setTargetValues(lrs.dig(rawTargetValues[0], collectionMembers));
-    } else {
-      setTargetValues(rawTargetValues);
+  if (!isCollection
+    && rawTargetValues?.length === 1
+    && rawTargetValues[0].termType === 'NamedNode'
+    && !entityIsLoaded(lrs, rawTargetValues[0])) {
+    if (__CLIENT__) {
+      lrs.queueEntity(rawTargetValues[0]);
+
+      return Promise.resolve();
     }
-  }, []);
+  } else if (isCollection) {
+    return lrs.dig(rawTargetValues[0], collectionMembers);
+  }
 
-  return targetValues;
+  return rawTargetValues;
+};
+
+const PropertyShapeTarget = ({
+  children,
+  targetIRI,
+  rawTargetValues,
+}) => {
+  const targetValues = useTargetValues(rawTargetValues, targetIRI);
+
+  if (isPromise(targetValues)) {
+    return <LoadingRow />;
+  }
+
+  return children(targetValues);
 };
 
 const PropertyShape = (props) => {
@@ -67,34 +76,44 @@ const PropertyShape = (props) => {
     targetNode,
     targetValue,
   } = props;
-
+  const lrs = useLRS();
   const fieldName = calculateFormFieldName(propertyIndex, path);
-  const targetObject = targetNode || retrieveIdFromValue(targetValue);
-  const targetValues = useTargetValues(targetObject, path);
+  const targetObject = retrieveIdFromValue(targetValue) || targetNode;
+  const targetIRI = isTerm(targetObject) && targetObject;
 
-  if (isPromise(targetValues)) {
-    return <LoadingRow />;
+  const childContent = (targetValues) => {
+    if (shClass) {
+      return (
+        <NestedResource
+          {...props}
+          fieldName={fieldName}
+          targetValues={targetValues}
+        />
+      );
+    } else if (datatype) {
+      return (
+        <DataField
+          {...props}
+          fieldName={fieldName}
+          targetValues={targetValues}
+        />
+      );
+    }
+
+    return null;
+  };
+
+  if (targetIRI) {
+    const rawTargetValues = lrs.getResourceProperties(targetIRI, path);
+
+    return (
+      <PropertyShapeTarget rawTargetValues={rawTargetValues} targetIRI={targetIRI}>
+        {(targetValues) => childContent(targetValues)}
+      </PropertyShapeTarget>
+    );
   }
 
-  if (shClass) {
-    return (
-      <NestedResource
-        {...props}
-        fieldName={fieldName}
-        targetValues={targetValues}
-      />
-    );
-  } else if (datatype) {
-    return (
-      <DataField
-        {...props}
-        fieldName={fieldName}
-        targetValues={targetValues}
-      />
-    );
-  }
-
-  return null;
+  return childContent([]);
 };
 
 PropertyShape.type = sh.PropertyShape;
