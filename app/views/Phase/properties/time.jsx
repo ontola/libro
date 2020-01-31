@@ -8,6 +8,7 @@ import { allTopologies } from '../../../topologies';
 
 const Time = ({ linkedProp }) => (
   <Detail
+    icon="clock-o"
     text={linkedProp.value}
     title={linkedProp.value}
   />

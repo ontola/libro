@@ -43,13 +43,13 @@ const SurveyFull = ({ partOf }) => (
           <Property label={schema.location} />
           <Property label={argu.grantedGroups} />
         </DetailsBar>
-        <CardContent noSpacing>
+        <CardContent endSpacing noSpacing>
           <Property label={[schema.name, rdfs.label]} />
           <Property label={[schema.text, schema.description, dbo.abstract]} />
+          <ActionsBar>
+            <Property label={argu.externalIRI} />
+          </ActionsBar>
         </CardContent>
-        <ActionsBar>
-          <Property label={argu.externalIRI} />
-        </ActionsBar>
       </CardMain>
       <Property label={ontola.publishAction} onLoad={() => null} />
     </Container>

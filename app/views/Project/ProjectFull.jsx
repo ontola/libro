@@ -69,13 +69,13 @@ const ProjectFull = ({
             <Property label={meeting.attachment} onLoad={() => null} />
           </CardRow>
           <Property label={argu.voteableVoteEvent} onLoad={() => null} />
-          <CardDivider />
           <CardRow backdrop>
             <Property forceRender label={argu.phases} selectedPhase={renderPhase} />
+            <CardDivider />
+            {renderPhase && <Resource subject={renderPhase} />}
           </CardRow>
         </CardMain>
         <Property label={ontola.publishAction} onLoad={() => null} />
-        {renderPhase && <Resource subject={renderPhase} />}
       </Container>
       {renderPhase && (
         <Resource subject={renderPhase}>
