@@ -4,6 +4,7 @@ import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
 import Detail from '../../../components/Detail';
+import { tryParseInt } from '../../../helpers/numbers';
 import argu from '../../../ontology/argu';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
 
@@ -17,7 +18,7 @@ const messages = defineMessages({
 const MotionsCount = ({ linkedProp }) => {
   const { formatMessage } = useIntl();
 
-  if (linkedProp.value === '0') {
+  if (tryParseInt(linkedProp) === 0) {
     return null;
   }
 

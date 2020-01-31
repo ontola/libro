@@ -15,6 +15,7 @@ import { connect } from 'react-redux';
 
 import { ResourceBoundary } from '../../components';
 import { listToArr } from '../../helpers/data';
+import { tryParseInt } from '../../helpers/numbers';
 import ontola from '../../ontology/ontola';
 import { gotoPage } from '../../state/pagination/actions';
 import { getPage } from '../../state/pagination/selectors';
@@ -156,7 +157,7 @@ export default function getCollection({
         subject,
         totalItems,
       } = this.props;
-      if (totalItems && totalItems.value === '0') {
+      if (tryParseInt(totalItems) === 0) {
         if (!this.props.renderWhenEmpty) {
           return null;
         }

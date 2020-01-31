@@ -6,6 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import LDLink from '../../../components/LDLink';
 import Heading from '../../../components/Heading';
 import CardContent from '../../../components/Card/CardContent';
+import { tryParseInt } from '../../../helpers/numbers';
 import { cardAppendixTopology } from '../../../topologies/Card/CardAppendix';
 import { allTopologiesExcept } from '../../../topologies';
 import { buildRegister } from '../../../helpers/buildRegister';
@@ -25,7 +26,7 @@ const defaultCollectionTotalItems = ({
   linkedProp,
   to,
 }) => {
-  if (linkedProp.value === '0' || first === last) {
+  if (tryParseInt(linkedProp) === 0 || first === last) {
     return null;
   }
 

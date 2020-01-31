@@ -12,6 +12,7 @@ import { FormattedMessage } from 'react-intl';
 import { LoadingCardFixed } from '../../../components';
 import CardContent from '../../../components/Card/CardContent';
 import GridItem from '../../../components/Grid/GridItem';
+import { tryParseInt } from '../../../helpers/numbers';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import CardRow from '../../../topologies/Card/CardRow';
@@ -74,7 +75,7 @@ const Items = (props) => {
   } = props;
   let children = null;
 
-  if (totalCount.value === '0') {
+  if (tryParseInt(totalCount) === 0) {
     if (empty) {
       return empty();
     }

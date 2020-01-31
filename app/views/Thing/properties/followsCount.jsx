@@ -3,6 +3,7 @@ import { linkedPropType, register } from 'link-redux';
 import React from 'react';
 
 import Detail from '../../../components/Detail';
+import { tryParseInt } from '../../../helpers/numbers';
 import argu from '../../../ontology/argu';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
 
@@ -22,7 +23,7 @@ class FollowsCount extends React.PureComponent {
   render() {
     const { linkedProp } = this.props;
 
-    if (linkedProp.value === '0') {
+    if (tryParseInt(linkedProp) === 0) {
       return null;
     }
 

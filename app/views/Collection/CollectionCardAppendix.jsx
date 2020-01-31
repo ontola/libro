@@ -7,13 +7,14 @@ import {
 import React from 'react';
 
 import { ResourceBoundary } from '../../components';
+import { tryParseInt } from '../../helpers/numbers';
 import ontola from '../../ontology/ontola';
 import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
 
 import { CollectionTypes } from './types';
 
 const CollectionCardAppendix = ({ totalItems }) => {
-  if (totalItems.value === '0') {
+  if (tryParseInt(totalItems) === 0) {
     return null;
   }
 
