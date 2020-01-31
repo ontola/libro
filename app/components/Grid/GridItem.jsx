@@ -7,7 +7,7 @@ import { LoadingGridContent } from '../Loading';
 const GRID_FULL = 12;
 const GRID_HALF = 6;
 const GRID_SIZE = 3;
-const GRID_THIRD = 4;
+const GRID_CELL = GRID_FULL / GRID_SIZE;
 
 const GridItem = ({
   children,
@@ -15,7 +15,7 @@ const GridItem = ({
   size,
   ...otherProps
 }) => {
-  const lg = GRID_FULL / (GRID_THIRD - size);
+  const lg = GRID_CELL * size;
   const md = size === GRID_SIZE ? GRID_FULL : GRID_HALF;
   const sm = GRID_FULL;
 
