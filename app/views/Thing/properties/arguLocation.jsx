@@ -15,6 +15,7 @@ import { listToArr } from '../../../helpers/data';
 import { retrievePath } from '../../../helpers/iris';
 import argu from '../../../ontology/argu';
 import { containerTopology } from '../../../topologies/Container';
+import { fullResourceTopology } from '../../../topologies/FullResource';
 import { gridTopology } from '../../../topologies/Grid';
 
 class ArguLocation extends React.Component {
@@ -22,7 +23,11 @@ class ArguLocation extends React.Component {
 
   static property = schema.location;
 
-  static topology = [containerTopology, gridTopology];
+  static topology = [
+    containerTopology,
+    fullResourceTopology,
+    gridTopology,
+  ];
 
   static mapDataToProps = {
     childrenPlacements: argu.childrenPlacements,
