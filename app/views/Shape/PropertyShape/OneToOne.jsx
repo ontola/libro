@@ -21,7 +21,6 @@ const OneToOneRenderer = ({
   fieldName,
   initialValue,
   labelComponent,
-  maxCount,
   minCount,
   theme,
 }) => {
@@ -40,7 +39,6 @@ const OneToOneRenderer = ({
     value,
   } = input;
   const parsedMinCount = tryParseInt(minCount);
-  const parsedMaxCount = tryParseInt(maxCount);
   const showAddButton = (!value || isMarkedForRemove(value));
   const inputAlwaysVisible = parsedMinCount && parsedMinCount > 0;
   const addItem = () => {
@@ -76,7 +74,6 @@ const OneToOneRenderer = ({
       {descriptionElement}
       {value && (
         <NestedResourceView
-          nestedShape={parsedMaxCount !== 1 && parsedMinCount !== 1}
           removeItem={showRemoveItem ? removeItem : undefined}
           targetValue={value}
         />
@@ -129,7 +126,6 @@ OneToOneRenderer.propTypes = {
     ]),
   }),
   labelComponent: PropTypes.func,
-  maxCount: linkType,
   minCount: linkType,
   theme: PropTypes.string,
 };

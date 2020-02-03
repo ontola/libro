@@ -1,6 +1,10 @@
 import rdf from '@ontologies/core';
 import xsd from '@ontologies/xsd';
-import { linkType, topologyType } from 'link-redux';
+import {
+  linkType,
+  subjectType,
+  topologyType,
+} from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -99,7 +103,10 @@ const DataField = (props) => {
     minLength,
     name,
     onKeyUp,
+    propertyIndex,
     shIn,
+    subjectCtx,
+    targetValue,
     targetValues,
     theme,
     topology,
@@ -127,6 +134,7 @@ const DataField = (props) => {
       autofocus={autofocus}
       description={descriptionValue(description, helperText, inputType)}
       field={fieldName}
+      form={subjectCtx}
       initialValue={inputType === 'checkboxes' ? inputValues : inputValues?.[0]}
       inputFieldHint={inputFieldHint}
       label={name && name.value}
@@ -134,8 +142,10 @@ const DataField = (props) => {
       minLength={tryParseInt(minLength)}
       minRows={tryParseInt(maxLength) > MAX_STR_LEN ? TEXTFIELD_MIN_ROWS : undefined}
       placeholder={placeholderValue(description, inputType)}
+      propertyIndex={propertyIndex}
       required={required}
       shIn={shIn}
+      targetValue={targetValue}
       theme={theme}
       topology={topology}
       type={inputType}
@@ -159,7 +169,12 @@ DataField.propTypes = {
   minLength: linkType,
   name: linkType,
   onKeyUp: PropTypes.func,
+  propertyIndex: PropTypes.number,
   shIn: linkType,
+  subjectCtx: subjectType,
+  targetValue: PropTypes.shape({
+    '@id': linkType,
+  }),
   targetValues: PropTypes.arrayOf(
     PropTypes.shape({
       '@id': linkType,

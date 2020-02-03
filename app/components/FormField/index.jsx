@@ -46,6 +46,7 @@ const propTypes = {
     setTouched: PropTypes.func,
     setValue: PropTypes.func,
   }),
+  form: linkType,
   /** Ensure that it matches the label `for` attribute */
   id: PropTypes.string,
   initialValue: PropTypes.oneOfType([
@@ -93,9 +94,13 @@ const propTypes = {
   onChange: PropTypes.func,
   onKeyUp: PropTypes.func,
   placeholder: PropTypes.string,
+  propertyIndex: PropTypes.number,
   required: PropTypes.bool,
   shIn: optionsType,
   storeKey: PropTypes.string,
+  targetValue: PropTypes.shape({
+    '@id': linkType,
+  }),
   theme: PropTypes.string,
   topology: topologyType,
   // HTML input type, e.g. 'email'
@@ -242,6 +247,7 @@ class FormField extends React.PureComponent {
       autoComplete,
       autofocus,
       field,
+      form,
       initialValue,
       input,
       inputFieldHint,
@@ -257,6 +263,8 @@ class FormField extends React.PureComponent {
       shIn,
       storeKey,
       minRows,
+      propertyIndex,
+      targetValue,
       topology,
       type,
     } = this.props;
@@ -368,6 +376,9 @@ class FormField extends React.PureComponent {
         <FileInput
           {...sharedProps}
           data-testid={sharedProps.name}
+          form={form}
+          propertyIndex={propertyIndex}
+          targetValue={targetValue}
           onChange={(e) => new Promise(() => {
             if (!e) {
               field.onChange(undefined);

@@ -67,7 +67,6 @@ const NestedResource = (props) => {
     maxCount,
     minCount,
     name,
-    nestedShape,
     onKeyUp,
     shClass,
     theme,
@@ -106,7 +105,6 @@ const NestedResource = (props) => {
         NestedResourceView={(nestedProps) => (
           <NestedResourceView
             {...nestedProps}
-            nestedShape={nestedShape}
             shClass={shClass}
             targetNode={targetNode}
             theme={theme}

@@ -1,41 +1,84 @@
+import schema from '@ontologies/schema';
+import sh from '@ontologies/shacl';
+import { linkType, useLRS } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useField } from 'react-final-form';
 
-import Input from './Input';
+import { FormSectionContext } from '../Form/FormSection';
+import { listToArr } from '../../helpers/data';
+import { calculateFormFieldName, isMarkedForRemove } from '../../helpers/forms';
+import MediaObjectOmniformDropzoneLoader from '../../views/MediaObject/omniform/MediaObjectOmniformDropzoneLoader';
 
-const propTypes = {
-  onChange: PropTypes.func,
+import './FileInput.scss';
+
+const FileInput = ({
+  propertyIndex,
+  form,
+  targetValue,
+}) => {
+  const lrs = useLRS();
+  const formContext = React.useContext(FormSectionContext);
+  const inputRef = React.createRef();
+  const resourceId = calculateFormFieldName(formContext, propertyIndex);
+  const encodingFormatShape = lrs.findSubject(
+    form,
+    [sh.property, sh.path],
+    schema.encodingFormat
+  ).pop();
+  const encodingFormatTypes = encodingFormatShape
+    && listToArr(lrs, [], lrs.getResourceProperty(encodingFormatShape, sh.in))
+      ?.map((lit) => lit.value)
+      ?.join(', ');
+
+  const resourceField = useField(resourceId, {
+    initialValue: targetValue,
+  });
+
+  const openDialog = () => {
+    const { current } = inputRef;
+
+    if (!current) {
+      throw new Error('No input ref on dropzone');
+    }
+
+    current.click();
+  };
+
+  if (isMarkedForRemove(targetValue)) {
+    return null;
+  }
+
+  const fieldName = schema.contentUrl;
+  const fieldId = calculateFormFieldName(formContext, propertyIndex, fieldName);
+  const { input: { value, ...resourceInput } } = resourceField;
+
+  let current;
+  if (targetValue?.['@id']?.termType === 'NamedNode') {
+    current = targetValue['@id'];
+  }
+  if (value && value.termType) {
+    current = value;
+  }
+
+  return (
+    <MediaObjectOmniformDropzoneLoader
+      current={current}
+      encodingFormatTypes={encodingFormatTypes}
+      inputRef={inputRef}
+      name={fieldId}
+      openDialog={openDialog}
+      resourceInput={resourceInput}
+    />
+  );
 };
 
-class FileInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.onChange = this.onChange.bind(this);
-  }
-
-  onChange(e) {
-    const { onChange } = this.props;
-    onChange(e.target.files[0]);
-  }
-
-  render() {
-    // File inputs can't be controlled
-    const {
-      // eslint-disable-next-line no-unused-vars, react/prop-types
-      value,
-      ...rest
-    } = this.props;
-
-    return (
-      <Input
-        {...rest}
-        type="file"
-        onChange={this.onChange}
-      />
-    );
-  }
-}
-
-FileInput.propTypes = propTypes;
+FileInput.propTypes = {
+  form: linkType,
+  propertyIndex: PropTypes.number,
+  targetValue: PropTypes.shape({
+    '@id': linkType,
+  }),
+};
 
 export default FileInput;

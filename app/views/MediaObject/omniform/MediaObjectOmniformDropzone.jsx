@@ -6,13 +6,11 @@ import { useField } from 'react-final-form';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage } from 'react-intl';
 
-import OmniformRemoveButton from '../../../components/Omniform/OmniformRemoveButton';
-
 const dropzoneInner = (file, current, isDragActive) => {
   if (file) {
     return (
       <div>
-        <img src={file.url} />
+        <img alt={file.name} src={file.url} />
         <div>{file.name}</div>
       </div>
     );
@@ -51,7 +49,6 @@ const MediaObjectOmniformDropzone = ({
   inputRef,
   name,
   openDialog,
-  removeItem,
   resourceInput,
 }) => {
   const {
@@ -77,11 +74,6 @@ const MediaObjectOmniformDropzone = ({
     return onContentUrlChange(acceptedFile);
   };
 
-  const onRemove = (e) => {
-    setFile(null);
-    removeItem(e);
-  };
-
   return (
     <Dropzone
       accept={encodingFormatTypes}
@@ -94,8 +86,8 @@ const MediaObjectOmniformDropzone = ({
         isDragActive,
       }) => (
         <div className="MediaObjectOmniformFields__button-spacer">
-          {(current || file) && removeItem && <OmniformRemoveButton removeItem={onRemove} />}
           <button
+            type="button"
             {...getRootProps({
               className: `MediaObjectOmniformFields ${isDragActive ? 'MediaObjectOmniformFields__active' : ''}`,
               onClick: openDialog,

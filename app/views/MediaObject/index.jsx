@@ -17,7 +17,6 @@ import { cardListTopology } from '../../topologies/Card/CardList';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
 
-import MediaObjectOmniformFields from './MediaObjectOmniformFields';
 import MediaObjectPage from './MediaObjectFull';
 
 const MediaObjectPreview = ({
@@ -62,7 +61,6 @@ MediaObjectPreview.propTypes = {
 
 
 export default [
-  MediaObjectOmniformFields,
   MediaObjectPage,
   LinkedRenderStore.registerRenderer(
     link({
