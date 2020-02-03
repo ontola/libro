@@ -76,6 +76,7 @@ export default {
   lastActivityAt: argu('lastActivityAt'),
   motions: argu('motions'),
   motionsCount: argu('motionsCount'),
+  nameSingular: argu('nameSingular'),
   navbarBackground: argu('navbarBackground'),
   neutral: argu('neutral'),
   no: argu('no'),

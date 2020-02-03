@@ -13,15 +13,17 @@ import * as PropTypes from 'prop-types';
 import React from 'react';
 import { Redirect, withRouter } from 'react-router';
 
+import CardContent from '../../components/Card/CardContent';
 import { containerToArr, seqToArr } from '../../helpers/data';
 import { retrievePath } from '../../helpers/iris';
 import { currentLocation } from '../../helpers/paths';
 import { isPromise } from '../../helpers/types';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
+import org from '../../ontology/org';
 import { CardMain } from '../../topologies/Card';
-import CardContent from '../../components/Card/CardContent';
 import Container from '../../topologies/Container';
+import ContentDetails from '../../topologies/ContentDetails';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import TabBar from '../../topologies/TabBar';
 import TabPane from '../../topologies/TabPane';
@@ -130,11 +132,16 @@ class MenuItemFull extends React.PureComponent {
         {topLevel && (
           <Container>
             <CardMain>
-              <CardContent>
-                <Property label={schema.isPartOf}>
+              <Property label={schema.isPartOf}>
+                <Property label={ontola.coverPhoto} />
+                <CardContent>
                   <Property label={schema.name} />
-                </Property>
-              </CardContent>
+                  <ContentDetails>
+                    <Property label={org.organization} limit={Infinity} />
+                  </ContentDetails>
+                  <Property label={schema.description} />
+                </CardContent>
+              </Property>
               <AppBar color="inherit" elevation={0} position="static">
                 <TabBar>
                   {this.menuItemTabs()}
