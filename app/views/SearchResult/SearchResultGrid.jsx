@@ -18,6 +18,7 @@ export const SearchResultGrid = ({
   searchTemplate,
 }) => (
   <SearchForm
+    autoFocus={false}
     history={history}
     query={query}
     searchTemplate={searchTemplate}

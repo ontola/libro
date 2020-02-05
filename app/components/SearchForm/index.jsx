@@ -22,6 +22,7 @@ const messages = defineMessages({
 });
 
 const SearchForm = ({
+  autoFocus,
   history,
   query,
   searchTemplate,
@@ -41,7 +42,7 @@ const SearchForm = ({
           onSubmit={handleSubmit}
         >
           <Field
-            autoFocus
+            autoFocus={autoFocus}
             className="SearchResult__form-input"
             component="input"
             name="q"
@@ -70,7 +71,12 @@ const SearchForm = ({
   );
 };
 
+SearchForm.defaultProps = {
+  autoFocus: true,
+};
+
 SearchForm.propTypes = {
+  autoFocus: PropTypes.bool,
   history: PropTypes.shape({
     push: PropTypes.func,
   }),
