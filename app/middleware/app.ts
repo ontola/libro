@@ -3,10 +3,13 @@
  */
 
 import rdf, { createNS, NamedNode } from '@ontologies/core';
+import rdfx from '@ontologies/rdf';
 import { MiddlewareActionHandler, MiddlewareWithBoundLRS } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
 import { getMetaContent } from '../helpers/arguHelpers';
+import http from '../ontology/http';
+import ll from '../ontology/ll';
 
 export const website = getMetaContent('website-iri') || 'https://example.com';
 export const frontendIRI = rdf.namedNode(website!);
@@ -31,7 +34,8 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
    */
 
   store.processDelta([
-      rdf.quad(app('menu'), store.namespaces.rdf('type'), app('Menu')),
+      rdf.quad(app('menu'), rdfx.type, app('Menu')),
+      rdf.quad(app('menu'), http.statusCode, rdf.literal(200), ll.meta),
   ], true);
 
   /**

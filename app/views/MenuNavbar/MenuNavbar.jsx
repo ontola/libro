@@ -68,7 +68,7 @@ const MenuNavbar = () => {
   );
 };
 
-MenuNavbar.type = app.ns('Menu');
+MenuNavbar.type = app.Menu;
 
 MenuNavbar.topology = navbarTopology;
 

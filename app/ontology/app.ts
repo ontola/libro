@@ -32,6 +32,7 @@ export default {
   /* classes */
   AppSignIn: app('AppSignIn'),
   AppSignOut: app('AppSignOut'),
+  Menu: app('Menu'),
 
   /* properties */
   c_a: app('c_a'),

@@ -14,6 +14,7 @@ export default {
   /** @deprecated use {ld.add} instead */
   add: ll('add'),
   blob: ll('blob'),
+  meta: ll('meta'),
   /** @deprecated use {ld.purge} instead */
   purge: ll('purge'),
   /** @deprecated use {ld.remove} instead */
