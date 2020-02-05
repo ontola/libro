@@ -11,7 +11,6 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import CardContent from '../../../components/Card/CardContent';
 import CardDivider from '../../../components/Card/CardDivider';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
@@ -28,7 +27,7 @@ const ExternalIRI = ({ linkedProp }) => {
     return (
       <React.Fragment>
         <CardDivider />
-        <CardContent endSpacing>Bedankt voor je bijdrage!</CardContent>
+        <div style={{ paddingTop: '0.5rem' }}>Bedankt voor je bijdrage!</div>
       </React.Fragment>
     );
   }
