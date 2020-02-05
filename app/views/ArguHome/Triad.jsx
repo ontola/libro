@@ -55,6 +55,14 @@ Animations.propTypes = {
 };
 
 const messages = defineMessages({
+  again: {
+    defaultMessage: 'Again',
+    id: 'https://app.argu.co/i18n/arguHome/triadAgain',
+  },
+  next: {
+    defaultMessage: 'Next',
+    id: 'https://app.argu.co/i18n/arguHome/triadNext',
+  },
   triadHeader: {
     defaultMessage: 'Engaged throughout your entire decision making process',
     id: 'https://app.argu.co/i18n/arguHome/triadHeader',
@@ -83,9 +91,10 @@ const Triad = ({ subject }) => {
       return (
         <button
           className="Triad--button ArguHome--button"
+          type="button"
           onClick={() => setSlide(slide + 1)}
         >
-          Next
+          {formatMessage(messages.next)}
         </button>
       );
     }
@@ -93,9 +102,10 @@ const Triad = ({ subject }) => {
     return (
       <button
         className="Triad--button ArguHome--button"
+        type="button"
         onClick={() => setSlide(0)}
       >
-        Again
+        {formatMessage(messages.again)}
       </button>
     );
   };
@@ -119,6 +129,7 @@ const Triad = ({ subject }) => {
                     <button
                       className="Triad--button Triad--item"
                       style={{ backgroundColor: stepColor?.value }}
+                      type="button"
                       onClick={() => setSlide(index)}
                     >
                       {index > 0 && <div className="Triad--arrow Triad--arrow--left" />}

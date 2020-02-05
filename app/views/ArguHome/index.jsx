@@ -1,7 +1,6 @@
 import schema from '@ontologies/schema';
 import {
   Property,
-  linkType,
   register,
   subjectType,
   useDataInvalidation,
@@ -13,11 +12,9 @@ import { defineMessages, useIntl } from 'react-intl';
 import Heading from '../../components/Heading';
 import PageRow from '../../components/PageRow';
 import argu from '../../ontology/argu';
-import ontola from '../../ontology/ontola';
 import Container from '../../topologies/Container';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import Grid from '../../topologies/Grid';
-import PageHeader from '../../topologies/PageHeader';
 import { entityIsLoaded, seqToArr } from '../../helpers/data';
 
 import Case from './Case';
@@ -58,7 +55,7 @@ const messages = defineMessages({
   },
 });
 
-const ArguHomePage = ({ coverPhoto, subject }) => {
+const ArguHomePage = ({ subject }) => {
   const lrs = useLRS();
   const { formatMessage } = useIntl();
   const processSteps = seqToArr(lrs, [], lrs.getResourceProperty(subject, argu.processSteps));
@@ -67,23 +64,11 @@ const ArguHomePage = ({ coverPhoto, subject }) => {
     subject,
   });
 
-  let coverPhotoUrl,
-    positionY;
-  if (coverPhoto) {
-    useDataInvalidation({ subject: coverPhoto });
-
-    if (__CLIENT__ && !entityIsLoaded(lrs, coverPhoto)) {
-      lrs.queueEntity(coverPhoto);
-    }
-    coverPhotoUrl = lrs.getResourceProperty(coverPhoto, ontola.imgUrl1500x2000);
-    positionY = lrs.getResourceProperty(coverPhoto, ontola.imagePositionY);
-  }
   const loaded = processSteps.every((processStep) => entityIsLoaded(lrs, processStep));
 
   return (
     <div className="ArguHome">
       <React.Fragment>
-        <PageHeader background={coverPhotoUrl?.value} positionY={positionY?.value} />
         <PageRow>
           <Container size="medium">
             <Triad subject={subject} />
@@ -149,13 +134,7 @@ ArguHomePage.type = argu.ArguHome;
 
 ArguHomePage.topology = fullResourceTopology;
 
-ArguHomePage.mapDataToProps = {
-  coverPhoto: ontola.coverPhoto,
-  name: schema.name,
-};
-
 ArguHomePage.propTypes = {
-  coverPhoto: linkType,
   subject: subjectType,
 };
 

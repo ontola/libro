@@ -420,6 +420,11 @@ $newcon: #c66060;
         bottom: 4rem;
       }
     }
+
+    &--selector,
+    &--sharkfin {
+      display: none;
+    }
   }
 }
 
