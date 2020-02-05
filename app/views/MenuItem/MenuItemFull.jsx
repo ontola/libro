@@ -1,5 +1,7 @@
 import AppBar from '@material-ui/core/AppBar';
+import foaf from '@ontologies/foaf';
 import rdf from '@ontologies/core';
+import rdfs from '@ontologies/rdfs';
 import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
 import {
@@ -135,7 +137,7 @@ class MenuItemFull extends React.PureComponent {
               <Property label={schema.isPartOf}>
                 <Property label={ontola.coverPhoto} />
                 <CardContent>
-                  <Property label={schema.name} />
+                  <Property label={[schema.name, rdfs.label, foaf.name]} />
                   <ContentDetails>
                     <Property label={org.organization} limit={Infinity} />
                   </ContentDetails>
