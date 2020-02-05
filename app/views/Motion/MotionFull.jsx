@@ -29,6 +29,7 @@ const MotionFull = ({ partOf }) => (
     <Container>
       {partOf && <Property label={schema.isPartOf} />}
       <Property label={argu.trashedAt} />
+      <Property label={ontola.publishAction} onLoad={() => null} />
       <CardMain>
         <DetailsBar right={defaultMenus}>
           <Property label={schema.creator} />
@@ -55,7 +56,6 @@ const MotionFull = ({ partOf }) => (
           <Property forceRender label={app.omniform} />
         </CardAppendix>
       </CardMain>
-      <Property label={ontola.publishAction} onLoad={() => null} />
       <Property label={argu.decision} onLoad={() => null} />
       <Property label={argu.blogPosts} onLoad={() => null} />
       <Property label={schema.location} onLoad={() => null} />

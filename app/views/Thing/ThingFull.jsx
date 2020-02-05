@@ -31,6 +31,7 @@ const ThingFull = ({ partOf }) => {
       c(containerTopology, [
         partOf && p(schema.isPartOf),
         p(argu.trashedAt),
+        p(withoutLoading(ontola.publishAction)),
         c(cardMainTopology, { 'data-test': 'Thing-thing' }, [
           p(schema.superEvent),
           c(detailsBarTopology, { right: defaultMenus }, [
@@ -62,7 +63,6 @@ const ThingFull = ({ partOf }) => {
             p(forceRender(app.omniform)),
           ]),
         ]),
-        p(withoutLoading(ontola.publishAction)),
         p(withoutLoading(argu.voteEvents)),
         p(withoutLoading(argu.blogPosts)),
         p(withoutLoading(schema.location)),

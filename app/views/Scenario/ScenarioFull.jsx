@@ -28,6 +28,7 @@ const ScenarioFull = ({ partOf }) => (
     <Container>
       {partOf && <Property label={schema.isPartOf} />}
       <Property label={argu.trashedAt} />
+      <Property label={ontola.publishAction} onLoad={() => null} />
       <CardMain data-test="Thing-thing">
         <Property label={schema.superEvent} />
         <DetailsBar right={defaultMenus}>
@@ -52,7 +53,6 @@ const ScenarioFull = ({ partOf }) => (
           <Property forceRender label={app.omniform} />
         </CardAppendix>
       </CardMain>
-      <Property label={ontola.publishAction} onLoad={() => null} />
       <Property label={argu.voteEvents} onLoad={() => null} />
       <Property label={argu.blogPosts} onLoad={() => null} />
       <Property label={schema.location} onLoad={() => null} />

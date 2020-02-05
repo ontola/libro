@@ -45,6 +45,7 @@ const InterventionFull = ({
       <Container>
         {partOf && <Property label={schema.isPartOf} />}
         <Property label={argu.trashedAt} />
+        <Property label={ontola.publishAction} onLoad={() => null} />
         <CardMain>
           <DetailsBar right={defaultMenus}>
             <Property label={rdfx.type} />
@@ -139,7 +140,6 @@ const InterventionFull = ({
             <Property forceRender label={app.omniform} />
           </CardAppendix>
         </CardMain>
-        <Property label={ontola.publishAction} onLoad={() => null} />
       </Container>
       <Container>
         <Property label={schema.comment} />

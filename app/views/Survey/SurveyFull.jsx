@@ -23,6 +23,7 @@ const SurveyFull = ({ partOf }) => (
     <Container>
       {partOf && <Property label={schema.isPartOf} />}
       <Property label={argu.trashedAt} />
+      <Property label={ontola.publishAction} onLoad={() => null} />
       <CardMain data-test="Thing-thing">
         <DetailsBar
           right={(
@@ -51,7 +52,6 @@ const SurveyFull = ({ partOf }) => (
           </ActionsBar>
         </CardContent>
       </CardMain>
-      <Property label={ontola.publishAction} onLoad={() => null} />
     </Container>
   </React.Fragment>
 );

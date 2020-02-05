@@ -32,6 +32,7 @@ const MeasureTypeFull = ({ partOf }) => (
     <Container>
       {partOf && <Property label={schema.isPartOf} />}
       <Property label={argu.trashedAt} />
+      <Property label={ontola.publishAction} onLoad={() => null} />
       <CardMain>
         <DetailsBar right={defaultMenus}>
           <Property label={rdfx.type} />
@@ -61,7 +62,6 @@ const MeasureTypeFull = ({ partOf }) => (
           <Property forceRender label={app.omniform} />
         </CardAppendix>
       </CardMain>
-      <Property label={ontola.publishAction} onLoad={() => null} />
     </Container>
     <Container>
       <Property forceRender renderWhenEmpty label={rivm.measures} />

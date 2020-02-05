@@ -39,6 +39,7 @@ const ProjectFull = ({
       <Container>
         {partOf && <Property label={schema.isPartOf} />}
         <Property label={argu.trashedAt} />
+        <Property label={ontola.publishAction} onLoad={() => null} />
         <CardMain>
           <DetailsBar
             right={(
@@ -75,7 +76,6 @@ const ProjectFull = ({
             {renderPhase && <Resource subject={renderPhase} />}
           </CardRow>
         </CardMain>
-        <Property label={ontola.publishAction} onLoad={() => null} />
       </Container>
       {renderPhase && (
         <Resource subject={renderPhase}>

@@ -35,6 +35,7 @@ const RiskFull = ({ partOf }) => (
     <Container>
       {partOf && <Property label={schema.isPartOf} />}
       <Property label={argu.trashedAt} />
+      <Property label={ontola.publishAction} onLoad={() => null} />
       <CardMain>
         <DetailsBar right={defaultMenus}>
           <Property label={rdfx.type} />
@@ -62,7 +63,6 @@ const RiskFull = ({ partOf }) => (
           <Property forceRender label={app.omniform} />
         </CardAppendix>
       </CardMain>
-      <Property label={ontola.publishAction} onLoad={() => null} />
     </Container>
     <Container>
       <Collection forceRender renderWhenEmpty display="table" label={rivm.incidents} />
