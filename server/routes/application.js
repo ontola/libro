@@ -28,7 +28,7 @@ const fetchPrerenderData = async (ctx, manifestData, includeResources) => {
   };
   const dataHeaders = {
     ...ctx.request.headers,
-    accept: 'application/n-quads',
+    accept: 'application/hex+x-ndjson',
   };
   const ctxForData = {
     api: ctx.api,
@@ -68,7 +68,14 @@ const fetchPrerenderData = async (ctx, manifestData, includeResources) => {
     ctxForData,
     resources.reduce((acc, iri) => (acc.includes(iri) ? acc : acc.concat(iri)), []),
     agent,
-    (line) => { responseStream.write(line); }
+    (line) => {
+      if (Array.isArray(line)) {
+        responseStream.write(JSON.stringify(line));
+        responseStream.write('\n');
+      } else {
+        responseStream.write(line);
+      }
+    }
   );
 
   await Promise.all(resourceRequests)

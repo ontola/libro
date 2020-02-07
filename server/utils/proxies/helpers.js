@@ -4,6 +4,7 @@ import { URL } from 'url';
 import * as zlib from 'zlib';
 
 import HttpStatus from 'http-status-codes';
+import xsd from '@ontologies/xsd';
 
 import { fileFromCache } from '../cache';
 import * as constants from '../../config';
@@ -116,15 +117,15 @@ export function route(requestUrl, full = false) {
   return url.origin;
 }
 
-const handleNotAcceptable = (iriNT, backendRes, write) => {
+const handleNotAcceptableHJson = (iriHJ, backendRes, write) => {
   if (isRedirect(backendRes.statusCode)) {
-    write(`${iriNT} <http://www.w3.org/2002/07/owl#sameAs> <${backendRes.headers.location}> <http://purl.org/link-lib/supplant> .\r\n`);
-    write(`${iriNT} <http://www.w3.org/2011/http#statusCode> "200"^^<http://www.w3.org/2001/XMLSchema#integer> <http://purl.org/link-lib/meta> .\r\n`);
+    write([iriHJ, 'http://www.w3.org/2002/07/owl#sameAs', backendRes.headers.location, xsd.string.value, '', 'http://purl.org/link-lib/supplant']);
+    write([iriHJ, 'http://www.w3.org/2011/http#statusCode', '200', 'http://www.w3.org/2001/XMLSchema#integer', '', 'http://purl.org/link-lib/meta']);
   } else {
     const statusCode = backendRes.statusCode === HttpStatus.OK
       ? HttpStatus.NOT_ACCEPTABLE
       : backendRes.statusCode;
-    write(`${iriNT} <http://www.w3.org/2011/http#statusCode> "${statusCode}"^^<http://www.w3.org/2001/XMLSchema#integer> <http://purl.org/link-lib/meta> .\r\n`);
+    write([iriHJ, 'http://www.w3.org/2011/http#statusCode', statusCode.toString(), 'http://www.w3.org/2001/XMLSchema#integer', '', 'http://purl.org/link-lib/meta']);
   }
 };
 
@@ -162,6 +163,7 @@ const writeResourceBody = (cachedFile, backendRes, write, resolve) => {
       writeStream = backendRes.pipe(decoder);
     }
 
+    // let first = true;
     writeStream.on('data', (chunk) => {
       const statementTerminal = chunk.lastIndexOf('\n');
       if (statementTerminal === -1) {
@@ -214,26 +216,26 @@ const requestForBulk = (ctx, iri, agent, write, resolve) => {
   };
 
   return http.request(url, requestOptions, (backendRes) => {
-    const iriNT = iri.includes('://') ? `<${iri}>` : `_:${iri}`;
+    const iriHJ = iri.includes('://') ? iri : `_:${iri}`;
 
-    if (!backendRes.headers['content-type']?.includes('application/n-quads')) {
-      handleNotAcceptable(iriNT, backendRes, write);
+    if (!backendRes.headers['content-type']?.includes('application/hex+x-ndjson')) {
+      handleNotAcceptableHJson(iriHJ, backendRes, write);
       backendRes.destroy();
       resolve();
     } else if (writeResourceBody(cachedFile, backendRes, write, resolve)) {
-      write(`${iriNT} <http://www.w3.org/2011/http#statusCode> "${backendRes.statusCode}"^^<http://www.w3.org/2001/XMLSchema#integer> <http://purl.org/link-lib/meta> .\r\n`);
+      write([iriHJ, 'http://www.w3.org/2011/http#statusCode', backendRes.statusCode.toString(), xsd.integer.value, '', 'http://purl.org/link-lib/meta']);
       const actions = getActions(backendRes);
       if (actions.length > 0) {
         for (let i = 0; i < actions.length; i++) {
-          write(`${iriNT} <http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}> "${actions[i]}" <http://purl.org/link-lib/meta> .\r\n`);
+          write([iriHJ, `http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}`, actions[i].toString(), xsd.string.value, '', 'http://purl.org/link-lib/meta']);
         }
       }
       const redirect = newAuthorizationBulk(ctx, backendRes);
       if (redirect) {
-        write(`${iriNT} <http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}> "${redirect}" <http://purl.org/link-lib/meta> .\r\n`);
+        write([iriHJ, `http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}`, redirect.toString(), xsd.string.value, '', 'http://purl.org/link-lib/meta']);
       }
     } else {
-      write(`${iriNT} <http://www.w3.org/2011/http#statusCode> "${HttpStatus.INTERNAL_SERVER_ERROR}"^^<http://www.w3.org/2001/XMLSchema#integer> <http://purl.org/link-lib/meta> .\r\n`);
+      write([iriHJ, 'http://www.w3.org/2011/http#statusCode', HttpStatus.INTERNAL_SERVER_ERROR.toString(), xsd.integer.value, '', 'http://purl.org/link-lib/meta']);
     }
 
     return undefined;

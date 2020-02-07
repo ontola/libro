@@ -127,7 +127,8 @@ export const renderFullPage = async (ctx, manifestData, data) => {
   const resourceIRI = ctx.req.url?.length > 1 ? origin + ctx.req.url : origin;
   const seedRequest = {
     body: data?.toString('utf-8') ?? '',
-    headers: { 'Content-Type': 'application/n-quads' },
+    // headers: { 'Content-Type': 'application/n-quads' },
+    headers: { 'Content-Type': 'application/hex+x-ndjson' },
     status: 200,
   };
 
@@ -247,7 +248,7 @@ export const renderFullPage = async (ctx, manifestData, data) => {
                });
              }
           </script>
-          <script id="seed" nonce="${nonceStr}" type="application/n-quads">${data?.toString('utf-8') ?? ''}</script>
+          <script id="seed" nonce="${nonceStr}" type="application/hex+x-ndjson">${data?.toString('utf-8') ?? ''}</script>
           <script nonce="${nonceStr}" type="application/javascript">
               var seed = document.getElementById('seed');
               window.INITIAL__DATA = seed ? seed.textContent : '';

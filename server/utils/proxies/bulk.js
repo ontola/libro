@@ -11,7 +11,8 @@ import {
 } from './helpers';
 
 export default (ctx) => {
-  ctx.response.append('Content-Type', 'application/n-quads; charset=utf-8');
+  // ctx.response.append('Content-Type', 'application/n-quads; charset=utf-8');
+  ctx.response.append('Content-Type', 'application/hex+x-ndjson; charset=utf-8');
   ctx.response.body = '';
 
   const agent = new http.Agent({
@@ -27,7 +28,14 @@ export default (ctx) => {
     normalizeType(ctx.request.body.resource)
       .reduce((acc, iri) => (acc.includes(iri) ? acc : acc.concat(iri)), []),
     agent,
-    (line) => { ctx.response.body += line; }
+    (line) => {
+      if (Array.isArray(line)) {
+        ctx.response.body += JSON.stringify(line);
+        ctx.response.body += '\n';
+      } else {
+        ctx.response.body += line;
+      }
+    }
   );
 
   return Promise.all(resources)

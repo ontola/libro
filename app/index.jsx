@@ -41,7 +41,7 @@ new Promise((resolve, reject) => {
     log('Seeding LRS');
     const seedRequest = new Response(
       window.INITIAL__DATA,
-      { headers: new Headers({ 'Content-Type': 'application/n-quads' }) }
+      { headers: new Headers({ 'Content-Type': 'application/hex+x-ndjson' }) }
     );
 
     timeout = window.setTimeout(() => {

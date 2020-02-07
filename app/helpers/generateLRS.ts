@@ -27,6 +27,7 @@ import history from './history';
 import { handle } from './logging';
 import ServiceWorkerCommunicator from './ServiceWorkerCommunicator';
 import transformers from './transformers';
+import hexjson from './transformers/hexjson';
 import { initializeCable, subscribeDeltaChannel } from './websockets';
 
 export default function generateLRS() {
@@ -46,6 +47,7 @@ export default function generateLRS() {
 
   LRS.deltaProcessors.unshift(arguDeltaProcessor(LRS));
 
+  LRS.api.registerTransformer(hexjson.transformer(LRS), hexjson.mediaTypes, hexjson.acceptValue);
   transformers(LRS).forEach((t) =>
     LRS.api.registerTransformer(t.transformer, t.mediaTypes, t.acceptValue),
   );

@@ -54,6 +54,7 @@ workbox.routing.registerRoute(
     return !!(accept && (
       accept.includes('text/n3')
       || accept.includes('application/n-triples')
+      || accept.includes('application/hex+x-ndjson')
       || accept.includes('application/n-quads')
       || accept.includes('text/turtle')
       || accept.includes('application/vnd.api+json')

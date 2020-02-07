@@ -8,7 +8,6 @@ import {
   MiddlewareActionHandler,
   MiddlewareFn,
   MiddlewareWithBoundLRS,
-  transformers,
 } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 import React from 'react';
@@ -18,6 +17,7 @@ import { safeCredentials } from '../helpers/arguHelpers';
 import { retrievePath } from '../helpers/iris';
 import { handle } from '../helpers/logging';
 import ServiceWorkerCommunicator from '../helpers/ServiceWorkerCommunicator';
+import hexjson from '../helpers/transformers/hexjson';
 import ld from '../ontology/ld';
 import { redirectPage, reloadPage } from './reloading';
 
@@ -52,7 +52,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
    */
 
   const ontolaWebsocketsPrefix = store.namespaces.ontola('ws/').value;
-  const deltaTransformer = transformers.linkedDeltaProcessor(store);
+  const deltaTransformer = hexjson.transformer(store);
 
   /**
    * Ontola snackbar setup
