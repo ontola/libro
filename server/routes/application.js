@@ -18,7 +18,7 @@ import { handleRender } from '../utils/render';
 
 const BACKEND_TIMEOUT = 3000;
 
-const fetchPrerenderData = async (ctx, manifestData, includeResources) => {
+const fetchPrerenderData = async (ctx, includeResources) => {
   let responseData = Buffer.alloc(0);
   const responseStream = new Stream.Writable();
   // eslint-disable-next-line no-underscore-dangle
@@ -42,17 +42,19 @@ const fetchPrerenderData = async (ctx, manifestData, includeResources) => {
     },
     session: ctx.session,
   };
+
+  const { scope } = ctx.manifest;
   const resources = [
-    `${manifestData.scope}`,
-    `${manifestData.scope}/ns/core`,
-    `${manifestData.scope}/c_a`,
-    `${manifestData.scope}/n`,
-    `${manifestData.scope}/search`,
-    `${manifestData.scope}/menus`,
-    `${manifestData.scope}/apex/menus`,
+    `${scope}`,
+    `${scope}/ns/core`,
+    `${scope}/c_a`,
+    `${scope}/n`,
+    `${scope}/search`,
+    `${scope}/menus`,
+    `${scope}/apex/menus`,
   ];
   if (ctx.request.url?.length > 1) {
-    const { origin } = new URL(manifestData.scope);
+    const { origin } = new URL(scope);
     resources.unshift(origin + ctx.request.url);
   }
   if (includeResources) {
@@ -119,9 +121,10 @@ const handler = (sendResponse) => async (ctx) => {
 
     const manifestData = await getBackendManifest(ctx, headResponse.headers.get('Manifest'));
     if (manifestData) {
-      const responseData = await fetchPrerenderData(ctx, manifestData, headResponse.headers.get('Include-Resources'));
+      ctx.manifest = manifestData;
+      const responseData = await fetchPrerenderData(ctx, headResponse.headers.get('Include-Resources'));
 
-      return sendResponse(ctx, domain, manifestData, responseData);
+      return sendResponse(ctx, domain, responseData);
     }
 
     return undefined;
@@ -138,7 +141,9 @@ const handler = (sendResponse) => async (ctx) => {
       ctx.response.status = INTERNAL_SERVER_ERROR;
     }
 
-    return sendResponse(ctx, domain, `https://${ctx.request.get('host')}`, '');
+    ctx.manifest = `https://${ctx.request.get('host')}`;
+
+    return sendResponse(ctx, domain, '');
   }
 };
 
@@ -150,13 +155,13 @@ export default function application(port) {
     __PRODUCTION__ && manifest['main.css'] && `<${constants.ASSETS_HOST}${manifest['main.css']}>; rel=preload; as=style`,
   ].filter(Boolean);
 
-  const sendResponse = (ctx, domain, manifestData, data) => {
+  const sendResponse = (ctx, domain, data) => {
     if (isHTMLHeader(ctx.request.headers)) {
       ctx.set('Link', PRELOAD_HEADERS);
     }
     ctx.set('Vary', 'Accept,Accept-Encoding,Authorization,Content-Type');
 
-    return handleRender(ctx, port, domain, manifestData, data);
+    return handleRender(ctx, port, domain, data);
   };
 
   return handler(sendResponse);

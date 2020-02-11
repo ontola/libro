@@ -19,21 +19,21 @@ function generateRenderParams() {
     },
   };
   const ctx = new Koa().createContext(req, res);
-  const websiteMeta = {
+  ctx.manifest = {
     icons: [],
     ontola: {},
     scope: 'https://app.argu.localtest/',
     serviceworker: {},
   };
 
-  return [ctx, websiteMeta];
+  return ctx;
 }
 
 describe('server', () => {
   describe('renderFullPage', () => {
     it('TODO: has a test', async () => {
-      const [ctx, websiteMeta] = generateRenderParams();
-      const body = await renderFullPage(ctx, websiteMeta);
+      const ctx = generateRenderParams();
+      const body = await renderFullPage(ctx, Buffer.alloc(0));
 
       expect(typeof body).toEqual('string');
       expect(body).toContain('id="navbar-preview"');

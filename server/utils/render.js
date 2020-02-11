@@ -1,103 +1,34 @@
 import HttpStatus from 'http-status-codes';
-import jwt from 'jsonwebtoken';
-import React from 'react';
-import ReactDOMServer from 'react-dom/server';
-import useragent from 'useragent';
 
-import App from '../../app/App';
-import generateLRS from '../../app/helpers/generateLRS';
-import spinner from '../../app/helpers/spinner';
-import { bundles, moduleBrowserVersions } from '../../bundleConfig';
+import { bundles } from '../../bundleConfig';
 import * as constants from '../config';
 
 import logging from './logging';
 import manifests from './manifest';
+import {
+  getUserData,
+  isModule,
+  polyfill,
+  preloadingBlock,
+} from './render/helpers';
+import {
+  deferredBodyStyles,
+  deferredHeadStyles,
+  icons,
+  themeBlock,
+} from './render/styling';
+import { headersFromPrerender } from './render/headersFromPrerender';
 import { googleAnalyticsScript, matomoScript } from './tracking';
 
 const version = require('../../webpack/version');
 
-function isModule(header) {
-  const agent = useragent.is(header);
-
-  return !(
-    agent.ie
-    || (agent.chrome && agent.version >= moduleBrowserVersions.chrome)
-    || (agent.safari && agent.version >= moduleBrowserVersions.safari)
-    || (agent.ios && agent.version >= moduleBrowserVersions.ios)
-    || (agent.firefox && agent.version >= moduleBrowserVersions.firefox)
-    || (agent.edge && agent.version >= moduleBrowserVersions.edge)
-    || (agent.opera && agent.version >= moduleBrowserVersions.opera)
-  );
-}
-
-const requiredFeatures = [
-  'default',
-  'Array.prototype.findIndex',
-  'Array.prototype.find',
-  'Array.prototype.includes',
-  'Array.prototype.values',
-  'fetch',
-  'DOMTokenList',
-  'Intl|always|gated',
-  'Intl.~en-US|always|gated',
-  'Intl.~nl-NL|always|gated',
-  'Number.isFinite',
-  'Number.isInteger',
-  'Number.MAX_SAFE_INTEGER',
-  'Number.parseInt',
-  'Number.parseFloat',
-  'Object.entries',
-  'Object.values',
-  'Promise',
-  'Promise.prototype.finally|gated',
-  'Symbol',
-];
-const polyfillSrc = `https://cdn.polyfill.io/v2/polyfill.js?unknown=polyfill&features=${requiredFeatures.join(',')}`;
-const deferredStyles = '    var loadDeferredStyles = function() {\n'
-  + '        var addStylesNode = document.getElementById(\'deferred-styles\');\n'
-  + '        var replacement = document.createElement("div");\n'
-  + '        replacement.innerHTML = addStylesNode.textContent;\n'
-  + '        document.body.appendChild(replacement);\n'
-  + '        addStylesNode.parentElement.removeChild(addStylesNode);\n'
-  + '    };\n'
-  + '    var raf = requestAnimationFrame || mozRequestAnimationFrame ||\n'
-  + '      webkitRequestAnimationFrame || msRequestAnimationFrame;\n'
-  + '    if (raf) raf(function() {window.setTimeout(loadDeferredStyles, 0);});\n'
-  + '    else window.addEventListener(\'load\', loadDeferredStyles);\n';
-
 // Due to WebpackPWAManifest not emitting a chunk, the (web) manifest.json file doesn't end up
 //  in the assets manifest, so we have to define it manually.
 
-const headersFromPrerender = (LRS, manifestData, resourceIRI) => {
-  try {
-    const helmetContext = {};
-    ReactDOMServer.renderToStaticMarkup(React.createElement(
-      App,
-      {
-        helmetContext,
-        location: resourceIRI,
-        lrs: LRS,
-        website: manifestData.scope,
-      }
-    ));
-
-    return helmetContext.helmet;
-  } catch (e) {
-    logging.error(e);
-
-    return {};
-  }
-};
-
-export const renderFullPage = async (ctx, manifestData, data) => {
-  const bundleVersion = isModule(ctx.request.headers['user-agent'])
+export const renderFullPage = async (ctx, data) => {
+  const bundleVersion = isModule(ctx)
     ? bundles.module
     : bundles.legacy;
-  const manifest = manifests[bundleVersion];
-
-  const bundleCSS = __DEVELOPMENT__
-    ? ''
-    : `<link crossorigin="anonymous" rel="stylesheet" type="text/css" href="${constants.ASSETS_HOST}${manifest['main.css']}" />`;
 
   const bugsnagOpts = {
     apiKey: constants.bugsnagKey,
@@ -106,57 +37,22 @@ export const renderFullPage = async (ctx, manifestData, data) => {
   };
   const csrfToken = ctx.csrf;
   const nonceStr = ctx.res.locals.nonce.toString();
-  let language = '';
-  let type;
-  let isUser = false;
-  try {
-    const tokenPayload = jwt.verify(
-      ctx.session.arguToken.accessToken,
-      constants.jwtEncryptionToken
-    );
-    ({ language, type } = tokenPayload.user);
-    isUser = (type === 'user');
-  } catch (e) {
-    logging.error(e);
-  }
+  const [language, isUser] = getUserData(ctx);
 
-  const polyfill = bundleVersion === 'legacy' ? `<script crossorigin="anonymous" nonce="${nonceStr}" src="${polyfillSrc}"></script>` : '';
+  const headers = headersFromPrerender(ctx, data);
 
-  const { LRS } = generateLRS();
-  const { origin } = new URL(manifestData?.scope || `${ctx.req.host}://${ctx.req.protocol}`);
-  const resourceIRI = ctx.req.url?.length > 1 ? origin + ctx.req.url : origin;
-  const seedRequest = {
-    body: data?.toString('utf-8') ?? '',
-    // headers: { 'Content-Type': 'application/n-quads' },
-    headers: { 'Content-Type': 'application/hex+x-ndjson' },
-    status: 200,
-  };
-
-  await LRS.api.feedResponse(seedRequest, true);
-  const headers = headersFromPrerender(LRS, manifestData, resourceIRI);
-
-  const icons = manifestData?.icons?.map((icon) => {
-    if (icon.src.includes('favicon')) {
-      return `<link rel="icon" type="${icon.type}" sizes="${icon.sizes}" href="${icon.src}">`;
-    } else if (icon.src.includes('apple-touch-icon')) {
-      return `<link rel="apple-touch-icon" type="${icon.type}" sizes="${icon.sizes}" href="${icon.src}">`;
-    } else if (icon.src.includes('mstile-310x310.png')) {
-      return `<meta name="msapplication-TileImage" content="${icon.src}">`;
-    }
-
-    return null;
-  })?.filter(Boolean)?.join('\n');
+  const { manifest } = ctx;
 
   const matomoCode = matomoScript(
-    manifestData?.ontola?.matomoHostname,
-    manifestData?.ontola?.matomoPort,
-    manifestData?.ontola?.matomoSiteId,
+    manifest?.ontola?.matomoHostname,
+    manifest?.ontola?.matomoPort,
+    manifest?.ontola?.matomoSiteId,
     isUser,
     nonceStr
   );
 
   const googleAnalyticsCode = googleAnalyticsScript(
-    manifestData?.ontola?.googleAnalyticsUACode,
+    manifest?.ontola?.googleAnalyticsUACode,
     nonceStr
   );
 
@@ -166,25 +62,25 @@ export const renderFullPage = async (ctx, manifestData, data) => {
         <head>
           <meta charset="utf-8">
           <link rel="stylesheet" href="/static/preloader.css">
-          <link rel="manifest" href="${manifestData.scope}/manifest.json">
-          ${headers?.title?.toString() || `<title data-rh="true">${manifestData.short_name}</title>`}
+          <link rel="manifest" href="${manifest.scope}/manifest.json">
+          ${headers?.title?.toString() || `<title data-rh="true">${manifest.short_name}</title>`}
 
-          <meta name="website-iri" content="${manifestData.scope || ''}">
+          <meta name="website-iri" content="${manifest.scope || ''}">
           <meta property="og:type" content="website">
           <meta name="mobile-web-app-capable" content="yes">
           <meta name="apple-mobile-web-app-capable" content="yes">
-          <meta name="application-name" content="${manifestData.short_name}">
-          <meta name="apple-mobile-web-app-title" content="${manifestData.short_name}">
-          <meta name="theme-color" content="${manifestData.theme_color}">
-          <meta name="msapplication-navbutton-color" content="${manifestData.theme_color}">
+          <meta name="application-name" content="${manifest.short_name}">
+          <meta name="apple-mobile-web-app-title" content="${manifest.short_name}">
+          <meta name="theme-color" content="${manifest.theme_color}">
+          <meta name="msapplication-navbutton-color" content="${manifest.theme_color}">
           <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-          <meta name="msapplication-starturl" content="${manifestData.start_url}">
+          <meta name="msapplication-starturl" content="${manifest.start_url}">
           <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1, maximum-scale=1.0, user-scalable=yes">
           <meta content="269911176456825" property="fb:app_id">
-          <meta name="theme" content="${manifestData.ontola.css_class}">
-          <meta name="template" content="${manifestData.ontola.template}">
-          <meta name="templateOpts" content="${manifestData.ontola.template_options}">
-          ${headers?.meta?.toString() || `<meta content="${manifestData.short_name}" property="og:title"/>`}
+          <meta name="theme" content="${manifest.ontola.css_class}">
+          <meta name="template" content="${manifest.ontola.template}">
+          <meta name="templateOpts" content="${manifest.ontola.template_options}">
+          ${headers?.meta?.toString() || `<meta content="${manifest.short_name}" property="og:title"/>`}
 
           <meta name="csrf-param" content="authenticity_token">
           <meta name="csrf-token" content="${csrfToken}">
@@ -193,58 +89,21 @@ export const renderFullPage = async (ctx, manifestData, data) => {
           <meta name="bugsnagConfig" content="${encodeURIComponent(JSON.stringify(bugsnagOpts))}">
 
           ${headers?.link?.toString() || ''}
-          ${icons}
-          <meta name="msapplication-TileColor" content="${manifestData.theme_color}">
+          ${icons(ctx)}
+          <meta name="msapplication-TileColor" content="${manifest.theme_color}">
 
           <meta name="msapplication-config" content="/assets/favicons/browserconfig.xml">
 
-          <noscript id="deferred-styles">
-              ${bundleCSS}
-              <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
-              <link crossorigin="anonymous" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-          </noscript>
-          ${polyfill}
+          ${deferredHeadStyles(bundleVersion)}
+          ${polyfill(bundleVersion, nonceStr)}
         </head>
         <body style="margin: 0;">
-          <style id="theme-config">
-            :root {
-              --accent-background-color:${manifestData.ontola.secondary_main};
-              --accent-color:${manifestData.ontola.secondary_text};
-              --navbar-background:${manifestData.ontola.primary_main};
-              --navbar-color:${manifestData.ontola.primary_text};
-              --navbar-color-hover:${manifestData.ontola.primary_text}12;
-            }
-            .accent-background-color {
-              background-color: ${manifestData.ontola.secondary_main};
-            }
-            .accent-color {
-              color: ${manifestData.ontola.secondary_text};
-            }
-            .navbar-background {
-              background: ${manifestData.ontola.primary_main};
-            }
-            .navbar-color {
-              color: ${manifestData.ontola.primary_text};
-            }
-          </style>
-          <div class="preloader" id="preloader">
-            ${spinner}
-          </div>
-          <div
-              id="navbar-preview"
-              class="accent-background-color navbar-background navbar-color"
-              style="height: 3.2rem; z-index: -1;"
-          ></div>
-          <div id="${constants.APP_ELEMENT}" class="${manifestData.ontola.css_class} preloader-fixed"></div>
-          <noscript>
-              <h1>Argu heeft javascript nodig om te werken</h1>
-              <p>Javascript staat momenteel uitgeschakeld, probeer een andere browser of in prive modus.</p>
-          </noscript>
-          <script nonce="${nonceStr}">document.body.className = (document.body.className || '') + ' Body--show-preloader';</script>
+          ${themeBlock(ctx)}
+          ${preloadingBlock(ctx, nonceStr)}
           <script nonce="${nonceStr}">
             if ('serviceWorker' in navigator) {
                window.addEventListener('load', function() {
-                  navigator.serviceWorker.register('${manifestData.serviceworker.src}', { scope: '${manifestData.serviceworker.scope}/' });
+                  navigator.serviceWorker.register('${manifest.serviceworker.src}', { scope: '${manifest.serviceworker.scope}/' });
                });
              }
           </script>
@@ -257,11 +116,9 @@ export const renderFullPage = async (ctx, manifestData, data) => {
           <script async nomodule crossorigin="anonymous" type="application/javascript" src="${constants.ASSETS_HOST}${manifests[bundles.legacy]['main.js']}"></script>
           ${(manifests[bundles.module]?.['vendors~main.js'] && `<script async crossorigin="anonymous" type="module" src="${constants.ASSETS_HOST}${manifests[bundles.module]['vendors~main.js']}"></script>`) || ''}
           ${(manifests[bundles.legacy]?.['vendors~main.js'] && `<script async nomodule crossorigin="anonymous" type="application/javascript" src="${constants.ASSETS_HOST}${manifests[bundles.legacy]['vendors~main.js']}"></script>`) || ''}
-          <script async nonce="${nonceStr}">
-              ${deferredStyles}
-          </script>
+          ${deferredBodyStyles(nonceStr)}
           <script nonce="${nonceStr}" type="application/javascript">
-              window.WEBSITE_META = JSON.parse('${JSON.stringify(manifestData.ontola)}')
+              window.WEBSITE_META = JSON.parse('${JSON.stringify(manifest.ontola)}')
           </script>
           <!-- Tell users their browser is outdated https://browser-update.org/#install -->
           <script nonce="${nonceStr}">
@@ -281,8 +138,8 @@ export const renderFullPage = async (ctx, manifestData, data) => {
   );
 };
 
-export function handleRender(ctx, port, domain, manifestData, data) {
-  return renderFullPage(ctx, manifestData, data)
+export function handleRender(ctx, port, domain, data) {
+  return renderFullPage(ctx, data)
     .then((page) => {
       ctx.response.status = HttpStatus.OK;
       ctx.response.body = page;
