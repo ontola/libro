@@ -1,64 +1,32 @@
-import as from '@ontologies/as';
 import { isTerm } from '@ontologies/core';
-import rdfx from '@ontologies/rdf';
 import sh from '@ontologies/shacl';
 import {
   linkType,
   register,
   subjectType,
-  useDataInvalidation,
-  useLRS,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import { LoadingRow } from '../../components/Loading';
-import { collectionMembers } from '../../helpers/diggers';
 import {
   calculateFormFieldName,
   retrieveIdFromValue,
 } from '../../helpers/forms';
 import { isPromise } from '../../helpers/types';
+import useTargetValues from '../../hooks/useTargetValues';
 import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
-import { entityIsLoaded } from '../../helpers/data';
 
 import DataField from './PropertyShape/DataField';
 import NestedResource from './PropertyShape/NestedResource';
 
-const useTargetValues = (rawTargetValues, targetIRI) => {
-  const lrs = useLRS();
-
-  useDataInvalidation({
-    dataSubjects: rawTargetValues.filter((s) => ['NamedNode', 'TermType'].includes(s.termType)),
-    subject: targetIRI,
-  });
-
-  const isCollection = rawTargetValues?.length === 1
-    && lrs.findSubject(rawTargetValues[0], [rdfx.type], as.Collection).length > 0;
-
-  if (!isCollection
-    && rawTargetValues?.length === 1
-    && rawTargetValues[0].termType === 'NamedNode'
-    && !entityIsLoaded(lrs, rawTargetValues[0])) {
-    if (__CLIENT__) {
-      lrs.queueEntity(rawTargetValues[0]);
-
-      return Promise.resolve();
-    }
-  } else if (isCollection) {
-    return lrs.dig(rawTargetValues[0], collectionMembers);
-  }
-
-  return rawTargetValues;
-};
-
-const PropertyShapeTarget = ({
+export const PropertyShapeTarget = ({
   children,
+  path,
   targetIRI,
-  rawTargetValues,
 }) => {
-  const targetValues = useTargetValues(rawTargetValues, targetIRI);
+  const targetValues = useTargetValues(targetIRI, path);
 
   if (isPromise(targetValues)) {
     return <LoadingRow />;
@@ -76,7 +44,6 @@ const PropertyShape = (props) => {
     targetNode,
     targetValue,
   } = props;
-  const lrs = useLRS();
   const fieldName = calculateFormFieldName(propertyIndex, path);
   const targetObject = retrieveIdFromValue(targetValue) || targetNode;
   const targetIRI = isTerm(targetObject) && targetObject;
@@ -104,10 +71,8 @@ const PropertyShape = (props) => {
   };
 
   if (targetIRI) {
-    const rawTargetValues = lrs.getResourceProperties(targetIRI, path);
-
     return (
-      <PropertyShapeTarget rawTargetValues={rawTargetValues} targetIRI={targetIRI}>
+      <PropertyShapeTarget path={path} targetIRI={targetIRI}>
         {(targetValues) => childContent(targetValues)}
       </PropertyShapeTarget>
     );

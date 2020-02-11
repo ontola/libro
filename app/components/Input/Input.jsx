@@ -128,7 +128,7 @@ const Input = ({
   return (
     <Element
       className={`Input ${className ?? ''}`}
-      value={value || ''}
+      value={value ?? ''}
       {...props}
     />
   );

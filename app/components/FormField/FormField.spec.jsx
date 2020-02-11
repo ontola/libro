@@ -78,7 +78,7 @@ describe('FormField', () => {
     const { getByTestId, form } = renderWithTestForm((
       <FormField
         field={schemaName}
-        sessionStorage={{ getItem: (key) => initial[key] }}
+        sessionStore={{ getItem: (key) => initial[key] }}
         validate={validatorMap.required}
       />
     ));
@@ -100,7 +100,7 @@ describe('FormField', () => {
     } = renderWithTestForm((
       <FormField
         field={pinned}
-        sessionStorage={storage}
+        sessionStore={storage}
         type="checkbox"
       />
     ));
@@ -128,7 +128,7 @@ describe('FormField', () => {
       const { getByTestId } = renderWithTestForm((
         <FormField
           field={field}
-          sessionStorage={storage}
+          sessionStore={storage}
           type={type}
         />
       ));

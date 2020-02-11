@@ -2,7 +2,7 @@ import as from '@ontologies/as';
 import rdf, { Literal, NamedNode, Node, Quad, SomeTerm } from '@ontologies/core';
 import rdfx from '@ontologies/rdf';
 import rdfs from '@ontologies/rdfs';
-import { OK } from 'http-status-codes';
+import { BAD_REQUEST, OK } from 'http-status-codes';
 import { LazyNNArgument, normalizeType } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 import ontola from '../ontology/ontola';
@@ -94,6 +94,12 @@ function convertKeysAtoB(obj: { [k: string]: any }): { [k: string]: any } {
   });
 
   return output;
+}
+
+function entityHasError(lrs: LinkReduxLRSType, iri: Node) {
+  const status = lrs.getStatus(iri).status;
+
+  return status !== null && status >= BAD_REQUEST;
 }
 
 function entityIsLoaded(lrs: LinkReduxLRSType, iri: Node) {
@@ -250,6 +256,7 @@ export {
   bestType,
   containerToArr,
   convertKeysAtoB,
+  entityHasError,
   entityIsLoaded,
   filter,
   filterFind,

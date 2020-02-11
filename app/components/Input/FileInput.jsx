@@ -1,6 +1,9 @@
 import schema from '@ontologies/schema';
 import sh from '@ontologies/shacl';
-import { linkType, useLRS } from 'link-redux';
+import {
+  linkType,
+  useLRS,
+} from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useField } from 'react-final-form';
@@ -12,11 +15,12 @@ import MediaObjectOmniformDropzoneLoader from '../../views/MediaObject/omniform/
 
 import './FileInput.scss';
 
-const FileInput = ({
-  propertyIndex,
-  form,
-  targetValue,
-}) => {
+const FileInput = (props) => {
+  const {
+    propertyIndex,
+    form,
+    targetValue,
+  } = props;
   const lrs = useLRS();
   const formContext = React.useContext(FormSectionContext);
   const inputRef = React.createRef();
@@ -65,9 +69,11 @@ const FileInput = ({
     <MediaObjectOmniformDropzoneLoader
       current={current}
       encodingFormatTypes={encodingFormatTypes}
+      form={form}
       inputRef={inputRef}
       name={fieldId}
       openDialog={openDialog}
+      propertyIndex={propertyIndex}
       resourceInput={resourceInput}
     />
   );
