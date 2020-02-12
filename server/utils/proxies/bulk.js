@@ -1,41 +1,36 @@
-import * as http from 'http';
-
 import HttpStatus from 'http-status-codes';
 
+import { createBulkResourceRequest } from '../bulk';
 import logging from '../logging';
 
 import {
-  bulkResourceRequest,
   normalizeType,
   setBulkResHeaders,
 } from './helpers';
+
+/* eslint-disable no-param-reassign */
+// eslint-disable-next-line
+const createWriter = (ctx) => (line) => {
+  if (Array.isArray(line)) {
+    ctx.response.body += JSON.stringify(line);
+    ctx.response.body += '\n';
+  } else {
+    ctx.response.body += line;
+  }
+};
+/* eslint-enable no-param-reassign */
 
 export default (ctx) => {
   // ctx.response.append('Content-Type', 'application/n-quads; charset=utf-8');
   ctx.response.append('Content-Type', 'application/hex+x-ndjson; charset=utf-8');
   ctx.response.body = '';
 
-  const agent = new http.Agent({
-    keepAlive: true,
-    maxSockets: 30,
-    timeout: 30000,
-  });
-
   setBulkResHeaders(ctx.response);
 
-  const [resources, requests] = bulkResourceRequest(
+  const [resources, requests, agent] = createBulkResourceRequest(
     ctx,
-    normalizeType(ctx.request.body.resource)
-      .reduce((acc, iri) => (acc.includes(iri) ? acc : acc.concat(iri)), []),
-    agent,
-    (line) => {
-      if (Array.isArray(line)) {
-        ctx.response.body += JSON.stringify(line);
-        ctx.response.body += '\n';
-      } else {
-        ctx.response.body += line;
-      }
-    }
+    normalizeType(ctx.request.body.resource),
+    createWriter(ctx)
   );
 
   return Promise.all(resources)

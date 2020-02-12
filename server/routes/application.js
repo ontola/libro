@@ -1,5 +1,4 @@
 import Stream from 'stream';
-import * as http from 'http';
 
 import {
   INTERNAL_SERVER_ERROR,
@@ -7,30 +6,32 @@ import {
 } from 'http-status-codes';
 
 import * as constants from '../../app/config';
+import { createBulkResourceRequest } from '../utils/bulk';
 import { isHTMLHeader } from '../utils/http';
 import logging from '../utils/logging';
 import manifest, { getBackendManifest } from '../utils/manifest';
-import {
-  bulkResourceRequest,
-  isRedirect,
-} from '../utils/proxies/helpers';
+import { isRedirect } from '../utils/proxies/helpers';
 import { handleRender } from '../utils/render';
 
 const BACKEND_TIMEOUT = 3000;
 
-const fetchPrerenderData = async (ctx, includeResources) => {
-  let responseData = Buffer.alloc(0);
-  const responseStream = new Stream.Writable();
-  // eslint-disable-next-line no-underscore-dangle
-  responseStream._write = (chunk, encoding, next) => {
-    responseData = Buffer.concat([responseData, chunk]);
-    next();
-  };
+const defaultResources = (scope) => [
+  `${scope}`,
+  `${scope}/ns/core`,
+  `${scope}/c_a`,
+  `${scope}/n`,
+  `${scope}/search`,
+  `${scope}/menus`,
+  `${scope}/apex/menus`,
+];
+
+const createDataContext = (ctx) => {
   const dataHeaders = {
     ...ctx.request.headers,
     accept: 'application/hex+x-ndjson',
   };
-  const ctxForData = {
+
+  return {
     api: ctx.api,
     deviceId: ctx.deviceId,
     req: {
@@ -42,42 +43,53 @@ const fetchPrerenderData = async (ctx, includeResources) => {
     },
     session: ctx.session,
   };
+};
 
+const createOutputStream = () => {
+  let data = Buffer.alloc(0);
+  const stream = new Stream.Writable();
+  // eslint-disable-next-line no-underscore-dangle
+  stream._write = (chunk, encoding, next) => {
+    data = Buffer.concat([data, chunk]);
+    next();
+  };
+
+  return {
+    data: () => data,
+    stream,
+  };
+};
+
+const createWriter = (stream) => (line) => {
+  if (Array.isArray(line)) {
+    stream.write(JSON.stringify(line));
+    stream.write('\n');
+  } else {
+    stream.write(line);
+  }
+};
+
+const getResources = (ctx, includes) => {
   const { scope } = ctx.manifest;
-  const resources = [
-    `${scope}`,
-    `${scope}/ns/core`,
-    `${scope}/c_a`,
-    `${scope}/n`,
-    `${scope}/search`,
-    `${scope}/menus`,
-    `${scope}/apex/menus`,
-  ];
+  const resources = defaultResources(ctx.manifest.scope);
   if (ctx.request.url?.length > 1) {
     const { origin } = new URL(scope);
     resources.unshift(origin + ctx.request.url);
   }
-  if (includeResources) {
-    resources.push(...includeResources.split(','));
+  if (includes) {
+    resources.push(...includes.split(','));
   }
-  const agent = new http.Agent({
-    keepAlive: true,
-    maxSockets: 30,
-    timeout: 30000,
-  });
 
-  const [resourceRequests, requests] = bulkResourceRequest(
-    ctxForData,
-    resources.reduce((acc, iri) => (acc.includes(iri) ? acc : acc.concat(iri)), []),
-    agent,
-    (line) => {
-      if (Array.isArray(line)) {
-        responseStream.write(JSON.stringify(line));
-        responseStream.write('\n');
-      } else {
-        responseStream.write(line);
-      }
-    }
+  return resources;
+};
+
+const fetchPrerenderData = async (ctx, includeResources) => {
+  const output = createOutputStream();
+
+  const [resourceRequests, requests, agent] = createBulkResourceRequest(
+    createDataContext(ctx),
+    getResources(ctx, includeResources),
+    createWriter(output.stream)
   );
 
   await Promise.all(resourceRequests)
@@ -89,7 +101,7 @@ const fetchPrerenderData = async (ctx, includeResources) => {
       agent.destroy();
     });
 
-  return responseData;
+  return output.data();
 };
 
 const handler = (sendResponse) => async (ctx) => {
