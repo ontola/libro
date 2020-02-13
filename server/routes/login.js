@@ -28,7 +28,7 @@ async function login(ctx, next) {
     }
     throw new errors.NotImplementedError('Non-valid tokens have not been implemented yet.');
   } catch (e) {
-    if (e && e.status === errors.UnprocessableEntityError.status) {
+    if (e && e.status === errors.UnauthorizedError.status) {
       e.markAsSafe();
       if (!e.response || e.response.headers['Content-Type'] === 'application/json') {
         ctx.response.status = HttpStatus.INTERNAL_SERVER_ERROR;

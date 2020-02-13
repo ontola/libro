@@ -44,7 +44,7 @@ class API {
         ...this.proxySafeHeaders(req),
       },
       method: 'POST',
-      path: 'spi/oauth/revoke',
+      path: 'oauth/revoke',
       redirect: 'manual',
     });
   }
@@ -96,8 +96,8 @@ class API {
    */
   requestUserToken(login, password, websiteIRI, redirect = undefined) {
     return this.fetch(
-      this.serviceToken,
-      userTokenRequest(login, password, this.userToken, websiteIRI, redirect)
+      this.userToken,
+      userTokenRequest(login, password, websiteIRI, redirect)
     );
   }
 
