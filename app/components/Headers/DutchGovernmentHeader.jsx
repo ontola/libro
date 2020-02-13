@@ -9,6 +9,8 @@ const DutchGovernmentHeader = ({ templateOptions }) => {
   const parsedOptions = new URLSearchParams(templateOptions);
   const breadcrumbParent = parsedOptions.get('breadcrumbParent');
   const breadcrumbParentUrl = parsedOptions.get('breadcrumbParentUrl');
+  const primaryLine = parsedOptions.get('primaryLine') || 'Rijksoverheid';
+  const secondaryLine = parsedOptions.get('secondaryLine')?.split('\n')?.map((line) => <div>{line}</div>);
 
   return (
     <div className="DutchGovernmentHeader">
@@ -20,8 +22,8 @@ const DutchGovernmentHeader = ({ templateOptions }) => {
             width={44}
           />
           <span className="Wordmark">
-            <span className="Primary">Rijksinstituut voor Volksgezondheid en Milieu</span>
-            <span className="Secondary">Ministerie van Volksgezondheid,<br />Welzijn en Sport</span>
+            <span className="Primary">{primaryLine}</span>
+            <span className="Secondary">{secondaryLine}</span>
           </span>
         </div>
       </header>
