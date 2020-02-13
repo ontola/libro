@@ -12,6 +12,7 @@ import Category from './Category';
 import Collection from './Collection';
 import CollectionPage from './CollectionPage';
 import Comment from './Comment';
+import Confirmation from './Confirmation';
 import Action from './Action/index';
 import Argument from './Argument/index';
 import DataCube from './DataCube';
@@ -80,6 +81,7 @@ export function getViews() {
     ...Collection,
     ...CollectionPage,
     ...Comment,
+    ...Confirmation,
     ...DataCube,
     ...Department,
     ...Document,

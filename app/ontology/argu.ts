@@ -13,6 +13,7 @@ export default {
   Comment: argu('Comment'),
   ConArgument: argu('ConArgument'),
   ConfirmAction: argu('ConfirmAction'),
+  Confirmation: argu('Confirmation'),
   ContainerNode: argu('ContainerNode'),
   Customer: argu('Customer'),
   EmailToken: argu('EmailToken'),
