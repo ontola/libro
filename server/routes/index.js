@@ -6,6 +6,7 @@ import serveStatic from 'koa-static';
 import uuidv4 from 'uuid/v4';
 import logger from 'koa-logger';
 
+import { appHostname, frontendHostname } from '../config';
 import apiMiddleware from '../middleware/apiMiddleware';
 import authenticationMiddleware from '../middleware/authenticationMiddleware';
 import backendErrorHandler from '../middleware/errorHandlerMiddleware';
@@ -63,6 +64,14 @@ const routes = async function routes(app, port) {
   if (__DEVELOPMENT__) {
     app.use(logger());
   }
+
+  app.use((ctx, next) => {
+    if (ctx.request.host === frontendHostname) {
+      return ctx.redirect(ctx.request.href.replace(frontendHostname, appHostname));
+    }
+
+    return next();
+  });
 
   app.use(async (ctx, next) => {
     ctx.res.locals = { nonce: uuidv4() };
