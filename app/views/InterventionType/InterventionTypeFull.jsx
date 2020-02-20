@@ -73,20 +73,20 @@ const InterventionTypeFull = ({ partOf }) => (
     </Container>
     <Container>
       <Property forceRender renderWhenEmpty label={rivm.interventions} />
-    </Container>
-    <Container>
-      <Property label={schema.comment} />
       <Property label={ontola.createAction}>
         {(createActions) => {
           const newInterventionAction = createActions.find((a) => a.value.endsWith('/interventies/new'));
 
           return newInterventionAction && (
             <Button href={newInterventionAction}>
-              Heb jij dit interventietype toegepast? Deel je ervaring!
+              Heb jij dit interventietype toegepast? Deel jouw interventie hier!
             </Button>
           );
         }}
       </Property>
+    </Container>
+    <Container>
+      <Property forceRender renderWhenEmpty label={schema.comment} />
     </Container>
   </React.Fragment>
 );
