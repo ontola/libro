@@ -27,7 +27,7 @@ const InterventionGrid = ({ partOf }) => (
         <Property label={[schema.name, rdfs.label]} />
         <Property label={[schema.text, schema.description, dbo.abstract]} />
         <AttributeList>
-          <tr><th>Praktische ervaring</th><th>Aandrager</th></tr>
+          <tr><th>Praktische ervaring aandrager</th><th>Gemiddelde beoordeling</th></tr>
           <AttributeListItem
             label={rivm.securityImprovedScore}
             labelFrom={rivm.securityImproved}

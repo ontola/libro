@@ -53,7 +53,7 @@ const InterventionTypeFull = ({ partOf }) => (
           <Property label={[schema.text, schema.description, dbo.abstract]} />
           <Property label={foaf.isPrimaryTopicOf} onLoad={() => null} />
           <AttributeList>
-            <tr><th>Praktische ervaring</th><th>Aandrager</th></tr>
+            <tr><th>Praktische ervaring aandragers</th><th>Gemiddelde beoordeling</th></tr>
             <AttributeListItem label={rivm.securityImprovedScore} />
             <AttributeListItem label={rivm.oneOffCostsScore} />
             <AttributeListItem label={rivm.recurringCostsScore} />
