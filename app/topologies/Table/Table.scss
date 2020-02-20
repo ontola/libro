@@ -20,9 +20,7 @@
     }
 
     tr {
-      &:nth-child(even) {
-        background-color: color('grey', 'x-light');
-      }
+      border-bottom: color('grey', 'x-light');
     }
   }
 }
