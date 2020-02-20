@@ -59,7 +59,7 @@ export default {
           delta.push(lineToQuad(result.value));
           return reader.read().then(read);
         })
-        .then(() => store.queueDelta(delta, true))
+        .then(() => store.queueDelta(delta, res.hasOwnProperty('expedite') ? (res as any).expedite : false))
         .then(() => []);
     } else {
       return Promise.resolve([]);
