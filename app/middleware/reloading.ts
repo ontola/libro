@@ -40,5 +40,10 @@ export function reloadPage(lrs: LinkReduxLRSType, forceGet: boolean) {
 export function redirectPage(lrs: LinkReduxLRSType, location: string) {
   unloadPage(lrs);
 
-  window.location.href = location;
+  if (window.location.pathname === new URL(location).pathname) {
+    window.location.href = location;
+    window.location.reload(true);
+  } else {
+    window.location.href = location;
+  }
 }
