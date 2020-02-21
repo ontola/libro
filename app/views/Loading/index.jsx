@@ -171,7 +171,7 @@ export default [
     ]
   ),
   LinkedRenderStore.registerRenderer(
-    () => <Spinner loading />,
+    () => <div style={{ margin: '1em' }}><Spinner loading /></div>,
     ll.LoadingResource,
     RENDER_CLASS_NAME,
     alertDialogTopology
