@@ -1,0 +1,117 @@
+image: node:12
+
+cache:
+  paths:
+    - node_modules/
+
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_HOST: tcp://localhost:2375
+  FRONTEND_HOSTNAME: app.argu.localtest
+
+default:
+  before_script:
+    - yarn --non-interactive --frozen-lockfile
+
+build:
+  stage: build
+  image: docker:18.09.8
+  services:
+    - docker:18.09.8-dind
+  before_script:
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin
+  script:
+    - docker pull $CI_REGISTRY_IMAGE:latest || true
+    - docker build --cache-from $CI_REGISTRY_IMAGE:latest --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --tag $CI_REGISTRY_IMAGE:latest --build-arg BUGSNAG_KEY=99909219ab5309877185ba0d0dddce33 --build-arg RAILS_ENV=production --build-arg NODE_ENV=production --build-arg FRONTEND_HOSTNAME=app.argu.co .
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+    - docker push $CI_REGISTRY_IMAGE:latest
+
+productionTagManual:
+  stage: manualTag
+  image: docker:18.09.8
+  services:
+    - docker:18.09.8-dind
+  before_script:
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin
+  script:
+    - docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+    - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA $CI_REGISTRY_IMAGE:production
+    - docker push $CI_REGISTRY_IMAGE:production
+  when: manual
+
+stagingTagManual:
+  stage: manualTag
+  image: docker:18.09.8
+  services:
+    - docker:18.09.8-dind
+  before_script:
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin
+  script:
+    - docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+    - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA $CI_REGISTRY_IMAGE:staging
+    - docker push $CI_REGISTRY_IMAGE:staging
+  when: manual
+
+codeQuality:
+  stage: test
+  script:
+    - ./node_modules/.bin/eslint --ext .jsx,.js .
+    - ./node_modules/.bin/tslint --project tsconfig.json
+
+test:
+  stage: test
+  script:
+    - yarn run lint:style
+    - ./node_modules/.bin/tsc -p tsconfig.json --noEmit
+
+
+autoTagProduction:
+  stage: tag
+  image: docker:18.09.8
+  services:
+    - docker:18.09.8-dind
+  before_script:
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin
+  script:
+    - docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+    - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA $CI_REGISTRY_IMAGE:production
+    - docker push $CI_REGISTRY_IMAGE:production
+  only:
+    - master
+
+autoTagStaging:
+  stage: tag
+  image: docker:18.09.8
+  services:
+    - docker:18.09.8-dind
+  before_script:
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin
+  script:
+    - docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+    - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA $CI_REGISTRY_IMAGE:staging
+    - docker push $CI_REGISTRY_IMAGE:staging
+  only:
+    - develop
+
+productionDevProxy:
+  stage: devProxy
+  before_script:
+    - ''
+  script:
+    - 'curl -X POST -F token=ddcdafda417606ecd071674fae9fab -F ref=develop https://gitlab.com/api/v4/projects/15797469/trigger/pipeline'
+  when: manual
+
+stagingDevProxy:
+  stage: devProxy
+  before_script:
+    - ''
+  script:
+    - 'curl -X POST -F token=ddcdafda417606ecd071674fae9fab -F ref=develop https://gitlab.com/api/v4/projects/15797469/trigger/pipeline'
+  when: manual
+
+stages:
+  - build
+  - manualTag
+  - devProxy
+  - test
+  - tag
