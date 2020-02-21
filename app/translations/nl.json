@@ -92,7 +92,7 @@
   "https://app.argu.co/i18n/forms/dropzone/hoverText": "Laat los om het bestand te selecteren",
   "https://app.argu.co/i18n/forms/dropzone/passiveText": "Klik of sleep een bestand om te selecteren",
   "https://app.argu.co/i18n/forms/omniform/defaultResponseType": "reactie",
-  "https://app.argu.co/i18n/forms/omniform/newResponsePreview": "Plaats jouw {type}...",
+  "https://app.argu.co/i18n/forms/omniform/newResponsePreview": "Plaats een {type}...",
   "https://app.argu.co/i18n/forms/radioGroup/noOptions": "Geen opties beschikbaar",
   "https://app.argu.co/i18n/forms/required/helperText": "*Vereist",
   "https://app.argu.co/i18n/forms/select/noMatchingItems": "Geen matchende items",
