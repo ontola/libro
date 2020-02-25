@@ -27,6 +27,7 @@ const requiredFeatures = [
   'Promise',
   'Promise.prototype.finally|gated',
   'Symbol',
+  'Symbol.iterator',
 ];
 
 const polyfillSrc = `https://cdn.polyfill.io/v2/polyfill.js?unknown=polyfill&features=${requiredFeatures.join(',')}`;
