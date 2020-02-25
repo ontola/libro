@@ -4,11 +4,6 @@ cache:
   paths:
     - node_modules/
 
-variables:
-  DOCKER_DRIVER: overlay2
-  DOCKER_HOST: tcp://localhost:2375
-  FRONTEND_HOSTNAME: app.argu.localtest
-
 default:
   before_script:
     - yarn --non-interactive --frozen-lockfile
@@ -98,7 +93,7 @@ productionDevProxy:
   before_script:
     - ''
   script:
-    - 'curl -X POST -F token=ddcdafda417606ecd071674fae9fab -F ref=develop https://gitlab.com/api/v4/projects/15797469/trigger/pipeline'
+    - eval $PRODUCTION_PIPELINE_TRIGGER
   when: manual
 
 stagingDevProxy:
@@ -106,7 +101,7 @@ stagingDevProxy:
   before_script:
     - ''
   script:
-    - 'curl -X POST -F token=ddcdafda417606ecd071674fae9fab -F ref=develop https://gitlab.com/api/v4/projects/15797469/trigger/pipeline'
+    - eval $STAGING_PIPELINE_TRIGGER
   when: manual
 
 stages:
