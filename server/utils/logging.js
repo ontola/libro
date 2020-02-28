@@ -43,7 +43,7 @@ export function getErrorMiddleware() {
         await next();
       } catch (err) {
         logging.error(err);
-        if (!ctx.response.headerSent) {
+        if (ctx.response?.headerSent === false) {
           ctx.response.status = err.status || HttpStatus.INTERNAL_SERVER_ERROR;
         }
 
