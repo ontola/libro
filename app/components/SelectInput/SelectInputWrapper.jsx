@@ -5,6 +5,7 @@ import React from 'react';
 import {
   linkType,
   topologyType,
+  useDataInvalidation,
   useLRS,
 } from 'link-redux';
 import { defineMessages, useIntl } from 'react-intl';
@@ -183,6 +184,9 @@ const SelectInputWrapper = ({
     searchTemplate ? DEBOUNCE_TIMER : 0,
     { leading: true }
   );
+  useDataInvalidation({
+    dataSubjects: options,
+  });
 
   const initialSelectedItem = inputValue || initialValue;
 
