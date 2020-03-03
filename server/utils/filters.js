@@ -87,10 +87,10 @@ export function isBackend(next) {
       return next(ctx, nextRoute);
     }
 
-    const extension = ctx.request.url.split('/')
+    const trailer = ctx.request.url.split('/').pop();
+    const extension = trailer?.includes('.') && trailer
+      .split('.')
       .pop()
-      ?.split('.')
-      ?.pop()
       ?.split('?')
       ?.shift();
     if (extension && dataExtensions.includes(extension)) {
