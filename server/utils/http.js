@@ -9,3 +9,12 @@ export function isHTMLHeader(headers) {
     || headers.accept.includes('application/xhtml+xml')
     || headers.accept.includes('application/xml'));
 }
+
+export function securityHeaders(ctx, next) {
+  ctx.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+  ctx.set('X-XSS-Protection', '1; mode=block');
+  ctx.set('X-Content-Type-Options', 'nosniff');
+  ctx.set('X-Frame-Options', 'DENY');
+
+  return next();
+}

@@ -19,6 +19,7 @@ import {
   isPlainAPI,
   isWebsocket,
 } from '../utils/filters';
+import { securityHeaders } from '../utils/http';
 import { getErrorMiddleware } from '../utils/logging';
 import {
   backendProxy,
@@ -86,6 +87,8 @@ const routes = async function routes(app, port) {
   app.use(csp);
 
   const router = new Router();
+
+  router.use(securityHeaders);
 
   router.get('/d/health', health);
   router.get('*/sw.js*', serviceWorker);

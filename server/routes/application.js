@@ -159,7 +159,6 @@ const handler = (sendResponse) => async (ctx) => {
   }
 };
 
-
 export default function application(port) {
   const PRELOAD_HEADERS = [
     `<${constants.ASSETS_HOST}/static/preloader.css>; rel=preload; as=style`,
@@ -172,10 +171,6 @@ export default function application(port) {
       ctx.set('Link', PRELOAD_HEADERS);
     }
     ctx.set('Vary', 'Accept,Accept-Encoding,Authorization,Content-Type');
-    ctx.set('Referrer-Policy', 'strict-origin-when-cross-origin');
-    ctx.set('X-XSS-Protection', '1; mode=block');
-    ctx.set('X-Content-Type-Options', 'nosniff');
-    ctx.set('X-Frame-Options', 'DENY');
 
     return handleRender(ctx, port, domain, data);
   };
