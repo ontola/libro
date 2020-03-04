@@ -1,6 +1,16 @@
-import rdf, { createNS } from '@ontologies/core';
+import rdf, { createNS, NamedNode, Namespace } from '@ontologies/core';
 
-export const getWebsiteContextFromWebsite = (website) => {
+export interface WebsiteContext {
+  app: Namespace;
+  appSlashless: Namespace;
+
+  websiteIRI: NamedNode;
+  websiteIRIStr: string;
+  websiteOrigin: string;
+  websitePathname: string;
+}
+
+export const getWebsiteContextFromWebsite = (website: string): WebsiteContext => {
   const websiteIRI = rdf.namedNode(website);
   const websiteIRIStr = websiteIRI.value;
   const websiteOrigin = new URL(websiteIRIStr).origin;

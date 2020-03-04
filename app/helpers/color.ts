@@ -3,6 +3,8 @@
  * @typedef {string} RGBString
  */
 
+export type RGBString = string;
+
 const RGB_NUMBER = 190;
 const HUNDRED_PERCENT = 100;
 
@@ -18,14 +20,14 @@ const hexSplit = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i;
  * @param {RGBString} str A rgb color string
  * @return {bool} True if string is rgb
  */
-const isRGB = (str) => /^rgb\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})\)$/.test(str);
+const isRGB = (str: RGBString): str is RGBString => /^rgb\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})\)$/.test(str);
 
 /**
  * Converts an rgb string to an array of number values.
  * @param {RGBString} rgb A rgb color string
  * @return {array} An Array of the rgb values
  */
-const rgbToArray = (rgb) => rgb.replace(/[^\d,]/g, '').split(',');
+const rgbToArray = (rgb: RGBString): string[] => rgb.replace(/[^\d,]/g, '').split(',');
 
 /**
  * For more info on this see check these links:
@@ -34,14 +36,14 @@ const rgbToArray = (rgb) => rgb.replace(/[^\d,]/g, '').split(',');
  * @param {RGBString} rgb The color to compare against.
  * @return {string} luminance index number of rgb string
  */
-const getLuminance = (rgb) => {
+const getLuminance = (rgb: RGBString[] | RGBString): string | undefined => {
   const LIMIT = 255;
   const DECIMALS = 2;
   const aR = 0.299;
   const aG = 0.587;
   const aB = 0.117;
   const coefficients = [aR, aG, aB];
-  let rgbArray;
+  let rgbArray: RGBString[];
 
   if (!rgb) {
     return undefined;
@@ -51,7 +53,7 @@ const getLuminance = (rgb) => {
     rgbArray = rgb;
   }
 
-  const all = coefficients.map((a, i) => (rgbArray[i] / LIMIT) * a);
+  const all = coefficients.map((a, i) => (parseFloat(rgbArray[i]) / LIMIT) * a);
 
   return all.reduce((prev, curr) => prev + curr).toFixed(DECIMALS);
 };
@@ -61,7 +63,7 @@ const getLuminance = (rgb) => {
  * @param {string} hex A hex color string
  * @return {RGBString} rgb color string
  */
-function hexToRgb(hex) {
+function hexToRgb(hex: string): RGBString | null {
   const result = hexSplit.exec(hex);
 
   return result ? `rgb(${parseInt(result[R], 16)},${parseInt(result[G], 16)},${parseInt(result[B], 16)})` : null;
@@ -74,16 +76,16 @@ function hexToRgb(hex) {
  * @return {bool} True if luminance is below threshold
  */
 const checkLuminance = (
-  rgb,
-  threshold = DEFAULT_LUMINANCE_THRESHOLD
-) => getLuminance(rgb) < threshold;
+  rgb: RGBString,
+  threshold: number = DEFAULT_LUMINANCE_THRESHOLD,
+): boolean => getLuminance(rgb)! < threshold.toString();
 
 /**
  * Returns an rgb string for a value between 0-100. Low values return green, high red.
  * @param {number} percentage 0-100
  * @return {RGBString} css RGB value
  */
-const percentageToRedOrGreen = (percentage) => {
+const percentageToRedOrGreen = (percentage: number): RGBString => {
   const red = RGB_NUMBER - (RGB_NUMBER * (percentage / HUNDRED_PERCENT));
   const green = RGB_NUMBER * (percentage / HUNDRED_PERCENT);
   const blue = 0;

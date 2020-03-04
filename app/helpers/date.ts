@@ -1,3 +1,5 @@
+import { isTerm, Term } from '@ontologies/core';
+
 const SEC_MS = 1000;
 const MINUTE_SECS = 60;
 const DAY_HOURS = 24;
@@ -11,7 +13,7 @@ const WEEK_SECS = WEEK_DAYS * DAY_SECS;
 const MONTH_SECS = MONTH_DAYS * DAY_SECS;
 const YEAR_SECS = YEAR_DAYS * DAY_SECS;
 
-export const relativeTimeDestructure = (date, relative = Date.now()) => {
+export const relativeTimeDestructure = (date: number, relative: number = Date.now()) => {
   const seconds = (date - relative) / SEC_MS;
   const oom = Math.abs(seconds);
 
@@ -53,4 +55,4 @@ export const relativeTimeDestructure = (date, relative = Date.now()) => {
   };
 };
 
-export default (date) => ((date && date.termType) ? new Date(date.value) : date) < Date.now();
+export default (date: Term | number): boolean => (isTerm(date) ? new Date(date.value) : date) < Date.now();
