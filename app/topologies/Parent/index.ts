@@ -6,12 +6,12 @@ import Topology from '../Topology';
 export const parentTopology = argu.ns('parent');
 
 class Parent extends Topology {
-  static propTypes = {
+  public static propTypes = {
     children: PropTypes.node.isRequired,
   };
 
-  constructor() {
-    super();
+  constructor(props: {}) {
+    super(props);
 
     this.topology = parentTopology;
   }

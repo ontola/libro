@@ -8,12 +8,12 @@ import './TableFooter.scss';
 export const tableFooterTopology = argu.ns('tableFooter');
 
 class TableFooter extends TopologyProvider {
-  static propTypes = {
+  public static propTypes = {
     children: PropTypes.node.isRequired,
   };
 
-  constructor() {
-    super();
+  constructor(props: {}) {
+    super(props);
 
     this.className = 'TableFooter';
     this.elementType = 'tfoot';

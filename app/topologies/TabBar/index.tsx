@@ -1,27 +1,26 @@
 import Tabs from '@material-ui/core/Tabs';
-import PropTypes from 'prop-types';
 import React from 'react';
-import { withRouter } from 'react-router';
+import { RouteComponentProps, withRouter } from 'react-router';
 
+import { currentLocation } from '../../helpers/paths';
 import argu from '../../ontology/argu';
 import TopologyProvider from '../Topology';
-import { currentLocation } from '../../helpers/paths';
 
 export const tabBarTopology = argu.ns('tabBar');
 
-class TabBar extends TopologyProvider {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-  };
+interface Props extends RouteComponentProps<any> {
+  value: any;
+}
 
-  constructor(props) {
+class TabBar extends TopologyProvider<Props> {
+  constructor(props: Props) {
     super(props);
 
     this.topology = tabBarTopology;
     this.className = 'TabBar';
   }
 
-  render() {
+  public render() {
     const {
       children,
       location,

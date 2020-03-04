@@ -3,21 +3,21 @@ import PropTypes from 'prop-types';
 
 import argu from '../../ontology/argu';
 
-export const tableFooterRowTopology = argu.ns('tableFooterRow');
+export const tableHeaderRowTopology = argu.ns('tableHeaderRow');
 
 /** The same as {TableRow} but needed since headers are nearly always rendered differently. */
-class TableFooterRow extends TopologyProvider {
-  static propTypes = {
+class TableHeaderRow extends TopologyProvider {
+  public static propTypes = {
     children: PropTypes.node.isRequired,
   };
 
-  constructor() {
-    super();
+  constructor(props: {}) {
+    super(props);
 
-    this.className = 'TableFooterRow';
+    this.className = 'TableHeaderRow';
     this.elementType = 'tr';
-    this.topology = tableFooterRowTopology;
+    this.topology = tableHeaderRowTopology;
   }
 }
 
-export default TableFooterRow;
+export default TableHeaderRow;

@@ -1,4 +1,5 @@
 import { createNS } from '@ontologies/core';
+import { Location } from 'history';
 
 import path, { currentLocation } from '../paths';
 
@@ -10,7 +11,7 @@ function getCurrentLocation(websiteIRI: string, pathname = '', search = '', hash
       hash,
       pathname,
       search,
-    } as Location,
+    } as Location<any>,
     false,
     basePath,
     ns,

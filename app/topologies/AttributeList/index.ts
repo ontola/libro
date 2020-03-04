@@ -8,17 +8,17 @@ import './AttributeList.scss';
 export const attributeListTopology = argu.ns('attributeList');
 
 class AttributeList extends TopologyProvider {
-  constructor() {
-    super();
+  public propTypes = {
+    children: PropTypes.node,
+  };
+
+  constructor(props: {}) {
+    super(props);
 
     this.className = 'AttributeList';
     this.elementType = 'table';
     this.topology = attributeListTopology;
   }
 }
-
-AttributeList.propTypes = {
-  children: PropTypes.node,
-};
 
 export default AttributeList;

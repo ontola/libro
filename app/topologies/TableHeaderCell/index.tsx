@@ -8,12 +8,12 @@ import './TableHeaderCell.scss';
 export const tableHeaderCellTopology = argu.ns('tableHeaderCell');
 
 class TableHeaderCell extends TopologyProvider {
-  static propTypes = {
+  public static propTypes = {
     children: PropTypes.node.isRequired,
   };
 
-  constructor() {
-    super();
+  constructor(props: {}) {
+    super(props);
 
     this.className = 'TableHeaderCell';
     this.elementType = 'th';

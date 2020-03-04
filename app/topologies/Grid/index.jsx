@@ -15,8 +15,8 @@ class Grid extends TopologyProvider {
     children: PropTypes.node.isRequired,
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.topology = gridTopology;
   }

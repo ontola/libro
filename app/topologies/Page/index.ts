@@ -4,7 +4,7 @@ import Topology from '../Topology';
 export const pageTopology = argu.ns('page');
 
 export class Page extends Topology {
-  constructor(props) {
+  constructor(props: {}) {
     super(props);
 
     this.topology = pageTopology;

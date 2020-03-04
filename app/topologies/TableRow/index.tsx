@@ -6,12 +6,12 @@ import argu from '../../ontology/argu';
 export const tableRowTopology = argu.ns('tableRow');
 
 class TableRow extends TopologyProvider {
-  static propTypes = {
+  public static propTypes = {
     children: PropTypes.node.isRequired,
   };
 
-  constructor() {
-    super();
+  constructor(props: {}) {
+    super(props);
 
     this.className = 'TableRow';
     this.elementType = 'tr';

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const PageHeaderText = ({ children }) => (
+const PageHeaderText: React.FC = ({ children }) => (
   <div className="PageHeader__text">
     {children}
   </div>

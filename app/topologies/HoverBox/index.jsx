@@ -22,8 +22,8 @@ export default function (topology = hoverBoxTopology, popout = false) {
    * @returns {component} Component
    */
   class HoverBox extends TopologyProvider {
-    constructor() {
-      super();
+    constructor(props) {
+      super(props);
 
       this.state = {
         isVisible: false,

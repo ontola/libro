@@ -7,8 +7,8 @@ import './ContentDetails.scss';
 export const contentDetailsTopology = argu.ns('contentDetails');
 
 class ContentDetails extends TopologyProvider {
-  constructor() {
-    super();
+  constructor(props: {}) {
+    super(props);
 
     this.className = 'ContentDetails';
     this.topology = contentDetailsTopology;

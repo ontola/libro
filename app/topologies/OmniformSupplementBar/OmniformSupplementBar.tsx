@@ -6,13 +6,13 @@ import argu from '../../ontology/argu';
 export const omniformSupplementBarTopology = argu.ns('omniformSupplementBar');
 
 class OmniformSupplementBar extends TopologyProvider {
-  constructor() {
-    super();
+  constructor(props: {}) {
+    super(props);
 
     this.topology = omniformSupplementBarTopology;
   }
 
-  render() {
+  public render() {
     return this.wrap((
       <React.Fragment>
         {this.props.children}

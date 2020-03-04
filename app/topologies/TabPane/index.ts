@@ -4,9 +4,9 @@ import TopologyProvider from '../Topology';
 export const tabPaneTopology = argu.tabPane;
 
 class TabPane extends TopologyProvider {
-  static displayName = 'TabPane';
+  public static displayName = 'TabPane';
 
-  constructor(props) {
+  constructor(props: {}) {
     super(props);
 
     this.topology = tabPaneTopology;

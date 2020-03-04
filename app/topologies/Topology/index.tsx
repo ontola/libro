@@ -1,27 +1,32 @@
 import {
+  Helpers,
   LinkRenderCtx,
-  TopologyProvider,
   renderError,
+  TopologyProvider,
   useCalculateChildProps,
   useLRS,
 } from 'link-redux';
-import React from 'react';
+import React, { ErrorInfo } from 'react';
 
 import { handle } from '../../helpers/logging';
 
-export const renderErrorComp = (self) => () => {
+export interface TopologyState {
+  error?: Error;
+}
+
+export const renderErrorComp = (self: React.Component & TopologyState) => () => {
   const ErrorRenderer = ({
     context,
     error,
     props,
     reset,
-  }) => {
+  }: TopologyState & Helpers & { context: typeof self.context, props: typeof self.props }) => {
     const lrs = useLRS();
     try {
       const childProps = useCalculateChildProps(
         props,
         context,
-        { helpers: { reset } }
+        { helpers: { reset } },
       );
 
       return renderError(childProps, lrs, error);
@@ -46,8 +51,10 @@ export const renderErrorComp = (self) => () => {
   );
 };
 
-class Topology extends TopologyProvider {
-  static contextType = LinkRenderCtx;
+class Topology<P = {}, S extends TopologyState = {}> extends TopologyProvider<P, S> {
+  public static contextType = LinkRenderCtx;
+  protected style: any;
+  protected renderErrorComp: () => any;
 
   static get displayName() {
     if (this.name === 'Topology') {
@@ -57,34 +64,34 @@ class Topology extends TopologyProvider {
     return `TP(${this.name})`;
   }
 
-  static set displayName(ignored) {
+  static set displayName(_) {
     // ignore
   }
 
-  constructor(props) {
+  constructor(props: P) {
     super(props);
 
     this.renderErrorComp = renderErrorComp(this);
     this.state = {
       error: undefined,
-    };
+    } as any;
     this.style = undefined;
   }
 
-  componentDidCatch(error, ignored) {
+  public componentDidCatch(error: Error, _: ErrorInfo) {
     handle(error);
     this.setState({ error });
   }
 
-  getClassName() {
+  public getClassName() {
     return this.className;
   }
 
-  getStyle() {
+  public getStyle() {
     return this.style;
   }
 
-  renderContent() {
+  public renderContent() {
     return this.wrap((subject) => (
       <div
         className={this.getClassName()}
@@ -96,7 +103,7 @@ class Topology extends TopologyProvider {
     ));
   }
 
-  render() {
+  public render() {
     if (this.state.error) {
       return this.renderErrorComp();
     }

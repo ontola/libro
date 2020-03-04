@@ -13,12 +13,12 @@ export const containerFloatTopology = argu.ns('containerFloat');
  * @returns {component} Component
  */
 class ContainerFloat extends Topology {
-  static propTypes = {
+  public static propTypes = {
     children: PropTypes.node.isRequired,
   };
 
-  constructor() {
-    super();
+  constructor(props: any) {
+    super(props);
 
     this.className = 'ContainerFloat';
     this.topology = containerFloatTopology;

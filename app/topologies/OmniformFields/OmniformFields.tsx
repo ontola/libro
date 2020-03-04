@@ -6,13 +6,13 @@ import argu from '../../ontology/argu';
 export const omniformFieldsTopology = argu.ns('omniformFields');
 
 class OmniformFields extends TopologyProvider {
-  constructor() {
-    super();
+  constructor(props: {}) {
+    super(props);
 
     this.topology = omniformFieldsTopology;
   }
 
-  render() {
+  public render() {
     return this.wrap((
       <React.Fragment>
         {this.props.children}

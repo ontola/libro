@@ -8,12 +8,12 @@ import './TableBody.scss';
 export const tableBodyTopology = argu.ns('tableBody');
 
 class TableBody extends TopologyProvider {
-  static propTypes = {
+  public static propTypes = {
     children: PropTypes.node.isRequired,
   };
 
-  constructor() {
-    super();
+  constructor(props: {}) {
+    super(props);
 
     this.className = 'TableBody';
     this.elementType = 'tbody';

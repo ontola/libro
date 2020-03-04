@@ -9,16 +9,16 @@ import './Table.scss';
 export const tableTopology = argu.ns('table');
 
 class Table extends TopologyProvider {
-  static propTypes = {
+  public static propTypes = {
     children: PropTypes.node.isRequired,
   };
 
-  constructor() {
-    super();
+  constructor(props: {}) {
+    super(props);
     this.topology = tableTopology;
   }
 
-  render() {
+  public render() {
     return this.wrap((
       <div className="Table Table__wrapper">
         <table className="Table Table__table">

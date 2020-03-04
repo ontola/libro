@@ -7,14 +7,18 @@ import './Select.scss';
 
 export const selectTopology = argu.ns('select');
 
-class Select extends Topology {
-  constructor(props) {
+interface Props {
+  scrollIntoView?: any;
+}
+
+class Select<P extends Props = {}> extends Topology<P> {
+  constructor(props: P) {
     super(props);
 
     this.topology = selectTopology;
   }
 
-  render() {
+  public render() {
     const {
       children,
       scrollIntoView, // eslint-disable-line no-unused-vars

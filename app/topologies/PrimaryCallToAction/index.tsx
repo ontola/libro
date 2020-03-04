@@ -6,7 +6,7 @@ import './PrimaryCallToAction.scss';
 export const primaryCallToActionTopology = ontola.ns('topologies/primaryCallToAction');
 
 export class PrimaryCallToAction extends Topology {
-  constructor(props) {
+  constructor(props: {}) {
     super(props);
 
     this.topology = primaryCallToActionTopology;

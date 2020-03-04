@@ -8,19 +8,23 @@ import './TableFooterCell.scss';
 
 export const tableFooterCellTopology = argu.ns('tableFooterCell');
 
-class TableFooterCell extends TopologyProvider {
-  static propTypes = {
+interface Props {
+  colSpan?: number;
+}
+
+class TableFooterCell extends TopologyProvider<Props> {
+  public static propTypes = {
     children: PropTypes.node.isRequired,
     colSpan: PropTypes.number,
   };
 
-  constructor() {
-    super();
+  constructor(props: Props) {
+    super(props);
 
     this.topology = tableFooterCellTopology;
   }
 
-  render() {
+  public render() {
     return this.wrap((
       <td className="TableFooterCell" colSpan={this.props.colSpan}>
         {this.props.children}

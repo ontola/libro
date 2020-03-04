@@ -1,11 +1,12 @@
 import { NamedNode } from '@ontologies/core';
+import { Location } from 'history';
 import { Map } from 'immutable';
 import { NamespaceMap } from 'link-lib';
 
 import { frontendPathname } from '../middleware/app';
 import app from '../ontology/app';
 
-export function currentLocation(location: Location,
+export function currentLocation(location: Location<any>,
                                 fragment = true,
                                 basePath = frontendPathname,
                                 ns: NamespaceMap = { appSlashless: app.nsSlashless }): NamedNode {

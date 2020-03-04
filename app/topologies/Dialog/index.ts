@@ -8,7 +8,7 @@ export const alertDialogTopology = ontola.ns('dialog/alert');
  * Defaults to an [alert dialog](https://material.io/design/components/dialogs.html#alert-dialog)
  */
 class Dialog extends Topology {
-  constructor(props) {
+  constructor(props: {}) {
     super(props);
 
     this.topology = alertDialogTopology;

@@ -6,12 +6,12 @@ import argu from '../../ontology/argu';
 export const formFooterTopology = argu.formFooter;
 
 class FormFooter extends TopologyProvider {
-  static propTypes = {
+  public static propTypes = {
     children: PropTypes.node.isRequired,
   };
 
-  constructor() {
-    super();
+  constructor(props: {}) {
+    super(props);
 
     this.topology = formFooterTopology;
     this.className = 'Form__footer';

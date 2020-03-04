@@ -8,12 +8,12 @@ import './index.scss';
 export const fullResourceTopology = argu.fullResource;
 
 class FullResource extends TopologyProvider {
-  static propTypes = {
+  public static propTypes = {
     children: PropTypes.node.isRequired,
   };
 
-  constructor() {
-    super();
+  constructor(props: {}) {
+    super(props);
 
     this.topology = fullResourceTopology;
     this.className = 'FullResource';
