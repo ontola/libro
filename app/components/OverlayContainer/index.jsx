@@ -15,7 +15,7 @@ class OverlayContainer extends React.PureComponent {
     children: PropTypes.node,
     clickHandler: PropTypes.func,
     overlayRef: PropTypes.shape({
-      current: PropTypes.instanceOf(Element),
+      current: __CLIENT__ ? PropTypes.instanceOf(Element) : undefined,
     }),
   };
 

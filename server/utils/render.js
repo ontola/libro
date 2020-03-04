@@ -39,7 +39,7 @@ export const renderFullPage = async (ctx, data) => {
   const nonceStr = ctx.res.locals.nonce.toString();
   const [language, isUser] = getUserData(ctx);
 
-  const headers = headersFromPrerender(ctx, data);
+  const headers = await headersFromPrerender(ctx, data);
 
   const { manifest } = ctx;
 

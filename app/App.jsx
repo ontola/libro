@@ -59,9 +59,7 @@ const App = ({
 
 App.propTypes = {
   helmetContext: PropTypes.shape({}),
-  location: PropTypes.shape({
-    replace: PropTypes.func,
-  }),
+  location: PropTypes.string,
   lrs: lrsType,
   title: PropTypes.string,
   website: PropTypes.string,
