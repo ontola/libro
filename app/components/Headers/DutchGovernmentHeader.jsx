@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Logo from './DutchGovernmentLogo.svg';
-
 import './DutchGovernmentHeader.scss';
 
 const DutchGovernmentHeader = ({ templateOptions }) => {
@@ -11,14 +9,20 @@ const DutchGovernmentHeader = ({ templateOptions }) => {
   const breadcrumbParentUrl = parsedOptions.get('breadcrumbParentUrl');
   const primaryLine = parsedOptions.get('primaryLine') || 'Rijksoverheid';
   const secondaryLine = parsedOptions.get('secondaryLine')?.split('\n')?.map((line) => <div>{line}</div>);
+  const [logo, setLogo] = React.useState();
+
+  React.useEffect(() => {
+    import('./DutchGovernmentLogo').then((encoded) => setLogo(encoded.default));
+  });
 
   return (
     <div className="DutchGovernmentHeader">
       <header>
         <div className="Logo">
-          <Logo
+          <img
             alt="Rijksoverheid logo"
             height={77}
+            src={logo}
             width={44}
           />
           <span className="Wordmark">
