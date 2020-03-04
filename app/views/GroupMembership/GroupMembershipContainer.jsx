@@ -5,14 +5,14 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import CardContent from '../../components/Card/CardContent';
+import HeaderWithMenu from '../../components/HeaderWithMenu';
 import ontola from '../../ontology/ontola';
 import org from '../../ontology/org';
 import teamGL from '../../ontology/teamGL';
+import Card from '../../topologies/Card';
 import { containerTopology } from '../../topologies/Container';
 import ContentDetails from '../../topologies/ContentDetails';
-import { CardContent } from '../../components';
-import Card from '../../topologies/Card';
-import HeaderWithMenu from '../../components/HeaderWithMenu';
 
 const GroupMembershipContainer = () => (
   <Card>

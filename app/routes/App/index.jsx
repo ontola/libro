@@ -6,10 +6,11 @@ import { HotKeys } from 'react-hotkeys';
 import { withRouter } from 'react-router';
 import ScrollMemory from 'react-router-scroll-memory';
 
-import { NavBarContent, SkipNavigation } from '../../components';
 import DutchGovernmentHeader from '../../components/Headers/DutchGovernmentHeader';
 import '../../components/shared/init.scss';
+import NavBarContent from '../../components/NavBarContent';
 import NetworkStatusIndicator from '../../components/NetworkStatusIndicator';
+import SkipNavigation from '../../components/SkipNavigation';
 import { CONTAINER_ELEMENT } from '../../config';
 import ontola from '../../ontology/ontola';
 import Navbar from '../../topologies/Navbar/index';

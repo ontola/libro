@@ -6,7 +6,7 @@ import { Property, register } from 'link-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { CardContent } from '../../components';
+import CardContent from '../../components/Card/CardContent';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';

@@ -11,9 +11,9 @@ import {
 import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
-import { seqToArr } from '../../helpers/data';
-import { LoadingRow } from '../../components';
 import Heading from '../../components/Heading';
+import { LoadingRow } from '../../components/Loading';
+import { seqToArr } from '../../helpers/data';
 import argu from '../../ontology/argu';
 import { inlineTopology } from '../../topologies/Inline';
 import { allTopologies } from '../../topologies';

@@ -8,7 +8,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { CardContent } from '../../components';
+import CardContent from '../../components/Card/CardContent';
 import { actionType } from '../../helpers/diggers';
 import argu from '../../ontology/argu';
 import Card from '../../topologies/Card';

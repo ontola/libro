@@ -4,7 +4,7 @@ import { linkedPropType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { Link } from '../../../components';
+import Link from '../../../components/Link';
 import { retrievePath } from '../../../helpers/iris';
 import argu from '../../../ontology/argu';
 import { cardTopology } from '../../../topologies/Card';

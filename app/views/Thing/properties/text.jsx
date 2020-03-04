@@ -9,11 +9,9 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {
-  CollapseText,
-  Markdown,
-  MarkdownFixedPreview,
-} from '../../../components';
+import CollapseText from '../../../components/CollapseText';
+import Markdown from '../../../components/Markdown';
+import MarkdownFixedPreview from '../../../components/MarkdownFixedPreview';
 import ontola from '../../../ontology/ontola';
 import { cardTopology } from '../../../topologies/Card';
 import { cardFixedTopology } from '../../../topologies/Card/CardFixed';

@@ -4,7 +4,7 @@ import { Resource, linkedPropType } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { CardContent } from '../../../components';
+import CardContent from '../../../components/Card/CardContent';
 import { cardTopology } from '../../../topologies/Card';
 import { cardMainTopology } from '../../../topologies/Card/CardMain';
 import CardRow from '../../../topologies/Card/CardRow';

@@ -8,7 +8,7 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { Attachment } from '../../components';
+import Attachment from '../../components/Attachment';
 import AttachmentPreview from '../../components/AttachmentPreview';
 import { imageRepresentationUrl } from '../../helpers/attachments';
 import dbo from '../../ontology/dbo';

@@ -11,10 +11,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
-import {
-  Detail,
-  LDLink,
-} from '../../components';
+import Detail from '../../components/Detail';
+import LDLink from '../../components/LDLink';
 import argu from '../../ontology/argu';
 import person from '../../ontology/person';
 import { detailsBarTopology } from '../../topologies/DetailsBar';

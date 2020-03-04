@@ -3,14 +3,12 @@ import schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
+import AttributeListItem from '../../components/AttributeListItem';
+import CardContent from '../../components/Card/CardContent';
+import LDLink from '../../components/LDLink';
+import LinkedDetailDate from '../../components/LinkedDetailDate';
 import dbo from '../../ontology/dbo';
 import CardFixed from '../../topologies/Card/CardFixed';
-import {
-  AttributeListItem,
-  CardContent,
-  LDLink,
-  LinkedDetailDate,
-} from '../../components';
 import rivm from '../../ontology/rivm';
 import DetailsBar from '../../topologies/DetailsBar';
 import AttributeList from '../../topologies/AttributeList';

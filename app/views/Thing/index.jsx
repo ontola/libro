@@ -3,11 +3,9 @@ import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import { Property, link } from 'link-redux';
 import React from 'react';
 
-import {
-  CardContent,
-  Detail,
-  LDLink,
-} from '../../components';
+import CardContent from '../../components/Card/CardContent';
+import Detail from '../../components/Detail';
+import LDLink from '../../components/LDLink';
 import {
   connectHighlighting,
   hightlightPropTypes,

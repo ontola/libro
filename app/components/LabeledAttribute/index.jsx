@@ -8,8 +8,9 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import Heading from '../Heading/index';
+
 import './LabeledAttribute.scss';
-import { Heading } from '../../components';
 
 const LabeledAttribute = ({
   label,

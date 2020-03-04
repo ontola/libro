@@ -1,10 +1,11 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import React from 'react';
 
-import {
-  Loading,
+import Loading, {
   LoadingButton,
   LoadingCard,
+  LoadingCardFloat,
+  LoadingCardRowAppendix,
   LoadingCellRow,
   LoadingDetail,
   LoadingFullResource,
@@ -13,8 +14,9 @@ import {
   LoadingPage,
   LoadingParent,
   LoadingRow,
-  Spinner,
-} from '../../components';
+  SuspendedLoader,
+} from '../../components/Loading';
+import Spinner from '../../components/Spinner';
 import ll from '../../ontology/ll';
 import { appMenuTopology } from '../../topologies/AppMenu';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
@@ -44,11 +46,6 @@ import { tableTopology } from '../../topologies/Table';
 import { tableCellTopology } from '../../topologies/TableCell';
 import { voteBubbleTopology } from '../../topologies/VoteBubble';
 import { tabPaneTopology } from '../../topologies/TabPane';
-import {
-  LoadingCardFloat,
-  LoadingCardRowAppendix,
-  SuspendedLoader,
-} from '../../components/Loading/index';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 import { tabBarTopology } from '../../topologies/TabBar';
 

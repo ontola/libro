@@ -9,7 +9,7 @@ import {
 } from 'http-status-codes';
 import { FormattedMessage, injectIntl } from 'react-intl';
 
-import { Button } from '../../components';
+import Button from '../../components/Button';
 import { isDifferentWebsite } from '../../helpers/iris';
 import { handle } from '../../helpers/logging';
 

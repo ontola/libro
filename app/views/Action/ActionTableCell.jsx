@@ -7,7 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { LDLink } from '../../components';
+import LDLink from '../../components/LDLink';
 import { tableCellTopology } from '../../topologies/TableCell';
 import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
 

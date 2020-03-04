@@ -5,11 +5,9 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router';
 
+import Button from '../../components/Button';
+import CardContent from '../../components/Card/CardContent';
 import Form from '../../containers/Form';
-import {
-  Button,
-  CardContent,
-} from '../../components';
 import FormFooterRight from '../../components/Form/FooterRight';
 import ll from '../../ontology/ll';
 import { cardMainTopology } from '../../topologies/Card/CardMain';

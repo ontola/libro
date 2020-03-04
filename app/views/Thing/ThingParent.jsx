@@ -7,7 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { Breadcrumb } from '../../components';
+import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 import { parentTopology } from '../../topologies/Parent';
 
 class ThingParent extends React.PureComponent {

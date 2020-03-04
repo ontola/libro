@@ -3,7 +3,7 @@ import LinkedRenderStore from 'link-lib';
 import { linkedPropType } from 'link-redux';
 import React from 'react';
 
-import { Heading } from '../../../components';
+import Heading from '../../../components/Heading';
 import argu from '../../../ontology/argu';
 import { cardTopology } from '../../../topologies/Card';
 import { cardFixedTopology } from '../../../topologies/Card/CardFixed';

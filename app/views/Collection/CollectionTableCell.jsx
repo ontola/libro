@@ -2,7 +2,7 @@ import as from '@ontologies/as';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import { LDLink } from '../../components';
+import LDLink from '../../components/LDLink';
 import ontola from '../../ontology/ontola';
 import { tableCellTopology } from '../../topologies/TableCell';
 

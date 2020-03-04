@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { CardContent } from '../../components';
+import CardContent from '../../components/Card/CardContent';
 import argu from '../../ontology/argu';
 import Card from '../../topologies/Card';
 import Container from '../../topologies/Container';

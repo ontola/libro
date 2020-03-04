@@ -4,7 +4,8 @@ import { linkedPropType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { DetailImage, Image } from '../../../components';
+import DetailImage from '../../../components/Detail/image';
+import Image from '../../../components/Image';
 import FormFooterImage from '../../../components/Form/FooterImage';
 import NavbarLinkImage from '../../../components/NavbarLink/NavbarLinkImage';
 import ontola from '../../../ontology/ontola';

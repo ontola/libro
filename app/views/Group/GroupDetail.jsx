@@ -4,7 +4,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { Detail } from '../../components';
+import Detail from '../../components/Detail';
 import argu from '../../ontology/argu';
 import { contentDetailsTopology } from '../../topologies/ContentDetails';
 import { detailsBarTopology } from '../../topologies/DetailsBar';

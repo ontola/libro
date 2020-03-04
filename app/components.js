@@ -1,177 +1,196 @@
-import rdf, { createNS } from '@ontologies/core';
-import React from 'react';
+import rdf from '@ontologies/core';
 
-import Spinner from './components/Spinner';
+import CompActionButton from './components/ActionButton/index';
+import CompAttachment from './components/Attachment/index';
+import CompAttachmentPreview from './components/AttachmentPreview/index';
+import CompAttributeListItem from './components/AttributeListItem/index';
+import CompBlurButton from './components/BlurButton/index';
+import CompBreadcrumbsBreadcrumb from './components/Breadcrumbs/Breadcrumb';
+import CompBreadcrumbsBreadcrumbsBar from './components/Breadcrumbs/BreadcrumbsBar';
+import CompButton from './components/Button/index';
+import CompButtonWithFeedback from './components/ButtonWithFeedback/index';
+import CompCardCardActions from './components/Card/CardActions';
+import CompCardCardButton from './components/Card/CardButton';
+import CompCardCardContent from './components/Card/CardContent';
+import CompCardCardDivider from './components/Card/CardDivider';
+import CompCardCardHeader from './components/Card/CardHeader';
+import CompCardCardLink from './components/Card/CardLink';
+import CompCheckboxesInput from './components/CheckboxesInput/index';
+import CompCollapseText from './components/CollapseText/index';
+import CompCollapsible from './components/Collapsible/index';
+import CompCollection from './components/Collection/index';
+import CompColumn from './components/Column/index';
+import CompColumns from './components/Columns/index';
+import CompContainer from './components/Container/ContainerHeader';
+import CompCountBubble from './components/CountBubble/index';
+import CompCover from './components/Cover/index';
+import CompCoverImage from './components/CoverImage/index';
+import CompDetail from './components/Detail/index';
+import CompDetailDate from './components/DetailDate/index';
+import CompDetailImage from './components/Detail/image';
+import CompDetailText from './components/Detail/text';
+import CompDropdownMenu from './components/DropdownMenu/index';
+import CompError from './components/Error/index';
+import CompFieldLabel from './components/FieldLabel/index';
+import CompFormField from './components/FormField/index';
+import CompFormFieldCharCounter from './components/FormField/CharCounter';
+import CompFormFieldFieldHelper from './components/FormField/FieldHelper';
+import CompFormFieldOptionsWrapper from './components/FormField/OptionsWrapper';
+import CompFormFieldWrapper from './components/FormFieldWrapper/index';
+import CompFormFooterImage from './components/Form/FooterImage';
+import CompFormFooterRight from './components/Form/FooterRight';
+import CompFormForm from './components/Form/Form';
+import CompFormFormSection from './components/Form/FormSection';
+import CompGridGridHeader from './components/Grid/GridHeader';
+import CompGridGridItem from './components/Grid/GridItem';
+import CompHeaderWithMenu from './components/HeaderWithMenu/index';
+import CompHeaders from './components/Headers/DutchGovernmentHeader';
+import CompHeading from './components/Heading/index';
+import CompHoverPopup from './components/HoverPopup/HoverPopup';
+import CompImage from './components/Image/index';
+import CompInputFileInput from './components/Input/FileInput';
+import CompInputInput from './components/Input/Input';
+import CompLDLink from './components/LDLink/index';
+import CompLabeledAttribute from './components/LabeledAttribute/index';
+import CompLink from './components/Link/index';
+import CompLinkDuo from './components/LinkDuo/index';
+import CompLinkLinkLabel from './components/Link/LinkLabel';
+import CompLinkedDetailDate from './components/LinkedDetailDate/index';
+import CompLoading from './components/Loading/index';
+import CompMarkdown from './components/Markdown/index';
+import CompMarkdownFixedPreview from './components/MarkdownFixedPreview/index';
+import CompMenuItem from './components/MenuItem/index';
+import CompMenuSectionLabel from './components/MenuSectionLabel/index';
+import CompMetadata from './components/Metadata/index';
+import CompNavBarContent from './components/NavBarContent/index';
+import CompNavbarLink from './components/NavbarLink/index';
+import CompNavbarLinkNavbarLinkCount from './components/NavbarLink/NavbarLinkCount';
+import CompNavbarLinkNavbarLinkIcon from './components/NavbarLink/NavbarLinkIcon';
+import CompNavbarLinkNavbarLinkImage from './components/NavbarLink/NavbarLinkImage';
+import CompNavbarLinkNavbarLinkLabel from './components/NavbarLink/NavbarLinkLabel';
+import CompNavbarLinkNavbarLinkLink from './components/NavbarLink/NavbarLinkLink';
+import CompNavbarLinkNavbarLinkWrapper from './components/NavbarLink/NavbarLinkWrapper';
+import CompNetworkStatusIndicator from './components/NetworkStatusIndicator/index';
+import CompOmniform from './components/Omniform/index';
+import CompOmniformOmniformPreview from './components/Omniform/OmniformPreview';
+import CompOmniformOmniformRemoveButton from './components/Omniform/OmniformRemoveButton';
+import CompOverlayContainer from './components/OverlayContainer/index';
+import CompPageRow from './components/PageRow/index';
+import CompProgress from './components/Progress/index';
+import CompResourceBoundary from './components/ResourceBoundary/index';
+import CompScrollContainer from './components/ScrollContainer/index';
+import CompSearchForm from './components/SearchForm/index';
+import CompSelectInputSelectInputField from './components/SelectInput/SelectInputField';
+import CompSelectInputSelectInputList from './components/SelectInput/SelectInputList';
+import CompSelectInputSelectInputWrapper from './components/SelectInput/SelectInputWrapper';
+import CompSignInFormSignInFormBase from './components/SignInForm/SignInFormBase';
+import CompSignInFormSignInFormCard from './components/SignInForm/SignInFormCard';
+import CompSignInFormSignInFormCardRow from './components/SignInForm/SignInFormCardRow';
+import CompSignInFormSignInFormLink from './components/SignInForm/SignInFormLink';
+import CompSignOutForm from './components/SignOutForm/SignOutFormLink';
+import CompSkipNavigation from './components/SkipNavigation/index';
+import CompSpinner from './components/Spinner/index';
+import CompUnorderedList from './components/UnorderedList/index';
+import CompVerticalScroller from './components/VerticalScroller/index';
+import CompVoteChart from './components/VoteChart/index';
+import CompVoteData from './components/VoteData/index';
+import { component, components } from './componentsList';
 
-export { default as AttributeListItem } from './components/AttributeListItem/index';
-export { default as ActionButton } from './components/ActionButton/index';
-export { default as Attachment } from './components/Attachment/index';
-export { default as Button } from './components/Button/index';
-export { default as BlurButton } from './components/BlurButton/index';
-export { default as Breadcrumb } from './components/Breadcrumbs/Breadcrumb';
-export { default as BreadcrumbsBar } from './components/Breadcrumbs/BreadcrumbsBar';
-export { default as CardContent } from './components/Card/CardContent';
-export { default as CardHeader } from './components/Card/CardHeader';
-export { default as CollapseText } from './components/CollapseText/index';
-export { default as Columns } from './components/Columns/index';
-export { default as CoverImage } from './components/CoverImage/index';
-export { default as Cover } from './components/Cover/index';
-export { default as Detail } from './components/Detail/index';
-export { default as DetailText } from './components/Detail/text';
-export { default as DetailImage } from './components/Detail/image';
-export { default as DetailDate } from './components/DetailDate/index';
-export { default as LinkedDetailDate } from './components/LinkedDetailDate/index';
-export { default as Link } from './components/Link/index';
-export { default as MenuItem } from './components/MenuItem';
-export { default as Error } from './components/Error/index';
-export { FormSection } from './components/Form/index';
-export { default as Heading } from './components/Heading/index';
-export { default as Image } from './components/Image/index';
-export {
-  Input,
-  FileInput,
-} from './components/Input/index';
-export { default as LDLink } from './components/LDLink/index';
-export { default as HoverPopup } from './components/HoverPopup/HoverPopup';
-export { default as LinkDuo } from './components/LinkDuo/index';
-export {
-  default as Loading,
-  LoadingButton,
-  LoadingCard,
-  LoadingCardFixed,
-  LoadingCellRow,
-  LoadingCoverPhoto,
-  LoadingFullResource,
-  LoadingMicroRow,
-  LoadingDetail,
-  LoadingPage,
-  LoadingParent,
-  LoadingRow,
-  LoadingNavbarLink,
-  SuspendedLoader,
-} from './components/Loading/index';
-export { default as Markdown } from './components/Markdown/index';
-export { default as MarkdownFixedPreview } from './components/MarkdownFixedPreview/index';
-export { default as NavBarContent } from './components/NavBarContent/index';
-export { default as Omniform } from './components/Omniform/index';
-export { default as OmniformPreview } from './components/Omniform/OmniformPreview';
-export { default as ResourceBoundary } from './components/ResourceBoundary/index';
-export { default as NavbarLink } from './components/NavbarLink/index';
-export {
-  SignInFormCard,
-  SignInFormCardRow,
-} from './components/SignInForm/index';
-export { default as SkipNavigation } from './components/SkipNavigation/index';
-export { default as Spinner } from './components/Spinner/index';
-export { default as VerticalScroller } from './components/VerticalScroller/index';
-
-export const component = createNS('component:');
-
-const wrap = (LazyComp) => (props) => (
-  React.createElement(
-    React.Suspense,
-    { fallback: React.createElement(Spinner, { loading: true }) },
-    React.createElement(LazyComp, props)
-  )
-);
+export { component, components };
 
 export const componentMap = {
-  [rdf.id(component('ActionButton'))]: wrap(React.lazy(() => import('./components/ActionButton/index'))),
-  [rdf.id(component('Attachment'))]: wrap(React.lazy(() => import('./components/Attachment/index'))),
-  [rdf.id(component('AttachmentPreview'))]: wrap(React.lazy(() => import('./components/AttachmentPreview/index'))),
-  [rdf.id(component('AttributeListItem'))]: wrap(React.lazy(() => import('./components/AttributeListItem/index'))),
-  [rdf.id(component('BlurButton'))]: wrap(React.lazy(() => import('./components/BlurButton/index'))),
-  [rdf.id(component('Breadcrumbs/Breadcrumb'))]: wrap(React.lazy(() => import('./components/Breadcrumbs/Breadcrumb'))),
-  [rdf.id(component('Breadcrumbs/BreadcrumbsBar'))]: wrap(React.lazy(() => import('./components/Breadcrumbs/BreadcrumbsBar'))),
-  [rdf.id(component('Breadcrumbs'))]: wrap(React.lazy(() => import('./components/Breadcrumbs/index'))),
-  [rdf.id(component('Button'))]: wrap(React.lazy(() => import('./components/Button/index'))),
-  [rdf.id(component('ButtonWithFeedback'))]: wrap(React.lazy(() => import('./components/ButtonWithFeedback/index'))),
-  [rdf.id(component('Card/CardActions'))]: wrap(React.lazy(() => import('./components/Card/CardActions'))),
-  [rdf.id(component('Card/CardButton'))]: wrap(React.lazy(() => import('./components/Card/CardButton'))),
-  [rdf.id(component('Card/CardContent'))]: wrap(React.lazy(() => import('./components/Card/CardContent'))),
-  [rdf.id(component('Card/CardDivider'))]: wrap(React.lazy(() => import('./components/Card/CardDivider'))),
-  [rdf.id(component('Card/CardHeader'))]: wrap(React.lazy(() => import('./components/Card/CardHeader'))),
-  [rdf.id(component('Card/CardLink'))]: wrap(React.lazy(() => import('./components/Card/CardLink'))),
-  [rdf.id(component('CheckboxesInput'))]: wrap(React.lazy(() => import('./components/CheckboxesInput/index'))),
-  [rdf.id(component('CollapseText'))]: wrap(React.lazy(() => import('./components/CollapseText/index'))),
-  [rdf.id(component('Collapsible'))]: wrap(React.lazy(() => import('./components/Collapsible/index'))),
-  [rdf.id(component('Collection'))]: wrap(React.lazy(() => import('./components/Collection/index'))),
-  [rdf.id(component('Column'))]: wrap(React.lazy(() => import('./components/Column/index'))),
-  [rdf.id(component('Columns'))]: wrap(React.lazy(() => import('./components/Columns/index'))),
-  [rdf.id(component('Container'))]: wrap(React.lazy(() => import('./components/Container/ContainerHeader'))),
-  [rdf.id(component('CountBubble'))]: wrap(React.lazy(() => import('./components/CountBubble/index'))),
-  [rdf.id(component('Cover'))]: wrap(React.lazy(() => import('./components/Cover/index'))),
-  [rdf.id(component('CoverImage'))]: wrap(React.lazy(() => import('./components/CoverImage/index'))),
-  [rdf.id(component('Detail/image'))]: wrap(React.lazy(() => import('./components/Detail/image'))),
-  [rdf.id(component('Detail'))]: wrap(React.lazy(() => import('./components/Detail/index'))),
-  [rdf.id(component('Detail/text'))]: wrap(React.lazy(() => import('./components/Detail/text'))),
-  [rdf.id(component('DetailDate'))]: wrap(React.lazy(() => import('./components/DetailDate/index'))),
-  [rdf.id(component('DropdownMenu'))]: wrap(React.lazy(() => import('./components/DropdownMenu/index'))),
-  [rdf.id(component('Error'))]: wrap(React.lazy(() => import('./components/Error/index'))),
-  [rdf.id(component('FieldLabel'))]: wrap(React.lazy(() => import('./components/FieldLabel/index'))),
-  [rdf.id(component('Form/FooterImage'))]: wrap(React.lazy(() => import('./components/Form/FooterImage'))),
-  [rdf.id(component('Form/FooterRight'))]: wrap(React.lazy(() => import('./components/Form/FooterRight'))),
-  [rdf.id(component('Form/Form'))]: wrap(React.lazy(() => import('./components/Form/Form'))),
-  [rdf.id(component('Form/FormSection'))]: wrap(React.lazy(() => import('./components/Form/FormSection'))),
-  [rdf.id(component('Form'))]: wrap(React.lazy(() => import('./components/Form/index'))),
-  [rdf.id(component('FormField/CharCounter'))]: wrap(React.lazy(() => import('./components/FormField/CharCounter'))),
-  [rdf.id(component('FormField/FieldHelper'))]: wrap(React.lazy(() => import('./components/FormField/FieldHelper'))),
-  [rdf.id(component('FormField'))]: wrap(React.lazy(() => import('./components/FormField/index'))),
-  [rdf.id(component('FormField/OptionsWrapper'))]: wrap(React.lazy(() => import('./components/FormField/OptionsWrapper'))),
-  [rdf.id(component('FormFieldWrapper'))]: wrap(React.lazy(() => import('./components/FormFieldWrapper/index'))),
-  [rdf.id(component('Grid/GridHeader'))]: wrap(React.lazy(() => import('./components/Grid/GridHeader'))),
-  [rdf.id(component('Grid/GridItem'))]: wrap(React.lazy(() => import('./components/Grid/GridItem'))),
-  [rdf.id(component('Headers'))]: wrap(React.lazy(() => import('./components/Headers/DutchGovernmentHeader'))),
-  [rdf.id(component('HeaderWithMenu'))]: wrap(React.lazy(() => import('./components/HeaderWithMenu/index'))),
-  [rdf.id(component('Heading'))]: wrap(React.lazy(() => import('./components/Heading/index'))),
-  [rdf.id(component('HoverPopup'))]: wrap(React.lazy(() => import('./components/HoverPopup/HoverPopup'))),
-  [rdf.id(component('Image'))]: wrap(React.lazy(() => import('./components/Image/index'))),
-  [rdf.id(component('Input/FileInput'))]: wrap(React.lazy(() => import('./components/Input/FileInput'))),
-  [rdf.id(component('Input/Input'))]: wrap(React.lazy(() => import('./components/Input/Input'))),
-  [rdf.id(component('LabeledAttribute'))]: wrap(React.lazy(() => import('./components/LabeledAttribute/index'))),
-  [rdf.id(component('LDLink'))]: wrap(React.lazy(() => import('./components/LDLink/index'))),
-  [rdf.id(component('Link'))]: wrap(React.lazy(() => import('./components/Link/index'))),
-  [rdf.id(component('Link/LinkLabel'))]: wrap(React.lazy(() => import('./components/Link/LinkLabel'))),
-  [rdf.id(component('LinkDuo'))]: wrap(React.lazy(() => import('./components/LinkDuo/index'))),
-  [rdf.id(component('LinkedDetailDate'))]: wrap(React.lazy(() => import('./components/LinkedDetailDate/index'))),
-  [rdf.id(component('Loading'))]: wrap(React.lazy(() => import('./components/Loading/index'))),
-  [rdf.id(component('Markdown'))]: wrap(React.lazy(() => import('./components/Markdown/index'))),
-  [rdf.id(component('MarkdownFixedPreview'))]: wrap(React.lazy(() => import('./components/MarkdownFixedPreview/index'))),
-  [rdf.id(component('MenuItem'))]: wrap(React.lazy(() => import('./components/MenuItem/index'))),
-  [rdf.id(component('MenuSectionLabel'))]: wrap(React.lazy(() => import('./components/MenuSectionLabel/index'))),
-  [rdf.id(component('Metadata'))]: wrap(React.lazy(() => import('./components/Metadata/index'))),
-  [rdf.id(component('NavBarContent'))]: wrap(React.lazy(() => import('./components/NavBarContent/index'))),
-  [rdf.id(component('NavbarLink'))]: wrap(React.lazy(() => import('./components/NavbarLink/index'))),
-  [rdf.id(component('NavbarLink/NavbarLinkCount'))]: wrap(React.lazy(() => import('./components/NavbarLink/NavbarLinkCount'))),
-  [rdf.id(component('NavbarLink/NavbarLinkIcon'))]: wrap(React.lazy(() => import('./components/NavbarLink/NavbarLinkIcon'))),
-  [rdf.id(component('NavbarLink/NavbarLinkImage'))]: wrap(React.lazy(() => import('./components/NavbarLink/NavbarLinkImage'))),
-  [rdf.id(component('NavbarLink/NavbarLinkLabel'))]: wrap(React.lazy(() => import('./components/NavbarLink/NavbarLinkLabel'))),
-  [rdf.id(component('NavbarLink/NavbarLinkLink'))]: wrap(React.lazy(() => import('./components/NavbarLink/NavbarLinkLink'))),
-  [rdf.id(component('NavbarLink/NavbarLinkWrapper'))]: wrap(React.lazy(() => import('./components/NavbarLink/NavbarLinkWrapper'))),
-  [rdf.id(component('NetworkStatusIndicator'))]: wrap(React.lazy(() => import('./components/NetworkStatusIndicator/index'))),
-  [rdf.id(component('Omniform'))]: wrap(React.lazy(() => import('./components/Omniform/index'))),
-  [rdf.id(component('Omniform/OmniformPreview'))]: wrap(React.lazy(() => import('./components/Omniform/OmniformPreview'))),
-  [rdf.id(component('Omniform/OmniformRemoveButton'))]: wrap(React.lazy(() => import('./components/Omniform/OmniformRemoveButton'))),
-  [rdf.id(component('OverlayContainer'))]: wrap(React.lazy(() => import('./components/OverlayContainer/index'))),
-  [rdf.id(component('PageRow'))]: wrap(React.lazy(() => import('./components/PageRow/index'))),
-  [rdf.id(component('Progress'))]: wrap(React.lazy(() => import('./components/Progress/index'))),
-  [rdf.id(component('ResourceBoundary'))]: wrap(React.lazy(() => import('./components/ResourceBoundary/index'))),
-  [rdf.id(component('ScrollContainer'))]: wrap(React.lazy(() => import('./components/ScrollContainer/index'))),
-  [rdf.id(component('SearchForm'))]: wrap(React.lazy(() => import('./components/SearchForm/index'))),
-  [rdf.id(component('SelectInput'))]: wrap(React.lazy(() => import('./components/SelectInput/index'))),
-  [rdf.id(component('SelectInput/SelectInputField'))]: wrap(React.lazy(() => import('./components/SelectInput/SelectInputField'))),
-  [rdf.id(component('SelectInput/SelectInputList'))]: wrap(React.lazy(() => import('./components/SelectInput/SelectInputList'))),
-  [rdf.id(component('SelectInput/SelectInputWrapper'))]: wrap(React.lazy(() => import('./components/SelectInput/SelectInputWrapper'))),
-  [rdf.id(component('SignInForm/SignInFormBase'))]: wrap(React.lazy(() => import('./components/SignInForm/SignInFormBase'))),
-  [rdf.id(component('SignInForm/SignInFormCard'))]: wrap(React.lazy(() => import('./components/SignInForm/SignInFormCard'))),
-  [rdf.id(component('SignInForm/SignInFormCardRow'))]: wrap(React.lazy(() => import('./components/SignInForm/SignInFormCardRow'))),
-  [rdf.id(component('SignInForm/SignInFormHelpers'))]: wrap(React.lazy(() => import('./components/SignInForm/SignInFormHelpers'))),
-  [rdf.id(component('SignInForm/SignInFormLink'))]: wrap(React.lazy(() => import('./components/SignInForm/SignInFormLink'))),
-  [rdf.id(component('SignOutForm'))]: wrap(React.lazy(() => import('./components/SignOutForm/SignOutFormLink'))),
-  [rdf.id(component('SkipNavigation'))]: wrap(React.lazy(() => import('./components/SkipNavigation/index'))),
-  [rdf.id(component('Spinner'))]: wrap(React.lazy(() => import('./components/Spinner/index'))),
-  [rdf.id(component('UnorderedList'))]: wrap(React.lazy(() => import('./components/UnorderedList/index'))),
-  [rdf.id(component('VerticalScroller'))]: wrap(React.lazy(() => import('./components/VerticalScroller/index'))),
-  [rdf.id(component('VoteChart'))]: wrap(React.lazy(() => import('./components/VoteChart/index'))),
-  [rdf.id(component('VoteData'))]: wrap(React.lazy(() => import('./components/VoteData/index'))),
+  [rdf.id(components.ActionButton)]: CompActionButton,
+  [rdf.id(components.Attachment)]: CompAttachment,
+  [rdf.id(components.AttachmentPreview)]: CompAttachmentPreview,
+  [rdf.id(components.AttributeListItem)]: CompAttributeListItem,
+  [rdf.id(components.BlurButton)]: CompBlurButton,
+  [rdf.id(components.BreadcrumbsBreadcrumb)]: CompBreadcrumbsBreadcrumb,
+  [rdf.id(components.BreadcrumbsBreadcrumbsBar)]: CompBreadcrumbsBreadcrumbsBar,
+  [rdf.id(components.Button)]: CompButton,
+  [rdf.id(components.ButtonWithFeedback)]: CompButtonWithFeedback,
+  [rdf.id(components.CardCardActions)]: CompCardCardActions,
+  [rdf.id(components.CardCardButton)]: CompCardCardButton,
+  [rdf.id(components.CardCardContent)]: CompCardCardContent,
+  [rdf.id(components.CardCardDivider)]: CompCardCardDivider,
+  [rdf.id(components.CardCardHeader)]: CompCardCardHeader,
+  [rdf.id(components.CardCardLink)]: CompCardCardLink,
+  [rdf.id(components.CheckboxesInput)]: CompCheckboxesInput,
+  [rdf.id(components.CollapseText)]: CompCollapseText,
+  [rdf.id(components.Collapsible)]: CompCollapsible,
+  [rdf.id(components.Collection)]: CompCollection,
+  [rdf.id(components.Column)]: CompColumn,
+  [rdf.id(components.Columns)]: CompColumns,
+  [rdf.id(components.Container)]: CompContainer,
+  [rdf.id(components.CountBubble)]: CompCountBubble,
+  [rdf.id(components.Cover)]: CompCover,
+  [rdf.id(components.CoverImage)]: CompCoverImage,
+  [rdf.id(components.Detail)]: CompDetail,
+  [rdf.id(components.DetailDate)]: CompDetailDate,
+  [rdf.id(components.DetailImage)]: CompDetailImage,
+  [rdf.id(components.DetailText)]: CompDetailText,
+  [rdf.id(components.DropdownMenu)]: CompDropdownMenu,
+  [rdf.id(components.Error)]: CompError,
+  [rdf.id(components.FieldLabel)]: CompFieldLabel,
+  [rdf.id(components.FormField)]: CompFormField,
+  [rdf.id(components.FormFieldCharCounter)]: CompFormFieldCharCounter,
+  [rdf.id(components.FormFieldFieldHelper)]: CompFormFieldFieldHelper,
+  [rdf.id(components.FormFieldOptionsWrapper)]: CompFormFieldOptionsWrapper,
+  [rdf.id(components.FormFieldWrapper)]: CompFormFieldWrapper,
+  [rdf.id(components.FormFooterImage)]: CompFormFooterImage,
+  [rdf.id(components.FormFooterRight)]: CompFormFooterRight,
+  [rdf.id(components.FormForm)]: CompFormForm,
+  [rdf.id(components.FormFormSection)]: CompFormFormSection,
+  [rdf.id(components.GridGridHeader)]: CompGridGridHeader,
+  [rdf.id(components.GridGridItem)]: CompGridGridItem,
+  [rdf.id(components.HeaderWithMenu)]: CompHeaderWithMenu,
+  [rdf.id(components.Headers)]: CompHeaders,
+  [rdf.id(components.Heading)]: CompHeading,
+  [rdf.id(components.HoverPopup)]: CompHoverPopup,
+  [rdf.id(components.Image)]: CompImage,
+  [rdf.id(components.InputFileInput)]: CompInputFileInput,
+  [rdf.id(components.InputInput)]: CompInputInput,
+  [rdf.id(components.LDLink)]: CompLDLink,
+  [rdf.id(components.LabeledAttribute)]: CompLabeledAttribute,
+  [rdf.id(components.Link)]: CompLink,
+  [rdf.id(components.LinkDuo)]: CompLinkDuo,
+  [rdf.id(components.LinkLinkLabel)]: CompLinkLinkLabel,
+  [rdf.id(components.LinkedDetailDate)]: CompLinkedDetailDate,
+  [rdf.id(components.Loading)]: CompLoading,
+  [rdf.id(components.Markdown)]: CompMarkdown,
+  [rdf.id(components.MarkdownFixedPreview)]: CompMarkdownFixedPreview,
+  [rdf.id(components.MenuItem)]: CompMenuItem,
+  [rdf.id(components.MenuSectionLabel)]: CompMenuSectionLabel,
+  [rdf.id(components.Metadata)]: CompMetadata,
+  [rdf.id(components.NavBarContent)]: CompNavBarContent,
+  [rdf.id(components.NavbarLink)]: CompNavbarLink,
+  [rdf.id(components.NavbarLinkNavbarLinkCount)]: CompNavbarLinkNavbarLinkCount,
+  [rdf.id(components.NavbarLinkNavbarLinkIcon)]: CompNavbarLinkNavbarLinkIcon,
+  [rdf.id(components.NavbarLinkNavbarLinkImage)]: CompNavbarLinkNavbarLinkImage,
+  [rdf.id(components.NavbarLinkNavbarLinkLabel)]: CompNavbarLinkNavbarLinkLabel,
+  [rdf.id(components.NavbarLinkNavbarLinkLink)]: CompNavbarLinkNavbarLinkLink,
+  [rdf.id(components.NavbarLinkNavbarLinkWrapper)]: CompNavbarLinkNavbarLinkWrapper,
+  [rdf.id(components.NetworkStatusIndicator)]: CompNetworkStatusIndicator,
+  [rdf.id(components.Omniform)]: CompOmniform,
+  [rdf.id(components.OmniformOmniformPreview)]: CompOmniformOmniformPreview,
+  [rdf.id(components.OmniformOmniformRemoveButton)]: CompOmniformOmniformRemoveButton,
+  [rdf.id(components.OverlayContainer)]: CompOverlayContainer,
+  [rdf.id(components.PageRow)]: CompPageRow,
+  [rdf.id(components.Progress)]: CompProgress,
+  [rdf.id(components.ResourceBoundary)]: CompResourceBoundary,
+  [rdf.id(components.ScrollContainer)]: CompScrollContainer,
+  [rdf.id(components.SearchForm)]: CompSearchForm,
+  [rdf.id(components.SelectInputSelectInputField)]: CompSelectInputSelectInputField,
+  [rdf.id(components.SelectInputSelectInputList)]: CompSelectInputSelectInputList,
+  [rdf.id(components.SelectInputSelectInputWrapper)]: CompSelectInputSelectInputWrapper,
+  [rdf.id(components.SignInFormSignInFormBase)]: CompSignInFormSignInFormBase,
+  [rdf.id(components.SignInFormSignInFormCard)]: CompSignInFormSignInFormCard,
+  [rdf.id(components.SignInFormSignInFormCardRow)]: CompSignInFormSignInFormCardRow,
+  [rdf.id(components.SignInFormSignInFormLink)]: CompSignInFormSignInFormLink,
+  [rdf.id(components.SignOutForm)]: CompSignOutForm,
+  [rdf.id(components.SkipNavigation)]: CompSkipNavigation,
+  [rdf.id(components.Spinner)]: CompSpinner,
+  [rdf.id(components.UnorderedList)]: CompUnorderedList,
+  [rdf.id(components.VerticalScroller)]: CompVerticalScroller,
+  [rdf.id(components.VoteChart)]: CompVoteChart,
+  [rdf.id(components.VoteData)]: CompVoteData,
 };

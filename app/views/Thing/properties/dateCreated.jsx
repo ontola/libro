@@ -3,7 +3,7 @@ import LinkedRenderStore from 'link-lib';
 import { linkedPropType } from 'link-redux';
 import React from 'react';
 
-import { DetailDate } from '../../../components';
+import DetailDate from '../../../components/DetailDate';
 import { allTopologies } from '../../../topologies';
 
 const propTypes = {

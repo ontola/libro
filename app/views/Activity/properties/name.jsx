@@ -11,7 +11,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { DetailText, SuspendedLoader } from '../../../components';
+import DetailText from '../../../components/Detail/text';
+import { SuspendedLoader } from '../../../components/Loading';
 import { allTopologies } from '../../../topologies';
 
 const uriMatch = /{{[\w:/#.?=]+}}/g;

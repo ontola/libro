@@ -2,7 +2,7 @@ import schema from '@ontologies/schema';
 import { linkedPropType, register } from 'link-redux';
 import React from 'react';
 
-import { Heading } from '../../../components';
+import Heading from '../../../components/Heading';
 import { gridTopology } from '../../../topologies/Grid';
 
 const GridActionName = ({ linkedProp }) => (

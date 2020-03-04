@@ -8,7 +8,7 @@ import {
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button } from '../../components';
+import Button from '../../components/Button';
 import argu from '../../ontology/argu';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';

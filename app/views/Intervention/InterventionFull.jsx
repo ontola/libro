@@ -11,12 +11,10 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {
-  AttributeListItem,
-  CardContent,
-  Heading,
-  LinkedDetailDate,
-} from '../../components';
+import AttributeListItem from '../../components/AttributeListItem';
+import CardContent from '../../components/Card/CardContent';
+import Heading from '../../components/Heading';
+import LinkedDetailDate from '../../components/LinkedDetailDate';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import meeting from '../../ontology/meeting';

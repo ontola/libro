@@ -6,7 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { ResourceBoundary } from '../../components';
+import ResourceBoundary from '../../components/ResourceBoundary';
 import { tryParseInt } from '../../helpers/numbers';
 import ontola from '../../ontology/ontola';
 import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';

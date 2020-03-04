@@ -9,7 +9,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { LDLink } from '../../components';
+import LDLink from '../../components/LDLink';
 import NavbarLinkIcon from '../../components/NavbarLink/NavbarLinkIcon';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';

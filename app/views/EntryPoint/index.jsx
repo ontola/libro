@@ -4,7 +4,7 @@ import { linkType, register } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { Button } from '../../components';
+import Button from '../../components/Button';
 import ButtonWithFeedback from '../../components/ButtonWithFeedback';
 import { countInParentheses } from '../../helpers/numbers';
 import { allTopologiesExcept } from '../../topologies';

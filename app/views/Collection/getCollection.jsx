@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { ResourceBoundary } from '../../components';
+import ResourceBoundary from '../../components/ResourceBoundary';
 import { listToArr } from '../../helpers/data';
 import { tryParseInt } from '../../helpers/numbers';
 import ontola from '../../ontology/ontola';

@@ -3,7 +3,7 @@ import schema from '@ontologies/schema';
 import { linkType, register } from 'link-redux';
 import React from 'react';
 
-import { Detail } from '../../components';
+import Detail from '../../components/Detail';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 import TypeDetail from '../Thing/properties/type';
 

@@ -7,7 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { CardContent } from '../../components';
+import CardContent from '../../components/Card/CardContent';
 import { hightlightType } from '../../containers/Highlight';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';

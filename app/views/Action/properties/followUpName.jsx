@@ -3,7 +3,7 @@ import { linkedPropType, register } from 'link-redux';
 import React from 'react';
 import emoji from 'react-easy-emoji';
 
-import { Heading } from '../../../components';
+import Heading from '../../../components/Heading';
 import ontola from '../../../ontology/ontola';
 import { cardMainTopology } from '../../../topologies/Card/CardMain';
 

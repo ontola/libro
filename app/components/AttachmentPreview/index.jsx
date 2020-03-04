@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import parser from 'uri-template';
 
-import './AttachmentPreview.scss';
-import { Image } from '../../components';
+import Image from '../Image/index';
 import { entityIsLoaded } from '../../helpers/data';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
+
+import './AttachmentPreview.scss';
 
 const AttachmentPreview = ({
   caption,

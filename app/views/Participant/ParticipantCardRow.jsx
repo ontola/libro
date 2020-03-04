@@ -6,7 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { CardContent } from '../../components';
+import CardContent from '../../components/Card/CardContent';
 import teamGL from '../../ontology/teamGL';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
 import ContentDetails from '../../topologies/ContentDetails';

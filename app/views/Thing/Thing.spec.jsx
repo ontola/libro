@@ -8,7 +8,6 @@ import React from 'react';
 import {
   cleanup,
   render,
-  waitForElementToBeRemoved,
 } from '../../test-utils';
 import BreadcrumbsBar from '../../components/Breadcrumbs/BreadcrumbsBar';
 import argu from '../../ontology/argu';
@@ -71,11 +70,9 @@ describe('Thing', () => {
 
   it('renders as Page', async () => {
     const {
-      queryAllByTestId,
       queryByText,
       queryByTestId,
     } = renderAs(Page);
-    await waitForElementToBeRemoved(() => queryAllByTestId('spinner'));
 
     expect(queryByText(RESOURCE_NAME)).toBeVisible();
     expect(queryByText(RESOURCE_TEXT)).toBeVisible();

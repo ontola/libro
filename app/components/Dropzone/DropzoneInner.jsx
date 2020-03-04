@@ -11,7 +11,7 @@ import React, { useState } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage } from 'react-intl';
 
-import { CoverImage } from '../../components';
+import CoverImage from '../CoverImage';
 import CoverImageSlider from '../CoverImageSlider';
 import ontola from '../../ontology/ontola';
 

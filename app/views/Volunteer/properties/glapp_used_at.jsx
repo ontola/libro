@@ -3,7 +3,7 @@ import React from 'react';
 import emoji from 'react-easy-emoji';
 import { defineMessages, useIntl } from 'react-intl';
 
-import { Detail } from '../../../components';
+import Detail from '../../../components/Detail';
 import teamGL from '../../../ontology/teamGL';
 import { allTopologies } from '../../../topologies';
 

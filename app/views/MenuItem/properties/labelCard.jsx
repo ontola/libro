@@ -2,7 +2,7 @@ import schema from '@ontologies/schema';
 import { linkType, register } from 'link-redux';
 import React from 'react';
 
-import { Image } from '../../../components';
+import Image from '../../../components/Image';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { cardFloatTopology } from '../../../topologies/Card/CardFloat';

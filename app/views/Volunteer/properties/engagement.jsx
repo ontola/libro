@@ -6,9 +6,9 @@ import {
   useIntl,
 } from 'react-intl';
 
+import Detail from '../../../components/Detail';
 import teamGL from '../../../ontology/teamGL';
 import { allTopologies } from '../../../topologies';
-import { Detail } from '../../../components';
 
 const propTypes = {
   linkedProp: linkedPropType,

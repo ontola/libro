@@ -3,12 +3,12 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import MediaQuery from 'react-responsive';
 
+import NavbarLink from '../../components/NavbarLink';
 import { mediaQueries } from '../../components/shared/config';
 import { values } from '../../helpers/ssr';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import { navbarTopology } from '../../topologies/Navbar';
-import { NavbarLink } from '../../components';
 
 const SearchResultNavbar = () => {
   const label = (

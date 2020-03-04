@@ -7,7 +7,7 @@ import {
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import { LDLink } from '../../components';
+import LDLink from '../../components/LDLink';
 import { allTopologiesExcept } from '../../topologies';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';

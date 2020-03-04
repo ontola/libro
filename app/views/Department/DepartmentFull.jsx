@@ -4,7 +4,8 @@ import { Property, register } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { CardContent, LinkedDetailDate } from '../../components';
+import CardContent from '../../components/Card/CardContent';
+import LinkedDetailDate from '../../components/LinkedDetailDate';
 import argu from '../../ontology/argu';
 import teamGL from '../../ontology/teamGL';
 import CardMain from '../../topologies/Card/CardMain';

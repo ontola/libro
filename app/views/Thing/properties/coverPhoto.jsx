@@ -10,7 +10,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { CoverImage } from '../../../components';
+import CoverImage from '../../../components/CoverImage';
 import { LoadingCoverPhoto } from '../../../components/Loading';
 import ontola from '../../../ontology/ontola';
 import { cardTopology } from '../../../topologies/Card';

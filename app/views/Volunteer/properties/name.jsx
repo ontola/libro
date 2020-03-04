@@ -3,7 +3,8 @@ import LinkedRenderStore from 'link-lib';
 import { linkedPropType } from 'link-redux';
 import React from 'react';
 
-import { Heading, LDLink } from '../../../components';
+import Heading from '../../../components/Heading';
+import LDLink from '../../../components/LDLink';
 import teamGL from '../../../ontology/teamGL';
 import { allTopologiesExcept } from '../../../topologies';
 import { pageTopology } from '../../../topologies/Page';

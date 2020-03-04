@@ -7,7 +7,7 @@ import {
   injectIntl,
 } from 'react-intl';
 
-import { BlurButton } from '../../components';
+import BlurButton from '../../components/BlurButton';
 import NavbarLinkIcon from '../../components/NavbarLink/NavbarLinkIcon';
 import NavbarLinkLabel from '../../components/NavbarLink/NavbarLinkLabel';
 

@@ -10,7 +10,8 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
-import { Button, OmniformPreview } from '../../../../components';
+import Button from '../../../../components/Button';
+import OmniformPreview from '../../../../components/Omniform/OmniformPreview';
 import { entityIsLoaded } from '../../../../helpers/data';
 import app from '../../../../ontology/app';
 import link from '../../../../ontology/link';

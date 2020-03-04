@@ -11,7 +11,7 @@ import {
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { ResourceBoundary } from '../../components';
+import ResourceBoundary from '../../components/ResourceBoundary';
 import ontola from '../../ontology/ontola';
 import { radioGroupTopology } from '../../topologies/RadioGroup';
 

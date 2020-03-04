@@ -6,7 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { ResourceBoundary } from '../../components';
+import ResourceBoundary from '../../components/ResourceBoundary';
 import app from '../../ontology/app';
 import ontola from '../../ontology/ontola';
 import { formFooterTopology } from '../../topologies/FormFooter/Footer';

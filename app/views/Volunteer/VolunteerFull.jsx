@@ -7,13 +7,13 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import CardContent from '../../components/Card/CardContent';
 import ontola from '../../ontology/ontola';
 import org from '../../ontology/org';
 import teamGL from '../../ontology/teamGL';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import Container from '../../topologies/Container';
 import CardMain from '../../topologies/Card/CardMain';
-import { CardContent } from '../../components';
 import ContentDetails from '../../topologies/ContentDetails';
 import HeaderWithMenu from '../../components/HeaderWithMenu';
 

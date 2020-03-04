@@ -6,7 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { BreadcrumbsBar } from '../../../components';
+import { BreadcrumbsBar } from '../../../components/Breadcrumbs';
 import { containerTopology } from '../../../topologies/Container';
 
 const IsPartOfContainer = ({ linkedProp }) => (

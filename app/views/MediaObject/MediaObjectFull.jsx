@@ -10,12 +10,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import {
-  Heading,
-  Link,
-} from '../../components';
+import Heading from '../../components/Heading';
 import Image from '../../components/Image';
 import LDLink from '../../components/LDLink';
+import Link from '../../components/Link';
 import {
   downloadUrl,
   downloadableAttachment,

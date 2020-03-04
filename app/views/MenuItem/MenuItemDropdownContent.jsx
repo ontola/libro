@@ -12,7 +12,7 @@ import {
 import * as PropTypes from 'prop-types';
 import React from 'react';
 
-import { MenuItem } from '../../components';
+import MenuItem from '../../components/MenuItem';
 import ontola from '../../ontology/ontola';
 import { appMenuTopology } from '../../topologies/AppMenu';
 import { menuTopology } from '../../topologies/Menu';

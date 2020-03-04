@@ -21,13 +21,13 @@ import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
 import { containerTopology } from '../../topologies/Container';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
-import { component } from '../../components';
+import { components } from '../../components';
 
 const ThingFull = ({ partOf }) => {
   const { p, c } = useViewBuilderToolkit();
 
   return (
-    c(component('ResourceBoundary'), [
+    c(components.ResourceBoundary, [
       c(containerTopology, [
         partOf && p(schema.isPartOf),
         p(argu.trashedAt),
@@ -37,7 +37,7 @@ const ThingFull = ({ partOf }) => {
           c(detailsBarTopology, { right: defaultMenus }, [
             p(schema.creator),
             p(rdfx.type),
-            c(component('LinkedDetailDate')),
+            c(components.LinkedDetailDate),
             p(argu.pinnedAt),
             p(argu.expiresAt),
             p(argu.followsCount),
@@ -45,7 +45,7 @@ const ThingFull = ({ partOf }) => {
             p(schema.location),
             p(argu.grantedGroups),
           ]),
-          c(component('Card/CardContent'), { noSpacing: true }, [
+          c(components.CardCardContent, { noSpacing: true }, [
             p(app.title),
             p(app.thumbnail),
             p(app.contents),

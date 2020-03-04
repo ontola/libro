@@ -11,7 +11,8 @@ import {
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { Detail, LDLink } from '../../../components';
+import Detail from '../../../components/Detail';
+import LDLink from '../../../components/LDLink';
 import ontola from '../../../ontology/ontola';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
 

@@ -9,11 +9,9 @@ import { link, linkType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {
-  ActionButton,
-  Heading,
-  LDLink,
-} from '../../../components';
+import ActionButton from '../../../components/ActionButton';
+import Heading from '../../../components/Heading';
+import LDLink from '../../../components/LDLink';
 import { actionsBarTopology } from '../../../topologies/ActionsBar';
 import { attributeListTopology } from '../../../topologies/AttributeList';
 import { cardTopology } from '../../../topologies/Card';

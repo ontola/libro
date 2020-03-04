@@ -1,4 +1,3 @@
-import { Namespace } from '@ontologies/core';
+export { component, components } from './componentsList';
 
-export const component: Namespace;
 export const componentMap: { [k: number]: () => any };

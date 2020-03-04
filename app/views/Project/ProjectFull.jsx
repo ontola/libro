@@ -10,10 +10,8 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {
-  CardContent,
-  LinkedDetailDate,
-} from '../../components';
+import CardContent from '../../components/Card/CardContent';
+import LinkedDetailDate from '../../components/LinkedDetailDate';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
 import meeting from '../../ontology/meeting';

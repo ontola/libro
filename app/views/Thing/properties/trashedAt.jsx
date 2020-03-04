@@ -9,7 +9,7 @@ import {
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { CardContent } from '../../../components';
+import CardContent from '../../../components/Card/CardContent';
 import argu from '../../../ontology/argu';
 import Card from '../../../topologies/Card';
 import { containerTopology } from '../../../topologies/Container';

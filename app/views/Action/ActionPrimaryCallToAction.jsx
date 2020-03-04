@@ -6,7 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { Button } from '../../components';
+import Button from '../../components/Button';
 import { primaryCallToActionTopology } from '../../topologies/PrimaryCallToAction';
 
 const ActionPrimaryCallToAction = ({ name, target }) => (

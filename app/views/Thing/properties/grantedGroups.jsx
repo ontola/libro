@@ -13,11 +13,11 @@ import {
   useIntl,
 } from 'react-intl';
 
+import Detail from '../../../components/Detail';
 import app from '../../../ontology/app';
 import argu from '../../../ontology/argu';
 import { contentDetailsTopology } from '../../../topologies/ContentDetails';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
-import { Detail } from '../../../components';
 import { listToArr } from '../../../helpers/data';
 
 const publicGroupIRI = rdf.id(app.ns('g/-1'));

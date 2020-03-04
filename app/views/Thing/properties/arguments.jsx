@@ -10,8 +10,8 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { Columns } from '../../../components';
 import Collection from '../../../components/Collection';
+import Columns from '../../../components/Columns';
 import Margin from '../../Margin/Margin';
 import argu from '../../../ontology/argu';
 import { allTopologiesExcept } from '../../../topologies';

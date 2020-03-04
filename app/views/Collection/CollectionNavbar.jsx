@@ -6,7 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { NavbarLink } from '../../components';
+import NavbarLink from '../../components/NavbarLink';
 import { tryParseInt } from '../../helpers/numbers';
 import argu from '../../ontology/argu';
 import { navbarTopology } from '../../topologies/Navbar';

@@ -7,7 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { CardContent } from '../../components';
+import CardContent from '../../components/Card/CardContent';
 import dbo from '../../ontology/dbo';
 import rivm from '../../ontology/rivm';
 import CardMain from '../../topologies/Card/CardMain';

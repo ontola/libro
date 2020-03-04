@@ -14,11 +14,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import {
-  CardHeader,
-  ResourceBoundary,
-} from '../../../components';
+import CardHeader from '../../../components/Card/CardHeader';
 import ContainerHeader from '../../../components/Container/ContainerHeader';
+import ResourceBoundary from '../../../components/ResourceBoundary';
 import { entityIsLoaded, sort } from '../../../helpers/data';
 import { buildRegister } from '../../../helpers/buildRegister';
 import ontola from '../../../ontology/ontola';

@@ -3,7 +3,7 @@ import HttpStatus from 'http-status-codes';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import { CardContent } from '../../components';
+import CardContent from '../../components/Card/CardContent';
 import { handleErrorStatuses } from '../../components/Error';
 import { LoadingOpinion } from '../../components/Loading';
 import app from '../../ontology/app';

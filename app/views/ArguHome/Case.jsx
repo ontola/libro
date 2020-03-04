@@ -7,7 +7,7 @@ import {
 import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
-import { CardContent } from '../../components';
+import CardContent from '../../components/Card/CardContent';
 import Heading from '../../components/Heading';
 import argu from '../../ontology/argu';
 import { allTopologies } from '../../topologies';

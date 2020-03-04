@@ -1,10 +1,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-import {
-  CardContent,
-  Heading,
-} from '../../components';
+import CardContent from '../../components/Card/CardContent';
+import Heading from '../../components/Heading';
 import Card from '../../topologies/Card';
 import Container from '../../topologies/Container';
 

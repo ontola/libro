@@ -9,7 +9,7 @@ import {
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { ResourceBoundary } from '../../components';
+import ResourceBoundary from '../../components/ResourceBoundary';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import Menu from '../../topologies/Menu';

@@ -5,10 +5,10 @@ import {
   useIntl,
 } from 'react-intl';
 
+import Detail from '../../../components/Detail';
 import teamGL from '../../../ontology/teamGL';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
 import { contentDetailsTopology } from '../../../topologies/ContentDetails';
-import { Detail } from '../../../components';
 
 const messages = defineMessages({
   volunteerCount: {

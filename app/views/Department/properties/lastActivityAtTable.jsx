@@ -1,7 +1,7 @@
 import { labelType, register } from 'link-redux';
 import React from 'react';
 
-import { LinkedDetailDate } from '../../../components';
+import LinkedDetailDate from '../../../components/LinkedDetailDate';
 import argu from '../../../ontology/argu';
 import teamGL from '../../../ontology/teamGL';
 import TableCell from '../../../topologies/TableCell';

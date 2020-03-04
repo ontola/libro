@@ -9,9 +9,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { LoadingCardFixed } from '../../../components';
 import CardContent from '../../../components/Card/CardContent';
 import GridItem from '../../../components/Grid/GridItem';
+import { LoadingCardFixed } from '../../../components/Loading';
 import { tryParseInt } from '../../../helpers/numbers';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';

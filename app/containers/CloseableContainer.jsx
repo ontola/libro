@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { closeCloseable, initializeCloseable } from '../state/closeable/actions';
 import { getCloseableOpened } from '../state/closeable/selectors';
-import { Button } from '../components';
+import Button from '../components/Button';
 
 const propTypes = {
   children: PropTypes.node.isRequired,

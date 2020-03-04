@@ -7,7 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { AttributeListItem } from '../../components';
+import AttributeListItem from '../../components/AttributeListItem';
 import CardContent from '../../components/Card/CardContent';
 import LDLink from '../../components/LDLink';
 import { connectHighlighting, hightlightType } from '../../containers/Highlight';

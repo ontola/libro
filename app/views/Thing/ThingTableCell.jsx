@@ -6,10 +6,8 @@ import { register } from 'link-redux';
 import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
-import {
-  Detail,
-  LDLink,
-} from '../../components';
+import Detail from '../../components/Detail/index';
+import LDLink from '../../components/LDLink';
 import { tableCellTopology } from '../../topologies/TableCell';
 
 const messages = defineMessages({

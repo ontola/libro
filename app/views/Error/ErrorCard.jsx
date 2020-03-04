@@ -4,7 +4,8 @@ import FontAwesome from 'react-fontawesome';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { withRouter } from 'react-router-dom';
 
-import { CardContent, Heading } from '../../components';
+import CardContent from '../../components/Card/CardContent';
+import Heading from '../../components/Heading';
 import Button from '../../components/Button';
 import { SignInFormLink } from '../../components/SignInForm';
 import { useCurrentActor } from '../../hooks/useCurrentActor';

@@ -8,7 +8,7 @@ import {
 } from 'link-redux';
 
 import { connectHighlighting, hightlightType } from '../../containers/Highlight';
-import { CardContent } from '../../components';
+import CardContent from '../../components/Card/CardContent';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
 import ontola from '../../ontology/ontola';

@@ -8,7 +8,8 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { Heading, Link } from '../../../components';
+import Link from '../../../components/Link';
+import Heading from '../../../components/Heading';
 import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
 import { CollectionTypes } from '../types';

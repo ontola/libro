@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import MediaQuery from 'react-responsive';
 
-import { Button } from '../../components';
+import Button from '../../components/Button';
 import { mediaQueries } from '../../components/shared/config';
 import { normalizeFontAwesomeIRI } from '../../helpers/iris';
 import { values } from '../../helpers/ssr';

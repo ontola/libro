@@ -6,12 +6,10 @@ import { Property, register } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {
-  AttributeListItem,
-  CardContent,
-  LinkedDetailDate,
-} from '../../components';
+import AttributeListItem from '../../components/AttributeListItem';
 import Button from '../../components/Button';
+import CardContent from '../../components/Card/CardContent';
+import LinkedDetailDate from '../../components/LinkedDetailDate';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';

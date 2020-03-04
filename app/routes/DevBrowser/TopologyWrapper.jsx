@@ -7,10 +7,8 @@ import {
   topologyType,
 } from 'link-redux';
 
-import {
-  CardContent,
-  Heading,
-} from '../../components';
+import CardContent from '../../components/Card/CardContent';
+import Heading from '../../components/Heading';
 import Card, { cardTopology } from '../../topologies/Card';
 import CardFixed, { cardFixedTopology } from '../../topologies/Card/CardFixed';
 import CardMain, { cardMainTopology } from '../../topologies/Card/CardMain';

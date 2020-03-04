@@ -11,7 +11,7 @@ import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 import { withRouter } from 'react-router';
 
-import { Button } from '../../components';
+import Button from '../../components/Button';
 import CardContent from '../../components/Card/CardContent';
 import FormFooterRight from '../../components/Form/FooterRight';
 import Image from '../../components/Image';

@@ -6,10 +6,10 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import Detail from '../../components/Detail';
 import { retrievePath } from '../../helpers/iris';
 import { contentDetailsTopology } from '../../topologies/ContentDetails';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
-import { Detail } from '../../components';
 import rivm from '../../ontology/rivm';
 
 const CategoryDetailsBar = ({ name, subject }) => (

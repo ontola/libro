@@ -5,10 +5,8 @@ import { Property, register } from 'link-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  CardContent,
-  LinkedDetailDate,
-} from '../../components';
+import CardContent from '../../components/Card/CardContent';
+import LinkedDetailDate from '../../components/LinkedDetailDate';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';

@@ -1,10 +1,7 @@
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
-import {
-  SignInFormCard,
-  SignInFormCardRow,
-} from '../components';
+import { SignInFormCard, SignInFormCardRow } from '../components/SignInForm';
 import { convertKeysAtoB } from '../helpers/data';
 import { apiLogin } from '../middleware/api';
 import {

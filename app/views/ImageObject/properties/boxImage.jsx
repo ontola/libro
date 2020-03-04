@@ -3,7 +3,7 @@ import { linkedPropType, register } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { Image } from '../../../components';
+import Image from '../../../components/Image';
 import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 

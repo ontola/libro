@@ -7,7 +7,7 @@ import {
 import React from 'react';
 import emoji from 'react-easy-emoji';
 
-import { Detail } from '../../components';
+import Detail from '../../components/Detail';
 import teamGL from '../../ontology/teamGL';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { contentDetailsTopology } from '../../topologies/ContentDetails';

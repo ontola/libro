@@ -1,8 +1,8 @@
 import { TopologyProvider } from 'link-redux';
 import React from 'react';
 
+import VerticalScroller from '../../components/VerticalScroller';
 import { CardFloat } from '../Card';
-import { VerticalScroller } from '../../components';
 import argu from '../../ontology/argu';
 
 import './DetailsBar.scss';
