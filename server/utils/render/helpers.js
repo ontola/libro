@@ -43,7 +43,7 @@ export const getUserData = (ctx) => {
   } catch (e) {
     logging.error(e);
 
-    return ['', false];
+    return [null, false];
   }
 };
 

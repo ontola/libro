@@ -60,7 +60,7 @@ export const renderFullPage = async (ctx, data) => {
 
   return (
     `<!doctype html>
-      <html lang="${language}">
+      <html lang="${language || (manifest.lang?.split('-')?.[0])}">
         <head>
           <meta charset="utf-8">
           <link rel="stylesheet" href="/static/preloader.css">
