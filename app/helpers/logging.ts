@@ -30,7 +30,10 @@ function getClient() {
     },
   } as unknown as Client;
   try {
-    const raw = window.document.querySelector<HTMLMetaElement>('meta[name=bugsnagConfig]')?.content;
+    const raw = typeof window !== 'undefined' && window
+      .document
+      .querySelector<HTMLMetaElement>('meta[name=bugsnagConfig]')
+      ?.content;
     if (raw) {
       const config = JSON.parse(decodeURIComponent(raw));
       return bugsnag({

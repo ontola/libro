@@ -8,21 +8,20 @@ import { StaticRouter } from 'react-router';
 
 import IndexContainer from './containers/IndexContainer';
 import { getWebsiteContextFromWebsite } from './helpers/app';
-import history from './helpers/history';
-import LinkedRenderStore from './helpers/LinkedRenderStore';
 import configureStore from './state';
 import register from './views';
 import { WebsiteContext } from './location';
 
-const store = configureStore();
-
 const App = ({
   helmetContext,
+  history,
   location,
   lrs,
+  serviceWorkerCommunicator,
   website,
   title,
 }) => {
+  const store = configureStore(history, serviceWorkerCommunicator);
   register(lrs);
   const websiteCtxValue = getWebsiteContextFromWebsite(website);
 
@@ -46,7 +45,7 @@ const App = ({
         <HelmetProvider context={helmetContext}>
           <IndexContainer
             history={history}
-            lrs={lrs || LinkedRenderStore}
+            lrs={lrs}
             Router={router}
             store={store}
             title={title}
@@ -59,8 +58,12 @@ const App = ({
 
 App.propTypes = {
   helmetContext: PropTypes.shape({}),
+  history: PropTypes.shape({
+    location: PropTypes.object.isRequired,
+  }),
   location: PropTypes.string,
   lrs: lrsType,
+  serviceWorkerCommunicator: PropTypes.shape({}),
   title: PropTypes.string,
   website: PropTypes.string,
 };

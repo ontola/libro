@@ -5,6 +5,7 @@ import owl from '@ontologies/owl';
 import rdfx from '@ontologies/rdf';
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
+import { createBrowserHistory, createMemoryHistory } from 'history';
 import { createStore, MiddlewareFn } from 'link-lib';
 
 import { FRONTEND_ACCEPT } from '../config';
@@ -23,7 +24,6 @@ import teamGL from '../ontology/teamGL';
 import arguDeltaProcessor from './arguDeltaProcessor';
 import { getMetaContent } from './arguHelpers';
 
-import history from './history';
 import { handle } from './logging';
 import ServiceWorkerCommunicator from './ServiceWorkerCommunicator';
 import transformers from './transformers';
@@ -31,6 +31,7 @@ import hexjson from './transformers/hexjson';
 import { initializeCable, subscribeDeltaChannel } from './websockets';
 
 export default function generateLRS() {
+  const history = __CLIENT__ ? createBrowserHistory() : createMemoryHistory();
   const serviceWorkerCommunicator = new ServiceWorkerCommunicator();
 
   const middleware: Array<MiddlewareFn<any>> = [
@@ -41,15 +42,15 @@ export default function generateLRS() {
     execFilter(),
   ];
 
-  const LRS = createStore<React.ComponentType<any>>({ report: handle }, middleware);
-  serviceWorkerCommunicator.linkedRenderStore = LRS;
-  (LRS as any).bulkFetch = true;
+  const lrs = createStore<React.ComponentType<any>>({ report: handle }, middleware);
+  serviceWorkerCommunicator.linkedRenderStore = lrs;
+  (lrs as any).bulkFetch = true;
 
-  LRS.deltaProcessors.unshift(arguDeltaProcessor(LRS));
+  lrs.deltaProcessors.unshift(arguDeltaProcessor(lrs));
 
-  LRS.api.registerTransformer(hexjson.transformer(LRS), hexjson.mediaTypes, hexjson.acceptValue);
-  transformers(LRS).forEach((t) =>
-    LRS.api.registerTransformer(t.transformer, t.mediaTypes, t.acceptValue),
+  lrs.api.registerTransformer(hexjson.transformer(lrs), hexjson.mediaTypes, hexjson.acceptValue);
+  transformers(lrs).forEach((t) =>
+    lrs.api.registerTransformer(t.transformer, t.mediaTypes, t.acceptValue),
   );
 
   if (!website) {
@@ -57,7 +58,7 @@ export default function generateLRS() {
   }
 
 // @ts-ignore TS2341
-  LRS.api.accept.default = FRONTEND_ACCEPT;
+  lrs.api.accept.default = FRONTEND_ACCEPT;
 
   const languages = {
     en: 'en',
@@ -74,16 +75,16 @@ export default function generateLRS() {
   const websocketPath = getMetaContent('websocket-path');
 
   if (__CLIENT__ && websocketPath) {
-    initializeCable(LRS, websocketPath).then(() => {
-      subscribeDeltaChannel(LRS, 'UserChannel');
+    initializeCable(lrs, websocketPath).then(() => {
+      subscribeDeltaChannel(lrs, 'UserChannel');
     });
   }
 
-  LRS.store.getInternalStore().newPropertyAction(rdfx.type, (q: Quad): boolean => {
+  lrs.store.getInternalStore().newPropertyAction(rdfx.type, (q: Quad): boolean => {
     if (THING_TYPES.includes(rdf.id(q.object))) {
       return false;
     }
-    LRS.schema.addQuads([rdf.quad(q.object, rdfs.subClassOf, schema.Thing)]);
+    lrs.schema.addQuads([rdf.quad(q.object, rdfs.subClassOf, schema.Thing)]);
     return false;
   });
 
@@ -181,8 +182,8 @@ export default function generateLRS() {
   ];
 // tslint:enable max-line-length
 
-  LRS.addOntologySchematics(ontologicalClassData);
-  LRS.store.addQuads(ontologicalClassData);
+  lrs.addOntologySchematics(ontologicalClassData);
+  lrs.store.addQuads(ontologicalClassData);
 
   const ontologicalPropertyData = [
     rdf.quad(foaf.name, owl.sameAs, schema.name),
@@ -232,17 +233,18 @@ export default function generateLRS() {
     rdf.quad(argu.usages, rdfs.label, rdf.literal('Gebruikt', languages.nl)),
   ];
 
-  LRS.addOntologySchematics(ontologicalPropertyData);
-  LRS.store.addQuads(ontologicalPropertyData);
+  lrs.addOntologySchematics(ontologicalPropertyData);
+  lrs.store.addQuads(ontologicalPropertyData);
 
   const ontologyData = [
     ...appOntology,
   ];
 
-  LRS.store.addQuads(ontologyData);
+  lrs.store.addQuads(ontologyData);
 
   return {
-    LRS,
+    history,
+    lrs,
     serviceWorkerCommunicator,
   };
 }

@@ -6,19 +6,25 @@ import { defaultContext } from './utilities';
 
 const exNS = createNS('http://example.org/');
 
-const context = (iri, lrs, store) => defaultContext({
+const context = (iri, lrs, store, history, serviceWorkerCommunicator) => defaultContext({
+  history,
   lrs: lrs || true,
   ns: lrs.namespaces,
+  serviceWorkerCommunicator,
   store: store || true,
   subject: iri,
 });
 
 function chargeLRS(id, obj, store) {
-  const { LRS } = generateLRS();
-  LRS.store.addQuads(obj);
-  LRS.store.flush();
+  const {
+    lrs,
+    history,
+    serviceWorkerCommunicator,
+  } = generateLRS();
+  lrs.store.addQuads(obj);
+  lrs.store.flush();
 
-  return context(id ? exNS(id) : undefined, LRS, store);
+  return context(id ? exNS(id) : undefined, lrs, store, history, serviceWorkerCommunicator);
 }
 
 function getSubject(obj, subject) {

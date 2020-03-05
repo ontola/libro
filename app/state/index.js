@@ -8,13 +8,11 @@ import { enableBatching } from 'redux-batched-actions';
 import { combineReducers } from 'redux-immutable';
 import thunk from 'redux-thunk';
 
-import { serviceWorkerCommunicator } from '../helpers/LinkedRenderStore';
-import history from '../helpers/history';
 import apiMiddleware from '../middleware/api';
 
 import * as reducers from './reducers';
 
-const configureStore = (preloadedState) => {
+const configureStore = (history, serviceWorkerCommunicator, preloadedState) => {
   let middleware;
 
   const appliedMiddleware = applyMiddleware(

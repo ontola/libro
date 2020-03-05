@@ -13,7 +13,6 @@ import React, { PureComponent } from 'react';
 import { withRouter } from 'react-router';
 
 import { bestType } from '../../helpers/data';
-import { History } from '../../helpers/history';
 import { retrievePath } from '../../helpers/iris';
 import SHACL from '../../helpers/shacl';
 import teamGL from '../../ontology/teamGL';
@@ -35,7 +34,9 @@ class ActionActionsBar extends PureComponent {
   static hocs = [withRouter];
 
   static propTypes = {
-    history: PropTypes.instanceOf(History),
+    history: PropTypes.shape({
+      push: PropTypes.func,
+    }),
     lrs: lrsType,
     object: linkType,
     subject: subjectType,

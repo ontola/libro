@@ -30,19 +30,19 @@ const wrapProviders = ({
     ctx.lrs.registerAll(...views);
   }
   const subjPath = ctx?.subject?.value && retrievePath(ctx.subject?.value);
-  const history = createMemoryHistory({ initialEntries: [location || subjPath || '/'] });
+  ctx.history.push(location || subjPath || '/');
 
   const LRSProvider = ctx ? RenderStoreProvider : ({ children }) => children;
 
   const TestWrapper = ({ children }) => (
-    <Provider store={configureStore()}>
+    <Provider store={configureStore(ctx.history)}>
       <ResponsiveContext.Provider value={viewPort}>
         <WebsiteContext.Provider value={getWebsiteContextFromWebsite('https://example.com/')}>
           <HelmetProvider context={{}}>
             <LRSProvider value={ctx?.lrs}>
               <IntlProvider locale="en" messages={englishMessages}>
                 <ThemeProvider theme={themes.common}>
-                  <Router history={history}>
+                  <Router history={ctx.history}>
                     {children}
                   </Router>
                 </ThemeProvider>
@@ -69,7 +69,12 @@ const customRender = (ui, {
   // Basic unit testing
   if (typeof resources === 'undefined') {
     return render(ui, {
-      wrapper: wrapProviders({ location }),
+      wrapper: wrapProviders({
+        ctx: {
+          history: createMemoryHistory({ initialEntries: [location || '/'] }),
+        },
+        location,
+      }),
       ...options,
     });
   }

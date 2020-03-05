@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { History } from '../../helpers/history';
 import { retrievePath } from '../../helpers/iris';
 
 class NavigatableAction extends React.PureComponent {
   static propTypes = {
-    history: PropTypes.instanceOf(History).isRequired,
+    history: PropTypes.shape({
+      push: PropTypes.func,
+    }).isRequired,
     onDone: PropTypes.func,
   };
 

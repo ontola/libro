@@ -14,8 +14,12 @@ export const headersFromPrerender = async (ctx, data) => {
       status: 200,
     };
 
-    const { LRS } = generateLRS();
-    await LRS.api.feedResponse(seedRequest, true);
+    const {
+      history,
+      lrs,
+      serviceWorkerCommunicator,
+    } = generateLRS();
+    await lrs.api.feedResponse(seedRequest, true);
 
     const helmetContext = {};
 
@@ -26,8 +30,10 @@ export const headersFromPrerender = async (ctx, data) => {
       App,
       {
         helmetContext,
+        history,
         location: resourceIRI,
-        lrs: LRS,
+        lrs,
+        serviceWorkerCommunicator,
         website: ctx.manifest.scope,
       }
     ));
