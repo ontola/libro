@@ -88,6 +88,13 @@ export function json(response: Response) {
   return Promise.resolve();
 }
 
+export function getLinkContent(rel: string) {
+  const header = __CLIENT__
+    ? document.querySelector<HTMLLinkElement>(`link[rel="${rel}"]`)
+    : undefined;
+  return header && header.href;
+}
+
 export function getMetaContent(name: string) {
   const header = __CLIENT__
     ? document.querySelector<HTMLMetaElement>(`meta[name="${name}"]`)

@@ -9,7 +9,7 @@ import {
 } from 'http-status-codes';
 
 import * as constants from '../../app/config';
-import { createBulkResourceRequest } from '../utils/bulk';
+import createBulkResourceRequest from '../utils/bulk';
 import { isHTMLHeader } from '../utils/http';
 import logging from '../utils/logging';
 import manifest, { getBackendManifest } from '../utils/manifest';
@@ -37,12 +37,14 @@ const createDataContext = (ctx) => {
   return {
     api: ctx.api,
     deviceId: ctx.deviceId,
+    manifest: ctx.manifest,
     req: {
       getCtx: () => ctx,
     },
     request: {
       get: () => {},
       headers: dataHeaders,
+      origin: ctx.request.origin,
     },
     session: ctx.session,
   };
@@ -89,7 +91,7 @@ const getResources = (ctx, includes) => {
 const fetchPrerenderData = async (ctx, includeResources) => {
   const output = createOutputStream();
 
-  const [resourceRequests, requests, agent] = createBulkResourceRequest(
+  const [resourceRequests, requests, agent] = await createBulkResourceRequest(
     createDataContext(ctx),
     getResources(ctx, includeResources),
     createWriter(output.stream)

@@ -16,6 +16,7 @@ import {
   setActionParam,
 } from '../actions';
 import logging from '../logging';
+import { getBackendManifest } from '../manifest';
 
 export function isRedirect(status) {
   return status === HttpStatus.MULTIPLE_CHOICES
@@ -217,11 +218,25 @@ const getRequestOptions = ({
   timeout: 30000,
 });
 
-const requestForBulk = (ctx, iri, agent, write, resolve) => {
+async function isSourceAllowed(ctx, origin) {
+  if (!ctx.manifest && ctx.request.headers.manifest) {
+    ctx.manifest = await getBackendManifest(ctx, ctx.request.headers.manifest);
+  }
+
+  return (ctx.manifest.ontola?.['allowed_external_sources'] || []).includes(origin);
+}
+
+async function requestForBulk(ctx, iri, agent, write, resolve) {
   const { origin } = new URL(iri);
   const external = origin !== ctx.request.origin;
   const cachedFile = !external && fileFromCache(iri);
   const iriHJ = iri.includes('://') ? iri : `_:${iri}`;
+
+  if (external && !await isSourceAllowed(ctx, origin)) {
+    write([iriHJ, 'http://www.w3.org/2011/http#statusCode', HttpStatus.FORBIDDEN.toString(), xsd.integer.value, '', 'http://purl.org/link-lib/meta']);
+
+    return undefined;
+  }
 
   const requestOptions = getRequestOptions({
     agent: external ? null : agent,
@@ -258,7 +273,7 @@ const requestForBulk = (ctx, iri, agent, write, resolve) => {
 
     return undefined;
   });
-};
+}
 
 export function bulkResourceRequest(ctx, iris, agent, write) {
   const requests = [];
@@ -267,33 +282,33 @@ export function bulkResourceRequest(ctx, iris, agent, write) {
     .map((iri) => decodeURIComponent(iri))
     .map((iri) => new Promise((resolve, reject) => {
       try {
-        const backendReq = requestForBulk(ctx, iri, agent, write, resolve);
+        requestForBulk(ctx, iri, agent, write, resolve).then((backendReq) => {
+          if (typeof backendReq === 'undefined') {
+            return resolve();
+          }
 
-        if (typeof backendReq === 'undefined') {
-          return resolve();
-        }
+          requests.push(backendReq);
 
-        requests.push(backendReq);
+          backendReq.on('error', (e) => {
+            backendReq.end();
+            logging.error(e);
+            resolve(e);
+          });
 
-        backendReq.on('error', (e) => {
+          backendReq.on('timeout', (e) => {
+            backendReq.end();
+            logging.error(e);
+            resolve(e);
+          });
+
+          setProxyReqHeaders(backendReq, ctx);
           backendReq.end();
-          logging.error(e);
-          resolve(e);
-        });
 
-        backendReq.on('timeout', (e) => {
-          backendReq.end();
-          logging.error(e);
-          resolve(e);
+          return undefined;
         });
-
-        setProxyReqHeaders(backendReq, ctx);
-        backendReq.end();
       } catch (e) {
         reject(e);
       }
-
-      return undefined;
     }));
 
   return [resources, requests];

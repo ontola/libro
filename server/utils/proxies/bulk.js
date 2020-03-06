@@ -1,6 +1,6 @@
 import HttpStatus from 'http-status-codes';
 
-import { createBulkResourceRequest } from '../bulk';
+import createBulkResourceRequest from '../bulk';
 import logging from '../logging';
 
 import {
@@ -20,14 +20,13 @@ const createWriter = (ctx) => (line) => {
 };
 /* eslint-enable no-param-reassign */
 
-export default (ctx) => {
-  // ctx.response.append('Content-Type', 'application/n-quads; charset=utf-8');
+export default async (ctx) => {
   ctx.response.append('Content-Type', 'application/hex+x-ndjson; charset=utf-8');
   ctx.response.body = '';
 
   setBulkResHeaders(ctx.response);
 
-  const [resources, requests, agent] = createBulkResourceRequest(
+  const [resources, requests, agent] = await createBulkResourceRequest(
     ctx,
     normalizeType(ctx.request.body.resource),
     createWriter(ctx)

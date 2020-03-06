@@ -2,7 +2,7 @@ import * as http from 'http';
 
 import { bulkResourceRequest } from './proxies/helpers';
 
-export function createBulkResourceRequest(ctx, resources, writer) {
+async function createBulkResourceRequest(ctx, resources, writer) {
   const agent = new http.Agent({
     keepAlive: true,
     maxSockets: 30,
@@ -18,3 +18,5 @@ export function createBulkResourceRequest(ctx, resources, writer) {
 
   return [resourceData, requests, agent];
 }
+
+export default createBulkResourceRequest;
