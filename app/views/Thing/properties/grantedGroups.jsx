@@ -1,8 +1,10 @@
 import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
 import {
-  linkType,
+  linkedPropType,
   register,
+  useDataFetching,
+  useDataInvalidation,
   useLRS,
 } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -14,11 +16,12 @@ import {
 } from 'react-intl';
 
 import Detail from '../../../components/Detail';
+import { LoadingDetail } from '../../../components/Loading';
 import app from '../../../ontology/app';
 import argu from '../../../ontology/argu';
 import { contentDetailsTopology } from '../../../topologies/ContentDetails';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
-import { listToArr } from '../../../helpers/data';
+import { entityIsLoaded, listToArr } from '../../../helpers/data';
 
 const publicGroupIRI = rdf.id(app.ns('g/-1'));
 
@@ -33,11 +36,17 @@ const messages = defineMessages({
   },
 });
 
-const GrantedGroups = ({ grantedGroups }) => {
+const GrantedGroups = ({ linkedProp }) => {
   const { formatMessage } = useIntl();
   const lrs = useLRS();
+  const lastUpdate = useDataInvalidation({ subject: linkedProp });
+  useDataFetching({ subject: linkedProp }, lastUpdate);
 
-  const groups = __CLIENT__ && grantedGroups && listToArr(lrs, [], grantedGroups);
+  if (!entityIsLoaded(lrs, linkedProp)) {
+    return <LoadingDetail />;
+  }
+
+  const groups = __CLIENT__ && linkedProp && listToArr(lrs, [], linkedProp);
 
   if (!Array.isArray(groups)) {
     return null;
@@ -83,16 +92,11 @@ GrantedGroups.topology = [detailsBarTopology, contentDetailsTopology];
 
 GrantedGroups.property = argu.grantedGroups;
 
-GrantedGroups.mapDataToProps = {
-  dataSubjects: argu.grantedGroups,
-  grantedGroups: argu.grantedGroups,
-};
-
 GrantedGroups.propTypes = {
-  grantedGroups: linkType,
   intl: PropTypes.shape({
     formatMessage: PropTypes.func,
   }),
+  linkedProp: linkedPropType,
 };
 
 export default register(GrantedGroups);
