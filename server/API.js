@@ -58,6 +58,25 @@ class API {
     };
   }
 
+  async tenants() {
+    const res = await this.fetchRaw(
+      this.serviceToken,
+      {
+        headers: {
+          Accept: 'application/json',
+        },
+        path: '/_public/spi/tenants',
+      }
+    );
+
+    try {
+      return await res.clone().json();
+    } catch (e) {
+      e.response = res;
+      throw e;
+    }
+  }
+
   /**
    * Create a new user.
    * @param {String} email The email address of the user
@@ -129,11 +148,11 @@ class API {
 
   fetchRaw(authToken, { path, ...opts }) {
     const { headers, ...rest } = opts;
-
-    logging.debug(`[API] Request '${path}'`);
+    const routed = route(new URL(path, this.base).toString(), true);
+    logging.debug(`[API] Request '${path}', routed: ${routed}`);
 
     return fetch(
-      route(new URL(path, this.base).toString(), true),
+      routed,
       {
         ...rest,
         headers: {

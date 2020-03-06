@@ -1,19 +1,56 @@
 import * as HttpStatus from 'http-status-codes';
 
-import API from '../API';
-import { client } from '../middleware/sessionMiddleware';
+import BackendCheck from './health/BackendCheck';
+import Check, { CheckResult } from './health/check';
+import EnvironmentCheck from './health/EnvironmentCheck';
+import FileCacheCheck from './health/FileCacheCheck';
+import HeadRequestCheck from './health/HeadRequestCheck';
+import ManifestCheck from './health/ManifestCheck';
+import MapTokenCheck from './health/MapTokenCheck';
+import RedisCheck from './health/RedisCheck';
+import renderHtml from './health/renderHtml';
+import renderMarkdown from './health/renderMarkdown';
+
+async function runTest(ctx, check) {
+  try {
+    await check.run();
+
+    return check;
+  } catch (e) {
+    return new Check(
+      check.name,
+      CheckResult.fail,
+      `Executing check failed with '${e.message}'`,
+      e
+    );
+  }
+}
 
 export default async (ctx) => {
   try {
-    // Check redis connection
-    await client.get('');
-
-    // Check back-end token validity
-    const api = new API({ req: {} });
-    await api.requestGuestToken();
-
     ctx.response.status = HttpStatus.OK;
-    ctx.response.body = 'success';
+
+    const result = [];
+    result.push(await runTest(ctx, new EnvironmentCheck()));
+    result.push(await runTest(ctx, new RedisCheck()));
+
+    const backendTest = new BackendCheck(ctx.res.locals.nonce.toString());
+    const tenants = await backendTest.run();
+    result.push(await runTest(ctx, backendTest));
+    result.push(await runTest(ctx, new HeadRequestCheck()));
+    result.push(await runTest(ctx, new ManifestCheck(tenants?.[0])));
+    result.push(await runTest(ctx, new FileCacheCheck(tenants?.[0])));
+    result.push(await runTest(ctx, new MapTokenCheck()));
+
+    if (result.find((r) => r.result === CheckResult.fail)) {
+      ctx.response.status = HttpStatus.SERVICE_UNAVAILABLE;
+    }
+
+    if (ctx.request.get('Accept').includes('text/html')) {
+      ctx.response.body = renderHtml(result);
+    } else {
+      ctx.response.body = renderMarkdown(result);
+    }
   } catch (e) {
     ctx.response.status = HttpStatus.INTERNAL_SERVER_ERROR;
     ctx.response.body = e.toString();

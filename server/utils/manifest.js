@@ -8,32 +8,28 @@ import { isSuccess } from '../../app/helpers/arguHelpers';
 
 import { readFileFromCache } from './cache';
 
-const getBackendManifestJSON = async (ctx, manifestLocation) => {
+export const requestBackendManifest = async (api, manifestLocation) => {
   const manifestFromCache = readFileFromCache(manifestLocation);
   if (manifestFromCache) {
     return JSON.parse(manifestFromCache);
   }
 
-  const headerRes = await ctx.api.fetchRaw(
-    ctx.api.userToken || ctx.api.serviceGuestToken,
+  return api.fetchRaw(
+    api.userToken || api.serviceGuestToken,
     {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        ...ctx.api.proxySafeHeaders(),
+        ...api.proxySafeHeaders(),
       },
       method: 'GET',
       path: manifestLocation,
       redirect: 'error',
     }
   );
-  const processed = await processResponse(headerRes);
-  const manifestData = await processed.json();
-
-  return manifestData;
 };
 
-export const getBackendManifest = (ctx, manifestLocation) => {
+export const getBackendManifest = async (ctx, manifestLocation) => {
   if (!manifestLocation) {
     if (isSuccess(ctx.response.status)) {
       ctx.response.status = INTERNAL_SERVER_ERROR;
@@ -43,7 +39,9 @@ export const getBackendManifest = (ctx, manifestLocation) => {
     return undefined;
   }
 
-  return getBackendManifestJSON(ctx, manifestLocation);
+  const headerRes = await requestBackendManifest(ctx.api, manifestLocation);
+
+  return processResponse(headerRes)?.json();
 };
 
 function getManifest(build) {
