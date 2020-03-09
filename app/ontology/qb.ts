@@ -8,6 +8,7 @@ export default {
   /* classes */
   DataSet: qb('DataSet'),
   MeasureProperty: qb('MeasureProperty'),
+  Observation: qb('Observation'),
 
   /* properties */
   component: qb('component'),

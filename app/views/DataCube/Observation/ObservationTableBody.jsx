@@ -31,7 +31,7 @@ const ObservationTableBody = ({
   </TableRow>
 );
 
-ObservationTableBody.type = qb.observation;
+ObservationTableBody.type = qb.Observation;
 
 ObservationTableBody.topology = tableBodyTopology;
 
