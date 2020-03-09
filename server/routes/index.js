@@ -92,7 +92,6 @@ const routes = async function routes(app, port) {
 
   router.get('/d/health', health);
   router.get('*/sw.js*', serviceWorker);
-  router.all('*', isPlainAPIReq(backend));
   router.get('/robots.txt', robots);
 
   // Static files
@@ -106,6 +105,8 @@ const routes = async function routes(app, port) {
   router.use(sessMiddleware);
 
   router.use(apiMiddleware);
+
+  router.all('*', isPlainAPIReq(backend));
 
   router.get('*/f_assets/precache-manifest.*.js*', precacheManifest);
   router.get(['/logout', '/*/logout'], logout);
