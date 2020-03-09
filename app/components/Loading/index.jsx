@@ -108,6 +108,16 @@ export const LoadingRow = () => (
   </CardRow>
 );
 
+export const LoadingSelect = ({ style }) => (
+  <div className="Loading__Select" style={style}>
+    <LoadingParagraph />
+  </div>
+);
+
+LoadingSelect.propTypes = {
+  style: PropTypes.shape({}),
+};
+
 // Like a LoadingRow, but with a backdrop
 export const LoadingCardRowAppendix = () => (
   <CardRow backdrop>

@@ -76,6 +76,19 @@
   width: 4rem;
 }
 
+.Loading__Select {
+  align-items: center;
+  display: flex;
+  height: 42px;
+  padding: .5em;
+  width: 100%;
+
+  .Loading__Paragraph {
+    margin-bottom: 0;
+    width: 100%;
+  }
+}
+
 .Loading__background {
   animation-duration: 1s;
   animation-fill-mode: forwards;

@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 
 const DEFAULT_HEIGHT = 200;
 const ITEM_HEIGHT = 42;
-const WIDTH = 300;
 
 const SelectInputList = ({
   emptyText,
@@ -76,7 +75,6 @@ const SelectInputList = ({
       style={{
         overflowX: 'hidden',
       }}
-      width={WIDTH}
     />
   );
 };

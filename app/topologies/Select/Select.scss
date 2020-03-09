@@ -10,6 +10,12 @@
   .NavbarLink__image {
     margin-right: .1em;
   }
+
+  span {
+    max-height: 100%;
+    overflow: hidden;
+    text-align: left;
+  }
 }
 
 .Field__input--select {

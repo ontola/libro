@@ -14,6 +14,7 @@ import Loading, {
   LoadingPage,
   LoadingParent,
   LoadingRow,
+  LoadingSelect,
   SuspendedLoader,
 } from '../../components/Loading';
 import Spinner from '../../components/Spinner';
@@ -48,6 +49,7 @@ import { voteBubbleTopology } from '../../topologies/VoteBubble';
 import { tabPaneTopology } from '../../topologies/TabPane';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 import { tabBarTopology } from '../../topologies/TabBar';
+import { selectTopology } from '../../topologies/Select';
 
 export default [
   LinkedRenderStore.registerRenderer(
@@ -93,6 +95,12 @@ export default [
     ll.LoadingResource,
     RENDER_CLASS_NAME,
     cardRowTopology
+  ),
+  LinkedRenderStore.registerRenderer(
+    LoadingSelect,
+    ll.LoadingResource,
+    RENDER_CLASS_NAME,
+    selectTopology
   ),
   LinkedRenderStore.registerRenderer(
     LoadingCardRowAppendix,
