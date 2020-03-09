@@ -57,7 +57,7 @@ LoadingCardFixed.propTypes = {
 
 export const LoadingCellRow = () => (
   <TableRow>
-    <TableCell elementProps={{ colspan: 100 }}>
+    <TableCell colspan={100}>
       <div className="Loading__CellRow Loading__background" />
     </TableCell>
   </TableRow>
