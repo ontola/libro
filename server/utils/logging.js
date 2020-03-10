@@ -44,7 +44,7 @@ export function getErrorMiddleware() {
       } catch (err) {
         logging.error(err);
         if (ctx.response?.headerSent === false) {
-          ctx.response.status = err.status || HttpStatus.INTERNAL_SERVER_ERROR;
+          ctx.response.status = err?.status || HttpStatus.INTERNAL_SERVER_ERROR;
         }
 
         try {

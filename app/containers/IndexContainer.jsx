@@ -54,7 +54,9 @@ const IndexContainer = ({
   const themeName = getMetaContent('theme');
   let theme = themes[themeName] || themes.common;
 
-  if (__CLIENT__ && window.WEBSITE_META) {
+  if (__CLIENT__
+    && typeof window.WEBSITE_META !== 'undefined'
+    && Object.keys(window.WEBSITE_META).length > 0) {
     const websiteMeta = window.WEBSITE_META;
     theme = {
       ...theme,

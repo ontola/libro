@@ -15,6 +15,9 @@ export default (app) => {
   return proxy({
     app,
     logLevel: constants.logLevel,
+    onError: (e, ctx) => {
+      ctx.response.status = e.statusCode;
+    },
     onProxyReq: setProxyReqHeaders,
     onProxyRes: setProxyResHeaders,
     onUpgrade: async (ctx) => {

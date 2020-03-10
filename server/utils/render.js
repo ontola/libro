@@ -45,15 +45,15 @@ export const renderFullPage = async (ctx, data) => {
 
   /* eslint-disable camelcase */
   const matomoCode = matomoScript(
-    manifest?.ontola?.matomo_hostname,
-    manifest?.ontola?.matomo_port,
-    manifest?.ontola?.matomo_site_id,
+    manifest.ontola.matomo_hostname,
+    manifest.ontola.matomo_port,
+    manifest.ontola.matomo_site_id,
     isUser,
     nonceStr
   );
 
   const googleAnalyticsCode = googleAnalyticsScript(
-    manifest?.ontola?.google_analytics_ua_code,
+    manifest.ontola.google_analytics_ua_code,
     nonceStr
   );
   /* eslint-enable camelcase */
@@ -143,7 +143,6 @@ export const renderFullPage = async (ctx, data) => {
 export function handleRender(ctx, port, domain, data) {
   return renderFullPage(ctx, data)
     .then((page) => {
-      ctx.response.status = HttpStatus.OK;
       ctx.response.body = page;
     })
     .catch((e) => {

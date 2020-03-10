@@ -24,7 +24,7 @@ export const fileFromCache = (iri) => {
 export const readFileFromCache = (iri) => {
   const cachedFile = fileFromCache(iri);
   if (cachedFile) {
-    return fs.readFileSync(cachedFile);
+    return fs.readFileSync(cachedFile, { encoding: 'utf-8' });
   }
 
   return undefined;

@@ -1,8 +1,11 @@
 import Stream from 'stream';
 
 import {
+  BAD_GATEWAY,
   INTERNAL_SERVER_ERROR,
+  OK,
   SERVICE_UNAVAILABLE,
+  TEMPORARY_REDIRECT,
 } from 'http-status-codes';
 
 import * as constants from '../../app/config';
@@ -121,6 +124,7 @@ const handler = (sendResponse) => async (ctx) => {
       }
 
       ctx.response.set('Location', location);
+      ctx.response.status = TEMPORARY_REDIRECT;
 
       return undefined;
     }
@@ -135,6 +139,7 @@ const handler = (sendResponse) => async (ctx) => {
     if (manifestData) {
       ctx.manifest = manifestData;
       const responseData = await fetchPrerenderData(ctx, headResponse.headers.get('Include-Resources'));
+      ctx.response.status = OK;
 
       return sendResponse(ctx, domain, responseData);
     }
@@ -150,10 +155,15 @@ const handler = (sendResponse) => async (ctx) => {
         ctx.bugsnag.notify(e);
       }
 
-      ctx.response.status = INTERNAL_SERVER_ERROR;
+      ctx.response.status = e.message.includes('ECONNREFUSED') ? BAD_GATEWAY : INTERNAL_SERVER_ERROR;
     }
 
-    ctx.manifest = `https://${ctx.request.get('host')}`;
+    ctx.manifest = {
+      icons: [],
+      ontola: {},
+      scope: `https://${ctx.request.get('host')}`,
+      serviceworker: {},
+    };
 
     return sendResponse(ctx, domain, '');
   }

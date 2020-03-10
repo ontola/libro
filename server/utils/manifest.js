@@ -8,13 +8,8 @@ import { isSuccess } from '../../app/helpers/arguHelpers';
 
 import { readFileFromCache } from './cache';
 
-export const requestBackendManifest = async (api, manifestLocation) => {
-  const manifestFromCache = readFileFromCache(manifestLocation);
-  if (manifestFromCache) {
-    return JSON.parse(manifestFromCache);
-  }
-
-  return api.fetchRaw(
+export const requestBackendManifest = async (api, manifestLocation) => (
+  readFileFromCache(manifestLocation) || api.fetchRaw(
     api.userToken || api.serviceGuestToken,
     {
       headers: {
@@ -26,9 +21,8 @@ export const requestBackendManifest = async (api, manifestLocation) => {
       path: manifestLocation,
       redirect: 'error',
     }
-  );
-};
-
+  )
+);
 export const getBackendManifest = async (ctx, manifestLocation) => {
   if (!manifestLocation) {
     if (isSuccess(ctx.response.status)) {
@@ -40,6 +34,10 @@ export const getBackendManifest = async (ctx, manifestLocation) => {
   }
 
   const headerRes = await requestBackendManifest(ctx.api, manifestLocation);
+
+  if (typeof headerRes === 'string') {
+    return JSON.parse(headerRes);
+  }
 
   return processResponse(headerRes)?.json();
 };
