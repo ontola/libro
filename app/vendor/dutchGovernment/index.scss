@@ -55,6 +55,12 @@
     font-family: 'RO Sans', Calibri, Verdana, sans-serif;
   }
 
+  .BreadcrumbsBar,
+  .Button--default,
+  .Card {
+    border-radius: 0;
+  }
+
   .Navbar {
     font-size: 1.125rem;
     height: 2.8rem;
