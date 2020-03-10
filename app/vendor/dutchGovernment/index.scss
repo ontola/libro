@@ -71,25 +71,20 @@
       height: 2.8rem;
 
       &:focus,
-      &:hover {
+      &:hover,
+      &.NavbarLink--active {
         background: color('transparent', 'light-85');
         color: color('black');
+      }
+
+      &::after {
+        content: none;
       }
 
       &:hover {
         .NavbarLink__label {
           text-decoration: underline;
         }
-      }
-    }
-
-    &--active {
-      background: color('transparent', 'light-85');
-      color: color('black');
-      font-weight: bold;
-
-      &::after {
-        content: none;
       }
     }
   }
