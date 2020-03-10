@@ -48,8 +48,12 @@ const PropertyGroup = ({
     return null;
   }
 
+  const handleInvalid = () => {
+    setOpen(true);
+  };
+
   return (
-    <fieldset className={classes.fieldSet}>
+    <fieldset className={classes.fieldSet} onInvalid={handleInvalid}>
       <ButtonBase
         className={classes.labelButton}
         onClick={handleClick}
@@ -68,7 +72,7 @@ const PropertyGroup = ({
             : <FontAwesome name="caret-right" />}
         </div>
       </ButtonBase>
-      <Collapse in={open} timeout="auto">
+      <Collapse in={open} timeout={0}>
         {description && (
           <p className={classes.description}>{description.value}</p>
         )}

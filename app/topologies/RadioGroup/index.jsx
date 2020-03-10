@@ -28,7 +28,9 @@ class RadioGroup extends Topology {
     const {
       items,
       loading,
+      name,
       onChange,
+      required,
       value,
     } = this.props;
 
@@ -57,6 +59,8 @@ class RadioGroup extends Topology {
                 <Radio
                   checkedIcon={<RadioButtonCheckedIcon fontSize="small" />}
                   icon={<RadioButtonUncheckedIcon fontSize="small" />}
+                  name={name}
+                  required={required}
                 />
               )}
               key={option.value}
@@ -73,7 +77,9 @@ class RadioGroup extends Topology {
 RadioGroup.propTypes = {
   items: PropTypes.arrayOf(linkType),
   loading: PropTypes.bool,
+  name: PropTypes.string,
   onChange: PropTypes.func,
+  required: PropTypes.bool,
   value: linkType,
 };
 

@@ -53,6 +53,16 @@
         padding: units('x-small', 'large');
         width: 100%;
       }
+
+      & .hidden-field {
+        border: 0;
+        height: 1px;
+        left: 0;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+      }
     }
 
     &:focus {

@@ -2,7 +2,9 @@ const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@
 
 const validatorMap = {
   isEmail: (value) => (value && !emailRegex.test(value) ? 'Ongeldig e-mailadres' : undefined),
+  maxCount: (max) => (value) => (Array.isArray(value) && value.length > max ? `Maximaal ${max}` : undefined),
   maxLength: (max) => (value) => (value && value.length > max ? `Maximaal ${max} tekens, nu ${value.length}` : undefined),
+  minCount: (min) => (value) => (Array.isArray(value) && value.length < min ? `Minimaal ${min}` : undefined),
   minLength: (min) => (value) => (value && value.length < min ? `Minimaal ${min} tekens` : undefined),
   required: (value) => (!value ? '*Vereist' : undefined),
 };

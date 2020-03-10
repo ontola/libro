@@ -129,6 +129,14 @@ const SelectInputField = ({
             >
               {list}
             </Select>
+            <input
+              className="hidden-field"
+              id={sharedProps.id}
+              name={sharedProps.name}
+              required={sharedProps.required}
+              type="text"
+              value={initialSelectedItem?.value}
+            />
           </div>
         );
       }}
@@ -146,9 +154,12 @@ SelectInputField.propTypes = {
   sharedProps: PropTypes.shape({
     autoFocus: PropTypes.bool,
     className: PropTypes.string,
+    id: PropTypes.string,
+    name: PropTypes.string,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
+    required: PropTypes.bool,
   }).isRequired,
 };
 

@@ -42,6 +42,8 @@ function CheckboxesInput(props) {
     return <FormattedMessage id="https://app.argu.co/i18n/collection/empty/message" />;
   }
 
+  const isEmpty = value?.length === 0;
+
   const items = options.map((item) => {
     const label = (
       <Resource subject={item} />
@@ -53,6 +55,7 @@ function CheckboxesInput(props) {
           checked={value && value.map((v) => v.value).indexOf(item.value) !== -1}
           id={item}
           name={sharedProps.name}
+          required={isEmpty && sharedProps.required}
           type="checkbox"
           value={JSON.stringify(item)}
           onChange={(e) => handleChange(e, props)}
@@ -78,6 +81,7 @@ CheckboxesInput.propTypes = {
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
+    required: PropTypes.bool,
   }).isRequired,
   value: PropTypes.arrayOf(linkType),
 };
