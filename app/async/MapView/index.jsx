@@ -340,7 +340,7 @@ class MapView extends React.Component {
       this.tileSource.removeEventListener('tileloaderr', this.onError);
     }
     this.tileSource = new XYZ({
-      url: `${MAPBOX_TILE_API_BASE}mapbox.streets/{z}/{x}/{y}.png?access_token=${accessToken}`,
+      url: `${MAPBOX_TILE_API_BASE}mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=${accessToken}`,
     });
     this.tileSource.addEventListener('tileloadend', this.onLoad);
     this.tileSource.addEventListener('tileloaderr', this.onError);
