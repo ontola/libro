@@ -178,7 +178,28 @@ export default function generateLRS() {
     rdf.quad(meeting.AgendaItem, schema.image, rdf.namedNode('http://fontawesome.io/icon/list')),
 
     rdf.quad(ontola.MenuItem, rdfx.type, rdfs.Class),
-    rdf.quad(ontola.MenuItem, rdfs.subClassOf, argu.Thing),
+    rdf.quad(ontola.MenuItem, rdfs.subClassOf, schema.Thing),
+
+    rdf.quad(as.Create, rdfx.type, rdfs.Class),
+    rdf.quad(as.Create, rdfs.subClassOf, as.Activity),
+    rdf.quad(as.Update, rdfx.type, rdfs.Class),
+    rdf.quad(as.Update, rdfs.subClassOf, as.Activity),
+    rdf.quad(as.Delete, rdfx.type, rdfs.Class),
+    rdf.quad(as.Delete, rdfs.subClassOf, as.Activity),
+    rdf.quad(as.Remove, rdfx.type, rdfs.Class),
+    rdf.quad(as.Remove, rdfs.subClassOf, as.Activity),
+    rdf.quad(as.Accept, rdfx.type, rdfs.Class),
+    rdf.quad(as.Accept, rdfs.subClassOf, as.Activity),
+    rdf.quad(as.Reject, rdfx.type, rdfs.Class),
+    rdf.quad(as.Reject, rdfs.subClassOf, as.Activity),
+    rdf.quad(as.Add, rdfx.type, rdfs.Class),
+    rdf.quad(as.Add, rdfs.subClassOf, as.Activity),
+    rdf.quad(argu.PublishActivity, rdfx.type, rdfs.Class),
+    rdf.quad(argu.PublishActivity, rdfs.subClassOf, as.Activity),
+    rdf.quad(argu.ForwardActivity, rdfx.type, rdfs.Class),
+    rdf.quad(argu.ForwardActivity, rdfs.subClassOf, as.Activity),
+    rdf.quad(argu.ConvertActivity, rdfx.type, rdfs.Class),
+    rdf.quad(argu.ConvertActivity, rdfs.subClassOf, as.Activity),
   ];
 // tslint:enable max-line-length
 
