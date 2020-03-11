@@ -27,7 +27,7 @@ class AppMenu extends Topology {
 
   render() {
     if (this.state.error) {
-      return this.renderError();
+      return this.renderErrorComp();
     }
 
     return (
