@@ -1,18 +1,15 @@
 import schema from '@ontologies/schema';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { Property, link } from 'link-redux';
+import { Property } from 'link-redux';
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
-import Detail from '../../components/Detail';
-import LDLink from '../../components/LDLink';
 import {
   connectHighlighting,
   hightlightPropTypes,
 } from '../../containers/Highlight';
 import { cardListTopology } from '../../topologies/Card/CardList';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
-import { detailsBarTopology } from '../../topologies/DetailsBar';
 import hoverBox from '../../topologies/HoverBox';
 
 import ApplyLink from './properties/applyLink';
@@ -51,6 +48,7 @@ import TrashedAt from './properties/trashedAt';
 import VoteEvents from './properties/voteEvents';
 import ThingCard from './ThingCard';
 import ThingContainer from './ThingContainer';
+import ThingDetailsBar from './ThingDetailsBar';
 import ThingInline from './ThingInline';
 import ThingFullResource from './ThingFull';
 import ThingGrid from './ThingGrid';
@@ -84,6 +82,7 @@ ThingSection.propTypes = hightlightPropTypes;
 export default [
   ThingCard,
   ThingContainer,
+  ThingDetailsBar,
   ThingFullResource,
   ThingGrid,
   ThingPage,
@@ -108,16 +107,6 @@ export default [
     schema.Thing,
     RENDER_CLASS_NAME,
     cardRowTopology
-  ),
-  LinkedRenderStore.registerRenderer(
-    link({ name: schema.name })(({ name, theme }) => (
-      <LDLink data-test="Thing-parent" features={['centered']} theme={theme}>
-        <Detail text={name.value} />
-      </LDLink>
-    )),
-    schema.Thing,
-    RENDER_CLASS_NAME,
-    detailsBarTopology
   ),
   ApplyLink,
   ...Arguments,
