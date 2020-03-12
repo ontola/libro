@@ -80,7 +80,7 @@ class MenuItemFull extends React.PureComponent {
     ));
   }
 
-  redirectTarget() {
+  currentTab() {
     const {
       location,
       lrs,
@@ -90,11 +90,20 @@ class MenuItemFull extends React.PureComponent {
     if (menuItems) {
       const menuItemsArr = seqToArr(lrs, [], menuItems);
 
-      const currentItem = menuItemsArr.find((s) => rdf.equals(s, currentLocation(location)));
+      return menuItemsArr.find((s) => rdf.equals(s, currentLocation(location)));
+    }
 
-      if (!currentItem) {
-        return lrs.getResourceProperty(menuItems, rdfx.ns('_0'));
-      }
+    return undefined;
+  }
+
+  redirectTarget() {
+    const {
+      lrs,
+      menuItems,
+    } = this.props;
+
+    if (menuItems) {
+      return lrs.getResourceProperty(menuItems, rdfx.ns('_0'));
     }
 
     return undefined;
@@ -105,9 +114,10 @@ class MenuItemFull extends React.PureComponent {
   }
 
   render() {
-    const { location, topLevel } = this.props;
+    const { topLevel } = this.props;
 
-    const r = this.redirectTarget();
+    const currentTab = this.currentTab();
+    const r = currentTab ? null : this.redirectTarget();
     let body;
 
     if (!r && (this.isPrimaryResource() || !topLevel)) {
@@ -119,10 +129,10 @@ class MenuItemFull extends React.PureComponent {
           </TabPane>
         </React.Fragment>
       );
-    } else if (topLevel) {
+    } else if (currentTab && topLevel) {
       body = (
         <Resource
-          subject={r || currentLocation(location)}
+          subject={currentTab}
           topLevel={false}
         />
       );
