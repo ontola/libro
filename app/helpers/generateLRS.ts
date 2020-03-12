@@ -11,6 +11,7 @@ import { createStore, MiddlewareFn } from 'link-lib';
 import { FRONTEND_ACCEPT } from '../config';
 import analyticsMiddleware from '../middleware/analyticsMiddleware';
 import { appMiddleware} from '../middleware/app';
+import editorMiddleware from '../middleware/editorMiddleware';
 import execFilter from '../middleware/execFilter';
 import logging from '../middleware/logging';
 import ontolaMiddleware from '../middleware/ontolaMiddleware';
@@ -40,6 +41,7 @@ export default function generateLRS() {
     ontolaMiddleware(history, serviceWorkerCommunicator),
     analyticsMiddleware(),
     appMiddleware(),
+    editorMiddleware(),
     execFilter(),
   ];
   const storeOptions = __CLIENT__

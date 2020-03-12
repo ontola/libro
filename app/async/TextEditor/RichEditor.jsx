@@ -1,110 +1,157 @@
-import { MegadraftEditor } from 'megadraft';
+import { makeStyles } from '@material-ui/core';
+import { Resource } from 'link-redux';
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
-import { connect } from 'react-redux';
-
-import { createDraftFromMarkdown } from '../../helpers/markdownHelper';
+import React from 'react';
+import { createEditor } from 'slate';
+import { withHistory } from 'slate-history';
 import {
-  getDraftState,
-  getEditorShowPreview,
-  getEditorShowRich,
-} from '../../state/textEditor/selectors';
-import { updateDraft } from '../../state/textEditor/actions';
+  Editable,
+  Slate,
+  withReact,
+} from 'slate-react';
 
-import ToggleButton from './ToggleButton';
-import './Megadraft.scss';
+import editor from '../../ontology/ontola/editor';
+
+import Toolbar from './Toolbar';
 
 const propTypes = {
-  editorState: PropTypes.shape({
-    getCurrentContent: PropTypes.func,
-  }).isRequired,
-  id: PropTypes.string.isRequired,
-  onBlur: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
-  onFocus: PropTypes.func.isRequired,
+  // editorState: PropTypes.shape({
+  //   getCurrentContent: PropTypes.func,
+  // }).isRequired,
+  // id: PropTypes.string.isRequired,
+  // onBlur: PropTypes.func.isRequired,
+  // onChange: PropTypes.func.isRequired,
+  // onFocus: PropTypes.func.isRequired,
   onKeyUp: PropTypes.func,
-  onSaveEditorState: PropTypes.func.isRequired,
+  // onSaveEditorState: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   value: PropTypes.string,
 };
 
-// Same as Markdown.scss -> code
-const styleMap = {
-  CODE: {
-    backgroundColor: 'rgba(0, 0, 0, 0.06)',
-    border: 'solid 1px #e6e6e6',
-    fontFamily: 'monospace',
-    padding: '.2em .3em',
-  },
+// const useEditorPlugins = () => {
+//   const lrs = useLRS();
+//   const [pluginResource] = useResourceProperty(editor.localSettings, editor.enabledPlugins);
+//   const enabledPlugins = seqToArray(lrs.store, pluginResource);
+//   const enabledMap = Object.keys(mapping)
+//     .filter((key) => enabledPlugins.includes(rdf.termFromNQ(key)))
+//     .reduce(
+//       (res, key) => {
+//         res[key] = mapping[key];
+//
+//         return res;
+//       },
+//       {}
+//     );
+//   const plugins = Object.keys(enabledMap).map((key) => enabledMap[key][0]);
+//
+//   return [
+//     enabledMap,
+//     plugins,
+//   ];
+// };
+
+const DefaultElement = (props) => {
+  const ElemType = props.elementType || 'p';
+
+  return <ElemType {...props.attributes}>{props.children}</ElemType>;
 };
 
-// Removes the sidebar. All necessary functionality is available through selecting text.
-const mySideBar = () => null;
-
-class RichEditor extends PureComponent {
-  componentDidMount() {
-    this.props.onSaveEditorState(
-      createDraftFromMarkdown(this.props.value)
-    );
+const InlineResource = ({ attributes, children }) => {
+  if (!attributes.label) {
+    return <p>No resource selected</p>;
   }
 
-  render() {
-    const {
-      editorState,
-      id,
-      onBlur,
-      onChange,
-      onFocus,
-      onKeyUp,
-      onSaveEditorState,
-      placeholder,
-      value,
-    } = this.props;
+  return <Resource label={attributes.label}>{children}</Resource>;
+};
 
-    return (
-      <React.Fragment>
-        <div className="Field__input Markdown">
-          <MegadraftEditor
-            customStyleMap={styleMap}
-            editorState={editorState}
-            id={id}
-            placeholder={placeholder}
-            sidebarRendererFn={mySideBar}
-            softNewLines={false}
-            value={value}
-            onBlur={onBlur}
-            onChange={(e) => {
-              onSaveEditorState(e);
-              onChange(e);
-            }}
-            onEscape={onKeyUp}
-            onFocus={onFocus}
-            onKeyUp={onKeyUp}
-          />
-        </div>
-        <div style={{ display: 'flex' }}>
-          <ToggleButton id={id} />
-        </div>
-      </React.Fragment>
-    );
+const renderElement = (props) => {
+  switch (props.element.type) {
+    case editor.elements.Link:
+      return <DefaultElement {...props} elementType="a" />;
+    case editor.elements.Resource:
+      return <InlineResource {...props} />;
+    case editor.elements.Paragraph:
+    default:
+      return <DefaultElement {...props} elementType="p" />;
   }
-}
+};
+
+const useStyles = makeStyles((theme) => ({
+  content: {
+    padding: theme.spacing(3),
+  },
+  noBorder: {
+    border: 'none',
+  },
+  root: {
+    padding: 0,
+  },
+  spacer: {
+    borderLeft: '1px solid #dadce0',
+    margin: theme.spacing(3, 1),
+    userSelect: 'none',
+  },
+  toolbar: {
+    color: 'rgba(0,0,0,.7)',
+    display: 'inherit',
+    padding: theme.spacing(0),
+  },
+}));
+
+const RichEditor = ({
+  plainValue,
+}) => {
+  const styles = useStyles();
+  const editable = React.useRef();
+  // const [enabledMap, plugins] = useEditorPlugins();
+  const textEditor = React.useMemo(() => withHistory(withReact(createEditor())), []);
+  console.log(textEditor);
+  const [editorValue, setEditorValue] = React.useState([
+    {
+      children: [{ text: plainValue || 'Test' }],
+      type: editor.elements.Paragraph,
+    },
+  ]);
+
+  const renderLeaf = React.useCallback(
+    (props) => {
+      const { attributes, children, leaf } = props;
+
+      return (
+        <span
+          {...attributes}
+          style={{
+            fontStyle: leaf[editor.formatting.Italic] ? 'italic' : 'normal',
+            fontWeight: leaf[editor.formatting.Bold] ? 'bold' : 'normal',
+            textDecoration: leaf[editor.formatting.Underline] ? 'underline' : 'initial',
+          }}
+        >
+          {children}
+        </span>
+      );
+    },
+    []
+  );
+
+  return (
+    <div className={`Field__input Markdown ${styles.root} ${styles.borderCollapse}`}>
+      <Slate
+        editor={textEditor}
+        value={editorValue}
+        onChange={(v) => setEditorValue(v)}
+      >
+        <Toolbar />
+        <Editable
+          className={styles.content}
+          ref={editable}
+          renderElement={React.useCallback(renderElement, [])}
+          renderLeaf={renderLeaf}
+        />
+      </Slate>
+    </div>
+  );
+};
 
 RichEditor.propTypes = propTypes;
 
-const mapStateToProps = (state, props) => ({
-  editorState: getDraftState(state, props.id),
-  showPreview: getEditorShowPreview(state),
-  showRichEditor: getEditorShowRich(state),
-});
-
-const mapDispatchToProps = (dispatch, props) => ({
-  onSaveEditorState: (editorState) => dispatch(updateDraft(props.id, editorState)),
-});
-
-const ConnectedRichEditor = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(RichEditor);
-
-export default ConnectedRichEditor;
+export default RichEditor;

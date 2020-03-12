@@ -1,3 +1,4 @@
+import MenuItem from '@material-ui/core/MenuItem';
 import foaf from '@ontologies/foaf';
 import rdfx from '@ontologies/rdf';
 import rdfs from '@ontologies/rdfs';
@@ -25,6 +26,7 @@ const ThingSelect = ({
   onMouseDown,
   onMouseMove,
   role,
+  subject,
   style,
   wrapperProps,
 }) => {
@@ -50,7 +52,9 @@ const ThingSelect = ({
 
   return (
     <ResourceBoundary wrapperProps={wrapperProps || defaultWrapperProps()}>
-      <Property label={labels} />
+      <MenuItem value={subject}>
+        <Property label={labels} />
+      </MenuItem>
     </ResourceBoundary>
   );
 };

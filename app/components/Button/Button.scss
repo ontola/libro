@@ -131,7 +131,7 @@ a {
 
 .Button--transparant,
 .Button--pagination {
-  color: color('grey');
+  color: color('grey', 'mid-dark');
 
   &:hover,
   &:focus {

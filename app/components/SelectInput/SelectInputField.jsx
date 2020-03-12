@@ -1,7 +1,6 @@
 import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
 import Downshift from 'downshift';
-import { LinkedRenderStore } from 'link-lib';
 import {
   Resource,
   linkType,
@@ -45,6 +44,7 @@ export const itemToString = (item, lrs) => {
 };
 
 const SelectInputField = ({
+  classes,
   emptyText,
   initialSelectedItem,
   items,
@@ -109,7 +109,7 @@ const SelectInputField = ({
 
           return (
             <button
-              className="SelectInput--selected"
+              className={`SelectInput--selected ${(classes?.button) || ''}`}
               type="button"
               onClick={openMenu}
             >
@@ -152,11 +152,13 @@ const SelectInputField = ({
 };
 
 SelectInputField.propTypes = {
+  classes: PropTypes.shape({
+    button: PropTypes.object,
+  }),
   emptyText: PropTypes.string,
   initialSelectedItem: linkType,
   items: PropTypes.arrayOf(linkType),
   loading: PropTypes.bool,
-  lrs: PropTypes.instanceOf(LinkedRenderStore),
   onStateChange: PropTypes.func,
   sharedProps: PropTypes.shape({
     autoFocus: PropTypes.bool,

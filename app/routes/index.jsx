@@ -13,8 +13,8 @@ const subRoutes = [
 ];
 
 if (__DEVELOPMENT__) {
-  subRoutes.splice(-1, 0, <Route key="devbrowser" path="/d/browser" component={DevBrowser} />);
-  subRoutes.splice(-1, 0, <Route key="sandbox" path="/d/sandbox" component={Sandbox} />);
+  subRoutes.splice(-1, 0, <Route key="devbrowser" path="/*/d/browser" component={DevBrowser} />);
+  subRoutes.splice(-1, 0, <Route key="sandbox" path="/*/d/sandbox" component={Sandbox} />);
 }
 
 export default <Switch>{subRoutes}</Switch>;

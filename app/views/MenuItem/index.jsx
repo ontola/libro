@@ -1,3 +1,4 @@
+import MenuItemActionsBar from './MenuItemActionsBar';
 import MenuItemDropdown from './MenuItemDropdown';
 import MenuItemDropdownContent from './MenuItemDropdownContent';
 import MenuItemFooter from './MenuItemFooter';
@@ -15,6 +16,7 @@ import MenuTabs from './properties/menuTabs';
 import Name from './properties/name';
 
 export default [
+  MenuItemActionsBar,
   MenuItemDropdown,
   MenuItemPage,
   MenuItemHeader,

@@ -60,6 +60,7 @@ import ThingParent from './ThingParent';
 import ThingPopup from './ThingPopup';
 import ThingRadioGroup from './ThingRadioGroup';
 import ThingSelect from './ThingSelect';
+import ThingSelected from './ThingSelected';
 import ThingTable from './ThingTable';
 import ThingTableCell from './ThingTableCell';
 import ThingTableRow from './ThingTableRow';
@@ -93,6 +94,7 @@ export default [
   ThingPageHeader,
   ThingRadioGroup,
   ThingSelect,
+  ThingSelected,
   ThingTable,
   ThingTableCell,
   ThingTableHeaderRow,

@@ -20,6 +20,10 @@ const propTypes = {
   url: linkType,
 };
 
+const defaultProps = {
+  expandOpen: null,
+};
+
 const MenuItem = ({
   action,
   allowExternal,
@@ -71,6 +75,7 @@ const MenuItem = ({
   );
 };
 
+MenuItem.defaultProps = defaultProps;
 MenuItem.propTypes = propTypes;
 
 export default React.forwardRef((props, ref) => <MenuItem innerRef={ref} {...props} />);
