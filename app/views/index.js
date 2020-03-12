@@ -62,6 +62,7 @@ import Survey from './Survey';
 import Token from './Token';
 import User from './User';
 import VideoPage from './VideoPage';
+import View from './View';
 import Volunteer from './Volunteer';
 import Vote from './Vote';
 import VoteEvent from './VoteEvent';
@@ -129,6 +130,7 @@ export function getViews() {
     ...Token,
     ...User,
     ...VideoPage,
+    ...View,
     ...Volunteer,
     ...Vote,
     ...VoteEvent,
