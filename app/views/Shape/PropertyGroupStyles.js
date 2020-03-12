@@ -16,7 +16,9 @@ export default makeStyles((theme) => ({
     marginRight: '.5em',
   },
   fieldSet: {
+    borderTop: '1px solid #e7e7e7',
     flex: '1',
+    paddingTop: '1em',
   },
   hidden: {
     display: 'none',
