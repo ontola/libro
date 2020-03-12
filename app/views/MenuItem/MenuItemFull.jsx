@@ -1,4 +1,7 @@
 import AppBar from '@material-ui/core/AppBar';
+import Grid from '@material-ui/core/Grid';
+import Hidden from '@material-ui/core/Hidden';
+import { makeStyles } from '@material-ui/styles';
 import foaf from '@ontologies/foaf';
 import rdf from '@ontologies/core';
 import rdfs from '@ontologies/rdfs';
@@ -8,8 +11,8 @@ import {
   Property,
   Resource,
   linkType,
-  lrsType,
   register,
+  useLRS,
 } from 'link-redux';
 import * as PropTypes from 'prop-types';
 import React from 'react';
@@ -30,41 +33,42 @@ import { fullResourceTopology } from '../../topologies/FullResource';
 import TabBar from '../../topologies/TabBar';
 import TabPane from '../../topologies/TabPane';
 
-class MenuItemFull extends React.PureComponent {
-  static type = [
-    ontola.MenuItem,
-    argu.MenuSection,
-    argu.SubMenu,
-    argu.Menu,
-  ];
+/* eslint-disable no-magic-numbers */
+const useStyles = makeStyles((theme) => ({
+  image: {
+    backgroundSize: 'cover',
+    border: `1px solid ${theme.palette.grey[400]}`,
+    borderRadius: '100%',
+    bottom: 0,
+    left: 0,
+    position: 'absolute',
+    right: 0,
+    top: 0,
+  },
+  wrapper: {
+    paddingTop: '100%',
+    position: 'relative',
+    width: '100%',
+  },
+}));
+/* eslint-enable no-magic-numbers */
 
-  static topology = fullResourceTopology;
+const MenuItemFull = ({
+  location,
+  menuItems,
+  topLevel,
+}) => {
+  const lrs = useLRS();
+  const classes = useStyles();
+  const isPrimaryResource = topLevel && !menuItems;
+  let currentTab, redirectTarget, body;
 
-  static mapDataToProps = {
-    dataSubjects: ontola.menuItems,
-    menuItems: ontola.menuItems,
-    parentMenu: ontola.parentMenu,
-  };
-
-  static hocs = [withRouter];
-
-  static propTypes = {
-    location: PropTypes.shape({}),
-    lrs: lrsType,
-    menuItems: linkType,
-    topLevel: PropTypes.bool,
-  };
-
-  static defaultProps = {
-    topLevel: true,
-  };
-
-  menuItemTabs() {
+  const menuItemTabs = () => {
     if (!__CLIENT__) {
       return null;
     }
 
-    const items = containerToArr(this.props.lrs, [], this.props.menuItems);
+    const items = containerToArr(lrs, [], menuItems);
 
     if (isPromise(items)) {
       // TODO: Loading
@@ -78,94 +82,126 @@ class MenuItemFull extends React.PureComponent {
         value={iri.value}
       />
     ));
-  }
+  };
 
-  currentTab() {
-    const {
-      location,
-      lrs,
-      menuItems,
-    } = this.props;
+  if (menuItems) {
+    const menuItemsArr = seqToArr(lrs, [], menuItems);
 
-    if (menuItems) {
-      const menuItemsArr = seqToArr(lrs, [], menuItems);
+    currentTab = menuItemsArr.find((s) => rdf.equals(s, currentLocation(location)));
 
-      return menuItemsArr.find((s) => rdf.equals(s, currentLocation(location)));
+    if (!currentTab) {
+      redirectTarget = lrs.getResourceProperty(menuItems, rdfx.ns('_0'));
     }
-
-    return undefined;
   }
 
-  redirectTarget() {
-    const {
-      lrs,
-      menuItems,
-    } = this.props;
-
-    if (menuItems) {
-      return lrs.getResourceProperty(menuItems, rdfx.ns('_0'));
-    }
-
-    return undefined;
-  }
-
-  isPrimaryResource() {
-    return this.props.topLevel && !this.props.menuItems;
-  }
-
-  render() {
-    const { topLevel } = this.props;
-
-    const currentTab = this.currentTab();
-    const r = currentTab ? null : this.redirectTarget();
-    let body;
-
-    if (!r && (this.isPrimaryResource() || !topLevel)) {
-      body = (
-        <React.Fragment>
-          <Property label={ontola.parentMenu} topLevel={false} />
-          <TabPane>
-            <Property label={ontola.href} />
-          </TabPane>
-        </React.Fragment>
-      );
-    } else if (currentTab && topLevel) {
-      body = (
-        <Resource
-          subject={currentTab}
-          topLevel={false}
-        />
-      );
-    }
-
-    return (
+  if (!redirectTarget && (isPrimaryResource || !topLevel)) {
+    body = (
       <React.Fragment>
-        {topLevel && r && __CLIENT__ && <Redirect to={retrievePath(r.value)} />}
-        {topLevel && (
-          <Container>
-            <CardMain>
-              <Property label={schema.isPartOf}>
-                <Property label={ontola.coverPhoto} />
-                <CardContent>
-                  <Property label={[schema.name, rdfs.label, foaf.name]} />
+        <Property label={ontola.parentMenu} topLevel={false} />
+        <TabPane>
+          <Property label={ontola.href} />
+        </TabPane>
+      </React.Fragment>
+    );
+  } else if (currentTab && topLevel) {
+    body = (
+      <Resource
+        subject={currentTab}
+        topLevel={false}
+      />
+    );
+  }
+
+  return (
+    <React.Fragment>
+      {topLevel && redirectTarget && __CLIENT__ && (
+        <Redirect to={retrievePath(redirectTarget.value)} />
+      )}
+      {topLevel && (
+        <Container>
+          <CardMain>
+            <Property label={schema.isPartOf}>
+              <Property label={ontola.coverPhoto} />
+              <CardContent>
+                <Grid
+                  container
+                  alignItems="center"
+                  spacing={2}
+                >
+                  <Property label={schema.image}>
+                    <Property label={schema.thumbnail}>
+                      {([linkedProp]) => (
+                        linkedProp && (
+                          <Grid item md={1} xs={2}>
+                            <div className={classes.wrapper}>
+                              <div
+                                className={classes.image}
+                                style={{ backgroundImage: `url("${linkedProp.value}")` }}
+                              />
+                            </div>
+                          </Grid>
+                        )
+                      )}
+                    </Property>
+                  </Property>
+                  <Grid item md={11} xs={10}>
+                    <Property label={[schema.name, rdfs.label, foaf.name]} />
+                    <Hidden smDown>
+                      <ContentDetails>
+                        <Property label={org.organization} limit={Infinity} />
+                      </ContentDetails>
+                    </Hidden>
+                  </Grid>
+                </Grid>
+                <Hidden mdUp>
                   <ContentDetails>
                     <Property label={org.organization} limit={Infinity} />
                   </ContentDetails>
-                  <Property label={schema.description} />
-                </CardContent>
-              </Property>
-              <AppBar color="inherit" elevation={0} position="static">
-                <TabBar>
-                  {this.menuItemTabs()}
-                </TabBar>
-              </AppBar>
-            </CardMain>
-          </Container>
-        )}
-        {body}
-      </React.Fragment>
-    );
-  }
-}
+                </Hidden>
+              </CardContent>
+              <CardContent>
+                <Property label={schema.description} />
+              </CardContent>
+            </Property>
+            <AppBar color="inherit" elevation={0} position="static">
+              <TabBar>
+                {menuItemTabs()}
+              </TabBar>
+            </AppBar>
+          </CardMain>
+        </Container>
+      )}
+      {body}
+    </React.Fragment>
+  );
+};
+
+MenuItemFull.type = [
+  ontola.MenuItem,
+  argu.MenuSection,
+  argu.SubMenu,
+  argu.Menu,
+];
+
+MenuItemFull.topology = fullResourceTopology;
+
+MenuItemFull.mapDataToProps = {
+  dataSubjects: ontola.menuItems,
+  menuItems: ontola.menuItems,
+  parentMenu: ontola.parentMenu,
+};
+
+MenuItemFull.hocs = [withRouter];
+
+MenuItemFull.propTypes = {
+  location: PropTypes.shape({}),
+  menuItems: linkType,
+  topLevel: PropTypes.bool,
+};
+
+MenuItemFull.defaultProps = {
+  topLevel: true,
+};
+
 
 export default register(MenuItemFull);
