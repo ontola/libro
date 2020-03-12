@@ -5,6 +5,7 @@ import owl from '@ontologies/owl';
 import rdfx from '@ontologies/rdf';
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
+import sh from '@ontologies/shacl';
 import { createBrowserHistory, createMemoryHistory } from 'history';
 import { createStore, MiddlewareFn } from 'link-lib';
 
@@ -232,6 +233,8 @@ export default function generateLRS() {
     rdf.quad(argu.redirectUrl, rdfx.type, rdfx.Property),
     rdf.quad(argu.redirectUrl, rdfs.label, rdf.literal('Redirect to', languages.en)),
     rdf.quad(argu.redirectUrl, rdfs.label, rdf.literal('Redirect naar', languages.nl)),
+
+    rdf.quad(ontola.hiddenGroup, rdfx.type, sh.PropertyGroup),
 
     rdf.quad(ontola.sendConfirmationAction, rdfx.type, rdfx.Property),
     rdf.quad(
