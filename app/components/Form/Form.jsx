@@ -66,6 +66,7 @@ const Form = (props) => {
     <FinalForm
       form={form}
       initialValuesEqual={equal}
+      key={formID}
       render={({ handleSubmit, ...childProps }) => (
         <FormContext.Provider value={formID}>
           <form
