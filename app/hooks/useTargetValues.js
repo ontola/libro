@@ -7,13 +7,14 @@ import {
 
 import { entityHasError, entityIsLoaded } from '../helpers/data';
 import { collectionMembers } from '../helpers/diggers';
+import { isResource } from '../helpers/types';
 
 const useTargetValues = (targetIRI, path) => {
   const lrs = useLRS();
   const rawTargetValues = lrs.getResourceProperties(targetIRI, path);
 
   useDataInvalidation({
-    dataSubjects: rawTargetValues.filter((s) => ['NamedNode', 'TermType'].includes(s.termType)),
+    dataSubjects: rawTargetValues.filter(isResource),
     subject: targetIRI,
   });
 

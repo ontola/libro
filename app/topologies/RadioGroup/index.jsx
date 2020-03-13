@@ -14,6 +14,7 @@ import { FormattedMessage } from 'react-intl';
 import { LoadingRow } from '../../components/Loading';
 import argu from '../../ontology/argu';
 import Topology from '../Topology';
+import { isResource } from '../../helpers/types';
 
 export const radioGroupTopology = argu.ns('radioGroup');
 
@@ -64,7 +65,7 @@ class RadioGroup extends Topology {
                 />
               )}
               key={option.value}
-              label={<Resource subject={option} />}
+              label={isResource(option) ? <Resource subject={option} /> : option.value}
               value={option.value}
             />
           ))

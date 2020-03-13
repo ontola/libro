@@ -13,6 +13,7 @@ import { useDebouncedCallback } from 'use-debounce';
 
 import { entityIsLoaded } from '../../helpers/data';
 import normalizedLower from '../../helpers/i18n';
+import { isResource } from '../../helpers/types';
 import ontola from '../../ontology/ontola';
 import { formFooterTopology } from '../../topologies/FormFooter/Footer';
 import RadioGroup from '../../topologies/RadioGroup';
@@ -185,7 +186,7 @@ const SelectInputWrapper = ({
     { leading: true }
   );
   useDataInvalidation({
-    dataSubjects: options,
+    dataSubjects: options.filter(isResource),
   });
 
   const initialSelectedItem = inputValue || initialValue;

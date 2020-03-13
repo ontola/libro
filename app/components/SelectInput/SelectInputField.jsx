@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 
 import { entityIsLoaded } from '../../helpers/data';
 import { handle } from '../../helpers/logging';
+import { isResource } from '../../helpers/types';
 import ontola from '../../ontology/ontola';
 import Select, { selectTopology } from '../../topologies/Select';
 import { Input } from '../Input';
@@ -29,7 +30,7 @@ export const itemToString = (item, lrs) => {
     return 'Loading';
   }
 
-  if (item.termType && (item.termType === 'NamedNode' || item.termType === 'BlankNode')) {
+  if (isResource(item)) {
     const itemClass = lrs.getResourceProperty(item, rdfx.type);
     const classDisplayProp = (
       itemClass && lrs.getResourceProperty(itemClass, ontola.ns('forms/inputs/select/displayProp'))
