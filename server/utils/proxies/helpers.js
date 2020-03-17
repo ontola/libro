@@ -28,7 +28,7 @@ export function isRedirect(status) {
 
 export function setProxyReqHeaders(proxyReq, ctx) {
   if (typeof ctx.session !== 'undefined' && typeof ctx.session.arguToken !== 'undefined') {
-    proxyReq.setHeader('Authorization', `Bearer ${ctx.session.arguToken.accessToken}`);
+    proxyReq.setHeader('Authorization', `Bearer ${ctx.session.arguToken}`);
   }
   if (typeof ctx.deviceId !== 'undefined') {
     proxyReq.setHeader('X-Device-Id', ctx.deviceId);
@@ -45,8 +45,9 @@ const VARY_HEADER = 'Accept,Accept-Encoding,Authorization,Content-Type';
 export function newAuthorizationBulk(ctx, backendRes) {
   const auth = backendRes.headers['new-authorization'];
   if (auth) {
-    ctx.session.arguToken = { accessToken: auth };
-    ctx.api.userToken = auth;
+    const refreshToken = backendRes.headers['new-refresh-token'];
+    ctx.setAccessToken(auth, refreshToken);
+
     if (!isRedirect(backendRes.statusCode)) {
       if (hasAction(backendRes, 'https://ns.ontola.io/actions/redirect')) {
         return setActionParam(backendRes, 'https://ns.ontola.io/actions/redirect', 'reload', 'true');

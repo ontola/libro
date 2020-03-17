@@ -7,9 +7,7 @@ function generateRenderParams() {
   const req = {
     headers: {},
     session: {
-      arguToken: {
-        accessToken: '',
-      },
+      arguToken: '',
     },
     url: 'https://app.argu.localtest/',
   };

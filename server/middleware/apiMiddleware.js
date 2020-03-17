@@ -5,8 +5,6 @@ import { getBackendManifest } from '../utils/manifest';
 const BACKEND_TIMEOUT = 3000;
 
 export default function apiMiddleware(ctx, next) {
-  const userToken = ctx.session && ctx.session.arguToken && ctx.session.arguToken.accessToken;
-
   ctx.getManifest = async (location) => {
     if (!ctx.manifest) {
       const manifestLocation = location
@@ -28,10 +26,8 @@ export default function apiMiddleware(ctx, next) {
       ]);
 
       const auth = ctx.headResponseResult.headers.get('new-authorization');
-      if (auth) {
-        ctx.session.arguToken = { accessToken: auth };
-        ctx.api.userToken = auth;
-      }
+      const refreshToken = ctx.headResponseResult.headers.get('new-refresh-token');
+      ctx.setAccessToken(auth, refreshToken);
     }
 
     return ctx.headResponseResult;
@@ -40,7 +36,6 @@ export default function apiMiddleware(ctx, next) {
   ctx.api = new API({
     deviceId: ctx.deviceId,
     req: ctx.request,
-    userToken,
   });
 
   ctx.addAction = (action) => {

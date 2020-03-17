@@ -3,8 +3,6 @@ import HttpStatus from 'http-status-codes';
 
 import * as errors from '../utils/errors';
 
-const MILLISECONDS = 1000;
-
 async function login(ctx, next) {
   try {
     const response = await ctx.api.requestUserToken(
@@ -15,13 +13,8 @@ async function login(ctx, next) {
     );
     const json = await response.json();
 
-    const expiresAt = new Date((json.created_at * MILLISECONDS) + (json.expires_in * MILLISECONDS));
-    if (json.token_type === 'Bearer' && expiresAt > Date.now()) {
-      ctx.session.arguToken = {
-        accessToken: json.access_token,
-        expiresAt,
-        scope: json.scope,
-      };
+    if (json.token_type === 'Bearer') {
+      ctx.setAccessToken(json.access_token, json.refresh_token);
       ctx.body = { status: 'SIGN_IN_LOGGED_IN' };
 
       return;
@@ -83,10 +76,8 @@ async function signUp(ctx, next) {
     ctx.response.status = response.status;
     const json = await response.json();
     const auth = response.headers.get('New-Authorization');
-    if (ctx.session.arguToken) {
-      ctx.session.arguToken.accessToken = auth;
-    }
-    ctx.api.userToken = auth;
+    const refreshToken = response.headers.get('New-Refresh-Token');
+    ctx.setAccessToken(auth, refreshToken);
     ctx.response.body = {
       email: json.data.attributes.email,
       status: 'SIGN_IN_USER_CREATED',

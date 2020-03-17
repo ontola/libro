@@ -9,9 +9,19 @@ import { EXPIRE_SESSION_ACTION } from '../utils/actions';
  * @return {undefined}
  */
 async function authenticationMiddleware(ctx, next) {
-  const t = ctx.session.arguToken;
+  ctx.setAccessToken = (token, refreshToken) => {
+    if (token) {
+      ctx.session.arguToken = token;
+      ctx.session.arguRefreshToken = refreshToken;
+      ctx.api.userToken = token;
+    }
+  };
 
-  const expired = t && new Date(t.expiresAt) < Date.now();
+  if (ctx.session) {
+    ctx.setAccessToken(ctx.session.arguToken, ctx.session.arguRefreshToken);
+  }
+
+  const expired = ctx.session.arguToken && new Date(ctx.session.arguToken.expiresAt) < Date.now();
   if (expired) {
     // @todo Handle expired token
     ctx.session.arguToken = undefined;

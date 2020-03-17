@@ -106,6 +106,8 @@ const routes = async function routes(app, port) {
 
   router.use(apiMiddleware);
 
+  router.use(authenticationMiddleware);
+
   router.all('*', isPlainAPIReq(backend));
 
   router.get('*/f_assets/precache-manifest.*.js*', precacheManifest);
@@ -114,8 +116,6 @@ const routes = async function routes(app, port) {
   router.post(['/follows/*', '/*/follows/*'], backend);
 
   router.use(new CSRF());
-
-  router.use(authenticationMiddleware);
 
   router.post('/link-lib/bulk', bodyParser(), isBackend(bulkProxy));
   router.all('*', isWebsocket(backend));
