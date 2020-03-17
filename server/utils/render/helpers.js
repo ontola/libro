@@ -1,10 +1,8 @@
-import jwt from 'jsonwebtoken';
 import useragent from 'useragent';
 
 import spinner from '../../../app/helpers/spinner';
 import { moduleBrowserVersions } from '../../../bundleConfig';
 import * as constants from '../../config';
-import logging from '../logging';
 
 const requiredFeatures = [
   'default',
@@ -33,18 +31,13 @@ const requiredFeatures = [
 const polyfillSrc = `https://cdn.polyfill.io/v2/polyfill.js?unknown=polyfill&features=${requiredFeatures.join(',')}`;
 
 export const getUserData = (ctx) => {
-  try {
-    const { user: { language, type } } = jwt.verify(
-      ctx.session.arguToken.accessToken,
-      constants.jwtEncryptionToken
-    );
-
-    return [language, type === 'user'];
-  } catch (e) {
-    logging.error(e);
-
+  const user = ctx.getFromAccessToken('user');
+  if (!user) {
     return [null, false];
   }
+  const { language, type } = user;
+
+  return [language, type === 'user'];
 };
 
 export const isModule = (ctx) => {

@@ -1,4 +1,7 @@
 import { EXPIRE_SESSION_ACTION } from '../utils/actions';
+import jwt from 'jsonwebtoken';
+
+import { jwtEncryptionToken } from '../config';
 
 /**
  * Requires the request to have valid authentication.
@@ -9,7 +12,11 @@ import { EXPIRE_SESSION_ACTION } from '../utils/actions';
  * @return {undefined}
  */
 async function authenticationMiddleware(ctx, next) {
+  ctx.arguTokenData = undefined;
+
   ctx.setAccessToken = (token, refreshToken) => {
+    ctx.arguTokenData = undefined;
+
     if (token) {
       ctx.session.arguToken = token;
       ctx.session.arguRefreshToken = refreshToken;
@@ -20,6 +27,25 @@ async function authenticationMiddleware(ctx, next) {
   if (ctx.session) {
     ctx.setAccessToken(ctx.session.arguToken, ctx.session.arguRefreshToken);
   }
+
+  ctx.getFromAccessToken = (key) => {
+    if (!ctx.session.arguToken) {
+      return undefined;
+    }
+
+    if (!ctx.arguTokenData) {
+      ctx.arguTokenData = jwt.verify(
+        ctx.session.arguToken,
+        jwtEncryptionToken
+      );
+    }
+
+    if (!key) {
+      return ctx.arguTokenData;
+    }
+
+    return ctx.arguTokenData[key];
+  };
 
   const expired = ctx.session.arguToken && new Date(ctx.session.arguToken.expiresAt) < Date.now();
   if (expired) {
