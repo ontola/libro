@@ -12,11 +12,9 @@ import * as constants from '../../app/config';
 import createBulkResourceRequest from '../utils/bulk';
 import { isHTMLHeader } from '../utils/http';
 import logging from '../utils/logging';
-import manifest, { getBackendManifest } from '../utils/manifest';
+import manifest from '../utils/manifest';
 import { isRedirect } from '../utils/proxies/helpers';
 import { handleRender } from '../utils/render';
-
-const BACKEND_TIMEOUT = 3000;
 
 const defaultResources = (scope) => [
   `${scope}`,
@@ -113,10 +111,7 @@ const handler = (sendResponse) => async (ctx) => {
   const domain = ctx.request.headers.host.replace(/:.*/, '');
 
   try {
-    const headResponse = await Promise.race([
-      ctx.api.headRequest(ctx.request),
-      new Promise((_, reject) => setTimeout(() => reject, BACKEND_TIMEOUT)),
-    ]);
+    const headResponse = await ctx.headResponse();
     ctx.response.status = headResponse.status;
 
     if (isRedirect(headResponse.status)) {
@@ -131,15 +126,8 @@ const handler = (sendResponse) => async (ctx) => {
       return undefined;
     }
 
-    const auth = headResponse.headers.get('new-authorization');
-    if (auth) {
-      ctx.session.arguToken = { accessToken: auth };
-      ctx.api.userToken = auth;
-    }
-
-    const manifestData = await getBackendManifest(ctx, headResponse.headers.get('Manifest'));
+    const manifestData = await ctx.getManifest();
     if (manifestData) {
-      ctx.manifest = manifestData;
       const responseData = await fetchPrerenderData(ctx, headResponse.headers.get('Include-Resources'));
       ctx.response.status = OK;
 

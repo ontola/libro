@@ -4,8 +4,6 @@ import path from 'path';
 import HttpStatus from 'http-status-codes';
 
 import logging from '../utils/logging';
-import { getBackendManifest } from '../utils/manifest';
-
 
 const PREFIX = 'self.__precacheManifest = (self.__precacheManifest || []).concat(';
 const SUFFIX = ');';
@@ -22,7 +20,7 @@ const precacheManifest = async (ctx) => {
       manifestFile.substring(PREFIX.length, manifestFile.length - SUFFIX.length)
     );
     const manifestLocation = new URLSearchParams(params).get('manifestLocation');
-    const manifestData = await getBackendManifest(ctx, manifestLocation);
+    const manifestData = await ctx.getManifest(manifestLocation);
 
     if (manifestData) {
       manifest.push(({ url: manifestLocation }));

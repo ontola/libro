@@ -16,7 +16,6 @@ import {
   setActionParam,
 } from '../actions';
 import logging from '../logging';
-import { getBackendManifest } from '../manifest';
 
 export function isRedirect(status) {
   return status === HttpStatus.MULTIPLE_CHOICES
@@ -219,11 +218,9 @@ const getRequestOptions = ({
 });
 
 async function isSourceAllowed(ctx, origin) {
-  if (!ctx.manifest && ctx.request.headers.manifest) {
-    ctx.manifest = await getBackendManifest(ctx, ctx.request.headers.manifest);
-  }
+  const manifestData = await ctx.getManifest();
 
-  return (ctx.manifest.ontola?.['allowed_external_sources'] || []).includes(origin);
+  return (manifestData.ontola?.['allowed_external_sources'] || []).includes(origin);
 }
 
 async function requestForBulk(ctx, iri, agent, write, resolve) {
