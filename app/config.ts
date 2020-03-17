@@ -9,8 +9,6 @@ const getEnv = (
   process.env.NODE_ENV === 'test' ? test : process.env[env] || defaultVal
 );
 
-export const MATOMO_HOST = process.env.MATOMO_HOST;
-export const MATOMO_PORT = process.env.MATOMO_PORT;
 export const ASSETS_HOST = getEnv('ASSETS_HOST', '', '');
 export const RELEASE_STAGE = process.env.RAILS_ENV;
 export const FRONTEND_ACCEPT = 'application/hex+x-ndjson';

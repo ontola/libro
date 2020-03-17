@@ -1,11 +1,7 @@
 import csp from 'helmet-csp';
 import c2k from 'koa2-connect';
 
-import {
-  ASSETS_HOST,
-  MATOMO_HOST,
-  MATOMO_PORT,
-} from '../../app/config';
+import { ASSETS_HOST } from '../../app/config';
 
 const defaultSrc = ["'self'"];
 
@@ -43,10 +39,14 @@ const scriptSrc = [
   'https://d2wy8f7a9ursnm.cloudfront.net',
   'https://storage.googleapis.com',
   'https://www.googletagmanager.com',
+  (req) => {
+    const { manifest } = req.getCtx();
+
+    return [manifest?.ontola?.['matomo_hostname'], manifest?.ontola?.['matomo_port']]
+      .filter(Boolean)
+      .join(':');
+  },
 ];
-if (MATOMO_HOST) {
-  scriptSrc.push([MATOMO_HOST, MATOMO_PORT].filter(Boolean).join(':'));
-}
 
 const styleSrc = [
   "'self'",
@@ -73,27 +73,31 @@ if (['production', 'staging', 'test'].includes(process.env.NODE_ENV)) {
   connectSrc.push('https://sessions.bugsnag.com');
 }
 
-export default async (ctx, next) => (
-  c2k(csp({
-    browserSniff: false,
-    directives: {
-      blockAllMixedContent: true,
-      childSrc,
-      connectSrc,
-      defaultSrc,
-      fontSrc,
-      frameSrc,
-      imgSrc,
-      objectSrc,
-      sandbox,
-      scriptSrc,
-      styleSrc,
-      upgradeInsecureRequests: true,
-      workerSrc,
-    },
-    disableAndroid: false,
-    loose: false,
-    reportOnly: false,
-    setAllHeaders: false,
-  }))(ctx, next)
-);
+export default async (ctx, next) => {
+  await ctx.getManifest();
+
+  return (
+    c2k(csp({
+      browserSniff: false,
+      directives: {
+        blockAllMixedContent: true,
+        childSrc,
+        connectSrc,
+        defaultSrc,
+        fontSrc,
+        frameSrc,
+        imgSrc,
+        objectSrc,
+        sandbox,
+        scriptSrc,
+        styleSrc,
+        upgradeInsecureRequests: true,
+        workerSrc,
+      },
+      disableAndroid: false,
+      loose: false,
+      reportOnly: false,
+      setAllHeaders: false,
+    }))(ctx, next)
+  );
+};

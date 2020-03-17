@@ -84,8 +84,6 @@ const routes = async function routes(app, port) {
 
   app.use(deviceIdMiddleware);
 
-  app.use(csp);
-
   const router = new Router();
 
   router.use(securityHeaders);
@@ -127,6 +125,8 @@ const routes = async function routes(app, port) {
   router.get('/api/maps/accessToken', maps);
 
   router.get('/*/media_objects/*', isBinaryishRequest(fileProxy));
+
+  router.use(csp);
 
   router.get(/.*/, application(port));
 
