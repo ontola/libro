@@ -4,7 +4,10 @@ import * as constants from '../app/config';
 
 import { createUserRequest } from './api/users';
 import processResponse from './api/internal/statusHandler';
-import { userTokenRequest } from './api/tokens';
+import {
+  refreshTokenRequest,
+  userTokenRequest,
+} from './api/tokens';
 import {
   clientId,
   clientSecret,
@@ -103,6 +106,13 @@ class API {
       path: req.url,
       redirect: 'manual',
     });
+  }
+
+  refreshToken(refreshToken, websiteIRI) {
+    return this.fetch(
+      this.userToken,
+      refreshTokenRequest(refreshToken, websiteIRI)
+    );
   }
 
   /**

@@ -1,7 +1,7 @@
 import { isTerm, Term } from '@ontologies/core';
 
-const SEC_MS = 1000;
-const MINUTE_SECS = 60;
+export const SEC_MS = 1000;
+export const MINUTE_SECS = 60;
 const DAY_HOURS = 24;
 const WEEK_DAYS = 7;
 const MONTH_DAYS = 30.5;

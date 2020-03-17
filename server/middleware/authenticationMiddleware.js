@@ -1,11 +1,24 @@
-import { EXPIRE_SESSION_ACTION } from '../utils/actions';
-import jwt from 'jsonwebtoken';
+import * as httpStatus from 'http-status-codes';
+import jwt, { TokenExpiredError } from 'jsonwebtoken';
 
 import { jwtEncryptionToken } from '../config';
+import { MINUTE_SECS, SEC_MS } from '../../app/helpers/date';
+
+const isExpired = (ctx) => {
+  try {
+    const expiresAt = new Date(ctx.getFromAccessToken('exp') - MINUTE_SECS) * SEC_MS;
+
+    return expiresAt < Date.now();
+  } catch (e) {
+    if (e instanceof TokenExpiredError) {
+      return true;
+    }
+    throw e;
+  }
+};
 
 /**
  * Requires the request to have valid authentication.
- * When the session is empty a guest session is requested.
  * @module
  * @param {object} ctx -
  * @param {function} next The function to pass the request to if authentication succeeds
@@ -23,10 +36,6 @@ async function authenticationMiddleware(ctx, next) {
       ctx.api.userToken = token;
     }
   };
-
-  if (ctx.session) {
-    ctx.setAccessToken(ctx.session.arguToken, ctx.session.arguRefreshToken);
-  }
 
   ctx.getFromAccessToken = (key) => {
     if (!ctx.session.arguToken) {
@@ -47,11 +56,23 @@ async function authenticationMiddleware(ctx, next) {
     return ctx.arguTokenData[key];
   };
 
-  const expired = ctx.session.arguToken && new Date(ctx.session.arguToken.expiresAt) < Date.now();
-  if (expired) {
-    // @todo Handle expired token
-    ctx.session.arguToken = undefined;
-    ctx.addAction(EXPIRE_SESSION_ACTION);
+  if (ctx.session.arguToken) {
+    ctx.setAccessToken(ctx.session.arguToken, ctx.session.arguRefreshToken);
+
+    const websiteIRI = ctx.request.headers['website-iri'] || (await ctx.getManifest())?.scope;
+
+    if (isExpired(ctx) && websiteIRI) {
+      const response = await ctx.api.refreshToken(
+        ctx.session.arguRefreshToken,
+        websiteIRI
+      );
+      const json = await response.json();
+      if (ctx.response.status === httpStatus.OK) {
+        ctx.setAccessToken(json.access_token, json.refresh_token);
+      } else {
+        throw new Error(`Unhandled server status code '${response.status}'\n${json}`);
+      }
+    }
   }
 
   return next();

@@ -1,6 +1,5 @@
 export const EXEC_HEADER_NAME = 'Exec-Action';
 export const EXEC_HEADER_READ_NAME = 'exec-action';
-export const EXPIRE_SESSION_ACTION = 'https://ns.ontola.io/actions/expireSession';
 const SPLIT_MARKER = ', ';
 
 export function getActions(req) {
