@@ -33,8 +33,12 @@ const createDataContext = (ctx) => {
   };
 
   return {
+    addAction: ctx.addAction,
     api: ctx.api,
     deviceId: ctx.deviceId,
+    getFromAccessToken: ctx.getFromAccessToken,
+    getManifest: ctx.getManifest,
+    headResponse: ctx.headResponse,
     manifest: ctx.manifest,
     req: {
       getCtx: () => ctx,
@@ -45,6 +49,7 @@ const createDataContext = (ctx) => {
       origin: ctx.request.origin,
     },
     session: ctx.session,
+    setAccessToken: ctx.setAccessToken,
   };
 };
 

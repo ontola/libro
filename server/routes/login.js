@@ -2,6 +2,7 @@
 import HttpStatus from 'http-status-codes';
 
 import * as errors from '../utils/errors';
+import { NEW_AUTHORIZATION_HEADER, NEW_REFRESH_TOKEN_HEADER } from '../utils/proxies/helpers';
 
 async function login(ctx, next) {
   try {
@@ -75,8 +76,8 @@ async function signUp(ctx, next) {
     }
     ctx.response.status = response.status;
     const json = await response.json();
-    const auth = response.headers.get('New-Authorization');
-    const refreshToken = response.headers.get('New-Refresh-Token');
+    const auth = response.headers.get(NEW_AUTHORIZATION_HEADER);
+    const refreshToken = response.headers.get(NEW_REFRESH_TOKEN_HEADER);
     ctx.setAccessToken(auth, refreshToken);
     ctx.response.body = {
       email: json.data.attributes.email,

@@ -17,6 +17,9 @@ import {
 } from '../actions';
 import logging from '../logging';
 
+export const NEW_AUTHORIZATION_HEADER = 'New-Authorization';
+export const NEW_REFRESH_TOKEN_HEADER = 'New-Refresh-Token';
+
 export function isRedirect(status) {
   return status === HttpStatus.MULTIPLE_CHOICES
     || status === HttpStatus.MOVED_PERMANENTLY
@@ -43,9 +46,9 @@ export function setProxyReqHeaders(proxyReq, ctx) {
 const VARY_HEADER = 'Accept,Accept-Encoding,Authorization,Content-Type';
 
 export function newAuthorizationBulk(ctx, backendRes) {
-  const auth = backendRes.headers['new-authorization'];
+  const auth = backendRes.headers[NEW_AUTHORIZATION_HEADER];
   if (auth) {
-    const refreshToken = backendRes.headers['new-refresh-token'];
+    const refreshToken = backendRes.headers[NEW_REFRESH_TOKEN_HEADER];
     ctx.setAccessToken(auth, refreshToken);
 
     if (!isRedirect(backendRes.statusCode)) {

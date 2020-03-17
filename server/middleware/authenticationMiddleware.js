@@ -1,7 +1,6 @@
 import * as httpStatus from 'http-status-codes';
-import jwt, { TokenExpiredError } from 'jsonwebtoken';
+import { TokenExpiredError } from 'jsonwebtoken';
 
-import { jwtEncryptionToken } from '../config';
 import { MINUTE_SECS, SEC_MS } from '../../app/helpers/date';
 
 const isExpired = (ctx) => {
@@ -26,35 +25,6 @@ const isExpired = (ctx) => {
  */
 async function authenticationMiddleware(ctx, next) {
   ctx.arguTokenData = undefined;
-
-  ctx.setAccessToken = (token, refreshToken) => {
-    ctx.arguTokenData = undefined;
-
-    if (token) {
-      ctx.session.arguToken = token;
-      ctx.session.arguRefreshToken = refreshToken;
-      ctx.api.userToken = token;
-    }
-  };
-
-  ctx.getFromAccessToken = (key) => {
-    if (!ctx.session.arguToken) {
-      return undefined;
-    }
-
-    if (!ctx.arguTokenData) {
-      ctx.arguTokenData = jwt.verify(
-        ctx.session.arguToken,
-        jwtEncryptionToken
-      );
-    }
-
-    if (!key) {
-      return ctx.arguTokenData;
-    }
-
-    return ctx.arguTokenData[key];
-  };
 
   if (ctx.session.arguToken) {
     ctx.setAccessToken(ctx.session.arguToken, ctx.session.arguRefreshToken);

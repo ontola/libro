@@ -3,12 +3,12 @@ import Router from '@koa/router';
 import bodyParser from 'koa-bodyparser';
 import CSRF from 'koa-csrf';
 import serveStatic from 'koa-static';
-import uuidv4 from 'uuid/v4';
 import logger from 'koa-logger';
 
 import { appHostname, frontendHostname } from '../config';
 import apiMiddleware from '../middleware/apiMiddleware';
 import authenticationMiddleware from '../middleware/authenticationMiddleware';
+import ctxMiddleware from '../middleware/ctxMiddleware';
 import backendErrorHandler from '../middleware/errorHandlerMiddleware';
 import sessionMiddleware from '../middleware/sessionMiddleware';
 import csp from '../utils/csp';
@@ -74,13 +74,7 @@ const routes = async function routes(app, port) {
     return next();
   });
 
-  app.use(async (ctx, next) => {
-    ctx.res.locals = { nonce: uuidv4() };
-    ctx.req.getCtx = () => ctx;
-    ctx.response.set('X-FE-Version', __VERSION__);
-
-    return next();
-  });
+  app.use(ctxMiddleware);
 
   app.use(deviceIdMiddleware);
 
