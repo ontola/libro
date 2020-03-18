@@ -34,7 +34,7 @@ class API {
     this.userToken = userToken;
   }
 
-  logout(req = this.req) {
+  logout(websiteIRI) {
     return this.fetchRaw(this.userToken, {
       body: JSON.stringify({
         client_id: clientId,
@@ -44,10 +44,10 @@ class API {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        ...this.proxySafeHeaders(req),
+        ...this.proxySafeHeaders(this.req),
       },
       method: 'POST',
-      path: 'oauth/revoke',
+      path: new URL(`${websiteIRI}/oauth/revoke`).pathname,
       redirect: 'manual',
     });
   }
