@@ -17,6 +17,7 @@ import ActionsBar from '../../topologies/ActionsBar';
 import Card from '../../topologies/Card';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import { containerTopology } from '../../topologies/Container';
+import { alertDialogTopology } from '../../topologies/Dialog';
 
 class ArgumentContainer extends React.PureComponent {
   static type = [
@@ -25,7 +26,10 @@ class ArgumentContainer extends React.PureComponent {
     argu.ConArgument,
   ];
 
-  static topology = containerTopology;
+  static topology = [
+    alertDialogTopology,
+    containerTopology,
+  ];
 
   static propTypes = {
     highlighted: hightlightType,

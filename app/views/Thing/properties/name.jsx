@@ -92,7 +92,7 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     () => (
-      <LDLink>
+      <LDLink target="modal">
         <ConnectedHeading data-test="Thing-name-card-preview" size="4" />
       </LDLink>
     ),
