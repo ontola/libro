@@ -1,7 +1,7 @@
-import * as httpStatus from 'http-status-codes';
 import { TokenExpiredError } from 'jsonwebtoken';
 
 import { MINUTE_SECS, SEC_MS } from '../../app/helpers/date';
+import { processTokenRequest } from '../utils/tokens';
 
 const isExpired = (ctx) => {
   try {
@@ -29,19 +29,11 @@ async function authenticationMiddleware(ctx, next) {
   if (ctx.session.arguToken) {
     ctx.setAccessToken(ctx.session.arguToken, ctx.session.arguRefreshToken);
 
-    const websiteIRI = ctx.request.headers['website-iri'] || (await ctx.getManifest())?.scope;
-
-    if (isExpired(ctx) && websiteIRI) {
-      const response = await ctx.api.refreshToken(
-        ctx.session.arguRefreshToken,
-        websiteIRI
+    if (isExpired(ctx) && ctx.getWebsiteIRI()) {
+      await processTokenRequest(
+        ctx,
+        ctx.api.refreshToken(ctx.session.arguRefreshToken, await ctx.getWebsiteIRI())
       );
-      const json = await response.json();
-      if (ctx.response.status === httpStatus.OK) {
-        ctx.setAccessToken(json.access_token, json.refresh_token);
-      } else {
-        throw new Error(`Unhandled server status code '${response.status}'\n${json}`);
-      }
     }
   }
 

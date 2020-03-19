@@ -5,6 +5,7 @@ import * as constants from '../app/config';
 import { createUserRequest } from './api/users';
 import processResponse from './api/internal/statusHandler';
 import {
+  guestTokenRequest,
   refreshTokenRequest,
   userTokenRequest,
 } from './api/tokens';
@@ -113,6 +114,14 @@ class API {
       this.userToken,
       refreshTokenRequest(refreshToken, websiteIRI)
     );
+  }
+
+  /**
+   * Request a new guest token from the backend
+   * @return {Promise} Raw fetch response promise
+   */
+  requestGuestToken(websiteIRI) {
+    return this.fetch(this.serviceToken, guestTokenRequest(websiteIRI));
   }
 
   /**

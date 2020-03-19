@@ -9,6 +9,7 @@ import { appHostname, frontendHostname } from '../config';
 import apiMiddleware from '../middleware/apiMiddleware';
 import authenticationMiddleware from '../middleware/authenticationMiddleware';
 import ctxMiddleware from '../middleware/ctxMiddleware';
+import ensureAccessTokenMiddleware from '../middleware/ensureAccessTokenMiddleware';
 import backendErrorHandler from '../middleware/errorHandlerMiddleware';
 import sessionMiddleware from '../middleware/sessionMiddleware';
 import csp from '../utils/csp';
@@ -105,11 +106,14 @@ const routes = async function routes(app, port) {
   router.get('*/f_assets/precache-manifest.*.js*', precacheManifest);
   router.get(['/logout', '/*/logout'], logout);
   router.post(['/logout', '/*/logout'], logout);
+  router.post('/link-lib/bulk', bodyParser(), isBackend(bulkProxy));
+
+  router.use(ensureAccessTokenMiddleware);
+
   router.post(['/follows/*', '/*/follows/*'], backend);
 
   router.use(new CSRF());
 
-  router.post('/link-lib/bulk', bodyParser(), isBackend(bulkProxy));
   router.all('*', isWebsocket(backend));
   router.all('*', isBackend(backend));
 

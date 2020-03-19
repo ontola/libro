@@ -77,5 +77,13 @@ export default function ctxMiddleware(ctx, next) {
     return ctx.arguTokenData[key];
   };
 
+  ctx.getWebsiteIRI = async () => {
+    if (!ctx.websiteIRI) {
+      ctx.websiteIRI = ctx.request.headers['website-iri'] || (await ctx.getManifest())?.scope;
+    }
+
+    return ctx.websiteIRI;
+  };
+
   return next();
 }
