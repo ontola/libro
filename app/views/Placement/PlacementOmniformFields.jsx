@@ -28,6 +28,9 @@ const PlacementOmniformFields = ({
 }) => {
   const formID = React.useContext(FormContext);
   const formContext = React.useContext(FormSectionContext);
+  const fieldName = calculateFormFieldName(formContext, propertyIndex);
+  const latFieldName = calculateFormFieldName(schema.latitude);
+  const lonFieldName = calculateFormFieldName(schema.longitude);
   const reactFinalForm = useForm();
 
   if (isMarkedForRemove(targetValue)) {
@@ -37,9 +40,10 @@ const PlacementOmniformFields = ({
   let renderSubject = false;
   const placements = [];
 
+  let lat, lon;
   if (targetValue) {
-    const lat = targetValue[calculateFormFieldName(schema.latitude)];
-    const lon = targetValue[calculateFormFieldName(schema.longitude)];
+    lat = targetValue[latFieldName];
+    lon = targetValue[lonFieldName];
 
     if (lat && lon) {
       placements.push({
@@ -54,7 +58,7 @@ const PlacementOmniformFields = ({
   }
 
   const storeCoordinates = (e) => {
-    reactFinalForm.change(calculateFormFieldName(formContext, propertyIndex), targetValue);
+    reactFinalForm.change(fieldName, targetValue);
     reactFinalForm.change(
       calculateFormFieldName(formContext, propertyIndex, schema.latitude),
       e[1]
@@ -68,6 +72,22 @@ const PlacementOmniformFields = ({
   return (
     <div className="PlacementOmniformFields">
       {removeItem && <OmniformRemoveButton removeItem={removeItem} />}
+      <input
+        required
+        className="hidden-field"
+        id={latFieldName}
+        name={latFieldName}
+        type="text"
+        value={lat}
+      />
+      <input
+        required
+        className="hidden-field"
+        id={lonFieldName}
+        name={lonFieldName}
+        type="text"
+        value={lon}
+      />
       <MapView
         lrs={lrs}
         placements={placements}
