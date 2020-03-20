@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/styles';
 
 import { semanticColors } from '../shared/config';
 
-const HOVER_COEFFICIENT = 0.3;
+export const HOVER_COEFFICIENT = 0.3;
 
 /* eslint-disable no-magic-numbers */
 export default makeStyles((theme) => {

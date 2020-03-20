@@ -65,6 +65,7 @@ const IndexContainer = ({
         ...theme.palette,
         link: {
           header: websiteMeta.styled_headers ? websiteMeta.secondary_main : theme.palette.grey[800],
+          text: websiteMeta.secondary_main,
         },
         primary: {
           contrastText: websiteMeta.primary_text,
