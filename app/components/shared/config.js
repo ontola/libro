@@ -2,17 +2,10 @@ export const headingSizes = ['1', '2', '3', '4', '5', '6'];
 
 export const headingVariants = [
   'alert',
-  'column',
-  'con',
-  'default',
   'default',
   'error',
-  'light',
-  'motion',
   'notice',
-  'pro',
-  'pro',
-  'question',
+  'semantic',
 ];
 
 export const shades = [
@@ -22,6 +15,13 @@ export const shades = [
   'dark',
   'white',
 ];
+
+export const semanticColors = {
+  'https://argu.co/ns/core#ConArgument': '#684747',
+  'https://argu.co/ns/core#Motion': '#475668',
+  'https://argu.co/ns/core#ProArgument': '#547f4b',
+  'https://argu.co/ns/core#Question': '#684747',
+};
 
 export const sides = [
   'yes',

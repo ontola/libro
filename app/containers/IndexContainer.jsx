@@ -58,10 +58,14 @@ const IndexContainer = ({
     && typeof window.WEBSITE_META !== 'undefined'
     && Object.keys(window.WEBSITE_META).length > 0) {
     const websiteMeta = window.WEBSITE_META;
+    /* eslint-disable no-magic-numbers */
     theme = {
       ...theme,
       palette: createPalette({
         ...theme.palette,
+        link: {
+          header: websiteMeta.styled_headers ? websiteMeta.secondary_main : theme.palette.grey[800],
+        },
         primary: {
           contrastText: websiteMeta.primary_text,
           main: websiteMeta.primary_main,
@@ -72,6 +76,7 @@ const IndexContainer = ({
         },
       }),
     };
+    /* eslint-enable no-magic-numbers */
   }
 
   return (

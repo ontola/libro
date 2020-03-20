@@ -42,41 +42,27 @@ const NamePredicates = [
   sh.name,
 ];
 
-class ColoredHeading extends React.PureComponent {
-  static propTypes = {
-    name: linkType,
-    size: PropTypes.string,
-    type: linkType,
-  };
+const ColoredHeading = ({
+  name,
+  size,
+  variant,
+  type,
+}) => (
+  <Heading
+    size={size}
+    type={type}
+    variant={variant}
+  >
+    {name}
+  </Heading>
+);
 
-  getVariant() {
-    switch (this.props.type) {
-      case 'https://argu.co/ns/core#ConArgument':
-        return 'con';
-      case 'https://argu.co/ns/core#ProArgument':
-        return 'pro';
-      case 'https://argu.co/ns/core#Motion':
-        return 'motion';
-      case 'https://argu.co/ns/core#Question':
-        return 'question';
-      default:
-        return undefined;
-    }
-  }
-
-  render() {
-    const { name, size } = this.props;
-
-    return (
-      <Heading
-        size={size}
-        variant={this.getVariant()}
-      >
-        {name}
-      </Heading>
-    );
-  }
-}
+ColoredHeading.propTypes = {
+  name: linkType,
+  size: PropTypes.string,
+  type: linkType,
+  variant: PropTypes.string,
+};
 
 const ConnectedHeading = link({
   name: NamePredicates,
@@ -93,7 +79,7 @@ export default [
   LinkedRenderStore.registerRenderer(
     () => (
       <LDLink target="modal">
-        <ConnectedHeading data-test="Thing-name-card-preview" size="4" />
+        <ConnectedHeading data-test="Thing-name-card-preview" size="4" variant="semantic" />
       </LDLink>
     ),
     schema.Thing,
@@ -112,7 +98,7 @@ export default [
     ]
   ),
   LinkedRenderStore.registerRenderer(
-    () => <ConnectedHeading data-test="Thing-name-card-main" size="1" />,
+    () => <ConnectedHeading data-test="Thing-name-card-main" size="1" variant="semantic" />,
     schema.Thing,
     NamePredicates,
     cardMainTopology
@@ -130,10 +116,13 @@ export default [
     [radioGroupTopology, selectTopology]
   ),
   LinkedRenderStore.registerRenderer(
-    () => <LDLink><ConnectedHeading data-test="Thing-name-card" size="2" /></LDLink>,
+    () => <LDLink><ConnectedHeading data-test="Thing-name-card" size="2" variant="semantic" /></LDLink>,
     schema.Thing,
     NamePredicates,
-    cardTopology
+    [
+      cardTopology,
+      cardRowTopology,
+    ]
   ),
   LinkedRenderStore.registerRenderer(
     ({ wrapper }) => {
@@ -146,14 +135,13 @@ export default [
     schema.Thing,
     NamePredicates,
     [
-      cardRowTopology,
       containerTopology,
       popupTopology,
       gridTopology,
     ]
   ),
   LinkedRenderStore.registerRenderer(
-    () => <ConnectedHeading data-test="Thing-name-card-fixed" size="2" />,
+    () => <ConnectedHeading data-test="Thing-name-card-fixed" size="2" variant="semantic" />,
     schema.Thing,
     NamePredicates,
     cardFixedTopology
@@ -169,7 +157,7 @@ export default [
     ]
   ),
   LinkedRenderStore.registerRenderer(
-    ({ linkedProp }) => <LDLink features={['bold']}>{linkedProp?.value}</LDLink>,
+    () => <LDLink><ConnectedHeading size="4" variant="semantic" /></LDLink>,
     schema.Thing,
     NamePredicates,
     tableRowTopology
