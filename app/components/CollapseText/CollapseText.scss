@@ -4,11 +4,12 @@
   margin-bottom: -.5em;
 
   .CollapseText__toggle {
-    background: linear-gradient(to bottom, color('transparent', 'transparent') 0%, color('white') 70%, color('white') 100%);
+    background: linear-gradient(to bottom, color('transparent', 'transparent') 0%, color('white') 30%, color('white') 100%);
     bottom: 1em;
     position: relative;
     text-align: right;
     width: 100%;
+    line-height: 3em;
 
     &:hover {
       // sass-lint:disable nesting-depth
@@ -20,7 +21,6 @@
   }
 
   .Button__label {
-    background: color('white', 'base');
     color: color('grey', 'xx-light-foreground-small');
     margin: 0;
     padding: .3em 1.2em;
@@ -37,5 +37,11 @@
       }
       // sass-lint:enable class-name-format
     }
+  }
+}
+
+.CardMicroRow {
+  .CollapseText__toggle {
+    background: linear-gradient(to bottom, color('transparent', 'transparent') 0%, color('grey', 'xx-light') 30%, color('grey', 'xx-light') 100%);
   }
 }

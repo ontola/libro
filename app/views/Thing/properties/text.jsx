@@ -18,6 +18,7 @@ import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
 import { cardListTopology } from '../../../topologies/Card/CardList';
 import { cardMainTopology } from '../../../topologies/Card/CardMain';
 import { cardRowTopology } from '../../../topologies/Card/CardRow';
+import { cardMicroRowTopology } from '../../../topologies/Card/CardMicroRow';
 import { containerTopology } from '../../../topologies/Container';
 import { hoverBoxTopology } from '../../../topologies/HoverBox';
 import { popupTopology } from '../../../topologies/Popup';
@@ -117,6 +118,7 @@ export default [
     schema.Thing,
     [schema.text, schema.description],
     [
+      cardMicroRowTopology,
       cardRowTopology,
       cardTopology,
       containerTopology,

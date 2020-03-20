@@ -19,6 +19,14 @@
 
 .Collapsible--preview {
   .ReactCollapse--collapse {
-    min-height: 100px;
+    min-height: 8em;
+  }
+}
+
+.CardMicroRow {
+  .Collapsible--preview {
+    .ReactCollapse--collapse {
+      min-height: 4em;
+    }
   }
 }
