@@ -30,11 +30,11 @@ class API {
   }
 
   logout(websiteIRI) {
-    return this.fetchRaw(this.ctx.session.arguToken, {
+    return this.fetchRaw(this.ctx.session.userToken, {
       body: JSON.stringify({
         client_id: clientId,
         client_secret: clientSecret,
-        token: this.ctx.session.arguToken,
+        token: this.ctx.session.userToken,
       }),
       headers: {
         Accept: 'application/json',
@@ -84,7 +84,7 @@ class API {
    */
   createUser(email, acceptTerms, websiteIRI) {
     return this.fetch(
-      this.ctx.session.arguToken,
+      this.ctx.session.userToken,
       createUserRequest(email, acceptTerms, websiteIRI)
     );
   }
@@ -95,7 +95,7 @@ class API {
    * @return {Promise} The proxies response
    */
   headRequest(req) {
-    return this.fetchRaw(this.ctx.session.arguToken || this.serviceGuestToken, {
+    return this.fetchRaw(this.ctx.session.userToken || this.serviceGuestToken, {
       headers: {
         Accept: constants.FRONTEND_ACCEPT,
         ...this.proxySafeHeaders(req),
@@ -108,7 +108,7 @@ class API {
 
   refreshToken(refreshToken, websiteIRI) {
     return this.fetch(
-      this.ctx.session.arguToken,
+      this.ctx.session.userToken,
       refreshTokenRequest(refreshToken, websiteIRI)
     );
   }
@@ -131,7 +131,7 @@ class API {
    */
   requestUserToken(login, password, websiteIRI, redirect = undefined) {
     return this.fetch(
-      this.ctx.session.arguToken,
+      this.ctx.session.userToken,
       userTokenRequest(login, password, websiteIRI, redirect)
     );
   }

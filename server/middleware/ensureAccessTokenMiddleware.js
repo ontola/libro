@@ -5,7 +5,7 @@ const requireAccessToken = (ctx) => (
 );
 
 export default async function ensureAccessTokenMiddleware(ctx, next) {
-  if (!ctx.session.arguToken && requireAccessToken(ctx)) {
+  if (!ctx.session.userToken && requireAccessToken(ctx)) {
     await processTokenRequest(
       ctx,
       ctx.api.requestGuestToken(await ctx.getWebsiteIRI())

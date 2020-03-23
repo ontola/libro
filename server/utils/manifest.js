@@ -10,7 +10,7 @@ import { readFileFromCache } from './cache';
 
 export const requestBackendManifest = async (api, manifestLocation) => (
   readFileFromCache(manifestLocation) || api.fetchRaw(
-    api.ctx.session.arguToken || api.serviceGuestToken,
+    api.ctx.session.userToken || api.serviceGuestToken,
     {
       headers: {
         Accept: 'application/json',

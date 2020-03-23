@@ -26,13 +26,13 @@ const isExpired = (ctx) => {
 async function authenticationMiddleware(ctx, next) {
   ctx.arguTokenData = undefined;
 
-  if (ctx.session.arguToken) {
-    ctx.setAccessToken(ctx.session.arguToken, ctx.session.arguRefreshToken);
+  if (ctx.session.userToken) {
+    ctx.setAccessToken(ctx.session.userToken, ctx.session.refreshToken);
 
     if (isExpired(ctx) && ctx.getWebsiteIRI()) {
       await processTokenRequest(
         ctx,
-        ctx.api.refreshToken(ctx.session.arguRefreshToken, await ctx.getWebsiteIRI())
+        ctx.api.refreshToken(ctx.session.refreshToken, await ctx.getWebsiteIRI())
       );
     }
   }

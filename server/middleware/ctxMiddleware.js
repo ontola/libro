@@ -52,19 +52,19 @@ export default function ctxMiddleware(ctx, next) {
       if (!refreshToken) {
         throw new Error('refreshToken is missing while accessToken is present');
       }
-      ctx.session.arguToken = token;
-      ctx.session.arguRefreshToken = refreshToken;
+      ctx.session.userToken = token;
+      ctx.session.refreshToken = refreshToken;
     }
   };
 
   ctx.getFromAccessToken = (key) => {
-    if (!ctx.session.arguToken) {
+    if (!ctx.session.userToken) {
       return undefined;
     }
 
     if (!ctx.arguTokenData) {
       ctx.arguTokenData = jwt.verify(
-        ctx.session.arguToken,
+        ctx.session.userToken,
         jwtEncryptionToken
       );
     }

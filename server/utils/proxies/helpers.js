@@ -30,8 +30,8 @@ export function isRedirect(status) {
 }
 
 export function setProxyReqHeaders(proxyReq, ctx) {
-  if (typeof ctx.session !== 'undefined' && typeof ctx.session.arguToken !== 'undefined') {
-    proxyReq.setHeader('Authorization', `Bearer ${ctx.session.arguToken}`);
+  if (typeof ctx.session !== 'undefined' && typeof ctx.session.userToken !== 'undefined') {
+    proxyReq.setHeader('Authorization', `Bearer ${ctx.session.userToken}`);
   }
   if (typeof ctx.deviceId !== 'undefined') {
     proxyReq.setHeader('X-Device-Id', ctx.deviceId);
