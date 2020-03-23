@@ -17,8 +17,8 @@ import {
 } from '../actions';
 import logging from '../logging';
 
-export const NEW_AUTHORIZATION_HEADER = 'New-Authorization';
-export const NEW_REFRESH_TOKEN_HEADER = 'New-Refresh-Token';
+export const NEW_AUTHORIZATION_HEADER = 'new-authorization';
+export const NEW_REFRESH_TOKEN_HEADER = 'new-refresh-token';
 
 export function isRedirect(status) {
   return status === HttpStatus.MULTIPLE_CHOICES
