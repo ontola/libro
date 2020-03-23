@@ -22,30 +22,24 @@ import { route } from './utils/proxies/helpers';
  * Class for communicating with the Argu API & SPI.
  */
 class API {
-  constructor({
-    deviceId,
-    req,
-    userToken,
-  }) {
+  constructor(ctx) {
     this.base = constants.ARGU_API_URL;
-    this.deviceId = deviceId;
-    this.req = req;
+    this.ctx = ctx;
     this.serviceToken = oAuthToken;
     this.serviceGuestToken = serviceGuestToken;
-    this.userToken = userToken;
   }
 
   logout(websiteIRI) {
-    return this.fetchRaw(this.userToken, {
+    return this.fetchRaw(this.ctx.session.arguToken, {
       body: JSON.stringify({
         client_id: clientId,
         client_secret: clientSecret,
-        token: this.userToken,
+        token: this.ctx.session.arguToken,
       }),
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        ...this.proxySafeHeaders(this.req),
+        ...this.proxySafeHeaders(this.ctx.request),
       },
       method: 'POST',
       path: new URL(`${websiteIRI}/oauth/revoke`).pathname,
@@ -53,7 +47,7 @@ class API {
     });
   }
 
-  proxySafeHeaders(req = this.req) {
+  proxySafeHeaders(req = this.ctx.request) {
     return {
       'Accept-Language': req.headers?.['accept-language'],
       'X-Forwarded-Host': req.headers.host,
@@ -89,7 +83,10 @@ class API {
    * @return {Promise} Raw fetch response promise
    */
   createUser(email, acceptTerms, websiteIRI) {
-    return this.fetch(this.userToken, createUserRequest(email, acceptTerms, websiteIRI));
+    return this.fetch(
+      this.ctx.session.arguToken,
+      createUserRequest(email, acceptTerms, websiteIRI)
+    );
   }
 
   /**
@@ -98,7 +95,7 @@ class API {
    * @return {Promise} The proxies response
    */
   headRequest(req) {
-    return this.fetchRaw(this.userToken || this.serviceGuestToken, {
+    return this.fetchRaw(this.ctx.session.arguToken || this.serviceGuestToken, {
       headers: {
         Accept: constants.FRONTEND_ACCEPT,
         ...this.proxySafeHeaders(req),
@@ -111,7 +108,7 @@ class API {
 
   refreshToken(refreshToken, websiteIRI) {
     return this.fetch(
-      this.userToken,
+      this.ctx.session.arguToken,
       refreshTokenRequest(refreshToken, websiteIRI)
     );
   }
@@ -134,7 +131,7 @@ class API {
    */
   requestUserToken(login, password, websiteIRI, redirect = undefined) {
     return this.fetch(
-      this.userToken,
+      this.ctx.session.arguToken,
       userTokenRequest(login, password, websiteIRI, redirect)
     );
   }
@@ -178,7 +175,7 @@ class API {
           ...headers,
           Authorization: `Bearer ${authToken}`,
           'X-Argu-Back': 'true',
-          'X-Device-Id': this.deviceId,
+          'X-Device-Id': this.ctx.deviceId,
         },
         strictSSL: !__DEVELOPMENT__,
       }

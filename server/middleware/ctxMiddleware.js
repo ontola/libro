@@ -54,7 +54,6 @@ export default function ctxMiddleware(ctx, next) {
       }
       ctx.session.arguToken = token;
       ctx.session.arguRefreshToken = refreshToken;
-      ctx.api.userToken = token;
     }
   };
 

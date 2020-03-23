@@ -10,7 +10,7 @@ export default class BackendCheck extends Check {
   }
 
   async runTest() {
-    const api = new API({ req: { headers: {} } });
+    const api = new API({ request: { headers: {} } });
     try {
       return (await api.tenants())?.sites;
     } catch (e) {

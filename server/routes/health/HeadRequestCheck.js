@@ -12,7 +12,7 @@ export default class HeadRequestCheck extends Check {
 
   // eslint-disable-next-line class-methods-use-this
   async runTest() {
-    const api = new API({ req: { headers: {} } });
+    const api = new API({ request: { headers: {} } });
     await api.headRequest({
       headers: {
         'Content-Type': 'application/hex+x-ndjson',

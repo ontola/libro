@@ -15,7 +15,7 @@ export default class ManifestCheck extends Check {
     const { hostname, pathname } = new URL(this.tenant.location);
 
     const api = new API({
-      req: {
+      request: {
         headers: {
           host: hostname,
         },
