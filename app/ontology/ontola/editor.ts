@@ -10,6 +10,10 @@ export default {
   Document: editor('Document'),
   EditorSettings: editor('EditorSettings'),
   elements: {
+    H1: editor('elements/H1'),
+    H2: editor('elements/H2'),
+    H3: editor('elements/H3'),
+    H4: editor('elements/H4'),
     Link: editor('elements/Link'),
     Paragraph: editor('elements/Paragraph'),
     Resource: editor('elements/Resource'),
@@ -21,8 +25,8 @@ export default {
   },
 
   /* Properties */
-  enabledPlugins: editor('enabledPlugins'),
   current: editor('current'),
+  enabledPlugins: editor('enabledPlugins'),
   /** The mark of an action */
   mark: editor('mark'),
   /** Currently activated marks */
@@ -31,6 +35,7 @@ export default {
 
   /* Individuals */
   actions: {
+    changeType: editor('actions/changeType'),
     toggleMark: editor('actions/toggleMark'),
   },
   divider: editor('divider'),

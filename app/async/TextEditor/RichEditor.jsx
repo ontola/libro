@@ -70,6 +70,14 @@ const renderElement = (props) => {
       return <DefaultElement {...props} elementType="a" />;
     case editor.elements.Resource:
       return <InlineResource {...props} />;
+    case editor.elements.H1:
+      return <DefaultElement {...props} elementType="h1" />;
+    case editor.elements.H2:
+      return <DefaultElement {...props} elementType="h2" />;
+    case editor.elements.H3:
+      return <DefaultElement {...props} elementType="h3" />;
+    case editor.elements.H4:
+      return <DefaultElement {...props} elementType="h4" />;
     case editor.elements.Paragraph:
     default:
       return <DefaultElement {...props} elementType="p" />;
@@ -103,9 +111,7 @@ const RichEditor = ({
 }) => {
   const styles = useStyles();
   const editable = React.useRef();
-  // const [enabledMap, plugins] = useEditorPlugins();
   const textEditor = React.useMemo(() => withHistory(withReact(createEditor())), []);
-  console.log(textEditor);
   const [editorValue, setEditorValue] = React.useState([
     {
       children: [{ text: plainValue || 'Test' }],

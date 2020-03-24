@@ -8,6 +8,7 @@ import './Select.scss';
 export const selectTopology = argu.ns('select');
 
 interface Props {
+  elementType?: string;
   scrollIntoView?: any;
 }
 
@@ -22,13 +23,15 @@ class Select<P extends Props = {}> extends Topology<P> {
     const {
       children,
       scrollIntoView, // eslint-disable-line no-unused-vars
+      elementType: ElementType = 'ul',
       ...props
     } = this.props;
 
     return this.wrap((
-      <ul {...props}>
+      // @ts-ignore
+      <ElementType {...props}>
         {children}
-      </ul>
+      </ElementType>
     ));
   }
 }

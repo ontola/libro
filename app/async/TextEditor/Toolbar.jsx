@@ -1,9 +1,9 @@
 import { Paper, makeStyles } from '@material-ui/core';
-import MaterialMenuItem from '@material-ui/core/MenuItem';
 import MaterialSelect from '@material-ui/core/Select';
+import MaterialMenuItem from '@material-ui/core/MenuItem';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import { isNamedNode } from '@ontologies/core';
+import rdf, { isNamedNode } from '@ontologies/core';
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
 import sh from '@ontologies/shacl';
@@ -16,7 +16,8 @@ import {
   useResourceLinks,
 } from 'link-redux';
 import React from 'react';
-import { ReactEditor, useEditor } from 'slate-react';
+import { Editor } from 'slate';
+import { useSlate } from 'slate-react';
 
 import ontola from '../../ontology/ontola';
 import editor from '../../ontology/ontola/editor';
@@ -39,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const settingsPropMap = {
-  marksIRI: editor.marks,
   toolbar: editor.toolbar,
 };
 
@@ -56,6 +56,9 @@ const useMenuItemStyles = makeStyles(({
   button: {
     border: 'none',
     height: 48,
+  },
+  root: {
+    backgroundColor: 'transparent',
   },
 }));
 
@@ -74,28 +77,24 @@ const Divider = () => {
   return <div className={divider} />;
 };
 
-function normalizeAction(lrs, action, textEditor) {
+function normalizeAction(lrs, action, opts) {
   if (isNamedNode(action)) {
     return (e) => {
       e.preventDefault();
 
-      return lrs.exec(action, true)
-        .then((r) => {
-          ReactEditor.focus(textEditor);
-
-          return r;
-        });
+      return lrs.exec(action, opts);
     };
   }
 
   return action;
 }
 
-function MenuItem({ item }) {
-  console.log('MenuItem', item);
+function MenuItem({ item, marks }) {
   const classes = useMenuItemStyles();
   const lrs = useLRS();
-  const textEditor = useEditor();
+  useDataInvalidation({ subject: item });
+  const textEditor = useSlate();
+  const actionOpts = { item, textEditor };
 
   if (item.subject === editor.divider) {
     return <Divider />;
@@ -103,34 +102,46 @@ function MenuItem({ item }) {
     const items = seqToArray(lrs, item.in);
 
     return (
-      <MaterialSelect
-        classes={classes}
-        MenuProps={{
-          anchorOrigin: {
-            horizontal: 'left',
-            vertical: 'bottom',
-          },
-          getContentAnchorEl: null,
-        }}
-        renderValue={(value) => (value
-          ? <Selected><Resource subject={value} /></Selected>
-          : 'Nothing selected'
-        )}
-        value={items[0]}
-      >
-        <Select>
-          <Resource subject={item.in} />
-        </Select>
-      </MaterialSelect>
+      <Select elementType={React.Fragment}>
+        <MaterialSelect
+          classes={classes}
+          className={classes.root}
+
+          MenuProps={{
+            anchorOrigin: {
+              horizontal: 'left',
+              vertical: 'bottom',
+            },
+            getContentAnchorEl: null,
+          }}
+          renderValue={(value) => (value
+            ? <Selected><Resource subject={value} /></Selected>
+            : 'Nothing selected'
+          )}
+          value={item.current}
+          onChange={(e) => normalizeAction(
+            lrs,
+            lrs.getResourceProperty(e.target.value, ontola.action),
+            actionOpts
+          )(e)}
+        >
+          {items.map((i) => (
+            <MaterialMenuItem key={i} value={i}>
+              <Resource subject={i} />
+            </MaterialMenuItem>
+          ))}
+        </MaterialSelect>
+      </Select>
     );
   }
 
   return (
     <ToggleButton
       className={classes.button}
+      selected={marks.includes(rdf.toNQ(item.mark))}
       title={item.name.value}
-      value={item.mark}
-      onClick={normalizeAction(lrs, item.action, textEditor)}
+      value={rdf.toNQ(item.mark)}
+      onClick={normalizeAction(lrs, item.action, actionOpts)}
     >
       <Resource subject={item.subject}>
         <Property label={schema.image} />
@@ -141,37 +152,26 @@ function MenuItem({ item }) {
 
 const useToolbar = () => {
   const lrs = useLRS();
-  const textEditor = useEditor();
-  const [{ marksIRI, toolbar }] = useResourceLinks(editor.localSettings, settingsPropMap);
-  const t = useDataInvalidation({ dataSubjects: [editor.localSettings, marksIRI, toolbar] });
-  const marks = React.useMemo(() => seqToArray(lrs.store, marksIRI), [marksIRI, t]);
+  const textEditor = useSlate();
+  const [{ toolbar }] = useResourceLinks(editor.localSettings, settingsPropMap);
   const toolbarResources = seqToArray(lrs.store, toolbar);
   const toolbarItems = useResourceLinks(toolbarResources, propMap, { forceRender: true });
-
-  React.useEffect(() => {
-    Object.keys(textEditor.marks || {}).map((m) => textEditor.removeMark(m));
-    marks.forEach((m) => textEditor.addMark(m, true));
-    // eslint-disable-next-line no-param-reassign
-    textEditor.marks = marks.reduce((acc, entry) => {
-      acc[entry] = true;
-
-      return acc;
-    }, {});
-  }, [marks]);
 
   if (!Array.isArray(toolbarItems)) {
     return () => null;
   }
+  const marksArr = Object.keys(Editor.marks(textEditor) || {});
 
   return (
     <ToggleButtonGroup
       size="small"
-      value={marks}
+      value={marksArr}
     >
       {toolbarItems.map((item) => (
         <MenuItem
           item={item}
           key={item.subject}
+          marks={marksArr}
         />
       ))}
     </ToggleButtonGroup>
