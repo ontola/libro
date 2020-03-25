@@ -6,9 +6,11 @@ export default {
   ns: editor,
 
   /* Classes */
+  Action: editor('Action'),
   Divider: editor('Divider'),
   Document: editor('Document'),
   EditorSettings: editor('EditorSettings'),
+  Shortcut: editor('Shortcut'),
   elements: {
     H1: editor('elements/H1'),
     H2: editor('elements/H2'),
@@ -26,16 +28,21 @@ export default {
 
   /* Properties */
   current: editor('current'),
+  defaultCombination: editor('defaultCombination'),
   enabledPlugins: editor('enabledPlugins'),
   /** The mark of an action */
   mark: editor('mark'),
   /** Currently activated marks */
   marks: editor('marks'),
+  shortcut: editor('shortcut'),
+  shortcuts: editor('shortcuts'),
   toolbar: editor('toolbar'),
 
   /* Individuals */
   actions: {
     changeType: editor('actions/changeType'),
+    shiftLineDown: editor('actions/shiftLineDown'),
+    shiftLineUp: editor('actions/shiftLineUp'),
     toggleMark: editor('actions/toggleMark'),
   },
   divider: editor('divider'),

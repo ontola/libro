@@ -1,5 +1,12 @@
 import { makeStyles } from '@material-ui/core';
-import { Resource } from 'link-redux';
+import { seqToArray } from '@rdfdev/collections';
+import isHotkey from 'is-hotkey';
+import {
+  Resource,
+  useLRS,
+  useResourceLinks,
+  useResourceProperty,
+} from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createEditor } from 'slate';
@@ -10,6 +17,7 @@ import {
   withReact,
 } from 'slate-react';
 
+import ontola from '../../ontology/ontola';
 import editor from '../../ontology/ontola/editor';
 
 import Toolbar from './Toolbar';
@@ -106,15 +114,53 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+const propMap = {
+  action: ontola.action,
+  defaultCombination: editor.defaultCombination,
+};
+const useShortcuts = () => {
+  const lrs = useLRS();
+  const [shortcutList] = useResourceProperty(editor.localSettings, editor.shortcuts);
+  const shortcuts = seqToArray(lrs.store, shortcutList);
+  const shortcutData = useResourceLinks(shortcuts, propMap);
+
+  return shortcutData.reduce(
+    (acc, e) => ({
+      ...acc,
+      [e.defaultCombination]: e.action,
+    }),
+    {}
+  );
+};
+
 const RichEditor = ({
   plainValue,
 }) => {
+  const lrs = useLRS();
   const styles = useStyles();
   const editable = React.useRef();
   const textEditor = React.useMemo(() => withHistory(withReact(createEditor())), []);
+  const shortcutMap = useShortcuts();
   const [editorValue, setEditorValue] = React.useState([
     {
-      children: [{ text: plainValue || 'Test' }],
+      children: [{ text: plainValue || 'Test 0' }],
+      type: editor.elements.Paragraph,
+    },
+    {
+      children: [{ text: plainValue || 'Test 1' }],
+      type: editor.elements.Paragraph,
+    },
+    {
+      children: [{ text: plainValue || 'Test 2' }],
+      type: editor.elements.Paragraph,
+    },
+    {
+      children: [{ text: plainValue || 'Test 3' }],
+      type: editor.elements.Paragraph,
+    },
+    {
+      children: [{ text: plainValue || 'Test 4' }],
       type: editor.elements.Paragraph,
     },
   ]);
@@ -152,6 +198,14 @@ const RichEditor = ({
           ref={editable}
           renderElement={React.useCallback(renderElement, [])}
           renderLeaf={renderLeaf}
+          onKeyUp={(event) => {
+            for (const hotkey in shortcutMap) {
+              if (isHotkey(hotkey, event)) {
+                event.preventDefault();
+                lrs.exec(shortcutMap[hotkey], { textEditor });
+              }
+            }
+          }}
         />
       </Slate>
     </div>
