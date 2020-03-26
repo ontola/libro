@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => {
     textAlign: 'center',
   };
   style.semantic = {
-    color: theme.palette.link.header,
+    color: theme.palette.link?.header,
   };
 
   Object.keys(semanticColors).forEach((type) => {

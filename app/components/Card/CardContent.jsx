@@ -10,10 +10,10 @@ import { HOVER_COEFFICIENT } from '../Link/ThemeStyles';
 const useStyles = makeStyles((theme) => ({
   default: {
     '& a:not(.Button)': {
-      color: theme.palette.link.text,
+      color: theme.palette.link?.text,
     },
     '& a:not(.Button):hover': {
-      color: darken(theme.palette.link.text, HOVER_COEFFICIENT),
+      color: darken(theme.palette.link?.text || theme.palette.common.black, HOVER_COEFFICIENT),
     },
   },
 }));

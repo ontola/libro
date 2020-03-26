@@ -10,7 +10,7 @@ export default makeStyles((theme) => {
   const style = {
     default: {
       '&:hover .Heading': {
-        color: darken(theme.palette.link.header, HOVER_COEFFICIENT),
+        color: darken(theme.palette.link?.header || theme.palette.common.black, HOVER_COEFFICIENT),
       },
       alignItems: 'baseline',
       display: 'inline-flex',
