@@ -33,9 +33,13 @@ const Metadata = ({
       <link href={subject.value} itemProp="url" rel="canonical" />
       <meta content={subject.value} property="og:url" />
       <meta content={[name, appName].filter(Boolean).join(' | ')} property="og:title" />
+      <meta content={[name, appName].filter(Boolean).join(' | ')} name="twitter:title" />
       {coverURL && <meta content={coverURL.value} id="og:image" property="og:image" />}
+      {coverURL && <meta content={coverURL.value} name="twitter:image" />}
       {text && <meta content={text} id="og:description" property="og:description" />}
+      {text && <meta content={text} name="twitter:description" />}
       {text && <meta content={text} id="description" name="description" property="description" />}
+      <meta content={coverURL ? 'summary_large_image' : 'summary'} name="twitter:card" />
     </Helmet>
   );
 };
