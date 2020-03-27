@@ -3,6 +3,7 @@ import { register } from 'link-redux';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { cardTopology } from '../../topologies/Card';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
+import { containerTopology } from '../../topologies/Container';
 import { gridTopology } from '../../topologies/Grid';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import { tabPaneTopology } from '../../topologies/TabPane';
@@ -18,7 +19,6 @@ import Pages from './properties/pages';
 import InfinitePagination from './properties/infinitePagination';
 import DefaultPagination from './properties/defaultPagination';
 import CollectionCardAppendix from './CollectionCardAppendix';
-import CollectionContainer from './CollectionContainer';
 import CollectionInline from './CollectionInline';
 import CollectionNavbar from './CollectionNavbar';
 import CollectionSection from './CollectionSection';
@@ -29,7 +29,6 @@ import TotalItems from './properties/totalItems';
 import './Collection.scss';
 
 export default [
-  CollectionContainer,
   CollectionNavbar,
   CollectionTableCell,
   register(
@@ -38,6 +37,15 @@ export default [
       renderWhenEmpty: true,
       topology: [
         fullResourceTopology,
+      ],
+    })
+  ),
+  register(
+    getCollection({
+      omniform: true,
+      renderWhenEmpty: false,
+      topology: [
+        containerTopology,
       ],
     })
   ),

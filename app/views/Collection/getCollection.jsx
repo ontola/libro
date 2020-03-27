@@ -6,20 +6,19 @@ import {
   Resource,
   ReturnType,
   linkType,
-  linkedPropType,
   lrsType,
   subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 
+import Heading from '../../components/Heading';
+import LinkDuo from '../../components/LinkDuo';
 import ResourceBoundary from '../../components/ResourceBoundary';
 import { listToArr } from '../../helpers/data';
 import { tryParseInt } from '../../helpers/numbers';
 import ontola from '../../ontology/ontola';
-import { gotoPage } from '../../state/pagination/actions';
-import { getPage } from '../../state/pagination/selectors';
 import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
 import { CollectionTypes } from './types';
@@ -30,80 +29,73 @@ export default function getCollection({
   renderWhenEmpty = true,
   topology = [],
 } = {}) {
-  class Collection extends React.Component {
-    static type = CollectionTypes;
+  const Collection = ({
+    clickToOpen,
+    collectionDisplay,
+    collectionDisplayFromData,
+    collectionType,
+    columns,
+    currentPage: currentPageProp,
+    depth,
+    hideHeader,
+    hidePagination,
+    lrs,
+    partOf,
+    redirectPagination,
+    renderWhenEmpty: renderWhenEmptyProp,
+    subject,
+    totalItems,
+  }) => {
+    const [currentPage, onPageChange] = React.useState(currentPageProp);
+    const [opened, setOpen] = React.useState(false);
+    const resolvedCollectionDisplay = collectionDisplay || collectionDisplayFromData;
+    const resolvedColumns = columns ? listToArr(lrs, [], columns) : undefined;
 
-    static topology = topology;
+    if (clickToOpen && depth && depth > 1 && totalItems.value !== '0' && !opened) {
+      const open = (e) => {
+        if (e) {
+          e.preventDefault();
+        }
+        setOpen(true);
+      };
 
-    static mapDataToProps = {
-      collectionDisplayFromData: ontola.collectionDisplay,
-      collectionType: ontola.collectionType,
-      columns: ontola.columns,
-      defaultType: ontola.defaultType,
-      pages: {
-        label: ontola.pages,
-        returnType: ReturnType.AllTerms,
-      },
-      totalItems: as.totalItems,
-    };
-
-    static hocs = [
-      connect(
-        (state, {
-          currentPage,
-          renderWhenEmpty: rwe,
-          subject,
-        }) => ({
-          currentPage: getPage(state, subject.value) || currentPage,
-          renderWhenEmpty: rwe || renderWhenEmpty,
-        }),
-        (dispatch, { subject }) => ({
-          onPageChange: (url) => dispatch(gotoPage(subject.value, url)),
-        })
-      ),
-    ];
-
-    static propTypes = {
-      collectionDisplay: linkType,
-      collectionDisplayFromData: linkType,
-      collectionType: linkType,
-      columns: linkType,
-      currentPage: PropTypes.string,
-      depth: PropTypes.number,
-      hideHeader: PropTypes.bool,
-      hidePagination: PropTypes.bool,
-      linkVersion: PropTypes.number,
-      linkedProp: linkedPropType,
-      lrs: lrsType,
-      onPageChange: PropTypes.func,
-      pages: linkType,
-      partOf: PropTypes.bool,
-      redirectPagination: PropTypes.bool,
-      renderWhenEmpty: PropTypes.bool,
-      subject: subjectType,
-      totalItems: linkType,
-    };
-
-    shouldComponentUpdate(nextProps, nextState) {
-      return this.props.linkedProp !== nextProps.linkedProp
-        || this.props.currentPage !== nextProps.currentPage
-        || this.props.linkVersion !== nextProps.linkVersion
-        || this.props.subject !== nextProps.subject
-        || this.props.pages !== nextProps.pages
-        || this.state?.opened !== nextState?.opened;
+      return (
+        <ResourceBoundary
+          element={Heading}
+          wrapperProps={{
+            className: `Collection__Depth-${depth}`,
+            size: 5,
+          }}
+        >
+          <LinkDuo
+            className={`Collection__Depth-${depth + 1}`}
+            to={subject.value}
+            onClick={open}
+            onKeyUp={open}
+          >
+            <FormattedMessage
+              defaultMessage="Show {count} additional replies..."
+              id="https://app.argu.co/i18n/collections/showRepliesLabel"
+              values={{
+                count: totalItems.value,
+              }}
+            />
+          </LinkDuo>
+        </ResourceBoundary>
+      );
     }
 
-    body(columns) {
-      if (this.props.currentPage) {
+    const body = () => {
+      if (currentPage) {
         return (
           <Resource
             forceRender
             insideCollection
-            collectionDisplay={this.props.collectionDisplay || this.props.collectionDisplayFromData}
-            columns={columns}
-            depth={this.props.depth}
-            redirectPagination={redirect || this.props.redirectPagination}
-            subject={rdf.namedNode(this.props.currentPage)}
+            collectionDisplay={resolvedCollectionDisplay}
+            columns={resolvedColumns}
+            depth={depth}
+            redirectPagination={redirect || redirectPagination}
+            subject={rdf.namedNode(currentPage)}
           />
         );
       }
@@ -112,96 +104,112 @@ export default function getCollection({
         <Property
           forceRender
           insideCollection
-          collectionDisplay={this.props.collectionDisplay || this.props.collectionDisplayFromData}
-          columns={columns}
-          depth={this.props.depth}
+          collectionDisplay={resolvedCollectionDisplay}
+          columns={resolvedColumns}
+          depth={depth}
           label={ontola.pages}
         />
       );
-    }
+    };
 
-    pagination() {
-      if (this.props.hidePagination) {
-        return <Property label={as.totalItems} />;
-      }
-
-      switch (rdf.id(this.props.collectionType)) {
+    let pagination;
+    if (hidePagination) {
+      pagination = <Property label={as.totalItems} />;
+    } else {
+      switch (rdf.id(collectionType)) {
         case rdf.id(ontola['collectionType/infinite']):
-          return (
+          pagination = (
             <Property
               forceRender
-              currentPage={this.props.currentPage}
+              currentPage={currentPage}
               label={ontola.infinitePagination}
-              redirectPagination={this.props.redirectPagination}
+              redirectPagination={redirectPagination}
             />
           );
+          break;
         default:
-          return (
+          pagination = (
             <Property
               forceRender
-              currentPage={this.props.currentPage}
+              currentPage={currentPage}
               label={ontola.defaultPagination}
-              redirectPagination={this.props.redirectPagination}
-              onPageChange={this.props.onPageChange}
+              redirectPagination={redirectPagination}
+              onPageChange={onPageChange}
             />
           );
       }
     }
 
-    renderCollection() {
-      const {
-        columns,
-        depth,
-        hideHeader,
-        lrs,
-        partOf,
-        subject,
-        totalItems,
-      } = this.props;
-      if (tryParseInt(totalItems) === 0) {
-        if (!this.props.renderWhenEmpty) {
-          return <div data-test="empty" />;
-        }
-        const createAction = lrs.getResourceProperty(subject, ontola.createAction);
-        const actionStatus = createAction
-          && lrs.getResourceProperty(createAction, schema.actionStatus);
-        if (actionStatus && invalidStatusIds.includes(rdf.id(actionStatus))) {
-          return <div data-test="invalid-status" />;
-        }
+    if (tryParseInt(totalItems) === 0) {
+      if (!renderWhenEmptyProp && !renderWhenEmpty) {
+        return <div data-test="empty" />;
       }
+      const createAction = lrs.getResourceProperty(subject, ontola.createAction);
+      const actionStatus = createAction
+        && lrs.getResourceProperty(createAction, schema.actionStatus);
+      if (actionStatus && invalidStatusIds.includes(rdf.id(actionStatus))) {
+        return <div data-test="invalid-status" />;
+      }
+    }
 
-      const collectionDisplay = this.props.collectionDisplay
-        || this.props.collectionDisplayFromData;
-      const resolvedColumns = columns ? listToArr(lrs, [], columns) : undefined;
-      const header = (!depth || depth === 0) && !hideHeader && (
+    const header = (!depth || depth === 0) && !hideHeader && (
+      <Property
+        forceRender
+        collectionDisplay={resolvedCollectionDisplay}
+        label={ontola.header}
+        omniform={omniform}
+      />
+    );
+
+    return (
+      <ResourceBoundary wrapperProps={{ className: `Collection Collection__Depth-${depth}` }}>
+        {partOf && <Property label={schema.isPartOf} />}
         <Property
           forceRender
+          body={body()}
           collectionDisplay={collectionDisplay}
-          label={ontola.header}
-          omniform={omniform}
+          columns={resolvedColumns}
+          header={header}
+          label={ontola.collectionFrame}
+          pagination={pagination}
         />
-      );
+      </ResourceBoundary>
+    );
+  };
 
-      return (
-        <ResourceBoundary wrapperProps={{ className: `Collection Collection__Depth-${depth}` }}>
-          {partOf && <Property label={schema.isPartOf} />}
-          <Property
-            forceRender
-            body={this.body(resolvedColumns)}
-            collectionDisplay={collectionDisplay}
-            columns={resolvedColumns}
-            header={header}
-            label={ontola.collectionFrame}
-            pagination={this.pagination()}
-          />
-        </ResourceBoundary>
-      );
-    }
+  Collection.type = CollectionTypes;
 
-    render() {
-      return this.renderCollection();
-    }
-  }
+  Collection.topology = topology;
+
+  Collection.mapDataToProps = {
+    collectionDisplayFromData: ontola.collectionDisplay,
+    collectionType: ontola.collectionType,
+    columns: ontola.columns,
+    defaultType: ontola.defaultType,
+    pages: {
+      label: ontola.pages,
+      returnType: ReturnType.AllTerms,
+    },
+    totalItems: as.totalItems,
+  };
+
+  Collection.propTypes = {
+    clickToOpen: PropTypes.bool,
+    collectionDisplay: linkType,
+    collectionDisplayFromData: linkType,
+    collectionType: linkType,
+    columns: linkType,
+    currentPage: PropTypes.string,
+    depth: PropTypes.number,
+    hideHeader: PropTypes.bool,
+    hidePagination: PropTypes.bool,
+    lrs: lrsType,
+    partOf: PropTypes.bool,
+    redirectPagination: PropTypes.bool,
+    renderWhenEmpty: PropTypes.bool,
+    subject: subjectType,
+    totalItems: linkType,
+  };
 
   return Collection;
 }
