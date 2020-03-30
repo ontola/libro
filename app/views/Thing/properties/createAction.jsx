@@ -16,8 +16,14 @@ const CreateAction = ({
   createAction,
   isPartOf,
   omniform,
+  onLoad,
 }) => (
-  <Resource isPartOf={isPartOf} omniform={omniform} subject={createAction} />
+  <Resource
+    isPartOf={isPartOf}
+    omniform={omniform}
+    subject={createAction}
+    onLoad={onLoad}
+  />
 );
 
 CreateAction.type = [
@@ -38,6 +44,7 @@ CreateAction.propTypes = {
   createAction: subjectType,
   isPartOf: linkType,
   omniform: PropTypes.bool,
+  onLoad: PropTypes.func,
 };
 
 export default register(CreateAction);
