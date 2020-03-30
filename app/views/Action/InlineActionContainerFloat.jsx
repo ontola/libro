@@ -1,4 +1,3 @@
-import { makeStyles } from '@material-ui/styles';
 import IconButton from '@material-ui/core/IconButton';
 import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
@@ -23,13 +22,6 @@ import { OMNIFORM_FILTER, invalidStatusIds } from '../Thing/properties/omniform/
 
 import mapCardListDispatchToProps from './helpers';
 
-const useStyles = makeStyles(() => ({
-  buttonIcon: {
-    height: '1.2rem',
-    width: '1.2rem',
-  },
-}));
-
 const InlineActionContainerFloat = ({
   actionStatus,
   history,
@@ -39,7 +31,6 @@ const InlineActionContainerFloat = ({
   subject,
   target,
 }) => {
-  const classes = useStyles();
   const lrs = useLRS();
   const [image] = useResourceProperty(target, schema.image);
   useDataInvalidation(target);
@@ -54,7 +45,6 @@ const InlineActionContainerFloat = ({
 
   const icon = (
     <FontAwesome
-      className={classes.buttonIcon}
       name={image && normalizeFontAwesomeIRI(image)}
     />
   );
