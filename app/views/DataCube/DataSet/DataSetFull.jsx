@@ -41,6 +41,7 @@ const DataSetFull = ({ structure }) => {
 
   return (
     <Container size="large">
+      <Property label={schema.isPartOf} />
       <Property
         label={schema.name}
         topology={fullResourceTopology}
