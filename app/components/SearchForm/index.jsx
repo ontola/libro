@@ -24,8 +24,8 @@ const messages = defineMessages({
 const SearchForm = ({
   autoFocus,
   history,
+  iriTemplate,
   query,
-  searchTemplate,
 }) => {
   const { formatMessage } = useIntl();
   const queryNormalized = query?.value ?? '';
@@ -65,7 +65,7 @@ const SearchForm = ({
           return;
         }
 
-        history.push(retrievePath(searchIri(searchTemplate.value, q, 1).value));
+        history.push(retrievePath(searchIri(iriTemplate.value, q, 1).value));
       }}
     />
   );
@@ -83,8 +83,8 @@ SearchForm.propTypes = {
   intl: PropTypes.shape({
     formatMessage: PropTypes.func,
   }),
+  iriTemplate: linkType,
   query: linkType,
-  searchTemplate: linkType,
 };
 
 export default SearchForm;

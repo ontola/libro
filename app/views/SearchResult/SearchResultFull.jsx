@@ -24,8 +24,8 @@ import { pageTopology } from '../../topologies/Page';
 export const SearchResultFull = ({
   collectionDisplay,
   history,
+  iriTemplate,
   query,
-  searchTemplate,
   subject,
   took,
   totalItems,
@@ -55,8 +55,8 @@ export const SearchResultFull = ({
         </div>
         <SearchForm
           history={history}
+          iriTemplate={iriTemplate}
           query={query}
-          searchTemplate={searchTemplate}
         />
         {totalItems && took && (
           <p className="SearchResult__query-info">
@@ -92,8 +92,8 @@ SearchResultFull.hocs = [withRouter];
 
 SearchResultFull.mapDataToProps = {
   collectionDisplay: ontola.collectionDisplay,
+  iriTemplate: ontola.iriTemplate,
   query: argu.query,
-  searchTemplate: ontola.iriTemplate,
   took: argu.took,
   totalItems: as.totalItems,
 };
@@ -106,8 +106,8 @@ SearchResultFull.propTypes = {
   intl: PropTypes.shape({
     formatMessage: PropTypes.func,
   }),
+  iriTemplate: linkType,
   query: linkType,
-  searchTemplate: linkType,
   subject: subjectType,
   took: linkType,
   totalItems: linkType,

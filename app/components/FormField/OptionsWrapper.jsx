@@ -47,7 +47,7 @@ const OptionsWrapper = ({
   );
 
   useDataInvalidation(shIn);
-  const [searchTemplate] = useResourceProperty(shInProp, ontola.searchTemplate);
+  const [iriTemplate] = useResourceProperty(shInProp, ontola.iriTemplate);
 
   React.useLayoutEffect(() => {
     if (loading) {
@@ -70,9 +70,9 @@ const OptionsWrapper = ({
   return (
     <React.Fragment>
       <Component
+        iriTemplate={iriTemplate}
         loading={loading}
         options={options}
-        searchTemplate={searchTemplate}
         topology={topology}
         {...componentProps}
         onOptionsChange={setShIn}

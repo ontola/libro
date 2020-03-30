@@ -14,14 +14,14 @@ import { gridTopology } from '../../topologies/Grid';
 
 export const SearchResultGrid = ({
   history,
+  iriTemplate,
   query,
-  searchTemplate,
 }) => (
   <SearchForm
     autoFocus={false}
     history={history}
+    iriTemplate={iriTemplate}
     query={query}
-    searchTemplate={searchTemplate}
   />
 );
 
@@ -33,8 +33,8 @@ SearchResultGrid.hocs = [withRouter];
 
 SearchResultGrid.mapDataToProps = {
   collectionDisplay: ontola.collectionDisplay,
+  iriTemplate: ontola.iriTemplate,
   query: argu.query,
-  searchTemplate: ontola.iriTemplate,
   took: argu.took,
   totalItems: as.totalItems,
 };
@@ -46,8 +46,8 @@ SearchResultGrid.propTypes = {
   intl: PropTypes.shape({
     formatMessage: PropTypes.func,
   }),
+  iriTemplate: linkType,
   query: linkType,
-  searchTemplate: linkType,
 };
 
 export default register(SearchResultGrid);

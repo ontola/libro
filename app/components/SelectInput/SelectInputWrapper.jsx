@@ -52,8 +52,8 @@ function calculateItemsToShow(inputValue, selectedItem, options, lrs) {
   return options;
 }
 
-function emptyText(fm, searchTemplate, inputValue) {
-  if (searchTemplate) {
+function emptyText(fm, iriTemplate, inputValue) {
+  if (iriTemplate) {
     if (inputValue && inputValue.length > 0) {
       return fm(messages.noMatchingItems);
     }
@@ -64,7 +64,7 @@ function emptyText(fm, searchTemplate, inputValue) {
   return fm(messages.noMatchingItems);
 }
 
-function handleStateChange(options, changes, setState, lrs, searchTemplate, onOptionsChange) {
+function handleStateChange(options, changes, setState, lrs, iriTemplate, onOptionsChange) {
   setState((prevState) => {
     const { stateChangeTypes } = Downshift;
     let {
@@ -94,11 +94,11 @@ function handleStateChange(options, changes, setState, lrs, searchTemplate, onOp
       }
     }
 
-    if (searchTemplate && changes.inputValue && !changes.selectedItem) {
+    if (iriTemplate && changes.inputValue && !changes.selectedItem) {
       const compareValue = inputValue && normalizedLower(typeof inputValue === 'string' ? inputValue : inputValue.value);
       const searchResult = (compareValue && compareValue.length > 0)
-        ? searchIri(searchTemplate.value, compareValue, 1, true)
-        : searchIri(searchTemplate.value, null, null, true);
+        ? searchIri(iriTemplate.value, compareValue, 1, true)
+        : searchIri(iriTemplate.value, null, null, true);
       onOptionsChange(searchResult);
     }
 
@@ -158,10 +158,10 @@ const SelectInputWrapper = ({
   initialValue,
   inputFieldHint,
   inputValue,
+  iriTemplate,
   loading,
   onOptionsChange,
   options,
-  searchTemplate,
   sharedProps,
   topology,
 }) => {
@@ -181,10 +181,10 @@ const SelectInputWrapper = ({
       changes,
       setState,
       lrs,
-      searchTemplate,
+      iriTemplate,
       onOptionsChange
     ),
-    searchTemplate ? DEBOUNCE_TIMER : 0,
+    iriTemplate ? DEBOUNCE_TIMER : 0,
     { leading: true }
   );
   useDataInvalidation(options.filter(isResource));
@@ -197,7 +197,7 @@ const SelectInputWrapper = ({
     return <LoadingRow />;
   }
 
-  if (!searchTemplate && renderAsRadioGroup(topology, options, lrs, inputFieldHint)) {
+  if (!iriTemplate && renderAsRadioGroup(topology, options, lrs, inputFieldHint)) {
     return (
       <RadioGroup
         items={options}
@@ -213,7 +213,7 @@ const SelectInputWrapper = ({
   return (
     <div className={className}>
       <SelectInputField
-        emptyText={emptyText(formatMessage, searchTemplate, state.inputValue)}
+        emptyText={emptyText(formatMessage, iriTemplate, state.inputValue)}
         initialSelectedItem={initialSelectedItem}
         items={state.itemsToShow}
         loading={loading}
@@ -234,10 +234,10 @@ SelectInputWrapper.propTypes = {
     PropTypes.number,
     linkType,
   ]),
+  iriTemplate: linkType,
   loading: PropTypes.bool,
   onOptionsChange: PropTypes.func,
   options: PropTypes.arrayOf(linkType),
-  searchTemplate: linkType,
   sharedProps: PropTypes.shape({
     autoFocus: PropTypes.bool,
     className: PropTypes.string,

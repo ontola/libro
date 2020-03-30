@@ -87,7 +87,6 @@ export default {
   readAction: ontola('readAction'),
   remove: ontola('remove'),
   replace: ontola('replace'),
-  searchTemplate: ontola('searchTemplate'),
   sendConfirmationAction: ontola('sendConfirmationAction'),
   settingsMenu: ontola('settingsMenu'),
   shareMenu: ontola('shareMenu'),
