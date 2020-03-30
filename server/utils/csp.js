@@ -41,8 +41,9 @@ const scriptSrc = [
   'https://www.googletagmanager.com',
   (req) => {
     const { manifest } = req.getCtx();
+    const { matomo_hostname: hostname, matomo_port: port } = manifest?.ontola || {};
 
-    return [manifest?.ontola?.['matomo_hostname'], manifest?.ontola?.['matomo_port']]
+    return [hostname && new URL(`https://${hostname}`).host, port]
       .filter(Boolean)
       .join(':');
   },
