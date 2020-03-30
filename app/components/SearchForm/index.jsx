@@ -12,7 +12,7 @@ import {
 
 import Button from '../Button';
 import { retrievePath } from '../../helpers/iris';
-import { searchIri } from '../../views/SearchResult/searchHelper';
+import { iriFromTemplate } from '../../helpers/uriTemplate';
 
 const messages = defineMessages({
   placeholder: {
@@ -65,7 +65,7 @@ const SearchForm = ({
           return;
         }
 
-        history.push(retrievePath(searchIri(iriTemplate.value, q, 1).value));
+        history.push(retrievePath(iriFromTemplate(iriTemplate.value, q, 1).value));
       }}
     />
   );

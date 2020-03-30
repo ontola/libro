@@ -22,6 +22,7 @@ import { CollectionTypes } from '../types';
 
 const cardCollectionHeader = ({
   omniform,
+  onPageChange,
   pages,
   subject,
 }) => {
@@ -29,12 +30,14 @@ const cardCollectionHeader = ({
 
   return (
     <CardHeader header={name}>
+      <Property label={ontola.sortOptions} onPageChange={onPageChange} />
       <CollectionCreateActionButton omniform={omniform} subject={subject} />
     </CardHeader>
   );
 };
 cardCollectionHeader.propTypes = {
   omniform: PropTypes.bool,
+  onPageChange: PropTypes.func,
   pages: linkType,
   subject: subjectType,
 };
@@ -42,6 +45,7 @@ cardCollectionHeader.propTypes = {
 const containerCollectionHeader = ({
   collectionDisplay,
   omniform,
+  onPageChange,
   pages,
   subject,
   topology,
@@ -58,6 +62,7 @@ const containerCollectionHeader = ({
   return (
     <Wrapper>
       <ContainerHeader header={name}>
+        <Property label={ontola.sortOptions} onPageChange={onPageChange} />
         <CollectionCreateActionButton omniform={omniform} subject={subject} />
       </ContainerHeader>
     </Wrapper>
@@ -66,6 +71,7 @@ const containerCollectionHeader = ({
 containerCollectionHeader.propTypes = {
   collectionDisplay: linkType,
   omniform: PropTypes.bool,
+  onPageChange: PropTypes.func,
   pages: linkType,
   subject: subjectType,
   topology: topologyType,

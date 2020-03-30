@@ -1,5 +1,6 @@
 import as from '@ontologies/as';
 import rdf from '@ontologies/core';
+import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
 import {
   Property,
@@ -8,6 +9,7 @@ import {
   linkType,
   lrsType,
   subjectType,
+  useDataInvalidation,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -50,6 +52,7 @@ export default function getCollection({
     const [opened, setOpen] = React.useState(false);
     const resolvedCollectionDisplay = collectionDisplay || collectionDisplayFromData;
     const resolvedColumns = columns ? listToArr(lrs, [], columns) : undefined;
+    useDataInvalidation(currentPage);
 
     if (clickToOpen && depth && depth > 1 && totalItems.value !== '0' && !opened) {
       const open = (e) => {
@@ -83,6 +86,19 @@ export default function getCollection({
           </LinkDuo>
         </ResourceBoundary>
       );
+    }
+
+    if (currentPage) {
+      const type = lrs.getResourceProperty(rdf.namedNode(currentPage), rdfx.type);
+
+      if (CollectionTypes.includes(type)) {
+        return <Resource subject={rdf.namedNode(currentPage)} />;
+      }
+
+      const pagePartOf = lrs.getResourceProperty(rdf.namedNode(currentPage), schema.isPartOf);
+      if (pagePartOf && pagePartOf !== subject) {
+        return <Resource subject={pagePartOf} />;
+      }
     }
 
     const body = () => {
@@ -158,6 +174,7 @@ export default function getCollection({
         collectionDisplay={resolvedCollectionDisplay}
         label={ontola.header}
         omniform={omniform}
+        onPageChange={onPageChange}
       />
     );
 

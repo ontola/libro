@@ -7,6 +7,7 @@ export default {
 
   /* classes */
   Collection: ontola('Collection'),
+  CollectionSorting: ontola('CollectionSorting'),
   CollectionView: ontola('CollectionView'),
   ConfirmedUser: ontola('ConfirmedUser'),
   ['Create::FollowUp']: ontola('Create::FollowUp'),
@@ -45,6 +46,7 @@ export default {
   ['collectionDisplay/settingsTable']: ontola('collectionDisplay/settingsTable'),
   ['collectionDisplay/table']: ontola('collectionDisplay/table'),
   collectionFrame: ontola('collectionFrame'),
+  collectionSorting: ontola('collectionSorting'),
   collectionType: ontola('collectionType'),
   ['collectionType/infinite']: ontola('collectionType/infinite'),
   ['collectionType/paginated']: ontola('collectionType/paginated'),
@@ -74,6 +76,7 @@ export default {
   inputFieldHint: ontola('inputFieldHint'),
   invalidate: ontola('invalidate'),
   iriTemplate: ontola('iriTemplate'),
+  iriTemplateOpts: ontola('iriTemplateOpts'),
   makePrimaryAction: ontola('makePrimaryAction'),
   memberships: ontola('memberships'),
   menuItems: ontola('menuItems'),
@@ -90,6 +93,9 @@ export default {
   sendConfirmationAction: ontola('sendConfirmationAction'),
   settingsMenu: ontola('settingsMenu'),
   shareMenu: ontola('shareMenu'),
+  sortDirection: ontola('sortDirection'),
+  sortKey: ontola('sortKey'),
+  sortOptions: ontola('sortOptions'),
   topology: ontola('topology'),
   updateAction: ontola('updateAction'),
   widgetResource: ontola('widgetResource'),

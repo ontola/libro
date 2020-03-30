@@ -16,6 +16,7 @@ import IsPartOf from './properties/isPartOf';
 import Name from './properties/name';
 import UnreadCount from './properties/unreadCount';
 import Pages from './properties/pages';
+import SortOptions from './properties/sortOptions';
 import InfinitePagination from './properties/infinitePagination';
 import DefaultPagination from './properties/defaultPagination';
 import CollectionCardAppendix from './CollectionCardAppendix';
@@ -84,6 +85,7 @@ export default [
   Name,
   ...UnreadCount,
   ...Pages,
+  SortOptions,
   ...InfinitePagination,
   ...DefaultPagination,
 ];

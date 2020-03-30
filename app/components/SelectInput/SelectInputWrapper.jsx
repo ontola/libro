@@ -17,7 +17,7 @@ import { isResource } from '../../helpers/types';
 import ontola from '../../ontology/ontola';
 import { formFooterTopology } from '../../topologies/FormFooter/Footer';
 import RadioGroup from '../../topologies/RadioGroup';
-import { searchIri } from '../../views/SearchResult/searchHelper';
+import { iriFromTemplate } from '../../helpers/uriTemplate';
 import { LoadingRow } from '../Loading';
 
 import SelectInputField, { MAX_ITEMS, itemToString } from './SelectInputField';
@@ -97,8 +97,8 @@ function handleStateChange(options, changes, setState, lrs, iriTemplate, onOptio
     if (iriTemplate && changes.inputValue && !changes.selectedItem) {
       const compareValue = inputValue && normalizedLower(typeof inputValue === 'string' ? inputValue : inputValue.value);
       const searchResult = (compareValue && compareValue.length > 0)
-        ? searchIri(iriTemplate.value, compareValue, 1, true)
-        : searchIri(iriTemplate.value, null, null, true);
+        ? iriFromTemplate(iriTemplate.value, compareValue, 1, true)
+        : iriFromTemplate(iriTemplate.value, null, null, true);
       onOptionsChange(searchResult);
     }
 
