@@ -12,6 +12,7 @@ import CardHeader from '../../../components/Card/CardHeader';
 import CollectionCreateActionButton from '../../../components/Collection/CollectionCreateActionButton';
 import ContainerHeader from '../../../components/Container/ContainerHeader';
 import { buildRegister } from '../../../helpers/buildRegister';
+import { isTableDisplay } from '../../../helpers/collections';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
@@ -21,6 +22,7 @@ import { pageTopology } from '../../../topologies/Page';
 import { CollectionTypes } from '../types';
 
 const cardCollectionHeader = ({
+  collectionDisplay,
   omniform,
   onPageChange,
   subject,
@@ -29,12 +31,15 @@ const cardCollectionHeader = ({
 
   return (
     <CardHeader header={name}>
-      <Property label={ontola.sortOptions} onPageChange={onPageChange} />
+      {!isTableDisplay(collectionDisplay) && (
+        <Property label={ontola.sortOptions} onPageChange={onPageChange} />
+      )}
       <CollectionCreateActionButton omniform={omniform} subject={subject} />
     </CardHeader>
   );
 };
 cardCollectionHeader.propTypes = {
+  collectionDisplay: linkType,
   omniform: PropTypes.bool,
   onPageChange: PropTypes.func,
   subject: subjectType,
@@ -59,7 +64,9 @@ const containerCollectionHeader = ({
   return (
     <Wrapper>
       <ContainerHeader header={name}>
-        <Property label={ontola.sortOptions} onPageChange={onPageChange} />
+        {!isTableDisplay(collectionDisplay) && (
+          <Property label={ontola.sortOptions} onPageChange={onPageChange} />
+        )}
         <CollectionCreateActionButton omniform={omniform} subject={subject} />
       </ContainerHeader>
     </Wrapper>

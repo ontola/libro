@@ -13,6 +13,7 @@ import { FormattedMessage } from 'react-intl';
 import CardContent from '../../../components/Card/CardContent';
 import GridItem from '../../../components/Grid/GridItem';
 import { LoadingCardFixed } from '../../../components/Loading';
+import { isTableDisplay } from '../../../helpers/collections';
 import { tryParseInt } from '../../../helpers/numbers';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
@@ -96,8 +97,7 @@ const Items = (props) => {
       return <GridItem endSpacing>{message}</GridItem>;
     }
 
-    if (rdf.equals(collectionDisplay, ontola['collectionDisplay/table'])
-      || rdf.equals(collectionDisplay, ontola['collectionDisplay/settingsTable'])) {
+    if (isTableDisplay(collectionDisplay)) {
       return <TableRow><TableCell>{message}</TableCell></TableRow>;
     }
 

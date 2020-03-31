@@ -9,6 +9,7 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { useSorting } from '../../../hooks/useSorting';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import Card from '../../../topologies/Card';
@@ -32,9 +33,11 @@ const getFrame = (wrapper, topology) => {
     collectionDisplayFromData,
     columns,
     header,
+    onPageChange,
     pagination,
   }) => {
     let Wrapper;
+    const sortOptions = useSorting();
 
     switch (rdf.id(collectionDisplay || collectionDisplayFromData)) {
       case rdf.id(ontola.ns('collectionDisplay/grid')):
@@ -64,7 +67,9 @@ const getFrame = (wrapper, topology) => {
                       <Resource
                         forceRender
                         key={property.value}
+                        sortOptions={sortOptions.filter((option) => option.item === property)}
                         subject={property}
+                        onPageChange={onPageChange}
                       />
                     ))}
                   </TableHeaderRow>

@@ -189,6 +189,7 @@ export default function getCollection({
           header={header}
           label={ontola.collectionFrame}
           pagination={pagination}
+          onPageChange={onPageChange}
         />
       </ResourceBoundary>
     );

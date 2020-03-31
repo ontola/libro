@@ -3,6 +3,10 @@
 .TableHead {
   color: color('grey', 'mid-dark');
 
+  button {
+    cursor: pointer;
+  }
+
   tr > th {
     background-color: color('grey', 'xx-light');
 
