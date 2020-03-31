@@ -19,6 +19,8 @@ import {
 
 import ontola from '../../ontology/ontola';
 import editor from '../../ontology/ontola/editor';
+import { DefaultElement } from './elements/DefaultElement';
+import { LinkElement } from './elements/LinkElement';
 
 import Toolbar from './Toolbar';
 
@@ -36,12 +38,6 @@ const propTypes = {
   value: PropTypes.string,
 };
 
-const DefaultElement = (props) => {
-  const ElemType = props.elementType || 'p';
-
-  return <ElemType {...props.attributes}>{props.children}</ElemType>;
-};
-
 const InlineResource = ({ attributes, children }) => {
   if (!attributes.label) {
     return <p>No resource selected</p>;
@@ -53,7 +49,7 @@ const InlineResource = ({ attributes, children }) => {
 const renderElement = (props) => {
   switch (props.element.type) {
     case editor.elements.link:
-      return <DefaultElement {...props} elementType="a" />;
+      return <LinkElement {...props} elementType="a" />;
     case editor.elements.resource:
       return <InlineResource {...props} />;
     case editor.elements.h1:

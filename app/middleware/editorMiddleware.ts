@@ -40,6 +40,7 @@ const h4Shortcut = rdf.blankNode();
 const boldButton = rdf.blankNode();
 const italicButton = rdf.blankNode();
 const underlineButton = rdf.blankNode();
+const linkButton = rdf.blankNode();
 
 const paragraphStyleList = rdf.blankNode();
 const paragraphStyleParagraph = rdf.blankNode();
@@ -59,6 +60,10 @@ const toggleMarkItalicAction = rdf.namedNode(actionIRI(
 const toggleMarkUnderlineAction = rdf.namedNode(actionIRI(
   editor.actions.toggleMark.value,
   { mark: editor.formatting.Underline },
+));
+const changeTypeLinkAction = rdf.namedNode(actionIRI(
+  editor.actions.changeType.value,
+  { type: editor.elements.link },
 ));
 const changeTypeParagraphAction = rdf.namedNode(actionIRI(
   editor.actions.changeType.value,
@@ -202,6 +207,8 @@ const editorSeed = [
   add(toolbar, rdfx.ns('_12'), underlineButton),
   add(toolbar, rdfx.ns('_20'), editor.divider),
   add(toolbar, rdfx.ns('_21'), editor.paragraphStyleSelector),
+  add(toolbar, rdfx.ns('_30'), editor.divider),
+  add(toolbar, rdfx.ns('_31'), linkButton),
 
   add(boldButton, rdfx.type, ontola.MenuItem),
   add(boldButton, schema.image, fa4.ns('bold')),
@@ -221,6 +228,13 @@ const editorSeed = [
   add(underlineButton, schema.name, rdf.literal('Onderstrepen', 'nl')),
   add(underlineButton, editor.mark, editor.formatting.Underline),
   add(underlineButton, ontola.action, toggleMarkUnderlineAction),
+
+  add(linkButton, rdfx.type, ontola.MenuItem),
+  add(linkButton, schema.image, fa4.ns('chain')),
+  add(linkButton, schema.name, rdf.literal('Link', 'en')),
+  add(linkButton, schema.name, rdf.literal('Link', 'nl')),
+  add(linkButton, editor.mark, editor.elements.link),
+  add(linkButton, ontola.action, changeTypeLinkAction),
 
   add(editor.paragraphStyleSelector, rdfx.type, ontola.MenuItem),
   add(editor.paragraphStyleSelector, sh.in, paragraphStyleList),

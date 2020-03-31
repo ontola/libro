@@ -18,7 +18,6 @@ import editor from '../../ontology/ontola/editor';
 import ActionsBar from '../../topologies/ActionsBar';
 
 import { Divider } from './toolbar/Divider';
-import { Select } from './toolbar/Select';
 import { StyleSelector } from './toolbar/StyleSelector';
 import { ToggleButton } from './toolbar/ToggleButton';
 
@@ -50,7 +49,7 @@ const propMap = {
 };
 
 const MenuItem = ({ item, marks }) => {
-  useDataInvalidation({ subject: item });
+  useDataInvalidation(item.subject);
 
   if (item.subject === editor.divider) {
     return <Divider />;
