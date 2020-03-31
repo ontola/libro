@@ -1,7 +1,10 @@
 import { LinkReduxLRSType } from 'link-redux';
 
+import app from '../ontology/app';
+import ontola from '../ontology/ontola';
+
 export async function initializeCable(lrs: LinkReduxLRSType, websocketPath: string) {
-  const websocketAddress = lrs.namespaces.app(websocketPath).value.replace('https://', 'wss://');
+  const websocketAddress = app.ns(websocketPath).value.replace('https://', 'wss://');
   const ActionCable = await import('actioncable');
   (lrs.api as any).channel = ActionCable.createConsumer(websocketAddress);
 }
@@ -14,16 +17,16 @@ export function subscribeDeltaChannel(lrs: LinkReduxLRSType, channel: string) {
           channel,
           {
             connected: () => {
-              lrs.exec(lrs.namespaces.ontola(`ws/connected?channel=${channel}`));
+              lrs.exec(ontola.ns(`ws/connected?channel=${channel}`));
             },
             disconnected: () => {
-              lrs.exec(lrs.namespaces.ontola(`ws/disconnected?channel=${channel}`));
+              lrs.exec(ontola.ns(`ws/disconnected?channel=${channel}`));
             },
             received: (msg: any) => {
-              lrs.exec(lrs.namespaces.ontola(`ws/received?channel=${channel}`), msg);
+              lrs.exec(ontola.ns(`ws/received?channel=${channel}`), msg);
             },
             rejected: () => {
-              lrs.exec(lrs.namespaces.ontola(`ws/rejected?channel=${channel}`));
+              lrs.exec(ontola.ns(`ws/rejected?channel=${channel}`));
             },
           },
         );

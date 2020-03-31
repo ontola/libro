@@ -4,12 +4,14 @@
 
 import rdf, { createNS, NamedNode } from '@ontologies/core';
 import rdfx from '@ontologies/rdf';
+import schema from '@ontologies/schema';
 import { MiddlewareActionHandler, MiddlewareWithBoundLRS } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 
 import { getMetaContent } from '../helpers/arguHelpers';
 import http from '../ontology/http';
 import ll from '../ontology/ll';
+import ontola from '../ontology/ontola';
 
 export const website = getMetaContent('website-iri') || 'https://example.com';
 export const frontendIRI = rdf.namedNode(website!);
@@ -18,16 +20,10 @@ export const frontendPathname = new URL(frontendIRIStr).pathname;
 export const frontendOrigin = new URL(frontendIRIStr).origin;
 
 const app = createNS(frontendIRIStr.endsWith('/') ? frontendIRIStr : `${frontendIRIStr}/`);
-const appSlashless = createNS(frontendIRIStr.slice(0, frontendIRIStr.endsWith('/') ? -1 : undefined));
 
 export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoundLRS => {
 
   (store as any).actions.app = {};
-
-  // eslint-disable-next-line no-param-reassign
-  store.namespaces.app = app;
-  // eslint-disable-next-line no-param-reassign
-  store.namespaces.appSlashless = appSlashless;
 
   /**
    * App menu setup
@@ -52,15 +48,15 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
     return store.processDelta([
       rdf.quad(
           resourceIRI,
-          store.namespaces.rdf('type'),
+          rdfx.type,
           app('AppSignIn'),
-          store.namespaces.ll('add'),
+          ll.add,
       ),
       rdf.quad(
           resourceIRI,
-          store.namespaces.schema('name'),
+          schema.name,
           rdf.literal('test'),
-          store.namespaces.ll('add'),
+          ll.add,
       ),
     ], true);
   };
@@ -80,9 +76,9 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
    */
   (store as any).actions.app.startSignOut = (redirect?: NamedNode) => {
     if (redirect) {
-      store.exec(store.namespaces.ontola(`actions/logout?location=${redirect.value}`));
+      store.exec(ontola.ns(`actions/logout?location=${redirect.value}`));
     } else {
-      store.exec(store.namespaces.ontola('actions/logout'));
+      store.exec(ontola.ns('actions/logout'));
     }
   };
 

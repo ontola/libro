@@ -54,7 +54,7 @@ const GrantedGroups = ({ linkedProp }) => {
 
   if (groups.findIndex((g) => rdf.id(g) === publicGroupIRI) === -1) {
     const groupNames = groups
-      .map((group) => lrs.getResourceProperty(group, lrs.namespaces.schema('name'))?.value)
+      .map((group) => lrs.getResourceProperty(group, schema.name)?.value)
       .filter(Boolean)
       .join(', ');
 

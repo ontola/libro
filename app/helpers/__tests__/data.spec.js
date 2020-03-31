@@ -1,14 +1,14 @@
-import { defaultNS } from 'link-lib';
 
+import ex from '../../ontology/ex';
 import {
   allow,
   filter,
   sort,
 } from '../data';
 
-const e = defaultNS.ex('e');
-const input = [defaultNS.ex('a'), defaultNS.ex('f'), defaultNS.ex('e'), defaultNS.ex('d'), defaultNS.ex('b')];
-const ordered = [defaultNS.ex('a'), defaultNS.ex('b'), defaultNS.ex('d'), defaultNS.ex('e'), defaultNS.ex('f')];
+const e = ex.ns('e');
+const input = [ex.ns('a'), ex.ns('f'), ex.ns('e'), ex.ns('d'), ex.ns('b')];
+const ordered = [ex.ns('a'), ex.ns('b'), ex.ns('d'), ex.ns('e'), ex.ns('f')];
 
 describe('helpers', () => {
   describe('data', () => {
@@ -18,7 +18,7 @@ describe('helpers', () => {
       });
 
       it('should let elements through by IRI', () => {
-        expect(allow(input, [defaultNS.ex('e')])).toEqual([e]);
+        expect(allow(input, [ex.ns('e')])).toEqual([e]);
       });
 
       it('should let elements through by regex', () => {
@@ -51,11 +51,11 @@ describe('helpers', () => {
 
       it('should allow changing the order', () => {
         const expected = [
-          defaultNS.ex('d'),
-          defaultNS.ex('b'),
-          defaultNS.ex('a'),
-          defaultNS.ex('e'),
-          defaultNS.ex('f'),
+          ex.ns('d'),
+          ex.ns('b'),
+          ex.ns('a'),
+          ex.ns('e'),
+          ex.ns('f'),
         ];
         expect(input.sort(sort(['d', 'b']))).toEqual(expected);
       });

@@ -1,4 +1,4 @@
-import rdf, { createNS, Literal, NamedNode, Node } from '@ontologies/core';
+import rdf, { Literal, NamedNode, Node } from '@ontologies/core';
 import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
 import { seqPush, seqShift } from '@rdfdev/collections';
@@ -18,7 +18,9 @@ import { retrievePath } from '../helpers/iris';
 import { handle } from '../helpers/logging';
 import ServiceWorkerCommunicator from '../helpers/ServiceWorkerCommunicator';
 import hexjson from '../helpers/transformers/hexjson';
+import app from '../ontology/app';
 import ld from '../ontology/ld';
+import ontola from '../ontology/ontola';
 import { redirectPage, reloadPage } from './reloading';
 
 const messages = defineMessages({
@@ -36,11 +38,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
 
   (store as any).actions.ontola = {};
 
-  const ontola = createNS('https://ns.ontola.io/');
-  // eslint-disable-next-line no-param-reassign
-  store.namespaces.ontola = ontola;
-
-  const ontolaActionPrefix = store.namespaces.ontola('actions/').value;
+  const ontolaActionPrefix = ontola.ns('actions/').value;
 
   const currentPath = (): string => {
     const l = history.location;
@@ -51,7 +49,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
    * Websockets
    */
 
-  const ontolaWebsocketsPrefix = store.namespaces.ontola('ws/').value;
+  const ontolaWebsocketsPrefix = ontola.ns('ws/').value;
   const deltaTransformer = hexjson.transformer(store);
 
   /**
@@ -62,14 +60,14 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
 
   store.processDelta([
     rdf.quad(
-      ontola('snackbar/manager'),
+      ontola.ns('snackbar/manager'),
       rdfx.type,
-      ontola('snackbar/Manager'),
+      ontola.ns('snackbar/Manager'),
       ld.add,
     ),
     rdf.quad(
-      ontola('snackbar/manager'),
-      ontola('snackbar/queue'),
+      ontola.ns('snackbar/manager'),
+      ontola.ns('snackbar/queue'),
       snackbarQueue,
       ld.add,
     ),
@@ -85,15 +83,15 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     const s = rdf.blankNode();
 
     const queue = store.getResourceProperty<Node>(
-      ontola('snackbar/manager'),
-      ontola('snackbar/queue'),
+      ontola.ns('snackbar/manager'),
+      ontola.ns('snackbar/queue'),
     )!;
 
     return [
       rdf.quad(
         s,
         rdfx.type,
-        ontola('snackbar/Snackbar'),
+        ontola.ns('snackbar/Snackbar'),
         ld.add,
       ),
       rdf.quad(
@@ -108,68 +106,68 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
 
   const shiftSnackbar = () => {
     const queue = store.getResourceProperty<NamedNode>(
-      ontola('snackbar/manager'),
-      ontola('snackbar/queue'),
+      ontola.ns('snackbar/manager'),
+      ontola.ns('snackbar/queue'),
     )!;
 
     return seqShift(store.store, queue);
   };
 
   (store as any).actions.ontola.showSnackbar = (message: Literal | string) => {
-    store.exec(store.namespaces.ontola(`actions/snackbar?text=${encodeURIComponent(message.toString())}`));
+    store.exec(ontola.ns(`actions/snackbar?text=${encodeURIComponent(message.toString())}`));
   };
 
   /**
    * Ontola dialog setup
    */
 
-  const dialogManager = ontola('dialog/manager');
+  const dialogManager = ontola.ns('dialog/manager');
 
   store.processDelta([
     rdf.quad(
       dialogManager,
-      store.namespaces.rdf('type'),
-      ontola('dialog/Manager'),
-      store.namespaces.ll('add'),
+      rdfx.type,
+      ontola.ns('dialog/Manager'),
+      ld.add,
     ),
   ], true);
 
   const hideDialog = () => [
     rdf.quad(
       dialogManager,
-      ontola('dialog/resource'),
-      ontola('dialog/rm'),
-      store.namespaces.ll('remove'),
+      ontola.ns('dialog/resource'),
+      ontola.ns('dialog/rm'),
+      ld.remove,
     ),
   ];
 
   const showDialog = (value: string, opener?: string | null) => [
     rdf.quad(
       dialogManager,
-      ontola('dialog/resource'),
+      ontola.ns('dialog/resource'),
       rdf.namedNode(value),
-      store.namespaces.ll('replace'),
+      ld.replace,
     ),
     rdf.quad(
       dialogManager,
-      ontola('dialog/opener'),
-      opener ? rdf.namedNode(opener) : store.namespaces.app(currentPath().slice(1)),
-      store.namespaces.ll('replace'),
+      ontola.ns('dialog/opener'),
+      opener ? rdf.namedNode(opener) : app.ns(currentPath().slice(1)),
+      ld.replace,
     ),
   ];
 
   (store as any).actions.ontola.showDialog = (resource: NamedNode, opener?: NamedNode) => {
     const resourceValue = encodeURIComponent(resource.value);
     const openerValue = opener ? encodeURIComponent(opener.value) : '';
-    store.exec(store.namespaces.ontola(`actions/dialog/alert?resource=${resourceValue}&opener=${openerValue}`));
+    store.exec(ontola.ns(`actions/dialog/alert?resource=${resourceValue}&opener=${openerValue}`));
   };
 
   (store as any).actions.ontola.hideDialog = () => {
-    store.exec(store.namespaces.ontola('actions/dialog/close'));
+    store.exec(ontola.ns('actions/dialog/close'));
   };
 
   (store as any).actions.ontola.navigate = (resource: NamedNode) => {
-    store.exec(store.namespaces.ontola(`actions/redirect?location=${encodeURIComponent(resource.value)}`));
+    store.exec(ontola.ns(`actions/redirect?location=${encodeURIComponent(resource.value)}`));
   };
 
   /**
@@ -178,7 +176,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
 
   history.listen((opts, action) => {
     if (['POP', 'PUSH'].includes(action)) {
-      store.exec(ontola(
+      store.exec(ontola.ns(
           `actions/navigation/${action.toLowerCase()}`),
           {
             hash: opts.hash || '',
@@ -207,26 +205,26 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     }
 
     switch (rdf.id(iri)) {
-      case rdf.id(store.namespaces.ontola('actions/refresh')):
+      case rdf.id(ontola.ns('actions/refresh')):
         if (__CLIENT__) {
           reloadPage(store, false);
         }
         return Promise.resolve();
-      case rdf.id(store.namespaces.ontola('actions/reload')):
+      case rdf.id(ontola.ns('actions/reload')):
         reloadPage(store, true);
         return Promise.resolve();
-      case rdf.id(ontola(`actions/navigation/push`)):
-      case rdf.id(ontola(`actions/navigation/pop`)):
-        const dialog = store.getResourceProperty(dialogManager, ontola('dialog/resource'));
-        const opener = store.getResourceProperty(dialogManager, ontola('dialog/opener'));
+      case rdf.id(ontola.ns(`actions/navigation/push`)):
+      case rdf.id(ontola.ns(`actions/navigation/pop`)):
+        const dialog = store.getResourceProperty(dialogManager, ontola.ns('dialog/resource'));
+        const opener = store.getResourceProperty(dialogManager, ontola.ns('dialog/opener'));
         if (dialog && (!opener || retrievePath(opener.value) !== currentPath())) {
-          store.exec(ontola('actions/dialog/close'));
+          store.exec(ontola.ns('actions/dialog/close'));
         }
         return next(iri, opts);
       default:
     }
 
-    if (iri.value.startsWith(store.namespaces.ontola('actions/copyToClipboard').value)) {
+    if (iri.value.startsWith(ontola.ns('actions/copyToClipboard').value)) {
       const value = new URL(iri.value).searchParams.get('value');
 
       if (!value) {
@@ -237,11 +235,11 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
         .then(() => Promise.resolve((store as any).intl.formatMessage(messages.copyFinished)));
     }
 
-    if (iri.value.startsWith(store.namespaces.ontola('actions/logout').value) ||
-        iri.value.startsWith(store.namespaces.ontola('actions/expireSession').value)) {
+    if (iri.value.startsWith(ontola.ns('actions/logout').value) ||
+        iri.value.startsWith(ontola.ns('actions/expireSession').value)) {
       const location = new URL(iri.value).searchParams.get('location');
 
-      return fetch(store.namespaces.app('logout').value, safeCredentials({
+      return fetch(app.ns('logout').value, safeCredentials({
         method: 'POST',
       }))
         .then(() => {
@@ -260,7 +258,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
         });
     }
 
-    if (iri.value.startsWith(store.namespaces.ontola('actions/redirect').value)) {
+    if (iri.value.startsWith(ontola.ns('actions/redirect').value)) {
       const value = new URL(iri.value).searchParams.get('location');
       const reload = new URL(iri.value).searchParams.get('reload');
 
@@ -279,9 +277,9 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       return Promise.resolve();
     }
 
-    if (iri.value.startsWith(store.namespaces.ontola('actions/dialog/close').value)) {
+    if (iri.value.startsWith(ontola.ns('actions/dialog/close').value)) {
       const resource = new URL(iri.value).searchParams.get('resource');
-      const dialog = store.getResourceProperty(dialogManager, ontola('dialog/resource'));
+      const dialog = store.getResourceProperty(dialogManager, ontola.ns('dialog/resource'));
 
       if (!resource || (dialog && resource === dialog.value)) {
         store.processDelta(hideDialog(), true);
@@ -297,7 +295,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       return Promise.resolve();
     }
 
-    if (iri.value.startsWith(store.namespaces.ontola('actions/dialog/alert').value)) {
+    if (iri.value.startsWith(ontola.ns('actions/dialog/alert').value)) {
       const resource = new URL(iri.value).searchParams.get('resource');
       const opener = new URL(iri.value).searchParams.get('opener');
 
@@ -314,12 +312,12 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       return Promise.resolve();
     }
 
-    if (iri.value.startsWith(store.namespaces.ontola('actions/snackbar/finished').value)) {
+    if (iri.value.startsWith(ontola.ns('actions/snackbar/finished').value)) {
       store.processDelta(shiftSnackbar(), true);
       return Promise.resolve();
     }
 
-    if (iri.value.startsWith(store.namespaces.ontola('actions/snackbar').value)) {
+    if (iri.value.startsWith(ontola.ns('actions/snackbar').value)) {
       const value = new URL(iri.value).searchParams.get('text');
       if (!value) {
           throw new Error("Argument 'value' was missing.");
