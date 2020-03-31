@@ -65,7 +65,11 @@ const SearchForm = ({
           return;
         }
 
-        history.push(retrievePath(iriFromTemplate(iriTemplate.value, q, 1).value));
+        const searchOpts = {
+          page: 1,
+          q,
+        };
+        history.push(retrievePath(iriFromTemplate(iriTemplate.value, searchOpts).value));
       }}
     />
   );

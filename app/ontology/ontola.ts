@@ -88,6 +88,7 @@ export default {
   profileMenu: ontola('profileMenu'),
   publishAction: ontola('publishAction'),
   readAction: ontola('readAction'),
+  relevance: ontola('relevance'),
   remove: ontola('remove'),
   replace: ontola('replace'),
   sendConfirmationAction: ontola('sendConfirmationAction'),

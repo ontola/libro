@@ -16,6 +16,7 @@
 
   &__form {
     display: flex;
+    margin-bottom: 1em;
 
     & &-submit {
       border-bottom-left-radius: 0;
@@ -36,11 +37,5 @@
 
   &__pagination {
     padding-bottom: unit('large');
-  }
-
-  &__query-info {
-    margin-bottom: 0;
-    margin-left: 1.3rem;
-    margin-top: 1rem;
   }
 }

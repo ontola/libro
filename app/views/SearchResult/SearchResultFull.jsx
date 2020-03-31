@@ -8,7 +8,6 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router';
 
 import SearchForm from '../../components/SearchForm';
@@ -27,7 +26,6 @@ export const SearchResultFull = ({
   iriTemplate,
   query,
   subject,
-  took,
   totalItems,
 }) => {
   const body = (
@@ -47,6 +45,15 @@ export const SearchResultFull = ({
     />
   );
 
+  const header = totalItems && (
+    <Property
+      forceRender
+      collectionDisplay={collectionDisplay}
+      label={ontola.header}
+      onPageChange={(url) => history.push(retrievePath(url))}
+    />
+  );
+
   return (
     <React.Fragment>
       <Container>
@@ -58,24 +65,12 @@ export const SearchResultFull = ({
           iriTemplate={iriTemplate}
           query={query}
         />
-        {totalItems && took && (
-          <p className="SearchResult__query-info">
-            <FormattedMessage
-              defaultMessage="{totalItems} results in {took}ms"
-              description="Gives info on query execution, with {took} in ms"
-              id="https://app.argu.co/i18n/search/info/message"
-              values={{
-                took: took?.value,
-                totalItems: totalItems?.value,
-              }}
-            />
-          </p>
-        )}
       </Container>
       <Container size="large">
         <Property
           forceRender
           body={body}
+          header={header}
           label={ontola.collectionFrame}
           pagination={pagination}
         />
@@ -109,7 +104,6 @@ SearchResultFull.propTypes = {
   iriTemplate: linkType,
   query: linkType,
   subject: subjectType,
-  took: linkType,
   totalItems: linkType,
 };
 

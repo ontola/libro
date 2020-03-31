@@ -96,9 +96,13 @@ function handleStateChange(options, changes, setState, lrs, iriTemplate, onOptio
 
     if (iriTemplate && changes.inputValue && !changes.selectedItem) {
       const compareValue = inputValue && normalizedLower(typeof inputValue === 'string' ? inputValue : inputValue.value);
-      const searchResult = (compareValue && compareValue.length > 0)
-        ? iriFromTemplate(iriTemplate.value, compareValue, 1, true)
-        : iriFromTemplate(iriTemplate.value, null, null, true);
+      const searchResultOpts = {};
+      if (compareValue?.length > 0) {
+        searchResultOpts.page = 1;
+        searchResultOpts.q = compareValue;
+        searchResultOpts.fragment = 'members';
+      }
+      const searchResult = iriFromTemplate(iriTemplate.value, searchResultOpts);
       onOptionsChange(searchResult);
     }
 

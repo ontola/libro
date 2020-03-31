@@ -227,6 +227,10 @@ export default function generateLRS() {
     rdf.quad(ontola.makePrimaryAction, rdfs.label, rdf.literal('Make primary', languages.en)),
     rdf.quad(ontola.makePrimaryAction, rdfs.label, rdf.literal('Maak primair', languages.nl)),
 
+    rdf.quad(ontola.relevance, rdfx.type, rdfx.Property),
+    rdf.quad(ontola.relevance, rdfs.label, rdf.literal('Relevance', languages.en)),
+    rdf.quad(ontola.relevance, rdfs.label, rdf.literal('Relevantie', languages.nl)),
+
     rdf.quad(argu.opened, rdfx.type, rdfx.Property),
     rdf.quad(argu.opened, rdfs.label, rdf.literal('Opened', languages.en)),
     rdf.quad(argu.opened, rdfs.label, rdf.literal('Geopend', languages.nl)),

@@ -135,7 +135,6 @@
   "https://app.argu.co/i18n/schema:startDate/label": "start date: {date}",
   "https://app.argu.co/i18n/search/button/label": "Search",
   "https://app.argu.co/i18n/search/header/prefix": "Search in:",
-  "https://app.argu.co/i18n/search/info/message": "{totalItems} results in {took}ms",
   "https://app.argu.co/i18n/search/input/placeholder": "Enter a query",
   "https://app.argu.co/i18n/session/confirmLabel": "Confirm",
   "https://app.argu.co/i18n/session/continueLabel": "Continue",
