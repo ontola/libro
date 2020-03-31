@@ -8,7 +8,7 @@ import './Select.scss';
 export const selectTopology = argu.ns('select');
 
 interface Props {
-  elementType?: string;
+  elementType?: React.ComponentType;
   scrollIntoView?: any;
 }
 

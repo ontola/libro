@@ -3,7 +3,7 @@ import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
 import sh from '@ontologies/shacl';
 import { actionIRI, createActionPair } from '@rdfdev/actions';
-import { add, replace } from '@rdfdev/delta';
+import { add } from '@rdfdev/delta';
 import {
   MiddlewareActionHandler,
   MiddlewareFn,
@@ -41,7 +41,6 @@ const boldButton = rdf.blankNode();
 const italicButton = rdf.blankNode();
 const underlineButton = rdf.blankNode();
 
-const paragraphStyleSelector = rdf.blankNode();
 const paragraphStyleList = rdf.blankNode();
 const paragraphStyleParagraph = rdf.blankNode();
 const paragraphStyleH1 = rdf.blankNode();
@@ -63,23 +62,23 @@ const toggleMarkUnderlineAction = rdf.namedNode(actionIRI(
 ));
 const changeTypeParagraphAction = rdf.namedNode(actionIRI(
   editor.actions.changeType.value,
-  { type: editor.elements.Paragraph },
+  { type: editor.elements.paragraph },
 ));
 const changeTypeH1Action = rdf.namedNode(actionIRI(
   editor.actions.changeType.value,
-  { type: editor.elements.H1 },
+  { type: editor.elements.h1 },
 ));
 const changeTypeH2Action = rdf.namedNode(actionIRI(
   editor.actions.changeType.value,
-  { type: editor.elements.H2 },
+  { type: editor.elements.h2 },
 ));
 const changeTypeH3Action = rdf.namedNode(actionIRI(
   editor.actions.changeType.value,
-  { type: editor.elements.H3 },
+  { type: editor.elements.h3 },
 ));
 const changeTypeH4Action = rdf.namedNode(actionIRI(
   editor.actions.changeType.value,
-  { type: editor.elements.H4 },
+  { type: editor.elements.h4 },
 ));
 
 const shiftLineDown = editor.actions.shiftLineDown;
@@ -121,7 +120,7 @@ const editorSeed = [
 
   add(toggleMarkUnderlineAction, rdfx.type, editor.Action),
   add(toggleMarkUnderlineAction, schema.name, rdf.literal('Underline', 'en')),
-  add(toggleMarkUnderlineAction, schema.name, rdf.literal('Onderschrijf', 'nl')),
+  add(toggleMarkUnderlineAction, schema.name, rdf.literal('Onderstrepen', 'nl')),
 
   add(changeTypeParagraphAction, rdfx.type, editor.Action),
   add(changeTypeParagraphAction, schema.name, rdf.literal('Normal text', 'en')),
@@ -202,7 +201,7 @@ const editorSeed = [
   add(toolbar, rdfx.ns('_11'), italicButton),
   add(toolbar, rdfx.ns('_12'), underlineButton),
   add(toolbar, rdfx.ns('_20'), editor.divider),
-  add(toolbar, rdfx.ns('_21'), paragraphStyleSelector),
+  add(toolbar, rdfx.ns('_21'), editor.paragraphStyleSelector),
 
   add(boldButton, rdfx.type, ontola.MenuItem),
   add(boldButton, schema.image, fa4.ns('bold')),
@@ -218,15 +217,15 @@ const editorSeed = [
 
   add(underlineButton, rdfx.type, ontola.MenuItem),
   add(underlineButton, schema.image, fa4.ns('underline')),
-  add(underlineButton, schema.name, rdf.literal('Underline')),
+  add(underlineButton, schema.name, rdf.literal('Underline', 'en')),
+  add(underlineButton, schema.name, rdf.literal('Onderstrepen', 'nl')),
   add(underlineButton, editor.mark, editor.formatting.Underline),
   add(underlineButton, ontola.action, toggleMarkUnderlineAction),
 
-  add(paragraphStyleSelector, rdfx.type, ontola.MenuItem),
-  add(paragraphStyleSelector, sh.in, paragraphStyleList),
-  add(paragraphStyleSelector, editor.current, paragraphStyleParagraph),
-  add(paragraphStyleSelector, schema.image, fa4.ns('underline')),
-  add(paragraphStyleSelector, schema.name, rdf.literal('Underline')),
+  add(editor.paragraphStyleSelector, rdfx.type, ontola.MenuItem),
+  add(editor.paragraphStyleSelector, sh.in, paragraphStyleList),
+  add(editor.paragraphStyleSelector, editor.current, paragraphStyleParagraph),
+  add(editor.paragraphStyleSelector, schema.name, rdf.literal('Underline')),
 
   add(paragraphStyleList, rdfx.type, rdfx.Seq),
   add(paragraphStyleList, rdfx.ns('_0'), paragraphStyleParagraph),
@@ -238,6 +237,7 @@ const editorSeed = [
   add(paragraphStyleParagraph, rdfx.type, schema.Thing),
   add(paragraphStyleParagraph, schema.name, rdf.literal('Paragraph')),
   add(paragraphStyleParagraph, ontola.action, changeTypeParagraphAction),
+
   add(paragraphStyleH1, rdfx.type, schema.Thing),
   add(paragraphStyleH1, schema.name, rdf.literal('Heading 1')),
   add(paragraphStyleH1, ontola.action, changeTypeH1Action),
@@ -294,7 +294,7 @@ const editorMiddleware = (): MiddlewareFn<React.ComponentType<any>> =>
     }
 
     const { base, params } = parse(iri);
-    const { item, textEditor } = opts;
+    const { textEditor } = opts;
     console.log('editor action', base, params, opts);
 
     switch (base) {
@@ -309,17 +309,12 @@ const editorMiddleware = (): MiddlewareFn<React.ComponentType<any>> =>
 
         Transforms.setNodes(textEditor, {
           type: isBlockActive(textEditor, format!)
-            ? editor.elements.Paragraph
+            ? editor.elements.paragraph
             : false ? 'list-item' : format,
         });
-        return store
-          .processDelta(
-            [replace(item, editor.current, format)],
-            true,
-          )
-          .then(() => {
-            ReactEditor.focus(textEditor);
-          });
+        ReactEditor.focus(textEditor);
+
+        return Promise.resolve();
       case editor.actions.shiftLineUp:
         return new Promise((resolve) => {
           const { selection } = textEditor;

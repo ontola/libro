@@ -36,28 +36,6 @@ const propTypes = {
   value: PropTypes.string,
 };
 
-// const useEditorPlugins = () => {
-//   const lrs = useLRS();
-//   const [pluginResource] = useResourceProperty(editor.localSettings, editor.enabledPlugins);
-//   const enabledPlugins = seqToArray(lrs.store, pluginResource);
-//   const enabledMap = Object.keys(mapping)
-//     .filter((key) => enabledPlugins.includes(rdf.termFromNQ(key)))
-//     .reduce(
-//       (res, key) => {
-//         res[key] = mapping[key];
-//
-//         return res;
-//       },
-//       {}
-//     );
-//   const plugins = Object.keys(enabledMap).map((key) => enabledMap[key][0]);
-//
-//   return [
-//     enabledMap,
-//     plugins,
-//   ];
-// };
-
 const DefaultElement = (props) => {
   const ElemType = props.elementType || 'p';
 
@@ -74,19 +52,19 @@ const InlineResource = ({ attributes, children }) => {
 
 const renderElement = (props) => {
   switch (props.element.type) {
-    case editor.elements.Link:
+    case editor.elements.link:
       return <DefaultElement {...props} elementType="a" />;
-    case editor.elements.Resource:
+    case editor.elements.resource:
       return <InlineResource {...props} />;
-    case editor.elements.H1:
+    case editor.elements.h1:
       return <DefaultElement {...props} elementType="h1" />;
-    case editor.elements.H2:
+    case editor.elements.h2:
       return <DefaultElement {...props} elementType="h2" />;
-    case editor.elements.H3:
+    case editor.elements.h3:
       return <DefaultElement {...props} elementType="h3" />;
-    case editor.elements.H4:
+    case editor.elements.h4:
       return <DefaultElement {...props} elementType="h4" />;
-    case editor.elements.Paragraph:
+    case editor.elements.paragraph:
     default:
       return <DefaultElement {...props} elementType="p" />;
   }
@@ -113,7 +91,6 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0),
   },
 }));
-
 
 const propMap = {
   action: ontola.action,
@@ -145,23 +122,23 @@ const RichEditor = ({
   const [editorValue, setEditorValue] = React.useState([
     {
       children: [{ text: plainValue || 'Test 0' }],
-      type: editor.elements.Paragraph,
+      type: editor.elements.h1,
     },
     {
       children: [{ text: plainValue || 'Test 1' }],
-      type: editor.elements.Paragraph,
+      type: editor.elements.paragraph,
     },
     {
       children: [{ text: plainValue || 'Test 2' }],
-      type: editor.elements.Paragraph,
+      type: editor.elements.paragraph,
     },
     {
       children: [{ text: plainValue || 'Test 3' }],
-      type: editor.elements.Paragraph,
+      type: editor.elements.paragraph,
     },
     {
       children: [{ text: plainValue || 'Test 4' }],
-      type: editor.elements.Paragraph,
+      type: editor.elements.paragraph,
     },
   ]);
 

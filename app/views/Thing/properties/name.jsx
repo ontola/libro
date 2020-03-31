@@ -9,6 +9,7 @@ import {
   ReturnType,
   link,
   linkType,
+  useLink,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -47,32 +48,29 @@ const NamePredicates = [
   sh.name,
 ];
 
-const ColoredHeading = ({
-  name,
-  size,
-  variant,
-  type,
-}) => (
-  <Heading
-    size={size}
-    type={type}
-    variant={variant}
-  >
-    {name}
-  </Heading>
-);
+const propMap = {
+  name: NamePredicates,
+  type: rdfx.type,
+};
 
-ColoredHeading.propTypes = {
-  name: linkType,
-  size: PropTypes.string,
+const ConnectedHeading = ({ type, variant }) => {
+  const { name, size } = useLink(propMap, { returnType: ReturnType.Value });
+
+  return (
+    <Heading
+      size={size}
+      type={type}
+      variant={variant}
+    >
+      {name}
+    </Heading>
+  );
+};
+
+ConnectedHeading.propTypes = {
   type: linkType,
   variant: PropTypes.string,
 };
-
-const ConnectedHeading = link({
-  name: NamePredicates,
-  type: rdfx.type,
-}, { returnType: ReturnType.Value })(ColoredHeading);
 
 export default [
   LinkedRenderStore.registerRenderer(

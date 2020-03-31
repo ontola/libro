@@ -12,18 +12,27 @@ export default {
   EditorSettings: editor('EditorSettings'),
   Shortcut: editor('Shortcut'),
   elements: {
-    H1: editor('elements/H1'),
-    H2: editor('elements/H2'),
-    H3: editor('elements/H3'),
-    H4: editor('elements/H4'),
-    Link: editor('elements/Link'),
-    Paragraph: editor('elements/Paragraph'),
-    Resource: editor('elements/Resource'),
+    h1: editor('elements/h1'),
+    h2: editor('elements/h2'),
+    h3: editor('elements/h3'),
+    h4: editor('elements/h4'),
+    link: editor('elements/link'),
+    paragraph: editor('elements/paragraph'),
+    resource: editor('elements/resource'),
   },
   formatting: {
     Bold: editor('formatting/Bold'),
     Italic: editor('formatting/Italic'),
     Underline: editor('formatting/Underline'),
+  },
+  styles: {
+    h1: editor('styles/h1'),
+    h2: editor('styles/h2'),
+    h3: editor('styles/h3'),
+    h4: editor('styles/h4'),
+    paragraph: editor('styles/paragraph'),
+    subtitle: editor('styles/subtitle'),
+    title: editor('styles/title'),
   },
 
   /* Properties */
@@ -62,4 +71,5 @@ export default {
     underline: editor('plugins/underline'),
   },
   localSettings: rdf.blankNode(),
+  paragraphStyleSelector: editor('paragraphStyleSelector'),
 };
