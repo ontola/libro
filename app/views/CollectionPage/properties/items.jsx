@@ -92,6 +92,10 @@ const Items = (props) => {
       return <CardContent endSpacing>{message}</CardContent>;
     }
 
+    if (rdf.equals(collectionDisplay, ontola['collectionDisplay/grid'])) {
+      return <GridItem endSpacing>{message}</GridItem>;
+    }
+
     if (rdf.equals(collectionDisplay, ontola['collectionDisplay/table'])
       || rdf.equals(collectionDisplay, ontola['collectionDisplay/settingsTable'])) {
       return <TableRow><TableCell>{message}</TableCell></TableRow>;

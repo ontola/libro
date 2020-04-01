@@ -1,5 +1,6 @@
 import schema from '@ontologies/schema';
 import {
+  Property,
   linkType,
   register,
   subjectType,
@@ -9,6 +10,8 @@ import React from 'react';
 
 import { retrievePath } from '../../helpers/iris';
 import Button from '../../components/Button';
+import GridHeader from '../../components/Grid/GridHeader';
+import ontola from '../../ontology/ontola';
 import { gridTopology } from '../../topologies/Grid';
 
 const EntryPointGrid = ({
@@ -23,12 +26,20 @@ const EntryPointGrid = ({
   const href = url?.value || subject.value;
 
   return (
-    <Button
-      href={retrievePath(href)}
-      title={name.value}
-    >
-      {name.value}
-    </Button>
+    <React.Fragment>
+      <Property label={schema.isPartOf}>
+        <GridHeader header={<Property label={schema.name} />}>
+          <Property label={ontola.updateAction} onLoad={() => null} />
+        </GridHeader>
+        <Property label={schema.text} />
+      </Property>
+      <Button
+        href={retrievePath(href)}
+        title={name.value}
+      >
+        {name.value}
+      </Button>
+    </React.Fragment>
   );
 };
 
