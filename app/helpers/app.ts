@@ -1,8 +1,8 @@
-import rdf, { createNS, NamedNode, Namespace } from '@ontologies/core';
+import rdf, { createNS, NamedNode, StructuredNamespace } from '@ontologies/core';
 
 export interface WebsiteContext {
-  app: Namespace;
-  appSlashless: Namespace;
+  app: StructuredNamespace;
+  appSlashless: StructuredNamespace;
 
   websiteIRI: NamedNode;
   websiteIRIStr: string;
@@ -16,8 +16,8 @@ export const getWebsiteContextFromWebsite = (website: string): WebsiteContext =>
   const websiteOrigin = new URL(websiteIRIStr).origin;
 
   return {
-    app: createNS(websiteIRIStr.endsWith('/') ? websiteIRIStr : `${websiteIRIStr}/`),
-    appSlashless: createNS(websiteIRIStr.slice(0, websiteIRIStr.endsWith('/') ? -1 : undefined)),
+    app: { ns: createNS(websiteIRIStr.endsWith('/') ? websiteIRIStr : `${websiteIRIStr}/`) },
+    appSlashless: { ns: createNS(websiteIRIStr.slice(0, websiteIRIStr.endsWith('/') ? -1 : undefined)) },
 
     websiteIRI,
     websiteIRIStr: websiteIRI.value,

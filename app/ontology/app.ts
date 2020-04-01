@@ -9,7 +9,6 @@ import dbo from './dbo';
 import wdt from './wdt';
 
 const app = createNS(frontendIRIStr.endsWith('/') ? frontendIRIStr : `${frontendIRIStr}/`);
-const appSlashless = createNS(frontendIRIStr.slice(0, frontendIRIStr.endsWith('/') ? -1 : undefined));
 
 const contents = app('contents');
 const thumbnail = app('thumbnail');
@@ -23,7 +22,6 @@ export const appOntology = [
 
 export default {
   ns: app,
-  nsSlashless: appSlashless,
 
   contents,
   thumbnail,

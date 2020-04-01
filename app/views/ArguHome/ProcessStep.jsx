@@ -1,7 +1,7 @@
 import schema from '@ontologies/schema';
 import {
-  LinkedResourceContainer,
   Property,
+  Resource,
   linkType,
   register,
   subjectType,
@@ -161,7 +161,7 @@ const ProcessStep = ({
               const icons = (lrs.getResourceProperties(feature, argu.icon)) || [];
 
               return (
-                <LinkedResourceContainer key={feature} subject={feature} onLoad={LoadingRow}>
+                <Resource key={feature} subject={feature} onLoad={LoadingRow}>
                   <li className="ProcessStep--feature">
                     <h3 className={icons.length > 1 ? 'ProcessStep--two-icons' : ''}>
                       {icons.map((featureIcon) => <span className={`fa fa-${featureIcon.value}`} key={featureIcon.value} />)}
@@ -169,7 +169,7 @@ const ProcessStep = ({
                     </h3>
                     <p><Property label={schema.text} topology={inlineTopology} /></p>
                   </li>
-                </LinkedResourceContainer>
+                </Resource>
               );
             })
           }

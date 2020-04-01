@@ -1,7 +1,7 @@
 import schema from '@ontologies/schema';
 import {
-  LinkedResourceContainer,
   Property,
+  Resource,
   subjectType,
   useDataInvalidation,
   useLRS,
@@ -121,7 +121,6 @@ const Triad = ({ subject }) => {
                 const stepIcon = lrs.getResourceProperty(processStep, argu.icon);
 
                 return (
-                  <LinkedResourceContainer
                     key={processStep}
                     subject={processStep}
                     onLoad={SuspendedLoader}
@@ -137,10 +136,11 @@ const Triad = ({ subject }) => {
                       <div className="Triad--text"><Property label={schema.name} topology={inlineTopology} /></div>
                       <div className="Triad--arrow Triad--arrow-right" style={{ borderLeftColor: stepColor?.value }} />
                     </button>
-                  </LinkedResourceContainer>
                 );
               })
             }
+            <Resource
+            </Resource>
         </div>
         <div className="Triad--current-triad Triad--show" style={{ backgroundColor: color?.value }}>
           <div
@@ -150,14 +150,14 @@ const Triad = ({ subject }) => {
               left: `${SHARK_OFFSET + SHARK_WIDTH * slide}%`,
             }}
           />
-          <LinkedResourceContainer subject={processSteps[slide]} onLoad={SuspendedLoader}>
+          <Resource subject={processSteps[slide]} onLoad={SuspendedLoader}>
             <div className="Triad--select">
               <div className={`Triad--background fa fa-${icon?.value}`} />
               <Heading><Property label={schema.description} topology={inlineTopology} /></Heading>
               <p className="Triad--current-triad-body"><Property label={schema.text} topology={inlineTopology} /></p>
               {nextButton()}
             </div>
-          </LinkedResourceContainer>
+          </Resource>
           <Animations slide={slide} />
         </div>
       </React.Suspense>

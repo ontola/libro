@@ -5,7 +5,7 @@ import path, { currentLocation } from '../paths';
 
 function getCurrentLocation(websiteIRI: string, pathname = '', search = '', hash = '') {
   const basePath = new URL(websiteIRI).pathname;
-  const ns = { appSlashless: createNS(websiteIRI) };
+  const ns = { appSlashless: { ns: createNS(websiteIRI) } };
   return currentLocation(
     {
       hash,

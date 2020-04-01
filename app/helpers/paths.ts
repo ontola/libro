@@ -5,17 +5,18 @@ import { NamespaceMap } from 'link-lib';
 
 import { frontendPathname } from '../middleware/app';
 import app from '../ontology/app';
+import appSlashless from '../ontology/appSlashless';
 
 export function currentLocation(location: Location<any>,
                                 fragment = true,
                                 basePath = frontendPathname,
-                                ns: NamespaceMap = { appSlashless: app.nsSlashless }): NamedNode {
+                                ns: NamespaceMap = { appSlashless }): NamedNode {
   const path = (basePath !== '/' && location.pathname.startsWith(basePath))
       ? location.pathname.slice(basePath.length)
       : location.pathname;
   const normalizedPath = path.slice(0, (path.endsWith('/') ? -1 : undefined));
 
-  return ns.appSlashless(`${normalizedPath}${location.search}${fragment ? location.hash : ''}`);
+  return ns.appSlashless.ns(`${normalizedPath}${location.search}${fragment ? location.hash : ''}`);
 }
 
 export function absoluteRouterLocation(state: Map<string, Map<string, any>>): string {
