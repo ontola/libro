@@ -25,4 +25,4 @@ ARG ARGU_API_URL
 ENV ARGU_API_URL $ARGU_API_URL
 
 EXPOSE 8080
-CMD ["yarn", "run", "cservice", "./dist/private/server.js"]
+CMD ["node", "./dist/private/server.js"]

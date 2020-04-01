@@ -69,7 +69,6 @@
     "@ontologies/xsd": "^1.0.0",
     "@types/react-router": "^5.1.4",
     "atob": "^2.1.2",
-    "cluster-service": "^2.1.2",
     "dayjs": "^1.8.15",
     "dotenv": "^8.0.0",
     "fast-deep-equal": "^2.0.1",
