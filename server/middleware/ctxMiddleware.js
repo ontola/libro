@@ -8,10 +8,12 @@ import { NEW_AUTHORIZATION_HEADER, NEW_REFRESH_TOKEN_HEADER } from '../utils/pro
 
 const BACKEND_TIMEOUT = 3000;
 
-export default function ctxMiddleware(ctx, next) {
+export function enhanceCtx(ctx) {
   ctx.res.locals = { nonce: uuidv4() };
   ctx.req.getCtx = () => ctx;
-  ctx.response.set('X-FE-Version', __VERSION__);
+  if (typeof __VERSION__ !== 'undefined') {
+    ctx.response.set('X-FE-Version', __VERSION__);
+  }
 
   ctx.addAction = (action) => {
     ctx.response.set(EXEC_HEADER_NAME, action);
@@ -83,6 +85,12 @@ export default function ctxMiddleware(ctx, next) {
 
     return ctx.websiteIRI;
   };
+
+  return ctx;
+}
+
+export default function ctxMiddleware(ctx, next) {
+  enhanceCtx(ctx);
 
   return next();
 }

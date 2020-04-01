@@ -10,6 +10,7 @@ import {
 
 import * as constants from '../../app/config';
 import createBulkResourceRequest from '../utils/bulk';
+import createDataContext from '../utils/createDataContext';
 import { isHTMLHeader } from '../utils/http';
 import logging from '../utils/logging';
 import manifest from '../utils/manifest';
@@ -25,33 +26,6 @@ const defaultResources = (scope) => [
   `${scope}/menus`,
   `${scope}/apex/menus`,
 ];
-
-const createDataContext = (ctx) => {
-  const dataHeaders = {
-    ...ctx.request.headers,
-    accept: 'application/hex+x-ndjson',
-  };
-
-  return {
-    addAction: ctx.addAction,
-    api: ctx.api,
-    deviceId: ctx.deviceId,
-    getFromAccessToken: ctx.getFromAccessToken,
-    getManifest: ctx.getManifest,
-    headResponse: ctx.headResponse,
-    manifest: ctx.manifest,
-    req: {
-      getCtx: () => ctx,
-    },
-    request: {
-      get: () => {},
-      headers: dataHeaders,
-      origin: ctx.request.origin,
-    },
-    session: ctx.session,
-    setAccessToken: ctx.setAccessToken,
-  };
-};
 
 const createOutputStream = () => {
   let data = Buffer.alloc(0);

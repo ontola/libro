@@ -1,6 +1,7 @@
 import Koa from 'koa';
 import uuidv4 from 'uuid/v4';
 
+import { enhanceCtx } from '../../middleware/ctxMiddleware';
 import { renderFullPage } from '../render';
 
 function generateRenderParams() {
@@ -16,7 +17,8 @@ function generateRenderParams() {
       nonce: uuidv4(),
     },
   };
-  const ctx = new Koa().createContext(req, res);
+  const ctx = enhanceCtx(new Koa().createContext(req, res));
+  ctx.session = {};
   ctx.manifest = {
     icons: [],
     ontola: {},
@@ -29,7 +31,7 @@ function generateRenderParams() {
 
 describe('server', () => {
   describe('renderFullPage', () => {
-    it('TODO: has a test', async () => {
+    it('renders the navbar preview', async () => {
       const ctx = generateRenderParams();
       const body = await renderFullPage(ctx, Buffer.alloc(0));
 
