@@ -8,7 +8,9 @@ import { attributeListTopology } from '../../topologies/AttributeList';
 import { inlineTopology } from '../../topologies/Inline';
 
 const RDFPropertyAttributeList = () => (
-  <label><Property label={[schema.name, rdfs.label]} /></label>
+  <label>
+    <Property label={[schema.name, rdfs.label]} />
+  </label>
 );
 
 RDFPropertyAttributeList.type = rdfx.Property;

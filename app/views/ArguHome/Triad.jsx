@@ -3,14 +3,16 @@ import {
   Property,
   Resource,
   subjectType,
-  useDataInvalidation,
-  useLRS,
+  useResourceLink,
+  useResourceLinks,
+  useResourceProperty,
+  value,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
-import { seqToArr } from '../../helpers/data';
+import { useSeqToArr } from '../../hooks/useSeqToArr';
 import argu from '../../ontology/argu';
 import { inlineTopology } from '../../topologies/Inline';
 import Heading from '../../components/Heading';
@@ -69,22 +71,22 @@ const messages = defineMessages({
   },
 });
 
+const stepMap = {
+  color: value(schema.color),
+  icon: value(argu.icon),
+};
+
 const Triad = ({ subject }) => {
-  const lrs = useLRS();
   const { formatMessage } = useIntl();
   const [slide, setSlide] = useState(0);
-
   if (!__CLIENT__) {
     return null;
   }
 
-  const processSteps = seqToArr(lrs, [], lrs.getResourceProperty(subject, argu.processSteps));
-  useDataInvalidation({
-    dataSubjects: processSteps,
-    subject,
-  });
-  const color = lrs.getResourceProperty(processSteps[slide], schema.color);
-  const icon = lrs.getResourceProperty(processSteps[slide], argu.icon);
+  const [stepList] = useResourceProperty(subject, argu.processSteps);
+  const processSteps = useSeqToArr(stepList);
+  const { color, icon } = useResourceLink(processSteps[slide], stepMap);
+  const processStepsData = useResourceLinks(processSteps, stepMap);
 
   const nextButton = () => {
     if (slide < SLIDE_COUNT) {
@@ -115,44 +117,44 @@ const Triad = ({ subject }) => {
       <Heading size="1">{formatMessage(messages.triadHeader)}</Heading>
       <React.Suspense fallback={<LoadingGridContent />}>
         <div className="Triad--selector">
-          {
-              processSteps.map((processStep, index) => {
-                const stepColor = lrs.getResourceProperty(processStep, schema.color);
-                const stepIcon = lrs.getResourceProperty(processStep, argu.icon);
-
-                return (
-                    key={processStep}
-                    subject={processStep}
-                    onLoad={SuspendedLoader}
-                  >
-                    <button
-                      className="Triad--button Triad--item"
-                      style={{ backgroundColor: stepColor?.value }}
-                      type="button"
-                      onClick={() => setSlide(index)}
-                    >
-                      {index > 0 && <div className="Triad--arrow Triad--arrow--left" />}
-                      <div className={`Triad--icon fa fa-${stepIcon?.value}`} />
-                      <div className="Triad--text"><Property label={schema.name} topology={inlineTopology} /></div>
-                      <div className="Triad--arrow Triad--arrow-right" style={{ borderLeftColor: stepColor?.value }} />
-                    </button>
-                );
-              })
-            }
+          {processStepsData.map((
+            {
+              icon: stepIcon,
+              color: stepColor,
+              subject: processStep,
+            },
+            index
+          ) => (
             <Resource
+              key={processStep}
+              subject={processStep}
+              onLoad={SuspendedLoader}
+            >
+              <button
+                className="Triad--button Triad--item"
+                style={{ backgroundColor: stepColor }}
+                type="button"
+                onClick={() => setSlide(index)}
+              >
+                {index > 0 && <div className="Triad--arrow Triad--arrow--left" />}
+                <div className={`Triad--icon fa fa-${stepIcon}`} />
+                <div className="Triad--text"><Property label={schema.name} topology={inlineTopology} /></div>
+                <div className="Triad--arrow Triad--arrow-right" style={{ borderLeftColor: stepColor }} />
+              </button>
             </Resource>
+          ))}
         </div>
-        <div className="Triad--current-triad Triad--show" style={{ backgroundColor: color?.value }}>
+        <div className="Triad--current-triad Triad--show" style={{ backgroundColor: color }}>
           <div
             className="Triad--sharkfin"
             style={{
-              borderBottom: `1rem solid ${color?.value}`,
+              borderBottom: `1rem solid ${color}`,
               left: `${SHARK_OFFSET + SHARK_WIDTH * slide}%`,
             }}
           />
           <Resource subject={processSteps[slide]} onLoad={SuspendedLoader}>
             <div className="Triad--select">
-              <div className={`Triad--background fa fa-${icon?.value}`} />
+              <div className={`Triad--background fa fa-${icon}`} />
               <Heading><Property label={schema.description} topology={inlineTopology} /></Heading>
               <p className="Triad--current-triad-body"><Property label={schema.text} topology={inlineTopology} /></p>
               {nextButton()}

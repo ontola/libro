@@ -53,10 +53,7 @@ const Arguments = ({
   subject,
 }) => {
   const ctx = useLinkRenderContext();
-  useDataInvalidation({
-    dataSubjects: [conArguments, proArguments],
-    subject: ctx.subject,
-  });
+  useDataInvalidation([conArguments, proArguments, ctx.subject]);
 
   return children || <ArgumentColumns pageSize={pageSize} subject={subject} />;
 };

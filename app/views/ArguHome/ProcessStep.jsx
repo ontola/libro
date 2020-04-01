@@ -47,10 +47,7 @@ const ProcessStep = ({
   const lrs = useLRS();
   const { formatMessage } = useIntl();
   const features = seqToArr(lrs, [], lrs.getResourceProperty(subject, argu.features));
-  useDataInvalidation({
-    dataSubjects: features,
-    subject,
-  });
+  useDataInvalidation([...features, subject]);
 
   const exampleContent = {
     [argu.Survey.id]: (

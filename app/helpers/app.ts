@@ -1,8 +1,8 @@
-import rdf, { createNS, NamedNode, StructuredNamespace } from '@ontologies/core';
+import rdf, { createNS, CustomPredicateCreator, NamedNode } from '@ontologies/core';
 
 export interface WebsiteContext {
-  app: StructuredNamespace;
-  appSlashless: StructuredNamespace;
+  app: CustomPredicateCreator;
+  appSlashless: CustomPredicateCreator;
 
   websiteIRI: NamedNode;
   websiteIRIStr: string;

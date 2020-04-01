@@ -62,7 +62,7 @@ const NodeShape = ({
   const targetObject = targetNode || retrieveIdFromValue(targetValue);
   const targetIRI = isTerm(targetObject) && targetObject;
 
-  useDataInvalidation({ subject: targetIRI });
+  useDataInvalidation([targetIRI]);
 
   if (targetIRI && targetIRI.termType !== 'BlankNode' && !entityIsLoaded(lrs, targetIRI)) {
     if (__CLIENT__) {

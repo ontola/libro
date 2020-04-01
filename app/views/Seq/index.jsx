@@ -39,10 +39,7 @@ export function Seq({
     secondary = sequences.slice(gutter);
   }
 
-  useDataInvalidation({
-    dataSubjects: sequences,
-    subject,
-  });
+  useDataInvalidation([...sequences, subject]);
 
   const elements = primary.map((s, i) => (
     <ItemWrapper key={s.toString()} {...itemWrapperOpts}>

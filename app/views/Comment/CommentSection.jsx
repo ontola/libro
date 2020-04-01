@@ -21,10 +21,7 @@ import { cardRowTopology } from '../../topologies/Card/CardRow';
 const CommentSection = ({ highlighted, subject }) => {
   const lrs = useLRS();
   const [creator] = useProperty(schema.creator);
-  useDataInvalidation({
-    dataSubjects: [creator],
-    subject,
-  });
+  useDataInvalidation([creator, subject]);
 
   if (creator && !entityIsLoaded(lrs, creator)) {
     return <Resource subject={creator} />;

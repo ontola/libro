@@ -24,7 +24,7 @@ const registerCoverPhoto = (prop, topology) => {
     linkedProp,
   }) => {
     const lrs = useLRS();
-    useDataInvalidation({ subject: linkedProp });
+    useDataInvalidation(linkedProp);
     const [imagePositionY] = useResourceProperty(linkedProp, ontola.imagePositionY);
     const [url] = useResourceProperty(linkedProp, prop);
     const status = lrs.getStatus(linkedProp);

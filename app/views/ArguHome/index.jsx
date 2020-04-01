@@ -59,10 +59,7 @@ const ArguHomePage = ({ subject }) => {
   const lrs = useLRS();
   const { formatMessage } = useIntl();
   const processSteps = seqToArr(lrs, [], lrs.getResourceProperty(subject, argu.processSteps));
-  useDataInvalidation({
-    dataSubjects: processSteps,
-    subject,
-  });
+  useDataInvalidation([...processSteps, subject]);
 
   const loaded = processSteps.every((processStep) => entityIsLoaded(lrs, processStep));
 

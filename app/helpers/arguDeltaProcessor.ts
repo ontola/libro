@@ -55,7 +55,10 @@ function processInvalidate(delta: Quadruple[], lrs: LinkReduxLRSType) {
 }
 
 function processSupplant(delta: Quadruple[], lrs: LinkReduxLRSType) {
-    const supplants = delta.filter(([, , , why]) => rdf.equals(why, ll.supplant));
+    const supplants = delta.reduce<Quadruple[]>(
+      (acc, [s, p, o, g]) => rdf.equals(g, ll.supplant) ? [...acc, [s, p, o, g]] : acc,
+      [],
+    );
 
     supplants
       .reduce<SomeNode[]>((acc, cur) => acc.includes(cur[0])
@@ -64,9 +67,7 @@ function processSupplant(delta: Quadruple[], lrs: LinkReduxLRSType) {
       .forEach((s) => {
         lrs.store.removeResource(s);
       });
-    supplants.forEach(([s, p, o]) => {
-        lrs.store.addQuads([rdf.quad(s, p, o)]);
-    });
+    lrs.store.addQuadruples(supplants);
 }
 
 function arguDeltaProcessor(lrs: LinkReduxLRSType) {

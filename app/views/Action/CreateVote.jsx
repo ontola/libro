@@ -91,18 +91,10 @@ function countAttribute(option) {
   return argu.votesNeutralCount;
 }
 
-function useCurrentOption(parent, object, subject) {
+function useCurrentOption(parent, subject) {
   const [vote] = useResourceProperty(parent, argu.currentVote);
-  const lastParentUpdate = useDataInvalidation({
-    dataSubjects: [parent],
-    subject,
-  });
-  useDataFetching({ subject: parent }, lastParentUpdate);
-  const lastVoteUpdate = useDataInvalidation({
-    dataSubjects: [vote],
-    subject,
-  });
-  useDataFetching({ subject: vote }, lastVoteUpdate);
+  useDataInvalidation(subject);
+  useDataFetching([parent, vote]);
   const [currentOption] = useResourceProperty(vote, schema.option);
 
   return currentOption;
@@ -158,7 +150,6 @@ function getVariant(option, parentType) {
  */
 const CreateVote = ({
   actionStatus,
-  object,
   openOmniform,
   subject,
   target,
@@ -166,7 +157,7 @@ const CreateVote = ({
   const lrs = useLRS();
   const { formatMessage } = useIntl();
   const [isPartOf] = useProperty(schema.isPartOf);
-  const currentOption = useCurrentOption(isPartOf, object, subject);
+  const currentOption = useCurrentOption(isPartOf, subject);
   const [parentType] = useResourceProperty(isPartOf, rdfx.type);
   const option = getOption(subject, parentType);
   const [count] = useResourceProperty(isPartOf, countAttribute(option));
@@ -221,7 +212,6 @@ CreateVote.hocs = [connect(null, mapDispatchToProps)];
 CreateVote.mapDataToProps = {
   actionStatus: schema.actionStatus,
   isPartOf: schema.isPartOf,
-  object: schema.object,
   target: schema.target,
   type: {
     label: rdfx.type,
@@ -231,7 +221,6 @@ CreateVote.mapDataToProps = {
 
 CreateVote.propTypes = {
   actionStatus: linkType,
-  object: linkType,
   openOmniform: PropTypes.func,
   subject: subjectType,
   target: linkType,

@@ -1,4 +1,4 @@
-import { useDataFetching, useDataInvalidation, useLRS } from 'link-redux';
+import { useDataFetching, useLRS } from 'link-redux';
 import React from 'react';
 
 import app from '../ontology/app';
@@ -13,8 +13,7 @@ export const useCurrentActor = () => {
     const [anonymousId, setAnonymousId] = React.useState();
 
     const lrs = useLRS();
-    const lastUpdate = useDataInvalidation({ subject: actorIRI });
-    useDataFetching({ subject: actorIRI }, lastUpdate);
+    const lastUpdate = useDataFetching(actorIRI);
 
     React.useEffect(() => {
         const aType = lrs.getResourceProperty(actorIRI, ontola.actorType);

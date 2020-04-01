@@ -4,7 +4,6 @@ import {
   linkedPropType,
   register,
   useDataFetching,
-  useDataInvalidation,
   useLRS,
   useProperty,
   useResourceProperty,
@@ -20,8 +19,7 @@ import Typeform from '../../../containers/Typeform';
 const ExternalIRI = ({ linkedProp }) => {
   const lrs = useLRS();
   const [createSubmissionAction] = useProperty(ontola.createSubmissionAction);
-  const lastUpdate = useDataInvalidation({ subject: createSubmissionAction });
-  useDataFetching({ subject: createSubmissionAction }, lastUpdate);
+  useDataFetching(createSubmissionAction);
   const [actionStatus] = useResourceProperty(createSubmissionAction, schema.actionStatus);
   if (actionStatus && actionStatus !== schema.PotentialActionStatus) {
     return (

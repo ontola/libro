@@ -13,10 +13,7 @@ const useTargetValues = (targetIRI, path) => {
   const lrs = useLRS();
   const rawTargetValues = lrs.getResourceProperties(targetIRI, path);
 
-  useDataInvalidation({
-    dataSubjects: rawTargetValues.filter(isResource),
-    subject: targetIRI,
-  });
+  useDataInvalidation([...rawTargetValues.filter(isResource), targetIRI]);
 
   const isCollection = rawTargetValues?.length === 1
     && lrs.findSubject(rawTargetValues[0], [rdfx.type], as.Collection).length > 0;

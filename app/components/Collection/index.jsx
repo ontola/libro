@@ -23,7 +23,7 @@ const Collection = ({
 }) => {
   const lrs = useLRS();
   const [baseCollection] = useProperty(label);
-  useDataInvalidation({ subject: baseCollection });
+  useDataInvalidation(baseCollection);
 
   if (!baseCollection) {
     return null;

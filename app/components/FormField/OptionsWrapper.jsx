@@ -45,7 +45,7 @@ const OptionsWrapper = ({
     DEBOUNCE_TIMER
   );
 
-  useDataInvalidation({ subject: shIn });
+  useDataInvalidation(shIn);
   const searchTemplate = React.useMemo(
     () => lrs.getResourceProperty(shInProp, ontola.searchTemplate),
     [shInProp]

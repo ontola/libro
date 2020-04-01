@@ -185,9 +185,7 @@ const SelectInputWrapper = ({
     searchTemplate ? DEBOUNCE_TIMER : 0,
     { leading: true }
   );
-  useDataInvalidation({
-    dataSubjects: options.filter(isResource),
-  });
+  useDataInvalidation(options.filter(isResource));
 
   const initialSelectedItem = inputValue || initialValue;
 

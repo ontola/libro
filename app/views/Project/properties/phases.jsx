@@ -71,10 +71,7 @@ const Phases = ({
   const [itemSequence] = useResourceProperty(page || subject, as.items);
   const items = itemSequence ? containerToArr(lrs, [], itemSequence) : [];
 
-  useDataInvalidation({
-    dataSubjects: [page, ...items],
-    subject: linkedProp,
-  });
+  useDataInvalidation([page, linkedProp, ...items]);
 
   if (!entityIsLoaded(lrs, linkedProp)) {
     return <Resource subject={linkedProp} />;

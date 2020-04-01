@@ -18,11 +18,8 @@ const IconAttribute = ({
   linkedProp,
   subject,
 }) => {
-  const lastUpdate = useDataInvalidation({
-    dataSubjects: [linkedProp],
-    subject,
-  });
-  useDataFetching({ subject: linkedProp }, lastUpdate);
+  useDataInvalidation(subject);
+  useDataFetching(linkedProp);
 
   const [name] = useResourceProperty(linkedProp, schema.name);
   if (!name) {

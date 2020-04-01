@@ -21,7 +21,7 @@ const ForumFull = ({ coverPhoto, hideHeader }) => {
   const lrs = useLRS();
   let coverPhotoUrl, positionY;
   if (coverPhoto) {
-    useDataInvalidation({ subject: coverPhoto });
+    useDataInvalidation(coverPhoto);
 
     if (__CLIENT__ && !entityIsLoaded(lrs, coverPhoto)) {
       lrs.queueEntity(coverPhoto);

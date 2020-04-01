@@ -1,8 +1,10 @@
 import schema from '@ontologies/schema';
 import {
+  labelType,
   linkedPropType,
   register,
-  useLRS,
+  useProperty,
+  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -31,28 +33,29 @@ const RatingAttribute = ({
   label,
   labelFrom,
   linkedProp,
-  subject,
 }) => {
-  let labelValue;
-  if (labelFrom) {
-    const lrs = useLRS();
-    const labelObj = lrs.getResourceProperty(subject, labelFrom);
-    labelValue = labelObj && lrs.getResourceProperty(labelObj, schema.name);
-  }
+  const labelObj = useProperty(labelFrom);
+  const labelValue = useResourceProperty(labelObj, schema.name);
+
   const icon = label.value.includes('Costs') ? 'euro' : 'star';
   const src = `/assets/rivm/icons/${icon}`;
 
+  /* eslint-disable react/no-array-index-key */
   return (
-    Array(ICON_COUNT).fill().map((_, index) => (
-      <div
-        className="Rating"
-        style={{ backgroundImage: `url(${src}-bgr.png)` }}
-        title={labelValue?.value}
-      >
-        {renderIcon(linkedProp, index, src)}
-      </div>
-    ))
+    <React.Fragment>
+      {Array(ICON_COUNT).fill().map((_, index) => (
+        <div
+          className="Rating"
+          key={`${src}-${index}`}
+          style={{ backgroundImage: `url(${src}-bgr.png)` }}
+          title={labelValue?.value}
+        >
+          {renderIcon(linkedProp, index, src)}
+        </div>
+      ))}
+    </React.Fragment>
   );
+  /* eslint-enable react/no-array-index-key */
 };
 
 RatingAttribute.type = schema.Thing;
@@ -66,6 +69,8 @@ RatingAttribute.property = [
 ];
 
 RatingAttribute.propTypes = {
+  label: labelType,
+  labelFrom: labelType,
   linkedProp: linkedPropType,
 };
 

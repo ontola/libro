@@ -47,7 +47,7 @@ const InlineActionContainerFloat = ({
 
   let image;
   if (target) {
-    useDataInvalidation({ subject: target });
+    useDataInvalidation(target);
 
     if (__CLIENT__ && !entityIsLoaded(lrs, target)) {
       lrs.queueEntity(target);

@@ -20,7 +20,7 @@ const SignInFlow = ({
 }) => {
   const { actorType } = useCurrentActor();
   const showSignInFlow = ['GuestUser', 'UnconfirmedUser'].includes(actorType?.value);
-  useDataInvalidation({ subject: currentVote });
+  useDataInvalidation(currentVote);
   const [currentOption] = useResourceProperty(currentVote, schema.option);
 
   if (!showSignInFlow || !currentOption || rdf.equals(currentOption, argu.abstain)) {

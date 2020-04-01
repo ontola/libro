@@ -44,10 +44,8 @@ const CreateActionButton = ({
   subject,
 }) => {
   const createActions = lrs.getResourceProperties(subject, ontola.createAction);
-  useDataInvalidation({
-    dataSubjects: createActions,
-    subject,
-  });
+  useDataInvalidation([...createActions, subject]);
+
   if (__CLIENT__) {
     createActions.forEach((action) => {
       if (!entityIsLoaded(lrs, action)) {

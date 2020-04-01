@@ -29,9 +29,7 @@ const ThingImageProp = ({
   linkedProp,
 }) => {
   const lrs = useLRS();
-  if (linkedProp) {
-    useDataInvalidation({ subject: linkedProp });
-  }
+  useDataInvalidation(linkedProp);
 
   if (children) {
     return <Resource subject={linkedProp}>{children}</Resource>;

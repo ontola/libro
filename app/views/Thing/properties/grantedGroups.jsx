@@ -4,7 +4,6 @@ import {
   linkedPropType,
   register,
   useDataFetching,
-  useDataInvalidation,
   useLRS,
 } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -39,8 +38,7 @@ const messages = defineMessages({
 const GrantedGroups = ({ linkedProp }) => {
   const { formatMessage } = useIntl();
   const lrs = useLRS();
-  const lastUpdate = useDataInvalidation({ subject: linkedProp });
-  useDataFetching({ subject: linkedProp }, lastUpdate);
+  useDataFetching(linkedProp);
 
   if (!entityIsLoaded(lrs, linkedProp)) {
     return <LoadingDetail />;
