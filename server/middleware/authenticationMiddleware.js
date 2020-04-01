@@ -29,11 +29,15 @@ async function authenticationMiddleware(ctx, next) {
   if (ctx.session.userToken) {
     ctx.setAccessToken(ctx.session.userToken, ctx.session.refreshToken);
 
-    if (isExpired(ctx) && ctx.getWebsiteIRI()) {
-      await processTokenRequest(
-        ctx,
-        ctx.api.refreshToken(ctx.session.refreshToken, await ctx.getWebsiteIRI())
-      );
+    if (isExpired(ctx)) {
+      const websiteIRI = await ctx.getWebsiteIRI();
+
+      if (websiteIRI) {
+        await processTokenRequest(
+          ctx,
+          ctx.api.refreshToken(ctx.session.refreshToken, websiteIRI)
+        );
+      }
     }
   }
 
