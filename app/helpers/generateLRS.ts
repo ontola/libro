@@ -209,6 +209,7 @@ export default function generateLRS() {
 
   const ontologicalPropertyData = [
     rdf.quad(foaf.name, owl.sameAs, schema.name),
+    rdf.quad(schema.name, rdfx.type, rdfx.Property),
 
     rdf.quad(argu.applyLink, rdfx.type, rdfx.Property),
     rdf.quad(argu.applyLink, rdfs.label, rdf.literal('Link', languages.en)),
