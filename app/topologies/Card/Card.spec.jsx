@@ -1,9 +1,11 @@
+import { ThemeProvider } from '@material-ui/styles';
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 
 import CardActions from '../../components/Card/CardActions';
 import CardButton from '../../components/Card/CardButton';
 import CardContent from '../../components/Card/CardContent';
+import themes from '../../themes/index';
 
 import CardRow from './CardRow';
 
@@ -36,7 +38,11 @@ describe('Card component', () => {
   });
 
   it('CardContent should render', () => {
-    const tree = mount(<CardContent noSpacing>Content</CardContent>);
+    const tree = mount(
+      <ThemeProvider theme={themes.common}>
+        <CardContent noSpacing>Content</CardContent>
+      </ThemeProvider>
+    );
     expect(tree.find('CardContent')).toExist();
     expect(tree.find('.CardContent')).toHaveText('Content');
     expect(tree.find('.CardContent')).toHaveClassName('CardContent--no-spacing');
