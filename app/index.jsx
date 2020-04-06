@@ -1,9 +1,9 @@
 import './helpers/polyfills';
 import './useFactory';
 
+import enableDevtools from '@ontola/link-devtools';
 import React from 'react';
 import { render } from 'react-dom';
-import LinkDevTools from '@ontola/link-devtools';
 
 import { APP_ELEMENT } from './config';
 import './helpers/typescript';
@@ -77,10 +77,8 @@ import patchRequestInitGenerator from './helpers/monkey';
     });
 
   if (typeof window !== 'undefined') {
+    enableDevtools(lrs);
     window.LRS = lrs;
-    if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== 'undefined') {
-      window.dev = new LinkDevTools('');
-    }
   }
 
   // Fade out the preloader and fade in the interface

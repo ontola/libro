@@ -1551,34 +1551,27 @@
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
 
-"@ontola/link-devtools@^1.2.0-1":
-  version "1.2.0-1"
-  resolved "https://registry.yarnpkg.com/@ontola/link-devtools/-/link-devtools-1.2.0-1.tgz#8560c10703c9aa9da3b30c42d9a4ed9fc7227bed"
-  integrity sha512-SvTH+3fgnbgjoTbXUAGUGFPFMm7PVi8LnPbNk9aCl7yTdBAwuWhJTZK/VG+3p09EHq7mNTzD9rfw4JbfXExhPw==
+"@ontola/link-devtools@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@ontola/link-devtools/-/link-devtools-2.0.0.tgz#694ade0fb07e901027d824b1ee14cf49291929c8"
+  integrity sha512-jtDe5vuHP4RaaVCqUmhBC3Pa/r33d5Oo1MHmSPh/o8WCiqUlO5JRXLE1IdejeuSjvdibsqY/0wqfOpx3QRb8PA==
   dependencies:
     type-zoo ">=3.4.1"
 
-"@ontola/memoized-factory@^2.0.0-alpha.2":
-  version "2.0.0-alpha.2"
-  resolved "https://registry.yarnpkg.com/@ontola/memoized-factory/-/memoized-factory-2.0.0-alpha.2.tgz#c9ccdbaae7db973296bcc062643a3d8992a9e458"
-  integrity sha512-+IyRSdYvlUT3G9sFqL6RVMPv3lJ3EQJovmIO//0zzzR2ZW1UmQwyk1Rgag6LTzUhiFgRuqeO6NobQDylxkwwbQ==
+"@ontola/memoized-factory@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@ontola/memoized-factory/-/memoized-factory-2.0.0.tgz#2c46412cfab85cf62077d2d7c5c60e4da4f8d55e"
+  integrity sha512-9UqXvylFoezichwNP7/ZjWp+q6cMATcMoMhIdymmezsEdjA5bNA11/IMv206UWhWEwrKu7Sn8r9tVC4oZ4sjoA==
 
 "@ontologies/as@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@ontologies/as/-/as-1.0.3.tgz#607ef4426cce4303b3094033c1b79b480e769115"
   integrity sha512-61+J9mRsB4+A0TjhmCb6vLM8YEkKk8USWkVLjM2FVrarPqe4i4K5rIMFjTF3DDhPHiPnKcXKiPraoe7t/cAmzQ==
 
-"@ontologies/core@>=2.0.0-6":
-  version "2.0.0-6"
-  resolved "https://registry.yarnpkg.com/@ontologies/core/-/core-2.0.0-6.tgz#31e90922eea315578c270bf5122932ea9798b40f"
-  integrity sha512-F9vP76XMM030RqDceIZWCI6DTZ8scfqHKQDiXkw2VZ4jsbKfE74g0goCTOwt74oh/FT09mJMUFvU/eJgsq94XQ==
-  dependencies:
-    "@ungap/global-this" "^0.3.1"
-
-"@ontologies/core@^2.0.0-9":
-  version "2.0.0-plain.1"
-  resolved "https://registry.yarnpkg.com/@ontologies/core/-/core-2.0.0-plain.1.tgz#156b9f518b73e9dd2101d208b6705e7518280a73"
-  integrity sha512-+s1pQIbMVNyr5wPOdQzUykpXerwqfqWMf9ndp77H8blmQLkGFNY77kD6EU9Z4QJafvO9vBphbd1ALRmbIsJ6mg==
+"@ontologies/core@>=2.0.0", "@ontologies/core@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@ontologies/core/-/core-2.0.0.tgz#f2d0ac0882040651e7ad621fa9b075b7f1175b0c"
+  integrity sha512-SSBZTvzOFTytls90A89dpzhoiRnDlLNvLDRuOdT8T60bOlYJlI/mdspYOngEZhTzA8UBcHoxgRqQZZONksAFbw==
   dependencies:
     "@ungap/global-this" "^0.3.1"
 
@@ -9335,15 +9328,15 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
-link-lib@^2.0.0-1.0:
-  version "2.0.0-1.0"
-  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-2.0.0-1.0.tgz#6f4404b5772174b6fdabc6b4da475e2fb44a05ff"
-  integrity sha512-2b3UVGRid9/ajHN3rYyZms0pryXimphQ/bwacsxWdmeNHK/F+z73CBk6lxSYhhSugW65N7/sbDz0eiXksmCVnQ==
-
-link-redux@^2.0.0-2:
+link-lib@2.0.0-2:
   version "2.0.0-2"
-  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-2.0.0-2.tgz#8b920bd69f357fe82139b978a6ba196491ecee18"
-  integrity sha512-WERMtDzUnx77uHWtrLnJpvjczX8nFMiDu8DbKF56U5YenGaZz0nw9LAeJUxvuAHlP79joy3BuVipHmvBDXUXNg==
+  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-2.0.0-2.tgz#f0b6724ff06091eb3fbbb0811c7222a7f29432b7"
+  integrity sha512-3HYhT+KpLnfVH7fONOqFZwz0YNO/Kiam6pFWRIgmOrlTcC0S8PONtnobQz/OwEcxuAJZxJrQfYycq2f9oxqC8A==
+
+link-redux@2.0.0-3:
+  version "2.0.0-3"
+  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-2.0.0-3.tgz#c3459584017fd9177c3a8ab855f0817d1a948be0"
+  integrity sha512-qIKvzXVoM1giAWziSN9NjOVvTfDrBUsPWfIGeEk1oQxjaSvkJEfaWixUFv9/EyP4gLZj9u6Wd98G/SgfwGUcBg==
 
 lint-staged@^9.5.0:
   version "9.5.0"
@@ -10540,12 +10533,12 @@ mz@^2.7.0:
     object-assign "^4.0.1"
     thenify-all "^1.0.0"
 
-n-quads-parser@^2.1.0-2:
-  version "2.1.0-2"
-  resolved "https://registry.yarnpkg.com/n-quads-parser/-/n-quads-parser-2.1.0-2.tgz#d9d8b9cd9e05151798efdc11dfc42130f0f5de30"
-  integrity sha512-aU6RNywZ+tRF2c2OOIYkfRRgq72QRyFurEKARC3xCtJhkSdEkPA/iK0NSieDOC62KrYqWzjaDhZHNIt7l0sriw==
+n-quads-parser@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/n-quads-parser/-/n-quads-parser-2.1.0.tgz#ddb34026627458fe56ca45098e8bc0d59b6e6a69"
+  integrity sha512-slsvxgeCf2eeRPuh64nPY52EyLkQUgbjOmnoAHwdUydICNZcm7jZY47vk0Zhv+iMlpjRCtsZsqM7U/0txO/N3w==
   dependencies:
-    "@ontologies/core" ">=2.0.0-6"
+    "@ontologies/core" ">=2.0.0"
 
 nan@^2.12.1, nan@^2.13.2, nan@^2.14.0:
   version "2.14.0"
