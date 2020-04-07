@@ -122,15 +122,24 @@ export function route(requestUrl, full = false) {
   return url.origin;
 }
 
+const statusCodeHex = (iriHJ, status) => ([
+  iriHJ,
+  'http://www.w3.org/2011/http#statusCode',
+  status.toString(),
+  xsd.integer.value,
+  '',
+  'http://purl.org/link-lib/meta',
+]);
+
 const handleNotAcceptableHJson = (iriHJ, backendRes, write) => {
   if (isRedirect(backendRes.statusCode)) {
     write([iriHJ, 'http://www.w3.org/2002/07/owl#sameAs', backendRes.headers.location, xsd.string.value, '', 'http://purl.org/link-lib/supplant']);
-    write([iriHJ, 'http://www.w3.org/2011/http#statusCode', '200', 'http://www.w3.org/2001/XMLSchema#integer', '', 'http://purl.org/link-lib/meta']);
+    write(statusCodeHex(iriHJ, '200'));
   } else {
     const statusCode = backendRes.statusCode === HttpStatus.OK
       ? HttpStatus.NOT_ACCEPTABLE
       : backendRes.statusCode;
-    write([iriHJ, 'http://www.w3.org/2011/http#statusCode', statusCode.toString(), 'http://www.w3.org/2001/XMLSchema#integer', '', 'http://purl.org/link-lib/meta']);
+    write(statusCodeHex(iriHJ, statusCode));
   }
 };
 
@@ -234,7 +243,7 @@ async function requestForBulk(ctx, iri, agent, write, resolve) {
   const iriHJ = iri.includes('://') ? iri : `_:${iri}`;
 
   if (external && !await isSourceAllowed(ctx, origin)) {
-    write([iriHJ, 'http://www.w3.org/2011/http#statusCode', HttpStatus.FORBIDDEN.toString(), xsd.integer.value, '', 'http://purl.org/link-lib/meta']);
+    write(statusCodeHex(iriHJ, HttpStatus.FORBIDDEN));
 
     return undefined;
   }
@@ -255,7 +264,7 @@ async function requestForBulk(ctx, iri, agent, write, resolve) {
       backendRes.destroy();
       resolve();
     } else if (writeResourceBody(cachedFile, backendRes, write, resolve)) {
-      write([iriHJ, 'http://www.w3.org/2011/http#statusCode', backendRes.statusCode.toString(), xsd.integer.value, '', 'http://purl.org/link-lib/meta']);
+      write(statusCodeHex(iriHJ, backendRes.statusCode));
       if (!external) {
         const actions = getActions(backendRes);
         if (actions.length > 0) {
@@ -269,7 +278,7 @@ async function requestForBulk(ctx, iri, agent, write, resolve) {
         }
       }
     } else {
-      write([iriHJ, 'http://www.w3.org/2011/http#statusCode', HttpStatus.INTERNAL_SERVER_ERROR.toString(), xsd.integer.value, '', 'http://purl.org/link-lib/meta']);
+      write(statusCodeHex(iriHJ, HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
     return undefined;
