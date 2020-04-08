@@ -9,7 +9,6 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
 import { cardAppendixTopology } from '../../../topologies/Card/CardAppendix';
@@ -34,7 +33,7 @@ const getPagination = (Wrapper, topology) => {
     );
   };
 
-  InfinitePagination.type = [...CollectionTypes, argu.SearchResult];
+  InfinitePagination.type = CollectionTypes;
 
   InfinitePagination.property = ontola.infinitePagination;
 

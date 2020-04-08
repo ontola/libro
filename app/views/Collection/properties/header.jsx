@@ -13,7 +13,6 @@ import CollectionCreateActionButton from '../../../components/Collection/Collect
 import ContainerHeader from '../../../components/Container/ContainerHeader';
 import { buildRegister } from '../../../helpers/buildRegister';
 import { isTableDisplay } from '../../../helpers/collections';
-import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
 import { cardTopology } from '../../../topologies/Card';
@@ -82,7 +81,7 @@ containerCollectionHeader.propTypes = {
 
 const registerHeader = buildRegister({
   property: ontola.header,
-  type: [...CollectionTypes, argu.SearchResult],
+  type: CollectionTypes,
 });
 
 export default [

@@ -12,6 +12,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import argu from '../../../ontology/argu';
+import ontola from '../../../ontology/ontola';
 import { inlineTopology } from '../../../topologies/Inline';
 
 const IsPartOfPage: FC<PropertyProps> = ({ linkedProp }) => {
@@ -32,7 +33,7 @@ const IsPartOfPage: FC<PropertyProps> = ({ linkedProp }) => {
   );
 };
 
-IsPartOfPage.type = argu.SearchResult;
+IsPartOfPage.type = ontola.SearchResult;
 
 IsPartOfPage.property = schema.isPartOf;
 

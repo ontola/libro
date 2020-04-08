@@ -7,7 +7,7 @@ import NavbarLink from '../../components/NavbarLink';
 import { mediaQueries } from '../../components/shared/config';
 import { values } from '../../helpers/ssr';
 import app from '../../ontology/app';
-import argu from '../../ontology/argu';
+import ontola from '../../ontology/ontola';
 import { navbarTopology } from '../../topologies/Navbar';
 
 const SearchResultNavbar = () => {
@@ -31,7 +31,7 @@ const SearchResultNavbar = () => {
   );
 };
 
-SearchResultNavbar.type = argu.SearchResult;
+SearchResultNavbar.type = ontola.SearchResult;
 
 SearchResultNavbar.topology = navbarTopology;
 

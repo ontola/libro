@@ -8,6 +8,7 @@ import React from 'react';
 
 import argu from '../ontology/argu';
 import example from '../ontology/example';
+import ontola from '../ontology/ontola';
 import { Page } from '../topologies/Page';
 import { cleanup, render } from '../test-utils';
 
@@ -19,7 +20,7 @@ describe('Search', () => {
 
   const resources = {
     '@id': testIRI.value,
-    [rdfx.type]: argu.SearchResult,
+    [rdfx.type]: ontola.SearchResult,
     [dcterms.identifier]: testIRI,
     [argu.query]: 'keyword',
     [argu.took]: 240,

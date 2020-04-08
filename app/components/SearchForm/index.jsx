@@ -9,6 +9,7 @@ import {
   defineMessages,
   useIntl,
 } from 'react-intl';
+import { useHistory } from 'react-router';
 
 import Button from '../Button';
 import { retrievePath } from '../../helpers/iris';
@@ -23,10 +24,10 @@ const messages = defineMessages({
 
 const SearchForm = ({
   autoFocus,
-  history,
   iriTemplate,
   query,
 }) => {
+  const history = useHistory();
   const { formatMessage } = useIntl();
   const queryNormalized = query?.value ?? '';
 
@@ -81,9 +82,6 @@ SearchForm.defaultProps = {
 
 SearchForm.propTypes = {
   autoFocus: PropTypes.bool,
-  history: PropTypes.shape({
-    push: PropTypes.func,
-  }),
   intl: PropTypes.shape({
     formatMessage: PropTypes.func,
   }),

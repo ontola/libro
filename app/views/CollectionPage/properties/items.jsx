@@ -15,7 +15,6 @@ import GridItem from '../../../components/Grid/GridItem';
 import { LoadingCardFixed } from '../../../components/Loading';
 import { isTableDisplay } from '../../../helpers/collections';
 import { tryParseInt } from '../../../helpers/numbers';
-import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import CardRow from '../../../topologies/Card/CardRow';
 import { CollectionViewTypes } from '../types';
@@ -122,7 +121,7 @@ const Items = (props) => {
   return styleWrapper(props, children, columns || []);
 };
 
-Items.type = [...CollectionViewTypes, argu.SearchResult];
+Items.type = CollectionViewTypes;
 
 Items.property = as.items;
 

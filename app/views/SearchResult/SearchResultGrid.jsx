@@ -25,7 +25,7 @@ export const SearchResultGrid = ({
   />
 );
 
-SearchResultGrid.type = argu.SearchResult;
+SearchResultGrid.type = ontola.SearchResult;
 
 SearchResultGrid.topology = gridTopology;
 

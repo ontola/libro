@@ -1,6 +1,7 @@
 import RDFTypes from '@rdfdev/prop-types';
 import rdf from '@ontologies/core';
 import {
+  Property,
   Resource,
   linkType,
   register,
@@ -45,6 +46,7 @@ const getFrame = (wrapper, topology) => {
 
         return (
           <Wrapper>
+            <Property label={argu.query} />
             {header}
             <Grid container>
               {body}
@@ -107,6 +109,7 @@ const getFrame = (wrapper, topology) => {
 
         return (
           <Wrapper>
+            <Property label={argu.query} />
             {header}
             {body}
             <div style={{ marginBottom: '1em' }}>
@@ -119,7 +122,7 @@ const getFrame = (wrapper, topology) => {
     }
   };
 
-  collectionFrame.type = [...CollectionTypes, argu.SearchResult];
+  collectionFrame.type = CollectionTypes;
 
   collectionFrame.topology = topology;
 

@@ -28,6 +28,7 @@ export default {
   MenuItem: ontola('MenuItem'),
   PaginatedView: ontola('PaginatedView'),
   PropertyQuery: ontola('PropertyQuery'),
+  SearchResult: ontola('SearchResult'),
   UnconfirmedUser: ontola('UnconfirmedUser'),
   VideoPage: ontola('VideoPage'),
   Widget: ontola('Widget'),

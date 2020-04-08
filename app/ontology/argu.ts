@@ -36,7 +36,6 @@ export default {
   Project: argu('Project'),
   PublishActivity: argu('PublishActivity'),
   Question: argu('Question'),
-  SearchResult: argu('SearchResult'),
   SendConfirmationAction: argu('SendConfirmationAction'),
   SubMenu: argu('SubMenu'),
   Survey: argu('Survey'),

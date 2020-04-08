@@ -1,8 +1,8 @@
 import rdfx from '@ontologies/rdf';
 import '@testing-library/jest-dom/extend-expect';
 
-import argu from '../ontology/argu';
 import example from '../ontology/example';
+import ontola from '../ontology/ontola';
 import routes from '../routes/index';
 import {
   cleanup,
@@ -19,7 +19,7 @@ describe('Registration', () => {
 
   const resources = {
     '@id': testIRI.value,
-    [rdfx.type]: argu.SearchResult,
+    [rdfx.type]: ontola.SearchResult,
   };
   const renderOpts = {
     location: '/u/sign_in',

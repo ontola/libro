@@ -10,7 +10,6 @@ import FontAwesome from 'react-fontawesome';
 import { retrievePath } from '../../../helpers/iris';
 import MenuItem from '../../../components/MenuItem';
 import { useSorting } from '../../../hooks/useSorting';
-import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 import Menu from '../../../topologies/Menu';
@@ -69,7 +68,7 @@ const SortOptions = ({
   );
 };
 
-SortOptions.type = [...CollectionTypes, argu.SearchResult];
+SortOptions.type = CollectionTypes;
 
 SortOptions.topology = allTopologies;
 

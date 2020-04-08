@@ -9,7 +9,6 @@ import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
 import Button from '../../../components/Button';
-import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
 import { CollectionTypes } from '../types';
@@ -168,7 +167,7 @@ const getPagination = (Wrapper, topology) => {
     );
   };
 
-  DefaultPagination.type = [...CollectionTypes, argu.SearchResult];
+  DefaultPagination.type = CollectionTypes;
 
   DefaultPagination.property = ontola.defaultPagination;
 
