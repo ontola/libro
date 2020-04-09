@@ -61,6 +61,7 @@ export const ErrorPage = (props) => {
               defaultMessage="Is this an error?"
               id="https://app.argu.co/i18n/errors/mistaken"
             />
+            {' '}
             <LinkDuo
               style={{ textDecoration: 'underline' }}
               to="https://argu.freshdesk.com/support/tickets/new"
