@@ -19,6 +19,7 @@
     "strict": true,
     "target": "esnext",
     "typeRoots": [
+      "@types",
       "node_modules/@types",
       "node_modules/link-lib/@types"
     ]
