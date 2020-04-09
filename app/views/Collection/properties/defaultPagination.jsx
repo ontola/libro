@@ -1,4 +1,5 @@
 import as from '@ontologies/as';
+import rdf from '@ontologies/core';
 import {
   linkType,
   register,
@@ -9,13 +10,13 @@ import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
 import Button from '../../../components/Button';
+import CardContent from '../../../components/Card/CardContent';
 import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
-import { CollectionTypes } from '../types';
 import { cardAppendixTopology } from '../../../topologies/Card/CardAppendix';
 import CardRow from '../../../topologies/Card/CardRow';
 import { pageTopology } from '../../../topologies/Page';
-import CardContent from '../../../components/Card/CardContent';
+import { CollectionTypes } from '../types';
 
 export const messages = defineMessages({
   nextLabel: {
@@ -34,7 +35,7 @@ const getPagination = (Wrapper, topology) => {
       currentPage,
       first,
       last,
-      onPageChange,
+      setCurrentPage,
       subject,
     } = props;
     const { formatMessage } = useIntl();
@@ -47,7 +48,7 @@ const getPagination = (Wrapper, topology) => {
     const baseUrl = new URL(first.value);
     const firstPage = Number.parseInt(baseUrl.searchParams.get(pageProp), 10);
     const lastPage = Number.parseInt(new URL(last.value).searchParams.get(pageProp), 10);
-    const currentOrFirst = currentPage || first.value;
+    const currentOrFirst = currentPage?.value || first.value;
     const currentPageUrl = new URL(currentOrFirst);
     const currentPageNr = Number.parseInt(currentPageUrl.searchParams.get(pageProp), 10);
 
@@ -92,7 +93,7 @@ const getPagination = (Wrapper, topology) => {
           theme="pagination"
           onClick={(e) => {
             e.preventDefault();
-            onPageChange(url);
+            setCurrentPage(rdf.namedNode(url));
           }}
         >
           {label}
@@ -180,10 +181,10 @@ const getPagination = (Wrapper, topology) => {
   };
 
   DefaultPagination.propTypes = {
-    currentPage: PropTypes.string,
+    currentPage: linkType,
     first: linkType,
     last: linkType,
-    onPageChange: PropTypes.func,
+    setCurrentPage: PropTypes.func,
     subject: subjectType,
   };
 

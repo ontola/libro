@@ -1,3 +1,4 @@
+import rdf from '@ontologies/core';
 import foaf from '@ontologies/foaf';
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
@@ -14,13 +15,13 @@ import { tableHeaderRowTopology } from '../../topologies/TableHeaderRow';
 
 const propTypes = {
   name: linkType,
-  onPageChange: PropTypes.func,
+  setCurrentPage: PropTypes.func,
   sortOptions: PropTypes.arrayOf(linkType),
 };
 
 const SortableHeader = ({
   name,
-  onPageChange,
+  setCurrentPage,
   sortOptions,
 }) => {
   const [current, clickHandler] = React.useMemo(() => {
@@ -30,14 +31,14 @@ const SortableHeader = ({
 
     const onClick = (e) => {
       e.preventDefault();
-      onPageChange(nextOption.url);
+      setCurrentPage(rdf.namedNode(nextOption.url));
     };
 
     return [currentOption, onClick];
   }, [sortOptions]);
 
   return (
-    <button onClick={clickHandler}>
+    <button type="button" onClick={clickHandler}>
       {name.value} {current && <FontAwesome name={`sort-${current.direction}`} />}
     </button>
   );
@@ -48,10 +49,10 @@ SortableHeader.propTypes = propTypes;
 const ThingTableHeaderRow = ({
   name,
   sortOptions,
-  onPageChange,
+  setCurrentPage,
 }) => {
   const inner = name && sortOptions?.length > 0
-    ? <SortableHeader name={name} sortOptions={sortOptions} onPageChange={onPageChange} />
+    ? <SortableHeader name={name} setCurrentPage={setCurrentPage} sortOptions={sortOptions} />
     : name?.value;
 
   return (

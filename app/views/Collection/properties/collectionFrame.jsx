@@ -34,8 +34,9 @@ const getFrame = (wrapper, topology) => {
     collectionDisplayFromData,
     columns,
     header,
-    onPageChange,
     pagination,
+    currentPage,
+    setCurrentPage,
   }) => {
     let Wrapper;
     const sortOptions = useSorting();
@@ -46,7 +47,7 @@ const getFrame = (wrapper, topology) => {
 
         return (
           <Wrapper>
-            <Property label={argu.query} />
+            <Property label={argu.query} setCurrentPage={setCurrentPage} />
             {header}
             <Grid container>
               {body}
@@ -68,10 +69,11 @@ const getFrame = (wrapper, topology) => {
                     {columns.map((property) => (
                       <Resource
                         forceRender
+                        currentPage={currentPage}
                         key={property.value}
+                        setCurrentPage={setCurrentPage}
                         sortOptions={sortOptions.filter((option) => option.item === property)}
                         subject={property}
-                        onPageChange={onPageChange}
                       />
                     ))}
                   </TableHeaderRow>
@@ -109,7 +111,7 @@ const getFrame = (wrapper, topology) => {
 
         return (
           <Wrapper>
-            <Property label={argu.query} />
+            <Property label={argu.query} setCurrentPage={setCurrentPage} />
             {header}
             {body}
             <div style={{ marginBottom: '1em' }}>
@@ -138,6 +140,7 @@ const getFrame = (wrapper, topology) => {
     collectionDisplayFromData: linkType,
     columns: PropTypes.arrayOf(RDFTypes.namedNode),
     pagination: PropTypes.node,
+    setCurrentPage: PropTypes.func,
     topology: topologyType,
   };
 

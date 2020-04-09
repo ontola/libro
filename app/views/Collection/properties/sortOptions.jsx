@@ -1,4 +1,5 @@
 import IconButton from '@material-ui/core/IconButton';
+import rdf from '@ontologies/core';
 import {
   Resource,
   register,
@@ -15,9 +16,7 @@ import { allTopologies } from '../../../topologies';
 import Menu from '../../../topologies/Menu';
 import { CollectionTypes } from '../types';
 
-const SortOptions = ({
-  onPageChange,
-}) => {
+const SortOptions = ({ setCurrentPage }) => {
   const sortOptions = useSorting();
 
   const trigger = (onClick) => (
@@ -43,7 +42,7 @@ const SortOptions = ({
         action={(e) => {
           e.preventDefault();
           handleClose();
-          onPageChange(url);
+          setCurrentPage(rdf.namedNode(url));
         }}
         expandOpen={null}
         key={url}
@@ -75,7 +74,7 @@ SortOptions.topology = allTopologies;
 SortOptions.property = ontola.sortOptions;
 
 SortOptions.propTypes = {
-  onPageChange: PropTypes.func,
+  setCurrentPage: PropTypes.func,
 };
 
 export default register(SortOptions);

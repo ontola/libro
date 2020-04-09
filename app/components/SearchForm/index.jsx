@@ -1,6 +1,6 @@
 import rdf from '@ontologies/core';
 import equal from 'fast-deep-equal';
-import { linkType } from 'link-redux';
+import { linkType, useLinkRenderContext } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Field, Form } from 'react-final-form';
@@ -9,11 +9,9 @@ import {
   defineMessages,
   useIntl,
 } from 'react-intl';
-import { useHistory } from 'react-router';
 
 import Button from '../Button';
-import { retrievePath } from '../../helpers/iris';
-import { iriFromTemplate } from '../../helpers/uriTemplate';
+import { useIRITemplate } from '../../hooks/useIRITemplate';
 
 const messages = defineMessages({
   placeholder: {
@@ -24,12 +22,13 @@ const messages = defineMessages({
 
 const SearchForm = ({
   autoFocus,
-  iriTemplate,
   query,
+  setCurrentPage,
 }) => {
-  const history = useHistory();
   const { formatMessage } = useIntl();
   const queryNormalized = query?.value ?? '';
+  const { subject } = useLinkRenderContext();
+  const { iriSetParam } = useIRITemplate(subject);
 
   return (
     <Form
@@ -63,14 +62,10 @@ const SearchForm = ({
       )}
       onSubmit={({ q }) => {
         if (rdf.equals(q === queryNormalized)) {
-          return;
+          return null;
         }
 
-        const searchOpts = {
-          page: 1,
-          q,
-        };
-        history.push(retrievePath(iriFromTemplate(iriTemplate.value, searchOpts).value));
+        return setCurrentPage(iriSetParam('q', q));
       }}
     />
   );
@@ -85,8 +80,8 @@ SearchForm.propTypes = {
   intl: PropTypes.shape({
     formatMessage: PropTypes.func,
   }),
-  iriTemplate: linkType,
   query: linkType,
+  setCurrentPage: PropTypes.func,
 };
 
 export default SearchForm;

@@ -10,16 +10,20 @@ import {
   lrsType,
   subjectType,
   useDataInvalidation,
+  useResourceProperty,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import { Redirect } from 'react-router';
 
 import Heading from '../../components/Heading';
 import LinkDuo from '../../components/LinkDuo';
 import ResourceBoundary from '../../components/ResourceBoundary';
 import { listToArr } from '../../helpers/data';
+import { retrievePath } from '../../helpers/iris';
 import { tryParseInt } from '../../helpers/numbers';
+import { useCurrentPage } from '../../hooks/useCurrentPage';
 import ontola from '../../ontology/ontola';
 import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
@@ -27,7 +31,6 @@ import { CollectionTypes } from './types';
 
 export default function getCollection({
   omniform = false,
-  redirect = false,
   renderWhenEmpty = true,
   topology = [],
 } = {}) {
@@ -37,7 +40,6 @@ export default function getCollection({
     collectionDisplayFromData,
     collectionType,
     columns,
-    currentPage: currentPageProp,
     depth,
     hideHeader,
     hidePagination,
@@ -45,10 +47,14 @@ export default function getCollection({
     partOf,
     redirectPagination,
     renderWhenEmpty: renderWhenEmptyProp,
+    renderedPage,
     subject,
     totalItems,
   }) => {
-    const [currentPage, onPageChange] = React.useState(currentPageProp);
+    const [currentPage, setCurrentPage] = useCurrentPage(redirectPagination, renderedPage);
+    const [currentPagePartOf] = useResourceProperty(currentPage, schema.isPartOf);
+    const [currentPageType] = useResourceProperty(currentPage, rdfx.type);
+
     const [opened, setOpen] = React.useState(false);
     const resolvedCollectionDisplay = collectionDisplay || collectionDisplayFromData;
     const resolvedColumns = columns ? listToArr(lrs, [], columns) : undefined;
@@ -89,15 +95,16 @@ export default function getCollection({
     }
 
     if (currentPage) {
-      const type = lrs.getResourceProperty(rdf.namedNode(currentPage), rdfx.type);
-
-      if (CollectionTypes.includes(type)) {
-        return <Resource subject={rdf.namedNode(currentPage)} />;
+      if (redirectPagination && currentPage !== renderedPage && renderedPage) {
+        return <Redirect to={retrievePath(currentPage.value)} />;
       }
 
-      const pagePartOf = lrs.getResourceProperty(rdf.namedNode(currentPage), schema.isPartOf);
-      if (pagePartOf && pagePartOf !== subject) {
-        return <Resource subject={pagePartOf} />;
+      if (typeof currentPageType === 'undefined' || CollectionTypes.includes(currentPageType)) {
+        return <Resource subject={currentPage} />;
+      }
+
+      if (currentPagePartOf && currentPagePartOf !== subject) {
+        return <Resource subject={currentPagePartOf} />;
       }
     }
 
@@ -110,8 +117,7 @@ export default function getCollection({
             collectionDisplay={resolvedCollectionDisplay}
             columns={resolvedColumns}
             depth={depth}
-            redirectPagination={redirect || redirectPagination}
-            subject={rdf.namedNode(currentPage)}
+            subject={currentPage}
           />
         );
       }
@@ -137,9 +143,7 @@ export default function getCollection({
           pagination = (
             <Property
               forceRender
-              currentPage={currentPage}
               label={ontola.infinitePagination}
-              redirectPagination={redirectPagination}
             />
           );
           break;
@@ -149,8 +153,7 @@ export default function getCollection({
               forceRender
               currentPage={currentPage}
               label={ontola.defaultPagination}
-              redirectPagination={redirectPagination}
-              onPageChange={onPageChange}
+              setCurrentPage={setCurrentPage}
             />
           );
       }
@@ -174,7 +177,7 @@ export default function getCollection({
         collectionDisplay={resolvedCollectionDisplay}
         label={ontola.header}
         omniform={omniform}
-        onPageChange={onPageChange}
+        setCurrentPage={setCurrentPage}
       />
     );
 
@@ -186,10 +189,11 @@ export default function getCollection({
           body={body()}
           collectionDisplay={collectionDisplay}
           columns={resolvedColumns}
+          currentPage={currentPage}
           header={header}
           label={ontola.collectionFrame}
           pagination={pagination}
-          onPageChange={onPageChange}
+          setCurrentPage={setCurrentPage}
         />
       </ResourceBoundary>
     );
@@ -217,7 +221,6 @@ export default function getCollection({
     collectionDisplayFromData: linkType,
     collectionType: linkType,
     columns: linkType,
-    currentPage: PropTypes.string,
     depth: PropTypes.number,
     hideHeader: PropTypes.bool,
     hidePagination: PropTypes.bool,
@@ -225,6 +228,7 @@ export default function getCollection({
     partOf: PropTypes.bool,
     redirectPagination: PropTypes.bool,
     renderWhenEmpty: PropTypes.bool,
+    renderedPage: linkType,
     subject: subjectType,
     totalItems: linkType,
   };

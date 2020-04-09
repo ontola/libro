@@ -7,10 +7,8 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Redirect, withRouter } from 'react-router';
+import { withRouter } from 'react-router';
 
-import { retrievePath } from '../../helpers/iris';
-import { currentLocation } from '../../helpers/paths';
 import ontola from '../../ontology/ontola';
 import { allTopologiesExcept } from '../../topologies';
 import { alertDialogTopology } from '../../topologies/Dialog';
@@ -26,17 +24,10 @@ import { CollectionViewTypes } from './types';
 
 function getCollectionPage({
   hidePagination = true,
-  redirect = false,
   topology = [],
 } = {}) {
   const CollectionPage = (props) => {
     if (props.insideCollection) {
-      if (__CLIENT__ && props.redirectPagination) {
-        if (currentLocation(props.location) !== props.subject) {
-          return <Redirect to={retrievePath(props.subject.value)} />;
-        }
-      }
-
       return (
         <Property
           forceRender
@@ -51,11 +42,11 @@ function getCollectionPage({
 
     return (
       <Property
+        renderedByPage
         collectionDisplay={props.collectionDisplay || props.collectionDisplayFromData}
-        currentPage={props.subject.value}
         hidePagination={hidePagination}
         label={as.partOf}
-        redirectPagination={redirect}
+        renderedPage={props.subject}
         renderWhenEmpty={props.renderWhenEmpty}
       />
     );
@@ -69,6 +60,7 @@ function getCollectionPage({
 
   CollectionPage.mapDataToProps = {
     collectionDisplayFromData: ontola.collectionDisplay,
+    partOf: as.partOf,
   };
 
   CollectionPage.propTypes = {
@@ -80,7 +72,6 @@ function getCollectionPage({
     location: PropTypes.shape({
       pathname: PropTypes.string,
     }),
-    redirectPagination: PropTypes.bool,
     renderWhenEmpty: PropTypes.bool,
     subject: subjectType,
   };
@@ -99,7 +90,6 @@ const DefaultCollectionPage = getCollectionPage({
 
 const PageCollectionPage = getCollectionPage({
   hidePagination: false,
-  redirect: true,
   topology: fullResourceTopology,
 });
 

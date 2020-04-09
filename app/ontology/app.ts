@@ -34,6 +34,7 @@ export default {
 
   /* properties */
   c_a: app('c_a'),
+  currentPage: app('currentPage'),
   menu: app('menu'),
   n: app('n'),
   omniform: app('omniform'),

@@ -23,7 +23,7 @@ import { CollectionTypes } from '../types';
 const cardCollectionHeader = ({
   collectionDisplay,
   omniform,
-  onPageChange,
+  setCurrentPage,
   subject,
 }) => {
   const name = <Property label={as.name} />;
@@ -31,7 +31,7 @@ const cardCollectionHeader = ({
   return (
     <CardHeader header={name}>
       {!isTableDisplay(collectionDisplay) && (
-        <Property label={ontola.sortOptions} onPageChange={onPageChange} />
+        <Property label={ontola.sortOptions} setCurrentPage={setCurrentPage} />
       )}
       <CollectionCreateActionButton omniform={omniform} subject={subject} />
     </CardHeader>
@@ -40,14 +40,14 @@ const cardCollectionHeader = ({
 cardCollectionHeader.propTypes = {
   collectionDisplay: linkType,
   omniform: PropTypes.bool,
-  onPageChange: PropTypes.func,
+  setCurrentPage: PropTypes.func,
   subject: subjectType,
 };
 
 const containerCollectionHeader = ({
   collectionDisplay,
   omniform,
-  onPageChange,
+  setCurrentPage,
   subject,
   topology,
 }) => {
@@ -64,7 +64,7 @@ const containerCollectionHeader = ({
     <Wrapper>
       <ContainerHeader header={name}>
         {!isTableDisplay(collectionDisplay) && (
-          <Property label={ontola.sortOptions} onPageChange={onPageChange} />
+          <Property label={ontola.sortOptions} setCurrentPage={setCurrentPage} />
         )}
         <CollectionCreateActionButton omniform={omniform} subject={subject} />
       </ContainerHeader>
@@ -74,7 +74,7 @@ const containerCollectionHeader = ({
 containerCollectionHeader.propTypes = {
   collectionDisplay: linkType,
   omniform: PropTypes.bool,
-  onPageChange: PropTypes.func,
+  setCurrentPage: PropTypes.func,
   subject: subjectType,
   topology: topologyType,
 };
