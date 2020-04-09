@@ -8,6 +8,7 @@ import {
   subjectType,
   useDataInvalidation,
   useLRS,
+  useResourceProperty,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -40,19 +41,15 @@ const InlineActionContainerFloat = ({
 }) => {
   const classes = useStyles();
   const lrs = useLRS();
+  const [image] = useResourceProperty(target, schema.image);
+  useDataInvalidation(target);
 
   if (invalidStatusIds.includes(rdf.id(actionStatus))) {
     return null;
   }
 
-  let image;
-  if (target) {
-    useDataInvalidation(target);
-
-    if (__CLIENT__ && !entityIsLoaded(lrs, target)) {
-      lrs.queueEntity(target);
-    }
-    image = lrs.getResourceProperty(target, schema.image);
+  if (__CLIENT__ && target && !entityIsLoaded(lrs, target)) {
+    lrs.queueEntity(target);
   }
 
   const icon = (

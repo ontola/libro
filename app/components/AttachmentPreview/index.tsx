@@ -1,17 +1,21 @@
-import rdf from '@ontologies/core';
-import { linkType, useLRS } from 'link-redux';
+import rdf, { NamedNode } from '@ontologies/core';
+import {
+  linkType,
+  useLRS,
+  useResourceProperty,
+} from 'link-redux';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { EventHandler } from 'react';
 import parser from 'uri-template';
 
-import Image from '../Image/index';
 import { entityIsLoaded } from '../../helpers/data';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
+import Image from '../Image';
 
 import './AttachmentPreview.scss';
 
-const AttachmentPreview = ({
+const AttachmentPreview: React.FC<any> = ({
   caption,
   filename,
   isPartOf,
@@ -19,19 +23,24 @@ const AttachmentPreview = ({
   thumbnailURL,
 }) => {
   const lrs = useLRS();
-  if (__CLIENT__ && isPartOf && !entityIsLoaded(lrs, isPartOf)) {
-    lrs.queueEntity(isPartOf);
-  }
-  const attachments = lrs.getResourceProperty(isPartOf, argu.attachments);
-  if (__CLIENT__ && attachments && !entityIsLoaded(lrs, attachments)) {
-    lrs.queueEntity(attachments);
-  }
+  const [attachments] = useResourceProperty(isPartOf, argu.attachments) as NamedNode[];
+  const [attachmentsIriTemplate] = useResourceProperty(attachments, ontola.iriTemplate) as NamedNode[];
 
-  const openModal = (e) => {
+  React.useEffect(() => {
+    if (__CLIENT__ && isPartOf && !entityIsLoaded(lrs, isPartOf)) {
+      lrs.queueEntity(isPartOf);
+    }
+    if (__CLIENT__ && attachments && !entityIsLoaded(lrs, attachments)) {
+      lrs.queueEntity(attachments);
+    }
+  }, [
+    isPartOf && !entityIsLoaded(lrs, isPartOf),
+    attachments && !entityIsLoaded(lrs, attachments),
+  ]);
+
+  const openModal: EventHandler<any> = (e) => {
     e.preventDefault();
-    const attachmentsIri = parser.parse(
-      lrs.getResourceProperty(attachments, ontola.iriTemplate).value
-    );
+    const attachmentsIri = parser.parse(attachmentsIriTemplate.value);
 
     lrs.actions.ontola.showDialog(rdf.namedNode(attachmentsIri.expand({
       page: (sequenceIndex || 0) + 1,
@@ -60,6 +69,5 @@ AttachmentPreview.propTypes = {
   sequenceIndex: PropTypes.number,
   thumbnailURL: linkType,
 };
-
 
 export default AttachmentPreview;

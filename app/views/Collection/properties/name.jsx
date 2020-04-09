@@ -2,9 +2,8 @@ import as from '@ontologies/as';
 import LinkedRenderStore from 'link-lib';
 import {
   linkedPropType,
-  subjectType,
-  useLRS,
-  withLinkCtx,
+  register,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -20,12 +19,10 @@ import { tableRowTopology } from '../../../topologies/TableRow';
 
 const propTypes = {
   linkedProp: linkedPropType,
-  subject: subjectType,
 };
 
-const CollectionName = ({ linkedProp, subject }) => {
-  const lrs = useLRS();
-  const href = lrs.getResourceProperty(subject, ontola.href);
+const CollectionName = ({ linkedProp }) => {
+  const [href] = useProperty(ontola.href);
   const Wrapper = typeof href !== 'undefined' ? Link : 'div';
 
   return (
@@ -37,15 +34,21 @@ const CollectionName = ({ linkedProp, subject }) => {
   );
 };
 
+CollectionName.type = CollectionTypes;
+
+CollectionName.property = as.name;
+
+CollectionName.topology = allTopologiesExcept(
+  navbarTopology,
+  parentTopology,
+  tableRowTopology,
+  pageTopology
+);
+
 CollectionName.propTypes = propTypes;
 
 export default [
-  LinkedRenderStore.registerRenderer(
-    withLinkCtx(CollectionName),
-    CollectionTypes,
-    as.name,
-    allTopologiesExcept(navbarTopology, parentTopology, tableRowTopology, pageTopology)
-  ),
+  register(CollectionName),
   LinkedRenderStore.registerRenderer(
     ({ linkedProp }) => linkedProp.value,
     CollectionTypes,

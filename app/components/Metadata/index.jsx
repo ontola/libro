@@ -5,8 +5,8 @@ import schema from '@ontologies/schema';
 import {
   link,
   linkType,
-  lrsType,
   subjectType,
+  useResourceProperty,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -18,13 +18,14 @@ import { getMetaContent } from '../../helpers/arguHelpers';
 
 const Metadata = ({
   coverPhoto,
-  lrs,
   name,
   subject,
   text,
 }) => {
-  const coverURL = coverPhoto
-    && lrs.getResourceProperty(rdf.namedNode(coverPhoto), ontola.imgUrl1500x2000);
+  const [coverURL] = useResourceProperty(
+    typeof coverPhoto === 'string' ? rdf.namedNode(coverPhoto) : coverPhoto,
+    ontola.imgUrl1500x2000
+  );
   const appName = getMetaContent('application-name');
 
   return (
@@ -46,7 +47,6 @@ const Metadata = ({
 
 Metadata.propTypes = {
   coverPhoto: PropTypes.string,
-  lrs: lrsType,
   name: PropTypes.string.isRequired,
   subject: subjectType,
   text: linkType,

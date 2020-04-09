@@ -4,8 +4,7 @@ import {
   Property,
   Resource,
   register,
-  subjectType,
-  useLRS,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -18,9 +17,8 @@ import { navbarTopology } from '../../topologies/Navbar';
 
 import './properties/name';
 
-const PersonNavbar = ({ subject }) => {
-  const lrs = useLRS();
-  const menuIri = lrs.getResourceProperty(subject, ontola.profileMenu);
+const PersonNavbar = () => {
+  const [menuIri] = useProperty(ontola.profileMenu);
 
   return (
     <div className="NavbarLink">
@@ -44,9 +42,5 @@ const PersonNavbar = ({ subject }) => {
 PersonNavbar.type = schema.Person;
 
 PersonNavbar.topology = navbarTopology;
-
-PersonNavbar.propTypes = {
-  subject: subjectType,
-};
 
 export default register(PersonNavbar);

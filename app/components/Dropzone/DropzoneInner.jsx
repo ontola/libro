@@ -11,6 +11,7 @@ import React, { useState } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage } from 'react-intl';
 
+import { tryParseInt } from '../../helpers/numbers';
 import CoverImage from '../CoverImage';
 import CoverImageSlider from '../CoverImageSlider';
 import ontola from '../../ontology/ontola';
@@ -22,11 +23,10 @@ const DropzoneInnerPositionY = ({
   imagePositionYShape,
   propertyIndex,
 }) => {
-  const lrs = useLRS();
   const [currentContent] = useResourceProperty(current, schema.contentUrl);
-  const [positionY, setPositionY] = useState();
+  const [targetValue] = useResourceProperty(current, ontola.imagePositionY);
+  const [positionY, setPositionY] = useState(tryParseInt(targetValue));
   const onSliderChange = (event, value) => setPositionY(100 - value);
-  const targetValues = lrs.getResourceProperties(current, ontola.imagePositionY);
 
   return (
     <React.Fragment>
@@ -41,7 +41,7 @@ const DropzoneInnerPositionY = ({
       <CoverImageSlider
         imagePositionYShape={imagePositionYShape}
         propertyIndex={propertyIndex}
-        targetValue={targetValues[0]}
+        targetValue={targetValue}
         value={positionY}
         onChange={onSliderChange}
       />

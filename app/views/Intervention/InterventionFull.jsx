@@ -6,7 +6,7 @@ import {
   Resource,
   linkType,
   register,
-  useLRS,
+  useResourceProperty,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -35,8 +35,7 @@ const InterventionFull = ({
   employment,
   partOf,
 }) => {
-  const lrs = useLRS();
-  const image = lrs.getResourceProperty(employment, schema.image);
+  const [image] = useResourceProperty(employment, schema.image);
 
   return (
     <React.Fragment>

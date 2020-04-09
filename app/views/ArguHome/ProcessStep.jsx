@@ -6,14 +6,15 @@ import {
   register,
   subjectType,
   useDataInvalidation,
-  useLRS,
+  useResourceLinks,
+  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
 import Heading from '../../components/Heading';
 import { LoadingRow } from '../../components/Loading';
-import { seqToArr } from '../../helpers/data';
+import { useSeqToArr } from '../../hooks/useSeqToArr';
 import argu from '../../ontology/argu';
 import { inlineTopology } from '../../topologies/Inline';
 import { allTopologies } from '../../topologies';
@@ -38,16 +39,24 @@ const messages = defineMessages({
   },
 });
 
+const featurePropMap = {
+  icons: {
+    label: argu.icon,
+    limit: Infinity,
+  },
+};
+
 const ProcessStep = ({
   color,
   exampleClass,
   icon,
   subject,
 }) => {
-  const lrs = useLRS();
   const { formatMessage } = useIntl();
-  const features = seqToArr(lrs, [], lrs.getResourceProperty(subject, argu.features));
-  useDataInvalidation([...features, subject]);
+  const [featureList] = useResourceProperty(subject, argu.features);
+  const features = useSeqToArr(featureList);
+  const featuresData = useResourceLinks(features, featurePropMap);
+  useDataInvalidation([...features, featureList, subject]);
 
   const exampleContent = {
     [argu.Survey.id]: (
@@ -153,23 +162,23 @@ const ProcessStep = ({
           <div className="Triad--arrow Triad--arrow-right" style={{ borderLeftColor: color.value }} />
         </div>
         <ul className="ProcessStep--feature-list">
-          {
-            features.map((feature) => {
-              const icons = (lrs.getResourceProperties(feature, argu.icon)) || [];
-
-              return (
-                <Resource key={feature} subject={feature} onLoad={LoadingRow}>
-                  <li className="ProcessStep--feature">
-                    <h3 className={icons.length > 1 ? 'ProcessStep--two-icons' : ''}>
-                      {icons.map((featureIcon) => <span className={`fa fa-${featureIcon.value}`} key={featureIcon.value} />)}
-                      <Heading size="4"><Property label={schema.name} topology={inlineTopology} /></Heading>
-                    </h3>
-                    <p><Property label={schema.text} topology={inlineTopology} /></p>
-                  </li>
-                </Resource>
-              );
-            })
-          }
+          {featuresData.map(({ icons, subject: feature }) => (
+            <Resource key={feature} subject={feature} onLoad={LoadingRow}>
+              <li className="ProcessStep--feature">
+                <h3 className={icons.length > 1 ? 'ProcessStep--two-icons' : ''}>
+                  {icons.map((featureIcon) => (
+                    <span className={`fa fa-${featureIcon.value}`} key={featureIcon.value} />
+                  ))}
+                  <Heading size="4">
+                    <Property label={schema.name} topology={inlineTopology} />
+                  </Heading>
+                </h3>
+                <p>
+                  <Property label={schema.text} topology={inlineTopology} />
+                </p>
+              </li>
+            </Resource>
+          ))}
         </ul>
       </div>
       <div className="ProcessStep--example">

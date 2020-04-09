@@ -2,7 +2,7 @@ import rdf from '@ontologies/core';
 
 import CompActionButton from './components/ActionButton/index';
 import CompAttachment from './components/Attachment/index';
-import CompAttachmentPreview from './components/AttachmentPreview/index';
+import CompAttachmentPreview from './components/AttachmentPreview';
 import CompAttributeListItem from './components/AttributeListItem/index';
 import CompBlurButton from './components/BlurButton/index';
 import CompBreadcrumbsBreadcrumb from './components/Breadcrumbs/Breadcrumb';
@@ -47,7 +47,7 @@ import CompHeaderWithMenu from './components/HeaderWithMenu/index';
 import CompHeaders from './components/Headers/DutchGovernmentHeader';
 import CompHeading from './components/Heading/index';
 import CompHoverPopup from './components/HoverPopup/HoverPopup';
-import CompImage from './components/Image/index';
+import CompImage from './components/Image';
 import CompInputFileInput from './components/Input/FileInput';
 import CompInputInput from './components/Input/Input';
 import CompLDLink from './components/LDLink/index';

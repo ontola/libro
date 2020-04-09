@@ -2,8 +2,7 @@ import {
   Property,
   Resource,
   linkType,
-  useLRS,
-  useLinkRenderContext,
+  useProperty,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -17,11 +16,10 @@ const LabeledAttribute = ({
   propertyLabel,
   wrapper,
 }) => {
-  const lrs = useLRS();
-  const { subject } = useLinkRenderContext();
+  const [hasLabel] = useProperty(label);
   const Wrapper = wrapper || 'div';
 
-  if (!lrs.getResourceProperty(subject, label)) {
+  if (!hasLabel) {
     return null;
   }
 

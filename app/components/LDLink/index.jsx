@@ -3,9 +3,10 @@ import schema from '@ontologies/schema';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
+  ReturnType,
   subjectType,
-  useLRS,
   useLinkRenderContext,
+  useProperty,
 } from 'link-redux';
 
 import Link from '../Link';
@@ -16,8 +17,8 @@ const LDLink = ({
   to,
   ...rest
 }) => {
-  const lrs = useLRS();
   const { subject } = useLinkRenderContext();
+  const [url] = useProperty(schema.url, { returnType: ReturnType.Value });
 
   if (!subject) {
     handle(new Error('LDLINK NO SUBJECT'));
@@ -25,7 +26,7 @@ const LDLink = ({
     return '';
   }
   const href = to?.value
-    || lrs.getResourceProperty(subject, schema.url)?.value
+    || url
     || subject.value;
 
   return (

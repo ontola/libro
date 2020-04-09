@@ -4,12 +4,14 @@ import rdfx from '@ontologies/rdf';
 import {
   Property,
   linkType,
-  lrsType,
   register,
   subjectType,
+  useLRS,
+  useProperty,
+  useResourceLinks,
 } from 'link-redux';
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router';
 
 import { bestType } from '../../helpers/data';
@@ -18,85 +20,77 @@ import SHACL from '../../helpers/shacl';
 import teamGL from '../../ontology/teamGL';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
 
-class ActionActionsBar extends PureComponent {
-  static type = schema.Action;
-
-  static topology = actionsBarTopology;
-
-  static mapDataToProps = {
-    object: schema.object,
-    type: {
-      label: rdfx.type,
-      limit: Infinity,
-    },
-  };
-
-  static hocs = [withRouter];
-
-  static propTypes = {
-    history: PropTypes.shape({
-      push: PropTypes.func,
-    }),
-    lrs: lrsType,
-    object: linkType,
-    subject: subjectType,
-    type: linkType,
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.exec = this.exec.bind(this);
+function getVariant(types) {
+  switch (rdf.id(bestType(types))) {
+    case rdf.id(teamGL.ContactedAction):
+      return 'success';
+    case rdf.id(teamGL.NotAvailableAction):
+    case rdf.id(teamGL.UnsubscribeAction):
+      return 'error';
+    default:
+      return undefined;
   }
+}
 
-  getVariant() {
-    switch (rdf.id(bestType(this.props.type))) {
-      case rdf.id(teamGL.ContactedAction):
-        return 'success';
-      case rdf.id(teamGL.NotAvailableAction):
-      case rdf.id(teamGL.UnsubscribeAction):
-        return 'error';
-      default:
-        return undefined;
-    }
-  }
+const ActionActionsBar = ({
+  history,
+  object,
+  subject,
+  type,
+}) => {
+  const lrs = useLRS();
+  const [target] = useProperty(schema.target);
+  const [{ httpMethod, url }] = useResourceLinks(target, {
+    httpMethod: schema.httpMethod,
+    url: schema.url,
+  });
 
-  exec() {
-    const target = this.props.lrs.getResourceProperty(this.props.subject, schema.target);
-    const httpMethod = target && this.props.lrs.getResourceProperty(target, schema.httpMethod);
-
+  const handler = () => {
     if (httpMethod && httpMethod.value === 'GET') {
       return new Promise((resolve) => {
-        this.props.lrs.actions.ontola.showDialog(
-          this.props.lrs.getResourceProperty(target, schema.url)
-        );
+        lrs.actions.ontola.showDialog(url);
         resolve();
       });
     }
 
-    return this.props.lrs.exec(
-      this.props.subject,
-      SHACL.actionToObject(this.props.lrs, this.props.subject)
-    );
-  }
-
-  render() {
-    const {
-      history,
-      object,
+    return lrs.exec(
       subject,
-    } = this.props;
-
-    return (
-      <Property
-        action={subject}
-        label={schema.target}
-        variant={this.getVariant()}
-        onClick={this.exec}
-        onDone={() => history.push(retrievePath(object.value))}
-      />
+      SHACL.actionToObject(lrs, subject)
     );
-  }
-}
+  };
+
+  return (
+    <Property
+      action={subject}
+      label={schema.target}
+      variant={getVariant(type)}
+      onClick={handler}
+      onDone={() => history.push(retrievePath(object.value))}
+    />
+  );
+};
+
+ActionActionsBar.type = schema.Action;
+
+ActionActionsBar.topology = actionsBarTopology;
+
+ActionActionsBar.mapDataToProps = {
+  object: schema.object,
+  type: {
+    label: rdfx.type,
+    limit: Infinity,
+  },
+};
+
+ActionActionsBar.hocs = [withRouter];
+
+ActionActionsBar.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }),
+  object: linkType,
+  subject: subjectType,
+  type: linkType,
+};
 
 export default register(ActionActionsBar);

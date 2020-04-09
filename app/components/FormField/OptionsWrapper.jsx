@@ -7,6 +7,7 @@ import {
   topologyType,
   useDataInvalidation,
   useLRS,
+  useResourceProperty,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -46,10 +47,7 @@ const OptionsWrapper = ({
   );
 
   useDataInvalidation(shIn);
-  const searchTemplate = React.useMemo(
-    () => lrs.getResourceProperty(shInProp, ontola.searchTemplate),
-    [shInProp]
-  );
+  const [searchTemplate] = useResourceProperty(shInProp, ontola.searchTemplate);
 
   React.useLayoutEffect(() => {
     if (loading) {

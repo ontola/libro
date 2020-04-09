@@ -3,7 +3,8 @@ import {
   Property,
   Resource,
   linkType,
-  lrsType,
+  useResourceLinks,
+  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -18,10 +19,10 @@ import TableBody from '../../../topologies/TableBody';
 import TableHead from '../../../topologies/TableHead';
 import TableRow from '../../../topologies/TableRow';
 
-const orderComponents = (components, lrs) => components
+const orderComponents = (components) => components
   .sort((a, b) => {
-    const aOrder = tryParseInt(lrs.getResourceProperty(a, qb.order));
-    const bOrder = tryParseInt(lrs.getResourceProperty(b, qb.order));
+    const aOrder = tryParseInt(a.order);
+    const bOrder = tryParseInt(b.order);
 
     if (aOrder < bOrder) return -1;
     if (aOrder > bOrder) return 1;
@@ -29,14 +30,14 @@ const orderComponents = (components, lrs) => components
     return 0;
   });
 
-const DataSetFull = ({
-  lrs,
-  structure,
-}) => {
-  const components = lrs.getResourceProperties(structure, qb.component);
-  const orderedComponents = orderComponents(components, lrs);
-  const orderedMeasures = orderedComponents
-    .map((comp) => lrs.getResourceProperty(comp, qb.measure));
+const DataSetFull = ({ structure }) => {
+  const componentIRIs = useResourceProperty(structure, qb.component);
+  const components = useResourceLinks(componentIRIs, {
+    measure: qb.measure,
+    order: qb.order,
+  });
+  const orderedComponents = orderComponents(components);
+  const orderedMeasures = orderedComponents.map(({ measure }) => measure).filter(Boolean);
 
   return (
     <Container size="large">
@@ -49,7 +50,7 @@ const DataSetFull = ({
           <Table>
             <TableHead>
               <TableRow>
-                {orderedComponents.map((component) => (
+                {orderedComponents.map(({ subject: component }) => (
                   <Resource
                     key={component.value}
                     subject={component}
@@ -80,7 +81,6 @@ DataSetFull.mapDataToProps = {
 };
 
 DataSetFull.propTypes = {
-  lrs: lrsType,
   structure: linkType,
 };
 

@@ -3,6 +3,7 @@ import rdfx from '@ontologies/rdf';
 import {
   useDataInvalidation,
   useLRS,
+  useResourceProperty,
 } from 'link-redux';
 
 import { entityHasError, entityIsLoaded } from '../helpers/data';
@@ -11,7 +12,7 @@ import { isResource } from '../helpers/types';
 
 const useTargetValues = (targetIRI, path) => {
   const lrs = useLRS();
-  const rawTargetValues = lrs.getResourceProperties(targetIRI, path);
+  const rawTargetValues = useResourceProperty(targetIRI, path);
 
   useDataInvalidation([...rawTargetValues.filter(isResource), targetIRI]);
 

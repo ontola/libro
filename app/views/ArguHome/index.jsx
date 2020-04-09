@@ -5,17 +5,19 @@ import {
   subjectType,
   useDataInvalidation,
   useLRS,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
 import Heading from '../../components/Heading';
 import PageRow from '../../components/PageRow';
+import { useSeqToArr } from '../../hooks/useSeqToArr';
 import argu from '../../ontology/argu';
 import Container from '../../topologies/Container';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import Grid from '../../topologies/Grid';
-import { entityIsLoaded, seqToArr } from '../../helpers/data';
+import { entityIsLoaded } from '../../helpers/data';
 
 import Case from './Case';
 import Customer from './Customer';
@@ -58,7 +60,8 @@ const messages = defineMessages({
 const ArguHomePage = ({ subject }) => {
   const lrs = useLRS();
   const { formatMessage } = useIntl();
-  const processSteps = seqToArr(lrs, [], lrs.getResourceProperty(subject, argu.processSteps));
+  const [processStepList] = useProperty(argu.processSteps);
+  const processSteps = useSeqToArr(processStepList);
   useDataInvalidation([...processSteps, subject]);
 
   const loaded = processSteps.every((processStep) => entityIsLoaded(lrs, processStep));
@@ -71,57 +74,55 @@ const ArguHomePage = ({ subject }) => {
             <Triad subject={subject} />
           </Container>
         </PageRow>
-        {
-          loaded && (
-            <React.Fragment>
-              <PageRow white>
-                <Container size="large">
-                  <Property label={argu.processSteps} limit={3} />
-                </Container>
-              </PageRow>
-              <PageRow>
-                <Container size="large">
-                  <Heading>{formatMessage(messages.casesHeader)}</Heading>
-                  <p>{formatMessage(messages.casesBody)}</p>
-                  <Grid>
-                    <Property label={argu.cases} limit={Infinity} />
-                  </Grid>
-                </Container>
-              </PageRow>
-              <PageRow white>
-                <Container size="large">
-                  <Heading>{formatMessage(messages.customersHeader)}</Heading>
-                  <p>{formatMessage(messages.customersBody)}</p>
-                </Container>
-                <Container size="medium">
-                  <Grid>
-                    <Property label={argu.customers} limit={Infinity} />
-                  </Grid>
-                </Container>
-              </PageRow>
-              <PageRow>
-                <Container size="large">
-                  <Heading>{formatMessage(messages.featuresHeader)}</Heading>
-                  <p>{formatMessage(messages.featuresBody)}</p>
-                  <Grid>
-                    <Property label={argu.features} limit={Infinity} />
-                  </Grid>
-                  <div className="ArguHome--button-wrapper">
-                    <a className="ArguHome--button" href="mailto:info@argu.co">{formatMessage(messages.requestDemo)}</a>
-                  </div>
-                </Container>
-              </PageRow>
-              <PageRow white>
-                <Container size="large">
-                  <Property label={argu.faq}>
-                    <Property label={schema.name} wrapper={React.Fragment} />
-                    <Property label={schema.text} minCharacters={Infinity} />
-                  </Property>
-                </Container>
-              </PageRow>
-            </React.Fragment>
-          )
-        }
+        {loaded && (
+          <React.Fragment>
+            <PageRow white>
+              <Container size="large">
+                <Property label={argu.processSteps} limit={3} />
+              </Container>
+            </PageRow>
+            <PageRow>
+              <Container size="large">
+                <Heading>{formatMessage(messages.casesHeader)}</Heading>
+                <p>{formatMessage(messages.casesBody)}</p>
+                <Grid>
+                  <Property label={argu.cases} limit={Infinity} />
+                </Grid>
+              </Container>
+            </PageRow>
+            <PageRow white>
+              <Container size="large">
+                <Heading>{formatMessage(messages.customersHeader)}</Heading>
+                <p>{formatMessage(messages.customersBody)}</p>
+              </Container>
+              <Container size="medium">
+                <Grid>
+                  <Property label={argu.customers} limit={Infinity} />
+                </Grid>
+              </Container>
+            </PageRow>
+            <PageRow>
+              <Container size="large">
+                <Heading>{formatMessage(messages.featuresHeader)}</Heading>
+                <p>{formatMessage(messages.featuresBody)}</p>
+                <Grid>
+                  <Property label={argu.features} limit={Infinity} />
+                </Grid>
+                <div className="ArguHome--button-wrapper">
+                  <a className="ArguHome--button" href="mailto:info@argu.co">{formatMessage(messages.requestDemo)}</a>
+                </div>
+              </Container>
+            </PageRow>
+            <PageRow white>
+              <Container size="large">
+                <Property label={argu.faq}>
+                  <Property label={schema.name} wrapper={React.Fragment} />
+                  <Property label={schema.text} minCharacters={Infinity} />
+                </Property>
+              </Container>
+            </PageRow>
+          </React.Fragment>
+        )}
       </React.Fragment>
     </div>
   );

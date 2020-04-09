@@ -12,17 +12,17 @@ import {
   Resource,
   linkType,
   register,
-  useLRS,
+  useResourceProperty,
 } from 'link-redux';
 import * as PropTypes from 'prop-types';
 import React from 'react';
 import { Redirect, withRouter } from 'react-router';
 
 import CardContent from '../../components/Card/CardContent';
-import { containerToArr, seqToArr } from '../../helpers/data';
 import { retrievePath } from '../../helpers/iris';
 import { currentLocation } from '../../helpers/paths';
 import { isPromise } from '../../helpers/types';
+import { useContainerToArr } from '../../hooks/useSeqToArr';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import org from '../../ontology/org';
@@ -55,20 +55,20 @@ const useStyles = makeStyles((theme) => ({
 
 const MenuItemFull = ({
   location,
-  menuItems,
+  menuItems: menuItemsIRI,
   topLevel,
 }) => {
-  const lrs = useLRS();
   const classes = useStyles();
-  const isPrimaryResource = topLevel && !menuItems;
+  const isPrimaryResource = topLevel && !menuItemsIRI;
+
   let currentTab, redirectTarget, body;
+  const items = useContainerToArr(menuItemsIRI);
+  const [firstItem] = useResourceProperty(menuItemsIRI, rdfx.ns('_0'));
 
   const menuItemTabs = () => {
     if (!__CLIENT__) {
       return null;
     }
-
-    const items = containerToArr(lrs, [], menuItems);
 
     if (isPromise(items)) {
       // TODO: Loading
@@ -84,13 +84,11 @@ const MenuItemFull = ({
     ));
   };
 
-  if (menuItems) {
-    const menuItemsArr = seqToArr(lrs, [], menuItems);
-
-    currentTab = menuItemsArr.find((s) => rdf.equals(s, currentLocation(location)));
+  if (items) {
+    currentTab = items.find((s) => rdf.equals(s, currentLocation(location)));
 
     if (!currentTab) {
-      redirectTarget = lrs.getResourceProperty(menuItems, rdfx.ns('_0'));
+      redirectTarget = firstItem;
     }
   }
 

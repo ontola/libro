@@ -5,6 +5,7 @@ import {
   register,
   subjectType,
   useLRS,
+  useResourceProperty,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -21,6 +22,7 @@ const ActionCardMain = ({
   target,
 }) => {
   const lrs = useLRS();
+  const [icon] = useResourceProperty(target, schema.image);
 
   if (actionStatus && actionStatus !== schema.PotentialActionStatus) {
     return null;
@@ -29,8 +31,6 @@ const ActionCardMain = ({
   if (children) {
     return children;
   }
-
-  const icon = target && lrs.getResourceProperty(target, schema.image);
 
   return (
     <span>

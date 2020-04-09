@@ -1,9 +1,9 @@
 import {
   Resource,
+  ReturnType,
   labelType,
   register,
-  subjectType,
-  useLRS,
+  useProperty,
 } from 'link-redux';
 import React from 'react';
 
@@ -12,9 +12,8 @@ import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 import { CollectionViewTypes } from '../types';
 
-const Views = ({ label, subject }) => {
-  const lrs = useLRS();
-  const prop = lrs.getResourcePropertyRaw(subject, label);
+const Views = ({ label }) => {
+  const prop = useProperty(label, { returnType: ReturnType.Statement });
 
   if (prop.length === 1) {
     return <Resource forceRender subject={prop[0].object} />;
@@ -37,7 +36,6 @@ Views.topology = allTopologies;
 
 Views.propTypes = {
   label: labelType,
-  subject: subjectType,
 };
 
 export default register(Views);

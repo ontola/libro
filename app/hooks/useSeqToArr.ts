@@ -2,11 +2,14 @@ import { SomeNode } from 'link-lib';
 import { useDataInvalidation, useLRS } from 'link-redux';
 import React from 'react';
 
-import { seqToArr } from '../helpers/data';
+import { containerToArr } from '../helpers/data';
 
-export function useSeqToArr(subject: SomeNode) {
+export function useContainerToArr(subject: SomeNode) {
   const lrs = useLRS();
   const lastUpdate = useDataInvalidation(subject);
 
-  return React.useMemo(() => seqToArr(lrs, [], subject), [subject, lastUpdate]);
+  return React.useMemo(
+    () => containerToArr(lrs, [], subject),
+    [subject, lastUpdate],
+  );
 }

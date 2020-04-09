@@ -8,7 +8,10 @@ import {
   lrsType,
   subjectType,
   topologyType,
+  useDataFetching,
   useDataInvalidation,
+  useProperty,
+  useResourceLinks,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -32,10 +35,12 @@ const ORDER = [
   '/participants/new',
 ];
 
-const actionIsValid = (lrs, action) => {
-  const status = lrs.getResourceProperty(action, schema.actionStatus);
+const useValidActions = (actions) => {
+  const actionStatuses = useResourceLinks(actions, { status: schema.actionStatus });
 
-  return status === schema.PotentialActionStatus;
+  return actionStatuses
+    .filter(({ status }) => status === schema.PotentialActionStatus)
+    .map(({ subject }) => subject);
 };
 
 const CreateActionButton = ({
@@ -43,15 +48,12 @@ const CreateActionButton = ({
   omniform,
   subject,
 }) => {
-  const createActions = lrs.getResourceProperties(subject, ontola.createAction);
+  const createActions = useProperty(ontola.createAction);
+  const validActions = useValidActions(createActions);
   useDataInvalidation([...createActions, subject]);
 
   if (__CLIENT__) {
-    createActions.forEach((action) => {
-      if (!entityIsLoaded(lrs, action)) {
-        lrs.queueEntity(action);
-      }
-    });
+    useDataFetching(createActions);
   }
 
   const trigger = (onClick) => (
@@ -71,25 +73,20 @@ const CreateActionButton = ({
       return <Resource subject={freshAction} />;
     }
 
-    const validActions = createActions.filter((action) => actionIsValid(lrs, action));
     if (validActions.length === 0) {
       return null;
     }
 
     if (validActions.length > 1) {
       return (
-        <Menu
-          lazy
-          trigger={trigger}
-        >
+        <Menu lazy trigger={trigger}>
           {() => (
             <ResourceBoundary>
-              {
-                validActions.sort(sort(ORDER))
-                  .map((action) => (
-                    <Resource subject={action} />
-                  ))
-              }
+              {validActions
+                .sort(sort(ORDER))
+                .map((action) => (
+                  <Resource subject={action} />
+                ))}
             </ResourceBoundary>
           )}
         </Menu>

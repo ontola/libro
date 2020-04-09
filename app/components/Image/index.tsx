@@ -15,9 +15,13 @@ const propTypes = {
   }),
 };
 
-function Image(props) {
+function Image(props: any) {
   const {
-    ariaLabel, className, override, style, linkedProp,
+    ariaLabel,
+    className,
+    override,
+    style,
+    linkedProp,
   } = props;
   if (linkedProp.value.startsWith(FABase)) {
     return (
