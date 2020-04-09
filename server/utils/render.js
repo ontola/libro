@@ -60,7 +60,7 @@ export const renderFullPage = async (ctx, data) => {
 
   return (
     `<!doctype html>
-      <html lang="${language || (manifest.lang?.split('-')?.[0])}">
+      <html lang="${language || (manifest.lang?.split('-')?.[0]) || ''}">
         <head>
           <meta charset="utf-8">
           <link rel="stylesheet" href="/static/preloader.css">
@@ -91,7 +91,7 @@ export const renderFullPage = async (ctx, data) => {
           <meta name="bugsnagConfig" content="${encodeURIComponent(JSON.stringify(bugsnagOpts))}">
 
           ${headers?.link?.toString() || ''}
-          ${icons(ctx)}
+          ${icons(ctx) || ''}
           <meta name="msapplication-TileColor" content="${manifest.theme_color}">
 
           <meta name="msapplication-config" content="/assets/favicons/browserconfig.xml">
