@@ -4,6 +4,7 @@ import schema from '@ontologies/schema';
 import {
   Property,
   Resource,
+  ReturnType,
   linkType,
   linkedPropType,
   lrsType,
@@ -41,7 +42,7 @@ export default function getCollection({
       defaultType: ontola.defaultType,
       pages: {
         label: ontola.pages,
-        limit: Infinity,
+        returnType: ReturnType.AllTerms,
       },
       totalItems: as.totalItems,
     };
@@ -159,13 +160,13 @@ export default function getCollection({
       } = this.props;
       if (tryParseInt(totalItems) === 0) {
         if (!this.props.renderWhenEmpty) {
-          return null;
+          return <div data-test="empty" />;
         }
         const createAction = lrs.getResourceProperty(subject, ontola.createAction);
         const actionStatus = createAction
           && lrs.getResourceProperty(createAction, schema.actionStatus);
         if (actionStatus && invalidStatusIds.includes(rdf.id(actionStatus))) {
-          return null;
+          return <div data-test="invalid-status" />;
         }
       }
 

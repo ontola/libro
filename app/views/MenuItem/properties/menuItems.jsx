@@ -1,5 +1,6 @@
 import {
   Resource,
+  ReturnType,
   linkType,
   register,
 } from 'link-redux';
@@ -47,7 +48,7 @@ MenuItems.topology = [
 MenuItems.mapDataToProps = {
   menuItems: {
     label: ontola.menuItems,
-    limit: Infinity,
+    returnType: ReturnType.AllTerms,
   },
 };
 

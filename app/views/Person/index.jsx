@@ -1,6 +1,10 @@
 import schema from '@ontologies/schema';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { Property, link } from 'link-redux';
+import {
+  Property,
+  ReturnType,
+  link,
+} from 'link-redux';
 import React from 'react';
 
 import argu from '../../ontology/argu';
@@ -19,7 +23,7 @@ export default [
   PersonPage,
   PersonSelect,
   LinkedRenderStore.registerRenderer(
-    link({ name: schema.name }, { returnType: 'value' })(({ name }) => (
+    link({ name: schema.name }, { returnType: ReturnType.Value })(({ name }) => (
       <Property ariaLabel={name} label={schema.image} />
     )),
     [schema.Person, argu.Page],

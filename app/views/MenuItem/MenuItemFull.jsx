@@ -22,7 +22,7 @@ import CardContent from '../../components/Card/CardContent';
 import { retrievePath } from '../../helpers/iris';
 import { currentLocation } from '../../helpers/paths';
 import { isPromise } from '../../helpers/types';
-import { useContainerToArr } from '../../hooks/useSeqToArr';
+import { useContainerToArr } from '../../hooks/useContainerToArr';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import org from '../../ontology/org';
@@ -84,7 +84,7 @@ const MenuItemFull = ({
     ));
   };
 
-  if (items) {
+  if (Array.isArray(items)) {
     currentTab = items.find((s) => rdf.equals(s, currentLocation(location)));
 
     if (!currentTab) {
@@ -193,7 +193,10 @@ MenuItemFull.hocs = [withRouter];
 
 MenuItemFull.propTypes = {
   location: PropTypes.shape({}),
-  menuItems: linkType,
+  menuItems: PropTypes.oneOfType([
+    linkType,
+    PropTypes.instanceOf(Promise),
+  ]),
   topLevel: PropTypes.bool,
 };
 

@@ -1,6 +1,7 @@
 import Collapse from '@material-ui/core/Collapse';
 import schema from '@ontologies/schema';
 import {
+  ReturnType,
   linkType,
   lrsType,
   register,
@@ -126,7 +127,7 @@ CollapsedOmniformProp.topology = [
 CollapsedOmniformProp.mapDataToProps = {
   potentialAction: {
     label: schema.potentialAction,
-    limit: Infinity,
+    returnType: ReturnType.AllTerms,
   },
 };
 

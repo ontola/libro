@@ -1,5 +1,5 @@
 import sh from '@ontologies/shacl';
-import { linkType, useLRS } from 'link-redux';
+import { linkType, useResourceLinks } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useFormState } from 'react-final-form';
@@ -12,16 +12,13 @@ const FormGroupErrorCount = ({
   properties,
   propertyIndex,
 }) => {
-  const lrs = useLRS();
   const formState = useFormState({
     subscription: {
       errors: true,
     },
   });
-
-  const fieldNames = properties.map((prop) => (
-    calculateFormFieldName(propertyIndex, lrs.getResourceProperty(prop, sh.path))
-  ));
+  const fieldNames = useResourceLinks(properties, { path: sh.path })
+    .map(({ path }) => calculateFormFieldName(propertyIndex, path));
 
   const invalidCount = Object
     .keys(formState.errors)

@@ -3,6 +3,7 @@ import schema from '@ontologies/schema';
 import rdfx from '@ontologies/rdf';
 import {
   Property,
+  ReturnType,
   linkType,
   register,
   subjectType,
@@ -78,7 +79,7 @@ ActionActionsBar.mapDataToProps = {
   object: schema.object,
   type: {
     label: rdfx.type,
-    limit: Infinity,
+    returnType: ReturnType.AllTerms,
   },
 };
 

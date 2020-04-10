@@ -1,6 +1,7 @@
 import schema from '@ontologies/schema';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
+  ReturnType,
   link,
   linkType,
   register,
@@ -70,7 +71,7 @@ export default [
       },
       fileSize: schema.fileSize,
       name: schema.name,
-    }, { returnType: 'value' })(Attachment),
+    }, { returnType: ReturnType.Value })(Attachment),
     schema.MediaObject,
     RENDER_CLASS_NAME,
     [

@@ -5,8 +5,8 @@ import schema from '@ontologies/schema';
 import {
   Property,
   linkType,
-  lrsType,
   register,
+  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -21,7 +21,6 @@ const ThingSelect = ({
   element,
   id,
   itemClass,
-  lrs,
   onClick,
   onMouseDown,
   onMouseMove,
@@ -43,7 +42,7 @@ const ThingSelect = ({
 
   const labels = [schema.name, rdfs.label, foaf.name];
 
-  const label = lrs.getResourceProperty(itemClass, ontola.ns('forms/inputs/select/displayProp'));
+  const [label] = useResourceProperty(itemClass, ontola.ns('forms/inputs/select/displayProp'));
 
   if (label) {
     labels.unshift(label);
@@ -70,7 +69,6 @@ ThingSelect.propTypes = {
   element: PropTypes.string,
   id: PropTypes.string,
   itemClass: linkType,
-  lrs: lrsType,
   onClick: PropTypes.func,
   onMouseDown: PropTypes.func,
   onMouseMove: PropTypes.func,

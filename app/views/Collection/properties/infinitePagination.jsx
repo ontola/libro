@@ -2,6 +2,7 @@ import as from '@ontologies/as';
 import {
   Property,
   Resource,
+  ReturnType,
   linkType,
   register,
 } from 'link-redux';
@@ -42,7 +43,7 @@ const getPagination = (Wrapper, topology) => {
   InfinitePagination.mapDataToProps = {
     pages: {
       label: ontola.pages,
-      limit: Infinity,
+      returnType: ReturnType.AllTerms,
     },
   };
 

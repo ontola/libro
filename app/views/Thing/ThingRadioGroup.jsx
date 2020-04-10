@@ -5,8 +5,8 @@ import schema from '@ontologies/schema';
 import {
   Property,
   linkType,
-  lrsType,
   register,
+  useResourceProperty,
 } from 'link-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -16,13 +16,12 @@ import ontola from '../../ontology/ontola';
 import { radioGroupTopology } from '../../topologies/RadioGroup';
 
 const ThingRadioGroup = ({
-  lrs,
   itemClass,
   wrapperProps,
 }) => {
   const labels = [schema.name, rdfs.label, foaf.name];
 
-  const label = lrs.getResourceProperty(itemClass, ontola.ns('forms/inputs/select/displayProp'));
+  const [label] = useResourceProperty(itemClass, ontola.ns('forms/inputs/select/displayProp'));
 
   if (label) {
     labels.unshift(label);
@@ -45,7 +44,6 @@ ThingRadioGroup.mapDataToProps = {
 
 ThingRadioGroup.propTypes = {
   itemClass: linkType,
-  lrs: lrsType,
   style: PropTypes.shape({}),
   wrapperProps: PropTypes.shape({}),
 };

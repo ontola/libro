@@ -1,5 +1,5 @@
 import LinkedRenderStore from 'link-lib';
-import { link } from 'link-redux';
+import { ReturnType, link } from 'link-redux';
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 import { connect } from 'react-redux';
@@ -59,7 +59,7 @@ export default LinkedRenderStore.registerRenderer(
   link({
     actorType: ontola.actorType,
     anonymousID: argu.anonymousID,
-  }, { returnType: 'value' })(ActorTypeDispatcherConnect),
+  }, { returnType: ReturnType.Value })(ActorTypeDispatcherConnect),
   [
     ontola.ConfirmedUser,
     ontola.UnconfirmedUser,

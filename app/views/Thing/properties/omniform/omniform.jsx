@@ -1,9 +1,10 @@
 import schema from '@ontologies/schema';
 import {
+  ReturnType,
   linkType,
-  lrsType,
   register,
   subjectType,
+  useResourceProperty,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -20,99 +21,95 @@ import { cardAppendixTopology } from '../../../../topologies/Card/CardAppendix';
 import { cardMainTopology } from '../../../../topologies/Card/CardMain';
 import { pageTopology } from '../../../../topologies/Page';
 
-import { actionsAreAllDisabled, filterActions } from './helpers';
+import { actionsAreAllDisabled, useFilterActions } from './helpers';
 import OmniformConnector from './OmniformConnector';
 
-class OmniformProp extends React.PureComponent {
-  static type = [schema.Thing, link.Document];
+const useIsSelfOrParentExpired = (expiresAt, isPartOf) => {
+  const [parentExpiry] = useResourceProperty(isPartOf, argu.expiresAt);
+  const [grandParent] = useResourceProperty(isPartOf, schema.isPartOf);
+  const [grandParentExpiry] = useResourceProperty(grandParent, argu.expiresAt);
 
-  static property = app.omniform;
-
-  static topology = allTopologiesExcept(
-    cardTopology,
-    cardMainTopology,
-    cardAppendixTopology,
-    pageTopology
-  );
-
-  static mapDataToProps = {
-    expiresAt: argu.expiresAt,
-    isPartOf: schema.isPartOf,
-    potentialAction: {
-      label: schema.potentialAction,
-      limit: Infinity,
-    },
-  };
-
-  static propTypes = {
-    expiresAt: linkType,
-    formFooterButtons: PropTypes.node,
-    isPartOf: linkType,
-    lrs: lrsType,
-    onDone: PropTypes.func,
-    onKeyUp: PropTypes.func,
-    potentialAction: linkType,
-    subject: subjectType,
-  };
-
-  selfOrParentExpired() {
-    const {
-      expiresAt,
-      isPartOf,
-      lrs,
-    } = this.props;
-
-    if (isPastDate(expiresAt)) {
-      return true;
-    }
-
-    if (isPartOf) {
-      if (isPastDate(lrs.getResourceProperty(isPartOf, argu.expiresAt))) {
-        return true;
-      }
-
-      const grandParent = lrs.getResourceProperty(isPartOf, schema.isPartOf);
-      if (grandParent && isPastDate(lrs.getResourceProperty(grandParent, argu.expiresAt))) {
-        return true;
-      }
-    }
-
-    return false;
+  if (isPastDate(expiresAt)) {
+    return true;
   }
 
-  render() {
-    const { lrs, potentialAction } = this.props;
+  if (isPartOf) {
+    return isPastDate(parentExpiry) || isPastDate(grandParentExpiry);
+  }
 
-    if (this.selfOrParentExpired()) {
-      return (
-        <Heading variant="notice">
-          <FormattedMessage
-            defaultMessage="Responding is no longer possible"
-            id="https://app.argu.co/i18n/expireable/states/closed/closedMessage"
-          />
-        </Heading>
-      );
-    }
+  return false;
+};
 
-    const allDisabled = actionsAreAllDisabled(filterActions(lrs, potentialAction), lrs);
-    if (allDisabled) {
-      return null;
-    }
+const OmniformProp = ({
+  expiresAt,
+  formFooterButtons,
+  isPartOf,
+  onDone,
+  onKeyUp,
+  potentialAction,
+  subject,
+}) => {
+  const isExpired = useIsSelfOrParentExpired(expiresAt, isPartOf);
+  const allDisabled = actionsAreAllDisabled(useFilterActions(potentialAction));
 
+  if (isExpired) {
     return (
-      <Card>
-        <OmniformConnector
-          opened
-          autofocusForm={false}
-          formFooterButtons={this.props.formFooterButtons}
-          potentialAction={potentialAction}
-          subject={this.props.subject}
-          onDone={this.props.onDone}
-          onKeyUp={this.props.onKeyUp}
+      <Heading variant="notice">
+        <FormattedMessage
+          defaultMessage="Responding is no longer possible"
+          id="https://app.argu.co/i18n/expireable/states/closed/closedMessage"
         />
-      </Card>
+      </Heading>
     );
   }
-}
+
+  if (allDisabled) {
+    return null;
+  }
+
+  return (
+    <Card>
+      <OmniformConnector
+        opened
+        autofocusForm={false}
+        formFooterButtons={formFooterButtons}
+        potentialAction={potentialAction}
+        subject={subject}
+        onDone={onDone}
+        onKeyUp={onKeyUp}
+      />
+    </Card>
+  );
+};
+
+OmniformProp.type = [schema.Thing, link.Document];
+
+OmniformProp.property = app.omniform;
+
+OmniformProp.topology = allTopologiesExcept(
+  cardTopology,
+  cardMainTopology,
+  cardAppendixTopology,
+  pageTopology
+);
+
+OmniformProp.mapDataToProps = {
+  expiresAt: argu.expiresAt,
+  isPartOf: schema.isPartOf,
+  potentialAction: {
+    label: schema.potentialAction,
+    returnType: ReturnType.AllTerms,
+  },
+};
+
+OmniformProp.propTypes = {
+  expiresAt: linkType,
+  formFooterButtons: PropTypes.node,
+  isPartOf: linkType,
+  onDone: PropTypes.func,
+  onKeyUp: PropTypes.func,
+  potentialAction: linkType,
+  subject: subjectType,
+};
 
 export default register(OmniformProp);

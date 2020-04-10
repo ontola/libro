@@ -1,6 +1,7 @@
 import { isTerm } from '@ontologies/core';
 import sh from '@ontologies/shacl';
 import {
+  ReturnType,
   linkType,
   register,
   subjectType,
@@ -89,7 +90,7 @@ PropertyShape.mapDataToProps = {
   datatype: sh.datatype,
   defaultValue: {
     label: sh.defaultValue,
-    limit: Infinity,
+    returnType: ReturnType.AllTerms,
   },
   description: sh.description,
   helperText: ontola.helperText,

@@ -1,5 +1,6 @@
 import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
+import { useLRS } from 'link-redux';
 
 import { allowSort, entityIsLoaded } from '../../../../helpers/data';
 import ontola from '../../../../ontology/ontola';
@@ -31,6 +32,12 @@ export const filterActions = (lrs, potentialAction) => {
   }
 
   return allowSort(potentialAction, OMNIFORM_FILTER, ORDER);
+};
+
+export const useFilterActions = (potentialAction) => {
+  const lrs = useLRS();
+
+  return filterActions(lrs, potentialAction);
 };
 
 export const invalidStatusIds = [

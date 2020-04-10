@@ -2,6 +2,7 @@ import schema from '@ontologies/schema';
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
 import {
   Property,
+  ReturnType,
   link,
 } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -60,7 +61,7 @@ const mappedProps = {
 export default [
   Opinion,
   LinkedRenderStore.registerRenderer(
-    link(mappedProps, { returnType: 'value' })(ThingHoverBoxHidden),
+    link(mappedProps, { returnType: ReturnType.Value })(ThingHoverBoxHidden),
     argu.Vote,
     RENDER_CLASS_NAME,
     popupTopology

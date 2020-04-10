@@ -1,5 +1,5 @@
 import schema from '@ontologies/schema';
-import { register } from 'link-redux';
+import { ReturnType, register } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 
@@ -20,7 +20,7 @@ class ImageObjectPageHeader extends PureComponent {
   };
 
   static linkOpts = {
-    returnType: 'value',
+    returnType: ReturnType.Value,
   };
 
   static propTypes = {

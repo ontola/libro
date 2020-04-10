@@ -1,5 +1,6 @@
 import {
   Resource,
+  ReturnType,
   linkType,
   register,
 } from 'link-redux';
@@ -68,7 +69,7 @@ Pages.topology = allTopologies;
 Pages.mapDataToProps = {
   pages: {
     label: ontola.pages,
-    limit: Infinity,
+    returnType: ReturnType.AllTerms,
   },
 };
 

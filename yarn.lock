@@ -1551,10 +1551,10 @@
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
 
-"@ontola/link-devtools@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@ontola/link-devtools/-/link-devtools-2.0.0.tgz#694ade0fb07e901027d824b1ee14cf49291929c8"
-  integrity sha512-jtDe5vuHP4RaaVCqUmhBC3Pa/r33d5Oo1MHmSPh/o8WCiqUlO5JRXLE1IdejeuSjvdibsqY/0wqfOpx3QRb8PA==
+"@ontola/link-devtools@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@ontola/link-devtools/-/link-devtools-2.0.1.tgz#f634094b9ec12fbadbf0c58ba0f0e0bef8ff6abc"
+  integrity sha512-4+njUGMPBV8DGz1K1XDMTt3D7WQZrRTC7UBHJuGzstklt7nXe15TEeeTA4VPRfS94JUachn3bN6wBFccmv+Sdg==
   dependencies:
     type-zoo ">=3.4.1"
 
@@ -9335,15 +9335,15 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
-link-lib@2.0.0-2:
-  version "2.0.0-2"
-  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-2.0.0-2.tgz#f0b6724ff06091eb3fbbb0811c7222a7f29432b7"
-  integrity sha512-3HYhT+KpLnfVH7fONOqFZwz0YNO/Kiam6pFWRIgmOrlTcC0S8PONtnobQz/OwEcxuAJZxJrQfYycq2f9oxqC8A==
-
-link-redux@2.0.0-3:
+link-lib@2.0.0-3:
   version "2.0.0-3"
-  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-2.0.0-3.tgz#c3459584017fd9177c3a8ab855f0817d1a948be0"
-  integrity sha512-qIKvzXVoM1giAWziSN9NjOVvTfDrBUsPWfIGeEk1oQxjaSvkJEfaWixUFv9/EyP4gLZj9u6Wd98G/SgfwGUcBg==
+  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-2.0.0-3.tgz#85350d750b3514f6b652387a686a0ec8c6ae20de"
+  integrity sha512-QGqqG510abpnEupadyuDpf/s8cqomIAziYhhMwewLh9D8aW8lBK8Mo3p0eltq6Lp5wfqQGQWQRexqTWItWriJA==
+
+link-redux@2.0.0-5:
+  version "2.0.0-5"
+  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-2.0.0-5.tgz#5c35adc2f58bdb06d29e4724d36c739226cd71b7"
+  integrity sha512-ZPyNbawIBKKbsydJZIGXEVGi9llrJW6v9+OPV/fGUxC+s6e7nGj79gjhE6lUFSxu+TRmoAbRWNo+qF+BDp/dlQ==
 
 lint-staged@^9.5.0:
   version "9.5.0"
@@ -10540,10 +10540,10 @@ mz@^2.7.0:
     object-assign "^4.0.1"
     thenify-all "^1.0.0"
 
-n-quads-parser@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/n-quads-parser/-/n-quads-parser-2.1.0.tgz#ddb34026627458fe56ca45098e8bc0d59b6e6a69"
-  integrity sha512-slsvxgeCf2eeRPuh64nPY52EyLkQUgbjOmnoAHwdUydICNZcm7jZY47vk0Zhv+iMlpjRCtsZsqM7U/0txO/N3w==
+n-quads-parser@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/n-quads-parser/-/n-quads-parser-2.1.1.tgz#30a21c7d449abc9021b5289753b1ef83d4107a3c"
+  integrity sha512-A/AT8rMW5zkymPQWQXp+Tx0fwnaQ4/e296gmXWRWInNc/SHQTU2yUgAL+yIHP19K202HhZmwYc2YIVtVYUMOHQ==
   dependencies:
     "@ontologies/core" ">=2.0.0"
 

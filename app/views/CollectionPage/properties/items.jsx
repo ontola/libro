@@ -2,6 +2,7 @@ import as from '@ontologies/as';
 import rdf from '@ontologies/core';
 import {
   Resource,
+  ReturnType,
   linkType,
   register,
 } from 'link-redux';
@@ -126,7 +127,7 @@ Items.topology = allTopologies;
 Items.mapDataToProps = {
   items: {
     label: as.items,
-    limit: Infinity,
+    returnType: ReturnType.AllTerms,
   },
   totalCount: { label: as.totalItems },
 };

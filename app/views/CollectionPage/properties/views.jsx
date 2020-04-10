@@ -13,7 +13,7 @@ import { allTopologies } from '../../../topologies';
 import { CollectionViewTypes } from '../types';
 
 const Views = ({ label }) => {
-  const prop = useProperty(label, { returnType: ReturnType.Statement });
+  const prop = useProperty(label, { returnType: ReturnType.AllStatements });
 
   if (prop.length === 1) {
     return <Resource forceRender subject={prop[0].object} />;

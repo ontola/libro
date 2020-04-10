@@ -18,7 +18,7 @@ const LDLink = ({
   ...rest
 }) => {
   const { subject } = useLinkRenderContext();
-  const [url] = useProperty(schema.url, { returnType: ReturnType.Value });
+  const url = useProperty(schema.url, { returnType: ReturnType.Value });
 
   if (!subject) {
     handle(new Error('LDLINK NO SUBJECT'));

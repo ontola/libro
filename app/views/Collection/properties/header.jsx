@@ -4,6 +4,7 @@ import IconButton from '@material-ui/core/IconButton';
 import {
   Property,
   Resource,
+  ReturnType,
   linkType,
   lrsType,
   subjectType,
@@ -48,7 +49,7 @@ const CreateActionButton = ({
   omniform,
   subject,
 }) => {
-  const createActions = useProperty(ontola.createAction);
+  const createActions = useProperty(ontola.createAction, { returnType: ReturnType.AllTerms });
   const validActions = useValidActions(createActions);
   useDataInvalidation([...createActions, subject]);
 
@@ -161,7 +162,7 @@ const registerHeader = buildRegister({
   mapDataToProps: {
     pages: {
       label: ontola.pages,
-      limit: Infinity,
+      returnType: ReturnType.AllTerms,
     },
   },
   property: ontola.header,

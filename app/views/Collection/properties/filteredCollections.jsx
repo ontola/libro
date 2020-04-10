@@ -1,6 +1,7 @@
 import LinkedRenderStore from 'link-lib';
 import {
   Resource,
+  ReturnType,
   link,
   linkType,
 } from 'link-redux';
@@ -50,7 +51,7 @@ export default [
     link({
       filteredCollections: {
         label: ontola.filteredCollections,
-        limit: Infinity,
+        returnType: ReturnType.AllTerms,
       },
     })(FilteredCollections),
     CollectionTypes,

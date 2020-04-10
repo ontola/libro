@@ -2,6 +2,7 @@ import schema from '@ontologies/schema';
 import {
   Property,
   Resource,
+  ReturnType,
   linkType,
   register,
   subjectType,
@@ -42,7 +43,7 @@ const messages = defineMessages({
 const featurePropMap = {
   icons: {
     label: argu.icon,
-    limit: Infinity,
+    returnType: ReturnType.AllTerms,
   },
 };
 

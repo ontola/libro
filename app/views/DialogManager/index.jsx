@@ -18,6 +18,10 @@ const DialogManager = ({ resource }) => {
     () => lrs.exec(ontola.ns(`actions/dialog/close?resource=${encodeURIComponent(item.value)}`), { done })
   );
 
+  if (!resource) {
+    return null;
+  }
+
   return (
     <Dialog
       open

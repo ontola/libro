@@ -1,6 +1,7 @@
 import schema from '@ontologies/schema';
 import {
   Resource,
+  ReturnType,
   linkedPropType,
   register,
   subjectType,
@@ -69,8 +70,7 @@ Agenda.topology = allTopologies;
 Agenda.mapDataToProps = {
   agenda: {
     label: meeting.agenda,
-    limit: Infinity,
-    returnType: 'statement',
+    returnType: ReturnType.AllStatements,
   },
 };
 

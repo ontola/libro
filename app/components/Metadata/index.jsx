@@ -3,6 +3,7 @@ import dcterms from '@ontologies/dcterms';
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
 import {
+  ReturnType,
   link,
   linkType,
   subjectType,
@@ -59,5 +60,5 @@ export default link(
     name: [schema.name, rdfs.label],
     text: [dbo.abstract, schema.description, schema.text],
   },
-  { returnType: 'value' }
+  { returnType: ReturnType.Value }
 )(Metadata);

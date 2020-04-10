@@ -16,6 +16,7 @@ import Confirmation from './Confirmation';
 import Action from './Action/index';
 import Argument from './Argument/index';
 import DataCube from './DataCube';
+import DataTypeRenderer from './DataType/default/default';
 import Department from './Department';
 import DialogManager from './DialogManager';
 import Document from './Document';
@@ -83,6 +84,7 @@ export function getViews() {
     ...Comment,
     ...Confirmation,
     ...DataCube,
+    ...DataTypeRenderer,
     ...Department,
     ...Document,
     ...DialogManager,

@@ -3,6 +3,7 @@ import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
 import {
   Resource,
+  ReturnType,
   linkType,
   register,
   subjectType,
@@ -215,7 +216,7 @@ CreateVote.mapDataToProps = {
   target: schema.target,
   type: {
     label: rdfx.type,
-    limit: Infinity,
+    returnType: ReturnType.AllTerms,
   },
 };
 

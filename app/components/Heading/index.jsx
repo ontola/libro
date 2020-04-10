@@ -79,7 +79,7 @@ const Heading = ({
   });
 
   return (
-    <Element className={headingClass} role="heading" typeOf={type}>{children}</Element>
+    <Element className={headingClass} role="heading" typeof={type}>{children}</Element>
   );
 };
 

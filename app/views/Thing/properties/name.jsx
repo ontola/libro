@@ -5,7 +5,11 @@ import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
 import sh from '@ontologies/shacl';
 import LinkedRenderStore from 'link-lib';
-import { link, linkType } from 'link-redux';
+import {
+  ReturnType,
+  link,
+  linkType,
+} from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -67,7 +71,7 @@ ColoredHeading.propTypes = {
 const ConnectedHeading = link({
   name: NamePredicates,
   type: rdfx.type,
-}, { returnType: 'value' })(ColoredHeading);
+}, { returnType: ReturnType.Value })(ColoredHeading);
 
 export default [
   LinkedRenderStore.registerRenderer(

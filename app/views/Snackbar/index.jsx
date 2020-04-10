@@ -2,7 +2,11 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import schema from '@ontologies/schema';
-import { linkType, register } from 'link-redux';
+import {
+  ReturnType,
+  linkType,
+  register,
+} from 'link-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -47,7 +51,7 @@ SnackbarView.mapDataToProps = {
   text: schema.text,
 };
 
-SnackbarView.linkOpts = { returnType: 'value' };
+SnackbarView.linkOpts = { returnType: ReturnType.Value };
 
 SnackbarView.propTypes = {
   close: PropTypes.func,

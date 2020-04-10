@@ -1,10 +1,12 @@
 import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
 import {
+  ReturnType,
   linkedPropType,
   register,
   useDataFetching,
   useLRS,
+  useResourceLinks,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -16,11 +18,13 @@ import {
 
 import Detail from '../../../components/Detail';
 import { LoadingDetail } from '../../../components/Loading';
+import { isPromise } from '../../../helpers/types';
+import { useContainerToArr } from '../../../hooks/useContainerToArr';
 import app from '../../../ontology/app';
 import argu from '../../../ontology/argu';
 import { contentDetailsTopology } from '../../../topologies/ContentDetails';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
-import { entityIsLoaded, listToArr } from '../../../helpers/data';
+import { entityIsLoaded } from '../../../helpers/data';
 
 const publicGroupIRI = rdf.id(app.ns('g/-1'));
 
@@ -39,23 +43,24 @@ const GrantedGroups = ({ linkedProp }) => {
   const { formatMessage } = useIntl();
   const lrs = useLRS();
   useDataFetching(linkedProp);
+  const groups = __CLIENT__ && useContainerToArr(linkedProp);
+  const groupNames = useResourceLinks(
+    isPromise(groups) ? undefined : groups,
+    { name: schema.name },
+    { returnType: ReturnType.Value }
+  ).map(({ name }) => name)
+    .filter(Boolean)
+    .join(', ');
 
   if (!entityIsLoaded(lrs, linkedProp)) {
     return <LoadingDetail />;
   }
-
-  const groups = __CLIENT__ && linkedProp && listToArr(lrs, [], linkedProp);
 
   if (!Array.isArray(groups)) {
     return null;
   }
 
   if (groups.findIndex((g) => rdf.id(g) === publicGroupIRI) === -1) {
-    const groupNames = groups
-      .map((group) => lrs.getResourceProperty(group, schema.name)?.value)
-      .filter(Boolean)
-      .join(', ');
-
     return (
       <Detail
         icon="group"

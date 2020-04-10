@@ -1,6 +1,7 @@
 import as from '@ontologies/as';
 import rdf from '@ontologies/core';
 import {
+  ReturnType,
   linkedPropType,
   register,
   subjectType,
@@ -52,7 +53,7 @@ InfiniteCollectionNext.mapDataToProps = {
 };
 
 InfiniteCollectionNext.linkOpts = {
-  returnType: 'statement',
+  returnType: ReturnType.Statement,
 };
 
 InfiniteCollectionNext.propTypes = {

@@ -3,6 +3,7 @@ import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import {
   Resource,
+  ReturnType,
   link,
   linkType,
   lrsType,
@@ -46,7 +47,7 @@ class PotentialActionActionsBar extends React.PureComponent {
   static mapDataToProps = {
     potentialActions: {
       label: ontola.favoriteAction,
-      limit: Infinity,
+      returnType: ReturnType.AllTerms,
     },
   };
 
@@ -74,7 +75,7 @@ export default [
     link({
       potentialActions: {
         label: ontola.favoriteAction,
-        limit: Infinity,
+        returnType: ReturnType.AllTerms,
       },
     })(({ potentialActions, ...props }) => sortBind(potentialActions, props)),
     [schema.Thing, rdfs.Resource],

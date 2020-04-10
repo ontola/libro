@@ -11,7 +11,7 @@ export default [
   LinkedRenderStore.registerRenderer(
     () => (
       <FullResource>
-        <Type appendix={AccountHelpersCardAppendix} />,
+        <Type appendix={AccountHelpersCardAppendix} />
       </FullResource>
     ),
     [

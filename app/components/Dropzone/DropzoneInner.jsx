@@ -50,7 +50,7 @@ const DropzoneInnerPositionY = ({
 };
 
 DropzoneInnerPositionY.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.func,
   current: linkType,
   file: PropTypes.shape({
     name: PropTypes.string,
@@ -129,7 +129,10 @@ const DropzoneInner = ({
 };
 
 DropzoneInner.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.func,
+  ]),
   current: linkType,
   file: PropTypes.shape({
     name: PropTypes.string,
