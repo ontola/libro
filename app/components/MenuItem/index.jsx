@@ -43,6 +43,7 @@ const MenuItem = ({
       <Link
         ref={nestedRef}
         {...props}
+        theme="menu"
         to={actionSafeURL}
       />
     ));

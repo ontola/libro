@@ -124,6 +124,7 @@ Link.propTypes = {
   ]),
   theme: PropTypes.oneOf([
     'default',
+    'menu',
     'parent',
   ]),
   to: PropTypes.string,
