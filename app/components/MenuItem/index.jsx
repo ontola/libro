@@ -11,6 +11,7 @@ import Link from '../Link';
 
 const propTypes = {
   action: PropTypes.func,
+  allowExternal: PropTypes.bool,
   children: PropTypes.node,
   expandOpen: PropTypes.bool,
   icon: linkType,
@@ -21,6 +22,7 @@ const propTypes = {
 
 const MenuItem = ({
   action,
+  allowExternal,
   children,
   expandOpen,
   icon,
@@ -41,6 +43,7 @@ const MenuItem = ({
     })
     : React.forwardRef((props, nestedRef) => (
       <Link
+        allowExternal={allowExternal}
         ref={nestedRef}
         {...props}
         theme="menu"

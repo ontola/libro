@@ -99,6 +99,7 @@ const MenuItemDropdownContentComp = ({
   return (
     <MenuItem
       action={action ? actionFunc : onClose}
+      allowExternal={false}
       url={href && href.value}
       {...sharedProps}
     >
