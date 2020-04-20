@@ -148,6 +148,8 @@
   "https://app.argu.co/i18n/votes/expireable/states/closed/message": "Stemmen is niet langer mogelijk",
   "https://app.argu.co/i18n/votes/neutral/message": "Klik om neutraal op dit idee te stemmen",
   "https://app.argu.co/i18n/votes/pro/message": "Klik om voor dit idee te stemmen",
+  "https://app.argu.co/i18n/xsd:boolean/false": "Nee",
+  "https://app.argu.co/i18n/xsd:boolean/true": "Ja",
   "https://ns.ontola.io/actions/copyToClipboard/copySuccessMessage": "Gekopieerd...",
   "https://team.groenlinks.nl/i18n/engagement/active": " actief",
   "https://team.groenlinks.nl/i18n/engagement/inactive": " inactief",
