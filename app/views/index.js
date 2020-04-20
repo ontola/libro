@@ -11,6 +11,7 @@ import Badge from './Badge';
 import Banner from './Banner/Banner';
 import Category from './Category';
 import Collection from './Collection';
+import CollectionFilter from './CollectionFilter';
 import CollectionPage from './CollectionPage';
 import Comment from './Comment';
 import Confirmation from './Confirmation';
@@ -26,6 +27,8 @@ import Employment from './Employment';
 import EntryPoint from './EntryPoint';
 import Error from './Error';
 import Event from './Event';
+import FilterField from './FilterField';
+import FilterOption from './FilterOption';
 import FormOption from './FormOption';
 import Forum from './Forum/index';
 import Group from './Group';
@@ -84,6 +87,7 @@ export function getViews() {
     ...Category,
     ...Collection,
     ...CollectionPage,
+    ...CollectionFilter,
     ...Comment,
     ...Confirmation,
     ...ContactPage,
@@ -96,6 +100,8 @@ export function getViews() {
     ...EntryPoint,
     ...Error,
     ...Event,
+    ...FilterField,
+    ...FilterOption,
     ...FormOption,
     ...Forum,
     ...Group,

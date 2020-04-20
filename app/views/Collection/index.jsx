@@ -11,7 +11,7 @@ import { tabPaneTopology } from '../../topologies/TabPane';
 import getCollection from './getCollection';
 import CreateAction from './properties/createAction';
 import CollectionFrame from './properties/collectionFrame';
-import FilteredCollections from './properties/filteredCollections';
+import FilterFields from './properties/filterFields';
 import IsPartOf from './properties/isPartOf';
 import Name from './properties/name';
 import UnreadCount from './properties/unreadCount';
@@ -80,7 +80,7 @@ export default [
   CollectionPage,
   ...CollectionSection,
   CreateAction,
-  ...FilteredCollections,
+  ...FilterFields,
   ...Header,
   ...IsPartOf,
   Name,

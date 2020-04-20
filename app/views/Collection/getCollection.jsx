@@ -42,6 +42,7 @@ export default function getCollection(
     clickToOpen,
     collectionDisplay,
     collectionDisplayFromData,
+    collectionFilter,
     collectionType,
     columns,
     depth,
@@ -169,7 +170,7 @@ export default function getCollection(
       }
     }
 
-    if (tryParseInt(totalItems) === 0) {
+    if (tryParseInt(totalItems) === 0 && collectionFilter.length === 0) {
       if (!renderWhenEmptyProp && !renderWhenEmpty) {
         return <Property label={argu.query} setCurrentPage={setCurrentPage} />;
       }
@@ -217,6 +218,10 @@ export default function getCollection(
 
   Collection.mapDataToProps = {
     collectionDisplayFromData: ontola.collectionDisplay,
+    collectionFilter: {
+      label: ontola.collectionFilter,
+      returnType: ReturnType.AllTerms,
+    },
     collectionType: ontola.collectionType,
     columns: ontola.columns,
     defaultType: ontola.defaultType,
@@ -231,6 +236,7 @@ export default function getCollection(
     clickToOpen: PropTypes.bool,
     collectionDisplay: linkType,
     collectionDisplayFromData: linkType,
+    collectionFilter: PropTypes.arrayOf(linkType),
     collectionType: linkType,
     columns: linkType,
     depth: PropTypes.number,

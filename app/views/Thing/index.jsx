@@ -54,6 +54,7 @@ import ThingFooter from './ThingFooter';
 import ThingInline from './ThingInline';
 import ThingFullResource from './ThingFull';
 import ThingGrid from './ThingGrid';
+import ThingMenu from './ThingMenu';
 import ThingPage from './ThingPage';
 import ThingPageHeader from './ThingPageHeader';
 import ThingParent from './ThingParent';
@@ -88,6 +89,7 @@ export default [
   ThingFooter,
   ThingFullResource,
   ThingGrid,
+  ThingMenu,
   ThingPage,
   ThingPageHeader,
   ThingRadioGroup,

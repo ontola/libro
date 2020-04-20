@@ -27,10 +27,9 @@ const HeaderFloat = ({
   subject,
 }) => (
   <React.Fragment>
+    <Property label={ontola.filterFields} setCurrentPage={setCurrentPage} />
     {!isTableDisplay(collectionDisplay) && (
-      <React.Fragment>
-        <Property label={ontola.sortOptions} setCurrentPage={setCurrentPage} />
-      </React.Fragment>
+      <Property label={ontola.sortOptions} setCurrentPage={setCurrentPage} />
     )}
     <CollectionCreateActionButton omniform={omniform} subject={subject} />
   </React.Fragment>
@@ -42,13 +41,18 @@ HeaderFloat.propTypes = {
   subject: subjectType,
 };
 
-const cardCollectionHeader = (props) => {
-  return (
-    <CardHeader float={<HeaderFloat {...props} />}>
-      <Property label={as.name} />
-    </CardHeader>
-  );
-};
+const cardCollectionHeader = (props) => (
+  <CardHeader float={<HeaderFloat {...props} />}>
+    <Property label={as.name} />
+    <div>
+      <Property
+        label={ontola.collectionFilter}
+        limit={Infinity}
+        setCurrentPage={props.setCurrentPage}
+      />
+    </div>
+  </CardHeader>
+);
 cardCollectionHeader.propTypes = {
   collectionDisplay: linkType,
   omniform: PropTypes.bool,
@@ -59,13 +63,14 @@ cardCollectionHeader.propTypes = {
 const containerCollectionHeader = (props) => {
   const {
     collectionDisplay,
-    topology,
+    setCurrentPage,
+    topologyCtx,
   } = props;
   let Wrapper = React.Fragment;
-  if (collectionDisplay === ontola['collectionDisplay/default'] && topology !== containerTopology) {
+  if (collectionDisplay === ontola['collectionDisplay/default'] && topologyCtx !== containerTopology) {
     Wrapper = Container;
   }
-  if (collectionDisplay === ontola['collectionDisplay/grid'] && topology !== containerTopology) {
+  if (collectionDisplay === ontola['collectionDisplay/grid'] && topologyCtx !== containerTopology) {
     Wrapper = LargeContainer;
   }
 
@@ -73,6 +78,13 @@ const containerCollectionHeader = (props) => {
     <Wrapper>
       <ContainerHeader float={<HeaderFloat {...props} />}>
         <Property label={as.name} />
+        <div>
+          <Property
+            label={ontola.collectionFilter}
+            limit={Infinity}
+            setCurrentPage={setCurrentPage}
+          />
+        </div>
       </ContainerHeader>
     </Wrapper>
   );
@@ -82,7 +94,7 @@ containerCollectionHeader.propTypes = {
   omniform: PropTypes.bool,
   setCurrentPage: PropTypes.func,
   subject: subjectType,
-  topology: topologyType,
+  topologyCtx: topologyType,
 };
 
 const registerHeader = buildRegister({
