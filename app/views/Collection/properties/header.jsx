@@ -20,20 +20,32 @@ import Container, { LargeContainer, containerTopology } from '../../../topologie
 import { pageTopology } from '../../../topologies/Page';
 import { CollectionTypes } from '../types';
 
-const cardCollectionHeader = ({
+const HeaderFloat = ({
   collectionDisplay,
   omniform,
   setCurrentPage,
   subject,
-}) => {
-  const name = <Property label={as.name} />;
-
-  return (
-    <CardHeader header={name}>
-      {!isTableDisplay(collectionDisplay) && (
+}) => (
+  <React.Fragment>
+    {!isTableDisplay(collectionDisplay) && (
+      <React.Fragment>
         <Property label={ontola.sortOptions} setCurrentPage={setCurrentPage} />
-      )}
-      <CollectionCreateActionButton omniform={omniform} subject={subject} />
+      </React.Fragment>
+    )}
+    <CollectionCreateActionButton omniform={omniform} subject={subject} />
+  </React.Fragment>
+);
+HeaderFloat.propTypes = {
+  collectionDisplay: linkType,
+  omniform: PropTypes.bool,
+  setCurrentPage: PropTypes.func,
+  subject: subjectType,
+};
+
+const cardCollectionHeader = (props) => {
+  return (
+    <CardHeader float={<HeaderFloat {...props} />}>
+      <Property label={as.name} />
     </CardHeader>
   );
 };
@@ -44,14 +56,11 @@ cardCollectionHeader.propTypes = {
   subject: subjectType,
 };
 
-const containerCollectionHeader = ({
-  collectionDisplay,
-  omniform,
-  setCurrentPage,
-  subject,
-  topology,
-}) => {
-  const name = <Property label={as.name} />;
+const containerCollectionHeader = (props) => {
+  const {
+    collectionDisplay,
+    topology,
+  } = props;
   let Wrapper = React.Fragment;
   if (collectionDisplay === ontola['collectionDisplay/default'] && topology !== containerTopology) {
     Wrapper = Container;
@@ -62,11 +71,8 @@ const containerCollectionHeader = ({
 
   return (
     <Wrapper>
-      <ContainerHeader header={name}>
-        {!isTableDisplay(collectionDisplay) && (
-          <Property label={ontola.sortOptions} setCurrentPage={setCurrentPage} />
-        )}
-        <CollectionCreateActionButton omniform={omniform} subject={subject} />
+      <ContainerHeader float={<HeaderFloat {...props} />}>
+        <Property label={as.name} />
       </ContainerHeader>
     </Wrapper>
   );

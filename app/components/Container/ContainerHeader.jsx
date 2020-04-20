@@ -4,10 +4,10 @@ import React from 'react';
 import ContainerFloat from '../../topologies/Container/ContainerFloat';
 
 const propTypes = {
-  /** The children float to the top right */
+  /** The children float to the left */
   children: PropTypes.node,
-  /** The header floats to the top left */
-  header: PropTypes.node,
+  /** The float content floats to the right */
+  float: PropTypes.node,
 };
 
 /**
@@ -16,12 +16,12 @@ const propTypes = {
  */
 const ContainerHeader = ({
   children,
-  header,
+  float,
 }) => (
   <div className="ContainerHeader">
-    {header && <div className="ContainerHeader--header">{header}</div>}
+    <div className="ContainerHeader--header">{children}</div>
     <ContainerFloat>
-      {children}
+      {float}
     </ContainerFloat>
   </div>
 );

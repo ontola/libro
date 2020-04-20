@@ -4,10 +4,10 @@ import React from 'react';
 import CardFloat from '../../topologies/Card/CardFloat';
 
 const propTypes = {
-  /** The children float to the top right */
+  /** The children float to the top left */
   children: PropTypes.node,
-  /** The header floats to the top left */
-  header: PropTypes.node,
+  /** The float content floats to the top right */
+  float: PropTypes.node,
 };
 
 /**
@@ -16,12 +16,12 @@ const propTypes = {
  */
 const CardHeader = ({
   children,
-  header,
+  float,
 }) => (
   <div className="CardHeader">
-    {header && <div className="CardHeader--header">{header}</div>}
+    <div className="CardHeader--header">{children}</div>
     <CardFloat>
-      {children}
+      {float}
     </CardFloat>
   </div>
 );
