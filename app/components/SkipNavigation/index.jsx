@@ -50,7 +50,7 @@ const SkipNavigation = () => {
         href="#start-of-content"
       >
         <FormattedMessage
-          defaultMessage="Skip to main"
+          defaultMessage="Skip navigation"
           id="https://app.argu.co/i18n/navbar/skipToMain"
         />
       </a>

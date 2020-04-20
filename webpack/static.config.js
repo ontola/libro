@@ -12,7 +12,7 @@ const { BugsnagSourceMapUploaderPlugin } = require('webpack-bugsnag-plugins');
 const ManifestPlugin = require('webpack-assets-manifest');
 const merge = require('webpack-merge');
 
-const babelrc = require('../.babelrc');
+const babelrc = require('../babel.config.json');
 const { bundles } = require('../bundleConfig');
 
 const common = require('./common.config');

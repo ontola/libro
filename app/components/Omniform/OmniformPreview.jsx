@@ -49,7 +49,7 @@ const OmniformPreview = ({
       <Resource subject={app.c_a} topology={formFooterTopology} />
       <span className="Omniform__preview-text">
         <FormattedMessage
-          defaultMessage="Share your response..."
+          defaultMessage="Share a response..."
           id="https://app.argu.co/i18n/forms/omniform/newResponsePreview"
           values={{
             type: (

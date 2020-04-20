@@ -52,14 +52,16 @@ function calculateItemsToShow(inputValue, selectedItem, options, lrs) {
   return options;
 }
 
-function emptyText(formatMessage, searchTemplate, inputValue) {
+function emptyText(fm, searchTemplate, inputValue) {
   if (searchTemplate) {
-    return formatMessage(
-      messages[(inputValue && inputValue.length > 0) ? 'noMatchingItems' : 'typeToSearch']
-    );
+    if (inputValue && inputValue.length > 0) {
+      return fm(messages.noMatchingItems);
+    }
+
+    return fm(messages.typeToSearch);
   }
 
-  return formatMessage(messages.noMatchingItems);
+  return fm(messages.noMatchingItems);
 }
 
 function handleStateChange(options, changes, setState, lrs, searchTemplate, onOptionsChange) {

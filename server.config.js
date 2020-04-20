@@ -12,9 +12,7 @@ process.env.BABEL_ENV = TARGET;
 const config = {
   devtool: process.env.NODE_ENV === 'production' ? 'cheap-source-map' : false,
 
-  entry: [
-    path.resolve('./server.js'),
-  ],
+  entry: path.resolve('./server.js'),
 
   externals: [
     // Application libraries
@@ -29,7 +27,6 @@ const config = {
     'ioredis',
     'isomorphic-fetch',
     'morgan',
-    'rdflib',
     'request',
     'rimraf',
     'shrink-ray-current',
@@ -47,11 +44,6 @@ const config = {
     'webpack-merge',
     'webpack-pwa-manifest',
     'workbox-webpack-plugin',
-
-    // Giant and unused libraries
-    'jsonld',
-    'solid-auth-client',
-    'solid-auth-cli',
   ],
 
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
@@ -72,7 +64,6 @@ const config = {
           {
             loader: 'babel-loader',
             query: {
-              babelrc: false,
               comments: false,
               compact: false,
               minified: false,
@@ -88,9 +79,9 @@ const config = {
   },
 
   output: {
-    filename: 'private/server.js',
+    filename: 'server.js',
     libraryTarget: 'commonjs2',
-    path: path.resolve(`${__dirname}/dist`),
+    path: path.resolve(`${__dirname}/dist/private`),
   },
 
   plugins: [

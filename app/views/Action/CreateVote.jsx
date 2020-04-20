@@ -101,9 +101,9 @@ function useCurrentOption(parent, subject) {
   return currentOption;
 }
 
-function getTitle(variant, parentType, expired, formatMessage) {
+function getTitle(variant, parentType, expired, fm) {
   if (expired) {
-    return formatMessage(messages.closedMessage);
+    return fm(messages.closedMessage);
   }
 
   if (rdf.equals(parentType, argu.ProArgument) || rdf.equals(parentType, argu.ConArgument)) {
@@ -111,11 +111,11 @@ function getTitle(variant, parentType, expired, formatMessage) {
   }
 
   if (variant === 'yes') {
-    return formatMessage(messages.proMessage);
+    return fm(messages.proMessage);
   } else if (variant === 'no') {
-    return formatMessage(messages.conMessage);
+    return fm(messages.conMessage);
   } else if (variant === 'other') {
-    return formatMessage(messages.neutralMessage);
+    return fm(messages.neutralMessage);
   }
 
   return null;
