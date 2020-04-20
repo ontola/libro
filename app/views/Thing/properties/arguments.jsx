@@ -59,9 +59,11 @@ const Arguments = ({
 };
 
 Arguments.propTypes = {
+  children: PropTypes.node,
   conArguments: linkType,
   pageSize: PropTypes.number,
   proArguments: linkType,
+  subject: subjectType,
 };
 
 const ArgumentsData = link({

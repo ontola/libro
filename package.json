@@ -57,7 +57,7 @@
     "@ontola/link-devtools": "^2.0.1",
     "@ontola/memoized-factory": "^2.0.0",
     "@ontologies/as": "^1.0.3",
-    "@ontologies/core": "^2.0.0",
+    "@ontologies/core": "^2.0.1",
     "@ontologies/dcterms": "^1.0.0",
     "@ontologies/foaf": "^1.0.0",
     "@ontologies/ld": "^1.0.0",

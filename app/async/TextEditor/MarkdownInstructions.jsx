@@ -33,7 +33,7 @@ const MarkdownInstructions = () => {
         theme="transparant"
         onClick={() => setModal(true)}
       >
-      Markdown hulp
+        Markdown hulp
       </Button>
       <Modal
         aria-labelledby="Instructies voor opmaak tonen"

@@ -1,3 +1,5 @@
+import { linkedPropType } from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 const DetailImage = ({ linkedProp, title }) => linkedProp && (
@@ -8,5 +10,10 @@ const DetailImage = ({ linkedProp, title }) => linkedProp && (
     src={linkedProp.value}
   />
 );
+
+DetailImage.propTypes = {
+  linkedProp: linkedPropType,
+  title: PropTypes.string,
+};
 
 export default DetailImage;
