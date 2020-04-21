@@ -93,7 +93,7 @@ SearchResultFull.hocs = [withRouter];
 SearchResultFull.mapDataToProps = {
   collectionDisplay: ontola.collectionDisplay,
   query: argu.query,
-  searchTemplate: ontola.searchTemplate,
+  searchTemplate: ontola.iriTemplate,
   took: argu.took,
   totalItems: as.totalItems,
 };
@@ -107,7 +107,7 @@ SearchResultFull.propTypes = {
     formatMessage: PropTypes.func,
   }),
   query: linkType,
-  searchTemplate: PropTypes.string,
+  searchTemplate: linkType,
   subject: subjectType,
   took: linkType,
   totalItems: linkType,

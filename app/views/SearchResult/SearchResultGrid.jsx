@@ -34,7 +34,7 @@ SearchResultGrid.hocs = [withRouter];
 SearchResultGrid.mapDataToProps = {
   collectionDisplay: ontola.collectionDisplay,
   query: argu.query,
-  searchTemplate: ontola.searchTemplate,
+  searchTemplate: ontola.iriTemplate,
   took: argu.took,
   totalItems: as.totalItems,
 };
@@ -47,7 +47,7 @@ SearchResultGrid.propTypes = {
     formatMessage: PropTypes.func,
   }),
   query: linkType,
-  searchTemplate: PropTypes.string,
+  searchTemplate: linkType,
 };
 
 export default register(SearchResultGrid);

@@ -84,7 +84,7 @@ SearchForm.propTypes = {
     formatMessage: PropTypes.func,
   }),
   query: linkType,
-  searchTemplate: PropTypes.string,
+  searchTemplate: linkType,
 };
 
 export default SearchForm;
