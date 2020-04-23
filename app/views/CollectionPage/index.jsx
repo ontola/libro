@@ -17,6 +17,7 @@ import { fullResourceTopology } from '../../topologies/FullResource';
 import { pageTopology } from '../../topologies/Page';
 
 import CollectionPageInline from './CollectionPageInline';
+import Empty from './properties/empty';
 import Items from './properties/items';
 import Name from './properties/name';
 import Views from './properties/views';
@@ -103,6 +104,7 @@ export default [
   register(DefaultCollectionPage),
   register(PageCollectionPage),
   CollectionPageInline,
+  Empty,
   ...Items,
   Name,
   ...Views,

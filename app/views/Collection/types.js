@@ -6,7 +6,6 @@ import ontola from '../../ontology/ontola';
 export const CollectionTypes = [
   ontola.Collection,
   as.Collection,
-  ontola.FilteredCollection,
   ontola.SearchResult,
   hydra.Collection,
 ];

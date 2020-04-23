@@ -24,6 +24,7 @@ import { listToArr } from '../../helpers/data';
 import { retrievePath } from '../../helpers/iris';
 import { tryParseInt } from '../../helpers/numbers';
 import { useCurrentPage } from '../../hooks/useCurrentPage';
+import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
@@ -170,7 +171,7 @@ export default function getCollection(
 
     if (tryParseInt(totalItems) === 0) {
       if (!renderWhenEmptyProp && !renderWhenEmpty) {
-        return <div data-test="empty" />;
+        return <Property label={argu.query} setCurrentPage={setCurrentPage} />;
       }
       const createAction = lrs.getResourceProperty(subject, ontola.createAction);
       const actionStatus = createAction

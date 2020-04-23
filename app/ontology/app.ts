@@ -42,6 +42,7 @@ export default {
   bannerMembers: app('banners?page=1#members'),
   c_a: app('c_a'),
   currentPage: app('currentPage'),
+  empty: app('empty'),
   menu: app('menu'),
   n: app('n'),
   omniform: app('omniform'),

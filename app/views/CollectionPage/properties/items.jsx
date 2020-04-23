@@ -1,6 +1,7 @@
 import as from '@ontologies/as';
 import rdf from '@ontologies/core';
 import {
+  Property,
   Resource,
   ReturnType,
   linkType,
@@ -8,19 +9,15 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 
-import CardContent from '../../../components/Card/CardContent';
 import GridItem from '../../../components/Grid/GridItem';
 import { LoadingCardFixed } from '../../../components/Loading';
-import { isTableDisplay } from '../../../helpers/collections';
 import { tryParseInt } from '../../../helpers/numbers';
+import app from '../../../ontology/app';
 import ontola from '../../../ontology/ontola';
 import CardRow from '../../../topologies/Card/CardRow';
 import { CollectionViewTypes } from '../types';
 import { allTopologies } from '../../../topologies';
-import TableRow from '../../../topologies/TableRow';
-import TableCell from '../../../topologies/TableCell';
 
 const itemList = (props, columns, separator) => {
   let itemWrapper = React.Fragment;
@@ -68,39 +65,23 @@ const Items = (props) => {
     columns,
     collectionDisplay,
     depth,
-    empty,
     items,
     linkedProp,
     separator,
+    topology,
     totalCount,
   } = props;
   let children = null;
 
   if (tryParseInt(totalCount) === 0) {
-    if (empty) {
-      return empty();
-    }
-
-    const message = (
-      <FormattedMessage
-        defaultMessage="No items yet"
-        id="https://app.argu.co/i18n/collection/empty/message"
+    return (
+      <Property
+        forceRender
+        collectionDisplay={collectionDisplay}
+        label={app.empty}
+        topology={topology}
       />
     );
-
-    if (rdf.equals(collectionDisplay, ontola['collectionDisplay/card'])) {
-      return <CardContent endSpacing>{message}</CardContent>;
-    }
-
-    if (rdf.equals(collectionDisplay, ontola['collectionDisplay/grid'])) {
-      return <GridItem endSpacing>{message}</GridItem>;
-    }
-
-    if (isTableDisplay(collectionDisplay)) {
-      return <TableRow><TableCell>{message}</TableCell></TableRow>;
-    }
-
-    return message;
   }
 
   if (Array.isArray(items) && items.length === 0) {
