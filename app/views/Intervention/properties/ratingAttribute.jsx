@@ -34,7 +34,7 @@ const RatingAttribute = ({
   labelFrom,
   linkedProp,
 }) => {
-  const labelObj = useProperty(labelFrom);
+  const [labelObj] = useProperty(labelFrom);
   const labelValue = useResourceProperty(labelObj, schema.name);
 
   const icon = label.value.includes('Costs') ? 'euro' : 'star';
