@@ -56,9 +56,8 @@ codeQuality:
 test:
   stage: test
   script:
-    - yarn run lint:style
+    - yarn run test
     - ./node_modules/.bin/tsc -p tsconfig.json --noEmit
-
 
 autoTagProduction:
   stage: tag
