@@ -32,7 +32,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  disableRich: false,
+  disableRich: true,
 };
 
 const UPDATE_DELAY = 300;
