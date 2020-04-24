@@ -29,11 +29,14 @@ import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
 import { CollectionTypes } from './types';
 
-export default function getCollection({
-  omniform = false,
-  renderWhenEmpty = true,
-  topology = [],
-} = {}) {
+export default function getCollection(
+  name,
+  {
+    omniform = false,
+    renderWhenEmpty = true,
+    topology = [],
+  } = {}
+) {
   const Collection = ({
     clickToOpen,
     collectionDisplay,
@@ -198,6 +201,8 @@ export default function getCollection({
       </ResourceBoundary>
     );
   };
+
+  Collection.displayName = `Collection(${name})`;
 
   Collection.type = CollectionTypes;
 

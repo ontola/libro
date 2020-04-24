@@ -34,7 +34,7 @@ export default [
   CollectionNavbar,
   CollectionTableCell,
   register(
-    getCollection({
+    getCollection('FullResource', {
       renderWhenEmpty: true,
       topology: [
         fullResourceTopology,
@@ -42,7 +42,7 @@ export default [
     })
   ),
   register(
-    getCollection({
+    getCollection('Container', {
       omniform: true,
       renderWhenEmpty: false,
       topology: [
@@ -51,12 +51,12 @@ export default [
     })
   ),
   register(
-    getCollection({
+    getCollection('AlertDialog', {
       topology: alertDialogTopology,
     })
   ),
   register(
-    getCollection({
+    getCollection('CardAndCardMainAndGrid', {
       renderWhenEmpty: true,
       topology: [
         cardTopology,
@@ -66,7 +66,7 @@ export default [
     })
   ),
   register(
-    getCollection({
+    getCollection('TabPane', {
       renderWhenEmpty: true,
       topology: [
         tabPaneTopology,
