@@ -1,12 +1,18 @@
-import { createNS } from '@ontologies/core';
+import rdf, { createNS } from '@ontologies/core';
 import foaf from '@ontologies/foaf';
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
 import { arrayToSeqQuads } from '@rdfdev/collections';
+import { getMetaContent } from '../helpers/arguHelpers';
 
-import { frontendIRIStr } from '../middleware/app';
 import dbo from './dbo';
 import wdt from './wdt';
+
+export const website = getMetaContent('website-iri') || 'https://example.com';
+export const frontendIRI = rdf.namedNode(website!);
+export const frontendIRIStr = frontendIRI.value;
+export const frontendPathname = new URL(frontendIRIStr).pathname;
+export const frontendOrigin = new URL(frontendIRIStr).origin;
 
 const app = createNS(frontendIRIStr.endsWith('/') ? frontendIRIStr : `${frontendIRIStr}/`);
 

@@ -2,36 +2,54 @@
  * LinkedRenderStore app middleware
  */
 
-import rdf, { createNS, NamedNode } from '@ontologies/core';
+import rdf, { NamedNode, Node, Quadruple, SomeTerm } from '@ontologies/core';
 import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
+import { createActionPair } from '@rdfdev/actions';
 import { MiddlewareActionHandler, MiddlewareWithBoundLRS } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
-
-import { getMetaContent } from '../helpers/arguHelpers';
+import app from '../ontology/app';
 import http from '../ontology/http';
 import ll from '../ontology/ll';
 import ontola from '../ontology/ontola';
+import sp from '../ontology/sp';
 
-export const website = getMetaContent('website-iri') || 'https://example.com';
-export const frontendIRI = rdf.namedNode(website!);
-export const frontendIRIStr = frontendIRI.value;
-export const frontendPathname = new URL(frontendIRIStr).pathname;
-export const frontendOrigin = new URL(frontendIRIStr).origin;
+const pageRenderBase = (subject: SomeTerm, baseCollection: SomeTerm, collectionDisplay: SomeTerm): NamedNode => {
+  const subjParams = new URL(subject.value).searchParams;
+  if (!subjParams.get('display')) {
+    return subject as NamedNode;
+  }
 
-const app = createNS(frontendIRIStr.endsWith('/') ? frontendIRIStr : `${frontendIRIStr}/`);
+  const renderBase = new URL(baseCollection.value);
+  renderBase.searchParams.set(
+    'display',
+    collectionDisplay.value.replace('https://ns.ontola.io/collectionDisplay/', ''),
+  );
+  if (subjParams.get('type')) {
+    renderBase.searchParams.set('type', subjParams.get('type')!);
+  }
+
+  return rdf.namedNode(renderBase.toString());
+};
+
+interface AppActionMap {
+  newPage: Node;
+  subject: Node;
+}
 
 export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoundLRS => {
 
   (store as any).actions.app = {};
+
+  const { dispatch, parse } = createActionPair<AppActionMap>(app.ns, store);
 
   /**
    * App menu setup
    */
 
   store.processDelta([
-      rdf.quad(app('menu'), rdfx.type, app('Menu')),
-      rdf.quad(app('menu'), http.statusCode, rdf.literal(200), ll.meta),
+      rdf.quad(app.menu, rdfx.type, app.Menu),
+      rdf.quad(app.menu, http.statusCode, rdf.literal(200), ll.meta),
   ], true);
 
   /**
@@ -39,7 +57,7 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
    */
   const signInLink = (r?: NamedNode) => {
     const postFix = r ? `?r=${encodeURIComponent(r.value)}` : '';
-    return app('u/sign_in' + postFix);
+    return app.ns('u/sign_in' + postFix);
   };
 
   const createSignIn = (r?: NamedNode) => {
@@ -49,7 +67,7 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
       rdf.quad(
           resourceIRI,
           rdfx.type,
-          app('AppSignIn'),
+          app.AppSignIn,
           ll.add,
       ),
       rdf.quad(
@@ -83,7 +101,33 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
   };
 
   /**
+   * Collections
+   */
+  (store as any).actions.app.changePage = (subject: Node, newPage: Node) => dispatch(
+    'changePage',
+    { subject, newPage },
+  );
+
+  /**
    * Handler
    */
-  return (next: MiddlewareActionHandler) => next;
+  return (next: MiddlewareActionHandler) => (iri: NamedNode, opts: any): Promise<any> => {
+    const { base, params: { newPage, subject } } = parse(iri);
+
+    switch (base) {
+      case app.ns('changePage'): {
+        const baseCollection = store.getResourceProperty<NamedNode>(subject!, ontola.baseCollection)!;
+        const collectionDisplay = store.getResourceProperty<NamedNode>(subject!, ontola.collectionDisplay)!;
+        const renderBase = pageRenderBase(subject!, baseCollection, collectionDisplay);
+        const delta: Quadruple[] = newPage && newPage !== renderBase
+          ? [[renderBase, app.currentPage, newPage, ontola.replace]]
+          : [[renderBase, app.currentPage, sp.Variable, ontola.remove]];
+
+        return store.processDelta(delta, true);
+      }
+      default:
+    }
+
+    return next(iri, opts);
+  };
 };

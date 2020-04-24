@@ -9,6 +9,7 @@ import { createAction } from 'redux-actions';
 import { setMapAccessToken } from '../async/MapView/actions';
 import { safeCredentials } from '../helpers/arguHelpers';
 import { handle } from '../helpers/logging';
+import { frontendIRI } from '../ontology/app';
 import {
   AFE_API_GET_MAP_ACCESS_TOKEN,
   AFE_API_LOGIN,
@@ -28,7 +29,6 @@ import {
   wrongPassword,
 } from '../state/form/actions';
 
-import { frontendIRI } from './app';
 import { redirectPage, reloadPage } from './reloading';
 
 export const apiLogin = createAction(AFE_API_LOGIN);

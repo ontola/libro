@@ -1,6 +1,6 @@
 import { isBlankNode, isNamedNode, NamedNode } from '@ontologies/core';
 
-import { frontendOrigin, frontendPathname } from '../middleware/app';
+import { frontendOrigin, frontendPathname } from '../ontology/app';
 
 const FABase = 'http://fontawesome.io/icon/';
 

@@ -11,11 +11,11 @@ import { createStore, MiddlewareFn } from 'link-lib';
 
 import { FRONTEND_ACCEPT } from '../config';
 import analyticsMiddleware from '../middleware/analyticsMiddleware';
-import { appMiddleware, website } from '../middleware/app';
+import { appMiddleware} from '../middleware/app';
 import execFilter from '../middleware/execFilter';
 import logging from '../middleware/logging';
 import ontolaMiddleware from '../middleware/ontolaMiddleware';
-import { appOntology } from '../ontology/app';
+import { appOntology, website } from '../ontology/app';
 import argu from '../ontology/argu';
 import link from '../ontology/link';
 import meeting from '../ontology/meeting';

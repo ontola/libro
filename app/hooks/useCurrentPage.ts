@@ -8,7 +8,6 @@ import { useHistory } from 'react-router';
 
 import { retrievePath } from '../helpers/iris';
 import app from '../ontology/app';
-import ontola from '../ontology/ontola';
 
 export const useCurrentPage = (redirectPagination: boolean, renderedPage: NamedNode) => {
   const lrs = useLRS();
@@ -23,11 +22,7 @@ export const useCurrentPage = (redirectPagination: boolean, renderedPage: NamedN
 
     return [renderedPage, redirectPage];
   } else {
-    const setCurrentPage = (newPage: NamedNode) => (
-      lrs.processDelta([
-        [subject, app.currentPage, newPage, newPage ? ontola.replace : ontola.remove],
-      ], true)
-    );
+    const setCurrentPage = (newPage: NamedNode) => lrs.actions.app.changePage(subject, newPage);
 
     return [currentPage, setCurrentPage];
   }

@@ -3,8 +3,7 @@ import React from 'react';
 import MediaQuery from 'react-responsive';
 
 import { values } from '../../helpers/ssr';
-import { frontendIRI } from '../../middleware/app';
-import app from '../../ontology/app';
+import app, { frontendIRI } from '../../ontology/app';
 import ontola from '../../ontology/ontola';
 import { mediaQueries } from '../shared/config';
 

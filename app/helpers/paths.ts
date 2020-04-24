@@ -3,8 +3,7 @@ import { Location } from 'history';
 import { Map } from 'immutable';
 import { NamespaceMap } from 'link-lib';
 
-import { frontendPathname } from '../middleware/app';
-import app from '../ontology/app';
+import app, { frontendPathname } from '../ontology/app';
 import appSlashless from '../ontology/appSlashless';
 
 export function currentLocation(location: Location<any>,
