@@ -78,6 +78,7 @@ export default function generateLRS() {
   if (__CLIENT__ && websocketPath) {
     initializeCable(lrs, websocketPath).then(() => {
       subscribeDeltaChannel(lrs, 'UserChannel');
+      subscribeDeltaChannel(lrs, 'RootChannel');
     });
   }
 
