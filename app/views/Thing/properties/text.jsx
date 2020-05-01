@@ -28,16 +28,6 @@ const Text = ({ linkedProp }) => <Markdown data-test="Thing-text" text={linkedPr
 
 Text.propTypes = propTypes;
 
-const TextInline = ({ linkedProp }) => (
-  <Markdown
-    inline
-    data-test="Thing-text"
-    text={linkedProp.value}
-  />
-);
-
-TextInline.propTypes = propTypes;
-
 const propTypesCollection = {
   linkedProp: linkedPropType,
   minCharacters: PropTypes.number,
@@ -91,7 +81,7 @@ export default [
     ]
   ),
   LinkedRenderStore.registerRenderer(
-    TextInline,
+    TextStripped,
     schema.Thing,
     [schema.text, schema.description],
     cardListTopology

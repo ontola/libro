@@ -49,8 +49,6 @@ class Markdown extends React.PureComponent {
   static propTypes = {
     /** Array of strings that need to be highlighted */
     highlightedText: PropTypes.string,
-    /** Renders all children inline */
-    inline: PropTypes.bool,
     /** Disable creation of anchor elements in the output */
     noLinks: PropTypes.bool,
     /** Remove padding */
@@ -62,7 +60,6 @@ class Markdown extends React.PureComponent {
   };
 
   static defaultProps = {
-    inline: false,
     tabbable: true,
   };
 
@@ -80,7 +77,6 @@ class Markdown extends React.PureComponent {
   render() {
     const {
       highlightedText,
-      inline,
       noLinks,
       noSpacing,
       tabbable,
@@ -94,7 +90,6 @@ class Markdown extends React.PureComponent {
 
     const classes = classNames({
       Markdown: true,
-      'Markdown--inline': inline,
       'Markdown--no-spacing': noSpacing,
     });
 
