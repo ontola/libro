@@ -61,7 +61,6 @@ export const components = {
   LinkedDetailDate: component('LinkedDetailDate'),
   Loading: component('Loading'),
   Markdown: component('Markdown'),
-  MarkdownFixedPreview: component('MarkdownFixedPreview'),
   MenuItem: component('MenuItem'),
   MenuSectionLabel: component('MenuSectionLabel'),
   Metadata: component('Metadata'),

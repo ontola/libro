@@ -1,6 +1,8 @@
+import { convertToRaw } from 'draft-js';
 import { draftToMarkdown, markdownToDraft } from 'markdown-draft-js';
 import { editorStateFromRaw } from 'megadraft';
-import { convertToRaw } from 'draft-js';
+import React from 'react';
+import removeMd from 'remove-markdown';
 
 export const createDraftFromMarkdown = (markdownValue) => {
   if (markdownValue === '') {
@@ -17,3 +19,19 @@ export const createMarkdownFromDraft = (contentObject) => {
 
   return '';
 };
+
+const removeMdOpts = {
+  // Allow Github Flavored markdown
+  gfm: true,
+};
+
+/**
+ * Removes markdown syntax, replaces newlines with spaces.
+ * @param {string} text
+ * @returns {string}
+ */
+export const stripMarkdown = (text) => React.useMemo(() => {
+  const strippedText = removeMd(text, removeMdOpts);
+
+  return strippedText.replace(/[\r\n]/g, ' ');
+}, [text]);

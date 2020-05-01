@@ -2,7 +2,6 @@ import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import {
   linkedPropType,
-  register,
   subjectType,
   withLinkCtx,
 } from 'link-redux';
@@ -11,17 +10,13 @@ import React from 'react';
 
 import CollapseText from '../../../components/CollapseText';
 import Markdown from '../../../components/Markdown';
-import MarkdownFixedPreview from '../../../components/MarkdownFixedPreview';
-import ontola from '../../../ontology/ontola';
+import { stripMarkdown } from '../../../helpers/markdownHelper';
 import { cardTopology } from '../../../topologies/Card';
-import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
 import { cardListTopology } from '../../../topologies/Card/CardList';
 import { cardMainTopology } from '../../../topologies/Card/CardMain';
 import { cardRowTopology } from '../../../topologies/Card/CardRow';
 import { cardMicroRowTopology } from '../../../topologies/Card/CardMicroRow';
 import { containerTopology } from '../../../topologies/Container';
-import { hoverBoxTopology } from '../../../topologies/HoverBox';
-import { popupTopology } from '../../../topologies/Popup';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { gridTopology } from '../../../topologies/Grid';
 
@@ -43,47 +38,18 @@ const TextInline = ({ linkedProp }) => (
 
 TextInline.propTypes = propTypes;
 
-/**
- * Only displays text when there is no cover image, and does not overflow.
- * Note: It doesn't render inline anchor elements since it should always be wrapped in an outer
- * anchor.
- */
-const TextCutoff = ({ coverPhoto, text }) => {
-  if (!text || coverPhoto) {
-    return null;
-  }
-
-  return (
-    <MarkdownFixedPreview text={text.value} />
-  );
-};
-
-TextCutoff.type = schema.Thing;
-
-TextCutoff.property = [schema.text, schema.description];
-
-TextCutoff.topology = [
-  cardFixedTopology,
-  hoverBoxTopology,
-  popupTopology,
-];
-
-TextCutoff.mapDataToProps = {
-  coverPhoto: ontola.coverPhoto,
-  text: [schema.text, schema.description],
-};
-
-TextCutoff.propTypes = {
-  coverPhoto: linkedPropType,
-  text: linkedPropType,
-};
-
 const propTypesCollection = {
   linkedProp: linkedPropType,
   minCharacters: PropTypes.number,
   noSpacing: PropTypes.bool,
   subject: subjectType,
 };
+
+const TextStripped = ({ linkedProp }) => (
+  <span>{stripMarkdown(linkedProp.value)}</span>
+);
+
+TextStripped.propTypes = propTypes;
 
 const TextCollapsed = ({
   linkedProp,
@@ -130,5 +96,4 @@ export default [
     [schema.text, schema.description],
     cardListTopology
   ),
-  register(TextCutoff),
 ];

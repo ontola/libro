@@ -234,6 +234,7 @@
     "redux-batched-actions": "^0.4.1",
     "redux-immutable": "^4.0.0",
     "redux-thunk": "^2.3.0",
+    "remove-markdown": "^0.3.0",
     "reselect": "^3.0.1",
     "retire": "^2.0.2",
     "sass-lint": "^1.13.1",

@@ -43,6 +43,7 @@ import RedirectUrlTable from './properties/redirectUrlTable';
 import SuperEvent from './properties/superEvent';
 import StartDate from './properties/startDate';
 import Text from './properties/text';
+import TextCardFixed from './properties/textCardFixed';
 import TopComment from './properties/topComment';
 import TrashedAt from './properties/trashedAt';
 import VoteEvents from './properties/voteEvents';
@@ -139,6 +140,7 @@ export default [
   RedirectUrlTable,
   StartDate,
   ...Text,
+  TextCardFixed,
   TopComment,
   TrashedAt,
   VoteEvents,

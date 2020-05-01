@@ -58,7 +58,6 @@ import CompLinkLinkLabel from './components/Link/LinkLabel';
 import CompLinkedDetailDate from './components/LinkedDetailDate/index';
 import CompLoading from './components/Loading/index';
 import CompMarkdown from './components/Markdown/index';
-import CompMarkdownFixedPreview from './components/MarkdownFixedPreview/index';
 import CompMenuItem from './components/MenuItem/index';
 import CompMenuSectionLabel from './components/MenuSectionLabel/index';
 import CompMetadata from './components/Metadata/index';
@@ -157,7 +156,6 @@ export const componentMap = {
   [rdf.id(components.LinkedDetailDate)]: CompLinkedDetailDate,
   [rdf.id(components.Loading)]: CompLoading,
   [rdf.id(components.Markdown)]: CompMarkdown,
-  [rdf.id(components.MarkdownFixedPreview)]: CompMarkdownFixedPreview,
   [rdf.id(components.MenuItem)]: CompMenuItem,
   [rdf.id(components.MenuSectionLabel)]: CompMenuSectionLabel,
   [rdf.id(components.Metadata)]: CompMetadata,
