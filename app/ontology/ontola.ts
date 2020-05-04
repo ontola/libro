@@ -87,6 +87,7 @@ export default {
   organization: ontola('organization'),
   pages: ontola('pages'),
   parentMenu: ontola('parentMenu'),
+  placeholder: ontola('placeholder'),
   profileMenu: ontola('profileMenu'),
   publishAction: ontola('publishAction'),
   query: ontola('query'),

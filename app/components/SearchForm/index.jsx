@@ -4,28 +4,17 @@ import { linkType, useLinkRenderContext } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Field, Form } from 'react-final-form';
-import {
-  FormattedMessage,
-  defineMessages,
-  useIntl,
-} from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import Button from '../Button';
 import { useIRITemplate } from '../../hooks/useIRITemplate';
 
-const messages = defineMessages({
-  placeholder: {
-    defaultMessage: 'Enter a query',
-    id: 'https://app.argu.co/i18n/search/input/placeholder',
-  },
-});
-
 const SearchForm = ({
   autoFocus,
+  placeholder,
   query,
   setCurrentPage,
 }) => {
-  const { formatMessage } = useIntl();
   const queryNormalized = query?.value ?? '';
   const { subject } = useLinkRenderContext();
   const { iriSetParam } = useIRITemplate(subject);
@@ -46,7 +35,7 @@ const SearchForm = ({
             className="SearchResult__form-input"
             component="input"
             name="q"
-            placeholder={formatMessage(messages.placeholder)}
+            placeholder={placeholder?.value}
             type="search"
           />
           <Button
@@ -80,6 +69,7 @@ SearchForm.propTypes = {
   intl: PropTypes.shape({
     formatMessage: PropTypes.func,
   }),
+  placeholder: linkType,
   query: linkType,
   setCurrentPage: PropTypes.func,
 };

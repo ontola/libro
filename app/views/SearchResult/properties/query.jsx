@@ -13,10 +13,12 @@ import { allTopologies } from '../../../topologies';
 const Query = ({
   iriTemplate,
   linkedProp,
+  placeholder,
   setCurrentPage,
 }) => (
   <SearchForm
     iriTemplate={iriTemplate}
+    placeholder={placeholder}
     query={linkedProp}
     setCurrentPage={setCurrentPage}
   />
@@ -30,11 +32,13 @@ Query.topology = allTopologies;
 
 Query.mapDataToProps = {
   iriTemplate: ontola.iriTemplate,
+  placeholder: ontola.placeholder,
 };
 
 Query.propTypes = {
   iriTemplate: linkType,
   linkedProp: linkedPropType,
+  placeholder: linkType,
   setCurrentPage: PropTypes.func,
 };
 
