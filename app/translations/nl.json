@@ -135,7 +135,6 @@
   "https://app.argu.co/i18n/schema:startDate/label": "Begin: {date}",
   "https://app.argu.co/i18n/search/button/label": "Zoek",
   "https://app.argu.co/i18n/search/header/prefix": "Zoek in:",
-  "https://app.argu.co/i18n/search/input/placeholder": "Vul een zoekopdracht in",
   "https://app.argu.co/i18n/session/confirmLabel": "Bevestig",
   "https://app.argu.co/i18n/session/continueLabel": "Ga verder",
   "https://app.argu.co/i18n/session/noPassword": "Dit account heeft nog geen wachtwoord. We hebben zojuist een nieuw email gestuurd waarmee een wachtwoord kan worden ingesteld. Doe dit eerst voor je verder kan gaan.",

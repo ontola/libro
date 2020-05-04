@@ -9,6 +9,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import argu from '../../ontology/argu';
+import ontola from '../../ontology/ontola';
 import PageHeader from '../../topologies/PageHeader';
 import Card from '../../topologies/Card';
 import CardContent from '../../components/Card/CardContent';
@@ -54,7 +55,7 @@ OrganizationPage.type = [
 OrganizationPage.topology = pageTopology;
 
 OrganizationPage.mapDataToProps = {
-  hideHeader: argu.hideHeader,
+  hideHeader: ontola.hideHeader,
   homepage: foaf.homepage,
   name: schema.name,
 };

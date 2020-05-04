@@ -28,7 +28,7 @@ describe('Search', () => {
     [ontola.collectionType]: ontola['collectionType/paginated'],
     [ontola.iriTemplate]: example.ns('test/search{?q,filter%5B%5D*,sort%5B%5D*,page,page_size}{#fragment}').value,
     [dcterms.identifier]: testIRI,
-    [argu.query]: 'keyword',
+    [ontola.query]: 'keyword',
     [as.totalItems]: 3,
     [as.name]: '3 results found',
     [as.first]: firstPage,

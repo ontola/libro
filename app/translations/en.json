@@ -135,7 +135,6 @@
   "https://app.argu.co/i18n/schema:startDate/label": "start date: {date}",
   "https://app.argu.co/i18n/search/button/label": "Search",
   "https://app.argu.co/i18n/search/header/prefix": "Search in:",
-  "https://app.argu.co/i18n/search/input/placeholder": "Enter a query",
   "https://app.argu.co/i18n/session/confirmLabel": "Confirm",
   "https://app.argu.co/i18n/session/continueLabel": "Continue",
   "https://app.argu.co/i18n/session/noPassword": "You account does not have a password yet. We've just send you a new email to set a password. Please check your inbox before continuing.",

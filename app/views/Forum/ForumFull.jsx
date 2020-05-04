@@ -44,7 +44,7 @@ ForumFull.type = [argu.ContainerNode, schema.WebPage];
 
 ForumFull.mapDataToProps = {
   coverPhoto: ontola.coverPhoto,
-  hideHeader: argu.hideHeader,
+  hideHeader: ontola.hideHeader,
   name: schema.name,
   widgets: ontola.widgets,
 };

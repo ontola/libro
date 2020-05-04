@@ -6,7 +6,6 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import SearchForm from '../../../components/SearchForm';
 import { allTopologies } from '../../../topologies';
@@ -25,7 +24,7 @@ const Query = ({
 
 Query.type = ontola.SearchResult;
 
-Query.property = argu.query;
+Query.property = ontola.query;
 
 Query.topology = allTopologies;
 

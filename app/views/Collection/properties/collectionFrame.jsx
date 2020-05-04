@@ -11,7 +11,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { useSorting } from '../../../hooks/useSorting';
-import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import Card from '../../../topologies/Card';
 import CardAppendix from '../../../topologies/Card/CardAppendix';
@@ -47,7 +46,7 @@ const getFrame = (wrapper, topology) => {
 
         return (
           <Wrapper>
-            <Property label={argu.query} setCurrentPage={setCurrentPage} />
+            <Property label={ontola.query} setCurrentPage={setCurrentPage} />
             {header}
             <Grid container>
               {body}
@@ -111,7 +110,7 @@ const getFrame = (wrapper, topology) => {
 
         return (
           <Wrapper>
-            <Property label={argu.query} setCurrentPage={setCurrentPage} />
+            <Property label={ontola.query} setCurrentPage={setCurrentPage} />
             {header}
             {body}
             <div style={{ marginBottom: '1em' }}>
