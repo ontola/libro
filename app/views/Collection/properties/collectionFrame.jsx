@@ -60,6 +60,7 @@ const getFrame = (wrapper, topology) => {
 
         return (
           <Wrapper>
+            <Property label={ontola.query} setCurrentPage={setCurrentPage} />
             {header}
             <Card>
               <Table>
@@ -96,6 +97,7 @@ const getFrame = (wrapper, topology) => {
 
         return (
           <Wrapper>
+            <Property label={ontola.query} setCurrentPage={setCurrentPage} />
             {header}
             <Card>
               {body}
