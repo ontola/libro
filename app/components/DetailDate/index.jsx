@@ -87,6 +87,10 @@ const DetailDate = (props) => {
       || dateSubmitted
       || dateModified;
 
+    if (!date) {
+      return null;
+    }
+
     return <FormattedRelativeTime {...relativeTimeDestructure(date)} />;
   };
 
