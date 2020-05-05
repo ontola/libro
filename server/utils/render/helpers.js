@@ -12,9 +12,12 @@ const requiredFeatures = [
   'Array.prototype.values',
   'fetch',
   'DOMTokenList',
-  'Intl|always|gated',
-  'Intl.~en-US|always|gated',
-  'Intl.~nl-NL|always|gated',
+  'Intl',
+  'Intl.~en-US',
+  'Intl.~nl-NL',
+  'Intl.RelativeTimeFormat',
+  'Intl.RelativeTimeFormat.~locale.en',
+  'Intl.RelativeTimeFormat.~locale.nl',
   'Number.isFinite',
   'Number.isInteger',
   'Number.MAX_SAFE_INTEGER',
@@ -23,12 +26,13 @@ const requiredFeatures = [
   'Object.entries',
   'Object.values',
   'Promise',
-  'Promise.prototype.finally|gated',
+  'Promise.prototype',
   'Symbol',
   'Symbol.iterator',
+  'Symbol.for',
 ];
 
-const polyfillSrc = `https://cdn.polyfill.io/v2/polyfill.js?unknown=polyfill&features=${requiredFeatures.join(',')}`;
+const polyfillSrc = `https://cdn.polyfill.io/v3/polyfill.min.js?features=${requiredFeatures.join(',')}&flags=gated`;
 
 export const getUserData = (ctx) => {
   const user = ctx.getFromAccessToken('user');
