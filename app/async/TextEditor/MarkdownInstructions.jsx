@@ -42,10 +42,10 @@ const MarkdownInstructions = () => {
       >
         <div className={classes.paper}>
           <Button
-            className="Modal__close"
+            corner
             icon="times"
             theme="transparant"
-            onClick={() => setModal(true)}
+            onClick={() => setModal(false)}
           >
             Sluiten
           </Button>
