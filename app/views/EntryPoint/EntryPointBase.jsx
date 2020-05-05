@@ -1,5 +1,4 @@
 import RDFTypes from '@rdfdev/prop-types';
-import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
 import sh from '@ontologies/shacl';
 import HttpStatus from 'http-status-codes';
@@ -7,6 +6,7 @@ import { anyRDFValue } from 'link-lib';
 import {
   Resource,
   lrsType,
+  subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -56,7 +56,7 @@ class EntryPointBase extends React.PureComponent {
           return lrs
             .actions
             .app
-            .startSignIn(rdf.namedNode(this.props.form))
+            .startSignIn(this.props.subject)
             .then(Promise.reject);
         }
         if (e.response.status !== HttpStatus.UNPROCESSABLE_ENTITY) {
@@ -107,10 +107,14 @@ class EntryPointBase extends React.PureComponent {
 
 EntryPointBase.propTypes = {
   action: RDFTypes.namedNode,
-  form: PropTypes.string,
+  history: PropTypes.shape({
+    location: PropTypes.object.isRequired,
+    push: PropTypes.func,
+  }),
   lrs: lrsType,
   onDone: PropTypes.func,
   onStatusForbidden: PropTypes.func,
+  subject: subjectType,
 };
 
 export default EntryPointBase;

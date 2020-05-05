@@ -16,6 +16,7 @@ import { containerTopology } from '../../topologies/Container';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 import { contentDetailsTopology } from '../../topologies/ContentDetails';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
+import { footerTopology } from '../../topologies/Footer';
 import { gridTopology } from '../../topologies/Grid';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 import { pageTopology } from '../../topologies/Page';
@@ -42,6 +43,7 @@ class EntryPoint extends React.PureComponent {
     containerFloatTopology,
     contentDetailsTopology,
     detailsBarTopology,
+    footerTopology,
     gridTopology,
     omniformFieldsTopology,
     pageTopology

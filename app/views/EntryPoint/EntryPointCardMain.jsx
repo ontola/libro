@@ -1,6 +1,5 @@
 import schema from '@ontologies/schema';
-import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import { Property, link } from 'link-redux';
+import { Property, register } from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router';
@@ -10,9 +9,9 @@ import CardContent from '../../components/Card/CardContent';
 import Form from '../../containers/Form';
 import FormFooterRight from '../../components/Form/FooterRight';
 import ll from '../../ontology/ll';
+import { cardTopology } from '../../topologies/Card';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import FormFooter from '../../topologies/FormFooter/Footer';
-import { cardTopology } from '../../topologies/Card';
 
 import EntryPointBase from './EntryPointBase';
 
@@ -99,24 +98,21 @@ class EntryPointCardMain extends EntryPointBase {
   }
 }
 
-const EntryPointCardMainForm = link({
+EntryPointCardMain.type = schema.EntryPoint;
+
+EntryPointCardMain.topology = [
+  cardTopology,
+  cardMainTopology,
+];
+
+EntryPointCardMain.hocs = [withRouter];
+
+EntryPointCardMain.mapDataToProps = {
+  action: schema.isPartOf,
   httpMethod: schema.httpMethod,
   image: schema.image,
   name: schema.name,
   url: schema.url,
-})(EntryPointCardMain);
+};
 
-export default LinkedRenderStore.registerRenderer(
-  withRouter((props) => (
-    <EntryPointCardMainForm
-      form={props.subject.value}
-      {...props}
-    />
-  )),
-  schema.EntryPoint,
-  RENDER_CLASS_NAME,
-  [
-    cardTopology,
-    cardMainTopology,
-  ]
-);
+export default register(EntryPointCardMain);

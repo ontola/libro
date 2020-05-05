@@ -1,62 +1,94 @@
+import { withStyles } from '@material-ui/styles';
 import schema from '@ontologies/schema';
-import {
-  Property,
-  linkType,
-  register,
-  subjectType,
-} from 'link-redux';
-import PropTypes from 'prop-types';
+import { Property, register } from 'link-redux';
 import React from 'react';
+import { withRouter } from 'react-router';
 
-import { retrievePath } from '../../helpers/iris';
 import Button from '../../components/Button';
 import GridHeader from '../../components/Grid/GridHeader';
+import Form from '../../containers/Form';
+import ll from '../../ontology/ll';
 import ontola from '../../ontology/ontola';
+import { footerTopology } from '../../topologies/Footer';
 import { gridTopology } from '../../topologies/Grid';
+import { navbarTopology } from '../../topologies/Navbar';
 
-const EntryPointGrid = ({
-  children,
-  name,
-  subject,
-  url,
-}) => {
-  if (children) {
-    return children;
-  }
-  const href = url?.value || subject.value;
+import EntryPointBase from './EntryPointBase';
 
-  return (
-    <React.Fragment>
-      <Property label={schema.isPartOf}>
-        <GridHeader header={<Property label={schema.name} />}>
-          <Property label={ontola.updateAction} onLoad={() => null} />
-        </GridHeader>
-        <Property label={schema.text} />
-      </Property>
-      <Button
-        href={retrievePath(href)}
-        title={name.value}
-      >
-        {name.value}
-      </Button>
-    </React.Fragment>
-  );
+const styles = {
+  navbar: {
+    '& .Button': {
+      border: '1px solid',
+      marginTop: '.5em',
+      padding: '.2em 1em',
+    },
+    '& .MuiRadio-root': {
+      color: 'white',
+    },
+  },
 };
+
+class EntryPointGrid extends EntryPointBase {
+  render() {
+    const {
+      classes,
+      httpMethod,
+      invalid,
+      name,
+      subject,
+      topologyCtx,
+      url,
+    } = this.props;
+    const formURL = new URL(subject.value);
+    const formID = [formURL.origin, formURL.pathname].join('');
+    const className = [footerTopology, navbarTopology].includes(topologyCtx) && classes.navbar;
+
+    return (
+      <Form
+        action={new URL(url.value).pathname}
+        className={className}
+        formID={formID}
+        method={httpMethod}
+        onSubmit={this.submitHandler}
+      >
+        {({ submitting }) => (
+          <React.Fragment>
+            <Property label={schema.isPartOf}>
+              <GridHeader header={<Property label={schema.name} />}>
+                <Property label={ontola.updateAction} onLoad={() => null} />
+              </GridHeader>
+              <Property label={schema.text} />
+            </Property>
+            <Property label={ll.actionBody} />
+            <Button
+              disabled={invalid}
+              loading={submitting}
+              type="submit"
+            >
+              {name?.value}
+            </Button>
+          </React.Fragment>
+        )}
+      </Form>
+    );
+  }
+}
 
 EntryPointGrid.type = schema.EntryPoint;
 
-EntryPointGrid.topology = gridTopology;
+EntryPointGrid.topology = [
+  footerTopology,
+  gridTopology,
+];
+
+EntryPointGrid.hocs = [withStyles(styles), withRouter];
 
 EntryPointGrid.mapDataToProps = {
+  action: schema.isPartOf,
+  httpMethod: schema.httpMethod,
+  image: schema.image,
   name: schema.name,
   url: schema.url,
-};
-
-EntryPointGrid.propTypes = {
-  children: PropTypes.element,
-  name: linkType,
-  subject: subjectType,
-  url: linkType,
 };
 
 export default register(EntryPointGrid);

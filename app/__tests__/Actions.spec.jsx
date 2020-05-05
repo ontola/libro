@@ -39,6 +39,7 @@ describe('Actions', () => {
       [rdfx.type]: schema.EntryPoint,
       [schema.httpMethod]: 'PUT',
       [schema.name]: 'Update',
+      [schema.isPartOf]: testIRI.value,
       [schema.url]: example.ns('endpoint'),
       [ll.actionBody]: {
         [rdfx.type]: sh.NodeShape,

@@ -2,7 +2,6 @@ import schema from '@ontologies/schema';
 import {
   Property,
   register,
-  withLRS,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -39,22 +38,16 @@ class EntryPointOmniform extends EntryPointBase {
   }
 }
 
-const EntryPointOmniformWrapper = withLRS((props) => (
-  <EntryPointOmniform
-    form={props.subject.value}
-    {...props}
-  />
-));
+EntryPointOmniform.type = schema.EntryPoint;
 
-EntryPointOmniformWrapper.type = schema.EntryPoint;
+EntryPointOmniform.topology = omniformFieldsTopology;
 
-EntryPointOmniformWrapper.topology = omniformFieldsTopology;
-
-EntryPointOmniformWrapper.mapDataToProps = {
+EntryPointOmniform.mapDataToProps = {
+  action: schema.isPartOf,
   httpMethod: schema.httpMethod,
   image: schema.image,
   name: schema.name,
   url: schema.url,
 };
 
-export default register(EntryPointOmniformWrapper);
+export default register(EntryPointOmniform);

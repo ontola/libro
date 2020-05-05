@@ -62,7 +62,6 @@ const ActionActionsBar = ({
 
   return (
     <Property
-      action={subject}
       label={schema.target}
       variant={getVariant(type)}
       onClick={handler}

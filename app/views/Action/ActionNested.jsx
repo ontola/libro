@@ -68,7 +68,6 @@ class ActionNested extends NavigatableAction {
           </CardContent>
           <Property
             header
-            action={this.props.subject}
             cancelPath={retrievePath(this.props.object.value)}
             label={schema.target}
             onDone={this.onDoneHandler}

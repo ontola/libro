@@ -2,7 +2,6 @@ import schema from '@ontologies/schema';
 import {
   Resource,
   register,
-  subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -28,13 +27,11 @@ class ActionContainer extends NavigatableAction {
 
   static propTypes = {
     navigate: PropTypes.func,
-    subject: subjectType,
   };
 
   render() {
     const {
       actionStatus,
-      subject,
       target,
     } = this.props;
 
@@ -44,7 +41,6 @@ class ActionContainer extends NavigatableAction {
 
     return (
       <Resource
-        action={subject}
         subject={target}
         onDone={this.onDoneHandler}
       />
