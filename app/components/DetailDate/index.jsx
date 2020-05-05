@@ -9,8 +9,6 @@ import {
 import { relativeTimeDestructure } from '../../helpers/date';
 import Detail from '../Detail';
 
-import './DetailDate.scss';
-
 const messages = defineMessages({
   dateCreated: {
     defaultMessage: 'created: {date}',
@@ -80,12 +78,12 @@ const DetailDate = (props) => {
   };
 
   const mostImportant = () => {
-    const date = lastActivityAt
-      || startDate
+    const date = startDate
       || datePublished
       || dateCreated
       || dateSubmitted
-      || dateModified;
+      || dateModified
+      || lastActivityAt;
 
     if (!date) {
       return null;
