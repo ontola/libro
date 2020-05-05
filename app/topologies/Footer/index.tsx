@@ -34,13 +34,15 @@ class Footer extends Topology<Props> {
 
     return this.wrap((
       <div className={this.getClassName()}>
-        <Grid container spacing={6}>
-          {this.props.resources?.map((iri) => (
-            <Grid item key={iri.value} lg={this.lgSize()} md={this.mdSize()} xs={12}>
-              <Resource subject={iri} />
-            </Grid>
-          ))}
-        </Grid>
+        <div className="Footer__container">
+          <Grid container spacing={6}>
+            {this.props.resources?.map((iri) => (
+              <Grid item key={iri.value} lg={this.lgSize()} md={this.mdSize()} xs={12}>
+                <Resource subject={iri} />
+              </Grid>
+            ))}
+          </Grid>
+        </div>
       </div>
     ));
   }

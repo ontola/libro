@@ -39,13 +39,21 @@ class NavbarLinkLink extends PureComponent {
     } = this.props;
 
     if (to === undefined) {
+      if (onClick) {
+        return (
+          <button
+            className="NavbarLink__link"
+            onClick={onClick}
+          >
+            {children}
+          </button>
+        );
+      }
+
       return (
-        <button
-          className="NavbarLink__link"
-          onClick={onClick}
-        >
+        <div>
           {children}
-        </button>
+        </div>
       );
     }
 

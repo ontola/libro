@@ -1,6 +1,13 @@
+@import '../../components/shared/config';
+
 .Footer {
-  padding: 0 1em;
-  margin-top: 1em;
+  padding: 1rem;
+  margin-top: 1rem;
+
+  .Footer__container {
+    margin: auto;
+    max-width: map-get($container-width, 'large');
+  }
 
   .fa + div {
     margin-left: .2rem;
