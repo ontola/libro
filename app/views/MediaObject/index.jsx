@@ -22,6 +22,7 @@ import MediaObjectPage from './MediaObjectFull';
 
 const MediaObjectPreview = ({
   caption,
+  contentUrl,
   filename,
   encodingFormat,
   isPartOf,
@@ -29,6 +30,7 @@ const MediaObjectPreview = ({
 }) => (
   <AttachmentPreview
     caption={caption}
+    contentUrl={contentUrl}
     filename={filename}
     isPartOf={isPartOf}
     sequenceIndex={sequenceIndex}
@@ -42,6 +44,7 @@ MediaObjectPreview.topology = cardListTopology;
 
 MediaObjectPreview.mapDataToProps = {
   caption: schema.caption,
+  contentUrl: schema.contentUrl,
   encodingFormat: {
     label: [
       schema.encodingFormat,
@@ -54,6 +57,7 @@ MediaObjectPreview.mapDataToProps = {
 
 MediaObjectPreview.propTypes = {
   caption: linkType,
+  contentUrl: linkType,
   encodingFormat: linkType,
   filename: linkType,
   isPartOf: linkType,

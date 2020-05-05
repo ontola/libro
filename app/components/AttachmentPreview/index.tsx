@@ -17,6 +17,7 @@ import './AttachmentPreview.scss';
 
 const AttachmentPreview: React.FC<any> = ({
   caption,
+  contentUrl,
   filename,
   isPartOf,
   sequenceIndex,
@@ -38,20 +39,24 @@ const AttachmentPreview: React.FC<any> = ({
     attachments && !entityIsLoaded(lrs, attachments),
   ]);
 
-  const openModal: EventHandler<any> = (e) => {
-    e.preventDefault();
-    const attachmentsIri = parser.parse(attachmentsIriTemplate.value);
+  const handleClick: EventHandler<any> = (e) => {
+    if (contentUrl) {
+      window.open(contentUrl.value);
+    } else {
+      e.preventDefault();
+      const attachmentsIri = parser.parse(attachmentsIriTemplate.value);
 
-    lrs.actions.ontola.showDialog(rdf.namedNode(attachmentsIri.expand({
-      page: (sequenceIndex || 0) + 1,
-      page_size: 1,
-    })));
+      lrs.actions.ontola.showDialog(rdf.namedNode(attachmentsIri.expand({
+        page: (sequenceIndex || 0) + 1,
+        page_size: 1,
+      })));
+    }
   };
 
   const label = caption && caption.value ? caption.value : filename && filename.value;
 
   return (
-    <button className="AttachmentPreview" onClick={openModal}>
+    <button className="AttachmentPreview" onClick={handleClick}>
       <Image className="AttachmentPreview__image" linkedProp={thumbnailURL} />
       {label && (
         <h1 className="AttachmentPreview__title" title={label}>
@@ -64,6 +69,7 @@ const AttachmentPreview: React.FC<any> = ({
 
 AttachmentPreview.propTypes = {
   caption: linkType,
+  contentUrl: linkType,
   filename: linkType.isRequired,
   isPartOf: linkType,
   sequenceIndex: PropTypes.number,
