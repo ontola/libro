@@ -37,6 +37,7 @@ import { radioGroupTopology } from '../../../topologies/RadioGroup';
 import { selectTopology } from '../../../topologies/Select';
 import { tableRowTopology } from '../../../topologies/TableRow';
 import { gridTopology } from '../../../topologies/Grid';
+import { footerTopology } from '../../../topologies/Footer';
 
 const NamePredicates = [
   schema.name,
@@ -100,6 +101,12 @@ export default [
       cardListTopology,
       containerFloatTopology,
     ]
+  ),
+  LinkedRenderStore.registerRenderer(
+    ({ linkedProp }) => <Heading size="3" variant="navbar">{linkedProp.value}</Heading>,
+    schema.Thing,
+    NamePredicates,
+    footerTopology
   ),
   LinkedRenderStore.registerRenderer(
     () => <ConnectedHeading data-test="Thing-name-card-main" size="1" variant="semantic" />,

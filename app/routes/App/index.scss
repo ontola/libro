@@ -2,8 +2,8 @@
 
 .App__container {
   .preloader {
-    opacity: 1;
     background-color: $background-color;
+    opacity: 1;
     top: 0;
     z-index: z(loader);
   }

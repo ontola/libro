@@ -31,6 +31,9 @@ const useStyles = makeStyles((theme) => {
   style.inherit = {
     display: 'inherit',
   };
+  style.navbar = {
+    color: theme.palette.primary.contrastText,
+  };
   style.notice = {
     color: theme.palette.grey[600],
     fontStyle: 'italic',

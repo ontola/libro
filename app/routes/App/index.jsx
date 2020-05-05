@@ -1,3 +1,4 @@
+import rdf from '@ontologies/core';
 import { Resource } from 'link-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -13,6 +14,7 @@ import NetworkStatusIndicator from '../../components/NetworkStatusIndicator';
 import SkipNavigation from '../../components/SkipNavigation';
 import { CONTAINER_ELEMENT } from '../../config';
 import ontola from '../../ontology/ontola';
+import Footer from '../../topologies/Footer';
 import Navbar from '../../topologies/Navbar/index';
 import Popup from '../../topologies/Popup/index';
 import ErrorButtonWithFeedback from '../../views/Error/ErrorButtonWithFeedback';
@@ -67,7 +69,8 @@ class App extends React.PureComponent {
     }
 
     const template = getMetaContent('template');
-    const templateOptions = getMetaContent('templateOpts');
+    const templateOptions = new URLSearchParams(getMetaContent('templateOpts'));
+    const footerResources = templateOptions.get('footerResources')?.split(',') || [];
     const Header = headers[template];
 
     return (
@@ -92,6 +95,7 @@ class App extends React.PureComponent {
               <ScrollMemory />
               {Routes}
             </div>
+            <Footer resources={footerResources.map((iri) => rdf.namedNode(iri))} />
             <Resource subject={ontola.ns('snackbar/manager')} />
             <Resource subject={ontola.ns('dialog/manager')} />
             <Popup />

@@ -11,6 +11,7 @@ import Link from '../../../components/Link';
 import SHACL from '../../../helpers/shacl';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
+import { footerTopology } from '../../../topologies/Footer';
 import { navbarTopology } from '../../../topologies/Navbar';
 
 class Href extends React.PureComponent {
@@ -23,6 +24,7 @@ class Href extends React.PureComponent {
   static property = ontola.href;
 
   static topology = [
+    footerTopology,
     navbarTopology,
   ];
 
@@ -83,7 +85,7 @@ class Href extends React.PureComponent {
       <LinkComponent
         isIndex
         features={features}
-        to={href ? href.value : '#'}
+        to={href?.value}
         onClick={handleClick || this.clickHandler()}
       >
         {children}

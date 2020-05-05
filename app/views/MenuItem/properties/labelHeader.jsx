@@ -7,35 +7,29 @@ import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { navbarTopology } from '../../../topologies/Navbar';
 
-class MenuItemLabelHeader extends React.PureComponent {
-  static type = [
-    ontola.MenuItem,
-    argu.SubMenu,
-    argu.Menu,
-  ];
+const MenuItemLabelHeader = ({ linkedProp }) => (
+  <NavbarLinkLabel>
+    {linkedProp.value}
+  </NavbarLinkLabel>
+);
 
-  static property = schema.name;
+MenuItemLabelHeader.type = [
+  ontola.MenuItem,
+  argu.SubMenu,
+  argu.Menu,
+];
 
-  static topology = navbarTopology;
+MenuItemLabelHeader.property = schema.name;
 
-  static mapDataToProps = {
-    image: schema.image,
-    name: schema.name,
-  };
+MenuItemLabelHeader.topology = navbarTopology;
 
-  static propTypes = {
-    linkedProp: linkType,
-  };
+MenuItemLabelHeader.mapDataToProps = {
+  image: schema.image,
+  name: schema.name,
+};
 
-  render() {
-    const { linkedProp } = this.props;
-
-    return (
-      <NavbarLinkLabel>
-        {linkedProp.value}
-      </NavbarLinkLabel>
-    );
-  }
-}
+MenuItemLabelHeader.propTypes = {
+  linkedProp: linkType,
+};
 
 export default register(MenuItemLabelHeader);

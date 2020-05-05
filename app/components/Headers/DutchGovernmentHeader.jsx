@@ -4,11 +4,10 @@ import PropTypes from 'prop-types';
 import './DutchGovernmentHeader.scss';
 
 const DutchGovernmentHeader = ({ templateOptions }) => {
-  const parsedOptions = new URLSearchParams(templateOptions);
-  const breadcrumbParent = parsedOptions.get('breadcrumbParent');
-  const breadcrumbParentUrl = parsedOptions.get('breadcrumbParentUrl');
-  const primaryLine = parsedOptions.get('primaryLine') || 'Rijksoverheid';
-  const secondaryLine = parsedOptions.get('secondaryLine')?.split('\n')?.map((line) => <div>{line}</div>);
+  const breadcrumbParent = templateOptions.get('breadcrumbParent');
+  const breadcrumbParentUrl = templateOptions.get('breadcrumbParentUrl');
+  const primaryLine = templateOptions.get('primaryLine') || 'Rijksoverheid';
+  const secondaryLine = templateOptions.get('secondaryLine')?.split('\n')?.map((line) => <div>{line}</div>);
   const [logo, setLogo] = React.useState();
 
   React.useEffect(() => {

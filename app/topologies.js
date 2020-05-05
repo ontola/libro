@@ -16,12 +16,13 @@ import { containerFloatTopology } from './topologies/Container/ContainerFloat';
 import { contentDetailsTopology } from './topologies/ContentDetails/index';
 import { detailsBarTopology } from './topologies/DetailsBar/index';
 import { alertDialogTopology } from './topologies/Dialog/index';
-import { menuTopology } from './topologies/Menu/index';
+import { footerTopology } from './topologies/Footer';
 import { formFooterTopology } from './topologies/FormFooter/Footer';
 import { fullResourceTopology } from './topologies/FullResource';
 import { gridTopology } from './topologies/Grid/index';
 import { hoverBoxTopology } from './topologies/HoverBox/index';
 import { inlineTopology } from './topologies/Inline/index';
+import { menuTopology } from './topologies/Menu/index';
 import { navbarTopology } from './topologies/Navbar';
 import { omniformFieldsTopology } from './topologies/OmniformFields/OmniformFields';
 import { omniformSupplementBarTopology } from './topologies/OmniformSupplementBar/OmniformSupplementBar';
@@ -65,6 +66,7 @@ export const allTopologies = [
   alertDialogTopology,
   menuTopology,
   formFooterTopology,
+  footerTopology,
   fullResourceTopology,
   gridTopology,
   hoverBoxTopology,

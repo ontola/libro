@@ -50,6 +50,7 @@ import VoteEvents from './properties/voteEvents';
 import ThingCard from './ThingCard';
 import ThingContainer from './ThingContainer';
 import ThingDetailsBar from './ThingDetailsBar';
+import ThingFooter from './ThingFooter';
 import ThingInline from './ThingInline';
 import ThingFullResource from './ThingFull';
 import ThingGrid from './ThingGrid';
@@ -84,6 +85,7 @@ export default [
   ThingCard,
   ThingContainer,
   ThingDetailsBar,
+  ThingFooter,
   ThingFullResource,
   ThingGrid,
   ThingPage,

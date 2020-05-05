@@ -17,86 +17,82 @@ import { navbarTopology } from '../../topologies/Navbar';
 import { NavbarLinkLink, NavbarLinkWrapper } from '../../components/NavbarLink';
 import { isFontAwesomeIRI } from '../../helpers/iris';
 
-class MenuItemNavbar extends React.PureComponent {
-  static type = [
-    ontola.MenuItem,
-    argu.SubMenu,
-    argu.Menu,
-  ];
+const MenuItemNavbar = ({
+  href,
+  image,
+  imageOnly,
+  menuItems,
+  showImage,
+  subject,
+}) => {
+  const id = `${subject}-menu-items`;
 
-  static topology = navbarTopology;
+  const InnerWrapper = href ? React.Fragment : NavbarLinkLink;
 
-  static mapDataToProps = {
-    href: ontola.href,
-    image: schema.image,
-    menuItems: ontola.menuItems,
-    name: schema.name,
+  const menuItemLabel = (onClick) => {
+    const wrapperProps = href ? {} : { onClick };
+    const hideLabel = image && (!isFontAwesomeIRI(image.value) || (showImage && imageOnly));
+
+    return (
+      <NavbarLinkWrapper>
+        <Property
+          forceRender
+          component={NavbarLinkLink}
+          data-test="MenuItem-MenuItemLabel"
+          handleClick={onClick}
+          id={id}
+          label={ontola.href}
+        >
+          <InnerWrapper {...wrapperProps}>
+            <Property label={schema.image} />
+            {!hideLabel && <Property label={schema.name} />}
+          </InnerWrapper>
+        </Property>
+      </NavbarLinkWrapper>
+    );
   };
 
-  static propTypes = {
-    href: linkType,
-    image: linkType,
-    imageOnly: PropTypes.bool,
-    menuItems: linkType,
-    showImage: PropTypes.bool,
-    subject: subjectType,
-  };
-
-  render() {
-    const {
-      href,
-      image,
-      imageOnly,
-      menuItems,
-      showImage,
-      subject,
-    } = this.props;
-
-    const id = `${subject}-menu-items`;
-
-    const InnerWrapper = href ? React.Fragment : NavbarLinkLink;
-
-    const menuItemLabel = (onClick) => {
-      const wrapperProps = href ? {} : { onClick };
-      const hideLabel = image && (!isFontAwesomeIRI(image.value) || (showImage && imageOnly));
-
-      return (
-        <NavbarLinkWrapper>
-          <Property
-            forceRender
-            component={NavbarLinkLink}
-            data-test="MenuItem-MenuItemLabel"
-            handleClick={onClick}
-            id={id}
-            label={ontola.href}
-          >
-            <InnerWrapper {...wrapperProps}>
-              <Property label={schema.image} />
-              {!hideLabel && <Property label={schema.name} />}
-            </InnerWrapper>
-          </Property>
-        </NavbarLinkWrapper>
-      );
-    };
-
-    if (menuItems) {
-      return (
-        <Menu trigger={menuItemLabel}>
-          {({ handleClose, ref }) => (
-            <Resource
-              childProps={{
-                onClose: handleClose,
-                ref,
-              }}
-              subject={menuItems}
-            />
-          )}
-        </Menu>
-      );
-    }
-
-    return <ResourceBoundary>{menuItemLabel()}</ResourceBoundary>;
+  if (menuItems) {
+    return (
+      <Menu trigger={menuItemLabel}>
+        {({ handleClose, ref }) => (
+          <Resource
+            childProps={{
+              onClose: handleClose,
+              ref,
+            }}
+            subject={menuItems}
+          />
+        )}
+      </Menu>
+    );
   }
-}
+
+  return <ResourceBoundary>{menuItemLabel()}</ResourceBoundary>;
+};
+
+MenuItemNavbar.type = [
+  ontola.MenuItem,
+  argu.SubMenu,
+  argu.Menu,
+];
+
+MenuItemNavbar.topology = navbarTopology;
+
+MenuItemNavbar.mapDataToProps = {
+  href: ontola.href,
+  image: schema.image,
+  menuItems: ontola.menuItems,
+  name: schema.name,
+};
+
+MenuItemNavbar.propTypes = {
+  href: linkType,
+  image: linkType,
+  imageOnly: PropTypes.bool,
+  menuItems: linkType,
+  showImage: PropTypes.bool,
+  subject: subjectType,
+};
 
 export default register(MenuItemNavbar);
