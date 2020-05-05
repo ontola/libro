@@ -19,6 +19,12 @@
     padding-right: .1em;
   }
 
+  // https://gitlab.com/ontola/core/-/issues/292
+  [id='http://schema.org/name'] { // sass-lint:disable-line
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+
   &,
   input {
     box-sizing: border-box;
@@ -228,11 +234,12 @@ input {
     }
   }
 
-  &.Field--error {
-    .Field__input {
-      box-shadow: inset 5px 0 0 $alert-color;
-    }
-  }
+  // Disabled until https://gitlab.com/ontola/core/-/issues/291 is fixed
+  // &.Field--error {
+  // .Field__input {
+  // box-shadow: inset 5px 0 0 $alert-color;
+  // }
+  // }
 
   &.Field--pro {
     .Field__input {
