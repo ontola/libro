@@ -161,7 +161,7 @@ const getPagination = (Wrapper, topology) => {
 
     return (
       <Wrapper>
-        <div className="pagination-wrapper">
+        <div className="pagination-wrapper" data-testid="paginationWrapper">
           {pages}
         </div>
       </Wrapper>
