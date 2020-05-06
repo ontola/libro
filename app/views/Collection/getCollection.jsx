@@ -13,7 +13,7 @@ import {
   useResourceProperty,
 } from 'link-redux';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Redirect } from 'react-router';
 
@@ -57,6 +57,12 @@ export default function getCollection(
     const [currentPage, setCurrentPage] = useCurrentPage(redirectPagination, renderedPage);
     const [currentPagePartOf] = useResourceProperty(currentPage, schema.isPartOf);
     const [currentPageType] = useResourceProperty(currentPage, rdfx.type);
+
+    useEffect(() => {
+      if (!currentPage && renderedPage) {
+        setCurrentPage(renderedPage);
+      }
+    }, [currentPage, renderedPage]);
 
     const [opened, setOpen] = React.useState(false);
     const resolvedCollectionDisplay = collectionDisplay || collectionDisplayFromData;

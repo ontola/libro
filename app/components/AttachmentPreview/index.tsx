@@ -44,15 +44,16 @@ const AttachmentPreview: React.FC<any> = ({
       window.open(contentUrl.value);
     } else {
       e.preventDefault();
-      const attachmentsIri = parser.parse(attachmentsIriTemplate.value);
-
-      lrs.actions.ontola.showDialog(rdf.namedNode(attachmentsIri.expand({
+      const attachmentsTemplate = parser.parse(attachmentsIriTemplate.value);
+      const attachmentsIri = rdf.namedNode(attachmentsTemplate.expand({page_size: 1}));
+      const attachmentsPageIri = rdf.namedNode(attachmentsTemplate.expand({
         page: (sequenceIndex || 0) + 1,
         page_size: 1,
-      })));
+      }));
+      lrs.actions.app.changePage(attachmentsIri, attachmentsPageIri);
+      lrs.actions.ontola.showDialog(attachmentsPageIri);
     }
-  };
-
+  }
   const label = caption && caption.value ? caption.value : filename && filename.value;
 
   return (
