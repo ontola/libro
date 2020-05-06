@@ -7,7 +7,6 @@ import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
 import LDLink from '../../components/LDLink';
-import LinkedDetailDate from '../../components/LinkedDetailDate';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
 import ontola from '../../ontology/ontola';
@@ -26,7 +25,6 @@ const ThingGrid = ({ itemSize }) => (
     </LDLink>
     <DetailsBar>
       <Property hideName label={schema.creator} />
-      <LinkedDetailDate />
       <Property label={argu.pinnedAt} />
       <Property short label={argu.expiresAt} />
       <Property label={argu.followsCount} />

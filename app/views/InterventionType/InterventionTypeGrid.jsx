@@ -6,7 +6,6 @@ import React from 'react';
 import AttributeListItem from '../../components/AttributeListItem';
 import CardContent from '../../components/Card/CardContent';
 import LDLink from '../../components/LDLink';
-import LinkedDetailDate from '../../components/LinkedDetailDate';
 import dbo from '../../ontology/dbo';
 import CardFixed from '../../topologies/Card/CardFixed';
 import rivm from '../../ontology/rivm';
@@ -28,9 +27,7 @@ const InterventionTypeGrid = () => (
         </AttributeList>
       </CardContent>
     </LDLink>
-    <DetailsBar>
-      <LinkedDetailDate />
-    </DetailsBar>
+    <DetailsBar />
   </CardFixed>
 );
 
