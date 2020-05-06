@@ -1,15 +1,18 @@
+import rdf from '@ontologies/core';
 import classNames from 'classnames';
+import { useLRS } from 'link-redux';
 import memoize from 'memoize-one';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 
-import Link from '../Link';
+import { entityIsLoaded } from '../../helpers/data';
 import {
   expandPath,
   isDifferentWebsite,
   retrievePath,
 } from '../../helpers/iris';
+import Link from '../Link';
 
 import './Markdown.scss';
 
@@ -17,8 +20,13 @@ const MIN_LENGTH_TO_ADD_HIGHLIGHT = 1;
 
 const routerLink = (tabIndex) => (link) => {
   const extendedLink = expandPath(link.href);
+  const lrs = useLRS();
 
   if (!isDifferentWebsite(extendedLink)) {
+    if (__CLIENT__ && !entityIsLoaded(lrs, rdf.namedNode(extendedLink))) {
+      lrs.queueEntity(rdf.namedNode(extendedLink));
+    }
+
     return (
       <Link
         tabIndex={tabIndex}
