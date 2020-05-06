@@ -39,32 +39,47 @@ const AttachmentPreview: React.FC<any> = ({
     attachments && !entityIsLoaded(lrs, attachments),
   ]);
 
-  const handleClick: EventHandler<any> = (e) => {
-    if (contentUrl) {
-      window.open(contentUrl.value);
-    } else {
+  let wrapperProps;
+
+  if (contentUrl) {
+    wrapperProps = {
+      download: true,
+      href: contentUrl.value,
+      title: 'Download',
+    };
+  } else {
+    const attachmentsTemplate = parser.parse(attachmentsIriTemplate.value);
+    const attachmentsIri = rdf.namedNode(attachmentsTemplate.expand({page_size: 1}));
+    const attachmentsPageIri = rdf.namedNode(attachmentsTemplate.expand({
+      page: (sequenceIndex || 0) + 1,
+      page_size: 1,
+    }));
+    const handleClick: EventHandler<any> = (e) => {
       e.preventDefault();
-      const attachmentsTemplate = parser.parse(attachmentsIriTemplate.value);
-      const attachmentsIri = rdf.namedNode(attachmentsTemplate.expand({page_size: 1}));
-      const attachmentsPageIri = rdf.namedNode(attachmentsTemplate.expand({
-        page: (sequenceIndex || 0) + 1,
-        page_size: 1,
-      }));
       lrs.actions.app.changePage(attachmentsIri, attachmentsPageIri);
       lrs.actions.ontola.showDialog(attachmentsPageIri);
-    }
+    };
+    wrapperProps = {
+      href: attachmentsPageIri.value,
+      onClick: handleClick,
+    };
   }
   const label = caption && caption.value ? caption.value : filename && filename.value;
 
   return (
-    <button className="AttachmentPreview" onClick={handleClick}>
+    <a
+      className="AttachmentPreview"
+      rel="noopener noreferrer"
+      target="_blank"
+      {...wrapperProps}
+    >
       <Image className="AttachmentPreview__image" linkedProp={thumbnailURL} />
       {label && (
         <h1 className="AttachmentPreview__title" title={label}>
           {label}
         </h1>
       )}
-    </button>
+    </a>
   );
 };
 
