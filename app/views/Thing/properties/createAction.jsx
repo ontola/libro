@@ -2,8 +2,8 @@ import schema from '@ontologies/schema';
 import {
   Resource,
   linkType,
+  linkedPropType,
   register,
-  subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -13,7 +13,7 @@ import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 
 const CreateAction = ({
-  createAction,
+  linkedProp,
   isPartOf,
   omniform,
   onLoad,
@@ -21,7 +21,7 @@ const CreateAction = ({
   <Resource
     isPartOf={isPartOf}
     omniform={omniform}
-    subject={createAction}
+    subject={linkedProp}
     onLoad={onLoad}
   />
 );
@@ -36,13 +36,12 @@ CreateAction.property = ontola.createAction;
 CreateAction.topology = allTopologies;
 
 CreateAction.mapDataToProps = {
-  createAction: ontola.createAction,
   isPartOf: schema.isPartOf,
 };
 
 CreateAction.propTypes = {
-  createAction: subjectType,
   isPartOf: linkType,
+  linkedProp: linkedPropType,
   omniform: PropTypes.bool,
   onLoad: PropTypes.func,
 };
