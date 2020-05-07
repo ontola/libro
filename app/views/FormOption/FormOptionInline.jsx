@@ -7,6 +7,7 @@ import React from 'react';
 import ontola from '../../ontology/ontola';
 import { attributeListTopology } from '../../topologies/AttributeList';
 import { inlineTopology } from '../../topologies/Inline';
+import { tableCellTopology } from '../../topologies/TableCell';
 
 const FormOptionInline = () => (
   <Property label={[schema.name, rdfs.label]} />
@@ -18,7 +19,11 @@ FormOptionInline.mapDataToProps = {
   type: rdfx.type,
 };
 
-FormOptionInline.topology = [attributeListTopology, inlineTopology];
+FormOptionInline.topology = [
+  attributeListTopology,
+  inlineTopology,
+  tableCellTopology,
+];
 
 
 export default register(FormOptionInline);
