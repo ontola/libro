@@ -4,14 +4,8 @@
   color: color('grey');
   display: flex;
   font-size: .8em;
-  height: 1rem;
   justify-content: space-between;
-  padding: 5px 20px 0 10px;
-
-  .Field--checkbox & {
-    margin-left: .9em;
-    padding-top: 0;
-  }
+  padding-right: .8rem;
 
   &--preview {
     bottom: 0;
