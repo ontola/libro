@@ -1,12 +1,17 @@
 @import '../../components/shared/config';
 
 .PageHeader {
+  background: var(--navbar-background);
+  height: 10em;
   position: relative;
   margin-top: - unit('medium');
   margin-bottom: unit('large');
 
+  @include large {
+    height: 15em;
+  }
+
   &__circle {
-    background: color('grey');
     border-radius: 999px;
     flex-shrink: 0;
     height: 4rem;
@@ -22,28 +27,34 @@
     }
   }
 
+  &__inner {
+    background-color: color('transparent', 'light-7');
+    height: 100%;
+  }
+
   &__background {
-    background-color: color('grey');
-    background-position-x: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    .PageHeader__inner {
+      background-position-x: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
     height: 20em;
 
     @include large {
       height: 35em;
     }
+  }
 
-    .MuiContainer-root {
-      bottom: 0;
-      height: 100%;
-    }
+  .MuiContainer-root {
+    bottom: 0;
+    height: 100%;
+  }
 
-    .Card {
-      bottom: 0;
-      max-width: 35em;
-      position: absolute;
-      width: calc(100% - 1.5rem);
-    }
+  .Card {
+    bottom: 0;
+    max-width: 35em;
+    position: absolute;
+    width: calc(100% - 1.5rem);
   }
 
   &__image-and-text-wrapper {

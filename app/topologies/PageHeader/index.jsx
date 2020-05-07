@@ -1,4 +1,5 @@
 import schema from '@ontologies/schema';
+import classNames from 'classnames';
 import {
   TopologyProvider,
   Type,
@@ -36,6 +37,10 @@ class PageHeader extends TopologyProvider {
 
   render() {
     const style = {};
+    const className = classNames({
+      PageHeader,
+      PageHeader__background: this.props.background,
+    });
 
     if (this.props.background) {
       style.backgroundImage = `url(${this.props.background})`;
@@ -44,15 +49,17 @@ class PageHeader extends TopologyProvider {
     }
 
     return (
-      <div
-        className={`${this.className}${this.props.background ? ' PageHeader__background' : ''}`}
-        style={style}
-      >
-        <Container size="large">
-          {this.wrap((
-            this.props.children || <Type />
-          ))}
-        </Container>
+      <div className={className}>
+        <div
+          className="PageHeader__inner"
+          style={style}
+        >
+          <Container size="large">
+            {this.wrap((
+              this.props.children || <Type />
+            ))}
+          </Container>
+        </div>
       </div>
     );
   }
