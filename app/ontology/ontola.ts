@@ -6,6 +6,7 @@ export default {
   ns: ontola,
 
   /* classes */
+  Banner: ontola('Banner'),
   Collection: ontola('Collection'),
   CollectionSorting: ontola('CollectionSorting'),
   CollectionView: ontola('CollectionView'),
@@ -58,6 +59,9 @@ export default {
   defaultPagination: ontola('defaultPagination'),
   defaultType: ontola('defaultType'),
   destroyAction: ontola('destroyAction'),
+  dismissAction: ontola('dismissAction'),
+  dismissButton: ontola('dismissButton'),
+  dismissedAt: ontola('dismissedAt'),
   favoriteAction: ontola('favoriteAction'),
   filteredCollections: ontola('filteredCollections'),
   followMenu: ontola('followMenu'),

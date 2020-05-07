@@ -8,6 +8,7 @@ import AppSignOut from './AppSignOut';
 import ArguHome from './ArguHome';
 import Thing from './Thing';
 import Badge from './Badge';
+import Banner from './Banner/Banner';
 import Category from './Category';
 import Collection from './Collection';
 import CollectionPage from './CollectionPage';
@@ -78,6 +79,7 @@ export function getViews() {
     ...Action,
     ...Argument,
     ...Badge,
+    ...Banner,
     ...Category,
     ...Collection,
     ...CollectionPage,

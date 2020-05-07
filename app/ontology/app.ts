@@ -39,6 +39,7 @@ export default {
   Menu: app('Menu'),
 
   /* properties */
+  bannerMembers: app('banners?page=1#members'),
   c_a: app('c_a'),
   currentPage: app('currentPage'),
   menu: app('menu'),

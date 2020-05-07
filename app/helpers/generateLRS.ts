@@ -220,6 +220,10 @@ export default function generateLRS() {
     rdf.quad(ontola.destroyAction, rdfs.label, rdf.literal('Delete', languages.en)),
     rdf.quad(ontola.destroyAction, rdfs.label, rdf.literal('Verwijderen', languages.nl)),
 
+    rdf.quad(ontola.publishAction, rdfx.type, rdfx.Property),
+    rdf.quad(ontola.publishAction, rdfs.label, rdf.literal('Publish', languages.en)),
+    rdf.quad(ontola.publishAction, rdfs.label, rdf.literal('Publiceren', languages.nl)),
+
     rdf.quad(argu.invitee, rdfx.type, rdfx.Property),
     rdf.quad(argu.invitee, rdfs.label, rdf.literal('Invitee', languages.en)),
     rdf.quad(argu.invitee, rdfs.label, rdf.literal('Uitgenodigde', languages.nl)),

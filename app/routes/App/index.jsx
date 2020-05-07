@@ -13,15 +13,16 @@ import NavBarContent from '../../components/NavBarContent';
 import NetworkStatusIndicator from '../../components/NetworkStatusIndicator';
 import SkipNavigation from '../../components/SkipNavigation';
 import { CONTAINER_ELEMENT } from '../../config';
+import { getMetaContent } from '../../helpers/arguHelpers';
+import { defaultKeymap, devKeymap } from '../../helpers/keyboard';
+import { handle } from '../../helpers/logging';
+import app from '../../ontology/app';
 import ontola from '../../ontology/ontola';
 import Footer from '../../topologies/Footer';
 import Navbar from '../../topologies/Navbar/index';
 import Popup from '../../topologies/Popup/index';
 import ErrorButtonWithFeedback from '../../views/Error/ErrorButtonWithFeedback';
 import HoverHelper from '../DevBrowser/HoverHelper';
-import { getMetaContent } from '../../helpers/arguHelpers';
-import { defaultKeymap, devKeymap } from '../../helpers/keyboard';
-import { handle } from '../../helpers/logging';
 import Routes from '../index';
 
 import './index.scss';
@@ -90,6 +91,9 @@ class App extends React.PureComponent {
             <Navbar>
               <NavBarContent />
             </Navbar>
+            <div className="Banners">
+              <Resource subject={app.bannerMembers} />
+            </div>
             <NetworkStatusIndicator />
             <div id="start-of-content">
               <ScrollMemory />

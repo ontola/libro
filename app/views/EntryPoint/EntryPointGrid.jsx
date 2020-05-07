@@ -35,6 +35,7 @@ class EntryPointGrid extends EntryPointBase {
       httpMethod,
       invalid,
       name,
+      smallButton,
       subject,
       topologyCtx,
       url,
@@ -63,6 +64,7 @@ class EntryPointGrid extends EntryPointBase {
             <Button
               disabled={invalid}
               loading={submitting}
+              small={smallButton}
               type="submit"
             >
               {name?.value}
