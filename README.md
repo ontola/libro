@@ -143,6 +143,9 @@ the dependency).
   - **Parent** - Shown on top of a page to convey the hierarchy of the site.
   - **Inline** - A text to appear in some other text. Can be a link.
   - **Sidebar** - An item in the side menu.
+
+### Adding a new view
+- Create a folder in `app/views` with the name of your view (e.g. `Person` if it renders a `foaf:Person`). Add a `index.jsx` file.
 - When naming your component, name them as `propertyTopology` and `TypeTopology`. For example: `nameCard` or `MotionContainer`.
 
 ### Debugging Link
