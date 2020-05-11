@@ -11,6 +11,7 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
+import parser from 'uri-template';
 import { useDebouncedCallback } from 'use-debounce';
 
 import { arraysEqual, containerToArr } from '../../helpers/data';
@@ -48,6 +49,10 @@ const OptionsWrapper = ({
 
   useDataInvalidation(shIn);
   const [iriTemplate] = useResourceProperty(shInProp, ontola.iriTemplate);
+  const searchTemplate = iriTemplate && parser.parse(iriTemplate.value);
+  const searchable = searchTemplate?.expressions?.some((expr) => (
+    expr.params.map((param) => param.name).includes('q')
+  ));
 
   React.useLayoutEffect(() => {
     if (loading) {
@@ -70,7 +75,7 @@ const OptionsWrapper = ({
   return (
     <React.Fragment>
       <Component
-        iriTemplate={iriTemplate}
+        iriTemplate={searchable && iriTemplate}
         loading={loading}
         options={options}
         topology={topology}
