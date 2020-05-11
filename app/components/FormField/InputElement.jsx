@@ -27,6 +27,7 @@ import ToggleButtonGroup from '../ToggleButtonGroup';
 
 import CharCounter, { CHAR_COUNTER_THRESHOLD } from './CharCounter';
 import OptionsWrapper, { optionsType } from './OptionsWrapper';
+import PostalRangeInput from './PostalRangeInput';
 
 import { formFieldError } from './index';
 
@@ -229,6 +230,19 @@ const InputElement = ({
         object={object}
         propertyIndex={propertyIndex}
         required={required}
+      />
+    );
+  }
+
+  if (type === 'postalRange') {
+    return (
+      <PostalRangeInput
+        {...sharedProps}
+        className={className}
+        data-testid={sharedProps.name}
+        inputIndex={inputIndex}
+        topology={topology}
+        value={inputValue}
       />
     );
   }

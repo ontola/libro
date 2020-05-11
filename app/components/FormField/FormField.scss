@@ -57,6 +57,10 @@
       }
     }
 
+    &--postalRange {
+      display: inline-block;
+    }
+
     &--select {
       -moz-appearance: menulist-button;
       -webkit-appearance: menulist-button;

@@ -93,5 +93,6 @@ export default [
   registerFormField(form.ToggleButtonGroup, 'toggleButtonGroup'),
   registerFormField(form.PasswordInput, 'password'),
   registerFormField(form.AssociationInput, 'association'),
+  registerFormField(form.PostalRangeInput, 'postalRange'),
   ResourceField,
 ];
