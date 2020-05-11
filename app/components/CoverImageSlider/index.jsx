@@ -83,9 +83,9 @@ const CoverImageSlider = ({
 
   const [input] = useFormField({
     field,
-    initialValue: currentValue,
+    initialValue: [currentValue],
   });
-  const imagePositionY = tryParseInt(input.value);
+  const imagePositionY = tryParseInt(input.value?.[0]);
   const onImagePositionYChange = input.onChange;
 
   useEffect(() => {
@@ -109,7 +109,7 @@ const CoverImageSlider = ({
       track={false}
       value={100 - value}
       onChange={onChange}
-      onChangeCommitted={(event, newValue) => onImagePositionYChange(100 - newValue)}
+      onChangeCommitted={(event, newValue) => onImagePositionYChange([100 - newValue])}
     />
   );
 };

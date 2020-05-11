@@ -7,10 +7,10 @@ import { NEW_AUTHORIZATION_HEADER, NEW_REFRESH_TOKEN_HEADER } from '../utils/pro
 async function login(ctx, next) {
   try {
     const response = await ctx.api.requestUserToken(
-      ctx.request.body.email,
-      ctx.request.body.password,
+      ctx.request.body.email?.[0],
+      ctx.request.body.password?.[0],
       ctx.request.headers['website-iri'],
-      ctx.request.body.r
+      ctx.request.body.r?.[0]
     );
     const json = await response.json();
 
@@ -66,7 +66,7 @@ async function login(ctx, next) {
 async function signUp(ctx, next) {
   try {
     const response = await ctx.api.createUser(
-      ctx.request.body.email,
+      ctx.request.body.email?.[0],
       ctx.request.body.acceptTerms,
       ctx.request.headers['website-iri']
     );

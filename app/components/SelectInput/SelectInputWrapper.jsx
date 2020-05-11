@@ -193,7 +193,7 @@ const SelectInputWrapper = ({
   );
   useDataInvalidation(options.filter(isResource));
 
-  const initialSelectedItem = inputValue || initialValue;
+  const initialSelectedItem = inputValue || initialValue?.[0];
 
   if (__CLIENT__ && initialSelectedItem && initialSelectedItem.termType === 'NamedNode' && !entityIsLoaded(lrs, initialSelectedItem)) {
     lrs.queueEntity(initialSelectedItem);
@@ -203,14 +203,16 @@ const SelectInputWrapper = ({
 
   if (!iriTemplate && renderAsRadioGroup(topology, options, lrs, inputFieldHint)) {
     return (
-      <RadioGroup
-        items={options}
-        loading={loading}
-        name={sharedProps.name}
-        required={sharedProps.required}
-        value={inputValue?.value}
-        onChange={sharedProps.onChange}
-      />
+      <div style={{ width: '100%' }}>
+        <RadioGroup
+          items={options}
+          loading={loading}
+          name={sharedProps.name}
+          required={sharedProps.required}
+          value={inputValue?.value}
+          onChange={sharedProps.onChange}
+        />
+      </div>
     );
   }
 

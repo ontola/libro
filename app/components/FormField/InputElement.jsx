@@ -42,6 +42,7 @@ const InputElement = ({
   initialValue,
   input,
   inputFieldHint,
+  inputIndex,
   inputValue,
   label,
   meta,
@@ -75,7 +76,6 @@ const InputElement = ({
 
   const sharedProps = {
     autoFocus: autofocus,
-    errors,
     id: fieldId,
     name: name || fieldId,
     ...input,
@@ -86,11 +86,14 @@ const InputElement = ({
       }
     },
     onChange: (e) => {
+      const newValue = input.value?.slice() || [];
+
       if (e && Object.prototype.hasOwnProperty.call(e, 'target')) {
-        input.onChange(type === 'checkbox' ? e.target.checked : e.target.value);
+        newValue[inputIndex] = type === 'checkbox' ? e.target.checked : e.target.value;
       } else {
-        input.onChange(e === null ? rdf.literal('') : e);
+        newValue[inputIndex] = e === null ? rdf.literal('') : e;
       }
+      input.onChange(newValue);
 
       if (onChange) {
         onChange(e);
@@ -208,7 +211,7 @@ const InputElement = ({
       sharedProps.rows = minRows;
       break;
     case 'checkbox': {
-      const currentValue = input.value;
+      const currentValue = inputValue;
       sharedProps.checked = currentValue && (
         currentValue === true
         || currentValue === 'true'
@@ -228,7 +231,7 @@ const InputElement = ({
         label={label}
       />
     );
-  } else if (errors && !pristine && !active) {
+  } else if (errors && errors.length > 0 && !pristine && !active) {
     trailer = (
       <span
         className="Field__input--trailing-icon fa fa-exclamation-circle"
@@ -303,6 +306,7 @@ InputElement.propTypes = {
     ]),
   }),
   inputFieldHint: linkType,
+  inputIndex: PropTypes.number,
   inputValue: PropTypes.string,
   // Text above input field
   label: PropTypes.oneOfType([

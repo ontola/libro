@@ -35,7 +35,6 @@ const ActionCardMain = ({
   return (
     <span>
       <Button
-        small
         icon={icon.value}
         theme="transparant"
         onClick={(e) => {

@@ -1,27 +1,39 @@
-import rdf, { SomeTerm } from '@ontologies/core';
+import rdf, {NamedNode, SomeTerm} from '@ontologies/core';
+import { calculateFormFieldName } from '../helpers/forms';
 import { handle } from '../helpers/logging';
 
 export const serializeForStorage = (value: SomeTerm | string ): string => {
   return JSON.stringify(value);
 };
 
-export const parseForStorage = (valueFromStorage: string) => {
+const parsedValue = (plain: any) => {
+  switch (plain.termType) {
+    case 'NamedNode':
+      return rdf.namedNode(plain.value);
+    case 'BlankNode':
+      return rdf.blankNode(plain.value);
+    case 'Literal': {
+      const datatype = plain.datatype ? rdf.namedNode(plain.datatype.value) : undefined;
+
+      return rdf.literal(plain.value, plain.language || datatype);
+    }
+    default:
+      return plain.value ? rdf.literal(plain.value) : plain;
+  }
+};
+
+export const parseForStorage = (valueFromStorage: string | null): any  => {
+  if (!valueFromStorage) {
+    return undefined;
+  }
+
   try {
     const plain = JSON.parse(valueFromStorage);
-
-    switch (plain.termType) {
-      case 'NamedNode':
-        return rdf.namedNode(plain.value);
-      case 'BlankNode':
-        return rdf.blankNode(plain.value);
-      case 'Literal': {
-        const datatype = plain.datatype ? rdf.namedNode(plain.datatype) : undefined;
-
-        return rdf.literal(plain.value, plain.language, datatype);
-      }
-      default:
-        return plain.value ? rdf.literal(plain.value) : plain;
+    if (Array.isArray(plain)) {
+      return plain.map(parsedValue);
     }
+
+    return parsedValue(plain);
   } catch (e) {
     handle(e);
 

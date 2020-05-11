@@ -2,38 +2,38 @@ import {
   Resource,
   linkType,
 } from 'link-redux';
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import Select from '../../topologies/Select';
-import { Input } from '../Input';
-import FieldLabel from '../FieldLabel';
-import Spinner from '../Spinner';
 import { parseForStorage } from '../../hooks/usePersistence';
+import Select from '../../topologies/Select';
+import FieldLabel from '../FieldLabel';
+import { Input } from '../Input';
+import Spinner from '../Spinner';
 
-function handleChange(e, props) {
-  const value = props.value?.slice() || [];
+function handleChange(e, values, onChange) {
+  const newValue = values?.slice() || [];
   const parsedValue = parseForStorage(e.target.value);
   if (e.target.checked) {
-    value.push(parsedValue);
+    newValue.push(parsedValue);
   } else {
-    const index = value.map((v) => v.value).indexOf(parsedValue.value);
+    const index = values.map((v) => v.value).indexOf(parsedValue.value);
     if (index !== -1) {
-      value.splice(index, 1);
+      newValue.splice(index, 1);
     }
   }
-  props.onChange(value);
+  onChange(newValue);
 }
 
-function CheckboxesInput(props) {
-  const {
-    loading,
-    options,
-    sharedProps,
-    value,
-  } = props;
-
+function CheckboxesInput({
+  loading,
+  onChange,
+  options,
+  name,
+  required,
+  values,
+}) {
   if (loading) {
     return <Spinner loading />;
   }
@@ -42,7 +42,7 @@ function CheckboxesInput(props) {
     return <FormattedMessage id="https://app.argu.co/i18n/collection/empty/message" />;
   }
 
-  const isEmpty = value?.length === 0;
+  const isEmpty = values?.length === 0;
 
   const items = options.map((item) => {
     const label = (
@@ -52,16 +52,16 @@ function CheckboxesInput(props) {
     return (
       <div className="Field__input Field__input--checkbox" key={`checkbox-${item.value}`}>
         <Input
-          checked={value && value.map((v) => v.value).indexOf(item.value) !== -1}
-          id={item}
-          name={sharedProps.name}
-          required={isEmpty && sharedProps.required}
+          checked={values && values.map((v) => v.value).indexOf(item.value) !== -1}
+          id={item.value}
+          name={name}
+          required={isEmpty && required}
           type="checkbox"
           value={JSON.stringify(item)}
-          onChange={(e) => handleChange(e, props)}
+          onChange={(e) => handleChange(e, values, onChange)}
         />
         <FieldLabel
-          htmlFor={item}
+          htmlFor={item.value}
           label={label}
         />
       </div>
@@ -73,17 +73,11 @@ function CheckboxesInput(props) {
 
 CheckboxesInput.propTypes = {
   loading: PropTypes.bool,
+  name: PropTypes.string,
+  onChange: PropTypes.func,
   options: PropTypes.arrayOf(linkType),
-  sharedProps: PropTypes.shape({
-    autoFocus: PropTypes.bool,
-    className: PropTypes.string,
-    name: PropTypes.string,
-    onBlur: PropTypes.func,
-    onChange: PropTypes.func,
-    onFocus: PropTypes.func,
-    required: PropTypes.bool,
-  }).isRequired,
-  value: PropTypes.arrayOf(linkType),
+  required: PropTypes.bool,
+  values: PropTypes.arrayOf(linkType),
 };
 
 export default CheckboxesInput;

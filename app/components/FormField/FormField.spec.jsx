@@ -115,7 +115,7 @@ describe('FormField', () => {
     expect(getByTestId('test')).toHaveFormValues({
       [pinned]: true,
     });
-    expect(form.getFieldState(pinned).value).toEqual(true);
+    expect(form.getFieldState(pinned).value).toEqual([true]);
     expect(form.getFieldState(pinned).invalid).toBeFalsy();
     expect(store[`test.${pinned}`]).toBeTruthy();
   });
@@ -149,7 +149,7 @@ describe('FormField', () => {
 
     it('stores values', () => {
       const result = testPersistence('text', 'test');
-      expect(result).toEqual('"test"');
+      expect(result).toEqual('["test"]');
     });
 
     it("doesn't store passwords", () => {

@@ -33,7 +33,7 @@ const FieldHelper = ({
 
   const err = errMsg && (
     <span className="Field__error">
-      {errMsg}
+      {errMsg.error || errMsg}
     </span>
   );
 

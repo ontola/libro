@@ -137,10 +137,12 @@ const DataField = (props) => {
       description={descriptionValue(description, helperText, inputType)}
       field={fieldName}
       form={subjectCtx}
-      initialValue={inputType === 'checkboxes' ? inputValues : inputValues?.[0]}
+      initialValue={inputValues}
       inputFieldHint={inputFieldHint}
       label={name && name.value}
+      maxCount={tryParseInt(maxCount)}
       maxLength={tryParseInt(maxLength)}
+      minCount={tryParseInt(minCount)}
       minLength={tryParseInt(minLength)}
       minRows={tryParseInt(maxLength) > MAX_STR_LEN ? TEXTFIELD_MIN_ROWS : undefined}
       placeholder={placeholderValue(description, inputType)}

@@ -49,7 +49,10 @@ class SignInFormBase extends React.PureComponent {
   }
 
   errorsForField(fieldName) {
-    return this.props.errors.get(btoa(fieldName))?.map((msg) => this.props.intl.formatMessage(msg));
+    return this.props.errors.get(btoa(fieldName))?.map((msg) => ({
+      error: this.props.intl.formatMessage(msg),
+      index: 0,
+    }));
   }
 
   confirmFields() {

@@ -7,18 +7,17 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import FontAwesome from 'react-fontawesome';
 
+import Button from '../Button';
 import FieldLabel from '../FieldLabel';
 import formFieldWrapper from '../FormFieldWrapper';
 import Markdown from '../Markdown';
 
 import './DateTime.scss';
 import './FormField.scss';
+import FormInputs from './FormInputs';
 import { optionsType } from './OptionsWrapper';
-import InputElement from './InputElement';
-import FieldHelper from './FieldHelper';
-import CharCounter, { CHAR_COUNTER_THRESHOLD } from './CharCounter';
 
 const propTypes = {
   autoComplete: PropTypes.string,
@@ -62,6 +61,7 @@ const propTypes = {
     PropTypes.string,
     PropTypes.element,
   ]),
+  maxCount: PropTypes.number,
   maxLength: PropTypes.number,
   /** @private Contains form-library specific data */
   meta: PropTypes.shape({
@@ -72,6 +72,7 @@ const propTypes = {
     pristine: PropTypes.bool,
     touched: PropTypes.bool,
   }),
+  minCount: PropTypes.number,
   minLength: PropTypes.number,
   // Minimal number of rows for textAreas
   minRows: PropTypes.number,
@@ -102,31 +103,57 @@ const propTypes = {
 
 const defaultProps = {
   autofocus: false,
+  maxCount: 1,
+  minCount: 1,
   variant: 'default',
 };
 
-const inputValue = (type, input, dirty, initialValue) => {
-  if (type === 'file') {
-    return undefined;
-  }
+const AddValueButton = ({ addItem, label }) => (
+  <div>
+    <Button
+      theme="transparant"
+      onClick={addItem}
+    >
+      <FontAwesome name="plus" />
+      {' '}
+      {label}
+    </Button>
+  </div>
+);
 
-  const currentValue = dirty
+AddValueButton.propTypes = {
+  addItem: PropTypes.func,
+  label: PropTypes.string,
+};
+
+const inputValues = (type, input, dirty, initialValue, variableFields) => {
+  let currentValue = dirty
     ? input.value
     : input.value || initialValue;
 
-  let nextValue = currentValue;
-  if (type === 'checkbox') {
-    const boolNormalized = rdf.literal(!!currentValue);
-    nextValue = boolNormalized && boolNormalized.value === '1';
-  } else if (type === 'checkboxes') {
-    nextValue = currentValue;
-  } else if (type === 'text' || type === 'textarea' || type === 'markdown' || type === 'number') {
-    nextValue = isTerm(currentValue)
-      ? currentValue.value
-      : currentValue;
+  if (currentValue && !Array.isArray(currentValue)) {
+    currentValue = [currentValue];
   }
 
-  return nextValue ?? undefined;
+  if (!currentValue || currentValue.length === 0) {
+    if (variableFields) {
+      return undefined;
+    }
+
+    return [null];
+  }
+
+  return currentValue.map((value) => {
+    if (type === 'checkbox') {
+      const boolNormalized = rdf.literal(!!value);
+
+      return boolNormalized && boolNormalized.value === 'true';
+    } else if (type === 'text' || type === 'textarea' || type === 'markdown' || type === 'number' || type === 'email') {
+      return isTerm(value) ? value.value : value;
+    }
+
+    return value;
+  });
 };
 
 /**
@@ -146,8 +173,9 @@ const FormField = (props) => {
     input,
     id,
     label,
-    maxLength,
     meta,
+    maxCount,
+    minCount,
     required,
     theme,
     type,
@@ -158,10 +186,18 @@ const FormField = (props) => {
     dirty,
     error,
     invalid,
-    pristine,
   } = meta;
+  const variableFields = (minCount !== 1 || maxCount > 1) && type !== 'checkboxes';
+
+  const addItem = () => {
+    const newValue = input.value?.slice() || [];
+    newValue.push(rdf.literal(''));
+
+    input.onChange(newValue);
+  };
+
   const resolvedVariant = theme === 'omniform' ? 'preview' : variant;
-  const value = inputValue(type, input, dirty, initialValue);
+
   const fieldId = id || (field || '')
     .split('.')
     .map((v) => (Number.isNaN(Number.parseInt(v, 10)) ? atob(v) : v))
@@ -205,56 +241,23 @@ const FormField = (props) => {
     );
   };
 
-  const inputHelper = () => {
-    const renderHelper = type === 'checkbox'
-      ? !!description
-      : resolvedVariant !== 'preview' || (!pristine && error);
-    const renderCharCounter = resolvedVariant !== 'preview';
-
-    if (!renderHelper) {
-      return null;
-    }
-
-    let helperText;
-
-    if (type === 'checkbox') {
-      helperText = description;
-    } else if (required) {
-      helperText = (
-        <FormattedMessage
-          defaultMessage="*Required"
-          id="https://app.argu.co/i18n/forms/required/helperText"
-        />
-      );
-    }
-
-    return (
-      <FieldHelper
-        error={pristine ? undefined : allErrs}
-        helperText={helperText}
-        right={renderCharCounter ? (
-          <CharCounter
-            maxLength={maxLength}
-            threshold={CHAR_COUNTER_THRESHOLD}
-            value={value}
-          />
-        ) : undefined}
-        variant={resolvedVariant}
-      />
-    );
-  };
-
   return (
     <div className={`Field ${className ?? ''} ${classes}`}>
       <Label />
       <Description />
-      <InputElement
+      <FormInputs
         {...props}
-        errors={allErrs}
-        inputValue={value}
-        variant={resolvedVariant}
+        allErrs={allErrs}
+        fieldId={fieldId}
+        values={inputValues(type, input, dirty, initialValue, variableFields)}
+        variableFields={variableFields}
       />
-      {inputHelper()}
+      {variableFields && (
+        <AddValueButton
+          addItem={addItem}
+          label={label}
+        />
+      )}
     </div>
   );
 };

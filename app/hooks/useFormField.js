@@ -24,10 +24,12 @@ const useFormField = ({
     storageKey
   );
   const [currentDefaultValue, setCurrentDefaultValue] = React.useState(defaultStorageValue);
+  const [currentInitialValue, setCurrentInitialValue] = React.useState(initialValue);
 
   React.useEffect(() => {
     setCurrentDefaultValue(defaultStorageValue);
-  }, [name, initialValue]);
+    setCurrentInitialValue(initialValue);
+  }, [name, ...(initialValue || [])]);
   const setDefaultValue = ['password', 'hidden'].includes(type)
     ? () => undefined
     : setStorageValue;
@@ -36,7 +38,7 @@ const useFormField = ({
     allowNull: true,
     defaultValue: currentDefaultValue,
     format: (i) => i,
-    initialValue: currentDefaultValue ? undefined : initialValue,
+    initialValue: currentDefaultValue ? undefined : currentInitialValue,
     parse: (i) => i,
     validate,
   });

@@ -35,7 +35,7 @@ const MediaObjectOmniformDropzone = ({
       url: URL.createObjectURL(acceptedFile),
     }));
 
-    return onContentUrlChange(acceptedFile);
+    return onContentUrlChange([acceptedFile]);
   };
 
   return (
