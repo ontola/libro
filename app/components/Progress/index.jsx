@@ -7,20 +7,31 @@ const ProgressWithRadius = withStyles({
   root: {
     borderRadius: 10,
     height: 10,
-    marginBottom: '1em',
     maxWidth: '10em',
   },
 })(LinearProgress);
 
+const ProgressWithEndspacing = withStyles({
+  root: {
+    marginBottom: '1em',
+  },
+})(ProgressWithRadius);
+
 const Progress = ({
+  endSpacing,
   max,
   min,
   value,
-}) => (
-  <ProgressWithRadius value={100 * ((value - min) / (max - min))} variant="determinate" />
-);
+}) => {
+  const ProgressComp = endSpacing ? ProgressWithEndspacing : ProgressWithRadius;
+
+  return (
+    <ProgressComp value={100 * ((value - min) / (max - min))} variant="determinate" />
+  );
+};
 
 Progress.propTypes = {
+  endSpacing: PropTypes.bool,
   max: PropTypes.number,
   min: PropTypes.number,
   value: PropTypes.number,
