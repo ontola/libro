@@ -36,7 +36,7 @@ export const useIRITemplate = (collection: Node) => {
 
     return iriFromTemplate(iriTemplate.value, {
       ...currentIriOpts,
-      [key]: value,
+      [key]: Array.isArray(value) ? value.map(((item) => item.trim())) : value?.trim(),
     });
   };
 
