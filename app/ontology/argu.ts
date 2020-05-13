@@ -13,7 +13,7 @@ export default {
   Comment: argu('Comment'),
   ConArgument: argu('ConArgument'),
   ConfirmAction: argu('ConfirmAction'),
-  Confirmation: argu('Confirmation'),
+  Confirmation: argu('Users::Confirmation'),
   ContainerNode: argu('ContainerNode'),
   ConvertActivity: argu('ConvertActivity'),
   Customer: argu('Customer'),
