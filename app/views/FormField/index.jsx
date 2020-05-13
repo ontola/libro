@@ -94,5 +94,6 @@ export default [
   registerFormField(form.PasswordInput, 'password'),
   registerFormField(form.AssociationInput, 'association'),
   registerFormField(form.PostalRangeInput, 'postalRange'),
+  registerFormField(form.SliderInput, 'slider'),
   ResourceField,
 ];

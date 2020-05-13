@@ -28,6 +28,7 @@ import ToggleButtonGroup from '../ToggleButtonGroup';
 import CharCounter, { CHAR_COUNTER_THRESHOLD } from './CharCounter';
 import OptionsWrapper, { optionsType } from './OptionsWrapper';
 import PostalRangeInput from './PostalRangeInput';
+import SliderInput from './SliderInput';
 
 import { formFieldError } from './index';
 
@@ -46,7 +47,9 @@ const InputElement = ({
   inputValue,
   label,
   meta,
+  maxInclusive,
   maxLength,
+  minInclusive,
   minLength,
   name,
   onBlur,
@@ -247,6 +250,20 @@ const InputElement = ({
     );
   }
 
+  if (type === 'slider') {
+    return (
+      <SliderInput
+        {...sharedProps}
+        className={className}
+        data-testid={sharedProps.name}
+        maxInclusive={maxInclusive}
+        minInclusive={minInclusive}
+        topology={topology}
+        value={inputValue}
+      />
+    );
+  }
+
   const minRows = maxLength > MAX_STR_LEN ? TEXTFIELD_MIN_ROWS : undefined;
 
   let element;
@@ -349,6 +366,7 @@ InputElement.propTypes = {
     PropTypes.element,
   ]),
   maxCount: PropTypes.number,
+  maxInclusive: PropTypes.number,
   maxLength: PropTypes.number,
   /** @private Contains form-library specific data */
   meta: PropTypes.shape({
@@ -360,6 +378,7 @@ InputElement.propTypes = {
     touched: PropTypes.bool,
   }),
   minCount: PropTypes.number,
+  minInclusive: PropTypes.number,
   minLength: PropTypes.number,
   // Minimal number of rows for textAreas
   minRows: PropTypes.number,
