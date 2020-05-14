@@ -4,6 +4,7 @@ import ReactDOMServer from 'react-dom/server';
 import App from '../../../app/App';
 import generateLRS from '../../../app/helpers/generateLRS';
 import { handle } from '../../../app/helpers/logging';
+import patchRequestInitGenerator from '../../../app/helpers/monkey';
 
 // eslint-disable-next-line import/prefer-default-export
 export const headersFromPrerender = async (ctx, data) => {
@@ -19,6 +20,8 @@ export const headersFromPrerender = async (ctx, data) => {
       lrs,
       serviceWorkerCommunicator,
     } = generateLRS();
+    patchRequestInitGenerator(lrs);
+
     await lrs.api.feedResponse(seedRequest, true);
 
     const helmetContext = {};
