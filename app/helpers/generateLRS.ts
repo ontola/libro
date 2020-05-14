@@ -42,8 +42,10 @@ export default function generateLRS() {
     appMiddleware(),
     execFilter(),
   ];
-
-  const lrs = createStore<React.ComponentType<any>>({ report: handle }, middleware);
+  const storeOptions = __CLIENT__
+      ? { report: handle }
+      : { apiOpts: { bulkEndpoint: 'http://localhost/link-lib/bulk' }, report: handle };
+  const lrs = createStore<React.ComponentType<any>>(storeOptions, middleware);
   serviceWorkerCommunicator.linkedRenderStore = lrs;
   (lrs as any).bulkFetch = true;
 
