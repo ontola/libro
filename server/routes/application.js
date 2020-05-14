@@ -41,7 +41,7 @@ const handler = (sendResponse) => async (ctx) => {
       return sendResponse(ctx, domain, responseData);
     }
 
-    throw new Error('No manifest data available');
+    throw new Error(`No manifest data available for ${ctx.request.url}. Head response: ${headResponse.status}.`);
   } catch (e) {
     if (typeof e === 'undefined') {
       // Timeout finished first
