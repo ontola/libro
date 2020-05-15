@@ -1,6 +1,10 @@
 /* eslint no-console: 0 */
+
+import { constants } from 'zlib';
+
 import Router from '@koa/router';
 import bodyParser from 'koa-bodyparser';
+import compress from 'koa-compress';
 import CSRF from 'koa-csrf';
 import serveStatic from 'koa-static';
 import logger from 'koa-logger';
@@ -78,6 +82,14 @@ const routes = async function routes(app, port) {
   app.use(ctxMiddleware);
 
   app.use(deviceIdMiddleware);
+  app.use(compress({
+    deflate: {
+      flush: constants.Z_SYNC_FLUSH,
+    },
+    gzip: {
+      flush: constants.Z_SYNC_FLUSH,
+    },
+  }));
 
   const router = new Router();
 

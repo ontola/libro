@@ -51,6 +51,8 @@ export async function isPlainAPI() {
 export function isWebsocket(next) {
   return async (ctx, nextRoute) => {
     if (ctx.request.get('Upgrade') === 'websocket') {
+      ctx.compress = false;
+
       return next(ctx, nextRoute);
     }
 
