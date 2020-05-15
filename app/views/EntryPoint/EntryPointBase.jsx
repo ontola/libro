@@ -5,6 +5,7 @@ import HttpStatus from 'http-status-codes';
 import { anyRDFValue } from 'link-lib';
 import {
   Resource,
+  linkType,
   lrsType,
   subjectType,
 } from 'link-redux';
@@ -13,6 +14,7 @@ import React from 'react';
 
 import { convertKeysAtoB } from '../../helpers/data';
 import { HTTP_RETRY_WITH, handleHTTPRetry } from '../../helpers/errorHandling';
+import { retrievePath } from '../../helpers/iris';
 import ll from '../../ontology/ll';
 import ontola from '../../ontology/ontola';
 
@@ -27,9 +29,18 @@ class EntryPointBase extends React.PureComponent {
   responseCallback() {} // eslint-disable-line class-methods-use-this
 
   submitHandler(form, values, ...args) {
-    const formData = convertKeysAtoB(values);
+    const {
+      action,
+      history,
+      httpMethod,
+      url,
+      lrs,
+    } = this.props;
+    if (url && httpMethod?.value === 'GET') {
+      return history.push(retrievePath(url.value));
+    }
 
-    const { action, lrs } = this.props;
+    const formData = convertKeysAtoB(values);
 
     return lrs
       .exec(action, formData)
@@ -111,10 +122,12 @@ EntryPointBase.propTypes = {
     location: PropTypes.object.isRequired,
     push: PropTypes.func,
   }),
+  httpMethod: linkType,
   lrs: lrsType,
   onDone: PropTypes.func,
   onStatusForbidden: PropTypes.func,
   subject: subjectType,
+  url: linkType,
 };
 
 export default EntryPointBase;
