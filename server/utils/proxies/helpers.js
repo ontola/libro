@@ -237,52 +237,68 @@ async function isSourceAllowed(ctx, origin) {
 }
 
 async function requestForBulk(ctx, iri, agent, write, resolve) {
-  const { origin } = new URL(iri);
-  const external = origin !== ctx.request.origin;
-  const cachedFile = !external && fileFromCache(iri);
   const iriHJ = iri.includes('://') ? iri : `_:${iri}`;
 
-  if (external && !await isSourceAllowed(ctx, origin)) {
-    write(statusCodeHex(iriHJ, HttpStatus.FORBIDDEN));
+  try {
+    const { origin } = new URL(iri);
+    const external = origin !== ctx.request.origin;
+    const cachedFile = !external && fileFromCache(iri);
 
-    return undefined;
-  }
+    if (external && !await isSourceAllowed(ctx, origin)) {
+      write(statusCodeHex(iriHJ, HttpStatus.FORBIDDEN));
 
-  const requestOptions = getRequestOptions({
-    agent: external ? null : agent,
-    ctx,
-    external,
-    method: cachedFile ? 'HEAD' : 'GET',
-  });
-
-  const httpAgent = external ? https : http;
-  const url = external ? decodeURIComponent(iri) : route(decodeURIComponent(iri), true);
-
-  return httpAgent.request(url, requestOptions, (backendRes) => {
-    if (!backendRes.headers['content-type']?.includes('application/hex+x-ndjson')) {
-      handleNotAcceptableHJson(iriHJ, backendRes, write);
-      backendRes.destroy();
-      resolve();
-    } else if (writeResourceBody(cachedFile, backendRes, write, resolve)) {
-      write(statusCodeHex(iriHJ, backendRes.statusCode));
-      if (!external) {
-        const actions = getActions(backendRes);
-        if (actions.length > 0) {
-          for (let i = 0; i < actions.length; i++) {
-            write([iriHJ, `http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}`, actions[i].toString(), xsd.string.value, '', 'http://purl.org/link-lib/meta']);
-          }
-        }
-        const redirect = newAuthorizationBulk(ctx, backendRes);
-        if (redirect) {
-          write([iriHJ, `http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}`, redirect.toString(), xsd.string.value, '', 'http://purl.org/link-lib/meta']);
-        }
-      }
-    } else {
-      write(statusCodeHex(iriHJ, HttpStatus.INTERNAL_SERVER_ERROR));
+      return undefined;
     }
 
-    return undefined;
-  });
+    const requestOptions = getRequestOptions({
+      agent: external ? null : agent,
+      ctx,
+      external,
+      method: cachedFile ? 'HEAD' : 'GET',
+    });
+
+    const httpAgent = external ? https : http;
+    const url = external ? decodeURIComponent(iri) : route(decodeURIComponent(iri), true);
+
+    return httpAgent.request(url, requestOptions, (backendRes) => {
+      if (!backendRes.headers['content-type']?.includes('application/hex+x-ndjson')) {
+        handleNotAcceptableHJson(iriHJ, backendRes, write);
+        backendRes.destroy();
+        resolve();
+      } else if (writeResourceBody(cachedFile, backendRes, write, resolve)) {
+        write(statusCodeHex(iriHJ, backendRes.statusCode));
+        if (!external) {
+          const actions = getActions(backendRes);
+          if (actions.length > 0) {
+            for (let i = 0; i < actions.length; i++) {
+              write([iriHJ, `http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}`, actions[i].toString(), xsd.string.value, '', 'http://purl.org/link-lib/meta']);
+            }
+          }
+          const redirect = newAuthorizationBulk(ctx, backendRes);
+          if (redirect) {
+            write([iriHJ, `http://www.w3.org/2007/ont/httph#${EXEC_HEADER_NAME}`, redirect.toString(), xsd.string.value, '', 'http://purl.org/link-lib/meta']);
+          }
+        }
+      } else {
+        write(statusCodeHex(iriHJ, HttpStatus.INTERNAL_SERVER_ERROR));
+        if (!backendRes.destroyed) {
+          backendRes.destroy();
+          resolve();
+        }
+      }
+
+      return undefined;
+    });
+  } catch (e) {
+    logging.error(e);
+    if (ctx.bugsnag) {
+      ctx.bugsnag.notify(e);
+    }
+
+    write(statusCodeHex(iriHJ, HttpStatus.INTERNAL_SERVER_ERROR));
+
+    return resolve(e);
+  }
 }
 
 export function bulkResourceRequest(ctx, iris, agent, write) {
