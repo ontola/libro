@@ -33,6 +33,7 @@ const MeasureFull = ({ partOf }) => (
       <CardMain>
         <DetailsBar right={defaultMenus}>
           <Property label={rdfx.type} />
+          <Property label={schema.creator} />
           <LinkedDetailDate />
           <Property label={argu.pinnedAt} />
           <Property label={argu.expiresAt} />
