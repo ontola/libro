@@ -14,7 +14,12 @@ const connectSrc = [
 ];
 
 const fontSrc = ["'self'", 'https://maxcdn.bootstrapcdn.com', 'https://fonts.gstatic.com'];
-const frameSrc = ['https://youtube.com', 'https://www.youtube.com', 'https://*.typeform.com/'];
+const frameSrc = [
+  'https://youtube.com',
+  'https://www.youtube.com',
+  'https://*.typeform.com/',
+  'https://pipedrivewebforms.com/',
+];
 const imgSrc = [
   "'self'",
   'blob:',
@@ -39,6 +44,8 @@ const scriptSrc = [
   'https://d2wy8f7a9ursnm.cloudfront.net',
   'https://storage.googleapis.com',
   'https://www.googletagmanager.com',
+  'https://cdn.eu-central-1.pipedriveassets.com',
+  'https://browser-update.org',
   (req) => {
     const { manifest } = req.getCtx();
     const { matomo_hostname: hostname, matomo_port: port } = manifest?.ontola || {};

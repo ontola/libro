@@ -14,6 +14,7 @@ import Collection from './Collection';
 import CollectionPage from './CollectionPage';
 import Comment from './Comment';
 import Confirmation from './Confirmation';
+import ContactPage from './ContactPage';
 import Action from './Action/index';
 import Argument from './Argument/index';
 import DataCube from './DataCube';
@@ -85,6 +86,7 @@ export function getViews() {
     ...CollectionPage,
     ...Comment,
     ...Confirmation,
+    ...ContactPage,
     ...DataCube,
     ...DataType,
     ...Department,

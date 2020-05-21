@@ -38,8 +38,10 @@ All tests and linters will be run automatically as a pre-commit hook.
 ### Styling & theming
 We're migrating our styles to `@material/styles` objects, using the [makeStyles hook](https://material-ui.com/styles/basics/).
 This enables us to use runtime-overwritable custom themes in combination with the Material-ui components.
-If you need to edit styles written in SCSS, convert them to makeStyles objects.
+If you need to edit styles written in SCSS, convert them to `makeStyles` objects.
 If you need theme-dependent styles, use the theme object.
+Variables (colors, widths, spacing, font-size) should be taken from the `theme` object that is passed through `makeStyles`.
+These can be modified (for the default theme) in `app/themes/common/variables.js`.
 
 ### Testing
 Tests are written using jest+enzyme with additional expect matcher packages and some of our own
