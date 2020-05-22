@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
   left: {
     flex: 1,
+    flexBasis: '20rem',
   },
   person: {
     '& img': {
@@ -74,7 +75,9 @@ const useStyles = makeStyles((theme) => ({
   },
   right: {
     flex: 1,
-    marginLeft: '2rem',
+    flexBasis: '20rem',
+    marginLeft: '1rem',
+    marginRight: '1rem',
     marginTop: '2rem',
   },
   root: {
