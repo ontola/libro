@@ -1,7 +1,7 @@
-import rdf from '@ontologies/core';
 import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
 import {
+  ReturnType,
   linkType,
   register,
   subjectType,
@@ -50,7 +50,10 @@ class MediaObjectFull extends React.PureComponent {
     },
     filename: dbo.filename,
     isPartOf: schema.isPartOf,
-    type: rdfx.type,
+    type: {
+      label: rdfx.type,
+      returnType: ReturnType.AllTerms,
+    },
   };
 
   static propTypes = {
@@ -116,7 +119,7 @@ class MediaObjectFull extends React.PureComponent {
     } = this.props;
 
     const classes = fullPage ? 'MediaObjectPage--full-page' : '';
-    if (rdf.equals(type, schema.VideoObject)) {
+    if (type.includes(schema.VideoObject)) {
       if (embedUrl && YOUTUBE_TEST.test(embedUrl.value)) {
         return (
           <Container>
