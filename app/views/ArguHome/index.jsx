@@ -11,6 +11,7 @@ import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
 import Heading from '../../components/Heading';
+import Link from '../../components/Link';
 import PageRow from '../../components/PageRow';
 import { useSeqToArr } from '../../hooks/useSeqToArr';
 import argu from '../../ontology/argu';
@@ -57,6 +58,8 @@ const messages = defineMessages({
   },
 });
 
+const contactRoute = '/argu/edges/contact';
+
 const ArguHomePage = ({ subject }) => {
   const lrs = useLRS();
   const { formatMessage } = useIntl();
@@ -72,6 +75,11 @@ const ArguHomePage = ({ subject }) => {
         <PageRow>
           <Container size="medium">
             <Triad subject={subject} />
+            <div className="ArguHome--button-wrapper">
+              <Link className="ArguHome--button" to={contactRoute}>
+                {formatMessage(messages.requestDemo)}
+              </Link>
+            </div>
           </Container>
         </PageRow>
         {loaded && (
@@ -88,6 +96,11 @@ const ArguHomePage = ({ subject }) => {
                 <Grid>
                   <Property label={argu.cases} limit={Infinity} />
                 </Grid>
+                <div className="ArguHome--button-wrapper">
+                  <Link className="ArguHome--button" to={contactRoute}>
+                    {formatMessage(messages.requestDemo)}
+                  </Link>
+                </div>
               </Container>
             </PageRow>
             <PageRow white>
@@ -109,7 +122,9 @@ const ArguHomePage = ({ subject }) => {
                   <Property label={argu.features} limit={Infinity} />
                 </Grid>
                 <div className="ArguHome--button-wrapper">
-                  <a className="ArguHome--button" href="mailto:info@argu.co">{formatMessage(messages.requestDemo)}</a>
+                  <Link className="ArguHome--button" to={contactRoute}>
+                    {formatMessage(messages.requestDemo)}
+                  </Link>
                 </div>
               </Container>
             </PageRow>
