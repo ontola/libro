@@ -106,6 +106,16 @@ export function isBackend(next) {
 
       return next(ctx, nextRoute);
     }
+
+    const referer = ctx.request.get('referer');
+    const fetchMode = ctx.request.get('sec-fetch-mode');
+
+    if (referer && ctx.request.host && new URL(referer).host !== ctx.request.host && fetchMode === 'cors') {
+      logging.debug('[ROUTING] DIFFERENT ORIGIN - isBackend: true', referer, ctx.request.host);
+
+      return next(ctx, nextRoute);
+    }
+
     logging.debug('[ROUTING] isBackend: false');
 
     return nextRoute();
