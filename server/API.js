@@ -12,7 +12,6 @@ import {
   clientId,
   clientSecret,
   oAuthToken,
-  serviceGuestToken,
 } from './config';
 import logging from './utils/logging';
 import { route } from './utils/proxies/helpers';
@@ -25,7 +24,6 @@ class API {
     this.base = backendApiUrl;
     this.ctx = ctx;
     this.serviceToken = oAuthToken;
-    this.serviceGuestToken = serviceGuestToken;
   }
 
   async bulk(resources) {
@@ -112,7 +110,7 @@ class API {
    * @return {Promise} The proxies response
    */
   headRequest(req) {
-    return this.fetchRaw(this.ctx.session?.userToken || this.serviceGuestToken, {
+    return this.fetchRaw(this.ctx.session?.userToken, {
       headers: {
         Accept: constants.FRONTEND_ACCEPT,
         ...this.proxySafeHeaders(req),

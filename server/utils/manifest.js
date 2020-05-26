@@ -10,7 +10,7 @@ export const requestBackendManifest = async (api, manifestLocation) => (
   // TODO: Replace with bulk API
   // readFileFromCache(manifestLocation) ||
   api.fetchRaw(
-    api.ctx.session?.userToken || api.serviceGuestToken,
+    api.ctx.session?.userToken,
     {
       headers: {
         Accept: 'application/json',
