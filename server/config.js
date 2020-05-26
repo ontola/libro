@@ -40,13 +40,6 @@ export const mapboxUsername = process.env.MAPBOX_USERNAME || '';
  */
 export const oAuthToken = process.env.RAILS_OAUTH_TOKEN;
 /**
- * DO NOT USE this value.
- *
- * An OAuth access token of this front-end instance with guest scope.
- * This token is needed for initial HEAD requests.
- */
-export const serviceGuestToken = process.env.SERVICE_GUEST_TOKEN;
-/**
  * DO NOT USE this value, since it really is super secret.
  *
  * This allows us to verify whether JWT's are actually created by the back-end.
@@ -68,11 +61,6 @@ export const sessionSecret = process.env.SESSION_SECRET;
 if (!oAuthToken && !__TEST__) {
   // eslint-disable-next-line no-console
   console.error('NO OAUTH TOKEN');
-  process.exit(1);
-}
-if (!serviceGuestToken && !__TEST__) {
-  // eslint-disable-next-line no-console
-  console.log('NO SERVICE GUEST SECRET');
   process.exit(1);
 }
 if (!sessionSecret && !__TEST__) {

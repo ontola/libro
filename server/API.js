@@ -13,7 +13,6 @@ import {
   clientId,
   clientSecret,
   oAuthToken,
-  serviceGuestToken,
 } from './config';
 import logging from './utils/logging';
 import { route } from './utils/proxies/helpers';
@@ -26,7 +25,6 @@ class API {
     this.base = constants.ARGU_API_URL;
     this.ctx = ctx;
     this.serviceToken = oAuthToken;
-    this.serviceGuestToken = serviceGuestToken;
   }
 
   logout(websiteIRI) {
@@ -95,7 +93,7 @@ class API {
    * @return {Promise} The proxies response
    */
   headRequest(req) {
-    return this.fetchRaw(this.ctx.session.userToken || this.serviceGuestToken, {
+    return this.fetchRaw(this.ctx.session.userToken, {
       headers: {
         Accept: constants.FRONTEND_ACCEPT,
         ...this.proxySafeHeaders(req),

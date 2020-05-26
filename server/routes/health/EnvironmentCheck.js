@@ -37,7 +37,6 @@ export default class EnvironmentCheck extends Check {
       'jwtEncryptionToken',
       'oAuthToken',
       'redisAddress',
-      'serviceGuestToken',
       'sessionSecret',
       'websocketPath',
     ].forEach((key) => checkPresence(key, constants[key]));
