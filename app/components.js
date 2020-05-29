@@ -82,7 +82,7 @@ import CompSelectInputSelectInputWrapper from './components/SelectInput/SelectIn
 import CompSignInFormSignInFormLink from './components/SignInForm/SignInFormLink';
 import CompSignOutForm from './components/SignOutForm/SignOutFormLink';
 import CompSkipNavigation from './components/SkipNavigation/index';
-import CompSpinner from './components/Spinner/index';
+import CompSpinner from './components/Spinner';
 import CompUnorderedList from './components/UnorderedList/index';
 import CompVerticalScroller from './components/VerticalScroller/index';
 import CompVoteChart from './components/VoteChart/index';

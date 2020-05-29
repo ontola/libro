@@ -69,6 +69,7 @@
     "@ontologies/shacl": "^1.0.0",
     "@ontologies/xsd": "^1.0.0",
     "@rdfdev/actions": "^1.0.3",
+    "@types/classnames": "^2.2.10",
     "@types/react-fontawesome": "^1.6.4",
     "@types/react-router": "^5.1.4",
     "atob": "^2.1.2",

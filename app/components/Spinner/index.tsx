@@ -7,7 +7,7 @@ const propTypes = {
   loading: PropTypes.bool.isRequired,
 };
 
-const Spinner = ({ loading }) => (
+const Spinner: React.FC<any> = ({ loading }) => (
   <div
     className={`Spinner ${loading ? 'Spinner--loading' : ''}`}
     data-testid="spinner"

@@ -92,14 +92,17 @@ class Topology<P = {}, S extends TopologyState = {}> extends TopologyProvider<P,
   }
 
   public renderContent() {
+    const Element = this.elementType as React.ElementType;
+
     return this.wrap((subject) => (
-      <div
+      <Element
         className={this.getClassName()}
         resource={subject && subject.value}
         style={this.getStyle()}
+        {...this.props}
       >
         {this.props.children}
-      </div>
+      </Element>
     ));
   }
 

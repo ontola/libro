@@ -1,52 +1,33 @@
 import RDFTypes from '@rdfdev/prop-types';
 import schema from '@ontologies/schema';
-import { normalizeType } from 'link-lib';
-import { Property, register } from 'link-redux';
+import { register } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Spinner from '../../components/Spinner';
-import TableRow from '../../topologies/TableRow';
+import TableCells from '../../components/TableCells';
 import { tableTopology } from '../../topologies/Table';
+import TableRow from '../../topologies/TableRow';
 
-class ThingTable extends React.PureComponent {
-  static type = schema.Thing;
+export const columnsType = PropTypes.arrayOf(
+  PropTypes.oneOfType([
+    RDFTypes.namedNode,
+    PropTypes.arrayOf(RDFTypes.namedNode),
+    PropTypes.instanceOf(Promise),
+  ])
+);
 
-  static topology = tableTopology;
+const ThingTable = ({ columns }) => (
+  <TableRow>
+    <TableCells columns={columns} />
+  </TableRow>
+);
 
-  static propTypes = {
-    columns: PropTypes.arrayOf(
-      PropTypes.oneOfType([
-        RDFTypes.namedNode,
-        PropTypes.arrayOf(RDFTypes.namedNode),
-        PropTypes.instanceOf(Promise),
-      ])
-    ),
-  };
+ThingTable.type = schema.Thing;
 
-  render() {
-    const { columns } = this.props;
+ThingTable.topology = tableTopology;
 
-    if (!Array.isArray(columns)) {
-      return (
-        <TableRow>
-          <Spinner loading />
-        </TableRow>
-      );
-    }
-
-    return (
-      <TableRow>
-        {columns.map((column) => (
-          <Property
-            forceRender
-            key={normalizeType(column)[0].value}
-            label={column}
-          />
-        ))}
-      </TableRow>
-    );
-  }
-}
+ThingTable.propTypes = {
+  columns: columnsType,
+};
 
 export default register(ThingTable);
