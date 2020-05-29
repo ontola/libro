@@ -9,11 +9,17 @@
 import { register } from 'link-redux';
 
 import MeasurePropertyTableRow from './MeasureProperty/MeasurePropertyTableRow';
+import DataSetCard from './DataSet/DataSetCard';
 import DataSetFull from './DataSet/DataSetFull';
+import DataSetTabPane from './DataSet/DataSetTabPane';
+import DownloadUrl from './DataSet/properties/downloadUrl';
 import ObservationTableBody from './Observation/ObservationTableBody';
 
 export default [
   register(DataSetFull),
+  register(DataSetCard),
+  register(DataSetTabPane),
+  register(DownloadUrl),
   register(MeasurePropertyTableRow),
   register(ObservationTableBody),
 ];

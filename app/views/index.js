@@ -18,6 +18,7 @@ import Comment from './Comment';
 import Condition from './Condition';
 import Confirmation from './Confirmation';
 import ContactPage from './ContactPage';
+import Dashboard from './Dashboard';
 import DataCube from './DataCube';
 import DataType from './DataType';
 import Department from './Department';
@@ -94,6 +95,7 @@ export function getViews() {
     ...Condition,
     ...Confirmation,
     ...ContactPage,
+    ...Dashboard,
     ...DataCube,
     ...DataType,
     ...Department,
