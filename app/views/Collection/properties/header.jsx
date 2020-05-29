@@ -12,7 +12,6 @@ import CardHeader from '../../../components/Card/CardHeader';
 import CollectionCreateActionButton from '../../../components/Collection/CollectionCreateActionButton';
 import ContainerHeader from '../../../components/Container/ContainerHeader';
 import { buildRegister } from '../../../helpers/buildRegister';
-import { isTableDisplay } from '../../../helpers/collections';
 import ontola from '../../../ontology/ontola';
 import { allTopologiesExcept } from '../../../topologies';
 import { cardTopology } from '../../../topologies/Card';
@@ -21,21 +20,19 @@ import { pageTopology } from '../../../topologies/Page';
 import { CollectionTypes } from '../types';
 
 const HeaderFloat = ({
-  collectionDisplay,
+  hidePagination,
   omniform,
   setCurrentPage,
   subject,
 }) => (
   <React.Fragment>
-    <Property label={ontola.filterFields} setCurrentPage={setCurrentPage} />
-    {!isTableDisplay(collectionDisplay) && (
-      <Property label={ontola.sortOptions} setCurrentPage={setCurrentPage} />
-    )}
+    {!hidePagination && <Property label={ontola.filterFields} setCurrentPage={setCurrentPage} />}
+    {!hidePagination && <Property label={ontola.sortOptions} setCurrentPage={setCurrentPage} />}
     <CollectionCreateActionButton omniform={omniform} subject={subject} />
   </React.Fragment>
 );
 HeaderFloat.propTypes = {
-  collectionDisplay: linkType,
+  hidePagination: PropTypes.bool,
   omniform: PropTypes.bool,
   setCurrentPage: PropTypes.func,
   subject: subjectType,
