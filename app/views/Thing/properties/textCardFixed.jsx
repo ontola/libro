@@ -12,7 +12,7 @@ import { popupTopology } from '../../../topologies/Popup';
 /* eslint-disable no-magic-numbers */
 const useStyles = makeStyles(() => ({
   footer: {
-    background: 'linear-gradient(to bottom, transparent 0%, white 70%, white 100%)',
+    background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, white 70%, white 100%)',
     bottom: 0,
     height: '2em',
     position: 'absolute',
