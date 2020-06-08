@@ -1,6 +1,7 @@
 import {
   BAD_GATEWAY,
   INTERNAL_SERVER_ERROR,
+  NOT_FOUND,
   OK,
   SERVICE_UNAVAILABLE,
   TEMPORARY_REDIRECT,
@@ -41,11 +42,17 @@ const handler = (sendResponse) => async (ctx) => {
       return sendResponse(ctx, domain, responseData);
     }
 
-    throw new Error(`No manifest data available for ${ctx.request.url}. Head response: ${headResponse.status}.`);
+    if (headResponse.status === NOT_FOUND) {
+      throw new Error('NO_TENANT');
+    } else {
+      throw new Error(`No manifest data available for ${ctx.request.url}. Head response: ${headResponse.status}.`);
+    }
   } catch (e) {
     if (typeof e === 'undefined') {
       // Timeout finished first
       ctx.response.status = SERVICE_UNAVAILABLE;
+    } if (e.message === 'NO_TENANT') {
+      ctx.response.status = NOT_FOUND;
     } else {
       logging.error(e, ctx.bugsnag ? 'Notifying' : 'Bugsnag client not present');
       if (ctx.bugsnag) {
