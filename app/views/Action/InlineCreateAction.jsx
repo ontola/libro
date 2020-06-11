@@ -18,53 +18,49 @@ import { OMNIFORM_FILTER, invalidStatusIds } from '../Thing/properties/omniform/
 
 import mapCardListDispatchToProps from './helpers';
 
-class InlineCreateAction extends React.PureComponent {
-  static type = schema.CreateAction;
-
-  static topology = [
-    actionsBarTopology,
-    cardListTopology,
-    cardFloatTopology,
-  ];
-
-  static mapDataToProps = {
-    actionStatus: schema.actionStatus,
-    object: schema.object,
-  };
-
-  static hocs = [connect(null, mapCardListDispatchToProps)];
-
-  static displayName = 'InlineCreateActionButton';
-
-  static propTypes = {
-    actionStatus: linkType,
-    count: linkType,
-    omniform: PropTypes.bool,
-    onClick: PropTypes.func,
-    subject: subjectType,
-  };
-
-  render() {
-    const {
-      actionStatus,
-      count,
-      omniform,
-      onClick,
-      subject,
-    } = this.props;
-
-    if (invalidStatusIds.includes(rdf.id(actionStatus))) {
-      return null;
-    }
-
-    return (
-      <Property
-        count={count}
-        label={schema.name}
-        onClick={omniform && OMNIFORM_FILTER.find(filterFind(subject)) ? onClick : undefined}
-      />
-    );
+const InlineCreateAction = ({
+  actionStatus,
+  count,
+  omniform,
+  onClick,
+  subject,
+}) => {
+  if (invalidStatusIds.includes(rdf.id(actionStatus))) {
+    return null;
   }
-}
+
+  return (
+    <Property
+      count={count}
+      label={schema.name}
+      onClick={omniform && OMNIFORM_FILTER.find(filterFind(subject)) ? onClick : undefined}
+    />
+  );
+};
+
+InlineCreateAction.type = schema.CreateAction;
+
+InlineCreateAction.topology = [
+  actionsBarTopology,
+  cardFloatTopology,
+  cardListTopology,
+];
+
+InlineCreateAction.mapDataToProps = {
+  actionStatus: schema.actionStatus,
+  object: schema.object,
+};
+
+InlineCreateAction.hocs = [
+  connect(null, mapCardListDispatchToProps),
+];
+
+InlineCreateAction.propTypes = {
+  actionStatus: linkType,
+  count: linkType,
+  omniform: PropTypes.bool,
+  onClick: PropTypes.func,
+  subject: subjectType,
+};
 
 export default register(InlineCreateAction);
