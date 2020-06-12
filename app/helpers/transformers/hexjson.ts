@@ -1,4 +1,5 @@
 import rdf, { BlankNode, Quad, SomeTerm } from '@ontologies/core';
+import rdfNS from '@ontologies/rdf';
 // @ts-ignore
 import NdjsonStream from 'can-ndjson-stream';
 import { ExtensionResponse, RDFLibFetcherResponse, ResponseAndFallbacks } from 'link-lib';
@@ -36,9 +37,9 @@ export default {
     const object = (v: string, dt: string, l: string): SomeTerm => {
       if (l) {
         return literal(v, l);
-      } else if (dt === 'http://www.w3.org/1999/02/22-rdf-syntax-ns#namedNode') {
+      } else if (dt === rdfNS.ns('namedNode').value) {
         return namedNode(v);
-      } else if (dt === 'http://www.w3.org/1999/02/22-rdf-syntax-ns#blankNode') {
+      } else if (dt === rdfNS.ns('blankNode').value) {
         return blankNode(v);
       }
 

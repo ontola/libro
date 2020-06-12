@@ -4,8 +4,9 @@ import fs from 'fs';
 import { URL } from 'url';
 import * as zlib from 'zlib';
 
-import HttpStatus from 'http-status-codes';
+import rdf from '@ontologies/rdf';
 import xsd from '@ontologies/xsd';
+import HttpStatus from 'http-status-codes';
 
 import { fileFromCache } from '../cache';
 import * as constants from '../../config';
@@ -133,7 +134,7 @@ const statusCodeHex = (iriHJ, status) => ([
 
 const handleNotAcceptableHJson = (iriHJ, backendRes, write) => {
   if (isRedirect(backendRes.statusCode)) {
-    write([iriHJ, 'http://www.w3.org/2002/07/owl#sameAs', backendRes.headers.location, xsd.string.value, '', 'http://purl.org/link-lib/supplant']);
+    write([iriHJ, 'http://www.w3.org/2002/07/owl#sameAs', backendRes.headers.location, rdf.ns('namedNode').value, '', 'http://purl.org/link-lib/supplant']);
     write(statusCodeHex(iriHJ, '200'));
   } else {
     const statusCode = backendRes.statusCode === HttpStatus.OK
