@@ -28,7 +28,6 @@ import { securityHeaders } from '../utils/http';
 import { getErrorMiddleware } from '../utils/logging';
 import {
   backendProxy,
-  bulkProxy,
   fileProxy,
   loginProxy,
 } from '../utils/proxies';
@@ -120,7 +119,6 @@ const routes = async function routes(app, port) {
   router.get('*/f_assets/precache-manifest.*.js*', precacheManifest);
   router.get(['/logout', '/*/logout'], logout);
   router.post(['/logout', '/*/logout'], logout);
-  router.post('/link-lib/bulk', bodyParser(), isBackend(bulkProxy));
 
   router.use(ensureAccessTokenMiddleware);
 

@@ -88,6 +88,7 @@ export function setBulkResHeaders(res) {
   res.set('Vary', VARY_HEADER);
 }
 
+const bulkMatch = /^\/link-lib\/bulk$/;
 const dekuMatch = /^\/\w*\/\w*\/od\/?.*$/;
 const emailMatch = /^\/email\//;
 const subscribeMatch = /^\/subscribe/;
@@ -101,7 +102,13 @@ export function route(requestUrl, full = false) {
   const path = url.pathname;
   let serviceName;
 
-  if (dekuMatch.test(path)) {
+  if (defaultPort) {
+    url.port = defaultPort;
+  }
+
+  if (bulkMatch.test(path)) {
+    serviceName = 'apex_rs';
+  } else if (dekuMatch.test(path)) {
     serviceName = 'deku';
   } else if (emailMatch.test(path)) {
     serviceName = 'email';
@@ -117,9 +124,6 @@ export function route(requestUrl, full = false) {
 
   url.protocol = constants.defaultServiceProto;
   url.host = `${serviceName}${constants.clusterURLBase}`;
-  if (defaultPort) {
-    url.port = defaultPort;
-  }
 
   if (full) {
     return url.toString();
