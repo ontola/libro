@@ -26,9 +26,9 @@ const order = [
   'unsubscribe',
   'not_available',
   'contacted',
-  'option%3Dyes',
-  'option%3Dother',
-  'option%3Dno',
+  'filter%5B%5D=%3Dyes',
+  'filter%5B%5D=%3Dother',
+  'filter%5B%5D=%3Dno',
 ];
 
 const sortBind = (potentialActions, props) => potentialActions
