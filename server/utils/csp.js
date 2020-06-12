@@ -28,6 +28,7 @@ const imgSrc = [
 ];
 const objectSrc = ["'none'"];
 const sandbox = [
+  'allow-downloads',
   'allow-forms',
   'allow-modals',
   'allow-popups',
