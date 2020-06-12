@@ -10,7 +10,7 @@ import { useField } from 'react-final-form';
 
 import { FormSectionContext } from '../Form/FormSection';
 import { listToArr } from '../../helpers/data';
-import { calculateFormFieldName, isMarkedForRemove } from '../../helpers/forms';
+import { calculateFormFieldName } from '../../helpers/forms';
 import MediaObjectOmniformDropzoneLoader from '../../views/MediaObject/omniform/MediaObjectOmniformDropzoneLoader';
 
 import './FileInput.scss';
@@ -48,10 +48,6 @@ const FileInput = (props) => {
 
     current.click();
   };
-
-  if (isMarkedForRemove(targetValue)) {
-    return null;
-  }
 
   const fieldName = schema.contentUrl;
   const fieldId = calculateFormFieldName(formContext, propertyIndex, fieldName);

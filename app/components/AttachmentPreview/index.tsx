@@ -49,8 +49,12 @@ const AttachmentPreview: React.FC<any> = ({
     };
   } else {
     const attachmentsTemplate = parser.parse(attachmentsIriTemplate.value);
-    const attachmentsIri = rdf.namedNode(attachmentsTemplate.expand({page_size: 1}));
+    const attachmentsIri = rdf.namedNode(attachmentsTemplate.expand({
+      display: 'default',
+      page_size: 1,
+    }));
     const attachmentsPageIri = rdf.namedNode(attachmentsTemplate.expand({
+      display: 'default',
       page: (sequenceIndex || 0) + 1,
       page_size: 1,
     }));

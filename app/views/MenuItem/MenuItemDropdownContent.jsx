@@ -16,6 +16,7 @@ import MenuItem from '../../components/MenuItem';
 import ontola from '../../ontology/ontola';
 import { appMenuTopology } from '../../topologies/AppMenu';
 import { menuTopology } from '../../topologies/Menu';
+import { tableCellTopology } from '../../topologies/TableCell';
 
 const MenuItemDropdownContentComp = ({
   action,
@@ -130,6 +131,7 @@ MenuItemDropdownContent.type = ontola.MenuItem;
 MenuItemDropdownContent.topology = [
   appMenuTopology,
   menuTopology,
+  tableCellTopology,
 ];
 
 MenuItemDropdownContent.mapDataToProps = {

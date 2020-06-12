@@ -28,6 +28,9 @@ const pageRenderBase = (subject: SomeTerm, baseCollection: SomeTerm, collectionD
   if (subjParams.get('type')) {
     renderBase.searchParams.set('type', subjParams.get('type')!);
   }
+  if (subjParams.get('page_size')) {
+    renderBase.searchParams.set('page_size', subjParams.get('page_size')!);
+  }
 
   return rdf.namedNode(renderBase.toString());
 };

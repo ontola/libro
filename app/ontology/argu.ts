@@ -57,6 +57,7 @@ export default {
   commentsCount: argu('commentsCount'),
   communicateAction: argu('communicateAction'),
   conArguments: argu('conArguments'),
+  copyUrl: argu('copyUrl'),
   create_opinion: argu('create_opinion'),
   currentPhase: argu('currentPhase'),
   currentVote: argu('currentVote'),
