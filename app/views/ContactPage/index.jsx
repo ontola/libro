@@ -100,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
 const persons = [
   {
     email: 'joep@argu.co',
-    image: 'https://argu.co/argu/media_objects/825/content/avatar',
+    image: 'https://argu.co/argu/media_objects/29531/content/avatar',
     name: 'Joep Meindertsma',
     phone: '+31636020942',
     task: 'Algemene zaken',
