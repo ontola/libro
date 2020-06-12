@@ -58,6 +58,12 @@ const AttachmentPreview: React.FC<any> = ({
       page: (sequenceIndex || 0) + 1,
       page_size: 1,
     }));
+    if (__CLIENT__ && !entityIsLoaded(lrs, attachmentsIri)) {
+      lrs.queueEntity(attachmentsIri);
+    }
+    if (__CLIENT__ && !entityIsLoaded(lrs, attachmentsPageIri)) {
+      lrs.queueEntity(attachmentsPageIri);
+    }
     const handleClick: EventHandler<any> = (e) => {
       e.preventDefault();
       lrs.actions.app.changePage(attachmentsIri, attachmentsPageIri);
