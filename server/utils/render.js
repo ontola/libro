@@ -26,6 +26,10 @@ const version = require('../../webpack/version');
 //  in the assets manifest, so we have to define it manually.
 
 export const renderFullPage = async (ctx, data) => {
+  if (ctx.method === 'HEAD') {
+    return '';
+  }
+
   const bundleVersion = isModule(ctx)
     ? bundles.module
     : bundles.legacy;
