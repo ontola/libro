@@ -9,6 +9,7 @@ import LabelCard from './properties/labelCard';
 import LabelFooter from './properties/labelFooter';
 import LabelHeader from './properties/labelHeader';
 import menuItemsComp from './properties/menuItems';
+import Name from './properties/name';
 
 export default [
   MenuItemDropdown,
@@ -22,4 +23,5 @@ export default [
   LabelFooter,
   LabelHeader,
   menuItemsComp,
+  Name,
 ];
