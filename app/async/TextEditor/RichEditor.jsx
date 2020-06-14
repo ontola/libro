@@ -101,7 +101,7 @@ const useShortcuts = () => {
   return shortcutData.reduce(
     (acc, e) => ({
       ...acc,
-      [e.defaultCombination]: e.action,
+      [e.defaultCombination.value]: e.action,
     }),
     {}
   );
@@ -171,11 +171,16 @@ const RichEditor = ({
           ref={editable}
           renderElement={React.useCallback(renderElement, [])}
           renderLeaf={renderLeaf}
-          onKeyUp={(event) => {
+          onKeyDown={(event) => {
+            if (event.altKey || event.ctrlKey || event.metaKey) {
+              console.log('RichEditor: modifier key', event.nativeEvent, 'shortcutMap:', shortcutMap);
+            }
             for (const hotkey in shortcutMap) {
               if (isHotkey(hotkey, event)) {
+                console.log(`RichEditor: hotkey ${hotkey} found`);
                 event.preventDefault();
                 lrs.exec(shortcutMap[hotkey], { textEditor });
+                break;
               }
             }
           }}
