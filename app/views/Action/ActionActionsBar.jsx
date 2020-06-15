@@ -20,6 +20,7 @@ import { retrievePath } from '../../helpers/iris';
 import SHACL from '../../helpers/shacl';
 import teamGL from '../../ontology/teamGL';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
+import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
 function getVariant(types) {
   switch (rdf.id(bestType(types))) {
@@ -34,6 +35,7 @@ function getVariant(types) {
 }
 
 const ActionActionsBar = ({
+  actionStatus,
   history,
   object,
   subject,
@@ -45,6 +47,9 @@ const ActionActionsBar = ({
     httpMethod: schema.httpMethod,
     url: schema.url,
   });
+  if (invalidStatusIds.includes(rdf.id(actionStatus))) {
+    return null;
+  }
 
   const handler = () => {
     if (httpMethod && httpMethod.value === 'GET') {
@@ -75,6 +80,7 @@ ActionActionsBar.type = schema.Action;
 ActionActionsBar.topology = actionsBarTopology;
 
 ActionActionsBar.mapDataToProps = {
+  actionStatus: schema.actionStatus,
   object: schema.object,
   type: {
     label: rdfx.type,
@@ -85,6 +91,7 @@ ActionActionsBar.mapDataToProps = {
 ActionActionsBar.hocs = [withRouter];
 
 ActionActionsBar.propTypes = {
+  actionStatus: linkType,
   history: PropTypes.shape({
     push: PropTypes.func,
   }),
