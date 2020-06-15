@@ -36,7 +36,7 @@ import NavbarBackground from './properties/navbarBackground';
 import Omniform from './properties/omniform';
 import Organization from './properties/organization';
 import PinnedAt from './properties/pinnedAt';
-import PotentialAction from './properties/potentialAction';
+import FavoriteAction from './properties/favoriteAction';
 import Predicate from './properties/predicate';
 import PublishAction from './properties/publishAction';
 import RedirectUrlTable from './properties/redirectUrlTable';
@@ -139,7 +139,7 @@ export default [
   PinnedAt,
   Predicate,
   SuperEvent,
-  ...PotentialAction,
+  FavoriteAction,
   PublishAction,
   RedirectUrlTable,
   StartDate,
