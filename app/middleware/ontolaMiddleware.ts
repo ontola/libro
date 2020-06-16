@@ -25,7 +25,7 @@ import { redirectPage, reloadPage } from './reloading';
 
 const messages = defineMessages({
   copyFinished: {
-    defaultMessage: 'Copied...',
+    defaultMessage: 'Copied value to clipboard',
     description: 'The (inline) message to indicate the value was copied to their clipboard',
     id: 'https://ns.ontola.io/actions/copyToClipboard/copySuccessMessage',
   },
@@ -231,8 +231,11 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
         throw new Error("Argument 'value' was missing.");
       }
 
-      return clipboardCopy(value)
-        .then(() => Promise.resolve((store as any).intl.formatMessage(messages.copyFinished)));
+      (store as any).actions.ontola.showSnackbar(
+        (store as any).intl.formatMessage(messages.copyFinished),
+      );
+
+      return clipboardCopy(value);
     }
 
     if (iri.value.startsWith(ontola.ns('actions/logout').value) ||

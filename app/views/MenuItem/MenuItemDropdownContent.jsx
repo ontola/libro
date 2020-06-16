@@ -16,7 +16,6 @@ import MenuItem from '../../components/MenuItem';
 import ontola from '../../ontology/ontola';
 import { appMenuTopology } from '../../topologies/AppMenu';
 import { menuTopology } from '../../topologies/Menu';
-import { tableCellTopology } from '../../topologies/TableCell';
 
 const MenuItemDropdownContentComp = ({
   action,
@@ -30,7 +29,6 @@ const MenuItemDropdownContentComp = ({
   onClose,
   subject,
 }) => {
-  const [nameOverride, setNameOverride] = React.useState(undefined);
   const [open, setOpen] = React.useState(menuItems ? false : null);
 
   function handleClick(e) {
@@ -46,11 +44,7 @@ const MenuItemDropdownContentComp = ({
     }
     lrs
       .exec(action)
-      .then((msg) => {
-        if (typeof msg === 'string') {
-          setNameOverride(msg);
-        }
-      }).catch((error) => {
+      .catch((error) => {
         if (!error.response) {
           throw error;
         }
@@ -80,7 +74,7 @@ const MenuItemDropdownContentComp = ({
           subject={subject}
           {...sharedProps}
         >
-          {nameOverride || name.value}
+          {name.value}
         </MenuItem>
         <Collapse unmountOnExit in={open} timeout="auto">
           <List disablePadding component="div">
@@ -104,7 +98,7 @@ const MenuItemDropdownContentComp = ({
       url={href && href.value}
       {...sharedProps}
     >
-      {nameOverride || name.value}
+      {name.value}
     </MenuItem>
   );
 };
@@ -131,7 +125,6 @@ MenuItemDropdownContent.type = ontola.MenuItem;
 MenuItemDropdownContent.topology = [
   appMenuTopology,
   menuTopology,
-  tableCellTopology,
 ];
 
 MenuItemDropdownContent.mapDataToProps = {

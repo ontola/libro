@@ -88,7 +88,9 @@ class EntryPoint extends React.PureComponent {
       'Button--stretched': stretch,
     });
 
-    if (httpMethod && httpMethod.value !== 'get') {
+    const handleOnClick = httpMethod ? httpMethod.value !== 'get' : onClick;
+
+    if (handleOnClick) {
       return (
         <ButtonWithFeedback
           className={classes}

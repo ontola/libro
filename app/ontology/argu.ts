@@ -17,6 +17,7 @@ export default {
   ContactPage: argu('ContactPage'),
   ContainerNode: argu('ContainerNode'),
   ConvertActivity: argu('ConvertActivity'),
+  CopyAction: argu('CopyAction'),
   Customer: argu('Customer'),
   EmailToken: argu('EmailToken'),
   Feature: argu('Feature'),
