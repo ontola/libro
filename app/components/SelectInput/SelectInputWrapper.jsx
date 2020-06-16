@@ -209,7 +209,7 @@ const SelectInputWrapper = ({
         name={sharedProps.name}
         required={sharedProps.required}
         value={inputValue?.value}
-        onChange={(event, v) => sharedProps.onChange({ target: { value: rdf.namedNode(v) } })}
+        onChange={sharedProps.onChange}
       />
     );
   }

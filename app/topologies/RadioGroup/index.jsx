@@ -51,7 +51,9 @@ class RadioGroup extends Topology {
     return this.wrap((
       <MaterialRadioGroup
         value={value}
-        onChange={onChange}
+        onChange={(event, v) => (
+          onChange({ target: { value: items.find((item) => item.value === v) } })
+        )}
       >
         {
           items.map((option) => (

@@ -26,11 +26,11 @@ export const itemToString = (item, lrs) => {
     return '';
   }
 
-  if (!entityIsLoaded(lrs, item)) {
-    return 'Loading';
-  }
-
   if (isResource(item)) {
+    if (!entityIsLoaded(lrs, item)) {
+      return 'Loading';
+    }
+
     const itemClass = lrs.getResourceProperty(item, rdfx.type);
     const classDisplayProp = (
       itemClass && lrs.getResourceProperty(itemClass, ontola.ns('forms/inputs/select/displayProp'))
@@ -100,11 +100,26 @@ const SelectInputField = ({
           );
         }
 
-        const renderClosed = () => (
-          <button className="SelectInput--selected" onClick={openMenu}>
-            {initialSelectedItem && <Resource element="div" subject={initialSelectedItem} topology={selectTopology} />}
-          </button>
-        );
+        const renderClosed = () => {
+          let inner;
+          if (initialSelectedItem) {
+            if (isResource(initialSelectedItem)) {
+              inner = <Resource element="div" subject={initialSelectedItem} topology={selectTopology} />;
+            } else {
+              inner = initialSelectedItem.value;
+            }
+          }
+
+          return (
+            <button
+              className="SelectInput--selected"
+              type="button"
+              onClick={openMenu}
+            >
+              {inner}
+            </button>
+          );
+        };
 
         const renderOpen = () => {
           const inputProps = {
