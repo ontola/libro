@@ -37,7 +37,11 @@ class EntryPointBase extends React.PureComponent {
       lrs,
     } = this.props;
     if (url && httpMethod?.value === 'GET') {
-      return history.push(retrievePath(url.value));
+      return new Promise((resolve) => {
+        history.push(retrievePath(url.value));
+
+        resolve();
+      });
     }
 
     const formData = convertKeysAtoB(values);
