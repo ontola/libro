@@ -1,8 +1,9 @@
 import Stream from 'stream';
+import { URL } from 'url';
 
-import createBulkResourceRequest from './bulk';
-import createDataContext from './createDataContext';
-import logging from './logging';
+import HttpStatus from 'http-status-codes';
+
+import { statusCodeHex } from './proxies/helpers';
 
 const defaultResources = (scope) => [
   `${scope}`,
@@ -30,13 +31,24 @@ const createOutputStream = () => {
   };
 };
 
-const createWriter = (stream) => (line) => {
-  if (Array.isArray(line)) {
-    stream.write(JSON.stringify(line));
-    stream.write('\n');
-  } else {
-    stream.write(line);
+async function isSourceAllowed(ctx, origin) {
+  const manifestData = await ctx.getManifest();
+
+  return (manifestData.ontola?.['allowed_external_sources'] || []).includes(origin);
+}
+
+const filterAllowedWriteForbiddenMeta = (ctx, write) => async (iri) => {
+  const iriHJ = iri.includes('://') ? iri : `_:${iri}`;
+  const { origin } = new URL(iri);
+  const external = origin !== ctx.request.origin;
+
+  if (external && !await isSourceAllowed(ctx, origin)) {
+    write(statusCodeHex(iriHJ, HttpStatus.FORBIDDEN));
+
+    return false;
   }
+
+  return true;
 };
 
 const getResources = (ctx, includes) => {
@@ -54,24 +66,20 @@ const getResources = (ctx, includes) => {
 };
 
 const fetchPrerenderData = async (ctx, includeResources) => {
-  const output = createOutputStream();
+  const forbidden = createOutputStream();
+  const write = (line) => {
+    forbidden.stream.write(JSON.stringify(line));
+    forbidden.stream.write('\n');
+  };
 
-  const [resourceRequests, requests, agent] = await createBulkResourceRequest(
-    createDataContext(ctx),
-    getResources(ctx, includeResources),
-    createWriter(output.stream)
-  );
+  const resources = getResources(ctx, includeResources)
+    .map((iri) => decodeURIComponent(iri))
+    .filter(filterAllowedWriteForbiddenMeta(ctx, write));
 
-  await Promise.all(resourceRequests)
-    .then(() => {
-      agent.destroy();
-    }).catch((e) => {
-      logging.error(e);
-      requests.map((r) => r.abort());
-      agent.destroy();
-    });
+  const res = await ctx.api.bulk(resources);
+  const text = await res.text();
 
-  return output.data();
+  return forbidden.data().toString() + text;
 };
 
 export default fetchPrerenderData;
