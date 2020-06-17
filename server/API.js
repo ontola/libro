@@ -28,6 +28,25 @@ class API {
     this.serviceGuestToken = serviceGuestToken;
   }
 
+  async bulk(resources) {
+    const websiteIRI = await this.ctx.getWebsiteIRI();
+
+    const body = new URLSearchParams();
+    for (const resource of resources) {
+      body.append('resource[]', resource);
+    }
+
+    return this.fetchRaw(this.ctx.session.userToken, {
+      body,
+      headers: {
+        'Website-IRI': websiteIRI,
+        ...this.proxySafeHeaders(this.ctx.request),
+      },
+      method: 'POST',
+      path: '/link-lib/bulk',
+    });
+  }
+
   logout(websiteIRI) {
     return this.fetchRaw(this.ctx.session.userToken, {
       body: JSON.stringify({
