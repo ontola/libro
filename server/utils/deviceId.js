@@ -7,7 +7,7 @@ const deviceIdFromCookie = (ctx) => ctx.cookies.get('deviceId');
 const generateDeviceId = () => uuidv4();
 
 const deviceIdMiddleware = async (ctx, next) => {
-  if (ctx.req.headers.host === 'haproxy') {
+  if (!ctx.secure) {
     return next();
   }
 
