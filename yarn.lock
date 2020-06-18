@@ -9600,15 +9600,15 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
-link-lib@2.0.0-3:
-  version "2.0.0-3"
-  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-2.0.0-3.tgz#85350d750b3514f6b652387a686a0ec8c6ae20de"
-  integrity sha512-QGqqG510abpnEupadyuDpf/s8cqomIAziYhhMwewLh9D8aW8lBK8Mo3p0eltq6Lp5wfqQGQWQRexqTWItWriJA==
+link-lib@2.0.0-4:
+  version "2.0.0-4"
+  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-2.0.0-4.tgz#fe41291abfffa2d4603274be5188622e33682f44"
+  integrity sha512-l6Br17ztacoS5Eo2gryMftkWFORkfZjUieJebDNI/uzrbY6PzvTVX8DrJPH+jnZ1G6JpBY97/ezWWSkKA45eVw==
 
-link-redux@2.0.0-5:
-  version "2.0.0-5"
-  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-2.0.0-5.tgz#5c35adc2f58bdb06d29e4724d36c739226cd71b7"
-  integrity sha512-ZPyNbawIBKKbsydJZIGXEVGi9llrJW6v9+OPV/fGUxC+s6e7nGj79gjhE6lUFSxu+TRmoAbRWNo+qF+BDp/dlQ==
+link-redux@2.0.0-6:
+  version "2.0.0-6"
+  resolved "https://registry.yarnpkg.com/link-redux/-/link-redux-2.0.0-6.tgz#5a2ae7585d33efcbc03aeecda85d409ac725a99e"
+  integrity sha512-SmnKIGtsaCNDxZYy4sZvTpQYXhb+70MkGJQpQ9KavWdPond1iCLFzYuJZ8AMb7HKYfznL/DFRN6Lsq0y1cyGxQ==
 
 lint-staged@^9.5.0:
   version "9.5.0"
