@@ -9600,10 +9600,10 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
-link-lib@2.0.0-4:
-  version "2.0.0-4"
-  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-2.0.0-4.tgz#fe41291abfffa2d4603274be5188622e33682f44"
-  integrity sha512-l6Br17ztacoS5Eo2gryMftkWFORkfZjUieJebDNI/uzrbY6PzvTVX8DrJPH+jnZ1G6JpBY97/ezWWSkKA45eVw==
+link-lib@0.0.0-f86bceec:
+  version "0.0.0-f86bceec"
+  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-0.0.0-f86bceec.tgz#776c85b2a094f9e9c5c4d5e78d191b6deaca538d"
+  integrity sha512-hGC6LJee26iHJP3QqUnYKJEPvPhdTVKOge4c8dTC73ZmdQ4DwDr9nnibQLZfgfolc37Mh6aep+VxG9299oWoAg==
 
 link-redux@2.0.0-6:
   version "2.0.0-6"
