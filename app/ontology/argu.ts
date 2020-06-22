@@ -47,6 +47,7 @@ export default {
 
   /* properties */
   abstain: argu('abstain'),
+  acceptTerms: argu('acceptTerms'),
   anonymousID: argu('anonymousID'),
   applyLink: argu('applyLink'),
   arguments: argu('arguments'),
@@ -65,6 +66,7 @@ export default {
   customers: argu('customers'),
   decision: argu('decision'),
   discussions: argu('discussions'),
+  email: argu('email'),
   exampleClass: argu('exampleClass'),
   expiresAt: argu('expiresAt'),
   externalIRI: argu('externalIRI'),
@@ -87,6 +89,7 @@ export default {
   opinion: argu('opinion'),
   other: argu('other'),
   parentView: argu('parentView'),
+  password: argu('password'),
   phases: argu('phases'),
   pinned: argu('pinned'),
   pinnedAt: argu('pinnedAt'),

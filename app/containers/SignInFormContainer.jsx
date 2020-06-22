@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { SignInFormCard, SignInFormCardRow } from '../components/SignInForm';
 import { convertKeysAtoB } from '../helpers/data';
 import { apiLogin } from '../middleware/api';
+import argu from '../ontology/argu';
 import {
   getCurrentUserEmail,
   getCurrentUserType,
@@ -29,7 +30,7 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onSubmit: (values) => dispatch(apiLogin({
-    r: ownProps.r,
+    [argu.redirectUrl.value]: ownProps.r,
     ...convertKeysAtoB(values),
   })),
   stepBack: () => dispatch(stepBack()),

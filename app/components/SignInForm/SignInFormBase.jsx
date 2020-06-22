@@ -1,6 +1,8 @@
+import schema from '@ontologies/schema';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import argu from '../../ontology/argu';
 
 import Button from '../Button';
 import FormField from '../../containers/FormField';
@@ -67,9 +69,9 @@ class SignInFormBase extends React.PureComponent {
           {this.emailField()}
           <FormField
             defaultValue="true"
-            field={btoa('acceptTerms')}
             initialValue="true"
             key="acceptTerms"
+            path={argu.acceptTerms}
             type="hidden"
             value="true"
           />
@@ -85,7 +87,6 @@ class SignInFormBase extends React.PureComponent {
         required
         autofocus={this.fieldSettings[this.props.step].emailField.autofocus}
         customErrors={this.errorsForField('email')}
-        field={btoa('email')}
         key="email"
         label={(
           <FormattedMessage
@@ -93,6 +94,7 @@ class SignInFormBase extends React.PureComponent {
             id="https://app.argu.co/i18n/forms/session/email/label"
           />
         )}
+        path={schema.email}
         placeholder={this.props.intl.formatMessage(messages.emailPlaceholder)}
         type="email"
         validate={combineValidators(
@@ -106,9 +108,9 @@ class SignInFormBase extends React.PureComponent {
   redirectField() {
     return (
       <FormField
-        field={btoa('r')}
         initialValue={this.props.initialValues.r || this.props.r}
         key="r"
+        path={argu.redirectUrl}
         type="hidden"
       />
     );
@@ -123,7 +125,6 @@ class SignInFormBase extends React.PureComponent {
             autofocus
             autoComplete="off"
             customErrors={this.errorsForField('password')}
-            field={btoa('password')}
             key="password"
             label={(
               <FormattedMessage
@@ -131,6 +132,7 @@ class SignInFormBase extends React.PureComponent {
                 id="https://app.argu.co/i18n/forms/session/password/label"
               />
             )}
+            path={argu.password}
             type="password"
           />
           {this.redirectField()}
@@ -165,8 +167,8 @@ class SignInFormBase extends React.PureComponent {
           <p>{this.props.reason}</p>
           {this.emailField()}
           <FormField
-            field={btoa('password')}
             key="password"
+            path={argu.password}
             type="hidden"
           />
           {this.redirectField()}

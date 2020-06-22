@@ -168,10 +168,8 @@ const FormField = (props) => {
     className,
     customErrors,
     description,
-    field,
     initialValue,
     input,
-    id,
     label,
     meta,
     maxCount,
@@ -187,6 +185,8 @@ const FormField = (props) => {
     error,
     invalid,
   } = meta;
+  const { name } = input;
+
   const variableFields = (minCount !== 1 || maxCount > 1) && type !== 'checkboxes';
 
   const addItem = () => {
@@ -197,11 +197,6 @@ const FormField = (props) => {
   };
 
   const resolvedVariant = theme === 'omniform' ? 'preview' : variant;
-
-  const fieldId = id || (field || '')
-    .split('.')
-    .map((v) => (Number.isNaN(Number.parseInt(v, 10)) ? atob(v) : v))
-    .join('.');
 
   const allErrs = customErrors || error;
 
@@ -224,7 +219,7 @@ const FormField = (props) => {
     return (
       <FieldLabel
         hidden={theme === 'omniform'}
-        htmlFor={fieldId}
+        htmlFor={name}
         label={label}
         required={required}
       />
@@ -248,7 +243,7 @@ const FormField = (props) => {
       <FormInputs
         {...props}
         allErrs={allErrs}
-        fieldId={fieldId}
+        fieldId={name}
         values={inputValues(type, input, dirty, initialValue, variableFields)}
         variableFields={variableFields}
       />

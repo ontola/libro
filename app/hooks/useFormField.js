@@ -4,20 +4,21 @@ import { useField } from 'react-final-form';
 import { FormContext } from '../components/Form/Form';
 import { FormSectionContext } from '../components/Form/FormSection';
 import { arraysEqual } from '../helpers/data';
+import { calculateFormFieldName } from '../helpers/forms';
 
 import { usePersistence } from './usePersistence';
 
 const useFormField = ({
   initialValue,
-  field,
   validate,
+  path,
   type,
   sessionStore,
 }) => {
+  const fieldName = calculateFormFieldName(React.useContext(FormSectionContext), path);
+
   const storeKey = React.useContext(FormContext);
-  const namePrefix = React.useContext(FormSectionContext);
-  const name = namePrefix ? `${namePrefix}.${field}` : field;
-  const storageKey = `${storeKey}.${name}`;
+  const storageKey = `${storeKey}.${fieldName}`;
 
   const [defaultStorageValue, setStorageValue] = usePersistence(
     __CLIENT__ ? (sessionStore || sessionStorage) : undefined,
@@ -29,12 +30,12 @@ const useFormField = ({
   React.useEffect(() => {
     setCurrentDefaultValue(defaultStorageValue);
     setCurrentInitialValue(initialValue);
-  }, [name, ...(initialValue || [])]);
+  }, [fieldName, ...(initialValue || [])]);
   const setDefaultValue = ['password', 'hidden'].includes(type)
     ? () => undefined
     : setStorageValue;
 
-  const formProps = useField(name, {
+  const formProps = useField(fieldName, {
     allowNull: true,
     defaultValue: currentDefaultValue,
     format: (i) => i,
