@@ -89,9 +89,9 @@ const InputElement = ({
       const newValue = input.value?.slice() || [];
 
       if (e && Object.prototype.hasOwnProperty.call(e, 'target')) {
-        newValue[inputIndex] = type === 'checkbox' ? e.target.checked : e.target.value;
+        newValue[inputIndex] = rdf.literal(type === 'checkbox' ? e.target.checked : e.target.value);
       } else {
-        newValue[inputIndex] = e === null ? rdf.literal('') : e;
+        newValue[inputIndex] = rdf.literal(e === null ? '' : e);
       }
       input.onChange(newValue);
 
@@ -100,6 +100,7 @@ const InputElement = ({
       }
     },
     required,
+    value: inputValue?.value,
   };
 
   if (type === 'datetime-local') {
@@ -107,7 +108,6 @@ const InputElement = ({
       <DateTimePicker
         {...sharedProps}
         data-testid={sharedProps.name}
-        value={inputValue}
         onChange={sharedProps.onChange}
       />
     );
@@ -118,7 +118,6 @@ const InputElement = ({
       <DatePicker
         {...sharedProps}
         data-testid={sharedProps.name}
-        value={inputValue}
         onChange={sharedProps.onChange}
       />
     );
@@ -246,7 +245,7 @@ const InputElement = ({
       <CharCounter
         maxLength={maxLength}
         threshold={CHAR_COUNTER_THRESHOLD}
-        value={inputValue}
+        value={inputValue?.value}
       />
     );
   }
@@ -264,7 +263,7 @@ const InputElement = ({
         placeholder={placeholder}
         required={required}
         type={type}
-        value={inputValue}
+        value={inputValue?.value}
         onKeyUp={onKeyUp}
       />
       {trailer}

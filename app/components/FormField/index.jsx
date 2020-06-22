@@ -1,5 +1,5 @@
 import RDFTypes from '@rdfdev/prop-types';
-import rdf, { isTerm } from '@ontologies/core';
+import rdf from '@ontologies/core';
 import classNames from 'classnames';
 import {
   linkType,
@@ -143,17 +143,7 @@ const inputValues = (type, input, dirty, initialValue, variableFields) => {
     return [null];
   }
 
-  return currentValue.map((value) => {
-    if (type === 'checkbox') {
-      const boolNormalized = rdf.literal(!!value);
-
-      return boolNormalized && boolNormalized.value === 'true';
-    } else if (type === 'text' || type === 'textarea' || type === 'markdown' || type === 'number' || type === 'email') {
-      return isTerm(value) ? value.value : value;
-    }
-
-    return value;
-  });
+  return currentValue;
 };
 
 /**
