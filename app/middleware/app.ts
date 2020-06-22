@@ -24,7 +24,7 @@ const pageRenderBase = (subject: SomeTerm, baseCollection: SomeTerm, collectionD
   const renderBase = new URL(baseCollection.value);
   renderBase.searchParams.set(
     'display',
-    collectionDisplay.value.replace('https://ns.ontola.io/collectionDisplay/', ''),
+    collectionDisplay.value.replace('https://ns.ontola.io/core#collectionDisplay/', ''),
   );
   if (subjParams.get('type')) {
     renderBase.searchParams.set('type', subjParams.get('type')!);

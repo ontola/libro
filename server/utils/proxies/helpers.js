@@ -53,11 +53,11 @@ export function newAuthorizationBulk(ctx, backendRes) {
     ctx.setAccessToken(auth, refreshToken);
 
     if (!isRedirect(backendRes.statusCode)) {
-      if (hasAction(backendRes, 'https://ns.ontola.io/actions/redirect')) {
-        return setActionParam(backendRes, 'https://ns.ontola.io/actions/redirect', 'reload', 'true');
+      if (hasAction(backendRes, 'https://ns.ontola.io/libro/actions/redirect')) {
+        return setActionParam(backendRes, 'https://ns.ontola.io/libro/actions/redirect', 'reload', 'true');
       }
 
-      return 'https://ns.ontola.io/actions/refresh';
+      return 'https://ns.ontola.io/libro/actions/refresh';
     }
   }
 
