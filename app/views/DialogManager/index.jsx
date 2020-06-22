@@ -1,4 +1,5 @@
 import Dialog from '@material-ui/core/Dialog';
+import rdf from '@ontologies/core';
 import RDFTypes from '@rdfdev/prop-types';
 import {
   Resource,
@@ -7,6 +8,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import libro from '../../ontology/libro';
 import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 import DialogTopology from '../../topologies/Dialog';
@@ -15,7 +17,7 @@ const DialogManager = ({ resource }) => {
   const lrs = useLRS();
 
   const close = (item, done) => (
-    () => lrs.exec(ontola.ns(`actions/dialog/close?resource=${encodeURIComponent(item.value)}`), { done })
+    () => lrs.exec(rdf.namedNode(`${libro.actions.dialog.close.value}?resource=${encodeURIComponent(item.value)}`), { done })
   );
 
   if (!resource) {

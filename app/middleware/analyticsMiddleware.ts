@@ -1,5 +1,7 @@
-import rdf, { createNS, NamedNode } from '@ontologies/core';
+import rdf, { NamedNode } from '@ontologies/core';
 import { MiddlewareActionHandler } from 'link-lib';
+
+import libro from '../ontology/libro';
 
 declare global {
   interface Window {
@@ -8,11 +10,9 @@ declare global {
 }
 
 const analyticsMiddleware = () => () => {
-  const ontola = createNS('https://ns.ontola.io/');
-
   return (next: MiddlewareActionHandler) => (iri: NamedNode, opts: any): Promise<any> => {
-    if (rdf.id(iri) === rdf.id(ontola('actions/navigation/push'))
-      || rdf.id(iri) === rdf.id(ontola('actions/navigation/pop'))) {
+    if (rdf.id(iri) === rdf.id(libro.actions.navigation.push)
+      || rdf.id(iri) === rdf.id(libro.actions.navigation.pop)) {
       if (typeof window !== 'undefined' && window._paq) {
         window._paq.push(['setCustomUrl', window.location.toString()]);
         window._paq.push(['setDocumentTitle', window.document.title]);

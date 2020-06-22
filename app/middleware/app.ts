@@ -10,6 +10,7 @@ import { MiddlewareActionHandler, MiddlewareWithBoundLRS } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 import app from '../ontology/app';
 import http from '../ontology/http';
+import libro from '../ontology/libro';
 import ll from '../ontology/ll';
 import ontola from '../ontology/ontola';
 import sp from '../ontology/sp';
@@ -97,9 +98,9 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
    */
   (store as any).actions.app.startSignOut = (redirect?: NamedNode) => {
     if (redirect) {
-      store.exec(ontola.ns(`actions/logout?location=${redirect.value}`));
+      store.exec(rdf.namedNode(`${libro.actions.logout.value}?location=${redirect.value}`));
     } else {
-      store.exec(ontola.ns('actions/logout'));
+      store.exec(libro.actions.logout);
     }
   };
 

@@ -20,6 +20,7 @@ import ServiceWorkerCommunicator from '../helpers/ServiceWorkerCommunicator';
 import hexjson from '../helpers/transformers/hexjson';
 import app from '../ontology/app';
 import ld from '../ontology/ld';
+import libro from '../ontology/libro';
 import ontola from '../ontology/ontola';
 import { redirectPage, reloadPage } from './reloading';
 
@@ -38,7 +39,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
 
   (store as any).actions.ontola = {};
 
-  const ontolaActionPrefix = ontola.ns('actions/').value;
+  const ontolaActionPrefix = libro.ns('actions/').value;
 
   const currentPath = (): string => {
     const l = history.location;
@@ -114,7 +115,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
   };
 
   (store as any).actions.ontola.showSnackbar = (message: Literal | string) => {
-    store.exec(ontola.ns(`actions/snackbar?text=${encodeURIComponent(message.toString())}`));
+    store.exec(rdf.namedNode(`${libro.actions.snackbar.show.value}?text=${encodeURIComponent(message.toString())}`));
   };
 
   /**
@@ -159,15 +160,15 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
   (store as any).actions.ontola.showDialog = (resource: NamedNode, opener?: NamedNode) => {
     const resourceValue = encodeURIComponent(resource.value);
     const openerValue = opener ? encodeURIComponent(opener.value) : '';
-    store.exec(ontola.ns(`actions/dialog/alert?resource=${resourceValue}&opener=${openerValue}`));
+    store.exec(rdf.namedNode(`${libro.actions.dialog.alert.value}?resource=${resourceValue}&opener=${openerValue}`));
   };
 
   (store as any).actions.ontola.hideDialog = () => {
-    store.exec(ontola.ns('actions/dialog/close'));
+    store.exec(libro.actions.dialog.close);
   };
 
   (store as any).actions.ontola.navigate = (resource: NamedNode) => {
-    store.exec(ontola.ns(`actions/redirect?location=${encodeURIComponent(resource.value)}`));
+    store.exec(rdf.namedNode(`${libro.actions.redirect.value}?location=${encodeURIComponent(resource.value)}`));
   };
 
   /**
@@ -176,8 +177,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
 
   history.listen((opts, action) => {
     if (['POP', 'PUSH'].includes(action)) {
-      store.exec(ontola.ns(
-          `actions/navigation/${action.toLowerCase()}`),
+      store.exec(libro.ns(`actions/navigation/${action.toLowerCase()}`),
           {
             hash: opts.hash || '',
             key: opts.key || '',
@@ -205,26 +205,26 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     }
 
     switch (rdf.id(iri)) {
-      case rdf.id(ontola.ns('actions/refresh')):
+      case rdf.id(libro.actions.refresh):
         if (__CLIENT__) {
           reloadPage(store, false);
         }
         return Promise.resolve();
-      case rdf.id(ontola.ns('actions/reload')):
+      case rdf.id(libro.actions.reload):
         reloadPage(store, true);
         return Promise.resolve();
-      case rdf.id(ontola.ns(`actions/navigation/push`)):
-      case rdf.id(ontola.ns(`actions/navigation/pop`)):
+      case rdf.id(libro.actions.navigation.push):
+      case rdf.id(libro.actions.navigation.pop):
         const dialog = store.getResourceProperty(dialogManager, ontola.ns('dialog/resource'));
         const opener = store.getResourceProperty(dialogManager, ontola.ns('dialog/opener'));
         if (dialog && (!opener || retrievePath(opener.value) !== currentPath())) {
-          store.exec(ontola.ns('actions/dialog/close'));
+          store.exec(libro.actions.dialog.close);
         }
         return next(iri, opts);
       default:
     }
 
-    if (iri.value.startsWith(ontola.ns('actions/copyToClipboard').value)) {
+    if (iri.value.startsWith(libro.actions.copyToClipboard.value)) {
       const value = new URL(iri.value).searchParams.get('value');
 
       if (!value) {
@@ -238,8 +238,8 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       return clipboardCopy(value);
     }
 
-    if (iri.value.startsWith(ontola.ns('actions/logout').value) ||
-        iri.value.startsWith(ontola.ns('actions/expireSession').value)) {
+    if (iri.value.startsWith(libro.actions.logout.value) ||
+        iri.value.startsWith(libro.actions.expireSession.value)) {
       const location = new URL(iri.value).searchParams.get('location');
 
       return fetch(app.ns('logout').value, safeCredentials({
@@ -261,7 +261,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
         });
     }
 
-    if (iri.value.startsWith(ontola.ns('actions/redirect').value)) {
+    if (iri.value.startsWith(libro.actions.redirect.value)) {
       const value = new URL(iri.value).searchParams.get('location');
       const reload = new URL(iri.value).searchParams.get('reload');
 
@@ -280,7 +280,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       return Promise.resolve();
     }
 
-    if (iri.value.startsWith(ontola.ns('actions/dialog/close').value)) {
+    if (iri.value.startsWith(libro.actions.dialog.close.value)) {
       const resource = new URL(iri.value).searchParams.get('resource');
       const dialog = store.getResourceProperty(dialogManager, ontola.ns('dialog/resource'));
 
@@ -298,7 +298,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       return Promise.resolve();
     }
 
-    if (iri.value.startsWith(ontola.ns('actions/dialog/alert').value)) {
+    if (iri.value.startsWith(libro.actions.dialog.alert.value)) {
       const resource = new URL(iri.value).searchParams.get('resource');
       const opener = new URL(iri.value).searchParams.get('opener');
 
@@ -315,12 +315,12 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
       return Promise.resolve();
     }
 
-    if (iri.value.startsWith(ontola.ns('actions/snackbar/finished').value)) {
+    if (iri.value.startsWith(libro.actions.snackbar.finished.value)) {
       store.processDelta(shiftSnackbar(), true);
       return Promise.resolve();
     }
 
-    if (iri.value.startsWith(ontola.ns('actions/snackbar').value)) {
+    if (iri.value.startsWith(libro.actions.snackbar.show.value)) {
       const value = new URL(iri.value).searchParams.get('text');
       if (!value) {
           throw new Error("Argument 'value' was missing.");

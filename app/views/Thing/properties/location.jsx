@@ -13,6 +13,7 @@ import { FormattedMessage } from 'react-intl';
 
 import Detail from '../../../components/Detail';
 import LDLink from '../../../components/LDLink';
+import libro from '../../../ontology/libro';
 import ontola from '../../../ontology/ontola';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
 
@@ -33,7 +34,7 @@ const LocationDetail = ({ lrs, linkedProp }) => {
       to={placement.value}
       onClick={(e) => {
         e.preventDefault();
-        lrs.exec(rdf.namedNode(`${ontola.ns('actions/dialog/alert').value}?resource=${encodeURIComponent(placement.value)}`));
+        lrs.exec(rdf.namedNode(`${libro.actions.dialog.alert.value}?resource=${encodeURIComponent(placement.value)}`));
       }}
     >
       <Detail

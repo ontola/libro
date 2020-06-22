@@ -7,6 +7,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import libro from '../../ontology/libro';
 import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 
@@ -20,7 +21,7 @@ const SnackbarManager = ({ queue }) => {
 
   return (
     <Resource
-      close={() => lrs.exec(ontola.ns('actions/snackbar/finished'))}
+      close={() => lrs.exec(libro.actions.snackbar.finished)}
       key={element.value}
       subject={element}
     />
