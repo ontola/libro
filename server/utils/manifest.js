@@ -6,10 +6,10 @@ import { bundleName } from '../config';
 import processResponse from '../api/internal/statusHandler';
 import { isSuccess } from '../../app/helpers/arguHelpers';
 
-import { readFileFromCache } from './cache';
-
 export const requestBackendManifest = async (api, manifestLocation) => (
-  readFileFromCache(manifestLocation) || api.fetchRaw(
+  // TODO: Replace with bulk API
+  // readFileFromCache(manifestLocation) ||
+  api.fetchRaw(
     api.ctx.session?.userToken || api.serviceGuestToken,
     {
       headers: {

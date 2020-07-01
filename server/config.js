@@ -25,6 +25,7 @@ export const portProduction = process.env.PORT_PRODUCTION || '8080';
 export const port = process.env.PORT || (__DEVELOPMENT__ ? portDevelopment : portProduction);
 export const serverName = process.env.SERVER_NAME;
 export const websocketPath = process.env.WEBSOCKET_PATH;
+export const cacheChannel = process.env.CACHE_CHANNEL;
 
 export const redisSettingsNS = 'frontend';
 
