@@ -11,6 +11,7 @@ import Omniform from '../../../../components/Omniform';
 class OmniformConnector extends React.PureComponent {
   static propTypes = {
     autofocusForm: PropTypes.bool,
+    closeForm: PropTypes.func,
     formFooterButtons: PropTypes.node,
     onDone: PropTypes.func,
     onKeyUp: PropTypes.func,
@@ -27,6 +28,7 @@ class OmniformConnector extends React.PureComponent {
       <Omniform
         actions={new Set(this.props.potentialAction)}
         autofocusForm={this.props.autofocusForm}
+        closeForm={this.props.closeForm}
         formFooterButtons={this.props.formFooterButtons}
         parentIRI={this.keynameSafeIRI()}
         onDone={this.props.onDone}

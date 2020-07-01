@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { parseForStorage } from '../../hooks/usePersistence';
+import { parseForStorage } from '../../helpers/persistence';
 import Select from '../../topologies/Select';
 import FieldLabel from '../FieldLabel';
 import { Input } from '../Input';

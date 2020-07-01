@@ -10,6 +10,7 @@ import React from 'react';
 import argu from '../ontology/argu';
 import ex from '../ontology/ex';
 import example from '../ontology/example';
+import form from '../ontology/form';
 import ll from '../ontology/ll';
 import { Page } from '../topologies/Page';
 import {
@@ -39,55 +40,63 @@ describe('Actions', () => {
       [rdfx.type]: schema.EntryPoint,
       [schema.httpMethod]: 'PUT',
       [schema.name]: 'Update',
-      [schema.isPartOf]: testIRI.value,
+      [schema.isPartOf]: testIRI,
       [schema.url]: example.ns('endpoint'),
       [ll.actionBody]: {
-        [rdfx.type]: sh.NodeShape,
-        [sh.targetNode]: {
-          '@id': example.ns('resource'),
-          [rdfx.type]: schema.Thing,
-        },
-        [sh.property]: [
-          {
-            '@id': nameIRI,
-            [rdfx.type]: sh.PropertyShape,
-            [sh.datatype]: xsd.string,
-            [sh.maxCount]: 1,
-            [sh.name]: 'Name',
-            [sh.order]: 0,
-            [sh.path]: schema.name,
-          },
-          {
-            '@id': locationIRI,
-            [rdfx.type]: sh.PropertyShape,
-            [sh.class]: argu.Placement,
-            [sh.maxCount]: 1,
-            [sh.name]: 'Location',
-            [sh.order]: 1,
-            [sh.path]: schema.location,
-          },
-          {
-            '@id': pinIRI,
-            [rdfx.type]: sh.PropertyShape,
-            [sh.datatype]: xsd.boolean,
-            [sh.maxCount]: 1,
-            [sh.name]: 'Pin',
-            [sh.description]: 'Pin to top of collection',
-            [sh.order]: 2,
-            [sh.path]: argu.ns('pin'),
-            [sh.group]: {
-              [rdfx.type]: sh.PropertyGroup,
-              [rdfs.label]: 'Advanced',
+        [rdfx.type]: form.Form,
+        [form.pages]: {
+          [rdfx.type]: rdfx.Seq,
+          [rdfx.ns('_0')]: {
+            [rdfx.type]: form.Page,
+            [form.groups]: {
+              [rdfx.type]: rdfx.Seq,
+              [rdfx.ns('_0')]: {
+                [rdfx.type]: form.Group,
+                [form.fields]: {
+                  [rdfx.type]: rdfx.Seq,
+                  [rdfx.ns('_0')]: {
+                    '@id': nameIRI,
+                    [rdfx.type]: form.TextInput,
+                    [sh.datatype]: xsd.string,
+                    [sh.maxCount]: 1,
+                    [sh.name]: 'Name',
+                    [sh.order]: 0,
+                    [sh.path]: schema.name,
+                  },
+                  [rdfx.ns('_1')]: {
+                    '@id': locationIRI,
+                    [rdfx.type]: form.LocationInput,
+                    [sh.class]: argu.Placement,
+                    [sh.maxCount]: 1,
+                    [sh.name]: 'Location',
+                    [sh.order]: 1,
+                    [sh.path]: schema.location,
+                  },
+                  [rdfx.ns('_2')]: {
+                    '@id': pinIRI,
+                    [rdfx.type]: form.CheckboxInput,
+                    [sh.datatype]: xsd.boolean,
+                    [sh.maxCount]: 1,
+                    [sh.name]: 'Pin',
+                    [sh.description]: 'Pin to top of collection',
+                    [sh.order]: 2,
+                    [sh.path]: argu.ns('pin'),
+                    [sh.group]: {
+                      [rdfx.type]: sh.PropertyGroup,
+                      [rdfs.label]: 'Advanced',
+                    },
+                  },
+                },
+              },
             },
           },
-        ],
+        },
       },
     },
   };
 
   it('renders a form within Page', async () => {
     const {
-      getByLabelText,
       getByTestId,
       getByText,
     } = render(({ iri }) => (
@@ -103,8 +112,8 @@ describe('Actions', () => {
 
     await wait();
     // renders the form
-    const form = getByTestId(entryPointIRI.value);
-    expect(form).toBeVisible();
+    const formInstance = getByTestId(entryPointIRI.value);
+    expect(formInstance).toBeVisible();
 
     // renders the form title
     const elem = getByText('Edit object');
@@ -113,23 +122,23 @@ describe('Actions', () => {
 
     await wait();
     // initializes an empty form
-    expect(form).toHaveFormValues({
+    expect(formInstance).toHaveFormValues({
       [fieldName(schema.name)]: '',
       [fieldName(argu.ns('pin'))]: false,
     });
 
     // can edit the form values
     fireEvent.change(
-      getByLabelText('Name'),
+      getByTestId(fieldName(schema.name)),
       { target: { value: 'text' } }
     );
 
     fireEvent.change(
-      getByLabelText('Pin'),
+      getByTestId(fieldName(argu.ns('pin'))),
       { target: { checked: true } }
     );
 
-    expect(form).toHaveFormValues({
+    expect(formInstance).toHaveFormValues({
       [fieldName(schema.name)]: 'text',
       [fieldName(argu.ns('pin'))]: true,
     });

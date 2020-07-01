@@ -16,11 +16,13 @@ const propTypes = {
   /** Override the form instance */
   form: PropTypes.shape({}),
   formID: PropTypes.string.isRequired,
+  initialValues: PropTypes.objectOf(PropTypes.any),
   method: PropTypes.oneOfType([
     PropTypes.string,
     RDFTypes.literal,
   ]),
   onSubmit: PropTypes.func.isRequired,
+  subscription: PropTypes.objectOf(PropTypes.any),
   validateOnBlur: PropTypes.bool,
 };
 
@@ -38,8 +40,10 @@ const Form = (props) => {
     className,
     form,
     formID,
+    initialValues,
     method,
     onSubmit,
+    subscription,
     validateOnBlur,
   } = props;
 
@@ -65,6 +69,7 @@ const Form = (props) => {
   return (
     <FinalForm
       form={form}
+      initialValues={initialValues}
       initialValuesEqual={equal}
       key={formID}
       render={({ handleSubmit, ...childProps }) => (
@@ -81,6 +86,7 @@ const Form = (props) => {
           </form>
         </FormContext.Provider>
       )}
+      subscription={subscription}
       validateOnBlur={validateOnBlur}
       onSubmit={controlledSubmit}
     />

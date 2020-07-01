@@ -1,6 +1,8 @@
 import rdfx from '@ontologies/rdf';
+import schema from '@ontologies/schema';
 import '@testing-library/jest-dom/extend-expect';
 
+import argu from '../ontology/argu';
 import example from '../ontology/example';
 import ontola from '../ontology/ontola';
 import routes from '../routes/index';
@@ -39,8 +41,8 @@ describe('Registration', () => {
       await wait();
       // renders the sign in form
       expect(getByTestId('sign-in-form')).toHaveFormValues({
-        [btoa('email')]: '',
-        [btoa('password')]: '',
+        [btoa(schema.email.value)]: '',
+        [btoa(argu.password.value)]: '',
       });
     });
 

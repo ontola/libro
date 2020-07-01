@@ -55,14 +55,3 @@ export function isMarkedForRemove(value: any): boolean {
 
     return hasStatement && rdf.equals(value[destroyFieldName], rdf.literal(true));
 }
-
-export function markForRemove(value: JSONLDObject): object | undefined {
-    if (value && value['@id'] && value['@id'].termType === 'BlankNode') {
-        return undefined;
-    }
-
-    return {
-        '@id': value['@id'],
-        [destroyFieldName]: rdf.literal(true),
-    };
-}

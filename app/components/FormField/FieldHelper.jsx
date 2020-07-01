@@ -1,13 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { formFieldError } from './index';
 import './FieldHelper.scss';
 
 const propTypes = {
-  error: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-  ]),
+  error: formFieldError,
   helperText: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.string,

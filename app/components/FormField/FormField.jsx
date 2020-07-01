@@ -1,4 +1,3 @@
-import RDFTypes from '@rdfdev/prop-types';
 import rdf from '@ontologies/core';
 import classNames from 'classnames';
 import {
@@ -7,55 +6,52 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
+import uuidv4 from 'uuid/v4';
 
-import Button from '../Button';
-import FieldLabel from '../FieldLabel';
+import { isMarkedForRemove } from '../../helpers/forms';
 import formFieldWrapper from '../FormFieldWrapper';
-import Markdown from '../Markdown';
 
 import './DateTime.scss';
 import './FormField.scss';
+import FormFieldAddButton from './FormFieldAddButton';
+import FormFieldDescription from './FormFieldDescription';
+import FormFieldLabel from './FormFieldLabel';
 import FormInputs from './FormInputs';
 import { optionsType } from './OptionsWrapper';
+
+import { formFieldError } from './index';
+
+const inputsPreferringPlaceholder = [
+  'markdown',
+  'text',
+  'textarea',
+];
 
 const propTypes = {
   autoComplete: PropTypes.string,
   autofocus: PropTypes.bool,
+  autofocusForm: PropTypes.bool,
   // Preferably use variants to style this component.
   className: PropTypes.string,
   customErrors: PropTypes.arrayOf(PropTypes.string),
   description: PropTypes.string,
-  // Unique identifier. Used to link label to input.
-  field: PropTypes.string.isRequired,
   /** @private */
   fieldApi: PropTypes.shape({
     setTouched: PropTypes.func,
     setValue: PropTypes.func,
   }),
-  form: linkType,
+  formIRI: linkType,
+  helperText: PropTypes.string,
   /** Ensure that it matches the label `for` attribute */
   id: PropTypes.string,
-  initialValue: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    linkType,
-  ]),
   /** @private Contains form-library specific data */
   input: PropTypes.shape({
     name: PropTypes.string,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
-    value: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.string,
-      RDFTypes.literal,
-      RDFTypes.namedNode,
-      PropTypes.oneOf([null]),
-    ]),
+    value: PropTypes.arrayOf(linkType),
   }),
-  inputFieldHint: linkType,
   // Text above input field
   label: PropTypes.oneOfType([
     PropTypes.string,
@@ -67,7 +63,7 @@ const propTypes = {
   meta: PropTypes.shape({
     active: PropTypes.bool,
     dirty: PropTypes.bool,
-    error: PropTypes.arrayOf(PropTypes.string),
+    error: PropTypes.arrayOf(formFieldError),
     invalid: PropTypes.bool,
     pristine: PropTypes.bool,
     touched: PropTypes.bool,
@@ -84,11 +80,9 @@ const propTypes = {
   placeholder: PropTypes.string,
   propertyIndex: PropTypes.number,
   required: PropTypes.bool,
+  sequenceIndex: PropTypes.number,
   shIn: optionsType,
   storeKey: PropTypes.string,
-  targetValue: PropTypes.shape({
-    '@id': linkType,
-  }),
   theme: PropTypes.string,
   topology: topologyType,
   // HTML input type, e.g. 'email'
@@ -104,43 +98,22 @@ const propTypes = {
 const defaultProps = {
   autofocus: false,
   maxCount: 1,
-  minCount: 1,
   variant: 'default',
 };
 
-const AddValueButton = ({ addItem, label }) => (
-  <div>
-    <Button
-      theme="transparant"
-      onClick={addItem}
-    >
-      <FontAwesome name="plus" />
-      {' '}
-      {label}
-    </Button>
-  </div>
-);
-
-AddValueButton.propTypes = {
-  addItem: PropTypes.func,
-  label: PropTypes.string,
-};
-
-const inputValues = (type, input, dirty, initialValue, variableFields) => {
-  let currentValue = dirty
-    ? input.value
-    : input.value || initialValue;
+const inputValues = (input, minCount, newItem) => {
+  let currentValue = input.value;
 
   if (currentValue && !Array.isArray(currentValue)) {
     currentValue = [currentValue];
   }
 
   if (!currentValue || currentValue.length === 0) {
-    if (variableFields) {
-      return undefined;
+    if (minCount > 0) {
+      return [newItem()];
     }
 
-    return [null];
+    return [];
   }
 
   return currentValue;
@@ -155,16 +128,20 @@ const inputValues = (type, input, dirty, initialValue, variableFields) => {
  */
 const FormField = (props) => {
   const {
+    autofocus,
+    autofocusForm,
     className,
     customErrors,
     description,
-    initialValue,
+    helperText,
     input,
     label,
     meta,
     maxCount,
     minCount,
+    placeholder,
     required,
+    sequenceIndex,
     theme,
     type,
     variant,
@@ -176,20 +153,27 @@ const FormField = (props) => {
     invalid,
   } = meta;
   const { name } = input;
-
-  const variableFields = (minCount !== 1 || maxCount > 1) && type !== 'checkboxes';
-
+  const newItem = () => (
+    type === 'association' ? { '@id': rdf.blankNode(uuidv4()) } : rdf.literal('')
+  );
   const addItem = () => {
     const newValue = input.value?.slice() || [];
-    newValue.push(rdf.literal(''));
+    newValue.push(newItem());
 
     input.onChange(newValue);
   };
 
+  React.useEffect(() => {
+    if (type === 'association' && minCount > 0 && (!input.value || input.value.length === 0)) {
+      addItem();
+    }
+  }, [input.value?.length, minCount, type]);
+
+  const values = inputValues(input, minCount, newItem);
+  const removable = (minCount !== 1 || maxCount > 1) && type !== 'checkboxes';
+  const preferPlaceholder = inputsPreferringPlaceholder.includes(type);
   const resolvedVariant = theme === 'omniform' ? 'preview' : variant;
-
   const allErrs = customErrors || error;
-
   const classes = classNames({
     Field: true,
     [`Field--variant-${resolvedVariant}`]: resolvedVariant,
@@ -201,44 +185,33 @@ const FormField = (props) => {
     className,
   });
 
-  const Label = () => {
-    if (type === 'checkbox' || !label) {
-      return null;
-    }
-
-    return (
-      <FieldLabel
-        hidden={theme === 'omniform'}
-        htmlFor={name}
-        label={label}
-        required={required}
-      />
-    );
-  };
-
-  const Description = () => {
-    if (type === 'checkbox' || !description) {
-      return null;
-    }
-
-    return (
-      <div className="Field__description"><Markdown text={description} /></div>
-    );
-  };
-
   return (
     <div className={`Field ${className ?? ''} ${classes}`}>
-      <Label />
-      <Description />
+      <FormFieldLabel
+        label={label}
+        name={name}
+        required={required}
+        theme={theme}
+        type={type}
+      />
+      <FormFieldDescription
+        description={description}
+        helperText={helperText}
+        preferPlaceholder={preferPlaceholder}
+        type={type}
+      />
       <FormInputs
         {...props}
         allErrs={allErrs}
+        autofocus={autofocus || (autofocusForm && sequenceIndex === 0)}
         fieldId={name}
-        values={inputValues(type, input, dirty, initialValue, variableFields)}
-        variableFields={variableFields}
+        placeholder={placeholder || (preferPlaceholder ? description : null)}
+        removable={removable}
+        values={values}
+        variant={resolvedVariant}
       />
-      {variableFields && (
-        <AddValueButton
+      {(type !== 'checkboxes' && (!maxCount || values.filter((val) => !isMarkedForRemove(val)).length < maxCount)) && (
+        <FormFieldAddButton
           addItem={addItem}
           label={label}
         />

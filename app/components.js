@@ -32,7 +32,7 @@ import CompDetailText from './components/Detail/text';
 import CompDropdownMenu from './components/DropdownMenu/index';
 import CompError from './components/Error/index';
 import CompFieldLabel from './components/FieldLabel/index';
-import CompFormField from './components/FormField/index';
+import CompFormField from './components/FormField/FormField';
 import CompFormFieldCharCounter from './components/FormField/CharCounter';
 import CompFormFieldFieldHelper from './components/FormField/FieldHelper';
 import CompFormFieldOptionsWrapper from './components/FormField/OptionsWrapper';
@@ -72,7 +72,6 @@ import CompNavbarLinkNavbarLinkWrapper from './components/NavbarLink/NavbarLinkW
 import CompNetworkStatusIndicator from './components/NetworkStatusIndicator/index';
 import CompOmniform from './components/Omniform/index';
 import CompOmniformOmniformPreview from './components/Omniform/OmniformPreview';
-import CompOmniformOmniformRemoveButton from './components/Omniform/OmniformRemoveButton';
 import CompOverlayContainer from './components/OverlayContainer/index';
 import CompPageRow from './components/PageRow/index';
 import CompProgress from './components/Progress/index';
@@ -170,7 +169,6 @@ export const componentMap = {
   [rdf.id(components.NetworkStatusIndicator)]: CompNetworkStatusIndicator,
   [rdf.id(components.Omniform)]: CompOmniform,
   [rdf.id(components.OmniformOmniformPreview)]: CompOmniformOmniformPreview,
-  [rdf.id(components.OmniformOmniformRemoveButton)]: CompOmniformOmniformRemoveButton,
   [rdf.id(components.OverlayContainer)]: CompOverlayContainer,
   [rdf.id(components.PageRow)]: CompPageRow,
   [rdf.id(components.Progress)]: CompProgress,

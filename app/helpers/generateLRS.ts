@@ -5,7 +5,6 @@ import owl from '@ontologies/owl';
 import rdfx from '@ontologies/rdf';
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
-import sh from '@ontologies/shacl';
 import { createBrowserHistory, createMemoryHistory } from 'history';
 import { createStore, MiddlewareFn } from 'link-lib';
 
@@ -17,6 +16,7 @@ import logging from '../middleware/logging';
 import ontolaMiddleware from '../middleware/ontolaMiddleware';
 import { appOntology, website } from '../ontology/app';
 import argu from '../ontology/argu';
+import form from '../ontology/form';
 import link from '../ontology/link';
 import meeting from '../ontology/meeting';
 import ontola from '../ontology/ontola';
@@ -164,6 +164,42 @@ export default function generateLRS() {
     rdf.quad(teamGL.PotentialParticipant, rdfx.type, rdfs.Class),
     rdf.quad(teamGL.PotentialParticipant, rdfs.subClassOf, teamGL.Participant),
 
+    rdf.quad(form.CollapsibleGroup, rdfx.type, rdfs.Class),
+    rdf.quad(form.CollapsibleGroup, rdfs.subClassOf, form.Group),
+    rdf.quad(form.FooterGroup, rdfx.type, rdfs.Class),
+    rdf.quad(form.FooterGroup, rdfs.subClassOf, form.Group),
+    rdf.quad(form.HiddenGroup, rdfx.type, rdfs.Class),
+    rdf.quad(form.HiddenGroup, rdfs.subClassOf, form.Group),
+
+    rdf.quad(form.CheckboxGroup, rdfx.type, rdfs.Class),
+    rdf.quad(form.CheckboxGroup, rdfs.subClassOf, form.Field),
+    rdf.quad(form.CheckboxInput, rdfx.type, rdfs.Class),
+    rdf.quad(form.CheckboxInput, rdfs.subClassOf, form.Field),
+    rdf.quad(form.DateInput, rdfx.type, rdfs.Class),
+    rdf.quad(form.DateInput, rdfs.subClassOf, form.Field),
+    rdf.quad(form.DateTimeInput, rdfx.type, rdfs.Class),
+    rdf.quad(form.DateTimeInput, rdfs.subClassOf, form.Field),
+    rdf.quad(form.FileInput, rdfx.type, rdfs.Class),
+    rdf.quad(form.FileInput, rdfs.subClassOf, form.Field),
+    rdf.quad(form.LocationInput, rdfx.type, rdfs.Class),
+    rdf.quad(form.LocationInput, rdfs.subClassOf, form.Field),
+    rdf.quad(form.MarkdownInput, rdfx.type, rdfs.Class),
+    rdf.quad(form.MarkdownInput, rdfs.subClassOf, form.Field),
+    rdf.quad(form.NumberInput, rdfx.type, rdfs.Class),
+    rdf.quad(form.NumberInput, rdfs.subClassOf, form.Field),
+    rdf.quad(form.PasswordInput, rdfx.type, rdfs.Class),
+    rdf.quad(form.PasswordInput, rdfs.subClassOf, form.Field),
+    rdf.quad(form.PostalRangeInput, rdfx.type, rdfs.Class),
+    rdf.quad(form.PostalRangeInput, rdfs.subClassOf, form.Field),
+    rdf.quad(form.SelectInput, rdfx.type, rdfs.Class),
+    rdf.quad(form.SelectInput, rdfs.subClassOf, form.Field),
+    rdf.quad(form.SliderInput, rdfx.type, rdfs.Class),
+    rdf.quad(form.SliderInput, rdfs.subClassOf, form.Field),
+    rdf.quad(form.TextAreaInput, rdfx.type, rdfs.Class),
+    rdf.quad(form.TextAreaInput, rdfs.subClassOf, form.Field),
+    rdf.quad(form.TextInput, rdfx.type, rdfs.Class),
+    rdf.quad(form.TextInput, rdfs.subClassOf, form.Field),
+
     rdf.quad(meeting.Meeting, rdfx.type, rdfs.Class),
     rdf.quad(meeting.Meeting, rdfs.subClassOf, schema.Thing),
     rdf.quad(meeting.Meeting, rdfs.subClassOf, rdf.namedNode('http://purl.org/NET/c4dm/event.owl#Event')),
@@ -245,8 +281,6 @@ export default function generateLRS() {
     rdf.quad(argu.redirectUrl, rdfx.type, rdfx.Property),
     rdf.quad(argu.redirectUrl, rdfs.label, rdf.literal('Redirect to', languages.en)),
     rdf.quad(argu.redirectUrl, rdfs.label, rdf.literal('Redirect naar', languages.nl)),
-
-    rdf.quad(ontola.hiddenGroup, rdfx.type, sh.PropertyGroup),
 
     rdf.quad(ontola.sendConfirmationAction, rdfx.type, rdfx.Property),
     rdf.quad(

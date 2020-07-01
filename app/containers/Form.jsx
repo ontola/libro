@@ -1,6 +1,7 @@
 import React from 'react';
 
-import Spinner from '../components/Spinner';
+import { LoadingGridContent } from '../components/Loading';
+import { CardContent } from '../topologies/Card';
 
 const Form = React.lazy(
   // eslint-disable-next-line no-inline-comments
@@ -8,7 +9,7 @@ const Form = React.lazy(
 );
 
 const FormLoader = (props) => (
-  <React.Suspense fallback={<Spinner loading />}>
+  <React.Suspense fallback={<CardContent><LoadingGridContent /></CardContent>}>
     <Form {...props} />
   </React.Suspense>
 );

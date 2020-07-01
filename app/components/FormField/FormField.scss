@@ -4,6 +4,14 @@
   display: flex;
   flex-direction: column;
   position: relative;
+
+  &__section {
+    margin-bottom: 1em;
+  }
+
+  &__wrapper {
+    position: relative;
+  }
 }
 
 .Field__input {
@@ -20,7 +28,7 @@
   }
 
   // https://gitlab.com/ontola/core/-/issues/292
-  [id='http://schema.org/name'] { // sass-lint:disable-line
+  [id='aHR0cDovL3NjaGVtYS5vcmcvbmFtZQ=='] { // sass-lint:disable-line
     font-size: 1.1rem;
     font-weight: bold;
   }
@@ -80,6 +88,17 @@
     resize: vertical;
     width: 100%;
   }
+
+  &__remove-button {
+    color: color('grey', 'mid-dark');
+    font-size: font-size('x-large');
+    padding: 0 units('x-small', 'x-small');
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 11;
+  }
+
 }
 
 input {

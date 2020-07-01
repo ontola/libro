@@ -9,8 +9,6 @@ import MapView from '../../containers/MapView';
 import argu from '../../ontology/argu';
 import { alertDialogTopology } from '../../topologies/Dialog';
 
-import PlacementOmniformFields from './PlacementOmniformFields';
-
 class PlacementAlertDialog extends React.PureComponent {
   static type = argu.Placement;
 
@@ -35,6 +33,5 @@ class PlacementAlertDialog extends React.PureComponent {
 }
 
 export default [
-  PlacementOmniformFields,
   register(PlacementAlertDialog),
 ];

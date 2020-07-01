@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { linkType } from 'link-redux';
 
+import { calculateFormFieldName } from '../../helpers/forms';
+
 const propTypes = {
   children: PropTypes.node,
   name: PropTypes.string,
@@ -13,19 +15,15 @@ export const FormSectionContext = React.createContext(undefined);
 
 const FormSection = ({
   children,
-  name,
   path,
   propertyIndex,
+  name,
 }) => {
-  const formSectionContext = React.useContext(FormSectionContext);
-  const sectionContext = formSectionContext ? `${formSectionContext}.` : '';
-  const index = propertyIndex !== undefined ? `${propertyIndex}.` : '';
-
-  const contextLabel = `${sectionContext}${index}${name}`;
+  const contextLabel = calculateFormFieldName(name, propertyIndex);
 
   return (
     <FormSectionContext.Provider value={contextLabel}>
-      <fieldset property={path.value}>
+      <fieldset className="Field__section" property={path.value}>
         {children}
       </fieldset>
     </FormSectionContext.Provider>

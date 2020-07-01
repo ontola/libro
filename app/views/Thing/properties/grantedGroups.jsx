@@ -1,6 +1,7 @@
 import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
 import {
+  Property,
   ReturnType,
   linkedPropType,
   register,
@@ -22,8 +23,9 @@ import { isPromise } from '../../../helpers/types';
 import { useContainerToArr } from '../../../hooks/useContainerToArr';
 import app from '../../../ontology/app';
 import argu from '../../../ontology/argu';
+import { allTopologiesExcept } from '../../../topologies';
 import { contentDetailsTopology } from '../../../topologies/ContentDetails';
-import { detailsBarTopology } from '../../../topologies/DetailsBar';
+import DetailsBar, { detailsBarTopology } from '../../../topologies/DetailsBar';
 import { entityIsLoaded } from '../../../helpers/data';
 
 const publicGroupIRI = rdf.id(app.ns('g/-1'));
@@ -39,7 +41,7 @@ const messages = defineMessages({
   },
 });
 
-const GrantedGroups = ({ linkedProp }) => {
+const GrantedGroupsDetail = ({ linkedProp }) => {
   const { formatMessage } = useIntl();
   const lrs = useLRS();
   useDataFetching(linkedProp);
@@ -89,9 +91,28 @@ const GrantedGroups = ({ linkedProp }) => {
   );
 };
 
+GrantedGroupsDetail.type = schema.Thing;
+
+GrantedGroupsDetail.topology = [detailsBarTopology, contentDetailsTopology];
+
+GrantedGroupsDetail.property = argu.grantedGroups;
+
+GrantedGroupsDetail.propTypes = {
+  intl: PropTypes.shape({
+    formatMessage: PropTypes.func,
+  }),
+  linkedProp: linkedPropType,
+};
+
+const GrantedGroups = () => (
+  <DetailsBar scrollable={false}>
+    <Property label={argu.grantedGroups} />
+  </DetailsBar>
+);
+
 GrantedGroups.type = schema.Thing;
 
-GrantedGroups.topology = [detailsBarTopology, contentDetailsTopology];
+GrantedGroups.topology = allTopologiesExcept(detailsBarTopology, contentDetailsTopology);
 
 GrantedGroups.property = argu.grantedGroups;
 
@@ -99,7 +120,9 @@ GrantedGroups.propTypes = {
   intl: PropTypes.shape({
     formatMessage: PropTypes.func,
   }),
-  linkedProp: linkedPropType,
 };
 
-export default register(GrantedGroups);
+export default [
+  register(GrantedGroups),
+  register(GrantedGroupsDetail),
+];

@@ -1,29 +1,43 @@
-import { linkType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import useFormField from '../../hooks/useFormField';
 
 const propTypes = {
-  field: PropTypes.string.isRequired,
-  initialValue: linkType,
-  sessionStorage: PropTypes.shape({
-    getItem: PropTypes.func,
-    setItem: PropTypes.func,
-  }),
-  type: PropTypes.string.isRequired,
-  validate: PropTypes.func,
+  addFieldName: PropTypes.func,
+  minCount: PropTypes.number,
+  required: PropTypes.bool,
+  type: PropTypes.string,
 };
 
 const formFieldWrapper = (Component) => {
-  const WrappedComp = (props) => {
-    const [input, formProps, storeKey] = useFormField(props);
+  const WrappedComp = ({ addFieldName, ...props }) => {
+    const required = props.required || (props.minCount ? props.minCount > 0 : false);
+
+    const [input, meta, storeKey] = useFormField({
+      required,
+      ...props,
+    });
+
+    React.useLayoutEffect(() => {
+      if (input && addFieldName) {
+        addFieldName(input.name);
+      }
+    }, [input?.name]);
+
+    if (!input) {
+      return null;
+    }
+
+    const minCount = props.type !== 'association' && typeof props.minCount === 'undefined' ? 1 : props.minCount;
 
     return (
       <Component
         {...props}
-        {...formProps}
         input={input}
+        meta={meta}
+        minCount={minCount}
+        required={required}
         storeKey={storeKey}
       />
     );

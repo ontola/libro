@@ -16,12 +16,18 @@ class DetailsBar extends TopologyProvider {
     this.topology = detailsBarTopology;
   }
 
+  static defaultProps = {
+    scrollable: true,
+  };
+
   render() {
+    const IconWrapper = this.props.scrollable ? VerticalScroller : React.Fragment;
+
     return this.wrap((
       <div className={`DetailsBar theme ${this.props.className || ''}`}>
-        <VerticalScroller>
+        <IconWrapper>
           {this.props.children}
-        </VerticalScroller>
+        </IconWrapper>
         {this.props.right && (
         <div className="DetailsBar__right">
           <CardFloat>

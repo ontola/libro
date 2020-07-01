@@ -1,90 +1,46 @@
+import { isNamedNode } from '@ontologies/core';
 import schema from '@ontologies/schema';
 import sh from '@ontologies/shacl';
 import {
   Resource,
   linkType,
   useLRS,
-  useResourceProperty,
 } from 'link-redux';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage } from 'react-intl';
 
-import { tryParseInt } from '../../helpers/numbers';
-import CoverImage from '../CoverImage';
-import CoverImageSlider from '../CoverImageSlider';
+import { formFieldsPath } from '../../helpers/diggers';
 import ontola from '../../ontology/ontola';
 
-const DropzoneInnerPositionY = ({
-  children,
-  current,
-  file,
-  imagePositionYShape,
-  propertyIndex,
-}) => {
-  const [currentContent] = useResourceProperty(current, schema.contentUrl);
-  const [targetValue] = useResourceProperty(current, ontola.imagePositionY);
-  const [positionY, setPositionY] = useState(tryParseInt(targetValue));
-  const onSliderChange = (event, value) => setPositionY(100 - value);
-
-  return (
-    <React.Fragment>
-      {children(
-        <div style={{ flexGrow: 1 }}>
-          <CoverImage
-            positionY={positionY}
-            url={file?.url || currentContent?.value}
-          />
-        </div>
-      )}
-      <CoverImageSlider
-        imagePositionYShape={imagePositionYShape}
-        propertyIndex={propertyIndex}
-        targetValue={targetValue}
-        value={positionY}
-        onChange={onSliderChange}
-      />
-    </React.Fragment>
-  );
-};
-
-DropzoneInnerPositionY.propTypes = {
-  children: PropTypes.func,
-  current: linkType,
-  file: PropTypes.shape({
-    name: PropTypes.string,
-    url: PropTypes.string,
-  }),
-  imagePositionYShape: linkType,
-  propertyIndex: PropTypes.number,
-};
+import DropzoneInnerPositionY from './DropzoneInnerPositionY';
 
 const DropzoneInner = ({
   children,
-  current,
   file,
-  form,
+  formIRI,
   isDragActive,
-  propertyIndex,
+  object,
 }) => {
   const lrs = useLRS();
+  const currentContent = object && lrs.getResourceProperty(object, schema.contentUrl);
 
-  if (current || file) {
+  if (currentContent || file) {
     const imagePositionYShape = lrs.findSubject(
-      form,
-      [sh.property, sh.path],
+      formIRI,
+      [...formFieldsPath, sh.path],
       ontola.imagePositionY
     ).pop();
 
     if (imagePositionYShape) {
       return (
         <DropzoneInnerPositionY
-          current={current}
+          currentContent={currentContent}
           file={file}
-          form={form}
+          formIRI={formIRI}
           imagePositionYShape={imagePositionYShape}
-          propertyIndex={propertyIndex}
+          object={object}
         >
           {children}
         </DropzoneInnerPositionY>
@@ -95,13 +51,12 @@ const DropzoneInner = ({
   if (file) {
     return children(
       <div>
-        <img alt={file.name} src={file.url} />
-        <div>{file.name}</div>
+        <img src={file} />
       </div>
     );
   }
-  if (current) {
-    return children(<Resource subject={current} />);
+  if (isNamedNode(object)) {
+    return children(<Resource subject={object} />);
   }
 
   return children(
@@ -133,15 +88,14 @@ DropzoneInner.propTypes = {
     PropTypes.node,
     PropTypes.func,
   ]),
-  current: linkType,
   file: PropTypes.shape({
     name: PropTypes.string,
     url: PropTypes.string,
   }),
-  form: linkType,
+  formIRI: linkType,
   imagePositionYShape: linkType,
   isDragActive: PropTypes.bool,
-  propertyIndex: PropTypes.number,
+  object: linkType,
 };
 
 export default DropzoneInner;

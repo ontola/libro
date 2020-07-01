@@ -13,17 +13,15 @@ import FontAwesome from 'react-fontawesome';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
-import Form from '../../containers/Form';
 import argu from '../../ontology/argu';
-import ontola from '../../ontology/ontola';
 import { highlightResource } from '../../state/app/actions';
 import { getOmniformAction, omniformSetAction } from '../../state/omniform';
-import FormFooter from '../../topologies/FormFooter/Footer';
 import OmniformFields from '../../topologies/OmniformFields/OmniformFields';
 import EntryPointBase from '../../views/EntryPoint/EntryPointBase';
 import { filterActions } from '../../views/Thing/properties/omniform/helpers';
 import Button from '../Button';
 import { FormFooterRight } from '../Form';
+import { formFieldError } from '../FormField';
 
 import './Omniform.scss';
 
@@ -32,24 +30,21 @@ const propTypes = {
   action: subjectType,
   actions: PropTypes.instanceOf(Set).isRequired,
   autofocusForm: PropTypes.bool,
-  error: PropTypes.string,
-  // Unique name of the form
-  form: PropTypes.string.isRequired,
+  error: formFieldError,
   formFooterButtons: PropTypes.node,
+  formInstance: PropTypes.objectOf(PropTypes.any),
   // From redux-forms
   invalid: PropTypes.bool,
   onActionChange: PropTypes.func.isRequired,
   onKeyUp: PropTypes.func,
+  onStatusForbidden: PropTypes.func,
+  parentIRI: PropTypes.string,
 };
 
 const PROPS_WHITELIST = [
   schema.name,
   schema.text,
   argu.isOpinion,
-  ontola.hiddenGroup,
-  argu.attachments,
-  ontola.coverPhoto,
-  schema.location,
 ].map((t) => rdf.id(t));
 
 const convertFieldContext = (parentIRI, actionIRI) => {
@@ -74,22 +69,56 @@ class Omniform extends EntryPointBase {
   linkedFieldset() {
     const {
       action,
-      form,
+      closeForm,
+      formInstance,
+      lrs,
       onKeyUp,
+      parentIRI,
     } = this.props;
     if (!isNamedNode(action)) {
       return null;
     }
+    const object = lrs.getResourceProperty(action, schema.object);
+    const types = this.types();
+
+    const footerButtons = (loading) => (
+      <React.Fragment>
+        {types}
+        <FormFooterRight>
+          <Button
+            theme="transparant"
+            onClick={closeForm}
+          >
+            <FormattedMessage id="https://app.argu.co/i18n/forms/actions/cancel" />
+          </Button>
+          <Button
+            loading={loading}
+            theme="submit"
+            type="submit"
+          >
+            <FormattedMessage
+              defaultMessage="save"
+              id="https://app.argu.co/i18n/actions/labels/save"
+            />
+          </Button>
+        </FormFooterRight>
+      </React.Fragment>
+    );
 
     return (
       <Resource subject={action}>
         <Property
           forceRender
           autofocusForm={this.props.autofocusForm}
-          formName={form}
+          footerButtons={footerButtons}
+          formInstance={formInstance}
           label={schema.target}
+          object={object}
+          parentIRI={parentIRI}
           whitelist={PROPS_WHITELIST}
+          onDone={this.props.onDone}
           onKeyUp={onKeyUp}
+          onStatusForbidden={this.props.onStatusForbidden}
         />
       </Resource>
     );
@@ -121,7 +150,6 @@ class Omniform extends EntryPointBase {
       actions,
       action,
       error,
-      formInstance,
     } = this.props;
 
     if (actions.length === 0) {
@@ -135,44 +163,17 @@ class Omniform extends EntryPointBase {
     }
 
     return (
-      <Form
-        className="Form Omniform"
-        form={formInstance}
-        formID={`${atob(this.props.parentIRI)}.omniform`}
-        onSubmit={this.submitHandler}
-      >
-        {({ invalid, submitting }) => (
-          <React.Fragment>
-            {error && (
-              <div className="Omniform__error">
-                <FontAwesome name="exclamation-triangle" />
-                {error}
-              </div>
-            )}
-            <OmniformFields>
-              {this.linkedFieldset()}
-            </OmniformFields>
-            <FormFooter>
-              {this.footerGroup()}
-              {this.types()}
-              <FormFooterRight>
-                {this.props.formFooterButtons}
-                <Button
-                  disabled={invalid}
-                  loading={submitting}
-                  theme="submit"
-                  type="submit"
-                >
-                  <FormattedMessage
-                    defaultMessage="save"
-                    id="https://app.argu.co/i18n/actions/labels/save"
-                  />
-                </Button>
-              </FormFooterRight>
-            </FormFooter>
-          </React.Fragment>
+      <React.Fragment>
+        {error && (
+          <div className="Omniform__error">
+            <FontAwesome name="exclamation-triangle" />
+            {error}
+          </div>
         )}
-      </Form>
+        <OmniformFields>
+          {this.linkedFieldset()}
+        </OmniformFields>
+      </React.Fragment>
     );
   }
 }
@@ -182,13 +183,11 @@ Omniform.propTypes = propTypes;
 const mapStateToProps = (state, ownProps) => {
   const actions = filterActions(ownProps.lrs, ownProps.actions);
 
-  const formName = `Omniform-${ownProps.parentIRI}`;
   const action = getOmniformAction(state, ownProps.parentIRI) || actions.first();
 
   return ({
     action,
     actions,
-    form: formName,
     onStatusForbidden: () => {
       convertFieldContext(ownProps.parentIRI, action);
       ownProps.lrs.actions.ontola.navigate(action);

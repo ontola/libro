@@ -2,11 +2,13 @@
  * This document is purely for including all the views into the code.
  * Please properly include each file when access to the code is needed.
  */
+import Action from './Action/index';
+import ActionBody from './ActionBody';
 import Activity from './Activity';
 import AppSignIn from './AppSignIn';
 import AppSignOut from './AppSignOut';
 import ArguHome from './ArguHome';
-import Thing from './Thing';
+import Argument from './Argument/index';
 import Badge from './Badge';
 import Banner from './Banner/Banner';
 import Category from './Category';
@@ -16,8 +18,6 @@ import CollectionPage from './CollectionPage';
 import Comment from './Comment';
 import Confirmation from './Confirmation';
 import ContactPage from './ContactPage';
-import Action from './Action/index';
-import Argument from './Argument/index';
 import DataCube from './DataCube';
 import DataType from './DataType';
 import Department from './Department';
@@ -29,7 +29,10 @@ import Error from './Error';
 import Event from './Event';
 import FilterField from './FilterField';
 import FilterOption from './FilterOption';
+import FormField from './FormField';
+import FormGroup from './FormGroup';
 import FormOption from './FormOption';
+import FormPage from './FormPage';
 import Forum from './Forum/index';
 import Group from './Group';
 import GroupMembership from './GroupMembership';
@@ -61,10 +64,10 @@ import Risk from './Risk';
 import Scenario from './Scenario';
 import SearchResult from './SearchResult';
 import SeqComp from './Seq';
-import Shape from './Shape';
 import Snackbar from './Snackbar';
 import SnackbarManager from './SnackbarManager';
 import Survey from './Survey';
+import Thing from './Thing';
 import Token from './Token';
 import User from './User';
 import VideoPage from './VideoPage';
@@ -75,6 +78,7 @@ import Widget from './Widget';
 
 export function getViews() {
   return [
+    ...ActionBody,
     ...Activity,
     ...AppSignIn,
     ...AppSignOut,
@@ -102,7 +106,10 @@ export function getViews() {
     ...Event,
     ...FilterField,
     ...FilterOption,
+    ...FormField,
+    ...FormGroup,
     ...FormOption,
+    ...FormPage,
     ...Forum,
     ...Group,
     ...GroupMembership,
@@ -134,7 +141,6 @@ export function getViews() {
     ...Scenario,
     ...SearchResult,
     ...SeqComp,
-    ...Shape,
     ...Snackbar,
     ...SnackbarManager,
     ...Survey,

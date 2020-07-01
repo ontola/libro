@@ -6,38 +6,31 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useField } from 'react-final-form';
 
-import { FormSectionContext } from '../Form/FormSection';
 import { listToArr } from '../../helpers/data';
-import { calculateFormFieldName } from '../../helpers/forms';
+import { formFieldsPath } from '../../helpers/diggers';
 import MediaObjectOmniformDropzoneLoader from '../../views/MediaObject/omniform/MediaObjectOmniformDropzoneLoader';
 
 import './FileInput.scss';
 
-const FileInput = (props) => {
-  const {
-    propertyIndex,
-    form,
-    targetValue,
-  } = props;
+const FileInput = ({
+  formIRI,
+  value,
+  name,
+  object,
+  onChange,
+}) => {
   const lrs = useLRS();
-  const formContext = React.useContext(FormSectionContext);
   const inputRef = React.createRef();
-  const resourceId = calculateFormFieldName(formContext, propertyIndex);
   const encodingFormatShape = lrs.findSubject(
-    form,
-    [sh.property, sh.path],
+    formIRI,
+    [...formFieldsPath, sh.path],
     schema.encodingFormat
   ).pop();
   const encodingFormatTypes = encodingFormatShape
     && listToArr(lrs, [], lrs.getResourceProperty(encodingFormatShape, sh.in))
       ?.map((lit) => lit.value)
       ?.join(', ');
-
-  const resourceField = useField(resourceId, {
-    initialValue: targetValue,
-  });
 
   const openDialog = () => {
     const { current } = inputRef;
@@ -49,38 +42,27 @@ const FileInput = (props) => {
     current.click();
   };
 
-  const fieldName = schema.contentUrl;
-  const fieldId = calculateFormFieldName(formContext, propertyIndex, fieldName);
-  const { input: { value, ...resourceInput } } = resourceField;
-
-  let current;
-  if (targetValue?.['@id']?.termType === 'NamedNode') {
-    current = targetValue['@id'];
-  }
-  if (value && value.termType) {
-    current = value;
-  }
-
   return (
     <MediaObjectOmniformDropzoneLoader
-      current={current}
       encodingFormatTypes={encodingFormatTypes}
-      form={form}
+      formIRI={formIRI}
       inputRef={inputRef}
-      name={fieldId}
+      name={name}
+      object={object}
       openDialog={openDialog}
-      propertyIndex={propertyIndex}
-      resourceInput={resourceInput}
+      resourceInput={null}
+      value={value}
+      onChange={onChange}
     />
   );
 };
 
 FileInput.propTypes = {
-  form: linkType,
-  propertyIndex: PropTypes.number,
-  targetValue: PropTypes.shape({
-    '@id': linkType,
-  }),
+  formIRI: linkType,
+  name: PropTypes.string,
+  object: linkType,
+  onChange: PropTypes.func,
+  value: PropTypes.string,
 };
 
 export default FileInput;

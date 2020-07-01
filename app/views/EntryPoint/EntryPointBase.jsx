@@ -1,10 +1,8 @@
 import RDFTypes from '@rdfdev/prop-types';
 import schema from '@ontologies/schema';
-import sh from '@ontologies/shacl';
 import HttpStatus from 'http-status-codes';
 import { anyRDFValue } from 'link-lib';
 import {
-  Resource,
   linkType,
   lrsType,
   subjectType,
@@ -15,15 +13,12 @@ import React from 'react';
 import { convertKeysAtoB } from '../../helpers/data';
 import { HTTP_RETRY_WITH, handleHTTPRetry } from '../../helpers/errorHandling';
 import { retrievePath } from '../../helpers/iris';
-import ll from '../../ontology/ll';
-import ontola from '../../ontology/ontola';
 
 class EntryPointBase extends React.PureComponent {
   constructor(props) {
     super(props);
 
     this.submitHandler = this.submitHandler.bind(this);
-    this.footerGroupTheme = 'omniform';
   }
 
   responseCallback() {} // eslint-disable-line class-methods-use-this
@@ -43,8 +38,20 @@ class EntryPointBase extends React.PureComponent {
         resolve();
       });
     }
+    const formApi = args[0];
+    const registeredValues = {
+      ...formApi.getRegisteredFields().reduce((res, key) => {
+        if (!Object.keys(values).includes(key)) {
+          return res;
+        }
 
-    const formData = convertKeysAtoB(values);
+        return {
+          ...res,
+          [key]: values[key],
+        };
+      }, {}),
+    };
+    const formData = convertKeysAtoB(registeredValues);
 
     return lrs
       .exec(action, formData)
@@ -89,34 +96,6 @@ class EntryPointBase extends React.PureComponent {
             throw e;
           });
       });
-  }
-
-  footerGroupProp() {
-    const { action, lrs } = this.props;
-
-    const footerGroupProps = lrs.findSubject(
-      action,
-      [schema.target, ll.actionBody, sh.property, sh.group],
-      ontola.footerGroup
-    );
-
-    if (footerGroupProps.length > 0) {
-      return footerGroupProps.pop();
-    }
-
-    const footerGroupSteps = lrs.findSubject(
-      action,
-      [schema.target, ll.actionBody, ontola.formSteps, sh.group],
-      ontola.footerGroup
-    );
-
-    return footerGroupSteps.pop();
-  }
-
-  footerGroup() {
-    const prop = this.footerGroupProp();
-
-    return prop && <Resource subject={prop} theme={this.footerGroupTheme} />;
   }
 }
 

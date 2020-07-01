@@ -78,6 +78,7 @@ const CollapsedOmniformProp = (props) => {
       <CardRow>
         <OmniformConnector
           autofocusForm
+          closeForm={closeForm}
           formFooterButtons={backButton}
           onDone={toggle}
           onKeyUp={handleKey}

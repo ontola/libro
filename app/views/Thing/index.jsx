@@ -125,7 +125,7 @@ export default [
   description,
   ExpiresAt,
   FollowsCount,
-  GrantedGroups,
+  ...GrantedGroups,
   IsPrimaryTopicOf,
   IsPartOf,
   Image,

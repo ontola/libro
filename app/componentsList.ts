@@ -75,7 +75,6 @@ export const components = {
   NetworkStatusIndicator: component('NetworkStatusIndicator'),
   Omniform: component('Omniform'),
   OmniformOmniformPreview: component('Omniform/OmniformPreview'),
-  OmniformOmniformRemoveButton: component('Omniform/OmniformRemoveButton'),
   OverlayContainer: component('OverlayContainer'),
   PageRow: component('PageRow'),
   Progress: component('Progress'),

@@ -10,6 +10,8 @@ import React from 'react';
 import { calculateFormFieldName } from '../../helpers/forms';
 import argu from '../../ontology/argu';
 import ex from '../../ontology/ex';
+import example from '../../ontology/example';
+import form from '../../ontology/form';
 import ll from '../../ontology/ll';
 import {
   cleanup,
@@ -26,32 +28,49 @@ describe('Omniform', () => {
 
   const schemaText = calculateFormFieldName(schema.text);
   const conAction = ex.ns('/cons/new');
+  const conEntryPoint = example.ns('cons/new#EntryPoint');
   const proAction = ex.ns('/pros/new');
+  const proEntryPoint = example.ns('pros/new#EntryPoint');
 
   const resources = {
     [conAction]: {
       '@id': conAction,
       [rdfx.type]: schema.CreateAction,
       [schema.result]: argu.ConArgument,
+      [schema.object]: {},
       [schema.target]: {
+        '@id': conEntryPoint,
         [rdfx.type]: schema.EntryPoint,
+        [schema.isPartOf]: conAction,
         [ll.actionBody]: {
-          [rdfx.type]: sh.NodeShape,
-          [sh.targetClass]: argu.Comment,
-          [sh.property]: [
-            {
-              [rdfx.type]: sh.PropertyShape,
-              [sh.datatype]: xsd.string,
-              [sh.description]: 'prop con desc',
-              [sh.maxCount]: 1,
-              [sh.maxLength]: 100,
-              [sh.minCount]: 1,
-              [sh.minLength]: 4,
-              [sh.name]: 'prop con',
-              [sh.order]: 0,
-              [sh.path]: schema.text,
+          [rdfx.type]: form.Form,
+          [form.pages]: {
+            [rdfx.type]: rdfx.Seq,
+            [rdfx.ns('_0')]: {
+              [rdfx.type]: form.Page,
+              [form.groups]: {
+                [rdfx.type]: rdfx.Seq,
+                [rdfx.ns('_0')]: {
+                  [rdfx.type]: form.Group,
+                  [form.fields]: {
+                    [rdfx.type]: rdfx.Seq,
+                    [rdfx.ns('_0')]: {
+                      [rdfx.type]: form.TextAreaInput,
+                      [sh.datatype]: xsd.string,
+                      [schema.text]: 'prop con desc',
+                      [sh.maxCount]: 1,
+                      [sh.maxLength]: 100,
+                      [sh.minCount]: 1,
+                      [sh.minLength]: 4,
+                      [schema.name]: 'prop con',
+                      [sh.order]: 0,
+                      [sh.path]: schema.text,
+                    },
+                  },
+                },
+              },
             },
-          ],
+          },
         },
       },
     },
@@ -59,25 +78,40 @@ describe('Omniform', () => {
       '@id': proAction,
       [rdfx.type]: schema.CreateAction,
       [schema.result]: argu.ProArgument,
+      [schema.object]: {},
       [schema.target]: {
+        '@id': proEntryPoint,
         [rdfx.type]: schema.EntryPoint,
+        [schema.isPartOf]: proAction,
         [ll.actionBody]: {
-          [rdfx.type]: sh.NodeShape,
-          [sh.targetClass]: argu.Comment,
-          [sh.property]: [
-            {
-              [rdfx.type]: sh.PropertyShape,
-              [sh.datatype]: xsd.string,
-              [sh.description]: 'prop pro desc',
-              [sh.maxCount]: 1,
-              [sh.maxLength]: 100,
-              [sh.minCount]: 1,
-              [sh.minLength]: 4,
-              [sh.name]: 'prop pro',
-              [sh.order]: 0,
-              [sh.path]: schema.text,
+          [rdfx.type]: form.Form,
+          [form.pages]: {
+            [rdfx.type]: rdfx.Seq,
+            [rdfx.ns('_0')]: {
+              [rdfx.type]: form.Page,
+              [form.groups]: {
+                [rdfx.type]: rdfx.Seq,
+                [rdfx.ns('_0')]: {
+                  [rdfx.type]: form.Group,
+                  [form.fields]: {
+                    [rdfx.type]: rdfx.Seq,
+                    [rdfx.ns('_0')]: {
+                      [rdfx.type]: form.TextAreaInput,
+                      [sh.datatype]: xsd.string,
+                      [schema.text]: 'prop pro desc',
+                      [sh.maxCount]: 1,
+                      [sh.maxLength]: 100,
+                      [sh.minCount]: 1,
+                      [sh.minLength]: 4,
+                      [schema.name]: 'prop pro',
+                      [sh.order]: 0,
+                      [sh.path]: schema.text,
+                    },
+                  },
+                },
+              },
             },
-          ],
+          },
         },
       },
     },
@@ -98,7 +132,7 @@ describe('Omniform', () => {
   it('keeps modification across action switches', async () => {
     const subject = ex.ns('5');
     const omniformSelector = `${subject.value}.omniform`;
-    const form = createForm({ onSubmit: () => undefined });
+    const formInstance = createForm({ onSubmit: () => undefined });
 
     const {
       getByTestId,
@@ -111,7 +145,7 @@ describe('Omniform', () => {
             ex.ns('/pros/new'),
             ex.ns('/cons/new'),
           ])}
-          formInstance={form}
+          formInstance={formInstance}
           parentIRI={btoa(subject.value)}
         />
       </Card>
@@ -121,13 +155,14 @@ describe('Omniform', () => {
     expect(getByTestId(omniformSelector)).toHaveFormValues({
       [schemaText]: '',
     });
+    expect(formInstance.getFieldState(schemaText).dirty).toBeFalsy();
 
     fireEvent.change(getByLabelText(/prop pro/), { target: { value: 'test' } });
 
     expect(getByTestId(omniformSelector)).toHaveFormValues({
       [schemaText]: 'test',
     });
-    expect(form.getFieldState(schemaText).dirty).toBeTruthy();
+    expect(formInstance.getFieldState(schemaText).dirty).toBeTruthy();
 
     expect(getByText('prop pro')).toBeVisible();
     expect(getByText('Con')).toBeVisible();
@@ -138,6 +173,6 @@ describe('Omniform', () => {
     expect(getByTestId(omniformSelector)).toHaveFormValues({
       [schemaText]: 'test',
     });
-    expect(form.getFieldState(schemaText).dirty).toBeTruthy();
+    expect(formInstance.getFieldState(schemaText).dirty).toBeTruthy();
   });
 });

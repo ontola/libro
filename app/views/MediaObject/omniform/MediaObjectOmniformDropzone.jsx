@@ -1,48 +1,54 @@
+import rdf from '@ontologies/core';
 import { linkType } from 'link-redux';
 import * as PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Dropzone from 'react-dropzone';
-import { useField } from 'react-final-form';
 
 import DropzoneInner from '../../../components/Dropzone/DropzoneInner';
+import argu from '../../../ontology/argu';
+
+function getBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(rdf.literal(
+      reader.result,
+      argu.ns(`base64File?filename=${encodeURIComponent(file.name)}`)
+    ));
+    reader.onerror = (error) => reject(error);
+  });
+}
 
 const MediaObjectOmniformDropzone = ({
-  current,
   encodingFormatTypes,
-  form,
+  formIRI,
   inputRef,
-  name,
+  object,
+  onChange,
   openDialog,
-  propertyIndex,
   resourceInput,
+  value,
 }) => {
-  const {
-    input: {
-      onChange: onContentUrlChange,
-    },
-  } = useField(name);
-  const [file, setFile] = useState();
-  useEffect(() => () => {
-    // Make sure to revoke the data uris to avoid memory leaks
-    if (file) {
-      URL.revokeObjectURL(file.url);
-    }
-  }, [file]);
+  const onDrop = (acceptedFiles) => (
+    new Promise(() => {
+      let file = acceptedFiles;
 
-  const onChange = (acceptedFiles) => {
-    const acceptedFile = acceptedFiles[0];
-    setFile(acceptedFile && Object.assign(acceptedFile, {
-      url: URL.createObjectURL(acceptedFile),
-    }));
+      if (Array.isArray(acceptedFiles)) {
+        [file] = acceptedFiles;
+      }
 
-    return onContentUrlChange([acceptedFile]);
-  };
+      return getBase64(file)
+        .then((enc) => {
+          onChange(enc);
+        });
+    })
+  );
 
   return (
     <Dropzone
       accept={encodingFormatTypes}
       multiple={false}
-      onDrop={onChange}
+      onDrop={onDrop}
     >
       {({
         getInputProps,
@@ -51,13 +57,12 @@ const MediaObjectOmniformDropzone = ({
       }) => (
         <div className="MediaObjectOmniformFields__button-spacer">
           <DropzoneInner
-            current={current}
-            file={file}
-            form={form}
+            file={value}
+            formIRI={formIRI}
             getInputProps={getInputProps}
             inputRef={inputRef}
             isDragActive={isDragActive}
-            propertyIndex={propertyIndex}
+            object={object}
             resourceInput={resourceInput}
           >
             {(preview) => (
@@ -87,15 +92,16 @@ const MediaObjectOmniformDropzone = ({
 };
 
 MediaObjectOmniformDropzone.propTypes = {
-  current: linkType,
   encodingFormatTypes: PropTypes.string,
-  form: linkType,
+  formIRI: linkType,
   inputRef: PropTypes.shape({}),
   name: PropTypes.string,
+  object: linkType,
+  onChange: PropTypes.func,
   openDialog: PropTypes.func,
-  propertyIndex: PropTypes.number,
   removeItem: PropTypes.func,
   resourceInput: PropTypes.shape({}),
+  value: PropTypes.string,
 };
 
 export default MediaObjectOmniformDropzone;

@@ -1,6 +1,6 @@
 import rdf, {NamedNode, SomeTerm} from '@ontologies/core';
-import { calculateFormFieldName } from '../helpers/forms';
-import { handle } from '../helpers/logging';
+import { calculateFormFieldName } from './forms';
+import { handle } from './logging';
 
 export const serializeForStorage = (value: SomeTerm | string ): string => {
   return JSON.stringify(value);
@@ -41,27 +41,16 @@ export const parseForStorage = (valueFromStorage: string | null): any  => {
   }
 };
 
-export const usePersistence = (
-    storage: Storage,
-    storageKey: string,
-): [unknown, (v: any) => void] => {
+export const getStorageKey = (formContext: string, object: NamedNode, path: NamedNode) => (
+    calculateFormFieldName(formContext, object, path)
+);
 
-  if (!storage) {
-    return [undefined, () => undefined];
+export const storageGet = (sessionStore: Storage, key: string) => (
+    __CLIENT__ ? parseForStorage((sessionStore || sessionStorage).getItem(key)) : undefined
+);
+
+export const storageSet = (sessionStore: Storage, key: string, newValue: any) => {
+  if (__CLIENT__ && typeof newValue !== 'undefined') {
+    (sessionStore || sessionStorage).setItem(key, serializeForStorage(newValue));
   }
-  const setValue = (newValue: any) => {
-    if (typeof newValue !== 'undefined') {
-      storage.setItem(storageKey, serializeForStorage(newValue));
-    }
-  };
-
-  const valueFromStorage = storage.getItem(storageKey);
-
-  if (valueFromStorage === null) {
-    return [undefined, setValue];
-  }
-
-  const value = parseForStorage(valueFromStorage);
-
-  return [value, setValue];
 };

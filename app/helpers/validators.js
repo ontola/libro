@@ -22,7 +22,7 @@ const validatorMap = {
   maxCount: (max) => arrayValidation((values) => values && values.length > max && `Maximaal ${max}`),
   maxLength: (max) => valueValidation((value) => value && value.length > max && `Maximaal ${max} tekens, nu ${value.length}`),
   minCount: (min) => arrayValidation((values) => values && values.length < min && `Minimaal ${min}`),
-  minLength: (min) => valueValidation((value) => value && value.length > min && `Minimaal ${min} tekens`),
+  minLength: (min) => valueValidation((value) => value && value.length < min && `Minimaal ${min} tekens`),
   required: valueValidation((value) => !value && '*Vereist'),
 };
 

@@ -5,8 +5,8 @@ import React from 'react';
 import { withRouter } from 'react-router';
 
 import Button from '../../components/Button';
+import FormFooterRight from '../../components/Form/FooterRight';
 import GridHeader from '../../components/Grid/GridHeader';
-import Form from '../../containers/Form';
 import ll from '../../ontology/ll';
 import ontola from '../../ontology/ontola';
 import { footerTopology } from '../../topologies/Footer';
@@ -14,6 +14,7 @@ import { gridTopology } from '../../topologies/Grid';
 import { navbarTopology } from '../../topologies/Navbar';
 
 import EntryPointBase from './EntryPointBase';
+import EntryPointForm from './EntryPointForm';
 
 const styles = {
   navbar: {
@@ -31,47 +32,56 @@ const styles = {
 class EntryPointGrid extends EntryPointBase {
   render() {
     const {
+      action,
+      actionBody,
       classes,
       httpMethod,
-      invalid,
+      lrs,
       name,
       smallButton,
       subject,
       topologyCtx,
       url,
     } = this.props;
-    const formURL = new URL(subject.value);
-    const formID = [formURL.origin, formURL.pathname].join('');
     const className = [footerTopology, navbarTopology].includes(topologyCtx) && classes.navbar;
 
+    const object = lrs.getResourceProperty(action, schema.object);
+
+    const footerButtons = (loading) => (
+      <FormFooterRight>
+        <Button
+          loading={loading}
+          small={smallButton}
+          type="submit"
+        >
+          {name?.value}
+        </Button>
+      </FormFooterRight>
+    );
+
+    const formURL = new URL(subject.value);
+    const formID = [formURL.origin, formURL.pathname].join('');
+
     return (
-      <Form
-        action={new URL(url.value).pathname}
-        className={className}
-        formID={formID}
-        method={httpMethod}
-        onSubmit={this.submitHandler}
-      >
-        {({ submitting }) => (
-          <React.Fragment>
-            <Property label={schema.isPartOf}>
-              <GridHeader header={<Property label={schema.name} />}>
-                <Property label={ontola.updateAction} onLoad={() => null} />
-              </GridHeader>
-              <Property label={schema.text} />
-            </Property>
-            <Property label={ll.actionBody} />
-            <Button
-              disabled={invalid}
-              loading={submitting}
-              small={smallButton}
-              type="submit"
-            >
-              {name?.value}
-            </Button>
-          </React.Fragment>
-        )}
-      </Form>
+      <React.Fragment>
+        <Property label={schema.isPartOf}>
+          <GridHeader header={<Property label={schema.name} />}>
+            <Property label={ontola.updateAction} onLoad={() => null} />
+          </GridHeader>
+          <Property label={schema.text} />
+        </Property>
+        <EntryPointForm
+          actionBody={actionBody}
+          className={className}
+          footerButtons={footerButtons}
+          formID={formID}
+          httpMethod={httpMethod?.value}
+          object={object}
+          url={url?.value}
+          onKeyUp={null}
+          onSubmit={this.submitHandler}
+        />
+      </React.Fragment>
     );
   }
 }
@@ -87,6 +97,7 @@ EntryPointGrid.hocs = [withStyles(styles), withRouter];
 
 EntryPointGrid.mapDataToProps = {
   action: schema.isPartOf,
+  actionBody: ll.actionBody,
   httpMethod: schema.httpMethod,
   image: schema.image,
   name: schema.name,

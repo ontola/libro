@@ -76,7 +76,7 @@ const OptionsWrapper = ({
     <React.Fragment>
       <Component
         iriTemplate={searchable && iriTemplate}
-        loading={loading}
+        loading={!!loading}
         options={options}
         topology={topology}
         {...componentProps}
@@ -85,7 +85,7 @@ const OptionsWrapper = ({
       {
         shIn.termType === 'NamedNode' && (
           <Resource subject={shIn}>
-            <Property label={ontola.createAction} />
+            <Property label={ontola.createAction} limit={Infinity} />
           </Resource>
         )
       }

@@ -1,7 +1,12 @@
-import rdf from '@ontologies/core';
-import RDFTypes from '@rdfdev/prop-types';
+import rdf, { isTerm } from '@ontologies/core';
 import classNames from 'classnames';
-import { linkType, topologyType } from 'link-redux';
+import {
+  Property,
+  linkType,
+  subjectType,
+  topologyType,
+  useLRS,
+} from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Textarea from 'react-autosize-textarea';
@@ -9,60 +14,54 @@ import Textarea from 'react-autosize-textarea';
 import DatePicker from '../../containers/DatePicker';
 import DateTimePicker from '../../containers/DateTimePicker';
 import TextEditor from '../../containers/TextEditor';
-import argu from '../../ontology/argu';
+import form from '../../ontology/form';
 import CheckboxesInput from '../CheckboxesInput';
 import FieldLabel from '../FieldLabel';
+import { FormSection } from '../Form';
 import { Input } from '../Input';
 import FileInput from '../Input/FileInput';
+import LocationInput from '../LocationInput';
 import { SelectInputWrapper } from '../SelectInput';
 
 import CharCounter, { CHAR_COUNTER_THRESHOLD } from './CharCounter';
 import OptionsWrapper, { optionsType } from './OptionsWrapper';
 
-function getBase64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(rdf.literal(
-      reader.result,
-      undefined,
-      argu.ns(`base64File?filename=${encodeURIComponent(file.name)}`)
-    ));
-    reader.onerror = (error) => reject(error);
-  });
-}
+import { formFieldError } from './index';
+
+const TEXTFIELD_MIN_ROWS = 3;
+const MAX_STR_LEN = 255;
 
 const InputElement = ({
   autoComplete,
   autofocus,
-  field,
   fieldId,
-  form,
+  formIRI,
   errors,
   initialValue,
   input,
-  inputFieldHint,
   inputIndex,
   inputValue,
   label,
   meta,
   maxLength,
   minLength,
-  minRows,
   name,
   onBlur,
   onChange,
   onKeyUp,
+  path,
   placeholder,
   required,
   shIn,
   storeKey,
+  object,
   propertyIndex,
-  targetValue,
+  subject,
   topology,
   type,
   variant,
 }) => {
+  const lrs = useLRS();
   const {
     active,
     pristine,
@@ -76,6 +75,7 @@ const InputElement = ({
 
   const sharedProps = {
     autoFocus: autofocus,
+    'data-testid': name || fieldId,
     id: fieldId,
     name: name || fieldId,
     ...input,
@@ -88,10 +88,16 @@ const InputElement = ({
     onChange: (e) => {
       const newValue = input.value?.slice() || [];
 
-      if (e && Object.prototype.hasOwnProperty.call(e, 'target')) {
-        newValue[inputIndex] = rdf.literal(type === 'checkbox' ? e.target.checked : e.target.value);
+      if (type === 'file') {
+        newValue[inputIndex] = e;
       } else {
-        newValue[inputIndex] = rdf.literal(e === null ? '' : e);
+        let val;
+        if (e && Object.prototype.hasOwnProperty.call(e, 'target')) {
+          val = type === 'checkbox' ? e.target.checked : e.target.value;
+        } else {
+          val = e === null ? '' : e;
+        }
+        newValue[inputIndex] = isTerm(val) ? val : rdf.literal(val);
       }
       input.onChange(newValue);
 
@@ -103,23 +109,43 @@ const InputElement = ({
     value: inputValue?.value,
   };
 
+  if (type === 'association') {
+    const nestedObject = inputValue['@id'];
+    const nestedFormIRI = lrs.getResourceProperty(subject, form.form);
+
+    return (
+      <FormSection name={fieldId} path={path} propertyIndex={inputIndex}>
+        <Property label={form.form}>
+          <Property
+            childProps={{
+              formIRI: nestedFormIRI,
+              object: nestedObject,
+            }}
+            label={form.pages}
+          />
+        </Property>
+      </FormSection>
+    );
+  }
+
+  if (type === 'location') {
+    return (
+      <LocationInput
+        object={object}
+        {...sharedProps}
+      />
+    );
+  }
+
   if (type === 'datetime-local') {
     return (
-      <DateTimePicker
-        {...sharedProps}
-        data-testid={sharedProps.name}
-        onChange={sharedProps.onChange}
-      />
+      <DateTimePicker {...sharedProps} />
     );
   }
 
   if (type === 'date') {
     return (
-      <DatePicker
-        {...sharedProps}
-        data-testid={sharedProps.name}
-        onChange={sharedProps.onChange}
-      />
+      <DatePicker {...sharedProps} />
     );
   }
 
@@ -133,7 +159,7 @@ const InputElement = ({
             sharedProps,
             value: inputValue,
           }}
-          data-testid={sharedProps.name}
+          data-testid={sharedProps['data-testid']}
           shIn={shIn}
           topology={topology}
         />
@@ -148,11 +174,11 @@ const InputElement = ({
         componentProps={{
           className,
           initialValue,
-          inputFieldHint,
           inputValue,
           sharedProps,
+          subject,
         }}
-        data-testid={sharedProps.name}
+        data-testid={sharedProps['data-testid']}
         shIn={shIn}
         topology={topology}
       />
@@ -163,38 +189,14 @@ const InputElement = ({
     return (
       <FileInput
         {...sharedProps}
-        data-testid={sharedProps.name}
-        form={form}
+        formIRI={formIRI}
+        object={object}
         propertyIndex={propertyIndex}
-        targetValue={targetValue}
-        onChange={(e) => new Promise(() => {
-          if (!e) {
-            field.onChange(undefined);
-
-            return onChange && onChange(undefined, undefined);
-          }
-
-          let file = e;
-
-          if (Array.isArray(e)) {
-            [file] = e;
-          }
-          if (Object.prototype.hasOwnProperty.call(e, 'target')
-            && Object.prototype.hasOwnProperty.call(e.target, 'files')) {
-            [file] = e.target.files;
-          }
-
-          return getBase64(file)
-            .then((enc) => {
-              input.onChange(enc);
-              if (onChange) {
-                onChange(enc, e);
-              }
-            });
-        })}
       />
     );
   }
+
+  const minRows = maxLength > MAX_STR_LEN ? TEXTFIELD_MIN_ROWS : undefined;
 
   let element;
   switch (type) {
@@ -206,7 +208,7 @@ const InputElement = ({
       break;
     case 'markdown':
       element = TextEditor;
-      sharedProps.id = `${storeKey}.${sharedProps.id}`;
+      sharedProps.id = storeKey;
       sharedProps.rows = minRows;
       break;
     case 'checkbox': {
@@ -255,7 +257,6 @@ const InputElement = ({
       <Input
         {...sharedProps}
         autoComplete={autoComplete}
-        data-testid={sharedProps.name}
         element={element}
         // TODO: [AOD-218] HTML only noscript
         // maxLength={maxLength}
@@ -279,10 +280,8 @@ InputElement.propTypes = {
   customErrors: PropTypes.arrayOf(PropTypes.string),
   description: PropTypes.string,
   errors: PropTypes.arrayOf(PropTypes.string),
-  // Unique identifier. Used to link label to input.
-  field: PropTypes.string.isRequired,
   fieldId: PropTypes.string.isRequired,
-  form: linkType,
+  formIRI: linkType,
   /** Ensure that it matches the label `for` attribute */
   id: PropTypes.string,
   initialValue: PropTypes.oneOfType([
@@ -291,53 +290,42 @@ InputElement.propTypes = {
     linkType,
   ]),
   /** @private Contains form-library specific data */
-  input: PropTypes.shape({
-    name: PropTypes.string,
-    onBlur: PropTypes.func,
-    onChange: PropTypes.func,
-    onFocus: PropTypes.func,
-    value: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.string,
-      RDFTypes.literal,
-      RDFTypes.namedNode,
-      PropTypes.oneOf([null]),
-    ]),
-  }),
-  inputFieldHint: linkType,
+  input: linkType,
   inputIndex: PropTypes.number,
-  inputValue: PropTypes.string,
+  inputValue: linkType,
   // Text above input field
   label: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.element,
   ]),
+  maxCount: PropTypes.number,
   maxLength: PropTypes.number,
   /** @private Contains form-library specific data */
   meta: PropTypes.shape({
     active: PropTypes.bool,
     dirty: PropTypes.bool,
-    error: PropTypes.arrayOf(PropTypes.string),
+    error: PropTypes.arrayOf(formFieldError),
     invalid: PropTypes.bool,
     pristine: PropTypes.bool,
     touched: PropTypes.bool,
   }),
+  minCount: PropTypes.number,
   minLength: PropTypes.number,
   // Minimal number of rows for textAreas
   minRows: PropTypes.number,
   // Name of the input, defaults to the field name
   name: PropTypes.string,
+  object: linkType,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   onKeyUp: PropTypes.func,
+  path: linkType,
   placeholder: PropTypes.string,
   propertyIndex: PropTypes.number,
   required: PropTypes.bool,
   shIn: optionsType,
   storeKey: PropTypes.string,
-  targetValue: PropTypes.shape({
-    '@id': linkType,
-  }),
+  subject: subjectType,
   theme: PropTypes.string,
   topology: topologyType,
   // HTML input type, e.g. 'email'

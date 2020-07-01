@@ -1,11 +1,10 @@
 import Slider from '@material-ui/core/Slider';
 import { makeStyles } from '@material-ui/styles';
-import sh from '@ontologies/shacl';
-import { linkType, useResourceProperty } from 'link-redux';
+import rdf from '@ontologies/core';
+import { linkType } from 'link-redux';
 import React, { useEffect } from 'react';
 import * as PropTypes from 'prop-types';
 
-import { calculateFormFieldName } from '../../helpers/forms';
 import { tryParseInt } from '../../helpers/numbers';
 import useFormField from '../../hooks/useFormField';
 import ontola from '../../ontology/ontola';
@@ -71,28 +70,26 @@ const useStyles = makeStyles(() => ({
 
 const CoverImageSlider = ({
   imagePositionYShape,
-  propertyIndex,
-  targetValue,
   value,
+  object,
   onChange,
 }) => {
   const classes = useStyles();
-  const field = calculateFormFieldName(propertyIndex, ontola.imagePositionY);
-  const [defaultValue] = useResourceProperty(imagePositionYShape, sh.defaultValue);
-  const currentValue = targetValue?.[0] ?? defaultValue;
 
   const [input] = useFormField({
-    field,
-    initialValue: [currentValue],
+    object,
+    path: ontola.imagePositionY,
   });
-  const imagePositionY = tryParseInt(input.value?.[0]);
-  const onImagePositionYChange = input.onChange;
+  const imagePositionY = tryParseInt(input?.value?.[0]);
+  const onImagePositionYChange = (event, newValue) => (
+    input.onChange([rdf.literal(100 - newValue)])
+  );
 
   useEffect(() => {
     onChange(null, 100 - imagePositionY);
   }, [imagePositionY]);
 
-  if (!imagePositionYShape) {
+  if (!input || !imagePositionYShape) {
     return null;
   }
 
@@ -109,16 +106,15 @@ const CoverImageSlider = ({
       track={false}
       value={100 - value}
       onChange={onChange}
-      onChangeCommitted={(event, newValue) => onImagePositionYChange([100 - newValue])}
+      onChangeCommitted={onImagePositionYChange}
     />
   );
 };
 
 CoverImageSlider.propTypes = {
   imagePositionYShape: linkType,
+  object: linkType,
   onChange: PropTypes.func,
-  propertyIndex: PropTypes.number,
-  targetValue: linkType,
   value: PropTypes.number,
 };
 

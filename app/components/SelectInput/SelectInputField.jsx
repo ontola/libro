@@ -22,10 +22,6 @@ import SelectInputList from './SelectInputList';
 export const MAX_ITEMS = 5;
 
 export const itemToString = (item, lrs) => {
-  if (!item) {
-    return '';
-  }
-
   if (isResource(item)) {
     if (!entityIsLoaded(lrs, item)) {
       return 'Loading';
@@ -44,7 +40,7 @@ export const itemToString = (item, lrs) => {
     return label ? label.value : item.value;
   }
 
-  return item.value || item;
+  return item.value;
 };
 
 const SelectInputField = ({

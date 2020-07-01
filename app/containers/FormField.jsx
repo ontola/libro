@@ -4,7 +4,7 @@ import Spinner from '../components/Spinner';
 
 const FormField = React.lazy(
   // eslint-disable-next-line no-inline-comments
-  () => import(/* webpackChunkName: "Forms" */ '../components/FormField/index')
+  () => import(/* webpackChunkName: "Forms" */ '../components/FormField/FormField')
 );
 
 const FormFieldLoader = (props) => (

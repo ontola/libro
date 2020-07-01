@@ -1,19 +1,22 @@
 import schema from '@ontologies/schema';
-import { Property, register } from 'link-redux';
+import {
+  Property,
+  register,
+  withLRS,
+} from 'link-redux';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router';
 
 import Button from '../../components/Button';
 import CardContent from '../../components/Card/CardContent';
-import Form from '../../containers/Form';
 import FormFooterRight from '../../components/Form/FooterRight';
 import ll from '../../ontology/ll';
 import { cardTopology } from '../../topologies/Card';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
-import FormFooter from '../../topologies/FormFooter/Footer';
 
 import EntryPointBase from './EntryPointBase';
+import EntryPointForm from './EntryPointForm';
 
 class EntryPointCardMain extends EntryPointBase {
   constructor(props) {
@@ -36,14 +39,19 @@ class EntryPointCardMain extends EntryPointBase {
 
   render() {
     const {
+      action,
+      actionBody,
       httpMethod,
       cancelPath,
       header,
-      invalid,
+      lrs,
       name,
+      sessionStore,
       subject,
       url,
     } = this.props;
+    const object = lrs.getResourceProperty(action, schema.object);
+
     const cancelButton = cancelPath && (
       <Button
         href={cancelPath}
@@ -57,43 +65,39 @@ class EntryPointCardMain extends EntryPointBase {
       </Button>
     );
 
+    const footerButtons = (loading) => (
+      <FormFooterRight>
+        {cancelButton}
+        <Button
+          loading={loading}
+          theme="submit"
+          type="submit"
+        >
+          {name?.value}
+        </Button>
+      </FormFooterRight>
+    );
+
     const formURL = new URL(subject.value);
     const formID = [formURL.origin, formURL.pathname].join('');
 
-    const content = (
-      <CardContent noStartSpacing={header}>
-        <Property label={schema.text} />
-        <Property label={ll.actionBody} />
-      </CardContent>
-    );
-
     return (
-      <Form
-        action={new URL(url.value).pathname}
-        formID={formID}
-        method={httpMethod}
-        onSubmit={this.submitHandler}
-      >
-        {({ submitting }) => (
-          <React.Fragment>
-            {content}
-            <FormFooter>
-              {this.footerGroup()}
-              <FormFooterRight>
-                {cancelButton}
-                <Button
-                  disabled={invalid}
-                  loading={submitting}
-                  theme="submit"
-                  type="submit"
-                >
-                  {name?.value}
-                </Button>
-              </FormFooterRight>
-            </FormFooter>
-          </React.Fragment>
-        )}
-      </Form>
+      <React.Fragment>
+        <CardContent noStartSpacing={header}>
+          <Property label={schema.text} />
+        </CardContent>
+        <EntryPointForm
+          actionBody={actionBody}
+          footerButtons={footerButtons}
+          formID={formID}
+          httpMethod={httpMethod?.value}
+          object={object}
+          sessionStore={sessionStore}
+          url={url?.value}
+          onKeyUp={null}
+          onSubmit={this.submitHandler}
+        />
+      </React.Fragment>
     );
   }
 }
@@ -105,10 +109,11 @@ EntryPointCardMain.topology = [
   cardMainTopology,
 ];
 
-EntryPointCardMain.hocs = [withRouter];
+EntryPointCardMain.hocs = [withLRS, withRouter];
 
 EntryPointCardMain.mapDataToProps = {
   action: schema.isPartOf,
+  actionBody: ll.actionBody,
   httpMethod: schema.httpMethod,
   image: schema.image,
   name: schema.name,

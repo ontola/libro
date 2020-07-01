@@ -102,7 +102,7 @@ export default (history, swc) => (store) => (next) => (action) => {
               break;
             }
             default:
-              throw new Error('Unknown user error occurred');
+              throw new Error(`Unknown user error occurred: ${JSON.stringify(json)}`);
           }
         });
     }

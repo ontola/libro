@@ -1,5 +1,5 @@
 import as from '@ontologies/as';
-import rdf, { Literal, NamedNode, Node, Quad, SomeTerm } from '@ontologies/core';
+import rdf, {isBlankNode, isLiteral, Literal, NamedNode, Node, Quad, SomeTerm} from '@ontologies/core';
 import rdfx from '@ontologies/rdf';
 import rdfs from '@ontologies/rdfs';
 import { BAD_REQUEST, OK } from 'http-status-codes';
@@ -80,16 +80,8 @@ function convertKeysAtoB(obj: { [k: string]: any }): { [k: string]: any } {
   Object.entries(obj).forEach(([k, v]) => {
     if (k === '@id') {
       output[k] = v;
-    } else if (Object.prototype.toString.apply(v) === '[object Object]'
-        && !Object.prototype.hasOwnProperty.call(v, 'termType')) {
-      output[atob(k)] = convertKeysAtoB(v);
-    } else if (Array.isArray(v)) {
-      // eslint-disable-next-line no-use-before-define
-      output[atob(k)] = v.map((i) => serializableValue(i));
-    } else if (v.datatype && v.datatype.value.startsWith('https://argu.co/ns/core#base64File')) {
-      output[atob(k)] = dataURItoBlob(v);
     } else {
-      output[atob(k)] = v;
+      output[atob(k)] = serializableValue(v);
     }
   });
 
@@ -113,7 +105,7 @@ function numAsc(a: Quad, b: Quad) {
   return aP - bP;
 }
 
-function serializableValue(v: any): object | object[] | File {
+function serializableValue(v: any): object | object[] | File | string {
   if (Object.prototype.toString.apply(v) === '[object Object]'
       && !Object.prototype.hasOwnProperty.call(v, 'termType')) {
     return convertKeysAtoB(v);
@@ -121,6 +113,8 @@ function serializableValue(v: any): object | object[] | File {
     return v.map((i) => serializableValue(i));
   } else if (v.datatype && v.datatype.value.startsWith('https://argu.co/ns/core#base64File')) {
     return dataURItoBlob(v);
+  } else if (isLiteral(v) || isBlankNode(v)) {
+    return v.value;
   }
 
   return v;
@@ -163,6 +157,10 @@ function listToArr(
   }
 
   return acc;
+}
+
+function resourceHasType(lrs: LinkReduxLRSType, resource: Node, type: Node) {
+  return resource && lrs.findSubject(resource, [rdfx.type], type).length > 0;
 }
 
 function seqToArr(
@@ -262,6 +260,7 @@ export {
   filterFind,
   filterSort,
   listToArr,
+  resourceHasType,
   seqToArr,
   sort,
 };

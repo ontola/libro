@@ -5,65 +5,77 @@ import { FormContext } from '../components/Form/Form';
 import { FormSectionContext } from '../components/Form/FormSection';
 import { arraysEqual } from '../helpers/data';
 import { calculateFormFieldName } from '../helpers/forms';
+import validators, { combineValidators } from '../helpers/validators';
+import { getStorageKey, storageSet } from '../helpers/persistence';
 
-import { usePersistence } from './usePersistence';
+const valueChanged = (oldValue, newValue) => {
+  if (Array.isArray(newValue)) {
+    return !arraysEqual(oldValue, newValue);
+  }
+
+  return oldValue !== newValue;
+};
 
 const useFormField = ({
   initialValue,
-  validate,
+  maxCount,
+  maxLength,
+  minCount,
+  minLength,
+  required,
+  object,
   path,
-  type,
+  propertyIndex,
   sessionStore,
+  type,
 }) => {
-  const fieldName = calculateFormFieldName(React.useContext(FormSectionContext), path);
-
-  const storeKey = React.useContext(FormContext);
-  const storageKey = `${storeKey}.${fieldName}`;
-
-  const [defaultStorageValue, setStorageValue] = usePersistence(
-    __CLIENT__ ? (sessionStore || sessionStorage) : undefined,
-    storageKey
+  const formContext = React.useContext(FormContext);
+  const formSectionContext = React.useContext(FormSectionContext);
+  const fieldName = calculateFormFieldName(formSectionContext, propertyIndex, path);
+  const storeKey = getStorageKey(formContext, formSectionContext && object, path);
+  const validate = combineValidators([
+    maxCount && validators.maxCount(maxCount),
+    maxLength && validators.maxLength(maxLength),
+    minCount && validators.minCount(minCount),
+    minLength && validators.minLength(minLength),
+    required && validators.required,
+  ]);
+  const setDefaultValue = React.useCallback(
+    ['password', 'hidden', 'file'].includes(type)
+      ? () => undefined
+      : (val) => storageSet(sessionStore, storeKey, val),
+    [type, storeKey]
   );
-  const [currentDefaultValue, setCurrentDefaultValue] = React.useState(defaultStorageValue);
-  const [currentInitialValue, setCurrentInitialValue] = React.useState(initialValue);
-
-  React.useEffect(() => {
-    setCurrentDefaultValue(defaultStorageValue);
-    setCurrentInitialValue(initialValue);
-  }, [fieldName, ...(initialValue || [])]);
-  const setDefaultValue = ['password', 'hidden'].includes(type)
-    ? () => undefined
-    : setStorageValue;
-
-  const formProps = useField(fieldName, {
+  const [memoizedMeta, setMemoizedMeta] = React.useState({});
+  const { input, meta } = useField(fieldName, {
     allowNull: true,
-    defaultValue: currentDefaultValue,
     format: (i) => i,
-    initialValue: currentDefaultValue ? undefined : currentInitialValue,
+    initialValue,
     parse: (i) => i,
     validate,
+    validateFields: [],
   });
-
-  const valueChanged = (oldValue, newValue) => {
-    if (Array.isArray(newValue)) {
-      return !arraysEqual(oldValue, newValue);
+  const originalOnChange = input.onChange;
+  const onChange = React.useCallback((nextValue) => {
+    if (storeKey
+      && (meta.touched || valueChanged(nextValue, input.value))) {
+      setDefaultValue(nextValue.map((val) => val['@id'] || val));
     }
+    originalOnChange(nextValue);
+  }, [storeKey, meta.touched, input.value]);
+  input.onChange = onChange;
+  React.useEffect(() => {
+    let error;
+    if (meta.error) {
+      error = Array.isArray(meta.error) ? meta.error : [meta.error];
+    }
+    setMemoizedMeta({
+      ...meta,
+      error,
+    });
+  }, [meta.touched, meta.error]);
 
-    return oldValue !== newValue;
-  };
-
-  const input = {
-    ...formProps.input,
-    onChange: (nextValue) => {
-      if (storeKey
-        && (formProps.meta.touched || valueChanged(nextValue, formProps.input.value))) {
-        setDefaultValue(nextValue);
-      }
-      formProps.input.onChange(nextValue);
-    },
-  };
-
-  return [input, formProps, storeKey];
+  return [input, memoizedMeta, storeKey];
 };
 
 export default useFormField;

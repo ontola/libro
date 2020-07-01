@@ -1,8 +1,8 @@
 import rdf from '@ontologies/core';
 
+import { serializeForStorage } from '../../helpers/persistence';
 import ex from '../../ontology/ex';
 import { cleanup } from '../../test-utils';
-import { serializeForStorage } from '../usePersistence';
 
 describe('persistence', () => {
   afterEach(cleanup);

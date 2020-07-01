@@ -1,22 +1,23 @@
+import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import argu from '../../ontology/argu';
 
-import Button from '../Button';
-import FormField from '../../containers/FormField';
 import CloseableContainer from '../../containers/CloseableContainer';
+import FormField from '../../containers/FormField';
 import { handle } from '../../helpers/logging';
 import validators, { combineValidators } from '../../helpers/validators';
 import app from '../../ontology/app';
+import argu from '../../ontology/argu';
+import messages from '../../state/form/messages';
+import { STEPS } from '../../state/form/reducer';
 import {
   CardContent,
   CardLink,
   CardRow,
 } from '../../topologies/Card';
-import { STEPS } from '../../state/form/reducer';
-import messages from '../../state/form/messages';
+import Button from '../Button';
 
 const propTypes = {
   errors: PropTypes.instanceOf(Map),
@@ -68,12 +69,10 @@ class SignInFormBase extends React.PureComponent {
           </p>
           {this.emailField()}
           <FormField
-            defaultValue="true"
-            initialValue="true"
+            initialValue={[rdf.literal('true')]}
             key="acceptTerms"
             path={argu.acceptTerms}
             type="hidden"
-            value="true"
           />
           {this.redirectField()}
         </CardContent>
@@ -108,7 +107,7 @@ class SignInFormBase extends React.PureComponent {
   redirectField() {
     return (
       <FormField
-        initialValue={this.props.initialValues.r || this.props.r}
+        initialValue={[rdf.literal(this.props.initialValues.r || this.props.r)]}
         key="r"
         path={argu.redirectUrl}
         type="hidden"
@@ -199,6 +198,7 @@ class SignInFormBase extends React.PureComponent {
 
   currentFields() {
     let buttonText, formFields;
+
     switch (this.props.step) {
       case STEPS.confirm:
         formFields = this.confirmFields();

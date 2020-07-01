@@ -91,6 +91,7 @@ const propTypes = {
     'file',
     'hidden',
     'image',
+    'markdown',
     'month',
     'number',
     'password',
