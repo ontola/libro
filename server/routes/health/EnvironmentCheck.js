@@ -20,8 +20,8 @@ export default class EnvironmentCheck extends Check {
     if (process.env.NODE_ENV !== 'development') {
       [
         'ASSETS_HOST',
+        'cacheChannel',
         'bugsnagKey',
-        'cacheDirectory',
         'mapboxKey',
         'mapboxUsername',
       ].forEach((key) => checkPresence(key, constants[key]));

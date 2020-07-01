@@ -3,7 +3,7 @@ import * as HttpStatus from 'http-status-codes';
 import BackendCheck from './health/BackendCheck';
 import Check, { CheckResult } from './health/check';
 import EnvironmentCheck from './health/EnvironmentCheck';
-import FileCacheCheck from './health/FileCacheCheck';
+import BulkCheck from './health/BulkCheck';
 import HeadRequestCheck from './health/HeadRequestCheck';
 import ManifestCheck from './health/ManifestCheck';
 import MapTokenCheck from './health/MapTokenCheck';
@@ -39,7 +39,7 @@ export default async (ctx) => {
     result.push(await runTest(ctx, backendTest));
     result.push(await runTest(ctx, new HeadRequestCheck()));
     result.push(await runTest(ctx, new ManifestCheck(tenants?.[0])));
-    result.push(await runTest(ctx, new FileCacheCheck(tenants?.[0])));
+    result.push(await runTest(ctx, new BulkCheck(ctx, tenants?.[0])));
     result.push(await runTest(ctx, new MapTokenCheck()));
 
     if (result.find((r) => r.result === CheckResult.fail)) {
