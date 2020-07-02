@@ -20,6 +20,8 @@ export const formFieldsPath = [
     form.fields,
     rdfs.member,
 ];
+export const conditionalFormFieldsPath = [...formFieldsPath, ontola.pass];
 export const nestedFormsPath = [...formFieldsPath, form.form];
+export const nestedConditionalFormsPath = [...conditionalFormFieldsPath, form.form];
 
 export default collectionMembers;

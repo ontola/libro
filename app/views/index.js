@@ -16,6 +16,7 @@ import Collection from './Collection';
 import CollectionFilter from './CollectionFilter';
 import CollectionPage from './CollectionPage';
 import Comment from './Comment';
+import Condition from './Condition';
 import Confirmation from './Confirmation';
 import ContactPage from './ContactPage';
 import DataCube from './DataCube';
@@ -93,6 +94,7 @@ export function getViews() {
     ...CollectionPage,
     ...CollectionFilter,
     ...Comment,
+    ...Condition,
     ...Confirmation,
     ...ContactPage,
     ...DataCube,

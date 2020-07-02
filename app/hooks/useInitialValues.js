@@ -10,7 +10,9 @@ import React from 'react';
 import { entityIsLoaded, resourceHasType } from '../helpers/data';
 import {
   collectionMembers,
+  conditionalFormFieldsPath,
   formFieldsPath,
+  nestedConditionalFormsPath,
   nestedFormsPath,
 } from '../helpers/diggers';
 import { calculateFormFieldName } from '../helpers/forms';
@@ -24,12 +26,14 @@ const isCollection = (lrs, value) => (
 
 const getInitialValues = (lrs, sessionStore, addValue, parentForm, object, formContext, nested) => {
   const fields = lrs.dig(parentForm, formFieldsPath);
+  const conditionalFields = lrs.dig(parentForm, conditionalFormFieldsPath);
   const dependentResources = [
     parentForm,
     ...lrs.dig(parentForm, nestedFormsPath),
+    ...lrs.dig(parentForm, nestedConditionalFormsPath),
   ];
 
-  fields.forEach((field) => {
+  (fields.concat(conditionalFields)).forEach((field) => {
     const path = lrs.getResourceProperty(field, sh.path);
     if (path) {
       const fieldName = calculateFormFieldName(path);
