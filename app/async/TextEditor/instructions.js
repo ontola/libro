@@ -1,10 +1,10 @@
 export default `
 ## Markdown
-Op Argu kan je tekst opmaken met [Markdown](http://commonmark.org/help/).
+Je kunt hier tekst opmaken met [Markdown](http://commonmark.org/help/).
 
 ### Link
 \`\`\`
-Dit is [Argu](www.argu.co).
+Dit is [een link](www.example.com).
 \`\`\`
 
 ### Opmaak
@@ -27,6 +27,6 @@ _Schuingedrukt_
 
 ### Afbeelding
 \`\`\`
-![Omschrijving afbeelding](https://argu.co/plaatje.jpg)
+![Omschrijving afbeelding](https://example.com/plaatje.jpg)
 \`\`\`
 `;
