@@ -1,3 +1,5 @@
+import rdf from '@ontologies/core';
+import { useLRS } from 'link-redux';
 import React from 'react';
 import { useField } from 'react-final-form';
 
@@ -7,6 +9,9 @@ import { arraysEqual } from '../helpers/data';
 import { calculateFormFieldName } from '../helpers/forms';
 import validators, { combineValidators } from '../helpers/validators';
 import { getStorageKey, storageSet } from '../helpers/persistence';
+import ll from '../ontology/ll';
+import ontola from '../ontology/ontola';
+import sp from '../ontology/sp';
 
 const valueChanged = (oldValue, newValue) => {
   if (Array.isArray(newValue)) {
@@ -14,6 +19,28 @@ const valueChanged = (oldValue, newValue) => {
   }
 
   return oldValue !== newValue;
+};
+
+const changeDelta = (object, path, nextValue) => {
+  if (!nextValue || nextValue.length === 0) {
+    return [
+      rdf.quad(
+        object,
+        path,
+        sp.Variable,
+        ontola.remove
+      ),
+    ];
+  }
+
+  return nextValue.map((val) => (
+    rdf.quad(
+      object,
+      path,
+      val['@id'] || val,
+      ll.replace
+    )
+  ));
 };
 
 const useFormField = ({
@@ -29,6 +56,7 @@ const useFormField = ({
   sessionStore,
   type,
 }) => {
+  const lrs = useLRS();
   const formContext = React.useContext(FormContext);
   const formSectionContext = React.useContext(FormSectionContext);
   const fieldName = calculateFormFieldName(formSectionContext, propertyIndex, path);
@@ -46,6 +74,17 @@ const useFormField = ({
       : (val) => storageSet(sessionStore, storeKey, val),
     [type, storeKey]
   );
+  const saveToLRS = React.useCallback((nextValue) => {
+    const delta = object && changeDelta(object, path, nextValue);
+    if (delta) {
+      lrs.processDelta(delta);
+    }
+  });
+  const saveToLocalStorage = React.useCallback((nextValue) => {
+    if (storeKey) {
+      setDefaultValue(nextValue.map((val) => val['@id'] || val));
+    }
+  });
   const [memoizedMeta, setMemoizedMeta] = React.useState({});
   const { input, meta } = useField(fieldName, {
     allowNull: true,
@@ -57,12 +96,17 @@ const useFormField = ({
   });
   const originalOnChange = input.onChange;
   const onChange = React.useCallback((nextValue) => {
-    if (storeKey
-      && (meta.touched || valueChanged(nextValue, input.value))) {
-      setDefaultValue(nextValue.map((val) => val['@id'] || val));
+    if (meta.touched || valueChanged(nextValue, input.value)) {
+      saveToLRS(nextValue);
+      saveToLocalStorage(nextValue);
     }
     originalOnChange(nextValue);
   }, [storeKey, meta.touched, input.value]);
+  React.useEffect(() => {
+    if (input.value) {
+      saveToLRS(input.value);
+    }
+  }, []);
   input.onChange = onChange;
   React.useEffect(() => {
     let error;

@@ -34,23 +34,19 @@ const messages = defineMessages({
 
 const onDoneHandlers: { [key: string]: () => Promise<any> } = {};
 
+export const ontolaActionPrefix = libro.ns('actions/').value;
+export const ontolaWebsocketsPrefix = ontola.ns('ws/').value;
+
 const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWorkerCommunicator):
     MiddlewareFn<React.ComponentType<any>> => (store: LinkReduxLRSType): MiddlewareWithBoundLRS => {
 
   (store as any).actions.ontola = {};
-
-  const ontolaActionPrefix = libro.ns('actions/').value;
 
   const currentPath = (): string => {
     const l = history.location;
     return [l.pathname, l.search, l.hash].filter(Boolean).join('');
   };
 
-  /**
-   * Websockets
-   */
-
-  const ontolaWebsocketsPrefix = ontola.ns('ws/').value;
   const deltaTransformer = hexjson.transformer(store);
 
   /**

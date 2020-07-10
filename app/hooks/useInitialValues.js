@@ -1,5 +1,6 @@
 import as from '@ontologies/as';
 import { isNamedNode } from '@ontologies/core';
+import schema from '@ontologies/schema';
 import sh from '@ontologies/shacl';
 import {
   useDataFetching,
@@ -34,6 +35,9 @@ const getInitialValues = (lrs, sessionStore, addValue, parentForm, object, formC
   ];
 
   (fields.concat(conditionalFields)).forEach((field) => {
+    const shIn = lrs.getResourceProperties(field, sh.in);
+    dependentResources.push(...shIn);
+
     const path = lrs.getResourceProperty(field, sh.path);
     if (path) {
       const fieldName = calculateFormFieldName(path);
@@ -74,6 +78,12 @@ const getInitialValues = (lrs, sessionStore, addValue, parentForm, object, formC
         }));
       } else {
         addValue(fieldName, value);
+      }
+    } else {
+      const url = lrs.getResourceProperty(field, schema.url);
+
+      if (url) {
+        dependentResources.push(url);
       }
     }
   });

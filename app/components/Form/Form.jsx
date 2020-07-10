@@ -68,6 +68,7 @@ const Form = (props) => {
 
   return (
     <FinalForm
+      destroyOnUnregister
       form={form}
       initialValues={initialValues}
       initialValuesEqual={equal}
