@@ -16,6 +16,7 @@ import { Helmet } from 'react-helmet-async';
 import dbo from '../../ontology/dbo';
 import ontola from '../../ontology/ontola';
 import { getMetaContent } from '../../helpers/arguHelpers';
+import { stripMarkdown } from '../../helpers/markdownHelper';
 
 const Metadata = ({
   coverPhoto,
@@ -29,6 +30,8 @@ const Metadata = ({
   );
   const appName = getMetaContent('application-name');
 
+  const strippedText = stripMarkdown(text);
+
   return (
     <Helmet>
       <title>{name && name.length > 0 ? name : appName}</title>
@@ -38,9 +41,9 @@ const Metadata = ({
       <meta content={[name, appName].filter(Boolean).join(' | ')} name="twitter:title" />
       {coverURL && <meta content={coverURL.value} id="og:image" property="og:image" />}
       {coverURL && <meta content={coverURL.value} name="twitter:image" />}
-      {text && <meta content={text} id="og:description" property="og:description" />}
-      {text && <meta content={text} name="twitter:description" />}
-      {text && <meta content={text} id="description" name="description" property="description" />}
+      {text && <meta content={strippedText} id="og:description" property="og:description" />}
+      {text && <meta content={strippedText} name="twitter:description" />}
+      {text && <meta content={strippedText} id="description" name="description" property="description" />}
       <meta content={coverURL ? 'summary_large_image' : 'summary'} name="twitter:card" />
     </Helmet>
   );
