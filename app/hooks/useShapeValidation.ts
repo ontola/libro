@@ -1,6 +1,8 @@
-import { isNamedNode } from '@ontologies/core';
+import { isNamedNode, NamedNode, SomeTerm } from '@ontologies/core';
 import sh from '@ontologies/shacl';
+import { SomeNode } from 'link-lib';
 import {
+  LinkReduxLRSType,
   useDataFetching,
   useLRS,
 } from 'link-redux';
@@ -8,26 +10,43 @@ import React from 'react';
 
 import { containerToArr, entityIsLoaded } from '../helpers/data';
 import { tryParseInt } from '../helpers/numbers';
+import { isPromise } from '../helpers/types';
 
-const conditionPath = (lrs, condition) => (
-  condition.path ? containerToArr(lrs, [], condition.path) : []
-);
+interface ShShape {
+  hasValue: SomeNode | undefined;
+  maxCount: SomeNode | undefined;
+  minCount: SomeNode | undefined;
+  path: SomeNode | undefined;
+  shIn: SomeNode[];
+  targetNode: SomeNode | undefined;
+}
 
-const digDependencies = (lrs, acc, subject, path) => {
+const conditionPath = <T extends SomeTerm>(lrs: LinkReduxLRSType, condition: ShShape): T[] => {
+  if (condition.path) {
+    const arr = containerToArr(lrs, [], condition.path);
+    if (!isPromise(arr)) {
+      return arr as T[];
+    }
+  }
+
+  return [];
+};
+
+const digDependencies = (lrs: LinkReduxLRSType, acc: SomeNode[], subject: SomeNode, path: SomeNode[]) => {
   acc.push(subject);
 
   if (path.length > 1 && entityIsLoaded(lrs, subject)) {
     const remaining = path.slice();
-    const pred = remaining.shift();
-    const values = lrs.getResourceProperties(subject, pred);
+    const pred = remaining.shift()!;
+    const values = lrs.getResourceProperties<SomeNode>(subject, pred);
     values.forEach((val) => digDependencies(lrs, acc, val, remaining));
   }
 
   return acc;
 };
 
-const getDependentResources = (lrs, conditions, target) => {
-  const resources = [];
+const getDependentResources = (lrs: LinkReduxLRSType, conditions: ShShape[], target: SomeNode): SomeNode[] => {
+  const resources: SomeNode[] = [];
 
   conditions.forEach((condition) => {
     if (condition.shIn) {
@@ -44,36 +63,29 @@ const getDependentResources = (lrs, conditions, target) => {
   return resources;
 };
 
-const hasMaxCount = (lrs, maxCount, values) => {
-  const result = values.length <= tryParseInt(maxCount);
-
-  return result;
+const hasMaxCount = (_: LinkReduxLRSType, maxCount: SomeTerm, values: SomeTerm[]) => {
+  return values.length <= tryParseInt(maxCount)!;
 };
 
-const hasMinCount = (lrs, minCount, values) => {
-  const result = values.length >= tryParseInt(minCount);
-
-  return result;
+const hasMinCount = (_: LinkReduxLRSType, minCount: SomeTerm, values: SomeTerm[]) => {
+  return values.length >= tryParseInt(minCount)!;
 };
 
-const hasValue = (lrs, value, values) => {
-  const result = values.includes(value);
-
-  return result;
+const hasValue = (_: LinkReduxLRSType, value: SomeTerm, values: SomeTerm[]) => {
+  return values.includes(value);
 };
 
-const hasValueIn = (lrs, shIn, values) => {
+const hasValueIn = (lrs: LinkReduxLRSType, shIn: SomeTerm[], values: SomeTerm[]) => {
   const inValues = shIn.flatMap((value) => (
-    isNamedNode(value) ? containerToArr(lrs, [], value) : value
+    isNamedNode(value) ? containerToArr(lrs, [], value) as SomeTerm[] : value
   ));
-  const result = values.some((value) => inValues.includes(value));
 
-  return result;
+  return values.some((value) => inValues.includes(value));
 };
 
-const resolveCondition = (lrs, condition, target) => {
+const resolveCondition = (lrs: LinkReduxLRSType, condition: ShShape, target: SomeNode): boolean => {
   const path = conditionPath(lrs, condition);
-  const values = lrs.dig(condition.targetNode || target, path);
+  const values = lrs.dig(condition.targetNode || target, path as NamedNode[]) as SomeTerm[];
   if (condition.hasValue && !hasValue(lrs, condition.hasValue, values)) {
     return false;
   }
@@ -90,7 +102,7 @@ const resolveCondition = (lrs, condition, target) => {
   return true;
 };
 
-const getNodeProperties = (lrs, nodes) => (
+const getNodeProperties = (lrs: LinkReduxLRSType, nodes: SomeNode[]): ShShape[] => (
   nodes.map((node) => ({
     hasValue: lrs.getResourceProperty(node, sh.hasValue),
     maxCount: lrs.getResourceProperty(node, sh.maxCount),
@@ -101,7 +113,12 @@ const getNodeProperties = (lrs, nodes) => (
   }))
 );
 
-const validateNestedShape = (lrs, node, target, dependentResources) => {
+const validateNestedShape = (
+  lrs: LinkReduxLRSType,
+  node: SomeNode,
+  target: SomeNode,
+  dependentResources: SomeNode[],
+) => {
   const {
     dependentResources: currentDependentResources,
     pass,
@@ -112,15 +129,15 @@ const validateNestedShape = (lrs, node, target, dependentResources) => {
   return pass;
 };
 
-const validateShape = (lrs, shape, targetFromProp) => {
-  const targetNode = lrs.getResourceProperty(shape, sh.targetNode);
+const validateShape = (lrs: LinkReduxLRSType, shape: SomeNode, targetFromProp: SomeNode) => {
+  const targetNode = lrs.getResourceProperty<SomeNode>(shape, sh.targetNode);
   const target = targetNode || targetFromProp;
 
-  const andNodes = lrs.getResourceProperties(shape, sh.and);
-  const orNodes = lrs.getResourceProperties(shape, sh.or);
+  const andNodes = lrs.getResourceProperties<SomeNode>(shape, sh.and);
+  const orNodes = lrs.getResourceProperties<SomeNode>(shape, sh.or);
 
-  const ifNodes = lrs.getResourceProperties(shape, sh.property);
-  const unlessNodes = lrs.getResourceProperties(shape, sh.not);
+  const ifNodes = lrs.getResourceProperties<SomeNode>(shape, sh.property);
+  const unlessNodes = lrs.getResourceProperties<SomeNode>(shape, sh.not);
   const ifProps = getNodeProperties(lrs, ifNodes);
   const unlessProps = getNodeProperties(lrs, unlessNodes);
 
@@ -150,11 +167,11 @@ const validateShape = (lrs, shape, targetFromProp) => {
   };
 };
 
-const useShapeValidation = (shape, target) => {
+const useShapeValidation = (shape: SomeNode, target: SomeNode) => {
   const lrs = useLRS();
-  const [dependentResources, setDependentResources] = React.useState([]);
+  const [dependentResources, setDependentResources] = React.useState<SomeNode[]>([]);
   const [pass, setPass] = React.useState(false);
-  const [timestamp, setTimestamp] = React.useState(null);
+  const [timestamp, setTimestamp] = React.useState<number | null>(null);
   React.useEffect(() => {
     const {
       dependentResources: currentDependentResources,
