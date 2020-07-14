@@ -20,6 +20,10 @@ import logging from '../logging';
 
 export const NEW_AUTHORIZATION_HEADER = 'new-authorization';
 export const NEW_REFRESH_TOKEN_HEADER = 'new-refresh-token';
+export const ALLOW_CREDENTIALS = 'access-control-allow-credentials';
+export const ALLOW_HEADERS = 'access-control-allow-headers';
+export const ALLOW_METHODS = 'access-control-allow-methods';
+export const ALLOW_ORIGIN = 'access-control-allow-origin';
 
 export function isRedirect(status) {
   return status === HttpStatus.MULTIPLE_CHOICES

@@ -4,7 +4,14 @@ import uuidv4 from 'uuid/v4';
 import { jwtEncryptionToken } from '../config';
 import { getBackendManifest } from '../utils/manifest';
 import { EXEC_HEADER_NAME } from '../utils/actions';
-import { NEW_AUTHORIZATION_HEADER, NEW_REFRESH_TOKEN_HEADER } from '../utils/proxies/helpers';
+import {
+  ALLOW_CREDENTIALS,
+  ALLOW_HEADERS,
+  ALLOW_METHODS,
+  ALLOW_ORIGIN,
+  NEW_AUTHORIZATION_HEADER,
+  NEW_REFRESH_TOKEN_HEADER,
+} from '../utils/proxies/helpers';
 
 const BACKEND_TIMEOUT = 3000;
 
@@ -42,6 +49,10 @@ export function enhanceCtx(ctx) {
       const auth = ctx.headResponseResult.headers.get(NEW_AUTHORIZATION_HEADER);
       const refreshToken = ctx.headResponseResult.headers.get(NEW_REFRESH_TOKEN_HEADER);
       ctx.setAccessToken(auth, refreshToken);
+      ctx.set(ALLOW_CREDENTIALS, ctx.headResponseResult.headers.get(ALLOW_CREDENTIALS));
+      ctx.set(ALLOW_HEADERS, ctx.headResponseResult.headers.get(ALLOW_HEADERS));
+      ctx.set(ALLOW_METHODS, ctx.headResponseResult.headers.get(ALLOW_METHODS));
+      ctx.set(ALLOW_ORIGIN, ctx.headResponseResult.headers.get(ALLOW_ORIGIN));
     }
 
     return ctx.headResponseResult;

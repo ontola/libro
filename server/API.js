@@ -96,6 +96,7 @@ class API {
     return this.fetchRaw(this.ctx.session.userToken, {
       headers: {
         Accept: constants.FRONTEND_ACCEPT,
+        Origin: req.headers.origin,
         ...this.proxySafeHeaders(req),
       },
       method: 'HEAD',
