@@ -19,6 +19,7 @@
     display: flex;
     height: $navbar-height;
     min-width: 2rem;
+    position: relative;
 
     &:hover {
       cursor: pointer;
