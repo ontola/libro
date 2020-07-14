@@ -2,13 +2,11 @@ import {
   linkType,
   lrsType,
   register,
-  subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import Link from '../../../components/Link';
-import SHACL from '../../../helpers/shacl';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { footerTopology } from '../../../topologies/Footer';
@@ -46,14 +44,12 @@ class Href extends React.PureComponent {
     href: linkType,
     lrs: lrsType,
     onClickToggle: PropTypes.func,
-    subject: subjectType,
   };
 
   clickHandler() {
     const {
       action,
       lrs,
-      subject,
       onClickToggle,
     } = this.props;
 
@@ -63,7 +59,7 @@ class Href extends React.PureComponent {
           e.preventDefault();
         }
 
-        return lrs.exec(action, SHACL.actionToObject(lrs, subject));
+        return lrs.exec(action);
       };
     }
 

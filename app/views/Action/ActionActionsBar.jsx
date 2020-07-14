@@ -17,7 +17,6 @@ import { withRouter } from 'react-router';
 
 import { bestType } from '../../helpers/data';
 import { retrievePath } from '../../helpers/iris';
-import SHACL from '../../helpers/shacl';
 import teamGL from '../../ontology/teamGL';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
@@ -59,10 +58,7 @@ const ActionActionsBar = ({
       });
     }
 
-    return lrs.exec(
-      subject,
-      SHACL.actionToObject(lrs, subject)
-    );
+    return lrs.exec(subject);
   };
 
   return (
