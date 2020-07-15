@@ -27,10 +27,10 @@ class RadioGroup extends Topology {
 
   render() {
     const {
-      items,
       loading,
       name,
       onChange,
+      options,
       required,
       value,
     } = this.props;
@@ -39,7 +39,7 @@ class RadioGroup extends Topology {
       return <LoadingRow />;
     }
 
-    if (items.length === 0) {
+    if (options.length === 0) {
       return (
         <FormattedMessage
           defaultMessage="No options available"
@@ -52,11 +52,11 @@ class RadioGroup extends Topology {
       <MaterialRadioGroup
         value={value}
         onChange={(event, v) => (
-          onChange({ target: { value: items.find((item) => item.value === v) } })
+          onChange({ target: { value: options.find((option) => option.value === v) } })
         )}
       >
         {
-          items.map((option) => (
+          options.map((option) => (
             <FormControlLabel
               control={(
                 <Radio
@@ -78,10 +78,10 @@ class RadioGroup extends Topology {
 }
 
 RadioGroup.propTypes = {
-  items: PropTypes.arrayOf(linkType),
   loading: PropTypes.bool,
   name: PropTypes.string,
   onChange: PropTypes.func,
+  options: PropTypes.arrayOf(linkType),
   required: PropTypes.bool,
   value: linkType,
 };

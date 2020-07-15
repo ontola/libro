@@ -1,4 +1,4 @@
-import rdf from '@ontologies/core';
+import rdf, { isNamedNode } from '@ontologies/core';
 import {
   Property,
   Resource,
@@ -14,7 +14,11 @@ import React from 'react';
 import parser from 'uri-template';
 import { useDebouncedCallback } from 'use-debounce';
 
-import { arraysEqual, containerToArr } from '../../helpers/data';
+import {
+  arraysEqual,
+  containerToArr,
+  entityIsLoaded,
+} from '../../helpers/data';
 import { isPromise } from '../../helpers/types';
 import ontola from '../../ontology/ontola';
 
@@ -47,7 +51,7 @@ const OptionsWrapper = ({
     DEBOUNCE_TIMER
   );
 
-  useDataInvalidation(shIn);
+  useDataInvalidation([shIn, ...options.filter(isNamedNode)]);
   const [iriTemplate] = useResourceProperty(shInProp, ontola.iriTemplate);
   const searchTemplate = iriTemplate && parser.parse(iriTemplate.value);
   const searchable = searchTemplate?.expressions?.some((expr) => (
@@ -83,7 +87,7 @@ const OptionsWrapper = ({
         onOptionsChange={setShIn}
       />
       {
-        shIn.termType === 'NamedNode' && (
+        isNamedNode(shIn) && entityIsLoaded(lrs, shIn) && (
           <Resource subject={shIn}>
             <Property label={ontola.createAction} limit={Infinity} />
           </Resource>

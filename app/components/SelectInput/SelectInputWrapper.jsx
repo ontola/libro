@@ -1,10 +1,7 @@
-import rdf from '@ontologies/core';
 import Downshift from 'downshift';
 import PropTypes from 'prop-types';
 import {
   linkType,
-  subjectType,
-  topologyType,
   useDataInvalidation,
   useLRS,
 } from 'link-redux';
@@ -12,21 +9,15 @@ import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 import { useDebouncedCallback } from 'use-debounce';
 
-import { entityIsLoaded, resourceHasType } from '../../helpers/data';
+import { entityIsLoaded } from '../../helpers/data';
 import normalizedLower from '../../helpers/i18n';
 import { isResource } from '../../helpers/types';
 import { iriFromTemplate } from '../../helpers/uriTemplate';
-import form from '../../ontology/form';
-import { formFooterTopology } from '../../topologies/FormFooter/Footer';
-import RadioGroup from '../../topologies/RadioGroup';
 import { LoadingRow } from '../Loading';
 
 import SelectInputField, { MAX_ITEMS, itemToString } from './SelectInputField';
 
 const DEBOUNCE_TIMER = 500;
-const DEFAULT_RADIO_ITEM_LIMIT = 5;
-const MAX_RADIO_ITEMS = 20;
-const MAX_SELECT_LABEL_LENGTH = 60;
 
 const messages = defineMessages({
   noMatchingItems: {
@@ -130,22 +121,6 @@ function handleStateChange(options, changes, setState, lrs, iriTemplate, onOptio
   });
 }
 
-function renderAsRadioGroup(subject, topology, items, lrs) {
-  if (rdf.equals(topology, formFooterTopology) || resourceHasType(lrs, subject, form.SelectInput)) {
-    return false;
-  }
-  if (resourceHasType(lrs, subject, form.RadioGroup) || items.length <= DEFAULT_RADIO_ITEM_LIMIT) {
-    return true;
-  }
-  if (items.length > MAX_RADIO_ITEMS) {
-    return false;
-  }
-
-  const labels = items.map((item) => itemToString(item, lrs));
-
-  return labels.some((label) => label.length > MAX_SELECT_LABEL_LENGTH);
-}
-
 function updateOptions(state, options, lrs) {
   return {
     ...state,
@@ -167,8 +142,6 @@ const SelectInputWrapper = ({
   onOptionsChange,
   options,
   sharedProps,
-  subject,
-  topology,
 }) => {
   const { formatMessage } = useIntl();
   const lrs = useLRS();
@@ -200,21 +173,6 @@ const SelectInputWrapper = ({
     lrs.queueEntity(initialSelectedItem);
 
     return <LoadingRow />;
-  }
-
-  if (!iriTemplate && renderAsRadioGroup(subject, topology, options, lrs)) {
-    return (
-      <div style={{ width: '100%' }}>
-        <RadioGroup
-          items={options}
-          loading={loading}
-          name={sharedProps.name}
-          required={sharedProps.required}
-          value={inputValue?.value}
-          onChange={sharedProps.onChange}
-        />
-      </div>
-    );
   }
 
   return (
@@ -253,8 +211,6 @@ SelectInputWrapper.propTypes = {
     onFocus: PropTypes.func,
     required: PropTypes.bool,
   }).isRequired,
-  subject: subjectType,
-  topology: topologyType,
 };
 
 export default SelectInputWrapper;

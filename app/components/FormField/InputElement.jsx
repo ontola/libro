@@ -15,6 +15,7 @@ import DatePicker from '../../containers/DatePicker';
 import DateTimePicker from '../../containers/DateTimePicker';
 import TextEditor from '../../containers/TextEditor';
 import form from '../../ontology/form';
+import RadioGroup from '../../topologies/RadioGroup';
 import CheckboxesInput from '../CheckboxesInput';
 import FieldLabel from '../FieldLabel';
 import { FormSection } from '../Form';
@@ -177,6 +178,23 @@ const InputElement = ({
           inputValue,
           sharedProps,
           subject,
+        }}
+        data-testid={sharedProps['data-testid']}
+        shIn={shIn}
+        topology={topology}
+      />
+    );
+  }
+
+  if (type === 'radioGroup') {
+    return (
+      <OptionsWrapper
+        Component={RadioGroup}
+        componentProps={{
+          name: sharedProps.name,
+          onChange: sharedProps.onChange,
+          required: sharedProps.required,
+          value: inputValue?.value,
         }}
         data-testid={sharedProps['data-testid']}
         shIn={shIn}

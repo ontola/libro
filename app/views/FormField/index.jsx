@@ -85,7 +85,7 @@ export default [
   registerFormField(form.LocationInput, 'location'),
   registerFormField(form.MarkdownInput, (props) => (props.theme === 'omniform' ? 'textarea' : 'markdown')),
   registerFormField(form.NumberInput, 'number'),
-  registerFormField(form.RadioGroup, 'select'),
+  registerFormField(form.RadioGroup, 'radioGroup'),
   registerFormField(form.SelectInput, 'select'),
   registerFormField(form.TextAreaInput, 'textarea'),
   registerFormField(form.TextInput, 'text'),
