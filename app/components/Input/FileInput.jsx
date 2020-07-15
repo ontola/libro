@@ -12,6 +12,7 @@ import { formFieldsPath } from '../../helpers/diggers';
 import MediaObjectOmniformDropzoneLoader from '../../views/MediaObject/omniform/MediaObjectOmniformDropzoneLoader';
 
 import './FileInput.scss';
+import HiddenRequiredInput from './HiddenRequiredInput';
 
 const FileInput = ({
   formIRI,
@@ -19,6 +20,7 @@ const FileInput = ({
   name,
   object,
   onChange,
+  required,
 }) => {
   const lrs = useLRS();
   const inputRef = React.createRef();
@@ -43,17 +45,20 @@ const FileInput = ({
   };
 
   return (
-    <MediaObjectOmniformDropzoneLoader
-      encodingFormatTypes={encodingFormatTypes}
-      formIRI={formIRI}
-      inputRef={inputRef}
-      name={name}
-      object={object}
-      openDialog={openDialog}
-      resourceInput={null}
-      value={value}
-      onChange={onChange}
-    />
+    <React.Fragment>
+      {required && <HiddenRequiredInput value={value} />}
+      <MediaObjectOmniformDropzoneLoader
+        encodingFormatTypes={encodingFormatTypes}
+        formIRI={formIRI}
+        inputRef={inputRef}
+        name={name}
+        object={object}
+        openDialog={openDialog}
+        resourceInput={null}
+        value={value}
+        onChange={onChange}
+      />
+    </React.Fragment>
   );
 };
 
@@ -62,6 +67,7 @@ FileInput.propTypes = {
   name: PropTypes.string,
   object: linkType,
   onChange: PropTypes.func,
+  required: PropTypes.bool,
   value: PropTypes.string,
 };
 

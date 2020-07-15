@@ -16,6 +16,7 @@ import { isResource } from '../../helpers/types';
 import ontola from '../../ontology/ontola';
 import Select, { selectTopology } from '../../topologies/Select';
 import { Input } from '../Input';
+import HiddenRequiredInput from '../Input/HiddenRequiredInput';
 
 import SelectInputList from './SelectInputList';
 
@@ -141,14 +142,8 @@ const SelectInputField = ({
             >
               {list}
             </Select>
-            <input
-              className="hidden-field"
-              id={sharedProps.id}
-              name={sharedProps.name}
-              required={sharedProps.required}
-              type="text"
-              value={initialSelectedItem?.value}
-            />
+            {sharedProps.required
+              && <HiddenRequiredInput name={sharedProps.name} value={initialSelectedItem?.value} />}
           </div>
         );
       }}

@@ -11,6 +11,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { isResource } from '../../helpers/types';
 import { inlineTopology } from '../../topologies/Inline';
+import HiddenRequiredInput from '../Input/HiddenRequiredInput';
 import { LoadingRow } from '../Loading';
 
 const useStyles = makeStyles(() => ({
@@ -45,7 +46,7 @@ const ToggleButtonGroup = ({
 
   return (
     <React.Fragment>
-      {required && <input required className="hidden-field" type="text" value={value} />}
+      {required && <HiddenRequiredInput value={value} />}
       <MaterialToggleButtonGroup
         exclusive
         value={value}

@@ -40,6 +40,7 @@ const FormInputs = (props) => {
         Component={CheckboxesInput}
         componentProps={{
           onChange: input.onChange,
+          required,
           values: input.value,
         }}
         shIn={shIn}

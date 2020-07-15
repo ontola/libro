@@ -8,6 +8,7 @@ import { tryParseFloat } from '../../helpers/numbers';
 import useFormField from '../../hooks/useFormField';
 import MapView from '../../containers/MapView';
 import fa4 from '../../ontology/fa4';
+import HiddenRequiredInput from '../Input/HiddenRequiredInput';
 
 import './LocationInput.scss';
 
@@ -62,22 +63,8 @@ const LocationInput = ({
 
   return (
     <div className="LocationInput">
-      <input
-        required
-        className="hidden-field"
-        id={latInput.name}
-        name={latInput.name}
-        type="text"
-        value={lat}
-      />
-      <input
-        required
-        className="hidden-field"
-        id={lonInput.name}
-        name={lonInput.name}
-        type="text"
-        value={lon}
-      />
+      <HiddenRequiredInput name={latInput.name} value={lat} />
+      <HiddenRequiredInput name={lonInput.name} value={lon} />
       <MapView
         lrs={lrs}
         placements={placements}

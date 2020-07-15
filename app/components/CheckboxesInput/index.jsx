@@ -10,6 +10,7 @@ import { parseForStorage } from '../../helpers/persistence';
 import Select from '../../topologies/Select';
 import FieldLabel from '../FieldLabel';
 import { Input } from '../Input';
+import HiddenRequiredInput from '../Input/HiddenRequiredInput';
 import Spinner from '../Spinner';
 
 function handleChange(e, values, onChange) {
@@ -42,8 +43,6 @@ function CheckboxesInput({
     return <FormattedMessage id="https://app.argu.co/i18n/collection/empty/message" />;
   }
 
-  const isEmpty = values?.length === 0;
-
   const items = options.map((item) => {
     const label = (
       <Resource subject={item} />
@@ -55,7 +54,6 @@ function CheckboxesInput({
           checked={values && values.map((v) => v.value).indexOf(item.value) !== -1}
           id={item.value}
           name={name}
-          required={isEmpty && required}
           type="checkbox"
           value={JSON.stringify(item)}
           onChange={(e) => handleChange(e, values, onChange)}
@@ -68,7 +66,12 @@ function CheckboxesInput({
     );
   });
 
-  return <Select>{items}</Select>;
+  return (
+    <Select>
+      {required && <HiddenRequiredInput value={values?.[0]} />}
+      {items}
+    </Select>
+  );
 }
 
 CheckboxesInput.propTypes = {

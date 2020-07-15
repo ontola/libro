@@ -228,6 +228,7 @@ const InputElement = ({
         formIRI={formIRI}
         object={object}
         propertyIndex={propertyIndex}
+        required={required}
       />
     );
   }
