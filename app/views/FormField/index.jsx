@@ -89,6 +89,7 @@ export default [
   registerFormField(form.SelectInput, 'select'),
   registerFormField(form.TextAreaInput, 'textarea'),
   registerFormField(form.TextInput, 'text'),
+  registerFormField(form.ToggleButtonGroup, 'toggleButtonGroup'),
   registerFormField(form.PasswordInput, 'password'),
   registerFormField(form.AssociationInput, 'association'),
   ResourceField,

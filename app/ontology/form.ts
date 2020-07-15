@@ -30,6 +30,7 @@ export default {
   SliderInput: form('SliderInput'),
   TextAreaInput: form('TextAreaInput'),
   TextInput: form('TextInput'),
+  ToggleButtonGroup: form('ToggleButtonGroup'),
 
   /* properties */
   fields: form('fields'),

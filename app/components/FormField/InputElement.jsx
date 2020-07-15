@@ -23,6 +23,7 @@ import { Input } from '../Input';
 import FileInput from '../Input/FileInput';
 import LocationInput from '../LocationInput';
 import { SelectInputWrapper } from '../SelectInput';
+import ToggleButtonGroup from '../ToggleButtonGroup';
 
 import CharCounter, { CHAR_COUNTER_THRESHOLD } from './CharCounter';
 import OptionsWrapper, { optionsType } from './OptionsWrapper';
@@ -190,6 +191,23 @@ const InputElement = ({
     return (
       <OptionsWrapper
         Component={RadioGroup}
+        componentProps={{
+          name: sharedProps.name,
+          onChange: sharedProps.onChange,
+          required: sharedProps.required,
+          value: inputValue?.value,
+        }}
+        data-testid={sharedProps['data-testid']}
+        shIn={shIn}
+        topology={topology}
+      />
+    );
+  }
+
+  if (type === 'toggleButtonGroup') {
+    return (
+      <OptionsWrapper
+        Component={ToggleButtonGroup}
         componentProps={{
           name: sharedProps.name,
           onChange: sharedProps.onChange,
