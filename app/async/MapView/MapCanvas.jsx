@@ -1,4 +1,3 @@
-import RDFTypes from '@rdfdev/prop-types';
 import * as fa from 'fontawesome';
 import {
   Resource,
@@ -56,334 +55,352 @@ const DEFAULT_LAT = 52.1344;
 const DEFAULT_LON = 5.1917;
 const DEFAULT_ZOOM = 6.8;
 
-class MapCanvas extends React.Component {
-  static propTypes = {
-    accessToken: PropTypes.string,
-    error: PropTypes.instanceOf(Error),
-    /** Features to render on the map. */
-    features: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string,
-      image: RDFTypes.namedNode,
-      lat: PropTypes.number,
-      lon: PropTypes.number,
-    })),
-    getAccessToken: PropTypes.func,
-    initialLat: PropTypes.number,
-    initialLon: PropTypes.number,
-    initialZoom: PropTypes.number,
-    navigate: PropTypes.func,
-    onMapClick: PropTypes.func,
-    onSelect: PropTypes.func,
-    overlayResource: linkType,
-  };
+const generateMarkerImage = (image, highlight = false) => {
+  let text = '\uf041';
+  if (isFontAwesomeIRI(image)) {
+    text = fa(normalizeFontAwesomeIRI(image));
+  }
 
-  static generateMarkerImage(image, highlight = false) {
-    let text = '\uf041';
-    if (isFontAwesomeIRI(image)) {
-      text = fa(normalizeFontAwesomeIRI(image));
-    }
+  const canvas = document.createElement('canvas');
+  const canvasCtx = canvas.getContext('2d');
+  const vectorContext = toContext(canvasCtx, {
+    pixelRatio: 1,
+    size: [100, 100],
+  });
 
-    const canvas = document.createElement('canvas');
-    const canvasCtx = canvas.getContext('2d');
-    const vectorContext = toContext(canvasCtx, {
-      pixelRatio: 1,
-      size: [100, 100],
-    });
-
-    const fill = new Fill({ color: highlight ? '#92a1b5' : '#475668' });
-    const stroke = new Stroke({
-      color: 'white',
-      width: 2,
-    });
-    const circleStyle = new Style({
+  const fill = new Fill({ color: highlight ? '#92a1b5' : '#475668' });
+  const stroke = new Stroke({
+    color: 'white',
+    width: 2,
+  });
+  const circleStyle = new Style({
+    fill,
+    image: new CircleStyle({
       fill,
-      image: new CircleStyle({
-        fill,
-        radius: 10,
-        stroke,
-      }),
+      radius: 10,
       stroke,
-    });
+    }),
+    stroke,
+  });
 
-    const circle = new Circle([CIRCLE_SIZE, CIRCLE_SIZE], CIRCLE_RADIUS);
+  const circle = new Circle([CIRCLE_SIZE, CIRCLE_SIZE], CIRCLE_RADIUS);
 
-    vectorContext.setStyle(circleStyle);
-    vectorContext.drawGeometry(circle);
+  vectorContext.setStyle(circleStyle);
+  vectorContext.drawGeometry(circle);
 
-    canvasCtx.fillStyle = 'white';
-    canvasCtx.font = 'normal 18px FontAwesome';
-    canvasCtx.fillText(text, ICON_X, ICON_Y);
+  canvasCtx.fillStyle = 'white';
+  canvasCtx.font = 'normal 18px FontAwesome';
+  canvasCtx.fillText(text, ICON_X, ICON_Y);
 
-    return new Style({
-      image: new Icon({
-        anchor: [ANCHOR_X_CENTER, ANCHOR_Y_BOTTOM],
-        img: canvas,
-        imgSize: [IMG_SIZE, IMG_SIZE],
-      }),
-    });
+  return new Style({
+    image: new Icon({
+      anchor: [ANCHOR_X_CENTER, ANCHOR_Y_BOTTOM],
+      img: canvas,
+      imgSize: [IMG_SIZE, IMG_SIZE],
+    }),
+  });
+};
+
+const createMap = ({
+  accessToken,
+  initialLat,
+  initialLon,
+  initialZoom,
+  mapRef,
+  overlayRef,
+  tileSource,
+  placementFeatureSource,
+}) => {
+  const { current } = mapRef;
+
+  if (!current || !accessToken || !placementFeatureSource || !tileSource) {
+    return [];
   }
 
-  constructor(props) {
-    super(props);
+  const layers = [
+    new TileLayer({
+      source: tileSource,
+    }),
+    new VectorLayer({
+      source: placementFeatureSource,
+    }),
+  ];
 
-    this.iconStyles = {};
-    this.mapRef = React.createRef();
-    this.overlayRef = document.createElement('div');
-    this.placementFeatureSource = new VectorSource();
+  const overlay = new Overlay({
+    autoPan: true,
+    element: overlayRef.current,
+    positioning: OverlayPositioning.TOP_CENTER,
+    stopEvent: true,
+  });
 
-    this.hover = undefined;
-    this.map = undefined;
-    this.overlay = undefined;
-    this.select = undefined;
-    this.tileSource = undefined;
+  const map = new OLMap({
+    controls: defaultControls({
+      rotate: false,
+    }),
+    layers,
+    overlays: [overlay],
+    target: current,
+    view: new View({
+      center: fromLonLat([initialLon || DEFAULT_LON, initialLat || DEFAULT_LAT]),
+      zoom: initialZoom || DEFAULT_ZOOM,
+    }),
+  });
 
-    this.featureFromPlacement = this.featureFromPlacement.bind(this);
-    this.highlightFeature = this.highlightFeature.bind(this);
-    this.onSelect = this.onSelect.bind(this);
-    this.onMapClick = props.onMapClick
-      ? (e) => props.onMapClick(toLonLat(e.coordinate))
-      : undefined;
+  return [map, overlay];
+};
 
-    this.onHover = this.onHover.bind(this);
-    this.onError = this.onError.bind(this);
-    this.onLoad = this.onLoad.bind(this);
-
-    this.state = {
-      error: undefined,
-    };
+const featureFromPlacement = (getImage, placement) => {
+  if (!placement) {
+    return undefined;
   }
 
-  componentDidMount() {
-    if (!this.props.accessToken) {
-      this.props.getAccessToken();
+  const {
+    id,
+    lon,
+    lat,
+    image,
+  } = placement;
+
+  if (!image) {
+    return undefined;
+  }
+
+  const f = new Feature(new Point(fromLonLat([lon, lat])));
+  f.setId(id);
+  f.setStyle(getImage(image.value));
+
+  return f;
+};
+
+const updateFeatures = (placementFeatureSource, getImage, features) => {
+  if (placementFeatureSource) {
+    const mapFeatures = (features || [])
+      .filter(Boolean)
+      .map((placement) => featureFromPlacement(getImage, placement))
+      .filter(Boolean);
+
+    placementFeatureSource.clear(true);
+    placementFeatureSource.addFeatures(mapFeatures);
+  }
+};
+
+const useMap = (props) => {
+  const {
+    accessToken,
+    features,
+    requestAccessToken,
+    navigate,
+    onMapClick,
+    onSelect,
+    overlayResource,
+  } = props;
+  const mapRef = React.useRef();
+  const overlayRef = React.useRef(document.createElement('div'));
+  React.useEffect(() => {
+    if (!accessToken) {
+      requestAccessToken();
     }
-    this.createMap();
-  }
+  }, [accessToken]);
 
-  componentDidUpdate() {
-    this.createMap();
-    this.updateFeatures();
-  }
+  const [placementFeatureSource, setPlacementFeatureSource] = React.useState(null);
+  const [tileSource, setTileSource] = React.useState(null);
+  const [error, setError] = React.useState(undefined);
+  const [memoizedOverlay, setOverlay] = React.useState(undefined);
+  const [memoizedMap, setMap] = React.useState(undefined);
+  const [iconStyles, setIconStyles] = React.useState({});
 
-  componentWillUnmount() {
-    if (this.tileSource) {
-      this.tileSource.removeEventListener('tileloaderr', this.onError);
+  const getImage = React.useCallback((image) => {
+    if (iconStyles[image]) {
+      return iconStyles[image];
     }
-    if (this.map && this.onMapClick) {
-      this.map.removeEventListener('click', this.onMapClick);
-    }
-  }
+    const newIconStyles = { ...iconStyles };
+    newIconStyles[image] = generateMarkerImage(image);
 
-  onError(e) {
+    setIconStyles(newIconStyles);
+
+    return newIconStyles[image];
+  }, []);
+  const featureById = React.useCallback((feature) => (
+    features.find((p) => p.id === feature.getId())
+  ), [features]);
+  const highlightFeature = React.useCallback((highlight) => (feature) => {
+    const local = featureById(feature);
+    if (local) {
+      const { image } = local;
+
+      feature.setStyle(generateMarkerImage(image.value, highlight));
+    }
+  }, [featureById]);
+
+  const handleError = React.useCallback((e) => {
     handle(e);
-    this.setState({
-      error: true,
-    });
-  }
-
-  onLoad() {
-    if (this.state.error) {
-      this.setState({
-        error: undefined,
-      });
-    }
-  }
-
-  getImage(image) {
-    if (this.iconStyles[image]) {
-      return this.iconStyles[image];
-    }
-
-    this.iconStyles[image] = MapCanvas.generateMarkerImage(image);
-
-    return this.iconStyles[image];
-  }
-
-  featureFromPlacement(placement) {
-    if (!placement) {
-      return undefined;
-    }
-
-    const {
-      id,
-      lon,
-      lat,
-      image,
-    } = placement;
-
-    if (!image) {
-      return undefined;
-    }
-
-    const f = new Feature(new Point(fromLonLat([lon, lat])));
-    f.setId(id);
-    f.setStyle(this.getImage(image.value));
-
-    return f;
-  }
-
-  isInMemoryFeature(feature) {
-    return this.props.features.find((p) => p.id === feature.getId());
-  }
-
-  onSelect(e) {
+    setError(true);
+  }, []);
+  const handleMapClick = React.useCallback(
+    onMapClick ? (e) => onMapClick(toLonLat(e.coordinate)) : undefined,
+    []
+  );
+  const handleLoad = React.useCallback(() => {
+    setError(undefined);
+  }, []);
+  const handleSelect = React.useCallback((e) => {
     const [feature] = e.selected;
 
     if (feature) {
-      if (this.props.onSelect) {
+      if (onSelect) {
         const id = feature.getId();
-        this.props.onSelect(id);
+        onSelect(id);
       }
 
       const position = feature.getGeometry().getCoordinates();
-      this.overlay.setPosition(position);
-    } else {
-      this.props.onSelect(null);
+      memoizedOverlay.setPosition(position);
+    } else if (onSelect) {
+      onSelect(null);
     }
-  }
+  }, [memoizedOverlay]);
+  const handleHover = React.useCallback((e) => {
+    e.selected.map(highlightFeature(true));
+    e.deselected.map(highlightFeature(false));
+  }, []);
 
-  updateFeatures() {
-    const { features } = this.props;
+  React.useEffect(() => {
+    if (accessToken) {
+      setPlacementFeatureSource(new VectorSource());
+      const source = new XYZ({
+        url: `${MAPBOX_TILE_API_BASE}mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=${accessToken}`,
+      });
+      source.addEventListener('tileloadend', handleLoad);
+      source.addEventListener('tileloaderr', handleError);
+      setTileSource(source);
 
-    const mapFeatures = (features || [])
-      .filter(Boolean)
-      .map(this.featureFromPlacement)
-      .filter(Boolean);
-
-    this.placementFeatureSource.clear(true);
-    this.placementFeatureSource.addFeatures(mapFeatures);
-  }
-
-  createMap() {
-    const {
-      accessToken,
-      initialLat,
-      initialLon,
-      initialZoom,
-    } = this.props;
-    const { current } = this.mapRef;
-
-    if (!current || this.map || !accessToken) {
-      return;
+      return () => {
+        source.removeEventListener('tileloadend', handleLoad);
+        source.removeEventListener('tileloaderr', handleError);
+      };
     }
 
-    if (this.tileSource) {
-      this.tileSource.removeEventListener('tileloadend', this.onLoad);
-      this.tileSource.removeEventListener('tileloaderr', this.onError);
-    }
-    this.tileSource = new XYZ({
-      url: `${MAPBOX_TILE_API_BASE}mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=${accessToken}`,
-    });
-    this.tileSource.addEventListener('tileloadend', this.onLoad);
-    this.tileSource.addEventListener('tileloaderr', this.onError);
+    return () => {};
+  }, [accessToken]);
 
-    const layers = [
-      new TileLayer({
-        source: this.tileSource,
-      }),
-      new VectorLayer({
-        source: this.placementFeatureSource,
-      }),
-    ];
-
-    this.overlay = new Overlay({
-      autoPan: true,
-      element: this.overlayRef,
-      positioning: OverlayPositioning.TOP_CENTER,
-      stopEvent: true,
+  React.useEffect(() => {
+    const [map, overlay] = createMap({
+      ...props,
+      mapRef,
+      overlayRef,
+      placementFeatureSource,
+      tileSource,
     });
+    setOverlay(overlay);
+    setMap(map);
 
-    this.map = new OLMap({
-      controls: defaultControls({
-        rotate: false,
-      }),
-      layers,
-      overlays: [this.overlay],
-      target: current,
-      view: new View({
-        center: fromLonLat([initialLon || DEFAULT_LON, initialLat || DEFAULT_LAT]),
-        zoom: initialZoom || DEFAULT_ZOOM,
-      }),
-    });
-    if (this.onMapClick) {
-      this.map.addEventListener('click', this.onMapClick);
+    if (map && handleMapClick) {
+      map.addEventListener('click', handleMapClick);
     }
 
-    this.select = new Select({
-      condition: click,
-    });
-    this.select.on('select', this.onSelect);
-    this.map.addInteraction(this.select);
-
-    this.hover = new Select({
-      condition: pointerMove,
-    });
-    this.hover.on('select', this.onHover);
-    this.map.addInteraction(this.hover);
-
-    this.updateFeatures();
-  }
-
-  onHover(e) {
-    e.selected.map(this.highlightFeature(true));
-    e.deselected.map(this.highlightFeature(false));
-  }
-
-  highlightFeature(highlight) {
-    return (feature) => {
-      const local = this.isInMemoryFeature(feature);
-      if (local) {
-        const { image } = local;
-
-        feature.setStyle(MapCanvas.generateMarkerImage(image.value, highlight));
+    return () => {
+      if (map) {
+        if (handleMapClick) {
+          map.removeEventListener('click', handleMapClick);
+        }
+        map.setTarget(null);
       }
     };
-  }
+  }, [mapRef.current, accessToken, placementFeatureSource, tileSource]);
 
-  render() {
-    const handleClick = (e) => e.target.className !== 'click-ignore'
-      && this.props.navigate
-      && this.props.navigate(this.props.overlayResource);
+  React.useEffect(() => {
+    updateFeatures(placementFeatureSource, getImage, features);
+  }, [placementFeatureSource, features]);
 
-    const errorMessage = (this.props.error || this.state.error) && (
-      <span>
-        <FormattedMessage
-          defaultMessage="Error loading map"
-          id="https://app.argu.co/i18n/errors/map/loadError"
-        />
-      </span>
-    );
+  React.useEffect(() => {
+    if (memoizedMap) {
+      const select = new Select({
+        condition: click,
+      });
+      select.on('select', handleSelect);
+      memoizedMap.addInteraction(select);
 
-    return (
-      <div className="Map" data-testid="map-view">
-        <div className="Map--map-container" ref={this.mapRef} />
-        <OverlayContainer
-          clickHandler={handleClick}
-          overlayRef={this.overlayRef}
-        >
-          {this.props.overlayResource && (
-            <Resource
-              subject={this.props.overlayResource}
-              topology={popupTopology}
-            />
-          )}
-        </OverlayContainer>
-        <div className="Map--map-indicator">
-          <FontAwesome name="map-o" />
-          {errorMessage}
-        </div>
+      const hover = new Select({
+        condition: pointerMove,
+      });
+      hover.on('select', handleHover);
+      memoizedMap.addInteraction(hover);
+
+      return () => {
+        memoizedMap.removeInteraction(select);
+        memoizedMap.removeInteraction(hover);
+      };
+    }
+
+    return () => {};
+  }, [handleSelect, handleHover, memoizedMap]);
+
+  const handleOverlayClick = React.useCallback((e) => (
+    e.target.className !== 'click-ignore' && navigate && navigate(overlayResource)
+  ), [overlayResource]);
+
+  return {
+    error,
+    handleOverlayClick,
+    mapRef,
+    overlayRef,
+  };
+};
+
+const MapCanvas = (props) => {
+  const {
+    accessTokenError,
+    overlayResource,
+  } = props;
+  const {
+    error,
+    mapRef,
+    handleOverlayClick,
+    overlayRef,
+  } = useMap(props);
+
+  const errorMessage = (accessTokenError || error) && (
+    <span>
+      <FormattedMessage
+        defaultMessage="Error loading map"
+        id="https://app.argu.co/i18n/errors/map/loadError"
+      />
+    </span>
+  );
+
+  return (
+    <div className="Map" data-testid="map-view">
+      <div className="Map--map-container" ref={mapRef} />
+      <OverlayContainer
+        clickHandler={handleOverlayClick}
+        overlayRef={overlayRef.current}
+      >
+        {overlayResource && (
+          <Resource
+            subject={overlayResource}
+            topology={popupTopology}
+          />
+        )}
+      </OverlayContainer>
+      <div className="Map--map-indicator">
+        <FontAwesome name="map-o" />
+        {errorMessage}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+MapCanvas.propTypes = {
+  accessTokenError: PropTypes.string,
+  overlayResource: linkType,
+};
 
 const mapStateToProps = (state) => ({
   accessToken: getAccessToken(state),
-  error: getAccessTokenError(state),
+  accessTokenError: getAccessTokenError(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getAccessToken: () => dispatch(getMapAccessToken()),
+  requestAccessToken: () => dispatch(getMapAccessToken()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(
