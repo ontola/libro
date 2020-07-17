@@ -55,6 +55,7 @@ const ANCHOR_Y_BOTTOM = 1;
 const DEFAULT_LAT = 52.1344;
 const DEFAULT_LON = 5.1917;
 const DEFAULT_ZOOM = 6.8;
+const TILE_SIZE = 512;
 
 const generateMarkerImage = (image, highlight = false) => {
   let text = '\uf041';
@@ -268,6 +269,7 @@ const useMap = (props) => {
     if (accessToken) {
       setPlacementFeatureSource(new VectorSource());
       const source = new XYZ({
+        tileSize: [TILE_SIZE, TILE_SIZE],
         url: `${MAPBOX_TILE_API_BASE}/${MAPBOX_TILE_STYLE}/tiles/{z}/{x}/{y}?access_token=${accessToken}`,
       });
       source.addEventListener('tileloadend', handleLoad);
@@ -368,6 +370,18 @@ const MapCanvas = (props) => {
     </span>
   );
 
+  if (!mapRef || errorMessage) {
+    return (
+      <div className="Map" data-testid="map-view">
+        <div className="Map--map-container" />
+        <div className="Map--map-indicator">
+          <FontAwesome name="map-o" />
+          {errorMessage}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="Map" data-testid="map-view">
       <div className="Map--map-container" ref={mapRef} />
@@ -382,10 +396,6 @@ const MapCanvas = (props) => {
           />
         )}
       </OverlayContainer>
-      <div className="Map--map-indicator">
-        <FontAwesome name="map-o" />
-        {errorMessage}
-      </div>
     </div>
   );
 };
