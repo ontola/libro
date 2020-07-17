@@ -33,7 +33,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
 import OverlayContainer from '../../components/OverlayContainer';
-import { MAPBOX_TILE_API_BASE } from '../../config';
+import { MAPBOX_TILE_API_BASE, MAPBOX_TILE_STYLE } from '../../config';
 import withReducer from '../../containers/withReducer';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
 import { handle } from '../../helpers/logging';
@@ -267,7 +267,7 @@ const useMap = (props) => {
     if (accessToken) {
       setPlacementFeatureSource(new VectorSource());
       const source = new XYZ({
-        url: `${MAPBOX_TILE_API_BASE}mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=${accessToken}`,
+        url: `${MAPBOX_TILE_API_BASE}/${MAPBOX_TILE_STYLE}/tiles/{z}/{x}/{y}?access_token=${accessToken}`,
       });
       source.addEventListener('tileloadend', handleLoad);
       source.addEventListener('tileloaderr', handleError);
