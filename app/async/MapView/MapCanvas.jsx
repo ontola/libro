@@ -39,6 +39,7 @@ import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
 import { handle } from '../../helpers/logging';
 import { popupTopology } from '../../topologies/Popup';
 
+import 'ol/ol.css';
 import './Map.scss';
 import { getMapAccessToken } from './actions';
 import reducer, { MapReducerKey } from './reducer';
