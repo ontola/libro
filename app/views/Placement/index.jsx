@@ -1,5 +1,4 @@
 import {
-  lrsType,
   register,
   subjectType,
 } from 'link-redux';
@@ -15,18 +14,15 @@ class PlacementAlertDialog extends React.PureComponent {
   static topology = alertDialogTopology;
 
   static propTypes = {
-    lrs: lrsType,
     subject: subjectType,
   };
 
   render() {
-    const { lrs, subject } = this.props;
+    const { subject } = this.props;
 
     return (
       <MapView
-        lrs={lrs}
         placements={[subject]}
-        subjectPlacement={subject}
       />
     );
   }

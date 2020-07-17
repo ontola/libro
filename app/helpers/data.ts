@@ -144,6 +144,9 @@ function listToArr(
       return lrs.getEntity(rest);
     }
   }
+  if (rdf.equals(first, rdfx.nil)) {
+    return acc;
+  }
   if (first) {
     acc.push(first);
   }

@@ -1,498 +1,132 @@
-import RDFTypes from '@rdfdev/prop-types';
-import rdf from '@ontologies/core';
+import rdf, { isNamedNode } from '@ontologies/core';
 import schema from '@ontologies/schema';
-import * as fa from 'fontawesome';
 import {
-  Resource,
   linkType,
-  lrsType,
-  subjectType,
-  withLRS,
+  useDataFetching, useDataInvalidation,
+  useLRS,
 } from 'link-redux';
-import {
-  Feature,
-  Map as OLMap,
-  Overlay,
-  View,
-} from 'ol';
-import { defaults as defaultControls } from 'ol/control';
-import { click, pointerMove } from 'ol/events/condition';
-import Circle from 'ol/geom/Circle';
-import Point from 'ol/geom/Point';
-import Select from 'ol/interaction/Select';
-import TileLayer from 'ol/layer/Tile';
-import VectorLayer from 'ol/layer/Vector';
-import OverlayPositioning from 'ol/OverlayPositioning';
-import { fromLonLat, toLonLat } from 'ol/proj';
-import { toContext } from 'ol/render';
-import VectorSource from 'ol/source/Vector';
-import XYZ from 'ol/source/XYZ';
-import CircleStyle from 'ol/style/Circle';
-import Fill from 'ol/style/Fill';
-import Icon from 'ol/style/Icon';
-import Stroke from 'ol/style/Stroke';
-import Style from 'ol/style/Style';
 import PropTypes from 'prop-types';
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
-import { FormattedMessage } from 'react-intl';
-import { connect } from 'react-redux';
 
-import OverlayContainer from '../../components/OverlayContainer';
-import { MAPBOX_TILE_API_BASE } from '../../config';
-import withReducer from '../../containers/withReducer';
-import { collectionMembers } from '../../helpers/diggers';
-import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
+import { LoadingCard } from '../../components/Loading';
 import { entityIsLoaded } from '../../helpers/data';
-import { handle } from '../../helpers/logging';
 import { tryParseFloat } from '../../helpers/numbers';
+import { isResource } from '../../helpers/types';
 import argu from '../../ontology/argu';
-import { popupTopology } from '../../topologies/Popup';
 
 import './Map.scss';
-import { getMapAccessToken } from './actions';
-import reducer, { MapReducerKey } from './reducer';
-import { getAccessToken, getAccessTokenError } from './selectors';
+import MapCanvas from './MapCanvas';
 
-const IMG_SIZE = 26;
-const CIRCLE_RADIUS = 12;
-const CIRCLE_SIZE = 13;
-const ICON_X = 8;
-const ICON_Y = 19;
-const ANCHOR_X_CENTER = 0.5;
-const ANCHOR_Y_BOTTOM = 1;
-const DEFAULT_CENTER = {
-  lat: 52.1344,
-  lon: 5.1917,
-  zoom: 6.8,
+const convertPlacement = (lrs, placement) => {
+  if (!isResource(placement)) {
+    return placement;
+  }
+
+  const image = lrs.getResourceProperty(placement, schema.image);
+  const lon = lrs.getResourceProperty(placement, schema.longitude);
+  const lat = lrs.getResourceProperty(placement, schema.latitude);
+  const zoom = lrs.getResourceProperty(placement, argu.zoomLevel);
+
+  return {
+    id: placement.value,
+    image,
+    lat: tryParseFloat(lat),
+    lon: tryParseFloat(lon),
+    zoom: tryParseFloat(zoom),
+  };
 };
 
-class MapView extends React.Component {
-  static propTypes = {
-    accessToken: PropTypes.string,
-    error: PropTypes.instanceOf(Error),
-    getAccessToken: PropTypes.func,
-    /** Additional placement to render on the map */
-    location: linkType,
-    lrs: lrsType,
-    navigate: PropTypes.func,
-    onMapClick: PropTypes.func,
-    /** Placements to render on the map. */
-    placements: PropTypes.arrayOf(PropTypes.oneOfType([
-      RDFTypes.namedNode,
-      PropTypes.shape({
-        id: PropTypes.string,
-        image: RDFTypes.namedNode,
-        lat: PropTypes.number,
-        lon: PropTypes.number,
-      }),
-    ])),
-    /** Enable to render the subject's placement */
-    renderSubject: PropTypes.bool,
-    /** Placeable to center on, it should have its own placement. */
-    subject: subjectType,
-    /**
-     * A placement to center on.
-     * Takes precedence over {subject}
-     */
-    subjectPlacement: subjectType,
+const useFeatures = (placements, center) => {
+  const lrs = useLRS();
+
+  const [loading, setLoading] = React.useState(true);
+  const [memoizedFeatures, setMemoizedFeatures] = React.useState([]);
+  const [memoizedCenter, setMemoizedCenter] = React.useState(null);
+  const [memoizedDependencies, setDependencies] = React.useState([]);
+  const timestamp = useDataInvalidation(memoizedDependencies);
+  useDataFetching(memoizedDependencies.filter(isNamedNode));
+
+  React.useEffect(() => {
+    const features = [];
+    const dependencies = [];
+    const addFeature = (rawFeature, index) => {
+      const feature = convertPlacement(lrs, rawFeature);
+
+      const isCenter = rawFeature === center || (!center && index === 0);
+
+      if (feature && isCenter) {
+        setMemoizedCenter(feature);
+      }
+
+      dependencies.push(rawFeature);
+      features.push(feature);
+    };
+
+    if (placements) {
+      placements.forEach(addFeature);
+    }
+
+    setDependencies(dependencies);
+    setMemoizedFeatures(features);
+
+    const currentlyLoading = memoizedDependencies.filter(isNamedNode).find((resource) => (
+      !entityIsLoaded(lrs, resource)
+    ));
+
+    if (loading !== currentlyLoading) {
+      setLoading(currentlyLoading);
+    }
+  }, [timestamp, placements]);
+
+  return [memoizedFeatures, memoizedCenter, loading];
+};
+
+const MapView = ({
+  center,
+  navigate,
+  onMapClick,
+  placements,
+}) => {
+  const lrs = useLRS();
+  const [features, resolvedCenter, loading] = useFeatures(placements, center);
+  const [selected, setSelected] = React.useState(null);
+
+  const onSelect = (id) => {
+    if (!id) {
+      setSelected(null);
+    } else {
+      setSelected(
+        lrs.getResourceProperty(
+          id.termType ? id : rdf.namedNode(id),
+          argu.placeable
+        )
+      );
+    }
   };
 
-  static generateMarkerImage(image, highlight = false) {
-    let text = '\uf041';
-    if (isFontAwesomeIRI(image)) {
-      text = fa(normalizeFontAwesomeIRI(image));
-    }
-
-    const canvas = document.createElement('canvas');
-    const canvasCtx = canvas.getContext('2d');
-    const vectorContext = toContext(canvasCtx, {
-      pixelRatio: 1,
-      size: [100, 100],
-    });
-
-    const fill = new Fill({ color: highlight ? '#92a1b5' : '#475668' });
-    const stroke = new Stroke({
-      color: 'white',
-      width: 2,
-    });
-    const circleStyle = new Style({
-      fill,
-      image: new CircleStyle({
-        fill,
-        radius: 10,
-        stroke,
-      }),
-      stroke,
-    });
-
-    const circle = new Circle([CIRCLE_SIZE, CIRCLE_SIZE], CIRCLE_RADIUS);
-
-    vectorContext.setStyle(circleStyle);
-    vectorContext.drawGeometry(circle);
-
-    canvasCtx.fillStyle = 'white';
-    canvasCtx.font = 'normal 18px FontAwesome';
-    canvasCtx.fillText(text, ICON_X, ICON_Y);
-
-    return new Style({
-      image: new Icon({
-        anchor: [ANCHOR_X_CENTER, ANCHOR_Y_BOTTOM],
-        img: canvas,
-        imgSize: [IMG_SIZE, IMG_SIZE],
-      }),
-    });
+  if (loading) {
+    return <LoadingCard />;
   }
 
-  constructor(props) {
-    super(props);
+  return (
+    <MapCanvas
+      features={features}
+      initialLat={resolvedCenter?.lat}
+      initialLon={resolvedCenter?.lon}
+      initialZoom={resolvedCenter?.zoom}
+      navigate={navigate}
+      overlayResource={selected}
+      onMapClick={onMapClick}
+      onSelect={onSelect}
+    />
+  );
+};
 
-    this.iconStyles = {};
-    this.mapRef = React.createRef();
-    this.overlayRef = document.createElement('div');
-    this.placementFeatureSource = new VectorSource();
+MapView.propTypes = {
+  center: linkType,
+  navigate: PropTypes.func,
+  onMapClick: PropTypes.func,
+  placements: linkType,
+};
 
-    this.hover = undefined;
-    this.map = undefined;
-    this.overlay = undefined;
-    this.select = undefined;
-    this.tileSource = undefined;
-
-    this.featureFromPlacement = this.featureFromPlacement.bind(this);
-    this.highlightFeature = this.highlightFeature.bind(this);
-    this.showFeatureResourceInOverlay = this.showFeatureResourceInOverlay.bind(this);
-    this.onMapClick = props.onMapClick
-      ? (e) => props.onMapClick(toLonLat(e.coordinate))
-      : undefined;
-
-    this.onError = this.onError.bind(this);
-    this.onLoad = this.onLoad.bind(this);
-
-    this.state = {
-      error: undefined,
-      selected: undefined,
-    };
-  }
-
-  componentDidMount() {
-    if (!this.props.accessToken) {
-      this.props.getAccessToken();
-    }
-    this.createMap();
-  }
-
-  componentDidUpdate() {
-    this.createMap();
-    this.updateFeatures();
-  }
-
-  componentWillUnmount() {
-    if (this.tileSource) {
-      this.tileSource.removeEventListener('tileloaderr', this.onError);
-    }
-    if (this.map && this.onMapClick) {
-      this.map.removeEventListener('click', this.onMapClick);
-    }
-  }
-
-  onError(e) {
-    handle(e);
-    this.setState({
-      error: true,
-    });
-  }
-
-  onLoad() {
-    if (this.state.error) {
-      this.setState({
-        error: undefined,
-      });
-    }
-  }
-
-  getImage(image) {
-    if (this.iconStyles[image]) {
-      return this.iconStyles[image];
-    }
-
-    this.iconStyles[image] = MapView.generateMarkerImage(image);
-
-    return this.iconStyles[image];
-  }
-
-  featureFromPlacement(placement) {
-    const values = this.resolvePlacement(placement);
-
-    if (!values) {
-      return undefined;
-    }
-
-    const {
-      id,
-      lon,
-      lat,
-      image,
-    } = values;
-
-    if (!image) {
-      return undefined;
-    }
-
-    const f = new Feature(new Point(fromLonLat([lon, lat])));
-    f.setId(id);
-    f.setStyle(this.getImage(image.value));
-
-    return f;
-  }
-
-  isInMemoryFeature(feature) {
-    return this.props.placements.find((p) => p.id === feature.getId());
-  }
-
-  showFeatureResourceInOverlay(e) {
-    const { lrs } = this.props;
-    const [feature] = e.selected;
-
-    let selected, position;
-
-    if (feature) {
-      const id = feature.getId();
-      selected = lrs.getResourceProperty(
-        id.termType ? id : rdf.namedNode(id),
-        argu.placeable
-      );
-      position = feature.getGeometry().getCoordinates();
-    }
-
-    this.setState({ selected });
-    this.overlay.setPosition(position);
-  }
-
-  updateFeatures() {
-    const {
-      location,
-      lrs,
-      placements,
-      renderSubject,
-      subject,
-    } = this.props;
-
-    const features = placements
-      .filter(Boolean)
-      .map(this.featureFromPlacement)
-      .filter(Boolean);
-
-    const locationFeature = this.featureFromPlacement(location);
-    if (locationFeature) {
-      features.push(locationFeature);
-    }
-    const subjectLocation = renderSubject && lrs.getResourceProperty(subject, schema.location);
-    if (subjectLocation) {
-      const subjectPlacement = this.resolvePlacement(subjectLocation);
-      const subjectFeature = this.featureFromPlacement(subjectPlacement);
-      if (subjectFeature) {
-        features.push(subjectFeature);
-      }
-    }
-
-    this.placementFeatureSource.clear(true);
-    this.placementFeatureSource.addFeatures(features);
-  }
-
-  createMap() {
-    const { accessToken } = this.props;
-    const { current } = this.mapRef;
-
-    if (!current || this.map || !accessToken) {
-      return;
-    }
-
-    const {
-      lrs,
-      subject,
-      subjectPlacement,
-    } = this.props;
-
-    const centerPlacement = subjectPlacement
-      || (subject && lrs.getResourceProperty(subject, schema.location));
-    let center = centerPlacement && this.resolvePlacement(
-      lrs.dig(centerPlacement, collectionMembers).pop()
-      || centerPlacement
-    );
-
-    if (!center) {
-      handle(new Error(`Map has no center (${subject})`));
-      center = DEFAULT_CENTER;
-    }
-
-    if (Promise.resolve(center) === center) {
-      return;
-    }
-
-    const {
-      lon,
-      lat,
-      zoom,
-    } = center;
-
-    if (this.tileSource) {
-      this.tileSource.removeEventListener('tileloadend', this.onLoad);
-      this.tileSource.removeEventListener('tileloaderr', this.onError);
-    }
-    this.tileSource = new XYZ({
-      url: `${MAPBOX_TILE_API_BASE}mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=${accessToken}`,
-    });
-    this.tileSource.addEventListener('tileloadend', this.onLoad);
-    this.tileSource.addEventListener('tileloaderr', this.onError);
-
-    const layers = [
-      new TileLayer({
-        source: this.tileSource,
-      }),
-      new VectorLayer({
-        source: this.placementFeatureSource,
-      }),
-    ];
-
-    this.overlay = new Overlay({
-      autoPan: true,
-      element: this.overlayRef,
-      positioning: OverlayPositioning.TOP_CENTER,
-      stopEvent: true,
-    });
-
-    this.map = new OLMap({
-      controls: defaultControls({
-        rotate: false,
-      }),
-      layers,
-      overlays: [this.overlay],
-      target: current,
-      view: new View({
-        center: fromLonLat([lon, lat]),
-        zoom,
-      }),
-    });
-    if (this.onMapClick) {
-      this.map.addEventListener('click', this.onMapClick);
-    }
-
-    this.select = new Select({
-      condition: click,
-    });
-    this.select.on('select', this.showFeatureResourceInOverlay);
-    this.map.addInteraction(this.select);
-
-    this.hover = new Select({
-      condition: pointerMove,
-    });
-    this.hover.on('select', this.highlightFeature);
-    this.map.addInteraction(this.hover);
-
-    this.updateFeatures();
-  }
-
-  highlightFeature(e) {
-    const update = (highlight) => (feature) => {
-      const local = this.isInMemoryFeature(feature);
-      let image;
-      if (local) {
-        ({ image } = local);
-      } else {
-        image = this.props.lrs.getResourceProperty(
-          rdf.namedNode(feature.getId()),
-          schema.image
-        );
-      }
-      feature.setStyle(MapView.generateMarkerImage(image.value, highlight));
-    };
-
-    e.selected.map(update(true));
-    e.deselected.map(update(false));
-  }
-
-  resolvePlacement(placement) {
-    if (!placement || !placement.termType) {
-      return placement;
-    }
-
-    const { lrs } = this.props;
-
-    if (__CLIENT__ && !entityIsLoaded(lrs, placement)) {
-      return lrs.getEntity(placement);
-    }
-
-    const place = placement && lrs.getResourceProperty(placement, schema.geo);
-    const image = lrs.getResourceProperty(placement, schema.image);
-
-    if (!place) {
-      return undefined;
-    }
-
-    const lon = lrs.getResourceProperty(place, schema.longitude);
-    const lat = lrs.getResourceProperty(place, schema.latitude);
-    const zoom = lrs.getResourceProperty(place, argu.zoomLevel);
-
-    if (!(lon && lat && zoom)) {
-      lrs.report(new TypeError(`Placement without coordinates: '${place.value}'`));
-
-      return undefined;
-    }
-
-    return {
-      id: placement.value,
-      image,
-      lat: tryParseFloat(lat),
-      lon: tryParseFloat(lon),
-      zoom: tryParseFloat(zoom),
-    };
-  }
-
-  render() {
-    const handleClick = (e) => e.target.className !== 'click-ignore'
-      && this.props.navigate(this.state.selected);
-
-    const errorMessage = (this.props.error || this.state.error) && (
-      <span>
-        <FormattedMessage
-          defaultMessage="Error loading map"
-          id="https://app.argu.co/i18n/errors/map/loadError"
-        />
-      </span>
-    );
-
-    return (
-      <div className="Map" data-testid="map-view">
-        <div className="Map--map-container" ref={this.mapRef} />
-        <OverlayContainer
-          clickHandler={handleClick}
-          overlayRef={this.overlayRef}
-        >
-          {this.state.selected && (
-            <Resource
-              subject={this.state.selected}
-              topology={popupTopology}
-            />
-          )}
-        </OverlayContainer>
-        <div className="Map--map-indicator">
-          <FontAwesome name="map-o" />
-          {errorMessage}
-        </div>
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = (state) => ({
-  accessToken: getAccessToken(state),
-  error: getAccessTokenError(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  getAccessToken: () => dispatch(getMapAccessToken()),
-});
-
-const ConnectedMap = connect(mapStateToProps, mapDispatchToProps)(withLRS(MapView));
-
-export default withReducer(MapReducerKey, reducer)(ConnectedMap);
+export default MapView;

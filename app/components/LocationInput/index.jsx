@@ -1,6 +1,6 @@
 import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
-import { linkType, useLRS } from 'link-redux';
+import { linkType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -14,7 +14,6 @@ import './LocationInput.scss';
 
 const usePlacements = (object, lat, lon) => (
   React.useMemo(() => {
-    let renderSubject = false;
     const placements = [];
 
     if (lat && lon) {
@@ -25,10 +24,10 @@ const usePlacements = (object, lat, lon) => (
         lon: tryParseFloat(lon),
       });
     } else if (object.termType === 'NamedNode') {
-      renderSubject = true;
+      placements.push(object);
     }
 
-    return [renderSubject, placements];
+    return placements;
   }, [lat, lon, object])
 );
 
@@ -37,7 +36,6 @@ const LocationInput = ({
   value,
   onChange,
 }) => {
-  const lrs = useLRS();
   const [latInput] = useFormField({
     object,
     path: schema.latitude,
@@ -54,7 +52,7 @@ const LocationInput = ({
     }
   });
 
-  const [renderSubject, placements] = usePlacements(object, lat, lon);
+  const placements = usePlacements(object, lat, lon);
 
   const storeCoordinates = (e) => {
     lonInput.onChange([rdf.literal(e[0])]);
@@ -66,10 +64,7 @@ const LocationInput = ({
       <HiddenRequiredInput name={latInput.name} value={lat} />
       <HiddenRequiredInput name={lonInput.name} value={lon} />
       <MapView
-        lrs={lrs}
         placements={placements}
-        renderSubject={renderSubject}
-        subject={object}
         onMapClick={storeCoordinates}
       />
     </div>

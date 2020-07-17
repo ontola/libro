@@ -1,16 +1,15 @@
 import schema from '@ontologies/schema';
 import {
   linkType,
-  lrsType,
   register,
-  subjectType,
+  useDataFetching,
+  useLRS,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
-import { withRouter } from 'react-router';
+import { useHistory } from 'react-router';
 
+import { LoadingCard } from '../../../components/Loading';
 import MapView from '../../../containers/MapView';
-import ErrorButtonWithFeedback from '../../Error/ErrorButtonWithFeedback';
 import { listToArr } from '../../../helpers/data';
 import { retrievePath } from '../../../helpers/iris';
 import argu from '../../../ontology/argu';
@@ -18,97 +17,49 @@ import { containerTopology } from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { gridTopology } from '../../../topologies/Grid';
 
-class ArguLocation extends React.Component {
-  static type = schema.Thing;
+const ArguLocation = ({
+  childrenPlacements,
+  schemaLocation,
+}) => {
+  const lrs = useLRS();
+  useDataFetching(childrenPlacements);
+  const history = useHistory();
+  const children = listToArr(lrs, [], childrenPlacements);
 
-  static property = schema.location;
-
-  static topology = [
-    containerTopology,
-    fullResourceTopology,
-    gridTopology,
-  ];
-
-  static mapDataToProps = {
-    childrenPlacements: argu.childrenPlacements,
-    dataSubjects: argu.childrenPlacements,
-    schemaLocation: schema.location,
-  };
-
-  static hocs = [withRouter];
-
-  static propTypes = {
-    childrenPlacements: linkType,
-    history: PropTypes.shape({
-      push: PropTypes.func,
-    }),
-    lrs: lrsType,
-    schemaLocation: linkType,
-    subject: subjectType,
-  };
-
-  constructor(props) {
-    super(props);
-    this.state = { error: undefined };
+  if (!Array.isArray(children)) {
+    return <LoadingCard />;
   }
 
-  componentDidCatch(error) {
-    this.props.lrs.report(error);
-    this.setState({
-      error,
-    });
+  if (!schemaLocation && children.length === 0) {
+    return null;
   }
 
-  resolvePlacements() {
-    const { childrenPlacements, lrs } = this.props;
+  return (
+    <MapView
+      navigate={(resource) => history.push(retrievePath(resource.value))}
+      placements={[schemaLocation, ...children].filter(Boolean)}
+    />
+  );
+};
 
-    if (!childrenPlacements) {
-      return [];
-    }
+ArguLocation.type = schema.Thing;
 
-    const children = listToArr(lrs, [], childrenPlacements);
+ArguLocation.property = schema.location;
 
-    if (!Array.isArray(children)) {
-      return [];
-    }
+ArguLocation.topology = [
+  containerTopology,
+  fullResourceTopology,
+  gridTopology,
+];
 
-    return children;
-  }
+ArguLocation.mapDataToProps = {
+  childrenPlacements: argu.childrenPlacements,
+  schemaLocation: schema.location,
+};
 
-  render() {
-    const {
-      history,
-      schemaLocation,
-      lrs,
-      subject,
-    } = this.props;
-
-    if (this.state.error) {
-      return (
-        <ErrorButtonWithFeedback
-          reset={() => this.setState({ error: undefined })}
-          {...this.props}
-        />
-      );
-    }
-
-    const placements = this.resolvePlacements();
-
-    if (!schemaLocation && placements.length === 0) {
-      return null;
-    }
-
-    return (
-      <MapView
-        renderSubject
-        lrs={lrs}
-        navigate={(resource) => history.push(retrievePath(resource.value))}
-        placements={placements}
-        subject={subject}
-        subjectPlacement={placements ? undefined : subject}
-      />
-    );
-  }
-}
+ArguLocation.propTypes = {
+  childrenPlacements: linkType,
+  schemaLocation: linkType,
+};
 
 export default register(ArguLocation);
