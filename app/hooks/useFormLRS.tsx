@@ -13,6 +13,7 @@ const cloneLRS = (old: LinkReduxLRSType) =>  {
 
   next.store.addQuads((old.store as any).store.quads);
   next.store.changeTimestamps = (old.store as any).changeTimestamps.slice();
+  (next.store as any).langPrefs = (old.store as any).langPrefs;
   (next.api as any).invalidationMap = new Map((old.api as any).invalidationMap);
   next.schema.addQuads((old.schema as any).store.quads);
 
