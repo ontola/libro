@@ -178,9 +178,10 @@ const CreateVote = ({
   }
 
   const disabled = rdf.equals(actionStatus, ontola.DisabledActionStatus);
+  const completed = rdf.equals(actionStatus, schema.CompletedActionStatus);
   const expired = rdf.equals(actionStatus, ontola.ExpiredActionStatus);
 
-  if (disabled) {
+  if (disabled || completed) {
     return null;
   }
 
