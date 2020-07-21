@@ -18,7 +18,6 @@ const FormGroup = ({ hidden, ...childProps }) => {
   const classes = useStyles();
 
   const className = classNames({
-    [classes.fieldSet]: childProps.theme !== 'omniform',
     [classes.hidden]: hidden || !hasContent,
   });
 
