@@ -4,37 +4,50 @@ import {
   Resource,
   register,
   subjectType,
+  useLRS,
 } from 'link-redux';
 import React from 'react';
 
+import { seqToArr } from '../../helpers/data';
 import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
 
-class PropertyQuery extends React.PureComponent {
-  static type = ontola.PropertyQuery;
+const PropertyQuery = ({
+  path,
+  targetNode,
+}) => {
+  const lrs = useLRS();
+  const properties = seqToArr(lrs, [], path).reverse();
+  const query = properties.reduce(
+    (child, label) => {
+      if (child) {
+        return <Property label={label}>{child}</Property>;
+      }
 
-  static topology = allTopologies;
+      return <Property label={label} />;
+    }, null
+  );
 
-  static mapDataToProps = {
-    path: sh.path,
-    targetNode: sh.targetNode,
-  };
+  return (
+    <Resource subject={targetNode}>
+      {query}
+    </Resource>
+  );
+};
 
-  static propTypes = {
-    path: subjectType,
-    targetNode: subjectType,
-  };
+PropertyQuery.type = ontola.PropertyQuery;
 
-  render() {
-    const { path, targetNode } = this.props;
+PropertyQuery.topology = allTopologies;
 
-    return (
-      <Resource subject={targetNode}>
-        <Property label={path} />
-      </Resource>
-    );
-  }
-}
+PropertyQuery.mapDataToProps = {
+  path: sh.path,
+  targetNode: sh.targetNode,
+};
+
+PropertyQuery.propTypes = {
+  path: subjectType,
+  targetNode: subjectType,
+};
 
 export default [
   register(PropertyQuery),
