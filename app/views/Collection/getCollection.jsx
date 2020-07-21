@@ -193,7 +193,7 @@ export default function getCollection(
     );
 
     return (
-      <ResourceBoundary wrapperProps={{ className: `Collection Collection__Depth-${depth}` }}>
+      <ResourceBoundary subject={currentPage} wrapperProps={{ className: `Collection Collection__Depth-${depth}` }}>
         {partOf && <Property label={schema.isPartOf} />}
         <Property
           forceRender

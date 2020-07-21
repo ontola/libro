@@ -8,13 +8,14 @@ import React from 'react';
 const ResourceBoundary = ({
   children,
   element: Element = 'div',
+  subject,
   wrapperProps,
 }) => {
-  const { subject } = useLinkRenderContext();
+  const { subject: subjectCtx } = useLinkRenderContext();
 
   return (
     <Element
-      resource={subject.value}
+      resource={(subject || subjectCtx).value}
       {...wrapperProps}
     >
       {children}
