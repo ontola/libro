@@ -75,7 +75,7 @@ const DatePickerComponent = (props) => {
         minDateMessage={intl.formatMessage(messages.minDateMessage)}
         okLabel={intl.formatMessage(messages.okLabel)}
         todayLabel={intl.formatMessage(messages.todayLabel)}
-        value={value}
+        value={value?.length > 0 ? value : null}
         onChange={(e) => onChange(e === null ? null : e?.format())}
       />
     </MuiPickersUtilsProvider>
