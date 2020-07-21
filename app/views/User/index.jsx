@@ -14,6 +14,7 @@ import { navbarTopology } from '../../topologies/Navbar';
 
 import ActorType from './properties/actorType';
 import GuestUser from './GuestUser';
+import GuestUserParent from './GuestUserParent';
 
 const propTypes = {
   lrs: lrsType,
@@ -58,4 +59,5 @@ export default [
   ),
   ActorType,
   GuestUser,
+  GuestUserParent,
 ];
