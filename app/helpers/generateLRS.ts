@@ -64,6 +64,12 @@ export default function generateLRS() {
 // @ts-ignore TS2341
   lrs.api.accept.default = FRONTEND_ACCEPT;
 
+  // Globally disable anti-jump rendering
+  (lrs as any).broadcast_old = (lrs as any).broadcast;
+  (lrs as any).broadcast = (_: boolean, __: number) => {
+    return (lrs as any).broadcast_old(false, 0);
+  };
+
   const languages = {
     en: 'en',
     nl: 'nl',
