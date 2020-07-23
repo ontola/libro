@@ -80,7 +80,7 @@ const FormInputs = (props) => {
 
       if (type === 'checkbox') {
         helperText = description;
-      } else if (required) {
+      } else if (required && type !== 'association') {
         helperText = (
           <FormattedMessage
             defaultMessage="*Required"

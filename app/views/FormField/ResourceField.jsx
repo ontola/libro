@@ -35,7 +35,7 @@ const ResourceField = ({
   return (
     <React.Fragment>
       <Property label={[rdfs.label, sh.name]} />
-      <Property label={sh.description} />
+      <Property label={[schema.text, sh.description]} />
       <div><Property label={schema.url} /></div>
     </React.Fragment>
   );

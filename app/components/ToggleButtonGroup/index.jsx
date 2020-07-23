@@ -16,8 +16,12 @@ import { LoadingRow } from '../Loading';
 
 const useStyles = makeStyles(() => ({
   button: {
+    flexGrow: 1,
     padding: '.4em .8em',
     textTransform: 'initial',
+  },
+  buttonGroup: {
+    width: '100%',
   },
 }));
 
@@ -49,6 +53,7 @@ const ToggleButtonGroup = ({
       {required && <HiddenRequiredInput value={value} />}
       <MaterialToggleButtonGroup
         exclusive
+        className={classes.buttonGroup}
         value={value}
         onChange={(event, v) => (
           onChange({ target: { value: options.find((option) => option.value === v) } })

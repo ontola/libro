@@ -13,6 +13,7 @@ const EntryPointForm = ({
   actionBody,
   autofocusForm,
   className,
+  contentWrapper,
   footerButtons,
   formID,
   formInstance,
@@ -53,6 +54,7 @@ const EntryPointForm = ({
         <React.Fragment>
           <Property
             autofocusForm={autofocusForm}
+            contentWrapper={contentWrapper}
             formIRI={actionBody}
             label={ll.actionBody}
             object={object}
@@ -81,6 +83,7 @@ EntryPointForm.propTypes = {
   actionBody: linkType,
   autofocusForm: PropTypes.bool,
   className: PropTypes.string,
+  contentWrapper: PropTypes.elementType,
   footerButtons: PropTypes.func,
   formID: PropTypes.string,
   formInstance: PropTypes.objectOf(PropTypes.any),

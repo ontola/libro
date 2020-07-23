@@ -5,12 +5,15 @@
   flex-direction: column;
   position: relative;
 
-  &__section {
-    margin-bottom: 1em;
-  }
-
   &__wrapper {
     position: relative;
+  }
+}
+
+.Field--association {
+  .Field__wrapper + .Field__wrapper {
+    border-top: 1px solid color('grey', 'x-light');
+    padding-top: 1em;
   }
 }
 

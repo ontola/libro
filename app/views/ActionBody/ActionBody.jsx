@@ -11,6 +11,7 @@ import { allTopologies } from '../../topologies';
 
 const ActionBody = ({
   autofocusForm,
+  contentWrapper,
   formIRI,
   object,
   onKeyUp,
@@ -28,6 +29,8 @@ const ActionBody = ({
       theme,
       whitelist,
     }}
+    itemWrapper={contentWrapper}
+    itemWrapperOpts={{ noStartSpacing: true }}
     label={form.pages}
   />
 );
@@ -38,6 +41,7 @@ ActionBody.topology = allTopologies;
 
 ActionBody.propTypes = {
   autofocusForm: PropTypes.bool,
+  contentWrapper: PropTypes.elementType,
   formIRI: linkType,
   object: linkType,
   onKeyUp: PropTypes.func,

@@ -27,10 +27,6 @@
     // For animating the Omniform preview on hover
     transition: background-color .2s;
 
-    .Field__wrapper & {
-      border-top: 0;
-    }
-
     .CardRow + & {
       border-top: 0;
     }

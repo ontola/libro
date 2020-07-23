@@ -88,6 +88,7 @@ class EntryPointCardMain extends EntryPointBase {
         </CardContent>
         <EntryPointForm
           actionBody={actionBody}
+          contentWrapper={CardContent}
           footerButtons={footerButtons}
           formID={formID}
           httpMethod={httpMethod?.value}
