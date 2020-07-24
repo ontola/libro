@@ -86,6 +86,9 @@ export const renderFullPage = async (ctx, data) => {
           <meta name="theme" content="${manifest.ontola.theme || 'common'}">
           <meta name="themeOpts" content="${manifest.ontola.theme_options || ''}">
           ${headers?.meta?.toString() || `<meta content="${manifest.short_name || ''}" property="og:title"/>`}
+          
+          <link rel="preconnect" href="https://storage.googleapis.com" />
+          ${manifest.ontola.preconnect?.map((origin) => `<link rel="preconnect" href="${origin}" />`).join('\n') || ''}
 
           <meta name="csrf-param" content="authenticity_token">
           <meta name="csrf-token" content="${csrfToken}">
