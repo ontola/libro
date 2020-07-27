@@ -219,10 +219,10 @@ const MapView = ({
 
   return (
     <MapCanvas
-      features={[{ features: placementFeatures }]}
       initialLat={resolvedCenter?.lat}
       initialLon={resolvedCenter?.lon}
       initialZoom={resolvedCenter?.zoom}
+      layers={[{ features: placementFeatures }]}
       navigate={navigate}
       overlayResource={selected}
       onMapClick={onMapClick}
