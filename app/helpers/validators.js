@@ -1,3 +1,5 @@
+import { isMarkedForRemove } from './forms';
+
 const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
 
 const arrayValidation = (validator) => (values) => {
@@ -28,8 +30,9 @@ const validatorMap = {
 
 export function combineValidators(...validators) {
   return (values) => {
+    const activeValues = values?.filter((val) => !isMarkedForRemove(val));
     const results = (Array.isArray(validators[0]) ? validators[0] : validators)
-      .flatMap((validator) => validator && validator(values))
+      .flatMap((validator) => validator && validator(activeValues))
       .filter((validationRes) => !!validationRes?.error);
 
     return results.length > 0 ? results : undefined;
