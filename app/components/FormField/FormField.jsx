@@ -157,8 +157,14 @@ const FormField = (props) => {
     type === 'association' ? { '@id': rdf.blankNode(uuidv4()) } : rdf.literal('')
   );
   const addItem = () => {
-    const newValue = input.value?.slice() || [];
-    newValue.push(newItem());
+    let newValue;
+    if (type === 'association' && maxCount === 1 && input.value?.length === 1) {
+      newValue = [{ '@id': input.value[0]['@id'] }];
+    } else {
+      newValue = input.value?.slice() || [];
+
+      newValue.push(newItem());
+    }
 
     input.onChange(newValue);
   };
