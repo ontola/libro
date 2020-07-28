@@ -17,6 +17,8 @@ const ThumbComponent = (props) => (
   </span>
 );
 
+const CENTER_Y = 50;
+
 const useStyles = makeStyles(() => ({
   active: {},
   root: {
@@ -86,7 +88,7 @@ const CoverImageSlider = ({
   );
 
   useEffect(() => {
-    onChange(null, 100 - imagePositionY);
+    onChange(null, 100 - (imagePositionY || CENTER_Y));
   }, [imagePositionY]);
 
   if (!input || !imagePositionYShape) {

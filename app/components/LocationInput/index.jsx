@@ -23,8 +23,6 @@ const usePlacements = (object, lat, lon) => (
         lat: tryParseFloat(lat),
         lon: tryParseFloat(lon),
       });
-    } else if (object.termType === 'NamedNode') {
-      placements.push(object);
     }
 
     return placements;

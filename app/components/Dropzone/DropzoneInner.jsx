@@ -1,8 +1,5 @@
-import { isNamedNode } from '@ontologies/core';
-import schema from '@ontologies/schema';
 import sh from '@ontologies/shacl';
 import {
-  Resource,
   linkType,
   useLRS,
 } from 'link-redux';
@@ -24,9 +21,8 @@ const DropzoneInner = ({
   object,
 }) => {
   const lrs = useLRS();
-  const currentContent = object && lrs.getResourceProperty(object, schema.contentUrl);
 
-  if (currentContent || file) {
+  if (file) {
     const imagePositionYShape = lrs.findSubject(
       formIRI,
       [...formFieldsPath, sh.path],
@@ -36,7 +32,6 @@ const DropzoneInner = ({
     if (imagePositionYShape) {
       return (
         <DropzoneInnerPositionY
-          currentContent={currentContent}
           file={file}
           formIRI={formIRI}
           imagePositionYShape={imagePositionYShape}
@@ -54,9 +49,6 @@ const DropzoneInner = ({
         <img src={file} />
       </div>
     );
-  }
-  if (isNamedNode(object)) {
-    return children(<Resource subject={object} />);
   }
 
   return children(

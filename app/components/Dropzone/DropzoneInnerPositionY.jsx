@@ -1,21 +1,17 @@
-import { linkType, useResourceProperty } from 'link-redux';
+import { linkType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
-import { tryParseInt } from '../../helpers/numbers';
-import ontola from '../../ontology/ontola';
 import CoverImage from '../CoverImage';
 import CoverImageSlider from '../CoverImageSlider';
 
 const DropzoneInnerPositionY = ({
   children,
-  currentContent,
   file,
   imagePositionYShape,
   object,
 }) => {
-  const [targetValue] = useResourceProperty(object, ontola.imagePositionY);
-  const [positionY, setPositionY] = useState(tryParseInt(targetValue));
+  const [positionY, setPositionY] = useState(0);
   const onSliderChange = (event, value) => setPositionY(100 - value);
 
   return (
@@ -24,14 +20,13 @@ const DropzoneInnerPositionY = ({
         <div style={{ flexGrow: 1 }}>
           <CoverImage
             positionY={positionY}
-            url={file || currentContent?.value}
+            url={file}
           />
         </div>
       )}
       <CoverImageSlider
         imagePositionYShape={imagePositionYShape}
         object={object}
-        targetValue={targetValue}
         value={positionY}
         onChange={onSliderChange}
       />
@@ -41,7 +36,6 @@ const DropzoneInnerPositionY = ({
 
 DropzoneInnerPositionY.propTypes = {
   children: PropTypes.func,
-  currentContent: linkType,
   file: PropTypes.string,
   imagePositionYShape: linkType,
   object: linkType,
