@@ -12,6 +12,7 @@ import { IntlProvider, useIntl } from 'react-intl';
 import { Provider } from 'react-redux';
 
 import { getMetaContent } from '../helpers/arguHelpers';
+import { error } from '../helpers/logging';
 import AppFrame from '../routes/App';
 import themes from '../themes/index';
 import englishMessages from '../translations/en.json';
@@ -58,26 +59,33 @@ const IndexContainer = ({
     && typeof window.WEBSITE_META !== 'undefined'
     && Object.keys(window.WEBSITE_META).length > 0) {
     const websiteMeta = window.WEBSITE_META;
+    try {
     /* eslint-disable no-magic-numbers */
-    theme = {
-      ...theme,
-      palette: createPalette({
-        ...theme.palette,
-        link: {
-          header: websiteMeta.styled_headers ? websiteMeta.secondary_main : theme.palette.grey[800],
-          text: websiteMeta.secondary_main,
-        },
-        primary: {
-          contrastText: websiteMeta.primary_text,
-          main: websiteMeta.primary_main,
-        },
-        secondary: {
-          contrastText: websiteMeta.secondary_text,
-          main: websiteMeta.secondary_main,
-        },
-      }),
-    };
+      theme = {
+        ...theme,
+        palette: createPalette({
+          ...theme.palette,
+          link: {
+            header: websiteMeta.styled_headers
+              ? websiteMeta.secondary_main
+              : theme.palette.grey[800],
+            text: websiteMeta.secondary_main,
+          },
+          primary: {
+            contrastText: websiteMeta.primary_text,
+            main: websiteMeta.primary_main,
+          },
+          secondary: {
+            contrastText: websiteMeta.secondary_text,
+            main: websiteMeta.secondary_main,
+          },
+        }),
+      };
     /* eslint-enable no-magic-numbers */
+    } catch (e) {
+      error(e);
+      lrs.report(e);
+    }
   }
 
   return (
