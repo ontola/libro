@@ -10,6 +10,7 @@ export default {
   CheckboxGroup: form('CheckboxGroup'),
   CheckboxInput: form('CheckboxInput'),
   CollapsibleGroup: form('CollapsibleGroup'),
+  ColorInput: form('ColorInput'),
   DateInput: form('DateInput'),
   DateTimeInput: form('DateTimeInput'),
   Field: form('Field'),

@@ -79,6 +79,7 @@ const registerFormField = (type, input) => {
 export default [
   registerFormField(form.CheckboxGroup, 'checkboxes'),
   registerFormField(form.CheckboxInput, 'checkbox'),
+  registerFormField(form.ColorInput, 'color'),
   registerFormField(form.DateInput, 'date'),
   registerFormField(form.DateTimeInput, 'datetime-local'),
   registerFormField(form.FileInput, 'file'),
