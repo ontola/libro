@@ -77,7 +77,7 @@ export default function generateLRS() {
 
   const websocketPath = getMetaContent('websocket-path');
 
-  if (__CLIENT__ && websocketPath) {
+  if (__CLIENT__ && websocketPath && !localStorage.getItem('_apex_disable_ws')) {
     initializeCable(lrs, websocketPath).then(() => {
       subscribeDeltaChannel(lrs, 'UserChannel');
       subscribeDeltaChannel(lrs, 'RootChannel');
