@@ -1,4 +1,9 @@
-import { Property, linkType } from 'link-redux';
+import {
+  Property,
+  linkType,
+  useDataInvalidation,
+  useLRS,
+} from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -14,6 +19,7 @@ const EntryPointForm = ({
   autofocusForm,
   className,
   contentWrapper,
+  errorResponse,
   footerButtons,
   formID,
   formInstance,
@@ -26,12 +32,33 @@ const EntryPointForm = ({
   url,
   whitelist,
 }) => {
+  const lrs = useLRS();
   const [loading, initialValues] = useInitialValues(
     sessionStore,
     actionBody,
     object,
     formID
   );
+  const submissionErrorsTimeStamp = useDataInvalidation(errorResponse);
+  const submissionErrors = React.useMemo(() => {
+    if (errorResponse) {
+      const errs = lrs.tryEntity(errorResponse).reduce((acc, triple) => {
+        const key = btoa(triple.predicate.value);
+
+        return {
+          ...acc,
+          [key]: (acc[key] || []).concat([{
+            error: triple.object.value,
+            index: 0,
+          }]),
+        };
+      }, {});
+
+      return errs;
+    }
+
+    return null;
+  }, [errorResponse, submissionErrorsTimeStamp]);
 
   if (loading) {
     return <CardContent><LoadingGridContent /></CardContent>;
@@ -45,6 +72,7 @@ const EntryPointForm = ({
       formID={formID}
       initialValues={initialValues}
       method={httpMethod}
+      submissionErrorsTimeStamp={submissionErrorsTimeStamp}
       subscription={{
         submitting: true,
       }}
@@ -59,6 +87,7 @@ const EntryPointForm = ({
             label={ll.actionBody}
             object={object}
             sessionStore={sessionStore}
+            submissionErrors={submissionErrors}
             theme={theme}
             whitelist={whitelist}
             onKeyUp={onKeyUp}
@@ -84,6 +113,7 @@ EntryPointForm.propTypes = {
   autofocusForm: PropTypes.bool,
   className: PropTypes.string,
   contentWrapper: PropTypes.elementType,
+  errorResponse: linkType,
   footerButtons: PropTypes.func,
   formID: PropTypes.string,
   formInstance: PropTypes.objectOf(PropTypes.any),

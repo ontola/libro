@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
+import { formFieldError } from '../../components/FormField';
 import form from '../../ontology/form';
 import { allTopologies } from '../../topologies';
 
@@ -17,6 +18,7 @@ const ActionBody = ({
   object,
   onKeyUp,
   sessionStore,
+  submissionErrors,
   theme,
   whitelist,
 }) => (
@@ -27,6 +29,7 @@ const ActionBody = ({
       object,
       onKeyUp,
       sessionStore,
+      submissionErrors,
       theme,
       whitelist,
     }}
@@ -47,6 +50,7 @@ ActionBody.propTypes = {
   object: linkType,
   onKeyUp: PropTypes.func,
   sessionStore: PropTypes.objectOf(PropTypes.any),
+  submissionErrors: PropTypes.objectOf(PropTypes.arrayOf(formFieldError)),
   theme: PropTypes.string,
   whitelist: PropTypes.arrayOf(PropTypes.number),
 };

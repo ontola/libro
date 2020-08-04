@@ -314,7 +314,6 @@ InputElement.propTypes = {
   autofocus: PropTypes.bool,
   // Preferably use variants to style this component.
   className: PropTypes.string,
-  customErrors: PropTypes.arrayOf(PropTypes.string),
   description: PropTypes.string,
   errors: PropTypes.arrayOf(PropTypes.string),
   fieldId: PropTypes.string.isRequired,
@@ -363,6 +362,7 @@ InputElement.propTypes = {
   shIn: optionsType,
   storeKey: PropTypes.string,
   subject: subjectType,
+  submissionErrors: PropTypes.objectOf(PropTypes.arrayOf(formFieldError)),
   theme: PropTypes.string,
   topology: topologyType,
   // HTML input type, e.g. 'email'

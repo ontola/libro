@@ -117,7 +117,7 @@ const useFormField = ({
       ...meta,
       error,
     });
-  }, [meta.touched, meta.error]);
+  }, [meta.touched, meta.error, meta.pristine, meta.dirtySinceLastSubmit]);
 
   return [input, memoizedMeta, storeKey];
 };

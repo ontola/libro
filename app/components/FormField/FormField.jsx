@@ -34,7 +34,6 @@ const propTypes = {
   autofocusForm: PropTypes.bool,
   // Preferably use variants to style this component.
   className: PropTypes.string,
-  customErrors: PropTypes.arrayOf(PropTypes.string),
   description: PropTypes.string,
   /** @private */
   fieldApi: PropTypes.shape({
@@ -84,6 +83,7 @@ const propTypes = {
   sequenceIndex: PropTypes.number,
   shIn: optionsType,
   storeKey: PropTypes.string,
+  submissionErrors: PropTypes.objectOf(PropTypes.arrayOf(formFieldError)),
   theme: PropTypes.string,
   topology: topologyType,
   // HTML input type, e.g. 'email'
@@ -132,7 +132,6 @@ const FormField = (props) => {
     autofocus,
     autofocusForm,
     className,
-    customErrors,
     description,
     helperText,
     input,
@@ -143,6 +142,7 @@ const FormField = (props) => {
     placeholder,
     required,
     sequenceIndex,
+    submissionErrors,
     theme,
     type,
     variant,
@@ -180,7 +180,7 @@ const FormField = (props) => {
   const removable = (minCount !== 1 || maxCount > 1) && type !== 'checkboxes';
   const preferPlaceholder = inputsPreferringPlaceholder.includes(type);
   const resolvedVariant = theme === 'omniform' ? 'preview' : variant;
-  const allErrs = customErrors || error;
+  const allErrs = submissionErrors?.[input.name] || error;
   const classes = classNames({
     Field: true,
     [`Field--variant-${resolvedVariant}`]: resolvedVariant,

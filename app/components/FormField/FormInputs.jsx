@@ -28,7 +28,10 @@ const FormInputs = (props) => {
     values,
     variant,
   } = props;
-  const { pristine } = meta;
+  const {
+    dirtySinceLastSubmit,
+    pristine,
+  } = meta;
 
   if (!values) {
     return null;
@@ -91,7 +94,7 @@ const FormInputs = (props) => {
 
       return (
         <FieldHelper
-          error={pristine ? undefined : errors}
+          error={(dirtySinceLastSubmit || pristine) ? undefined : errors}
           helperText={helperText}
           right={renderCharCounter ? (
             <CharCounter

@@ -15,6 +15,7 @@ export default {
   add: ll('add'),
   blob: ll('blob'),
   dataSubject: ll('dataSubject'),
+  errorResponse: ll('errorResponse'),
   meta: ll('meta'),
   /** @deprecated use {ld.purge} instead */
   purge: ll('purge'),

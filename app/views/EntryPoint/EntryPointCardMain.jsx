@@ -51,6 +51,7 @@ class EntryPointCardMain extends EntryPointBase {
       url,
     } = this.props;
     const object = lrs.getResourceProperty(action, schema.object);
+    const errorResponse = lrs.getResourceProperty(action, ll.errorResponse);
 
     const cancelButton = cancelPath && (
       <Button
@@ -89,6 +90,7 @@ class EntryPointCardMain extends EntryPointBase {
         <EntryPointForm
           actionBody={actionBody}
           contentWrapper={CardContent}
+          errorResponse={errorResponse}
           footerButtons={footerButtons}
           formID={formID}
           httpMethod={httpMethod?.value}
@@ -115,6 +117,7 @@ EntryPointCardMain.hocs = [withLRS, withRouter];
 EntryPointCardMain.mapDataToProps = {
   action: schema.isPartOf,
   actionBody: ll.actionBody,
+  errorResponse: ll.errorResponse,
   httpMethod: schema.httpMethod,
   image: schema.image,
   name: schema.name,
