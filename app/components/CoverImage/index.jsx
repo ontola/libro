@@ -4,7 +4,10 @@ import PropTypes from 'prop-types';
 import './CoverImage.scss';
 
 const propTypes = {
-  positionY: PropTypes.number,
+  positionY: PropTypes.oneOf([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   url: PropTypes.string.isRequired,
 };
 

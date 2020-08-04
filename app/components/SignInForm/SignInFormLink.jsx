@@ -29,10 +29,10 @@ const SignInFormLink = ({
       to={path.signIn(redirectURL)}
       onClick={(e) => {
         e.preventDefault();
-        lrs.actions.app.startSignIn(rdf.namedNode(path.signIn(redirectURL)));
+        lrs.actions.app.startSignIn(rdf.namedNode(redirectURL));
       }}
     >
-      {children || (
+      {children || label || (
         <FormattedMessage
           defaultMessage="Log in"
           id="https://app.argu.co/i18n/forms/session/link/label"

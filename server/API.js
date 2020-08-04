@@ -2,12 +2,10 @@ import fetch from 'isomorphic-fetch';
 
 import * as constants from '../app/config';
 
-import { createUserRequest } from './api/users';
 import processResponse from './api/internal/statusHandler';
 import {
   guestTokenRequest,
   refreshTokenRequest,
-  userTokenRequest,
 } from './api/tokens';
 import {
   clientId,
@@ -76,20 +74,6 @@ class API {
   }
 
   /**
-   * Create a new user.
-   * @param {String} email The email address of the user
-   * @param {Boolean} acceptTerms Whether the user has agreed with the terms
-   * @param {String} websiteIRI
-   * @return {Promise} Raw fetch response promise
-   */
-  createUser(email, acceptTerms, websiteIRI) {
-    return this.fetch(
-      this.ctx.session.userToken,
-      createUserRequest(email, acceptTerms, websiteIRI)
-    );
-  }
-
-  /**
    * Make a request with the HEAD method
    * @param {Request} req The request to forward
    * @return {Promise} The proxies response
@@ -119,21 +103,6 @@ class API {
    */
   requestGuestToken(websiteIRI) {
     return this.fetch(this.serviceToken, guestTokenRequest(websiteIRI));
-  }
-
-  /**
-   * Request a new access token from login credentials
-   * @param {String} login The users' email or username.
-   * @param {String} password The users' password.
-   * @param {String} websiteIRI.
-   * @param {String} redirect URL of the resource the user was working with before loggin in.
-   * @return {Promise} The raw fetch response promise
-   */
-  requestUserToken(login, password, websiteIRI, redirect = undefined) {
-    return this.fetch(
-      this.ctx.session.userToken,
-      userTokenRequest(login, password, websiteIRI, redirect)
-    );
   }
 
   /**

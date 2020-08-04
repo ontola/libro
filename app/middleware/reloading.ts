@@ -21,6 +21,7 @@ function showSpinner() {
 
 function unloadPage(lrs: LinkReduxLRSType) {
   showSpinner();
+  lrs.actions.ontola.hideDialog();
 
   if (lrs.api) {
     try {

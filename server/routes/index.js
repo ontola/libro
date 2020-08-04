@@ -30,11 +30,11 @@ import {
   backendProxy,
   bulkProxy,
   fileProxy,
+  loginProxy,
 } from '../utils/proxies';
 
 import application from './application';
 import health from './health';
-import login from './login';
 import logout from './logout';
 import precacheManifest from './manifests';
 import serviceWorker from './service_workers';
@@ -62,6 +62,7 @@ const routes = async function routes(app, port) {
   const isPlainAPIReq = await isPlainAPI();
   const sessMiddleware = sessionMiddleware(app);
   const backend = backendProxy(app);
+  const login = loginProxy(app);
 
   app.use(errorMiddleware.requestHandler);
 
@@ -126,11 +127,11 @@ const routes = async function routes(app, port) {
 
   router.use(new CSRF());
 
+  router.post(['/login', '/*/login'], login);
   router.all('*', isWebsocket(backend));
   router.all('*', isBackend(backend));
 
   router.use(bodyParser());
-  router.post('/login', login);
   router.get(['/users/auth/*', '/*/users/auth/*'], backend);
   router.get('/api/maps/accessToken', maps);
 

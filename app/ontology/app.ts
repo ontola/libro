@@ -34,7 +34,6 @@ export default {
   title,
 
   /* classes */
-  AppSignIn: app('AppSignIn'),
   AppSignOut: app('AppSignOut'),
   Menu: app('Menu'),
 

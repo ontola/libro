@@ -1,5 +1,4 @@
 // API
-export const AFE_API_LOGIN = '@AFE_API/LOGIN';
 export const AFE_API_GET_MAP_ACCESS_TOKEN = '@AFE_API/GET_MAP_ACCESS_TOKEN';
 
 // App

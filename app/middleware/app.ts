@@ -4,7 +4,6 @@
 
 import rdf, { NamedNode, Node, Quadruple, SomeTerm } from '@ontologies/core';
 import rdfx from '@ontologies/rdf';
-import schema from '@ontologies/schema';
 import { createActionPair } from '@rdfdev/actions';
 import { MiddlewareActionHandler, MiddlewareWithBoundLRS } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
@@ -60,37 +59,13 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
    * App sign in
    */
   const signInLink = (r?: NamedNode) => {
-    const postFix = r ? `?r=${encodeURIComponent(r.value)}` : '';
+    const postFix = r ? `?r=${encodeURIComponent(r.value.split('#')[0])}` : '';
     return app.ns('u/sign_in' + postFix);
   };
 
-  const createSignIn = (r?: NamedNode) => {
-    const resourceIRI = signInLink(r);
-
-    return store.processDelta([
-      rdf.quad(
-          resourceIRI,
-          rdfx.type,
-          app.AppSignIn,
-          ll.add,
-      ),
-      rdf.quad(
-          resourceIRI,
-          schema.name,
-          rdf.literal('test'),
-          ll.add,
-      ),
-    ], true);
-  };
-
-  createSignIn();
-
   (store as any).actions.app.startSignIn = (r?: NamedNode) => {
     const resourceIRI = signInLink(r);
-    return createSignIn(r)
-        .then(() => {
-          (store as any).actions.ontola.showDialog(resourceIRI);
-        });
+    return (store as any).actions.ontola.showDialog(resourceIRI);
   };
 
   /**
@@ -98,7 +73,7 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
    */
   (store as any).actions.app.startSignOut = (redirect?: NamedNode) => {
     if (redirect) {
-      store.exec(rdf.namedNode(`${libro.actions.logout.value}?location=${redirect.value}`));
+      store.exec(rdf.namedNode(`${libro.actions.logout.value}?location=${encodeURIComponent(redirect.value)}`));
     } else {
       store.exec(libro.actions.logout);
     }

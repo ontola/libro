@@ -27,7 +27,7 @@ const propTypes = {
 };
 
 const GuestUserActor = ({ location, lrs }) => {
-  const redirectURL = currentLocation(location);
+  const redirectURL = currentLocation(location).value;
 
   const label = (
     <FormattedMessage
@@ -48,7 +48,7 @@ const GuestUserActor = ({ location, lrs }) => {
             to={path.signIn(redirectURL)}
             onClick={(e) => {
               e.preventDefault();
-              lrs.actions.app.startSignIn(rdf.namedNode(path.signIn(redirectURL)));
+              lrs.actions.app.startSignIn(rdf.namedNode(redirectURL));
             }}
           />
           <Property label={ontola.actorType} />

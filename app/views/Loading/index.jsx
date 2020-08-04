@@ -1,5 +1,4 @@
 import LinkedRenderStore, { RENDER_CLASS_NAME } from 'link-lib';
-import React from 'react';
 
 import Loading, {
   LoadingButton,
@@ -17,7 +16,6 @@ import Loading, {
   LoadingSelect,
   SuspendedLoader,
 } from '../../components/Loading';
-import Spinner from '../../components/Spinner';
 import ll from '../../ontology/ll';
 import { appMenuTopology } from '../../topologies/AppMenu';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
@@ -78,6 +76,7 @@ export default [
     ll.LoadingResource,
     RENDER_CLASS_NAME,
     [
+      alertDialogTopology,
       containerTopology,
       cardListTopology,
     ]
@@ -174,11 +173,5 @@ export default [
       inlineTopology,
       voteBubbleTopology,
     ]
-  ),
-  LinkedRenderStore.registerRenderer(
-    () => <div style={{ margin: '1em' }}><Spinner loading /></div>,
-    ll.LoadingResource,
-    RENDER_CLASS_NAME,
-    alertDialogTopology
   ),
 ];

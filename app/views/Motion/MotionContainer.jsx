@@ -9,7 +9,6 @@ import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
 import { connectHighlighting, hightlightType } from '../../containers/Highlight';
-import SignInSwitcherContainer from '../../containers/SignInSwitcherContainer';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
@@ -35,11 +34,9 @@ const MotionContainer = ({ highlighted, subject }) => (
     </CardRow>
     <Property label={argu.voteableVoteEvent} />
     <CardAppendix>
-      <SignInSwitcherContainer subject={subject}>
-        <Property forceRender label={argu.arguments} />
-        <Property label={argu.topComment} />
-        <Property forceRender label={app.omniform} />
-      </SignInSwitcherContainer>
+      <Property forceRender label={argu.arguments} />
+      <Property label={argu.topComment} />
+      <Property forceRender label={app.omniform} />
     </CardAppendix>
   </Card>
 );

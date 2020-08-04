@@ -11,5 +11,6 @@ export const useCurrentActor = () => {
     return useResourceLink(actorIRI, {
         actorType: ontola.actorType,
         anonymousID: argu.anonymousID,
+        primaryEmail: argu.primaryEmail,
     });
 };

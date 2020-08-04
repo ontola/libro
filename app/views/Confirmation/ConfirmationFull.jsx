@@ -5,6 +5,7 @@ import { Redirect } from 'react-router';
 
 import { retrievePath } from '../../helpers/iris';
 import argu from '../../ontology/argu';
+import ontola from '../../ontology/ontola';
 import { fullResourceTopology } from '../../topologies/FullResource';
 
 const ConfirmationFull = ({ redirectUrl }) => (
@@ -16,7 +17,7 @@ ConfirmationFull.type = argu.Confirmation;
 ConfirmationFull.topology = fullResourceTopology;
 
 ConfirmationFull.mapDataToProps = {
-  redirectUrl: argu.redirectUrl,
+  redirectUrl: ontola.redirectUrl,
   type: rdfx.type,
 };
 

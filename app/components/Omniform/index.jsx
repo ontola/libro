@@ -115,7 +115,9 @@ class Omniform extends EntryPointBase {
           label={schema.target}
           object={object}
           parentIRI={parentIRI}
+          sessionStore={this.props.sessionStore}
           whitelist={PROPS_WHITELIST}
+          onCancel={this.props.onCancel}
           onDone={this.props.onDone}
           onKeyUp={onKeyUp}
           onStatusForbidden={this.props.onStatusForbidden}

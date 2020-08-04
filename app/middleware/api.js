@@ -4,36 +4,11 @@
  * @module API
  */
 
-import { createAction } from 'redux-actions';
-
 import { setMapAccessToken } from '../async/MapView/actions';
-import { safeCredentials } from '../helpers/arguHelpers';
 import { handle } from '../helpers/logging';
-import { frontendIRI } from '../ontology/app';
-import {
-  AFE_API_GET_MAP_ACCESS_TOKEN,
-  AFE_API_LOGIN,
-  SIGN_IN_ACCOUNT_LOCKED,
-  SIGN_IN_EMAIL_TAKEN,
-  SIGN_IN_LOGGED_IN,
-  SIGN_IN_NO_PASSWORD,
-  SIGN_IN_UNKNOWN_EMAIL,
-  SIGN_IN_USER_CREATED,
-  SIGN_IN_WRONG_PASSWORD,
-} from '../state/action-types';
-import {
-  accountLocked,
-  emailTaken,
-  noPassword,
-  unknownEmail,
-  wrongPassword,
-} from '../state/form/actions';
+import { AFE_API_GET_MAP_ACCESS_TOKEN } from '../state/action-types';
 
-import { redirectPage, reloadPage } from './reloading';
-
-export const apiLogin = createAction(AFE_API_LOGIN);
-
-export default (history, swc) => (store) => (next) => (action) => {
+export default () => () => (next) => (action) => {
   if (!action.type.startsWith('@AFE_API/')) {
     return next(action);
   }
@@ -55,55 +30,6 @@ export default (history, swc) => (store) => (next) => (action) => {
             accessToken: null,
             error: e,
           }));
-        });
-    }
-    case AFE_API_LOGIN: {
-      return fetch('/login', safeCredentials({
-        body: JSON.stringify(action.payload),
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        method: 'POST',
-        redirect: 'manual',
-      }))
-        .then((res) => res.json())
-        .then((json) => {
-          switch (json.status) {
-            case SIGN_IN_ACCOUNT_LOCKED:
-              next(accountLocked());
-              break;
-            case SIGN_IN_UNKNOWN_EMAIL:
-              next(unknownEmail());
-              break;
-            case SIGN_IN_EMAIL_TAKEN:
-              next(emailTaken());
-              break;
-            case SIGN_IN_NO_PASSWORD:
-              next(noPassword());
-              break;
-            case SIGN_IN_WRONG_PASSWORD:
-              next(wrongPassword());
-              break;
-            case SIGN_IN_USER_CREATED:
-            case SIGN_IN_LOGGED_IN: {
-              try {
-                swc.clearCache();
-              } catch (e) {
-                handle(e);
-              }
-              const { r } = action.payload;
-              if (r && r.startsWith(frontendIRI.value)) {
-                redirectPage(store, r);
-              } else {
-                history.goBack();
-                reloadPage(store);
-              }
-              break;
-            }
-            default:
-              throw new Error(`Unknown user error occurred: ${JSON.stringify(json)}`);
-          }
         });
     }
     default: {

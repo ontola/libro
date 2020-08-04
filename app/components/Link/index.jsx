@@ -15,7 +15,7 @@ import app from '../../ontology/app';
 import themeStyles from './ThemeStyles';
 import featureStyles from './FeatureStyles';
 
-const isActive = (to) => {
+const isActiveDefault = (to) => {
   const relative = retrievePath(to);
   const sameOrigin = !isDifferentWebsite(to);
 
@@ -31,6 +31,7 @@ const Link = ({
   className,
   features,
   innerRef,
+  isActive,
   isIndex,
   onClick,
   target,
@@ -90,7 +91,7 @@ const Link = ({
       className={componentClassName}
       exact={isExact}
       innerRef={innerRef}
-      isActive={isActive(to)}
+      isActive={isActive ? isActive(to) : isActiveDefault(to)}
       target={target}
       to={path}
       onClick={clickHandler}
@@ -113,6 +114,7 @@ Link.propTypes = {
     ])
   ),
   innerRef: PropTypes.func,
+  isActive: PropTypes.func,
   isIndex: PropTypes.bool,
   onClick: PropTypes.func,
   target: PropTypes.oneOf([

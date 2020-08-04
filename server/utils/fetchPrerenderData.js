@@ -9,6 +9,7 @@ const defaultResources = (scope) => [
   `${scope}/ns/core`,
   `${scope}/c_a`,
   `${scope}/banners`,
+  `${scope}/forms/sessions`,
   `${scope}/n`,
   `${scope}/search`,
   `${scope}/menus`,

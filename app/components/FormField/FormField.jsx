@@ -22,6 +22,7 @@ import { optionsType } from './OptionsWrapper';
 import { formFieldError } from './index';
 
 const inputsPreferringPlaceholder = [
+  'email',
   'markdown',
   'text',
   'textarea',

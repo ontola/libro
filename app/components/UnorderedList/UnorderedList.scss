@@ -5,4 +5,8 @@
   .Modal > div > & {
     color: color('white');
   }
+
+  .Link__active {
+    font-weight: bold;
+  }
 }

@@ -81,6 +81,7 @@ export default [
   registerFormField(form.CheckboxInput, 'checkbox'),
   registerFormField(form.DateInput, 'date'),
   registerFormField(form.DateTimeInput, 'datetime-local'),
+  registerFormField(form.EmailInput, 'email'),
   registerFormField(form.FileInput, 'file'),
   registerFormField(form.LocationInput, 'location'),
   registerFormField(form.MarkdownInput, (props) => (props.theme === 'omniform' ? 'textarea' : 'markdown')),

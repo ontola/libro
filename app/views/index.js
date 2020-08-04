@@ -5,7 +5,6 @@
 import Action from './Action/index';
 import ActionBody from './ActionBody';
 import Activity from './Activity';
-import AppSignIn from './AppSignIn';
 import AppSignOut from './AppSignOut';
 import ArguHome from './ArguHome';
 import Argument from './Argument/index';
@@ -81,7 +80,6 @@ export function getViews() {
   return [
     ...ActionBody,
     ...Activity,
-    ...AppSignIn,
     ...AppSignOut,
     ...ArguHome,
     ...Thing,

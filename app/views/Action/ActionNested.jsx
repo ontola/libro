@@ -59,6 +59,9 @@ class ActionNested extends NavigatableAction {
         </Container>
       );
     }
+    const Appendix = this.props.appendix;
+    const closeModal = this.props.topology === alertDialogTopology
+      && (() => this.props.lrs.actions.ontola.hideDialog());
 
     return (
       <Container>
@@ -70,8 +73,11 @@ class ActionNested extends NavigatableAction {
             header
             cancelPath={retrievePath(this.props.object.value)}
             label={schema.target}
+            sessionStore={this.props.sessionStore}
+            onCancel={this.props.onCancel || closeModal}
             onDone={this.onDoneHandler}
           />
+          {Appendix && <Appendix />}
         </CardMain>
       </Container>
     );

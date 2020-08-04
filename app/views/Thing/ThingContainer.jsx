@@ -10,7 +10,6 @@ import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
 import { connectHighlighting, hightlightType } from '../../containers/Highlight';
-import SignInSwitcherContainer from '../../containers/SignInSwitcherContainer';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
 import meeting from '../../ontology/meeting';
@@ -33,9 +32,7 @@ const ThingContainer = ({ highlighted, subject }) => (
       <Property label={[argu.attachments, meeting.attachment]} />
     </CardRow>
     <CardAppendix>
-      <SignInSwitcherContainer subject={subject}>
-        <Property label={argu.topComment} />
-      </SignInSwitcherContainer>
+      <Property label={argu.topComment} />
     </CardAppendix>
   </Card>
 );

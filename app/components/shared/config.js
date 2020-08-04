@@ -8,7 +8,9 @@ export const headingVariants = [
   'alert',
   'default',
   'error',
+  'motion',
   'notice',
+  'question',
   'semantic',
 ];
 

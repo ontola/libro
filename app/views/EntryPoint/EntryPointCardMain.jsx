@@ -30,10 +30,10 @@ class EntryPointCardMain extends EntryPointBase {
 
     const { history, onCancel } = this.props;
 
-    if (!onCancel || history.length > 1) {
-      history.goBack();
-    } else {
+    if (onCancel) {
       onCancel(e);
+    } else {
+      history.goBack();
     }
   }
 

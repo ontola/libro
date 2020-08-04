@@ -12,6 +12,7 @@ export default {
   CollapsibleGroup: form('CollapsibleGroup'),
   DateInput: form('DateInput'),
   DateTimeInput: form('DateTimeInput'),
+  EmailInput: form('EmailInput'),
   Field: form('Field'),
   FileInput: form('FileInput'),
   FooterGroup: form('FooterGroup'),

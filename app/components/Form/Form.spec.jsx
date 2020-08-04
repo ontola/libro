@@ -16,6 +16,7 @@ import argu from '../../ontology/argu';
 import example from '../../ontology/example';
 import form from '../../ontology/form';
 import ll from '../../ontology/ll';
+import ontola from '../../ontology/ontola';
 import {
   cleanup,
   fireEvent,
@@ -28,7 +29,7 @@ const action = example.ns('new');
 const entryPoint = example.ns('new#EntryPoint');
 const formSelector = action.value;
 const schemaText = calculateFormFieldName(schema.text);
-const arguPassword = calculateFormFieldName(argu.password);
+const arguPassword = calculateFormFieldName(ontola.password);
 
 const mockStorage = (initialValues) => {
   const store = initialValues;
@@ -80,7 +81,7 @@ describe('Form', () => {
                   [rdfx.ns('_1')]: {
                     [rdfx.type]: form.PasswordInput,
                     [sh.datatype]: xsd.string,
-                    [sh.path]: argu.password,
+                    [sh.path]: ontola.password,
                   },
                 },
               },

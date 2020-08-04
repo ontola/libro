@@ -125,6 +125,12 @@ export default function generateLRS() {
     rdf.quad(schema.WebSite, rdfx.type, rdfs.Class),
     rdf.quad(schema.WebSite, rdfs.subClassOf, schema.Thing),
 
+    rdf.quad(ontola['Create::Session'], rdfx.type, rdfs.Class),
+    rdf.quad(ontola['Create::Session'], rdfs.subClassOf, schema.CreateAction),
+
+    rdf.quad(ontola['Create::User'], rdfx.type, rdfs.Class),
+    rdf.quad(ontola['Create::User'], rdfs.subClassOf, schema.CreateAction),
+
     rdf.quad(ontola['Create::Users::Password'], rdfx.type, rdfs.Class),
     rdf.quad(ontola['Create::Users::Password'], rdfs.subClassOf, schema.CreateAction),
 
@@ -278,9 +284,9 @@ export default function generateLRS() {
     rdf.quad(argu.opened, rdfs.label, rdf.literal('Opened', languages.en)),
     rdf.quad(argu.opened, rdfs.label, rdf.literal('Geopend', languages.nl)),
 
-    rdf.quad(argu.redirectUrl, rdfx.type, rdfx.Property),
-    rdf.quad(argu.redirectUrl, rdfs.label, rdf.literal('Redirect to', languages.en)),
-    rdf.quad(argu.redirectUrl, rdfs.label, rdf.literal('Redirect naar', languages.nl)),
+    rdf.quad(ontola.redirectUrl, rdfx.type, rdfx.Property),
+    rdf.quad(ontola.redirectUrl, rdfs.label, rdf.literal('Redirect to', languages.en)),
+    rdf.quad(ontola.redirectUrl, rdfs.label, rdf.literal('Redirect naar', languages.nl)),
 
     rdf.quad(ontola.sendConfirmationAction, rdfx.type, rdfx.Property),
     rdf.quad(

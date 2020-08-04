@@ -81,9 +81,6 @@ import CompSearchForm from './components/SearchForm/index';
 import CompSelectInputSelectInputField from './components/SelectInput/SelectInputField';
 import CompSelectInputSelectInputList from './components/SelectInput/SelectInputList';
 import CompSelectInputSelectInputWrapper from './components/SelectInput/SelectInputWrapper';
-import CompSignInFormSignInFormBase from './components/SignInForm/SignInFormBase';
-import CompSignInFormSignInFormCard from './components/SignInForm/SignInFormCard';
-import CompSignInFormSignInFormCardRow from './components/SignInForm/SignInFormCardRow';
 import CompSignInFormSignInFormLink from './components/SignInForm/SignInFormLink';
 import CompSignOutForm from './components/SignOutForm/SignOutFormLink';
 import CompSkipNavigation from './components/SkipNavigation/index';
@@ -178,9 +175,6 @@ export const componentMap = {
   [rdf.id(components.SelectInputSelectInputField)]: CompSelectInputSelectInputField,
   [rdf.id(components.SelectInputSelectInputList)]: CompSelectInputSelectInputList,
   [rdf.id(components.SelectInputSelectInputWrapper)]: CompSelectInputSelectInputWrapper,
-  [rdf.id(components.SignInFormSignInFormBase)]: CompSignInFormSignInFormBase,
-  [rdf.id(components.SignInFormSignInFormCard)]: CompSignInFormSignInFormCard,
-  [rdf.id(components.SignInFormSignInFormCardRow)]: CompSignInFormSignInFormCardRow,
   [rdf.id(components.SignInFormSignInFormLink)]: CompSignInFormSignInFormLink,
   [rdf.id(components.SignOutForm)]: CompSignOutForm,
   [rdf.id(components.SkipNavigation)]: CompSkipNavigation,

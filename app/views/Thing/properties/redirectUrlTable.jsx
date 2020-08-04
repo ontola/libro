@@ -6,7 +6,6 @@ import {
 import React from 'react';
 
 import Link from '../../../components/Link';
-import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { tableRowTopology } from '../../../topologies/TableRow';
 
@@ -24,7 +23,7 @@ const RedirectUrlTable = ({ linkedProp }) => {
 
 RedirectUrlTable.type = schema.Thing;
 
-RedirectUrlTable.property = [argu.redirectUrl, ontola.href];
+RedirectUrlTable.property = [ontola.redirectUrl, ontola.href];
 
 RedirectUrlTable.topology = tableRowTopology;
 

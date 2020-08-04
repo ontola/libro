@@ -77,6 +77,7 @@ export class Action extends NavigatableAction {
             cancelPath={this.props.object && retrievePath(this.props.object.value)}
             label={schema.target}
             sessionStore={this.props.sessionStore}
+            onCancel={this.props.onCancel}
             onDone={this.onDoneHandler}
           />
           {Appendix && <Appendix />}

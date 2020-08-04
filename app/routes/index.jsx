@@ -5,11 +5,9 @@ import { Route, Switch } from 'react-router';
 import ExternalLinkedObject from './ExternalLinkedObject';
 import LinkedObject from './LinkedObject';
 import DevBrowser from './DevBrowser';
-import SignIn from './SignIn';
 import Sandbox from './Sandbox';
 
 const subRoutes = [
-  <Route key="signin" path={['/u/sign_in', '/*/u/sign_in']} component={SignIn} />,
   <Route key="externalResources" path="/*/resource" component={ExternalLinkedObject} />,
   <Route key="linkedResources" path="*" component={LinkedObject} />,
 ];

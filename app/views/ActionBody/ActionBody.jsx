@@ -6,6 +6,7 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import CardContent from '../../components/Card/CardContent';
 import form from '../../ontology/form';
 import { allTopologies } from '../../topologies';
 
@@ -30,7 +31,7 @@ const ActionBody = ({
       whitelist,
     }}
     itemWrapper={contentWrapper}
-    itemWrapperOpts={{ noStartSpacing: true }}
+    itemWrapperOpts={contentWrapper === CardContent ? { noStartSpacing: true } : {}}
     label={form.pages}
   />
 );

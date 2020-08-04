@@ -17,13 +17,14 @@ const Customer = ({
   image,
 }) => {
   const Wrapper = url ? Link : React.Fragment;
+  const WrapperOpts = url ? {
+    style: { width: '100%' },
+    to: url?.value,
+  } : {};
 
   return (
     <GridItem>
-      <Wrapper
-        style={{ width: '100%' }}
-        to={url?.value}
-      >
+      <Wrapper {...WrapperOpts}>
         <div
           className="Customer"
           style={{ backgroundImage: `url("${image.value}")` }}
