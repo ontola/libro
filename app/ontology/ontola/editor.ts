@@ -16,15 +16,20 @@ export default {
     h2: editor('elements/h2'),
     h3: editor('elements/h3'),
     h4: editor('elements/h4'),
+    inline: editor('elements/inline'),
     link: editor('elements/link'),
+    listItem: editor('elements/listItem'),
+    orderedList: editor('elements/orderedList'),
     paragraph: editor('elements/paragraph'),
     resource: editor('elements/resource'),
+    unorderedList: editor('elements/unorderedList'),
   },
   formatting: {
     Bold: editor('formatting/Bold'),
     Italic: editor('formatting/Italic'),
     Underline: editor('formatting/Underline'),
   },
+  listTypes: [ editor('elements/orderedList'), editor('elements/unorderedList') ],
   styles: {
     h1: editor('styles/h1'),
     h2: editor('styles/h2'),
@@ -50,6 +55,7 @@ export default {
   /* Individuals */
   actions: {
     changeType: editor('actions/changeType'),
+    tab: editor('actions/tab'),
     shiftLineDown: editor('actions/shiftLineDown'),
     shiftLineUp: editor('actions/shiftLineUp'),
     toggleMark: editor('actions/toggleMark'),

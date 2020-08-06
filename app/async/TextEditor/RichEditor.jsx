@@ -9,7 +9,7 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createEditor } from 'slate';
+import { createEditor, Transforms } from 'slate';
 import { withHistory } from 'slate-history';
 import {
   Editable,
@@ -23,6 +23,8 @@ import { DefaultElement } from './elements/DefaultElement';
 import { LinkElement } from './elements/LinkElement';
 
 import Toolbar from './Toolbar';
+import { log } from '../../helpers/logging';
+import RTEditable from './RTEditable';
 
 const propTypes = {
   // editorState: PropTypes.shape({
@@ -60,6 +62,14 @@ const renderElement = (props) => {
       return <DefaultElement {...props} elementType="h3" />;
     case editor.elements.h4:
       return <DefaultElement {...props} elementType="h4" />;
+    case editor.elements.orderedList:
+      return <DefaultElement {...props} elementType="ol" />;
+    case editor.elements.unorderedList:
+      return <DefaultElement {...props} elementType="ul" />;
+    case editor.elements.listItem:
+      return <DefaultElement {...props} elementType="li" />;
+    case editor.elements.inline:
+      return <DefaultElement {...props} elementType="span" />
     case editor.elements.paragraph:
     default:
       return <DefaultElement {...props} elementType="p" />;
@@ -95,6 +105,9 @@ const propMap = {
 const useShortcuts = () => {
   const lrs = useLRS();
   const [shortcutList] = useResourceProperty(editor.localSettings, editor.shortcuts);
+  if (!shortcutList) {
+      return {};
+  }
   const shortcuts = seqToArray(lrs.store, shortcutList);
   const shortcutData = useResourceLinks(shortcuts, propMap);
 
@@ -107,6 +120,45 @@ const useShortcuts = () => {
   );
 };
 
+const editorElements = [
+  {
+    type: 'paragraph'
+  },
+  {
+    type: 'bold',
+    buttonImage: '',
+    buttonTooltip: 'Bold',
+    shortcut: 'mod+b'
+  },
+  {
+    type: 'h1',
+    buttonImage: '',
+    buttonTooltip: ''
+  },
+  {
+    type: 'h3',
+    enabled: false
+  },
+  {
+    type: 'orderedList',
+    buttonImage: '',
+    buttonTooltip: 'Ordered list'
+  }
+];
+
+const commandExtensions = [
+  {
+    name: 'toggleBold',
+    ontolaAction: editor.actions.toggleMark.value,
+    ontolaMark: editor.formatting.Bold.value,
+  },
+  {
+    name: 'toggleItalic',
+    ontolaAction: editor.actions.toggleMark.value,
+    ontolaMark: editor.formatting.Italic.value,
+  }
+]
+
 const RichEditor = ({
   plainValue,
 }) => {
@@ -114,29 +166,106 @@ const RichEditor = ({
   const styles = useStyles();
   const editable = React.useRef();
   const textEditor = React.useMemo(() => withHistory(withReact(createEditor())), []);
+  if (!textEditor.prevOntolaAction) {
+    textEditor.prevOntolaAction = { action: "", id: -1 };
+  } 
+  if (!textEditor.ontolaAction) {
+    textEditor.ontolaAction = { action: "", id: -1 };
+  } 
+
   const shortcutMap = useShortcuts();
+
   const [editorValue, setEditorValue] = React.useState([
     {
-      children: [{ text: plainValue || 'Test 0' }],
       type: editor.elements.h1,
+      children: [{ text: 'Rich Text Editor' }]
     },
     {
-      children: [{ text: plainValue || 'Test 1' }],
-      type: editor.elements.paragraph,
+      type: editor.elements.h2,
+      children: [{ text: 'Paragraph' }]
     },
     {
-      children: [{ text: plainValue || 'Test 2' }],
       type: editor.elements.paragraph,
+      children: [{ text: 'Hello, world!' }]
     },
     {
-      children: [{ text: plainValue || 'Test 3' }],
-      type: editor.elements.paragraph,
+      type: editor.elements.h2,
+      children: [{ text: 'Lists' }]
     },
     {
-      children: [{ text: plainValue || 'Test 4' }],
-      type: editor.elements.paragraph,
+      type: editor.elements.h3,
+      children: [{ text: 'Ordered list' }]
     },
+    {
+      type: editor.elements.orderedList,
+      children: [
+        {
+          type: editor.elements.listItem,
+              children: [{text: 'item 1' }]
+        },
+        {
+          type: editor.elements.listItem,
+              children: [{ text: 'item 2' }]
+        }
+      ]
+    },
+    {
+      type: editor.elements.h3,
+      children: [{ text: 'Unordered list' }]
+    },
+    {
+      type: editor.elements.unorderedList,
+      children: [
+        {
+          type: editor.elements.listItem,
+              children: [{text: 'item 1' }]
+        },
+        {
+          type: editor.elements.listItem,
+              children: [{ text: 'item 2' }]
+        }
+      ]
+    },
+    {
+      type: editor.elements.h3,
+      children: [{ text: 'Nested list' }]
+    },
+    {
+      type: editor.elements.unorderedList,
+      children: [
+        {
+          type: editor.elements.listItem,
+              children: [
+                {
+                  type: editor.elements.inline,
+                  children: [{ text: 'item 1'}]
+                },
+                {
+                  type: editor.elements.unorderedList,
+                  children: [
+                    {
+                      type: editor.elements.listItem,
+                          children: [{text: 'item 1a' }]
+                    },
+                    {
+                      type: editor.elements.listItem,
+                          children: [{ text: 'item 1b' }]
+                    }
+                  ]
+                } 
+              ]
+        },
+        {
+          type: editor.elements.listItem,
+              children: [{ text: 'item 2' }]
+        }
+      ]
+    }
   ]);
+
+  const slateOnChange = (value) => {
+    setEditorValue(value);
+  };
 
   const renderLeaf = React.useCallback(
     (props) => {
@@ -160,7 +289,7 @@ const RichEditor = ({
 
   return (
     <div className={`Field__input Markdown ${styles.root} ${styles.borderCollapse}`}>
-      <Slate
+      {/* <Slate
         editor={textEditor}
         value={editorValue}
         onChange={(v) => setEditorValue(v)}
@@ -172,19 +301,31 @@ const RichEditor = ({
           renderElement={React.useCallback(renderElement, [])}
           renderLeaf={renderLeaf}
           onKeyDown={(event) => {
-            if (event.altKey || event.ctrlKey || event.metaKey) {
-              console.log('RichEditor: modifier key', event.nativeEvent, 'shortcutMap:', shortcutMap);
+            if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
+              log('RichEditor: modifier key', event.nativeEvent, 'shortcutMap:', shortcutMap);
             }
-            for (const hotkey in shortcutMap) {
-              if (isHotkey(hotkey, event)) {
-                console.log(`RichEditor: hotkey ${hotkey} found`);
+            if (event.shiftKey && event.key === "Enter") {
+                event.preventDefault();
+                textEditor.insertFragment(<br/>);
+            }
+            const hotkey = Object.keys(shortcutMap).find((key) => isHotkey(key, event));
+            if (hotkey) {
+                log(`RichEditor: hotkey ${hotkey} found`);
+                log(editorValue);
                 event.preventDefault();
                 lrs.exec(shortcutMap[hotkey], { textEditor });
-                break;
-              }
             }
           }}
         />
+      </Slate> */}
+      <Slate
+        editor={textEditor}
+        value={editorValue}
+        onChange={slateOnChange}
+      >
+        <Toolbar />
+        <RTEditable commands={commandExtensions}/>
+        {/* <RichTextEditor default={true} action={textEditor.ontolaAction}/> */}
       </Slate>
     </div>
   );

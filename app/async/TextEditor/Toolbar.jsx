@@ -54,7 +54,8 @@ const MenuItem = ({ item, marks }) => {
   if (item.subject === editor.divider) {
     return <Divider />;
   } else if (item.subject === editor.paragraphStyleSelector) {
-    return <StyleSelector item={item} />;
+    // return <StyleSelector item={item} />;
+    return <span/>;
   }
 
   return <ToggleButton item={item} marks={marks} />;

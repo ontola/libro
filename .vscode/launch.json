@@ -2,22 +2,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Front Firefox",
-            "type": "firefox",
-            "request": "launch",
-            "reAttach": true,
-            "url": "https://argu.localdev/*",
-            "pathMappings": [{
-                "url": "webpack:///",
-                "path": "${webRoot}"
-            }]
-        },
-        {
             "name": "Attach Chrome Front",
             "type": "chrome",
             "request": "attach",
             "url": "https://argu.localdev/*",
-            "port": 9222,
             "sourceMaps": true,
             "webRoot": "${workspaceFolder}",
             "sourceMapPathOverrides": {
