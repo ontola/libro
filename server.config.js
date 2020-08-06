@@ -17,6 +17,7 @@ const config = {
   externals: [
     // Application libraries
     'body-parser',
+    'canvas',
     'connect-redis',
     'csurf',
     'dotenv',

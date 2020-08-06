@@ -1,13 +1,14 @@
+import { deserializeHTMLToDocument } from '@udecode/slate-plugins';
 import { Node } from 'slate';
-import { deserializeHTMLToDocument } from "@udecode/slate-plugins";
-import { DefaultPlugins } from "../plugins/DefaultPlugins";
+
+import { DefaultPlugins } from '../plugins/DefaultPlugins';
 
 const marked = require('marked');
 
 const renderer = {
-  paragraph: (text: string) => {
-    return '<p>' + text.replace(/(\n|\s)+/g, ' ') + '</p>\n';
-  }
+  paragraph: (text: string) => (
+    '<p>' + text.replace(/(\n|\s)+/g, ' ') + '</p>\n'
+  ),
 };
 marked.use({ renderer });
 
@@ -17,18 +18,18 @@ const edit = (regex: RegExp, opt: string = null) => {
   let _regex: string = regex.source || regex.toString();
   opt = opt || '';
   const obj = {
+    getRegex: () => {
+      return new RegExp(_regex, opt);
+    },
     replace: (name: string, val: RegExp) => {
       let _val: string = val.source || val.toString();
       _val = _val.replace(caret, '$1');
       _regex = _regex.replace(name, _val);
       return obj;
     },
-    getRegex: () => {
-      return new RegExp(_regex, opt);
-    }
   };
   return obj;
-}
+};
 
 export const deserializeMarkdown = (markdown: string): Node[] => {
   // 1. Using remark-slate:
@@ -57,6 +58,7 @@ export const deserializeMarkdown = (markdown: string): Node[] => {
   const tokens = lexer.lex(markdown);
   const html = marked.parser(tokens);
   // Note: <li> is normalized to <li><p> in withListItems
-  const parsed = new DOMParser().parseFromString(html, 'text/html');    
+  const parsed = new DOMParser().parseFromString(html, 'text/html');
+
   return deserializeHTMLToDocument(DefaultPlugins)(parsed.body)[0].children;
 };

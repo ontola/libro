@@ -1,9 +1,11 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { createEditor, Editor } from 'slate';
-import { Slate, withReact, ReactEditor } from 'slate-react';
 import { withHistory } from 'slate-history';
-import { EditableWithPlugins } from './EditableWithPlugins';
+import { ReactEditor, Slate, withReact } from 'slate-react';
+
 import { withPlugins } from '../transforms/withPlugins';
+
+import { EditableWithPlugins } from './EditableWithPlugins';
 
 var autoSaveTimeout: any;
 
@@ -11,7 +13,7 @@ export interface SlateWithPluginsProps {
 
 }
 
-export const RichTextEditor = ({ value, onAutoSave, onChange, toolbarStyle, ...props }: {[key: string]: any;}) => {
+export const RichTextEditor = ({ value, onAutoSave, onChange, toolbarStyle, ...props }: { [key: string]: any; }) => {
   const editor = useMemo(() => withPlugins(withHistory(withReact(createEditor()))), []);
 
   const [externalValue, setExternalValue] = useState(value);
@@ -30,7 +32,7 @@ export const RichTextEditor = ({ value, onAutoSave, onChange, toolbarStyle, ...p
   useEffect(() => {
     if (onAutoSave && ReactEditor.isFocused(editor)) {
       autoSaveTimeout = setTimeout(() => {
-          onAutoSave(editor,internalValue);
+          onAutoSave(editor, internalValue);
       }, 10000);
     }
   }, [internalValue, onAutoSave]);
@@ -40,13 +42,15 @@ export const RichTextEditor = ({ value, onAutoSave, onChange, toolbarStyle, ...p
       <Slate
         editor={editor}
         value={internalValue}
-        onChange={(value: any) => {
+        onChange={(newValue: any) => {
           clearTimeout(autoSaveTimeout);
-          setInternalValue(value);
-          if (onChange) onChange(editor, value);
+          setInternalValue(newValue);
+          if (onChange) {
+            onChange(editor, newValue);
+          }
         }}>
-          <EditableWithPlugins 
-            onBlur={e => {
+          <EditableWithPlugins
+            onBlur={() => {
               if (onAutoSave) {
                 onAutoSave(editor, internalValue);
               }
@@ -60,3 +64,5 @@ export const RichTextEditor = ({ value, onAutoSave, onChange, toolbarStyle, ...p
     </div>
   );
 };
+
+export default RichTextEditor;

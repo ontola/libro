@@ -13,6 +13,7 @@ import {
 import PlainEditor from './PlainEditor';
 import RichEditor from './RichEditor';
 import './TextEditor.scss';
+import RichTextEditorComp from './RichTextEditorComp';
 
 const propTypes = {
   autoFocus: PropTypes.bool,
@@ -84,6 +85,16 @@ class TextEditor extends Component {
     if (isMobile) {
       disableRich = true;
     }
+
+    return (
+      <div className="TextEditor">
+        <RichTextEditorComp
+          value={value}
+          placeholder={placeholder}
+          onChange={onChange}
+        />
+      </div>
+    );
 
     return (
       <div className="TextEditor">
