@@ -259,7 +259,7 @@ async function requestForBulk(ctx, iri, agent, write, resolve) {
     });
 
     const httpAgent = external ? https : http;
-    const url = external ? decodeURIComponent(iri) : route(decodeURIComponent(iri), true);
+    const url = external ? iri : route(iri, true);
 
     return httpAgent.request(url, requestOptions, (backendRes) => {
       if (!backendRes.headers['content-type']?.includes('application/hex+x-ndjson')) {

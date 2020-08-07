@@ -45,10 +45,10 @@ const getResources = (ctx, includes) => {
   const resources = defaultResources(ctx.manifest.scope);
   if (ctx.request.url?.length > 1) {
     const { origin } = new URL(scope);
-    resources.unshift(origin + ctx.request.url);
+    resources.unshift(encodeURIComponent(origin + ctx.request.url));
   }
   if (includes) {
-    resources.push(...includes.split(','));
+    resources.push(...includes.split(',').map(encodeURIComponent));
   }
 
   return resources;
