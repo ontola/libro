@@ -20,6 +20,9 @@ DateTimeRenderer.type = rdfs.Literal;
 
 DateTimeRenderer.topology = allTopologies;
 
-DateTimeRenderer.property = xsd.date;
+DateTimeRenderer.property = [
+  xsd.dateTime,
+  xsd.dateTimeStamp,
+];
 
 export default register(DateTimeRenderer);
