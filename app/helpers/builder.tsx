@@ -4,7 +4,7 @@ import { normalizeType } from 'link-lib';
 import { LabelType, LinkReduxLRSType, Property, Resource, useLRS } from 'link-redux';
 import { PropertyPropTypes } from 'link-redux/dist-types/components/Property';
 import { ResourcePropTypes } from 'link-redux/dist-types/components/Resource';
-import React from 'react';
+import React, { ReactElement } from 'react';
 import * as ReactIs from 'react-is';
 
 import { componentMap } from '../components';
@@ -39,10 +39,14 @@ export function forceRender(label: NamedNode|NamedNode[]): PropertyPropTypes & P
   });
 }
 
-type ReactComp = React.ReactChild;
+type ReactComp = React.ReactElement<any, any> | null;
 interface DataProps {
   [k: string]: string | boolean | SomeTerm;
 }
+
+const isElement = (p: any): p is ReactElement<any, any> => {
+  return ReactIs.isElement(p);
+};
 
 const component = (_: LinkReduxLRSType) => {
   function top<P = DataProps>(t: Node, props?: PropertyProps & P, children?: ReactComp[]): ReactComp;
@@ -63,7 +67,7 @@ const component = (_: LinkReduxLRSType) => {
   return top;
 };
 
-const getChildProps = (
+const getPropertyProps = (
   lrs: LinkReduxLRSType | undefined,
   label: PropertyPropTypes | NamedNode | NamedNode[],
 ): PropertyPropTypes => {
@@ -81,23 +85,35 @@ const getChildProps = (
 };
 
 export const property = (lrs?: LinkReduxLRSType) => (
-  props: PropertyPropTypes | NamedNode | NamedNode[] | ReactComp,
+  label: PropertyPropTypes | NamedNode | NamedNode[] | ReactComp,
+  props?: {} | ReactComp | ReactComp[],
+  children?: ReactComp[],
 ): ReactComp => {
-  if (!props || typeof props === 'string' || typeof props === 'number') {
-    return props;
+  if (!label || typeof label === 'string' || typeof label === 'number') {
+    return label;
   }
 
-  if (ReactIs.isElement(props)) {
-    return props;
+  if (isElement(label)) {
+    return label;
   }
 
-  if (ReactIs.isValidElementType(props)) {
-    return React.createElement(props, null, null);
+  const propsAreChildren = ReactIs.isElement(props) || ReactIs.isValidElementType(props);
+  const childProps = propsAreChildren ? {} : props || {};
+  const childrenNormalized = propsAreChildren
+    ? props : (!children || children.length === 0)
+    ? undefined : children;
+
+  if (ReactIs.isValidElementType(label)) {
+    return React.createElement(label, null, childrenNormalized || null);
   }
 
-  const childProps = getChildProps(lrs, props);
+  const propertyProps = getPropertyProps(lrs, label);
 
-  return <Property key={normalizeType(childProps.label).join(',')} {...childProps} />;
+  return (
+    <Property key={normalizeType(propertyProps.label).join(',')} {...propertyProps} {...childProps}>
+      {childrenNormalized}
+    </Property>
+  );
 };
 
 export const properties = (lrs?: LinkReduxLRSType) => (
@@ -111,7 +127,7 @@ export const properties = (lrs?: LinkReduxLRSType) => (
         return p;
       }
 
-      if (ReactIs.isElement(p)) {
+      if (isElement(p)) {
         return React.createElement(React.Fragment, { key: i }, p);
       }
 
@@ -119,7 +135,7 @@ export const properties = (lrs?: LinkReduxLRSType) => (
         return React.createElement(p, { key: i }, null);
       }
 
-      const childProps = getChildProps(lrs, p);
+      const childProps = getPropertyProps(lrs, p);
 
       return <Property key={normalizeType(childProps.label).join(',') + i} {...childProps} />;
     }),
