@@ -10,6 +10,7 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import ErrorBoundary from '../../components/ErrorBoundary';
 import { seqToArr } from '../../helpers/data';
 import { allTopologies } from '../../topologies';
 
@@ -43,18 +44,20 @@ export function Seq({
 
   const elements = primary.map((s, i) => (
     <ItemWrapper key={s.toString()} {...itemWrapperOpts}>
-      <Resource
-        {...childProps}
-        columns={columns}
-        count={sequences.length}
-        data-test={`Seq-${i}-${s.value}`}
-        depth={depth}
-        first={sequences[0].object}
-        key={`${subject}-${s}`}
-        last={sequences[sequences.length - 1].object}
-        sequenceIndex={i}
-        subject={s}
-      />
+      <ErrorBoundary data-debug={s.toString()}>
+        <Resource
+          {...childProps}
+          columns={columns}
+          count={sequences.length}
+          data-test={`Seq-${i}-${s.value}`}
+          depth={depth}
+          first={sequences[0].object}
+          key={`${subject}-${s}`}
+          last={sequences[sequences.length - 1].object}
+          sequenceIndex={i}
+          subject={s}
+        />
+      </ErrorBoundary>
     </ItemWrapper>
   ));
 

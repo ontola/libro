@@ -14,7 +14,7 @@ export interface TopologyState {
   error?: Error;
 }
 
-export const renderErrorComp = (self: React.Component & TopologyState) => () => {
+export const renderErrorComp = (self: React.Component<{}, TopologyState>) => () => {
   const ErrorRenderer = ({
     context,
     error,
@@ -44,7 +44,7 @@ export const renderErrorComp = (self: React.Component & TopologyState) => () => 
   return (
     <ErrorRenderer
       context={self.context}
-      error={self.error}
+      error={self.state.error}
       props={self.props}
       reset={() => self.setState({ error: undefined })}
     />
