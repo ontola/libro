@@ -2,7 +2,7 @@ import { Container as MaterialContainer } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { sizes } from '../../components/shared/config';
+import { Size, sizes } from '../../components/shared/config';
 import argu from '../../ontology/argu';
 import Topology from '../Topology';
 
@@ -10,46 +10,50 @@ import './Container.scss';
 
 export const containerTopology = argu.container;
 
+interface Props {
+  size: Size;
+}
+
 /**
  * Centers the content and defines width
  * @returns {component} Container with children
  */
-class Container extends Topology {
-  static propTypes = {
+class Container extends Topology<Props> {
+  public static propTypes = {
     children: PropTypes.node.isRequired,
     size: PropTypes.oneOf(sizes),
   };
 
-  static defaultProps = {
+  public static defaultProps = {
     size: 'medium',
   };
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
 
     this.topology = containerTopology;
   }
 
-  maxWidth() {
-    if (this.props.size === 'large') {
+  public renderContent() {
+    return this.wrap((
+      <MaterialContainer maxWidth={this.maxWidth()} {...this.props} />
+    ));
+  }
+
+  private maxWidth() {
+    if (this.props.size === Size.large) {
       return 'xl';
     }
-    if (this.props.size === 'small') {
+    if (this.props.size === Size.small) {
       return 'md';
     }
 
     return 'lg';
   }
-
-  renderContent() {
-    return this.wrap((
-      <MaterialContainer maxWidth={this.maxWidth()} {...this.props} />
-    ));
-  }
 }
 
-export const LargeContainer = ({ children }) => (
-  <Container size="large">{children}</Container>
+export const LargeContainer: React.FC = ({ children }) => (
+  <Container size={Size.large}>{children}</Container>
 );
 
 LargeContainer.propTypes = {
