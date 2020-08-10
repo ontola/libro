@@ -33,14 +33,14 @@ import { fullResourceTopology } from '../../topologies/FullResource';
 
 const InterventionFull = ({
   employment,
-  partOf,
+  renderPartOf,
 }) => {
   const [image] = useResourceProperty(employment, schema.image);
 
   return (
     <React.Fragment>
       <Container>
-        {partOf && <Property label={schema.isPartOf} />}
+        {renderPartOf && <Property label={schema.isPartOf} />}
         <Property label={argu.trashedAt} />
         <Property label={ontola.publishAction} onLoad={() => null} />
         <CardMain>
@@ -155,7 +155,7 @@ InterventionFull.mapDataToProps = {
 
 InterventionFull.propTypes = {
   employment: linkType,
-  partOf: PropTypes.bool,
+  renderPartOf: PropTypes.bool,
 };
 
 export default register(InterventionFull);

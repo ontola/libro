@@ -23,13 +23,13 @@ import { containerTopology } from '../../topologies/Container';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { components } from '../../components';
 
-const ThingFull = ({ partOf }) => {
+const ThingFull = ({ renderPartOf }) => {
   const { p, c } = useViewBuilderToolkit();
 
   return (
     c(components.ResourceBoundary, [
       c(containerTopology, [
-        partOf && p(schema.isPartOf),
+        renderPartOf && p(schema.isPartOf),
         p(argu.trashedAt),
         p(withoutLoading(ontola.publishAction)),
         c(cardMainTopology, { 'data-test': 'Thing-thing' }, [
@@ -85,7 +85,7 @@ ThingFull.topology = [
 ];
 
 ThingFull.propTypes = {
-  partOf: PropTypes.bool,
+  renderPartOf: PropTypes.bool,
 };
 
 export default register(ThingFull);

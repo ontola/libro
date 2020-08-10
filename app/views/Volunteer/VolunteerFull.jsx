@@ -17,9 +17,9 @@ import CardMain from '../../topologies/Card/CardMain';
 import ContentDetails from '../../topologies/ContentDetails';
 import HeaderWithMenu from '../../components/HeaderWithMenu';
 
-const VolunteerFull = ({ partOf }) => (
+const VolunteerFull = ({ renderPartOf }) => (
   <Container>
-    {partOf && <Property label={schema.isPartOf} />}
+    {renderPartOf && <Property label={schema.isPartOf} />}
     <CardMain>
       <CardContent endSpacing>
         <HeaderWithMenu
@@ -51,7 +51,7 @@ VolunteerFull.type = teamGL.Volunteer;
 VolunteerFull.topology = fullResourceTopology;
 
 VolunteerFull.propTypes = {
-  partOf: PropTypes.bool,
+  renderPartOf: PropTypes.bool,
 };
 
 export default register(VolunteerFull);

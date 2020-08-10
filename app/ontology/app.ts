@@ -40,7 +40,7 @@ export default {
   /* properties */
   bannerMembers: app('banners?page=1#members'),
   c_a: app('c_a'),
-  currentPage: app('currentPage'),
+  collectionResource: app('collectionResource'),
   empty: app('empty'),
   menu: app('menu'),
   n: app('n'),

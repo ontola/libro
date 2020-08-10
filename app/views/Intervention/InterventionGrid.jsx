@@ -17,7 +17,7 @@ import DetailsBar from '../../topologies/DetailsBar';
 import AttributeList from '../../topologies/AttributeList';
 import { gridTopology } from '../../topologies/Grid';
 
-const InterventionGrid = ({ partOf }) => (
+const InterventionGrid = ({ renderPartOf }) => (
   <CardFixed>
     <LDLink>
       <Property label={ontola.coverPhoto} />
@@ -43,7 +43,7 @@ const InterventionGrid = ({ partOf }) => (
     </LDLink>
     <DetailsBar>
       <Property hideName label={schema.creator} />
-      {partOf && <Property label={schema.isPartOf} />}
+      {renderPartOf && <Property label={schema.isPartOf} />}
       <LinkedDetailDate />
       <Property label={argu.pinnedAt} />
       <Property short label={argu.expiresAt} />
@@ -58,7 +58,7 @@ InterventionGrid.type = rivm.Intervention;
 InterventionGrid.topology = gridTopology;
 
 InterventionGrid.propTypes = {
-  partOf: PropTypes.bool,
+  renderPartOf: PropTypes.bool,
 };
 
 export default register(InterventionGrid);

@@ -32,7 +32,7 @@ export const messages = defineMessages({
 const getPagination = (Wrapper, topology) => {
   const DefaultPagination = (props) => {
     const {
-      currentPage,
+      collectionResource,
       first,
       last,
       setCurrentPage,
@@ -48,7 +48,7 @@ const getPagination = (Wrapper, topology) => {
     const baseUrl = new URL(first.value);
     const firstPage = Number.parseInt(baseUrl.searchParams.get(pageProp), 10);
     const lastPage = Number.parseInt(new URL(last.value).searchParams.get(pageProp), 10);
-    const currentOrFirst = currentPage?.value || first.value;
+    const currentOrFirst = collectionResource?.value || first.value;
     const currentPageUrl = new URL(currentOrFirst);
     const currentPageNr = Number.parseInt(currentPageUrl.searchParams.get(pageProp), 10);
 
@@ -181,7 +181,7 @@ const getPagination = (Wrapper, topology) => {
   };
 
   DefaultPagination.propTypes = {
-    currentPage: linkType,
+    collectionResource: linkType,
     first: linkType,
     last: linkType,
     setCurrentPage: PropTypes.func,

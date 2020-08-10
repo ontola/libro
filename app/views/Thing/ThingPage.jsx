@@ -16,7 +16,7 @@ const ThingPage = (props) => (
     <Metadata />
     <Property label={ontola.coverPhoto} onLoad={() => null} />
     <FullResource>
-      <Resource partOf {...props} />
+      <Resource renderPartOf {...props} />
     </FullResource>
   </React.Fragment>
 );

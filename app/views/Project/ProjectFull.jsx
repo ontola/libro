@@ -27,7 +27,7 @@ import Grid from '../../topologies/Grid';
 
 const ProjectFull = ({
   currentPhase,
-  partOf,
+  renderPartOf,
   selectedPhase,
 }) => {
   const renderPhase = selectedPhase || currentPhase;
@@ -35,7 +35,7 @@ const ProjectFull = ({
   return (
     <React.Fragment>
       <Container>
-        {partOf && <Property label={schema.isPartOf} />}
+        {renderPartOf && <Property label={schema.isPartOf} />}
         <Property label={argu.trashedAt} />
         <Property label={ontola.publishAction} onLoad={() => null} />
         <CardMain>
@@ -99,7 +99,7 @@ ProjectFull.mapDataToProps = {
 
 ProjectFull.propTypes = {
   currentPhase: linkType,
-  partOf: PropTypes.bool,
+  renderPartOf: PropTypes.bool,
   selectedPhase: linkType,
 };
 

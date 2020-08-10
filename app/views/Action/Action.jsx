@@ -42,7 +42,7 @@ export class Action extends NavigatableAction {
     appendix: PropTypes.func,
     navigate: PropTypes.func,
     object: subjectType,
-    partOf: PropTypes.bool,
+    renderPartOf: PropTypes.bool,
     subject: subjectType,
   };
 
@@ -52,7 +52,7 @@ export class Action extends NavigatableAction {
     if (invalidStatusIds.includes(rdf.id(this.props.actionStatus))) {
       return (
         <Container>
-          {this.props.partOf && <Property label={schema.isPartOf} />}
+          {this.props.renderPartOf && <Property label={schema.isPartOf} />}
           <CardMain>
             <CardContent endSpacing>
               <Property label={schema.name} />
@@ -67,7 +67,7 @@ export class Action extends NavigatableAction {
     return (
       <Container>
         <Metadata />
-        {this.props.partOf && <Property label={schema.isPartOf} />}
+        {this.props.renderPartOf && <Property label={schema.isPartOf} />}
         <CardMain>
           <CardContent>
             <Property label={schema.name} />

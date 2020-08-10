@@ -13,10 +13,10 @@ import Container from '../../topologies/Container';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import ContentDetails from '../../topologies/ContentDetails';
 
-const DepartmentFull = ({ partOf }) => (
+const DepartmentFull = ({ renderPartOf }) => (
   <React.Fragment>
     <Container>
-      {partOf && <Property label={schema.isPartOf} />}
+      {renderPartOf && <Property label={schema.isPartOf} />}
       <Property label={argu.trashedAt} />
       <CardMain data-test="Thing-thing">
         <CardContent noSpacing>
@@ -51,7 +51,7 @@ DepartmentFull.type = teamGL.Department;
 DepartmentFull.topology = fullResourceTopology;
 
 DepartmentFull.propTypes = {
-  partOf: PropTypes.bool,
+  renderPartOf: PropTypes.bool,
 };
 
 export default register(DepartmentFull);

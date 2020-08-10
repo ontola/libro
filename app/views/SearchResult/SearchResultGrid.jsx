@@ -6,13 +6,13 @@ import React from 'react';
 
 import ontola from '../../ontology/ontola';
 import { gridTopology } from '../../topologies/Grid';
-import { useCurrentPage } from '../../hooks/useCurrentPage';
+import { useCurrentCollectionResource } from '../../hooks/useCurrentCollectionResource';
 
 export const SearchResultGrid = () => {
-  const [_, setCurrentPage] = useCurrentPage(true);
+  const [_, setCollectionResource] = useCurrentCollectionResource(true);
 
   return (
-    <Property label={ontola.query} setCurrentPage={setCurrentPage} />
+    <Property label={ontola.query} setCurrentPage={setCollectionResource} />
   );
 };
 

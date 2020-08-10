@@ -10,17 +10,17 @@ import { pageTopology } from '../../topologies/Page';
 
 import { CollectionTypes } from './types';
 
-const CollectionPage = (props) => (
+const CollectionFullPage = (props) => (
   <React.Fragment>
     <Metadata />
     <FullResource>
-      <Resource partOf redirectPagination {...props} />
+      <Resource redirectPagination renderPartOf {...props} />
     </FullResource>
   </React.Fragment>
 );
 
-CollectionPage.type = CollectionTypes;
+CollectionFullPage.type = CollectionTypes;
 
-CollectionPage.topology = pageTopology;
+CollectionFullPage.topology = pageTopology;
 
-export default register(CollectionPage);
+export default register(CollectionFullPage);

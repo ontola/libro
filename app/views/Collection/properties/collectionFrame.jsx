@@ -5,7 +5,6 @@ import {
   Resource,
   linkType,
   register,
-  topologyType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -31,10 +30,10 @@ const getFrame = (wrapper, topology) => {
     body,
     collectionDisplay,
     collectionDisplayFromData,
+    collectionResource,
     columns,
     header,
     pagination,
-    currentPage,
     setCurrentPage,
   }) => {
     let Wrapper;
@@ -69,7 +68,7 @@ const getFrame = (wrapper, topology) => {
                     {columns.map((property) => (
                       <Resource
                         forceRender
-                        currentPage={currentPage}
+                        collectionResource={collectionResource}
                         key={property.value}
                         setCurrentPage={setCurrentPage}
                         sortOptions={sortOptions.filter((option) => option.item === property)}
@@ -139,10 +138,11 @@ const getFrame = (wrapper, topology) => {
     body: PropTypes.node,
     collectionDisplay: linkType,
     collectionDisplayFromData: linkType,
+    collectionResource: linkType,
     columns: PropTypes.arrayOf(RDFTypes.namedNode),
+    header: PropTypes.node,
     pagination: PropTypes.node,
     setCurrentPage: PropTypes.func,
-    topology: topologyType,
   };
 
   return collectionFrame;

@@ -22,7 +22,7 @@ import DefaultPagination from './properties/defaultPagination';
 import CollectionCardAppendix from './CollectionCardAppendix';
 import CollectionInline from './CollectionInline';
 import CollectionNavbar from './CollectionNavbar';
-import CollectionPage from './CollectionPage';
+import CollectionFullPage from './CollectionFullPage';
 import CollectionSection from './CollectionSection';
 import CollectionTableCell from './CollectionTableCell';
 import Header from './properties/header';
@@ -77,7 +77,7 @@ export default [
   CollectionCardAppendix,
   CollectionInline,
   ...CollectionFrame,
-  CollectionPage,
+  CollectionFullPage,
   ...CollectionSection,
   CreateAction,
   ...FilterFields,

@@ -22,10 +22,10 @@ import DetailsBar from '../../topologies/DetailsBar';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import { defaultMenus } from '../common';
 
-const MotionFull = ({ partOf }) => (
+const MotionFull = ({ renderPartOf }) => (
   <React.Fragment>
     <Container>
-      {partOf && <Property label={schema.isPartOf} />}
+      {renderPartOf && <Property label={schema.isPartOf} />}
       <Property label={argu.trashedAt} />
       <Property label={ontola.publishAction} onLoad={() => null} />
       <CardMain>
@@ -72,7 +72,7 @@ MotionFull.type = [argu.Motion, opengov.Motion];
 MotionFull.topology = fullResourceTopology;
 
 MotionFull.propTypes = {
-  partOf: PropTypes.bool,
+  renderPartOf: PropTypes.bool,
 };
 
 export default register(MotionFull);

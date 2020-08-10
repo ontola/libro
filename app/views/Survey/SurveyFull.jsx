@@ -19,10 +19,10 @@ import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
 
-const SurveyFull = ({ partOf }) => (
+const SurveyFull = ({ renderPartOf }) => (
   <React.Fragment>
     <Container>
-      {partOf && <Property label={schema.isPartOf} />}
+      {renderPartOf && <Property label={schema.isPartOf} />}
       <Property label={argu.trashedAt} />
       <Property label={ontola.publishAction} onLoad={() => null} />
       <CardMain data-test="Thing-thing">
@@ -62,7 +62,7 @@ SurveyFull.type = [argu.Survey];
 SurveyFull.topology = fullResourceTopology;
 
 SurveyFull.propTypes = {
-  partOf: PropTypes.bool,
+  renderPartOf: PropTypes.bool,
 };
 
 export default register(SurveyFull);

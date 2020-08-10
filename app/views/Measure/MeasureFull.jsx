@@ -24,10 +24,10 @@ import DetailsBar from '../../topologies/DetailsBar';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import { defaultMenus } from '../common';
 
-const MeasureFull = ({ partOf }) => (
+const MeasureFull = ({ renderPartOf }) => (
   <React.Fragment>
     <Container>
-      {partOf && <Property label={schema.isPartOf} />}
+      {renderPartOf && <Property label={schema.isPartOf} />}
       <Property label={argu.trashedAt} />
       <Property label={ontola.publishAction} onLoad={() => null} />
       <CardMain>
@@ -70,7 +70,7 @@ MeasureFull.type = rivm.Measure;
 MeasureFull.topology = fullResourceTopology;
 
 MeasureFull.propTypes = {
-  partOf: PropTypes.bool,
+  renderPartOf: PropTypes.bool,
 };
 
 export default register(MeasureFull);

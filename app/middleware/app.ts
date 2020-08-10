@@ -99,8 +99,8 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
         const collectionDisplay = store.getResourceProperty<NamedNode>(subject!, ontola.collectionDisplay)!;
         const renderBase = pageRenderBase(subject!, baseCollection, collectionDisplay);
         const delta: Quadruple[] = newPage && newPage !== renderBase
-          ? [[renderBase, app.currentPage, newPage, ontola.replace]]
-          : [[renderBase, app.currentPage, sp.Variable, ontola.remove]];
+          ? [[renderBase, app.collectionResource, newPage, ontola.replace]]
+          : [[renderBase, app.collectionResource, sp.Variable, ontola.remove]];
 
         return store.processDelta(delta, true);
       }

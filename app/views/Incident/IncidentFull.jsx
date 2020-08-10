@@ -23,10 +23,10 @@ import DetailsBar from '../../topologies/DetailsBar';
 import { defaultMenus } from '../common';
 import { fullResourceTopology } from '../../topologies/FullResource';
 
-const IncidentFull = ({ partOf }) => (
+const IncidentFull = ({ renderPartOf }) => (
   <React.Fragment>
     <Container>
-      {partOf && <Property label={schema.isPartOf} />}
+      {renderPartOf && <Property label={schema.isPartOf} />}
       <Property label={argu.trashedAt} />
       <Property label={ontola.publishAction} onLoad={() => null} />
       <CardMain>
@@ -72,7 +72,7 @@ IncidentFull.type = rivm.Incident;
 IncidentFull.topology = fullResourceTopology;
 
 IncidentFull.propTypes = {
-  partOf: PropTypes.bool,
+  renderPartOf: PropTypes.bool,
 };
 
 export default register(IncidentFull);
