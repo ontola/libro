@@ -93,7 +93,7 @@ EntryPointForm.propTypes = {
   onSubmit: PropTypes.func,
   sessionStore: PropTypes.objectOf(PropTypes.any),
   theme: PropTypes.string,
-  url: PropTypes.func,
+  url: PropTypes.string,
   whitelist: PropTypes.arrayOf(PropTypes.number),
 };
 
