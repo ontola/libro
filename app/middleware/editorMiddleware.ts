@@ -1,6 +1,6 @@
 import rdf, { NamedNode } from '@ontologies/core';
 import rdfx from '@ontologies/rdf';
-import schema, { text } from '@ontologies/schema';
+import schema from '@ontologies/schema';
 import sh from '@ontologies/shacl';
 import { actionIRI, createActionPair } from '@rdfdev/actions';
 import { add } from '@rdfdev/delta';
@@ -11,13 +11,12 @@ import {
 } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 import React from 'react';
-import { Editor, Transforms, Node, Path } from 'slate';
+import { Editor, Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
 
 import fa4 from '../ontology/fa4';
 import ontola from '../ontology/ontola';
 import editor from '../ontology/ontola/editor';
-import { ApplyCommand } from '../async/TextEditor/RichEditor';
 
 interface EditorActionParams {
   mark: NamedNode;
@@ -42,8 +41,6 @@ const boldButton = rdf.blankNode();
 const italicButton = rdf.blankNode();
 const underlineButton = rdf.blankNode();
 const linkButton = rdf.blankNode();
-const orderedListButton = rdf.blankNode();
-const unorderedListButton = rdf.blankNode();
 
 const paragraphStyleList = rdf.blankNode();
 const paragraphStyleParagraph = rdf.blankNode();
@@ -88,21 +85,11 @@ const changeTypeH4Action = rdf.namedNode(actionIRI(
   editor.actions.changeType.value,
   { type: editor.elements.h4 },
 ));
-const changeTypeOrderedListAction = rdf.namedNode(actionIRI(
-  editor.actions.changeType.value,
-  { type: editor.elements.orderedList },
-));
-const changeTypeUnorderedListAction = rdf.namedNode(actionIRI(
-  editor.actions.changeType.value,
-  { type: editor.elements.unorderedList },
-));
 
 const shiftLineDown = editor.actions.shiftLineDown;
 const shiftLineUp = editor.actions.shiftLineUp;
 const shiftLineDownShortcut = rdf.blankNode();
 const shiftLineUpShortcut = rdf.blankNode();
-const tabShortcut = rdf.blankNode();
-const tabAction = editor.actions.tab;
 
 const editorSeed = [
   add(editor.divider, rdfx.type, editor.Divider),
@@ -170,7 +157,6 @@ const editorSeed = [
   add(shortcutMapping, rdfx.ns('_6'), h4Shortcut),
   add(shortcutMapping, rdfx.ns('_7'), shiftLineUpShortcut),
   add(shortcutMapping, rdfx.ns('_8'), shiftLineDownShortcut),
-  add(shortcutMapping, rdfx.ns('_9'), tabShortcut),
 
   add(boldShortcut, rdfx.type, editor.Shortcut),
   add(boldShortcut, editor.defaultCombination, rdf.literal('mod+b')),
@@ -212,10 +198,6 @@ const editorSeed = [
   add(shiftLineUpShortcut, editor.defaultCombination, rdf.literal('alt+shift+up')),
   add(shiftLineUpShortcut, ontola.action, shiftLineUp),
 
-  add(tabShortcut, rdfx.type, editor.Shortcut),
-  add(tabShortcut, editor.defaultCombination, rdf.literal('tab')),
-  add(tabShortcut, ontola.action, tabAction),
-
   // The marks currently active in the editor.
   add(marks, rdfx.type, rdfx.Seq),
 
@@ -225,10 +207,8 @@ const editorSeed = [
   add(toolbar, rdfx.ns('_12'), underlineButton),
   add(toolbar, rdfx.ns('_20'), editor.divider),
   add(toolbar, rdfx.ns('_21'), editor.paragraphStyleSelector),
-//   add(toolbar, rdfx.ns('_30'), editor.divider),
-  add(toolbar, rdfx.ns('_30'), orderedListButton),
-  add(toolbar, rdfx.ns('_31'), unorderedListButton),
-  add(toolbar, rdfx.ns('_40'), linkButton),
+  add(toolbar, rdfx.ns('_30'), editor.divider),
+  add(toolbar, rdfx.ns('_31'), linkButton),
 
   add(boldButton, rdfx.type, ontola.MenuItem),
   add(boldButton, schema.image, fa4.ns('bold')),
@@ -248,20 +228,6 @@ const editorSeed = [
   add(underlineButton, schema.name, rdf.literal('Onderstrepen', 'nl')),
   add(underlineButton, editor.mark, editor.formatting.Underline),
   add(underlineButton, ontola.action, toggleMarkUnderlineAction),
-
-  add(orderedListButton, rdfx.type, ontola.MenuItem),
-  add(orderedListButton, schema.image, fa4.ns('underline')),
-  add(orderedListButton, schema.name, rdf.literal('Ordered list', 'en')),
-  add(orderedListButton, schema.name, rdf.literal('Geordende lijst', 'nl')),
-  add(orderedListButton, editor.mark, editor.formatting.Underline),
-  add(orderedListButton, ontola.action, changeTypeOrderedListAction),
-
-  add(unorderedListButton, rdfx.type, ontola.MenuItem),
-  add(unorderedListButton, schema.image, fa4.ns('underline')),
-  add(unorderedListButton, schema.name, rdf.literal('Unordered list', 'en')),
-  add(unorderedListButton, schema.name, rdf.literal('Ongeordende lijst', 'nl')),
-  add(unorderedListButton, editor.mark, editor.formatting.Underline),
-  add(unorderedListButton, ontola.action, changeTypeUnorderedListAction),
 
   add(linkButton, rdfx.type, ontola.MenuItem),
   add(linkButton, schema.image, fa4.ns('chain')),
@@ -328,17 +294,6 @@ const isMarkActive = (textEditor: Editor, format: NamedNode) => {
   return currentMarks ? currentMarks[rdf.toNQ(format)] === true : false;
 };
 
-const getAncestor = (textEditor: Editor, path: Path, type: NamedNode) => {
-  let node;
-  let newPath = path.slice(0);
-  do {
-    node = Node.parent(textEditor, path);
-    newPath.pop();
-  } while(node && (!node.type || node.type !== type));
-  return { node: node, path: newPath };
-};
-
-var counter = 0;
 const editorMiddleware = (): MiddlewareFn<React.ComponentType<any>> =>
   (store: LinkReduxLRSType): MiddlewareWithBoundLRS => {
 
@@ -357,116 +312,23 @@ const editorMiddleware = (): MiddlewareFn<React.ComponentType<any>> =>
     console.log('editor action', base, params, opts);
 
     switch (base) {
-
       case editor.actions.toggleMark:
         return new Promise((resolve) => {
-
-          if (textEditor.mergedCommands) {
-            console.log(editor.actions.toggleMark.value, params.mark!.value)
-            const cmd = textEditor.mergedCommands.find((e: any) => {
-              return e.ontolaAction && e.ontolaMark && e.ontolaAction === editor.actions.toggleMark.value && e.ontolaMark === params.mark!.value
-            })
-            if (cmd) {
-              cmd.apply(textEditor)
-            }
-          }
-        
-          // if (textEditor.mergedCommands) {
-          //   console.log(editor.actions.toggleMark)
-          //   const cmd = textEditor.mergedCommands.find((e: any) => e.ontolaAction && e.ontolaMark && e.ontolaAction.value === editor.actions.toggleMark.value && e.ontolaMark === params.mark!)
-          //   if (cmd) {
-          //     cmd.apply(textEditor)
-          //   }
-          // }
-
-          // toggleMark(textEditor, params.mark!);
-          // textEditor.ontolaAction = { action: params.mark, id: counter++ };
-          // textEditor.ontolaActionId = counter++;
-          // Editor.addMark(textEditor, "bold", true);
-          // editor.currentAction = params.mark!;
-          // textEditor.apply({
-          //   type: 'insert_text',
-          //   path: [0, 0],
-          //   offset: 0,
-          //   text: '!',
-          // })
+          toggleMark(textEditor, params.mark!);
           ReactEditor.focus(textEditor);
           resolve();
         });
-
       case editor.actions.changeType:
         const { type: format } = params;
-        const isActive = isBlockActive(textEditor, format!);
-        const isList = editor.listTypes.includes(format!);
 
-        if (isList)
-        {
-          if (isActive) {
-            // Transforms.unwrapNodes(textEditor, { match: n => n.type === editor.elements.listItem, split: true });
-            Transforms.unwrapNodes(textEditor, { match: n => editor.listTypes.includes(n.type), split: true });
-            Transforms.setNodes(textEditor, { type: editor.elements.paragraph });
-          }
-          else {
-            Transforms.setNodes(textEditor, { type: editor.elements.listItem });
-            Transforms.wrapNodes(textEditor, { type: format, children: [] });
-            // Transforms.setNodes(textEditor, { type: editor.elements.inline });
-            // Transforms.wrapNodes(textEditor, { type: format, children: [] });
-            // Transforms.wrapNodes(textEditor, { type: editor.elements.listItem, children: [] });
-          }
-        }
-        else {
-          Transforms.setNodes(textEditor, { type: isActive ? editor.elements.paragraph : format });  
-        }
-
+        Transforms.setNodes(textEditor, {
+          type: isBlockActive(textEditor, format!)
+            ? editor.elements.paragraph
+            : false ? 'list-item' : format,
+        });
         ReactEditor.focus(textEditor);
+
         return Promise.resolve();
-        
-      case editor.actions.tab:
-        const format1 = editor.listTypes.find((e) => isBlockActive(textEditor, e));
-        if (format1) {
-          const { path } = textEditor.selection.focus;
-          const listItem = getAncestor(textEditor, path, editor.elements.listItem);
-          // const currentList = getAncestor(textEditor, path, format1);
-          if (listItem && listItem.path[listItem.path.length - 1] > 0) {
-            // Current list item is not the first of a list
-            // so move it up one list item, under a nested list
-            let prevListItemPath = listItem.path.slice(0); 
-            prevListItemPath[prevListItemPath.length-1]--;
-            const prevListItem = Node.ancestor(textEditor, prevListItemPath);
-
-            if (prevListItem)
-            {
-              console.log('node:', prevListItem);
-              const lastChildIndex = prevListItem.children.length - 1;
-
-              const destPath = prevListItemPath.slice(0);
-              destPath.push(lastChildIndex);
-              
-              let wrapInNestedList = true;
-              if (!prevListItem.children[lastChildIndex].type) {
-                Transforms.wrapNodes(textEditor, { type: editor.elements.inline, children: [] }, { at: destPath });
-                destPath[destPath.length - 1]++;
-              }
-              else if (editor.listTypes.includes(prevListItem.children[lastChildIndex].type)) {
-                const nestedList = Node.ancestor(textEditor, destPath);
-                destPath.push(nestedList.children.length);
-                wrapInNestedList = false;
-              }
-              else {
-                destPath[destPath.length - 1]++;
-              }
-
-              Transforms.moveNodes(textEditor, { at: listItem.path,  to: destPath });
-
-              if (wrapInNestedList) {
-                Transforms.wrapNodes(textEditor, { type: format1, children: [] }, { at: destPath });
-              }
-            }
-          }
-        }  
-        ReactEditor.focus(textEditor);
-        return Promise.resolve();
-
       case editor.actions.shiftLineUp:
         return new Promise((resolve) => {
           const { selection } = textEditor;
