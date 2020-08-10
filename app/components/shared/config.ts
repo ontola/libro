@@ -34,6 +34,12 @@ export const sides = [
   'neutral',
 ];
 
+export enum Size {
+  small = 'small',
+  medium = 'medium',
+  large = 'large',
+}
+
 export const sizes = [
   'small',
   'medium',
@@ -75,7 +81,7 @@ export const mediaQueries = {
   smallAndAbove: `(min-width: ${mqBreakpoints.smallestUpperBound})`,
   smallAndBelow: `(max-width: ${mqBreakpoints.smallUpperBound})`,
   smallOnly: `(min-width: ${mqBreakpoints.smallLowerBound}) and (max-width: ${mqBreakpoints.smallUpperBound})`,
-  smallestOnly: `(min-width: ${mqBreakpoints.smallestLowerBound})  and (max-width: ${mqBreakpoints.smallestUpperBound})`,
+  smallestOnly: `(min-width: ${mqBreakpoints.smallestLowerBound}) and (max-width: ${mqBreakpoints.smallestUpperBound})`,
 };
 
 /* eslint-disable no-magic-numbers */
