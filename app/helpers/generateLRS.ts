@@ -102,6 +102,14 @@ export default function generateLRS() {
     rdf.quad(schema.Thing, rdfs.label, rdf.literal('Thing', languages.en)),
     rdf.quad(schema.Thing, ontola['forms/inputs/select/displayProp'], schema.name),
 
+    rdf.quad(schema.CreativeWork, rdfx.type, rdfs.Class),
+    rdf.quad(schema.CreativeWork, rdfs.subClassOf, schema.Thing),
+
+    rdf.quad(schema.MediaObject, rdfx.type, rdfs.Class),
+    rdf.quad(schema.MediaObject, rdfs.subClassOf, schema.CreativeWork),
+    rdf.quad(schema.MediaObject, rdfs.comment, rdf.literal('A media object, such as an image, video, or audio object ')),
+    rdf.quad(schema.MediaObject, rdfs.label, rdf.literal('MediaObject', languages.en)),
+
     rdf.quad(as.Collection, rdfs.subClassOf, rdfs.Resource),
     rdf.quad(ontola.Collection, rdfs.subClassOf, as.Collection),
     rdf.quad(ontola.InfiniteView, rdfs.subClassOf, as.CollectionPage),

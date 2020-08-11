@@ -81,6 +81,10 @@ class MediaObjectFull extends React.PureComponent {
 
     const label = caption?.value || filename?.value;
 
+    if (!isPartOf) {
+      return null;
+    }
+
     if (!label) {
       handle(new Error(`MediaObject ${this.props.subject} has no label`));
     }

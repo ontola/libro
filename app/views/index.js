@@ -30,6 +30,8 @@ import Error from './Error';
 import Event from './Event';
 import FilterField from './FilterField';
 import FilterOption from './FilterOption';
+import Folder from './Folder';
+import FolderEntry from './FolderEntry';
 import FormField from './FormField';
 import FormGroup from './FormGroup';
 import FormOption from './FormOption';
@@ -108,6 +110,8 @@ export function getViews() {
     ...Event,
     ...FilterField,
     ...FilterOption,
+    ...Folder,
+    ...FolderEntry,
     ...FormField,
     ...FormGroup,
     ...FormOption,

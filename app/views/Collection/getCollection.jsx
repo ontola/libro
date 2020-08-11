@@ -111,7 +111,7 @@ export default function getCollection(
       }
 
       if (typeof currentPageType === 'undefined' || CollectionTypes.includes(currentPageType)) {
-        return <Resource subject={currentPage} />;
+        return <Resource data-debug={(depth || -1) + 1} subject={currentPage} />;
       }
 
       if (currentPagePartOf && currentPagePartOf !== subject) {
@@ -174,11 +174,13 @@ export default function getCollection(
       if (!renderWhenEmptyProp && !renderWhenEmpty) {
         return <Property label={argu.query} setCurrentPage={setCurrentPage} />;
       }
-      const createAction = lrs.getResourceProperty(subject, ontola.createAction);
-      const actionStatus = createAction
-        && lrs.getResourceProperty(createAction, schema.actionStatus);
-      if (actionStatus && invalidStatusIds.includes(rdf.id(actionStatus))) {
-        return <div data-test="invalid-status" />;
+      if (!renderWhenEmptyProp) {
+        const createAction = lrs.getResourceProperty(subject, ontola.createAction);
+        const actionStatus = createAction
+          && lrs.getResourceProperty(createAction, schema.actionStatus);
+        if (actionStatus && invalidStatusIds.includes(rdf.id(actionStatus))) {
+          return <div data-test="invalid-status" />;
+        }
       }
     }
 
@@ -187,6 +189,16 @@ export default function getCollection(
         forceRender
         collectionDisplay={resolvedCollectionDisplay}
         label={ontola.header}
+        omniform={omniform}
+        setCurrentPage={setCurrentPage}
+      />
+    );
+
+    const footer = (!depth || depth === 0) && !hideHeader && (
+      <Property
+        forceRender
+        collectionDisplay={resolvedCollectionDisplay}
+        label={ontola.footer}
         omniform={omniform}
         setCurrentPage={setCurrentPage}
       />
@@ -201,6 +213,7 @@ export default function getCollection(
           collectionDisplay={collectionDisplay}
           columns={resolvedColumns}
           currentPage={currentPage}
+          footer={footer}
           header={header}
           label={ontola.collectionFrame}
           pagination={pagination}

@@ -97,6 +97,7 @@ export default {
   primaryVote: argu('primaryVote'),
   proArguments: argu('proArguments'),
   processSteps: argu('processSteps'),
+  query: argu('query'),
   questions: argu('questions'),
   reactionsCount: argu('reactionsCount'),
   redirectUrl: argu('redirectUrl'),
@@ -120,6 +121,9 @@ export default {
   votesProCount: argu('votesProCount'),
   yes: argu('yes'),
   zoomLevel: argu('zoomLevel'),
+
+  /* datatypes */
+  base64File: argu('base64File'),
 
   /*
    * topologies

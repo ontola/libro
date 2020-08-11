@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import LDLink from '../../components/LDLink';
+import libro from '../../ontology/libro';
 import { allTopologiesExcept } from '../../topologies';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
@@ -48,12 +49,14 @@ export class CreateActionButton extends Component {
 
   static mapDataToProps = {
     name: schema.name,
+    target: libro.target,
   };
 
   static propTypes = {
     actionStatus: linkType,
     children: PropTypes.element,
     name: linkType,
+    target: linkType,
   };
 
   render() {
@@ -64,6 +67,7 @@ export class CreateActionButton extends Component {
     return (
       <LDLink
         disabled={!!this.props.actionStatus}
+        target={this.props.target?.value?.split('/')?.pop()}
         title={this.props.name?.value}
       >
         <Property label={schema.name} />

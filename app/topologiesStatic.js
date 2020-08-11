@@ -34,6 +34,7 @@ import radioGroupTopologyComponent, { radioGroupTopology } from './topologies/Ra
 import selectTopologyComponent, { selectTopology } from './topologies/Select';
 import tabBarTopologyComponent, { tabBarTopology } from './topologies/TabBar';
 import tableTopologyComponent, { tableTopology } from './topologies/Table';
+import tableBodyComponent, { tableBodyTopology } from './topologies/TableBody';
 import tableCellTopologyComponent, { tableCellTopology } from './topologies/TableCell';
 import tableFooterCellTopologyComponent, { tableFooterCellTopology } from './topologies/TableFooterCell';
 import tableFooterRowTopologyComponent, { tableFooterRowTopology } from './topologies/TableFooterRow';
@@ -74,6 +75,8 @@ export default {
   [rdf.id(popupTopology)]: primaryCallToActionTopologyComponent,
   [rdf.id(radioGroupTopology)]: radioGroupTopologyComponent,
   [rdf.id(selectTopology)]: selectTopologyComponent,
+  [rdf.id(tableBodyTopology)]: tableBodyComponent,
+  // TODO: Investigate
   [rdf.id(tableCellTopology)]: tabBarTopologyComponent,
   [rdf.id(tableHeaderCellTopology)]: tableTopologyComponent,
   [rdf.id(tableHeaderRowTopology)]: tableCellTopologyComponent,

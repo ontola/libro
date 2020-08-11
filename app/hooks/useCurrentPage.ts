@@ -2,7 +2,7 @@ import { NamedNode } from '@ontologies/core';
 import {
   useLinkRenderContext,
   useLRS,
-  useProperty,
+  useResourceProperty,
 } from 'link-redux';
 import { useHistory } from 'react-router';
 
@@ -13,7 +13,8 @@ export const useCurrentPage = (redirectPagination: boolean, renderedPage: NamedN
   const lrs = useLRS();
   const history = useHistory();
   const { subject } = useLinkRenderContext();
-  const [currentPage] = useProperty(app.currentPage);
+  const currentPageResource = renderedPage || subject;
+  const [currentPage] = useResourceProperty(currentPageResource, app.currentPage);
 
   if (redirectPagination) {
     const redirectPage = (newPage: NamedNode) => (
@@ -22,7 +23,9 @@ export const useCurrentPage = (redirectPagination: boolean, renderedPage: NamedN
 
     return [renderedPage, redirectPage];
   } else {
-    const setCurrentPage = (newPage: NamedNode) => lrs.actions.app.changePage(subject, newPage);
+    const setCurrentPage = (newPage: NamedNode) => {
+      lrs.actions.app.changePage(currentPageResource, newPage);
+    };
 
     return [currentPage, setCurrentPage];
   }

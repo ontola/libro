@@ -20,7 +20,7 @@ import Container, { LargeContainer, containerTopology } from '../../../topologie
 import { pageTopology } from '../../../topologies/Page';
 import { CollectionTypes } from '../types';
 
-const HeaderFloat = ({
+export const HeaderFloat = ({
   collectionDisplay,
   omniform,
   setCurrentPage,
