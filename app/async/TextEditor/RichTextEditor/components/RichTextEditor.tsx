@@ -1,50 +1,49 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { createEditor, Editor } from 'slate';
+import { createEditor, Editor, Node } from 'slate';
 import { withHistory } from 'slate-history';
 import { ReactEditor, Slate, withReact } from 'slate-react';
 
 import { withPlugins } from '../transforms/withPlugins';
 
-import { EditableWithPlugins } from './EditableWithPlugins';
+import { EditableWithPlugins, EditableWithPluginsProps } from './EditableWithPlugins';
 
-var autoSaveTimeout: any;
-
-export interface SlateWithPluginsProps {
-
+export interface RichTextEditorProps extends EditableWithPluginsProps {
+  onAutoSave?: (editor: ReactEditor, nodes: Node[]) => void,
+  onChange?: (editor: ReactEditor, nodes: Node[]) => void,  
+  value?: Node[],
 }
 
-export const RichTextEditor = ({ value, onAutoSave, onChange, toolbarStyle, ...props }: { [key: string]: any; }) => {
+export const RichTextEditor: React.FC<RichTextEditorProps> = ({ value, onAutoSave, onChange, ...props }) => {
   const editor = useMemo(() => withPlugins(withHistory(withReact(createEditor()))), []);
 
-  const [externalValue, setExternalValue] = useState(value);
-  const [internalValue, setInternalValue] = useState(value);
-
-  if (value !== externalValue) {
-    setInternalValue(value);
-    setExternalValue(value);
-    clearTimeout(autoSaveTimeout);
-  }
+  const [normalizedValue, setNormalizedValue] = useState<Node[]>([]);
+  const [timeoutID, setTimeoutID] = useState(0);
 
   useEffect(() => {
-    Editor.normalize(editor, { force: true });
-  }, [externalValue]);
+    // Slate throws an error if the value on the initial render is invalid.
+    // Solution from https://github.com/ianstormtaylor/slate/issues/3465#issuecomment-655592962
+    editor.children = value
+    Editor.normalize(editor, { force: true })
+    // The rendering can take over from here:
+    setNormalizedValue(editor.children)
+  }, [value])
 
   useEffect(() => {
     if (onAutoSave && ReactEditor.isFocused(editor)) {
-      autoSaveTimeout = setTimeout(() => {
-          onAutoSave(editor, internalValue);
-      }, 10000);
+      setTimeoutID(setTimeout(() => {
+        onAutoSave(editor, normalizedValue);
+      }, 10000));
     }
-  }, [internalValue, onAutoSave]);
+  }, [normalizedValue, onAutoSave]);
 
   return (
     <div>
       <Slate
         editor={editor}
-        value={internalValue}
+        value={normalizedValue}
         onChange={(newValue: any) => {
-          clearTimeout(autoSaveTimeout);
-          setInternalValue(newValue);
+          clearTimeout(timeoutID);
+          setNormalizedValue(newValue);
           if (onChange) {
             onChange(editor, newValue);
           }
@@ -52,11 +51,8 @@ export const RichTextEditor = ({ value, onAutoSave, onChange, toolbarStyle, ...p
           <EditableWithPlugins
             onBlur={() => {
               if (onAutoSave) {
-                onAutoSave(editor, internalValue);
+                onAutoSave(editor, normalizedValue);
               }
-            }}
-            toolbarStyles={{
-              root: ['slate-HeadingToolbar', toolbarStyle],
             }}
             {...props}
           />
