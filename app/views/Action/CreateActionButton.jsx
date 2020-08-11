@@ -27,7 +27,7 @@ import { tableRowTopology } from '../../topologies/TableRow';
 const propTypes = {
 };
 
-export class CreateActionButton extends Component {
+class CreateActionButton extends Component {
   static type = schema.CreateAction;
 
   static topology = allTopologiesExcept(

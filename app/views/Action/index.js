@@ -10,7 +10,7 @@ import ActionPrimaryCallToAction from './ActionPrimaryCallToAction';
 import ActionTableCell from './ActionTableCell';
 import ActionTableRow from './ActionTableRow';
 import ActionWidget from './ActionGrid';
-import CreateAction from './CreateAction';
+import CreateActionButton from './CreateActionButton';
 import CreateSession from './CreateSession';
 import CreateSessionActionsBar from './CreateSessionActionsBar';
 import CreateVote from './CreateVote';
@@ -22,7 +22,7 @@ import FollowUpName from './properties/followUpName';
 import WidgetName from './properties/gridName';
 
 export default [
-  CreateAction,
+  CreateActionButton,
   CreateSessionActionsBar,
   CreateVote,
   ActionActionsBar,
