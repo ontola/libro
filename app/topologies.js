@@ -11,7 +11,7 @@ import { cardListTopology } from './topologies/Card/CardList';
 import { cardMainTopology } from './topologies/Card/CardMain';
 import { cardMicroRowTopology } from './topologies/Card/CardMicroRow';
 import { cardRowTopology } from './topologies/Card/CardRow';
-import { containerTopology } from './topologies/Container/index';
+import { containerTopology } from './topologies/Container';
 import { containerFloatTopology } from './topologies/Container/ContainerFloat';
 import { contentDetailsTopology } from './topologies/ContentDetails/index';
 import { detailsBarTopology } from './topologies/DetailsBar/index';
@@ -33,6 +33,7 @@ import { primaryCallToActionTopology } from './topologies/PrimaryCallToAction/in
 import { popupTopology } from './topologies/Popup/index';
 import { radioGroupTopology } from './topologies/RadioGroup';
 import { selectTopology } from './topologies/Select';
+import { tableBodyTopology } from './topologies/TableBody';
 import { tableCellTopology } from './topologies/TableCell';
 import { tableHeaderCellTopology } from './topologies/TableHeaderCell';
 import { tableHeaderRowTopology } from './topologies/TableHeaderRow';
@@ -81,6 +82,7 @@ export const allTopologies = [
   primaryCallToActionTopology,
   radioGroupTopology,
   selectTopology,
+  tableBodyTopology,
   tableHeaderCellTopology,
   tableHeaderRowTopology,
   tableFooterCellTopology,

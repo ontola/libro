@@ -154,6 +154,7 @@ $zindex-8: 1500;
 $zindex-9: 1600;
 $zindex-10: 1700;
 $zindex-11: 1800;
+$zindex-12: 1900;
 
 $z-layers: (
   'hoverbox': $zindex-1,
@@ -165,6 +166,7 @@ $z-layers: (
   'navbar': $zindex-6,
   'modal-drop': $zindex-10,
   'modal': $zindex-11,
+  'overlay': $zindex-12,
   'snackbar': $zindex-8,
   'tooltip': $zindex-9,
 );

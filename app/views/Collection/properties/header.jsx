@@ -19,18 +19,21 @@ import Container, { LargeContainer, containerTopology } from '../../../topologie
 import { pageTopology } from '../../../topologies/Page';
 import { CollectionTypes } from '../types';
 
-const HeaderFloat = ({
+export const HeaderFloat = ({
   hidePagination,
   omniform,
   setCurrentPage,
   subject,
-}) => (
-  <React.Fragment>
-    {!hidePagination && <Property label={ontola.filterFields} setCurrentPage={setCurrentPage} />}
-    {!hidePagination && <Property label={ontola.sortOptions} setCurrentPage={setCurrentPage} />}
-    <CollectionCreateActionButton omniform={omniform} subject={subject} />
-  </React.Fragment>
-);
+}) => {
+  const renderPagination = setCurrentPage && !hidePagination;
+  return (
+    <React.Fragment>
+      {renderPagination && <Property label={ontola.filterFields} setCurrentPage={setCurrentPage} />}
+      {renderPagination && <Property label={ontola.sortOptions} setCurrentPage={setCurrentPage} />}
+      <CollectionCreateActionButton omniform={omniform} subject={subject} />
+    </React.Fragment>
+  );
+}
 HeaderFloat.propTypes = {
   hidePagination: PropTypes.bool,
   omniform: PropTypes.bool,

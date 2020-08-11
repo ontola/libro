@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import LDLink from '../../components/LDLink';
+import libro from '../../ontology/libro';
 import { allTopologiesExcept } from '../../topologies';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
@@ -31,6 +32,7 @@ const CreateActionButton = ({
   children,
   error,
   name,
+  target,
 }) => {
   if (children) {
     return children;
@@ -48,13 +50,16 @@ const CreateActionButton = ({
   }
 
   return (
-    <LDLink title={name?.value}>
+    <LDLink
+      disabled={!!actionStatus}
+      target={target?.value?.split('/')?.pop()}
+      title={name?.value}
+    >
       <Property label={schema.name} />
     </LDLink>
   );
 };
 
-CreateActionButton.type = schema.CreateAction;
 CreateActionButton.type = schema.CreateAction;
 
 CreateActionButton.topology = allTopologiesExcept(
@@ -79,6 +84,7 @@ CreateActionButton.mapDataToProps = {
   actionStatus: schema.actionStatus,
   error: schema.error,
   name: schema.name,
+  target: libro.target,
 };
 
 CreateActionButton.propTypes = {
@@ -86,6 +92,7 @@ CreateActionButton.propTypes = {
   children: PropTypes.element,
   error: linkType,
   name: linkType,
+  target: linkType,
 };
 
 export default register(CreateActionButton);

@@ -31,6 +31,7 @@ const getFrame = (wrapper, topology) => {
     collectionDisplay,
     collectionDisplayFromData,
     columns,
+    footer,
     header,
     pagination,
     setCurrentPage,
@@ -50,6 +51,7 @@ const getFrame = (wrapper, topology) => {
               {body}
             </Grid>
             {pagination}
+            {footer}
           </Wrapper>
         );
       case rdf.id(ontola.ns('collectionDisplay/settingsTable')):
@@ -86,6 +88,7 @@ const getFrame = (wrapper, topology) => {
                   </TableFooterRow>
                 </TableFooter>
               </Table>
+              {footer}
             </Card>
           </Wrapper>
         );
@@ -101,6 +104,7 @@ const getFrame = (wrapper, topology) => {
               <CardAppendix>
                 {pagination}
               </CardAppendix>
+              {footer}
             </Card>
           </Wrapper>
         );
@@ -115,6 +119,7 @@ const getFrame = (wrapper, topology) => {
             <div style={{ marginBottom: '1em' }}>
               {pagination}
             </div>
+            {footer}
           </Wrapper>
         );
       default:

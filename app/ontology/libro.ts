@@ -25,4 +25,12 @@ export default {
       show: libro('actions/snackbar'),
     },
   },
+  target: libro('target'),
+  targets: {
+    _blank: libro('_blank'),
+    _parent: libro('_parent'),
+    _self: libro('_self'),
+    _top: libro('_top'),
+    modal: libro('modal'),
+  },
 };

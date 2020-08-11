@@ -167,8 +167,10 @@ export default function getCollection(
       if (!renderWhenEmptyProp && !renderWhenEmpty) {
         return <Property label={argu.query} setCurrentPage={setCollectionResource} />;
       }
-      if (actionStatus && invalidStatusIds.includes(rdf.id(actionStatus))) {
-        return <div data-test="invalid-status" />;
+      if (!renderWhenEmptyProp) {
+        if (actionStatus && invalidStatusIds.includes(rdf.id(actionStatus))) {
+          return <div data-test="invalid-status" />;
+        }
       }
     }
 
@@ -182,6 +184,16 @@ export default function getCollection(
       />
     );
 
+    const footer = (!depth || depth === 0) && !hideHeader && (
+      <Property
+        forceRender
+        collectionDisplay={resolvedCollectionDisplay}
+        label={ontola.footer}
+        omniform={omniform}
+        setCurrentPage={setCollectionResource}
+      />
+    );
+
     return (
       <ResourceBoundary subject={collectionResource} wrapperProps={{ className: `Collection Collection__Depth-${depth}` }}>
         {renderPartOf && <Property label={schema.isPartOf} />}
@@ -190,6 +202,7 @@ export default function getCollection(
           body={body()}
           collectionDisplay={resolvedCollectionDisplay}
           columns={resolvedColumns}
+          footer={footer}
           header={header}
           label={ontola.collectionFrame}
           pagination={pagination}

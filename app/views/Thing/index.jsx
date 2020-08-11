@@ -19,6 +19,7 @@ import CoverPhoto from './properties/coverPhoto';
 import CreateAction from './properties/createAction';
 import Creator from './properties/creator';
 import DateCreated from './properties/dateCreated';
+import DateModified from './properties/dateModified';
 import DatePublished from './properties/datePublished';
 import DateSubmitted from './properties/dateSubmitted';
 import description from './properties/description';
@@ -119,6 +120,7 @@ export default [
   CreateAction,
   Creator,
   DateCreated,
+  DateModified,
   DatePublished,
   DateSubmitted,
   description,

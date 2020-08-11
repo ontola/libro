@@ -21,7 +21,8 @@ import CompCollapsible from './components/Collapsible/index';
 import CompCollection from './components/Collection/index';
 import CompColumn from './components/Column/index';
 import CompColumns from './components/Columns/index';
-import CompContainer from './components/Container/ContainerHeader';
+import CompContainerHeader from './components/Container/ContainerHeader';
+import { HeaderFloat as CompHeaderFloat } from './views/Collection/properties/header';
 import CompCountBubble from './components/CountBubble/index';
 import CompCover from './components/Cover/index';
 import CompCoverImage from './components/CoverImage/index';
@@ -112,7 +113,7 @@ export const componentMap = {
   [rdf.id(components.Collection)]: CompCollection,
   [rdf.id(components.Column)]: CompColumn,
   [rdf.id(components.Columns)]: CompColumns,
-  [rdf.id(components.Container)]: CompContainer,
+  [rdf.id(components.ContainerHeader)]: CompContainerHeader,
   [rdf.id(components.CountBubble)]: CompCountBubble,
   [rdf.id(components.Cover)]: CompCover,
   [rdf.id(components.CoverImage)]: CompCoverImage,
@@ -135,6 +136,7 @@ export const componentMap = {
   [rdf.id(components.GridGridHeader)]: CompGridGridHeader,
   [rdf.id(components.GridGridItem)]: CompGridGridItem,
   [rdf.id(components.HeaderWithMenu)]: CompHeaderWithMenu,
+  [rdf.id(components.HeaderFloat)]: CompHeaderFloat,
   [rdf.id(components.Heading)]: CompHeading,
   [rdf.id(components.HoverPopup)]: CompHoverPopup,
   [rdf.id(components.Image)]: CompImage,

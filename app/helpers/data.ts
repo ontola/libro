@@ -75,13 +75,13 @@ function dataURItoBlob(literal: Literal): File {
   return new File([b], filename || '', options);
 }
 
-function convertKeysAtoB(obj: { [k: string]: any }): { [k: string]: any } {
+function convertKeysAtoB(obj: { [k: string]: any }, aToB = true): { [k: string]: any } {
   const output: { [k: string]: any } = {};
   Object.entries(obj).forEach(([k, v]) => {
     if (k === '@id') {
       output[k] = v;
     } else {
-      output[atob(k)] = serializableValue(v);
+      output[aToB ? atob(k) : k] = serializableValue(v);
     }
   });
 

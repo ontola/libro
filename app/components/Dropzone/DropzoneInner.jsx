@@ -5,13 +5,12 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
-import { FormattedMessage } from 'react-intl';
 
 import { formFieldsPath } from '../../helpers/diggers';
 import ontola from '../../ontology/ontola';
 
 import DropzoneInnerPositionY from './DropzoneInnerPositionY';
+import DropzoneOverlay from './DropzoneOverlay';
 
 const DropzoneInner = ({
   children,
@@ -52,26 +51,7 @@ const DropzoneInner = ({
   }
 
   return children(
-    <div className="MediaObjectOmniformFields__messages">
-      <FontAwesome
-        className="MediaObjectOmniformFields__icon"
-        name="cloud-upload"
-      />
-      {
-        isDragActive
-          ? (
-            <FormattedMessage
-              defaultMessage="Release to select this file"
-              id="https://app.argu.co/i18n/forms/dropzone/hoverText"
-            />
-          ) : (
-            <FormattedMessage
-              defaultMessage="Drag & Drop your file here or click to select a file"
-              id="https://app.argu.co/i18n/forms/dropzone/passiveText"
-            />
-          )
-      }
-    </div>
+    <DropzoneOverlay isDragActive={isDragActive} />
   );
 };
 

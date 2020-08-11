@@ -9,16 +9,16 @@ const propTypes = {
   linkedProp: linkedPropType,
 };
 
-const DateCreated = ({ linkedProp }) => (
-  <DetailDate dateCreated={linkedProp} />
+const DateModified = ({ linkedProp }) => (
+  <DetailDate dateCreated={new Date(linkedProp.value)} />
 );
 
-DateCreated.type = schema.Thing;
+DateModified.type = schema.Thing;
 
-DateCreated.topology = allTopologies;
+DateModified.topology = allTopologies;
 
-DateCreated.property = schema.dateCreated;
+DateModified.property = schema.dateModified;
 
-DateCreated.propTypes = propTypes;
+DateModified.propTypes = propTypes;
 
-export default register(DateCreated);
+export default register(DateModified);
