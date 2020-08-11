@@ -13,13 +13,14 @@ import React from 'react';
 import GridItem from '../../../components/Grid/GridItem';
 import { LoadingCardFixed } from '../../../components/Loading';
 import { tryParseInt } from '../../../helpers/numbers';
+import useViewByIRI from '../../../hooks/useViewByIRI';
 import app from '../../../ontology/app';
 import ontola from '../../../ontology/ontola';
 import CardRow from '../../../topologies/Card/CardRow';
 import { CollectionViewTypes } from '../types';
 import { allTopologies } from '../../../topologies';
 
-const itemList = (props, columns, separator) => {
+const itemList = (props, columns, separator, view) => {
   let itemWrapper = React.Fragment;
   let itemWrapperOpts = {};
 
@@ -38,6 +39,7 @@ const itemList = (props, columns, separator) => {
         <Resource
           columns={columns}
           depth={props.depth}
+          itemRenderer={view}
           itemWrapper={itemWrapper}
           itemWrapperOpts={itemWrapperOpts}
           key={`${props.subject}:${iri.value}`}
@@ -70,8 +72,10 @@ const Items = (props) => {
     separator,
     topology,
     totalCount,
+    view: viewIRI,
   } = props;
   let children = null;
+  const view = viewIRI && useViewByIRI(viewIRI);
 
   if (tryParseInt(totalCount) === 0) {
     return (
@@ -87,9 +91,9 @@ const Items = (props) => {
   if (Array.isArray(items) && items.length === 0) {
     children = null;
   } else if (Array.isArray(items)) {
-    children = itemList(props, columns, separator);
+    children = itemList(props, columns, separator, view);
   } else if (typeof items.toArray !== 'undefined') {
-    children = itemList(props, columns, separator).toKeyedSeq();
+    children = itemList(props, columns, separator, view).toKeyedSeq();
   } else {
     children = (
       <Resource
@@ -123,6 +127,7 @@ Items.propTypes = {
   renderLimit: PropTypes.number,
   separator: PropTypes.string,
   totalCount: linkType,
+  view: linkType,
 };
 
 export default register(Items);

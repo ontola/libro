@@ -17,6 +17,7 @@ export function Seq({
   childProps,
   columns,
   depth,
+  itemRenderer: ItemRenderer,
   itemWrapper: ItemWrapper,
   itemWrapperOpts,
   gutter,
@@ -54,7 +55,9 @@ export function Seq({
         last={sequences[sequences.length - 1].object}
         sequenceIndex={i}
         subject={s}
-      />
+      >
+        {ItemRenderer && <ItemRenderer />}
+      </Resource>
     </ItemWrapper>
   ));
 
@@ -80,6 +83,7 @@ Seq.propTypes = {
   columns: PropTypes.arrayOf(RDFTypes.namedNode),
   depth: PropTypes.number,
   gutter: PropTypes.number,
+  itemRenderer: PropTypes.elementType,
   itemWrapper: PropTypes.elementType,
   itemWrapperOpts: PropTypes.objectOf(PropTypes.any),
   renderGutter: PropTypes.func,

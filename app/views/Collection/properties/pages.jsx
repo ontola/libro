@@ -20,6 +20,7 @@ const Pages = ({
   pages,
   renderWhenEmpty,
   singlePage,
+  view,
 }) => {
   if (singlePage || pages.length === 1) {
     return (
@@ -31,6 +32,7 @@ const Pages = ({
         insideCollection={insideCollection}
         renderWhenEmpty={renderWhenEmpty}
         subject={pages[0]}
+        view={view}
       />
     );
   }
@@ -45,6 +47,7 @@ const Pages = ({
         key={`pages-${iri.value}`}
         renderWhenEmpty={renderWhenEmpty}
         subject={iri}
+        view={view}
       />
     </React.Suspense>
   ));
@@ -81,6 +84,7 @@ Pages.propTypes = {
   pages: linkType,
   renderWhenEmpty: PropTypes.bool,
   singlePage: PropTypes.bool,
+  view: linkType,
 };
 
 export default [register(Pages)];

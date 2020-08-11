@@ -37,6 +37,7 @@ function getCollectionPage({
           depth={props.depth}
           label={as.items}
           renderLimit={Infinity}
+          view={props.view}
         />
       );
     }
@@ -80,6 +81,7 @@ function getCollectionPage({
     renderPartOf: PropTypes.bool,
     renderWhenEmpty: PropTypes.bool,
     subject: subjectType,
+    view: linkType,
   };
 
   return CollectionPage;

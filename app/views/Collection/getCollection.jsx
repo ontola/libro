@@ -22,6 +22,7 @@ import { tryParseInt } from '../../helpers/numbers';
 import { useCurrentCollectionResource } from '../../hooks/useCurrentCollectionResource';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
+import ll from '../../ontology/ll';
 import ontola from '../../ontology/ontola';
 import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
@@ -54,6 +55,7 @@ export default function getCollection(
       renderedPage,
       subject,
       totalItems,
+      view,
     } = props;
     const originalCollectionResource = React.useMemo(
       () => originalCollectionResourceProp || subject,
@@ -81,6 +83,7 @@ export default function getCollection(
       columns: resolvedColumns,
       depth,
       originalCollectionResource,
+      view,
     };
 
     const mainCollectionIsOverwritten = collectionResource
@@ -216,6 +219,7 @@ export default function getCollection(
       returnType: ReturnType.AllTerms,
     },
     totalItems: as.totalItems,
+    view: ll.view,
   };
 
   Collection.propTypes = {
@@ -236,6 +240,7 @@ export default function getCollection(
     renderedPage: linkType,
     subject: subjectType,
     totalItems: linkType,
+    view: linkType,
   };
 
   return Collection;

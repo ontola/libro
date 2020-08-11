@@ -28,4 +28,5 @@ export default {
   slice: ll('slice'),
   /** @deprecated use {ld.supplant} instead */
   supplant: ll('supplant'),
+  view: ll('view'),
 };
