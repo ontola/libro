@@ -1,6 +1,12 @@
 import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
-import { Property, register } from 'link-redux';
+import {
+  Property,
+  linkType,
+  register,
+  subjectType,
+} from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import Button from '../../components/Button';
@@ -11,10 +17,27 @@ import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
 import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
-import { Action } from './Action';
+import NavigatableAction from './NavigatableAction';
 
-class ActionCardRow extends Action {
+class ActionCardRow extends NavigatableAction {
+  static type = [
+    schema.Action,
+    schema.UpdateAction,
+  ];
+
   static topology = cardRowTopology;
+
+  static mapDataToProps = {
+    actionStatus: schema.actionStatus,
+    object: schema.object,
+  };
+
+  static propTypes = {
+    actionStatus: linkType,
+    object: subjectType,
+    onCancel: PropTypes.func,
+    sessionStore: PropTypes.objectOf(PropTypes.any),
+  };
 
   render() {
     if (invalidStatusIds.includes(rdf.id(this.props.actionStatus))) {

@@ -1,4 +1,3 @@
-import Actions from './Action';
 import ActionActionsBar from './ActionActionsBar';
 import ActionCardMain from './ActionCardMain';
 import ActionCardRow from './ActionCardRow';
@@ -6,7 +5,7 @@ import ActionContainer from './ActionContainer';
 import ActionDetail from './ActionDetail';
 import ActionDropdownContent from './ActionDropdownContent';
 import ActionNested from './ActionNested';
-import ActionPageReg from './ActionFull';
+import ActionFull from './ActionFull';
 import ActionPrimaryCallToAction from './ActionPrimaryCallToAction';
 import ActionTableCell from './ActionTableCell';
 import ActionTableRow from './ActionTableRow';
@@ -26,7 +25,6 @@ export default [
   CreateAction,
   CreateSessionActionsBar,
   CreateVote,
-  Actions,
   ActionActionsBar,
   ActionCardMain,
   ActionCardRow,
@@ -34,7 +32,7 @@ export default [
   ActionDetail,
   ActionDropdownContent,
   ActionNested,
-  ActionPageReg,
+  ActionFull,
   ActionPrimaryCallToAction,
   ActionTableCell,
   ActionTableRow,
