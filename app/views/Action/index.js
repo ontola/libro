@@ -18,6 +18,7 @@ import InlineCreateAction from './InlineCreateAction';
 import InlineActionContainerFloat from './InlineActionContainerFloat';
 import InlineActionTableRow from './InlineActionTableRow';
 import ReadActionCard from './ReadActionCard';
+import SignUpActionsBar from './SignUpActionsBar';
 import FollowUpName from './properties/followUpName';
 import WidgetName from './properties/gridName';
 
@@ -42,6 +43,7 @@ export default [
   InlineActionContainerFloat,
   ...InlineActionTableRow,
   ReadActionCard,
+  SignUpActionsBar,
   FollowUpName,
   WidgetName,
 ];

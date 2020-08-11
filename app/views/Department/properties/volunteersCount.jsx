@@ -14,7 +14,7 @@ const VolunteersCount = ({ linkedProp }) => (
   />
 );
 
-VolunteersCount.type = teamGL.Department;
+VolunteersCount.type = [teamGL.Group, teamGL.Department];
 
 VolunteersCount.property = teamGL.volunteersCount;
 

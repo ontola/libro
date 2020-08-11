@@ -24,7 +24,12 @@
     font-weight: 600;
     text-align: left;
     color: color('grey', 'mid-dark');
-    width: 30%;
     padding-right: 1rem;
+  }
+
+  &:not(&--full-label) {
+    th {
+      width: 30%;
+    }
   }
 }

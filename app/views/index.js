@@ -5,6 +5,7 @@
 import Action from './Action/index';
 import ActionBody from './ActionBody';
 import Activity from './Activity';
+import Address from './Address';
 import AppSignOut from './AppSignOut';
 import ArguHome from './ArguHome';
 import Argument from './Argument/index';
@@ -35,6 +36,7 @@ import FormGroup from './FormGroup';
 import FormOption from './FormOption';
 import FormPage from './FormPage';
 import Forum from './Forum/index';
+import Glapp from './Glapp';
 import Group from './Group';
 import GroupMembership from './GroupMembership';
 import ImageObject from './ImageObject';
@@ -42,6 +44,7 @@ import Incident from './Incident';
 import InfiniteCollectionPage from './InfiniteCollectionPage';
 import Intervention from './Intervention';
 import InterventionType from './InterventionType';
+import PostalCode from './PostalCode';
 import RDFProperty from './RDFProperty';
 import RDFSClass from './RDFSClass';
 import Loading from './Loading';
@@ -67,6 +70,7 @@ import SearchResult from './SearchResult';
 import SeqComp from './Seq';
 import Snackbar from './Snackbar';
 import SnackbarManager from './SnackbarManager';
+import Street from './Street';
 import Survey from './Survey';
 import Thing from './Thing';
 import Token from './Token';
@@ -80,6 +84,7 @@ export function getViews() {
   return [
     ...ActionBody,
     ...Activity,
+    ...Address,
     ...AppSignOut,
     ...ArguHome,
     ...Thing,
@@ -112,6 +117,7 @@ export function getViews() {
     ...FormOption,
     ...FormPage,
     ...Forum,
+    ...Glapp,
     ...Group,
     ...GroupMembership,
     ...ImageObject,
@@ -135,6 +141,7 @@ export function getViews() {
     ...Phase,
     ...Project,
     ...Placement,
+    ...PostalCode,
     ...PropertyQuery,
     ...RDFProperty,
     ...RDFSClass,
@@ -144,6 +151,7 @@ export function getViews() {
     ...SeqComp,
     ...Snackbar,
     ...SnackbarManager,
+    ...Street,
     ...Survey,
     ...Token,
     ...User,

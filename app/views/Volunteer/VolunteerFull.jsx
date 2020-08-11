@@ -8,14 +8,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
+import HeaderWithMenu from '../../components/HeaderWithMenu';
 import ontola from '../../ontology/ontola';
 import org from '../../ontology/org';
 import teamGL from '../../ontology/teamGL';
-import { fullResourceTopology } from '../../topologies/FullResource';
 import Container from '../../topologies/Container';
 import CardMain from '../../topologies/Card/CardMain';
 import ContentDetails from '../../topologies/ContentDetails';
-import HeaderWithMenu from '../../components/HeaderWithMenu';
+import { fullResourceTopology } from '../../topologies/FullResource';
 
 const VolunteerFull = ({ renderPartOf }) => (
   <Container>
@@ -36,13 +36,16 @@ const VolunteerFull = ({ renderPartOf }) => (
         </ContentDetails>
         <div className="Volunteer--contact-options">
           <Property label={teamGL.telephone} />
-          <Property label={teamGL.email} />
+          <Property label={schema.email} />
         </div>
         <Property label={schema.text} />
       </CardContent>
     </CardMain>
     <Property renderWhenEmpty label={org.hasMembership} />
     <Property renderWhenEmpty label={teamGL.events} />
+    <Property label={teamGL.user}>
+      <Property renderWhenEmpty label={teamGL.departmentMemberships} />
+    </Property>
   </Container>
 );
 

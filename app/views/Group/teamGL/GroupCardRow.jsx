@@ -14,14 +14,14 @@ const GroupCardRow = () => (
   <CardContent>
     <Property label={schema.name} />
     <ContentDetails>
-      <Property label={teamGL.department} />
+      <Property label={[teamGL.department, schema.isPartOf]} />
       <Property label={teamGL.volunteersCount} />
     </ContentDetails>
     <Property label={schema.text} />
   </CardContent>
 );
 
-GroupCardRow.type = [teamGL.Group];
+GroupCardRow.type = [teamGL.Group, teamGL.Department];
 
 GroupCardRow.topology = [cardRowTopology];
 

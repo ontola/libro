@@ -20,6 +20,7 @@ import logging from '../logging';
 
 export const NEW_AUTHORIZATION_HEADER = 'new-authorization';
 export const NEW_REFRESH_TOKEN_HEADER = 'new-refresh-token';
+export const LOCATION_HEADER = 'location';
 
 export function isRedirect(status) {
   return status === HttpStatus.MULTIPLE_CHOICES
@@ -55,6 +56,10 @@ export function newAuthorizationBulk(ctx, backendRes) {
     if (!isRedirect(backendRes.statusCode)) {
       if (hasAction(backendRes, 'https://ns.ontola.io/libro/actions/redirect')) {
         return setActionParam(backendRes, 'https://ns.ontola.io/libro/actions/redirect', 'reload', 'true');
+      }
+      const locationHeader = backendRes.headers[LOCATION_HEADER];
+      if (locationHeader && locationHeader.length > 0) {
+        return `https://ns.ontola.io/libro/actions/redirect?location=${encodeURIComponent(locationHeader)}&reload=true`;
       }
 
       return 'https://ns.ontola.io/libro/actions/refresh';

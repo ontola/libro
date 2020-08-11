@@ -1,0 +1,33 @@
+import schema from '@ontologies/schema';
+import { Property, register } from 'link-redux';
+import React from 'react';
+
+import teamGL from '../../ontology/teamGL';
+import { allTopologiesExcept } from '../../topologies';
+import { CardContent, CardMain } from '../../topologies/Card';
+import Container from '../../topologies/Container';
+import { pageTopology } from '../../topologies/Page';
+import { parentTopology } from '../../topologies/Parent';
+
+import SearchPostalForm from './SearchPostalForm';
+
+const GlappStart = () => (
+  <Container>
+    <CardMain>
+      <CardContent>
+        <Property label={schema.name} />
+        <Property label={schema.text} />
+        <SearchPostalForm />
+      </CardContent>
+    </CardMain>
+  </Container>
+);
+
+GlappStart.type = teamGL.GlappStart;
+
+GlappStart.topology = allTopologiesExcept(
+  parentTopology,
+  pageTopology
+);
+
+export default register(GlappStart);

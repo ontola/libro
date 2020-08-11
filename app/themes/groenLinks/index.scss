@@ -4,18 +4,23 @@
 .groenLinks {
   h1,
   h2,
-  h1,
-  h2,
   .Button--default,
   .NavBarContent {
     font-family: 'Suisse Webfont';
     font-weight: 900;
     text-transform: uppercase;
 
-    .Heading {
+    &.Heading {
       font-family: 'Suisse Webfont';
       font-weight: 900;
       text-transform: uppercase;
+    }
+  }
+
+  .Markdown {
+    h1,
+    h2 {
+      font-weight: 900;
     }
   }
 
@@ -35,6 +40,9 @@
 
       &--variant-success {
         background-color: var(--accent-background-color);
+        font-family: 'Suisse Webfont';
+        font-weight: 900;
+        text-transform: uppercase;
 
         &:active {
           // sass-lint:disable no-important

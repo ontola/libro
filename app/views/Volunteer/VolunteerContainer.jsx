@@ -22,7 +22,7 @@ const VolunteerContainer = () => (
       </ContentDetails>
       <div className="Volunteer--contact-options">
         <Property label={teamGL.telephone} />
-        <Property label={teamGL.email} />
+        <Property label={schema.email} />
       </div>
       <Property label={schema.text} />
     </CardContent>

@@ -6,6 +6,7 @@ import { retrievePath } from '../../helpers/iris';
 class NavigatableAction extends React.PureComponent {
   static propTypes = {
     history: PropTypes.shape({
+      goBack: PropTypes.func,
       push: PropTypes.func,
     }).isRequired,
     onDone: PropTypes.func,
@@ -22,6 +23,8 @@ class NavigatableAction extends React.PureComponent {
       this.props.onDone(response.iri);
     } else if (response.iri) {
       this.props.history.push(retrievePath(response.iri.value));
+    } else {
+      this.props.history.goBack();
     }
   }
 }

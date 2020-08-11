@@ -3,7 +3,6 @@ import GroupContainer from './teamGL/GroupContainer';
 import TeamGroupPage from './teamGL/GroupFull';
 import GroupDetail from './GroupDetail';
 import GroupPage from './GroupPage';
-import VolunteerCount from './properties/volunteerCount';
 
 export default [
   GroupCardRow,
@@ -11,5 +10,4 @@ export default [
   GroupDetail,
   GroupPage,
   TeamGroupPage,
-  VolunteerCount,
 ];

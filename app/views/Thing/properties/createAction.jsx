@@ -17,10 +17,12 @@ const CreateAction = ({
   isPartOf,
   omniform,
   onLoad,
+  renderPartOf,
 }) => (
   <Resource
     isPartOf={isPartOf}
     omniform={omniform}
+    renderPartOf={renderPartOf}
     subject={linkedProp}
     onLoad={onLoad}
   />
@@ -44,6 +46,7 @@ CreateAction.propTypes = {
   linkedProp: linkedPropType,
   omniform: PropTypes.bool,
   onLoad: PropTypes.func,
+  renderPartOf: PropTypes.bool,
 };
 
 export default register(CreateAction);

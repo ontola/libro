@@ -6,28 +6,29 @@ import {
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
-import ontola from '../../ontology/ontola';
-import teamGL from '../../ontology/teamGL';
-import { containerTopology } from '../../topologies/Container';
-import Card from '../../topologies/Card';
 import HeaderWithMenu from '../../components/HeaderWithMenu';
-import ActionsBar from '../../topologies/ActionsBar';
+import ontola from '../../ontology/ontola';
+import org from '../../ontology/org';
+import teamGL from '../../ontology/teamGL';
+import Card from '../../topologies/Card';
+import { containerTopology } from '../../topologies/Container';
 import ContentDetails from '../../topologies/ContentDetails';
 
-const ParticipantContainer = () => (
+const GroupMembershipContainerGroup = () => (
   <Card>
     <CardContent noSpacing>
       <HeaderWithMenu
         menu={<Property label={ontola.actionsMenu} />}
       >
-        <Property label={teamGL.volunteer}>
+        <Property label={org.member}>
           <Property label={schema.name} />
         </Property>
       </HeaderWithMenu>
-      <ContentDetails>
-        <Property label={teamGL.engagement} />
-      </ContentDetails>
-      <Property label={teamGL.volunteer}>
+      <Property label={org.member}>
+        <ContentDetails>
+          <Property label={teamGL.department} />
+          <Property label={teamGL.engagement} />
+        </ContentDetails>
         <div className="Volunteer--contact-options">
           <Property label={teamGL.telephone} />
           <Property label={schema.email} />
@@ -35,14 +36,11 @@ const ParticipantContainer = () => (
         <Property label={schema.text} />
       </Property>
     </CardContent>
-    <ActionsBar>
-      <Property label={ontola.favoriteAction} />
-    </ActionsBar>
   </Card>
 );
 
-ParticipantContainer.type = teamGL.Participant;
+GroupMembershipContainerGroup.type = org.Membership;
 
-ParticipantContainer.topology = containerTopology;
+GroupMembershipContainerGroup.topology = containerTopology;
 
-export default register(ParticipantContainer);
+export default register(GroupMembershipContainerGroup);

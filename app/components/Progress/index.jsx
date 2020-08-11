@@ -18,6 +18,7 @@ const ProgressWithEndspacing = withStyles({
 })(ProgressWithRadius);
 
 const Progress = ({
+  color,
   endSpacing,
   max,
   min,
@@ -26,11 +27,16 @@ const Progress = ({
   const ProgressComp = endSpacing ? ProgressWithEndspacing : ProgressWithRadius;
 
   return (
-    <ProgressComp value={100 * ((value - min) / (max - min))} variant="determinate" />
+    <ProgressComp
+      color={color}
+      value={100 * ((value - min) / (max - min))}
+      variant="determinate"
+    />
   );
 };
 
 Progress.propTypes = {
+  color: PropTypes.string,
   endSpacing: PropTypes.bool,
   max: PropTypes.number,
   min: PropTypes.number,

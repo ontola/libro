@@ -41,6 +41,7 @@ export const useFilterActions = (potentialAction) => {
 };
 
 export const invalidStatusIds = [
+  schema.CompletedActionStatus,
   ontola.DisabledActionStatus,
   ontola.ExpiredActionStatus,
 ].map((s) => rdf.id(s));

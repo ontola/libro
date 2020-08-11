@@ -66,6 +66,8 @@ export default function getCollection(
       originalCollectionResource
     );
     const [collectionResourceType] = useResourceProperty(collectionResource, rdfx.type);
+    const [createAction] = useResourceProperty(subject, ontola.createAction);
+    const [actionStatus] = useResourceProperty(createAction, schema.actionStatus);
 
     useEffect(() => {
       if (!collectionResource && renderedPage) {
@@ -163,9 +165,6 @@ export default function getCollection(
       if (!renderWhenEmptyProp && !renderWhenEmpty) {
         return <Property label={argu.query} setCurrentPage={setCollectionResource} />;
       }
-      const createAction = lrs.getResourceProperty(subject, ontola.createAction);
-      const actionStatus = createAction
-        && lrs.getResourceProperty(createAction, schema.actionStatus);
       if (actionStatus && invalidStatusIds.includes(rdf.id(actionStatus))) {
         return <div data-test="invalid-status" />;
       }

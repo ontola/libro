@@ -114,6 +114,7 @@ export default {
   sendConfirmationAction: ontola('sendConfirmationAction'),
   settingsMenu: ontola('settingsMenu'),
   shareMenu: ontola('shareMenu'),
+  signUpAction: ontola('signUpAction'),
   sortDirection: ontola('sortDirection'),
   sortKey: ontola('sortKey'),
   sortOptions: ontola('sortOptions'),

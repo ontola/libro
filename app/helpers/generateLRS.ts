@@ -122,6 +122,8 @@ export default function generateLRS() {
 
     rdf.quad(schema.WebPage, rdfx.type, rdfs.Class),
     rdf.quad(schema.WebPage, rdfs.subClassOf, schema.Thing),
+    rdf.quad(schema.WebPage, rdfs.label, rdf.literal('Page', languages.en)),
+    rdf.quad(schema.WebPage, rdfs.label, rdf.literal('Pagina', languages.nl)),
 
     rdf.quad(schema.WebSite, rdfx.type, rdfs.Class),
     rdf.quad(schema.WebSite, rdfs.subClassOf, schema.Thing),
@@ -148,6 +150,9 @@ export default function generateLRS() {
 
     rdf.quad(teamGL.ContactedAction, rdfx.type, rdfs.Class),
     rdf.quad(teamGL.ContactedAction, rdfs.subClassOf, schema.UpdateAction),
+
+    rdf.quad(teamGL.SignUpAction, rdfx.type, rdfs.Class),
+    rdf.quad(teamGL.SignUpAction, rdfs.subClassOf, schema.UpdateAction),
 
     rdf.quad(teamGL.NewVolunteer, rdfx.type, rdfs.Class),
     rdf.quad(teamGL.NewVolunteer, rdfs.subClassOf, teamGL.Volunteer),

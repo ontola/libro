@@ -6,7 +6,9 @@ import {
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
+import ontola from '../../ontology/ontola';
 import teamGL from '../../ontology/teamGL';
+import ActionsBar from '../../topologies/ActionsBar';
 import { containerTopology } from '../../topologies/Container';
 import ContentDetails from '../../topologies/ContentDetails';
 import Card from '../../topologies/Card';
@@ -22,6 +24,9 @@ const EventContainer = () => (
       <Property label={teamGL.desiredCount} />
       <Property label={schema.text} />
     </CardContent>
+    <ActionsBar>
+      <Property label={ontola.signUpAction} onLoad={() => null} />
+    </ActionsBar>
   </Card>
 );
 

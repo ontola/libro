@@ -1,4 +1,3 @@
-import { useLRS } from 'link-redux';
 import React from 'react';
 import { useHistory } from 'react-router';
 
@@ -12,14 +11,17 @@ export const MIN_POSTAL_DIGITS = 1000;
 export const postalCodeIri = (postalDigits) => app.ns(`postal_codes/${postalDigits}`);
 
 export const useVisitPostalCode = () => {
-  const lrs = useLRS();
   const history = useHistory();
   const [recentPostalCodes, addRecentPostalCode] = React.useMemo(() => {
+    if (!__CLIENT__) {
+      return [[], () => {}];
+    }
     const rawFromStorage = localStorage.getItem('recentPostalDigits');
     const current = rawFromStorage ? JSON.parse(rawFromStorage) : [];
     const add = (value) => {
-      const newValue = current.filter((v) => (v !== value));
-      newValue.unshift(value);
+      const normalizedValue = value.toString();
+      const newValue = current.filter((v) => (v !== normalizedValue));
+      newValue.unshift(normalizedValue);
       localStorage.setItem('recentPostalDigits', JSON.stringify(newValue.slice(0, MAX_IN_STORAGE)));
     };
 
@@ -28,9 +30,7 @@ export const useVisitPostalCode = () => {
 
   const visitPostalCode = React.useCallback((digits) => {
     addRecentPostalCode(digits);
-    lrs.getEntity(postalCodeIri(digits)).then(() => {
-      history.push(retrievePath(postalCodeIri(digits)));
-    });
+    history.push(retrievePath(postalCodeIri(digits)));
   }, []);
 
   return {

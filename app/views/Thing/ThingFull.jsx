@@ -4,24 +4,25 @@ import schema from '@ontologies/schema';
 import { register } from 'link-redux';
 import PropTypes from 'prop-types';
 
-import { defaultMenus } from '../common';
-import app from '../../ontology/app';
-import argu from '../../ontology/argu';
-import meeting from '../../ontology/meeting';
-import ontola from '../../ontology/ontola';
-import { fullResourceTopology } from '../../topologies/FullResource';
+import { components } from '../../components';
 import {
   forceRender,
   useViewBuilderToolkit,
   withoutLoading,
 } from '../../helpers/builder';
+import app from '../../ontology/app';
+import argu from '../../ontology/argu';
+import meeting from '../../ontology/meeting';
+import ontola from '../../ontology/ontola';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
 import { containerTopology } from '../../topologies/Container';
 import { detailsBarTopology } from '../../topologies/DetailsBar';
-import { components } from '../../components';
+import { fullResourceTopology } from '../../topologies/FullResource';
+import { tabPaneTopology } from '../../topologies/TabPane';
+import { defaultMenus } from '../common';
 
 const ThingFull = ({ renderPartOf }) => {
   const { p, c } = useViewBuilderToolkit();
@@ -85,6 +86,7 @@ ThingFull.type = schema.Thing;
 
 ThingFull.topology = [
   fullResourceTopology,
+  tabPaneTopology,
 ];
 
 ThingFull.propTypes = {

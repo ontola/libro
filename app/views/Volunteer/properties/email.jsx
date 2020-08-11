@@ -1,3 +1,4 @@
+import schema from '@ontologies/schema';
 import LinkedRenderStore from 'link-lib';
 import { linkedPropType } from 'link-redux';
 import React from 'react';
@@ -23,6 +24,6 @@ Email.propTypes = propTypes;
 export default LinkedRenderStore.registerRenderer(
   Email,
   teamGL.Volunteer,
-  teamGL.email,
+  schema.email,
   allTopologies
 );

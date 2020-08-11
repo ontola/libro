@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -11,14 +12,26 @@ export const attributeListTopology = argu.ns('attributeList');
 class AttributeList extends Topology {
   public static propTypes = {
     children: PropTypes.node,
+    className: PropTypes.string,
+    fullLabel: PropTypes.bool,
+  };
+
+  public static defaultProps = {
+    fullLabel: true,
   };
 
   constructor(props: {}) {
     super(props);
 
-    this.className = 'AttributeList';
     this.elementType = 'table';
     this.topology = attributeListTopology;
+  }
+
+  public getClassName() {
+    return classNames({
+      'AttributeList': true,
+      'AttributeList--full-label': (this.props as any).fullLabel,
+    });
   }
 
   public renderContent() {

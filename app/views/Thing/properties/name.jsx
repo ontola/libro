@@ -127,7 +127,13 @@ export default [
     [radioGroupTopology, selectTopology]
   ),
   LinkedRenderStore.registerRenderer(
-    () => <LDLink><ConnectedHeading data-test="Thing-name-card" size="2" variant="semantic" /></LDLink>,
+    ({ wrapper }) => {
+      const Wrapper = wrapper || LDLink;
+
+      return (
+        <Wrapper><ConnectedHeading data-test="Thing-name-card-link" size="2" variant="semantic" /></Wrapper>
+      );
+    },
     schema.Thing,
     NamePredicates,
     [

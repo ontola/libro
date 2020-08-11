@@ -9,6 +9,7 @@ import CardContent from '../../components/Card/CardContent';
 import HeaderWithMenu from '../../components/HeaderWithMenu';
 import ontola from '../../ontology/ontola';
 import teamGL from '../../ontology/teamGL';
+import ActionsBar from '../../topologies/ActionsBar';
 import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
 import ContentDetails from '../../topologies/ContentDetails';
@@ -31,6 +32,9 @@ const EventFull = () => (
           <Property label={teamGL.desiredCount} />
           <Property label={schema.text} />
         </CardContent>
+        <ActionsBar>
+          <Property label={ontola.signUpAction} onLoad={() => null} />
+        </ActionsBar>
       </CardMain>
     </Container>
     <Container>

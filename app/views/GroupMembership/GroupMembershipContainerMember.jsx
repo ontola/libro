@@ -14,33 +14,29 @@ import Card from '../../topologies/Card';
 import { containerTopology } from '../../topologies/Container';
 import ContentDetails from '../../topologies/ContentDetails';
 
-const GroupMembershipContainer = () => (
+const GroupMembershipContainerMember = () => (
   <Card>
     <CardContent noSpacing>
       <HeaderWithMenu
         menu={<Property label={ontola.actionsMenu} />}
       >
-        <Property label={org.member}>
+        <Property label={org.organization}>
           <Property label={schema.name} />
         </Property>
       </HeaderWithMenu>
-      <Property label={org.member}>
+      <Property label={org.organization}>
         <ContentDetails>
-          <Property label={teamGL.department} />
-          <Property label={teamGL.engagement} />
+          <Property label={[teamGL.department, schema.isPartOf]} />
+          <Property label={teamGL.volunteersCount} />
         </ContentDetails>
-        <div className="Volunteer--contact-options">
-          <Property label={teamGL.telephone} />
-          <Property label={schema.email} />
-        </div>
         <Property label={schema.text} />
       </Property>
     </CardContent>
   </Card>
 );
 
-GroupMembershipContainer.type = org.Membership;
+GroupMembershipContainerMember.type = org.Membership;
 
-GroupMembershipContainer.topology = containerTopology;
+GroupMembershipContainerMember.topology = containerTopology;
 
-export default register(GroupMembershipContainer);
+export default register(GroupMembershipContainerMember);

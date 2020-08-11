@@ -25,6 +25,7 @@ const propTypes = {
   active: PropTypes.bool,
   /** Additional aria label */
   ariaLabel: PropTypes.string,
+  centered: PropTypes.bool,
   /** Label of the button */
   children: PropTypes.node,
   /** Should be avoided. Try to use the 'theme' prop or wrap it in some other element for styling
@@ -88,6 +89,7 @@ const defaultProps = {
 const Button = ({
   active,
   ariaLabel,
+  centered,
   children,
   className,
   corner,
@@ -109,6 +111,7 @@ const Button = ({
   const btnClass = classNames({
     Button: true,
     'Button--active': active,
+    'Button--centered': centered,
     'Button--corner': corner,
     'Button--grow': grow,
     'Button--has-children': children,
