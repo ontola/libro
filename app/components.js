@@ -45,7 +45,7 @@ import CompFormFormSection from './components/Form/FormSection';
 import CompGridGridHeader from './components/Grid/GridHeader';
 import CompGridGridItem from './components/Grid/GridItem';
 import CompHeaderWithMenu from './components/HeaderWithMenu/index';
-import CompHeaders from './components/Headers/DutchGovernmentHeader';
+import CompHeaders from './components/Headers/dutchGovernment/DutchGovernmentHeader';
 import CompHeading from './components/Heading/index';
 import CompHoverPopup from './components/HoverPopup/HoverPopup';
 import CompImage from './components/Image';

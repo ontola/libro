@@ -22,6 +22,7 @@ import ContactPage from './ContactPage';
 import DataCube from './DataCube';
 import DataType from './DataType';
 import Department from './Department';
+import DexTransfer from './DexTransfer';
 import DialogManager from './DialogManager';
 import Document from './Document';
 import Employment from './Employment';
@@ -102,6 +103,7 @@ export function getViews() {
     ...DataCube,
     ...DataType,
     ...Department,
+    ...DexTransfer,
     ...Document,
     ...DialogManager,
     ...Employment,

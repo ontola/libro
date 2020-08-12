@@ -7,7 +7,8 @@ import { HotKeys } from 'react-hotkeys';
 import { withRouter } from 'react-router';
 import ScrollMemory from 'react-router-scroll-memory';
 
-import DutchGovernmentHeader from '../../components/Headers/DutchGovernmentHeader';
+import DexTransferHeader from '../../components/Headers/dexTransfer/Header';
+import DutchGovernmentHeader from '../../components/Headers/dutchGovernment/DutchGovernmentHeader';
 import '../../components/shared/init.scss';
 import NavBarContent from '../../components/NavBarContent';
 import NetworkStatusIndicator from '../../components/NetworkStatusIndicator';
@@ -28,6 +29,7 @@ import Routes from '../index';
 import './index.scss';
 
 const headers = {
+  dexTransfer: DexTransferHeader,
   dutchGovernment: DutchGovernmentHeader,
 };
 
