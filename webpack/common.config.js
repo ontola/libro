@@ -35,7 +35,7 @@ const common = {
         test: /\.jpg$/,
         use: 'file-loader?name=[name].[ext]',
       }, {
-        test: /\.otf$/,
+        test: /\.(otf|woff|woff2)$/,
         use: 'file-loader?name=[name].[ext]&outputPath=f_assets/fonts/',
       }, {
         test: /\.(svg)$/,
