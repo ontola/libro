@@ -1,7 +1,7 @@
-import { deserializeHTMLToDocument } from '@udecode/slate-plugins';
 import { Node } from 'slate';
+import { deserializeHTMLToDocument } from '@udecode/slate-plugins';
 
-import { DefaultPlugins } from '../plugins/DefaultPlugins';
+import { CommandPlugin } from '../plugins';
 
 const marked = require('marked');
 
@@ -31,7 +31,7 @@ const edit = (regex: RegExp, opt: string = null) => {
   return obj;
 };
 
-export const deserializeMarkdown = (markdown: string): Node[] => {
+export const deserializeMarkdown = (plugins: CommandPlugin[]) => (markdown: string): Node[] => {
   // 1. Using remark-slate:
   // return parseMD(deserializeMarkdownOptions)(markdown);
 
@@ -60,5 +60,5 @@ export const deserializeMarkdown = (markdown: string): Node[] => {
   // Note: <li> is normalized to <li><p> in withListItems
   const parsed = new DOMParser().parseFromString(html, 'text/html');
 
-  return deserializeHTMLToDocument(DefaultPlugins)(parsed.body)[0].children;
+  return deserializeHTMLToDocument(plugins)(parsed.body)[0].children;
 };

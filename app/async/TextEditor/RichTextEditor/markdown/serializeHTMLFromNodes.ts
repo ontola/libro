@@ -1,8 +1,8 @@
 import { ReactElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { SlatePlugin } from '@udecode/slate-plugins-core';
 import { Node as SlateNode, Text as SlateText } from 'slate';
 import { RenderElementProps, RenderLeafProps } from 'slate-react';
+import { SlatePlugin } from '@udecode/slate-plugins-core';
 
 // NOTE: 
 // Copy of @udecode/slate-plugins, with only one modification in function trimWhitespace.

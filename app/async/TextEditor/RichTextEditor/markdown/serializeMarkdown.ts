@@ -1,8 +1,6 @@
-import { Node as SlateNode } from 'slate';
+import { Node } from 'slate';
 import TurndownService from 'turndown';
-
-import { DefaultPlugins } from '../plugins/DefaultPlugins';
-
+import { CommandPlugin } from '../plugins';
 import { serializeHTMLFromNodes } from './serializeHTMLFromNodes';
 
 export const turndownService = new TurndownService({
@@ -16,13 +14,13 @@ turndownService.addRule('li-p', {
   replacement: (content) => content,
 });
 
-export const serializeMarkdown = (nodes: SlateNode[]): string => {
+export const serializeMarkdown = (plugins: CommandPlugin[]) => (nodes: Node[]): string => {
   // 1. Using remark-slate:
   //    - no images
   // return nodes.map((v) => serialize(v as BlockType | LeafType, { nodeTypes: serializeMarkdownNodeTypes })).join('');
 
   // 2. Through HTML:
-  const html = serializeHTMLFromNodes(DefaultPlugins)(nodes);
+  const html = serializeHTMLFromNodes(plugins)(nodes);
   return turndownService.turndown(html);
 
   // 3. Serialization to Markdown is also on the roadmap of @udecode/slate-plugins
