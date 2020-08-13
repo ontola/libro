@@ -1,32 +1,28 @@
+import { Editor, Node } from 'slate';
 import { ReactEditor } from 'slate-react';
-import {
-  pipe,
-  ToggleTypeEditor,
-  TransformEditor,
-  withImageUpload,
-  withInlineVoid,
-  withLink,
-  withToggleType,
-  withTransforms,
-  withTrailingNode,
-} from '@udecode/slate-plugins';
-import { DefaultPlugins, options } from '../plugins/DefaultPlugins';
-import { CommandEditor } from '../plugins/types';
-import { withListItems } from './withListItems';
 
+import { CommandPlugin } from '../plugins/types';
+import { comparePlugins } from '../plugins/comparePlugins';
+import { deserializeMarkdown, serializeMarkdown } from '../markdown';
 
-export const withPlugins = <T extends ReactEditor>(e: T) => {
-  const editor = pipe(e, 
-    withLink(), // after withTrailingNode?
-    withImageUpload(),
-    withToggleType({ defaultType: options.p.type }),
-    withTransforms(),
-    withTrailingNode({ type: options.p.type }), // together with withTransforms
-    withInlineVoid({ plugins: DefaultPlugins }),
-    withListItems,
-  ) as T & ToggleTypeEditor & TransformEditor & CommandEditor;
+export interface PluginEditor extends Editor {
+  plugins: CommandPlugin[];
+  deserializeMarkdown: (markdown: string) => Node[];
+  serializeMarkdown: (nodes: Node[]) => string;
+}
+
+export const withPlugins = (plugins: CommandPlugin[]) => <T extends ReactEditor>(e: T) => {
+  let editor = e as T & PluginEditor;
+  editor.plugins = plugins;
+  editor.deserializeMarkdown = deserializeMarkdown(plugins);
+  editor.serializeMarkdown = serializeMarkdown(plugins);
   
-  editor.commandPlugins = DefaultPlugins;
-  
+  if (plugins) {
+    plugins
+      .filter(plugin => !plugin.disabled && plugin.extendEditor)
+      .sort(comparePlugins)
+      .reduce((editor, plugin) => editor = plugin.extendEditor(editor), editor);
+  }
+
   return editor;
 }
