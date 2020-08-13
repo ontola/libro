@@ -18,5 +18,5 @@ export const mergePlugins = (plugins: CommandPlugin[], extensions: CommandPlugin
   );
   mergedPlugins.push(...newPlugins);
 
-  return mergedPlugins.filter(plugin => !plugin.disabled);
+  return mergedPlugins;
 }
