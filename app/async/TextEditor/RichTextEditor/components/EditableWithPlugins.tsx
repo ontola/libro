@@ -1,11 +1,10 @@
 import React, { useMemo } from 'react';
-import { EditablePlugins, HeadingToolbar, EditablePluginsProps, ToolbarStyleProps, ToolbarStyles } from '@udecode/slate-plugins';
-import { DefaultPlugins } from '../plugins/DefaultPlugins';
-import { CommandPlugin } from '../plugins/types';
+import { EditablePlugins, EditablePluginsProps, HeadingToolbar, ToolbarStyleProps, ToolbarStyles } from '@udecode/slate-plugins';
 import { concatStyleSets } from '@uifabric/styling';
-import { mergePlugins } from '../plugins/mergePlugins';
-import { compareCommands } from '../commands/compareCommands';
 import { IStyleFunctionOrObject } from '@uifabric/utilities';
+
+import { compareCommands } from '../commands/compareCommands';
+import { CommandPlugin } from '../plugins/types';
 
 export interface EditableWithPluginsProps extends EditablePluginsProps {
   plugins?: CommandPlugin[];
@@ -13,22 +12,17 @@ export interface EditableWithPluginsProps extends EditablePluginsProps {
 };
 
 export const EditableWithPlugins: React.FC<EditableWithPluginsProps> = ({ plugins, toolbarStyles, ...props }) => {
-
-  const mergedPlugins: CommandPlugin[] = useMemo(() => 
-    mergePlugins(DefaultPlugins, plugins || []), 
-    [plugins]
-  );
-
-  const buttons: JSX.Element[] = useMemo(() => {
-    let allCommands = mergedPlugins?.reduce((commands, plugin) => commands.concat(plugin.commands || []), []);
-    return allCommands
-      ?.filter(c => c.button)
-      ?.sort(compareCommands)
-      ?.map((c, index) => c.button({ key: index+1 })) 
-      || [];
-    },
-    [mergedPlugins]
-  );
+  const buttons: JSX.Element[] = useMemo(() => (
+    // From plugins...
+    (plugins || [])
+      .filter(plugin => !plugin.disabled)
+      // to commands...
+      .reduce((commands, plugin) => commands.concat(plugin.commands || []), [])
+      .filter(command => !command.disabled && command.button)
+      .sort(compareCommands)
+      // to buttons...
+      .map((command, index) => command.button({ key: index+1 })) 
+  ), [plugins]);
 
   const combinedToolbarStyles = useMemo(
     () => concatStyleSets({
@@ -58,7 +52,7 @@ export const EditableWithPlugins: React.FC<EditableWithPluginsProps> = ({ plugin
           </HeadingToolbar> : undefined
       }
       <EditablePlugins 
-        plugins={mergedPlugins} 
+        plugins={plugins} 
         placeholder="Enter some text..." 
         {...props}
       />
