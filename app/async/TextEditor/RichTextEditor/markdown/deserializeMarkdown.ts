@@ -36,7 +36,10 @@ export const deserializeMarkdown = (plugins: CommandPlugin[]) => (markdown: stri
   // return parseMD(deserializeMarkdownOptions)(markdown);
 
   // 2. By way of HTML:
-  //
+  if (!markdown || !markdown.trim()) {
+    return [{ children: [{ text: '' }], type: 'p' }];
+  }
+
   // Instead of using:
   //   const html = marked(markdown);
   // adapt some rules:
