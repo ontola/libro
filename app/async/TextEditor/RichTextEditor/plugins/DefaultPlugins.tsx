@@ -1,6 +1,9 @@
 import React from 'react';
+import { Editor } from 'slate';
+import isHotkey from 'is-hotkey';
 import {
   BoldPlugin,
+  CodeBlockPlugin,
   DEFAULTS_ALIGN,
   DEFAULTS_BLOCKQUOTE,
   DEFAULTS_BOLD,
@@ -26,8 +29,11 @@ import {
   ELEMENT_H3,
   ELEMENT_OL,
   ELEMENT_UL,
+  ExitBreakPlugin,
   HeadingPlugin,
   ImagePlugin,
+  isBlockAboveEmpty,
+  isSelectionAtBlockStart,
   ItalicPlugin,
   LinkPlugin,
   ListPlugin,
@@ -35,48 +41,44 @@ import {
   MARK_ITALIC,
   MARK_UNDERLINE,
   ParagraphPlugin,
+  ResetBlockTypePlugin,
+  ResetBlockTypePluginOptions,
+  SoftBreakPlugin,
   ToolbarImage,
   ToolbarLink,
   UnderlinePlugin,
-  CodeBlockPlugin,
-  ToolbarElement,
-  SoftBreakPlugin,
-  ExitBreakPlugin,
-  ResetBlockTypePlugin,
-  ResetBlockTypePluginOptions,
-  isBlockAboveEmpty,
-  isSelectionAtBlockStart,
+  ListOnKeyDownOptions,
+  withImageUpload,
+  withLink,
+  withToggleType,
+  withInlineVoid,
+  withTransforms,
+  withTrailingNode,
 } from '@udecode/slate-plugins';
 import {
+  Code,
   FormatBold,
   FormatItalic,
-  FormatUnderlined,
   FormatListBulleted,
   FormatListNumbered,
+  FormatUnderlined,
   Image,
   Link,
   Looks3,
   LooksOne,
   LooksTwo
-} from '@styled-icons/material';
-import { CodeBlock } from '@styled-icons/boxicons-regular/CodeBlock';
-// or the same icons:
-// import FormatBold from '@material-ui/icons/FormatBold';
-// import FormatItalic from '@material-ui/icons/FormatItalic';
-// import FormatUnderlined from '@material-ui/icons/FormatUnderlined';
-// import FormatListBulleted from '@material-ui/icons/FormatListBulleted';
-// import FormatListNumbered from '@material-ui/icons/FormatListNumbered';
-// import LooksOne from '@material-ui/icons/LooksOne';
-// import LooksTwo from '@material-ui/icons/LooksTwo';
-// import Looks3 from '@material-ui/icons/Looks3';
-import { CommandPlugin } from './types';
+} from '@material-ui/icons';
 
-import { getButtonMark } from '../utils/getButtonMark';
+import { withListItems } from '../transforms/withListItems';
+import { PluginEditor } from '../transforms';
 import { getButtonElement } from '../utils/getButtonElement';
+import { getButtonList } from '../utils/getButtonList';
+import { getButtonMark } from '../utils/getButtonMark';
+import { getToggleList } from '../utils/getToggleList';
 import { getToggleMark } from '../utils/getToggleMark';
 import { getToggleType } from '../utils/getToggleType';
-import { getToggleList } from '../utils/getToggleList';
-import { getButtonList } from '../utils/getButtonList';
+
+import { CommandPlugin } from './types';
 
 export const options = {
   ...DEFAULTS_PARAGRAPH,
@@ -132,6 +134,14 @@ export const optionsResetBlockTypes: ResetBlockTypePluginOptions = {
   ],
 };
 
+// TODO
+export const onKeyDownList = (options1?: ListOnKeyDownOptions) => (e: KeyboardEvent, editor: Editor) => {
+  if (isHotkey('mod+1', e)) {
+    getToggleList('ol', options)(editor);
+  }  
+  ListPlugin(options1).onKeyDown(e, editor);
+};
+
 export const DefaultPlugins: CommandPlugin[] = [
   {
     name: 'Bold',
@@ -151,7 +161,7 @@ export const DefaultPlugins: CommandPlugin[] = [
     commands: [
       {
         name: 'FormatCodeBlock',
-        button: getButtonElement(options.code_block.type, <CodeBlock />),
+        button: getButtonElement(options.code_block.type, <Code />),
         buttonIndex: 350,
       }
     ]
@@ -209,6 +219,8 @@ export const DefaultPlugins: CommandPlugin[] = [
   {
     name: 'Image',
     ...ImagePlugin(options),
+    extendEditor: withImageUpload() as <T extends Editor>(editor: T) => T,
+    extendEditorIndex: 200,
     commands: [
       {
         name: 'InsertImage',
@@ -216,6 +228,14 @@ export const DefaultPlugins: CommandPlugin[] = [
         buttonIndex: 500,
       },
     ],
+  },
+  {
+    name: 'InlineVoid',
+    extendEditor: <T extends Editor>(editor: T) => {
+      const e = editor as T & PluginEditor;
+      return withInlineVoid({ plugins: e.plugins })(e);
+    },
+    extendEditorIndex: 600,
   },
   {
     name: 'Italic',
@@ -233,6 +253,8 @@ export const DefaultPlugins: CommandPlugin[] = [
   {
     name: 'Link',
     ...LinkPlugin(options),
+    extendEditor: withLink() as <T extends Editor>(editor: T) => T,
+    extendEditorIndex: 100,
     commands: [
       {
         name: 'InsertLink',
@@ -244,6 +266,9 @@ export const DefaultPlugins: CommandPlugin[] = [
   {
     name: 'List', 
     ...ListPlugin(DEFAULTS_LIST),
+    onKeyDown: onKeyDownList(options),
+    extendEditor: withListItems as <T extends Editor>(editor: T) => T,
+    extendEditorIndex: 700,
     commands: [
       {
         name: 'FormatListOrdered',
@@ -289,6 +314,21 @@ export const DefaultPlugins: CommandPlugin[] = [
         },
       ],
     })
+  },
+  {
+    name: 'ToggleType',
+    extendEditor: withToggleType({ defaultType: options.p.type }),
+    extendEditorIndex: 300,
+  },
+  {
+    name: 'TrailingNode',
+    extendEditor: withTrailingNode({ type: options.p.type }) as <T extends Editor>(editor: T) => T,
+    extendEditorIndex: 500, // after withTransforms
+  },
+  {
+    name: 'Transforms',
+    extendEditor: withTransforms(),
+    extendEditorIndex: 400, // before withTrailingNode
   },
   {
     name: 'Underline',
