@@ -11,5 +11,5 @@ export const mergeCommands = (commands: Command[], extensions: Command[]): Comma
   ); 
   mergedCommands.push(...newCommands);
 
-  return mergedCommands.filter(command => !command.disabled);
+  return mergedCommands;
 };
