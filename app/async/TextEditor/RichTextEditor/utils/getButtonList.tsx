@@ -1,5 +1,5 @@
 import React from 'react';
-import { ToolbarButtonProps, ToolbarList, ListOptions } from '@udecode/slate-plugins';
+import { ListOptions, ToolbarButtonProps, ToolbarList } from '@udecode/slate-plugins';
 
 export const getButtonList = (type: string, options: ListOptions, icon: JSX.Element) => (props: ToolbarButtonProps) => {
   return (
