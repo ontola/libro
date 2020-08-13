@@ -1,4 +1,4 @@
-import { Transforms, Element, Node, Editor, Text, NodeEntry } from 'slate'
+import { Editor, Node, NodeEntry, Text, Transforms } from 'slate'
 
 export const withListItems = (editor: Editor) => {
   const { normalizeNode } = editor

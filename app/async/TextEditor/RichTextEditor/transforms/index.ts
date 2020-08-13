@@ -1,3 +1,3 @@
-export * from './withHistory';
+export * from './withHistoryEntry';
 export * from './withListItems';
 export * from './withPlugins';
