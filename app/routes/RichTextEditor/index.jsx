@@ -1,84 +1,49 @@
-import React from 'react';
-import { useSlate } from 'slate-react';
-import styled from 'styled-components';
+import React, { useCallback, useMemo } from 'react';
+import { styled } from '@material-ui/core/styles';
 
-import RichTextEditor from '../../containers/RichTextEditor';
+import RichTextEditorMd from './components/RichTextEditorMd';
+import { DefaultPlugins } from './plugins';
 
-const EditorFrame = styled.div`
-  flex: 1;
-  height: 100%;
-  margin: 0 10px;
-`;
+const EditorFrame = styled('div')({
+  height: '100%',
+  margin: '0 10px',
+});
 
-const Title = styled.div`
-  color: #888;
-  display: table-cell;
-  height: 50px;
-  vertical-align: middle;
-`;
+const Title = styled('div')({
+  color: '#888',
+  display: 'table-cell',
+  height: '50px',
+  verticalAlign: 'middle',
+});
 
 const RTE = () => {
-  const [value, setValue] = React.useState(localStorage.getItem('RTE'));
-  const onChange = React.useCallback((newValue) => {
-    localStorage.setItem('RTE', newValue);
-    setValue(newValue);
-  });
+  const value = useMemo(() => (
+    localStorage.getItem('RTE') || ''
+  ), []);
 
-  const plugins = React.useMemo(() => ([
-    {
-      name: 'Heading',
-      commands: [
-        {
-          name: 'FormatHeading3',
-          disabled: true,
-        }
-      ],
-    },
-    {
-      name: 'Save',
-      disabled: false,
-      commands: [{
-        name: 'Save',
-        button: (props) => {
-          const editor = useSlate();
-          return (
-            <button
-              onClick={e => {
-                e.preventDefault();
-                onSave(editor, editor.children);
-              }}
-              style={{ marginLeft: '9px' }}
-              {...props}
-            >
-              Save
-            </button>
-          )
-        },
-      }],
-    },
-  ]), []);
+  const onAutoSave = useCallback((editor, value) => {
+    localStorage.setItem('RTE', value);
+  }, []);
 
   return (
-    <EditorFrame>
-      <Title>Slate with plugins</Title>
-      <RichTextEditor
-        placeholder="Typ hier uw tekst..."
-        plugins={plugins}
-        value={value}
-        // onAutoSave={onSaveEditor1}
-        onChange={onChange}
-        style={{
-          backgroundColor: '#fff',
-          height: '80vh',
-          overflowY: 'scroll',
-          padding: '0px 10px',
-        }}
-        toolbarStyle={{
-          backgroundColor: '#fff',
-        }}
-      />
-    </EditorFrame>
+      <EditorFrame>
+        <Title>
+          Slate with plugins
+        </Title>
+        <RichTextEditorMd
+          placeholder='Typ hier uw tekst...'
+          plugins={DefaultPlugins}
+          value={value} 
+          onAutoSave={onAutoSave}
+          style={{
+            backgroundColor: '#fff',
+            height: '80vh', 
+            overflowY: 'scroll',
+            padding: '0px 10px',
+          }} 
+        />
+      </EditorFrame>
   );
-};
+}
 
 export default RTE;
