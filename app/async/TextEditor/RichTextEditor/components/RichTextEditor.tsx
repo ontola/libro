@@ -3,18 +3,18 @@ import { createEditor, Editor, Node } from 'slate';
 import { withHistory } from 'slate-history';
 import { ReactEditor, Slate, withReact } from 'slate-react';
 
-import { withPlugins } from '../transforms/withPlugins';
+import { PluginEditor, withPlugins } from '../transforms/withPlugins';
 
 import { EditableWithPlugins, EditableWithPluginsProps } from './EditableWithPlugins';
 
 export interface RichTextEditorProps extends EditableWithPluginsProps {
-  onAutoSave?: (editor: ReactEditor, nodes: Node[]) => void,
-  onChange?: (editor: ReactEditor, nodes: Node[]) => void,  
+  onAutoSave?: (editor: PluginEditor, nodes: Node[]) => void,
+  onChange?: (editor: PluginEditor, nodes: Node[]) => void,  
   value?: Node[],
 }
 
-export const RichTextEditor: React.FC<RichTextEditorProps> = ({ value, onAutoSave, onChange, ...props }) => {
-  const editor = useMemo(() => withPlugins(withHistory(withReact(createEditor()))), []);
+export const RichTextEditor: React.FC<RichTextEditorProps> = ({ plugins, onAutoSave, onChange, value, ...props }) => {
+  const editor = useMemo(() => withPlugins(plugins)(withHistory(withReact(createEditor()))), []);
 
   const [normalizedValue, setNormalizedValue] = useState<Node[]>([]);
   const [timeoutID, setTimeoutID] = useState(0);
@@ -22,11 +22,12 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({ value, onAutoSav
   useEffect(() => {
     // Slate throws an error if the value on the initial render is invalid.
     // Solution from https://github.com/ianstormtaylor/slate/issues/3465#issuecomment-655592962
-    editor.children = value
-    Editor.normalize(editor, { force: true })
+    clearTimeout(timeoutID);
+    editor.children = value;
+    Editor.normalize(editor, { force: true });
     // The rendering can take over from here:
-    setNormalizedValue(editor.children)
-  }, [value])
+    setNormalizedValue(editor.children);
+  }, [value]);
 
   useEffect(() => {
     if (onAutoSave && ReactEditor.isFocused(editor)) {
@@ -49,8 +50,10 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({ value, onAutoSav
           }
         }}>
           <EditableWithPlugins
+            plugins={plugins}
             onBlur={() => {
               if (onAutoSave) {
+                clearTimeout(timeoutID);
                 onAutoSave(editor, normalizedValue);
               }
             }}
