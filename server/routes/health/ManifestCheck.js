@@ -44,8 +44,8 @@ export default class ManifestCheck extends Check {
 
       if (typeof ontola !== 'object') {
         return new Error('Manifest holds no `ontola` object');
-      } else if (typeof ontola.template !== 'string' || ontola.template.trim().length === 0) {
-        return new Error('Manifest has no template key in `ontola` object');
+      } else if (typeof ontola.theme !== 'string' || ontola.theme.trim().length === 0) {
+        return new Error('Manifest has no theme key in `ontola` object');
       }
 
       if (typeof serviceworker !== 'object') {

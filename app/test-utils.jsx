@@ -41,7 +41,7 @@ const wrapProviders = ({
           <HelmetProvider context={{}}>
             <LRSProvider value={ctx?.lrs}>
               <IntlProvider locale="en" messages={englishMessages}>
-                <ThemeProvider theme={themes.common}>
+                <ThemeProvider theme={themes.common({})}>
                   <Router history={ctx.history}>
                     {children}
                   </Router>

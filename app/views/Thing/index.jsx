@@ -32,7 +32,6 @@ import Location from './properties/location';
 import Menus from './properties/menus';
 import MotionsCount from './properties/motionsCount';
 import Name from './properties/name';
-import NavbarBackground from './properties/navbarBackground';
 import Omniform from './properties/omniform';
 import Organization from './properties/organization';
 import PinnedAt from './properties/pinnedAt';
@@ -133,7 +132,6 @@ export default [
   Menus,
   MotionsCount,
   ...Name,
-  NavbarBackground,
   ...Omniform,
   Organization,
   PinnedAt,

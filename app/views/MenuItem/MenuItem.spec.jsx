@@ -11,7 +11,7 @@ import {
   cleanup,
   render,
 } from '../../test-utils';
-import button from '../../themes/common/components/button';
+import button from '../../themes/common/theme/components/button';
 import AppMenu from '../../topologies/AppMenu';
 
 describe('MenuItem', () => {

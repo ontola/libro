@@ -4,6 +4,8 @@ import spinner from '../../../app/helpers/spinner';
 import { moduleBrowserVersions } from '../../../bundleConfig';
 import * as constants from '../../config';
 
+import { navbarBackground, navbarColor } from './styling';
+
 const requiredFeatures = [
   'default',
   'Array.prototype.findIndex',
@@ -70,10 +72,9 @@ export const preloadingBlock = (ctx, nonceStr) => `
   <div class="preloader" id="preloader">${spinner}</div>
   <div
       id="navbar-preview"
-      class="accent-background-color navbar-background navbar-color"
-      style="height: 3.2rem; z-index: -1;"
+      style="background: ${navbarBackground(ctx)}; color: ${navbarColor(ctx)}; height: 3.2rem; z-index: -1;"
   ></div>
-  <div id="${constants.APP_ELEMENT}" class="${ctx.manifest.ontola.css_class} preloader-fixed"></div>
+  <div id="${constants.APP_ELEMENT}" class="${ctx.manifest.ontola.theme} preloader-fixed"></div>
   <noscript>
       <h1>Argu heeft javascript nodig om te werken</h1>
       <p>Javascript staat momenteel uitgeschakeld, probeer een andere browser of in prive modus.</p>

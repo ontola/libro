@@ -3,7 +3,6 @@ import {
   fade,
   lighten,
 } from '@material-ui/core/styles/colorManipulator';
-import { createMuiTheme } from '@material-ui/core';
 
 /**
  * These values (the default theme variables) should map to /components/shared/_config.scss
@@ -20,11 +19,11 @@ const colorBaseOrange = 'rgb(161, 98, 37)';
 // coefficient = (100 - (percentage * 2)) / 100
 const colors = {
   black: {
-    base: 'rgb(0, 0, 0)',
+    main: 'rgb(0, 0, 0)',
   },
   blue: {
     dark: darken(colorBaseBlue, 0.60),
-    base: colorBaseBlue,
+    main: colorBaseBlue,
     midLight: lighten(colorBaseBlue, 0.10),
     light: lighten(colorBaseBlue, 0.60),
     xLight: 'rgb(238, 240, 242)',
@@ -32,22 +31,22 @@ const colors = {
   },
   brown: {
     dark: 'rgb(104, 71, 71)',
-    base: colorBaseBrown,
+    main: colorBaseBrown,
     light: lighten(colorBaseBrown, 0.40),
     xLight: fade(colorBaseBrown, 0.05),
   },
   green: {
-    base: colorBaseGreen,
+    main: colorBaseGreen,
     light: lighten(colorBaseGreen, 0.40),
     xLight: fade(colorBaseGreen, 0.1),
   },
   greyVoteButton: {
-    base: '#707070',
+    main: '#707070',
   },
   grey: {
     dark: darken(colorBaseGrey, 0.99),
     midDark: darken(colorBaseGrey, 0.60),
-    base: colorBaseGrey,
+    main: colorBaseGrey,
     midLight: lighten(colorBaseGrey, 0.20),
     light: lighten(colorBaseGrey, 0.40),
     // xLight: lighten(colorBaseGrey, 0.80),
@@ -57,13 +56,13 @@ const colors = {
     xxLightForegroundLarge: '#696969',
   },
   pink: {
-    base: 'rgb(208, 2, 91)',
+    main: 'rgb(208, 2, 91)',
     light: 'rgb(255, 192, 203)',
     xLight: 'rgb(255, 223, 229)',
   },
   red: {
     dark: darken(colorBaseRed, 0.60),
-    base: colorBaseRed,
+    main: colorBaseRed,
     light: lighten(colorBaseRed, 0.60),
     xLight: fade(colorBaseRed, 0.2),
   },
@@ -72,18 +71,19 @@ const colors = {
     xDark: fade('rgb(0, 0, 0)', 0.15),
     dark: fade('rgb(0, 0, 0)', 0.06),
     midDark: fade('rgb(0, 0, 0)', 0.03),
-    base: fade('rgb(255, 255, 255)', 0.6),
+    main: fade('rgb(255, 255, 255)', 0.6),
     midLight: fade('rgb(255, 255, 255)', 0.3),
     light: fade('rgb(255, 255, 255)', 0.15),
     xLight: fade('rgb(255, 255, 255)', 0.05),
     transparent: fade('rgb(255, 255, 255)', 0),
   },
   white: {
-    base: 'rgb(255, 255, 255)',
+    contrastText: 'rgba(0, 0, 0, 0.87)',
+    main: 'rgb(255, 255, 255)',
   },
   orange: {
     dark: 'rgb(104, 93, 82)',
-    base: colorBaseOrange,
+    main: colorBaseOrange,
     light: lighten(colorBaseOrange, 0.40),
     xLight: fade(colorBaseOrange, 0.05),
   },
@@ -93,7 +93,13 @@ const colors = {
 //  6px = 0.375rem = 0.1875 * 2rem
 const SIX_PX = 0.1875;
 
-const theme = createMuiTheme({
+const theme = {
+  appBar: {
+    height: '3.2rem',
+    iconBreakPoint: 'md',
+    maxWidth: 'xl',
+    position: 'relative',
+  },
   breakpoints: {
     /* eslint-disable sort-keys */
     values: {
@@ -114,15 +120,18 @@ const theme = createMuiTheme({
   palette: {
     background: {
       default: colors.blue.xLight,
-      paper: colors.white.base,
+      paper: colors.white.main,
+    },
+    ...colors,
+    link: {
+      header: colors.grey.midDark,
     },
     primary: {
-      contrastText: colors.white.base,
-      main: colors.blue.base,
+      main: colors.blue.main,
     },
     text: {
       disabled: colors.grey.midDark,
-      hint: colors.red.base,
+      hint: colors.red.main,
       primary: colors.grey.dark,
       secondary: colors.grey.midDark,
     },
@@ -134,9 +143,6 @@ const theme = createMuiTheme({
     },
     fontFamily: "'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif",
   },
-});
-
-export default {
-  ...colors,
-  theme,
 };
+
+export default theme;

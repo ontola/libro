@@ -143,9 +143,6 @@ export default function generateLRS() {
     rdf.quad(ontola['Create::Vote'], rdfx.type, rdfs.Class),
     rdf.quad(ontola['Create::Vote'], rdfs.subClassOf, schema.CreateAction),
 
-    rdf.quad(ontola.VideoPage, rdfx.type, rdfs.Class),
-    rdf.quad(ontola.VideoPage, rdfs.subClassOf, schema.WebPage),
-
     rdf.quad(schema.UpdateAction, rdfx.type, rdfs.Class),
     rdf.quad(schema.UpdateAction, rdfs.subClassOf, schema.Action),
 

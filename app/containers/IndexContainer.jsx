@@ -1,5 +1,4 @@
 import CssBaseline from '@material-ui/core/CssBaseline';
-import createPalette from '@material-ui/core/styles/createPalette';
 import { ThemeProvider } from '@material-ui/styles';
 import dayjs from 'dayjs';
 import 'dayjs/locale/nl';
@@ -13,7 +12,7 @@ import { Provider } from 'react-redux';
 
 import { getMetaContent } from '../helpers/arguHelpers';
 import AppFrame from '../routes/App';
-import themes from '../themes/index';
+import themes from '../themes';
 import englishMessages from '../translations/en.json';
 import dutchMessages from '../translations/nl.json';
 
@@ -36,6 +35,35 @@ const UpdateLRSIntl = ({ children }) => {
   return children;
 };
 
+const getThemeVariables = () => {
+  if (!__CLIENT__ || typeof window.WEBSITE_META === 'undefined' || Object.keys(window.WEBSITE_META).length === 0) {
+    return {};
+  }
+  const websiteMeta = window.WEBSITE_META;
+  const palette = {
+    link: {
+      text: websiteMeta.primary_color,
+    },
+    primary: {
+      main: websiteMeta.primary_color,
+    },
+    secondary: {
+      main: websiteMeta.secondary_color,
+    },
+  };
+  if (websiteMeta.styled_headers) {
+    palette.link.header = websiteMeta.primary_color;
+  }
+
+  return {
+    appBar: {
+      background: websiteMeta.header_background,
+      color: websiteMeta.header_text,
+    },
+    palette,
+  };
+};
+
 const IndexContainer = ({
   Router,
   lrs,
@@ -52,33 +80,8 @@ const IndexContainer = ({
     dayjs.locale('en');
   }
   const themeName = getMetaContent('theme');
-  let theme = themes[themeName] || themes.common;
-
-  if (__CLIENT__
-    && typeof window.WEBSITE_META !== 'undefined'
-    && Object.keys(window.WEBSITE_META).length > 0) {
-    const websiteMeta = window.WEBSITE_META;
-    /* eslint-disable no-magic-numbers */
-    theme = {
-      ...theme,
-      palette: createPalette({
-        ...theme.palette,
-        link: {
-          header: websiteMeta.styled_headers ? websiteMeta.secondary_main : theme.palette.grey[800],
-          text: websiteMeta.secondary_main,
-        },
-        primary: {
-          contrastText: websiteMeta.primary_text,
-          main: websiteMeta.primary_main,
-        },
-        secondary: {
-          contrastText: websiteMeta.secondary_text,
-          main: websiteMeta.secondary_main,
-        },
-      }),
-    };
-    /* eslint-enable no-magic-numbers */
-  }
+  const themeVariables = getThemeVariables();
+  const theme = (themes[themeName] || themes.common)(themeVariables);
 
   return (
     <Provider store={store}>

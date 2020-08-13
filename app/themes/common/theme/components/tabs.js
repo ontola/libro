@@ -1,4 +1,4 @@
-export default ({ theme, grey }) => ({
+export default (theme) => ({
   MuiTab: {
     labelIcon: {
       '& $wrapper :first-child': {
@@ -16,7 +16,7 @@ export default ({ theme, grey }) => ({
       },
     },
     textColorInherit: {
-      color: grey.base,
+      color: theme.palette.grey.main,
       opacity: null,
     },
     wrapper: {

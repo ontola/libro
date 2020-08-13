@@ -1,3 +1,4 @@
+import { checkLuminance } from '../../../app/helpers/color';
 import * as constants from '../../config';
 import manifests from '../manifest';
 
@@ -50,26 +51,38 @@ export const icons = (ctx) => ctx
   ?.filter(Boolean)
   ?.join('\n');
 
-export const themeBlock = ({ manifest: { ontola } }) => `
+export const navbarBackground = ({ manifest: { ontola } }) => {
+  switch (ontola.header_background) {
+    case 'white':
+      return '#FFFFFF';
+    case 'secondary':
+      return ontola.secondary_color;
+    case 'primary':
+      return ontola.primary_color;
+    default:
+      return ontola.header_background;
+  }
+};
+
+export const navbarColor = ({ manifest: { ontola } }) => {
+  switch (ontola.header_text) {
+    case 'auto':
+      return '#222222';
+    case 'secondary':
+      return ontola.secondary_color;
+    case 'primary':
+      return ontola.primary_color;
+    default:
+      return ontola.header_text;
+  }
+};
+
+export const themeBlock = (ctx) => `
     <style id="theme-config">
         :root {
-          --accent-background-color:${ontola.secondary_main};
-          --accent-color:${ontola.secondary_text};
-          --navbar-background:${ontola.primary_main};
-          --navbar-color:${ontola.primary_text};
-          --navbar-color-hover:${ontola.primary_text}12;
-        }
-        .accent-background-color {
-          background-color: ${ontola.secondary_main};
-        }
-        .accent-color {
-          color: ${ontola.secondary_text};
-        }
-        .navbar-background {
-          background: ${ontola.primary_main};
-        }
-        .navbar-color {
-          color: ${ontola.primary_text};
+          --accent-background-color:${ctx.manifest.ontola.primary_color};
+          --accent-color:${checkLuminance(ctx.manifest.ontola.primary_color) ? '#222222' : '#FFFFFF'};
+          --navbar-background:${navbarBackground(ctx)};
         }
     </style>
 `;

@@ -83,9 +83,8 @@ export const renderFullPage = async (ctx, data) => {
           <meta name="msapplication-starturl" content="${manifest.start_url}">
           <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1, maximum-scale=1.0, user-scalable=yes">
           <meta content="269911176456825" property="fb:app_id">
-          <meta name="theme" content="${manifest.ontola.css_class}">
-          <meta name="template" content="${manifest.ontola.template}">
-          <meta name="templateOpts" content="${manifest.ontola.template_options}">
+          <meta name="theme" content="${manifest.ontola.theme || 'common'}">
+          <meta name="themeOpts" content="${manifest.ontola.theme_options}">
           ${headers?.meta?.toString() || `<meta content="${manifest.short_name}" property="og:title"/>`}
 
           <meta name="csrf-param" content="authenticity_token">

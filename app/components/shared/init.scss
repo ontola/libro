@@ -1,23 +1,12 @@
-@import './reset';
 @import './config';
-@import '../../vendor/dutchGovernment/index';
-@import '../../vendor/groenlinks/index';
-@import '../../vendor/teamGL/index';
+@import '../../themes/dutchGovernment/index';
+@import '../../themes/groenLinks/index';
 
 html {
   // Removes 300ms touch delay on iOS safari
   touch-action: manipulation;
   height: 100%;
   width: 100%;
-}
-
-body {
-  background-color: color('blue', 'x-light');
-  color: color('grey', 'dark');
-  font-family: $font-family;
-  font-size: 15px;
-  line-height: $font-line-height;
-  margin: 0;
 }
 
 //sass-lint:disable no-ids

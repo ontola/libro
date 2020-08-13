@@ -36,7 +36,6 @@ export default {
   PropertyQuery: ontola('PropertyQuery'),
   SearchResult: ontola('SearchResult'),
   UnconfirmedUser: ontola('UnconfirmedUser'),
-  VideoPage: ontola('VideoPage'),
   Widget: ontola('Widget'),
 
   /* properties */

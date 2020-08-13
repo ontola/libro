@@ -8,6 +8,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { getMetaContent } from '../../helpers/arguHelpers';
 import libro from '../../ontology/libro';
 import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
@@ -15,6 +16,7 @@ import DialogTopology from '../../topologies/Dialog';
 
 const DialogManager = ({ resource }) => {
   const lrs = useLRS();
+  const theme = getMetaContent('theme');
 
   const close = (item, done) => (
     () => lrs.exec(rdf.namedNode(`${libro.actions.dialog.close.value}?resource=${encodeURIComponent(item.value)}`), { done })
@@ -27,6 +29,7 @@ const DialogManager = ({ resource }) => {
   return (
     <Dialog
       open
+      className={theme}
       maxWidth="md"
       PaperComponent="div"
       onClose={close(resource, false)}

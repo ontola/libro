@@ -5,7 +5,7 @@ import { mount, shallow } from 'enzyme';
 import CardActions from '../../components/Card/CardActions';
 import CardButton from '../../components/Card/CardButton';
 import CardContent from '../../components/Card/CardContent';
-import themes from '../../themes/index';
+import themes from '../../themes';
 
 import CardRow from './CardRow';
 
@@ -39,7 +39,7 @@ describe('Card component', () => {
 
   it('CardContent should render', () => {
     const tree = mount(
-      <ThemeProvider theme={themes.common}>
+      <ThemeProvider theme={themes.common({})}>
         <CardContent noSpacing>Content</CardContent>
       </ThemeProvider>
     );

@@ -7,9 +7,7 @@ import { HotKeys } from 'react-hotkeys';
 import { withRouter } from 'react-router';
 import ScrollMemory from 'react-router-scroll-memory';
 
-import DutchGovernmentHeader from '../../components/Headers/DutchGovernmentHeader';
 import '../../components/shared/init.scss';
-import NavBarContent from '../../components/NavBarContent';
 import NetworkStatusIndicator from '../../components/NetworkStatusIndicator';
 import SkipNavigation from '../../components/SkipNavigation';
 import { CONTAINER_ELEMENT } from '../../config';
@@ -19,17 +17,13 @@ import { handle } from '../../helpers/logging';
 import app from '../../ontology/app';
 import ontola from '../../ontology/ontola';
 import Footer from '../../topologies/Footer';
-import Navbar from '../../topologies/Navbar/index';
 import Popup from '../../topologies/Popup/index';
+import headers from '../../themes/headers';
 import ErrorButtonWithFeedback from '../../views/Error/ErrorButtonWithFeedback';
 import HoverHelper from '../DevBrowser/HoverHelper';
 import Routes from '../index';
 
 import './index.scss';
-
-const headers = {
-  dutchGovernment: DutchGovernmentHeader,
-};
 
 class App extends React.PureComponent {
   static propTypes = {
@@ -69,10 +63,10 @@ class App extends React.PureComponent {
       return <ErrorButtonWithFeedback reloadLinkedObject={this.retry} />;
     }
 
-    const template = getMetaContent('template');
-    const templateOptions = new URLSearchParams(getMetaContent('templateOpts'));
-    const footerResources = templateOptions.get('footerResources')?.split(',') || [];
-    const Header = headers[template];
+    const theme = getMetaContent('theme');
+    const themeOptions = new URLSearchParams(getMetaContent('themeOpts'));
+    const footerResources = themeOptions.get('footerResources')?.split(',') || [];
+    const Header = headers[theme] || headers.common;
 
     return (
       <HotKeys
@@ -87,10 +81,7 @@ class App extends React.PureComponent {
           />
           <SkipNavigation />
           <div className={CONTAINER_ELEMENT} id={CONTAINER_ELEMENT}>
-            {Header && <Header templateOptions={templateOptions} />}
-            <Navbar>
-              <NavBarContent />
-            </Navbar>
+            <Header themeOptions={themeOptions} />
             <div className="Banners">
               <Resource subject={app.bannerMembers} />
             </div>

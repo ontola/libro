@@ -47,7 +47,6 @@ export const components = {
   GridGridHeader: component('Grid/GridHeader'),
   GridGridItem: component('Grid/GridItem'),
   HeaderWithMenu: component('HeaderWithMenu'),
-  Headers: component('Headers'),
   Heading: component('Heading'),
   HoverPopup: component('HoverPopup'),
   Image: component('Image'),

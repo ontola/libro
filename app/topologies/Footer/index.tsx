@@ -1,8 +1,9 @@
-import { Grid } from '@material-ui/core';
+import { Box, Grid } from '@material-ui/core';
+import { withTheme } from '@material-ui/styles';
 import { Node } from '@ontologies/core';
 import { linkType, Resource } from 'link-redux';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, {ComponentType} from 'react';
 
 import ontola from '../../ontology/ontola';
 import Topology from '../Topology';
@@ -13,6 +14,12 @@ export const footerTopology = ontola.ns('footer');
 
 interface Props {
   resources?: Node[];
+  theme: {
+    appBar: {
+      background: string,
+      resolveColor: () => string,
+    },
+  };
 }
 
 class Footer extends Topology<Props> {
@@ -23,7 +30,7 @@ class Footer extends Topology<Props> {
   constructor(props: Props) {
     super(props);
 
-    this.className = 'Footer navbar-background navbar-color';
+    this.className = 'Footer';
     this.topology = footerTopology;
   }
 
@@ -32,8 +39,14 @@ class Footer extends Topology<Props> {
       return this.wrap(null);
     }
 
+    const {
+      background,
+      resolveColor,
+    } = this.props.theme.appBar;
+    const color = resolveColor();
+
     return this.wrap((
-      <div className={this.getClassName()}>
+      <Box bgcolor={`${background}.main`} color={color} className={this.getClassName()}>
         <div className="Footer__container">
           <Grid container spacing={6}>
             {this.props.resources?.map((iri) => (
@@ -43,7 +56,7 @@ class Footer extends Topology<Props> {
             ))}
           </Grid>
         </div>
-      </div>
+      </Box>
     ));
   }
 
@@ -67,4 +80,4 @@ class Footer extends Topology<Props> {
   }
 }
 
-export default Footer;
+export default withTheme(Footer as unknown as ComponentType);
