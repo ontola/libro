@@ -12,8 +12,9 @@ import {
 
 import PlainEditor from './PlainEditor';
 import RichEditor from './RichEditor';
+import RichTextEditorMd from './RichTextEditor/components/RichTextEditorMd';
+import { DefaultPlugins } from './RichTextEditor/plugins';
 import './TextEditor.scss';
-import RichTextEditorComp from './RichTextEditorComp';
 
 const propTypes = {
   autoFocus: PropTypes.bool,
@@ -88,10 +89,11 @@ class TextEditor extends Component {
 
     return (
       <div className="TextEditor">
-        <RichTextEditorComp
-          value={value}
+        <RichTextEditorMd
           placeholder={placeholder}
-          onChange={onChange}
+          plugins={DefaultPlugins}
+          value={value}
+          onAutoSave={(editor, markdown) => onChange(markdown)}
         />
       </div>
     );

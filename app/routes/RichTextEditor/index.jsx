@@ -1,8 +1,7 @@
 import React, { useCallback, useMemo } from 'react';
 import { styled } from '@material-ui/core/styles';
-
-import RichTextEditorMd from './components/RichTextEditorMd';
-import { DefaultPlugins } from './plugins';
+import RichTextEditorMd from '../../async/TextEditor/RichTextEditor/components/RichTextEditorMd';
+import { DefaultPlugins } from '../../async/TextEditor/RichTextEditor/plugins';
 
 const EditorFrame = styled('div')({
   height: '100%',
