@@ -6,15 +6,15 @@ import {
   register,
   subjectType,
 } from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 
-import argu from '../../ontology/argu';
-import ontola from '../../ontology/ontola';
 import { tabBarTopology } from '../../topologies/TabBar';
 
-const MenuItemTab = ({ subject }) => (
+import { MenuTypes } from './types';
+
+const MenuItemTab = ({ subject, onClick }) => (
   <Tab
-    href={subject.value}
     icon={(
       <Resource subject={subject}>
         <Property label={schema.image} />
@@ -27,15 +27,11 @@ const MenuItemTab = ({ subject }) => (
       </Resource>
     )}
     value={subject.value}
+    onChange={onClick}
   />
 );
 
-MenuItemTab.type = [
-  ontola.MenuItem,
-  argu.MenuSection,
-  argu.SubMenu,
-  argu.Menu,
-];
+MenuItemTab.type = MenuTypes;
 
 MenuItemTab.topology = tabBarTopology;
 
@@ -44,6 +40,7 @@ MenuItemTab.mapDataToProps = {
 };
 
 MenuItemTab.propTypes = {
+  onClick: PropTypes.func,
   subject: subjectType,
 };
 

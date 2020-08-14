@@ -9,11 +9,12 @@ import {
 import React from 'react';
 
 import ResourceBoundary from '../../components/ResourceBoundary';
-import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { cardFloatTopology } from '../../topologies/Card/CardFloat';
 import { containerFloatTopology } from '../../topologies/Container/ContainerFloat';
 import Menu from '../../topologies/Menu';
+
+import { MenuTypes } from './types';
 
 const MenuItemDropdown = ({
   menuItems,
@@ -40,12 +41,7 @@ const MenuItemDropdown = ({
   );
 };
 
-MenuItemDropdown.type = [
-  ontola.MenuItem,
-  argu.MenuSection,
-  argu.SubMenu,
-  argu.Menu,
-];
+MenuItemDropdown.type = MenuTypes;
 
 MenuItemDropdown.topology = [cardFloatTopology, containerFloatTopology];
 

@@ -43,6 +43,7 @@ export default {
   collectionResource: app('collectionResource'),
   empty: app('empty'),
   menu: app('menu'),
+  menuTabs: app('menuTabs'),
   n: app('n'),
   omniform: app('omniform'),
   policy: app('policy'),

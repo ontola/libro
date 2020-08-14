@@ -71,7 +71,7 @@ class ActionNested extends NavigatableAction {
           </CardContent>
           <Property
             header
-            cancelPath={retrievePath(this.props.object.value)}
+            cancelPath={this.props.object && retrievePath(this.props.object.value)}
             label={schema.target}
             sessionStore={this.props.sessionStore}
             onCancel={this.props.onCancel || closeModal}
