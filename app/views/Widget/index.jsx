@@ -36,7 +36,10 @@ const Widget = ({ topology, widgetSize }) => {
     <GridItem size={size}>
       <Wrapper {...wrapperOpts}>
         <Property
-          childProps={{ onError: handleErrorStatuses([HttpStatus.FORBIDDEN]) }}
+          childProps={{
+            onError: handleErrorStatuses([HttpStatus.FORBIDDEN]),
+            renderWhenEmpty: true,
+          }}
           label={ontola.widgetResource}
         />
       </Wrapper>
