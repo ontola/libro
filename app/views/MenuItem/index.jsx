@@ -1,3 +1,5 @@
+import MenuItemCardAppendix from './MenuItemCardAppendix';
+import MenuItemCardRow from './MenuItemCardRow';
 import MenuItemDropdown from './MenuItemDropdown';
 import MenuItemDropdownContent from './MenuItemDropdownContent';
 import MenuItemFooter from './MenuItemFooter';
@@ -15,6 +17,8 @@ import MenuTabs from './properties/menuTabs';
 import Name from './properties/name';
 
 export default [
+  MenuItemCardAppendix,
+  MenuItemCardRow,
   MenuItemDropdown,
   MenuItemPage,
   MenuItemHeader,

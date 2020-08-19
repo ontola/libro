@@ -12,6 +12,7 @@ export default {
   CollectionSorting: ontola('CollectionSorting'),
   CollectionView: ontola('CollectionView'),
   Condition: ontola('Condition'),
+  Confirmation: ontola('Users::Confirmation'),
   ConfirmedUser: ontola('ConfirmedUser'),
   ['Create::FollowUp']: ontola('Create::FollowUp'),
   ['Create::Opinion']: ontola('Create::Opinion'),

@@ -12,7 +12,10 @@ const ConfirmationFull = ({ redirectUrl }) => (
   redirectUrl && <Redirect to={retrievePath(redirectUrl)} />
 );
 
-ConfirmationFull.type = argu.Confirmation;
+ConfirmationFull.type = [
+  argu.Confirmation,
+  ontola.Confirmation,
+];
 
 ConfirmationFull.topology = fullResourceTopology;
 
