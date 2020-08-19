@@ -36,7 +36,7 @@ const mapDataToProps = {
   shIn: sh.in,
 };
 
-const registerFormField = (type, input) => {
+const registerFormField = (type, input, delay) => {
   const FormFieldComp = ({
     setHasContent,
     whitelist,
@@ -57,7 +57,12 @@ const registerFormField = (type, input) => {
     const resolvedInput = typeof input === 'function' ? input(props) : input;
 
     return (
-      <FormField {...formFieldProps} {...props} type={resolvedInput} />
+      <FormField
+        {...formFieldProps}
+        {...props}
+        delay={delay}
+        type={resolvedInput}
+      />
     );
   };
 
@@ -77,23 +82,23 @@ const registerFormField = (type, input) => {
 };
 
 export default [
-  registerFormField(form.CheckboxGroup, 'checkboxes'),
-  registerFormField(form.CheckboxInput, 'checkbox'),
-  registerFormField(form.DateInput, 'date'),
-  registerFormField(form.DateTimeInput, 'datetime-local'),
-  registerFormField(form.EmailInput, 'email'),
-  registerFormField(form.FileInput, 'file'),
-  registerFormField(form.LocationInput, 'location'),
-  registerFormField(form.MarkdownInput, (props) => (props.theme === 'omniform' ? 'textarea' : 'markdown')),
-  registerFormField(form.NumberInput, 'number'),
-  registerFormField(form.RadioGroup, 'radioGroup'),
-  registerFormField(form.SelectInput, 'select'),
-  registerFormField(form.TextAreaInput, 'textarea'),
-  registerFormField(form.TextInput, 'text'),
-  registerFormField(form.ToggleButtonGroup, 'toggleButtonGroup'),
-  registerFormField(form.PasswordInput, 'password'),
-  registerFormField(form.AssociationInput, 'association'),
-  registerFormField(form.PostalRangeInput, 'postalRange'),
-  registerFormField(form.SliderInput, 'slider'),
+  registerFormField(form.CheckboxGroup, 'checkboxes', false),
+  registerFormField(form.CheckboxInput, 'checkbox', false),
+  registerFormField(form.DateInput, 'date', false),
+  registerFormField(form.DateTimeInput, 'datetime-local', false),
+  registerFormField(form.EmailInput, 'email', true),
+  registerFormField(form.FileInput, 'file', false),
+  registerFormField(form.LocationInput, 'location', false),
+  registerFormField(form.MarkdownInput, (props) => (props.theme === 'omniform' ? 'textarea' : 'markdown'), true),
+  registerFormField(form.NumberInput, 'number', true),
+  registerFormField(form.RadioGroup, 'radioGroup', false),
+  registerFormField(form.SelectInput, 'select', false),
+  registerFormField(form.TextAreaInput, 'textarea', true),
+  registerFormField(form.TextInput, 'text', true),
+  registerFormField(form.ToggleButtonGroup, 'toggleButtonGroup', false),
+  registerFormField(form.PasswordInput, 'password', true),
+  registerFormField(form.AssociationInput, 'association', false),
+  registerFormField(form.PostalRangeInput, 'postalRange', true),
+  registerFormField(form.SliderInput, 'slider', false),
   ResourceField,
 ];

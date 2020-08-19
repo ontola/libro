@@ -44,6 +44,7 @@ const changeDelta = (object, path, nextValue) => {
 };
 
 const useFormField = ({
+  delay,
   initialValue,
   maxCount,
   maxLength,
@@ -77,7 +78,7 @@ const useFormField = ({
   const saveToLRS = React.useCallback((nextValue) => {
     const delta = object && changeDelta(object, path, nextValue);
     if (delta) {
-      lrs.processDelta(delta);
+      lrs.processDelta(delta, !delay);
     }
   });
   const saveToLocalStorage = React.useCallback((nextValue) => {
