@@ -64,7 +64,7 @@ export const ErrorPage = (props) => {
             {' '}
             <LinkDuo
               style={{ textDecoration: 'underline' }}
-              to="https://argu.freshdesk.com/support/tickets/new"
+              to="mailto:info@argu.co"
             >
               <FormattedMessage
                 defaultMessage="Let us know."
