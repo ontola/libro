@@ -15,6 +15,6 @@ export default proxy({
       proxyRes.headers['Content-Disposition'] = 'attachment';
     }
   },
-  target: constants.ARGU_API_URL,
+  target: constants.backendApiUrl,
   xfwd: true,
 });

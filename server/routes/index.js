@@ -44,7 +44,7 @@ import robots from './robots';
 export function listen(app, port) {
   app.listen(port, (err) => {
     if (err) {
-      console.log(err);
+      console.log('Error occurred while listening', err);
     }
     console.info(`[${__VERSION__}]==> 🌍 Listening on port ${port}.`);
   });

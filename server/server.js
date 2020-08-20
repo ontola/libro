@@ -1,9 +1,7 @@
 import Koa from 'koa';
 
-import { PORT } from '../app/config';
-
 import routes, { listen } from './routes';
-import { sessionSecret } from './config';
+import { port, sessionSecret } from './config';
 
 const app = new Koa();
 
@@ -12,8 +10,8 @@ app.keys = [sessionSecret];
 app.proxy = true;
 
 async function start() {
-  await routes(app, PORT);
-  listen(app, PORT);
+  await routes(app, port);
+  listen(app, port);
 }
 
 if (__DEVELOPMENT__) {

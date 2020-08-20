@@ -22,7 +22,7 @@ export const deferredHeadStyles = (bundleVersion) => {
   const bundleManifest = manifests[bundleVersion];
   const bundleCSS = __DEVELOPMENT__
     ? ''
-    : `<link crossorigin="anonymous" rel="stylesheet" type="text/css" href="${constants.ASSETS_HOST}${bundleManifest['main.css']}" />`;
+    : `<link crossorigin="anonymous" rel="stylesheet" type="text/css" href="${constants.assetsHost}${bundleManifest['main.css']}" />`;
 
 
   return `

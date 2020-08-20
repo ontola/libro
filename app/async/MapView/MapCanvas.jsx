@@ -23,8 +23,8 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
 import OverlayContainer from '../../components/OverlayContainer';
-import { MAPBOX_TILE_API_BASE, MAPBOX_TILE_STYLE } from '../../config';
 import withReducer from '../../containers/withReducer';
+import { getMetaContent } from '../../helpers/arguHelpers';
 import { handle } from '../../helpers/logging';
 import { popupTopology } from '../../topologies/Popup';
 
@@ -106,6 +106,7 @@ const useMap = (props) => {
     onSelect,
     overlayResource,
   } = props;
+  const mapboxTileURL = React.useMemo(() => getMetaContent('mapboxTileURL'));
   const mapRef = React.useRef();
   const overlayRef = React.useRef(document.createElement('div'));
   React.useEffect(() => {
@@ -166,7 +167,7 @@ const useMap = (props) => {
       setLayerSources(layers.map(() => new VectorSource()));
       const source = new XYZ({
         tileSize: [TILE_SIZE, TILE_SIZE],
-        url: `${MAPBOX_TILE_API_BASE}/${MAPBOX_TILE_STYLE}/tiles/{z}/{x}/{y}?access_token=${accessToken}`,
+        url: `${mapboxTileURL}/tiles/{z}/{x}/{y}?access_token=${accessToken}`,
       });
       source.addEventListener('tileloadend', handleLoad);
       source.addEventListener('tileloaderr', handleError);

@@ -8,6 +8,7 @@ import {
   refreshTokenRequest,
 } from './api/tokens';
 import {
+  backendApiUrl,
   clientId,
   clientSecret,
   oAuthToken,
@@ -21,7 +22,7 @@ import { route } from './utils/proxies/helpers';
  */
 class API {
   constructor(ctx) {
-    this.base = constants.ARGU_API_URL;
+    this.base = backendApiUrl;
     this.ctx = ctx;
     this.serviceToken = oAuthToken;
     this.serviceGuestToken = serviceGuestToken;

@@ -24,7 +24,7 @@ export default (app) => {
       await sessMiddleware(ctx, () => {});
     },
     router: (req) => route(req.url),
-    target: constants.ARGU_API_URL,
+    target: constants.backendApiUrl,
     ws: true,
     xfwd: true,
   });

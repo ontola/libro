@@ -21,7 +21,7 @@ export default (app) => (
       `${new URL(`${req.headers['website-iri']}/oauth/token`).pathname}?client_id=${constants.clientId}&client_secret=${constants.clientSecret}&grant_type=password&scope=user`
     ),
     router: (req) => route(req.url),
-    target: constants.ARGU_API_URL,
+    target: constants.backendApiUrl,
     xfwd: true,
   })
 );

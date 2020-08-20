@@ -92,6 +92,7 @@ export const renderFullPage = async (ctx, data) => {
           ${constants.websocketPath ? `<meta name="websocket-path" content="${constants.websocketPath}">` : ''}
           ${constants.bugsnagKey ? '<script async src="https://d2wy8f7a9ursnm.cloudfront.net/v6/bugsnag.min.js"></script>' : ''}
           <meta name="bugsnagConfig" content="${encodeURIComponent(JSON.stringify(bugsnagOpts))}">
+          <meta name="mapboxTileURL" content="${constants.mapboxTileURL}">
 
           ${headers?.link?.toString() || ''}
           ${icons(ctx) || ''}
@@ -117,10 +118,10 @@ export const renderFullPage = async (ctx, data) => {
               var seed = document.getElementById('seed');
               window.INITIAL__DATA = seed ? seed.textContent : '';
           </script>
-          <script async crossorigin="anonymous" type="module" src="${constants.ASSETS_HOST}${manifests[bundles.module]['main.js']}"></script>
-          <script async nomodule crossorigin="anonymous" type="application/javascript" src="${constants.ASSETS_HOST}${manifests[bundles.legacy]['main.js']}"></script>
-          ${(manifests[bundles.module]?.['vendors~main.js'] && `<script async crossorigin="anonymous" type="module" src="${constants.ASSETS_HOST}${manifests[bundles.module]['vendors~main.js']}"></script>`) || ''}
-          ${(manifests[bundles.legacy]?.['vendors~main.js'] && `<script async nomodule crossorigin="anonymous" type="application/javascript" src="${constants.ASSETS_HOST}${manifests[bundles.legacy]['vendors~main.js']}"></script>`) || ''}
+          <script async crossorigin="anonymous" type="module" src="${constants.assetsHost}${manifests[bundles.module]['main.js']}"></script>
+          <script async nomodule crossorigin="anonymous" type="application/javascript" src="${constants.assetsHost}${manifests[bundles.legacy]['main.js']}"></script>
+          ${(manifests[bundles.module]?.['vendors~main.js'] && `<script async crossorigin="anonymous" type="module" src="${constants.assetsHost}${manifests[bundles.module]['vendors~main.js']}"></script>`) || ''}
+          ${(manifests[bundles.legacy]?.['vendors~main.js'] && `<script async nomodule crossorigin="anonymous" type="application/javascript" src="${constants.assetsHost}${manifests[bundles.legacy]['vendors~main.js']}"></script>`) || ''}
           ${deferredBodyStyles(nonceStr)}
           <script nonce="${nonceStr}" type="application/javascript">
               window.WEBSITE_META = JSON.parse('${JSON.stringify(manifest.ontola)}')

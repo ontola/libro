@@ -7,7 +7,7 @@ import {
   TEMPORARY_REDIRECT,
 } from 'http-status-codes';
 
-import * as constants from '../../app/config';
+import { assetsHost } from '../config';
 import fetchPrerenderData from '../utils/fetchPrerenderData';
 import { isHTMLHeader } from '../utils/http';
 import logging from '../utils/logging';
@@ -75,9 +75,9 @@ const handler = (sendResponse) => async (ctx) => {
 
 export default function application(port) {
   const PRELOAD_HEADERS = [
-    `<${constants.ASSETS_HOST}/static/preloader.css>; rel=preload; as=style`,
-    manifest['main.js'] && `<${constants.ASSETS_HOST}${manifest['main.js']}>; rel=preload; as=script`,
-    __PRODUCTION__ && manifest['main.css'] && `<${constants.ASSETS_HOST}${manifest['main.css']}>; rel=preload; as=style`,
+    `<${assetsHost}/static/preloader.css>; rel=preload; as=style`,
+    manifest['main.js'] && `<${assetsHost}${manifest['main.js']}>; rel=preload; as=script`,
+    __PRODUCTION__ && manifest['main.css'] && `<${assetsHost}${manifest['main.css']}>; rel=preload; as=style`,
   ].filter(Boolean);
 
   const sendResponse = (ctx, domain, data) => {

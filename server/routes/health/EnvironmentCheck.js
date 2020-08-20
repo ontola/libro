@@ -19,7 +19,7 @@ export default class EnvironmentCheck extends Check {
 
     if (process.env.NODE_ENV !== 'development') {
       [
-        'ASSETS_HOST',
+        'assetsHost',
         'bugsnagKey',
         'cacheDirectory',
         'mapboxKey',
@@ -28,8 +28,8 @@ export default class EnvironmentCheck extends Check {
     }
 
     [
-      'ARGU_API_URL',
       'appHostname',
+      'backendApiUrl',
       'bundleName',
       'clientId',
       'clientSecret',

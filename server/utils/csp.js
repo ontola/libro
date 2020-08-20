@@ -1,7 +1,7 @@
 import csp from 'helmet-csp';
 import c2k from 'koa2-connect';
 
-import { ASSETS_HOST } from '../../app/config';
+import { assetsHost } from '../config';
 
 const defaultSrc = ["'self'"];
 
@@ -67,8 +67,8 @@ const styleSrc = [
 const workerSrc = [
   "'self'",
 ];
-if (ASSETS_HOST) {
-  workerSrc.push(ASSETS_HOST);
+if (assetsHost) {
+  workerSrc.push(assetsHost);
 }
 
 if (__DEVELOPMENT__) {
