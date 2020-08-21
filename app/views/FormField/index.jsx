@@ -84,6 +84,7 @@ const registerFormField = (type, input, delay) => {
 export default [
   registerFormField(form.CheckboxGroup, 'checkboxes', false),
   registerFormField(form.CheckboxInput, 'checkbox', false),
+  registerFormField(form.ColorInput, 'color', true),
   registerFormField(form.DateInput, 'date', false),
   registerFormField(form.DateTimeInput, 'datetime-local', false),
   registerFormField(form.EmailInput, 'email', true),
