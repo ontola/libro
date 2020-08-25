@@ -99,11 +99,13 @@ const updateFeatures = (layerSources, layers) => {
 const useMap = (props) => {
   const {
     accessToken,
+    initialZoom,
     layers,
     requestAccessToken,
     navigate,
     onMapClick,
     onSelect,
+    onZoom,
     overlayResource,
   } = props;
   const mapboxTileURL = React.useMemo(() => getMetaContent('mapboxTileURL'));
@@ -115,6 +117,7 @@ const useMap = (props) => {
     }
   }, [accessToken]);
 
+  const [zoom, setZoom] = React.useState(initialZoom || DEFAULT_ZOOM);
   const [layerSources, setLayerSources] = React.useState(null);
   const [tileSource, setTileSource] = React.useState(null);
   const [error, setError] = React.useState(undefined);
@@ -161,6 +164,17 @@ const useMap = (props) => {
     e.selected.map(highlightFeature(true));
     e.deselected.map(highlightFeature(false));
   }, [...layers]);
+  const handleZoom = React.useCallback(
+    (e) => {
+      const newZoom = e.map.getView().getZoom();
+      if (newZoom !== zoom) {
+        if (onZoom) {
+          onZoom(newZoom);
+        }
+        setZoom(newZoom);
+      }
+    }
+  );
 
   React.useEffect(() => {
     if (accessToken) {
@@ -193,14 +207,22 @@ const useMap = (props) => {
     setOverlay(overlay);
     setMap(map);
 
-    if (map && handleMapClick) {
-      map.addEventListener('click', handleMapClick);
+    if (map) {
+      if (handleMapClick) {
+        map.addEventListener('click', handleMapClick);
+      }
+      if (handleZoom) {
+        map.addEventListener('moveend', handleZoom);
+      }
     }
 
     return () => {
       if (map) {
         if (handleMapClick) {
           map.removeEventListener('click', handleMapClick);
+        }
+        if (handleZoom) {
+          map.removeEventListener('moveend', handleZoom);
         }
         map.setTarget(null);
       }

@@ -8,11 +8,12 @@ import { tryParseFloat } from '../../helpers/numbers';
 import useFormField from '../../hooks/useFormField';
 import MapView from '../../containers/MapView';
 import fa4 from '../../ontology/fa4';
+import ontola from '../../ontology/ontola';
 import HiddenRequiredInput from '../Input/HiddenRequiredInput';
 
 import './LocationInput.scss';
 
-const usePlacements = (object, lat, lon) => (
+const usePlacements = (object, lat, lon, zoomLevel) => (
   React.useMemo(() => {
     const placements = [];
 
@@ -22,6 +23,7 @@ const usePlacements = (object, lat, lon) => (
         image: fa4.ns('map-marker'),
         lat: tryParseFloat(lat),
         lon: tryParseFloat(lon),
+        zoomLevel: tryParseFloat(zoomLevel),
       });
     }
 
@@ -42,15 +44,20 @@ const LocationInput = ({
     object,
     path: schema.longitude,
   });
+  const [zoomLevelInput] = useFormField({
+    object,
+    path: ontola.zoomLevel,
+  });
   const [lat] = latInput?.value || [];
   const [lon] = lonInput?.value || [];
+  const [zoomLevel] = zoomLevelInput?.value || [];
   React.useEffect(() => {
     if (!value && lat && lon) {
       onChange(true);
     }
   });
 
-  const placements = usePlacements(object, lat, lon);
+  const placements = usePlacements(object, lat, lon, zoomLevel);
 
   const storeCoordinates = (e) => {
     lonInput.onChange([rdf.literal(e[0])]);
@@ -61,9 +68,11 @@ const LocationInput = ({
     <div className="LocationInput">
       <HiddenRequiredInput name={latInput.name} value={lat} />
       <HiddenRequiredInput name={lonInput.name} value={lon} />
+      <HiddenRequiredInput name={zoomLevelInput.name} value={zoomLevel} />
       <MapView
         placements={placements}
         onMapClick={storeCoordinates}
+        onZoom={(newZoom) => zoomLevelInput.onChange([rdf.literal(newZoom)])}
       />
     </div>
   );

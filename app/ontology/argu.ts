@@ -116,7 +116,6 @@ export default {
   votesNeutralCount: argu('votesNeutralCount'),
   votesProCount: argu('votesProCount'),
   yes: argu('yes'),
-  zoomLevel: argu('zoomLevel'),
 
   /*
    * topologies

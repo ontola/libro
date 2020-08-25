@@ -120,4 +120,5 @@ export default {
   widgetResource: ontola('widgetResource'),
   widgetSize: ontola('widgetSize'),
   widgets: ontola('widgets'),
+  zoomLevel: ontola('zoomLevel'),
 };

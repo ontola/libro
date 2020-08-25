@@ -3,13 +3,14 @@ import schema from '@ontologies/schema';
 import * as fa from 'fontawesome';
 import {
   linkType,
-  useDataFetching, useDataInvalidation,
+  useDataFetching,
+  useDataInvalidation,
   useLRS,
 } from 'link-redux';
 import { Feature } from 'ol';
 import Circle from 'ol/geom/Circle';
 import Point from 'ol/geom/Point';
-import { fromLonLat } from 'ol/proj';
+import { fromLonLat, toLonLat } from 'ol/proj';
 import { toContext } from 'ol/render';
 import CircleStyle from 'ol/style/Circle';
 import Fill from 'ol/style/Fill';
@@ -25,8 +26,10 @@ import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
 import { tryParseFloat } from '../../helpers/numbers';
 import { isResource } from '../../helpers/types';
 import argu from '../../ontology/argu';
+import ontola from '../../ontology/ontola';
 
 import './Map.scss';
+
 import MapCanvas from './MapCanvas';
 
 const IMG_SIZE = 26;
@@ -107,11 +110,13 @@ const featureProps = (lrs, placement) => {
   const image = lrs.getResourceProperty(placement, schema.image);
   const lat = tryParseFloat(lrs.getResourceProperty(placement, schema.latitude));
   const lon = tryParseFloat(lrs.getResourceProperty(placement, schema.longitude));
+  const zoomLevel = tryParseFloat(lrs.getResourceProperty(placement, ontola.zoomLevel));
 
   return {
     image,
     lat,
     lon,
+    zoomLevel,
   };
 };
 
@@ -120,6 +125,7 @@ const featureFromPlacement = (lrs, placement, iconCache, setIconCache) => {
     image,
     lat,
     lon,
+    zoomLevel,
   } = featureProps(lrs, placement);
 
   if (!image) {
@@ -138,6 +144,7 @@ const featureFromPlacement = (lrs, placement, iconCache, setIconCache) => {
     onMouseLeave: () => {
       f.setStyle(style);
     },
+    zoomLevel,
   });
 
   return f;
@@ -194,6 +201,7 @@ const MapView = ({
   center,
   navigate,
   onMapClick,
+  onZoom,
   placements,
 }) => {
   const lrs = useLRS();
@@ -217,16 +225,22 @@ const MapView = ({
     return <LoadingCard />;
   }
 
+  const [cLon, cLat] = resolvedCenter
+    ? toLonLat(resolvedCenter.getGeometry().getCoordinates())
+    : [null, null];
+  const zoom = resolvedCenter && resolvedCenter.getProperties().zoomLevel;
+
   return (
     <MapCanvas
-      initialLat={resolvedCenter?.lat}
-      initialLon={resolvedCenter?.lon}
-      initialZoom={resolvedCenter?.zoom}
+      initialLat={cLat}
+      initialLon={cLon}
+      initialZoom={zoom}
       layers={[{ features: placementFeatures }]}
       navigate={navigate}
       overlayResource={selected}
       onMapClick={onMapClick}
       onSelect={onSelect}
+      onZoom={onZoom}
     />
   );
 };
@@ -235,6 +249,7 @@ MapView.propTypes = {
   center: linkType,
   navigate: PropTypes.func,
   onMapClick: PropTypes.func,
+  onZoom: PropTypes.func,
   placements: linkType,
 };
 
