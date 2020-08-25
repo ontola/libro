@@ -22,6 +22,8 @@ import ContactPage from './ContactPage';
 import DataCube from './DataCube';
 import DataType from './DataType';
 import Department from './Department';
+import DexesAgreement from './DexesAgreement';
+import DexesInvite from './DexesInvite';
 import DexTransfer from './DexTransfer';
 import DialogManager from './DialogManager';
 import Document from './Document';
@@ -103,6 +105,8 @@ export function getViews() {
     ...DataCube,
     ...DataType,
     ...Department,
+    ...DexesAgreement,
+    ...DexesInvite,
     ...DexTransfer,
     ...Document,
     ...DialogManager,
