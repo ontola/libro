@@ -26,6 +26,7 @@ export const HeaderFloat = ({
   subject,
 }) => {
   const renderPagination = setCurrentPage && !hidePagination;
+
   return (
     <React.Fragment>
       {renderPagination && <Property label={ontola.filterFields} setCurrentPage={setCurrentPage} />}
@@ -33,7 +34,7 @@ export const HeaderFloat = ({
       <CollectionCreateActionButton omniform={omniform} subject={subject} />
     </React.Fragment>
   );
-}
+};
 HeaderFloat.propTypes = {
   hidePagination: PropTypes.bool,
   omniform: PropTypes.bool,

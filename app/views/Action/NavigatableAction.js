@@ -1,7 +1,9 @@
+import { lrsType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { retrievePath } from '../../helpers/iris';
+import { isDifferentWebsite, retrievePath } from '../../helpers/iris';
+import { redirectPage } from '../../middleware/reloading';
 
 class NavigatableAction extends React.PureComponent {
   static propTypes = {
@@ -9,6 +11,7 @@ class NavigatableAction extends React.PureComponent {
       goBack: PropTypes.func,
       push: PropTypes.func,
     }).isRequired,
+    lrs: lrsType,
     onDone: PropTypes.func,
   };
 
@@ -21,6 +24,8 @@ class NavigatableAction extends React.PureComponent {
   onDoneHandler(response) {
     if (this.props.onDone) {
       this.props.onDone(response.iri);
+    } else if (isDifferentWebsite(response.iri)) {
+      redirectPage(this.props.lrs, response.iri.value);
     } else if (response.iri) {
       this.props.history.push(retrievePath(response.iri.value));
     } else {

@@ -168,7 +168,7 @@ export default function getCollection(
         return <Property label={argu.query} setCurrentPage={setCollectionResource} />;
       }
       if (!renderWhenEmptyProp) {
-        if (actionStatus && invalidStatusIds.includes(rdf.id(actionStatus))) {
+        if (!createAction || (actionStatus && invalidStatusIds.includes(rdf.id(actionStatus)))) {
           return <div data-test="invalid-status" />;
         }
       }

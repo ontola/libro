@@ -6,11 +6,27 @@ export default {
   ns: dexes,
 
   /* classes */
+  Agreement: dexes('Agreement'),
   Folder: dexes('Folder'),
   FolderEntry: dexes('FolderEntry'),
   HomePage: dexes('HomePage'),
+  Invite: dexes('Invite'),
+  Offer: dexes('Offer'),
 
   /* properties */
+  assignee: dexes('assignee'),
+  assigneeMail: dexes('assigneeMail'),
+  assigner: dexes('assigner'),
+  attributionOptions: dexes('attributionOptions'),
+  dateSigned: dexes('dateSigned'),
   entries: dexes('entries'),
+  file: dexes('file'),
+  invites: dexes('invites'),
+  obligations: dexes('obligations'),
+  offer: dexes('offer'),
+  permissions: dexes('permissions'),
+  prohibitions: dexes('prohibitions'),
+  recipients: dexes('recipients'),
+  rules: dexes('rules'),
   transferAction: dexes('transferAction'),
 };
