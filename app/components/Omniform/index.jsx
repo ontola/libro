@@ -44,6 +44,8 @@ const propTypes = {
 const PROPS_WHITELIST = [
   schema.name,
   schema.text,
+  schema.location,
+  argu.attachments,
   argu.isOpinion,
 ].map((t) => rdf.id(t));
 

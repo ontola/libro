@@ -63,6 +63,7 @@ const InputElement = ({
   object,
   propertyIndex,
   subject,
+  theme,
   topology,
   type,
   variant,
@@ -126,6 +127,7 @@ const InputElement = ({
             childProps={{
               formIRI: nestedFormIRI,
               object: nestedObject,
+              theme,
             }}
             label={form.pages}
           />
