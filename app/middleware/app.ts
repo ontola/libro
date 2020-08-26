@@ -2,7 +2,7 @@
  * LinkedRenderStore app middleware
  */
 
-import rdf, { NamedNode, Node, Quadruple, SomeTerm } from '@ontologies/core';
+import rdf, { NamedNode, Node, Quadruple } from '@ontologies/core';
 import rdfx from '@ontologies/rdf';
 import { createActionPair } from '@rdfdev/actions';
 import { MiddlewareActionHandler, MiddlewareWithBoundLRS } from 'link-lib';
@@ -12,28 +12,6 @@ import http from '../ontology/http';
 import libro from '../ontology/libro';
 import ll from '../ontology/ll';
 import ontola from '../ontology/ontola';
-import sp from '../ontology/sp';
-
-const pageRenderBase = (subject: SomeTerm, baseCollection: SomeTerm, collectionDisplay: SomeTerm): NamedNode => {
-  const subjParams = new URL(subject.value).searchParams;
-  if (!subjParams.get('display')) {
-    return subject as NamedNode;
-  }
-
-  const renderBase = new URL(baseCollection.value);
-  renderBase.searchParams.set(
-    'display',
-    collectionDisplay.value.replace('https://ns.ontola.io/core#collectionDisplay/', ''),
-  );
-  if (subjParams.get('type')) {
-    renderBase.searchParams.set('type', subjParams.get('type')!);
-  }
-  if (subjParams.get('page_size')) {
-    renderBase.searchParams.set('page_size', subjParams.get('page_size')!);
-  }
-
-  return rdf.namedNode(renderBase.toString());
-};
 
 interface AppActionMap {
   newPage: Node;
@@ -95,12 +73,7 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
 
     switch (base) {
       case app.ns('changePage'): {
-        const baseCollection = store.getResourceProperty<NamedNode>(subject!, ontola.baseCollection)!;
-        const collectionDisplay = store.getResourceProperty<NamedNode>(subject!, ontola.collectionDisplay)!;
-        const renderBase = pageRenderBase(subject!, baseCollection, collectionDisplay);
-        const delta: Quadruple[] = newPage && newPage !== renderBase
-          ? [[renderBase, app.collectionResource, newPage, ontola.replace]]
-          : [[renderBase, app.collectionResource, sp.Variable, ontola.remove]];
+        const delta: Quadruple[] = [[subject!, app.collectionResource, newPage!, ontola.replace]];
 
         return store.processDelta(delta, true);
       }

@@ -1,9 +1,11 @@
 import as from '@ontologies/as';
 import rdf from '@ontologies/core';
+import rdfx from '@ontologies/rdf';
 import {
   linkType,
   register,
   subjectType,
+  useResourceProperty,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -39,6 +41,7 @@ const getPagination = (Wrapper, topology) => {
       subject,
     } = props;
     const { formatMessage } = useIntl();
+    const [collectionResourceType] = useResourceProperty(collectionResource, rdfx.type);
 
     if (!first) {
       return null;
@@ -48,7 +51,9 @@ const getPagination = (Wrapper, topology) => {
     const baseUrl = new URL(first.value);
     const firstPage = Number.parseInt(baseUrl.searchParams.get(pageProp), 10);
     const lastPage = Number.parseInt(new URL(last.value).searchParams.get(pageProp), 10);
-    const currentOrFirst = collectionResource?.value || first.value;
+    const currentOrFirst = typeof collectionResource === 'undefined' || CollectionTypes.includes(collectionResourceType)
+      ? first.value
+      : collectionResource.value;
     const currentPageUrl = new URL(currentOrFirst);
     const currentPageNr = Number.parseInt(currentPageUrl.searchParams.get(pageProp), 10);
 

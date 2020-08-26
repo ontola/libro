@@ -14,14 +14,13 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
-import { Redirect } from 'react-router';
 
 import CollectionPreview from '../../components/Collection/CollectionPreview';
 import ResourceBoundary from '../../components/ResourceBoundary';
 import { listToArr } from '../../helpers/data';
-import { retrievePath } from '../../helpers/iris';
 import { tryParseInt } from '../../helpers/numbers';
 import { useCurrentCollectionResource } from '../../hooks/useCurrentCollectionResource';
+import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
@@ -48,6 +47,7 @@ export default function getCollection(
       hideHeader,
       hidePagination,
       lrs,
+      originalCollectionResource: originalCollectionResourceProp,
       redirectPagination,
       renderWhenEmpty: renderWhenEmptyProp,
       renderPartOf,
@@ -55,23 +55,46 @@ export default function getCollection(
       subject,
       totalItems,
     } = props;
+    const originalCollectionResource = React.useMemo(
+      () => originalCollectionResourceProp || subject,
+      [originalCollectionResourceProp, subject]
+    );
     const [collectionResource, setCollectionResource] = useCurrentCollectionResource(
       redirectPagination,
-      renderedPage
+      originalCollectionResource
     );
-    const [collectionResourcePartOf] = useResourceProperty(collectionResource, schema.isPartOf);
     const [collectionResourceType] = useResourceProperty(collectionResource, rdfx.type);
 
     useEffect(() => {
       if (!collectionResource && renderedPage) {
         setCollectionResource(renderedPage);
       }
-    }, [collectionResource, renderedPage]);
+    }, [subject, collectionResource, renderedPage]);
 
     const [opened, setOpen] = React.useState(false);
     const resolvedCollectionDisplay = collectionDisplay || collectionDisplayFromData;
     const resolvedColumns = columns ? listToArr(lrs, [], columns) : undefined;
     useDataInvalidation(collectionResource);
+
+    const childProps = {
+      collectionDisplay: resolvedCollectionDisplay,
+      columns: resolvedColumns,
+      depth,
+      originalCollectionResource,
+    };
+
+    const mainCollectionIsOverwritten = collectionResource
+      && CollectionTypes.includes(collectionResourceType)
+      && collectionResource !== subject;
+
+    if (mainCollectionIsOverwritten) {
+      return (
+        <Resource
+          subject={collectionResource}
+          {...childProps}
+        />
+      );
+    }
 
     if (clickToOpen && depth && depth > 1 && totalItems.value !== '0' && !opened) {
       return (
@@ -84,44 +107,28 @@ export default function getCollection(
       );
     }
 
-    if (collectionResource) {
-      if (redirectPagination && collectionResource !== renderedPage && renderedPage) {
-        return <Redirect to={retrievePath(collectionResource.value)} />;
-      }
-
-      if (typeof collectionResourceType === 'undefined' || CollectionTypes.includes(collectionResourceType)) {
-        return <Resource subject={collectionResource} />;
-      }
-
-      if (collectionResourcePartOf && collectionResourcePartOf !== subject) {
-        return <Resource subject={collectionResourcePartOf} />;
-      }
-    }
-
     const body = () => {
-      if (collectionResource) {
+      if (!collectionResource || collectionResource === subject) {
+        return (
+          <Property
+            forceRender
+            insideCollection
+            label={ontola.pages}
+            {...childProps}
+          />
+        );
+      } else if (collectionResource) {
         return (
           <Resource
             forceRender
             insideCollection
-            collectionDisplay={resolvedCollectionDisplay}
-            columns={resolvedColumns}
-            depth={depth}
             subject={collectionResource}
+            {...childProps}
           />
         );
       }
 
-      return (
-        <Property
-          forceRender
-          insideCollection
-          collectionDisplay={resolvedCollectionDisplay}
-          columns={resolvedColumns}
-          depth={depth}
-          label={ontola.pages}
-        />
-      );
+      return null;
     };
 
     let pagination;
@@ -177,8 +184,7 @@ export default function getCollection(
         <Property
           forceRender
           body={body()}
-          collectionDisplay={collectionDisplay}
-          collectionResource={collectionResource}
+          collectionDisplay={resolvedCollectionDisplay}
           columns={resolvedColumns}
           header={header}
           label={ontola.collectionFrame}
@@ -201,6 +207,7 @@ export default function getCollection(
       label: ontola.collectionFilter,
       returnType: ReturnType.AllTerms,
     },
+    collectionResource: app.collectionResource,
     collectionType: ontola.collectionType,
     columns: ontola.columns,
     defaultType: ontola.defaultType,
@@ -222,6 +229,7 @@ export default function getCollection(
     hideHeader: PropTypes.bool,
     hidePagination: PropTypes.bool,
     lrs: lrsType,
+    originalCollectionResource: linkType,
     redirectPagination: PropTypes.bool,
     renderPartOf: PropTypes.bool,
     renderWhenEmpty: PropTypes.bool,

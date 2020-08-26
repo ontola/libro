@@ -7,6 +7,7 @@ import React from 'react';
 import Metadata from '../../components/Metadata';
 import FullResource from '../../topologies/FullResource';
 import { pageTopology } from '../../topologies/Page';
+import { CollectionViewTypes } from '../CollectionPage/types';
 
 import { CollectionTypes } from './types';
 
@@ -19,7 +20,7 @@ const CollectionFullPage = (props) => (
   </React.Fragment>
 );
 
-CollectionFullPage.type = CollectionTypes;
+CollectionFullPage.type = [...CollectionTypes, ...CollectionViewTypes];
 
 CollectionFullPage.topology = pageTopology;
 

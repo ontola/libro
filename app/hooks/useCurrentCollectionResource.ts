@@ -1,29 +1,27 @@
 import { NamedNode } from '@ontologies/core';
 import {
-  useLinkRenderContext,
   useLRS,
-  useProperty,
+  useResourceProperty,
 } from 'link-redux';
 import { useHistory } from 'react-router';
 
 import { retrievePath } from '../helpers/iris';
 import app from '../ontology/app';
 
-export const useCurrentCollectionResource = (redirectPagination: boolean, renderedPage: NamedNode) => {
+export const useCurrentCollectionResource = (redirectPagination: boolean, originalCollectionResource: NamedNode) => {
   const lrs = useLRS();
   const history = useHistory();
-  const { subject } = useLinkRenderContext();
-  const [collectionResource] = useProperty(app.collectionResource);
+  const [collectionResource] = useResourceProperty(originalCollectionResource, app.collectionResource);
 
   if (redirectPagination) {
     const redirectPage = (newPage: NamedNode) => (
       history.push(retrievePath(newPage?.value))
     );
 
-    return [renderedPage, redirectPage];
+    return [originalCollectionResource, redirectPage];
   } else {
-    const setCollectionResource = (newPage: NamedNode) => lrs.actions.app.changePage(subject, newPage);
+    const setCurrentPage = (newPage: NamedNode) => lrs.actions.app.changePage(originalCollectionResource, newPage);
 
-    return [collectionResource, setCollectionResource];
+    return [collectionResource, setCurrentPage];
   }
 };

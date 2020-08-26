@@ -30,7 +30,6 @@ const getFrame = (wrapper, topology) => {
     body,
     collectionDisplay,
     collectionDisplayFromData,
-    collectionResource,
     columns,
     header,
     pagination,
@@ -68,7 +67,6 @@ const getFrame = (wrapper, topology) => {
                     {columns.map((property) => (
                       <Resource
                         forceRender
-                        collectionResource={collectionResource}
                         key={property.value}
                         setCurrentPage={setCurrentPage}
                         sortOptions={sortOptions.filter((option) => option.item === property)}
@@ -138,7 +136,6 @@ const getFrame = (wrapper, topology) => {
     body: PropTypes.node,
     collectionDisplay: linkType,
     collectionDisplayFromData: linkType,
-    collectionResource: linkType,
     columns: PropTypes.arrayOf(RDFTypes.namedNode),
     header: PropTypes.node,
     pagination: PropTypes.node,

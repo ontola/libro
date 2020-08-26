@@ -43,11 +43,13 @@ function getCollectionPage({
 
     return (
       <Property
-        renderedByPage
         collectionDisplay={props.collectionDisplay || props.collectionDisplayFromData}
         hidePagination={hidePagination}
         label={as.partOf}
+        originalCollectionResource={props.originalCollectionResource || props.subject}
+        redirectPagination={props.redirectPagination}
         renderedPage={props.subject}
+        renderPartOf={props.renderPartOf}
         renderWhenEmpty={props.renderWhenEmpty}
       />
     );
@@ -73,6 +75,9 @@ function getCollectionPage({
     location: PropTypes.shape({
       pathname: PropTypes.string,
     }),
+    originalCollectionResource: linkType,
+    redirectPagination: PropTypes.bool,
+    renderPartOf: PropTypes.bool,
     renderWhenEmpty: PropTypes.bool,
     subject: subjectType,
   };
