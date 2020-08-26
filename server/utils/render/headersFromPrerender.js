@@ -23,6 +23,7 @@ export const headersFromPrerender = async (ctx, data) => {
     patchRequestInitGenerator(lrs);
 
     await lrs.api.feedResponse(seedRequest, true);
+    lrs.broadcast = () => {};
 
     const helmetContext = {};
 
