@@ -14,11 +14,9 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { Redirect } from 'react-router';
 
-import Heading from '../../components/Heading';
-import LinkDuo from '../../components/LinkDuo';
+import CollectionPreview from '../../components/Collection/CollectionPreview';
 import ResourceBoundary from '../../components/ResourceBoundary';
 import { listToArr } from '../../helpers/data';
 import { retrievePath } from '../../helpers/iris';
@@ -76,36 +74,13 @@ export default function getCollection(
     useDataInvalidation(collectionResource);
 
     if (clickToOpen && depth && depth > 1 && totalItems.value !== '0' && !opened) {
-      const open = (e) => {
-        if (e) {
-          e.preventDefault();
-        }
-        setOpen(true);
-      };
-
       return (
-        <ResourceBoundary
-          element={Heading}
-          wrapperProps={{
-            className: `Collection__Depth-${depth}`,
-            size: 5,
-          }}
-        >
-          <LinkDuo
-            className={`Collection__Depth-${depth + 1}`}
-            to={subject.value}
-            onClick={open}
-            onKeyUp={open}
-          >
-            <FormattedMessage
-              defaultMessage="Show {count} additional replies..."
-              id="https://app.argu.co/i18n/collections/showRepliesLabel"
-              values={{
-                count: totalItems.value,
-              }}
-            />
-          </LinkDuo>
-        </ResourceBoundary>
+        <CollectionPreview
+          depth={depth}
+          setOpen={setOpen}
+          subject={subject}
+          totalItems={totalItems}
+        />
       );
     }
 
