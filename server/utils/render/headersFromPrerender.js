@@ -3,7 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 
 import App from '../../../app/App';
 import generateLRS from '../../../app/helpers/generateLRS';
-import { handle } from '../../../app/helpers/logging';
+import { error } from '../../../app/helpers/logging';
 import patchRequestInitGenerator from '../../../app/helpers/monkey';
 
 // eslint-disable-next-line import/prefer-default-export
@@ -43,7 +43,8 @@ export const headersFromPrerender = async (ctx, data) => {
 
     return helmetContext.helmet;
   } catch (e) {
-    handle(e);
+    ctx.bugsnag.notify(e);
+    error(e);
 
     return {};
   }
