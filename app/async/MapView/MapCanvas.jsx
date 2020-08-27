@@ -138,7 +138,7 @@ const useMap = (props) => {
     setError(true);
   }, []);
   const handleMapClick = React.useCallback(
-    onMapClick ? (e) => onMapClick(toLonLat(e.coordinate)) : undefined,
+    onMapClick ? (e) => onMapClick(...toLonLat(e.coordinate), zoom) : undefined,
     []
   );
   const handleLoad = React.useCallback(() => {

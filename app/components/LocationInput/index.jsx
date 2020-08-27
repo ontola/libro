@@ -59,9 +59,10 @@ const LocationInput = ({
 
   const placements = usePlacements(object, lat, lon, zoomLevel);
 
-  const storeCoordinates = (e) => {
-    lonInput.onChange([rdf.literal(e[0])]);
-    latInput.onChange([rdf.literal(e[1])]);
+  const storeCoordinates = (newLat, newLon, newZoom) => {
+    lonInput.onChange([rdf.literal(newLat)]);
+    latInput.onChange([rdf.literal(newLon)]);
+    zoomLevelInput.onChange([rdf.literal(newZoom)]);
   };
 
   return (
