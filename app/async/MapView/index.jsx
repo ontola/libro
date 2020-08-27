@@ -1,4 +1,4 @@
-import rdf, { isNamedNode } from '@ontologies/core';
+import { isNamedNode } from '@ontologies/core';
 import schema from '@ontologies/schema';
 import * as fa from 'fontawesome';
 import {
@@ -25,7 +25,6 @@ import { entityIsLoaded } from '../../helpers/data';
 import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
 import { tryParseFloat } from '../../helpers/numbers';
 import { isResource } from '../../helpers/types';
-import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 
 import './Map.scss';
@@ -201,25 +200,12 @@ const MapView = ({
   center,
   navigate,
   onMapClick,
+  onSelect,
   onZoom,
+  overlayResource,
   placements,
 }) => {
-  const lrs = useLRS();
   const [placementFeatures, resolvedCenter, loading] = useFeatures(placements, center);
-  const [selected, setSelected] = React.useState(null);
-
-  const onSelect = (id) => {
-    if (!id) {
-      setSelected(null);
-    } else {
-      setSelected(
-        lrs.getResourceProperty(
-          id.termType ? id : rdf.namedNode(id),
-          argu.placeable
-        )
-      );
-    }
-  };
 
   if (loading) {
     return <LoadingCard />;
@@ -237,7 +223,7 @@ const MapView = ({
       initialZoom={zoom}
       layers={[{ features: placementFeatures }]}
       navigate={navigate}
-      overlayResource={selected}
+      overlayResource={overlayResource}
       onMapClick={onMapClick}
       onSelect={onSelect}
       onZoom={onZoom}
@@ -249,7 +235,9 @@ MapView.propTypes = {
   center: linkType,
   navigate: PropTypes.func,
   onMapClick: PropTypes.func,
+  onSelect: PropTypes.func,
   onZoom: PropTypes.func,
+  overlayResource: linkType,
   placements: linkType,
 };
 

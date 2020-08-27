@@ -1,3 +1,4 @@
+import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
 import {
   linkType,
@@ -24,7 +25,21 @@ const ArguLocation = ({
   const lrs = useLRS();
   useDataFetching(childrenPlacements);
   const history = useHistory();
+  const [selected, setSelected] = React.useState(null);
   const children = listToArr(lrs, [], childrenPlacements);
+
+  const onSelect = (id) => {
+    if (!id) {
+      setSelected(null);
+    } else {
+      setSelected(
+        lrs.getResourceProperty(
+          id.termType ? id : rdf.namedNode(id),
+          argu.placeable
+        )
+      );
+    }
+  };
 
   if (!Array.isArray(children)) {
     return <LoadingCard />;
@@ -37,7 +52,9 @@ const ArguLocation = ({
   return (
     <MapView
       navigate={(resource) => history.push(retrievePath(resource.value))}
+      overlayResource={selected}
       placements={[schemaLocation, ...children].filter(Boolean)}
+      onSelect={onSelect}
     />
   );
 };

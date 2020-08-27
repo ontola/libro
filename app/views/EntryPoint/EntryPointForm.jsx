@@ -72,6 +72,7 @@ const EntryPointForm = ({
       formID={formID}
       initialValues={initialValues}
       method={httpMethod}
+      object={object}
       submissionErrorsTimeStamp={submissionErrorsTimeStamp}
       subscription={{
         submitting: true,

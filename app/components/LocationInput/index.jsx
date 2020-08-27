@@ -1,6 +1,6 @@
 import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
-import { linkType } from 'link-redux';
+import { linkType, useResourceProperty } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -9,27 +9,38 @@ import useFormField from '../../hooks/useFormField';
 import MapView from '../../containers/MapView';
 import fa4 from '../../ontology/fa4';
 import ontola from '../../ontology/ontola';
+import { FormContext } from '../Form/Form';
 import HiddenRequiredInput from '../Input/HiddenRequiredInput';
 
 import './LocationInput.scss';
 
-const usePlacements = (object, lat, lon, zoomLevel) => (
-  React.useMemo(() => {
-    const placements = [];
+const usePlacements = (object, lat, lon, zoomLevel) => {
+  const { object: formObject } = React.useContext(FormContext);
+  const [parent] = useResourceProperty(formObject, schema.isPartOf);
+  const [location] = useResourceProperty(parent, schema.location);
 
-    if (lat && lon) {
-      placements.push({
-        id: object.value,
-        image: fa4.ns('map-marker'),
-        lat: tryParseFloat(lat),
-        lon: tryParseFloat(lon),
-        zoomLevel: tryParseFloat(zoomLevel),
-      });
-    }
+  return (
+    React.useMemo(() => {
+      const placements = [];
 
-    return placements;
-  }, [lat, lon, object])
-);
+      if (lat && lon) {
+        placements.push({
+          id: object.value,
+          image: fa4.ns('map-marker'),
+          lat: tryParseFloat(lat),
+          lon: tryParseFloat(lon),
+          zoomLevel: tryParseFloat(zoomLevel),
+        });
+      }
+
+      if (location) {
+        placements.push(location);
+      }
+
+      return placements;
+    }, [lat, lon, object])
+  );
+};
 
 const LocationInput = ({
   object,

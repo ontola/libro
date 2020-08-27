@@ -1,5 +1,6 @@
 import RDFTypes from '@rdfdev/prop-types';
 import equal from 'fast-deep-equal';
+import { linkType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Form as FinalForm } from 'react-final-form';
@@ -21,6 +22,7 @@ const propTypes = {
     PropTypes.string,
     RDFTypes.literal,
   ]),
+  object: linkType,
   onSubmit: PropTypes.func.isRequired,
   subscription: PropTypes.objectOf(PropTypes.any),
   validateOnBlur: PropTypes.bool,
@@ -42,6 +44,7 @@ const Form = (props) => {
     formID,
     initialValues,
     method,
+    object,
     onSubmit,
     subscription,
     validateOnBlur,
@@ -74,7 +77,12 @@ const Form = (props) => {
       initialValuesEqual={equal}
       key={formID}
       render={({ handleSubmit, ...childProps }) => (
-        <FormContext.Provider value={formID}>
+        <FormContext.Provider
+          value={{
+            formID,
+            object,
+          }}
+        >
           <form
             action={action}
             className={className || 'Form'}

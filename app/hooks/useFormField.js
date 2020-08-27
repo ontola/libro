@@ -58,10 +58,10 @@ const useFormField = ({
   type,
 }) => {
   const lrs = useLRS();
-  const formContext = React.useContext(FormContext);
+  const { formID } = React.useContext(FormContext);
   const formSectionContext = React.useContext(FormSectionContext);
   const fieldName = calculateFormFieldName(formSectionContext, propertyIndex, path);
-  const storeKey = getStorageKey(formContext, formSectionContext && object, path);
+  const storeKey = getStorageKey(formID, formSectionContext && object, path);
   const validate = combineValidators([
     maxCount && validators.maxCount(maxCount),
     maxLength && validators.maxLength(maxLength),
