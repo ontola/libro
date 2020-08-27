@@ -43,12 +43,12 @@ const paths = {
 
   /**
    * Sign-in / registration entrance route
-   * @param {string} r The URL to return to after signing in/up
+   * @param {string} redirect_url The URL to return to after signing in/up
    * @returns {string} The URL.
    */
-  signIn(r?: string): string {
+  signIn(redirectUrl?: string): string {
     const url = app.ns('u/sign_in').value;
-    return r ? `${url}?r=${encodeURIComponent(r)}` : url;
+    return redirectUrl ? `${url}?redirect_url=${encodeURIComponent(redirectUrl)}` : url;
   },
 };
 

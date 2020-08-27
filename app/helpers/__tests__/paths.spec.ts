@@ -68,7 +68,7 @@ describe('helpers', () => {
 
       it('handles redirects', () => {
         expect(path.signIn('http://argu.co/redirect'))
-          .toEqual('https://app.argu.co/freetown/u/sign_in?r=http%3A%2F%2Fargu.co%2Fredirect');
+          .toEqual('https://app.argu.co/freetown/u/sign_in?redirect_url=http%3A%2F%2Fargu.co%2Fredirect');
       });
     });
   });

@@ -29,7 +29,7 @@ const CreateSession = ({
   const lrs = useLRS();
   const [currentSubject, setSubject] = React.useState(subject);
   const [email, setEmail] = React.useState(null);
-  const getRedirectLocation = () => new URL(subject.value).searchParams.get('r') || website;
+  const getRedirectLocation = () => new URL(subject.value).searchParams.get('redirect_url') || website;
   const redirectURL = React.useMemo(() => (
     getRedirectLocation() ? serializeForStorage([rdf.literal(getRedirectLocation())]) : null
   ), []);

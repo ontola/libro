@@ -36,13 +36,13 @@ export const appMiddleware = () => (store: LinkReduxLRSType): MiddlewareWithBoun
   /**
    * App sign in
    */
-  const signInLink = (r?: NamedNode) => {
-    const postFix = r ? `?r=${encodeURIComponent(r.value.split('#')[0])}` : '';
+  const signInLink = (redirectUrl?: NamedNode) => {
+    const postFix = redirectUrl ? `?redirect_url=${encodeURIComponent(redirectUrl.value.split('#')[0])}` : '';
     return app.ns('u/sign_in' + postFix);
   };
 
-  (store as any).actions.app.startSignIn = (r?: NamedNode) => {
-    const resourceIRI = signInLink(r);
+  (store as any).actions.app.startSignIn = (redirectUrl?: NamedNode) => {
+    const resourceIRI = signInLink(redirectUrl);
     return (store as any).actions.ontola.showDialog(resourceIRI);
   };
 
