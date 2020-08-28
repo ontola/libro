@@ -12,7 +12,7 @@
     max-height: 70vh;
     height: 16rem;
     position: relative;
-    z-index: 10;
+    z-index: 9;
   }
 
   &--map-indicator {
@@ -34,7 +34,7 @@
 
   .ol-compass { // sass-lint:disable-line class-name-format
     display: inline-block;
-    z-index: 11;
+    z-index: 10;
   }
 
   .ol-control { // sass-lint:disable-line class-name-format
