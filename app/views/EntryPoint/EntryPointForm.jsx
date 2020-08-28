@@ -1,5 +1,7 @@
+import { isNamedNode } from '@ontologies/core';
 import {
   Property,
+  Resource,
   linkType,
   useDataInvalidation,
   useLRS,
@@ -9,6 +11,7 @@ import React from 'react';
 
 import { LoadingGridContent } from '../../components/Loading';
 import FormContainer from '../../containers/Form';
+import { entityIsLoaded } from '../../helpers/data';
 import useInitialValues from '../../hooks/useInitialValues';
 import ll from '../../ontology/ll';
 import { CardContent } from '../../topologies/Card';
@@ -61,7 +64,13 @@ const EntryPointForm = ({
   }, [errorResponse, submissionErrorsTimeStamp]);
 
   if (loading) {
-    return <CardContent><LoadingGridContent /></CardContent>;
+    return (
+      <CardContent>
+        {isNamedNode(loading) && !entityIsLoaded(lrs, loading)
+          ? <Resource subject={loading} onLoad={LoadingGridContent} />
+          : <LoadingGridContent />}
+      </CardContent>
+    );
   }
 
   return (
