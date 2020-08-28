@@ -4,7 +4,6 @@ import {
   Property,
   linkType,
   register,
-  subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -13,25 +12,18 @@ import FontAwesome from 'react-fontawesome';
 import AttributeListItem from '../../components/AttributeListItem';
 import Button from '../../components/Button';
 import HeaderWithMenu from '../../components/HeaderWithMenu';
-import { LoadingCardFixed } from '../../components/Loading';
 import teamGL from '../../ontology/teamGL';
 import AttributeList from '../../topologies/AttributeList';
 import Card, { CardContent } from '../../topologies/Card';
 import { popupTopology } from '../../topologies/Popup';
 import { useVisitPostalCode } from '../Glapp/helpers';
 
-import { usePartialResourceCheck } from './PostalCodeFull';
 
 const PostalCodePopup = ({
   onClose,
   postalDigits,
-  subject,
 }) => {
   const { visitPostalCode } = useVisitPostalCode();
-  const partial = usePartialResourceCheck(subject);
-  if (partial) {
-    return <LoadingCardFixed />;
-  }
 
   const closeButton = (
     <IconButton
@@ -75,7 +67,6 @@ PostalCodePopup.mapDataToProps = {
 PostalCodePopup.propTypes = {
   onClose: PropTypes.func,
   postalDigits: linkType,
-  subject: subjectType,
 };
 
 export default register(PostalCodePopup);

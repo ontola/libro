@@ -2,6 +2,7 @@ import IconButton from '@material-ui/core/IconButton';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import { makeStyles } from '@material-ui/styles';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import { tryParseInt } from '../../helpers/numbers';
@@ -31,13 +32,16 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const SearchPostalForm = () => {
+const SearchPostalForm = ({ setSelectedPostalCode }) => {
   const classes = useStyles();
   const [postalCode, setPostalCode] = React.useState(null);
   const {
     recentPostalCodes,
     visitPostalCode,
   } = useVisitPostalCode();
+  const ref = React.useRef();
+
+  const handlePostalClick = setSelectedPostalCode || visitPostalCode;
 
   return (
     <React.Fragment>
@@ -46,13 +50,15 @@ const SearchPostalForm = () => {
         onSubmit={(e) => {
           e.preventDefault();
           if (postalCode > MIN_POSTAL_DIGITS && postalCode < MAX_POSTAL_DIGITS) {
-            visitPostalCode(postalCode);
+            ref.current.blur();
+            handlePostalClick(postalCode);
           }
         }}
       >
         <InputBase
           className={classes.input}
           inputProps={{ type: 'number' }}
+          inputRef={ref}
           max={MAX_POSTAL_DIGITS}
           min={MIN_POSTAL_DIGITS}
           placeholder="1234"
@@ -77,7 +83,7 @@ const SearchPostalForm = () => {
               key={digits}
               onClick={(e) => {
                 e.preventDefault();
-                visitPostalCode(digits);
+                handlePostalClick(digits);
               }}
             >
               {digits}
@@ -90,6 +96,10 @@ const SearchPostalForm = () => {
       )}
     </React.Fragment>
   );
+};
+
+SearchPostalForm.propTypes = {
+  setSelectedPostalCode: PropTypes.func,
 };
 
 export default SearchPostalForm;

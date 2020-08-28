@@ -80,10 +80,7 @@ DropzoneInner.propTypes = {
     PropTypes.node,
     PropTypes.func,
   ]),
-  file: PropTypes.shape({
-    name: PropTypes.string,
-    url: PropTypes.string,
-  }),
+  file: PropTypes.string,
   formIRI: linkType,
   imagePositionYShape: linkType,
   isDragActive: PropTypes.bool,
