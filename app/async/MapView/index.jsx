@@ -137,12 +137,8 @@ const featureFromPlacement = (lrs, placement, iconCache, setIconCache) => {
   const [style, hoverStyle] = getImages(image.value, iconCache, setIconCache);
   f.setStyle(style);
   f.setProperties({
-    onMouseEnter: () => {
-      f.setStyle(hoverStyle);
-    },
-    onMouseLeave: () => {
-      f.setStyle(style);
-    },
+    hoverStyle,
+    style,
     zoomLevel,
   });
 

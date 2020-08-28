@@ -39,6 +39,10 @@ const DEFAULT_LON = 5.1917;
 const DEFAULT_ZOOM = 6.8;
 const TILE_SIZE = 512;
 
+const getStyle = (styleName) => (feature) => (
+  feature.get(styleName)
+);
+
 const createMap = ({
   accessToken,
   initialLat,
@@ -59,9 +63,12 @@ const createMap = ({
     new TileLayer({
       source: tileSource,
     }),
-    ...layerSources.map((source) => new VectorLayer({
-      source,
-    })),
+    ...layerSources.map((source) => (
+      new VectorLayer({
+        source,
+        style: getStyle('style'),
+      })
+    )),
   ];
 
   const overlay = new Overlay({
@@ -123,15 +130,6 @@ const useMap = (props) => {
   const [error, setError] = React.useState(undefined);
   const [memoizedOverlay, setOverlay] = React.useState(undefined);
   const [memoizedMap, setMap] = React.useState(undefined);
-  const highlightFeature = React.useCallback((highlight) => (feature) => {
-    const { onMouseEnter, onMouseLeave } = feature.getProperties();
-
-    if (highlight && onMouseEnter) {
-      onMouseEnter();
-    } else if (!highlight && onMouseLeave) {
-      onMouseLeave();
-    }
-  }, [...layers]);
 
   const handleError = React.useCallback((e) => {
     handle(e);
@@ -148,7 +146,6 @@ const useMap = (props) => {
     const [feature] = e.selected;
 
     if (feature) {
-      highlightFeature(true)(feature);
       if (onSelect) {
         const id = feature.getId();
         onSelect(id);
@@ -160,10 +157,6 @@ const useMap = (props) => {
       onSelect(null);
     }
   }, [memoizedOverlay]);
-  const handleHover = React.useCallback((e) => {
-    e.selected.map(highlightFeature(true));
-    e.deselected.map(highlightFeature(false));
-  }, [...layers]);
   const handleZoom = React.useCallback(
     (e) => {
       const newZoom = e.map.getView().getZoom();
@@ -231,20 +224,21 @@ const useMap = (props) => {
 
   React.useEffect(() => {
     updateFeatures(layerSources, layers);
-  }, [layerSources, layers]);
+  }, [!!layerSources, ...layers]);
 
   React.useEffect(() => {
     if (memoizedMap) {
       const select = new Select({
         condition: click,
+        style: false,
       });
       select.on('select', handleSelect);
       memoizedMap.addInteraction(select);
 
       const hover = new Select({
         condition: pointerMove,
+        style: getStyle('hoverStyle'),
       });
-      hover.on('select', handleHover);
       memoizedMap.addInteraction(hover);
 
       return () => {
@@ -254,7 +248,7 @@ const useMap = (props) => {
     }
 
     return () => {};
-  }, [handleSelect, handleHover, memoizedMap]);
+  }, [handleSelect, memoizedMap]);
 
   const handleOverlayClick = React.useCallback((e) => (
     e.target.className !== 'click-ignore' && navigate && navigate(overlayResource)
