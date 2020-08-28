@@ -157,7 +157,7 @@ const useMap = (props) => {
     setError(undefined);
   }, []);
   const handleSelect = React.useCallback((e) => {
-    const [feature] = e.selected;
+    const [feature] = e?.selected || [];
     const features = feature?.get('features');
     const selected = features?.[0] || feature;
 
@@ -268,6 +268,7 @@ const useMap = (props) => {
     updateFeatures(layerSources, layers);
   }, [!!layerSources, ...layers]);
 
+  const [deselect, setDeselect] = React.useState(null);
   React.useEffect(() => {
     if (memoizedMap) {
       const select = new Select({
@@ -275,6 +276,10 @@ const useMap = (props) => {
         style: false,
       });
       select.on('select', handleSelect);
+      setDeselect(() => () => {
+        select.getFeatures().clear();
+        handleSelect(null);
+      });
       memoizedMap.addInteraction(select);
 
       const hover = new Select({
@@ -297,6 +302,7 @@ const useMap = (props) => {
   ), [overlayResource]);
 
   return {
+    deselect,
     error,
     handleOverlayClick,
     mapRef,
@@ -311,6 +317,7 @@ const MapCanvas = (props) => {
     overlayResource,
   } = props;
   const {
+    deselect,
     error,
     mapRef,
     handleOverlayClick,
@@ -357,6 +364,11 @@ const MapCanvas = (props) => {
           <Resource
             subject={overlayResource}
             topology={popupTopology}
+            onClose={() => {
+              if (deselect) {
+                deselect();
+              }
+            }}
           />
         )}
       </OverlayContainer>

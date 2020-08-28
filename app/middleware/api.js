@@ -6,7 +6,11 @@
 
 import { setMapAccessToken } from '../async/MapView/actions';
 import { handle } from '../helpers/logging';
-import { AFE_API_GET_MAP_ACCESS_TOKEN } from '../state/action-types';
+import {
+  AFE_API_GET_ASSET,
+  AFE_API_GET_MAP_ACCESS_TOKEN,
+} from '../state/action-types';
+import { storeAsset } from '../state/assets/actions';
 
 export default () => () => (next) => (action) => {
   if (!action.type.startsWith('@AFE_API/')) {
@@ -14,6 +18,15 @@ export default () => () => (next) => (action) => {
   }
 
   switch (action.type) {
+    case AFE_API_GET_ASSET: {
+      return fetch(action.payload.file)
+        .then((res) => res.json())
+        .then((json) => {
+          next(storeAsset(action.payload.file, json));
+        }).catch((e) => {
+          handle(e);
+        });
+    }
     case AFE_API_GET_MAP_ACCESS_TOKEN: {
       return fetch('/api/maps/accessToken')
         .then((res) => res.json())
