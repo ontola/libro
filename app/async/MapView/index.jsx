@@ -1,3 +1,4 @@
+import { useTheme } from '@material-ui/core';
 import { isNamedNode } from '@ontologies/core';
 import schema from '@ontologies/schema';
 import {
@@ -16,17 +17,22 @@ import { LoadingCard } from '../../components/Loading';
 import { entityIsLoaded } from '../../helpers/data';
 import { tryParseFloat } from '../../helpers/numbers';
 import { isResource } from '../../helpers/types';
+import fa4 from '../../ontology/fa4';
 import ontola from '../../ontology/ontola';
 
-import { getImages } from './helpers';
+import { getStyles } from './helpers';
 import MapCanvas from './MapCanvas';
+
+const imageForPlacement = (placement, lrs) => (
+  lrs.getResourceProperty(placement, schema.image) || fa4.ns('map-marker')
+);
 
 const featureProps = (lrs, placement) => {
   if (!isResource(placement)) {
     return placement;
   }
 
-  const image = lrs.getResourceProperty(placement, schema.image);
+  const image = imageForPlacement(placement, lrs);
   const lat = tryParseFloat(lrs.getResourceProperty(placement, schema.latitude));
   const lon = tryParseFloat(lrs.getResourceProperty(placement, schema.longitude));
   const zoomLevel = tryParseFloat(lrs.getResourceProperty(placement, ontola.zoomLevel));
@@ -39,7 +45,7 @@ const featureProps = (lrs, placement) => {
   };
 };
 
-const featureFromPlacement = (lrs, placement, iconCache, setIconCache) => {
+const featureFromPlacement = (lrs, placement, theme) => {
   const {
     image,
     lat,
@@ -54,8 +60,7 @@ const featureFromPlacement = (lrs, placement, iconCache, setIconCache) => {
   const f = new Feature(new Point(fromLonLat([lon, lat])));
   f.local = placement;
   f.setId(placement.value);
-  const [style, hoverStyle] = getImages(image.value, iconCache, setIconCache);
-  f.setStyle(style);
+  const { hoverStyle, style } = getStyles(image.value, theme);
   f.setProperties({
     hoverStyle,
     style,
@@ -72,15 +77,15 @@ const useFeatures = (placements, center) => {
   const [memoizedFeatures, setMemoizedFeatures] = React.useState([]);
   const [memoizedCenter, setMemoizedCenter] = React.useState(null);
   const [memoizedDependencies, setDependencies] = React.useState([]);
-  const [iconCache, setIconCache] = React.useState(() => ({}), []);
   const timestamp = useDataInvalidation(memoizedDependencies);
   useDataFetching(memoizedDependencies.filter(isNamedNode));
+  const theme = useTheme();
 
   React.useEffect(() => {
     const features = [];
     const dependencies = [];
     const addFeature = (rawFeature, index) => {
-      const feature = !loading && featureFromPlacement(lrs, rawFeature, iconCache, setIconCache);
+      const feature = !loading && featureFromPlacement(lrs, rawFeature, theme);
 
       const isCenter = rawFeature === center || (!center && index === 0);
 
@@ -137,7 +142,10 @@ const MapView = ({
       initialLat={cLat}
       initialLon={cLon}
       initialZoom={zoom}
-      layers={[{ features: placementFeatures }]}
+      layers={[{
+        clustered: true,
+        features: placementFeatures,
+      }]}
       navigate={navigate}
       overlayResource={overlayResource}
       onMapClick={onMapClick}

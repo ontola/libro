@@ -10,11 +10,13 @@ import {
 } from 'ol';
 import { defaults as defaultControls } from 'ol/control';
 import { click, pointerMove } from 'ol/events/condition';
+import { boundingExtent, getCenter } from 'ol/extent';
 import Select from 'ol/interaction/Select';
 import TileLayer from 'ol/layer/Tile';
 import VectorLayer from 'ol/layer/Vector';
 import OverlayPositioning from 'ol/OverlayPositioning';
 import { fromLonLat, toLonLat } from 'ol/proj';
+import Cluster from 'ol/source/Cluster';
 import VectorSource from 'ol/source/Vector';
 import XYZ from 'ol/source/XYZ';
 import PropTypes from 'prop-types';
@@ -39,10 +41,14 @@ const DEFAULT_LAT = 52.1344;
 const DEFAULT_LON = 5.1917;
 const DEFAULT_ZOOM = 6.8;
 const TILE_SIZE = 512;
+const CLUSTER_DISTANCE = 40;
+const CLUSTER_ZOOM = 2;
 
-const getStyle = (styleName) => (feature) => (
-  feature.get(styleName)
-);
+const getStyle = (styleName) => (feature) => {
+  const features = feature?.get('features');
+
+  return (features?.[0] || feature).get(styleName)(feature);
+};
 
 const createMap = ({
   accessToken,
@@ -99,7 +105,12 @@ const updateFeatures = (layerSources, layers) => {
   if (layerSources) {
     layerSources.forEach((source, index) => {
       source.clear(true);
-      source.addFeatures(layers[index].features?.map((f) => f) || []);
+      const layer = layers[index];
+      if (layer.clustered) {
+        source.source.addFeatures(layer.features.slice() || []);
+      } else {
+        source.addFeatures(layer.features.slice() || []);
+      }
     });
   }
 };
@@ -145,15 +156,28 @@ const useMap = (props) => {
   }, []);
   const handleSelect = React.useCallback((e) => {
     const [feature] = e.selected;
+    const features = feature?.get('features');
+    const selected = features?.[0] || feature;
 
-    if (feature) {
+    if (features?.length > 1) {
+      const bounds = boundingExtent(features.map((f) => f.getGeometry().getCoordinates()));
+      const newZoom = e.mapBrowserEvent.map.getView().getZoom() + CLUSTER_ZOOM;
+
+      e.mapBrowserEvent.map.getView().animate({
+        center: getCenter(bounds),
+        zoom: newZoom,
+      });
+    } else if (selected) {
       if (onSelect) {
-        const id = feature.getId();
-        onSelect(id);
+        onSelect(selected);
       }
 
-      const position = feature.getGeometry().getCoordinates();
-      memoizedOverlay.setPosition(position);
+      const geometry = selected.getGeometry();
+      if (geometry.getType === 'Point') {
+        memoizedOverlay.setPosition(geometry.getCoordinates());
+      } else {
+        memoizedOverlay.setPosition(getCenter(geometry.getExtent()));
+      }
     } else if (onSelect) {
       onSelect(null);
     }
@@ -172,7 +196,22 @@ const useMap = (props) => {
 
   React.useEffect(() => {
     if (accessToken) {
-      setLayerSources(layers.map(() => new VectorSource()));
+      const sources = layers.map((layer) => {
+        const vectorSource = new VectorSource();
+        let source;
+        if (layer.clustered) {
+          source = new Cluster({
+            distance: CLUSTER_DISTANCE,
+            source: vectorSource,
+          });
+        } else {
+          source = vectorSource;
+        }
+
+        return source;
+      });
+
+      setLayerSources(sources);
       const source = new XYZ({
         tileSize: [TILE_SIZE, TILE_SIZE],
         url: `${mapboxTileURL}/tiles/{z}/{x}/{y}?access_token=${accessToken}`,

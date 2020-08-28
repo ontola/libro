@@ -28,7 +28,8 @@ const ArguLocation = ({
   const [selected, setSelected] = React.useState(null);
   const children = listToArr(lrs, [], childrenPlacements);
 
-  const onSelect = (id) => {
+  const onSelect = (feature) => {
+    const id = feature?.getId();
     if (!id) {
       setSelected(null);
     } else {

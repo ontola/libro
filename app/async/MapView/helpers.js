@@ -13,46 +13,61 @@ const ANCHOR_Y_BOTTOM = 1;
 const ANCHOR_X_CENTER = 0.5;
 const CIRCLE_RADIUS = 12;
 const CIRCLE_SIZE = 13;
-const ICON_X = 8;
-const ICON_Y = 19;
+const ICON_X = CIRCLE_SIZE;
+const ICON_Y = CIRCLE_SIZE;
 const IMG_SIZE = 26;
 
-const generateMarkerImage = (image, highlight = false) => {
-  let text = '\uf041';
-  if (isFontAwesomeIRI(image)) {
-    text = fa(normalizeFontAwesomeIRI(image));
-  }
+const iconCache = {};
 
-  const canvas = document.createElement('canvas');
-  const canvasCtx = canvas.getContext('2d');
-  const vectorContext = toContext(canvasCtx, {
-    pixelRatio: 1,
-    size: [100, 100],
-  });
-
-  const fill = new Fill({ color: highlight ? '#92a1b5' : '#475668' });
-  const stroke = new Stroke({
+const drawFontAwesomeIcon = (canvasCtx, text, highlight, count, theme) => {
+  const circleBackground = new Fill({ color: highlight ? '#92a1b5' : '#475668' });
+  const circleStroke = new Stroke({
     color: 'white',
     width: 2,
   });
   const circleStyle = new Style({
-    fill,
+    fill: circleBackground,
     image: new CircleStyle({
-      fill,
+      fill: circleBackground,
       radius: 10,
-      stroke,
+      stroke: circleStroke,
     }),
-    stroke,
+    stroke: circleStroke,
   });
 
   const circle = new Circle([CIRCLE_SIZE, CIRCLE_SIZE], CIRCLE_RADIUS);
 
+  const vectorContext = toContext(canvasCtx, {
+    pixelRatio: 1,
+    size: [100, 100],
+  });
   vectorContext.setStyle(circleStyle);
   vectorContext.drawGeometry(circle);
 
+  let renderText, renderFont;
+  if (count > 1) {
+    renderText = count;
+    renderFont = `bold 16px ${theme.typography.h1.fontFamily}`;
+  } else {
+    renderText = text;
+    renderFont = 'normal 18px FontAwesome';
+  }
+  /* eslint-disable no-param-reassign */
   canvasCtx.fillStyle = 'white';
-  canvasCtx.font = 'normal 18px FontAwesome';
-  canvasCtx.fillText(text, ICON_X, ICON_Y);
+  canvasCtx.font = renderFont;
+  canvasCtx.textAlign = 'center';
+  canvasCtx.textBaseline = 'middle';
+  /* eslint-enable no-param-reassign */
+  canvasCtx.fillText(renderText, ICON_X, ICON_Y);
+};
+
+const generateIconStyle = (image, highlight = false, count, theme) => {
+  const canvas = document.createElement('canvas');
+  const canvasCtx = canvas.getContext('2d');
+
+  if (isFontAwesomeIRI(image)) {
+    drawFontAwesomeIcon(canvasCtx, fa(normalizeFontAwesomeIRI(image)), highlight, count, theme);
+  }
 
   return new Style({
     image: new Icon({
@@ -63,18 +78,29 @@ const generateMarkerImage = (image, highlight = false) => {
   });
 };
 
-export const getImages = (image, iconCache, setIconCache) => {
-  const cacheKey = image;
-  if (iconCache[cacheKey]) {
-    return iconCache[cacheKey];
+const featureCount = (feature) => (
+  feature?.get('features')?.length || 0
+);
+
+const getStyle = (image, highlight, theme) => (feature) => {
+  const count = featureCount(feature);
+  const cacheKey = [image, highlight, count].filter(Boolean).join('-');
+
+  if (!iconCache[cacheKey]) {
+    const icon = generateIconStyle(image, highlight, count, theme);
+
+    iconCache[cacheKey] = icon;
   }
 
-  const newIconCache = { ...iconCache };
-  newIconCache[cacheKey] = [
-    generateMarkerImage(image, false),
-    generateMarkerImage(image, true),
-  ];
-  setIconCache(newIconCache);
+  return iconCache[cacheKey];
+};
 
-  return newIconCache[cacheKey];
+export const getStyles = (image, theme) => {
+  const style = getStyle(image, false, theme);
+  const hoverStyle = getStyle(image, true, theme);
+
+  return {
+    hoverStyle,
+    style,
+  };
 };
