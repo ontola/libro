@@ -125,20 +125,19 @@ export default function generateLRS() {
     rdf.quad(schema.WebSite, rdfx.type, rdfs.Class),
     rdf.quad(schema.WebSite, rdfs.subClassOf, schema.Thing),
 
-    rdf.quad(ontola['Create::Session'], rdfx.type, rdfs.Class),
-    rdf.quad(ontola['Create::Session'], rdfs.subClassOf, schema.CreateAction),
+    rdf.quad(ontola['Create::Auth::AccessToken'], rdfx.type, rdfs.Class),
+    rdf.quad(ontola['Create::Auth::AccessToken'], rdfs.subClassOf, schema.CreateAction),
+    rdf.quad(ontola['Create::Auth::Confirmation'], rdfx.type, rdfs.Class),
+    rdf.quad(ontola['Create::Auth::Confirmation'], rdfs.subClassOf, schema.CreateAction),
+    rdf.quad(ontola['Create::Auth::Password'], rdfx.type, rdfs.Class),
+    rdf.quad(ontola['Create::Auth::Password'], rdfs.subClassOf, schema.CreateAction),
+    rdf.quad(ontola['Create::Auth::Session'], rdfx.type, rdfs.Class),
+    rdf.quad(ontola['Create::Auth::Session'], rdfs.subClassOf, schema.CreateAction),
+    rdf.quad(ontola['Create::Auth::Unlock'], rdfx.type, rdfs.Class),
+    rdf.quad(ontola['Create::Auth::Unlock'], rdfs.subClassOf, schema.CreateAction),
 
     rdf.quad(ontola['Create::User'], rdfx.type, rdfs.Class),
     rdf.quad(ontola['Create::User'], rdfs.subClassOf, schema.CreateAction),
-
-    rdf.quad(ontola['Create::Users::Password'], rdfx.type, rdfs.Class),
-    rdf.quad(ontola['Create::Users::Password'], rdfs.subClassOf, schema.CreateAction),
-
-    rdf.quad(ontola['Create::Users::Confirmation'], rdfx.type, rdfs.Class),
-    rdf.quad(ontola['Create::Users::Confirmation'], rdfs.subClassOf, schema.CreateAction),
-
-    rdf.quad(ontola['Create::Users::Unlock'], rdfx.type, rdfs.Class),
-    rdf.quad(ontola['Create::Users::Unlock'], rdfs.subClassOf, schema.CreateAction),
 
     rdf.quad(ontola['Create::Vote'], rdfx.type, rdfs.Class),
     rdf.quad(ontola['Create::Vote'], rdfs.subClassOf, schema.CreateAction),

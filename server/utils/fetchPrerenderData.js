@@ -13,7 +13,6 @@ const defaultResources = (scope) => [
   `${scope}/n`,
   `${scope}/search`,
   `${scope}/menus`,
-  `${scope}/apex/menus`,
 ];
 
 const createOutputStream = () => {

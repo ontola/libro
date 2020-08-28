@@ -10,7 +10,7 @@ const CreateSessionActionsBar = () => (
   <SignInFormLink Component={Button} />
 );
 
-CreateSessionActionsBar.type = ontola.ns('Create::Session');
+CreateSessionActionsBar.type = ontola.ns('Create::Auth::Session');
 
 CreateSessionActionsBar.topology = actionsBarTopology;
 

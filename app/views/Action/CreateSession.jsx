@@ -86,7 +86,7 @@ const CreateSession = ({
   );
 };
 
-CreateSession.type = ontola.ns('Create::Session');
+CreateSession.type = ontola.ns('Create::Auth::Session');
 
 CreateSession.topology = allTopologiesExcept(actionsBarTopology);
 
