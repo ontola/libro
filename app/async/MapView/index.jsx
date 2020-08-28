@@ -20,7 +20,7 @@ import { isResource } from '../../helpers/types';
 import fa4 from '../../ontology/fa4';
 import ontola from '../../ontology/ontola';
 
-import { getStyles } from './helpers';
+import { useImageStyles } from './helpers';
 import MapCanvas from './MapCanvas';
 
 const imageForPlacement = (placement, lrs) => (
@@ -45,7 +45,7 @@ const featureProps = (lrs, placement) => {
   };
 };
 
-const featureFromPlacement = (lrs, placement, theme) => {
+const featureFromPlacement = (lrs, placement, hoverStyles, styles) => {
   const {
     image,
     lat,
@@ -60,10 +60,9 @@ const featureFromPlacement = (lrs, placement, theme) => {
   const f = new Feature(new Point(fromLonLat([lon, lat])));
   f.local = placement;
   f.setId(placement.value);
-  const { hoverStyle, style } = getStyles(image.value, theme);
   f.setProperties({
-    hoverStyle,
-    style,
+    hoverStyle: hoverStyles[image.value],
+    style: styles[image.value],
     zoomLevel,
   });
 
@@ -72,20 +71,28 @@ const featureFromPlacement = (lrs, placement, theme) => {
 
 const useFeatures = (placements, center) => {
   const lrs = useLRS();
+  const theme = useTheme();
 
   const [loading, setLoading] = React.useState(true);
-  const [memoizedFeatures, setMemoizedFeatures] = React.useState([]);
+  const [memoizedFeatures, setMemoizedFeatures] = React.useState(null);
   const [memoizedCenter, setMemoizedCenter] = React.useState(null);
   const [memoizedDependencies, setDependencies] = React.useState([]);
   const timestamp = useDataInvalidation(memoizedDependencies);
   useDataFetching(memoizedDependencies.filter(isNamedNode));
-  const theme = useTheme();
+  const icons = React.useMemo(
+    () => Array.from(new Set(placements.map((placement) => imageForPlacement(placement, lrs)))),
+    [timestamp]
+  );
+  const {
+    styles,
+    hoverStyles,
+  } = useImageStyles(icons, theme);
 
   React.useEffect(() => {
     const features = [];
     const dependencies = [];
     const addFeature = (rawFeature, index) => {
-      const feature = !loading && featureFromPlacement(lrs, rawFeature, theme);
+      const feature = !loading && featureFromPlacement(lrs, rawFeature, hoverStyles, styles);
 
       const isCenter = rawFeature === center || (!center && index === 0);
 
@@ -112,7 +119,7 @@ const useFeatures = (placements, center) => {
     if (loading !== currentlyLoading) {
       setLoading(currentlyLoading);
     }
-  }, [loading, timestamp, placements]);
+  }, [loading, timestamp, placements?.length, hoverStyles, styles]);
 
   return [memoizedFeatures, memoizedCenter, loading];
 };

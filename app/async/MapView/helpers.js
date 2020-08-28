@@ -1,13 +1,20 @@
 import * as fa from 'fontawesome';
 import Circle from 'ol/geom/Circle';
+import ImageState from 'ol/ImageState';
 import { toContext } from 'ol/render';
 import CircleStyle from 'ol/style/Circle';
 import Fill from 'ol/style/Fill';
 import Icon from 'ol/style/Icon';
+import { get as getIconImage } from 'ol/style/IconImage';
 import Stroke from 'ol/style/Stroke';
 import Style from 'ol/style/Style';
+import Text from 'ol/style/Text';
+import { useLayoutEffect, useMemo } from 'react';
 
-import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
+import {
+  isFontAwesomeIRI,
+  normalizeFontAwesomeIRI,
+} from '../../helpers/iris';
 
 const ANCHOR_Y_BOTTOM = 1;
 const ANCHOR_X_CENTER = 0.5;
@@ -19,7 +26,47 @@ const IMG_SIZE = 26;
 
 const iconCache = {};
 
-const drawFontAwesomeIcon = (canvasCtx, text, highlight, count, theme) => {
+const getImage = (image) => {
+  const img = getIconImage(null, image, IMG_SIZE, true, ImageState.IDLE, null);
+  img.load();
+
+  return img;
+};
+
+const generateImageStyle = (image, highlight, count, theme) => {
+  const canvas = document.createElement('canvas');
+  const canvasCtx = canvas.getContext('2d');
+
+  if (highlight) {
+    canvasCtx.globalAlpha = 0.6;
+  }
+  const img = getImage(image);
+  canvasCtx.drawImage(img.getImage(), 0, 0, IMG_SIZE, IMG_SIZE);
+  canvasCtx.globalAlpha = 1;
+
+  const numberText = count > 1 && (
+    new Text({
+      fill: new Fill({ color: 'white' }),
+      font: `bold 16px ${theme.typography.h1.fontFamily}`,
+      offsetX: CIRCLE_RADIUS,
+      text: count.toString(),
+    })
+  );
+
+  return {
+    image: new Icon({
+      anchor: [ANCHOR_X_CENTER, ANCHOR_Y_BOTTOM],
+      img: canvas,
+      imgSize: [IMG_SIZE, IMG_SIZE],
+    }),
+    text: numberText,
+  };
+};
+
+const generateFontAwesomeStyle = (image, highlight, count, theme) => {
+  const canvas = document.createElement('canvas');
+  const canvasCtx = canvas.getContext('2d');
+
   const circleBackground = new Fill({ color: highlight ? '#92a1b5' : '#475668' });
   const circleStroke = new Stroke({
     color: 'white',
@@ -49,7 +96,7 @@ const drawFontAwesomeIcon = (canvasCtx, text, highlight, count, theme) => {
     renderText = count;
     renderFont = `bold 16px ${theme.typography.h1.fontFamily}`;
   } else {
-    renderText = text;
+    renderText = fa(normalizeFontAwesomeIRI(image));
     renderFont = 'normal 18px FontAwesome';
   }
   /* eslint-disable no-param-reassign */
@@ -59,23 +106,25 @@ const drawFontAwesomeIcon = (canvasCtx, text, highlight, count, theme) => {
   canvasCtx.textBaseline = 'middle';
   /* eslint-enable no-param-reassign */
   canvasCtx.fillText(renderText, ICON_X, ICON_Y);
-};
 
-const generateIconStyle = (image, highlight = false, count, theme) => {
-  const canvas = document.createElement('canvas');
-  const canvasCtx = canvas.getContext('2d');
-
-  if (isFontAwesomeIRI(image)) {
-    drawFontAwesomeIcon(canvasCtx, fa(normalizeFontAwesomeIRI(image)), highlight, count, theme);
-  }
-
-  return new Style({
+  return {
     image: new Icon({
       anchor: [ANCHOR_X_CENTER, ANCHOR_Y_BOTTOM],
       img: canvas,
       imgSize: [IMG_SIZE, IMG_SIZE],
     }),
-  });
+  };
+};
+
+const generateIconStyle = (image, highlight = false, count, theme) => {
+  let style;
+  if (isFontAwesomeIRI(image)) {
+    style = generateFontAwesomeStyle(image, highlight, count, theme);
+  } else {
+    style = generateImageStyle(image, highlight, count, theme);
+  }
+
+  return new Style(style);
 };
 
 const featureCount = (feature) => (
@@ -95,12 +144,35 @@ const getStyle = (image, highlight, theme) => (feature) => {
   return iconCache[cacheKey];
 };
 
-export const getStyles = (image, theme) => {
-  const style = getStyle(image, false, theme);
-  const hoverStyle = getStyle(image, true, theme);
+export const useImageStyles = (images, theme) => {
+  const normalizedImages = useMemo(() => images.map((image) => image?.value || image), []);
+  useLayoutEffect(() => {
+    normalizedImages.forEach((image) => {
+      if (image && !isFontAwesomeIRI(image)) {
+        getImage(image);
+      }
+    });
+  }, normalizedImages);
+
+  const hoverStyles = useMemo(() => {
+    const result = {};
+    normalizedImages.forEach((image) => {
+      result[image] = getStyle(image, false, theme);
+    });
+
+    return result;
+  }, normalizedImages);
+  const styles = useMemo(() => {
+    const result = {};
+    normalizedImages.forEach((image) => {
+      result[image] = getStyle(image, true, theme);
+    });
+
+    return result;
+  }, normalizedImages);
 
   return {
-    hoverStyle,
-    style,
+    hoverStyles,
+    styles,
   };
 };
