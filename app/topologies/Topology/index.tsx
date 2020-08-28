@@ -87,6 +87,10 @@ class Topology<P = {}, S extends TopologyState = {}> extends TopologyProvider<P,
     return this.className;
   }
 
+  public getElementProps() {
+    return {};
+  }
+
   public getStyle() {
     return this.style;
   }
@@ -99,7 +103,7 @@ class Topology<P = {}, S extends TopologyState = {}> extends TopologyProvider<P,
         className={this.getClassName()}
         resource={subject && subject.value}
         style={this.getStyle()}
-        {...this.props}
+        {...this.getElementProps()}
       >
         {this.props.children}
       </Element>

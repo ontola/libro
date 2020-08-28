@@ -22,7 +22,9 @@ const MenuItemNavbar = ({
   menuItems,
 }) => {
   const menuItemLabel = (onClick) => {
-    const icon = image && isFontAwesomeIRI(image.value) && image && normalizeFontAwesomeIRI(image);
+    const icon = (image && isFontAwesomeIRI(image.value))
+      ? normalizeFontAwesomeIRI(image)
+      : null;
 
     return (
       <NavbarLinkLink

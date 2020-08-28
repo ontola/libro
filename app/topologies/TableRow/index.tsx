@@ -28,6 +28,12 @@ class TableRow extends Topology {
       'TableRow--clickable': !!(this.props as any).onClick,
     });
   }
+
+  public getElementProps() {
+    return {
+      onClick: (this.props as any).onClick,
+    };
+  }
 }
 
 export default TableRow;

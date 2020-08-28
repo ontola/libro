@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles } from '@material-ui/styles';
-import { Resource } from 'link-redux';
+import { Resource, linkType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
@@ -18,10 +18,7 @@ const propTypes = {
     PropTypes.string,
     PropTypes.element,
   ]),
-  image: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element,
-  ]),
+  image: linkType,
   label: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.element,
