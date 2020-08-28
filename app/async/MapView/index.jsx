@@ -27,8 +27,6 @@ import { tryParseFloat } from '../../helpers/numbers';
 import { isResource } from '../../helpers/types';
 import ontola from '../../ontology/ontola';
 
-import './Map.scss';
-
 import MapCanvas from './MapCanvas';
 
 const IMG_SIZE = 26;

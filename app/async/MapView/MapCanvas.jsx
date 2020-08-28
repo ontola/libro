@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import {
   Resource,
   linkType,
@@ -29,7 +30,7 @@ import { handle } from '../../helpers/logging';
 import { popupTopology } from '../../topologies/Popup';
 
 import 'ol/ol.css';
-import './Map.scss';
+import useMapStyles from './useMapStyles';
 import { getMapAccessToken } from './actions';
 import reducer, { MapReducerKey } from './reducer';
 import { getAccessToken, getAccessTokenError } from './selectors';
@@ -265,6 +266,7 @@ const useMap = (props) => {
 const MapCanvas = (props) => {
   const {
     accessTokenError,
+    large,
     overlayResource,
   } = props;
   const {
@@ -273,7 +275,15 @@ const MapCanvas = (props) => {
     handleOverlayClick,
     overlayRef,
   } = useMap(props);
-
+  const classes = useMapStyles();
+  const wrapperClassName = classNames({
+    [classes.container]: true,
+    [classes.containerFullscreen]: large,
+  });
+  const canvasClassName = classNames({
+    [classes.canvas]: true,
+    [classes.canvasFullscreen]: large,
+  });
   const errorMessage = (accessTokenError || error) && (
     <span>
       <FormattedMessage
@@ -285,9 +295,9 @@ const MapCanvas = (props) => {
 
   if (!mapRef || errorMessage) {
     return (
-      <div className="Map" data-testid="map-view">
-        <div className="Map--map-container" />
-        <div className="Map--map-indicator">
+      <div className={wrapperClassName} data-testid="map-view">
+        <div className={canvasClassName} />
+        <div className={classes.indicator}>
           <FontAwesome name="map-o" />
           {errorMessage}
         </div>
@@ -296,8 +306,8 @@ const MapCanvas = (props) => {
   }
 
   return (
-    <div className="Map" data-testid="map-view">
-      <div className="Map--map-container" ref={mapRef} />
+    <div className={wrapperClassName} data-testid="map-view">
+      <div className={canvasClassName} ref={mapRef} />
       <OverlayContainer
         clickHandler={handleOverlayClick}
         overlayRef={overlayRef.current}
@@ -315,6 +325,7 @@ const MapCanvas = (props) => {
 
 MapCanvas.propTypes = {
   accessTokenError: PropTypes.string,
+  large: PropTypes.bool,
   overlayResource: linkType,
 };
 
