@@ -3,14 +3,12 @@ import { OK } from 'http-status-codes';
 import {
   Property,
   register,
-  subjectType,
   useLRS,
 } from 'link-redux';
 import React from 'react';
 
 import AttributeListItem from '../../components/AttributeListItem';
 import CardContent from '../../components/Card/CardContent';
-import { LoadingFullResource } from '../../components/Loading';
 import teamGL from '../../ontology/teamGL';
 import AttributeList from '../../topologies/AttributeList';
 import CardMain from '../../topologies/Card/CardMain';
@@ -30,38 +28,32 @@ export const usePartialResourceCheck = (subject) => {
   return partal;
 };
 
-const PostalCodeFull = ({ subject }) => {
-  const partal = usePartialResourceCheck(subject);
-  if (partal) {
-    return <LoadingFullResource />;
-  }
-
-  return (
-    <React.Fragment>
-      <Container>
-        <Property label={schema.isPartOf} />
-        <CardMain>
-          <CardContent noSpacing>
-            <Property label={schema.name} />
-            <AttributeList fullLabel>
-              <AttributeListItem label={teamGL.totalFlyers} />
-              <AttributeListItem label={teamGL.flyerVolunteers} />
-              <AttributeListItem label={teamGL.activeFlyered} />
-            </AttributeList>
-          </CardContent>
-        </CardMain>
-      </Container>
-      <Property label={teamGL.streets} />
-    </React.Fragment>
-  );
-};
+const PostalCodeFull = () => (
+  <React.Fragment>
+    <Container>
+      <Property label={schema.isPartOf} />
+      <CardMain>
+        <CardContent noSpacing>
+          <Property label={schema.name} />
+          <p>
+            In deze fase van de campagne zijn we in heel Nederland brieven aan het bezorgen.
+            Kijk hieronder welke straten de meeste potentie hebben voor ons
+            en geef het aan als je een straat hebt gedaan!
+          </p>
+          <AttributeList fullLabel>
+            <AttributeListItem label={teamGL.totalFlyers} />
+            <AttributeListItem label={teamGL.flyerVolunteers} />
+            <AttributeListItem label={teamGL.activeFlyered} />
+          </AttributeList>
+        </CardContent>
+      </CardMain>
+    </Container>
+    <Property label={teamGL.streets} />
+  </React.Fragment>
+);
 
 PostalCodeFull.type = teamGL.PostalCode;
 
 PostalCodeFull.topology = fullResourceTopology;
-
-PostalCodeFull.propTypes = {
-  subject: subjectType,
-};
 
 export default register(PostalCodeFull);

@@ -12,12 +12,14 @@ export const MIN_POSTAL_DIGITS = 1000;
 
 export const postalCodeIri = (postalDigits: string): NamedNode => app.ns(`postal_codes/${postalDigits}`);
 
+type VisitPostalCode = [string[], (digits: number) => void];
+
 export const useVisitPostalCode = (): {
   recentPostalCodes: string[];
   visitPostalCode: (digits: string | number) => void;
 } => {
   const history = useHistory();
-  const [recentPostalCodes, addRecentPostalCode] = React.useMemo(() => {
+  const [recentPostalCodes, addRecentPostalCode] = React.useMemo<VisitPostalCode>(() => {
     if (!__CLIENT__) {
       return [[], () => null];
     }

@@ -18,10 +18,19 @@
 
 
 .HoverBox {
+  display: block;
   position: relative;
 
   &--shine {
     animation: hb-highlight 1s 1;
+  }
+
+  &-trigger {
+    &:focus {
+      outline: none;
+    }
+
+    display: block;
   }
 }
 

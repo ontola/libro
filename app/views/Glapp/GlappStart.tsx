@@ -28,7 +28,7 @@ GlappStart.type = teamGL.GlappStart;
 
 GlappStart.topology = allTopologiesExcept(
   parentTopology,
-  pageTopology
+  pageTopology,
 );
 
 export default register(GlappStart);

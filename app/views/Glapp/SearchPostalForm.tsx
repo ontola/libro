@@ -31,15 +31,26 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const inputProps = { type: 'number' };
+const inputProps = {
+  max: MAX_POSTAL_DIGITS,
+  min: MIN_POSTAL_DIGITS,
+  type: 'number',
+};
 
-const SearchPostalForm = () => {
+interface SearchPostalFormProps {
+  setSelectedPostalCode?: (digits: number) => void;
+}
+
+const SearchPostalForm = ({ setSelectedPostalCode }: SearchPostalFormProps) => {
   const classes = useStyles();
-  const [postalCode, setPostalCode] = React.useState(null);
+  const [postalCode, setPostalCode] = React.useState<number | undefined>(undefined);
   const {
     recentPostalCodes,
     visitPostalCode,
   } = useVisitPostalCode();
+  const ref = React.useRef<HTMLElement>();
+
+  const handlePostalClick = setSelectedPostalCode || visitPostalCode;
 
   return (
     <React.Fragment>
@@ -47,16 +58,16 @@ const SearchPostalForm = () => {
         className={classes.form}
         onSubmit={(e) => {
           e.preventDefault();
-          if (postalCode > MIN_POSTAL_DIGITS && postalCode < MAX_POSTAL_DIGITS) {
-            visitPostalCode(postalCode);
+          if (postalCode && postalCode > MIN_POSTAL_DIGITS && postalCode < MAX_POSTAL_DIGITS) {
+            ref.current?.blur();
+            handlePostalClick(postalCode);
           }
         }}
       >
         <InputBase
           className={classes.input}
           inputProps={inputProps}
-          max={MAX_POSTAL_DIGITS}
-          min={MIN_POSTAL_DIGITS}
+          inputRef={ref}
           placeholder="1234"
           value={postalCode}
           onChange={(e) => {
@@ -73,21 +84,22 @@ const SearchPostalForm = () => {
       </form>
       {recentPostalCodes.length > 0 && (
         <p>
-          {recentPostalCodes.map((digits) => (
+          {recentPostalCodes.map<JSX.Element>((digits) => (
             <button
               className={classes.button}
               key={digits}
               onClick={(e) => {
                 e.preventDefault();
-                visitPostalCode(digits);
+                handlePostalClick(digits);
               }}
             >
               {digits}
             </button>
-          )).reduce(
-            (result, item) => [...result, result.length > 0 ? ', ' : null, item],
-            []
-          )}
+          )).reduce<JSX.Element[]>((result, item) => ([
+            ...result,
+            <React.Fragment>{result.length > 0 ? ', ' : ''}</React.Fragment>,
+            item,
+          ]), [])}
         </p>
       )}
     </React.Fragment>

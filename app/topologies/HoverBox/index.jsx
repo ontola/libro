@@ -34,6 +34,7 @@ export default function(topology = hoverBoxTopology, popout = false) {
       this.handleOnMouseLeave = this.handleOnMouseLeave.bind(this);
       this.handleOnFocus = this.handleOnFocus.bind(this);
       this.handleOnBlur = this.handleOnBlur.bind(this);
+      this.handleOnClick = this.handleOnClick.bind(this);
       this.showContent = this.showContent.bind(this);
       this.hideContent = this.hideContent.bind(this);
     }
@@ -54,6 +55,12 @@ export default function(topology = hoverBoxTopology, popout = false) {
       this.hideContent();
     }
 
+    handleOnClick() {
+      if (this.props.onClick) {
+        this.props.onClick();
+      }
+    }
+
     showContent() {
       this.setState({
         isVisible: true,
@@ -70,10 +77,13 @@ export default function(topology = hoverBoxTopology, popout = false) {
     // When the user hovers over them, the hiddenChildren appear.
     trigger(children) {
       return (
+        // eslint-disable-next-line jsx-a11y/click-events-have-key-events
         <span
+          className="HoverBox-trigger"
           data-test="HoverBox-trigger"
           tabIndex="0"
           onBlur={this.handleOnBlur}
+          onClick={this.handleOnClick}
           onFocus={this.handleOnFocus}
           onMouseEnter={this.handleOnMouseEnter}
           onMouseLeave={this.handleOnMouseLeave}

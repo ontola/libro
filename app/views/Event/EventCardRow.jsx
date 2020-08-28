@@ -7,7 +7,7 @@ import teamGL from '../../ontology/teamGL';
 import { cardRowTopology } from '../../topologies/Card/CardRow';
 import ContentDetails from '../../topologies/ContentDetails';
 
-const EventSection = () => (
+const EventCardRow = () => (
   <CardContent>
     <Property label={schema.name} />
     <ContentDetails>
@@ -18,8 +18,8 @@ const EventSection = () => (
   </CardContent>
 );
 
-EventSection.type = teamGL.Event;
+EventCardRow.type = teamGL.Event;
 
-EventSection.topology = cardRowTopology;
+EventCardRow.topology = cardRowTopology;
 
-export default register(EventSection);
+export default register(EventCardRow);

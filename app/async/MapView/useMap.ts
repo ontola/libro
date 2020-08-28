@@ -32,6 +32,7 @@ import {
 import { getMetaContent } from '../../helpers/arguHelpers';
 import { handle } from '../../helpers/logging';
 
+export const FOCUS_ZOOM = 12;
 const CLUSTER_DISTANCE = 30;
 const CLUSTER_PADDING = 0.5;
 const DEFAULT_LAT = 52.1344;
@@ -44,9 +45,9 @@ interface Layer {
   features: Feature[];
 }
 
-interface ViewProps {
-  center: Coordinate;
-  zoom: number;
+export interface ViewProps {
+  center?: Coordinate;
+  zoom?: number;
 }
 
 interface CreateMapProps {
@@ -124,6 +125,7 @@ export interface UseMapProps {
   accessToken: string;
   layers: Layer[];
   requestAccessToken: () => any;
+  onClusterSelect: (features: Feature[], newCenter: Coordinate) => void;
   onMapClick: (newLon: number, newLat: number, newZoom: number) => void;
   onMove: EventHandler<any>;
   onSelect: (feature: Feature | null, center: Coordinate | null) => any;
@@ -141,6 +143,7 @@ const useMap = (props: UseMapProps): {
     accessToken,
     layers,
     requestAccessToken,
+    onClusterSelect,
     onMapClick,
     onMove,
     onSelect,
@@ -188,7 +191,11 @@ const useMap = (props: UseMapProps): {
         features.map((f: Feature<Point>) => f?.getGeometry()?.getCoordinates()),
       );
       const clusterCenter = getCenter([left, top, right, bottom]);
-      if (left !== right && top !== bottom) {
+      if (left === right && top === bottom) {
+        if (onClusterSelect) {
+          onClusterSelect(features, clusterCenter);
+        }
+      } else {
         const eventView = e.mapBrowserEvent.map.getView();
         // eslint-disable-next-line no-underscore-dangle
         const [width, height] = eventView.getViewportSize_();
@@ -346,7 +353,8 @@ const useMap = (props: UseMapProps): {
     if (memoizedMap) {
       const select = new Select({
         condition: click,
-        style: undefined,
+        // @ts-ignore
+        style: false,
       });
       select.on('select', handleSelect);
       setDeselect(() => () => {
