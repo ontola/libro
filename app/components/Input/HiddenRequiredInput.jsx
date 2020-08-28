@@ -8,7 +8,7 @@ const HiddenRequiredInput = ({ name, value }) => (
     id={name}
     name={name}
     type="text"
-    value={value}
+    value={value || ''}
   />
 );
 

@@ -93,7 +93,7 @@ const LocationInput = ({
 LocationInput.propTypes = {
   object: linkType,
   onChange: PropTypes.func,
-  value: PropTypes.oneOf([
+  value: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.string,
   ]),

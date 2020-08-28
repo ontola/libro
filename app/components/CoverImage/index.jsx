@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './CoverImage.scss';
 
 const propTypes = {
-  positionY: PropTypes.oneOf([
+  positionY: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
   ]),

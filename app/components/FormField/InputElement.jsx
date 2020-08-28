@@ -371,14 +371,17 @@ InputElement.propTypes = {
   maxInclusive: PropTypes.number,
   maxLength: PropTypes.number,
   /** @private Contains form-library specific data */
-  meta: PropTypes.shape({
-    active: PropTypes.bool,
-    dirty: PropTypes.bool,
-    error: PropTypes.arrayOf(formFieldError),
-    invalid: PropTypes.bool,
-    pristine: PropTypes.bool,
-    touched: PropTypes.bool,
-  }),
+  meta: PropTypes.oneOfType([
+    null,
+    PropTypes.shape({
+      active: PropTypes.bool,
+      dirty: PropTypes.bool,
+      error: PropTypes.arrayOf(formFieldError),
+      invalid: PropTypes.bool,
+      pristine: PropTypes.bool,
+      touched: PropTypes.bool,
+    }),
+  ]),
   minCount: PropTypes.number,
   minInclusive: PropTypes.number,
   minLength: PropTypes.number,
