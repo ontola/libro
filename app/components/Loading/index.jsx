@@ -43,7 +43,7 @@ export const LoadingCard = () => (
 export const LoadingCardFixed = ({ fill }) => (
   <CardFixed fill={fill}>
     <CardContent>
-      <div className="Loading__Header Loading__background" />
+      <div className="Loading__Header Loading__background" style={{ minWidth: '5em' }} />
       <LoadingParagraph />
       <LoadingParagraph />
       <div className="Loading__Paragraph--shorter Loading__background" />
