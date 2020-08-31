@@ -1,64 +1,57 @@
 import schema from '@ontologies/schema';
-import { register } from 'link-redux';
+import {
+  linkType,
+  register,
+  subjectType,
+  useResourceProperty,
+} from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import ll from '../../ontology/ll';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 
-import EntryPointBase from './EntryPointBase';
 import EntryPointForm from './EntryPointForm';
+import useSubmitHandler from './useSubmitHandler';
 
-class EntryPointOmniform extends EntryPointBase {
-  static propTypes = {
-    autofocusForm: PropTypes.bool,
-    formID: PropTypes.string,
-    formInstance: PropTypes.objectOf(PropTypes.any),
-    onKeyUp: PropTypes.func,
-    sessionStore: PropTypes.objectOf(PropTypes.any),
-    /** The ids of the whitelisted properties */
-    whitelist: PropTypes.arrayOf(PropTypes.number),
-  };
+const EntryPointOmniform = (props) => {
+  const {
+    action,
+    actionBody,
+    autofocusForm,
+    footerButtons,
+    formInstance,
+    httpMethod,
+    onKeyUp,
+    parentIRI,
+    sessionStore,
+    subject,
+    url,
+    whitelist,
+  } = props;
+  const submitHandler = useSubmitHandler(props);
+  const [object] = useResourceProperty(action, schema.object);
+  const formID = `${atob(parentIRI)}.omniform`;
 
-  render() {
-    const {
-      action,
-      actionBody,
-      autofocusForm,
-      footerButtons,
-      formInstance,
-      httpMethod,
-      lrs,
-      onKeyUp,
-      parentIRI,
-      sessionStore,
-      subject,
-      url,
-      whitelist,
-    } = this.props;
-    const object = lrs.getResourceProperty(action, schema.object);
-    const formID = `${atob(parentIRI)}.omniform`;
-
-    return (
-      <EntryPointForm
-        actionBody={actionBody}
-        autofocusForm={autofocusForm}
-        entryPoint={subject}
-        footerButtons={footerButtons}
-        formID={formID}
-        formInstance={formInstance}
-        httpMethod={httpMethod?.value}
-        object={object}
-        sessionStore={sessionStore}
-        theme="omniform"
-        url={url?.value}
-        whitelist={whitelist}
-        onKeyUp={onKeyUp}
-        onSubmit={this.submitHandler}
-      />
-    );
-  }
-}
+  return (
+    <EntryPointForm
+      actionBody={actionBody}
+      autofocusForm={autofocusForm}
+      entryPoint={subject}
+      footerButtons={footerButtons}
+      formID={formID}
+      formInstance={formInstance}
+      httpMethod={httpMethod?.value}
+      object={object}
+      sessionStore={sessionStore}
+      theme="omniform"
+      url={url?.value}
+      whitelist={whitelist}
+      onKeyUp={onKeyUp}
+      onSubmit={submitHandler}
+    />
+  );
+};
 
 EntryPointOmniform.type = schema.EntryPoint;
 
@@ -71,6 +64,22 @@ EntryPointOmniform.mapDataToProps = {
   image: schema.image,
   name: schema.name,
   url: schema.url,
+};
+
+EntryPointOmniform.propTypes = {
+  action: linkType,
+  actionBody: linkType,
+  autofocusForm: PropTypes.bool,
+  footerButtons: PropTypes.func,
+  formInstance: PropTypes.objectOf(PropTypes.any),
+  httpMethod: linkType,
+  onKeyUp: PropTypes.func,
+  parentIRI: linkType,
+  sessionStore: PropTypes.objectOf(PropTypes.any),
+  subject: subjectType,
+  url: linkType,
+  /** The ids of the whitelisted properties */
+  whitelist: PropTypes.arrayOf(PropTypes.number),
 };
 
 export default register(EntryPointOmniform);

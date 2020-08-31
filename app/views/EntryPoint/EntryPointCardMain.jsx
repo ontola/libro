@@ -1,12 +1,15 @@
 import schema from '@ontologies/schema';
 import {
   Property,
+  linkType,
   register,
-  withLRS,
+  subjectType,
+  useResourceProperty,
 } from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { withRouter } from 'react-router';
+import { useHistory } from 'react-router';
 
 import Button from '../../components/Button';
 import CardContent from '../../components/Card/CardContent';
@@ -15,95 +18,85 @@ import ll from '../../ontology/ll';
 import { cardTopology } from '../../topologies/Card';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 
-import EntryPointBase from './EntryPointBase';
 import EntryPointForm from './EntryPointForm';
+import useSubmitHandler from './useSubmitHandler';
 
-class EntryPointCardMain extends EntryPointBase {
-  constructor(props) {
-    super(props);
-
-    this.onCancel = this.onCancel.bind(this);
-  }
-
-  onCancel(e) {
+const EntryPointCardMain = (props) => {
+  const {
+    action,
+    actionBody,
+    httpMethod,
+    cancelPath,
+    name,
+    onCancel,
+    sessionStore,
+    subject,
+    url,
+  } = props;
+  const history = useHistory();
+  const submitHandler = useSubmitHandler(props);
+  const onCancelClick = React.useCallback((e) => {
     e.preventDefault();
-
-    const { history, onCancel } = this.props;
 
     if (onCancel) {
       onCancel(e);
     } else {
       history.goBack();
     }
-  }
+  });
+  const [object] = useResourceProperty(action, schema.object);
+  const [errorResponse] = useResourceProperty(action, ll.errorResponse);
 
-  render() {
-    const {
-      action,
-      actionBody,
-      httpMethod,
-      cancelPath,
-      header,
-      lrs,
-      name,
-      sessionStore,
-      subject,
-      url,
-    } = this.props;
-    const object = lrs.getResourceProperty(action, schema.object);
-    const errorResponse = lrs.getResourceProperty(action, ll.errorResponse);
+  const cancelButton = cancelPath && (
+    <Button
+      href={cancelPath}
+      theme="transparant"
+      onClick={onCancelClick}
+    >
+      <FormattedMessage
+        defaultMessage="cancel"
+        id="https://app.argu.co/i18n/forms/actions/cancel"
+      />
+    </Button>
+  );
 
-    const cancelButton = cancelPath && (
+  const footerButtons = (loading) => (
+    <FormFooterRight>
+      {cancelButton}
       <Button
-        href={cancelPath}
-        theme="transparant"
-        onClick={this.onCancel}
+        loading={loading}
+        theme="submit"
+        type="submit"
       >
-        <FormattedMessage
-          defaultMessage="cancel"
-          id="https://app.argu.co/i18n/forms/actions/cancel"
-        />
+        {name?.value}
       </Button>
-    );
+    </FormFooterRight>
+  );
 
-    const footerButtons = (loading) => (
-      <FormFooterRight>
-        {cancelButton}
-        <Button
-          loading={loading}
-          theme="submit"
-          type="submit"
-        >
-          {name?.value}
-        </Button>
-      </FormFooterRight>
-    );
+  const formURL = new URL(subject.value);
+  const formID = [formURL.origin, formURL.pathname].join('');
 
-    const formURL = new URL(subject.value);
-    const formID = [formURL.origin, formURL.pathname].join('');
-
-    return (
-      <React.Fragment>
-        <CardContent noStartSpacing={header}>
-          <Property label={schema.text} />
-        </CardContent>
-        <EntryPointForm
-          actionBody={actionBody}
-          contentWrapper={CardContent}
-          errorResponse={errorResponse}
-          footerButtons={footerButtons}
-          formID={formID}
-          httpMethod={httpMethod?.value}
-          object={object}
-          sessionStore={sessionStore}
-          url={url?.value}
-          onKeyUp={null}
-          onSubmit={this.submitHandler}
-        />
-      </React.Fragment>
-    );
-  }
-}
+  return (
+    <React.Fragment>
+      <CardContent>
+        <Property label={schema.text} />
+      </CardContent>
+      <EntryPointForm
+        actionBody={actionBody}
+        contentWrapper={CardContent}
+        errorResponse={errorResponse}
+        footerButtons={footerButtons}
+        formID={formID}
+        httpMethod={httpMethod?.value}
+        object={object}
+        sessionStore={sessionStore}
+        url={url?.value}
+        onKeyUp={null}
+        onSubmit={submitHandler}
+      />
+    </React.Fragment>
+  );
+};
 
 EntryPointCardMain.type = schema.EntryPoint;
 
@@ -111,8 +104,6 @@ EntryPointCardMain.topology = [
   cardTopology,
   cardMainTopology,
 ];
-
-EntryPointCardMain.hocs = [withLRS, withRouter];
 
 EntryPointCardMain.mapDataToProps = {
   action: schema.isPartOf,
@@ -122,6 +113,18 @@ EntryPointCardMain.mapDataToProps = {
   image: schema.image,
   name: schema.name,
   url: schema.url,
+};
+
+EntryPointCardMain.propTypes = {
+  action: linkType,
+  actionBody: linkType,
+  cancelPath: PropTypes.string,
+  httpMethod: linkType,
+  name: linkType,
+  onCancel: PropTypes.func,
+  sessionStore: PropTypes.objectOf(PropTypes.any),
+  subject: subjectType,
+  url: linkType,
 };
 
 export default register(EntryPointCardMain);

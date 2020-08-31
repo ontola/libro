@@ -5,6 +5,7 @@ import {
   Property,
   Resource,
   subjectType,
+  useLRS,
   withLRS,
 } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -17,7 +18,6 @@ import argu from '../../ontology/argu';
 import { highlightResource } from '../../state/app/actions';
 import { getOmniformAction, omniformSetAction } from '../../state/omniform';
 import OmniformFields from '../../topologies/OmniformFields/OmniformFields';
-import EntryPointBase from '../../views/EntryPoint/EntryPointBase';
 import { filterActions } from '../../views/Thing/properties/omniform/helpers';
 import Button from '../Button';
 import { FormFooterRight } from '../Form';
@@ -30,15 +30,17 @@ const propTypes = {
   action: subjectType,
   actions: PropTypes.instanceOf(Set).isRequired,
   autofocusForm: PropTypes.bool,
+  closeForm: PropTypes.func,
+  dispatchHighlightResource: PropTypes.func,
   error: formFieldError,
-  formFooterButtons: PropTypes.node,
   formInstance: PropTypes.objectOf(PropTypes.any),
-  // From redux-forms
-  invalid: PropTypes.bool,
   onActionChange: PropTypes.func.isRequired,
+  onCancel: PropTypes.func,
+  onDone: PropTypes.func,
   onKeyUp: PropTypes.func,
   onStatusForbidden: PropTypes.func,
   parentIRI: PropTypes.string,
+  sessionStore: PropTypes.objectOf(PropTypes.any),
 };
 
 const PROPS_WHITELIST = [
@@ -63,25 +65,45 @@ const convertFieldContext = (parentIRI, actionIRI) => {
     });
 };
 
-class Omniform extends EntryPointBase {
-  action() {
-    return this.props.action;
-  }
-
-  linkedFieldset() {
-    const {
-      action,
-      closeForm,
-      formInstance,
-      lrs,
-      onKeyUp,
-      parentIRI,
-    } = this.props;
+const Omniform = (props) => {
+  const {
+    action,
+    actions,
+    autofocusForm,
+    closeForm,
+    dispatchHighlightResource,
+    error,
+    formInstance,
+    onActionChange,
+    onCancel,
+    onDone,
+    onKeyUp,
+    onStatusForbidden,
+    parentIRI,
+    sessionStore,
+  } = props;
+  const lrs = useLRS();
+  const types = React.useMemo(() => (
+    actions.map((iri) => (
+      <Resource key={iri} subject={iri}>
+        <Property
+          current={rdf.equals(iri, action)}
+          label={schema.result}
+          onClick={onActionChange(iri)}
+        />
+      </Resource>
+    ))
+  ));
+  const responseCallback = React.useCallback((response) => {
+    if (response.iri) {
+      dispatchHighlightResource(response.iri);
+    }
+  });
+  const linkedFieldset = React.useCallback(() => {
     if (!isNamedNode(action)) {
       return null;
     }
     const object = lrs.getResourceProperty(action, schema.object);
-    const types = this.types();
 
     const footerButtons = (loading) => (
       <React.Fragment>
@@ -111,76 +133,46 @@ class Omniform extends EntryPointBase {
       <Resource subject={action}>
         <Property
           forceRender
-          autofocusForm={this.props.autofocusForm}
+          autofocusForm={autofocusForm}
           footerButtons={footerButtons}
           formInstance={formInstance}
           label={schema.target}
           object={object}
           parentIRI={parentIRI}
-          sessionStore={this.props.sessionStore}
+          responseCallback={responseCallback}
+          sessionStore={sessionStore}
           whitelist={PROPS_WHITELIST}
-          onCancel={this.props.onCancel}
-          onDone={this.props.onDone}
+          onCancel={onCancel}
+          onDone={onDone}
           onKeyUp={onKeyUp}
-          onStatusForbidden={this.props.onStatusForbidden}
+          onStatusForbidden={onStatusForbidden}
         />
       </Resource>
     );
+  });
+
+  if (actions.length === 0) {
+    return null;
   }
 
-  responseCallback(response) {
-    if (response.iri) {
-      this.props.highlightResource(response.iri);
-    }
+  if (!action || types.size === 0) {
+    return null;
   }
 
-  types() {
-    return this
-      .props
-      .actions
-      .map((iri) => (
-        <Resource key={iri} subject={iri}>
-          <Property
-            current={rdf.equals(iri, this.props.action)}
-            label={schema.result}
-            onClick={this.props.onActionChange(iri)}
-          />
-        </Resource>
-      ));
-  }
-
-  render() {
-    const {
-      actions,
-      action,
-      error,
-    } = this.props;
-
-    if (actions.length === 0) {
-      return null;
-    }
-
-    const types = this.types();
-
-    if (!action || types.size === 0) {
-      return null;
-    }
-
-    return (
-      <React.Fragment>
-        {error && (
-          <div className="Omniform__error">
-            <FontAwesome name="exclamation-triangle" />
-            {error}
-          </div>
-        )}
-        <OmniformFields>
-          {this.linkedFieldset()}
-        </OmniformFields>
-      </React.Fragment>
-    );
-  }
-}
+  return (
+    <React.Fragment>
+      {error && (
+        <div className="Omniform__error">
+          <FontAwesome name="exclamation-triangle" />
+          {error}
+        </div>
+      )}
+      <OmniformFields>
+        {linkedFieldset()}
+      </OmniformFields>
+    </React.Fragment>
+  );
+};
 
 Omniform.propTypes = propTypes;
 
@@ -207,7 +199,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
-  highlightResource: (iri) => dispatch(highlightResource(iri.value)),
+  dispatchHighlightResource: (iri) => dispatch(highlightResource(iri.value)),
   onActionChange: (action) => () => {
     dispatch(omniformSetAction({
       action,

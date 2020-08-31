@@ -6,17 +6,10 @@ import {
   ReturnType,
   linkType,
   register,
-  subjectType,
-  useLRS,
-  useProperty,
-  useResourceLinks,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
-import { withRouter } from 'react-router';
 
 import { bestType } from '../../helpers/data';
-import { retrievePath } from '../../helpers/iris';
 import teamGL from '../../ontology/teamGL';
 import { actionsBarTopology } from '../../topologies/ActionsBar';
 import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
@@ -35,38 +28,17 @@ function getVariant(types) {
 
 const ActionActionsBar = ({
   actionStatus,
-  history,
-  object,
-  subject,
   type,
 }) => {
-  const lrs = useLRS();
-  const [target] = useProperty(schema.target);
-  const [{ httpMethod, url }] = useResourceLinks(target, {
-    httpMethod: schema.httpMethod,
-    url: schema.url,
-  });
   if (invalidStatusIds.includes(rdf.id(actionStatus))) {
     return null;
   }
 
-  const handler = () => {
-    if (httpMethod && httpMethod.value === 'GET') {
-      return new Promise((resolve) => {
-        lrs.actions.ontola.showDialog(url);
-        resolve();
-      });
-    }
-
-    return lrs.exec(subject);
-  };
-
   return (
     <Property
+      modal
       label={schema.target}
       variant={getVariant(type)}
-      onClick={handler}
-      onDone={() => history.push(retrievePath(object.value))}
     />
   );
 };
@@ -77,22 +49,14 @@ ActionActionsBar.topology = actionsBarTopology;
 
 ActionActionsBar.mapDataToProps = {
   actionStatus: schema.actionStatus,
-  object: schema.object,
   type: {
     label: rdfx.type,
     returnType: ReturnType.AllTerms,
   },
 };
 
-ActionActionsBar.hocs = [withRouter];
-
 ActionActionsBar.propTypes = {
   actionStatus: linkType,
-  history: PropTypes.shape({
-    push: PropTypes.func,
-  }),
-  object: linkType,
-  subject: subjectType,
   type: linkType,
 };
 
