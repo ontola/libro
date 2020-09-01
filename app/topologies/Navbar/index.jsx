@@ -30,6 +30,7 @@ class Navbar extends Topology {
       maxWidth,
       position,
     } = this.props.theme.appBar;
+    const zIndex = this.props.theme.overrides.MuiAppBar.root.zIndex + 1;
     const color = resolveColor();
 
     return this.wrap((subject) => (
@@ -41,6 +42,7 @@ class Navbar extends Topology {
           resource={subject && subject.value}
           style={{
             color,
+            zIndex,
           }}
         >
           <Container maxWidth={maxWidth}>
