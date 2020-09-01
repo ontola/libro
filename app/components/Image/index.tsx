@@ -23,7 +23,7 @@ function Image(props: any) {
     style,
     linkedProp,
   } = props;
-  if (linkedProp.value.startsWith(FABase)) {
+  if (linkedProp?.value?.startsWith(FABase)) {
     return (
       <FontAwesome
         ariaLabel={ariaLabel || ''}
@@ -41,7 +41,7 @@ function Image(props: any) {
     <img
       alt={ariaLabel || ''}
       className={className}
-      src={linkedProp.value}
+      src={linkedProp?.value}
       style={style}
     />
   );
