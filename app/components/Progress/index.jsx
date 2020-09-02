@@ -1,44 +1,57 @@
 import LinearProgress from '@material-ui/core/LinearProgress';
-import withStyles from '@material-ui/core/styles/withStyles';
+import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const ProgressWithRadius = withStyles({
-  root: {
-    borderRadius: 10,
-    height: 10,
-    maxWidth: '10em',
-  },
-})(LinearProgress);
+import Heading from '../Heading';
 
-const ProgressWithEndspacing = withStyles({
-  root: {
+const useStyles = makeStyles(() => ({
+  endSpacing: {
     marginBottom: '1em',
   },
-})(ProgressWithRadius);
+  progress: {
+    borderRadius: 10,
+    height: 10,
+  },
+}));
 
 const Progress = ({
   color,
   endSpacing,
+  height,
+  labels,
   max,
+  maxWidth,
   min,
   value,
 }) => {
-  const ProgressComp = endSpacing ? ProgressWithEndspacing : ProgressWithRadius;
+  const classes = useStyles();
 
   return (
-    <ProgressComp
-      color={color}
-      value={100 * ((value - min) / (max - min))}
-      variant="determinate"
-    />
+    <div className={endSpacing ? classes.endSpacing : null}>
+      <LinearProgress
+        className={classes.progress}
+        color={color}
+        style={{
+          height,
+          maxWidth,
+        }}
+        value={100 * ((value - min) / (max - min))}
+        variant="determinate"
+      />
+      {labels && <div style={{ float: 'left' }}><Heading size="2">{min}</Heading></div>}
+      {labels && <div style={{ float: 'right' }}><Heading size="2">{max}</Heading></div>}
+    </div>
   );
 };
 
 Progress.propTypes = {
   color: PropTypes.string,
   endSpacing: PropTypes.bool,
+  height: PropTypes.string,
+  labels: PropTypes.bool,
   max: PropTypes.number,
+  maxWidth: PropTypes.string,
   min: PropTypes.number,
   value: PropTypes.number,
 };

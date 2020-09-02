@@ -21,7 +21,7 @@ const DesiredCount = ({ linkedProp, participantsCount }) => {
   return (
     <React.Fragment>
       {`${current}/${desired} deelnemers`}
-      <Progress endSpacing max={desired} min={0} value={current} />
+      <Progress endSpacing max={desired} maxWidth="10em" min={0} value={current} />
     </React.Fragment>
   );
 };

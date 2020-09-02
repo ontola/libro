@@ -72,6 +72,7 @@ import Snackbar from './Snackbar';
 import SnackbarManager from './SnackbarManager';
 import Street from './Street';
 import Survey from './Survey';
+import TargetProgress from './TargetProgress';
 import Thing from './Thing';
 import Token from './Token';
 import User from './User';
@@ -153,6 +154,7 @@ export function getViews() {
     ...SnackbarManager,
     ...Street,
     ...Survey,
+    ...TargetProgress,
     ...Token,
     ...User,
     ...Volunteer,
