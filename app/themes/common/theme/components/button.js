@@ -1,14 +1,13 @@
-export default (theme) => ({
+export default () => ({
   MuiButton: {
     root: {
       '& .MuiSvgIcon-root': {
         fontSize: '1.375rem',
       },
       '&.active .MuiButton-label:after': {
-        backgroundColor: theme.palette.primary.contrastText,
+        borderBottom: '.3em solid',
         bottom: 0,
         content: '""',
-        height: '.3em',
         left: 0,
         position: 'absolute',
         right: 0,

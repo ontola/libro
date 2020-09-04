@@ -8,7 +8,9 @@ export default {
   /* classes */
   Folder: dexes('Folder'),
   FolderEntry: dexes('FolderEntry'),
+  HomePage: dexes('HomePage'),
 
   /* properties */
   entries: dexes('entries'),
+  transferAction: dexes('transferAction'),
 };

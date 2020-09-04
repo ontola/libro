@@ -48,7 +48,8 @@ const DutchGovernmentHeader = ({ themeOptions }) => {
 };
 
 DutchGovernmentHeader.propTypes = {
-  themeOptions: PropTypes.string,
+  // eslint-disable-next-line react/forbid-prop-types
+  themeOptions: PropTypes.object,
 };
 
 export default DutchGovernmentHeader;
