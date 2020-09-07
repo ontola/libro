@@ -15,6 +15,7 @@ import Detail from '../../../components/Detail';
 import LDLink from '../../../components/LDLink';
 import libro from '../../../ontology/libro';
 import ontola from '../../../ontology/ontola';
+import { contentDetailsTopology } from '../../../topologies/ContentDetails';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
 
 const propTypes = {
@@ -26,7 +27,12 @@ const LocationDetail = ({ lrs, linkedProp }) => {
   const placement = lrs.dig(linkedProp, [ontola.pages, as.items, rdfx.ns('_1')]).pop();
 
   if (!placement) {
-    return null;
+    return (
+      <Detail
+        icon="map-marker"
+        text={linkedProp.value}
+      />
+    );
   }
 
   return (
@@ -56,5 +62,5 @@ export default LinkedRenderStore.registerRenderer(
   withLRS(LocationDetail),
   schema.Thing,
   schema.location,
-  detailsBarTopology
+  [detailsBarTopology, contentDetailsTopology]
 );

@@ -41,6 +41,7 @@ const EventPopup = ({
         <ContentDetails>
           <Property label={teamGL.department} />
           <Property label={schema.startDate} />
+          <Property label={schema.location} />
         </ContentDetails>
         <Property label={schema.text} />
       </CardContent>

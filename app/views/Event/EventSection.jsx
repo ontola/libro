@@ -13,6 +13,7 @@ const EventSection = () => (
     <ContentDetails>
       <Property label={teamGL.department} />
       <Property label={schema.startDate} />
+      <Property label={schema.location} />
     </ContentDetails>
   </CardContent>
 );

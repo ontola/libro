@@ -28,6 +28,7 @@ const EventFull = () => (
           <ContentDetails>
             <Property label={teamGL.department} />
             <Property label={schema.startDate} />
+            <Property label={schema.location} />
           </ContentDetails>
           <Property label={teamGL.desiredCount} />
           <Property label={schema.text} />
