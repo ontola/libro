@@ -1,11 +1,29 @@
+import { useMediaQuery, useTheme } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 import NavBarContent from '../../../components/NavBarContent';
 import Navbar from '../../../topologies/Navbar';
 
+const useStyles = makeStyles(() => ({
+  logo: {
+    flexBasis: '37em',
+  },
+  logoSmall: {
+    '& img': {
+      maxHeight: '2rem!important',
+    },
+    width: '10em',
+  },
+}));
+
 const GroenLinksHeader = () => {
   const [logo, setLogo] = React.useState();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('md'));
+  const classes = useStyles();
+  const logoSmall = '/assets/logoSmall.png';
 
   React.useEffect(() => {
     import('./Icon').then((encoded) => setLogo(encoded.default));
@@ -14,14 +32,11 @@ const GroenLinksHeader = () => {
   return (
     <Navbar>
       <NavBarContent>
-        <Link to="/">
-          <img
-            src={logo}
-            style={{
-              flex: '0 1 250px',
-              maxHeight: '1.8em',
-            }}
-          />
+        <Link
+          className={matches ? classes.logo : classes.logoSmall}
+          to="/"
+        >
+          <img src={matches ? logo : logoSmall} />
         </Link>
       </NavBarContent>
     </Navbar>
