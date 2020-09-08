@@ -14,26 +14,22 @@ function oneHourFromNow() {
 }
 
 export async function makeTokenRequest(expiresAt) {
-  try {
-    const resp = await fetch(keyReqURL, {
-      body: JSON.stringify({
-        expires: expiresAt,
-        scopes,
-      }),
-      headers: {
-        'content-type': 'application/json',
-      },
-      method: 'POST',
-    });
+  const resp = await fetch(keyReqURL, {
+    body: JSON.stringify({
+      expires: expiresAt,
+      scopes,
+    }),
+    headers: {
+      'content-type': 'application/json',
+    },
+    method: 'POST',
+  });
 
-    if (resp.status !== HttpStatus.CREATED) {
-      return new Error(`Could not get access token from map provider (status ${resp.status})`);
-    }
-
-    return resp.json();
-  } catch (e) {
-    throw new Error('Unexpected error while creating maps token');
+  if (resp.status !== HttpStatus.CREATED) {
+    throw new Error(`Could not get access token from map provider (status ${resp.status})`);
   }
+
+  return resp.json();
 }
 
 export async function createToken() {
@@ -42,7 +38,7 @@ export async function createToken() {
   const body = await makeTokenRequest(expiresAt);
   const accessToken = body?.token;
 
-  if (typeof accessToken !== 'string' || !accessToken.startsWith('tk.')) {
+  if (!accessToken.startsWith('tk.')) {
     throw new Error('Map access token undefined or not temporary');
   }
 
@@ -51,7 +47,6 @@ export async function createToken() {
 
 const MapsAPI = async (ctx) => {
   const [expiresAt, accessToken] = await createToken();
-
 
   ctx.response.status = HttpStatus.OK;
   ctx.response.body = {
