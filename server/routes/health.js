@@ -36,10 +36,13 @@ export default async (ctx) => {
 
     const backendTest = new BackendCheck(ctx.res.locals.nonce.toString());
     const tenants = await backendTest.run();
+    const tenant = tenants?.find((t) => new URL(t.location).hostname === ctx.request.headers.host)
+      || tenants?.[0];
+
     result.push(await runTest(ctx, backendTest));
-    result.push(await runTest(ctx, new HeadRequestCheck()));
-    result.push(await runTest(ctx, new ManifestCheck(tenants?.[0])));
-    result.push(await runTest(ctx, new FileCacheCheck(tenants?.[0])));
+    result.push(await runTest(ctx, new HeadRequestCheck(ctx, tenant)));
+    result.push(await runTest(ctx, new ManifestCheck(tenant)));
+    result.push(await runTest(ctx, new FileCacheCheck(tenant)));
     result.push(await runTest(ctx, new MapTokenCheck()));
 
     if (result.find((r) => r.result === CheckResult.fail)) {

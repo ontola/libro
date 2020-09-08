@@ -97,6 +97,7 @@ const routes = async function routes(app, port) {
   router.use(securityHeaders);
 
   router.get('/d/health', health);
+  router.get('/:tenant/d/health', health);
   router.get('*/sw.js*', serviceWorker);
   router.get('/robots.txt', robots);
 

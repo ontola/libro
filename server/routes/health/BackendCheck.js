@@ -1,4 +1,3 @@
-import { btoa } from '../../../globals';
 import API from '../../API';
 
 import Check from './check';
@@ -12,7 +11,13 @@ export default class BackendCheck extends Check {
   async runTest() {
     const api = new API({ request: { headers: {} } });
     try {
-      return (await api.tenants())?.sites;
+      const tenants = (await api.tenants());
+
+      if (__DEVELOPMENT__) {
+        this.debug = this.jsonHtmlPopupButton(tenants, 'Show tenants');
+      }
+
+      return tenants?.sites;
     } catch (e) {
       if (__DEVELOPMENT__ && typeof e?.response !== 'undefined') {
         const text = await e.response.text();
@@ -21,21 +26,5 @@ export default class BackendCheck extends Check {
 
       return e;
     }
-  }
-
-  htmlPopupButton(contents) {
-    const elId = `showDebugInfo${Math.random().toString().slice('0.'.length, -1)}`;
-
-    return (`
-        <button id="${elId}">Show response</button>
-        <script nonce="${this.nonce}">
-          document
-            .getElementById('${elId}')
-            .addEventListener('click', function () {
-              const dHandle = window.open("", "Debug info");
-              dHandle.document.body.innerHTML = atob('${btoa(contents)}')
-            });
-        </script>
-    `);
   }
 }

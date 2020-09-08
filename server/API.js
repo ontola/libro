@@ -80,7 +80,7 @@ class API {
    * @return {Promise} The proxies response
    */
   headRequest(req) {
-    return this.fetchRaw(this.ctx.session.userToken || this.serviceGuestToken, {
+    return this.fetchRaw(this.ctx.session?.userToken || this.serviceGuestToken, {
       headers: {
         Accept: constants.FRONTEND_ACCEPT,
         ...this.proxySafeHeaders(req),

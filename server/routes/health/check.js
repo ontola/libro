@@ -1,3 +1,4 @@
+import { btoa } from '../../../globals';
 import { NotImplementedError } from '../../utils/errors';
 
 import WarningError from './WarningError';
@@ -8,7 +9,13 @@ export const CheckResult = {
   warn: 2,
 };
 
+const JSON_SPACING = 2;
+
 export default class Check {
+  static appendPath(pathname, append) {
+    return pathname.split('/').concat(append).filter(Boolean).join('/');
+  }
+
   constructor(name, result = CheckResult.fail, message, error, debug) {
     this.name = name;
     this.result = result;
@@ -36,6 +43,29 @@ export default class Check {
     this.result = e instanceof WarningError ? CheckResult.warn : CheckResult.fail;
     this.error = e;
     this.message = this.error.message;
+  }
+
+  jsonHtmlPopupButton(contents, title) {
+    return this.htmlPopupButton(
+      `<pre>${JSON.stringify(contents, undefined, JSON_SPACING)}</pre>`,
+      title
+    );
+  }
+
+  htmlPopupButton(contents, title = 'Show response') {
+    const elId = `showDebugInfo${Math.random().toString().slice('0.'.length, -1)}`;
+
+    return (`
+        <button id="${elId}">${title}</button>
+        <script nonce="${this.nonce}">
+          document
+            .getElementById('${elId}')
+            .addEventListener('click', function () {
+              const dHandle = window.open("", "Debug info");
+              dHandle.document.body.innerHTML = atob('${btoa(contents)}')
+            });
+        </script>
+    `);
   }
 
   /**

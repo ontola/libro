@@ -22,7 +22,8 @@ export default class ManifestCheck extends Check {
       },
     });
     try {
-      const manifestRes = await requestBackendManifest(api, `${pathname}/manifest.json`);
+      const manifestLocation = Check.appendPath(pathname, 'manifest.json');
+      const manifestRes = await requestBackendManifest(api, manifestLocation);
       if (manifestRes.status === HttpStatus.FORBIDDEN) {
         return new Error('Backend token invalid');
       } else if (manifestRes.status !== HttpStatus.OK) {
@@ -30,6 +31,7 @@ export default class ManifestCheck extends Check {
       }
 
       const manifest = await manifestRes.json();
+      this.debug = this.jsonHtmlPopupButton(manifest, 'Show manifest');
 
       const {
         icons,

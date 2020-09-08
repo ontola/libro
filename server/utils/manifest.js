@@ -10,7 +10,7 @@ import { readFileFromCache } from './cache';
 
 export const requestBackendManifest = async (api, manifestLocation) => (
   readFileFromCache(manifestLocation) || api.fetchRaw(
-    api.ctx.session.userToken || api.serviceGuestToken,
+    api.ctx.session?.userToken || api.serviceGuestToken,
     {
       headers: {
         Accept: 'application/json',
@@ -23,6 +23,7 @@ export const requestBackendManifest = async (api, manifestLocation) => (
     }
   )
 );
+
 export const getBackendManifest = async (ctx, manifestLocation) => {
   if (!manifestLocation) {
     if (isSuccess(ctx.response.status)) {
