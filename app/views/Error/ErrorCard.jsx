@@ -1,4 +1,9 @@
-import { register } from 'link-redux';
+import schema from '@ontologies/schema';
+import {
+  ReturnType,
+  register,
+  useLink,
+} from 'link-redux';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -21,6 +26,16 @@ import ErrorButtonWithFeedback from './ErrorButtonWithFeedback';
 import { bodyForStatus, headerForStatus } from './ErrorMessages';
 import { propTypes, shouldShowSignIn } from './helpers';
 
+const propMap = {
+  message: schema.text,
+  name: schema.name,
+};
+
+const dataErrOpts = {
+  fetch: false,
+  returnType: ReturnType.Literal,
+};
+
 const ErrorCardComp = (props) => {
   const { formatMessage } = useIntl();
   const {
@@ -29,8 +44,9 @@ const ErrorCardComp = (props) => {
     linkRequestStatus,
   } = props;
   const { actorType } = useCurrentActor();
+  const errFromData = useLink(propMap, dataErrOpts);
 
-  const err = caughtError || error;
+  const err = caughtError || error || errFromData;
 
   let mainAction = (
     <ErrorButtonWithFeedback theme="box" {...props}>
