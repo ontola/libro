@@ -2,9 +2,10 @@ import { ReactElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { Node as SlateNode, Text as SlateText } from 'slate';
 import { RenderElementProps, RenderLeafProps } from 'slate-react';
+
 import { SlatePlugin } from '@udecode/slate-plugins-core';
 
-// NOTE: 
+// NOTE:
 // Copy of @udecode/slate-plugins, with only one modification in function trimWhitespace.
 // Temporary hack for keeping newlines in code blocks.
 
@@ -28,7 +29,8 @@ const stripClassNames = (html: string) => {
   let filteredHtml = '';
   allClasses.forEach((item, index) => {
     if (index % 2 === 0) {
-      return (filteredHtml += item);
+      filteredHtml += item;
+      return;
     }
     const slateClassNames = item.match(/(slate-[^"\s]*)/g);
     if (slateClassNames) {
@@ -49,20 +51,18 @@ const getNode = (elementProps: RenderElementProps, plugins: SlatePlugin[]) => {
 
   // Search for matching plugin based on element type
   plugins.some((plugin) => {
-    if (!plugin.renderElement) return false;
+    if (!plugin.renderElement) {
+      return false;
+    }
     if (
-      !plugin.deserialize?.element?.some(
-        (item) => item.type === String(elementProps.element.type)
-      )
+      !plugin.deserialize?.element?.some((item) => item.type === String(elementProps.element.type))
     ) {
       html = `<div>${elementProps.children}</div>`;
       return false;
     }
 
     // Render element using picked plugins renderElement function and ReactDOM
-    html = renderToStaticMarkup(
-      plugin.renderElement(elementProps) as ReactElement
-    );
+    html = renderToStaticMarkup(plugin.renderElement(elementProps) as ReactElement);
 
     html = stripClassNames(html);
 
@@ -75,17 +75,19 @@ const getNode = (elementProps: RenderElementProps, plugins: SlatePlugin[]) => {
 const getLeaf = (leafProps: RenderLeafProps, plugins: SlatePlugin[]) => {
   const { children } = leafProps;
   return plugins.reduce((result, plugin) => {
-    if (!plugin.renderLeaf) return result;
-    if (plugin.renderLeaf(leafProps) === children) return result;
+    if (!plugin.renderLeaf) {
+      return result;
+    }
+    if (plugin.renderLeaf(leafProps) === children) {
+      return result;
+    }
 
     const newLeafProps = {
       ...leafProps,
       children: encodeURIComponent(result),
     };
 
-    let html = decodeURIComponent(
-      renderToStaticMarkup(plugin.renderLeaf(newLeafProps))
-    );
+    let html = decodeURIComponent(renderToStaticMarkup(plugin.renderLeaf(newLeafProps)));
 
     html = stripClassNames(html);
 
@@ -97,32 +99,26 @@ const getLeaf = (leafProps: RenderLeafProps, plugins: SlatePlugin[]) => {
  *
  * @param plugins
  */
-export const serializeHTMLFromNodes = (plugins: SlatePlugin[]) => (
-  nodes: SlateNode[]
-): string => {
+export const serializeHTMLFromNodes = (plugins: SlatePlugin[]) => (nodes: SlateNode[]): string => {
   const result = nodes
     .map((node: SlateNode) => {
       if (SlateText.isText(node)) {
         return getLeaf(
           {
+            attributes: { 'data-slate-leaf': true },
+            children: node.text,
             leaf: node as SlateText,
             text: node as SlateText,
-            children: node.text,
-            attributes: { 'data-slate-leaf': true },
           },
-          plugins
-        );
+          plugins);
       }
       return getNode(
         {
+          attributes: { 'data-slate-node': 'element', 'ref': null },
+          children: encodeURIComponent(serializeHTMLFromNodes(plugins)(node.children)),
           element: node,
-          children: encodeURIComponent(
-            serializeHTMLFromNodes(plugins)(node.children)
-          ),
-          attributes: { 'data-slate-node': 'element', ref: null },
         },
-        plugins
-      );
+        plugins);
     })
     .join('');
   return stripSlateDataAttributes(trimWhitespace(decodeURIComponent(result)));

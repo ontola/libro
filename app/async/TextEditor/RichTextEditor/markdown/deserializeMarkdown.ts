@@ -1,30 +1,28 @@
-import { Node } from 'slate';
 import { deserializeHTMLToDocument } from '@udecode/slate-plugins';
+import marked, { Renderer } from 'marked';
+import { Node } from 'slate';
 
 import { CommandPlugin } from '../plugins';
 
-const marked = require('marked');
-
-const renderer = {
-  paragraph: (text: string) => (
-    '<p>' + text.replace(/(\n|\s)+/g, ' ') + '</p>\n'
-  ),
-};
+const renderer = new Renderer();
+renderer.paragraph = (text: string) => (
+  '<p>' + text.replace(/(\n|\s)+/g, ' ') + '</p>\n'
+);
 marked.use({ renderer });
 
 // Taken from marked/helpers.js
 const caret = /(^|[^\[])\^/g;
-const edit = (regex: RegExp, opt: string = null) => {
-  let _regex: string = regex.source || regex.toString();
+const edit = (regex: RegExp, opt?: string) => {
+  let regex1: string = regex.source || regex.toString();
   opt = opt || '';
   const obj = {
     getRegex: () => {
-      return new RegExp(_regex, opt);
+      return new RegExp(regex1, opt);
     },
     replace: (name: string, val: RegExp) => {
-      let _val: string = val.source || val.toString();
-      _val = _val.replace(caret, '$1');
-      _regex = _regex.replace(name, _val);
+      let val1: string = val.source || val.toString();
+      val1 = val1.replace(caret, '$1');
+      regex1 = regex1.replace(name, val1);
       return obj;
     },
   };
@@ -43,7 +41,7 @@ export const deserializeMarkdown = (plugins: CommandPlugin[]) => (markdown: stri
   // Instead of using:
   //   const html = marked(markdown);
   // adapt some rules:
-  var lexer = new marked.Lexer();
+  const lexer = new marked.Lexer();
 
   // Allow headings without space after hashtags
   // Original regex:                    /^ {0,3}(#{1,6}) +([^\n]*?)(?: +#+)? *(?:\n+|$)/);

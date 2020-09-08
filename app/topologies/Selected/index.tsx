@@ -3,7 +3,6 @@ import React from 'react';
 import argu from '../../ontology/argu';
 import Topology from '../Topology';
 
-
 export const selectedTopology = argu.ns('selected');
 
 class Selected<P = {}> extends Topology<P> {

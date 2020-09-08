@@ -9,4 +9,3 @@ export const withHistoryEntry = (editor: Editor, fn: () => void) => {
   // Prevents merging of next command
   editor.operations = [];
 };
-

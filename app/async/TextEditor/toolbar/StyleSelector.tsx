@@ -6,7 +6,7 @@ import { Select } from './Select';
 
 export const StyleSelector = ({ item }) => {
   const textEditor = useSlate();
-  console.log('========================', item);
+  // console.log('========================', item);
   const { selection } = textEditor;
   const currentNode = selection ? Editor.node(textEditor, selection, { depth: 1 })[0]?.type : undefined;
 

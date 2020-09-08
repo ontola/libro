@@ -1,27 +1,29 @@
 import React, { useMemo } from 'react';
+
 import { EditablePlugins, EditablePluginsProps, HeadingToolbar, ToolbarStyleProps, ToolbarStyles } from '@udecode/slate-plugins';
 import { concatStyleSets } from '@uifabric/styling';
 import { IStyleFunctionOrObject } from '@uifabric/utilities';
 
 import { compareCommands } from '../commands/compareCommands';
+import { Command } from '../commands/types';
 import { CommandPlugin } from '../plugins/types';
 
 export interface EditableWithPluginsProps extends EditablePluginsProps {
   plugins?: CommandPlugin[];
   toolbarStyles?: IStyleFunctionOrObject<ToolbarStyleProps, ToolbarStyles>;
-};
+}
 
 export const EditableWithPlugins: React.FC<EditableWithPluginsProps> = ({ plugins, toolbarStyles, ...props }) => {
   const buttons: JSX.Element[] = useMemo(() => (
     // From plugins...
     (plugins || [])
-      .filter(plugin => !plugin.disabled)
+      .filter((plugin) => !plugin.disabled)
       // to commands...
-      .reduce((commands, plugin) => commands.concat(plugin.commands || []), [])
-      .filter(command => !command.disabled && command.button)
+      .reduce((commands: Command[], plugin) => commands.concat(plugin.commands || []), [])
+      .filter((command) => !command.disabled && command.button)
       .sort(compareCommands)
       // to buttons...
-      .map((command, index) => command.button({ key: index+1 })) 
+      .map((command, index) => command.button!({ key: index + 1 }))
   ), [plugins]);
 
   const combinedToolbarStyles = useMemo(
@@ -29,10 +31,10 @@ export const EditableWithPlugins: React.FC<EditableWithPluginsProps> = ({ plugin
       root: [
         'slate-HeadingToolbar',
         {
+          backgroundColor: '#fff',
+          borderBottom: '2px solid #eee',
           margin: '0px',
           padding: '0px',
-          borderBottom: '2px solid #eee',
-          backgroundColor: '#fff',
           selectors: {
             '.slate-ToolbarButton-active, .slate-ToolbarButton:hover': {
               color: '#06c',
@@ -41,19 +43,18 @@ export const EditableWithPlugins: React.FC<EditableWithPluginsProps> = ({ plugin
         },
       ],
     }, toolbarStyles),
-    [toolbarStyles]
-  );
+    [toolbarStyles]);
 
   return (
-    <div> { 
+    <div> {
         buttons.length ?
           <HeadingToolbar styles={combinedToolbarStyles}>
             {buttons}
           </HeadingToolbar> : undefined
       }
-      <EditablePlugins 
-        plugins={plugins} 
-        placeholder="Enter some text..." 
+      <EditablePlugins
+        plugins={plugins}
+        placeholder="Enter some text..."
         {...props}
       />
     </div>

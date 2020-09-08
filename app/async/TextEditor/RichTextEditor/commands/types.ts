@@ -5,9 +5,11 @@ import { ToolbarButtonProps } from '@udecode/slate-plugins';
 // and operations the low-level actions that occur while invoking commands.
 export interface Command {
   name: string;
-  button?: React.FC<ToolbarButtonProps>;
+  button?: (props: CommandButtonProps) => JSX.Element;
   buttonNew?: JSX.Element;
   buttonIndex?: number;
   disabled?: boolean;
   apply?: (...args: any) => any;
 }
+
+export interface CommandButtonProps extends Omit<ToolbarButtonProps, 'icon'> {}

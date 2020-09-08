@@ -1,14 +1,16 @@
+import { ListOptions, ToolbarList } from '@udecode/slate-plugins';
 import React from 'react';
-import { ListOptions, ToolbarButtonProps, ToolbarList } from '@udecode/slate-plugins';
 
-export const getButtonList = (type: string, options: ListOptions, icon: JSX.Element) => (props: ToolbarButtonProps) => {
+import { CommandButtonProps } from '../commands/types';
+
+export const getButtonList = (type: string, options: ListOptions, icon: JSX.Element) => (props: CommandButtonProps) => {
+  const { icon: icon2, ...rest } = props;
   return (
     <ToolbarList
       {...options}
       typeList={type}
-      icon={icon}
-      {...props}
+      icon={icon2 || icon}
+      {...rest}
     />
   );
 };
-

@@ -309,7 +309,7 @@ const editorMiddleware = (): MiddlewareFn<React.ComponentType<any>> =>
 
     const { base, params } = parse(iri);
     const { textEditor } = opts;
-    console.log('editor action', base, params, opts);
+    // console.log('editor action', base, params, opts);
 
     switch (base) {
       case editor.actions.toggleMark:
@@ -386,7 +386,7 @@ const editorMiddleware = (): MiddlewareFn<React.ComponentType<any>> =>
           resolve();
         });
       default:
-        console.log('unknown editor action', base);
+        // console.log('unknown editor action', base);
     }
 
     return next(iri, opts);

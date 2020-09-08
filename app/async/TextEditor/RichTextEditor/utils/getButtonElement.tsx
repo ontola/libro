@@ -1,12 +1,15 @@
+import { ToolbarElement } from '@udecode/slate-plugins';
 import React from 'react';
-import { ToolbarButtonProps, ToolbarElement } from '@udecode/slate-plugins';
 
-export const getButtonElement = (type: string, icon: JSX.Element) => (props: ToolbarButtonProps) => {
+import { CommandButtonProps } from '../commands/types';
+
+export const getButtonElement = (type: string, icon: JSX.Element) => (props: CommandButtonProps) => {
+  const { icon: icon2, ...rest } = props;
   return (
-    <ToolbarElement 
-      type={type} 
-      icon={icon} 
-      {...props}
+    <ToolbarElement
+      type={type}
+      icon={icon2 || icon}
+      {...rest}
     />
   );
 };

@@ -1,5 +1,6 @@
-import { Editor } from 'slate';
 import { SlatePlugin } from '@udecode/slate-plugins';
+import { Editor } from 'slate';
+
 import { Command } from '../commands/types';
 
 export interface CommandPlugin extends SlatePlugin {
