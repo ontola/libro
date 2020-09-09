@@ -93,6 +93,7 @@ export default {
   iriTemplate: ontola('iriTemplate'),
   iriTemplateOpts: ontola('iriTemplateOpts'),
   makePrimaryAction: ontola('makePrimaryAction'),
+  maxColumns: ontola('grid/maxColumns'),
   memberships: ontola('memberships'),
   menuItems: ontola('menuItems'),
   menus: ontola('menus'),

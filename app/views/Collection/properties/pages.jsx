@@ -17,6 +17,7 @@ const Pages = ({
   columns,
   depth,
   insideCollection,
+  maxColumns,
   pages,
   renderWhenEmpty,
   singlePage,
@@ -30,6 +31,7 @@ const Pages = ({
         columns={columns}
         depth={depth}
         insideCollection={insideCollection}
+        maxColumns={maxColumns}
         renderWhenEmpty={renderWhenEmpty}
         subject={pages[0]}
         view={view}
@@ -81,6 +83,7 @@ Pages.propTypes = {
   columns: linkType,
   depth: PropTypes.number,
   insideCollection: PropTypes.bool,
+  maxColumns: PropTypes.number,
   pages: linkType,
   renderWhenEmpty: PropTypes.bool,
   singlePage: PropTypes.bool,

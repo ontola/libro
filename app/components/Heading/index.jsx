@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => {
       color: theme.palette.grey[800],
       lineHeight: 1.3,
       marginBottom: '.6rem',
-      wordBreak: 'break-word',
     },
   };
   style.alert = {
@@ -55,6 +54,7 @@ const useStyles = makeStyles((theme) => {
 
 const propTypes = {
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
   display: PropTypes.oneOf(['inherit']),
   size: PropTypes.oneOf(headingSizes),
   type: linkType,
@@ -67,6 +67,7 @@ const defaultProps = {
 
 const Heading = ({
   children,
+  className,
   display,
   size,
   type,
@@ -76,6 +77,7 @@ const Heading = ({
   const classes = useStyles();
   const headingClass = classNames({
     Heading: true,
+    [className]: true,
     [classes.default]: true,
     [classes.inherit]: display === 'inherit',
     [classes[variant]]: true,

@@ -1,3 +1,5 @@
+import { useMediaQuery, useTheme } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 import schema from '@ontologies/schema';
 import {
   Property,
@@ -15,6 +17,15 @@ import { gridTopology } from '../../topologies/Grid';
 
 const PENDING_BADGE_OPACITY = 0.2;
 
+const useStyles = makeStyles(() => ({
+  header: {
+    fontSize: '1em!important',
+  },
+  headerSmall: {
+    fontSize: '.9em!important',
+  },
+}));
+
 const EarnedBadgeGrid = ({
   badge,
   dateCreated,
@@ -22,6 +33,9 @@ const EarnedBadgeGrid = ({
   useDataFetching([badge]);
   const [image] = useResourceProperty(badge, schema.image);
   const [name] = useResourceProperty(badge, schema.name);
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('sm'));
+  const classes = useStyles();
 
   return (
     <div
@@ -31,11 +45,11 @@ const EarnedBadgeGrid = ({
       }}
     >
       <Property label={teamGL.badge}>
-        <Heading size="2">{name?.value}</Heading>
+        <Heading className={matches ? classes.headerSmall : classes.header} size="2">{name?.value}</Heading>
         <Image
           linkedProp={image}
           style={{
-            height: '180px',
+            height: 'auto',
             marginBottom: '1em',
             maxWidth: '100%',
             width: '180px',

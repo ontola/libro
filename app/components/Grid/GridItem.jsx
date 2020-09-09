@@ -5,22 +5,35 @@ import React from 'react';
 import { LoadingGridContent } from '../Loading';
 
 const GRID_FULL = 12;
-const GRID_HALF = 6;
-const GRID_SIZE = 3;
-const GRID_CELL = GRID_FULL / GRID_SIZE;
+const LG_BASE = 12;
+const MD_BASE = 9;
+const SM_BASE = 6;
+const XS_BASE = 4;
+
+const columnWidth = (base, size, factor) => (
+  Math.max(
+    0,
+    Math.min(
+      GRID_FULL,
+      size * (GRID_FULL / Math.floor((base / GRID_FULL) * factor))
+    )
+  )
+);
 
 const GridItem = ({
   children,
   Fallback,
+  maxColumns,
   size,
   ...otherProps
 }) => {
-  const lg = GRID_CELL * size;
-  const md = size === GRID_SIZE ? GRID_FULL : GRID_HALF;
-  const sm = GRID_FULL;
+  const lg = columnWidth(LG_BASE, size, maxColumns);
+  const md = columnWidth(MD_BASE, size, maxColumns);
+  const sm = columnWidth(SM_BASE, size, maxColumns);
+  const xs = columnWidth(XS_BASE, size, maxColumns);
 
   return (
-    <MaterialGrid item lg={lg} md={md} sm={sm} xs={sm} {...otherProps}>
+    <MaterialGrid item lg={lg} md={md} sm={sm} xs={xs} {...otherProps}>
       <React.Suspense fallback={Fallback ? <Fallback /> : <LoadingGridContent />}>
         {children}
       </React.Suspense>
@@ -29,12 +42,14 @@ const GridItem = ({
 };
 
 GridItem.defaultProps = {
+  maxColumns: 3,
   size: 1,
 };
 
 GridItem.propTypes = {
   Fallback: PropTypes.elementType,
   children: PropTypes.node,
+  maxColumns: PropTypes.number,
   size: PropTypes.number,
 };
 

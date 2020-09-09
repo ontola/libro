@@ -36,6 +36,7 @@ function getCollectionPage({
           columns={props.columns}
           depth={props.depth}
           label={as.items}
+          maxColumns={props.maxColumns}
           renderLimit={Infinity}
           view={props.view}
         />
@@ -76,6 +77,7 @@ function getCollectionPage({
     location: PropTypes.shape({
       pathname: PropTypes.string,
     }),
+    maxColumns: PropTypes.number,
     originalCollectionResource: linkType,
     redirectPagination: PropTypes.bool,
     renderPartOf: PropTypes.bool,

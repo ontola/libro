@@ -20,7 +20,7 @@ import CardRow from '../../../topologies/Card/CardRow';
 import { CollectionViewTypes } from '../types';
 import { allTopologies } from '../../../topologies';
 
-const itemList = (props, columns, separator, view) => {
+const itemList = (props, columns, separator, view, maxColumns) => {
   let itemWrapper = React.Fragment;
   let itemWrapperOpts = {};
 
@@ -29,7 +29,10 @@ const itemList = (props, columns, separator, view) => {
   }
   if (rdf.equals(props.collectionDisplay, ontola['collectionDisplay/grid'])) {
     itemWrapper = GridItem;
-    itemWrapperOpts = { Fallback: LoadingCardFixed };
+    itemWrapperOpts = {
+      Fallback: LoadingCardFixed,
+      maxColumns,
+    };
   }
 
   return (
@@ -69,6 +72,7 @@ const Items = (props) => {
     depth,
     items,
     linkedProp,
+    maxColumns,
     separator,
     topology,
     totalCount,
@@ -91,9 +95,9 @@ const Items = (props) => {
   if (Array.isArray(items) && items.length === 0) {
     children = null;
   } else if (Array.isArray(items)) {
-    children = itemList(props, columns, separator, view);
+    children = itemList(props, columns, separator, view, maxColumns);
   } else if (typeof items.toArray !== 'undefined') {
-    children = itemList(props, columns, separator, view).toKeyedSeq();
+    children = itemList(props, columns, separator, view, maxColumns).toKeyedSeq();
   } else {
     children = (
       <Resource

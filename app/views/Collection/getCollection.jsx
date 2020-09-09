@@ -48,6 +48,7 @@ export default function getCollection(
       hideHeader,
       hidePagination,
       lrs,
+      maxColumns,
       originalCollectionResource: originalCollectionResourceProp,
       redirectPagination,
       renderWhenEmpty: renderWhenEmptyProp,
@@ -84,6 +85,7 @@ export default function getCollection(
       collectionDisplay: resolvedCollectionDisplay,
       columns: resolvedColumns,
       depth,
+      maxColumns: tryParseInt(maxColumns),
       originalCollectionResource,
       view,
     };
@@ -213,6 +215,7 @@ export default function getCollection(
     collectionType: ontola.collectionType,
     columns: ontola.columns,
     defaultType: ontola.defaultType,
+    maxColumns: ontola.maxColumns,
     pages: {
       label: ontola.pages,
       returnType: ReturnType.AllTerms,
@@ -232,6 +235,7 @@ export default function getCollection(
     hideHeader: PropTypes.bool,
     hidePagination: PropTypes.bool,
     lrs: lrsType,
+    maxColumns: linkType,
     originalCollectionResource: linkType,
     redirectPagination: PropTypes.bool,
     renderPartOf: PropTypes.bool,
