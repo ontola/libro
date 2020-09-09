@@ -4,17 +4,6 @@ import createBulkResourceRequest from './bulk';
 import createDataContext from './createDataContext';
 import logging from './logging';
 
-const defaultResources = (scope) => [
-  `${scope}`,
-  `${scope}/ns/core`,
-  `${scope}/c_a`,
-  `${scope}/banners`,
-  `${scope}/forms/sessions`,
-  `${scope}/n`,
-  `${scope}/search`,
-  `${scope}/menus`,
-];
-
 const createOutputStream = () => {
   let data = Buffer.alloc(0);
   const stream = new Stream.Writable();
@@ -41,7 +30,7 @@ const createWriter = (stream) => (line) => {
 
 const getResources = (ctx, includes) => {
   const { scope } = ctx.manifest;
-  const resources = defaultResources(ctx.manifest.scope);
+  const resources = (ctx.manifest.ontola?.preload || []).map(encodeURIComponent);
   if (ctx.request.url?.length > 1) {
     const { origin } = new URL(scope);
     resources.unshift(encodeURIComponent(origin + ctx.request.url));
