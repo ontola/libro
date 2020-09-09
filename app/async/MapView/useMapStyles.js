@@ -16,6 +16,7 @@ export default makeStyles((theme) => ({
         border: `solid 1px ${theme.palette.grey.xLight}`,
         borderRadius: theme.shape.borderRadius,
         color: theme.palette.grey.midDark,
+        cursor: 'pointer',
         display: 'inline-block',
         fontFamily: theme.typography.fontFamily,
         fontSize: theme.typography.fontSize,
@@ -24,6 +25,14 @@ export default makeStyles((theme) => ({
         marginRight: '0.1em',
         width: '3em',
       },
+      '&.ol-full-screen': {
+        left: 'auto',
+        right: 2,
+      },
+      '&:hover': {
+        backgroundColor: 'rgba(0,0,0,0)',
+      },
+      backgroundColor: 'rgba(0,0,0,0)',
       bottom: 2,
       display: 'inline-block',
       left: 2,

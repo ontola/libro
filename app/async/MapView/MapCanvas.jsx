@@ -8,7 +8,7 @@ import {
   Overlay,
   View,
 } from 'ol';
-import { defaults as defaultControls } from 'ol/control';
+import { FullScreen, defaults as defaultControls } from 'ol/control';
 import { click, pointerMove } from 'ol/events/condition';
 import { boundingExtent, getCenter } from 'ol/extent';
 import Select from 'ol/interaction/Select';
@@ -88,7 +88,9 @@ const createMap = ({
   const map = new OLMap({
     controls: defaultControls({
       rotate: false,
-    }),
+    }).extend([
+      new FullScreen(),
+    ]),
     layers,
     overlays: [overlay],
     target: current,
