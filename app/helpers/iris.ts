@@ -1,8 +1,12 @@
-import { isBlankNode, isNamedNode, NamedNode } from '@ontologies/core';
+import rdf, { isBlankNode, isNamedNode, NamedNode } from '@ontologies/core';
 
 import { frontendOrigin, frontendPathname } from '../ontology/app';
 
 const FABase = 'http://fontawesome.io/icon/';
+
+export function fontAwesomeIRI(icon: string) {
+  return rdf.namedNode(`${FABase}${icon}`);
+}
 
 export function isFontAwesomeIRI(iri: string) {
   return iri.startsWith(FABase);

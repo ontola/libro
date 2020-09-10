@@ -14,6 +14,11 @@ const customVariables = deepmerge(
       background: {
         default: '#ede4e5',
       },
+      mapIcon: {
+        background: '#533bff',
+        backgroundHover: '#3d2db3',
+        text: 'white',
+      },
     },
     shape: {
       borderRadius: 0,

@@ -16,6 +16,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import withReducer from '../../containers/withReducer';
+import { fontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
 import { tryParseFloat } from '../../helpers/numbers';
 import app from '../../ontology/app';
 import teamGL from '../../ontology/teamGL';
@@ -27,12 +28,13 @@ import {
   postalCodeIri,
 } from '../../views/Glapp/helpers';
 
-import { getStyles } from './helpers';
+import { useImageStyles } from './helpers';
 import MapCanvas from './MapCanvas';
 import reducer, { MapReducerKey } from './reducer';
 
-const INITIAL_ZOOM = 7.3;
+const EVENT_ICONS = ['envelope', 'home', 'comments-o', 'calendar-check-o'].map(fontAwesomeIRI);
 const FULL_POSTAL_LEVEL = 8.6;
+const INITIAL_ZOOM = 7.3;
 const SHADE_COUNT = 10;
 
 const selectedShapeStyle = new Style({
@@ -150,7 +152,10 @@ const useSelectedPostalCode = (postalShapes, selected) => {
 const useEventsLayer = (lrs, eventsData) => {
   const [eventsFeatures, setEventsFeatures] = React.useState([]);
   const theme = useTheme();
-  const { hoverStyle, style } = getStyles(app.ns('assets/hah-icon.png').value, theme);
+  const {
+    styles,
+    hoverStyles,
+  } = useImageStyles(EVENT_ICONS, theme);
 
   React.useEffect(() => {
     if (eventsData) {
@@ -160,17 +165,18 @@ const useEventsLayer = (lrs, eventsData) => {
         const iri = postalCodeIri(digits).value;
         if (eventsData[iri]) {
           const {
+            image,
+            events,
             lat,
             lon,
-            events,
           } = eventsData[iri];
           events.forEach((event) => {
             const f = new Feature(new Point(fromLonLat([lon, lat])));
             f.local = event;
             f.setId(event);
             f.setProperties({
-              hoverStyle,
-              style,
+              hoverStyle: hoverStyles[normalizeFontAwesomeIRI(image)],
+              style: styles[normalizeFontAwesomeIRI(image)],
             });
             newEvents.push(f);
           });

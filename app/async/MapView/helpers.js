@@ -18,11 +18,11 @@ import {
 
 const ANCHOR_Y_BOTTOM = 1;
 const ANCHOR_X_CENTER = 0.5;
-const CIRCLE_RADIUS = 12;
-const CIRCLE_SIZE = 13;
+const CIRCLE_RADIUS = 14;
+const CIRCLE_SIZE = 15;
 const ICON_X = CIRCLE_SIZE;
 const ICON_Y = CIRCLE_SIZE;
-const IMG_SIZE = 26;
+const IMG_SIZE = 30;
 
 const iconCache = {};
 
@@ -67,9 +67,13 @@ const generateFontAwesomeStyle = (image, highlight, count, theme) => {
   const canvas = document.createElement('canvas');
   const canvasCtx = canvas.getContext('2d');
 
-  const circleBackground = new Fill({ color: highlight ? '#92a1b5' : '#475668' });
+  const { mapIcon } = theme.palette;
+
+  const circleBackground = new Fill({
+    color: highlight ? mapIcon.backgroundHover : mapIcon.background,
+  });
   const circleStroke = new Stroke({
-    color: 'white',
+    color: mapIcon.text,
     width: 2,
   });
   const circleStyle = new Style({
@@ -94,13 +98,13 @@ const generateFontAwesomeStyle = (image, highlight, count, theme) => {
   let renderText, renderFont;
   if (count > 1) {
     renderText = count;
-    renderFont = `bold 16px ${theme.typography.h1.fontFamily}`;
+    renderFont = `bolder 16px ${theme.typography.h1.fontFamily}`;
   } else {
     renderText = fa(normalizeFontAwesomeIRI(image));
     renderFont = 'normal 18px FontAwesome';
   }
   /* eslint-disable no-param-reassign */
-  canvasCtx.fillStyle = 'white';
+  canvasCtx.fillStyle = mapIcon.text;
   canvasCtx.font = renderFont;
   canvasCtx.textAlign = 'center';
   canvasCtx.textBaseline = 'middle';

@@ -41,7 +41,7 @@ const DEFAULT_LAT = 52.1344;
 const DEFAULT_LON = 5.1917;
 const DEFAULT_ZOOM = 6.8;
 const TILE_SIZE = 512;
-const CLUSTER_DISTANCE = 40;
+const CLUSTER_DISTANCE = 30;
 const CLUSTER_ZOOM = 2;
 
 const getStyle = (styleName) => (feature) => {
