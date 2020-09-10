@@ -1,20 +1,23 @@
-import { register, subjectType } from 'link-redux';
+import rdf from '@ontologies/core';
+import {
+  register,
+  subjectType,
+  useLRS,
+} from 'link-redux';
 import React from 'react';
-import { useHistory } from 'react-router';
 
 import TableCells from '../../components/TableCells';
-import { retrievePath } from '../../helpers/iris';
 import teamGL from '../../ontology/teamGL';
 import { tableTopology } from '../../topologies/Table';
 import TableRow from '../../topologies/TableRow';
 import { columnsType } from '../Thing/ThingTable';
 
 const StreetTable = (props) => {
-  const history = useHistory();
+  const lrs = useLRS();
 
   const onClick = (e) => {
     e.preventDefault();
-    history.push(retrievePath(props.subject.value));
+    lrs.actions.ontola.showDialog(rdf.namedNode(`${props.subject.value}/flyer_actions/new`));
   };
 
   return (

@@ -5,11 +5,13 @@ import {
   linkType,
   literal,
   register,
+  useResourceProperty,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import FormField from '../../components/FormField/FormField';
+import { tryParseInt } from '../../helpers/numbers';
 import form from '../../ontology/form';
 import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
@@ -27,11 +29,16 @@ const mapDataToProps = {
   helperText: literal(ontola.helperText),
   label: literal(schema.name),
   maxCount: literal(sh.maxCount),
+  maxCountProp: ontola.maxCount,
   maxInclusive: literal(sh.maxInclusive),
+  maxInclusiveProp: ontola.maxInclusive,
   maxLength: literal(sh.maxLength),
   minCount: literal(sh.minCount),
+  minCountProp: ontola.minCount,
   minInclusive: literal(sh.minInclusive),
+  minInclusiveProp: ontola.minInclusive,
   minLength: literal(sh.minLength),
+  minLengthProp: ontola.minLength,
   path: sh.path,
   shIn: sh.in,
 };
@@ -49,6 +56,18 @@ const registerFormField = (type, input, delay) => {
         setHasContent(true);
       }
     });
+    const [maxCount] = useResourceProperty(props.object, props.maxCountProp);
+    const [maxInclusive] = useResourceProperty(props.object, props.maxInclusiveProp);
+    const [minCount] = useResourceProperty(props.object, props.minCountProp);
+    const [minInclusive] = useResourceProperty(props.object, props.minInclusiveProp);
+    const [minLength] = useResourceProperty(props.object, props.minLengthProp);
+    const propOverwrites = {
+      maxCount: tryParseInt(maxCount) || props.maxCount,
+      maxInclusive: tryParseInt(maxInclusive) || props.maxInclusive,
+      minCount: tryParseInt(minCount) || props.minCount,
+      minInclusive: tryParseInt(minInclusive) || props.minInclusive,
+      minLength: tryParseInt(minLength) || props.minLength,
+    };
 
     if (!whitelisted) {
       return null;
@@ -60,6 +79,7 @@ const registerFormField = (type, input, delay) => {
       <FormField
         {...formFieldProps}
         {...props}
+        {...propOverwrites}
         delay={delay}
         type={resolvedInput}
       />
@@ -73,6 +93,17 @@ const registerFormField = (type, input, delay) => {
   FormFieldComp.mapDataToProps = mapDataToProps;
 
   FormFieldComp.propTypes = {
+    maxCount: PropTypes.number,
+    maxCountProp: linkType,
+    maxInclusive: PropTypes.number,
+    maxInclusiveProp: linkType,
+    minCount: PropTypes.number,
+    minCountProp: linkType,
+    minInclusive: PropTypes.number,
+    minInclusiveProp: linkType,
+    minLength: PropTypes.number,
+    minLengthProp: linkType,
+    object: linkType,
     path: linkType,
     setHasContent: PropTypes.func,
     whitelist: PropTypes.arrayOf(PropTypes.number),
@@ -100,6 +131,6 @@ export default [
   registerFormField(form.PasswordInput, 'password', true),
   registerFormField(form.AssociationInput, 'association', false),
   registerFormField(form.PostalRangeInput, 'postalRange', true),
-  registerFormField(form.SliderInput, 'slider', false),
+  registerFormField(form.SliderInput, 'slider', true),
   ResourceField,
 ];

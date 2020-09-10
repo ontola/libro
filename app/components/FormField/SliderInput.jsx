@@ -42,12 +42,23 @@ const SliderInput = ({
     onChange(val);
   };
 
+  const defaultMarks = [{
+    label: minInclusive,
+    value: minInclusive,
+  }, {
+    label: maxInclusive,
+    value: maxInclusive,
+  }];
+
   return (
     <StyledSlider
+      aria-labelledby="discrete-slider-custom"
       defaultValue={value?.value}
-      marks={marks}
+      getAriaValueText={(v) => v}
+      marks={marks || defaultMarks}
       max={maxInclusive}
       min={minInclusive}
+      valueLabelDisplay="auto"
       onChange={handleChange}
     />
   );

@@ -31,6 +31,7 @@ export default {
 
     /* properties */
     active: teamGL('active'),
+    activeFlyered: teamGL('activeFlyered'),
     activeVolunteersCount: teamGL('activeVolunteersCount'),
     address: teamGL('address'),
     badge: teamGL('badge'),
@@ -45,6 +46,7 @@ export default {
     engagement: teamGL('engagement'),
     events: teamGL('events'),
     flyer: teamGL('flyer'),
+    flyerVolunteers: teamGL('flyerVolunteers'),
     fullAddress: teamGL('fullAddress'),
     futureEventsCount: teamGL('futureEventsCount'),
     glappUsedAt: teamGL('glappUsedAt'),
@@ -72,6 +74,7 @@ export default {
     subDepartments: teamGL('subDepartments'),
     target: teamGL('target'),
     telephone: teamGL('telephone'),
+    totalFlyers: teamGL('totalFlyers'),
     user: teamGL('user'),
     veryActiveVolunteersCount: teamGL('veryActiveVolunteersCount'),
     volunteer: teamGL('volunteer'),

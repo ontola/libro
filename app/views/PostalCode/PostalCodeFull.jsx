@@ -45,9 +45,9 @@ const PostalCodeFull = ({ subject }) => {
             <Property label={schema.name} />
             <Property endSpacing label={teamGL.meanPriority} />
             <AttributeList fullLabel>
-              <AttributeListItem label={teamGL.doors} />
-              <AttributeListItem label={teamGL.volunteers} />
-              <AttributeListItem label={teamGL.active} />
+              <AttributeListItem label={teamGL.totalFlyers} />
+              <AttributeListItem label={teamGL.flyerVolunteers} />
+              <AttributeListItem label={teamGL.activeFlyered} />
             </AttributeList>
           </CardContent>
         </CardMain>

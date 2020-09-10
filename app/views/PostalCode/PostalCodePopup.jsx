@@ -3,7 +3,8 @@ import schema from '@ontologies/schema';
 import {
   Property,
   linkType,
-  register, subjectType,
+  register,
+  subjectType,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -53,9 +54,9 @@ const PostalCodePopup = ({
         </HeaderWithMenu>
         <Property endSpacing label={teamGL.meanPriority} />
         <AttributeList fullLabel>
-          <AttributeListItem label={teamGL.doors} />
-          <AttributeListItem label={teamGL.volunteers} />
-          <AttributeListItem label={teamGL.active} />
+          <AttributeListItem label={teamGL.totalFlyers} />
+          <AttributeListItem label={teamGL.flyerVolunteers} />
+          <AttributeListItem label={teamGL.activeFlyered} />
         </AttributeList>
         <Button centered onClick={() => visitPostalCode(postalDigits.value)}>Aan de slag!</Button>
       </CardContent>
