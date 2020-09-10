@@ -5,6 +5,11 @@
     max-width: 25rem;
   }
 
+  .Card {
+    max-height: 40vh;
+    overflow: auto;
+  }
+
   .CoverImage__child {
     height: initial;
   }

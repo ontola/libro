@@ -4,6 +4,7 @@ import EventPopup from './EventPopup';
 import EventCardList from './EventCardList';
 import EventCardRow from './EventCardRow';
 import DesiredCount from './properties/desiredCount';
+import EventTypeDetailsBar from './properties/eventTypeDetailsBar';
 import StartDate from './properties/startDate';
 
 export default [
@@ -13,5 +14,6 @@ export default [
   EventContainer,
   EventPage,
   EventPopup,
+  EventTypeDetailsBar,
   StartDate,
 ];

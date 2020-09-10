@@ -28,9 +28,13 @@ const drawFontAwesomeIcon = (
   count: number,
   theme: any,
 ) => {
-  const circleBackground = new Fill({ color: highlight ? '#92a1b5' : '#475668' });
+  const { mapIcon } = theme.palette;
+
+  const circleBackground = new Fill({
+    color: highlight ? mapIcon.backgroundHover : mapIcon.background,
+  });
   const circleStroke = new Stroke({
-    color: 'white',
+    color: mapIcon.text,
     width: 2,
   });
   const circleStyle = new Style({
@@ -62,7 +66,7 @@ const drawFontAwesomeIcon = (
     renderFont = 'normal 18px FontAwesome';
   }
   /* eslint-disable no-param-reassign */
-  canvasCtx.fillStyle = 'white';
+  canvasCtx.fillStyle = mapIcon.text;
   canvasCtx.font = renderFont;
   canvasCtx.textAlign = 'center';
   canvasCtx.textBaseline = 'middle';
