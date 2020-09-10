@@ -2,7 +2,7 @@ import as from '@ontologies/as';
 import rdf, {isBlankNode, isLiteral, Literal, NamedNode, Node, Quad, SomeTerm} from '@ontologies/core';
 import rdfx from '@ontologies/rdf';
 import rdfs from '@ontologies/rdfs';
-import { BAD_REQUEST, OK } from 'http-status-codes';
+import { BAD_REQUEST, NOT_FOUND, OK } from 'http-status-codes';
 import { LazyNNArgument, normalizeType } from 'link-lib';
 import { LinkReduxLRSType } from 'link-redux';
 import ontola from '../ontology/ontola';
@@ -95,7 +95,7 @@ function entityHasError(lrs: LinkReduxLRSType, iri: Node) {
 }
 
 function entityIsLoaded(lrs: LinkReduxLRSType, iri: Node) {
-  return lrs.tryEntity(iri).length > 0 || lrs.getStatus(iri).status === OK;
+  return lrs.tryEntity(iri).length > 0 || lrs.getStatus(iri).status === OK || lrs.getStatus(iri).status === NOT_FOUND;
 }
 
 function numAsc(a: Quad, b: Quad) {

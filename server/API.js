@@ -47,6 +47,19 @@ class API {
     });
   }
 
+  async bulkStatus() {
+    const websiteIRI = await this.ctx.getWebsiteIRI();
+
+    return this.fetchRaw(this.ctx.session.userToken, {
+      headers: {
+        'Website-IRI': websiteIRI,
+        ...this.proxySafeHeaders(this.ctx.request),
+      },
+      method: 'GET',
+      path: '/link-lib/d/health',
+    });
+  }
+
   logout(websiteIRI) {
     return this.fetchRaw(this.ctx.session.userToken, {
       body: JSON.stringify({

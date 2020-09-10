@@ -76,7 +76,7 @@ export function setBulkResHeaders(res) {
   res.set('Vary', VARY_HEADER);
 }
 
-const bulkMatch = /^\/link-lib\/bulk$/;
+const bulkMatch = /^\/link-lib\//;
 const dekuMatch = /^\/\w*\/\w*\/od\/?.*$/;
 const emailMatch = /^\/email\//;
 const subscribeMatch = /^\/subscribe/;
