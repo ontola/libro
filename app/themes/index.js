@@ -30,6 +30,14 @@ const generateStyle = ({
     );
   }
 
+  if (!theme.palette.mapIcon) {
+    theme.palette.mapIcon = {
+      background: theme.palette.primary.main,
+      backgroundHover: theme.palette.primary.light,
+      text: theme.palette.common.white,
+    };
+  }
+
   theme.appBar.resolveColor = () => {
     const { appBar: { background, color }, palette } = theme;
 

@@ -46,6 +46,7 @@ export default {
     didVote: teamGL('didVote'),
     doors: teamGL('doors'),
     engagement: teamGL('engagement'),
+    eventType: teamGL('eventType'),
     events: teamGL('events'),
     flyer: teamGL('flyer'),
     flyerVolunteers: teamGL('flyerVolunteers'),

@@ -39,6 +39,7 @@ const EventPopup = ({
           <Property label={schema.name} />
         </HeaderWithMenu>
         <ContentDetails>
+          <Property label={teamGL.eventType} />
           <Property label={teamGL.department} />
           <Property label={schema.startDate} />
           <Property label={schema.location} />
