@@ -1,3 +1,4 @@
+import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
 import {
   Property,
@@ -20,20 +21,17 @@ const ParticipantContainer = () => (
       <HeaderWithMenu
         menu={<Property label={ontola.actionsMenu} />}
       >
-        <Property label={teamGL.volunteer}>
-          <Property label={schema.name} />
-        </Property>
+        <Property label={[schema.name, rdfs.label]} />
       </HeaderWithMenu>
       <ContentDetails>
         <Property label={teamGL.engagement} />
+        <Property label={teamGL.signedUp} />
       </ContentDetails>
-      <Property label={teamGL.volunteer}>
-        <div className="Volunteer--contact-options">
-          <Property label={teamGL.telephone} />
-          <Property label={schema.email} />
-        </div>
-        <Property label={schema.text} />
-      </Property>
+      <div className="Volunteer--contact-options">
+        <Property label={teamGL.telephone} />
+        <Property label={schema.email} />
+      </div>
+      <Property label={schema.text} />
     </CardContent>
     <ActionsBar>
       <Property label={ontola.favoriteAction} />

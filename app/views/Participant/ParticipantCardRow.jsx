@@ -16,6 +16,7 @@ const ParticipantCardRow = () => (
     <Property label={[schema.name, rdfs.label]} />
     <ContentDetails>
       <Property label={teamGL.engagement} />
+      <Property label={teamGL.signedUp} />
     </ContentDetails>
   </CardContent>
 );

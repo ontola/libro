@@ -69,6 +69,7 @@ export default {
     priority: teamGL('priority'),
     remarks: teamGL('remarks'),
     result: teamGL('result'),
+    signedUp: teamGL('signedUp'),
     street: teamGL('street'),
     streets: teamGL('streets'),
     subDepartments: teamGL('subDepartments'),
