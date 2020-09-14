@@ -7,8 +7,8 @@ import { IStyleFunctionOrObject } from '@uifabric/utilities';
 import { compareCommands } from '../commands/compareCommands';
 import { toCommandsArray } from '../commands/toCommandsArray';
 import { Command } from '../commands/types';
-import { CommandPlugins, CommandPlugin } from '../plugins/types';
 import { toPluginsArray } from '../plugins/toPluginsArray';
+import { CommandPlugin, CommandPlugins } from '../plugins/types';
 
 export interface EditableWithPluginsProps extends Omit<EditablePluginsProps, 'plugins'> {
   plugins: CommandPlugins;

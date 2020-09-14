@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { createEditor, Editor, Node } from 'slate';
+import { createEditor, Editor, Node, Transforms } from 'slate';
 import { withHistory } from 'slate-history';
 import { ReactEditor, Slate, withReact } from 'slate-react';
 
@@ -29,6 +29,7 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({ plugins, onAutoS
       editor.children = value;
     }
     Editor.normalize(editor, { force: true });
+    Transforms.select(editor, [0]);
     // The rendering can take over from here:
     setNormalizedValue(editor.children);
   }, [value]);
