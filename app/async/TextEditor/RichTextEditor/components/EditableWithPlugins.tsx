@@ -5,33 +5,37 @@ import { concatStyleSets } from '@uifabric/styling';
 import { IStyleFunctionOrObject } from '@uifabric/utilities';
 
 import { compareCommands } from '../commands/compareCommands';
+import { toCommandsArray } from '../commands/toCommandsArray';
 import { Command } from '../commands/types';
-import { CommandPlugin } from '../plugins/types';
+import { CommandPlugins, CommandPlugin } from '../plugins/types';
+import { toPluginsArray } from '../plugins/toPluginsArray';
 
-export interface EditableWithPluginsProps extends EditablePluginsProps {
-  plugins?: CommandPlugin[];
+export interface EditableWithPluginsProps extends Omit<EditablePluginsProps, 'plugins'> {
+  plugins: CommandPlugins;
   toolbarStyles?: IStyleFunctionOrObject<ToolbarStyleProps, ToolbarStyles>;
 }
 
 export const EditableWithPlugins: React.FC<EditableWithPluginsProps> = ({ plugins, toolbarStyles, ...props }) => {
+  const pluginsArray = useMemo(() => (
+    Object.values(plugins || {}).filter((plugin) => plugin) as CommandPlugin[]
+  ), [plugins]);
+
   const buttons: JSX.Element[] = useMemo(() => (
     // From plugins...
-    (plugins || [])
-      .filter((plugin) => !plugin.disabled)
+    toPluginsArray(plugins)
       // to commands...
-      .reduce((commands: Command[], plugin) => commands.concat(plugin.commands || []), [])
-      .filter((command) => !command.disabled && command.button)
+      .reduce((commands: Command[], plugin) => commands.concat(toCommandsArray(plugin!.commands)), [])
+      .filter((command) => command.button)
       .sort(compareCommands)
       // to buttons...
       .map((command, index) => command.button!({ key: index + 1 }))
-  ), [plugins]);
+  ), [pluginsArray]);
 
   const combinedToolbarStyles = useMemo(
     () => concatStyleSets({
       root: [
         'slate-HeadingToolbar',
         {
-          backgroundColor: '#fff',
           borderBottom: '2px solid #eee',
           margin: '0px',
           padding: '0px',
@@ -53,7 +57,7 @@ export const EditableWithPlugins: React.FC<EditableWithPluginsProps> = ({ plugin
           </HeadingToolbar> : undefined
       }
       <EditablePlugins
-        plugins={plugins}
+        plugins={pluginsArray}
         placeholder="Enter some text..."
         {...props}
       />

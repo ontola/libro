@@ -13,7 +13,7 @@ import {
 import PlainEditor from './PlainEditor';
 import RichEditor from './RichEditor';
 import RichTextEditorMd from './RichTextEditor/components/RichTextEditorMd';
-import { DefaultPlugins } from './RichTextEditor/plugins';
+import { defaultPlugins } from './RichTextEditor/plugins';
 import './TextEditor.scss';
 
 const propTypes = {
@@ -88,10 +88,13 @@ class TextEditor extends Component {
     }
 
     return (
-      <div className="TextEditor">
+      <div className="RichTextEditor">
         <RichTextEditorMd
           placeholder={placeholder}
-          plugins={DefaultPlugins}
+          plugins={defaultPlugins}
+          style={{
+            padding: '8px 11px',
+          }}
           value={value}
           onAutoSave={(editor, markdown) => onChange(markdown)}
         />

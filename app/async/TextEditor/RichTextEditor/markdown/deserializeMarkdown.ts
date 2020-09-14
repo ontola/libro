@@ -2,7 +2,8 @@ import { deserializeHTMLToDocument } from '@udecode/slate-plugins';
 import marked, { Renderer } from 'marked';
 import { Node } from 'slate';
 
-import { CommandPlugin } from '../plugins';
+import { CommandPlugins } from '../plugins';
+import { toPluginsArray } from '../plugins/toPluginsArray';
 
 const renderer = new Renderer();
 renderer.paragraph = (text: string) => (
@@ -29,7 +30,7 @@ const edit = (regex: RegExp, opt?: string) => {
   return obj;
 };
 
-export const deserializeMarkdown = (plugins: CommandPlugin[]) => (markdown: string): Node[] => {
+export const deserializeMarkdown = (plugins: CommandPlugins) => (markdown: string): Node[] => {
   // 1. Using remark-slate:
   // return parseMD(deserializeMarkdownOptions)(markdown);
 
@@ -41,7 +42,7 @@ export const deserializeMarkdown = (plugins: CommandPlugin[]) => (markdown: stri
   // Instead of using:
   //   const html = marked(markdown);
   // adapt some rules:
-  const lexer = new marked.Lexer();
+  const lexer: any = new marked.Lexer();
 
   // Allow headings without space after hashtags
   // Original regex:                    /^ {0,3}(#{1,6}) +([^\n]*?)(?: +#+)? *(?:\n+|$)/);
@@ -61,5 +62,5 @@ export const deserializeMarkdown = (plugins: CommandPlugin[]) => (markdown: stri
   // Note: <li> is normalized to <li><p> in withListItems
   const parsed = new DOMParser().parseFromString(html, 'text/html');
 
-  return deserializeHTMLToDocument(plugins)(parsed.body)[0].children;
+  return deserializeHTMLToDocument(toPluginsArray(plugins))(parsed.body)[0].children;
 };

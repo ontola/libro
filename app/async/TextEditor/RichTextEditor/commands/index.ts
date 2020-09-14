@@ -1,3 +1,3 @@
 export * from './compareCommands';
-export * from './mergeCommands';
+export * from './toCommandsArray';
 export * from './types';
