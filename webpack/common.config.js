@@ -14,6 +14,7 @@ const common = {
   externals: {
     URL: 'self.URL',
     'any-promise': 'Promise',
+    canvas: 'canvas',
     fetch: 'self.fetch',
     'isomorphic-fetch': 'self.fetch',
     jsonld: '{}',

@@ -1,4 +1,4 @@
-import React, { EventHandler } from 'react';
+import React, { ChangeEvent, EventHandler } from 'react';
 
 import { isString } from '../../helpers/types';
 
@@ -97,7 +97,7 @@ export enum InputType {
   Week = 'week',
 }
 
-export interface PropTypes {
+export interface InputProps {
   autoComplete?: InputAutocomplete;
   autoFocus?: boolean;
   capture?: string | boolean;
@@ -110,7 +110,7 @@ export interface PropTypes {
   inputMode?: InputMode;
   minLength?: number;
   name: string;
-  onChange?: EventHandler<any>;
+  onChange?: EventHandler<ChangeEvent<HTMLInputElement>>;
   onKeyUp?: EventHandler<any>;
   placeholder?: string;
   required?: boolean;
@@ -123,7 +123,7 @@ const defaultProps = {
   element: 'input',
 };
 
-const Input: React.FC<PropTypes> = ({
+const Input: React.FC<InputProps> = ({
   element,
   className,
   value,
