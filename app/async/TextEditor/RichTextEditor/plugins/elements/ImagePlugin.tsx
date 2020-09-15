@@ -5,7 +5,7 @@ import { Editor } from 'slate';
 import { Command, Commands } from '../../commands/types';
 import { CommandPlugin } from '../types';
 
-interface ImageCommands extends Commands {
+export interface ImageCommands extends Commands {
   insertImage?: Command;
 }
 

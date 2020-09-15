@@ -6,7 +6,7 @@ import { getButtonMark } from '../../utils/getButtonMark';
 import { getToggleMark } from '../../utils/getToggleMark';
 import { CommandPlugin } from '../types';
 
-interface UnderlineCommands extends Commands {
+export interface UnderlineCommands extends Commands {
   formatUnderline?: Command;
 }
 

@@ -17,7 +17,7 @@ import { getButtonList } from '../../utils/getButtonList';
 import { getToggleList } from '../../utils/getToggleList';
 import { CommandPlugin } from '../types';
 
-interface ListCommands extends Commands {
+export interface ListCommands extends Commands {
   formatListOrdered?: Command;
   formatListUnordered?: Command;
 }

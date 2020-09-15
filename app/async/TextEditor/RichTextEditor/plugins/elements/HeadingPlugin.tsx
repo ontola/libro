@@ -6,7 +6,7 @@ import { getButtonElement } from '../../utils/getButtonElement';
 import { getToggleType } from '../../utils/getToggleType';
 import { CommandPlugin } from '../types';
 
-interface HeadingCommands extends Commands {
+export interface HeadingCommands extends Commands {
   formatHeading1?: Command;
   formatHeading2?: Command;
   formatHeading3?: Command;

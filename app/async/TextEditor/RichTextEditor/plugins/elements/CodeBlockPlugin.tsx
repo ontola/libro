@@ -5,7 +5,7 @@ import { Command, Commands } from '../../commands/types';
 import { getButtonElement } from '../../utils/getButtonElement';
 import { CommandPlugin } from '../types';
 
-interface CodeBlockCommands extends Commands {
+export interface CodeBlockCommands extends Commands {
   formatCodeBlock?: Command;
 }
 

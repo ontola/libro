@@ -5,7 +5,7 @@ import { Editor } from 'slate';
 import { Command, Commands } from '../../commands/types';
 import { CommandPlugin } from '../types';
 
-interface LinkCommands extends Commands {
+export interface LinkCommands extends Commands {
   insertLink?: Command;
 }
 
