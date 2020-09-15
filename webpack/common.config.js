@@ -13,6 +13,7 @@ process.env.BABEL_ENV = TARGET;
 const common = {
   externals: {
     URL: 'self.URL',
+    canvas: 'canvas',
     fetch: 'self.fetch',
     'isomorphic-fetch': 'self.fetch',
     jsonld: '{}',

@@ -13,7 +13,7 @@ import Textarea from 'react-autosize-textarea';
 
 import DatePicker from '../../containers/DatePicker';
 import DateTimePicker from '../../containers/DateTimePicker';
-import TextEditor from '../../containers/TextEditor';
+import RichTextEditor from '../../containers/RichTextEditor';
 import form from '../../ontology/form';
 import RadioGroup from '../../topologies/RadioGroup';
 import CheckboxesInput from '../CheckboxesInput';
@@ -277,7 +277,7 @@ const InputElement = ({
       sharedProps.maxRows = 50;
       break;
     case 'markdown':
-      element = TextEditor;
+      element = RichTextEditor;
       sharedProps.id = storeKey;
       sharedProps.rows = minRows;
       break;
@@ -371,14 +371,17 @@ InputElement.propTypes = {
   maxInclusive: PropTypes.number,
   maxLength: PropTypes.number,
   /** @private Contains form-library specific data */
-  meta: PropTypes.shape({
-    active: PropTypes.bool,
-    dirty: PropTypes.bool,
-    error: PropTypes.arrayOf(formFieldError),
-    invalid: PropTypes.bool,
-    pristine: PropTypes.bool,
-    touched: PropTypes.bool,
-  }),
+  meta: PropTypes.oneOfType([
+    PropTypes.oneOf([null]),
+    PropTypes.shape({
+      active: PropTypes.bool,
+      dirty: PropTypes.bool,
+      error: PropTypes.arrayOf(formFieldError),
+      invalid: PropTypes.bool,
+      pristine: PropTypes.bool,
+      touched: PropTypes.bool,
+    }),
+  ]),
   minCount: PropTypes.number,
   minInclusive: PropTypes.number,
   minLength: PropTypes.number,
