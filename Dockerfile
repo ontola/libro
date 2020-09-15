@@ -20,7 +20,17 @@ WORKDIR /usr/src/app
 
 COPY package.json yarn.lock /usr/src/app/
 # The packages are needed to build shrink-ray-current's native extensions
-RUN apk add python alpine-sdk && yarn install --production --frozen-lockfile --non-interactive && apk del python alpine-sdk
+RUN apk --no-cache --virtual build-dependencies add \
+    alpine-sdk \
+    jpeg-dev \
+    cairo-dev \
+    giflib-dev \
+    pango-dev \
+    python \
+    make \
+    g++ \
+    && npm_config_build_from_source=true yarn install --production --frozen-lockfile --non-interactive \
+    && apk del build-dependencies
 COPY --from=builder /usr/src/app/dist /usr/src/app/dist
 COPY --from=builder /usr/src/app/static /usr/src/app/static
 
