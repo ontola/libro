@@ -1,10 +1,10 @@
 import clsx from 'clsx';
 import { SomeNode } from 'link-lib';
-import React from 'react';
+import React, { ChangeEvent, EventHandler } from 'react';
 import Textarea from 'react-autosize-textarea';
 
-import { PlainEditorProps } from '../../async/TextEditor/PlainEditor';
-import TextEditor from '../../containers/TextEditor';
+import RichTextEditor, { RichTextEditorWrapperProps } from '../../containers/RichTextEditor';
+import { isHTMLInputEvent } from '../../helpers/types';
 import { InputValue } from '../../hooks/useFormField';
 import { ShapeForm } from '../../hooks/useShapeProps';
 import { FormContext } from '../Form/Form';
@@ -12,14 +12,14 @@ import { FormFieldError, InputMeta } from '../FormField';
 import FormFieldTrailer from '../FormField/FormFieldTrailer';
 import Input, {
   InputAutocomplete ,
-  PropTypes as InputProps,
+  InputProps as InputProps,
   InputType,
 } from '../Input/Input';
 
 const TEXTFIELD_MIN_ROWS = 3;
 const MAX_STR_LEN = 255;
 
-export interface InputPropTypes {
+export interface InputElementProps {
   autoComplete?: InputAutocomplete;
   autofocus: boolean;
   description?: string;
@@ -32,7 +32,7 @@ export interface InputPropTypes {
   label?: string | React.ReactNode;
   meta: InputMeta;
   name: string;
-  onChange: (props: any) => void;
+  onChange: (v: unknown) => void;
   path: SomeNode;
   placeholder?: string;
   required?: boolean;
@@ -41,7 +41,11 @@ export interface InputPropTypes {
   type?: InputType;
 }
 
-const InputElement = (props: InputPropTypes): JSX.Element => {
+type CombinedInputProps = InputProps
+  & Partial<RichTextEditorWrapperProps>
+  & Partial<Omit<Textarea.Props, keyof InputProps>>;
+
+const InputElement = (props: InputElementProps): JSX.Element => {
   const {
     autoComplete,
     autofocus,
@@ -73,14 +77,14 @@ const InputElement = (props: InputPropTypes): JSX.Element => {
     'Field__input--active': active,
   });
 
-  const sharedProps: InputProps & Partial<PlainEditorProps> & Partial<Omit<Textarea.Props, keyof InputProps>> = {
+  const sharedProps: CombinedInputProps = {
     'autoFocus': autofocus,
     'data-testid': name,
-    'id': name,
+    id: name,
     name,
-    'onChange': (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange: (e: React.ChangeEvent<HTMLInputElement | string>) => {
       let val;
-      if (e && Object.prototype.hasOwnProperty.call(e, 'target')) {
+      if (isHTMLInputEvent(e)) {
         val = type === 'checkbox' ? e.target.checked : e.target.value;
       } else {
         val = e === null ? '' : e;
@@ -88,7 +92,7 @@ const InputElement = (props: InputPropTypes): JSX.Element => {
       onChange(val);
     },
     required,
-    'value': inputValue?.value,
+    value: inputValue?.value,
   };
 
   const minRows = maxLength && maxLength > MAX_STR_LEN ? TEXTFIELD_MIN_ROWS : undefined;
@@ -102,7 +106,7 @@ const InputElement = (props: InputPropTypes): JSX.Element => {
     sharedProps.maxRows = 50;
     break;
   case 'markdown':
-    element = TextEditor;
+    element = RichTextEditor;
     sharedProps.id = storeKey;
     sharedProps.rows = minRows;
     break;
