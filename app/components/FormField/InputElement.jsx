@@ -13,7 +13,7 @@ import Textarea from 'react-autosize-textarea';
 
 import DatePicker from '../../containers/DatePicker';
 import DateTimePicker from '../../containers/DateTimePicker';
-import TextEditor from '../../containers/TextEditor';
+import RichTextEditor from '../../containers/RichTextEditor';
 import form from '../../ontology/form';
 import RadioGroup from '../../topologies/RadioGroup';
 import CheckboxesInput from '../CheckboxesInput';
@@ -277,7 +277,7 @@ const InputElement = ({
       sharedProps.maxRows = 50;
       break;
     case 'markdown':
-      element = TextEditor;
+      element = RichTextEditor;
       sharedProps.id = storeKey;
       sharedProps.rows = minRows;
       break;
