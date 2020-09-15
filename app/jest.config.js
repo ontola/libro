@@ -28,7 +28,7 @@ module.exports = {
     '<rootDir>/../tests/testhelper.js',
     '@testing-library/jest-dom/extend-expect',
   ],
-  testEnvironment: 'jest-environment-jsdom-fifteen',
+  testEnvironment: 'jest-environment-jsdom-sixteen',
   testPathIgnorePatterns: [
     'app/__tests__/test-utils.jsx',
     'app/__tests__/link-redux/fixtures.js',

@@ -24,7 +24,7 @@ module.exports = {
   setupFilesAfterEnv: [
     '<rootDir>/../tests/testhelper.js',
   ],
-  testEnvironment: 'jest-environment-jsdom-fifteen',
+  testEnvironment: 'jest-environment-jsdom-sixteen',
   testURL: 'https://argu.dev/o/1',
   transform: {
     '^.+\\.m?(j|t)sx?$': 'babel-jest',
