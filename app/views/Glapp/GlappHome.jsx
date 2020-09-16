@@ -56,8 +56,11 @@ const GlappHome = () => {
     <React.Fragment>
       <div className={matches ? classes.wrapperFull : classes.wrapperSmall}>
         <Card>
-          <CardContent endSpacing>
+          <CardContent>
             <h2>{emoji(`Hoi ${name?.value || 'daar'}! 👋`)}</h2>
+          </CardContent>
+          <CardContent endSpacing>
+            <div>Welkom bij onze campagne! Vul hier de postcode in waar jij aan de slag gaat.</div>
             <SearchPostalForm />
           </CardContent>
         </Card>

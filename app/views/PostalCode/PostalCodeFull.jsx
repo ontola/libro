@@ -43,6 +43,11 @@ const PostalCodeFull = ({ subject }) => {
         <CardMain>
           <CardContent noSpacing>
             <Property label={schema.name} />
+            <p>
+              In deze fase van de campagne zijn we in heel Nederland brieven aan het bezorgen.
+              Kijk hieronder welke straten de meeste potentie hebben voor ons
+              en geef het aan als je een straat hebt gedaan!
+            </p>
             <AttributeList fullLabel>
               <AttributeListItem label={teamGL.totalFlyers} />
               <AttributeListItem label={teamGL.flyerVolunteers} />
