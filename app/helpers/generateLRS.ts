@@ -25,6 +25,7 @@ import teamGL from '../ontology/teamGL';
 import arguDeltaProcessor from './arguDeltaProcessor';
 import { getMetaContent } from './arguHelpers';
 
+import ll from '../ontology/ll';
 import { handle } from './logging';
 import ServiceWorkerCommunicator from './ServiceWorkerCommunicator';
 import transformers from './transformers';
@@ -310,6 +311,7 @@ export default function generateLRS() {
 
   const ontologyData = [
     ...appOntology,
+    rdf.quad(ll.loadingResource, rdfx.type, ll.LoadingResource),
   ];
 
   lrs.store.addQuads(ontologyData);

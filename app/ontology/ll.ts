@@ -16,6 +16,7 @@ export default {
   blob: ll('blob'),
   dataSubject: ll('dataSubject'),
   errorResponse: ll('errorResponse'),
+  loadingResource: ll('loadingResource'),
   meta: ll('meta'),
   /** @deprecated use {ld.purge} instead */
   purge: ll('purge'),
