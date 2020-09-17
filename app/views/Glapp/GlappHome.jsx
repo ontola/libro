@@ -20,6 +20,9 @@ const useStyles = makeStyles(() => ({
     '& .Card': {
       boxShadow: '0 2px 5px rgba(0, 0, 0, 0.5)',
     },
+    '& p': {
+      marginBottom: 0,
+    },
     left: '5vw',
     paddingRight: '5vw',
     position: 'absolute',
@@ -27,13 +30,18 @@ const useStyles = makeStyles(() => ({
     zIndex: 1000,
   },
   wrapperSmall: {
-    left: 0,
-    margin: 'auto',
+    '& > .Card': {
+      '& p': {
+        marginBottom: 0,
+      },
+      boxShadow: '0 2px 5px rgba(0, 0, 0, 0.5)',
+      margin: 0,
+    },
+    left: '1em',
     maxWidth: '100%',
     position: 'absolute',
-    right: 0,
-    top: '5vw',
-    width: '25em',
+    right: '1em',
+    top: '1em',
     zIndex: 1000,
   },
 }));
