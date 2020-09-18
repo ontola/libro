@@ -12,7 +12,8 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Detail from '../../../components/Detail';
-import LDLink from '../../../components/LDLink';
+import { retrievePath } from '../../../helpers/iris';
+import { isResource } from '../../../helpers/types';
 import libro from '../../../ontology/libro';
 import ontola from '../../../ontology/ontola';
 import { contentDetailsTopology } from '../../../topologies/ContentDetails';
@@ -24,7 +25,8 @@ const propTypes = {
 };
 
 const LocationDetail = ({ lrs, linkedProp }) => {
-  const placement = lrs.dig(linkedProp, [ontola.pages, as.items, rdfx.ns('_1')]).pop();
+  const nestedPlacement = lrs.dig(linkedProp, [ontola.pages, as.items, rdfx.ns('_1')]).pop();
+  const placement = nestedPlacement || (isResource(linkedProp) && linkedProp);
 
   if (!placement) {
     return (
@@ -36,23 +38,20 @@ const LocationDetail = ({ lrs, linkedProp }) => {
   }
 
   return (
-    <LDLink
-      to={placement.value}
+    <Detail
+      icon="map-marker"
+      text={(
+        <FormattedMessage
+          defaultMessage="View location"
+          id="https://app.argu.co/i18n/schema:Thing/schema:location/detailLabel"
+        />
+      )}
+      url={retrievePath(placement.value)}
       onClick={(e) => {
         e.preventDefault();
         lrs.exec(rdf.namedNode(`${libro.actions.dialog.alert.value}?resource=${encodeURIComponent(placement.value)}`));
       }}
-    >
-      <Detail
-        icon="map-marker"
-        text={(
-          <FormattedMessage
-            defaultMessage="View location"
-            id="https://app.argu.co/i18n/schema:Thing/schema:location/detailLabel"
-          />
-        )}
-      />
-    </LDLink>
+    />
   );
 };
 
