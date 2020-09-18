@@ -38,6 +38,7 @@ import { selectTopology } from '../../../topologies/Select';
 import { tableRowTopology } from '../../../topologies/TableRow';
 import { gridTopology } from '../../../topologies/Grid';
 import { footerTopology } from '../../../topologies/Footer';
+import { cardWideTopology } from '../../../topologies/Card/CardWide';
 
 const NamePredicates = [
   schema.name,
@@ -112,7 +113,7 @@ export default [
     () => <ConnectedHeading data-test="Thing-name-card-main" size="1" variant="semantic" />,
     schema.Thing,
     NamePredicates,
-    cardMainTopology
+    [cardMainTopology, cardWideTopology]
   ),
   LinkedRenderStore.registerRenderer(
     ({ linkedProp }) => <span data-test="Thing-name-header">{linkedProp.value}</span>,

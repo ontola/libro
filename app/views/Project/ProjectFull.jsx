@@ -17,13 +17,12 @@ import dbo from '../../ontology/dbo';
 import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
 import wdt from '../../ontology/wdt';
-import { CardDivider } from '../../topologies/Card';
-import CardMain from '../../topologies/Card/CardMain';
 import CardRow from '../../topologies/Card/CardRow';
 import Container from '../../topologies/Container';
 import DetailsBar from '../../topologies/DetailsBar';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import Grid from '../../topologies/Grid';
+import CardWide from '../../topologies/Card/CardWide';
 
 const ProjectFull = ({
   currentPhase,
@@ -34,12 +33,14 @@ const ProjectFull = ({
 
   return (
     <React.Fragment>
-      <Container>
-        {renderPartOf && <Property label={schema.isPartOf} />}
-        <Property label={argu.trashedAt} />
-        <Property label={ontola.publishAction} onLoad={() => null} />
-        <CardMain>
+      <CardWide>
+        <Property label={ontola.coverPhoto} onLoad={() => null} />
+        <Container>
+          {renderPartOf && <Property label={schema.isPartOf} />}
+          <Property label={argu.trashedAt} />
+          <Property label={ontola.publishAction} onLoad={() => null} />
           <DetailsBar
+            cardWide
             right={(
               <React.Fragment>
                 <Property label={ontola.followMenu} />
@@ -68,13 +69,11 @@ const ProjectFull = ({
             <Property label={meeting.attachment} onLoad={() => null} />
           </CardRow>
           <Property label={argu.voteableVoteEvent} onLoad={() => null} />
-          <CardRow backdrop>
-            <Property forceRender label={argu.phases} selectedPhase={renderPhase} />
-            <CardDivider />
-            {renderPhase && <Resource subject={renderPhase} />}
-          </CardRow>
-        </CardMain>
-      </Container>
+          <Property forceRender label={argu.phases} selectedPhase={renderPhase} />
+          {renderPhase && <Resource subject={renderPhase} />}
+        </Container>
+      </CardWide>
+
       {renderPhase && (
         <Resource subject={renderPhase}>
           <Container disableGutters size="large">

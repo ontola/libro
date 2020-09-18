@@ -32,6 +32,12 @@
   .VerticalScroller__scroll {
     padding-left: unit('x-small');
   }
+
+  &--card-wide {
+    background: none;
+    border: none;
+    margin: auto;
+  }
 }
 
 .DetailsBar__hider {

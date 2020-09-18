@@ -18,6 +18,7 @@ import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
 import { tryParseInt } from '../../../helpers/numbers';
 import { cardMainTopology } from '../../../topologies/Card/CardMain';
 import { pageTopology } from '../../../topologies/Page';
+import { cardWideTopology } from '../../../topologies/Card/CardWide';
 
 const registerCoverPhoto = (prop, topology) => {
   const CoverPhotoOrLoading = ({
@@ -63,10 +64,13 @@ const registerCoverPhoto = (prop, topology) => {
 };
 
 export default [
-  registerCoverPhoto(ontola.imgUrl1500x2000, [pageTopology]),
+  registerCoverPhoto(ontola.imgUrl1500x2000, [
+    pageTopology,
+  ]),
   registerCoverPhoto(ontola.imgUrl568x400, [
     cardTopology,
     cardFixedTopology,
     cardMainTopology,
+    cardWideTopology,
   ]),
 ];

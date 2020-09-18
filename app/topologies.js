@@ -11,6 +11,7 @@ import { cardListTopology } from './topologies/Card/CardList';
 import { cardMainTopology } from './topologies/Card/CardMain';
 import { cardMicroRowTopology } from './topologies/Card/CardMicroRow';
 import { cardRowTopology } from './topologies/Card/CardRow';
+import { cardWideTopology } from './topologies/Card/CardWide';
 import { containerTopology } from './topologies/Container/index';
 import { containerFloatTopology } from './topologies/Container/ContainerFloat';
 import { contentDetailsTopology } from './topologies/ContentDetails/index';
@@ -59,6 +60,7 @@ export const allTopologies = [
   cardMainTopology,
   cardMicroRowTopology,
   cardRowTopology,
+  cardWideTopology,
   containerTopology,
   containerFloatTopology,
   contentDetailsTopology,

@@ -2,9 +2,6 @@ options:
   formatter: stylish
 files:
   include: '**/*.scss'
-  ignore:
-    - './app/components/shared/reset.scss'
-    - './app/components/shared/searchkit.scss'
 rules:
   # Extends
   extends-before-mixins: 2

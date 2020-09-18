@@ -17,6 +17,7 @@ class DetailsBar extends TopologyProvider {
   }
 
   static defaultProps = {
+    cardWide: false,
     scrollable: true,
   };
 
@@ -24,7 +25,7 @@ class DetailsBar extends TopologyProvider {
     const IconWrapper = this.props.scrollable ? VerticalScroller : React.Fragment;
 
     return this.wrap((
-      <div className={`DetailsBar theme ${this.props.className || ''}`}>
+      <div className={`DetailsBar theme ${this.props.className || ''} ${this.props.cardWide ? 'DetailsBar--card-wide' : ''}`}>
         <IconWrapper>
           {this.props.children}
         </IconWrapper>
