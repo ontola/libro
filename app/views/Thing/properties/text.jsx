@@ -10,7 +10,7 @@ import React from 'react';
 
 import CollapseText from '../../../components/CollapseText';
 import Markdown from '../../../components/Markdown';
-import { stripMarkdown } from '../../../helpers/markdownHelper';
+import { useStrippedMarkdown } from '../../../helpers/markdownHelper';
 import { cardTopology } from '../../../topologies/Card';
 import { cardListTopology } from '../../../topologies/Card/CardList';
 import { cardMainTopology } from '../../../topologies/Card/CardMain';
@@ -36,7 +36,7 @@ const propTypesCollection = {
 };
 
 const TextStripped = ({ linkedProp }) => (
-  <span>{stripMarkdown(linkedProp.value)}</span>
+  <span>{useStrippedMarkdown(linkedProp.value)}</span>
 );
 
 TextStripped.propTypes = propTypes;
