@@ -18,6 +18,7 @@ class ThingPopup extends React.PureComponent {
         <Property label={ontola.coverPhoto} />
         <CardContent noSpacing>
           <Property label={schema.name} />
+          <Property label={schema.text} />
         </CardContent>
       </CardFixed>
     );
