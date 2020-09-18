@@ -1,3 +1,4 @@
+import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
 import {
   Property,
@@ -5,7 +6,7 @@ import {
   register,
 } from 'link-redux';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 
 import LDLink from '../../components/LDLink';
 import { allTopologiesExcept } from '../../topologies';
@@ -23,57 +24,68 @@ import { pageTopology } from '../../topologies/Page';
 import { tabPaneTopology } from '../../topologies/TabPane';
 import { tableCellTopology } from '../../topologies/TableCell';
 import { tableRowTopology } from '../../topologies/TableRow';
+import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
-const propTypes = {
-};
+const CreateActionButton = ({
+  actionStatus,
+  children,
+  error,
+  name,
+}) => {
+  if (children) {
+    return children;
+  }
 
-class CreateActionButton extends Component {
-  static type = schema.CreateAction;
-
-  static topology = allTopologiesExcept(
-    undefined,
-    actionsBarTopology,
-    alertDialogTopology,
-    cardListTopology,
-    cardFloatTopology,
-    cardMainTopology,
-    cardRowTopology,
-    containerFloatTopology,
-    gridTopology,
-    menuTopology,
-    fullResourceTopology,
-    pageTopology,
-    tabPaneTopology,
-    tableCellTopology,
-    tableRowTopology
-  );
-
-  static mapDataToProps = {
-    name: schema.name,
-  };
-
-  static propTypes = {
-    actionStatus: linkType,
-    children: PropTypes.element,
-    name: linkType,
-  };
-
-  render() {
-    if (this.props.children) {
-      return this.props.children;
-    }
-
+  if (error || invalidStatusIds.includes(rdf.id(actionStatus))) {
     return (
-      <LDLink
-        disabled={!!this.props.actionStatus}
-        title={this.props.name?.value}
+      <button
+        disabled
+        title={error?.value}
       >
-        <Property label={schema.name} />
-      </LDLink>
+        {name?.value}
+      </button>
     );
   }
-}
 
-CreateActionButton.propTypes = propTypes;
+  return (
+    <LDLink title={name?.value}>
+      <Property label={schema.name} />
+    </LDLink>
+  );
+};
+
+CreateActionButton.type = schema.CreateAction;
+CreateActionButton.type = schema.CreateAction;
+
+CreateActionButton.topology = allTopologiesExcept(
+  undefined,
+  actionsBarTopology,
+  alertDialogTopology,
+  cardListTopology,
+  cardFloatTopology,
+  cardMainTopology,
+  cardRowTopology,
+  containerFloatTopology,
+  gridTopology,
+  menuTopology,
+  fullResourceTopology,
+  pageTopology,
+  tabPaneTopology,
+  tableCellTopology,
+  tableRowTopology
+);
+
+CreateActionButton.mapDataToProps = {
+  actionStatus: schema.actionStatus,
+  error: schema.error,
+  name: schema.name,
+};
+
+CreateActionButton.propTypes = {
+  actionStatus: linkType,
+  children: PropTypes.element,
+  error: linkType,
+  name: linkType,
+};
 
 export default register(CreateActionButton);
