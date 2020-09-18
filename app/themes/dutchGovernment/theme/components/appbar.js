@@ -6,6 +6,8 @@ export default (theme) => {
     ...customAppBar.MuiAppBar.root,
     '& .MuiButton-root': {
       borderRadius: 0,
+      height: '100%',
+      whiteSpace: 'nowrap',
     },
     '& .MuiButton-root.active .MuiButton-label:after': {
       '&::after': {
