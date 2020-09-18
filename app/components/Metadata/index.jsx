@@ -16,7 +16,7 @@ import { Helmet } from 'react-helmet-async';
 import dbo from '../../ontology/dbo';
 import ontola from '../../ontology/ontola';
 import { getMetaContent } from '../../helpers/arguHelpers';
-import { stripMarkdown } from '../../helpers/markdownHelper';
+import { useStrippedMarkdown } from '../../helpers/markdownHelper';
 
 const Metadata = ({
   coverPhoto,
@@ -28,9 +28,8 @@ const Metadata = ({
     typeof coverPhoto === 'string' ? rdf.namedNode(coverPhoto) : coverPhoto,
     ontola.imgUrl1500x2000
   );
+  const strippedText = useStrippedMarkdown(text);
   const appName = getMetaContent('application-name');
-
-  const strippedText = stripMarkdown(text);
 
   return (
     <Helmet>

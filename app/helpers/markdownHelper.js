@@ -30,7 +30,7 @@ const removeMdOpts = {
  * @param {string} text
  * @returns {string}
  */
-export const stripMarkdown = (text) => React.useMemo(() => {
+export const useStrippedMarkdown = (text) => React.useMemo(() => {
   const strippedText = removeMd(text, removeMdOpts);
 
   return strippedText.replace(/[\r\n]/g, ' ');
