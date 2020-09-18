@@ -19,6 +19,7 @@ const Collection = ({
   page,
   pageSize,
   type,
+  onLoad,
   ...otherProps
 }) => {
   const lrs = useLRS();
@@ -30,6 +31,10 @@ const Collection = ({
   }
 
   if (__CLIENT__ && !entityIsLoaded(lrs, baseCollection)) {
+    if (onLoad) {
+      return onLoad();
+    }
+
     return <Resource subject={baseCollection} />;
   }
 
@@ -51,6 +56,7 @@ const Collection = ({
 Collection.propTypes = {
   display: PropTypes.string,
   label: labelType,
+  onLoad: PropTypes.func,
   page: PropTypes.number,
   pageSize: PropTypes.number,
   type: PropTypes.string,

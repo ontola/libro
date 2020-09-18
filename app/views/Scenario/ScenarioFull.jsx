@@ -7,6 +7,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import CardContent from '../../components/Card/CardContent';
+import Collection from '../../components/Collection';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
@@ -54,7 +55,11 @@ const ScenarioFull = ({ renderPartOf }) => (
         </CardAppendix>
       </CardMain>
       <Property label={argu.voteEvents} onLoad={() => null} />
-      <Property label={argu.blogPosts} onLoad={() => null} />
+      <Collection
+        label={argu.blogPosts}
+        pageSize={1}
+        onLoad={() => null}
+      />
       <Property label={schema.location} onLoad={() => null} />
       <Property label={argu.motions} onLoad={() => null} />
     </Container>

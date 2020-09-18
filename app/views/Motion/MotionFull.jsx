@@ -6,6 +6,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import CardContent from '../../components/Card/CardContent';
+import Collection from '../../components/Collection';
 import LinkedDetailDate from '../../components/LinkedDetailDate';
 import app from '../../ontology/app';
 import argu from '../../ontology/argu';
@@ -55,7 +56,11 @@ const MotionFull = ({ renderPartOf }) => (
         </CardAppendix>
       </CardMain>
       <Property label={argu.decision} onLoad={() => null} />
-      <Property label={argu.blogPosts} onLoad={() => null} />
+      <Collection
+        label={argu.blogPosts}
+        pageSize={1}
+        onLoad={() => null}
+      />
       <Property label={schema.location} onLoad={() => null} />
     </Container>
     <Container size="large">

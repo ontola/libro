@@ -64,7 +64,10 @@ const ThingFull = ({ renderPartOf }) => {
           ]),
         ]),
         p(withoutLoading(argu.voteEvents)),
-        p(withoutLoading(argu.blogPosts)),
+        c(components.Collection, {
+          pageSize: 1,
+          ...withoutLoading(argu.blogPosts),
+        }),
         p(withoutLoading(schema.location)),
         p(withoutLoading(argu.motions)),
       ]),
