@@ -109,7 +109,7 @@ export default [
     footerTopology
   ),
   LinkedRenderStore.registerRenderer(
-    () => <ConnectedHeading data-test="Thing-name-card-main" size="1" variant="semantic" />,
+    ({ size }) => <ConnectedHeading data-test="Thing-name-card-main" size={size || '1'} variant="semantic" />,
     schema.Thing,
     NamePredicates,
     cardMainTopology
