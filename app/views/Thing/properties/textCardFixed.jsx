@@ -3,7 +3,7 @@ import schema from '@ontologies/schema';
 import { linkedPropType, register } from 'link-redux';
 import React from 'react';
 
-import { stripMarkdown } from '../../../helpers/markdownHelper';
+import { useStrippedMarkdown } from '../../../helpers/markdownHelper';
 import ontola from '../../../ontology/ontola';
 import { cardFixedTopology } from '../../../topologies/Card/CardFixed';
 import { hoverBoxTopology } from '../../../topologies/HoverBox';
@@ -35,12 +35,11 @@ const STRING_CUTOFF = 150;
  */
 const TextCutoff = ({ coverPhoto, text }) => {
   const classes = useStyles();
+  const strippedText = useStrippedMarkdown(text?.value);
 
   if (!text || coverPhoto) {
     return null;
   }
-
-  const strippedText = stripMarkdown(text.value);
 
   return (
     <div className={classes.root}>
