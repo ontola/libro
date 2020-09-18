@@ -5,6 +5,7 @@ import {
   useResourceProperty,
 } from 'link-redux';
 import { Feature } from 'ol';
+import { extend } from 'ol/extent';
 import GeoJSON from 'ol/format/GeoJSON';
 import Point from 'ol/geom/Point';
 import { fromLonLat } from 'ol/proj';
@@ -34,6 +35,7 @@ import reducer, { MapReducerKey } from './reducer';
 
 const EVENT_ICONS = ['envelope', 'home', 'comments-o', 'calendar-check-o'].map(fontAwesomeIRI);
 const FULL_POSTAL_LEVEL = 8.6;
+const HALF = 0.5;
 const INITIAL_ZOOM = 7.3;
 const SHADE_COUNT = 10;
 
@@ -126,12 +128,16 @@ const usePostalShapes = ({
   return postalShapes;
 };
 
-const useSelectedPostalCode = (postalShapes, selected) => {
+const useSelectedPostalCode = ({
+  postalShapes,
+  selectedPostalCode,
+  setOverlayPosition,
+}) => {
   const [selectedFeatures, setSelectedFeatures] = React.useState([]);
 
   React.useEffect(() => {
-    if (selected && postalShapes[selected]) {
-      const cloned = postalShapes[selected].map((f) => {
+    if (selectedPostalCode && postalShapes[selectedPostalCode]) {
+      const cloned = postalShapes[selectedPostalCode].map((f) => {
         const clone = f.clone();
         clone.setProperties({
           hoverStyle: () => selectedShapeStyle,
@@ -140,11 +146,18 @@ const useSelectedPostalCode = (postalShapes, selected) => {
 
         return clone;
       });
+      const [minX, minY, maxX] = postalShapes[selectedPostalCode].reduce((acc, next) => {
+        const ext = next.getGeometry().getExtent();
+
+        return acc ? extend(acc, ext) : ext;
+      }, null);
+      const center = [HALF * (minX + maxX), minY];
+      setOverlayPosition(center);
       setSelectedFeatures(cloned);
     } else {
       setSelectedFeatures([]);
     }
-  }, [selected]);
+  }, [selectedPostalCode]);
 
   return selectedFeatures;
 };
@@ -222,7 +235,12 @@ const GlappMap = ({
     priorities: postalStats?.priorities,
     showFull,
   });
-  const selectedFeatures = useSelectedPostalCode(postalShapes, selectedPostalCode);
+  const [overlayPosition, setOverlayPosition] = React.useState(null);
+  const [selectedFeatures] = useSelectedPostalCode({
+    postalShapes,
+    selectedPostalCode,
+    setOverlayPosition,
+  });
   const eventsLayer = useEventsLayer(lrs, postalStats?.events);
   const layers = React.useMemo(() => ([
     { features: Object.values(postalShapes).flat() },
@@ -235,8 +253,9 @@ const GlappMap = ({
       large
       initialZoom={INITIAL_ZOOM}
       layers={layers}
+      overlayPosition={overlayPosition}
       overlayResource={selectedPostalCode ? postalCodeIri(selectedPostalCode) : selectedEvent}
-      onSelect={(feature) => {
+      onSelect={(feature, newCenter) => {
         const { postalDigits } = feature?.getProperties() || {};
         if (postalDigits) {
           setSelectedPostalCode(postalDigits);
@@ -245,6 +264,7 @@ const GlappMap = ({
           setSelectedPostalCode(null);
           const iri = feature?.getId() ? rdf.namedNode(feature.getId()) : null;
           setSelectedEvent(iri);
+          setOverlayPosition(newCenter);
         }
       }}
       onZoom={setZoom}

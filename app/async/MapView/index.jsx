@@ -128,12 +128,20 @@ const MapView = ({
   center,
   navigate,
   onMapClick,
+  onMove,
   onSelect,
   onZoom,
   overlayResource,
   placements,
 }) => {
   const [placementFeatures, resolvedCenter, loading] = useFeatures(placements, center);
+  const [overlayPosition, setOverlayPosition] = React.useState(null);
+  const handleSelect = React.useCallback((feature, newCenter) => {
+    if (onSelect) {
+      onSelect(feature, newCenter);
+    }
+    setOverlayPosition(newCenter);
+  }, [onSelect]);
 
   if (loading) {
     return <LoadingCard />;
@@ -154,9 +162,11 @@ const MapView = ({
         features: placementFeatures,
       }]}
       navigate={navigate}
+      overlayPosition={overlayPosition}
       overlayResource={overlayResource}
       onMapClick={onMapClick}
-      onSelect={onSelect}
+      onMove={onMove}
+      onSelect={handleSelect}
       onZoom={onZoom}
     />
   );
@@ -166,6 +176,7 @@ MapView.propTypes = {
   center: linkType,
   navigate: PropTypes.func,
   onMapClick: PropTypes.func,
+  onMove: PropTypes.func,
   onSelect: PropTypes.func,
   onZoom: PropTypes.func,
   overlayResource: linkType,

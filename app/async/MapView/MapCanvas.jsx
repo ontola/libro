@@ -26,19 +26,16 @@ const MapCanvas = (props) => {
   const {
     accessTokenError,
     large,
+    overlayPosition,
     overlayResource,
     navigate,
   } = props;
-  const [overlayPosition, setOverlayPosition] = React.useState();
   const {
     deselect,
     error,
     map,
     mapRef,
-  } = useMap({
-    setOverlayPosition,
-    ...props,
-  });
+  } = useMap(props);
   const {
     handleOverlayClick,
     overlayRef,
@@ -110,6 +107,7 @@ MapCanvas.propTypes = {
   accessTokenError: PropTypes.string,
   large: PropTypes.bool,
   navigate: PropTypes.func,
+  overlayPosition: PropTypes.arrayOf(PropTypes.number),
   overlayResource: linkType,
 };
 

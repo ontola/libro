@@ -103,7 +103,6 @@ const useMap = (props) => {
     initialZoom,
     layers,
     requestAccessToken,
-    setOverlayPosition,
     onMapClick,
     onSelect,
     onZoom,
@@ -147,15 +146,13 @@ const useMap = (props) => {
         zoom: newZoom,
       });
     } else if (selected) {
-      if (onSelect) {
-        onSelect(selected);
-      }
-
       const geometry = selected.getGeometry();
-      if (geometry.getType === 'Point') {
-        setOverlayPosition(geometry.getCoordinates());
-      } else {
-        setOverlayPosition(getCenter(geometry.getExtent()));
+      const selectCenter = (geometry.getType() === 'Point')
+        ? geometry.getCoordinates()
+        : getCenter(geometry.getExtent());
+
+      if (onSelect) {
+        onSelect(selected, selectCenter);
       }
     } else if (onSelect) {
       onSelect(null);
