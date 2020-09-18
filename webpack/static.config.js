@@ -218,11 +218,13 @@ if (process.env.TEST_BUILD) {
   ];
 } else {
   module.exports = [
-    merge(common, createConfig({
-      buildName: `min-${bundles.module}`,
-      bundle: bundles.module,
-      hostname: process.env.FRONTEND_HOSTNAME || 'argu.co',
-    })),
+    process.env.RAILS_ENV === 'staging' && (
+      merge(common, createConfig({
+        buildName: `localdev-${bundles.module}`,
+        bundle: bundles.module,
+        hostname: 'app.argu.localdev',
+      }))
+    ),
     merge(common, createConfig({
       buildName: `min-${bundles.legacy}`,
       bundle: bundles.legacy,
@@ -238,14 +240,10 @@ if (process.env.TEST_BUILD) {
       bundle: bundles.legacy,
       hostname: 'app.argu.localtest',
     })),
-  ];
-  if (process.env.RAILS_ENV === 'staging') {
-    module.exports.push(
-      merge(common, createConfig({
-        buildName: `localdev-${bundles.module}`,
-        bundle: bundles.module,
-        hostname: 'app.argu.localdev',
-      }))
-    );
-  }
+    merge(common, createConfig({
+      buildName: `min-${bundles.module}`,
+      bundle: bundles.module,
+      hostname: process.env.FRONTEND_HOSTNAME || 'argu.co',
+    })),
+  ].filter(Boolean);
 }
