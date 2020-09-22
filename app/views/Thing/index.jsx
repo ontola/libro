@@ -15,6 +15,7 @@ import hoverBox from '../../topologies/HoverBox';
 import ApplyLink from './properties/applyLink';
 import ArguLocation from './properties/arguLocation';
 import Arguments from './properties/arguments';
+import ContentUrl from './properties/contentUrl';
 import CoverPhoto from './properties/coverPhoto';
 import CreateAction from './properties/createAction';
 import Creator from './properties/creator';
@@ -116,6 +117,7 @@ export default [
   ApplyLink,
   ...Arguments,
   ArguLocation,
+  ContentUrl,
   ...CoverPhoto,
   CreateAction,
   Creator,

@@ -23,7 +23,7 @@ import DetailsBar from '../../topologies/DetailsBar';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import { defaultMenus } from '../common';
 
-const DexesInviteFull = ({ email, renderPartOf }) => {
+const DexesInviteFull = ({ assigner, renderPartOf }) => {
   const [offer] = useProperty(dexes.offer);
   const [file] = useResourceProperty(offer, dexes.file);
   useDataFetching([file]);
@@ -43,7 +43,7 @@ const DexesInviteFull = ({ email, renderPartOf }) => {
           </DetailsBar>
           <CardContent endSpacing>
             <p>
-              <strong>{email?.value}</strong> wil
+              <strong>{assigner?.value}</strong> wil
               het bestand <strong>{fileName?.value}</strong> met je delen.
             </p>
             <Property label={dexes.offer}>
@@ -66,11 +66,11 @@ DexesInviteFull.type = dexes.Invite;
 DexesInviteFull.topology = fullResourceTopology;
 
 DexesInviteFull.mapDataToProps = {
-  email: schema.email,
+  assigner: dexes.assigner,
 };
 
 DexesInviteFull.propTypes = {
-  email: linkType,
+  assigner: linkType,
   renderPartOf: PropTypes.bool,
 };
 

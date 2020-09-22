@@ -50,6 +50,7 @@ const PROPS_WHITELIST = [
   schema.location,
   argu.attachments,
   argu.isOpinion,
+  ontola.coverPhoto,
 ].map((t) => rdf.id(t));
 
 const convertFieldContext = (parentIRI, actionIRI) => {
