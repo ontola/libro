@@ -1,9 +1,16 @@
 import { Looks3, LooksOne, LooksTwo } from '@material-ui/icons';
-import { ELEMENT_H1, ELEMENT_H2, ELEMENT_H3, HeadingPlugin as HeadingPluginBase, HeadingPluginOptions } from '@udecode/slate-plugins';
+import {
+  ELEMENT_H1,
+  ELEMENT_H2,
+  ELEMENT_H3,
+  HeadingPlugin as HeadingPluginBase,
+  HeadingPluginOptions,
+} from '@udecode/slate-plugins';
 import React from 'react';
+
 import { Command, Commands } from '../../commands/types';
 import { getButtonElement } from '../../utils/getButtonElement';
-import { getToggleType } from '../../utils/getToggleType';
+import { toggleType } from '../../utils/toggleType';
 import { CommandPlugin } from '../types';
 
 export interface HeadingCommands extends Commands {
@@ -25,15 +32,15 @@ export const HeadingPlugin = (options?: HeadingPluginOptions): HeadingCommandPlu
     ...HeadingPluginBase(options),
     commands: {
       formatHeading1: {
-        apply: getToggleType(typeH1),
+        apply: toggleType(typeH1),
         button: getButtonElement(typeH1, <LooksOne />),
       },
       formatHeading2: {
-        apply: getToggleType(typeH2),
+        apply: toggleType(typeH2),
         button: getButtonElement(typeH2, <LooksTwo />),
       },
       formatHeading3: {
-        apply: getToggleType(typeH3),
+        apply: toggleType(typeH3),
         button: getButtonElement(typeH3, <Looks3 />),
       },
     },

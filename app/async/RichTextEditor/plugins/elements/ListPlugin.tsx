@@ -3,18 +3,16 @@ import {
   DEFAULTS_LIST,
   ELEMENT_OL,
   ELEMENT_UL,
-  ListOnKeyDownOptions,
-  ListPlugin as
-  ListPluginBase,
+  ListPlugin as ListPluginBase,
   ListPluginOptions,
 } from '@udecode/slate-plugins';
-import isHotkey from 'is-hotkey';
 import React from 'react';
 import { Editor } from 'slate';
+
 import { Command, Commands } from '../../commands/types';
 import { withListItems } from '../../transforms/withListItems';
 import { getButtonList } from '../../utils/getButtonList';
-import { getToggleList } from '../../utils/getToggleList';
+import { toggleList } from '../../utils/toggleList';
 import { CommandPlugin } from '../types';
 
 export interface ListCommands extends Commands {
@@ -26,31 +24,22 @@ export interface ListCommandPlugin extends CommandPlugin {
   commands?: ListCommands;
 }
 
-// TODO: custom hotkeys
-const onKeyDownList = (options?: ListOnKeyDownOptions) => (e: KeyboardEvent, editor: Editor) => {
-  if (isHotkey('mod+1', e)) {
-    getToggleList('ol', options)(editor);
-  }
-  const onKeyDown = ListPluginBase(options).onKeyDown;
-  if (onKeyDown) {
-    onKeyDown(e, editor);
-  }
-};
+export const ListPlugin = (options: ListPluginOptions = DEFAULTS_LIST): ListCommandPlugin => {
+  const typeOL = options.ol?.type || ELEMENT_OL;
+  const typeUL = options.ul?.type || ELEMENT_UL;
 
-export const ListPlugin = (options?: ListPluginOptions): ListCommandPlugin => {
   return {
-    ...ListPluginBase(DEFAULTS_LIST),
+    ...ListPluginBase(options),
     commands: {
       formatListOrdered: {
-        apply: getToggleList(ELEMENT_OL, DEFAULTS_LIST),
-        button: getButtonList(DEFAULTS_LIST.ol.type, DEFAULTS_LIST, <FormatListNumbered />),
+        apply: toggleList(typeOL, options),
+        button: getButtonList(typeOL, options, <FormatListNumbered />),
       },
       formatListUnordered: {
-        apply: getToggleList(ELEMENT_UL, DEFAULTS_LIST),
-        button: getButtonList(DEFAULTS_LIST.ul.type, DEFAULTS_LIST, <FormatListBulleted />),
+        apply: toggleList(typeUL, options),
+        button: getButtonList(typeUL, options, <FormatListBulleted />),
       },
     },
     extendEditor: withListItems as <T extends Editor>(editor: T) => T,
-    onKeyDown: onKeyDownList(options),
   };
 };

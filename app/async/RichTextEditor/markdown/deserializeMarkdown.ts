@@ -6,9 +6,7 @@ import { CommandPlugins } from '../plugins';
 import { toPluginsArray } from '../plugins/toPluginsArray';
 
 const renderer = new Renderer();
-renderer.paragraph = (text: string) => (
-  '<p>' + text.replace(/(\n|\s)+/g, ' ') + '</p>\n'
-);
+renderer.paragraph = (text: string) => `<p>${text.replace(/(\n|\s)+/g, ' ')}</p>\n`;
 marked.use({ renderer });
 
 // Taken from marked/helpers.js
@@ -31,25 +29,27 @@ const edit = (regex: RegExp, opt?: string) => {
 };
 
 export const deserializeMarkdown = (plugins: CommandPlugins) => (markdown: string): Node[] => {
-  // 1. Using remark-slate:
-  // return parseMD(deserializeMarkdownOptions)(markdown);
-
-  // 2. By way of HTML:
   if (!markdown || !markdown.trim()) {
     return [{ children: [{ text: '' }], type: 'p' }];
   }
 
-  // Instead of using:
-  //   const html = marked(markdown);
-  // adapt some rules:
+  /**
+   * Instead of using:
+   *   const html = marked(markdown);
+   * adapt some rules:
+   */
   const lexer: any = new marked.Lexer();
 
-  // Allow headings without space after hashtags
-  // Original regex:                    /^ {0,3}(#{1,6}) +([^\n]*?)(?: +#+)? *(?:\n+|$)/);
+  /**
+   * Allow headings without space after hashtags
+   * Original regex:                    /^ {0,3}(#{1,6}) +([^\n]*?)(?: +#+)? *(?:\n+|$)/);
+   */
   lexer.tokenizer.rules.block.heading = /^ {0,3}(#{1,6}) *([^\n]*?)(?: +#+)? *(?:\n+|$)/;
 
-  // Allow one space character after closing square bracket: [] ()
-  // Original regex:                    /^!?\[(label)\]\(\s*(href)(?:\s+(title))?\s*\)/
+  /**
+   * Allow one space character after closing square bracket: [] ()
+   * Original regex:                    /^!?\[(label)\]\(\s*(href)(?:\s+(title))?\s*\)/
+   */
   lexer.tokenizer.rules.inline.link = /^!?\[(label)\] ?\(\s*(href)(?:\s+(title))?\s*\)/;
   lexer.tokenizer.rules.inline.link = edit(lexer.tokenizer.rules.inline.link)
     .replace('label', lexer.tokenizer.rules.inline._label)

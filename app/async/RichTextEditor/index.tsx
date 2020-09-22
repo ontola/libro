@@ -1,46 +1,47 @@
-import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 
 import RichTextEditorMd from './components/RichTextEditorMd';
 import { defaultPlugins } from './plugins';
-import './RichTextEditor.scss';
 
-const propTypes = {
-  onChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.string,
-  value: PropTypes.string,
-};
+const useStyles = makeStyles((theme: any) => ({
+  editor: {
+    padding: '8px 11px',
+  },
+  wrapper: {
+    backgroundColor: theme?.palette?.grey?.xxLight,
+    border: `1px solid ${theme?.palette?.grey?.xLight}`,
+    borderRadius: '5px',
+    flex: 1,
+    minHeight: '150px',
+    position: 'relative',
+  },
+}));
 
-/**
- * Text editor component that outputs markdown. On compatible devices (currently
- * all non mobile devices), a rich text editor is shown. If the rich text editor is used,
- * the output value is not updated on every change, but after 300ms after editing the text
- * to improve performance.
- */
-interface RichTextEditorProps {
-  onChange: (markdown: string) => {};
+interface RichTextEditorWrapperProps {
+  onChange: (markdown: string) => void;
   placeholder: string;
   value: string;
 }
 
-const RichTextEditor = ({
+const RichTextEditorWrapper = ({
+  onChange,
   placeholder,
   value,
-  onChange,
-}: RichTextEditorProps) => (
-  <div className="RichTextEditor">
-    <RichTextEditorMd
-      placeholder={placeholder}
-      plugins={defaultPlugins}
-      style={{
-        padding: '8px 11px',
-      }}
-      value={value}
-      onAutoSave={(_, markdown) => onChange(markdown)}
-    />
-  </div>
-);
+}: RichTextEditorWrapperProps) => {
+  const classes = useStyles();
 
-RichTextEditor.propTypes = propTypes;
+  return (
+    <div className={classes.wrapper}>
+      <RichTextEditorMd
+        className={classes.editor}
+        placeholder={placeholder}
+        plugins={defaultPlugins}
+        value={value}
+        onAutoSave={(_, markdown) => onChange(markdown)}
+      />
+    </div>
+  );
+};
 
-export default RichTextEditor;
+export default RichTextEditorWrapper;
