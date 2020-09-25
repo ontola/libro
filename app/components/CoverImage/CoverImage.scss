@@ -27,6 +27,10 @@
       flex: 1;
       height: auto;
     }
+
+    .CardWide & {
+      position: relative;
+    }
   }
 
   &__child {
@@ -34,10 +38,12 @@
     filter: blur(15px);
     height: 100%;
     opacity: .3;
+    padding-top: unit('medium');
     transform: scale(1.2);
     width: 100%;
 
-    .Card & {
+    .Card &,
+    .CardWide & {
       filter: none;
       opacity: 1;
       transform: none;

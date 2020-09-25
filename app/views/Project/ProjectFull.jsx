@@ -34,11 +34,12 @@ const ProjectFull = ({
   return (
     <React.Fragment>
       <CardWide>
-        <Property label={ontola.coverPhoto} onLoad={() => null} />
+        <Property label={ontola.coverPhoto} onLoad={() => null}>
+          <Container>
+            {renderPartOf && <Property label={schema.isPartOf} />}
+          </Container>
+        </Property>
         <Container>
-          {renderPartOf && <Property label={schema.isPartOf} />}
-          <Property label={argu.trashedAt} />
-          <Property label={ontola.publishAction} onLoad={() => null} />
           <DetailsBar
             cardWide
             right={(
@@ -61,6 +62,8 @@ const ProjectFull = ({
           </DetailsBar>
           <CardContent noSpacing>
             <Property label={[schema.name, rdfs.label]} />
+            <Property label={argu.trashedAt} />
+            <Property label={ontola.publishAction} onLoad={() => null} />
             <Property label={[dbo.thumbnail, wdt.ns('P18')]} />
             <Property label={[schema.text, schema.description, dbo.abstract]} />
           </CardContent>

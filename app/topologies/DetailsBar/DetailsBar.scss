@@ -31,6 +31,10 @@
 
   .VerticalScroller__scroll {
     padding-left: unit('x-small');
+
+    .CardWide & {
+      background: none;
+    }
   }
 
   &--card-wide {

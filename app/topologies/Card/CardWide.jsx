@@ -23,13 +23,14 @@ class CardWide extends Topology {
   }
 
   getClassName() {
-    return this.props.classes.root;
+    return `${this.props.classes.root} CardWide`;
   }
 }
 
 const styles = (theme) => ({
   root: {
     background: theme.palette.background.paper,
+    marginTop: '-1rem',
   },
 });
 

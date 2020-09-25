@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './CoverImage.scss';
 
 const propTypes = {
+  children: PropTypes.node,
   positionY: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
@@ -16,6 +17,7 @@ const propTypes = {
  * @returns {component} Component
  */
 const CoverImage = ({
+  children,
   url,
   positionY,
 }) => (
@@ -27,7 +29,9 @@ const CoverImage = ({
         backgroundImage: `url(${url})`,
         backgroundPositionY: positionY ? `${positionY}%` : undefined,
       }}
-    />
+    >
+      {children}
+    </div>
   </div>
 );
 

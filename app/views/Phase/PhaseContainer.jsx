@@ -2,28 +2,27 @@ import schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
-import CardContent from '../../components/Card/CardContent';
 import HeaderWithMenu from '../../components/HeaderWithMenu';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
-import Card from '../../topologies/Card';
 import { containerTopology } from '../../topologies/Container';
 import ContentDetails from '../../topologies/ContentDetails';
+import { CardContent } from '../../topologies/Card';
 
 const PhaseContainer = () => (
-  <Card>
+  <React.Fragment>
+    {/* <HeaderWithMenu
+      menu={<Property label={ontola.actionsMenu} />}
+    > */}
+    {/* <Property label={schema.name} /> */}
+    <ContentDetails>
+      <Property label={argu.time} />
+    </ContentDetails>
     <CardContent>
-      <HeaderWithMenu
-        menu={<Property label={ontola.actionsMenu} />}
-      >
-        <Property label={schema.name} />
-      </HeaderWithMenu>
-      <ContentDetails>
-        <Property label={argu.time} />
-      </ContentDetails>
       <Property label={schema.text} />
     </CardContent>
-  </Card>
+    {/* </HeaderWithMenu> */}
+  </React.Fragment>
 );
 
 PhaseContainer.type = argu.Phase;

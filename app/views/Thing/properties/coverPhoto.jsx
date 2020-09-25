@@ -8,6 +8,7 @@ import {
   useLRS,
   useResourceProperty,
 } from 'link-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import CoverImage from '../../../components/CoverImage';
@@ -23,6 +24,7 @@ import { cardWideTopology } from '../../../topologies/Card/CardWide';
 const registerCoverPhoto = (prop, topology) => {
   const CoverPhotoOrLoading = ({
     linkedProp,
+    ...props
   }) => {
     const lrs = useLRS();
     useDataInvalidation(linkedProp);
@@ -46,7 +48,9 @@ const registerCoverPhoto = (prop, topology) => {
       <CoverImage
         positionY={tryParseInt(imagePositionY)}
         url={url.value}
-      />
+      >
+        {props.children}
+      </CoverImage>
     );
   };
 
@@ -57,6 +61,7 @@ const registerCoverPhoto = (prop, topology) => {
   CoverPhotoOrLoading.topology = topology;
 
   CoverPhotoOrLoading.propTypes = {
+    children: PropTypes.node,
     linkedProp: linkedPropType,
   };
 

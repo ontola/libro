@@ -101,6 +101,10 @@ class Markdown extends React.PureComponent {
       'Markdown--no-spacing': noSpacing,
     });
 
+    if (text === '') {
+      return null;
+    }
+
     return (
       <ReactMarkdown
         escapeHtml

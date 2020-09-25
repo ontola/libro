@@ -30,9 +30,15 @@ const useStyles = makeStyles(() => ({
   PhaseTabBarCurrent: {
     fontWeight: 'bold',
   },
+  smallTab: {
+    minWidth: '22px',
+  },
 }));
 
-const PhaseTabBar = ({ current, subject }) => {
+const PhaseTabBar = ({
+  current,
+  subject,
+}) => {
   const history = useHistory();
   const classes = useStyles();
 
@@ -68,8 +74,10 @@ const Phases = ({
   const lrs = useLRS();
   const [page] = useResourceProperty(linkedProp, ontola.pages);
   const [createAction] = useResourceProperty(linkedProp, ontola.createAction);
+  const [editAction] = useResourceProperty(selectedPhase, ontola.actionsMenu);
   const [itemSequence] = useResourceProperty(page || subject, as.items);
   const items = itemSequence ? containerToArr(lrs, [], itemSequence) : [];
+  const classes = useStyles();
 
   useDataInvalidation([page, linkedProp, ...items]);
 
@@ -83,6 +91,7 @@ const Phases = ({
 
   const newPhaseTab = createAction && (
     <Tab
+      className={classes.smallTab}
       icon={<FontAwesome name="plus" />}
       key={createAction.value}
       value={createAction.value}
@@ -93,23 +102,39 @@ const Phases = ({
     />
   );
 
+  const menuPhaseTab = editAction && (
+    <Tab
+      className={classes.smallTab}
+      icon={<FontAwesome name="ellipsis-v" />}
+      key={editAction.value}
+      value={editAction.value}
+      onClick={(e) => {
+        e.preventDefault();
+        lrs.actions.ontola.showDialog(editAction);
+      }}
+    />
+  );
 
   return (
-    <AppBar color="inherit" elevation={0} position="static">
-      <TabBar value={(selectedPhase || currentPhase)?.value}>
-        {
-          items.map((item) => (
-            <PhaseTabBar
-              current={currentPhase === item}
-              key={item.value}
-              subject={item}
-              value={item.value}
-            />
-          ))
-        }
-        {newPhaseTab}
-      </TabBar>
-    </AppBar>
+    <React.Fragment>
+      <h2>Fase: Fasenaam</h2>
+      <AppBar color="inherit" elevation={0} position="static">
+        <TabBar value={(selectedPhase || currentPhase)?.value}>
+          {
+            items.map((item) => (
+              <PhaseTabBar
+                current={currentPhase === item}
+                key={item.value}
+                subject={item}
+                value={item.value}
+              />
+            ))
+          }
+          {newPhaseTab}
+          {menuPhaseTab}
+        </TabBar>
+      </AppBar>
+    </React.Fragment>
   );
 };
 
