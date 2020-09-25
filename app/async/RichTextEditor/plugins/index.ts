@@ -1,4 +1,3 @@
-export * from './comparePlugins';
 export * from './defaultPlugins';
 export * from './elements';
 export * from './extensions';

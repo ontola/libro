@@ -3,8 +3,8 @@ import React from 'react';
 
 import { CommandButtonProps } from '../commands/types';
 
-export const getButtonList = (type: string, options: ListOptions, icon: JSX.Element) => (
-  { icon: icon2, ...rest }: CommandButtonProps,
+export const getButtonList = (type: string, options: ListOptions, icon: JSX.Element): React.FC<CommandButtonProps> => (
+  { icon: icon2, ...rest },
 ) => (
   <ToolbarList
     {...options}

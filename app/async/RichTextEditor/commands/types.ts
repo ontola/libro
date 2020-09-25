@@ -7,8 +7,9 @@ import { ToolbarButtonProps } from '@udecode/slate-plugins';
  */
 export interface Command {
   apply?: (...args: any) => any;
-  button?: (props: CommandButtonProps) => JSX.Element;
+  button?: React.ComponentType<CommandButtonProps>;
   buttonIndex?: number;
+  key?: string;
 }
 
 export interface Commands {
@@ -16,7 +17,3 @@ export interface Commands {
 }
 
 export interface CommandButtonProps extends Omit<ToolbarButtonProps, 'icon'> {}
-
-export interface CommandWithKey extends Command {
-  key: string;
-}

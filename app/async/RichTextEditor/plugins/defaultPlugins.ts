@@ -1,6 +1,4 @@
 import {
-  BoldPluginOptions,
-  CodeBlockPluginOptions,
   DEFAULTS_BOLD,
   DEFAULTS_CODE_BLOCK,
   DEFAULTS_HEADING,
@@ -14,18 +12,12 @@ import {
   ELEMENT_H1,
   ELEMENT_H2,
   ELEMENT_H3,
+  ELEMENT_PARAGRAPH,
   ExitBreakPluginOptions,
-  HeadingPluginOptions,
-  ImagePluginOptions,
   isBlockAboveEmpty,
   isSelectionAtBlockStart,
-  ItalicPluginOptions,
-  LinkPluginOptions,
-  ListPluginOptions,
-  ParagraphPluginOptions,
   ResetBlockTypePluginOptions,
   SoftBreakPluginOptions,
-  UnderlinePluginOptions,
   WithToggleTypeOptions,
   WithTrailingNode,
 } from '@udecode/slate-plugins';
@@ -49,13 +41,8 @@ import { SoftBreakPlugin } from './handlers/SoftBreakPlugin';
 import { BoldPlugin } from './marks/BoldPlugin';
 import { ItalicPlugin } from './marks/ItalicPlugin';
 import { UnderlinePlugin } from './marks/UnderlinePlugin';
-import { CommandPlugins } from './types';
 
-const boldPluginOptions: BoldPluginOptions = DEFAULTS_BOLD;
-
-const codeBlockPluginOptions: CodeBlockPluginOptions = DEFAULTS_CODE_BLOCK;
-
-const italicPluginOptions: ItalicPluginOptions = DEFAULTS_ITALIC;
+import { CommandPlugins, CommandPluginsOptions } from './types';
 
 const exitBreakPluginOptions: ExitBreakPluginOptions = {
   rules: [
@@ -81,20 +68,10 @@ const exitBreakPluginOptions: ExitBreakPluginOptions = {
   ],
 };
 
-const headingPluginOptions: HeadingPluginOptions = DEFAULTS_HEADING;
-
-const imagePluginOptions: ImagePluginOptions = DEFAULTS_IMAGE;
-
-const linkPluginOptions: LinkPluginOptions = DEFAULTS_LINK;
-
-const listPluginOptions: ListPluginOptions = DEFAULTS_LIST;
-
-const paragraphPluginOptions: ParagraphPluginOptions = DEFAULTS_PARAGRAPH;
-
 const resetBlockTypesCommonRule = {
-  defaultType: paragraphPluginOptions.p?.type,
+  defaultType: DEFAULTS_PARAGRAPH.p?.type,
   types: [
-    codeBlockPluginOptions.code_block?.type || ELEMENT_CODE_BLOCK,
+    ELEMENT_CODE_BLOCK,
   ],
 };
 
@@ -120,7 +97,7 @@ const softBreakPluginOptions: SoftBreakPluginOptions = {
       hotkey: 'enter',
       query: {
         allow: [
-          codeBlockPluginOptions.code_block?.type || ELEMENT_CODE_BLOCK,
+          ELEMENT_CODE_BLOCK,
         ],
       },
     },
@@ -128,47 +105,64 @@ const softBreakPluginOptions: SoftBreakPluginOptions = {
 };
 
 const toggleTypePluginOptions: WithToggleTypeOptions = {
-  defaultType: paragraphPluginOptions.p?.type,
+  defaultType: ELEMENT_PARAGRAPH,
 };
 
 const trailingNodePluginOptions: WithTrailingNode = {
-  type: paragraphPluginOptions.p?.type,
+  type: ELEMENT_PARAGRAPH,
 };
 
-const underlinePluginOptions: UnderlinePluginOptions = DEFAULTS_UNDERLINE;
-
-export const defaultPlugins: CommandPlugins = {
-  bold: BoldPlugin(boldPluginOptions),
-  codeBlock: CodeBlockPlugin(codeBlockPluginOptions),
-  exitBreak: ExitBreakPlugin(exitBreakPluginOptions),
-  heading: HeadingPlugin(headingPluginOptions),
-  image: ImagePlugin(imagePluginOptions),
-  inlineVoid: InlineVoidPlugin,
-  italic: ItalicPlugin(italicPluginOptions),
-  link: LinkPlugin(linkPluginOptions),
-  list: ListPlugin(listPluginOptions),
-  paragraph: ParagraphPlugin(paragraphPluginOptions),
-  resetBlockType: ResetBlockTypePlugin(resetBlockTypePluginOptions),
-  softBreak: SoftBreakPlugin(softBreakPluginOptions),
-  toggleType: ToggleTypePlugin(toggleTypePluginOptions),
-  trailingNode: TrailingNodePlugin(trailingNodePluginOptions),
-  transforms: TransformsPlugin,
-  underline: UnderlinePlugin(underlinePluginOptions),
+export const defaultPluginsOptions: CommandPluginsOptions = {
+  bold: DEFAULTS_BOLD,
+  codeBlock: DEFAULTS_CODE_BLOCK,
+  exitBreak: exitBreakPluginOptions,
+  heading: DEFAULTS_HEADING,
+  image: DEFAULTS_IMAGE,
+  italic: DEFAULTS_ITALIC,
+  link: DEFAULTS_LINK,
+  list: DEFAULTS_LIST,
+  paragraph: DEFAULTS_PARAGRAPH,
+  resetBlockType: resetBlockTypePluginOptions,
+  softBreak: softBreakPluginOptions,
+  toggleType: toggleTypePluginOptions,
+  trailingNode: trailingNodePluginOptions,
+  underline: DEFAULTS_UNDERLINE,
 };
 
-// Editor extension order
-defaultPlugins.transforms!.extendEditorIndex = 100;
-defaultPlugins.trailingNode!.extendEditorIndex = 200;
+export const getDefaultPlugins = (options: CommandPluginsOptions): CommandPlugins => {
+  const plugins = {
+    bold: BoldPlugin(options.bold),
+    codeBlock: CodeBlockPlugin(options.codeBlock),
+    exitBreak: ExitBreakPlugin(options.exitBreak),
+    heading: HeadingPlugin(options.heading),
+    image: ImagePlugin(options.image),
+    inlineVoid: InlineVoidPlugin,
+    italic: ItalicPlugin(options.italic),
+    link: LinkPlugin(options.link),
+    list: ListPlugin(options.list),
+    paragraph: ParagraphPlugin(options.paragraph),
+    resetBlockType: ResetBlockTypePlugin(options.resetBlockType),
+    softBreak: SoftBreakPlugin(options.softBreak),
+    toggleType: ToggleTypePlugin(options.toggleType),
+    trailingNode: TrailingNodePlugin(options.trailingNode),
+    transforms: TransformsPlugin,
+    underline: UnderlinePlugin(options.underline),
+  };
 
-// Button order
-defaultPlugins.bold!.commands!.formatBold!.buttonIndex = 100;
-defaultPlugins.italic!.commands!.formatItalic!.buttonIndex = 110;
-defaultPlugins.underline!.commands!.formatUnderline!.buttonIndex = 120;
-defaultPlugins.heading!.commands!.formatHeading1!.buttonIndex = 200;
-defaultPlugins.heading!.commands!.formatHeading2!.buttonIndex = 210;
-defaultPlugins.heading!.commands!.formatHeading3!.buttonIndex = 220;
-defaultPlugins.list!.commands!.formatListOrdered!.buttonIndex = 300;
-defaultPlugins.list!.commands!.formatListUnordered!.buttonIndex = 310;
-defaultPlugins.codeBlock!.commands!.formatCodeBlock!.buttonIndex = 350;
-defaultPlugins.link!.commands!.insertLink!.buttonIndex = 400;
-defaultPlugins.image!.commands!.insertImage!.buttonIndex = 500;
+  // Button order
+  plugins.bold!.commands!.formatBold!.buttonIndex = 100;
+  plugins.italic!.commands!.formatItalic!.buttonIndex = 110;
+  plugins.underline!.commands!.formatUnderline!.buttonIndex = 120;
+  plugins.heading!.commands!.formatHeading1!.buttonIndex = 200;
+  plugins.heading!.commands!.formatHeading2!.buttonIndex = 210;
+  plugins.heading!.commands!.formatHeading3!.buttonIndex = 220;
+  plugins.list!.commands!.formatListOrdered!.buttonIndex = 300;
+  plugins.list!.commands!.formatListUnordered!.buttonIndex = 310;
+  plugins.codeBlock!.commands!.formatCodeBlock!.buttonIndex = 350;
+  plugins.link!.commands!.insertLink!.buttonIndex = 400;
+  plugins.image!.commands!.insertImage!.buttonIndex = 500;
+
+  return plugins;
+};
+
+export const defaultPlugins: CommandPlugins = getDefaultPlugins(defaultPluginsOptions);

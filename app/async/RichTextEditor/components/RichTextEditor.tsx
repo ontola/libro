@@ -32,7 +32,7 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
   const [timeoutID, setTimeoutID] = useState<ReturnType<typeof setTimeout>>();
 
   useEffect(() => {
-    /**
+    /*
      * Slate throws an error if the value on the initial render is invalid.
      * Solution from https://github.com/ianstormtaylor/slate/issues/3465#issuecomment-655592962
      */

@@ -33,20 +33,20 @@ export const deserializeMarkdown = (plugins: CommandPlugins) => (markdown: strin
     return [{ children: [{ text: '' }], type: 'p' }];
   }
 
-  /**
+  /*
    * Instead of using:
    *   const html = marked(markdown);
    * adapt some rules:
    */
   const lexer: any = new marked.Lexer();
 
-  /**
+  /*
    * Allow headings without space after hashtags
    * Original regex:                    /^ {0,3}(#{1,6}) +([^\n]*?)(?: +#+)? *(?:\n+|$)/);
    */
   lexer.tokenizer.rules.block.heading = /^ {0,3}(#{1,6}) *([^\n]*?)(?: +#+)? *(?:\n+|$)/;
 
-  /**
+  /*
    * Allow one space character after closing square bracket: [] ()
    * Original regex:                    /^!?\[(label)\]\(\s*(href)(?:\s+(title))?\s*\)/
    */

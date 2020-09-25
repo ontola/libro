@@ -1,4 +1,21 @@
-import { SlatePlugin } from '@udecode/slate-plugins';
+import {
+  BoldPluginOptions,
+  CodeBlockPluginOptions,
+  ExitBreakPluginOptions,
+  HeadingPluginOptions,
+  ImagePluginOptions,
+  ItalicPluginOptions,
+  LinkPluginOptions,
+  ListPluginOptions,
+  ParagraphPluginOptions,
+  ResetBlockTypePluginOptions,
+  SlatePlugin,
+  SoftBreakPluginOptions,
+  UnderlinePluginOptions,
+  WithInlineVoidOptions,
+  WithToggleTypeOptions,
+  WithTrailingNode,
+} from '@udecode/slate-plugins';
 import { Editor } from 'slate';
 
 import { Commands } from '../commands/types';
@@ -14,7 +31,6 @@ import { UnderlineCommandPlugin } from './marks/UnderlinePlugin';
 export interface CommandPlugin extends SlatePlugin {
   commands?: Commands;
   extendEditor?: <T extends Editor>(editor: T) => T;
-  extendEditorIndex?: number;
 }
 
 export interface CommandPlugins {
@@ -35,4 +51,23 @@ export interface CommandPlugins {
   transforms?: CommandPlugin;
   underline?: UnderlineCommandPlugin;
   [name: string]: CommandPlugin | undefined;
+}
+
+export interface CommandPluginsOptions {
+  bold?: BoldPluginOptions;
+  codeBlock?: CodeBlockPluginOptions;
+  exitBreak?: ExitBreakPluginOptions;
+  heading?: HeadingPluginOptions;
+  image?: ImagePluginOptions;
+  inlineVoid?: WithInlineVoidOptions;
+  italic?: ItalicPluginOptions;
+  link?: LinkPluginOptions;
+  list?: ListPluginOptions;
+  paragraph?: ParagraphPluginOptions;
+  resetBlocktype?: ResetBlockTypePluginOptions;
+  softBreak?: SoftBreakPluginOptions;
+  toggleType?: WithToggleTypeOptions;
+  trailingNode?: WithTrailingNode;
+  underline?: UnderlinePluginOptions;
+  [name: string]: any;
 }

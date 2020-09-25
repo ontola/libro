@@ -2,7 +2,6 @@ import { Editor, Node } from 'slate';
 import { ReactEditor } from 'slate-react';
 
 import { deserializeMarkdown, serializeMarkdown } from '../markdown';
-import { comparePlugins } from '../plugins/comparePlugins';
 import { toPluginsArray } from '../plugins/toPluginsArray';
 import { CommandPlugins } from '../plugins/types';
 
@@ -20,7 +19,6 @@ export const withPlugins = (plugins: CommandPlugins) => <T extends ReactEditor>(
 
   toPluginsArray(plugins)
     .filter((plugin) => plugin.extendEditor)
-    .sort(comparePlugins)
     .forEach((plugin) => plugin.extendEditor!(editor));
 
   return editor;
