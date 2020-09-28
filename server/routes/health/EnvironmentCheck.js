@@ -36,7 +36,7 @@ export default class EnvironmentCheck extends Check {
       'frontendHostname',
       'jwtEncryptionToken',
       'oAuthToken',
-      'redisAddress',
+      'redisUrl',
       'serviceGuestToken',
       'sessionSecret',
       'websocketPath',

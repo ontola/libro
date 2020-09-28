@@ -68,7 +68,7 @@ export const jwtEncryptionToken = process.env.JWT_ENCRYPTION_TOKEN;
 /**
  * A redis connection FQ-URL.
  */
-export const redisAddress = process.env.REDIS_ADDRESS;
+export const redisUrl = process.env.REDIS_URL;
 /**
  * DO NOT USE this value, since it really is super secret.
  *
