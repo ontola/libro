@@ -12,7 +12,11 @@ import fetchPrerenderData from '../utils/fetchPrerenderData';
 import { isHTMLHeader } from '../utils/http';
 import logging from '../utils/logging';
 import manifest from '../utils/manifest';
-import { isRedirect } from '../utils/proxies/helpers';
+import {
+  NEW_AUTHORIZATION_HEADER,
+  NEW_REFRESH_TOKEN_HEADER,
+  isRedirect,
+} from '../utils/proxies/helpers';
 import { handleRender } from '../utils/render';
 
 const handler = (sendResponse) => async (ctx) => {
@@ -20,6 +24,9 @@ const handler = (sendResponse) => async (ctx) => {
 
   try {
     const headResponse = await ctx.headResponse();
+    const auth = headResponse.headers.get(NEW_AUTHORIZATION_HEADER);
+    const refreshToken = headResponse.headers.get(NEW_REFRESH_TOKEN_HEADER);
+    ctx.setAccessToken(auth, refreshToken);
     ctx.response.status = headResponse.status;
 
     if (isRedirect(headResponse.status)) {

@@ -1,12 +1,21 @@
 import * as httpStatus from 'http-status-codes';
 
-export const processTokenRequest = async (ctx, request) => {
-  const response = await request;
-  const json = await response.json();
+import { BadRequestError } from './errors';
+import logging from './logging';
 
-  if (response.status === httpStatus.OK) {
-    ctx.setAccessToken(json.access_token, json.refresh_token);
-  } else {
-    throw new Error(`Unhandled server status code '${response.status}'\n${json}`);
+export const processTokenRequest = async (ctx, request) => {
+  try {
+    const response = await request;
+    const json = await response.json();
+
+    if (response.status === httpStatus.OK) {
+      ctx.setAccessToken(json.access_token, json.refresh_token);
+    }
+  } catch (e) {
+    if (e instanceof BadRequestError) {
+      return;
+    }
+
+    logging.error(e);
   }
 };

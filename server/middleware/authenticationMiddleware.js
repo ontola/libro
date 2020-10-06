@@ -5,7 +5,7 @@ import { processTokenRequest } from '../utils/tokens';
 
 const isExpired = (ctx) => {
   try {
-    const expiresAt = new Date(ctx.getFromAccessToken('exp') - MINUTE_SECS) * SEC_MS;
+    const expiresAt = new Date(ctx.getFromAccessTokenRaw('exp') - MINUTE_SECS) * SEC_MS;
 
     return expiresAt < Date.now();
   } catch (e) {
@@ -31,6 +31,7 @@ async function authenticationMiddleware(ctx, next) {
 
     if (isExpired(ctx)) {
       const websiteIRI = await ctx.getWebsiteIRI();
+      ctx.headResponseResult = null;
 
       if (websiteIRI) {
         await processTokenRequest(

@@ -9,6 +9,7 @@ const createDataContext = (ctx) => {
     api: ctx.api,
     deviceId: ctx.deviceId,
     getFromAccessToken: ctx.getFromAccessToken,
+    getFromAccessTokenRaw: ctx.getFromAccessTokenRaw,
     getManifest: ctx.getManifest,
     headResponse: ctx.headResponse,
     manifest: ctx.manifest,

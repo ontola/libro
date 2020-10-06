@@ -1,10 +1,9 @@
-import jwt from 'jsonwebtoken';
+import jwt, { TokenExpiredError } from 'jsonwebtoken';
 import uuidv4 from 'uuid/v4';
 
 import { jwtEncryptionToken } from '../config';
 import { getBackendManifest } from '../utils/manifest';
 import { EXEC_HEADER_NAME } from '../utils/actions';
-import { NEW_AUTHORIZATION_HEADER, NEW_REFRESH_TOKEN_HEADER } from '../utils/proxies/helpers';
 
 const BACKEND_TIMEOUT = 3000;
 
@@ -38,10 +37,6 @@ export function enhanceCtx(ctx) {
         ctx.api.headRequest(ctx.request),
         new Promise((_, reject) => setTimeout(() => reject, BACKEND_TIMEOUT)),
       ]);
-
-      const auth = ctx.headResponseResult.headers.get(NEW_AUTHORIZATION_HEADER);
-      const refreshToken = ctx.headResponseResult.headers.get(NEW_REFRESH_TOKEN_HEADER);
-      ctx.setAccessToken(auth, refreshToken);
     }
 
     return ctx.headResponseResult;
@@ -59,7 +54,7 @@ export function enhanceCtx(ctx) {
     }
   };
 
-  ctx.getFromAccessToken = (key) => {
+  ctx.getFromAccessTokenRaw = (key) => {
     if (!ctx.session.userToken) {
       return undefined;
     }
@@ -76,6 +71,17 @@ export function enhanceCtx(ctx) {
     }
 
     return ctx.arguTokenData[key];
+  };
+
+  ctx.getFromAccessToken = (key) => {
+    try {
+      return ctx.getFromAccessTokenRaw(key);
+    } catch (e) {
+      if (e instanceof TokenExpiredError) {
+        return undefined;
+      }
+      throw e;
+    }
   };
 
   ctx.getWebsiteIRI = async () => {
