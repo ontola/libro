@@ -23,7 +23,7 @@ const StartDate = ({ linkedProp }) => {
   const date = new Date(linkedProp.value);
 
   return (
-    <Detail text={emoji(`📅 ${intl.formatDate(date, FORMAT)}`)} />
+    <Detail text={emoji(`📅 ${intl.formatTime(date, FORMAT)}`)} />
   );
 };
 
