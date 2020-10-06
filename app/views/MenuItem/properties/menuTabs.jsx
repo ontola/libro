@@ -1,4 +1,5 @@
 import AppBar from '@material-ui/core/AppBar';
+import { makeStyles } from '@material-ui/styles';
 import {
   Resource,
   linkType,
@@ -13,11 +14,20 @@ import { allTopologies } from '../../../topologies';
 import TabBar from '../../../topologies/TabBar';
 import { MenuTypes } from '../types';
 
+const useStyles = makeStyles((theme) => ({
+  wrapper: {
+    color: theme.palette.grey.dark,
+    opacity: 'unset',
+  },
+}));
+
 const MenuTabs = ({
   currentTab,
   items,
   onChange,
 }) => {
+  const classes = useStyles();
+
   if (!__CLIENT__) {
     return null;
   }
@@ -28,7 +38,12 @@ const MenuTabs = ({
   }
 
   return (
-    <AppBar color="inherit" elevation={0} position="static">
+    <AppBar
+      className={classes.wrapper}
+      color="inherit"
+      elevation={0}
+      position="static"
+    >
       <TabBar value={currentTab?.value}>
         {items.map((iri) => (
           <Resource

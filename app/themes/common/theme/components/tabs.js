@@ -15,10 +15,6 @@ export default (theme) => ({
         minWidth: null,
       },
     },
-    textColorInherit: {
-      color: theme.palette.grey.main,
-      opacity: null,
-    },
     wrapper: {
       flexDirection: 'row',
     },
