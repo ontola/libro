@@ -294,6 +294,7 @@ const GlappMap = ({
   return (
     <MapCanvas
       large
+      fullscreenButton={false}
       layers={layers}
       overlayPosition={overlayPosition}
       overlayResource={selectedEvent || (selectedPostalCode && postalCodeIri(selectedPostalCode))}
