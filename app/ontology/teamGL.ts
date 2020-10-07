@@ -35,6 +35,8 @@ export default {
     activeVolunteersRatio: teamGL('activeVolunteersRatio'),
     address: teamGL('address'),
     badge: teamGL('badge'),
+    centerLat: teamGL('centerLat'),
+    centerLon: teamGL('centerLon'),
     current: teamGL('current'),
     dashboard: teamGL('dashboard'),
     department: teamGL('department'),
@@ -86,4 +88,5 @@ export default {
     volunteer: teamGL('volunteer'),
     volunteers: teamGL('volunteers'),
     volunteersCount: teamGL('volunteersCount'),
+    zoom: teamGL('zoom'),
 };

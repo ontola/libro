@@ -37,7 +37,6 @@ import { FOCUS_ZOOM } from './useMap';
 const EVENT_ICONS = ['envelope', 'home', 'comments-o', 'calendar-check-o'].map(fontAwesomeIRI);
 const FULL_POSTAL_LEVEL = 8.6;
 const HALF = 0.5;
-const INITIAL_ZOOM = 7.3;
 const SHADE_COUNT = 10;
 
 const selectedShapeStyle = new Style({
@@ -229,7 +228,16 @@ const GlappMap = ({
   setSelectedPostalCode,
 }) => {
   const lrs = useLRS();
-  const [view, setView] = React.useState({ zoom: INITIAL_ZOOM });
+  const [zoomProp] = useResourceProperty(app.c_a, teamGL.zoom);
+  const zoom = tryParseFloat(zoomProp);
+  const [latProp] = useResourceProperty(app.c_a, teamGL.centerLat);
+  const centerLat = tryParseFloat(latProp);
+  const [lonProp] = useResourceProperty(app.c_a, teamGL.centerLon);
+  const centerLon = tryParseFloat(lonProp);
+  const [view, setView] = React.useState({
+    center: fromLonLat([centerLon, centerLat]),
+    zoom,
+  });
   const showFull = view.zoom > FULL_POSTAL_LEVEL;
   const postalCodes = showFull ? postalCodesFull : postalCodesSimplified;
   React.useEffect(() => {
