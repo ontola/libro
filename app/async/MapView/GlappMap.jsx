@@ -17,7 +17,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import withReducer from '../../containers/withReducer';
-import { fontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
+import { fontAwesomeIRI } from '../../helpers/iris';
 import { tryParseFloat } from '../../helpers/numbers';
 import app from '../../ontology/app';
 import teamGL from '../../ontology/teamGL';
@@ -32,6 +32,7 @@ import {
 import { useImageStyles } from './helpers';
 import MapCanvas from './MapCanvas';
 import reducer, { MapReducerKey } from './reducer';
+import { FOCUS_ZOOM } from './useMap';
 
 const EVENT_ICONS = ['envelope', 'home', 'comments-o', 'calendar-check-o'].map(fontAwesomeIRI);
 const FULL_POSTAL_LEVEL = 8.6;
@@ -130,8 +131,11 @@ const usePostalShapes = ({
 
 const useSelectedPostalCode = ({
   postalShapes,
+  selectedEvent,
   selectedPostalCode,
+  setView,
   setOverlayPosition,
+  view,
 }) => {
   const [selectedFeatures, setSelectedFeatures] = React.useState([]);
 
@@ -152,14 +156,20 @@ const useSelectedPostalCode = ({
         return acc ? extend(acc, ext) : ext;
       }, null);
       const center = [HALF * (minX + maxX), minY];
-      setOverlayPosition(center);
+      if (!selectedEvent) {
+        setOverlayPosition(center);
+        setView({
+          center,
+          zoom: Math.max(view.zoom, FOCUS_ZOOM),
+        });
+      }
       setSelectedFeatures(cloned);
     } else {
       setSelectedFeatures([]);
     }
-  }, [selectedPostalCode]);
+  }, [selectedPostalCode, selectedEvent]);
 
-  return selectedFeatures;
+  return [selectedFeatures];
 };
 
 const useEventsLayer = (lrs, eventsData) => {
@@ -188,8 +198,9 @@ const useEventsLayer = (lrs, eventsData) => {
             f.local = event;
             f.setId(event);
             f.setProperties({
-              hoverStyle: hoverStyles[normalizeFontAwesomeIRI(image)],
-              style: styles[normalizeFontAwesomeIRI(image)],
+              hoverStyle: hoverStyles[image],
+              location: digits,
+              style: styles[image],
             });
             newEvents.push(f);
           });
@@ -212,12 +223,14 @@ const GlappMap = ({
   postalStats,
   requestPostalCodes,
   requestPostalStats,
+  selectedEvent,
+  selectedPostalCode,
+  setSelectedEvent,
+  setSelectedPostalCode,
 }) => {
   const lrs = useLRS();
-  const [selectedPostalCode, setSelectedPostalCode] = React.useState(null);
-  const [selectedEvent, setSelectedEvent] = React.useState(null);
-  const [zoom, setZoom] = React.useState(INITIAL_ZOOM);
-  const showFull = zoom > FULL_POSTAL_LEVEL;
+  const [view, setView] = React.useState({ zoom: INITIAL_ZOOM });
+  const showFull = view.zoom > FULL_POSTAL_LEVEL;
   const postalCodes = showFull ? postalCodesFull : postalCodesSimplified;
   React.useEffect(() => {
     if (!postalStats) {
@@ -238,8 +251,11 @@ const GlappMap = ({
   const [overlayPosition, setOverlayPosition] = React.useState(null);
   const [selectedFeatures] = useSelectedPostalCode({
     postalShapes,
+    selectedEvent,
     selectedPostalCode,
     setOverlayPosition,
+    setView,
+    view,
   });
   const eventsLayer = useEventsLayer(lrs, postalStats?.events);
   const layers = React.useMemo(() => ([
@@ -247,27 +263,40 @@ const GlappMap = ({
     { features: selectedFeatures },
     eventsLayer,
   ]), [postalShapes, eventsLayer, selectedFeatures]);
+  const handleSelect = React.useCallback((feature, newCenter) => {
+    const { location, postalDigits } = feature?.getProperties() || {};
+    if (postalDigits) {
+      setSelectedPostalCode(postalDigits);
+    } else {
+      const iri = feature?.getId() ? rdf.namedNode(feature.getId()) : null;
+      setSelectedEvent(iri);
+      setOverlayPosition(newCenter);
+      setView({
+        center: newCenter,
+        zoom: Math.max(view.zoom, FOCUS_ZOOM),
+      });
+      if (location) {
+        setSelectedPostalCode(location, false);
+      } else {
+        setSelectedPostalCode(null, false);
+      }
+    }
+  }, [setSelectedPostalCode, setSelectedEvent, view.zoom]);
 
   return (
     <MapCanvas
       large
-      initialZoom={INITIAL_ZOOM}
       layers={layers}
       overlayPosition={overlayPosition}
-      overlayResource={selectedPostalCode ? postalCodeIri(selectedPostalCode) : selectedEvent}
-      onSelect={(feature, newCenter) => {
-        const { postalDigits } = feature?.getProperties() || {};
-        if (postalDigits) {
-          setSelectedPostalCode(postalDigits);
-          setSelectedEvent(null);
-        } else {
-          setSelectedPostalCode(null);
-          const iri = feature?.getId() ? rdf.namedNode(feature.getId()) : null;
-          setSelectedEvent(iri);
-          setOverlayPosition(newCenter);
-        }
+      overlayResource={selectedEvent || (selectedPostalCode && postalCodeIri(selectedPostalCode))}
+      view={view}
+      onSelect={handleSelect}
+      onViewChange={(newCenter, newZoom) => {
+        setView({
+          center: newCenter,
+          zoom: newZoom,
+        });
       }}
-      onZoom={setZoom}
     />
   );
 };
@@ -293,6 +322,10 @@ GlappMap.propTypes = {
   }),
   requestPostalCodes: PropTypes.func,
   requestPostalStats: PropTypes.func,
+  selectedEvent: PropTypes.string,
+  selectedPostalCode: PropTypes.string,
+  setSelectedEvent: PropTypes.func,
+  setSelectedPostalCode: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({

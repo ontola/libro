@@ -46,6 +46,10 @@ export default makeStyles((theme) => ({
     zIndex: 9,
   },
   canvasFullscreen: {
+    '& .ol-control': {
+      bottom: 0,
+      position: 'fixed!important',
+    },
     height: `calc(100vh - ${theme.appBar.height})`,
     maxHeight: 'unset',
   },

@@ -26,9 +26,7 @@ const ArguLocation = ({
   useDataFetching(childrenPlacements);
   const history = useHistory();
   const [selected, setSelected] = React.useState(null);
-  const children = listToArr(lrs, [], childrenPlacements);
-
-  const onSelect = (feature) => {
+  const onSelect = React.useCallback((feature) => {
     const id = feature?.getId();
     if (!id) {
       setSelected(null);
@@ -40,7 +38,8 @@ const ArguLocation = ({
         )
       );
     }
-  };
+  }, []);
+  const children = listToArr(lrs, [], childrenPlacements);
 
   if (!Array.isArray(children)) {
     return <LoadingCard />;
@@ -54,7 +53,10 @@ const ArguLocation = ({
     <MapView
       navigate={(resource) => history.push(retrievePath(resource.value))}
       overlayResource={selected}
-      placements={[schemaLocation, ...children].filter(Boolean)}
+      placements={[
+        schemaLocation,
+        ...children.filter((child) => child !== schemaLocation),
+      ].filter(Boolean)}
       onSelect={onSelect}
     />
   );

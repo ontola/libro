@@ -9,7 +9,7 @@ import {
 } from 'link-redux';
 import { Feature } from 'ol';
 import Point from 'ol/geom/Point';
-import { fromLonLat, toLonLat } from 'ol/proj';
+import { fromLonLat } from 'ol/proj';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -59,7 +59,7 @@ const featureFromPlacement = (lrs, placement, hoverStyles, styles) => {
 
   const f = new Feature(new Point(fromLonLat([lon, lat])));
   f.local = placement;
-  f.setId(placement.value);
+  f.setId(placement.value || placement.id);
   f.setProperties({
     hoverStyle: hoverStyles[image.value],
     style: styles[image.value],
@@ -69,7 +69,7 @@ const featureFromPlacement = (lrs, placement, hoverStyles, styles) => {
   return f;
 };
 
-const useFeatures = (placements, center) => {
+const useFeatures = (placements) => {
   const lrs = useLRS();
   const theme = useTheme();
 
@@ -80,7 +80,11 @@ const useFeatures = (placements, center) => {
   const timestamp = useDataInvalidation(memoizedDependencies);
   useDataFetching(memoizedDependencies.filter(isNamedNode));
   const icons = React.useMemo(
-    () => Array.from(new Set(placements.map((placement) => imageForPlacement(placement, lrs)))),
+    () => Array.from(new Set(
+      placements
+        .map((placement) => imageForPlacement(placement, lrs))
+        .concat(fa4.ns('map-marker'))
+    )),
     [timestamp]
   );
   const {
@@ -94,7 +98,7 @@ const useFeatures = (placements, center) => {
     const addFeature = (rawFeature, index) => {
       const feature = !loading && featureFromPlacement(lrs, rawFeature, hoverStyles, styles);
 
-      const isCenter = rawFeature === center || (!center && index === 0);
+      const isCenter = index === 0;
 
       if (feature && isCenter) {
         setMemoizedCenter(feature);
@@ -119,13 +123,15 @@ const useFeatures = (placements, center) => {
     if (loading !== currentlyLoading) {
       setLoading(currentlyLoading);
     }
-  }, [loading, timestamp, placements?.length, hoverStyles, styles]);
+  }, [loading, timestamp, placements, hoverStyles, styles]);
 
-  return [memoizedFeatures, memoizedCenter, loading];
+  return [memoizedFeatures || [], memoizedCenter, loading];
 };
 
 const MapView = ({
-  center,
+  initialLat,
+  initialLon,
+  initialZoom,
   navigate,
   onMapClick,
   onMove,
@@ -134,7 +140,20 @@ const MapView = ({
   overlayResource,
   placements,
 }) => {
-  const [placementFeatures, resolvedCenter, loading] = useFeatures(placements, center);
+  const [placementFeatures, resolvedCenter, loading] = useFeatures(placements);
+  const initialView = (initialLat || initialLon || initialZoom) && {
+    center: initialLat && initialLon ? fromLonLat([initialLon, initialLat]) : null,
+    zoom: initialZoom,
+  };
+  const [view, setView] = React.useState(initialView);
+  React.useEffect(() => {
+    if (resolvedCenter) {
+      setView({
+        center: resolvedCenter?.getGeometry()?.getCoordinates(),
+        zoom: resolvedCenter?.getProperties()?.zoomLevel,
+      });
+    }
+  }, [loading, resolvedCenter?.getId()]);
   const [overlayPosition, setOverlayPosition] = React.useState(null);
   const handleSelect = React.useCallback((feature, newCenter) => {
     if (onSelect) {
@@ -142,38 +161,43 @@ const MapView = ({
     }
     setOverlayPosition(newCenter);
   }, [onSelect]);
+  const layers = React.useMemo(() => (
+    [{
+      clustered: true,
+      features: placementFeatures,
+    }]
+  ), [placementFeatures]);
 
-  if (loading) {
+  if (loading || !placementFeatures) {
     return <LoadingCard />;
   }
 
-  const [cLon, cLat] = resolvedCenter
-    ? toLonLat(resolvedCenter.getGeometry().getCoordinates())
-    : [null, null];
-  const zoom = resolvedCenter && resolvedCenter.getProperties().zoomLevel;
-
   return (
     <MapCanvas
-      initialLat={cLat}
-      initialLon={cLon}
-      initialZoom={zoom}
-      layers={[{
-        clustered: true,
-        features: placementFeatures,
-      }]}
+      overlayPadding
+      layers={layers}
       navigate={navigate}
       overlayPosition={overlayPosition}
       overlayResource={overlayResource}
+      view={view}
       onMapClick={onMapClick}
       onMove={onMove}
       onSelect={handleSelect}
+      onViewChange={(newCenter, newZoom) => {
+        setView({
+          center: newCenter,
+          zoom: newZoom,
+        });
+      }}
       onZoom={onZoom}
     />
   );
 };
 
 MapView.propTypes = {
-  center: linkType,
+  initialLat: PropTypes.number,
+  initialLon: PropTypes.number,
+  initialZoom: PropTypes.number,
   navigate: PropTypes.func,
   onMapClick: PropTypes.func,
   onMove: PropTypes.func,

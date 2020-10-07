@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Spinner from '../../components/Spinner';
+import LinkLoader from '../../components/Loading/LinkLoader';
 
 const GlappMap = React.lazy(
   // eslint-disable-next-line no-inline-comments
@@ -10,11 +10,11 @@ const GlappMap = React.lazy(
 class GlappMapLoader extends React.PureComponent {
   render() {
     if (!__CLIENT__ || __TEST__) {
-      return <Spinner loading />;
+      return <LinkLoader />;
     }
 
     return (
-      <React.Suspense fallback={<Spinner loading />}>
+      <React.Suspense fallback={<LinkLoader />}>
         <GlappMap {...this.props} />
       </React.Suspense>
     );

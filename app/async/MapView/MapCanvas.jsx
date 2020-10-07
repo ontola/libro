@@ -26,6 +26,7 @@ const MapCanvas = (props) => {
   const {
     accessTokenError,
     large,
+    overlayPadding,
     overlayPosition,
     overlayResource,
     navigate,
@@ -42,6 +43,7 @@ const MapCanvas = (props) => {
   } = useOverlay({
     map,
     navigate,
+    overlayPadding,
     overlayPosition,
     overlayResource,
   });
@@ -107,6 +109,7 @@ MapCanvas.propTypes = {
   accessTokenError: PropTypes.string,
   large: PropTypes.bool,
   navigate: PropTypes.func,
+  overlayPadding: PropTypes.bool,
   overlayPosition: PropTypes.arrayOf(PropTypes.number),
   overlayResource: linkType,
 };
