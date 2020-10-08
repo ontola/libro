@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
+import Suspense from '../../components/Suspense';
 import { useSeqToArr } from '../../hooks/useSeqToArr';
 import argu from '../../ontology/argu';
 import { inlineTopology } from '../../topologies/Inline';
@@ -115,7 +116,7 @@ const Triad = ({ subject }) => {
   return (
     <div className="Triad">
       <Heading size="1">{formatMessage(messages.triadHeader)}</Heading>
-      <React.Suspense fallback={<LoadingGridContent />}>
+      <Suspense fallback={<LoadingGridContent />}>
         <div className="Triad--selector">
           {processStepsData.map((
             {
@@ -162,7 +163,7 @@ const Triad = ({ subject }) => {
           </Resource>
           <Animations slide={slide} />
         </div>
-      </React.Suspense>
+      </Suspense>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Spinner from '../components/Spinner';
+import Suspense from '../components/Suspense';
 
 const FormField = React.lazy(
   // eslint-disable-next-line no-inline-comments
@@ -8,9 +8,9 @@ const FormField = React.lazy(
 );
 
 const FormFieldLoader = (props) => (
-  <React.Suspense fallback={<Spinner loading />}>
+  <Suspense>
     <FormField {...props} />
-  </React.Suspense>
+  </Suspense>
 );
 
 export default FormFieldLoader;

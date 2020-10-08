@@ -3,19 +3,19 @@ import { Property, register } from 'link-redux';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-import { LoadingCard } from '../../components/Loading';
+import Suspense from '../../components/Suspense';
 import argu from '../../ontology/argu';
 import Card from '../../topologies/Card';
 
 import ActivityDetailsBar from './properties/ActivityDetailsBar';
 
 const PublishActivityContainer = () => (
-  <React.Suspense fallback={<LoadingCard />}>
+  <Suspense>
     <Card>
       <ActivityDetailsBar />
       <Property label={as.object} />
     </Card>
-  </React.Suspense>
+  </Suspense>
 );
 
 PublishActivityContainer.type = argu.PublishActivity;

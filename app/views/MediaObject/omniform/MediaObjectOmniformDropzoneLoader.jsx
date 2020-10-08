@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Spinner from '../../../components/Spinner';
+import Suspense from '../../../components/Suspense';
 
 const MediaObjectOmniformDropzone = React.lazy(
   // eslint-disable-next-line no-inline-comments
@@ -8,9 +9,9 @@ const MediaObjectOmniformDropzone = React.lazy(
 );
 
 const MediaObjectOmniformDropzoneLoader = (props) => (
-  <React.Suspense fallback={<Spinner loading />}>
+  <Suspense fallback={<Spinner loading />}>
     <MediaObjectOmniformDropzone {...props} />
-  </React.Suspense>
+  </Suspense>
 );
 
 export default MediaObjectOmniformDropzoneLoader;

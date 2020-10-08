@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Input } from '../components/Input';
+import Suspense from '../components/Suspense';
 
 const DatePicker = React.lazy(
   // eslint-disable-next-line no-inline-comments
@@ -17,9 +18,9 @@ const DatePickerLoader = (props) => {
   }
 
   return (
-    <React.Suspense fallback={<input />}>
+    <Suspense fallback={<input />}>
       <DatePicker {...props} />
-    </React.Suspense>
+    </Suspense>
   );
 };
 

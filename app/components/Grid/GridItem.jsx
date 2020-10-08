@@ -2,7 +2,8 @@ import { Grid as MaterialGrid } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { LoadingGridContent } from '../Loading';
+import LinkLoader from '../Loading/LinkLoader';
+import Suspense from '../Suspense';
 
 const GRID_FULL = 12;
 const LG_BASE = 12;
@@ -34,9 +35,9 @@ const GridItem = ({
 
   return (
     <MaterialGrid item lg={lg} md={md} sm={sm} xs={xs} {...otherProps}>
-      <React.Suspense fallback={Fallback ? <Fallback /> : <LoadingGridContent />}>
+      <Suspense fallback={Fallback ? <Fallback /> : <LinkLoader />}>
         {children}
-      </React.Suspense>
+      </Suspense>
     </MaterialGrid>
   );
 };

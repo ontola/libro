@@ -7,6 +7,7 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import Suspense from '../../../components/Suspense';
 import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 import { CollectionTypes } from '../types';
@@ -40,7 +41,7 @@ const Pages = ({
   }
 
   const obs = pages.map((iri) => (
-    <React.Suspense fallback={<LoadingGridContent />}>
+    <Suspense fallback={<LoadingGridContent />}>
       <Resource
         collectionDisplay={collectionDisplay}
         columns={columns}
@@ -51,7 +52,7 @@ const Pages = ({
         subject={iri}
         view={view}
       />
-    </React.Suspense>
+    </Suspense>
   ));
 
   if (obs) {

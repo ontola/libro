@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { LoadingFullResource } from '../../components/Loading';
+import Suspense from '../../components/Suspense';
 import argu from '../../ontology/argu';
 
 import './Grid.scss';
@@ -25,11 +26,11 @@ class Grid extends TopologyProvider {
     const { children, ...otherProps } = this.props;
 
     return this.wrap((
-      <React.Suspense fallback={<LoadingFullResource />}>
+      <Suspense fallback={<LoadingFullResource />}>
         <MaterialGrid container spacing={6} {...otherProps}>
           {children}
         </MaterialGrid>
-      </React.Suspense>
+      </Suspense>
     ));
   }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import LinkLoader from '../components/Loading/LinkLoader';
+import Suspense from '../components/Suspense';
 
 const MapView = React.lazy(
   // eslint-disable-next-line no-inline-comments
@@ -14,9 +15,9 @@ class MapViewLoader extends React.PureComponent {
     }
 
     return (
-      <React.Suspense fallback={<LinkLoader />}>
+      <Suspense>
         <MapView {...this.props} />
-      </React.Suspense>
+      </Suspense>
     );
   }
 }

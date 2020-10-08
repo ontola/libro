@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { LoadingGridContent } from '../components/Loading';
+import Suspense from '../components/Suspense';
 import { withFormLRS } from '../hooks/useFormLRS';
 import { CardContent } from '../topologies/Card';
 
@@ -10,9 +11,9 @@ const Form = React.lazy(
 );
 
 const FormLoader = (props) => (
-  <React.Suspense fallback={<CardContent><LoadingGridContent /></CardContent>}>
+  <Suspense fallback={<CardContent><LoadingGridContent /></CardContent>}>
     <Form {...props} />
-  </React.Suspense>
+  </Suspense>
 );
 
 export default withFormLRS(FormLoader);

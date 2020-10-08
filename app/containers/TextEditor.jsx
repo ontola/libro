@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Spinner from '../components/Spinner';
+import Suspense from '../components/Suspense';
 
 const TextEditor = React.lazy(
   // eslint-disable-next-line no-inline-comments
@@ -14,9 +15,9 @@ class TextEditorLoader extends React.Component {
     }
 
     return (
-      <React.Suspense fallback={<Spinner loading />}>
+      <Suspense fallback={<Spinner loading />}>
         <TextEditor {...this.props} />
-      </React.Suspense>
+      </Suspense>
     );
   }
 }

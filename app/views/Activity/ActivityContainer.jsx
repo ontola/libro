@@ -4,14 +4,14 @@ import { linkType, register } from 'link-redux';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-import { LoadingCard } from '../../components/Loading';
+import Suspense from '../../components/Suspense';
 import argu from '../../ontology/argu';
 import Card, { CardContent, CardRow } from '../../topologies/Card';
 
 import ActivityDetailsBar from './properties/ActivityDetailsBar';
 
 const ActivityContainer = ({ text }) => (
-  <React.Suspense fallback={<LoadingCard />}>
+  <Suspense>
     <Card>
       <ActivityDetailsBar />
       {text && (
@@ -22,7 +22,7 @@ const ActivityContainer = ({ text }) => (
         </CardRow>
       )}
     </Card>
-  </React.Suspense>
+  </Suspense>
 );
 
 ActivityContainer.type = as.Activity;
