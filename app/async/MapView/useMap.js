@@ -109,6 +109,7 @@ const useMap = (props) => {
     accessToken,
     layers,
     requestAccessToken,
+    onClusterSelect,
     onMapClick,
     onMove,
     onSelect,
@@ -153,7 +154,11 @@ const useMap = (props) => {
         features.map((f) => f.getGeometry().getCoordinates())
       );
       const clusterCenter = getCenter([left, top, right, bottom]);
-      if (left !== right && top !== bottom) {
+      if (left === right && top === bottom) {
+        if (onClusterSelect) {
+          onClusterSelect(features, clusterCenter);
+        }
+      } else {
         const eventView = e.mapBrowserEvent.map.getView();
         // eslint-disable-next-line no-underscore-dangle
         const [width, height] = eventView.getViewportSize_();

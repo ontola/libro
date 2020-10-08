@@ -2,7 +2,7 @@ import IconButton from '@material-ui/core/IconButton';
 import schema from '@ontologies/schema';
 import {
   Property,
-  register,
+  register, topologyType, useLRS,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -13,18 +13,23 @@ import ontola from '../../ontology/ontola';
 import teamGL from '../../ontology/teamGL';
 import ActionsBar from '../../topologies/ActionsBar';
 import Card, { CardContent } from '../../topologies/Card';
+import { containerTopology } from '../../topologies/Container';
 import ContentDetails from '../../topologies/ContentDetails';
+import { alertDialogTopology } from '../../topologies/Dialog';
 import { popupTopology } from '../../topologies/Popup';
 
 const EventPopup = ({
   onClose,
+  topology,
 }) => {
-  const closeButton = (
+  const lrs = useLRS();
+  const handleClose = topology === alertDialogTopology ? lrs.actions.ontola.hideDialog() : onClose;
+  const closeButton = handleClose && (
     <IconButton
       size="small"
       title="Sluiten"
       type="button"
-      onClick={onClose}
+      onClick={handleClose}
     >
       <FontAwesome name="close" />
     </IconButton>
@@ -55,10 +60,15 @@ const EventPopup = ({
 
 EventPopup.type = teamGL.Event;
 
-EventPopup.topology = popupTopology;
+EventPopup.topology = [
+  alertDialogTopology,
+  containerTopology,
+  popupTopology,
+];
 
 EventPopup.propTypes = {
   onClose: PropTypes.func,
+  topology: topologyType,
 };
 
 export default register(EventPopup);
