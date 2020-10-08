@@ -109,6 +109,7 @@ const useMap = (props) => {
     accessToken,
     layers,
     requestAccessToken,
+    onClusterSelect,
     onMapClick,
     onMove,
     onSelect,
@@ -149,13 +150,22 @@ const useMap = (props) => {
     const selected = features?.[0] || feature;
 
     if (features?.length > 1) {
-      const bounds = boundingExtent(features.map((f) => f.getGeometry().getCoordinates()));
-      const newZoom = e.mapBrowserEvent.map.getView().getZoom() + CLUSTER_ZOOM;
+      const [left, top, right, bottom] = boundingExtent(
+        features.map((f) => f.getGeometry().getCoordinates())
+      );
+      const clusterCenter = getCenter([left, top, right, bottom]);
+      if (left === right && top === bottom) {
+        if (onClusterSelect) {
+          onClusterSelect(features, clusterCenter);
+        }
+      } else {
+        const newZoom = e.mapBrowserEvent.map.getView().getZoom() + CLUSTER_ZOOM;
 
-      e.mapBrowserEvent.map.getView().animate({
-        center: getCenter(bounds),
-        zoom: Math.max(newZoom, FOCUS_ZOOM),
-      });
+        e.mapBrowserEvent.map.getView().animate({
+          center: clusterCenter,
+          zoom: Math.max(newZoom, FOCUS_ZOOM),
+        });
+      }
     } else if (selected) {
       const geometry = selected.getGeometry();
       const selectCenter = (geometry.getType() === 'Point')

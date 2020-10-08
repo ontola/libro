@@ -238,6 +238,7 @@ const GlappMap = ({
     center: fromLonLat([centerLon, centerLat]),
     zoom,
   });
+  const [eventsCluster, setEventsCluster] = React.useState(null);
   const showFull = view.zoom > FULL_POSTAL_LEVEL;
   const postalCodes = showFull ? postalCodesFull : postalCodesSimplified;
   React.useEffect(() => {
@@ -271,7 +272,13 @@ const GlappMap = ({
     { features: selectedFeatures },
     eventsLayer,
   ]), [postalShapes, eventsLayer, selectedFeatures]);
+  const handleClusterSelect = React.useCallback((features, newCenter) => {
+    setSelectedPostalCode(null);
+    setEventsCluster(rdf.namedNode(`${postalCodeIri(features[0].getProperties().location).value}/events`));
+    setOverlayPosition(newCenter);
+  });
   const handleSelect = React.useCallback((feature, newCenter) => {
+    setEventsCluster(null);
     const { location, postalDigits } = feature?.getProperties() || {};
     if (postalDigits) {
       setSelectedPostalCode(postalDigits);
@@ -291,14 +298,19 @@ const GlappMap = ({
     }
   }, [setSelectedPostalCode, setSelectedEvent, view.zoom]);
 
+  const overlayResource = eventsCluster
+    || selectedEvent
+    || (selectedPostalCode && postalCodeIri(selectedPostalCode));
+
   return (
     <MapCanvas
       large
       fullscreenButton={false}
       layers={layers}
       overlayPosition={overlayPosition}
-      overlayResource={selectedEvent || (selectedPostalCode && postalCodeIri(selectedPostalCode))}
+      overlayResource={overlayResource}
       view={view}
+      onClusterSelect={handleClusterSelect}
       onSelect={handleSelect}
       onViewChange={(newCenter, newZoom) => {
         setView({

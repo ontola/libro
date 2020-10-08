@@ -173,7 +173,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
 
   history.listen((opts, action) => {
     if (['POP', 'PUSH'].includes(action)) {
-      store.exec(libro.ns(`actions/navigation/${action.toLowerCase()}`),
+      store.exec(libro.ns(`actions/navigations/${action.toLowerCase()}`),
           {
             hash: opts.hash || '',
             key: opts.key || '',

@@ -15,6 +15,7 @@ export const cardTopology = argu.card;
 class Card extends Topology {
   static propTypes = {
     children: PropTypes.node.isRequired,
+    className: PropTypes.string,
     fixed: PropTypes.bool,
     shine: PropTypes.bool,
     warn: PropTypes.bool,
@@ -37,6 +38,7 @@ class Card extends Topology {
       Card: true,
       'Card--shine': this.props.shine,
       'Card--warn': this.props.warn,
+      [this.props.className]: true,
     });
   }
 }
