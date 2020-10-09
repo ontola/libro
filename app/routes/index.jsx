@@ -8,7 +8,7 @@ import DevBrowser from './DevBrowser';
 import Sandbox from './Sandbox';
 
 const subRoutes = [
-  <Route key="externalResources" path="/*/resource" component={ExternalLinkedObject} />,
+  <Route key="externalResources" path="(/\w*)?/resource" component={ExternalLinkedObject} />,
   <Route key="linkedResources" path="*" component={LinkedObject} />,
 ];
 
