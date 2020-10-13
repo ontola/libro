@@ -9492,10 +9492,10 @@ koa-csrf@^3.0.8:
   dependencies:
     csrf "^3.1.0"
 
-koa-http2-proxy@^0.0.3-2:
-  version "0.0.3-2"
-  resolved "https://registry.yarnpkg.com/koa-http2-proxy/-/koa-http2-proxy-0.0.3-2.tgz#042b80dcad566d638cea5c8339c1fcc2f3fd10e2"
-  integrity sha512-HCWFjXnzwJZHLeSD9afSEay5kXozo5KtF9osUtmnttms44k9blA+MgxylJ8qdCuV4Pw+Bpz4n+pkaOoskByx6g==
+koa-http2-proxy@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/koa-http2-proxy/-/koa-http2-proxy-0.0.4.tgz#9215b519ea92e9d405cd8fa1d82993b93df078bd"
+  integrity sha512-kkKel2zIjtYA5H10rqc3FAwtIUMsqXBHxXAZ7kwJv1M9nDAe3d/7kVwU7wcC+5CVtWzPHke5XYaI/8kHkYpzYw==
   dependencies:
     finalhandler "^1.1.2"
     http2-proxy "^5.0.43"
