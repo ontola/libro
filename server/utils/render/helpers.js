@@ -76,7 +76,7 @@ export const preloadingBlock = (ctx, nonceStr) => `
   ></div>
   <div id="${constants.APP_ELEMENT}" class="${ctx.manifest.ontola.theme} preloader-fixed"></div>
   <noscript>
-      <h1>Argu heeft javascript nodig om te werken</h1>
+      <h1>Deze website heeft javascript nodig om te werken</h1>
       <p>Javascript staat momenteel uitgeschakeld, probeer een andere browser of in prive modus.</p>
   </noscript>
   <script nonce="${nonceStr}">document.body.className = (document.body.className || '') + ' Body--show-preloader';</script>
