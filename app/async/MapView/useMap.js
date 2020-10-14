@@ -11,7 +11,10 @@ import { boundingExtent, getCenter } from 'ol/extent';
 import Select from 'ol/interaction/Select';
 import TileLayer from 'ol/layer/Tile';
 import VectorLayer from 'ol/layer/Vector';
-import { fromLonLat, toLonLat } from 'ol/proj';
+import {
+  fromLonLat,
+  toLonLat,
+} from 'ol/proj';
 import Cluster from 'ol/source/Cluster';
 import VectorSource from 'ol/source/Vector';
 import XYZ from 'ol/source/XYZ';
