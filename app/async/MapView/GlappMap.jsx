@@ -288,7 +288,7 @@ const GlappMap = ({
       setOverlayPosition(newCenter);
       setView({
         center: newCenter,
-        zoom: Math.max(view.zoom, FOCUS_ZOOM),
+        zoom: Math.max(view.zoom, feature ? FOCUS_ZOOM : 0),
       });
       if (location) {
         setSelectedPostalCode(location, false);

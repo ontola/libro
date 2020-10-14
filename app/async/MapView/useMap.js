@@ -11,7 +11,10 @@ import { boundingExtent, getCenter } from 'ol/extent';
 import Select from 'ol/interaction/Select';
 import TileLayer from 'ol/layer/Tile';
 import VectorLayer from 'ol/layer/Vector';
-import { fromLonLat, toLonLat } from 'ol/proj';
+import {
+  fromLonLat,
+  toLonLat,
+} from 'ol/proj';
 import Cluster from 'ol/source/Cluster';
 import VectorSource from 'ol/source/Vector';
 import XYZ from 'ol/source/XYZ';
@@ -27,7 +30,7 @@ import { getMetaContent } from '../../helpers/arguHelpers';
 import { handle } from '../../helpers/logging';
 
 const CLUSTER_DISTANCE = 30;
-const CLUSTER_ZOOM = 2;
+const CLUSTER_PADDING = 0.5;
 const DEFAULT_LAT = 52.1344;
 const DEFAULT_LON = 5.1917;
 const DEFAULT_ZOOM = 6.8;
@@ -159,11 +162,18 @@ const useMap = (props) => {
           onClusterSelect(features, clusterCenter);
         }
       } else {
-        const newZoom = e.mapBrowserEvent.map.getView().getZoom() + CLUSTER_ZOOM;
+        const eventView = e.mapBrowserEvent.map.getView();
+        // eslint-disable-next-line no-underscore-dangle
+        const [width, height] = eventView.getViewportSize_();
+        const resolution = eventView.getResolutionForExtentInternal(
+          [left, top, right, bottom],
+          [width * CLUSTER_PADDING, height * CLUSTER_PADDING]
+        );
+        const newZoom = eventView.getZoomForResolution(resolution);
 
         e.mapBrowserEvent.map.getView().animate({
           center: clusterCenter,
-          zoom: Math.max(newZoom, FOCUS_ZOOM),
+          zoom: newZoom,
         });
       }
     } else if (selected) {
