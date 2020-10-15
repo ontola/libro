@@ -31,13 +31,13 @@ const DepartmentFull = ({ postalRanges, renderPartOf }) => (
             <Property label={schema.name} />
           </HeaderWithMenu>
           <ContentDetails>
-            <Property label={teamGL.newVolunteersCount} />
-            <Property label={teamGL.volunteersCount} />
-            <Property label={teamGL.inactiveVolunteersCount} />
-            <Property label={teamGL.activeVolunteersCount} />
-            <Property label={teamGL.veryActiveVolunteersCount} />
-            <Property label={teamGL.futureEventsCount} />
-            <Property label={teamGL.groupsCount} />
+            <Property label={teamGL.totalNewVolunteersCount} />
+            <Property label={teamGL.totalVolunteersCount} />
+            <Property label={teamGL.inactiveVolunteersRatio} />
+            <Property label={teamGL.activeVolunteersRatio} />
+            <Property label={teamGL.veryActiveVolunteersRatio} />
+            <Property label={teamGL.totalFutureEventsCount} />
+            <Property label={teamGL.totalGroupsCount} />
             <LinkedDetailDate />
           </ContentDetails>
           <div>

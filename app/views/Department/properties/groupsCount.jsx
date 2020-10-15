@@ -16,7 +16,7 @@ const GroupsCount = ({ linkedProp }) => (
 
 GroupsCount.type = teamGL.Department;
 
-GroupsCount.property = teamGL.groupsCount;
+GroupsCount.property = teamGL.totalGroupsCount;
 
 GroupsCount.topology = [
   detailsBarTopology,

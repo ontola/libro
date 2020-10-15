@@ -6,25 +6,26 @@ import Detail from '../../../components/Detail';
 import teamGL from '../../../ontology/teamGL';
 import { detailsBarTopology } from '../../../topologies/DetailsBar';
 import { contentDetailsTopology } from '../../../topologies/ContentDetails';
+import { tryParseFloat } from '../../../helpers/numbers';
 
-const VolunteersCount = ({ linkedProp }) => (
+const ActiveVolunteersRatio = ({ linkedProp }) => (
   <Detail
-    text={emoji(`😀 ${linkedProp.value}`)}
-    title="Vrijwilligers"
+    text={emoji(`💪 ${Math.round((tryParseFloat(linkedProp) || 0) * 100)}%`)}
+    title="Actief"
   />
 );
 
-VolunteersCount.type = [teamGL.Group, teamGL.Department];
+ActiveVolunteersRatio.type = teamGL.Department;
 
-VolunteersCount.property = teamGL.totalVolunteersCount;
+ActiveVolunteersRatio.property = teamGL.activeVolunteersRatio;
 
-VolunteersCount.topology = [
+ActiveVolunteersRatio.topology = [
   detailsBarTopology,
   contentDetailsTopology,
 ];
 
-VolunteersCount.propTypes = {
+ActiveVolunteersRatio.propTypes = {
   linkedProp: linkType,
 };
 
-export default register(VolunteersCount);
+export default register(ActiveVolunteersRatio);

@@ -16,7 +16,7 @@ const NewVolunteersCount = ({ linkedProp }) => (
 
 NewVolunteersCount.type = teamGL.Department;
 
-NewVolunteersCount.property = teamGL.newVolunteersCount;
+NewVolunteersCount.property = teamGL.totalNewVolunteersCount;
 
 NewVolunteersCount.topology = [
   detailsBarTopology,
