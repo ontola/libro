@@ -25,6 +25,7 @@ describe('Actions', () => {
 
   const testIRI = ex.ns('test');
   const entryPointIRI = example.ns('test/edit');
+  const objectIRI = ex.ns('testObject');
   const nameIRI = ex.ns('form/name');
   const pinIRI = ex.ns('form/pin');
   const locationIRI = ex.ns('form/location');
@@ -34,7 +35,10 @@ describe('Actions', () => {
     [rdfx.type]: schema.UpdateAction,
     [dcterms.identifier]: testIRI,
     [schema.name]: 'Edit object',
-    [schema.object]: ex.ns(''),
+    [schema.object]: {
+      '@id': objectIRI,
+      [rdfx.type]: example.ns('Resource'),
+    },
     [schema.target]: {
       '@id': entryPointIRI,
       [rdfx.type]: schema.EntryPoint,

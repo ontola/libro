@@ -29,6 +29,7 @@ const getInitialValues = (lrs, sessionStore, addValue, parentForm, object, formC
   const fields = lrs.dig(parentForm, formFieldsPath);
   const conditionalFields = lrs.dig(parentForm, conditionalFormFieldsPath);
   const dependentResources = [
+    object,
     parentForm,
     ...lrs.dig(parentForm, nestedFormsPath),
     ...lrs.dig(parentForm, nestedConditionalFormsPath),
