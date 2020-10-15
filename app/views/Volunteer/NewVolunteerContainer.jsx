@@ -1,4 +1,3 @@
-import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
 import {
   Property,
@@ -7,6 +6,7 @@ import {
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
+import HeaderWithMenu from '../../components/HeaderWithMenu';
 import ontola from '../../ontology/ontola';
 import teamGL from '../../ontology/teamGL';
 import { containerTopology } from '../../topologies/Container';
@@ -25,7 +25,11 @@ class NewVolunteerContainer extends React.PureComponent {
     return (
       <Card>
         <CardContent noSpacing>
-          <Property label={[schema.name, rdfs.label]} />
+          <HeaderWithMenu
+            menu={<Property label={ontola.actionsMenu} />}
+          >
+            <Property label={schema.name} />
+          </HeaderWithMenu>
           <ContentDetails>
             <Property label={teamGL.department} />
             <Property label={schema.dateCreated} />
