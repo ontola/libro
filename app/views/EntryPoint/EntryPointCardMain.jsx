@@ -25,6 +25,7 @@ const EntryPointCardMain = (props) => {
   const {
     action,
     actionBody,
+    autoSubmit,
     httpMethod,
     cancelPath,
     name,
@@ -83,6 +84,7 @@ const EntryPointCardMain = (props) => {
       </CardContent>
       <EntryPointForm
         actionBody={actionBody}
+        autoSubmit={autoSubmit}
         contentWrapper={CardContent}
         errorResponse={errorResponse}
         footerButtons={footerButtons}
@@ -118,6 +120,7 @@ EntryPointCardMain.mapDataToProps = {
 EntryPointCardMain.propTypes = {
   action: linkType,
   actionBody: linkType,
+  autoSubmit: PropTypes.bool,
   cancelPath: PropTypes.string,
   httpMethod: linkType,
   name: linkType,

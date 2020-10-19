@@ -20,6 +20,7 @@ import FormFooter from '../../topologies/FormFooter/Footer';
 const EntryPointForm = ({
   actionBody,
   autofocusForm,
+  autoSubmit,
   className,
   contentWrapper,
   errorResponse,
@@ -76,6 +77,7 @@ const EntryPointForm = ({
   return (
     <FormContainer
       action={url && new URL(url).pathname}
+      autoSubmit={autoSubmit}
       className={className}
       form={formInstance}
       formID={formID}
@@ -120,6 +122,7 @@ const EntryPointForm = ({
 
 EntryPointForm.propTypes = {
   actionBody: linkType,
+  autoSubmit: PropTypes.bool,
   autofocusForm: PropTypes.bool,
   className: PropTypes.string,
   contentWrapper: PropTypes.elementType,

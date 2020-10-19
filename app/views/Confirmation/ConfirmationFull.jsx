@@ -1,15 +1,22 @@
-import rdfx from '@ontologies/rdf';
-import { linkType, register } from 'link-redux';
+import schema from '@ontologies/schema';
+import {
+  Property,
+  register,
+} from 'link-redux';
 import React from 'react';
-import { Redirect } from 'react-router';
 
-import { retrievePath } from '../../helpers/iris';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
+import Card from '../../topologies/Card';
+import Container from '../../topologies/Container';
 import { fullResourceTopology } from '../../topologies/FullResource';
 
-const ConfirmationFull = ({ redirectUrl }) => (
-  redirectUrl && <Redirect to={retrievePath(redirectUrl)} />
+const ConfirmationFull = () => (
+  <Container>
+    <Card>
+      <Property autoSubmit label={schema.target} />
+    </Card>
+  </Container>
 );
 
 ConfirmationFull.type = [
@@ -18,14 +25,5 @@ ConfirmationFull.type = [
 ];
 
 ConfirmationFull.topology = fullResourceTopology;
-
-ConfirmationFull.mapDataToProps = {
-  redirectUrl: ontola.redirectUrl,
-  type: rdfx.type,
-};
-
-ConfirmationFull.propTypes = {
-  redirectUrl: linkType,
-};
 
 export default register(ConfirmationFull);

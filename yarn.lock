@@ -1800,10 +1800,10 @@
   dependencies:
     type-zoo ">=3.4.1"
 
-"@ontola/memoized-factory@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@ontola/memoized-factory/-/memoized-factory-2.0.0.tgz#2c46412cfab85cf62077d2d7c5c60e4da4f8d55e"
-  integrity sha512-9UqXvylFoezichwNP7/ZjWp+q6cMATcMoMhIdymmezsEdjA5bNA11/IMv206UWhWEwrKu7Sn8r9tVC4oZ4sjoA==
+"@ontola/memoized-factory@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@ontola/memoized-factory/-/memoized-factory-2.0.1.tgz#f490adc8c5c9218907e0fe5a9420dc695c370d4d"
+  integrity sha512-BGJtBF8HyrcpH2HAdVxVD1moyfesfIekZqms/RFTgyydEG2yA/2kbBjX83KG5IFvSrHeCLiATpQ/35+m9AZsKA==
 
 "@ontologies/as@^1.0.3":
   version "1.0.3"
@@ -9677,10 +9677,10 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
-link-lib@0.0.0-f86bceec:
-  version "0.0.0-f86bceec"
-  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-0.0.0-f86bceec.tgz#776c85b2a094f9e9c5c4d5e78d191b6deaca538d"
-  integrity sha512-hGC6LJee26iHJP3QqUnYKJEPvPhdTVKOge4c8dTC73ZmdQ4DwDr9nnibQLZfgfolc37Mh6aep+VxG9299oWoAg==
+link-lib@0.0.0-fd235691:
+  version "0.0.0-fd235691"
+  resolved "https://registry.yarnpkg.com/link-lib/-/link-lib-0.0.0-fd235691.tgz#34169031693b1d4cd2b4d3058f9efe75be10972b"
+  integrity sha512-CgGXPgmUOz1vSGZAz/E/N1fJXij883+ffcWULB9B/CqRyxlW8+c+dwQrLzCeLMSQQIQ+gxb0wD7WEd/KVxPepw==
 
 link-redux@2.0.0-6:
   version "2.0.0-6"

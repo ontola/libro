@@ -9,6 +9,7 @@ import { Input } from '../Input';
 
 const propTypes = {
   action: PropTypes.string,
+  autoSubmit: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.node,
@@ -38,6 +39,7 @@ export const FormContext = React.createContext();
 const Form = (props) => {
   const {
     action,
+    autoSubmit,
     children,
     className,
     form,
@@ -49,7 +51,7 @@ const Form = (props) => {
     subscription,
     validateOnBlur,
   } = props;
-
+  const [autoSubmitted, setAutoSubmitted] = React.useState(false);
   const submitHandler = (...args) => onSubmit({ onSubmit: submitHandler }, ...args)
     .then(() => {
       const formApi = args[1];
@@ -65,6 +67,13 @@ const Form = (props) => {
 
   const renderFunc = typeof children === 'function';
   const controlledSubmit = renderFunc ? submitHandler : onSubmit;
+  React.useEffect(() => {
+    if (autoSubmit && !autoSubmitted) {
+      setAutoSubmitted(true);
+      controlledSubmit();
+    }
+  }, [autoSubmit, autoSubmitted]);
+
   const lowerMethod = (typeof method === 'string' ? method : method.value).toLowerCase();
   const methodInput = !['get', 'post'].includes(lowerMethod) && <Input name="_method" type="hidden" value={method} />;
   const formMethod = lowerMethod === 'get' ? 'get' : 'post';
