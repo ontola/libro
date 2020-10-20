@@ -95,7 +95,8 @@ export function route(requestUrl, full = false) {
   }
 
   if (bulkMatch.test(path)) {
-    serviceName = 'apex_rs';
+    serviceName = 'apex-rs';
+    url.port = '3030';
   } else if (dekuMatch.test(path)) {
     serviceName = 'deku';
   } else if (emailMatch.test(path)) {
