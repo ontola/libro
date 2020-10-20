@@ -36,7 +36,7 @@ const ArguLocation = ({
       setSelected(
         lrs.getResourceProperty(
           id.termType ? id : rdf.namedNode(id),
-          argu.placeable
+          schema.isPartOf
         )
       );
     }
