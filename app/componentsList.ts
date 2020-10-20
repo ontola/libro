@@ -64,7 +64,6 @@ export const components = {
   MenuSectionLabel: component('MenuSectionLabel'),
   Metadata: component('Metadata'),
   NavBarContent: component('NavBarContent'),
-  NavbarLink: component('NavbarLink'),
   NavbarLinkNavbarLinkCount: component('NavbarLink/NavbarLinkCount'),
   NavbarLinkNavbarLinkIcon: component('NavbarLink/NavbarLinkIcon'),
   NavbarLinkNavbarLinkImage: component('NavbarLink/NavbarLinkImage'),

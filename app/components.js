@@ -61,7 +61,6 @@ import CompMenuItem from './components/MenuItem/index';
 import CompMenuSectionLabel from './components/MenuSectionLabel/index';
 import CompMetadata from './components/Metadata/index';
 import CompNavBarContent from './components/NavBarContent/index';
-import CompNavbarLink from './components/NavbarLink/index';
 import CompNavbarLinkNavbarLinkCount from './components/NavbarLink/NavbarLinkCount';
 import CompNavbarLinkNavbarLinkIcon from './components/NavbarLink/NavbarLinkIcon';
 import CompNavbarLinkNavbarLinkImage from './components/NavbarLink/NavbarLinkImage';
@@ -153,7 +152,6 @@ export const componentMap = {
   [rdf.id(components.MenuSectionLabel)]: CompMenuSectionLabel,
   [rdf.id(components.Metadata)]: CompMetadata,
   [rdf.id(components.NavBarContent)]: CompNavBarContent,
-  [rdf.id(components.NavbarLink)]: CompNavbarLink,
   [rdf.id(components.NavbarLinkNavbarLinkCount)]: CompNavbarLinkNavbarLinkCount,
   [rdf.id(components.NavbarLinkNavbarLinkIcon)]: CompNavbarLinkNavbarLinkIcon,
   [rdf.id(components.NavbarLinkNavbarLinkImage)]: CompNavbarLinkNavbarLinkImage,
