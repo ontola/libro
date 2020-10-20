@@ -6,12 +6,6 @@ export default (theme) => ({
         whiteSpace: 'nowrap',
       },
       '& .MuiToolbar-root': {
-        '& > .NavBarContent__items': {
-          flexBasis: '100%',
-        },
-        '& > .NavBarContent__menus': {
-          flexBasis: '100%',
-        },
         '& img': {
           maxHeight: theme.appBar.height,
         },
