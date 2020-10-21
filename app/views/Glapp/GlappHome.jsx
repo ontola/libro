@@ -11,7 +11,6 @@ import emoji from 'react-easy-emoji/index';
 import { connect } from 'react-redux';
 
 import { getMapAccessToken } from '../../async/MapView/actions';
-import GlappMap from '../../async/MapView/GlappMap';
 import reducer, { MapReducerKey } from '../../async/MapView/reducer';
 import { getAccessToken } from '../../async/MapView/selectors';
 import LinkLoader from '../../components/Loading/LinkLoader';
@@ -21,6 +20,7 @@ import teamGL from '../../ontology/teamGL';
 import { allTopologies } from '../../topologies';
 import Card, { CardContent } from '../../topologies/Card';
 
+import GlappMap from './GlappMap';
 import SearchPostalForm from './SearchPostalForm';
 
 const useStyles = makeStyles(() => ({
