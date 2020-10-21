@@ -7,6 +7,7 @@ import {
 import React from 'react';
 
 import TableCells from '../../components/TableCells';
+import { useCurrentActor } from '../../hooks/useCurrentActor';
 import teamGL from '../../ontology/teamGL';
 import { tableTopology } from '../../topologies/Table';
 import TableRow from '../../topologies/TableRow';
@@ -14,10 +15,16 @@ import { columnsType } from '../Thing/ThingTable';
 
 const StreetTable = (props) => {
   const lrs = useLRS();
+  const { actorType } = useCurrentActor();
 
   const onClick = (e) => {
     e.preventDefault();
-    lrs.actions.ontola.showDialog(rdf.namedNode(`${props.subject.value}/flyer_actions/new`));
+    const formIRI = rdf.namedNode(`${props.subject.value}/flyer_actions/new`);
+    if (actorType?.value === 'GuestUser') {
+      lrs.actions.app.startSignIn(formIRI);
+    } else {
+      lrs.actions.ontola.showDialog(formIRI);
+    }
   };
 
   return (
