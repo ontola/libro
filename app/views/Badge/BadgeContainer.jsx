@@ -1,5 +1,4 @@
 import schema from '@ontologies/schema';
-import rdfs from '@ontologies/rdfs';
 import {
   Property,
   linkType,
@@ -14,6 +13,7 @@ import { withRouter } from 'react-router';
 import Button from '../../components/Button';
 import CardContent from '../../components/Card/CardContent';
 import FormFooterRight from '../../components/Form/FooterRight';
+import Heading from '../../components/Heading';
 import Image from '../../components/Image';
 import teamGL from '../../ontology/teamGL';
 import Card from '../../topologies/Card';
@@ -29,9 +29,9 @@ const messages = defineMessages({
   },
 });
 
-
 const BadgeContainer = ({
   image,
+  name,
   subject,
 }) => {
   const { formatMessage } = useIntl();
@@ -40,7 +40,7 @@ const BadgeContainer = ({
   return (
     <Card about={subject?.value}>
       <CardContent centered noSpacing style={{ maxWidth: '25em' }}>
-        <Property label={[schema.name, rdfs.label]} />
+        <Heading>{name?.value}</Heading>
         <Image
           linkedProp={image}
           style={{
@@ -78,10 +78,12 @@ BadgeContainer.topology = [
 
 BadgeContainer.mapDataToProps = {
   image: schema.image,
+  name: schema.name,
 };
 
 BadgeContainer.propTypes = {
   image: linkType,
+  name: linkType,
   subject: subjectType,
 };
 
