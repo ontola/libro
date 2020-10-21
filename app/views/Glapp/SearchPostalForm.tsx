@@ -68,6 +68,7 @@ const SearchPostalForm = ({ setSelectedPostalCode }: SearchPostalFormProps) => {
           className={classes.input}
           inputProps={inputProps}
           inputRef={ref}
+          name="postal-input"
           placeholder="1234"
           value={postalCode}
           onChange={(e) => {
@@ -77,6 +78,7 @@ const SearchPostalForm = ({ setSelectedPostalCode }: SearchPostalFormProps) => {
         />
         <IconButton
           className={classes.iconButton}
+          name="submit-search"
           type="submit"
         >
           <SearchIcon />
