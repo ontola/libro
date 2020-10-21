@@ -61,6 +61,7 @@ const SearchPostalForm = ({ setSelectedPostalCode }) => {
           inputRef={ref}
           max={MAX_POSTAL_DIGITS}
           min={MIN_POSTAL_DIGITS}
+          name="postal-input"
           placeholder="1234"
           value={postalCode}
           onChange={(e) => {
@@ -70,6 +71,7 @@ const SearchPostalForm = ({ setSelectedPostalCode }) => {
         />
         <IconButton
           className={classes.iconButton}
+          name="submit-search"
           type="submit"
         >
           <SearchIcon />
