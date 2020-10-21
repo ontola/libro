@@ -37,8 +37,8 @@ const ONE_WEEK = 7;
 
 const dateRangeToS = (dateRange) => (
   dateRange.map((date) => {
-    const dd = date.getDate().padStart(DATE_SIZE, '0');
-    const mm = (date.getMonth() + 1).padStart(DATE_SIZE, '0');
+    const dd = date.getDate().toString().padStart(DATE_SIZE, '0');
+    const mm = (date.getMonth() + 1).toString().padStart(DATE_SIZE, '0');
     const yyyy = date.getFullYear();
 
     return yyyy + mm + dd;
@@ -46,8 +46,8 @@ const dateRangeToS = (dateRange) => (
 );
 
 const dateToS = (date) => {
-  const dd = date.getDate().padStart(DATE_SIZE, '0');
-  const mm = (date.getMonth() + 1).padStart(DATE_SIZE, '0');
+  const dd = date.getDate().toString().padStart(DATE_SIZE, '0');
+  const mm = (date.getMonth() + 1).toString().padStart(DATE_SIZE, '0');
   const yyyy = date.getFullYear();
 
   return [yyyy, mm, dd].join('-');

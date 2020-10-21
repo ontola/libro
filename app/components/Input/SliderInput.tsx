@@ -5,6 +5,8 @@ import React from 'react';
 import { tryParseInt } from '../../helpers/numbers';
 import { InputComponentProps } from '../FormField/InputComponentProps';
 
+import HiddenRequiredInput from '../Input/HiddenRequiredInput';
+
 const StyledSlider = withStyles({
   active: {},
   rail: {
@@ -37,6 +39,7 @@ const SliderInput: React.FC<InputComponentProps> = ({
   fieldShape,
   inputValue,
   onChange,
+  name,
 }) => {
   const {
     maxInclusive,
@@ -56,16 +59,19 @@ const SliderInput: React.FC<InputComponentProps> = ({
   }];
 
   return (
-    <StyledSlider
-      aria-labelledby="discrete-slider-custom"
-      defaultValue={tryParseInt(inputValue)}
-      getAriaValueText={getAriaValueText}
-      marks={defaultMarks}
-      max={maxInclusive}
-      min={minInclusive}
-      valueLabelDisplay="auto"
-      onChange={handleChange}
-    />
+    <React.Fragment>
+      <StyledSlider
+        aria-labelledby="discrete-slider-custom"
+        defaultValue={tryParseInt(inputValue)}
+        getAriaValueText={getAriaValueText}
+        marks={defaultMarks}
+        max={maxInclusive}
+        min={minInclusive}
+        valueLabelDisplay="auto"
+        onChange={handleChange}
+      />
+      <HiddenRequiredInput name={name} value={inputValue?.value} />
+    </React.Fragment>
   );
 };
 
