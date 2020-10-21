@@ -3,7 +3,6 @@ import React from 'react';
 
 const HiddenRequiredInput = ({ name, value }) => (
   <input
-    readOnly
     required
     className="hidden-field"
     id={name}

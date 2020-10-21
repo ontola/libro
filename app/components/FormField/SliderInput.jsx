@@ -4,6 +4,8 @@ import { linkType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import HiddenRequiredInput from '../Input/HiddenRequiredInput';
+
 const StyledSlider = withStyles({
   active: {},
   rail: {
@@ -36,6 +38,7 @@ const SliderInput = ({
   maxInclusive,
   minInclusive,
   marks,
+  name,
 }) => {
   const handleChange = (e, val) => {
     e.preventDefault();
@@ -51,16 +54,19 @@ const SliderInput = ({
   }];
 
   return (
-    <StyledSlider
-      aria-labelledby="discrete-slider-custom"
-      defaultValue={value?.value}
-      getAriaValueText={(v) => v}
-      marks={marks || defaultMarks}
-      max={maxInclusive}
-      min={minInclusive}
-      valueLabelDisplay="auto"
-      onChange={handleChange}
-    />
+    <React.Fragment>
+      <StyledSlider
+        aria-labelledby="discrete-slider-custom"
+        defaultValue={value?.value}
+        getAriaValueText={(v) => v}
+        marks={marks || defaultMarks}
+        max={maxInclusive}
+        min={minInclusive}
+        valueLabelDisplay="auto"
+        onChange={handleChange}
+      />
+      <HiddenRequiredInput name={name} value={value?.value} />
+    </React.Fragment>
   );
 };
 
@@ -68,6 +74,7 @@ SliderInput.propTypes = {
   marks: PropTypes.arrayOf(PropTypes.object),
   maxInclusive: PropTypes.number,
   minInclusive: PropTypes.number,
+  name: PropTypes.string,
   onChange: PropTypes.func,
   value: linkType,
 };
