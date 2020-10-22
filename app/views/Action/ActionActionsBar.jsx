@@ -30,7 +30,7 @@ const ActionActionsBar = ({
   actionStatus,
   type,
 }) => {
-  if (invalidStatusIds.includes(rdf.id(actionStatus))) {
+  if (actionStatus && invalidStatusIds.includes(rdf.id(actionStatus))) {
     return null;
   }
 

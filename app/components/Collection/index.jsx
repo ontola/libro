@@ -40,6 +40,10 @@ const Collection = ({
 
   const iriTemplate = lrs.getResourceProperty(baseCollection, ontola.iriTemplate);
 
+  if (!iriTemplate) {
+    return null;
+  }
+
   const tmpl = parser.parse(iriTemplate.value);
   const collection = tmpl.expand({
     display,
