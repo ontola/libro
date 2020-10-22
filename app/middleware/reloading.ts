@@ -25,7 +25,7 @@ function unloadPage(lrs: LinkReduxLRSType) {
 
   if (lrs.api) {
     try {
-      (lrs.api as any).channel.disconnect();
+      (lrs.api as any).channel?.disconnect();
     } catch (e) {
       handle(e);
     }
