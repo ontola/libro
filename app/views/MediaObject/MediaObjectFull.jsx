@@ -87,14 +87,16 @@ class MediaObjectFull extends React.PureComponent {
 
     return (
       <div className="MediaObjectPage__infobar" data-test="MediaObject">
-        <Link
-          className="MediaObjectPage__infobar--is-part-of"
-          data-test="MediaObject-isPartOf"
-          title="Back to parent"
-          to={retrievePath(isPartOf.value)}
-        >
-          <FontAwesome name="arrow-left" />
-        </Link>
+        {isPartOf && (
+          <Link
+            className="MediaObjectPage__infobar--is-part-of"
+            data-test="MediaObject-isPartOf"
+            title="Back to parent"
+            to={retrievePath(isPartOf.value)}
+          >
+            <FontAwesome name="arrow-left" />
+          </Link>
+        )}
         <div className="MediaObjectPage__infobar--label">
           {label && <Heading data-test="MediaObject-heading" variant="light">{label}</Heading>}
         </div>
