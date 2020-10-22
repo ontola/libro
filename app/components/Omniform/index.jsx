@@ -184,7 +184,7 @@ const mapStateToProps = (state, ownProps) => {
   return ({
     action,
     actions,
-    onStatusForbidden: () => {
+    onStatusForbidden: (e) => {
       convertFieldContext(ownProps.parentIRI, action);
       ownProps.lrs.actions.ontola.navigate(action);
 
@@ -193,7 +193,7 @@ const mapStateToProps = (state, ownProps) => {
         .actions
         .app
         .startSignIn(action)
-        .then(Promise.reject);
+        .then(() => Promise.reject(e));
     },
   });
 };
