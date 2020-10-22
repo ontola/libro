@@ -124,6 +124,7 @@ export default {
   sortDirection: ontola('sortDirection'),
   sortKey: ontola('sortKey'),
   sortOptions: ontola('sortOptions'),
+  tabsMenu: ontola('tabsMenu'),
   topology: ontola('topology'),
   updateAction: ontola('updateAction'),
   widgetResource: ontola('widgetResource'),
