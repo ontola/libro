@@ -52,8 +52,7 @@ const MenuItemDropdownContentComp = ({
           lrs
             .actions
             .app
-            .startSignIn()
-            .then(Promise.reject);
+            .startSignIn();
         }
       });
   }
