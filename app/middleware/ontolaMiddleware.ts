@@ -111,7 +111,7 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
   };
 
   (store as any).actions.ontola.showSnackbar = (message: Literal | string) => {
-    store.exec(rdf.namedNode(`${libro.actions.snackbar.show.value}?text=${encodeURIComponent(message.toString())}`));
+    return store.exec(rdf.namedNode(`${libro.actions.snackbar.show.value}?text=${encodeURIComponent(message.toString())}`));
   };
 
   /**
@@ -156,15 +156,15 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
   (store as any).actions.ontola.showDialog = (resource: NamedNode, opener?: NamedNode) => {
     const resourceValue = encodeURIComponent(resource.value);
     const openerValue = opener ? encodeURIComponent(opener.value) : '';
-    store.exec(rdf.namedNode(`${libro.actions.dialog.alert.value}?resource=${resourceValue}&opener=${openerValue}`));
+    return store.exec(rdf.namedNode(`${libro.actions.dialog.alert.value}?resource=${resourceValue}&opener=${openerValue}`));
   };
 
   (store as any).actions.ontola.hideDialog = () => {
-    store.exec(libro.actions.dialog.close);
+    return store.exec(libro.actions.dialog.close);
   };
 
   (store as any).actions.ontola.navigate = (resource: NamedNode) => {
-    store.exec(rdf.namedNode(`${libro.actions.redirect.value}?location=${encodeURIComponent(resource.value)}`));
+    return store.exec(rdf.namedNode(`${libro.actions.redirect.value}?location=${encodeURIComponent(resource.value)}`));
   };
 
   /**
