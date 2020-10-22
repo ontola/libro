@@ -46,18 +46,7 @@ const DepartmentFull = ({ postalRanges, renderPartOf }) => (
           </div>
         </CardContent>
       </CardMain>
-    </Container>
-    <Container size="large">
-      <Property forceRender renderWhenEmpty label={teamGL.subDepartments} />
-    </Container>
-    <Container>
-      <Property forceRender renderWhenEmpty label={teamGL.memberships} />
-    </Container>
-    <Container>
-      <Property forceRender renderWhenEmpty label={teamGL.events} />
-    </Container>
-    <Container>
-      <Property forceRender renderWhenEmpty label={teamGL.groups} />
+      <Property label={ontola.tabsMenu} />
     </Container>
   </React.Fragment>
 );
