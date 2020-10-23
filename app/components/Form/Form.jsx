@@ -62,7 +62,7 @@ const Form = (props) => {
           .forEach((k) => k.startsWith(formID) && sessionStorage.removeItem(k));
       }
 
-      window.setTimeout(() => formApi.reset(), 0);
+      window.setTimeout(() => formApi?.reset(), 0);
     });
 
   const renderFunc = typeof children === 'function';
