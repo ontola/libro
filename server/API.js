@@ -143,7 +143,7 @@ class API {
         ...rest,
         headers: {
           ...headers,
-          Authorization: `Bearer ${authToken}`,
+          Authorization: authToken && `Bearer ${authToken}`,
           'X-Argu-Back': 'true',
           'X-Device-Id': this.ctx.deviceId,
         },
