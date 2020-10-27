@@ -13,9 +13,9 @@ class OmniformConnector extends React.PureComponent {
     autofocusForm: PropTypes.bool,
     closeForm: PropTypes.func,
     formFooterButtons: PropTypes.node,
+    items: linkType,
     onDone: PropTypes.func,
     onKeyUp: PropTypes.func,
-    potentialAction: linkType,
     subject: subjectType,
   };
 
@@ -26,7 +26,7 @@ class OmniformConnector extends React.PureComponent {
   render() {
     return (
       <Omniform
-        actions={new Set(this.props.potentialAction)}
+        actions={new Set(this.props.items)}
         autofocusForm={this.props.autofocusForm}
         closeForm={this.props.closeForm}
         formFooterButtons={this.props.formFooterButtons}

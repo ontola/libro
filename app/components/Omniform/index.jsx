@@ -18,7 +18,6 @@ import argu from '../../ontology/argu';
 import { highlightResource } from '../../state/app/actions';
 import { getOmniformAction, omniformSetAction } from '../../state/omniform';
 import OmniformFields from '../../topologies/OmniformFields/OmniformFields';
-import { filterActions } from '../../views/Thing/properties/omniform/helpers';
 import Button from '../Button';
 import { FormFooterRight } from '../Form';
 import { formFieldError } from '../FormField';
@@ -177,13 +176,10 @@ const Omniform = (props) => {
 Omniform.propTypes = propTypes;
 
 const mapStateToProps = (state, ownProps) => {
-  const actions = filterActions(ownProps.lrs, ownProps.actions);
-
-  const action = getOmniformAction(state, ownProps.parentIRI) || actions.first();
+  const action = getOmniformAction(state, ownProps.parentIRI) || ownProps.actions.first();
 
   return ({
     action,
-    actions,
     onStatusForbidden: (e) => {
       convertFieldContext(ownProps.parentIRI, action);
       ownProps.lrs.actions.ontola.navigate(action);

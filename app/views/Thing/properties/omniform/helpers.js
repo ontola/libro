@@ -1,8 +1,11 @@
 import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
-import { useLRS } from 'link-redux';
+import {
+  useDataFetching,
+  useLRS,
+} from 'link-redux';
 
-import { allowSort, entityIsLoaded } from '../../../../helpers/data';
+import { allowSort } from '../../../../helpers/data';
 import ontola from '../../../../ontology/ontola';
 
 export const OMNIFORM_FILTER = [
@@ -14,7 +17,7 @@ export const OMNIFORM_FILTER = [
   /\/actions\/update_opinion/,
 ];
 
-const ORDER = [
+const OMNIFORM_ORDER = [
   '/actions/create_opinion',
   '/actions/update_opinion',
   '/m/new',
@@ -23,31 +26,27 @@ const ORDER = [
   '/cons/new',
 ];
 
-export const filterActions = (lrs, potentialAction) => {
-  const actionCollection = potentialAction.find((action) => /\/actions$/.test(action.value));
-  if (__CLIENT__ && actionCollection && !entityIsLoaded(lrs, actionCollection)) {
-    lrs.queueEntity(actionCollection);
-
-    return [];
-  }
-
-  return allowSort(potentialAction, OMNIFORM_FILTER, ORDER);
-};
-
-export const useFilterActions = (potentialAction) => {
-  const lrs = useLRS();
-
-  return filterActions(lrs, potentialAction);
-};
-
 export const invalidStatusIds = [
   schema.CompletedActionStatus,
   ontola.DisabledActionStatus,
   ontola.ExpiredActionStatus,
 ].map((s) => rdf.id(s));
 
-export const actionsAreAllDisabled = (items, lrs) => {
-  const actionStatuses = items.map((a) => rdf.id(lrs.getResourceProperty(a, schema.actionStatus)));
+const actionIsAllowed = (lrs, action) => {
+  const actionStatus = lrs.getResourceProperty(action, schema.actionStatus);
 
-  return actionStatuses.every((a) => invalidStatusIds.includes(a));
+  return !actionStatus || !invalidStatusIds.includes(rdf.id(actionStatus));
 };
+
+export const useActions = (items) => {
+  const lrs = useLRS();
+  const filteredItems = allowSort(items, OMNIFORM_FILTER, OMNIFORM_ORDER);
+
+  useDataFetching(filteredItems);
+
+  return filteredItems.filter((action) => actionIsAllowed(lrs, action));
+};
+
+export const actionsAreAllDisabled = (items, lrs) => (
+  items.every((action) => !actionIsAllowed(lrs, action))
+);

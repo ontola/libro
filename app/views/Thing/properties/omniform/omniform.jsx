@@ -21,7 +21,7 @@ import { cardAppendixTopology } from '../../../../topologies/Card/CardAppendix';
 import { cardMainTopology } from '../../../../topologies/Card/CardMain';
 import { pageTopology } from '../../../../topologies/Page';
 
-import { actionsAreAllDisabled, useFilterActions } from './helpers';
+import { actionsAreAllDisabled, useActions } from './helpers';
 import OmniformConnector from './OmniformConnector';
 
 const useIsSelfOrParentExpired = (expiresAt, isPartOf) => {
@@ -49,8 +49,9 @@ const OmniformProp = ({
   potentialAction,
   subject,
 }) => {
+  const items = useActions(potentialAction);
   const isExpired = useIsSelfOrParentExpired(expiresAt, isPartOf);
-  const allDisabled = actionsAreAllDisabled(useFilterActions(potentialAction));
+  const allDisabled = actionsAreAllDisabled(items);
 
   if (isExpired) {
     return (
@@ -73,7 +74,7 @@ const OmniformProp = ({
         opened
         autofocusForm={false}
         formFooterButtons={formFooterButtons}
-        potentialAction={potentialAction}
+        items={items}
         subject={subject}
         onDone={onDone}
         onKeyUp={onKeyUp}
