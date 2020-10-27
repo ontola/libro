@@ -20,9 +20,9 @@ const order = [
   'unsubscribe',
   'not_available',
   'contacted',
-  'filter%5B%5D=%3Dyes',
-  'filter%5B%5D=%3Dother',
-  'filter%5B%5D=%3Dno',
+  'filter%5B%5D=http%253A%252F%252Fschema.org%252Foption%3Dyes',
+  'filter%5B%5D=http%253A%252F%252Fschema.org%252Foption%3Dother',
+  'filter%5B%5D=http%253A%252F%252Fschema.org%252Foption%3Dno',
 ];
 
 const sortBind = (props) => props
