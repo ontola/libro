@@ -3,8 +3,8 @@ import schema from '@ontologies/schema';
 import {
   ReturnType,
   linkType,
-  lrsType,
   register,
+  useLRS,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -13,7 +13,6 @@ import { connect } from 'react-redux';
 
 import Button from '../../../../components/Button';
 import OmniformPreview from '../../../../components/Omniform/OmniformPreview';
-import { entityIsLoaded } from '../../../../helpers/data';
 import app from '../../../../ontology/app';
 import link from '../../../../ontology/link';
 import {
@@ -26,7 +25,7 @@ import { cardAppendixTopology } from '../../../../topologies/Card/CardAppendix';
 import { cardMainTopology } from '../../../../topologies/Card/CardMain';
 import CardRow from '../../../../topologies/Card/CardRow';
 
-import { actionsAreAllDisabled, filterActions } from './helpers';
+import { actionsAreAllDisabled, useActions } from './helpers';
 import OmniformConnector from './OmniformConnector';
 
 const KEY_ESCAPE = 27;
@@ -44,25 +43,26 @@ const CollapsedOmniformProp = (props) => {
   const {
     clickToOpen,
     closeForm,
-    lrs,
     openForm,
     opened,
     potentialAction,
   } = props;
+  const lrs = useLRS();
+  const items = useActions(potentialAction);
 
-  const toggle = () => {
+  const toggle = React.useCallback(() => {
     if (opened) {
       closeForm();
     } else {
       openForm();
     }
-  };
+  }, [opened, closeForm, openForm]);
 
-  const handleKey = (e) => {
+  const handleKey = React.useCallback((e) => {
     if (e.keyCode === KEY_ESCAPE) {
       closeForm();
     }
-  };
+  }, [closeForm]);
 
   if (opened) {
     const backButton = (
@@ -80,6 +80,7 @@ const CollapsedOmniformProp = (props) => {
           autofocusForm
           closeForm={closeForm}
           formFooterButtons={backButton}
+          items={items}
           onDone={toggle}
           onKeyUp={handleKey}
           {...props}
@@ -90,23 +91,12 @@ const CollapsedOmniformProp = (props) => {
     return null;
   }
 
-  if (__CLIENT__) {
-    potentialAction.forEach((action) => {
-      if (!entityIsLoaded(lrs, action)) {
-        lrs.queueEntity(action);
-      }
-    });
-  }
-
-  const items = filterActions(lrs, potentialAction);
-
   const shouldShow = !(!clickToOpen || items.length === 0 || actionsAreAllDisabled(items, lrs));
 
   return (
     <Collapse mountOnEnter in={shouldShow}>
       <CardRow>
         <OmniformPreview
-          lrs={lrs}
           primaryAction={items[0]}
           onClick={toggle}
         />
@@ -139,7 +129,6 @@ CollapsedOmniformProp.hocs = [
 CollapsedOmniformProp.propTypes = {
   clickToOpen: PropTypes.bool,
   closeForm: PropTypes.func,
-  lrs: lrsType,
   openForm: PropTypes.func,
   opened: PropTypes.bool.isRequired,
   potentialAction: linkType,
