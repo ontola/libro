@@ -7,6 +7,7 @@ import InactiveVolunteersRatio from './properties/inactiveVolunteersRatio';
 import LastActivityAtTableRow from './properties/lastActivityAtTable';
 import NewVolunteersCount from './properties/newVolunteersCount';
 import PercentualVolunteersCountTable from './properties/percentualVolunteersCountTable';
+import TableCounts from './properties/tableCounts';
 import VeryActiveVolunteersRatio from './properties/veryActiveVolunteersRatio';
 import VolunteersCount from './properties/volunteersCount';
 
@@ -20,6 +21,7 @@ export default [
   LastActivityAtTableRow,
   NewVolunteersCount,
   PercentualVolunteersCountTable,
+  TableCounts,
   VeryActiveVolunteersRatio,
   VolunteersCount,
 ];

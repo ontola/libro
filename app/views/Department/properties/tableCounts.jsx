@@ -5,38 +5,38 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { tryParseFloat } from '../../../helpers/numbers';
 import teamGL from '../../../ontology/teamGL';
 import { tableRowTopology } from '../../../topologies/TableRow';
 import TableCell from '../../../topologies/TableCell';
 
 import TrendIndicator from './trendIndicator';
 
-const PercentualVolunteersCountTable = ({
+const TableCounts = ({
   label,
   linkedProp,
 }) => (
   <TableCell elementProps={{ property: label?.value }}>
     <div style={{ whiteSpace: 'nowrap' }}>
-      {`${Math.round((tryParseFloat(linkedProp) || 0) * 100)}%`}
+      {linkedProp.value}
       <TrendIndicator property={label} />
     </div>
   </TableCell>
 );
 
-PercentualVolunteersCountTable.type = teamGL.Department;
+TableCounts.type = teamGL.Department;
 
-PercentualVolunteersCountTable.property = [
-  teamGL.inactiveVolunteersRatio,
-  teamGL.activeVolunteersRatio,
-  teamGL.veryActiveVolunteersRatio,
+TableCounts.property = [
+  teamGL.totalFutureEventsCount,
+  teamGL.totalGroupsCount,
+  teamGL.totalNewVolunteersCount,
+  teamGL.totalVolunteersCount,
 ];
 
-PercentualVolunteersCountTable.topology = tableRowTopology;
+TableCounts.topology = tableRowTopology;
 
-PercentualVolunteersCountTable.propTypes = {
+TableCounts.propTypes = {
   label: labelType,
   linkedProp: linkType,
 };
 
-export default register(PercentualVolunteersCountTable);
+export default register(TableCounts);
