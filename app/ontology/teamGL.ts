@@ -72,6 +72,7 @@ export default {
     remarks: teamGL('remarks'),
     result: teamGL('result'),
     signedUp: teamGL('signedUp'),
+    source: teamGL('source'),
     street: teamGL('street'),
     streets: teamGL('streets'),
     subDepartments: teamGL('subDepartments'),

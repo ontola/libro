@@ -7,6 +7,7 @@ import NewVolunteerContainer from './NewVolunteerContainer';
 import VolunteerCardRow from './VolunteerCardRow';
 import VolunteerContainer from './VolunteerContainer';
 import VolunteerPage from './VolunteerFull';
+import Source from './properties/source';
 import Telephone from './properties/telephone';
 
 import './index.scss';
@@ -21,5 +22,6 @@ export default [
   VolunteerCardRow,
   VolunteerContainer,
   VolunteerPage,
+  Source,
   Telephone,
 ];

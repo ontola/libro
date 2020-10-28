@@ -11,7 +11,7 @@ const SignedUp = ({ linkedProp }) => {
     return (
       <Detail
         icon="exclamation"
-        text="aangemeld via de GLAPP"
+        text="aangemeld via GLAPP"
       />
     );
   }
