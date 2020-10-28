@@ -22,27 +22,29 @@ import {
   WithTrailingNode,
 } from '@udecode/slate-plugins';
 
-import { CodeBlockPlugin } from './elements/CodeBlockPlugin';
-import { HeadingPlugin } from './elements/HeadingPlugin';
-import { ImagePlugin } from './elements/ImagePlugin';
-import { LinkPlugin } from './elements/LinkPlugin';
-import { ListPlugin } from './elements/ListPlugin';
-import { ParagraphPlugin } from './elements/ParagraphPlugin';
+import {
+  CodeBlockPlugin,
+  HeadingPlugin,
+  ImagePlugin,
+  LinkPlugin,
+  ListPlugin,
+  ParagraphPlugin,
+} from './elements';
 
-import { InlineVoidPlugin } from './extensions/InlineVoidPlugin';
-import { ToggleTypePlugin } from './extensions/ToggleTypePlugin';
-import { TrailingNodePlugin } from './extensions/TrailingNodePlugin';
-import { TransformsPlugin } from './extensions/TransformsPlugin';
+import {
+  InlineVoidPlugin,
+  ToggleTypePlugin,
+  TrailingNodePlugin,
+  TransformsPlugin,
+} from './extensions';
 
-import { ExitBreakPlugin } from './handlers/ExitBreakPlugin';
-import { ResetBlockTypePlugin } from './handlers/ResetBlockTypePlugin';
-import { SoftBreakPlugin } from './handlers/SoftBreakPlugin';
+import { ExitBreakPlugin, ResetBlockTypePlugin, SoftBreakPlugin } from './handlers';
 
-import { BoldPlugin } from './marks/BoldPlugin';
-import { ItalicPlugin } from './marks/ItalicPlugin';
-import { UnderlinePlugin } from './marks/UnderlinePlugin';
+import { BoldPlugin } from './marks';
+import { ItalicPlugin } from './marks';
+import { UnderlinePlugin } from './marks';
 
-import { CommandPlugins, CommandPluginsOptions } from './types';
+import { DefaultCommandPlugins, DefaultCommandPluginsOptions } from './types';
 
 const exitBreakPluginOptions: ExitBreakPluginOptions = {
   rules: [
@@ -112,7 +114,7 @@ const trailingNodePluginOptions: WithTrailingNode = {
   type: ELEMENT_PARAGRAPH,
 };
 
-export const defaultPluginsOptions: CommandPluginsOptions = {
+export const defaultPluginsOptions: DefaultCommandPluginsOptions = {
   bold: DEFAULTS_BOLD,
   codeBlock: DEFAULTS_CODE_BLOCK,
   exitBreak: exitBreakPluginOptions,
@@ -129,8 +131,8 @@ export const defaultPluginsOptions: CommandPluginsOptions = {
   underline: DEFAULTS_UNDERLINE,
 };
 
-export const getDefaultPlugins = (options: CommandPluginsOptions): CommandPlugins => {
-  const plugins = {
+export const getDefaultPlugins = (options: DefaultCommandPluginsOptions): DefaultCommandPlugins => {
+  const plugins: DefaultCommandPlugins = {
     bold: BoldPlugin(options.bold),
     codeBlock: CodeBlockPlugin(options.codeBlock),
     exitBreak: ExitBreakPlugin(options.exitBreak),
@@ -150,19 +152,19 @@ export const getDefaultPlugins = (options: CommandPluginsOptions): CommandPlugin
   };
 
   // Button order
-  plugins.bold!.commands!.formatBold!.buttonIndex = 100;
-  plugins.italic!.commands!.formatItalic!.buttonIndex = 110;
-  plugins.underline!.commands!.formatUnderline!.buttonIndex = 120;
-  plugins.heading!.commands!.formatHeading1!.buttonIndex = 200;
-  plugins.heading!.commands!.formatHeading2!.buttonIndex = 210;
-  plugins.heading!.commands!.formatHeading3!.buttonIndex = 220;
-  plugins.list!.commands!.formatListOrdered!.buttonIndex = 300;
-  plugins.list!.commands!.formatListUnordered!.buttonIndex = 310;
-  plugins.codeBlock!.commands!.formatCodeBlock!.buttonIndex = 350;
-  plugins.link!.commands!.insertLink!.buttonIndex = 400;
-  plugins.image!.commands!.insertImage!.buttonIndex = 500;
+  plugins.bold.commands.formatBold.buttonIndex = 100;
+  plugins.italic.commands.formatItalic.buttonIndex = 110;
+  plugins.underline.commands.formatUnderline.buttonIndex = 120;
+  plugins.heading.commands.formatHeading1.buttonIndex = 200;
+  plugins.heading.commands.formatHeading2.buttonIndex = 210;
+  plugins.heading.commands.formatHeading3.buttonIndex = 220;
+  plugins.list.commands.formatListOrdered.buttonIndex = 300;
+  plugins.list.commands.formatListUnordered.buttonIndex = 310;
+  plugins.codeBlock.commands.formatCodeBlock.buttonIndex = 350;
+  plugins.link.commands.insertLink.buttonIndex = 400;
+  plugins.image.commands.insertImage.buttonIndex = 500;
 
   return plugins;
 };
 
-export const defaultPlugins: CommandPlugins = getDefaultPlugins(defaultPluginsOptions);
+export const defaultPlugins: DefaultCommandPlugins = getDefaultPlugins(defaultPluginsOptions);

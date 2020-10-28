@@ -4,4 +4,5 @@ import { CommandPlugin } from '../types';
 
 export const ResetBlockTypePlugin = (options: ResetBlockTypePluginOptions): CommandPlugin => ({
   ...ResetBlockTypePluginBase(options),
+  commands: {},
 });

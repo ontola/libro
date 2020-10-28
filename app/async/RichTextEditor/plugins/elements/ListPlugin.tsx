@@ -1,45 +1,63 @@
-import { FormatListBulleted, FormatListNumbered } from '@material-ui/icons';
+import FormatListBulleted from '@material-ui/icons/FormatListBulleted';
+import FormatListNumbered from '@material-ui/icons/FormatListNumbered';
 import {
   DEFAULTS_LIST,
   ELEMENT_OL,
   ELEMENT_UL,
   ListPlugin as ListPluginBase,
-  ListPluginOptions,
+  ListPluginOptions as ListPluginOptions,
 } from '@udecode/slate-plugins';
 import React from 'react';
 import { Editor } from 'slate';
 
-import { Command, Commands } from '../../commands/types';
-import { withListItems } from '../../transforms/withListItems';
-import { getButtonList } from '../../utils/getButtonList';
-import { toggleList } from '../../utils/toggleList';
-import { CommandPlugin } from '../types';
+import { Command, Commands } from '../../commands';
+import { ListButton } from '../../components';
+import { withListItems } from '../../transforms';
+
+import { ButtonOptions, CommandPlugin } from '../types';
+
+export const ORDERED_LIST_COMMAND_KEY = 'formatListOrdered';
+export const UNORDERED_LIST_COMMAND_KEY = 'formatListUnordered';
 
 export interface ListCommands extends Commands {
-  formatListOrdered?: Command;
-  formatListUnordered?: Command;
+  [ORDERED_LIST_COMMAND_KEY]: Command;
+  [UNORDERED_LIST_COMMAND_KEY]: Command;
 }
 
-export interface ListCommandPlugin extends CommandPlugin {
-  commands?: ListCommands;
-}
+export type ListCommandPlugin = CommandPlugin<ListCommands>;
 
-export const ListPlugin = (options: ListPluginOptions = DEFAULTS_LIST): ListCommandPlugin => {
-  const typeOL = options.ol?.type || ELEMENT_OL;
-  const typeUL = options.ul?.type || ELEMENT_UL;
-
-  return {
-    ...ListPluginBase(options),
-    commands: {
-      formatListOrdered: {
-        apply: toggleList(typeOL, options),
-        button: getButtonList(typeOL, options, <FormatListNumbered />),
-      },
-      formatListUnordered: {
-        apply: toggleList(typeUL, options),
-        button: getButtonList(typeUL, options, <FormatListBulleted />),
-      },
-    },
-    extendEditor: withListItems as <T extends Editor>(editor: T) => T,
-  };
+export type ListCommandPluginOptions = ListPluginOptions & {
+  ol: ButtonOptions;
+  ul: ButtonOptions;
 };
+
+export const ListPlugin = (options: ListCommandPluginOptions = DEFAULTS_LIST): ListCommandPlugin => ({
+  ...ListPluginBase(options),
+  commands: {
+    [ORDERED_LIST_COMMAND_KEY]: {
+      button:
+        <ListButton
+          id={ORDERED_LIST_COMMAND_KEY}
+          key={ORDERED_LIST_COMMAND_KEY}
+          options={options}
+          title={options.ol.buttonTitle || 'Numbered list'}
+          type={options.ol?.type || ELEMENT_OL}
+        >
+          <FormatListNumbered/>
+        </ListButton>,
+    },
+    [UNORDERED_LIST_COMMAND_KEY]: {
+      button:
+        <ListButton
+          id={UNORDERED_LIST_COMMAND_KEY}
+          key={UNORDERED_LIST_COMMAND_KEY}
+          options={options}
+          title={options.ul.buttonTitle || 'Bulleted list'}
+          type={options.ul?.type || ELEMENT_UL}
+        >
+          <FormatListBulleted/>
+        </ListButton>,
+    },
+  },
+  extendEditor: withListItems as <T extends Editor>(editor: T) => T,
+});

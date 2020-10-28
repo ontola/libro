@@ -1,4 +1,6 @@
-import { Looks3, LooksOne, LooksTwo } from '@material-ui/icons';
+import Looks3 from '@material-ui/icons/Looks3';
+import LooksOne from '@material-ui/icons/LooksOne';
+import LooksTwo from '@material-ui/icons/LooksTwo';
 import {
   ELEMENT_H1,
   ELEMENT_H2,
@@ -8,41 +10,65 @@ import {
 } from '@udecode/slate-plugins';
 import React from 'react';
 
-import { Command, Commands } from '../../commands/types';
-import { getButtonElement } from '../../utils/getButtonElement';
-import { toggleType } from '../../utils/toggleType';
-import { CommandPlugin } from '../types';
+import { Command, Commands } from '../../commands';
+import { ElementButton } from '../../components/ElementButton';
+import { ButtonOptions, CommandPlugin } from '../types';
+
+export const HEADING1_COMMAND_KEY = 'formatHeading1';
+export const HEADING2_COMMAND_KEY = 'formatHeading2';
+export const HEADING3_COMMAND_KEY = 'formatHeading3';
 
 export interface HeadingCommands extends Commands {
-  formatHeading1?: Command;
-  formatHeading2?: Command;
-  formatHeading3?: Command;
+  [HEADING1_COMMAND_KEY]: Command;
+  [HEADING2_COMMAND_KEY]: Command;
+  [HEADING3_COMMAND_KEY]: Command;
 }
 
-export interface HeadingCommandPlugin extends CommandPlugin {
-  commands?: HeadingCommands;
-}
+export type HeadingCommandPlugin = CommandPlugin<HeadingCommands>;
 
-export const HeadingPlugin = (options?: HeadingPluginOptions): HeadingCommandPlugin => {
-  const typeH1 = options?.h1?.type || ELEMENT_H1;
-  const typeH2 = options?.h2?.type || ELEMENT_H2;
-  const typeH3 = options?.h3?.type || ELEMENT_H3;
-
-  return {
-    ...HeadingPluginBase(options),
-    commands: {
-      formatHeading1: {
-        apply: toggleType(typeH1),
-        button: getButtonElement(typeH1, <LooksOne />),
-      },
-      formatHeading2: {
-        apply: toggleType(typeH2),
-        button: getButtonElement(typeH2, <LooksTwo />),
-      },
-      formatHeading3: {
-        apply: toggleType(typeH3),
-        button: getButtonElement(typeH3, <Looks3 />),
-      },
-    },
-  };
+export type HeadingCommandPluginOptions = HeadingPluginOptions & {
+  h1: ButtonOptions;
+  h2: ButtonOptions;
+  h3: ButtonOptions;
 };
+
+export const HeadingPlugin = (options?: HeadingCommandPluginOptions): HeadingCommandPlugin => ({
+  ...HeadingPluginBase(options),
+  commands: {
+    [HEADING1_COMMAND_KEY]: {
+      button:
+        <ElementButton
+          id={HEADING1_COMMAND_KEY}
+          key={HEADING1_COMMAND_KEY}
+          title={options?.h1.buttonTitle || 'Heading level 1'}
+          type={options?.h1?.type || ELEMENT_H1}
+        >
+          <LooksOne/>
+        </ElementButton>,
+    },
+
+    [HEADING2_COMMAND_KEY]: {
+      button:
+        <ElementButton
+          id={HEADING2_COMMAND_KEY}
+          key={HEADING2_COMMAND_KEY}
+          title={options?.h2.buttonTitle || 'Heading level 2'}
+          type={options?.h2?.type || ELEMENT_H2}
+        >
+          <LooksTwo/>
+        </ElementButton>,
+    },
+
+    [HEADING3_COMMAND_KEY]: {
+      button:
+        <ElementButton
+          id={HEADING3_COMMAND_KEY}
+          key={HEADING3_COMMAND_KEY}
+          title={options?.h3.buttonTitle || 'Heading level 3'}
+          type={options?.h3?.type || ELEMENT_H3}
+        >
+          <Looks3/>
+        </ElementButton>,
+    },
+  },
+});

@@ -1,3 +1,3 @@
 export * from './compareButtonIndexes';
-export * from './getCommandsWithKey';
+export * from './toCommandsArray';
 export * from './types';

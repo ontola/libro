@@ -4,4 +4,5 @@ import { CommandPlugin } from '../types';
 
 export const ExitBreakPlugin = (options?: ExitBreakPluginOptions): CommandPlugin => ({
   ...ExitBreakPluginBase(options),
+  commands: {},
 });

@@ -1,26 +1,40 @@
-import { FormatItalic } from '@material-ui/icons';
-import { ItalicPlugin as ItalicPluginBase, ItalicPluginOptions, MARK_ITALIC } from '@udecode/slate-plugins';
+import FormatItalic from '@material-ui/icons/FormatItalic';
+import {
+  ItalicPlugin as ItalicPluginBase,
+  ItalicPluginOptions as ItalicPluginOptionsBase,
+  MARK_ITALIC,
+} from '@udecode/slate-plugins';
 import React from 'react';
 
-import { Command, Commands } from '../../commands/types';
-import { getButtonMark } from '../../utils/getButtonMark';
-import { toggleMark } from '../../utils/toggleMark';
-import { CommandPlugin } from '../types';
+import { Command, Commands } from '../../commands';
+import { MarkButton } from '../../components/MarkButton';
+import { ButtonOptions, CommandPlugin } from '../types';
+
+export const ITALIC_COMMAND_KEY = 'formatItalic';
 
 export interface ItalicCommands extends Commands {
-  formatItalic?: Command;
+  [ITALIC_COMMAND_KEY]: Command;
 }
 
-export interface ItalicCommandPlugin extends CommandPlugin {
-  commands?: ItalicCommands;
-}
+export type ItalicCommandPlugin = CommandPlugin<ItalicCommands>;
 
-export const ItalicPlugin = (options?: ItalicPluginOptions): ItalicCommandPlugin => ({
+export type ItalicCommandPluginOptions = ItalicPluginOptionsBase  & {
+  italic: ButtonOptions;
+};
+
+export const ItalicPlugin = (options?: ItalicCommandPluginOptions): ItalicCommandPlugin => ({
   ...ItalicPluginBase(options),
   commands: {
-    formatItalic: {
-      apply: toggleMark(MARK_ITALIC),
-      button: getButtonMark(MARK_ITALIC, <FormatItalic />),
+    [ITALIC_COMMAND_KEY]: {
+      button:
+        <MarkButton
+          id={ITALIC_COMMAND_KEY}
+          key={ITALIC_COMMAND_KEY}
+          title={options?.italic.buttonTitle || 'Italic'}
+          type={MARK_ITALIC}
+        >
+          <FormatItalic/>
+        </MarkButton>,
     },
   },
 });

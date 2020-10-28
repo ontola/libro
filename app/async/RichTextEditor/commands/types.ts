@@ -6,10 +6,8 @@ import { ToolbarButtonProps } from '@udecode/slate-plugins';
  * and operations the low-level actions that occur while invoking commands.
  */
 export interface Command {
-  apply?: (...args: any) => any;
-  button?: React.ComponentType<CommandButtonProps>;
+  button?: JSX.Element;
   buttonIndex?: number;
-  key?: string;
 }
 
 export interface Commands {

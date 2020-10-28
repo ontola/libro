@@ -4,4 +4,5 @@ import { CommandPlugin } from '../types';
 
 export const SoftBreakPlugin = (options?: SoftBreakPluginOptions): CommandPlugin => ({
   ...SoftBreakPluginBase(options),
+  commands: {},
 });

@@ -4,4 +4,5 @@ import { CommandPlugin } from '../types';
 
 export const ParagraphPlugin = (options?: ParagraphPluginOptions): CommandPlugin => ({
   ...ParagraphPluginBase(options),
+  commands: {},
 });

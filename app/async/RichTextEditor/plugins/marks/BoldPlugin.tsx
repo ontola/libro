@@ -1,26 +1,40 @@
-import { FormatBold } from '@material-ui/icons';
-import { BoldPlugin as BoldPluginBase, BoldPluginOptions, MARK_BOLD } from '@udecode/slate-plugins';
+import FormatBold from '@material-ui/icons/FormatBold';
+import {
+  BoldPlugin as BoldPluginBase,
+  BoldPluginOptions,
+  MARK_BOLD,
+} from '@udecode/slate-plugins';
 import React from 'react';
 
-import { Command, Commands } from '../../commands/types';
-import { getButtonMark } from '../../utils/getButtonMark';
-import { toggleMark } from '../../utils/toggleMark';
-import { CommandPlugin } from '../types';
+import { Command, Commands } from '../../commands';
+import { MarkButton } from '../../components/MarkButton';
+import { ButtonOptions, CommandPlugin } from '../types';
+
+export const BOLD_COMMAND_KEY = 'formatBold';
 
 export interface BoldCommands extends Commands {
-  formatBold?: Command;
+  [BOLD_COMMAND_KEY]: Command;
 }
 
-export interface BoldCommandPlugin extends CommandPlugin {
-  commands?: BoldCommands;
-}
+export type BoldCommandPlugin = CommandPlugin<BoldCommands>;
 
-export const BoldPlugin = (options?: BoldPluginOptions): BoldCommandPlugin => ({
+export type BoldCommandPluginOptions = BoldPluginOptions  & {
+  bold: ButtonOptions;
+};
+
+export const BoldPlugin = (options?: BoldCommandPluginOptions): BoldCommandPlugin => ({
   ...BoldPluginBase(options),
   commands: {
-    formatBold: {
-      apply: toggleMark(MARK_BOLD),
-      button: getButtonMark(MARK_BOLD, <FormatBold />),
+    [BOLD_COMMAND_KEY]: {
+      button:
+        <MarkButton
+          id={BOLD_COMMAND_KEY}
+          key={BOLD_COMMAND_KEY}
+          title={options?.bold.buttonTitle || 'Bold'}
+          type={MARK_BOLD}
+        >
+          <FormatBold/>
+        </MarkButton>,
     },
   },
 });

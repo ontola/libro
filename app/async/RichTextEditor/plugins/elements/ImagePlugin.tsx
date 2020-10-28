@@ -1,30 +1,53 @@
-import { Image } from '@material-ui/icons';
+import Image from '@material-ui/icons/Image';
 import {
   DEFAULTS_IMAGE,
+  ELEMENT_IMAGE,
   ImagePlugin as ImagePluginBase,
-  ImagePluginOptions,
-  ToolbarImage,
+  ImagePluginOptions, insertImage, isNodeTypeIn,
   withImageUpload,
 } from '@udecode/slate-plugins';
 import React from 'react';
 import { Editor } from 'slate';
 
-import { Command, Commands } from '../../commands/types';
-import { CommandPlugin } from '../types';
+import { Command, Commands } from '../../commands';
+import { ToggleButtonWithInputDialog } from '../../components';
+import { ButtonOptions, CommandPlugin, InputDialogOptions } from '../types';
+
+export const IMAGE_COMMAND_KEY = 'insertImage';
 
 export interface ImageCommands extends Commands {
-  insertImage?: Command;
+  [IMAGE_COMMAND_KEY]: Command;
 }
 
-export interface ImageCommandPlugin extends CommandPlugin {
-  commands?: ImageCommands;
-}
+export type ImageCommandPlugin = CommandPlugin<ImageCommands>;
 
-export const ImagePlugin = (options?: ImagePluginOptions): ImageCommandPlugin => ({
+export type ImageCommandPluginOptions = ImagePluginOptions & {
+  img: ButtonOptions & InputDialogOptions;
+};
+
+export const ImagePlugin = (options?: ImageCommandPluginOptions): ImageCommandPlugin => ({
   ...ImagePluginBase(options),
   commands: {
-    insertImage: {
-      button: (props) => <ToolbarImage {...DEFAULTS_IMAGE} icon={<Image />} {...props} />,
+    [IMAGE_COMMAND_KEY]: {
+      button:
+        <ToggleButtonWithInputDialog
+          buttonId={IMAGE_COMMAND_KEY}
+          buttonSelected={(editor: Editor) => isNodeTypeIn(editor, options?.img?.type || ELEMENT_IMAGE)}
+          buttonTitle={options?.img.buttonTitle || 'Image'}
+          dialogButtonCancel={options?.img.dialogButtonCancel}
+          dialogButtonOK={options?.img.dialogButtonOK}
+          dialogInputType={'url'}
+          dialogText={options?.img.dialogText || 'Enter the URL of the image:'}
+          dialogTitle={options?.img.dialogTitle || 'Insert image'}
+          key={IMAGE_COMMAND_KEY}
+          onDialogOK={(editor: Editor) => (url: string) => {
+            if (url) {
+              insertImage(editor, url, DEFAULTS_IMAGE);
+            }
+          }}
+        >
+          <Image/>
+        </ToggleButtonWithInputDialog>,
     },
   },
   extendEditor: withImageUpload() as <T extends Editor>(editor: T) => T,

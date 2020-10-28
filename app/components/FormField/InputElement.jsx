@@ -372,7 +372,7 @@ InputElement.propTypes = {
   maxLength: PropTypes.number,
   /** @private Contains form-library specific data */
   meta: PropTypes.oneOfType([
-    null,
+    PropTypes.oneOf(null),
     PropTypes.shape({
       active: PropTypes.bool,
       dirty: PropTypes.bool,

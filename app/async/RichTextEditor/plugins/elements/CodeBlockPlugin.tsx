@@ -1,24 +1,40 @@
-import { Code } from '@material-ui/icons';
-import { CodeBlockPlugin as CodeBlockPluginBase, CodeBlockPluginOptions, ELEMENT_CODE_BLOCK } from '@udecode/slate-plugins';
+import Code from '@material-ui/icons/Code';
+import {
+  CodeBlockPlugin as CodeBlockPluginBase,
+  CodeBlockPluginOptions,
+  ELEMENT_CODE_BLOCK,
+} from '@udecode/slate-plugins';
 import React from 'react';
 
-import { Command, Commands } from '../../commands/types';
-import { getButtonElement } from '../../utils/getButtonElement';
-import { CommandPlugin } from '../types';
+import { Command, Commands } from '../../commands';
+import { ElementButton } from '../../components/ElementButton';
+import { ButtonOptions, CommandPlugin } from '../types';
+
+export const CODE_BLOCK_COMMAND_KEY = 'formatCodeBlock';
 
 export interface CodeBlockCommands extends Commands {
-  formatCodeBlock?: Command;
+  [CODE_BLOCK_COMMAND_KEY]: Command;
 }
 
-export interface CodeBlockCommandPlugin extends CommandPlugin {
-  commands?: CodeBlockCommands;
-}
+export type CodeBlockCommandPlugin = CommandPlugin<CodeBlockCommands>;
 
-export const CodeBlockPlugin = (options?: CodeBlockPluginOptions): CodeBlockCommandPlugin => ({
+export type CodeBlockCommandPluginOptions = CodeBlockPluginOptions & {
+  code_block: ButtonOptions;
+};
+
+export const CodeBlockPlugin = (options?: CodeBlockCommandPluginOptions): CodeBlockCommandPlugin => ({
   ...CodeBlockPluginBase(options),
   commands: {
-    formatCodeBlock: {
-      button: getButtonElement(options?.code_block?.type || ELEMENT_CODE_BLOCK, <Code />),
+    [CODE_BLOCK_COMMAND_KEY]: {
+      button:
+        <ElementButton
+          id={CODE_BLOCK_COMMAND_KEY}
+          key={CODE_BLOCK_COMMAND_KEY}
+          title={options?.code_block.buttonTitle || 'Code block'}
+          type={options?.code_block?.type || ELEMENT_CODE_BLOCK}
+        >
+          <Code/>
+        </ElementButton>,
     },
   },
 });
