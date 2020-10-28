@@ -33,6 +33,7 @@ class NewVolunteerContainer extends React.PureComponent {
           <ContentDetails>
             <Property label={teamGL.department} />
             <Property label={schema.dateCreated} />
+            <Property label={teamGL.source} />
           </ContentDetails>
           <div className="Volunteer--contact-options">
             <Property label={teamGL.telephone} />
