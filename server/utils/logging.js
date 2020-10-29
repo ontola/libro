@@ -20,7 +20,7 @@ const logging = {
 
 export function getErrorMiddleware() {
   if (process.env.NODE_ENV !== 'development') {
-    const bugsnagClient = bugsnag({
+    const bugsnagClient = bugsnag.createClient({
       apiKey: config.bugsnagKey,
       appType: 'fe_back',
       appVersion: __VERSION__,

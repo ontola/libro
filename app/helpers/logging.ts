@@ -1,5 +1,4 @@
-import { Client } from '@bugsnag/browser/dist/types/bugsnag-core';
-import bugsnag from '@bugsnag/js';
+import bugsnag, { Client } from '@bugsnag/js';
 
 const globalThis = typeof window !== 'undefined' ? window : (global as unknown as Window);
 
@@ -36,9 +35,9 @@ function getClient() {
       ?.content;
     if (raw) {
       const config = JSON.parse(decodeURIComponent(raw));
-      return bugsnag({
+      return bugsnag.createClient({
         ...config,
-        beforeSend(report) {
+        beforeSend(report: any) {
           globalThis.logging.errors.push(report);
         },
       });
