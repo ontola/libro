@@ -20,15 +20,15 @@ const logging = {
 
 export function getErrorMiddleware() {
   if (process.env.NODE_ENV !== 'development') {
-    const bugsnagClient = bugsnag({
+    const bugsnagClient = bugsnag.createClient({
       apiKey: config.bugsnagKey,
       appType: 'fe_back',
       appVersion: __VERSION__,
       autoCaptureSessions: false,
       hostname: config.serverName,
+      plugins: [bugsnagKoa],
       releaseStage: config.RELEASE_STAGE,
     });
-    bugsnagClient.use(bugsnagKoa);
 
     return bugsnagClient.getPlugin('koa');
   }
