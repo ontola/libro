@@ -118,7 +118,7 @@ export default [
   ...CoverPhoto,
   CreateAction,
   Creator,
-  DateCreated,
+  ...DateCreated,
   DatePublished,
   DateSubmitted,
   description,

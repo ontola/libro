@@ -1,13 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-  FormattedRelativeTime,
   defineMessages,
   useIntl,
 } from 'react-intl';
 
-import { relativeTimeDestructure } from '../../helpers/date';
 import Detail from '../Detail';
+import RelativeDate from '../RelativeDate';
 
 const messages = defineMessages({
   dateCreated: {
@@ -77,20 +76,12 @@ const DetailDate = (props) => {
     );
   };
 
-  const mostImportant = () => {
-    const date = startDate
-      || datePublished
-      || dateCreated
-      || dateSubmitted
-      || dateModified
-      || lastActivityAt;
-
-    if (!date) {
-      return null;
-    }
-
-    return <FormattedRelativeTime {...relativeTimeDestructure(date)} />;
-  };
+  const date = startDate
+    || datePublished
+    || dateCreated
+    || dateSubmitted
+    || dateModified
+    || lastActivityAt;
 
   const hoverText = [
     format('argu:lastActivityAt'),
@@ -110,7 +101,7 @@ const DetailDate = (props) => {
     <Detail
       floatRight={floatRight}
       hideIcon={hideIcon}
-      text={mostImportant()}
+      text={<RelativeDate date={date} />}
       title={hoverText}
       url={url}
     />
