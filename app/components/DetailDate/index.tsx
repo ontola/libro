@@ -2,15 +2,15 @@ import { Literal, isLiteral } from '@ontologies/core';
 import React from 'react';
 import {
   FormatDateOptions,
-  FormattedRelativeTime,
-  IntlShape,
   defineMessages,
+  IntlShape,
   useIntl,
 } from 'react-intl';
 
 import { relativeTimeDestructure } from '../../helpers/date';
 import { isDateOrDateTime } from '../../helpers/types';
 import Detail from '../Detail';
+import RelativeDate from '../RelativeDate';
 
 interface PropTypes {
   dateCreated?: Literal;
@@ -126,28 +126,28 @@ const DetailDate: React.FC<PropTypes> = (props) => {
     );
   }, [props]);
 
-  const mostImportant = () => {
-    const date = startDate
-      || datePublished
-      || dateCreated
-      || dateSubmitted
-      || dateModified
-      || lastActivityAt;
+  const mostImportant = startDate
+    || datePublished
+    || dateCreated
+    || dateSubmitted
+    || dateModified
+    || lastActivityAt;
 
-    if (!isLiteral(date)) {
+  const DateText = React.useCallback(() => {
+    if (!isLiteral(mostImportant)) {
       return null;
     }
 
-    if (isDateOrDateTime(date)) {
+    if (isDateOrDateTime(mostImportant)) {
       if (relative) {
-        return <FormattedRelativeTime {...relativeTimeDestructure(new Date(date.value).getTime())} />;
+        return <RelativeDate date={mostImportant} />;
       }
 
-      return intl.formatTime(new Date(date.value), FORMAT);
+      return <React.Fragment>{intl.formatTime(new Date(mostImportant.value), FORMAT)}</React.Fragment>;
     }
 
-    return date.value;
-  };
+    return <React.Fragment>{mostImportant.value}</React.Fragment>;
+  }, [relative, mostImportant]);
 
   const hoverText = [
     format('argu:lastActivityAt'),
@@ -167,7 +167,7 @@ const DetailDate: React.FC<PropTypes> = (props) => {
     <Detail
       floatRight={floatRight}
       hideIcon={hideIcon}
-      text={mostImportant()}
+      text={<DateText />}
       title={hoverText}
       url={url}
     />

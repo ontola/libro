@@ -8,7 +8,7 @@ import './TableCell.scss';
 export const tableCellTopology = argu.ns('tableCell');
 
 interface PropTypes {
-  colspan: number;
+  colspan?: number;
 }
 
 class TableCell extends TopologyProvider<PropTypes> {
