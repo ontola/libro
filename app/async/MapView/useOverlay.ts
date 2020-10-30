@@ -12,6 +12,7 @@ import {
 interface PropTypes {
   map: Map | null;
   navigate: (resource: SomeNode) => void;
+  overlayPadding: boolean;
   overlayPosition: Coordinate;
   overlayResource: SomeNode;
 }
@@ -19,6 +20,7 @@ interface PropTypes {
 const useOverlay = ({
   map,
   navigate,
+  overlayPadding,
   overlayPosition,
   overlayResource,
 }: PropTypes): {
@@ -29,7 +31,7 @@ const useOverlay = ({
   const overlay = useMemo(() => {
     if (map) {
       const o = new Overlay({
-        autoPan: true,
+        autoPan: overlayPadding,
         element: overlayRef.current,
         positioning: OverlayPositioning.TOP_CENTER,
         stopEvent: true,

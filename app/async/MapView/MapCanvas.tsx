@@ -24,6 +24,7 @@ interface PropTypes extends UseMapProps {
   accessTokenError: string;
   large: boolean;
   navigate: (resource: SomeNode) => void;
+  overlayPadding: boolean;
   overlayPosition: Coordinate;
   overlayResource: SomeNode;
 }
@@ -33,6 +34,7 @@ const MapCanvas = (props: PropTypes) => {
     accessTokenError,
     large,
     navigate,
+    overlayPadding,
     overlayPosition,
     overlayResource,
   } = props;
@@ -47,6 +49,7 @@ const MapCanvas = (props: PropTypes) => {
   } = useOverlay({
     map,
     navigate,
+    overlayPadding,
     overlayPosition,
     overlayResource,
   });

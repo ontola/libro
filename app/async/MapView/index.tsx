@@ -173,6 +173,7 @@ const MapView: React.FC<PropTypes> = ({
 
   return (
     <MapCanvas
+      overlayPadding
       large={large}
       layers={layers}
       navigate={navigate}
