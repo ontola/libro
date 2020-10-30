@@ -9,6 +9,7 @@ import { fullResourceTopology } from '../../topologies/FullResource';
 import { tabPaneTopology } from '../../topologies/TabPane';
 
 import getCollection, { EMPTY_STRATEGY } from './getCollection';
+import CollectionFilterCollection from './properties/collectionFilter';
 import CreateAction from './properties/createAction';
 import CollectionFrame from './properties/collectionFrame';
 import FilterFields from './properties/filterFields';
@@ -65,6 +66,7 @@ export default [
   CollectionCardAppendix,
   CollectionInline,
   ...CollectionFrame,
+  CollectionFilterCollection,
   CollectionFullPage,
   CollectionPopup,
   ...CollectionSection,
