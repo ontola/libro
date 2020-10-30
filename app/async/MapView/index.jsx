@@ -146,6 +146,7 @@ const MapView = ({
 
   return (
     <MapCanvas
+      overlayPadding
       initialLat={cLat}
       initialLon={cLon}
       initialZoom={zoom}

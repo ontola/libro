@@ -10,6 +10,7 @@ import {
 const useOverlay = ({
   map,
   navigate,
+  overlayPadding,
   overlayPosition,
   overlayResource,
 }) => {
@@ -17,7 +18,7 @@ const useOverlay = ({
   const overlay = useMemo(() => {
     if (map) {
       const o = new Overlay({
-        autoPan: true,
+        autoPan: overlayPadding,
         element: overlayRef.current,
         positioning: OverlayPositioning.TOP_CENTER,
         stopEvent: true,
