@@ -31,11 +31,7 @@ const Collection = ({
   }
 
   if (__CLIENT__ && !entityIsLoaded(lrs, baseCollection)) {
-    if (onLoad) {
-      return onLoad();
-    }
-
-    return <Resource subject={baseCollection} />;
+    return <Resource subject={baseCollection} onLoad={onLoad} />;
   }
 
   const iriTemplate = lrs.getResourceProperty(baseCollection, ontola.iriTemplate);
