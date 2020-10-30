@@ -13,11 +13,11 @@ import { isFontAwesomeIRI, normalizeFontAwesomeIRI } from '../../helpers/iris';
 
 const ANCHOR_Y_BOTTOM = 1;
 const ANCHOR_X_CENTER = 0.5;
-const CIRCLE_RADIUS = 12;
-const CIRCLE_SIZE = 13;
+const CIRCLE_RADIUS = 14;
+const CIRCLE_SIZE = 15;
 const ICON_X = CIRCLE_SIZE;
 const ICON_Y = CIRCLE_SIZE;
-const IMG_SIZE = 26;
+const IMG_SIZE = 30;
 
 const iconCache: { [k: string]: Style } = {};
 
