@@ -9,6 +9,7 @@ import FontAwesome from 'react-fontawesome';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
+import LinkLoader from '../../components/Loading/LinkLoader';
 import OverlayContainer from '../../components/OverlayContainer';
 import withReducer from '../../containers/withReducer';
 import { popupTopology } from '../../topologies/Popup';
@@ -63,6 +64,10 @@ const MapCanvas = (props) => {
     </span>
   );
 
+  if (!props.accessToken) {
+    return <LinkLoader />;
+  }
+
   if (!mapRef || errorMessage) {
     return (
       <div className={wrapperClassName} data-testid="map-view">
@@ -94,6 +99,7 @@ const MapCanvas = (props) => {
 };
 
 MapCanvas.propTypes = {
+  accessToken: PropTypes.string,
   accessTokenError: PropTypes.string,
   large: PropTypes.bool,
   navigate: PropTypes.func,
