@@ -291,6 +291,7 @@ const useMap = (props) => {
     updateFeatures(layerSources, layers);
   }, [!!layerSources, ...layers]);
 
+  const [deselect, setDeselect] = useState(null);
   useEffect(() => {
     if (memoizedMap) {
       const select = new Select({
@@ -298,6 +299,10 @@ const useMap = (props) => {
         style: false,
       });
       select.on('select', handleSelect);
+      setDeselect(() => () => {
+        select.getFeatures().clear();
+        handleSelect(null);
+      });
       memoizedMap.addInteraction(select);
 
       const hover = new Select({
@@ -316,6 +321,7 @@ const useMap = (props) => {
   }, [handleSelect, memoizedMap]);
 
   return {
+    deselect,
     error,
     map: memoizedMap,
     mapRef,

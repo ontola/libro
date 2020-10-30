@@ -32,6 +32,7 @@ const MapCanvas = (props) => {
     overlayResource,
   } = props;
   const {
+    deselect,
     error,
     map,
     mapRef,
@@ -91,6 +92,11 @@ const MapCanvas = (props) => {
           <Resource
             subject={overlayResource}
             topology={popupTopology}
+            onClose={() => {
+              if (deselect) {
+                deselect();
+              }
+            }}
           />
         )}
       </OverlayContainer>
