@@ -7,6 +7,7 @@ export default {
 
     /* classes */
     Address: teamGL('Address'),
+    AppTeam: teamGL('AppTeam'),
     Badge: teamGL('Badge'),
     ContactedAction: teamGL('ContactedAction'),
     DashboardPage: teamGL('DashboardPage'),
@@ -57,6 +58,7 @@ export default {
     groups: teamGL('groups'),
     inactiveVolunteersRatio: teamGL('inactiveVolunteersRatio'),
     inactiveVolunteersRatioTrend: teamGL('inactiveVolunteersRatioTrend'),
+    leader: teamGL('leader'),
     maxPriority: teamGL('maxPriority'),
     meanPriority: teamGL('meanPriority'),
     memberships: teamGL('memberships'),
@@ -72,9 +74,11 @@ export default {
     priority: teamGL('priority'),
     remarks: teamGL('remarks'),
     result: teamGL('result'),
+    searchLink: teamGL('searchLink'),
     signedUp: teamGL('signedUp'),
     signedUpAt: teamGL('signedUpAt'),
     source: teamGL('source'),
+    status: teamGL('status'),
     street: teamGL('street'),
     streets: teamGL('streets'),
     subDepartments: teamGL('subDepartments'),
