@@ -46,8 +46,12 @@ export default makeStyles((theme: any) => ({
     'zIndex': 9,
   },
   canvasFullscreen: {
-    height: `calc(100vh - ${theme.appBar.height})`,
-    maxHeight: 'unset',
+    '& .ol-control': {
+      bottom: 0,
+      position: 'fixed!important',
+    },
+    'height': `calc(100vh - ${theme.appBar.height})`,
+    'maxHeight': 'unset',
   },
   container: {
     backgroundColor: theme.palette.grey.xxLight,
