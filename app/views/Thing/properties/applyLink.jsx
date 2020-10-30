@@ -5,24 +5,27 @@ import React from 'react';
 import argu from '../../../ontology/argu';
 import { tableRowTopology } from '../../../topologies/TableRow';
 
-class ApplyLink extends React.PureComponent {
-  static type = schema.Thing;
-
-  static property = argu.applyLink;
-
-  static topology = tableRowTopology;
-
-  static propTypes = {
-    linkedProp: linkedPropType,
-  };
-
-  render() {
-    const { linkedProp } = this.props;
-
-    return (
-      <input readOnly value={linkedProp?.value} />
-    );
+const ApplyLink = ({ linkedProp }) => {
+  if (!linkedProp) {
+    return null;
   }
-}
+
+  return (
+    <input readOnly value={linkedProp.value} />
+  );
+};
+
+ApplyLink.type = schema.Thing;
+
+ApplyLink.property = [
+  argu.applyLink,
+  schema.url,
+];
+
+ApplyLink.topology = tableRowTopology;
+
+ApplyLink.propTypes = {
+  linkedProp: linkedPropType,
+};
 
 export default register(ApplyLink);
