@@ -81,7 +81,10 @@ const CollectionFilter = ({
   );
 };
 
-CollectionFilter.type = ontola.CollectionFilter;
+CollectionFilter.type = [
+  ontola.Filter,
+  ontola.CollectionFilter,
+];
 
 CollectionFilter.topology = allTopologies;
 

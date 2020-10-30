@@ -27,6 +27,7 @@ export default {
   DestroyVoteAction: ontola('DestroyVoteAction'),
   DisabledActionStatus: ontola('DisabledActionStatus'),
   ExpiredActionStatus: ontola('ExpiredActionStatus'),
+  Filter: ontola('Filter'),
   FilterField: ontola('FilterField'),
   FilterOption: ontola('FilterOption'),
   FormOption: ontola('FormOption'),
@@ -38,6 +39,7 @@ export default {
   PaginatedView: ontola('PaginatedView'),
   PropertyQuery: ontola('PropertyQuery'),
   SearchResult: ontola('SearchResult'),
+  Sorting: ontola('Sorting'),
   UnconfirmedUser: ontola('UnconfirmedUser'),
   Widget: ontola('Widget'),
 
