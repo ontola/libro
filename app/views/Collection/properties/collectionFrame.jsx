@@ -58,7 +58,7 @@ const getFrame = (wrapper, topology) => {
       );
     case rdf.id(ontola.ns('collectionDisplay/settingsTable')):
     case rdf.id(ontola.ns('collectionDisplay/table')):
-      Wrapper = wrapper ? Container : React.Fragment;
+      Wrapper = wrapper ? LargeContainer : React.Fragment;
 
       return (
         <Wrapper>
