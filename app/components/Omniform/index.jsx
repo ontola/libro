@@ -15,6 +15,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
 import argu from '../../ontology/argu';
+import ontola from '../../ontology/ontola';
 import { highlightResource } from '../../state/app/actions';
 import { getOmniformAction, omniformSetAction } from '../../state/omniform';
 import OmniformFields from '../../topologies/OmniformFields/OmniformFields';
@@ -46,6 +47,7 @@ const propTypes = {
 const PROPS_WHITELIST = [
   schema.name,
   schema.text,
+  ontola.coverPhoto,
   schema.location,
   argu.attachments,
   argu.isOpinion,
