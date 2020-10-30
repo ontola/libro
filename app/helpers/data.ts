@@ -11,6 +11,8 @@ import { sequenceFilter } from './iris';
 
 const base = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#_';
 
+export const dataExtensions = ['json', 'nq', 'nt', 'n3', 'rdf', 'ttl', 'png', 'hndjson', 'csv'];
+
 function filterFind(op: Node) {
   return (bV: Node | RegExp) => {
     if (bV instanceof RegExp) {

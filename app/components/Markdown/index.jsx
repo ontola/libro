@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 
-import { entityIsLoaded } from '../../helpers/data';
+import { dataExtensions, entityIsLoaded } from '../../helpers/data';
 import {
   expandPath,
   isDifferentWebsite,
@@ -20,9 +20,10 @@ const MIN_LENGTH_TO_ADD_HIGHLIGHT = 1;
 
 const routerLink = (tabIndex) => (link) => {
   const extendedLink = expandPath(link.href);
+  const dataLink = dataExtensions.find((ext) => extendedLink.endsWith(ext));
   const lrs = useLRS();
 
-  if (!isDifferentWebsite(extendedLink)) {
+  if (!dataLink && !isDifferentWebsite(extendedLink)) {
     if (__CLIENT__ && !entityIsLoaded(lrs, rdf.namedNode(extendedLink))) {
       lrs.queueEntity(rdf.namedNode(extendedLink));
     }
