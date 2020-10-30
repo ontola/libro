@@ -102,7 +102,7 @@ export default [
   ),
   LinkedRenderStore.registerRenderer(
     link(mapDataToProps)((props) => <InlineActionTableRow {...props} />),
-    [argu.ConfirmAction, argu.CopyAction],
+    [argu.ConfirmAction, argu.CopyAction, ontola.InlineAction],
     RENDER_CLASS_NAME,
     allTopologies
   ),
