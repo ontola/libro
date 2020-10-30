@@ -7,6 +7,7 @@ import ActionBody from './ActionBody';
 import Activity from './Activity';
 import Address from './Address';
 import AppSignOut from './AppSignOut';
+import AppTeam from './AppTeam';
 import ArguHome from './ArguHome';
 import Argument from './Argument/index';
 import Badge from './Badge';
@@ -61,6 +62,7 @@ import MenuItem from './MenuItem';
 import MenuSection from './MenuSection';
 import Motion from './Motion';
 import Notification from './Notification';
+import OnlineCampaigner from './OnlineCampaigner';
 import Organization from './Organization/index';
 import Participant from './Participant';
 import Person from './Person';
@@ -92,6 +94,7 @@ export function getViews() {
     ...Activity,
     ...Address,
     ...AppSignOut,
+    ...AppTeam,
     ...ArguHome,
     ...Thing,
     ...Action,
@@ -145,6 +148,7 @@ export function getViews() {
     ...MenuSection,
     ...Motion,
     ...Notification,
+    ...OnlineCampaigner,
     ...Organization,
     ...Participant,
     ...Person,

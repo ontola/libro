@@ -5,7 +5,8 @@ import React from 'react';
 import emoji from 'react-easy-emoji';
 
 import teamGL from '../../../ontology/teamGL';
-import { allTopologies } from '../../../topologies';
+import { allTopologiesExcept } from '../../../topologies';
+import { tableRowTopology } from '../../../topologies/TableRow';
 
 const propTypes = {
   linkedProp: linkedPropType,
@@ -23,7 +24,7 @@ Email.propTypes = propTypes;
 
 export default LinkedRenderStore.registerRenderer(
   Email,
-  teamGL.Volunteer,
+  [teamGL.Volunteer, teamGL.OnlineCampaigner],
   schema.email,
-  allTopologies
+  allTopologiesExcept(tableRowTopology)
 );
