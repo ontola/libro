@@ -1,6 +1,11 @@
 import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
-import { linkType, useResourceProperty } from 'link-redux';
+import {
+  ReturnType,
+  linkType,
+  useResourceLink,
+  useResourceProperty,
+} from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -14,32 +19,37 @@ import HiddenRequiredInput from '../Input/HiddenRequiredInput';
 
 import './LocationInput.scss';
 
+const viewMapping = {
+  lat: schema.latitude,
+  lon: schema.longitude,
+  zoom: ontola.zoomLevel,
+};
+
 const usePlacements = (object, lat, lon, zoomLevel) => {
   const { object: formObject } = React.useContext(FormContext);
   const [parent] = useResourceProperty(formObject, schema.isPartOf);
-  const [location] = useResourceProperty(parent, schema.location);
-
-  return (
-    React.useMemo(() => {
-      const placements = [];
-
-      if (lat && lon) {
-        placements.push({
-          id: object.value,
-          image: fa4.ns('map-marker'),
-          lat: tryParseFloat(lat),
-          lon: tryParseFloat(lon),
-          zoomLevel: tryParseFloat(zoomLevel),
-        });
-      }
-
-      if (location) {
-        placements.push(location);
-      }
-
-      return placements;
-    }, [lat, lon, object])
+  const [parentLocation] = useResourceProperty(parent, schema.location);
+  const initialView = useResourceLink(
+    parentLocation,
+    viewMapping,
+    { returnType: ReturnType.Literal }
   );
+
+  const placements = React.useMemo(() => {
+    if (lat && lon) {
+      return [{
+        id: object.value,
+        image: fa4.ns('map-marker'),
+        lat: tryParseFloat(lat),
+        lon: tryParseFloat(lon),
+        zoomLevel: tryParseFloat(zoomLevel),
+      }];
+    }
+
+    return [];
+  }, [lat, lon, zoomLevel, object]);
+
+  return [placements, initialView];
 };
 
 const LocationInput = ({
@@ -68,20 +78,29 @@ const LocationInput = ({
     }
   });
 
-  const placements = usePlacements(object, lat, lon, zoomLevel);
+  const [
+    placements,
+    initialView,
+  ] = usePlacements(object, lat, lon, zoomLevel);
 
-  const storeCoordinates = (newLat, newLon, newZoom) => {
+  const storeCoordinates = (newLat, newLon) => {
     lonInput.onChange([rdf.literal(newLat)]);
     latInput.onChange([rdf.literal(newLon)]);
-    zoomLevelInput.onChange([rdf.literal(newZoom)]);
+    const newZoom = zoomLevel?.value || initialView.zoom;
+    if (newZoom) {
+      zoomLevelInput.onChange([rdf.literal(newZoom)]);
+    }
   };
 
   return (
     <div className="LocationInput">
-      <HiddenRequiredInput name={latInput.name} value={lat} />
-      <HiddenRequiredInput name={lonInput.name} value={lon} />
-      <HiddenRequiredInput name={zoomLevelInput.name} value={zoomLevel} />
+      <HiddenRequiredInput name={latInput.name} value={lat?.value} />
+      <HiddenRequiredInput name={lonInput.name} value={lon?.value} />
+      <HiddenRequiredInput name={zoomLevelInput.name} value={zoomLevel?.value} />
       <MapView
+        initialLat={initialView.lat}
+        initialLon={initialView.lon}
+        initialZoom={initialView.zoom}
         placements={placements}
         onMapClick={storeCoordinates}
         onZoom={(newZoom) => zoomLevelInput.onChange([rdf.literal(newZoom)])}

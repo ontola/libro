@@ -9,7 +9,7 @@ import {
 } from 'link-redux';
 import { Feature } from 'ol';
 import Point from 'ol/geom/Point';
-import { fromLonLat, toLonLat } from 'ol/proj';
+import { fromLonLat } from 'ol/proj';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -59,7 +59,7 @@ const featureFromPlacement = (lrs, placement, theme) => {
 
   const f = new Feature(new Point(fromLonLat([lon, lat])));
   f.local = placement;
-  f.setId(placement.value);
+  f.setId(placement.value || placement.id);
   const { hoverStyle, style } = getStyles(image.value, theme);
   f.setProperties({
     hoverStyle,
@@ -70,16 +70,16 @@ const featureFromPlacement = (lrs, placement, theme) => {
   return f;
 };
 
-const useFeatures = (placements, center) => {
+const useFeatures = (placements) => {
   const lrs = useLRS();
+  const theme = useTheme();
 
   const [loading, setLoading] = React.useState(true);
-  const [memoizedFeatures, setMemoizedFeatures] = React.useState([]);
+  const [memoizedFeatures, setMemoizedFeatures] = React.useState(null);
   const [memoizedCenter, setMemoizedCenter] = React.useState(null);
-  const [memoizedDependencies, setDependencies] = React.useState([]);
-  const timestamp = useDataInvalidation(memoizedDependencies);
-  useDataFetching(memoizedDependencies.filter(isNamedNode));
-  const theme = useTheme();
+  const [memoizedDependencies, setDependencies] = React.useState(null);
+  const timestamp = useDataInvalidation(memoizedDependencies || []);
+  useDataFetching((memoizedDependencies || []).filter(isNamedNode));
 
   React.useEffect(() => {
     const features = [];
@@ -87,7 +87,7 @@ const useFeatures = (placements, center) => {
     const addFeature = (rawFeature, index) => {
       const feature = !loading && featureFromPlacement(lrs, rawFeature, theme);
 
-      const isCenter = rawFeature === center || (!center && index === 0);
+      const isCenter = index === 0;
 
       if (feature && isCenter) {
         setMemoizedCenter(feature);
@@ -105,7 +105,7 @@ const useFeatures = (placements, center) => {
     setDependencies(dependencies);
     setMemoizedFeatures(features);
 
-    const currentlyLoading = memoizedDependencies.filter(isNamedNode).find((resource) => (
+    const currentlyLoading = dependencies?.filter(isNamedNode)?.find((resource) => (
       !entityIsLoaded(lrs, resource)
     ));
 
@@ -114,19 +114,35 @@ const useFeatures = (placements, center) => {
     }
   }, [loading, timestamp, placements]);
 
-  return [memoizedFeatures, memoizedCenter, loading];
+  return [memoizedFeatures || [], memoizedCenter, loading];
 };
 
 const MapView = ({
-  center,
+  initialLat,
+  initialLon,
+  initialZoom,
   navigate,
   onMapClick,
+  onMove,
   onSelect,
   onZoom,
   overlayResource,
   placements,
 }) => {
-  const [placementFeatures, resolvedCenter, loading] = useFeatures(placements, center);
+  const [placementFeatures, resolvedCenter, loading] = useFeatures(placements);
+  const initialView = (initialLat || initialLon || initialZoom) && {
+    center: (initialLat && initialLon) ? fromLonLat([initialLon, initialLat]) : null,
+    zoom: initialZoom,
+  };
+  const [view, setView] = React.useState(initialView);
+  React.useEffect(() => {
+    if (resolvedCenter) {
+      setView({
+        center: resolvedCenter?.getGeometry()?.getCoordinates(),
+        zoom: resolvedCenter?.getProperties()?.zoomLevel,
+      });
+    }
+  }, [loading, resolvedCenter?.getId()]);
   const [overlayPosition, setOverlayPosition] = React.useState(null);
   const handleSelect = React.useCallback((feature, newCenter) => {
     if (onSelect) {
@@ -134,39 +150,45 @@ const MapView = ({
     }
     setOverlayPosition(newCenter);
   }, [onSelect]);
+  const layers = React.useMemo(() => (
+    [{
+      clustered: true,
+      features: placementFeatures,
+    }]
+  ), [placementFeatures]);
 
-  if (loading) {
+  if (loading || !placementFeatures) {
     return <LoadingCard />;
   }
 
-  const [cLon, cLat] = resolvedCenter
-    ? toLonLat(resolvedCenter.getGeometry().getCoordinates())
-    : [null, null];
-  const zoom = resolvedCenter && resolvedCenter.getProperties().zoomLevel;
-
   return (
     <MapCanvas
-      initialLat={cLat}
-      initialLon={cLon}
-      initialZoom={zoom}
-      layers={[{
-        clustered: true,
-        features: placementFeatures,
-      }]}
+      layers={layers}
       navigate={navigate}
       overlayPosition={overlayPosition}
       overlayResource={overlayResource}
+      view={view}
       onMapClick={onMapClick}
+      onMove={onMove}
       onSelect={handleSelect}
+      onViewChange={(newCenter, newZoom) => {
+        setView({
+          center: newCenter,
+          zoom: newZoom,
+        });
+      }}
       onZoom={onZoom}
     />
   );
 };
 
 MapView.propTypes = {
-  center: linkType,
+  initialLat: PropTypes.number,
+  initialLon: PropTypes.number,
+  initialZoom: PropTypes.number,
   navigate: PropTypes.func,
   onMapClick: PropTypes.func,
+  onMove: PropTypes.func,
   onSelect: PropTypes.func,
   onZoom: PropTypes.func,
   overlayResource: linkType,
