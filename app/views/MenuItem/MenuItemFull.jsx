@@ -34,7 +34,14 @@ const MenuItemFull = ({
   }
 
   if (!currentTab) {
-    return null;
+    return (
+      <Property
+        currentTab={currentTab}
+        items={items}
+        label={schema.isPartOf}
+        onChange={handleChange}
+      />
+    );
   }
 
   return (

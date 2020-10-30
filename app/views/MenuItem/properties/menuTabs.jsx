@@ -32,7 +32,7 @@ const MenuTabs = ({
     return null;
   }
 
-  if (isPromise(items)) {
+  if (isPromise(items) || items.length === 0) {
     // TODO: Loading
     return null;
   }
