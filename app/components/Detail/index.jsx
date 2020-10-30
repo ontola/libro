@@ -23,6 +23,7 @@ const propTypes = {
   icon: PropTypes.string,
   imageUrl: PropTypes.string,
   linkedImage: PropTypes.bool,
+  onClick: PropTypes.func,
   spin: PropTypes.bool,
   text: PropTypes.node,
   /** HTML title attribute */
@@ -57,7 +58,11 @@ export class DetailComp extends PureComponent {
   }
 
   getClickBinding() {
-    const { url } = this.props;
+    const { onClick, url } = this.props;
+    if (onClick) {
+      return onClick;
+    }
+
     if (url && !isDifferentWebsite(url)) {
       return (e) => {
         e.preventDefault();
