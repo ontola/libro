@@ -58,6 +58,7 @@ const createMap = ({
   initialLat,
   initialLon,
   initialZoom,
+  fullscreenButton,
   layerSources,
   mapRef,
   tileSource,
@@ -80,12 +81,17 @@ const createMap = ({
     )),
   ];
 
-  const map = new OLMap({
-    controls: defaultControls({
-      rotate: false,
-    }).extend([
+  const controls = defaultControls({
+    rotate: false,
+  });
+  if (fullscreenButton) {
+    controls.extend([
       new FullScreen(),
-    ]),
+    ]);
+  }
+
+  const map = new OLMap({
+    controls,
     layers,
     target: current,
     view: new View({

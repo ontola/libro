@@ -98,9 +98,15 @@ const MapCanvas = (props) => {
   );
 };
 
+MapCanvas.defaultProps = {
+  fullscreenButton: true,
+};
+
 MapCanvas.propTypes = {
   accessToken: PropTypes.string,
   accessTokenError: PropTypes.string,
+  // eslint-disable-next-line react/no-unused-prop-types
+  fullscreenButton: PropTypes.bool,
   large: PropTypes.bool,
   navigate: PropTypes.func,
   overlayPadding: PropTypes.bool,
