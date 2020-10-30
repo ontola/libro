@@ -35,6 +35,7 @@ export default {
   FormStep: ontola('FormStep'),
   GuestUser: ontola('GuestUser'),
   InfiniteView: ontola('InfiniteView'),
+  InlineAction: ontola('InlineAction'),
   MenuItem: ontola('MenuItem'),
   PaginatedView: ontola('PaginatedView'),
   PropertyQuery: ontola('PropertyQuery'),
