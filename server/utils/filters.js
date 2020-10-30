@@ -1,5 +1,6 @@
 import pathToRegexp from 'path-to-regexp';
 
+import { dataExtensions } from '../../common/data';
 import { redisSettingsNS } from '../config';
 import { client } from '../middleware/sessionMiddleware';
 
@@ -7,8 +8,6 @@ import { isDownloadRequest, isHTMLHeader } from './http';
 import logging from './logging';
 
 const FRONTEND_ROUTES = /^\/(login)(\/|$)/;
-
-const dataExtensions = ['json', 'nq', 'nt', 'n3', 'rdf', 'ttl', 'png', 'hndjson', 'csv'];
 
 const plainAPIEndpointsKey = [redisSettingsNS, 'runtime.plain_endpoints'].join('.');
 
