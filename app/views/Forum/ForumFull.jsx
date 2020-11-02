@@ -1,3 +1,4 @@
+import * as as from '@ontologies/as';
 import schema from '@ontologies/schema';
 import {
   Property,
@@ -9,7 +10,6 @@ import {
 } from 'link-redux';
 import React from 'react';
 
-import { LoadingFiller } from '../../components/Loading/index';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import Container from '../../topologies/Container/index';
@@ -33,7 +33,11 @@ const ForumFull = ({ coverPhoto, hideHeader }) => {
       && <PageHeader background={coverPhotoUrl} positionY={positionY} />}
       <Container size="large">
         <Grid container spacing={6}>
-          <Property label={ontola.widgets} onLoad={LoadingFiller} />
+          <Property label={ontola.widgets}>
+            <Property label={ontola.pages}>
+              <Property label={as.items} />
+            </Property>
+          </Property>
         </Grid>
       </Container>
     </React.Fragment>

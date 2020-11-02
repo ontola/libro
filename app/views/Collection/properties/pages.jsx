@@ -2,6 +2,7 @@ import {
   Resource,
   ReturnType,
   linkType,
+  linkedPropType,
   register,
 } from 'link-redux';
 import PropTypes from 'prop-types';
@@ -14,16 +15,26 @@ import { CollectionTypes } from '../types';
 import { LoadingGridContent } from '../../../components/Loading';
 
 const Pages = ({
+  children,
   collectionDisplay,
   columns,
   depth,
   insideCollection,
+  linkedProp,
   maxColumns,
   pages,
   renderWhenEmpty,
   singlePage,
   view,
 }) => {
+  if (children) {
+    return (
+      <Resource subject={linkedProp}>
+        {children}
+      </Resource>
+    );
+  }
+
   if (singlePage || pages.length === 1) {
     return (
       <Resource
@@ -80,10 +91,12 @@ Pages.mapDataToProps = {
 };
 
 Pages.propTypes = {
+  children: PropTypes.node,
   collectionDisplay: linkType,
   columns: linkType,
   depth: PropTypes.number,
   insideCollection: PropTypes.bool,
+  linkedProp: linkedPropType,
   maxColumns: PropTypes.number,
   pages: linkType,
   renderWhenEmpty: PropTypes.bool,

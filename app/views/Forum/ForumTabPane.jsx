@@ -1,3 +1,4 @@
+import * as as from '@ontologies/as';
 import schema from '@ontologies/schema';
 import {
   Property,
@@ -7,7 +8,6 @@ import {
 import React from 'react';
 
 import Heading from '../../components/Heading';
-import { LoadingFiller } from '../../components/Loading/index';
 import argu from '../../ontology/argu';
 import ontola from '../../ontology/ontola';
 import Container from '../../topologies/Container/index';
@@ -19,7 +19,11 @@ const ForumTabPane = ({ name }) => (
     <Heading>{name?.value}</Heading>
     <Property label={schema.text} />
     <Grid container spacing={6}>
-      <Property label={ontola.widgets} onLoad={LoadingFiller} />
+      <Property label={ontola.widgets}>
+        <Property label={ontola.pages}>
+          <Property label={as.items} />
+        </Property>
+      </Property>
     </Grid>
   </Container>
 );
