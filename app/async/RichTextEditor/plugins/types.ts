@@ -1,10 +1,6 @@
 import {
-  CodeBlockPluginOptions as CodeBlockPluginOptionsBase,
   ExitBreakPluginOptions,
-  HeadingPluginOptions as HeadingPluginOptionsBase,
-  ImagePluginOptions as ImagePluginOptionsBase,
-  LinkPluginOptions as LinkPluginOptionsBase,
-  ParagraphPluginOptions as ParagraphPluginOptionsBase,
+  ParagraphPluginOptions,
   ResetBlockTypePluginOptions,
   SlatePlugin,
   SoftBreakPluginOptions,
@@ -51,20 +47,6 @@ export interface DefaultCommandPlugins {
   underline: UnderlineCommandPlugin;
   [name: string]: CommandPlugin;
 }
-
-export interface ElementOptions {
-  title?: string;
-}
-
-export interface MarkOptions {
-  title?: string;
-}
-
-export type CodeBlockPluginOptions = CodeBlockPluginOptionsBase & ElementOptions;
-export type HeadingPluginOptions = HeadingPluginOptionsBase & ElementOptions;
-export type ImagePluginOptions = ImagePluginOptionsBase & ElementOptions;
-export type LinkPluginOptions = LinkPluginOptionsBase & ElementOptions;
-export type ParagraphPluginOptions = ParagraphPluginOptionsBase & ElementOptions;
 
 export interface DefaultCommandPluginsOptions {
   bold: BoldCommandPluginOptions;

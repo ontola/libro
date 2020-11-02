@@ -118,6 +118,7 @@ export const defaultPluginsOptions: DefaultCommandPluginsOptions = {
   bold: DEFAULTS_BOLD,
   codeBlock: DEFAULTS_CODE_BLOCK,
   exitBreak: exitBreakPluginOptions,
+  // @ts-ignore
   heading: DEFAULTS_HEADING,
   image: DEFAULTS_IMAGE,
   italic: DEFAULTS_ITALIC,
