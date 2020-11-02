@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useRef } from 'react';
 import { Node } from 'slate';
 
 import { deserializeMarkdown } from '../markdown/deserializeMarkdown';
@@ -25,12 +25,13 @@ export interface EditorValues {
 
 const useEditorCallbackIfPresent = (
   callback: editorCallback | undefined,
-  setValues: (state: EditorValues) => void,
+  currentValues: EditorValues,
 ) => useCallback(
   callback
     ? (editor: PluginEditor, nodes: Node[]) => {
       const markdown = editor.serializeMarkdown(nodes);
-      setValues({ value: nodes, valueMd: markdown });
+      currentValues.value = nodes;
+      currentValues.valueMd = markdown;
       callback(markdown);
     }
     : () => undefined,
@@ -45,17 +46,17 @@ export const RichTextEditorMd: React.FC<RichTextEditorMdProps> = ({
   value: valueMd,
   ...props
 }) => {
-  const [currentValues, setCurrentValues] = useState<EditorValues>({
+  const values = useRef<EditorValues>({
     value: undefined,
     valueMd: undefined,
   });
 
-  const onBlur = useEditorCallbackIfPresent(onBlurMd, setCurrentValues);
-  const onChange = useEditorCallbackIfPresent(onChangeMd, setCurrentValues);
+  const onBlur = useEditorCallbackIfPresent(onBlurMd, values.current);
+  const onChange = useEditorCallbackIfPresent(onChangeMd, values.current);
 
   const value = useMemo(() => {
-    if (valueMd && valueMd === currentValues.valueMd) {
-      return currentValues.value;
+    if (valueMd && valueMd === values.current.valueMd) {
+      return values.current.value;
     } else {
       return [{ children: deserializeMarkdown(plugins || {})(valueMd || '') }];
     }

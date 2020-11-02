@@ -1,1 +1,2 @@
-export * from './findValidSlatePoint';
+export * from './isSelectionPointValid';
+export * from './isSelectionRangeValid';

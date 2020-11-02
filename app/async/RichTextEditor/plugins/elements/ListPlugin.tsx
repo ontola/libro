@@ -5,7 +5,7 @@ import {
   ELEMENT_OL,
   ELEMENT_UL,
   ListPlugin as ListPluginBase,
-  ListPluginOptions as ListPluginOptions,
+  ListPluginOptions,
 } from '@udecode/slate-plugins';
 import React from 'react';
 import { Editor } from 'slate';

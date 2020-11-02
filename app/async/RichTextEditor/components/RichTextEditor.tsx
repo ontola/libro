@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { createEditor, Editor, Node, Transforms } from 'slate';
 import { withHistory } from 'slate-history';
-import { ReactEditor, Slate, withReact } from 'slate-react';
+import { Slate, withReact } from 'slate-react';
 import { useDebouncedCallback } from 'use-debounce';
 
 import { CommandPlugins } from '../plugins/types';
 import { PluginEditor, withPlugins } from '../transforms/withPlugins';
-import { findValidSlatePoint } from '../utils';
+import { isSelectionRangeValid } from '../utils';
 
 import { EditableWithPlugins, EditableWithPluginsProps } from './EditableWithPlugins';
 
@@ -42,12 +42,8 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
       editor.children = value;
     }
     Editor.normalize(editor, { force: true });
-    if (editor.selection) {
-      try {
-        ReactEditor.toDOMRange(editor, editor.selection);
-      } catch {
-        Transforms.select(editor, findValidSlatePoint(editor, editor.selection.focus));
-      }
+    if (editor.selection && !isSelectionRangeValid(editor, editor.selection)) {
+      Transforms.select(editor, Editor.start(editor, []));
     }
     // The rendering can take over from here:
     setNormalizedValue(editor.children);
