@@ -21,10 +21,10 @@ export default class HeadRequestCheck extends Check {
         ...this.ctx.request.headers,
         'Content-Type': 'application/hex+x-ndjson',
       },
-      url: '/',
+      url: '/argu',
     });
     if (res.status >= HttpStatus.BAD_REQUEST) {
-      return new Error(`Unexpected status '${res.status}' for 'HEAD /'.`);
+      return new Error(`Unexpected status '${res.status}' for 'HEAD /argu'.`);
     }
 
     const manifestLocation = Check.appendPath(this.tenant?.location, 'manifest.json');
