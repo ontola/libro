@@ -26,6 +26,7 @@ const EventCardList = ({
       <Property label={schema.name} />
       <ContentDetails>
         <Property label={teamGL.eventType} />
+        <Property label={teamGL.participantsCount} />
         <Property label={teamGL.department} />
         <Property label={schema.startDate} />
         <Property label={schema.location} />

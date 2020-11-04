@@ -27,11 +27,11 @@ const EventFull = () => (
           </HeaderWithMenu>
           <ContentDetails>
             <Property label={teamGL.eventType} />
+            <Property label={teamGL.participantsCount} />
             <Property label={teamGL.department} />
             <Property label={schema.startDate} />
             <Property label={schema.location} />
           </ContentDetails>
-          <Property label={teamGL.desiredCount} />
           <Property label={schema.text} />
         </CardContent>
         <ActionsBar>
