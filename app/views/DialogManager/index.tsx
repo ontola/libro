@@ -30,7 +30,7 @@ const DialogManager: FC<DialogManagerProps> = ({ resource }) => {
     )
   );
 
-  if (!resource) {
+  if (!resource || resource === ontola.ns('dialog/closed')) {
     return null;
   }
 

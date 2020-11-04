@@ -139,8 +139,8 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     rdf.quad(
       dialogManager,
       ontola.ns('dialog/resource'),
-      ontola.ns('dialog/rm'),
-      ld.remove,
+      ontola.ns('dialog/closed'),
+      ld.replace,
     ),
   ];
 
