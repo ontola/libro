@@ -236,7 +236,6 @@ const GlappMap = ({
     center: fromLonLat([centerLon, centerLat]),
     zoom,
   });
-  const [eventsCluster, setEventsCluster] = React.useState(null);
   const showFull = view.zoom > FULL_POSTAL_LEVEL;
   const postalCodes = showFull ? postalCodesFull : postalCodesSimplified;
   React.useEffect(() => {
@@ -271,34 +270,29 @@ const GlappMap = ({
     eventsLayer,
   ]), [postalShapes, eventsLayer, selectedFeatures]);
   const handleClusterSelect = React.useCallback((features, newCenter) => {
+    lrs.actions.ontola.showDialog(rdf.namedNode(`${postalCodeIri(features[0].getProperties().location).value}/events`));
     setSelectedPostalCode(null);
-    setEventsCluster(rdf.namedNode(`${postalCodeIri(features[0].getProperties().location).value}/events`));
     setOverlayPosition(newCenter);
   });
   const handleSelect = React.useCallback((feature, newCenter) => {
-    setEventsCluster(null);
-    const { location, postalDigits } = feature?.getProperties() || {};
+    const { postalDigits } = feature?.getProperties() || {};
     if (postalDigits) {
       setSelectedPostalCode(postalDigits);
     } else {
       const iri = feature?.getId() ? rdf.namedNode(feature.getId()) : null;
-      setSelectedEvent(iri);
+      if (iri) {
+        lrs.actions.ontola.showDialog(iri);
+      }
       setOverlayPosition(newCenter);
       setView({
         center: newCenter,
         zoom: Math.max(view.zoom, feature ? FOCUS_ZOOM : 0),
       });
-      if (location) {
-        setSelectedPostalCode(location, false);
-      } else {
-        setSelectedPostalCode(null, false);
-      }
+      setSelectedPostalCode(null, false);
     }
   }, [setSelectedPostalCode, setSelectedEvent, view.zoom]);
 
-  const overlayResource = eventsCluster
-    || selectedEvent
-    || (selectedPostalCode && postalCodeIri(selectedPostalCode));
+  const overlayResource = selectedPostalCode && postalCodeIri(selectedPostalCode);
 
   return (
     <MapCanvas
