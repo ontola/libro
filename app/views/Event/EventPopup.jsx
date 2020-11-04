@@ -13,7 +13,6 @@ import ontola from '../../ontology/ontola';
 import teamGL from '../../ontology/teamGL';
 import ActionsBar from '../../topologies/ActionsBar';
 import Card, { CardContent } from '../../topologies/Card';
-import { containerTopology } from '../../topologies/Container';
 import ContentDetails from '../../topologies/ContentDetails';
 import { alertDialogTopology } from '../../topologies/Dialog';
 import { popupTopology } from '../../topologies/Popup';
@@ -45,6 +44,7 @@ const EventPopup = ({
         </HeaderWithMenu>
         <ContentDetails>
           <Property label={teamGL.eventType} />
+          <Property label={teamGL.participantsCount} />
           <Property label={teamGL.department} />
           <Property label={schema.startDate} />
           <Property label={schema.location} />
@@ -61,8 +61,6 @@ const EventPopup = ({
 EventPopup.type = teamGL.Event;
 
 EventPopup.topology = [
-  alertDialogTopology,
-  containerTopology,
   popupTopology,
 ];
 

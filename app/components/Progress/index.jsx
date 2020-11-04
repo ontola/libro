@@ -1,11 +1,19 @@
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { makeStyles } from '@material-ui/core/styles';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import Heading from '../Heading';
 
 const useStyles = makeStyles(() => ({
+  detail: {
+    '& .MuiLinearProgress-root': {
+      height: 8,
+    },
+    display: 'inline-block',
+    width: '3em',
+  },
   endSpacing: {
     marginBottom: '1em',
   },
@@ -17,6 +25,7 @@ const useStyles = makeStyles(() => ({
 
 const Progress = ({
   color,
+  detail,
   endSpacing,
   height,
   labels,
@@ -26,9 +35,13 @@ const Progress = ({
   value,
 }) => {
   const classes = useStyles();
+  const className = classNames({
+    [classes.detail]: detail,
+    [classes.endSpacing]: endSpacing,
+  });
 
   return (
-    <div className={endSpacing ? classes.endSpacing : null}>
+    <div className={className}>
       <LinearProgress
         className={classes.progress}
         color={color}
@@ -47,6 +60,7 @@ const Progress = ({
 
 Progress.propTypes = {
   color: PropTypes.string,
+  detail: PropTypes.bool,
   endSpacing: PropTypes.bool,
   height: PropTypes.string,
   labels: PropTypes.bool,
