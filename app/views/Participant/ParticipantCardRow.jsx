@@ -25,6 +25,10 @@ const ParticipantCardRow = () => (
         <Property label={teamGL.engagement} />
         <Property label={teamGL.signedUp} />
       </ContentDetails>
+      <div className="Volunteer--contact-options">
+        <Property label={teamGL.telephone} />
+        <Property label={schema.email} />
+      </div>
     </CardContent>
     <ActionsBar>
       <Property label={ontola.favoriteAction} />
