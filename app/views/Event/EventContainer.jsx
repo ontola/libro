@@ -33,7 +33,7 @@ const EventContainer = () => (
       <Property label={schema.text} />
     </CardContent>
     <ActionsBar>
-      <Property label={ontola.signUpAction} onLoad={() => null} />
+      <Property label={ontola.signUpAction} />
     </ActionsBar>
   </Card>
 );
