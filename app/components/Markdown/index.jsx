@@ -4,6 +4,8 @@ import { useLRS } from 'link-redux';
 import memoize from 'memoize-one';
 import PropTypes from 'prop-types';
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
+import { FormattedMessage } from 'react-intl';
 import ReactMarkdown from 'react-markdown';
 
 import { entityIsLoaded } from '../../helpers/data';
@@ -12,6 +14,8 @@ import {
   isDifferentWebsite,
   retrievePath,
 } from '../../helpers/iris';
+import { handle } from '../../helpers/logging';
+import Heading from '../Heading';
 import Link from '../Link';
 
 import './Markdown.scss';
@@ -67,9 +71,25 @@ class Markdown extends React.PureComponent {
     text: PropTypes.string.isRequired,
   };
 
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
   static defaultProps = {
     tabbable: true,
   };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hasError: false,
+    };
+  }
+
+  componentDidCatch(error) {
+    handle(error);
+  }
 
   sourceText = memoize((highlightedText, text) => {
     if (highlightedText && highlightedText.length > MIN_LENGTH_TO_ADD_HIGHLIGHT) {
@@ -90,6 +110,22 @@ class Markdown extends React.PureComponent {
       tabbable,
       text,
     } = this.props;
+
+    if (this.state.hasError) {
+      return (
+        <div>
+          <Heading size="2" variant="alert">
+            <FontAwesome name="exclamation-triangle" />
+            {' '}
+            <FormattedMessage
+              defaultMessage="An error occurred while formatting the text. The original text in markdown format is as follows:"
+              id="https://app.argu.co/i18n/errors/markdown/renderError"
+            />
+          </Heading>
+          <div>{this.sourceText(highlightedText, text)}</div>
+        </div>
+      );
+    }
 
     const customRenderers = {
       code: codePre,

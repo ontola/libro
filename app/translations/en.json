@@ -40,6 +40,7 @@
   "https://app.argu.co/i18n/errors/informRequest": "Let us know.",
   "https://app.argu.co/i18n/errors/inlineButton/label": "Retry",
   "https://app.argu.co/i18n/errors/map/loadError": "Error loading map",
+  "https://app.argu.co/i18n/errors/markdown/renderError": "An error occurred while formatting the text. The source text in markdown format is as follows:",
   "https://app.argu.co/i18n/errors/mistaken": "Is this an error?",
   "https://app.argu.co/i18n/errors/request/200/body": "The request made cannot be fulfilled because it contains bad syntax, check your URL parameters or refresh the page that linked to this resource.",
   "https://app.argu.co/i18n/errors/request/200/header": "Bad request (400 Bad Request)",
