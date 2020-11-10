@@ -26,7 +26,7 @@ const routerLink = (tabIndex) => (link) => {
   const extendedLink = expandPath(link.href);
   const lrs = useLRS();
 
-  if (!isDifferentWebsite(extendedLink)) {
+  if (extendedLink && !isDifferentWebsite(extendedLink)) {
     if (__CLIENT__ && !entityIsLoaded(lrs, rdf.namedNode(extendedLink))) {
       lrs.queueEntity(rdf.namedNode(extendedLink));
     }
