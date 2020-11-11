@@ -16,6 +16,7 @@ import HeaderWithMenu from '../../components/HeaderWithMenu';
 import teamGL from '../../ontology/teamGL';
 import AttributeList from '../../topologies/AttributeList';
 import Card from '../../topologies/Card';
+import ContentDetails from '../../topologies/ContentDetails';
 import { popupTopology } from '../../topologies/Popup';
 import { useVisitPostalCode } from '../Glapp/helpers';
 
@@ -45,6 +46,9 @@ const PostalCodePopup = ({
         >
           <Property label={schema.name} wrapper={React.Fragment} />
         </HeaderWithMenu>
+        <ContentDetails>
+          <Property endSpacing label={teamGL.department} />
+        </ContentDetails>
         <Property endSpacing label={teamGL.meanPriority} />
         <AttributeList fullLabel>
           <AttributeListItem label={teamGL.totalFlyers} />

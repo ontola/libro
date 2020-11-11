@@ -13,10 +13,14 @@ import { detailsBarTopology } from '../../topologies/DetailsBar';
 import { contentDetailsTopology } from '../../topologies/ContentDetails';
 import { retrievePath } from '../../helpers/iris';
 
-const DepartmentDetailsBar = ({ name, subject }) => (
+const DepartmentDetailsBar = ({
+  name,
+  subject,
+  url,
+}) => (
   <Detail
     text={emoji(`🌍 ${name.value}`)}
-    url={retrievePath(subject.value)}
+    url={url?.value || retrievePath(subject.value)}
   />
 );
 
@@ -29,11 +33,13 @@ DepartmentDetailsBar.topology = [
 
 DepartmentDetailsBar.mapDataToProps = {
   name: schema.name,
+  url: schema.url,
 };
 
 DepartmentDetailsBar.propTypes = {
   name: linkType,
   subject: subjectType,
+  url: linkType,
 };
 
 export default register(DepartmentDetailsBar);
