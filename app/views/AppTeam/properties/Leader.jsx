@@ -10,9 +10,11 @@ import React from 'react';
 
 import Heading from '../../../components/Heading';
 import teamGL from '../../../ontology/teamGL';
-import { allTopologies } from '../../../topologies';
+import { allTopologiesExcept } from '../../../topologies';
 import Card from '../../../topologies/Card';
 import ContentDetails from '../../../topologies/ContentDetails';
+import { tableCellTopology } from '../../../topologies/TableCell';
+import { tableRowTopology } from '../../../topologies/TableRow';
 
 const Leader = ({ linkedProp }) => (
   <React.Fragment>
@@ -38,7 +40,7 @@ const Leader = ({ linkedProp }) => (
 
 Leader.type = teamGL.AppTeam;
 
-Leader.topology = allTopologies;
+Leader.topology = allTopologiesExcept(tableCellTopology, tableRowTopology);
 
 Leader.property = teamGL.leader;
 
