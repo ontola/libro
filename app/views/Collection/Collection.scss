@@ -24,10 +24,4 @@ $margin-left: 1rem;
   .pagination-wrapper {
     margin-bottom: .75em;
   }
-
-  .MuiDialog-paper & {
-    background: $background-color;
-    border-radius: .5em;
-    padding: .1em 1em;
-  }
 }
