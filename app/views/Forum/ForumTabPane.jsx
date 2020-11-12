@@ -6,6 +6,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import GridItem from '../../components/Grid/GridItem';
 import Heading from '../../components/Heading';
 import { LoadingFiller } from '../../components/Loading/index';
 import argu from '../../ontology/argu';
@@ -16,8 +17,12 @@ import { tabPaneTopology } from '../../topologies/TabPane';
 
 const ForumTabPane = ({ name }) => (
   <Container size="large">
-    <Heading>{name?.value}</Heading>
-    <Property label={schema.text} />
+    <GridItem size={3}>
+      <Container>
+        <Heading>{name?.value}</Heading>
+        <Property label={schema.text} />
+      </Container>
+    </GridItem>
     <Grid container spacing={6}>
       <Property label={ontola.widgets} onLoad={LoadingFiller} />
     </Grid>
