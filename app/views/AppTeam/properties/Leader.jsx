@@ -32,6 +32,7 @@ const Leader = ({ linkedProp }) => (
               <Property label={schema.email} />
             </div>
           </ContentDetails>
+          <Property label={schema.text} />
         </Resource>
       </CardContent>
     </Card>
