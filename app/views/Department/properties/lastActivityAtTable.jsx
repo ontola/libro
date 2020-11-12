@@ -20,11 +20,13 @@ const LastActivityAtTableRow = ({ label, linkedProp }) => (
 LastActivityAtTableRow.type = [
   teamGL.Department,
   teamGL.OnlineCampaigner,
+  teamGL.Street,
 ];
 
 LastActivityAtTableRow.property = [
   argu.lastActivityAt,
   teamGL.signedUpAt,
+  teamGL.lastVisitedAt,
 ];
 
 LastActivityAtTableRow.topology = tableRowTopology;
