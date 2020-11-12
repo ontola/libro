@@ -1,6 +1,5 @@
 import { register } from 'link-redux';
 
-import { alertDialogTopology } from '../../topologies/Dialog';
 import { cardTopology } from '../../topologies/Card';
 import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { containerTopology } from '../../topologies/Container';
@@ -8,6 +7,7 @@ import { gridTopology } from '../../topologies/Grid';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import { tabPaneTopology } from '../../topologies/TabPane';
 
+import CollectionDialog from './CollectionDialog';
 import getCollection from './getCollection';
 import CollectionFilterCollection from './properties/collectionFilter';
 import CreateAction from './properties/createAction';
@@ -51,11 +51,6 @@ export default [
     })
   ),
   register(
-    getCollection('AlertDialogCollection', {
-      topology: alertDialogTopology,
-    })
-  ),
-  register(
     getCollection('CardAndCardMainAndGridCollection', {
       renderWhenEmpty: true,
       topology: [
@@ -75,6 +70,7 @@ export default [
   ),
   ...TotalItems,
   CollectionCardAppendix,
+  CollectionDialog,
   CollectionInline,
   ...CollectionFrame,
   CollectionFilterCollection,
