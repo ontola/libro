@@ -2,13 +2,13 @@ import RDFTypes from '@rdfdev/prop-types';
 import rdf from '@ontologies/core';
 import {
   Property,
-  Resource,
   linkType,
   register,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import TableHeadCells from '../../../components/TableHeadCells';
 import { useSorting } from '../../../hooks/useSorting';
 import ontola from '../../../ontology/ontola';
 import Card from '../../../topologies/Card';
@@ -68,15 +68,11 @@ const getFrame = (wrapper, topology) => {
             <Table>
               <TableHead>
                 <TableHeaderRow>
-                  {columns.map((property) => (
-                    <Resource
-                      forceRender
-                      key={property.value}
-                      setCurrentPage={setCurrentPage}
-                      sortOptions={sortOptions.filter((option) => option.item === property)}
-                      subject={property}
-                    />
-                  ))}
+                  <TableHeadCells
+                    columns={columns}
+                    setCurrentPage={setCurrentPage}
+                    sortOptions={sortOptions}
+                  />
                 </TableHeaderRow>
               </TableHead>
               <tbody>
