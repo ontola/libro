@@ -9,6 +9,7 @@ const childSrc = ['https://youtube.com', 'https://www.youtube.com'];
 const connectSrc = [
   "'self'",
   'https://api.notubiz.nl',
+  'https://api.openraadsinformatie.nl',
   'https://www.facebook.com',
   (req) => `ws://${req.hostname}`,
 ];

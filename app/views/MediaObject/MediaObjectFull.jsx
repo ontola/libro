@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
+import PDFViewer from '../../async/PDFViewer';
 import Heading from '../../components/Heading';
 import Image from '../../components/Image';
 import LDLink from '../../components/LDLink';
@@ -91,7 +92,7 @@ class MediaObjectFull extends React.PureComponent {
           className="MediaObjectPage__infobar--is-part-of"
           data-test="MediaObject-isPartOf"
           title="Back to parent"
-          to={retrievePath(isPartOf.value)}
+          to={isPartOf && retrievePath(isPartOf.value)}
         >
           <FontAwesome name="arrow-left" />
         </Link>
@@ -102,6 +103,10 @@ class MediaObjectFull extends React.PureComponent {
         {this.downloadButton()}
       </div>
     );
+  }
+
+  isPDF(encodingFormat, contentUrl) {
+    return encodingFormat?.value === 'application/pdf' || contentUrl.value.includes('api.openraadsinformatie.nl')
   }
 
   viewerComponent() {
@@ -155,7 +160,15 @@ class MediaObjectFull extends React.PureComponent {
       /* eslint-enable jsx-a11y/media-has-caption */
     }
 
-    const imageLink = encodingFormat.value.startsWith('image/')
+    if (this.isPDF(encodingFormat, contentUrl)) {
+      return (
+        <Container>
+          <PDFViewer url={contentUrl.value} />
+        </Container>
+      )
+    }
+
+    const imageLink = encodingFormat?.value?.startsWith('image/')
       ? contentUrl
       : imageRepresentationUrl({ encodingFormat });
 
@@ -215,7 +228,7 @@ class MediaObjectFull extends React.PureComponent {
 
     return (
       <React.Fragment>
-        {!fullPage && this.headerComponent()}
+
         {this.viewerComponent()}
       </React.Fragment>
     );
