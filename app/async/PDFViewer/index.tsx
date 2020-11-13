@@ -1,14 +1,6 @@
 import React from "react";
 import Button from "./Button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowRight,
-  faArrowLeft,
-  faSpinner,
-  faDownload,
-} from "@fortawesome/free-solid-svg-icons";
-import { withRouter, RouteComponentProps } from "react-router";
-import { getParams, usePersistedState } from './helpers';
+import FontAwesome from 'react-fontawesome';
 import { HotKeys } from "react-hotkeys";
 import { keyMap } from './keyMap';
 import { Property } from "link-redux";
@@ -21,6 +13,17 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 
 export interface PDFViewerProps {
   url: string;
+}
+
+export interface CommentProps {
+  text: string;
+  x: number;
+  y: number;
+  page: number;
+}
+
+export interface AllCommentsProps {
+  currentPage: number;
 }
 
 export interface PDFViewerState {
@@ -45,12 +48,35 @@ const calcMaxWidth = (windowWidth: number) => {
   return windowWidth;
 };
 
+const CommentComp = (props: CommentProps) => <p style={{
+  left: `${props.x}%`,
+  top: `${props.y}%`,
+  position: "absolute",
+}}>{props.text}</p>;
+
+const Comments = (props: AllCommentsProps) => {
+  const demoComments: [CommentProps] = [
+    {
+      text: "hallo",
+      x: 40,
+      y: 11,
+      page: 1,
+    }
+  ]
+
+  const filtered = demoComments.filter((comment) => {
+    return comment.page == props.currentPage
+  })
+
+  return <p>{filtered.map(CommentComp)}</p>;
+}
+
 export const LoadingComponent = () =>
   <div className="PDFViewer__loading">
-    <FontAwesomeIcon icon={faSpinner} size="6x" spin />
+    <FontAwesome name="spinner" spin />
   </div>;
 
-const PDFViewer = (props: PDFViewerProps & RouteComponentProps) => {
+const PDFViewer = (props: PDFViewerProps) => {
   const [pageNumber, setPageNumber] = React.useState<number>(0);
   const [docRef, setDocRef] = React.useState<any>(null);
   const [numPages, setNumPages] = React.useState<number>(0);
@@ -61,6 +87,22 @@ const PDFViewer = (props: PDFViewerProps & RouteComponentProps) => {
     setWidth: (_width: any) => null,
   }
   const pdfWrapper = React.createRef<HTMLInputElement>();
+
+  /// Returns the x y coordinates inside the PDF where the user clicked as integers, 0 - 100
+  const handleCommentClick = (e): { x: Number; y: Number; page: Number } => {
+    const wrapper = docRef.getBoundingClientRect();
+    const wrapperClickDistanceX = e.pageX - wrapper.x;
+    const wrapperClickDistanceY = e.pageY - wrapper.y;
+    const xPercentage = wrapperClickDistanceX / wrapper.width;
+    const yPercentage = wrapperClickDistanceY / wrapper.height;
+    const x = Math.round(xPercentage * 100);
+    const y = Math.round(yPercentage * 100);
+    return {
+      x,
+      y,
+      page: 1,
+    }
+  }
 
   const handlePreviousPage = () => {
     if (pageNumber === 1) {
@@ -107,9 +149,9 @@ const PDFViewer = (props: PDFViewerProps & RouteComponentProps) => {
       }
       setTimeout(
         () => docRef.scrollIntoView({
-                                      behavior: "smooth",
-                                      block: "start",
-                                    }),
+          behavior: "smooth",
+          block: "start",
+        }),
         100,
       );
     }
@@ -134,61 +176,63 @@ const PDFViewer = (props: PDFViewerProps & RouteComponentProps) => {
           <div
             id="pdfWrapper"
             tabIndex={-1}
-            style={{ width: "100%" }}
+            style={{ width: drawer.width, position: "relative" }}
+            onClick={handleCommentClick}
             ref={pdfWrapper}
           >
             <Document
-              error={<PDFErrorComponent/>}
+              error={<PDFErrorComponent />}
               file={props.url}
-              loading={<LoadingComponent/>}
+              loading={<LoadingComponent />}
               inputRef={(ref: any) => { setDocRef(ref); }}
               onLoadSuccess={onDocumentLoadSuccess}
             >
               <Page
-                loading={<LoadingComponent/>}
-                error={<PDFErrorComponent/>}
+                loading={<LoadingComponent />}
+                error={<PDFErrorComponent />}
                 pageIndex={pageNumber - 1}
                 width={drawer.width}
               />
             </Document>
+            <Comments currentPage={pageNumber} />
           </div>
         </div>
         {showButtons &&
-        <div className="PDFViewer__button-bar">
-          <div className="PDFViewer__button-bar-inner">
-            <Button
-              onClick={handlePreviousPage}
-              disabled={(pageNumber === 1)}
-              title="Vorige pagina (←)"
-            >
-              <FontAwesomeIcon icon={faArrowLeft} />
-            </Button>
-            <span>{`${pageNumber} / ${numPages}`}</span>
-            <Button
-              onClick={handleNextPage}
-              disabled={(pageNumber === (numPages))}
-              title="Volgende pagina (→)"
-            >
-              <FontAwesomeIcon icon={faArrowRight} />
-            </Button>
-            <Button
-              onClick={() => window.open(props.url)}
-              title="Download bestand (D)"
-            >
-              <FontAwesomeIcon icon={faDownload} />
-            </Button>
-            {/* <Button
+          <div className="PDFViewer__button-bar">
+            <div className="PDFViewer__button-bar-inner">
+              <Button
+                onClick={handlePreviousPage}
+                disabled={(pageNumber === 1)}
+                title="Vorige pagina (←)"
+              >
+                <FontAwesome name="ArrowLeft" />
+              </Button>
+              <span>{`${pageNumber} / ${numPages}`}</span>
+              <Button
+                onClick={handleNextPage}
+                disabled={(pageNumber === (numPages))}
+                title="Volgende pagina (→)"
+              >
+                <FontAwesome name="ArrowRight" />
+              </Button>
+              <Button
+                onClick={() => window.open(props.url)}
+                title="Download bestand (D)"
+              >
+                <FontAwesome name="Download" />
+              </Button>
+              {/* <Button
               onClick={setFillWidth}
               title="Scherm vullen (F)"
             >
-              <FontAwesomeIcon icon={faExpand} />
+              <FontAwesome name="faExpand" />
             </Button> */}
+            </div>
           </div>
-        </div>
         }
       </div>
     </HotKeys>
   );
 };
 
-export default withRouter(PDFViewer);
+export default PDFViewer;
