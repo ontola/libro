@@ -48,11 +48,23 @@ const calcMaxWidth = (windowWidth: number) => {
   return windowWidth;
 };
 
-const CommentComp = (props: CommentProps) => <p style={{
+const CommentComp = (props: CommentProps) => <div title={props.text} style={{
   left: `${props.x}%`,
   top: `${props.y}%`,
   position: "absolute",
-}}>{props.text}</p>;
+  backgroundColor: "red",
+  borderRadius: "999px",
+  boxShadow: "0, 0, 5px, 5px, rgba(0,0,0,.1)",
+  width: "1.5rem",
+  height: "1.5rem",
+  color: "white",
+  flex: 1,
+  justifyContent: "center",
+  alignItems: "center",
+  display: "flex",
+}}>
+  <FontAwesome name="comment" />
+</div>;
 
 const Comments = (props: AllCommentsProps) => {
   const demoComments: [CommentProps] = [
@@ -205,7 +217,7 @@ const PDFViewer = (props: PDFViewerProps) => {
                 disabled={(pageNumber === 1)}
                 title="Vorige pagina (←)"
               >
-                <FontAwesome name="ArrowLeft" />
+                <FontAwesome name="arrow-left" />
               </Button>
               <span>{`${pageNumber} / ${numPages}`}</span>
               <Button
@@ -213,13 +225,13 @@ const PDFViewer = (props: PDFViewerProps) => {
                 disabled={(pageNumber === (numPages))}
                 title="Volgende pagina (→)"
               >
-                <FontAwesome name="ArrowRight" />
+                <FontAwesome name="arrow-right" />
               </Button>
               <Button
                 onClick={() => window.open(props.url)}
                 title="Download bestand (D)"
               >
-                <FontAwesome name="Download" />
+                <FontAwesome name="download" />
               </Button>
               {/* <Button
               onClick={setFillWidth}
