@@ -248,7 +248,6 @@ const PDFViewer = (props: PDFViewerProps) => {
             <Comments currentPage={pageNumber} />
           </div>
         </div>
-        {commentMode && <p>Click anywhere on the page to create a comment!</p>}
         {showButtons &&
           <div className="PDFViewer__button-bar">
             <div className="PDFViewer__button-bar-inner">
@@ -274,9 +273,14 @@ const PDFViewer = (props: PDFViewerProps) => {
                 <FontAwesome name="download" />
               </Button>
               <Button
-                onClick={() => setCommentMode(!commentMode)}
-                title="Plaats reactie"
+                color="primary"
+                variant="contained"
+                onClick={() => {
+                  lrs.actions.ontola.showSnackbar("Klik waar je de reactie wil plaatsen");
+                  setCommentMode(!commentMode);
+                }}
               >
+                {commentMode ? "Annuleren" : "Nieuwe reactie "}
                 <FontAwesome name="comment" />
               </Button>
               {/* <Button

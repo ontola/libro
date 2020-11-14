@@ -20,7 +20,8 @@ const AnnotatedPDFViewer = ({
   const handleCommentClick = React.useCallback((comment) => {
     const commentPage = lrs.getResourceProperty(comment, argu.pdfPage);
     if (commentPage) {
-      setPageNumber(commentPage.value);
+      const num = Number(commentPage.value);
+      setPageNumber(num);
     }
   });
 
@@ -34,8 +35,8 @@ const AnnotatedPDFViewer = ({
       )}
     >
       <PDFViewer
-        subject={subject}
         pageNumber={pageNumber}
+        subject={subject}
         url={contentUrl.value}
         onPageNumberChange={setPageNumber}
       />
