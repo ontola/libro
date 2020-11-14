@@ -1,7 +1,9 @@
 import schema from '@ontologies/schema';
 import {
   Property,
-  linkType, useLRS,
+  linkType,
+  subjectType,
+  useLRS,
 } from 'link-redux';
 import React from 'react';
 
@@ -12,6 +14,7 @@ import PageWithSideBar from '../PageWithSideBar';
 
 const AnnotatedPDFViewer = ({
   contentUrl,
+  subject,
 }) => {
   const lrs = useLRS();
   const [pageNumber, setPageNumber] = React.useState(1);
@@ -25,6 +28,7 @@ const AnnotatedPDFViewer = ({
   return (
     <PageWithSideBar>
       <PDFViewer
+        subject={subject}
         pageNumber={pageNumber}
         url={contentUrl.value}
         onPageNumberChange={setPageNumber}
@@ -41,6 +45,7 @@ const AnnotatedPDFViewer = ({
 
 AnnotatedPDFViewer.propTypes = {
   contentUrl: linkType,
+  subject: subjectType,
 };
 
 export default AnnotatedPDFViewer;

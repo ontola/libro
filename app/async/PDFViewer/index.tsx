@@ -1,10 +1,10 @@
 import schema from '@ontologies/schema';
-import { Property } from 'link-redux';
-import React from 'react';
+import { Property, useLRS, SubjectType } from "link-redux";
+import React from "react";
+import rdf from "@ontologies/core";
 import FontAwesome from 'react-fontawesome';
 import { HotKeys } from 'react-hotkeys';
 import { Document, Page, pdfjs } from 'react-pdf';
-
 import Button from './Button';
 import { keyMap } from './keyMap';
 
@@ -12,6 +12,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 
 export interface PDFViewerProps {
   url: string;
+  subject: SubjectType;
   pageNumber: number;
   onPageNumberChange: (number) => null,
 }
@@ -29,6 +30,7 @@ export interface AllCommentsProps {
 
 export interface PDFViewerState {
   numPages: null | number;
+  // Deprecated
   pageNumber: number;
   // Should equal 70vw on desktops, 100vw on mobile
   maxWidth: number;
@@ -49,25 +51,54 @@ const calcMaxWidth = (windowWidth: number) => {
   return windowWidth;
 };
 
-const CommentComp = (props: CommentProps) => <div title={props.text} style={{
-  left: `${props.x}%`,
-  top: `${props.y}%`,
-  position: "absolute",
-  backgroundColor: "red",
-  borderRadius: "999px",
-  boxShadow: "0, 0, 5px, 5px, rgba(0,0,0,.1)",
-  width: "1.5rem",
-  height: "1.5rem",
-  color: "white",
-  flex: 1,
-  justifyContent: "center",
-  alignItems: "center",
-  display: "flex",
-}}>
-  <FontAwesome name="comment" />
-</div>;
+import { makeStyles, DefaultTheme } from '@material-ui/styles';
+
+/* eslint-disable no-magic-numbers */
+const useStyles = makeStyles<DefaultTheme>((theme) => ({
+  comment: {
+    position: "absolute",
+    backgroundColor: "red",
+    borderRadius: "999px",
+    boxShadow: theme.shadows[4],
+    width: "1.5rem",
+    height: "1.5rem",
+    color: "white",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    display: "flex",
+    transition: "box-shadow .2s, transform .2s",
+    "&:hover": {
+      cursor: "pointer",
+      transform: "scale(1.1)",
+      boxShadow: theme.shadows[10],
+    },
+    "&:active": {
+      transform: "scale(1)",
+      transition: "all 0s",
+      boxShadow: theme.shadows[4],
+    }
+  },
+}));
+
+const CommentComp = (props: CommentProps) => {
+  const classes = useStyles();
+
+  return (
+    <div
+      title={props.text}
+      className={classes.comment}
+      style={{
+        left: `${props.x}%`,
+        top: `${props.y}%`,
+      }}>
+      <FontAwesome name="comment" />
+    </div>
+  );
+}
 
 const Comments = (props: AllCommentsProps) => {
+
   const demoComments: [CommentProps] = [
     {
       text: "hallo",
@@ -90,10 +121,15 @@ export const LoadingComponent = () =>
   </div>;
 
 const PDFViewer = (props: PDFViewerProps) => {
+  const { pageNumber, onPageNumberChange, subject } = props;
+
   const [docRef, setDocRef] = React.useState<any>(null);
   const [numPages, setNumPages] = React.useState<number>(0);
   const [maxWidth] = React.useState<number>(calcMaxWidth(window.innerWidth));
   const [showButtons, setShowButtons] = React.useState<boolean>(false);
+  // If set to true, a click sets creates a comment
+  const [commentMode, setCommentMode] = React.useState<boolean>(false);
+  const lrs = useLRS();
   const drawer = {
     setWidth: (_width: any) => null,
     width: 500,
@@ -101,7 +137,7 @@ const PDFViewer = (props: PDFViewerProps) => {
   const pdfWrapper = React.createRef<HTMLInputElement>();
 
   /// Returns the x y coordinates inside the PDF where the user clicked as integers, 0 - 100
-  const handleCommentClick = (e): { x: Number; y: Number; page: Number } => {
+  const handleCommentClick = (e): void => {
     const wrapper = docRef.getBoundingClientRect();
     const wrapperClickDistanceX = e.pageX - wrapper.x;
     const wrapperClickDistanceY = e.pageY - wrapper.y;
@@ -109,14 +145,12 @@ const PDFViewer = (props: PDFViewerProps) => {
     const yPercentage = wrapperClickDistanceY / wrapper.height;
     const x = Math.round(xPercentage * 100);
     const y = Math.round(yPercentage * 100);
-    return {
-      x,
-      y,
-      page: 1,
-    }
-  };
-
-  const { pageNumber, onPageNumberChange } = props;
+    const baseEncodedSubject = btoa(subject.value);
+    let actionIRI = `https://argu.localdev/argu/lr/${baseEncodedSubject}/c/new?filter%5B%5D=https%253A%252F%252Fargu.co%252Fns%252Fcore%2523pdfPage%3D${pageNumber}&filter%5B%5D=https%253A%252F%252Fargu.co%252Fns%252Fcore%2523pdfPositionX%3D${x}&filter%5B%5D=https%253A%252F%252Fargu.co%252Fns%252Fcore%2523pdfPositionY%3D${y}`;
+    console.log("Comment form should render now!", x, y, actionIRI);
+    lrs.actions.ontola.showDialog(rdf.namedNode(actionIRI))
+    setCommentMode(false)
+  }
 
   const handlePreviousPage = () => {
     if (pageNumber === 1) {
@@ -190,8 +224,8 @@ const PDFViewer = (props: PDFViewerProps) => {
           <div
             id="pdfWrapper"
             tabIndex={-1}
-            style={{ width: drawer.width, position: "relative" }}
-            onClick={handleCommentClick}
+            style={{ width: drawer.width, position: "relative", cursor: commentMode ? "pointer" : null }}
+            onClick={commentMode ? handleCommentClick : null}
             ref={pdfWrapper}
           >
             <Document
@@ -211,6 +245,7 @@ const PDFViewer = (props: PDFViewerProps) => {
             <Comments currentPage={pageNumber} />
           </div>
         </div>
+        {commentMode && <p>Click anywhere on the page to create a comment!</p>}
         {showButtons &&
           <div className="PDFViewer__button-bar">
             <div className="PDFViewer__button-bar-inner">
@@ -234,6 +269,12 @@ const PDFViewer = (props: PDFViewerProps) => {
                 title="Download bestand (D)"
               >
                 <FontAwesome name="download" />
+              </Button>
+              <Button
+                onClick={() => setCommentMode(!commentMode)}
+                title="Plaats reactie"
+              >
+                <FontAwesome name="comment" />
               </Button>
               {/* <Button
               onClick={setFillWidth}
