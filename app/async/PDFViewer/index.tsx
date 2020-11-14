@@ -1,17 +1,22 @@
+import Button from '@material-ui/core/Button';
+import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
-import { Property, useLRS, SubjectType } from "link-redux";
-import React from "react";
-import rdf from "@ontologies/core";
+import {
+  Property,
+  SubjectType,
+  useLRS,
+} from 'link-redux';
+import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { HotKeys } from 'react-hotkeys';
 import { Document, Page, pdfjs } from 'react-pdf';
-// import Button from './Button';
+
 import { keyMap } from './keyMap';
-import Button from '@material-ui/core/Button';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 export interface PDFViewerProps {
+  comments: CommentProps[];
   url: string;
   subject: SubjectType;
   pageNumber: number;
@@ -52,33 +57,36 @@ const calcMaxWidth = (windowWidth: number) => {
   return windowWidth;
 };
 
-import { makeStyles, DefaultTheme } from '@material-ui/styles';
+import {
+  DefaultTheme,
+  makeStyles,
+} from '@material-ui/styles';
 
 /* eslint-disable no-magic-numbers */
 const useStyles = makeStyles<DefaultTheme>((theme) => ({
   comment: {
-    position: "absolute",
-    backgroundColor: "red",
-    borderRadius: "999px",
-    boxShadow: theme.shadows[4],
-    width: "1.5rem",
-    height: "1.5rem",
-    color: "white",
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    display: "flex",
-    transition: "box-shadow .2s, transform .2s",
-    "&:hover": {
-      cursor: "pointer",
-      transform: "scale(1.1)",
-      boxShadow: theme.shadows[10],
-    },
-    "&:active": {
-      transform: "scale(1)",
-      transition: "all 0s",
+    '&:active': {
       boxShadow: theme.shadows[4],
-    }
+      transform: 'scale(1)',
+      transition: 'all 0s',
+    },
+    '&:hover': {
+      boxShadow: theme.shadows[10],
+      cursor: 'pointer',
+      transform: 'scale(1.1)',
+    },
+    'alignItems': 'center',
+    'backgroundColor': 'red',
+    'borderRadius': '999px',
+    'boxShadow': theme.shadows[4],
+    'color': 'white',
+    'display': 'flex',
+    'flex': 1,
+    'height': '1.5rem',
+    'justifyContent': 'center',
+    'position': 'absolute',
+    'transition': 'box-shadow .2s, transform .2s',
+    'width': '1.5rem',
   },
 }));
 
@@ -96,25 +104,15 @@ const CommentComp = (props: CommentProps) => {
       <FontAwesome name="comment" />
     </div>
   );
-}
+};
 
 const Comments = (props: AllCommentsProps) => {
-
-  const demoComments: [CommentProps] = [
-    {
-      text: "hallo",
-      x: 40,
-      y: 11,
-      page: 1,
-    }
-  ]
-
-  const filtered = demoComments.filter((comment) => {
-    return comment.page == props.currentPage
-  })
+  const filtered = props.comments.filter((comment) => {
+    return comment.page === props.currentPage;
+  });
 
   return <p>{filtered.map(CommentComp)}</p>;
-}
+};
 
 export const LoadingComponent = () =>
   <div className="PDFViewer__loading">
@@ -148,12 +146,12 @@ const PDFViewer = (props: PDFViewerProps) => {
     const yPercentage = wrapperClickDistanceY / wrapper.height;
     const x = Math.round(xPercentage * 100);
     const y = Math.round(yPercentage * 100);
-    const baseEncodedSubject = btoa(subject.value);
-    let actionIRI = `https://argu.localdev/argu/lr/${baseEncodedSubject}/c/new?filter%5B%5D=https%253A%252F%252Fargu.co%252Fns%252Fcore%2523pdfPage%3D${pageNumber}&filter%5B%5D=https%253A%252F%252Fargu.co%252Fns%252Fcore%2523pdfPositionX%3D${x}&filter%5B%5D=https%253A%252F%252Fargu.co%252Fns%252Fcore%2523pdfPositionY%3D${y}`;
-    // console.log("Comment form should render now!", x, y);
-    lrs.actions.ontola.showDialog(rdf.namedNode(actionIRI))
-    setCommentMode(false)
-  }
+    const baseEncodedSubject = btoa(subject.value).replaceAll('=', '');
+    const actionIRI = `https://argu.localdev/argu/lr/${baseEncodedSubject}/c/new?filter%5B%5D=https%253A%252F%252Fargu.co%252Fns%252Fcore%2523pdfPage%3D${pageNumber}&filter%5B%5D=https%253A%252F%252Fargu.co%252Fns%252Fcore%2523pdfPositionX%3D${x}&filter%5B%5D=https%253A%252F%252Fargu.co%252Fns%252Fcore%2523pdfPositionY%3D${y}`;
+
+    lrs.actions.ontola.showDialog(rdf.namedNode(actionIRI));
+    setCommentMode(false);
+  };
 
   const handlePreviousPage = () => {
     if (pageNumber === 1) {
@@ -227,9 +225,13 @@ const PDFViewer = (props: PDFViewerProps) => {
           <div
             id="pdfWrapper"
             tabIndex={-1}
-            style={{ width: drawer.width, position: "relative", cursor: commentMode ? "pointer" : "auto" }}
-            onClick={commentMode ? handleCommentClick : null}
+            style={{
+              cursor: commentMode ? 'pointer' : 'auto',
+              position: 'relative',
+              width: drawer.width,
+            }}
             ref={pdfWrapper}
+            onClick={commentMode ? handleCommentClick : null}
           >
             <Document
               error={<PDFErrorComponent />}
@@ -245,7 +247,10 @@ const PDFViewer = (props: PDFViewerProps) => {
                 width={drawer.width}
               />
             </Document>
-            <Comments currentPage={pageNumber} />
+            <Comments
+              comments={props.comments}
+              currentPage={pageNumber}
+            />
           </div>
         </div>
         {showButtons &&
@@ -276,11 +281,11 @@ const PDFViewer = (props: PDFViewerProps) => {
                 color="primary"
                 variant="contained"
                 onClick={() => {
-                  lrs.actions.ontola.showSnackbar("Klik waar je de reactie wil plaatsen");
+                  lrs.actions.ontola.showSnackbar('Klik waar je de reactie wil plaatsen');
                   setCommentMode(!commentMode);
                 }}
               >
-                {commentMode ? "Annuleren" : "Nieuwe reactie "}
+                {commentMode ? 'Annuleren' : 'Nieuwe reactie '}
                 <FontAwesome name="comment" />
               </Button>
               {/* <Button

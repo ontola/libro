@@ -1,4 +1,4 @@
-import Attachment from './index';
+import Attachment from './MediaObjectAttachment';
 
 argUnit(Attachment, () => {
   setProp('url', () => 'http://argu.co/');

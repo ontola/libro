@@ -13,6 +13,7 @@ import { LoadingCard } from '../../../components/Loading';
 import MapView from '../../../containers/MapView';
 import { listToArr } from '../../../helpers/data';
 import { retrievePath } from '../../../helpers/iris';
+import { isResource } from '../../../helpers/types';
 import argu from '../../../ontology/argu';
 import { containerTopology } from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
@@ -41,6 +42,10 @@ const ArguLocation = ({
       );
     }
   };
+
+  if (!isResource(schemaLocation)) {
+    return null;
+  }
 
   if (!Array.isArray(children)) {
     return <LoadingCard />;

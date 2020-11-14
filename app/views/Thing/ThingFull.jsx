@@ -30,11 +30,10 @@ const ThingFull = ({ renderPartOf }) => {
   return (
     c(components.ResourceBoundary, [
       c(containerTopology, [
-        renderPartOf && p(schema.isPartOf),
+        renderPartOf && p([schema.isPartOf, schema.superEvent]),
         p(argu.trashedAt),
         p(withoutLoading(ontola.publishAction)),
         c(cardMainTopology, { 'data-test': 'Thing-thing' }, [
-          p(schema.superEvent),
           c(detailsBarTopology, { right: defaultMenus }, [
             p(schema.creator),
             p(rdfx.type),
@@ -54,7 +53,11 @@ const ThingFull = ({ renderPartOf }) => {
           ]),
           c(cardRowTopology, { noBorder: true }, [
             p(withoutLoading(argu.attachments)),
-            p(withoutLoading(meeting.attachment)),
+            p({
+              label: meeting.attachment,
+              limit: Infinity,
+              onLoad: () => null,
+            }),
           ]),
           c(actionsBarTopology, [
             p(withoutLoading(ontola.favoriteAction)),

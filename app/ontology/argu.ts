@@ -88,6 +88,8 @@ export default {
   other: argu('other'),
   parentView: argu('parentView'),
   pdfPage: argu('pdfPage'),
+  pdfPositionX: argu('pdfPositionX'),
+  pdfPositionY: argu('pdfPositionY'),
   phases: argu('phases'),
   pinned: argu('pinned'),
   pinnedAt: argu('pinnedAt'),

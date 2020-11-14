@@ -1,7 +1,7 @@
 import rdf from '@ontologies/core';
 
 import CompActionButton from './components/ActionButton/index';
-import CompAttachment from './components/Attachment/index';
+import CompAttachment from './views/MediaObject/MediaObjectAttachment';
 import CompAttachmentPreview from './components/AttachmentPreview';
 import CompAttributeListItem from './components/AttributeListItem/index';
 import CompBlurButton from './components/BlurButton/index';

@@ -52,7 +52,6 @@ const collectionSection = ({ omniform = false, renderWhenEmpty = false } = {}, t
   return CollectionSection;
 };
 
-
 export default [
   register(collectionSection(
     { omniform: true },

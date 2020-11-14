@@ -1,7 +1,6 @@
 import schema from '@ontologies/schema';
 import {
   Resource,
-  ReturnType,
   linkedPropType,
   register,
   subjectType,
@@ -9,11 +8,11 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { listToArr } from '../../../helpers/data';
 import { handle } from '../../../helpers/logging';
+import { tryParseFloat, tryParseInt } from '../../../helpers/numbers';
 import meeting from '../../../ontology/meeting';
 import { allTopologies } from '../../../topologies';
-
-const DECIMAL = 10;
 
 function toCompactList(arr) {
   const s = new Set(arr);
@@ -28,15 +27,16 @@ const Agenda = ({ agenda, subject }) => {
 
   const ordered = [];
   const unordered = [];
+  const agendaArray = listToArr(lrs, [], agenda);
 
-  agenda
+  agendaArray
     .forEach((s) => {
-      const order = lrs.store.find(s.object, schema.position, null, null);
+      const order = lrs.getResourceProperty(s, schema.position);
       if (order) {
-        const i = Number.parseInt(order.object.value, DECIMAL);
-        ordered[i] = s.object;
+        const i = tryParseInt(order);
+        ordered[i] = s;
       } else {
-        unordered.push(s.object);
+        unordered.push(s);
       }
     });
 
@@ -68,10 +68,7 @@ Agenda.property = meeting.agenda;
 Agenda.topology = allTopologies;
 
 Agenda.mapDataToProps = {
-  agenda: {
-    label: meeting.agenda,
-    returnType: ReturnType.AllStatements,
-  },
+  agenda: meeting.agenda,
 };
 
 Agenda.propTypes = {

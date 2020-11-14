@@ -1,3 +1,4 @@
+import dcterms from '@ontologies/dcterms';
 import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
 import {
@@ -9,8 +10,8 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-
 import AnnotatedPDFViewer from '../../components/AnnotatedPDFViewer';
+
 import Heading from '../../components/Heading';
 import Image from '../../components/Image';
 import LDLink from '../../components/LDLink';
@@ -50,7 +51,13 @@ class MediaObjectFull extends React.PureComponent {
       ],
     },
     filename: dbo.filename,
-    isPartOf: schema.isPartOf,
+    isPartOf: {
+      label: [
+        schema.isPartOf,
+        dcterms.isReferencedBy,
+      ],
+    },
+    name: schema.name,
     type: {
       label: rdfx.type,
       returnType: ReturnType.AllTerms,
@@ -68,6 +75,7 @@ class MediaObjectFull extends React.PureComponent {
     isPartOf: linkType,
     loop: PropTypes.bool,
     muted: PropTypes.bool,
+    name: linkType,
     playsInline: PropTypes.bool,
     subject: subjectType,
     type: linkType.isRequired,
@@ -77,10 +85,11 @@ class MediaObjectFull extends React.PureComponent {
     const {
       caption,
       filename,
+      name,
       isPartOf,
     } = this.props;
 
-    const label = caption && caption.value ? caption.value : (filename && filename.value);
+    const label = caption?.value || filename?.value || name?.value;
 
     if (!label) {
       handle(new Error(`MediaObject ${this.props.subject} has no label`));
@@ -88,19 +97,21 @@ class MediaObjectFull extends React.PureComponent {
 
     return (
       <div className="MediaObjectPage__infobar" data-test="MediaObject">
-        <Link
-          className="MediaObjectPage__infobar--is-part-of"
-          data-test="MediaObject-isPartOf"
-          title="Back to parent"
-          to={isPartOf && retrievePath(isPartOf.value)}
-        >
-          <FontAwesome name="arrow-left" />
-        </Link>
+        {isPartOf && (
+          <Link
+            className="MediaObjectPage__infobar--is-part-of"
+            data-test="MediaObject-isPartOf"
+            title="Back to parent"
+            to={isPartOf.value}
+          >
+            <FontAwesome name="arrow-left" />
+          </Link>
+        )}
         <div className="MediaObjectPage__infobar--label">
           {label && <Heading data-test="MediaObject-heading" variant="light">{label}</Heading>}
         </div>
-        {this.viewResourceButton()}
-        {this.downloadButton()}
+        {/*{this.viewResourceButton()}*/}
+        {/*{this.downloadButton()}*/}
       </div>
     );
   }
@@ -228,7 +239,7 @@ class MediaObjectFull extends React.PureComponent {
 
     return (
       <React.Fragment>
-
+        {!fullPage && this.headerComponent()}
         {this.viewerComponent()}
       </React.Fragment>
     );
