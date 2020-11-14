@@ -9,7 +9,6 @@ import React from 'react';
 
 import PDFViewer from '../../containers/PDFViewer';
 import argu from '../../ontology/argu';
-import SideBar from '../../topologies/SideBar';
 import PageWithSideBar from '../PageWithSideBar';
 
 const AnnotatedPDFViewer = ({
@@ -26,19 +25,20 @@ const AnnotatedPDFViewer = ({
   });
 
   return (
-    <PageWithSideBar>
+    <PageWithSideBar
+      sidebar={(
+        <Property
+          label={schema.comment}
+          onItemClick={handleCommentClick}
+        />
+      )}
+    >
       <PDFViewer
         subject={subject}
         pageNumber={pageNumber}
         url={contentUrl.value}
         onPageNumberChange={setPageNumber}
       />
-      <SideBar>
-        <Property
-          label={schema.comment}
-          onItemClick={handleCommentClick}
-        />
-      </SideBar>
     </PageWithSideBar>
   );
 };

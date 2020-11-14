@@ -5,8 +5,9 @@ import rdf from "@ontologies/core";
 import FontAwesome from 'react-fontawesome';
 import { HotKeys } from 'react-hotkeys';
 import { Document, Page, pdfjs } from 'react-pdf';
-import Button from './Button';
+// import Button from './Button';
 import { keyMap } from './keyMap';
+import Button from '@material-ui/core/Button';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -14,7 +15,7 @@ export interface PDFViewerProps {
   url: string;
   subject: SubjectType;
   pageNumber: number;
-  onPageNumberChange: (number) => null,
+  onPageNumberChange: (num: number) => null,
 }
 
 export interface CommentProps {
@@ -137,17 +138,19 @@ const PDFViewer = (props: PDFViewerProps) => {
   const pdfWrapper = React.createRef<HTMLInputElement>();
 
   /// Returns the x y coordinates inside the PDF where the user clicked as integers, 0 - 100
-  const handleCommentClick = (e): void => {
+  const handleCommentClick = (e: MouseEvent): void => {
     const wrapper = docRef.getBoundingClientRect();
-    const wrapperClickDistanceX = e.pageX - wrapper.x;
-    const wrapperClickDistanceY = e.pageY - wrapper.y;
+    const scrollCorrectedX = wrapper.x + window.scrollX;
+    const scrollCorrectedY = wrapper.y + window.scrollY;
+    const wrapperClickDistanceX = e.pageX - scrollCorrectedX;
+    const wrapperClickDistanceY = e.pageY - scrollCorrectedY;
     const xPercentage = wrapperClickDistanceX / wrapper.width;
     const yPercentage = wrapperClickDistanceY / wrapper.height;
     const x = Math.round(xPercentage * 100);
     const y = Math.round(yPercentage * 100);
     const baseEncodedSubject = btoa(subject.value);
     let actionIRI = `https://argu.localdev/argu/lr/${baseEncodedSubject}/c/new?filter%5B%5D=https%253A%252F%252Fargu.co%252Fns%252Fcore%2523pdfPage%3D${pageNumber}&filter%5B%5D=https%253A%252F%252Fargu.co%252Fns%252Fcore%2523pdfPositionX%3D${x}&filter%5B%5D=https%253A%252F%252Fargu.co%252Fns%252Fcore%2523pdfPositionY%3D${y}`;
-    console.log("Comment form should render now!", x, y, actionIRI);
+    // console.log("Comment form should render now!", x, y);
     lrs.actions.ontola.showDialog(rdf.namedNode(actionIRI))
     setCommentMode(false)
   }
@@ -224,7 +227,7 @@ const PDFViewer = (props: PDFViewerProps) => {
           <div
             id="pdfWrapper"
             tabIndex={-1}
-            style={{ width: drawer.width, position: "relative", cursor: commentMode ? "pointer" : null }}
+            style={{ width: drawer.width, position: "relative", cursor: commentMode ? "pointer" : "auto" }}
             onClick={commentMode ? handleCommentClick : null}
             ref={pdfWrapper}
           >

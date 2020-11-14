@@ -1,4 +1,5 @@
 import { withStyles } from '@material-ui/styles';
+
 import argu from '../../ontology/argu';
 import Topology from '../Topology';
 
@@ -6,7 +7,7 @@ export const sideBarTopology = argu.ns('sideBarTopology');
 
 const styles = {
   wrapper: {
-    background: 'red',
+    flex: 0,
   },
 };
 
