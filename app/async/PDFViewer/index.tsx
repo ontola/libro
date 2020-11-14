@@ -1,7 +1,6 @@
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import rdf from '@ontologies/core';
-import schema, { comment } from '@ontologies/schema';
+import schema from '@ontologies/schema';
 import {
   Property,
   SubjectType,
@@ -62,21 +61,15 @@ import {
   DefaultTheme,
   makeStyles,
 } from '@material-ui/styles';
+import app from '../../ontology/app';
 
 /* eslint-disable no-magic-numbers */
 const useStyles = makeStyles<DefaultTheme>((theme) => ({
   comment: {
-    '&:active': {
-      'boxShadow': theme.shadows[4],
-      'transform': 'scale(1)',
-      'transition': 'all 0s',
-    },
     '&:hover': {
       'cursor': "pointer",
       'transform': "scale(1.1)",
       'boxShadow': theme.shadows[10],
-      'cursor': 'pointer',
-      'transform': 'scale(1.1)',
     },
     'alignItems': 'center',
     'backgroundColor': theme.palette.primary.main,
@@ -90,6 +83,11 @@ const useStyles = makeStyles<DefaultTheme>((theme) => ({
     'position': 'absolute',
     'transition': 'box-shadow .2s, transform .2s',
     'width': '1.5rem',
+    '&:active': {
+      'boxShadow': theme.shadows[4],
+      'transform': 'scale(1)',
+      'transition': 'all 0s',
+    },
   },
 }));
 
@@ -103,6 +101,8 @@ const CommentComp = (props: CommentProps) => {
       style={{
         left: `${props.x}%`,
         top: `${props.y}%`,
+        marginLeft: '-.5rem',
+        marginTop: '-.5rem',
       }}>
       <FontAwesome name="comment" />
     </div>
@@ -150,9 +150,9 @@ const PDFViewer = (props: PDFViewerProps) => {
     const x = Math.round(xPercentage * 100);
     const y = Math.round(yPercentage * 100);
     const baseEncodedSubject = btoa(subject.value).replaceAll('=', '');
-    const actionIRI = `https://argu.localdev/argu/lr/${baseEncodedSubject}/c/new?filter%5B%5D=https%253A%252F%252Fargu.co%252Fns%252Fcore%2523pdfPage%3D${pageNumber}&filter%5B%5D=https%253A%252F%252Fargu.co%252Fns%252Fcore%2523pdfPositionX%3D${x}&filter%5B%5D=https%253A%252F%252Fargu.co%252Fns%252Fcore%2523pdfPositionY%3D${y}`;
+    const actionIRI = app.ns(`lr/${baseEncodedSubject}/c/new?filter%5B%5D=https%253A%252F%252Fargu.co%252Fns%252Fcore%2523pdfPage%3D${pageNumber}&filter%5B%5D=https%253A%252F%252Fargu.co%252Fns%252Fcore%2523pdfPositionX%3D${x}&filter%5B%5D=https%253A%252F%252Fargu.co%252Fns%252Fcore%2523pdfPositionY%3D${y}`);
 
-    lrs.actions.ontola.showDialog(rdf.namedNode(actionIRI));
+    lrs.actions.ontola.showDialog(actionIRI);
     setCommentMode(false);
   };
 
@@ -176,7 +176,7 @@ const PDFViewer = (props: PDFViewerProps) => {
     setShowButtons(true);
   };
 
-  const PDFErrorComponent = (error: any) => {
+  const PDFErrorComponent = (_error: any) => {
     return (
       <div className="PDFViewer__error">
         <p>
@@ -234,7 +234,7 @@ const PDFViewer = (props: PDFViewerProps) => {
               width: drawer.width,
             }}
             ref={pdfWrapper}
-            onClick={commentMode ? handleCommentClick : null}
+            onClick={commentMode ? handleCommentClick : () => null}
           >
             <Document
               error={<PDFErrorComponent />}

@@ -101,6 +101,7 @@ class MediaObjectFull extends React.PureComponent {
           <Link
             className="MediaObjectPage__infobar--is-part-of"
             data-test="MediaObject-isPartOf"
+            style={{ alignItems: 'center' }}
             title="Back to parent"
             to={isPartOf.value}
           >

@@ -24,14 +24,12 @@ const AnnotatedPDFViewer = ({
   useDataInvalidation(commentsCollection);
   const comments = lrs
     .dig(subject, [schema.comment, ...collectionMembers])
-    .map((comment) => {
-      return {
-        page: tryParseInt(lrs.getResourceProperty(comment, argu.pdfPage)),
-        text: lrs.getResourceProperty(comment, schema.text)?.value,
-        x: tryParseInt(lrs.getResourceProperty(comment, argu.pdfPositionX)),
-        y: tryParseInt(lrs.getResourceProperty(comment, argu.pdfPositionY)),
-      };
-    });
+    .map((comment) => ({
+      page: tryParseInt(lrs.getResourceProperty(comment, argu.pdfPage)),
+      text: lrs.getResourceProperty(comment, schema.text)?.value,
+      x: tryParseInt(lrs.getResourceProperty(comment, argu.pdfPositionX)),
+      y: tryParseInt(lrs.getResourceProperty(comment, argu.pdfPositionY)),
+    }));
   const [pageNumber, setPageNumber] = React.useState(1);
   const handleCommentClick = React.useCallback((comment) => {
     const commentPage = lrs.getResourceProperty(comment, argu.pdfPage);
