@@ -1,12 +1,13 @@
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import rdf from '@ontologies/core';
-import schema from '@ontologies/schema';
+import schema, { comment } from '@ontologies/schema';
 import {
   Property,
   SubjectType,
   useLRS,
 } from 'link-redux';
-import React from 'react';
+import React from "react";
 import FontAwesome from 'react-fontawesome';
 import { HotKeys } from 'react-hotkeys';
 import { Document, Page, pdfjs } from 'react-pdf';
@@ -66,17 +67,19 @@ import {
 const useStyles = makeStyles<DefaultTheme>((theme) => ({
   comment: {
     '&:active': {
-      boxShadow: theme.shadows[4],
-      transform: 'scale(1)',
-      transition: 'all 0s',
+      'boxShadow': theme.shadows[4],
+      'transform': 'scale(1)',
+      'transition': 'all 0s',
     },
     '&:hover': {
-      boxShadow: theme.shadows[10],
-      cursor: 'pointer',
-      transform: 'scale(1.1)',
+      'cursor': "pointer",
+      'transform': "scale(1.1)",
+      'boxShadow': theme.shadows[10],
+      'cursor': 'pointer',
+      'transform': 'scale(1.1)',
     },
     'alignItems': 'center',
-    'backgroundColor': 'red',
+    'backgroundColor': theme.palette.primary.main,
     'borderRadius': '999px',
     'boxShadow': theme.shadows[4],
     'color': 'white',
@@ -255,38 +258,48 @@ const PDFViewer = (props: PDFViewerProps) => {
         </div>
         {showButtons &&
           <div className="PDFViewer__button-bar">
-            <div className="PDFViewer__button-bar-inner">
-              <Button
+            <div className="PDFViewer__button-bar-inner"
+              style={{
+                alignItems: "center",
+                display: "flex",
+              }}
+            >
+              <IconButton
                 onClick={handlePreviousPage}
                 disabled={(pageNumber === 1)}
                 title="Vorige pagina (←)"
+                size="small"
               >
                 <FontAwesome name="arrow-left" />
-              </Button>
+              </IconButton>
               <span>{`${pageNumber} / ${numPages}`}</span>
-              <Button
+              <IconButton
                 onClick={handleNextPage}
                 disabled={(pageNumber === (numPages))}
+                size="small"
                 title="Volgende pagina (→)"
               >
                 <FontAwesome name="arrow-right" />
-              </Button>
-              <Button
+              </IconButton>
+              <IconButton
                 onClick={() => window.open(props.url)}
+                size="small"
                 title="Download bestand (D)"
               >
                 <FontAwesome name="download" />
-              </Button>
+              </IconButton>
               <Button
+                size="small"
                 color="primary"
                 variant="contained"
                 onClick={() => {
-                  lrs.actions.ontola.showSnackbar('Klik waar je de reactie wil plaatsen');
+                  if (commentMode == false) {
+                    lrs.actions.ontola.showSnackbar("Klik waar je de reactie wil plaatsen");
+                  }
                   setCommentMode(!commentMode);
                 }}
               >
-                {commentMode ? 'Annuleren' : 'Nieuwe reactie '}
-                <FontAwesome name="comment" />
+                {commentMode ? "Annuleren" : "Nieuwe reactie"}
               </Button>
               {/* <Button
               onClick={setFillWidth}
