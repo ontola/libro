@@ -79,7 +79,10 @@ const ThingFull = ({ renderPartOf }) => {
         p(forceRender(argu.arguments)),
       ]),
       c(containerTopology, [
-        p(schema.comment),
+        p({
+          label: schema.comment,
+          renderWhenEmpty: true,
+        }),
       ]),
     ])
   );
