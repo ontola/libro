@@ -40,6 +40,7 @@ const itemList = (props, columns, separator, view, maxColumns) => {
       .slice(0, props.renderLimit)
       .map((iri) => (
         <Resource
+          childProps={{ onItemClick: props.onItemClick }}
           columns={columns}
           depth={props.depth}
           itemRenderer={view}

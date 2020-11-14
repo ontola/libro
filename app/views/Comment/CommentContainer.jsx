@@ -15,10 +15,11 @@ import CardAppendix from '../../topologies/Card/CardAppendix';
 import DetailsBar from '../../topologies/DetailsBar';
 import { connectHighlighting, hightlightPropTypes } from '../../containers/Highlight';
 import { containerTopology } from '../../topologies/Container';
+import { sideBarTopology } from '../../topologies/SideBar';
 
-const CommentContainer = ({ depth = 0, highlighted }) => (
+const CommentContainer = ({ depth = 0, highlighted, onItemClick, subject }) => (
   <React.Fragment>
-    <Card shine={highlighted}>
+    <Card shine={highlighted} onClick={() => onItemClick(subject)}>
       <DetailsBar
         right={(
           <Property label={ontola.actionsMenu} />
@@ -61,7 +62,7 @@ CommentContainer.type = [
   argu.Comment,
 ];
 
-CommentContainer.topology = containerTopology;
+CommentContainer.topology = [containerTopology, sideBarTopology];
 
 CommentContainer.propTypes = hightlightPropTypes;
 

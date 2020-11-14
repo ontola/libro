@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import PDFViewer from '../../async/PDFViewer';
+import AnnotatedPDFViewer from '../../components/AnnotatedPDFViewer';
 import Heading from '../../components/Heading';
 import Image from '../../components/Image';
 import LDLink from '../../components/LDLink';
@@ -163,9 +163,9 @@ class MediaObjectFull extends React.PureComponent {
     if (this.isPDF(encodingFormat, contentUrl)) {
       return (
         <Container>
-          <PDFViewer url={contentUrl.value} />
+          <AnnotatedPDFViewer contentUrl={contentUrl} subject={this.props.subject} />
         </Container>
-      )
+      );
     }
 
     const imageLink = encodingFormat?.value?.startsWith('image/')

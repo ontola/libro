@@ -6,6 +6,7 @@ import { cardMainTopology } from '../../topologies/Card/CardMain';
 import { containerTopology } from '../../topologies/Container';
 import { gridTopology } from '../../topologies/Grid';
 import { fullResourceTopology } from '../../topologies/FullResource';
+import { sideBarTopology } from '../../topologies/SideBar';
 import { tabPaneTopology } from '../../topologies/TabPane';
 
 import getCollection from './getCollection';
@@ -60,6 +61,14 @@ export default [
         cardTopology,
         cardMainTopology,
         gridTopology,
+      ],
+    })
+  ),
+  register(
+    getCollection('SideBarCollection', {
+      renderWhenEmpty: true,
+      topology: [
+        sideBarTopology,
       ],
     })
   ),

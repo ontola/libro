@@ -49,6 +49,7 @@ export default function getCollection(
       hidePagination,
       lrs,
       maxColumns,
+      onItemClick,
       originalCollectionResource: originalCollectionResourceProp,
       redirectPagination,
       renderWhenEmpty: renderWhenEmptyProp,
@@ -86,6 +87,7 @@ export default function getCollection(
       columns: resolvedColumns,
       depth,
       maxColumns: tryParseInt(maxColumns),
+      onItemClick,
       originalCollectionResource,
       view,
     };
@@ -194,6 +196,7 @@ export default function getCollection(
           label={ontola.collectionFrame}
           pagination={pagination}
           setCurrentPage={setCollectionResource}
+          onItemClick={onItemClick}
         />
       </ResourceBoundary>
     );

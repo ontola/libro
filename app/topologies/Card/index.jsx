@@ -39,6 +39,12 @@ class Card extends Topology {
       'Card--warn': this.props.warn,
     });
   }
+
+  getElementProps() {
+    return {
+      onClick: this.props.onClick,
+    };
+  }
 }
 
 export { default as CardActions } from '../../components/Card/CardActions';

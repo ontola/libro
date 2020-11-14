@@ -2276,6 +2276,11 @@
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.0.tgz#e486d0d97396d79beedd0a6e33f4534ff6b4973e"
   integrity sha512-f5j5b/Gf71L+dbqxIpQ4Z2WlmI/mPJ0fOkGGmFgtb6sAu97EPczzbS3/tJKxmcYDj55OX6ssqwDAWOHIYDRDGA==
 
+"@types/pdfjs-dist@*":
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/@types/pdfjs-dist/-/pdfjs-dist-2.1.6.tgz#58e2372d6e65f1d59b1ec3632eb2ac34e36622f7"
+  integrity sha512-atQ3Dqgc3uKjNu9lCW/G7jhl875iXVErkSWoH8gEqMEpHP+GSuhkxAEaEImZCefeolz1tvWNGcZ/0/jCaVM9EQ==
+
 "@types/prettier@^1.19.0":
   version "1.19.1"
   resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-1.19.1.tgz#33509849f8e679e4add158959fdb086440e9553f"
@@ -2310,6 +2315,14 @@
   resolved "https://registry.yarnpkg.com/@types/react-is/-/react-is-16.7.1.tgz#d3f1c68c358c00ce116b55ef5410cf486dd08539"
   integrity sha512-dMLFD2cCsxtDgMkTydQCM0PxDq8vwc6uN5M/jRktDfYvH3nQj6pjC9OrCXS2lKlYoYTNJorI/dI8x9dpLshexQ==
   dependencies:
+    "@types/react" "*"
+
+"@types/react-pdf@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@types/react-pdf/-/react-pdf-5.0.0.tgz#cb574e08929944c0b60fcce8cc569da1c94c9cc4"
+  integrity sha512-G5S6BzzRJIwFpLIjqfNUzm0e0MNxM4KpcHbKif4U/AF44MBiuWqsjw+t7xpI3poZdEtLF0fKd8kRnrMCJwH/iQ==
+  dependencies:
+    "@types/pdfjs-dist" "*"
     "@types/react" "*"
 
 "@types/react-redux@^7.1.1":

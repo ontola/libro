@@ -19,6 +19,7 @@ const Pages = ({
   depth,
   insideCollection,
   maxColumns,
+  onItemClick,
   pages,
   renderWhenEmpty,
   singlePage,
@@ -36,6 +37,7 @@ const Pages = ({
         renderWhenEmpty={renderWhenEmpty}
         subject={pages[0]}
         view={view}
+        onItemClick={onItemClick}
       />
     );
   }
@@ -51,6 +53,7 @@ const Pages = ({
         renderWhenEmpty={renderWhenEmpty}
         subject={iri}
         view={view}
+        onItemClick={onItemClick}
       />
     </Suspense>
   ));

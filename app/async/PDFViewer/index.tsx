@@ -1,18 +1,19 @@
-import React from "react";
-import Button from "./Button";
-import FontAwesome from 'react-fontawesome';
-import { HotKeys } from "react-hotkeys";
-import { keyMap } from './keyMap';
-import { Property } from "link-redux";
 import schema from '@ontologies/schema';
+import { Property } from 'link-redux';
+import React from 'react';
+import FontAwesome from 'react-fontawesome';
+import { HotKeys } from 'react-hotkeys';
+import { Document, Page, pdfjs } from 'react-pdf';
 
-// eslint-disable-next-line
-const { Document, Page, pdfjs } = require("react-pdf");
-// tslint:disable-next-line:max-line-length
+import Button from './Button';
+import { keyMap } from './keyMap';
+
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 export interface PDFViewerProps {
   url: string;
+  pageNumber: number;
+  onPageNumberChange: (number) => null,
 }
 
 export interface CommentProps {
@@ -89,15 +90,14 @@ export const LoadingComponent = () =>
   </div>;
 
 const PDFViewer = (props: PDFViewerProps) => {
-  const [pageNumber, setPageNumber] = React.useState<number>(0);
   const [docRef, setDocRef] = React.useState<any>(null);
   const [numPages, setNumPages] = React.useState<number>(0);
   const [maxWidth] = React.useState<number>(calcMaxWidth(window.innerWidth));
   const [showButtons, setShowButtons] = React.useState<boolean>(false);
   const drawer = {
-    width: 500,
     setWidth: (_width: any) => null,
-  }
+    width: 500,
+  };
   const pdfWrapper = React.createRef<HTMLInputElement>();
 
   /// Returns the x y coordinates inside the PDF where the user clicked as integers, 0 - 100
@@ -114,25 +114,27 @@ const PDFViewer = (props: PDFViewerProps) => {
       y,
       page: 1,
     }
-  }
+  };
+
+  const { pageNumber, onPageNumberChange } = props;
 
   const handlePreviousPage = () => {
     if (pageNumber === 1) {
       return;
     }
-    setPageNumber(pageNumber - 1);
+    onPageNumberChange(pageNumber - 1);
   };
 
   const handleNextPage = () => {
     if (numPages === pageNumber) {
       return;
     }
-    setPageNumber(pageNumber + 1);
+    onPageNumberChange(pageNumber + 1);
   };
 
   const onDocumentLoadSuccess = (e: OnLoadSuccessType) => {
     setNumPages(e.numPages);
-    setPageNumber(1);
+    onPageNumberChange(1);
     setShowButtons(true);
   };
 

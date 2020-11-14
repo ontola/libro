@@ -143,6 +143,7 @@
     "@types/jest": "^24.0.25",
     "@types/react": "^16.9.11",
     "@types/react-is": "^16.7.1",
+    "@types/react-pdf": "^5.0.0",
     "@types/react-redux": "^7.1.1",
     "@types/redux-actions": "^2.6.1",
     "actioncable": "^5.2.3",

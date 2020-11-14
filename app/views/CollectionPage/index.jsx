@@ -39,6 +39,7 @@ function getCollectionPage({
           maxColumns={props.maxColumns}
           renderLimit={Infinity}
           view={props.view}
+          onItemClick={props.onItemClick}
         />
       );
     }
@@ -50,9 +51,10 @@ function getCollectionPage({
         label={as.partOf}
         originalCollectionResource={props.originalCollectionResource || props.subject}
         redirectPagination={props.redirectPagination}
-        renderedPage={props.subject}
         renderPartOf={props.renderPartOf}
         renderWhenEmpty={props.renderWhenEmpty}
+        renderedPage={props.subject}
+        onItemClick={props.onItemClick}
       />
     );
   };

@@ -87,6 +87,7 @@ export default {
   opinion: argu('opinion'),
   other: argu('other'),
   parentView: argu('parentView'),
+  pdfPage: argu('pdfPage'),
   phases: argu('phases'),
   pinned: argu('pinned'),
   pinnedAt: argu('pinnedAt'),
