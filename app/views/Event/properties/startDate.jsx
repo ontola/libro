@@ -1,5 +1,9 @@
 import schema from '@ontologies/schema';
-import { linkedPropType, register } from 'link-redux';
+import {
+  linkType,
+  linkedPropType,
+  register,
+} from 'link-redux';
 import React from 'react';
 import emoji from 'react-easy-emoji';
 import { useIntl } from 'react-intl';
@@ -9,27 +13,49 @@ import teamGL from '../../../ontology/teamGL';
 import { allTopologies } from '../../../topologies';
 
 const propTypes = {
+  endDate: linkType,
   linkedProp: linkedPropType,
 };
 
-export const FORMAT = {
+const FORMAT = {
   day: 'numeric',
   month: 'long',
-  year: 'numeric',
 };
 
-const StartDate = ({ linkedProp }) => {
+const isSameDay = (date1, date2) => (
+  date1.getDate() === date2.getDate()
+  && date1.getMonth() === date2.getMonth()
+  && date1.getFullYear() === date2.getFullYear()
+);
+
+const dateString = (intl, date1, date2) => {
+  if (!date2) {
+    return intl.formatTime(date1, FORMAT);
+  }
+  if (isSameDay(date1, date2)) {
+    return `${intl.formatTime(date1, FORMAT)} - ${intl.formatTime(date2)}`;
+  }
+
+  return `${intl.formatDate(date1, FORMAT)} - ${intl.formatDate(date2, FORMAT)}`;
+};
+
+const StartDate = ({ linkedProp, endDate }) => {
   const intl = useIntl();
-  const date = new Date(linkedProp.value);
+  const date1 = new Date(linkedProp.value);
+  const date2 = endDate && new Date(endDate.value);
 
   return (
-    <Detail text={emoji(`📅 ${intl.formatTime(date, FORMAT)}`)} />
+    <Detail text={emoji(`📅 ${dateString(intl, date1, date2)}`)} />
   );
 };
 
 StartDate.type = teamGL.Event;
 
 StartDate.property = schema.startDate;
+
+StartDate.mapDataToProps = {
+  endDate: schema.endDate,
+};
 
 StartDate.topology = allTopologies;
 
