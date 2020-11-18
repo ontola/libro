@@ -202,7 +202,7 @@ const DashboardFull = ({ dashboard }) => {
                 iriFromTemplate(iriTemplate.value, {
                   date_range: dateRangeToS(dateRange),
                   page,
-                  postal_range: filteredPostalRanges.length > 0 && filteredPostalRanges.map((range) => range.value).join(','),
+                  postal_range: filteredPostalRanges?.map((range) => range.value)?.join(','),
                 })
               }
             />
