@@ -17,8 +17,6 @@ import { arraysEqual } from '../helpers/data';
 import {
   JSONLDObject,
   calculateFormFieldName,
-  clearRemoval,
-  destroyFieldName,
 } from '../helpers/forms';
 import { getStorageKey, storageSet } from '../helpers/persistence';
 import { isJSONLDObject, isNumber } from '../helpers/types';
@@ -28,6 +26,7 @@ import ontola from '../ontology/ontola';
 import sp from '../ontology/sp';
 import { useFormGroup } from '../views/FormGroup/FormGroupProvider';
 
+import useAddFormValue from './useAddFormValue';
 import useFieldShape, { ShapeForm } from './useShapeProps';
 
 const mapFieldProps = {
@@ -45,11 +44,13 @@ interface MapFieldPropsShape {
 }
 
 export type InputValue = JSONLDObject | SomeTerm;
+export type OnInputChange = (newValues: InputValue[]) => void;
+export type ItemFactory = () => InputValue;
 
 export interface UseFormFieldProps {
   alwaysVisible?: boolean;
   delay?: boolean;
-  newItem?: (...prop: any) => InputValue;
+  newItem?: ItemFactory;
   path?: NamedNode;
   preferPlaceholder?: boolean;
   storage?: boolean;
@@ -58,13 +59,13 @@ export interface UseFormFieldProps {
 
 export interface ForbiddenFormField {
   name: string;
-  onChange: (args: any) => void;
+  onChange: OnInputChange;
   values: InputValue[];
   whitelisted: false;
 }
 
 export interface PermittedFormField {
-  addItem: () => any;
+  addFormValue: () => any;
   autofocus: boolean;
   className: string;
   description?: string;
@@ -75,7 +76,7 @@ export interface PermittedFormField {
   label?: string | React.ReactNode;
   meta: InputMeta;
   name: string;
-  onChange: (args: any) => void;
+  onChange: OnInputChange;
   path: NamedNode;
   preferPlaceholder: boolean;
   storeKey: string;
@@ -121,7 +122,7 @@ const useInputValues = (
   input: InputProps,
   alwaysVisible: boolean,
   minCount: number | undefined,
-  newItem: () => InputValue,
+  newItem: ItemFactory,
 ) => {
   return React.useMemo(() => {
     let currentValue = input.value;
@@ -257,27 +258,13 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
       addFieldName(input.name);
     }
   }, [input?.name]);
-  const addItem = React.useCallback(() => {
-    const newValue = input.value?.slice() || [];
-
-    const removedIndex = newValue.findIndex((value: InputValue) => (
-      isJSONLDObject(value) ? value[destroyFieldName] === rdf.literal(true) : false
-    ));
-
-    if (removedIndex >= 0) {
-      newValue[removedIndex] = clearRemoval(newValue[removedIndex] as JSONLDObject) as JSONLDObject;
-    } else {
-      newValue.push(newItem());
-    }
-
-    input.onChange(newValue);
-  }, [input.value, input.onChange]);
+  const addFormValue = useAddFormValue(input.value, input.onChange, newItem);
   React.useEffect(() => {
     const empty = !input.value || input.value.length === 0;
     const shouldAdd = !alwaysVisible && isNumber(fieldShape.minCount) && fieldShape.minCount > 0;
 
     if (empty && shouldAdd) {
-      addItem();
+      addFormValue();
     }
   }, [input.value?.length, fieldShape.minCount, alwaysVisible]);
   const values = useInputValues(
@@ -306,7 +293,7 @@ const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | F
   const autofocus = !!(autofocusForm && groupIndex === 0 && fieldNames.indexOf(fieldName) === 0);
 
   return {
-    addItem,
+    addFormValue,
     autofocus,
     className,
     field: props.subject,

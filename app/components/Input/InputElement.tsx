@@ -91,7 +91,7 @@ const InputElement = (props: InputPropTypes): JSX.Element => {
     'value': inputValue?.value,
   };
 
-  const minRows = maxLength > MAX_STR_LEN ? TEXTFIELD_MIN_ROWS : undefined;
+  const minRows = maxLength && maxLength > MAX_STR_LEN ? TEXTFIELD_MIN_ROWS : undefined;
 
   let element;
   switch (type) {

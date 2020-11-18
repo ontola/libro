@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { PermittedFormField } from '../../hooks/useFormField';
+import {
+  InputValue,
+  OnInputChange,
+  PermittedFormField,
+} from '../../hooks/useFormField';
 
 import FormFieldDescription from './FormFieldDescription';
 import FormFieldHelper from './FormFieldHelper';
@@ -10,10 +14,13 @@ import FormInputs from './FormInputs';
 import './DateTime.scss';
 import './FormField.scss';
 
-export interface FormFieldProps extends PermittedFormField {
+export interface FormFieldProps extends Partial<PermittedFormField> {
   combinedComponent?: boolean;
   inputComponent: (args: any) => any;
+  name: string;
+  onChange: OnInputChange;
   renderHelper?: (args: any) => any;
+  values: InputValue[];
 }
 
 /**
@@ -24,7 +31,7 @@ export interface FormFieldProps extends PermittedFormField {
  * @returns {component} Component
  */
 const FormField = ({
-  addItem,
+  addFormValue,
   inputErrors,
   autofocus,
   className,
@@ -49,7 +56,7 @@ const FormField = ({
       <FormFieldLabel
         label={label}
         name={name}
-        required={fieldShape.required}
+        required={fieldShape?.required}
       />
     )}
     {(description || helperText) && (
@@ -60,7 +67,7 @@ const FormField = ({
       />
     )}
     <FormInputs
-      addItem={addItem}
+      addFormValue={addFormValue}
       autofocus={autofocus}
       combinedComponent={combinedComponent}
       description={description}

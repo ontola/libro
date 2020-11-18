@@ -6,7 +6,7 @@ import { FormContext } from '../Form/Form';
 interface PropTypes {
   label: string | React.ReactNode;
   name: string;
-  required: boolean;
+  required?: boolean;
 
 }
 const FormFieldLabel: React.FC<PropTypes> = ({

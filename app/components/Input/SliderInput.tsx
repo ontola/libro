@@ -44,11 +44,15 @@ const SliderInput: React.FC<InputComponentProps> = ({
   const {
     maxInclusive,
     minInclusive,
-  } = fieldShape;
-  const handleChange = (e: any, val: any) => {
+  } = fieldShape || {};
+  const handleChange = React.useCallback((e: any, val: any) => {
     e.preventDefault();
     onChange(val);
-  };
+  }, [onChange]);
+
+  if (!maxInclusive || !minInclusive) {
+    return null;
+  }
 
   const defaultMarks = [{
     label: minInclusive,

@@ -1,3 +1,4 @@
+import { isNamedNode, NamedNode } from '@ontologies/core';
 import * as sh from '@ontologies/shacl';
 import equal from 'fast-deep-equal';
 import { SomeNode } from 'link-lib';
@@ -16,23 +17,30 @@ import { UseFormFieldProps } from './useFormField';
 
 const shapePropsFromObject = ['maxCount', 'maxInclusive', 'maxLength', 'minCount', 'minInclusive', 'minLength', 'shIn'];
 
-export interface ShapeForm {
-  maxCount: number;
-  maxCountProp: SomeNode;
-  maxInclusive: number;
-  maxInclusiveProp: SomeNode;
-  maxLength: number;
-  minCount: number;
-  minCountProp: SomeNode;
-  minInclusive: number;
-  minInclusiveProp: SomeNode;
-  minLength: number;
-  minLengthProp: SomeNode;
-  required: boolean;
-  removable: boolean;
-  shIn: SomeNode;
+export interface ShapeForm extends ResolvedShapeForm{
+  maxCountProp?: SomeNode;
+  maxInclusiveProp?: SomeNode;
+  minCountProp?: SomeNode;
+  minInclusiveProp?: SomeNode;
+  minLengthProp?: SomeNode;
+}
 
-  [key: string]: SomeNode | number | boolean;
+export interface ShapeFromObjectForm {
+  [key: string]: NamedNode;
+}
+
+interface ResolvedShapeForm {
+  maxCount?: number;
+  maxInclusive?: number;
+  maxLength?: number;
+  minCount?: number;
+  minInclusive?: number;
+  minLength?: number;
+  required?: boolean;
+  removable?: boolean;
+  shIn?: SomeNode;
+
+  [key: string]: SomeNode | number | boolean | undefined;
 }
 
 const mapShapeProps = {
@@ -50,25 +58,26 @@ const mapShapeProps = {
   shIn: sh.shaclin,
 };
 
-const useFieldShape = (props: UseFormFieldProps): ShapeForm => {
+const useFieldShape = (props: UseFormFieldProps): ResolvedShapeForm => {
   const { object } = React.useContext(FormContext);
   const [fieldShape, setFieldShape] = useState({});
   const shapeProps = useResourceLink(props.subject, mapShapeProps) as unknown as ShapeForm;
-  const propMap = {} as ShapeForm;
-  const shapeFromField = {} as ShapeForm;
+  const propsFromObjectMap: ShapeFromObjectForm = {};
+  const shapeFromField: ResolvedShapeForm = {};
 
   shapePropsFromObject.forEach((prop) => {
     shapeFromField[prop] = shapeProps[prop];
 
-    if (shapeProps[`${prop}Prop`]) {
-      propMap[prop] = shapeProps[`${prop}Prop`];
+    const predicate = shapeProps[`${prop}Prop`];
+    if (isNamedNode(predicate)) {
+      propsFromObjectMap[prop] = predicate;
     }
   });
 
-  const empty = Object.keys(propMap).length === 0;
+  const empty = Object.keys(propsFromObjectMap).length === 0;
   const shapeFromObject = useResourceLink(
     empty ? props.subject : object,
-    empty ? {} : propMap,
+    empty ? {} : propsFromObjectMap,
     { returnType: ReturnType.Literal },
   );
 
@@ -85,7 +94,7 @@ const useFieldShape = (props: UseFormFieldProps): ShapeForm => {
     setFieldShape(shape);
   }
 
-  return fieldShape as ShapeForm;
+  return fieldShape;
 };
 
 export default useFieldShape;

@@ -15,7 +15,6 @@ interface SingleInputProps {
 }
 
 const PostalDigitsInput: React.FC<SingleInputProps> = ({
-  className,
   id,
   inputIndex,
   inputValue,
@@ -33,7 +32,7 @@ const PostalDigitsInput: React.FC<SingleInputProps> = ({
 
   return (
     <input
-      className={className}
+      className="Field__input Field__input--postalRange"
       max={MAX_POSTAL_DIGITS}
       min={MIN_POSTAL_DIGITS}
       name={`${id}-${inputIndex}-${rangeIndex}`}

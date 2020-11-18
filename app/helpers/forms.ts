@@ -35,11 +35,7 @@ export function calculateFormFieldName(...segments: Array<string | number | Term
     .join('.');
 }
 
-export function clearRemoval(value: JSONLDObject | undefined): JSONLDObject | undefined {
-  if (!value) {
-    return value;
-  }
-
+export function clearRemoval(value: JSONLDObject): JSONLDObject {
   const { [destroyFieldName]: ignored, ...rest } = value;
 
   return rest as JSONLDObject;
