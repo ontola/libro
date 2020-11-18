@@ -12,7 +12,7 @@ export default {
   CollectionSorting: ontola('CollectionSorting'),
   CollectionView: ontola('CollectionView'),
   Condition: ontola('Condition'),
-  Confirmation: ontola('Users::Confirmation'),
+  Confirmation: ontola('Confirmation'),
   ConfirmedUser: ontola('ConfirmedUser'),
   ['Create::Auth::AccessToken']: ontola('Create::Auth::AccessToken'),
   ['Create::Auth::Confirmation']: ontola('Create::Auth::Confirmation'),
