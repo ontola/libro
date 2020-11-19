@@ -143,9 +143,6 @@ export const renderFullPage = async (ctx, data) => {
           </script>
           ${matomoCode}
           ${googleAnalyticsCode}
-          <div className="pipedriveWebForms" data-pd-webforms="https://pipedrivewebforms.com/form/b71321e1b145fce798bb512eceadbd02918860">
-            <script src="https://cdn.eu-central-1.pipedriveassets.com/web-form-assets/webforms.min.js"></script>
-          </div>
         </body>
       </html>`
   );

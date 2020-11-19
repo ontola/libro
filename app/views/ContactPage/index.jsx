@@ -2,11 +2,14 @@ import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/styles';
 import { register } from 'link-redux';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import argu from '../../ontology/argu';
 import { fullResourceTopology } from '../../topologies/FullResource';
+
+const PIPEDRIVE_FORM_URL = 'https://pipedrivewebforms.com/form/b71321e1b145fce798bb512eceadbd02918860';
+const PIPEDRIVE_SCRIPT_URL = 'https://cdn.eu-central-1.pipedriveassets.com/web-form-assets/webforms.min.js';
 
 const useStyles = makeStyles((theme) => ({
   bg: {
@@ -114,7 +117,6 @@ const persons = [
   },
 ];
 
-
 const Person = (props) => {
   const classes = useStyles();
 
@@ -197,9 +199,22 @@ const socialPropTypes = {
 
 Social.propTypes = socialPropTypes;
 
-
 const ContactPage = () => {
   const classes = useStyles();
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = PIPEDRIVE_SCRIPT_URL;
+
+    const div = document.createElement('div');
+    div.setAttribute('data-pd-webforms', PIPEDRIVE_FORM_URL);
+    div.appendChild(script);
+    document.body.appendChild(div);
+
+    return () => {
+      document.body.removeChild(div);
+    };
+  }, []);
 
   return (
     <React.Fragment>
@@ -213,7 +228,7 @@ const ContactPage = () => {
           <iframe
             className={classes.iframe}
             scrolling="no"
-            src="https://pipedrivewebforms.com/form/b71321e1b145fce798bb512eceadbd02918860"
+            src={PIPEDRIVE_FORM_URL}
             title="pipedrive"
           />
         </div>
