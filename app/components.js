@@ -37,7 +37,6 @@ import CompFormField from './components/FormField/FormField';
 import CompFormFieldCharCounter from './components/FormField/CharCounter';
 import CompFormFieldFieldHelper from './components/FormField/FieldHelper';
 import CompFormFieldOptionsWrapper from './components/FormField/OptionsWrapper';
-import CompFormFieldWrapper from './components/FormFieldWrapper/index';
 import CompFormFooterImage from './components/Form/FooterImage';
 import CompFormFooterRight from './components/Form/FooterRight';
 import CompFormForm from './components/Form/Form';
@@ -128,7 +127,6 @@ export const componentMap = {
   [rdf.id(components.FormFieldCharCounter)]: CompFormFieldCharCounter,
   [rdf.id(components.FormFieldFieldHelper)]: CompFormFieldFieldHelper,
   [rdf.id(components.FormFieldOptionsWrapper)]: CompFormFieldOptionsWrapper,
-  [rdf.id(components.FormFieldWrapper)]: CompFormFieldWrapper,
   [rdf.id(components.FormFooterImage)]: CompFormFooterImage,
   [rdf.id(components.FormFooterRight)]: CompFormFooterRight,
   [rdf.id(components.FormForm)]: CompFormForm,

@@ -9,7 +9,6 @@ import React from 'react';
 import uuidv4 from 'uuid/v4';
 
 import { isMarkedForRemove } from '../../helpers/forms';
-import formFieldWrapper from '../FormFieldWrapper';
 
 import './DateTime.scss';
 import './FormField.scss';
@@ -230,4 +229,4 @@ const FormField = (props) => {
 FormField.propTypes = propTypes;
 FormField.defaultProps = defaultProps;
 
-export default formFieldWrapper(FormField);
+export default FormField;

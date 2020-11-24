@@ -12,6 +12,7 @@ import React from 'react';
 
 import FormField from '../../components/FormField/FormField';
 import { tryParseInt } from '../../helpers/numbers';
+import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
 import ontola from '../../ontology/ontola';
 import { allTopologies } from '../../topologies';
@@ -43,8 +44,9 @@ const mapDataToProps = {
   shIn: sh.in,
 };
 
-const registerFormField = (type, input, delay) => {
+const registerFormField = (type, inputType, delay) => {
   const FormFieldComp = ({
+    addFieldName,
     setHasContent,
     whitelist,
     ...props
@@ -68,20 +70,43 @@ const registerFormField = (type, input, delay) => {
       minInclusive: tryParseInt(minInclusive) || props.minInclusive,
       minLength: tryParseInt(minLength) || props.minLength,
     };
+    propOverwrites.minCount = props.inputType !== 'association'
+      && typeof propOverwrites.minCount === 'undefined' ? 1 : propOverwrites.minCount;
+    propOverwrites.required = props.required
+      || (propOverwrites.minCount ? propOverwrites.minCount > 0 : false);
+
+    const [input, meta, storeKey] = useFormField({
+      delay,
+      required: propOverwrites.required,
+      ...props,
+      ...propOverwrites,
+    });
+
+    React.useLayoutEffect(() => {
+      if (input && addFieldName) {
+        addFieldName(input.name);
+      }
+    }, [input?.name]);
 
     if (!whitelisted) {
       return null;
     }
 
-    const resolvedInput = typeof input === 'function' ? input(props) : input;
+    if (!input) {
+      return null;
+    }
+
+    const resolvedInputType = typeof inputType === 'function' ? inputType(props) : inputType;
 
     return (
       <FormField
         {...formFieldProps}
         {...props}
         {...propOverwrites}
-        delay={delay}
-        type={resolvedInput}
+        input={input}
+        meta={meta}
+        storeKey={storeKey}
+        type={resolvedInputType}
       />
     );
   };
@@ -93,6 +118,8 @@ const registerFormField = (type, input, delay) => {
   FormFieldComp.mapDataToProps = mapDataToProps;
 
   FormFieldComp.propTypes = {
+    addFieldName: PropTypes.func,
+    inputType: PropTypes.string,
     maxCount: PropTypes.number,
     maxCountProp: linkType,
     maxInclusive: PropTypes.number,
@@ -105,6 +132,7 @@ const registerFormField = (type, input, delay) => {
     minLengthProp: linkType,
     object: linkType,
     path: linkType,
+    required: PropTypes.bool,
     setHasContent: PropTypes.func,
     whitelist: PropTypes.arrayOf(PropTypes.number),
   };
