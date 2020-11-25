@@ -6,6 +6,8 @@ import React from 'react';
 
 import HiddenRequiredInput from '../Input/HiddenRequiredInput';
 
+import FieldHelper from './FieldHelper';
+
 const StyledSlider = withStyles({
   active: {},
   rail: {
@@ -33,12 +35,13 @@ const StyledSlider = withStyles({
 })(Slider);
 
 const SliderInput = ({
-  value,
-  onChange,
+  helperText,
+  marks,
   maxInclusive,
   minInclusive,
-  marks,
   name,
+  onChange,
+  value,
 }) => {
   const handleChange = (e, val) => {
     e.preventDefault();
@@ -55,6 +58,7 @@ const SliderInput = ({
 
   return (
     <React.Fragment>
+      <FieldHelper helperText={helperText} />
       <StyledSlider
         aria-labelledby="discrete-slider-custom"
         defaultValue={value?.value}
@@ -71,6 +75,7 @@ const SliderInput = ({
 };
 
 SliderInput.propTypes = {
+  helperText: PropTypes.string,
   marks: PropTypes.arrayOf(PropTypes.object),
   maxInclusive: PropTypes.number,
   minInclusive: PropTypes.number,

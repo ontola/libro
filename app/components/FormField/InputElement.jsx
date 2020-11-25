@@ -41,6 +41,7 @@ const InputElement = ({
   fieldId,
   formIRI,
   errors,
+  helperText,
   initialValue,
   input,
   inputIndex,
@@ -258,6 +259,7 @@ const InputElement = ({
         {...sharedProps}
         className={className}
         data-testid={sharedProps.name}
+        helperText={helperText}
         maxInclusive={maxInclusive}
         minInclusive={minInclusive}
         topology={topology}
@@ -351,6 +353,7 @@ InputElement.propTypes = {
   errors: PropTypes.arrayOf(PropTypes.string),
   fieldId: PropTypes.string.isRequired,
   formIRI: linkType,
+  helperText: PropTypes.string,
   /** Ensure that it matches the label `for` attribute */
   id: PropTypes.string,
   initialValue: PropTypes.oneOfType([
