@@ -74,6 +74,7 @@ import Street from './Street';
 import Survey from './Survey';
 import TargetProgress from './TargetProgress';
 import Thing from './Thing';
+import Timeline from './Timeline';
 import Token from './Token';
 import User from './User';
 import Volunteer from './Volunteer';
@@ -155,6 +156,7 @@ export function getViews() {
     ...Street,
     ...Survey,
     ...TargetProgress,
+    ...Timeline,
     ...Token,
     ...User,
     ...Volunteer,
