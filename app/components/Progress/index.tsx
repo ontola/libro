@@ -1,10 +1,9 @@
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
 import React from 'react';
 
-import Heading from '../Heading';
+import Heading, { HeadingSize } from '../Heading';
 
 const useStyles = makeStyles(() => ({
   detail: {
@@ -23,17 +22,33 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+interface ProgressProps {
+  color?: 'primary' | 'secondary';
+  detail?: boolean;
+  endSpacing?: boolean;
+  height?: string;
+  max: number;
+  maxLabel?: boolean;
+  maxWidth?: string;
+  min: number;
+  minLabel?: boolean;
+  progressLabel?: boolean;
+  value: number;
+}
+
 const Progress = ({
   color,
   detail,
   endSpacing,
   height,
-  labels,
   max,
+  maxLabel,
   maxWidth,
   min,
+  minLabel,
+  progressLabel,
   value,
-}) => {
+}: ProgressProps): JSX.Element => {
   const classes = useStyles();
   const className = clsx({
     [classes.detail]: detail,
@@ -52,22 +67,29 @@ const Progress = ({
         value={100 * ((value - min) / (max - min))}
         variant="determinate"
       />
-      {labels && <div style={{ float: 'left' }}><Heading size="2">{min}</Heading></div>}
-      {labels && <div style={{ float: 'right' }}><Heading size="2">{max}</Heading></div>}
+      {minLabel && (
+        <div style={{ float: 'left' }}>
+          <Heading size={HeadingSize.LG}>
+            {min}
+          </Heading>
+        </div>
+      )}
+      {(progressLabel || maxLabel) && (
+        <div style={{ float: 'right' }}>
+          <Heading size={HeadingSize.LG}>
+            {max}
+          </Heading>
+        </div>
+      )}
+      {progressLabel && (
+        <div style={{ float: 'right' }}>
+          <Heading size={HeadingSize.LG}>
+            {`${value}/`}
+          </Heading>
+        </div>
+      )}
     </div>
   );
-};
-
-Progress.propTypes = {
-  color: PropTypes.string,
-  detail: PropTypes.bool,
-  endSpacing: PropTypes.bool,
-  height: PropTypes.string,
-  labels: PropTypes.bool,
-  max: PropTypes.number,
-  maxWidth: PropTypes.string,
-  min: PropTypes.number,
-  value: PropTypes.number,
 };
 
 export default Progress;

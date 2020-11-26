@@ -70,7 +70,7 @@ import CompOmniform from './components/Omniform/index';
 import CompOmniformOmniformPreview from './components/Omniform/OmniformPreview';
 import CompOverlayContainer from './components/OverlayContainer';
 import CompPageRow from './components/PageRow/index';
-import CompProgress from './components/Progress/index';
+import CompProgress from './components/Progress';
 import CompResourceBoundary from './components/ResourceBoundary';
 import CompScrollContainer from './components/ScrollContainer/index';
 import CompSearchForm from './components/SearchForm';
