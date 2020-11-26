@@ -13,7 +13,7 @@ const TargetProgress = ({
   target,
 }) => (
   <Progress
-    labels
+    progressLabel
     height="15px"
     max={target.value}
     min={0}

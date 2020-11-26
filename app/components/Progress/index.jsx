@@ -28,10 +28,12 @@ const Progress = ({
   detail,
   endSpacing,
   height,
-  labels,
   max,
+  maxLabel,
   maxWidth,
   min,
+  minLabel,
+  progressLabel,
   value,
 }) => {
   const classes = useStyles();
@@ -52,8 +54,9 @@ const Progress = ({
         value={100 * ((value - min) / (max - min))}
         variant="determinate"
       />
-      {labels && <div style={{ float: 'left' }}><Heading size="2">{min}</Heading></div>}
-      {labels && <div style={{ float: 'right' }}><Heading size="2">{max}</Heading></div>}
+      {minLabel && <div style={{ float: 'left' }}><Heading size="2">{min}</Heading></div>}
+      {(progressLabel || maxLabel) && <div style={{ float: 'right' }}><Heading size="2">{max}</Heading></div>}
+      {progressLabel && <div style={{ float: 'right' }}><Heading size="2">{value}/</Heading></div>}
     </div>
   );
 };
@@ -63,10 +66,12 @@ Progress.propTypes = {
   detail: PropTypes.bool,
   endSpacing: PropTypes.bool,
   height: PropTypes.string,
-  labels: PropTypes.bool,
   max: PropTypes.number,
+  maxLabel: PropTypes.bool,
   maxWidth: PropTypes.string,
   min: PropTypes.number,
+  minLabel: PropTypes.bool,
+  progressLabel: PropTypes.bool,
   value: PropTypes.number,
 };
 
