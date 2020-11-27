@@ -55,7 +55,7 @@ const useFormField = ({
   path,
   propertyIndex,
   sessionStore,
-  type,
+  useStorage,
 }) => {
   const lrs = useLRS();
   const { formID } = React.useContext(FormContext);
@@ -70,10 +70,10 @@ const useFormField = ({
     required && validators.required,
   ]);
   const setDefaultValue = React.useCallback(
-    ['password', 'hidden', 'file'].includes(type)
-      ? () => undefined
-      : (val) => storageSet(sessionStore, storeKey, val),
-    [type, storeKey]
+    useStorage
+      ? (val) => storageSet(sessionStore, storeKey, val)
+      : () => undefined,
+    [storeKey]
   );
   const saveToLRS = React.useCallback((nextValue) => {
     const delta = object && changeDelta(object, path, nextValue);

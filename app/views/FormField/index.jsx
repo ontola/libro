@@ -48,6 +48,7 @@ const registerFormField = (type, inputType, propsOverwrite) => {
   const inputProps = {
     delay: false,
     preferPlaceholder: false,
+    useStorage: true,
     ...propsOverwrite,
   };
 
@@ -189,6 +190,7 @@ export default [
   registerFormField(
     form.FileInput,
     'file', {
+      useStorage: false,
     }
   ),
   registerFormField(
@@ -213,6 +215,7 @@ export default [
     form.PasswordInput,
     'password', {
       delay: true,
+      useStorage: false,
     }
   ),
   registerFormField(
