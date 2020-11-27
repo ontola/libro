@@ -1,14 +1,11 @@
 import rdf, { isNamedNode } from '@ontologies/core';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 import FontAwesome from 'react-fontawesome';
 
 import { destroyFieldName, isMarkedForRemove } from '../../helpers/forms';
 import Button from '../Button';
 import CheckboxesInput from '../CheckboxesInput';
 
-import CharCounter, { CHAR_COUNTER_THRESHOLD } from './CharCounter';
-import FieldHelper from './FieldHelper';
 import InputElement from './InputElement';
 import OptionsWrapper from './OptionsWrapper';
 
@@ -21,6 +18,7 @@ const FormInputs = (props) => {
     maxLength,
     meta,
     removable,
+    renderHelper: HelperRenderer,
     required,
     shIn,
     topology,
@@ -69,45 +67,6 @@ const FormInputs = (props) => {
 
     const errors = allErrs?.filter((err) => err?.index === index);
 
-    const inputHelper = () => {
-      const renderHelper = type === 'checkbox'
-        ? !!description
-        : variant !== 'preview' || (!pristine && errors);
-      const renderCharCounter = variant !== 'preview';
-
-      if (!renderHelper) {
-        return null;
-      }
-
-      let helperText;
-
-      if (type === 'checkbox') {
-        helperText = description;
-      } else if (required && type !== 'association') {
-        helperText = (
-          <FormattedMessage
-            defaultMessage="*Required"
-            id="https://app.argu.co/i18n/forms/required/helperText"
-          />
-        );
-      }
-
-      return (
-        <FieldHelper
-          error={(dirtySinceLastSubmit || pristine) ? undefined : errors}
-          helperText={helperText}
-          right={renderCharCounter ? (
-            <CharCounter
-              maxLength={maxLength}
-              threshold={CHAR_COUNTER_THRESHOLD}
-              value={value}
-            />
-          ) : undefined}
-          variant={variant}
-        />
-      );
-    };
-
     return (
       <div className="Field__wrapper" key={[input.name, index].join('.')}>
         <InputElement
@@ -127,7 +86,14 @@ const FormInputs = (props) => {
             <FontAwesome name="times" />
           </Button>
         )}
-        {inputHelper()}
+        <HelperRenderer
+          description={description}
+          error={(dirtySinceLastSubmit || pristine) ? undefined : errors}
+          maxLength={maxLength}
+          required={required}
+          value={value}
+          variant={variant}
+        />
       </div>
     );
   });
