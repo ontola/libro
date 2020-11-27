@@ -9,6 +9,7 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
+import uuidv4 from 'uuid/v4';
 
 import FormField from '../../components/FormField/FormField';
 import { tryParseInt } from '../../helpers/numbers';
@@ -48,6 +49,7 @@ const registerFormField = (type, inputType, propsOverwrite) => {
   const inputProps = {
     defaultMinCount: 1,
     delay: false,
+    newItem: () => rdf.literal(''),
     preferPlaceholder: false,
     useStorage: true,
     ...propsOverwrite,
@@ -113,6 +115,7 @@ const registerFormField = (type, inputType, propsOverwrite) => {
         {...propOverwrites}
         input={input}
         meta={meta}
+        newItem={inputProps.newItem}
         preferPlaceholder={inputProps.preferPlaceholder}
         storeKey={storeKey}
         type={resolvedInputType}
@@ -154,6 +157,7 @@ export default [
     form.AssociationInput,
     'association', {
       defaultMinCount: 0,
+      newItem: () => ({ '@id': rdf.blankNode(uuidv4()) }),
     }
   ),
   registerFormField(

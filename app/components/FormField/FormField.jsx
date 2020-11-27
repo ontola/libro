@@ -6,9 +6,12 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import uuidv4 from 'uuid/v4';
 
-import { isMarkedForRemove } from '../../helpers/forms';
+import {
+  clearRemoval,
+  destroyFieldName,
+  isMarkedForRemove,
+} from '../../helpers/forms';
 
 import './DateTime.scss';
 import './FormField.scss';
@@ -66,6 +69,7 @@ const propTypes = {
   minRows: PropTypes.number,
   // Name of the input, defaults to the field name
   name: PropTypes.string,
+  newItem: PropTypes.func,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   onKeyUp: PropTypes.func,
@@ -132,6 +136,7 @@ const FormField = (props) => {
     meta,
     maxCount,
     minCount,
+    newItem,
     placeholder,
     preferPlaceholder,
     required,
@@ -148,27 +153,21 @@ const FormField = (props) => {
     invalid,
   } = meta;
   const { name } = input;
-  const newItem = () => (
-    type === 'association' ? { '@id': rdf.blankNode(uuidv4()) } : rdf.literal('')
-  );
   const addItem = () => {
-    let newValue;
-    if (type === 'association' && maxCount === 1 && input.value?.length === 1) {
-      newValue = [{ '@id': input.value[0]['@id'] }];
-    } else {
-      newValue = input.value?.slice() || [];
+    const newValue = input.value?.slice() || [];
 
+    const removedIndex = newValue.findIndex((value) => (
+      value[destroyFieldName] === rdf.literal(true)
+    ));
+
+    if (removedIndex >= 0) {
+      newValue[removedIndex] = clearRemoval(newValue[removedIndex]);
+    } else {
       newValue.push(newItem());
     }
 
     input.onChange(newValue);
   };
-
-  React.useEffect(() => {
-    if (type === 'association' && minCount > 0 && (!input.value || input.value.length === 0)) {
-      addItem();
-    }
-  }, [input.value?.length, minCount, type]);
 
   const values = inputValues(input, minCount, newItem);
   const removable = (minCount !== 1 || maxCount > 1) && type !== 'checkboxes';
