@@ -120,6 +120,7 @@ const registerFormField = (type, inputType, propsOverwrite) => {
         {...formFieldProps}
         {...props}
         {...propOverwrites}
+        className={inputProps.className}
         input={input}
         meta={meta}
         newItem={inputProps.newItem}
@@ -166,6 +167,7 @@ export default [
   registerFormField(
     form.AssociationInput,
     'association', {
+      className: 'Field--association',
       defaultMinCount: 0,
       newItem: () => ({ '@id': rdf.blankNode(uuidv4()) }),
     }

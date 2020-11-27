@@ -181,13 +181,12 @@ const FormField = (props) => {
     'Field--active': active,
     'Field--dirty': dirty,
     'Field--error': !!allErrs,
-    [`Field--${type}`]: type,
     'Field--warning': invalid,
-    className,
+    [className]: className,
   });
 
   return (
-    <div className={`Field ${className ?? ''} ${classes}`}>
+    <div className={classes}>
       {LabelRenderer && (
         <LabelRenderer
           label={label}
