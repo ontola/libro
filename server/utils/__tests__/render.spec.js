@@ -33,7 +33,7 @@ describe('server', () => {
   describe('renderFullPage', () => {
     it('renders the navbar preview', async () => {
       const ctx = generateRenderParams();
-      const body = await renderFullPage(ctx, Buffer.alloc(0));
+      const body = await renderFullPage(ctx, '');
 
       expect(typeof body).toEqual('string');
       expect(body).toContain('id="navbar-preview"');
