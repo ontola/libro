@@ -19,6 +19,8 @@ import HiddenRequiredInput from '../Input/HiddenRequiredInput';
 
 import './LocationInput.scss';
 
+const DEFAULT_ZOOM = 6.8;
+
 const viewMapping = {
   lat: schema.latitude,
   lon: schema.longitude,
@@ -86,7 +88,7 @@ const LocationInput = ({
   const storeCoordinates = (newLat, newLon) => {
     lonInput.onChange([rdf.literal(newLat)]);
     latInput.onChange([rdf.literal(newLon)]);
-    const newZoom = zoomLevel?.value || initialView.zoom;
+    const newZoom = zoomLevel?.value || initialView.zoom || DEFAULT_ZOOM;
     if (newZoom) {
       zoomLevelInput.onChange([rdf.literal(newZoom)]);
     }
