@@ -44,7 +44,13 @@ const mapDataToProps = {
   shIn: sh.in,
 };
 
-const registerFormField = (type, inputType, delay) => {
+const registerFormField = (type, inputType, propsOverwrite) => {
+  const inputProps = {
+    delay: false,
+    preferPlaceholder: false,
+    ...propsOverwrite,
+  };
+
   const FormFieldComp = ({
     addFieldName,
     setHasContent,
@@ -76,7 +82,7 @@ const registerFormField = (type, inputType, delay) => {
       || (propOverwrites.minCount ? propOverwrites.minCount > 0 : false);
 
     const [input, meta, storeKey] = useFormField({
-      delay,
+      delay: inputProps.delay,
       required: propOverwrites.required,
       ...props,
       ...propOverwrites,
@@ -105,6 +111,7 @@ const registerFormField = (type, inputType, delay) => {
         {...propOverwrites}
         input={input}
         meta={meta}
+        preferPlaceholder={inputProps.preferPlaceholder}
         storeKey={storeKey}
         type={resolvedInputType}
       />
@@ -141,24 +148,113 @@ const registerFormField = (type, inputType, delay) => {
 };
 
 export default [
-  registerFormField(form.CheckboxGroup, 'checkboxes', false),
-  registerFormField(form.CheckboxInput, 'checkbox', false),
-  registerFormField(form.ColorInput, 'color', true),
-  registerFormField(form.DateInput, 'date', false),
-  registerFormField(form.DateTimeInput, 'datetime-local', false),
-  registerFormField(form.EmailInput, 'email', true),
-  registerFormField(form.FileInput, 'file', false),
-  registerFormField(form.LocationInput, 'location', false),
-  registerFormField(form.MarkdownInput, (props) => (props.theme === 'omniform' ? 'textarea' : 'markdown'), true),
-  registerFormField(form.NumberInput, 'number', true),
-  registerFormField(form.RadioGroup, 'radioGroup', false),
-  registerFormField(form.SelectInput, 'select', false),
-  registerFormField(form.TextAreaInput, 'textarea', true),
-  registerFormField(form.TextInput, 'text', true),
-  registerFormField(form.ToggleButtonGroup, 'toggleButtonGroup', false),
-  registerFormField(form.PasswordInput, 'password', true),
-  registerFormField(form.AssociationInput, 'association', false),
-  registerFormField(form.PostalRangeInput, 'postalRange', true),
-  registerFormField(form.SliderInput, 'slider', true),
+  registerFormField(
+    form.AssociationInput,
+    'association', {
+    }
+  ),
+  registerFormField(
+    form.CheckboxGroup,
+    'checkboxes', {
+    }
+  ),
+  registerFormField(
+    form.CheckboxInput,
+    'checkbox', {
+    }
+  ),
+  registerFormField(
+    form.ColorInput,
+    'color', {
+      delay: true,
+    }
+  ),
+  registerFormField(
+    form.DateInput,
+    'date', {
+    }
+  ),
+  registerFormField(
+    form.DateTimeInput,
+    'datetime-local', {
+    }
+  ),
+  registerFormField(
+    form.EmailInput,
+    'email', {
+      delay: true,
+      preferPlaceholder: true,
+    }
+  ),
+  registerFormField(
+    form.FileInput,
+    'file', {
+    }
+  ),
+  registerFormField(
+    form.LocationInput,
+    'location', {
+    }
+  ),
+  registerFormField(
+    form.MarkdownInput,
+    (props) => (props.theme === 'omniform' ? 'textarea' : 'markdown'), {
+      delay: true,
+      preferPlaceholder: true,
+    }
+  ),
+  registerFormField(
+    form.NumberInput,
+    'number', {
+      delay: true,
+    }
+  ),
+  registerFormField(
+    form.PasswordInput,
+    'password', {
+      delay: true,
+    }
+  ),
+  registerFormField(
+    form.PostalRangeInput,
+    'postalRange', {
+      delay: true,
+    }
+  ),
+  registerFormField(
+    form.RadioGroup,
+    'radioGroup', {
+    }
+  ),
+  registerFormField(
+    form.SelectInput,
+    'select', {
+    }
+  ),
+  registerFormField(
+    form.SliderInput,
+    'slider', {
+      delay: true,
+    }
+  ),
+  registerFormField(
+    form.TextAreaInput,
+    'textarea', {
+      delay: true,
+      preferPlaceholder: true,
+    }
+  ),
+  registerFormField(
+    form.TextInput,
+    'text', {
+      delay: true,
+      preferPlaceholder: true,
+    }
+  ),
+  registerFormField(
+    form.ToggleButtonGroup,
+    'toggleButtonGroup', {
+    }
+  ),
   ResourceField,
 ];

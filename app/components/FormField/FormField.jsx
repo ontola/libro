@@ -20,13 +20,6 @@ import { optionsType } from './OptionsWrapper';
 
 import { formFieldError } from './index';
 
-const inputsPreferringPlaceholder = [
-  'email',
-  'markdown',
-  'text',
-  'textarea',
-];
-
 const propTypes = {
   autoComplete: PropTypes.string,
   autofocus: PropTypes.bool,
@@ -77,6 +70,7 @@ const propTypes = {
   onChange: PropTypes.func,
   onKeyUp: PropTypes.func,
   placeholder: PropTypes.string,
+  preferPlaceholder: PropTypes.bool,
   propertyIndex: PropTypes.number,
   required: PropTypes.bool,
   sequenceIndex: PropTypes.number,
@@ -139,6 +133,7 @@ const FormField = (props) => {
     maxCount,
     minCount,
     placeholder,
+    preferPlaceholder,
     required,
     sequenceIndex,
     submissionErrors,
@@ -177,7 +172,6 @@ const FormField = (props) => {
 
   const values = inputValues(input, minCount, newItem);
   const removable = (minCount !== 1 || maxCount > 1) && type !== 'checkboxes';
-  const preferPlaceholder = inputsPreferringPlaceholder.includes(type);
   const resolvedVariant = theme === 'omniform' ? 'preview' : variant;
   const allErrs = submissionErrors?.[input.name] || error;
   const classes = classNames({
