@@ -1,7 +1,4 @@
 import rdf from '@ontologies/core';
-import dcterms from '@ontologies/dcterms';
-import rdfs from '@ontologies/rdfs';
-import schema from '@ontologies/schema';
 import {
   ReturnType,
   link,
@@ -13,8 +10,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-import dbo from '../../ontology/dbo';
-import ontola from '../../ontology/ontola';
+import {
+  COVER_PREDICATES,
+  COVER_URL_PREDICATE,
+  NAME_PREDICATES,
+  TEXT_PREDICATES,
+  getMetaTags,
+} from '../../helpers/metaData';
 import { getMetaContent } from '../../helpers/arguHelpers';
 import { useStrippedMarkdown } from '../../helpers/markdownHelper';
 
@@ -26,24 +28,30 @@ const Metadata = ({
 }) => {
   const [coverURL] = useResourceProperty(
     typeof coverPhoto === 'string' ? rdf.namedNode(coverPhoto) : coverPhoto,
-    ontola.imgUrl1500x2000
+    COVER_URL_PREDICATE
   );
-  const strippedText = useStrippedMarkdown(text);
   const appName = getMetaContent('application-name');
+  const strippedText = useStrippedMarkdown(text);
+  const metaTags = React.useMemo(() => (
+    getMetaTags({
+      appName,
+      coverURL: coverURL?.value,
+      name,
+      text: strippedText,
+      url: subject.value,
+    })
+  ), [appName, name, subject, text, coverURL]);
 
   return (
     <Helmet>
-      <title>{name && name.length > 0 ? name : appName}</title>
-      <link href={subject.value} itemProp="url" rel="canonical" />
-      <meta content={subject.value} property="og:url" />
-      <meta content={[name, appName].filter(Boolean).join(' | ')} property="og:title" />
-      <meta content={[name, appName].filter(Boolean).join(' | ')} name="twitter:title" />
-      {coverURL && <meta content={coverURL.value} id="og:image" property="og:image" />}
-      {coverURL && <meta content={coverURL.value} name="twitter:image" />}
-      {text && <meta content={strippedText} id="og:description" property="og:description" />}
-      {text && <meta content={strippedText} name="twitter:description" />}
-      {text && <meta content={strippedText} id="description" name="description" property="description" />}
-      <meta content={coverURL ? 'summary_large_image' : 'summary'} name="twitter:card" />
+      {metaTags.map((metaTag) => {
+        const {
+          type,
+          ...tagProps
+        } = metaTag;
+
+        return React.createElement(type, tagProps);
+      })}
     </Helmet>
   );
 };
@@ -57,10 +65,9 @@ Metadata.propTypes = {
 
 export default link(
   {
-    coverPhoto: ontola.coverPhoto,
-    identifier: dcterms.identifier,
-    name: [schema.name, rdfs.label],
-    text: [dbo.abstract, schema.description, schema.text],
+    coverPhoto: COVER_PREDICATES,
+    name: NAME_PREDICATES,
+    text: TEXT_PREDICATES,
   },
   { returnType: ReturnType.Value }
 )(Metadata);

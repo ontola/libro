@@ -25,13 +25,15 @@ const removeMdOpts = {
   gfm: true,
 };
 
+export const stripMarkdown = (text) => (
+  text && removeMd(text, removeMdOpts).replace(/[\r\n]/g, ' ')
+);
+
 /**
  * Removes markdown syntax, replaces newlines with spaces.
  * @param {string} text
  * @returns {string}
  */
-export const useStrippedMarkdown = (text) => React.useMemo(() => {
-  const strippedText = removeMd(text, removeMdOpts);
-
-  return strippedText.replace(/[\r\n]/g, ' ');
-}, [text]);
+export const useStrippedMarkdown = (text) => React.useMemo(() => (
+  stripMarkdown(text)
+), [text]);

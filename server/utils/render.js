@@ -1,5 +1,6 @@
 import HttpStatus from 'http-status-codes';
 
+import { prerenderMetaTags } from '../../app/helpers/metaData';
 import { bundles } from '../../bundleConfig';
 import * as constants from '../config';
 
@@ -17,7 +18,6 @@ import {
   icons,
   themeBlock,
 } from './render/styling';
-import { headersFromPrerender } from './render/headersFromPrerender';
 import { googleAnalyticsScript, matomoScript } from './tracking';
 
 const version = require('../../webpack/version');
@@ -26,7 +26,14 @@ const version = require('../../webpack/version');
 //  in the assets manifest, so we have to define it manually.
 
 export const renderFullPage = async (ctx, data) => {
-  if (ctx.method === 'HEAD') {
+  const {
+    csrf,
+    manifest,
+    method,
+    res,
+  } = ctx;
+
+  if (method === 'HEAD') {
     return '';
   }
 
@@ -39,13 +46,9 @@ export const renderFullPage = async (ctx, data) => {
     appVersion: version,
     releaseStage: constants.RELEASE_STAGE,
   };
-  const csrfToken = ctx.csrf;
-  const nonceStr = ctx.res.locals.nonce.toString();
+  const csrfToken = csrf;
+  const nonceStr = res.locals.nonce.toString();
   const [language, isUser] = getUserData(ctx);
-
-  const headers = await headersFromPrerender(ctx, data);
-
-  const { manifest } = ctx;
 
   /* eslint-disable camelcase */
   const matomoCode = matomoScript(
@@ -69,7 +72,7 @@ export const renderFullPage = async (ctx, data) => {
           <meta charset="utf-8">
           <link rel="stylesheet" href="/static/preloader.css">
           <link rel="manifest" href="${manifest.scope}/manifest.json">
-          ${headers?.title?.toString() || `<title data-rh="true">${manifest.short_name || ''}</title>`}
+          ${prerenderMetaTags(ctx, data)}
 
           <meta name="website-iri" content="${manifest.scope || ''}">
           <meta property="og:type" content="website">
@@ -85,7 +88,6 @@ export const renderFullPage = async (ctx, data) => {
           <meta content="269911176456825" property="fb:app_id">
           <meta name="theme" content="${manifest.ontola.theme || 'common'}">
           <meta name="themeOpts" content="${manifest.ontola.theme_options || ''}">
-          ${headers?.meta?.toString() || `<meta content="${manifest.short_name || ''}" property="og:title"/>`}
 
           <meta name="csrf-param" content="authenticity_token">
           <meta name="csrf-token" content="${csrfToken}">
@@ -94,7 +96,6 @@ export const renderFullPage = async (ctx, data) => {
           <meta name="bugsnagConfig" content="${encodeURIComponent(JSON.stringify(bugsnagOpts))}">
           <meta name="mapboxTileURL" content="${constants.mapboxTileURL}">
 
-          ${headers?.link?.toString() || ''}
           ${icons(ctx) || ''}
           <meta name="msapplication-TileColor" content="${manifest.theme_color || ''}">
 

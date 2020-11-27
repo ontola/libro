@@ -60,7 +60,7 @@ const fetchPrerenderData = async (ctx, includeResources) => {
       agent.destroy();
     });
 
-  return output.data();
+  return output.data().toString();
 };
 
 export default fetchPrerenderData;
