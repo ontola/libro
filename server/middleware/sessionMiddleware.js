@@ -2,9 +2,9 @@ import session from 'koa-session';
 import redisStore from 'koa-redis';
 import Redis from 'ioredis';
 
-import { redisAddress } from '../config';
+import { redisUrl } from '../config';
 
-export const client = new Redis(redisAddress);
+export const client = new Redis(redisUrl);
 
 export default (app) => session({
   store: redisStore({
