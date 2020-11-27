@@ -46,6 +46,7 @@ const mapDataToProps = {
 
 const registerFormField = (type, inputType, propsOverwrite) => {
   const inputProps = {
+    defaultMinCount: 1,
     delay: false,
     preferPlaceholder: false,
     useStorage: true,
@@ -77,8 +78,8 @@ const registerFormField = (type, inputType, propsOverwrite) => {
       minInclusive: tryParseInt(minInclusive) || props.minInclusive,
       minLength: tryParseInt(minLength) || props.minLength,
     };
-    propOverwrites.minCount = props.inputType !== 'association'
-      && typeof propOverwrites.minCount === 'undefined' ? 1 : propOverwrites.minCount;
+    propOverwrites.minCount = inputProps.defaultMinCount
+      && typeof propOverwrites.minCount === 'undefined' ? inputProps.defaultMinCount : propOverwrites.minCount;
     propOverwrites.required = props.required
       || (propOverwrites.minCount ? propOverwrites.minCount > 0 : false);
 
@@ -152,6 +153,7 @@ export default [
   registerFormField(
     form.AssociationInput,
     'association', {
+      defaultMinCount: 0,
     }
   ),
   registerFormField(
