@@ -7,17 +7,12 @@ const FormFieldDescription = ({
   description,
   helperText,
   preferPlaceholder,
-  type,
 }) => {
   let text;
   if (preferPlaceholder) {
     text = helperText;
   } else {
     text = description || helperText;
-  }
-
-  if (type === 'checkbox' || !text) {
-    return null;
   }
 
   return (
@@ -29,7 +24,6 @@ FormFieldDescription.propTypes = {
   description: PropTypes.string,
   helperText: PropTypes.string,
   preferPlaceholder: PropTypes.bool,
-  type: PropTypes.string,
 };
 
 export default FormFieldDescription;

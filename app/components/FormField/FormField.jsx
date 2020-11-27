@@ -16,8 +16,6 @@ import {
 import './DateTime.scss';
 import './FormField.scss';
 import FormFieldAddButton from './FormFieldAddButton';
-import FormFieldDescription from './FormFieldDescription';
-import FormFieldLabel from './FormFieldLabel';
 import FormInputs from './FormInputs';
 import { optionsType } from './OptionsWrapper';
 
@@ -76,6 +74,8 @@ const propTypes = {
   placeholder: PropTypes.string,
   preferPlaceholder: PropTypes.bool,
   propertyIndex: PropTypes.number,
+  renderDescription: PropTypes.func,
+  renderLabel: PropTypes.func,
   required: PropTypes.bool,
   sequenceIndex: PropTypes.number,
   shIn: optionsType,
@@ -139,6 +139,8 @@ const FormField = (props) => {
     newItem,
     placeholder,
     preferPlaceholder,
+    renderDescription: DescriptionRenderer,
+    renderLabel: LabelRenderer,
     required,
     sequenceIndex,
     submissionErrors,
@@ -186,19 +188,21 @@ const FormField = (props) => {
 
   return (
     <div className={`Field ${className ?? ''} ${classes}`}>
-      <FormFieldLabel
-        label={label}
-        name={name}
-        required={required}
-        theme={theme}
-        type={type}
-      />
-      <FormFieldDescription
-        description={description}
-        helperText={helperText}
-        preferPlaceholder={preferPlaceholder}
-        type={type}
-      />
+      {LabelRenderer && (
+        <LabelRenderer
+          label={label}
+          name={name}
+          required={required}
+          theme={theme}
+        />
+      )}
+      {DescriptionRenderer && (
+        <DescriptionRenderer
+          description={description}
+          helperText={helperText}
+          preferPlaceholder={preferPlaceholder}
+        />
+      )}
       <FormInputs
         {...props}
         allErrs={allErrs}

@@ -12,6 +12,8 @@ import React from 'react';
 import uuidv4 from 'uuid/v4';
 
 import FormField from '../../components/FormField/FormField';
+import FormFieldDescription from '../../components/FormField/FormFieldDescription';
+import FormFieldLabel from '../../components/FormField/FormFieldLabel';
 import { tryParseInt } from '../../helpers/numbers';
 import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
@@ -51,6 +53,8 @@ const registerFormField = (type, inputType, propsOverwrite) => {
     delay: false,
     newItem: () => rdf.literal(''),
     preferPlaceholder: false,
+    renderDescription: FormFieldDescription,
+    renderLabel: FormFieldLabel,
     useStorage: true,
     ...propsOverwrite,
   };
@@ -117,6 +121,8 @@ const registerFormField = (type, inputType, propsOverwrite) => {
         meta={meta}
         newItem={inputProps.newItem}
         preferPlaceholder={inputProps.preferPlaceholder}
+        renderDescription={inputProps.renderDescription}
+        renderLabel={inputProps.renderLabel}
         storeKey={storeKey}
         type={resolvedInputType}
       />
@@ -168,6 +174,8 @@ export default [
   registerFormField(
     form.CheckboxInput,
     'checkbox', {
+      renderDescription: null,
+      renderLabel: null,
     }
   ),
   registerFormField(
