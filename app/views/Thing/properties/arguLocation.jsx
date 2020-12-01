@@ -17,6 +17,7 @@ import argu from '../../../ontology/argu';
 import { containerTopology } from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
 import { gridTopology } from '../../../topologies/Grid';
+import { isResource } from '../../../helpers/types';
 
 const ArguLocation = ({
   childrenPlacements,
@@ -25,18 +26,15 @@ const ArguLocation = ({
   const lrs = useLRS();
   useDataFetching(childrenPlacements);
   const history = useHistory();
-  const [selected, setSelected] = React.useState(null);
   const onSelect = React.useCallback((feature) => {
     const id = feature?.getId();
-    if (!id) {
-      setSelected(null);
-    } else {
-      setSelected(
-        lrs.getResourceProperty(
-          id.termType ? id : rdf.namedNode(id),
-          schema.isPartOf
-        )
+    if (id) {
+      const partOf = lrs.getResourceProperty(
+        isResource(id) ? id : rdf.namedNode(id), schema.isPartOf
       );
+      if (partOf) {
+        lrs.actions.ontola.showDialog(partOf);
+      }
     }
   }, []);
   const children = listToArr(lrs, [], childrenPlacements);
@@ -52,7 +50,6 @@ const ArguLocation = ({
   return (
     <MapView
       navigate={(resource) => history.push(retrievePath(resource.value))}
-      overlayResource={selected}
       placements={[
         schemaLocation,
         ...children.filter((child) => child !== schemaLocation),
