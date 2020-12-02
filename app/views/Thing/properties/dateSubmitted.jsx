@@ -27,7 +27,7 @@ class DateSubmitted extends React.Component {
     const { dateSubmitted } = this.props;
 
     return (
-      <DetailDate dateSubmitted={new Date(dateSubmitted.value)} />
+      <DetailDate dateSubmitted={dateSubmitted} />
     );
   }
 }

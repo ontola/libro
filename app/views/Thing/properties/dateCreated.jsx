@@ -11,7 +11,7 @@ const propTypes = {
 };
 
 const DateCreated = ({ linkedProp }) => (
-  <DetailDate dateCreated={new Date(linkedProp.value)} />
+  <DetailDate dateCreated={linkedProp} />
 );
 
 DateCreated.propTypes = propTypes;

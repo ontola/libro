@@ -34,16 +34,16 @@ const LinkedDetailDate = ({
 }) => (
   <DetailDate
     linkedImage
-    dateCreated={dateCreated && new Date(dateCreated.value)}
-    dateModified={dateModified && new Date(dateModified.value)}
-    datePublished={datePublished && new Date(datePublished.value)}
-    dateSubmitted={dateSubmitted && new Date(dateSubmitted.value)}
-    duration={duration && new Date(duration.value)}
-    endDate={endDate && new Date(endDate.value)}
+    dateCreated={dateCreated}
+    dateModified={dateModified}
+    datePublished={datePublished}
+    dateSubmitted={dateSubmitted}
+    duration={duration}
+    endDate={endDate}
     floatRight={floatRight}
     hideIcon={hideIcon}
-    lastActivityAt={lastActivityAt && new Date(lastActivityAt.value)}
-    startDate={startDate && new Date(startDate.value)}
+    lastActivityAt={lastActivityAt}
+    startDate={startDate}
   />
 );
 

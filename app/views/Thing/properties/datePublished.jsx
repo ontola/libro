@@ -10,7 +10,7 @@ const propTypes = {
 };
 
 const DateCreated = ({ linkedProp }) => (
-  <DetailDate datePublished={new Date(linkedProp.value)} />
+  <DetailDate datePublished={linkedProp} />
 );
 
 DateCreated.type = schema.Thing;

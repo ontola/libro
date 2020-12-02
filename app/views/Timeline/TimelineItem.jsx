@@ -53,7 +53,7 @@ const TimelineItem = ({ lastItem }) => {
       <TimelineContent className={classes.content}>
         <Property label={schema.name} wrapper={nameWrapper} />
         <div>
-          <Property label={schema.startDate} />
+          <Property label={schema.startDate} relative={false} />
         </div>
         <Property label={schema.text} />
       </TimelineContent>

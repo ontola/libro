@@ -7,6 +7,7 @@ import {
 } from 'react-intl';
 
 import { relativeTimeDestructure } from '../../helpers/date';
+import { isDateOrDateTime } from '../../helpers/types';
 import Detail from '../Detail';
 
 const messages = defineMessages({
@@ -50,6 +51,14 @@ const FORMAT = {
   year: 'numeric',
 };
 
+const formatDuration = (intl, startDate, endDate) => {
+  if (!isDateOrDateTime(startDate) || !isDateOrDateTime(endDate)) {
+    return null;
+  }
+
+  return `Duur: ${intl.formatRelativeTime(new Date(startDate.value), 'day', { initialNow: new Date(endDate.value) })}`;
+};
+
 const DetailDate = (props) => {
   const {
     dateCreated,
@@ -60,6 +69,7 @@ const DetailDate = (props) => {
     floatRight,
     hideIcon,
     lastActivityAt,
+    relative,
     url,
     startDate,
   } = props;
@@ -71,9 +81,14 @@ const DetailDate = (props) => {
       return '';
     }
 
+    const rawDate = props[p];
+    const date = isDateOrDateTime(rawDate)
+      ? intl.formatTime(new Date(rawDate.value), FORMAT)
+      : rawDate.value;
+
     return intl.formatMessage(
       messages[p],
-      { date: intl.formatTime(props[p], FORMAT) }
+      { date }
     );
   };
 
@@ -89,7 +104,15 @@ const DetailDate = (props) => {
       return null;
     }
 
-    return <FormattedRelativeTime {...relativeTimeDestructure(date)} />;
+    if (isDateOrDateTime(date)) {
+      if (relative) {
+        return <FormattedRelativeTime {...relativeTimeDestructure(new Date(date.value))} />;
+      }
+
+      return intl.formatTime(new Date(date.value), FORMAT);
+    }
+
+    return date.value;
   };
 
   const hoverText = [
@@ -100,7 +123,7 @@ const DetailDate = (props) => {
     format('schema:datePublished'),
     format('schema:dateSubmitted'),
     format('schema:dateModified'),
-    (endDate && startDate && `Duur: ${intl.formatRelativeTime(startDate, 'day', { initialNow: endDate })}`),
+    formatDuration(intl, endDate, startDate),
   ]
     .filter(Boolean)
     .join('. \n')
@@ -128,9 +151,14 @@ DetailDate.propTypes = {
   floatRight: PropTypes.bool,
   hideIcon: PropTypes.bool,
   lastActivityAt: PropTypes.instanceOf(Date),
+  relative: PropTypes.bool,
   startDate: PropTypes.instanceOf(Date),
   // For linking to an event, like a meeting
   url: PropTypes.string,
+};
+
+DetailDate.defaultProps = {
+  relative: true,
 };
 
 export default DetailDate;
