@@ -10,6 +10,7 @@ const connectSrc = [
   "'self'",
   'https://api.notubiz.nl',
   'https://www.facebook.com',
+  'https://analytics.argu.co',
   (req) => `ws://${req.hostname}`,
 ];
 
