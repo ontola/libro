@@ -206,7 +206,6 @@ const FormField = (props) => {
         {...props}
         allErrs={allErrs}
         autofocus={autofocus || (autofocusForm && sequenceIndex === 0)}
-        fieldId={name}
         placeholder={placeholder || (preferPlaceholder ? description : null)}
         removable={removable}
         values={values}

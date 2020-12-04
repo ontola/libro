@@ -38,7 +38,6 @@ const MAX_STR_LEN = 255;
 const InputElement = ({
   autoComplete,
   autofocus,
-  fieldId,
   formIRI,
   errors,
   initialValue,
@@ -51,7 +50,6 @@ const InputElement = ({
   maxLength,
   minInclusive,
   minLength,
-  name,
   onBlur,
   onChange,
   onKeyUp,
@@ -69,6 +67,7 @@ const InputElement = ({
   variant,
 }) => {
   const lrs = useLRS();
+  const { name } = input;
   const {
     active,
     pristine,
@@ -82,9 +81,8 @@ const InputElement = ({
 
   const sharedProps = {
     autoFocus: autofocus,
-    'data-testid': name || fieldId,
-    id: fieldId,
-    name: name || fieldId,
+    'data-testid': name,
+    id: name,
     ...input,
     onBlur: (e) => {
       input.onBlur(e);
@@ -121,7 +119,7 @@ const InputElement = ({
     const nestedFormIRI = lrs.getResourceProperty(subject, form.form);
 
     return (
-      <FormSection name={fieldId} path={path} propertyIndex={inputIndex}>
+      <FormSection name={name} path={path} propertyIndex={inputIndex}>
         <Property label={form.form}>
           <Property
             childProps={{
@@ -298,7 +296,7 @@ const InputElement = ({
   if (type === 'checkbox') {
     trailer = (
       <FieldLabel
-        htmlFor={fieldId}
+        htmlFor={name}
         label={label}
       />
     );
@@ -349,7 +347,6 @@ InputElement.propTypes = {
   className: PropTypes.string,
   description: PropTypes.string,
   errors: PropTypes.arrayOf(PropTypes.string),
-  fieldId: PropTypes.string.isRequired,
   formIRI: linkType,
   /** Ensure that it matches the label `for` attribute */
   id: PropTypes.string,
@@ -359,7 +356,13 @@ InputElement.propTypes = {
     linkType,
   ]),
   /** @private Contains form-library specific data */
-  input: linkType,
+  input: PropTypes.shape({
+    name: PropTypes.string,
+    onBlur: PropTypes.func,
+    onChange: PropTypes.func,
+    onFocus: PropTypes.func,
+    value: PropTypes.arrayOf(linkType),
+  }),
   inputIndex: PropTypes.number,
   inputValue: linkType,
   // Text above input field
@@ -384,8 +387,6 @@ InputElement.propTypes = {
   minLength: PropTypes.number,
   // Minimal number of rows for textAreas
   minRows: PropTypes.number,
-  // Name of the input, defaults to the field name
-  name: PropTypes.string,
   object: linkType,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
