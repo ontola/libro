@@ -9,6 +9,7 @@ import {
 } from 'link-redux';
 import React from 'react';
 
+import { useSeqToArr } from '../../hooks/useSeqToArr';
 import argu from '../../ontology/argu';
 import { allTopologies } from '../../topologies';
 import Card, { CardContent } from '../../topologies/Card';
@@ -22,7 +23,8 @@ const useStyles = makeStyles(() => ({
 
 const Timeline = () => {
   const classes = useStyles();
-  const items = useProperty(argu.timelineItems);
+  const [itemsSeq] = useProperty(argu.timelineItems);
+  const items = useSeqToArr(itemsSeq);
 
   return (
     <Card>
