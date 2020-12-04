@@ -155,7 +155,7 @@ const FormField = (props) => {
     invalid,
   } = meta;
   const { name } = input;
-  const addItem = () => {
+  const addItem = React.useCallback(() => {
     const newValue = input.value?.slice() || [];
 
     const removedIndex = newValue.findIndex((value) => (
@@ -169,7 +169,7 @@ const FormField = (props) => {
     }
 
     input.onChange(newValue);
-  };
+  }, [input]);
 
   const values = inputValues(input, minCount, newItem);
   const removable = (minCount !== 1 || maxCount > 1) && type !== 'checkboxes';
