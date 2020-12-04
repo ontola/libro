@@ -68,7 +68,7 @@ function CheckboxesInput({
 
   return (
     <Select>
-      {required && <HiddenRequiredInput value={values?.[0]} />}
+      {required && <HiddenRequiredInput value={values?.[0]?.value} />}
       {items}
     </Select>
   );

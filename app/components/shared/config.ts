@@ -9,6 +9,7 @@ export const headingVariants = [
   'default',
   'error',
   'motion',
+  'navbar',
   'notice',
   'question',
   'semantic',

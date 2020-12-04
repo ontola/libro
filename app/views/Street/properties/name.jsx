@@ -7,7 +7,7 @@ import teamGL from '../../../ontology/teamGL';
 import { allTopologies } from '../../../topologies';
 
 const StreetName = ({ linkedProp }) => (
-  <Heading size={4}>
+  <Heading size="4">
     {linkedProp.value}
   </Heading>
 );

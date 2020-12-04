@@ -50,7 +50,7 @@ const ToggleButtonGroup = ({
 
   return (
     <React.Fragment>
-      {required && <HiddenRequiredInput value={value} />}
+      {required && <HiddenRequiredInput value={value?.value} />}
       <MaterialToggleButtonGroup
         exclusive
         className={classes.buttonGroup}

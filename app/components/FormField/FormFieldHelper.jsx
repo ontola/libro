@@ -1,3 +1,4 @@
+import { linkType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -44,7 +45,10 @@ FormFieldHelper.propTypes = {
   error: PropTypes.string,
   maxLength: PropTypes.number,
   required: PropTypes.bool,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([
+    linkType,
+    PropTypes.string,
+  ]),
   variant: PropTypes.string,
 };
 
