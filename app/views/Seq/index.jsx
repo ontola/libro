@@ -4,14 +4,12 @@ import {
   Resource,
   register,
   subjectType,
-  useDataInvalidation,
-  useLRS,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import ErrorBoundary from '../../components/ErrorBoundary';
-import { seqToArr } from '../../helpers/data';
+import { useSeqToArr } from '../../hooks/useSeqToArr';
 import { allTopologies } from '../../topologies';
 
 export function Seq({
@@ -26,48 +24,58 @@ export function Seq({
   separator,
   subject,
 }) {
-  const lrs = useLRS();
+  const sequences = useSeqToArr(subject);
 
   if (gutter === -1) {
     return null;
   }
 
-  const sequences = seqToArr(lrs, [], subject);
+  const [primary, secondary] = React.useMemo(() => {
+    if (sequences.length > gutter) {
+      return [sequences.slice(0, gutter), sequences.slice(gutter)];
+    }
 
-  let primary = sequences;
-  let secondary;
-  if (sequences.length > gutter) {
-    primary = sequences.slice(0, gutter);
-    secondary = sequences.slice(gutter);
-  }
+    return [sequences, null];
+  }, [sequences, gutter]);
 
-  useDataInvalidation([...sequences, subject]);
+  const elements = React.useMemo(() => (
+    primary.map((s, i) => (
+      <ItemWrapper key={s.toString()} {...itemWrapperOpts}>
+        <ErrorBoundary data-debug={s.toString()}>
+          <Resource
+            {...childProps}
+            columns={columns}
+            count={sequences.length}
+            data-test={`Seq-${i}-${s.value}`}
+            depth={depth}
+            first={sequences[0].object}
+            key={`${subject}-${s}`}
+            last={sequences[sequences.length - 1].object}
+            sequenceIndex={i}
+            subject={s}
+          >
+            {ItemRenderer && <ItemRenderer />}
+          </Resource>
+        </ErrorBoundary>
+      </ItemWrapper>
+    ))
+  ), [sequences]);
 
-  const elements = primary.map((s, i) => (
-    <ItemWrapper key={s.toString()} {...itemWrapperOpts}>
-      <ErrorBoundary data-debug={s.toString()}>
-        <Resource
-          {...childProps}
-          columns={columns}
-          count={sequences.length}
-          data-test={`Seq-${i}-${s.value}`}
-          depth={depth}
-          first={sequences[0].object}
-          key={`${subject}-${s}`}
-          last={sequences[sequences.length - 1].object}
-          sequenceIndex={i}
-          subject={s}
-        >
-          {ItemRenderer && <ItemRenderer />}
-        </Resource>
-      </ErrorBoundary>
-    </ItemWrapper>
-  ));
+  const primaryItems = React.useMemo(
+    () => (
+      separator
+        ? elements.reduce((prev, curr) => [prev, separator, curr])
+        : elements
+    ), [separator, elements]
+  );
+  const secondaryItems = React.useMemo(() => (
+    secondary && renderGutter && renderGutter(secondary)
+  ), [secondary, renderGutter]);
 
   return (
     <React.Fragment>
-      {separator ? elements.reduce((prev, curr) => [prev, separator, curr]) : elements}
-      {secondary && renderGutter && renderGutter(secondary)}
+      {primaryItems}
+      {secondaryItems}
     </React.Fragment>
   );
 }
