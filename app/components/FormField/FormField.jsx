@@ -1,5 +1,3 @@
-import rdf from '@ontologies/core';
-import classNames from 'classnames';
 import {
   linkType,
   topologyType,
@@ -7,21 +5,16 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {
-  clearRemoval,
-  destroyFieldName,
-  isMarkedForRemove,
-} from '../../helpers/forms';
-
 import './DateTime.scss';
 import './FormField.scss';
-import FormFieldAddButton from './FormFieldAddButton';
 import FormInputs from './FormInputs';
 import { optionsType } from './OptionsWrapper';
 
 import { formFieldError } from './index';
 
 const propTypes = {
+  addItem: PropTypes.func,
+  allErrs: PropTypes.arrayOf(formFieldError),
   autoComplete: PropTypes.string,
   autofocus: PropTypes.bool,
   autofocusForm: PropTypes.bool,
@@ -83,38 +76,13 @@ const propTypes = {
   submissionErrors: PropTypes.objectOf(PropTypes.arrayOf(formFieldError)),
   theme: PropTypes.string,
   topology: topologyType,
-  // HTML input type, e.g. 'email'
-  type: PropTypes.string,
+  values: PropTypes.arrayOf(linkType),
   // Modify te look and feel of the FormField
   variant: PropTypes.oneOf([
     'default',
     'material',
     'preview',
   ]),
-};
-
-const defaultProps = {
-  autofocus: false,
-  maxCount: 1,
-  variant: 'default',
-};
-
-const inputValues = (input, minCount, newItem) => {
-  let currentValue = input.value;
-
-  if (currentValue && !Array.isArray(currentValue)) {
-    currentValue = [currentValue];
-  }
-
-  if (!currentValue || currentValue.length === 0) {
-    if (minCount > 0) {
-      return [newItem()];
-    }
-
-    return [];
-  }
-
-  return currentValue;
 };
 
 /**
@@ -126,6 +94,8 @@ const inputValues = (input, minCount, newItem) => {
  */
 const FormField = (props) => {
   const {
+    addItem,
+    allErrs,
     autofocus,
     autofocusForm,
     className,
@@ -133,60 +103,20 @@ const FormField = (props) => {
     helperText,
     input,
     label,
-    meta,
-    maxCount,
-    minCount,
-    newItem,
     placeholder,
     preferPlaceholder,
     renderDescription: DescriptionRenderer,
     renderLabel: LabelRenderer,
     required,
     sequenceIndex,
-    submissionErrors,
     theme,
-    type,
+    values,
     variant,
   } = props;
-  const {
-    active,
-    dirty,
-    error,
-    invalid,
-  } = meta;
   const { name } = input;
-  const addItem = React.useCallback(() => {
-    const newValue = input.value?.slice() || [];
-
-    const removedIndex = newValue.findIndex((value) => (
-      value[destroyFieldName] === rdf.literal(true)
-    ));
-
-    if (removedIndex >= 0) {
-      newValue[removedIndex] = clearRemoval(newValue[removedIndex]);
-    } else {
-      newValue.push(newItem());
-    }
-
-    input.onChange(newValue);
-  }, [input]);
-
-  const values = inputValues(input, minCount, newItem);
-  const removable = (minCount !== 1 || maxCount > 1) && type !== 'checkboxes';
-  const resolvedVariant = theme === 'omniform' ? 'preview' : variant;
-  const allErrs = submissionErrors?.[input.name] || error;
-  const classes = classNames({
-    Field: true,
-    [`Field--variant-${resolvedVariant}`]: resolvedVariant,
-    'Field--active': active,
-    'Field--dirty': dirty,
-    'Field--error': !!allErrs,
-    'Field--warning': invalid,
-    [className]: className,
-  });
 
   return (
-    <div className={classes}>
+    <div className={className}>
       {LabelRenderer && (
         <LabelRenderer
           label={label}
@@ -204,24 +134,18 @@ const FormField = (props) => {
       )}
       <FormInputs
         {...props}
+        addItem={addItem}
         allErrs={allErrs}
         autofocus={autofocus || (autofocusForm && sequenceIndex === 0)}
         placeholder={placeholder || (preferPlaceholder ? description : null)}
-        removable={removable}
         values={values}
-        variant={resolvedVariant}
+        variant={variant}
       />
-      {(type !== 'checkboxes' && (!maxCount || values.filter((val) => !isMarkedForRemove(val)).length < maxCount)) && (
-        <FormFieldAddButton
-          addItem={addItem}
-          label={label}
-        />
-      )}
     </div>
   );
 };
 
 FormField.propTypes = propTypes;
-FormField.defaultProps = defaultProps;
+
 
 export default FormField;
