@@ -2,10 +2,11 @@ import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
 import sh from '@ontologies/shacl';
 import {
+  ReturnType,
   linkType,
   literal,
   register,
-  useResourceProperty,
+  useResourceLink,
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -16,7 +17,6 @@ import FormField from '../../components/FormField/FormField';
 import FormFieldDescription from '../../components/FormField/FormFieldDescription';
 import FormFieldHelper from '../../components/FormField/FormFieldHelper';
 import FormFieldLabel from '../../components/FormField/FormFieldLabel';
-import { tryParseInt } from '../../helpers/numbers';
 import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
 import ontola from '../../ontology/ontola';
@@ -49,6 +49,33 @@ const mapDataToProps = {
   shIn: sh.in,
 };
 
+const shapeProps = ['maxCount', 'maxInclusive', 'minCount', 'minInclusive', 'minLength'];
+
+const useFieldShape = (props, defaultMinCount) => {
+  const propMap = {};
+  shapeProps.forEach((prop) => {
+    if (props[`${prop}Prop`]) {
+      propMap[prop] = props[`${prop}Prop`];
+    }
+  });
+
+  const empty = Object.keys(propMap).length === 0;
+
+  const shape = useResourceLink(
+    empty ? props.subject : props.object,
+    empty ? {} : propMap,
+    { returnType: ReturnType.Literal }
+  );
+
+  shape.required = props.required
+    || (shape.minCount ? shape.minCount > 0 : false);
+  shape.minCount = defaultMinCount && typeof shape.minCount === 'undefined'
+    ? defaultMinCount
+    : shape.minCount;
+
+  return shape;
+};
+
 const registerFormField = (type, inputType, propsOverwrite) => {
   const inputProps = {
     defaultMinCount: 1,
@@ -74,29 +101,14 @@ const registerFormField = (type, inputType, propsOverwrite) => {
       if (whitelisted && setHasContent) {
         setHasContent(true);
       }
-    });
-    const [maxCount] = useResourceProperty(props.object, props.maxCountProp);
-    const [maxInclusive] = useResourceProperty(props.object, props.maxInclusiveProp);
-    const [minCount] = useResourceProperty(props.object, props.minCountProp);
-    const [minInclusive] = useResourceProperty(props.object, props.minInclusiveProp);
-    const [minLength] = useResourceProperty(props.object, props.minLengthProp);
-    const propOverwrites = {
-      maxCount: tryParseInt(maxCount) || props.maxCount,
-      maxInclusive: tryParseInt(maxInclusive) || props.maxInclusive,
-      minCount: tryParseInt(minCount) || props.minCount,
-      minInclusive: tryParseInt(minInclusive) || props.minInclusive,
-      minLength: tryParseInt(minLength) || props.minLength,
-    };
-    propOverwrites.minCount = inputProps.defaultMinCount
-      && typeof propOverwrites.minCount === 'undefined' ? inputProps.defaultMinCount : propOverwrites.minCount;
-    propOverwrites.required = props.required
-      || (propOverwrites.minCount ? propOverwrites.minCount > 0 : false);
+    }, [whitelisted, setHasContent]);
+
+    const fieldShape = useFieldShape(props, inputProps.defaultMinCount);
 
     const [input, meta, storeKey] = useFormField({
       delay: inputProps.delay,
-      required: propOverwrites.required,
       ...props,
-      ...propOverwrites,
+      ...fieldShape,
     });
 
     React.useLayoutEffect(() => {
@@ -119,7 +131,7 @@ const registerFormField = (type, inputType, propsOverwrite) => {
       <FormField
         {...formFieldProps}
         {...props}
-        {...propOverwrites}
+        {...fieldShape}
         className={inputProps.className}
         input={input}
         meta={meta}
