@@ -20,6 +20,7 @@ import { fullResourceTopology } from '../../topologies/FullResource';
 import AttributeList from '../../topologies/AttributeList';
 import AttributeListItem from '../../components/AttributeListItem';
 import Heading from '../../components/Heading';
+import { CardDivider } from '../../topologies/Card';
 
 const DexesInviteFull = ({ assigner, renderPartOf }) => {
   const [offer] = useProperty(dexes.offer);
@@ -34,7 +35,7 @@ const DexesInviteFull = ({ assigner, renderPartOf }) => {
         <Property label={argu.trashedAt} />
         <Property label={ontola.publishAction} onLoad={() => null} />
         <CardMain>
-          <CardContent endSpacing>
+          <CardContent>
             <Heading>DataDeal - Uitnodiging</Heading>
             <p>
               <strong>{assigner?.value}</strong> wil
@@ -50,11 +51,18 @@ const DexesInviteFull = ({ assigner, renderPartOf }) => {
                 <Property label={dexes.file}>
                   <AttributeListItem label={schema.encodingFormat} propertyLabel="Formaat" />
                 </Property>
-                <AttributeListItem label={dexes.permissions} propertyLabel="Toegestaan" />
-                <AttributeListItem label={dexes.prohibitions} propertyLabel="Verboden" />
-                <AttributeListItem label={dexes.obligations} propertyLabel="Verplicht" />
               </Property>
             </AttributeList>
+          </CardContent>
+          <CardDivider />
+          <CardContent endSpacing>
+            <Heading>Condities</Heading>
+            <Property label={dexes.offer}>
+              {/* <AttributeListItem label={dexes.prohibitions} propertyLabel="Condities" /> */}
+              <Property label={dexes.prohibitions} renderWhenEmpty={false} />
+              <Property label={dexes.permissions} renderWhenEmpty={false} />
+              <Property label={dexes.obligations} renderWhenEmpty={false} />
+            </Property>
             <Property label={ontola.favoriteAction} />
           </CardContent>
         </CardMain>
