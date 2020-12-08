@@ -1,4 +1,3 @@
-import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
 import {
   Property,
@@ -7,16 +6,16 @@ import {
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import LinkedDetailDate from '../../components/LinkedDetailDate';
 import argu from '../../ontology/argu';
 import dexes from '../../ontology/dexes';
 import ontola from '../../ontology/ontola';
 import { CardContent } from '../../topologies/Card';
 import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
-import DetailsBar from '../../topologies/DetailsBar';
 import { fullResourceTopology } from '../../topologies/FullResource';
-import { defaultMenus } from '../common';
+import AttributeListItem from '../../components/AttributeListItem';
+import AttributeList from '../../topologies/AttributeList';
+import Heading from '../../components/Heading';
 
 const DexesOfferFull = ({ renderPartOf }) => (
   <React.Fragment>
@@ -25,15 +24,19 @@ const DexesOfferFull = ({ renderPartOf }) => (
       <Property label={argu.trashedAt} />
       <Property label={ontola.publishAction} onLoad={() => null} />
       <CardMain>
-        <DetailsBar right={defaultMenus}>
-          <Property label={schema.creator} />
-          <Property label={rdfx.type} />
-          <LinkedDetailDate />
-        </DetailsBar>
         <CardContent>
-          <Property label={dexes.file}>
-            <Property label={schema.name} />
-          </Property>
+          <Heading>DataDeal - Voorstel</Heading>
+          <AttributeList>
+            <AttributeListItem label={dexes.assigner} propertyLabel="Deler" />
+            <AttributeListItem label={dexes.assignee} propertyLabel="Gedeeld met" />
+            <AttributeListItem label={dexes.file} propertyLabel="Bestand" />
+            <Property label={dexes.file}>
+              <AttributeListItem label={schema.encodingFormat} propertyLabel="Formaat" />
+            </Property>
+            <AttributeListItem label={dexes.permissions} propertyLabel="Toegestaan" />
+            <AttributeListItem label={dexes.prohibitions} propertyLabel="Verboden" />
+            <AttributeListItem label={dexes.obligations} propertyLabel="Verplicht" />
+          </AttributeList>
           <Property label={dexes.invites} />
         </CardContent>
       </CardMain>

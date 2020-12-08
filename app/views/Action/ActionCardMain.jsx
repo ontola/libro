@@ -35,14 +35,13 @@ const ActionCardMain = ({
   return (
     <span>
       <Button
-        icon={icon.value}
-        theme="transparant"
+        icon={icon?.value}
         onClick={(e) => {
           e.preventDefault();
           lrs.exec(rdf.namedNode(`${libro.actions.dialog.alert.value}?resource=${encodeURIComponent(subject.value)}`));
         }}
       >
-        {name.value}
+        {name?.value}
       </Button>
     </span>
   );

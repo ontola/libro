@@ -18,7 +18,7 @@ const DexesAgreeMentFull = () => (
     <Container>
       <CardMain>
         <CardContent noSpacing>
-          <Heading>DataDeal</Heading>
+          <Heading>DataDeal - Overeenkomst</Heading>
           <AttributeList>
             <Property label={dexes.assigner}>
               <AttributeListItem label={foaf.name} propertyLabel="Deler" />
