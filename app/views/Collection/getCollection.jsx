@@ -21,12 +21,19 @@ import { listToArr } from '../../helpers/data';
 import { tryParseInt } from '../../helpers/numbers';
 import { useCurrentCollectionResource } from '../../hooks/useCurrentCollectionResource';
 import app from '../../ontology/app';
-import argu from '../../ontology/argu';
 import ll from '../../ontology/ll';
 import ontola from '../../ontology/ontola';
 import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
 import { CollectionTypes } from './types';
+
+const collectionHasInteraction = (actionStatus, collectionResourceType) => {
+  if (collectionResourceType === ontola.SearchResult) {
+    return true;
+  }
+
+  return actionStatus && !invalidStatusIds.includes(rdf.id(actionStatus));
+};
 
 export default function getCollection(
   name,
@@ -165,12 +172,10 @@ export default function getCollection(
 
     if (tryParseInt(totalItems) === 0 && collectionFilter.length === 0) {
       if (!renderWhenEmptyProp && !renderWhenEmpty) {
-        return <Property label={argu.query} setCurrentPage={setCollectionResource} />;
+        return <Property label={ontola.query} setCurrentPage={setCollectionResource} />;
       }
-      if (!renderWhenEmptyProp) {
-        if (!createAction || (actionStatus && invalidStatusIds.includes(rdf.id(actionStatus)))) {
-          return <div data-test="invalid-status" />;
-        }
+      if (!renderWhenEmptyProp && !collectionHasInteraction(actionStatus, collectionResourceType)) {
+        return <div data-test="invalid-status" />;
       }
     }
 

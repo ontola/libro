@@ -99,7 +99,6 @@ export default {
   primaryVote: argu('primaryVote'),
   proArguments: argu('proArguments'),
   processSteps: argu('processSteps'),
-  query: argu('query'),
   questions: argu('questions'),
   reactionsCount: argu('reactionsCount'),
   signInFlow: argu('signInFlow'),
