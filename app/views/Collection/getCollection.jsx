@@ -9,6 +9,7 @@ import {
   linkType,
   lrsType,
   subjectType,
+  useDataFetching,
   useDataInvalidation,
   useResourceProperty,
 } from 'link-redux';
@@ -75,6 +76,7 @@ export default function getCollection(
     );
     const [collectionResourceType] = useResourceProperty(collectionResource, rdfx.type);
     const [createAction] = useResourceProperty(subject, ontola.createAction);
+    useDataFetching(createAction);
     const [actionStatus] = useResourceProperty(createAction, schema.actionStatus);
 
     useEffect(() => {
