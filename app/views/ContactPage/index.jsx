@@ -8,9 +8,6 @@ import FontAwesome from 'react-fontawesome';
 import argu from '../../ontology/argu';
 import { fullResourceTopology } from '../../topologies/FullResource';
 
-const PIPEDRIVE_FORM_URL = 'https://pipedrivewebforms.com/form/b71321e1b145fce798bb512eceadbd02918860';
-const PIPEDRIVE_SCRIPT_URL = 'https://cdn.eu-central-1.pipedriveassets.com/web-form-assets/webforms.min.js';
-
 const useStyles = makeStyles((theme) => ({
   bg: {
     height: 'auto',
@@ -199,6 +196,9 @@ const socialPropTypes = {
 
 Social.propTypes = socialPropTypes;
 
+const PIPEDRIVE_FORM_URL = 'https://webforms.pipedrive.com/f/JJw99yDkXav2SVTvGiEs7pXNHJTAxP2zGw1UTQ6NK8AmCp643bD97K3WeRzXfVN';
+const PIPEDRIVE_SCRIPT_URL = 'https://webforms.pipedrive.com/f/loader';
+
 const ContactPage = () => {
   const classes = useStyles();
 
@@ -208,6 +208,7 @@ const ContactPage = () => {
 
     const div = document.createElement('div');
     div.setAttribute('data-pd-webforms', PIPEDRIVE_FORM_URL);
+    div.setAttribute('class', 'pipedriveWebForms');
     div.appendChild(script);
     document.body.appendChild(div);
 
