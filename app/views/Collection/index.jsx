@@ -8,7 +8,7 @@ import { gridTopology } from '../../topologies/Grid';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import { tabPaneTopology } from '../../topologies/TabPane';
 
-import getCollection from './getCollection';
+import getCollection, { EMPTY_STRATEGY } from './getCollection';
 import CreateAction from './properties/createAction';
 import CollectionFrame from './properties/collectionFrame';
 import FilterFields from './properties/filterFields';
@@ -32,42 +32,31 @@ import './Collection.scss';
 export default [
   CollectionTableCell,
   register(
-    getCollection('FullResourceCollection', {
-      renderWhenEmpty: true,
+    getCollection('CollectionVisibleOnEmpty', {
+      emptyStrategy: EMPTY_STRATEGY.always,
       topology: [
+        alertDialogTopology,
         fullResourceTopology,
+        tabPaneTopology,
+        gridTopology,
       ],
     })
   ),
   register(
-    getCollection('ContainerCollection', {
+    getCollection('CollectionWithOmniform', {
+      emptyStrategy: EMPTY_STRATEGY.interactable,
       omniform: true,
-      renderWhenEmpty: false,
       topology: [
         containerTopology,
       ],
     })
   ),
   register(
-    getCollection('AlertDialogCollection', {
-      topology: alertDialogTopology,
-    })
-  ),
-  register(
-    getCollection('CardAndCardMainAndGridCollection', {
-      renderWhenEmpty: true,
+    getCollection('CardCollection', {
+      emptyStrategy: EMPTY_STRATEGY.interactable,
       topology: [
         cardTopology,
         cardMainTopology,
-        gridTopology,
-      ],
-    })
-  ),
-  register(
-    getCollection('TabPaneCollection', {
-      renderWhenEmpty: true,
-      topology: [
-        tabPaneTopology,
       ],
     })
   ),

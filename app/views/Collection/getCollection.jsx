@@ -28,6 +28,12 @@ import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
 import { CollectionTypes } from './types';
 
+export const EMPTY_STRATEGY = {
+  always: 0,
+  interactable: 2,
+  never: 1,
+};
+
 const collectionHasInteraction = (actionStatus, collectionResourceType) => {
   if (collectionResourceType === ontola.SearchResult) {
     return true;
@@ -40,7 +46,7 @@ export default function getCollection(
   name,
   {
     omniform = false,
-    renderWhenEmpty = true,
+    emptyStrategy = EMPTY_STRATEGY.interactable,
     topology = [],
   } = {}
 ) {
@@ -59,7 +65,7 @@ export default function getCollection(
       maxColumns,
       originalCollectionResource: originalCollectionResourceProp,
       redirectPagination,
-      renderWhenEmpty: renderWhenEmptyProp,
+      renderWhenEmpty,
       renderPartOf,
       renderedPage,
       subject,
@@ -175,11 +181,12 @@ export default function getCollection(
       }
     }
 
-    if (tryParseInt(totalItems) === 0 && collectionFilter.length === 0) {
-      if (!renderWhenEmptyProp && !renderWhenEmpty) {
+    if (tryParseInt(totalItems) === 0 && collectionFilter.length === 0 && !renderWhenEmpty) {
+      if (emptyStrategy === EMPTY_STRATEGY.never) {
         return <Property label={ontola.query} setCurrentPage={setCollectionResource} />;
       }
-      if (!renderWhenEmptyProp && !collectionHasInteraction(actionStatus, collectionResourceType)) {
+      if (emptyStrategy === EMPTY_STRATEGY.interactable
+        && !collectionHasInteraction(actionStatus, collectionResourceType)) {
         return <div data-test="invalid-status" />;
       }
     }
