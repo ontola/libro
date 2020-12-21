@@ -13,7 +13,7 @@ import { Redirect } from 'react-router';
 
 import CardContent from '../../components/Card/CardContent';
 import AccountHelpersCardAppendix from '../../components/SignInForm/AccountHelpersCardAppendix';
-import { retrievePath } from '../../helpers/iris';
+import { isDifferentWebsite, retrievePath } from '../../helpers/iris';
 import { serializeForStorage } from '../../helpers/persistence';
 import { useCurrentActor } from '../../hooks/useCurrentActor';
 import { website } from '../../ontology/app';
@@ -80,7 +80,14 @@ const CreateSession = ({
         onCancel={currentSubject === subject ? null : () => {
           setSubject(subject);
         }}
-        onDone={setSubject}
+        onDone={(location) => {
+          if (isDifferentWebsite(location)) {
+            lrs.actions.ontola.hideDialog();
+            window.location = location.value;
+          } else {
+            setSubject(location);
+          }
+        }}
       />
     </Resource>
   );
