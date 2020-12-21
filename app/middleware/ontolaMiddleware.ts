@@ -170,8 +170,12 @@ const ontolaMiddleware = (history: History, serviceWorkerCommunicator: ServiceWo
     return store.exec(libro.actions.dialog.close);
   };
 
-  (store as any).actions.ontola.navigate = (resource: NamedNode) => {
-    return store.exec(rdf.namedNode(`${libro.actions.redirect.value}?location=${encodeURIComponent(resource.value)}`));
+  (store as any).actions.ontola.navigate = (resource: NamedNode, reload = false) => {
+    let query = `location=${encodeURIComponent(resource.value)}`;
+    if (reload) {
+      query += '&reload=true';
+    }
+    return store.exec(rdf.namedNode(`${libro.actions.redirect.value}?&${query}`));
   };
 
   /**
