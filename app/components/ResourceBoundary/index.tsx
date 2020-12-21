@@ -1,9 +1,9 @@
 import { SomeNode } from 'link-lib';
 import { useLinkRenderContext } from 'link-redux';
-import React from 'react';
+import React, { ComponentType } from 'react';
 
 interface PropTypes {
-  element?: string;
+  element?: string | ComponentType;
   subject?: SomeNode;
   wrapperProps?: any;
 }

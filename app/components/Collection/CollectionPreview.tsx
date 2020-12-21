@@ -1,19 +1,26 @@
-import { linkType, subjectType } from 'link-redux';
-import PropTypes from 'prop-types';
-import React from 'react';
+import { SomeTerm } from '@ontologies/core';
+import { SomeNode } from 'link-lib';
+import React, { KeyboardEvent, MouseEvent } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Heading from '../Heading';
 import LinkDuo from '../LinkDuo';
 import ResourceBoundary from '../ResourceBoundary';
 
-const CollectionPreview = ({
+interface CollectionPreviewProps {
+  depth: number;
+  setOpen: (open: boolean) => void;
+  subject: SomeNode;
+  totalItems: SomeTerm;
+}
+
+const CollectionPreview: React.FC<CollectionPreviewProps> = ({
   depth,
   setOpen,
   subject,
   totalItems,
 }) => {
-  const open = (e) => {
+  const open = (e: KeyboardEvent<Element> | MouseEvent<Element>) => {
     if (e) {
       e.preventDefault();
     }
@@ -46,13 +53,6 @@ const CollectionPreview = ({
       </LinkDuo>
     </ResourceBoundary>
   );
-};
-
-CollectionPreview.propTypes = {
-  depth: PropTypes.number,
-  setOpen: PropTypes.func,
-  subject: subjectType,
-  totalItems: linkType,
 };
 
 export default CollectionPreview;

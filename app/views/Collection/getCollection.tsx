@@ -1,19 +1,18 @@
 import * as as from '@ontologies/as';
-import rdf from '@ontologies/core';
+import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
 import * as rdfx from '@ontologies/rdf';
 import * as schema from '@ontologies/schema';
+import { SomeNode } from 'link-lib';
 import {
+  FC,
   Property,
   Resource,
   ReturnType,
-  linkType,
-  lrsType,
-  subjectType,
   useDataFetching,
   useDataInvalidation,
+  useLRS,
   useResourceProperty,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 
 import CollectionPreview from '../../components/Collection/CollectionPreview';
@@ -28,7 +27,33 @@ import { invalidStatusIds } from '../Thing/properties/omniform/helpers';
 
 import { CollectionTypes } from './types';
 
-const collectionHasInteraction = (actionStatus, collectionResourceType) => {
+export enum EMPTY_STRATEGY {
+  Always = 0,
+  Interactable = 2,
+  Never = 1,
+}
+
+interface CollectionProps {
+  clickToOpen: boolean;
+  collectionDisplay: SomeTerm;
+  collectionDisplayFromData: SomeTerm;
+  collectionFilter: SomeTerm[];
+  collectionType: SomeTerm;
+  columns: SomeNode[];
+  depth: number;
+  hideHeader: boolean;
+  hidePagination: boolean;
+  maxColumns: SomeTerm;
+  originalCollectionResource: NamedNode;
+  redirectPagination: boolean;
+  renderPartOf: boolean;
+  renderWhenEmpty: boolean;
+  renderedPage: NamedNode;
+  totalItems: SomeTerm;
+  view: SomeTerm;
+}
+
+const collectionHasInteraction = (actionStatus: SomeTerm, collectionResourceType: NamedNode) => {
   if (collectionResourceType === ontola.SearchResult) {
     return true;
   }
@@ -37,14 +62,14 @@ const collectionHasInteraction = (actionStatus, collectionResourceType) => {
 };
 
 export default function getCollection(
-  name,
+  name: string,
   {
     omniform = false,
-    renderWhenEmpty = true,
+    emptyStrategy = EMPTY_STRATEGY.Interactable,
     topology = [],
-  } = {}
+  } = {},
 ) {
-  const Collection = (props) => {
+  const Collection: FC<CollectionProps> = (props) => {
     const {
       clickToOpen,
       collectionDisplay,
@@ -55,29 +80,29 @@ export default function getCollection(
       depth,
       hideHeader,
       hidePagination,
-      lrs,
       maxColumns,
       originalCollectionResource: originalCollectionResourceProp,
       redirectPagination,
-      renderWhenEmpty: renderWhenEmptyProp,
+      renderWhenEmpty,
       renderPartOf,
       renderedPage,
       subject,
       totalItems,
       view,
     } = props;
+    const lrs = useLRS();
     const originalCollectionResource = React.useMemo(
       () => originalCollectionResourceProp || subject,
-      [originalCollectionResourceProp, subject]
+      [originalCollectionResourceProp, subject],
     );
     const [collectionResource, setCollectionResource] = useCurrentCollectionResource(
       redirectPagination,
-      originalCollectionResource
+      originalCollectionResource,
     );
-    const [collectionResourceType] = useResourceProperty(collectionResource, rdfx.type);
-    const [createAction] = useResourceProperty(subject, ontola.createAction);
+    const [collectionResourceType] = useResourceProperty(collectionResource, rdfx.type) as NamedNode[];
+    const [createAction] = useResourceProperty(subject, ontola.createAction) as NamedNode[];
     useDataFetching(createAction);
-    const [actionStatus] = useResourceProperty(createAction, schema.actionStatus);
+    const [actionStatus] = useResourceProperty(createAction, schema.actionStatus) as NamedNode[];
 
     useEffect(() => {
       if (!collectionResource && renderedPage) {
@@ -115,7 +140,7 @@ export default function getCollection(
       );
     }
 
-    if (clickToOpen && depth && depth > 1 && totalItems.value !== '0' && !opened) {
+    if (clickToOpen && depth && depth > 1 && totalItems.value !== '0' && !opened && subject) {
       return (
         <CollectionPreview
           depth={depth}
@@ -175,11 +200,12 @@ export default function getCollection(
       }
     }
 
-    if (tryParseInt(totalItems) === 0 && collectionFilter.length === 0) {
-      if (!renderWhenEmptyProp && !renderWhenEmpty) {
+    if (tryParseInt(totalItems) === 0 && collectionFilter.length === 0 && !renderWhenEmpty) {
+      if (emptyStrategy === EMPTY_STRATEGY.Never) {
         return <Property label={ontola.query} setCurrentPage={setCollectionResource} />;
       }
-      if (!renderWhenEmptyProp && !collectionHasInteraction(actionStatus, collectionResourceType)) {
+      if (emptyStrategy === EMPTY_STRATEGY.Interactable
+        && !collectionHasInteraction(actionStatus, collectionResourceType)) {
         return <div data-test="invalid-status" />;
       }
     }
@@ -245,28 +271,6 @@ export default function getCollection(
     },
     totalItems: as.totalItems,
     view: ll.view,
-  };
-
-  Collection.propTypes = {
-    clickToOpen: PropTypes.bool,
-    collectionDisplay: linkType,
-    collectionDisplayFromData: linkType,
-    collectionFilter: PropTypes.arrayOf(linkType),
-    collectionType: linkType,
-    columns: linkType,
-    depth: PropTypes.number,
-    hideHeader: PropTypes.bool,
-    hidePagination: PropTypes.bool,
-    lrs: lrsType,
-    maxColumns: linkType,
-    originalCollectionResource: linkType,
-    redirectPagination: PropTypes.bool,
-    renderPartOf: PropTypes.bool,
-    renderWhenEmpty: PropTypes.bool,
-    renderedPage: linkType,
-    subject: subjectType,
-    totalItems: linkType,
-    view: linkType,
   };
 
   return Collection;

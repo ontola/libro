@@ -2,7 +2,7 @@ import rdf from '@ontologies/core';
 import clsx from 'clsx';
 import { Location } from 'history';
 import { useLRS } from 'link-redux';
-import React, { MouseEvent, MouseEventHandler } from 'react';
+import React, { KeyboardEventHandler, MouseEvent, MouseEventHandler } from 'react';
 import { match } from 'react-router';
 import { Link as DomLink, NavLink } from 'react-router-dom';
 
@@ -46,7 +46,8 @@ export interface LinkPropTypes {
   features?: LinkFeature[];
   isActive?: (to: string) => (locationMatch: match<any> | null, location: Location) => boolean;
   isIndex?: boolean;
-  onClick?: MouseEventHandler;
+  onClick?: MouseEventHandler<Element>;
+  onKeyUp?: KeyboardEventHandler<Element>;
   role?: string;
   tabIndex?: number;
   target?: LinkTarget;

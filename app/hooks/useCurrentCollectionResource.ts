@@ -1,4 +1,4 @@
-import { NamedNode, SomeTerm } from '@ontologies/core';
+import { NamedNode } from '@ontologies/core';
 import {
   useLRS,
   useResourceProperty,
@@ -8,11 +8,13 @@ import { useHistory } from 'react-router';
 import { retrievePath } from '../helpers/iris';
 import app from '../ontology/app';
 
+type CurrentCollectionResource = [NamedNode, (newPage: NamedNode) => void];
+
 export const useCurrentCollectionResource = (redirectPagination: boolean, originalCollectionResource: NamedNode):
-  [ SomeTerm, (newPage: NamedNode) => void ] => {
+  CurrentCollectionResource => {
   const lrs = useLRS();
   const history = useHistory();
-  const [collectionResource] = useResourceProperty(originalCollectionResource, app.collectionResource);
+  const [collectionResource] = useResourceProperty(originalCollectionResource, app.collectionResource) as NamedNode[];
 
   if (redirectPagination) {
     const redirectPage = (newPage: NamedNode) => (
