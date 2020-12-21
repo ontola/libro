@@ -1,4 +1,3 @@
-import * as as from '@ontologies/as';
 import rdfx from '@ontologies/rdf';
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
@@ -80,11 +79,7 @@ const ProjectFull = ({
         <Resource subject={renderPhase}>
           <Container disableGutters size="large">
             <Grid container spacing={6}>
-              <Property label={ontola.widgets}>
-                <Property label={ontola.pages}>
-                  <Property label={as.items} />
-                </Property>
-              </Property>
+              <Property label={ontola.widgets} />
             </Grid>
           </Container>
         </Resource>

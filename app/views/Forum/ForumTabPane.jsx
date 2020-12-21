@@ -1,4 +1,3 @@
-import * as as from '@ontologies/as';
 import schema from '@ontologies/schema';
 import {
   Property,
@@ -19,11 +18,7 @@ const ForumTabPane = ({ name }) => (
     <Heading>{name?.value}</Heading>
     <Property label={schema.text} />
     <Grid container spacing={6}>
-      <Property label={ontola.widgets}>
-        <Property label={ontola.pages}>
-          <Property label={as.items} />
-        </Property>
-      </Property>
+      <Property label={ontola.widgets} />
     </Grid>
   </Container>
 );

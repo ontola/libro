@@ -1,4 +1,3 @@
-import * as as from '@ontologies/as';
 import schema from '@ontologies/schema';
 import {
   Property,
@@ -33,11 +32,7 @@ const ForumFull = ({ coverPhoto, hideHeader }) => {
       && <PageHeader background={coverPhotoUrl} positionY={positionY} />}
       <Container size="large">
         <Grid container spacing={6}>
-          <Property label={ontola.widgets}>
-            <Property label={ontola.pages}>
-              <Property label={as.items} />
-            </Property>
-          </Property>
+          <Property label={ontola.widgets} />
         </Grid>
       </Container>
     </React.Fragment>
