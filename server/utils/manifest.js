@@ -40,7 +40,7 @@ export const getBackendManifest = async (ctx, manifestLocation) => {
     return JSON.parse(headerRes);
   }
 
-  return processResponse(headerRes)?.json();
+  return (await processResponse(headerRes)).json();
 };
 
 function getManifest(build) {

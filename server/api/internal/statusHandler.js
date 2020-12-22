@@ -18,10 +18,11 @@ function getDevMessage(status) {
  * @param {Response} response A fetch-style response object.
  * @return {Promise<Response|Error>} The response if valid, an error object otherwise.
  */
-export default function processResponse(response) {
+export default async function processResponse(response) {
   if (response.status >= HttpStatus.OK && response.status < HttpStatus.MULTIPLE_CHOICES) {
     return response;
   }
+
   const ErrClass = getErrorClass(response.status);
   if (typeof ErrClass === 'undefined') {
     throw new Error(`Unhandled server status code '${response.status}'`);
@@ -33,5 +34,5 @@ export default function processResponse(response) {
     err.internal = true;
   }
 
-  return Promise.reject(err);
+  throw err;
 }
