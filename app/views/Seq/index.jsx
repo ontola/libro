@@ -59,7 +59,7 @@ export function Seq({
         </ErrorBoundary>
       </ItemWrapper>
     ))
-  ), [sequences]);
+  ), [subject, sequences, childProps, columns, depth]);
 
   const primaryItems = React.useMemo(
     () => (

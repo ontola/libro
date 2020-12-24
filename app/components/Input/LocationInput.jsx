@@ -15,7 +15,8 @@ import MapView from '../../containers/MapView';
 import fa4 from '../../ontology/fa4';
 import ontola from '../../ontology/ontola';
 import { FormContext } from '../Form/Form';
-import HiddenRequiredInput from '../Input/HiddenRequiredInput';
+
+import HiddenRequiredInput from './HiddenRequiredInput';
 
 import './LocationInput.scss';
 
@@ -55,19 +56,19 @@ const usePlacements = (object, lat, lon, zoomLevel) => {
 };
 
 const LocationInput = ({
+  inputValue,
   object,
-  value,
   onChange,
 }) => {
-  const [latInput] = useFormField({
+  const { input: latInput } = useFormField({
     object,
     path: schema.latitude,
   });
-  const [lonInput] = useFormField({
+  const { input: lonInput } = useFormField({
     object,
     path: schema.longitude,
   });
-  const [zoomLevelInput] = useFormField({
+  const { input: zoomLevelInput } = useFormField({
     object,
     path: ontola.zoomLevel,
   });
@@ -75,8 +76,8 @@ const LocationInput = ({
   const [lon] = lonInput?.value || [];
   const [zoomLevel] = zoomLevelInput?.value || [];
   React.useEffect(() => {
-    if (!value && lat && lon) {
-      onChange(true);
+    if (!inputValue && lat && lon) {
+      onChange([rdf.literal(true)]);
     }
   });
 
@@ -112,12 +113,12 @@ const LocationInput = ({
 };
 
 LocationInput.propTypes = {
-  object: linkType,
-  onChange: PropTypes.func,
-  value: PropTypes.oneOfType([
+  inputValue: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.string,
   ]),
+  object: linkType,
+  onChange: PropTypes.func,
 };
 
 export default LocationInput;

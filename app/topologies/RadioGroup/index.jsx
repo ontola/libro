@@ -9,9 +9,7 @@ import {
 } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 
-import { LoadingRow } from '../../components/Loading';
 import argu from '../../ontology/argu';
 import Topology from '../Topology';
 import { isResource } from '../../helpers/types';
@@ -27,7 +25,6 @@ class RadioGroup extends Topology {
 
   render() {
     const {
-      loading,
       name,
       onChange,
       options,
@@ -35,24 +32,11 @@ class RadioGroup extends Topology {
       value,
     } = this.props;
 
-    if (loading) {
-      return <LoadingRow />;
-    }
-
-    if (options.length === 0) {
-      return (
-        <FormattedMessage
-          defaultMessage="No options available"
-          id="https://app.argu.co/i18n/forms/radioGroup/noOptions"
-        />
-      );
-    }
-
     return this.wrap((
       <MaterialRadioGroup
-        value={value}
+        value={value?.value}
         onChange={(event, v) => (
-          onChange({ target: { value: options.find((option) => option.value === v) } })
+          onChange(options.find((option) => option.value === v))
         )}
       >
         {

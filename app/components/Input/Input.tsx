@@ -123,6 +123,11 @@ const Input = ({
   className,
   value,
   ...props
+}: {
+  element: string | typeof React.Component,
+  className?: string,
+  name?: string,
+  value?: string,
 }) => {
   const Element = element;
 

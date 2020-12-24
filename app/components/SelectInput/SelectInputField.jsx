@@ -49,18 +49,20 @@ const SelectInputField = ({
   initialSelectedItem,
   items,
   loading,
-  sharedProps,
+  name,
+  onChange,
   onStateChange,
+  required,
 }) => {
   const lrs = useLRS();
 
   return (
     <Downshift
+      id={name}
       initialInputValue={itemToString(initialSelectedItem, lrs)}
       initialSelectedItem={initialSelectedItem}
       itemToString={(item) => itemToString(item, lrs)}
-      {...sharedProps}
-      onChange={(v) => sharedProps.onChange({ target: { value: v } })}
+      onChange={(v) => onChange(v)}
       onStateChange={onStateChange}
     >
       {(downshiftOpts) => {
@@ -120,9 +122,9 @@ const SelectInputField = ({
 
         const renderOpen = () => {
           const inputProps = {
-            ...sharedProps,
             ...getInputProps({ onFocus }),
             autoFocus: true,
+            name,
           };
 
           return <Input {...inputProps} />;
@@ -142,8 +144,8 @@ const SelectInputField = ({
             >
               {list}
             </Select>
-            {sharedProps.required
-              && <HiddenRequiredInput name={sharedProps.name} value={initialSelectedItem?.value} />}
+            {required
+              && <HiddenRequiredInput name={name} value={initialSelectedItem?.value} />}
           </div>
         );
       }}
@@ -157,7 +159,10 @@ SelectInputField.propTypes = {
   items: PropTypes.arrayOf(linkType),
   loading: PropTypes.bool,
   lrs: PropTypes.instanceOf(LinkedRenderStore),
+  name: PropTypes.string,
+  onChange: PropTypes.func,
   onStateChange: PropTypes.func,
+  required: PropTypes.bool,
   sharedProps: PropTypes.shape({
     autoFocus: PropTypes.bool,
     className: PropTypes.string,

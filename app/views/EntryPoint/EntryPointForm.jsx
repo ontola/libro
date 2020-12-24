@@ -9,8 +9,8 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import Form from '../../components/Form/Form';
 import { LoadingGridContent } from '../../components/Loading';
-import FormContainer from '../../containers/Form';
 import { entityIsLoaded } from '../../helpers/data';
 import useInitialValues from '../../hooks/useInitialValues';
 import ll from '../../ontology/ll';
@@ -75,7 +75,7 @@ const EntryPointForm = ({
   }
 
   return (
-    <FormContainer
+    <Form
       action={url && new URL(url).pathname}
       autoSubmit={autoSubmit}
       className={className}
@@ -116,7 +116,7 @@ const EntryPointForm = ({
           </FormFooter>
         </React.Fragment>
       )}
-    </FormContainer>
+    </Form>
   );
 };
 

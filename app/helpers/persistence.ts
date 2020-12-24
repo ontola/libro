@@ -1,4 +1,5 @@
 import rdf, {NamedNode, SomeTerm} from '@ontologies/core';
+import { SomeNode } from 'link-lib';
 import { calculateFormFieldName } from './forms';
 import { handle } from './logging';
 
@@ -41,7 +42,7 @@ export const parseForStorage = (valueFromStorage: string | null): any  => {
   }
 };
 
-export const getStorageKey = (formContext: string, object: NamedNode, path: NamedNode) => (
+export const getStorageKey = (formContext: string, object?: SomeNode, path?: NamedNode) => (
     calculateFormFieldName(formContext, object, path)
 );
 

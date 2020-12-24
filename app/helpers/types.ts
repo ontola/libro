@@ -20,6 +20,8 @@ export const isJSONLDObject = (value: any): value is JSONLDObject => (
   Object.prototype.hasOwnProperty.call(value, '@id')
 );
 
+export const isNumber = (value: any): value is number => typeof value === 'number';
+
 export const isPromise = (obj: any): obj is Promise<any> => (
   isFunction(obj?.then)
 );

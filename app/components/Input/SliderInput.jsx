@@ -4,6 +4,8 @@ import { linkType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { fieldShapeType } from '../../hooks/useFormField';
+
 const StyledSlider = withStyles({
   active: {},
   rail: {
@@ -31,12 +33,15 @@ const StyledSlider = withStyles({
 })(Slider);
 
 const SliderInput = ({
+  fieldShape,
   value,
   onChange,
-  maxInclusive,
-  minInclusive,
   marks,
 }) => {
+  const {
+    maxInclusive,
+    minInclusive,
+  } = fieldShape;
   const handleChange = (e, val) => {
     e.preventDefault();
     onChange(val);
@@ -65,9 +70,8 @@ const SliderInput = ({
 };
 
 SliderInput.propTypes = {
+  fieldShape: fieldShapeType,
   marks: PropTypes.arrayOf(PropTypes.object),
-  maxInclusive: PropTypes.number,
-  minInclusive: PropTypes.number,
   onChange: PropTypes.func,
   value: linkType,
 };

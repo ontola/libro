@@ -1,35 +1,29 @@
-import {
-  linkType,
-  topologyType,
-} from 'link-redux';
+import { linkType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { fieldShapeType } from '../../hooks/useFormField';
+
 import './DateTime.scss';
 import './FormField.scss';
+import FormFieldDescription from './FormFieldDescription';
+import FormFieldHelper from './FormFieldHelper';
+import FormFieldLabel from './FormFieldLabel';
 import FormInputs from './FormInputs';
-import { optionsType } from './OptionsWrapper';
 
 import { formFieldError } from './index';
 
 const propTypes = {
   addItem: PropTypes.func,
-  allErrs: PropTypes.arrayOf(formFieldError),
-  autoComplete: PropTypes.string,
   autofocus: PropTypes.bool,
-  autofocusForm: PropTypes.bool,
   // Preferably use variants to style this component.
   className: PropTypes.string,
+  combinedComponent: PropTypes.bool,
   description: PropTypes.string,
-  /** @private */
-  fieldApi: PropTypes.shape({
-    setTouched: PropTypes.func,
-    setValue: PropTypes.func,
-  }),
+  field: linkType,
+  fieldShape: fieldShapeType,
   formIRI: linkType,
   helperText: PropTypes.string,
-  /** Ensure that it matches the label `for` attribute */
-  id: PropTypes.string,
   /** @private Contains form-library specific data */
   input: PropTypes.shape({
     name: PropTypes.string,
@@ -38,13 +32,13 @@ const propTypes = {
     onFocus: PropTypes.func,
     value: PropTypes.arrayOf(linkType),
   }),
+  inputComponent: PropTypes.func,
+  inputErrors: PropTypes.arrayOf(formFieldError),
   // Text above input field
   label: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.element,
   ]),
-  maxCount: PropTypes.number,
-  maxLength: PropTypes.number,
   /** @private Contains form-library specific data */
   meta: PropTypes.shape({
     active: PropTypes.bool,
@@ -54,28 +48,13 @@ const propTypes = {
     pristine: PropTypes.bool,
     touched: PropTypes.bool,
   }),
-  minCount: PropTypes.number,
-  minLength: PropTypes.number,
-  // Minimal number of rows for textAreas
-  minRows: PropTypes.number,
   // Name of the input, defaults to the field name
   name: PropTypes.string,
-  newItem: PropTypes.func,
-  onBlur: PropTypes.func,
-  onChange: PropTypes.func,
-  onKeyUp: PropTypes.func,
+  path: linkType,
   placeholder: PropTypes.string,
   preferPlaceholder: PropTypes.bool,
-  propertyIndex: PropTypes.number,
-  renderDescription: PropTypes.func,
-  renderLabel: PropTypes.func,
-  required: PropTypes.bool,
-  sequenceIndex: PropTypes.number,
-  shIn: optionsType,
-  storeKey: PropTypes.string,
-  submissionErrors: PropTypes.objectOf(PropTypes.arrayOf(formFieldError)),
+  renderHelper: PropTypes.func,
   theme: PropTypes.string,
-  topology: topologyType,
   values: PropTypes.arrayOf(linkType),
   // Modify te look and feel of the FormField
   variant: PropTypes.oneOf([
@@ -92,54 +71,67 @@ const propTypes = {
  *
  * @returns {component} Component
  */
-const FormField = (props) => {
-  const {
-    addItem,
-    allErrs,
-    autofocus,
-    autofocusForm,
-    className,
-    description,
-    helperText,
-    input,
-    label,
-    placeholder,
-    preferPlaceholder,
-    renderDescription: DescriptionRenderer,
-    renderLabel: LabelRenderer,
-    required,
-    sequenceIndex,
-    theme,
-    values,
-    variant,
-  } = props;
+const FormField = ({
+  addItem,
+  inputErrors,
+  autofocus,
+  className,
+  combinedComponent,
+  description,
+  field,
+  fieldShape,
+  formIRI,
+  helperText,
+  input,
+  inputComponent,
+  label,
+  meta,
+  path,
+  placeholder,
+  preferPlaceholder,
+  renderHelper,
+  theme,
+  values,
+  variant,
+}) => {
   const { name } = input;
 
   return (
     <div className={className}>
-      {LabelRenderer && (
-        <LabelRenderer
+      {label && (
+        <FormFieldLabel
           label={label}
           name={name}
-          required={required}
+          required={fieldShape.required}
           theme={theme}
         />
       )}
-      {DescriptionRenderer && (
-        <DescriptionRenderer
+      {(description || helperText) && (
+        <FormFieldDescription
           description={description}
           helperText={helperText}
           preferPlaceholder={preferPlaceholder}
         />
       )}
       <FormInputs
-        {...props}
         addItem={addItem}
-        allErrs={allErrs}
-        autofocus={autofocus || (autofocusForm && sequenceIndex === 0)}
+        autofocus={autofocus}
+        combinedComponent={combinedComponent}
+        description={description}
+        field={field}
+        fieldShape={fieldShape}
+        formIRI={formIRI}
+        inputComponent={inputComponent}
+        inputErrors={inputErrors}
+        label={label}
+        meta={meta}
+        name={input.name}
+        path={path}
         placeholder={placeholder || (preferPlaceholder ? description : null)}
+        renderHelper={renderHelper}
         values={values}
         variant={variant}
+        onChange={input.onChange}
       />
     </div>
   );
@@ -147,5 +139,10 @@ const FormField = (props) => {
 
 FormField.propTypes = propTypes;
 
+FormField.defaultProps = {
+  combinedComponent: true,
+  preferPlaceholder: false,
+  renderHelper: FormFieldHelper,
+};
 
 export default FormField;

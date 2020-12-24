@@ -1,17 +1,17 @@
-import rdf, { isNode, Node } from '@ontologies/core';
+import rdf, { isNode, Node, Term } from '@ontologies/core';
 
 import ontola from '../ontology/ontola';
 
 import { isJSONLDObject } from './types';
 
-interface JSONLDObject {
+export interface JSONLDObject {
     '@id': Node;
     [key: string]: any;
 }
 
 export const destroyFieldName = btoa(ontola._destroy.value);
 
-export function calculateFormFieldName(...segments: Array<string | number | Node | JSONLDObject | undefined>): string {
+export function calculateFormFieldName(...segments: Array<string | number | Term | JSONLDObject | undefined>): string {
     return segments
         .map((segment) => {
             if (typeof segment === 'undefined') {

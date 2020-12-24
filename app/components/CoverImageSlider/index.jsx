@@ -78,7 +78,7 @@ const CoverImageSlider = ({
 }) => {
   const classes = useStyles();
 
-  const [input] = useFormField({
+  const { input } = useFormField({
     object,
     path: ontola.imagePositionY,
   });

@@ -1,43 +1,40 @@
-import RDFTypes from '@rdfdev/prop-types';
 import equal from 'fast-deep-equal';
-import { linkType } from 'link-redux';
+import { SomeNode } from 'link-lib';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Form as FinalForm } from 'react-final-form';
 
 import { error } from '../../helpers/logging';
-import { Input } from '../Input';
+import { isFunction } from '../../helpers/types';
+import { withFormLRS } from '../../hooks/useFormLRS';
+import Input from '../Input/Input';
 
-const propTypes = {
-  action: PropTypes.string,
-  autoSubmit: PropTypes.bool,
-  children: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.node,
-  ]).isRequired,
-  className: PropTypes.string,
-  /** Override the form instance */
-  form: PropTypes.shape({}),
-  formID: PropTypes.string.isRequired,
-  initialValues: PropTypes.objectOf(PropTypes.any),
-  method: PropTypes.oneOfType([
-    PropTypes.string,
-    RDFTypes.literal,
-  ]),
-  object: linkType,
-  onSubmit: PropTypes.func.isRequired,
-  subscription: PropTypes.objectOf(PropTypes.any),
-  validateOnBlur: PropTypes.bool,
-};
+interface PropTypes {
+  action: string;
+  autoSubmit: boolean;
+  children: React.ReactNode | ((props: any) => any);
+  className: string;
+  form: any;
+  formID: string;
+  initialValues: any;
+  method: string;
+  object: SomeNode;
+  onSubmit: (...props: any) => any;
+  subscription: any;
+  validateOnBlur: boolean;
+}
 
 const defaultProps = {
   method: 'post',
   validateOnBlur: false,
 };
 
-export const FormContext = React.createContext();
+export const FormContext = React.createContext({
+  formID: undefined as (undefined | string),
+  object: undefined as (undefined | SomeNode),
+});
 
-const Form = (props) => {
+const Form = (props: PropTypes) => {
   const {
     action,
     autoSubmit,
@@ -53,7 +50,7 @@ const Form = (props) => {
     validateOnBlur,
   } = props;
   const [autoSubmitted, setAutoSubmitted] = React.useState(false);
-  const submitHandler = (...args) => onSubmit({ onSubmit: submitHandler }, ...args)
+  const submitHandler = (...args: any) => onSubmit({ onSubmit: submitHandler }, ...args)
     .then(() => {
       const formApi = args[1];
 
@@ -67,8 +64,7 @@ const Form = (props) => {
     })
     .catch(error);
 
-  const renderFunc = typeof children === 'function';
-  const controlledSubmit = renderFunc ? submitHandler : onSubmit;
+  const controlledSubmit = isFunction(children) ? submitHandler : onSubmit;
   React.useEffect(() => {
     if (autoSubmit && !autoSubmitted) {
       setAutoSubmitted(true);
@@ -76,8 +72,10 @@ const Form = (props) => {
     }
   }, [autoSubmit, autoSubmitted]);
 
-  const lowerMethod = (typeof method === 'string' ? method : method.value).toLowerCase();
-  const methodInput = !['get', 'post'].includes(lowerMethod) && <Input name="_method" type="hidden" value={method} />;
+  const lowerMethod = method.toLowerCase();
+  const methodInput = !['get', 'post'].includes(lowerMethod) && (
+    <Input name="_method" type="hidden" value={method} />
+  );
   const formMethod = lowerMethod === 'get' ? 'get' : 'post';
 
   return (
@@ -101,7 +99,7 @@ const Form = (props) => {
             method={formMethod}
             onSubmit={handleSubmit}
           >
-            {renderFunc ? children(childProps) : children}
+            {isFunction(children) ? children(childProps) : children}
             {methodInput}
           </form>
         </FormContext.Provider>
@@ -114,6 +112,5 @@ const Form = (props) => {
 };
 
 Form.defaultProps = defaultProps;
-Form.propTypes = propTypes;
 
-export default Form;
+export default withFormLRS(Form);

@@ -10,6 +10,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { isResource } from '../../helpers/types';
+import useFieldOptions from '../../hooks/useFieldOptions';
 import { inlineTopology } from '../../topologies/Inline';
 import HiddenRequiredInput from '../Input/HiddenRequiredInput';
 import { LoadingRow } from '../Loading';
@@ -26,13 +27,15 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ToggleButtonGroup = ({
-  loading,
   name,
-  onChange,
-  options,
   required,
-  value,
+  inputValue,
+  onChange,
 }) => {
+  const {
+    loading,
+    options,
+  } = useFieldOptions();
   const classes = useStyles();
 
   if (loading) {
@@ -50,14 +53,17 @@ const ToggleButtonGroup = ({
 
   return (
     <React.Fragment>
-      {required && <HiddenRequiredInput value={value?.value} />}
+      {required && <HiddenRequiredInput value={inputValue?.value} />}
       <MaterialToggleButtonGroup
         exclusive
         className={classes.buttonGroup}
-        value={value}
-        onChange={(event, v) => (
-          onChange({ target: { value: options.find((option) => option.value === v) } })
-        )}
+        value={inputValue?.value}
+        onChange={(event, v) => {
+          const option = options.find((o) => o.value === v);
+          if (option) {
+            onChange(option);
+          }
+        }}
       >
         {options.map((option) => (
           <ToggleButton
@@ -77,12 +83,10 @@ const ToggleButtonGroup = ({
 };
 
 ToggleButtonGroup.propTypes = {
-  loading: PropTypes.bool,
+  inputValue: linkType,
   name: PropTypes.string,
   onChange: PropTypes.func,
-  options: PropTypes.arrayOf(linkType),
   required: PropTypes.bool,
-  value: linkType,
 };
 
 export default ToggleButtonGroup;

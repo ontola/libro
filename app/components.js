@@ -15,7 +15,7 @@ import CompCardCardContent from './components/Card/CardContent';
 import CompCardCardDivider from './components/Card/CardDivider';
 import CompCardCardHeader from './components/Card/CardHeader';
 import CompCardCardLink from './components/Card/CardLink';
-import CompCheckboxesInput from './components/CheckboxesInput/index';
+import CompCheckboxesInput from './components/Input/CheckboxesInput';
 import CompCollapseText from './components/CollapseText/index';
 import CompCollapsible from './components/Collapsible/index';
 import CompCollection from './components/Collection/index';
@@ -36,7 +36,6 @@ import CompFieldLabel from './components/FieldLabel/index';
 import CompFormField from './components/FormField/FormField';
 import CompFormFieldCharCounter from './components/FormField/CharCounter';
 import CompFormFieldFieldHelper from './components/FormField/FieldHelper';
-import CompFormFieldOptionsWrapper from './components/FormField/OptionsWrapper';
 import CompFormFooterImage from './components/Form/FooterImage';
 import CompFormFooterRight from './components/Form/FooterRight';
 import CompFormForm from './components/Form/Form';
@@ -126,7 +125,6 @@ export const componentMap = {
   [rdf.id(components.FormField)]: CompFormField,
   [rdf.id(components.FormFieldCharCounter)]: CompFormFieldCharCounter,
   [rdf.id(components.FormFieldFieldHelper)]: CompFormFieldFieldHelper,
-  [rdf.id(components.FormFieldOptionsWrapper)]: CompFormFieldOptionsWrapper,
   [rdf.id(components.FormFooterImage)]: CompFormFooterImage,
   [rdf.id(components.FormFooterRight)]: CompFormFooterRight,
   [rdf.id(components.FormForm)]: CompFormForm,

@@ -16,7 +16,7 @@ import HiddenRequiredInput from './HiddenRequiredInput';
 
 const FileInput = ({
   formIRI,
-  value,
+  inputValue,
   name,
   object,
   onChange,
@@ -46,7 +46,7 @@ const FileInput = ({
 
   return (
     <React.Fragment>
-      {required && <HiddenRequiredInput value={value} />}
+      {required && <HiddenRequiredInput value={inputValue?.value} />}
       <MediaObjectOmniformDropzoneLoader
         encodingFormatTypes={encodingFormatTypes}
         formIRI={formIRI}
@@ -55,7 +55,7 @@ const FileInput = ({
         object={object}
         openDialog={openDialog}
         resourceInput={null}
-        value={value}
+        value={inputValue?.value}
         onChange={onChange}
       />
     </React.Fragment>
@@ -64,11 +64,11 @@ const FileInput = ({
 
 FileInput.propTypes = {
   formIRI: linkType,
+  inputValue: PropTypes.string,
   name: PropTypes.string,
   object: linkType,
   onChange: PropTypes.func,
   required: PropTypes.bool,
-  value: PropTypes.string,
 };
 
 export default FileInput;

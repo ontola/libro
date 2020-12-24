@@ -1,3 +1,4 @@
+import { isNamedNode } from '@ontologies/core';
 import Downshift from 'downshift';
 import PropTypes from 'prop-types';
 import {
@@ -13,6 +14,8 @@ import { entityIsLoaded } from '../../helpers/data';
 import normalizedLower from '../../helpers/i18n';
 import { isResource } from '../../helpers/types';
 import { iriFromTemplate } from '../../helpers/uriTemplate';
+import useFieldOptions from '../../hooks/useFieldOptions';
+import { fieldShapeType } from '../../hooks/useFormField';
 import { LoadingRow } from '../Loading';
 
 import SelectInputField, { MAX_ITEMS, itemToString } from './SelectInputField';
@@ -134,17 +137,20 @@ function updateOptions(state, options, lrs) {
 }
 
 const SelectInputWrapper = ({
-  className,
-  initialValue,
+  fieldShape,
   inputValue,
-  iriTemplate,
-  loading,
-  onOptionsChange,
-  options,
-  sharedProps,
+  name,
+  onChange,
 }) => {
   const { formatMessage } = useIntl();
   const lrs = useLRS();
+  const {
+    iriTemplate,
+    loading,
+    options,
+    renderCreateButton: CreateButton,
+    setShIn,
+  } = useFieldOptions();
 
   const [state, setState] = React.useState({
     itemsToShow: [],
@@ -160,57 +166,48 @@ const SelectInputWrapper = ({
       setState,
       lrs,
       iriTemplate,
-      onOptionsChange
+      setShIn
     ),
     iriTemplate ? DEBOUNCE_TIMER : 0,
     { leading: true }
   );
   useDataInvalidation(options.filter(isResource));
 
-  const initialSelectedItem = inputValue || initialValue?.[0];
+  const initialSelectedItem = inputValue;
 
-  if (__CLIENT__ && initialSelectedItem && initialSelectedItem.termType === 'NamedNode' && !entityIsLoaded(lrs, initialSelectedItem)) {
+  if (__CLIENT__ && isNamedNode(initialSelectedItem) && !entityIsLoaded(lrs, initialSelectedItem)) {
     lrs.queueEntity(initialSelectedItem);
 
     return <LoadingRow />;
   }
 
   return (
-    <div className={className}>
+    <div className="Field__input Field__input--select">
       <SelectInputField
         emptyText={emptyText(formatMessage, iriTemplate, state.inputValue)}
         initialSelectedItem={initialSelectedItem}
         items={state.itemsToShow}
         loading={loading}
-        sharedProps={sharedProps}
+        name={name}
+        required={fieldShape.required}
         value={inputValue}
+        onChange={onChange}
         onStateChange={debouncedCallback}
       />
+      <CreateButton />
     </div>
   );
 };
 
 SelectInputWrapper.propTypes = {
-  className: PropTypes.string,
-  initialValue: linkType,
+  fieldShape: fieldShapeType,
   inputValue: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
     linkType,
   ]),
-  iriTemplate: linkType,
-  loading: PropTypes.bool,
-  onOptionsChange: PropTypes.func,
-  options: PropTypes.arrayOf(linkType),
-  sharedProps: PropTypes.shape({
-    autoFocus: PropTypes.bool,
-    className: PropTypes.string,
-    name: PropTypes.string,
-    onBlur: PropTypes.func,
-    onChange: PropTypes.func,
-    onFocus: PropTypes.func,
-    required: PropTypes.bool,
-  }).isRequired,
+  name: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 export default SelectInputWrapper;

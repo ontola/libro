@@ -1,39 +1,40 @@
-import rdf, { isNamedNode } from '@ontologies/core';
+import rdf, { isNamedNode, isTerm } from '@ontologies/core';
 import { linkType, topologyType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import { destroyFieldName, isMarkedForRemove } from '../../helpers/forms';
+import { fieldShapeType } from '../../hooks/useFormField';
 import Button from '../Button';
-import CheckboxesInput from '../CheckboxesInput';
 
 import FormFieldAddButton from './FormFieldAddButton';
-import InputElement from './InputElement';
-import OptionsWrapper from './OptionsWrapper';
 
 import { formFieldError } from './index';
 
 const FormInputs = (props) => {
   const {
     addItem,
-    allErrs,
+    inputErrors,
     autofocus,
+    combinedComponent,
     description,
-    input,
+    fieldShape,
+    inputComponent: InputComponent,
     label,
-    maxCount,
-    maxLength,
     meta,
-    minCount,
+    name,
+    onChange,
     renderHelper: HelperRenderer,
-    required,
-    shIn,
-    topology,
-    type,
     values,
     variant,
   } = props;
+  const {
+    maxCount,
+    maxLength,
+    removable,
+    required,
+  } = fieldShape;
   const {
     dirtySinceLastSubmit,
     pristine,
@@ -42,21 +43,9 @@ const FormInputs = (props) => {
   if (!values) {
     return null;
   }
-  const removable = (minCount !== 1 || maxCount > 1);
 
-  if (type === 'checkboxes') {
-    return (
-      <OptionsWrapper
-        Component={CheckboxesInput}
-        componentProps={{
-          onChange: input.onChange,
-          required,
-          values: input.value,
-        }}
-        shIn={shIn}
-        topology={topology}
-      />
-    );
+  if (!combinedComponent) {
+    return <InputComponent {...props} />;
   }
 
   return (
@@ -66,27 +55,34 @@ const FormInputs = (props) => {
           return null;
         }
         const removeItem = () => {
-          const newValue = input.value?.slice() || [];
+          const newValue = values?.slice() || [];
           if (isNamedNode(newValue[index]['@id'])) {
             newValue[index][destroyFieldName] = rdf.literal(true);
           } else {
             newValue.splice(index, 1);
           }
 
-          input.onChange(newValue);
+          onChange(newValue);
+        };
+        const inputOnChange = (val) => {
+          const newValue = values?.slice() || [];
+          newValue[index] = isTerm(val) ? val : rdf.literal(val || '');
+          onChange(newValue);
         };
 
-        const errors = allErrs?.filter((err) => err?.index === index);
+        const errors = inputErrors?.filter((err) => err?.index === index);
 
         return (
-          <div className="Field__wrapper" key={[input.name, index].join('.')}>
-            <InputElement
+          <div className="Field__wrapper" key={[name, index].join('.')}>
+            <InputComponent
               {...props}
               autofocus={autofocus && index === 0}
               errors={errors}
+              id={name}
               inputIndex={index}
               inputValue={value}
-              variant={variant}
+              name={name}
+              onChange={inputOnChange}
             />
             {removable && (
               <Button
@@ -97,14 +93,16 @@ const FormInputs = (props) => {
                 <FontAwesome name="times" />
               </Button>
             )}
-            <HelperRenderer
-              description={description}
-              error={(dirtySinceLastSubmit || pristine) ? undefined : errors}
-              maxLength={maxLength}
-              required={required}
-              value={value}
-              variant={variant}
-            />
+            {HelperRenderer && (
+              <HelperRenderer
+                description={description}
+                error={(dirtySinceLastSubmit || pristine) ? undefined : errors}
+                maxLength={maxLength}
+                required={required}
+                value={value}
+                variant={variant}
+              />
+            )}
           </div>
         );
       }))}
@@ -120,19 +118,13 @@ const FormInputs = (props) => {
 
 FormInputs.propTypes = {
   addItem: PropTypes.func,
-  allErrs: PropTypes.arrayOf(formFieldError),
   autofocus: PropTypes.bool,
+  combinedComponent: PropTypes.bool,
   description: PropTypes.string,
-  input: PropTypes.shape({
-    name: PropTypes.string,
-    onBlur: PropTypes.func,
-    onChange: PropTypes.func,
-    onFocus: PropTypes.func,
-    value: PropTypes.arrayOf(linkType),
-  }),
+  fieldShape: fieldShapeType,
+  inputComponent: PropTypes.func,
+  inputErrors: PropTypes.arrayOf(formFieldError),
   label: PropTypes.string,
-  maxCount: PropTypes.number,
-  maxLength: PropTypes.number,
   meta: PropTypes.shape({
     active: PropTypes.bool,
     dirty: PropTypes.bool,
@@ -142,10 +134,9 @@ FormInputs.propTypes = {
     pristine: PropTypes.bool,
     touched: PropTypes.bool,
   }),
-  minCount: PropTypes.number,
+  name: PropTypes.string,
+  onChange: PropTypes.func,
   renderHelper: PropTypes.func,
-  required: PropTypes.bool,
-  shIn: linkType,
   topology: topologyType,
   type: PropTypes.string,
   values: PropTypes.arrayOf(linkType),

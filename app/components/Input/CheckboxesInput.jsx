@@ -7,11 +7,14 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { parseForStorage } from '../../helpers/persistence';
+import useFieldOptions from '../../hooks/useFieldOptions';
+import { fieldShapeType } from '../../hooks/useFormField';
 import Select from '../../topologies/Select';
 import FieldLabel from '../FieldLabel';
-import { Input } from '../Input';
-import HiddenRequiredInput from '../Input/HiddenRequiredInput';
 import Spinner from '../Spinner';
+
+import HiddenRequiredInput from './HiddenRequiredInput';
+import Input from './Input';
 
 function handleChange(e, values, onChange) {
   const newValue = values?.slice() || [];
@@ -28,13 +31,20 @@ function handleChange(e, values, onChange) {
 }
 
 function CheckboxesInput({
-  loading,
-  onChange,
-  options,
   name,
-  required,
+  onChange,
+  fieldShape,
   values,
 }) {
+  const {
+    required,
+  } = fieldShape;
+  const {
+    loading,
+    options,
+    renderCreateButton: CreateButton,
+  } = useFieldOptions();
+
   if (loading) {
     return <Spinner loading />;
   }
@@ -62,6 +72,7 @@ function CheckboxesInput({
           htmlFor={item.value}
           label={label}
         />
+        <CreateButton />
       </div>
     );
   });
@@ -75,10 +86,9 @@ function CheckboxesInput({
 }
 
 CheckboxesInput.propTypes = {
-  loading: PropTypes.bool,
+  fieldShape: fieldShapeType,
   name: PropTypes.string,
   onChange: PropTypes.func,
-  options: PropTypes.arrayOf(linkType),
   required: PropTypes.bool,
   values: PropTypes.arrayOf(linkType),
 };

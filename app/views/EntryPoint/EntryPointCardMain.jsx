@@ -83,6 +83,7 @@ const EntryPointCardMain = (props) => {
         <Property label={schema.text} />
       </CardContent>
       <EntryPointForm
+        autofocusForm
         actionBody={actionBody}
         autoSubmit={autoSubmit}
         contentWrapper={CardContent}

@@ -1,6 +1,7 @@
+import { NamedNode } from '@ontologies/core';
+import { linkType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { linkType } from 'link-redux';
 
 import { calculateFormFieldName } from '../../helpers/forms';
 
@@ -11,13 +12,18 @@ const propTypes = {
   propertyIndex: PropTypes.number,
 };
 
-export const FormSectionContext = React.createContext(undefined);
+export const FormSectionContext = React.createContext(undefined as string | undefined);
 
 const FormSection = ({
   children,
+  name,
   path,
   propertyIndex,
-  name,
+}: {
+  children: React.ReactNode,
+  name: string,
+  path: NamedNode,
+  propertyIndex: number,
 }) => {
   const contextLabel = calculateFormFieldName(name, propertyIndex);
 

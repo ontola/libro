@@ -18,9 +18,9 @@ const propTypes = {
   autoFocus: PropTypes.bool,
   disableRich: PropTypes.bool,
   getMarkdownValue: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
   maxLength: PropTypes.string,
   minLength: PropTypes.string,
+  name: PropTypes.string.isRequired,
   onBlur: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   onFocus: PropTypes.func.isRequired,
@@ -64,10 +64,10 @@ class TextEditor extends Component {
   render() {
     const {
       autoFocus,
-      id,
       getMarkdownValue,
       maxLength,
       minLength,
+      name,
       placeholder,
       rows,
       showRichEditor,
@@ -90,7 +90,7 @@ class TextEditor extends Component {
         {(showRichEditor && !disableRich) && (
         <RichEditor
           autoFocus={autoFocus}
-          id={id}
+          id={name}
           placeholder={placeholder}
           value={value}
           onBlur={(e) => {
@@ -107,7 +107,7 @@ class TextEditor extends Component {
         <PlainEditor
           autoFocus={autoFocus}
           disableRich={disableRich}
-          id={id}
+          id={name}
           maxLength={maxLength}
           minLength={minLength}
           placeholder={placeholder}
