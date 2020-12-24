@@ -10,6 +10,7 @@ import {
   isLocalAnchor,
   retrievePath,
 } from '../../helpers/iris';
+import { isFunction } from '../../helpers/types';
 import app from '../../ontology/app';
 
 import ExternalLink from './ExternalLink';
@@ -84,7 +85,7 @@ const Link = ({
     : (e) => {
       e.preventDefault();
       lrs.actions.ontola.showDialog(rdf.namedNode(to));
-      if (typeof onClick === 'function') {
+      if (isFunction(onClick)) {
         onClick(e);
       }
     };

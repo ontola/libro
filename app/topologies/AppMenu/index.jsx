@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import DropdownMenu from '../../components/DropdownMenu';
+import { isFunction } from '../../helpers/types';
 import app from '../../ontology/app';
 import Topology from '../Topology';
 
@@ -43,7 +44,7 @@ class AppMenu extends Topology {
 
   renderContent(handleClose) {
     return this.wrap((subject) => {
-      if (typeof this.props.children === 'function') {
+      if (isFunction(this.props.children)) {
         return this.props.children({
           handleClose,
           subject,

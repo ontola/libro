@@ -2,6 +2,8 @@ import MaterialMenu from '@material-ui/core/Menu/Menu';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { isFunction } from '../../helpers/types';
+
 const propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.node,
@@ -13,7 +15,7 @@ const propTypes = {
 };
 
 const childComponent = (children, handleClose) => {
-  if (typeof children === 'function') {
+  if (isFunction(children)) {
     const Comp = React.forwardRef((props, ref) => children({
       handleClose,
       ref,

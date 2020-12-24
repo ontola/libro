@@ -2,6 +2,8 @@ import rdf, { isNode, Node } from '@ontologies/core';
 
 import ontola from '../ontology/ontola';
 
+import { isJSONLDObject } from './types';
+
 interface JSONLDObject {
     '@id': Node;
     [key: string]: any;
@@ -18,7 +20,7 @@ export function calculateFormFieldName(...segments: Array<string | number | Node
             if (typeof segment === 'number' || typeof segment === 'string') {
                 return segment;
             }
-            if (Object.prototype.hasOwnProperty.call(segment, '@id')) {
+            if (isJSONLDObject(segment)) {
                 return btoa((segment as JSONLDObject)['@id'].value);
             }
 

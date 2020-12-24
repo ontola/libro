@@ -14,6 +14,7 @@ import { Router } from 'react-router';
 import { getWebsiteContextFromWebsite } from './helpers/app';
 import { retrievePath } from './helpers/iris';
 import { generateCtx } from './helpers/link-redux/fixtures';
+import { isFunction } from './helpers/types';
 import { WebsiteContext } from './location';
 import configureStore from './state';
 import englishMessages from './translations/en.json';
@@ -82,7 +83,7 @@ const customRender = (ui, {
   const ctx = generateCtx(graph, iri);
 
   const result = render(
-    typeof ui === 'function' ? ui({ iri }) : ui,
+    isFunction(ui) ? ui({ iri }) : ui,
     {
       wrapper: wrapProviders({
         ctx,

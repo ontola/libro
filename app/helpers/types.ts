@@ -1,5 +1,6 @@
 import { BlankNode, Literal, NamedNode } from '@ontologies/core';
 import xsd from '@ontologies/xsd';
+import { JSONLDObject } from './forms';
 
 export const isDate = (prop: any) => (
   isLiteral(prop) && prop.datatype === xsd.date
@@ -13,8 +14,14 @@ export const isDateOrDateTime = (prop: any) => (
   isDate(prop) || isDateTime(prop)
 );
 
+export const isFunction = (value: any): value is ((...props: any) => any) => typeof value === 'function';
+
+export const isJSONLDObject = (value: any): value is JSONLDObject => (
+  Object.prototype.hasOwnProperty.call(value, '@id')
+);
+
 export const isPromise = (obj: any): obj is Promise<any> => (
-  typeof obj?.then === 'function'
+  isFunction(obj?.then)
 );
 
 export const isResource = (obj: any): obj is NamedNode | BlankNode => (

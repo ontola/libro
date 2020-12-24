@@ -2,6 +2,8 @@
 
 import HttpStatus from 'http-status-codes';
 
+import { isFunction } from '../../app/helpers/types';
+
 /**
  * Provides error classes to be used in the server.
  * These can be raised to indicate a certain error has occurred.
@@ -18,7 +20,7 @@ class ExtendableError extends Error {
   constructor(message) {
     super(message);
     this.name = this.constructor.name;
-    if (typeof Error.captureStackTrace === 'function') {
+    if (isFunction(Error.captureStackTrace)) {
       Error.captureStackTrace(this, this.constructor);
     } else {
       this.stack = (new Error(message)).stack;
