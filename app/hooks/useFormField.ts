@@ -65,8 +65,6 @@ export interface FormFieldProps {
   storage: boolean;
   submissionErrors: SubmissionErrors;
   subject: SomeNode;
-  theme: string;
-  variant: string;
   whitelist: number[];
 }
 
@@ -152,13 +150,11 @@ const useFormField = (componentProps: FormFieldProps) => {
     sequenceIndex,
     storage,
     submissionErrors,
-    theme,
-    variant,
     whitelist,
   } = props;
 
   const lrs = useLRS();
-  const { formID } = React.useContext(FormContext);
+  const { formID, theme } = React.useContext(FormContext);
   const formSectionContext = React.useContext(FormSectionContext);
 
   const fieldProps = useLink(mapFieldProps);
@@ -278,11 +274,10 @@ const useFormField = (componentProps: FormFieldProps) => {
     isNumber(fieldShape.minCount) ? fieldShape.minCount : undefined,
     newItem,
   );
-  const resolvedVariant = theme === 'omniform' ? 'preview' : variant;
   const inputErrors = submissionErrors?.[input.name] || error;
   const className = classNames({
     'Field': true,
-    [`Field--variant-${resolvedVariant}`]: resolvedVariant,
+    [`Field--variant-${theme}`]: theme,
     'Field--active': active,
     'Field--dirty': dirty,
     'Field--error': !!inputErrors,
@@ -304,7 +299,6 @@ const useFormField = (componentProps: FormFieldProps) => {
     object,
     preferPlaceholder,
     storeKey,
-    theme,
     values,
     ...fieldProps,
   };

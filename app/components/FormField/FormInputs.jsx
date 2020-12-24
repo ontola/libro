@@ -27,7 +27,6 @@ const FormInputs = (props) => {
     onChange,
     renderHelper: HelperRenderer,
     values,
-    variant,
   } = props;
   const {
     maxCount,
@@ -100,7 +99,6 @@ const FormInputs = (props) => {
                 maxLength={maxLength}
                 required={required}
                 value={value}
-                variant={variant}
               />
             )}
           </div>
@@ -140,7 +138,6 @@ FormInputs.propTypes = {
   topology: topologyType,
   type: PropTypes.string,
   values: PropTypes.arrayOf(linkType),
-  variant: PropTypes.string,
 };
 
 export default FormInputs;

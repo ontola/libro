@@ -29,8 +29,4 @@ DateFormField.type = [
 
 DateFormField.topology = allTopologies;
 
-DateFormField.defaultProps = {
-  variant: 'default',
-};
-
 export default register(DateFormField);

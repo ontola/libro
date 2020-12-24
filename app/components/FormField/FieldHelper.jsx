@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { FormContext } from '../Form/Form';
+
 import { formFieldError } from './index';
 import './FieldHelper.scss';
 
@@ -11,18 +13,14 @@ const propTypes = {
     PropTypes.string,
   ]),
   right: PropTypes.element,
-  variant: PropTypes.oneOf([
-    'default',
-    'preview',
-  ]),
 };
 
 const FieldHelper = ({
   helperText,
   error,
   right,
-  variant,
 }) => {
+  const { theme } = React.useContext(FormContext);
   const errMsg = Array.isArray(error) ? error[0] : error;
 
   if (!helperText && !errMsg) {
@@ -36,7 +34,7 @@ const FieldHelper = ({
   );
 
   return (
-    <div className={`FieldHelper${variant === 'preview' ? ' FieldHelper--preview' : ''}`}>
+    <div className={`FieldHelper${theme === 'preview' ? ' FieldHelper--preview' : ''}`}>
       {err || helperText}
       {right && (
         <span className="FieldHelper__right">

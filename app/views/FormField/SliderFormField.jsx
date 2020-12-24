@@ -27,8 +27,4 @@ SliderFormField.type = [
 
 SliderFormField.topology = allTopologies;
 
-SliderFormField.defaultProps = {
-  variant: 'default',
-};
-
 export default register(SliderFormField);

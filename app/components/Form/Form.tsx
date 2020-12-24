@@ -21,17 +21,20 @@ interface PropTypes {
   object: SomeNode;
   onSubmit: (...props: any) => any;
   subscription: any;
+  theme: string;
   validateOnBlur: boolean;
 }
 
 const defaultProps = {
   method: 'post',
+  theme: 'default',
   validateOnBlur: false,
 };
 
 export const FormContext = React.createContext({
   formID: undefined as (undefined | string),
   object: undefined as (undefined | SomeNode),
+  theme: undefined as (undefined | string),
 });
 
 const Form = (props: PropTypes) => {
@@ -47,6 +50,7 @@ const Form = (props: PropTypes) => {
     object,
     onSubmit,
     subscription,
+    theme,
     validateOnBlur,
   } = props;
   const [autoSubmitted, setAutoSubmitted] = React.useState(false);
@@ -90,6 +94,7 @@ const Form = (props: PropTypes) => {
           value={{
             formID,
             object,
+            theme,
           }}
         >
           <form

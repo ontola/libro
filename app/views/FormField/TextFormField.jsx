@@ -3,6 +3,7 @@ import { register, useProperty } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { FormContext } from '../../components/Form/Form';
 import FormField from '../../components/FormField/FormField';
 import InputElement from '../../components/Input/InputElement';
 import useFormField from '../../hooks/useFormField';
@@ -17,7 +18,7 @@ const getInputType = (theme, type) => {
     return 'textarea';
   }
   if (type === form.MarkdownInput) {
-    return theme === 'omniform' ? 'textarea' : 'markdown';
+    return theme === 'preview' ? 'textarea' : 'markdown';
   }
 
   return 'text';
@@ -29,10 +30,10 @@ const TextFormField = (props) => {
     preferPlaceholder: true,
     ...props,
   });
-
+  const { theme } = React.useContext(FormContext);
   const [type] = useProperty(rdfx.type);
   const TextInput = React.useCallback((inputProps) => (
-    <InputElement {...inputProps} type={getInputType(props.theme, type)} />
+    <InputElement {...inputProps} type={getInputType(theme, type)} />
   ), [type]);
 
   return (
@@ -52,13 +53,8 @@ TextFormField.type = [
 
 TextFormField.topology = allTopologies;
 
-TextFormField.defaultProps = {
-  variant: 'default',
-};
-
 TextFormField.propTypes = {
   theme: PropTypes.string,
-  variant: PropTypes.string,
 };
 
 export default register(TextFormField);

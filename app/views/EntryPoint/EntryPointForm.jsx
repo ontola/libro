@@ -88,6 +88,7 @@ const EntryPointForm = ({
       subscription={{
         submitting: true,
       }}
+      theme={theme}
       onSubmit={onSubmit}
     >
       {({ submitting }) => (
@@ -100,7 +101,6 @@ const EntryPointForm = ({
             object={object}
             sessionStore={sessionStore}
             submissionErrors={submissionErrors}
-            theme={theme}
             whitelist={whitelist}
             onKeyUp={onKeyUp}
           />

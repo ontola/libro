@@ -25,8 +25,4 @@ FileFormField.type = form.FileInput;
 
 FileFormField.topology = allTopologies;
 
-FileFormField.defaultProps = {
-  variant: 'default',
-};
-
 export default register(FileFormField);

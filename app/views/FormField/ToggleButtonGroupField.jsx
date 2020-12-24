@@ -24,8 +24,4 @@ ToggleButtonGroupField.type = [
 
 ToggleButtonGroupField.topology = allTopologies;
 
-ToggleButtonGroupField.defaultProps = {
-  variant: 'default',
-};
-
 export default register(ToggleButtonGroupField);

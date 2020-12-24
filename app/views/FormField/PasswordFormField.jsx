@@ -28,8 +28,4 @@ PasswordFormField.type = form.PasswordInput;
 
 PasswordFormField.topology = allTopologies;
 
-PasswordFormField.defaultProps = {
-  variant: 'default',
-};
-
 export default register(PasswordFormField);

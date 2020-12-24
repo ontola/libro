@@ -26,8 +26,4 @@ CheckboxFormField.type = form.CheckboxInput;
 
 CheckboxFormField.topology = allTopologies;
 
-CheckboxFormField.defaultProps = {
-  variant: 'default',
-};
-
 export default register(CheckboxFormField);

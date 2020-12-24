@@ -30,8 +30,4 @@ AssociationFormField.type = form.AssociationInput;
 
 AssociationFormField.topology = allTopologies;
 
-AssociationFormField.defaultProps = {
-  variant: 'default',
-};
-
 export default register(AssociationFormField);

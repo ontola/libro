@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
+import { FormContext } from '../Form/Form';
+
 import CharCounter, { CHAR_COUNTER_THRESHOLD } from './CharCounter';
 import FieldHelper from './FieldHelper';
 
@@ -11,10 +13,10 @@ const FormFieldHelper = ({
   maxLength,
   required,
   value,
-  variant,
 }) => {
-  const renderCharCounter = variant !== 'preview';
-  if (variant === 'preview' && !error) {
+  const { theme } = React.useContext(FormContext);
+  const renderCharCounter = theme !== 'preview';
+  if (theme === 'preview' && !error) {
     return null;
   }
 
@@ -36,7 +38,6 @@ const FormFieldHelper = ({
           value={value}
         />
       ) : undefined}
-      variant={variant}
     />
   );
 };
@@ -49,7 +50,6 @@ FormFieldHelper.propTypes = {
     linkType,
     PropTypes.string,
   ]),
-  variant: PropTypes.string,
 };
 
 export default FormFieldHelper;

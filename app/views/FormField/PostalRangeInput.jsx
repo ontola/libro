@@ -27,8 +27,4 @@ PostalRangeFormField.type = [
 
 PostalRangeFormField.topology = allTopologies;
 
-PostalRangeFormField.defaultProps = {
-  variant: 'default',
-};
-
 export default register(PostalRangeFormField);

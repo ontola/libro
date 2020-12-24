@@ -22,8 +22,4 @@ LocationFormField.type = form.LocationInput;
 
 LocationFormField.topology = allTopologies;
 
-LocationFormField.defaultProps = {
-  variant: 'default',
-};
-
 export default register(LocationFormField);

@@ -45,8 +45,4 @@ DelayedFormField.type = [
 
 DelayedFormField.topology = allTopologies;
 
-DelayedFormField.defaultProps = {
-  variant: 'default',
-};
-
 export default register(DelayedFormField);

@@ -23,8 +23,4 @@ CheckboxesFormField.type = form.CheckboxGroup;
 
 CheckboxesFormField.topology = allTopologies;
 
-CheckboxesFormField.defaultProps = {
-  variant: 'default',
-};
-
 export default register(CheckboxesFormField);

@@ -149,16 +149,9 @@ InputElement.propTypes = {
   propertyIndex: PropTypes.number,
   storeKey: PropTypes.string,
   submissionErrors: PropTypes.objectOf(PropTypes.arrayOf(formFieldError)),
-  theme: PropTypes.string,
   trailer: PropTypes.func,
   // HTML input type, e.g. 'email'
   type: PropTypes.string,
-  // Modify te look and feel of the FormField
-  variant: PropTypes.oneOf([
-    'default',
-    'material',
-    'preview',
-  ]),
 };
 
 InputElement.defaultProps = {

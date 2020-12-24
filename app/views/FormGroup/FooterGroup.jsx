@@ -7,10 +7,7 @@ import { formFooterTopology } from '../../topologies/FormFooter/Footer';
 
 const FooterGroup = (childProps) => (
   <Property
-    childProps={{
-      ...childProps,
-      theme: 'omniform',
-    }}
+    childProps={childProps}
     label={form.fields}
   />
 );

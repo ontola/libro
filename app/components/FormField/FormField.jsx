@@ -54,14 +54,7 @@ const propTypes = {
   placeholder: PropTypes.string,
   preferPlaceholder: PropTypes.bool,
   renderHelper: PropTypes.func,
-  theme: PropTypes.string,
   values: PropTypes.arrayOf(linkType),
-  // Modify te look and feel of the FormField
-  variant: PropTypes.oneOf([
-    'default',
-    'material',
-    'preview',
-  ]),
 };
 
 /**
@@ -90,9 +83,7 @@ const FormField = ({
   placeholder,
   preferPlaceholder,
   renderHelper,
-  theme,
   values,
-  variant,
 }) => {
   const { name } = input;
 
@@ -103,7 +94,6 @@ const FormField = ({
           label={label}
           name={name}
           required={fieldShape.required}
-          theme={theme}
         />
       )}
       {(description || helperText) && (
@@ -130,7 +120,6 @@ const FormField = ({
         placeholder={placeholder || (preferPlaceholder ? description : null)}
         renderHelper={renderHelper}
         values={values}
-        variant={variant}
         onChange={input.onChange}
       />
     </div>

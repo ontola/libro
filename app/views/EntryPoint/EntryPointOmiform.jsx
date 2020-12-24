@@ -44,7 +44,7 @@ const EntryPointOmniform = (props) => {
       httpMethod={httpMethod?.value}
       object={object}
       sessionStore={sessionStore}
-      theme="omniform"
+      theme="preview"
       url={url?.value}
       whitelist={whitelist}
       onKeyUp={onKeyUp}

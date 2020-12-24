@@ -19,7 +19,6 @@ const ActionBody = ({
   onKeyUp,
   sessionStore,
   submissionErrors,
-  theme,
   whitelist,
 }) => (
   <Property
@@ -30,7 +29,6 @@ const ActionBody = ({
       onKeyUp,
       sessionStore,
       submissionErrors,
-      theme,
       whitelist,
     }}
     itemWrapper={contentWrapper}
@@ -51,7 +49,6 @@ ActionBody.propTypes = {
   onKeyUp: PropTypes.func,
   sessionStore: PropTypes.objectOf(PropTypes.any),
   submissionErrors: PropTypes.objectOf(PropTypes.arrayOf(formFieldError)),
-  theme: PropTypes.string,
   whitelist: PropTypes.arrayOf(PropTypes.number),
 };
 

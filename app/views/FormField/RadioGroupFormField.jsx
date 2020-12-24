@@ -22,8 +22,4 @@ RadioGroupFormField.type = form.RadioGroup;
 
 RadioGroupFormField.topology = allTopologies;
 
-RadioGroupFormField.defaultProps = {
-  variant: 'default',
-};
-
 export default register(RadioGroupFormField);

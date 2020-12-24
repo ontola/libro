@@ -7,7 +7,6 @@ import FieldHelper from '../FormField/FieldHelper';
 
 const CheckboxHelper = ({
   error,
-  variant,
 }) => {
   const [description] = useProperty(schema.text);
 
@@ -15,14 +14,12 @@ const CheckboxHelper = ({
     <FieldHelper
       error={error}
       helperText={description?.value}
-      variant={variant}
     />
   );
 };
 
 CheckboxHelper.propTypes = {
   error: PropTypes.string,
-  variant: PropTypes.string,
 };
 
 export default CheckboxHelper;

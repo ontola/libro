@@ -22,8 +22,4 @@ SelectFormField.type = form.SelectInput;
 
 SelectFormField.topology = allTopologies;
 
-SelectFormField.defaultProps = {
-  variant: 'default',
-};
-
 export default register(SelectFormField);

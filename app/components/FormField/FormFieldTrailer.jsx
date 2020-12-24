@@ -2,6 +2,8 @@ import { linkType } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { FormContext } from '../Form/Form';
+
 import CharCounter, { CHAR_COUNTER_THRESHOLD } from './CharCounter';
 
 import { formFieldError } from './index';
@@ -11,12 +13,13 @@ const FormFieldTrailer = ({
   maxLength,
   meta,
   inputValue,
-  variant,
 }) => {
   const {
     active,
     pristine,
   } = meta;
+  const { theme } = React.useContext(FormContext);
+
   if (errors && errors.length > 0 && !pristine && !active) {
     return (
       <span
@@ -29,7 +32,7 @@ const FormFieldTrailer = ({
     );
   }
 
-  if (variant === 'preview') {
+  if (theme === 'preview') {
     return (
       <CharCounter
         maxLength={maxLength}
@@ -54,11 +57,6 @@ FormFieldTrailer.propTypes = {
     pristine: PropTypes.bool,
     touched: PropTypes.bool,
   }),
-  variant: PropTypes.oneOf([
-    'default',
-    'material',
-    'preview',
-  ]),
 };
 
 export default FormFieldTrailer;
