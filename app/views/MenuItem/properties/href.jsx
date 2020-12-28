@@ -6,11 +6,18 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Link, { linkFeatures } from '../../../components/Link';
+import Link from '../../../components/Link';
 import argu from '../../../ontology/argu';
 import ontola from '../../../ontology/ontola';
 import { footerTopology } from '../../../topologies/Footer';
 import { navbarTopology } from '../../../topologies/Navbar';
+
+export const linkFeatures = PropTypes.arrayOf(
+  PropTypes.oneOf([
+    'bold',
+    'centered',
+  ])
+);
 
 class Href extends React.PureComponent {
   static type = [

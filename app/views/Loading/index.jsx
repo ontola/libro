@@ -15,8 +15,8 @@ import Loading, {
   LoadingParent,
   LoadingRow,
   LoadingSelect,
-  SuspendedLoader,
 } from '../../components/Loading';
+import SuspendedLoader from '../../components/Loading/SuspendedLoader';
 import ll from '../../ontology/ll';
 import { appMenuTopology } from '../../topologies/AppMenu';
 import { actionsBarTopology } from '../../topologies/ActionsBar';

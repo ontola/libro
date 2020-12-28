@@ -8,10 +8,11 @@ import {
 import React from 'react';
 import emoji from 'react-easy-emoji/index';
 
+import CardContent from '../../components/Card/CardContent';
 import app from '../../ontology/app';
 import teamGL from '../../ontology/teamGL';
 import { allTopologies } from '../../topologies';
-import Card, { CardContent } from '../../topologies/Card';
+import Card from '../../topologies/Card';
 
 import SearchPostalForm from './SearchPostalForm';
 

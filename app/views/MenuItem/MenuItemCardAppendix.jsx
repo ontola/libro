@@ -2,9 +2,10 @@ import { Property, register } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import CardContent from '../../components/Card/CardContent';
 import UnorderedList from '../../components/UnorderedList';
 import ontola from '../../ontology/ontola';
-import { CardContent, CardRow } from '../../topologies/Card';
+import { CardRow } from '../../topologies/Card';
 import { cardAppendixTopology } from '../../topologies/Card/CardAppendix';
 
 import { MenuTypes } from './types';

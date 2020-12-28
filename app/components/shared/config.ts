@@ -29,7 +29,7 @@ export const semanticColors = {
   'https://argu.co/ns/core#ProArgument': '#547f4b',
   'https://argu.co/ns/core#Question': '#684747',
   'https://argu.co/ns/rivm#InterventionType': '#164173',
-};
+} as { [index: string]: string; };
 
 export const sides = [
   'yes',

@@ -9,12 +9,26 @@ import { PropParam } from 'link-redux/dist-types/types';
 import { isNumber } from '../helpers/types';
 
 import ontola from '../ontology/ontola';
-import { FormFieldProps } from './useFormField';
+import { UseFormFieldProps } from './useFormField';
 
 const shapePropsFromObject = ['maxCount', 'maxInclusive', 'maxLength', 'minCount', 'minInclusive', 'minLength'];
 
-interface ShapeForm {
-  [key: string]: PropParam;
+export interface ShapeForm {
+  maxCount: number;
+  maxCountProp: PropParam;
+  maxInclusive: number;
+  maxInclusiveProp: PropParam;
+  maxLength: number;
+  minCount: number;
+  minCountProp: PropParam;
+  minInclusive: number;
+  minInclusiveProp: PropParam;
+  minLength: number;
+  minLengthProp: PropParam;
+  required: boolean;
+  removable: boolean;
+
+  [key: string]: PropParam | number | boolean;
 }
 
 const mapShapeProps = {
@@ -31,8 +45,8 @@ const mapShapeProps = {
   minLengthProp: ontola.minLength,
 };
 
-const useFieldShape = (props: FormFieldProps) => {
-  const shapeProps = useLink(mapShapeProps) as ShapeForm;
+const useFieldShape = (props: UseFormFieldProps) => {
+  const shapeProps = useLink(mapShapeProps) as unknown as ShapeForm;
   const propMap = {} as ShapeForm;
   const shapeFromField = {} as ShapeForm;
 

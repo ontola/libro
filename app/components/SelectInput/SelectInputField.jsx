@@ -1,7 +1,6 @@
 import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
 import Downshift from 'downshift';
-import { LinkedRenderStore } from 'link-lib';
 import {
   Resource,
   linkType,
@@ -158,21 +157,10 @@ SelectInputField.propTypes = {
   initialSelectedItem: linkType,
   items: PropTypes.arrayOf(linkType),
   loading: PropTypes.bool,
-  lrs: PropTypes.instanceOf(LinkedRenderStore),
   name: PropTypes.string,
   onChange: PropTypes.func,
   onStateChange: PropTypes.func,
   required: PropTypes.bool,
-  sharedProps: PropTypes.shape({
-    autoFocus: PropTypes.bool,
-    className: PropTypes.string,
-    id: PropTypes.string,
-    name: PropTypes.string,
-    onBlur: PropTypes.func,
-    onChange: PropTypes.func,
-    onFocus: PropTypes.func,
-    required: PropTypes.bool,
-  }).isRequired,
 };
 
 export default SelectInputField;

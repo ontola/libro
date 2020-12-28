@@ -17,7 +17,8 @@ import { useSeqToArr } from '../../hooks/useSeqToArr';
 import argu from '../../ontology/argu';
 import { inlineTopology } from '../../topologies/Inline';
 import Heading from '../../components/Heading';
-import { LoadingGridContent, SuspendedLoader } from '../../components/Loading';
+import { LoadingGridContent } from '../../components/Loading';
+import SuspendedLoader from '../../components/Loading/SuspendedLoader';
 
 import './Triad.scss';
 

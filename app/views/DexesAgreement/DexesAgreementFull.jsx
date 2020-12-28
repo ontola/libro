@@ -4,6 +4,7 @@ import { Property, register } from 'link-redux';
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
+import CardDivider from '../../components/Card/CardDivider';
 import dexes from '../../ontology/dexes';
 import CardMain from '../../topologies/Card/CardMain';
 import Container from '../../topologies/Container';
@@ -11,7 +12,6 @@ import { fullResourceTopology } from '../../topologies/FullResource';
 import AttributeList from '../../topologies/AttributeList';
 import AttributeListItem from '../../components/AttributeListItem';
 import Heading from '../../components/Heading';
-import { CardDivider } from '../../topologies/Card';
 
 const DexesAgreeMentFull = () => (
   <React.Fragment>

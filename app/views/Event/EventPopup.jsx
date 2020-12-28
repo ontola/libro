@@ -8,11 +8,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
+import CardContent from '../../components/Card/CardContent';
 import HeaderWithMenu from '../../components/HeaderWithMenu';
 import ontola from '../../ontology/ontola';
 import teamGL from '../../ontology/teamGL';
 import ActionsBar from '../../topologies/ActionsBar';
-import Card, { CardContent } from '../../topologies/Card';
+import Card from '../../topologies/Card';
 import ContentDetails from '../../topologies/ContentDetails';
 import { popupTopology } from '../../topologies/Popup';
 

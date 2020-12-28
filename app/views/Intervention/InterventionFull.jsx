@@ -13,6 +13,7 @@ import React from 'react';
 
 import AttributeListItem from '../../components/AttributeListItem';
 import CardContent from '../../components/Card/CardContent';
+import CardDivider from '../../components/Card/CardDivider';
 import Heading from '../../components/Heading';
 import LinkedDetailDate from '../../components/LinkedDetailDate';
 import app from '../../ontology/app';
@@ -22,7 +23,6 @@ import ontola from '../../ontology/ontola';
 import rivm from '../../ontology/rivm';
 import AttributeList from '../../topologies/AttributeList';
 import ActionsBar from '../../topologies/ActionsBar';
-import { CardDivider } from '../../topologies/Card';
 import CardAppendix from '../../topologies/Card/CardAppendix';
 import CardMain from '../../topologies/Card/CardMain';
 import CardRow from '../../topologies/Card/CardRow';

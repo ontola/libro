@@ -3,7 +3,7 @@ import rdf from '@ontologies/core';
 import { actionsBarTopology } from './topologies/ActionsBar/index';
 import { appMenuTopology } from './topologies/AppMenu';
 import { attributeListTopology } from './topologies/AttributeList';
-import { cardTopology } from './topologies/Card/index';
+import { cardTopology } from './topologies/Card';
 import { cardAppendixTopology } from './topologies/Card/CardAppendix';
 import { cardFixedTopology } from './topologies/Card/CardFixed';
 import { cardFloatTopology } from './topologies/Card/CardFloat';

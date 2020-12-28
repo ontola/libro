@@ -7,7 +7,7 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Heading from '../Heading/index';
+import Heading from '../Heading';
 
 import './LabeledAttribute.scss';
 

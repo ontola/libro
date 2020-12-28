@@ -12,13 +12,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import CardContent from '../../components/Card/CardContent';
+import CardDivider from '../../components/Card/CardDivider';
 import LinkedDetailDate from '../../components/LinkedDetailDate';
 import argu from '../../ontology/argu';
 import dbo from '../../ontology/dbo';
 import meeting from '../../ontology/meeting';
 import ontola from '../../ontology/ontola';
 import wdt from '../../ontology/wdt';
-import { CardDivider } from '../../topologies/Card';
 import CardMain from '../../topologies/Card/CardMain';
 import CardRow from '../../topologies/Card/CardRow';
 import Container from '../../topologies/Container';

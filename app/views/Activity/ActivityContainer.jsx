@@ -4,9 +4,10 @@ import { linkType, register } from 'link-redux';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
+import CardContent from '../../components/Card/CardContent';
 import Suspense from '../../components/Suspense';
 import argu from '../../ontology/argu';
-import Card, { CardContent, CardRow } from '../../topologies/Card';
+import Card, { CardRow } from '../../topologies/Card';
 
 import ActivityDetailsBar from './properties/ActivityDetailsBar';
 

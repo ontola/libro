@@ -15,6 +15,7 @@ import { useField } from 'react-final-form';
 import { FormContext } from '../components/Form/Form';
 import { FormSectionContext } from '../components/Form/FormSection';
 import { SubmissionErrors } from '../components/FormField';
+import { FormFieldProps } from '../components/FormField/FormField';
 import { arraysEqual } from '../helpers/data';
 import {
   calculateFormFieldName,
@@ -47,16 +48,16 @@ const mapFieldProps = {
 
 export type InputValue = JSONLDObject | SomeTerm;
 
-export interface FormFieldProps {
+export interface UseFormFieldProps {
   addFieldName: (...prop: any) => any;
   alwaysVisible: boolean;
   autofocusForm: boolean;
-  delay: boolean;
+  delay?: boolean;
   formIRI: SomeNode;
   newItem: (...prop: any) => any;
   object: SomeNode;
   path: NamedNode;
-  preferPlaceholder: boolean;
+  preferPlaceholder?: boolean;
   propertyIndex: number;
   required: boolean;
   sessionStore: Storage;
@@ -128,7 +129,7 @@ const defaultProps = {
   storage: true,
 };
 
-const useFormField = (componentProps: FormFieldProps) => {
+const useFormField = (componentProps: UseFormFieldProps): FormFieldProps | {} => {
   const props = {
     ...defaultProps,
     ...componentProps,
@@ -250,12 +251,12 @@ const useFormField = (componentProps: FormFieldProps) => {
   }, [input.value, input.onChange]);
   React.useEffect(() => {
     const empty = !input.value || input.value.length === 0;
-    const shouldAdd = isNumber(fieldShape.minCount) && fieldShape.minCount > 0;
+    const shouldAdd = !alwaysVisible && isNumber(fieldShape.minCount) && fieldShape.minCount > 0;
 
     if (empty && shouldAdd) {
       addItem();
     }
-  }, [input.value?.length, fieldShape.minCount]);
+  }, [input.value?.length, fieldShape.minCount, alwaysVisible]);
 
   if (!whitelisted) {
     return {};
@@ -293,10 +294,11 @@ const useFormField = (componentProps: FormFieldProps) => {
     field: props.subject,
     fieldShape,
     formIRI,
-    input,
     inputErrors,
     meta: memoizedMeta,
+    name: input.name,
     object,
+    onChange: input.onChange,
     preferPlaceholder,
     storeKey,
     values,

@@ -9,12 +9,12 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import CardContent from '../../components/Card/CardContent';
 import Form from '../../components/Form/Form';
 import { LoadingGridContent } from '../../components/Loading';
 import { entityIsLoaded } from '../../helpers/data';
 import useInitialValues from '../../hooks/useInitialValues';
 import ll from '../../ontology/ll';
-import { CardContent } from '../../topologies/Card';
 import FormFooter from '../../topologies/FormFooter/Footer';
 
 const EntryPointForm = ({

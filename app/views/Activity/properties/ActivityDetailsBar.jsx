@@ -4,7 +4,7 @@ import { Property } from 'link-redux';
 import React from 'react';
 
 import { defaultMenus } from '../../common';
-import { SuspendedLoader } from '../../../components/Loading';
+import SuspendedLoader from '../../../components/Loading/SuspendedLoader';
 import DetailsBar from '../../../topologies/DetailsBar';
 
 const ActivityDetailsBar = () => (

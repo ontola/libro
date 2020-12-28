@@ -124,10 +124,15 @@ const Input = ({
   value,
   ...props
 }: {
-  element: string | typeof React.Component,
+  element: any,
   className?: string,
+  minLength?: number,
   name?: string,
+  placeholder?: string,
+  required?: boolean,
+  type: string,
   value?: string,
+  onKeyUp?: (e: any) => any,
 }) => {
   const Element = element;
 

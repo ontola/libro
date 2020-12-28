@@ -7,12 +7,16 @@ import './TableCell.scss';
 
 export const tableCellTopology = argu.ns('tableCell');
 
-class TableCell extends TopologyProvider {
+interface PropTypes {
+  colspan: number;
+}
+
+class TableCell extends TopologyProvider<PropTypes> {
   public static propTypes = {
     children: PropTypes.node.isRequired,
   };
 
-  constructor(props: {}) {
+  constructor(props: PropTypes) {
     super(props);
 
     this.className = 'TableCell';

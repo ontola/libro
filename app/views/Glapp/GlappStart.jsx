@@ -2,9 +2,10 @@ import schema from '@ontologies/schema';
 import { Property, register } from 'link-redux';
 import React from 'react';
 
+import CardContent from '../../components/Card/CardContent';
 import teamGL from '../../ontology/teamGL';
 import { allTopologiesExcept } from '../../topologies';
-import { CardContent, CardMain } from '../../topologies/Card';
+import { CardMain } from '../../topologies/Card';
 import Container from '../../topologies/Container';
 import { pageTopology } from '../../topologies/Page';
 import { parentTopology } from '../../topologies/Parent';

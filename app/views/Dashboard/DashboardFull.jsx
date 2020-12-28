@@ -17,6 +17,7 @@ import React, { useState } from 'react';
 
 import Button from '../../components/Button';
 import CardContent from '../../components/Card/CardContent';
+import CardDivider from '../../components/Card/CardDivider';
 import FormInputs from '../../components/FormField/FormInputs';
 import DatePicker from '../../containers/DatePicker';
 import { iriFromTemplate } from '../../helpers/uriTemplate';
@@ -24,7 +25,7 @@ import { useContainerToArr } from '../../hooks/useContainerToArr';
 import app from '../../ontology/app';
 import ontola from '../../ontology/ontola';
 import teamGL from '../../ontology/teamGL';
-import { CardDivider, CardMain } from '../../topologies/Card';
+import { CardMain } from '../../topologies/Card';
 import Container from '../../topologies/Container';
 import { fullResourceTopology } from '../../topologies/FullResource';
 import TabBar from '../../topologies/TabBar';

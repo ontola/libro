@@ -9,8 +9,8 @@ import {
 } from 'link-redux';
 import React, { useEffect, useState } from 'react';
 
+import CardContent from '../../components/Card/CardContent';
 import ontola from '../../ontology/ontola';
-import { CardContent } from '../../topologies/Card';
 import Container from '../../topologies/Container';
 import { gridTopology } from '../../topologies/Grid';
 

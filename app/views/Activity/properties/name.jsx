@@ -12,7 +12,7 @@ import {
 import React from 'react';
 
 import DetailText from '../../../components/Detail/text';
-import { SuspendedLoader } from '../../../components/Loading';
+import SuspendedLoader from '../../../components/Loading/SuspendedLoader';
 import { allTopologies } from '../../../topologies';
 
 const uriMatch = /{{[\w:/#.?=]+}}/g;

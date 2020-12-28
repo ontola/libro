@@ -30,6 +30,8 @@ export const isResource = (obj: any): obj is NamedNode | BlankNode => (
   ['NamedNode', 'BlankNode'].includes(obj?.termType)
 );
 
+export const isString = (value: any): value is string => typeof value === 'string';
+
 export const isLiteral = (obj: any): obj is Literal => (
   ['Literal'].includes(obj?.termType)
 );
