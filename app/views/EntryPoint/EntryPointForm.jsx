@@ -17,6 +17,10 @@ import useInitialValues from '../../hooks/useInitialValues';
 import ll from '../../ontology/ll';
 import FormFooter from '../../topologies/FormFooter/Footer';
 
+const subscription = {
+  submitting: true,
+};
+
 const EntryPointForm = ({
   actionBody,
   autofocusForm,
@@ -43,7 +47,7 @@ const EntryPointForm = ({
     object,
     formID
   );
-  const submissionErrorsTimeStamp = useDataInvalidation(errorResponse);
+  const submissionErrorsTimeStamp = useDataInvalidation(errorResponse || actionBody);
   const submissionErrors = React.useMemo(() => {
     if (errorResponse) {
       const errs = lrs.tryEntity(errorResponse).reduce((acc, triple) => {
@@ -63,6 +67,44 @@ const EntryPointForm = ({
 
     return null;
   }, [errorResponse, submissionErrorsTimeStamp]);
+
+  const renderBody = React.useCallback(({ submitting }) => (
+    <React.Fragment>
+      <Property
+        autofocusForm={autofocusForm}
+        contentWrapper={contentWrapper}
+        formIRI={actionBody}
+        label={ll.actionBody}
+        object={object}
+        sessionStore={sessionStore}
+        submissionErrors={submissionErrors}
+        whitelist={whitelist}
+        onKeyUp={onKeyUp}
+      />
+      <FormFooter>
+        <Property
+          formIRI={actionBody}
+          label={ll.actionBody}
+          object={object}
+          sessionStore={sessionStore}
+          onKeyUp={onKeyUp}
+        />
+        {footerButtons ? footerButtons(submitting) : null}
+      </FormFooter>
+    </React.Fragment>
+  ), [
+    autofocusForm,
+    contentWrapper,
+    actionBody,
+    object,
+    sessionStore,
+    submissionErrors,
+    whitelist,
+    onKeyUp,
+    object,
+    onKeyUp,
+    footerButtons,
+  ]);
 
   if (loading) {
     return (
@@ -85,37 +127,11 @@ const EntryPointForm = ({
       method={httpMethod}
       object={object}
       submissionErrorsTimeStamp={submissionErrorsTimeStamp}
-      subscription={{
-        submitting: true,
-      }}
+      subscription={subscription}
       theme={theme}
       onSubmit={onSubmit}
     >
-      {({ submitting }) => (
-        <React.Fragment>
-          <Property
-            autofocusForm={autofocusForm}
-            contentWrapper={contentWrapper}
-            formIRI={actionBody}
-            label={ll.actionBody}
-            object={object}
-            sessionStore={sessionStore}
-            submissionErrors={submissionErrors}
-            whitelist={whitelist}
-            onKeyUp={onKeyUp}
-          />
-          <FormFooter>
-            <Property
-              formIRI={actionBody}
-              label={ll.actionBody}
-              object={object}
-              sessionStore={sessionStore}
-              onKeyUp={onKeyUp}
-            />
-            {footerButtons ? footerButtons(submitting) : null}
-          </FormFooter>
-        </React.Fragment>
-      )}
+      {renderBody}
     </Form>
   );
 };

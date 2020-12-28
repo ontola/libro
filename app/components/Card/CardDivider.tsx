@@ -13,6 +13,14 @@ const defaultProps = {
   lineColor: colors.grey['x-light'],
 };
 
+const textStyle = {
+  backgroundColor: 'rgb(255,255,255)',
+  color: 'rgb(100,100,100)',
+  fontWeight: 'bold',
+  padding: '0 7px',
+  zIndex: 1,
+};
+
 /**
  * A fine grey line with an optional text in its center
  * @returns {component} Component
@@ -21,29 +29,25 @@ const CardDivider = ({
   lineColor,
   text,
   margin,
-}: PropTypes) => (
-  <div
-    className="CardDivider"
-    style={{
-      backgroundColor: lineColor,
-      marginBottom: (margin ? '1em' : undefined),
-    }}
-  >
-    {text && (
-    <span
-      style={{
-        backgroundColor: 'rgb(255,255,255)',
-        color: 'rgb(100,100,100)',
-        fontWeight: 'bold',
-        padding: '0 7px',
-        zIndex: 1,
-      }}
+}: PropTypes) => {
+  const style = React.useMemo(() => ({
+    backgroundColor: lineColor,
+    marginBottom: (margin ? '1em' : undefined),
+  }), [lineColor, margin]);
+
+  return (
+    <div
+      className="CardDivider"
+      style={style as any}
     >
+      {text && (
+        <span style={textStyle as any}>
       {text}
     </span>
-    )}
-  </div>
-);
+      )}
+    </div>
+  );
+};
 
 CardDivider.defaultProps = defaultProps;
 

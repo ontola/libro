@@ -18,6 +18,8 @@ import { popupTopology } from '../../topologies/Popup';
 
 import Opinion from './Opinion';
 
+const style = { margin: '.2em' };
+
 const ThingHoverBoxHidden = ({ text, option }) => {
   let icon;
   switch (option) {
@@ -41,7 +43,7 @@ const ThingHoverBoxHidden = ({ text, option }) => {
           <Property label={schema.dateCreated} />
         </DetailsBar>
         <CardContent>
-          <p><FontAwesome name={icon} style={{ margin: '.2em' }} />{text}</p>
+          <p><FontAwesome name={icon} style={style} />{text}</p>
         </CardContent>
       </Card>
     </Container>

@@ -1,4 +1,5 @@
 import sh from '@ontologies/shacl';
+import equal from 'fast-deep-equal';
 import {
   literal,
   ReturnType,
@@ -6,6 +7,7 @@ import {
   useResourceLink,
 } from 'link-redux';
 import { PropParam } from 'link-redux/dist-types/types';
+import { useState } from 'react';
 import { isNumber } from '../helpers/types';
 
 import ontola from '../ontology/ontola';
@@ -46,6 +48,7 @@ const mapShapeProps = {
 };
 
 const useFieldShape = (props: UseFormFieldProps) => {
+  const [fieldShape, setFieldShape] = useState({});
   const shapeProps = useLink(mapShapeProps) as unknown as ShapeForm;
   const propMap = {} as ShapeForm;
   const shapeFromField = {} as ShapeForm;
@@ -74,7 +77,11 @@ const useFieldShape = (props: UseFormFieldProps) => {
   shape.removable = ((shape.minCount !== 1 && !props.alwaysVisible)
     || (isNumber(shape.maxCount) && shape.maxCount > 1));
 
-  return shape;
+  if (!equal(fieldShape, shape)) {
+    setFieldShape(shape);
+  }
+
+  return fieldShape as ShapeForm;
 };
 
 export default useFieldShape;

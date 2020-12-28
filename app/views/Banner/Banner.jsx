@@ -25,6 +25,17 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+const cardStyle = {
+  flexDirection: 'row',
+  paddingLeft: 0,
+  paddingRight: 0,
+};
+
+const divStyle = {
+  flex: 1,
+  paddingLeft: '.5em',
+};
+
 const Banner = ({ dismissedAt }) => {
   const classes = useStyles();
   const [collapsed, setCollapsed] = useState(!dismissedAt);
@@ -36,17 +47,8 @@ const Banner = ({ dismissedAt }) => {
     <Collapse in={collapsed}>
       <div className={classes.banner}>
         <Container size="large">
-          <CardContent style={{
-            flexDirection: 'row',
-            paddingLeft: 0,
-            paddingRight: 0,
-          }}
-          >
-            <div style={{
-              flex: 1,
-              paddingLeft: '.5em',
-            }}
-            >
+          <CardContent style={cardStyle}>
+            <div style={divStyle}>
               <Property label={schema.text} />
             </div>
             <Property label={ontola.dismissAction} onLoad={() => null}>

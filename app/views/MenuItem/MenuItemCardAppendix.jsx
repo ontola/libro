@@ -13,21 +13,25 @@ import { MenuTypes } from './types';
 const MenuItemCardAppendix = ({
   onClick,
   isActive,
-}) => (
-  <CardRow backdrop>
-    <CardContent endSpacing>
-      <UnorderedList>
-        <Property
-          childProps={{
-            isActive,
-            onClick,
-          }}
-          label={ontola.menuItems}
-        />
-      </UnorderedList>
-    </CardContent>
-  </CardRow>
-);
+}) => {
+  const childProps = React.useMemo(() => ({
+    isActive,
+    onClick,
+  }), [isActive, onClick]);
+
+  return (
+    <CardRow backdrop>
+      <CardContent endSpacing>
+        <UnorderedList>
+          <Property
+            childProps={childProps}
+            label={ontola.menuItems}
+          />
+        </UnorderedList>
+      </CardContent>
+    </CardRow>
+  );
+};
 
 MenuItemCardAppendix.type = MenuTypes;
 

@@ -43,6 +43,12 @@ export const itemToString = (item, lrs) => {
   return item.value;
 };
 
+const style = {
+  maxHeight: '20em',
+  position: 'absolute',
+  zIndex: 10,
+};
+
 const SelectInputField = ({
   emptyText,
   initialSelectedItem,
@@ -135,11 +141,7 @@ const SelectInputField = ({
             <Select
               scrollIntoView={isOpen}
               {...getMenuProps()}
-              style={{
-                maxHeight: '20em',
-                position: 'absolute',
-                zIndex: 10,
-              }}
+              style={style}
             >
               {list}
             </Select>

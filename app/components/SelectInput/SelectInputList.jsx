@@ -7,6 +7,10 @@ import PropTypes from 'prop-types';
 const DEFAULT_HEIGHT = 200;
 const ITEM_HEIGHT = 42;
 
+const listStyle = {
+  overflowX: 'hidden',
+};
+
 const SelectInputList = ({
   emptyText,
   getItemProps,
@@ -72,9 +76,7 @@ const SelectInputList = ({
       }}
       scrollToAlignment="auto"
       scrollToIndex={highlightedIndex || 0}
-      style={{
-        overflowX: 'hidden',
-      }}
+      style={listStyle}
     />
   );
 };

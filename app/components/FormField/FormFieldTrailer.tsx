@@ -15,6 +15,10 @@ interface PropTypes {
   meta: InputMeta;
 }
 
+const style = {
+  color: '#c81414',
+};
+
 const FormFieldTrailer = ({
   errors,
   maxLength,
@@ -31,9 +35,7 @@ const FormFieldTrailer = ({
     return (
       <span
         className="Field__input--trailing-icon fa fa-exclamation-circle"
-        style={{
-          color: '#c81414',
-        }}
+        style={style}
         title={errors[0]}
       />
     );

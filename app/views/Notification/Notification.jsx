@@ -20,6 +20,8 @@ const propTypes = {
   target: linkType,
 };
 
+const style = { width: '100%' };
+
 const Notification = ({
   lrs,
   readAction,
@@ -30,7 +32,7 @@ const Notification = ({
     content = (
       <Property label={schema.target} onClick={() => readAction && lrs.exec(readAction)}>
         <Property label={schema.creator} />
-        <div style={{ width: '100%' }}>
+        <div style={style}>
           <Property label={schema.name} />
           <Property label={schema.dateCreated} style={{ display: 'block' }} />
         </div>

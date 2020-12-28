@@ -41,6 +41,8 @@ const styleMap = {
 // Removes the sidebar. All necessary functionality is available through selecting text.
 const mySideBar = () => null;
 
+const style = { display: 'flex' };
+
 class RichEditor extends PureComponent {
   public componentDidMount() {
     (this.props as any).onSaveEditorState(
@@ -82,7 +84,7 @@ class RichEditor extends PureComponent {
             onKeyUp={onKeyUp}
           />
         </div>
-        <div style={{ display: 'flex' }}>
+        <div style={style}>
           <ToggleButton id={id} />
         </div>
       </React.Fragment>

@@ -10,15 +10,14 @@ import { formFooterTopology } from '../../topologies/FormFooter/Footer';
 
 const FormPageFooter = (childProps) => {
   const { formID, object } = React.useContext(FormContext);
+  const context = React.useMemo(() => ({
+    formID,
+    object,
+    theme: 'preview',
+  }), [formID, object]);
 
   return (
-    <FormContext.Provider
-      value={{
-        formID,
-        object,
-        theme: 'preview',
-      }}
-    >
+    <FormContext.Provider value={context}>
       <Property
         {...childProps}
         label={form.footerGroup}

@@ -89,6 +89,9 @@ export default function getCollection(
     const resolvedCollectionDisplay = collectionDisplay || collectionDisplayFromData;
     const resolvedColumns = columns ? listToArr(lrs, [], columns) : undefined;
     useDataInvalidation(collectionResource);
+    const wrapperProps = React.useMemo(() => ({
+      className: `Collection Collection__Depth-${depth}`,
+    }), [depth]);
 
     const childProps = {
       collectionDisplay: resolvedCollectionDisplay,
@@ -202,7 +205,7 @@ export default function getCollection(
     );
 
     return (
-      <ResourceBoundary subject={collectionResource} wrapperProps={{ className: `Collection Collection__Depth-${depth}` }}>
+      <ResourceBoundary subject={collectionResource} wrapperProps={wrapperProps}>
         {renderPartOf && <Property label={schema.isPartOf} />}
         <Property
           forceRender

@@ -36,6 +36,11 @@ const defaultProps = {
   opened: false,
 };
 
+const initialStyle = {
+  height: '0px',
+  overflow: 'hidden',
+};
+
 class Collapsible extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -107,10 +112,7 @@ class Collapsible extends React.PureComponent {
         )}
         <div className="Collapsible__visible-content">{visibleContent}</div>
         <Collapse
-          initialStyle={{
-            height: '0px',
-            overflow: 'hidden',
-          }}
+          initialStyle={initialStyle}
           isOpened={opened}
         >
           <div

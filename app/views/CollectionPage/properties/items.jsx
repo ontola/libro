@@ -21,19 +21,23 @@ import { CollectionViewTypes } from '../types';
 import { allTopologies } from '../../../topologies';
 
 const itemList = (props, columns, separator, view, maxColumns) => {
-  let itemWrapper = React.Fragment;
-  let itemWrapperOpts = {};
+  const [itemWrapper, itemWrapperOpts] = React.useMemo(() => {
+    let wrapper = React.Fragment;
+    let wrapperOpts = {};
 
-  if (rdf.equals(props.collectionDisplay, ontola['collectionDisplay/card'])) {
-    itemWrapper = CardRow;
-  }
-  if (rdf.equals(props.collectionDisplay, ontola['collectionDisplay/grid'])) {
-    itemWrapper = GridItem;
-    itemWrapperOpts = {
-      Fallback: LoadingCardFixed,
-      maxColumns,
-    };
-  }
+    if (rdf.equals(props.collectionDisplay, ontola['collectionDisplay/card'])) {
+      wrapper = CardRow;
+    }
+    if (rdf.equals(props.collectionDisplay, ontola['collectionDisplay/grid'])) {
+      wrapper = GridItem;
+      wrapperOpts = {
+        Fallback: LoadingCardFixed,
+        maxColumns,
+      };
+    }
+
+    return [wrapper, wrapperOpts];
+  }, [props.collectionDisplay, maxColumns]);
 
   return (
     props.items

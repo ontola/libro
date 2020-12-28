@@ -31,14 +31,13 @@ const MenuItemDropdownContentComp = ({
 }) => {
   const [open, setOpen] = React.useState(menuItems ? false : null);
 
-  function handleClick(e) {
+  const handleClick = React.useCallback((e) => {
     e.preventDefault();
     if (open !== null) {
       setOpen(!open);
     }
-  }
-
-  function actionFunc(e) {
+  }, [open, setOpen]);
+  const actionFunc = React.useCallback((e) => {
     if (e !== undefined) {
       e.preventDefault();
     }
@@ -55,7 +54,11 @@ const MenuItemDropdownContentComp = ({
             .startSignIn();
         }
       });
-  }
+  }, [lrs, action]);
+  const childProps = React.useMemo(() => ({
+    hideIcon: true,
+    onClose: action ? actionFunc : onClose,
+  }), [action ? actionFunc : onClose]);
 
   const sharedProps = {
     expandOpen: open,
@@ -78,10 +81,7 @@ const MenuItemDropdownContentComp = ({
         <Collapse unmountOnExit in={open} timeout="auto">
           <List disablePadding component="div">
             <Property
-              childProps={{
-                hideIcon: true,
-                onClose: action ? actionFunc : onClose,
-              }}
+              childProps={childProps}
               label={ontola.menuItems}
             />
           </List>
@@ -92,7 +92,7 @@ const MenuItemDropdownContentComp = ({
 
   return (
     <MenuItem
-      action={action ? actionFunc : onClose}
+      action={childProps.onClose}
       allowExternal={false}
       url={href && href.value}
       {...sharedProps}

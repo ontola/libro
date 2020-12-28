@@ -44,6 +44,8 @@ PostalDigitsInput.propTypes = {
   value: linkType,
 };
 
+const style = { marginBottom: '0.5em' };
+
 function PostalRangeInput(props) {
   const compProps = {
     index: 0,
@@ -51,7 +53,7 @@ function PostalRangeInput(props) {
   };
 
   return (
-    <div style={{ marginBottom: '0.5em' }}>
+    <div style={style}>
       <PostalDigitsInput rangeIndex={0} {...compProps} />
       -
       <PostalDigitsInput rangeIndex={1} {...compProps} />

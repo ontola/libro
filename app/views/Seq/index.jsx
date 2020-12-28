@@ -1,5 +1,6 @@
 import RDFTypes from '@rdfdev/prop-types';
 import rdfx from '@ontologies/rdf';
+import equal from 'fast-deep-equal';
 import {
   Resource,
   register,
@@ -25,6 +26,12 @@ export function Seq({
   subject,
 }) {
   const sequences = useSeqToArr(subject);
+  const [memoizedProps, setMemoizedProps] = React.useState(childProps);
+  React.useEffect(() => {
+    if (!equal(childProps, memoizedProps)) {
+      setMemoizedProps(childProps);
+    }
+  });
 
   if (gutter === -1) {
     return null;
@@ -43,7 +50,7 @@ export function Seq({
       <ItemWrapper key={s.toString()} {...itemWrapperOpts}>
         <ErrorBoundary data-debug={s.toString()}>
           <Resource
-            {...childProps}
+            {...memoizedProps}
             columns={columns}
             count={sequences.length}
             data-test={`Seq-${i}-${s.value}`}
@@ -59,7 +66,7 @@ export function Seq({
         </ErrorBoundary>
       </ItemWrapper>
     ))
-  ), [subject, sequences, childProps, columns, depth]);
+  ), [subject, sequences, memoizedProps, columns, depth]);
 
   const primaryItems = React.useMemo(
     () => (

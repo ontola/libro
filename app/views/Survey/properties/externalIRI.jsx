@@ -16,6 +16,9 @@ import ontola from '../../../ontology/ontola';
 import { allTopologies } from '../../../topologies';
 import Typeform from '../../../containers/Typeform';
 
+const style = { paddingTop: '0.5rem' };
+const displayNoneStyle = { display: 'none' };
+
 const ExternalIRI = ({ linkedProp }) => {
   const lrs = useLRS();
   const [createSubmissionAction] = useProperty(ontola.createSubmissionAction);
@@ -25,7 +28,7 @@ const ExternalIRI = ({ linkedProp }) => {
     return (
       <React.Fragment>
         <CardDivider />
-        <div style={{ paddingTop: '0.5rem' }}>Bedankt voor je bijdrage!</div>
+        <div style={style}>Bedankt voor je bijdrage!</div>
       </React.Fragment>
     );
   }
@@ -39,7 +42,7 @@ const ExternalIRI = ({ linkedProp }) => {
   return (
     <Typeform
       popup
-      style={{ display: 'none' }}
+      style={displayNoneStyle}
       url={linkedProp.value}
       onSubmit={() => lrs.exec(createSubmissionAction)}
     />

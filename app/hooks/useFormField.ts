@@ -102,24 +102,31 @@ const changeDelta = (object: SomeNode, path: NamedNode, nextValue: InputValue[])
   ));
 };
 
-const inputValues = (input: InputProps, alwaysVisible: boolean, minCount: number | undefined, newItem: () => any) => {
-  let currentValue = input.value;
+const useInputValues = (
+  input: InputProps,
+  alwaysVisible: boolean,
+  minCount: number | undefined,
+  newItem: () => any,
+) => {
+  return React.useMemo(() => {
+    let currentValue = input.value;
 
-  if (currentValue && !Array.isArray(currentValue)) {
-    currentValue = [currentValue];
-  }
-
-  if (!currentValue || currentValue.length === 0) {
-    const showEmptyField = typeof minCount === 'undefined' ? alwaysVisible : minCount > 0;
-
-    if (showEmptyField) {
-      return [newItem()];
+    if (currentValue && !Array.isArray(currentValue)) {
+      currentValue = [currentValue];
     }
 
-    return [];
-  }
+    if (!currentValue || currentValue.length === 0) {
+      const showEmptyField = typeof minCount === 'undefined' ? alwaysVisible : minCount > 0;
 
-  return currentValue;
+      if (showEmptyField) {
+        return [newItem()];
+      }
+
+      return [];
+    }
+
+    return currentValue;
+  }, [input.value, alwaysVisible, minCount, newItem]);
 };
 
 const defaultProps = {
@@ -257,6 +264,12 @@ const useFormField = (componentProps: UseFormFieldProps): FormFieldProps | {} =>
       addItem();
     }
   }, [input.value?.length, fieldShape.minCount, alwaysVisible]);
+  const values = useInputValues(
+    input,
+    alwaysVisible,
+    isNumber(fieldShape.minCount) ? fieldShape.minCount : undefined,
+    newItem,
+  );
 
   if (!whitelisted) {
     return {};
@@ -268,13 +281,6 @@ const useFormField = (componentProps: UseFormFieldProps): FormFieldProps | {} =>
     error,
     invalid,
   } = meta;
-
-  const values = inputValues(
-    input,
-    alwaysVisible,
-    isNumber(fieldShape.minCount) ? fieldShape.minCount : undefined,
-    newItem,
-  );
   const inputErrors = submissionErrors?.[input.name] || error;
   const className = classNames({
     'Field': true,

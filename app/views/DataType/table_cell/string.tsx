@@ -7,13 +7,15 @@ import React from 'react';
 import { tableCellTopology } from '../../../topologies/TableCell';
 import { tableRowTopology } from '../../../topologies/TableRow';
 
+const style = {
+  maxWidth: '20em',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+};
+
 const StringTableCellRenderer: FC<{ linkedProp: Literal }> = ({ linkedProp }) => (
-  <div style={{
-    maxWidth: '20em',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-  }}>
+  <div style={style as any}>
     {linkedProp.value}
   </div>
 );

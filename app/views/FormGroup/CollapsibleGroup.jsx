@@ -26,6 +26,11 @@ const CollapsibleGroup = (childProps) => {
       setFieldNames(fieldNames);
     }
   }, [fieldNames]);
+  const childChildProps = React.useMemo(() => ({
+    addFieldName,
+    setHasContent,
+    ...childProps,
+  }), [addFieldName, setHasContent, childProps]);
   const classes = useStyles();
 
   function handleClick() {
@@ -63,11 +68,7 @@ const CollapsibleGroup = (childProps) => {
       <Collapse in={open} timeout={0}>
         <Property label={schema.text} />
         <Property
-          childProps={{
-            addFieldName,
-            setHasContent,
-            ...childProps,
-          }}
+          childProps={childChildProps}
           label={form.fields}
         />
       </Collapse>

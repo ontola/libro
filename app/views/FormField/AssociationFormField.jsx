@@ -9,10 +9,12 @@ import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
 import { allTopologies } from '../../topologies';
 
+const newItem = () => ({ '@id': rdf.blankNode(uuidv4()) });
+
 const AssociationFormField = (props) => {
   const fieldProps = useFormField({
     alwaysVisible: false,
-    newItem: () => ({ '@id': rdf.blankNode(uuidv4()) }),
+    newItem,
     ...props,
   });
 

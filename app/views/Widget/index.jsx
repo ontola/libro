@@ -17,6 +17,10 @@ import { handleErrorStatuses } from '../../components/Error';
 
 const Widget = ({ topology, widgetSize }) => {
   const size = tryParseInt(widgetSize);
+  const childProps = React.useMemo(() => ({
+    onError: handleErrorStatuses([HttpStatus.FORBIDDEN]),
+    renderWhenEmpty: true,
+  }));
 
   let Wrapper;
   let wrapperOpts = {};
@@ -36,10 +40,7 @@ const Widget = ({ topology, widgetSize }) => {
     <GridItem size={size}>
       <Wrapper {...wrapperOpts}>
         <Property
-          childProps={{
-            onError: handleErrorStatuses([HttpStatus.FORBIDDEN]),
-            renderWhenEmpty: true,
-          }}
+          childProps={childProps}
           label={ontola.widgetResource}
         />
       </Wrapper>

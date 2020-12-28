@@ -9,7 +9,13 @@ import { convertKeysAtoB } from '../../helpers/data';
 import { HTTP_RETRY_WITH, handleHTTPRetry } from '../../helpers/errorHandling';
 import { retrievePath } from '../../helpers/iris';
 
-const useSubmitHandler = (props) => {
+const useSubmitHandler = ({
+  modal,
+  responseCallback,
+  subject,
+  onDone,
+  onStatusForbidden,
+}) => {
   const lrs = useLRS();
   const history = useHistory();
   const {
@@ -23,13 +29,6 @@ const useSubmitHandler = (props) => {
   });
 
   return React.useCallback((form, values, ...args) => {
-    const {
-      modal,
-      responseCallback,
-      subject,
-      onDone,
-      onStatusForbidden,
-    } = props;
     let formData;
     if (url && httpMethod?.value === 'GET') {
       return new Promise((resolve) => {
@@ -95,7 +94,16 @@ const useSubmitHandler = (props) => {
         throw e;
       });
     });
-  });
+  }, [
+    action,
+    httpMethod,
+    modal,
+    responseCallback,
+    subject,
+    url,
+    onDone,
+    onStatusForbidden,
+  ]);
 };
 
 export default useSubmitHandler;

@@ -12,7 +12,6 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-  FormattedMessage,
   defineMessages,
   useIntl,
 } from 'react-intl';
@@ -31,9 +30,17 @@ import { entityIsLoaded } from '../../../helpers/data';
 const publicGroupIRI = rdf.id(app.ns('g/-1'));
 
 const messages = defineMessages({
+  privateText: {
+    defaultMessage: 'Private',
+    id: 'https://app.argu.co/i18n/detail/argu:grantedGroups/private/text',
+  },
   privateTitle: {
     defaultMessage: 'Visible for {groupNames}',
     id: 'https://app.argu.co/i18n/detail/argu:grantedGroups/private/title',
+  },
+  publicText: {
+    defaultMessage: 'Public',
+    id: 'https://app.argu.co/i18n/detail/argu:grantedGroups/public/text',
   },
   publicTitle: {
     defaultMessage: 'Visible for everyone',
@@ -66,12 +73,7 @@ const GrantedGroupsDetail = ({ linkedProp }) => {
     return (
       <Detail
         icon="group"
-        text={(
-          <FormattedMessage
-            defaultMessage="Private"
-            id="https://app.argu.co/i18n/detail/argu:grantedGroups/private/text"
-          />
-        )}
+        text={formatMessage(messages.privateText)}
         title={formatMessage(messages.privateTitle, { groupNames })}
       />
     );
@@ -80,12 +82,7 @@ const GrantedGroupsDetail = ({ linkedProp }) => {
   return (
     <Detail
       icon="globe"
-      text={(
-        <FormattedMessage
-          defaultMessage="Public"
-          id="https://app.argu.co/i18n/detail/argu:grantedGroups/public/text"
-        />
-      )}
+      text={formatMessage(messages.publicText)}
       title={formatMessage(messages.publicTitle)}
     />
   );

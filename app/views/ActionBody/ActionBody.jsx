@@ -20,22 +20,39 @@ const ActionBody = ({
   sessionStore,
   submissionErrors,
   whitelist,
-}) => (
-  <Property
-    childProps={{
-      autofocusForm,
-      formIRI,
-      object,
-      onKeyUp,
-      sessionStore,
-      submissionErrors,
-      whitelist,
-    }}
-    itemWrapper={contentWrapper}
-    itemWrapperOpts={contentWrapper === CardContent ? { noStartSpacing: true } : {}}
-    label={form.pages}
-  />
-);
+}) => {
+  const childProps = React.useMemo(() => ({
+    autofocusForm,
+    formIRI,
+    object,
+    onKeyUp,
+    sessionStore,
+    submissionErrors,
+    whitelist,
+  }), [
+    autofocusForm,
+    formIRI,
+    object,
+    onKeyUp,
+    sessionStore,
+    submissionErrors,
+    whitelist,
+  ]);
+  const itemWrapperOpts = React.useMemo(() => (
+    contentWrapper === CardContent
+      ? { noStartSpacing: true }
+      : {}
+  ), [contentWrapper]);
+
+  return (
+    <Property
+      childProps={childProps}
+      itemWrapper={contentWrapper}
+      itemWrapperOpts={itemWrapperOpts}
+      label={form.pages}
+    />
+  );
+};
 
 ActionBody.type = form.Form;
 

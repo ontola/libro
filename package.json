@@ -203,7 +203,7 @@
     "jest-plugins-rspec": "^2.9.0",
     "jsdom": "^16.4.0",
     "link-lib": "0.0.0-eedaf1ad",
-    "link-redux": "2.0.0-6",
+    "link-redux": "0.0.0-4494c454",
     "lint-staged": "^9.5.0",
     "markdown-draft-js": "^2.1.1",
     "megadraft": "^0.6.14",

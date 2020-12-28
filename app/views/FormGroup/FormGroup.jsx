@@ -16,6 +16,10 @@ import useStyles from './FormGroupStyles';
 const FormGroup = ({ hidden, ...childProps }) => {
   const [hasContent, setHasContent] = React.useState(false);
   const classes = useStyles();
+  const childChildProps = React.useMemo(() => ({
+    setHasContent,
+    ...childProps,
+  }), [setHasContent, childProps]);
 
   const className = classNames({
     [classes.hidden]: hidden || !hasContent,
@@ -25,10 +29,7 @@ const FormGroup = ({ hidden, ...childProps }) => {
     <fieldset className={className}>
       <Property label={schema.name} />
       <Property
-        childProps={{
-          setHasContent,
-          ...childProps,
-        }}
+        childProps={childChildProps}
         label={form.fields}
       />
     </fieldset>

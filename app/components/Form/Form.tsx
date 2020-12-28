@@ -54,20 +54,17 @@ const Form = (props: PropTypes) => {
     validateOnBlur,
   } = props;
   const [autoSubmitted, setAutoSubmitted] = React.useState(false);
-  const submitHandler = (...args: any) => onSubmit({ onSubmit: submitHandler }, ...args)
-    .then(() => {
+  const submitHandler = React.useCallback((...args: any) => (
+    onSubmit({onSubmit: submitHandler}, ...args).then(() => {
       const formApi = args[1];
 
       if (__CLIENT__) {
-        Object
-          .keys(sessionStorage)
-          .forEach((k) => k.startsWith(formID) && sessionStorage.removeItem(k));
+        Object.keys(sessionStorage).forEach((k) => k.startsWith(formID) && sessionStorage.removeItem(k));
       }
 
       window.setTimeout(() => formApi?.reset(), 0);
-    })
-    .catch(error);
-
+    }).catch(error)
+  ), [onSubmit, sessionStorage, formID]) as (args: any) => any;
   const controlledSubmit = isFunction(children) ? submitHandler : onSubmit;
   React.useEffect(() => {
     if (autoSubmit && !autoSubmitted) {
@@ -75,12 +72,31 @@ const Form = (props: PropTypes) => {
       controlledSubmit();
     }
   }, [autoSubmit, autoSubmitted]);
+  const context = React.useMemo(() => ({
+    formID,
+    object,
+    theme,
+  }), [formID, object, theme]);
 
   const lowerMethod = method.toLowerCase();
   const methodInput = !['get', 'post'].includes(lowerMethod) && (
-    <Input name="_method" type="hidden" value={method} />
+    <Input name="_method" type="hidden" value={method}/>
   );
   const formMethod = lowerMethod === 'get' ? 'get' : 'post';
+  const render = React.useCallback(({handleSubmit, ...childProps}) => (
+    <FormContext.Provider value={context}>
+      <form
+        action={action}
+        className={className || 'Form'}
+        data-testid={formID}
+        method={formMethod}
+        onSubmit={handleSubmit}
+      >
+        {isFunction(children) ? children(childProps) : children}
+        {methodInput}
+      </form>
+    </FormContext.Provider>
+  ), [action, className, formID, formMethod, children, methodInput]);
 
   return (
     <FinalForm
@@ -89,26 +105,7 @@ const Form = (props: PropTypes) => {
       initialValues={initialValues}
       initialValuesEqual={equal}
       key={formID}
-      render={({ handleSubmit, ...childProps }) => (
-        <FormContext.Provider
-          value={{
-            formID,
-            object,
-            theme,
-          }}
-        >
-          <form
-            action={action}
-            className={className || 'Form'}
-            data-testid={formID}
-            method={formMethod}
-            onSubmit={handleSubmit}
-          >
-            {isFunction(children) ? children(childProps) : children}
-            {methodInput}
-          </form>
-        </FormContext.Provider>
-      )}
+      render={render}
       subscription={subscription}
       validateOnBlur={validateOnBlur}
       onSubmit={controlledSubmit}

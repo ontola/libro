@@ -14,6 +14,8 @@ const propTypes = {
   opened: PropTypes.bool.isRequired,
 };
 
+const style = { position: 'relative' };
+
 class CloseableContainer extends Component {
   componentDidMount() {
     if (this.props.id === undefined) {
@@ -31,7 +33,7 @@ class CloseableContainer extends Component {
     }
 
     return (
-      <div style={{ position: 'relative' }}>
+      <div style={style}>
         <Button
           corner
           plain

@@ -31,6 +31,8 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+const inputProps = { type: 'number' };
+
 const SearchPostalForm = () => {
   const classes = useStyles();
   const [postalCode, setPostalCode] = React.useState(null);
@@ -52,7 +54,7 @@ const SearchPostalForm = () => {
       >
         <InputBase
           className={classes.input}
-          inputProps={{ type: 'number' }}
+          inputProps={inputProps}
           max={MAX_POSTAL_DIGITS}
           min={MIN_POSTAL_DIGITS}
           placeholder="1234"

@@ -25,6 +25,8 @@ import TableHeaderRow from '../../../topologies/TableHeaderRow';
 import { allTopologiesExcept } from '../../../topologies';
 import { CollectionTypes } from '../types';
 
+const style = { marginBottom: '1em' };
+
 const getFrame = (wrapper, topology) => {
   const collectionFrame = ({
     body,
@@ -116,7 +118,7 @@ const getFrame = (wrapper, topology) => {
             <Property label={ontola.query} setCurrentPage={setCurrentPage} />
             {header}
             {body}
-            <div style={{ marginBottom: '1em' }}>
+            <div style={style}>
               {pagination}
             </div>
             {footer}

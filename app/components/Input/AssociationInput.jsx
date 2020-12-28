@@ -20,16 +20,17 @@ const AssociationInput = ({
   const lrs = useLRS();
   const nestedObject = inputValue['@id'];
   const nestedFormIRI = lrs.getResourceProperty(field, form.form);
+  const childProps = React.useMemo(() => ({
+    formIRI: nestedFormIRI,
+    object: nestedObject,
+    theme,
+  }), [nestedFormIRI, nestedObject, theme]);
 
   return (
     <FormSection name={name} path={path} propertyIndex={inputIndex}>
       <Property label={form.form}>
         <Property
-          childProps={{
-            formIRI: nestedFormIRI,
-            object: nestedObject,
-            theme,
-          }}
+          childProps={childProps}
           label={form.pages}
         />
       </Property>

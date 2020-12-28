@@ -20,13 +20,15 @@ const CollectionPreview = ({
     setOpen(true);
   };
 
+  const wrapperProps = React.useMemo(() => ({
+    className: `Collection__Depth-${depth}`,
+    size: 5,
+  }), [depth]);
+
   return (
     <ResourceBoundary
       element={Heading}
-      wrapperProps={{
-        className: `Collection__Depth-${depth}`,
-        size: 5,
-      }}
+      wrapperProps={wrapperProps}
     >
       <LinkDuo
         className={`Collection__Depth-${depth + 1}`}
