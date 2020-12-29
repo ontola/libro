@@ -33,7 +33,7 @@ const cloneLRS = (old: LinkReduxLRSType) =>  {
 export const withFormLRS = (WrappedComponent: any) => {
   const WithFormLRS = (props: {}) => {
     const lrs = useLRS();
-    const formLRS = React.useMemo(() => cloneLRS(lrs), []);
+    const formLRS = React.useMemo(() => cloneLRS(lrs), ['forceHotReload']);
 
     return (
       <RenderStoreProvider value={(formLRS as LinkReduxLRSType)}>
