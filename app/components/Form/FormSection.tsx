@@ -1,33 +1,25 @@
 import { NamedNode } from '@ontologies/core';
 import { SomeNode } from 'link-lib';
-import { linkType } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import { calculateFormFieldName } from '../../helpers/forms';
 import { FormContext } from './Form';
 
-const propTypes = {
-  children: PropTypes.node,
-  name: PropTypes.string,
-  path: linkType,
-  propertyIndex: PropTypes.number,
-};
+interface PropTypes {
+  formIRI: SomeNode;
+  name: string;
+  object: SomeNode;
+  path: NamedNode;
+  propertyIndex: number;
+}
 
-const FormSection = ({
+const FormSection: React.FC<PropTypes> = ({
   children,
   formIRI,
   name,
   object,
   path,
   propertyIndex,
-}: {
-  children: React.ReactNode,
-  formIRI: SomeNode,
-  name: string,
-  object: SomeNode,
-  path: NamedNode,
-  propertyIndex: number,
 }) => {
   const formContext = React.useContext(FormContext);
   const formSection = calculateFormFieldName(name, propertyIndex);
@@ -36,6 +28,8 @@ const FormSection = ({
     formIRI,
     formSection,
     object,
+    parentObject: formContext.object,
+    whitelist: undefined,
   }), [formContext, formIRI, formSection, object]);
 
   return (
@@ -46,7 +40,5 @@ const FormSection = ({
     </FormContext.Provider>
   );
 };
-
-FormSection.propTypes = propTypes;
 
 export default FormSection;

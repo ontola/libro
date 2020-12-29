@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { EventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import Button from '../Button';
+import Button, { ButtonTheme } from '../Button';
 
-const FormFieldAddButton = ({
+interface PropTypes {
+  addItem: EventHandler<any>;
+  label: string | React.ReactNode;
+}
+
+const FormFieldAddButton: React.FC<PropTypes> = ({
   addItem,
   label,
-}: {
-  addItem: (e: any) => any,
-  label: string | React.ReactNode,
 }) => (
   <div>
     <Button
-      theme="transparant"
+      theme={ButtonTheme.Transparant}
       onClick={addItem}
     >
       <FontAwesome name="plus" />

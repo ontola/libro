@@ -2,7 +2,7 @@ import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/styles';
 import React, { useState } from 'react';
 
-import Button from '../../components/Button';
+import Button, { ButtonTheme } from '../../components/Button';
 import Markdown from '../../components/Markdown';
 
 import instructions from './instructions';
@@ -30,7 +30,7 @@ const MarkdownInstructions = () => {
       <Button
         small
         icon="info"
-        theme="transparant"
+        theme={ButtonTheme.Transparant}
         onClick={() => setModal(true)}
       >
         Markdown hulp
@@ -44,7 +44,7 @@ const MarkdownInstructions = () => {
           <Button
             corner
             icon="times"
-            theme="transparant"
+            theme={ButtonTheme.Transparant}
             onClick={() => setModal(false)}
           >
             Sluiten

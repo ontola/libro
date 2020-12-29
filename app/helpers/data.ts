@@ -123,7 +123,7 @@ function serializableValue(v: any): object | object[] | File | string {
 function listToArr(
     lrs: LinkReduxLRSType,
     acc: SomeTerm[],
-    rest: Node | Node[],
+    rest: Node | Node[] | undefined,
 ): SomeTerm[] | Promise<void> {
 
   if (Array.isArray(rest)) {

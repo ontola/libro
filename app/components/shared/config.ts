@@ -4,17 +4,6 @@
 
 export const headingSizes = ['1', '2', '3', '4', '5', '6'];
 
-export const headingVariants = [
-  'alert',
-  'default',
-  'error',
-  'motion',
-  'navbar',
-  'notice',
-  'question',
-  'semantic',
-];
-
 export const shades = [
   'default',
   'lighter',

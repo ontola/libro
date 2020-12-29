@@ -14,11 +14,11 @@ interface PropTypes {
   value: SomeTerm | string;
 }
 
-const CharCounter = ({
+const CharCounter: React.FC<PropTypes> = ({
   maxLength,
   threshold,
   value,
-}: PropTypes) => {
+}) => {
   let currentLength;
   if (isLiteral(value)) {
     currentLength = value.value.length;

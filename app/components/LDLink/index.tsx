@@ -6,27 +6,27 @@ import {
   useLinkRenderContext,
   useProperty,
 } from 'link-redux';
-import React from 'react';
+import React, { EventHandler } from 'react';
 
 import { handle } from '../../helpers/logging';
-import Link from '../Link';
+import Link, { LinkTarget } from '../Link';
 
 interface PropTypes {
   children?: React.ReactNode;
   className?: string;
   location?: string;
-  onClick?: (e: any) => any;
+  onClick?: EventHandler<any>;
   subject?: SomeNode;
-  target?: '_blank' | '_self' | '_parent' | '_top' | 'modal';
+  target?: LinkTarget;
   title?: string;
   to?: NamedNode;
 }
 
-const LDLink = ({
+const LDLink: React.FC<PropTypes> = ({
   children,
   to,
   ...rest
-}: PropTypes) => {
+}) => {
   const { subject } = useLinkRenderContext();
   const url = useProperty(schema.url, { returnType: ReturnType.Value });
 

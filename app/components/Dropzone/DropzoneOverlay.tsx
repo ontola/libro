@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 
 interface Props {
   isDragActive: boolean;
-  overlay: boolean;
+  overlay?: boolean;
 }
 
 const DropzoneOverlay: React.FC<Props> = ({ isDragActive, overlay }) => {

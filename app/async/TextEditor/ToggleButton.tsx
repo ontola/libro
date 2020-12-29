@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { EventHandler } from 'react';
 import { connect } from 'react-redux';
 
-import Button from '../../components/Button';
+import Button, { ButtonTheme } from '../../components/Button';
 import {
   showDraftEditor,
   showMarkdownEditor,
@@ -10,16 +10,16 @@ import {
 import { getEditorShowRich } from '../../state/textEditor/selectors';
 
 interface PropTypes {
-  onShowPlainEditor: (e: any) => any;
-  onShowRichEditor: (e: any) => any;
+  onShowPlainEditor: EventHandler<any>;
+  onShowRichEditor: EventHandler<any>;
   showRichEditor: boolean;
 }
 
-const ToggleEditor = ({
+const ToggleEditor: React.FC<PropTypes> = ({
   onShowPlainEditor,
   onShowRichEditor,
   showRichEditor,
-}: PropTypes) => {
+}) => {
   const onClick = () => {
     if (showRichEditor) {
       return onShowPlainEditor;
@@ -40,7 +40,7 @@ const ToggleEditor = ({
     <Button
       small
       icon={icon()}
-      theme="transparant"
+      theme={ButtonTheme.Transparant}
       title="Wanneer dit aangevinkt staat, kan je tekst selecteren
         om opmaak te wijzigen en links toe te voegen."
       onClick={onClick()}

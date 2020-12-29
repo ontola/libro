@@ -3,16 +3,16 @@ import React from 'react';
 import Markdown from '../Markdown';
 
 interface PropTypes {
-  description: string;
-  helperText: string;
-  preferPlaceholder: boolean;
+  description?: string;
+  helperText?: string;
+  preferPlaceholder?: boolean;
 }
 
-const FormFieldDescription = ({
+const FormFieldDescription: React.FC<PropTypes> = ({
   description,
   helperText,
   preferPlaceholder,
-}: PropTypes) => {
+}) => {
   let text;
   if (preferPlaceholder) {
     text = helperText;
@@ -21,7 +21,7 @@ const FormFieldDescription = ({
   }
 
   return (
-    <div className="Field__description"><Markdown text={text} /></div>
+    <div className="Field__description">{text && <Markdown text={text}/>}</div>
   );
 };
 

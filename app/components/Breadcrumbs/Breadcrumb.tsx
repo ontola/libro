@@ -15,11 +15,11 @@ interface PropTypes {
  * A single part of a BreadcrumbsBar
  * @returns {component} Component
  */
-const Breadcrumb = ({
+const Breadcrumb: React.FC<PropTypes> = ({
   image,
   label,
   title,
-}: PropTypes) => {
+}) => {
   const classes = breadcrumbStyles();
 
   return (

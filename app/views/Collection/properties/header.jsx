@@ -23,7 +23,6 @@ export const HeaderFloat = ({
   hidePagination,
   omniform,
   setCurrentPage,
-  subject,
 }) => {
   const renderPagination = setCurrentPage && !hidePagination;
 
@@ -31,7 +30,7 @@ export const HeaderFloat = ({
     <React.Fragment>
       {renderPagination && <Property label={ontola.filterFields} setCurrentPage={setCurrentPage} />}
       {renderPagination && <Property label={ontola.sortOptions} setCurrentPage={setCurrentPage} />}
-      <CollectionCreateActionButton omniform={omniform} subject={subject} />
+      <CollectionCreateActionButton omniform={omniform} />
     </React.Fragment>
   );
 };
@@ -39,7 +38,6 @@ HeaderFloat.propTypes = {
   hidePagination: PropTypes.bool,
   omniform: PropTypes.bool,
   setCurrentPage: PropTypes.func,
-  subject: subjectType,
 };
 
 const cardCollectionHeader = (props) => (

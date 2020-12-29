@@ -38,7 +38,6 @@ export const components = {
   FormField: component('FormField'),
   FormFieldCharCounter: component('FormField/CharCounter'),
   FormFieldFieldHelper: component('FormField/FieldHelper'),
-  FormFieldOptionsWrapper: component('FormField/OptionsWrapper'),
   FormFooterImage: component('Form/FooterImage'),
   FormFooterRight: component('Form/FooterRight'),
   FormForm: component('Form/Form'),

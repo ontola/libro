@@ -22,7 +22,7 @@ interface PropTypes {
   minLength: string;
   name: string;
   onBlur: (args: any) => any;
-  onChange: (args: any) => any;
+  onChange: (args: any) => void;
   onFocus: (args: any) => any;
   placeholder: string;
   rows: number;

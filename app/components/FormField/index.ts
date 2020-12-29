@@ -14,11 +14,11 @@ export interface SubmissionErrors {
 }
 
 export interface InputMeta {
-  active: boolean;
-  dirty: boolean;
-  dirtySinceLastSubmit: boolean;
-  error: FormFieldError[];
-  invalid: boolean;
-  pristine: boolean;
-  touched: boolean;
+  active?: boolean;
+  dirty?: boolean;
+  dirtySinceLastSubmit?: boolean;
+  error?: FormFieldError[];
+  invalid?: boolean;
+  pristine?: boolean;
+  touched?: boolean;
 }

@@ -2,7 +2,7 @@ import rdf from '@ontologies/core';
 import clsx from 'clsx';
 import { Location } from 'history';
 import { useLRS } from 'link-redux';
-import React, { FunctionComponent, MouseEvent, MouseEventHandler } from 'react';
+import React, { MouseEvent, MouseEventHandler } from 'react';
 import { match } from 'react-router';
 import { Link as DomLink, NavLink } from 'react-router-dom';
 
@@ -19,9 +19,24 @@ import themeStyles from './ThemeStyles';
 // tslint:disable ordered-imports
 import featureStyles from './FeatureStyles';
 
-type Target = '_blank' | '_self' | '_parent' | '_top' | 'modal';
-type Theme = 'default' | 'menu' | 'parent';
-type LinkFeature = 'bold' | 'centered';
+export enum LinkTarget {
+  Blank = '_blank',
+  Self = '_self',
+  Parent = '_parent',
+  Top = '_top',
+  Modal = 'modal',
+}
+
+export enum LinkTheme {
+  Default = 'default',
+  Menu = 'menu',
+  Parent = 'parent',
+}
+
+export enum LinkFeature {
+  Bold = 'bold',
+  Centered = 'centered',
+}
 
 export interface LinkPropTypes {
   activeClassName?: string;
@@ -34,8 +49,8 @@ export interface LinkPropTypes {
   onClick?: MouseEventHandler;
   role?: string;
   tabIndex?: number;
-  target?: Target;
-  theme?: Theme;
+  target?: LinkTarget;
+  theme?: LinkTheme;
   to: string;
 }
 
@@ -52,7 +67,7 @@ const isActiveDefault = (to: string) => {
   );
 };
 
-const Link: FunctionComponent<PropTypesWithRef> = ({
+const Link: React.FC<PropTypesWithRef> = ({
   activeClassName,
   allowExternal = true,
   children,

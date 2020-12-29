@@ -3,9 +3,10 @@ import rdfx from '@ontologies/rdf';
 import rdfs from '@ontologies/rdfs';
 import schema from '@ontologies/schema';
 import {
-  Property,
   linkType,
   register,
+  subjectType,
+  useLink,
   useResourceProperty,
 } from 'link-redux';
 import React from 'react';
@@ -26,6 +27,7 @@ const ThingSelect = ({
   onMouseMove,
   role,
   style,
+  subject,
   wrapperProps,
 }) => {
   const defaultWrapperProps = () => ({
@@ -42,15 +44,17 @@ const ThingSelect = ({
 
   const labels = [schema.name, rdfs.label, foaf.name];
 
-  const [label] = useResourceProperty(itemClass, ontola.ns('forms/inputs/select/displayProp'));
+  const [labelProp] = useResourceProperty(itemClass, ontola.ns('forms/inputs/select/displayProp'));
 
-  if (label) {
-    labels.unshift(label);
+  if (labelProp) {
+    labels.unshift(labelProp);
   }
+
+  const { label } = useLink({ label: labels });
 
   return (
     <ResourceBoundary wrapperProps={wrapperProps || defaultWrapperProps()}>
-      <Property label={labels} />
+      {(label || subject).value}
     </ResourceBoundary>
   );
 };
@@ -74,6 +78,7 @@ ThingSelect.propTypes = {
   onMouseMove: PropTypes.func,
   role: PropTypes.string,
   style: PropTypes.shape({}),
+  subject: subjectType,
   wrapperProps: PropTypes.shape({}),
 };
 

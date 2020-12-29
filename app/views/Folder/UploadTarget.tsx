@@ -8,22 +8,10 @@ import DropzoneOverlay from '../../components/Dropzone/DropzoneOverlay';
 import Spinner from '../../components/Spinner';
 import { convertKeysAtoB } from '../../helpers/data';
 import { handle } from '../../helpers/logging';
-import argu from '../../ontology/argu';
+import { getBase64 } from '../MediaObject/omniform/MediaObjectOmniformDropzone';
 
 interface UploadTargetProps {
   uploadAction?: SomeNode;
-}
-
-function getBase64(file: File) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(rdf.literal(
-      reader.result,
-      argu.ns(`base64File?filename=${encodeURIComponent(file.name)}`),
-    ));
-    reader.onerror = (error) => reject(error);
-  });
 }
 
 /**

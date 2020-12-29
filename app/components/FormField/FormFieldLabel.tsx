@@ -9,11 +9,11 @@ interface PropTypes {
   required: boolean;
 
 }
-const FormFieldLabel = ({
+const FormFieldLabel: React.FC<PropTypes> = ({
   label,
   name,
   required,
-}: PropTypes) => {
+}) => {
   const { theme } = React.useContext(FormContext);
 
   return (

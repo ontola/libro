@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { EventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import { normalizeFontAwesomeIRI } from '../../helpers/iris';
@@ -9,67 +9,69 @@ import LinkDuo from '../LinkDuo';
 
 import './Button.scss';
 
-const buttonThemes = [
-  'as-card',
-  'box',
-  'card--big',
-  'default',
-  'pagination',
-  'submit',
-  'subtle',
-  'transparant',
-];
+export enum ButtonTheme {
+  AsCard = 'as-card',
+  Box = 'box',
+  CardBig = 'card--big',
+  Default = 'default',
+  Pagination = 'pagination',
+  Submit = 'submit',
+  Subtle = 'subtle',
+  Transparant = 'transparant',
+}
 
-const propTypes = {
+export enum ButtonVariant {
+  Success = 'success',
+  Warning = 'warning',
+  Error = 'error',
+  Yes = 'yes',
+  Pro = 'pro',
+  Neutral = 'neutral',
+  Other = 'other',
+  No = 'no',
+  Con = 'con',
+  Upvote = 'upvote',
+  Comment = 'comment',
+  Facebook = 'facebook',
+  Google = 'google',
+}
+
+interface PropTypes {
   /** Should be true when the button is toggleable and toggled. */
-  active: PropTypes.bool,
+  active?: boolean;
   /** Additional aria label */
-  ariaLabel: PropTypes.string,
-  centered: PropTypes.bool,
+  ariaLabel?: string;
+  centered?: boolean;
   /** Label of the button */
-  children: PropTypes.node,
+  children?: React.ReactNode;
   /** Should be avoided. Try to use the 'theme' prop or wrap it in some other element for styling */
   /** and use the 'plain' prop. */
-  className: PropTypes.string,
+  className?: string;
   /** Displays button on top right position of relative parent */
-  corner: PropTypes.bool,
-  disabled: PropTypes.bool,
+  corner?: boolean;
+  disabled?: boolean;
   /** Whether the button should fill it's container */
-  grow: PropTypes.bool,
+  grow?: boolean;
   /** If the button is actually just a link */
-  href: PropTypes.string,
+  href?: string;
   /** FontAwesome icon string. */
-  icon: PropTypes.string,
+  icon?: string;
   /** Set to true if the button should indicate that something is happening. Renders spinner. */
-  loading: PropTypes.bool,
+  loading?: boolean;
   /** Give some margins for inline usage */
-  margins: PropTypes.bool,
-  narrow: PropTypes.bool,
-  onClick: PropTypes.func,
+  margins?: boolean;
+  narrow?: boolean;
+  onClick: EventHandler<any>;
   /** Removes all styling. */
-  plain: PropTypes.bool,
-  small: PropTypes.bool,
+  plain?: boolean;
+  small?: boolean;
   /** Removes all styling. */
-  theme: PropTypes.oneOf(buttonThemes),
+  theme?: ButtonTheme;
   /** Title html tag. */
-  title: PropTypes.string,
-  type: PropTypes.string,
-  variant: PropTypes.oneOf([
-    'success',
-    'warning',
-    'error',
-    'yes',
-    'pro',
-    'neutral',
-    'other',
-    'no',
-    'con',
-    'upvote',
-    'comment',
-    'facebook',
-    'google',
-  ]),
-};
+  title?: string;
+  type?: string;
+  variant?: ButtonVariant;
+}
 
 const defaultProps = {
   active: false,
@@ -78,7 +80,7 @@ const defaultProps = {
   narrow: false,
   plain: false,
   small: false,
-  theme: 'default',
+  theme: ButtonTheme.Default,
   type: 'button',
 };
 
@@ -86,7 +88,7 @@ const defaultProps = {
  * Used for any action in the app. Handles touch events and blurs after handling the onClick.
  * @returns {component} Component
  */
-const Button = ({
+const Button: React.FC<PropTypes> = ({
   active,
   ariaLabel,
   centered,
@@ -107,7 +109,7 @@ const Button = ({
   type,
   href,
   variant,
-}: any) => {
+}) => {
   const btnClass = classNames({
     'Button': true,
     'Button--active': active,
@@ -122,7 +124,7 @@ const Button = ({
     'Button--small': small,
     [`Button--${theme}`]: theme,
     [`Button--variant-${variant}`]: variant,
-    [className]: className,
+    [className || '']: className,
   });
 
   const currentIcon = loading ? 'spinner' : icon && normalizeFontAwesomeIRI(icon);
@@ -181,7 +183,6 @@ const Button = ({
   );
 };
 
-Button.propTypes = propTypes;
 Button.defaultProps = defaultProps;
 
 export default Button;

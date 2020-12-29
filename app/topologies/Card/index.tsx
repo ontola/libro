@@ -1,6 +1,4 @@
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
 
 import argu from '../../ontology/argu';
 import Topology from '../Topology';
@@ -10,7 +8,6 @@ import './Card.scss';
 export const cardTopology = argu.card;
 
 interface PropTypes {
-  children: React.ReactNode;
   fixed?: boolean;
   shine?: boolean;
   warn?: boolean;
@@ -21,13 +18,6 @@ interface PropTypes {
  * @returns {component} Component
  */
 class Card extends Topology<PropTypes> {
-  public static propTypes = {
-    children: PropTypes.node.isRequired,
-    fixed: PropTypes.bool,
-    shine: PropTypes.bool,
-    warn: PropTypes.bool,
-  };
-
   public static defaultProps = {
     fixed: false,
     shine: false,

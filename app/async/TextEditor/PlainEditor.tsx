@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { EventHandler } from 'react';
 import Textarea from 'react-autosize-textarea';
 
-import Button from '../../components/Button';
+import Button, { ButtonTheme } from '../../components/Button';
 import CardDivider from '../../components/Card/CardDivider';
 import { FormContext } from '../../components/Form/Form';
 import Markdown from '../../components/Markdown';
@@ -28,12 +28,17 @@ const defaultProps = {
   autoFocus: false,
 };
 
+interface PropTypes {
+  show: any;
+  onClick: EventHandler<any>;
+}
+
 /* eslint react/prop-types: 0 */
-const PreviewButton = ({ show, onClick }: { show: any, onClick: (e: any) => any }) => (
+const PreviewButton: React.FC<PropTypes> = ({ show, onClick }) => (
   <Button
     small
     icon={show ? 'caret-down' : 'caret-right'}
-    theme="transparant"
+    theme={ButtonTheme.Transparant}
     onClick={onClick}
   >
     Voorbeeldweergave

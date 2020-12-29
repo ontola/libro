@@ -1,11 +1,7 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-
 import argu from '../../ontology/argu';
 import Topology from '../Topology';
 
 interface PropTypes {
-  children: React.ReactNode;
   direction: 'column' | undefined;
 }
 
@@ -19,11 +15,6 @@ export const cardListTopology = argu.cardList;
  * @returns {component} Component
  */
 class CardList extends Topology<PropTypes> {
-  public static propTypes = {
-    children: PropTypes.node.isRequired,
-    direction: PropTypes.oneOf(['column']),
-  };
-
   constructor(props: PropTypes) {
     super(props);
 

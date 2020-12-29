@@ -26,7 +26,6 @@ const defaultProps = {
 interface PropTypes {
   alignEnd?: boolean;
   centered?: boolean;
-  children: React.ReactNode;
   endSpacing?: boolean;
   noSpacing?: boolean;
   noStartSpacing?: boolean;
@@ -37,7 +36,7 @@ interface PropTypes {
  * Wrapper component for Card contents
  * @returns {component} Component
  */
-const CardContent = ({
+const CardContent: React.FC<PropTypes> = ({
   alignEnd,
   centered,
   children,
@@ -45,7 +44,7 @@ const CardContent = ({
   noStartSpacing,
   noSpacing,
   style,
-}: PropTypes) => {
+}) => {
   if (typeof children === 'undefined') {
     return <div />;
   }

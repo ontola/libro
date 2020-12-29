@@ -8,18 +8,14 @@ describe('persistence', () => {
   afterEach(cleanup);
 
   describe('serialization', () => {
-    it('serializes plain strings', () => {
-      expect(serializeForStorage('test')).toEqual('"test"');
-    });
-
     it('serializes named nodes', () => {
-      const serialized = serializeForStorage(ex.ns('5'));
+      const serialized = serializeForStorage([ex.ns('5')]);
       expect(serialized).toContain('"termType":"NamedNode"');
       expect(serialized).toContain('"value":"http://example.com/ns#5"');
     });
 
     it('serializes Literal with datatype string', () => {
-      const serialized = serializeForStorage(rdf.literal('test'));
+      const serialized = serializeForStorage([rdf.literal('test')]);
 
       expect(serialized).toContain('"termType":"Literal"');
       expect(serialized).toContain('"value":"test"');
@@ -28,7 +24,7 @@ describe('persistence', () => {
     });
 
     it('serializes blank nodes', () => {
-      const serialized = serializeForStorage(rdf.blankNode('test'));
+      const serialized = serializeForStorage([rdf.blankNode('test')]);
 
       expect(serialized).toContain('"termType":"BlankNode"');
       expect(serialized).toContain('"value":"test"');

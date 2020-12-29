@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import './Loading.scss';
@@ -40,7 +39,7 @@ export const LoadingCard = () => (
   </Card>
 );
 
-export const LoadingCardFixed = ({ fill }: {fill: boolean}) => (
+export const LoadingCardFixed: React.FC<{ fill: boolean }> = ({ fill }) => (
   <CardFixed fill={fill}>
     <CardContent>
       <div className="Loading__Header Loading__background" style={{ minWidth: '18em' }} />
@@ -50,10 +49,6 @@ export const LoadingCardFixed = ({ fill }: {fill: boolean}) => (
     </CardContent>
   </CardFixed>
 );
-
-LoadingCardFixed.propTypes = {
-  fill: PropTypes.bool,
-};
 
 export const LoadingCellRow = () => (
   <TableRow>
@@ -108,15 +103,11 @@ export const LoadingRow = () => (
   </CardRow>
 );
 
-export const LoadingSelect = ({ style }: { style: any }) => (
+export const LoadingSelect: React.FC<{ style: any }> = ({ style }) => (
   <div className="Loading__Select" style={style}>
     <LoadingParagraph />
   </div>
 );
-
-LoadingSelect.propTypes = {
-  style: PropTypes.shape({}),
-};
 
 // Like a LoadingRow, but with a backdrop
 export const LoadingCardRowAppendix = () => (

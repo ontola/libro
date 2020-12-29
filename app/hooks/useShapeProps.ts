@@ -1,11 +1,11 @@
 import sh from '@ontologies/shacl';
 import equal from 'fast-deep-equal';
+import { SomeNode } from 'link-lib';
 import {
   literal,
   ReturnType,
   useResourceLink,
 } from 'link-redux';
-import { PropParam } from 'link-redux/dist-types/types';
 import React, { useState } from 'react';
 import { FormContext } from '../components/Form/Form';
 import { isNumber } from '../helpers/types';
@@ -13,24 +13,25 @@ import { isNumber } from '../helpers/types';
 import ontola from '../ontology/ontola';
 import { UseFormFieldProps } from './useFormField';
 
-const shapePropsFromObject = ['maxCount', 'maxInclusive', 'maxLength', 'minCount', 'minInclusive', 'minLength'];
+const shapePropsFromObject = ['maxCount', 'maxInclusive', 'maxLength', 'minCount', 'minInclusive', 'minLength', 'shIn'];
 
 export interface ShapeForm {
   maxCount: number;
-  maxCountProp: PropParam;
+  maxCountProp: SomeNode;
   maxInclusive: number;
-  maxInclusiveProp: PropParam;
+  maxInclusiveProp: SomeNode;
   maxLength: number;
   minCount: number;
-  minCountProp: PropParam;
+  minCountProp: SomeNode;
   minInclusive: number;
-  minInclusiveProp: PropParam;
+  minInclusiveProp: SomeNode;
   minLength: number;
-  minLengthProp: PropParam;
+  minLengthProp: SomeNode;
   required: boolean;
   removable: boolean;
+  shIn: SomeNode;
 
-  [key: string]: PropParam | number | boolean;
+  [key: string]: SomeNode | number | boolean;
 }
 
 const mapShapeProps = {
@@ -45,6 +46,7 @@ const mapShapeProps = {
   minInclusiveProp: ontola.minInclusive,
   minLength: literal(sh.minLength),
   minLengthProp: ontola.minLength,
+  shIn: sh.in,
 };
 
 const useFieldShape = (props: UseFormFieldProps) => {
@@ -74,7 +76,7 @@ const useFieldShape = (props: UseFormFieldProps) => {
     ...shapeFromObject,
   };
 
-  shape.required = props.required || (shape.minCount ? shape.minCount > 0 : false);
+  shape.required = shape.minCount ? shape.minCount > 0 : false;
   shape.removable = ((shape.minCount !== 1 && !props.alwaysVisible)
     || (isNumber(shape.maxCount) && shape.maxCount > 1));
 

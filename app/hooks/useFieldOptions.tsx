@@ -1,92 +1,49 @@
 import rdf, { isNamedNode, isNode } from '@ontologies/core';
-import sh from '@ontologies/shacl';
+import { SomeNode } from 'link-lib';
 import { SomeTerm } from 'link-lib/dist-types/rdf';
 import {
-  linkedPropType,
-  Property,
-  Resource,
+  useDataFetching,
   useDataInvalidation,
   useLRS,
-  useProperty,
-  useResourceProperty,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
-import parser from 'uri-template';
-import { useDebouncedCallback } from 'use-debounce';
 
 import {
   arraysEqual,
   containerToArr,
   entityIsLoaded,
 } from '../helpers/data';
-import { isPromise } from '../helpers/types';
-import ontola from '../ontology/ontola';
 
-const DEBOUNCE_TIMER = 1000;
-
-export const optionsType = PropTypes.oneOfType([
-  linkedPropType,
-  PropTypes.arrayOf(PropTypes.oneOfType([
-    PropTypes.string,
-    linkedPropType,
-  ])),
-]);
-
-const useFieldOptions = () => {
-  const [shInProp] = useProperty(sh.in);
+const useFieldOptions = (shIn: SomeNode | undefined) => {
   const lrs = useLRS();
-  const [options, setOptions] = React.useState(([] as SomeTerm[]));
-  const [shIn, setShIn] = React.useState(shInProp);
+  const [options, setOptions] = React.useState<SomeTerm[]>(([]));
   const [loading, setLoading] = React.useState(false);
-  const [debouncedCallback] = useDebouncedCallback(
-    () => {
-      setLoading((prevValue) => (
-        (prevValue === !!shIn) ? false : !!shIn
-      ));
-    },
-    DEBOUNCE_TIMER,
-  );
 
   useDataInvalidation([shIn, ...options].filter(isNamedNode));
-  const [iriTemplate] = useResourceProperty(isNamedNode(shInProp) ? shInProp : undefined, ontola.iriTemplate);
-  const searchTemplate = iriTemplate && parser.parse(iriTemplate.value);
-  const searchable = searchTemplate?.expressions?.some((expr) => (
-    expr.params.map((param) => param.name).includes('q')
-  ));
+  useDataFetching([shIn, ...options].filter(isNamedNode));
+  const loaded = isNode(shIn) && entityIsLoaded(lrs, shIn);
 
-  React.useLayoutEffect(() => {
-    if (loading) {
-      return;
+  React.useEffect(() => {
+    let optionsArray;
+    if (Array.isArray(shIn)) {
+      optionsArray = shIn;
+    } else if (loaded) {
+      optionsArray = containerToArr(lrs, [], shIn as SomeNode);
     }
-    const optionsArray = Array.isArray(shIn)
-      ? shIn
-      : containerToArr(lrs, [], isNode(shIn) ? shIn : []);
 
-    if (Array.isArray(optionsArray) && !arraysEqual(optionsArray, options)) {
-      setOptions(optionsArray);
-    } else if (isPromise(optionsArray)) {
-      if (!loading) {
-        setLoading(!!shIn);
-        optionsArray.then(debouncedCallback);
+    if (Array.isArray(optionsArray)) {
+      setLoading(false);
+      if (!arraysEqual(optionsArray, options)) {
+        setOptions(optionsArray);
       }
+    } else {
+      setLoading(!!shIn);
     }
-  }, [loading, shIn, shIn && lrs.store.changeTimestamps[rdf.id(shIn)]]);
-
-  const renderCreateButton = () => (
-    isNamedNode(shIn) && entityIsLoaded(lrs, shIn) && (
-      <Resource subject={shIn}>
-        <Property label={ontola.createAction} limit={Infinity} />
-      </Resource>
-    )
-  );
+  }, [loading, loaded, shIn, shIn && lrs.store.changeTimestamps[rdf.id(shIn)]]);
 
   return {
-    iriTemplate: searchable && iriTemplate,
     loading,
     options,
-    renderCreateButton,
-    setShIn,
   };
 };
 

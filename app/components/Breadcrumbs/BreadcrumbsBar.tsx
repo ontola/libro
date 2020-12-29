@@ -2,7 +2,6 @@ import { parentTopology } from '../../topologies/Parent/index';
 import Topology from '../../topologies/Topology/index';
 
 interface PropTypes {
-  children: React.ReactNode;
   showArrow?: boolean;
 }
 

@@ -5,14 +5,16 @@ import { FormContext } from '../Form/Form';
 import './FieldHelper.scss';
 import { FormFieldError } from './index';
 
-const FieldHelper = ({
+interface PropTypes {
+  helperText: string | React.ReactNode;
+  error: FormFieldError;
+  right?: React.ReactNode;
+}
+
+const FieldHelper: React.FC<PropTypes> = ({
   helperText,
   error,
   right,
-}: {
-  helperText: string | React.ReactNode,
-  error: FormFieldError,
-  right?: React.ReactNode,
 }) => {
   const { theme } = React.useContext(FormContext);
   const errMsg = Array.isArray(error) ? error[0] : error;

@@ -6,10 +6,10 @@ import { FormContext } from '../Form/Form';
 
 import CharCounter, { CHAR_COUNTER_THRESHOLD } from './CharCounter';
 
-import { InputMeta } from './index';
+import { FormFieldError, InputMeta } from './index';
 
 interface PropTypes {
-  errors: string[];
+  errors: FormFieldError[];
   inputValue: SomeTerm;
   maxLength: number;
   meta: InputMeta;
@@ -19,12 +19,12 @@ const style = {
   color: '#c81414',
 };
 
-const FormFieldTrailer = ({
+const FormFieldTrailer: React.FC<PropTypes> = ({
   errors,
   maxLength,
   meta,
   inputValue,
-}: PropTypes) => {
+}) => {
   const {
     active,
     pristine,
@@ -36,7 +36,7 @@ const FormFieldTrailer = ({
       <span
         className="Field__input--trailing-icon fa fa-exclamation-circle"
         style={style}
-        title={errors[0]}
+        title={errors[0].error}
       />
     );
   }

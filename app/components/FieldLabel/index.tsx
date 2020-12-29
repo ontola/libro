@@ -1,16 +1,17 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
-const FieldLabel = ({
+interface PropTypes {
+  htmlFor: string;
+  label: string | React.ReactNode;
+  hidden?: boolean;
+  required?: boolean;
+}
+
+const FieldLabel: React.FC<PropTypes> = ({
   htmlFor,
   label,
   hidden,
   required,
-}: {
-  htmlFor: string,
-  label: string | React.ReactNode,
-  hidden: boolean,
-  required: boolean,
 }) => (
   <label
     className={`Field__label${hidden ? ' AriaHidden' : ''}`}
@@ -20,15 +21,5 @@ const FieldLabel = ({
     {required && <span className="Field__label-required">*</span>}
   </label>
 );
-
-FieldLabel.propTypes = {
-  hidden: PropTypes.bool,
-  htmlFor: PropTypes.string,
-  label: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element,
-  ]),
-  required: PropTypes.bool,
-};
 
 export default FieldLabel;

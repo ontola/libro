@@ -1,10 +1,9 @@
-import rdf, { NamedNode } from '@ontologies/core';
+import rdf, { isNamedNode, NamedNode, SomeTerm } from '@ontologies/core';
+import { SomeNode } from 'link-lib';
 import {
-  linkType,
   useLRS,
   useResourceProperty,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React, { EventHandler } from 'react';
 import parser from 'uri-template';
 
@@ -15,7 +14,16 @@ import Image from '../Image';
 
 import './AttachmentPreview.scss';
 
-const AttachmentPreview: React.FC<any> = ({
+interface PropTypes {
+  caption: SomeTerm;
+  contentUrl: SomeTerm;
+  filename: SomeTerm;
+  isPartOf: SomeNode;
+  sequenceIndex: number;
+  thumbnailURL: SomeTerm;
+}
+
+const AttachmentPreview: React.FC<PropTypes> = ({
   caption,
   contentUrl,
   filename,
@@ -28,10 +36,10 @@ const AttachmentPreview: React.FC<any> = ({
   const [attachmentsIriTemplate] = useResourceProperty(attachments, ontola.iriTemplate) as NamedNode[];
 
   React.useEffect(() => {
-    if (__CLIENT__ && isPartOf && !entityIsLoaded(lrs, isPartOf)) {
+    if (__CLIENT__ && isPartOf && !entityIsLoaded(lrs, isPartOf) && isNamedNode(isPartOf)) {
       lrs.queueEntity(isPartOf);
     }
-    if (__CLIENT__ && attachments && !entityIsLoaded(lrs, attachments)) {
+    if (__CLIENT__ && attachments && !entityIsLoaded(lrs, attachments) && isNamedNode(attachments)) {
       lrs.queueEntity(attachments);
     }
   }, [
@@ -91,15 +99,6 @@ const AttachmentPreview: React.FC<any> = ({
       )}
     </a>
   );
-};
-
-AttachmentPreview.propTypes = {
-  caption: linkType,
-  contentUrl: linkType,
-  filename: linkType.isRequired,
-  isPartOf: linkType,
-  sequenceIndex: PropTypes.number,
-  thumbnailURL: linkType,
 };
 
 export default AttachmentPreview;

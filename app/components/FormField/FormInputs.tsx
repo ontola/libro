@@ -1,6 +1,7 @@
 import rdf, { isNamedNode, isTerm, SomeTerm } from '@ontologies/core';
+import { SomeNode } from 'link-lib';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { EventHandler } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import { destroyFieldName, isMarkedForRemove, retrieveIdFromValue } from '../../helpers/forms';
@@ -17,20 +18,40 @@ interface PropTypes {
   autofocus?: boolean;
   combinedComponent?: boolean;
   description?: string;
-  field?: SomeTerm;
+  field?: SomeNode;
   fieldShape: ShapeForm;
   inputComponent: (args: any) => any;
   inputErrors?: FormFieldError[];
   label?: string | React.ReactNode;
   meta: InputMeta;
   name: string;
-  onChange: (e: any) => any;
-  path?: SomeTerm;
+  onChange: EventHandler<any>;
+  path?: SomeNode;
   placeholder?: string;
   renderHelper?: (args: any) => any;
+  storeKey: string;
   topology?: SomeTerm;
   type?: string;
   values?: InputValue[];
+}
+
+export interface InputComponentProps {
+  autofocus: boolean;
+  description?: string;
+  errors: FormFieldError[];
+  field: SomeNode;
+  fieldShape: ShapeForm;
+  id: string;
+  inputIndex: number;
+  inputValue: InputValue;
+  label?: string | React.ReactNode;
+  meta: InputMeta;
+  name: string;
+  onChange: EventHandler<any>;
+  path: SomeNode;
+  placeholder?: string;
+  storeKey: string;
+  values: InputValue[];
 }
 
 const FormInputs = (props: PropTypes) => {
@@ -40,13 +61,17 @@ const FormInputs = (props: PropTypes) => {
     autofocus,
     combinedComponent,
     description,
+    field,
     fieldShape,
     inputComponent: InputComponent,
     label,
     meta,
     name,
     onChange,
+    path,
+    placeholder,
     renderHelper: HelperRenderer,
+    storeKey,
     values,
   } = props;
   const {
@@ -96,14 +121,22 @@ const FormInputs = (props: PropTypes) => {
         return (
           <div className="Field__wrapper" key={[name, index].join('.')}>
             <InputComponent
-              {...props}
               autofocus={autofocus && index === 0}
+              description={description}
               errors={errors}
+              field={field}
+              fieldShape={fieldShape}
               id={name}
               inputIndex={index}
               inputValue={value}
+              label={label}
+              meta={meta}
               name={name}
               onChange={inputOnChange}
+              path={path}
+              placeholder={placeholder}
+              storeKey={storeKey}
+              values={values}
             />
             {removable && (
               <Button

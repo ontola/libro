@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { EventHandler } from 'react';
 
-const ExternalLink = ({ children, ...otherProps }: {
-  className?: string,
-  children: React.ReactNode,
-  href?: string,
-  ref?: any,
-  onClick?: (e: any) => any,
-}) => (
+interface PropTypes {
+  className?: string;
+  href?: string;
+  ref?: any;
+  onClick?: EventHandler<any>;
+}
+
+const ExternalLink: React.FC<PropTypes> = ({ children, ...otherProps }) => (
   <a
     {...otherProps}
     rel="nofollow noopener noreferrer"

@@ -48,27 +48,45 @@ const useStyles = makeStyles((theme: any) => {
 });
 /* eslint-enable no-magic-numbers */
 
+export enum HeadingSize {
+  XL = 1,
+  LG,
+  MD,
+  SM,
+  XS,
+}
+
+export enum HeadingVariant {
+  Alert = 'alert',
+  Default = 'default',
+  Error = 'error',
+  Motion = 'motion',
+  Navbar = 'navbar',
+  Notice = 'notice',
+  Question = 'question',
+  Semantic = 'semantic',
+}
+
 interface PropTypes {
-  children: React.ReactNode;
   className?: string;
   display?: 'inherit';
-  size: '1' | '2' | '3' | '4' | '5' | '6';
+  size: HeadingSize;
   type?: SomeTerm;
-  variant: 'alert' | 'default' | 'error' | 'motion' | 'navbar' | 'notice' | 'question' | 'semantic';
+  variant: HeadingVariant;
 }
 
 const defaultProps = {
-  size: '2',
+  size: HeadingSize.LG,
 };
 
-const Heading = ({
+const Heading: React.FC<PropTypes> = ({
   children,
   className,
   display,
   size,
   type,
   variant,
-}: PropTypes) => {
+}) => {
   const Element = `h${size}` as React.ElementType;
   const classes = useStyles() as any;
   const headingClass = classNames({

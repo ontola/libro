@@ -11,21 +11,23 @@ const cloneLRS = (old: LinkReduxLRSType) =>  {
 
   register(next);
 
-  next.store.addQuads((old.store as any).store.quads);
-  next.store.changeTimestamps = (old.store as any).changeTimestamps.slice();
-  (next.store as any).langPrefs = (old.store as any).langPrefs;
-  (next.api as any).invalidationMap = new Map((old.api as any).invalidationMap);
-  next.schema.addQuads((old.schema as any).store.quads);
+  if (old) {
+    next.store.addQuads((old.store as any).store.quads);
+    next.store.changeTimestamps = (old.store as any).changeTimestamps.slice();
+    (next.store as any).langPrefs = (old.store as any).langPrefs;
+    (next.api as any).invalidationMap = new Map((old.api as any).invalidationMap);
+    next.schema.addQuads((old.schema as any).store.quads);
 
-  const nextDispatch = next.dispatch;
+    const nextDispatch = next.dispatch;
 
-  next.dispatch = (iri, ...args) => {
-    if (iri.value.startsWith(ontolaActionPrefix)) {
-      return old.dispatch(iri, ...args);
-    }
+    next.dispatch = (iri, ...args) => {
+      if (iri.value.startsWith(ontolaActionPrefix)) {
+        return old.dispatch(iri, ...args);
+      }
 
-    return nextDispatch(iri, ...args);
-  };
+      return nextDispatch(iri, ...args);
+    };
+  }
 
   return next;
 };

@@ -4,7 +4,11 @@ import React from 'react';
 
 import Spinner from '../Spinner';
 
-const TableCells = ({ columns }: { columns: any }) => {
+interface PropTypes {
+  columns: any;
+}
+
+const TableCells: React.FC<PropTypes> = ({ columns }) => {
   const { subject } = useLinkRenderContext();
   const lrs = useLRS();
 
@@ -12,21 +16,25 @@ const TableCells = ({ columns }: { columns: any }) => {
     return <Spinner loading />;
   }
 
-  return columns.map((column) => {
-    if (!lrs.getResourceProperty(subject, column)) {
-      return (
-        <td key={normalizeType(column)[0].value} />
-      );
-    }
+  return (
+    <React.Fragment>
+      {columns.map((column) => {
+        if (!lrs.getResourceProperty(subject, column)) {
+          return (
+            <td key={normalizeType(column)[0].value} />
+          );
+        }
 
-    return (
-      <Property
-        forceRender
-        key={normalizeType(column)[0].value}
-        label={column}
-      />
-    );
-  });
+        return (
+          <Property
+            forceRender
+            key={normalizeType(column)[0].value}
+            label={column}
+          />
+        );
+      })}
+    </React.Fragment>
+  );
 };
 
 export default TableCells;

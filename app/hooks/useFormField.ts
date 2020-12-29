@@ -1,4 +1,4 @@
-import rdf, { isNamedNode, NamedNode, SomeTerm } from '@ontologies/core';
+import rdf, { NamedNode, SomeTerm } from '@ontologies/core';
 import schema from '@ontologies/schema';
 import sh from '@ontologies/shacl';
 import classNames from 'classnames';
@@ -8,12 +8,11 @@ import {
   useLink,
   useLRS,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useField } from 'react-final-form';
 
 import { FormContext } from '../components/Form/Form';
-import { FormFieldProps } from '../components/FormField/FormField';
+import { FormFieldError, InputMeta } from '../components/FormField';
 import { arraysEqual } from '../helpers/data';
 import {
   calculateFormFieldName,
@@ -28,14 +27,7 @@ import ll from '../ontology/ll';
 import ontola from '../ontology/ontola';
 import sp from '../ontology/sp';
 
-import useFieldShape from './useShapeProps';
-
-export const fieldShapeType = PropTypes.shape({
-  maxCount: PropTypes.number,
-  maxLength: PropTypes.number,
-  minCount: PropTypes.number,
-  required: PropTypes.bool,
-});
+import useFieldShape, { ShapeForm } from './useShapeProps';
 
 const mapFieldProps = {
   description: literal(schema.text),
@@ -44,21 +36,47 @@ const mapFieldProps = {
   path: sh.path,
 };
 
+interface MapFieldPropsShape {
+  description?: string;
+  helperText?: string;
+  label?: string;
+  path: NamedNode;
+}
+
 export type InputValue = JSONLDObject | SomeTerm;
 
 export interface UseFormFieldProps {
-  addFieldName: (...prop: any) => any;
-  alwaysVisible: boolean;
+  addFieldName?: (...prop: any) => any;
+  alwaysVisible?: boolean;
   delay?: boolean;
-  newItem: (...prop: any) => any;
-  path: NamedNode;
+  newItem?: (...prop: any) => InputValue;
+  path?: NamedNode;
   preferPlaceholder?: boolean;
-  propertyIndex: number;
-  required: boolean;
-  setHasContent: (hasContent: boolean) => any;
-  sequenceIndex: number;
-  storage: boolean;
-  subject: SomeNode;
+  required?: boolean;
+  setHasContent?: (hasContent: boolean) => any;
+  sequenceIndex?: number;
+  storage?: boolean;
+  subject?: SomeNode;
+}
+
+export interface UseFormField {
+  addItem: () => any;
+  autofocus: boolean;
+  className: string;
+  description?: string;
+  field?: SomeNode;
+  fieldShape: ShapeForm;
+  helperText?: string;
+  inputErrors: FormFieldError[];
+  label?: string | React.ReactNode;
+  meta: InputMeta;
+  name: string;
+  onChange: (args: any) => void;
+  path: NamedNode;
+  preferPlaceholder: boolean;
+  storeKey: string;
+  values: InputValue[];
+  whitelisted: boolean;
 }
 
 interface InputProps {
@@ -128,7 +146,7 @@ const defaultProps = {
   storage: true,
 };
 
-const useFormField = (componentProps: UseFormFieldProps): FormFieldProps | {} => {
+const useFormField = (componentProps: UseFormFieldProps): UseFormField => {
   const props = {
     ...defaultProps,
     ...componentProps,
@@ -141,7 +159,6 @@ const useFormField = (componentProps: UseFormFieldProps): FormFieldProps | {} =>
     newItem,
     path,
     preferPlaceholder,
-    propertyIndex,
     setHasContent,
     sequenceIndex,
     storage,
@@ -158,15 +175,14 @@ const useFormField = (componentProps: UseFormFieldProps): FormFieldProps | {} =>
     theme,
     whitelist,
   } = React.useContext(FormContext);
-  const fieldProps = useLink(mapFieldProps);
+  const fieldProps = useLink(mapFieldProps) as MapFieldPropsShape;
   if (path) {
     fieldProps.path = path;
   }
-  const namedPath = isNamedNode(fieldProps.path) ? fieldProps.path : undefined;
   const fieldShape = useFieldShape(props);
   const whitelisted = !whitelist || whitelist.includes(rdf.id(fieldProps.path));
-  const fieldName = calculateFormFieldName(formSection, propertyIndex, namedPath);
-  const storeKey = getStorageKey(formID || '', formSection ? object : undefined, namedPath);
+  const fieldName = calculateFormFieldName(formSection, fieldProps.path);
+  const storeKey = getStorageKey(formID || '', formSection ? object : undefined, fieldProps.path);
   const validate = combineValidators([
     isNumber(fieldShape.maxCount) ? validators.maxCount(fieldShape.maxCount) : undefined,
     isNumber(fieldShape.maxLength) ? validators.maxLength(fieldShape.maxLength) : undefined,
@@ -181,11 +197,11 @@ const useFormField = (componentProps: UseFormFieldProps): FormFieldProps | {} =>
     [storeKey],
   );
   const saveToLRS = React.useCallback((nextValue) => {
-    const delta = object && namedPath && changeDelta(object, namedPath, nextValue);
+    const delta = object && fieldProps.path && changeDelta(object, fieldProps.path, nextValue);
     if (delta) {
       lrs.processDelta(delta, !delay);
     }
-  }, [object, namedPath, delay]);
+  }, [object, fieldProps.path, delay]);
   const saveToLocalStorage = React.useCallback((nextValue: InputValue[]) => {
     if (storeKey) {
       setDefaultValue(nextValue.map((val) => isJSONLDObject(val) ? val['@id'] : val));
@@ -264,10 +280,6 @@ const useFormField = (componentProps: UseFormFieldProps): FormFieldProps | {} =>
     newItem,
   );
 
-  if (!whitelisted) {
-    return {};
-  }
-
   const {
     active,
     dirty,
@@ -284,7 +296,7 @@ const useFormField = (componentProps: UseFormFieldProps): FormFieldProps | {} =>
     'Field--warning': invalid,
   });
 
-  const autofocus = autofocusForm && sequenceIndex === 0;
+  const autofocus = !!(autofocusForm && sequenceIndex === 0);
 
   return {
     addItem,
@@ -296,9 +308,10 @@ const useFormField = (componentProps: UseFormFieldProps): FormFieldProps | {} =>
     meta: memoizedMeta,
     name: input.name,
     onChange: input.onChange,
-    preferPlaceholder,
+    preferPlaceholder: !!preferPlaceholder,
     storeKey,
     values,
+    whitelisted,
     ...fieldProps,
   };
 };

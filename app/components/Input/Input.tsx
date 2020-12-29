@@ -1,138 +1,130 @@
-import { linkType } from 'link-redux';
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { EventHandler } from 'react';
 
 import './Input.scss';
 
-const propTypes = {
-  autoComplete: PropTypes.oneOf([
-    'off',
-    'on',
-    'name',
-    'honorific-prefix',
-    'given-name',
-    'additional-name',
-    'family-name',
-    'honorific-suffix',
-    'nickname',
-    'email',
-    'username',
-    'new-password',
-    'current-password',
-    'organization-title',
-    'organization',
-    'address-line1',
-    'address-line2',
-    'address-line3',
-    'address-level1',
-    'address-level2',
-    'address-level3',
-    'address-level4',
-    'country',
-    'country-name',
-    'postal-code',
-    'cc-name',
-    'cc-given-name',
-    'cc-additional-name',
-    'cc-family-name',
-    'cc-number',
-    'cc-exp',
-    'cc-exp-month',
-    'cc-exp-year',
-    'cc-exp-csc',
-    'cc-exp-type',
-    'transaction-currency',
-    'transaction-amount',
-    'language',
-    'bday',
-    'bday-day',
-    'bday-month',
-    'bday-year',
-    'sex',
-    'tel',
-    'tel-country-code',
-    'tel-national',
-    'tel-area-code',
-    'tel-local',
-    'tel-local-prefix',
-    'tel-local-suffix',
-    'tel-extension',
-    'url',
-    'photo',
-  ]),
-  autoFocus: PropTypes.bool,
-  capture: PropTypes.bool,
-  className: PropTypes.string,
-  element: PropTypes.elementType,
-  /**
-   * @API custom
-   * Set the fields' value to this if the type is hidden.
-   */
-  hiddenValue: PropTypes.string,
-  inputMode: PropTypes.oneOf([
-    'decimal',
-    'email',
-    'none',
-    'number',
-    'numeric',
-    'search',
-    'text',
-    'url',
-  ]),
-  onChange: PropTypes.func,
-  spellCheck: PropTypes.bool,
-  type: PropTypes.oneOf([
-    'button',
-    'checkbox',
-    'color',
-    'date',
-    'datetime-local',
-    'email',
-    'file',
-    'hidden',
-    'image',
-    'markdown',
-    'month',
-    'number',
-    'password',
-    'radio',
-    'range',
-    'reset',
-    'search',
-    'submit',
-    'tel',
-    'text',
-    'textarea',
-    'time',
-    'url',
-    'week',
-  ]),
-  value: PropTypes.oneOfType([
-    linkType,
-    PropTypes.bool,
-    PropTypes.string,
-  ]),
-};
+export enum InputAutocomplete {
+  Off = 'off',
+  On = 'on',
+  Name = 'name',
+  HonorificPrefix = 'honorific-prefix',
+  GivenName = 'given-name',
+  AdditionalName = 'additional-name',
+  FamilyName = 'family-name',
+  HonorificSuffix = 'honorific-suffix',
+  Nickname = 'nickname',
+  Email = 'email',
+  Username = 'username',
+  NewPassword = 'new-password',
+  CurrentPassword = 'current-password',
+  OrganizationTitle = 'organization-title',
+  Organization = 'organization',
+  AddressLine1 = 'address-line1',
+  AddressLine2 = 'address-line2',
+  AddressLine3 = 'address-line3',
+  AddressLevel1 = 'address-level1',
+  AddressLevel2 = 'address-level2',
+  AddressLevel3 = 'address-level3',
+  AddressLevel4 = 'address-level4',
+  Country = 'country',
+  CountryName = 'country-name',
+  PostalCode = 'postal-code',
+  CcName = 'cc-name',
+  CcGivenName = 'cc-given-name',
+  CcAdditionalName = 'cc-additional-name',
+  CcFamilyName = 'cc-family-name',
+  CcNumber = 'cc-number',
+  CcExp = 'cc-exp',
+  CcExpMonth = 'cc-exp-month',
+  CcExpYear = 'cc-exp-year',
+  CcExpCsc = 'cc-exp-csc',
+  CcExpType = 'cc-exp-type',
+  TransactionCurrency = 'transaction-currency',
+  TransactionAmount = 'transaction-amount',
+  Language = 'language',
+  Bday = 'bday',
+  BdayDay = 'bday-day',
+  BdayMonth = 'bday-month',
+  BdayYear = 'bday-year',
+  Sex = 'sex',
+  Tel = 'tel',
+  TelCountryCode = 'tel-country-code',
+  TelNational = 'tel-national',
+  TelAreaCode = 'tel-area-code',
+  TelLocal = 'tel-local',
+  TelLocalPrefix = 'tel-local-prefix',
+  TelLocalSuffix = 'tel-local-suffix',
+  TelExtension = 'tel-extension',
+  Url = 'url',
+  Photo = 'photo',
+}
+export enum InputMode {
+  Decimal = 'decimal',
+  Email = 'email',
+  None = 'none',
+  Number = 'number',
+  Numeric = 'numeric',
+  Search = 'search',
+  Tel = 'tel' ,
+  Url = 'url',
+}
+
+export enum InputType {
+  Button = 'button',
+  Checkbox = 'checkbox',
+  Color = 'color',
+  Date = 'date',
+  Datetime = 'datetime-local',
+  Email = 'email',
+  File = 'file',
+  Hidden = 'hidden',
+  Image = 'image',
+  Markdown = 'markdown',
+  Month = 'month',
+  Number = 'number',
+  Password = 'password',
+  Radio = 'radio',
+  Range = 'range',
+  Reset = 'reset',
+  Search = 'search',
+  Submit = 'submit',
+  Tel = 'tel',
+  Text = 'text',
+  Textarea = 'textarea',
+  Time = 'time',
+  Url = 'url',
+  Week = 'week',
+}
+
+interface PropTypes {
+  autoComplete?: InputAutocomplete;
+  autoFocus?: boolean;
+  capture?: string | boolean;
+  checked?: boolean;
+  className?: string;
+  element?: any;
+  hiddenValue?: string;
+  id?: string;
+  inputMode?: InputMode;
+  minLength?: number;
+  name?: string;
+  onChange?: EventHandler<any>;
+  onKeyUp?: EventHandler<any>;
+  placeholder?: string;
+  required?: boolean;
+  spellCheck?: boolean | 'true' | 'false';
+  type?: InputType;
+  value?: boolean | string | number;
+}
 
 const defaultProps = {
   element: 'input',
 };
 
-const Input = ({
+const Input: React.FC<PropTypes> = ({
   element,
   className,
   value,
   ...props
-}: {
-  element: any,
-  className?: string,
-  minLength?: number,
-  name?: string,
-  placeholder?: string,
-  required?: boolean,
-  type: string,
-  value?: string,
-  onKeyUp?: (e: any) => any,
 }) => {
   const Element = element;
 
@@ -146,6 +138,5 @@ const Input = ({
 };
 
 Input.defaultProps = defaultProps;
-Input.propTypes = propTypes;
 
 export default Input;

@@ -25,11 +25,11 @@ const textStyle = {
  * A fine grey line with an optional text in its center
  * @returns {component} Component
  */
-const CardDivider = ({
+const CardDivider: React.FC<PropTypes> = ({
   lineColor,
   text,
   margin,
-}: PropTypes) => {
+}) => {
   const style = React.useMemo(() => ({
     backgroundColor: lineColor,
     marginBottom: (margin ? '1em' : undefined),

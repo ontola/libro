@@ -43,4 +43,4 @@ argUnit(BlurButton, () => {
       expect(clickHandler).toHaveBeenCalled();
     });
   });
-});
+}, { propTypes: { onClick: null } });

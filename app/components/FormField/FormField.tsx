@@ -1,9 +1,7 @@
-import { SomeTerm } from '@ontologies/core';
 import React from 'react';
 
-import { InputValue } from '../../hooks/useFormField';
+import { UseFormField } from '../../hooks/useFormField';
 
-import { ShapeForm } from '../../hooks/useShapeProps';
 import FormFieldDescription from './FormFieldDescription';
 import FormFieldHelper from './FormFieldHelper';
 import FormFieldLabel from './FormFieldLabel';
@@ -11,28 +9,11 @@ import FormInputs from './FormInputs';
 
 import './DateTime.scss';
 import './FormField.scss';
-import { FormFieldError, InputMeta } from './index';
 
-export interface FormFieldProps {
-  addItem: () => any;
-  autofocus: boolean;
-  className: string;
-  combinedComponent: boolean;
-  description: string;
-  field: SomeTerm;
-  fieldShape: ShapeForm;
-  helperText: string;
+export interface FormFieldProps extends UseFormField {
+  combinedComponent?: boolean;
   inputComponent: (args: any) => any;
-  inputErrors: FormFieldError[];
-  label: string | React.ReactNode;
-  meta: InputMeta;
-  name: string;
-  onChange: (args: any) => any;
-  path: SomeTerm;
-  placeholder: string;
-  preferPlaceholder: boolean;
-  renderHelper: (args: any) => any;
-  values: InputValue[];
+  renderHelper?: (args: any) => any;
 }
 
 /**
@@ -42,7 +23,7 @@ export interface FormFieldProps {
  *
  * @returns {component} Component
  */
-const FormField = ({
+const FormField: React.FC<FormFieldProps> = ({
   addItem,
   inputErrors,
   autofocus,
@@ -58,11 +39,11 @@ const FormField = ({
   meta,
   onChange,
   path,
-  placeholder,
   preferPlaceholder,
   renderHelper,
+  storeKey,
   values,
-}: FormFieldProps) => (
+}) => (
   <div className={className}>
     {label && (
       <FormFieldLabel
@@ -91,8 +72,9 @@ const FormField = ({
       meta={meta}
       name={name}
       path={path}
-      placeholder={placeholder || (preferPlaceholder ? description : undefined)}
+      placeholder={(preferPlaceholder ? description : undefined)}
       renderHelper={renderHelper}
+      storeKey={storeKey}
       values={values}
       onChange={onChange}
     />

@@ -15,12 +15,14 @@ export interface TopologyState {
 }
 
 export const renderErrorComp = (self: React.Component<{}, TopologyState>) => () => {
-  const ErrorRenderer = ({
+  const ErrorRenderer: React.FC<
+    TopologyState & Helpers & { context: typeof self.context, props: typeof self.props }
+  > = ({
     context,
     error,
     props,
     reset,
-  }: TopologyState & Helpers & { context: typeof self.context, props: typeof self.props }) => {
+  }) => {
     const lrs = useLRS();
     try {
       const childProps = useCalculateChildProps(

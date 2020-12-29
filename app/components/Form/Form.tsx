@@ -1,20 +1,19 @@
 import equal from 'fast-deep-equal';
 import { SomeNode } from 'link-lib';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { EventHandler } from 'react';
 import { Form as FinalForm } from 'react-final-form';
 
 import { error } from '../../helpers/logging';
 import { isFunction } from '../../helpers/types';
 import { withFormLRS } from '../../hooks/useFormLRS';
 import { SubmissionErrors } from '../FormField';
-import Input from '../Input/Input';
+import Input, { InputType } from '../Input/Input';
 
 interface PropTypes {
   action: string;
   autofocusForm: boolean;
   autoSubmit: boolean;
-  children: React.ReactNode | ((props: any) => any);
   className: string;
   form: any;
   formID: string;
@@ -23,7 +22,7 @@ interface PropTypes {
   initialValues: any;
   method: string;
   object: SomeNode;
-  onKeyUp: (e: any) => any;
+  onKeyUp: EventHandler<any>;
   onSubmit: (...props: any) => any;
   sessionStore: Storage;
   submissionErrors: SubmissionErrors;
@@ -39,20 +38,23 @@ const defaultProps = {
   validateOnBlur: false,
 };
 
-export const FormContext = React.createContext({
-  autofocusForm: undefined as (undefined | boolean),
-  formID: undefined as (undefined | string),
-  formIRI: undefined as (undefined | SomeNode),
-  formSection: undefined as (undefined | string),
-  object: undefined as (undefined | SomeNode),
-  onKeyUp: undefined as (undefined | ((e: any) => any)),
-  sessionStore: undefined as (undefined | Storage),
-  submissionErrors: undefined as (undefined | SubmissionErrors),
-  theme: undefined as (undefined | string),
-  whitelist: undefined as (undefined | number[]),
-});
+export interface FormContext {
+  autofocusForm: boolean;
+  formID: string;
+  formIRI: SomeNode;
+  formSection?: string;
+  object: SomeNode;
+  onKeyUp: ((e: any) => any);
+  parentObject?: SomeNode;
+  sessionStore: Storage;
+  submissionErrors: SubmissionErrors;
+  theme: string;
+  whitelist?: number[];
+}
 
-const Form = (props: PropTypes) => {
+export const FormContext = React.createContext<FormContext>({} as FormContext);
+
+const Form: React.FC<PropTypes> = (props) => {
   const {
     action,
     autofocusForm,
@@ -100,6 +102,7 @@ const Form = (props: PropTypes) => {
     formSection: undefined,
     object,
     onKeyUp,
+    parentObject: undefined,
     sessionStore,
     submissionErrors,
     theme,
@@ -118,7 +121,7 @@ const Form = (props: PropTypes) => {
 
   const lowerMethod = method.toLowerCase();
   const methodInput = !['get', 'post'].includes(lowerMethod) && (
-    <Input name="_method" type="hidden" value={method}/>
+    <Input name="_method" type={InputType.Hidden} value={method}/>
   );
   const formMethod = lowerMethod === 'get' ? 'get' : 'post';
   const render = React.useCallback(({handleSubmit, ...childProps}) => (
@@ -134,7 +137,7 @@ const Form = (props: PropTypes) => {
         {methodInput}
       </form>
     </FormContext.Provider>
-  ), [action, className, formID, formMethod, children, methodInput]);
+  ), [action, className, formID, formMethod, children, methodInput, context]);
 
   return (
     <FinalForm

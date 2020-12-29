@@ -1,12 +1,12 @@
 import { SomeTerm } from '@ontologies/core';
 import rdfx from '@ontologies/rdf';
-import { register, useProperty } from 'link-redux';
+import { FC, register, useProperty } from 'link-redux';
 import React from 'react';
 
 import { FormContext } from '../../components/Form/Form';
-import FormField, { FormFieldProps } from '../../components/FormField/FormField';
+import FormField from '../../components/FormField/FormField';
 import InputElement from '../../components/Input/InputElement';
-import useFormField, { UseFormFieldProps } from '../../hooks/useFormField';
+import useFormField from '../../hooks/useFormField';
 import form from '../../ontology/form';
 import { allTopologies } from '../../topologies';
 
@@ -24,7 +24,7 @@ const getInputType = (theme: string | undefined, type: SomeTerm) => {
   return 'text';
 };
 
-const TextFormField = (props: UseFormFieldProps) => {
+const TextFormField: FC = (props) => {
   const fieldProps = useFormField({
     delay: true,
     preferPlaceholder: true,
@@ -36,13 +36,13 @@ const TextFormField = (props: UseFormFieldProps) => {
     <InputElement {...inputProps} type={getInputType(theme, type)} />
   ), [type]);
 
-  if (fieldProps === {}) {
+  if (!fieldProps.whitelisted) {
     return null;
   }
 
   return (
     <FormField
-      {...(fieldProps as FormFieldProps)}
+      {...fieldProps}
       inputComponent={TextInput}
     />
   );

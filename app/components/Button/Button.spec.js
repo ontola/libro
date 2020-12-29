@@ -105,4 +105,16 @@ argUnit(Button, () => {
       expect(subject).toHaveClassName('Button--variant-pro');
     });
   });
+}, {
+  propTypes: {
+    children: null,
+    className: null,
+    href: null,
+    icon: null,
+    loading: null,
+    onClick: null,
+    small: null,
+    theme: null,
+    variant: null,
+  },
 });

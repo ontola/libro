@@ -16,12 +16,12 @@ interface PropTypes {
   value: SomeTerm | string;
 }
 
-const FormFieldHelper = ({
+const FormFieldHelper: React.FC<PropTypes> = ({
   error,
   maxLength,
   required,
   value,
-}: PropTypes) => {
+}) => {
   const { theme } = React.useContext(FormContext);
   const renderCharCounter = theme !== 'preview';
   if (theme === 'preview' && !error) {

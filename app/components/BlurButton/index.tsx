@@ -1,14 +1,6 @@
-import PropTypes from 'prop-types';
 import React, { MouseEvent } from 'react';
 
 type OnClickHandler = (e: MouseEvent<HTMLButtonElement>) => any;
-
-const propTypes = {
-  /** The children float to the top right */
-  children: PropTypes.node,
-  /** The header floats to the top left */
-  onClick: PropTypes.func,
-};
 
 // Used to remove the annoying focus outline border after clicking
 const onClickAndBlur = (e: MouseEvent<HTMLButtonElement>, onClick: OnClickHandler) => {
@@ -22,13 +14,14 @@ const onClickAndBlur = (e: MouseEvent<HTMLButtonElement>, onClick: OnClickHandle
   }
 };
 
-const BlurButton = ({
+interface PropTypes {
+  onClick: OnClickHandler;
+}
+
+const BlurButton: React.FC<PropTypes> = ({
   children,
   onClick,
   ...props
-}: {
-  children: React.ReactNode,
-  onClick: OnClickHandler,
 }) => (
   <button
     {...props}
@@ -37,7 +30,5 @@ const BlurButton = ({
     {children}
   </button>
 );
-
-BlurButton.propTypes = propTypes;
 
 export default BlurButton;

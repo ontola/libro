@@ -167,18 +167,20 @@ const validateShape = (lrs: LinkReduxLRSType, shape: SomeNode, targetFromProp: S
   };
 };
 
-const useShapeValidation = (shape: SomeNode, target: SomeNode) => {
+const useShapeValidation = (shape: SomeNode, target: SomeNode | undefined) => {
   const lrs = useLRS();
   const [dependentResources, setDependentResources] = React.useState<SomeNode[]>([]);
   const [pass, setPass] = React.useState(false);
   const [timestamp, setTimestamp] = React.useState<number | null>(null);
   React.useEffect(() => {
-    const {
-      dependentResources: currentDependentResources,
-      pass: currentPass,
-    } = validateShape(lrs, shape, target);
-    setDependentResources(currentDependentResources);
-    setPass(currentPass);
+    if (target) {
+      const {
+        dependentResources: currentDependentResources,
+        pass: currentPass,
+      } = validateShape(lrs, shape, target);
+      setDependentResources(currentDependentResources);
+      setPass(currentPass);
+    }
   }, [shape, target, timestamp]);
 
   const currentTimestamp = useDataFetching(dependentResources.filter(isNamedNode));

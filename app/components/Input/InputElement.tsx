@@ -1,17 +1,16 @@
-import { SomeTerm } from '@ontologies/core';
 import classNames from 'classnames';
 import { SomeNode } from 'link-lib';
-import PropTypes from 'prop-types';
 import React from 'react';
 import Textarea from 'react-autosize-textarea';
 
 import TextEditor from '../../containers/TextEditor';
+import { InputValue } from '../../hooks/useFormField';
 import { ShapeForm } from '../../hooks/useShapeProps';
 import { FormContext } from '../Form/Form';
-import { InputMeta } from '../FormField';
+import { FormFieldError, InputMeta } from '../FormField';
 import FormFieldTrailer from '../FormField/FormFieldTrailer';
 
-import Input from './Input';
+import Input, { InputAutocomplete, InputType } from './Input';
 
 const TEXTFIELD_MIN_ROWS = 3;
 const MAX_STR_LEN = 255;
@@ -20,32 +19,29 @@ interface InputProps {
   [key: string]: any;
 }
 
-interface PropTypes {
-  autoComplete: string;
+export interface InputPropTypes {
+  autoComplete?: InputAutocomplete;
   autofocus: boolean;
-  className: string;
-  description: string;
-  errors: string[];
+  description?: string;
+  errors?: FormFieldError[];
   field: SomeNode;
   fieldShape: ShapeForm;
   id: string;
   inputIndex: number;
-  inputValue: SomeTerm;
-  label: string | React.ReactNode;
+  inputValue: InputValue;
+  label?: string | React.ReactNode;
   meta: InputMeta;
-  minRows: number;
   name: string;
-  onBlur: (props: any) => any;
-  onChange: (props: any) => any;
+  onChange: (props: any) => void;
   path: SomeNode;
-  placeholder: string;
-  propertyIndex: number;
+  placeholder?: string;
+  required?: boolean;
   storeKey: string;
   trailer: (props: any) => any;
-  type: string;
+  type?: InputType;
 }
 
-const InputElement = (props: PropTypes) => {
+const InputElement = (props: InputPropTypes) => {
   const {
     autoComplete,
     autofocus,
@@ -130,7 +126,6 @@ const InputElement = (props: PropTypes) => {
         placeholder={placeholder}
         required={required}
         type={type}
-        value={inputValue?.value}
         onKeyUp={onKeyUp}
       />
       {Trailer && <Trailer {...props} />}

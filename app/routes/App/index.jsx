@@ -17,7 +17,7 @@ import { handle } from '../../helpers/logging';
 import app from '../../ontology/app';
 import ontola from '../../ontology/ontola';
 import Footer from '../../topologies/Footer';
-import Popup from '../../topologies/Popup/index';
+import Popup from '../../topologies/Popup';
 import headers from '../../themes/headers';
 import ErrorButtonWithFeedback from '../../views/Error/ErrorButtonWithFeedback';
 import HoverHelper from '../DevBrowser/HoverHelper';

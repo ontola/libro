@@ -9,13 +9,9 @@ import { FormattedMessage } from 'react-intl';
 import ReactMarkdown from 'react-markdown';
 
 import { entityIsLoaded } from '../../helpers/data';
-import {
-  expandPath,
-  isDifferentWebsite,
-  retrievePath,
-} from '../../helpers/iris';
+import { expandPath, isDifferentWebsite, retrievePath } from '../../helpers/iris';
 import { handle } from '../../helpers/logging';
-import Heading from '../Heading';
+import Heading, { HeadingSize, HeadingVariant } from '../Heading';
 import Link from '../Link';
 
 import './Markdown.scss';
@@ -126,7 +122,7 @@ class Markdown extends React.PureComponent<PropTypes, MarkdownState> {
     if (this.state.hasError) {
       return (
         <div>
-          <Heading size="2" variant="alert">
+          <Heading size={HeadingSize.LG} variant={HeadingVariant.Alert}>
             <FontAwesome name="exclamation-triangle" />
             {' '}
             <FormattedMessage
