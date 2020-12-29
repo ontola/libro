@@ -7,7 +7,8 @@ import Textarea from 'react-autosize-textarea';
 
 import TextEditor from '../../containers/TextEditor';
 import { ShapeForm } from '../../hooks/useShapeProps';
-import { InputMeta, SubmissionErrors } from '../FormField';
+import { FormContext } from '../Form/Form';
+import { InputMeta } from '../FormField';
 import FormFieldTrailer from '../FormField/FormFieldTrailer';
 
 import Input from './Input';
@@ -27,7 +28,6 @@ interface PropTypes {
   errors: string[];
   field: SomeNode;
   fieldShape: ShapeForm;
-  formIRI: SomeNode;
   id: string;
   inputIndex: number;
   inputValue: SomeTerm;
@@ -35,15 +35,12 @@ interface PropTypes {
   meta: InputMeta;
   minRows: number;
   name: string;
-  object: SomeNode;
   onBlur: (props: any) => any;
   onChange: (props: any) => any;
-  onKeyUp: (props: any) => any;
   path: SomeNode;
   placeholder: string;
   propertyIndex: number;
   storeKey: string;
-  submissionErrors: SubmissionErrors;
   trailer: (props: any) => any;
   type: string;
 }
@@ -57,12 +54,14 @@ const InputElement = (props: PropTypes) => {
     meta,
     name,
     onChange,
-    onKeyUp,
     placeholder,
     storeKey,
     trailer: Trailer,
     type,
   } = props;
+  const {
+    onKeyUp,
+  } = React.useContext(FormContext);
   const {
     maxLength,
     minLength,

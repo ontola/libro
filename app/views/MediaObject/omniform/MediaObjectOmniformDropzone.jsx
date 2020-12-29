@@ -1,5 +1,4 @@
 import rdf from '@ontologies/core';
-import { linkType } from 'link-redux';
 import * as PropTypes from 'prop-types';
 import React from 'react';
 import Dropzone from 'react-dropzone';
@@ -21,9 +20,7 @@ function getBase64(file) {
 
 const MediaObjectOmniformDropzone = ({
   encodingFormatTypes,
-  formIRI,
   inputRef,
-  object,
   onChange,
   openDialog,
   resourceInput,
@@ -58,11 +55,9 @@ const MediaObjectOmniformDropzone = ({
         <div className="MediaObjectOmniformFields__button-spacer">
           <DropzoneInner
             file={value}
-            formIRI={formIRI}
             getInputProps={getInputProps}
             inputRef={inputRef}
             isDragActive={isDragActive}
-            object={object}
             resourceInput={resourceInput}
           >
             {(preview) => (
@@ -93,10 +88,8 @@ const MediaObjectOmniformDropzone = ({
 
 MediaObjectOmniformDropzone.propTypes = {
   encodingFormatTypes: PropTypes.string,
-  formIRI: linkType,
   inputRef: PropTypes.shape({}),
   name: PropTypes.string,
-  object: linkType,
   onChange: PropTypes.func,
   openDialog: PropTypes.func,
   removeItem: PropTypes.func,

@@ -2,7 +2,6 @@ import rdf from '@ontologies/core';
 import schema from '@ontologies/schema';
 import {
   ReturnType,
-  linkType,
   useResourceLink,
   useResourceProperty,
 } from 'link-redux';
@@ -57,9 +56,9 @@ const usePlacements = (object, lat, lon, zoomLevel) => {
 
 const LocationInput = ({
   inputValue,
-  object,
   onChange,
 }) => {
+  const { object } = React.useContext(FormContext);
   const { input: latInput } = useFormField({
     object,
     path: schema.latitude,
@@ -117,7 +116,6 @@ LocationInput.propTypes = {
     PropTypes.bool,
     PropTypes.string,
   ]),
-  object: linkType,
   onChange: PropTypes.func,
 };
 

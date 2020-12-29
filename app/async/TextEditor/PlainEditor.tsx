@@ -4,6 +4,7 @@ import Textarea from 'react-autosize-textarea';
 
 import Button from '../../components/Button';
 import CardDivider from '../../components/Card/CardDivider';
+import { FormContext } from '../../components/Form/Form';
 import Markdown from '../../components/Markdown';
 
 import MarkdownInstructions from './MarkdownInstructions';
@@ -18,7 +19,6 @@ const propTypes = {
   onBlur: PropTypes.func.isRequired,
   onChange: PropTypes.func,
   onFocus: PropTypes.func.isRequired,
-  onKeyUp: PropTypes.func,
   placeholder: PropTypes.string,
   rows: PropTypes.number,
   value: PropTypes.string,
@@ -49,12 +49,12 @@ const PlainEditor = ({
   onChange,
   onBlur,
   onFocus,
-  onKeyUp,
   placeholder,
   rows,
   value,
 }: any) => {
   const [showPreview, setShowPreview] = React.useState(false);
+  const { onKeyUp } = React.useContext(FormContext);
 
   return (
     <div>

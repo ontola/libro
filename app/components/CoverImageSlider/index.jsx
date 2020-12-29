@@ -8,6 +8,7 @@ import * as PropTypes from 'prop-types';
 import { tryParseInt } from '../../helpers/numbers';
 import useFormField from '../../hooks/useFormField';
 import ontola from '../../ontology/ontola';
+import { FormContext } from '../Form/Form';
 
 const ThumbComponent = (props) => (
   <span {...props}>
@@ -73,25 +74,28 @@ const useStyles = makeStyles(() => ({
 const CoverImageSlider = ({
   imagePositionYShape,
   value,
-  object,
   onChange,
 }) => {
   const classes = useStyles();
-
-  const { input } = useFormField({
+  const { object } = React.useContext(FormContext);
+  const {
+    values,
+    onChange: inputOnChange,
+  } = useFormField({
     object,
     path: ontola.imagePositionY,
+    subject: imagePositionYShape,
   });
-  const imagePositionY = tryParseInt(input?.value?.[0]);
+  const imagePositionY = tryParseInt(values?.[0]);
   const onImagePositionYChange = (event, newValue) => (
-    input.onChange([rdf.literal(100 - newValue)])
+    inputOnChange([rdf.literal(100 - newValue)])
   );
 
   useEffect(() => {
     onChange(null, 100 - (imagePositionY || CENTER_Y));
   }, [imagePositionY]);
 
-  if (!input || !imagePositionYShape) {
+  if (!inputOnChange || !values || !imagePositionYShape) {
     return null;
   }
 
@@ -115,7 +119,6 @@ const CoverImageSlider = ({
 
 CoverImageSlider.propTypes = {
   imagePositionYShape: linkType,
-  object: linkType,
   onChange: PropTypes.func,
   value: PropTypes.number,
 };

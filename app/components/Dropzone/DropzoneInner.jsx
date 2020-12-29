@@ -8,6 +8,7 @@ import React from 'react';
 
 import { formFieldsPath } from '../../helpers/diggers';
 import ontola from '../../ontology/ontola';
+import { FormContext } from '../Form/Form';
 
 import DropzoneInnerPositionY from './DropzoneInnerPositionY';
 import DropzoneOverlay from './DropzoneOverlay';
@@ -15,11 +16,10 @@ import DropzoneOverlay from './DropzoneOverlay';
 const DropzoneInner = ({
   children,
   file,
-  formIRI,
   isDragActive,
-  object,
 }) => {
   const lrs = useLRS();
+  const { formIRI } = React.useContext(FormContext);
 
   if (file) {
     const imagePositionYShape = lrs.findSubject(
@@ -32,9 +32,7 @@ const DropzoneInner = ({
       return (
         <DropzoneInnerPositionY
           file={file}
-          formIRI={formIRI}
           imagePositionYShape={imagePositionYShape}
-          object={object}
         >
           {children}
         </DropzoneInnerPositionY>
@@ -64,10 +62,8 @@ DropzoneInner.propTypes = {
     name: PropTypes.string,
     url: PropTypes.string,
   }),
-  formIRI: linkType,
   imagePositionYShape: linkType,
   isDragActive: PropTypes.bool,
-  object: linkType,
 };
 
 export default DropzoneInner;

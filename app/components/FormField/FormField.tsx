@@ -21,7 +21,6 @@ export interface FormFieldProps {
   description: string;
   field: SomeTerm;
   fieldShape: ShapeForm;
-  formIRI: SomeTerm;
   helperText: string;
   inputComponent: (args: any) => any;
   inputErrors: FormFieldError[];
@@ -52,7 +51,6 @@ const FormField = ({
   description,
   field,
   fieldShape,
-  formIRI,
   helperText,
   name,
   inputComponent,
@@ -87,7 +85,6 @@ const FormField = ({
       description={description}
       field={field}
       fieldShape={fieldShape}
-      formIRI={formIRI}
       inputComponent={inputComponent}
       inputErrors={inputErrors}
       label={label}

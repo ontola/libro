@@ -3,11 +3,11 @@ import equal from 'fast-deep-equal';
 import {
   literal,
   ReturnType,
-  useLink,
   useResourceLink,
 } from 'link-redux';
 import { PropParam } from 'link-redux/dist-types/types';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { FormContext } from '../components/Form/Form';
 import { isNumber } from '../helpers/types';
 
 import ontola from '../ontology/ontola';
@@ -48,8 +48,9 @@ const mapShapeProps = {
 };
 
 const useFieldShape = (props: UseFormFieldProps) => {
+  const { object } = React.useContext(FormContext);
   const [fieldShape, setFieldShape] = useState({});
-  const shapeProps = useLink(mapShapeProps) as unknown as ShapeForm;
+  const shapeProps = useResourceLink(props.subject, mapShapeProps) as unknown as ShapeForm;
   const propMap = {} as ShapeForm;
   const shapeFromField = {} as ShapeForm;
 
@@ -63,7 +64,7 @@ const useFieldShape = (props: UseFormFieldProps) => {
 
   const empty = Object.keys(propMap).length === 0;
   const shapeFromObject = useResourceLink(
-    empty ? props.subject : props.object,
+    empty ? props.subject : object,
     empty ? {} : propMap,
     { returnType: ReturnType.Literal },
   );

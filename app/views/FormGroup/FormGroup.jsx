@@ -49,7 +49,6 @@ FormGroup.mapDataToProps = {
 
 FormGroup.propTypes = {
   hidden: PropTypes.bool,
-  theme: PropTypes.string,
 };
 
 export default register(FormGroup);

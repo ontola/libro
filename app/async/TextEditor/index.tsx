@@ -24,7 +24,6 @@ interface PropTypes {
   onBlur: (args: any) => any;
   onChange: (args: any) => any;
   onFocus: (args: any) => any;
-  onKeyUp: (args: any) => any;
   placeholder: string;
   rows: number;
   showRichEditor: boolean;
@@ -79,7 +78,6 @@ class TextEditor extends Component<PropTypes> {
       onBlur,
       onFocus,
       onChange,
-      onKeyUp,
     } = this.props;
 
     let { disableRich } = this.props;
@@ -104,7 +102,6 @@ class TextEditor extends Component<PropTypes> {
           }}
           onChange={this.debounce}
           onFocus={onFocus}
-          onKeyUp={onKeyUp}
         />
         )}
         {(!showRichEditor || disableRich) && (
@@ -120,7 +117,6 @@ class TextEditor extends Component<PropTypes> {
           onBlur={onBlur}
           onChange={onChange}
           onFocus={onFocus}
-          onKeyUp={onKeyUp}
         />
         )}
       </div>

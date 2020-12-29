@@ -19,7 +19,6 @@ interface PropTypes {
   description?: string;
   field?: SomeTerm;
   fieldShape: ShapeForm;
-  formIRI?: SomeTerm;
   inputComponent: (args: any) => any;
   inputErrors?: FormFieldError[];
   label?: string | React.ReactNode;

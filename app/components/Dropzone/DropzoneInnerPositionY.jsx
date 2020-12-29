@@ -9,7 +9,6 @@ const DropzoneInnerPositionY = ({
   children,
   file,
   imagePositionYShape,
-  object,
 }) => {
   const [positionY, setPositionY] = useState(0);
   const onSliderChange = (event, value) => setPositionY(100 - value);
@@ -26,7 +25,6 @@ const DropzoneInnerPositionY = ({
       )}
       <CoverImageSlider
         imagePositionYShape={imagePositionYShape}
-        object={object}
         value={positionY}
         onChange={onSliderChange}
       />
@@ -38,7 +36,6 @@ DropzoneInnerPositionY.propTypes = {
   children: PropTypes.func,
   file: PropTypes.string,
   imagePositionYShape: linkType,
-  object: linkType,
 };
 
 export default DropzoneInnerPositionY;

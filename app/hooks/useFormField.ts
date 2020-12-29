@@ -13,8 +13,6 @@ import React from 'react';
 import { useField } from 'react-final-form';
 
 import { FormContext } from '../components/Form/Form';
-import { FormSectionContext } from '../components/Form/FormSection';
-import { SubmissionErrors } from '../components/FormField';
 import { FormFieldProps } from '../components/FormField/FormField';
 import { arraysEqual } from '../helpers/data';
 import {
@@ -51,22 +49,16 @@ export type InputValue = JSONLDObject | SomeTerm;
 export interface UseFormFieldProps {
   addFieldName: (...prop: any) => any;
   alwaysVisible: boolean;
-  autofocusForm: boolean;
   delay?: boolean;
-  formIRI: SomeNode;
   newItem: (...prop: any) => any;
-  object: SomeNode;
   path: NamedNode;
   preferPlaceholder?: boolean;
   propertyIndex: number;
   required: boolean;
-  sessionStore: Storage;
   setHasContent: (hasContent: boolean) => any;
   sequenceIndex: number;
   storage: boolean;
-  submissionErrors: SubmissionErrors;
   subject: SomeNode;
-  whitelist: number[];
 }
 
 interface InputProps {
@@ -145,26 +137,27 @@ const useFormField = (componentProps: UseFormFieldProps): FormFieldProps | {} =>
   const {
     addFieldName,
     alwaysVisible,
-    autofocusForm,
     delay,
-    formIRI,
     newItem,
-    object,
     path,
     preferPlaceholder,
     propertyIndex,
-    sessionStore,
     setHasContent,
     sequenceIndex,
     storage,
-    submissionErrors,
-    whitelist,
   } = props;
 
   const lrs = useLRS();
-  const { formID, theme } = React.useContext(FormContext);
-  const formSectionContext = React.useContext(FormSectionContext);
-
+  const {
+    autofocusForm,
+    formID,
+    formSection,
+    object,
+    sessionStore,
+    submissionErrors,
+    theme,
+    whitelist,
+  } = React.useContext(FormContext);
   const fieldProps = useLink(mapFieldProps);
   if (path) {
     fieldProps.path = path;
@@ -172,8 +165,8 @@ const useFormField = (componentProps: UseFormFieldProps): FormFieldProps | {} =>
   const namedPath = isNamedNode(fieldProps.path) ? fieldProps.path : undefined;
   const fieldShape = useFieldShape(props);
   const whitelisted = !whitelist || whitelist.includes(rdf.id(fieldProps.path));
-  const fieldName = calculateFormFieldName(formSectionContext, propertyIndex, namedPath);
-  const storeKey = getStorageKey(formID || '', formSectionContext ? object : undefined, namedPath);
+  const fieldName = calculateFormFieldName(formSection, propertyIndex, namedPath);
+  const storeKey = getStorageKey(formID || '', formSection ? object : undefined, namedPath);
   const validate = combineValidators([
     isNumber(fieldShape.maxCount) ? validators.maxCount(fieldShape.maxCount) : undefined,
     isNumber(fieldShape.maxLength) ? validators.maxLength(fieldShape.maxLength) : undefined,
@@ -299,11 +292,9 @@ const useFormField = (componentProps: UseFormFieldProps): FormFieldProps | {} =>
     className,
     field: props.subject,
     fieldShape,
-    formIRI,
     inputErrors,
     meta: memoizedMeta,
     name: input.name,
-    object,
     onChange: input.onChange,
     preferPlaceholder,
     storeKey,

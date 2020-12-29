@@ -7,22 +7,30 @@ import { Form as FinalForm } from 'react-final-form';
 import { error } from '../../helpers/logging';
 import { isFunction } from '../../helpers/types';
 import { withFormLRS } from '../../hooks/useFormLRS';
+import { SubmissionErrors } from '../FormField';
 import Input from '../Input/Input';
 
 interface PropTypes {
   action: string;
+  autofocusForm: boolean;
   autoSubmit: boolean;
   children: React.ReactNode | ((props: any) => any);
   className: string;
   form: any;
   formID: string;
+  formIRI: SomeNode;
+  formSection: string;
   initialValues: any;
   method: string;
   object: SomeNode;
+  onKeyUp: (e: any) => any;
   onSubmit: (...props: any) => any;
+  sessionStore: Storage;
+  submissionErrors: SubmissionErrors;
   subscription: any;
   theme: string;
   validateOnBlur: boolean;
+  whitelist: number[];
 }
 
 const defaultProps = {
@@ -32,25 +40,38 @@ const defaultProps = {
 };
 
 export const FormContext = React.createContext({
+  autofocusForm: undefined as (undefined | boolean),
   formID: undefined as (undefined | string),
+  formIRI: undefined as (undefined | SomeNode),
+  formSection: undefined as (undefined | string),
   object: undefined as (undefined | SomeNode),
+  onKeyUp: undefined as (undefined | ((e: any) => any)),
+  sessionStore: undefined as (undefined | Storage),
+  submissionErrors: undefined as (undefined | SubmissionErrors),
   theme: undefined as (undefined | string),
+  whitelist: undefined as (undefined | number[]),
 });
 
 const Form = (props: PropTypes) => {
   const {
     action,
+    autofocusForm,
     autoSubmit,
     children,
     className,
     form,
     formID,
+    formIRI,
     initialValues,
     method,
     object,
+    onKeyUp,
     onSubmit,
+    sessionStore,
     subscription,
+    submissionErrors,
     theme,
+    whitelist,
     validateOnBlur,
   } = props;
   const [autoSubmitted, setAutoSubmitted] = React.useState(false);
@@ -73,10 +94,27 @@ const Form = (props: PropTypes) => {
     }
   }, [autoSubmit, autoSubmitted]);
   const context = React.useMemo(() => ({
+    autofocusForm,
     formID,
+    formIRI,
+    formSection: undefined,
     object,
+    onKeyUp,
+    sessionStore,
+    submissionErrors,
     theme,
-  }), [formID, object, theme]);
+    whitelist,
+  }), [
+    autofocusForm,
+    formID,
+    formIRI,
+    object,
+    onKeyUp,
+    sessionStore,
+    submissionErrors,
+    theme,
+    whitelist,
+  ]);
 
   const lowerMethod = method.toLowerCase();
   const methodInput = !['get', 'post'].includes(lowerMethod) && (

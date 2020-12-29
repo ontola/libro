@@ -71,40 +71,15 @@ const EntryPointForm = ({
   const renderBody = React.useCallback(({ submitting }) => (
     <React.Fragment>
       <Property
-        autofocusForm={autofocusForm}
         contentWrapper={contentWrapper}
-        formIRI={actionBody}
         label={ll.actionBody}
-        object={object}
-        sessionStore={sessionStore}
-        submissionErrors={submissionErrors}
-        whitelist={whitelist}
-        onKeyUp={onKeyUp}
       />
       <FormFooter>
-        <Property
-          formIRI={actionBody}
-          label={ll.actionBody}
-          object={object}
-          sessionStore={sessionStore}
-          onKeyUp={onKeyUp}
-        />
+        <Property label={ll.actionBody} />
         {footerButtons ? footerButtons(submitting) : null}
       </FormFooter>
     </React.Fragment>
-  ), [
-    autofocusForm,
-    contentWrapper,
-    actionBody,
-    object,
-    sessionStore,
-    submissionErrors,
-    whitelist,
-    onKeyUp,
-    object,
-    onKeyUp,
-    footerButtons,
-  ]);
+  ), [contentWrapper, footerButtons]);
 
   if (loading) {
     return (
@@ -119,16 +94,22 @@ const EntryPointForm = ({
   return (
     <Form
       action={url && new URL(url).pathname}
+      autofocusForm={autofocusForm}
       autoSubmit={autoSubmit}
       className={className}
       form={formInstance}
       formID={formID}
+      formIRI={actionBody}
       initialValues={initialValues}
       method={httpMethod}
       object={object}
+      sessionStore={sessionStore}
+      submissionErrors={submissionErrors}
       submissionErrorsTimeStamp={submissionErrorsTimeStamp}
       subscription={subscription}
       theme={theme}
+      whitelist={whitelist}
+      onKeyUp={onKeyUp}
       onSubmit={onSubmit}
     >
       {renderBody}

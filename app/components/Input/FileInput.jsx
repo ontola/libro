@@ -1,28 +1,25 @@
 import schema from '@ontologies/schema';
 import sh from '@ontologies/shacl';
-import {
-  linkType,
-  useLRS,
-} from 'link-redux';
+import { useLRS } from 'link-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import { listToArr } from '../../helpers/data';
 import { formFieldsPath } from '../../helpers/diggers';
 import MediaObjectOmniformDropzoneLoader from '../../views/MediaObject/omniform/MediaObjectOmniformDropzoneLoader';
+import { FormContext } from '../Form/Form';
 
-import './FileInput.scss';
 import HiddenRequiredInput from './HiddenRequiredInput';
+import './FileInput.scss';
 
 const FileInput = ({
-  formIRI,
   inputValue,
   name,
-  object,
   onChange,
   required,
 }) => {
   const lrs = useLRS();
+  const { formIRI } = React.useContext(FormContext);
   const inputRef = React.createRef();
   const encodingFormatShape = lrs.findSubject(
     formIRI,
@@ -49,10 +46,8 @@ const FileInput = ({
       {required && <HiddenRequiredInput value={inputValue?.value} />}
       <MediaObjectOmniformDropzoneLoader
         encodingFormatTypes={encodingFormatTypes}
-        formIRI={formIRI}
         inputRef={inputRef}
         name={name}
-        object={object}
         openDialog={openDialog}
         resourceInput={null}
         value={inputValue?.value}
@@ -63,10 +58,8 @@ const FileInput = ({
 };
 
 FileInput.propTypes = {
-  formIRI: linkType,
   inputValue: PropTypes.string,
   name: PropTypes.string,
-  object: linkType,
   onChange: PropTypes.func,
   required: PropTypes.bool,
 };

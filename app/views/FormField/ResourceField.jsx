@@ -11,15 +11,15 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { FormContext } from '../../components/Form/Form';
 import form from '../../ontology/form';
 import { allTopologies } from '../../topologies';
 
 const ResourceField = ({
-  object,
   path,
   setHasContent,
-  whitelist,
 }) => {
+  const { object, whitelist } = React.useContext(FormContext);
   React.useLayoutEffect(() => {
     if (setHasContent) {
       setHasContent(true);
@@ -57,10 +57,8 @@ ResourceField.mapDataToProps = {
 };
 
 ResourceField.propTypes = {
-  object: linkType,
   path: linkType,
   setHasContent: PropTypes.func,
-  whitelist: PropTypes.arrayOf(PropTypes.number),
 };
 
 export default register(ResourceField);

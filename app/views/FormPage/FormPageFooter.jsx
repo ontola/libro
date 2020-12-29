@@ -9,12 +9,11 @@ import form from '../../ontology/form';
 import { formFooterTopology } from '../../topologies/FormFooter/Footer';
 
 const FormPageFooter = (childProps) => {
-  const { formID, object } = React.useContext(FormContext);
+  const formContext = React.useContext(FormContext);
   const context = React.useMemo(() => ({
-    formID,
-    object,
+    ...formContext,
     theme: 'preview',
-  }), [formID, object]);
+  }), [formContext]);
 
   return (
     <FormContext.Provider value={context}>

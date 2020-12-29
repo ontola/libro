@@ -46,11 +46,11 @@ export const getStorageKey = (formContext: string, object?: SomeNode, path?: Nam
     calculateFormFieldName(formContext, object, path)
 );
 
-export const storageGet = (sessionStore: Storage, key: string) => (
+export const storageGet = (sessionStore: Storage | undefined, key: string) => (
     __CLIENT__ ? parseForStorage((sessionStore || sessionStorage).getItem(key)) : undefined
 );
 
-export const storageSet = (sessionStore: Storage, key: string, newValue: any) => {
+export const storageSet = (sessionStore: Storage | undefined, key: string, newValue: any) => {
   if (__CLIENT__ && typeof newValue !== 'undefined') {
     (sessionStore || sessionStorage).setItem(key, serializeForStorage(newValue));
   }
