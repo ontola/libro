@@ -14,32 +14,21 @@ import { allTopologies } from '../../topologies';
 import { inlineTopology } from '../../topologies/Inline';
 
 import FormGroupErrorCount from './FormGroupErrorCount';
+import FormGroupProvider, { useFormGroup } from './FormGroupProvider';
 import useStyles from './FormGroupStyles';
 
-const CollapsibleGroup = (childProps) => {
+const CollapsibleGroup = () => {
   const [open, setOpen] = React.useState(false);
-  const [hasContent, setHasContent] = React.useState(false);
-  const [fieldNames, setFieldNames] = React.useState([]);
-  const addFieldName = React.useCallback((fieldName) => {
-    if (!fieldNames.includes(fieldName)) {
-      fieldNames.push(fieldName);
-      setFieldNames(fieldNames);
-    }
-  }, [fieldNames]);
-  const childChildProps = React.useMemo(() => ({
-    addFieldName,
-    setHasContent,
-    ...childProps,
-  }), [addFieldName, setHasContent, childProps]);
+  const { hasContent } = useFormGroup();
   const classes = useStyles();
 
-  function handleClick() {
+  const handleClick = React.useCallback(() => {
     setOpen(!open);
-  }
+  }, [setOpen, open]);
 
-  const handleInvalid = () => {
+  const handleInvalid = React.useCallback(() => {
     setOpen(true);
-  };
+  }, [setOpen]);
 
   const className = classNames({
     [classes.fieldSet]: true,
@@ -55,10 +44,7 @@ const CollapsibleGroup = (childProps) => {
         <legend className={classes.legend}>
           <Property label={schema.name} topology={inlineTopology} />
         </legend>
-        <FormGroupErrorCount
-          className={classes.error}
-          fieldNames={fieldNames}
-        />
+        <FormGroupErrorCount className={classes.error} />
         <div className={classes.caret}>
           {open
             ? <FontAwesome name="caret-down" />
@@ -68,7 +54,6 @@ const CollapsibleGroup = (childProps) => {
       <Collapse in={open} timeout={0}>
         <Property label={schema.text} />
         <Property
-          childProps={childChildProps}
           label={form.fields}
         />
       </Collapse>
@@ -76,8 +61,14 @@ const CollapsibleGroup = (childProps) => {
   );
 };
 
-CollapsibleGroup.type = form.CollapsibleGroup;
+const WrappedCollapsibleGroup = ({ sequenceIndex, ...props}: {sequenceIndex: number}) => (
+  <FormGroupProvider sequenceIndex={sequenceIndex}>
+    <CollapsibleGroup {...props} />
+  </FormGroupProvider>
+);
 
-CollapsibleGroup.topology = allTopologies;
+WrappedCollapsibleGroup.type = form.CollapsibleGroup;
 
-export default register(CollapsibleGroup);
+WrappedCollapsibleGroup.topology = allTopologies;
+
+export default register(WrappedCollapsibleGroup);

@@ -26,6 +26,7 @@ import validators, { combineValidators } from '../helpers/validators';
 import ll from '../ontology/ll';
 import ontola from '../ontology/ontola';
 import sp from '../ontology/sp';
+import { useFormGroup } from '../views/FormGroup/FormGroupProvider';
 
 import useFieldShape, { ShapeForm } from './useShapeProps';
 
@@ -46,20 +47,23 @@ interface MapFieldPropsShape {
 export type InputValue = JSONLDObject | SomeTerm;
 
 export interface UseFormFieldProps {
-  addFieldName?: (...prop: any) => any;
   alwaysVisible?: boolean;
   delay?: boolean;
   newItem?: (...prop: any) => InputValue;
   path?: NamedNode;
   preferPlaceholder?: boolean;
-  required?: boolean;
-  setHasContent?: (hasContent: boolean) => any;
-  sequenceIndex?: number;
   storage?: boolean;
   subject?: SomeNode;
 }
 
-export interface UseFormField {
+export interface ForbiddenFormField {
+  name: string;
+  onChange: (args: any) => void;
+  values: InputValue[];
+  whitelisted: false;
+}
+
+export interface PermittedFormField {
   addItem: () => any;
   autofocus: boolean;
   className: string;
@@ -76,7 +80,7 @@ export interface UseFormField {
   preferPlaceholder: boolean;
   storeKey: string;
   values: InputValue[];
-  whitelisted: boolean;
+  whitelisted: true;
 }
 
 interface InputProps {
@@ -146,21 +150,18 @@ const defaultProps = {
   storage: true,
 };
 
-const useFormField = (componentProps: UseFormFieldProps): UseFormField => {
+const useFormField = (componentProps: UseFormFieldProps): PermittedFormField | ForbiddenFormField => {
   const props = {
     ...defaultProps,
     ...componentProps,
   };
-
+  const { addFieldName, fieldNames, groupIndex } = useFormGroup();
   const {
-    addFieldName,
     alwaysVisible,
     delay,
     newItem,
     path,
     preferPlaceholder,
-    setHasContent,
-    sequenceIndex,
     storage,
   } = props;
 
@@ -179,9 +180,17 @@ const useFormField = (componentProps: UseFormFieldProps): UseFormField => {
   if (path) {
     fieldProps.path = path;
   }
-  const fieldShape = useFieldShape(props);
   const whitelisted = !whitelist || whitelist.includes(rdf.id(fieldProps.path));
   const fieldName = calculateFormFieldName(formSection, fieldProps.path);
+  if (!whitelisted) {
+    return {
+      name: fieldName,
+      onChange: () => undefined,
+      values: [],
+      whitelisted: false,
+    };
+  }
+  const fieldShape = useFieldShape(props);
   const storeKey = getStorageKey(formID || '', formSection ? object : undefined, fieldProps.path);
   const validate = combineValidators([
     isNumber(fieldShape.maxCount) ? validators.maxCount(fieldShape.maxCount) : undefined,
@@ -241,12 +250,7 @@ const useFormField = (componentProps: UseFormFieldProps): UseFormField => {
   }, [meta.touched, meta.error, meta.pristine, meta.dirtySinceLastSubmit]);
 
   React.useLayoutEffect(() => {
-    if (whitelisted && setHasContent) {
-      setHasContent(true);
-    }
-  }, [whitelisted, setHasContent]);
-  React.useLayoutEffect(() => {
-    if (input && addFieldName) {
+    if (input && whitelisted && addFieldName) {
       addFieldName(input.name);
     }
   }, [input?.name]);
@@ -296,7 +300,7 @@ const useFormField = (componentProps: UseFormFieldProps): UseFormField => {
     'Field--warning': invalid,
   });
 
-  const autofocus = !!(autofocusForm && sequenceIndex === 0);
+  const autofocus = !!(autofocusForm && groupIndex === 0 && fieldNames.indexOf(fieldName) === 0);
 
   return {
     addItem,

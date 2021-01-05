@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/styles';
 
-export default makeStyles((theme) => ({
+export default makeStyles((theme: any) => ({
   caret: {
     alignSelf: 'flex-end',
   },
@@ -12,8 +12,8 @@ export default makeStyles((theme) => ({
       marginRight: '.2em',
       verticalAlign: 'middle',
     },
-    color: theme.palette.error.dark,
-    marginRight: '.5em',
+    'color': theme.palette.error.dark,
+    'marginRight': '.5em',
   },
   fieldSet: {
     borderTop: '1px solid #e7e7e7',

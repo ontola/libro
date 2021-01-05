@@ -3,10 +3,16 @@ import React from 'react';
 import { useFormState } from 'react-final-form';
 import FontAwesome from 'react-fontawesome';
 
-const FormGroupErrorCount = ({
+import { useFormGroup } from './FormGroupProvider';
+
+interface PropTypes {
+  className: string;
+}
+
+const FormGroupErrorCount: React.FC<PropTypes> = ({
   className,
-  fieldNames,
 }) => {
+  const { fieldNames } = useFormGroup();
   const formState = useFormState({
     subscription: {
       errors: true,
@@ -28,11 +34,6 @@ const FormGroupErrorCount = ({
       {invalidCount}
     </div>
   );
-};
-
-FormGroupErrorCount.propTypes = {
-  className: PropTypes.string,
-  fieldNames: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default FormGroupErrorCount;

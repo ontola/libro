@@ -7,9 +7,8 @@ import React from 'react';
 import form from '../../ontology/form';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 
-const FormPageOmniform = (childProps) => (
+const FormPageOmniform = () => (
   <Property
-    childProps={childProps}
     label={form.groups}
   />
 );

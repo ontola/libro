@@ -1,5 +1,7 @@
 import React, { EventHandler } from 'react';
 
+import { isString } from '../../helpers/types';
+
 import './Input.scss';
 
 export enum InputAutocomplete {
@@ -128,9 +130,17 @@ const Input: React.FC<PropTypes> = ({
 }) => {
   const Element = element;
 
+  const inputRef = React.useRef<HTMLElement>(null);
+  React.useEffect(() => {
+    if (props.autoFocus && inputRef.current && isString(element)) {
+      inputRef.current.focus();
+    }
+  }, [props.autoFocus, inputRef.current]);
+
   return (
     <Element
       className={`Input ${className ?? ''}`}
+      ref={inputRef}
       value={value ?? ''}
       {...props}
     />

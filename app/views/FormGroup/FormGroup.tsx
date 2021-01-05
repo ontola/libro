@@ -2,24 +2,24 @@ import schema from '@ontologies/schema';
 import classNames from 'classnames';
 import {
   Property,
-  ReturnType,
   register,
+  ReturnType,
 } from 'link-redux';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import form from '../../ontology/form';
 import { allTopologies } from '../../topologies';
+import FormGroupProvider, { useFormGroup } from './FormGroupProvider';
 
 import useStyles from './FormGroupStyles';
 
-const FormGroup = ({ hidden, ...childProps }) => {
-  const [hasContent, setHasContent] = React.useState(false);
+interface PropTypes {
+  hidden?: boolean;
+}
+
+const FormGroup: React.FC<PropTypes> = ({ hidden }) => {
+  const { hasContent } = useFormGroup();
   const classes = useStyles();
-  const childChildProps = React.useMemo(() => ({
-    setHasContent,
-    ...childProps,
-  }), [setHasContent, childProps]);
 
   const className = classNames({
     [classes.hidden]: hidden || !hasContent,
@@ -29,26 +29,27 @@ const FormGroup = ({ hidden, ...childProps }) => {
     <fieldset className={className}>
       <Property label={schema.name} />
       <Property
-        childProps={childChildProps}
         label={form.fields}
       />
     </fieldset>
   );
 };
 
-FormGroup.type = form.Group;
+const WrappedFormGroup = ({ sequenceIndex, ...props}: {sequenceIndex: number}) => (
+  <FormGroupProvider sequenceIndex={sequenceIndex}>
+    <FormGroup {...props} />
+  </FormGroupProvider>
+);
 
-FormGroup.topology = allTopologies;
+WrappedFormGroup.type = form.Group;
 
-FormGroup.mapDataToProps = {
+WrappedFormGroup.topology = allTopologies;
+
+WrappedFormGroup.mapDataToProps = {
   hidden: {
     label: form.hidden,
     returnType: ReturnType.Literal,
   },
 };
 
-FormGroup.propTypes = {
-  hidden: PropTypes.bool,
-};
-
-export default register(FormGroup);
+export default register(WrappedFormGroup);

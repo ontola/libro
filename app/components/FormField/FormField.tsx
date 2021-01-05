@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { UseFormField } from '../../hooks/useFormField';
+import { PermittedFormField } from '../../hooks/useFormField';
 
 import FormFieldDescription from './FormFieldDescription';
 import FormFieldHelper from './FormFieldHelper';
@@ -10,7 +10,7 @@ import FormInputs from './FormInputs';
 import './DateTime.scss';
 import './FormField.scss';
 
-export interface FormFieldProps extends UseFormField {
+export interface FormFieldProps extends PermittedFormField {
   combinedComponent?: boolean;
   inputComponent: (args: any) => any;
   renderHelper?: (args: any) => any;

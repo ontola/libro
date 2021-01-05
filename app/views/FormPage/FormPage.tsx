@@ -9,9 +9,8 @@ import { allTopologiesExcept } from '../../topologies';
 import { formFooterTopology } from '../../topologies/FormFooter/Footer';
 import { omniformFieldsTopology } from '../../topologies/OmniformFields/OmniformFields';
 
-const FormPage = (childProps) => (
+const FormPage = () => (
   <Property
-    childProps={childProps}
     label={form.groups}
   />
 );
@@ -20,7 +19,7 @@ FormPage.type = form.Page;
 
 FormPage.topology = allTopologiesExcept(
   formFooterTopology,
-  omniformFieldsTopology
+  omniformFieldsTopology,
 );
 
 export default register(FormPage);

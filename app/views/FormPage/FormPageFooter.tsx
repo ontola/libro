@@ -8,7 +8,7 @@ import { FormContext } from '../../components/Form/Form';
 import form from '../../ontology/form';
 import { formFooterTopology } from '../../topologies/FormFooter/Footer';
 
-const FormPageFooter = (childProps) => {
+const FormPageFooter = () => {
   const formContext = React.useContext(FormContext);
   const context = React.useMemo(() => ({
     ...formContext,
@@ -18,7 +18,6 @@ const FormPageFooter = (childProps) => {
   return (
     <FormContext.Provider value={context}>
       <Property
-        {...childProps}
         label={form.footerGroup}
       />
     </FormContext.Provider>
