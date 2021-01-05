@@ -154,7 +154,7 @@ export const prerenderMetaTags = (ctx: Context, data: string) => {
       ?.[QuadPosition.object];
   }
 
-  const strippedText = stripMarkdown(text);
+  const strippedText = stripMarkdown(text)?.replace(/"/g, '&quot;');
 
   const metaTags = getMetaTags({
     appName: manifest.short_name,
