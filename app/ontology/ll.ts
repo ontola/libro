@@ -28,5 +28,6 @@ export default {
   slice: ll('slice'),
   /** @deprecated use {ld.supplant} instead */
   supplant: ll('supplant'),
+  targetResource: ll('targetResource'),
   view: ll('view'),
 };
