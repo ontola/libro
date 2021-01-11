@@ -2,7 +2,6 @@ import { NamedNode, Quad } from '@ontologies/core';
 import { LinkReduxLRSType } from 'link-redux';
 
 const load = (lrs: LinkReduxLRSType, subject: NamedNode | null) => async () => {
-  // console.log('Predicaten in store', lrs.store.match(null, rdfx.type, rdfx.Property, null));
   let statements: Quad[] = [];
   if (subject) {
     try {
@@ -11,10 +10,11 @@ const load = (lrs: LinkReduxLRSType, subject: NamedNode | null) => async () => {
         await lrs.getEntity(subject);
         statements = lrs.tryEntity(subject);
       }
-    } catch {}
+    } catch {
+      // Do nothing
+    }
   }
   return statements;
 };
 
 export default load;
-

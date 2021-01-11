@@ -23,8 +23,8 @@ const LoadSaveForm: React.FC<LoadSaveFormProps> = ({
   const [originalValues, setOriginalValues] = useState(undefined);
   const [initialValues, setInitialValues] = useState<AnyObject | undefined>(undefined);
 
-  const _save = async (values: AnyObject) => {
-    let valuesToSave = preSaveFormat
+  const handleSave = async (values: AnyObject) => {
+    const valuesToSave = preSaveFormat
       ? preSaveFormat(values, originalValues)
       : values;
     const result = await save(valuesToSave);
@@ -36,22 +36,21 @@ const LoadSaveForm: React.FC<LoadSaveFormProps> = ({
   };
 
   useEffect(() => {
-    const _load = async () => {
+    const handleLoad = async () => {
       setIsLoading(true);
-      console.log('LOADING...');
-      const originalValues = await load();
-      const initialValues = postLoadFormat
-        ? postLoadFormat(originalValues)
-        : originalValues;
+      const newOriginalValues = await load();
+      const newInitialValues = postLoadFormat
+        ? postLoadFormat(newOriginalValues)
+        : newOriginalValues;
       setIsLoading(false);
-      setOriginalValues(originalValues);
-      setInitialValues(initialValues);
+      setOriginalValues(newOriginalValues);
+      setInitialValues(newInitialValues);
     };
-    _load().then();
+    handleLoad().then();
   }, [load, postLoadFormat]);
 
   return (isLoading || !initialValues) ? (loading) : (
-    <Form {...rest} initialValues={initialValues} onSubmit={_save}/>
+    <Form {...rest} initialValues={initialValues} onSubmit={handleSave}/>
   );
 };
 

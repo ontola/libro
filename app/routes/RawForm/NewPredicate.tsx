@@ -2,16 +2,14 @@ import Button from '@material-ui/core/Button';
 import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
 import rdfx from '@ontologies/rdf';
 import { useLRS } from 'link-redux';
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { FieldRenderProps } from 'react-final-form';
-import { FormStateContext } from './FormState/FormStateContext';
 
 import useStyles from './useStyles';
 
 export const NewPredicate = ({ input }: FieldRenderProps<any>) => {
   const classes = useStyles();
   const lrs = useLRS();
-  const { state: { intermediateValues } } = useContext(FormStateContext);
   const [newValue, setNewValue] = useState('');
 
   const options = useMemo(() => (
@@ -19,25 +17,23 @@ export const NewPredicate = ({ input }: FieldRenderProps<any>) => {
       .match(null, rdfx.type, rdfx.Property, null, false)
       .map((s) => s.subject.value)
       .sort()
-  ), [intermediateValues]);
+  ), []);
 
-  useEffect(() => {
-    console.log('input.value', input.value);
-    setNewValue(input.value);
-  }, [input.value]);
-
-  console.log('newValue', newValue);
+  useEffect(() => (
+    setNewValue(input.value)
+  ), [input.value]);
 
   return (
     <div className={classes.rowWrapper}>
       <Autocomplete
         clearOnBlur
         id="newPredicateAutocomplete"
-        filterOptions={(options, params) => {
-          const filtered = createFilterOptions<string>()(options, { inputValue: newValue, getOptionLabel: params.getOptionLabel });
-          console.log('filtered', filtered, 'params', params);
-          return filtered;
-        }}
+        filterOptions={(options1, params) => (
+          createFilterOptions<string>()(options1, {
+            getOptionLabel: params.getOptionLabel,
+            inputValue: newValue,
+          })
+        )}
         freeSolo
         handleHomeEndKeys
         onKeyDown={(e) => {

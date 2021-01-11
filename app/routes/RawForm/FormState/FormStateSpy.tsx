@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { FormSpy } from 'react-final-form';
-import { addPredicate, RenderCount } from '../helpers';
+import { addPredicate, getPredicateKeys } from '../helpers';
 import { FormStateContext } from './FormStateContext';
 
 const FormStateSpy = () => (
@@ -9,45 +9,41 @@ const FormStateSpy = () => (
       const {
         dispatch,
         state: {
-          pristine: _pristine
+          pristine: pristineState,
         },
       } = useContext(FormStateContext);
 
       useEffect(() => {
         let formChanged = false;
 
-        if (values['newPredicate']) {
-          console.log('new predicate')
-          addPredicate(values, values['newPredicate']);
-          values['newPredicate'] = '';
+        if (values.newPredicate) {
+          addPredicate(values, values.newPredicate);
+          values.newPredicate = '';
           formChanged = true;
         }
 
         if (formChanged) {
           dispatch({
-            intermediateValues: values,
-            pristine
+            predicateKeys: getPredicateKeys(values),
+            pristine,
           });
-        } else if (pristine !== _pristine) {
+        } else if (pristine !== pristineState) {
           dispatch({
-            pristine
+            pristine,
           });
         }
       }, [pristine, values]);
 
       return (
         <div>
-          <RenderCount/>
-          <h3>Form Values</h3>
-          <pre>{JSON.stringify(values, null, 2)}</pre>
-          {/*<h3>Stored data</h3>*/}
-          {/*<pre>{JSON.stringify(storedData, null, 2)}</pre>*/}
+          {/*<h3>Form Values</h3>*/}
+          {/*<pre>{JSON.stringify(values, null, 2)}</pre>*/}
         </div>
       );
     }}
     subscription={{
       pristine: true,
-      values: true
+      values: true,
     }}
   />
 );

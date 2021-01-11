@@ -1,55 +1,54 @@
 import Button from '@material-ui/core/Button';
-import rdfx from '@ontologies/rdf';
-import { useLRS } from 'link-redux';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Field, FormRenderProps } from 'react-final-form';
 
 import { FormStateContext } from './FormState/FormStateContext';
 import FormStateSpy from './FormState/FormStateSpy';
 import { getPredicateKeys } from './helpers';
 import NewPredicate from './NewPredicate';
-import PredicateSection from './PredicateSection';
+import PredicatesGroup from './PredicatesGroup';
 import useStyles from './useStyles';
+
+/**
+ * Props 'values' and 'pristine' etc. are omitted here for performance reasons.
+ * Global form state is handled in component FormStateSpy.
+ */
 
 const ResourceForm = ({ handleSubmit, form, submitting, initialValues }: FormRenderProps) => {
   const classes = useStyles();
-  const lrs = useLRS();
   const {
     dispatch,
     state: {
-      intermediateValues,
-      pristine
-    }
+      predicateKeys,
+      pristine,
+    },
   } = useContext(FormStateContext);
-  const [predicateKeys, setPredicateKeys] = useState<string[]>([]);
 
   useEffect(() => {
     dispatch({
-      intermediateValues: initialValues,
+      predicateKeys: getPredicateKeys(initialValues),
     });
   }, [initialValues]);
 
-  useEffect(() => (
-    setPredicateKeys(getPredicateKeys(intermediateValues))
-  ), [intermediateValues]);
-
-  console.log('predicaten', lrs.store.match(null, rdfx.type, rdfx.Property, null, false));
-
   return (
     <form onSubmit={handleSubmit}>
-      {/*<NewPredicate1/>*/}
       <div className={classes.sectionWrapper}>
         <div className={classes.rowWrapper}>
-          <label>Nieuw predicaat</label>
+          <h3>Nieuw predicaat</h3>
         </div>
         <Field
           component={NewPredicate}
-          name='newPredicate'
+          name="newPredicate"
           subscription={{ value: true }}
         />
       </div>
-      {predicateKeys.map((predicateKey) => (
-        <PredicateSection initialValues={initialValues} predicateKey={predicateKey}/>
+      {Object.keys(predicateKeys).sort().map((location) => (
+        <PredicatesGroup
+          initialValues={initialValues}
+          key={location}
+          location={location}
+          predicateKeys={predicateKeys[location]}
+        />
       ))}
       <div className={classes.footer}>
         <Button
@@ -58,7 +57,7 @@ const ResourceForm = ({ handleSubmit, form, submitting, initialValues }: FormRen
           onClick={() => {
             form.reset();
             dispatch({
-              intermediateValues: initialValues,
+              predicateKeys: getPredicateKeys(initialValues),
             });
           }}
           variant="contained"

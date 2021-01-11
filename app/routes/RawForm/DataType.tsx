@@ -34,7 +34,9 @@ const DataType = ({ input: { onChange, value: initialValue }, ...rest }: FieldRe
     if (!initialValue) {
       return;
     }
-    let dataType = dataTypes.find((dataType) => dataType.iri.value === initialValue || initialValue === 'NamedNode');
+    let dataType = dataTypes.find((type) => (
+      type.iri.value === initialValue || initialValue === 'NamedNode'
+    ));
     if (!dataType) {
       dataType = {
         iri: rdf.namedNode(initialValue),
@@ -55,8 +57,8 @@ const DataType = ({ input: { onChange, value: initialValue }, ...rest }: FieldRe
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const newDataType = {
-      title: dialogValue.iri,
       iri: rdf.namedNode(dialogValue.iri),
+      title: dialogValue.iri,
     };
     dataTypes.push(newDataType);
     setValue(newDataType);
@@ -86,7 +88,7 @@ const DataType = ({ input: { onChange, value: initialValue }, ...rest }: FieldRe
         }}
         handleHomeEndKeys
         id="dataTypeAutocomplete"
-        onChange={(_event, newValue) => {
+        onChange={(_, newValue) => {
           if (newValue && newValue.title === 'Anders...') {
             toggleOpen(true);
             setDialogValue({
@@ -113,6 +115,7 @@ const DataType = ({ input: { onChange, value: initialValue }, ...rest }: FieldRe
           <DialogContent>
             <TextField
               autoFocus
+              fullWidth={true}
               id="name"
               label="IRI"
               margin="dense"

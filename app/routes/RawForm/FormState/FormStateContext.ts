@@ -1,9 +1,9 @@
 import React from 'react';
-import { reducerAction, reducerState } from './useFormStateReducer';
+import { ReducerAction, ReducerState } from './useFormStateReducer';
 
 export interface FormStateContextType {
-  dispatch: (action: reducerAction) => void;
-  state: reducerState;
+  dispatch: (action: ReducerAction) => void;
+  state: ReducerState;
 }
 
 // @ts-ignore

@@ -1,22 +1,33 @@
 import { TextField } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
+import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
-import ToggleButton from '@material-ui/lab/ToggleButton';
-import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-// @ts-ignore
-import DateTimePickerComponent from '../../async/DateTimePicker';
 import React, { useEffect, useState } from 'react';
 import { Field, FieldRenderProps } from 'react-final-form';
 
+// @ts-ignore
+import DateTimePickerComponent from '../../async/DateTimePicker';
 import DataType from './DataType';
-import { RenderCount } from './helpers';
+import { getLastPart } from './helpers';
 import useStyles from './useStyles';
 
-interface ObjectProps {
-  handleRemove: (objectKey: string, removed: boolean) => void;
+interface ObjectRowProps {
+  handleAddObject: () => void;
+  handleRemoveObject: (objectKey: string, removed: boolean) => void;
+  index: number;
   objectKey: string;
+  predicateKey: string;
+  removePredicate: boolean;
 }
 
-const ObjectRow = ({ handleRemove, objectKey }: ObjectProps) => {
+const ObjectRow = ({
+  handleAddObject,
+  handleRemoveObject,
+  index,
+  objectKey,
+  predicateKey,
+  removePredicate,
+}: ObjectRowProps) => {
   const classes = useStyles();
   const [dataType, setDataType] = useState('');
   const [remove, setRemove] = useState(false);
@@ -29,47 +40,29 @@ const ObjectRow = ({ handleRemove, objectKey }: ObjectProps) => {
 
   return (
     <div className={classes.rowWrapper}>
-      <Field
-        name={objectKey}
-        disabled={remove}
-        placeholder="Object"
-        render={({ input, meta, placeholder }) => {
-
-          return (
-            dataType.includes('dateTime')
-              ? <DateTimePickerComponent
-                onChange={(newValue: any) => input.onChange(newValue)}
-                value={input.value}
-              />
-              : <TextField
-                inputProps={{
-                  ...input,
-                  style: style(!!meta.dirty),
-                  type: 'text'
-                }}
-                onChange={(event) => {
-                  // console.log('new value', event.target.value);
-                  input.onChange(event.target.value);
-                }}
-                placeholder={placeholder}
-                value={input.value}
-                variant="outlined"
-              />
-          );
-        }}
-        subscription={{
-          dirty: true,
-          value: true,
-        }}
-        type="text"
-      />
+      {index > 0
+        ? <div className={classes.predicateLabel}>&nbsp;</div>
+        : <Field
+          name={predicateKey}
+          render={({ input }: FieldRenderProps<any>) => (
+            <label
+              className={classes.predicateLabel}
+              style={{
+                textDecoration: removePredicate ? 'line-through' : 'none',
+              }}
+            >
+              {getLastPart(input.value)}
+            </label>
+          )}
+          subscription={{ value: true }}
+        />
+      }
       <Field
         name={`${objectKey}_dataType`}
         render={({ input, meta }: FieldRenderProps<any>) => {
-          useEffect(() => {
-            console.log('setDataType', input.value)
-            setDataType(input.value);
-          }, [input.value]);
+          useEffect(() => (
+            setDataType(input.value)
+          ), [input.value]);
 
           return (
             <DataType
@@ -81,35 +74,66 @@ const ObjectRow = ({ handleRemove, objectKey }: ObjectProps) => {
         }}
         subscription={{
           dirty: true,
-          value: true
+          value: true,
         }}
       />
       <Field
-        name={`${objectKey}_delete`}
-        subscription={{ value: true }}
-      >
-        {({ input: { onChange, value }, ...rest }: FieldRenderProps<any>) => {
-
-          useEffect(() => {
-            const _remove = (value === 'check');
-            handleRemove(objectKey, _remove)
-            setRemove(_remove);
-          }, [value]);
-
-          return (
-            <ToggleButtonGroup
-              exclusive
-              onChange={(_, newValue) => onChange(newValue)}
-              value={(!!value) ? 'check' : null}
-            >
-              <ToggleButton value="check" {...rest}>
-                <DeleteIcon/>
-              </ToggleButton>
-            </ToggleButtonGroup>
-          );
+        name={objectKey}
+        disabled={remove}
+        placeholder="Object"
+        render={({ input, meta, placeholder }) => (
+          dataType.includes('dateTime')
+            ? <DateTimePickerComponent
+              onChange={(newValue: any) => input.onChange(newValue)}
+              value={input.value}
+            />
+            : <TextField
+              inputProps={{
+                ...input,
+                style: style(!!meta.dirty),
+                type: 'text',
+              }}
+              onChange={(event) => (
+                input.onChange(event.target.value)
+              )}
+              placeholder={placeholder}
+              value={input.value}
+              variant="outlined"
+            />
+        )}
+        subscription={{
+          dirty: true,
+          value: true,
         }}
-      </Field>
-      <RenderCount/>
+        type="text"
+      />
+      <Field
+        name={`${objectKey}_delete`}
+        render={({ input }: FieldRenderProps<any>) => (
+          <IconButton
+            color={(!!input.value) ? 'primary' : 'default'}
+            onClick={(_) => {
+              input.onChange(!input.value);
+              handleRemoveObject(objectKey, !input.value);
+              setRemove(!input.value);
+            }}
+            size="small"
+          >
+            <DeleteIcon/>
+          </IconButton>
+        )}
+        subscription={{ value: true }}
+      />
+      {index > 0
+        ? <div className="MuiIconButton-root"/>
+        : <IconButton
+            onClick={handleAddObject}
+            size="small"
+          >
+           <AddIcon/>
+          </IconButton>
+      }
+      {/*<RenderCount/>*/}
     </div>
   );
 };

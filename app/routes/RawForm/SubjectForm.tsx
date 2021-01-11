@@ -16,7 +16,7 @@ const SubjectForm = () => {
     const urlBase = window.location.href.split('?')[0];
     const iri = values.subject?.trim();
     lrs.actions.ontola.navigate(rdf.namedNode(
-      iri ? `${urlBase}?iri=${encodeURIComponent(iri)}` : urlBase
+      iri ? `${urlBase}?iri=${encodeURIComponent(iri)}` : urlBase,
     )).then();
   }, []);
 
@@ -28,23 +28,28 @@ const SubjectForm = () => {
   return (
     <Form
       initialValues={{
-        subject: subject?.value
+        subject: subject?.value,
       }}
       onSubmit={handleSubmit}
-      render={({ handleSubmit, submitting }: FormRenderProps) => {
-        const { dispatch, state: { subjectDirty} } = useContext(FormStateContext);
+      render={({ handleSubmit: handleSubmit1, submitting }: FormRenderProps) => {
+        const {
+          dispatch: dispatch1,
+          state: {
+            subjectDirty,
+          },
+        } = useContext(FormStateContext);
 
         return (
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit1}>
             <div className={classes.sectionWrapper}>
               <div className={classes.rowWrapper}>
-                <label>Subject</label>
+                <h3>Subject</h3>
               </div>
               <div className={classes.rowWrapper}>
                 <Field name="subject" type="text">
                   {({ input, meta }) => {
                     useEffect(() => {
-                      dispatch({ subjectDirty: !!meta.dirty });
+                      dispatch1({ subjectDirty: !!meta.dirty });
                     }, [meta.dirty]);
 
                     return <input {...input} />;
@@ -73,7 +78,7 @@ const SubjectForm = () => {
                   className={classes.button}
                   disabled={submitting || subjectDirty}
                   onClick={() => {
-                    alert('Kopiëren');
+                    alert('Copy: not implemented yet');
                   }}
                   variant="contained"
                 >
