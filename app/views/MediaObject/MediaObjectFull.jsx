@@ -1,3 +1,4 @@
+import dcterms from '@ontologies/dcterms';
 import rdfx from '@ontologies/rdf';
 import schema from '@ontologies/schema';
 import {
@@ -14,12 +15,12 @@ import Heading from '../../components/Heading';
 import Image from '../../components/Image';
 import LDLink from '../../components/LDLink';
 import Link from '../../components/Link';
+import PDFViewer from '../../containers/PDFViewer';
 import {
   downloadUrl,
   downloadableAttachment,
   imageRepresentationUrl,
 } from '../../helpers/attachments';
-import { retrievePath } from '../../helpers/iris';
 import { handle } from '../../helpers/logging';
 import dbo from '../../ontology/dbo';
 import Container, { containerTopology } from '../../topologies/Container';
@@ -28,6 +29,11 @@ import { fullResourceTopology } from '../../topologies/FullResource';
 import './MediaObjectPage.scss';
 
 const YOUTUBE_TEST = /^(https:)?\/\/(www.)?youtube.com\/embed\//;
+
+const isPDF = (encodingFormat, contentUrl) => (
+  encodingFormat?.value === 'application/pdf'
+    || contentUrl.value.includes('api.openraadsinformatie.nl')
+);
 
 class MediaObjectFull extends React.PureComponent {
   static type = [
@@ -49,7 +55,13 @@ class MediaObjectFull extends React.PureComponent {
       ],
     },
     filename: dbo.filename,
-    isPartOf: schema.isPartOf,
+    isPartOf: {
+      label: [
+        schema.isPartOf,
+        dcterms.isReferencedBy,
+      ],
+    },
+    name: schema.name,
     type: {
       label: rdfx.type,
       returnType: ReturnType.AllTerms,
@@ -67,6 +79,7 @@ class MediaObjectFull extends React.PureComponent {
     isPartOf: linkType,
     loop: PropTypes.bool,
     muted: PropTypes.bool,
+    name: linkType,
     playsInline: PropTypes.bool,
     subject: subjectType,
     type: linkType.isRequired,
@@ -76,10 +89,11 @@ class MediaObjectFull extends React.PureComponent {
     const {
       caption,
       filename,
+      name,
       isPartOf,
     } = this.props;
 
-    const label = caption?.value || filename?.value;
+    const label = caption?.value || filename?.value || name?.value;
 
     if (!isPartOf) {
       return null;
@@ -91,14 +105,17 @@ class MediaObjectFull extends React.PureComponent {
 
     return (
       <div className="MediaObjectPage__infobar" data-test="MediaObject">
-        <Link
-          className="MediaObjectPage__infobar--is-part-of"
-          data-test="MediaObject-isPartOf"
-          title="Back to parent"
-          to={retrievePath(isPartOf.value)}
-        >
-          <FontAwesome name="arrow-left" />
-        </Link>
+        {isPartOf && (
+          <Link
+            className="MediaObjectPage__infobar--is-part-of"
+            data-test="MediaObject-isPartOf"
+            style={{ alignItems: 'center' }}
+            title="Back to parent"
+            to={isPartOf.value}
+          >
+            <FontAwesome name="arrow-left" />
+          </Link>
+        )}
         <div className="MediaObjectPage__infobar--label">
           {label && <Heading data-test="MediaObject-heading" variant="light">{label}</Heading>}
         </div>
@@ -159,7 +176,15 @@ class MediaObjectFull extends React.PureComponent {
       /* eslint-enable jsx-a11y/media-has-caption */
     }
 
-    const imageLink = encodingFormat.value.startsWith('image/')
+    if (isPDF(encodingFormat, contentUrl)) {
+      return (
+        <Container>
+          <PDFViewer subject={this.props.subject} url={contentUrl.value} />
+        </Container>
+      );
+    }
+
+    const imageLink = encodingFormat?.value?.startsWith('image/')
       ? contentUrl
       : imageRepresentationUrl({ encodingFormat });
 

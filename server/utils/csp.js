@@ -11,6 +11,7 @@ const connectSrc = [
   'https://api.notubiz.nl',
   'https://www.facebook.com',
   'https://analytics.argu.co',
+  'https://argu-logos.s3.eu-central-1.amazonaws.com',
   (req) => `ws://${req.hostname}`,
 ];
 
@@ -48,6 +49,8 @@ const scriptSrc = [
   'https://www.googletagmanager.com',
   'https://cdn.eu-central-1.pipedriveassets.com',
   'https://browser-update.org',
+  'https://argu-logos.s3.eu-central-1.amazonaws.com',
+  'https://cdnjs.cloudflare.com',
   (req) => {
     const { manifest } = req.getCtx();
     const { matomo_hostname: hostname, matomo_port: port } = manifest?.ontola || {};
