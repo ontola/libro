@@ -1,9 +1,9 @@
-@import '../shared/config';
+@import '../../components/shared/config';
 
 .Attachment {
   border: $grey-border;
   border-radius: $border-radius-base;
-  display: flex;
+  display: inline-flex;
   max-width: 20em;
   overflow: hidden;
   position: relative;

@@ -1,7 +1,6 @@
 import rdf from '@ontologies/core';
 
 import CompActionButton from './components/ActionButton/index';
-import CompAttachment from './components/Attachment/index';
 import CompAttachmentPreview from './components/AttachmentPreview';
 import CompAttributeListItem from './components/AttributeListItem/index';
 import CompBlurButton from './components/BlurButton';
@@ -91,7 +90,6 @@ export { component, components };
 
 export const componentMap = {
   [rdf.id(components.ActionButton)]: CompActionButton,
-  [rdf.id(components.Attachment)]: CompAttachment,
   [rdf.id(components.AttachmentPreview)]: CompAttachmentPreview,
   [rdf.id(components.AttributeListItem)]: CompAttributeListItem,
   [rdf.id(components.BlurButton)]: CompBlurButton,

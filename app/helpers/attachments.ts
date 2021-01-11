@@ -1,11 +1,6 @@
-import rdf, { NamedNode } from '@ontologies/core';
-import schema from '@ontologies/schema';
+import { Literal, NamedNode } from '@ontologies/core';
 
 import fa4 from '../ontology/fa4';
-
-export function downloadableAttachment({ contentUrl, type }: { contentUrl: NamedNode, type: NamedNode}) {
-  return rdf.equals(type, schema.VideoObject) || !contentUrl;
-}
 
 export function downloadUrl(contentUrl: NamedNode) {
   const downloadLink = new URL(contentUrl.value);
@@ -14,7 +9,7 @@ export function downloadUrl(contentUrl: NamedNode) {
   return downloadLink.toString();
 }
 
-export function imageRepresentationUrl({ encodingFormat }: { encodingFormat?: NamedNode }) {
+export function imageRepresentationUrl({ encodingFormat }: { encodingFormat?: Literal }) {
   switch (encodingFormat && encodingFormat.value) {
     case 'application/pdf':
       return fa4.ns('file-pdf-o');
@@ -39,4 +34,8 @@ export function imageRepresentationUrl({ encodingFormat }: { encodingFormat?: Na
     default:
       return fa4.ns('file-o');
   }
+}
+
+export function isPDF(encodingFormat: Literal) {
+  return encodingFormat?.value === 'application/pdf';
 }

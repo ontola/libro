@@ -19,7 +19,7 @@ import { alertDialogTopology } from './topologies/Dialog/index';
 import { footerTopology } from './topologies/Footer';
 import { formFooterTopology } from './topologies/FormFooter/Footer';
 import { fullResourceTopology } from './topologies/FullResource';
-import { gridTopology } from './topologies/Grid/index';
+import { gridTopology } from './topologies/Grid';
 import { hoverBoxTopology } from './topologies/HoverBox/index';
 import { inlineTopology } from './topologies/Inline/index';
 import { menuTopology } from './topologies/Menu';

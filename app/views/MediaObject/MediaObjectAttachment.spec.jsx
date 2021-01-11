@@ -10,7 +10,7 @@ import {
   cleanup,
   render,
 } from '../../test-utils';
-import { Page } from '../../topologies/Page';
+import Card from '../../topologies/Card';
 
 describe('MediaObject', () => {
   afterAll(cleanup);
@@ -29,6 +29,7 @@ describe('MediaObject', () => {
     [dbo.filename]: rdf.literal(FILE_NAME),
     [schema.contentUrl]: rdf.namedNode(CONTENT_URL),
     [schema.dateCreated]: rdf.literal(Date.now()),
+    [schema.fileSize]: rdf.literal('100kb'),
     [schema.isPartOf]: {
       '@id': parent,
       [dcterms.identifier]: parent,
@@ -39,21 +40,22 @@ describe('MediaObject', () => {
 
   it('renders as Page', () => {
     const {
-      queryByAltText,
+      queryAllByText,
       queryByText,
       queryByTitle,
     } = render(
       ({ iri }) => (
-        <Page>
+        <Card>
           <Resource forceRender subject={iri} />
-        </Page>
+        </Card>
       ),
       { resources }
     );
 
-    expect(queryByText(PARENT_NAME)).toBeVisible();
-    expect(queryByText(FILE_NAME)).toBeVisible();
-    expect(queryByTitle('Downloaden')).toHaveProperty('href', `${CONTENT_URL}?download=true`);
-    expect(queryByAltText(FILE_NAME)).toHaveProperty('src', CONTENT_URL);
+    expect(queryByText(PARENT_NAME)).toBeNull();
+    expect(queryByTitle('Back to parent')).toBeNull();
+    /* eslint-disable-next-line no-magic-numbers */
+    expect(queryAllByText(FILE_NAME)).toHaveLength(1);
+    expect(queryByTitle('Downloaden')).toHaveProperty('href', `${CONTENT_URL}`);
   });
 });
