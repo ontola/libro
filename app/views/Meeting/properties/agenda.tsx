@@ -1,42 +1,52 @@
+import { SomeTerm, isNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
+import { SomeNode } from 'link-lib';
 import {
+  FC,
   Resource,
-  ReturnType,
-  linkedPropType,
   register,
-  subjectType,
   useLRS,
 } from 'link-redux';
 import React from 'react';
 
+import LinkLoader from '../../../components/Loading/LinkLoader';
+import { listToArr } from '../../../helpers/data';
 import { handle } from '../../../helpers/logging';
+import { tryParseInt } from '../../../helpers/numbers';
 import meeting from '../../../ontology/meeting';
 import { allTopologies } from '../../../topologies';
 
-const DECIMAL = 10;
-
-function toCompactList(arr) {
+function toCompactList(arr: Array<SomeTerm | null | undefined>): SomeTerm[] {
   const s = new Set(arr);
   s.delete(undefined);
   s.delete(null);
 
-  return Array.from(s);
+  return Array.from(s) as SomeTerm[];
 }
 
-const Agenda = ({ agenda, subject }) => {
+interface PropTypes {
+  linkedProp: SomeNode;
+}
+
+const Agenda: FC<PropTypes> = ({ linkedProp, subject }) => {
   const lrs = useLRS();
 
-  const ordered = [];
-  const unordered = [];
+  const ordered: SomeTerm[] = [];
+  const unordered: SomeTerm[] = [];
+  const agendaArray = listToArr<SomeNode>(lrs, [], linkedProp);
 
-  agenda
+  if (!Array.isArray(agendaArray)) {
+    return <LinkLoader />;
+  }
+
+  agendaArray
     .forEach((s) => {
-      const order = lrs.store.find(s.object, schema.position, null, null);
+      const order = isNode(s) && tryParseInt(lrs.getResourceProperty(s, schema.position));
+
       if (order) {
-        const i = Number.parseInt(order.object.value, DECIMAL);
-        ordered[i] = s.object;
+        ordered[order] = s;
       } else {
-        unordered.push(s.object);
+        unordered.push(s);
       }
     });
 
@@ -66,17 +76,5 @@ Agenda.type = meeting.Meeting;
 Agenda.property = meeting.agenda;
 
 Agenda.topology = allTopologies;
-
-Agenda.mapDataToProps = {
-  agenda: {
-    label: meeting.agenda,
-    returnType: ReturnType.AllStatements,
-  },
-};
-
-Agenda.propTypes = {
-  agenda: linkedPropType,
-  subject: subjectType,
-};
 
 export default register(Agenda);

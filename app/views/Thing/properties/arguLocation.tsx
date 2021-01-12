@@ -1,4 +1,4 @@
-import rdf, { isNode } from '@ontologies/core';
+import rdf, { isNamedNode, isNode } from '@ontologies/core';
 import * as schema from '@ontologies/schema';
 import { SomeNode } from 'link-lib';
 import {
@@ -8,14 +8,13 @@ import {
   useLRS,
 } from 'link-redux';
 import React from 'react';
-import { useHistory } from 'react-router';
 
 import { LoadingCard } from '../../../components/Loading';
 import MapView from '../../../containers/MapView';
 import { listToArr } from '../../../helpers/data';
-import { retrievePath } from '../../../helpers/iris';
 import { isResource } from '../../../helpers/types';
 import useCreateChildHandler from '../../../hooks/useCreateChildHandler';
+import app from '../../../ontology/app';
 import argu from '../../../ontology/argu';
 import { containerTopology } from '../../../topologies/Container';
 import { fullResourceTopology } from '../../../topologies/FullResource';
@@ -35,7 +34,6 @@ const ArguLocation: FC<ArguLocationProps> = ({
   const lrs = useLRS();
   const onMapClick = useCreateChildHandler();
   useDataFetching(childrenPlacements);
-  const history = useHistory();
   const onSelect = React.useCallback((feature) => {
     const id = feature?.getId();
     if (id) {
@@ -47,7 +45,14 @@ const ArguLocation: FC<ArguLocationProps> = ({
       }
     }
   }, []);
+  const handleNavigate = React.useCallback((resource) => (
+    lrs.actions.ontola.navigate(isNamedNode(resource) ? resource : app.ns('#'))
+  ), [lrs]);
   const children = listToArr(lrs, [], childrenPlacements);
+
+  if (!isResource(linkedProp)) {
+    return null;
+  }
 
   if (!Array.isArray(children)) {
     return <LoadingCard />;
@@ -60,7 +65,7 @@ const ArguLocation: FC<ArguLocationProps> = ({
   return (
     <MapView
       large={large}
-      navigate={(resource) => history.push(retrievePath(resource.value) ?? '#')}
+      navigate={handleNavigate}
       placements={[
         linkedProp,
         ...children.filter(isNode).filter((child) => child !== linkedProp),
