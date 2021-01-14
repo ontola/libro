@@ -291,6 +291,12 @@ const GlappMap = ({
       setSelectedPostalCode(null, false);
     }
   }, [setSelectedPostalCode, setSelectedEvent, view.zoom]);
+  const handleViewChange = React.useCallback((newCenter, newZoom) => {
+    setView({
+      center: newCenter,
+      zoom: newZoom,
+    });
+  }, [setView]);
 
   const overlayResource = selectedPostalCode && postalCodeIri(selectedPostalCode);
 
@@ -304,12 +310,7 @@ const GlappMap = ({
       view={view}
       onClusterSelect={handleClusterSelect}
       onSelect={handleSelect}
-      onViewChange={(newCenter, newZoom) => {
-        setView({
-          center: newCenter,
-          zoom: newZoom,
-        });
-      }}
+      onViewChange={handleViewChange}
     />
   );
 };

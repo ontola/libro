@@ -6,7 +6,7 @@ import {
   FullScreen,
   defaults as defaultControls,
 } from 'ol/control';
-import { click, pointerMove } from 'ol/events/condition';
+import { pointerMove, singleClick } from 'ol/events/condition';
 import { boundingExtent, getCenter } from 'ol/extent';
 import Select from 'ol/interaction/Select';
 import TileLayer from 'ol/layer/Tile';
@@ -303,7 +303,7 @@ const useMap = (props) => {
   useEffect(() => {
     if (memoizedMap) {
       const select = new Select({
-        condition: click,
+        condition: singleClick,
         style: false,
       });
       select.on('select', handleSelect);
